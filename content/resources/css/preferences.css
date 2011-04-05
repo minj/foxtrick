@@ -67,6 +67,10 @@ html[dir="rtl"] table th:first-child {
 	text-align: right;
 }
 
+table td {
+	text-align: center;
+}
+
 .module
 {
 	border: 1px solid #ccc;

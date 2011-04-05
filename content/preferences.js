@@ -157,10 +157,16 @@ function initTextAndValues()
 			$(this).attr("checked", "checked");
 	});
 	// initialize checkboxes
-	$("body input:checkbox[pref]").each(function() {
-		if ($(this).attr("pref"))
+	$("body input[pref]").each(function() {
+		if ($(this).is(":checkbox")) {
+			// checkbox
 			if (FoxtrickPrefs.getBool($(this).attr("pref")))
 				$(this).attr("checked", "checked");
+		}
+		else {
+			// text input
+			$(this).attr("value", FoxtrickPrefs.getString($(this).attr("pref")));
+		}
 	});
 	// initialize elements with blockers, disable if blocker enabled
 	$("body [blocked-by]").each(function() {
