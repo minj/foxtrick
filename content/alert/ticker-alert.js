@@ -15,6 +15,8 @@ var FoxtrickTickerAlert = {
 		var ticker = doc.getElementById("ticker");
 		var tickerArrival = function() {
 			Foxtrick.sessionGet("tickers", function(oldTickers) {
+				if (oldTickers == undefined)
+					oldTickers = [];
 				var divs = ticker.getElementsByTagName("div");
 				var tickers = Foxtrick.map(divs, function(n) {
 					return {
