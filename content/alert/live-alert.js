@@ -68,11 +68,13 @@ var FoxtrickLiveAlert = {
 				else if (this.store[teamsText][0] !== score[0] || this.store[teamsText][1] !== score[1]) {
 					// score has changed, alert
 					this.store[teamsText] = score;
-					FoxtrickAlert.ALERTS.push({
-						"message" : teams[0] + " " + score[0] + " - " + score[1] + " " + teams[1],
-						"href" : doc.location
-					});
-					FoxtrickAlert.foxtrick_showAlert();
+					Foxtrick.util.notify.create(
+						"%h %H - %A %a".replace(/%h/, teams[0])
+							.replace(/%H/, score[0])
+							.replace(/%A/, score[1])
+							.replace(/%a/, teams[1]),
+						doc.location
+					);
 				}
 			}
 		}

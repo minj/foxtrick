@@ -113,8 +113,7 @@ chrome.extension.onConnect.addListener(function(port) {
 						port.postMessage({set:'css_text_set', css_text: css_text_from_response});
 					}
 					catch (e) {
-						alert('css xhr '+e);
-						alert(cssUrl[i]);
+						Foxtrick.dumpError(e);
 					}
 				}
 			}
@@ -198,7 +197,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		notification.show();
 
 		// close after 5 sec
-		setTimeout(notification.cancel, 5000);
+		setTimeout(function() { notification.cancel(); }, 5000);
 	}
 	else if (request.req == "sessionSet") {
 		// @param key - key of session store
