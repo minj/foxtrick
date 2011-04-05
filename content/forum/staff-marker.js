@@ -79,21 +79,14 @@ var FoxtrickStaffMarker = {
 		};
 		getHty(function(hty) {
 			// getting user-defined IDs and colors
-			var ulist = {};
+			var customMarker = {};
 			if (Foxtrick.isModuleFeatureEnabled(FoxtrickStaffMarker, "own")) {
-				var utext = FoxtrickPrefs.getString("module." + FoxtrickStaffMarker.MODULE_NAME + "." + "own_text");
-				var users = utext.match(/userid=(\d+)/ig);
-
-				var i = 0;
-				while (user = users[ii++]) {
-					try {
-						var uid = user.replace(/userid=/i, "");
-						var ustyle = utext.substring(utext.search(user)).match(/style=['"](.+)['"]/)[1];
-						ulist[uid] = ustyle;
-					}
-					catch (e) {
-						Foxtrick.dumpError(e);
-					}
+				var customText = FoxtrickPrefs.getString("module." + FoxtrickStaffMarker.MODULE_NAME + "." + "own_text");
+				try {
+					customMarker = JSON.parse(customText);
+				}
+				catch (e) {
+					Foxtrick.dump("JSON parse error: " + customText + "\n");
 				}
 			}
 			// tell whether user is staff by id or alias,
@@ -105,8 +98,8 @@ var FoxtrickStaffMarker = {
 				var chppreg = /^CHPP-/i;
 				var lareg = /^LA-/i;
 				// user-defined style
-				if (ulist[id] !== undefined)
-					object.style = ulist[id];
+				if (customMarker[id] !== undefined)
+					object.setAttribute("style", customMarker[id]);
 				// exclusive classes for official staffs
 				if (htreg.test(alias)) {
 					Foxtrick.addClass(object, "ft-staff-ht");

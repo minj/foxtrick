@@ -567,7 +567,7 @@ pref("extensions.foxtrick.prefs.module.StaffMarker.enabled", true);
 pref("extensions.foxtrick.prefs.module.StaffMarker.flag.enabled", false);
 pref("extensions.foxtrick.prefs.module.StaffMarker.manager.enabled", true);
 pref("extensions.foxtrick.prefs.module.StaffMarker.own.enabled", false);
-pref("extensions.foxtrick.prefs.module.StaffMarker.own_text", "userId=1000 userId=1001 style='color:yellow;' userId=1002 style='background-color:yellow;'");
+pref("extensions.foxtrick.prefs.module.StaffMarker.own_text", "{'1001' : 'color: red;', '1002' : 'background-color: yellow;'}");
 pref("extensions.foxtrick.prefs.module.StarsCounter.enabled", true);
 pref("extensions.foxtrick.prefs.module.TableSort.enabled", true);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.Achievements.default", false);
