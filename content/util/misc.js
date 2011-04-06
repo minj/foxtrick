@@ -46,7 +46,6 @@ Foxtrick.playSound = function(url) {
 			soundService.play(ioService.newURI(url, null, null));
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
-			// not working yet to chrome bug: http://code.google.com/p/chromium/issues/detail?id=22152
 			var music = new Audio(url);
 			music.play();
 		}
