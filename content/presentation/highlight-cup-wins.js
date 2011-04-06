@@ -44,23 +44,29 @@ var FoxtrickHighlightCupwins = {
 			var draw = (goalsHome === goalsAway); // 0 - 0 if match isn't played yet
 			var lose = (goalsHome < goalsAway);
 			var matchlink = table.rows[i].cells[3].getElementsByTagName('a')[0];
-			var teams = matchlink.textContent.split(/\s+\-\s+/);
-			var homeTeam = !rtl ? teams[0] : teams[1];
-			var awayTeam = !rtl ? teams[1] : teams[0];
-			if (win) {
-				if (highlightHomeWin) {
-					table.rows[i].cells[4].innerHTML = '<strong>'+table.rows[i].cells[4].innerHTML+'</strong>';
+			var teams = matchlink.innerHTML.match(/(.+)&nbsp;-&nbsp;(.+)/);
+			try {
+				var homeTeam = !rtl ? teams[1] : teams[0];
+				var awayTeam = !rtl ? teams[2] : teams[1];
+				if (win) {
+					if (highlightHomeWin) {
+						table.rows[i].cells[4].innerHTML = '<strong>'+table.rows[i].cells[4].innerHTML+'</strong>';
+					}
+					if (!rtl)
+						matchlink.innerHTML = '<strong>' + homeTeam + '</strong>&nbsp;-&nbsp;' + awayTeam;
+					else
+						matchlink.innerHTML = '<strong>' + awayTeam + '</strong>&nbsp;-&nbsp;' + homeTeam;
 				}
-				if (!rtl)
-					matchlink.innerHTML = '<strong>' + homeTeam + '</strong>&nbsp;-&nbsp;' + awayTeam;
-				else
-					matchlink.innerHTML = '<strong>' + awayTeam + '</strong>&nbsp;-&nbsp;' + homeTeam;
+				else if (lose) {
+					if (!rtl)
+						matchlink.innerHTML = homeTeam + '&nbsp;-&nbsp;<strong>' + awayTeam + '</strong>';
+					else
+						matchlink.innerHTML = awayTeam + '&nbsp;-&nbsp;<strong>' + homeTeam + '</strong>';
+				}
 			}
-			else if (lose) {
-				if (!rtl)
-					matchlink.innerHTML = homeTeam + '&nbsp;-&nbsp;<strong>' + awayTeam + '</strong>';
-				else
-					matchlink.innerHTML = awayTeam + '&nbsp;-&nbsp;<strong>' + homeTeam + '</strong>';
+			catch (e) {
+				// cannot parse teams 
+				Foxtrick.dump("Cannot parse teams: " + matchlink.innerHTML + "\n");
 			}
 		}
  	}
