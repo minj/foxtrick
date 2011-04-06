@@ -90,9 +90,9 @@ var FoxtrickTickerAlert = {
 					return true;
 				});
 				Foxtrick.map(newTickers, function(n) {
-					var type = getType(n.href);
+					var type = getType(n.link);
 					if (FoxtrickPrefs.getBool("module.TickerAlert." + type + ".enabled")) {
-						Foxtrick.util.notify.create(n.text, n.href);
+						Foxtrick.util.notify.create(n.text, n.link);
 						var sound = FoxtrickPrefs.getString("module.TickerAlert." + type + ".sound");
 						if (sound)
 							Foxtrick.playSound(sound);
@@ -102,5 +102,6 @@ var FoxtrickTickerAlert = {
 		};
 		if (ticker)
 			ticker.addEventListener("DOMSubtreeModified", tickerArrival, true);
+		tickerArrival();
 	}
 };
