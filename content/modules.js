@@ -61,7 +61,6 @@ Foxtrick.modules = [
 	FoxtrickHTMSPrediction,
 	FoxtrickSkillTable,
 	Foxtrick.TeamStats,  // before FoxtrickLinksPlayers
-	FoxtrickTickerAlert,
 	FoxtrickOriginalFace,
 	FoxtrickBackgroundFixed,
 	FoxtrickCopyPlayerAd,
@@ -148,5 +147,6 @@ Foxtrick.modules = [
 	FoxtrickHTMSPoints,
 	FoxtrickFriendlyInterface,
 	FoxtrickMarkAllAsRead,
-	FoxtrickShowFriendlyBooked
+	FoxtrickShowFriendlyBooked,
+	FoxtrickTickerAlert // place below all other modules that make changes to #ticker
 ];
