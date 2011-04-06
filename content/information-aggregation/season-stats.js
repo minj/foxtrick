@@ -15,7 +15,7 @@ var FoxtrickSeasonStats = {
 
 	_season:-1,
 
-	run : function( page, doc ) {
+	run : function(page, doc) {
 		// ----------------------------- season select box ---------------------------------
 
 		// get current season
@@ -78,7 +78,7 @@ var FoxtrickSeasonStats = {
 			var goals1=parseInt(goals[1]);
 			if (!draw) {
 				if ((goals0 > goals1) && islost ||
-					(goals0 < goals1) && iswon ) { // away. own goals second
+					(goals0 < goals1) && iswon) { // away. own goals second
 				}
 				else {
 					TeamNameOld = matchestable.rows[i].cells[2].getElementsByTagName('a')[0].title.replace(/-.+/g,'');
@@ -102,7 +102,7 @@ var FoxtrickSeasonStats = {
 			var goals0=parseInt(goals[0]);
 			var goals1=parseInt(goals[1]);
 			var ishome=1;
-			if (goals0>goals1&&islost || goals0<goals1&&iswon ) { // away. own goals second
+			if (goals0>goals1&&islost || goals0<goals1&&iswon) { // away. own goals second
 				goals0=parseInt(goals[1]);
 				goals1=parseInt(goals[0]);
 				ishome=2;
@@ -132,19 +132,19 @@ var FoxtrickSeasonStats = {
 		}
 
 		var ownBoxBody = doc.createElement("div");
-		var header = Foxtrickl10n.getString("foxtrick.seasonstats.boxheader" );
+		var header = Foxtrickl10n.getString("foxtrick.seasonstats.boxheader");
 		var ownBoxId = "foxtrick_seasonstats_box";
 		var ownBoxBodyId = "foxtrick_seasonstats_content";
-		ownBoxBody.setAttribute( "id", ownBoxBodyId );
+		ownBoxBody.setAttribute("id", ownBoxBodyId);
 
 		for (var type=0;type<4;++type) {
 			if (!sum_matches[type*3]["type"]) continue;
 			var head=doc.createElement('strong');
 
-			if (type==0) head.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.league" );
-			else if (type==1) head.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.friendly" );
-			else if (type==2) head.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.cup" );
-			else  head.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.masters" );
+			if (type==0) head.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.league");
+			else if (type==1) head.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.friendly");
+			else if (type==2) head.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.cup");
+			else  head.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.masters");
 
 			ownBoxBody.appendChild(head);
 			var table=doc.createElement('table');
@@ -158,31 +158,31 @@ var FoxtrickSeasonStats = {
 			tr.appendChild(th);
 			var th=doc.createElement('th');
 			th.setAttribute('class','right ft_seasonstats_td ft_seasonstats_border_left');
-			th.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.played" )+'&nbsp;';
+			th.textContent=Foxtrickl10n.getString("foxtrick.seasonstats.played");
 			tr.appendChild(th);
 			var th=doc.createElement('th');
 			th.setAttribute('class','right ft_seasonstats_td ft_seasonstats_border_left');
-			th.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.won" )+'&nbsp;';
+			th.textContent=Foxtrickl10n.getString("foxtrick.seasonstats.won");
 			tr.appendChild(th);
 			var th=doc.createElement('th');
 			th.setAttribute('class','right ft_seasonstats_td');
-			th.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.draw" )+'&nbsp;';
+			th.textContent=Foxtrickl10n.getString("foxtrick.seasonstats.draw");
 			tr.appendChild(th);
 			var th=doc.createElement('th');
 			th.setAttribute('class','right ft_seasonstats_td');
-			th.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.lost" )+'&nbsp;';
+			th.textContent=Foxtrickl10n.getString("foxtrick.seasonstats.lost");
 			tr.appendChild(th);
 			var th=doc.createElement('th');
 			th.setAttribute('class','right ft_seasonstats_td ft_seasonstats_border_left');
-			th.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.goalplus" )+'&nbsp;';
+			th.textContent=Foxtrickl10n.getString("foxtrick.seasonstats.goalplus");
 			tr.appendChild(th);
 			var th=doc.createElement('th');
 			th.setAttribute('class','right ft_seasonstats_td');
-			th.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.goalminus" )+'&nbsp;';
+			th.textContent=Foxtrickl10n.getString("foxtrick.seasonstats.goalminus");
 			tr.appendChild(th);
 			var th=doc.createElement('th');
 			th.setAttribute('class','right ft_seasonstats_td');
-			th.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.goaldiff" )+'&nbsp;';
+			th.textContent=Foxtrickl10n.getString("foxtrick.seasonstats.goaldiff");
 			tr.appendChild(th);
 
 			for (var k=0;k<3;++k) {
@@ -190,38 +190,40 @@ var FoxtrickSeasonStats = {
 			tbody.appendChild(tr);
 			var td=doc.createElement('td');
 			td.setAttribute('class','right ft_seasonstats_td');
-			if (k==0) td.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.total" );
-			else if (k==1) td.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.home" );
-			else td.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.away" );
-			td.innerHTML +='&nbsp;'
+			if (k==0)
+				td.textContent = Foxtrickl10n.getString("foxtrick.seasonstats.total");
+			else if (k==1)
+				td.textContent = Foxtrickl10n.getString("foxtrick.seasonstats.home");
+			else
+				td.textContent = Foxtrickl10n.getString("foxtrick.seasonstats.away");
 			tr.appendChild(td);
 			var td=doc.createElement('td');
 			td.setAttribute('class','right ft_seasonstats_td ft_seasonstats_border_left');
-			td.innerHTML=sum_matches[type*3+k]["num"]+'&nbsp;';
+			td.textContent = sum_matches[type*3+k]["num"];
 			tr.appendChild(td);
 			var td=doc.createElement('td');
 			td.setAttribute('class','right ft_seasonstats_td ft_seasonstats_border_left');
-			td.innerHTML=sum_matches[type*3+k]["won"]+'&nbsp;';
+			td.textContent = sum_matches[type*3+k]["won"];
 			tr.appendChild(td);
 			var td=doc.createElement('td');
 			td.setAttribute('class','right ft_seasonstats_td');
-			td.innerHTML=sum_matches[type*3+k]["draw"]+'&nbsp;';
+			td.textContent = sum_matches[type*3+k]["draw"];
 			tr.appendChild(td);
 			var td=doc.createElement('td');
 			td.setAttribute('class','right ft_seasonstats_td');
-			td.innerHTML=sum_matches[type*3+k]["lost"]+'&nbsp;';
+			td.textContent = sum_matches[type*3+k]["lost"];
 			tr.appendChild(td);
 			var td=doc.createElement('td');
 			td.setAttribute('class','right ft_seasonstats_td ft_seasonstats_border_left');
-			td.innerHTML=sum_matches[type*3+k]["goal0"]+'&nbsp;';
+			td.textContent = sum_matches[type*3+k]["goal0"];
 			tr.appendChild(td);
 			var td=doc.createElement('td');
 			td.setAttribute('class','right ft_seasonstats_td');
-			td.innerHTML=sum_matches[type*3+k]["goal1"]+'&nbsp;';
+			td.textContent = sum_matches[type*3+k]["goal1"];
 			tr.appendChild(td);
 			var td=doc.createElement('td');
 			td.setAttribute('class','right ft_seasonstats_td');
-			td.innerHTML=sum_matches[type*3+k]["goal0"]-sum_matches[type*3+k]["goal1"]+'&nbsp;';
+			td.textContent = sum_matches[type*3+k]["goal0"]-sum_matches[type*3+k]["goal1"];
 			tr.appendChild(td);
 			}
 
@@ -229,7 +231,7 @@ var FoxtrickSeasonStats = {
 			ownBoxBody.appendChild(br);
 		}
 
-		Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "");
+		Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, ownBoxId, "last", "");
 	},
 
 
