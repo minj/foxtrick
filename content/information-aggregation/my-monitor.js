@@ -122,7 +122,7 @@ var FoxtrickMyMonitor = {
 		container.appendChild(separator);
 
 		// add the teams
-		var teams = FoxtrickMyMonitor.getSavedTeams();
+		var teams = FoxtrickMyMonitor.getSavedTeams(doc);
 		const dateNow = Foxtrick.util.time.getHtDate(doc);
 		var addTeam = function(team) {
 			var buildLink = function(team, link) {
@@ -180,7 +180,7 @@ var FoxtrickMyMonitor = {
 		else if (page == "national")
 			var type = "nt";
 
-		var teams = FoxtrickMyMonitor.getSavedTeams();
+		var teams = FoxtrickMyMonitor.getSavedTeams(doc);
 		var teamId = Foxtrick.Pages.All.getId(doc);
 		var existing = Foxtrick.filter(teams, function(n) {
 			return n.id == teamId && n.type == type;
@@ -226,7 +226,7 @@ var FoxtrickMyMonitor = {
 		);
 	},
 
-	getSavedTeams : function() {
+	getSavedTeams : function(doc) {
 		var savedTeams = FoxtrickPrefs.getString("MyMonitor.teams");
 		try {
 			var teams = JSON.parse(savedTeams);
@@ -236,7 +236,7 @@ var FoxtrickMyMonitor = {
 		}
 		if (!teams) {
 			// return national teams if first run
-			FoxtrickHelper.getOwnTeamInfo(doc, page);
+			FoxtrickHelper.getOwnTeamInfo(doc);
 			var leagueId = FoxtrickHelper.getOwnCountryId();
 			const ntNode = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml,
 				"//League[LeagueID='" + leagueId + "']");
