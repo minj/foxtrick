@@ -69,7 +69,7 @@ var FoxtrickTickerAlert = {
 		};
 		// add watch to ticker
 		var ticker = doc.getElementById("ticker");
-		var tickerArrival = function() {
+		var tickerCheck = function() {
 			Foxtrick.sessionGet("tickers", function(oldTickers) {
 				if (oldTickers == undefined)
 					oldTickers = [];
@@ -100,8 +100,13 @@ var FoxtrickTickerAlert = {
 				});
 			});
 		};
-		if (ticker)
-			ticker.addEventListener("DOMSubtreeModified", tickerArrival, true);
-		tickerArrival();
+		var timer = function() {
+			if (doc) {
+				// check for tickers once every one second
+				tickerCheck();
+				setTimeout(timer, 1000);
+			}
+		};
+		timer();
 	}
 };
