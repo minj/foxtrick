@@ -608,9 +608,9 @@ function save()
 			if ($(this).is(":checkbox"))
 				FoxtrickPrefs.setBool(pref, $(this).is(":checked"));
 			else if ($(this)[0].nodeName == "select")
-				FoxtrickPrefs.setString(pref, $(this)[0].value); // calculated just-in-time, so jQuery would fail here
+				FoxtrickPrefs.setString(pref, $(this)[0].value); // calculated just-in-time, so .attr("value") would fail here
 			else if ($(this).is(":input"))
-				FoxtrickPrefs.setString(pref, $(this).attr("value"));
+				FoxtrickPrefs.setString(pref, $(this)[0].value);
 		}
 	});
 
