@@ -148,7 +148,7 @@
 		if (page == 'guestbook')
 			try {
 				var textbox = doc.getElementById( "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody" );
-				textbox.setAttribute('style' , 'height:100px; width:100%');
+				textbox.setAttribute('style' , 'height:100px; width: 98%;');
 			}
 			catch (e)
 			{
