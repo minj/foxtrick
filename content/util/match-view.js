@@ -109,6 +109,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml) {
 				liveLink.appendChild(liveImg);
 				resultCell.appendChild(liveLink);
 			}
+			Foxtrick.addClass(resultCell, "nowrap");
 			row.appendChild(resultCell);
 			return row;
 		};
