@@ -90,6 +90,10 @@ var FoxtrickTickerAlert = {
 					}
 					return true;
 				});
+
+				Foxtrick.dump("Tickers: " + Foxtrick.map(tickers, JSON.stringify).join(";") + "\n");
+				Foxtrick.dump("New tickers: " + Foxtrick.map(newTickers, JSON.stringify).join(";") + "\n");
+
 				Foxtrick.map(newTickers, function(n) {
 					var type = getType(n.link);
 					if (FoxtrickPrefs.getBool("module.TickerAlert." + type + ".enabled")) {
