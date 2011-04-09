@@ -83,6 +83,15 @@ var FoxtrickTickerAlert = {
 		// call callback when check finished
 		var tickerCheck = function() {
 			var tickersNow = getTickers();
+
+			if (tickersNow.length < tickers.length) {
+				// Hattrick.org clears all tickers before adding a new one,
+				// so to not alert when the tickers are being cleared, we
+				// return when ticker count now is less than old ticker
+				// count
+				return;
+			}
+
 			var newTickers = Foxtrick.filter(tickersNow, function(n) {
 				for (var i = 0; i < tickers.length; ++i) {
 					var old = tickers[i];
