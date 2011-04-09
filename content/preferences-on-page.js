@@ -128,7 +128,7 @@ var FoxtrickOnPagePrefs = {
 					var linkdivouter = doc.createElement('div');
 					linkdivouter.setAttribute("class","onpageprefs_extraprefs");
 					var linkdivheader = doc.createElement('h3');
-					linkdivheader.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.prefs.LinksTab")));
+					linkdivheader.appendChild(doc.createTextNode(Foxtrickl10n.getString("tab.links")));
 					linkdivheader.setAttribute("class","ft_sidebarBoxCollapsed");
 					if (Foxtrick.isRTLLayout(doc)) linkdivheader.setAttribute("class","ft_sidebarBoxCollapsed_rtl");
 					Foxtrick.addEventListenerChangeSave(linkdivheader, "click", FoxtrickOnPagePrefs.HeaderClickLinks, false );
