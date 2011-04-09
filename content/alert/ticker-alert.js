@@ -69,52 +69,44 @@ var FoxtrickTickerAlert = {
 		};
 		// add watch to ticker
 		var ticker = doc.getElementById("ticker");
+		var getTickers = function() {
+			var divs = ticker.getElementsByTagName("div");
+			var tickers = Foxtrick.map(divs, function(n) {
+				return {
+					text : n.textContent,
+					link : n.getElementsByTagName("a")[0].href
+				};
+			});
+			return tickers;
+		};
+		var tickers = getTickers();
 		// call callback when check finished
-		var tickerCheck = function(callback) {
-			Foxtrick.sessionGet("tickers", function(oldTickers) {
-				if (oldTickers == undefined)
-					oldTickers = [];
-				var divs = ticker.getElementsByTagName("div");
-				var tickers = Foxtrick.map(divs, function(n) {
-					return {
-						text : n.textContent,
-						link : n.getElementsByTagName("a")[0].href
-					};
-				});
-				Foxtrick.sessionSet("tickers", tickers);
-				var newTickers = Foxtrick.filter(tickers, function(n) {
-					for (var i = 0; i < oldTickers.length; ++i) {
-						var old = oldTickers[i];
-						if (old.text == n.text && old.link == n.link)
-							return false;
-					}
-					return true;
-				});
+		var tickerCheck = function() {
+			var tickersNow = getTickers();
+			var newTickers = Foxtrick.filter(tickersNow, function(n) {
+				for (var i = 0; i < tickers.length; ++i) {
+					var old = tickers[i];
+					if (old.text == n.text && old.link == n.link)
+						return false;
+				}
+				return true;
+			});
+			tickers = tickersNow;
 
-				Foxtrick.dump("Tickers: " + Foxtrick.map(tickers, JSON.stringify).join(";") + "\n");
-				Foxtrick.dump("New tickers: " + Foxtrick.map(newTickers, JSON.stringify).join(";") + "\n");
+			Foxtrick.dump("Tickers: " + Foxtrick.map(tickers, JSON.stringify).join(";") + "\n");
+			Foxtrick.dump("New tickers: " + Foxtrick.map(newTickers, JSON.stringify).join(";") + "\n");
 
-				Foxtrick.map(newTickers, function(n) {
-					var type = getType(n.link);
-					if (FoxtrickPrefs.getBool("module.TickerAlert." + type + ".enabled")) {
-						Foxtrick.util.notify.create(n.text, n.link);
-						var sound = FoxtrickPrefs.getString("module.TickerAlert." + type + ".sound");
-						if (sound)
-							Foxtrick.playSound(sound);
-					}
-				});
-				callback();
+			Foxtrick.map(newTickers, function(n) {
+				var type = getType(n.link);
+				if (FoxtrickPrefs.getBool("module.TickerAlert." + type + ".enabled")) {
+					Foxtrick.util.notify.create(n.text, n.link);
+					var sound = FoxtrickPrefs.getString("module.TickerAlert." + type + ".sound");
+					if (sound)
+						Foxtrick.playSound(sound);
+				}
 			});
 		};
-		var timer = function() {
-			if (doc) {
-				// check for tickers once every one second
-				tickerCheck(function() {
-					setTimeout(timer, 1000);
-				});
-			}
-		};
 		if (Foxtrick.isSupporter(doc))
-			timer();
+			ticker.addEventListener("DOMSubtreeModified", tickerCheck, false);
 	}
 };
