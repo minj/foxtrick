@@ -864,11 +864,13 @@ Foxtrick.dumpFlush = function(doc) {
 }
 
 Foxtrick.dump = function(content) {
-	try {
-		content = JSON.stringify(content);
-	}
-	catch (e) {
-		content = String(content);
+	if (typeof(content) != "string") {
+		try {
+			content = JSON.stringify(content);
+		}
+		catch (e) {
+			content = String(content);
+		}
 	}
 	Foxtrick.dumpCache += content;
 	if (Foxtrick.BuildFor === "Gecko")
