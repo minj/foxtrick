@@ -834,32 +834,6 @@ Foxtrick.hasMainBodyScroll = function (doc) {
 	return false;
 }
 
-Foxtrick.var_dump = function(arr,level) {
-	var dumped_text = "";
-	if(!level) level = 0;
-
-	//The padding given at the beginning of the line.
-	var level_padding = "";
-	for(var j=0;j<level+1;j++) level_padding += "	";
-
-	if (typeof(arr) == 'object') { //Array/Hashes/Objects
-		for(var item in arr) {
-			var value = arr[item];
-
-			if(typeof(value) == 'object') { //If it is an array,
-				dumped_text += level_padding + "'" + item + "' ...<br>\n";
-				dumped_text += Foxtrick.var_dump(value,level+1);
-			} else {
-				dumped_text += level_padding + "'" + item + "' => \"" + value + "\"<br>\n";
-			}
-		}
-	}
-	else { //Stings/Chars/Numbers etc.
-		dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
-	}
-	return dumped_text;
-}
-
 Foxtrick.dumpCache = '';
 Foxtrick.dumpFlush = function(doc) {
 	if (doc.getElementById("page") != null
@@ -890,7 +864,12 @@ Foxtrick.dumpFlush = function(doc) {
 }
 
 Foxtrick.dump = function(content) {
-	content = String(content);
+	try {
+		content = JSON.stringify(content);
+	}
+	catch (e) {
+		content = String(content);
+	}
 	Foxtrick.dumpCache += content;
 	if (Foxtrick.BuildFor === "Gecko")
 		dump("FT: " + content);
