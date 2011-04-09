@@ -110,6 +110,7 @@ var FoxtrickTickerAlert = {
 				});
 			}
 		};
-		timer();
+		if (Foxtrick.isSupporter(doc))
+			timer();
 	}
 };
