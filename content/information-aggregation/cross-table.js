@@ -271,18 +271,21 @@ var FoxtrickCrossTable = {
 				graphContainer.appendChild(noMatches);
 			}
 			else {
+				// Google Chart API documentation:
+				// Line charts:
+				// http://code.google.com/apis/chart/docs/gallery/line_charts.html
 				var url = "http://chart.apis.google.com/chart"
-					+ "?cht=lc"
-					+ "&chs=" + width + "x200" // size
-					+ "&chds=0.5,8.5"
-					+ "&chxt=x,y" // X, Y axis
-					+ "&chxr=0,1," + roundsPlayed // X-axis label
-					+ "&chxl=1:|8|7|6|5|4|3|2|1|" // Y-axis label
+					+ "?cht=lc" // chart type=line chart
+					+ "&chs=" + width + "x200" // chart size=width×20
+					+ "&chds=0.5,8.5" // chart data series range=[0.5,8.5]
+					+ "&chxt=x,y" // visible axis=X, Y
+					+ "&chxr=0,1," + roundsPlayed + ",1" // axis label=x:[1..roundsPlayed](1)
+					+ "&chxl=1:|8|7|6|5|4|3|2|1|" // axis label=y:[8,7,6,5,4,3,2,1]
 					+ "&chxp=1,6.25,18.5,31.75,44,56.25,68.25,81.5,93.75" // Y-axis label position
-					+ "&chg=" + (100 / roundsPlayed) + ",0" // Separate lines parallel with Y-axis
-					+ "&chco=008000,FF9900,4684EE,DC3912,00E100,FF00FF,A7A7A7,000080"
-					+ "&chd=t:" + Foxtrick.map(teams, function(n) { return n.position.join(","); }).join("|")
-					+ "&chdl=" + Foxtrick.map(teams, function(n) { return n.name; }).join("|")
+					+ "&chg=" + (100 / (roundsPlayed - 1)) + ",0" // Separate lines parallel with Y-axis
+					+ "&chco=008000,FF9900,4684EE,DC3912,00E100,FF00FF,A7A7A7,000080" // line colors
+					+ "&chd=t:" + Foxtrick.map(teams, function(n) { return n.position.join(","); }).join("|") // team position trend
+					+ "&chdl=" + Foxtrick.map(teams, function(n) { return n.name; }).join("|") // team names
 					+ "&chdlp=r|l";
 				graph.src = url;
 			}
