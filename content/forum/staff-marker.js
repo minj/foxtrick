@@ -138,7 +138,7 @@ var FoxtrickStaffMarker = {
 				break;
 
 				case "forumWritePost":
-					FoxtrickStaffMarker._MarkAliases_select(doc. modifier);
+					FoxtrickStaffMarker._MarkAliases_select(doc, modifier);
 				break;
 
 				case "teamPage":
