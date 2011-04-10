@@ -15,25 +15,60 @@ var FoxtrickSeriesFlags = {
 
 	run : function(page, doc) {
 		var buildFlag = function(arg, callback) {
-			var args = [["file", "teamdetails"]];
-			args.push(arg);
-			Foxtrick.ApiProxy.retrieve(doc, args, function(xml) {
-				var flag = doc.createElement("span");
-				flag.className = "ft-series-flag";
-				var leagueId = xml.getElementsByTagName("LeagueID")[0].textContent;
-				var countryId = Foxtrick.XMLData.getCountryIdByLeagueId(leagueId);
-				var country = FoxtrickHelper.createFlagFromCountryId(doc, countryId);
-				flag.appendChild(country);
-				if (!Foxtrick.isModuleFeatureEnabled(FoxtrickSeriesFlags, "CountryOnly")) {
-					var seriesName = xml.getElementsByTagName("LeagueLevelUnitName")[0].textContent;
-					var seriesId = xml.getElementsByTagName("LeagueLevelUnitID")[0].textContent;
-					var series = doc.createElement("a");
-					series.className = "inner";
-					series.textContent = seriesName;
-					series.href = "/World/Series/Default.aspx?LeagueLevelUnitID=" + seriesId;
-					flag.appendChild(series);
+			Foxtrick.sessionGet("seriesFlags", function(mapping) {
+				if (mapping == undefined)
+					mapping = { "userID" : {}, "teamID" : {} };
+
+				// data is an Object with attributes leagueId, seriesName,
+				// and seriesId
+				var buildFromData = function(data) {
+					var flag = doc.createElement("span");
+					flag.className = "ft-series-flag";
+					var countryId = Foxtrick.XMLData.getCountryIdByLeagueId(data["leagueId"]);
+					var country = FoxtrickHelper.createFlagFromCountryId(doc, countryId);
+					flag.appendChild(country);
+					if (!Foxtrick.isModuleFeatureEnabled(FoxtrickSeriesFlags, "CountryOnly")) {
+						var series = doc.createElement("a");
+						series.className = "inner";
+						series.textContent = data["seriesName"];
+						series.href = "/World/Series/Default.aspx?LeagueLevelUnitID=" + data["seriesId"];
+						flag.appendChild(series);
+					}
+					return flag;
+				};
+				// fetch data from stored mapping if available, otherwise
+				// we retrieve XML
+				if (mapping[arg[0]][arg[1]] != undefined) {
+					var mapObj = mapping[arg[0]][arg[1]];
+					var data = {
+						"leagueId" : mapObj["leagueId"],
+						"seriesName" : mapObj["seriesName"],
+						"seriesId" : mapObj["seriesId"]
+					};
+					var flag = buildFromData(data);
+					callback(flag);
 				}
-				callback(flag);
+				else {
+					var args = [["file", "teamdetails"]];
+					args.push(arg);
+					Foxtrick.ApiProxy.retrieve(doc, args, function(xml) {
+						var data = {
+							"leagueId" : xml.getElementsByTagName("LeagueID")[0].textContent,
+							"seriesName" : xml.getElementsByTagName("LeagueLevelUnitName")[0].textContent,
+							"seriesId" : xml.getElementsByTagName("LeagueLevelUnitID")[0].textContent
+						};
+						// get newest mapping and store the data, because
+						// it may have changed during the retrieval of XML
+						Foxtrick.sessionGet("seriesFlags", function(mapping) {
+							if (mapping == undefined)
+								mapping = { "userID" : {}, "teamID" : {} };
+							mapping[arg[0]][arg[1]] = data;
+							Foxtrick.sessionSet("seriesFlags", mapping);
+						});
+						var flag = buildFromData(data);
+						callback(flag);
+					});
+				}
 			});
 		};
 		var modifyUserLinks = function(links) {
