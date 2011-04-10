@@ -127,12 +127,7 @@ var FoxtrickMyMonitor = {
 		var addTeam = function(team) {
 			var buildLink = function(team, link) {
 				link.textContent = team.name;
-				if (team.type == "nt")
-					link.href = "/Club/NationalTeam/NationalTeam.aspx?teamId=" + team.id;
-				else if (team.type == "youth")
-					link.href = "/Club/Youth/Default.aspx?YouthTeamID=" + team.id;
-				else // default as senior
-					link.href = "/Club/?TeamID=" + team.id;
+				link.href = FoxtrickMyMonitor.getLink(team);
 			};
 			// frame for each team
 			var frame = doc.createElement("div");
@@ -196,6 +191,7 @@ var FoxtrickMyMonitor = {
 			FoxtrickMyMonitor.setSavedTeams(teams);
 			Foxtrick.addClass(addLink, "hidden");
 			Foxtrick.removeClass(removeLink, "hidden");
+			fillSelect();
 		}, false);
 		container.appendChild(addLink);
 		// link to remove team
@@ -209,8 +205,27 @@ var FoxtrickMyMonitor = {
 			FoxtrickMyMonitor.setSavedTeams(teams);
 			Foxtrick.removeClass(addLink, "hidden");
 			Foxtrick.addClass(removeLink, "hidden");
+			fillSelect();
 		}, false);
 		container.appendChild(removeLink);
+
+		// select box containing teams in the monitor
+		var fillSelect = function() {
+			select.textContent = ""; // clear first
+			Foxtrick.map(teams, function(n) {
+				var option = doc.createElement("option");
+				option.textContent = n.name;
+				option.addEventListener("click", function() {
+					doc.location = FoxtrickMyMonitor.getLink(n);
+				}, false);
+				if (n.type == type && n.id == teamId)
+					option.setAttribute("selected", "selected");
+				select.appendChild(option);
+			});
+		};
+		var select = doc.createElement("select");
+		fillSelect();
+		container.appendChild(select);
 
 		if (existing.length > 0)
 			Foxtrick.addClass(addLink, "hidden");
@@ -254,5 +269,15 @@ var FoxtrickMyMonitor = {
 
 	setSavedTeams : function(teams) {
 		FoxtrickPrefs.setString("MyMonitor.teams", JSON.stringify(teams));
+	},
+
+	// return the link to a team given
+	getLink : function(team) {
+		if (team.type == "nt")
+			return "/Club/NationalTeam/NationalTeam.aspx?teamId=" + team.id;
+		else if (team.type == "youth")
+			return "/Club/Youth/Default.aspx?YouthTeamID=" + team.id;
+		else // default as senior
+			return "/Club/?TeamID=" + team.id;
 	}
 };
