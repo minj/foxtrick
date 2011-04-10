@@ -215,11 +215,14 @@ var FoxtrickMyMonitor = {
 			Foxtrick.map(teams, function(n) {
 				var option = doc.createElement("option");
 				option.textContent = n.name;
-				option.addEventListener("click", function() {
-					doc.location = FoxtrickMyMonitor.getLink(n);
-				}, false);
 				if (n.type == type && n.id == teamId)
 					option.setAttribute("selected", "selected");
+				else {
+					// redirect to team if not currently selected one
+					option.addEventListener("click", function() {
+						doc.location = FoxtrickMyMonitor.getLink(n);
+					}, false);
+				}
 				select.appendChild(option);
 			});
 		};
