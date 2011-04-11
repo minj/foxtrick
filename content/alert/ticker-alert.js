@@ -70,8 +70,8 @@ var FoxtrickTickerAlert = {
 		// add watch to ticker
 		var ticker = doc.getElementById("ticker");
 		var getTickers = function() {
-			var divs = ticker.getElementsByTagName("div");
-			var tickers = Foxtrick.map(divs, function(n) {
+			const divs = ticker.getElementsByTagName("div");
+			const tickers = Foxtrick.map(divs, function(n) {
 				return {
 					text : n.textContent,
 					link : n.getElementsByTagName("a")[0].href
@@ -79,43 +79,52 @@ var FoxtrickTickerAlert = {
 			});
 			return tickers;
 		};
-		var tickers = getTickers();
-		// call callback when check finished
-		var tickerCheck = function() {
-			var tickersNow = getTickers();
+		var tickerCheck = function(ev) {
+			// prevent from multiple tickerCheck() instances running at the
+			// same time
+			ticker.removeEventListener("DOMSubtreeModified", tickerCheck, false);
+			Foxtrick.sessionGet("tickers", function(tickers) {
+				if (tickers == undefined)
+					tickers = [];
 
-			if (tickersNow.length < tickers.length) {
-				// Hattrick.org clears all tickers before adding a new one,
-				// so to not alert when the tickers are being cleared, we
-				// return when ticker count now is less than old ticker
-				// count
-				return;
-			}
+				Foxtrick.dump(ev);
 
-			var newTickers = Foxtrick.filter(tickersNow, function(n) {
-				for (var i = 0; i < tickers.length; ++i) {
-					var old = tickers[i];
-					if (old.text == n.text && old.link == n.link)
-						return false;
+				const tickersNow = getTickers();
+				if (tickersNow.length < tickers.length) {
+					// Hattrick.org clears all tickers before adding a new one,
+					// so to not alert when the tickers are being cleared, we
+					// return when ticker count now is less than old ticker
+					// count
+					return;
 				}
-				return true;
-			});
-			tickers = tickersNow;
 
-			Foxtrick.dump("Tickers: " + Foxtrick.map(tickers, JSON.stringify).join(";") + "\n");
-			Foxtrick.dump("New tickers: " + Foxtrick.map(newTickers, JSON.stringify).join(";") + "\n");
+				Foxtrick.sessionSet("tickers", tickersNow);
 
-			Foxtrick.map(newTickers, function(n) {
-				var type = getType(n.link);
-				if (FoxtrickPrefs.getBool("module.TickerAlert." + type + ".enabled")) {
-					Foxtrick.util.notify.create(n.text, n.link);
-					var sound = FoxtrickPrefs.getString("module.TickerAlert." + type + ".sound");
-					if (sound)
-						Foxtrick.playSound(sound);
-				}
+				const newTickers = Foxtrick.filter(tickersNow, function(n) {
+					for (var i = 0; i < tickers.length; ++i) {
+						var old = tickers[i];
+						if (old.text == n.text && old.link == n.link)
+							return false;
+					}
+					return true;
+				});
+
+				Foxtrick.dump("Tickers: " + JSON.stringify(tickers) + "\n");
+				Foxtrick.dump("New tickers: " + JSON.stringify(newTickers) + "\n");
+
+				Foxtrick.map(newTickers, function(n) {
+					var type = getType(n.link);
+					if (FoxtrickPrefs.getBool("module.TickerAlert." + type + ".enabled")) {
+						Foxtrick.util.notify.create(n.text, n.link);
+						var sound = FoxtrickPrefs.getString("module.TickerAlert." + type + ".sound");
+						if (sound)
+							Foxtrick.playSound(sound);
+					}
+				});
+				ticker.addEventListener("DOMSubtreeModified", tickerCheck, false);
 			});
 		};
 		if (Foxtrick.isSupporter(doc))
-			ticker.addEventListener("DOMSubtreeModified", tickerCheck, false);
+			tickerCheck();
 	}
 };
