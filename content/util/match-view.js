@@ -70,7 +70,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml) {
 			var matchCell = doc.createElement("td");
 			var matchLink = doc.createElement("a");
 			matchLink.href = "/Club/Matches/Match.aspx?matchID=" + matchId
-				+ isYouth ? "isYouth=true" : "";
+				+ (isYouth ? "&isYouth=True" : "");
 			if (!rtl) {
 				matchLink.title = homeTeam + " - " + awayTeam;
 				matchLink.textContent = homeTeam.substr(0, 15) + " - "
