@@ -87,8 +87,6 @@ var FoxtrickTickerAlert = {
 				if (tickers == undefined)
 					tickers = [];
 
-				Foxtrick.dump(ev);
-
 				const tickersNow = getTickers();
 				if (tickersNow.length < tickers.length) {
 					// Hattrick.org clears all tickers before adding a new one,
