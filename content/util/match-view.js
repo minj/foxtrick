@@ -28,6 +28,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml) {
 
 	var teamId = xml.getElementsByTagName("TeamID")[0].textContent;
 	var teamName = xml.getElementsByTagName("TeamName")[0].textContent;
+	var isYouth = (xml.getElementsByTagName("IsYouth")[0].textContent == "True");
 	var matches = xml.getElementsByTagName("Match");
 	// add one played and one not played
 	var played = Foxtrick.filter(matches, function(n) {
@@ -68,7 +69,8 @@ Foxtrick.util.matchView.fillMatches = function(container, xml) {
 
 			var matchCell = doc.createElement("td");
 			var matchLink = doc.createElement("a");
-			matchLink.href = "/Club/Matches/Match.aspx?matchID=" + matchId;
+			matchLink.href = "/Club/Matches/Match.aspx?matchID=" + matchId
+				+ isYouth ? "isYouth=true" : "";
 			if (!rtl) {
 				matchLink.title = homeTeam + " - " + awayTeam;
 				matchLink.textContent = homeTeam.substr(0, 15) + " - "
