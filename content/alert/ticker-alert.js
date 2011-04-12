@@ -48,7 +48,7 @@ var FoxtrickTickerAlert = {
 	},
 
 	TYPES : {
-		"welcome" : /\/MyHattrick/i,
+		"welcome" : /\/MyHattrick\/$/i,
 		"supporter" : /\/Club\/Manager\/\?teamId=/i,
 		"forum" : /\/Forum/i,
 		"transfer" : /\/Players/i,
