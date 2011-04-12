@@ -9,7 +9,7 @@ var FoxtrickExtraShortcuts = {
 	MODULE_NAME : "ExtraShortcuts",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('all'),
-	OPTIONS : new Array("AddLeft","AddSpace","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "HtRadio", "No9", "Latehome", "Balkaradio" ),//,"DTRadioWinamp"),
+	OPTIONS : new Array("AddLeft","AddSpace","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "HtRadio", "No9", "Latehome", "Balkaradio" ),
 	RADIOS: new Array("HtRadio", "No9", "Latehome", "Balkaradio"),
 	RADIO_URLS: new Array('http://stream.ht-radio.nl/foxtrick/status.php', 'http://no9-online.de/_no9/no9status.php','http://www.latehome.de/foxtrick/status.php', 'http://radio-balkadio.com/radio.xml'),
 
