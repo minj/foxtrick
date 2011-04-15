@@ -627,6 +627,8 @@ pref("extensions.foxtrick.prefs.module.TickerAlert.mail.enabled", true);
 pref("extensions.foxtrick.prefs.module.TickerAlert.mail.sound", "foxtrick://resources/sounds/DingLing.wav");
 pref("extensions.foxtrick.prefs.module.TickerAlert.myht.enabled", true);
 pref("extensions.foxtrick.prefs.module.TickerAlert.myht.sound", "foxtrick://resources/sounds/DingLing.wav");
+pref("extensions.foxtrick.prefs.module.TickerAlert.others.enabled", true);
+pref("extensions.foxtrick.prefs.module.TickerAlert.others.sound", "foxtrick://resources/sounds/DingLing.wav");
 pref("extensions.foxtrick.prefs.module.TickerAlert.supporter.enabled", true);
 pref("extensions.foxtrick.prefs.module.TickerAlert.supporter.sound", "foxtrick://resources/sounds/DingLing.wav");
 pref("extensions.foxtrick.prefs.module.TickerAlert.transfer.enabled", true);
