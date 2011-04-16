@@ -20,6 +20,37 @@ Foxtrick.util.matchView.fillMatches = function(container, xml) {
 		return;
 	}
 
+	var type2info = function(type) {
+		// convert match type integer to match type info
+		// source:
+		// http://www.hattrick.org/Community/CHPP/Matches/CHPPMatches.aspx
+		const mapping = {
+			"1" : { key : "league", className : "matchLeague" },
+			"2" : { key : "qualification", className : "matchQualification" },
+			"3" : { key : "cup", className : "matchCup" },
+			"4" : { key : "friendly", className : "matchFriendly" },
+			"5" : { key : "friendly.cup", className : "matchFriendly" },
+			"7" : { key : "masters", className : "matchMasters" },
+			"8" : { key : "friendly", className : "matchFriendly" },
+			"9" : { key : "friendly.cup", className : "matchFriendly" },
+			"10" : { key : "nt.competitive", className : " matchLeague" },
+			"11" : { key : "nt.competitive", className : " matchLeague" },
+			"12" : { key : "nt.friendly", className : " matchFriendly" },
+			"100" : { key : "youth.league", className : "matchLeague" },
+			"101" : { key : "youth.friendly", className : "matchFriendly" },
+			"103" : { key : "youth.friendly.cup", className : "matchFriendly" },
+			"105" : { key : "youth.friendly", className : "matchFriendly" },
+			"106" : { key : "youth.friendly.cup", className : "matchFriendly" },
+		};
+		if (obj = mapping[type]) {
+			return {
+				str : Foxtrickl10n.getString("match.type." + obj.key),
+				className : obj.className
+			};
+		}
+		return null;
+	};
+
 	var doc = container.ownerDocument;
 
 	container.textContent = ""; // clear container first
@@ -52,6 +83,8 @@ Foxtrick.util.matchView.fillMatches = function(container, xml) {
 		var homeId = match.getElementsByTagName("HomeTeamID")[0].textContent;
 		var awayId = match.getElementsByTagName("AwayTeamID")[0].textContent;
 		var side = (teamId == homeId) ? "home" : "away";
+		var type = match.getElementsByTagName("MatchType")[0].textContent;
+		var typeInfo = type2info(type);
 		var status = match.getElementsByTagName("Status")[0].textContent;
 		if (status == "FINISHED") {
 			var homeGoals = match.getElementsByTagName("HomeGoals")[0].textContent;
@@ -66,6 +99,16 @@ Foxtrick.util.matchView.fillMatches = function(container, xml) {
 			const rtl = Foxtrick.isRTLLayout(doc);
 
 			var row = doc.createElement("tr");
+
+			var matchTypeCell = doc.createElement("td");
+			if (typeInfo) {
+				var typeImg = doc.createElement("img");
+				typeImg.src = "/Img/icons/transparent.gif";
+				typeImg.className = typeInfo.className;
+				typeImg.title = typeImg.alt = typeInfo.str;
+				matchTypeCell.appendChild(typeImg);
+			}
+			row.appendChild(matchTypeCell);
 
 			var matchCell = doc.createElement("td");
 			var matchLink = doc.createElement("a");
