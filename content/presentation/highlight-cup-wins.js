@@ -46,7 +46,7 @@ var FoxtrickHighlightCupwins = {
 			var matchlink = table.rows[i].cells[3].getElementsByTagName('a')[0];
 			var teams = matchlink.innerHTML.match(/(.+)&nbsp;-&nbsp;(.+)/);
 			try {
-				var homeTeam = !rtl ? teams[1] : teams[0];
+				var homeTeam = !rtl ? teams[1] : teams[2];
 				var awayTeam = !rtl ? teams[2] : teams[1];
 				if (win) {
 					if (highlightHomeWin) {
@@ -55,13 +55,13 @@ var FoxtrickHighlightCupwins = {
 					if (!rtl)
 						matchlink.innerHTML = '<strong>' + homeTeam + '</strong>&nbsp;-&nbsp;' + awayTeam;
 					else
-						matchlink.innerHTML = '<strong>' + awayTeam + '</strong>&nbsp;-&nbsp;' + homeTeam;
+						matchlink.innerHTML = awayTeam + '&nbsp;-&nbsp;<strong>' + homeTeam + '</strong>';
 				}
 				else if (lose) {
 					if (!rtl)
 						matchlink.innerHTML = homeTeam + '&nbsp;-&nbsp;<strong>' + awayTeam + '</strong>';
 					else
-						matchlink.innerHTML = awayTeam + '&nbsp;-&nbsp;<strong>' + homeTeam + '</strong>';
+						matchlink.innerHTML = '<strong>' + awayTeam + '</strong>&nbsp;-&nbsp;' + homeTeam;
 				}
 			}
 			catch (e) {
