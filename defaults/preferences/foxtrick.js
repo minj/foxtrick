@@ -161,7 +161,6 @@ pref("extensions.foxtrick.prefs.module.LeagueAndMatchChat.ChatNick.enabled", tru
 pref("extensions.foxtrick.prefs.module.LeagueAndMatchChat.ChatNick_text", "Guest");
 pref("extensions.foxtrick.prefs.module.LeagueAndMatchChat.enabled", true);
 pref("extensions.foxtrick.prefs.module.LeagueAndMatchChat.OpenGabblyPopup.enabled", true);
-pref("extensions.foxtrick.prefs.module.LeagueAndMatchChat.OpenYapletFrame.enabled", false);
 pref("extensions.foxtrick.prefs.module.LeagueAndMatchChat.OpenYapletPopup.enabled", false);
 pref("extensions.foxtrick.prefs.module.LeagueNewsFilter.enabled", true);
 pref("extensions.foxtrick.prefs.module.LeagueNewsFilter.gray_bots.enabled", true);

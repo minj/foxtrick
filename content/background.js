@@ -122,16 +122,6 @@ chrome.extension.onConnect.addListener(function(port) {
 			}
 		});
 	}
-	if (port.name == "chatoldserver") {
-		port.onMessage.addListener(function(msg) {
-			if (msg.reqtype == "set_last_server") {
-				localStorage['lastserver'] = msg.lastserver;
-			}
-			else if (msg.reqtype == "get_last_server") {
-				port.postMessage({response:'lastserver', lastserver:localStorage['lastserver']});
-			}
-		});
-	}
 });
 
 // reload strings after lang change
