@@ -34,17 +34,16 @@ Foxtrick.XMLData = {
 			}
 		}
 		else if (Foxtrick.BuildFor == "Chrome" && Foxtrick.chromeContext() == "content") {
-			var port = chrome.extension.connect({name : "xml"});
-			port.onMessage.addListener(function(msg) {
-				var parser = new DOMParser();
-				Foxtrick.XMLData.htCurrencyXml = parser.parseFromString(msg.currency, "text/xml");
-				Foxtrick.XMLData.htdateformat = parser.parseFromString(msg.dateFormat, "text/xml");
-				Foxtrick.XMLData.aboutXML = parser.parseFromString(msg.about, "text/xml");
-				Foxtrick.XMLData.worldDetailsXml = parser.parseFromString(msg.worldDetails, "text/xml");
-				Foxtrick.XMLData.League = msg.league;
-				Foxtrick.XMLData.countryToLeague = msg.countryToLeague;
-			});
-			port.postMessage({req : "get"});
+			chrome.extension.sendRequest({ req : "xmlResource" },
+				function(data) {
+					var parser = new DOMParser();
+					Foxtrick.XMLData.htCurrencyXml = parser.parseFromString(data.currency, "text/xml");
+					Foxtrick.XMLData.htdateformat = parser.parseFromString(data.dateFormat, "text/xml");
+					Foxtrick.XMLData.aboutXML = parser.parseFromString(data.about, "text/xml");
+					Foxtrick.XMLData.worldDetailsXml = parser.parseFromString(data.worldDetails, "text/xml");
+					Foxtrick.XMLData.League = data.league;
+					Foxtrick.XMLData.countryToLeague = data.countryToLeague;
+				});
 		}
 	},
 

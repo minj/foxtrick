@@ -5,26 +5,6 @@
  */
 ////////////////////////////////////////////////////////////////////////////////
 
-if (Foxtrick.BuildFor === "Chrome") {
-	var portsetpref = chrome.extension.connect({name: "ftpref-query"});
-	portsetpref.onMessage.addListener(function(msg) {
-		if (msg.set == 'lang_changed') {
-			console.log('lang_changed');
-			Foxtrickl10n.properties = msg.properties;
-			if (msg.reload)
-				document.location.reload();
-		}
-		else if (msg.set=='css_text_set') {
-			console.log('css_text_set');
-			var begin = new Date();
-			Foxtrick.addStyleSheetSnippet(document, msg.css_text);
-			var end = new Date();
-			var time = end.getTime() - begin.getTime();
-			console.log("load css_text time: " + time + " ms\n");
-		}
-	});
-}
-
 var FoxtrickPrefs = {
 	_pref_branch : null,
 	pref_default:'',
@@ -87,12 +67,11 @@ var FoxtrickPrefs = {
 				}
 			}
 			else if (Foxtrick.chromeContext() == "content") {
-				var port = chrome.extension.connect({name : "pref"});
-				port.onMessage.addListener(function(msg) {
-					FoxtrickPrefs.pref = msg.pref;
-					FoxtrickPrefs.prefDefault = msg.prefDefault;
-				});
-				port.postMessage({req : "get"});
+				chrome.extension.sendRequest({ req : "getPrefs" },
+					function(data) {
+						FoxtrickPrefs.pref = data.pref;
+						FoxtrickPrefs.prefDefault = data.prefDefault;
+					});
 			}
 		}
 	},
@@ -520,10 +499,9 @@ if (Foxtrick.BuildFor == "Chrome") {
 		catch (e) {}
 	};
 	FoxtrickPrefs.dumpPrefs = function() {
-		var port = chrome.extension.connect({name : "pref"});
-		port.postMessage({
-			req : "set",
-			pref : FoxtrickPrefs.pref
+		chrome.extension.sendRequest({
+			req : "setPrefs",
+			prefs : FoxtrickPrefs.pref
 		});
 	};
 }

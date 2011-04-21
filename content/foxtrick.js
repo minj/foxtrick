@@ -639,7 +639,7 @@ Foxtrick.load_css_permanent = function(cssList) {
 				}
 			}
 			else if (Foxtrick.BuildFor === "Chrome") {
-				Foxtrick.cssfiles += css+'\n';
+				Foxtrick.cssFiles += css+'\n';
 			}
 		}
 		catch (e) {
@@ -745,8 +745,14 @@ Foxtrick.reload_module_css = function(doc) {
 				}
 			}
 		}
-		if (Foxtrick.BuildFor === "Chrome")
-			portsetpref.postMessage({reqtype: "get_css_text", css_filelist: Foxtrick.cssfiles});
+		if (Foxtrick.BuildFor === "Chrome") {
+			chrome.extension.sendRequest(
+				{ req : "addCss", files : Foxtrick.cssFiles },
+				function(data) {
+					Foxtrick.addStyleSheetSnippet(doc, data.cssText);
+				}
+			);
+		}
 	}
 	catch (e) {
 		Foxtrick.dumpError(e);
