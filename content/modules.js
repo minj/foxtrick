@@ -98,7 +98,6 @@ Foxtrick.modules = [
 	FoxtrickForumLastPost,
 	FoxtrickPersonalityImages,
 	FoxtrickSkillColoring,
-	FoxtrickSkinPlugin,
 	FoxtrickMatchIncome,
 	FoxtrickLargeFlags,
 	FoxtrickTeamSelectBox,
@@ -150,3 +149,8 @@ Foxtrick.modules = [
 	FoxtrickShowFriendlyBooked,
 	FoxtrickTickerAlert // place below all other modules that make changes to #ticker
 ];
+
+if (Foxtrick.BuildFor == "Gecko") {
+	// Gecko-only modules
+	Foxtrick.modules.push(FoxtrickSkinPlugin);
+}

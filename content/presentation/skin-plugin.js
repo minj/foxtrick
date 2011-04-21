@@ -17,13 +17,11 @@ var FoxtrickSkinPlugin = {
 	init : function() {
 		if (Foxtrick.isModuleFeatureEnabled( this, 'Skin1')) {
 			var skinlink = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin1_text");
-			if (Foxtrick.BuildFor=='Chrome') Foxtrick.GetDataURIText(skinlink);
-			else this.CSS = skinlink;
+			this.CSS = skinlink;
 		}
 		if (Foxtrick.isModuleFeatureEnabled( this, 'Skin2')) {
 			var skinlink = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin2_text");
-			if (Foxtrick.BuildFor=='Chrome') Foxtrick.GetDataURIText(skinlink);
-			else this.CSS = skinlink;
+			this.CSS = skinlink;
 		}
 	},
 
