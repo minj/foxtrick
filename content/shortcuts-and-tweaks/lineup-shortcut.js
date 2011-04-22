@@ -103,26 +103,17 @@ FoxtrickLineupShortcut = {
 					if (matchTeams[1]) matchTeams[1] = Foxtrick.trim(matchTeams[1]);
 
 					for (var j=0;j<matchTeams.length;j++) {
-						Foxtrick.dump( j + ' [' + matchTeams[j] + ']-[' + teamname_rep + ']');
-						switch(matchTeams[j])
-						{
+						switch (matchTeams[j]) {
 							case teamname_rep:
-								Foxtrick.dump(' [TEAM]\n');
 								this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid, 'normal');
 							break;
 
 							case ntName:
-								Foxtrick.dump(' [NATIONAL TEAM]\n');
 								this._Add_Lineup_Link(doc, matchtable.rows[i], ntId, playerid, matchid, 'NT');
 							break;
 
 							case u20Name:
-								Foxtrick.dump(' [U20 TEAM]\n');
 								this._Add_Lineup_Link(doc, matchtable.rows[i], u20Id, playerid, matchid, 'U20');
-							break;
-
-							default:
-								Foxtrick.dump('\n');
 							break;
 						}
 					}
