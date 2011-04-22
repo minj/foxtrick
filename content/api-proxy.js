@@ -43,9 +43,9 @@ Foxtrick.ApiProxy = {
 				["oauth_callback", "oob"] // no callback
 			]
 		};
-		OAuth.setTimestampAndNonce(msg);
-		OAuth.SignatureMethod.sign(msg, accessor);
-		var requestTokenUrl = OAuth.addToURL(Foxtrick.ApiProxy.requestTokenUrl, msg.parameters);
+		Foxtrick.OAuth.setTimestampAndNonce(msg);
+		Foxtrick.OAuth.SignatureMethod.sign(msg, accessor);
+		var requestTokenUrl = Foxtrick.OAuth.addToURL(Foxtrick.ApiProxy.requestTokenUrl, msg.parameters);
 		var link = doc.createElement("a");
 		link.className = "ft-link";
 		link.textContent = Foxtrickl10n.getString("oauth.authorize");
@@ -96,9 +96,9 @@ Foxtrick.ApiProxy = {
 							["oauth_verifier", input.value]
 						]
 					};
-					OAuth.setTimestampAndNonce(msg);
-					OAuth.SignatureMethod.sign(msg, accessor);
-					var query = OAuth.formEncode(msg.parameters);
+					Foxtrick.OAuth.setTimestampAndNonce(msg);
+					Foxtrick.OAuth.SignatureMethod.sign(msg, accessor);
+					var query = Foxtrick.OAuth.formEncode(msg.parameters);
 					var accessTokenUrl = Foxtrick.ApiProxy.accessTokenUrl + "?" + query;
 					Foxtrick.dump("Requesting access token at: " + accessTokenUrl + "\n");
 					Foxtrick.load(accessTokenUrl, function(text) {
@@ -156,7 +156,7 @@ Foxtrick.ApiProxy = {
 			method : "get",
 			parameters : parameters
 		};
-		OAuth.setParameters(msg, [
+		Foxtrick.OAuth.setParameters(msg, [
 			["oauth_consumer_key", Foxtrick.ApiProxy.consumerKey],
 			["oauth_token", Foxtrick.ApiProxy.getAccessToken()],
 			["oauth_signature_method", Foxtrick.ApiProxy.signatureMethod],
@@ -164,9 +164,9 @@ Foxtrick.ApiProxy = {
 			["oauth_timestamp", ""],
 			["oauth_nonce", ""],
 		]);
-		OAuth.setTimestampAndNonce(msg);
-		OAuth.SignatureMethod.sign(msg, accessor);
-		var url = OAuth.addToURL(Foxtrick.ApiProxy.resourceUrl, msg.parameters);
+		Foxtrick.OAuth.setTimestampAndNonce(msg);
+		Foxtrick.OAuth.SignatureMethod.sign(msg, accessor);
+		var url = Foxtrick.OAuth.addToURL(Foxtrick.ApiProxy.resourceUrl, msg.parameters);
 		Foxtrick.dump("Fetching XML data from " + url + "\n");
 		Foxtrick.loadXml(url, function(x, status) {
 			if (status == 200) {
