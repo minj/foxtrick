@@ -118,8 +118,14 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		// @callback_param status - HTTP status of request
 		var xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function(aEvt) {
-			if (xhr.readyState == 4) {
-				sendResponse({data : xhr.responseText, status : xhr.status});
+			try {
+				if (xhr.readyState == 4) {
+					sendResponse({data : xhr.responseText, status : xhr.status});
+				}
+			}
+			catch (e) {
+				// port may be disconnected
+				Foxtrick.dumpError(e);
 			}
 		};
 		xhr.open("GET", request.url, true);
