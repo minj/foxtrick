@@ -42,6 +42,6 @@ var FoxtrickLinksCountry = {
 
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		}
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid } );
+		Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid } );
 	}
 };

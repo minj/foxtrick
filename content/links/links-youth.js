@@ -41,7 +41,7 @@ var FoxtrickLinksYouthOverview = {
 			}
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		}
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});
+		Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
 };
 
@@ -107,7 +107,7 @@ var FoxtrickLinksYouthPlayerDetail = {
 			}
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		}
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});
+		Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
 };
 
@@ -151,7 +151,7 @@ var FoxtrickLinksYouthTraining = {
 			}
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		}
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});
+		Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});
 	},
 
 };
@@ -195,7 +195,7 @@ var FoxtrickLinksYouthPlayerList = {
 			}
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		}
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});
+		Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
 };
 
@@ -238,6 +238,6 @@ var FoxtrickLinksYouthMatchList = {
 			}
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		}
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});
+		Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
 };

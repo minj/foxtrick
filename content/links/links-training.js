@@ -51,8 +51,8 @@ var FoxtrickLinksTraining = {
 
 					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 				}
-					FoxtrickLinksCustom.add( page, doc,ownBoxBody,
-							this.MODULE_NAME,{"Coach":Coach,"TrainigIntensity":TI,"StaminaShare":STA,"TrainingType":TrainingType} );
+				Foxtrick.util.links.add( page, doc,ownBoxBody,
+					this.MODULE_NAME,{"Coach":Coach,"TrainigIntensity":TI,"StaminaShare":STA,"TrainingType":TrainingType} );
 			}
 		}
 	}

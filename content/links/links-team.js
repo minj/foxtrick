@@ -31,36 +31,24 @@ var FoxtrickLinksTeam = {
 					var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
 					var ownBoxId = "foxtrick_links_box";
 					var ownBoxBodyId = "foxtrick_links_content";
-					ownBoxBody.setAttribute( "id", ownBoxBodyId );
+					ownBoxBody.id = ownBoxBodyId;
 
 					for (var k = 0; k < links.length; k++) {
 						links[k].link.className ="inner";
 						ownBoxBody.appendChild(links[k].link);
 					}
-					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+					Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, ownBoxId, "first", "");
 				}
 				break;
 			}
 		}
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,teaminfo);
+		Foxtrick.util.links.add(page, doc,ownBoxBody,this.MODULE_NAME,teaminfo);
 	},
-
-	/*change : function( page, doc ) { // Foxtrick.dump('change : LinksTeam\n');
-		var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
-		var ownBoxId = "foxtrick_links_content";
-		var owncoachlinkId = "foxtrick_content_coach";
-		var ownlastmatchlinkId = "foxtrick_content_lastmatch";
-		if( !doc.getElementById ( ownBoxId )
-		   && this.isTeamPage(doc)) {
-		 	Foxtrick.dump('run again : LinksTeamRight\n');
-			this.AddLinksRight(page,doc);
-		}
-	},*/
 
 	isTeamPage : function(doc) {
 		var site=doc.location.href;
 		var remain=site.substr(site.search(/Club\//i)+5);  //Foxtrick.dump(remain+' '+remain.search(/TeamID=/i)+'\n');
-	return (remain=="" || remain.search(/TeamID=/i)==1 || remain.search(/TeamID=/i)==13);
+		return (remain=="" || remain.search(/TeamID=/i)==1 || remain.search(/TeamID=/i)==13);
 	},
 
 	gatherLinks : function( thisdiv, doc ) {

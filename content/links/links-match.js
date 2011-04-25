@@ -79,10 +79,10 @@ var FoxtrickLinksMatch = {
 		if (isarchivedmatch) {
 			var prefset=this.MODULE_NAME+".played";
 			if (youthmatch) {prefset=this.MODULE_NAME+".youth.played";}
-			FoxtrickLinksCustom.add( page, doc,ownBoxBody,prefset,{ "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  });
+			Foxtrick.util.links.add( page, doc,ownBoxBody,prefset,{ "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  });
 		}
 		if (!isarchivedmatch && !youthmatch) {
-			FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME+".coming" ,{ "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  });
+			Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME+".coming" ,{ "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  });
 		}
 	}
 };

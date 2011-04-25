@@ -40,6 +40,6 @@ var FoxtrickLinksChallenges = {
 
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		}
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME,{} );
+		Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME,{} );
 	}
 };

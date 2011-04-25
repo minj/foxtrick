@@ -46,6 +46,6 @@ var FoxtrickLinksPlayers = {
 
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 			}
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname, "playerids" : playerids });
+		Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname, "playerids" : playerids });
 	}
 };

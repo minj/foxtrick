@@ -46,7 +46,7 @@ var FoxtrickLinksManager = {
 
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 			}
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname, "userid" : userid,  "username" : username,
+		Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname, "userid" : userid,  "username" : username,
 												"leagueid" : leagueid ,"owncountryid":owncountryid  });
 	}
 };

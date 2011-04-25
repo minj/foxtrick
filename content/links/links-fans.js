@@ -49,7 +49,7 @@ var FoxtrickLinksFans = {
 
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 			}
-		FoxtrickLinksCustom.add( page, doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname,
+		Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname,
 																		"fans":fans, "fanmood" : fanmood });
 	}
 };

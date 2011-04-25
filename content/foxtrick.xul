@@ -27,6 +27,7 @@
 <!-- utilities -->
 <script type="application/x-javascript" src="./util/currency.js" />
 <script type="application/x-javascript" src="./util/html.js" />
+<script type="application/x-javascript" src="./util/links.js" />
 <script type="application/x-javascript" src="./util/match-view.js" />
 <script type="application/x-javascript" src="./util/misc.js" />
 <script type="application/x-javascript" src="./util/note.js" />
@@ -96,7 +97,6 @@
 <script type="application/x-javascript" src="./links/links-club-transfers.js" />
 <script type="application/x-javascript" src="./links/links-coach.js" />
 <script type="application/x-javascript" src="./links/links-country.js" />
-<script type="application/x-javascript" src="./links/links-custom.js" />
 <script type="application/x-javascript" src="./links/links-economy.js" />
 <script type="application/x-javascript" src="./links/links-fans.js" />
 <script type="application/x-javascript" src="./links/links.js" />

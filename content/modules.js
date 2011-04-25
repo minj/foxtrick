@@ -66,7 +66,6 @@ Foxtrick.modules = [
 	FoxtrickCopyPlayerAd,
 	FoxtrickCopyRatings,
 	FoxtrickMyMonitor,
-	FoxtrickLinksCustom,
 	FoxtrickLinksLeague,
 	FoxtrickLinksCountry,
 	FoxtrickLinksTeam,
