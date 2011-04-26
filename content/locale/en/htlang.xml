@@ -33,8 +33,8 @@
 	</tactics>
 
 	<!-- Positions in players page.
-	     Keep attribute "value" unchanged,
-	     translate attribute "type" by copying from there in verbatim,
+	     Keep attribute "type" unchanged,
+	     translate attribute "value" by copying from there in verbatim,
 	     translate attribute "short" according to your own will. -->
 	<positions>
 		<position type="Keeper" value="Keeper" short="GK" />

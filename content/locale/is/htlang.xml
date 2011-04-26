@@ -1,4 +1,4 @@
-﻿<language name="is" desc="Icelandic">
+﻿<language name="is" desc="Íslenska">
 
 ﻿  <!-- Menu items in the main menu of Hattrick.
 ﻿       Translate attribute "value" by copying from there in verbatim. -->
@@ -33,16 +33,16 @@
 ﻿  </tactics>
 
 ﻿  <!-- Positions in players page.
-﻿       Keep attribute "value" unchanged,
-﻿       translate attribute "type" by copying from there in verbatim,
+﻿       Keep attribute "type" unchanged,
+﻿       translate attribute "value" by copying from there in verbatim,
 ﻿       translate attribute "short" according to your own will. -->
 ﻿  <positions>
-﻿  ﻿  <position type="Markvörður" value="Keeper" short="MV" />
-﻿  ﻿  <position type="Varnarmaður" value="Central defender" short="VM" />
-﻿  ﻿  <position type="Bakvörður" value="Wing back" short="BV" />
-﻿  ﻿  <position type="Miðjumaður" value="Inner midfielder" short="M" />
-﻿  ﻿  <position type="Kantmaður" value="Winger" short="K" />
-﻿  ﻿  <position type="Framherji" value="Forward" short="F" />
+﻿  ﻿  <position type="Keeper" value="Markvörður" short="MV" />
+﻿  ﻿  <position type="Central defender" value="Varnarmaður" short="VM" />
+﻿  ﻿  <position type="Wing back" value="Bakvörður" short="BV" />
+﻿  ﻿  <position type="Inner midfielder" value="Miðjumaður" short="M" />
+﻿  ﻿  <position type="Winger" value="Kantmaður" short="K" />
+﻿  ﻿  <position type="Forward" value="Framherji" short="F" />
 ﻿  </positions>
 
 ﻿  <!-- Specialities in player page.
