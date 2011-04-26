@@ -29,6 +29,7 @@ var Foxtrickl10n = {
 		"he",
 		"hr",
 		"hu",
+		"is",
 		"it",
 		"ja",
 		"ka",
