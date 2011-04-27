@@ -71,4 +71,32 @@
 		<level text="katastrofal" value="1" />
 		<level text="obefintlig" value="0" />
 	</levels>
+   
+       <agreeability>
+        <level text="älskad lagkamrat" value="5" />
+        <level text="populär kille" value="4" />
+        <level text="genomsympatisk kille" value="3" />
+        <level text="sympatisk kille" value="2" />
+        <level text="kontroversiell person" value="1" />
+        <level text="otrevlig typ" value="0" />
+    </agreeability>
+
+    <honesty>
+        <level text="helgonlik" value="5" />
+        <level text="genomärlig" value="4" />
+        <level text="ärlig" value="3" />
+        <level text="hederlig" value="2" />
+        <level text="inte alltid helt ärlig" value="1" />
+        <level text="skandalomsusad" value="0" />
+    </honesty>
+
+    <aggressiveness>
+        <level text="instabil" value="5" />
+        <level text="eldfängd" value="4" />
+        <level text="temperamentsfull" value="3" />
+        <level text="balanserad" value="2" />
+        <level text="stillsam" value="1" />
+        <level text="lugn som en filbunke" value="0" />
+    </aggressiveness>
+
 </language>
