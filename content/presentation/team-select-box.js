@@ -13,37 +13,26 @@ var FoxtrickTeamSelectBox = {
 		var listBox; // sidebarBox containing player list
 		var sidebarBoxes = doc.getElementsByClassName("sidebarBox");
 
-		// first check by header content --- "Overview"
-		for (var i = 0; i < sidebarBoxes.length; ++i) {
-			var box = sidebarBoxes[i];
-			var header = box.getElementsByTagName("h2")[0];
-			if (header.textContent == Foxtrickl10n.getString("foxtrick.tweaks.overview")) {
-				listBox = box;
-				break;
-			}
-		}
-		// fallback
-		// player box not found by string, take the one with most links
+		// take the one with most links
 		// which should be the one with the players
 
 		// sidebarBoxes is not an array, we create an array from it
-		if (!listBox) {
-			var boxesArray = Foxtrick.map(sidebarBoxes, function(n) { return n; });
-			var isPlayerLink = function(n) {
-				return n.href.search(/playerId=(\d+)/i) != -1;
-			};
-			boxesArray.sort(function(a, b) {
-				var aLinks = Foxtrick.filter(a.getElementsByTagName("a"), isPlayerLink);
-				var bLinks = Foxtrick.filter(b.getElementsByTagName("a"), isPlayerLink);
-				return bLinks - aLinks;
-			});
-			// only if player link count > 0
-			if (Foxtrick.filter(boxesArray[0].getElementsByTagName("a"), isPlayerLink).length > 0)
-				listBox = boxesArray[0];
-		}
-
-		if (!listBox)
+		var isPlayerLink = function(n) {
+			return n.href.search(/playerId=(\d+)/i) != -1;
+		};
+		linkBoxes = Foxtrick.filter(sidebarBoxes, function(n) {
+			return n.getElementsByTagName("a").length > 0
+				&& isPlayerLink(n.getElementsByTagName("a")[0]);
+		});
+		if (linkBoxes.length == 0)
 			return; // listBox may not be present on oldies page
+
+		linkBoxes.sort(function(a, b) {
+			var aLinks = Foxtrick.filter(a.getElementsByTagName("a"), isPlayerLink);
+			var bLinks = Foxtrick.filter(b.getElementsByTagName("a"), isPlayerLink);
+			return bLinks.length - aLinks.length;
+		});
+		listBox = linkBoxes[0];
 
 		// add headerClick
 		var header = listBox.getElementsByTagName("h2")[0];
