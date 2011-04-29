@@ -14,6 +14,23 @@
 
 </note>
 
+<note version="0.7">
+<item>Исландски језик. (LA-LordBastard)</item>
+<item>Фламански као копија Холандског. (ryanli)</item>
+<item>Нова категорија за модуле, <xhtml:a href="#tab=information_aggregation">Додатне информације</xhtml:a>. (ryanli)</item>
+<item>Нови модул <module>MyMonitor</module> за праћење последњих мечева изабраних тимова на страници Мој Хеттрик. (ryanli)</item>
+<item>Нови модул <module>MarkAllAsRead</module>, дугменце за означавање свих тема на свим форумима као прочитаних. (ryanli)</item>
+<item>Нови модул <module>ShowFriendlyBooked</module> који на страници лиге означава тимове који су заказали пријатељску утакмицу. (ryanli)</item>
+<item>Поново написан модул <module>TickerAlert</module>, који сада интегрише раније модуле: FoxtrickAlert, AlertCustomSound и AlertCustomOff. (ryanli)</item>
+<item>Модул FoxtrickLineupShortcut преименован у <module>LineupShortcut</module>. (ryanli)</item>
+<item>Модул htmsStatistics преименован у <module>HTMSPrediction</module>. (ryanli)</item>
+<item>Нова опција у модулу <module>FriendlyInterface</module> која сакрива секретарицу ако нема о чему да поднесе извештај. (ryanli)</item>
+<item>Модул <module>StaffMarker</module> сада користи <xhtml:a href="http://www.json.org/">JavaScript Object Notation</xhtml:a> за персонализоване маркере. (ryanli)</item>
+<item>Нове радио станице у модулу <module>ExtraShortcuts</module>, Balkaradio и Downtime Radio. (ljushaff, ryanli)</item>
+<item>Уклоњена опција за отварање Yaplet чета у истом прозору у модулу <module>LeagueAndMatchChat</module>. (ryanli)</item>
+<item>Још неке ситне поправке. (ryanli, Mod-spambot)</item>
+</note>
+
 <note version="0.6.2">
 <item>Модул <module>SeriesFlags</module> податке директно са Хеттрика. (ryanli)</item>
 <item>Ажурирани превод. (ljushaff, csajszi, Mod-spambot)</item>
