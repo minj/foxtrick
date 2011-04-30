@@ -36,7 +36,6 @@ Foxtrick.modules = [
 	FoxtrickForumAlterHeaderLine,
 	FoxtrickTeamPopupLinks,
 	FoxtrickGoToPostBox,
-	FoxtrickContextMenuCopy,
 	FoxtrickCopyTrainingReport,
 	FoxtrickCopyScoutReport,
 	FoxtrickCopyPlayerSource,
@@ -152,4 +151,5 @@ Foxtrick.modules = [
 if (Foxtrick.BuildFor == "Gecko") {
 	// Gecko-only modules
 	Foxtrick.modules.push(FoxtrickSkinPlugin);
+	Foxtrick.modules.push(FoxtrickContextMenuCopy);
 }
