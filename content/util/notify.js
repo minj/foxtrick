@@ -19,7 +19,7 @@ Foxtrick.util.notify.create = function(msg, url) {
 			observe: function(subject, topic, data) {
 				try {
 					if (topic == "alertclickcallback") {
-						Foxtrick.newTab(href);
+						Foxtrick.newTab(url);
 					}
 					if (topic == "alertfinished") {
 						// empty
@@ -47,22 +47,9 @@ Foxtrick.util.notify.create = function(msg, url) {
 	var createChrome = function() {
 		chrome.extension.sendRequest({req : "notify", msg : msg});
 	};
-	var createGrowl = function() {
-		// Mac only
-		var grn = Components.classes["@growl.info/notifications;1"].getService(Components.interfaces.grINotifications);
-		var img = "http://hattrick.org/favicon.ico";
-		var title = "Hattrick.org";
-		grn.sendNotification("Hattrick.org (Foxtrick)", img, title, msg, "", null);
-	};
 
 	if (Foxtrick.BuildFor == "Gecko") {
 		createGecko();
-		try {
-			createGrowl();
-		}
-		catch (e) {
-			// not on Mac, throw away
-		}
 	}
 	else if (Foxtrick.BuildFor == "Chrome") {
 		createChrome();
