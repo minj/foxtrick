@@ -25,6 +25,18 @@ padding-top: 49px !important;
 display: none;
 }
 
+div#teamPhoto {
+	height: 400px !important;
+}
+div#teamPhoto > div {
+	padding: 0px 70px 0px 80px !important;
+}
+div#teamPhoto div.faceCard {
+	position: relative !important;
+	margin-left: 0px !important;
+	top: 90px !important;
+}
+
 /******************************************BACKGROUND**************************************/
 img[src="/Img/Avatar/backgrounds/bg_blue_int.png"],
 img[src="/Img/Avatar/backgrounds/bg_blue.png"]
