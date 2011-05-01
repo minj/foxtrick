@@ -113,7 +113,13 @@ Foxtrick.load = function(url, callback, crossSite) {
 		// background script for cross-site requests
 		chrome.extension.sendRequest({req : "xml", url : url},
 			function(response) {
-				callback(response.data, response.status);
+				try {
+					callback(response.data, response.status);
+				}
+				catch (e) {
+					Foxtrick.dump("Uncaught callback error:");
+					Foxtrick.dumpError(e);
+				}
 			}
 		);
 	}
@@ -129,7 +135,13 @@ Foxtrick.load = function(url, callback, crossSite) {
 			req.open("GET", url, true);
 			req.onreadystatechange = function(aEvt) {
 				if (req.readyState == 4) {
-					callback(req.responseText, req.status);
+					try {
+						callback(req.responseText, req.status);
+					}
+					catch (e) {
+						Foxtrick.dump("Uncaught callback error:");
+						Foxtrick.dumpError(e);
+					}
 				}
 			};
 			req.send();
@@ -143,7 +155,13 @@ Foxtrick.loadXml = function(url, callback, crossSite) {
 			try {
 				var parser = new DOMParser();
 				var xml = parser.parseFromString(text, "text/xml");
-				callback(xml, status);
+				try {
+					callback(xml, status);
+				}
+				catch (e) {
+					Foxtrick.dump("Uncaught callback error:");
+					Foxtrick.dumpError(e);
+				}
 			}
 			catch (e) {
 				// invalid XML
