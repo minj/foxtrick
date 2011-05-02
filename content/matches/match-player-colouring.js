@@ -125,19 +125,20 @@ var FoxtrickMatchPlayerColouring = {
 	},
 
 	change : function(page, doc) {
-		// add matchreport highlight links to playerdetails
-		var addHighlightParam = function() {
-			var playerId = Foxtrick.Pages.Player.getId(doc);
-			var as = doc.getElementById("mainBody").getElementsByTagName("a");
-			for (var i = 0; i < as.length; ++i) {
-				if (as[i].href.search(/Club\/Matches\/Match\.aspx\?matchID=/i) != -1
-					&& as[i].href.search(/HighlightPlayerID/) == -1) {
-					as[i].href += "&HighlightPlayerID=" + playerId;
-				}
-			}
-		}
 		if (page == "playerdetail") {
-			addHighlightParam();
+			this.addHighlightParam(doc);
+		}
+	},
+
+	// add match report highlight links to playerdetails
+	addHighlightParam : function(doc) {
+		var playerId = Foxtrick.Pages.Player.getId(doc);
+		var as = doc.getElementById("mainBody").getElementsByTagName("a");
+		for (var i = 0; i < as.length; ++i) {
+			if (as[i].href.search(/Club\/Matches\/Match\.aspx\?matchID=/i) != -1
+				&& as[i].href.search(/HighlightPlayerID/) == -1) {
+				as[i].href += "&HighlightPlayerID=" + playerId;
+			}
 		}
 	}
 };
