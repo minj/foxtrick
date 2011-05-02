@@ -45,7 +45,8 @@ var FoxtrickMatchPlayerColouring = {
 
 		var isTeamLink = function(n) {
 			return (n.href.search(/Club\/\?TeamID=\d+/) > -1)
-				|| (n.href.search(/Youth\/Default\.aspx\?YouthTeamID=\d+/) > -1);
+				|| (n.href.search(/Youth\/Default\.aspx\?YouthTeamID=\d+/) > -1)
+				|| (n.href.search(/NationalTeam\/NationalTeam\.aspx\?teamId=\d+/) > -1);
 		};
 		var sidebar = doc.getElementById("sidebar");
 		var teams = sidebar.getElementsByTagName("table")[0].getElementsByTagName("a");
