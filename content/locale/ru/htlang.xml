@@ -1,6 +1,7 @@
 <language name="ru" desc="Русский">
-	<!-- based on English part of htlang.xml r4990 -->
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
+
+	<!-- Menu items in the main menu of Hattrick.
+		Translate attribute "value" by copying from there in verbatim. -->
 	<MyHattrick value="Мой Hattrick" />
 	<MyClub value="Мой Клуб" />
 	<World value="Мир" />
@@ -8,7 +9,9 @@
 	<Shop value="Магазин" />
 	<Help value="Помощь" />
 
-	<!-- rating sublevels appearing in match detail page. copy "text" -->
+	<!-- Rating sublevels in match report page.
+		Translate attribute "text" by copying from there in verbatim,
+		keep attribute "value" unchanged. -->
 	<ratingSubLevels>
 		<sublevel text="(низкий)" value="0.0" />
 		<sublevel text="(средний)" value="0.25" />
@@ -16,7 +19,9 @@
 		<sublevel text="(очень высокий)" value="0.75" />
 	</ratingSubLevels>
 
-	<!-- tactics appearing in match detail page. copy "value" -->
+	<!-- Tactics in match report page.
+		Keep attribute "type" unchanged,
+		translate attribute "value" by copying from there in verbatim. -->
 	<tactics>
 		<tactic type="normal" value="Нормально" />
 		<tactic type="pressing" value="Прессинг" />
@@ -27,7 +32,10 @@
 		<tactic type="longshots" value="Дальние удары" />
 	</tactics>
 
-	<!-- positions appearing on players page -->
+	<!-- Positions in players page.
+		Keep attribute "type" unchanged,
+		translate attribute "value" by copying from there in verbatim,
+		translate attribute "short" according to your own will. -->
 	<positions>
 		<position type="Keeper" value="Вратарь" short="Вр" />
 		<position type="Central defender" value="Центральный защитник" short="ЦЗ" />
@@ -37,7 +45,10 @@
 		<position type="Forward" value="Нападающий" short="Н" />
 	</positions>
 
-	<!-- specialties appearing on players page. copy "value". translate "short" -->
+	<!-- Specialities in player page.
+		Keep attribute "type" unchanged,
+		translate attribute "value" by copying from there in verbatim,
+		translate attribute "short" according to your own will. -->
 	<specialties>
 		<specialty type="Unpredictable" value="Непредсказуемый" short="Нп" />
 		<specialty type="Powerful" value="Мощный" short="Мщ" />
@@ -47,7 +58,9 @@
 		<specialty type="Regainer" value="Крепкое здоровье" short="Зд" />
 	</specialties>
 
-	<!-- levels word connections appearing denominations page. copy "text" -->
+	<!-- Skill levels in denominations page.
+		Translate attribute "text" by copying from there in verbatim,
+		keep attribute "value" unchanged. -->
 	<levels>
 		<level text="божественно" value="20" />
 		<level text="легендарно" value="19" />
@@ -72,6 +85,9 @@
 		<level text="отсутствует" value="0" />
 	</levels>
 
+	<!-- Agreeability levels in denominations page.
+		Translate attribute "text" by copying from there in verbatim,
+		keep attribute "value" unchanged. -->
 	<agreeability>
 		<level text="всеобщий любимец" value="5" />
 		<level text="популярный парень" value="4" />
@@ -81,6 +97,9 @@
 		<level text="мерзкий тип" value="0" />
 	</agreeability>
 
+	<!-- Honesty levels in denominations page.
+		Translate attribute "text" by copying from there in verbatim,
+		keep attribute "value" unchanged. -->
 	<honesty>
 		<level text="святой" value="5" />
 		<level text="праведный" value="4" />
@@ -90,6 +109,9 @@
 		<level text="подлый" value="0" />
 	</honesty>
 
+	<!-- Aggressiveness levels in denominations page.
+		Translate attribute "text" by copying from there in verbatim,
+		keep attribute "value" unchanged. -->
 	<aggressiveness>
 		<level text="агрессивный" value="5" />
 		<level text="вспыльчивый" value="4" />

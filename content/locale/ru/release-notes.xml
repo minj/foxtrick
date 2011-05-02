@@ -14,6 +14,24 @@
 		<item>Вы можете отключить показ этого сообщения после каждого обновления, запретив "Показать информацию о выпуске после обновления FoxTrick" на вкладке <xhtml:a href="#tab=main">Главные</xhtml:a> настроек.</item>
 	</note>
 
+	<note version="0.7">
+		<item>Исландский перевод (LA-LordBastard).</item>
+		<item>Фламандский перевод скопирован с голландского (ryanli).</item>
+		<item>Новая категория модулей, <xhtml:a href="#tab=information_aggregation">Информация</xhtml:a> (ryanli).</item>
+		<item>Новый модуль <module>MyMonitor</module> для мониторинга последних матчей выбранных команд на странице Мой Hattrirck (ryanli).</item>
+		<item>Новый модуль <module>MarkAllAsRead</module>, кнопка для отметки всех тем во всех форумах как прочитанных (ryanli).</item>
+		<item>Новый модуль <module>ShowFriendlyBooked</module> для отметки назначивших товарищеский матч команд на странице лиги (ryanli).</item>
+		<item>Модуль <module>TickerAlert</module> полностью переписан, теперь он включает в себя бывшие модули FoxtrickAlert, AlertCustomSound и AlertCustomOff (ryanli).</item>
+		<item>Модуль <module>MatchPlayerColouring</module> теперь загружает составы команд из XML (ryanli).</item>
+		<item>Модуль FoxtrickLineupShortcut переименован в <module>LineupShortcut</module> (ryanli).</item>
+		<item>Модуль htmsStatistics переименован в <module>HTMSPrediction</module> (ryanli).</item>
+		<item>Новый переметр в модуле <module>FriendlyInterface</module> для скрытия секретаря, если тому нечего сказать нового (ryanli).</item>
+		<item>Модуль <module>StaffMarker</module> теперь использует <xhtml:a href="http://www.json.org/">JavaScript Object Notation</xhtml:a> для пользовательских заметок (ryanli).</item>
+		<item>Новые радиостанции в модуле <module>ExtraShortcuts</module>, Balkaradio и Downtime Radio (ljushaff, ryanli).</item>
+		<item>Параметр модуля <module>LeagueAndMatchChat</module> для открытия чата Yaplet внутри страницы HT удалён (ryanli).</item>
+		<item>Несколько мелких исправлений (ryanli, Mod-spambot).</item>
+	</note>
+
 	<note version="0.6.2">
 		<item>Модуль <module>SeriesFlags</module> теперь получает данные напрямую из Hattrick (ryanli).</item>
 		<item>Обновление переводов (ljushaff, csajszi, Mod-spambot).</item>
