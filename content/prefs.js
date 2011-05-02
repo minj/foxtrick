@@ -358,20 +358,28 @@ var FoxtrickPrefs = {
 	},
 
 	cleanupBranch : function() {
-		try {
-			var array = FoxtrickPrefs._getElemNames("");
-			for (var i = 0; i < array.length; i++) {
-				if (FoxtrickPrefs.isPrefSetting(array[i])) {
-					FoxtrickPrefs.deleteValue(array[i]);
+		if (Foxtrick.BuildFor == "Gecko") {
+			try {
+				var array = FoxtrickPrefs._getElemNames("");
+				for (var i = 0; i < array.length; i++) {
+					if (FoxtrickPrefs.isPrefSetting(array[i])) {
+						FoxtrickPrefs.deleteValue(array[i]);
+					}
 				}
+				FoxtrickMain.init();
+				return true;
 			}
-			FoxtrickMain.init();
+			catch (e) {
+				Foxtrick.dumpError(e);
+				return false;
+			}
 		}
-		catch (e) {
-			Foxtrick.dumpError(e);
-			return false;
+		else if (Foxtrick.BuildFor == "Chrome") {
+			FoxtrickPrefs.pref = {};
+			chrome.extension.sendRequest({ req : "clearPrefs" },
+				FoxtrickMain.init);
+			return true;
 		}
-		return true;
 	},
 
 	disableAll : function() {

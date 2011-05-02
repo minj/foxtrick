@@ -1,5 +1,3 @@
-var newstart = true;
-
 var sessionStore = {};
 
 function init() {
@@ -12,6 +10,15 @@ function update() {
 	FoxtrickPrefs.init();
 	Foxtrickl10n.init();
 }
+
+Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key))
+        	++size;
+    }
+    return size;
+};
 
 init();
 
@@ -37,9 +44,20 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		}
 		else if (request.req == "setPrefs") {
 			// @param prefs - preferences to be saved
+
+			// prevent from setting empty preferences, use clearPrefs below
+			// instead
+			if (typeof(request.prefs) != "object"
+				|| Object.size(request.prefs) == 0)
+				return;
+
 			localStorage.clear();
 			for (var i in request.prefs)
 				localStorage.setItem(i, JSON.stringify(request.prefs[i]));
+			update();
+		}
+		else if (request.req == "clearPrefs") {
+			localStorage.clear();
 			update();
 		}
 		else if (request.req == "locale") {
