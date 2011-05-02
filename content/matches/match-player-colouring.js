@@ -47,7 +47,8 @@ var FoxtrickMatchPlayerColouring = {
 			return (n.href.search(/Club\/\?TeamID=\d+/) > -1)
 				|| (n.href.search(/Youth\/Default\.aspx\?YouthTeamID=\d+/) > -1);
 		};
-		var teams = doc.getElementById("sidebar").getElementsByTagName("table")[0].getElementsByTagName("a");
+		var sidebar = doc.getElementById("sidebar");
+		var teams = sidebar.getElementsByTagName("table")[0].getElementsByTagName("a");
 		teams = Foxtrick.filter(teams, isTeamLink);
 		var homeTeam = teams[0];
 		var awayTeam = teams[1];
@@ -91,6 +92,7 @@ var FoxtrickMatchPlayerColouring = {
 				var homePlayers = getPlayers(homeXml);
 				var awayPlayers = getPlayers(awayXml);
 
+				// colour all player links
 				Foxtrick.map(links, function(n) {
 					if (id = getPlayerId(n)) {
 						if (Foxtrick.some(homePlayers, function(n) { return n == id; }))
@@ -98,6 +100,25 @@ var FoxtrickMatchPlayerColouring = {
 						else if (Foxtrick.some(awayPlayers, function(n) { return n == id; }))
 							Foxtrick.addClass(n, awayClass);
 					}
+				});
+
+				// add class for sidebar event rows
+				var sidebarLinks = sidebar.getElementsByTagName("a");
+				var homeLinks = Foxtrick.filter(sidebarLinks, function(n) {
+					return (getPlayerId(n) != null)
+						&& Foxtrick.hasClass(n, homeClass);
+				});
+				var awayLinks = Foxtrick.filter(sidebarLinks, function(n) {
+					return (getPlayerId(n) != null)
+						&& Foxtrick.hasClass(n, awayClass);
+				});
+				Foxtrick.map(homeLinks, function(n) {
+					Foxtrick.addClass(n.parentNode.parentNode,
+						"ft-match-event-home");
+				});
+				Foxtrick.map(awayLinks, function(n) {
+					Foxtrick.addClass(n.parentNode.parentNode,
+						"ft-match-event-away");
 				});
 			});
 		});
