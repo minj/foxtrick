@@ -4,38 +4,39 @@
  * @author spambot
  */
 ////////////////////////////////////////////////////////////////////////////////
-FoxtrickHistoryStats= {
-
+var FoxtrickHistoryStats= {
 	MODULE_NAME : "HistoryStats",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : new Array('history'),
-	Buffer : new Array(),
-	Pages : new Array(),
+	PAGES : ["history"],
+	Buffer : [],
+	Pages : [],
 	Offset : 0,
 
-	run : function( page, doc ) {
-		this.Buffer = Array();
-		this.Pages = Array();
+	run : function(page, doc) {
 		this._fetch(doc);
 		this._paste(doc);
 	},
 
-	change : function( page, doc ) {
+	change : function(page, doc) {
 		this._fetch(doc);
 		this._paste(doc);
 	},
 
 	_fetch : function(doc) {
 		try {
+			// try to get current page number
 			try {
 				var pager = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucOtherEvents_ucPagerBottom_divWrapper');
 				var page = parseInt(pager.getElementsByTagName('strong')[0].textContent);
-			} catch(e) {var page = 1;}
+			}
+			catch (e) {
+				var page = 1;
+			}
 			if (!Foxtrick.in_array(this.Pages,page)) {
 				this.Pages.push(page);
 
+				// get season offset
 				try {
-					var done = false;
 					var a = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucOtherEvents_ctl00').getElementsByTagName('a');
 					for (var i = 0; i < a.length;i++){
 						if (a[i].href.search(/viewcup/) > -1) {
@@ -46,75 +47,80 @@ FoxtrickHistoryStats= {
 								var date = Foxtrick.util.time.getDateFromText(season);
 								season = Foxtrick.util.time.gregorianToHT(date).season;
 								this.Offset = parseInt(season)-parseInt(check_season);
-								done = true;
+								break;
 							}
 						}
-						if (done) break;
 					}
 				}
 				catch (e) {
 					Foxtrick.dumpError(e);
 				}
+
 				var table = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ucOtherEvents_ctl00").cloneNode(true).getElementsByClassName("otherEventText");
 				for (var i = 0; i < table.length; i++) {
-					if (table[i].innerHTML.search(/\<span class\=\"shy\"\>/) != -1 ) continue;
-					dummy = Foxtrick.trim(table[i].innerHTML);
+					if (table[i].innerHTML.search(/\<span class\=\"shy\"\>/) != -1)
+						continue;
 
-						var buff = '';
-						var league = -1;
-						var leagueN = -1;
-						var season = -1;
-						var cup = -1;
-						if(table[i].previousSibling.previousSibling)
-							season = table[i].previousSibling.previousSibling.textContent;
-						var date = Foxtrick.util.time.getDateFromText(season);
-						season = Foxtrick.util.time.gregorianToHT(date).season;
-						var a = table[i].getElementsByTagName('a');
-						for (var j = 0; j < a.length; j ++) {
-							if (a[j].href.search(/LeagueLevelUnitID/) > -1) {
-								league = Foxtrick.trim(a[j].innerHTML);
-								var leagueN = league;
-								if (league.search(/\./) > -1) {
-									league = league.split('.')[0];
-									league = FoxtrickHelper.romantodecimal(league);
-								} else {
-									league = 1;
-								}
+					var buff = '';
+					var league = -1;
+					var leagueN = -1;
+					var season = -1;
+					var cup = -1;
+					if (table[i].parentNode.getElementsByClassName("date").length)
+						season = table[i].parentNode.getElementsByClassName("date")[0].textContent;
+					var date = Foxtrick.util.time.getDateFromText(season);
+					season = Foxtrick.util.time.gregorianToHT(date).season;
+					var a = table[i].getElementsByTagName('a');
+					var isLgHist = function(a) {
+						return (a.href.indexOf("LeagueLevelUnitID") > -1)
+							&& (a.href.indexOf("RequestedSeason") > -1);
+					};
+					var isCupHist = function(a) {
+						return (a.href.indexOf("actiontype=viewcup") > -1);
+					};
+					for (var j = 0; j < a.length; j ++) {
+						if (isLgHist(a[j])) {
+							league = a[j].textContent;
+							var leagueN = league;
+							if (league.search(/\./) > -1) {
+								league = league.split('.')[0];
+								league = FoxtrickHelper.romantodecimal(league);
 							}
-							if (a[j].href.search(/viewcup/) > -1) {
-								while (table[i].getElementsByTagName('a')[0]) {
-									table[i].removeChild(table[i].getElementsByTagName('a')[0]);
-								}
-								cup = table[i].innerHTML.match(/\d{1,2}/);
-								if (!cup) cup = '<span class="bold" title="'+Foxtrickl10n.getString("foxtrick.HistoryStats.cupwinner")+'">' + Foxtrickl10n.getString("foxtrick.HistoryStats.cupwinner.short") + '</span>';
+							else {
+								league = 1;
 							}
 						}
-						//league
-						if (league != -1) {
-							try {
-								while (table[i].getElementsByTagName('a')[0]) {
-									table[i].removeChild(table[i].getElementsByTagName('a')[0]);
-								}
-							}catch(e_rem){}
-							table[i].innerHTML = Foxtrick.trim(table[i].innerHTML.replace(season-this.Offset,''));
-							var pos = table[i].innerHTML.match(/\d{1}/);
-							buff = season + '|' + league + '|' + pos + '|' + leagueN;
-							if (!Foxtrick.in_array(this.Buffer,buff)) {
-								this.Buffer.push(buff);
-							} else {
+						if (isCupHist(a[j])) {
+							while (table[i].getElementsByTagName('a')[0]) {
+								table[i].removeChild(table[i].getElementsByTagName('a')[0]);
 							}
-						} else if (cup != -1) {
-							buff = season + '|' + cup;
-							if (!Foxtrick.in_array(this.Buffer,buff)) {
-								this.Buffer.push(buff);
-							} else {
-							}
+							cup = table[i].innerHTML.match(/\d{1,2}/);
+							if (!cup)
+								cup = '<span class="bold" title="'+Foxtrickl10n.getString("foxtrick.HistoryStats.cupwinner")+'">' + Foxtrickl10n.getString("foxtrick.HistoryStats.cupwinner.short") + '</span>';
 						}
-
+					}
+					//league
+					if (league != -1) {
+						try {
+							while (table[i].getElementsByTagName('a')[0])
+								table[i].removeChild(table[i].getElementsByTagName('a')[0]);
+						}
+						catch (e_rem) {}
+						table[i].innerHTML = Foxtrick.trim(table[i].innerHTML.replace(season-this.Offset,''));
+						var pos = table[i].innerHTML.match(/\d{1}/);
+						buff = season + '|' + league + '|' + pos + '|' + leagueN;
+						if (!Foxtrick.in_array(this.Buffer,buff))
+							this.Buffer.push(buff);
+					}
+					else if (cup != -1) {
+						buff = season + '|' + cup;
+						if (!Foxtrick.in_array(this.Buffer,buff))
+							this.Buffer.push(buff);
+					}
 				}
 			}
 		}
-		catch(e) {
+		catch (e) {
 			Foxtrick.dumpError(e);
 		}
 	},
