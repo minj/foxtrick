@@ -22,6 +22,7 @@
 <item>New module <module>MarkAllAsRead</module>, a button to mark threads in all forums as read. (ryanli)</item>
 <item>New module <module>ShowFriendlyBooked</module> for showing whether a team has booked a friendly on series page. (ryanli)</item>
 <item>Rewrite of module <module>TickerAlert</module>, integrating former FoxtrickAlert, AlertCustomSound, AlertCustomOff modules. (ryanli)</item>
+<item>Module <module>MatchPlayerColouring</module> loads match lineup from XML. (ryanli)</item>
 <item>Module FoxtrickLineupShortcut renamed to <module>LineupShortcut</module>. (ryanli)</item>
 <item>Module htmsStatistics renamed to <module>HTMSPrediction</module>. (ryanli)</item>
 <item>New option in module <module>FriendlyInterface</module> to hide the secretary if he has nothing to report. (ryanli)</item>
