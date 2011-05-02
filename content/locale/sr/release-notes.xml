@@ -22,6 +22,7 @@
 <item>Нови модул <module>MarkAllAsRead</module>, дугменце за означавање свих тема на свим форумима као прочитаних. (ryanli)</item>
 <item>Нови модул <module>ShowFriendlyBooked</module> који на страници лиге означава тимове који су заказали пријатељску утакмицу. (ryanli)</item>
 <item>Поново написан модул <module>TickerAlert</module>, који сада интегрише раније модуле: FoxtrickAlert, AlertCustomSound и AlertCustomOff. (ryanli)</item>
+<item>Модул <module>MatchPlayerColouring</module> учитава саставе тимова директно из XML фајла. (ryanli)</item>
 <item>Модул FoxtrickLineupShortcut преименован у <module>LineupShortcut</module>. (ryanli)</item>
 <item>Модул htmsStatistics преименован у <module>HTMSPrediction</module>. (ryanli)</item>
 <item>Нова опција у модулу <module>FriendlyInterface</module> која сакрива секретарицу ако нема о чему да поднесе извештај. (ryanli)</item>
