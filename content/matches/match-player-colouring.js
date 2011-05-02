@@ -44,8 +44,8 @@ var FoxtrickMatchPlayerColouring = {
 			var myTeamId = null;
 
 		var isTeamLink = function(n) {
-			return (n.href.search(/\/Club\/\?TeamID=\d+/) > -1)
-				|| (n.href.search(/YouthTeamID=\d+/) > -1);
+			return (n.href.search(/Club\/\?TeamID=\d+/) > -1)
+				|| (n.href.search(/Youth\/Default\.aspx\?YouthTeamID=\d+/) > -1);
 		};
 		var teams = doc.getElementById("sidebar").getElementsByTagName("table")[0].getElementsByTagName("a");
 		teams = Foxtrick.filter(teams, isTeamLink);
