@@ -25,8 +25,8 @@ var FoxtrickYouthSkillHideUnknown = {
 				for(var j = 0; j < trs.length; j++) {
 					var tds = trs[j].getElementsByTagName("td");
 					if (Foxtrick.isModuleFeatureEnabled( this, "HideUnknown" )) {
-						if (tds[1] && tds[1].getElementsByTagName('span')[0] && tds[1].getElementsByTagName('span')[0].className=='shy')
-							trs[j].setAttribute('style','display:none;');
+						if (tds[1].getElementsByClassName("youthSkillBar").length == 0)
+							Foxtrick.addClass(trs[j], "hidden");
 					}
 					if (Foxtrick.isModuleFeatureEnabled( this, "HideMaximalKeyWord" ) && is_ownteam) {
 						var skillBars = doc.getElementsByClassName("youthSkillBar");
