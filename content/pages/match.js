@@ -5,6 +5,10 @@
  */
 ////////////////////////////////////////////////////////////////////////////////
 Foxtrick.Pages.Match = {
+	isPrematch : function(doc) {
+		return (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch") != null);
+	},
+
 	getRatingsTable: function(doc) {
 		var ratingstable = null;
 		var tables = doc.getElementById('mainBody').getElementsByTagName('table')
