@@ -1,9 +1,4 @@
-.sidebarBox .ft-match-player-home, .sidebarBox .ft-match-player-away,
-.sidebarBox .ft-match-player-mine, .sidebarBox .ft-match-player-unknown {
-}
-
-.ft-match-player-home, .ft-match-player-away,
-.ft-match-player-mine, .ft-match-player-unknown {
+.ft-match-player-home, .ft-match-player-away, .ft-match-player-mine {
 	padding: 0 2px !important;
 }
 
@@ -20,8 +15,4 @@
 }
 
 .ft-match-player-mine {
-}
-
-.ft-match-player-unknown {
-	background: #f0f0f0;
 }
