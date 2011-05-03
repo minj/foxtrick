@@ -21,6 +21,11 @@ var FoxtrickMatchPlayerColouring = {
 		if (Foxtrick.Pages.Match.isPrematch(doc))
 			return;
 
+		// creating a loading note that lasts till XMLs are loaded
+		var loading = Foxtrick.util.note.createLoading(doc);
+		var notifyArea = doc.getElementById("ctl00_ctl00_CPContent_ucNotifications_updNotifications");
+		notifyArea.appendChild(loading);
+
 		if (doc.location.search.search(/&HighlightPlayerID=(\d+)/) != -1) {
 			// highlight single player
 			var playerId = doc.location.search.match(/&HighlightPlayerID=(\d+)/)[1];
@@ -90,6 +95,9 @@ var FoxtrickMatchPlayerColouring = {
 		};
 		Foxtrick.ApiProxy.retrieve(doc, homeArgs, function(homeXml) {
 			Foxtrick.ApiProxy.retrieve(doc, awayArgs, function(awayXml) {
+				// remove the loading note
+				loading.parentNode.removeChild(loading);
+
 				var homePlayers = getPlayers(homeXml);
 				var awayPlayers = getPlayers(awayXml);
 
