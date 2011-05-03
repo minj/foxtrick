@@ -10,7 +10,24 @@ var FoxtrickMatchTables = {
 	OPTIONS :  new Array("RemoveTime"),
 
 	run : function( page, doc ) {
-		if (Foxtrick.isStandardLayout(doc)) return;
+		if (Foxtrick.isStandardLayout(doc)) {
+			if (page == "league") {
+				// remove non-breaking spaces (&nbsp;) in league table
+				var table = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLeagueTable");
+				if (!table)
+					return;
+				table = table.getElementsByTagName("table")[0];
+				// need to replace cell by cell otherwise we could overwrite
+				// information provided by other modules, namely
+				// ShowFriendlyBooked
+				var cells = table.getElementsByTagName("td");
+				Foxtrick.map(cells, function(n) {
+					if (n.innerHTML.search(/&nbsp;/) > -1)
+						n.innerHTML = n.innerHTML.replace(/&nbsp;/g, "");
+				});
+			}
+			return;
+		}
 
 		// adjust league table
 		if (page=='league' || page== 'youthleague') {
