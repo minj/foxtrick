@@ -29,6 +29,8 @@ FoxtrickLineupShortcut = {
 	},
 
 	change : function( page, doc ) {
+		if (doc.getElementsByClassName("ft-lineup-cell").length > 0)
+			return;
 		switch ( page ) {
 			case 'statsBestgames':
 				this._Analyze_Stat_Page ( doc );
