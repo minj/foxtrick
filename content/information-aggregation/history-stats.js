@@ -13,6 +13,7 @@ var FoxtrickHistoryStats= {
 	Offset : 0,
 
 	run : function(page, doc) {
+		this.Buffer = this.Pages = [];
 		this._fetch(doc);
 		this._paste(doc);
 	},
