@@ -1,5 +1,7 @@
 @-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
-body {background:url("bg.png") repeat scroll 0 0 transparent;}
+body {
+	background: url("http://www.hattrick.org/App_Themes/Standard/bg.png") repeat scroll 0 0 transparent !important;
+}
 
 }
