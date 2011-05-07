@@ -5,7 +5,7 @@ ZIP = zip -q
 
 ROOT_FILES_FIREFOX = chrome.manifest install.rdf icon.png COPYING HACKING
 ROOT_FILES_CHROME = manifest.json
-ROOT_FOLDERS_FIREFOX = defaults/ platform/
+ROOT_FOLDERS_FIREFOX = defaults/
 ROOT_FOLDERS_CHROME = defaults/ skin/
 CONTENT_FOLDERS = alert/ \
 	data/ \
