@@ -12,6 +12,12 @@ var FoxtrickYouthSkillHideUnknown = {
 	OPTIONS: new Array('HideUnknown','HideMaximalKeyWord'),
 
 	run : function( page, doc ) {
+		// checks whether a table cell (<td> element) is unknown
+		var isUnknown = function(cell) {
+			return cell.getElementsByClassName("youthSkillBar").length == 0
+				&& cell.getElementsByClassName("highlight").length == 0;
+		};
+
 		var ownteamid = FoxtrickHelper.getOwnTeamId();
 		var teamid = FoxtrickHelper.findTeamId(doc.getElementById('content').getElementsByTagName('div')[0]);
 		var is_ownteam = (ownteamid==teamid);
@@ -25,7 +31,7 @@ var FoxtrickYouthSkillHideUnknown = {
 				for(var j = 0; j < trs.length; j++) {
 					var tds = trs[j].getElementsByTagName("td");
 					if (Foxtrick.isModuleFeatureEnabled( this, "HideUnknown" )) {
-						if (tds[1].getElementsByClassName("youthSkillBar").length == 0)
+						if (isUnknown(tds[1]))
 							Foxtrick.addClass(trs[j], "hidden");
 					}
 					if (Foxtrick.isModuleFeatureEnabled( this, "HideMaximalKeyWord" ) && is_ownteam) {
