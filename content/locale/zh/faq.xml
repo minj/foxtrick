@@ -36,7 +36,10 @@
 			<xhtml:ul>
 				<xhtml:li><xhtml:a href="#module=CrossTable">CrossTable</xhtml:a></xhtml:li>
 				<xhtml:li><xhtml:a href="#module=ExtraPlayerInfo">ExtraPlayerInfo</xhtml:a></xhtml:li>
+				<xhtml:li><xhtml:a href="#module=MatchPlayerColouring">MatchPlayerColouring</xhtml:a></xhtml:li>
+				<xhtml:li><xhtml:a href="#module=MyMonitor">MyMonitor</xhtml:a></xhtml:li>
 				<xhtml:li><xhtml:a href="#module=NtPeek">NtPeek</xhtml:a></xhtml:li>
+				<xhtml:li><xhtml:a href="#module=SeriesFlags">SeriesFlags</xhtml:a></xhtml:li>
 			</xhtml:ul>
 			<xhtml:p>
 				以下模块如果有数据访问权限, 可以提供更加详细的信息.
@@ -63,7 +66,7 @@
 				如前所述, 没有隐私信息会被发送出去.
 			</xhtml:p>
 			<xhtml:p>
-				仅有的例外是模块 <xhtml:a href="#module=HTMSPoints">HTMSPoints</xhtml:a> 与 <xhtml:a href="#module=htmsStatistics">htmsStatistics</xhtml:a>,
+				仅有的例外是模块 <xhtml:a href="#module=HTMSPoints">HTMSPoints</xhtml:a> 与 <xhtml:a href="#module=HTMSPrediction">HTMSPrediction</xhtml:a>,
 				这两个模块分别会将你的球员技能以及比赛评级通过 XMLHttpRequest 发送到 <xhtml:a href="http://www.fantamondi.it/HTMS/index.php?page=home&amp;lang=en">Hattrick Match Statistics</xhtml:a>.
 			</xhtml:p>
 		</answer>

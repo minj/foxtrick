@@ -13,6 +13,24 @@
 <item>请查阅 Google Code 上的<xhtml:a href="http://code.google.com/p/foxtrick/source/list">版本历史</xhtml:a>.</item>
 </note>
 
+<note version="0.7">
+<item>冰岛语语言. (LA-LordBastard)</item>
+<item>佛莱芒语, 由荷兰语复制而来. (ryanli)</item>
+<item>新的选项类别, <xhtml:a href="#tab=information_aggregation">信息聚合</xhtml:a>. (ryanli)</item>
+<item>新模块 <module>MyMonitor</module>, 用于在我的 Hattrick 页面中围观朋友和敌人最近的比赛. (ryanli)</item>
+<item>新模块 <module>MarkAllAsRead</module>, 一个将所有论坛中的主题标为已读的按钮. (ryanli)</item>
+<item>新模块 <module>ShowFriendlyBooked</module>, 可以在联赛页面中显示一个球队是否安排了友谊赛. (ryanli)</item>
+<item>重写了模块 <module>TickerAlert</module>, 集成了原来的 FoxtrickAlert, AlertCustomSound, AlertCustomOff 这些模块. (ryanli)</item>
+<item>模块 <module>MatchPlayerColouring</module> 现在从 XML 中读取比赛布阵. (ryanli)</item>
+<item>模块 FoxtrickLineupShortcut 被重命名为 <module>LineupShortcut</module>. (ryanli)</item>
+<item>模块 htmsStatistics 被重命名为 <module>HTMSPrediction</module>. (ryanli)</item>
+<item>模块 <module>FriendlyInterface</module> 中的新选项, 可以隐藏没有事情要报告的秘书. (ryanli)</item>
+<item>模块 <module>StaffMarker</module> 现在使用 <xhtml:a href="http://www.json.org/">JavaScript Object Notation</xhtml:a> 作为自定义标记的格式. (ryanli)</item>
+<item>模块 <module>ExtraShortcuts</module> 中新的收音机, Balkaradio and Downtime Radio. (ljushaff, ryanli)</item>
+<item>模块 <module>LeagueAndMatchChat</module> 中在框架中打开 Yaplet 聊天的选项被移除. (ryanli)</item>
+<item>其他一些细微的更改. (ryanli, Mod-spambot)</item>
+</note>
+
 <note version="0.6.2">
 <item><module>SeriesFlags</module> 模块现在直接从 Hattrick 获取数据. (ryanli)</item>
 <item>语言更新. (ljushaff, csajszi, Mod-spambot)</item>
