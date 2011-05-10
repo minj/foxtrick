@@ -180,5 +180,5 @@
 	},
 	"options_page" : "content/preferences.xhtml",
 	"update_url" : "http://foxtrick.foundationhorizont.org/nightly/chrome/update.xml",
-	"version" : "0.7"
+	"version" : "0.7.9"
 }
