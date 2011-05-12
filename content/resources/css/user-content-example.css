@@ -288,3 +288,15 @@
 .ft-ticker-myht {
 	background-color: #dfdfdf;
 }
+
+/* New HT mail */
+.ft-new-mail {
+color: yellow !important;
+font-weight: bold !important;
+}
+
+/* New Forum repply to me */
+.ft-new-forum-msg {
+color: blue !important;
+font-weight: bold !important;
+}
