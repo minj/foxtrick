@@ -221,7 +221,7 @@ var FoxtrickCopyScoutReport = {
 				Foxtrick.copyStringToClipboard(plain);
 				var note = Foxtrick.util.note.add(doc, insertBefore, "ft-scout-report-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.scoutreportcopied"), null, true);
 
-				if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
+				if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyScoutReport, "OpenHTYpage")) {
 					var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 					if (!rejectreport) Foxtrick.newTab('http://'+server+'.hattrick-youthclub.org/');
 					else Foxtrick.newTab('http://'+server+'.hattrick-youthclub.org/site/player_myrejects_add/');
@@ -307,7 +307,7 @@ var FoxtrickCopyPlayerSource = {
 			Foxtrick.copyStringToClipboard(FoxtrickCopyPlayerSource.fixbr(FoxtrickCopyPlayerSource.page_html ));
 			var note = Foxtrick.util.note.add(doc, insertBefore, "ft-player-source-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.playersourcecopied"), null, true);
 
-			if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyTrainingReport, "OpenHTYpage")) {
+			if (Foxtrick.isModuleFeatureEnabled( FoxtrickCopyPlayerSource, "OpenHTYpage")) {
 						var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 						Foxtrick.newTab('http://'+server+'.hattrick-youthclub.org/site/player_cp_add');
 			}
