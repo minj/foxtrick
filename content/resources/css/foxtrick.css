@@ -88,18 +88,19 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 	color: red;
 }
 
-#ft_dump {
+#ft-log {
+	background: url("chrome://foxtrick/resources/img/background.png") repeat-y scroll left top #dce2dc;
 	border: 1px solid #abcdef;
 	font-size: 12px !important;
 	max-height: 250px;
 	overflow: auto;
 }
 
-#ft_dump h1 {
+#ft-log h2 {
 	margin: 6px 0 15px 6px !important;
 }
 
-#ft_dump pre {
+#ft-log pre {
 	width: auto !important;
 }
 
