@@ -731,8 +731,9 @@ var FoxtrickSkillTable = {
 
 		// insert tablediv
 		if (Foxtrick.Pages.TransferSearchResults.isTransferSearchResultsPage(doc)) {
-			var transferTable = doc.getElementById("mainBody").getElementsByTagName("table")[0];
-			transferTable.parentNode.insertBefore(tablediv, transferTable);
+			// on transfer search page, insert after first separator
+			var insertBefore = doc.getElementById("mainBody").getElementsByClassName("borderSeparator")[0].nextSibling;
+			insertBefore.parentNode.insertBefore(tablediv, insertBefore);
 		}
 		else {
 			var playerList = doc.getElementsByClassName("playerList")[0];
