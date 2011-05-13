@@ -13,6 +13,9 @@ Foxtrick.AttVsDef = {
 	RADIO_OPTIONS : new Array("newstyle", "oldstyle", "oldstyleifkseparated"),
 
 	run : function( page, doc ) {
+		if (Foxtrick.Pages.Match.isPrematch(doc))
+			return;
+
 		var ratingstable = Foxtrick.Pages.Match.getRatingsTable(doc);
 		if (ratingstable == null) return;
 		if (Foxtrick.Pages.Match.isWalkOver(ratingstable)) return;
