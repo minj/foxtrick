@@ -67,7 +67,7 @@
 				Как было сказано выше, никакие личные данные не передаются.
 			</xhtml:p>
 			<xhtml:p>
-				Единственное исключение — модуль <xhtml:a href="#module=htmsStatistics">htmsStatistics</xhtml:a>,
+				Единственное исключение — модуль <xhtml:a href="#module=HTMSPrediction">HTMSPrediction</xhtml:a>,
 				в котором рейтинги, показанные в матчах, передаются на сайт <xhtml:a href="http://www.fantamondi.it/HTMS/index.php?page=home&amp;lang=en">Hattrick Match Statistics</xhtml:a> с использованием XMLHttpRequest.
 			</xhtml:p>
 		</answer>
