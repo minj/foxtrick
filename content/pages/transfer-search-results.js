@@ -9,129 +9,85 @@ Foxtrick.Pages.TransferSearchResults = {
 	},
 
 	getPlayerList : function(doc) {
-		try {
-			var playerList = [];
+		var players = doc.getElementsByClassName("transferPlayerInfo");
+		return a = Foxtrick.map(players, function(playerInfo) {
+			var player = {};
 
-			var player;
-			var transferTable = doc.getElementById("mainBody").getElementsByTagName("table")[0];
-			for (var i = 0; i < transferTable.rows.length-1;  ) {
-				player = {};
+			var divs = playerInfo.getElementsByTagName("div");
 
-				// start defined by next row being first of skill rows
-				if (transferTable.rows[i+1].id==null || transferTable.rows[i+1].id.search(/TransferPlayer_r1$/i)==-1) {
-					Foxtrick.dump('sold or psico row\n');
-					++i;
-					continue;
-				}
-				// filter is on?
-				if (transferTable.rows[i].style.display=='none') {
-					i += 8;
-					Foxtrick.dump('filter player\n');
-					continue;
-				}
+			// first row - country, name, ID
+			player.countryId = Foxtrick.XMLData.getCountryIdByLeagueId(divs[0].getElementsByClassName("flag")[0].href.match(/leagueId=(\d+)/i)[1]);
+			player.nameLink = divs[0].getElementsByClassName("transfer_search_playername")[0].getElementsByTagName("a")[0].cloneNode(true);
+			player.id = player.nameLink.href.match(/.+playerID=(\d+)/i)[1];
+			// first row - bookmark link
+			var bookmarkLinks = Foxtrick.filter(divs[0].getElementsByTagName("a"), function(l) {
+				return l.href.indexOf("Bookmarks") >= 0;
+			});
+			if (bookmarkLinks.length > 0)
+				player.bookmarkLink = bookmarkLinks[0].cloneNode(true);
+			// first row - cards, injury
+			player.redCard = 0;
+			player.yellowCard = 0;
+			player.bruised = false;
+			player.injured = false;
 
-				player.deadline = transferTable.rows[i + 6].cells[1].getElementsByTagName("span")[0].cloneNode(true);
-
-				var overviewtable = transferTable.rows[i].getElementsByTagName("table")[0];
-
-				var bidderlink = overviewtable.rows[0].cells[5].getElementsByTagName("a");
-				if (bidderlink.length !== 0) {
-					player.currentBidderLink = bidderlink[0].cloneNode(true);
-					player.currentBidderLinkShort = bidderlink[0].cloneNode(true);
-					player.currentBidderLinkShort.textContent = "x";
-				}
-				else {
-					player.currentBidderLink = doc.createTextNode("");
-					player.currentBidderLinkShort = doc.createTextNode("");
-				}
-				player.currentBid = Foxtrick.trimnum(overviewtable.rows[0].cells[4].textContent);
-
-				var nameLink = overviewtable.rows[0].cells[1].getElementsByTagName("a")[0];
-				player.id = nameLink.href.match(/.+playerID=(\d+)/i)[1];
-				player.nameLink = nameLink.cloneNode(true);
-				player.countryId = Foxtrick.XMLData.getCountryIdByLeagueId(transferTable.rows[i].getElementsByTagName("a")[0].href.match(/leagueId=(\d+)/i)[1]);
-
-				// HTMS Points
-				var htmsPoints = overviewtable.getElementsByClassName("ft-htms-points").item(0);
-				if (htmsPoints) {
-					var points = htmsPoints.getElementsByTagName("span")[0].textContent;
-					var matched = points.match(/([\-0-9]+).+?([\-0-9]+)/);
-					if (matched) {
-						player.htmsAbility = parseInt(matched[1]);
-						player.htmsPotential = parseInt(matched[2]);
+			var imgs = divs[0].getElementsByTagName("img");
+			for (var i = 0; i < imgs.length; ++i) {
+				var img = imgs[i]
+				if (img.className == "cardsOne") {
+					if (img.src.indexOf("red_card", 0) != -1) {
+						player.redCard = 1;
+					}
+					else {
+						player.yellowCard = 1;
 					}
 				}
-
-				player.ageText = transferTable.rows[i+3].cells[1].textContent;
-				var ageMatch = player.ageText.match(/(\d+)/g);
-				player.age = { years: parseInt(ageMatch[0]), days: parseInt(ageMatch[1]) };
-				player.tsi = parseInt(Foxtrick.trimnum(transferTable.rows[i+4].cells[1].textContent));
-				var speciality = Foxtrick.trim(transferTable.rows[i+5].cells[1].textContent);
-				player.speciality = (speciality == "-") ? "" : speciality;
-
-				var links = {};
-				var basicSkillLinks = transferTable.rows[i+1].cells[0].getElementsByTagName("a");
-				links.form = basicSkillLinks[2];
-				links.stamina = transferTable.rows[i+2].cells[3].getElementsByTagName("a")[0];
-				links.leadership = basicSkillLinks[1];
-				links.experience = basicSkillLinks[0];
-				var basicSkillNames = ["form", "stamina", "leadership", "experience"];
-				for (var j in basicSkillNames) {
-					if (player[basicSkillNames[j]] === undefined
-						&& links[basicSkillNames[j]] !== undefined) {
-						player[basicSkillNames[j]] = parseInt(links[basicSkillNames[j]].href.match(/ll=(\d+)/)[1]);
-					}
+				else if (img.className == "cardsTwo") {
+					player.yellowCard = 2;
 				}
-				var skillOrder = ["keeper", "playmaking", "passing", "winger", "defending", "scoring", "setPieces"];
-				var skillOrderRow = [2, 3, 3, 4, 4, 5, 5];
-				var skillOrderCell = [5, 3, 5, 3, 5, 3, 5];
-				for (var j = 0; j < skillOrder.length; ++j) {
-					var level = transferTable.rows[i+skillOrderRow[j]].cells[skillOrderCell[j]].getElementsByTagName("a")[0].href.match(/ll=(\d+)/)[1];
-					player[skillOrder[j]] = parseInt(level);
+				else if (img.className == "injuryBruised") {
+					player.bruised = true;
 				}
-
-				var links = transferTable.rows[i].getElementsByTagName("a");
-				for (var j = 0; j < links.length; ++j) {
-					if (links[j].href.search(/Bookmarks/) !== -1) {
-						player.bookmarkLink = links[j].cloneNode(true);
-					}
+				else if (img.className == "injuryInjured") {
+					player.injured = true;
 				}
-
-				var imgs = transferTable.rows[i].getElementsByTagName("img");
-				// red/yellow cards and injuries, these are shown as images
-				player.redCard = 0;
-				player.yellowCard = 0;
-				player.bruised = false;
-				player.injured = false;
-
-				for (var j = 0; j < imgs.length; ++j) {
-					if (imgs[j].className == "cardsOne") {
-						if (imgs[j].src.indexOf("red_card", 0) != -1) {
-							player.redCard = 1;
-						}
-						else {
-							player.yellowCard = 1;
-						}
-					}
-					else if (imgs[j].className == "cardsTwo") {
-						player.yellowCard = 2;
-					}
-					else if (imgs[j].className == "injuryBruised") {
-						player.bruised = true;
-					}
-					else if (imgs[j].className == "injuryInjured") {
-						player.injured = true;
-					}
-				}
-				player.currentClubLink = transferTable.rows[i+2].cells[1].getElementsByTagName("a")[0].cloneNode(true);
-
-				playerList.push(player);
-				i += 8;
 			}
-			return playerList;
-		}
-		catch (e) {
-			Foxtrick.dumpError(e);
-		}
+			// first row - current bid, bidder
+			var items = divs[0].getElementsByClassName("transferPlayerInfoItems");
+			player.currentBid = Foxtrick.trimnum(items[items.length - 2].textContent);
+			if (items[items.length - 1].getElementsByTagName("a").length == 1) {
+				player.currentBidderLink = items[items.length - 1].getElementsByTagName("a")[0];
+				player.currentBidderLinkShort = player.currentBidderLink.cloneNode(true);
+				player.currentBidderLinkShort.textContent = "x";
+			}
+
+			// second row - experience, leadership, form
+			// they have inserted some empty divs so it's actually divs[3]
+			var links = divs[3].getElementsByTagName("a");
+			const order = ["experience", "leadership", "form"];
+			for (var i = 0; i < order.length; ++i)
+				player[order[i]] = Number(links[i].href.match(/ll=(\d+)/)[1]);
+
+			// left info table - owner, age, TSI, speciality, deadline
+			var infoTable = playerInfo.getElementsByTagName("table")[0];
+			player.currentClubLink = infoTable.rows[0].cells[1].getElementsByTagName("a")[0].cloneNode(true);
+			player.ageText = infoTable.rows[1].cells[1].textContent;
+			var ageMatch = player.ageText.match(/(\d+)/g);
+			player.age = { years: parseInt(ageMatch[0]), days: parseInt(ageMatch[1]) };
+			player.tsi = Foxtrick.trimnum(infoTable.rows[2].cells[1].textContent);
+			var speciality = Foxtrick.trim(infoTable.rows[3].cells[1].textContent);
+			player.speciality = (speciality == "-") ? "" : speciality;
+			player.deadline = doc.createElement("span");
+			player.deadline.innerHTML = infoTable.rows[4].cells[1].innerHTML;
+
+			// right info table - skills
+			var skillTable = playerInfo.getElementsByTagName("table")[1];
+			var skills = skillTable.getElementsByTagName("a");
+			var skillOrder = ["stamina", "keeper", "playmaking", "passing", "winger", "defending", "scoring", "setPieces"];
+			for (var i = 0; i < skillOrder.length; ++i)
+				player[skillOrder[i]] = Number(skills[i].href.match(/ll=(\d+)/)[1]);
+
+			return player;
+		});
 	}
 };
