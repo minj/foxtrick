@@ -9,7 +9,6 @@ var FoxtrickLeagueNewsFilter = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('league'),
 	RADIO_OPTIONS : new Array('all','friendlies','transfers','lineup_changes'),
-	OPTIONS : new Array('highlight_set_lineup','highlight_wins','gray_bots'),
 
 	run : function( page, doc ) {
 		var newsfeed = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLLUFeed");
@@ -61,94 +60,11 @@ var FoxtrickLeagueNewsFilter = {
 				}
 				else if (as[1].href.search('javascript')==-1 ) {	// 3 = lineup changes, 2 links, second link not ShortPA link,not above
 					item.setAttribute('ft_news','3');
-					// the title of match links contain full team name, no need to crop
-					lineupSet.push(as[0].textContent);
 				}
 			}
 		}
 
 		if (select.value!=0) this.ShowHide(doc);
-
-		// highlight teams with lineup
-		var tables = doc.getElementById('mainBody').getElementsByTagName('table');
-		// get bots/ownerless
-		var bots = new Array();
-		var teams = tables[0].getElementsByTagName('a');
-		for (var i=0; i<teams.length; ++i) {
-			if (teams[i].className && teams[i].className.search('shy')!=-1) {
-				// the title of match links contain full team name, no need to crop
-				bots.push(teams[i].textContent);
-			}
-		}
-
-		var isFixtureTable = function(table) {
-			try {
-				var row = table.rows[1];
-				return (row.cells.length >= 2)
-					&& (row.cells[1].innerHTML.indexOf("/Club/Matches/Live.aspx?actionType=addMatch") >= 0);
-			}
-			catch (e) {
-				return false;
-			}
-		};
-		var isResultTable = function(table) {
-			return Foxtrick.hasClass(table, "left");
-		};
-
-		for (var k=1; k<tables.length; ++k) {
-			var table = tables[k];
-			for (var i=1; i<table.rows.length; ++i) {
-				var row = table.rows[i];
-				if (row.cells.length < 2)
-					continue; // not a valid fixture/result row
-				var link = row.cells[0].getElementsByTagName('a')[0];
-				// lineup set (for future matches only)
-				if (isFixtureTable(table)
-					&& Foxtrick.isModuleFeatureEnabled(this, 'highlight_set_lineup')) {
-					for (var j = 0; j < lineupSet.length; ++j) {
-						var pos = link.title.indexOf(lineupSet[j]);
-						if (pos == 0) {
-							// home team has set lineup
-							var reg = new RegExp(/(.+)&nbsp;-/);
-							link.innerHTML = link.innerHTML.replace(reg, '<strong>$1</strong>&nbsp;-');
-						}
-						else if (pos > 0) {
-							// away team has set lineup
-							var reg = new RegExp(/-&nbsp;(.+)/);
-							link.innerHTML = link.innerHTML.replace(reg, '-&nbsp;<strong>$1</strong>');
-						}
-					}
-				}
-				// bots (for both results and future matches)
-				if (Foxtrick.isModuleFeatureEnabled(this, 'gray_bots')) {
-					for (var j = 0; j < bots.length; ++j) {
-						var pos = link.title.indexOf(bots[j]);
-						if (pos == 0) {
-							// home team is bot
-							var reg = new RegExp(/(.+)&nbsp;-/);
-							link.innerHTML = link.innerHTML.replace(reg, '<span class="shy">$1</span>&nbsp;-');
-						}
-						else if (pos > 0) {
-							// away team is bot
-							var reg = new RegExp(/-&nbsp;(.+)/);
-							link.innerHTML = link.innerHTML.replace(reg, '-&nbsp;<span class="shy">$1</span>');
-						}
-					}
-				}
-				// wins (for results only)
-				if (isResultTable(table)
-					&& Foxtrick.isModuleFeatureEnabled(this, 'highlight_wins')) {
-					var goals = row.cells[1].innerHTML.replace(/&nbsp;/g,'').split('-');
-					if (parseInt(goals[0]) > parseInt(goals[1])) {
-						var reg = new RegExp(/(.+)\&nbsp;-/);
-						link.innerHTML = link.innerHTML.replace(reg,'<strong>$1</strong>&nbsp;-');
-					} else if (parseInt(goals[0]) < parseInt(goals[1])) {
-						var reg = new RegExp(/\-&nbsp;(.+)/);
-						link.innerHTML = link.innerHTML.replace(reg,'-&nbsp;<strong>$1</strong>');
-					}
-				}
-			}
-		}
 	},
 
 	ShowHide:function(doc) {

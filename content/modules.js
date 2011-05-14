@@ -145,6 +145,7 @@ Foxtrick.modules = [
 	FoxtrickFriendlyInterface,
 	FoxtrickMarkAllAsRead,
 	FoxtrickShowFriendlyBooked,
+	FoxtrickShowLineupSet,
 	FoxtrickTickerAlert // place below all other modules that make changes to #ticker
 ];
 
