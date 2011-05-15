@@ -89,7 +89,7 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 }
 
 #ft-log {
-	background: url("chrome://foxtrick/resources/img/background.png") repeat-y scroll left top #dce2dc;
+	background: #dce2dc;
 	border: 1px solid #abcdef;
 	font-size: 12px !important;
 	max-height: 250px;
