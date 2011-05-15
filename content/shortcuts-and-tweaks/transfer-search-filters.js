@@ -44,10 +44,9 @@ FoxtrickTransferSearchFilters = {
 		"_31" : "ctl00$ctl00$CPContent$CPMain$ddlGlobalSkillMax",
 		"_32" : "ctl00$ctl00$CPContent$CPMain$chkUseGlobalMax",
 
-		"_51" : "FoxtrickTransferSearchResultFilters.hide_bruised.check",
-		"_52" : "FoxtrickTransferSearchResultFilters.hide_injured.check",
-		"_53" : "FoxtrickTransferSearchResultFilters.cards.min",
-		"_54" : "FoxtrickTransferSearchResultFilters.cards.max",
+		"_51" : "FoxtrickTransferSearchResultFilters.hideBruised.check",
+		"_52" : "FoxtrickTransferSearchResultFilters.hideInjured.check",
+		"_53" : "FoxtrickTransferSearchResultFilters.hideSuspended.check",
 		"_55" : "FoxtrickTransferSearchResultFilters.days.min",
 		"_56" : "FoxtrickTransferSearchResultFilters.days.max",
 	},

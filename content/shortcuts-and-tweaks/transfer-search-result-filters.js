@@ -9,11 +9,26 @@ FoxtrickTransferSearchResultFilters = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ['transferSearchForm','transferSearchResult'],
 
-	FILTERS : [
-		{ name : 'hide_bruised', type : 'check', properties : {checked: false} },
-		{ name : 'hide_injured', type : 'check', properties : {checked: false} },
-		{ name : 'cards',  type : 'minmax', properties : {min: '', max : ''} },
-		{ name : 'days',  type : 'minmax', properties : {min: '', max : ''} }
+	// functions returning whether to hide a player
+	FILTER_FUNC : {
+		"hideBruised" : function(player, checked) { return player.bruised; },
+		"hideInjured" : function(player, checked) { return player.injured; },
+		"hideSuspended" : function(player, checked) { return player.redCard == 1; },
+		"days" : function(player, min, max) {
+			if (typeof(min) == "number" && player.age.days < min)
+				return true;
+			if (typeof(max) == "number" && player.age.days > max)
+				return true;
+			return false;
+		}
+	},
+
+	// default filter values
+	FILTER_VAL : [
+		{ key : "hideBruised", type : "check", checked : false },
+		{ key : "hideInjured", type : "check", checked : false },
+		{ key : "hideSuspended", type : "check", checked : false },
+		{ key : "days", type : "minmax", min : null, max : null }
 	],
 
 	getFilters : function(callback) {
@@ -22,8 +37,8 @@ FoxtrickTransferSearchResultFilters = {
 				if (n === undefined) {
 					// set default filters if not set
 					Foxtrick.sessionSet("transfer-search-result-filters",
-						FoxtrickTransferSearchResultFilters.FILTERS);
-					callback(FoxtrickTransferSearchResultFilters.FILTERS);
+						FoxtrickTransferSearchResultFilters.FILTER_VAL);
+					callback(FoxtrickTransferSearchResultFilters.FILTER_VAL);
 				}
 				else {
 					callback(n);
@@ -72,61 +87,61 @@ FoxtrickTransferSearchResultFilters = {
 		});
 	},
 
-	addNewFilter : function(doc,table,filters,j) {
-		var filter = filters[j];
+	addNewFilter : function(doc, table, filters, idx) {
+		var filter = filters[idx];
+
 		var tr = doc.createElement('tr');
 		table.appendChild(tr);
 
-		if (filter.type=='minmax'){
+		if (filter.type == "minmax") {
 			var td = doc.createElement('td');
 			tr.appendChild(td);
 			var strong = doc.createElement('strong');
-			strong.innerHTML = Foxtrickl10n.getString("TransferSearchResultFilters." + filter.name);
+			strong.textContent = Foxtrickl10n.getString("TransferSearchResultFilters." + filter.key);
 			td.appendChild(strong);
 
 			var td = doc.createElement('td');
-			td.setAttribute('colspan','2');
-			td.innerHTML = Foxtrickl10n.getString("minimum")+'&nbsp;';
+			td.colSpan = 2;
+			td.innerHTML = Foxtrickl10n.getString("minimum") + "&nbsp;";
 			tr.appendChild(td);
-			var input = doc.createElement('input');
-			input.setAttribute('style','width:90px;')
-			input.id = 'FoxtrickTransferSearchResultFilters.'+filter.name+'.min';
-			input.name = 'FoxtrickTransferSearchResultFilters.'+filter.name+'.min';
-			input.index = j;
-			input.filter = 'min';
-			input.value = filter['properties']['min'];
-			input.addEventListener('blur',FoxtrickTransferSearchResultFilters.saveEdit,false);
+			var input = doc.createElement("input");
+			input.style.width = "90px";
+			input.id = "FoxtrickTransferSearchResultFilters." + filter.key + ".min";
+			input.value = filter.min;
+			input.setAttribute("x-ft-filter-idx", idx);
+			input.setAttribute("x-ft-filter-prop", "min");
+			input.addEventListener("blur", FoxtrickTransferSearchResultFilters.saveEdit, false);
 			td.appendChild(input);
 
 			var td = doc.createElement('td');
-			td.setAttribute('colspan','2');
-			td.innerHTML = Foxtrickl10n.getString("maximum")+'&nbsp;';
+			td.colSpan = 2;
+			td.innerHTML = Foxtrickl10n.getString("maximum") + "&nbsp;";
 			tr.appendChild(td);
-			var input = doc.createElement('input');
-			input.setAttribute('style','width:90px;')
-			input.id = 'FoxtrickTransferSearchResultFilters.'+filter.name+'.max';
-			input.name = 'FoxtrickTransferSearchResultFilters.'+filter.name+'.max';
-			input.index = j;
-			input.filter = 'max';
-			input.value = filter['properties']['max'];
-			input.addEventListener('blur',FoxtrickTransferSearchResultFilters.saveEdit,false);
+			var input = doc.createElement("input");
+			input.style.width = "90px";
+			input.id = "FoxtrickTransferSearchResultFilters." + filter.key + ".max";
+			input.value = filter.max;
+			input.setAttribute("x-ft-filter-idx", idx);
+			input.setAttribute("x-ft-filter-prop", "max");
+			input.addEventListener("blur", FoxtrickTransferSearchResultFilters.saveEdit, false);
 			td.appendChild(input);
 		}
-		if (filter.type=='check') {
-			var td = doc.createElement('td');
-			td.setAttribute('colspan','5');
+		else if (filter.type == "check") {
+			var td = doc.createElement("td");
+			td.colSpan = 5;
 			tr.appendChild(td);
-			var input = doc.createElement('input');
-			input.type = 'checkbox';
-			input.id = 'FoxtrickTransferSearchResultFilters.'+filter.name+'.check';
-			input.name = 'FoxtrickTransferSearchResultFilters.'+filter.name+'.check';
-			input.index = j;
-			input.filter = 'checked';
-			if (filter['properties']['checked']===true) input.setAttribute('checked', 'checked');
-			input.addEventListener('blur',FoxtrickTransferSearchResultFilters.saveEdit,false);
+			var input = doc.createElement("input");
+			input.type = "checkbox";
+			input.id = "FoxtrickTransferSearchResultFilters." + filter.key + ".check";
+			input.setAttribute("x-ft-filter-idx", idx);
+			input.setAttribute("x-ft-filter-prop", "checked");
+			if (filter.checked === true)
+				input.setAttribute("checked", "checked");
+			input.addEventListener("blur", FoxtrickTransferSearchResultFilters.saveEdit, false);
 			td.appendChild(input);
-			var label = doc.createElement('label');
-			label.innerHTML = Foxtrickl10n.getString("TransferSearchResultFilters." + filter.name);
+			var label = doc.createElement("label");
+			label.textContent = Foxtrickl10n.getString("TransferSearchResultFilters." + filter.key);
+			label.htmlFor = input.id;
 			td.appendChild(label);
 		}
 	},
@@ -134,9 +149,9 @@ FoxtrickTransferSearchResultFilters = {
 	saveEdit : function(ev) {
 		FoxtrickTransferSearchResultFilters.getFilters(function(filters) {
 			if (ev.target.type == "text")
-				filters[ev.target.index]['properties'][ev.target.filter] = ev.target.value;
+				filters[ev.target.getAttribute("x-ft-filter-idx")][ev.target.getAttribute("x-ft-filter-prop")] = Number(ev.target.value);
 			else if (ev.target.type == "checkbox")
-				filters[ev.target.index]['properties'][ev.target.filter] = ev.target.checked;
+				filters[ev.target.getAttribute("x-ft-filter-idx")][ev.target.getAttribute("x-ft-filter-prop")] = Boolean(ev.target.checked);
 			FoxtrickTransferSearchResultFilters.setFilters(filters);
 		});
 	},
@@ -147,15 +162,15 @@ FoxtrickTransferSearchResultFilters = {
 		FoxtrickTransferSearchResultFilters.getFilters(function(filters) {
 			for (var j = 0; j < filters.length; ++j) {
 				var filter = filters[j];
-				if (filter.type=='minmax'){
-					filters[j]['properties']['min'] = '';
-					doc.getElementById('FoxtrickTransferSearchResultFilters.'+filter.name+'.min').value='';
-					filters[j]['properties']['max'] = '';
-					doc.getElementById('FoxtrickTransferSearchResultFilters.'+filter.name+'.max').value='';
+				if (filter.type == "minmax") {
+					filters[j].min = null;
+					doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".min").value = "";
+					filters[j].max = null;
+					doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".max").value = "";
 				}
-				if (filter.type=='check') {
-					filters[j]['properties']['checked'] = false;
-					doc.getElementById('FoxtrickTransferSearchResultFilters.'+filter.name+'.check').removeAttribute('checked');
+				else if (filter.type == "check") {
+					filters[j].checked = false;
+					doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".check").removeAttribute("checked");
 				}
 			}
 			FoxtrickTransferSearchResultFilters.setFilters(filters);
@@ -164,97 +179,33 @@ FoxtrickTransferSearchResultFilters = {
 
 	filterResults : function(doc) {
 		FoxtrickTransferSearchResultFilters.getFilters(function(filters) {
-			var player;
-			var transferTable = doc.getElementById("mainBody").getElementsByTagName("table")[0];
-			var hide = false;
-			for (var i = 0; i < transferTable.rows.length; ) {
-				player = {};
+			var playerList = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
+			var playerInfos = doc.getElementsByClassName("transferPlayerInfo");
+			// Transform a live NodeList to an array because we'll remove
+			// elements below. Without transformation the index would
+			// point to incorrect nodes.
+			playerInfos = Foxtrick.map(playerInfos, function(n) { return n; });
 
-				// with psico last row wasn't border but psico, hide one more
-				if (transferTable.rows[i].cells[0].getElementsByClassName("borderSeparator").length > 0) {
-					if (hide)
-						transferTable.rows[i].style.display='none';
-					else
-						transferTable.rows[i].style.display='';
-					i += 1;
-				}
-
-
-				// skip sold players
-				if (transferTable.rows[i + 1].cells[0].getElementsByClassName("borderSeparator").length > 0) {
-					i += 2;
-					continue;
-				}
-
-				hide = false;
-				player.ageText = transferTable.rows[i+3].cells[1].textContent;
-				var ageMatch = player.ageText.match(/(\d+)/g);
-				player.days = parseInt(ageMatch[1]);
-
-				var imgs = transferTable.rows[i].getElementsByTagName("img");
-				// red/yellow cards and injuries, these are shown as images
-				player.cards = 0;
-				player.redCard = 0;
-				player.yellowCard = 0;
-				player.bruised = false;
-				player.injured = false;
-
-				for (var j = 0; j < imgs.length; ++j) {
-					if (imgs[j].className == "cardsOne") {
-						if (imgs[j].src.indexOf("red_card", 0) != -1) {
-							player.redCard = 1;
-							player.cards += 3;
-						}
-						else {
-							player.yellowCard = 1;
-							player.cards += 1;
-						}
-					}
-					else if (imgs[j].className == "cardsTwo") {
-						player.yellowCard = 2;
-						player.cards += 2;
-					}
-					else if (imgs[j].className == "injuryBruised") {
-						player.bruised = true;
-					}
-					else if (imgs[j].className == "injuryInjured") {
-						player.injured = true
-					}
-				}
-
+			// playerList and playerInfos should have the same order,
+			// and the same length
+			for (var i = 0; i < playerInfos.length; ++i) {
+				var player = playerList[i];
+				var hide = false;
 				for (var j = 0; j < filters.length; ++j) {
 					var filter = filters[j];
-					if (filter.type=='minmax') {
-						if (filter['properties']['min']!=='' && filter['properties']['min'] > player[filter.name]
-							|| filter['properties']['max']!=='' && filter['properties']['max'] < player[filter.name]) {
+					if (filter.type == "minmax") {
+						if (FoxtrickTransferSearchResultFilters.FILTER_FUNC[filter.key](player, filter.min, filter.max))
 							hide = true;
-							continue;
-						}
 					}
-					else if (filter.type=='check') {
-						if (filter.name.search(/^hide_/)!=-1) {
-							var name = filter.name.match(/^hide_(.+)/)[1];
-							if  (filter['properties']['checked']===true && player[name]) {
-								hide = true;
-								continue;
-							}
-						}
-						else {
-							if (filter['properties']['checked']===true && !player[filter.name]) {
-								hide = true;
-								continue;
-							}
-						}
+					else if (filter.type == "check") {
+						if (filter.checked && FoxtrickTransferSearchResultFilters.FILTER_FUNC[filter.key](player))
+							hide = true;
+					}
+					if (hide) {
+						playerInfos[i].parentNode.removeChild(playerInfos[i]);
+						break;
 					}
 				}
-
-				for (var k = i; k < i+8 && k < transferTable.rows.length; k++) {
-					if (hide)
-						transferTable.rows[k].style.display='none';
-					else
-						transferTable.rows[k].style.display='';
-				}
-				i += 8;
 			}
 		});
 	}

@@ -48,6 +48,7 @@ Foxtrick.modules = [
 	FoxtrickStarsCounter,
 	FoxtrickFlagCollectionToMap,
 	FoxtrickTransferSearchFilters,
+	FoxtrickTransferSearchResultFilters, // keep before TransferDeadline and HTMSPoints
 	FoxtrickTransferDeadline,
 	FoxtrickExtendedPlayerDetails,
 	FoxtrickLastLogin,
@@ -134,7 +135,6 @@ Foxtrick.modules = [
 	FoxtrickExtraPlayerInfo,
 	FoxtrickPlayerFilters,
 	FoxtrickYouthSeriesEstimation,
-	FoxtrickTransferSearchResultFilters,
 	FoxtrickForumThreadAutoIgnore,
 	FoxtrickTableSort,
 	FoxtrickLiveAlert,
