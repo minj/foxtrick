@@ -64,15 +64,16 @@ Foxtrick.Pages.TransferSearchResults = {
 				player.currentBidderLinkShort.textContent = "x";
 			}
 
-			// second row - experience, leadership, form
+			// characteristics row - experience, leadership, form
 			// they have inserted some empty divs so it's actually divs[3]
-			var links = divs[3].getElementsByTagName("a");
+			var characteristics = playerInfo.getElementsByClassName("transferPlayerCharacteristics")[0];
+			var links = characteristics.getElementsByTagName("a");
 			const order = ["experience", "leadership", "form"];
 			for (var i = 0; i < order.length; ++i)
 				player[order[i]] = Number(links[i].href.match(/ll=(\d+)/)[1]);
 
 			// left info table - owner, age, TSI, speciality, deadline
-			var infoTable = playerInfo.getElementsByTagName("table")[0];
+			var infoTable = playerInfo.getElementsByClassName("transferPlayerInformation")[0].getElementsByTagName("table")[0];
 			player.currentClubLink = infoTable.rows[0].cells[1].getElementsByTagName("a")[0].cloneNode(true);
 			player.ageText = infoTable.rows[1].cells[1].textContent;
 			var ageMatch = player.ageText.match(/(\d+)/g);
@@ -83,8 +84,8 @@ Foxtrick.Pages.TransferSearchResults = {
 			player.deadline = doc.createElement("span");
 			player.deadline.innerHTML = infoTable.rows[4].cells[1].innerHTML;
 
-			// right info table - skills
-			var skillTable = playerInfo.getElementsByTagName("table")[1];
+			// right skill table - skills
+			var skillTable = playerInfo.getElementsByClassName("transferPlayerSkills")[0].getElementsByTagName("table")[0];
 			var skills = skillTable.getElementsByTagName("a");
 			var skillOrder = ["stamina", "keeper", "playmaking", "passing", "winger", "defending", "scoring", "setPieces"];
 			for (var i = 0; i < skillOrder.length; ++i)
