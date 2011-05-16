@@ -10,8 +10,6 @@ Foxtrick.Pages.TransferSearchResults = {
 
 	getPlayerList : function(doc) {
 		var players = doc.getElementsByClassName("transferPlayerInfo");
-		// don't parse hidden players
-		players = Foxtrick.filter(players, function(n) { return !Foxtrick.hasClass(n, "hidden"); });
 
 		return Foxtrick.map(players, function(playerInfo) {
 			var player = {};
