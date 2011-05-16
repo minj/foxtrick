@@ -15,6 +15,7 @@
 </note>
 
 <note version="0.7.1">
+<item>Module <module>LeagueNewsFilter</module> split into <module>LeagueNewsFilter</module> and <module>ShowLineupSet</module>.</item>
 <item>Modifications to adapt for new transfer search results page. (ryanli, taised)</item>
 <item>Locale updates. (ryanli, CoRrRan, ljushaff, _KOHb_)</item>
 <item>Some other trivial fixes. (ryanli)</item>
