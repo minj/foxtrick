@@ -93,19 +93,12 @@ var FoxtrickHTMSPoints = {
 			var htmsValues = ['parate', 'regia', 'passaggi', 'cross', 'difesa', 'attacco', 'cp'];
 			var players=Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
 			//Foxtrick.dump('found pp '+players.length+'\n');
-			var transferTable = doc.getElementById("mainBody").getElementsByTagName("table")[0];
-			var pcells=new Array();
+			var transferPlayers = doc.getElementById("mainBody").getElementsByClassName("transferPlayerInfo");
 			var cellId=0;
-			var rowId=-8;
 			for (var p=0; p<players.length; ++p, ++cellId) {
-				//searching in which row is the player
-				do {
-					rowId+=8;
-				} while (transferTable.rows[rowId].style.display=='none');
-
-				//Foxtrick.dump('htmsp: '+rowId+' : '+transferTable.rows[rowId+1].id+'\n');
-				//if in the next row there isn't the following id, player is sold and skills aren't visible
-				if (transferTable.rows[rowId+1].id.match(/_TransferPlayer_r1/)) {
+				//if there is not the following container player is sold and skill aren't visible
+				//Foxtrick.dump('htmsp: '+cellId+' : ');
+				if (transferPlayers[cellId].getElementsByClassName("transferPlayerCharacteristics").length>0) {
 					//getting skills
 					var skillList='&anni='+players[cellId].age.years+'&giorni='+players[cellId].age.days;
 					var skillArray=new Array();
@@ -117,8 +110,8 @@ var FoxtrickHTMSPoints = {
 						skillArray[skillOrder[i]]=players[cellId][skillOrder[i]];
 					}
 					//creating element
-					var row = transferTable.rows[rowId].getElementsByTagName('table')[0].rows[0];
-					var container = row.insertCell(row.cells.length);
+					var firstdiv = transferPlayers[cellId].getElementsByTagName('div')[0];
+					var container = doc.createElement('span');
 					container.className = "ft-htms-points";
 					container.appendChild(getLink(skillList));
 					container.appendChild(doc.createTextNode(" "));
@@ -129,16 +122,10 @@ var FoxtrickHTMSPoints = {
 						.replace(/%2/, calcResult[1]);
 					//points.appendChild(Foxtrick.util.note.createLoading(doc, true));
 					container.appendChild(points);
-
-					//request(skillList, points);
+					firstdiv.appendChild(container);
+					//Foxtrick.dump('skills: '+skillList);
 				}
-				else {
-					//player is sold, there aren't the skills, we have to come back
-					rowId-=6;
-					//player is also not inserted in list, we come back
-					p--;
-					cellId--;
-				}
+				//Foxtrick.dump('\n');
 			}
 		}
 		if ((page=="players") && AddToPlayerList) {

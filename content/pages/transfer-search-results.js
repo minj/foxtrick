@@ -20,6 +20,10 @@ Foxtrick.Pages.TransferSearchResults = {
 			try {
 				var divs = playerInfo.getElementsByTagName("div");
 
+				//if there is not the following container player is sold and skill aren't visible
+				if (playerInfo.getElementsByClassName("transferPlayerCharacteristics").length==0) {
+					return player;
+				}
 				// first row - country, name, ID
 				player.countryId = Foxtrick.XMLData.getCountryIdByLeagueId(divs[0].getElementsByClassName("flag")[0].href.match(/leagueId=(\d+)/i)[1]);
 				player.nameLink = divs[0].getElementsByClassName("transfer_search_playername")[0].getElementsByTagName("a")[0].cloneNode(true);
