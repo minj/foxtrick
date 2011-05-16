@@ -70,6 +70,12 @@ Foxtrick.Pages.TransferSearchResults = {
 					player.currentBidderLinkShort.textContent = "x";
 				}
 
+				// check if the player is sold, if he is, then following info
+				// are not available and we go to the finally block with
+				// return
+				if (playerInfo.getElementsByClassName("transferPlayerInfoItems").length == 0)
+					return;
+
 				// characteristics row - experience, leadership, form
 				// they have inserted some empty divs so it's actually divs[3]
 				var characteristics = playerInfo.getElementsByClassName("transferPlayerCharacteristics")[0];
