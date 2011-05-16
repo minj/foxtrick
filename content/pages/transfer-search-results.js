@@ -73,7 +73,7 @@ Foxtrick.Pages.TransferSearchResults = {
 				// check if the player is sold, if he is, then following info
 				// are not available and we go to the finally block with
 				// return
-				if (playerInfo.getElementsByClassName("transferPlayerInfoItems").length == 0)
+				if (playerInfo.getElementsByClassName("transferPlayerCharacteristics").length == 0)
 					return;
 
 				// characteristics row - experience, leadership, form
