@@ -13,6 +13,13 @@
 <item>请查阅 Google Code 上的<xhtml:a href="http://code.google.com/p/foxtrick/source/list">版本历史</xhtml:a>.</item>
 </note>
 
+<note version="0.7.1">
+<item>模块 <module>LeagueNewsFilter</module> 被分为 <module>LeagueNewsFilter</module> 与 <module>ShowLineupSet</module>.</item>
+<item>用于适应新转会搜索结果页面的一些修正. (ryanli, taised)</item>
+<item>语言更新. (ryanli, CoRrRan, ljushaff, _KOHb_)</item>
+<item>其他一些细微的更改. (ryanli)</item>
+</note>
+
 <note version="0.7">
 <item>冰岛语语言. (LA-LordBastard)</item>
 <item>佛莱芒语, 由荷兰语复制而来. (ryanli)</item>
