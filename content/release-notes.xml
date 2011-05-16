@@ -44,12 +44,6 @@
 <item>Some other trivial fixes. (ryanli)</item>
 </note>
 
-<note version="0.6.2">
-<item>Module <module>SeriesFlags</module> now fetches team data directly from Hattrick. (ryanli)</item>
-<item>Locale updates. (ljushaff, csajszi, Mod-spambot)</item>
-<item>Some other trivial fixes. (ryanli)</item>
-</note>
-
 <note version="0.6.1">
 <item>Module <module>HTMSPoints</module> now calculates points locally without connecting to HTMS website. (taised)</item>
 <item>Module <module>htmsStatistics</module> now loads prediction correctly. (taised)</item>
