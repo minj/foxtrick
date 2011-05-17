@@ -361,7 +361,13 @@ Foxtrick.isHt = function(doc) {
 }
 
 Foxtrick.isHtUrl = function(url) {
-	return (url.search(FoxtrickPrefs.getString("HTURL")) > -1);
+	var htMatches = [
+		new RegExp("^http://www\\d{2}\.hattrick\.org(/|$)", "i"),
+		new RegExp("^http://stage\.hattrick\.org(/|$)", "i"),
+		new RegExp("^http://hattrick\.interia\.pl(/|$)", "i"),
+		new RegExp("^http://hattrick\.uol\.com\.br(/|$)", "i")
+	];
+	return Foxtrick.some(htMatches, function(re) { return url.match(re) != null; });
 }
 
 Foxtrick.isStage = function(doc) {

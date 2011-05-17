@@ -12,21 +12,18 @@ var FoxtrickForumStripHattrickLinks = {
 	OPTIONS: new Array("NoConfirmStripping"),
 
 	onclick : function( ev ) {
-		try{
-			var a = ev.target;
-			if (a.nodeName=='A') {
+		var setRelPath = function(link) {
+			link.href = link.href.replace(new RegExp("^http://.+?/"), "/");
+		};
+		var a = ev.target;
+		if (a.nodeName == "A") {
+			if (Foxtrick.isHtUrl(a.href)) {
 				var hostname = ev.target.ownerDocument.location.hostname;
-				if ( a.href.search(/wiki/i)==-1 && a.href.search(/.+hattrick\.(org|ws|interia\.pl).*?/i)!=-1 && a.href.search(hostname)==-1) {
-					if (Foxtrick.isModuleFeatureEnabled( FoxtrickForumStripHattrickLinks, "NoConfirmStripping" )) {
-						a.href = a.href.replace(/.+hattrick\.(org|ws|interia\.pl)(.*?)/i,'http://'+hostname+'$2');
-					}
-					else if (Foxtrick.confirmDialog('Replace server with '+hostname +'?')) a.href = a.href.replace(/.+hattrick\.(org|ws|interia\.pl)(.*?)/i,'http://'+hostname+'$2');
-				}
-				//else a.target=+'_blank';
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickForumStripHattrickLinks, "NoConfirmStripping"))
+					setRelPath(a);
+				else if (Foxtrick.confirmDialog('Replace server with '+hostname +'?'))
+					setRelPath(a);
 			}
-		}
-		catch (e) {
-			Foxtrick.dump('FoxtrickForumStripHattrickLinksonclick '+e+'\n');
 		}
 	},
 

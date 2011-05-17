@@ -7,7 +7,6 @@ pref("extensions.foxtrick.prefs.DisplayHTMLDebugOutput", false);
 pref("extensions.foxtrick.prefs.htCountry", "Sweden");
 pref("extensions.foxtrick.prefs.htDateformat", "ddmmyyyy");
 pref("extensions.foxtrick.prefs.htLanguage", "en");
-pref("extensions.foxtrick.prefs.HTURL", "^http:\/\/(www\d\d|www|wwwxx|stage)\.hattrick\.(org|ws|interia\.pl\.uol\.com\.br)\/");
 pref("extensions.foxtrick.prefs.module.AddDefaultFaceCard.enabled", true);
 pref("extensions.foxtrick.prefs.module.AddLeaveConfButton.enabled", false);
 pref("extensions.foxtrick.prefs.module.AttVsDef.enabled", true);
