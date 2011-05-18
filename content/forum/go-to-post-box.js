@@ -13,8 +13,8 @@ var FoxtrickGoToPostBox = {
 	run : function( page, doc ) {
 		Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/GoToPostBox.js");
 
-		if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').getElementsByTagName('span')[0].setAttribute('style','margin-right:70px');
-
+		if (Foxtrick.isRTLLayout(doc)) doc.getElementById('mainBody').getElementsByTagName('span')[0].setAttribute('style','margin-right:0px');
+			else if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').getElementsByTagName('span')[0].setAttribute('style','margin-right:70px');
 		//set up tab on left forums menu
 		var tab = ''
 		try {
