@@ -14,9 +14,9 @@
 
 </note>
 <note version="0.7.1">
-<item>Модул <module>LeagueNewsFilter</module> подељен у два: <module>LeagueNewsFilter</module> и модул <module>ShowLineupSet</module>.</item>
+<item>Модул <module>LeagueNewsFilter</module> подељен у два: <module>LeagueNewsFilter</module> и модул <module>ShowLineupSet</module>. (ryanli)</item>
 <item>Модификације због прилагођавања новој верзији странице са резултатима трансфера. (ryanli, taised)</item>
-<item>Ажуриран превод. (ryanli, CoRrRan, ljushaff, _KOHb_)</item>
+<item>Ажуриран превод. (ryanli, CoRrRan, ljushaff, _KOHb_, slader, ElChiquitin)</item>
 <item>Још неке ситне поправке. (ryanli)</item>
 </note>
 

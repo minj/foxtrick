@@ -15,9 +15,9 @@
 	</note>
 
 	<note version="0.7.1">
-		<item>Модуль <module>LeagueNewsFilter</module> разделён на модули <module>LeagueNewsFilter</module> и <module>ShowLineupSet</module>.</item>
+		<item>Модуль <module>LeagueNewsFilter</module> разделён на модули <module>LeagueNewsFilter</module> и <module>ShowLineupSet</module> (ryanli).</item>
 		<item>Изменения для соответствия новой странице результатов поиска трансферов (ryanli, taised).</item>
-		<item>Обновления переводов (ryanli, CoRrRan, ljushaff, _KOHb_).</item>
+		<item>Обновления переводов (ryanli, CoRrRan, ljushaff, _KOHb_, slader, ElChiquitin).</item>
 		<item>Несколько мелких исправлений (ryanli).</item>
 	</note>
 
