@@ -33,6 +33,16 @@ Foxtrick.Pages.TransferSearchResults = {
 				player.yellowCard = 0;
 				player.bruised = false;
 				player.injured = false;
+				// first row - HTMS points
+				var htms;
+				if (htms = divs[0].getElementsByClassName("ft-htms-points")[0]) {
+					var htmsText = htms.getElementsByTagName("span")[0].textContent;
+					var matched = htmsText.match(/(\d+).+?(\d+)/);
+					if (matched) {
+						player.htmsAbility = Number(matched[1]);
+						player.htmsPotential = Number(matched[2]);
+					}
+				}
 
 				var imgs = divs[0].getElementsByTagName("img");
 				for (var i = 0; i < imgs.length; ++i) {
