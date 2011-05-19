@@ -134,9 +134,9 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 	var ret = "";
 
 	var trim = function(string) {
-		return string.replace(RegExp("^\\s+"), "")
-			.replace(RegExp("\\s+$"), "")
-			.replace(RegExp("\\s*\n\\s*", "g"), "\n")
+		return string.replace(RegExp("\\s*\n\\s*", "g"), "\n")
+			.replace(RegExp("^(\\s)\\s+"), "$1")
+			.replace(RegExp("\\s+(\\s)$"), "$1")
 			.replace(RegExp("(\\s)\\s+", "g"), "$1");
 	};
 	if (!node.hasChildNodes()) {
