@@ -357,7 +357,8 @@ Foxtrick.getHref = function(doc) {
 }
 
 Foxtrick.isHt = function(doc) {
-	return (Foxtrick.getPanel(doc) !== null);
+	return (Foxtrick.getPanel(doc) !== null)
+		&& (doc.getElementById("aspnetForm") !== null);
 }
 
 Foxtrick.isHtUrl = function(url) {
