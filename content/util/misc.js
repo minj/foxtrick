@@ -144,7 +144,7 @@ Foxtrick.load = function(url, callback, crossSite) {
 					}
 				}
 			};
-			req.send();
+			req.send(null);
 		}
 	}
 };
