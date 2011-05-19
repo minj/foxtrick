@@ -157,7 +157,7 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 			var linkMarkup = this.getMarkupFromLink(node.href);
 			var linkId = this.getIdFromLink(node.href);
 			if (linkMarkup !== null) {
-				if (linkId.id !== undefined
+				if (linkId !== null && linkId.id !== undefined
 					&& ret === "(" + linkId.id + ")") {
 					// if the link is simply a representation of ID,
 					// then only use the markup without extra text
