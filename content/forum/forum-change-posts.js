@@ -587,102 +587,19 @@ var FoxtrickForumChangePosts = {
 				headstr += '| text =\n';
 		}
 
-		var divs = header.parentNode.getElementsByTagName('div');
-		for (var i=0;i<divs.length;++i) {
-			if (divs[i].className=='message') {
-				var message_raw = divs[i].innerHTML;
-				break;
-			}
-		}
+		// get message content
+		var msg = header.parentNode.getElementsByClassName("message")[0];
+		var message = Foxtrick.util.htMl.getMarkupFromNode(msg);
+		message = headstr + message;
 
-		// remove spoilshow
-		var spoilers = message_raw.split(/\<blockquote id="spoilshow/);
-		message_raw = spoilers[0];
-		for (var i=1;i< spoilers.length;++i) {
-			var spoilersinner = spoilers[i].split(/\<\/blockquote\>/);
-			// skip first (from spoilshow), re-add others
-			message_raw += spoilersinner[1];
-			for (var j=2;j< spoilersinner.length;++j) {
-				message_raw += '</blockquote>'+spoilersinner[j];
-			}
-		}
-		// wrap spoilhid in spoiler
-		var spoilers = message_raw.split(/\<blockquote id="spoilhid/);
-		message_raw = spoilers[0];
-		for (var i=1;i< spoilers.length;++i) {
-			/*if (copy_style!='ht-ml') message_raw += '#&gt; <blockquote id="spoilhid'+spoilers[i].replace(/\<\/blockquote\>/i,' &lt;#\n');
-			else*/ message_raw += spoilers[i].replace(/.+class="spoiler hidden"\>/,'[spoiler]').replace(/\<\/blockquote\>/i,'[/spoiler]');
-		}
+		// complete message
+		if (copy_style == "wiki")
+			message += "}}";
+		else if (copy_style == "ht-ml")
+			message += "[/q]";
 
-		if (copy_style=='ht-ml') {
-			message_raw = message_raw.replace(/<em>/g,'[i]').replace(/<\/em>/g,'[/i]');
-			message_raw = message_raw.replace(/<strong>/g,'[b]').replace(/<\/strong>/g,'[/b]');
-			message_raw = message_raw.replace(/<u>/g,'[u]').replace(/<\/u>/g,'[/u]');
-			message_raw = message_raw.replace(/<pre>/g,'[pre]').replace(/<\/pre>/g,'[/pre]');
-			message_raw = message_raw.replace(/<br><br><br>/g,'\n[br]\n');
-			message_raw = message_raw.replace(/<hr>/g,'[hr]');
-			message_raw = message_raw.replace(/<blockquote class="quote">/g,'[q]').replace(/<\/blockquote>/g,'[/q]');
+		Foxtrick.copyStringToClipboard(message);
 
-			message_raw = message_raw.replace(/<table class="htMlTable"\>/g,'[table]').replace(/<\/table>/g,'[/table]');
-			message_raw = message_raw.replace(/<th([^>]*)>/g,'[th$1]').replace(/<\/th>/g,'[/th]');
-			message_raw = message_raw.replace(/<tr>/g,'[tr]').replace(/<\/tr>/g,'[/tr]');
-			message_raw = message_raw.replace(/<td([^>]*)>/g,'[td$1]').replace(/<\/td>/g,'[/td]');
-		}
-
-		message_raw = message_raw.replace(/\<a href="\/Club\/Players\/Player.aspx\?playerId=\d+" title="\(\d+\)" alt="\(\d+\)"\>\((\d+)\)\<\/a\>/gi,'[playerid=$1]');
-		message_raw = message_raw.replace(/\<a href="\/Club\/Players\/YouthPlayer\.aspx\?YouthPlayerID=\d+" title="\(\d+\)" alt="\(\d+\)"\>\((\d+)\)\<\/a\>/gi,'[youthplayerid=$1]');
-		message_raw = message_raw.replace(/\<a href="\/Club\/\?TeamID=\d+" title="\(\d+\)" alt="\(\d+\)"\>\((\d+)\)\<\/a\>/gi,'[teamid=$1]');
-		message_raw = message_raw.replace(/\<a href="\/Club\/Youth\/\?YouthTeamID=\d+"\>\((\d+)\)\<\/a\>/gi,'[youthteamid=$1]');
-		message_raw = message_raw.replace(/\<a href="\/Club\/Matches\/Match\.aspx\?matchID=\d+&amp;BrowseIds="\>\((\d+)\)\<\/a\>/gi,'[matchid=$1]');
-		message_raw = message_raw.replace(/\<a href="\/Club\/Matches\/Match\.aspx\?matchID=\d+&amp;isYouth=True&amp;BrowseIds="\>\((\d+)\)\<\/a\>/gi,'[youthmatchid=$1]');
-		message_raw = message_raw.replace(/\<a href="\/Community\/Federations\/Federation\.aspx\?AllianceID=\d+"\>\((\d+)\)\<\/a\>/gi,'[federationid=$1]');
-		message_raw = message_raw.replace(/\<a href="\/World\/Series\/Default\.aspx\?LeagueLevelUnitID=\d+"\>\((\d+)\)\<\/a\>/gi,'[leagueid=$1]');
-		message_raw = message_raw.replace(/\<a href="\/World\/Series\/YouthSeries\.aspx\?YouthLeagueId=\d+"\>\((\d+)\)\<\/a\>/gi,'[youthleagueid=$1]');
-		message_raw = message_raw.replace(/\<a href="\/Club\/Manager\/\?userId=\d+" title="\(\d+\)" alt="\(\d+\)"\>\((\d+)\)\<\/a\>/gi,'[userid=$1]');
-		message_raw = message_raw.replace(/\<a href="\/Community\/KitSearch\/\?KitID=\d+"\>\((\d+)\)\<\/a\>/gi,'[kitid=$1]');
-		message_raw = message_raw.replace(/\<a href="\/Community\/Press\/\?ArticleID=\d+"\>\((\d+)\)\<\/a\>/gi,'[articleid=$1]');
-		message_raw = message_raw.replace(/\<a href="\/Forum\/Read.aspx\?t=\d+[^"]+" title="\(\d+.\d+\)" alt="\(\d+.\d+\)"\>\((\d+\.\d+)\)\<\/a\>/gi,'[post=$1]');
-
-		message_raw = message_raw.replace(/\<a href="([^"]+)" title="[^"]+"\>\([^\)]+\)\<\/a\>/gi,'[link=$1]');
-		message_raw = message_raw.replace(/\<a href="([^"]+)" target="_blank" title="[^"]+"\>\([^\)]+\)\<\/a\>/gi,'[link=$1]');
-
-		var quotes = message_raw.split(/\<blockquote class="quote"/);
-		message_raw = quotes[0];
-		var j=1;
-		for (var i=1;i< quotes.length;++i) {
-			if (copy_style=='wiki') {
-				if (quotes[i].search('quoteto')!=-1) {
-					message_raw += '\n---\n'+'<blockquote class="quote"';
-					quotes[i]=quotes[i].replace('</div>','</div>"');
-				}
-				else {
-					message_raw += '\n---\n"'+'<blockquote class="quote"';
-				}
-			}
-			else message_raw += '\n'+j+'&gt; <blockquote class="quote"';
-			++j;
-			while(quotes[i].search(/\<\/blockquote\>/i)!=-1) {
-				--j;
-				if (copy_style=='wiki') {
-					quotes[i] = quotes[i].replace(/\<\/blockquote\>/i,'"\n---\n');
-				}
-				else quotes[i] = quotes[i].replace(/\<\/blockquote\>/i,' &lt;'+j+'\n');
-			}
-			message_raw += quotes[i];
-		}
-
-		message_raw=message_raw.replace(/\<hr\>/,'------------------------------------------\n');
-		message_raw=message_raw.replace(/\<br\>|\<\/tr\>|\<\/div\>/g,'\n');
-		message_raw=message_raw.replace(/\n\n/g,'\n');
-		message_raw=message_raw.replace(/\<\/td\>|\<\/th\>/g,'\t');
-		message_raw=message_raw.replace(/&nbsp;/g,' ');
-
-		var message = (Foxtrick.stripHTML(message_raw)).replace(/&amp;/g,'&').replace(/&gt;/g,'>').replace(/&lt;/g,'<');
-
-		if (copy_style=='wiki') {message+='}}';}
-		if (copy_style=='ht-ml') message+='[/q]';
-
-		Foxtrick.copyStringToClipboard(headstr+message);
 		var note = Foxtrick.util.note.add(doc, insertBefore, "ft-posting-copy-note-" + post_id1.replace(/\D/, "-"),
 			Foxtrickl10n.getString("foxtrick.tweaks.postingcopied").replace("%s", post_id1),
 			null, true);
