@@ -641,7 +641,7 @@ var FoxtrickForumChangePosts = {
 		message_raw = message_raw.replace(/\<a href="\/Club\/Manager\/\?userId=\d+" title="\(\d+\)" alt="\(\d+\)"\>\((\d+)\)\<\/a\>/gi,'[userid=$1]');
 		message_raw = message_raw.replace(/\<a href="\/Community\/KitSearch\/\?KitID=\d+"\>\((\d+)\)\<\/a\>/gi,'[kitid=$1]');
 		message_raw = message_raw.replace(/\<a href="\/Community\/Press\/\?ArticleID=\d+"\>\((\d+)\)\<\/a\>/gi,'[articleid=$1]');
-		message_raw = message_raw.replace(/\<a href="\/Forum\/Read.aspx\?t=\d+&amp;n=\d+&amp;mr=\d+&amp;v=\d+" title="\(\d+.\d+\)" alt="\(\d+.\d+\)"\>\((\d+\.\d+)\)\<\/a\>/gi,'[post=$1]');
+		message_raw = message_raw.replace(/\<a href="\/Forum\/Read.aspx\?t=\d+[^"]+" title="\(\d+.\d+\)" alt="\(\d+.\d+\)"\>\((\d+\.\d+)\)\<\/a\>/gi,'[post=$1]');
 
 		message_raw = message_raw.replace(/\<a href="([^"]+)" title="[^"]+"\>\([^\)]+\)\<\/a\>/gi,'[link=$1]');
 		message_raw = message_raw.replace(/\<a href="([^"]+)" target="_blank" title="[^"]+"\>\([^\)]+\)\<\/a\>/gi,'[link=$1]');
