@@ -1,3 +1,9 @@
+/*
+ * ht-ml.js
+ * Utilities for HT-ML (Hattrick Markup Language)
+ * @author ryanli
+ */
+
 if (!Foxtrick) var Foxtrick = {};
 if (!Foxtrick.util) Foxtrick.util = {};
 
