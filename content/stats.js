@@ -828,15 +828,22 @@ stats["httoolsfriendlymanager"] =  {
  // Maptrick
 
 stats["maptrick_coolness"] =  {
-        "url" : "http://www.maptrick.org/",
+	"url" : "http://www.maptrick.org/",
 
-        "teamlink" : { "path"		: "coolness.php",
-						"filters"	: [],
-						"params"	: { "teamid" : "team" ,"":"#results"}
-						},
+	"teamlink" : {
+		"path" : "coolness.php",
+		"filters" : [],
+		"params" : { "teamid" : "team", "" : "#results" }
+	},
 
-        "title" : "Maptrick Coolness",
-         "img" : Foxtrick.ResourcePath+"resources/linkicons/maptrick_cool.png"
+	"challengeslink" : {
+		"path" : "coolness.php",
+		"filters"    : [],
+		"params"     : { "teamid" : "team" }
+	},
+
+	"title" : "Maptrick Coolness",
+	"img" : Foxtrick.ResourcePath+"resources/linkicons/maptrick_cool.png"
 };
 
 stats["maptrick_hoc"] =  {
@@ -872,17 +879,22 @@ stats["maptrick_botmap"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/maptrick_bot.png"
 };
 
-
 stats["hat_com_coolness"] =  {
-        "url" : "http://coolness.hat-com.com/",
+	"url" : "http://coolness.hat-com.com/",
 
-        "teamlink" : { "path"		: "countries.php",
-						"filters"	: [],
-						"params"	: { "teamid" : "team_id" }
-						},
+	"teamlink" : {
+		"path" : "countries.php",
+		"filters" : [],
+		"params" : { "teamid" : "team_id" }
+	},
+	"challengeslink" : {
+		"path" : "countries.php",
+		"filters" : [],
+		"params" : { "teamid" : "team_id" }
+	},
 
-        "title" : "Hat-com Coolness",
-         "img" : Foxtrick.ResourcePath+"resources/linkicons/hat-com.png"
+	"title" : "Hat-com Coolness",
+	"img" : Foxtrick.ResourcePath+"resources/linkicons/hat-com.png"
 };
 
 stats["ht_deutschland_coolness"] =  {
