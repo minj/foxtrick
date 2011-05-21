@@ -123,7 +123,7 @@ var FoxtrickRapidId = {
 			button.addEventListener("click", this.view, true);
 		}
 		catch (e) {
-			Foxtrick.dump("RapidId(" + e.lineNumber + "): " + e + "\n");
+			Foxtrick.log("RapidId(" + e.lineNumber + "): " + e + "");
 		}
 	},
 

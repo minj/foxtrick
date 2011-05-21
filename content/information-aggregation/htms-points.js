@@ -244,7 +244,7 @@ var FoxtrickHTMSPoints = {
 			//adding 16 weeks per whole year until 28 y.o.
 			for (var i=skills['years']+1;i<28;i++) {
 				points_diff+=16*pointsAge[i];
-				//Foxtrick.dump("adding "+pointsAge[i]+"\n");
+				//Foxtrick.log("adding "+pointsAge[i]+"");
 			}
 		}
 		else {
@@ -253,7 +253,7 @@ var FoxtrickHTMSPoints = {
 			//subtracting 16 weeks per whole year until 28
 			for (var i=skills['years'];i>28;i--) {
 				points_diff+=16*pointsAge[i];
-				//Foxtrick.dump("sub "+pointsAge[i]+"\n");
+				//Foxtrick.log("sub "+pointsAge[i]+"");
 			}
 			points_diff=-points_diff;
 		}

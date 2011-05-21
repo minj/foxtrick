@@ -30,7 +30,7 @@ var FoxtrickMain = {
 	isRTL : false,
 
 	init : function() {
-		Foxtrick.dump("Initializing FoxTrick…\n");
+		Foxtrick.log("Initializing FoxTrick…");
 		// init core modules, for Chrome they are initialized in
 		// loader-chrome.js
 		if (Foxtrick.BuildFor !== "Chrome") {
@@ -66,7 +66,7 @@ var FoxtrickMain = {
 			}
 		}
 
-		Foxtrick.dump("FoxTrick initialization completed.\n");
+		Foxtrick.log("FoxTrick initialization completed.");
 	},
 
 	registerOnPageLoad : function(document) {
@@ -82,7 +82,7 @@ var FoxtrickMain = {
 						module.onLoad(document);
 					}
 					catch (e) {
-						Foxtrick.dump("Error caught in module " + module.MODULE_NAME + ":\n");
+						Foxtrick.log("Error caught in module " + module.MODULE_NAME + ":");
 						Foxtrick.dumpError(e);
 					}
 				}
@@ -128,7 +128,7 @@ var FoxtrickMain = {
 						module.onTabChange(doc);
 					}
 					catch (e) {
-						Foxtrick.dump("Error caught in module " + module.MODULE_NAME + ":\n");
+						Foxtrick.log("Error caught in module " + module.MODULE_NAME + ":");
 						Foxtrick.dumpError(e);
 					}
 				}
@@ -226,8 +226,8 @@ var FoxtrickMain = {
 			if ((FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(doc))
 				|| FoxtrickPrefs.getBool("disableTemporary")) {
 				// potenial disable cleanup
-				Foxtrick.dump("On Stage: " + Foxtrick.isStage(doc) + ", disabled on stage: " + FoxtrickPrefs.getBool("disableOnStage") + ".\n");
-				Foxtrick.dump("Temporarily disabled: " + FoxtrickPrefs.getBool("disableTemporary") + "\n");
+				Foxtrick.log("On Stage: ", Foxtrick.isStage(doc), ", disabled on stage: ", FoxtrickPrefs.getBool("disableOnStage") + ".");
+				Foxtrick.log("Temporarily disabled: ", FoxtrickPrefs.getBool("disableTemporary"));
 				Foxtrick.unload_module_css();
 				FoxtrickMain.cssLoaded = false;
 				return;
@@ -255,7 +255,7 @@ var FoxtrickMain = {
 						module.run(doc);
 					}
 					catch (e) {
-						Foxtrick.dump("Error caught in module " + module.MODULE_NAME + ":\n");
+						Foxtrick.log("Error caught in module ", module.MODULE_NAME, ":");
 						Foxtrick.dumpError(e);
 					}
 				}
@@ -279,11 +279,11 @@ var FoxtrickMain = {
 								if (diff > 50) {
 									// Show time used by a module if it's over
 									// 50ms.
-									Foxtrick.dump("Module time: " + diff + "ms | " + module.MODULE_NAME + "\n");
+									Foxtrick.log("Module time: ", diff, "ms | ", module.MODULE_NAME, "");
 								}
 							}
 							catch (e) {
-								Foxtrick.dump("Error caught in module " + module.MODULE_NAME + ":\n");
+								Foxtrick.log("Error caught in module ", module.MODULE_NAME, ":");
 								Foxtrick.dumpError(e);
 							}
 						}
@@ -310,7 +310,7 @@ var FoxtrickMain = {
 							fn.change(doc, ev);
 						}
 						catch (e) {
-							Foxtrick.dump("Error caught in module " + fn.MODULE_NAME + ":\n");
+							Foxtrick.log("Error caught in module ", fn.MODULE_NAME, ":");
 							Foxtrick.dumpError(e);
 						}
 					}
@@ -330,7 +330,7 @@ var FoxtrickMain = {
 									fn.change(i, doc, ev);
 								}
 								catch (e) {
-									Foxtrick.dump("Error caught in module " + fn.MODULE_NAME + ":\n");
+									Foxtrick.log("Error caught in module " + fn.MODULE_NAME + ":");
 									Foxtrick.dumpError(e);
 								}
 							}
@@ -883,15 +883,15 @@ Foxtrick.dump = function(content) {
 
 Foxtrick.dumpError = function(error) {
 	if (Foxtrick.BuildFor === "Gecko") {
-		Foxtrick.dump(error.fileName + "(" + error.lineNumber + "): " + error + "\n");
-		Foxtrick.dump("Stack trace:\n" + error.stack + "\n\n");
+		Foxtrick.log(error.fileName, "(", error.lineNumber, "): ", error);
+		Foxtrick.log("Stack trace:", error.stack);
 		Components.utils.reportError(error);
 	}
 	else if (Foxtrick.BuildFor === "Chrome") {
 		var msg = "";
 		for (var i in error)
 			msg += i + ": " + error[i] + "; ";
-		Foxtrick.dump(msg + "\n");
+		Foxtrick.log(msg);
 	}
 }
 

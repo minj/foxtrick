@@ -54,7 +54,7 @@ Foxtrick.ApiProxy = {
 			var linkPar = doc.createElement("p");
 			div.appendChild(linkPar);
 			linkPar.appendChild(Foxtrick.util.note.createLoading(doc, true));
-			Foxtrick.dump("Requesting token at: " + requestTokenUrl + "\n");
+			Foxtrick.log("Requesting token at: ", requestTokenUrl);
 			Foxtrick.load(requestTokenUrl, function(text, status) {
 				linkPar.textContent = ""; // clear linkPar first
 				if (status != 200) {
@@ -100,7 +100,7 @@ Foxtrick.ApiProxy = {
 					Foxtrick.OAuth.SignatureMethod.sign(msg, accessor);
 					var query = Foxtrick.OAuth.formEncode(msg.parameters);
 					var accessTokenUrl = Foxtrick.ApiProxy.accessTokenUrl + "?" + query;
-					Foxtrick.dump("Requesting access token at: " + accessTokenUrl + "\n");
+					Foxtrick.log("Requesting access token at: ", accessTokenUrl);
 					Foxtrick.load(accessTokenUrl, function(text) {
 						var accessToken = text.split(/&/)[0].split(/=/)[1];
 						var accessTokenSecret = text.split(/&/)[1].split(/=/)[1];
@@ -140,9 +140,9 @@ Foxtrick.ApiProxy = {
 
 	retrieve : function(doc, parameters, callback) {
 		FoxtrickHelper.getOwnTeamInfo(doc); // retrieve team ID first
-		Foxtrick.dump("ApiProxy: attempting to retrieve: " + parameters + "…\n");
+		Foxtrick.log("ApiProxy: attempting to retrieve: ", parameters, "…");
 		if (!Foxtrick.ApiProxy.authorized()) {
-			Foxtrick.dump("ApiProxy: unauthorized.\n");
+			Foxtrick.log("ApiProxy: unauthorized.");
 			Foxtrick.ApiProxy.authorize(doc);
 			callback(null);
 			return;
@@ -167,19 +167,19 @@ Foxtrick.ApiProxy = {
 		Foxtrick.OAuth.setTimestampAndNonce(msg);
 		Foxtrick.OAuth.SignatureMethod.sign(msg, accessor);
 		var url = Foxtrick.OAuth.addToURL(Foxtrick.ApiProxy.resourceUrl, msg.parameters);
-		Foxtrick.dump("Fetching XML data from " + url + "\n");
+		Foxtrick.log("Fetching XML data from ", url);
 		Foxtrick.loadXml(url, function(x, status) {
 			if (status == 200) {
 				callback(x);
 			}
 			else if (status == 401) {
-				Foxtrick.dump("ApiProxy: error 401, unauthorized. Arguments: " + parameters + ".\n");
+				Foxtrick.log("ApiProxy: error 401, unauthorized. Arguments: ", parameters);
 				Foxtrick.ApiProxy.invalidateAccessToken(doc);
 				Foxtrick.ApiProxy.authorize(doc);
 				callback(null);
 			}
 			else {
-				Foxtrick.dump("ApiProxy: error " + status + ". Arguments: " + parameters + "\n");
+				Foxtrick.log("ApiProxy: error ", status, ". Arguments: ", parameters);
 				callback(null);
 			}
 		}, true);

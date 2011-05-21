@@ -250,7 +250,7 @@ var FoxtrickMyMonitor = {
 			var teams = JSON.parse(savedTeams);
 		}
 		catch (e) {
-			Foxtrick.dump("Cannot parse saved teams: " + savedTeams + ".\n");
+			Foxtrick.log("Cannot parse saved teams: " + savedTeams + ".");
 		}
 		if (!teams) {
 			// return national teams if first run

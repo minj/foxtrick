@@ -276,7 +276,7 @@ FoxtrickPlayerFilters = {
 			var end = new Date();
 			var time = (end.getSeconds() - begin.getSeconds()) * 1000
 				 + end.getMilliseconds() - begin.getMilliseconds();
-			Foxtrick.dump("calculate time: " + time + " ms\n");
+			Foxtrick.log("calculate time: " + time + " ms");
 		};
 
 		filterSelect.addEventListener("click", function() {

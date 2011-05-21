@@ -15,7 +15,7 @@ FoxtrickExtraPlayerInfo = {
 	run : function(page, doc) {
 		Foxtrick.Pages.Players.getPlayerList(doc, function(playerList) {
 			if (!playerList) {
-				Foxtrick.dump("ExtraPlayerInfo: unable to retrieve player list.\n");
+				Foxtrick.log("ExtraPlayerInfo: unable to retrieve player list.");
 			}
 			var lang = FoxtrickPrefs.getString("htLanguage");
 			var allPlayers = doc.getElementsByClassName("playerInfo");

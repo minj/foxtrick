@@ -333,7 +333,7 @@ var FoxtrickPrefs = {
 		if (Foxtrickl10n.isStringAvailable(name) )
 			return Foxtrickl10n.getString(name);
 		else {
-			Foxtrick.dump("Module not localized: " + module + ".\n");
+			Foxtrick.log("Module not localized: " + module + ".");
 			return module;
 		}
 	},
@@ -343,7 +343,7 @@ var FoxtrickPrefs = {
 		if (Foxtrickl10n.isStringAvailable(name))
 			return Foxtrickl10n.getString(name);
 		else {
-			Foxtrick.dump("Module option not localized: " + module + "." + option + ".\n");
+			Foxtrick.log("Module option not localized: " + module + "." + option + ".");
 			return option;
 		}
 	},

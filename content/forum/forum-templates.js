@@ -213,7 +213,7 @@ var FoxtrickForumTemplates = {
 		}
 	},
 
-	_fillMsgWindow : function(ev) { Foxtrick.dump("_fillMsgWindow\n");
+	_fillMsgWindow : function(ev) { Foxtrick.log("_fillMsgWindow");
 		var doc = ev.target.ownerDocument;
 //		var msg_window = doc.getElementById(FoxtrickForumTemplates._NEW_MESSAGE_WINDOW);
 		var msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];

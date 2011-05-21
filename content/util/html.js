@@ -71,7 +71,7 @@ Foxtrick.addBoxToSidebar = function(doc, title, content, id, insertBefore, altIn
 	try {
 		if (!id || !content.id) {
 			// No id, return
-			Foxtrick.dump("addBoxToSidebar: error: id should be specified and content should have an id.\n");
+			Foxtrick.log("addBoxToSidebar: error: id should be specified and content should have an id.");
 			return;
 		}
 

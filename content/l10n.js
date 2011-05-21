@@ -164,13 +164,13 @@ var Foxtrickl10n = {
 							return this._strings_bundle_default.GetStringFromName(str);
 					}
 					catch (ee) {
-						Foxtrick.dump("** Localization error 1 ** '" + str + "'\n");
+						Foxtrick.log("** Localization error 1 ** '" + str + "'");
 						return "** Localization error 1 **";
 					}
 				}
 			}
 			else {
-				Foxtrick.dump("** Localization error 2 ** '" + str + "'\n");
+				Foxtrick.log("** Localization error 2 ** '" + str + "'");
 				return "** Localization error 2 **";
 			}
 		}
@@ -295,10 +295,10 @@ var Foxtrickl10n = {
 		var path = "language/" + type + "/level[@value='" + val + "']";
 		var text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "text");
 		if (text === null) {
-			Foxtrick.dump("Requested level of type " + type + " and value " + val + " don't exist in locale " + lang + ", try en instead.\n");
+			Foxtrick.log("Requested level of type " + type + " and value " + val + " don't exist in locale " + lang + ", try en instead.");
 			text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml["en"], path, "text");
 			if (text === null) {
-				Foxtrick.dump("Requested level of type " + type + " and value " + val + " don't exist, returning raw value.\n");
+				Foxtrick.log("Requested level of type " + type + " and value " + val + " don't exist, returning raw value.");
 				text = val;
 			}
 		}
@@ -310,10 +310,10 @@ var Foxtrickl10n = {
 		var path = "language/ratingSubLevels/sublevel[@value='" + val + "']";
 		var text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "text");
 		if (text === null) {
-			Foxtrick.dump("Requested sublevel of value " + val + " doesn't exist in locale " + lang + ", try en instead.\n");
+			Foxtrick.log("Requested sublevel of value " + val + " doesn't exist in locale " + lang + ", try en instead.");
 			text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml["en"], path, "text");
 			if (text === null) {
-				Foxtrick.dump("Requested sublevel of value " + val + " doesn't exist, returning raw value.\n");
+				Foxtrick.log("Requested sublevel of value " + val + " doesn't exist, returning raw value.");
 				text = val;
 			}
 		}

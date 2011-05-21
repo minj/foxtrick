@@ -68,7 +68,7 @@ var FoxtrickStaffMarker = {
 								obj[id] = true;
 						});
 						Foxtrick.sessionSet(htySessionKey, obj);
-						Foxtrick.dump("Hattrick-youthclub staffs loaded.\n");
+						Foxtrick.log("Hattrick-youthclub staffs loaded.");
 						callback(obj);
 					}, true);
 				}
@@ -86,7 +86,7 @@ var FoxtrickStaffMarker = {
 					customMarker = JSON.parse(customText);
 				}
 				catch (e) {
-					Foxtrick.dump("JSON parse error: " + customText + "\n");
+					Foxtrick.log("JSON parse error: ", customText);
 				}
 			}
 			// tell whether user is staff by id or alias,

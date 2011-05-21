@@ -36,7 +36,7 @@ var FoxtrickLiveAlert = {
 			return null;
 		}
 		catch (e) {
-			Foxtrick.dump("Cannot parse score \"" + score + "\":\n");
+			Foxtrick.log("Cannot parse score \"", score, "\"");
 			return null;
 		}
 	},

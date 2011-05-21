@@ -55,7 +55,7 @@ var FoxtrickReadHtPrefs = {
 				if (this.isLang(menuLinks, k)) {
 					newLang = k;
 					found = true;
-					Foxtrick.dump("Language changed: " + newLang + ", old language: " + oldLang + ".\n");
+					Foxtrick.log("Language changed: " + newLang + ", old language: " + oldLang + ".");
 					break;
 				}
 			}
@@ -70,7 +70,7 @@ var FoxtrickReadHtPrefs = {
 				Foxtrick.util.note.add(doc, null, "ft-language-changed", msg, null, true, true);
 			}
 			else {
-				Foxtrick.dump("Cannot detect language.\n");
+				Foxtrick.log("Cannot detect language.");
 			}
 		}
 	},
