@@ -876,22 +876,9 @@ Foxtrick.dumpFlush = function(doc) {
 	}
 }
 
+// a wrapper around Foxtrick.log for compatibility
 Foxtrick.dump = function(content) {
-	if (typeof(content) != "string") {
-		try {
-			content = JSON.stringify(content);
-		}
-		catch (e) {
-			content = String(content);
-		}
-	}
-	Foxtrick.dumpCache += content;
-	if (Foxtrick.BuildFor === "Gecko")
-		dump("FT: " + content);
-	else if (Foxtrick.BuildFor === "Chrome") {
-		console.log(content);
-		Foxtrick.dumpFlush(document);
-	}
+	Foxtrick.log(String(content).replace(/\s+$/, ""));
 }
 
 Foxtrick.dumpError = function(error) {
@@ -905,5 +892,31 @@ Foxtrick.dumpError = function(error) {
 		for (var i in error)
 			msg += i + ": " + error[i] + "; ";
 		Foxtrick.dump(msg + "\n");
+	}
+}
+
+// outputs a list of strings/objects to FoxTrick log
+Foxtrick.log = function() {
+	var i, concated = "";
+	for (i = 0; i < arguments.length; ++i) {
+		var content = arguments[i];
+		if (typeof(content) != "string") {
+			try {
+				content = JSON.stringify(content);
+			}
+			catch (e) {
+				content = String(content);
+			}
+		}
+		concated += content;
+	}
+	concated += "\n";
+	Foxtrick.dumpCache += concated;
+	if (Foxtrick.BuildFor === "Gecko") {
+		dump("FT: " + concated);
+	}
+	else if (Foxtrick.BuildFor === "Chrome") {
+		console.log(concated);
+		Foxtrick.dumpFlush(document);
 	}
 }
