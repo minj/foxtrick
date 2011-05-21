@@ -9,7 +9,7 @@ var FoxtrickExtraShortcuts = {
 	MODULE_NAME : "ExtraShortcuts",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('all'),
-	OPTIONS : ["AddLeft","AddSpace","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "HtRadio", "No9", "Latehome", "Balkaradio", "Downtime"],
+	OPTIONS : ["AddLeft","AddSpace","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "ManageCHPP", "HtRadio", "No9", "Latehome", "Balkaradio", "Downtime"],
 	RADIOS: ["HtRadio", "No9", "Latehome", "Balkaradio", "Downtime"],
 	RADIO_URLS: [
 		"http://stream.ht-radio.nl/foxtrick/status.php",
@@ -119,7 +119,29 @@ var FoxtrickExtraShortcuts = {
 					}
 				}
 
+				if (Foxtrick.isModuleFeatureEnabled( this, "ManageCHPP")) {
+					var link = doc.createElement('a');
+					link.className = 'ft_extra-shortcuts';
+					link.href = "/MyHattrick/Preferences/ExternalAccessGrants.aspx";
 
+					var img1 = doc.createElement('img');
+					img1.setAttribute( "class", "ftManageCHPP");
+					img1.src = "/Img/Icons/transparent.gif";
+					img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/shortcuts/chpp.png') !important;");
+					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.ManageCHPP");
+
+					link.appendChild(img1);
+					if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
+					else {
+						if (targetNode.lastChild.nodeName=='BR') {
+							targetNode.insertBefore(link,targetNode.lastChild);
+						}
+						else {
+							targetNode.appendChild(link);
+						}
+					}
+				}
+				
 				if (Foxtrick.isModuleFeatureEnabled( this, "FoxTrickPrefs")) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
