@@ -695,41 +695,6 @@ stats["francestats"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/francestats.png"
 };
 
-
-// Hattrick Chile
-stats["estadisticas.hattrick.cl"] =  {
-        "url" : "http://estadisticas.hattrick.cl/",
-
-        "leaguelink" : { "path"       : "leagues/view/",
-                         "filters"    : ["countryid"],
-                         "params"     : { "leagueid" : "" }
-                       },
-
-        "teamlink" : {   "path"       : "teams/view/",
-                         "filters"    : ["countryid"],
-                         "params"     : { "teamid" : "" }
-                       },
-
-        "countryidranges" : [[18, 18]],
-        "title" : "Estadisticas Chile",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/hattrick_cl.png"
-};
-
-
-stats["hattrick.cl"] = {
-  "url" : "http://www.hattrick.cl/",
-  "img" : Foxtrick.ResourcePath+"resources/linkicons/hattrick_cl.png",
-  "title" : "hattrick.cl",
-
-        "countrylink" : { "path"       : "",
-                         "filters"    : ["countryid"],
-                         "params"     :  []
-                       },
-
-        "countryidranges" : [[18, 18]]
-};
-
-
 // Hattristics
 stats["hattristics"] =  {
         "url" : "http://www.hattristics.org/",
