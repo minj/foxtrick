@@ -1,6 +1,6 @@
 pref("extensions.foxtrick.prefs.CopyPostingStyle", "ht-ml");
 pref("extensions.foxtrick.prefs.copyratings.teams", "both");
-pref("extensions.foxtrick.prefs.version", "0.7.9");
+pref("extensions.foxtrick.prefs.version", "0.7.1");
 pref("extensions.foxtrick.prefs.disableOnStage", false);
 pref("extensions.foxtrick.prefs.disableTemporary", false);
 pref("extensions.foxtrick.prefs.DisplayHTMLDebugOutput", false);
@@ -69,6 +69,7 @@ pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Prefs.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Supporterstats.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Supporterstats.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Transfers.enabled", false);
+pref("extensions.foxtrick.prefs.module.ExtraShortcuts.ManageCHPP.enabled", false);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.BrasilToolbarFix.enabled", false);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.RemoveForumSneakPeak.enabled", false);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.Club_Menu_Teamnames.enabled", false);
