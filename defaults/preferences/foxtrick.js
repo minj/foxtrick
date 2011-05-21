@@ -69,7 +69,7 @@ pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Prefs.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Supporterstats.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Supporterstats.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Transfers.enabled", false);
-pref("extensions.foxtrick.prefs.module.ExtraShortcuts.ManageCHPP.enabled", false);
+pref("extensions.foxtrick.prefs.module.ExtraShortcuts.ManageCHPP.enabled", true);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.BrasilToolbarFix.enabled", false);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.RemoveForumSneakPeak.enabled", false);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.Club_Menu_Teamnames.enabled", false);
