@@ -97,9 +97,13 @@ var FoxtrickMatchPlayerColouring = {
 			Foxtrick.ApiProxy.retrieve(doc, awayArgs, function(awayXml) {
 				// remove the loading note
 				loading.parentNode.removeChild(loading);
+				Foxtrick.log("Successfully retrieved lineup XML.");
 
 				var homePlayers = getPlayers(homeXml);
 				var awayPlayers = getPlayers(awayXml);
+
+				Foxtrick.log("Home players: ", homePlayers);
+				Foxtrick.log("Away players: ", awayPlayers);
 
 				// colour all player links
 				Foxtrick.map(links, function(n) {
