@@ -30,7 +30,7 @@ var FoxtrickCopyRatings = {
 		var copyBoth = doc.createElement("span");
 		copyBoth.className = "ft_copy_rating";
 		copyBoth.appendChild(doc.createTextNode(Foxtrickl10n.getString("Copy")));
-		copyBoth.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.both");
+		copyBoth.title = Foxtrickl10n.getString("CopyRatings.both");
 		copyBoth.setAttribute("teams", "both");
 		copyBoth.setAttribute("place", "table");
 		copyBoth.addEventListener("click", this.createRatings, false);
@@ -39,7 +39,7 @@ var FoxtrickCopyRatings = {
 		var copyHome = doc.createElement("span");
 		copyHome.className = "ft_copy_rating";
 		copyHome.appendChild(doc.createTextNode("(" + Foxtrickl10n.getString("Copy") + ")"));
-		copyHome.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.home");
+		copyHome.title = Foxtrickl10n.getString("CopyRatings.home");
 		copyHome.setAttribute("teams", "home");
 		copyHome.setAttribute("place", "table");
 		copyHome.addEventListener("click", this.createRatings, false);
@@ -48,7 +48,7 @@ var FoxtrickCopyRatings = {
 		var copyAway = doc.createElement("span");
 		copyAway.className = "ft_copy_rating";
 		copyAway.appendChild(doc.createTextNode("(" + Foxtrickl10n.getString("Copy") + ")"));
-		copyAway.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.away");
+		copyAway.title = Foxtrickl10n.getString("CopyRatings.away");
 		copyAway.setAttribute("teams", "away");
 		copyAway.setAttribute("place", "table");
 		copyAway.addEventListener("click", this.createRatings, false);
@@ -74,7 +74,7 @@ var FoxtrickCopyRatings = {
 			copyBoth.className = "inner copyicon copyratings";
 			copyBoth.setAttribute('parent_id','copyratingsid');
 			copyBoth.id = "copyratingsid";
-			copyBoth.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings."+FoxtrickPrefs.getString('copyratings.teams'));
+			copyBoth.title = Foxtrickl10n.getString("CopyRatings."+FoxtrickPrefs.getString('copyratings.teams'));
 			copyBoth.setAttribute("teams", FoxtrickPrefs.getString('copyratings.teams'));
 			copyBoth.addEventListener("click", this.createRatings, false);
 			var img = doc.createElement("img");
@@ -93,7 +93,7 @@ var FoxtrickCopyRatings = {
 				var link = doc.createElement("span");
 				link.addEventListener("click", this.createRatings, false);
 				link.setAttribute( "teams", versions[j]);
-				link.textContent = Foxtrickl10n.getString("foxtrick.tweaks.copyratings."+versions[j]);
+				link.textContent = Foxtrickl10n.getString("CopyRatings."+versions[j]);
 				link.setAttribute('parent_id', 'copyratingsid');
 				item.appendChild(link);
 				list.appendChild(item);
@@ -109,7 +109,7 @@ var FoxtrickCopyRatings = {
 
 			var copyBoth = doc.createElement("a");
 			copyBoth.className = "inner";
-			copyBoth.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings");
+			copyBoth.title = Foxtrickl10n.getString("CopyRatings.both");
 			copyBoth.setAttribute("style", "cursor: pointer;");
 			copyBoth.setAttribute("teams", "both");
 			copyBoth.setAttribute("place", "box");
@@ -118,7 +118,7 @@ var FoxtrickCopyRatings = {
 			var img = doc.createElement("img");
 			img.setAttribute("style", "padding:0px 5px 0px 0px;");
 			img.className = "actionIcon";
-			img.alt = Foxtrickl10n.getString("foxtrick.tweaks.copyratings");
+			img.alt = Foxtrickl10n.getString("CopyRatings.both");
 			img.src = Foxtrick.ResourcePath + "resources/img/copy/copyMatchRatings.png";
 			copyBoth.appendChild(img);
 
@@ -131,7 +131,7 @@ var FoxtrickCopyRatings = {
 
 			var copyHome = doc.createElement("a");
 			copyHome.className = "inner";
-			copyHome.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.home");
+			copyHome.title = Foxtrickl10n.getString("CopyRatings.home");
 			copyHome.setAttribute("style", "cursor: pointer;");
 			copyHome.setAttribute("place", "box");
 			copyHome.setAttribute("teams", "home");
@@ -140,7 +140,7 @@ var FoxtrickCopyRatings = {
 			var img = doc.createElement("img");
 			img.setAttribute("style", "padding:0px 5px 0px 0px;");
 			img.className = "actionIcon";
-			img.alt = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.home");
+			img.alt = Foxtrickl10n.getString("CopyRatings.home");
 			img.src = Foxtrick.ResourcePath+"resources/img/copy/copyHomeRatings.png";
 			copyHome.appendChild(img);
 
@@ -153,7 +153,7 @@ var FoxtrickCopyRatings = {
 
 			var copyAway = doc.createElement("a");
 			copyAway.className = "inner";
-			copyAway.title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings.away");
+			copyAway.title = Foxtrickl10n.getString("CopyRatings.away");
 			copyAway.setAttribute("style", "cursor: pointer;");
 			copyAway.setAttribute("place", "box");
 			copyAway.setAttribute("teams", "away");
@@ -162,7 +162,7 @@ var FoxtrickCopyRatings = {
 			var img = doc.createElement("img");
 			img.setAttribute("style","padding:0px 5px 0px 0px;");
 			img.className = "actionIcon";
-			img.alt = Foxtrickl10n.getString("foxtrick.tweaks.copyratings");
+			img.alt = Foxtrickl10n.getString("CopyRatings.both");
 			img.src = Foxtrick.ResourcePath + "resources/img/copy/copyAwayRatings.png";
 			copyAway.appendChild(img);
 
@@ -188,7 +188,7 @@ var FoxtrickCopyRatings = {
 			else {
 				var insertBefore = doc.getElementsByTagName('h1')[0];
 				FoxtrickPrefs.setString('copyratings.teams',ev.currentTarget.getAttribute("teams"));
-				doc.getElementById(ev.currentTarget.getAttribute("parent_id")).title = Foxtrickl10n.getString("foxtrick.tweaks.copyratings."+FoxtrickPrefs.getString('copyratings.teams'));
+				doc.getElementById(ev.currentTarget.getAttribute("parent_id")).title = Foxtrickl10n.getString("CopyRatings."+FoxtrickPrefs.getString('copyratings.teams'));
  			}
 			var team1 = (ev.currentTarget.getAttribute("teams") == "both" || ev.currentTarget.getAttribute("teams") == "home");
 			var team2 = (ev.currentTarget.getAttribute("teams") == "both" || ev.currentTarget.getAttribute("teams") == "away");
@@ -272,7 +272,7 @@ var FoxtrickCopyRatings = {
 				ad = ad_s.join('[/tr]').replace(/\[tr\]\[\/tr\]/,'');
 			}
 			Foxtrick.copyStringToClipboard(ad);
-			var note = Foxtrick.util.note.add(doc, insertBefore, "ft-ratings-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.ratingscopied"), null, true);
+			var note = Foxtrick.util.note.add(doc, insertBefore, "ft-ratings-copy-note", Foxtrickl10n.getString("CopyRatings.copied"), null, true);
 		}
 		catch (e) {
 			Foxtrick.dumpError(e);
