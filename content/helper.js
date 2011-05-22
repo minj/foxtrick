@@ -108,17 +108,20 @@ var FoxtrickHelper = {
 	},
 	//---------------------------------------------------------------------------
 	getUserIdFromUrl : function(url) {
-		return Number(url.match(/UserID=(\d+)/i)[1]);
+		var matched = url.match(/UserID=(\d+)/i);
+		return matched ? Number(matched[1]) : null;
 	},
 
 	//---------------------------------------------------------------------------
 	getTeamIdFromUrl : function(url) {
-		return Number(url.match(/TeamID=(\d+)/i)[1]);
+		var matched = url.match(/TeamID=(\d+)/i);
+		return matched ? Number(matched[1]) : null;
 	},
 
 	//---------------------------------------------------------------------------
 	getMatchIdFromUrl : function(url) {
-		return Number(url.match(/matchID=(\d+)/i)[1]);
+		var matched = url.match(/matchID=(\d+)/i);
+		return matched ? Number(matched[1]) : null;
 	},
 
 	//---------------------------------------------------------------------------
