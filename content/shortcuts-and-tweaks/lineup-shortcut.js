@@ -161,7 +161,7 @@ FoxtrickLineupShortcut = {
 			link.href = "/Club/Matches/MatchLineup.aspx?MatchID=" + matchid + "&TeamID=" + teamid + "&HighlightPlayerID=" + playerid;
 		}
 		var img = doc.createElement("img");
-		img.src = Foxtrick.ResourcePath + "resources/img/foxtrick_skin/HT-Images/Matches/";
+		img.src = Foxtrick.ResourcePath + "resources/img/";
 		if (type == "NT") {
 			img.src += "formation.nt.png";
 		}
@@ -210,7 +210,7 @@ FoxtrickLineupShortcut = {
 	//************************ HIGHLIGHT PLAYER ***********************************
 	_Highlight_Player : function ( doc ) {
 		if (Foxtrick.isModuleFeatureEnabled( this, "HighlightPlayer")) {
-			var newimg="url("+Foxtrick.ResourcePath+"resources/img/foxtrick_skin/HT-Images/Matches/box_yellow.gif.gif)";
+			var newimg="url("+Foxtrick.ResourcePath+"resources/img/box_yellow.gif)";
 			//Getting playerid from url
 			var passedid = doc.baseURI.replace(/.+HighlightPlayerID=/i, "").match(/^\d+/);
 			if (passedid) {
