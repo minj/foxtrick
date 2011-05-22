@@ -96,7 +96,7 @@ var FoxtrickCopyTrainingReport = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	}
 };
@@ -227,7 +227,7 @@ var FoxtrickCopyScoutReport = {
 					else Foxtrick.newTab('http://'+server+'.hattrick-youthclub.org/site/player_myrejects_add/');
 				}
 		}
-	} catch(e) {Foxtrick.dumpError(e);}
+	} catch(e) {Foxtrick.log(e);}
 	}
 };
 
@@ -313,7 +313,7 @@ var FoxtrickCopyPlayerSource = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 

@@ -55,7 +55,7 @@ var FoxtrickHistoryStats= {
 					}
 				}
 				catch (e) {
-					Foxtrick.dumpError(e);
+					Foxtrick.log(e);
 				}
 
 				var table = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ucOtherEvents_ctl00").cloneNode(true).getElementsByClassName("otherEventText");
@@ -123,7 +123,7 @@ var FoxtrickHistoryStats= {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -181,12 +181,12 @@ var FoxtrickHistoryStats= {
 				Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "");
 			}
 			catch (e) {
-				Foxtrick.dumpError(e);
+				Foxtrick.log(e);
 			}
 			doc.getElementById('ft_HistoryStats').firstChild.innerHTML = table.innerHTML;
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	}
 };

@@ -176,7 +176,7 @@ var FoxtrickForumTemplates = {
 			inputTitle.setAttribute("value",text.substr(0,20));
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 

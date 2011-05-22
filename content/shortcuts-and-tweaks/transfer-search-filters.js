@@ -135,7 +135,7 @@ FoxtrickTransferSearchFilters = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -189,7 +189,7 @@ FoxtrickTransferSearchFilters = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 

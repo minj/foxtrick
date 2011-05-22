@@ -241,7 +241,7 @@ var FoxtrickSeasonStats = {
 			doc.location.href = doc.location.href.replace(/season=\d+/,'season='+ev["target"]["value"]);
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	}
 };

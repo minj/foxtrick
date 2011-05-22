@@ -90,6 +90,6 @@ var FoxtrickCopyMatchID = {
 		var insertBefore = doc.getElementsByTagName('h1')[0];
 		Foxtrick.copyStringToClipboard(matchid);
 		var note = Foxtrick.util.note.add(doc, insertBefore, "ft-match-id-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.matchidcopied"), null, true, true);
-	} catch(e){Foxtrick.dumpError(e);}
+	} catch(e){Foxtrick.log(e);}
 	}
 };

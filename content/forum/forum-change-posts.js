@@ -383,7 +383,7 @@ var FoxtrickForumChangePosts = {
 					}
 				}
 				catch (e) {
-					Foxtrick.dumpError(e);
+					Foxtrick.log(e);
 				}
 			}
 
@@ -605,7 +605,7 @@ var FoxtrickForumChangePosts = {
 			null, true);
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 

@@ -113,7 +113,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 				sendResponse({cssText : responseText});
 			}
 			catch (e) {
-				Foxtrick.dumpError(e);
+				Foxtrick.log(e);
 			}
 		}
 		else if (request.req == "xmlResource") {
@@ -144,7 +144,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 				}
 				catch (e) {
 					// port may be disconnected
-					Foxtrick.dumpError(e);
+					Foxtrick.log(e);
 				}
 			};
 			xhr.open("GET", request.url, true);
@@ -194,6 +194,6 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		}
 	}
 	catch (e) {
-		Foxtrick.dumpError(e);
+		Foxtrick.log(e);
 	}
 });

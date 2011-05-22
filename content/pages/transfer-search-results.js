@@ -108,7 +108,7 @@ Foxtrick.Pages.TransferSearchResults = {
 					player[skillOrder[i]] = Number(skills[i].href.match(/ll=(\d+)/)[1]);
 			}
 			catch (e) {
-				Foxtrick.dumpError(e);
+				Foxtrick.log(e);
 			}
 			finally {
 				return player;

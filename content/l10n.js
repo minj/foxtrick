@@ -79,7 +79,7 @@ var Foxtrickl10n = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 		if (Foxtrick.BuildFor === "Gecko") {
 			this._strings_bundle_default =
@@ -148,7 +148,7 @@ var Foxtrickl10n = {
 				.createBundle("chrome://foxtrick/content/locale/"+localecode+"/foxtrick.screenshots");
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -188,7 +188,7 @@ var Foxtrickl10n = {
 				return value;
 			}
 			catch (e) {
-				Foxtrick.dumpError(e);
+				Foxtrick.log(e);
 				return str;
 			}
 		}
@@ -357,7 +357,7 @@ var Foxtrickl10n = {
 			shortPos = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "short");
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 		return shortPos ? shortPos : direct();
 	},
@@ -373,7 +373,7 @@ var Foxtrickl10n = {
 			shortSpec = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "short");
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 		return shortSpec ? shortSpec : direct();
 	}

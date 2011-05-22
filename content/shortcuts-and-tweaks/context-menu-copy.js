@@ -53,7 +53,7 @@ var FoxtrickContextMenuCopy = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -66,7 +66,7 @@ var FoxtrickContextMenuCopy = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -86,7 +86,7 @@ var FoxtrickContextMenuCopy = {
 			Foxtrick.copyStringToClipboard(markup);
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -100,7 +100,7 @@ var FoxtrickContextMenuCopy = {
 			Foxtrick.copyStringToClipboard(markup);
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -185,7 +185,7 @@ var FoxtrickContextMenuCopy = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 			FoxtrickContextMenuCopy.MENU_ID.setAttribute("hidden", true);
 			FoxtrickContextMenuCopy.MENU_LINK.setAttribute("hidden", true);
 			FoxtrickContextMenuCopy.MENU_HT_ML.setAttribute("hidden", true);

@@ -18,7 +18,7 @@ Foxtrick.Pages.Country = {
 				throw "Cannot find ID from: " + countryLink.href;
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 			return null;
 		}
 	}

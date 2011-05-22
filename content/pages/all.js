@@ -27,7 +27,7 @@ Foxtrick.Pages.All = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 		return null;
 	},
@@ -39,7 +39,7 @@ Foxtrick.Pages.All = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 		return null;
 	},
@@ -55,7 +55,7 @@ Foxtrick.Pages.All = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 		return null;
 	}

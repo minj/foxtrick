@@ -78,7 +78,7 @@ var FoxtrickOnPagePrefs = {
 			if (Foxtrick.isRTLLayout(doc)) div.setAttribute("class","boxHead ft_sidebarBoxCollapsed_rtl");
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -223,7 +223,7 @@ var FoxtrickOnPagePrefs = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -244,7 +244,7 @@ var FoxtrickOnPagePrefs = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -265,7 +265,7 @@ var FoxtrickOnPagePrefs = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -282,7 +282,7 @@ var FoxtrickOnPagePrefs = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -303,7 +303,7 @@ var FoxtrickOnPagePrefs = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	}
 }

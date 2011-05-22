@@ -38,7 +38,7 @@ Foxtrick.Pages.Player = {
 			return age;
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -92,7 +92,7 @@ Foxtrick.Pages.Player = {
 			return parseInt(tsiString);
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 			return null;
 		}
 	},
@@ -126,7 +126,7 @@ Foxtrick.Pages.Player = {
 			return ret;
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 			return null;
 		}
 	},
@@ -199,7 +199,7 @@ Foxtrick.Pages.Player = {
 				return { base : wage, bonus : 0, total : wage };
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 			return null;
 		}
 	},
@@ -330,7 +330,7 @@ Foxtrick.Pages.Player = {
 			return { values : skills, texts : skillTexts, names : skillNames };
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 			return null;
 		}
 	},
@@ -344,7 +344,7 @@ Foxtrick.Pages.Player = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 		return null;
 	}

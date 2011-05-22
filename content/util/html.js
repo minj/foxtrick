@@ -213,7 +213,7 @@ Foxtrick.addBoxToSidebar = function(doc, title, content, id, insertBefore, altIn
 		}
 	}
 	catch (e) {
-		Foxtrick.dumpError(e);
+		Foxtrick.log(e);
 	}
 }
 

@@ -36,7 +36,7 @@ Foxtrick.Pages.YouthPlayer = {
 			return joinedDays;
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -52,7 +52,7 @@ Foxtrick.Pages.YouthPlayer = {
 			return Math.max(daysToSeventeen, daysToOneSeason);
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	}
 };

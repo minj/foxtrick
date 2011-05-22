@@ -284,7 +284,7 @@ FoxtrickPlayerFilters = {
 				selectClick();
 			}
 			catch (e) {
-				Foxtrick.dumpError(e);
+				Foxtrick.log(e);
 			}
 		}, false);
 		filterSelect.addEventListener("change", function() {
@@ -292,7 +292,7 @@ FoxtrickPlayerFilters = {
 				changeListener();
 			}
 			catch (e) {
-				Foxtrick.dumpError(e);
+				Foxtrick.log(e);
 			}
 		}, false);
 

@@ -453,7 +453,7 @@ Foxtrick.Pages.Players = {
 					callback(playerList);
 				}
 				catch (e) {
-					Foxtrick.dumpError(e);
+					Foxtrick.log(e);
 					callback(null);
 				}
 			});
@@ -464,7 +464,7 @@ Foxtrick.Pages.Players = {
 				return playerList;
 			}
 			catch (e) {
-				Foxtrick.dumpError(e);
+				Foxtrick.log(e);
 				return null;
 			}
 		}

@@ -57,7 +57,7 @@ var FoxtrickMain = {
 					module.init();
 				}
 				catch (e) {
-					Foxtrick.dumpError(e);
+					Foxtrick.log(e);
 				}
 			}
 
@@ -82,8 +82,7 @@ var FoxtrickMain = {
 						module.onLoad(document);
 					}
 					catch (e) {
-						Foxtrick.log("Error caught in module " + module.MODULE_NAME + ":");
-						Foxtrick.dumpError(e);
+						Foxtrick.log("Error caught in module ", module.MODULE_NAME, ":", e);
 					}
 				}
 			}
@@ -104,7 +103,7 @@ var FoxtrickMain = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -128,8 +127,7 @@ var FoxtrickMain = {
 						module.onTabChange(doc);
 					}
 					catch (e) {
-						Foxtrick.log("Error caught in module " + module.MODULE_NAME + ":");
-						Foxtrick.dumpError(e);
+						Foxtrick.log("Error caught in module ", module.MODULE_NAME, ": ", e);
 					}
 				}
 			}
@@ -169,7 +167,7 @@ var FoxtrickMain = {
 			panel.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -204,7 +202,7 @@ var FoxtrickMain = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -255,8 +253,7 @@ var FoxtrickMain = {
 						module.run(doc);
 					}
 					catch (e) {
-						Foxtrick.log("Error caught in module ", module.MODULE_NAME, ":");
-						Foxtrick.dumpError(e);
+						Foxtrick.log("Error caught in module ", module.MODULE_NAME, ": ", e);
 					}
 				}
 			}
@@ -283,8 +280,7 @@ var FoxtrickMain = {
 								}
 							}
 							catch (e) {
-								Foxtrick.log("Error caught in module ", module.MODULE_NAME, ":");
-								Foxtrick.dumpError(e);
+								Foxtrick.log("Error caught in module ", module.MODULE_NAME, ": ", e);
 							}
 						}
 					}
@@ -293,7 +289,7 @@ var FoxtrickMain = {
 			Foxtrick.dumpFlush(doc);
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -310,8 +306,7 @@ var FoxtrickMain = {
 							fn.change(doc, ev);
 						}
 						catch (e) {
-							Foxtrick.log("Error caught in module ", fn.MODULE_NAME, ":");
-							Foxtrick.dumpError(e);
+							Foxtrick.log("Error caught in module ", fn.MODULE_NAME, ": ", e);
 						}
 					}
 				});
@@ -330,8 +325,7 @@ var FoxtrickMain = {
 									fn.change(i, doc, ev);
 								}
 								catch (e) {
-									Foxtrick.log("Error caught in module " + fn.MODULE_NAME + ":");
-									Foxtrick.dumpError(e);
+									Foxtrick.log("Error caught in module ", fn.MODULE_NAME, ": ", e);
 								}
 							}
 						});
@@ -417,14 +411,14 @@ Foxtrick.registerModulePages = function(module) {
 				}
 			}
 			catch (e) {
-				Foxtrick.dumpError(e);
-				Foxtrick.dump('registerModulePages: '+module.MODULE_NAME+'\n');
-				Foxtrick.dump('registerModulePages: '+module.PAGES[i]+'\n');
+				Foxtrick.log(e);
+				Foxtrick.log("registerModulePages: ", module.MODULE_NAME);
+				Foxtrick.log("registerModulePages: ", module.PAGES[i]);
 			}
 		}
 	}
 	catch (e) {
-		Foxtrick.dumpError(e);
+		Foxtrick.log(e);
 	}
 }
 
@@ -762,7 +756,7 @@ Foxtrick.reload_module_css = function(doc) {
 		}
 	}
 	catch (e) {
-		Foxtrick.dumpError(e);
+		Foxtrick.log(e);
 	}
 }
 
@@ -881,34 +875,35 @@ Foxtrick.dump = function(content) {
 	Foxtrick.log(String(content).replace(/\s+$/, ""));
 }
 
-Foxtrick.dumpError = function(error) {
-	if (Foxtrick.BuildFor === "Gecko") {
-		Foxtrick.log(error.fileName, "(", error.lineNumber, "): ", error);
-		Foxtrick.log("Stack trace:", error.stack);
-		Components.utils.reportError(error);
-	}
-	else if (Foxtrick.BuildFor === "Chrome") {
-		var msg = "";
-		for (var i in error)
-			msg += i + ": " + error[i] + "; ";
-		Foxtrick.log(msg);
-	}
-}
-
-// outputs a list of strings/objects to FoxTrick log
+// outputs a list of strings/objects/errors to FoxTrick log
 Foxtrick.log = function() {
 	var i, concated = "";
 	for (i = 0; i < arguments.length; ++i) {
 		var content = arguments[i];
-		if (typeof(content) != "string") {
-			try {
-				content = JSON.stringify(content);
+		var item = "";
+		if (content instanceof Error) {
+			if (Foxtrick.BuildFor == "Gecko") {
+				item = content.fileName + " (" + content.lineNumber + "): " + String(content) + "\n";
+				item += "Stack trace: " + content.stack;
+				Components.utils.reportError(item);
 			}
-			catch (e) {
-				content = String(content);
+			else if (Foxtrick.BuildFor == "Chrome") {
+				for (var i in content)
+					item += i + ": " + content[i] + ";\n";
 			}
 		}
-		concated += content;
+		else if (typeof(content) != "string") {
+			try {
+				item = JSON.stringify(content);
+			}
+			catch (e) {
+				item = String(content);
+			}
+		}
+		else {
+			item = content;
+		}
+		concated += item;
 	}
 	concated += "\n";
 	Foxtrick.dumpCache += concated;

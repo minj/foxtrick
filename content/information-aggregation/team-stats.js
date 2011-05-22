@@ -287,7 +287,7 @@ Foxtrick.TeamStats = {
 				show(list);
 			}
 			catch (e) {
-				Foxtrick.dumpError(e);
+				Foxtrick.log(e);
 			}
 		});
 	}

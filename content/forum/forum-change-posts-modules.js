@@ -88,7 +88,7 @@ var FoxtrickFormatPostingText = {
 			textarea.value = FoxtrickFormatPostingText.format(textarea.value);
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	}
 };

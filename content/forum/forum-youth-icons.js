@@ -327,7 +327,7 @@
 				break;
 			}
 		}
-		} catch(e) {Foxtrick.dumpError(e);}
+		} catch(e) {Foxtrick.log(e);}
 	},
 
    	clickHandler : function (doc, textareaId, openingTag, replaceText, fieldCounterId, maxLength) {
@@ -514,7 +514,7 @@
 		}
 	}
 	this.textCounter(ta, fieldCounter, maxLength);
-  } catch(e) { Foxtrick.dumpError(e);}
+  } catch(e) { Foxtrick.log(e);}
 },
 
 getSelection : function(ta) {

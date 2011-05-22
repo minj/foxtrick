@@ -106,7 +106,7 @@ var FoxtrickTeamSelectBox = {
 				}
 			}
 			catch (e) {
-				Foxtrick.dumpError(e);
+				Foxtrick.log(e);
 			}
 		};
 		Foxtrick.addEventListenerChangeSave(div, "click", toggle, false);

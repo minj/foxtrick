@@ -92,7 +92,7 @@ FoxtrickSmallerPages = {
 				}
 			}
 			catch (e) {
-				Foxtrick.dumpError(e);
+				Foxtrick.log(e);
 			}
 		}
 	},
@@ -119,7 +119,7 @@ FoxtrickSmallerPages = {
 				//}
 			}
 			catch (e) {
-				Foxtrick.dumpError(e);
+				Foxtrick.log(e);
 			}
 		}
 	}

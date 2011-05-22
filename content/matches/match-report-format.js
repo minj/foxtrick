@@ -232,7 +232,7 @@ FoxtrickMatchReportFormat = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 
 		Foxtrick.dump('BEGIN GOALS\n');

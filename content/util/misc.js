@@ -17,7 +17,7 @@ Foxtrick.selectFileSave = function (parentWindow) {
 		}
 	}
 	catch (e) {
-		Foxtrick.dumpError(e);
+		Foxtrick.log(e);
 	}
 	return null;
 }
@@ -33,7 +33,7 @@ Foxtrick.selectFile = function (parentWindow) {
 		}
 	}
 	catch (e) {
-		Foxtrick.dumpError(e);
+		Foxtrick.log(e);
 	}
 	return null;
 }
@@ -51,7 +51,7 @@ Foxtrick.playSound = function(url) {
 		}
 	}
 	catch (e) {
-		Foxtrick.dumpError(e);
+		Foxtrick.log(e);
 	}
 }
 
@@ -118,7 +118,7 @@ Foxtrick.load = function(url, callback, crossSite) {
 				}
 				catch (e) {
 					Foxtrick.dump("Uncaught callback error:");
-					Foxtrick.dumpError(e);
+					Foxtrick.log(e);
 				}
 			}
 		);
@@ -140,7 +140,7 @@ Foxtrick.load = function(url, callback, crossSite) {
 					}
 					catch (e) {
 						Foxtrick.dump("Uncaught callback error:");
-						Foxtrick.dumpError(e);
+						Foxtrick.log(e);
 					}
 				}
 			};
@@ -160,12 +160,12 @@ Foxtrick.loadXml = function(url, callback, crossSite) {
 				}
 				catch (e) {
 					Foxtrick.dump("Uncaught callback error:");
-					Foxtrick.dumpError(e);
+					Foxtrick.log(e);
 				}
 			}
 			catch (e) {
 				// invalid XML
-				Foxtrick.dumpError(e);
+				Foxtrick.log(e);
 				Foxtrick.log("Cannot parse XML:\n" + text + "");
 				callback(null, status);
 			}
@@ -180,7 +180,7 @@ Foxtrick.loadXml = function(url, callback, crossSite) {
 		}
 		catch (e) {
 			// invalid XML
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 			Foxtrick.log("Cannot parse XML:\n" + text + "");
 			return null;
 		}

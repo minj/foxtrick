@@ -362,7 +362,7 @@ var FoxtrickTeamPopupLinks = {
 			org_link.removeEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	}
 };

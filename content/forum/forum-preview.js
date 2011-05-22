@@ -30,7 +30,7 @@ var FoxtrickForumPreview = {
 				return;
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 
 		// display preview and button above the message window
@@ -393,7 +393,7 @@ var FoxtrickForumPreview = {
 			prev_div.innerHTML = text;
 		}
 		catch(e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 
 	}

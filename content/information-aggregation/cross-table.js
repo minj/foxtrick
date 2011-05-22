@@ -309,7 +309,7 @@ var FoxtrickCrossTable = {
 				drawSeasonGraph();
 			}
 			catch (e) {
-				Foxtrick.dumpError(e);
+				Foxtrick.log(e);
 			}
 		});
 	}

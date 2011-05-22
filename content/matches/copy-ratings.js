@@ -275,7 +275,7 @@ var FoxtrickCopyRatings = {
 			var note = Foxtrick.util.note.add(doc, insertBefore, "ft-ratings-copy-note", Foxtrickl10n.getString("CopyRatings.copied"), null, true);
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	}
 };

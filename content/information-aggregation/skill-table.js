@@ -486,7 +486,7 @@ var FoxtrickSkillTable = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -564,7 +564,7 @@ var FoxtrickSkillTable = {
 			table.getElementsByTagName("tbody")[0].innerHTML = newBody.innerHTML;
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 		finally {
 			if (ev)
@@ -607,7 +607,7 @@ var FoxtrickSkillTable = {
 			doc.location.reload();
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -623,7 +623,7 @@ var FoxtrickSkillTable = {
 			Foxtrick.removeClass(container, "hidden");
 		}
 		catch(e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -667,7 +667,7 @@ var FoxtrickSkillTable = {
 				}
 			}
 			catch (e) {
-				Foxtrick.dumpError(e);
+				Foxtrick.log(e);
 			}
 		};
 		Foxtrick.addEventListenerChangeSave(h2, "click", toggleDisplay, false);
@@ -851,7 +851,7 @@ var FoxtrickSkillTable = {
 			var note = Foxtrick.util.note.add(doc, table, "ft-skilltable-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.skilltablecopied"), null, true);
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -879,7 +879,7 @@ var FoxtrickSkillTable = {
 			return ret;
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 

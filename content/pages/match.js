@@ -31,7 +31,7 @@ Foxtrick.Pages.Match = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 		return true;
 	},
@@ -48,7 +48,7 @@ Foxtrick.Pages.Match = {
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 		return true;
 	},
@@ -80,7 +80,7 @@ Foxtrick.Pages.Match = {
 			if (!subLevelValue)	return -1;
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 
 		return baseValue+parseFloat(subLevelValue);
@@ -106,7 +106,7 @@ Foxtrick.Pages.Match = {
 				return -1;
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 		return null;
 	}

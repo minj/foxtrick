@@ -101,7 +101,7 @@ Foxtrick.util.note = {
 									}
 								}
 								catch (e) {
-									Foxtrick.dumpError(e);
+									Foxtrick.log(e);
 								}
 							}, false);
 					}
@@ -122,7 +122,7 @@ Foxtrick.util.note = {
 							}
 						}
 						catch (e) {
-							Foxtrick.dumpError(e);
+							Foxtrick.log(e);
 						}
 					}, false);
 				container.appendChild(close);
@@ -135,7 +135,7 @@ Foxtrick.util.note = {
 			return container;
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 

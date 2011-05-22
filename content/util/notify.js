@@ -26,7 +26,7 @@ Foxtrick.util.notify.create = function(msg, url) {
 					}
 				}
 				catch (e) {
-					Foxtrick.dumpError(e);
+					Foxtrick.log(e);
 				}
 			}
 		};

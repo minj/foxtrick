@@ -63,7 +63,7 @@ var FoxtrickPrefs = {
 					}
 				}
 				catch (e) {
-					Foxtrick.dumpError(e);
+					Foxtrick.log(e);
 				}
 			}
 			else if (Foxtrick.chromeContext() == "content") {
@@ -370,7 +370,7 @@ var FoxtrickPrefs = {
 				return true;
 			}
 			catch (e) {
-				Foxtrick.dumpError(e);
+				Foxtrick.log(e);
 				return false;
 			}
 		}
@@ -393,7 +393,7 @@ var FoxtrickPrefs = {
 			FoxtrickMain.init();
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 			return false;
 		}
 		return true;
@@ -425,7 +425,7 @@ var FoxtrickPrefs = {
 			return ret;
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 			return null;
 		}
 	},
@@ -450,7 +450,7 @@ var FoxtrickPrefs = {
 			}
 			catch (e) {
 				Foxtrick.dump("Value: " + matches[2]);
-				Foxtrick.dumpError(e);
+				Foxtrick.log(e);
 			}
 		}
 		FoxtrickPrefs.setBool("preferences.updated", true);

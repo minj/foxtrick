@@ -61,7 +61,7 @@ Foxtrick.util.links = {
 					}
 				}
 				catch(e) {
-					Foxtrick.dumpError(e);
+					Foxtrick.log(e);
 				}
 			};
 
@@ -99,7 +99,7 @@ Foxtrick.util.links = {
 			Foxtrick.util.links.showLinks(doc, ownBoxBody, basepref);
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -166,13 +166,13 @@ Foxtrick.util.links = {
 					ownBoxBody.appendChild(a);
 				}
 				catch(e) {
-					Foxtrick.dumpError(e);
+					Foxtrick.log(e);
 					continue;
 				}
 			}
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -398,7 +398,7 @@ Foxtrick.util.links = {
 
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -415,7 +415,7 @@ Foxtrick.util.links = {
 			FoxtrickPrefs.setBool( "module." + module_name+'.'+key + ".enabled",false);
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -433,7 +433,7 @@ Foxtrick.util.links = {
 			mylink.parentNode.parentNode.parentNode.removeChild(mylink.parentNode.parentNode);
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -449,7 +449,7 @@ Foxtrick.util.links = {
 			doc.getElementById('inputImgIDName').src = FoxtrickPrefs.getString(baseprefnl+'.img');
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -485,7 +485,7 @@ Foxtrick.util.links = {
 			foStream.close();
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -543,7 +543,7 @@ Foxtrick.util.links = {
 			table.insertBefore(tr1,table.lastChild.previousSibling);
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -558,7 +558,7 @@ Foxtrick.util.links = {
 			return delLink;
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -574,7 +574,7 @@ Foxtrick.util.links = {
 			return editOld;
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -590,7 +590,7 @@ Foxtrick.util.links = {
 			return ExportLink;
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -618,7 +618,7 @@ Foxtrick.util.links = {
 			div.style.backgroundImage = "url('" + div.imgref + "')";
  		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 			Foxtrick.alert(aFileURL+" not found");
 			return;
 		}
@@ -633,7 +633,7 @@ Foxtrick.util.links = {
 			doc.getElementById ( "inputHrefID" ).value=value;
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -652,7 +652,7 @@ Foxtrick.util.links = {
 			return "data:" + contentType + ";base64," + encoded;
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	}
 };

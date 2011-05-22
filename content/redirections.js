@@ -119,7 +119,7 @@ var FoxtrickRedirections = {
 					doc.location.replace(location);
 				}
 				catch (e) {
-					Foxtrick.dumpError(e);
+					Foxtrick.log(e);
 				}
 			}
 			if (doc.location.href.search(/\/Club\/NationalTeam\/NationalTeam/i)!=-1 ){
@@ -131,7 +131,7 @@ var FoxtrickRedirections = {
 					}
 
 				catch (e) {
-					Foxtrick.dumpError(e);
+					Foxtrick.log(e);
 				}
 			}
 			if (doc.location.href.search(/\/Club\/Training/i)!=-1) {
@@ -142,7 +142,7 @@ var FoxtrickRedirections = {
 					doc.location.replace(tar);
 				}
 				catch (e) {
-					Foxtrick.dumpError(e);
+					Foxtrick.log(e);
 				}
 			}
 		}
@@ -170,7 +170,7 @@ var FoxtrickRedirections = {
 				}
 			}
 			catch (e) {
-				Foxtrick.dumpError(e);
+				Foxtrick.log(e);
 			}
 		}
 	}

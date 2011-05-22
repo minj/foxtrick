@@ -78,7 +78,7 @@ Foxtrick.links.getLinkOptions = function(module, linktype, extra_options) {
 		return options;
 	}
 	catch (e) {
-		Foxtrick.dumpError(e);
+		Foxtrick.log(e);
 		return null;
 	}
 }
@@ -154,7 +154,7 @@ Foxtrick.links.getLinkOptionsArray = function(module, linktypes) {
 		return options;
 	}
 	catch (e) {
-		Foxtrick.dumpError(e);
+		Foxtrick.log(e);
 		return null;
 	}
 }

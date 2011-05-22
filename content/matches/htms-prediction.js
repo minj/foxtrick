@@ -171,7 +171,7 @@ var FoxtrickHTMSPrediction = {
 			Foxtrick.startListenToChange (doc);
 		}
 		catch (e) {
-			Foxtrick.dumpError(e);
+			Foxtrick.log(e);
 		}
 	}
 };
