@@ -35,18 +35,13 @@ var FoxtrickYouthSkillHideUnknown = {
 				}
 				if (Foxtrick.isModuleFeatureEnabled(this, "HideMaximalKeyWord")) {
 					var skillBars = doc.getElementsByClassName("youthSkillBar");
-					for (var k = 0; k < skillBars.length; ++k) {
-						var skillBar = skillBars[k];
-						var textNodeIndex = 0;
-						for (var l = 0; l < skillBar.childNodes.length; ++l) {
-							if (skillBar.childNodes[l].nodeType == Node.TEXT_NODE) {
-								if (textNodeIndex++ == 1)
-									skillBar.childNodes[l].textContent = " / ";
-								else
-									skillBar.childNodes[l].textContent = " ";
-							}
-						}
-					}
+					Foxtrick.map(skillBars, function(skillBar) {
+						var textNodes = Foxtrick.filter(skillBar.childNodes, function(n) {
+							return n.nodeType == Node.TEXT_NODE;
+						});
+						for (var i = 0; i < textNodes.length; ++i)
+							textNodes[i].textContent = (i == 1) ? " / " : " ";
+					});
 				}
 			}
 		}
