@@ -30,12 +30,25 @@ FoxtrickTransferDeadline = {
 	},
 
 	processNode : function(node, htTime) {
-		var deadline = Foxtrick.util.time.getDateFromText(node.textContent);
+		var doc = node.ownerDocument;
+		var dateNode = node.getElementsByClassName("date")[0];
+		if (!dateNode)
+			return;
+		if (dateNode.hasAttribute("x-ht-date")) {
+			// node displays local time instead of HT time as modified
+			// in LocalTime, HT time is saved in attribute x-ht-date
+			var deadline = new Date();
+			deadline.setTime(dateNode.getAttribute("x-ht-date"));
+		}
+		else
+			var deadline = Foxtrick.util.time.getDateFromText(dateNode.textContent);
 		if (deadline) {
 			var countdown = Math.floor((deadline.getTime() - htTime) / 1000);
 			if (!isNaN(countdown) && countdown >= 0) {
-				var countdownText = Foxtrick.util.time.timeDifferenceToText(countdown);
-				node.innerHTML += "<span class=\"smallText ft-deadline\">(" + countdownText + ")</span>";
+				var countdownNode = doc.createElement("span");
+				countdownNode.className = "smallText ft-deadline";
+				countdownNode.innerHTML = "(" + Foxtrick.util.time.timeDifferenceToText(countdown) + ")";
+				node.appendChild(countdownNode);
 			}
 		}
 	},
