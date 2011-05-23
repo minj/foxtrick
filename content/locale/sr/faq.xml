@@ -71,4 +71,48 @@
 			</xhtml:p>
 		</answer>
 	</item>
+		<item id="print-date-format">
+		<question>Како да подесим формат датума за штампу?</question>
+		<answer>
+			<xhtml:p>
+				Формат датума за штампу се користи за случајеве када Фокстрик убацује датум и време на неку веб страницу.
+				Подешавањем формата можете изабрати начин на који желите да датум и време буду приказани.
+			</xhtml:p>
+			<xhtml:p>
+				Параметри су:
+			</xhtml:p>
+			<xhtml:dl>
+				<xhtml:dt><xhtml:code>YYYY</xhtml:code></xhtml:dt>
+				<xhtml:dd>Година</xhtml:dd>
+				<xhtml:dt><xhtml:code>mm/m</xhtml:code></xhtml:dt>
+				<xhtml:dd>Месец, са или без нуле, за месеце означене једноцифреним бројем</xhtml:dd>
+				<xhtml:dt><xhtml:code>dd/d</xhtml:code></xhtml:dt>
+				<xhtml:dd>Датум, са или без нуле, за дане означене једноцифреним бројем</xhtml:dd>
+				<xhtml:dt><xhtml:code>HH/H</xhtml:code></xhtml:dt>
+				<xhtml:dd>,Сати са или без нуле, за сате означене једноцифреним бројем</xhtml:dd>
+				<xhtml:dt><xhtml:code>MM/M</xhtml:code></xhtml:dt>
+				<xhtml:dd>Минути, са или без нуле, за минуте означене једноцифреним бројем</xhtml:dd>
+				<xhtml:dt><xhtml:code>SS/S</xhtml:code></xhtml:dt>
+				<xhtml:dd>Секунде, са или без нуле, за секунде означене једноцифреним бројем</xhtml:dd>
+			</xhtml:dl>
+			<xhtml:p>
+				Постоје и одређене рестрикције:
+			</xhtml:p>
+			<xhtml:ul>
+				<xhtml:li>Између датума и времена мора бити размак.</xhtml:li>
+				<xhtml:li>Секунде морају увек бити на крају.</xhtml:li>
+			</xhtml:ul>
+			<xhtml:p>
+				Примери:
+			</xhtml:p>
+			<xhtml:dl>
+				<xhtml:dt><xhtml:code>dd-mm-YYYY HH:MM:SS</xhtml:code></xhtml:dt>
+				<xhtml:dd>23-05-2011 09:08:07</xhtml:dd>
+				<xhtml:dt><xhtml:code>YYYY-m-d HH:MM:SS</xhtml:code></xhtml:dt>
+				<xhtml:dd>2011-5-23 09:08:07</xhtml:dd>
+				<xhtml:dt><xhtml:code>mm/dd/YYYY H.m.s</xhtml:code></xhtml:dt>
+				<xhtml:dd>23/05/2011 9.8.7</xhtml:dd>
+			</xhtml:dl>
+		</answer>
+	</item>
 </faq>
