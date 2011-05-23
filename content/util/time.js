@@ -115,6 +115,21 @@ Foxtrick.util.time = {
 		}
 	},
 
+	/* returns whether text has date and time (hours and minutes) in it */
+	hasTime : function(text, dateFormat) {
+		dateFormat = dateFormat || this.getDateFormat();
+		switch (dateFormat) {
+			case "ddmmyyyy":
+			case "mmddyyyy":
+				var re = /(\d{1,2})\D+(\d{1,2})\D+(\d{4})\D+(\d{2})\D+(\d{2})/;
+				break;
+			case "yyyymmdd":
+				var re = /(\d{4})\D+(\d{1,2})\D+(\d{1,2})\D+(\d{2})\D+(\d{2})/;
+				break;
+		}
+		return (text.match(re) != null);
+	},
+
 	getHtDate : function(doc) {
 		try {
 			var time = doc.getElementById("time").textContent;
@@ -160,15 +175,20 @@ Foxtrick.util.time = {
 
 	/* returns a string representing date given as argument
 	 * if date is not set, return current date
-	 * useShort specifies whether to only build date without time
+	 * showTime specifies whether to show time
+	 * showSecs specifies whether to show seconds
 	 */
-	buildDate : function(date, useShort) {
+	buildDate : function(date, showTime, showSecs) {
 		const format = this.getPrintDateFormat();
 		if (!date)
 			date = new Date();
-		if (useShort) {
+		if (!showTime) {
 			// presume date is before time in format
 			var string = format.replace(/\s+.+$/, "");
+		}
+		else if (!showSecs) {
+			// presume seconds are in final position with only one separator
+			var string = format.replace(/.S+$/, "");
 		}
 		else
 			var string = format;

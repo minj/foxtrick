@@ -7,7 +7,7 @@
 var FoxtrickYouthPromotes = {
 	MODULE_NAME : "YouthPromotes",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : new Array('YouthPlayer'),
+	PAGES : ["YouthPlayer"],
 
 	run : function( page, doc ) {
 		var daysToPromote = Foxtrick.Pages.YouthPlayer.getDaysToPromote(doc);
@@ -16,7 +16,7 @@ var FoxtrickYouthPromotes = {
 			if (daysToPromote > 0) { // you have to wait to promote
 				const htDate = Foxtrick.util.time.getHtDate(doc);
 				date = Foxtrick.util.time.addDaysToDate(htDate, daysToPromote);
-				date = Foxtrick.util.time.buildDate(date, true);
+				date = Foxtrick.util.time.buildDate(date);
 				message = Foxtrickl10n.getString("YouthPromotes.future")
 					.replace(/%1/, daysToPromote)
 					.replace(/%2/, date)

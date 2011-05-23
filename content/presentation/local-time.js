@@ -24,7 +24,7 @@ var FoxtrickLocalTime = {
 		var localTime = doc.createElement("div");
 		localTime.id = "ft-local-time";
 		var updateTime = function() {
-			localTime.textContent = Foxtrick.util.time.buildDate();
+			localTime.textContent = Foxtrick.util.time.buildDate(null, true, true);
 			setTimeout(updateTime, 1000);
 		};
 		updateTime();
@@ -68,13 +68,21 @@ var FoxtrickLocalTime = {
 				var dates = mainBody.getElementsByClassName("date");
 
 				Foxtrick.map(dates, function(date) {
+					// if text doesn't have time (hours and minutes) in it,
+					// ignore it
+					var hasTime = Foxtrick.util.time.hasTime(date.textContent);
+					if (!hasTime)
+						return;
+
 					var htDate = Foxtrick.util.time.getDateFromText(date.textContent);
 					if (!htDate)
 						return; // may only contain time without date
 					var tzDiff = Foxtrick.util.time.timezoneDiff(doc);
 					var localDate = new Date();
 					localDate.setTime(htDate.getTime() + tzDiff * 60 * 60 * 1000);
-					date.textContent = Foxtrick.util.time.buildDate(localDate);
+					// always build strings with hours and seconds, but
+					// without seconds
+					date.textContent = Foxtrick.util.time.buildDate(localDate, true, false);
 					// set original time as attribute for reference from
 					// other modules
 					date.setAttribute("x-ht-date", htDate.getTime());
