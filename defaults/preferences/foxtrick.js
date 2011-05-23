@@ -354,6 +354,8 @@ pref("extensions.foxtrick.prefs.module.LinksYouthTraining.englandyadb.enabled", 
 pref("extensions.foxtrick.prefs.module.LinksYouthTraining.hattrick-youthclub.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksYouthTraining.srbijayadb.enabled", true);
 pref("extensions.foxtrick.prefs.module.LiveAlert.enabled", true);
+pref("extensions.foxtrick.prefs.module.LocalTime.enabled", true);
+pref("extensions.foxtrick.prefs.module.LocalTime.local", false);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.enabled", false);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.GuestBook.enabled", false);
 pref("extensions.foxtrick.prefs.module.MarkAllAsRead.enabled", true);
@@ -648,6 +650,7 @@ pref("extensions.foxtrick.prefs.module.YouthSkillHideUnknown.enabled", false);
 pref("extensions.foxtrick.prefs.module.YouthSkillHideUnknown.HideMaximalKeyWord.enabled", false);
 pref("extensions.foxtrick.prefs.module.YouthSkillHideUnknown.HideUnknown.enabled", false);
 pref("extensions.foxtrick.prefs.preferences.updated", false);
+pref("extensions.foxtrick.prefs.printDateFormat", "dd-mm-YYYY HH:MM:SS");
 pref("extensions.foxtrick.prefs.SavePrefs_Notes", true);
 pref("extensions.foxtrick.prefs.SavePrefs_Prefs", true);
 pref("extensions.foxtrick.prefs.showReleaseNotes", true);

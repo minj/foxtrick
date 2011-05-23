@@ -20,6 +20,18 @@ Foxtrick.util.time = {
 		FoxtrickPrefs.setString("htDateformat", format);
 	},
 
+	/* Returns date format for printing, like "dd-mm-YY HH:MM:SS"
+	 * dd: date
+	 * mm: month
+	 * YY: year
+	 * HH: hour
+	 * MM: minute
+	 * SS: second
+	 */
+	getPrintDateFormat : function() {
+		return FoxtrickPrefs.getString("printDateFormat");
+	},
+
 	/*
 		Returns HT week and season like { season : 37, week : 15 }
 		date is a JavaScript Date object
@@ -114,6 +126,19 @@ Foxtrick.util.time = {
 		}
 	},
 
+	// Return timezone difference from HT time to local time in hours
+	// For example, if HT time is GMT+1 while local time is GMT+8,
+	// this function would return 7.
+	timezoneDiff : function(doc) {
+		var htDate = Foxtrick.util.time.getHtDate(doc);
+		if (!htDate)
+			return null;
+		var date = new Date();
+		// time zone difference is a multiple of 15 minutes
+		var diff = Math.round(((date - htDate) / 1000 / 60 / 60) * 4) / 4;
+		return diff;
+	},
+
 	getSeasonOffset : function() {
 		const country = FoxtrickPrefs.getString("htCountry");
 		for (var i in Foxtrick.XMLData.League) {
@@ -133,16 +158,43 @@ Foxtrick.util.time = {
 		return ret;
 	},
 
-	buildDate : function(date) {
-		const format = this.getDateFormat();
-		switch (format) {
-			case "ddmmyyyy":
-				return [date.getDate(), date.getMonth() + 1, date.getFullYear()].join("-");
-			case "mmddyyyy":
-				return [date.getMonth() + 1, date.getDate(), date.getFullYear()].join("-");
-			case "yyyymmdd":
-				return [date.getFullYear(), date.getMonth() + 1, date.getDate()].join("-");
+	/* returns a string representing date given as argument
+	 * if date is not set, return current date
+	 * useShort specifies whether to only build date without time
+	 */
+	buildDate : function(date, useShort) {
+		const format = this.getPrintDateFormat();
+		if (!date)
+			date = new Date();
+		if (useShort) {
+			// presume date is before time in format
+			var string = format.replace(/\s+.+$/, "");
 		}
+		else
+			var string = format;
+
+		var fill = function(str, length) {
+			var s = String(str);
+			var i = 0;
+			if (s.length < length)
+				while (i++ < length - s.length)
+					s = "0" + s;
+			return s;
+		};
+
+		string = string.replace(/YYYY/g, date.getFullYear());
+		string = string.replace(/mm/g, fill(date.getMonth() + 1, 2));
+		string = string.replace(/m/g, date.getMonth() + 1);
+		string = string.replace(/dd/g, fill(date.getDate(), 2));
+		string = string.replace(/d/g, date.getDate(), 2);
+		string = string.replace(/HH/g, fill(date.getHours(), 2));
+		string = string.replace(/H/g, date.getHours(), 2);
+		string = string.replace(/MM/g, fill(date.getMinutes(), 2));
+		string = string.replace(/M/g, date.getMinutes());
+		string = string.replace(/SS/g, fill(date.getSeconds(), 2));
+		string = string.replace(/S/g, date.getSeconds());
+
+		return string;
 	},
 
 	timeDifferenceToText : function(time_sec, useShort) {

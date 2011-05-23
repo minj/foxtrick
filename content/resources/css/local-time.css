@@ -1,0 +1,9 @@
+#ft-ht-time-icon, #ft-local-time, #ft-local-time-icon {
+	float: right;
+	margin-left: 7px;
+	margin-top: 9px;
+}
+
+#ft-local-time, #time {
+	cursor: pointer;
+}

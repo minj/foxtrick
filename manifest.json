@@ -122,6 +122,7 @@
 			"content/presentation/ht-date-format.js",
 			"content/presentation/large-flags.js",
 			"content/presentation/league-news-filter.js",
+			"content/presentation/local-time.js",
 			"content/presentation/match-tables.js",
 			"content/presentation/move-manager-online.js",
 			"content/presentation/move-player-select-box.js",
