@@ -97,12 +97,13 @@ FoxtrickFriendlyInterface = {
 		}
 		if (page == "dashboard"
 			&& Foxtrick.isModuleFeatureEnabled(this, "HideSpeechlessSecretary")) {
-			var speech = doc.getElementsByClassName("pmSpeech")[0];
-			if (!speech)
-				return; // speech not present
-			if (speech.getElementsByTagName("a").length > 0)
-				return; // has links, not speechless
-			// speechless, container should be marked as hidden
+			var unreadNode = doc.getElementsByClassName("pmUnreadMessageCounterChars")[0];
+			if (!unreadNode)
+				return; // unreadNode not present
+			var unread = unreadNode.textContent;
+			if (parseInt(unread) > 0)
+				return;
+			// nothing new, container should be marked as hidden
 			var container = doc.getElementsByClassName("pmContainer")[0];
 			Foxtrick.addClass(container, "hidden");
 		}
