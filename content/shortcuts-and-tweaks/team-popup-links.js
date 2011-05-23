@@ -105,7 +105,7 @@ var FoxtrickTeamPopupLinks = {
 
 	OPTION_FUNC : function(doc) {
 		var table = doc.createElement("table");
-		table.className = "bordered";
+		table.className = "bordered center";
 
 		var caption = doc.createElement("caption");
 		caption.setAttribute("text-key", "TeamPopupLinks.prefsCaption");

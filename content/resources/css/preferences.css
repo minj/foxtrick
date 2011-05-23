@@ -67,7 +67,7 @@ html[dir="rtl"] table th:first-child {
 	text-align: right;
 }
 
-table td {
+table.center td {
 	text-align: center;
 }
 

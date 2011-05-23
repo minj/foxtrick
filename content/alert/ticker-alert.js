@@ -11,7 +11,7 @@ var FoxtrickTickerAlert = {
 
 	OPTION_FUNC : function(doc) {
 		var table = doc.createElement("table");
-		table.className = "bordered";
+		table.className = "bordered center";
 
 		// header
 		var header = doc.createElement("tr");
