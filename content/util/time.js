@@ -20,16 +20,16 @@ Foxtrick.util.time = {
 		FoxtrickPrefs.setString("htDateformat", format);
 	},
 
-	/* Returns date format for printing, like "dd-mm-YY HH:MM:SS"
+	/* Returns date format for printing, like "dd-mm-YYYY HH:MM:SS"
 	 * dd: date
 	 * mm: month
-	 * YY: year
+	 * YYYY: year
 	 * HH: hour
 	 * MM: minute
 	 * SS: second
 	 */
 	getPrintDateFormat : function() {
-		return FoxtrickPrefs.getString("printDateFormat");
+		return FoxtrickPrefs.getString("printDateFormat") || "dd-mm-YYYY HH:MM:SS";
 	},
 
 	/*
