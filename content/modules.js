@@ -18,6 +18,7 @@ Foxtrick.modules = [
 	FoxtrickReadHtPrefs,
 	FoxtrickPrefsDialogHTML,
 	FoxtrickOnPagePrefs,
+	Foxtrick.AddClass, // place before all date-related modules
 	FoxtrickLocalTime, // place before HTDateFormat
 	FoxtrickForumStripHattrickLinks,
 	FoxtrickForumChangePosts,

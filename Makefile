@@ -20,7 +20,8 @@ CONTENT_FOLDERS = alert/ \
 	resources/ \
 	shortcuts-and-tweaks/ \
 	util/
-CONTENT_FILES = api-proxy.js \
+CONTENT_FILES = add-class.js \
+	api-proxy.js \
 	const.js \
 	core.js \
 	faq.xml \

@@ -19,6 +19,7 @@
 <script type="application/x-javascript" src="./forum-stage.js" />
 <script type="application/x-javascript" src="./core.js" />
 <script type="application/x-javascript" src="./api-proxy.js" />
+<script type="application/x-javascript" src="./add-class.js" />
 
 <!-- external libraries -->
 <script type="application/x-javascript" src="./lib/oauth.js" />
