@@ -31,7 +31,7 @@ FoxtrickTransferDeadline = {
 
 	processNode : function(node, htTime) {
 		var doc = node.ownerDocument;
-		var dateNode = node.getElementsByClassName("date")[0];
+		var dateNode = Foxtrick.hasClass(node, "date") ? node : node.getElementsByClassName("date")[0];
 		if (!dateNode)
 			return;
 		if (dateNode.hasAttribute("x-ht-date")) {
