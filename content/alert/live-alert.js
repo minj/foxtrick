@@ -65,7 +65,7 @@ var FoxtrickLiveAlert = {
 				if (this.store[teamsText] === undefined) {
 					this.store[teamsText] = score;
 				}
-				else if (this.store[teamsText][0] !== score[0] || this.store[teamsText][1] !== score[1]) {
+				else if (this.store[teamsText][0] < score[0] || this.store[teamsText][1] < score[1]) {
 					// score has changed, alert
 					this.store[teamsText] = score;
 					Foxtrick.util.notify.create(
