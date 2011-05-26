@@ -63,12 +63,12 @@ Foxtrick.util.time = {
 			switch (DATEFORMAT) {
 				case "ddmmyyyy":
 				case "mmddyyyy":
-					var reLong = /(\d{1,2})\D+(\d{1,2})\D+(\d{4})\D+(\d{2})\D+(\d{2})/;
-					var reShort = /(\d{1,2})\D+(\d{1,2})\D+(\d{4})/;
+					var reLong = /(\d{1,2})\D(\d{1,2})\D(\d{4})\s+(\d{2})\D(\d{2})/;
+					var reShort = /(\d{1,2})\D(\d{1,2})\D(\d{4})/;
 					break;
 				case "yyyymmdd":
-					var reLong = /(\d{4})\D+(\d{1,2})\D+(\d{1,2})\D+(\d{2})\D+(\d{2})/;
-					var reShort = /(\d{4})\D+(\d{1,2})\D+(\d{1,2})/;
+					var reLong = /(\d{4})\D(\d{1,2})\D(\d{1,2})\s+(\d{2})\D(\d{2})/;
+					var reShort = /(\d{4})\D(\d{1,2})\D(\d{1,2})/;
 					break;
 			}
 			var matches;
@@ -121,10 +121,10 @@ Foxtrick.util.time = {
 		switch (dateFormat) {
 			case "ddmmyyyy":
 			case "mmddyyyy":
-				var re = /(\d{1,2})\D+(\d{1,2})\D+(\d{4})\D+(\d{2})\D+(\d{2})/;
+				var re = /(\d{1,2})\D(\d{1,2})\D(\d{4})\s+(\d{2})\D(\d{2})/;
 				break;
 			case "yyyymmdd":
-				var re = /(\d{4})\D+(\d{1,2})\D+(\d{1,2})\D+(\d{2})\D+(\d{2})/;
+				var re = /(\d{4})\D(\d{1,2})\D(\d{1,2})\s+(\d{2})\D(\d{2})/;
 				break;
 		}
 		return (text.match(re) != null);
