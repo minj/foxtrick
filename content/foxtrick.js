@@ -788,9 +788,12 @@ Foxtrick.chromeContext = function() {
 	}
 }
 
+// Check whether the site is in standard theme instead of simple theme
 Foxtrick.isStandardLayout = function (doc) {
-	// Check if this is the simple or standard layout
-	var links = doc.getElementsByTagName("head")[0].getElementsByTagName("link");
+	var head = doc.getElementsByTagName("head")[0];
+	if (!head)
+		return null;
+	var links = head.getElementsByTagName("link");
 	if (links.length!=0){
 		var i=0,link;
 		while (link=links[i++]) {
@@ -798,7 +801,7 @@ Foxtrick.isStandardLayout = function (doc) {
 		}
 	}
 	else { // mobile internet may have style embedded
-		var styles = doc.getElementsByTagName("head")[0].getElementsByTagName("style");
+		var styles = head.getElementsByTagName("style");
 		var i=0,style;
 		while (style=styles[i++]) {
 			if (style.textContent.search(/\/App_Themes\/Simple/i)!=-1) return false;
@@ -807,9 +810,12 @@ Foxtrick.isStandardLayout = function (doc) {
 	return true; // true = standard / false = simple
 }
 
+// Check whether the site is right-to-left layout
 Foxtrick.isRTLLayout = function (doc) {
-	// Check if this is the simple or standard layout
-	var links = doc.getElementsByTagName("head")[0].getElementsByTagName("link");
+	var head = doc.getElementsByTagName("head")[0];
+	if (!head)
+		return null;
+	var links = head.getElementsByTagName("link");
 	var rtl=false;
 	if (links.length!=0) {
 		var i=0,link;
@@ -818,7 +824,7 @@ Foxtrick.isRTLLayout = function (doc) {
 		}
 	}
 	else { // mobile internet may have style embedded
-		var styles = doc.getElementsByTagName("head")[0].getElementsByTagName("style");
+		var styles = head.getElementsByTagName("style");
 		var i=0,style;
 		while (style=styles[i++]) {
 			if (style.textContent.search(/direction:rtl/i)!=-1) rtl = true;
