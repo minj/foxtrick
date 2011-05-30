@@ -97,12 +97,9 @@ FoxtrickFriendlyInterface = {
 		}
 		if (page == "dashboard"
 			&& Foxtrick.isModuleFeatureEnabled(this, "HideSpeechlessSecretary")) {
-			var unreadNode = doc.getElementsByClassName("pmUnreadMessageCounterChars")[0];
-			if (!unreadNode)
+			var nextMsg = doc.getElementsByClassName("pmNextMessageCounter")[0];
+			if (!nextMsg)
 				return; // unreadNode not present
-			var unread = unreadNode.textContent;
-			if (parseInt(unread) > 0)
-				return;
 			// nothing new, container should be marked as hidden
 			var container = doc.getElementsByClassName("pmContainer")[0];
 			Foxtrick.addClass(container, "hidden");
