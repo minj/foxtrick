@@ -256,9 +256,9 @@ pref("extensions.foxtrick.prefs.module.LinksPlayerDetail.nrg_deffor.enabled", tr
 pref("extensions.foxtrick.prefs.module.LinksPlayerDetail.nrg_pop.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksPlayerDetail.staminia.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksPlayerDetail.xray_crossover.enabled", true);
-pref("extensions.foxtrick.prefs.module.LinksPlayerDetail.xray_healing.enabled", true);
-pref("extensions.foxtrick.prefs.module.LinksPlayerDetail.xray_healingtsi.enabled", true);
-pref("extensions.foxtrick.prefs.module.LinksPlayerDetail.xray_keeper.enabled", true);
+pref("extensions.foxtrick.prefs.module.LinksPlayerDetail.xray_healing.enabled", false);
+pref("extensions.foxtrick.prefs.module.LinksPlayerDetail.xray_healingtsi.enabled", false);
+pref("extensions.foxtrick.prefs.module.LinksPlayerDetail.xray_keeper.enabled", false);
 pref("extensions.foxtrick.prefs.module.LinksPlayers.enabled", false);
 pref("extensions.foxtrick.prefs.module.LinksStaff.enabled", false);
 pref("extensions.foxtrick.prefs.module.LinksTeam.akickku.enabled", true);

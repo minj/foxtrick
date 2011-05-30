@@ -351,6 +351,21 @@ stats["xray_youngster"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_youngster.png"
 };
 
+
+// hattriX-Ray youngster
+stats["xray_keeper"] =  {
+        "url" : "http://www.databased.at/hattrick/x-ray/index.asp",
+
+        "keeperlink" : { "path"       : "?starter=keepersup",
+                         "filters"    : [],
+                         "params"     : { "tsi" : "tsi", "form": "form", "playerid" : "pid", "goalkeeping" : "v1"}
+                       },
+
+        "title" : "hattriX-Ray keepers-up",
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_keepersup_s.png"
+};
+
+
 stats["xray_coach"] =  {
         "url" : "http://www.databased.at/hattrick/x-ray/pages/coach.asp",
 
