@@ -70,10 +70,11 @@ pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Supporterstats.enabled", f
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Supporterstats.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Transfers.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.ManageCHPP.enabled", true);
+pref("extensions.foxtrick.prefs.module.FixcssProblems.CalendarAutoMinHeight.enabled", true);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.BrasilToolbarFix.enabled", false);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.RemoveForumSneakPeak.enabled", false);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.Club_Menu_Teamnames.enabled", false);
-pref("extensions.foxtrick.prefs.module.FixcssProblems.enabled", false);
+pref("extensions.foxtrick.prefs.module.FixcssProblems.enabled", true);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.Forum_FoxLink_Headers.enabled", false);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.Forum_Header_Smallsize.enabled", false);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.ForumScrollBarFix.enabled", false);
