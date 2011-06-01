@@ -19,7 +19,7 @@ var FoxtrickTickerColoring = {
 				Foxtrick.addClass(link, "ft-ticker-link");
 				// need to use getAttribute to get relative path
 				var href = link.getAttribute("href");
-				if (href === "/MyHattrick/")
+				if (href === "/MyHattrick/Dashboard.aspx")
 					Foxtrick.addClass(link, "ft-ticker-welcome");
 				else if (href.indexOf("/Club/Manager/?teamId=") !== -1)
 					Foxtrick.addClass(link, "ft-ticker-supporter");
