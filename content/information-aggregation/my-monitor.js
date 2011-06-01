@@ -21,7 +21,7 @@ var FoxtrickMyMonitor = {
 		if (page == "myhattrick")
 			var insertBefore = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlMain");
 		else if (page == "dashboard")
-			var insertBefore = doc.getElementById("ctl00_ctl00_CPContent_CPMain_lnkArchive");
+			var insertBefore = doc.getElementById("eventList").nextSibling;
 		var parent = insertBefore.parentNode;
 		
 		// header - "My Monitor"
