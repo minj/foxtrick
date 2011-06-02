@@ -38,6 +38,8 @@ Foxtrick.Pages.Players = {
 				return;
 			}
 			var args = [];
+			if (doc.location.href.match(/teamid=(\d)/i))
+				args.push(["teamId", doc.location.href.match(/teamid=(\d+)/i)[1]]);
 			if (Foxtrick.Pages.Players.isNtPlayersPage(doc)) {
 				args.push(["file", "nationalplayers"]);
 				args.push(["ShowAll", "true"]);
@@ -45,8 +47,6 @@ Foxtrick.Pages.Players = {
 			}
 			else {
 				args.push(["file", "players"]);
-				if (doc.location.href.match(/teamid=(\d)/i))
-					args.push(["teamId", doc.location.href.match(/teamid=(\d+)/i)[1]]);
 				if (Foxtrick.Pages.Players.isOldiesPage(doc))
 					args.push(["actionType", "viewOldies"]);
 				else if (Foxtrick.Pages.Players.isCoachesPage(doc))
@@ -61,8 +61,15 @@ Foxtrick.Pages.Players = {
 			var playerNodes = xml.getElementsByTagName("Player");
 			for (var i = 0; i < playerNodes.length; ++i) {
 				var playerNode = playerNodes[i];
-				var player = {};
-				player.id = Number(playerNode.getElementsByTagName("PlayerID")[0].textContent);
+				var id = Number(playerNode.getElementsByTagName("PlayerID")[0].textContent);
+				// find player with the same ID from playerList (parsed from
+				// HTML)
+				for (j = 0; j < playerList.length; ++j)
+					if (playerList[j].id == id)
+						var player = playerList[j];
+				if (!player)
+					continue; // not present in HTML
+
 				// we found this player in the XML file,
 				// go on the retrieve information
 				if (playerNode.getElementsByTagName("NrOfMatches").length) {
@@ -158,7 +165,6 @@ Foxtrick.Pages.Players = {
 						player.number = number;
 					}
 				}
-				playerList.push(player);
 			}
 		};
 
@@ -448,8 +454,10 @@ Foxtrick.Pages.Players = {
 		if (callback) {
 			getXml(doc, function(xml) {
 				try {
-					parseXml(xml);
+					// parse HTML first because players present in XML may
+					// not present in XML (NT players)
 					parseHtml();
+					parseXml(xml);
 					callback(playerList);
 				}
 				catch (e) {
