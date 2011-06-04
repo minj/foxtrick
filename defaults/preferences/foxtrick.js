@@ -355,6 +355,8 @@ pref("extensions.foxtrick.prefs.module.LinksYouthTraining.englandyadb.enabled", 
 pref("extensions.foxtrick.prefs.module.LinksYouthTraining.hattrick-youthclub.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksYouthTraining.srbijayadb.enabled", true);
 pref("extensions.foxtrick.prefs.module.LiveAlert.enabled", true);
+pref("extensions.foxtrick.prefs.module.LiveAlert.Sound.enabled", true);
+pref("extensions.foxtrick.prefs.module.LiveAlert.Sound_text", "foxtrick://resources/sounds/DingLing.wav");
 pref("extensions.foxtrick.prefs.module.LocalTime.enabled", true);
 pref("extensions.foxtrick.prefs.module.LocalTime.local", false);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.enabled", false);

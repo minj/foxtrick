@@ -8,6 +8,8 @@ var FoxtrickLiveAlert = {
 	MODULE_NAME : "LiveAlert",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
 	PAGES : [ "matchesLive" ],
+	OPTIONS : ["Sound"],
+	OPTION_TEXTS : true,
 
 	store : {},
 
@@ -68,6 +70,7 @@ var FoxtrickLiveAlert = {
 				else if (this.store[teamsText][0] < score[0] || this.store[teamsText][1] < score[1]) {
 					// score has changed, alert
 					this.store[teamsText] = score;
+					// show notification
 					Foxtrick.util.notify.create(
 						"%h %H - %A %a".replace(/%h/, teams[0])
 							.replace(/%H/, score[0])
@@ -75,6 +78,17 @@ var FoxtrickLiveAlert = {
 							.replace(/%a/, teams[1]),
 						doc.location
 					);
+					// play sound if enabled
+					if (Foxtrick.isModuleFeatureEnabled(this, "Sound")) {
+						var sound = FoxtrickPrefs.getString("module.LiveAlert.Sound_text");
+						sound = sound.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
+						try {
+							Foxtrick.playSound(sound);
+						}
+						catch (e) {
+							Foxtrick.log("Cannot play sound: ", sound);
+						}
+					}
 				}
 			}
 		}
