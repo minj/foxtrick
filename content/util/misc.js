@@ -38,20 +38,18 @@ Foxtrick.selectFile = function (parentWindow) {
 	return null;
 }
 
+// Play the sound with URL given as parameter.
+// Gecko only supports WAV format at the moment.
+// May throw an error if unable to play the sound.
 Foxtrick.playSound = function(url) {
-	try {
-		if (Foxtrick.BuildFor === "Gecko") {
-			var soundService = Components.classes["@mozilla.org/sound;1"].getService(Components.interfaces.nsISound);
-			var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-			soundService.play(ioService.newURI(url, null, null));
-		}
-		else if (Foxtrick.BuildFor === "Chrome") {
-			var music = new Audio(url);
-			music.play();
-		}
+	if (Foxtrick.BuildFor === "Gecko") {
+		var soundService = Components.classes["@mozilla.org/sound;1"].getService(Components.interfaces.nsISound);
+		var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+		soundService.play(ioService.newURI(url, null, null));
 	}
-	catch (e) {
-		Foxtrick.log(e);
+	else if (Foxtrick.BuildFor === "Chrome") {
+		var music = new Audio(url);
+		music.play();
 	}
 }
 

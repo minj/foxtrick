@@ -114,15 +114,18 @@ var FoxtrickTickerAlert = {
 						Foxtrick.util.notify.create(n.text, n.link);
 						var sound = FoxtrickPrefs.getString("module.TickerAlert." + type + ".sound");
 						if (sound) {
-							if (sound.indexOf("foxtrick://") == 0) {
-								// use foxtrick:// for Foxtrick.ResourcePath
-								// for cross-platform compatibility
-								sound = sound.replace(
-									new RegExp("^foxtrick://"),
-									Foxtrick.ResourcePath
-								);
+							// use foxtrick:// for Foxtrick.ResourcePath
+							// for cross-platform compatibility
+							sound = sound.replace(
+								new RegExp("^foxtrick://"),
+								Foxtrick.ResourcePath
+							);
+							try {
+								Foxtrick.playSound(sound);
 							}
-							Foxtrick.playSound(sound);
+							catch (e) {
+								Foxtrick.log("Cannot play sound: ", sound);
+							}
 						}
 					}
 				});
