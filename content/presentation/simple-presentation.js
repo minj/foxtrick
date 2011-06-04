@@ -13,7 +13,6 @@ FoxtrickSimplePresentation = {
 		"Guestbook",
 		"liveHighlightRed",
 		"Highlight_Staff_On_All_Pages",
-		"HideUnseenMatchesPanel",
 		"HideAchievementsIcons",
 		"NoLogo"
 	],
@@ -22,7 +21,6 @@ FoxtrickSimplePresentation = {
 		Foxtrick.ResourcePath+"resources/css/fixes/Guestbook.css",
 		Foxtrick.ResourcePath+"resources/css/fixes/liveHighlightRed.css",
 		Foxtrick.ResourcePath+"resources/css/fixes/staffmarker.css",
-		Foxtrick.ResourcePath+"resources/css/fixes/hideUnseenMatchesPanel.css",
 		Foxtrick.ResourcePath+"resources/css/fixes/achievement_hideicons.css",
 		Foxtrick.ResourcePath+"resources/css/fixes/NoLogo.css"
 	]

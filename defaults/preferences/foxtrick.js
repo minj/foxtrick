@@ -416,7 +416,6 @@ pref("extensions.foxtrick.prefs.module.ShowLineupSet.Winning.enabled", true);
 pref("extensions.foxtrick.prefs.module.SimplePresentation.enabled", false);
 pref("extensions.foxtrick.prefs.module.SimplePresentation.Guestbook.enabled", false);
 pref("extensions.foxtrick.prefs.module.SimplePresentation.HideAchievementsIcons.enabled", false);
-pref("extensions.foxtrick.prefs.module.SimplePresentation.HideUnseenMatchesPanel.enabled", false);
 pref("extensions.foxtrick.prefs.module.SimplePresentation.Highlight_Staff_On_All_Pages.enabled", false);
 pref("extensions.foxtrick.prefs.module.SimplePresentation.League_Table.enabled", false);
 pref("extensions.foxtrick.prefs.module.SimplePresentation.liveHighlightRed.enabled", false);
