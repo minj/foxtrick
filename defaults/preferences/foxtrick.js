@@ -189,7 +189,7 @@ pref("extensions.foxtrick.prefs.module.LinksClubTransfers.natstats.enabled", tru
 pref("extensions.foxtrick.prefs.module.LinksCoach.coachexperience.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksCoach.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksCoach.nrg_fc.enabled", true);
-pref("extensions.foxtrick.prefs.module.LinksCoach.xray_coach.enabled", true);
+pref("extensions.foxtrick.prefs.module.LinksCoach.xray_coach.enabled", false);
 pref("extensions.foxtrick.prefs.module.LinksCountry.Hattrickstats_fr.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksCountry.akickku.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksCountry.alltid.enabled", true);

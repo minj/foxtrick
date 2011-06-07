@@ -148,18 +148,6 @@ htworld[29]='www.ht-world.org/venezuela';
 htworld[70]='www.ht-world.org/vietnam';
 htworld[3]='www.ht-world.org/deutschland';
 
-//HT Newsfeeds
-
-stats["xray_newsfeed"] =  {
-       "url" : "http://www.databased.at/hattrick/",
-       "newslink" : { "path" : "rss/",
-                      "filters"    : []
-        },
-       "title" : "HT Newsfeeds",
-       "img" : Foxtrick.ResourcePath+"resources/linkicons/htrss2.gif"
-
-}
-
 // hattriX-Ray Crossover
 stats["xray_crossover"] =  {
         "url" : "http://www.databased.at/hattrick/x-ray/",
@@ -337,20 +325,6 @@ stats["xray_healingtsi"] =  {
         "title" : "hattriX-Ray healing TSI",
         "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_healingtsi_s.png"
 };
-
-// hattriX-Ray youngster
-stats["xray_youngster"] =  {
-        "url" : "http://www.databased.at/hattrick/x-ray/index.asp?starter=youngster",
-
-        "youthpulllink" : { "path"       : "",
-                         "filters"    : [],
-                         "params"     : {  }
-                       },
-
-        "title" : "hattriX-Ray youngster",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/xray_youngster.png"
-};
-
 
 // hattriX-Ray youngster
 stats["xray_keeper"] =  {
