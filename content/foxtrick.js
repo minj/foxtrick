@@ -862,7 +862,8 @@ Foxtrick.dumpFlush = function(doc) {
 			var header = doc.createElement("h2");
 			header.textContent = Foxtrickl10n.getString("foxtrick.log")
 				.replace(/%1/, Foxtrick.version())
-				.replace(/%2/, Foxtrick.BuildFor);
+				.replace(/%2/, Foxtrick.BuildFor)
+				.replace(/%3/, FoxtrickPrefs.getString("htLanguage"));
 			var pre = doc.createElement('pre');
 			pre.textContent = Foxtrick.dumpCache;
 			div.appendChild(header);
