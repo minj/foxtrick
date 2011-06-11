@@ -87,6 +87,7 @@ Foxtrick.ht_pages = {
 	'youthoverview'             : '/Club/Youth/Default.aspx',
 	'YouthMatchlist'            : '/Club/Matches/?TeamID=\\d+&YouthTeamId=\\d+$',
 	'youthplayerdetail'         : '/Club/Players/YouthPlayer.aspx',
+    'youthfixtures'             : '/World/Series/YouthFixtures.aspx',
 	'federation'                : '/Community/Federations/Federation.aspx',
 	'newsletter'                : '/Community/Federations/SendMessage.aspx|/MyHattrick/Inbox/Default.aspx?actionType=newsLetter',
 	'national'                  : '/Club/NationalTeam/NationalTeam.aspx',

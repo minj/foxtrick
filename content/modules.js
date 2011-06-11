@@ -41,6 +41,8 @@ Foxtrick.modules = [
 	FoxtrickCopyTrainingReport,
 	FoxtrickCopyScoutReport,
 	FoxtrickCopyPlayerSource,
+    FoxtrickCopyYouthLeagueFixturesSource,
+    FoxtrickYouthStatistics,
 	FoxtrickFormatPostingText,
 	FoxtrickCopyPostID,
 	FoxtrickStaffMarker,

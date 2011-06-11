@@ -659,3 +659,6 @@ pref("extensions.foxtrick.prefs.showReleaseNotes", true);
 pref("extensions.foxtrick.prefs.smallcopyicons", true);
 pref("extensions.foxtrick.prefs.statusbarshow", true);
 pref("extensions.foxtrick.prefs.table_separator", " ");
+pref("extensions.foxtrick.prefs.module.CopyYouthLeagueFixturesSource.enabled", true);
+pref("extensions.foxtrick.prefs.module.CopyYouthLeagueFixturesSource.OpenHTYSpage.enabled", true);
+pref("extensions.foxtrick.prefs.module.YouthStatistics.enabled", true);

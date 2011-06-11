@@ -48,5 +48,12 @@ a.copyicon {
 	background: transparent url(chrome://foxtrick/content/resources/img/copy/copyAwayRatings_s.png) no-repeat scroll 0 0;
 }
 
+.copyyouthfixturessource img {
+    background: transparent url(chrome://foxtrick/content/resources/img/copy/copyNormal_s.png) no-repeat scroll 0 0;
+}
+.linkyouthstatistics img {
+    background: transparent url(chrome://foxtrick/content/resources/img/copy/copyNormal_s.png) no-repeat scroll 0 0;
+}
+
 }
 

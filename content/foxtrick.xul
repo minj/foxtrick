@@ -166,6 +166,7 @@
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/team-popup-links.js" />
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/transfer-search-filters.js" />
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/transfer-search-result-filters.js" />
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/youthstatistics.js" />
 
 <script type="application/x-javascript" src="./modules.js" />
 <script type="application/x-javascript" src="./foxtrick.js" />
