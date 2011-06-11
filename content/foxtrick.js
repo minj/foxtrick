@@ -840,11 +840,13 @@ Foxtrick.isSupporter = function (doc) {
 
 Foxtrick.hasMainBodyScroll = function (doc) {
 	// Check if scrolling is on for MainBody
-	var mainBodyChildren = doc.getElementById('mainBody').childNodes;
+	var hasScroll=false;
+	var mainBodyChildren = doc.getElementById('mainBody').getElementsByTagName('script');
 	var i = 0, child;
-	while (child = mainBodyChildren[i++])
-		if (child.nodeName == 'SCRIPT' && child.innerHTML && child.innerHTML.search(/adjustHeight\(\'mainBody\'/) != -1) return true;
-	return false;
+	while (child = mainBodyChildren[i++]) {
+		if (child.innerHTML && child.innerHTML.search(/adjustHeight\(\'mainBody\'/) != -1) {hasScroll=true; break;}
+	}
+	return hasScroll;
 }
 
 Foxtrick.dumpCache = '';
