@@ -78,7 +78,7 @@ Creating a new module
 Most of FoxTrick's functions are implemented in modules. Generally, each module
 is a JavaScript file, placed in the directory content/CATEGORY.
 
-Each file, named like "moduleName.js", contains a single single object,
+Each file, named like "module-name.js", contains a single single object,
 named in the way like FoxtrickModuleName, which should conform the following
 specifications:
 # A property named MODULE_NAME, which is the name of the module, named in the
@@ -106,6 +106,9 @@ directory, you should add a line to content/foxtrick.xul and
 content/preferences.xhtml respectively to inform the browser to load
 your script:
 <script type="application/x-javascript" src="chrome://foxtrick/content/category/module.js" />
+
+There also need to be an entry in manifest.json in order for Chrome to
+include the file.
 
 You also need to tell FoxTrick that you have created that module by placing the
 name of your object in content/modules.js.
@@ -182,3 +185,4 @@ Happy Hacking!
 
 Ryan Li <ryan@ryanium.com>
 26 June 2010
+Revised 11 June 2011
