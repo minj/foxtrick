@@ -860,7 +860,9 @@ Foxtrick.dumpFlush = function(doc) {
 			var div = doc.createElement('div');
 			div.id = "ft-log";
 			var header = doc.createElement("h2");
-			header.textContent = Foxtrickl10n.getString("foxtrick.log");
+			header.textContent = Foxtrickl10n.getString("foxtrick.log")
+				.replace(/%1/, Foxtrick.version())
+				.replace(/%2/, Foxtrick.BuildFor);
 			var pre = doc.createElement('pre');
 			pre.textContent = Foxtrick.dumpCache;
 			div.appendChild(header);
