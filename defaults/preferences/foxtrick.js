@@ -341,6 +341,8 @@ pref("extensions.foxtrick.prefs.module.LinksTraining.treenikoira.enabled", true)
 pref("extensions.foxtrick.prefs.module.LinksTraining.updated_training.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksYouthMatchList.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksYouthMatchList.hattrick-youthclub.enabled", true);
+pref("extensions.foxtrick.prefs.module.LinksYouthLeague.enabled", true);
+pref("extensions.foxtrick.prefs.module.LinksYouthLeague.ht-ys.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksYouthOverview.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksYouthOverview.englandyadb.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksYouthOverview.hattrick-youthclub.enabled", true);

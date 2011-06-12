@@ -2185,6 +2185,19 @@ stats["natstats"] = {
 	shorttitle : "NatStats"
 };
 
+//Hattrick Youth Statistics
+stats["ht-ys"] =  {
+        "url" : "http://www.ht-ys.org/",
+
+        "youthleaguelink" : { "path"       : "?league_id=",
+                         "filters"    : [],
+                         "params"     : { "youthleagueid" : "" }
+                       },
+
+        "title" : "Hattrick Youth Statistics",
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/htys.png"
+};
+
 };
 
 //------------------------------------------------------------------

@@ -79,6 +79,7 @@ Foxtrick.modules = [
 	FoxtrickLinksYouthPlayerDetail,
 	FoxtrickLinksYouthMatchList,
 	FoxtrickLinksYouthPlayerList,
+    FoxtrickLinksYouthLeague,
 	FoxtrickLinksArena,
 	FoxtrickLinksCoach,
 	FoxtrickLinksPlayerDetail,

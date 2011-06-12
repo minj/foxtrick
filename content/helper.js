@@ -361,5 +361,16 @@ var FoxtrickHelper = {
 		img.src = "/Img/Icons/transparent.gif";
 		a.appendChild(img);
 		return a;
+	},
+    
+    //---------------------------------------------------------------------------
+	findYouthLeagueId : function(element) {
+		var links = element.getElementsByTagName('a');
+		for (var i=0; i < links.length; i++) {
+			if ( links[i].href.match(/YouthLeagueId=/i) ) {
+				return links[i].href.replace(/.+YouthLeagueId=/i, "").match(/^\d+/)[0];
+			}
+		}
+		return null;
 	}
 };
