@@ -1,3 +1,7 @@
 #ft-cross-table td {
 	text-align: center !important;
 }
+
+#ft-cross-table {
+	background-color: white;
+}

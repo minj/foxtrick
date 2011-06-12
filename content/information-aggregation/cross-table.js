@@ -229,7 +229,7 @@ var FoxtrickCrossTable = {
 					cell.appendChild(link);
 					link.href = "/Club/Matches/Match.aspx?matchID=" + match.id;
 					if (!isNaN(match.home)) {
-						link.textContent = [match.home, match.away].join(" - ");
+						link.innerHTML=[match.home, match.away].join("&nbsp;-&nbsp;");
 						if (match.home > match.away)
 							Foxtrick.addClass(link, "won");
 						else if (match.home == match.away)
