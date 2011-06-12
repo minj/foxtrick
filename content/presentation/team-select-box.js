@@ -84,8 +84,17 @@ var FoxtrickTeamSelectBox = {
 				selectBox.appendChild(option);
 			}
 			var boxBody = listBox.getElementsByClassName("boxBody")[0];
-			boxBody.textContent = ""; // clear it first
-			boxBody.appendChild(selectBox);
+			if (boxBody) {  // normal skin
+				boxBody.textContent = ""; // clear it first
+				boxBody.appendChild(selectBox); 
+			}	
+			else {  // simple skin. has no inner boxBody
+				var headerdiv = listBox.getElementsByTagName("div")[0];
+				headerdiv = listBox.removeChild(headerdiv);
+				listBox.textContent = ""; // clear it first
+				listBox.appendChild(headerdiv);
+				listBox.appendChild(selectBox);
+			}
 		};
 
 		var showAsList = true; // is shown as list initially
