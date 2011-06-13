@@ -54,7 +54,7 @@ Foxtrick.ApiProxy = {
 			var linkPar = doc.createElement("p");
 			div.appendChild(linkPar);
 			linkPar.appendChild(Foxtrick.util.note.createLoading(doc, true));
-			Foxtrick.log("Requesting token at: ", requestTokenUrl);
+			Foxtrick.log("Requesting token at: ", Foxtrick.ApiProxy.stripToken(requestTokenUrl) );
 			Foxtrick.load(requestTokenUrl, function(text, status) {
 				linkPar.textContent = ""; // clear linkPar first
 				if (status != 200) {
@@ -100,7 +100,7 @@ Foxtrick.ApiProxy = {
 					Foxtrick.OAuth.SignatureMethod.sign(msg, accessor);
 					var query = Foxtrick.OAuth.formEncode(msg.parameters);
 					var accessTokenUrl = Foxtrick.ApiProxy.accessTokenUrl + "?" + query;
-					Foxtrick.log("Requesting access token at: ", accessTokenUrl);
+					Foxtrick.log("Requesting access token at: ",  Foxtrick.ApiProxy.stripToken(accessTokenUrl));
 					Foxtrick.load(accessTokenUrl, function(text) {
 						var accessToken = text.split(/&/)[0].split(/=/)[1];
 						var accessTokenSecret = text.split(/&/)[1].split(/=/)[1];
@@ -169,7 +169,7 @@ Foxtrick.ApiProxy = {
 		Foxtrick.OAuth.setTimestampAndNonce(msg);
 		Foxtrick.OAuth.SignatureMethod.sign(msg, accessor);
 		var url = Foxtrick.OAuth.addToURL(Foxtrick.ApiProxy.resourceUrl, msg.parameters);
-		Foxtrick.log("Fetching XML data from ", url);
+		Foxtrick.log("Fetching XML data from ",  Foxtrick.ApiProxy.stripToken(url));
 		Foxtrick.loadXml(url, function(x, status) {
 			if (status == 200) {
 				callback(x);
@@ -210,5 +210,9 @@ Foxtrick.ApiProxy = {
 	setAccessTokenSecret : function(secret) {
 		const teamId = FoxtrickHelper.getOwnTeamId();
 		FoxtrickPrefs.setString("oauth." + teamId + ".accessTokenSecret", secret);
+	},
+
+	stripToken : function(url) {
+		return url.substr(0,url.search('oauth_consumer_key')-1);
 	},
 };

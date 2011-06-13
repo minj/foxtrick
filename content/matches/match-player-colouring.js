@@ -133,7 +133,7 @@ var FoxtrickMatchPlayerColouring = {
 					Foxtrick.addClass(n.parentNode.parentNode,
 						"ft-match-event-away");
 				});
-			});
+			},FoxtrickMatchPlayerColouring);
 		},FoxtrickMatchPlayerColouring);
 	},
 
