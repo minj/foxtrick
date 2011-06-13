@@ -311,6 +311,6 @@ var FoxtrickCrossTable = {
 			catch (e) {
 				Foxtrick.log(e);
 			}
-		});
+		},FoxtrickCrossTable);
 	}
 };

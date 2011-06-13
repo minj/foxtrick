@@ -162,7 +162,7 @@ var FoxtrickMyMonitor = {
 					buildLink(team, nameLink);
 				}
 				Foxtrick.util.matchView.fillMatches(matchesContainer, xml);
-			});
+			},FoxtrickMyMonitor);
 		};
 		Foxtrick.map(teams, addTeam);
 	},

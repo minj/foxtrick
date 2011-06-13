@@ -89,6 +89,6 @@ var FoxtrickNtPeek = {
 				u20Container.getElementsByTagName("div")[0],
 				xml
 			);
-		});
+		},FoxtrickNtPeek);
 	}
 };

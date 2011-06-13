@@ -134,7 +134,7 @@ var FoxtrickMatchPlayerColouring = {
 						"ft-match-event-away");
 				});
 			});
-		});
+		},FoxtrickMatchPlayerColouring);
 	},
 
 	change : function(page, doc) {

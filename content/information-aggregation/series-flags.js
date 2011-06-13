@@ -67,7 +67,7 @@ var FoxtrickSeriesFlags = {
 						});
 						var flag = buildFromData(data);
 						callback(flag);
-					});
+					},FoxtrickSeriesFlags);
 				}
 			});
 		};

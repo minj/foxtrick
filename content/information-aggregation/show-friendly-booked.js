@@ -56,7 +56,7 @@ var FoxtrickShowFriendlyBooked = {
 					img.alt = img.title = Foxtrickl10n.getString("team.status.booked");
 					destCell.appendChild(img);
 				}
-			});
+			},FoxtrickShowFriendlyBooked);
 		});
 	}
 };

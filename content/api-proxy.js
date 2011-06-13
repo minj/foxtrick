@@ -138,8 +138,9 @@ Foxtrick.ApiProxy = {
 			false, false, false);
 	},
 
-	retrieve : function(doc, parameters, callback) {
+	retrieve : function(doc, parameters, callback, caller) {
 		FoxtrickHelper.getOwnTeamInfo(doc); // retrieve team ID first
+		if (caller && caller.MODULE_NAME) Foxtrick.log("ApiProxy: "+caller.MODULE_NAME);
 		Foxtrick.log("ApiProxy: attempting to retrieve: ", parameters, "…");
 		if (!Foxtrick.ApiProxy.authorized()) {
 			Foxtrick.log("ApiProxy: unauthorized.");
