@@ -42,7 +42,7 @@ var FoxtrickTickerColoring = {
 						Foxtrick.addClass(link, "ft-ticker-myht");
 				}
 			}
-			ticker.removeEventListener("DOMSubtreeModified", update, false);
+			ticker.addEventListener("DOMSubtreeModified", update, false);
 		}
 
 		update();
