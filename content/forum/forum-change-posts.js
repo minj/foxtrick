@@ -74,6 +74,7 @@ var FoxtrickForumChangePosts = {
 		var possibleStyles=['ht-ml', 'wiki', 'raw'];
 		var list = doc.createElement("ul");
 		list.className = "ft-pop right top";
+		list.setAttribute('style',"margin-top:15px;");
 		for (var i=0; i<possibleStyles.length; ++i) {
 			var item = doc.createElement("li");
 			var link = doc.createElement("span");

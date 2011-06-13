@@ -209,7 +209,8 @@ var FoxtrickExtraShortcuts = {
 					var list = span.getElementsByTagName('ul');
 					list = doc.createElement("ul");
 					list.className = "ft-pop";
-
+					list.setAttribute('style',"margin-top:-1px;");
+							
 
 					if (radio_xml.getElementsByTagName('status')[0].textContent==='online') {
 

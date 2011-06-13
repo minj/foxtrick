@@ -221,6 +221,7 @@
 
 							var list = doc.createElement("ul");
 							list.className = "ft-pop";
+							list.setAttribute('style',"margin-top:-5px;");
 							for (var j=0; j<this.icons[i].versions.length; ++j) {
 								var item = doc.createElement("li");
 								var link = doc.createElement("span");
