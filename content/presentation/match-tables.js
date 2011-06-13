@@ -1,6 +1,6 @@
 /*
  * match-tables.js
- * @author Mod-spambot
+ * @author Mod-spambot, ryanli
  */
 
 var FoxtrickMatchTables = {
@@ -9,41 +9,43 @@ var FoxtrickMatchTables = {
 	PAGES : new Array('matchesarchiv', 'matches','league','youthleague'),
 	OPTIONS :  new Array("RemoveTime"),
 
-	run : function( page, doc ) {
-		if (Foxtrick.isStandardLayout(doc)) {
-			if (page == "league") {
-				// remove non-breaking spaces (&nbsp;) in league table
-				var table = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLeagueTable");
-				if (!table)
-					return;
-				table = table.getElementsByTagName("table")[0];
-				// need to replace cell by cell otherwise we could overwrite
-				// information provided by other modules, namely
-				// ShowFriendlyBooked
-				var cells = table.getElementsByTagName("td");
-				Foxtrick.map(cells, function(n) {
-					if (n.innerHTML.search(/&nbsp;/) > -1)
-						n.innerHTML = n.innerHTML.replace(/&nbsp;/g, "");
-				});
-			}
-			return;
+	// remove spaces on league page
+	removeSpace : function(page, doc) {
+		if (page == "league") {
+			// remove non-breaking spaces (&nbsp;) in league table
+			var table = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLeagueTable");
+			if (!table)
+				return;
+			table = table.getElementsByTagName("table")[0];
+			// need to replace cell by cell otherwise we could overwrite
+			// information provided by other modules, namely
+			// ShowFriendlyBooked
+			var cells = table.getElementsByTagName("td");
+			Foxtrick.map(cells, function(n) {
+				if (n.innerHTML.search(/&nbsp;/) > -1)
+					n.innerHTML = n.innerHTML.replace(/&nbsp;/g, "");
+			});
 		}
+	},
 
-		// adjust league table
-		if (page=='league' || page== 'youthleague') {
+	addStyleSheet : function(page, doc) {
+		if (Foxtrick.isStandardLayout(doc))
+			return;
+		if (page=='league' || page== 'youthleague')
 			Foxtrick.addStyleSheet(doc,Foxtrick.ResourcePath+"resources/css/FoxtrickMatchTables_league.css");
-			return;
-		}
+		else if (page=='matchesarchiv' || page== 'matches')
+			Foxtrick.addStyleSheet(doc,Foxtrick.ResourcePath+"resources/css/FoxtrickMatchTables_matches.css");
+	},
 
-		// adjust matchtable, keep hour
-		if (!Foxtrick.isModuleFeatureEnabled( this, "RemoveTime" ) ) {
-			if (page=='matchesarchiv' || page== 'matches') Foxtrick.addStyleSheet(doc,Foxtrick.ResourcePath+"resources/css/FoxtrickMatchTables_matches.css");
+	// adjust matchtable, remove hour
+	removeTime : function(doc) {
+		if (Foxtrick.isStandardLayout(doc))
 			return;
-		}
-
-		// adjust matchtable, remove hour
+		if (!Foxtrick.isModuleFeatureEnabled(this, "RemoveTime"))
+			return;
 		var id = "ft_matchtable";
-		if (doc.getElementById(id)) return;
+		if (doc.getElementById(id))
+			return;
 
 		var div = doc.getElementById('mainBody');
 		if (!div) return;
@@ -102,10 +104,13 @@ var FoxtrickMatchTables = {
 		}
 	},
 
-	change : function( page, doc ) {
-		var id = "ft_matchtable";
-		if(!doc.getElementById(id)) {
-			this.run( page, doc );
-		}
+	run : function(page, doc) {
+		this.removeSpace(page, doc);
+		this.addStyleSheet(page, doc);
+		this.removeTime(doc);
+	},
+
+	change : function(page, doc) {
+		this.removeTime(doc);
 	}
 };
