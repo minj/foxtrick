@@ -209,7 +209,7 @@ var FoxtrickForumTemplates = {
 	_removeTemplate : function(ev) {
 		if (Foxtrick.confirmDialog(Foxtrickl10n.getString('delete_template_ask'))) {
 			FoxtrickPrefs.delListPref(FoxtrickForumTemplates._TEMPLATES_PREFLIST, ev.target.msg);
-			ev.target.parentNode.parentNode.parentNode.removeChild(ev.target.parentNode.parentNode);
+			ev.target.parentNode.parentNode.removeChild(ev.target.parentNode);
 		}
 	},
 
