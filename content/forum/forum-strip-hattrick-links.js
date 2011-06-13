@@ -33,11 +33,11 @@ var FoxtrickForumStripHattrickLinks = {
 
 		var targets = doc.getElementById('mainBody').getElementsByTagName("input");  // Forum
 		var target = targets[targets.length-1];
-		var button_ok = null;
-		if (page=='forumWritePost') button_ok = targets[targets.length-2];
-		if (page=='guestbook') target = null;
+		if (page=='forumWritePost') target = targets[targets.length-2];
+		if (page=='guestbook') target = targets[1];
 
-		button_ok.addEventListener("click", this.submitListener, false);
+		//if (target) Foxtrick.log(target.value+'\n');
+		if (target) target.addEventListener("click", this.submitListener, false);
 	},
 
 	strip : function(string) {
