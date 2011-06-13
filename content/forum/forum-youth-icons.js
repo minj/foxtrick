@@ -132,8 +132,8 @@
 		if  (( toolbar == null ) && (!page == 'ads' )) return;
 		var toolbar_main = toolbar;
 
-
-		if ( (page == 'messageWritePost' ) && ( !Foxtrick.isStandardLayout( doc ) ) )
+		// seems to be obsolete. no mainbox and works fine in simple skin anyways
+		/*if ( (page == 'messageWritePost' ) && ( !Foxtrick.isStandardLayout( doc ) ) )
 			try {
 				var mainbbox = doc.getElementsByClassName("mainBox")[0];
 				mainbbox.setAttribute( "style", "padding-bottom:25px;");
@@ -141,7 +141,7 @@
 			catch (e)
 			{
 				Foxtrick.dump('YouthIcons: mainBox not found ' + e + '\n');
-			}
+			}*/
 
 		toolbar.setAttribute("style","float:left; margin-right:3px;");
 
