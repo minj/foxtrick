@@ -40,7 +40,7 @@ FoxtrickExtendedPlayerDetails = {
 
 		if (JoinedText.search("NaN") == -1) {
 			var part1 = Foxtrick.substr(joined_elm.innerHTML, 0, Foxtrick.strrpos( joined_elm.innerHTML, ")"));
-			part1 = part1.replace('(', '<span class="date smallText ft_since"><br>(');
+			part1 = part1.replace('(', '<span class="shy smallText ft_since"><br>(');
 			joined_elm.innerHTML = part1 + ' <span>('+ season_week.week + '/' + season_week.season + ')</span>, ' + JoinedText + ')</span>';
 		}
 		else Foxtrick.dump('  Could not create jointime (NaN)\n');
