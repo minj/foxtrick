@@ -63,7 +63,7 @@ pref("extensions.foxtrick.prefs.module.ExtraShortcuts.AddSpace.enabled", true);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.BalkaRadio.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.enabled", true);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Downtime.enabled", false);
-pref("extensions.foxtrick.prefs.module.ExtraShortcuts.FoxTrickPrefs.enabled", false);
+pref("extensions.foxtrick.prefs.module.ExtraShortcuts.FoxTrickPrefs.enabled", true);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.HtRadio.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Latehome.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.No9.enabled", false);
