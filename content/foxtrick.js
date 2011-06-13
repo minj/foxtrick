@@ -678,8 +678,7 @@ Foxtrick.reload_module_css = function(doc) {
 					Foxtrick.unload_css_permanent(module.OPTIONS_CSS[j]);
 			}
 		}
-		if (!Foxtrick.isHt(doc)) return;  // no loading on non hattrick pages
-		
+
 		// load CSS
 		for (var i in Foxtrick.modules) {
 			var module = Foxtrick.modules[i];
