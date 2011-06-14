@@ -474,6 +474,8 @@ var FoxtrickForumChangePosts = {
 			else {
 				var copy_style='ht-ml';
 				var header=ev.target.parentNode.parentNode.parentNode.getElementsByTagName('div')[0];
+			   	if (header.className.search('cfHeader')==-1) header=header.nextSibling; // official. detailed header is one down
+				Foxtrick.log(header.className,'\n');			
 			}
 			var insertBefore = header.parentNode;
 
