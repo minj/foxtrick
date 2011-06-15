@@ -13,12 +13,12 @@
 </links>
 
 <head_developers value="Head Developer">
-	<head_developer id="2336766" name="Mod-spambot" />
+	<head_developer id="8342420" name="ryanli" />
 </head_developers>
 
 <project_owners value="Project Owners">
 	<project_owner id="1270528" name="larsw84" />
-	<project_owner id="2336766" name="Mod-spambot" />
+	<project_owner id="2336766" name="spambot" />
 	<project_owner id="7776339" name="convincedd" />
 	<project_owner id="8342420" name="ryanli" />
 </project_owners>
@@ -56,7 +56,7 @@
 		<translator id="6779565" name="LasseSvendsen" />
 	</translation>
 	<translation language="Deutsch">
-		<translator id="2336766" name="Mod-spambot" />
+		<translator id="2336766" name="spambot" />
 		<translator id="7776339" name="convincedd" />
 	</translation>
 	<translation language="Ελληνικά">
@@ -306,7 +306,6 @@
 	<chpp id="146464" name="Minkfish" />
 	<chpp id="2255366" name="Mistr_Moon" />
 	<chpp id="2287367" name="Mod-Jacome" />
-	<chpp id="2336766" name="Mod-spambot" />
 	<chpp id="2346409" name="Mr_Clean" />
 	<chpp id="443557" name="Multiplex" />
 	<chpp id="1515063" name="Nils-N" />
@@ -328,6 +327,7 @@
 	<chpp id="694668" name="RinghioCoach" />
 	<chpp id="368411" name="Robin" />
 	<chpp id="4984086" name="RoniMenashe" />
+	<chpp id="8342420" name="ryanli" />
 	<chpp id="5043273" name="SKaLeRoi" />
 	<chpp id="3797490" name="SLV-Kvalheim" />
 	<chpp id="4681300" name="Scratchy" />
