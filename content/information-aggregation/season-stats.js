@@ -238,7 +238,20 @@ var FoxtrickSeasonStats = {
 	SelectBox_Select : function(ev) {
 		try {
 			var doc = ev.target.ownerDocument;
-			doc.location.href = doc.location.href.replace(/season=\d+/,'season='+ev["target"]["value"]);
+			var actiontype='';
+			var select = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlMatchType');
+			var options = select.getElementsByTagName('option');
+			for (var i=0;i<options.length;++i) {
+				if (options[i].hasAttribute('selected')) {
+					actiontype = options[i].value; 
+					break;						
+				}
+			}	
+			if (doc.location.href.search(/actiontype/i)==-1)// has no actiontype. add one
+				doc.location.href = doc.location.href.replace(/season=\d+/,'season='+ev["target"]["value"])+'&actiontype=' + actiontype;
+			else 
+				doc.location.href = doc.location.href.replace(/season=\d+/,'season='+ev["target"]["value"]).replace(/actiontype=.+/,'actiontype='+actiontype);
+			
 		}
 		catch (e) {
 			Foxtrick.log(e);
