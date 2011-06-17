@@ -75,7 +75,8 @@ var FoxtrickTickerAlert = {
 			const tickers = Foxtrick.map(divs, function(n) {
 				return {
 					text : n.textContent,
-					link : n.getElementsByTagName("a")[0].href
+					link : n.getElementsByTagName("a")[0].href,
+					isNew : (n.getElementsByTagName("strong").length > 0)
 				};
 			});
 			return tickers;
@@ -100,6 +101,8 @@ var FoxtrickTickerAlert = {
 				Foxtrick.sessionSet("tickers", tickersNow);
 
 				const newTickers = Foxtrick.filter(tickersNow, function(n) {
+					if (!n.isNew)
+						return false;
 					for (var i = 0; i < tickers.length; ++i) {
 						var old = tickers[i];
 						if (old.text == n.text && old.link == n.link)
