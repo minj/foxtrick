@@ -38,7 +38,7 @@ var FoxtrickTickerColoring = {
 						Foxtrick.addClass(link, "ft-ticker-guestbook");
 					else if (href.indexOf("/Inbox/") !== -1)
 						Foxtrick.addClass(link, "ft-ticker-mail");
-					else if (href.indexOf("/Myhattrick/?actionType") !== -1)
+					else if (href.indexOf("/Myhattrick/Dashboard.aspx?actionType") !== -1)
 						Foxtrick.addClass(link, "ft-ticker-myht");
 				}
 			}

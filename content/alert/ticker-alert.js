@@ -55,7 +55,7 @@ var FoxtrickTickerAlert = {
 		"challenge" : /\/Challenges/i,
 		"guestbook" : /\/Club\/Manager\/Guestbook\.aspx\?teamid=/i,
 		"mail" : /\/Inbox/i,
-		"myht" : /\/Myhattrick\/\?actionType/i,
+		"myht" : /\/Myhattrick\/Dashboard\.aspx\?actionType=/i,
 		"others" : /.*/
 	},
 
