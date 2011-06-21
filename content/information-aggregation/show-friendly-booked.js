@@ -8,8 +8,35 @@ var FoxtrickShowFriendlyBooked = {
 	MODULE_NAME : "ShowFriendlyBooked",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["league"],
-
+	OPTIONS : new Array("OnDemand"),
+	
 	run : function(page, doc) {
+		if (Foxtrick.isModuleFeatureEnabled(this, "OnDemand")) this.AddOnDemand(doc);
+		else this.AddFriendlies(doc);
+	},
+	
+	AddOnDemand : function(doc) {
+	  try {
+		var gametype_span = doc.getElementById("ctl00_ctl00_CPContent_CPMain_hlAllGames");
+		var span = doc.createElement('span');
+		span.setAttribute('id','ShowFriendliesLinkId');
+		span.className = 'float_left';
+		var a = doc.createElement('a');
+		a.textContent = Foxtrickl10n.getString("ShowFriendlyBooked.ShowFriendlies");
+		a.href = 'javascript:void()';
+		Foxtrick.addEventListenerChangeSave(a, 'click', FoxtrickShowFriendlyBooked.Show, false);
+		span.appendChild(a);
+		gametype_span.parentNode.parentNode.insertBefore(span,gametype_span.parentNode);
+	  } catch(e) { Foxtrick.log(e);}
+	},
+
+	Show : function(ev) {
+		var doc = ev.target.ownerDocument;
+		doc.getElementById('ShowFriendliesLinkId').setAttribute('style','display:none;');
+		FoxtrickShowFriendlyBooked.AddFriendlies(doc);
+	},
+	
+	AddFriendlies : function(doc) {
 		var leagueTableSpan = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLeagueTable");
 		var leagueTable = leagueTableSpan.getElementsByTagName("table")[0];
 		var rows = leagueTable.getElementsByTagName("tr");
