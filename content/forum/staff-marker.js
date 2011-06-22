@@ -198,6 +198,9 @@ var FoxtrickStaffMarker = {
 					option.style.width = "195px";
 					option.style.borderbottom = "dotted thin #ddd";
 				}
+				if (option.value==-3) {
+					option.style.backgroundColor='#DDD';
+				}
 			}
 		});
 	}
