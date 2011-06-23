@@ -153,6 +153,7 @@ ul.ft-pop {
 	list-style-type: none;
 	z-index: 100;
 	padding-left: 0px;
+	padding-right: 0px;
 }
 ul.ft-pop.right {
 	right: 0px;

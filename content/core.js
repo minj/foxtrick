@@ -24,6 +24,7 @@ var FoxtrickCore = {
 	],
 	CSS_SIMPLE_RTL : [
 		Foxtrick.ResourcePath + "resources/css/foxtrick.css",
+		Foxtrick.ResourcePath + "resources/css/foxtrick-simple.css",
 		Foxtrick.ResourcePath + "resources/css/rtl.css",
 		Foxtrick.ResourcePath + "resources/css/headercopyicons_simple_rtl.css"
 	],

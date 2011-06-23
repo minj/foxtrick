@@ -9,6 +9,7 @@ var FoxtrickPrefsDialogHTML = {
 	CORE_MODULE : true,
 	PAGES : [ "all" ],
 	CSS : Foxtrick.ResourcePath + "resources/css/preferences-dialog-html.css",
+	CSS_RTL : Foxtrick.ResourcePath + "resources/css/preferences-dialog-html-rtl.css",
 
 	run : function(page, doc) {
 		// make chrome:// links clickable

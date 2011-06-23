@@ -10,6 +10,8 @@ var FoxtrickLocalTime = {
 	PAGES : ["all"],
 	CSS : Foxtrick.ResourcePath + "resources/css/local-time.css",
 	CSS_SIMPLE: Foxtrick.ResourcePath + "resources/css/local-time-simple.css",
+	CSS_RTL : Foxtrick.ResourcePath + "resources/css/local-time-rtl.css",
+	CSS_SIMPLE_RTL: Foxtrick.ResourcePath + "resources/css/local-time-simple-rtl.css",
 
 	run : function(page, doc) {
 		var time = doc.getElementById("time");

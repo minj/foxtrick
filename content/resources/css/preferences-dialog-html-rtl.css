@@ -1,0 +1,228 @@
+#foxtrick_prefs_body {
+	margin: 20px 0;
+}
+
+#sidebar #idFoxtrickPrefs, .subMenuConf #idFoxtrickPrefs, .subMenu #idFoxtrickPrefs {
+	border: 1px solid #ccc;
+	background-color: #eef;
+}
+
+#foxtrick_prefs_save {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#foxtrick_prefsave, #foxtrick_prefcancel {
+	margin-right: 10px;
+}
+
+.ft_pref_module {
+	border: 1px solid #ccc;
+	margin: 5px;
+	padding: 5px;
+}
+
+.ft_pref_module:hover {
+	background-color: #f8f8ff;
+	border: 1px solid #000;
+}
+
+.ft_pref_checkbox_group {
+	margin-right: 10px;
+	padding-right: 20px;
+}
+
+.ft_pref_radio_group {
+	margin-right: 10px;
+}
+
+.ft_pref_input_option_text {
+	width: 98%;
+}
+
+.checkbox_label {
+	display:inline;
+}
+
+.ft_pref_list_caption > a.ft_actionicon {
+	float: left;
+	margin-left: 5px;
+}
+
+div.ft_pref_group_caption {
+	font-weight: bold;
+}
+
+#foxtrick_preftabs > div {
+	margin-right: 10px;
+	padding: 1px 20px 31px;
+}
+
+div.ft_icon foxtrickInfo {
+	width: 16px;
+	height: 16px;
+	background: url('chrome://foxtrick/content/resources/img/Aiga_information_green.png') 50% no-repeat;
+}
+
+div.ft_icon foxtrickInfo:hover {
+	background: url('chrome://foxtrick/content/resources/img/Aiga_information_yellow.png') 50% no-repeat;
+}
+
+.onpageprefs_extraprefs h3 {
+	cursor: pointer;
+	margin-right: 10px;
+	margin-left:5px;
+	border-bottom: 2px solid #fc0 !important;
+}
+
+.ft_prefs_check_div + .ft_pref_checkbox_group, .ft_prefs_check_div + .ft_pref_radio_group {
+	margin-top: 5px;
+}
+.ft_prefs_check_div {
+	padding-right: 20px;
+}
+.ft_prefs_check_div > input {
+	float: right;
+	width: 14px;
+	margin-right: -16px;
+}
+.ft_prefs_check_div > a {
+	float: left;
+}
+
+.ft_pref_module > div > label {
+	font-weight: bold;
+}
+
+/* override HT sidebar padding for a elements */
+.sidebarBox .ft_pref_module a {
+	padding: 0px !important;
+}
+
+#foxtrick_OnPagePrefs_box td {
+	padding-left: 4px !important;
+	padding-right: 0px !important;
+}
+
+#foxtrick_OnPagePrefs_box .boxBody {
+	padding: 8px 5px !important;
+}
+
+
+/* simple */
+#sidebar #foxtrick_OnPagePrefs_box .ft_pref_module > div.ft_prefs_check_div label {
+	/*width: 115px;*/
+	overflow: hidden;
+}
+#sidebar #foxtrick_OnPagePrefs_box .ft_pref_module > div.ft_pref_checkbox_group label {
+	/*width: 105px;*/
+	overflow: hidden;
+}
+#sidebar #foxtrick_OnPagePrefs_box .ft_pref_module > div.ft_pref_radio_group label {
+	width: 105px;
+	overflow: hidden;
+}
+.subMenu #foxtrick_OnPagePrefs_box .ft_pref_module > div.ft_prefs_check_div label {
+	width: 55px;
+	overflow: hidden;
+}
+.subMenu #foxtrick_OnPagePrefs_box .ft_pref_module > div.ft_pref_checkbox_group label {
+	width: 45px;
+	overflow: hidden;
+}
+.subMenu #foxtrick_OnPagePrefs_box .ft_pref_module > div.ft_pref_radio_group label {
+	width: 45px;
+	overflow: hidden;
+}
+.subMenuConf #foxtrick_OnPagePrefs_box .ft_pref_module > div.ft_prefs_check_div label {
+	width: 155px;
+	overflow: hidden;
+}
+.subMenuConf #foxtrick_OnPagePrefs_box .ft_pref_module > div.ft_pref_checkbox_group label {
+	width: 145px;
+	overflow: hidden;
+}
+.subMenuConf #foxtrick_OnPagePrefs_box .ft_pref_module > div.ft_pref_radio_group label {
+	width: 145px;
+	overflow: hidden;
+}
+
+
+/* std */
+#sidebar #foxtrick_OnPagePrefs_box .boxBody .ft_pref_module > div.ft_prefs_check_div label {
+	width: 115px;
+	overflow: hidden;
+}
+#sidebar #foxtrick_OnPagePrefs_box .boxBody .ft_pref_module > div.ft_pref_checkbox_group label {
+	width: 105px;
+	overflow: hidden;
+}
+#sidebar #foxtrick_OnPagePrefs_box .boxBody .ft_pref_module > div.ft_pref_radio_group label {
+	width: 105px;
+	overflow: hidden;
+}
+.subMenu #foxtrick_OnPagePrefs_box .boxBody .ft_pref_module > div.ft_prefs_check_div label {
+	width: 75px;
+	overflow: hidden;
+}
+.subMenu #foxtrick_OnPagePrefs_box .boxBody .ft_pref_module > div.ft_pref_checkbox_group label {
+	width: 65px;
+	overflow: hidden;
+}
+.subMenu #foxtrick_OnPagePrefs_box .boxBody .ft_pref_module > div.ft_pref_radio_group label {
+	width: 65px;
+	overflow: hidden;
+}
+.subMenuConf #foxtrick_OnPagePrefs_box .boxBody .ft_pref_module > div.ft_prefs_check_div label {
+	width: 195px;
+	overflow: hidden;
+}
+.subMenuConf #foxtrick_OnPagePrefs_box .boxBody .ft_pref_module > div.ft_pref_checkbox_group label {
+	width: 185px;
+	overflow: hidden;
+}
+.subMenuConf #foxtrick_OnPagePrefs_box .boxBody .ft_pref_module > div.ft_pref_radio_group label {
+	width: 185px;
+	overflow: hidden;
+}
+
+#idFoxtrickPrefs {
+	position: relative;
+	z-index: 99;
+	padding: 5px;
+}
+
+#sidebar #idFoxtrickPrefs {
+	float: left;
+}
+
+.subMenuConf #idFoxtrickPrefs, .subMenu #idFoxtrickPrefs {
+	float: right;
+}
+
+#sidebar .ft_onpage_prefs_simple #idFoxtrickPrefs {
+	width: 617px;
+}
+
+.subMenuConf .ft_onpage_prefs_simple #idFoxtrickPrefs, .subMenu .ft_onpage_prefs_simple #idFoxtrickPrefs {
+	width: 750px;
+}
+
+#sidebar .ft_onpage_prefs_std  #idFoxtrickPrefs {
+	width: 763px;
+	margin-left: -5px;
+}
+
+.subMenuConf .ft_onpage_prefs_std #idFoxtrickPrefs, .subMenu .ft_onpage_prefs_std #idFoxtrickPrefs {
+	width: 936px;
+	margin-right: -5px;
+}
+
+.ft_onpage_prefs_std div.ft_sidebarBoxUnfolded + div.boxBody + div.boxFooter {
+	display: none;
+}
+
+.onpageprefs_extraprefs {
+	margin-top: 20px;
+	margin-bottom:20px;
+}
