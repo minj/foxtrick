@@ -30,12 +30,19 @@ var FoxtrickTableSort = {
 	clickListener : function( ev ) {
 		try {
 			var this_th = ev.target;
+			
+			// find table header cell if click was on some inner span or img
+			for (var i=0;i<5;++i) 
+			{	if (this_th.nodeName=='TH') break; 
+				this_th = this_th.parentNode;
+			} 
 			var table = this_th.parentNode.parentNode.parentNode;
+			var index = 0;
 			for (var i = 0; i < table.rows.length; ++i) {
-				var index = 0;
 				var found = false;
 				for (var j = 0; j < table.rows[i].cells.length; ++j) {
 					if (table.rows[i].cells[j]===this_th) { found = true; break; }
+					// adjust for colspan in header
 					var colspan = 1;
 					if (table.rows[i].cells[j].getAttribute('colspan')!=null) colspan = parseInt(table.rows[i].cells[j].getAttribute('colspan'));
 					index += colspan;
@@ -43,7 +50,8 @@ var FoxtrickTableSort = {
 				if (found) break;
 			}
 			var sort_start = i;
-
+			
+			
 			var lastSortIndex = table.getAttribute('lastSortIndex');
 			if (lastSortIndex==null || lastSortIndex!=index) {
 				var direction = 1;
@@ -57,13 +65,21 @@ var FoxtrickTableSort = {
 			var num_cols = table.rows[sort_start+1].cells.length;
 			for (var i = sort_start+1; i < table.rows.length; ++i) {
 				if (num_cols != table.rows[i].cells.length) break;
-				var inner = Foxtrick.trim(Foxtrick.stripHTML(table.rows[i].cells[index].innerHTML));
+				
+				// adjust index for colspans in table
+				var tdindex = index;
+				for (var j = 0; j < index-1; ++j) {
+					if (table.rows[i].cells[j].getAttribute('colspan')!=null) {
+						tdindex = tdindex-parseInt(table.rows[i].cells[j].getAttribute('colspan'))+1;
+					}
+				}
+				var inner = Foxtrick.trim(Foxtrick.stripHTML(table.rows[i].cells[tdindex].innerHTML));
 				if (isNaN(parseFloat(inner)) && inner!='') {is_num=false;}
 				if (inner.search(/^(-|\d)\/(-|\d)$/)==-1 && inner!='') {is_youthskill=false;}
 				if (inner.search(/^\d+\.\d+$/)==-1 && inner!='') {is_age=false;}
 				if (inner.search(/^\d+\./)==-1 && inner!='') {is_ordinal=false;}
 				if (!Foxtrick.util.time.getDateFromText(inner)) {is_date=false;}
-				if (table.rows[i].cells[index].innerHTML.search(/lt=skillshort&amp;ll=\d+/)==-1 && inner!='') {is_skill=false;}
+				if (table.rows[i].cells[tdindex].innerHTML.search(/lt=skillshort&amp;ll=\d+/)==-1 && inner!='') {is_skill=false;}
 			}
 			var sort_end = i;
 
@@ -76,8 +92,8 @@ var FoxtrickTableSort = {
 			var cmp = function (a, b) {
 				var aContent, bContent;
 
-				aContent = a.cells[index].innerHTML;
-				bContent = b.cells[index].innerHTML;
+				aContent = a.cells[tdindex].innerHTML;
+				bContent = b.cells[tdindex].innerHTML;
 
 				if (aContent === bContent) {
 					return 0;
@@ -95,8 +111,8 @@ var FoxtrickTableSort = {
 				}
 
 				if (is_skill) {
-					aContent = (a.cells[index].innerHTML.match(/lt=skillshort&amp;ll=(\d+)/)[1]);
-					bContent = (b.cells[index].innerHTML.match(/lt=skillshort&amp;ll=(\d+)/)[1]);
+					aContent = (a.cells[tdindex].innerHTML.match(/lt=skillshort&amp;ll=(\d+)/)[1]);
+					bContent = (b.cells[tdindex].innerHTML.match(/lt=skillshort&amp;ll=(\d+)/)[1]);
 					return direction * (bContent - aContent);
 				}
 				else if (is_date) {
@@ -106,9 +122,9 @@ var FoxtrickTableSort = {
 				}
 				else if (is_youthskill) {
 					aContent = aContent.replace('-','0').match(/^(\d)\/(\d)$/);
-					aContent = aContent[1] * 18 + aContent[2] * 2 + (a.cells[index].getElementsByTagName('strong').length==0?0:1);
+					aContent = aContent[1] * 18 + aContent[2] * 2 + (a.cells[tdindex].getElementsByTagName('strong').length==0?0:1);
 					bContent = bContent.replace('-','0').match(/^(\d)\/(\d)$/);
-					bContent = bContent[1] * 18 + bContent[2] * 2 + (b.cells[index].getElementsByTagName('strong').length==0?0:1);
+					bContent = bContent[1] * 18 + bContent[2] * 2 + (b.cells[tdindex].getElementsByTagName('strong').length==0?0:1);
 					return direction * (bContent - aContent);
 				}
 				else if (is_age) {
