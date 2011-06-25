@@ -190,7 +190,7 @@ var FoxtrickForumChangePosts = {
 						}
 					}
 				}
-				else if (!poster_link2 || !post_link2) {
+				else if (!poster_link2 || !post_link2) { 
 					if (header_left_link.href.search(/showMInd|Forum\/Read\.aspx/) != -1)
 						post_link2 = header_left_link;
 					else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1) {
@@ -369,7 +369,7 @@ var FoxtrickForumChangePosts = {
 				if (supporter_link1) {
 					poster_link1.parentNode.insertBefore(alt_supporter.cloneNode(true),poster_link1.nextSibling);
 				}
-				if (supporter_link2) {
+				if (supporter_link2 && poster_link2) {
 					poster_link2.parentNode.insertBefore(alt_supporter.cloneNode(true),poster_link2.nextSibling);
 				}
 			}
@@ -379,7 +379,7 @@ var FoxtrickForumChangePosts = {
 					if (poster_link1.innerHTML == TName_lng) {
 						poster_link1.parentNode.parentNode.firstChild.nextSibling.setAttribute('class','ft_slH_PID_left');
 					}
-					else if (poster_link2.innerHTML == TName_lng) {
+					else if (poster_link2 && poster_link2.innerHTML == TName_lng) {
 						poster_link2.parentNode.parentNode.firstChild.setAttribute('class','ft_slH_PID_right');
 					}
 				}
