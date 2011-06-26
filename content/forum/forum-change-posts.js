@@ -68,7 +68,7 @@ var FoxtrickForumChangePosts = {
 		var copy_posting_div = doc.createElement("div");
 		copy_posting_div.className = "ft-pop-up-container";
 		if (Foxtrick.isSupporter(doc))
-			copy_posting_div.style.top = "3px";
+			copy_posting_div.style.top = "2px";
 		copy_posting_div.appendChild(copy_posting_img);
 
 		var possibleStyles=['ht-ml', 'wiki', 'raw'];
