@@ -264,11 +264,6 @@ var FoxtrickForumChangePosts = {
 				}
 			}  // end copy post id
 
-			if (do_hide_old_time) {
-				if (header_right.innerHTML.search(/ \d{1,4}.*?\d{1,2}.*?\d{1,4}.*? \d+:\d+/gi)!=-1)
-					header_right.innerHTML = header_right.innerHTML.replace(/ (\d{1,4}.*?\d{1,2}.*?\d{1,4}.*?)( \d+:\d+)/gi,"<span title='$2'>$1</span>");
-			}
-
 			// copy posting ---------------------------------------------
 			if (do_copy_posting) {
 				var copy_div = copy_posting_div.cloneNode(true);
@@ -290,6 +285,11 @@ var FoxtrickForumChangePosts = {
 					footer_left.insertBefore(copy_link,footer_left.firstChild);
 				}
 			}  // end copy posting
+
+			if (do_hide_old_time) {
+				if (header_right.innerHTML.search(/ \d{1,4}.*?\d{1,2}.*?\d{1,4}.*? \d+:\d+/gi)!=-1)
+					header_right.innerHTML = header_right.innerHTML.replace(/ (\d{1,4}.*?\d{1,2}.*?\d{1,4}.*?)( \d+:\d+)/gi,"<span title='$2'>$1</span>");
+			}
 
 			// redir to team ------------------------------------------
 			if ( do_redir_to_team ) {
