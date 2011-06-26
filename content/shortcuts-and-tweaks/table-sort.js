@@ -50,7 +50,7 @@ var FoxtrickTableSort = {
 				if (found) break;
 			}
 			var sort_start = i;
-			
+			//Foxtrick.log('tablesort index:',index);
 			
 			var lastSortIndex = table.getAttribute('lastSortIndex');
 			if (lastSortIndex==null || lastSortIndex!=index) {
@@ -82,7 +82,8 @@ var FoxtrickTableSort = {
 				if (table.rows[i].cells[tdindex].innerHTML.search(/lt=skillshort&amp;ll=\d+/)==-1 && inner!='') {is_skill=false;}
 			}
 			var sort_end = i;
-
+			//Foxtrick.log('tablesort: ','is_num:',is_num,' is_age:',is_age,' is_youthskill:',is_youthskill,' is_ordinal:',is_ordinal,' is_date:',is_date,' is_skill',is_skill);
+			
 			// rows to be sorted
 			var rows = new Array();
 			for (var i = sort_start+1; i < sort_end; ++i) {
