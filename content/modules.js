@@ -147,6 +147,7 @@ Foxtrick.modules = [
 	FoxtrickMarkAllAsRead,
 	FoxtrickShowFriendlyBooked,
 	FoxtrickShowLineupSet,
+	FoxtrickSupporterStatsEnhancements,
 	FoxtrickTickerAlert // place below all other modules that make changes to #ticker
 ];
 
