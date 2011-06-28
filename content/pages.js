@@ -73,7 +73,7 @@ Foxtrick.ht_pages = {
 	'marathon'                  : '/World/Series/Marathon.aspx',
 	'promotion'                 : '/World/Series/Promotion.aspx',
 	'fixtures'                  : '/World/Series/Fixtures.aspx',
-	'players'                   : '/Club/Players/$|/Club/Players/\?|/Club/Players/?TeamID=|/Club/Players/default.aspx?TeamID=|/Club/NationalTeam/NTPlayers.aspx|/Club/Players/Oldies.aspx|/Club/Players/Coaches.aspx',
+	'players'                   : '/Club/Players/$|/Club/Players/\?|/Club/Players/?TeamID=|/Club/Players/default.aspx?TeamID=|/Club/NationalTeam/NTPlayers.aspx|/Club/Players/Oldies.aspx',
 	'PlayerHistory'				: '/Club/Players/PlayerHistory.aspx',
 	'playerevents'				: '/Club/Players/PlayerHistory.aspx?playerId=\\d+&actionType=playerevents',
 	'trainingevents'			: '/Club/Players/PlayerHistory.aspx?playerId=\\d+&actionType=trainingevents',
