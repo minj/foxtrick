@@ -28,6 +28,12 @@ Foxtrick.Pages.TransferSearchResults = {
 				});
 				if (bookmarkLinks.length > 0)
 					player.bookmarkLink = bookmarkLinks[0].cloneNode(true);
+				// first row - hotlist link				
+				var hotlistLinks = Foxtrick.filter(divs[0].getElementsByTagName("a"), function(l) {
+					return l.href.search(/hotList/i) != -1;
+				});
+				if (hotlistLinks.length > 0)
+					player.hotlistLink = hotlistLinks[0].cloneNode(true);
 				// first row - cards, injury
 				player.redCard = 0;
 				player.yellowCard = 0;
@@ -67,9 +73,11 @@ Foxtrick.Pages.TransferSearchResults = {
 				}
 				// first row - current bid, bidder
 				var items = divs[0].getElementsByClassName("transferPlayerInfoItems");
-				player.currentBid = Foxtrick.trimnum(items[items.length - 2].textContent);
-				if (items[items.length - 1].getElementsByTagName("a").length == 1) {
-					player.currentBidderLink = items[items.length - 1].getElementsByTagName("a")[0];
+				var offset=0;
+				if (player.hotlistLink) offset=1;
+				player.currentBid = Foxtrick.trimnum(items[items.length - 2 - offset].textContent);
+				if (items[items.length - 1 - offset].getElementsByTagName("a").length == 1) {
+					player.currentBidderLink = items[items.length - 1 - offset].getElementsByTagName("a")[0];
 					player.currentBidderLinkShort = player.currentBidderLink.cloneNode(true);
 					player.currentBidderLinkShort.textContent = "x";
 				}

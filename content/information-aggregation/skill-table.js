@@ -80,9 +80,6 @@ var FoxtrickSkillTable = {
 		try{
 			var doc = ev.target.ownerDocument;
 			doc.getElementById('skilltable_addHomegrownId').setAttribute('style','display:none;');
-			doc.getElementsByClassName("ft_skilltable_wrapper")[0].innerHTML='';		
-			var loading = Foxtrick.util.note.createLoading(doc);
-			doc.getElementsByClassName("ft_skilltable_wrapper")[0].appendChild(loading);
 								
 			var fullType = { type : "oldiesAndOwn"};
 			FoxtrickSkillTable.createTable(doc, fullType );
@@ -90,7 +87,7 @@ var FoxtrickSkillTable = {
 	},
 
 	removeBotPlayers : function(ev) {
-		try{
+		try {
 			var doc = ev.target.ownerDocument;
 			doc.getElementById('skilltable_removeBotPlayersId').setAttribute('style','display:none;');
 			var loading = Foxtrick.util.note.createLoading(doc);
@@ -116,7 +113,8 @@ var FoxtrickSkillTable = {
 							if (IsBot=='True')
 								Foxtrick.map(rows, function(tr) {
 									if (tr.getAttribute('currentclub')) {										
-										if (tid==tr.getAttribute('currentclub')) tr.setAttribute('isbot',true);
+										if (tid==tr.getAttribute('currentclub')) 
+											tr.setAttribute('isbot',true);
 									}
 								});
 						}
@@ -124,16 +122,15 @@ var FoxtrickSkillTable = {
 						if (nr_to_process==0) { // processed all. now hide bots
 							var rows = doc.getElementById('ft_skilltable').getElementsByTagName("tr");
 							Foxtrick.map(rows, function(tr) {
-									if (tr.getAttribute('isbot')) {										
+									if (tr.getAttribute('isbot')) 										
 										tr.setAttribute('style','display:none;');
-									}
 								});
 							loading.parentNode.removeChild(loading);
 						}					
 					}, FoxtrickSkillTable);
 				});
 			}
-		} catch(e){Foxtrick.log('removeBotPlayers',e);}
+		} catch(e) {Foxtrick.log('removeBotPlayers',e);}
 	},
 
 	createTable : function(doc, fullType) {
@@ -143,6 +140,8 @@ var FoxtrickSkillTable = {
 			FoxtrickSkillTable.showTable(doc, playerList);
 		}
 		else {			
+			var loading = Foxtrick.util.note.createLoading(doc);
+			doc.getElementsByClassName("ft_skilltable_wrapper")[0].appendChild(loading);
 			Foxtrick.Pages.Players.getPlayerList(doc, function(list) {
 			  if (Foxtrick.Pages.Players.isOldiesPage(doc))
 				Foxtrick.Pages.Players.getPlayerList(doc, function(listsquad) {					
@@ -196,6 +195,7 @@ var FoxtrickSkillTable = {
 
 	showTable : function(doc, playerList) {
 		try {
+			doc.getElementsByClassName("ft_skilltable_wrapper")[0].innerHTML='';		
 			var fullType = FoxtrickSkillTable.getFullType(doc);
 			var latestMatch = 0, secondLatestMatch = 0;
 			if (fullType.type != "transfer"
@@ -421,6 +421,7 @@ var FoxtrickSkillTable = {
 				{ name : "CurrentBid", property : "currentBid", method : formatNum, alignRight : true },
 				{ name : "CurrentBidder", property : "currentBidderLink", method : link, sortString : true },
 				{ name : "CurrentBidderShort", property : "currentBidderLinkShort", method : link, sortString : true },
+				{ name : "Hotlist", property : "hotlistLink", method : link, sortString : true },
 				{ name : "Age", property : "age", method : age, sortAsc : true },
 				{ name : "TSI", property : "tsi", alignRight : true, method : formatNum },
 				{ name : "Status", properties : ["yellowCard", "redCard", "bruised", "injured", "transferListed"], method : status },
