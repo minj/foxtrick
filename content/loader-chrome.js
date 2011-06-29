@@ -51,7 +51,7 @@ function runScript() {
 	Foxtrick.dump(log);
 
 	if (content = document.getElementById("content"))
-		Foxtrick.startListenToChange(doc);
+		Foxtrick.startListenToChange(document);
 }
 
 function init() {
