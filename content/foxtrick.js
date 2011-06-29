@@ -855,34 +855,36 @@ Foxtrick.hasMainBodyScroll = function (doc) {
 	return hasScroll;
 }
 
-Foxtrick.dumpCache = '';
+Foxtrick.dumpCache = "";
 Foxtrick.dumpFlush = function(doc) {
 	if (doc.getElementById("page") != null
 		&& FoxtrickPrefs.getBool("DisplayHTMLDebugOutput")
-		&& Foxtrick.dumpCache != '') {
+		&& Foxtrick.dumpCache != "") {
 		var div = doc.getElementById("ft-log");
 		if (div == null) {
-			// create div as log container
-			var div = doc.createElement('div');
+			// create log container
+			div = doc.createElement("div");
 			div.id = "ft-log";
 			var header = doc.createElement("h2");
-			header.textContent = Foxtrickl10n.getString("foxtrick.log")
+			header.textContent = Foxtrickl10n.getString("foxtrick.log.header");
+			div.appendChild(header);
+			var pre = doc.createElement("pre");
+			pre.textContent = Foxtrickl10n.getString("foxtrick.log.env")
 				.replace(/%1/, Foxtrick.version())
 				.replace(/%2/, Foxtrick.BuildFor)
-				.replace(/%3/, FoxtrickPrefs.getString("htLanguage"));
-			var pre = doc.createElement('pre');
-			pre.textContent = Foxtrick.dumpCache;
-			div.appendChild(header);
+				.replace(/%3/, FoxtrickPrefs.getString("htLanguage"))
+				.replace(/%4/, Foxtrick.isStandardLayout(doc) ? "standard" : "simple")
+				.replace(/%5/, Foxtrick.isRTLLayout(doc) ? "RTL" : "LTR");
+			pre.textContent += "\n";
 			div.appendChild(pre);
-
 			// add to page
 			var bottom = doc.getElementById("bottom");
 			if (bottom)
 				bottom.parentNode.insertBefore(div, bottom);
 		}
-		else {
-			div.getElementsByTagName("pre")[0].textContent += Foxtrick.dumpCache;
-		}
+		// add to log
+		div.getElementsByTagName("pre")[0].textContent += Foxtrick.dumpCache;
+		// clear the cache
 		Foxtrick.dumpCache = "";
 	}
 }
