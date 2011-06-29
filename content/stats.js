@@ -512,6 +512,44 @@ stats["alltid"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/ahstats.png"
 };
 
+stats["alltid_add"] =  {
+        "url" : "",
+		"urlfunction": function (filterparams) {
+                           return 'javascript:var i=parseInt(localStorage.getItem("alltidcompare_index"));if(!i)i=0;localStorage.setItem("team"+i, "'+filterparams["teamid"]+'");localStorage.setItem("alltidcompare_index",i+1);alert("add team '+filterparams["teamid"]+'")';
+						},
+         "teamlink" : { "path"       : "",
+                         "filters"    : { "teamid" : "teamid" },
+                         "params"     : [],
+                      },
+		"title" : "Alltid: add team",
+        "shorttitle":"Add"
+};
+stats["alltid_clear"] =  {
+        "url" : "",
+		"urlfunction": function (filterparams) {
+							return 'javascript:localStorage.setItem("alltidcompare_index",0);alert("clear teams");';
+						},
+        "teamlink" : { "path"       : "",
+                         "filters"    : [],
+                         "params"     : []
+                     },
+        "title" : "Alltid: clear list",
+        "shorttitle":"Clear"
+};
+stats["alltid_compare"] =  {
+        "url" : "",
+		"urlfunction": function (filterparams) {
+						//	return 'javascript:var alltidcompare_index=parseInt(localStorage.getItem("alltidcompare_index")); var teams=""; for(var i=0;i<alltidcompare_index;++i)teams+=localStorage.getItem("team"+i)+","; window.open("http://alltid.org/teamcompare/"+teams,"_blank");';
+							return 'javascript:var alltidcompare_index=parseInt(localStorage.getItem("alltidcompare_index")); var teams=""; for(var i=0;i<alltidcompare_index;++i)teams+=localStorage.getItem("team"+i)+","; location.href="http://alltid.org/teamcompare/"+teams;';
+						},
+        "teamlink" : { "path"       : "",
+                         "filters"    : [],
+                         "params"     : []
+                       },
+        "title" : "Alltid: compare teams",
+        "shorttitle":"Compare"
+};
+
 //HTLoto
 stats["htloto"] =  {
        "url" : "http://www.htloto.org/",
@@ -2334,8 +2372,8 @@ Foxtrick.LinkCollection.makelink  = function(stat, statlink, filterparams, key, 
     if (url == null) return null;
 
     var link;
-
-    if (typeof(stat["post"]) == 'undefined') {
+	
+	if (typeof(stat["post"]) == 'undefined') {
         link = url + statlink["path"] + args;
     } else {
         var temp = "";
@@ -2377,6 +2415,8 @@ Foxtrick.LinkCollection.getLinkElement  = function(link, stat, doc, key, module_
           statslink.target = "_stats";
        }
     }
+	if (link.search(/javascript/i)!=-1) statslink.target = "";
+	
     statslink.title = stat.title;
     //statslink.style.verticalAlign = "middle";
     statslink.setAttribute('key',key);
