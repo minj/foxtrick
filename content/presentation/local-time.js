@@ -7,7 +7,7 @@
 var FoxtrickLocalTime = {
 	MODULE_NAME : "LocalTime",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : ["all"],
+	PAGES : ["all_late"],
 	CSS : Foxtrick.ResourcePath + "resources/css/local-time.css",
 	CSS_SIMPLE: Foxtrick.ResourcePath + "resources/css/local-time-simple.css",
 	CSS_RTL : Foxtrick.ResourcePath + "resources/css/local-time-rtl.css",
@@ -69,7 +69,7 @@ var FoxtrickLocalTime = {
 		FoxtrickLocalTime.updatePage(doc);
 	},
 	
-	updatePage : function(doc) { 
+	updatePage : function(doc) {
 		// updates all dates within the page
 		if (!FoxtrickPrefs.getBool("module.LocalTime.local"))
 			return;
@@ -100,6 +100,12 @@ var FoxtrickLocalTime = {
 			// set original time as attribute for reference from
 			// other modules
 			date.setAttribute("x-ht-date", htDate.getTime());
+			
+			// icon for local time zone
+			var localTimeIcon = doc.createElement("img");
+			localTimeIcon.src = Foxtrick.ResourcePath + "resources/img/tz-local.png";
+			localTimeIcon.title = Foxtrickl10n.getString("LocalTime.local");
+			date.insertBefore(localTimeIcon, date.firstChild);
 		});
 	}
 }
