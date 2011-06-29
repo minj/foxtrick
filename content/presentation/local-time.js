@@ -61,8 +61,13 @@ var FoxtrickLocalTime = {
 		time.addEventListener("click", toggleDisplay, false);
 		localTime.addEventListener("click", toggleDisplay, false);
 
+		var content = doc.getElementById("content");
+		if (!content)
+			return;
+
 		// updates all dates within the page
 		var updatePage = function() {
+			content.removeEventListener("DOMSubtreeModified", updatePage, false);
 			if (!FoxtrickPrefs.getBool("module.LocalTime.local"))
 				return;
 			// only deal with nodes with class date in mainBody
@@ -93,15 +98,11 @@ var FoxtrickLocalTime = {
 				// other modules
 				date.setAttribute("x-ht-date", htDate.getTime());
 			});
+			// monitor for changes, cannot use the module.change() method
+			// since we also need to follow the changes by other modules
+			content.addEventListener("DOMSubtreeModified", updatePage, false);
 		};
 
 		updatePage();
-
-		// monitor for changes, cannot use the module.change() method
-		// since we also need to follow the changes by other modules
-		var content = doc.getElementById("content");
-		if (!content)
-			return;
-		content.addEventListener("DOMSubtreeModified", updatePage, false);
 	}
 }
