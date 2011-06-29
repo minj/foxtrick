@@ -865,7 +865,7 @@ var FoxtrickSkillTable = {
 		Foxtrick.addEventListenerChangeSave(switchViewLink, "click", FoxtrickSkillTable.view, false);
 		switchView.appendChild(switchViewLink);
 		
-		if (Foxtrick.Pages.Players.isOldiesPage(doc)) {
+		if (Foxtrick.Pages.Players.isOldiesPage(doc) && Foxtrick.ApiProxy.authorized() ) {
 			var options = doc.createElement("div");
 			var addHomegrownLink = doc.createElement("a");
 			addHomegrownLink.appendChild(doc.createTextNode(Foxtrickl10n.getString("AddHomegrown")));
