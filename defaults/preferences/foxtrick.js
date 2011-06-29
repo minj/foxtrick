@@ -432,6 +432,7 @@ pref("extensions.foxtrick.prefs.module.SkillColoring.skill_number.enabled", true
 pref("extensions.foxtrick.prefs.module.SkillColoring.skill_number_translated.enabled", false);
 pref("extensions.foxtrick.prefs.module.SkillColoring.skill_select.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.enabled", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.ColouredYouth.enabled", false);
 pref("extensions.foxtrick.prefs.module.SkillTable.OtherTeams.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.nt.Age", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.nt.Current_club", true);
