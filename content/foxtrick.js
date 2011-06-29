@@ -453,13 +453,13 @@ Foxtrick.registerAllPagesHandler = function(who) {
 }
 
 Foxtrick.stopListenToChange = function (doc) {
-	var panel = Foxtrick.getPanel(doc);
-	panel.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+	var content = doc.getElementById("content");
+	content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 }
 
 Foxtrick.startListenToChange = function(doc) {
-	var panel = Foxtrick.getPanel(doc);
-	panel.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+	var content = doc.getElementById("content");
+	content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 }
 
 Foxtrick.addEventListenerChangeSave = function(node, type, fkt, trickle) {
@@ -467,10 +467,10 @@ Foxtrick.addEventListenerChangeSave = function(node, type, fkt, trickle) {
 		type,
 		function(ev){
 			var doc = ev.target.ownerDocument;
-			var panel = Foxtrick.getPanel(doc);
-			panel.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+			var content = doc.getElementById("content");
+			content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 			fkt(ev);
-			panel.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+			content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 		},
 		trickle
 	);
