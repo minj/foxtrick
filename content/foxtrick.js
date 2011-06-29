@@ -139,6 +139,8 @@ var FoxtrickMain = {
 
 	onPageChange : function(ev) {
 		try {
+			// remove event listener while Foxtrick executes
+			content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 			var doc = ev.target.ownerDocument;
 			if (ev.target.nodeType !== Node.ELEMENT_NODE)
 				return;
@@ -164,8 +166,6 @@ var FoxtrickMain = {
 				Foxtrick.log("Cannot find #content at ", doc.location);
 				return;
 			}
-			// remove event listener while Foxtrick executes
-			content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 			FoxtrickMain.change(doc, ev);
 			// re-add event listener
 			content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
