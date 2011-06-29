@@ -51,7 +51,7 @@ function runScript() {
 	Foxtrick.dump(log);
 
 	if (content = document.getElementById("content"))
-		content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+		Foxtrick.startListenToChange(doc);
 }
 
 function init() {
