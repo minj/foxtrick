@@ -19,7 +19,6 @@ Foxtrick.modules = [
 	FoxtrickPrefsDialogHTML,
 	FoxtrickOnPagePrefs,
 	Foxtrick.AddClass, // place before all date-related modules
-	FoxtrickLocalTime, // place before HTDateFormat
 	FoxtrickForumStripHattrickLinks,
 	FoxtrickForumChangePosts,
 	FoxtrickShowForumPrefButton,
@@ -53,7 +52,6 @@ Foxtrick.modules = [
 	FoxtrickExtendedPlayerDetails,
 	FoxtrickLastLogin,
 	FoxtrickExtendedPlayerDetailsWage,
-	FoxtrickHTDateFormat,
 	FoxtrickMatchReportFormat,
 	FoxtrickMatchPlayerColouring,
 	Foxtrick.AttVsDef, // AttVsDef should be placed before Ratings
@@ -148,7 +146,9 @@ Foxtrick.modules = [
 	FoxtrickShowFriendlyBooked,
 	FoxtrickShowLineupSet,
 	FoxtrickSupporterStatsEnhancements,
-	FoxtrickTickerAlert // place below all other modules that make changes to #ticker
+	FoxtrickLocalTime, // place before HTDateFormat, bellow everything that adds dates
+	FoxtrickHTDateFormat,
+	FoxtrickTickerAlert // place below all other modules that make changes to #ticker	
 ];
 
 if (Foxtrick.BuildFor == "Gecko") {
