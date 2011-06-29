@@ -191,10 +191,11 @@ var FoxtrickStaffMarker = {
 				modifier(uid, uname, option);
 
 				if (do_flag) {
-					option.style.backgroundImage = "url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif')";
-					option.style.backgroundRepeat = "no-repeat"
-					option.style.paddingLeft = "2px";
-					option.style.backgroundPosition = "180px 50%";
+					var cstyle = doc.defaultView.getComputedStyle(option, null);
+					option.style.backgroundImage = cstyle.backgroundImage+", url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif')";
+					option.style.backgroundRepeat = cstyle.backgroundRepeat+", no-repeat"
+					option.style.paddingLeft = cstyle.paddingLeft+", 2px";
+					option.style.backgroundPosition = cstyle.backgroundPosition+", 180px 50%";
 					option.style.width = "195px";
 					option.style.borderbottom = "dotted thin #ddd";
 				}
