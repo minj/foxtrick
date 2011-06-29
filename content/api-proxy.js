@@ -181,7 +181,7 @@ Foxtrick.ApiProxy = {
 				callback(null);
 			}
 			else {
-				Foxtrick.log("ApiProxy: error ", status, ". Arguments: ", parameters);
+				Foxtrick.log("ApiProxy: error ", status, ". Arguments: ", Foxtrick.filter(parameters, function(p) {return (p[0]!='oauth_consumer_key' && p[0]!='oauth_token' && p[0]!='oauth_signature');}) );
 				callback(null);
 			}
 		}, true);
