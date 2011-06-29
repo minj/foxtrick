@@ -159,12 +159,16 @@ var FoxtrickMain = {
 				// some browsers doesn't support ev.originalTarget
 			}
 
-			var panel = Foxtrick.getPanel(doc);
+			var content = doc.getElementById("content");
+			if (!content) {
+				Foxtrick.log("Cannot find #content at ", doc.location);
+				return;
+			}
 			// remove event listener while Foxtrick executes
-			panel.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+			content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 			FoxtrickMain.change(doc, ev);
 			// re-add event listener
-			panel.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+			content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 		}
 		catch (e) {
 			Foxtrick.log(e);
@@ -195,10 +199,12 @@ var FoxtrickMain = {
 						 + end.getMilliseconds() - begin.getMilliseconds();
 				Foxtrick.dump("run time: " + time + " ms | " + doc.location.pathname+doc.location.search + '\n');
 				// listen to page content changes
-				var panel = Foxtrick.getPanel(doc);
-				if (panel) {
-					panel.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+				var content = doc.getElementById("content");
+				if (!content) {
+					Foxtrick.log("Cannot find #content at ", doc.location);
+					return;
 				}
+				content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 			}
 		}
 		catch (e) {
