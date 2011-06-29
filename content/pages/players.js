@@ -103,10 +103,11 @@ Foxtrick.Pages.Players = {
 						player.form = Number(playerNode.getElementsByTagName("PlayerForm")[0].textContent);
 						player.stamina = Number(playerNode.getElementsByTagName("StaminaSkill")[0].textContent);
 						
-						var specs={0:'' ,1:'Technical',2:'Quick',3:'Powerful',4:'Unpredictable',5:'Head'};
-						player.speciality = specs[Number(playerNode.getElementsByTagName("Specialty")[0].textContent)];
+						var specs={0:'' ,1:'Technical',2:'Quick',3:'Powerful',4:'Unpredictable',5:'Head',6:'Regainer'};
+						var spec = specs[Number(playerNode.getElementsByTagName("Specialty")[0].textContent)];
+						player.speciality = (spec=='')?'':Foxtrickl10n.getString(spec);
 						
-						player.currentSquad=1;
+						player.currentSquad = true;
 					}
 				}
 				
