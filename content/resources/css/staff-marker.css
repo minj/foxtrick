@@ -19,21 +19,21 @@
 	padding: 1px 1px 1px 24px !important;
 }
 
-.ft-staff-foxtrick-hty {
+.ft-staff-hty.ft-staff-foxtrick {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/foxtrick.png"), url("chrome://foxtrick/content/resources/img/staff/hyouthclub.png");
 	background-repeat: no-repeat, no-repeat;
 	background-position: 0px 0px, 18px 0px;
 	padding: 1px 1px 1px 36px !important;
 }
 
-.ft-staff-chpp-holder-foxtrick {
+.ft-staff-foxtrick.ft-staff-chpp-holder {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/chpp.png"), url("chrome://foxtrick/content/resources/img/staff/foxtrick.png");
 	background-repeat: no-repeat, no-repeat;
 	background-position: 0px 0px, 25px 0px;
 	padding: 1px 1px 1px 44px !important;
 }
 
-.ft-staff-chpp-holder-hty {
+.ft-staff-hty .ft-staff-chpp-holder {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/chpp.png"), url("chrome://foxtrick/content/resources/img/staff/hyouthclub.png");
 	background-repeat: no-repeat, no-repeat;
 	background-position: 0px 0px, 25px 0px;

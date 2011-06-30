@@ -125,14 +125,10 @@ var FoxtrickStaffMarker = {
 					Foxtrick.addClass(object, "ft-staff-hty");
 				}
 				if (FoxtrickStaffMarker.foxtrickers[id] !== undefined) {
-					if (FoxtrickStaffMarker.chppHolders[id] !== undefined) Foxtrick.addClass(object, "ft-staff-chpp-holder-foxtrick");
-					else if (hty[id] !== undefined) Foxtrick.addClass(object, "ft-staff-foxtrick-hty");
-					else Foxtrick.addClass(object, "ft-staff-foxtrick");
-					
+					Foxtrick.addClass(object, "ft-staff-foxtrick");					
 				}
 				if (FoxtrickStaffMarker.chppHolders[id] != undefined) {
-					if (hty[id] !== undefined) Foxtrick.addClass(object, "ft-staff-chpp-holder-hty");
-					else Foxtrick.addClass(object, "ft-staff-chpp-holder");
+					Foxtrick.addClass(object, "ft-staff-chpp-holder");
 				}
 			};
 			switch(page) {
