@@ -1,6 +1,12 @@
-span.myht1 {
+.myht1 {
 	position: relative;
+	display:inline;
 }
+
+td .myht1 {
+	display:block;
+}
+
 ul.ft-popup-list {
 	font-size: 11px;
 	display: none;
@@ -22,8 +28,8 @@ ul.ft-popup-list-down {
 	top:12px; /* = line height */
 }
 
-span.myht1:hover ul.ft-popup-list {
-	display: block;
+.myht1:hover ul.ft-popup-list {
+	display: block !important;
 }
 ul.ft-popup-list > li {
 	white-space: nowrap;
