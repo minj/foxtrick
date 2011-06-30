@@ -374,7 +374,23 @@ var Foxtrickl10n = {
 		}
 		catch (e) {
 			Foxtrick.log(e);
+		} 
+		return shortSpec ? shortSpec : direct();
+	},
+	
+	getShortSpecialityFromEnglish: function(spec) {
+		var direct = function() {
+			return spec.substr(0, 2);
+		};
+		var shortSpec = "";
+		try {
+			var lang = FoxtrickPrefs.getString("htLanguage");
+			var path = "language/specialties/specialty[@type=\"" + spec + "\"]";
+			shortSpec = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "short");
 		}
+		catch (e) {
+			Foxtrick.log(e);
+		} 
 		return shortSpec ? shortSpec : direct();
 	}
 };
