@@ -78,6 +78,7 @@ pref("extensions.foxtrick.prefs.module.FixcssProblems.Forum_FoxLink_Headers.enab
 pref("extensions.foxtrick.prefs.module.FixcssProblems.Forum_Header_Smallsize.enabled", false);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.ForumScrollBarFix.enabled", false);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.Forum_ThreadlistSpace.enabled", false);
+pref("extensions.foxtrick.prefs.module.FixcssProblems.HideInvitation.enabled", false);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.MatchReportRatingsFontFix.enabled", false);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.Page_Minimum_Height.enabled", false);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.RTL_Fixes.enabled", false);

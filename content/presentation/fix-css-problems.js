@@ -1,13 +1,12 @@
 /**
  * Fixes for css isues
- * @author spambot
+ * @author spambot, ljushaff, ryanli
  */
 
-FoxtrickFixcssProblems = {
-
+var FoxtrickFixcssProblems = {
 	MODULE_NAME : "FixcssProblems",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('all'),
+	PAGES : ["all"],
 
 	OPTIONS : [
 		"Forum_FoxLink_Headers",
@@ -17,7 +16,8 @@ FoxtrickFixcssProblems = {
 		"ForumScrollBarFix",
 		"MatchReportRatingsFontFix",
 		"RemoveForumSneakPeak",
-		"CalendarAutoMinHeight"
+		"CalendarAutoMinHeight",
+		"HideInvitation"
 	],
 	OPTIONS_CSS : [
 		Foxtrick.ResourcePath+"resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -27,7 +27,8 @@ FoxtrickFixcssProblems = {
 		Foxtrick.ResourcePath+"resources/css/fixes/ForumScrollBarFix.css",
 		Foxtrick.ResourcePath+"resources/css/fixes/MatchReportRatingsFontFix.css",
 		Foxtrick.ResourcePath+"resources/css/fixes/RemoveForumSneakPeak.css",
-		Foxtrick.ResourcePath+"resources/css/fixes/calendar-auto-min-height.css"
+		Foxtrick.ResourcePath+"resources/css/fixes/calendar-auto-min-height.css",
+		Foxtrick.ResourcePath+"resources/css/fixes/hide-invitation.css"
 	],
 	OPTIONS_CSS_RTL : [
 		Foxtrick.ResourcePath+"resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -38,6 +39,7 @@ FoxtrickFixcssProblems = {
 		Foxtrick.ResourcePath+"resources/css/fixes/MatchReportRatingsFontFix.css",
 		Foxtrick.ResourcePath+"resources/css/fixes/RemoveForumSneakPeak.css",
 		Foxtrick.ResourcePath+"resources/css/fixes/calendar-auto-min-height.css",
+		Foxtrick.ResourcePath+"resources/css/fixes/hide-invitation.css"
 	],
 
 	run : function(page, doc) {
