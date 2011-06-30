@@ -100,12 +100,6 @@ var FoxtrickLocalTime = {
 			// set original time as attribute for reference from
 			// other modules
 			date.setAttribute("x-ht-date", htDate.getTime());
-			
-			// icon for local time zone
-			var localTimeIcon = doc.createElement("img");
-			localTimeIcon.src = Foxtrick.ResourcePath + "resources/img/tz-local.png";
-			localTimeIcon.title = Foxtrickl10n.getString("LocalTime.local");
-			date.insertBefore(localTimeIcon, date.firstChild);
 		});
 	}
 }

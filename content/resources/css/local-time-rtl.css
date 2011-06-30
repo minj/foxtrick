@@ -7,3 +7,8 @@
 #ft-local-time, #time {
 	cursor: pointer;
 }
+
+.date[x-ht-date] {
+	background: url("chrome://foxtrick/content/resources/img/tz-local.png") no-repeat right center;
+	padding-right: 14px !important;
+}
