@@ -515,32 +515,56 @@ stats["alltid"] =  {
 stats["alltid_add"] =  {
         "url" : "",
 		"urlfunction": function (filterparams) {
-                           return 'javascript:var i=parseInt(localStorage.getItem("alltidcompare_index"));if(!i)i=0;localStorage.setItem("team"+i, "'+filterparams["teamid"]+'");localStorage.setItem("alltidcompare_index",i+1);alert("add team '+filterparams["teamid"]+'")';
+                           return 'javascript:'+	
+									'var i=parseInt(localStorage.getItem("alltidcompare_index"));'+
+									'if(!i)i=0;'+
+									'var do_remove=false;'+
+									'for(var j=0;j<i+1;++j) {if(parseInt(localStorage.getItem("alltidcompare_teamid"+j))=='+filterparams["teamid"]+'){do_remove=true;break;}}'+
+									'if (do_remove) {'+
+									'   localStorage.setItem("alltidcompare_teamid"+j,"0");'+
+									'   localStorage.setItem("alltidcompare_teamname"+j,"");'+
+									'}'+
+									'else {'+
+									'  localStorage.setItem("alltidcompare_teamid"+i, "'+filterparams["teamid"]+'");'+
+									'  localStorage.setItem("alltidcompare_teamname"+i, "'+filterparams["teamname"]+'");'+
+									'  i=i+1;'+
+									'  localStorage.setItem("alltidcompare_index",i);'+
+									'}'+
+									'var teams="";'+
+									'for(var j=0;j<i;++j) {if(localStorage.getItem("alltidcompare_teamid"+j)!=0) teams+=localStorage.getItem("alltidcompare_teamname"+j)+" --- ";}'+
+									'alert("Selected teams: "+teams)';
 						},
-         "teamlink" : { "path"       : "",
-                         "filters"    : { "teamid" : "teamid" },
+        "openinthesamewindow" : "true",
+        "teamlink" : { "path"       : "",
+                         "filters"    : { "teamid" : "teamid",  "teamname" : "teamname" },
                          "params"     : [],
                       },
-		"title" : "Alltid: add team",
-        "shorttitle":"Add"
+		"title" : "Alltid: add team to compare list",
+        "shorttitle":"Add/Remove"
 };
 stats["alltid_clear"] =  {
         "url" : "",
 		"urlfunction": function (filterparams) {
-							return 'javascript:localStorage.setItem("alltidcompare_index",0);alert("clear teams");';
+							return 'javascript:'+
+									'localStorage.setItem("alltidcompare_index",0);'+
+									'alert("Cleared team compare list");';
 						},
+        "openinthesamewindow" : "true",
         "teamlink" : { "path"       : "",
                          "filters"    : [],
                          "params"     : []
                      },
-        "title" : "Alltid: clear list",
+        "title" : "Alltid: clear compare list",
         "shorttitle":"Clear"
 };
 stats["alltid_compare"] =  {
         "url" : "",
 		"urlfunction": function (filterparams) {
-						//	return 'javascript:var alltidcompare_index=parseInt(localStorage.getItem("alltidcompare_index")); var teams=""; for(var i=0;i<alltidcompare_index;++i)teams+=localStorage.getItem("team"+i)+","; window.open("http://alltid.org/teamcompare/"+teams,"_blank");';
-							return 'javascript:var alltidcompare_index=parseInt(localStorage.getItem("alltidcompare_index")); var teams=""; for(var i=0;i<alltidcompare_index;++i)teams+=localStorage.getItem("team"+i)+","; location.href="http://alltid.org/teamcompare/"+teams;';
+							return 'javascript:'+
+									'var alltidcompare_index=parseInt(localStorage.getItem("alltidcompare_index"));'+
+									'var teams="";'+
+									'for(var i=0;i<alltidcompare_index;++i) if(localStorage.getItem("alltidcompare_teamid"+i)!=0) teams+=localStorage.getItem("alltidcompare_teamid"+i)+",";'+
+									'location.href="http://alltid.org/teamcompare/"+teams;';
 						},
         "teamlink" : { "path"       : "",
                          "filters"    : [],
@@ -2415,7 +2439,7 @@ Foxtrick.LinkCollection.getLinkElement  = function(link, stat, doc, key, module_
           statslink.target = "_stats";
        }
     }
-	if (link.search(/javascript/i)!=-1) statslink.target = "";
+	//if (link.search(/javascript/i)!=-1) statslink.target = "";
 	
     statslink.title = stat.title;
     //statslink.style.verticalAlign = "middle";
@@ -2440,7 +2464,10 @@ Foxtrick.LinkCollection.getLinkElement  = function(link, stat, doc, key, module_
 
 Foxtrick.LinkCollection.getSortedLinks = function(links) {
   function sortfunction(a,b) {
-    return a.link.title.localeCompare(b.link.title);
+    if (typeof(a.stat["img"]) == 'undefined' && typeof(b.stat["img"]) == 'undefined') return 0;//a.link.title.localeCompare(b.link.title); 
+	else if (typeof(a.stat["img"]) == 'undefined') return 1; 
+    else if (typeof(b.stat["img"]) == 'undefined') return -1; 
+	return a.link.title.localeCompare(b.link.title);
   }
   links.sort(sortfunction);
   return links;
