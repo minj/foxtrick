@@ -73,11 +73,9 @@ Foxtrick.Pages.TransferSearchResults = {
 				}
 				// first row - current bid, bidder
 				var items = divs[0].getElementsByClassName("transferPlayerInfoItems");
-				var offset=0;
-				if (player.hotlistLink) offset=1;
-				player.currentBid = Foxtrick.trimnum(items[items.length - 2 - offset].textContent);
-				if (items[items.length - 1 - offset].getElementsByTagName("a").length == 1) {
-					player.currentBidderLink = items[items.length - 1 - offset].getElementsByTagName("a")[0];
+				player.currentBid = Foxtrick.trimnum(items[items.length - 3].textContent);
+				if (items[items.length - 2].getElementsByTagName("a").length == 1) {
+					player.currentBidderLink = items[items.length - 2].getElementsByTagName("a")[0];
 					player.currentBidderLinkShort = player.currentBidderLink.cloneNode(true);
 					player.currentBidderLinkShort.textContent = "x";
 				}
