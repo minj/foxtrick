@@ -27,7 +27,7 @@ Foxtrick.AddClass = {
 		if (!table)
 			return;
 
-		const timeRe = /(\d{1,4}\D\d{1,2}\D\d{1,4}\s+\d{1,2}\D\d{1,2})/;
+		const timeRe = /(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})/;
 
 		// start time
 		var cells = table.getElementsByTagName("td");
@@ -36,14 +36,14 @@ Foxtrick.AddClass = {
 			cell.innerHTML = cell.innerHTML.replace(timeRe, "<span class=\"date\">$1</span>");
 		});
 	},
-	
+
 	// add date class for transfer-list
 	addDateForTl : function(doc) {
 		var transferList = doc.getElementById("ctl00_ctl00_CPContent_CPMain_updBid");
 		if (!transferList)
 			return;
 
-		const timeRe = /(\d{1,4}\D\d{1,2}\D\d{1,4}\s+\d{1,2}\D\d{1,2})/;
+		const timeRe = /(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})/;
 
 		// deadline time
 		var dlPar = transferList.getElementsByTagName("p")[0];
