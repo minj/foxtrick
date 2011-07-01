@@ -138,13 +138,13 @@ Foxtrick.ApiProxy = {
 			false, false, false);
 	},
 
-	retrieve : function(doc, parameters, callback, caller) {
+	retrieve : function(doc, parameters, callback, caller, silent) {
 		FoxtrickHelper.getOwnTeamInfo(doc); // retrieve team ID first
 		var caller_name='';
 		if (caller && caller.MODULE_NAME) caller_name = caller.MODULE_NAME+' ';
-		Foxtrick.log("ApiProxy: "+caller_name+"attempting to retrieve: ", parameters, "…");
+		if (!silent) Foxtrick.log("ApiProxy: "+caller_name+"attempting to retrieve: ", parameters, "…");
 		if (!Foxtrick.ApiProxy.authorized()) {
-			Foxtrick.log("ApiProxy: unauthorized.");
+			if (!silent) Foxtrick.log("ApiProxy: unauthorized.");
 			Foxtrick.ApiProxy.authorize(doc);
 			callback(null);
 			return;
@@ -169,19 +169,19 @@ Foxtrick.ApiProxy = {
 		Foxtrick.OAuth.setTimestampAndNonce(msg);
 		Foxtrick.OAuth.SignatureMethod.sign(msg, accessor);
 		var url = Foxtrick.OAuth.addToURL(Foxtrick.ApiProxy.resourceUrl, msg.parameters);
-		Foxtrick.log("Fetching XML data from ",  Foxtrick.ApiProxy.stripToken(url));
+		if (!silent) Foxtrick.log("Fetching XML data from ",  Foxtrick.ApiProxy.stripToken(url));
 		Foxtrick.loadXml(url, function(x, status) {
 			if (status == 200) {
 				callback(x);
 			}
 			else if (status == 401) {
-				Foxtrick.log("ApiProxy: error 401, unauthorized. Arguments: ", parameters);
+				if (!silent) Foxtrick.log("ApiProxy: error 401, unauthorized. Arguments: ", parameters);
 				Foxtrick.ApiProxy.invalidateAccessToken(doc);
 				Foxtrick.ApiProxy.authorize(doc);
 				callback(null);
 			}
 			else {
-				Foxtrick.log("ApiProxy: error ", status, ". Arguments: ", Foxtrick.filter(parameters, function(p) {return (p[0]!='oauth_consumer_key' && p[0]!='oauth_token' && p[0]!='oauth_signature');}) );
+				if (!silent) Foxtrick.log("ApiProxy: error ", status, ". Arguments: ", Foxtrick.filter(parameters, function(p) {return (p[0]!='oauth_consumer_key' && p[0]!='oauth_token' && p[0]!='oauth_signature');}) );
 				callback(null);
 			}
 		}, true);

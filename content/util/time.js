@@ -217,10 +217,11 @@ Foxtrick.util.time = {
 		return string;
 	},
 
-	timeDifferenceToText : function(time_sec, useShort) {
+	timeDifferenceToText : function(time_sec, useShort, useFull) {
 		var org_time = time_sec;
 		// Returns the time differnce as DDD days, HHh MMm
 		// if useShort, only DDD day(s) will be returned
+		// if useFull && useShort, show S W D always
 
 		var Text = "";
 		var Days = 0; var Minutes = 0; var Hours = 0;
@@ -294,11 +295,11 @@ Foxtrick.util.time = {
 				} // switch
 			} // try
 			catch (e) { }
-			if (print_S == 0) {print_S = '';} else {print_S = '<b>' + print_S + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_seasons");}
-			if (print_W != 0 && print_S != '') print_S += '&nbsp;';
-			if (print_W == 0) {print_W = '';} else {print_W = '<b>' + print_W + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_weeks");}
-			if (print_D != 0) print_W += '&nbsp;';
-			if (print_D == 0 && (print_S != 0 || print_W != 0)) {print_D = '';} else {print_D = '<b>' + print_D + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_days");}
+			if (print_S == 0 && !useFull) {print_S = '';} else {print_S = '<b>' + print_S + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_seasons");}
+			if ((print_W != 0 && print_S != '') || useFull) print_S += '&nbsp;';
+			if (print_W == 0 && !useFull) {print_W = '';} else {print_W = '<b>' + print_W + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_weeks");}
+			if (print_D != 0 || useFull) print_W += '&nbsp;';
+			if (print_D == 0 && !useFull && (print_S != 0 || print_W != 0)) {print_D = '';} else {print_D = '<b>' + print_D + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_days");}
 
 			return print_S + print_W + print_D;
 

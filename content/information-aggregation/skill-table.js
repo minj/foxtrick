@@ -133,6 +133,121 @@ var FoxtrickSkillTable = {
 		} catch(e) {Foxtrick.log('removeBotPlayers',e);}
 	},
 
+	showTimeInClub : function(ev) {
+		try {
+			var doc = ev.target.ownerDocument;
+			doc.getElementById('skilltable_showTimeInClubId').setAttribute('style','display:none;');
+			var loading = Foxtrick.util.note.createLoading(doc);
+			doc.getElementsByClassName("ft_skilltable_wrapper")[0].appendChild(loading);
+			var activationDate=null;
+			
+				// add homegrown from current squad to oldies
+				Foxtrick.Pages.Players.getPlayerList(doc, function(list) {										
+					var nr_to_process = list.length;
+					if (nr_to_process==0) FoxtrickSkillTable.showTable(doc, list);
+					else {
+						var TeamId = Foxtrick.Pages.All.getTeamId(doc);						
+						Foxtrick.map(list, function(player) {
+							var args = [];
+							args.push(["playerid", player.id]);
+							args.push(["file", "transfersPlayer"]);					
+							Foxtrick.ApiProxy.retrieve(doc, args, function(xml) {	 
+								var homegrown=false;
+								if (xml) {	
+									// check if player not sold or was first sold by this team -> homegrown
+									var pid = xml.getElementsByTagName("PlayerID")[0].textContent;
+									var Transfers = xml.getElementsByTagName("Transfer");
+									if (Transfers.length>0) {
+										var Transfer = Transfers[Transfers.length-1]; // oldest and first transfer
+										var seller = Number(Transfer.getElementsByTagName("SellerTeamID")[0].textContent);
+										if (seller==TeamId) {
+											homegrown=true;
+										}
+										else {
+											var Transfer = Transfers[0]; //last transfer to this team
+											var Deadline = Transfer.getElementsByTagName("Deadline")[0].textContent;											
+											Foxtrick.map(list, function(n) {if (n.id==pid) n.JoinedSince = Deadline;});	
+										}
+									}
+									else {
+										homegrown=true;
+									}
+									if (homegrown) {
+										Foxtrick.map(list, function(n) {if (n.id==pid) n.homegrown=true; });
+										var args = [];
+										args.push(["playerid", player.id]);
+										args.push(["file", "playerevents"]);					
+										Foxtrick.ApiProxy.retrieve(doc, args, function(xml) {	 
+											var was_pulled=false;
+											var is_start_squad=false;
+											var coachDate=null;
+											if (xml) {	
+												// check PlayerEventTypeID==20 -> pulled from YA, 13->pulled from SN, 12->coach
+												var pid = xml.getElementsByTagName("PlayerID")[0].textContent;
+												var PlayerEvents = xml.getElementsByTagName("PlayerEvent");
+												for (var i=0;i<PlayerEvents.length;++i) {
+													var PlayerEvent = PlayerEvents[i]; 
+													var PlayerEventTypeID = Number(PlayerEvent.getElementsByTagName("PlayerEventTypeID")[0].textContent);
+													if (PlayerEventTypeID==20 || PlayerEventTypeID==13) {
+														was_pulled=true;
+														var PullDate = PlayerEvent.getElementsByTagName("EventDate")[0].textContent;
+														Foxtrick.map(list, function(n) {if (n.id==pid) n.JoinedSince = PullDate;});	
+													}
+													if (PlayerEventTypeID==12) {
+														coachDate = PlayerEvent.getElementsByTagName("EventDate")[0].textContent;														
+													}
+												}
+												if (!was_pulled) { // = from starting squad or external coach. 
+													if (coachDate) { // is external coach (most likely. internal coaches form starting squad will use the wrong date
+														is_start_squad=true;
+														Foxtrick.map(list, function(n) {if (n.id==pid) n.JoinedSince = coachDate;});	
+													}
+													else { // JoinedSince=activationDate
+														if (activationDate) {
+															is_start_squad=true;
+															Foxtrick.map(list, function(n) {if (n.id==pid) n.JoinedSince = activationDate;});	
+														}
+														else { // get activation date
+															var args = [];
+															args.push(["TeamId", TeamId]);
+															args.push(["file", "teamdetails"]);					
+															Foxtrick.ApiProxy.retrieve(doc, args, function(xml) {	 
+																if (xml) {	
+																	activationDate = xml.getElementsByTagName("ActivationDate")[0].textContent;
+																	Foxtrick.map(list, function(n) {if (n.id==pid) n.JoinedSince = activationDate;});	
+																	nr_to_process--;
+																	if (nr_to_process==0) { // processed all. now filter, concat with oldies and display
+																		FoxtrickSkillTable.showTable(doc, list);
+																	}
+																}
+															}, FoxtrickSkillTable, true);										
+														}
+													}
+												}									
+											}
+											if (was_pulled || is_start_squad) {
+												nr_to_process--;
+												if (nr_to_process==0) { // processed all. 
+													FoxtrickSkillTable.showTable(doc, list);
+												}
+											}
+										}, FoxtrickSkillTable, true);
+									}
+								}
+								if (!homegrown) {
+									nr_to_process--;
+									if (nr_to_process==0) { // processed all. 
+										FoxtrickSkillTable.showTable(doc, list);
+									}
+								}	
+							}, FoxtrickSkillTable, true);
+						});
+					}	
+				});
+			
+		} catch(e) {Foxtrick.log('removeBotPlayers',e);}
+	},
+
 	createTable : function(doc, fullType) {
 		if (!fullType) fullType = this.getFullType(doc);
 		if (fullType.type == "transfer") {
@@ -178,7 +293,6 @@ var FoxtrickSkillTable = {
 										if (nr_to_process==0) { // processed all. now filter, concat with oldies and display
 											listsquad = Foxtrick.filter(listsquad, function(n) {return n.homegrown;});
 											list = list.concat(listsquad);
-											doc.getElementsByClassName("ft_skilltable_wrapper")[0].innerHTML='';		
 											FoxtrickSkillTable.showTable(doc, list);
 										}					
 									}, FoxtrickSkillTable);
@@ -417,10 +531,22 @@ var FoxtrickSkillTable = {
 				link.textContent = Foxtrick.XMLData.League[leagueId].LeagueName;
 				cell.appendChild(link);
 			};
-			var date = function(cell, deadline) {
+			var dateText = function(cell, deadline) {
+				var dateObj = Foxtrick.util.time.getDateFromText(deadline, "yyyymmdd");
+				var season_week = Foxtrick.util.time.gregorianToHT(dateObj);
+				var htDate = Foxtrick.util.time.getHtDate(doc)
+				var joined_s = Math.floor((htDate.getTime() - dateObj.getTime()) / 1000); //Sec
+				var JoinedText = 'NaN';
+				try { JoinedText = Foxtrick.util.time.timeDifferenceToText (joined_s , true, true);}
+				catch(ee) {	Foxtrick.dump('  JoinedText >' + ee + '\n');}
+				cell.innerHTML = JoinedText;
+				cell.title = deadline;
+				cell.setAttribute("index",joined_s);
+			};
+			var dateLink = function(cell, deadline) {
 				cell.appendChild(deadline);
 				cell.setAttribute("index", Foxtrick.util.time.getDateFromText(deadline.textContent).getTime());
-			};
+			};	
 			var formatNum = function(cell, num) {
 				cell.className = "formatted-num";
 				cell.textContent = Foxtrick.formatNumber(num, " ");
@@ -483,13 +609,14 @@ var FoxtrickSkillTable = {
 				{ name : "FriendliesGoals", property : "friendliesGoals" },
 				{ name : "CareerGoals", property : "careerGoals" },
 				{ name : "Hattricks", property : "hattricks" },
-				{ name : "Deadline", property : "deadline", method : date },
+				{ name : "JoinedSince", property : "JoinedSince", method : dateText},
+				{ name : "Deadline", property : "deadline", method : dateLink },
 				{ name : "Current_club", property : "currentClubLink", method : link, sortString : true },
 				{ name : "Current_league", property : "currentLeagueId", method: league, sortString : true }
 			];
 
 			for (var j = 0; j < columns.length; ++j) {
-				columns[j].available = false;
+				columns[j].available = false; 
 				if (columns[j].properties) {
 					for (var pIndex in columns[j].properties) {
 						if (Foxtrick.Pages.Players.isPropertyInList(playerList, columns[j].properties[pIndex])) {
@@ -499,7 +626,7 @@ var FoxtrickSkillTable = {
 						}
 					}
 				}
-				else if (columns[j].property) {
+				else if (columns[j].property) { 
 					if (Foxtrick.Pages.Players.isPropertyInList(playerList, columns[j].property)) {
 						columns[j].available = true;
 						columns[j].enabled = FoxtrickSkillTable.getColumnEnabled(fullType, columns[j].name);
@@ -882,7 +1009,16 @@ var FoxtrickSkillTable = {
 			Foxtrick.addEventListenerChangeSave(removeBotPlayersLink, "click", FoxtrickSkillTable.removeBotPlayers, false);
 			options.appendChild(removeBotPlayersLink);
 		}
-		
+		if (Foxtrick.ApiProxy.authorized() ) {
+			var options = doc.createElement("div");
+			var addHomegrownLink = doc.createElement("a");
+			addHomegrownLink.appendChild(doc.createTextNode(Foxtrickl10n.getString("showTimeInClub")));
+			addHomegrownLink.setAttribute("title", Foxtrickl10n.getString("foxtrick.SkillTable.showTimeInClub_title"));
+			addHomegrownLink.setAttribute("id","skilltable_showTimeInClubId");
+			Foxtrick.addEventListenerChangeSave(addHomegrownLink, "click", FoxtrickSkillTable.showTimeInClub, false);
+			options.appendChild(addHomegrownLink);
+		}
+			
 		// table container: table wrapper
 		var wrapper = doc.createElement("div");
 		wrapper.className = "ft_skilltable_wrapper";
