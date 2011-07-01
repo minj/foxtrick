@@ -1,3 +1,5 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws) {
+
 .myht1 {
 	position: relative;
 	display:inline;
@@ -58,4 +60,6 @@ div.cfMessage, div.edited, div.cfHeader, div.feedItem, div.cfUserInfo, div.signa
 }
 div.message {
 	overflow:auto;
+}
+
 }
