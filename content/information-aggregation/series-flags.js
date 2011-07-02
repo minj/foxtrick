@@ -23,17 +23,20 @@ var FoxtrickSeriesFlags = {
 				// and seriesId
 				var buildFromData = function(data) {
 					var flag = doc.createElement("span");
-					flag.className = "ft-series-flag";
-					var countryId = Foxtrick.XMLData.getCountryIdByLeagueId(data["leagueId"]);
-					var country = FoxtrickHelper.createFlagFromCountryId(doc, countryId);
-					flag.appendChild(country);
-					if (!Foxtrick.isModuleFeatureEnabled(FoxtrickSeriesFlags, "CountryOnly")) {
-						var series = doc.createElement("a");
-						series.className = "inner";
-						series.textContent = data["seriesName"];
-						series.href = "/World/Series/Default.aspx?LeagueLevelUnitID=" + data["seriesId"];
-						flag.appendChild(series);
+					if (data["leagueId"]!=0) {
+						flag.className = "ft-series-flag";
+						var countryId = Foxtrick.XMLData.getCountryIdByLeagueId(data["leagueId"]);
+						var country = FoxtrickHelper.createFlagFromCountryId(doc, countryId);
+						flag.appendChild(country);
+						if (!Foxtrick.isModuleFeatureEnabled(FoxtrickSeriesFlags, "CountryOnly") && data["seriesId"]!==0) {
+							var series = doc.createElement("a");
+							series.className = "inner";
+							series.textContent = data["seriesName"];
+							series.href = "/World/Series/Default.aspx?LeagueLevelUnitID=" + data["seriesId"];
+							flag.appendChild(series);
+						}
 					}
+					else flag.className = "ft-ownerless";	
 					return flag;
 				};
 				// fetch data from stored mapping if available, otherwise
@@ -51,12 +54,19 @@ var FoxtrickSeriesFlags = {
 				else {
 					var args = [["file", "teamdetails"]];
 					args.push(arg);
-					Foxtrick.ApiProxy.retrieve(doc, args, function(xml) {
-						var data = {
-							"leagueId" : xml.getElementsByTagName("LeagueID")[0].textContent,
-							"seriesName" : xml.getElementsByTagName("LeagueLevelUnitName")[0].textContent,
-							"seriesId" : xml.getElementsByTagName("LeagueLevelUnitID")[0].textContent
+					Foxtrick.ApiProxy.retrieve(doc, args, function(xml) {						
+						var data = { // in case LeagueLevelUnit is missing (eg during quali matches)
+							"leagueId" : 0,
+							"seriesName" : '',
+							"seriesId" : 0
 						};
+						if (xml.getElementsByTagName("LeagueID")[0]) // has a team
+							data.leagueId = xml.getElementsByTagName("LeagueID")[0].textContent;
+						// there are can be several LeagueLevelUnitID. if LeagueLevelUnit is available it's the first
+						if (xml.getElementsByTagName("LeagueLevelUnit")[0] && xml.getElementsByTagName("LeagueLevelUnit")[0].getElementsByTagName("LeagueLevelUnitID")[0]) {
+							data.seriesName = xml.getElementsByTagName("LeagueLevelUnitName")[0].textContent,
+							data.seriesId = xml.getElementsByTagName("LeagueLevelUnitID")[0].textContent
+						}
 						// get newest mapping and store the data, because
 						// it may have changed during the retrieval of XML
 						Foxtrick.sessionGet("seriesFlags", function(mapping) {

@@ -124,6 +124,11 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 	margin-left: 10px;
 }
 
+.ft-ownerless {
+	background-image: url("chrome://foxtrick/content/resources/img/ownerless.png");
+	background-repeat: no-repeat;
+	padding: 0px 0px 0px 11px;
+}
 
 
 /* pop lists that are displayed when hovering */
