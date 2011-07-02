@@ -992,33 +992,34 @@ var FoxtrickSkillTable = {
 		Foxtrick.addEventListenerChangeSave(switchViewLink, "click", FoxtrickSkillTable.view, false);
 		switchView.appendChild(switchViewLink);
 		
-		if (Foxtrick.Pages.Players.isOldiesPage(doc) && Foxtrick.ApiProxy.authorized() ) {
-			var options = doc.createElement("div");
-			var addHomegrownLink = doc.createElement("a");
-			addHomegrownLink.appendChild(doc.createTextNode(Foxtrickl10n.getString("AddHomegrown")));
-			addHomegrownLink.setAttribute("title", Foxtrickl10n.getString("foxtrick.SkillTable.Add_homegrown_title"));
-			addHomegrownLink.setAttribute("id","skilltable_addHomegrownId");
-			Foxtrick.addEventListenerChangeSave(addHomegrownLink, "click", FoxtrickSkillTable.AddHomegrown, false);
-			options.appendChild(addHomegrownLink);
-
-			options.appendChild(doc.createElement('br'));
-			var removeBotPlayersLink = doc.createElement("a");
-			removeBotPlayersLink.appendChild(doc.createTextNode(Foxtrickl10n.getString("RemoveBotPlayers")));
-			removeBotPlayersLink.setAttribute("title", Foxtrickl10n.getString("foxtrick.SkillTable.Remove_bot_players_title"));
-			removeBotPlayersLink.setAttribute("id","skilltable_removeBotPlayersId");
-			Foxtrick.addEventListenerChangeSave(removeBotPlayersLink, "click", FoxtrickSkillTable.removeBotPlayers, false);
-			options.appendChild(removeBotPlayersLink);
-		}
 		if (Foxtrick.ApiProxy.authorized() ) {
-			var options = doc.createElement("div");
-			var addHomegrownLink = doc.createElement("a");
-			addHomegrownLink.appendChild(doc.createTextNode(Foxtrickl10n.getString("showTimeInClub")));
-			addHomegrownLink.setAttribute("title", Foxtrickl10n.getString("foxtrick.SkillTable.showTimeInClub_title"));
-			addHomegrownLink.setAttribute("id","skilltable_showTimeInClubId");
-			Foxtrick.addEventListenerChangeSave(addHomegrownLink, "click", FoxtrickSkillTable.showTimeInClub, false);
-			options.appendChild(addHomegrownLink);
-		}
-			
+			if (Foxtrick.Pages.Players.isOldiesPage(doc)) {
+				var options = doc.createElement("div");
+				var addHomegrownLink = doc.createElement("a");
+				addHomegrownLink.appendChild(doc.createTextNode(Foxtrickl10n.getString("AddHomegrown")));
+				addHomegrownLink.setAttribute("title", Foxtrickl10n.getString("foxtrick.SkillTable.Add_homegrown_title"));
+				addHomegrownLink.setAttribute("id","skilltable_addHomegrownId");
+				Foxtrick.addEventListenerChangeSave(addHomegrownLink, "click", FoxtrickSkillTable.AddHomegrown, false);
+				options.appendChild(addHomegrownLink);
+
+				options.appendChild(doc.createElement('br'));
+				var removeBotPlayersLink = doc.createElement("a");
+				removeBotPlayersLink.appendChild(doc.createTextNode(Foxtrickl10n.getString("RemoveBotPlayers")));
+				removeBotPlayersLink.setAttribute("title", Foxtrickl10n.getString("foxtrick.SkillTable.Remove_bot_players_title"));
+				removeBotPlayersLink.setAttribute("id","skilltable_removeBotPlayersId");
+				Foxtrick.addEventListenerChangeSave(removeBotPlayersLink, "click", FoxtrickSkillTable.removeBotPlayers, false);
+				options.appendChild(removeBotPlayersLink);
+			}
+			else if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc)) {
+				var options = doc.createElement("div");
+				var addHomegrownLink = doc.createElement("a");
+				addHomegrownLink.appendChild(doc.createTextNode(Foxtrickl10n.getString("showTimeInClub")));
+				addHomegrownLink.setAttribute("title", Foxtrickl10n.getString("foxtrick.SkillTable.showTimeInClub_title"));
+				addHomegrownLink.setAttribute("id","skilltable_showTimeInClubId");
+				Foxtrick.addEventListenerChangeSave(addHomegrownLink, "click", FoxtrickSkillTable.showTimeInClub, false);
+				options.appendChild(addHomegrownLink);
+			}
+		}	
 		// table container: table wrapper
 		var wrapper = doc.createElement("div");
 		wrapper.className = "ft_skilltable_wrapper";
