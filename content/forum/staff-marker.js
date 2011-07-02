@@ -190,7 +190,10 @@ var FoxtrickStaffMarker = {
 
 				modifier(uid, uname, option);
 
-				if (do_flag) {
+				if (option.value==-3) {
+					option.style.backgroundColor='#DDD';
+				}
+				else if (do_flag) {
 					var cstyle = doc.defaultView.getComputedStyle(option, null);
 					option.style.backgroundImage = cstyle.backgroundImage+", url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif')";
 					option.style.backgroundRepeat = cstyle.backgroundRepeat+", no-repeat"
@@ -198,9 +201,6 @@ var FoxtrickStaffMarker = {
 					option.style.backgroundPosition = cstyle.backgroundPosition+", 180px 50%";
 					option.style.width = "195px";
 					option.style.borderbottom = "dotted thin #ddd";
-				}
-				if (option.value==-3) {
-					option.style.backgroundColor='#DDD';
 				}
 			}
 		});
