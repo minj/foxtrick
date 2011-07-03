@@ -32,7 +32,7 @@ FoxtrickCurrencyConverter = {
 		return currencySelect;
 	},
 
-	run : function(page, doc) {
+	run : function(page, doc) { 
 		// don't run on forum pages
 		if (doc.location.href.search(/Forum/i) != -1)
 			return;
@@ -62,13 +62,16 @@ FoxtrickCurrencyConverter = {
 	},
 
 	drawNewCurrency : function (doc, tagname, oldCurrencySymbol, oldSymbolLength, currencySymbol, currencyRate, currencyRateNewCurr, myReg, myDelReg) {
+		var posReg = new RegExp('\\d&nbsp;' + oldCurrencySymbol);
+		
 		var div = doc.getElementById( 'page' );
 		var table_elm = div.getElementsByTagName( tagname );
    		for ( var i = 0; i < table_elm.length; i++) {
 			if (table_elm[i].getElementsByTagName('td').length!=0) continue;  // don't do nested. only most inner gets converted
 			else if (table_elm[i].getElementsByTagName('p').length!=0) continue;  // don't do nested. only most inner gets converted
 
-			var pos = table_elm[i].innerHTML.indexOf(oldCurrencySymbol);
+			var pos = table_elm[i].innerHTML.search(posReg);
+			
 			if (pos > 0 && (!Foxtrick.hasClass(table_elm[i], "foxtrick-currency-converter") || table_elm[i].innerHTML.indexOf(currencySymbol)==-1)) {
 				var table_inner = Foxtrick.trim(table_elm[i].innerHTML);
 				var inner_raw = table_elm[i].innerHTML;
@@ -82,7 +85,7 @@ FoxtrickCurrencyConverter = {
 				var only_one_number = false;
 				var first = true;
 				while (pos!=-1) {
-					pos+=oldSymbolLength;
+					pos+=oldSymbolLength+7; // 7 = length(\d+&nbps;)
 					var table_inner_stripped = inner_raw.replace(/\s|\&nbsp\;/g,'');
 					if (first==true && table_inner_stripped.replace(myDelReg,'')=='')
 						only_one_number=true; // remove html tags and currency to check if this is the only real entry.
@@ -115,7 +118,7 @@ FoxtrickCurrencyConverter = {
 
 					// get the remains and check them in next loop
 					inner_raw = inner_raw.substring(pos);
-					pos= inner_raw.search(oldCurrencySymbol);
+					pos = inner_raw.search(posReg);
 					bdo_br='';
 					first=false;
 				}
