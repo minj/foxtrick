@@ -166,7 +166,7 @@ var FoxtrickSkillTable = {
 										else {
 											var Transfer = Transfers[0]; //last transfer to this team
 											var Deadline = Transfer.getElementsByTagName("Deadline")[0].textContent;											
-											Foxtrick.map(list, function(n) {if (n.id==pid) n.JoinedSince = Deadline;});	
+											Foxtrick.map(list, function(n) {if (n.id==pid) n.joinedSince = Deadline;});	
 										}
 									}
 									else {
@@ -191,7 +191,7 @@ var FoxtrickSkillTable = {
 													if (PlayerEventTypeID==20 || PlayerEventTypeID==13) {
 														was_pulled=true;
 														var PullDate = PlayerEvent.getElementsByTagName("EventDate")[0].textContent;
-														Foxtrick.map(list, function(n) {if (n.id==pid) n.JoinedSince = PullDate;});	
+														Foxtrick.map(list, function(n) {if (n.id==pid) n.joinedSince = PullDate;});	
 													}
 													if (PlayerEventTypeID==12) {
 														coachDate = PlayerEvent.getElementsByTagName("EventDate")[0].textContent;														
@@ -200,12 +200,12 @@ var FoxtrickSkillTable = {
 												if (!was_pulled) { // = from starting squad or external coach. 
 													if (coachDate) { // is external coach (most likely. internal coaches form starting squad will use the wrong date
 														is_start_squad=true;
-														Foxtrick.map(list, function(n) {if (n.id==pid) n.JoinedSince = coachDate;});	
+														Foxtrick.map(list, function(n) {if (n.id==pid) n.joinedSince = coachDate;});	
 													}
 													else { // JoinedSince=activationDate
 														if (activationDate) {
 															is_start_squad=true;
-															Foxtrick.map(list, function(n) {if (n.id==pid) n.JoinedSince = activationDate;});	
+															Foxtrick.map(list, function(n) {if (n.id==pid) n.joinedSince = activationDate;});	
 														}
 														else { // get activation date
 															var args = [];
@@ -214,7 +214,7 @@ var FoxtrickSkillTable = {
 															Foxtrick.ApiProxy.retrieve(doc, args, function(xml) {	 
 																if (xml) {	
 																	activationDate = xml.getElementsByTagName("ActivationDate")[0].textContent;
-																	Foxtrick.map(list, function(n) {if (n.id==pid) n.JoinedSince = activationDate;});	
+																	Foxtrick.map(list, function(n) {if (n.id==pid) n.joinedSince = activationDate;});	
 																	nr_to_process--;
 																	if (nr_to_process==0) { // processed all. now filter, concat with oldies and display
 																		FoxtrickSkillTable.showTable(doc, list);
@@ -609,10 +609,12 @@ var FoxtrickSkillTable = {
 				{ name : "FriendliesGoals", property : "friendliesGoals" },
 				{ name : "CareerGoals", property : "careerGoals" },
 				{ name : "Hattricks", property : "hattricks" },
-				{ name : "JoinedSince", property : "JoinedSince", method : dateText},
+				{ name : "JoinedSince", property : "joinedSince", method : dateText},
 				{ name : "Deadline", property : "deadline", method : dateLink },
 				{ name : "Current_club", property : "currentClubLink", method : link, sortString : true },
-				{ name : "Current_league", property : "currentLeagueId", method: league, sortString : true }
+				{ name : "Current_league", property : "currentLeagueId", method: league, sortString : true },
+				{ name : "TransferCompare", property : "transferCompare", method : link},
+				
 			];
 
 			for (var j = 0; j < columns.length; ++j) {

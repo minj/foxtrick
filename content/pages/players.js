@@ -446,6 +446,11 @@ Foxtrick.Pages.Players = {
 					var position = matchLink.parentNode.nextSibling.nextSibling.innerHTML.match(/\((.+)\)/)[1];
 					player.lastPosition = position;
 				}
+				if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc) && ! Foxtrick.Pages.Players.isOldiesPage(doc)) {
+					player.transferCompare = doc.createElement('a');
+					player.transferCompare.textContent = Foxtrickl10n.getString('TransferCompare.abbr');
+					player.transferCompare.href = "/Club/Transfers/TransferCompare.aspx?playerId=" + player.id;					
+				}
 
 				if (Foxtrick.Pages.Players.isOldiesPage(doc)
 					|| Foxtrick.Pages.Players.isCoachesPage(doc)

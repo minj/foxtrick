@@ -106,6 +106,10 @@ Foxtrick.Pages.TransferSearchResults = {
 				player.deadline = doc.createElement("span");
 				player.deadline.innerHTML = infoTable.rows[4].cells[1].innerHTML;
 
+				player.transferCompare = doc.createElement('a');
+				player.transferCompare.textContent = Foxtrickl10n.getString('TransferCompare.abbr');
+				player.transferCompare.href = "/Club/Transfers/TransferCompare.aspx?playerId=" + player.id;					
+
 				// right skill table - skills
 				var skillTable = playerInfo.getElementsByClassName("transferPlayerSkills")[0].getElementsByTagName("table")[0];
 				var skills = skillTable.getElementsByTagName("a");
