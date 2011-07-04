@@ -37,12 +37,16 @@ var FoxtrickTableSort = {
 			{	if (this_th.nodeName=='TH') break; 
 				this_th = this_th.parentNode;
 			} 
+			// get the column (index) and row(sort_start). there had been tables with multiple head rows. thus goto whole table
 			var table = this_th.parentNode.parentNode.parentNode;
-			var index = 0;
 			for (var i = 0; i < table.rows.length; ++i) {
+				var index = 0;
 				var found = false;
 				for (var j = 0; j < table.rows[i].cells.length; ++j) {
-					if (table.rows[i].cells[j]===this_th) { found = true; break; }
+					if (table.rows[i].cells[j]===this_th) {
+						found = true; 
+						break; 
+					}
 					// adjust for colspan in header
 					var colspan = 1;
 					if (table.rows[i].cells[j].getAttribute('colspan')!=null) colspan = parseInt(table.rows[i].cells[j].getAttribute('colspan'));
@@ -51,7 +55,7 @@ var FoxtrickTableSort = {
 				if (found) break;
 			}
 			var sort_start = i;
-			//Foxtrick.log('tablesort index:',index);
+			Foxtrick.log('sort_start:',sort_start,'index: ',index);
 			
 			var lastSortIndex = table.getAttribute('lastSortIndex');
 			if (lastSortIndex==null || lastSortIndex!=index) {
@@ -65,6 +69,8 @@ var FoxtrickTableSort = {
 			var is_num = true, is_age=true, is_youthskill = true, is_ordinal=true, is_date=true, is_skill=true;
 			var num_cols = table.rows[sort_start+1].cells.length;
 			for (var i = sort_start+1; i < table.rows.length; ++i) {
+				
+				// if num_cols change, we are at the bottom with nonsortable entries (eg transfercompare)
 				if (num_cols != table.rows[i].cells.length) break;
 				
 				// adjust index for colspans in table
@@ -74,6 +80,8 @@ var FoxtrickTableSort = {
 						tdindex = tdindex-parseInt(table.rows[i].cells[j].getAttribute('colspan'))+1;
 					}
 				}
+				
+				// get sorting format
 				var inner = Foxtrick.trim(Foxtrick.stripHTML(table.rows[i].cells[tdindex].innerHTML));
 				if (isNaN(parseFloat(inner)) && inner!='') {is_num=false;}
 				if (inner.search(/^(-|\d)\/(-|\d)$/)==-1 && inner!='') {is_youthskill=false;}
@@ -83,7 +91,7 @@ var FoxtrickTableSort = {
 				if (table.rows[i].cells[tdindex].innerHTML.search(/lt=skillshort&amp;ll=\d+/)==-1 && inner!='') {is_skill=false;}
 			}
 			var sort_end = i;
-			//Foxtrick.log('tablesort: ','is_num:',is_num,' is_age:',is_age,' is_youthskill:',is_youthskill,' is_ordinal:',is_ordinal,' is_date:',is_date,' is_skill',is_skill);
+			Foxtrick.log('sort end: ',sort_end);
 			
 			// rows to be sorted
 			var rows = new Array();
