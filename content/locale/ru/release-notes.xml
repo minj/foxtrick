@@ -14,6 +14,11 @@
 		<item>Вы можете отключить показ этого сообщения после каждого обновления, запретив "Показать информацию о выпуске после обновления FoxTrick" на вкладке <xhtml:a href="#tab=main">Главные</xhtml:a> настроек.</item>
 	</note>
 
+	<note version="0.7.2">
+		<item>Ссылки для сравнения команд в Alltid в модуле <module>LinksTeam</module> (convincedd).</item>
+		<item>Исправлена таблица навыков на странице результата поиска трансферов (convincedd, ryanli).</item>
+	</note>
+	
 	<note version="0.7.1">
 		<item>Модуль <module>LeagueNewsFilter</module> разделён на модули <module>LeagueNewsFilter</module> и <module>ShowLineupSet</module> (ryanli).</item>
 		<item>Изменения для соответствия новой странице результатов поиска трансферов (ryanli, taised).</item>
