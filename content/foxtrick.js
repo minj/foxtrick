@@ -376,6 +376,10 @@ Foxtrick.isStage = function(doc) {
 	return (Foxtrick.getHref(doc).search(stage_regexp) > -1);
 }
 
+Foxtrick.isLoginPage = function(doc) { 
+	return (doc.getElementById('teamLinks').getElementsByTagName('a').length===0);
+}
+		
 Foxtrick.getPanel = function(doc) {
 	try {
 		if (doc.getElementsByClassName("hattrick").length > 0)
