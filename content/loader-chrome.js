@@ -32,6 +32,7 @@ function runScript() {
 
 	var begin = new Date();
 
+	Foxtrick.cssFiles="";
 	FoxtrickMain.init();
 	Foxtrick.reload_module_css(document);
 	var mid = new Date();
