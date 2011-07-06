@@ -111,7 +111,8 @@ function initTabs()
 	});
 	// initialize the tabs
 	initMainTab();
-	initModuleTabs();
+	if (window.location.href.search(/\?/)==-1) initModuleTabs();
+	else initPageFilteredTab();
 	initChangesTab();
 	initHelpTab();
 	initAboutTab();
@@ -275,8 +276,10 @@ function initMainTab()
 
 	// disable all
 	$("#pref-stored-disable").click(function() {
-		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("disable_all_foxtrick_modules_ask")))
+		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("disable_all_foxtrick_modules_ask"))) {		
 			FoxtrickPrefs.disableAll();
+			window.location.reload();
+		}
 	});
 }
 
@@ -295,6 +298,53 @@ function initModuleTabs()
 	for (var i in categories)
 		for (var j in categories[i])
 			$("#pane-" + i).append(getModule(Foxtrick.modules[categories[i][j]]));
+	
+	$("#tab-pagefiltered").addClass('hide');
+	$("#tab-allfiltered").addClass('hide');
+}
+
+function initPageFilteredTab()
+{
+	var categories = {};
+	categories['pagefiltered'] = [];
+	categories['allfiltered'] = [];
+	var pages = [];
+	
+	for (var i in Foxtrick.modules)
+		if (Foxtrick.modules[i].MODULE_CATEGORY)
+			for (var j in Foxtrick.modules[i].PAGES) { 
+				var page = Foxtrick.modules[i].PAGES[j];
+				if (page == "all" || page == "all_late") {
+					categories['allfiltered'].push(i);
+					break;
+				}
+				else if (Foxtrick.isPage(Foxtrick.ht_pages[page], window.document)) {		
+					categories['pagefiltered'].push(i);
+					pages[page] = page;
+					break;
+				}
+			}
+	// sort modules in alphabetical order
+	for (var i in categories)
+		categories[i].sort(function(a, b) { return Foxtrick.modules[a].MODULE_NAME.localeCompare(Foxtrick.modules[b].MODULE_NAME); });
+	
+	for (var i in categories) { 
+		for (var j in categories[i]) {
+				if (Foxtrick.modules[categories[i][j]].MODULE_CATEGORY == "links") 
+					var links = getModule(Foxtrick.modules[categories[i][j]]);
+				else
+					$("#pane-"+i).append(getModule(Foxtrick.modules[categories[i][j]]));
+			}
+			// links at the end so not to spam
+			if (links) $("#pane-pagefiltered").append(links);
+		}		
+	for (var i in Foxtrick.moduleCategories)
+		$("#tab-" + Foxtrick.moduleCategories[i]).addClass('hide');
+	
+	var pagelist='(';
+	for (var i in pages) pagelist += pages[i]+' - ';
+	pagelist = pagelist.substr(0,pagelist.length-3)+')';
+	$("#pagelist").append(document.createTextNode(pagelist));
 }
 
 function getModule(module)

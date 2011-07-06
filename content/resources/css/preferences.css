@@ -128,6 +128,11 @@ html[dir="rtl"] .screenshot
 	vertical-align: top;
 }
 
+#pagelist
+{
+	font-size: 50%;
+}
+
 ul#tabs li
 {
 	display: inline-block;
@@ -137,6 +142,11 @@ ul#tabs li
 	border-bottom: none;
 	padding: 4px;
 	margin: 0;
+}
+
+ul#tabs li.hide
+{
+	display: none;
 }
 
 ul#tabs li.active
