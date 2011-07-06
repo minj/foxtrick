@@ -317,6 +317,7 @@ var FoxtrickSkillTable = {
 				&& !fullType.subtype != "oldiesCoach") {
 				var allPlayerInfo = doc.getElementsByClassName("playerInfo");
 				for (var i = 0; i < allPlayerInfo.length; ++i) {
+					var id = Foxtrick.Pages.Players.getPlayerId(allPlayerInfo[i]);
 					var as = allPlayerInfo[i].getElementsByTagName("a");
 					for (var j = 0; j < as.length; ++j) {
 						if (as[j].href.search(/matchid/i) != -1) {
@@ -330,9 +331,27 @@ var FoxtrickSkillTable = {
 							}
 						}
 					}
+					if (doc.getElementById("psicotsi_show_div_"+i)!==null) {
+						
+						var number = doc.getElementById("psicotsi_show_div_"+i).getElementsByTagName("a")[0].textContent.match(/\d+\.\d+/)[0];
+						playerList[i].psicoTSI = number;
+					} 
 				}
 			}
-
+			if (fullType.type == "transfer") {
+				var allPlayerInfo = doc.getElementsByClassName("transferPlayerInfo");
+				for (var i = 0; i < allPlayerInfo.length; ++i) {
+					var id = Foxtrick.Pages.Players.getPlayerId(allPlayerInfo[i]);
+					var divs = allPlayerInfo[i].getElementsByTagName('div');
+					if (divs.length>2) {
+						var psicodiv = divs[divs.length-2]; // second last
+						if (psicodiv && psicodiv.innerHTML.search(/\[.+=.+\]=\d+\.\d+/)!=-1) {
+							var number = psicodiv.innerHTML.match(/\[[^\[]+=[^\[]+\]=(\d+\.\d+)/g)[1].match(/\d+\.\d+/g);
+							playerList[i].psicoTSI = number;
+						} 
+					}
+				}
+			}
 			// functions used to attach data to table cell
 			var category = function(cell, cat) {
 				const categories = ["GK", "WB", "CD", "W", "IM", "FW", "S", "R", "E1", "E2"];
@@ -594,6 +613,7 @@ var FoxtrickSkillTable = {
 				{ name : "Passing", property : "passing", method: skill },
 				{ name : "Scoring", property : "scoring", method: skill },
 				{ name : "Set_pieces", property : "setPieces", method: skill },
+				{ name : "PsicoTSI", property : "psicoTSI", alignRight : true, method: formatNum },
 				{ name : "HTMS_Ability", property : "htmsAbility" },
 				{ name : "HTMS_Potential", property : "htmsPotential" },
 				{ name : "Agreeability", property : "agreeability" },

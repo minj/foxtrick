@@ -520,6 +520,7 @@ pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.PlayerCategory", fa
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Salary", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Scoring", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Set_pieces", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.PsicoTSI", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Speciality", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Stamina", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Status", true);
@@ -545,6 +546,7 @@ pref("extensions.foxtrick.prefs.module.SkillTable.transfer.Player", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.transfer.Playmaking", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.transfer.Scoring", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.transfer.Set_pieces", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.transfer.PsicoTSI", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.transfer.Speciality", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.transfer.Stamina", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.transfer.Status", true);
