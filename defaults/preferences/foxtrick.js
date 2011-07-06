@@ -132,6 +132,7 @@ pref("extensions.foxtrick.prefs.module.ForumYouthIcons.youth_match.enabled", tru
 pref("extensions.foxtrick.prefs.module.ForumYouthIcons.youth_player.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumYouthIcons.youth_series.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumYouthIcons.youth_team.enabled", true);
+pref("extensions.foxtrick.prefs.module.ForumYouthIcons.debug.enabled", true);
 pref("extensions.foxtrick.prefs.module.FriendlyInterface.enabled", true);
 pref("extensions.foxtrick.prefs.module.FriendlyInterface.FullPlayerNameInLineUp.enabled", true);
 pref("extensions.foxtrick.prefs.module.FriendlyInterface.NtLinkForNtPlayer.enabled", true);

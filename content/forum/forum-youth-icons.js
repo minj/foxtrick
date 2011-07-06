@@ -10,7 +10,7 @@
 	MODULE_AUTHOR : "spambot",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumWritePost","messageWritePost","guestbook","announcements","forumSettings","newsletter","forumModWritePost","ticket"),
-	OPTIONS :  new Array("q", "user_id", "kit_id", "article_id", "line_br", "clock", "spoiler", "pre", "table", "youth_player", "youth_team", "youth_match", "youth_series", "enlarge_input"),
+	OPTIONS :  new Array("q", "user_id", "kit_id", "article_id", "line_br", "clock", "spoiler", "pre", "table", "youth_player", "youth_team", "youth_match", "youth_series", "debug", "enlarge_input"),
 
 
 	fields : [
@@ -53,8 +53,12 @@
 				{ type:"youth_series", 	class : "f_series", string : "youthseries",		tags : "[youthleagueid=xxx]",  	replace_text: "xxx"	},
 			],
 
-	run : function( page, doc ) {
-		var show_main = false; var show_youth = false;
+	othericons : [
+				{ type:"debug", class : "f_debug",	image : "format_debug.png", 	string : "debug", 	tags : "debug",	replace_text: "debug"},
+			],
+
+			run : function( page, doc ) {
+		var show_main = false; var show_youth = false; var show_other = false;
 		var enlarge = Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "enlarge_input");
 		if ((Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "user_id")) ||
 			(Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "kit_id")) ||
@@ -69,6 +73,9 @@
 			(Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "youth_match")) ||
 			(Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "youth_series")))
 			show_youth = true;
+
+		if ((Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "debug")))
+			show_other = true;
 
 		var div = doc.getElementById( "ft_youth_icons");
 		if (div != null) return;
@@ -267,6 +274,36 @@
 			} catch(e) { nextElement = nextElement.nextSibling; }
 		}
 
+		if (show_other || true) {
+			var otherbar = doc.createElement( "div" );
+			otherbar.setAttribute( "class" , "HTMLToolbar");
+			otherbar.setAttribute( "style" , "float:right;");
+
+			var otherbar_label = doc.createElement( "div" );
+			otherbar_label.id = "ft_other_icons";
+			otherbar_label.innerHTML = Foxtrickl10n.getString("ForumOtherIcons.label");
+			otherbar_label.setAttribute( "style" , "background-color:#D0D0D0;;margin-bottom:3px;text-align:center;");
+			if (!show_other) otherbar_label.setAttribute( "style" , "display:none;");
+			otherbar.appendChild( otherbar_label);
+
+			for (var i = 0; i < this.othericons.length; i++) {
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, this.othericons[i].type)) {
+						var newimage = doc.createElement( "img" );
+						newimage.src = "/Img/Icons/transparent.gif";
+						newimage.addEventListener( "click", this.addTagsClick, false );
+						newimage.setAttribute( "tags", this.othericons[i].tags);
+						if ( this.othericons[i].replace_text) newimage.setAttribute( "replace_text", this.othericons[i].replace_text);
+						newimage.setAttribute( "class", this.othericons[i].class);
+						newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/ht-ml/"+this.othericons[i].image+"') !important;");
+						newimage.title = Foxtrickl10n.getString("ForumOtherIcons."+this.othericons[i].string);
+						otherbar.appendChild( newimage );
+				}
+			}
+
+			var head = toolbar.parentNode;
+			head.insertBefore( otherbar, toolbar.nextSibling );
+		}
+
 		if (show_youth || true) {
 			var youthbar = doc.createElement( "div" );
 			youthbar.setAttribute( "class" , "HTMLToolbar");
@@ -295,7 +332,7 @@
 
 			var head = toolbar.parentNode;
 			head.insertBefore( youthbar, toolbar.nextSibling );
-		}
+		}		
 	},
 
 	change : function(page, doc) {
@@ -344,6 +381,20 @@
 			var newText = (s.selectionLength > 0) ? openingTag.replace(replaceText, s.selectedText) : openingTag;
 			Foxtrick.dump('selectedText: '+s.selectedText+'\n');
 			Foxtrick.dump('newText: '+newText+'\n');
+
+			// debug
+			if (replaceText == 'debug'){
+				newText = Foxtrickl10n.getString("foxtrick.log.env")
+					.replace(/%1/, Foxtrick.version())
+					.replace(/%2/, Foxtrick.BuildFor)
+					.replace(/%3/, FoxtrickPrefs.getString("htLanguage"))
+					.replace(/%4/, Foxtrick.isStandardLayout(doc) ? "standard" : "simple")
+					.replace(/%5/, Foxtrick.isRTLLayout(doc) ? "RTL" : "LTR");
+				newText += "\n";
+				newText += Foxtrick.dumpCache.substr(Foxtrick.dumpCache.length-3500);
+				// clear the cache
+				Foxtrick.dumpCache = "";
+			}
 
 			// time
 			if (replaceText == 'time'){
