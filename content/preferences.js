@@ -6,6 +6,11 @@ function init()
 	initTextAndValues();
 	$("#cancel").hover(function() { $(this).hide("slow"); }); // trick!
 	locateFragment(window.location.toString()); // locate element by fragment
+			
+	if (window.location.href.search(/imported=true/)!==-1) {
+		notice(Foxtrickl10n.getString("foxtrick.prefs.loaded"));
+		window.location.href = window.location.href.substr(0,window.location.href.search(/\&imported=true/));
+	}
 }
 
 function initCoreModules()
@@ -111,7 +116,7 @@ function initTabs()
 	});
 	// initialize the tabs
 	initMainTab();
-	if (window.location.href.search(/\?/)==-1) initModuleTabs();
+	if (window.location.href.search(/url=/)==-1) initModuleTabs();
 	else initPageFilteredTab();
 	initChangesTab();
 	initHelpTab();
@@ -265,19 +270,24 @@ function initMainTab()
 	// load preferences
 	$("#pref-load-do").click(function() {
 		FoxtrickPrefs.LoadPrefs($("#pref-load-text").val());
-		notice(Foxtrickl10n.getString("foxtrick.prefs.loaded"));
+		window.location.href = window.location.href + '&imported=true';
+		window.location.reload();
 	});
 
 	// restore to default
 	$("#pref-stored-restore").click(function() {
-		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("delete_foxtrick_branches_ask")))
+		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("delete_foxtrick_branches_ask"))) {
 			FoxtrickPrefs.cleanupBranch();
+			window.location.href = window.location.href + '&imported=true';
+			window.location.reload();
+		}
 	});
 
 	// disable all
 	$("#pref-stored-disable").click(function() {
 		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("disable_all_foxtrick_modules_ask"))) {		
 			FoxtrickPrefs.disableAll();
+			window.location.href = window.location.href + '&imported=true';
 			window.location.reload();
 		}
 	});
