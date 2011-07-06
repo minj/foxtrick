@@ -141,7 +141,6 @@ var FoxtrickSkillTable = {
 			doc.getElementsByClassName("ft_skilltable_wrapper")[0].appendChild(loading);
 			var activationDate=null;
 			
-				// add homegrown from current squad to oldies
 				Foxtrick.Pages.Players.getPlayerList(doc, function(list) {										
 					var nr_to_process = list.length;
 					if (nr_to_process==0) FoxtrickSkillTable.showTable(doc, list);
@@ -153,6 +152,7 @@ var FoxtrickSkillTable = {
 							args.push(["file", "transfersPlayer"]);					
 							Foxtrick.ApiProxy.retrieve(doc, args, function(xml) {	 
 								var homegrown=false;
+								var always_home=false;
 								if (xml) {	
 									// check if player not sold or was first sold by this team -> homegrown
 									var pid = xml.getElementsByTagName("PlayerID")[0].textContent;
@@ -162,17 +162,15 @@ var FoxtrickSkillTable = {
 										var seller = Number(Transfer.getElementsByTagName("SellerTeamID")[0].textContent);
 										if (seller==TeamId) {
 											homegrown=true;
+											Foxtrick.map(list, function(n) {if (n.id==pid) n.homegrown=true; });
 										}
-										else {
-											var Transfer = Transfers[0]; //last transfer to this team
-											var Deadline = Transfer.getElementsByTagName("Deadline")[0].textContent;											
-											Foxtrick.map(list, function(n) {if (n.id==pid) n.joinedSince = Deadline;});	
-										}
+										var Transfer = Transfers[0]; //last transfer to this team
+										var Deadline = Transfer.getElementsByTagName("Deadline")[0].textContent;											
+										Foxtrick.map(list, function(n) {if (n.id==pid) n.joinedSince = Deadline;});	
 									}
 									else {
 										homegrown=true;
-									}
-									if (homegrown) {
+										always_home=true;
 										Foxtrick.map(list, function(n) {if (n.id==pid) n.homegrown=true; });
 										var args = [];
 										args.push(["playerid", player.id]);
@@ -234,7 +232,7 @@ var FoxtrickSkillTable = {
 										}, FoxtrickSkillTable, true);
 									}
 								}
-								if (!homegrown) {
+								if (!always_home) {
 									nr_to_process--;
 									if (nr_to_process==0) { // processed all. 
 										FoxtrickSkillTable.showTable(doc, list);
