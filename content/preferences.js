@@ -312,7 +312,17 @@ function initPageFilteredTab()
 	
 	for (var i in Foxtrick.modules)
 		if (Foxtrick.modules[i].MODULE_CATEGORY)
-			for (var j in Foxtrick.modules[i].PAGES) { 
+			if (Foxtrick.modules[i].ONPAGEPREF_PAGE) {
+				var page = Foxtrick.modules[i].ONPAGEPREF_PAGE;
+				if (page == "all" || page == "all_late") {
+					categories['allfiltered'].push(i);
+				}
+				else if (Foxtrick.isPage(Foxtrick.ht_pages[page], window.document)) {		
+					categories['pagefiltered'].push(i);
+					pages[page] = page;
+				}
+			}
+			else for (var j in Foxtrick.modules[i].PAGES) { 
 				var page = Foxtrick.modules[i].PAGES[j];
 				if (page == "all" || page == "all_late") {
 					categories['allfiltered'].push(i);
