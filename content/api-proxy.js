@@ -142,7 +142,7 @@ Foxtrick.ApiProxy = {
 		FoxtrickHelper.getOwnTeamInfo(doc); // retrieve team ID first
 		var caller_name='';
 		if (caller && caller.MODULE_NAME) caller_name = caller.MODULE_NAME+' ';
-		if (!silent) Foxtrick.log("ApiProxy: "+caller_name+"attempting to retrieve: ", parameters, "…");
+		//if (!silent) Foxtrick.log("ApiProxy: "+caller_name+"attempting to retrieve: ", parameters, "…");
 		if (!Foxtrick.ApiProxy.authorized()) {
 			if (!silent) Foxtrick.log("ApiProxy: unauthorized.");
 			Foxtrick.ApiProxy.authorize(doc);
@@ -169,7 +169,7 @@ Foxtrick.ApiProxy = {
 		Foxtrick.OAuth.setTimestampAndNonce(msg);
 		Foxtrick.OAuth.SignatureMethod.sign(msg, accessor);
 		var url = Foxtrick.OAuth.addToURL(Foxtrick.ApiProxy.resourceUrl, msg.parameters);
-		if (!silent) Foxtrick.log("Fetching XML data from ",  Foxtrick.ApiProxy.stripToken(url));
+		if (!silent) Foxtrick.log(caller_name,": Fetching XML data from ",  Foxtrick.ApiProxy.stripToken(url));
 		Foxtrick.loadXml(url, function(x, status) {
 			if (status == 200) {
 				callback(x);

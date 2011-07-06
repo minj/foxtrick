@@ -906,7 +906,7 @@ Foxtrick.log = function() {
 		if (content instanceof Error) {
 			if (Foxtrick.BuildFor == "Gecko") {
 				item = content.fileName + " (" + content.lineNumber + "): " + String(content) + "\n";
-				item += "Stack trace: " + content.stack;
+				item += "Stack trace: " + content.stack.substr(0,10000);
 				Components.utils.reportError(item);
 			}
 			else if (Foxtrick.BuildFor == "Chrome") {
