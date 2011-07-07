@@ -349,7 +349,7 @@ Foxtrick.version = function() {
 
 Foxtrick.isPage = function(page, doc) {
 	var htpage_regexp = new RegExp(page.replace(/\./g,'\\.').replace(/\?/g,'\\?'), "i");
-	return doc.location.href.search(htpage_regexp) > -1;
+	return doc.location.href.replace(/#.+/,'').search(htpage_regexp) > -1;
 }
 
 Foxtrick.getHref = function(doc) {
