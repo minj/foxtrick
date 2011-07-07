@@ -145,7 +145,7 @@ var FoxtrickExtraShortcuts = {
 				if (Foxtrick.isModuleFeatureEnabled( this, "FoxTrickPrefs")) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
-					link.href = Foxtrick.ResourcePath + "preferences.xhtml?url="+doc.location.href+'#tab=pagefiltered';
+					link.href = Foxtrick.ResourcePath + "preferences.xhtml#tab=pagefiltered";
 					var img1 = doc.createElement('img');
 					img1.setAttribute( "class", "ftSCPrefs");
 					img1.src = "/Img/Icons/transparent.gif";

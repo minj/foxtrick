@@ -103,6 +103,8 @@ var FoxtrickCore = {
 		// from browser chrome
 		Foxtrick.setLastHost(doc.location.protocol + "//"
 			+ doc.location.hostname);
+		Foxtrick.setLastPage(doc.location.href);
+		
 	},
 
 	showChangeLog : function(doc) {

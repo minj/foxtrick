@@ -30,6 +30,13 @@ input, button
 	margin: 0 5px 0 0;
 }
 
+button.active
+{
+	background-color: #eef;
+	border: 3px solid #a8a8a8;
+}
+
+
 html[dir="rtl"] input, html[dir="rtl"] button
 {
 	margin: 0 0 0 5px;

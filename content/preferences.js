@@ -105,6 +105,9 @@ function initListeners()
 			}
 		}
 	});
+	$("#filter-page").click(function() { window.location.href=window.location.pathname+'#tab=pagefiltered'; window.location.reload(); });
+	$("#filter-all").click(function() { window.location.href=window.location.pathname+'#tab=main'; window.location.reload(); });
+	
 }
 
 function initTabs()
@@ -116,7 +119,7 @@ function initTabs()
 	});
 	// initialize the tabs
 	initMainTab();
-	if (window.location.href.search(/url=/)==-1) initModuleTabs();
+	if (window.location.hash.search(/tab=pagefiltered/)==-1) initModuleTabs();
 	else initPageFilteredTab();
 	initChangesTab();
 	initHelpTab();
@@ -200,6 +203,30 @@ function initTextAndValues()
 		dependee.click(function() { updateStatus(); });
 		updateStatus();
 	});
+	
+	// init top buttons
+	var pages = [];	
+	for (var i in Foxtrick.modules)
+		if (Foxtrick.modules[i].MODULE_CATEGORY)
+			if (Foxtrick.modules[i].ONPAGEPREF_PAGE) {
+				var page = Foxtrick.modules[i].ONPAGEPREF_PAGE;
+				if (page == "all" || page == "all_late") {}
+				else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) 		
+					pages[page] = page;				
+			}
+			else for (var j in Foxtrick.modules[i].PAGES) { 
+				var page = Foxtrick.modules[i].PAGES[j];
+				if (page == "all" || page == "all_late") break;
+				else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) {		
+					pages[page] = page;
+					break;
+				}
+			}	
+	var pagelist=': (';
+	for (var i in pages) pagelist += pages[i]+' - ';
+	if (pages.length>0) pagelist = pagelist.substr(0,pagelist.length-3);
+	pagelist += ')';	 
+	$("#filter-page").append(document.createTextNode(pagelist));
 }
 
 function initMainTab()
@@ -311,6 +338,7 @@ function initModuleTabs()
 	
 	$("#tab-pagefiltered").addClass('hide');
 	$("#tab-allfiltered").addClass('hide');
+	$("#filter-all").addClass('active');
 }
 
 function initPageFilteredTab()
@@ -318,7 +346,6 @@ function initPageFilteredTab()
 	var categories = {};
 	categories['pagefiltered'] = [];
 	categories['allfiltered'] = [];
-	var pages = [];
 	
 	for (var i in Foxtrick.modules)
 		if (Foxtrick.modules[i].MODULE_CATEGORY)
@@ -327,9 +354,8 @@ function initPageFilteredTab()
 				if (page == "all" || page == "all_late") {
 					categories['allfiltered'].push(i);
 				}
-				else if (Foxtrick.isPage(Foxtrick.ht_pages[page], window.document)) {		
+				else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) {		
 					categories['pagefiltered'].push(i);
-					pages[page] = page;
 				}
 			}
 			else for (var j in Foxtrick.modules[i].PAGES) { 
@@ -338,9 +364,8 @@ function initPageFilteredTab()
 					categories['allfiltered'].push(i);
 					break;
 				}
-				else if (Foxtrick.isPage(Foxtrick.ht_pages[page], window.document)) {		
+				else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) {		
 					categories['pagefiltered'].push(i);
-					pages[page] = page;
 					break;
 				}
 			}
@@ -359,12 +384,8 @@ function initPageFilteredTab()
 			if (links) $("#pane-pagefiltered").append(links);
 		}		
 	for (var i in Foxtrick.moduleCategories)
-		$("#tab-" + Foxtrick.moduleCategories[i]).addClass('hide');
-	
-	var pagelist='(';
-	for (var i in pages) pagelist += pages[i]+' - ';
-	pagelist = pagelist.substr(0,pagelist.length-3)+')';
-	$("#pagelist").append(document.createTextNode(pagelist));
+		$("#tab-" + Foxtrick.moduleCategories[i]).addClass('hide');	
+	$("#filter-page").addClass('active');
 }
 
 function getModule(module)

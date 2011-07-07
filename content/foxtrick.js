@@ -348,8 +348,12 @@ Foxtrick.version = function() {
 };
 
 Foxtrick.isPage = function(page, doc) {
+	return Foxtrick.isPageHref(page, doc.location.href); 
+}
+
+Foxtrick.isPageHref = function(page, href) {
 	var htpage_regexp = new RegExp(page.replace(/\./g,'\\.').replace(/\?/g,'\\?'), "i");
-	return doc.location.href.replace(/#.+/,'').search(htpage_regexp) > -1;
+	return href.replace(/#.+/,'').search(htpage_regexp) > -1;
 }
 
 Foxtrick.getHref = function(doc) {
@@ -400,6 +404,14 @@ Foxtrick.setLastHost = function(host) {
 
 Foxtrick.getLastHost = function(host) {
 	return FoxtrickPrefs.getString("last-host") || "http://www.hattrick.org";
+}
+
+Foxtrick.setLastPage = function(host) {
+	FoxtrickPrefs.setString("last-page", String(host));
+}
+
+Foxtrick.getLastPage = function(host) {
+	return FoxtrickPrefs.getString("last-page") || "http://www.hattrick.org";
 }
 
 Foxtrick.registerModulePages = function(module) {
