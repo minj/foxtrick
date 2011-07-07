@@ -350,7 +350,8 @@ var FoxtrickPrefs = {
 
 
 	isPrefSetting : function(key) {
-		return key.indexOf("transferfilter") == -1
+		return key.indexOf("oauth") == -1
+			&& key.indexOf("transferfilter") == -1
 			&& key.indexOf("post_templates") == -1
 			&& key.indexOf("mail_templates") == -1
 			&& (key.indexOf("LinksCustom") == -1

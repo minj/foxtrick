@@ -10,7 +10,7 @@
 	MODULE_AUTHOR : "spambot",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumWritePost","messageWritePost","guestbook","announcements","forumSettings","newsletter","forumModWritePost","ticket"),
-	OPTIONS :  new Array("q", "user_id", "kit_id", "article_id", "line_br", "clock", "spoiler", "pre", "table", "youth_player", "youth_team", "youth_match", "youth_series", "debug", "enlarge_input"),
+	OPTIONS :  new Array("q", "user_id", "kit_id", "article_id", "line_br", "clock", "spoiler", "pre", "table", "youth_player", "youth_team", "youth_match", "youth_series", "debug", "settings", "enlarge_input"),
 
 
 	fields : [
@@ -54,7 +54,8 @@
 			],
 
 	othericons : [
-				{ type:"debug", class : "f_debug",	image : "format_debug.png", 	string : "debug", 	tags : "debug",	replace_text: "debug"},
+				{ type:"debug", 	class : "f_debug",		image : "format_debug.png", 	string : "debug", 		tags : "debug",		replace_text: "debug"},
+				{ type:"settings", 	class : "f_settings",	image : "format_settings.png", 	string : "settings", 	tags : "settings",	replace_text: "settings"},
 			],
 
 			run : function( page, doc ) {
@@ -74,7 +75,8 @@
 			(Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "youth_series")))
 			show_youth = true;
 
-		if ((Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "debug")))
+		if ((Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "debug")) ||
+		    (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "settings")))
 			show_other = true;
 
 		var div = doc.getElementById( "ft_youth_icons");
@@ -394,6 +396,11 @@
 				newText += Foxtrick.dumpCache.substr(Foxtrick.dumpCache.length-3500);
 				// clear the cache
 				Foxtrick.dumpCache = "";
+			}
+
+			// settings
+			if (replaceText == 'settings'){
+				newText = FoxtrickPrefs.SavePrefs(true, false); 
 			}
 
 			// time
