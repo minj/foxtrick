@@ -33,7 +33,7 @@
 	padding: 1px 1px 1px 44px !important;
 }
 
-.ft-staff-hty .ft-staff-chpp-holder {
+.ft-staff-hty.ft-staff-chpp-holder {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/chpp.png"), url("chrome://foxtrick/content/resources/img/staff/hyouthclub.png");
 	background-repeat: no-repeat, no-repeat;
 	background-position: 0px 0px, 25px 0px;
@@ -67,4 +67,12 @@
 
 .ft-staff-ht {
 	background-color: red;
+}
+
+.ft-staff-official {
+	background-color: #FFBA00;
+}
+
+.ft-staff-seperator {
+	background-color: #DDD;
 }

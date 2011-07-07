@@ -171,8 +171,9 @@ var FoxtrickStaffMarker = {
 
 	_MarkAliases_select : function(doc, modifier) {
 		var do_flag = Foxtrick.isModuleFeatureEnabled(FoxtrickStaffMarker, "flag");
-
-		var selects = doc.getElementById("mainWrapper").getElementsByTagName("select");
+		var css='';
+		
+		var selects = doc.getElementById("mainWrapper").getElementsByTagName("select");		
 		Foxtrick.map(selects, function(select) {
 			if (select.id.search(/filter/i) == -1
 				&& select.id.search(/recipient/i) == -1)
@@ -191,18 +192,23 @@ var FoxtrickStaffMarker = {
 				modifier(uid, uname, option);
 
 				if (option.value==-3) {
-					option.style.backgroundColor='#DDD';
+					Foxtrick.addClass(option, "ft-staff-seperator");					
+				}
+				else if (option.value=="by_-1") {
+					Foxtrick.addClass(option, "ft-staff-official");					
 				}
 				else if (do_flag) {
-					var cstyle = doc.defaultView.getComputedStyle(option, null);
-					option.style.backgroundImage = cstyle.backgroundImage+", url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif')";
-					option.style.backgroundRepeat = cstyle.backgroundRepeat+", no-repeat"
-					option.style.paddingLeft = cstyle.paddingLeft+", 2px";
-					option.style.backgroundPosition = cstyle.backgroundPosition+", 180px 50%";
-					option.style.width = "195px";
-					option.style.borderbottom = "dotted thin #ddd";
+					Foxtrick.addClass(option, "ft-userid-"+uid);
+					css += ".ft-userid-"+uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'); background-position: 180px 50%; background-repeat: no-repeat; padding: 1px 1px 1px 1px; width:198px; border-bottom:dotted thin #ddd;}\n";
+					css += ".ft-staff-foxtrick.ft-userid-"   +uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'), url('chrome://foxtrick/content/resources/img/staff/foxtrick.png');   background-position: 180px 50%, 0px 0px; background-repeat: no-repeat, no-repeat; padding: 1px 1px 1px 1px; width:183px; border-bottom:dotted thin #ddd;}\n";
+					css += ".ft-staff-hty.ft-userid-"        +uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'), url('chrome://foxtrick/content/resources/img/staff/hyouthclub.png'); background-position: 180px 50%, 0px 0px; background-repeat: no-repeat, no-repeat; padding: 1px 1px 1px 1px; width:183px; border-bottom:dotted thin #ddd;}\n";
+					css += ".ft-staff-chpp-holder.ft-userid-"+uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'), url('chrome://foxtrick/content/resources/img/staff/chpp.png');       background-position: 180px 50%, 0px 0px; background-repeat: no-repeat, no-repeat; padding: 1px 1px 1px 1px; width:175px; border-bottom:dotted thin #ddd;}\n";
+					css += ".ft-staff-chpp-holder.ft-staff-hty.ft-userid-"     +uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'), url('chrome://foxtrick/content/resources/img/staff/chpp.png'),     url('chrome://foxtrick/content/resources/img/staff/hyouthclub.png'); background-position: 180px 50%, 0px 0px, 24px 0px; background-repeat: no-repeat, no-repeat, no-repeat; padding: 1px 1px 1px 24px; width:155px; border-bottom:dotted thin #ddd;}\n";
+					css += ".ft-staff-chpp-holder.ft-staff-foxtrick.ft-userid-"+uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'), url('chrome://foxtrick/content/resources/img/staff/chpp.png'),     url('chrome://foxtrick/content/resources/img/staff/foxtrick.png');   background-position: 180px 50%, 0px 0px, 24px 0px; background-repeat: no-repeat, no-repeat, no-repeat, padding: 1px 1px 1px 24px; width:155px; border-bottom:dotted thin #ddd;}\n";
+					css += ".ft-staff-foxtrick.ft-staff-hty.ft-userid-"        +uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'), url('chrome://foxtrick/content/resources/img/staff/foxtrick.png'), url('chrome://foxtrick/content/resources/img/staff/hyouthclub.png'); background-position: 180px 50%, 0px 0px, 18px 0px; background-repeat: no-repeat, no-repeat, no-repeat; padding: 1px 1px 1px 18px; width:165px; border-bottom:dotted thin #ddd;}\n";
 				}
 			}
 		});
+		if (do_flag) Foxtrick.addStyleSheetSnippet(doc, css); 
 	}
 };
