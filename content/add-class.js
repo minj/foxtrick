@@ -8,17 +8,35 @@ if (!Foxtrick) var Foxtrick = {};
 Foxtrick.AddClass = {
 	MODULE_NAME : "AddClass",
 	CORE_MODULE : true,
-	PAGES : ["playerdetail", "search"],
+	PAGES : ["playerdetail", "search", "bookmarks"],
 
 	run : function(page, doc) {
 		if (page == "playerdetail")
 			this.addDateForTl(doc);
 		else if (page == "search")
 			this.addDateForYouthLeagueSearch(doc);
+		else if (page == "bookmarks")
+			this.addDateForBookmarks(doc);
 	},
 
 	change : function(page, doc) {
 		this.run(page, doc);
+	},
+
+	// add date class for youth league search
+	addDateForBookmarks : function(doc) {
+		var mainBody = doc.getElementById("mainBody");
+		if (!mainBody)
+			return;
+
+		const timeRe = /(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})/;
+
+		// start time
+		var cells = mainBody.getElementsByTagName("td");
+		Foxtrick.map(cells, function(cell) { //Foxtrick.log(cell.innerHTML, cell.search(timeRe));
+			if (cell.getElementsByClassName("date").length == 0)
+				cell.innerHTML = cell.innerHTML.replace(timeRe, "<span class=\"date\">$1</span>");
+		});
 	},
 
 	// add date class for youth league search
