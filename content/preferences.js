@@ -224,7 +224,7 @@ function initTextAndValues()
 			}	
 	var pagelist=': (';
 	for (var i in pages) pagelist += pages[i]+' - ';
-	if (pages.length>0) pagelist = pagelist.substr(0,pagelist.length-3);
+	if (pagelist.length>3) pagelist = pagelist.substr(0,pagelist.length-3);
 	pagelist += ')';	 
 	$("#filter-page").append(document.createTextNode(pagelist));
 }
