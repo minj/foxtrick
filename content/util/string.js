@@ -20,7 +20,10 @@ Foxtrick.trimnum = function(text) {
 }
 
 Foxtrick.formatNumber = function(num, sep) {
+	var digits = String(num).match(/\..+/);  // seperate digits
+	if (digits == null) digits = '';
 	var num = Number(num);
+	num = Math.floor(num, 0)
 	var negative = (num < 0);
 	num = String(Math.abs(num));
 	var output = num;
@@ -39,7 +42,7 @@ Foxtrick.formatNumber = function(num, sep) {
 	}
 	if (negative)
 		output = "-" + output;
-	return output;
+	return output + digits; // add digits again 
 }
 
 Foxtrick.substr_count = function (haystack, needle, offset, length) {
