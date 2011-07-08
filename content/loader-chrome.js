@@ -5,14 +5,16 @@
  */
 
 if (!Foxtrick) var Foxtrick={};
-
+	
 function runScript() {
 	if (!inited()) {
 		Foxtrick.log("Not even initialized! Let's try again 500 ms later.");
+		Foxtrick.util.note.showObstrusiveLoading(document, 'Initialising FoxTrick. Please wait');
 		setTimeout(runScript, 500);
 		return;
 	}
-
+	Foxtrick.util.note.removeObstrusiveLoading(document);
+	
 	if (!Foxtrick.isHt(document)
 		|| (FoxtrickPrefs.getBool("disableOnStage")
 			&& Foxtrick.isStage(document))
