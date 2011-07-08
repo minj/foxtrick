@@ -561,6 +561,7 @@ var FoxtrickSkillTable = {
 				cell.setAttribute("index",joined_s);
 			};
 			var dateLink = function(cell, deadline) {
+				deadline.innerHTML = deadline.innerHTML.replace(/div/gi,'span');
 				cell.appendChild(deadline);
 				cell.setAttribute("index", Foxtrick.util.time.getDateFromText(deadline.textContent).getTime());
 			};	

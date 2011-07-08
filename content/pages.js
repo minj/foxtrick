@@ -45,6 +45,7 @@ Foxtrick.ht_pages = {
 	'youthchallenges'           : '/Club/Challenges/YouthChallenges',
 	'achievements'              : '/Club/Achievements/',
 	'history'                   : '/Club/History/',
+	'seriesHistory'             : '/World/Series/History',	
 	'teamevents'                : '/Club/TeamEvents/',
 	'arena'                     : '/Club/Arena/Default.aspx',
 	'staff'                     : '/Club/Staff',

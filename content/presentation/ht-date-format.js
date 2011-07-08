@@ -9,19 +9,29 @@ var FoxtrickHTDateFormat = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ['transfersTeam','transfersPlayer','transfer','transferCompare','match',
 		'matches','matchesarchiv','teamPageGeneral','achievements','playerevents',
-		'teamevents','history','arena','league','hallOfFame','statsMatchesHeadToHead'],
+		'teamevents','history','arena','league','hallOfFame','statsMatchesHeadToHead',
+		'seriesHistory'],
 	ONPAGEPREF_PAGE : 'all',
 	OPTIONS : ["LocalSeason", "FirstDayOfWeekOffset"],
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DISABLED_LIST : [true, false],
-
+	
 	run : function(page, doc) {
 		var mainBody = doc.getElementById("mainBody");
 		if (!mainBody) return;
 
 		const useLocal = Foxtrick.isModuleFeatureEnabled(this, "LocalSeason");
 		const weekOffset = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".FirstDayOfWeekOffset_text");
-
+		var seperator=' ';
+		// some table fixing for simple skin
+		if (!Foxtrick.isStandardLayout(doc)) {
+			if (page == 'matches')
+				seperator = '<br/>';
+		}
+		if (page == 'seriesHistory' )
+				seperator = '<br/>';
+		
+		
 		var modifyDate = function(node) {
 			if (Foxtrick.hasClass(node, "ft-date"))
 				return;
@@ -36,7 +46,7 @@ var FoxtrickHTDateFormat = {
 			if (date) {
 				var htDate = Foxtrick.util.time.gregorianToHT(date, weekOffset, useLocal);
 				Foxtrick.addClass(node, "ft-date");
-				node.textContent = node.textContent + " (" + htDate.week + "/" + htDate.season + ")";
+				node.innerHTML = node.innerHTML + seperator + "(" + htDate.week + "/" + htDate.season + ")";
 			}
 		};
 

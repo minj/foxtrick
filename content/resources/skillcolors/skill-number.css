@@ -1,5 +1,7 @@
 /* CSS Document  by baumanns */
 
+a[href*="#skill"] {white-space:nowrap;}
+
 /* SKILL NUMBERS */
 a[href*="=0#skill"]:after, a[href*="ll=0#FanMood"]:after, a[href*="ll=0#FanMatch"]:after, a[href*="ll=0#FanSeason"]:after, a[href*="ll=0#SkillShort"]:after, a[href*="ll=0#gentleness"]:after, a[href*="ll=0#aggressiveness"]:after, a[href*="ll=0#honesty"]:after, a[href*="ll=0#teamskills"]:after, a[href*="=0#sponsors"]:after, a[href*="=12#morale"]:after, a[href*="=23#confidence"]:after
 {content:" (0)" !important;font-size:xx-small !important;}

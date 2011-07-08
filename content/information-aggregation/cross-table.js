@@ -52,10 +52,13 @@ var FoxtrickCrossTable = {
 		tableHeader.textContent = Foxtrickl10n.getString("CrossTable.table");
 		tableHeader.className = "ft_boxBodyCollapsed";
 		insertBefore.parentNode.insertBefore(tableHeader, insertBefore);
+		var div = doc.createElement("div");
+		div.className = "ft-cross-table-div";
 		var table = doc.createElement("table");
 		table.id = "ft-cross-table";
 		table.className = "hidden";
-		insertBefore.parentNode.insertBefore(table, insertBefore);
+		div.appendChild(table);
+		insertBefore.parentNode.insertBefore(div, insertBefore);
 
 		var rememberState = function(object, state) {
 			FoxtrickPrefs.setBool("module.CrossTable." + object, state);

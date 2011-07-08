@@ -14,6 +14,14 @@ FoxtrickTransferDeadline = {
 		if (doc.getElementsByClassName("ft-deadline").length > 0)
 			return;
 
+		FoxtrickTransferDeadline.element='span';  // display: inline
+		// some table fixing for simple skin
+		if (!Foxtrick.isStandardLayout(doc)) {
+			if (page == 'transferSearchResult')
+				FoxtrickTransferDeadline.element = 'div';				 // display: block
+		}
+		Foxtrick.log(page, ' ',FoxtrickTransferDeadline.element);
+		
 		if (Foxtrick.isPage(Foxtrick.ht_pages["transferSearchResult"], doc))
 			this.runTransferResult(doc);
 		else if (Foxtrick.isPage(Foxtrick.ht_pages["playerdetail"], doc))
@@ -45,7 +53,7 @@ FoxtrickTransferDeadline = {
 		if (deadline) {
 			var countdown = Math.floor((deadline.getTime() - htTime) / 1000);
 			if (!isNaN(countdown) && countdown >= 0) {
-				var countdownNode = doc.createElement("span");
+				var countdownNode = doc.createElement(FoxtrickTransferDeadline.element);
 				countdownNode.className = "smallText ft-deadline";
 				countdownNode.innerHTML = "(" + Foxtrick.util.time.timeDifferenceToText(countdown) + ")";
 				node.appendChild(countdownNode);
