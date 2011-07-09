@@ -92,19 +92,21 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 				
 				var cssTextCollection = '';
 				for (var i in request.css_files) { 
+					var module = request.css_files[i]; // not idedical with Foxtrick.Module. this is an oject					
+					
 					// skip disabled modules
 					var enabled = Boolean(FoxtrickPrefs.getBool("module." + i + ".enabled"));
-					if (request.css_files[i].CORE_MODULE) enabled = true;
+					if (module.CORE_MODULE) enabled = true;
 					if (!enabled) continue;
 
 					// select layout
-					var cssList = request.css_files[i].CSS;
-					if (localStorage["isRTL"]=='true' && typeof(request.css_files[i].CSS_RTL)!= 'undefined')
-						cssList = request.css_files[i].CSS_RTL;
-					if (localStorage["isStandard"]=='false' && typeof(request.css_files[i].CSS_SIMPLE)!= 'undefined')
-						cssList = request.css_files[i].CSS_SIMPLE;					
-					if (localStorage["isStandard"]=='false' && localStorage["isRTL"]=='true' && typeof(request.css_files[i].CSS_SIMPLE_RTL)!= 'undefined' )
-						cssList = request.css_files[i].CSS_SIMPLE_RTL;
+					var cssList = module.CSS;
+					if (localStorage["isRTL"]=='true' && typeof(module.CSS_RTL)!= 'undefined')
+						cssList = module.CSS_RTL;
+					if (localStorage["isStandard"]=='false' && typeof(module.CSS_SIMPLE)!= 'undefined')
+						cssList = module.CSS_SIMPLE;					
+					if (localStorage["isStandard"]=='false' && localStorage["isRTL"]=='true' && typeof(module.CSS_SIMPLE_RTL)!= 'undefined' )
+						cssList = module.CSS_SIMPLE_RTL;
 					
 					// get css text from selected resource
 					if (cssList) {
@@ -113,6 +115,16 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 						else if (typeof(cssList) === "object") {
 							for (var j in cssList)
 								cssTextCollection += getCssFromResource(cssList[j]);
+						}
+					}
+					// load module options CSS
+					if (module.OPTIONS_CSS) {
+						for (var j = 0; j < module.OPTIONS_CSS.length; ++j) {
+							var enabled = Boolean(FoxtrickPrefs.getBool("module." + i + "." + module.OPTIONS[j] + ".enabled"));
+							if (!enabled) continue;
+							if (localStorage["isRTL"]=='true' && typeof(module.OPTIONS_CSS_RTL)!= 'undefined' && typeof(module.OPTIONS_CSS_RTL[j])!= 'undefined')
+									cssTextCollection += getCssFromResource(module.OPTIONS_CSS_RTL[j]);
+							else cssTextCollection += getCssFromResource(module.OPTIONS_CSS[j]);
 						}
 					}
 				}				

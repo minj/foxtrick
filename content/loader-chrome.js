@@ -65,6 +65,9 @@ function init() {
 			css_files[moduleName]['CSS_SIMPLE'] = module.CSS_SIMPLE;
 			css_files[moduleName]['CSS_RTL'] = module.CSS_RTL;
 			css_files[moduleName]['CSS_SIMPLE_RTL'] = module.CSS_SIMPLE_RTL;
+			css_files[moduleName]['OPTIONS'] = module.OPTIONS;
+			css_files[moduleName]['OPTIONS_CSS'] = module.OPTIONS_CSS;			
+			css_files[moduleName]['OPTIONS_CSS_RTL'] = module.OPTIONS_CSS_RTL;			
 		}	
 	}
 
