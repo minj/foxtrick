@@ -29,13 +29,132 @@ chrome.browserAction.onClicked.addListener(function() { FoxtrickPrefs.disable();
 // callback will be called with a sole Object as argument
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 	try {
-		if (request.req == "getPrefs") {
+		var errors = '';
+		var updatePrefs = function () {
+			// @callback_param pref - user preferences
+			// @callback_param prefDefault - default preferences
+			update();
+			localStorage.removeItem("preferences.updated");
+		};		
+		var getLocale = function () {
+			// @callback_param htLang - object of htlang.xml in plain text
+			// @callback_param propsDefault - foxtrick.properties (master)
+			// @callback_param props - foxtrick.properties (localized)
+			// @callback_param screenshots - foxtrick.screenshots
+			var htLanguagesText = {};
+			var serializer = new XMLSerializer();
+			for (var i in Foxtrickl10n.htLanguagesXml) {
+				htLanguagesText[i] = serializer.serializeToString(Foxtrickl10n.htLanguagesXml[i]);
+			}
+			return htLanguagesText;
+		};
+		var getXmlResource = function () {		
+			var serializer = new XMLSerializer();
+			var currency = serializer.serializeToString(Foxtrick.XMLData.htCurrencyXml);
+			var dateFormat = serializer.serializeToString(Foxtrick.XMLData.htdateformat);
+			var about = serializer.serializeToString(Foxtrick.XMLData.aboutXML);
+			var worldDetails = serializer.serializeToString(Foxtrick.XMLData.worldDetailsXml);
+			return {currency:currency, dateFormat:dateFormat, about:about, worldDetails:worldDetails};
+		};
+		var getCssFromResource = function (cssUrl) {
+			// @callback_param cssText - string of CSS content to be added
+			var css_text = "";
+			if (cssUrl && cssUrl.search(/^http|^chrome-extension/) != -1) {
+				try { 
+					// a resource file, get css file content
+					css_xhr = new XMLHttpRequest();
+					css_xhr.open("GET", cssUrl, false);
+					css_xhr.send();
+					css_text = css_xhr.responseText;
+				} catch(e) { errors += 'get css: '+cssUrl+' \n'+e; }
+			}
+			else {
+				// not a file but line is css text
+				css_text = cssUrl;
+			}
+			if (css_text) {
+				// remove moz-document statement
+				if (css_text.search(/@-moz-document/)!=-1) {
+					css_text = css_text.replace(/@-moz-document[^\{]+\{/, "");
+					var closing_bracket = css_text.lastIndexOf("}");
+					css_text = css_text.substr(0, closing_bracket)+css_text.substr(closing_bracket+1);
+				}
+			}
+			return css_text; 
+		};
+		var replaceExtensionDirectory = function(cssTextCollection) {		
+			// replace ff chrome reference by google chrome refs
+			var exturl = chrome.extension.getURL("");
+			return cssTextCollection.replace(RegExp("chrome://foxtrick/", "g"), exturl);
+		};
+
+		if (request.req == "init") {
+			try {
+				updatePrefs();
+				var htLanguagesText = getLocale();
+				var xmlResource = getXmlResource();
+
+				
+				var cssTextCollection = '';
+				for (var i in request.css_files) { 
+					// skip disabled modules
+					var enabled = Boolean(FoxtrickPrefs.getBool("module." + i + ".enabled"));
+					if (request.css_files[i].CORE_MODULE) enabled = true;
+					if (!enabled) continue;
+
+					// select layout
+					var cssList = request.css_files[i].CSS;
+					if (localStorage["isRTL"]=='true' && typeof(request.css_files[i].CSS_RTL)!= 'undefined')
+						cssList = request.css_files[i].CSS_RTL;
+					if (localStorage["isStandard"]=='false' && typeof(request.css_files[i].CSS_SIMPLE)!= 'undefined')
+						cssList = request.css_files[i].CSS_SIMPLE;					
+					if (localStorage["isStandard"]=='false' && localStorage["isRTL"]=='true' && typeof(request.css_files[i].CSS_SIMPLE_RTL)!= 'undefined' )
+						cssList = request.css_files[i].CSS_SIMPLE_RTL;
+					
+					// get css text from selected resource
+					if (cssList) {
+						if (typeof(cssList) === "string")
+							cssTextCollection += getCssFromResource(cssList);
+						else if (typeof(cssList) === "object") {
+							for (var j in cssList)
+								cssTextCollection += getCssFromResource(cssList[j]);
+						}
+					}
+				}				
+				cssTextCollection = replaceExtensionDirectory(cssTextCollection);
+				
+				// send all back now
+				sendResponse({
+					cssText : cssTextCollection,
+
+					pref : FoxtrickPrefs.pref,
+					prefDefault : FoxtrickPrefs.prefDefault,
+
+					htLang : htLanguagesText,
+					propsDefault : Foxtrickl10n.properties_default,
+					props : Foxtrickl10n.properties,
+					screenshots : Foxtrickl10n.screenshots,
+
+					currency : xmlResource.currency,
+					dateFormat : xmlResource.dateFormat,
+					about : xmlResource.about,
+					worldDetails : xmlResource.worldDetails,
+					league : Foxtrick.XMLData.League,
+					countryToLeague : Foxtrick.XMLData.countryToLeague,
+			
+					error : errors				
+				});
+			} catch(e) {
+				errors += 'Foxtrick request.req == "init": ' + e ;
+				sendResponse({error : errors});				
+			}
+		}
+		else if (request.req == "getPrefs") {
 			// @callback_param pref - user preferences
 			// @callback_param prefDefault - default preferences
 			if (localStorage["preferences.updated"]
 				&& JSON.parse(localStorage["preferences.updated"])) {
-				update();
-				localStorage.removeItem("preferences.updated");
+					updatePrefs();
 			}
 			sendResponse({
 				pref : FoxtrickPrefs.pref,
@@ -61,15 +180,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 			update();
 		}
 		else if (request.req == "locale") {
-			// @callback_param htLang - object of htlang.xml in plain text
-			// @callback_param propsDefault - foxtrick.properties (master)
-			// @callback_param props - foxtrick.properties (localized)
-			// @callback_param screenshots - foxtrick.screenshots
-			var htLanguagesText = {};
-			var serializer = new XMLSerializer();
-			for (var i in Foxtrickl10n.htLanguagesXml) {
-				htLanguagesText[i] = serializer.serializeToString(Foxtrickl10n.htLanguagesXml[i]);
-			}
+			var htLanguagesText = getLocale();
 			sendResponse({
 				htLang : htLanguagesText,
 				propsDefault : Foxtrickl10n.properties_default,
@@ -77,56 +188,23 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 				screenshots : Foxtrickl10n.screenshots
 			});
 		}
-		else if (request.req == "addCss") {
+		else if (request.req == "getCss") {
 			// @param files - a string of files to be added, separated with "\n"
-			// @callback_param cssText - string of CSS content to be added
-			try {
-				var responseText = "";
-				var cssUrl = request.files.split("\n");
-				for (var i = 0; i < cssUrl.length; ++i) {
-					var css_text = "";
-					if (cssUrl[i].search(/^http|^chrome-extension/) != -1) {
-						// a resource file, get css file content
-						css_xhr = new XMLHttpRequest();
-						css_xhr.open("GET", cssUrl[i], false);
-						css_xhr.send();
-						css_text = css_xhr.responseText;
-					}
-					else {
-						// not a file but line is css text
-						css_text = cssUrl[i];
-					}
-					if (css_text) {
-						// remove moz-document statement
-						if (css_text.search(/@-moz-document/)!=-1) {
-							css_text = css_text.replace(/@-moz-document[^\{]+\{/, "");
-							var closing_bracket = css_text.lastIndexOf("}");
-							css_text = css_text.substr(0, closing_bracket)+css_text.substr(closing_bracket+1);
-						}
-					}
-					responseText += css_text;
-				}
-				// replace ff chrome reference by google chrome refs
-				var exturl = chrome.extension.getURL("");
-				responseText = responseText.replace(RegExp("chrome://foxtrick/", "g"), exturl);
-
-				sendResponse({cssText : responseText});
+			var cssUrl = request.files.split("\n");
+			var cssTextCollection='';
+			for (var i = 0; i < cssUrl.length; ++i) {
+				cssTextCollection += getCssFromResource(cssUrl[i]);
 			}
-			catch (e) {
-				Foxtrick.log(e);
-			}
+			cssTextCollection = replaceExtensionDirectory(cssTextCollection);
+			sendResponse({cssText : cssTextCollection,	error : errors });
 		}
 		else if (request.req == "xmlResource") {
-			var serializer = new XMLSerializer();
-			var currency = serializer.serializeToString(Foxtrick.XMLData.htCurrencyXml);
-			var dateFormat = serializer.serializeToString(Foxtrick.XMLData.htdateformat);
-			var about = serializer.serializeToString(Foxtrick.XMLData.aboutXML);
-			var worldDetails = serializer.serializeToString(Foxtrick.XMLData.worldDetailsXml);
+			var xmlResource = getXmlResource();
 			sendResponse({
-				currency : currency,
-				dateFormat : dateFormat,
-				about : about,
-				worldDetails : worldDetails,
+				currency : xmlResource.currency,
+				dateFormat : xmlResource.dateFormat,
+				about : xmlResource.about,
+				worldDetails : xmlResource.worldDetails,
 				league : Foxtrick.XMLData.League,
 				countryToLeague : Foxtrick.XMLData.countryToLeague
 			});
@@ -144,7 +222,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 				}
 				catch (e) {
 					// port may be disconnected
-					Foxtrick.log(e);
+					sendResponse({ error : 'Foxtrick - background xml: ' + e });			
 				}
 			};
 			xhr.open("GET", request.url, true);
@@ -152,7 +230,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		}
 		else if (request.req == "newTab") {
 			// @param url - the URL of new tab to create
-			chrome.tabs.create({url : request.url});
+			chrome.tabs.create({url : request.url, index: 1});
 		}
 		else if (request.req == "clipboard") {
 			// @param content - content to copy
@@ -194,6 +272,6 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		}
 	}
 	catch (e) {
-		Foxtrick.log(e);
+		sendResponse({ error : 'Foxtrick - background onRequest: ' + e });			
 	}
 });

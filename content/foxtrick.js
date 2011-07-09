@@ -177,7 +177,6 @@ var FoxtrickMain = {
 
 	onPageLoad : function(ev) {
 		try {
-			//Foxtrick.dump('onPageLoad\n');
 			var doc = ev.originalTarget;
 			if (doc.nodeName != "#document")
 				return;
@@ -219,6 +218,7 @@ var FoxtrickMain = {
 	run : function(doc, is_only_css_check) {
 		try {
 			if (FoxtrickPrefs.getBool("preferences.updated")) {
+				Foxtrick.log('prefs updated');
 				FoxtrickMain.init();
 				Foxtrick.reload_module_css(doc);
 				FoxtrickMain.cssLoaded = true;
@@ -237,12 +237,16 @@ var FoxtrickMain = {
 				return;
 			}
 
+		var isStandard = FoxtrickPrefs.getBool('isStandard');
+		var isRTL = FoxtrickPrefs.getBool('isRTL');
 			// reload CSS if not loaded or page layout changed
 			if (!FoxtrickMain.cssLoaded
-				|| (Foxtrick.isStandardLayout(doc) !== FoxtrickMain.isStandard)
-				|| (Foxtrick.isRTLLayout(doc) !== FoxtrickMain.isRTL)) {
-				FoxtrickMain.isStandard = Foxtrick.isStandardLayout(doc);
-				FoxtrickMain.isRTL = Foxtrick.isRTLLayout(doc);
+				|| (Foxtrick.isStandardLayout(doc) !== FoxtrickPrefs.getBool('isStandard'))
+				|| (Foxtrick.isRTLLayout(doc) !== FoxtrickPrefs.getBool('isRTL'))) {
+				Foxtrick.log('layout change');
+				FoxtrickPrefs.setBool('isStandard', Foxtrick.isStandardLayout(doc));
+				FoxtrickPrefs.setBool('isRTL', Foxtrick.isRTLLayout(doc));
+				FoxtrickPrefs.setBool('isStage', Foxtrick.isStage(doc));
 				Foxtrick.reload_module_css(doc);
 				FoxtrickMain.cssLoaded = true;
 			}
@@ -511,12 +515,19 @@ Foxtrick.addStyleSheet = function(doc, css) {
 	head.appendChild(link);
 }
 
-Foxtrick.addStyleSheetSnippet = function(doc, css) {
+Foxtrick.addStyleSheetSnippet = function(doc, css, id) {
 	var head = doc.getElementsByTagName("head")[0];
 	var style = doc.createElement("style");
 	style.setAttribute("type", "text/css");
+	if (id) style.setAttribute("id", id);
 	style.appendChild(doc.createTextNode(css));
 	head.appendChild(style);
+}
+
+Foxtrick.removeStyleSheetSnippet = function(doc, id) {
+	var head = doc.getElementsByTagName("head")[0];
+	var style = doc.getElementById(id);
+	if (style) head.removeChild(style);
 }
 
 // attaches a JavaScript file to the page
@@ -552,6 +563,10 @@ Foxtrick.alert = function(msg) {
 	}
 }
 
+Foxtrick.getModuleName = function(module) {
+	return (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
+}
+
 Foxtrick.isCoreModule = function(module) {
 	// core modules must be executed no matter what user's preference is
 	return (module.CORE_MODULE === true);
@@ -561,8 +576,7 @@ Foxtrick.isModuleEnabled = function(module) {
 	try {
 		if (module.CORE_MODULE)
 			return true;
-		const moduleName = (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
-		const val = Boolean(FoxtrickPrefs.getBool("module." + moduleName + ".enabled"));
+		const val = Boolean(FoxtrickPrefs.getBool("module." + Foxtrick.getModuleName(module) + ".enabled"));
 		return val;
 	}
 	catch (e) {
@@ -584,7 +598,8 @@ Foxtrick.isModuleFeatureEnabled = function(module, feature) {
 Foxtrick.unload_module_css = function() {
 	Foxtrick.dump('unload permanents css\n');
 
-	for (var i in Foxtrick.modules) {
+	if (Foxtrick.BuildFor === "Gecko") {
+	  for (var i in Foxtrick.modules) {
 		var module = Foxtrick.modules[i];
 		if (module.MODULE_NAME) {
 			if (module.OLD_CSS && module.OLD_CSS!="")
@@ -604,42 +619,47 @@ Foxtrick.unload_module_css = function() {
 				for (var k=0; k<module.OPTIONS_CSS_RTL.length; ++k)
 					if (module.OPTIONS_CSS_RTL[k] != "") Foxtrick.unload_css_permanent (module.OPTIONS_CSS_RTL[k]) ;
 		}
+	  }
+	}
+	else {
+		Foxtrick.removeStyleSheetSnippet(doc, 'module_css');
 	}
 }
 
 Foxtrick.unload_css_permanent = function(cssList) {
 	var unload_css_permanent_impl = function(css) {
 		try {
-			if (Foxtrick.BuildFor === "Gecko") {
-				try {
-					var sss = Components
-						.classes["@mozilla.org/content/style-sheet-service;1"]
-						.getService(Components.interfaces.nsIStyleSheetService);
-					var ios = Components
-						.classes["@mozilla.org/network/io-service;1"]
-						.getService(Components.interfaces.nsIIOService);
-					var uri = ios.newURI(css, null, null);
-				}
-				catch (e) {
-					return;
-				}
-				// try unload
-				if (sss.sheetRegistered(uri, sss.USER_SHEET)) {
-					sss.unregisterSheet(uri, sss.USER_SHEET);
-					Foxtrick.dump('unload ' + css + '\n');
-				}
+			try {
+				var sss = Components
+					.classes["@mozilla.org/content/style-sheet-service;1"]
+					.getService(Components.interfaces.nsIStyleSheetService);
+				var ios = Components
+					.classes["@mozilla.org/network/io-service;1"]
+					.getService(Components.interfaces.nsIIOService);
+				var uri = ios.newURI(css, null, null);
+			}
+			catch (e) {
+				return;
+			}
+			// try unload
+			if (sss.sheetRegistered(uri, sss.USER_SHEET)) {
+				sss.unregisterSheet(uri, sss.USER_SHEET);
+				Foxtrick.dump('unload ' + css + '\n');
 			}
 		}
 		catch (e) {
 			Foxtrick.dump ('> load_css_permanent ' + e + '\n');
 		}
 	};
-	if (typeof(cssList) === "string")
-		unload_css_permanent_impl(cssList);
-	else if (typeof(cssList) === "object") {
-		for (var i in cssList)
-			unload_css_permanent_impl(cssList[i]);
+	if (Foxtrick.BuildFor === "Gecko") {
+		if (typeof(cssList) === "string")
+			unload_css_permanent_impl(cssList);
+		else if (typeof(cssList) === "object") {
+			for (var i in cssList)
+				unload_css_permanent_impl(cssList[i]);
+		}
 	}
+	else Foxtrick.removeStyleSheetSnippet(doc, 'module_css');
 }
 
 Foxtrick.load_css_permanent = function(cssList) {
@@ -683,23 +703,27 @@ Foxtrick.reload_css_permanent = function(css) {
 
 Foxtrick.reload_module_css = function(doc) {
 	try {
-		var isStandard = FoxtrickMain.isStandard;
-		var isRTL = FoxtrickMain.isRTL;
-		Foxtrick.dump('reload_module_css - StdLayout: '+isStandard+' - RTL: '+isRTL+'\n');
+		var isStandard = FoxtrickPrefs.getBool('isStandard');
+		var isRTL = FoxtrickPrefs.getBool('isRTL');
 
 		// unload all CSS files
-		for (var i in Foxtrick.modules) {
-			var module = Foxtrick.modules[i];
-			var list = [module.OLD_CSS, module.CSS, module.CSS_SIMPLE, module.CSS_RTL, module.CSS_SIMPLE_RTL];
-			for (var j = 0; j < list.length; ++j)
-				if (list[j])
-					Foxtrick.unload_css_permanent(list[j]);
-			if (module.OPTIONS_CSS) {
-				for (var j = 0; j < module.OPTIONS_CSS.length; ++j)
-					Foxtrick.unload_css_permanent(module.OPTIONS_CSS[j]);
+		if (Foxtrick.BuildFor === "Gecko") 
+			for (var i in Foxtrick.modules) {
+				var module = Foxtrick.modules[i];
+				var list = [module.OLD_CSS, module.CSS, module.CSS_SIMPLE, module.CSS_RTL, module.CSS_SIMPLE_RTL];
+				for (var j = 0; j < list.length; ++j)
+					if (list[j])
+						Foxtrick.unload_css_permanent(list[j]);
+				if (module.OPTIONS_CSS) {
+					for (var j = 0; j < module.OPTIONS_CSS.length; ++j)
+						Foxtrick.unload_css_permanent(module.OPTIONS_CSS[j]);
+				}
 			}
+		else if (Foxtrick.BuildFor === "Chrome") {
+			Foxtrick.removeStyleSheetSnippet(doc, 'module_css');
+			Foxtrick.cssFiles = "";
 		}
-
+		
 		// load CSS
 		for (var i in Foxtrick.modules) {
 			var module = Foxtrick.modules[i];
@@ -769,8 +793,9 @@ Foxtrick.reload_module_css = function(doc) {
 		}
 		if (Foxtrick.BuildFor === "Chrome") {
 			chrome.extension.sendRequest(
-				{ req : "addCss", files : Foxtrick.cssFiles },
+				{ req : "getCss", files : Foxtrick.cssFiles },
 				function(data) {
+					Foxtrick.log('getCss response');
 					Foxtrick.addStyleSheetSnippet(doc, data.cssText);
 				}
 			);

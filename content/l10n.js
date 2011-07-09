@@ -121,18 +121,7 @@ var Foxtrickl10n = {
 				screenshotsxhr.send();
 				this.screenshots = screenshotsxhr.responseText;
 			}
-			else if (Foxtrick.chromeContext() == "content") {
-				chrome.extension.sendRequest({ req : "locale" },
-					function(data) {
-						var parser = new DOMParser();
-						for (var i in data.htLang) {
-							Foxtrickl10n.htLanguagesXml[i] = parser.parseFromString(data.htLang[i], "text/xml");
-						}
-						Foxtrickl10n.properties_default = data.propsDefault;
-						Foxtrickl10n.properties = data.props;
-						Foxtrickl10n.screenshots = data.screenshots;
-					});
-			}
+			// init for chrome content is in loader_chrome
 		}
 	},
 

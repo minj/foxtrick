@@ -66,13 +66,7 @@ var FoxtrickPrefs = {
 					Foxtrick.log(e);
 				}
 			}
-			else if (Foxtrick.chromeContext() == "content") {
-				chrome.extension.sendRequest({ req : "getPrefs" },
-					function(data) {
-						FoxtrickPrefs.pref = data.pref;
-						FoxtrickPrefs.prefDefault = data.prefDefault;
-					});
-			}
+		// init for chrome content is in loader_chrome
 		}
 	},
 
@@ -479,7 +473,7 @@ var FoxtrickPrefs = {
 
 if (Foxtrick.BuildFor == "Chrome") {
 	FoxtrickPrefs.getValue = function(key) {
-		try {
+		try { //alert(key,' ',FoxtrickPrefs.pref[key], ' ',FoxtrickPrefs.prefDefault[key]);
 			if (FoxtrickPrefs.pref[key] !== undefined)
 				return FoxtrickPrefs.pref[key];
 			else if (FoxtrickPrefs.prefDefault[key] !== undefined)
