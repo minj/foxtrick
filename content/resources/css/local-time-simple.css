@@ -10,4 +10,8 @@
 	cursor: pointer;
 }
 
+.date[x-ht-date] {
+	background: url("chrome://foxtrick/content/resources/img/tz-local.png") no-repeat left center;
+	padding-left: 14px !important;
+}
 }
