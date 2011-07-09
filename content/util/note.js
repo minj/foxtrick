@@ -160,7 +160,7 @@ Foxtrick.util.note = {
 	},
 	
 	showObstrusiveLoading : function( doc, loadingText ) {
-		if (!doc.getElementById("FoxTrickLoadingId")) {			
+		if (doc.getElementsByTagName("body")[0] && !doc.getElementById("FoxTrickLoadingId")) {			
 			var loading = this.createLoading(doc, null, loadingText);
 			loading.setAttribute('id','FoxTrickLoadingId');
 			loading.setAttribute('style','z-index:99999; top:2%; left:50%; position:fixed; background-color: #efefff;border: 1px solid #2f31ff; padding: 15px;');
@@ -171,5 +171,4 @@ Foxtrick.util.note = {
 	removeObstrusiveLoading : function( doc ) {
 		if (doc.getElementById("FoxTrickLoadingId")) doc.getElementsByTagName("body")[0].removeChild(doc.getElementById("FoxTrickLoadingId"));		
 	}
-
 };
