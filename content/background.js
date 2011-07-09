@@ -235,7 +235,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		}
 		else if (request.req == "newTab") {
 			// @param url - the URL of new tab to create
-			chrome.tabs.create({url : request.url, index: 1});
+			chrome.tabs.create({url : request.url});
 		}
 		else if (request.req == "clipboard") {
 			// @param content - content to copy
