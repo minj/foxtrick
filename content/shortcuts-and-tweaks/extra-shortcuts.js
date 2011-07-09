@@ -18,6 +18,7 @@ var FoxtrickExtraShortcuts = {
 		"http://radio-balkadio.com/radio.xml",
 		"http://www.down-times.de/dtrfoxi/dtrstatus.php"
 	],
+	CSS: Foxtrick.ResourcePath+"resources/css/extra-shortcuts.css",
 
 	run : function( page, doc ) {
 		var shortcuts = doc.getElementById ( 'shortcuts' );
@@ -80,7 +81,6 @@ var FoxtrickExtraShortcuts = {
 					var img1 = doc.createElement('img');
 					img1.setAttribute( "class", "ftMyTransfers");
 					img1.src = "/Img/Icons/transparent.gif";
-					img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/shortcuts/transfers.png') !important;");
 					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.transfers");
 
 					link.appendChild(img1);
@@ -104,7 +104,6 @@ var FoxtrickExtraShortcuts = {
 					var img1 = doc.createElement('img');
 					img1.setAttribute( "class", "ftSCPrefs");
 					img1.src = "/Img/Icons/transparent.gif";
-					img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/shortcuts/options.png') !important;");
 					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.prefs");
 
 					link.appendChild(img1);
@@ -127,7 +126,6 @@ var FoxtrickExtraShortcuts = {
 					var img1 = doc.createElement('img');
 					img1.setAttribute( "class", "ftManageCHPP");
 					img1.src = "/Img/Icons/transparent.gif";
-					img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/shortcuts/chpp.png') !important;");
 					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.ManageCHPP");
 
 					link.appendChild(img1);
@@ -148,9 +146,8 @@ var FoxtrickExtraShortcuts = {
 					link.href = 'javascript:void();'
 					link.addEventListener('click', function() {Foxtrick.newTab(Foxtrick.ResourcePath + "preferences.xhtml#tab=pagefiltered");}, false);
 					var img1 = doc.createElement('img');
-					img1.setAttribute( "class", "ftSCPrefs");
+					img1.setAttribute( "class", "ftSCFtPrefs");
 					img1.src = "/Img/Icons/transparent.gif";
-					img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/shortcuts/foxtrick.png') !important;");
 					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.ftprefs");
 
 					link.appendChild(img1);
@@ -174,7 +171,7 @@ var FoxtrickExtraShortcuts = {
 					//link.target="_blank";
 					link.id = radio+'Id';
 					var img1 = doc.createElement('img');
-					img1.setAttribute( "class", "ftSCPrefs");
+					img1.setAttribute( "class", "ftSCRadio");
 					img1.src = "/Img/Icons/transparent.gif";
 					img1.id = radio+'Icon';
 					if (FoxtrickPrefs.getString(radio+'CurrentIcon') != null)
