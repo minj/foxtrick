@@ -9,8 +9,6 @@ FoxtrickHighlightOwnerless = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["league"],
 
-	CSS : Foxtrick.ResourcePath + "resources/css/highlight-ownerless.css",
-
 	run : function(page, doc) {
 		var span = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLeagueTable");
 		var table = span.getElementsByTagName("table")[0];
