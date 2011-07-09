@@ -16,8 +16,6 @@ Foxtrick.modules = [
 	FoxtrickHelper,
 	Foxtrick.ApiProxy,
 	FoxtrickReadHtPrefs,
-	FoxtrickPrefsDialogHTML,
-	FoxtrickOnPagePrefs,
 	Foxtrick.AddClass, // place before all date-related modules
 	FoxtrickForumStripHattrickLinks,
 	FoxtrickForumChangePosts,
@@ -148,11 +146,11 @@ Foxtrick.modules = [
 	FoxtrickSupporterStatsEnhancements,
 	FoxtrickLocalTime, // place before HTDateFormat, bellow everything that adds dates
 	FoxtrickHTDateFormat,
-	FoxtrickTickerAlert // place below all other modules that make changes to #ticker	
+	FoxtrickContextMenuCopy,
+	FoxtrickTickerAlert, // place below all other modules that make changes to #ticker	
 ];
 
 if (Foxtrick.BuildFor == "Gecko") {
 	// Gecko-only modules
 	Foxtrick.modules.push(FoxtrickSkinPlugin);
-	Foxtrick.modules.push(FoxtrickContextMenuCopy);
 }

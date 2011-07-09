@@ -11,8 +11,6 @@
 			"content/stats.js",
 			"content/redirections.js",
 			"content/read-ht-prefs.js",
-			"content/preferences-dialog-html.js",
-			"content/preferences-on-page.js",
 			"content/forum-stage.js",
 			"content/core.js",
 			"content/api-proxy.js",
@@ -169,11 +167,13 @@
 	} ],
 	"description" : "A set of presentation enhancements for hattrick.org",
 	"icons" : {
+		"16" : "skin/icon-16.png",
 		"48" : "skin/icon-48.png",
 		"128" : "skin/icon-128.png"
 	},
 	"name" : "FoxTrick",
 	"permissions" : [
+		"contextMenus",
 		"notifications",
 		"*://*.hattrick.org/*",
 		"http://www.hattrick-youthclub.org/*",
