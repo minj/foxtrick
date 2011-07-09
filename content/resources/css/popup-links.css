@@ -22,6 +22,11 @@ ul.ft-popup-list {
 	left:10px;
 }
 
+/* just not in messages*/
+.message ul.ft-popup-list {
+	visibility:hidden;
+}
+
 ul.ft-popup-list-up {
 	bottom:12px; /* = text height */
 }
