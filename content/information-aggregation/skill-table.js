@@ -385,6 +385,7 @@ var FoxtrickSkillTable = {
 				}
 			};
 			var age = function(cell, age) {
+				cell.setAttribute('class','align-left');
 				cell.appendChild(doc.createTextNode(age.years + "." + age.days));
 				cell.setAttribute("index", age.years * 112 + age.days);
 			};
@@ -558,6 +559,7 @@ var FoxtrickSkillTable = {
 				catch(ee) {	Foxtrick.dump('  JoinedText >' + ee + '\n');}
 				cell.innerHTML = JoinedText;
 				cell.title = deadline;
+				cell.setAttribute('class','align-left');
 				cell.setAttribute("index",joined_s);
 			};
 			var dateLink = function(cell, deadline) {

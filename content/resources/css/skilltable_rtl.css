@@ -24,3 +24,5 @@
 .ft_skilltable_container td.maxed { font-weight: bold; }
 .ft_skilltable_container td.status img:nth-child(1) { margin-right: 0; }
 .ft_skilltable_container td.status img { margin-right: 0.5em; }
+.ft_skilltable_container td.formatted-num { direction: ltr; }
+.ft_skilltable_container td.align-left { text-align: left !important; }
