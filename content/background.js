@@ -82,11 +82,6 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 			}
 			return css_text; 
 		};
-		var replaceExtensionDirectory = function(cssTextCollection) {		
-			// replace ff chrome reference by google chrome refs
-			var exturl = chrome.extension.getURL("");
-			return cssTextCollection.replace(RegExp("chrome://foxtrick/", "g"), exturl);
-		};
 
 		if (request.req == "init") {
 			try {
@@ -121,7 +116,6 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 						}
 					}
 				}				
-				cssTextCollection = replaceExtensionDirectory(cssTextCollection);
 				
 				// send all back now
 				sendResponse({
@@ -195,7 +189,6 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 			for (var i = 0; i < cssUrl.length; ++i) {
 				cssTextCollection += getCssFromResource(cssUrl[i]);
 			}
-			cssTextCollection = replaceExtensionDirectory(cssTextCollection);
 			sendResponse({cssText : cssTextCollection,	error : errors });
 		}
 		else if (request.req == "xmlResource") {

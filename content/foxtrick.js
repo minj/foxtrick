@@ -516,6 +516,8 @@ Foxtrick.addStyleSheet = function(doc, css) {
 }
 
 Foxtrick.addStyleSheetSnippet = function(doc, css, id) {
+	if ( Foxtrick.BuildFor === "Chrome" ) css = Foxtrick.replaceExtensionDirectory(css);
+
 	var head = doc.getElementsByTagName("head")[0];
 	var style = doc.createElement("style");
 	style.setAttribute("type", "text/css");
@@ -529,6 +531,12 @@ Foxtrick.removeStyleSheetSnippet = function(doc, id) {
 	var style = doc.getElementById(id);
 	if (style) head.removeChild(style);
 }
+
+Foxtrick.replaceExtensionDirectory = function(cssTextCollection) {		
+	// replace ff chrome reference by google chrome refs
+	var exturl = chrome.extension.getURL("");
+	return cssTextCollection.replace(RegExp("chrome://foxtrick/", "g"), exturl);
+};
 
 // attaches a JavaScript file to the page
 Foxtrick.addJavaScript = function(doc, js) {
