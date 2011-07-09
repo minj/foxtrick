@@ -4,7 +4,6 @@ function init()
 	initListeners();
 	initTabs();
 	initTextAndValues();
-	$("#cancel").hover(function() { $(this).hide("slow"); }); // trick!
 	locateFragment(window.location.toString()); // locate element by fragment
 			
 	if (window.location.href.search(/imported=true/)!==-1) {
@@ -138,6 +137,8 @@ function initTextAndValues()
 
 	document.title = Foxtrickl10n.getString("foxtrick.prefs.preferences");
 	$("#version").text(Foxtrick.version());
+	if (FoxtrickPrefs.getBool("isStandard")) $("#title_seperator").addClass('hide'); 
+	
 	// initialize text
 	$("body [text-key]").each(function() {
 		if ($(this).attr("text-key"))

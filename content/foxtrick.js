@@ -237,12 +237,13 @@ var FoxtrickMain = {
 				return;
 			}
 
-		var isStandard = FoxtrickPrefs.getBool('isStandard');
-		var isRTL = FoxtrickPrefs.getBool('isRTL');
+			var isStandard = FoxtrickPrefs.getBool('isStandard');
+			var isRTL = FoxtrickPrefs.getBool('isRTL');
 			// reload CSS if not loaded or page layout changed
-			if (!FoxtrickMain.cssLoaded
+			if ( Foxtrick.isHt(doc) && 
+				(!FoxtrickMain.cssLoaded
 				|| (Foxtrick.isStandardLayout(doc) !== FoxtrickPrefs.getBool('isStandard'))
-				|| (Foxtrick.isRTLLayout(doc) !== FoxtrickPrefs.getBool('isRTL'))) {
+				|| (Foxtrick.isRTLLayout(doc) !== FoxtrickPrefs.getBool('isRTL')))) {
 				Foxtrick.log('layout change');
 				FoxtrickPrefs.setBool('isStandard', Foxtrick.isStandardLayout(doc));
 				FoxtrickPrefs.setBool('isRTL', Foxtrick.isRTLLayout(doc));
@@ -652,7 +653,7 @@ Foxtrick.unload_css_permanent = function(cssList) {
 			// try unload
 			if (sss.sheetRegistered(uri, sss.USER_SHEET)) {
 				sss.unregisterSheet(uri, sss.USER_SHEET);
-				Foxtrick.dump('unload ' + css + '\n');
+				//Foxtrick.dump('unload ' + css + '\n');
 			}
 		}
 		catch (e) {
@@ -685,7 +686,7 @@ Foxtrick.load_css_permanent = function(cssList) {
 				// load
 				if (!sss.sheetRegistered(uri, sss.USER_SHEET)) {
 					sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
-					Foxtrick.dump('load ' + css + '\n');
+					//Foxtrick.dump('load ' + css + '\n');
 				}
 			}
 			else if (Foxtrick.BuildFor === "Chrome") {

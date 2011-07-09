@@ -151,7 +151,7 @@ ul#tabs li
 	margin: 0;
 }
 
-ul#tabs li.hide
+ul#tabs li.hide, #title_seperator.hide
 {
 	display: none;
 }
