@@ -12,18 +12,14 @@ var runScript_tries = 0;
 
 function runScript() {
 	try {
-	// remove listener to run only once
-	window.removeEventListener("DOMContentLoaded", runScript, false);
-	window.removeEventListener("DOMSubtreeModified", runScript, false);
-
+	console.log('runscript')
+	
 	if (!inited()) {
-		Foxtrick.log("Not even initialized! Let's try again 500 ms later.");
-		Foxtrick.util.note.showObstrusiveLoading(document, 'Initialising FoxTrick. Please wait');
-		if (runScript_tries++ <50) setTimeout(runScript, 500);
+		Foxtrick.log("Not even initialized! Let's try again "+runScript_tries+" ms later.");
+		if (runScript_tries++ <100) setTimeout(runScript, runScript_tries);
 		return;
 	}
-	Foxtrick.util.note.removeObstrusiveLoading(document);
-	
+
 	// disabled?
 	if ( (FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(document) )
 		|| FoxtrickPrefs.getBool("disableTemporary") ) {
@@ -110,12 +106,13 @@ function init() {
 			var initTime = new Date() - begin.getTime();
 			Foxtrick.log("init time: " , initTime , " ms");
 
-			window.addEventListener("DOMContentLoaded", runScript, false);
-			window.addEventListener("DOMSubtreeModified", runScript, false); // in case previous didn't fire for some odd reason which seem to happen
-
+			if (Foxtrick.isHt(document)) {console.log('from init'); runScript();}
+			else {console.log('from listener');window.addEventListener("DOMContentLoaded", runScript, false);}
 		} catch(e) {console.log('loader init: ', e);}
 	});
 }
+
+
 
 function inited() { 
 	return (typeof(Foxtrick.XMLData.countryToLeague) == "object"
