@@ -123,6 +123,7 @@ Foxtrick.ht_pages = {
 };
 
 Foxtrick.pagesExcluded = {
-	"offline"                   : "down.aspx"
+	"offline"                   : "down.aspx",
+	"oath"						: "chpp.hattrick.org/"
 };
 ////////////////////////////////////////////////////////////////////////////////
