@@ -381,8 +381,6 @@
 		if (replaceText) {
 			var s = this.getSelection(ta);
 			var newText = (s.selectionLength > 0) ? openingTag.replace(replaceText, s.selectedText) : openingTag;
-			Foxtrick.dump('selectedText: '+s.selectedText+'\n');
-			Foxtrick.dump('newText: '+newText+'\n');
 
 			// debug
 			if (replaceText == 'debug'){
@@ -398,9 +396,12 @@
 				Foxtrick.dumpCache = "";
 			}
 
+			Foxtrick.dump('selectedText: '+s.selectedText+'\n');
+			Foxtrick.dump('newText: '+newText+'\n');
+			
 			// settings
 			if (replaceText == 'settings'){
-				newText = FoxtrickPrefs.SavePrefs(true, false); 
+				newText = FoxtrickPrefs.SavePrefs(true, false, true,'%key:%value'); 
 			}
 
 			// time

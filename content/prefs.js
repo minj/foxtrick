@@ -352,6 +352,11 @@ var FoxtrickPrefs = {
 				|| key.indexOf("LinksCustom.enabled") != -1) ;
 	},
 
+	prefHasUserValue : function(key) {
+		if (Foxtrick.BuildFor === "Gecko") return FoxtrickPrefs._pref_branch.prefHasUserValue(key);
+		else if (Foxtrick.BuildFor == "Chrome") return (typeof(FoxtrickPrefs.pref[key])!='undefined');
+	},
+	
 	cleanupBranch : function() {
 		if (Foxtrick.BuildFor == "Gecko") {
 			try {
@@ -394,14 +399,15 @@ var FoxtrickPrefs = {
 		return true;
 	},
 
-	SavePrefs : function(savePrefs, saveNotes) {
+	SavePrefs : function(savePrefs, saveNotes, userSettings, format) {
 		try {
-			const format = 'user_pref("extensions.foxtrick.prefs.%key",%value);';
+			if (!format) format = 'user_pref("extensions.foxtrick.prefs.%key",%value);';
 			var ret = "";
 			var array = FoxtrickPrefs._getElemNames("");
 			array.sort();
 			for (var i = 0; i < array.length; i++) {
-				var key = array[i];
+				var key = array[i]; if(i>0 && key==array[i-1]) continue; // some appear twice!?
+				if (!userSettings || FoxtrickPrefs.prefHasUserValue(key)) 
 				if ((FoxtrickPrefs.isPrefSetting(key) && savePrefs)
 					|| (!FoxtrickPrefs.isPrefSetting(key) && saveNotes)) {
 					var item = format.replace(/%key/, key);
