@@ -157,14 +157,12 @@ Foxtrick.loadXml = function(url, callback, crossSite) {
 					callback(xml, status);
 				}
 				catch (e) {
-					Foxtrick.dump("Uncaught callback error:");
-					Foxtrick.log(e);
+					Foxtrick.log("Foxtrick.loadXml: Uncaught callback error:" , url,  ' ', text, ' ', status, ' ', text , " ", e);
 				}
 			}
 			catch (e) {
 				// invalid XML
-				Foxtrick.log(e);
-				Foxtrick.log("Cannot parse XML:\n" + text + "");
+				Foxtrick.log("Foxtrick.loadXml a: Cannot parse XML:\n" , url,  ' ', text, ' ', status, ' ', text , " ", e);
 				callback(null, status);
 			}
 		}, crossSite);
@@ -178,8 +176,7 @@ Foxtrick.loadXml = function(url, callback, crossSite) {
 		}
 		catch (e) {
 			// invalid XML
-			Foxtrick.log(e);
-			Foxtrick.log("Cannot parse XML:\n" + text + "");
+			Foxtrick.log("Foxtrick.loadXml b: Cannot parse XML:\n" , url,  ' ', text, ' ', status, ' ', text , " ", e);
 			return null;
 		}
 	}

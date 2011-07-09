@@ -14,7 +14,6 @@ var FoxtrickForumPreview = {
 	_MAIL_MESSAGE_WINDOW : 'ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtBody',
 
 	run : function( page, doc ) {
-		Foxtrick.dump('prev: ' + page + '\n');
 		var check_div = doc.getElementById( "forum_preview" );
 		if (check_div != null) return;
 
@@ -128,8 +127,7 @@ var FoxtrickForumPreview = {
 					var msg_type = 7;
 				}
 		}
-		Foxtrick.dump('==> ForumPreview Message Type ' + msg_type + '\n');
-
+		
 		//button_ok.setAttribute( "tabindex",  index);
 		if (button_ok && Foxtrickl10n.isStringAvailableLocal("sendmessage")) button_ok.setAttribute( "value",  Foxtrickl10n.getString( 'sendmessage'));
 		//if (button_cancel) button_cancel.setAttribute( "tabindex",  "12" );
@@ -168,9 +166,7 @@ var FoxtrickForumPreview = {
 		preview_message.id = "message_preview";
 		preview_message.setAttribute( "class", "message" );
 		preview_div.appendChild( preview_message );
-		Foxtrick.dump('Preview Message Window ID SET\n');
-
-
+		
 		var divs=doc.getElementById('mainBody').getElementsByTagName('div');
 		var i=0,div;
 		while (div=divs[i++]) if (div.className=='HTMLToolbar') break;
