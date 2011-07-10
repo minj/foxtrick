@@ -329,11 +329,14 @@ var FoxtrickSkillTable = {
 							}
 						}
 					}
-					if (doc.getElementById("psicotsi_show_div_"+i)!==null) {
-						
+					if (doc.getElementById("psicotsi_show_div_"+i)!==null) {	 // ff				
 						var number = doc.getElementById("psicotsi_show_div_"+i).getElementsByTagName("a")[0].textContent.match(/\d+\.\d+/)[0];
 						playerList[i].psicoTSI = number;
 					} 
+					else if (doc.getElementById("psico_show_div_"+i)!==null) {	 // chrome				
+						var number = doc.getElementById("psico_show_div_"+i).getElementsByTagName("a")[0].textContent.match(/\d+\.\d+/)[0];
+						playerList[i].psicoTSI = number;
+					}
 				}
 			}
 			if (fullType.type == "transfer") {
