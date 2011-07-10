@@ -68,9 +68,17 @@ var makeCssTextCollection = function() {
 			for (var j = 0; j < module.OPTIONS_CSS.length; ++j) {
 				var enabled = Boolean(FoxtrickPrefs.getBool("module." + module.MODULE_NAME + "." + module.OPTIONS[j] + ".enabled"));
 				if (!enabled) continue;
+				
+				var cssList = '';
+				if (typeof(module.OPTIONS_CSS)!= 'undefined' && typeof(module.OPTIONS_CSS[j])!= 'undefined')
+					cssList = module.OPTIONS_CSS[j];
 				if (localStorage["isRTL"]=='true' && typeof(module.OPTIONS_CSS_RTL)!= 'undefined' && typeof(module.OPTIONS_CSS_RTL[j])!= 'undefined')
-						cssTextCollection += getCssFromResource(module.OPTIONS_CSS_RTL[j]);
-				else cssTextCollection += getCssFromResource(module.OPTIONS_CSS[j]);
+					cssList = module.OPTIONS_CSS_RTL[j];
+				if (localStorage["isStandard"]=='false' && typeof(module.OPTIONS_CSS_SIMPLE)!= 'undefined' && typeof(module.OPTIONS_CSS_SIMPLE[j])!= 'undefined')
+					cssList = module.OPTIONS_CSS_SIMPLE[j];					
+				if (localStorage["isStandard"]=='false' && localStorage["isRTL"]=='true' && typeof(module.OPTIONS_CSS_RTL_SIMPLE)!= 'undefined' && typeof(module.OPTIONS_CSS_RTL_SIMPLE[j])!= 'undefined')
+					cssList = module.OPTIONS_CSS_RTL_SIMPLE[j];
+				cssTextCollection += getCssFromResource(cssList);
 			}
 		}
 	}

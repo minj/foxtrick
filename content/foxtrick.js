@@ -284,7 +284,7 @@ var FoxtrickMain = {
 								module.run(page, doc);
 								var end = (new Date()).getTime();
 								var diff = end - begin;
-								if (diff > 50) {
+								if (diff > 20) {
 									// Show time used by a module if it's over
 									// 50ms.
 									Foxtrick.log("Module time: ", diff, "ms | ", module.MODULE_NAME, "");
@@ -627,6 +627,12 @@ Foxtrick.unload_module_css = function() {
 			if (module.OPTIONS_CSS_RTL)
 				for (var k=0; k<module.OPTIONS_CSS_RTL.length; ++k)
 					if (module.OPTIONS_CSS_RTL[k] != "") Foxtrick.unload_css_permanent (module.OPTIONS_CSS_RTL[k]) ;
+			if (module.OPTIONS_CSS_SIMPLE)
+				for (var k=0; k<module.OPTIONS_CSS_SIMPLE.length; ++k)
+					if (module.OPTIONS_CSS_SIMPLE[k] != "") Foxtrick.unload_css_permanent (module.OPTIONS_CSS_SIMPLE[k]) ;
+			if (module.OPTIONS_CSS_RTL_SIMPLE)
+				for (var k=0; k<module.OPTIONS_CSS_RTL_SIMPLE.length; ++k)
+					if (module.OPTIONS_CSS_RTL_SIMPLE[k] != "") Foxtrick.unload_css_permanent (module.OPTIONS_CSS_RTL_SIMPLE[k]) ;
 		}
 	  }
 	}
@@ -723,10 +729,18 @@ Foxtrick.reload_module_css = function(doc) {
 				for (var j = 0; j < list.length; ++j)
 					if (list[j])
 						Foxtrick.unload_css_permanent(list[j]);
-				if (module.OPTIONS_CSS) {
-					for (var j = 0; j < module.OPTIONS_CSS.length; ++j)
-						Foxtrick.unload_css_permanent(module.OPTIONS_CSS[j]);
-				}
+				if (module.OPTIONS_CSS)
+					for (var k=0; k<module.OPTIONS_CSS.length; ++k)
+						if (module.OPTIONS_CSS[k] != "") Foxtrick.unload_css_permanent (module.OPTIONS_CSS[k]) ;
+				if (module.OPTIONS_CSS_RTL)
+					for (var k=0; k<module.OPTIONS_CSS_RTL.length; ++k)
+						if (module.OPTIONS_CSS_RTL[k] != "") Foxtrick.unload_css_permanent (module.OPTIONS_CSS_RTL[k]) ;
+				if (module.OPTIONS_CSS_SIMPLE)
+					for (var k=0; k<module.OPTIONS_CSS_SIMPLE.length; ++k)
+						if (module.OPTIONS_CSS_SIMPLE[k] != "") Foxtrick.unload_css_permanent (module.OPTIONS_CSS_SIMPLE[k]) ;
+				if (module.OPTIONS_CSS_RTL_SIMPLE)
+					for (var k=0; k<module.OPTIONS_CSS_RTL_SIMPLE.length; ++k)
+						if (module.OPTIONS_CSS_RTL_SIMPLE[k] != "") Foxtrick.unload_css_permanent (module.OPTIONS_CSS_RTL_SIMPLE[k]) ;
 			}
 		else if (Foxtrick.BuildFor === "Chrome") {
 			Foxtrick.removeStyleSheetSnippet(doc, 'module_css');
@@ -794,9 +808,10 @@ Foxtrick.reload_module_css = function(doc) {
 					if (!Foxtrick.isModuleFeatureEnabled(module, module.OPTIONS[j]))
 						continue;
 					loadCss(module.OPTIONS_CSS[j],
-						null,
+						module.OPTIONS_CSS_SIMPLE ? module.OPTIONS_CSS_SIMPLE[j] : null,
 						module.OPTIONS_CSS_RTL ? module.OPTIONS_CSS_RTL[j] : null,
-						null);
+						module.OPTIONS_CSS_RTL_SIMPLE ? module.OPTIONS_CSS_RTL_SIMPLE[j] : null
+						);
 				}
 			}
 		}

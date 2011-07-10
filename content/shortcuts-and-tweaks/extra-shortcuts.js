@@ -19,6 +19,11 @@ var FoxtrickExtraShortcuts = {
 		"http://www.down-times.de/dtrfoxi/dtrstatus.php"
 	],
 	CSS: Foxtrick.ResourcePath+"resources/css/extra-shortcuts.css",
+	
+	OPTIONS_CSS: [ Foxtrick.ResourcePath+"resources/css/extra-shortcuts-space.css"],
+	OPTIONS_CSS_SIMPLE: [  Foxtrick.ResourcePath+"resources/css/extra-shortcuts-space-simple.css"],
+	OPTIONS_CSS_RTL: [ Foxtrick.ResourcePath+"resources/css/extra-shortcuts-space-rtl.css"],
+	OPTIONS_CSS_RTL_SIMPLE: [ Foxtrick.ResourcePath+"resources/css/extra-shortcuts-space-rtl-simple.css"],
 
 	run : function( page, doc ) {
 		var shortcuts = doc.getElementById ( 'shortcuts' );
@@ -28,26 +33,6 @@ var FoxtrickExtraShortcuts = {
 		while (scCont=targetNode[i++]) {if (scCont.className=='scContainer') break;}
 		targetNode=scCont;
 		if (targetNode) {
-
-			if (Foxtrick.isModuleFeatureEnabled( this, "AddSpace")) {
-				var head = doc.getElementsByTagName("head")[0];
-				var style = doc.createElement("style");
-				style.setAttribute("type", "text/css");
-					// here
-					var zaw = '#scSettingsLink{display:none;} div#shortcuts, div#shortcuts div.scContainer {width: 324px !important;} #ticker {width:400px; left: 235px !important;} div#ticker div { width:400px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
-					if (Foxtrick.isRTLLayout(doc))
-							zaw = '#scSettingsLink{display:none;} div#shortcuts, div#shortcuts div.scContainer {width: 324px !important;} #ticker {width:400px; left: 350px;} div#ticker div { width:400px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
-
-					if (!Foxtrick.isStandardLayout ( doc ))
-						{	 zaw = '#scSettingsLink{display:none;} div#shortcuts, div#shortcuts div.scContainer {width: 324px !important;} #ticker {width:275px; left: 165px !important;} div#ticker div { width:275px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
-						if (Foxtrick.isRTLLayout(doc))
-							zaw = '#scSettingsLink{display:none;} div#shortcuts, div#shortcuts div.scContainer {width: 324px !important;} #ticker {width:275px; left: 350px;} div#ticker div { width:275px !important; overflow:hidden !important; white-space:nowrap !important;} div#ticker div a { padding:0 2px !important; }';
-						}
-					style.appendChild(doc.createTextNode(zaw));
-					head.appendChild(style);
-			}
-
-
 			if (Foxtrick.isModuleFeatureEnabled( this, "Supporterstats")
 				&& Foxtrick.isSupporter(doc)) {
 					var link = doc.createElement('a');
@@ -57,7 +42,6 @@ var FoxtrickExtraShortcuts = {
 					var img1 = doc.createElement('img');
 					img1.setAttribute( "class", "ftSuppStats");
 					img1.src = "/Img/Icons/transparent.gif";
-					img1.setAttribute("style","margin-left:2px; background-image: url('"+Foxtrick.ResourcePath+"resources/img/shortcuts/stats.png') !important;");
 					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.statistics");
 
 					link.appendChild(img1);
@@ -71,7 +55,6 @@ var FoxtrickExtraShortcuts = {
 						}
 					}
 				}
-
 
 				if (Foxtrick.isModuleFeatureEnabled( this, "Transfers")) {
 					var link = doc.createElement('a');
@@ -95,7 +78,6 @@ var FoxtrickExtraShortcuts = {
 					}
 				}
 
-
 				if (Foxtrick.isModuleFeatureEnabled( this, "Prefs")) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
@@ -117,7 +99,7 @@ var FoxtrickExtraShortcuts = {
 						}
 					}
 				}
-
+			
 				if (Foxtrick.isModuleFeatureEnabled( this, "ManageCHPP")) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
@@ -161,7 +143,7 @@ var FoxtrickExtraShortcuts = {
 						}
 					}
 				}
-
+			
 			for(i=0; i<this.RADIOS.length; ++i) {
 				var radio = this.RADIOS[i];
 				if (Foxtrick.isModuleFeatureEnabled( this, radio)) {
