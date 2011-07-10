@@ -4,7 +4,7 @@
  * @author spambot
  */
 
- var FoxtrickForumYouthIcons = {
+var FoxtrickForumYouthIcons = {
 
 	MODULE_NAME : "ForumYouthIcons",
 	MODULE_AUTHOR : "spambot",
@@ -390,6 +390,7 @@
 					.replace(/%3/, FoxtrickPrefs.getString("htLanguage"))
 					.replace(/%4/, Foxtrick.isStandardLayout(doc) ? "standard" : "simple")
 					.replace(/%5/, Foxtrick.isRTLLayout(doc) ? "RTL" : "LTR");
+				if (Foxtrick.isStage(doc)) newText += ', Stage';
 				newText += "\n";
 				newText += Foxtrick.dumpCache.substr(Foxtrick.dumpCache.length-3500);
 				// clear the cache

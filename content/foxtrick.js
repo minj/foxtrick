@@ -924,6 +924,7 @@ Foxtrick.dumpFlush = function(doc) {
 				.replace(/%3/, FoxtrickPrefs.getString("htLanguage"))
 				.replace(/%4/, Foxtrick.isStandardLayout(doc) ? "standard" : "simple")
 				.replace(/%5/, Foxtrick.isRTLLayout(doc) ? "RTL" : "LTR");
+			if (Foxtrick.isStage(doc)) pre.textContent += ', Stage';
 			pre.textContent += "\n";
 			div.appendChild(pre);
 			// add to page
