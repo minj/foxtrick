@@ -50,36 +50,20 @@ function init() {
 		}
 	}
 
-	var css_files = {};
-	for (var i in Foxtrick.modules) {
-		var module = Foxtrick.modules[i];
-		var moduleName = Foxtrick.getModuleName(module);
-		if (moduleName) {
-			css_files[moduleName]= {};
-			css_files[moduleName]['CORE_MODULE'] = module.CORE_MODULE;
-			css_files[moduleName]['CSS'] = module.CSS;
-			css_files[moduleName]['CSS_SIMPLE'] = module.CSS_SIMPLE;
-			css_files[moduleName]['CSS_RTL'] = module.CSS_RTL;
-			css_files[moduleName]['CSS_SIMPLE_RTL'] = module.CSS_SIMPLE_RTL;
-			css_files[moduleName]['OPTIONS'] = module.OPTIONS;
-			css_files[moduleName]['OPTIONS_CSS'] = module.OPTIONS_CSS;			
-			css_files[moduleName]['OPTIONS_CSS_RTL'] = module.OPTIONS_CSS_RTL;			
-		}	
-	}
-
-	chrome.extension.sendRequest({ req : "init", css_files: css_files },
-	function(data) {
+	chrome.extension.sendRequest({ req : "init" },
+	function (data) {
 		try {
-			if(data.error) Foxtrick.log(data.error);
+			if (data.error) Foxtrick.log(data.error);
 			
 			var begin = new Date();
 			FoxtrickPrefs.pref = data.pref;
 			FoxtrickPrefs.prefDefault = data.prefDefault;
-
+			
 			var parser = new DOMParser();
 			for (var i in data.htLang) {
 				Foxtrickl10n.htLanguagesXml[i] = parser.parseFromString(data.htLang[i], "text/xml");
 			}
+			
 			Foxtrickl10n.properties_default = data.propsDefault;
 			Foxtrickl10n.properties = data.props;
 			Foxtrickl10n.screenshots = data.screenshots;
@@ -95,7 +79,7 @@ function init() {
 					&& Foxtrick.isStage(document))
 				|| FoxtrickPrefs.getBool("disableTemporary")) {
 				// not on Hattrick or disabled
-				Foxtrick.log('disabled');
+				Foxtrick.log(' Foxtrick disabled');
 				return;
 			}
 			
