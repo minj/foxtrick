@@ -1,3 +1,5 @@
+try {
+
 var sessionStore = {};
 
 var errors = '';
@@ -7,7 +9,7 @@ var dateFormat = null;
 var about = null;
 var worldDetails = null;
 var htLanguagesText = {};
-		
+
 
 var getCssFromResource = function (cssUrl) {
 	// @callback_param cssText - string of CSS content to be added
@@ -35,6 +37,7 @@ var getCssFromResource = function (cssUrl) {
 	}
 	return css_text; 
 };
+
 var makeCssTextCollection = function() { 
 	cssTextCollection = '';
 	for (var i in Foxtrick.modules) { 
@@ -50,7 +53,7 @@ var makeCssTextCollection = function() {
 		if (localStorage["isRTL"]=='true' && typeof(module.CSS_RTL)!= 'undefined')
 			cssList = module.CSS_RTL;
 		if (localStorage["isStandard"]=='false' && typeof(module.CSS_SIMPLE)!= 'undefined')
-			cssList = module.CSS_SIMPLE;					
+			cssList = module.CSS_SIMPLE;
 		if (localStorage["isStandard"]=='false' && localStorage["isRTL"]=='true' && typeof(module.CSS_SIMPLE_RTL)!= 'undefined' )
 			cssList = module.CSS_SIMPLE_RTL;
 		
@@ -105,34 +108,43 @@ function init() {
 function update() {
 	FoxtrickPrefs.init();
 	Foxtrickl10n.init();
-	makeCssTextCollection();				
+	makeCssTextCollection();
+	console.log('prefs updated');
 }
 
 Object.size = function(obj) {
-    var size = 0, key;
-    for (key in obj) {
-        if (obj.hasOwnProperty(key))
-        	++size;
-    }
-    return size;
+	var size = 0, key;
+	for (key in obj) {
+		if (obj.hasOwnProperty(key))
+			++size;
+	}
+	return size;
 };
 
 init();
 
 chrome.browserAction.onClicked.addListener(function() { FoxtrickPrefs.disable(); });
 
+var copyToClipBoard = function(content) {
+	clipboardStore = document.getElementById("clipboard-store");
+	clipboardStore.value = content;
+	clipboardStore.select();
+	document.execCommand("Copy");
+}
+
 // one-time message channel
 // use with chrome.extension.sendRequest({req : "{TYPE}", parameters...}, callback)
 // callback will be called with a sole Object as argument
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 	try {
+		console.log('request: ',request.req, ' ',request )
 		errors = '';
 		var updatePrefs = function () {
 			// @callback_param pref - user preferences
 			// @callback_param prefDefault - default preferences
-			update();
 			localStorage.removeItem("preferences.updated");
-			errors += 'updatePrefs\n';
+			update();
+			errors += 'background.js: updatePrefs\n';
 			errors += 'css: '+(cssTextCollection!='')+'\n'
 		};		
 		var getLocale = function () {
@@ -142,16 +154,16 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 			// @callback_param screenshots - foxtrick.screenshots
 			return htLanguagesText;
 		};
-		var getXmlResource = function () {		
+		var getXmlResource = function () {
 			return {currency:currency, dateFormat:dateFormat, about:about, worldDetails:worldDetails};
 		};
 		if (request.req == "init") {
-		try {	
+		try {
 			if (localStorage["preferences.updated"]
 				&& JSON.parse(localStorage["preferences.updated"])) {
 					updatePrefs();
 			}
-			
+
 			sendResponse({
 				cssText : cssTextCollection,
 
@@ -170,14 +182,15 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 				league : Foxtrick.XMLData.League,
 				countryToLeague : Foxtrick.XMLData.countryToLeague,
 		
-				error : errors				
+				error : errors
 			});
 			} catch(e) {
 				errors += 'Foxtrick request.req == "init": ' + e ;
-				sendResponse({error : errors});				
+				sendResponse({error : errors});
 			}
 		}
 		else if (request.req == "getPrefs") {
+			console.log('getPrefs ',localStorage["preferences.updated"]);
 			// @callback_param pref - user preferences
 			// @callback_param prefDefault - default preferences
 			if (localStorage["preferences.updated"]
@@ -188,6 +201,12 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 				pref : FoxtrickPrefs.pref,
 				prefDefault : FoxtrickPrefs.prefDefault
 			});
+		}
+		else if (request.req == "setValue") {
+			localStorage.setItem(request.key, JSON.stringify(request.value));
+		}
+		else if (request.req == "deleteValue") {
+			localStorage.removeItem(request.key);
 		}
 		else if (request.req == "setPrefs") {
 			// @param prefs - preferences to be saved
@@ -243,16 +262,22 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 			var xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = function(aEvt) {
 				try {
+					//console.log( xhr.statusText );
+					try { 
+						//if (xhr.getAllResponseHeaders)console.log(String(xhr.getAllResponseHeaders()));
+					} catch(e){}
+					
 					if (xhr.readyState == 4) {
 						sendResponse({data : xhr.responseText, status : xhr.status});
 					}
 				}
 				catch (e) {
 					// port may be disconnected
-					sendResponse({ error : 'Foxtrick - background xml: ' + e });			
+					sendResponse({ error : 'Foxtrick - background xml: ' + e });
 				}
 			};
 			xhr.open("GET", request.url, true);
+			//xhr.setRequestHeader('Cache-Control','only-if-cached') ;
 			xhr.send();
 		}
 		else if (request.req == "newTab") {
@@ -263,10 +288,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 			// @param content - content to copy
 			// @callback_param status - success status
 			try {
-				clipboardStore = document.getElementById("clipboard-store");
-				clipboardStore.value = request.content;
-				clipboardStore.select();
-				document.execCommand("Copy");
+				copyToClipBoard(request.content);
 				sendResponse({status : true});
 			}
 			catch (e) {
@@ -299,81 +321,43 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		}
 	}
 	catch (e) {
-		sendResponse({ error : 'Foxtrick - background onRequest: ' + e });			
+		sendResponse({ error : 'Foxtrick - background onRequest: ' + e });
 	}
 });
 
 
-
 /*
-// Copyright (c) 2010 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// context copy stuff. copy ids work
 
-// A generic onclick callback function.
-function genericOnClick(info, tab) {
-  alert("item " + info.menuItemId + " was clicked");
-  alert("info: " + JSON.stringify(info));
-  alert("tab: " + JSON.stringify(tab));
+function linkOnClick(info, tab) {
+  console.log(info);
+  var id_container = Foxtrick.util.htMl.getIdFromLink(info.linkUrl);
+  if (id_container) copyToClipBoard(id_container.id);
+  console.log(id_container);
 }
 
-// Create one test item for each context type.
-var contexts = ["page","selection","link","editable","image","video",
-                "audio"];
-for (var i = 0; i < contexts.length; i++) {
-  var context = contexts[i];
-  var title = "Test '" + context + "' menu item";
-  var id = chrome.contextMenus.create({"title": title, "contexts":[context],
-                                       "onclick": genericOnClick});
-  alert("'" + context + "' item:" + id);
+function selectionOnClick(info, tab) {
+	// only plain text. useless as it is. maybe scan content document textContent for section and gather nodes there
+	copyToClipBoard(info.selectionText);
 }
 
-
-// Create a parent item and two children.
-var parent = chrome.contextMenus.create({"title": "Test parent item"});
-var child1 = chrome.contextMenus.create(
-  {"title": "Child 1", "parentId": parent, "onclick": genericOnClick});
-var child2 = chrome.contextMenus.create(
-  {"title": "Child 2", "parentId": parent, "onclick": genericOnClick});
-alert("parent:" + parent + " child1:" + child1 + " child2:" + child2);
-
-
-// Create some radio items.
-function radioOnClick(info, tab) {
-  alert("radio item " + info.menuItemId +
-              " was clicked (previous checked state was "  +
-              info.wasChecked + ")");
+var id_contexts = [
+	{'title':'Copy Team ID', 	"contexts":["link"], "onclick": linkOnClick,	'targetUrlPatterns':['*://*.hattrick.org/*TeamID=*','*://*.hattrick.org/*teamId=*'] },
+	{'title':'Copy User ID', 	"contexts":["link"], "onclick": linkOnClick,	'targetUrlPatterns':['*://*.hattrick.org/*UserID=*','*://*.hattrick.org/*userId=*'] },
+	{'title':'Copy League ID', 	"contexts":["link"], "onclick": linkOnClick,	'targetUrlPatterns':['*://*.hattrick.org/*LeagueLevelUnitID=*','*://*.hattrick.org/*LeagueLevelUnitId=*'] },
+	{'title':'Copy Match ID', 	"contexts":["link"], "onclick": linkOnClick,	'targetUrlPatterns':['*://*.hattrick.org/*matchID=*','*://*.hattrick.org/*matchId=*'] },
+	{'title':'Copy Player ID', 	"contexts":["link"], "onclick": linkOnClick,	'targetUrlPatterns':['*://*.hattrick.org/*PlayerID=*','*://*.hattrick.org/*playerId=*'] },
+	//{'title':'Copy in HT-ML', 	"contexts":["selection"], "onclick": selectionOnClick, 'documentUrlPatterns': ['*://*.hattrick.org/*'] },
+];
+for (var i = 0; i < id_contexts.length; i++) {
+	chrome.contextMenus.create(id_contexts[i]);
 }
-var radio1 = chrome.contextMenus.create({"title": "Radio 1", "type": "radio",
-                                         "onclick":radioOnClick});
-var radio2 = chrome.contextMenus.create({"title": "Radio 2", "type": "radio",
-                                         "onclick":radioOnClick});
-alert("radio1:" + radio1 + " radio2:" + radio2);
-
-
-// Create some checkbox items.
-function checkboxOnClick(info, tab) {
-  alert('ss');
-  alert(JSON.stringify(info));
-  alert("checkbox item " + info.menuItemId +
-              " was clicked, state is now: " + info.checked +
-              "(previous state was " + info.wasChecked + ")");
-
-}
-var checkbox1 = chrome.contextMenus.create(
-  {"title": "Checkbox1", "type": "checkbox", "onclick":checkboxOnClick});
-var checkbox2 = chrome.contextMenus.create(
-  {"title": "Checkbox2", "type": "checkbox", "onclick":checkboxOnClick});
-alert("checkbox1:" + checkbox1 + " checkbox2:" + checkbox2);
-
-
-// Intentionally create an invalid item, to show off error checking in the
-// create callback.
-alert("About to try creating an invalid item - an error about " +
-            "item 999 should show up");
-chrome.contextMenus.create({"title": "Oops", "parentId":999}, function() {
-  if (chrome.extension.lastError) {
-    alert("Got expected error: " + chrome.extension.lastError.message);
-  }
-});
 */
+
+// example: Create a parent item and two children.
+//var parent = chrome.contextMenus.create({"title": "Test parent item"});
+//var child1 = chrome.contextMenus.create({"title": "Child 1", "parentId": parent, "onclick": genericOnClick});
+//var child2 = chrome.contextMenus.create({"title": "Child 2", "parentId": parent, "onclick": genericOnClick});
+
+
+} catch (e) {alert('Foxtrick background.js error: '+ e);}

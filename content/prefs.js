@@ -294,12 +294,10 @@ var FoxtrickPrefs = {
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
 			delete(FoxtrickPrefs.pref[key]);
-			if (Foxtrick.chromeContext() == "background") {
+			if (Foxtrick.chromeContext() == "background") 
 				localStorage.removeItem(key);
-			}
-			else if (Foxtrick.chromeContext() == "content") {
-				FoxtrickPrefs.dumpPrefs();
-			}
+			else if (Foxtrick.chromeContext() == "content")
+				chrome.extension.sendRequest({ req : "deleteValue", key : key });
 		}
 	},
 
@@ -497,12 +495,10 @@ if (Foxtrick.BuildFor == "Chrome") {
 				FoxtrickPrefs.deleteValue(key);
 			else {
 				FoxtrickPrefs.pref[key] = value; // not default, set it
-				if (Foxtrick.chromeContext() == "background") {
+				if (Foxtrick.chromeContext() == "background") 
 					localStorage.setItem(key, JSON.stringify(value));
-				}
-				else if (Foxtrick.chromeContext() == "content") {
-					FoxtrickPrefs.dumpPrefs();
-				}
+				else if (Foxtrick.chromeContext() == "content") 
+					chrome.extension.sendRequest({ req : "setValue", key : key, value : value });
 			}
 		}
 		catch (e) {}

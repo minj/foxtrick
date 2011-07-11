@@ -12,12 +12,9 @@ var FoxtrickReadHtPrefs = {
 
 	menu_strings: new Array('MyHattrick','MyClub','World','Forum','Shop','Help'),
 
-	first_run : true,
-
 	run : function(page, doc) {
 		this.readLanguage(doc);
 		this.readOthers(doc);
-		this.first_run = false;
 	},
 
 	isLang : function(menuLinks, lang) {
@@ -68,6 +65,7 @@ var FoxtrickReadHtPrefs = {
 				var language = Foxtrick.xml_single_evaluate(languages[newLang], "language", "desc");
 				var msg = Foxtrickl10n.getString("HTLanguageChanged").replace("%s", language);
 				Foxtrick.util.note.add(doc, null, "ft-language-changed", msg, null, true, true);
+				FoxtrickPrefs.setBool("preferences.updated", true);
 			}
 			else {
 				Foxtrick.log("Cannot detect language.");
@@ -86,7 +84,8 @@ var FoxtrickReadHtPrefs = {
 		var CountryName = FoxtrickHelper.getLeagueDataFromId(LeagueId).EnglishName;
 		var OldCountryName = FoxtrickPrefs.getString("htCountry");
 
-		if (this.first_run || CountryName != OldCountryName) {
+		if (CountryName != OldCountryName) {
+			Foxtrick.log('country changed');
 			// date format
 			var scripts = doc.getElementsByTagName('script');
 			for (var i = 0; i < scripts.length; ++i) {
@@ -107,6 +106,7 @@ var FoxtrickReadHtPrefs = {
 			}
 
 			FoxtrickPrefs.setString("htCountry", CountryName);
+			FoxtrickPrefs.setBool("preferences.updated", true);
 		}
 	}
 };
