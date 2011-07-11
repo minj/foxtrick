@@ -5,7 +5,7 @@
 .ft_skilltable_container table td:nth-child(even) { background-color: #eeeeee; }
 .ft_skilltable_container table td:nth-child(odd) { background-color: white; }
 .ft_skilltable_container table th { text-align: center !important; }
-.ft_skilltable_container a { cursor: pointer; }
+.ft_skilltable_container a, .ft_skilltable_links  a  { cursor: pointer; }
 .ft_skilltable_wrapper, .ft_skilltable_customizewrapper { max-width: 100%; overflow: auto; }
 .ft_skilltable_links { margin-bottom: 0.5em !important; }
 .ft_skilltable_links a { display: none; margin: 0 0.5em 0 0; }
