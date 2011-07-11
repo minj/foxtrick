@@ -55,12 +55,26 @@ FoxtrickTransferSearchResultFilters = {
 	},
 
 	run : function(page, doc) {
-		if (page == 'transferSearchForm')
+		if (page == 'transferSearchForm') {
 			FoxtrickTransferSearchResultFilters.addExtraFilters(doc);
+			FoxtrickTransferSearchResultFilters.showHTSearchProfileComment(doc);
+		}
 		else if (page == 'transferSearchResult')
 			FoxtrickTransferSearchResultFilters.filterResults(doc);
 	},
 
+	showHTSearchProfileComment: function(doc) {
+		var HTProfileRow = doc.getElementById('ctl00_ctl00_CPContent_CPMain_rowProfiles');
+		if (HTProfileRow) {
+			var HTProfileSelect = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlSearchProfile');
+			var tr = doc.createElement('tr');
+			var td = doc.createElement('td');
+			td.textContent = HTProfileSelect.title;
+			tr.appendChild(td)
+			HTProfileRow.parentNode.insertBefore(tr, HTProfileRow.nextSibling)
+		}
+	},
+	
 	addExtraFilters : function(doc) {
 		FoxtrickTransferSearchResultFilters.getFilters(function(filters) {
 			var tableAdvanced = doc.getElementById('ctl00_ctl00_CPContent_CPMain_tblAdvanced');
