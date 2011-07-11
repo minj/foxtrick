@@ -118,7 +118,10 @@ var FoxtrickCore = {
 	showVersion : function(doc) {
 		// show version number on the bottom of the page
 		var bottom = doc.getElementById("bottom");
-		var server = bottom.getElementsByClassName("currentServer")[0];
-		server.textContent += " / FoxTrick " + Foxtrick.version();
+		if (bottom) { // sometimes bottom is not loaded yet. just skip it in those cases
+			var server = bottom.getElementsByClassName("currentServer")[0];
+			server.textContent += " / FoxTrick " + Foxtrick.version();
+		}
+		else Foxtrick.log('bottom not loaded yet');
 	}
 };
