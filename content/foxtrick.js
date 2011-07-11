@@ -100,6 +100,21 @@ var FoxtrickMain = {
 				var browserWin = browserEnumerator.getNext();
 				var tabbrowser = browserWin.getBrowser();
 				tabbrowser.tabContainer.onselect = FoxtrickMain.ontabfocus;
+				
+				
+				// can be used to preload chpp xml
+				/*document.addEventListener("click",
+					function (e)
+					{ 	
+						if (typeof(e.target.tagName) != "undefined" && e.target.tagName == 'A') {
+							var a = e.target; 
+							if (Foxtrick.isHtUrl(a.href))
+							{
+								dump('do load:'+a.href+'\n');
+							}
+						}
+					},
+					true);*/
 			}
 		}
 		catch (e) {
@@ -175,6 +190,7 @@ var FoxtrickMain = {
 		}
 	},
 
+	lastTime : 0,
 	onPageLoad : function(ev) {
 		try {
 			var doc = ev.originalTarget;
@@ -191,12 +207,11 @@ var FoxtrickMain = {
 					}
 				}
 
-				var begin = new Date();
-				FoxtrickMain.run(doc);
-				var end = new Date();
-				var time = (end.getSeconds() - begin.getSeconds()) * 1000
-						 + end.getMilliseconds() - begin.getMilliseconds();
-				Foxtrick.dump("run time: " + time + " ms | " + doc.location.pathname+doc.location.search + '\n');
+				var begin = (new Date()).getTime();
+				//var begin=FoxtrickMain.lastTime;
+					FoxtrickMain.run(doc);
+				var diff = (new Date()).getTime() - begin;
+				Foxtrick.dump("run time: " + diff + " ms | " + doc.location.pathname+doc.location.search + '\n');
 				// listen to page content changes
 				var content = doc.getElementById("content");
 				if (!content) {
@@ -212,7 +227,7 @@ var FoxtrickMain = {
 	},
 
 	// do nothing
-	onPageUnLoad : function(ev) { },
+	onPageUnLoad : function(ev) { FoxtrickMain.lastTime = (new Date()).getTime();},
 
 	// main entry run on every ht page load
 	run : function(doc, is_only_css_check) {
@@ -261,7 +276,10 @@ var FoxtrickMain = {
 				var module = Foxtrick.run_every_page[i];
 				if (typeof(module.run) == "function") {
 					try {
-						module.run(doc);
+						var begin = (new Date()).getTime();
+							module.run(doc);
+						var diff = (new Date()).getTime() - begin;
+						if (diff > 10) Foxtrick.log("Module time: ", diff, "ms | ", module.MODULE_NAME, "");
 					}
 					catch (e) {
 						Foxtrick.log("Error caught in module ", module.MODULE_NAME, ": ", e);
@@ -281,14 +299,9 @@ var FoxtrickMain = {
 						if (typeof(module.run) == "function") {
 							try {
 								var begin = (new Date()).getTime();
-								module.run(page, doc);
-								var end = (new Date()).getTime();
-								var diff = end - begin;
-								if (diff > 20) {
-									// Show time used by a module if it's over
-									// 50ms.
-									Foxtrick.log("Module time: ", diff, "ms | ", module.MODULE_NAME, "");
-								}
+									module.run(page, doc);
+								var diff = (new Date()).getTime() - begin;
+								if (diff > 10) Foxtrick.log("Module time: ", diff, "ms | ", module.MODULE_NAME, "");
 							}
 							catch (e) {
 								Foxtrick.log("Error caught in module ", module.MODULE_NAME, ": ", e);
@@ -348,7 +361,7 @@ var FoxtrickMain = {
 };
 
 Foxtrick.version = function() {
-	FoxtrickPrefs.deleteValue("version");
+	//FoxtrickPrefs.deleteValue("version"); what is that for, is never set. 
 	return FoxtrickPrefs.getString("version");
 };
 

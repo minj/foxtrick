@@ -65,7 +65,6 @@ var FoxtrickReadHtPrefs = {
 				var language = Foxtrick.xml_single_evaluate(languages[newLang], "language", "desc");
 				var msg = Foxtrickl10n.getString("HTLanguageChanged").replace("%s", language);
 				Foxtrick.util.note.add(doc, null, "ft-language-changed", msg, null, true, true);
-				FoxtrickPrefs.setBool("preferences.updated", true);
 			}
 			else {
 				Foxtrick.log("Cannot detect language.");
@@ -106,7 +105,6 @@ var FoxtrickReadHtPrefs = {
 			}
 
 			FoxtrickPrefs.setString("htCountry", CountryName);
-			FoxtrickPrefs.setBool("preferences.updated", true);
 		}
 	}
 };

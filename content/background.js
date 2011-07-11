@@ -112,6 +112,8 @@ function update() {
 	console.log('prefs updated');
 }
 
+var no_update_needed = {'last-host':true, 'last-page':true};
+
 Object.size = function(obj) {
 	var size = 0, key;
 	for (key in obj) {
@@ -204,9 +206,13 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		}
 		else if (request.req == "setValue") {
 			localStorage.setItem(request.key, JSON.stringify(request.value));
+			if (!no_update_needed[request.key]) 
+				localStorage.setItem("preferences.updated",'true');
 		}
 		else if (request.req == "deleteValue") {
 			localStorage.removeItem(request.key);
+			if (!no_update_needed[request.key]) 
+				localStorage.setItem("preferences.updated",'true');
 		}
 		else if (request.req == "setPrefs") {
 			// @param prefs - preferences to be saved

@@ -158,7 +158,7 @@ var FoxtrickMyMonitor = {
 				if (xml !== null) {
 					team.name = xml.getElementsByTagName("TeamName")[0].textContent;
 					team.id = xml.getElementsByTagName("TeamID")[0].textContent;
-					FoxtrickMyMonitor.setSavedTeams(teams);
+					//FoxtrickMyMonitor.setSavedTeams(teams); needed? what for? interfers somewhat with chrome pref updating
 					buildLink(team, nameLink);
 				}
 				Foxtrick.util.matchView.fillMatches(matchesContainer, xml);
