@@ -35,8 +35,6 @@ CONTENT_FILES = add-class.js \
 	pages.js \
 	preferences.js \
 	preferences.xhtml \
-	preferences-dialog-html.js \
-	preferences-on-page.js \
 	prefs.js \
 	read-ht-prefs.js \
 	redirections.js \
