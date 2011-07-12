@@ -5,6 +5,17 @@
 
 Foxtrick.Pages.All = {
 	getId : function(doc) {
+		var parseId = function(link) {
+			var matched = link.href.match(/id=(\d+)/i);
+			if (matched)
+				return Number(matched[1]);
+			return null;
+		};
+		var idContainer =  doc.getElementById('mainWrapper').getElementsByTagName("a")[0];
+		if (idContainer)
+			return {'id':parseId(idContainer), 'name':idContainer.textContent};
+	},
+	get : function(doc) {
 		var parseId = function(span) {
 			var matched = span.textContent.match(/^\((\d+)\)$/);
 			if (matched)

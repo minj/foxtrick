@@ -176,9 +176,9 @@ var FoxtrickMyMonitor = {
 			var type = "nt";
 
 		var teams = FoxtrickMyMonitor.getSavedTeams(doc);
-		var teamId = Foxtrick.Pages.All.getId(doc);
+		var teamIdContainer = Foxtrick.Pages.All.getId(doc);
 		var existing = Foxtrick.filter(teams, function(n) {
-			return n.id == teamId && n.type == type;
+			return n.id == teamIdContainer.id && n.type == type;
 		});
 		var container = doc.createElement("div");
 		container.id = "ft-monitor-sidebar-box-container";
@@ -187,7 +187,7 @@ var FoxtrickMyMonitor = {
 		addLink.className = "ft-link";
 		addLink.textContent = Foxtrickl10n.getString("MyMonitor.add");
 		addLink.addEventListener("click", function() {
-			teams.push({ id : teamId, type : type, name : "#" + teamId });
+			teams.push({ id : teamIdContainer.id, type : type, name : teamIdContainer.name });
 			FoxtrickMyMonitor.setSavedTeams(teams);
 			Foxtrick.addClass(addLink, "hidden");
 			Foxtrick.removeClass(removeLink, "hidden");
@@ -200,7 +200,7 @@ var FoxtrickMyMonitor = {
 		removeLink.textContent = Foxtrickl10n.getString("MyMonitor.remove");
 		removeLink.addEventListener("click", function() {
 			teams = Foxtrick.filter(teams, function(n) {
-				return n.id != teamId || n.type != type;
+				return n.id != teamIdContainer.id || n.type != type;
 			})
 			FoxtrickMyMonitor.setSavedTeams(teams);
 			Foxtrick.removeClass(addLink, "hidden");
@@ -212,17 +212,14 @@ var FoxtrickMyMonitor = {
 		// select box containing teams in the monitor
 		var fillSelect = function() {
 			select.textContent = ""; // clear first
+			Foxtrick.addEventListenerChangeSave(select, "change", 
+				function() { doc.location.href = select.value; }, false);
 			Foxtrick.map(teams, function(n) {
 				var option = doc.createElement("option");
 				option.textContent = n.name;
-				if (n.type == type && n.id == teamId)
+				if (n.type == type && n.id == teamIdContainer.id)
 					option.setAttribute("selected", "selected");
-				else {
-					// redirect to team if not currently selected one
-					option.addEventListener("click", function() {
-						doc.location = FoxtrickMyMonitor.getLink(n);
-					}, false);
-				}
+				option.value = FoxtrickMyMonitor.getLink(n);
 				select.appendChild(option);
 			});
 		};
