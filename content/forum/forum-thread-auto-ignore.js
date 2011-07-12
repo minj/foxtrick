@@ -17,6 +17,7 @@ var FoxtrickForumThreadAutoIgnore = {
 
 	run : function( page, doc ) {
 		this.checkthreads(doc);
+		Foxtrick.addEventListenerChangeSave(doc.getElementById('ctl00_ctl00_CPContent_ucLeftMenu_pnlLeftMenuScrollContent'),'DOMSubtreeModified',FoxtrickForumThreadAutoIgnore.myforum_change,true); 
 	},
 
 	
@@ -94,7 +95,7 @@ var FoxtrickForumThreadAutoIgnore = {
 		}
 	},
 
-	change : function(page, doc) { 
-		FoxtrickForumThreadAutoIgnore.checkthreads(doc);
+	myforum_change : function(ev) { 
+		FoxtrickForumThreadAutoIgnore.checkthreads(ev.target.ownerDocument);
 	}
 };
