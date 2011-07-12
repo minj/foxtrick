@@ -61,6 +61,22 @@ var FoxtrickCore = {
 		this.updateLastHost(doc);
 	},
 
+	setPageIcon : function(tab) { 
+		// update page icon image and tooltip (chrome-only)
+		var icon = ''; var statusText='';
+		if (FoxtrickPrefs.getBool("disableTemporary")) {
+			icon = "../skin/disabled-24.png";
+			statusText = Foxtrickl10n.getString("status.disabled");
+		}
+		else {
+			icon = "../skin/icon-24.png";
+			statusText = Foxtrickl10n.getString("status.active");
+		}
+		var tooltipText = Foxtrickl10n.getString("foxtrick") + " " + Foxtrick.version() + " (" + statusText + ")";
+		chrome.pageAction.setIcon({tabId : tab.id, path : icon});
+		chrome.pageAction.setTitle({tabId : tab.id, title: tooltipText})
+	},
+
 	updateStatus : function() {
 		// update status bar icon image and tooltip (Gecko-only)
 		if (Foxtrick.BuildFor !== "Gecko")

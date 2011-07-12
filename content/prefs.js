@@ -459,7 +459,7 @@ var FoxtrickPrefs = {
 		Foxtrick.newTab(Foxtrick.ResourcePath + "preferences.xhtml");
 	},
 
-	disable : function() {
+	disable : function(tab) {
 		FoxtrickPrefs.setBool("disableTemporary", !FoxtrickPrefs.getBool("disableTemporary"));
 		if (Foxtrick.BuildFor === "Gecko") {
 			var statusBarImg = document.getElementById("foxtrick-status-bar-img");
@@ -467,10 +467,7 @@ var FoxtrickPrefs = {
 			FoxtrickMain.init();
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
-	 		if (FoxtrickPrefs.getBool("disableTemporary"))
-	 			chrome.browserAction.setIcon({path : "../skin/disabled-24.png"});
- 			else
- 				chrome.browserAction.setIcon({path : "../skin/icon-24.png"});
+			FoxtrickCore.setPageIcon(tab);
 		}
 	}
 };

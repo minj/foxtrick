@@ -125,7 +125,7 @@ Object.size = function(obj) {
 
 init();
 
-chrome.browserAction.onClicked.addListener(function() { FoxtrickPrefs.disable(); });
+chrome.pageAction.onClicked.addListener(function(tab) { FoxtrickPrefs.disable(tab); });
 
 var copyToClipBoard = function(content) {
 	clipboardStore = document.getElementById("clipboard-store");
@@ -161,6 +161,9 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		};
 		if (request.req == "init") {
 		try {
+			chrome.pageAction.show(sender.tab.id);
+			FoxtrickCore.setPageIcon(sender.tab);
+			
 			if (localStorage["preferences.updated"]
 				&& JSON.parse(localStorage["preferences.updated"])) {
 					updatePrefs();
