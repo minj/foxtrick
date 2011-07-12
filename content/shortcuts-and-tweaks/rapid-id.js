@@ -121,6 +121,9 @@ var FoxtrickRapidId = {
 			button.setAttribute("type", "submit");
 			button.setAttribute("value", Foxtrickl10n.getString("View"));
 			button.addEventListener("click", this.view, true);
+			
+			var rightnow = doc.getElementById("ctl00_ctl00_ucOngoingEvents_pnlOngoingEvents");
+			if (rightnow) rightnow.setAttribute('style','display:none;');
 		}
 		catch (e) {
 			Foxtrick.log("RapidId(" + e.lineNumber + "): " + e + "");
