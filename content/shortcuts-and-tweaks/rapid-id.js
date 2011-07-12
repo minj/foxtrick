@@ -139,9 +139,9 @@ var FoxtrickRapidId = {
 		}
 
 		var header = doc.getElementById("header");
-		var ticker = doc.getElementById("ticker");
+		var online = doc.getElementById("online");
 		var container = doc.createElement("div");
-		header.insertBefore(container, ticker);
+		header.insertBefore(container, online.nextSibling);
 		container.id = "ft_rapidid";
 		container.className='float_right';
 		var indicator = doc.createElement("a");
