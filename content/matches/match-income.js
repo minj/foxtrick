@@ -15,11 +15,16 @@ var FoxtrickMatchIncome = {
 		var sidebarBoxes = sidebar.getElementsByClassName('sidebarBox');
 		var isSoldSeats = function(n) {
 			// returns whether a sidebarBox is sold seats box
-			if (n.getElementsByTagName('table').length != 1)
+			var tables = n.getElementsByTagName('table'); 
+			if (tables.length != 1)
 				return false;
-			if (n.getElementsByTagName('tr').length != 4)
+			if (tables[0].rows.length != 4)
 				return false;
-			if (n.getElementsByTagName('td').length != 4 * 2)
+			if (tables[0].rows[0].cells.length <2)
+				return false;
+			if (tables[0].rows[0].cells[0].textContent.search(/\d/)!=-1)
+				return false;
+			if (tables[0].rows[0].cells[1].textContent.search(/\d/)==-1)
 				return false;
 			return true;
 		};
