@@ -816,6 +816,7 @@ var FoxtrickSkillTable = {
 			*/
 			var sortCompare = function(a, b) {
 				var aContent, bContent;
+				var lastSort = Number(a.getAttribute('lastSort'))-Number(b.getAttribute('lastSort'));
 				if (sortByIndex) {
 					aContent = a.cells[sortIndex].getAttribute("index");
 					bContent = b.cells[sortIndex].getAttribute("index");
@@ -825,7 +826,7 @@ var FoxtrickSkillTable = {
 					bContent = b.cells[sortIndex].textContent;
 				}
 				if (aContent === bContent) {
-					return 0;
+					return lastSort;
 				}
 				// place empty cells at the bottom
 				if (aContent === "" || aContent === null || aContent === undefined) {
@@ -841,10 +842,10 @@ var FoxtrickSkillTable = {
 				else {
 					aContent = parseFloat(aContent);
 					bContent = parseFloat(bContent);
-					aContent = isNaN(aContent) ? 0 : aContent;
-					bContent = isNaN(bContent) ? 0 : bContent;
+					aContent = isNaN(aContent) ? lastSort : aContent;
+					bContent = isNaN(bContent) ? lastSort : bContent;
 					if (aContent === bContent) {
-						return 0;
+						return lastSort;
 					}
 					if (sortAsc) {
 						return aContent - bContent;
@@ -858,9 +859,10 @@ var FoxtrickSkillTable = {
 			rows.sort(sortCompare);
 
 			var newBody = doc.createElement("tbody");
-			for (var i = 0; i < rows.length; ++i)
+			for (var i = 0; i < rows.length; ++i) {
+				rows[i].setAttribute('lastSort',i);
 				newBody.appendChild(rows[i]);
-
+			}
 			table.getElementsByTagName("tbody")[0].innerHTML = newBody.innerHTML;
 		}
 		catch (e) {

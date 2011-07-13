@@ -104,9 +104,10 @@ var FoxtrickTableSort = {
 
 				aContent = a.cells[tdindex].innerHTML;
 				bContent = b.cells[tdindex].innerHTML;
-
+				var lastSort = Number(a.getAttribute('lastSort'))-Number(b.getAttribute('lastSort'));
+				
 				if (aContent === bContent) {
-					return 0;
+					return lastSort;
 				}
 
 				aContent = Foxtrick.trim(Foxtrick.stripHTML(aContent));
@@ -152,10 +153,10 @@ var FoxtrickTableSort = {
 				else if (is_num) {
 					aContent = parseFloat(aContent);
 					bContent = parseFloat(bContent);
-					aContent = isNaN(aContent) ? 0 : aContent;
-					bContent = isNaN(bContent) ? 0 : bContent;
+					aContent = isNaN(aContent) ? lastSort : aContent;
+					bContent = isNaN(bContent) ? lastSort : bContent;
 					if (aContent === bContent) {
-						return 0;
+						return lastSort;
 					}
 					else {
 						return direction * (bContent - aContent);
@@ -173,6 +174,7 @@ var FoxtrickTableSort = {
 			// put them back
 			for (var i = sort_start+1; i < sort_end; ++i) {
 				table.rows[i].innerHTML = rows[i-1-sort_start].innerHTML;
+				table.rows[i].setAttribute('lastSort',i);
 			}
 		}
 		catch (e) {
