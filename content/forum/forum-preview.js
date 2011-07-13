@@ -360,6 +360,7 @@ var FoxtrickForumPreview = {
 
 			// strip links. replace <· with &lt;
 			text = text.replace(/<Â·/g,'&lt;'); // who know why that Â is needed there
+			text = text.replace(/<·/g,'&lt;'); // i don't, so just lets do both
 			text = Foxtrick.stripHTML( text);
 
 			text = text.replace(/\n/g, "<br />");
