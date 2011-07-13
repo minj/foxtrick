@@ -70,12 +70,15 @@ var FoxtrickFormatPostingText = {
 
 				var vstring = string.split('[pre]');
 				var r_string = vstring[0]
+				var remain=0;
 				for (var j = 1; j < vstring.length; j++) {
+					r_string+='[pre]';
 					var ivstring = vstring[j].split('[/pre]');
-					r_string += '[pre]'+ivstring[0].replace(/\[/g,'[·');
-
-					for ( var k = 1; k < ivstring.length; k++) {
-						r_string += '[/pre]'+ivstring[k];
+					var num_do = Math.min(ivstring.length-1, remain+1);
+					remain -= (num_do-1);
+					for (var i=0;i<num_do;++i) r_string += ivstring[i].replace(/\[/g,'[·')+'[/pre]';
+					for ( var k = num_do; k < ivstring.length; k++) {
+						r_string += ivstring[k];
 					}
 				}
 			return r_string;

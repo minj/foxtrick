@@ -244,14 +244,15 @@ var FoxtrickForumPreview = {
 		/\[link=(.*?)\]/gi,
 		/\[articleid=(.*?)\]/gi,
 
-		/\[b\](.*?)\[\/b\]/gi,
-		/\[u\](.*?)\[\/u\]/gi,
-		/\[i\](.*?)\[\/i\]/gi,
 		/\[br\]/gi,
 		/\[hr\]/gi
 		);
 
 		var search_nested = new Array(
+		/\[b\](.*?)\[\/b\]/gi,
+		/\[u\](.*?)\[\/u\]/gi,
+		/\[i\](.*?)\[\/i\]/gi,
+
 		/\[q\](.*?)\[\/q\]/gi,
 		/\[quote\=(.*?)\](.*?)\[\/quote\]/gi,
 		/\[q\=(.*?)\](.*?)\[\/q\]/gi,
@@ -299,14 +300,15 @@ var FoxtrickForumPreview = {
 		"<a href=\"$1\" target=\"\_blank\">($1)</a>",
 		"<a href=\"\/Community\/Press\?ArticleID\=$1\" target=\"\_blank\">($1)</a>",
 
-		"<b>$1</b>",
-		"<u>$1</u>",
-		"<i>$1</i>",
 		"<br>",
 		"<hr>"
 		);
 
 		var replace_nested = new Array(
+		"<b>$1</b>",
+		"<u>$1</u>",
+		"<i>$1</i>",
+
 		"<blockquote class='quote'>$1</blockquote>",
 		"<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",
 		"<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",
@@ -365,20 +367,18 @@ var FoxtrickForumPreview = {
 
 			text = text.replace(/\n/g, "<br />");
 
-			var count_q = Foxtrick.substr_count(text, '[q');
-			var count_s = Foxtrick.substr_count(text, '[spoil');
-			var count_t = Foxtrick.substr_count(text, '[table');
-
-			var count =  count_q;
-			if (count < count_s) count = count_s;
-			if (count < count_t) count = count_t;
-
+			var nested = ['[q','[b','[i','[u','[spoil','[table','[pre'];
+			var count =  0
+			for (var i=0; i< nested.length;++i) {
+				var count_nested = Foxtrick.substr_count(text, nested[i]);
+				count = Math.max(count, count_nested);
+			}
 
 			for ( var i = 0; i < search_single.length; i++) {
 				text = text.replace(search_single[i],replace_single[i]);
 			}
 
-			for (var j = 0; j <= count; j++) {
+			for (var j = 0; j <= count+1; j++) {
 				for ( var i = 0; i < search_nested.length; i++) {
 					text = text.replace(search_nested[i],replace_nested[i]);
 				}
