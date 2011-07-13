@@ -185,77 +185,75 @@ var FoxtrickForumYouthIcons = {
 
 
 		//simple test if new icons are set up by HTs
-		var toolbar_test = doc.getElementsByClassName("f_hr");
-		if (toolbar_test.length > 0) {
-			var target=toolbar.lastChild;
-			var tooldivs = doc.getElementsByTagName('img');
-			for (var i = 0; i < tooldivs.length; i++) {
-				if (tooldivs[i].className=="f_ul") { target=tooldivs[i]; break;}
-			}
-			target=target.nextSibling;
+		
+		var target=toolbar.lastChild;
+		var tooldivs = doc.getElementsByTagName('img');
+		for (var i = 0; i < tooldivs.length; i++) {
+			if (tooldivs[i].className=="f_ul") { target=tooldivs[i]; break;}
+		}
+		target=target.nextSibling;
 
-			// add quote tag
-			if (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, this.icons[0].type)) {
-				for (var j = 0; j < this.fields.length; j++) {
-					var page = FoxtrickForumYouthIcons.fields[j].page;
-					if (Foxtrick.isPage(Foxtrick.ht_pages[page], doc) && FoxtrickForumYouthIcons.fields[j].add_quote==true) {
-						var newimage = doc.createElement( "img" );
-						newimage.src = "/Img/Icons/transparent.gif";
-						newimage.addEventListener( "click", this.addTagsClick, false);
-						newimage.setAttribute( "tags", this.icons[0].tags );
-						if ( this.icons[0].replace_text) newimage.setAttribute( "replace_text", this.icons[0].replace_text);
-						newimage.setAttribute( "class", this.icons[0].class);
-						newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/ht-ml/"+this.icons[0].image+"') !important;");
-						newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode."+this.icons[0].string);
-						toolbar.insertBefore( newimage, toolbar.getElementsByTagName('img')[0] );
-					}
+		// add quote tag
+		if (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, this.icons[0].type)) {
+			for (var j = 0; j < this.fields.length; j++) {
+				var page = FoxtrickForumYouthIcons.fields[j].page;
+				if (Foxtrick.isPage(Foxtrick.ht_pages[page], doc) && FoxtrickForumYouthIcons.fields[j].add_quote==true) {
+					var newimage = doc.createElement( "img" );
+					newimage.src = "/Img/Icons/transparent.gif";
+					newimage.addEventListener( "click", this.addTagsClick, false);
+					newimage.setAttribute( "tags", this.icons[0].tags );
+					if ( this.icons[0].replace_text) newimage.setAttribute( "replace_text", this.icons[0].replace_text);
+					newimage.setAttribute( "class", this.icons[0].class);
+					newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/ht-ml/"+this.icons[0].image+"') !important;");
+					newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode."+this.icons[0].string);
+					toolbar.insertBefore( newimage, toolbar.getElementsByTagName('img')[0] );
 				}
 			}
-			for (var i = 1; i < this.icons.length; i++) {
-				if (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, this.icons[i].type)) {
-					if (this.icons[i].alt==null || doc.getElementsByClassName(this.icons[i].alt).length==0) {
-						var newimage = doc.createElement( "img" );
-						newimage.src = "/Img/Icons/transparent.gif";
-						newimage.addEventListener( "click", this.addTagsClick, false );
-						newimage.setAttribute( "tags", this.icons[i].tags);
-						if ( this.icons[i].replace_text) newimage.setAttribute( "replace_text", this.icons[i].replace_text);
-						newimage.setAttribute( "class", this.icons[i].class);
-						newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/ht-ml/"+this.icons[i].image+"') !important;");
-						newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode."+this.icons[i].string);
+		}
+		for (var i = 1; i < this.icons.length; i++) {
+			if (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, this.icons[i].type)) {
+				if (this.icons[i].alt==null || doc.getElementsByClassName(this.icons[i].alt).length==0) {
+					var newimage = doc.createElement( "img" );
+					newimage.src = "/Img/Icons/transparent.gif";
+					newimage.addEventListener( "click", this.addTagsClick, false );
+					newimage.setAttribute( "tags", this.icons[i].tags);
+					if ( this.icons[i].replace_text) newimage.setAttribute( "replace_text", this.icons[i].replace_text);
+					newimage.setAttribute( "class", this.icons[i].class);
+					newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/ht-ml/"+this.icons[i].image+"') !important;");
+					newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode."+this.icons[i].string);
 
-						if (this.icons[i].versions) {
-							var span = doc.createElement("div");
-							span.className = "ft-pop-up-container icon";
-							span.appendChild(newimage);
+					if (this.icons[i].versions) {
+						var span = doc.createElement("div");
+						span.className = "ft-pop-up-container icon";
+						span.appendChild(newimage);
 
-							var list = doc.createElement("ul");
-							list.className = "ft-pop";
-							list.setAttribute('style',"margin-top:-5px;");
-							for (var j=0; j<this.icons[i].versions.length; ++j) {
-								var item = doc.createElement("li");
-								var link = doc.createElement("span");
-								link.addEventListener("click", this.addTagsClick, false);
-								link.setAttribute( "tags", this.icons[i].tags);
-								if ( this.icons[i].replace_text) link.setAttribute( "replace_text", this.icons[i].replace_text);
-								link.setAttribute('version', this.icons[i].versions[j]);
-								link.textContent = Foxtrickl10n.getString('ForumSpecialBBCode.'+this.icons[i].versions_string).replace(/%s/, this.icons[i].versions[j]);
-								link.setAttribute('parent_id', this.icons[i].class+'_id');
-								link.setAttribute('version_string', this.icons[i].versions_string);
-								item.appendChild(link);
-								list.appendChild(item);
-							}
-							newimage.setAttribute('title_raw', newimage.title);
-							newimage.title = newimage.title.replace(/%s/, FoxtrickPrefs.getString(this.icons[i].versions_string));
-							newimage.setAttribute('id', this.icons[i].class+'_id');
-							newimage.setAttribute('parent_id', this.icons[i].class+'_id');
-							newimage.setAttribute('version', FoxtrickPrefs.getString(this.icons[i].versions_string));
-							newimage.setAttribute('version_string', this.icons[i].versions_string);
-
-							span.appendChild(list);
-							toolbar.insertBefore(span,target);
+						var list = doc.createElement("ul");
+						list.className = "ft-pop";
+						list.setAttribute('style',"margin-top:-5px;");
+						for (var j=0; j<this.icons[i].versions.length; ++j) {
+							var item = doc.createElement("li");
+							var link = doc.createElement("span");
+							link.addEventListener("click", this.addTagsClick, false);
+							link.setAttribute( "tags", this.icons[i].tags);
+							if ( this.icons[i].replace_text) link.setAttribute( "replace_text", this.icons[i].replace_text);
+							link.setAttribute('version', this.icons[i].versions[j]);
+							link.textContent = Foxtrickl10n.getString('ForumSpecialBBCode.'+this.icons[i].versions_string).replace(/%s/, this.icons[i].versions[j]);
+							link.setAttribute('parent_id', this.icons[i].class+'_id');
+							link.setAttribute('version_string', this.icons[i].versions_string);
+							item.appendChild(link);
+							list.appendChild(item);
 						}
-						else toolbar.insertBefore( newimage,target );
+						newimage.setAttribute('title_raw', newimage.title);
+						newimage.title = newimage.title.replace(/%s/, FoxtrickPrefs.getString(this.icons[i].versions_string));
+						newimage.setAttribute('id', this.icons[i].class+'_id');
+						newimage.setAttribute('parent_id', this.icons[i].class+'_id');
+						newimage.setAttribute('version', FoxtrickPrefs.getString(this.icons[i].versions_string));
+						newimage.setAttribute('version_string', this.icons[i].versions_string);
+
+						span.appendChild(list);
+						toolbar.insertBefore(span,target);
 					}
+					else toolbar.insertBefore( newimage,target );
 				}
 			}
 		}
