@@ -539,7 +539,8 @@ stats["alltid_add"] =  {
                          "filters"    : { "teamid" : "teamid",  "teamname" : "teamname" },
                          "params"     : [],
                       },
-		"title" : "Alltid: add team to compare list",
+		"img" : Foxtrick.ResourcePath+"resources/linkicons/ahaddremove.png",
+        "title" : "Alltid: add to or remove from compare list",
         "shorttitle":"Add/Remove"
 };
 stats["alltid_clear"] =  {
@@ -554,6 +555,7 @@ stats["alltid_clear"] =  {
                          "filters"    : [],
                          "params"     : []
                      },
+        "img" : Foxtrick.ResourcePath+"resources/linkicons/ahclear.png",
         "title" : "Alltid: clear compare list",
         "shorttitle":"Clear"
 };
@@ -570,6 +572,7 @@ stats["alltid_compare"] =  {
                          "filters"    : [],
                          "params"     : []
                        },
+		"img" : Foxtrick.ResourcePath+"resources/linkicons/ahcompare.png",
         "title" : "Alltid: compare teams",
         "shorttitle":"Compare"
 };
@@ -1315,7 +1318,7 @@ stats["hattrick-youthclub"] =  {
                        },
 
 		"allowlink" : function(filterparams, stattype) {
-			Foxtrick.dump(filterparams["ownyouthteamid"]+' '+filterparams["teamid"]+' '+filterparams["teamid"]+'\n')
+			//Foxtrick.dump(filterparams["ownyouthteamid"]+' '+filterparams["teamid"]+' '+filterparams["teamid"]+'\n')
             if (filterparams["teamid"] === filterparams["ownteamid"] ||
 				(filterparams["ownyouthteamid"] !== null &&
 						(filterparams["teamid"] === filterparams["ownyouthteamid"]
