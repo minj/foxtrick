@@ -1,4 +1,14 @@
 #!/bin/bash
+#
+# Author:
+# Ryan Li <ryan@ryanium.com>
+# Licensed under GNU General Public License v3 or later
+#
+# Exit codes:
+# 0) Success
+# 1) Variables USER and PASSWORD unset (set in upload.conf.sh)
+# 2) Failed to make
+# 3) Failed to upload
 
 USER=
 PASSWORD=
@@ -13,7 +23,7 @@ if [[ -z "${USER}" || -z "${PASSWORD}" ]]; then
 	exit 1
 fi
 
-(cd ${SOURCE_DIR} && make DIST_TYPE=nightly)
+(cd ${SOURCE_DIR} && make DIST_TYPE=nightly) || exit 2
 
 REVISION=`cd ${SOURCE_DIR} && git svn find-rev master`
 
@@ -41,6 +51,6 @@ sed -i -e "s|{USER}|${USER}|g" -e "s|{PASSWORD}|${PASSWORD}|g" \
 	-e "s|{GECKO_FILENAME}|foxtrick-r${REVISION}.xpi|g" \
 	-e "s|{CHROME_FILENAME}|foxtrick-r${REVISION}.crx|g" script
 
-lftp -f script
+lftp -f script || exit 3
 
 rm update.rdf update.xml script
