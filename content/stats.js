@@ -489,18 +489,18 @@ stats["alltid"] =  {
                          "params"     : { "playerid" : "" }
                        },
 
-        "countrylink" : { "path"       : "countrylid/",
+        "countrylink" : { "path"       : "country/",
                          "filters"    : [],
-                         "params"     : { "countryid" : "" }
+                         "params"     : { "english_name" : "" }
                        },
 
         "federationlink" : { "path"       : "federation/",
                          "filters"    : [],
                          "params"     : { "federationid" : "" }
                        },
-		"playedmatchlink" : { "path"       : "match/",
+		"playedmatchlink" : { "path"       : "teamcompare/",
                          "filters"    : [],
-                         "params"     : { "matchid" : "","match":"" }
+                         "params"     : { "teamid" : "","teamid2":"," }
                        },
         "matchlink" : { "path"       : "teamcompare/",
                          "filters"    : [],
@@ -1535,6 +1535,17 @@ stats["tppc"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/tppc.png"
 };
 
+
+stats["HattrickNations"] = {
+  "url" : "http://www.hattrick-nations.org/",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/HattrickNations.png",
+  "title" : "Hattrick Nations",
+
+  "nationalteamlink" : { "path"       : "#/nations",
+                         "filters"    : [],
+                         "params"     :  {"ntteamid":"ntteamid"}
+                       },
+};
 
 // ----------------------------------------------------------------------
 // -------------- tracker & national teams ------------------------------

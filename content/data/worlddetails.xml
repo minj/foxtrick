@@ -2,14 +2,14 @@
 <HattrickData>
   <FileName>worlddetails.xml</FileName>
   <Version>1.3</Version>
-  <UserID>8342420</UserID>
-  <FetchedDate>2011-03-16 10:55:13</FetchedDate>
+  <UserID>7776339</UserID>
+  <FetchedDate>2011-07-15 12:48:23</FetchedDate>
   <LeagueList>
     <League>
       <LeagueID>1</LeagueID>
       <LeagueName>Sverige</LeagueName>
-      <Season>44</Season>
-      <MatchRound>16</MatchRound>
+      <Season>46</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Sverige</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Northern Europe</ZoneName>
@@ -26,19 +26,19 @@
       </Cup>
       <NationalTeamId>3000</NationalTeamId>
       <U20TeamId>3041</U20TeamId>
-      <ActiveUsers>19752</ActiveUsers>
-      <WaitingUsers>20</WaitingUsers>
-      <TrainingDate>2011-03-17 22:00:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:00:01</EconomyDate>
-      <CupMatchDate>2011-03-16 19:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 10:00:00</SeriesMatchDate>
+      <ActiveUsers>19148</ActiveUsers>
+      <WaitingUsers>24</WaitingUsers>
+      <TrainingDate>2011-07-21 22:00:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:00:01</EconomyDate>
+      <CupMatchDate>2011-07-20 19:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 10:00:00</SeriesMatchDate>
       <NumberOfLevels>8</NumberOfLevels>
     </League>
     <League>
       <LeagueID>2</LeagueID>
       <LeagueName>England</LeagueName>
-      <Season>44</Season>
-      <MatchRound>16</MatchRound>
+      <Season>46</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>England</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Western Europe</ZoneName>
@@ -55,19 +55,19 @@
       </Cup>
       <NationalTeamId>3001</NationalTeamId>
       <U20TeamId>3042</U20TeamId>
-      <ActiveUsers>7352</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-17 21:00:00</TrainingDate>
-      <EconomyDate>2011-03-18 21:00:00</EconomyDate>
-      <CupMatchDate>2011-03-22 21:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 18:00:00</SeriesMatchDate>
+      <ActiveUsers>7155</ActiveUsers>
+      <WaitingUsers>7</WaitingUsers>
+      <TrainingDate>2011-07-21 21:00:00</TrainingDate>
+      <EconomyDate>2011-07-15 21:00:00</EconomyDate>
+      <CupMatchDate>2011-07-19 21:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 18:00:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>3</LeagueID>
       <LeagueName>Deutschland</LeagueName>
-      <Season>44</Season>
-      <MatchRound>16</MatchRound>
+      <Season>46</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Deutschland</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Central Europe</ZoneName>
@@ -84,19 +84,19 @@
       </Cup>
       <NationalTeamId>3002</NationalTeamId>
       <U20TeamId>3043</U20TeamId>
-      <ActiveUsers>60571</ActiveUsers>
-      <WaitingUsers>69</WaitingUsers>
-      <TrainingDate>2011-03-18 00:30:00</TrainingDate>
-      <EconomyDate>2011-03-19 00:00:01</EconomyDate>
-      <CupMatchDate>2011-03-22 18:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 18:00:00</SeriesMatchDate>
+      <ActiveUsers>57861</ActiveUsers>
+      <WaitingUsers>49</WaitingUsers>
+      <TrainingDate>2011-07-22 00:30:00</TrainingDate>
+      <EconomyDate>2011-07-16 00:00:01</EconomyDate>
+      <CupMatchDate>2011-07-19 18:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 18:00:00</SeriesMatchDate>
       <NumberOfLevels>10</NumberOfLevels>
     </League>
     <League>
       <LeagueID>4</LeagueID>
       <LeagueName>Italia</LeagueName>
-      <Season>44</Season>
-      <MatchRound>16</MatchRound>
+      <Season>46</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Italia</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Southwestern Europe</ZoneName>
@@ -113,19 +113,19 @@
       </Cup>
       <NationalTeamId>3003</NationalTeamId>
       <U20TeamId>3044</U20TeamId>
-      <ActiveUsers>77073</ActiveUsers>
-      <WaitingUsers>226</WaitingUsers>
-      <TrainingDate>2011-03-17 23:45:00</TrainingDate>
-      <EconomyDate>2011-03-19 02:00:00</EconomyDate>
-      <CupMatchDate>2011-03-22 19:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 12:00:00</SeriesMatchDate>
+      <ActiveUsers>73139</ActiveUsers>
+      <WaitingUsers>207</WaitingUsers>
+      <TrainingDate>2011-07-21 23:45:00</TrainingDate>
+      <EconomyDate>2011-07-16 02:00:00</EconomyDate>
+      <CupMatchDate>2011-07-19 19:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 12:00:00</SeriesMatchDate>
       <NumberOfLevels>10</NumberOfLevels>
     </League>
     <League>
       <LeagueID>5</LeagueID>
       <LeagueName>France</LeagueName>
-      <Season>44</Season>
-      <MatchRound>16</MatchRound>
+      <Season>46</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>France</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Southwestern Europe</ZoneName>
@@ -142,19 +142,19 @@
       </Cup>
       <NationalTeamId>3004</NationalTeamId>
       <U20TeamId>3045</U20TeamId>
-      <ActiveUsers>35914</ActiveUsers>
-      <WaitingUsers>59</WaitingUsers>
-      <TrainingDate>2011-03-18 05:15:00</TrainingDate>
-      <EconomyDate>2011-03-19 02:30:00</EconomyDate>
-      <CupMatchDate>2011-03-16 15:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 21:00:00</SeriesMatchDate>
-      <NumberOfLevels>9</NumberOfLevels>
+      <ActiveUsers>33473</ActiveUsers>
+      <WaitingUsers>97</WaitingUsers>
+      <TrainingDate>2011-07-22 05:15:00</TrainingDate>
+      <EconomyDate>2011-07-16 02:30:00</EconomyDate>
+      <CupMatchDate>2011-07-20 15:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 21:00:00</SeriesMatchDate>
+      <NumberOfLevels>8</NumberOfLevels>
     </League>
     <League>
       <LeagueID>6</LeagueID>
       <LeagueName>México</LeagueName>
-      <Season>44</Season>
-      <MatchRound>16</MatchRound>
+      <Season>46</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>México</ShortName>
       <Continent>North America</Continent>
       <ZoneName>North America</ZoneName>
@@ -171,19 +171,19 @@
       </Cup>
       <NationalTeamId>3005</NationalTeamId>
       <U20TeamId>3046</U20TeamId>
-      <ActiveUsers>4175</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 03:45:00</TrainingDate>
-      <EconomyDate>2011-03-20 01:00:00</EconomyDate>
-      <CupMatchDate>2011-03-17 02:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 17:30:00</SeriesMatchDate>
+      <ActiveUsers>4045</ActiveUsers>
+      <WaitingUsers>14</WaitingUsers>
+      <TrainingDate>2011-07-22 03:45:00</TrainingDate>
+      <EconomyDate>2011-07-17 01:00:00</EconomyDate>
+      <CupMatchDate>2011-07-21 02:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 17:30:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>7</LeagueID>
       <LeagueName>Argentina</LeagueName>
-      <Season>44</Season>
-      <MatchRound>16</MatchRound>
+      <Season>46</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Argentina</ShortName>
       <Continent>South America</Continent>
       <ZoneName>South America</ZoneName>
@@ -200,19 +200,19 @@
       </Cup>
       <NationalTeamId>3006</NationalTeamId>
       <U20TeamId>3047</U20TeamId>
-      <ActiveUsers>21252</ActiveUsers>
-      <WaitingUsers>38</WaitingUsers>
-      <TrainingDate>2011-03-18 06:00:00</TrainingDate>
-      <EconomyDate>2011-03-19 03:30:00</EconomyDate>
-      <CupMatchDate>2011-03-17 01:30:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 21:40:00</SeriesMatchDate>
+      <ActiveUsers>20239</ActiveUsers>
+      <WaitingUsers>48</WaitingUsers>
+      <TrainingDate>2011-07-22 06:00:00</TrainingDate>
+      <EconomyDate>2011-07-16 03:30:00</EconomyDate>
+      <CupMatchDate>2011-07-21 01:30:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 21:40:00</SeriesMatchDate>
       <NumberOfLevels>8</NumberOfLevels>
     </League>
     <League>
       <LeagueID>8</LeagueID>
       <LeagueName>USA</LeagueName>
-      <Season>44</Season>
-      <MatchRound>16</MatchRound>
+      <Season>46</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>USA</ShortName>
       <Continent>North America</Continent>
       <ZoneName>North America</ZoneName>
@@ -229,19 +229,19 @@
       </Cup>
       <NationalTeamId>3007</NationalTeamId>
       <U20TeamId>3048</U20TeamId>
-      <ActiveUsers>5231</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-18 03:30:00</TrainingDate>
-      <EconomyDate>2011-03-20 01:30:00</EconomyDate>
-      <CupMatchDate>2011-03-17 01:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-21 01:00:00</SeriesMatchDate>
+      <ActiveUsers>4992</ActiveUsers>
+      <WaitingUsers>10</WaitingUsers>
+      <TrainingDate>2011-07-22 03:30:00</TrainingDate>
+      <EconomyDate>2011-07-17 01:30:00</EconomyDate>
+      <CupMatchDate>2011-07-21 01:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-18 01:00:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>9</LeagueID>
       <LeagueName>Norge</LeagueName>
-      <Season>33</Season>
-      <MatchRound>16</MatchRound>
+      <Season>35</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Norge</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Northern Europe</ZoneName>
@@ -258,19 +258,19 @@
       </Cup>
       <NationalTeamId>3008</NationalTeamId>
       <U20TeamId>3049</U20TeamId>
-      <ActiveUsers>9863</ActiveUsers>
-      <WaitingUsers>41</WaitingUsers>
-      <TrainingDate>2011-03-17 20:30:00</TrainingDate>
-      <EconomyDate>2011-03-18 23:00:00</EconomyDate>
-      <CupMatchDate>2011-03-16 16:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 16:00:00</SeriesMatchDate>
+      <ActiveUsers>9405</ActiveUsers>
+      <WaitingUsers>61</WaitingUsers>
+      <TrainingDate>2011-07-21 20:30:00</TrainingDate>
+      <EconomyDate>2011-07-15 23:00:00</EconomyDate>
+      <CupMatchDate>2011-07-20 16:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 16:00:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>11</LeagueID>
       <LeagueName>Danmark</LeagueName>
-      <Season>44</Season>
-      <MatchRound>16</MatchRound>
+      <Season>46</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Danmark</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Northern Europe</ZoneName>
@@ -287,19 +287,19 @@
       </Cup>
       <NationalTeamId>3022</NationalTeamId>
       <U20TeamId>3063</U20TeamId>
-      <ActiveUsers>15205</ActiveUsers>
-      <WaitingUsers>33</WaitingUsers>
-      <TrainingDate>2011-03-18 03:00:00</TrainingDate>
-      <EconomyDate>2011-03-20 01:20:00</EconomyDate>
-      <CupMatchDate>2011-03-16 16:30:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 16:00:00</SeriesMatchDate>
+      <ActiveUsers>14497</ActiveUsers>
+      <WaitingUsers>25</WaitingUsers>
+      <TrainingDate>2011-07-22 03:00:00</TrainingDate>
+      <EconomyDate>2011-07-17 01:20:00</EconomyDate>
+      <CupMatchDate>2011-07-20 16:30:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 16:00:00</SeriesMatchDate>
       <NumberOfLevels>7</NumberOfLevels>
     </League>
     <League>
       <LeagueID>12</LeagueID>
       <LeagueName>Suomi</LeagueName>
-      <Season>44</Season>
-      <MatchRound>16</MatchRound>
+      <Season>46</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Suomi</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Northern Europe</ZoneName>
@@ -316,19 +316,19 @@
       </Cup>
       <NationalTeamId>3023</NationalTeamId>
       <U20TeamId>3064</U20TeamId>
-      <ActiveUsers>21467</ActiveUsers>
+      <ActiveUsers>20683</ActiveUsers>
       <WaitingUsers>15</WaitingUsers>
-      <TrainingDate>2011-03-18 05:00:00</TrainingDate>
-      <EconomyDate>2011-03-19 00:20:00</EconomyDate>
-      <CupMatchDate>2011-03-22 20:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 20:00:00</SeriesMatchDate>
+      <TrainingDate>2011-07-22 05:00:00</TrainingDate>
+      <EconomyDate>2011-07-16 00:20:00</EconomyDate>
+      <CupMatchDate>2011-07-19 20:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 20:00:00</SeriesMatchDate>
       <NumberOfLevels>8</NumberOfLevels>
     </League>
     <League>
       <LeagueID>14</LeagueID>
       <LeagueName>Nederland</LeagueName>
-      <Season>33</Season>
-      <MatchRound>16</MatchRound>
+      <Season>35</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Nederland</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Western Europe</ZoneName>
@@ -345,19 +345,19 @@
       </Cup>
       <NationalTeamId>3025</NationalTeamId>
       <U20TeamId>3066</U20TeamId>
-      <ActiveUsers>30788</ActiveUsers>
-      <WaitingUsers>13</WaitingUsers>
-      <TrainingDate>2011-03-18 01:05:00</TrainingDate>
-      <EconomyDate>2011-03-20 02:00:00</EconomyDate>
-      <CupMatchDate>2011-03-16 17:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 20:00:00</SeriesMatchDate>
+      <ActiveUsers>29080</ActiveUsers>
+      <WaitingUsers>12</WaitingUsers>
+      <TrainingDate>2011-07-22 01:05:00</TrainingDate>
+      <EconomyDate>2011-07-17 02:00:00</EconomyDate>
+      <CupMatchDate>2011-07-20 17:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 20:00:00</SeriesMatchDate>
       <NumberOfLevels>8</NumberOfLevels>
     </League>
     <League>
       <LeagueID>15</LeagueID>
       <LeagueName>Oceania</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Oceania</ShortName>
       <Continent>Oceania</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -374,19 +374,19 @@
       </Cup>
       <NationalTeamId>3009</NationalTeamId>
       <U20TeamId>3050</U20TeamId>
-      <ActiveUsers>2572</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 04:00:00</TrainingDate>
-      <EconomyDate>2011-03-19 00:10:00</EconomyDate>
-      <CupMatchDate>2011-03-23 04:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 04:00:00</SeriesMatchDate>
+      <ActiveUsers>2457</ActiveUsers>
+      <WaitingUsers>1</WaitingUsers>
+      <TrainingDate>2011-07-22 04:00:00</TrainingDate>
+      <EconomyDate>2011-07-16 00:10:00</EconomyDate>
+      <CupMatchDate>2011-07-20 04:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 04:00:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>16</LeagueID>
       <LeagueName>Brasil</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Brasil</ShortName>
       <Continent>South America</Continent>
       <ZoneName>South America</ZoneName>
@@ -403,19 +403,19 @@
       </Cup>
       <NationalTeamId>3024</NationalTeamId>
       <U20TeamId>3065</U20TeamId>
-      <ActiveUsers>13670</ActiveUsers>
-      <WaitingUsers>7</WaitingUsers>
-      <TrainingDate>2011-03-18 00:05:00</TrainingDate>
-      <EconomyDate>2011-03-20 01:45:00</EconomyDate>
-      <CupMatchDate>2011-03-17 00:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-21 00:15:00</SeriesMatchDate>
+      <ActiveUsers>15433</ActiveUsers>
+      <WaitingUsers>17</WaitingUsers>
+      <TrainingDate>2011-07-22 00:05:00</TrainingDate>
+      <EconomyDate>2011-07-17 01:45:00</EconomyDate>
+      <CupMatchDate>2011-07-21 00:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-18 00:15:00</SeriesMatchDate>
       <NumberOfLevels>7</NumberOfLevels>
     </League>
     <League>
       <LeagueID>17</LeagueID>
       <LeagueName>Canada</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Canada</ShortName>
       <Continent>North America</Continent>
       <ZoneName>North America</ZoneName>
@@ -432,19 +432,19 @@
       </Cup>
       <NationalTeamId>3010</NationalTeamId>
       <U20TeamId>3051</U20TeamId>
-      <ActiveUsers>1680</ActiveUsers>
-      <WaitingUsers>2</WaitingUsers>
-      <TrainingDate>2011-03-18 07:30:00</TrainingDate>
-      <EconomyDate>2011-03-20 02:15:00</EconomyDate>
-      <CupMatchDate>2011-03-16 23:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 23:00:00</SeriesMatchDate>
+      <ActiveUsers>1602</ActiveUsers>
+      <WaitingUsers>3</WaitingUsers>
+      <TrainingDate>2011-07-22 07:30:00</TrainingDate>
+      <EconomyDate>2011-07-17 02:15:00</EconomyDate>
+      <CupMatchDate>2011-07-20 23:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 23:00:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>18</LeagueID>
       <LeagueName>Chile</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Chile</ShortName>
       <Continent>South America</Continent>
       <ZoneName>South America</ZoneName>
@@ -461,19 +461,19 @@
       </Cup>
       <NationalTeamId>3026</NationalTeamId>
       <U20TeamId>3067</U20TeamId>
-      <ActiveUsers>17120</ActiveUsers>
+      <ActiveUsers>16606</ActiveUsers>
       <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-18 08:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 03:30:00</EconomyDate>
-      <CupMatchDate>2011-03-16 22:40:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 22:40:00</SeriesMatchDate>
+      <TrainingDate>2011-07-22 08:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 03:30:00</EconomyDate>
+      <CupMatchDate>2011-07-20 22:40:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 22:40:00</SeriesMatchDate>
       <NumberOfLevels>7</NumberOfLevels>
     </League>
     <League>
       <LeagueID>19</LeagueID>
       <LeagueName>Colombia</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Colombia</ShortName>
       <Continent>South America</Continent>
       <ZoneName>South America</ZoneName>
@@ -490,19 +490,19 @@
       </Cup>
       <NationalTeamId>3011</NationalTeamId>
       <U20TeamId>3052</U20TeamId>
-      <ActiveUsers>5678</ActiveUsers>
-      <WaitingUsers>3</WaitingUsers>
-      <TrainingDate>2011-03-18 06:30:00</TrainingDate>
-      <EconomyDate>2011-03-20 03:40:00</EconomyDate>
-      <CupMatchDate>2011-03-17 00:50:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-21 00:50:00</SeriesMatchDate>
+      <ActiveUsers>5520</ActiveUsers>
+      <WaitingUsers>5</WaitingUsers>
+      <TrainingDate>2011-07-22 06:30:00</TrainingDate>
+      <EconomyDate>2011-07-17 03:40:00</EconomyDate>
+      <CupMatchDate>2011-07-21 00:50:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-18 00:50:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>20</LeagueID>
       <LeagueName>India</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>India</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -519,19 +519,19 @@
       </Cup>
       <NationalTeamId>3027</NationalTeamId>
       <U20TeamId>3068</U20TeamId>
-      <ActiveUsers>496</ActiveUsers>
+      <ActiveUsers>407</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 06:05:00</TrainingDate>
-      <EconomyDate>2011-03-19 04:44:00</EconomyDate>
-      <CupMatchDate>2011-03-23 06:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 08:15:00</SeriesMatchDate>
+      <TrainingDate>2011-07-22 06:05:00</TrainingDate>
+      <EconomyDate>2011-07-16 04:44:00</EconomyDate>
+      <CupMatchDate>2011-07-20 06:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 08:15:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>21</LeagueID>
       <LeagueName>Ireland</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Ireland</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Western Europe</ZoneName>
@@ -548,19 +548,19 @@
       </Cup>
       <NationalTeamId>3012</NationalTeamId>
       <U20TeamId>3053</U20TeamId>
-      <ActiveUsers>979</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 05:45:00</TrainingDate>
-      <EconomyDate>2011-03-19 01:45:00</EconomyDate>
-      <CupMatchDate>2011-03-16 20:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 16:30:00</SeriesMatchDate>
+      <ActiveUsers>957</ActiveUsers>
+      <WaitingUsers>2</WaitingUsers>
+      <TrainingDate>2011-07-22 05:45:00</TrainingDate>
+      <EconomyDate>2011-07-16 01:45:00</EconomyDate>
+      <CupMatchDate>2011-07-20 20:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 16:30:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>22</LeagueID>
       <LeagueName>Nippon</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Nippon</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -577,19 +577,19 @@
       </Cup>
       <NationalTeamId>3028</NationalTeamId>
       <U20TeamId>3069</U20TeamId>
-      <ActiveUsers>667</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 04:15:00</TrainingDate>
-      <EconomyDate>2011-03-19 03:15:00</EconomyDate>
-      <CupMatchDate>2011-03-23 02:30:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 04:15:00</SeriesMatchDate>
+      <ActiveUsers>634</ActiveUsers>
+      <WaitingUsers>2</WaitingUsers>
+      <TrainingDate>2011-07-22 04:15:00</TrainingDate>
+      <EconomyDate>2011-07-16 03:15:00</EconomyDate>
+      <CupMatchDate>2011-07-20 02:30:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 04:15:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>23</LeagueID>
       <LeagueName>Perú</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Perú</ShortName>
       <Continent>South America</Continent>
       <ZoneName>South America</ZoneName>
@@ -606,19 +606,19 @@
       </Cup>
       <NationalTeamId>3013</NationalTeamId>
       <U20TeamId>3054</U20TeamId>
-      <ActiveUsers>5273</ActiveUsers>
-      <WaitingUsers>4</WaitingUsers>
-      <TrainingDate>2011-03-18 05:30:00</TrainingDate>
-      <EconomyDate>2011-03-20 02:25:00</EconomyDate>
-      <CupMatchDate>2011-03-17 02:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-21 00:45:00</SeriesMatchDate>
+      <ActiveUsers>4823</ActiveUsers>
+      <WaitingUsers>2</WaitingUsers>
+      <TrainingDate>2011-07-22 05:30:00</TrainingDate>
+      <EconomyDate>2011-07-17 02:25:00</EconomyDate>
+      <CupMatchDate>2011-07-21 02:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-18 00:45:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>24</LeagueID>
       <LeagueName>Polska</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Polska</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Central Europe</ZoneName>
@@ -635,19 +635,19 @@
       </Cup>
       <NationalTeamId>3029</NationalTeamId>
       <U20TeamId>3070</U20TeamId>
-      <ActiveUsers>56857</ActiveUsers>
-      <WaitingUsers>160</WaitingUsers>
-      <TrainingDate>2011-03-18 02:30:00</TrainingDate>
-      <EconomyDate>2011-03-19 23:45:00</EconomyDate>
-      <CupMatchDate>2011-03-16 18:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 09:00:00</SeriesMatchDate>
+      <ActiveUsers>54539</ActiveUsers>
+      <WaitingUsers>55</WaitingUsers>
+      <TrainingDate>2011-07-22 02:30:00</TrainingDate>
+      <EconomyDate>2011-07-16 23:45:00</EconomyDate>
+      <CupMatchDate>2011-07-20 18:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 09:00:00</SeriesMatchDate>
       <NumberOfLevels>10</NumberOfLevels>
     </League>
     <League>
       <LeagueID>25</LeagueID>
       <LeagueName>Portugal</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Portugal</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Southwestern Europe</ZoneName>
@@ -664,19 +664,19 @@
       </Cup>
       <NationalTeamId>3014</NationalTeamId>
       <U20TeamId>3055</U20TeamId>
-      <ActiveUsers>27438</ActiveUsers>
-      <WaitingUsers>11</WaitingUsers>
-      <TrainingDate>2011-03-17 19:00:00</TrainingDate>
-      <EconomyDate>2011-03-19 01:30:00</EconomyDate>
-      <CupMatchDate>2011-03-16 21:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 21:45:00</SeriesMatchDate>
+      <ActiveUsers>25534</ActiveUsers>
+      <WaitingUsers>47</WaitingUsers>
+      <TrainingDate>2011-07-21 19:00:00</TrainingDate>
+      <EconomyDate>2011-07-16 01:30:00</EconomyDate>
+      <CupMatchDate>2011-07-20 21:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 21:45:00</SeriesMatchDate>
       <NumberOfLevels>8</NumberOfLevels>
     </League>
     <League>
       <LeagueID>26</LeagueID>
       <LeagueName>Scotland</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Scotland</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Western Europe</ZoneName>
@@ -693,19 +693,19 @@
       </Cup>
       <NationalTeamId>3030</NationalTeamId>
       <U20TeamId>3071</U20TeamId>
-      <ActiveUsers>920</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 18:00:00</TrainingDate>
-      <EconomyDate>2011-03-18 23:35:00</EconomyDate>
-      <CupMatchDate>2011-03-16 11:30:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 17:30:00</SeriesMatchDate>
+      <ActiveUsers>837</ActiveUsers>
+      <WaitingUsers>1</WaitingUsers>
+      <TrainingDate>2011-07-21 18:00:00</TrainingDate>
+      <EconomyDate>2011-07-15 23:35:00</EconomyDate>
+      <CupMatchDate>2011-07-20 11:30:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 17:30:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>27</LeagueID>
       <LeagueName>South Africa</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>South Africa</ShortName>
       <Continent>Africa</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -722,19 +722,19 @@
       </Cup>
       <NationalTeamId>3015</NationalTeamId>
       <U20TeamId>3056</U20TeamId>
-      <ActiveUsers>270</ActiveUsers>
+      <ActiveUsers>269</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:00:00</TrainingDate>
-      <EconomyDate>2011-03-19 04:27:00</EconomyDate>
-      <CupMatchDate>2011-03-16 21:30:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 09:30:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 13:00:00</TrainingDate>
+      <EconomyDate>2011-07-16 04:27:00</EconomyDate>
+      <CupMatchDate>2011-07-20 21:30:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 09:30:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>28</LeagueID>
       <LeagueName>Uruguay</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Uruguay</ShortName>
       <Continent>South America</Continent>
       <ZoneName>South America</ZoneName>
@@ -751,19 +751,19 @@
       </Cup>
       <NationalTeamId>3031</NationalTeamId>
       <U20TeamId>3072</U20TeamId>
-      <ActiveUsers>4773</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 23:00:00</TrainingDate>
-      <EconomyDate>2011-03-20 03:41:00</EconomyDate>
-      <CupMatchDate>2011-03-17 00:30:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-21 00:30:00</SeriesMatchDate>
+      <ActiveUsers>4736</ActiveUsers>
+      <WaitingUsers>2</WaitingUsers>
+      <TrainingDate>2011-07-21 23:00:00</TrainingDate>
+      <EconomyDate>2011-07-17 03:41:00</EconomyDate>
+      <CupMatchDate>2011-07-21 00:30:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-18 00:30:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>29</LeagueID>
       <LeagueName>Venezuela</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Venezuela</ShortName>
       <Continent>South America</Continent>
       <ZoneName>South America</ZoneName>
@@ -780,19 +780,19 @@
       </Cup>
       <NationalTeamId>3016</NationalTeamId>
       <U20TeamId>3057</U20TeamId>
-      <ActiveUsers>2714</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 06:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 03:15:00</EconomyDate>
-      <CupMatchDate>2011-03-16 23:30:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-21 01:30:00</SeriesMatchDate>
+      <ActiveUsers>2670</ActiveUsers>
+      <WaitingUsers>1</WaitingUsers>
+      <TrainingDate>2011-07-22 06:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 03:15:00</EconomyDate>
+      <CupMatchDate>2011-07-20 23:30:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-18 01:30:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>30</LeagueID>
       <LeagueName>Hanguk</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Hanguk</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -809,19 +809,19 @@
       </Cup>
       <NationalTeamId>3032</NationalTeamId>
       <U20TeamId>3073</U20TeamId>
-      <ActiveUsers>1578</ActiveUsers>
-      <WaitingUsers>11</WaitingUsers>
-      <TrainingDate>2011-03-18 04:45:00</TrainingDate>
-      <EconomyDate>2011-03-19 04:40:00</EconomyDate>
-      <CupMatchDate>2011-03-23 02:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 04:45:00</SeriesMatchDate>
+      <ActiveUsers>1265</ActiveUsers>
+      <WaitingUsers>14</WaitingUsers>
+      <TrainingDate>2011-07-22 04:45:00</TrainingDate>
+      <EconomyDate>2011-07-16 04:40:00</EconomyDate>
+      <CupMatchDate>2011-07-20 02:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 04:45:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>31</LeagueID>
       <LeagueName>Prathet Thai</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Prathet Thai</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -838,19 +838,19 @@
       </Cup>
       <NationalTeamId>3017</NationalTeamId>
       <U20TeamId>3058</U20TeamId>
-      <ActiveUsers>452</ActiveUsers>
+      <ActiveUsers>420</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 04:20:00</TrainingDate>
-      <EconomyDate>2011-03-19 02:20:00</EconomyDate>
-      <CupMatchDate>2011-03-23 05:30:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 05:30:00</SeriesMatchDate>
+      <TrainingDate>2011-07-22 04:20:00</TrainingDate>
+      <EconomyDate>2011-07-16 02:20:00</EconomyDate>
+      <CupMatchDate>2011-07-20 05:30:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 05:30:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>32</LeagueID>
       <LeagueName>Türkiye</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Türkiye</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Eastern Europe</ZoneName>
@@ -867,19 +867,19 @@
       </Cup>
       <NationalTeamId>3033</NationalTeamId>
       <U20TeamId>3074</U20TeamId>
-      <ActiveUsers>23239</ActiveUsers>
-      <WaitingUsers>3</WaitingUsers>
-      <TrainingDate>2011-03-17 16:06:00</TrainingDate>
-      <EconomyDate>2011-03-19 04:30:00</EconomyDate>
-      <CupMatchDate>2011-03-23 08:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 15:00:00</SeriesMatchDate>
+      <ActiveUsers>22710</ActiveUsers>
+      <WaitingUsers>6</WaitingUsers>
+      <TrainingDate>2011-07-21 16:06:00</TrainingDate>
+      <EconomyDate>2011-07-16 04:30:00</EconomyDate>
+      <CupMatchDate>2011-07-20 08:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 15:00:00</SeriesMatchDate>
       <NumberOfLevels>8</NumberOfLevels>
     </League>
     <League>
       <LeagueID>33</LeagueID>
       <LeagueName>Misr</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Misr</ShortName>
       <Continent>Africa</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -896,19 +896,19 @@
       </Cup>
       <NationalTeamId>3018</NationalTeamId>
       <U20TeamId>3059</U20TeamId>
-      <ActiveUsers>295</ActiveUsers>
+      <ActiveUsers>735</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 04:07:00</TrainingDate>
-      <EconomyDate>2011-03-18 15:07:00</EconomyDate>
-      <CupMatchDate>2011-03-22 18:50:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 10:50:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 04:07:00</TrainingDate>
+      <EconomyDate>2011-07-15 15:07:00</EconomyDate>
+      <CupMatchDate>2011-07-19 18:50:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 10:50:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>34</LeagueID>
       <LeagueName>China</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>China</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -925,19 +925,19 @@
       </Cup>
       <NationalTeamId>3034</NationalTeamId>
       <U20TeamId>3075</U20TeamId>
-      <ActiveUsers>2022</ActiveUsers>
-      <WaitingUsers>3</WaitingUsers>
-      <TrainingDate>2011-03-17 14:30:00</TrainingDate>
-      <EconomyDate>2011-03-18 22:30:00</EconomyDate>
-      <CupMatchDate>2011-03-23 07:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 07:00:00</SeriesMatchDate>
+      <ActiveUsers>1912</ActiveUsers>
+      <WaitingUsers>1</WaitingUsers>
+      <TrainingDate>2011-07-21 14:30:00</TrainingDate>
+      <EconomyDate>2011-07-15 22:30:00</EconomyDate>
+      <CupMatchDate>2011-07-20 07:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 07:00:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>35</LeagueID>
       <LeagueName>Rossiya</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Rossiya</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Eastern Europe</ZoneName>
@@ -954,19 +954,19 @@
       </Cup>
       <NationalTeamId>3019</NationalTeamId>
       <U20TeamId>3060</U20TeamId>
-      <ActiveUsers>3757</ActiveUsers>
-      <WaitingUsers>17</WaitingUsers>
-      <TrainingDate>2011-03-17 18:30:00</TrainingDate>
-      <EconomyDate>2011-03-19 23:40:00</EconomyDate>
-      <CupMatchDate>2011-03-23 08:30:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 08:30:00</SeriesMatchDate>
+      <ActiveUsers>3622</ActiveUsers>
+      <WaitingUsers>8</WaitingUsers>
+      <TrainingDate>2011-07-21 18:30:00</TrainingDate>
+      <EconomyDate>2011-07-16 23:40:00</EconomyDate>
+      <CupMatchDate>2011-07-20 08:30:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 08:30:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>36</LeagueID>
       <LeagueName>España</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>España</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Southwestern Europe</ZoneName>
@@ -983,19 +983,19 @@
       </Cup>
       <NationalTeamId>3035</NationalTeamId>
       <U20TeamId>3076</U20TeamId>
-      <ActiveUsers>72829</ActiveUsers>
-      <WaitingUsers>11</WaitingUsers>
-      <TrainingDate>2011-03-18 01:00:00</TrainingDate>
-      <EconomyDate>2011-03-19 01:00:00</EconomyDate>
-      <CupMatchDate>2011-03-16 12:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 14:00:00</SeriesMatchDate>
+      <ActiveUsers>66139</ActiveUsers>
+      <WaitingUsers>6</WaitingUsers>
+      <TrainingDate>2011-07-22 01:00:00</TrainingDate>
+      <EconomyDate>2011-07-16 01:00:00</EconomyDate>
+      <CupMatchDate>2011-07-20 12:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 14:00:00</SeriesMatchDate>
       <NumberOfLevels>10</NumberOfLevels>
     </League>
     <League>
       <LeagueID>37</LeagueID>
       <LeagueName>România</LeagueName>
-      <Season>32</Season>
-      <MatchRound>16</MatchRound>
+      <Season>34</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>România</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Eastern Europe</ZoneName>
@@ -1012,19 +1012,19 @@
       </Cup>
       <NationalTeamId>3020</NationalTeamId>
       <U20TeamId>3061</U20TeamId>
-      <ActiveUsers>27779</ActiveUsers>
-      <WaitingUsers>5</WaitingUsers>
-      <TrainingDate>2011-03-17 21:15:00</TrainingDate>
-      <EconomyDate>2011-03-18 23:15:00</EconomyDate>
-      <CupMatchDate>2011-03-23 10:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 10:00:00</SeriesMatchDate>
+      <ActiveUsers>26698</ActiveUsers>
+      <WaitingUsers>2</WaitingUsers>
+      <TrainingDate>2011-07-21 21:15:00</TrainingDate>
+      <EconomyDate>2011-07-15 23:15:00</EconomyDate>
+      <CupMatchDate>2011-07-20 10:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 10:00:00</SeriesMatchDate>
       <NumberOfLevels>8</NumberOfLevels>
     </League>
     <League>
       <LeagueID>38</LeagueID>
       <LeagueName>Ísland</LeagueName>
-      <Season>31</Season>
-      <MatchRound>16</MatchRound>
+      <Season>33</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Ísland</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Northern Europe</ZoneName>
@@ -1037,23 +1037,23 @@
       </Country>
       <Cup>
         <CupID>36</CupID>
-        <CupName>Iceland Cup</CupName>
+        <CupName>Íslandsbikarinn</CupName>
       </Cup>
       <NationalTeamId>3021</NationalTeamId>
       <U20TeamId>3062</U20TeamId>
-      <ActiveUsers>285</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 06:45:00</TrainingDate>
-      <EconomyDate>2011-03-19 23:35:00</EconomyDate>
-      <CupMatchDate>2011-03-16 20:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 19:30:00</SeriesMatchDate>
+      <ActiveUsers>348</ActiveUsers>
+      <WaitingUsers>1</WaitingUsers>
+      <TrainingDate>2011-07-22 06:45:00</TrainingDate>
+      <EconomyDate>2011-07-16 23:35:00</EconomyDate>
+      <CupMatchDate>2011-07-20 20:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 19:30:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>39</LeagueID>
       <LeagueName>Österreich</LeagueName>
-      <Season>31</Season>
-      <MatchRound>16</MatchRound>
+      <Season>33</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Österreich</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Central Europe</ZoneName>
@@ -1070,19 +1070,19 @@
       </Cup>
       <NationalTeamId>3039</NationalTeamId>
       <U20TeamId>3080</U20TeamId>
-      <ActiveUsers>7381</ActiveUsers>
-      <WaitingUsers>5</WaitingUsers>
-      <TrainingDate>2011-03-18 07:00:00</TrainingDate>
-      <EconomyDate>2011-03-19 23:52:00</EconomyDate>
-      <CupMatchDate>2011-03-23 09:30:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 09:30:00</SeriesMatchDate>
+      <ActiveUsers>7125</ActiveUsers>
+      <WaitingUsers>17</WaitingUsers>
+      <TrainingDate>2011-07-22 07:00:00</TrainingDate>
+      <EconomyDate>2011-07-16 23:52:00</EconomyDate>
+      <CupMatchDate>2011-07-20 09:30:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 09:30:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>44</LeagueID>
       <LeagueName>Belgium</LeagueName>
-      <Season>31</Season>
-      <MatchRound>16</MatchRound>
+      <Season>33</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Belgium</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Western Europe</ZoneName>
@@ -1099,19 +1099,19 @@
       </Cup>
       <NationalTeamId>3037</NationalTeamId>
       <U20TeamId>3078</U20TeamId>
-      <ActiveUsers>23642</ActiveUsers>
-      <WaitingUsers>24</WaitingUsers>
-      <TrainingDate>2011-03-18 01:00:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:25:00</EconomyDate>
-      <CupMatchDate>2011-03-16 13:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 13:00:00</SeriesMatchDate>
+      <ActiveUsers>22563</ActiveUsers>
+      <WaitingUsers>22</WaitingUsers>
+      <TrainingDate>2011-07-22 01:00:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:25:00</EconomyDate>
+      <CupMatchDate>2011-07-20 13:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 13:00:00</SeriesMatchDate>
       <NumberOfLevels>8</NumberOfLevels>
     </League>
     <League>
       <LeagueID>45</LeagueID>
       <LeagueName>Malaysia</LeagueName>
-      <Season>31</Season>
-      <MatchRound>16</MatchRound>
+      <Season>33</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Malaysia</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -1128,19 +1128,19 @@
       </Cup>
       <NationalTeamId>3040</NationalTeamId>
       <U20TeamId>3081</U20TeamId>
-      <ActiveUsers>491</ActiveUsers>
-      <WaitingUsers>2</WaitingUsers>
-      <TrainingDate>2011-03-18 08:00:00</TrainingDate>
-      <EconomyDate>2011-03-19 01:50:00</EconomyDate>
-      <CupMatchDate>2011-03-23 05:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 05:00:00</SeriesMatchDate>
+      <ActiveUsers>441</ActiveUsers>
+      <WaitingUsers>0</WaitingUsers>
+      <TrainingDate>2011-07-22 08:00:00</TrainingDate>
+      <EconomyDate>2011-07-16 01:50:00</EconomyDate>
+      <CupMatchDate>2011-07-20 05:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 05:00:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>46</LeagueID>
       <LeagueName>Schweiz</LeagueName>
-      <Season>31</Season>
-      <MatchRound>16</MatchRound>
+      <Season>33</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Schweiz</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Central Europe</ZoneName>
@@ -1157,19 +1157,19 @@
       </Cup>
       <NationalTeamId>3038</NationalTeamId>
       <U20TeamId>3079</U20TeamId>
-      <ActiveUsers>32371</ActiveUsers>
-      <WaitingUsers>45</WaitingUsers>
-      <TrainingDate>2011-03-17 23:15:00</TrainingDate>
-      <EconomyDate>2011-03-19 02:15:00</EconomyDate>
-      <CupMatchDate>2011-03-23 10:30:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 17:00:00</SeriesMatchDate>
+      <ActiveUsers>30815</ActiveUsers>
+      <WaitingUsers>44</WaitingUsers>
+      <TrainingDate>2011-07-21 23:15:00</TrainingDate>
+      <EconomyDate>2011-07-16 02:15:00</EconomyDate>
+      <CupMatchDate>2011-07-20 10:30:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 17:00:00</SeriesMatchDate>
       <NumberOfLevels>8</NumberOfLevels>
     </League>
     <League>
       <LeagueID>47</LeagueID>
       <LeagueName>Singapore</LeagueName>
-      <Season>31</Season>
-      <MatchRound>16</MatchRound>
+      <Season>33</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Singapore</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -1186,19 +1186,19 @@
       </Cup>
       <NationalTeamId>3036</NationalTeamId>
       <U20TeamId>3077</U20TeamId>
-      <ActiveUsers>416</ActiveUsers>
+      <ActiveUsers>378</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 00:15:00</TrainingDate>
-      <EconomyDate>2011-03-19 03:27:00</EconomyDate>
-      <CupMatchDate>2011-03-23 04:30:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 04:30:00</SeriesMatchDate>
+      <TrainingDate>2011-07-22 00:15:00</TrainingDate>
+      <EconomyDate>2011-07-16 03:27:00</EconomyDate>
+      <CupMatchDate>2011-07-20 04:30:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 04:30:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>50</LeagueID>
       <LeagueName>Hellas</LeagueName>
-      <Season>29</Season>
-      <MatchRound>16</MatchRound>
+      <Season>31</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Hellas</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Eastern Europe</ZoneName>
@@ -1215,19 +1215,19 @@
       </Cup>
       <NationalTeamId>3089</NationalTeamId>
       <U20TeamId>3098</U20TeamId>
-      <ActiveUsers>7395</ActiveUsers>
-      <WaitingUsers>4</WaitingUsers>
-      <TrainingDate>2011-03-17 17:15:00</TrainingDate>
-      <EconomyDate>2011-03-18 23:25:00</EconomyDate>
-      <CupMatchDate>2011-03-23 09:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 11:00:00</SeriesMatchDate>
+      <ActiveUsers>6997</ActiveUsers>
+      <WaitingUsers>41</WaitingUsers>
+      <TrainingDate>2011-07-21 17:15:00</TrainingDate>
+      <EconomyDate>2011-07-15 23:25:00</EconomyDate>
+      <CupMatchDate>2011-07-20 09:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 11:00:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>51</LeagueID>
       <LeagueName>Magyarország</LeagueName>
-      <Season>29</Season>
-      <MatchRound>16</MatchRound>
+      <Season>31</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Magyarország</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Central Europe</ZoneName>
@@ -1244,19 +1244,19 @@
       </Cup>
       <NationalTeamId>3082</NationalTeamId>
       <U20TeamId>3091</U20TeamId>
-      <ActiveUsers>17332</ActiveUsers>
-      <WaitingUsers>78</WaitingUsers>
-      <TrainingDate>2011-03-17 17:45:00</TrainingDate>
-      <EconomyDate>2011-03-18 23:15:00</EconomyDate>
-      <CupMatchDate>2011-03-23 09:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 15:30:00</SeriesMatchDate>
+      <ActiveUsers>16143</ActiveUsers>
+      <WaitingUsers>42</WaitingUsers>
+      <TrainingDate>2011-07-21 17:45:00</TrainingDate>
+      <EconomyDate>2011-07-15 23:15:00</EconomyDate>
+      <CupMatchDate>2011-07-20 09:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 15:30:00</SeriesMatchDate>
       <NumberOfLevels>7</NumberOfLevels>
     </League>
     <League>
       <LeagueID>52</LeagueID>
       <LeagueName>Česká republika</LeagueName>
-      <Season>29</Season>
-      <MatchRound>16</MatchRound>
+      <Season>31</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Česká rep.</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Central Europe</ZoneName>
@@ -1273,19 +1273,19 @@
       </Cup>
       <NationalTeamId>3090</NationalTeamId>
       <U20TeamId>3099</U20TeamId>
-      <ActiveUsers>15169</ActiveUsers>
-      <WaitingUsers>44</WaitingUsers>
-      <TrainingDate>2011-03-17 17:30:00</TrainingDate>
-      <EconomyDate>2011-03-18 23:30:00</EconomyDate>
-      <CupMatchDate>2011-03-16 14:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 11:30:00</SeriesMatchDate>
+      <ActiveUsers>13940</ActiveUsers>
+      <WaitingUsers>46</WaitingUsers>
+      <TrainingDate>2011-07-21 17:30:00</TrainingDate>
+      <EconomyDate>2011-07-15 23:30:00</EconomyDate>
+      <CupMatchDate>2011-07-20 14:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 11:30:00</SeriesMatchDate>
       <NumberOfLevels>7</NumberOfLevels>
     </League>
     <League>
       <LeagueID>53</LeagueID>
       <LeagueName>Latvija</LeagueName>
-      <Season>29</Season>
-      <MatchRound>16</MatchRound>
+      <Season>31</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Latvija</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Northern Europe</ZoneName>
@@ -1302,19 +1302,19 @@
       </Cup>
       <NationalTeamId>3083</NationalTeamId>
       <U20TeamId>3092</U20TeamId>
-      <ActiveUsers>3430</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-17 18:45:00</TrainingDate>
-      <EconomyDate>2011-03-18 23:15:00</EconomyDate>
-      <CupMatchDate>2011-03-16 13:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 11:45:00</SeriesMatchDate>
+      <ActiveUsers>3186</ActiveUsers>
+      <WaitingUsers>2</WaitingUsers>
+      <TrainingDate>2011-07-21 18:45:00</TrainingDate>
+      <EconomyDate>2011-07-15 23:15:00</EconomyDate>
+      <CupMatchDate>2011-07-20 13:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 11:45:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>54</LeagueID>
       <LeagueName>Indonesia</LeagueName>
-      <Season>29</Season>
-      <MatchRound>16</MatchRound>
+      <Season>31</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Indonesia</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -1331,19 +1331,19 @@
       </Cup>
       <NationalTeamId>3084</NationalTeamId>
       <U20TeamId>3093</U20TeamId>
-      <ActiveUsers>1133</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-17 17:00:00</TrainingDate>
-      <EconomyDate>2011-03-18 23:00:00</EconomyDate>
-      <CupMatchDate>2011-03-23 07:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 09:00:00</SeriesMatchDate>
+      <ActiveUsers>1171</ActiveUsers>
+      <WaitingUsers>2</WaitingUsers>
+      <TrainingDate>2011-07-21 17:00:00</TrainingDate>
+      <EconomyDate>2011-07-15 23:00:00</EconomyDate>
+      <CupMatchDate>2011-07-20 07:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 09:00:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>55</LeagueID>
       <LeagueName>Pilipinas</LeagueName>
-      <Season>29</Season>
-      <MatchRound>16</MatchRound>
+      <Season>31</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Pilipinas</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -1360,19 +1360,19 @@
       </Cup>
       <NationalTeamId>3085</NationalTeamId>
       <U20TeamId>3094</U20TeamId>
-      <ActiveUsers>188</ActiveUsers>
-      <WaitingUsers>2</WaitingUsers>
-      <TrainingDate>2011-03-17 14:15:00</TrainingDate>
-      <EconomyDate>2011-03-19 03:21:00</EconomyDate>
-      <CupMatchDate>2011-03-23 03:30:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 06:15:00</SeriesMatchDate>
+      <ActiveUsers>179</ActiveUsers>
+      <WaitingUsers>0</WaitingUsers>
+      <TrainingDate>2011-07-21 14:15:00</TrainingDate>
+      <EconomyDate>2011-07-16 03:21:00</EconomyDate>
+      <CupMatchDate>2011-07-20 03:30:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 06:15:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>56</LeagueID>
       <LeagueName>Eesti</LeagueName>
-      <Season>29</Season>
-      <MatchRound>16</MatchRound>
+      <Season>31</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Eesti</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Northern Europe</ZoneName>
@@ -1389,19 +1389,19 @@
       </Cup>
       <NationalTeamId>3086</NationalTeamId>
       <U20TeamId>3095</U20TeamId>
-      <ActiveUsers>2394</ActiveUsers>
-      <WaitingUsers>6</WaitingUsers>
-      <TrainingDate>2011-03-17 18:15:00</TrainingDate>
-      <EconomyDate>2011-03-18 23:45:00</EconomyDate>
-      <CupMatchDate>2011-03-16 12:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 11:15:00</SeriesMatchDate>
+      <ActiveUsers>2258</ActiveUsers>
+      <WaitingUsers>3</WaitingUsers>
+      <TrainingDate>2011-07-21 18:15:00</TrainingDate>
+      <EconomyDate>2011-07-15 23:45:00</EconomyDate>
+      <CupMatchDate>2011-07-20 12:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 11:15:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>57</LeagueID>
       <LeagueName>Srbija</LeagueName>
-      <Season>29</Season>
-      <MatchRound>16</MatchRound>
+      <Season>31</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Srbija</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Eastern Europe</ZoneName>
@@ -1418,19 +1418,19 @@
       </Cup>
       <NationalTeamId>3087</NationalTeamId>
       <U20TeamId>3096</U20TeamId>
-      <ActiveUsers>5524</ActiveUsers>
+      <ActiveUsers>5129</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 16:30:00</TrainingDate>
-      <EconomyDate>2011-03-18 23:20:00</EconomyDate>
-      <CupMatchDate>2011-03-16 12:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 12:45:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 16:30:00</TrainingDate>
+      <EconomyDate>2011-07-15 23:20:00</EconomyDate>
+      <CupMatchDate>2011-07-20 12:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 12:45:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>58</LeagueID>
       <LeagueName>Hrvatska</LeagueName>
-      <Season>29</Season>
-      <MatchRound>16</MatchRound>
+      <Season>31</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Hrvatska</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Eastern Europe</ZoneName>
@@ -1447,19 +1447,19 @@
       </Cup>
       <NationalTeamId>3088</NationalTeamId>
       <U20TeamId>3097</U20TeamId>
-      <ActiveUsers>6941</ActiveUsers>
-      <WaitingUsers>10</WaitingUsers>
-      <TrainingDate>2011-03-17 16:45:00</TrainingDate>
-      <EconomyDate>2011-03-18 23:20:00</EconomyDate>
-      <CupMatchDate>2011-03-23 08:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 13:45:00</SeriesMatchDate>
+      <ActiveUsers>6604</ActiveUsers>
+      <WaitingUsers>2</WaitingUsers>
+      <TrainingDate>2011-07-21 16:45:00</TrainingDate>
+      <EconomyDate>2011-07-15 23:20:00</EconomyDate>
+      <CupMatchDate>2011-07-20 08:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 13:45:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>59</LeagueID>
       <LeagueName>Hong Kong</LeagueName>
-      <Season>28</Season>
-      <MatchRound>16</MatchRound>
+      <Season>30</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Hong Kong</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -1476,19 +1476,19 @@
       </Cup>
       <NationalTeamId>3102</NationalTeamId>
       <U20TeamId>3103</U20TeamId>
-      <ActiveUsers>430</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:30:00</TrainingDate>
-      <EconomyDate>2011-03-18 22:45:00</EconomyDate>
-      <CupMatchDate>2011-03-23 11:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 08:30:00</SeriesMatchDate>
+      <ActiveUsers>445</ActiveUsers>
+      <WaitingUsers>3</WaitingUsers>
+      <TrainingDate>2011-07-21 13:30:00</TrainingDate>
+      <EconomyDate>2011-07-15 22:45:00</EconomyDate>
+      <CupMatchDate>2011-07-20 11:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 08:30:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>60</LeagueID>
       <LeagueName>Chinese Taipei</LeagueName>
-      <Season>28</Season>
-      <MatchRound>16</MatchRound>
+      <Season>30</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Chin. Taipei</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -1505,19 +1505,19 @@
       </Cup>
       <NationalTeamId>3100</NationalTeamId>
       <U20TeamId>3101</U20TeamId>
-      <ActiveUsers>124</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-17 15:30:00</TrainingDate>
-      <EconomyDate>2011-03-18 22:16:00</EconomyDate>
-      <CupMatchDate>2011-03-23 03:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 05:00:00</SeriesMatchDate>
+      <ActiveUsers>123</ActiveUsers>
+      <WaitingUsers>0</WaitingUsers>
+      <TrainingDate>2011-07-21 15:30:00</TrainingDate>
+      <EconomyDate>2011-07-15 22:16:00</EconomyDate>
+      <CupMatchDate>2011-07-20 03:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 05:00:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>61</LeagueID>
       <LeagueName>Cymru</LeagueName>
-      <Season>28</Season>
-      <MatchRound>16</MatchRound>
+      <Season>30</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Cymru</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Western Europe</ZoneName>
@@ -1534,19 +1534,19 @@
       </Cup>
       <NationalTeamId>3104</NationalTeamId>
       <U20TeamId>3105</U20TeamId>
-      <ActiveUsers>354</ActiveUsers>
+      <ActiveUsers>343</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 15:30:00</TrainingDate>
-      <EconomyDate>2011-03-18 21:30:00</EconomyDate>
-      <CupMatchDate>2011-03-22 21:30:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 21:30:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 15:30:00</TrainingDate>
+      <EconomyDate>2011-07-15 21:30:00</EconomyDate>
+      <CupMatchDate>2011-07-19 21:30:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 21:30:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>62</LeagueID>
       <LeagueName>Bulgaria</LeagueName>
-      <Season>28</Season>
-      <MatchRound>16</MatchRound>
+      <Season>30</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Bulgaria</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Eastern Europe</ZoneName>
@@ -1563,19 +1563,19 @@
       </Cup>
       <NationalTeamId>3106</NationalTeamId>
       <U20TeamId>3107</U20TeamId>
-      <ActiveUsers>5841</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 15:30:00</TrainingDate>
-      <EconomyDate>2011-03-18 22:15:00</EconomyDate>
-      <CupMatchDate>2011-03-22 21:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 13:25:00</SeriesMatchDate>
+      <ActiveUsers>5527</ActiveUsers>
+      <WaitingUsers>2</WaitingUsers>
+      <TrainingDate>2011-07-21 15:30:00</TrainingDate>
+      <EconomyDate>2011-07-15 22:15:00</EconomyDate>
+      <CupMatchDate>2011-07-19 21:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 13:25:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>63</LeagueID>
       <LeagueName>Israel</LeagueName>
-      <Season>28</Season>
-      <MatchRound>16</MatchRound>
+      <Season>30</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Israel</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -1592,19 +1592,19 @@
       </Cup>
       <NationalTeamId>3108</NationalTeamId>
       <U20TeamId>3109</U20TeamId>
-      <ActiveUsers>12631</ActiveUsers>
-      <WaitingUsers>62</WaitingUsers>
-      <TrainingDate>2011-03-17 15:30:00</TrainingDate>
-      <EconomyDate>2011-03-18 22:15:00</EconomyDate>
-      <CupMatchDate>2011-03-22 20:30:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 10:30:00</SeriesMatchDate>
+      <ActiveUsers>12192</ActiveUsers>
+      <WaitingUsers>89</WaitingUsers>
+      <TrainingDate>2011-07-21 15:30:00</TrainingDate>
+      <EconomyDate>2011-07-15 22:15:00</EconomyDate>
+      <CupMatchDate>2011-07-19 20:30:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 10:30:00</SeriesMatchDate>
       <NumberOfLevels>7</NumberOfLevels>
     </League>
     <League>
       <LeagueID>64</LeagueID>
       <LeagueName>Slovenija</LeagueName>
-      <Season>28</Season>
-      <MatchRound>16</MatchRound>
+      <Season>30</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Slovenija</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Central Europe</ZoneName>
@@ -1621,19 +1621,19 @@
       </Cup>
       <NationalTeamId>3110</NationalTeamId>
       <U20TeamId>3111</U20TeamId>
-      <ActiveUsers>4980</ActiveUsers>
-      <WaitingUsers>33</WaitingUsers>
-      <TrainingDate>2011-03-17 15:30:00</TrainingDate>
-      <EconomyDate>2011-03-18 22:17:00</EconomyDate>
-      <CupMatchDate>2011-03-22 19:30:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 13:20:00</SeriesMatchDate>
+      <ActiveUsers>4742</ActiveUsers>
+      <WaitingUsers>28</WaitingUsers>
+      <TrainingDate>2011-07-21 15:30:00</TrainingDate>
+      <EconomyDate>2011-07-15 22:17:00</EconomyDate>
+      <CupMatchDate>2011-07-19 19:30:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 13:20:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>66</LeagueID>
       <LeagueName>Lietuva</LeagueName>
-      <Season>26</Season>
-      <MatchRound>16</MatchRound>
+      <Season>28</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Lietuva</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Northern Europe</ZoneName>
@@ -1650,19 +1650,19 @@
       </Cup>
       <NationalTeamId>3113</NationalTeamId>
       <U20TeamId>3114</U20TeamId>
-      <ActiveUsers>4388</ActiveUsers>
-      <WaitingUsers>8</WaitingUsers>
-      <TrainingDate>2011-03-17 17:30:00</TrainingDate>
-      <EconomyDate>2011-03-18 23:30:00</EconomyDate>
-      <CupMatchDate>2011-03-16 19:20:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 15:20:00</SeriesMatchDate>
+      <ActiveUsers>4147</ActiveUsers>
+      <WaitingUsers>14</WaitingUsers>
+      <TrainingDate>2011-07-21 17:30:00</TrainingDate>
+      <EconomyDate>2011-07-15 23:30:00</EconomyDate>
+      <CupMatchDate>2011-07-20 19:20:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 15:20:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>67</LeagueID>
       <LeagueName>Slovensko</LeagueName>
-      <Season>26</Season>
-      <MatchRound>16</MatchRound>
+      <Season>28</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Slovensko</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Central Europe</ZoneName>
@@ -1679,19 +1679,19 @@
       </Cup>
       <NationalTeamId>3116</NationalTeamId>
       <U20TeamId>3117</U20TeamId>
-      <ActiveUsers>6954</ActiveUsers>
+      <ActiveUsers>6546</ActiveUsers>
       <WaitingUsers>2</WaitingUsers>
-      <TrainingDate>2011-03-17 17:30:00</TrainingDate>
-      <EconomyDate>2011-03-18 23:30:00</EconomyDate>
-      <CupMatchDate>2011-03-22 19:25:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 15:25:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 17:30:00</TrainingDate>
+      <EconomyDate>2011-07-15 23:30:00</EconomyDate>
+      <CupMatchDate>2011-07-19 19:25:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 15:25:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>68</LeagueID>
       <LeagueName>Ukraina</LeagueName>
-      <Season>26</Season>
-      <MatchRound>16</MatchRound>
+      <Season>28</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Ukraina</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Eastern Europe</ZoneName>
@@ -1708,19 +1708,19 @@
       </Cup>
       <NationalTeamId>3118</NationalTeamId>
       <U20TeamId>3119</U20TeamId>
-      <ActiveUsers>2360</ActiveUsers>
-      <WaitingUsers>9</WaitingUsers>
-      <TrainingDate>2011-03-17 18:30:00</TrainingDate>
-      <EconomyDate>2011-03-19 23:50:00</EconomyDate>
-      <CupMatchDate>2011-03-23 08:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 09:45:00</SeriesMatchDate>
+      <ActiveUsers>2219</ActiveUsers>
+      <WaitingUsers>17</WaitingUsers>
+      <TrainingDate>2011-07-21 18:30:00</TrainingDate>
+      <EconomyDate>2011-07-16 23:50:00</EconomyDate>
+      <CupMatchDate>2011-07-20 08:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 09:45:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>69</LeagueID>
       <LeagueName>Bosna i Hercegovina</LeagueName>
-      <Season>26</Season>
-      <MatchRound>16</MatchRound>
+      <Season>28</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Bosna i Herc</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Eastern Europe</ZoneName>
@@ -1737,19 +1737,19 @@
       </Cup>
       <NationalTeamId>3112</NationalTeamId>
       <U20TeamId>3115</U20TeamId>
-      <ActiveUsers>4127</ActiveUsers>
-      <WaitingUsers>6</WaitingUsers>
-      <TrainingDate>2011-03-17 16:30:00</TrainingDate>
-      <EconomyDate>2011-03-18 23:20:00</EconomyDate>
-      <CupMatchDate>2011-03-16 14:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 13:30:00</SeriesMatchDate>
+      <ActiveUsers>3668</ActiveUsers>
+      <WaitingUsers>2</WaitingUsers>
+      <TrainingDate>2011-07-21 16:30:00</TrainingDate>
+      <EconomyDate>2011-07-15 23:20:00</EconomyDate>
+      <CupMatchDate>2011-07-20 14:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 13:30:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>70</LeagueID>
       <LeagueName>Việt Nam</LeagueName>
-      <Season>26</Season>
-      <MatchRound>16</MatchRound>
+      <Season>28</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Việt Nam</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -1766,19 +1766,19 @@
       </Cup>
       <NationalTeamId>3120</NationalTeamId>
       <U20TeamId>3121</U20TeamId>
-      <ActiveUsers>1533</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-17 17:15:00</TrainingDate>
-      <EconomyDate>2011-03-18 22:30:00</EconomyDate>
-      <CupMatchDate>2011-03-23 05:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 08:00:00</SeriesMatchDate>
+      <ActiveUsers>1861</ActiveUsers>
+      <WaitingUsers>7</WaitingUsers>
+      <TrainingDate>2011-07-21 17:15:00</TrainingDate>
+      <EconomyDate>2011-07-15 22:30:00</EconomyDate>
+      <CupMatchDate>2011-07-20 05:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 08:00:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>71</LeagueID>
       <LeagueName>Pakistan</LeagueName>
-      <Season>26</Season>
-      <MatchRound>16</MatchRound>
+      <Season>28</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Pakistan</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -1795,19 +1795,19 @@
       </Cup>
       <NationalTeamId>3122</NationalTeamId>
       <U20TeamId>3123</U20TeamId>
-      <ActiveUsers>88</ActiveUsers>
+      <ActiveUsers>93</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 06:07:00</TrainingDate>
-      <EconomyDate>2011-03-19 02:22:00</EconomyDate>
-      <CupMatchDate>2011-03-23 06:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 07:30:00</SeriesMatchDate>
+      <TrainingDate>2011-07-22 06:07:00</TrainingDate>
+      <EconomyDate>2011-07-16 02:22:00</EconomyDate>
+      <CupMatchDate>2011-07-20 06:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 07:30:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>72</LeagueID>
       <LeagueName>Paraguay</LeagueName>
-      <Season>24</Season>
-      <MatchRound>16</MatchRound>
+      <Season>26</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Paraguay</ShortName>
       <Continent>South America</Continent>
       <ZoneName>South America</ZoneName>
@@ -1824,19 +1824,19 @@
       </Cup>
       <NationalTeamId>3124</NationalTeamId>
       <U20TeamId>3125</U20TeamId>
-      <ActiveUsers>734</ActiveUsers>
+      <ActiveUsers>659</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 09:35:00</TrainingDate>
-      <EconomyDate>2011-03-18 23:15:00</EconomyDate>
-      <CupMatchDate>2011-03-22 23:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 23:15:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 09:35:00</TrainingDate>
+      <EconomyDate>2011-07-15 23:15:00</EconomyDate>
+      <CupMatchDate>2011-07-19 23:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 23:15:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>73</LeagueID>
       <LeagueName>Ecuador</LeagueName>
-      <Season>24</Season>
-      <MatchRound>16</MatchRound>
+      <Season>26</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Ecuador</ShortName>
       <Continent>South America</Continent>
       <ZoneName>South America</ZoneName>
@@ -1853,19 +1853,19 @@
       </Cup>
       <NationalTeamId>3128</NationalTeamId>
       <U20TeamId>3129</U20TeamId>
-      <ActiveUsers>386</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-17 09:35:00</TrainingDate>
-      <EconomyDate>2011-03-18 23:45:00</EconomyDate>
-      <CupMatchDate>2011-03-22 23:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 23:45:00</SeriesMatchDate>
+      <ActiveUsers>321</ActiveUsers>
+      <WaitingUsers>3</WaitingUsers>
+      <TrainingDate>2011-07-21 09:35:00</TrainingDate>
+      <EconomyDate>2011-07-15 23:45:00</EconomyDate>
+      <CupMatchDate>2011-07-19 23:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 23:45:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>74</LeagueID>
       <LeagueName>Bolivia</LeagueName>
-      <Season>24</Season>
-      <MatchRound>16</MatchRound>
+      <Season>26</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Bolivia</ShortName>
       <Continent>South America</Continent>
       <ZoneName>South America</ZoneName>
@@ -1882,19 +1882,19 @@
       </Cup>
       <NationalTeamId>3130</NationalTeamId>
       <U20TeamId>3131</U20TeamId>
-      <ActiveUsers>944</ActiveUsers>
+      <ActiveUsers>961</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 09:40:00</TrainingDate>
-      <EconomyDate>2011-03-18 22:45:00</EconomyDate>
-      <CupMatchDate>2011-03-22 22:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 22:45:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 09:40:00</TrainingDate>
+      <EconomyDate>2011-07-15 22:45:00</EconomyDate>
+      <CupMatchDate>2011-07-19 22:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 22:45:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>75</LeagueID>
       <LeagueName>Nigeria</LeagueName>
-      <Season>24</Season>
-      <MatchRound>16</MatchRound>
+      <Season>26</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Nigeria</ShortName>
       <Continent>Africa</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -1911,19 +1911,19 @@
       </Cup>
       <NationalTeamId>3126</NationalTeamId>
       <U20TeamId>3127</U20TeamId>
-      <ActiveUsers>159</ActiveUsers>
+      <ActiveUsers>165</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:00:00</TrainingDate>
-      <EconomyDate>2011-03-19 04:33:00</EconomyDate>
-      <CupMatchDate>2011-03-16 11:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 18:45:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 13:00:00</TrainingDate>
+      <EconomyDate>2011-07-16 04:33:00</EconomyDate>
+      <CupMatchDate>2011-07-20 11:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 18:45:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>76</LeagueID>
       <LeagueName>Føroyar</LeagueName>
-      <Season>24</Season>
-      <MatchRound>16</MatchRound>
+      <Season>26</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Føroyar</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Northern Europe</ZoneName>
@@ -1940,19 +1940,19 @@
       </Cup>
       <NationalTeamId>3132</NationalTeamId>
       <U20TeamId>3133</U20TeamId>
-      <ActiveUsers>234</ActiveUsers>
+      <ActiveUsers>224</ActiveUsers>
       <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-18 06:42:00</TrainingDate>
-      <EconomyDate>2011-03-19 23:32:00</EconomyDate>
-      <CupMatchDate>2011-03-16 16:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 16:45:00</SeriesMatchDate>
+      <TrainingDate>2011-07-22 06:42:00</TrainingDate>
+      <EconomyDate>2011-07-16 23:32:00</EconomyDate>
+      <CupMatchDate>2011-07-20 16:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 16:45:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>77</LeagueID>
       <LeagueName>Al Maghrib</LeagueName>
-      <Season>24</Season>
-      <MatchRound>16</MatchRound>
+      <Season>26</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Al Maghrib</ShortName>
       <Continent>Africa</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -1969,19 +1969,19 @@
       </Cup>
       <NationalTeamId>3134</NationalTeamId>
       <U20TeamId>3135</U20TeamId>
-      <ActiveUsers>383</ActiveUsers>
-      <WaitingUsers>5</WaitingUsers>
-      <TrainingDate>2011-03-17 13:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 01:12:00</EconomyDate>
-      <CupMatchDate>2011-03-16 20:50:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 15:25:00</SeriesMatchDate>
+      <ActiveUsers>560</ActiveUsers>
+      <WaitingUsers>8</WaitingUsers>
+      <TrainingDate>2011-07-21 13:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 01:12:00</EconomyDate>
+      <CupMatchDate>2011-07-20 20:50:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 15:25:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>79</LeagueID>
       <LeagueName>Saudi Arabia</LeagueName>
-      <Season>23</Season>
-      <MatchRound>16</MatchRound>
+      <Season>25</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Saudi Arabia</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -1998,19 +1998,19 @@
       </Cup>
       <NationalTeamId>3144</NationalTeamId>
       <U20TeamId>3145</U20TeamId>
-      <ActiveUsers>127</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:18:00</EconomyDate>
-      <CupMatchDate>2011-03-16 16:20:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 16:20:00</SeriesMatchDate>
+      <ActiveUsers>206</ActiveUsers>
+      <WaitingUsers>3</WaitingUsers>
+      <TrainingDate>2011-07-21 13:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:18:00</EconomyDate>
+      <CupMatchDate>2011-07-20 16:20:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 16:20:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>80</LeagueID>
       <LeagueName>Tounes</LeagueName>
-      <Season>23</Season>
-      <MatchRound>16</MatchRound>
+      <Season>25</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Tounes</ShortName>
       <Continent>Africa</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -2027,19 +2027,19 @@
       </Cup>
       <NationalTeamId>3148</NationalTeamId>
       <U20TeamId>3149</U20TeamId>
-      <ActiveUsers>371</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-17 13:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:47:00</EconomyDate>
-      <CupMatchDate>2011-03-16 16:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 16:15:00</SeriesMatchDate>
+      <ActiveUsers>550</ActiveUsers>
+      <WaitingUsers>2</WaitingUsers>
+      <TrainingDate>2011-07-21 13:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:47:00</EconomyDate>
+      <CupMatchDate>2011-07-20 16:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 16:15:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>81</LeagueID>
       <LeagueName>Costa Rica</LeagueName>
-      <Season>23</Season>
-      <MatchRound>16</MatchRound>
+      <Season>25</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Costa Rica</ShortName>
       <Continent>North America</Continent>
       <ZoneName>North America</ZoneName>
@@ -2056,19 +2056,19 @@
       </Cup>
       <NationalTeamId>3138</NationalTeamId>
       <U20TeamId>3139</U20TeamId>
-      <ActiveUsers>417</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 07:45:00</TrainingDate>
-      <EconomyDate>2011-03-20 03:33:00</EconomyDate>
-      <CupMatchDate>2011-03-16 23:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 23:45:00</SeriesMatchDate>
+      <ActiveUsers>415</ActiveUsers>
+      <WaitingUsers>3</WaitingUsers>
+      <TrainingDate>2011-07-22 07:45:00</TrainingDate>
+      <EconomyDate>2011-07-17 03:33:00</EconomyDate>
+      <CupMatchDate>2011-07-20 23:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 23:45:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>83</LeagueID>
       <LeagueName>United Arab Emirates</LeagueName>
-      <Season>23</Season>
-      <MatchRound>16</MatchRound>
+      <Season>25</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>U.A.E.</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -2085,19 +2085,19 @@
       </Cup>
       <NationalTeamId>3142</NationalTeamId>
       <U20TeamId>3143</U20TeamId>
-      <ActiveUsers>191</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-17 13:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:49:00</EconomyDate>
-      <CupMatchDate>2011-03-16 18:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 11:50:00</SeriesMatchDate>
+      <ActiveUsers>164</ActiveUsers>
+      <WaitingUsers>0</WaitingUsers>
+      <TrainingDate>2011-07-21 13:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:49:00</EconomyDate>
+      <CupMatchDate>2011-07-20 18:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 11:50:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>84</LeagueID>
       <LeagueName>Lëtzebuerg</LeagueName>
-      <Season>23</Season>
-      <MatchRound>16</MatchRound>
+      <Season>25</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Lëtzebuerg</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Western Europe</ZoneName>
@@ -2114,19 +2114,19 @@
       </Cup>
       <NationalTeamId>3146</NationalTeamId>
       <U20TeamId>3147</U20TeamId>
-      <ActiveUsers>481</ActiveUsers>
-      <WaitingUsers>3</WaitingUsers>
-      <TrainingDate>2011-03-18 04:40:00</TrainingDate>
-      <EconomyDate>2011-03-19 23:39:00</EconomyDate>
-      <CupMatchDate>2011-03-16 14:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 14:45:00</SeriesMatchDate>
+      <ActiveUsers>450</ActiveUsers>
+      <WaitingUsers>0</WaitingUsers>
+      <TrainingDate>2011-07-22 04:40:00</TrainingDate>
+      <EconomyDate>2011-07-16 23:39:00</EconomyDate>
+      <CupMatchDate>2011-07-20 14:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 14:45:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>85</LeagueID>
       <LeagueName>Iran</LeagueName>
-      <Season>23</Season>
-      <MatchRound>16</MatchRound>
+      <Season>25</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Iran</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -2143,19 +2143,19 @@
       </Cup>
       <NationalTeamId>3150</NationalTeamId>
       <U20TeamId>3151</U20TeamId>
-      <ActiveUsers>7937</ActiveUsers>
-      <WaitingUsers>3</WaitingUsers>
-      <TrainingDate>2011-03-18 06:06:00</TrainingDate>
-      <EconomyDate>2011-03-19 03:23:00</EconomyDate>
-      <CupMatchDate>2011-03-16 15:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 15:45:00</SeriesMatchDate>
+      <ActiveUsers>8667</ActiveUsers>
+      <WaitingUsers>27</WaitingUsers>
+      <TrainingDate>2011-07-22 06:06:00</TrainingDate>
+      <EconomyDate>2011-07-16 03:23:00</EconomyDate>
+      <CupMatchDate>2011-07-20 15:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 15:45:00</SeriesMatchDate>
       <NumberOfLevels>6</NumberOfLevels>
     </League>
     <League>
       <LeagueID>88</LeagueID>
       <LeagueName>República Dominicana</LeagueName>
-      <Season>23</Season>
-      <MatchRound>16</MatchRound>
+      <Season>25</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Rep. Dom.</ShortName>
       <Continent>North America</Continent>
       <ZoneName>North America</ZoneName>
@@ -2172,19 +2172,19 @@
       </Cup>
       <NationalTeamId>3152</NationalTeamId>
       <U20TeamId>3153</U20TeamId>
-      <ActiveUsers>118</ActiveUsers>
+      <ActiveUsers>101</ActiveUsers>
       <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-18 00:50:00</TrainingDate>
-      <EconomyDate>2011-03-20 03:25:00</EconomyDate>
-      <CupMatchDate>2011-03-16 23:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 23:15:00</SeriesMatchDate>
+      <TrainingDate>2011-07-22 00:50:00</TrainingDate>
+      <EconomyDate>2011-07-17 03:25:00</EconomyDate>
+      <CupMatchDate>2011-07-20 23:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 23:15:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>89</LeagueID>
       <LeagueName>Cyprus</LeagueName>
-      <Season>23</Season>
-      <MatchRound>16</MatchRound>
+      <Season>25</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Cyprus</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Eastern Europe</ZoneName>
@@ -2201,19 +2201,19 @@
       </Cup>
       <NationalTeamId>3140</NationalTeamId>
       <U20TeamId>3141</U20TeamId>
-      <ActiveUsers>564</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 17:15:00</TrainingDate>
-      <EconomyDate>2011-03-18 23:25:00</EconomyDate>
-      <CupMatchDate>2011-03-22 20:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 20:15:00</SeriesMatchDate>
+      <ActiveUsers>546</ActiveUsers>
+      <WaitingUsers>10</WaitingUsers>
+      <TrainingDate>2011-07-21 17:15:00</TrainingDate>
+      <EconomyDate>2011-07-15 23:25:00</EconomyDate>
+      <CupMatchDate>2011-07-19 20:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 20:15:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>91</LeagueID>
       <LeagueName>Belarus</LeagueName>
-      <Season>22</Season>
-      <MatchRound>16</MatchRound>
+      <Season>24</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Belarus</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Eastern Europe</ZoneName>
@@ -2230,19 +2230,19 @@
       </Cup>
       <NationalTeamId>3156</NationalTeamId>
       <U20TeamId>3157</U20TeamId>
-      <ActiveUsers>723</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 18:30:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:44:00</EconomyDate>
-      <CupMatchDate>2011-03-23 09:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 10:15:00</SeriesMatchDate>
+      <ActiveUsers>727</ActiveUsers>
+      <WaitingUsers>1</WaitingUsers>
+      <TrainingDate>2011-07-21 18:30:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:44:00</EconomyDate>
+      <CupMatchDate>2011-07-20 09:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 10:15:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>93</LeagueID>
       <LeagueName>Northern Ireland</LeagueName>
-      <Season>22</Season>
-      <MatchRound>16</MatchRound>
+      <Season>24</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>N. Ireland</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Western Europe</ZoneName>
@@ -2259,19 +2259,19 @@
       </Cup>
       <NationalTeamId>3164</NationalTeamId>
       <U20TeamId>3165</U20TeamId>
-      <ActiveUsers>195</ActiveUsers>
+      <ActiveUsers>185</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 15:30:00</TrainingDate>
-      <EconomyDate>2011-03-18 22:15:00</EconomyDate>
-      <CupMatchDate>2011-03-22 22:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 22:15:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 15:30:00</TrainingDate>
+      <EconomyDate>2011-07-15 22:15:00</EconomyDate>
+      <CupMatchDate>2011-07-19 22:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 22:15:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>94</LeagueID>
       <LeagueName>Jamaica</LeagueName>
-      <Season>22</Season>
-      <MatchRound>16</MatchRound>
+      <Season>24</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Jamaica</ShortName>
       <Continent>North America</Continent>
       <ZoneName>North America</ZoneName>
@@ -2288,19 +2288,19 @@
       </Cup>
       <NationalTeamId>3160</NationalTeamId>
       <U20TeamId>3161</U20TeamId>
-      <ActiveUsers>153</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-18 01:45:00</TrainingDate>
-      <EconomyDate>2011-03-20 03:43:00</EconomyDate>
-      <CupMatchDate>2011-03-16 22:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 22:15:00</SeriesMatchDate>
+      <ActiveUsers>148</ActiveUsers>
+      <WaitingUsers>0</WaitingUsers>
+      <TrainingDate>2011-07-22 01:45:00</TrainingDate>
+      <EconomyDate>2011-07-17 03:43:00</EconomyDate>
+      <CupMatchDate>2011-07-20 22:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 22:15:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>95</LeagueID>
       <LeagueName>Kenya</LeagueName>
-      <Season>22</Season>
-      <MatchRound>16</MatchRound>
+      <Season>24</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Kenya</ShortName>
       <Continent>Africa</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -2317,19 +2317,19 @@
       </Cup>
       <NationalTeamId>3162</NationalTeamId>
       <U20TeamId>3163</U20TeamId>
-      <ActiveUsers>102</ActiveUsers>
+      <ActiveUsers>100</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:44:00</EconomyDate>
-      <CupMatchDate>2011-03-16 11:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 12:45:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 13:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:44:00</EconomyDate>
+      <CupMatchDate>2011-07-20 11:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 12:45:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>96</LeagueID>
       <LeagueName>Panamá</LeagueName>
-      <Season>22</Season>
-      <MatchRound>16</MatchRound>
+      <Season>24</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Panamá</ShortName>
       <Continent>North America</Continent>
       <ZoneName>North America</ZoneName>
@@ -2346,19 +2346,19 @@
       </Cup>
       <NationalTeamId>3166</NationalTeamId>
       <U20TeamId>3167</U20TeamId>
-      <ActiveUsers>374</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 00:45:00</TrainingDate>
-      <EconomyDate>2011-03-20 03:31:00</EconomyDate>
-      <CupMatchDate>2011-03-17 00:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-21 00:16:00</SeriesMatchDate>
+      <ActiveUsers>417</ActiveUsers>
+      <WaitingUsers>3</WaitingUsers>
+      <TrainingDate>2011-07-22 00:45:00</TrainingDate>
+      <EconomyDate>2011-07-17 03:31:00</EconomyDate>
+      <CupMatchDate>2011-07-21 00:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-18 00:16:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>97</LeagueID>
       <LeagueName>Makedonija</LeagueName>
-      <Season>22</Season>
-      <MatchRound>16</MatchRound>
+      <Season>24</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Makedonija</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Eastern Europe</ZoneName>
@@ -2375,19 +2375,19 @@
       </Cup>
       <NationalTeamId>3158</NationalTeamId>
       <U20TeamId>3159</U20TeamId>
-      <ActiveUsers>700</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 16:30:00</TrainingDate>
-      <EconomyDate>2011-03-18 23:20:00</EconomyDate>
-      <CupMatchDate>2011-03-23 10:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 12:15:00</SeriesMatchDate>
+      <ActiveUsers>726</ActiveUsers>
+      <WaitingUsers>1</WaitingUsers>
+      <TrainingDate>2011-07-21 16:30:00</TrainingDate>
+      <EconomyDate>2011-07-15 23:20:00</EconomyDate>
+      <CupMatchDate>2011-07-20 10:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 12:15:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>98</LeagueID>
       <LeagueName>Shqipëria</LeagueName>
-      <Season>21</Season>
-      <MatchRound>16</MatchRound>
+      <Season>23</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Shqipëria</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Eastern Europe</ZoneName>
@@ -2400,23 +2400,23 @@
       </Country>
       <Cup>
         <CupID>158</CupID>
-        <CupName>Shqiperia Cup</CupName>
+        <CupName>Kupa e Shqipërisë</CupName>
       </Cup>
       <NationalTeamId>3178</NationalTeamId>
       <U20TeamId>3179</U20TeamId>
-      <ActiveUsers>740</ActiveUsers>
-      <WaitingUsers>40</WaitingUsers>
-      <TrainingDate>2011-03-17 16:30:00</TrainingDate>
-      <EconomyDate>2011-03-18 23:20:00</EconomyDate>
-      <CupMatchDate>2011-03-22 20:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 16:45:00</SeriesMatchDate>
+      <ActiveUsers>640</ActiveUsers>
+      <WaitingUsers>41</WaitingUsers>
+      <TrainingDate>2011-07-21 16:30:00</TrainingDate>
+      <EconomyDate>2011-07-15 23:20:00</EconomyDate>
+      <CupMatchDate>2011-07-19 20:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 16:45:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>99</LeagueID>
       <LeagueName>Honduras</LeagueName>
-      <Season>21</Season>
-      <MatchRound>16</MatchRound>
+      <Season>23</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Honduras</ShortName>
       <Continent>North America</Continent>
       <ZoneName>North America</ZoneName>
@@ -2433,19 +2433,19 @@
       </Cup>
       <NationalTeamId>3170</NationalTeamId>
       <U20TeamId>3171</U20TeamId>
-      <ActiveUsers>106</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 03:45:00</TrainingDate>
-      <EconomyDate>2011-03-20 03:28:00</EconomyDate>
-      <CupMatchDate>2011-03-17 01:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-21 01:15:00</SeriesMatchDate>
+      <ActiveUsers>104</ActiveUsers>
+      <WaitingUsers>1</WaitingUsers>
+      <TrainingDate>2011-07-22 03:45:00</TrainingDate>
+      <EconomyDate>2011-07-17 03:28:00</EconomyDate>
+      <CupMatchDate>2011-07-21 01:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-18 01:15:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>100</LeagueID>
       <LeagueName>El Salvador</LeagueName>
-      <Season>21</Season>
-      <MatchRound>16</MatchRound>
+      <Season>23</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>El Salvador</ShortName>
       <Continent>North America</Continent>
       <ZoneName>North America</ZoneName>
@@ -2462,19 +2462,19 @@
       </Cup>
       <NationalTeamId>3168</NationalTeamId>
       <U20TeamId>3169</U20TeamId>
-      <ActiveUsers>118</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-18 03:50:00</TrainingDate>
-      <EconomyDate>2011-03-20 03:10:00</EconomyDate>
-      <CupMatchDate>2011-03-17 01:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-21 01:45:00</SeriesMatchDate>
+      <ActiveUsers>110</ActiveUsers>
+      <WaitingUsers>0</WaitingUsers>
+      <TrainingDate>2011-07-22 03:50:00</TrainingDate>
+      <EconomyDate>2011-07-17 03:10:00</EconomyDate>
+      <CupMatchDate>2011-07-21 01:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-18 01:45:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>101</LeagueID>
       <LeagueName>Malta</LeagueName>
-      <Season>21</Season>
-      <MatchRound>16</MatchRound>
+      <Season>23</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Malta</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Southwestern Europe</ZoneName>
@@ -2491,19 +2491,19 @@
       </Cup>
       <NationalTeamId>3174</NationalTeamId>
       <U20TeamId>3175</U20TeamId>
-      <ActiveUsers>511</ActiveUsers>
+      <ActiveUsers>507</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 04:25:00</TrainingDate>
-      <EconomyDate>2011-03-19 02:00:00</EconomyDate>
-      <CupMatchDate>2011-03-16 17:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 19:15:00</SeriesMatchDate>
+      <TrainingDate>2011-07-22 04:25:00</TrainingDate>
+      <EconomyDate>2011-07-16 02:00:00</EconomyDate>
+      <CupMatchDate>2011-07-20 17:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 19:15:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>102</LeagueID>
       <LeagueName>Kyrgyzstan</LeagueName>
-      <Season>21</Season>
-      <MatchRound>16</MatchRound>
+      <Season>23</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Kyrgyzstan</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -2520,19 +2520,19 @@
       </Cup>
       <NationalTeamId>3172</NationalTeamId>
       <U20TeamId>3173</U20TeamId>
-      <ActiveUsers>65</ActiveUsers>
+      <ActiveUsers>62</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 06:03:00</TrainingDate>
-      <EconomyDate>2011-03-19 02:23:00</EconomyDate>
-      <CupMatchDate>2011-03-23 07:30:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 07:30:00</SeriesMatchDate>
+      <TrainingDate>2011-07-22 06:03:00</TrainingDate>
+      <EconomyDate>2011-07-16 02:23:00</EconomyDate>
+      <CupMatchDate>2011-07-20 07:30:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 07:30:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>103</LeagueID>
       <LeagueName>Moldova</LeagueName>
-      <Season>21</Season>
-      <MatchRound>16</MatchRound>
+      <Season>23</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Moldova</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Eastern Europe</ZoneName>
@@ -2549,19 +2549,19 @@
       </Cup>
       <NationalTeamId>3176</NationalTeamId>
       <U20TeamId>3177</U20TeamId>
-      <ActiveUsers>822</ActiveUsers>
+      <ActiveUsers>762</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 18:30:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:54:00</EconomyDate>
-      <CupMatchDate>2011-03-16 17:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 17:45:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 18:30:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:54:00</EconomyDate>
+      <CupMatchDate>2011-07-20 17:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 17:45:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>104</LeagueID>
       <LeagueName>Sakartvelo</LeagueName>
-      <Season>20</Season>
-      <MatchRound>16</MatchRound>
+      <Season>22</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Sakartvelo</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -2578,19 +2578,19 @@
       </Cup>
       <NationalTeamId>3182</NationalTeamId>
       <U20TeamId>3183</U20TeamId>
-      <ActiveUsers>1779</ActiveUsers>
-      <WaitingUsers>26</WaitingUsers>
-      <TrainingDate>2011-03-17 18:30:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:58:00</EconomyDate>
-      <CupMatchDate>2011-03-16 14:20:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 14:20:00</SeriesMatchDate>
+      <ActiveUsers>1743</ActiveUsers>
+      <WaitingUsers>13</WaitingUsers>
+      <TrainingDate>2011-07-21 18:30:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:58:00</EconomyDate>
+      <CupMatchDate>2011-07-20 14:20:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 14:20:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>105</LeagueID>
       <LeagueName>Andorra</LeagueName>
-      <Season>20</Season>
-      <MatchRound>16</MatchRound>
+      <Season>22</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Andorra</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Southwestern Europe</ZoneName>
@@ -2607,19 +2607,19 @@
       </Cup>
       <NationalTeamId>3186</NationalTeamId>
       <U20TeamId>3187</U20TeamId>
-      <ActiveUsers>197</ActiveUsers>
+      <ActiveUsers>194</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 06:25:00</TrainingDate>
-      <EconomyDate>2011-03-19 01:28:00</EconomyDate>
-      <CupMatchDate>2011-03-16 15:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 15:15:00</SeriesMatchDate>
+      <TrainingDate>2011-07-22 06:25:00</TrainingDate>
+      <EconomyDate>2011-07-16 01:28:00</EconomyDate>
+      <CupMatchDate>2011-07-20 15:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 15:15:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>106</LeagueID>
       <LeagueName>Al Urdun</LeagueName>
-      <Season>20</Season>
-      <MatchRound>16</MatchRound>
+      <Season>22</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Al Urdun</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -2636,19 +2636,19 @@
       </Cup>
       <NationalTeamId>3180</NationalTeamId>
       <U20TeamId>3181</U20TeamId>
-      <ActiveUsers>60</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 01:19:00</EconomyDate>
-      <CupMatchDate>2011-03-16 18:40:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 18:40:00</SeriesMatchDate>
+      <ActiveUsers>229</ActiveUsers>
+      <WaitingUsers>1</WaitingUsers>
+      <TrainingDate>2011-07-21 13:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 01:19:00</EconomyDate>
+      <CupMatchDate>2011-07-20 18:40:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 18:40:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>107</LeagueID>
       <LeagueName>Guatemala</LeagueName>
-      <Season>20</Season>
-      <MatchRound>16</MatchRound>
+      <Season>22</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Guatemala</ShortName>
       <Continent>North America</Continent>
       <ZoneName>North America</ZoneName>
@@ -2665,19 +2665,19 @@
       </Cup>
       <NationalTeamId>3184</NationalTeamId>
       <U20TeamId>3185</U20TeamId>
-      <ActiveUsers>254</ActiveUsers>
+      <ActiveUsers>251</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 04:30:00</TrainingDate>
-      <EconomyDate>2011-03-20 03:20:00</EconomyDate>
-      <CupMatchDate>2011-03-17 01:10:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-21 01:10:00</SeriesMatchDate>
+      <TrainingDate>2011-07-22 04:30:00</TrainingDate>
+      <EconomyDate>2011-07-17 03:20:00</EconomyDate>
+      <CupMatchDate>2011-07-21 01:10:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-18 01:10:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>110</LeagueID>
       <LeagueName>Trinidad &amp; Tobago</LeagueName>
-      <Season>19</Season>
-      <MatchRound>16</MatchRound>
+      <Season>21</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Trinidad/T.</ShortName>
       <Continent>North America</Continent>
       <ZoneName>North America</ZoneName>
@@ -2694,19 +2694,19 @@
       </Cup>
       <NationalTeamId>3194</NationalTeamId>
       <U20TeamId>3195</U20TeamId>
-      <ActiveUsers>57</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-18 02:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 03:44:00</EconomyDate>
-      <CupMatchDate>2011-03-16 22:20:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 22:20:00</SeriesMatchDate>
+      <ActiveUsers>62</ActiveUsers>
+      <WaitingUsers>0</WaitingUsers>
+      <TrainingDate>2011-07-22 02:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 03:44:00</EconomyDate>
+      <CupMatchDate>2011-07-20 22:20:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 22:20:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>111</LeagueID>
       <LeagueName>Nicaragua</LeagueName>
-      <Season>19</Season>
-      <MatchRound>16</MatchRound>
+      <Season>21</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Nicaragua</ShortName>
       <Continent>North America</Continent>
       <ZoneName>North America</ZoneName>
@@ -2723,19 +2723,19 @@
       </Cup>
       <NationalTeamId>3190</NationalTeamId>
       <U20TeamId>3191</U20TeamId>
-      <ActiveUsers>80</ActiveUsers>
+      <ActiveUsers>89</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 01:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 03:26:00</EconomyDate>
-      <CupMatchDate>2011-03-16 23:40:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 23:40:00</SeriesMatchDate>
+      <TrainingDate>2011-07-22 01:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 03:26:00</EconomyDate>
+      <CupMatchDate>2011-07-20 23:40:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 23:40:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>112</LeagueID>
       <LeagueName>Kazakhstan</LeagueName>
-      <Season>19</Season>
-      <MatchRound>16</MatchRound>
+      <Season>21</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Kazakhstan</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -2752,19 +2752,19 @@
       </Cup>
       <NationalTeamId>3188</NationalTeamId>
       <U20TeamId>3189</U20TeamId>
-      <ActiveUsers>365</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-18 06:04:00</TrainingDate>
-      <EconomyDate>2011-03-19 02:24:00</EconomyDate>
-      <CupMatchDate>2011-03-16 12:10:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 08:00:00</SeriesMatchDate>
+      <ActiveUsers>354</ActiveUsers>
+      <WaitingUsers>2</WaitingUsers>
+      <TrainingDate>2011-07-22 06:04:00</TrainingDate>
+      <EconomyDate>2011-07-16 02:24:00</EconomyDate>
+      <CupMatchDate>2011-07-20 12:10:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 08:00:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>113</LeagueID>
       <LeagueName>Suriname</LeagueName>
-      <Season>19</Season>
-      <MatchRound>16</MatchRound>
+      <Season>21</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Suriname</ShortName>
       <Continent>South America</Continent>
       <ZoneName>South America</ZoneName>
@@ -2781,19 +2781,19 @@
       </Cup>
       <NationalTeamId>3192</NationalTeamId>
       <U20TeamId>3193</U20TeamId>
-      <ActiveUsers>29</ActiveUsers>
+      <ActiveUsers>42</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 23:30:00</TrainingDate>
-      <EconomyDate>2011-03-20 03:37:00</EconomyDate>
-      <CupMatchDate>2011-03-16 23:10:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 23:10:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 23:30:00</TrainingDate>
+      <EconomyDate>2011-07-17 03:37:00</EconomyDate>
+      <CupMatchDate>2011-07-20 23:10:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 23:10:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>117</LeagueID>
       <LeagueName>Liechtenstein</LeagueName>
-      <Season>18</Season>
-      <MatchRound>16</MatchRound>
+      <Season>20</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Liechtenst.</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Central Europe</ZoneName>
@@ -2810,19 +2810,19 @@
       </Cup>
       <NationalTeamId>3204</NationalTeamId>
       <U20TeamId>3205</U20TeamId>
-      <ActiveUsers>255</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-17 05:18:00</TrainingDate>
-      <EconomyDate>2011-03-19 01:59:00</EconomyDate>
-      <CupMatchDate>2011-03-22 19:50:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 19:50:00</SeriesMatchDate>
+      <ActiveUsers>259</ActiveUsers>
+      <WaitingUsers>0</WaitingUsers>
+      <TrainingDate>2011-07-21 05:18:00</TrainingDate>
+      <EconomyDate>2011-07-16 01:59:00</EconomyDate>
+      <CupMatchDate>2011-07-19 19:50:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 19:50:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>118</LeagueID>
       <LeagueName>Algérie</LeagueName>
-      <Season>18</Season>
-      <MatchRound>16</MatchRound>
+      <Season>20</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Algérie</ShortName>
       <Continent>Africa</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -2839,19 +2839,19 @@
       </Cup>
       <NationalTeamId>3196</NationalTeamId>
       <U20TeamId>3197</U20TeamId>
-      <ActiveUsers>278</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:11:00</TrainingDate>
-      <EconomyDate>2011-03-20 01:12:00</EconomyDate>
-      <CupMatchDate>2011-03-16 20:10:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 19:25:00</SeriesMatchDate>
+      <ActiveUsers>623</ActiveUsers>
+      <WaitingUsers>6</WaitingUsers>
+      <TrainingDate>2011-07-21 13:11:00</TrainingDate>
+      <EconomyDate>2011-07-17 01:12:00</EconomyDate>
+      <CupMatchDate>2011-07-20 20:10:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 19:25:00</SeriesMatchDate>
       <NumberOfLevels>5</NumberOfLevels>
     </League>
     <League>
       <LeagueID>119</LeagueID>
       <LeagueName>Mongol Uls</LeagueName>
-      <Season>18</Season>
-      <MatchRound>16</MatchRound>
+      <Season>20</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Mongol Uls</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -2868,19 +2868,19 @@
       </Cup>
       <NationalTeamId>3200</NationalTeamId>
       <U20TeamId>3201</U20TeamId>
-      <ActiveUsers>51</ActiveUsers>
+      <ActiveUsers>52</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 14:29:00</TrainingDate>
-      <EconomyDate>2011-03-18 22:29:00</EconomyDate>
-      <CupMatchDate>2011-03-23 07:50:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 07:50:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 14:29:00</TrainingDate>
+      <EconomyDate>2011-07-15 22:29:00</EconomyDate>
+      <CupMatchDate>2011-07-20 07:50:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 07:50:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>120</LeagueID>
       <LeagueName>Lubnan</LeagueName>
-      <Season>18</Season>
-      <MatchRound>16</MatchRound>
+      <Season>20</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Lubnan</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -2897,19 +2897,19 @@
       </Cup>
       <NationalTeamId>3202</NationalTeamId>
       <U20TeamId>3203</U20TeamId>
-      <ActiveUsers>82</ActiveUsers>
+      <ActiveUsers>132</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:09:00</TrainingDate>
-      <EconomyDate>2011-03-20 01:09:00</EconomyDate>
-      <CupMatchDate>2011-03-16 17:40:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 14:40:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 13:09:00</TrainingDate>
+      <EconomyDate>2011-07-17 01:09:00</EconomyDate>
+      <CupMatchDate>2011-07-20 17:40:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 14:40:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>121</LeagueID>
       <LeagueName>Sénégal</LeagueName>
-      <Season>18</Season>
-      <MatchRound>16</MatchRound>
+      <Season>20</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Sénégal</ShortName>
       <Continent>Africa</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -2926,19 +2926,19 @@
       </Cup>
       <NationalTeamId>3198</NationalTeamId>
       <U20TeamId>3199</U20TeamId>
-      <ActiveUsers>93</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-17 11:44:00</TrainingDate>
-      <EconomyDate>2011-03-19 04:44:00</EconomyDate>
-      <CupMatchDate>2011-03-16 11:50:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 18:20:00</SeriesMatchDate>
+      <ActiveUsers>130</ActiveUsers>
+      <WaitingUsers>4</WaitingUsers>
+      <TrainingDate>2011-07-21 11:44:00</TrainingDate>
+      <EconomyDate>2011-07-16 04:44:00</EconomyDate>
+      <CupMatchDate>2011-07-20 11:50:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 18:20:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>122</LeagueID>
       <LeagueName>Hayastan</LeagueName>
-      <Season>18</Season>
-      <MatchRound>16</MatchRound>
+      <Season>20</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Hayastan</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -2955,19 +2955,19 @@
       </Cup>
       <NationalTeamId>3206</NationalTeamId>
       <U20TeamId>3207</U20TeamId>
-      <ActiveUsers>118</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-17 18:31:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:31:00</EconomyDate>
-      <CupMatchDate>2011-03-16 14:40:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 14:10:00</SeriesMatchDate>
+      <ActiveUsers>88</ActiveUsers>
+      <WaitingUsers>0</WaitingUsers>
+      <TrainingDate>2011-07-21 18:31:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:31:00</EconomyDate>
+      <CupMatchDate>2011-07-20 14:40:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 14:10:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>123</LeagueID>
       <LeagueName>Bahrain</LeagueName>
-      <Season>17</Season>
-      <MatchRound>16</MatchRound>
+      <Season>19</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Bahrain</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -2984,19 +2984,19 @@
       </Cup>
       <NationalTeamId>3214</NationalTeamId>
       <U20TeamId>3215</U20TeamId>
-      <ActiveUsers>32</ActiveUsers>
+      <ActiveUsers>36</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:18:00</EconomyDate>
-      <CupMatchDate>2011-03-16 16:50:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 16:50:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 13:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:18:00</EconomyDate>
+      <CupMatchDate>2011-07-20 16:50:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 16:50:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>124</LeagueID>
       <LeagueName>Barbados</LeagueName>
-      <Season>17</Season>
-      <MatchRound>16</MatchRound>
+      <Season>19</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Barbados</ShortName>
       <Continent>North America</Continent>
       <ZoneName>North America</ZoneName>
@@ -3013,19 +3013,19 @@
       </Cup>
       <NationalTeamId>3212</NationalTeamId>
       <U20TeamId>3213</U20TeamId>
-      <ActiveUsers>32</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 01:45:00</TrainingDate>
-      <EconomyDate>2011-03-20 03:43:00</EconomyDate>
-      <CupMatchDate>2011-03-16 22:10:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 22:10:00</SeriesMatchDate>
+      <ActiveUsers>35</ActiveUsers>
+      <WaitingUsers>1</WaitingUsers>
+      <TrainingDate>2011-07-22 01:45:00</TrainingDate>
+      <EconomyDate>2011-07-17 03:43:00</EconomyDate>
+      <CupMatchDate>2011-07-20 22:10:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 22:10:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>125</LeagueID>
       <LeagueName>Cabo Verde</LeagueName>
-      <Season>17</Season>
-      <MatchRound>16</MatchRound>
+      <Season>19</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Cabo Verde</ShortName>
       <Continent>Africa</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3042,19 +3042,19 @@
       </Cup>
       <NationalTeamId>3210</NationalTeamId>
       <U20TeamId>3211</U20TeamId>
-      <ActiveUsers>54</ActiveUsers>
+      <ActiveUsers>46</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 01:12:00</EconomyDate>
-      <CupMatchDate>2011-03-16 18:25:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 18:25:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 13:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 01:12:00</EconomyDate>
+      <CupMatchDate>2011-07-20 18:25:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 18:25:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>126</LeagueID>
       <LeagueName>Côte d’Ivoire</LeagueName>
-      <Season>17</Season>
-      <MatchRound>16</MatchRound>
+      <Season>19</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>C. d’Ivoire</ShortName>
       <Continent>Africa</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3071,19 +3071,19 @@
       </Cup>
       <NationalTeamId>3208</NationalTeamId>
       <U20TeamId>3209</U20TeamId>
-      <ActiveUsers>52</ActiveUsers>
+      <ActiveUsers>44</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:00:00</TrainingDate>
-      <EconomyDate>2011-03-19 04:33:00</EconomyDate>
-      <CupMatchDate>2011-03-16 18:55:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 18:55:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 13:00:00</TrainingDate>
+      <EconomyDate>2011-07-16 04:33:00</EconomyDate>
+      <CupMatchDate>2011-07-20 18:55:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 18:55:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>127</LeagueID>
       <LeagueName>Al Kuwayt</LeagueName>
-      <Season>16</Season>
-      <MatchRound>16</MatchRound>
+      <Season>18</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Al Kuwayt</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3100,19 +3100,19 @@
       </Cup>
       <NationalTeamId>3220</NationalTeamId>
       <U20TeamId>3221</U20TeamId>
-      <ActiveUsers>78</ActiveUsers>
+      <ActiveUsers>71</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:18:00</EconomyDate>
-      <CupMatchDate>2011-03-16 16:10:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 16:10:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 13:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:18:00</EconomyDate>
+      <CupMatchDate>2011-07-20 16:10:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 16:10:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>128</LeagueID>
       <LeagueName>Al Iraq</LeagueName>
-      <Season>16</Season>
-      <MatchRound>16</MatchRound>
+      <Season>18</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Al Iraq</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3129,19 +3129,19 @@
       </Cup>
       <NationalTeamId>3216</NationalTeamId>
       <U20TeamId>3217</U20TeamId>
-      <ActiveUsers>55</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-17 13:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:18:00</EconomyDate>
-      <CupMatchDate>2011-03-16 16:25:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 16:25:00</SeriesMatchDate>
+      <ActiveUsers>129</ActiveUsers>
+      <WaitingUsers>0</WaitingUsers>
+      <TrainingDate>2011-07-21 13:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:18:00</EconomyDate>
+      <CupMatchDate>2011-07-20 16:25:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 16:25:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>129</LeagueID>
       <LeagueName>Azərbaycan</LeagueName>
-      <Season>16</Season>
-      <MatchRound>16</MatchRound>
+      <Season>18</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Azərbaycan</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3158,19 +3158,19 @@
       </Cup>
       <NationalTeamId>3218</NationalTeamId>
       <U20TeamId>3219</U20TeamId>
-      <ActiveUsers>344</ActiveUsers>
-      <WaitingUsers>4</WaitingUsers>
-      <TrainingDate>2011-03-17 18:30:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:58:00</EconomyDate>
-      <CupMatchDate>2011-03-16 14:25:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 14:25:00</SeriesMatchDate>
+      <ActiveUsers>331</ActiveUsers>
+      <WaitingUsers>0</WaitingUsers>
+      <TrainingDate>2011-07-21 18:30:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:58:00</EconomyDate>
+      <CupMatchDate>2011-07-20 14:25:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 14:25:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>130</LeagueID>
       <LeagueName>Angola</LeagueName>
-      <Season>15</Season>
-      <MatchRound>16</MatchRound>
+      <Season>17</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Angola</ShortName>
       <Continent>Africa</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3187,19 +3187,19 @@
       </Cup>
       <NationalTeamId>3222</NationalTeamId>
       <U20TeamId>3223</U20TeamId>
-      <ActiveUsers>75</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-17 13:00:00</TrainingDate>
-      <EconomyDate>2011-03-19 04:27:00</EconomyDate>
-      <CupMatchDate>2011-03-22 19:40:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 19:40:00</SeriesMatchDate>
+      <ActiveUsers>76</ActiveUsers>
+      <WaitingUsers>0</WaitingUsers>
+      <TrainingDate>2011-07-21 13:00:00</TrainingDate>
+      <EconomyDate>2011-07-16 04:27:00</EconomyDate>
+      <CupMatchDate>2011-07-19 19:40:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 19:40:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>131</LeagueID>
       <LeagueName>Crna Gora</LeagueName>
-      <Season>15</Season>
-      <MatchRound>16</MatchRound>
+      <Season>17</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Crna Gora</ShortName>
       <Continent>Europe</Continent>
       <ZoneName>Eastern Europe</ZoneName>
@@ -3216,19 +3216,19 @@
       </Cup>
       <NationalTeamId>3226</NationalTeamId>
       <U20TeamId>3227</U20TeamId>
-      <ActiveUsers>388</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 16:30:00</TrainingDate>
-      <EconomyDate>2011-03-18 23:20:00</EconomyDate>
-      <CupMatchDate>2011-03-16 11:55:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 11:55:00</SeriesMatchDate>
+      <ActiveUsers>366</ActiveUsers>
+      <WaitingUsers>1</WaitingUsers>
+      <TrainingDate>2011-07-21 16:30:00</TrainingDate>
+      <EconomyDate>2011-07-15 23:20:00</EconomyDate>
+      <CupMatchDate>2011-07-20 11:55:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 11:55:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>132</LeagueID>
       <LeagueName>Bangladesh</LeagueName>
-      <Season>15</Season>
-      <MatchRound>16</MatchRound>
+      <Season>17</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Bangladesh</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3245,19 +3245,19 @@
       </Cup>
       <NationalTeamId>3224</NationalTeamId>
       <U20TeamId>3225</U20TeamId>
-      <ActiveUsers>78</ActiveUsers>
-      <WaitingUsers>2</WaitingUsers>
-      <TrainingDate>2011-03-18 06:07:00</TrainingDate>
-      <EconomyDate>2011-03-19 02:22:00</EconomyDate>
-      <CupMatchDate>2011-03-23 06:30:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 07:45:00</SeriesMatchDate>
+      <ActiveUsers>82</ActiveUsers>
+      <WaitingUsers>0</WaitingUsers>
+      <TrainingDate>2011-07-22 06:07:00</TrainingDate>
+      <EconomyDate>2011-07-16 02:22:00</EconomyDate>
+      <CupMatchDate>2011-07-20 06:30:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 07:45:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>133</LeagueID>
       <LeagueName>Al Yaman</LeagueName>
-      <Season>14</Season>
-      <MatchRound>16</MatchRound>
+      <Season>16</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Al Yaman</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3274,19 +3274,19 @@
       </Cup>
       <NationalTeamId>3228</NationalTeamId>
       <U20TeamId>3229</U20TeamId>
-      <ActiveUsers>28</ActiveUsers>
+      <ActiveUsers>45</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:18:00</EconomyDate>
-      <CupMatchDate>2011-03-16 16:35:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 16:35:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 13:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:18:00</EconomyDate>
+      <CupMatchDate>2011-07-20 16:35:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 16:35:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>134</LeagueID>
       <LeagueName>Oman</LeagueName>
-      <Season>14</Season>
-      <MatchRound>16</MatchRound>
+      <Season>16</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Oman</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3303,19 +3303,19 @@
       </Cup>
       <NationalTeamId>3230</NationalTeamId>
       <U20TeamId>3231</U20TeamId>
-      <ActiveUsers>42</ActiveUsers>
+      <ActiveUsers>48</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:18:00</EconomyDate>
-      <CupMatchDate>2011-03-16 16:40:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 16:40:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 13:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:18:00</EconomyDate>
+      <CupMatchDate>2011-07-20 16:40:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 16:40:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>135</LeagueID>
       <LeagueName>Moçambique</LeagueName>
-      <Season>12</Season>
-      <MatchRound>16</MatchRound>
+      <Season>14</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Moçambique</ShortName>
       <Continent>Africa</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3332,19 +3332,19 @@
       </Cup>
       <NationalTeamId>3232</NationalTeamId>
       <U20TeamId>3233</U20TeamId>
-      <ActiveUsers>55</ActiveUsers>
+      <ActiveUsers>52</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:18:00</EconomyDate>
-      <CupMatchDate>2011-03-16 16:40:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 16:40:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 13:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:18:00</EconomyDate>
+      <CupMatchDate>2011-07-20 16:40:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 16:40:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>136</LeagueID>
       <LeagueName>Brunei</LeagueName>
-      <Season>12</Season>
-      <MatchRound>16</MatchRound>
+      <Season>14</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Brunei</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3361,19 +3361,19 @@
       </Cup>
       <NationalTeamId>3234</NationalTeamId>
       <U20TeamId>3235</U20TeamId>
-      <ActiveUsers>76</ActiveUsers>
+      <ActiveUsers>78</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 08:00:00</TrainingDate>
-      <EconomyDate>2011-03-19 01:50:00</EconomyDate>
-      <CupMatchDate>2011-03-23 05:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 05:00:00</SeriesMatchDate>
+      <TrainingDate>2011-07-22 08:00:00</TrainingDate>
+      <EconomyDate>2011-07-16 01:50:00</EconomyDate>
+      <CupMatchDate>2011-07-20 05:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 05:00:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>137</LeagueID>
       <LeagueName>Ghana</LeagueName>
-      <Season>12</Season>
-      <MatchRound>16</MatchRound>
+      <Season>14</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Ghana</ShortName>
       <Continent>Africa</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3392,17 +3392,17 @@
       <U20TeamId>3237</U20TeamId>
       <ActiveUsers>49</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 01:12:00</EconomyDate>
-      <CupMatchDate>2011-03-16 18:25:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 18:25:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 13:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 01:12:00</EconomyDate>
+      <CupMatchDate>2011-07-20 18:25:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 18:25:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>138</LeagueID>
       <LeagueName>Kampuchea</LeagueName>
-      <Season>12</Season>
-      <MatchRound>16</MatchRound>
+      <Season>14</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Kampuchea</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3419,19 +3419,19 @@
       </Cup>
       <NationalTeamId>3238</NationalTeamId>
       <U20TeamId>3239</U20TeamId>
-      <ActiveUsers>50</ActiveUsers>
+      <ActiveUsers>56</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 17:15:00</TrainingDate>
-      <EconomyDate>2011-03-18 22:30:00</EconomyDate>
-      <CupMatchDate>2011-03-23 05:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-19 08:00:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 17:15:00</TrainingDate>
+      <EconomyDate>2011-07-15 22:30:00</EconomyDate>
+      <CupMatchDate>2011-07-20 05:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-16 08:00:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>139</LeagueID>
       <LeagueName>Benin</LeagueName>
-      <Season>11</Season>
-      <MatchRound>16</MatchRound>
+      <Season>13</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Benin</ShortName>
       <Continent>Africa</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3448,19 +3448,19 @@
       </Cup>
       <NationalTeamId>3240</NationalTeamId>
       <U20TeamId>3241</U20TeamId>
-      <ActiveUsers>58</ActiveUsers>
+      <ActiveUsers>77</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:00:00</TrainingDate>
-      <EconomyDate>2011-03-19 04:33:00</EconomyDate>
-      <CupMatchDate>2011-03-16 11:45:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 18:45:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 13:00:00</TrainingDate>
+      <EconomyDate>2011-07-16 04:33:00</EconomyDate>
+      <CupMatchDate>2011-07-20 11:45:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 18:45:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>140</LeagueID>
       <LeagueName>Suriyah</LeagueName>
-      <Season>11</Season>
-      <MatchRound>16</MatchRound>
+      <Season>13</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Suriyah</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3477,19 +3477,19 @@
       </Cup>
       <NationalTeamId>3242</NationalTeamId>
       <U20TeamId>3243</U20TeamId>
-      <ActiveUsers>47</ActiveUsers>
+      <ActiveUsers>54</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:18:00</EconomyDate>
-      <CupMatchDate>2011-03-16 16:35:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 16:35:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 13:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:18:00</EconomyDate>
+      <CupMatchDate>2011-07-20 16:35:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 16:35:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>141</LeagueID>
       <LeagueName>Dawlat Qatar</LeagueName>
-      <Season>10</Season>
-      <MatchRound>16</MatchRound>
+      <Season>12</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Qatar</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3506,19 +3506,19 @@
       </Cup>
       <NationalTeamId>3245</NationalTeamId>
       <U20TeamId>3246</U20TeamId>
-      <ActiveUsers>46</ActiveUsers>
+      <ActiveUsers>55</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:18:00</EconomyDate>
-      <CupMatchDate>2011-03-16 16:10:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 16:10:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 13:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:18:00</EconomyDate>
+      <CupMatchDate>2011-07-20 16:10:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 16:10:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
     <League>
       <LeagueID>142</LeagueID>
       <LeagueName>Tanzania</LeagueName>
-      <Season>10</Season>
-      <MatchRound>16</MatchRound>
+      <Season>12</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Tanzania</ShortName>
       <Continent>Africa</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3535,19 +3535,19 @@
       </Cup>
       <NationalTeamId>3247</NationalTeamId>
       <U20TeamId>3248</U20TeamId>
-      <ActiveUsers>42</ActiveUsers>
+      <ActiveUsers>47</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:44:00</EconomyDate>
-      <CupMatchDate>2011-03-16 11:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 12:45:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 13:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:44:00</EconomyDate>
+      <CupMatchDate>2011-07-20 11:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 12:45:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>143</LeagueID>
       <LeagueName>Uganda</LeagueName>
-      <Season>9</Season>
-      <MatchRound>16</MatchRound>
+      <Season>11</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Uganda</ShortName>
       <Continent>Africa</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3564,19 +3564,19 @@
       </Cup>
       <NationalTeamId>3249</NationalTeamId>
       <U20TeamId>3250</U20TeamId>
-      <ActiveUsers>72</ActiveUsers>
+      <ActiveUsers>93</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:15:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:18:00</EconomyDate>
-      <CupMatchDate>2011-03-16 16:20:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 16:20:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 13:15:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:18:00</EconomyDate>
+      <CupMatchDate>2011-07-20 16:20:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 16:20:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>144</LeagueID>
       <LeagueName>Dhivehi Raajje</LeagueName>
-      <Season>9</Season>
-      <MatchRound>16</MatchRound>
+      <Season>11</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Maldives</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3593,19 +3593,19 @@
       </Cup>
       <NationalTeamId>3251</NationalTeamId>
       <U20TeamId>3252</U20TeamId>
-      <ActiveUsers>41</ActiveUsers>
-      <WaitingUsers>1</WaitingUsers>
-      <TrainingDate>2011-03-18 06:05:00</TrainingDate>
-      <EconomyDate>2011-03-19 04:44:00</EconomyDate>
-      <CupMatchDate>2011-03-23 06:00:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 08:15:00</SeriesMatchDate>
+      <ActiveUsers>43</ActiveUsers>
+      <WaitingUsers>0</WaitingUsers>
+      <TrainingDate>2011-07-22 06:05:00</TrainingDate>
+      <EconomyDate>2011-07-16 04:44:00</EconomyDate>
+      <CupMatchDate>2011-07-20 06:00:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 08:15:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>145</LeagueID>
       <LeagueName>O'zbekiston</LeagueName>
-      <Season>0</Season>
-      <MatchRound>16</MatchRound>
+      <Season>2</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Uzbekistan</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3622,19 +3622,19 @@
       </Cup>
       <NationalTeamId>3260</NationalTeamId>
       <U20TeamId>3261</U20TeamId>
-      <ActiveUsers>0</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 18:30:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:58:00</EconomyDate>
-      <CupMatchDate>2010-11-24 14:25:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-21 14:30:00</SeriesMatchDate>
+      <ActiveUsers>92</ActiveUsers>
+      <WaitingUsers>1</WaitingUsers>
+      <TrainingDate>2011-07-21 18:30:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:58:00</EconomyDate>
+      <CupMatchDate>2011-07-20 14:30:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 14:30:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>146</LeagueID>
       <LeagueName>Cameroon</LeagueName>
-      <Season>0</Season>
-      <MatchRound>16</MatchRound>
+      <Season>2</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Cameroon</ShortName>
       <Continent>Africa</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3651,19 +3651,19 @@
       </Cup>
       <NationalTeamId>3254</NationalTeamId>
       <U20TeamId>3255</U20TeamId>
-      <ActiveUsers>1</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:00:00</TrainingDate>
-      <EconomyDate>2011-03-19 04:33:00</EconomyDate>
-      <CupMatchDate>2011-03-16 18:55:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 18:55:00</SeriesMatchDate>
+      <ActiveUsers>37</ActiveUsers>
+      <WaitingUsers>3</WaitingUsers>
+      <TrainingDate>2011-07-21 13:00:00</TrainingDate>
+      <EconomyDate>2011-07-16 04:33:00</EconomyDate>
+      <CupMatchDate>2011-07-20 18:55:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 18:55:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>147</LeagueID>
       <LeagueName>Cuba</LeagueName>
-      <Season>0</Season>
-      <MatchRound>16</MatchRound>
+      <Season>2</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Cuba</ShortName>
       <Continent>North America</Continent>
       <ZoneName>North America</ZoneName>
@@ -3680,19 +3680,19 @@
       </Cup>
       <NationalTeamId>3256</NationalTeamId>
       <U20TeamId>3257</U20TeamId>
-      <ActiveUsers>2</ActiveUsers>
-      <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-18 00:50:00</TrainingDate>
-      <EconomyDate>2011-03-20 03:25:00</EconomyDate>
-      <CupMatchDate>2011-03-16 23:15:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 23:15:00</SeriesMatchDate>
+      <ActiveUsers>64</ActiveUsers>
+      <WaitingUsers>2</WaitingUsers>
+      <TrainingDate>2011-07-22 00:50:00</TrainingDate>
+      <EconomyDate>2011-07-17 03:25:00</EconomyDate>
+      <CupMatchDate>2011-07-20 23:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 23:15:00</SeriesMatchDate>
       <NumberOfLevels>3</NumberOfLevels>
     </League>
     <League>
       <LeagueID>148</LeagueID>
       <LeagueName>Palestine</LeagueName>
-      <Season>0</Season>
-      <MatchRound>16</MatchRound>
+      <Season>2</Season>
+      <MatchRound>1</MatchRound>
       <ShortName>Palestine</ShortName>
       <Continent>Asia</Continent>
       <ZoneName>Asia,  Africa and Oceania</ZoneName>
@@ -3709,12 +3709,12 @@
       </Cup>
       <NationalTeamId>3258</NationalTeamId>
       <U20TeamId>3259</U20TeamId>
-      <ActiveUsers>0</ActiveUsers>
+      <ActiveUsers>63</ActiveUsers>
       <WaitingUsers>0</WaitingUsers>
-      <TrainingDate>2011-03-17 13:20:00</TrainingDate>
-      <EconomyDate>2011-03-20 00:23:00</EconomyDate>
-      <CupMatchDate>2011-03-16 16:10:00</CupMatchDate>
-      <SeriesMatchDate>2011-03-20 16:15:00</SeriesMatchDate>
+      <TrainingDate>2011-07-21 13:20:00</TrainingDate>
+      <EconomyDate>2011-07-17 00:23:00</EconomyDate>
+      <CupMatchDate>2011-07-20 16:15:00</CupMatchDate>
+      <SeriesMatchDate>2011-07-17 16:15:00</SeriesMatchDate>
       <NumberOfLevels>4</NumberOfLevels>
     </League>
   </LeagueList>

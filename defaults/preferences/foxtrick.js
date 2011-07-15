@@ -205,6 +205,7 @@ pref("extensions.foxtrick.prefs.module.LinksCountry.htstats.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksCountry.maptrick_botmap.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksCountry.maptrick_hoc.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksCountry.vnukstats.enabled", true);
+pref("extensions.foxtrick.prefs.module.LinksNational.HattrickNations.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksEconomy.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksFans.enabled", false);
 pref("extensions.foxtrick.prefs.module.LinksLeague.Hattrickstats_fr.enabled", true);
