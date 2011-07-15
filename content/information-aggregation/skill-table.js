@@ -162,7 +162,9 @@ var FoxtrickSkillTable = {
 										var seller = Number(Transfer.getElementsByTagName("SellerTeamID")[0].textContent);
 										if (seller==TeamId) {
 											homegrown=true;
-											Foxtrick.map(list, function(n) {if (n.id==pid) n.homeGrown='*'; });
+											Foxtrick.map(list, function(n) {
+												if (n.id==pid) {n.homeGrown = doc.createElement('span');n.homeGrown.textContent='*';n.homeGrown.title=Foxtrickl10n.getString("skilltable.rebought_youthplayer");} 
+											});
 										}
 										var Transfer = Transfers[0]; //last transfer to this team
 										var Deadline = Transfer.getElementsByTagName("Deadline")[0].textContent;
@@ -171,7 +173,7 @@ var FoxtrickSkillTable = {
 									else {
 										homegrown=true;
 										always_home=true;
-										Foxtrick.map(list, function(n) {if (n.id==pid) {n.homeGrown='X';} });
+										Foxtrick.map(list, function(n) {if (n.id==pid) {n.homeGrown = doc.createElement('span');n.homeGrown.textContent='X';n.homeGrown.title=Foxtrickl10n.getString("skilltable.youthplayer");} });
 										var args = [];
 										args.push(["playerid", player.id]);
 										args.push(["file", "playerevents"]);
@@ -274,18 +276,18 @@ var FoxtrickSkillTable = {
 											// check if player not sold or was first sold by this team -> homegrown
 											var pid = xml.getElementsByTagName("PlayerID")[0].textContent;
 											var Transfers = xml.getElementsByTagName("Transfer");
-											var homegrown=null;
+											var homeGrown=null;
 											if (Transfers.length>0) {
 												var Transfer = Transfers[Transfers.length-1]; // oldest and first transfer
 												var seller = Number(Transfer.getElementsByTagName("SellerTeamID")[0].textContent);
 												if (seller==TeamId) {
-													homegrown='*';
+													homeGrown = doc.createElement('span');homeGrown.textContent='*';homeGrown.title=Foxtrickl10n.getString("skilltable.rebought_youthplayer");
 												}
 											}
-											else homegrown='X';
+											else { homeGrown = doc.createElement('span');homeGrown.textContent='X';homeGrown.title=Foxtrickl10n.getString("skilltable.youthplayer");};
 											
-											if (homegrown) 
-												Foxtrick.map(listsquad, function(n) {if (n.id==pid) n.homeGrown = homegrown; });
+											if (homeGrown) 
+												Foxtrick.map(listsquad, function(n) {if (n.id==pid) n.homeGrown = homeGrown; });
 										}
 										nr_to_process--;
 										if (nr_to_process==0) { // processed all. now filter, concat with oldies and display
@@ -634,7 +636,7 @@ var FoxtrickSkillTable = {
 				{ name : "CareerGoals", property : "careerGoals" },
 				{ name : "Hattricks", property : "hattricks" },
 				{ name : "JoinedSince", property : "joinedSince", method : dateText},
-				{ name : "HomeGrown", property : "homeGrown"},
+				{ name : "HomeGrown", property : "homeGrown", method : link},
 				{ name : "Deadline", property : "deadline", method : dateLink },
 				{ name : "Current_club", property : "currentClubLink", method : link, sortString : true },
 				{ name : "Current_league", property : "currentLeagueId", method: league, sortString : true },
