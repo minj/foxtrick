@@ -35,7 +35,8 @@ var FoxtrickLinksMatch = {
 			teamid2 = FoxtrickHelper.findSecondTeamId(sidediv,teamid);
 		}
 		else {
-			var sidediv = doc.getElementById("sidebar");
+			var sidediv = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlTeamInfo");
+			if (!sidediv) sidediv = doc.getElementById("sidebar");
 			teamid = FoxtrickHelper.findTeamId(sidediv);
 			teamid2 = FoxtrickHelper.findSecondTeamId(sidediv,teamid);
 		}
