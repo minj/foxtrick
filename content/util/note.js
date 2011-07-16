@@ -139,11 +139,13 @@ Foxtrick.util.note = {
 		}
 	},
 
+	createLoadingNum :0,
 	createLoading : function(doc, inline, loadingText) {
 		if (!loadingText) loadingText = Foxtrickl10n.getString("status.loading");
 		if (inline) {
 			// if the note is inline, return a span with nothing special
 			var container = doc.createElement("span");
+			container.className='hidden';
 			container.textContent = loadingText;
 			return container;
 		}
@@ -155,12 +157,18 @@ Foxtrick.util.note = {
 			container.appendChild(img);
 			container.appendChild(doc.createTextNode(" "));
 			container.appendChild(doc.createTextNode(loadingText));
-			return this.create(doc, container, null, false);
+			var note = this.create(doc, container, null, false);
+			
+			// delay showing 
+			Foxtrick.addClass(note, 'hidden');
+			setTimeout(function() {Foxtrick.removeClass(note,'hidden');}, 500);  
+			
+			return note;
 		}
 	},
 	
 	showObstrusiveLoading : function( doc, loadingText ) {
-		if (doc.getElementsByTagName("body")[0] && !doc.getElementById("FoxTrickLoadingId")) {			
+		if (doc.getElementsByTagName("body")[0] && !doc.getElementById("FoxTrickLoadingId")) {
 			var loading = this.createLoading(doc, null, loadingText);
 			loading.setAttribute('id','FoxTrickLoadingId');
 			loading.setAttribute('style','z-index:99999; top:2%; left:50%; position:fixed; background-color: #efefff;border: 1px solid #2f31ff; padding: 15px;');
