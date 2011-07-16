@@ -120,10 +120,7 @@ var FoxtrickRapidId = {
 			// the <input type="button" /> element
 			button.setAttribute("type", "submit");
 			button.setAttribute("value", Foxtrickl10n.getString("View"));
-			button.addEventListener("click", this.view, true);
-			
-			var rightnow = doc.getElementById("ctl00_ctl00_ucOngoingEvents_pnlOngoingEvents");
-			if (rightnow) rightnow.setAttribute('style','display:none;');
+			button.addEventListener("click", this.view, true);			
 		}
 		catch (e) {
 			Foxtrick.log("RapidId(" + e.lineNumber + "): " + e + "");
@@ -136,6 +133,9 @@ var FoxtrickRapidId = {
 	},
 
 	run: function(page, doc) {
+		var rightnow = doc.getElementById("ctl00_ctl00_ucOngoingEvents_pnlOngoingEvents");
+		if (rightnow) return;
+		
 		// get labels of optgroup and option
 		for (var i in this.options) {
 			this.options[i].label = Foxtrickl10n.getString(this.options[i].text);
