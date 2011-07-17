@@ -306,10 +306,12 @@ var FoxtrickCrossTable = {
 
 		Foxtrick.ApiProxy.retrieve(doc, args, function(xml) {
 			try {
-				var matchNodes = xml.getElementsByTagName("Match");
-				processMatches(matchNodes);
-				fillCrossTable();
-				drawSeasonGraph();
+				if (xml) {
+					var matchNodes = xml.getElementsByTagName("Match");
+					processMatches(matchNodes);
+					fillCrossTable();
+					drawSeasonGraph();
+				}
 			}
 			catch (e) {
 				Foxtrick.log(e);

@@ -504,7 +504,7 @@ Foxtrick.Pages.Players = {
 					// parse HTML first because players present in XML may
 					// not present in XML (NT players)
 					if (!allsquad) parseHtml();
-					parseXml(xml);
+					if (xml) parseXml(xml);
 					callback(playerList);
 				}
 				catch (e) {

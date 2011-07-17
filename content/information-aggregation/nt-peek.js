@@ -69,20 +69,20 @@ var FoxtrickNtPeek = {
 			["teamID", ntId]
 		];
 		Foxtrick.ApiProxy.retrieve(doc, ntArgs, function(xml) {
-			Foxtrick.util.matchView.fillMatches(
-				ntContainer.getElementsByTagName("div")[0],
-				xml
-			);
+			if (xml)
+				Foxtrick.util.matchView.fillMatches(
+					ntContainer.getElementsByTagName("div")[0],
+					xml );
 		});
 		const u20Args = [
 			["file", "matches"],
 			["teamID", u20Id]
 		];
 		Foxtrick.ApiProxy.retrieve(doc, u20Args, function(xml) {
+			if (xml)
 			Foxtrick.util.matchView.fillMatches(
 				u20Container.getElementsByTagName("div")[0],
-				xml
-			);
+				xml );
 		},FoxtrickNtPeek);
 	}
 };
