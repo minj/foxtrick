@@ -32,27 +32,27 @@ var FoxtrickForumYouthIcons = {
 	],
 
 	icons : [
-		{ type:"q", 		class : "ft_q", 	image : "format_q.png", 		string : "q", 		tags : "[q]qqq[/q]", 			replace_text: "qqq",	alt: "f_quote2" },
-		{ type:"line_br", 	class : "ft_br", 	image : "format_br.png", 		string : "br",		tags : "[br]",		 			},
-		{ type:"user_id", 	class : "ft_uid", 	image : "format_user.png", 		string : "user", 	tags : "[userid=xxx]",  		replace_text: "xxx"		},
-		{ type:"kit_id", 	class : "ft_kit", 	image : "format_kit.png", 		string : "kit",		tags : "[kitid=xxx]",  			replace_text: "xxx"		},
-		{ type:"article_id",class : "ft_aid", 	image : "format_article.png", 	string : "article",	tags : "[articleid=xxx]", 		replace_text: "xxx"		},
-		{ type:"clock", 	class : "ft_clock", image : "format_clock.png", 	string : "clock", 	tags : "time",  				replace_text: "time"	},
-		{ type:"spoiler", 	class : "ft_spoiler",image : "format_spoiler.png",	string : "spoiler",	tags : "[spoiler]yyy[/spoiler]",replace_text: "yyy"		},
-		{ type:"pre", 		class : "ft_pre", 	image : "format_pre.png", 		string : "pre", 	tags : "[pre]zzz[/pre]", 		replace_text: "zzz"		},
-		{ type:"table", 	class : "ft_table", image : "format_table.png", 	string : "table", 	tags : "[table][tr][td]ttt[/td][/tr][/table]", replace_text: "ttt",  versions:[' ', 'TAB','custom'], versions_string:'tableSeparator'},
+		{ type:"q", 		icon_class : "ft_q", 	image : "format_q.png", 		string : "q", 		tags : "[q]qqq[/q]", 			replace_text: "qqq",	alt: "f_quote2" },
+		{ type:"line_br", 	icon_class : "ft_br", 	image : "format_br.png", 		string : "br",		tags : "[br]",		 			},
+		{ type:"user_id", 	icon_class : "ft_uid", 	image : "format_user.png", 		string : "user", 	tags : "[userid=xxx]",  		replace_text: "xxx"		},
+		{ type:"kit_id", 	icon_class : "ft_kit", 	image : "format_kit.png", 		string : "kit",		tags : "[kitid=xxx]",  			replace_text: "xxx"		},
+		{ type:"article_id",icon_class : "ft_aid", 	image : "format_article.png", 	string : "article",	tags : "[articleid=xxx]", 		replace_text: "xxx"		},
+		{ type:"clock", 	icon_class : "ft_clock", image : "format_clock.png", 	string : "clock", 	tags : "time",  				replace_text: "time"	},
+		{ type:"spoiler", 	icon_class : "ft_spoiler",image : "format_spoiler.png",	string : "spoiler",	tags : "[spoiler]yyy[/spoiler]",replace_text: "yyy"		},
+		{ type:"pre", 		icon_class : "ft_pre", 	image : "format_pre.png", 		string : "pre", 	tags : "[pre]zzz[/pre]", 		replace_text: "zzz"		},
+		{ type:"table", 	icon_class : "ft_table", image : "format_table.png", 	string : "table", 	tags : "[table][tr][td]ttt[/td][/tr][/table]", replace_text: "ttt",  versions:[' ', 'TAB','custom'], versions_string:'tableSeparator'},
 	],
 
 	youthicons : [
-		{ type:"youth_player", 	class : "f_player", string : "youthplayerid", 	tags : "[youthplayerid=xxx]",  	replace_text: "xxx"	},
-		{ type:"youth_team", 	class : "f_team", 	string : "youthteamid",		tags : "[youthteamid=xxx]",  	replace_text: "xxx"	},
-		{ type:"youth_match", 	class : "f_match", 	string : "youthmatchid", 	tags : "[youthmatchid=xxx]",  	replace_text: "xxx"	},
-		{ type:"youth_series", 	class : "f_series", string : "youthseries",		tags : "[youthleagueid=xxx]",  	replace_text: "xxx"	},
+		{ type:"youth_player", 	icon_class : "f_player", string : "youthplayerid", 	tags : "[youthplayerid=xxx]",  	replace_text: "xxx"	},
+		{ type:"youth_team", 	icon_class : "f_team", 	string : "youthteamid",		tags : "[youthteamid=xxx]",  	replace_text: "xxx"	},
+		{ type:"youth_match", 	icon_class : "f_match", 	string : "youthmatchid", 	tags : "[youthmatchid=xxx]",  	replace_text: "xxx"	},
+		{ type:"youth_series", 	icon_class : "f_series", string : "youthseries",		tags : "[youthleagueid=xxx]",  	replace_text: "xxx"	},
 	],
 
 	othericons : [
-		{ type:"debug", 	class : "f_debug",		image : "format_debug.png", 	string : "debug", 		tags : "debug",		replace_text: "debug"},
-		{ type:"settings", 	class : "f_settings",	image : "format_settings.png", 	string : "settings", 	tags : "settings",	replace_text: "settings"},
+		{ type:"debug", 	icon_class : "f_debug",		image : "format_debug.png", 	string : "debug", 		tags : "debug",		replace_text: "debug"},
+		{ type:"settings", 	icon_class : "f_settings",	image : "format_settings.png", 	string : "settings", 	tags : "settings",	replace_text: "settings"},
 	],
 
 	run : function(doc) {
@@ -191,7 +191,7 @@ var FoxtrickForumYouthIcons = {
 					newimage.addEventListener( "click", this.addTagsClick, false);
 					newimage.setAttribute( "tags", this.icons[0].tags );
 					if ( this.icons[0].replace_text) newimage.setAttribute( "replace_text", this.icons[0].replace_text);
-					newimage.setAttribute( "class", this.icons[0].class);
+					newimage.setAttribute( "class", this.icons[0].icon_class);
 					newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/ht-ml/"+this.icons[0].image+"') !important;");
 					newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode."+this.icons[0].string);
 					toolbar.insertBefore( newimage, toolbar.getElementsByTagName('img')[0] );
@@ -206,7 +206,7 @@ var FoxtrickForumYouthIcons = {
 					newimage.addEventListener( "click", this.addTagsClick, false );
 					newimage.setAttribute( "tags", this.icons[i].tags);
 					if ( this.icons[i].replace_text) newimage.setAttribute( "replace_text", this.icons[i].replace_text);
-					newimage.setAttribute( "class", this.icons[i].class);
+					newimage.setAttribute( "class", this.icons[i].icon_class);
 					newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/ht-ml/"+this.icons[i].image+"') !important;");
 					newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode."+this.icons[i].string);
 
@@ -226,15 +226,15 @@ var FoxtrickForumYouthIcons = {
 							if ( this.icons[i].replace_text) link.setAttribute( "replace_text", this.icons[i].replace_text);
 							link.setAttribute('version', this.icons[i].versions[j]);
 							link.textContent = Foxtrickl10n.getString('ForumSpecialBBCode.'+this.icons[i].versions_string).replace(/%s/, this.icons[i].versions[j]);
-							link.setAttribute('parent_id', this.icons[i].class+'_id');
+							link.setAttribute('parent_id', this.icons[i].icon_class+'_id');
 							link.setAttribute('version_string', this.icons[i].versions_string);
 							item.appendChild(link);
 							list.appendChild(item);
 						}
 						newimage.setAttribute('title_raw', newimage.title);
 						newimage.title = newimage.title.replace(/%s/, FoxtrickPrefs.getString(this.icons[i].versions_string));
-						newimage.setAttribute('id', this.icons[i].class+'_id');
-						newimage.setAttribute('parent_id', this.icons[i].class+'_id');
+						newimage.setAttribute('id', this.icons[i].icon_class+'_id');
+						newimage.setAttribute('parent_id', this.icons[i].icon_class+'_id');
 						newimage.setAttribute('version', FoxtrickPrefs.getString(this.icons[i].versions_string));
 						newimage.setAttribute('version_string', this.icons[i].versions_string);
 
@@ -281,7 +281,7 @@ var FoxtrickForumYouthIcons = {
 						newimage.addEventListener( "click", this.addTagsClick, false );
 						newimage.setAttribute( "tags", this.othericons[i].tags);
 						if ( this.othericons[i].replace_text) newimage.setAttribute( "replace_text", this.othericons[i].replace_text);
-						newimage.setAttribute( "class", this.othericons[i].class);
+						newimage.setAttribute( "class", this.othericons[i].icon_class);
 						newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/ht-ml/"+this.othericons[i].image+"') !important;");
 						newimage.title = Foxtrickl10n.getString("ForumOtherIcons."+this.othericons[i].string);
 						otherbar.appendChild( newimage );
@@ -311,7 +311,7 @@ var FoxtrickForumYouthIcons = {
 						newimage.addEventListener( "click", this.addTagsClick, false );
 						newimage.setAttribute( "tags", this.youthicons[i].tags);
 						if ( this.youthicons[i].replace_text) newimage.setAttribute( "replace_text", this.youthicons[i].replace_text);
-						newimage.setAttribute( "class", this.youthicons[i].class);
+						newimage.setAttribute( "class", this.youthicons[i].icon_class);
 						newimage.setAttribute("style","margin:2px;");
 						newimage.title = Foxtrickl10n.getString("ForumYouthIcons."+this.youthicons[i].string);
 						youthbar.appendChild( newimage );
