@@ -8,7 +8,7 @@ var FoxtrickForumPreview = {
 	MODULE_NAME : "ForumPreview",
 	MODULE_AUTHOR : "spambot",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : ['forumWritePost','messageWritePost','guestbook','announcements','ads','newsletter','forumSettings',"forumModWritePost"],
+	PAGES : ['forumWritePost','messageWritePost','guestbook','announcements','newsletter','forumSettings',"forumModWritePost"],
 
 	_NEW_MESSAGE_WINDOW : 'ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody',
 	_MAIL_MESSAGE_WINDOW : 'ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtBody',
@@ -81,15 +81,6 @@ var FoxtrickForumPreview = {
 				target.setAttribute( "tabindex",  2);
 				index=3; /*index=5;*/
 				var msg_type = 3;
-			}
-		}
-		if (!target) {
-			target=doc.getElementById("ctl00_ctl00_CPContent_CPMain_btnCreateInsert");  // ads
-			if (target) {
-				msg_window.setAttribute( "tabindex",  1);
-				target.setAttribute( "tabindex",  2);
-				index=3; /*index=5;*/
-				var msg_type = 4;
 			}
 		}
 		if (!target) {
@@ -173,8 +164,6 @@ var FoxtrickForumPreview = {
 		while (div=divs[i++])
 			if (div.className=='HTMLToolbar')
 				break;
-		if (Foxtrick.isPage("ads", doc))
-			div = doc.getElementById('ctl00_ctl00_CPContent_CPMain_txtInsert');
 		if (Foxtrick.isPage("newsletter", doc))
 			div = doc.getElementById('ctl00_ctl00_CPContent_CPMain_txtMessage');
 		if (Foxtrick.isPage('mailnewsletter', doc))

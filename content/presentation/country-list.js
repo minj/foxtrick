@@ -8,7 +8,7 @@ var FoxtrickCountyList = {
 
 	MODULE_NAME : "CountryList",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : ['country', 'transferSearchForm', 'ads', 'press',
+	PAGES : ['country', 'transferSearchForm', 'press',
 		'statsTransfersBuyers', 'statsTeams', 'statsPlayers',
 		'statsRegions', 'statsNationalTeams', 'statsConfs', 'statsBookmarks',
 		'trainingStats', 'teamPage', 'teamPageBrowser', 'managerPage', 'statsArena',
@@ -26,9 +26,6 @@ var FoxtrickCountyList = {
 				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ddlBornIn', 1);
 			}
 			else if (Foxtrick.isPage("country", doc)) {
-				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues', 0);
-			}
-			else if (Foxtrick.isPage("ads", doc)) {
 				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues', 0);
 			}
 			else if (Foxtrick.isPage("press", doc)) {
@@ -71,9 +68,6 @@ var FoxtrickCountyList = {
 				this._activate(doc, 'ctl00_ctl00_CPContent_CPMain_ddlBornIn');
 			}
 			else if (Foxtrick.isPage("country", doc)) {
-				this._activate(doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues');
-			}
-			else if (Foxtrick.isPage("ads", doc)) {
 				this._activate(doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues');
 			}
 			else if (Foxtrick.isPage("press", doc)) {

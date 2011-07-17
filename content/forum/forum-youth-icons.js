@@ -137,7 +137,7 @@ var FoxtrickForumYouthIcons = {
 				anchor.style.height = '300px';
 		}
 		var toolbar = doc.getElementsByClassName("HTMLToolbar")[0];
-		if ((toolbar == null) && !Foxtrick.isPage("ads", doc))
+		if (toolbar == null)
 			return;
 		var toolbar_main = toolbar;
 

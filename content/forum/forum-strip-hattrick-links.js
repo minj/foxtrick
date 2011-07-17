@@ -8,7 +8,7 @@ var FoxtrickForumStripHattrickLinks = {
 
 	MODULE_NAME : "ForumStripHattrickLinks",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','ads','newsletter',"forumModWritePost","forumViewThread"),
+	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','newsletter',"forumModWritePost","forumViewThread"),
 	OPTIONS: new Array("NoConfirmStripping"),
 
 	onclick : function( ev ) {

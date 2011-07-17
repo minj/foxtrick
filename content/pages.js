@@ -98,7 +98,6 @@ Foxtrick.ht_pages = {
 	'cupmatches'                : '/World/Cup/CupMatches.aspx',
 	'cupoverview'               : '/World/Cup/?CupID=',
 	'election'                  : '/World/Elections/Default.aspx',
-	'ads'                       : '/Community/Ads/',
 	'denominations'             : '/Help/Rules/AppDenominations.aspx',
 	'help_contact'              : '/Help/Contact.aspx',
 	'statsBestgames'            : '/World/Stats/StatsBestgames.aspx',
