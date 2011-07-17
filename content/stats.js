@@ -1541,7 +1541,7 @@ stats["HattrickNations"] = {
   "img" : Foxtrick.ResourcePath+"resources/linkicons/HattrickNations.png",
   "title" : "Hattrick Nations",
 
-  "nationalteamlink" : { "path"       : "#/nations",
+  "nationalteamlink" : { "path"       : "",
                          "filters"    : [],
                          "params"     :  {"ntteamid":"ntteamid"}
                        },
