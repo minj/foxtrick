@@ -167,8 +167,6 @@ var FoxtrickHTMSPrediction = {
 			cell = row.insertCell(1); cell.textContent = winprob; cell.className = "left";
 			cell = row.insertCell(2); cell.textContent = drawprob; cell.className = "center";
 			cell = row.insertCell(3); cell.textContent = lossprob; cell.className = "right";
-
-			Foxtrick.startListenToChange (doc);
 		}
 		catch (e) {
 			Foxtrick.log(e);
