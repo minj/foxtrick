@@ -92,11 +92,9 @@ specifications:
   usually they mean what their names imply.
 # A property function init(), which will be run once as soon as FoxTrick is
   loaded. It is usually used to initialize the module.
-# A property function run(page, doc), which will be run on the pages specified
-  in the PAGES property. The parameter page is a string indicating the name
-  of the page, and the parameter doc is the document object of the HTML
-  document.
-# A property function change(page, doc), which is similar to run(), but is
+# A property function run(doc), which will be run on the pages specified
+  in the PAGES property. The parameter doc is the HTML document.
+# A property function change(doc), which is similar to run(), but is
   called whenever the DOM tree of the HTML document is modified.
 
 Generally speaking, all properties except the MODULE_NAME could be omitted.
@@ -186,3 +184,4 @@ Happy Hacking!
 Ryan Li <ryan@ryanium.com>
 26 June 2010
 Revised 11 June 2011
+Revised 17 July 2011

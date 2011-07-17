@@ -5,8 +5,8 @@
 * Modules that need to be initialized and register their page handlers
 * in the beginning.
 * Each should implement an init() method, which will be called only once.
-* And there should also be run(page, doc) and change(page, doc) functions,
-* which are called when the page is loaded or changed, respectively.
+* And there should also be run(doc) and change(doc) functions,
+* which are called when the document is loaded or changed, respectively.
 */
 
 if (!Foxtrick) var Foxtrick={};
