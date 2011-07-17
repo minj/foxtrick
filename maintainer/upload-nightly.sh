@@ -25,7 +25,7 @@ fi
 
 (cd ${SOURCE_DIR} && make DIST_TYPE=nightly) || exit 2
 
-REVISION=`cd ${SOURCE_DIR} && git svn find-rev master`
+REVISION=`cd ${SOURCE_DIR} && git svn find-rev HEAD`
 
 # modify update.rdf for Gecko
 cp update-template.rdf update.rdf
