@@ -13,7 +13,7 @@ var FoxtrickLinksTraining = {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "traininglink");
 	},
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		if (doc.location.href.search(/ChangeCoach/i)>-1 || doc.location.href.search(/YouthTraining/i)>-1) {return;}
 		//addExternalLinksToCoachPage
 
@@ -51,7 +51,7 @@ var FoxtrickLinksTraining = {
 
 					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 				}
-				Foxtrick.util.links.add( page, doc,ownBoxBody,
+				Foxtrick.util.links.add(doc, ownBoxBody,
 					this.MODULE_NAME,{"Coach":Coach,"TrainigIntensity":TI,"StaminaShare":STA,"TrainingType":TrainingType} );
 			}
 		}

@@ -16,7 +16,7 @@ var FoxtrickForumTemplates = {
 	_TEMPLATES_PREFLIST : "post_templates",
 	_NEW_MESSAGE_WINDOW : 'ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody',
 
-	run : function(page, doc) {
+	run : function(doc) {
 		if (Foxtrick.isPage("forumWritePost", doc)) {
 			FoxtrickForumTemplates._TEMPLATES_DIV_ID = "post_templates";
 			FoxtrickForumTemplates._TEMPLATES_PREFLIST = "post_templates";
