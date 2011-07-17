@@ -132,7 +132,7 @@ var FoxtrickRapidId = {
 		FoxtrickRapidId.displayForm(event.target.ownerDocument);
 	},
 
-	run: function(page, doc) {
+	run: function(doc) {
 		var rightnow = doc.getElementById("ctl00_ctl00_ucOngoingEvents_pnlOngoingEvents");
 		if (rightnow)
 			return;
