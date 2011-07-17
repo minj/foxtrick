@@ -45,7 +45,7 @@ CONTENT_FILES_FIREFOX = $(CONTENT_FILES) foxtrick.xul
 CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html background.js \
 	loader-chrome.js
 
-REVISION = `git svn find-rev master`
+REVISION = `git svn find-rev HEAD`
 
 DIST_TYPE = nightly
 
