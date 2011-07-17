@@ -9,7 +9,7 @@ var FoxtrickYouthPromotes = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["YouthPlayer"],
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		var daysToPromote = Foxtrick.Pages.YouthPlayer.getDaysToPromote(doc);
 		if (!isNaN(daysToPromote)) {
 			var message = "";

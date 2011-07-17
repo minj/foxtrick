@@ -10,17 +10,22 @@ var FoxtrickMyMonitor = {
 	PAGES : ["myhattrick", "dashboard", "teamPage", "youthoverview", "national"],
 	CSS : Foxtrick.ResourcePath + "resources/css/my-monitor.css",
 
-	run : function(page, doc) {
-		if (page == "myhattrick" || page == "dashboard")
-			FoxtrickMyMonitor.display(page, doc);
-		else if (page == "teamPage" || page == "youthoverview" || page == "national")
-			FoxtrickMyMonitor.showSidebar(page, doc);
+	run : function(doc) {
+		if (Foxtrick.isPage("myhattrick", doc)
+			|| Foxtrick.isPage("dashboard", doc)) {
+			FoxtrickMyMonitor.display(doc);
+		}
+		else if (Foxtrick.isPage("teamPage", doc)
+			|| Foxtrick.isPage("youthoverview", doc)
+			|| Foxtrick.isPage("national", doc)) {
+			FoxtrickMyMonitor.showSidebar(doc);
+		}
 	},
 
-	display : function(page, doc) {
-		if (page == "myhattrick")
+	display : function(doc) {
+		if (Foxtrick.isPage("myhattrick", doc))
 			var insertBefore = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlMain");
-		else if (page == "dashboard")
+		else if (Foxtrick.isPage("dashboard", doc))
 			var insertBefore = doc.getElementById("eventList").nextSibling;
 		var parent = insertBefore.parentNode;
 		
@@ -167,12 +172,12 @@ var FoxtrickMyMonitor = {
 		Foxtrick.map(teams, addTeam);
 	},
 
-	showSidebar : function(page, doc) {
-		if (page == "teamPage")
+	showSidebar : function(doc) {
+		if (Foxtrick.isPage("teamPage", doc))
 			var type = "senior";
-		else if (page == "youthoverview")
+		else if (Foxtrick.isPage("youthoverview", doc))
 			var type = "youth";
-		else if (page == "national")
+		else if (Foxtrick.isPage("national", doc))
 			var type = "nt";
 
 		var teams = FoxtrickMyMonitor.getSavedTeams(doc);

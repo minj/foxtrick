@@ -11,7 +11,7 @@ var FoxtrickGoalDifferenceToTables = {
 
 	CSS : Foxtrick.ResourcePath + "resources/css/goal-diff.css",
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		var tbl_goaldiff = (doc.getElementById("ft_goaldiff")!=null);
 		if (tbl_goaldiff) return;
 
@@ -49,10 +49,9 @@ var FoxtrickGoalDifferenceToTables = {
 		}
 	},
 
-	change : function( page, doc ) {
+	change : function(doc) {
 		var id = "ft_goaldiff";
-		if(!doc.getElementById(id)) {
-			this.run( page, doc );
-		}
+		if (!doc.getElementById(id))
+			this.run(doc);
 	}
 };

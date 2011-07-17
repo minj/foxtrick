@@ -16,7 +16,7 @@ Foxtrick.Ratings = {
 		this.initHtRatings();
 	},
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		var ratingsArray = Foxtrick.filter(Foxtrick.Ratings.OPTIONS, function(x) {
 			return x != "HatStatsSeparated";
 		});

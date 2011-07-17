@@ -11,7 +11,7 @@ var FoxtrickMarkAllAsRead = {
 	CSS : Foxtrick.ResourcePath + "resources/css/mark-all-as-read.css",
 	CSS_RTL : Foxtrick.ResourcePath + "resources/css/mark-all-as-read-rtl.css",
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var threads = doc.getElementsByClassName("threadItem");
 		if (threads.length == 0)
 			return; // no threads!

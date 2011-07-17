@@ -16,7 +16,7 @@ var FoxtrickManagerButtons = {
 	CHALLENGE_LINK_ID : "ctl00_ctl00_CPContent_CPSidebar_ucVisitorActions_lnkChallenge",
 	MAIL_LINK_ID: "ctl00_ctl00_CPContent_CPSidebar_ucVisitorActions_lnkMail",
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var ownTeamId = Foxtrick.Pages.All.getOwnTeamId(doc);
 		var teamId = Foxtrick.Pages.All.getTeamId(doc);
 
@@ -29,23 +29,23 @@ var FoxtrickManagerButtons = {
 			&& doc.getElementById(this.GUESTBOOK_LINK_ID) === null) {
 			if (!Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID)
 				&& Foxtrick.hasElement(doc, this.CHALLENGE_LINK_ID)
-				|| page === "youthoverview") {
-				this.addGuestBookLink(doc, page);
+				|| Foxtrick.isPage("youthoverview", doc)) {
+				this.addGuestBookLink(doc);
 			}
 		}
 	},
 
-	change : function(page, doc) {
-		this.run(page, doc);
+	change : function(doc) {
+		this.run(doc);
 	},
 
-	addGuestBookLink : function(doc, page) {
+	addGuestBookLink : function(doc) {
 		var teamId = Foxtrick.Pages.All.getTeamId(doc);
 
 		var isSupporter = false;
 
 		// first we check if the manager is a supporter
-		if (page === "managerPage") {
+		if (Foxtrick.isPage("managerPage", doc)) {
 			var sidebar = doc.getElementById("sidebar");
 			var sidebarlinks = sidebar.getElementsByTagName("a");
 			for (var i=0;i<sidebarlinks.length;++i) {
@@ -63,7 +63,7 @@ var FoxtrickManagerButtons = {
 				}
 			}
 		}
-		else if (page === "teamPage") {
+		else if (Foxtrick.isPage("teamPage", doc)) {
 			var sidebarlinks = doc.getElementById('sidebar').getElementsByTagName("a");
 			for (var i=0;i<sidebarlinks.length;++i) {
 				if (sidebarlinks[i].href.search(/Club\/HallOfFame/i)!=-1 ) {
@@ -72,7 +72,7 @@ var FoxtrickManagerButtons = {
 				}
 			}
 		}
-		else if (page === "youthoverview") {
+		else if (Foxtrick.isPage("youthoverview", doc)) {
 			isSupporter = true; // status unknown there. just add it anyways?
 		}
 

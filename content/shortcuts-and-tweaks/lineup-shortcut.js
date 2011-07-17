@@ -9,31 +9,22 @@ FoxtrickLineupShortcut = {
 	PAGES : ['playerdetail','statsBestgames','matchLineup', 'YouthPlayer'],
  	OPTIONS : ["HighlightPlayer"],
 
-	run : function(page, doc) {
-		switch (page) {
-		case 'playerdetail' :
+	run : function(doc) {
+		if (Foxtrick.isPage("playerdetail", doc))
 			this._Analyze_Player_Page(doc);
-			break;
-		case 'YouthPlayer' :
+		else if (Foxtrick.isPage("YouthPlayer", doc))
 			this._Analyze_Youth_Player_Page(doc);
-			break;
-		case 'statsBestgames':
+		else if (Foxtrick.isPage("statsBestgames", doc))
 			this._Analyze_Stat_Page(doc);
-			break;
-		case 'matchLineup':
+		else if (Foxtrick.isPage("matchLineup", doc))
 			this._Highlight_Player(doc);
-			break;
-		}
 	},
 
-	change : function(page, doc) {
+	change : function(doc) {
 		if (doc.getElementsByClassName("ft-lineup-cell").length > 0)
 			return;
-		switch (page) {
-		case 'statsBestgames':
+		if (Foxtrick.isPage("statsBestgames", doc))
 			this._Analyze_Stat_Page(doc);
-			break;
-		}
 	},
 
 	_Analyze_Player_Page : function(doc) {

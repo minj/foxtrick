@@ -10,7 +10,7 @@ var FoxtrickCrossTable = {
 	PAGES : ["fixtures"],
 	CSS : Foxtrick.ResourcePath + "resources/css/cross-table.css",
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var teams = [];
 		var getTeam = function(id) {
 			var existing = Foxtrick.filter(teams, function(n) { return n.id == id; })[0];

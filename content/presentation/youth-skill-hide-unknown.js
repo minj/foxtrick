@@ -10,7 +10,7 @@ var FoxtrickYouthSkillHideUnknown = {
 	PAGES : ["YouthPlayers"],
 	OPTIONS: ["HideUnknown", "HideMaximalKeyWord"],
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		// checks whether a table cell (<td> element) is unknown
 		var isUnknown = function(cell) {
 			return cell.getElementsByClassName("youthSkillBar").length == 0

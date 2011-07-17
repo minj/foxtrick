@@ -9,18 +9,19 @@ Foxtrick.AddClass = {
 	MODULE_NAME : "AddClass",
 	CORE_MODULE : true,
 	PAGES : ["playerdetail", "search", "bookmarks"],
+	NICE : -20,
 
-	run : function(page, doc) {
-		if (page == "playerdetail")
+	run : function(doc) {
+		if (Foxtrick.isPage("playerdetail", doc))
 			this.addDateForTl(doc);
-		else if (page == "search")
+		else if (Foxtrick.isPage("search", doc))
 			this.addDateForYouthLeagueSearch(doc);
-		else if (page == "bookmarks")
+		else if (Foxtrick.isPage("bookmarks", doc))
 			this.addDateForBookmarks(doc);
 	},
 
-	change : function(page, doc) {
-		this.run(page, doc);
+	change : function(doc) {
+		this.run(doc);
 	},
 
 	// add date class for youth league search

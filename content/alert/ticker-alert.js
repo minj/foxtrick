@@ -8,6 +8,7 @@ var FoxtrickTickerAlert = {
 	MODULE_NAME : "TickerAlert",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
 	PAGES : ["all"],
+	NICE : 20,
 
 	OPTION_FUNC : function(doc) {
 		var table = doc.createElement("table");
@@ -59,7 +60,7 @@ var FoxtrickTickerAlert = {
 		"others" : /.*/
 	},
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var getType = function(url) {
 			for (var type in FoxtrickTickerAlert.TYPES) {
 				var regexp = FoxtrickTickerAlert.TYPES[type];

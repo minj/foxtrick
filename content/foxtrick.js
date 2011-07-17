@@ -271,45 +271,26 @@ var FoxtrickMain = {
 			if (is_only_css_check)
 				return;
 
-			// We run the modules that want to be run at every page.
-			for (var i in Foxtrick.run_every_page) {
-				var module = Foxtrick.run_every_page[i];
-				if (typeof(module.run) == "function") {
-					try {
-						var begin = (new Date()).getTime();
-							module.run(doc);
-						var diff = (new Date()).getTime() - begin;
-						if (diff > 10) Foxtrick.log("Module time: ", diff, "ms | ", module.MODULE_NAME, "");
-					}
-					catch (e) {
-						Foxtrick.log("Error caught in module ", module.MODULE_NAME, ": ", e);
-					}
-				}
-			}
-
 			// call all modules that registered as page listeners
 			// if their page is loaded
-
-			// find current page index/name and run all handlers for this page
+			var modules = [];
+			// modules running on every page
+			for (var i in Foxtrick.run_every_page)
+				modules.push(Foxtrick.run_every_page[i]);
+			// modules running on current page
 			for (var page in Foxtrick.ht_pages) {
-				if (Foxtrick.isPage(Foxtrick.ht_pages[page], doc)) {
-					// on a specific page, run all handlers
-					for (var i in Foxtrick.run_on_page[page]) {
-						var module = Foxtrick.run_on_page[page][i];
-						if (typeof(module.run) == "function") {
-							try {
-								var begin = (new Date()).getTime();
-									module.run(page, doc);
-								var diff = (new Date()).getTime() - begin;
-								if (diff > 10) Foxtrick.log("Module time: ", diff, "ms | ", module.MODULE_NAME, "");
-							}
-							catch (e) {
-								Foxtrick.log("Error caught in module ", module.MODULE_NAME, ": ", e);
-							}
-						}
-					}
+				if (Foxtrick.isPage(page, doc)) {
+					for (var i in Foxtrick.run_on_page[page])
+						modules.push(Foxtrick.run_on_page[page][i]);
 				}
 			}
+
+			// invoke niceRun to run modules
+			Foxtrick.niceRun(modules, function(m) {
+				if (typeof(m.run) == "function")
+					return function() { m.run(doc); };
+			});
+
 			Foxtrick.dumpFlush(doc);
 		}
 		catch (e) {
@@ -322,42 +303,49 @@ var FoxtrickMain = {
 		if(!(FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(doc))
 			&& !FoxtrickPrefs.getBool("disableTemporary")) {
 
-			// call the modules that want to be run() on every hattrick page
-			Foxtrick.run_every_page.forEach(
-				function(fn) {
-					if (typeof(fn.change) == "function") {
-						try {
-							fn.change(doc, ev);
-						}
-						catch (e) {
-							Foxtrick.log("Error caught in module ", fn.MODULE_NAME, ": ", e);
-						}
-					}
-				});
-
-			// call all modules that registered as page listeners
-			// if their page is loaded
-
-			// find current page index/name and run all handlers for this page
-			for (var i in Foxtrick.ht_pages) {
-				if (Foxtrick.isPage(Foxtrick.ht_pages[i], doc)) {
-					// on a specific page, run all handlers
-					Foxtrick.run_on_page[i].forEach(
-						function(fn) {
-							if (typeof(fn.change) == "function") {
-								try {
-									fn.change(i, doc, ev);
-								}
-								catch (e) {
-									Foxtrick.log("Error caught in module ", fn.MODULE_NAME, ": ", e);
-								}
-							}
-						});
+			var modules = [];
+			// modules running on every page
+			for (var i in Foxtrick.run_every_page)
+				modules.push(Foxtrick.run_every_page[i]);
+			// modules running on current page
+			for (var page in Foxtrick.ht_pages) {
+				if (Foxtrick.isPage(page, doc)) {
+					for (var i in Foxtrick.run_on_page[page])
+						modules.push(Foxtrick.run_on_page[page][i]);
 				}
 			}
+
+			// invoke niceRun to run modules
+			Foxtrick.niceRun(modules, function(m) {
+				if (typeof(m.change) == "function")
+					return function() { m.change(doc, ev); };
+			});
+
 			Foxtrick.dumpFlush(doc);
 		}
 	}
+};
+
+/**
+ * Runs the specified function of each module in the array in the order
+ * of nice index
+ */
+Foxtrick.niceRun = function(modules, pick) {
+	modules = Foxtrick.unique(modules);
+	modules.sort(function(a, b) {
+		var aNice = a.NICE || 0;
+		var bNice = b.NICE || 0;
+		return aNice - bNice;
+	});
+	Foxtrick.map(modules, function(m) {
+		try {
+			if (typeof(pick(m)) == "function")
+				pick(m)();
+		}
+		catch (e) {
+			Foxtrick.log(e);
+		}
+	});
 };
 
 Foxtrick.version = function() {
@@ -366,7 +354,10 @@ Foxtrick.version = function() {
 };
 
 Foxtrick.isPage = function(page, doc) {
-	return Foxtrick.isPageHref(page, doc.location.href); 
+	if (Foxtrick.ht_pages[page])
+		return Foxtrick.isPageHref(Foxtrick.ht_pages[page], doc.location.href);
+	else
+		return false;
 }
 
 Foxtrick.isPageHref = function(page, href) {

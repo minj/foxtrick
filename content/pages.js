@@ -23,7 +23,7 @@ Foxtrick.ht_pages = {
 	'myhattrickAll'             : '/MyHattrick/|org/$|pl/$|ws/$',
 	'teamPageAny'               : '/Club/|/World/Series/Default.aspx',
 
-	'all'                       : '',
+	'all'                       : '.*',
 	'dashboard'                 : '/MyHattrick/Dashboard.aspx',
 	'playerdetail'              : '/Club/Players/Player.aspx',
 	'forum'                     : '/Forum/',

@@ -11,7 +11,7 @@
 	PAGES : new Array('forum'),
 	CSS : Foxtrick.ResourcePath + "resources/css/ht-thread.css",
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		this.ColorLatest(doc, "threadContent", "folderitem");
 
 		var myForums = doc.getElementById("content").getElementsByTagName('div')[0];
@@ -38,8 +38,8 @@
 		}
 	},
 
-	change : function( page, doc ) {
-		this.run(page, doc);
+	change : function(doc) {
+		this.run(doc);
 	},
 
 	ColorLatest : function (doc,id,classname) {

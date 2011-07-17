@@ -14,7 +14,7 @@ var FoxtrickLinksPlayerDetail = {
 		return Foxtrick.links.getOptionsHtml(doc, this, true, this.LINK_TYPES);
 	},
 
-	run : function(page, doc) {
+	run : function(doc) {
 		//addExternalLinksToPlayerDetail
 		var playerInfo = doc.getElementsByClassName("playerInfo")[0];
 		var infoTable = playerInfo.getElementsByTagName("table")[0];
@@ -153,6 +153,6 @@ var FoxtrickLinksPlayerDetail = {
 		}
 		if (added) Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, ownBoxId, "first", "");
 
-		Foxtrick.util.links.add(page, doc, ownBoxBody, this.MODULE_NAME, params);
+		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, params);
 	}
 };

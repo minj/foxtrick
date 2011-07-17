@@ -32,7 +32,7 @@ FoxtrickCurrencyConverter = {
 		return currencySelect;
 	},
 
-	run : function(page, doc) { 
+	run : function(doc) { 
 		// don't run on login and forum pages
 		if (Foxtrick.isLoginPage(doc) || doc.location.href.search(/Forum/i) != -1)
 			return;
@@ -57,8 +57,8 @@ FoxtrickCurrencyConverter = {
 		this.drawNewCurrency(doc, 'p', oldSymbol, oldLength, symbol, oldRate, rate, myReg, myDelReg);
 	},
 
-	change : function( page, doc ) {
-		this.run(page, doc);
+	change : function(doc) {
+		this.run(doc);
 	},
 
 	drawNewCurrency : function (doc, tagname, oldCurrencySymbol, oldSymbolLength, currencySymbol, currencyRate, currencyRateNewCurr, myReg, myDelReg) {

@@ -10,7 +10,7 @@ var FoxtrickLeagueNewsFilter = {
 	PAGES : new Array('league'),
 	RADIO_OPTIONS : new Array('all','friendlies','transfers','lineup_changes'),
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		var newsfeed = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLLUFeed");
 		var selectdiv=doc.createElement('div');
 		selectdiv.setAttribute('style','display:block');

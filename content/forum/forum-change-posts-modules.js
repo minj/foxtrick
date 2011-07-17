@@ -19,9 +19,10 @@ var FoxtrickFormatPostingText = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','ads','newsletter',"forumModWritePost"),
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		//format view
-		if (page=='messageWritePost' || page=='guestbook') {
+		if (Foxtrick.isPage("messageWritePost", doc)
+			|| Foxtrick.isPage("guestbook", doc)) {
 			try{
 				var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
 				var rep = new Array("<pre>$1</pre>", "");

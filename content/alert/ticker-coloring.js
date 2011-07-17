@@ -10,7 +10,7 @@ var FoxtrickTickerColoring = {
 	PAGES : ["all"],
 	CSS : Foxtrick.ResourcePath + "resources/css/ticker-coloring.css",
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var ticker = doc.getElementById("ticker");
 
 		var update = function() {

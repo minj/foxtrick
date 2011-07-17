@@ -12,7 +12,7 @@ var FoxtrickReadHtPrefs = {
 
 	menu_strings: new Array('MyHattrick','MyClub','World','Forum','Shop','Help'),
 
-	run : function(page, doc) {
+	run : function(doc) {
 		this.readLanguage(doc);
 		this.readOthers(doc);
 	},

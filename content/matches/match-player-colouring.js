@@ -7,13 +7,12 @@ var FoxtrickMatchPlayerColouring = {
 	MODULE_NAME : "MatchPlayerColouring",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ["match", "playerdetail"],
-	ONPAGEPREF_PAGE : "match",
 	OPTIONS : ["SeparateOwnPlayerColors"],
 
 	CSS : Foxtrick.ResourcePath + "resources/css/match-player-colouring.css",
 
-	run : function(page, doc) {
-		if (page == "playerdetail") {
+	run : function(doc) {
+		if (Foxtrick.isPage("playerdetail", doc)) {
 			this.addHighlightParam(doc);
 			return;
 		}
@@ -137,10 +136,9 @@ var FoxtrickMatchPlayerColouring = {
 		},FoxtrickMatchPlayerColouring);
 	},
 
-	change : function(page, doc) {
-		if (page == "playerdetail") {
+	change : function(doc) {
+		if (Foxtrick.isPage("playerdetail", doc))
 			this.addHighlightParam(doc);
-		}
 	},
 
 	// add match report highlight links to playerdetails

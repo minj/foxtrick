@@ -10,7 +10,7 @@ var FoxtrickMatchIncome = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['match'],
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var sidebar = doc.getElementById('sidebar');
 		var sidebarBoxes = sidebar.getElementsByClassName('sidebarBox');
 		var isSoldSeats = function(n) {

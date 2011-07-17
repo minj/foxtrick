@@ -8,12 +8,13 @@ var FoxtrickLocalTime = {
 	MODULE_NAME : "LocalTime",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all_late"],
+	NICE : -10,
 	CSS : Foxtrick.ResourcePath + "resources/css/local-time.css",
 	CSS_SIMPLE: Foxtrick.ResourcePath + "resources/css/local-time-simple.css",
 	CSS_RTL : Foxtrick.ResourcePath + "resources/css/local-time-rtl.css",
 	CSS_SIMPLE_RTL: Foxtrick.ResourcePath + "resources/css/local-time-simple-rtl.css",
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var time = doc.getElementById("time");
 		// icon for Hattrick time zone
 		var htTimeIcon = doc.createElement("img");
@@ -65,7 +66,7 @@ var FoxtrickLocalTime = {
 		FoxtrickLocalTime.updatePage(doc);
 	},
 
-	change : function(page, doc) {
+	change : function(doc) {
 		FoxtrickLocalTime.updatePage(doc);
 	},
 	

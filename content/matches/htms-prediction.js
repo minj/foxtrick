@@ -10,7 +10,7 @@ var FoxtrickHTMSPrediction = {
 	PAGES : new Array('match'),
 	CSS : Foxtrick.ResourcePath + "resources/css/htms-statistics.css",
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		var isprematch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch")!=null);
 		if (isprematch) return;
 

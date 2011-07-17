@@ -10,7 +10,7 @@ var FoxtrickCopyRatings = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var isprematch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch") !== null);
 		if (isprematch) {
 			return;

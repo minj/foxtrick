@@ -9,13 +9,13 @@ var FoxtrickSeasonStats = {
 
 	MODULE_NAME : "SeasonStats",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : new Array('matchesarchiv','matches'),
-	ONPAGEPREF_PAGE : 'matchesarchiv',
+	PAGES : ['matchesarchiv','matches'],
+	NICE : -1,
 	CSS: Foxtrick.ResourcePath+"resources/css/seasonstats.css",
 
 	_season:-1,
 
-	run : function(page, doc) {
+	run : function(doc) {
 		// ----------------------------- season select box ---------------------------------
 
 		// get current season

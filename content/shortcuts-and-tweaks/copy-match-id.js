@@ -11,10 +11,14 @@ var FoxtrickCopyMatchID = {
  	PAGES : new Array('matches','matchesarchiv','matcheshistory',
 					'matchesLatest','arena','matchLineup','match'),
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		var count = 0;
 
-		if (page=='matchesarchiv' || page =='matches' || page =='matcheshistory' || page =='matchesLatest'||page=='arena') {
+		if (Foxtrick.isPage("matchesarchiv", doc)
+			|| Foxtrick.isPage("matches", doc)
+			|| Foxtrick.isPage("matcheshistory", doc)
+			|| Foxtrick.isPage("matchesLatest", doc)
+			|| Foxtrick.isPage("arena", doc)) {
 			var cells = doc.getElementById('mainBody').getElementsByTagName('td');
 			for (var i = 0; i < cells.length; i++) {
 				// nested table check
@@ -50,8 +54,8 @@ var FoxtrickCopyMatchID = {
 				}
 			}
 		}
-		else if (page=='matchLineup'||page=='match')
-			{
+		else if (Foxtrick.isPage("matchLineup", doc)
+			|| Foxtrick.isPage("match", doc)) {
 			var images = doc.getElementById('mainBody').getElementsByTagName('img');
 			for (var i = 0; i < images.length; i++) {
 				if (images[i].className.search(/matchLeague|matchFriendly|matchMasters|matchCup|matchQualification/)==-1) continue;

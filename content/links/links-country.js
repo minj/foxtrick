@@ -13,7 +13,7 @@ var FoxtrickLinksCountry = {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "countrylink");
 	},
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		//addExternalLinksToCountryDetail
 		var ownBoxBody=null;
 		var countryid;
@@ -48,6 +48,6 @@ var FoxtrickLinksCountry = {
 
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		}
-		Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid } );
+		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid });
 	}
 };

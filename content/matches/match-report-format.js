@@ -11,7 +11,7 @@ FoxtrickMatchReportFormat = {
 
 	CSS : Foxtrick.ResourcePath + "resources/css/match-report.css",
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var isarchivedmatch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_lblMatchInfo")==null);
 		if (!isarchivedmatch) return;
 

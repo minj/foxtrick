@@ -4,7 +4,7 @@
  * @author taised, ryanli
  */
 ////////////////////////////////////////////////////////////////////////////////
-FoxtrickSmallerPages = {
+var FoxtrickSmallerPages = {
 
 	MODULE_NAME : "SmallerPages",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
@@ -13,7 +13,7 @@ FoxtrickSmallerPages = {
 
 	TABLE_ID : "foxtrick-smaller-pages-table",
 
-	run : function(page, doc) {
+	run : function(doc) {
 		if (!Foxtrick.isSupporter(doc)) {
 			// if the advertisement at the right side is blocked,
 			// non suppoters will still see a blank space on the right
@@ -39,7 +39,7 @@ FoxtrickSmallerPages = {
 				}
 			}
 		}
-		if (page == "playerdetail") {
+		if (Foxtrick.isPage("playerdetail", doc)) {
 			if (!doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucPlayerFace_pnlAvatar')) {
 				doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlplayerInfo').style.width = "auto";
 			}
@@ -53,15 +53,15 @@ FoxtrickSmallerPages = {
 				this._adjust_bid( doc );
 			}
 		}
-		else if (page == "youthoverview") {
+		else if (Foxtrick.isPage("youthoverview", doc)) {
 			if (!doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucScoutProposalFace_pnlAvatar')) {
 				doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanel1').getElementsByTagName('div')[0].style.width = "auto";
 			}
 		}
 	},
 
-	change : function(page, doc) {
-		this.run(page, doc);
+	change : function(doc) {
+		this.run(doc);
 	},
 
 	_move_bid : function(doc) {

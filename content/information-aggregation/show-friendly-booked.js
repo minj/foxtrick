@@ -10,13 +10,14 @@ var FoxtrickShowFriendlyBooked = {
 	PAGES : ["league"],
 	OPTIONS : new Array("OnDemand"),
 	
-	run : function(page, doc) {
-		if (Foxtrick.isModuleFeatureEnabled(this, "OnDemand")) this.AddOnDemand(doc);
-		else this.AddFriendlies(doc);
+	run : function(doc) {
+		if (Foxtrick.isModuleFeatureEnabled(this, "OnDemand"))
+			this.AddOnDemand(doc);
+		else
+			this.AddFriendlies(doc);
 	},
 	
 	AddOnDemand : function(doc) {
-	  try {
 		var gametype_span = doc.getElementById("ctl00_ctl00_CPContent_CPMain_hlAllGames");
 		var span = doc.createElement('span');
 		span.setAttribute('id','ShowFriendliesLinkId');
@@ -27,7 +28,6 @@ var FoxtrickShowFriendlyBooked = {
 		Foxtrick.addEventListenerChangeSave(a, 'click', FoxtrickShowFriendlyBooked.Show, false);
 		span.appendChild(a);
 		gametype_span.parentNode.parentNode.insertBefore(span,gametype_span.parentNode);
-	  } catch(e) { Foxtrick.log(e);}
 	},
 
 	Show : function(ev) {

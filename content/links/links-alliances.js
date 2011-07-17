@@ -14,9 +14,7 @@ var FoxtrickLinksAlliances = {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "federationlink");
 	},
 
-	run : function( page, doc ) {
-		//addExternalLinksToArenaPage
-
+	run : function(doc) {
 		var alldivs = doc.getElementsByTagName('div');
 		var ownBoxBody=null;
 		for (var j = 0; j < alldivs.length; j++) {
@@ -42,7 +40,7 @@ var FoxtrickLinksAlliances = {
 
 					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 					}
-				Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "AllianceID" : allianceId} );
+				Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,{ "AllianceID" : allianceId});
 				break;
 			}
 		}

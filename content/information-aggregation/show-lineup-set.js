@@ -11,7 +11,7 @@ var FoxtrickShowLineupSet = {
 	PAGES : ["league"],
 	OPTIONS : ["LineupSet", "Ownerless", "Winning"],
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var lineupSet = [];
 		var bots = [];
 

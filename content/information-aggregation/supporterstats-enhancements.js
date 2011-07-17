@@ -8,7 +8,7 @@ FoxtrickSupporterStatsEnhancements = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["StatsSquad"],
 
-	run : function(page, doc) {
+	run : function(doc) {
 		// get selected teamid
 		var teamid=0;
 		var options = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlTeams').getElementsByTagName('option');

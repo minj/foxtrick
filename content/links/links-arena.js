@@ -14,9 +14,7 @@ var FoxtrickLinksArena = {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "arenalink");
 	},
 
-	run : function( page, doc ) {
-		//addExternalLinksToArenaPage
-
+	run : function(doc) {
 		var alldivs = doc.getElementsByTagName('div');
 		var ownBoxBody=null;
 		for (var j = 0; j < alldivs.length; j++) {
@@ -43,10 +41,11 @@ var FoxtrickLinksArena = {
 
 					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 				}
-				Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME ,{ "terraces" : Foxtrick.trimnum(arenaTable.rows[3].cells[1].textContent),
-											"basic": Foxtrick.trimnum(arenaTable.rows[4].cells[1].textContent),
-											"roof" : Foxtrick.trimnum(arenaTable.rows[5].cells[1].textContent),
-											"vip" : Foxtrick.trimnum(arenaTable.rows[6].cells[1].textContent),  });
+				Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME, {
+					"terraces" : Foxtrick.trimnum(arenaTable.rows[3].cells[1].textContent),
+					"basic": Foxtrick.trimnum(arenaTable.rows[4].cells[1].textContent),
+					"roof" : Foxtrick.trimnum(arenaTable.rows[5].cells[1].textContent),
+					"vip" : Foxtrick.trimnum(arenaTable.rows[6].cells[1].textContent)});
 
 				break;
 			}

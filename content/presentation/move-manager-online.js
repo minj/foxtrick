@@ -9,7 +9,7 @@ var FoxtrickMoveManagerOnline= {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["region"],
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var mainBody = doc.getElementById("mainBody");
 		var mainBoxes = mainBody.getElementsByClassName("mainBox");
 		// consider managerBox as the last mainBox

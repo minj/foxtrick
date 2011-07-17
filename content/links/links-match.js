@@ -14,7 +14,7 @@ var FoxtrickLinksMatch = {
 		return Foxtrick.links.getOptionsHtml(doc, this, true, this.LINK_TYPES);
 	},
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		// get ids
 		var youthmatch = FoxtrickHelper.findIsYouthMatch(doc.location.href);
 		var teamid,teamid2;
@@ -80,10 +80,10 @@ var FoxtrickLinksMatch = {
 		if (isarchivedmatch) {
 			var prefset=this.MODULE_NAME+".played";
 			if (youthmatch) {prefset=this.MODULE_NAME+".youth.played";}
-			Foxtrick.util.links.add( page, doc,ownBoxBody,prefset,{ "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  });
+			Foxtrick.util.links.add(doc,ownBoxBody,prefset,{ "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  });
 		}
 		if (!isarchivedmatch && !youthmatch) {
-			Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME+".coming" ,{ "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  });
+			Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME+".coming" ,{ "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  });
 		}
 	}
 };

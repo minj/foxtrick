@@ -27,17 +27,20 @@ var FoxtrickForumStripHattrickLinks = {
 		}
 	},
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		doc.getElementById('mainBody').addEventListener('click',this.onclick,true);
-		if (page=='forumViewThread') return;
+		if (Foxtrick.isPage("forumViewThread", doc))
+			return;
 
 		var targets = doc.getElementById('mainBody').getElementsByTagName("input");  // Forum
 		var target = targets[targets.length-1];
-		if (page=='forumWritePost') target = targets[targets.length-2];
-		if (page=='guestbook') target = targets[1];
+		if (Foxtrick.isPage("forumWritePost", doc))
+			target = targets[targets.length-2];
+		if (Foxtrick.isPage("guestbook", doc))
+			target = targets[1];
 
-		//if (target) Foxtrick.log(target.value+'\n');
-		if (target) target.addEventListener("click", this.submitListener, false);
+		if (target)
+			target.addEventListener("click", this.submitListener, false);
 	},
 
 	strip : function(string) {

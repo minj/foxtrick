@@ -9,7 +9,7 @@ var FoxtrickLargeFlags = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail'),
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var faceCard = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ucPlayerFace_pnlAvatar");
 		if (!faceCard) {
 			// if player faces aren't shown, remain with tiny flags

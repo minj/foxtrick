@@ -13,11 +13,11 @@ var FoxtrickLinksTeam = {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "teamlink");
 	},
 
-	run : function( page, doc ) {
-		this.AddLinksRight(page,doc);
+	run : function(doc) {
+		this.AddLinksRight(doc);
 	},
 
-	AddLinksRight : function( page, doc ) {
+	AddLinksRight : function(doc) {
 		if (!this.isTeamPage(doc)) {return;}
 		var alldivs = doc.getElementsByTagName('div');
 		var ownBoxBody=null;
@@ -42,7 +42,7 @@ var FoxtrickLinksTeam = {
 				break;
 			}
 		}
-		Foxtrick.util.links.add(page, doc,ownBoxBody,this.MODULE_NAME,teaminfo);
+		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,teaminfo);
 	},
 
 	isTeamPage : function(doc) {

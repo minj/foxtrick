@@ -61,10 +61,10 @@ var FoxtrickSkillTable = {
 		return fullType;
 	},
 
-	run : function(page, doc) {
+	run : function(doc) {
 		if (doc.getElementById("ft_skilltablediv"))
 			return;
-		if (page !== "transferSearchResult"
+		if (Foxtrick.isPage("transferSearchResult", doc)
 			&& !this.getFullType(doc).subtype === "own"
 			&& !Foxtrick.isModuleFeatureEnabled(this, "OtherTeams")) {
 			return;
@@ -72,8 +72,8 @@ var FoxtrickSkillTable = {
 		FoxtrickSkillTable.addTableDiv(doc);
 	},
 
-	change : function(page, doc) {
-		this.run(page, doc);
+	change : function(doc) {
+		this.run(doc);
 	},
 
 	AddHomegrown : function(ev) {

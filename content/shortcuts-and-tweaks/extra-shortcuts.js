@@ -25,7 +25,7 @@ var FoxtrickExtraShortcuts = {
 	OPTIONS_CSS_RTL: [ Foxtrick.ResourcePath+"resources/css/extra-shortcuts-space-rtl.css"],
 	OPTIONS_CSS_RTL_SIMPLE: [ Foxtrick.ResourcePath+"resources/css/extra-shortcuts-space-rtl-simple.css"],
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		var shortcuts = doc.getElementById ( 'shortcuts' );
 		if (!shortcuts) return;
 		var targetNode = doc.getElementById ( 'shortcuts' ).getElementsByTagName('div');

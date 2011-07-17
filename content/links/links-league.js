@@ -14,7 +14,7 @@ var FoxtrickLinksLeague = {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "leaguelink");
 	},
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		//addExternalLinksToLeagueDetail
 		var alldivs = doc.getElementsByTagName('div');
 		var ownBoxBody=null;
@@ -57,7 +57,7 @@ var FoxtrickLinksLeague = {
 
 					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 				}
-				Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid,
+				Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid,
 					"leagueid": leagueid, "levelnum" : levelnum,
 					"seriesnum": seriesnum,	"leaguename" : leaguename} );
 				break;

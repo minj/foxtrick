@@ -13,8 +13,7 @@ var FoxtrickLinksCoach = {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "coachlink");
 	},
 
-	run : function( page, doc ) {
-		//addExternalLinksToCoachPage
+	run : function(doc) {
 		var links = Foxtrick.LinkCollection.getLinks("coachlink", {  }, doc, this);
 		var ownBoxBody=null;
 
@@ -33,6 +32,6 @@ var FoxtrickLinksCoach = {
 
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 			}
-		Foxtrick.util.links.add(page, doc,ownBoxBody,this.MODULE_NAME ,{});
+		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
 };

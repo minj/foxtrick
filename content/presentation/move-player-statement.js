@@ -10,7 +10,7 @@ var FoxtrickMovePlayerStatement = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail','YouthPlayer'),
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		var contentSpeak = "";
 		var elems = doc.getElementsByTagName("em");
 		for(var i=0; i < elems.length; i++) {

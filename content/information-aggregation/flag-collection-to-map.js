@@ -117,7 +117,7 @@ FoxtrickFlagCollectionToMap = {
 		this.setupCountryCodes();
 	},
 
-	run : function(page, doc) {
+	run : function(doc) {
 
 		this.own_countryid = FoxtrickHelper.getOwnCountryId();
 

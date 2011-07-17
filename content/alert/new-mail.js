@@ -12,7 +12,7 @@ var FoxtrickNewMail = {
 
 	CSS : Foxtrick.ResourcePath + "resources/css/new-mail.css",
 
-	run : function(page, doc) {
+	run : function(doc) {
 		Foxtrick.sessionGet("mailCount", function(oldMailCount) {
 			Foxtrick.sessionGet("forumCount", function(oldForumCount) {
 				if (isNaN(oldMailCount))

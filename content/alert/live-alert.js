@@ -13,11 +13,11 @@ var FoxtrickLiveAlert = {
 
 	store : {},
 
-	run : function(page, doc) {
+	run : function(doc) {
 		this.alert(doc);
 	},
 
-	change : function(page, doc) {
+	change : function(doc) {
 		this.alert(doc);
 	},
 

@@ -78,7 +78,7 @@ var FoxtrickStaffMarker = {
 			} catch(e){Foxtrick.log(e);}
 		},
 
-	run : function(page, doc) {
+	run : function(doc) {
 		this.getHty(function(hty) {	
 			try {
 			// getting user-defined IDs and colors
@@ -134,21 +134,17 @@ var FoxtrickStaffMarker = {
 					Foxtrick.addClass(object, "ft-staff-chpp-holder");
 				}
 			};
-			switch(page) {
-				case "forumViewThread":
+			if (Foxtrick.isPage("forumViewThread", doc)) {
+				FoxtrickStaffMarker._MarkAliases_thread(doc, modifier);
+				FoxtrickStaffMarker._MarkAliases_select(doc, modifier);
+			}
+			else if (Foxtrick.isPage("forumWritePost", doc)) {
+				FoxtrickStaffMarker._MarkAliases_select(doc, modifier);
+			}
+			else if (Foxtrick.isPage("teamPage", doc)) {
+				if (Foxtrick.isModuleFeatureEnabled(FoxtrickStaffMarker, "manager")) {
 					FoxtrickStaffMarker._MarkAliases_thread(doc, modifier);
-					FoxtrickStaffMarker._MarkAliases_select(doc, modifier);
-				break;
-
-				case "forumWritePost":
-					FoxtrickStaffMarker._MarkAliases_select(doc, modifier);
-				break;
-
-				case "teamPage":
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickStaffMarker, "manager")) {
-						FoxtrickStaffMarker._MarkAliases_thread(doc, modifier);
-					}
-				break;
+				}
 			}
 		} catch(e){Foxtrick.log(e);}	
 		});

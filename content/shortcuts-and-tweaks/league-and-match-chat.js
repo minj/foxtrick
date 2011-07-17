@@ -13,7 +13,7 @@ var FoxtrickLeagueAndMatchChat = {
 	OPTION_TEXTS_DISABLED_LIST : [true,true,true,false],
 	server:null,
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		var icon="http://hattrick.org/App_Themes/Simple/logo_green.png";
 		var icon2 = "http://hattrick.org/favicon.ico";
 
@@ -24,7 +24,7 @@ var FoxtrickLeagueAndMatchChat = {
 			&& FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "ChatNick_text")!='')
 			nick = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "ChatNick_text");
 
-		if (page=='league') {
+		if (Foxtrick.isPage("league", doc)) {
 			var id=doc.location.href.replace(/.+leagueLevelUnitID=/i, "").match(/^\d+/)[0];
 			var channel = "hattrick.org/league"+id;
 			var popupid =  "hattrick_org_league_"+id;
@@ -41,7 +41,7 @@ var FoxtrickLeagueAndMatchChat = {
 			var sidebox_p = doc.getElementById('sidebar').getElementsByTagName('p')[0].parentNode;
 			sidebox_p.appendChild(a);
 		}
-		else if (page=='youthleague') {
+		else if (Foxtrick.isPage("youthleague", doc)) {
 			var id = doc.location.href.replace(/.+YouthLeagueId=/i, "").match(/^\d+/)[0];
 			var channel = "hattrick.org/youthleague"+id;
 			var popupid =  "hattrick_org_youthleague_"+id;
@@ -58,7 +58,7 @@ var FoxtrickLeagueAndMatchChat = {
 			var sidebox_p = doc.getElementById('sidebar').getElementsByTagName('p')[0].parentNode;
 			sidebox_p.appendChild(a);
 		}
-		else if (page=='match') {
+		else if (Foxtrick.isPage("match", doc)) {
 			var id = doc.location.href.replace(/.+matchID=/i, "").match(/^\d+/)[0];
 			var channel = "hattrick.org/match" + id;
 			var popupid =  "hattrick_org_match_"+id;
@@ -76,7 +76,8 @@ var FoxtrickLeagueAndMatchChat = {
 			date.appendChild(doc.createTextNode(' '));
 			date.appendChild(a);
 		}
-		else if (page=='cupoverview' || page=='cupmatches') {
+		else if (Foxtrick.isPage("cupoverview", doc)
+			|| Foxtrick.isPage("cupmatches", doc)) {
 			var id = doc.location.href.replace(/.+CupID=/i, "").match(/^\d+/)[0];
 			var channel = "hattrick.org/nationalcup" + id;
 			var popupid =  "hattrick_org_nationalcup_"+id;
@@ -95,7 +96,7 @@ var FoxtrickLeagueAndMatchChat = {
 			var h1 = doc.getElementById('mainBody').getElementsByTagName('h1')[0];
 			h1.parentNode.insertBefore(p,h1.nextSibling);
 		}
-		else if (page=='federation') {
+		else if (Foxtrick.isPage("federation", doc)) {
 			var id = doc.location.href.replace(/.+AllianceID=/i, "").match(/^\d+/)[0];
 			var channel = "hattrick.org/federation" + id;
 			var popupid =  "hattrick_org_federation_"+id;

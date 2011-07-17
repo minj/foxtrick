@@ -9,7 +9,7 @@ var FoxtrickPersonalityImages = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array("playerdetail", "training"),
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var skills = doc.getElementsByClassName("skill");
 		for (var j = 0; j < skills.length; ++j) {
 			var skill = skills[j];

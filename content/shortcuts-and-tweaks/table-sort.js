@@ -8,11 +8,11 @@
 var FoxtrickTableSort = {
 	MODULE_NAME : "TableSort",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('forumViewThread','all_late'),
+	PAGES : new Array('all_late'),
 	CSS : Foxtrick.ResourcePath + "resources/css/tableSort.css",
 
-	run : function( page, doc ) {
-		if (page=='forumViewThread') {
+	run : function(doc) {
+		if (Foxtrick.isPage("forumViewThread", doc)) {
 			var tables = doc.getElementsByClassName("htMlTable");
 		}
 		else {

@@ -11,7 +11,7 @@ var FoxtrickNtPeek = {
 	PAGES : ["country"],
 	CSS : Foxtrick.ResourcePath + "resources/css/nt-peek.css",
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var buildContainer = function(team, id, isNt) {
 			var buildTeamHeader = function() {
 				var header = doc.createElement("h2");
@@ -52,12 +52,6 @@ var FoxtrickNtPeek = {
 		var container = doc.createElement("div");
 		container.className = "ft-nt-peek";
 		insertBefore.parentNode.insertBefore(container, insertBefore);
-		// title (only at My Hattrick page)
-		if (page == "myhattrick") {
-			var title = doc.createElement("h1");
-			title.textContent = Foxtrickl10n.getString("ntpeek.title");
-			container.appendChild(title);
-		}
 
 		// NT container
 		var ntContainer = buildContainer(ntName, ntId, true);

@@ -9,7 +9,6 @@ var FoxtrickHeaderFix = {
 	MODULE_NAME : "HeaderFix",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('match','arena'),
-	ONPAGEPREF_PAGE : 'all',
 	OPTIONS : new Array("FixLeft","RemoveFlicker"),
 	CSS_SIMPLE : Foxtrick.ResourcePath+"resources/css/headerfix.css",
 	CSS: Foxtrick.ResourcePath+"resources/css/headerfix_std.css",
@@ -23,20 +22,23 @@ var FoxtrickHeaderFix = {
 		else FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", false );
 	},
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		if (doc.location.href.search(/isYouth/i)!=-1) return;
 
+		var isArena = Foxtrick.isPage("arena", doc);
+		var isMatch = Foxtrick.isPage("match", doc);
+
 		var ctl00_ctl00_CPContent_CPMain_pnl = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch");
-		if (page=='arena')  ctl00_ctl00_CPContent_CPMain_pnl = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlMain");
+		if (isArena)  ctl00_ctl00_CPContent_CPMain_pnl = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlMain");
 		var ctl00_ctl00_CPContent_CPMain_pnlTeamInfo = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlTeamInfo");
 		var ctl00_ctl00_CPContent_CPMain_pnlArenaFlash = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlArenaFlash");
 
 		// check right page and is supporter
-		if (page=='match' && (!ctl00_ctl00_CPContent_CPMain_pnl || !ctl00_ctl00_CPContent_CPMain_pnlTeamInfo)) return;
-		if (page=='arena' && !ctl00_ctl00_CPContent_CPMain_pnl) return;
+		if (isMatch && (!ctl00_ctl00_CPContent_CPMain_pnl || !ctl00_ctl00_CPContent_CPMain_pnlTeamInfo)) return;
+		if (isArena && !ctl00_ctl00_CPContent_CPMain_pnl) return;
 		if (!ctl00_ctl00_CPContent_CPMain_pnlArenaFlash) return;
 
-		if (page=='arena' && ctl00_ctl00_CPContent_CPMain_pnl.getElementsByTagName('h1').length > 1) return; // don't move if arena is under constriction
+		if (isArena && ctl00_ctl00_CPContent_CPMain_pnl.getElementsByTagName('h1').length > 1) return; // don't move if arena is under constriction
 
 		// get some divs to move
 		var arenaInfo = ctl00_ctl00_CPContent_CPMain_pnlArenaFlash.nextSibling;
@@ -57,7 +59,7 @@ var FoxtrickHeaderFix = {
 		}
 
 		// move or delete seperator
-		if (separator && (page=='match' || !Foxtrick.isStandardLayout(doc))) {
+		if (separator && (isMatch || !Foxtrick.isStandardLayout(doc))) {
 			separator = ctl00_ctl00_CPContent_CPMain_pnl.removeChild(separator);
 			ctl00_ctl00_CPContent_CPMain_pnl.appendChild(separator);
 		}
@@ -66,7 +68,7 @@ var FoxtrickHeaderFix = {
 			arenaInfo = ctl00_ctl00_CPContent_CPMain_pnl.removeChild(arenaInfo);
 			ctl00_ctl00_CPContent_CPMain_pnl.appendChild(arenaInfo);
 			var margin;
-			if (page=='arena') margin='margin-right:18px';
+			if (isArena) margin='margin-right:18px';
 			else margin='';
 			if (Foxtrick.isStandardLayout(doc)) arenaInfo.setAttribute('style','float:right !important;');
 			else arenaInfo.setAttribute('style','float:right !important; width:190px !important;'+margin);
@@ -76,7 +78,7 @@ var FoxtrickHeaderFix = {
 		ctl00_ctl00_CPContent_CPMain_pnlArenaFlash = ctl00_ctl00_CPContent_CPMain_pnl.removeChild(ctl00_ctl00_CPContent_CPMain_pnlArenaFlash);
 		ctl00_ctl00_CPContent_CPMain_pnl.appendChild(ctl00_ctl00_CPContent_CPMain_pnlArenaFlash);
 		ctl00_ctl00_CPContent_CPMain_pnlArenaFlash.setAttribute('style','margin-top:25px;');
-		if (page=='arena') 	ctl00_ctl00_CPContent_CPMain_pnlArenaFlash.setAttribute('style','margin-top:25px; margin-left:-8px !important; margin-right:-3px !important;');
+		if (isArena) 	ctl00_ctl00_CPContent_CPMain_pnlArenaFlash.setAttribute('style','margin-top:25px; margin-left:-8px !important; margin-right:-3px !important;');
 	}
 };
 

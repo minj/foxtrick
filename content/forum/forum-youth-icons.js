@@ -7,59 +7,58 @@
 var FoxtrickForumYouthIcons = {
 
 	MODULE_NAME : "ForumYouthIcons",
-	MODULE_AUTHOR : "spambot",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumWritePost","messageWritePost","guestbook","announcements","forumSettings","newsletter","forumModWritePost","ticket"),
 	OPTIONS :  new Array("q", "user_id", "kit_id", "article_id", "line_br", "clock", "spoiler", "pre", "table", "youth_player", "youth_team", "youth_match", "youth_series", "debug", "settings", "enlarge_input"),
 
 
 	fields : [
-				// Forum
-				{ page:"forumWritePost", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 3900, add_quote:false },
-				// ForumMOD
-				{ page:"forumModWritePost", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 3900, add_quote:false },
-				// mail
-				{ page:"messageWritePost", textarea : "ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtRemLen", length : 1000, add_quote:false },
-				// newsletter
-				{ page:"newsletter", textarea : "ctl00_ctl00_CPContent_CPMain_tbNewsBody", counterfield : "ctl00_ctl00_CPContent_CPMain_txtCharsLeft", length : 1000, add_quote:false },
-				// GB
-				{ page:"guestbook", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 300, add_quote:false },
-				// PA
-				{ page:"announcements", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 1000, add_quote:true },
-				// ticket
-				{ page:"ticket", textarea : "ctl00_ctl00_CPContent_CPMain_ucActionEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucActionEditor_txtRemLen", length : 2950, add_quote:false },
-				// HT-Press Editor
-				//{ page:"unknown", textarea : "ctl00_ctl00_CPContent_CPMain_txtComment", counterfield : "ctl00_ctl00_CPContent_CPMain_txtCharsLeft3", length : 1800, add_quote:false },
-				// signatur
-				{ page:"forumSettings", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 500, add_quote:false },
-			],
+		// Forum
+		{ page:"forumWritePost", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 3900, add_quote:false },
+		// ForumMOD
+		{ page:"forumModWritePost", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 3900, add_quote:false },
+		// mail
+		{ page:"messageWritePost", textarea : "ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtRemLen", length : 1000, add_quote:false },
+		// newsletter
+		{ page:"newsletter", textarea : "ctl00_ctl00_CPContent_CPMain_tbNewsBody", counterfield : "ctl00_ctl00_CPContent_CPMain_txtCharsLeft", length : 1000, add_quote:false },
+		// GB
+		{ page:"guestbook", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 300, add_quote:false },
+		// PA
+		{ page:"announcements", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 1000, add_quote:true },
+		// ticket
+		{ page:"ticket", textarea : "ctl00_ctl00_CPContent_CPMain_ucActionEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucActionEditor_txtRemLen", length : 2950, add_quote:false },
+		// signatur
+		{ page:"forumSettings", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 500, add_quote:false },
+	],
 
 	icons : [
-				{ type:"q", 		class : "ft_q", 	image : "format_q.png", 		string : "q", 		tags : "[q]qqq[/q]", 			replace_text: "qqq",	alt: "f_quote2" },
-				{ type:"line_br", 	class : "ft_br", 	image : "format_br.png", 		string : "br",		tags : "[br]",		 			},
-				{ type:"user_id", 	class : "ft_uid", 	image : "format_user.png", 		string : "user", 	tags : "[userid=xxx]",  		replace_text: "xxx"		},
-				{ type:"kit_id", 	class : "ft_kit", 	image : "format_kit.png", 		string : "kit",		tags : "[kitid=xxx]",  			replace_text: "xxx"		},
-				{ type:"article_id",class : "ft_aid", 	image : "format_article.png", 	string : "article",	tags : "[articleid=xxx]", 		replace_text: "xxx"		},
-				{ type:"clock", 	class : "ft_clock", image : "format_clock.png", 	string : "clock", 	tags : "time",  				replace_text: "time"	},
-				{ type:"spoiler", 	class : "ft_spoiler",image : "format_spoiler.png",	string : "spoiler",	tags : "[spoiler]yyy[/spoiler]",replace_text: "yyy"		},
-				{ type:"pre", 		class : "ft_pre", 	image : "format_pre.png", 		string : "pre", 	tags : "[pre]zzz[/pre]", 		replace_text: "zzz"		},
-				{ type:"table", 	class : "ft_table", image : "format_table.png", 	string : "table", 	tags : "[table][tr][td]ttt[/td][/tr][/table]", replace_text: "ttt",  versions:[' ', 'TAB','custom'], versions_string:'tableSeparator'},
-			],
+		{ type:"q", 		class : "ft_q", 	image : "format_q.png", 		string : "q", 		tags : "[q]qqq[/q]", 			replace_text: "qqq",	alt: "f_quote2" },
+		{ type:"line_br", 	class : "ft_br", 	image : "format_br.png", 		string : "br",		tags : "[br]",		 			},
+		{ type:"user_id", 	class : "ft_uid", 	image : "format_user.png", 		string : "user", 	tags : "[userid=xxx]",  		replace_text: "xxx"		},
+		{ type:"kit_id", 	class : "ft_kit", 	image : "format_kit.png", 		string : "kit",		tags : "[kitid=xxx]",  			replace_text: "xxx"		},
+		{ type:"article_id",class : "ft_aid", 	image : "format_article.png", 	string : "article",	tags : "[articleid=xxx]", 		replace_text: "xxx"		},
+		{ type:"clock", 	class : "ft_clock", image : "format_clock.png", 	string : "clock", 	tags : "time",  				replace_text: "time"	},
+		{ type:"spoiler", 	class : "ft_spoiler",image : "format_spoiler.png",	string : "spoiler",	tags : "[spoiler]yyy[/spoiler]",replace_text: "yyy"		},
+		{ type:"pre", 		class : "ft_pre", 	image : "format_pre.png", 		string : "pre", 	tags : "[pre]zzz[/pre]", 		replace_text: "zzz"		},
+		{ type:"table", 	class : "ft_table", image : "format_table.png", 	string : "table", 	tags : "[table][tr][td]ttt[/td][/tr][/table]", replace_text: "ttt",  versions:[' ', 'TAB','custom'], versions_string:'tableSeparator'},
+	],
 
 	youthicons : [
-				{ type:"youth_player", 	class : "f_player", string : "youthplayerid", 	tags : "[youthplayerid=xxx]",  	replace_text: "xxx"	},
-				{ type:"youth_team", 	class : "f_team", 	string : "youthteamid",		tags : "[youthteamid=xxx]",  	replace_text: "xxx"	},
-				{ type:"youth_match", 	class : "f_match", 	string : "youthmatchid", 	tags : "[youthmatchid=xxx]",  	replace_text: "xxx"	},
-				{ type:"youth_series", 	class : "f_series", string : "youthseries",		tags : "[youthleagueid=xxx]",  	replace_text: "xxx"	},
-			],
+		{ type:"youth_player", 	class : "f_player", string : "youthplayerid", 	tags : "[youthplayerid=xxx]",  	replace_text: "xxx"	},
+		{ type:"youth_team", 	class : "f_team", 	string : "youthteamid",		tags : "[youthteamid=xxx]",  	replace_text: "xxx"	},
+		{ type:"youth_match", 	class : "f_match", 	string : "youthmatchid", 	tags : "[youthmatchid=xxx]",  	replace_text: "xxx"	},
+		{ type:"youth_series", 	class : "f_series", string : "youthseries",		tags : "[youthleagueid=xxx]",  	replace_text: "xxx"	},
+	],
 
 	othericons : [
-				{ type:"debug", 	class : "f_debug",		image : "format_debug.png", 	string : "debug", 		tags : "debug",		replace_text: "debug"},
-				{ type:"settings", 	class : "f_settings",	image : "format_settings.png", 	string : "settings", 	tags : "settings",	replace_text: "settings"},
-			],
+		{ type:"debug", 	class : "f_debug",		image : "format_debug.png", 	string : "debug", 		tags : "debug",		replace_text: "debug"},
+		{ type:"settings", 	class : "f_settings",	image : "format_settings.png", 	string : "settings", 	tags : "settings",	replace_text: "settings"},
+	],
 
-			run : function( page, doc ) {
-		var show_main = false; var show_youth = false; var show_other = false;
+	run : function(doc) {
+		var show_main = false;
+		var show_youth = false;
+		var show_other = false;
 		var enlarge = Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "enlarge_input");
 		if ((Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "user_id")) ||
 			(Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, "kit_id")) ||
@@ -86,16 +85,16 @@ var FoxtrickForumYouthIcons = {
 
 		Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/HattrickML.js");
 
-		if (doc.getElementById('ctl00_ctl00_CPContent_CPMain_tbNewsBody') != null) page = 'mailnewsletter';
-		// Foxtrick.dump('YOUTH => ' + page +'\n');
-
-		if (page == 'newsletter' || page == 'mailnewsletter') {
-			if (page == 'newsletter' ) var textbox = 'ctl00_ctl00_CPContent_CPMain_txtMessage';
-			if (page == 'mailnewsletter' ) var textbox = 'ctl00_ctl00_CPContent_CPMain_tbNewsBody';
+		if (Foxtrick.isPage("newsletter", doc)
+			|| Foxtrick.isPage("mailnewsletter", doc)) {
+			if (Foxtrick.isPage("newsletter", doc))
+				var textbox = 'ctl00_ctl00_CPContent_CPMain_txtMessage';
+			if (Foxtrick.isPage("mailnewsletter", doc))
+				var textbox = 'ctl00_ctl00_CPContent_CPMain_tbNewsBody';
 
 			var anchor = doc.getElementById(textbox);
 
-			if (page == 'newsletter') {
+			if (Foxtrick.isPage("newsletter", doc)) {
 				var count = "ctl00_ctl00_CPContent_CPMain_txtCharsLeft";
 				var chars = 1000;
 				if (enlarge) {
@@ -103,7 +102,7 @@ var FoxtrickForumYouthIcons = {
 					anchor.setAttribute('cols','50');
 				}
 			}
-			if (page == 'mailnewsletter') {
+			if (Foxtrick.isPage("mailnewsletter", doc)) {
 				var counter = doc.getElementsByName('remlennews')[0];
 				counter.id = "ctl00_ctl00_CPContent_CPMain_txtCharsLeft";
 				var count = "ctl00_ctl00_CPContent_CPMain_txtCharsLeft";
@@ -121,40 +120,30 @@ var FoxtrickForumYouthIcons = {
 			anchor.parentNode.insertBefore( div, anchor );
 		}
 
-		if (page == 'forumWritePost' && enlarge) {
+		if (Foxtrick.isPage("forumWritePost", doc) && enlarge) {
 				//var anchor = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody');
 				var anchor = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
 				anchor.style.height = '300px';
 		}
 
-		if (page == 'forumModWritePost' && enlarge) {
+		if (Foxtrick.isPage("forumModWritePost", doc) && enlarge) {
 				//var anchor = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody');
 				var anchor = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
 				anchor.style.height = '300px';
 		}
 
-		if (page == 'announcements' && enlarge) {
+		if (Foxtrick.isPage("announcements", doc) && enlarge) {
 				var anchor = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody');
 				anchor.style.height = '300px';
 		}
 		var toolbar = doc.getElementsByClassName("HTMLToolbar")[0];
-		if  (( toolbar == null ) && (!page == 'ads' )) return;
+		if ((toolbar == null) && !Foxtrick.isPage("ads", doc))
+			return;
 		var toolbar_main = toolbar;
-
-		// seems to be obsolete. no mainbox and works fine in simple skin anyways
-		/*if ( (page == 'messageWritePost' ) && ( !Foxtrick.isStandardLayout( doc ) ) )
-			try {
-				var mainbbox = doc.getElementsByClassName("mainBox")[0];
-				mainbbox.setAttribute( "style", "padding-bottom:25px;");
-			}
-			catch (e)
-			{
-				Foxtrick.dump('YouthIcons: mainBox not found ' + e + '\n');
-			}*/
 
 		toolbar.setAttribute("style","float:left; margin-right:3px;");
 
-		if (page == 'guestbook')
+		if (Foxtrick.isPage("guestbook", doc))
 			try {
 				var textbox = doc.getElementById( "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody" );
 				textbox.setAttribute('style' , 'height:100px; width: 98%;');
@@ -185,7 +174,6 @@ var FoxtrickForumYouthIcons = {
 
 
 		//simple test if new icons are set up by HTs
-		
 		var target=toolbar.lastChild;
 		var tooldivs = doc.getElementsByTagName('img');
 		for (var i = 0; i < tooldivs.length; i++) {
@@ -197,7 +185,7 @@ var FoxtrickForumYouthIcons = {
 		if (Foxtrick.isModuleFeatureEnabled(FoxtrickForumYouthIcons, this.icons[0].type)) {
 			for (var j = 0; j < this.fields.length; j++) {
 				var page = FoxtrickForumYouthIcons.fields[j].page;
-				if (Foxtrick.isPage(Foxtrick.ht_pages[page], doc) && FoxtrickForumYouthIcons.fields[j].add_quote==true) {
+				if (Foxtrick.isPage(page, doc) && FoxtrickForumYouthIcons.fields[j].add_quote==true) {
 					var newimage = doc.createElement( "img" );
 					newimage.src = "/Img/Icons/transparent.gif";
 					newimage.addEventListener( "click", this.addTagsClick, false);
@@ -335,10 +323,10 @@ var FoxtrickForumYouthIcons = {
 		}		
 	},
 
-	change : function(page, doc) {
+	change : function(doc) {
 		var div = doc.getElementById("ft_youth_icons");
 		if (!div) {
-			this.run(page, doc);
+			this.run(doc);
 		}
 	},
 
@@ -360,7 +348,7 @@ var FoxtrickForumYouthIcons = {
 		}
 		for (var i=0; i<FoxtrickForumYouthIcons.fields.length;++i) {
 			var page = FoxtrickForumYouthIcons.fields[i].page;
-			if (Foxtrick.isPage(Foxtrick.ht_pages[page], doc)) {
+			if (Foxtrick.isPage(page, doc)) {
 				FoxtrickForumYouthIcons.clickHandler(doc, FoxtrickForumYouthIcons.fields[i].textarea, ev.target.getAttribute('tags'), ev.target.getAttribute('replace_Text'), FoxtrickForumYouthIcons.fields[i].counterfield, FoxtrickForumYouthIcons.fields[i].length);
 				break;
 			}
@@ -410,59 +398,59 @@ var FoxtrickForumYouthIcons = {
 
 			// table
 			else if (replaceText == 'ttt'){
-						var seperator = FoxtrickPrefs.getString("tableSeparator");
-						Foxtrick.dump('seperator'+seperator+'\n');
+				var seperator = FoxtrickPrefs.getString("tableSeparator");
+				Foxtrick.dump('seperator'+seperator+'\n');
 
-						if (seperator=='TAB') seperator='\\t';
-						if (seperator=='|') seperator='\\|';
-						if (seperator=='+') seperator='\\+';
-						if (seperator=='.') seperator='\\.';
-						if (seperator==' ') seperator=' +';
+				if (seperator=='TAB') seperator='\\t';
+				if (seperator=='|') seperator='\\|';
+				if (seperator=='+') seperator='\\+';
+				if (seperator=='.') seperator='\\.';
+				if (seperator==' ') seperator=' +';
 
-						// deal with some nested tags
-						var myReg = new RegExp('\\[i\\](.+)('+seperator+')(.+)\\[\\/i\\]','g');
-			 			newText = newText.replace(myReg,'[i]$1[/i]$2[i]$3[/i]');
-						var myReg = new RegExp('\\[u\\](.+)('+seperator+')(.+)\\[\\/u\\]','g');
-			 			newText = newText.replace(myReg,'[u]$1[/u]$2[u]$3[/u]');
-						var myReg = new RegExp('\\[b\\](.+)('+seperator+')(.+)\\[\\/b\\]','g');
-			 			newText = newText.replace(myReg,'[b]$1[/b]$2[b]$3[/b]');
+				// deal with some nested tags
+				var myReg = new RegExp('\\[i\\](.+)('+seperator+')(.+)\\[\\/i\\]','g');
+	 			newText = newText.replace(myReg,'[i]$1[/i]$2[i]$3[/i]');
+				var myReg = new RegExp('\\[u\\](.+)('+seperator+')(.+)\\[\\/u\\]','g');
+	 			newText = newText.replace(myReg,'[u]$1[/u]$2[u]$3[/u]');
+				var myReg = new RegExp('\\[b\\](.+)('+seperator+')(.+)\\[\\/b\\]','g');
+	 			newText = newText.replace(myReg,'[b]$1[/b]$2[b]$3[/b]');
 
-						// make the table
-						var myReg = new RegExp( seperator,'g');
-			 			newText = newText.replace(myReg,'[/td][td]');
-						newText = newText.replace(/\n/g,'[/td][/tr][tr][td]');
+				// make the table
+				var myReg = new RegExp( seperator,'g');
+	 			newText = newText.replace(myReg,'[/td][td]');
+				newText = newText.replace(/\n/g,'[/td][/tr][tr][td]');
 
-						// add some colspan for too short rows
-						var rows = newText.split('[/tr]');
-						var max_cells = 0;
-						for (var i=0; i<rows.length-1; ++i) {
-							max_cells =  Math.max(max_cells, rows[i].split('[/td]').length-1);
-						}
-						for (var i=0; i<rows.length-1; ++i) {
-							var missing_col = max_cells - (rows[i].split('[/td]').length-1);
-							if ( missing_col !==0 ) {
-								var last_td = rows[i].lastIndexOf('[td');
-								rows[i] = rows[i].substring(0,last_td+3)+' colspan='+String(missing_col+1)+rows[i].substr(last_td+3);
-							}
-						}
-						// add header if first row is bold to some part
-						if (rows[0].search(/\[b\].+\[\/b\]/)!=-1) {
-							rows[0] = rows[0].replace(/\[b\]/g,'').replace(/\[\/b\]/g,'').replace(/td\]/g,'th]');
-						}
-						newText='';
-						for (var i=0; i<rows.length-1; ++i) {
-							newText += rows[i]+'[/tr]'
-						}
-						newText += '[/table]';
-						if (s.selectionLength===0) newText='[table][tr][td]cell1[/td][td]cell2[/td][/tr][tr][td]cell3[/td][td]cell4[/td][/tr][/table]';
+				// add some colspan for too short rows
+				var rows = newText.split('[/tr]');
+				var max_cells = 0;
+				for (var i=0; i<rows.length-1; ++i) {
+					max_cells =  Math.max(max_cells, rows[i].split('[/td]').length-1);
+				}
+				for (var i=0; i<rows.length-1; ++i) {
+					var missing_col = max_cells - (rows[i].split('[/td]').length-1);
+					if ( missing_col !==0 ) {
+						var last_td = rows[i].lastIndexOf('[td');
+						rows[i] = rows[i].substring(0,last_td+3)+' colspan='+String(missing_col+1)+rows[i].substr(last_td+3);
+					}
+				}
+				// add header if first row is bold to some part
+				if (rows[0].search(/\[b\].+\[\/b\]/)!=-1) {
+					rows[0] = rows[0].replace(/\[b\]/g,'').replace(/\[\/b\]/g,'').replace(/td\]/g,'th]');
+				}
+				newText='';
+				for (var i=0; i<rows.length-1; ++i) {
+					newText += rows[i]+'[/tr]'
+				}
+				newText += '[/table]';
+				if (s.selectionLength===0) newText='[table][tr][td]cell1[/td][td]cell2[/td][/tr][tr][td]cell3[/td][td]cell4[/td][/tr][/table]';
 
-						// some formating
-						newText = newText.replace(/table\]/g,'table]\n')
-										.replace(/\/tr\]/g,'/tr]\n')
-										.replace(/\[td/g,' [td')
-										.replace(/\[\/td\]/g,'[/td] ')
-										.replace(/\[th/g,' [th')
-										.replace(/\[\/th\]/g,'[/th] ');
+				// some formating
+				newText = newText.replace(/table\]/g,'table]\n')
+					.replace(/\/tr\]/g,'/tr]\n')
+					.replace(/\[td/g,' [td')
+					.replace(/\[\/td\]/g,'[/td] ')
+					.replace(/\[th/g,' [th')
+					.replace(/\[\/th\]/g,'[/th] ');
 			}
 
 			// Opera, Mozilla

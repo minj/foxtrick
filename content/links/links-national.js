@@ -13,8 +13,7 @@ var FoxtrickLinksNational = {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "nationalteamlink");
 	},
 
-	run : function( page, doc ) {
-		//addExternalLinksToNationalDetail
+	run : function(doc) {
 		var countryid;
 		var ntteamid;
 		var LeagueOfficeTypeID=doc.location.href.replace(/.+LeagueOfficeTypeID=/i, "").match(/^\d+/);
@@ -58,6 +57,6 @@ var FoxtrickLinksNational = {
 		}
 		if (added) Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 
-		Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid,"ntteamid":ntteamid,"LeagueOfficeTypeID":LeagueOfficeTypeID } );
+		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid,"ntteamid":ntteamid,"LeagueOfficeTypeID":LeagueOfficeTypeID });
 	}
 };

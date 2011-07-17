@@ -14,15 +14,17 @@ var FoxtrickLinksChallenges = {
 		return Foxtrick.links.getOptionsHtml(doc, this, true, this.LINK_TYPES);
 	},
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		var teamid = FoxtrickHelper.findTeamId(doc.getElementsByClassName("subMenu")[0] );
 		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
 		var ownteamid = FoxtrickHelper.getOwnCountryId();
 
 		//addExternalLinksToChallengesDetail
 		var links;
-		if (page=='challenges') links = Foxtrick.LinkCollection.getLinks("challengeslink", {'teamid':teamid, 'ownteamid':ownteamid}, doc, this);
-		else links = Foxtrick.LinkCollection.getLinks("youthchallengeslink", {'teamid':teamid, 'youthteamid':youthteamid,'ownteamid':ownteamid}, doc, this);
+		if (Foxtrick.isPage("challenges", doc))
+			links = Foxtrick.LinkCollection.getLinks("challengeslink", {'teamid':teamid, 'ownteamid':ownteamid}, doc, this);
+		else
+			links = Foxtrick.LinkCollection.getLinks("youthchallengeslink", {'teamid':teamid, 'youthteamid':youthteamid,'ownteamid':ownteamid}, doc, this);
 		var ownBoxBody=null;
 
 		if (links.length > 0) {
@@ -40,6 +42,6 @@ var FoxtrickLinksChallenges = {
 
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		}
-		Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME,{} );
+		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,{});
 	}
 };

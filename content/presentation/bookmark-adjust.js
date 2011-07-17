@@ -10,11 +10,11 @@ Foxtrick.BookmarkAdjust = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('bookmarks'),
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		this._adjust_bookmarks( doc );
 	},
 
-	change : function( page, doc ) {
+	change : function(doc) {
 		this._adjust_bookmarks( doc );
 	},
 

@@ -9,7 +9,7 @@ var FoxtrickHideSignatures = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumViewThread'),
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		//return;
 		var p = 0;
 		var elems = doc.getElementsByTagName("div");

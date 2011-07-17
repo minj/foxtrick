@@ -13,7 +13,7 @@ var FoxtrickHTMSPoints = {
 	PAGES : ["playerdetail", "transferSearchResult", "players"],
 	OPTIONS : ["AddToPlayer", "AddToSearchResult", "AddToPlayerList"],
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var getLink = function(skillList) {
 			const lang = FoxtrickPrefs.getString("htLanguage");
 			const prefix = "http://www.fantamondi.it/HTMS/index.php?page=htmspoints&lang="+lang+"&action=calc";
@@ -28,7 +28,7 @@ var FoxtrickHTMSPoints = {
 		var AddToSearchResult = Foxtrick.isModuleFeatureEnabled(this, "AddToSearchResult");
 		var AddToPlayerList = Foxtrick.isModuleFeatureEnabled(this, "AddToPlayerList");
 
-		if ((page=="playerdetail") && AddToPlayer) {
+		if (Foxtrick.isPage("playerdetail", doc) && AddToPlayer) {
 			var age = Foxtrick.Pages.Player.getAge(doc);
 			var skills = Foxtrick.Pages.Player.getSkillsWithText(doc);
 			if (skills === null) {
@@ -88,7 +88,7 @@ var FoxtrickHTMSPoints = {
 						.replace(/%2/, calcResult[1]);
 			}
 		}
-		if ((page=="transferSearchResult") && AddToSearchResult) {
+		else if (Foxtrick.isPage("transferSearchResult", doc) && AddToSearchResult) {
 			var skillOrder = ["keeper", "playmaking", "passing", "winger", "defending", "scoring", "setPieces"];
 			var htmsValues = ['parate', 'regia', 'passaggi', 'cross', 'difesa', 'attacco', 'cp'];
 			var players=Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
@@ -128,7 +128,7 @@ var FoxtrickHTMSPoints = {
 				//Foxtrick.dump('\n');
 			}
 		}
-		if ((page=="players") && AddToPlayerList) {
+		else if (Foxtrick.isPage("players", doc) && AddToPlayerList) {
 			var playersHtml = doc.getElementsByClassName("playerInfo");
 			var players = Foxtrick.Pages.Players.getPlayerList(doc);
 

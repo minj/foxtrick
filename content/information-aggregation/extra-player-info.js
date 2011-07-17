@@ -12,7 +12,7 @@ FoxtrickExtraPlayerInfo = {
 	// used for coloring NT players when AddFlags is enabled
 	NT_COLOR : "#FFCC00",
 
-	run : function(page, doc) {
+	run : function(doc) {
 		Foxtrick.Pages.Players.getPlayerList(doc, function(playerList) {
 			if (!playerList) {
 				Foxtrick.log("ExtraPlayerInfo: unable to retrieve player list.");

@@ -16,9 +16,10 @@ var FoxtrickOriginalFace = {
 		null
 	],
 
-	run : function(page, doc) {
+	run : function(doc) {
 		if (Foxtrick.isModuleFeatureEnabled(this, "ColouredYouth")) {
-			if (page=="YouthPlayer" || page=="YouthPlayers") {
+			if (Foxtrick.isPage("YouthPlayer", doc)
+				|| Foxtrick.isPage("YouthPlayers", doc)) {
 				var imgs = doc.getElementsByTagName("img");
 				var avatarImages = Foxtrick.filter(imgs, function(n) { return (n.src.search(/\/Img\/Avatar/i) >= 0); });
 				Foxtrick.map(avatarImages, function(n) {

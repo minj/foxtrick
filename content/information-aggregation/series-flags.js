@@ -13,7 +13,7 @@ var FoxtrickSeriesFlags = {
 	PAGES : ["guestbook", "teamPage", "league", "youthleague", "federation"],
 	OPTIONS : ["Guestbook", "Supporters", "Visitors", "CountryOnly"],
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var buildFlag = function(arg, callback) {
 			Foxtrick.sessionGet("seriesFlags", function(mapping) {
 				if (mapping == undefined)
@@ -104,7 +104,7 @@ var FoxtrickSeriesFlags = {
 			});
 		};
 		if (Foxtrick.isModuleFeatureEnabled(this, "Guestbook")
-			&& (page == "guestbook")) {
+			&& Foxtrick.isPage("guestbook", doc)) {
 			// add to guest managers
 			var mainWrapper = doc.getElementById("mainWrapper");
 			var links = mainWrapper.getElementsByTagName("a");
@@ -113,7 +113,7 @@ var FoxtrickSeriesFlags = {
 		}
 		//We add also flag to the guestbook entry in teamPage, but we have to skip the own user link
 		if (Foxtrick.isModuleFeatureEnabled(this, "Guestbook")
-			&& (page == "teamPage")) {
+			&& Foxtrick.isPage("teamPage", doc)) {
 			var mainBoxes = doc.getElementById("mainWrapper").getElementsByClassName("mainBox");
 			Foxtrick.map(mainBoxes, function(b) {
 				var links = b.getElementsByTagName("a");
@@ -122,7 +122,7 @@ var FoxtrickSeriesFlags = {
 			});
 		}
 		if (Foxtrick.isModuleFeatureEnabled(this, "Supporters")
-			&& (page == "teamPage")) {
+			&& Foxtrick.isPage("teamPage", doc)) {
 			// add to supporters
 			var sideBar = doc.getElementById("sidebar");
 			var sideBarBoxes = sideBar.getElementsByClassName("sidebarBox");
@@ -135,8 +135,8 @@ var FoxtrickSeriesFlags = {
 			});
 		}
 		if (Foxtrick.isModuleFeatureEnabled(this, "Visitors")
-			&& (page == "teamPage" || page == "league"
-				|| page == "youthleague" || page == "federation")) {
+			&& Foxtrick.some(["teamPage", "league", "youthleague", "federation"],
+				function(n) { return Foxtrick.isPage(n, doc); })) {
 			// add to visitors
 			var sideBar = doc.getElementById("sidebar");
 			var sideBarBoxes = sideBar.getElementsByClassName("sidebarBox");

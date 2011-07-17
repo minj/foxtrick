@@ -8,10 +8,10 @@ Foxtrick.Pages.Players = {
 		return this.isPlayersPage(doc) || this.isYouthPlayersPage(doc);
 	},
 	isSeniorPlayersPage : function(doc) {
-		return Foxtrick.isPage(Foxtrick.ht_pages["players"], doc);
+		return Foxtrick.isPage("players", doc);
 	},
 	isYouthPlayersPage : function(doc) {
-		return Foxtrick.isPage(Foxtrick.ht_pages["YouthPlayers"], doc);
+		return Foxtrick.isPage("YouthPlayers", doc);
 	},
 	isOwnPlayersPage : function(doc) {
 		var ownTeamId = Foxtrick.Pages.All.getOwnTeamId(doc);

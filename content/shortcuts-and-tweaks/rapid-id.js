@@ -134,8 +134,9 @@ var FoxtrickRapidId = {
 
 	run: function(page, doc) {
 		var rightnow = doc.getElementById("ctl00_ctl00_ucOngoingEvents_pnlOngoingEvents");
-		if (rightnow) return;
-		
+		if (rightnow)
+			return;
+
 		// get labels of optgroup and option
 		for (var i in this.options) {
 			this.options[i].label = Foxtrickl10n.getString(this.options[i].text);

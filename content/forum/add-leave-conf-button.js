@@ -8,71 +8,63 @@ var FoxtrickAddLeaveConfButton = {
 
 	MODULE_NAME : "AddLeaveConfButton",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array('forum','forumSettings'),
+	PAGES : ["forum", "forumSettings"],
 
-	run : function( page, doc ) {
-		switch( page ) {
-			case 'forum':
-				var vValue = this.getVValue( doc );
+	run : function(doc) {
+		if (Foxtrick.isPage("forum", doc)) {
+			var vValue = this.getVValue( doc );
 
-				if(vValue != "2") {
-					var elems = doc.getElementsByTagName("div");
-					var foldersCounter = 0;
-					for(var i=0; i < elems.length; i++) {
-						if(elems[i].className=="folderHeader"
-						|| elems[i].className=="folderHeaderHighlight"){
-							if (elems[i].getElementsByTagName('div')[0].className.search('foxtrickRemove')!=-1) continue;
-							var divLeaveConfBtn = doc.getElementById(
-								"ftLC-btn" + foldersCounter);
-							this.addButton ( doc, divLeaveConfBtn, elems[i],
-								foldersCounter, vValue);
-							foldersCounter++;
-						}
+			if(vValue != "2") {
+				var elems = doc.getElementsByTagName("div");
+				var foldersCounter = 0;
+				for(var i=0; i < elems.length; i++) {
+					if(elems[i].className=="folderHeader"
+					|| elems[i].className=="folderHeaderHighlight"){
+						if (elems[i].getElementsByTagName('div')[0].className.search('foxtrickRemove')!=-1) continue;
+						var divLeaveConfBtn = doc.getElementById(
+							"ftLC-btn" + foldersCounter);
+						this.addButton ( doc, divLeaveConfBtn, elems[i],
+							foldersCounter, vValue);
+						foldersCounter++;
 					}
 				}
-				break;
+			}
+		}
+		else if (Foxtrick.isPage("forumSettings", doc)) {
+			var sUrl = Foxtrick.getHref( doc );
+			var confPos = sUrl.search(/LeaveConf=/i);
+			if (confPos > -1){
+				var confName =sUrl.substr(confPos+10).replace(/\%20/g," ");
+				//Foxtrick.dump('confName: ' + confName + '\n');
+				var ul = doc.getElementById("ctl00_ctl00_CPContent_CPMain_rlFolders__rbl");
+				var liElems = ul.getElementsByTagName("li");
+				for(var i=0; i < liElems.length; i++) {
+					var subDivs = liElems[i].firstChild.getElementsByTagName("div");
+					for(var k = 0; k < subDivs.length; k++) {
+						if(subDivs[k].className == "float_left prioFolderName"
+							&& Foxtrick.trim(subDivs[k].getElementsByTagName("a")[0].innerHTML) == confName) {
+							var inputs = subDivs[k+1].getElementsByTagName("input");
+							for(var j=0; j < inputs.length; j++) {
+								if (inputs[j].className == "leave"){
 
-			case 'forumSettings':
-				var sUrl = Foxtrick.getHref( doc );
-				var confPos = sUrl.search(/LeaveConf=/i);
-				if (confPos > -1){
-					var confName =sUrl.substr(confPos+10).replace(/\%20/g," ");
-					//Foxtrick.dump('confName: ' + confName + '\n');
-					var ul = doc.getElementById("ctl00_ctl00_CPContent_CPMain_rlFolders__rbl");
-					var liElems = ul.getElementsByTagName("li");
-					for(var i=0; i < liElems.length; i++) {
-						var subDivs = liElems[i].firstChild.getElementsByTagName("div");
-						for(var k = 0; k < subDivs.length; k++) {
-							if(subDivs[k].className == "float_left prioFolderName"
-								&& Foxtrick.trim(subDivs[k].getElementsByTagName("a")[0].innerHTML) == confName) {
-								var inputs = subDivs[k+1].getElementsByTagName("input");
-								for(var j=0; j < inputs.length; j++) {
-									if (inputs[j].className == "leave"){
-
-										var func = "javascript:__doPostBack('";
-										func += inputs[j].getAttribute("name");
-										func += "','')";
-										if (func){
-											doc.location.href = func;
-										}
+									var func = "javascript:__doPostBack('";
+									func += inputs[j].getAttribute("name");
+									func += "','')";
+									if (func){
+										doc.location.href = func;
 									}
 								}
 							}
 						}
 					}
 				}
-				break;
+			}
 		}
 	},
 
-	change : function( page, doc ) {
-		switch( page ) {
-			case 'forum':
-				this.run(page,doc);
-				break;
-			case 'forumSettings':
-				break;
-		}
+	change : function(doc) {
+		if (Foxtrick.isPage("forum", doc))
+			this.run(doc);
 	},
 
 	getVValue : function( doc ) {

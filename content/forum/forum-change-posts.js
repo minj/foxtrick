@@ -7,11 +7,11 @@
 var FoxtrickForumChangePosts = {
 	MODULE_NAME : "ForumChangePosts",
 	CORE_MODULE : true,
-	PAGES : new Array("forumViewThread"),
+	PAGES : ["forumViewThread"],
 	bDetailedHeader : false,
 	CSS : Foxtrick.ResourcePath + "resources/css/changepost.css",
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		var do_copy_post_id = Foxtrick.isModuleEnabled(FoxtrickCopyPostID);
 		var do_add_copy_icon = do_copy_post_id && Foxtrick.isModuleFeatureEnabled( FoxtrickCopyPostID, "AddCopyIcon");
 		var do_copy_posting = Foxtrick.isModuleEnabled(FoxtrickCopyPosting);

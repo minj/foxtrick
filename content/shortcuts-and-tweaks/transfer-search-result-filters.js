@@ -54,12 +54,12 @@ FoxtrickTransferSearchResultFilters = {
 		Foxtrick.sessionSet("transfer-search-result-filters", filters);
 	},
 
-	run : function(page, doc) {
-		if (page == 'transferSearchForm') {
+	run : function(doc) {
+		if (Foxtrick.isPage("transferSearchForm", doc)) {
 			FoxtrickTransferSearchResultFilters.addExtraFilters(doc);
 			FoxtrickTransferSearchResultFilters.showHTSearchProfileComment(doc);
 		}
-		else if (page == 'transferSearchResult')
+		else if (Foxtrick.isPage("transferSearchResult", doc))
 			FoxtrickTransferSearchResultFilters.filterResults(doc);
 	},
 

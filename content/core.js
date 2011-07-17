@@ -54,7 +54,7 @@ var FoxtrickCore = {
 		this.updateStatus();
 	},
 
-	run : function(page, doc) {
+	run : function(doc) {
 		this.showChangeLog(doc);
 		this.showVersion(doc);
 		this.updateStatus();

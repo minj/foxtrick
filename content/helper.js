@@ -9,8 +9,8 @@ var FoxtrickHelper = {
 	PAGES : new Array('all', 'teamPageAny'),
 	ownTeam: null,
 
-	run : function(page, doc) {
-		this.getOwnTeamInfo(doc, page);
+	run : function(doc) {
+		this.getOwnTeamInfo(doc);
 	},
 
 	ownTeam : { "ownTeamId": null,
@@ -22,7 +22,7 @@ var FoxtrickHelper = {
 				"ownYouthTeamId" :null	},
 
 	//---------------------------------------------------------------------------
-	getOwnTeamInfo : function(doc, page) {
+	getOwnTeamInfo : function(doc) {
 		var teamdiv = doc.getElementById('teamLinks');
 		if ( teamdiv.getElementsByTagName('a').length!=0 && (this.ownTeam.ownTeamId === null || this.ownTeam.ownTeamId != this.findTeamId(teamdiv))) {
 			var ownleagueid = this.findLeagueLeveUnitId(teamdiv);
@@ -48,7 +48,7 @@ var FoxtrickHelper = {
 
 			this.ownTeam.ownYouthTeamId = null;
 		}
-		if (page=='teamPageAny') {
+		if (Foxtrick.isPage("teamPageAny", doc)) {
 			if  (this.ownTeam.ownYouthTeamId==null) {
 				var leftMenuTeamId = FoxtrickHelper.findTeamId(doc.getElementsByClassName("subMenu")[0]);
 				if (this.ownTeam.ownTeamId==leftMenuTeamId) {

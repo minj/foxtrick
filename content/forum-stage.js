@@ -9,7 +9,7 @@ var FoxtrickForumStage = {
 	CORE_MODULE : true,
 	PAGES : new Array('forumWritePost'),
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		var forum = doc.getElementById('mainWrapper').getElementsByTagName("h2")[0].getElementsByTagName("a")[1].innerHTML;
 		if (forum == 'Stage') {
 			var textarea = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];

@@ -24,7 +24,7 @@ var FoxtrickSkinPlugin = {
 		}
 	},
 
-	run : function(doc ) {
+	run : function(doc) {
 		/*OLD MEDALS SCRIPT*/
 		if (FoxtrickPrefs.getBool("module.CustomMedals.enabled")){
 			var sidebar = doc.getElementById('sidebar');

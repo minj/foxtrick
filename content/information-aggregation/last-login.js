@@ -8,7 +8,7 @@ FoxtrickLastLogin = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : new Array('managerPage'),
 
-	change : function(page, doc) {
+	change : function(doc) {
 		// FIXME - what does this mean? (cvd: i guess no lastlogins on guestbookpage)
 		if (doc.getElementById('ctl00_ctl00_CPContent_CPMain_upGB') != null) return;
 		FoxtrickLastLogin._Show(doc);

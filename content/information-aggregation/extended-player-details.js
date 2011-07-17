@@ -10,7 +10,7 @@ FoxtrickExtendedPlayerDetails = {
 	PAGES : new Array('playerdetail'),
 	RADIO_OPTIONS : new Array( "SWD", "SW", "SD", "WD", "D" ),
 
-	run : function(page, doc) {
+	run : function(doc) {
 		this._Player_Joined(doc);
 	},
 
@@ -57,7 +57,7 @@ FoxtrickExtendedPlayerDetailsWage = {
 	PAGES : new Array('playerdetail'),
 	OPTIONS : new Array( "WageWithoutBonus", "SeasonWage"),
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var div = doc.getElementById("ft_bonuswage");
 		if (div != null) return;
 

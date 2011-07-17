@@ -16,12 +16,12 @@ Foxtrick.modules = [
 	FoxtrickHelper,
 	Foxtrick.ApiProxy,
 	FoxtrickReadHtPrefs,
-	Foxtrick.AddClass, // place before all date-related modules
+	Foxtrick.AddClass,
 	FoxtrickForumStripHattrickLinks,
 	FoxtrickForumChangePosts,
 	FoxtrickShowForumPrefButton,
-	FoxtrickMovePlayerSelectbox,  // keep before others on playerdetails page
-	FoxtrickManagerButtons,   // keep before FoxtrickAddDefaultFaceCard
+	FoxtrickMovePlayerSelectbox,
+	FoxtrickManagerButtons,
 	FoxtrickMovePlayerStatement,
 	FoxtrickFixcssProblems,
 	FoxtrickSimplePresentation,
@@ -45,18 +45,18 @@ Foxtrick.modules = [
 	FoxtrickStarsCounter,
 	FoxtrickFlagCollectionToMap,
 	FoxtrickTransferSearchFilters,
-	FoxtrickTransferSearchResultFilters, // keep before TransferDeadline and HTMSPoints
+	FoxtrickTransferSearchResultFilters,
 	FoxtrickTransferDeadline,
 	FoxtrickExtendedPlayerDetails,
 	FoxtrickLastLogin,
 	FoxtrickExtendedPlayerDetailsWage,
 	FoxtrickMatchReportFormat,
 	FoxtrickMatchPlayerColouring,
-	Foxtrick.AttVsDef, // AttVsDef should be placed before Ratings
+	Foxtrick.AttVsDef,
 	Foxtrick.Ratings,
 	FoxtrickHTMSPrediction,
 	FoxtrickSkillTable,
-	Foxtrick.TeamStats,  // before FoxtrickLinksPlayers
+	Foxtrick.TeamStats,
 	FoxtrickOriginalFace,
 	FoxtrickBackgroundFixed,
 	FoxtrickCopyPlayerAd,
@@ -104,8 +104,8 @@ Foxtrick.modules = [
 	FoxtrickRedirections,
 	FoxtrickCurrencyConverter,
 	FoxtrickTickerColoring,
-	FoxtrickSeasonStats,   // keep before FoxtrickCopyMatchID
-	FoxtrickHistoryStats,   // keep before FoxtrickCopyMatchID
+	FoxtrickSeasonStats,
+	FoxtrickHistoryStats,
 	FoxtrickCopyMatchID,
 	FoxtrickHeaderFix,
 	FoxtrickHeaderFixLeft,
@@ -124,7 +124,7 @@ Foxtrick.modules = [
 	FoxtrickLineupShortcut,
 	FoxtrickYouthPromotes,
 	FoxtrickCountyList,
-	FoxtrickSmallerPages, //after FoxtrickTransferDeadline and probably also after all other player detail adjustment, so keep it in the end
+	FoxtrickSmallerPages,
 	FoxtrickHighlightOwnerless,
 	FoxtrickLeagueAndMatchChat,
 	FoxtrickRapidId,
@@ -144,10 +144,10 @@ Foxtrick.modules = [
 	FoxtrickShowFriendlyBooked,
 	FoxtrickShowLineupSet,
 	FoxtrickSupporterStatsEnhancements,
-	FoxtrickLocalTime, // place before HTDateFormat, bellow everything that adds dates
+	FoxtrickLocalTime,
 	FoxtrickHTDateFormat,
 	FoxtrickContextMenuCopy,
-	FoxtrickTickerAlert, // place below all other modules that make changes to #ticker	
+	FoxtrickTickerAlert
 ];
 
 if (Foxtrick.BuildFor == "Gecko") {

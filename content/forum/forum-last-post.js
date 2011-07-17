@@ -7,19 +7,19 @@
 var FoxtrickForumLastPost = {
 	MODULE_NAME : "ForumLastPost",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forum", "forumSettings"),
+	PAGES : ["forum", "forumSettings"],
 	OPTIONS: new Array('lastpage'),
 
-	run : function( page, doc ) {
-		this._change( page, doc );
+	run : function(doc) {
+		this._change(doc);
 	},
 
-	change : function( page, doc ) {
-		this._change( page, doc );
+	change : function(doc) {
+		this._change(doc);
 	},
 
-	_change : function( page, doc ){
-		if (page == 'forum') {
+	_change : function(doc){
+		if (Foxtrick.isPage("forum", doc)) {
 
 			var perpage = FoxtrickPrefs.getInt('perpage');
 			if (perpage == null) perpage = 20;

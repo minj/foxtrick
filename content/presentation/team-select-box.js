@@ -9,7 +9,7 @@ var FoxtrickTeamSelectBox = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["players", "YouthPlayers"],
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var listBox; // sidebarBox containing player list
 		var sidebarBoxes = doc.getElementsByClassName("sidebarBox");
 

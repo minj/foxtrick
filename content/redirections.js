@@ -13,7 +13,7 @@ var FoxtrickRedirections = {
 		Foxtrick.registerAllPagesHandler(FoxtrickRedirections );
 	},
 
-	run : function( doc ) {
+	run : function(doc) {
 		if (doc.location.href.search(/mailto|challenge|redir_to_.+\=true/i)==-1) return;
 
 		var serv = 'http://'+doc.location.hostname;

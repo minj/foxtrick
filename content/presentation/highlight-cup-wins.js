@@ -11,7 +11,7 @@ var FoxtrickHighlightCupwins = {
 	PAGES : new Array('cupmatches'),
 	OPTIONS : new Array("HighlightCupsets"),
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		const rtl = Foxtrick.isRTLLayout(doc);
 		var highlightCupsets = Foxtrick.isModuleFeatureEnabled(this, "HighlightCupsets");
 		// matches of Hattrick Masters aren't arranged by cup ranks

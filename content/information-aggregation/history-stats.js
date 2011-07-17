@@ -8,18 +8,19 @@ var FoxtrickHistoryStats= {
 	MODULE_NAME : "HistoryStats",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["history"],
+	NICE : -1,
 	Buffer : [],
 	Pages : [],
 	Offset : 0,
 
-	run : function(page, doc) {
+	run : function(doc) {
 		this.Buffer = [];
 		this.Pages = [];
 		this._fetch(doc);
 		this._paste(doc);
 	},
 
-	change : function(page, doc) {
+	change : function(doc) {
 		this._fetch(doc);
 		this._paste(doc);
 	},

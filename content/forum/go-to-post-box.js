@@ -10,7 +10,7 @@ var FoxtrickGoToPostBox = {
 	PAGES : new Array("forumViewThread"),
 	CSS: Foxtrick.ResourcePath+"resources/css/gotopostbox.css",
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		Foxtrick.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/GoToPostBox.js");
 
 		if (Foxtrick.isRTLLayout(doc)) doc.getElementById('mainBody').getElementsByTagName('span')[0].setAttribute('style','margin-right:0px');

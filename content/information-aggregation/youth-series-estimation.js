@@ -13,7 +13,7 @@ var FoxtrickYouthSeriesEstimation = {
 	TABLE_ID : "ctl00_ctl00_CPContent_CPMain_grdYouthSeries_ctl00",
 	ATTRIB_NAME : "estimated",
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var table = doc.getElementById(this.TABLE_ID);
 		if (!table || table.hasAttribute(this.ATTRIB_NAME)) {
 			return;
@@ -69,7 +69,7 @@ var FoxtrickYouthSeriesEstimation = {
 		table.setAttribute(this.ATTRIB_NAME, this.ATTRIB_NAME);
 	},
 
-	change : function(page, doc) {
-		this.run(page, doc);
+	change : function(doc) {
+		this.run(doc);
 	}
 };

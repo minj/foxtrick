@@ -32,9 +32,9 @@ var FoxtrickConfirmActions = {
 		CONFIRM_ID : "ft-staff-confirm"
 	},
 
-	run : function(page, doc) {
+	run : function(doc) {
 		// Bid, TransferList, NtChange, StaffChange
-		if (Foxtrick.isPage(Foxtrick.ht_pages["playerdetail"], doc)) {
+		if (Foxtrick.isPage("playerdetail", doc)) {
 			if (Foxtrick.isModuleFeatureEnabled(this, "Bid")) {
 				var bidButton = doc.getElementById(FoxtrickConfirmActions.BID.BUTTON_ID);
 				if (bidButton) {
@@ -152,7 +152,7 @@ var FoxtrickConfirmActions = {
 				}
 			}
 		}
-		if (Foxtrick.isPage(Foxtrick.ht_pages["staff"], doc)) {
+		else if (Foxtrick.isPage("staff", doc)) {
 			if (Foxtrick.isModuleFeatureEnabled(this, "StaffChange")) {
 				var submitButton = doc.getElementById(FoxtrickConfirmActions.STAFF.SUBMIT_BUTTON_ID);
 				if (submitButton) {
@@ -235,7 +235,7 @@ var FoxtrickConfirmActions = {
 		}
 	},
 
-	change : function(page, doc) {
-		this.run(page, doc);
+	change : function(doc) {
+		this.run(doc);
 	}
 };

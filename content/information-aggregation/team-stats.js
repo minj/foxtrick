@@ -13,7 +13,7 @@ Foxtrick.TeamStats = {
 
 	CSS : Foxtrick.ResourcePath + "resources/css/team-stats.css",
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var show = function(playerList) {
 			var totalTSI = 0;
 			var totalAge = 0;

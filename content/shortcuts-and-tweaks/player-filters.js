@@ -11,7 +11,7 @@ FoxtrickPlayerFilters = {
 
 	FILTER_SELECT_ID : "foxtrick-filter-select",
 
-	run : function(page, doc) {
+	run : function(doc) {
 		if (doc.getElementById(this.FILTER_SELECT_ID))
 			return;
 
@@ -315,7 +315,7 @@ FoxtrickPlayerFilters = {
 		parentNode.insertBefore(container, insertBefore);
 	},
 
-	change : function(page, doc) {
-		this.run(page, doc);
+	change : function(doc) {
+		this.run(doc);
 	}
 };

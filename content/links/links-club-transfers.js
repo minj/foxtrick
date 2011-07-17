@@ -13,9 +13,7 @@ var FoxtrickLinksClubTransfers = {
 		Foxtrick.links.getOptionsHtml(doc, this, false, "clubtransferslink");
 	},
 
-	run : function( page, doc ) {
-		//addExternalLinksToClubTransfersPage
-
+	run : function(doc) {
 		var alldivs = doc.getElementsByTagName('div');
 		var ownBoxBody=null;
 		for (var j = 0; j < alldivs.length; j++) {
@@ -38,7 +36,7 @@ var FoxtrickLinksClubTransfers = {
 
 					Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 					}
-				Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME,{} );
+				Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,{} );
 				break;
 			}
 		}

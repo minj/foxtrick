@@ -10,9 +10,10 @@ Foxtrick.AttVsDef = {
 	MODULE_NAME : "AttVsDef",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
+	NICE : -5,
 	RADIO_OPTIONS : new Array("newstyle", "oldstyle", "oldstyleifkseparated"),
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		if (Foxtrick.Pages.Match.isPrematch(doc))
 			return;
 

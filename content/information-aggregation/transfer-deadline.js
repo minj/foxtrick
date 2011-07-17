@@ -9,7 +9,7 @@ FoxtrickTransferDeadline = {
 	PAGES : ["transferSearchResult", "playerdetail", "transfer", "bookmarks"],
 	CSS : Foxtrick.ResourcePath + "resources/css/transfer-deadline.css",
 
-	run : function(page, doc) {
+	run : function(doc) {
 		// Check if deadline already set
 		if (doc.getElementsByClassName("ft-deadline").length > 0)
 			return;
@@ -17,23 +17,22 @@ FoxtrickTransferDeadline = {
 		FoxtrickTransferDeadline.element='span';  // display: inline
 		// some table fixing for simple skin
 		if (!Foxtrick.isStandardLayout(doc)) {
-			if (page == 'transferSearchResult')
-				FoxtrickTransferDeadline.element = 'div';				 // display: block
+			if (Foxtrick.isPage("transferSearchResult", doc))
+				FoxtrickTransferDeadline.element = 'div'; // display: block
 		}
-		Foxtrick.log(page, ' ',FoxtrickTransferDeadline.element);
 		
-		if (Foxtrick.isPage(Foxtrick.ht_pages["transferSearchResult"], doc))
+		if (Foxtrick.isPage("transferSearchResult", doc))
 			this.runTransferResult(doc);
-		else if (Foxtrick.isPage(Foxtrick.ht_pages["playerdetail"], doc))
+		else if (Foxtrick.isPage("playerdetail", doc))
 			this.runPlayerDetail(doc);
-		else if (Foxtrick.isPage(Foxtrick.ht_pages["transfer"], doc))
+		else if (Foxtrick.isPage("transfer", doc))
 			this.runPlayerList(doc);
-		else if (Foxtrick.isPage(Foxtrick.ht_pages["bookmarks"], doc))
+		else if (Foxtrick.isPage("bookmarks", doc))
 			this.runPlayerList(doc);
 	},
 
-	change : function( page, doc ) {
-		if (Foxtrick.isPage(Foxtrick.ht_pages["playerdetail"], doc))
+	change : function(doc) {
+		if (Foxtrick.isPage("playerdetail", doc))
 			this.runPlayerDetail(doc);
 	},
 

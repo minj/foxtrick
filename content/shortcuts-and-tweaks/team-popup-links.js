@@ -149,7 +149,7 @@ var FoxtrickTeamPopupLinks = {
 		return table;
 	},
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var sUrl = Foxtrick.getHref(doc);
 
 		this.userlink = false;

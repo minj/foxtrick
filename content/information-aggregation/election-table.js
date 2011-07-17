@@ -1,5 +1,5 @@
 /**
- * election.js
+ * election-table.js
  * some more infos on election page
  * @author spambot
  */
@@ -10,7 +10,7 @@ var FoxtrickElectionTable = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : new Array('election'),
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		var tbl_election = (doc.getElementById("ft_election")!=null);
 		if (tbl_election) return;
 
@@ -44,10 +44,9 @@ var FoxtrickElectionTable = {
 		div.appendChild(cnt);
 	},
 
-	change : function( page, doc ) {
+	change : function(doc) {
 		var id = "ft_election";
-		if(!doc.getElementById(id)) {
-			this.run( page, doc );
-		}
+		if (!doc.getElementById(id))
+			this.run(doc);
 	}
 };

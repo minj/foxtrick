@@ -10,28 +10,11 @@ var FoxtrickMarkUnread = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumViewThread'),
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		//return;
 		var p = 0;
 		var elems = doc.getElementsByTagName("div");
-/*
-		var tab = '';
-		var thread = '';
 
-		try {
-				var forumtabs = doc.getElementsByClassName("active")[0];
-				var reg = /^(.*?)\&v\=(\d+)(.*?)/;
-				var ar = reg.exec(+' ' + forumtabs.href + ' ');
-				if (ar[2] != null) {
-					tab = '&v=' + ar[2];
-				}
-				var reg = /^(.*?)\?t\=(\d+)(.*?)/;
-				var ar = reg.exec(+' ' + forumtabs.href + ' ');
-				if (ar[2] != null) {
-					thread = '?t=' + ar[2];
-				}
-		} catch(e) {}
-*/
 		for(var i=0; i < elems.length; i++) {
 			if(elems[i].className == "message") {
 				p++;

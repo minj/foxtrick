@@ -9,9 +9,9 @@ var FoxtrickPlayerBirthday = {
 
 	MODULE_NAME : "PlayerBirthday",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : new Array('players','YouthPlayers'),
+	PAGES : ['players','YouthPlayers'],
 
-	run : function(page, doc) {
+	run : function(doc) {
 		// array of players
 		var birthdayToday = new Array();
 		var birthdayFuture = new Array();

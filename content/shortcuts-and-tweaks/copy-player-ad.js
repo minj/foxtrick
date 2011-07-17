@@ -12,7 +12,7 @@ var FoxtrickCopyPlayerAd = {
 	PAGES : ["playerdetail", "youthplayerdetail"],
 	OPTIONS : ["Sorted", "NonTableStyle"],
 
-	run : function(page, doc) {
+	run : function(doc) {
 		try {
 			var main = doc.getElementById("mainWrapper");
 			var links = main.getElementsByTagName("a");
@@ -77,11 +77,10 @@ var FoxtrickCopyPlayerAd = {
 		}
 	},
 
-	change : function(page, doc) {
+	change : function(doc) {
 		var id = "foxtrick_addactionsbox_parentDiv";
-		if (!doc.getElementById(id)) {
-			this.run(page, doc);
-		}
+		if (!doc.getElementById(id))
+			this.run(doc);
 	},
 
 	createPlayerAd : function(ev) {

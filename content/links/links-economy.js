@@ -13,7 +13,7 @@ var FoxtrickLinksEconomy = {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "economylink");
 	},
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		var owncountryid = FoxtrickHelper.getOwnCountryId();
 
 		// only on current finances
@@ -51,6 +51,6 @@ var FoxtrickLinksEconomy = {
 
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 		}
-		Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME,{ "Cash":Cash,"Currency":currencySymbol,"newCash":newCash} );
+		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,{ "Cash":Cash,"Currency":currencySymbol,"newCash":newCash});
 	}
 };

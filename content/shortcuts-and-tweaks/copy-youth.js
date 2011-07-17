@@ -12,7 +12,7 @@ var FoxtrickCopyYouth = {
 	OPTIONS : ["TrainingReport", "ScoutComment", "PlayerSource",
 		"FixturesSource"],
 
-	addTrainingReport : function(page, doc) {
+	addTrainingReport : function(doc) {
 		// return if training report unread
 		if (doc.getElementById("ctl00_ctl00_CPContent_CPMain_butReadAll"))
 			return;
@@ -102,7 +102,7 @@ var FoxtrickCopyYouth = {
 		}
 	},
 
-	addScoutComment : function(page, doc) {
+	addScoutComment : function(doc) {
 		var copyReport = function() {
 			try {
 				var mainBody = doc.getElementById('mainBody');
@@ -161,11 +161,11 @@ var FoxtrickCopyYouth = {
 		};
 
 		var has_report = false;
-		if (page=='youthoverview') {
+		if (Foxtrick.isPage("youthoverview", doc)) {
 			has_report = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butScoutPropYes')!=null;
 		}
 
-		if (page=='youthplayerdetail' || has_report) {
+		if (Foxtrick.isPage("youthplayerdetail", doc) || has_report) {
 			if (has_report) {
 				var alertdiv = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butScoutPropYes').parentNode;
 				if (alertdiv.parentNode.getElementsByTagName('a')[0]==null) {
@@ -233,7 +233,7 @@ var FoxtrickCopyYouth = {
 		}
 	},
 
-	addPlayerSource : function(page, doc) {
+	addPlayerSource : function(doc) {
 		var copySource = function() {
 			var fixBr = function(text) {
 				return text.replace(/\<br\>/g,'<br />' );
@@ -308,7 +308,7 @@ var FoxtrickCopyYouth = {
 		}
 	},
 
-	addFixturesSource : function(page, doc) {
+	addFixturesSource : function(doc) {
 		var copySource = function() {
 			var fixBr = function(text) {
 				return text.replace(/\<br\>/g,'<br />' );
@@ -384,29 +384,30 @@ var FoxtrickCopyYouth = {
 		}
 	},
 
-	run : function(page, doc) {
+	run : function(doc) {
 		if (Foxtrick.isModuleFeatureEnabled(this, "TrainingReport")
-			&& page == "YouthTraining") {
-			this.addTrainingReport(page, doc);
+			&& Foxtrick.isPage("YouthTraining", doc)) {
+			this.addTrainingReport(doc);
 		}
 		if (Foxtrick.isModuleFeatureEnabled(this, "ScoutComment")
-			&& (page == "youthplayerdetail" || page == "youthoverview")) {
-			this.addScoutComment(page, doc);
+			&& (Foxtrick.isPage("youthplayerdetail", doc)
+				|| Foxtrick.isPage("youthoverview", doc))) {
+			this.addScoutComment(doc);
 		}
 		if (Foxtrick.isModuleFeatureEnabled(this, "PlayerSource")
-			&& page == "youthplayerdetail") {
-			this.addPlayerSource(page, doc);
+			&& Foxtrick.isPage("youthplayerdetail", doc)) {
+			this.addPlayerSource(doc);
 		}
 		if (Foxtrick.isModuleFeatureEnabled(this, "FixturesSource")
-			&& page == "youthFixtures") {
-			this.addFixturesSource(page, doc);
+			&& Foxtrick.isPage("youthFixtures", doc)) {
+			this.addFixturesSource(doc);
 		}
 	},
 
-	change : function(page, doc) {
+	change : function(doc) {
 		if (Foxtrick.isModuleFeatureEnabled(this, "ScoutComment")
-			&& page == "youthoverview") {
-			this.addScoutComment(page, doc);
+			&& Foxtrick.isPage("youthoverview", doc)) {
+			this.addScoutComment(doc);
 		}
 	}
 };

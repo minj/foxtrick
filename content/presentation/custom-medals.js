@@ -11,7 +11,7 @@ var FoxtrickCustomMedals = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('teamPage','history','national'),
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		var sidebar = doc.getElementById('sidebar');
 		if( sidebar ) {
 			var images = sidebar.getElementsByTagName('img');

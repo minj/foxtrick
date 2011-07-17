@@ -76,6 +76,22 @@ Foxtrick.some = function(array, func) {
 	return false;
 }
 
+/**
+ * Return an array with duplicate items reduced to one
+ */
+Foxtrick.unique = function(array) {
+	var ret = [];
+	var n = array.length;
+    for (var i = 0; i < n; ++i) {
+		for (var j = i + 1; j < n; ++j) {
+			if (array[i] === array[j])
+				j = ++i;
+		}
+		ret.push(array[i]);
+	}
+    return ret;
+}
+
 Foxtrick.copyStringToClipboard = function (string) {
 	if (Foxtrick.BuildFor === "Gecko") {
 		var gClipboardHelper = Components

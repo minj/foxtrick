@@ -51,7 +51,7 @@ FoxtrickTransferSearchFilters = {
 		"_56" : "FoxtrickTransferSearchResultFilters.days.max",
 	},
 
-	run : function(page, doc) {
+	run : function(doc) {
 		if ( doc.location.href.search(/TransfersSearchResult/i) > 0 ) return;
 
 		var ownBoxBody = doc.createElement("div");

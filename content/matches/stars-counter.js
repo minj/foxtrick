@@ -12,7 +12,7 @@ var FoxtrickStarsCounter = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array("matchLineup"),
 
-	run : function(page, doc) {
+	run : function(doc) {
 		var yellow = 0;
 		var brown = 0;
 		var red = 0;

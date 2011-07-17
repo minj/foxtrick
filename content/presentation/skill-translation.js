@@ -164,7 +164,7 @@ var FoxtrickSkillTranslation = {
 		"non-existent"
 	),
 
-	run : function( page, doc ) { Foxtrick.dump('in SkillTranslation\n');
+	run : function(doc) {
 		// no need to translate if language is already English
 		if (FoxtrickPrefs.getString("htLanguage") === "en") {
 			return;

@@ -9,7 +9,7 @@ var FoxtrickMovePlayerSelectbox= {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail'),
 
-	run : function( page, doc ) {
+	run : function(doc) {
 		var select =doc.getElementById('ctl00_ctl00_CPContent_CPSidebar_ddlSquad');
 		if (!select) return;
 		var box=select.parentNode;

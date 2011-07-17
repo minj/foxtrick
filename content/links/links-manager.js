@@ -13,9 +13,7 @@ var FoxtrickLinksManager = {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "managerlink");
 	},
 
-	run : function( page, doc ) {
-
-		//addExternalLinksToManagerPage
+	run : function(doc) {
 		var ownBoxBody = null;
 		var mainBody = doc.getElementById('mainBody');
 
@@ -46,7 +44,7 @@ var FoxtrickLinksManager = {
 
 			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
 			}
-		Foxtrick.util.links.add( page, doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname, "userid" : userid,  "username" : username,
+		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname, "userid" : userid,  "username" : username,
 												"leagueid" : leagueid ,"owncountryid":owncountryid  });
 	}
 };

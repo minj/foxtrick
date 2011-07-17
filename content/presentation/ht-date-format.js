@@ -11,12 +11,12 @@ var FoxtrickHTDateFormat = {
 		'matches','matchesarchiv','teamPageGeneral','achievements','playerevents',
 		'teamevents','history','arena','league','hallOfFame','statsMatchesHeadToHead',
 		'seriesHistory'],
-	ONPAGEPREF_PAGE : 'all',
+	NICE : 20,
 	OPTIONS : ["LocalSeason", "FirstDayOfWeekOffset"],
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DISABLED_LIST : [true, false],
 	
-	run : function(page, doc) {
+	run : function(doc) {
 		var mainBody = doc.getElementById("mainBody");
 		if (!mainBody) return;
 
@@ -25,11 +25,11 @@ var FoxtrickHTDateFormat = {
 		var seperator=' ';
 		// some table fixing for simple skin
 		if (!Foxtrick.isStandardLayout(doc)) {
-			if (page == 'matches')
+			if (Foxtrick.isPage("matches", doc))
 				seperator = '<br/>';
 		}
-		if (page == 'seriesHistory' )
-				seperator = '<br/>';
+		if (Foxtrick.isPage("seriesHistory", doc))
+			seperator = '<br/>';
 		
 		
 		var modifyDate = function(node) {
