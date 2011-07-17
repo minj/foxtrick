@@ -140,6 +140,8 @@ Foxtrick.ApiProxy = {
 
 	retrieve : function(doc, parameters, callback, caller, silent) {
 		try { 
+			if (FoxtrickPref.getBool('disableOauth')) return;
+			
 			FoxtrickHelper.getOwnTeamInfo(doc); // retrieve team ID first
 			var caller_name='';
 			if (caller && caller.MODULE_NAME) caller_name = caller.MODULE_NAME+' ';

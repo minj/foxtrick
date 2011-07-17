@@ -3,6 +3,7 @@ pref("extensions.foxtrick.prefs.copyratings.teams", "both");
 pref("extensions.foxtrick.prefs.version", "0.7.9");
 pref("extensions.foxtrick.prefs.disableOnStage", false);
 pref("extensions.foxtrick.prefs.disableTemporary", false);
+pref("extensions.foxtrick.prefs.disableOauth", false);
 pref("extensions.foxtrick.prefs.DisplayHTMLDebugOutput", false);
 pref("extensions.foxtrick.prefs.htCountry", "Sweden");
 pref("extensions.foxtrick.prefs.htDateformat", "ddmmyyyy");
