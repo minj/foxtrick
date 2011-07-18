@@ -48,9 +48,9 @@ FoxtrickSupporterStatsEnhancements = {
 					var td = doc.createElement('td');
 					td.className='center';
 					if (inSquad) td.textContent = 'x';
-					as[i].parentNode.parentNode.appendChild(td);								
+					as[i].parentNode.parentNode.appendChild(td);
 				}	
 			}	
-		}, FoxtrickExtraPlayerInfo);	
+		}, { caller_name:this.MODULE_NAME, cache_lifetime:'default'});
 	}
 };

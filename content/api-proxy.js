@@ -138,15 +138,31 @@ Foxtrick.ApiProxy = {
 			false, false, false);
 	},
 
-	retrieve : function(doc, parameters, callback, caller, options) {
-				
+	// used to change expire date of xml_cache eg for to my_monitors nextmachtdate
+	setCacheLifetime : function(doc, parameters_str, cache_lifetime) {
+		Foxtrick.sessionGet(parameters_str, function(xml_cache) {  
+			Foxtrick.sessionSet(parameters_str,{xml_string:xml_cache.xml_string, cache_lifetime : cache_lifetime})  });
+	},
+	
+	// options: {caller_name:name, cache:'session' or 'default' or timestamp} 
+	// session: take xml from this session. xml doesn't expire
+	// default: currently 1 hour, see bellow
+	// timestamp: time in milliseconds since 1970 when a new xml will get retrieved
+	retrieve : function(doc, parameters, callback, options) {
+		var httime = doc.getElementById("time").textContent;
+		var HT_date = Foxtrick.util.time.getDateFromText(httime).getTime();
+		
 		var parameters_str=JSON.stringify(parameters);
-		Foxtrick.log("ApiProxy: options: ",options);
-		Foxtrick.sessionGet(parameters_str, function(xml_string) {
-			if (xml_string && options && options.cache=='session') {
+		Foxtrick.sessionGet(parameters_str, function(xml_cache) { 
+			if (xml_cache) Foxtrick.log("ApiProxy: options: ",options,'  cache_lifetime: ',(new Date(xml_cache.cache_lifetime)).toString(), '  current timestamp: ',(new Date(HT_date)).toString());
+			
+			// check cache first
+			if (xml_cache && xml_cache.xml_string && options 
+					&& 	(  options.cache_lifetime=='session'  
+						|| (Number(xml_cache.cache_lifetime) > HT_date ))) {
 				Foxtrick.log('ApiProxy: use cached xml: ' ,parameters_str);
 				var parser = new DOMParser();
-				callback (parser.parseFromString( JSON.parse(xml_string), "text/xml"));
+				callback (parser.parseFromString( JSON.parse(xml_cache.xml_string), "text/xml"));
 			}
 			else {
 				try { 
@@ -154,9 +170,15 @@ Foxtrick.ApiProxy = {
 						Foxtrick.log('OAuth disabled');
 						return callback(null);
 					}
+					if (options && options.cache_lifetime) { 
+						if (options.cache_lifetime=='default') var cache_lifetime = HT_date+60*60*1000;  //= 1 hour
+						else var cache_lifetime = options.cache_lifetime;
+					}
+					else var cache_lifetime = 0; 
+					
 					FoxtrickHelper.getOwnTeamInfo(doc); // retrieve team ID first
 					var caller_name='';
-					if (caller && caller.MODULE_NAME) caller_name = caller.MODULE_NAME+' ';
+					if (options && options.caller_name) caller_name =  options.caller_name+' ';
 					Foxtrick.log("ApiProxy: "+caller_name+"attempting to retrieve: ", parameters, "…");
 					if (!Foxtrick.ApiProxy.authorized()) {
 						Foxtrick.log("ApiProxy: unauthorized.");
@@ -188,7 +210,7 @@ Foxtrick.ApiProxy = {
 					Foxtrick.loadXml(url, function(x, status) {
 						if (status == 200) {
 							var serializer = new XMLSerializer();
-							Foxtrick.sessionSet(parameters_str,JSON.stringify(serializer.serializeToString(x)));
+							Foxtrick.sessionSet(parameters_str,{xml_string : JSON.stringify(serializer.serializeToString(x)), cache_lifetime:cache_lifetime});
 							callback(x);
 						}
 						else if (status == 401) {

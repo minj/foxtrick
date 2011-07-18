@@ -78,7 +78,7 @@ var FoxtrickSeriesFlags = {
 						});
 						var flag = buildFromData(data);
 						callback(flag);
-					},FoxtrickSeriesFlags);
+					},{ caller_name:this.MODULE_NAME, cache_lifetime:'default'});
 				}
 			});
 		};

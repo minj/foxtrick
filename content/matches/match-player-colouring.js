@@ -134,8 +134,8 @@ var FoxtrickMatchPlayerColouring = {
 					Foxtrick.addClass(n.parentNode.parentNode,
 						"ft-match-event-away");
 				});
-			},FoxtrickMatchPlayerColouring, {cache:'session'} );
-		},FoxtrickMatchPlayerColouring,{cache:'session'});
+			},{ caller_name:this.MODULE_NAME, cache_lifetime:'session'} );
+		},{ caller_name:this.MODULE_NAME, cache_lifetime:'session'});
 	},
 
 	change : function(doc) {

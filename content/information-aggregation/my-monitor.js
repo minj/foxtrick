@@ -196,7 +196,8 @@ var FoxtrickMyMonitor = {
 			];
 			if (team.type == "youth")
 				args.push(["isYouth", "true"]);
-
+			var parameters_str = JSON.stringify(args);
+		
 			Foxtrick.ApiProxy.retrieve(doc, args, function(xml) {
 				if (xml !== null) {
 					team.name = xml.getElementsByTagName("TeamName")[0].textContent;
@@ -204,8 +205,14 @@ var FoxtrickMyMonitor = {
 					//FoxtrickMyMonitor.setSavedTeams(teams); needed? what for? interfers somewhat with chrome pref updating
 					buildLink(team, nameLink);
 				}
-				Foxtrick.util.matchView.fillMatches(matchesContainer, xml);
-			},FoxtrickMyMonitor);
+				var nextmatchdate = Foxtrick.util.matchView.fillMatches(matchesContainer, xml);
+				// change expire date of xml to after next match game
+				if (nextmatchdate) {
+					var expire = Foxtrick.util.time.getDateFromText(nextmatchdate, "yyyymmdd");
+					Foxtrick.ApiProxy.setCacheLifetime(doc, parameters_str, expire.getTime()+105*60*1000);
+				}
+			}, { caller_name:this.MODULE_NAME, cache_lifetime:'default' });
+			
 		};
 		Foxtrick.map(teams, addTeam);
 	},

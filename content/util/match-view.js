@@ -71,8 +71,10 @@ Foxtrick.util.matchView.fillMatches = function(container, xml) {
 	var toAdd = [];
 	if (played.length > 0)
 		toAdd.push(played[played.length - 1]);
-	if (notPlayed.length > 0)
+	if (notPlayed.length > 0) {
 		toAdd.push(notPlayed[0]);
+		var nextmatchdate = notPlayed[0].getElementsByTagName("MatchDate")[0].textContent;
+	}
 	for (var i = 0; i < toAdd.length; ++i) {
 		var match = toAdd[i];
 		var dateText = match.getElementsByTagName("MatchDate")[0].textContent;
@@ -161,4 +163,5 @@ Foxtrick.util.matchView.fillMatches = function(container, xml) {
 
 		table.appendChild(getMatchRow());
 	}
+	return nextmatchdate;
 };
