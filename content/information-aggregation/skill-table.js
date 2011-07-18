@@ -127,7 +127,7 @@ var FoxtrickSkillTable = {
 								});
 							loading.parentNode.removeChild(loading);
 						}
-					}, FoxtrickSkillTable, true);
+					}, FoxtrickSkillTable);
 				});
 			}
 		} catch(e) {Foxtrick.log('removeBotPlayers',e);}
@@ -220,7 +220,7 @@ var FoxtrickSkillTable = {
 																		FoxtrickSkillTable.showTable(doc, list);
 																	}
 																}
-															}, FoxtrickSkillTable, true);
+															}, FoxtrickSkillTable);
 														}
 													}
 												}
@@ -231,7 +231,7 @@ var FoxtrickSkillTable = {
 													FoxtrickSkillTable.showTable(doc, list);
 												}
 											}
-										}, FoxtrickSkillTable, true);
+										}, FoxtrickSkillTable);
 									}
 								}
 								if (!always_home) {
@@ -240,7 +240,7 @@ var FoxtrickSkillTable = {
 										FoxtrickSkillTable.showTable(doc, list);
 									}
 								}	
-							}, FoxtrickSkillTable, true);
+							}, FoxtrickSkillTable);
 						});
 					}	
 				});
@@ -295,7 +295,7 @@ var FoxtrickSkillTable = {
 											list = list.concat(listsquad);
 											FoxtrickSkillTable.showTable(doc, list);
 										}
-									}, FoxtrickSkillTable, true);
+									}, FoxtrickSkillTable);
 								});
 							}	
 						}, true);
