@@ -145,7 +145,45 @@ var FoxtrickMyMonitor = {
 			// link containing team name
 			var nameLink = doc.createElement("a");
 			buildLink(team, nameLink);
+			if (team.logo) { 
+				var img = doc.createElement('img');
+				img.title = team.name;
+				img.height ='16';
+				img.setAttribute('style','padding: 0 5px 0 0; margin:0 0 -2px');
+				img.src = team.logo;
+				header.appendChild(img);
+			}
+			else if (team.country) {
+				var img = doc.createElement('img');
+				img.height ='16';
+				var style="margin-right: 5px; padding-right: 4px; vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll "+ (-20)*team.country+"px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";
+				img.setAttribute('style',style);
+				img.src="/Img/Icons/transparent.gif";
+				header.appendChild(img);
+			}
 			header.appendChild(nameLink);
+
+			var sortdiv = doc.createElement('div');
+			sortdiv.className='ft_sort';
+			
+			var uplink = doc.createElement('input');
+			uplink.type="image";
+			uplink.title=Foxtrickl10n.getString('sort.up');
+			uplink.className="up";
+			uplink.src="../../Img/Icons/transparent.gif"
+			uplink.setAttribute('teamid',team.id);
+			Foxtrick.addEventListenerChangeSave(uplink, 'click', FoxtrickMyMonitor.move_up, false);
+			sortdiv.appendChild(uplink);
+
+			var downlink = doc.createElement('input');
+			downlink.type="image";
+			downlink.title=Foxtrickl10n.getString('sort.down');
+			downlink.className="down";
+			downlink.src="../../Img/Icons/transparent.gif"
+			downlink.setAttribute('teamid',team.id);
+			Foxtrick.addEventListenerChangeSave(downlink, 'click', FoxtrickMyMonitor.move_down, false);
+			sortdiv.appendChild(downlink);
+			header.appendChild(sortdiv);
 
 			// matches container
 			var matchesContainer = doc.createElement("div");
@@ -172,6 +210,38 @@ var FoxtrickMyMonitor = {
 		Foxtrick.map(teams, addTeam);
 	},
 
+	move_up: function (ev) {
+		var doc = ev.target.ownerDocument;
+		var teamid = ev.target.getAttribute('teamid');
+		var teams = FoxtrickMyMonitor.getSavedTeams(doc);
+		var neworder = [];
+		for (var i=0;i<teams.length;++i) {
+			if (i!=teams.length-1 && teams[i+1].id == teamid) {
+				neworder.push(teams[i+1]);
+				neworder.push(teams[i]);
+				i++;
+			}
+			else neworder.push(teams[i]);
+		}
+		FoxtrickMyMonitor.setSavedTeams(neworder);
+	},
+	
+	move_down: function (ev) {
+		var doc = ev.target.ownerDocument;
+		var teamid = ev.target.getAttribute('teamid');
+		var teams = FoxtrickMyMonitor.getSavedTeams(doc);
+		var neworder = [];
+		for (var i=0;i<teams.length;++i) {
+			if (teams[i].id == teamid && i!=teams.length-1) {
+				neworder.push(teams[i+1]);
+				neworder.push(teams[i]);
+				i++;
+			}
+			else neworder.push(teams[i]);
+		}
+		FoxtrickMyMonitor.setSavedTeams(neworder);
+	},
+
 	showSidebar : function(doc) {
 		if (Foxtrick.isPage("teamPage", doc))
 			var type = "senior";
@@ -185,6 +255,24 @@ var FoxtrickMyMonitor = {
 		var existing = Foxtrick.filter(teams, function(n) {
 			return n.id == teamIdContainer.id && n.type == type;
 		});
+		
+		if ( type == 'senior' ) {
+			var logo = doc.getElementsByClassName('teamLogo')[0];// team logo
+			if (logo) { 
+				var logo_link = logo.getElementsByTagName('a')[0];  // better quality. original size 
+				if (logo_link) {
+					teamIdContainer.logo = logo_link.href;
+					if (existing[0]) existing[0].logo = logo_link.href; //update always
+				}
+			}
+		}
+		else if ( type == 'nt' ) {
+				var country = FoxtrickHelper.findCountryId(doc.getElementById('mainBody'));
+				teamIdContainer.country = country;
+				if (existing[0]) existing[0].country = country; //update if not existing from previous builds
+		}
+		
+		
 		var container = doc.createElement("div");
 		container.id = "ft-monitor-sidebar-box-container";
 		// link to add team
@@ -192,7 +280,7 @@ var FoxtrickMyMonitor = {
 		addLink.className = "ft-link";
 		addLink.textContent = Foxtrickl10n.getString("MyMonitor.add");
 		addLink.addEventListener("click", function() {
-			teams.push({ id : teamIdContainer.id, type : type, name : teamIdContainer.name });
+			teams.push({ id : teamIdContainer.id, type : type, name : teamIdContainer.name, logo : teamIdContainer.logo, country:teamIdContainer.country});
 			FoxtrickMyMonitor.setSavedTeams(teams);
 			Foxtrick.addClass(addLink, "hidden");
 			Foxtrick.removeClass(removeLink, "hidden");
@@ -244,6 +332,8 @@ var FoxtrickMyMonitor = {
 			"ft-monitor-sidebar-box",
 			"first"
 		);
+		
+		FoxtrickMyMonitor.setSavedTeams(teams);
 	},
 
 	getSavedTeams : function(doc) {
