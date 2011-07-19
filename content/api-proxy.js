@@ -161,7 +161,11 @@ Foxtrick.ApiProxy = {
 	// timestamp: time in milliseconds since 1970 when a new xml will get retrieved
 	retrieve : function(doc, parameters, options, callback) {
 		var httime = doc.getElementById("time").textContent;
-		var HT_date = Foxtrick.util.time.getDateFromText(httime).getTime();
+		try { var HT_date = Foxtrick.util.time.getDateFromText(httime).getTime();
+		} catch(e) { // no httime yet.we have been to fast. lets put us 1 day in the future
+			Foxtrick.log('no httime yet');
+			var HT_date = (new Date()).getTime()+24*60*60*1000;
+		}
 		
 		var parameters_str=JSON.stringify(parameters);
 		Foxtrick.sessionGet('xml_cache.'+parameters_str, function(xml_cache) { 
