@@ -97,7 +97,7 @@ var FoxtrickSkillTable = {
 		
 			rows = Foxtrick.filter(rows, function(tr) {return !tr.getAttribute('currentsquad');});
 			var nr_to_process = rows.length;
-			if (nr_to_process==0) loading.parentNode.removeChild(loading);
+			if (nr_to_process==0 && loading) loading.parentNode.removeChild(loading);
 			else {
 				Foxtrick.map(rows, function(row) {
 					var teamid = row.getAttribute('currentclub');
@@ -125,7 +125,7 @@ var FoxtrickSkillTable = {
 									if (tr.getAttribute('isbot'))
 										tr.setAttribute('style','display:none;');
 								});
-							loading.parentNode.removeChild(loading);
+							if (loading) loading.parentNode.removeChild(loading);
 						}
 					}, { caller_name:this.MODULE_NAME, cache_lifetime:'session'});
 				});
@@ -224,7 +224,9 @@ var FoxtrickSkillTable = {
 															Foxtrick.ApiProxy.retrieve(doc, args, function(xml) {
 																if (xml) {	
 																	activationDate = xml.getElementsByTagName("ActivationDate")[0].textContent;
-																	Foxtrick.map(list, function(n) {if (n.id==pid) n.joinedSince = activationDate;});	
+																	Foxtrick.map(list, function(n) {
+																			if (n.id==pid) n.joinedSince = activationDate;
+																	});	
 																	nr_to_process--;
 																	if (nr_to_process==0) { // processed all. now filter, concat with oldies and display
 																		FoxtrickSkillTable.showTable(doc, list);
@@ -291,13 +293,20 @@ var FoxtrickSkillTable = {
 												var Transfer = Transfers[Transfers.length-1]; // oldest and first transfer
 												var seller = Number(Transfer.getElementsByTagName("SellerTeamID")[0].textContent);
 												if (seller==TeamId) {
-													homeGrown = doc.createElement('span');homeGrown.textContent='*';homeGrown.title=Foxtrickl10n.getString("skilltable.rebought_youthplayer");
+													homeGrown = doc.createElement('span');
+													homeGrown.textContent='*';
+													homeGrown.title=Foxtrickl10n.getString("skilltable.rebought_youthplayer");
 												}
 											}
-											else { homeGrown = doc.createElement('span');homeGrown.textContent='X';homeGrown.title=Foxtrickl10n.getString("skilltable.youthplayer");};
-											
+											else { 
+												homeGrown = doc.createElement('span');
+												homeGrown.textContent='X';
+												homeGrown.title=Foxtrickl10n.getString("skilltable.youthplayer");
+											}
 											if (homeGrown) 
-												Foxtrick.map(listsquad, function(n) {if (n.id==pid) n.homeGrown = homeGrown; });
+												Foxtrick.map(listsquad, function(n) {
+														if (n.id==pid) n.homeGrown = homeGrown; 
+												});
 										}
 										nr_to_process--;
 										if (nr_to_process==0) { // processed all. now filter, concat with oldies and display
