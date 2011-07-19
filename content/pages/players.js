@@ -227,7 +227,7 @@ Foxtrick.Pages.Players = {
 					player = playerList[playerList.length - 1];
 				}
 				var nameLink = Foxtrick.filter(playerNode.getElementsByTagName("a"),
-					function(n) { return !Foxtrick.hasClass(n, "flag"); })[0];
+					function(n) { return !Foxtrick.hasClass(n, "flag.+"); })[0];
 				player.nameLink = nameLink.cloneNode(true);
 
 				var paragraphs = playerNode.getElementsByTagName("p");
@@ -536,7 +536,7 @@ Foxtrick.Pages.Players = {
 
 	getPlayerId : function(playerInfo) {
 		var nameLink = Foxtrick.filter(playerInfo.getElementsByTagName("a"),
-			function(n) { return !Foxtrick.hasClass(n, "flag"); })[0];
+			function(n) { return !Foxtrick.hasClass(n, "flag.+"); })[0];
 		var id = Number(nameLink.href.match(/playerID=(\d+)/i)[1]);
 		return id;
 	},

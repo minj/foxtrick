@@ -149,15 +149,14 @@ var FoxtrickMyMonitor = {
 				var img = doc.createElement('img');
 				img.title = team.name;
 				img.height ='16';
-				img.setAttribute('style','padding: 0 5px 0 0; margin:0 0 -2px');
+				img.className = 'teamicon';
 				img.src = team.logo;
 				header.appendChild(img);
 			}
 			else if (team.country) {
 				var img = doc.createElement('img');
-				img.height ='16';
-				var style="margin-right: 5px; padding-right: 4px; vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll "+ (-20)*team.country+"px 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;";
-				img.setAttribute('style',style);
+				img.height ='12';
+				img.className = 'mymonitorflag flag'+team.country;
 				img.src="/Img/Icons/transparent.gif";
 				header.appendChild(img);
 			}

@@ -345,19 +345,20 @@ var FoxtrickHelper = {
 		Foxtrick.dump('getCurrencyRate error. id: '+id+'\n');
 	},
 
-	createFlagFromCountryId : function(doc, countryId) {
+	createFlagFromCountryId : function(doc, countryId, href, title) {
 		var leagueId = Foxtrick.XMLData.getLeagueIdByCountryId(countryId);
 		var leagueName = "New Moon";
 		if (leagueId) {
 			leagueName = FoxtrickHelper.getLeagueDataFromId(leagueId).LeagueName;
 		}
 		var a = doc.createElement("a");
-		a.href = "/World/Leagues/League.aspx?LeagueID=" + leagueId;
-		a.className = "flag inner";
+		if (href)  a.href = href;
+		else a.href = "/World/Leagues/League.aspx?LeagueID=" + leagueId;
+		a.className = "flag"+leagueId+ " inner";
 		var img = doc.createElement("img");
-		var style = "vertical-align:top; margin-top:1px; background: transparent url(/Img/Flags/flags.gif) no-repeat scroll " + (-20) * leagueId + "px 0pt;";
-		img.setAttribute("style", style);
-		img.alt = img.title = leagueName;
+		img.height='12';
+		if (title) img.alt = img.title = title;
+		else img.alt = img.title = leagueName;
 		img.src = "/Img/Icons/transparent.gif";
 		a.appendChild(img);
 		return a;

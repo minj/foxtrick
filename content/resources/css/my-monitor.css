@@ -37,3 +37,8 @@
 #ft-monitor-sidebar-box .hidden {
 	display: none !important; /* need to overwrite */
 }
+
+.mymonitorflag {padding-right: 8px; margin-top:4px; margin-bottom:1px;}
+
+.teamicon {padding: 0 5px 0 0; margin:0 0 -2px}
+				

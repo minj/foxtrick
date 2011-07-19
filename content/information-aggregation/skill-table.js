@@ -80,7 +80,7 @@ var FoxtrickSkillTable = {
 		try{
 			var doc = ev.target.ownerDocument;
 			doc.getElementById('skilltable_addHomegrownId').setAttribute('style','display:none;');
-								
+			
 			var fullType = { type : "oldiesAndOwn"};
 			FoxtrickSkillTable.createTable(doc, fullType );
 		} catch(e){Foxtrick.log('AddHomegrown',e);}
@@ -127,7 +127,7 @@ var FoxtrickSkillTable = {
 								});
 							loading.parentNode.removeChild(loading);
 						}
-					}, { caller_name:this.MODULE_NAME, cache_lifetime:'default'});
+					}, { caller_name:this.MODULE_NAME, cache_lifetime:'session'});
 				});
 			}
 		} catch(e) {Foxtrick.log('removeBotPlayers',e);}
@@ -163,7 +163,11 @@ var FoxtrickSkillTable = {
 										if (seller==TeamId) {
 											homegrown=true;
 											Foxtrick.map(list, function(n) {
-												if (n.id==pid) {n.homeGrown = doc.createElement('span');n.homeGrown.textContent='*';n.homeGrown.title=Foxtrickl10n.getString("skilltable.rebought_youthplayer");} 
+												if (n.id==pid) {
+													n.homeGrown = doc.createElement('span');
+													n.homeGrown.textContent='*';
+													n.homeGrown.title=Foxtrickl10n.getString("skilltable.rebought_youthplayer");
+												} 
 											});
 										}
 										var Transfer = Transfers[0]; //last transfer to this team
@@ -173,7 +177,13 @@ var FoxtrickSkillTable = {
 									else {
 										homegrown=true;
 										always_home=true;
-										Foxtrick.map(list, function(n) {if (n.id==pid) {n.homeGrown = doc.createElement('span');n.homeGrown.textContent='X';n.homeGrown.title=Foxtrickl10n.getString("skilltable.youthplayer");} });
+										Foxtrick.map(list, function(n) {
+												if (n.id==pid) {
+													n.homeGrown = doc.createElement('span');
+													n.homeGrown.textContent='X';
+													n.homeGrown.title=Foxtrickl10n.getString("skilltable.youthplayer");
+												} 
+										});
 										var args = [];
 										args.push(["playerid", player.id]);
 										args.push(["file", "playerevents"]);
@@ -220,7 +230,7 @@ var FoxtrickSkillTable = {
 																		FoxtrickSkillTable.showTable(doc, list);
 																	}
 																}
-															}, { caller_name:this.MODULE_NAME, cache_lifetime:'default'});
+															}, { caller_name:this.MODULE_NAME, cache_lifetime:'session'});
 														}
 													}
 												}
@@ -231,7 +241,7 @@ var FoxtrickSkillTable = {
 													FoxtrickSkillTable.showTable(doc, list);
 												}
 											}
-										}, { caller_name:this.MODULE_NAME, cache_lifetime:'default'});
+										}, { caller_name:this.MODULE_NAME, cache_lifetime:'session'});
 									}
 								}
 								if (!always_home) {
@@ -240,7 +250,7 @@ var FoxtrickSkillTable = {
 										FoxtrickSkillTable.showTable(doc, list);
 									}
 								}	
-							}, { caller_name:this.MODULE_NAME, cache_lifetime:'default'});
+							}, { caller_name:this.MODULE_NAME, cache_lifetime:'session'});
 						});
 					}	
 				});
@@ -295,7 +305,7 @@ var FoxtrickSkillTable = {
 											list = list.concat(listsquad);
 											FoxtrickSkillTable.showTable(doc, list);
 										}
-									}, { caller_name:this.MODULE_NAME, cache_lifetime:'default'});
+									}, { caller_name:this.MODULE_NAME, cache_lifetime:'session'});
 								});
 							}	
 						}, true);
