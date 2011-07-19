@@ -138,10 +138,20 @@ Foxtrick.ApiProxy = {
 			false, false, false);
 	},
 
+
 	// used to change expire date of xml_cache eg for to my_monitors nextmachtdate
 	setCacheLifetime : function(doc, parameters_str, cache_lifetime) {
-		Foxtrick.sessionGet(parameters_str, function(xml_cache) {  
-			Foxtrick.sessionSet(parameters_str,{xml_string:xml_cache.xml_string, cache_lifetime : cache_lifetime})  });
+		Foxtrick.sessionGet('xml_cache.'+parameters_str, function(xml_cache) {  
+			Foxtrick.sessionSet('xml_cache.'+parameters_str,{ xml_string:xml_cache.xml_string, 
+												cache_lifetime : cache_lifetime })  });
+	},
+	
+	clearCache : function (ev) {
+		try {
+			var doc = ev.target.ownerDocument;
+			Foxtrick.sessionDeleteBranch('xml_cache');
+			doc.location.reload();
+		} catch (e) {Foxtrick.log(e);}
 	},
 	
 	// options: {caller_name:name, cache:'session' or 'default' or timestamp} 
@@ -153,14 +163,32 @@ Foxtrick.ApiProxy = {
 		var HT_date = Foxtrick.util.time.getDateFromText(httime).getTime();
 		
 		var parameters_str=JSON.stringify(parameters);
-		Foxtrick.sessionGet(parameters_str, function(xml_cache) { 
-			if (xml_cache) Foxtrick.log("ApiProxy: options: ",options,'  cache_lifetime: ',(new Date(xml_cache.cache_lifetime)).toString(), '  current timestamp: ',(new Date(HT_date)).toString());
+		Foxtrick.sessionGet('xml_cache.'+parameters_str, function(xml_cache) { 
+			if (xml_cache) Foxtrick.log("ApiProxy: options: ",options,
+									'  cache_lifetime: ',(new Date(xml_cache.cache_lifetime)).toString(), 
+									'  current timestamp: ',(new Date(HT_date)).toString());
 			
 			// check cache first
 			if (xml_cache && xml_cache.xml_string && options 
 					&& 	(  options.cache_lifetime=='session'  
 						|| (Number(xml_cache.cache_lifetime) > HT_date ))) {
 				Foxtrick.log('ApiProxy: use cached xml: ' ,parameters_str);
+
+				// add clear cache link
+				var bottom = doc.getElementById('bottom');
+				if (bottom) {
+					var clear_cache_span = doc.getElementById('ft_clear_cache');
+					// don't add twice
+					if (!clear_cache_span) {
+						clear_cache_span = doc.createElement('span');
+						clear_cache_span.id='ft_clear_cache';
+						clear_cache_span.textContent = Foxtrickl10n.getString('action.clearCache');
+						clear_cache_span.title = Foxtrickl10n.getString('action.clearCache.title');
+						clear_cache_span.addEventListener('click',Foxtrick.ApiProxy.clearCache,false);
+						bottom.insertBefore(clear_cache_span, bottom.firstChild);
+					}
+				}
+
 				var parser = new DOMParser();
 				callback (parser.parseFromString( JSON.parse(xml_cache.xml_string), "text/xml"));
 			}
@@ -210,7 +238,8 @@ Foxtrick.ApiProxy = {
 					Foxtrick.loadXml(url, function(x, status) {
 						if (status == 200) {
 							var serializer = new XMLSerializer();
-							Foxtrick.sessionSet(parameters_str,{xml_string : JSON.stringify(serializer.serializeToString(x)), cache_lifetime:cache_lifetime});
+							Foxtrick.sessionSet('xml_cache.'+parameters_str,
+												{ xml_string : JSON.stringify(serializer.serializeToString(x)), cache_lifetime:cache_lifetime });
 							callback(x);
 						}
 						else if (status == 401) {
@@ -220,7 +249,12 @@ Foxtrick.ApiProxy = {
 							callback(null);
 						}
 						else {
-							Foxtrick.log("ApiProxy: error ", status, ". Arguments: ", Foxtrick.filter(parameters, function(p) {return (p[0]!='oauth_consumer_key' && p[0]!='oauth_token' && p[0]!='oauth_signature');}) );
+							Foxtrick.log("ApiProxy: error ", status, 
+										". Arguments: ", Foxtrick.filter(parameters, function(p) {
+															return (p[0]!='oauth_consumer_key' 
+																	&& p[0]!='oauth_token' 
+																	&& p[0]!='oauth_signature');
+														}) );
 							callback(null);
 						}
 					}, true);

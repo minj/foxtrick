@@ -56,7 +56,7 @@ Foxtrick.Pages.Players = {
 						args.push(["actionType", "viewOldCoaches"]);
 				}
 			}
-			Foxtrick.ApiProxy.retrieve(doc, args, callback,{caller_name:'pages.players', cache_lifetime:'default'});
+			Foxtrick.ApiProxy.retrieve(doc, args, callback,{caller_name:'pages.players', cache_lifetime:'session'});
 		};
 
 		var parseXml = function(xml) {

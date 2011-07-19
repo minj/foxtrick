@@ -272,3 +272,18 @@ Foxtrick.sessionGet = function(key, callback) {
 			}, function(n) { callback(n.value); });
 	}
 };
+
+Foxtrick.sessionDeleteBranch = function(del_key) {
+	if (Foxtrick.BuildFor === "Gecko") {
+		for (var key in Foxtrick.sessionStore) {
+			if (key.match(new RegExp('^'+del_key))) 
+				Foxtrick.sessionStore[key] = null;
+		};
+	}
+	else if (Foxtrick.BuildFor === "Chrome") {
+		chrome.extension.sendRequest({
+				req : "sessionDeleteBranch",
+				key : del_key
+			});
+	}
+};

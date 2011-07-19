@@ -187,5 +187,5 @@ ul.ft-pop > li a, ul.ft-pop span {
 
 .ft-monitor-frame  > h2:hover  > div.ft_sort {display:inline;}
 .ft-monitor-frame > h2 > div.ft_sort {float:right; display:none;}
-			
 
+#ft_clear_cache {cursor: pointer; color:#3F7137; }

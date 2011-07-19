@@ -50,11 +50,15 @@ var makeCssTextCollection = function() {
 
 		// select layout
 		var cssList = module.CSS;
-		if (localStorage["isRTL"]=='true' && typeof(module.CSS_RTL)!= 'undefined')
+		if (localStorage["isRTL"]=='true' 
+				&& typeof(module.CSS_RTL)!= 'undefined')
 			cssList = module.CSS_RTL;
-		if (localStorage["isStandard"]=='false' && typeof(module.CSS_SIMPLE)!= 'undefined')
+		if (localStorage["isStandard"]=='false' 
+				&& typeof(module.CSS_SIMPLE)!= 'undefined')
 			cssList = module.CSS_SIMPLE;
-		if (localStorage["isStandard"]=='false' && localStorage["isRTL"]=='true' && typeof(module.CSS_SIMPLE_RTL)!= 'undefined' )
+		if (localStorage["isStandard"]=='false' 
+				&& localStorage["isRTL"]=='true' 
+				&& typeof(module.CSS_SIMPLE_RTL)!= 'undefined' )
 			cssList = module.CSS_SIMPLE_RTL;
 		
 		// get css text from selected resource
@@ -73,13 +77,20 @@ var makeCssTextCollection = function() {
 				if (!enabled) continue;
 				
 				var cssList = '';
-				if (typeof(module.OPTIONS_CSS)!= 'undefined' && typeof(module.OPTIONS_CSS[j])!= 'undefined')
+				if (typeof(module.OPTIONS_CSS)!= 'undefined' 
+						&& typeof(module.OPTIONS_CSS[j])!= 'undefined')
 					cssList = module.OPTIONS_CSS[j];
-				if (localStorage["isRTL"]=='true' && typeof(module.OPTIONS_CSS_RTL)!= 'undefined' && typeof(module.OPTIONS_CSS_RTL[j])!= 'undefined')
+				if (localStorage["isRTL"]=='true' 
+						&& typeof(module.OPTIONS_CSS_RTL)!= 'undefined' 
+						&& typeof(module.OPTIONS_CSS_RTL[j])!= 'undefined')
 					cssList = module.OPTIONS_CSS_RTL[j];
-				if (localStorage["isStandard"]=='false' && typeof(module.OPTIONS_CSS_SIMPLE)!= 'undefined' && typeof(module.OPTIONS_CSS_SIMPLE[j])!= 'undefined')
-					cssList = module.OPTIONS_CSS_SIMPLE[j];					
-				if (localStorage["isStandard"]=='false' && localStorage["isRTL"]=='true' && typeof(module.OPTIONS_CSS_RTL_SIMPLE)!= 'undefined' && typeof(module.OPTIONS_CSS_RTL_SIMPLE[j])!= 'undefined')
+				if (localStorage["isStandard"]=='false' 
+						&& typeof(module.OPTIONS_CSS_SIMPLE)!= 'undefined' 
+						&& typeof(module.OPTIONS_CSS_SIMPLE[j])!= 'undefined')
+					cssList = module.OPTIONS_CSS_SIMPLE[j];
+				if (localStorage["isStandard"]=='false' && localStorage["isRTL"]=='true' 
+						&& typeof(module.OPTIONS_CSS_RTL_SIMPLE)!= 'undefined' 
+						&& typeof(module.OPTIONS_CSS_RTL_SIMPLE[j])!= 'undefined')
 					cssList = module.OPTIONS_CSS_RTL_SIMPLE[j];
 				cssTextCollection += getCssFromResource(cssList);
 			}
@@ -327,6 +338,13 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 			// @param key - key of session store
 			// @callback_param value - contains the object stored
 			sendResponse({value : sessionStore[request.key]});
+		}
+		else if (request.req == "sessionDeleteBranch") {
+			// @param key - initial part of key(s) of session store to delete
+			for (var key in sessionStore) {
+				if (key.match(new RegExp('^'+request.key))) 
+					sessionStore[key] = null;
+			};
 		}
 	}
 	catch (e) {
