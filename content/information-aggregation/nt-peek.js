@@ -69,7 +69,8 @@ var FoxtrickNtPeek = {
 			["teamID", ntId]
 		];
 		var parameters_nt_str = JSON.stringify(ntArgs);
-		Foxtrick.ApiProxy.retrieve(doc, ntArgs, function(xml) {
+		Foxtrick.ApiProxy.retrieve(doc, ntArgs,{cache_lifetime:'default', caller_name:this.MODULE_NAME },
+		function(xml) {
 			if (xml) {
 				var nextmatchdate = Foxtrick.util.matchView.fillMatches(
 										ntContainer.getElementsByTagName("div")[0],
@@ -79,14 +80,15 @@ var FoxtrickNtPeek = {
 					Foxtrick.ApiProxy.setCacheLifetime(doc, parameters_nt_str, expire.getTime());
 				}
 			}
-		},{ caller_name:this.MODULE_NAME, cache_lifetime:'default'});
+		});
 		
 		const u20Args = [
 			["file", "matches"],
 			["teamID", u20Id]
 		];
 		var parameters_u20_str = JSON.stringify(u20Args);
-		Foxtrick.ApiProxy.retrieve(doc, u20Args, function(xml) {
+		Foxtrick.ApiProxy.retrieve(doc, u20Args,{ ccache_lifetime:'default', caller_name:this.MODULE_NAME }, 
+		function(xml) {
 			if (xml) {
 				var nextmatchdate = Foxtrick.util.matchView.fillMatches(
 										u20Container.getElementsByTagName("div")[0],
@@ -96,6 +98,6 @@ var FoxtrickNtPeek = {
 					Foxtrick.ApiProxy.setCacheLifetime(doc, parameters_u20_str, expire.getTime());
 				}
 			}
-		},{ caller_name:this.MODULE_NAME, cache_lifetime:'default'});
+		});
 	}
 };

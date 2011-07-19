@@ -197,7 +197,8 @@ var FoxtrickMyMonitor = {
 				args.push(["isYouth", "true"]);
 			var parameters_str = JSON.stringify(args);
 		
-			Foxtrick.ApiProxy.retrieve(doc, args, function(xml) {
+			Foxtrick.ApiProxy.retrieve(doc, args, { cache_lifetime:'default', caller_name:this.MODULE_NAME },
+			function(xml) {
 				if (xml !== null) {
 					team.name = xml.getElementsByTagName("TeamName")[0].textContent;
 					team.id = xml.getElementsByTagName("TeamID")[0].textContent;
@@ -210,7 +211,7 @@ var FoxtrickMyMonitor = {
 					var expire = Foxtrick.util.time.getDateFromText(nextmatchdate, "yyyymmdd");
 					Foxtrick.ApiProxy.setCacheLifetime(doc, parameters_str, expire.getTime()+105*60*1000);
 				}
-			}, { caller_name:this.MODULE_NAME, cache_lifetime:'default' });
+			});
 			
 		};
 		Foxtrick.map(teams, addTeam);

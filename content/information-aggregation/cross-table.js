@@ -304,7 +304,8 @@ var FoxtrickCrossTable = {
 			["season", season]
 		];
 
-		Foxtrick.ApiProxy.retrieve(doc, args, function(xml) {
+		Foxtrick.ApiProxy.retrieve(doc, args, { cache_lifetime:'session', caller_name:this.MODULE_NAME},
+		function(xml) {
 			try {
 				if (xml) {
 					var matchNodes = xml.getElementsByTagName("Match");
@@ -316,6 +317,6 @@ var FoxtrickCrossTable = {
 			catch (e) {
 				Foxtrick.log(e);
 			}
-		},FoxtrickCrossTable, {cache_lifetime:'session'} );
+		});
 	}
 };

@@ -28,7 +28,7 @@ Foxtrick.Pages.Players = {
 		return (doc.location.href.indexOf("Coaches\.aspx") != -1);
 	},
 
-	getPlayerList : function(doc, callback, allsquad) {
+	getPlayerList : function(doc, callback, current_squad_externally) {
 		var playerList = [];
 
 		var getXml = function(doc, callback) {
@@ -49,18 +49,18 @@ Foxtrick.Pages.Players = {
 				args.push(["file", "players"]);
 				args.push(["version", "2.0"]);
 				
-				if (!allsquad) {
+				if (!current_squad_externally) {
 					if (Foxtrick.Pages.Players.isOldiesPage(doc))
 						args.push(["actionType", "viewOldies"]);
 					else if (Foxtrick.Pages.Players.isCoachesPage(doc))
 						args.push(["actionType", "viewOldCoaches"]);
 				}
 			}
-			Foxtrick.ApiProxy.retrieve(doc, args, callback,{caller_name:'pages.players', cache_lifetime:'session'});
+			Foxtrick.ApiProxy.retrieve(doc, args,{ cache_lifetime:'session',caller_name:'pages.players'}, callback);
 		};
 
 		var parseXml = function(xml) {
-		try{
+		try {
 			if (!xml)
 				return;
 			var playerNodes = xml.getElementsByTagName("Player");
@@ -74,8 +74,8 @@ Foxtrick.Pages.Players = {
 					if (playerList[j].id == id) 
 						{ player = playerList[j];break;}
 				if (!player) {
-					if (!allsquad)	continue; // not present in HTML
-					else {						
+					if (!current_squad_externally)	continue; // not present in HTML. skip if not retrieving squad from other page anyways
+					else {
 						playerList.push({id : id});
 						player = playerList[playerList.length - 1];
 						
@@ -494,6 +494,10 @@ Foxtrick.Pages.Players = {
 						}
 					}
 				}
+				if (doc.getElementById("psicotsi_show_div_"+i)!==null) 	 // ff
+					player.psicoTSI = doc.getElementById("psicotsi_show_div_"+i).getElementsByTagName("a")[0].textContent.match(/\d+\.\d+/)[0];
+				else if (doc.getElementById("psico_show_div_"+i)!==null) 	 // chrome
+					player.psicoTSI = doc.getElementById("psico_show_div_"+i).getElementsByTagName("a")[0].textContent.match(/\d+\.\d+/)[0];
 			}
 		};
 		// if callback is provided, we get list with XML
@@ -503,7 +507,7 @@ Foxtrick.Pages.Players = {
 				try {
 					// parse HTML first because players present in XML may
 					// not present in XML (NT players)
-					if (!allsquad) parseHtml();
+					if (!current_squad_externally) parseHtml();
 					if (xml) parseXml(xml);
 					callback(playerList);
 				}

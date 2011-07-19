@@ -61,7 +61,8 @@ var FoxtrickShowFriendlyBooked = {
 				["file", "teamdetails"],
 				["teamID", teamId]
 			];
-			Foxtrick.ApiProxy.retrieve(doc, parameters, function(xml) {
+			Foxtrick.ApiProxy.retrieve(doc, parameters,{ cache_lifetime:'default', caller_name:this.MODULE_NAME },
+			function(xml) {
 				if (xml == null) {
 					// failed to retrieve XML
 					destCell.textContent = Foxtrickl10n.getString("status.error.abbr");
@@ -83,7 +84,7 @@ var FoxtrickShowFriendlyBooked = {
 					img.alt = img.title = Foxtrickl10n.getString("team.status.booked");
 					destCell.appendChild(img);
 				}
-			},{ caller_name:this.MODULE_NAME, cache_lifetime:'default'});
+			});
 		});
 	}
 };

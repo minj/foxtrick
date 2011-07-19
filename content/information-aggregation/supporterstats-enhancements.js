@@ -21,7 +21,8 @@ FoxtrickSupporterStatsEnhancements = {
 		args.push(["teamId", teamid]);
 		args.push(["file", "players"]);
 		
-		Foxtrick.ApiProxy.retrieve(doc, args, function(xml) {	 
+		Foxtrick.ApiProxy.retrieve(doc, args, {cache_lifetime:'session', caller_name:this.MODULE_NAME },
+		function(xml) {	 
 			if (!xml)
 				return;
 			var playerNodes = xml.getElementsByTagName("Player");
@@ -51,6 +52,6 @@ FoxtrickSupporterStatsEnhancements = {
 					as[i].parentNode.parentNode.appendChild(td);
 				}	
 			}	
-		}, { caller_name:this.MODULE_NAME, cache_lifetime:'default'});
+		});
 	}
 };

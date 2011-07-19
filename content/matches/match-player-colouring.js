@@ -92,8 +92,10 @@ var FoxtrickMatchPlayerColouring = {
 				return Number(m[1]);
 			return null;
 		};
-		Foxtrick.ApiProxy.retrieve(doc, homeArgs, function(homeXml) {
-			Foxtrick.ApiProxy.retrieve(doc, awayArgs, function(awayXml) {
+		Foxtrick.ApiProxy.retrieve(doc, homeArgs,{cache_lifetime:'session', caller_name:this.MODULE_NAME },
+		function(homeXml) {
+			Foxtrick.ApiProxy.retrieve(doc, awayArgs,{ cache_lifetime:'session', caller_name:this.MODULE_NAME },
+			function(awayXml) {
 				// remove the loading note
 				if (loading) loading.parentNode.removeChild(loading);
 				if (!homeXml || !awayXml) return;
@@ -134,8 +136,8 @@ var FoxtrickMatchPlayerColouring = {
 					Foxtrick.addClass(n.parentNode.parentNode,
 						"ft-match-event-away");
 				});
-			},{ caller_name:this.MODULE_NAME, cache_lifetime:'session'} );
-		},{ caller_name:this.MODULE_NAME, cache_lifetime:'session'});
+			});
+		});
 	},
 
 	change : function(doc) {

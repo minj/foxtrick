@@ -142,8 +142,9 @@ Foxtrick.ApiProxy = {
 	// used to change expire date of xml_cache eg for to my_monitors nextmachtdate
 	setCacheLifetime : function(doc, parameters_str, cache_lifetime) {
 		Foxtrick.sessionGet('xml_cache.'+parameters_str, function(xml_cache) {  
-			Foxtrick.sessionSet('xml_cache.'+parameters_str,{ xml_string:xml_cache.xml_string, 
-												cache_lifetime : cache_lifetime })  });
+			Foxtrick.sessionSet('xml_cache.'+parameters_str,
+								{ xml_string:xml_cache.xml_string, cache_lifetime : cache_lifetime }) 
+		});
 	},
 	
 	clearCache : function (ev) {
@@ -158,7 +159,7 @@ Foxtrick.ApiProxy = {
 	// session: take xml from this session. xml doesn't expire
 	// default: currently 1 hour, see bellow
 	// timestamp: time in milliseconds since 1970 when a new xml will get retrieved
-	retrieve : function(doc, parameters, callback, options) {
+	retrieve : function(doc, parameters, options, callback) {
 		var httime = doc.getElementById("time").textContent;
 		var HT_date = Foxtrick.util.time.getDateFromText(httime).getTime();
 		
@@ -239,7 +240,8 @@ Foxtrick.ApiProxy = {
 						if (status == 200) {
 							var serializer = new XMLSerializer();
 							Foxtrick.sessionSet('xml_cache.'+parameters_str,
-												{ xml_string : JSON.stringify(serializer.serializeToString(x)), cache_lifetime:cache_lifetime });
+												{ xml_string : JSON.stringify(serializer.serializeToString(x)),
+												cache_lifetime:cache_lifetime });
 							callback(x);
 						}
 						else if (status == 401) {
