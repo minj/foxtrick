@@ -166,9 +166,9 @@ Foxtrick.ApiProxy = {
 			}
 			else {
 				try { 
-					if (FoxtrickPrefs.getBool('disableOauth')) {
-						Foxtrick.log('OAuth disabled');
-						return callback(null);
+					if (!FoxtrickPrefs.getBool("xmlLoad")) {
+						Foxtrick.log("XML loading disabled");
+						callback(null);
 					}
 					if (options && options.cache_lifetime) { 
 						if (options.cache_lifetime=='default') var cache_lifetime = HT_date+60*60*1000;  //= 1 hour
