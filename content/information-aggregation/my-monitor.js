@@ -312,7 +312,7 @@ var FoxtrickMyMonitor = {
 		// select box containing teams in the monitor
 		var fillSelect = function() {
 			select.textContent = ""; // clear first
-			Foxtrick.addEventListenerChangeSave(select, "change", 
+			Foxtrick.addEventListenerChangeSave(select, "click", 
 				function() { doc.location.href = select.value; }, false);
 			Foxtrick.map(teams, function(n) {
 				var option = doc.createElement("option");
