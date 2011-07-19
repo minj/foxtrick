@@ -14,6 +14,7 @@ var FoxtrickCountyList = {
 		'trainingStats', 'teamPage', 'teamPageBrowser', 'managerPage', 'statsArena',
 		'help_contact'
 	],
+	ONPAGEPREF_PAGE : 'all',
 	OPTIONS : ["SelectBoxes","TeamPage","ManagerPage", "HideFlagOntop"],
 	CSS: Foxtrick.ResourcePath+"resources/css/CountyList.css",
 

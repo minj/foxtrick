@@ -11,6 +11,7 @@ var FoxtrickHTDateFormat = {
 		'matches','matchesarchiv','teamPageGeneral','achievements','playerevents',
 		'teamevents','history','arena','league','hallOfFame','statsMatchesHeadToHead',
 		'seriesHistory'],
+	ONPAGEPREF_PAGE : 'all',
 	NICE : 20,
 	OPTIONS : ["LocalSeason", "FirstDayOfWeekOffset"],
 	OPTION_TEXTS : true,

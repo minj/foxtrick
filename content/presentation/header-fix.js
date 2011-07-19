@@ -9,6 +9,7 @@ var FoxtrickHeaderFix = {
 	MODULE_NAME : "HeaderFix",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('match','arena'),
+	ONPAGEPREF_PAGE : 'all',
 	OPTIONS : new Array("FixLeft","RemoveFlicker"),
 	CSS_SIMPLE : Foxtrick.ResourcePath+"resources/css/headerfix.css",
 	CSS: Foxtrick.ResourcePath+"resources/css/headerfix_std.css",
