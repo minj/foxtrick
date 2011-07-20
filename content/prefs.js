@@ -205,12 +205,11 @@ var FoxtrickPrefs = {
 		// core modules must be executed no matter what user's preference is
 		if (module.CORE_MODULE)
 			return true;
-		return Boolean(FoxtrickPrefs.getBool("module." + Foxtrick.getModuleName(module) + ".enabled"));
+		return Boolean(FoxtrickPrefs.getBool("module." + module.MODULE_NAME + ".enabled"));
 	},
 
 	isModuleOptionEnabled : function(module, option) {
-		const moduleName = (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
-		const val = Boolean(FoxtrickPrefs.getBool("module." + moduleName + "." + feature + ".enabled"));
+		const val = Boolean(FoxtrickPrefs.getBool("module." + module.MODULE_NAME + "." + option + ".enabled"));
 		return val;
 	},
 

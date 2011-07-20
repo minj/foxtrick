@@ -42,7 +42,7 @@ var FoxtrickMain = {
 		var modules = [];
 		for (var i in Foxtrick.modules) {
 			var module = Foxtrick.modules[i];
-			if (Foxtrick.isModuleEnabled(module)) {
+			if (FoxtrickPrefs.isModuleEnabled(module)) {
 				// push to array modules for executing init()
 				modules.push(module);
 				// register modules on the pages they are operating on according
@@ -641,7 +641,7 @@ Foxtrick.reload_module_css = function(doc) {
 		// load CSS
 		for (var i in Foxtrick.modules) {
 			var module = Foxtrick.modules[i];
-			if (!Foxtrick.isModuleEnabled(module))
+			if (!FoxtrickPrefs.isModuleEnabled(module))
 				continue;
 			var loadCss = function(normal, simple, rtl, simpleRtl) {
 				var loadSimpleRtl = function() {

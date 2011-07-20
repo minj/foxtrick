@@ -163,7 +163,7 @@ function initTextAndValues()
 			if ($(this).attr("value") == selected)
 				$(this).attr("checked", "checked");
 		}
-		else if (Foxtrick.isModuleEnabled(module)) // module itself
+		else if (FoxtrickPrefs.isModuleEnabled(module)) // module itself
 			$(this).attr("checked", "checked");
 	});
 	// initialize checkboxes
