@@ -275,7 +275,7 @@ Foxtrick.util.links = {
 			loadIcon.href = "javascript: void(0);";
 			loadIcon.className = "inner";
 			loadIcon.textContent = Foxtrickl10n.getString("foxtrick.linkscustom.selecticon");
-			Foxtrick.addEventListenerChangeSave( loadIcon, "click", Foxtrick.util.links.LoadDialog, false );
+			Foxtrick.listen( loadIcon, "click", Foxtrick.util.links.LoadDialog, false );
 
 			var tr1 = doc.createElement ("tr");
 			var td1 = doc.createElement ("td");
@@ -332,7 +332,7 @@ Foxtrick.util.links = {
 			selectbox.setAttribute("title",Foxtrickl10n.getString("foxtrick.linkscustom.addtag" ));
 			selectbox.setAttribute("id","ft_ownselecttagboxID");
 			selectbox.setAttribute("style","width:100%;");
-			Foxtrick.addEventListenerChangeSave(selectbox, 'change', Foxtrick.util.links.SelectBox_Select, false);
+			Foxtrick.listen(selectbox, 'change', Foxtrick.util.links.SelectBox_Select, false);
 			var option = doc.createElement("option");
 			option.setAttribute("value","");
 			option.innerHTML=Foxtrickl10n.getString("foxtrick.linkscustom.tags");
@@ -372,7 +372,7 @@ Foxtrick.util.links = {
 			saveLink.setAttribute("href", "javascript: void(0);");
 			saveLink.setAttribute("name", "savelinkname");
 			saveLink.setAttribute("basepref", basepref);
-			Foxtrick.addEventListenerChangeSave(saveLink, "click", Foxtrick.util.links.saveMyLink, false );
+			Foxtrick.listen(saveLink, "click", Foxtrick.util.links.saveMyLink, false );
 			saveLink.innerHTML = Foxtrickl10n.getString("foxtrick.linkscustom.addlink" );
 			var trn5 = doc.createElement ("tr");
 			var tdn5 = doc.createElement ("td");
@@ -552,7 +552,7 @@ Foxtrick.util.links = {
 			var delLink = doc.createElement("div");
 			delLink.setAttribute("class","ft_actionicon foxtrickRemove");
 			delLink.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.remove"));
-			Foxtrick.addEventListenerChangeSave(delLink, "click", Foxtrick.util.links.delMyLink, false );
+			Foxtrick.listen(delLink, "click", Foxtrick.util.links.delMyLink, false );
 			delLink.baseprefnl = baseprefnl;
 			delLink.mylink = mylink;
 			return delLink;
@@ -568,7 +568,7 @@ Foxtrick.util.links = {
 			var editOld = doc.createElement("div");
 			editOld.setAttribute("class","ft_actionicon foxtrickCopy float_right");
 			editOld.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.copy"));
-			Foxtrick.addEventListenerChangeSave(editOld, "click", Foxtrick.util.links.editOldLink, false );
+			Foxtrick.listen(editOld, "click", Foxtrick.util.links.editOldLink, false );
 			editOld.baseprefnl = baseprefnl;
 			editOld.mylink = mylink;
 			return editOld;
@@ -584,7 +584,7 @@ Foxtrick.util.links = {
 			var ExportLink = doc.createElement("div");
 			ExportLink.setAttribute("class","ft_actionicon foxtrickExport float_right");
 			ExportLink.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.export"));
-			Foxtrick.addEventListenerChangeSave(ExportLink, "click", Foxtrick.util.links.Export, false );
+			Foxtrick.listen(ExportLink, "click", Foxtrick.util.links.Export, false );
 			ExportLink.baseprefnl = baseprefnl;
 			ExportLink.mylink = mylink;
 			return ExportLink;

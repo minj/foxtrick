@@ -25,7 +25,7 @@ var FoxtrickShowFriendlyBooked = {
 		var a = doc.createElement('a');
 		a.textContent = Foxtrickl10n.getString("ShowFriendlyBooked.ShowFriendlies");
 		a.href = 'javascript:void()';
-		Foxtrick.addEventListenerChangeSave(a, 'click', FoxtrickShowFriendlyBooked.Show, false);
+		Foxtrick.listen(a, 'click', FoxtrickShowFriendlyBooked.Show, false);
 		span.appendChild(a);
 		gametype_span.parentNode.parentNode.insertBefore(span,gametype_span.parentNode);
 	},

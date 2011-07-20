@@ -18,7 +18,7 @@ var FoxtrickLeagueNewsFilter = {
 		selectdiv.appendChild(doc.createTextNode(' '));
 		var select=doc.createElement('select');
 		select.setAttribute("id","ft_ownselectboxID");
-		Foxtrick.addEventListenerChangeSave(select, 'change',this.SelectClick,false);
+		Foxtrick.listen(select, 'change',this.SelectClick,false);
 
 		var option=doc.createElement('option');
 		option.setAttribute('value','0');

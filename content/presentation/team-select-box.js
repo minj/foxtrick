@@ -69,7 +69,7 @@ var FoxtrickTeamSelectBox = {
 			var selected = function() {
 				doc.location.href = selectBox.value;
 			};
-			Foxtrick.addEventListenerChangeSave(selectBox, "change", selected, false);
+			Foxtrick.listen(selectBox, "change", selected, false);
 
 			var option = doc.createElement("option");
 			option.textContent = Foxtrickl10n.getString("foxtrick.tweaks.selectplayer");
@@ -118,7 +118,7 @@ var FoxtrickTeamSelectBox = {
 				Foxtrick.log(e);
 			}
 		};
-		Foxtrick.addEventListenerChangeSave(div, "click", toggle, false);
+		Foxtrick.listen(div, "click", toggle, false);
 		toggle();
 	}
 };

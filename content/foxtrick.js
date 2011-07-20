@@ -487,7 +487,7 @@ Foxtrick.startListenToChange = function(doc) {
 	content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 }
 
-Foxtrick.addEventListenerChangeSave = function(node, type, fkt, trickle) {
+Foxtrick.listen = function(node, type, fkt, trickle) {
 	node.addEventListener(
 		type,
 		function(ev){

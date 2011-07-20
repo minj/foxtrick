@@ -171,7 +171,7 @@ var FoxtrickMyMonitor = {
 			uplink.className="up";
 			uplink.src="../../Img/Icons/transparent.gif"
 			uplink.setAttribute('teamid',team.id);
-			Foxtrick.addEventListenerChangeSave(uplink, 'click', FoxtrickMyMonitor.move_up, false);
+			Foxtrick.listen(uplink, 'click', FoxtrickMyMonitor.move_up, false);
 			sortdiv.appendChild(uplink);
 
 			var downlink = doc.createElement('input');
@@ -180,7 +180,7 @@ var FoxtrickMyMonitor = {
 			downlink.className="down";
 			downlink.src="../../Img/Icons/transparent.gif"
 			downlink.setAttribute('teamid',team.id);
-			Foxtrick.addEventListenerChangeSave(downlink, 'click', FoxtrickMyMonitor.move_down, false);
+			Foxtrick.listen(downlink, 'click', FoxtrickMyMonitor.move_down, false);
 			sortdiv.appendChild(downlink);
 			header.appendChild(sortdiv);
 
@@ -312,7 +312,7 @@ var FoxtrickMyMonitor = {
 		// select box containing teams in the monitor
 		var fillSelect = function() {
 			select.textContent = ""; // clear first
-			Foxtrick.addEventListenerChangeSave(select, "change", 
+			Foxtrick.listen(select, "change", 
 				function() {
 					if (select.value)
 						doc.location.href = select.value;
