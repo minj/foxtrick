@@ -8,7 +8,8 @@
 var FoxtrickTableSort = {
 	MODULE_NAME : "TableSort",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('all_late'),
+	PAGES : ["all"],
+	NICE : 1,
 	CSS : Foxtrick.ResourcePath + "resources/css/tableSort.css",
 
 	run : function(doc) {

@@ -2,11 +2,11 @@
 // Note dev: only if currency in TD tag and in div[id=page]
 // author by smates
 
-FoxtrickCurrencyConverter = {
-
+var FoxtrickCurrencyConverter = {
 	MODULE_NAME : "CurrencyConverter",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('all_late'),
+	PAGES : ["all"],
+	NICE : 1,
 
 	OPTION_FUNC : function(doc) {
 		var currencySelect = doc.createElement("select");

@@ -7,7 +7,7 @@
 var FoxtrickLocalTime = {
 	MODULE_NAME : "LocalTime",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : ["all_late"],
+	PAGES : ["all"],
 	NICE : -10,
 	CSS : Foxtrick.ResourcePath + "resources/css/local-time.css",
 	CSS_SIMPLE: Foxtrick.ResourcePath + "resources/css/local-time-simple.css",

@@ -211,13 +211,13 @@ function initTextAndValues()
 		if (Foxtrick.modules[i].MODULE_CATEGORY)
 			if (Foxtrick.modules[i].ONPAGEPREF_PAGE) {
 				var page = Foxtrick.modules[i].ONPAGEPREF_PAGE;
-				if (page == "all" || page == "all_late") {}
+				if (page == "all") {}
 				else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) 		
 					pages[page] = page;				
 			}
 			else for (var j in Foxtrick.modules[i].PAGES) { 
 				var page = Foxtrick.modules[i].PAGES[j];
-				if (page == "all" || page == "all_late") break;
+				if (page == "all") break;
 				else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) {		
 					pages[page] = page;
 					break;
@@ -352,7 +352,7 @@ function initPageFilteredTab()
 		if (Foxtrick.modules[i].MODULE_CATEGORY)
 			if (Foxtrick.modules[i].ONPAGEPREF_PAGE) {
 				var page = Foxtrick.modules[i].ONPAGEPREF_PAGE;
-				if (page == "all" || page == "all_late") {
+				if (page == "all") {
 					categories['allfiltered'].push(i);
 				}
 				else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) {		
@@ -361,7 +361,7 @@ function initPageFilteredTab()
 			}
 			else for (var j in Foxtrick.modules[i].PAGES) { 
 				var page = Foxtrick.modules[i].PAGES[j];
-				if (page == "all" || page == "all_late") {
+				if (page == "all") {
 					categories['allfiltered'].push(i);
 					break;
 				}
