@@ -5,16 +5,9 @@
 
 if (!Foxtrick) var Foxtrick = {};
 
-////////////////////////////////////////////////////////////////////////////////
-/** Modules that are to be called every time any hattrick page loads.
- * Should implement a run() method.
- * DON'T EDIT THIS, use registerAllPagesHandler() instead.
- */
-Foxtrick.run_every_page = [];
-
 /** Modules that are to be called on specific hattrick page loads.
  * Should implement a run() method.
- * DON'T EDIT THIS, use registerPageHandler() instead.
+ * DON'T EDIT THIS, use PAGES property of the module instead
  */
 Foxtrick.run_on_page = [];
 
@@ -57,8 +50,11 @@ var FoxtrickMain = {
 				}
 			}
 
-			if (module.MODULE_NAME && module.PAGES) {
-				Foxtrick.registerModulePages(module);
+			if (Foxtrick.isModuleEnabled(module)
+				&& module.MODULE_NAME && module.PAGES) {
+				// register module on pages
+				for (var i = 0; i < module.PAGES.length; ++i)
+					Foxtrick.run_on_page[module.PAGES[i]].push(module);
 			}
 		}
 
@@ -270,9 +266,6 @@ var FoxtrickMain = {
 			// call all modules that registered as page listeners
 			// if their page is loaded
 			var modules = [];
-			// modules running on every page
-			for (var i in Foxtrick.run_every_page)
-				modules.push(Foxtrick.run_every_page[i]);
 			// modules running on current page
 			for (var page in Foxtrick.ht_pages) {
 				if (Foxtrick.isPage(page, doc)) {
@@ -300,9 +293,6 @@ var FoxtrickMain = {
 			&& !FoxtrickPrefs.getBool("disableTemporary")) {
 
 			var modules = [];
-			// modules running on every page
-			for (var i in Foxtrick.run_every_page)
-				modules.push(Foxtrick.run_every_page[i]);
 			// modules running on current page
 			for (var page in Foxtrick.ht_pages) {
 				if (Foxtrick.isPage(page, doc)) {
@@ -419,51 +409,6 @@ Foxtrick.getLastPage = function(host) {
 	return FoxtrickPrefs.getString("last-page") || "http://www.hattrick.org";
 }
 
-Foxtrick.registerModulePages = function(module) {
-	try {
-
-		for (var i=0;i<module.PAGES.length;++i) {
-			try {
-				if (Foxtrick.isModuleEnabled(module)) {
-					Foxtrick.run_on_page[module.PAGES[i]].push(module);
-				}
-			}
-			catch (e) {
-				Foxtrick.log(e);
-				Foxtrick.log("registerModulePages: ", module.MODULE_NAME);
-				Foxtrick.log("registerModulePages: ", module.PAGES[i]);
-			}
-		}
-	}
-	catch (e) {
-		Foxtrick.log(e);
-	}
-}
-
-
-/**
- * Register with this method to have your module's run()
- * function called on specific pages (names can be found
- * in Foxtrick.ht_pages in module.js.
- * Your function should accept two arguments:
- * the page name (from ht_pages) and current document.
- */
-Foxtrick.registerPageHandler = function(page, who) {
-	Foxtrick.run_on_page[page].push(who);
-}
-
-/**
- * Register with this method to have your module's run() function
- * called every time any hattrick page is loaded.
- * Please use registerPageHandler() if you need only to run
- * on specific pages.
- * Your run() function will be called with only one argument,
- * the current document.
- */
-Foxtrick.registerAllPagesHandler = function(who) {
-	Foxtrick.run_every_page.push(who);
-}
-
 Foxtrick.stopListenToChange = function (doc) {
 	var content = doc.getElementById("content");
 	content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
@@ -554,13 +499,9 @@ Foxtrick.getModuleName = function(module) {
 	return (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
 }
 
-Foxtrick.isCoreModule = function(module) {
-	// core modules must be executed no matter what user's preference is
-	return (module.CORE_MODULE === true);
-}
-
 Foxtrick.isModuleEnabled = function(module) {
 	try {
+		// core modules must be executed no matter what user's preference is
 		if (module.CORE_MODULE)
 			return true;
 		const val = Boolean(FoxtrickPrefs.getBool("module." + Foxtrick.getModuleName(module) + ".enabled"));

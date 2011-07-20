@@ -8,10 +8,7 @@
 var FoxtrickRedirections = {
 	MODULE_NAME : "Redirections",
 	CORE_MODULE : true,
-
-	init : function() {
-		Foxtrick.registerAllPagesHandler(FoxtrickRedirections );
-	},
+	PAGES : ["all"],
 
 	run : function(doc) {
 		if (doc.location.href.search(/mailto|challenge|redir_to_.+\=true/i)==-1) return;
