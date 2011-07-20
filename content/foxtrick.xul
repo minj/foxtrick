@@ -216,7 +216,6 @@ if (!FoxtrickPrefs.getBool("toolbarInited")) {
 	type="menu-button"
 	label="FoxTrick"
 	tooltiptext="FoxTrick"
-	oncommand="FoxtrickPrefs.show();"
 	context="foxtrick-menu">
 	<menupopup id="foxtrick-menu">
 		<menuitem id="foxtrick-toolbar-preferences" oncommand="FoxtrickPrefs.show();"/>
