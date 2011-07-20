@@ -39,25 +39,24 @@ var FoxtrickMain = {
 		}
 
 		// initialize all enabled modules
+		var modules = [];
 		for (var i in Foxtrick.modules) {
 			var module = Foxtrick.modules[i];
-			if (Foxtrick.isModuleEnabled(module)
-				&& (typeof(module.init) == "function")) {
-				try {
-					module.init();
+			if (Foxtrick.isModuleEnabled(module)) {
+				// push to array modules for executing init()
+				modules.push(module);
+				// register modules on the pages they are operating on according
+				// to their PAGES property
+				if (module.MODULE_NAME && module.PAGES) {
+					for (var i = 0; i < module.PAGES.length; ++i)
+						Foxtrick.run_on_page[module.PAGES[i]].push(module);
 				}
-				catch (e) {
-					Foxtrick.log(e);
-				}
-			}
-
-			if (Foxtrick.isModuleEnabled(module)
-				&& module.MODULE_NAME && module.PAGES) {
-				// register module on pages
-				for (var i = 0; i < module.PAGES.length; ++i)
-					Foxtrick.run_on_page[module.PAGES[i]].push(module);
 			}
 		}
+		Foxtrick.niceRun(modules, function(m) {
+			if (typeof(m.init) == "function")
+				return function() { m.init(); };
+		});
 
 		Foxtrick.log("FoxTrick initialization completed.");
 	},
