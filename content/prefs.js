@@ -201,15 +201,20 @@ var FoxtrickPrefs = {
 		}
 	},
 
+			
+	getModuleName : function(module) {
+		return (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
+	},
+	
 	isModuleEnabled : function(module) {
 		// core modules must be executed no matter what user's preference is
 		if (module.CORE_MODULE)
 			return true;
-		return Boolean(FoxtrickPrefs.getBool("module." + module.MODULE_NAME + ".enabled"));
+		return Boolean(FoxtrickPrefs.getBool("module." + FoxtrickPrefs.getModuleName(module) + ".enabled"));
 	},
 
 	isModuleOptionEnabled : function(module, option) {
-		const val = Boolean(FoxtrickPrefs.getBool("module." + module.MODULE_NAME + "." + option + ".enabled"));
+		const val = Boolean(FoxtrickPrefs.getBool("module." + FoxtrickPrefs.getModuleName(module) + "." + option + ".enabled"));
 		return val;
 	},
 
