@@ -18,7 +18,8 @@ var FoxtrickShowFriendlyBooked = {
 	},
 	
 	AddOnDemand : function(doc) {
-		var gametype_span = doc.getElementById("ctl00_ctl00_CPContent_CPMain_hlAllGames");
+		var UpdatePanelLiveLeagueTable = doc.getElementById("ctl00_ctl00_CPContent_CPMain_UpdatePanelLiveLeagueTable");
+		
 		var span = doc.createElement('span');
 		span.setAttribute('id','ShowFriendliesLinkId');
 		span.className = 'float_left';
@@ -27,7 +28,7 @@ var FoxtrickShowFriendlyBooked = {
 		a.href = 'javascript:void()';
 		Foxtrick.listen(a, 'click', FoxtrickShowFriendlyBooked.Show, false);
 		span.appendChild(a);
-		gametype_span.parentNode.parentNode.insertBefore(span,gametype_span.parentNode);
+		UpdatePanelLiveLeagueTable.insertBefore(span,UpdatePanelLiveLeagueTable.getElementsByTagName('br')[0].nextSibling);
 	},
 
 	Show : function(ev) {
