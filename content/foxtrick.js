@@ -1,6 +1,7 @@
 /**
- * Foxtrick - an extension for hattrick.org
- * Contact us: by HT-mail to Mod-Spambot on hattrick.org
+ * foxtrick.js
+ * Loader for FoxTrick and core functions
+ * @homepage http://code.google.com/p/foxtrick/
  */
 
 if (!Foxtrick) var Foxtrick = {};
