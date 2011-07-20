@@ -18,9 +18,6 @@ Foxtrick.run_every_page = [];
  */
 Foxtrick.run_on_page = [];
 
-/*Modules that may! be called on specific hattrick page loads independent one being enanbled or not.*/
-Foxtrick.may_run_on_page = [];
-
 /** Core Foxtrick modules, always used.
  * Don't add here unless you have a good reason to. */
 Foxtrick.core_modules = [ FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData ];
@@ -45,7 +42,6 @@ var FoxtrickMain = {
 		// that run on it
 		for (var i in Foxtrick.ht_pages) {
 			Foxtrick.run_on_page[i] = [];
-			Foxtrick.may_run_on_page[i] = [];
 		}
 
 		// initialize all enabled modules
@@ -425,18 +421,9 @@ Foxtrick.getLastPage = function(host) {
 
 Foxtrick.registerModulePages = function(module) {
 	try {
-		if (module.ONPAGEPREF_PAGE) {
-			// a module may specify on-page pref on which pages to
-			// be shown through ONPAGEPREF_PAGE
-			Foxtrick.may_run_on_page[module.ONPAGEPREF_PAGE].push(module);
-		}
 
 		for (var i=0;i<module.PAGES.length;++i) {
 			try {
-				if (!module.ONPAGEPREF_PAGE) {
-					// if ONPAGEPREF_PAGE is not set, add all
-					Foxtrick.may_run_on_page[module.PAGES[i]].push(module);
-				}
 				if (Foxtrick.isModuleEnabled(module)) {
 					Foxtrick.run_on_page[module.PAGES[i]].push(module);
 				}
