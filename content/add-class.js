@@ -66,6 +66,7 @@ Foxtrick.AddClass = {
 
 		// deadline time
 		var dlPar = transferList.getElementsByTagName("p")[0];
+		if (!dlPar) return;
 		if (dlPar.getElementsByClassName("date").length == 0)
 			dlPar.innerHTML = dlPar.innerHTML.replace(timeRe, "<span class=\"date\">$1</span>");
 		// reload time

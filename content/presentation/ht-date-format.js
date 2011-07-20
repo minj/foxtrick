@@ -53,5 +53,9 @@ var FoxtrickHTDateFormat = {
 
 		var dates = mainBody.getElementsByClassName("date");
 		Foxtrick.map(dates, modifyDate);
+	},
+	
+	change : function(doc, ev) {
+		FoxtrickHTDateFormat.run(doc);
 	}
 };
