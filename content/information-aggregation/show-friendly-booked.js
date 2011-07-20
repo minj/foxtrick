@@ -18,8 +18,6 @@ var FoxtrickShowFriendlyBooked = {
 	},
 	
 	AddOnDemand : function(doc) {
-		var UpdatePanelLiveLeagueTable = doc.getElementById("ctl00_ctl00_CPContent_CPMain_UpdatePanelLiveLeagueTable");
-		
 		var span = doc.createElement('span');
 		span.setAttribute('id','ShowFriendliesLinkId');
 		span.className = 'float_left';
@@ -28,7 +26,14 @@ var FoxtrickShowFriendlyBooked = {
 		a.href = 'javascript:void()';
 		Foxtrick.listen(a, 'click', FoxtrickShowFriendlyBooked.Show, false);
 		span.appendChild(a);
-		UpdatePanelLiveLeagueTable.insertBefore(span,UpdatePanelLiveLeagueTable.getElementsByTagName('br')[0].nextSibling);
+		if (Foxtrick.isSupporter(doc)) {
+			var UpdatePanelLiveLeagueTable = doc.getElementById("ctl00_ctl00_CPContent_CPMain_UpdatePanelLiveLeagueTable");
+			UpdatePanelLiveLeagueTable.insertBefore(span,UpdatePanelLiveLeagueTable.getElementsByTagName('br')[0].nextSibling);
+		}
+		else {
+			var table = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLeagueTable");
+			table.parentNode.insertBefore(span, table);
+		}
 	},
 
 	Show : function(ev) {
