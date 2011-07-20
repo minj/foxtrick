@@ -487,19 +487,6 @@ Foxtrick.startListenToChange = function(doc) {
 	content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
 }
 
-Foxtrick.listen = function(node, type, fkt, trickle) {
-	node.addEventListener(
-		type,
-		function(ev){
-			var doc = ev.target.ownerDocument;
-			Foxtrick.stopListenToChange(doc);
-			fkt(ev);
-			Foxtrick.startListenToChange(doc);
-		},
-		trickle
-	);
-}
-
 /** Insert text in given textarea at the current position of the cursor */
 Foxtrick.insertAtCursor = function(textarea, text) {
 	textarea.value = textarea.value.substring(0, textarea.selectionStart)

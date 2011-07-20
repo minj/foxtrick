@@ -49,6 +49,19 @@ Foxtrick.getChildIndex = function(element) {
 	return count;
 }
 
+Foxtrick.listen = function(target, type, listener, useCapture) {
+	target.addEventListener(
+		type,
+		function(ev) {
+			var doc = ev.target.ownerDocument;
+			Foxtrick.stopListenToChange(doc);
+			listener(ev);
+			Foxtrick.startListenToChange(doc);
+		},
+		useCapture
+	);
+};
+
 /* Foxtrick.addBoxToSidebar
 * Parameters:
 * doc - the document the box needs to be added to
