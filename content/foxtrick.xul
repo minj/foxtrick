@@ -182,24 +182,47 @@
 	false);
 </script>
 
-<!-- Mozilla Tools menu -->
-<menupopup id="taskPopup">
-	<menuitem id="foxtrick-menu-preferences" oncommand="FoxtrickPrefs.show();"/>
-</menupopup>
+<script type="application/x-javascript">
+if (!FoxtrickPrefs.getBool("toolbarInited")) {
+	var buttonId = "foxtrick-toolbar-button"; // ID of FoxTrick button
+	var afterId = "search-container"; // insert after search box
+	var navBar = document.getElementById("nav-bar");
+	var curSet = navBar.currentSet.split(",");
 
-<!-- Firefox Tools menu -->
-<menupopup id="menu_ToolsPopup">
-	<menu id="hattricktools_menu" label="Hattrick">
-		<menupopup id="hattricktools_menupopup">
-			<menuitem id="foxtrick-menu-preferences" oncommand="FoxtrickPrefs.show();"/>
-		</menupopup>
-	</menu>
-</menupopup>
+	if (curSet.indexOf(buttonId) == -1) {
+		var pos = curSet.indexOf(afterId) + 1 || curSet.length;
+		var set = curSet.slice(0, pos).concat(buttonId).concat(curSet.slice(pos));
 
-<!-- browser toolbar palette -->
+		navBar.setAttribute("currentset", set.join(","));
+		navBar.currentSet = set.join(",");
+		document.persist(navBar.id, "currentset");
+		try {
+			BrowserToolboxCustomizeDone(true);
+		}
+		catch (e) {}
+	}
+	FoxtrickPrefs.setBool("toolbarInited", true);
+}
+</script>
+
+<!-- Firefox toolbar palette overlay -->
 <toolbarpalette id="BrowserToolbarPalette">
-	<toolbarbutton id="foxtrick-toolbar-preferences" class="toolbarbutton-1" label="FoxTrick" oncommand="FoxtrickPrefs.show();"/>
+	<toolbarbutton id="foxtrick-toolbar-button" />
 </toolbarpalette>
+
+<!-- toolbar button -->
+<toolbarbutton id="foxtrick-toolbar-button"
+	class="toolbarbutton-1 chromeclass-toolbar-additional"
+	type="menu-button"
+	label="FoxTrick"
+	tooltiptext="FoxTrick"
+	oncommand="FoxtrickPrefs.show();"
+	context="foxtrick-menu">
+	<menupopup id="foxtrick-menu">
+		<menuitem id="foxtrick-toolbar-preferences" oncommand="FoxtrickPrefs.show();"/>
+		<menuitem id="foxtrick-toolbar-deactivate" oncommand="FoxtrickPrefs.disable();" type="checkbox" autocheck="true"/>
+	</menupopup>
+</toolbarbutton>
 
 <!-- popup menu -->
 <popup id="contentAreaContextMenu">
@@ -208,17 +231,4 @@
 	<menuitem id="foxtrick-popup-copy-ht-ml" insertbefore="context-paste" hidden="true" label="Copy in HT-ML" oncommand="FoxtrickContextMenuCopy.copyHtMl();" />
 	<menuitem id="foxtrick-popup-copy-table" insertbefore="context-paste" hidden="true" label="Copy table in HT-ML" oncommand="FoxtrickContextMenuCopy.copyTable();" />
 </popup>
-
-<statusbar id="status-bar">
-	<statusbarpanel	id="foxtrick-status-bar-image" context="foxtrick-status-bar-menu">
-		<image id="foxtrick-status-bar-img"
-			onload="Foxtrick.setStatusIconStyle(event);"
-			onclick="if (!event.button) FoxtrickPrefs.show();"
-		/>
-	</statusbarpanel>
-	<menupopup id="foxtrick-status-bar-menu">
-		<menuitem id="foxtrick-status-bar-preferences" oncommand="FoxtrickPrefs.show();"/>
-		<menuitem id="foxtrick-status-bar-deactivate" oncommand="FoxtrickPrefs.disable();" type="checkbox" autocheck="true"/>
-   </menupopup>
-</statusbar>
 </overlay>

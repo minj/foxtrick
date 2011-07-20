@@ -37,15 +37,12 @@ var FoxtrickCore = {
 	// as the argument
 	// initializes items in menu bar and status bar
 	onLoad : function(document) {
-		// menu item
-		var menuItem = document.getElementById("foxtrick-menu-preferences");
-		menuItem.label = Foxtrickl10n.getString("foxtrick.prefs.preferences");
-		// status bar menu - preferences
-		var statusbarPreferences = document.getElementById("foxtrick-status-bar-preferences");
-		statusbarPreferences.label = Foxtrickl10n.getString("preferences");
-		// status bar menu - disable
-		var statusbarDisable = document.getElementById("foxtrick-status-bar-deactivate");
-		statusbarDisable.label = Foxtrickl10n.getString("foxtrick.prefs.disableTemporaryLabel");
+		// toolbar menu - preferences
+		var toolbarPreferences = document.getElementById("foxtrick-toolbar-preferences");
+		toolbarPreferences.label = Foxtrickl10n.getString("preferences");
+		// toolbar menu - disable
+		var toolbarDisable = document.getElementById("foxtrick-toolbar-deactivate");
+		toolbarDisable.label = Foxtrickl10n.getString("foxtrick.prefs.disableTemporaryLabel");
 		// update status
 		this.updateStatus();
 	},
@@ -86,12 +83,12 @@ var FoxtrickCore = {
 		if (Foxtrick.BuildFor !== "Gecko")
 			return;
 
-		var statusbarDisable = document.getElementById("foxtrick-status-bar-deactivate");
-		if (statusbarDisable)
-			statusbarDisable.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
+		var disableItem = document.getElementById("foxtrick-toolbar-deactivate");
+		if (disableItem)
+			disableItem.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
 
-		var icon = document.getElementById("foxtrick-status-bar-img");
-		if (!icon || !content)
+		var button = document.getElementById("foxtrick-toolbar-button");
+		if (!button || !content)
 			return;
 		var doc = content.document; // get the document of current tab
 
@@ -99,23 +96,23 @@ var FoxtrickCore = {
 
 		if (FoxtrickPrefs.getBool("disableTemporary")) {
 			// FoxTrick is disabled temporarily
-			icon.setAttribute("status", "disabled");
+			button.setAttribute("status", "disabled");
 			statusText = Foxtrickl10n.getString("status.disabled");
 		}
 		else if (Foxtrick.isHt(doc)
 			&& !(FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(doc))) {
 			// FoxTrick is enabled, and active on current page
-			icon.setAttribute("status", "active");
+			button.setAttribute("status", "active");
 			statusText = Foxtrickl10n.getString("status.active");
 		}
 		else {
 			// FoxTrick is enabled, but not active on current page
-			icon.setAttribute("status", "enabled");
+			button.setAttribute("status", "enabled");
 			var hostname = doc.location.hostname;
 			statusText = Foxtrickl10n.getString("status.enabled").replace("%s", hostname);
 		}
 		var tooltipText = Foxtrickl10n.getString("foxtrick") + " " + Foxtrick.version() + " (" + statusText + ")";
-		icon.setAttribute("tooltiptext", tooltipText);
+		button.setAttribute("tooltiptext", tooltipText);
 	},
 
 	updateLastHost : function(doc) {
