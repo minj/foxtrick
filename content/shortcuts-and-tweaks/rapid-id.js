@@ -120,8 +120,11 @@ var FoxtrickRapidId = {
 			// the <input type="button" /> element
 			button.setAttribute("type", "submit");
 			button.setAttribute("value", Foxtrickl10n.getString("View"));
-			button.addEventListener("click", this.view, true);			
-		}
+			button.addEventListener("click", this.view, true);
+			
+			// hide rightnow on demand
+			var rightnow = doc.getElementById("ctl00_ctl00_ucOngoingEvents_pnlOngoingEvents");
+			if (rightnow) rightnow.setAttribute('style','display:none;');
 		catch (e) {
 			Foxtrick.log("RapidId(" + e.lineNumber + "): " + e + "");
 		}
@@ -133,8 +136,9 @@ var FoxtrickRapidId = {
 	},
 
 	run: function(doc) {
+		// no space for rapidid with right_now in simple skin. so don't show it during matches
 		var rightnow = doc.getElementById("ctl00_ctl00_ucOngoingEvents_pnlOngoingEvents");
-		if (rightnow)
+		if (rightnow && !Foxtrick.isStandardLayout(doc))
 			return;
 
 		// get labels of optgroup and option
