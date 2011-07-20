@@ -496,34 +496,6 @@ Foxtrick.alert = function(msg) {
 	}
 }
 
-Foxtrick.getModuleName = function(module) {
-	return (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
-}
-
-Foxtrick.isModuleEnabled = function(module) {
-	try {
-		// core modules must be executed no matter what user's preference is
-		if (module.CORE_MODULE)
-			return true;
-		const val = Boolean(FoxtrickPrefs.getBool("module." + Foxtrick.getModuleName(module) + ".enabled"));
-		return val;
-	}
-	catch (e) {
-		return false;
-	}
-}
-
-Foxtrick.isModuleFeatureEnabled = function(module, feature) {
-	try {
-		const moduleName = (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
-		const val = Boolean(FoxtrickPrefs.getBool("module." + moduleName + "." + feature + ".enabled"));
-		return val;
-	}
-	catch (e) {
-		return false;
-	}
-}
-
 Foxtrick.unload_module_css = function() {
 	Foxtrick.dump('unload permanents css\n');
 
@@ -725,7 +697,7 @@ Foxtrick.reload_module_css = function(doc) {
 			// load module options CSS
 			if (module.OPTIONS_CSS) {
 				for (var j = 0; j < module.OPTIONS_CSS.length; ++j) {
-					if (!Foxtrick.isModuleFeatureEnabled(module, module.OPTIONS[j]))
+					if (!FoxtrickPrefs.isModuleOptionEnabled(module, module.OPTIONS[j]))
 						continue;
 					loadCss(module.OPTIONS_CSS[j],
 						module.OPTIONS_CSS_SIMPLE ? module.OPTIONS_CSS_SIMPLE[j] : null,

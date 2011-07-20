@@ -21,7 +21,7 @@ var FoxtrickHTDateFormat = {
 		var mainBody = doc.getElementById("mainBody");
 		if (!mainBody) return;
 
-		const useLocal = Foxtrick.isModuleFeatureEnabled(this, "LocalSeason");
+		const useLocal = FoxtrickPrefs.isModuleOptionEnabled(this, "LocalSeason");
 		const weekOffset = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".FirstDayOfWeekOffset_text");
 		var seperator=' ';
 		// some table fixing for simple skin

@@ -19,7 +19,7 @@ var FoxtrickLeagueAndMatchChat = {
 
 		var nick = FoxtrickHelper.ownTeam.ownTeamName;
 		if (!nick) nick='Guest';
-		if (Foxtrick.isModuleFeatureEnabled(this,'ChatNick')
+		if (FoxtrickPrefs.isModuleOptionEnabled(this,'ChatNick')
 			&& FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "ChatNick_text")
 			&& FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "ChatNick_text")!='')
 			nick = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "ChatNick_text");
@@ -29,7 +29,7 @@ var FoxtrickLeagueAndMatchChat = {
 			var channel = "hattrick.org/league"+id;
 			var popupid =  "hattrick_org_league_"+id;
 			var a = doc.createElement('a');
-			if (Foxtrick.isModuleFeatureEnabled(FoxtrickLeagueAndMatchChat,'OpenYapletPopup'))
+			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickLeagueAndMatchChat,'OpenYapletPopup'))
 					a.href = "javascript:(function(){window.open('http://embed.yaplet.com/?title="+channel+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"','','width=300,height=500,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no')})()";
 			else {
 				a.href="http://cw.gabbly.com/gabbly/cw.jsp?e=1&t="+channel+"&nick="+nick;
@@ -46,7 +46,7 @@ var FoxtrickLeagueAndMatchChat = {
 			var channel = "hattrick.org/youthleague"+id;
 			var popupid =  "hattrick_org_youthleague_"+id;
 			var a = doc.createElement('a');
-			if (Foxtrick.isModuleFeatureEnabled(FoxtrickLeagueAndMatchChat,'OpenYapletPopup'))
+			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickLeagueAndMatchChat,'OpenYapletPopup'))
 					a.href = "javascript:(function(){window.open('http://embed.yaplet.com/?title="+channel+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"','','width=300,height=500,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no')})()";
 			else {
 				a.href="http://cw.gabbly.com/gabbly/cw.jsp?e=1&t="+channel+"&nick="+nick;
@@ -63,7 +63,7 @@ var FoxtrickLeagueAndMatchChat = {
 			var channel = "hattrick.org/match" + id;
 			var popupid =  "hattrick_org_match_"+id;
 			var a = doc.createElement('a');
-			if (Foxtrick.isModuleFeatureEnabled(FoxtrickLeagueAndMatchChat,'OpenYapletPopup'))
+			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickLeagueAndMatchChat,'OpenYapletPopup'))
 					a.href = "javascript:(function(){window.open('http://embed.yaplet.com/?title="+channel+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"','','width=300,height=500,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no')})()";
 			else {
 				a.href="http://cw.gabbly.com/gabbly/cw.jsp?e=1&t="+channel+"&nick="+nick;
@@ -82,7 +82,7 @@ var FoxtrickLeagueAndMatchChat = {
 			var channel = "hattrick.org/nationalcup" + id;
 			var popupid =  "hattrick_org_nationalcup_"+id;
 			var a = doc.createElement('a');
-			if (Foxtrick.isModuleFeatureEnabled(FoxtrickLeagueAndMatchChat,'OpenYapletPopup'))
+			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickLeagueAndMatchChat,'OpenYapletPopup'))
 					a.href = "javascript:(function(){window.open('http://embed.yaplet.com/?title="+channel+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"','','width=300,height=500,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no')})()";
 			else {
 				a.href="http://cw.gabbly.com/gabbly/cw.jsp?e=1&t="+channel+"&nick="+nick;
@@ -101,7 +101,7 @@ var FoxtrickLeagueAndMatchChat = {
 			var channel = "hattrick.org/federation" + id;
 			var popupid =  "hattrick_org_federation_"+id;
 			var a = doc.createElement('a');
-			if (Foxtrick.isModuleFeatureEnabled(FoxtrickLeagueAndMatchChat,'OpenYapletPopup'))
+			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickLeagueAndMatchChat,'OpenYapletPopup'))
 					a.href = "javascript:(function(){window.open('http://embed.yaplet.com/?title="+channel+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"','','width=300,height=500,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no')})()";
 			else {
 				a.href="http://cw.gabbly.com/gabbly/cw.jsp?e=1&t="+channel+"&nick="+nick;

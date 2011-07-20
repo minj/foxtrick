@@ -116,7 +116,7 @@ var FoxtrickContextMenuCopy = {
 				currentObj = currentObj.parentNode;
 			}
 
-			if (Foxtrick.isModuleFeatureEnabled(FoxtrickContextMenuCopy, "Id")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickContextMenuCopy, "Id")) {
 				var id = Foxtrick.util.htMl.getIdFromLink(href);
 				if (id !== null) {
 					FoxtrickContextMenuCopy.MENU_ID.setAttribute("copy", id.id);
@@ -132,7 +132,7 @@ var FoxtrickContextMenuCopy = {
 				FoxtrickContextMenuCopy.MENU_ID.setAttribute("hidden", true);
 			}
 
-			if (Foxtrick.isModuleFeatureEnabled(FoxtrickContextMenuCopy, "Link")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickContextMenuCopy, "Link")) {
 				var markup = Foxtrick.util.htMl.getMarkupFromLink(href);
 				if (markup !== null) {
 					FoxtrickContextMenuCopy.MENU_LINK.setAttribute("copy", markup);
@@ -146,7 +146,7 @@ var FoxtrickContextMenuCopy = {
 				FoxtrickContextMenuCopy.MENU_LINK.setAttribute("hidden", true);
 			}
 
-			if (Foxtrick.isModuleFeatureEnabled(FoxtrickContextMenuCopy, "HtMl")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickContextMenuCopy, "HtMl")) {
 				var doc = event.target.ownerDocument;
 				var window = doc.defaultView;
 				var selection = window.getSelection();
@@ -162,7 +162,7 @@ var FoxtrickContextMenuCopy = {
 				FoxtrickContextMenuCopy.MENU_HT_ML.setAttribute("hidden", true);
 			}
 
-			if (Foxtrick.isModuleFeatureEnabled(FoxtrickContextMenuCopy, "Table")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickContextMenuCopy, "Table")) {
 				var table = null;
 				var currentObj = event.target;
 				while (currentObj) {

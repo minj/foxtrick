@@ -124,7 +124,7 @@ Foxtrick.TeamStats = {
 				return row;
 			};
 
-			if (Foxtrick.isModuleFeatureEnabled(Foxtrick.TeamStats, "General")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled(Foxtrick.TeamStats, "General")) {
 				addHeader(Foxtrickl10n.getString("General"));
 				if (totalTSI) {
 					var avgTSI = Math.round(totalTSI / playerList.length);
@@ -166,7 +166,7 @@ Foxtrick.TeamStats = {
 					addRow(Foxtrickl10n.getString("Leadership"), Foxtrickl10n.getLevelByTypeAndValue("levels", avgLeadership));
 				}
 			}
-			if (Foxtrick.isModuleFeatureEnabled(Foxtrick.TeamStats, "Speciality")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled(Foxtrick.TeamStats, "Speciality")) {
 				if (hasSpecialities) {
 					addHeader(Foxtrickl10n.getString("Speciality"));
 					var specSummary = [];
@@ -180,7 +180,7 @@ Foxtrick.TeamStats = {
 					}
 				}
 			}
-			if (Foxtrick.isModuleFeatureEnabled(Foxtrick.TeamStats, "Personality")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled(Foxtrick.TeamStats, "Personality")) {
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "aggressiveness")
 					&& Foxtrick.Pages.Players.isPropertyInList(playerList, "agreeability")
 					&& Foxtrick.Pages.Players.isPropertyInList(playerList, "honesty")) {
@@ -193,7 +193,7 @@ Foxtrick.TeamStats = {
 					addRow(Foxtrickl10n.getString("Honesty"), Foxtrickl10n.getLevelByTypeAndValue("honesty", avgHonesty));
 				}
 			}
-			if (Foxtrick.isModuleFeatureEnabled(Foxtrick.TeamStats, "Status")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled(Foxtrick.TeamStats, "Status")) {
 				if (transferListed || yellowCards || twoYellowCards || redCards || bruised || injured) {
 					addHeader(Foxtrickl10n.getString("Status"));
 				}
@@ -243,7 +243,7 @@ Foxtrick.TeamStats = {
 					addRow(img, data);
 				}
 			}
-			if (Foxtrick.isModuleFeatureEnabled(Foxtrick.TeamStats, "Current_league")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled(Foxtrick.TeamStats, "Current_league")) {
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "currentLeagueId")) {
 					addHeader(Foxtrickl10n.getString("Current_league"));
 					var leagues = [];

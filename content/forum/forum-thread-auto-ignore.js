@@ -25,7 +25,7 @@ var FoxtrickForumThreadAutoIgnore = {
 	
 	checkthreads : function( doc ) { 
 		
-		if (!Foxtrick.isModuleFeatureEnabled(this,'Tags')) return;
+		if (!FoxtrickPrefs.isModuleOptionEnabled(this,'Tags')) return;
 		var tags_string = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "Tags_text");
 		if (!tags_string) return;
 
@@ -37,7 +37,7 @@ var FoxtrickForumThreadAutoIgnore = {
 		}
 
 		// get whitelisted threadIDs. comma seperated in the prefs
-		if (Foxtrick.isModuleFeatureEnabled(this,'Whitelist_ThreadIDs')) {
+		if (FoxtrickPrefs.isModuleOptionEnabled(this,'Whitelist_ThreadIDs')) {
 			var whitelist_string = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "Whitelist_ThreadIDs_text");
 			if (whitelist_string) {
 				this.whitelist = whitelist_string.split(',');

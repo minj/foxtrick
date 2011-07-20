@@ -26,7 +26,7 @@ FoxtrickExtraPlayerInfo = {
 
 				var basics = allPlayers[i].getElementsByTagName("p")[0];
 
-				if (Foxtrick.isModuleFeatureEnabled(FoxtrickExtraPlayerInfo, "CoachInfo")
+				if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickExtraPlayerInfo, "CoachInfo")
 					&& player.trainerData !== undefined) {
 					var trainerSkillStr = Foxtrickl10n.getLevelByTypeAndValue("levels", player.trainerData.skill);
 					var trainerTypeStr = "";
@@ -44,7 +44,7 @@ FoxtrickExtraPlayerInfo = {
 					// insert after the second break
 					basics.innerHTML += trainerStr;
 				}
-				if (Foxtrick.isModuleFeatureEnabled(FoxtrickExtraPlayerInfo, "Flag")
+				if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickExtraPlayerInfo, "Flag")
 					&& player.countryId !== undefined) {
 					var links = allPlayers[i].getElementsByTagName("a");
 					var isNtPlayer = (links[0].href.search(/NationalTeam/i) != -1);

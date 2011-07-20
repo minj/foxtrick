@@ -25,7 +25,7 @@ var FoxtrickManagerButtons = {
 			return;
 		}
 
-		if (Foxtrick.isModuleFeatureEnabled(this, "GuestBook")
+		if (FoxtrickPrefs.isModuleOptionEnabled(this, "GuestBook")
 			&& doc.getElementById(this.GUESTBOOK_LINK_ID) === null) {
 			if (!Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID)
 				&& Foxtrick.hasElement(doc, this.CHALLENGE_LINK_ID)

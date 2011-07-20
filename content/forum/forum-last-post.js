@@ -23,7 +23,7 @@ var FoxtrickForumLastPost = {
 
 			var perpage = FoxtrickPrefs.getInt('perpage');
 			if (perpage == null) perpage = 20;
-			var lastpage = (Foxtrick.isModuleFeatureEnabled( this, "lastpage" ));
+			var lastpage = (FoxtrickPrefs.isModuleOptionEnabled( this, "lastpage" ));
 			var divs = doc.getElementsByClassName("threadInfo");
 			for (i=0; i < divs.length; i++) {
 				var id = divs[i].textContent;

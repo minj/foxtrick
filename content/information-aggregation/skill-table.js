@@ -66,7 +66,7 @@ var FoxtrickSkillTable = {
 			return;
 		if (Foxtrick.isPage("transferSearchResult", doc)
 			&& !this.getFullType(doc).subtype === "own"
-			&& !Foxtrick.isModuleFeatureEnabled(this, "OtherTeams")) {
+			&& !FoxtrickPrefs.isModuleOptionEnabled(this, "OtherTeams")) {
 			return;
 		}
 		FoxtrickSkillTable.addTableDiv(doc);
@@ -508,7 +508,7 @@ var FoxtrickSkillTable = {
 						var max = skill.max ? skill.max : "-";
 						cell.appendChild(doc.createTextNode(current + "/" + max));
 						// and we deal with colours
-						if (Foxtrick.isModuleFeatureEnabled(FoxtrickSkillTable, "ColouredYouth")) {
+						if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickSkillTable, "ColouredYouth")) {
 							if (skill.max > 3) {
 								// normalized values for convenience in further calculations
 								var skillBase = {}; // skills below 4 are not regarded as interesting

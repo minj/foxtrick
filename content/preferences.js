@@ -151,7 +151,7 @@ function initTextAndValues()
 			const option = $(this).attr("option");
 			// module option
 			if ($(this).is(":checkbox")) {
-				 if (Foxtrick.isModuleFeatureEnabled(module, option))
+				 if (FoxtrickPrefs.isModuleOptionEnabled(module, option))
 					$(this).attr("checked", "checked");
 			}
 			else if ($(this).is(":input")) // text input

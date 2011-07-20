@@ -186,12 +186,12 @@ var FoxtrickCopyPlayerAd = {
 								text : skills.texts[i]
 							});
 					}
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickCopyPlayerAd, "Sorted")
+					if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickCopyPlayerAd, "Sorted")
 						|| doc.getElementsByClassName("percentImage").length > 0) {
 						// if skills are sorted or skill bars are enabled,
 						// the skills are arranged in a table with one cell
 						// in each row
-						if (Foxtrick.isModuleFeatureEnabled(FoxtrickCopyPlayerAd, "Sorted")) {
+						if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickCopyPlayerAd, "Sorted")) {
 							var skillSort = function(a, b) {
 								return b.value - a.value;
 							}
@@ -199,7 +199,7 @@ var FoxtrickCopyPlayerAd = {
 							skillArray.sort(skillSort);
 						}
 
-						if (!Foxtrick.isModuleFeatureEnabled(FoxtrickCopyPlayerAd, "NonTableStyle")) {
+						if (!FoxtrickPrefs.isModuleOptionEnabled(FoxtrickCopyPlayerAd, "NonTableStyle")) {
 							ad += "[table]\n";
 							for (var i in skillArray) {
 								ad += "[tr]"
@@ -221,7 +221,7 @@ var FoxtrickCopyPlayerAd = {
 					else {
 						// otherwise, they are arranged in a table with two
 						// cells in each row
-						if (!Foxtrick.isModuleFeatureEnabled(FoxtrickCopyPlayerAd, "NonTableStyle")) {
+						if (!FoxtrickPrefs.isModuleOptionEnabled(FoxtrickCopyPlayerAd, "NonTableStyle")) {
 							ad += "[table]\n";
 							var index = 0;
 							for (var skill in skillArray) {
@@ -265,7 +265,7 @@ var FoxtrickCopyPlayerAd = {
 							});
 					}
 
-					if (Foxtrick.isModuleFeatureEnabled(FoxtrickCopyPlayerAd, "Sorted")) {
+					if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickCopyPlayerAd, "Sorted")) {
 						var skillSort = function(a, b) {
 							if (a.current.value !== b.current.value) {
 								return b.current.value - a.current.value;
@@ -280,7 +280,7 @@ var FoxtrickCopyPlayerAd = {
 						// descending
 						skillArray.sort(skillSort);
 					}
-					if (!Foxtrick.isModuleFeatureEnabled(FoxtrickCopyPlayerAd, "NonTableStyle")) {
+					if (!FoxtrickPrefs.isModuleOptionEnabled(FoxtrickCopyPlayerAd, "NonTableStyle")) {
 						ad += "[table]\n";
 						for (var i in skillArray) {
 							ad += "[tr]"

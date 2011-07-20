@@ -33,7 +33,7 @@ var FoxtrickExtraShortcuts = {
 		while (scCont=targetNode[i++]) {if (scCont.className=='scContainer') break;}
 		targetNode=scCont;
 		if (targetNode) {
-			if (Foxtrick.isModuleFeatureEnabled( this, "Supporterstats")
+			if (FoxtrickPrefs.isModuleOptionEnabled( this, "Supporterstats")
 				&& Foxtrick.isSupporter(doc)) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
@@ -45,7 +45,7 @@ var FoxtrickExtraShortcuts = {
 					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.statistics");
 
 					link.appendChild(img1);
-					if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
+					if (FoxtrickPrefs.isModuleOptionEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
 					else {
 						if (targetNode.lastChild.nodeName=='BR') {
 							targetNode.insertBefore(link,targetNode.lastChild);
@@ -56,7 +56,7 @@ var FoxtrickExtraShortcuts = {
 					}
 				}
 
-				if (Foxtrick.isModuleFeatureEnabled( this, "Transfers")) {
+				if (FoxtrickPrefs.isModuleOptionEnabled( this, "Transfers")) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
 					link.href = "/Club/Transfers/";
@@ -67,7 +67,7 @@ var FoxtrickExtraShortcuts = {
 					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.transfers");
 
 					link.appendChild(img1);
-					if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
+					if (FoxtrickPrefs.isModuleOptionEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
 					else {
 						if (targetNode.lastChild.nodeName=='BR') {
 							targetNode.insertBefore(link,targetNode.lastChild);
@@ -78,7 +78,7 @@ var FoxtrickExtraShortcuts = {
 					}
 				}
 
-				if (Foxtrick.isModuleFeatureEnabled( this, "Prefs")) {
+				if (FoxtrickPrefs.isModuleOptionEnabled( this, "Prefs")) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
 					link.href = "/MyHattrick/Preferences/";
@@ -89,7 +89,7 @@ var FoxtrickExtraShortcuts = {
 					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.prefs");
 
 					link.appendChild(img1);
-					if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
+					if (FoxtrickPrefs.isModuleOptionEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
 					else {
 						if (targetNode.lastChild.nodeName=='BR') {
 							targetNode.insertBefore(link,targetNode.lastChild);
@@ -100,7 +100,7 @@ var FoxtrickExtraShortcuts = {
 					}
 				}
 			
-				if (Foxtrick.isModuleFeatureEnabled( this, "ManageCHPP")) {
+				if (FoxtrickPrefs.isModuleOptionEnabled( this, "ManageCHPP")) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
 					link.href = "/MyHattrick/Preferences/ExternalAccessGrants.aspx";
@@ -111,7 +111,7 @@ var FoxtrickExtraShortcuts = {
 					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.ManageCHPP");
 
 					link.appendChild(img1);
-					if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
+					if (FoxtrickPrefs.isModuleOptionEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
 					else {
 						if (targetNode.lastChild.nodeName=='BR') {
 							targetNode.insertBefore(link,targetNode.lastChild);
@@ -122,7 +122,7 @@ var FoxtrickExtraShortcuts = {
 					}
 				}
 				
-				if (Foxtrick.isModuleFeatureEnabled( this, "FoxTrickPrefs")) {
+				if (FoxtrickPrefs.isModuleOptionEnabled( this, "FoxTrickPrefs")) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
 					link.href = 'javascript:void();'
@@ -133,7 +133,7 @@ var FoxtrickExtraShortcuts = {
 					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.ftprefs");
 
 					link.appendChild(img1);
-					if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
+					if (FoxtrickPrefs.isModuleOptionEnabled( this, "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
 					else {
 						if (targetNode.lastChild.nodeName=='BR') {
 							targetNode.insertBefore(link,targetNode.lastChild);
@@ -146,7 +146,7 @@ var FoxtrickExtraShortcuts = {
 			
 			for(i=0; i<this.RADIOS.length; ++i) {
 				var radio = this.RADIOS[i];
-				if (Foxtrick.isModuleFeatureEnabled( this, radio)) {
+				if (FoxtrickPrefs.isModuleOptionEnabled( this, radio)) {
 
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
@@ -165,7 +165,7 @@ var FoxtrickExtraShortcuts = {
 					span.id = radio+'Span';
 					span.appendChild(link);
 
-					if (Foxtrick.isModuleFeatureEnabled( this, "AddLeft")) targetNode.insertBefore(span,targetNode.firstChild);
+					if (FoxtrickPrefs.isModuleOptionEnabled( this, "AddLeft")) targetNode.insertBefore(span,targetNode.firstChild);
 					else {
 						if (targetNode.lastChild.nodeName=='BR') {
 							targetNode.insertBefore(span,targetNode.lastChild);

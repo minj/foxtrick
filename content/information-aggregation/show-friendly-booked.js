@@ -11,7 +11,7 @@ var FoxtrickShowFriendlyBooked = {
 	OPTIONS : new Array("OnDemand"),
 	
 	run : function(doc) {
-		if (Foxtrick.isModuleFeatureEnabled(this, "OnDemand"))
+		if (FoxtrickPrefs.isModuleOptionEnabled(this, "OnDemand"))
 			this.AddOnDemand(doc);
 		else
 			this.AddFriendlies(doc);

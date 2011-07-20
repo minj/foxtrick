@@ -27,9 +27,9 @@ var FoxtrickSkillColoring = {
 	],
 
 	init : function() {
-		if ( Foxtrick.isModuleFeatureEnabled( this, "skill_number" ) && (Foxtrick.isModuleEnabled( FoxtrickPersonalityImages ) ) )
+		if ( FoxtrickPrefs.isModuleOptionEnabled( this, "skill_number" ) && (Foxtrick.isModuleEnabled( FoxtrickPersonalityImages ) ) )
 			this.OPTIONS_CSS[2] = Foxtrick.ResourcePath+"resources/skillcolors/skill-number-personal.css";
-		if ( Foxtrick.isModuleFeatureEnabled( this, "skill_number_translated" ) && (Foxtrick.isModuleEnabled( FoxtrickPersonalityImages ) ) )
+		if ( FoxtrickPrefs.isModuleOptionEnabled( this, "skill_number_translated" ) && (Foxtrick.isModuleEnabled( FoxtrickPersonalityImages ) ) )
 			this.OPTIONS_CSS[3] = Foxtrick.ResourcePath+"resources/skillcolors/skill-number-translated-personal.css";
 	}
 };

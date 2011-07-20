@@ -25,7 +25,7 @@ FoxtrickMatchReportFormat = {
 
 		// Retrieve team IDs
 		var myTeamId = isyouth ? FoxtrickHelper.getOwnYouthTeamId() : FoxtrickHelper.getOwnTeamId();
-		if (!Foxtrick.isModuleFeatureEnabled(this,'SeparateOwnTeamColors')) myTeamId=null;
+		if (!FoxtrickPrefs.isModuleOptionEnabled(this,'SeparateOwnTeamColors')) myTeamId=null;
 		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
 		if (!table) return; // match not finished
 		var homeTeamId = FoxtrickHelper.findTeamId(table.rows[0].cells[1]);

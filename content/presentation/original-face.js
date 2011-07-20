@@ -17,7 +17,7 @@ var FoxtrickOriginalFace = {
 	],
 
 	run : function(doc) {
-		if (Foxtrick.isModuleFeatureEnabled(this, "ColouredYouth")) {
+		if (FoxtrickPrefs.isModuleOptionEnabled(this, "ColouredYouth")) {
 			if (Foxtrick.isPage("YouthPlayer", doc)
 				|| Foxtrick.isPage("YouthPlayers", doc)) {
 				var imgs = doc.getElementsByTagName("img");

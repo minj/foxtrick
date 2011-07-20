@@ -28,7 +28,7 @@ var FoxtrickSeriesFlags = {
 						var countryId = Foxtrick.XMLData.getCountryIdByLeagueId(data["leagueId"]);
 						var country = FoxtrickHelper.createFlagFromCountryId(doc, countryId);
 						flag.appendChild(country);
-						if (!Foxtrick.isModuleFeatureEnabled(FoxtrickSeriesFlags, "CountryOnly") && data["seriesId"]!==0) {
+						if (!FoxtrickPrefs.isModuleOptionEnabled(FoxtrickSeriesFlags, "CountryOnly") && data["seriesId"]!==0) {
 							var series = doc.createElement("a");
 							series.className = "inner";
 							series.textContent = data["seriesName"];
@@ -105,7 +105,7 @@ var FoxtrickSeriesFlags = {
 				);
 			});
 		};
-		if (Foxtrick.isModuleFeatureEnabled(this, "Guestbook")
+		if (FoxtrickPrefs.isModuleOptionEnabled(this, "Guestbook")
 			&& Foxtrick.isPage("guestbook", doc)) {
 			// add to guest managers
 			var mainWrapper = doc.getElementById("mainWrapper");
@@ -114,7 +114,7 @@ var FoxtrickSeriesFlags = {
 			modifyUserLinks(userLinks);
 		}
 		//We add also flag to the guestbook entry in teamPage, but we have to skip the own user link
-		if (Foxtrick.isModuleFeatureEnabled(this, "Guestbook")
+		if (FoxtrickPrefs.isModuleOptionEnabled(this, "Guestbook")
 			&& Foxtrick.isPage("teamPage", doc)) {
 			var mainBoxes = doc.getElementById("mainWrapper").getElementsByClassName("mainBox");
 			Foxtrick.map(mainBoxes, function(b) {
@@ -123,7 +123,7 @@ var FoxtrickSeriesFlags = {
 				modifyUserLinks(userLinks);
 			});
 		}
-		if (Foxtrick.isModuleFeatureEnabled(this, "Supporters")
+		if (FoxtrickPrefs.isModuleOptionEnabled(this, "Supporters")
 			&& Foxtrick.isPage("teamPage", doc)) {
 			// add to supporters
 			var sideBar = doc.getElementById("sidebar");
@@ -136,7 +136,7 @@ var FoxtrickSeriesFlags = {
 				modifyUserLinks(userLinks);
 			});
 		}
-		if (Foxtrick.isModuleFeatureEnabled(this, "Visitors")
+		if (FoxtrickPrefs.isModuleOptionEnabled(this, "Visitors")
 			&& Foxtrick.some(["teamPage", "league", "youthleague", "federation"],
 				function(n) { return Foxtrick.isPage(n, doc); })) {
 			// add to visitors

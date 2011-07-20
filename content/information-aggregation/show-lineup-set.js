@@ -16,7 +16,7 @@ var FoxtrickShowLineupSet = {
 		var bots = [];
 
 		// check teams that have set a lineup
-		if (Foxtrick.isModuleFeatureEnabled(this, "LineupSet")) {
+		if (FoxtrickPrefs.isModuleOptionEnabled(this, "LineupSet")) {
 			var newsFeed = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLLUFeed");
 			var items = newsFeed.getElementsByClassName("feedItem");
 			// check whether an item is a set-lineup item, if is, return team
@@ -36,7 +36,7 @@ var FoxtrickShowLineupSet = {
 		}
 
 		// check ownerless teams
-		if (Foxtrick.isModuleFeatureEnabled(this, "Ownerless")) {
+		if (FoxtrickPrefs.isModuleOptionEnabled(this, "Ownerless")) {
 			var leagueTable = doc.getElementById("mainBody").getElementsByTagName("table")[0];
 			// checks whether a team is ownerless
 			var isOwnerless = function(link) { return Foxtrick.hasClass(link, "shy"); }
@@ -100,7 +100,7 @@ var FoxtrickShowLineupSet = {
 				}
 				// wins (for results only)
 				if (isResultTable(table)
-					&& Foxtrick.isModuleFeatureEnabled(this, "Winning")) {
+					&& FoxtrickPrefs.isModuleOptionEnabled(this, "Winning")) {
 					var goals = Foxtrick.trim(row.cells[1].textContent).split(/\s*-\s*/);
 					if (parseInt(goals[0]) > parseInt(goals[1])) {
 						var reg = new RegExp(/(.+)\&nbsp;-/);

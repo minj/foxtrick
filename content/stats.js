@@ -2309,7 +2309,7 @@ Foxtrick.LinkCollection.getLinks2  = function(stats, stattype, filterparams, doc
 
     for (var key in stats) {
 
-        if (!Foxtrick.isModuleFeatureEnabled(module, key)  &&
+        if (!FoxtrickPrefs.isModuleOptionEnabled(module, key)  &&
 			!overridesettings) {
 			 continue;
         }

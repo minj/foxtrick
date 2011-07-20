@@ -14,11 +14,11 @@ var FoxtrickSkinPlugin = {
 	CSS:'',
 
 	init : function() {
-		if (Foxtrick.isModuleFeatureEnabled( this, 'Skin1')) {
+		if (FoxtrickPrefs.isModuleOptionEnabled( this, 'Skin1')) {
 			var skinlink = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin1_text");
 			this.CSS = skinlink;
 		}
-		if (Foxtrick.isModuleFeatureEnabled( this, 'Skin2')) {
+		if (FoxtrickPrefs.isModuleOptionEnabled( this, 'Skin2')) {
 			var skinlink = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin2_text");
 			this.CSS = skinlink;
 		}

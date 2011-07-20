@@ -13,7 +13,7 @@ var FoxtrickHighlightCupwins = {
 
 	run : function(doc) {
 		const rtl = Foxtrick.isRTLLayout(doc);
-		var highlightCupsets = Foxtrick.isModuleFeatureEnabled(this, "HighlightCupsets");
+		var highlightCupsets = FoxtrickPrefs.isModuleOptionEnabled(this, "HighlightCupsets");
 		// matches of Hattrick Masters aren't arranged by cup ranks
 		var isMasters = (doc.location.search.search(/\bCupId=183\b/i) !== -1);
 		var highlightHomeWin = !isMasters && highlightCupsets;

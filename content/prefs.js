@@ -201,6 +201,19 @@ var FoxtrickPrefs = {
 		}
 	},
 
+	isModuleEnabled : function(module) {
+		// core modules must be executed no matter what user's preference is
+		if (module.CORE_MODULE)
+			return true;
+		return Boolean(FoxtrickPrefs.getBool("module." + Foxtrick.getModuleName(module) + ".enabled"));
+	},
+
+	isModuleOptionEnabled : function(module, option) {
+		const moduleName = (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
+		const val = Boolean(FoxtrickPrefs.getBool("module." + moduleName + "." + feature + ".enabled"));
+		return val;
+	},
+
 	/* Add a new preference with value given as argument under a
 	 * specified branch.
 	 * Creates the list if not present.

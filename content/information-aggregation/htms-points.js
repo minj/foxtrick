@@ -24,9 +24,9 @@ var FoxtrickHTMSPoints = {
 			return link;
 		};
 
-		var AddToPlayer = Foxtrick.isModuleFeatureEnabled(this, "AddToPlayer");
-		var AddToSearchResult = Foxtrick.isModuleFeatureEnabled(this, "AddToSearchResult");
-		var AddToPlayerList = Foxtrick.isModuleFeatureEnabled(this, "AddToPlayerList");
+		var AddToPlayer = FoxtrickPrefs.isModuleOptionEnabled(this, "AddToPlayer");
+		var AddToSearchResult = FoxtrickPrefs.isModuleOptionEnabled(this, "AddToSearchResult");
+		var AddToPlayerList = FoxtrickPrefs.isModuleOptionEnabled(this, "AddToPlayerList");
 
 		if (Foxtrick.isPage("playerdetail", doc) && AddToPlayer) {
 			var age = Foxtrick.Pages.Player.getAge(doc);

@@ -44,7 +44,7 @@ var FoxtrickSmallerPages = {
 				doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlplayerInfo').style.width = "auto";
 			}
 
-			if (Foxtrick.isModuleFeatureEnabled(this, "ReduceBid")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled(this, "ReduceBid")) {
 				//we move the bid div
 				if (doc.getElementById(this.TABLE_ID)) {
 					this._move_bid( doc );

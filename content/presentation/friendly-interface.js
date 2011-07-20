@@ -18,7 +18,7 @@ FoxtrickFriendlyInterface = {
 
 	run : function(doc) {
 		if (Foxtrick.isPage("matchLineup", doc)
-			&& Foxtrick.isModuleFeatureEnabled(this, "FullPlayerNameInLineUp")) {
+			&& FoxtrickPrefs.isModuleOptionEnabled(this, "FullPlayerNameInLineUp")) {
 			// show full player names while hiding overflew characters
 			var field = doc.getElementsByClassName("field")[0];
 			var names = field.getElementsByClassName("name");
@@ -55,7 +55,7 @@ FoxtrickFriendlyInterface = {
 			}
 		}
 		else if (Foxtrick.isPage("playerdetail", doc)
-			&& Foxtrick.isModuleFeatureEnabled(this, "NtLinkForNtPlayer")) {
+			&& FoxtrickPrefs.isModuleOptionEnabled(this, "NtLinkForNtPlayer")) {
 			// show national team names as links in national players' page
 			var playerInfo = doc.getElementsByClassName("playerInfo")[0];
 			// a player has highlight <=> he is a national player
@@ -85,7 +85,7 @@ FoxtrickFriendlyInterface = {
 			}
 		}
 		else if (Foxtrick.isPage("guestbook", doc)
-			&& Foxtrick.isModuleFeatureEnabled(this, "HideAnswerTo")) {
+			&& FoxtrickPrefs.isModuleOptionEnabled(this, "HideAnswerTo")) {
 			var answerToLinks = Foxtrick.filter(links, function(n) { return (n.href.search(/Guestbook\.aspx/i) >= 0); });
 			Foxtrick.map(answerToLinks, function(n) {
 				n.style.display="none";
@@ -96,7 +96,7 @@ FoxtrickFriendlyInterface = {
 			});
 		}
 		else if (Foxtrick.isPage("dashboard", doc)
-			&& Foxtrick.isModuleFeatureEnabled(this, "HideSpeechlessSecretary")) {
+			&& FoxtrickPrefs.isModuleOptionEnabled(this, "HideSpeechlessSecretary")) {
 			if (doc.getElementsByClassName("pmNextMessageCounter").length)
 				return; // there are unread messages
 			// nothing new, container should be marked as hidden

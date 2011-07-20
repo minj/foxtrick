@@ -33,7 +33,7 @@ var FoxtrickNewMail = {
 					var newMailCount = 0;
 				}
 				Foxtrick.sessionSet("mailCount", newMailCount);
-				if (Foxtrick.isModuleFeatureEnabled(FoxtrickNewMail, "NotifyMail")
+				if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickNewMail, "NotifyMail")
 					&& newMailCount > oldMailCount) {
 					Foxtrick.util.notify.create(Foxtrickl10n.getString("notify.newMail").replace(/%s/, newMailCount));
 				}
@@ -67,7 +67,7 @@ var FoxtrickNewMail = {
 					var newForumCount = 0;
 				}
 				Foxtrick.sessionSet("forumCount", newForumCount);
-				if (Foxtrick.isModuleFeatureEnabled(FoxtrickNewMail, "NotifyForum")
+				if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickNewMail, "NotifyForum")
 					&& newForumCount > oldForumCount) {
 					Foxtrick.util.notify.create(Foxtrickl10n.getString("notify.newForumMessage").replace(/%s/, newForumCount));
 				}

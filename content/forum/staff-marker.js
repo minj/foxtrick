@@ -83,7 +83,7 @@ var FoxtrickStaffMarker = {
 			try {
 			// getting user-defined IDs and colors
 			var customMarker = {};
-			if (Foxtrick.isModuleFeatureEnabled(FoxtrickStaffMarker, "own")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickStaffMarker, "own")) {
 				var customText = FoxtrickPrefs.getString("module." + FoxtrickStaffMarker.MODULE_NAME + "." + "own_text");
 				try {
 					customMarker = JSON.parse(customText);
@@ -142,7 +142,7 @@ var FoxtrickStaffMarker = {
 				FoxtrickStaffMarker._MarkAliases_select(doc, modifier);
 			}
 			else if (Foxtrick.isPage("teamPage", doc)) {
-				if (Foxtrick.isModuleFeatureEnabled(FoxtrickStaffMarker, "manager")) {
+				if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickStaffMarker, "manager")) {
 					FoxtrickStaffMarker._MarkAliases_thread(doc, modifier);
 				}
 			}
@@ -171,7 +171,7 @@ var FoxtrickStaffMarker = {
 	},
 
 	_MarkAliases_select : function(doc, modifier) {
-		var do_flag = Foxtrick.isModuleFeatureEnabled(FoxtrickStaffMarker, "flag");
+		var do_flag = FoxtrickPrefs.isModuleOptionEnabled(FoxtrickStaffMarker, "flag");
 		
 		var selects = doc.getElementById("mainWrapper").getElementsByClassName("threadPagingFilter");		
 		var select = selects[0];
