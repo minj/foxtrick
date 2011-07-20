@@ -312,13 +312,21 @@ var FoxtrickMyMonitor = {
 		// select box containing teams in the monitor
 		var fillSelect = function() {
 			select.textContent = ""; // clear first
-			Foxtrick.addEventListenerChangeSave(select, "click", 
-				function() { doc.location.href = select.value; }, false);
+			Foxtrick.addEventListenerChangeSave(select, "change", 
+				function() {
+					if (select.value)
+						doc.location.href = select.value;
+				},
+				false);
+			// use an option as faux-header
+			var fauxHeader = doc.createElement("option");
+			fauxHeader.selected = "selected";
+			fauxHeader.textContent = Foxtrickl10n.getString("MyMonitor.teams").replace(/%s/, teams.length);
+			select.appendChild(fauxHeader);
+			// now add the teams
 			Foxtrick.map(teams, function(n) {
 				var option = doc.createElement("option");
 				option.textContent = n.name;
-				if (n.type == type && n.id == teamIdContainer.id)
-					option.setAttribute("selected", "selected");
 				option.value = FoxtrickMyMonitor.getLink(n);
 				select.appendChild(option);
 			});
