@@ -116,15 +116,17 @@ Foxtrick.util.matchView.fillMatches = function(container, xml) {
 			var matchLink = doc.createElement("a");
 			matchLink.href = "/Club/Matches/Match.aspx?matchID=" + matchId
 				+ (isYouth ? "&isYouth=True" : "");
+			if (Foxtrick.isStandardLayout(doc)) var cutlength = 12; // get them in one line
+			else var cutlength = 18; // won't fit in one line anyway
 			if (!rtl) {
 				matchLink.title = homeTeam + " - " + awayTeam;
-				matchLink.textContent = homeTeam.substr(0, 15) + " - "
-					+ awayTeam.substr(0, 15);
+				matchLink.innerHTML = "<span class='nowrap'>" + homeTeam.substr(0, cutlength) + "</span>" + " - "
+					+ "<span class='nowrap'>" + awayTeam.substr(0, cutlength) + "</span>";
 			}
 			else {
 				matchLink.title = awayTeam + " - " + homeTeam;
-				matchLink.textContent = awayTeam.substr(0, 15) + " - "
-					+ homeTeam.substr(0, 15);
+				matchLink.innerHTML = "<span class='nowrap'>" + awayTeam.substr(0, cutlength) + "</span>" + " - "
+					+ "<span class='nowrap'>" + homeTeam.substr(0, cutlength) + "</span>";
 			}
 			matchCell.appendChild(matchLink);
 			row.appendChild(matchCell);
@@ -148,7 +150,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml) {
 			else {
 				// add HT-Live
 				var liveLink = doc.createElement("a");
-				liveLink.href = "/Club/Matches/Live.aspx?actionType=addMatch&matchID=" + matchId;
+				liveLink.href = "/Club/Matches/Live.aspx?actionType=addMatch&"+ (isYouth ? "youth" : "") + "matchID=" + matchId;
 				var liveImg = doc.createElement("img");
 				liveImg.className = "matchHTLive";
 				liveImg.src = "/Img/Icons/transparent.gif";

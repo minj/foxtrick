@@ -146,10 +146,20 @@ var FoxtrickMyMonitor = {
 			// link containing team name
 			var nameLink = doc.createElement("a");
 			buildLink(team, nameLink);
+			
+			var img_height = 18;
+			if (Foxtrick.isStandardLayout(doc)) img_height = 24;
+			// dummy for alignment
+			var img = doc.createElement('img');
+			img.height = img_height;
+			img.width = 0;
+			img.src="../../Img/Icons/transparent.gif"
+			header.appendChild(img);
+			
 			if (team.logo) { 
 				var img = doc.createElement('img');
 				img.title = team.name;
-				img.height ='16';
+				img.height = img_height;
 				img.className = 'teamicon';
 				img.src = team.logo;
 				header.appendChild(img);
@@ -165,6 +175,12 @@ var FoxtrickMyMonitor = {
 
 			var sortdiv = doc.createElement('div');
 			sortdiv.className='ft_sort';
+
+			var img = doc.createElement('img');
+			img.height = img_height;
+			img.width = 0;
+			img.src="../../Img/Icons/transparent.gif"
+			sortdiv.appendChild(img);
 			
 			var uplink = doc.createElement('input');
 			uplink.type="image";
