@@ -12,6 +12,7 @@ var FoxtrickSeriesFlags = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["guestbook", "teamPage", "league", "youthleague", "federation"],
 	OPTIONS : ["Guestbook", "Supporters", "Visitors", "CountryOnly"],
+	NICE: +1,
 
 	run : function(doc) {
 		var buildFlag = function(arg, callback) {
