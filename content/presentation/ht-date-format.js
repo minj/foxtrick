@@ -25,7 +25,7 @@ var FoxtrickHTDateFormat = {
 		const weekOffset = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".FirstDayOfWeekOffset_text");
 		var seperator=' ';
 		// some table fixing for simple skin
-		if (!Foxtrick.isStandardLayout(doc)) {
+		if (!Foxtrick.util.layout.isStandard(doc)) {
 			if (Foxtrick.isPage("matches", doc))
 				seperator = '<br/>';
 		}

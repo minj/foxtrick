@@ -139,7 +139,7 @@ var FoxtrickRapidId = {
 	run: function(doc) {
 		// no space for rapidid with right_now in simple skin. so don't show it during matches
 		var rightnow = doc.getElementById("ctl00_ctl00_ucOngoingEvents_pnlOngoingEvents");
-		if (rightnow && !Foxtrick.isStandardLayout(doc))
+		if (rightnow && !Foxtrick.util.layout.isStandard(doc))
 			return;
 
 		// get labels of optgroup and option

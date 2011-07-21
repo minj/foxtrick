@@ -41,7 +41,7 @@ Foxtrick.AttVsDef = {
 		var suppstats = Foxtrickl10n.getString( "foxtrick.matches.suppstats" );
 		Foxtrick.addBoxToSidebar( doc, header, bodydiv, boxId, suppstats, "last");
 
-		if (Foxtrick.isStandardLayout(doc) && FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 0) bodydiv.parentNode.style.padding='8px 6px 15px';
+		if (Foxtrick.util.layout.isStandard(doc) && FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 0) bodydiv.parentNode.style.padding='8px 6px 15px';
 	},
 
 	_oldStyleBars: function (doc, ratingstable, bodydiv) {

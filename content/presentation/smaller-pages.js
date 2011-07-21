@@ -14,7 +14,7 @@ var FoxtrickSmallerPages = {
 	TABLE_ID : "foxtrick-smaller-pages-table",
 
 	run : function(doc) {
-		if (!Foxtrick.isSupporter(doc)) {
+		if (!Foxtrick.util.layout.isSupporter(doc)) {
 			// if the advertisement at the right side is blocked,
 			// non suppoters will still see a blank space on the right
 			// since a fixed width larger than needed is assigned.
@@ -26,7 +26,7 @@ var FoxtrickSmallerPages = {
 				|| (adSkyscraper.getElementsByTagName("iframe").length > 0)
 				|| (adSkyscraper.getElementsByTagName("a").length > 0);
 			if (!hasAd) {
-				if (Foxtrick.isStandardLayout(doc)) {
+				if (Foxtrick.util.layout.isStandard(doc)) {
 					// for standard theme, reduce to 1001px, which is the width
 					// of the div with id "page", 981px, plus its margin at the
 					// left and right, 10px each.

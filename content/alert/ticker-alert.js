@@ -136,7 +136,7 @@ var FoxtrickTickerAlert = {
 				ticker.addEventListener("DOMSubtreeModified", tickerCheck, false);
 			});
 		};
-		if (Foxtrick.isSupporter(doc))
+		if (Foxtrick.util.layout.isSupporter(doc))
 			tickerCheck();
 	}
 };

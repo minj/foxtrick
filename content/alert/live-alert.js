@@ -30,7 +30,7 @@ var FoxtrickLiveAlert = {
 					return;
 				const scoreRe = new RegExp("(\\d+)\\s*-\\s*(\\d+)");
 				var scoreMatch = score.match(scoreRe);
-				if (!Foxtrick.isRTLLayout(doc))
+				if (!Foxtrick.util.layout.isRtl(doc))
 					return [parseInt(scoreMatch[1]), parseInt(scoreMatch[2])];
 				else
 					return [parseInt(scoreMatch[2]), parseInt(scoreMatch[1])];

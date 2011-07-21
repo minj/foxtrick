@@ -104,7 +104,7 @@ var FoxtrickManagerButtons = {
 			guestbookLink.title = Foxtrickl10n.getString("foxtrick.tweaks.writeinguestbook");
 			guestbookLink.id = this.GUESTBOOK_LINK_ID;
 
-			if (Foxtrick.isStandardLayout(doc)) {
+			if (Foxtrick.util.layout.isStandard(doc)) {
 				guestbookLink.className = "inner";
 				var img = doc.createElement("img");
 				img.style.padding = "0px 5px 0px 0px";

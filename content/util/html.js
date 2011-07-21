@@ -156,7 +156,7 @@ Foxtrick.addBoxToSidebar = function(doc, title, content, id, insertBefore, altIn
 			insertBeforeObject = sidebar.firstChild;
 		}
 
-		if (Foxtrick.isStandardLayout(doc)) {
+		if (Foxtrick.util.layout.isStandard(doc)) {
 			// Standard layout
 			if (existingBox) {
 				existingBox.id = id;

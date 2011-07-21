@@ -66,7 +66,7 @@ var FoxtrickCopyRatings = {
 				return;
 			}
 
-			if (Foxtrick.isStandardLayout(doc)) {
+			if (Foxtrick.util.layout.isStandard(doc)) {
 				doc.getElementById("mainBody").style.paddingTop = "10px";
 			}
 

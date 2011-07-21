@@ -374,8 +374,8 @@ var FoxtrickForumYouthIcons = {
 					.replace(/%1/, Foxtrick.version())
 					.replace(/%2/, Foxtrick.BuildFor)
 					.replace(/%3/, FoxtrickPrefs.getString("htLanguage"))
-					.replace(/%4/, Foxtrick.isStandardLayout(doc) ? "standard" : "simple")
-					.replace(/%5/, Foxtrick.isRTLLayout(doc) ? "RTL" : "LTR");
+					.replace(/%4/, Foxtrick.util.layout.isStandard(doc) ? "standard" : "simple")
+					.replace(/%5/, Foxtrick.util.layout.isRtl(doc) ? "RTL" : "LTR");
 				if (Foxtrick.isStage(doc)) newText += ', Stage';
 				newText += "\n";
 				newText += Foxtrick.dumpCache.substr(Foxtrick.dumpCache.length-3500);

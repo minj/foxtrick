@@ -166,7 +166,7 @@ var FoxtrickTeamPopupLinks = {
 		}
 
 		this.ownteamid = FoxtrickHelper.getOwnTeamId();
-		this.hasScroll = Foxtrick.hasMainBodyScroll(doc);
+		this.hasScroll = Foxtrick.util.layout.mainBodyHasScroll(doc);
 
 		// team links
 		var aLink = doc.getElementById('teamLinks').getElementsByTagName('a')[0];

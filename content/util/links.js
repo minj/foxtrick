@@ -108,7 +108,7 @@ Foxtrick.util.links = {
 			var ownBoxId = "foxtrick_links_box";
 			var div=doc.getElementById(ownBoxId).firstChild;
 			div.className = "boxHead ft_sidebarBoxCollapsed";
-			if (Foxtrick.isRTLLayout(doc))
+			if (Foxtrick.util.layout.isRtl(doc))
 				div.className = "boxHead ft_sidebarBoxCollapsed_rtl";
 
 			var all_links=ownBoxBody.getElementsByTagName('a');
@@ -182,7 +182,7 @@ Foxtrick.util.links = {
 			var ownBoxId = "foxtrick_links_box";
 			var div=doc.getElementById(ownBoxId).firstChild;
 			div.setAttribute("class","boxHead ft_sidebarBoxUnfolded");
-			if (Foxtrick.isRTLLayout(doc)) div.setAttribute("class","boxHead  ft_sidebarBoxUnfolded_rtl");
+			if (Foxtrick.util.layout.isRtl(doc)) div.setAttribute("class","boxHead  ft_sidebarBoxUnfolded_rtl");
 
 			var all_links=ownBoxBody.getElementsByTagName('a');
 			for (var i=0;i<all_links.length;++i) {

@@ -56,11 +56,11 @@ var FoxtrickHeaderFix = {
 		if (ctl00_ctl00_CPContent_CPMain_pnlTeamInfo) ctl00_ctl00_CPContent_CPMain_pnlTeamInfo.setAttribute('style','float:left !important; margin-top:-20px;');
 		else {
 			mainBox.getElementsByTagName('h2')[0].setAttribute('style',' margin-top:-20px;');
-			if (Foxtrick.isStandardLayout(doc)) mainBox.setAttribute('style',' margin-bottom:0px;');
+			if (Foxtrick.util.layout.isStandard(doc)) mainBox.setAttribute('style',' margin-bottom:0px;');
 		}
 
 		// move or delete seperator
-		if (separator && (isMatch || !Foxtrick.isStandardLayout(doc))) {
+		if (separator && (isMatch || !Foxtrick.util.layout.isStandard(doc))) {
 			separator = ctl00_ctl00_CPContent_CPMain_pnl.removeChild(separator);
 			ctl00_ctl00_CPContent_CPMain_pnl.appendChild(separator);
 		}
@@ -71,7 +71,7 @@ var FoxtrickHeaderFix = {
 			var margin;
 			if (isArena) margin='margin-right:18px';
 			else margin='';
-			if (Foxtrick.isStandardLayout(doc)) arenaInfo.setAttribute('style','float:right !important;');
+			if (Foxtrick.util.layout.isStandard(doc)) arenaInfo.setAttribute('style','float:right !important;');
 			else arenaInfo.setAttribute('style','float:right !important; width:190px !important;'+margin);
 		}
 

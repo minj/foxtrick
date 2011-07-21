@@ -26,7 +26,7 @@ var FoxtrickShowFriendlyBooked = {
 		a.href = 'javascript:void()';
 		Foxtrick.listen(a, 'click', FoxtrickShowFriendlyBooked.Show, false);
 		span.appendChild(a);
-		if (Foxtrick.isSupporter(doc)) {
+		if (Foxtrick.util.layout.isSupporter(doc)) {
 			var UpdatePanelLiveLeagueTable = doc.getElementById("ctl00_ctl00_CPContent_CPMain_UpdatePanelLiveLeagueTable");
 			UpdatePanelLiveLeagueTable.insertBefore(span,UpdatePanelLiveLeagueTable.getElementsByTagName('br')[0].nextSibling);
 		}

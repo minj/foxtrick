@@ -16,7 +16,7 @@ FoxtrickTransferDeadline = {
 
 		FoxtrickTransferDeadline.element='span';  // display: inline
 		// some table fixing for simple skin
-		if (!Foxtrick.isStandardLayout(doc)) {
+		if (!Foxtrick.util.layout.isStandard(doc)) {
 			if (Foxtrick.isPage("transferSearchResult", doc))
 				FoxtrickTransferDeadline.element = 'div'; // display: block
 		}

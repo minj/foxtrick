@@ -62,7 +62,7 @@ var FoxtrickCopyYouth = {
 			if (boxHead.className!='boxHead')
 				return;
 
-			if (Foxtrick.isStandardLayout(doc))
+			if (Foxtrick.util.layout.isStandard(doc))
 				doc.getElementById('mainBody').style.paddingTop = "10px";
 
 			var messageLink = doc.createElement("a");
@@ -189,7 +189,7 @@ var FoxtrickCopyYouth = {
 				if (boxHead.className!='boxHead')
 					return;
 
-				if (Foxtrick.isStandardLayout(doc))
+				if (Foxtrick.util.layout.isStandard(doc))
 					doc.getElementById('mainBody').style.paddingTop = "10px";
 
 				var messageLink = doc.createElement("a");
@@ -265,7 +265,7 @@ var FoxtrickCopyYouth = {
 			if (boxHead.className!='boxHead')
 				return;
 
-			if (Foxtrick.isStandardLayout(doc))
+			if (Foxtrick.util.layout.isStandard(doc))
 				doc.getElementById('mainBody').style.paddingTop = "10px";
 
 			var messageLink = doc.createElement("a");
@@ -342,7 +342,7 @@ var FoxtrickCopyYouth = {
 			if (boxHead.className!='boxHead')
 				return;
 
-			if (Foxtrick.isStandardLayout(doc))
+			if (Foxtrick.util.layout.isStandard(doc))
 				doc.getElementById('mainBody').style.paddingTop = "10px";
 
 			var messageLink = doc.createElement("a");

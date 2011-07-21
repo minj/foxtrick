@@ -104,13 +104,13 @@ var FoxtrickTeamSelectBox = {
 				if (showAsList) {
 					toList();
 					div.className = "boxHead ft_sidebarBoxUnfolded";
-					if (Foxtrick.isRTLLayout(doc))
+					if (Foxtrick.util.layout.isRtl(doc))
 						div.className = "boxHead ft_sidebarBoxUnfolded_rtl";
 				}
 				else {
 					toSelectBox();
 					div.className = "boxHead ft_sidebarBoxCollapsed";
-					if (Foxtrick.isRTLLayout(doc))
+					if (Foxtrick.util.layout.isRtl(doc))
 						div.className = "boxHead ft_sidebarBoxCollapsed_rtl";
 				}
 			}

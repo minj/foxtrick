@@ -249,11 +249,11 @@ var FoxtrickMain = {
 			// reload CSS if not loaded or page layout changed
 			if ( Foxtrick.isHt(doc) && 
 				(!FoxtrickMain.cssLoaded
-				|| (Foxtrick.isStandardLayout(doc) !== FoxtrickPrefs.getBool('isStandard'))
-				|| (Foxtrick.isRTLLayout(doc) !== FoxtrickPrefs.getBool('isRTL')))) {
+				|| (Foxtrick.util.layout.isStandard(doc) !== FoxtrickPrefs.getBool('isStandard'))
+				|| (Foxtrick.util.layout.isRtl(doc) !== FoxtrickPrefs.getBool('isRTL')))) {
 				Foxtrick.log('layout change');
-				FoxtrickPrefs.setBool('isStandard', Foxtrick.isStandardLayout(doc));
-				FoxtrickPrefs.setBool('isRTL', Foxtrick.isRTLLayout(doc));
+				FoxtrickPrefs.setBool('isStandard', Foxtrick.util.layout.isStandard(doc));
+				FoxtrickPrefs.setBool('isRTL', Foxtrick.util.layout.isRtl(doc));
 				FoxtrickPrefs.setBool('isStage', Foxtrick.isStage(doc));
 				Foxtrick.reload_module_css(doc);
 				FoxtrickMain.cssLoaded = true;
@@ -721,67 +721,6 @@ Foxtrick.reload_module_css = function(doc) {
 	}
 }
 
-// Check whether the site is in standard theme instead of simple theme
-Foxtrick.isStandardLayout = function (doc) {
-	var head = doc.getElementsByTagName("head")[0];
-	if (!head)
-		return null;
-	var links = head.getElementsByTagName("link");
-	if (links.length!=0){
-		var i=0,link;
-		while (link=links[i++]) {
-			if (link.href.search(/\/App_Themes\/Simple/i)!=-1) return false;
-		}
-	}
-	else { // mobile internet may have style embedded
-		var styles = head.getElementsByTagName("style");
-		var i=0,style;
-		while (style=styles[i++]) {
-			if (style.textContent.search(/\/App_Themes\/Simple/i)!=-1) return false;
-		}
-	}
-	return true; // true = standard / false = simple
-}
-
-// Check whether the site is right-to-left layout
-Foxtrick.isRTLLayout = function (doc) {
-	var head = doc.getElementsByTagName("head")[0];
-	if (!head)
-		return null;
-	var links = head.getElementsByTagName("link");
-	var rtl=false;
-	if (links.length!=0) {
-		var i=0,link;
-		while (link=links[i++]) {
-			if (link.href.search("_rtl.css") != -1) rtl = true;
-		}
-	}
-	else { // mobile internet may have style embedded
-		var styles = head.getElementsByTagName("style");
-		var i=0,style;
-		while (style=styles[i++]) {
-			if (style.textContent.search(/direction:rtl/i)!=-1) rtl = true;
-		}
-	}
-	return rtl;
-}
-
-
-Foxtrick.isSupporter = function (doc) {
-	return (doc.getElementsByClassName("hattrickNoSupporter").length === 0);
-}
-
-Foxtrick.hasMainBodyScroll = function (doc) {
-	// Check if scrolling is on for MainBody
-	var hasScroll=false;
-	var mainBodyChildren = doc.getElementById('mainBody').getElementsByTagName('script');
-	var i = 0, child;
-	while (child = mainBodyChildren[i++]) {
-		if (child.innerHTML && child.innerHTML.search(/adjustHeight\(\'mainBody\'/) != -1) {hasScroll=true; break;}
-	}
-	return hasScroll;
-}
-
 Foxtrick.dumpCache = "";
 Foxtrick.dumpFlush = function(doc) {
 	if (doc.getElementById("page") != null
@@ -800,8 +739,8 @@ Foxtrick.dumpFlush = function(doc) {
 				.replace(/%1/, Foxtrick.version())
 				.replace(/%2/, Foxtrick.BuildFor)
 				.replace(/%3/, FoxtrickPrefs.getString("htLanguage"))
-				.replace(/%4/, Foxtrick.isStandardLayout(doc) ? "standard" : "simple")
-				.replace(/%5/, Foxtrick.isRTLLayout(doc) ? "RTL" : "LTR");
+				.replace(/%4/, Foxtrick.util.layout.isStandard(doc) ? "standard" : "simple")
+				.replace(/%5/, Foxtrick.util.layout.isRtl(doc) ? "RTL" : "LTR");
 			if (Foxtrick.isStage(doc)) pre.textContent += ', Stage';
 			pre.textContent += "\n";
 			div.appendChild(pre);

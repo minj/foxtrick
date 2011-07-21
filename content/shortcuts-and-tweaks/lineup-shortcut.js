@@ -29,7 +29,7 @@ FoxtrickLineupShortcut = {
 
 	_Analyze_Player_Page : function(doc) {
 		// non-supporters don't have match history listed
-		if (!Foxtrick.isSupporter(doc))
+		if (!Foxtrick.util.layout.isSupporter(doc))
 			return;
 
 		// get leagueId for ntName and u20Name

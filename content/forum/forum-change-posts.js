@@ -33,8 +33,8 @@ var FoxtrickForumChangePosts = {
 
 
 		this.bDetailedHeader = false;
-		var hasScroll = Foxtrick.hasMainBodyScroll(doc);
-		var isStandardLayout = Foxtrick.isStandardLayout ( doc ) ;
+		var hasScroll = Foxtrick.util.layout.mainBodyHasScroll(doc);
+		var isStandardLayout = Foxtrick.util.layout.isStandard ( doc ) ;
 		var notif = doc.getElementById('ctl00_ctl00_CPContent_ucNotifications_updNotifications');
 		var isArchive = notif.innerHTML.search('ctl00_ctl00_CPContent_ucNotifications_error_0')!=-1;
 
@@ -51,7 +51,7 @@ var FoxtrickForumChangePosts = {
 
 		// part of copy_posting_link
 		var copy_posting_img = doc.createElement('img');
-		if (Foxtrick.isSupporter(doc)) {
+		if (Foxtrick.util.layout.isSupporter(doc)) {
 			copy_posting_img.src = "/Img/Icons/transparent.gif";
 			copy_posting_img.style.background = 'url("' + Foxtrick.ResourcePath + 'resources/img/copy/copyNormal_s.png") no-repeat scroll 0 0 transparent';
 			copy_posting_img.style.height = "22px";
@@ -67,7 +67,7 @@ var FoxtrickForumChangePosts = {
 
 		var copy_posting_div = doc.createElement("div");
 		copy_posting_div.className = "ft-pop-up-container";
-		if (Foxtrick.isSupporter(doc))
+		if (Foxtrick.util.layout.isSupporter(doc))
 			copy_posting_div.style.top = "2px";
 		copy_posting_div.appendChild(copy_posting_img);
 

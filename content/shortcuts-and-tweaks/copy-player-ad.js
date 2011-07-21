@@ -37,7 +37,7 @@ var FoxtrickCopyPlayerAd = {
 			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
 			if (boxHead.className!='boxHead') return;
 
-			if (Foxtrick.isStandardLayout(doc)) doc.getElementById('mainBody').setAttribute('style','padding-top:10px;');
+			if (Foxtrick.util.layout.isStandard(doc)) doc.getElementById('mainBody').setAttribute('style','padding-top:10px;');
 
 			var messageLink = doc.createElement("a");
 			messageLink.className = "inner copyicon copyplayerad ci_fourth";

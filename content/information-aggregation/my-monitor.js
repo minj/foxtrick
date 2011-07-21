@@ -148,7 +148,7 @@ var FoxtrickMyMonitor = {
 			buildLink(team, nameLink);
 			
 			var img_height = 18;
-			if (Foxtrick.isStandardLayout(doc)) img_height = 24;
+			if (Foxtrick.util.layout.isStandard(doc)) img_height = 24;
 			// dummy for alignment
 			var img = doc.createElement('img');
 			img.height = img_height;

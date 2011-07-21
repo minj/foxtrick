@@ -98,7 +98,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml) {
 		}
 
 		var getMatchRow = function() {
-			const rtl = Foxtrick.isRTLLayout(doc);
+			const rtl = Foxtrick.util.layout.isRtl(doc);
 
 			var row = doc.createElement("tr");
 
@@ -116,7 +116,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml) {
 			var matchLink = doc.createElement("a");
 			matchLink.href = "/Club/Matches/Match.aspx?matchID=" + matchId
 				+ (isYouth ? "&isYouth=True" : "");
-			if (Foxtrick.isStandardLayout(doc)) var cutlength = 12; // get them in one line
+			if (Foxtrick.util.layout.isStandard(doc)) var cutlength = 12; // get them in one line
 			else var cutlength = 18; // won't fit in one line anyway
 			if (!rtl) {
 				matchLink.title = homeTeam + " - " + awayTeam;

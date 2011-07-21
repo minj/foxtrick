@@ -34,7 +34,7 @@ var FoxtrickExtraShortcuts = {
 		targetNode=scCont;
 		if (targetNode) {
 			if (FoxtrickPrefs.isModuleOptionEnabled( this, "Supporterstats")
-				&& Foxtrick.isSupporter(doc)) {
+				&& Foxtrick.util.layout.isSupporter(doc)) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
 					link.href = "/World/Stats/";

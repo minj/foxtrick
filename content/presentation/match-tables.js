@@ -29,7 +29,7 @@ var FoxtrickMatchTables = {
 	},
 
 	addStyleSheet : function(doc) {
-		if (Foxtrick.isStandardLayout(doc))
+		if (Foxtrick.util.layout.isStandard(doc))
 			return;
 		if (Foxtrick.isPage("league", doc)
 			|| Foxtrick.isPage("youthleague", doc))
@@ -41,7 +41,7 @@ var FoxtrickMatchTables = {
 
 	// adjust matchtable, remove hour
 	removeTime : function(doc) {
-		if (Foxtrick.isStandardLayout(doc))
+		if (Foxtrick.util.layout.isStandard(doc))
 			return;
 		if (!FoxtrickPrefs.isModuleOptionEnabled(this, "RemoveTime"))
 			return;
