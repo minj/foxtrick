@@ -23,6 +23,7 @@ CONTENT_FOLDERS = alert/ \
 CONTENT_FILES = add-class.js \
 	api-proxy.js \
 	core.js \
+	entry.js \
 	env.js \
 	faq.xml \
 	forum-stage.js \

@@ -50,7 +50,7 @@ Foxtrick.loader.gecko.tabFocus = function(ev) {
 	var currentBrowser = tabbrowser.getBrowserAtIndex(ev.target.selectedIndex);
 	var doc = currentBrowser.contentDocument;
 
-	FoxtrickMain.run(doc, true); // recheck css
+	Foxtrick.entry.run(doc, true); // recheck css
 
 	// calls module.onTabChange() after the tab focus is changed
 	for (var i in Foxtrick.modules) {
@@ -83,8 +83,7 @@ Foxtrick.loader.gecko.docLoad = function(ev) {
 		}
 
 		var begin = (new Date()).getTime();
-		//var begin=FoxtrickMain.lastTime;
-			FoxtrickMain.run(doc);
+		Foxtrick.entry.run(doc);
 		var diff = (new Date()).getTime() - begin;
 		Foxtrick.dump("run time: " + diff + " ms | " + doc.location.pathname+doc.location.search + '\n');
 		// listen to page content changes

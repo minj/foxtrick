@@ -389,7 +389,7 @@ var FoxtrickPrefs = {
 						FoxtrickPrefs.deleteValue(array[i]);
 					}
 				}
-				FoxtrickMain.init();
+				Foxtrick.entry.init();
 				return true;
 			}
 			catch (e) {
@@ -400,7 +400,7 @@ var FoxtrickPrefs = {
 		else if (Foxtrick.BuildFor == "Chrome") {
 			FoxtrickPrefs.pref = {};
 			chrome.extension.sendRequest({ req : "clearPrefs" },
-				FoxtrickMain.init);
+				Foxtrick.entry.init);
 			return true;
 		}
 	},
@@ -413,7 +413,7 @@ var FoxtrickPrefs = {
 					FoxtrickPrefs.setBool(array[i], false);
 				}
 			}
-			FoxtrickMain.init();
+			Foxtrick.entry.init();
 		}
 		catch (e) {
 			Foxtrick.log(e);
@@ -489,7 +489,7 @@ var FoxtrickPrefs = {
 		if (Foxtrick.BuildFor === "Gecko") {
 			var statusBarImg = document.getElementById("foxtrick-status-bar-img");
 			FoxtrickCore.updateStatus();
-			FoxtrickMain.init();
+			Foxtrick.entry.init();
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
 			FoxtrickCore.setPageIcon(tab);

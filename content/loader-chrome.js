@@ -28,7 +28,7 @@ function runScript() {
 
 	var mid = new Date();
 	
-	FoxtrickMain.run(document);
+	Foxtrick.entry.run(document);
 	
 	var end = new Date();
 	var runTime = end.getTime() - mid.getTime();
@@ -83,9 +83,9 @@ function init() {
 				return;
 			}
 			
-			FoxtrickMain.init();
+			Foxtrick.entry.init();
 			Foxtrick.util.inject.addStyleSheetSnippet(document, data.cssText, 'module_css');
-			FoxtrickMain.cssLoaded = true;
+			Foxtrick.entry.cssLoaded = true;
 
 			var initTime = new Date() - begin.getTime();
 			Foxtrick.log("init time: " , initTime , " ms");
