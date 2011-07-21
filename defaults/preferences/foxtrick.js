@@ -383,6 +383,7 @@ pref("extensions.foxtrick.prefs.module.MoveManagerOnline.enabled", false);
 pref("extensions.foxtrick.prefs.module.MovePlayerSelectbox.enabled", false);
 pref("extensions.foxtrick.prefs.module.MovePlayerStatement.enabled", false);
 pref("extensions.foxtrick.prefs.module.MyMonitor.enabled", true);
+pref("extensions.foxtrick.prefs.module.MyMonitor.TeamIcons.enabled", true);
 pref("extensions.foxtrick.prefs.module.NewMail.enabled", true);
 pref("extensions.foxtrick.prefs.module.NewMail.NotifyForum.enabled", true);
 pref("extensions.foxtrick.prefs.module.NewMail.NotifyMail.enabled", true);

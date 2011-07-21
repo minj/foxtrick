@@ -8,6 +8,7 @@ var FoxtrickMyMonitor = {
 	MODULE_NAME : "MyMonitor",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["myhattrick", "dashboard", "teamPage", "youthoverview", "national"],
+	OPTIONS : ["TeamIcons"],
 	CSS : Foxtrick.ResourcePath + "resources/css/my-monitor.css",
 	NICE : -1, // add it before links for consistent sidebar placement
 	
@@ -147,30 +148,35 @@ var FoxtrickMyMonitor = {
 			var nameLink = doc.createElement("a");
 			buildLink(team, nameLink);
 			
-			var img_height = 18;
-			if (Foxtrick.util.layout.isStandard(doc)) img_height = 24;
-			// dummy for alignment
-			var img = doc.createElement('img');
-			img.height = img_height;
-			img.width = 0;
-			img.src="../../Img/Icons/transparent.gif"
-			header.appendChild(img);
-			
-			if (team.logo) { 
+			if (FoxtrickPrefs.isModuleOptionEnabled (FoxtrickMyMonitor, 'TeamIcons')) {
+				var img_height = 18;
+				if (Foxtrick.util.layout.isStandard(doc)) img_height = 24;
+				
+				if (team.logo) { 
+					var img = doc.createElement('img');
+					img.title = team.name;
+					img.height = img_height;
+					img.className = 'teamicon';
+					img.src = team.logo;
+					header.appendChild(img);
+				}
+				else if (team.country) {
+					var a = doc.createElement('a');
+					var img = doc.createElement('img');
+					img.src="/Img/Icons/transparent.gif";
+					a.className = 'inner flag';
+					img.className = 'flag'+team.country;
+					a.appendChild(img);
+					header.appendChild(a);
+				}
+				// dummy for icons alignment
 				var img = doc.createElement('img');
-				img.title = team.name;
 				img.height = img_height;
-				img.className = 'teamicon';
-				img.src = team.logo;
+				img.width = 0;
+				img.src="../../Img/Icons/transparent.gif"
 				header.appendChild(img);
 			}
-			else if (team.country) {
-				var img = doc.createElement('img');
-				img.height ='12';
-				img.className = 'mymonitorflag flag'+team.country;
-				img.src="/Img/Icons/transparent.gif";
-				header.appendChild(img);
-			}
+			
 			header.appendChild(nameLink);
 
 			var sortdiv = doc.createElement('div');
@@ -181,6 +187,7 @@ var FoxtrickMyMonitor = {
 			img.width = 0;
 			img.src="../../Img/Icons/transparent.gif"
 			sortdiv.appendChild(img);
+			
 			
 			var uplink = doc.createElement('input');
 			uplink.type="image";

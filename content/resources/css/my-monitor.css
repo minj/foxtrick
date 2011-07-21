@@ -21,6 +21,15 @@
 	clear: left; /* two in a row */
 }
 
+.ft-monitor-frame  > h2:hover  > div.ft_sort {
+	display:inline;
+}
+
+.ft-monitor-frame > h2 > div.ft_sort {
+	float:right; 
+	display:none;
+}
+
 .ft-monitor-remove {
 	background-image: url("chrome://foxtrick/content/resources/img/cross_small.png");
 	width: 12px;
@@ -38,7 +47,11 @@
 	display: none !important; /* need to overwrite */
 }
 
-.mymonitorflag {padding-right: 8px; margin-top:4px; margin-bottom:1px;}
+.teamicon {
+	padding: 0 5px 0 0; 
+	margin:0 0 -2px
+}
 
-.teamicon {padding: 0 5px 0 0; margin:0 0 -2px}
-				
+.ft-monitor-frame > h2 > a.flag + img {
+	margin-top:-2px;
+}
