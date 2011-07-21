@@ -33,6 +33,10 @@ var FoxtrickShowFriendlyBooked = {
 		else {
 			var table = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLeagueTable");
 			table.parentNode.insertBefore(span, table);
+			// style.clear needed before the table
+			var clear = doc.createElement("div");
+			clear.className = "clear";
+			table.parentNode.insertBefore(clear, table);
 		}
 	},
 
