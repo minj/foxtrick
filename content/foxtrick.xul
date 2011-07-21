@@ -6,6 +6,7 @@
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 <script type="application/x-javascript" src="./env.js" />
+<script type="application/x-javascript" src="./loader-gecko.js" />
 <script type="application/x-javascript" src="./prefs.js" />
 <script type="application/x-javascript" src="./pages.js" />
 <script type="application/x-javascript" src="./l10n.js" />
@@ -178,7 +179,7 @@
 <script type="application/x-javascript">
 	window.addEventListener("load",
 	function() {
-		FoxtrickMain.registerOnPageLoad(document);
+		Foxtrick.loader.gecko.browserLoad(document);
 	},
 	false);
 </script>

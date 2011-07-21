@@ -61,89 +61,6 @@ var FoxtrickMain = {
 		Foxtrick.log("FoxTrick initialization completed.");
 	},
 
-	registerOnPageLoad : function(document) {
-		try {
-			if (Foxtrick.BuildFor !== "Gecko")
-				return;
-
-			// calls module.onLoad() after the browser window is loaded
-			for (var i in Foxtrick.modules) {
-				var module = Foxtrick.modules[i];
-				if (typeof(module.onLoad) === "function") {
-					try {
-						module.onLoad(document);
-					}
-					catch (e) {
-						Foxtrick.log("Error caught in module ", module.MODULE_NAME, ":", e);
-					}
-				}
-			}
-
-			var appcontent = document.getElementById("appcontent");
-			if (appcontent) {
-				// listen to page loads
-				appcontent.addEventListener("DOMContentLoaded", this.onPageLoad, true);
-				appcontent.addEventListener("unload", this.onPageUnLoad, true);
-
-				// add listener to tab focus changes
-				var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-						 .getService(Components.interfaces.nsIWindowMediator);
-				var browserEnumerator = wm.getEnumerator("navigator:browser");
-				var browserWin = browserEnumerator.getNext();
-				var tabbrowser = browserWin.getBrowser();
-				tabbrowser.tabContainer.onselect = FoxtrickMain.ontabfocus;
-				
-				
-				// can be used to preload chpp xml
-				/*document.addEventListener("click",
-					function (e)
-					{ 	
-						if (typeof(e.target.tagName) != "undefined" && e.target.tagName == 'A') {
-							var a = e.target; 
-							if (Foxtrick.isHtUrl(a.href))
-							{
-								dump('do load:'+a.href+'\n');
-							}
-						}
-					},
-					true);*/
-			}
-		}
-		catch (e) {
-			Foxtrick.log(e);
-		}
-	},
-
-	ontabfocus : function(ev) {
-		try{
-			var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-						 .getService(Components.interfaces.nsIWindowMediator);
-			var browserEnumerator = wm.getEnumerator("navigator:browser");
-			var browserWin = browserEnumerator.getNext();
-			var tabbrowser = browserWin.getBrowser();
-			var currentBrowser = tabbrowser.getBrowserAtIndex(ev.target.selectedIndex);
-			var doc = currentBrowser.contentDocument;
-
-			FoxtrickMain.run(doc, true); // recheck css
-
-			// calls module.onTabChange() after the tab focus is changed
-			for (var i in Foxtrick.modules) {
-				var module = Foxtrick.modules[i];
-				if (typeof(module.onTabChange) === "function") {
-					try {
-						module.onTabChange(doc);
-					}
-					catch (e) {
-						Foxtrick.log("Error caught in module ", module.MODULE_NAME, ": ", e);
-					}
-				}
-			}
-		}
-		catch (e) {
-			dump('foxtrickmain onfocus '+e+'\n');
-		}
-	},
-
 	onPageChange : function(ev) {
 		try { 
 			var doc = ev.target.ownerDocument;
@@ -181,45 +98,6 @@ var FoxtrickMain = {
 			Foxtrick.log(e);
 		}
 	},
-
-	lastTime : 0,
-	onPageLoad : function(ev) {
-		try {
-			var doc = ev.originalTarget;
-			if (doc.nodeName != "#document")
-				return;
-
-			if (Foxtrick.isHt(doc)) {
-				// check if it's in exclude list
-				for (var i in Foxtrick.pagesExcluded) {
-					var excludeRe = new RegExp(Foxtrick.pagesExcluded[i], "i");
-					// page excluded, return
-					if (doc.location.href.search(excludeRe) > -1) {
-						return;
-					}
-				}
-
-				var begin = (new Date()).getTime();
-				//var begin=FoxtrickMain.lastTime;
-					FoxtrickMain.run(doc);
-				var diff = (new Date()).getTime() - begin;
-				Foxtrick.dump("run time: " + diff + " ms | " + doc.location.pathname+doc.location.search + '\n');
-				// listen to page content changes
-				var content = doc.getElementById("content");
-				if (!content) {
-					Foxtrick.log("Cannot find #content at ", doc.location);
-					return;
-				}
-				Foxtrick.startListenToChange(doc);
-			}
-		}
-		catch (e) {
-			Foxtrick.log(e);
-		}
-	},
-
-	// do nothing
-	onPageUnLoad : function(ev) { FoxtrickMain.lastTime = (new Date()).getTime();},
 
 	// main entry run on every ht page load
 	run : function(doc, is_only_css_check) {
