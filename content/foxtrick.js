@@ -721,16 +721,6 @@ Foxtrick.reload_module_css = function(doc) {
 	}
 }
 
-Foxtrick.setStatusIconStyle = function(ev) {
-	var image = ev.target;
-	if (FoxtrickPrefs.getBool("statusbarshow")) {
-		image.style.display = "display";
-	}
-	else {
-		image.style.display = "none";
-	}
-}
-
 // Check whether the site is in standard theme instead of simple theme
 Foxtrick.isStandardLayout = function (doc) {
 	var head = doc.getElementsByTagName("head")[0];
