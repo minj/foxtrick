@@ -352,12 +352,14 @@ var FoxtrickHelper = {
 			leagueName = FoxtrickHelper.getLeagueDataFromId(leagueId).LeagueName;
 		}
 		var a = doc.createElement("a");
-		if (href)  a.href = href;
+		if (href)
+			a.href = href;
 		else a.href = "/World/Leagues/League.aspx?LeagueID=" + leagueId;
-		a.className = "flag"+leagueId+ " inner";
+		a.className = "flag inner";
 		var img = doc.createElement("img");
-		img.height='12';
-		if (title) img.alt = img.title = title;
+		img.className = "flag" + leagueId;
+		if (title)
+			img.alt = img.title = title;
 		else img.alt = img.title = leagueName;
 		img.src = "/Img/Icons/transparent.gif";
 		a.appendChild(img);
