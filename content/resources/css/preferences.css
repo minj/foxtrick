@@ -178,7 +178,6 @@ div#panes
 {
 	border: 1px solid #ccc;
 	clear: both;
-	max-height: 500px;
 	overflow-y: auto;
 }
 
@@ -206,6 +205,11 @@ html[dir="rtl"] #fixed
 html[dir="rtl"] #fixed
 {
 	float: left;
+}
+
+#balloon a {
+	color: #a5b;
+	text-decoration: none;
 }
 
 #save
