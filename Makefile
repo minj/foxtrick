@@ -27,7 +27,6 @@ CONTENT_FILES = add-class.js \
 	env.js \
 	faq.xml \
 	forum-stage.js \
-	foxtrick.js \
 	foxtrick.properties \
 	foxtrick.screenshots \
 	helper.js \

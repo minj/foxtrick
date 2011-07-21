@@ -156,7 +156,6 @@
 			"content/shortcuts-and-tweaks/transfer-search-filters.js",
 			"content/shortcuts-and-tweaks/transfer-search-result-filters.js",
 			"content/modules.js",
-			"content/foxtrick.js",
 			"content/entry.js",
 			"content/loader-chrome.js"
 		],

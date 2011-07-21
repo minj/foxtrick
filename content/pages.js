@@ -123,4 +123,10 @@ Foxtrick.pagesExcluded = {
 	"offline"                   : "down.aspx",
 	"oath"						: "chpp.hattrick.org/"
 };
-////////////////////////////////////////////////////////////////////////////////
+
+Foxtrick.isPage = function(page, doc) {
+	if (Foxtrick.ht_pages[page])
+		return Foxtrick.isPageHref(Foxtrick.ht_pages[page], doc.location.href);
+	else
+		return false;
+};

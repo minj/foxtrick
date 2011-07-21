@@ -169,7 +169,6 @@
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/transfer-search-result-filters.js" />
 
 <script type="application/x-javascript" src="./modules.js" />
-<script type="application/x-javascript" src="./foxtrick.js" />
 <script type="application/x-javascript" src="./entry.js" />
 
 <!-- run init -->
