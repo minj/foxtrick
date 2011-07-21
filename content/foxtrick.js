@@ -16,6 +16,7 @@ Foxtrick.run_on_page = [];
  * Don't add here unless you have a good reason to. */
 Foxtrick.core_modules = [ FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData ];
 
+// entry point for all FoxTrick modules
 var FoxtrickMain = {
 	isStandard : true,
 	isRTL : false,
@@ -61,44 +62,6 @@ var FoxtrickMain = {
 		Foxtrick.log("FoxTrick initialization completed.");
 	},
 
-	onPageChange : function(ev) {
-		try { 
-			var doc = ev.target.ownerDocument;
-			if (ev.target.nodeType !== Node.ELEMENT_NODE)
-				return;
-
-			// not on matchlineup
-			if (doc.location.href.search(/\/Club\/Matches\/MatchOrder\//)!=-1 ||
-				doc.location.href.search(/\/Community\/CHPP\/ChppPrograms\.aspx/)!=-1) {
-				return;
-			}
-			// ignore changes list
-			try {
-				if (ev.originalTarget.className
-					&& (ev.originalTarget.className=='boxBody'
-						|| ev.originalTarget.className=='myht1'))
-					return;
-			}
-			catch (e) {
-				// some browsers doesn't support ev.originalTarget
-			}
-
-			var content = doc.getElementById("content");
-			if (!content) {
-				Foxtrick.log("Cannot find #content at ", doc.location);
-				return;
-			}
-			// remove event listener while Foxtrick executes
-			Foxtrick.stopListenToChange(doc);
-			FoxtrickMain.change(doc, ev);
-			// re-add event listener
-			Foxtrick.startListenToChange(doc);
-		}
-		catch (e) {
-			Foxtrick.log(e);
-		}
-	},
-
 	// main entry run on every ht page load
 	run : function(doc, is_only_css_check) {
 		try {
@@ -110,13 +73,9 @@ var FoxtrickMain = {
 				FoxtrickPrefs.setBool("preferences.updated", false);
 			}
 
-			// don't execute if on stage server and user doesn't want Foxtrick to be executed there
-			// or disabled temporarily
-			if ((FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(doc))
-				|| FoxtrickPrefs.getBool("disableTemporary")) {
+			// don't execute if not enabled on the document
+			if (!FoxtrickPrefs.isEnabled(doc)) {
 				// potenial disable cleanup
-				Foxtrick.log("On Stage: ", Foxtrick.isStage(doc), ", disabled on stage: ", FoxtrickPrefs.getBool("disableOnStage") + ".");
-				Foxtrick.log("Temporarily disabled: ", FoxtrickPrefs.getBool("disableTemporary"));
 				Foxtrick.unload_module_css();
 				FoxtrickMain.cssLoaded = false;
 				return;
@@ -125,10 +84,9 @@ var FoxtrickMain = {
 			var isStandard = FoxtrickPrefs.getBool('isStandard');
 			var isRTL = FoxtrickPrefs.getBool('isRTL');
 			// reload CSS if not loaded or page layout changed
-			if ( Foxtrick.isHt(doc) && 
-				(!FoxtrickMain.cssLoaded
+			if (!FoxtrickMain.cssLoaded
 				|| (Foxtrick.util.layout.isStandard(doc) !== FoxtrickPrefs.getBool('isStandard'))
-				|| (Foxtrick.util.layout.isRtl(doc) !== FoxtrickPrefs.getBool('isRTL')))) {
+				|| (Foxtrick.util.layout.isRtl(doc) !== FoxtrickPrefs.getBool('isRTL'))) {
 				Foxtrick.log('layout change');
 				FoxtrickPrefs.setBool('isStandard', Foxtrick.util.layout.isStandard(doc));
 				FoxtrickPrefs.setBool('isRTL', Foxtrick.util.layout.isRtl(doc));
@@ -166,26 +124,53 @@ var FoxtrickMain = {
 	},
 
 	// function run on every ht page change
-	change : function(doc, ev) {
-		if(!(FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(doc))
-			&& !FoxtrickPrefs.getBool("disableTemporary")) {
+	change : function(ev) {
+		try { 
+			var doc = ev.target.ownerDocument;
+			if (ev.target.nodeType !== Node.ELEMENT_NODE)
+				return;
 
-			var modules = [];
-			// modules running on current page
-			for (var page in Foxtrick.ht_pages) {
-				if (Foxtrick.isPage(page, doc)) {
-					for (var i in Foxtrick.run_on_page[page])
-						modules.push(Foxtrick.run_on_page[page][i]);
-				}
+			// not on matchlineup
+			if (doc.location.href.search(/\/Club\/Matches\/MatchOrder\//)!=-1 ||
+				doc.location.href.search(/\/Community\/CHPP\/ChppPrograms\.aspx/)!=-1) {
+				return;
 			}
+			// ignore changes list
+			if (ev.originalTarget && ev.originalTarget.className
+				&& (ev.originalTarget.className=='boxBody'
+					|| ev.originalTarget.className=='myht1'))
+				return;
 
-			// invoke niceRun to run modules
-			Foxtrick.niceRun(modules, function(m) {
-				if (typeof(m.change) == "function")
-					return function() { m.change(doc, ev); };
-			});
+			var content = doc.getElementById("content");
+			if (!content) {
+				Foxtrick.log("Cannot find #content at ", doc.location);
+				return;
+			}
+			// remove event listener while Foxtrick executes
+			Foxtrick.stopListenToChange(doc);
+			if (FoxtrickPrefs.isEnabled(doc)) {
+				var modules = [];
+				// modules running on current page
+				for (var page in Foxtrick.ht_pages) {
+					if (Foxtrick.isPage(page, doc)) {
+						for (var i in Foxtrick.run_on_page[page])
+							modules.push(Foxtrick.run_on_page[page][i]);
+					}
+				}
 
-			Foxtrick.dumpFlush(doc);
+				// invoke niceRun to run modules
+				Foxtrick.niceRun(modules, function(m) {
+					if (typeof(m.change) == "function")
+						return function() { m.change(doc, ev); };
+				});
+
+				Foxtrick.dumpFlush(doc);
+			}
+			// re-add event listener
+			Foxtrick.startListenToChange(doc);
+		}
+		catch (e) {
+			Foxtrick.log(e);
 		}
 	}
 };
@@ -289,12 +274,12 @@ Foxtrick.getLastPage = function(host) {
 
 Foxtrick.stopListenToChange = function (doc) {
 	var content = doc.getElementById("content");
-	content.removeEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+	content.removeEventListener("DOMSubtreeModified", FoxtrickMain.change, true);
 }
 
 Foxtrick.startListenToChange = function(doc) {
 	var content = doc.getElementById("content");
-	content.addEventListener("DOMSubtreeModified", FoxtrickMain.onPageChange, true);
+	content.addEventListener("DOMSubtreeModified", FoxtrickMain.change, true);
 }
 
 /** Insert text in given textarea at the current position of the cursor */

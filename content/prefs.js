@@ -201,7 +201,15 @@ var FoxtrickPrefs = {
 		}
 	},
 
-			
+	// returns whether FoxTrick is enabled on doc
+	isEnabled : function(doc) {
+		if (FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(doc))
+			return false;
+		if (FoxtrickPrefs.getBool("disableTemporary"))
+			return false;
+		return true;
+	},
+
 	getModuleName : function(module) {
 		return (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
 	},
