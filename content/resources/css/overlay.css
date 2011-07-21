@@ -1,5 +1,6 @@
 #foxtrick-toolbar-button {
 	list-style-image: url("chrome://foxtrick/skin/icon-24.png");
+	-moz-box-orient: horizontal;
 }
 
 toolbar[iconsize="small"] #foxtrick-toolbar-button {

@@ -213,7 +213,7 @@ if (!FoxtrickPrefs.getBool("toolbarInited")) {
 <!-- toolbar button -->
 <toolbarbutton id="foxtrick-toolbar-button"
 	class="toolbarbutton-1 chromeclass-toolbar-additional"
-	type="menu-button"
+	type="menu"
 	label="FoxTrick"
 	tooltiptext="FoxTrick"
 	context="foxtrick-menu">
