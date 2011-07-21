@@ -9,7 +9,7 @@ var FoxtrickExtraShortcuts = {
 	MODULE_NAME : "ExtraShortcuts",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('all'),
-	OPTIONS : ["AddLeft","AddSpace","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "ManageCHPP", "HtRadio", "No9", "Latehome", "Balkaradio", "Downtime"],
+	OPTIONS : ["AddSpace","AddLeft","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "ManageCHPP", "HtRadio", "No9", "Latehome", "Balkaradio", "Downtime"],
 	RADIOS: ["HtRadio", "No9", "Latehome", "Balkaradio", "Downtime"],
 	RADIO_URLS: [
 		"http://stream.ht-radio.nl/foxtrick/status.php",
