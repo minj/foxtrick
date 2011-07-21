@@ -1,4 +1,4 @@
-.flag > img { background-image: url("foxtrick://content/resources/img/flags.gif"); }
+.flag > img { background-image: url("chrome://foxtrick/content/resources/img/flags.gif"); }
 .flag0 { background-position: 0px 0px; }
 .flag1 { background-position: -20px 0px; }
 .flag2 { background-position: -40px 0px; }
