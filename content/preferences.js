@@ -305,7 +305,7 @@ function initMainTab()
 	// restore to default
 	$("#pref-stored-restore").click(function() {
 		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("delete_foxtrick_branches_ask"))) {
-			FoxtrickPrefs.cleanupBranch();
+			FoxtrickPrefs.cleanupBranch('module');
 			window.location.href = window.location.href + '&imported=true';
 			window.location.reload();
 		}
@@ -313,8 +313,8 @@ function initMainTab()
 
 	// disable all
 	$("#pref-stored-disable").click(function() {
-		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("disable_all_foxtrick_modules_ask"))) {		
-			FoxtrickPrefs.disableAll();
+		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("disable_all_foxtrick_modules_ask"))) {
+			FoxtrickPrefs.disableAll('module'); 
 			window.location.href = window.location.href + '&imported=true';
 			window.location.reload();
 		}

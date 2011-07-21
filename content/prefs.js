@@ -380,10 +380,12 @@ var FoxtrickPrefs = {
 		else if (Foxtrick.BuildFor == "Chrome") return (typeof(FoxtrickPrefs.pref[key])!='undefined');
 	},
 	
-	cleanupBranch : function() {
+	cleanupBranch : function( branch) {
+		if (!branch) var branch = '';
+		Foxtrick.log('cleanupBranch: "',branch,'"');
 		if (Foxtrick.BuildFor == "Gecko") {
 			try {
-				var array = FoxtrickPrefs._getElemNames("");
+				var array = FoxtrickPrefs._getElemNames(branch);
 				for (var i = 0; i < array.length; i++) {
 					if (FoxtrickPrefs.isPrefSetting(array[i])) {
 						FoxtrickPrefs.deleteValue(array[i]);
@@ -399,19 +401,27 @@ var FoxtrickPrefs = {
 		}
 		else if (Foxtrick.BuildFor == "Chrome") {
 			FoxtrickPrefs.pref = {};
-			chrome.extension.sendRequest({ req : "clearPrefs" },
+			chrome.extension.sendRequest({ req : "clearPrefs", branch: branch },
 				Foxtrick.entry.init);
 			return true;
 		}
 	},
 
-	disableAll : function() {
-		try {
-			var array = FoxtrickPrefs._getElemNames("");
+	disableAll : function(branch) {
+		try { 
+			Foxtrick.log('disable all: "',branch,'"');
+			if (!branch) var branch = '';
+			var array = FoxtrickPrefs._getElemNames(branch);
 			for (var i = 0; i < array.length; i++) {
 				if (array[i].search(/enabled$/) != -1) {
 					FoxtrickPrefs.setBool(array[i], false);
 				}
+			}
+			if (Foxtrick.BuildFor == "Chrome") {
+				if (Foxtrick.chromeContext() == "background") 
+						localStorage.setItem( "preferences.updated", "true" );
+					else if (Foxtrick.chromeContext() == "content") 
+						chrome.extension.sendRequest({ req : "setValue", key : 'preferences.updated', value : 'true' });
 			}
 			Foxtrick.entry.init();
 		}

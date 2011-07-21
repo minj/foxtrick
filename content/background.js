@@ -120,7 +120,7 @@ function update() {
 	FoxtrickPrefs.init();
 	Foxtrickl10n.init();
 	makeCssTextCollection();
-	console.log('prefs updated');
+	Foxtrick.log('prefs updated');
 }
 
 var no_update_needed = {'last-host':true, 'last-page':true};
@@ -135,15 +135,6 @@ Object.size = function(obj) {
 };
 
 init();
-
-chrome.pageAction.onClicked.addListener(function(tab) { FoxtrickPrefs.disable(tab); });
-
-var copyToClipBoard = function(content) {
-	clipboardStore = document.getElementById("clipboard-store");
-	clipboardStore.value = content;
-	clipboardStore.select();
-	document.execCommand("Copy");
-}
 
 // one-time message channel
 // use with chrome.extension.sendRequest({req : "{TYPE}", parameters...}, callback)
@@ -206,7 +197,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 			}
 		}
 		else if (request.req == "getPrefs") {
-			console.log('getPrefs ',localStorage["preferences.updated"]);
+			Foxtrick.log('getPrefs ',localStorage["preferences.updated"]);
 			// @callback_param pref - user preferences
 			// @callback_param prefDefault - default preferences
 			if (localStorage["preferences.updated"]
@@ -243,8 +234,15 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 			update();
 		}
 		else if (request.req == "clearPrefs") {
-			localStorage.clear();
+			try{ 
+			Foxtrick.log('clearPrefs ', request.branch);
+			for (var i in localStorage) {
+				{	if (i.indexOf(request.branch)===0) 
+						localStorage.removeItem(i);
+				}
+			}
 			update();
+			} catch(e) {Foxtrick.log(e)}
 		}
 		else if (request.req == "locale") {
 			htLanguagesText = getLocale();
@@ -352,10 +350,19 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 	}
 });
 
+// page action listener
+chrome.pageAction.onClicked.addListener(function(tab) { FoxtrickPrefs.disable(tab); });
+
+// or clipboard
+var copyToClipBoard = function(content) {
+	clipboardStore = document.getElementById("clipboard-store");
+	clipboardStore.value = content;
+	clipboardStore.select();
+	document.execCommand("Copy");
+}
 
 /*
 // context copy stuff. copy ids work
-
 function linkOnClick(info, tab) {
   console.log(info);
   var id_container = Foxtrick.util.htMl.getIdFromLink(info.linkUrl);
@@ -369,22 +376,24 @@ function selectionOnClick(info, tab) {
 }
 
 var id_contexts = [
-	{'title':'Copy Team ID', 	"contexts":["link"], "onclick": linkOnClick,	'targetUrlPatterns':['*://*.hattrick.org/*TeamID=*','*://*.hattrick.org/*teamId=*'] },
-	{'title':'Copy User ID', 	"contexts":["link"], "onclick": linkOnClick,	'targetUrlPatterns':['*://*.hattrick.org/*UserID=*','*://*.hattrick.org/*userId=*'] },
-	{'title':'Copy League ID', 	"contexts":["link"], "onclick": linkOnClick,	'targetUrlPatterns':['*://*.hattrick.org/*LeagueLevelUnitID=*','*://*.hattrick.org/*LeagueLevelUnitId=*'] },
-	{'title':'Copy Match ID', 	"contexts":["link"], "onclick": linkOnClick,	'targetUrlPatterns':['*://*.hattrick.org/*matchID=*','*://*.hattrick.org/*matchId=*'] },
-	{'title':'Copy Player ID', 	"contexts":["link"], "onclick": linkOnClick,	'targetUrlPatterns':['*://*.hattrick.org/*PlayerID=*','*://*.hattrick.org/*playerId=*'] },
+	{'title':'Copy Team ID', 	"contexts":["link"], "onclick": linkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*TeamID=*','*://*.hattrick.org/*teamId=*'] },
+	{'title':'Copy User ID', 	"contexts":["link"], "onclick": linkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*UserID=*','*://*.hattrick.org/*userId=*'] },
+	{'title':'Copy League ID', 	"contexts":["link"], "onclick": linkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*LeagueLevelUnitID=*','*://*.hattrick.org/*LeagueLevelUnitId=*'] },
+	{'title':'Copy Match ID', 	"contexts":["link"], "onclick": linkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*matchID=*','*://*.hattrick.org/*matchId=*'] },
+	{'title':'Copy Player ID', 	"contexts":["link"], "onclick": linkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*PlayerID=*','*://*.hattrick.org/*playerId=*'] },
+	{'title':'Copy ArenaID', 	"contexts":["link"], "onclick": linkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*ArenaID=*','*://*.hattrick.org/*arenaId=*'] },
 	//{'title':'Copy in HT-ML', 	"contexts":["selection"], "onclick": selectionOnClick, 'documentUrlPatterns': ['*://*.hattrick.org/*'] },
 ];
+
 for (var i = 0; i < id_contexts.length; i++) {
 	chrome.contextMenus.create(id_contexts[i]);
 }
-*/
+
 
 // example: Create a parent item and two children.
 //var parent = chrome.contextMenus.create({"title": "Test parent item"});
 //var child1 = chrome.contextMenus.create({"title": "Child 1", "parentId": parent, "onclick": genericOnClick});
 //var child2 = chrome.contextMenus.create({"title": "Child 2", "parentId": parent, "onclick": genericOnClick});
-
+*/
 
 } catch (e) {alert('Foxtrick background.js error: '+ e);}
