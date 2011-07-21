@@ -731,24 +731,6 @@ Foxtrick.setStatusIconStyle = function(ev) {
 	}
 }
 
-// to tell which context the chrome script is running at
-// either background page, or content script
-Foxtrick.chromeContext = function() {
-	if (Foxtrick.BuildFor != "Chrome")
-		return null;
-	try {
-		if (chrome.bookmarks) {
-			return "background";
-		}
-		else {
-			return "content";
-		}
-	}
-	catch (e) {
-		return "content";
-	}
-}
-
 // Check whether the site is in standard theme instead of simple theme
 Foxtrick.isStandardLayout = function (doc) {
 	var head = doc.getElementsByTagName("head")[0];

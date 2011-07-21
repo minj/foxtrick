@@ -2,7 +2,7 @@
 	"background_page" : "content/background.html",
 	"content_scripts" : [ {
 		"js" : [
-			"content/const.js",
+			"content/env.js",
 			"content/prefs.js",
 			"content/pages.js",
 			"content/l10n.js",

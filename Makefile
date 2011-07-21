@@ -22,8 +22,8 @@ CONTENT_FOLDERS = alert/ \
 	util/
 CONTENT_FILES = add-class.js \
 	api-proxy.js \
-	const.js \
 	core.js \
+	env.js \
 	faq.xml \
 	forum-stage.js \
 	foxtrick.js \
