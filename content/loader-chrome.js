@@ -84,7 +84,7 @@ function init() {
 			}
 			
 			FoxtrickMain.init();
-			Foxtrick.addStyleSheetSnippet(document, data.cssText, 'module_css');
+			Foxtrick.util.inject.addStyleSheetSnippet(document, data.cssText, 'module_css');
 			FoxtrickMain.cssLoaded = true;
 
 			var initTime = new Date() - begin.getTime();

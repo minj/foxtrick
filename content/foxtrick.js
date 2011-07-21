@@ -304,52 +304,11 @@ Foxtrick.insertAtCursor = function(textarea, text) {
 		+ textarea.value.substring(textarea.selectionEnd, textarea.value.length);
 }
 
-Foxtrick.addStyleSheet = function(doc, css) {
-	Foxtrick.dump('addStyleSheet: '+css+'\n');
-	var path = "head[1]";
-	var head = doc.evaluate(path,doc.documentElement,null,doc.DOCUMENT_NODE,null).singleNodeValue;
-
-	var link = doc.createElement("link");
-	link.setAttribute("rel", "stylesheet");
-	link.setAttribute("type", "text/css");
-	link.setAttribute("media", "all");
-	link.setAttribute("href", css);
-	head.appendChild(link);
-}
-
-Foxtrick.addStyleSheetSnippet = function(doc, css, id) {
-	if ( Foxtrick.BuildFor === "Chrome" ) css = Foxtrick.replaceExtensionDirectory(css);
-
-	var head = doc.getElementsByTagName("head")[0];
-	var style = doc.createElement("style");
-	style.setAttribute("type", "text/css");
-	if (id) style.setAttribute("id", id);
-	style.appendChild(doc.createTextNode(css));
-	head.appendChild(style);
-}
-
-Foxtrick.removeStyleSheetSnippet = function(doc, id) {
-	var head = doc.getElementsByTagName("head")[0];
-	var style = doc.getElementById(id);
-	if (style) head.removeChild(style);
-}
-
 Foxtrick.replaceExtensionDirectory = function(cssTextCollection) {		
 	// replace ff chrome reference by google chrome refs
 	var exturl = chrome.extension.getURL("");
 	return cssTextCollection.replace(RegExp("chrome://foxtrick/", "g"), exturl);
 };
-
-// attaches a JavaScript file to the page
-Foxtrick.addJavaScript = function(doc, js) {
-	var path = "head[1]";
-	var head = doc.evaluate(path,doc.documentElement,null,doc.DOCUMENT_NODE,null).singleNodeValue;
-
-	var script = doc.createElement("script");
-	script.setAttribute("language", "JavaScript");
-	script.setAttribute("src", js);
-	head.appendChild(script);
-}
 
 Foxtrick.confirmDialog = function(msg) {
 	if (Foxtrick.BuildFor === "Gecko") {
@@ -406,7 +365,7 @@ Foxtrick.unload_module_css = function() {
 	  }
 	}
 	else {
-		Foxtrick.removeStyleSheetSnippet(doc, 'module_css');
+		Foxtrick.util.inject.removeStyleSheetSnippet(doc, 'module_css');
 	}
 }
 
@@ -443,7 +402,7 @@ Foxtrick.unload_css_permanent = function(cssList) {
 				unload_css_permanent_impl(cssList[i]);
 		}
 	}
-	else Foxtrick.removeStyleSheetSnippet(doc, 'module_css');
+	else Foxtrick.util.inject.removeStyleSheetSnippet(doc, 'module_css');
 }
 
 Foxtrick.load_css_permanent = function(cssList) {
@@ -512,7 +471,7 @@ Foxtrick.reload_module_css = function(doc) {
 						if (module.OPTIONS_CSS_RTL_SIMPLE[k] != "") Foxtrick.unload_css_permanent (module.OPTIONS_CSS_RTL_SIMPLE[k]) ;
 			}
 		else if (Foxtrick.BuildFor === "Chrome") {
-			Foxtrick.removeStyleSheetSnippet(doc, 'module_css');
+			Foxtrick.util.inject.removeStyleSheetSnippet(doc, 'module_css');
 			Foxtrick.cssFiles = "";
 		}
 		
@@ -589,7 +548,7 @@ Foxtrick.reload_module_css = function(doc) {
 				{ req : "getCss", files : Foxtrick.cssFiles },
 				function(data) {
 					Foxtrick.log('getCss response');
-					Foxtrick.addStyleSheetSnippet(doc, data.cssText);
+					Foxtrick.util.inject.addStyleSheetSnippet(doc, data.cssText);
 				}
 			);
 		}

@@ -221,7 +221,7 @@ var FoxtrickStaffMarker = {
 						user_hasClass[uid] = true; // css for that users addes
 					}
 				} 
-				if ( do_flag ) Foxtrick.addStyleSheetSnippet( doc, css ); 	
+				if ( do_flag ) Foxtrick.util.inject.addStyleSheetSnippet( doc, css ); 	
 				if ( selects[0] && selects[1] ) selects[1].innerHTML = selects[0].innerHTML;
 			} catch(e){Foxtrick.log(e);}
 				

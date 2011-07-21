@@ -20,6 +20,7 @@
 			"content/util/currency.js",
 			"content/util/html.js",
 			"content/util/ht-ml.js",
+			"content/util/inject.js",
 			"content/util/layout.js",
 			"content/util/links.js",
 			"content/util/match-view.js",
