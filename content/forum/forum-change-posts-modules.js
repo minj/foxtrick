@@ -182,16 +182,3 @@ var FoxtrickAddDefaultFaceCard = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
 };
-
-/**
-* forumalltidflags.js
-* Foxtrick Show Alltid flags in forum posts module
-* @author convinced
-*/
-
-//**********************************************************
-var FoxtrickAlltidFlags = {
-	MODULE_NAME : "AlltidFlags",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forumViewThread")
-};
