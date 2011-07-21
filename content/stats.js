@@ -1384,16 +1384,6 @@ stats["treenikoira"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/puhuvakoira.png"
 };
 
-stats["arenaoptimizer"] =  {
-        "url" : "http://www.arenaoptimizer.es/",
-        "arenalink" : { "path"       : "",
-                         "filters"    : [],
-                         "params"     : { "terraces" : "t", "basic": "b", "roof" : "r", "vip" : "v"}
-                       },
-        "title" : "Arena Optimizer",
-        "img" : Foxtrick.ResourcePath+"resources/linkicons/arenaoptimizer.gif"
-};
-
 stats["htarena"] =  {
         "url" : "http://www.htarena.org/",
         "arenalink" : { "path"       : "",
