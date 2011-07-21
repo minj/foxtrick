@@ -653,7 +653,7 @@ pref("extensions.foxtrick.prefs.module.TickerAlert.myht.enabled", true);
 pref("extensions.foxtrick.prefs.module.TickerAlert.myht.sound", "foxtrick://resources/sounds/DingLing.wav");
 pref("extensions.foxtrick.prefs.module.TickerAlert.others.enabled", true);
 pref("extensions.foxtrick.prefs.module.TickerAlert.others.sound", "foxtrick://resources/sounds/DingLing.wav");
-pref("extensions.foxtrick.prefs.module.TickerAlert.supporter.enabled", true);
+pref("extensions.foxtrick.prefs.module.TickerAlert.supporter.enabled", false);
 pref("extensions.foxtrick.prefs.module.TickerAlert.supporter.sound", "foxtrick://resources/sounds/DingLing.wav");
 pref("extensions.foxtrick.prefs.module.TickerAlert.transfer.enabled", true);
 pref("extensions.foxtrick.prefs.module.TickerAlert.transfer.sound", "foxtrick://resources/sounds/DingLing.wav");
