@@ -58,15 +58,15 @@ var FoxtrickTableSort = {
 			var sort_start = i;
 			Foxtrick.log('sort_start:',sort_start,'index: ',index);
 			
-			var lastSortIndex = table.getAttribute('lastSortIndex');
-			if (lastSortIndex==null || lastSortIndex!=index) {
-				var direction = 1;
-				table.setAttribute('lastSortIndex', index);
+			// determine sort direction
+			var direction = this_th.hasAttribute("sort-asc") ? 1 : -1;
+			if ( index == table.getAttribute('lastSortIndex') ) {
+				if (direction==1) this_th.removeAttribute("sort-asc");
+				else this_th.setAttribute("sort-asc","true");
+				direction *= -1;
 			}
-			else {
-				var direction = -1;
-				table.removeAttribute('lastSortIndex');
-			}
+			table.setAttribute('lastSortIndex', index);
+			
 			var is_num = true, is_age=true, is_youthskill = true, is_ordinal=true, is_date=true, is_skill=true;
 			var num_cols = table.rows[sort_start+1].cells.length;
 			for (var i = sort_start+1; i < table.rows.length; ++i) {

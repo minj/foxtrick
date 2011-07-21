@@ -830,13 +830,21 @@ var FoxtrickSkillTable = {
 
 	sortClick : function(ev) {
 		try {
-			var head = ev.currentTarget;
+			var head = ev.target;
 			var doc = ev.target.ownerDocument;
+			var table = doc.getElementById('ft_skilltable');
+			
+			// determine sort direction
 			var sortIndex = Foxtrick.getChildIndex(head);
 			var sortAsc = head.hasAttribute("sort-asc");
-			if (sortAsc) head.removeAttribute("sort-asc");
-			else head.setAttribute("sort-asc","true");
+			if (sortIndex == table.getAttribute('lastSortIndex')) { 
+				if (sortAsc) head.removeAttribute("sort-asc");
+				else head.setAttribute("sort-asc","true");
+				sortAsc = !Boolean(sortAsc);
+			}
+			table.setAttribute('lastSortIndex', sortIndex) ;
 			
+
 			var sortString = head.hasAttribute("sort-string");
 
 			var table = doc.getElementById("ft_skilltable");
