@@ -305,7 +305,8 @@ function initMainTab()
 	// restore to default
 	$("#pref-stored-restore").click(function() {
 		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("delete_foxtrick_branches_ask"))) {
-			FoxtrickPrefs.cleanupBranch('module');
+			FoxtrickPrefs.cleanupBranch('module', true);  // no user settings
+			Foxtrick.entry.init();
 			window.location.href = window.location.href + '&imported=true';
 			window.location.reload();
 		}

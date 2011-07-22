@@ -54,26 +54,32 @@ Foxtrick.playSound = function(url) {
 }
 
 Foxtrick.map = function(array, func) {
-	var ret = [];
-	for (var i = 0; i < array.length; ++i)
-		ret.push(func(array[i]));
-	return ret;
+	try {
+		var ret = [];
+		for (var i = 0; i < array.length; ++i)
+			ret.push(func(array[i]));
+		return ret;
+	} catch(e) {Foxtrick.log('Uncaught function error: ',e)}
 }
 
 Foxtrick.filter = function(array, func) {
-	var ret = [];
-	for (var i = 0; i < array.length; ++i) {
-		if (func(array[i]))
-			ret.push(array[i]);
-	}
-	return ret;
+	try {
+		var ret = [];
+		for (var i = 0; i < array.length; ++i) {
+			if (func(array[i]))
+				ret.push(array[i]);
+		}
+		return ret;
+	} catch(e) {Foxtrick.log('Uncaught function error: ',e)}
 }
 
 Foxtrick.some = function(array, func) {
-	for (var i = 0; i < array.length; ++i)
-		if (func(array[i]))
-			return true;
-	return false;
+	try {
+		for (var i = 0; i < array.length; ++i)
+			if (func(array[i]))
+				return true;
+		return false;
+	} catch(e) {Foxtrick.log('Uncaught function error: ',e)}
 }
 
 /**

@@ -97,7 +97,7 @@ Foxtrick.loader.chrome.browserLoad = function(document) {
 				FoxtrickPrefs.deleteValue(request.key);
 			}
 			else if (request.req == "clearPrefs") {
-				FoxtrickPrefs.cleanupBranch ( request.branch ); 
+				FoxtrickPrefs.cleanupBranch ( request.branch , request.no_user_settings); 
 			}
 			else if (request.req == "getCss") {
 				// @param files - a string of files to be added, separated with "\n"
