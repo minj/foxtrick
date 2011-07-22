@@ -12,6 +12,7 @@ var FoxtrickShowLineupSet = {
 	OPTIONS : ["LineupSet", "Ownerless", "Winning"],
 
 	run : function(doc) {
+		const rtl = Foxtrick.util.layout.isRtl(doc);
 		var lineupSet = [];
 		var bots = [];
 
@@ -102,11 +103,13 @@ var FoxtrickShowLineupSet = {
 				if (isResultTable(table)
 					&& FoxtrickPrefs.isModuleOptionEnabled(this, "Winning")) {
 					var goals = Foxtrick.trim(row.cells[1].textContent).split(/\s*-\s*/);
-					if (parseInt(goals[0]) > parseInt(goals[1])) {
+					var goal_dif = parseInt(goals[0]) - parseInt(goals[1])
+					if (rtl) goal_dif *= -1; // reverted for rtl 
+					if (goal_dif > 0) {
 						var reg = new RegExp(/(.+)\&nbsp;-/);
 						link.innerHTML = link.innerHTML.replace(reg,'<strong>$1</strong>&nbsp;-');
 					}
-					else if (parseInt(goals[0]) < parseInt(goals[1])) {
+					else if (goal_dif < 0) {
 						var reg = new RegExp(/\-&nbsp;(.+)/);
 						link.innerHTML = link.innerHTML.replace(reg,'-&nbsp;<strong>$1</strong>');
 					}
