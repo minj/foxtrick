@@ -42,7 +42,7 @@ Foxtrick.loader.chrome.browserLoad = function(document) {
 			
 			var updatePrefs = function () {
 				// @callback_param pref - user preferences
-				// @callback_param prefDefault - default preferences
+				// @callback_param _default_prefs_chrome - default preferences
 				localStorage.removeItem("preferences.updated");
 				FoxtrickPrefs.init(); 
 				cssTextCollection = Foxtrick.getCssTextCollection();
@@ -71,8 +71,8 @@ Foxtrick.loader.chrome.browserLoad = function(document) {
 				sendResponse({
 					cssText : cssTextCollection,
 
-					pref : FoxtrickPrefs.pref,
-					prefDefault : FoxtrickPrefs.prefDefault,
+					_user_prefs_chrome : FoxtrickPrefs._user_prefs_chrome,
+					_default_prefs_chrome : FoxtrickPrefs._default_prefs_chrome,
 
 					htLang : htLanguagesText,
 					propsDefault : Foxtrickl10n.properties_default,
@@ -179,7 +179,10 @@ Foxtrick.loader.chrome.browserLoad = function(document) {
 	});
 
 	// page action listener
-	chrome.pageAction.onClicked.addListener(function(tab) { FoxtrickPrefs.disable(tab); });
+	chrome.pageAction.onClicked.addListener(function(tab) { 
+		FoxtrickPrefs.setBool("disableTemporary", !FoxtrickPrefs.getBool("disableTemporary"));
+		FoxtrickCore.setPageIcon(tab);
+	});
 	
   } catch (e) {Foxtrick.log('Foxtrick.loader.chrome.browserLoad: ', e);}
 };
@@ -195,10 +198,10 @@ var copyToClipBoard = function(content) {
 /*
 // context copy stuff. copy ids work
 function linkOnClick(info, tab) {
-  console.log(info);
+  Foxtrick.log(info);
   var id_container = Foxtrick.util.htMl.getIdFromLink(info.linkUrl);
   if (id_container) copyToClipBoard(id_container.id);
-  console.log(id_container);
+  Foxtrick.log(id_container);
 }
 
 function selectionOnClick(info, tab) {

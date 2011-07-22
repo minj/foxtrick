@@ -140,5 +140,10 @@ var FoxtrickCore = {
 			server.textContent += " / FoxTrick " + Foxtrick.version();
 		}
 		else Foxtrick.log('bottom not loaded yet');
-	}
+	},
+	
+	showPreferences : function(tab) {
+		if (!tab) tab = 'main';
+		Foxtrick.newTab(Foxtrick.ResourcePath + "preferences.xhtml#tab=" + tab);
+	},
 };

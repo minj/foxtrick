@@ -28,7 +28,7 @@ function runScript() {
 
 	if (content = document.getElementById("content"))
 		Foxtrick.startListenToChange(document);
-	} catch(e) {console.log('runScript: ',e);}
+	} catch(e) {Foxtrick.log('runScript: ',e);}
 }
 
 	
@@ -48,8 +48,8 @@ function init() {
 			if (data.error) Foxtrick.log(data.error);
 			
 			var begin = new Date();
-			FoxtrickPrefs.pref = data.pref;
-			FoxtrickPrefs.prefDefault = data.prefDefault;
+			FoxtrickPrefs._user_prefs_chrome = data._user_prefs_chrome;
+			FoxtrickPrefs._default_prefs_chrome = data._default_prefs_chrome;
 
 			var parser = new DOMParser();
 			for (var i in data.htLang) {
