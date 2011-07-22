@@ -830,7 +830,7 @@ var FoxtrickSkillTable = {
 
 	sortClick : function(ev) {
 		try {
-			var head = ev.target;
+			var head = ev.currentTarget;
 			var doc = ev.target.ownerDocument;
 			var table = doc.getElementById('ft_skilltable');
 			
