@@ -240,54 +240,6 @@ Foxtrick.xml_single_evaluate = function (xmldoc, path, attribute) {
 		return null;
 }
 
-/*
- * sessionSet() and sessionGet() are a pair of functions that can store some
- * useful information that has its life spanning the browser session.
- * The stored value must be a JSON-serializable object, or of native types.
- * Since for Google Chrome, the content scripts cannot store values across
- * pages, we store it in background script and thus requires asynchronous
- * callback in sessionGet().
- */
-Foxtrick.sessionStore = {};
-Foxtrick.sessionSet = function(key, value) {
-	if (Foxtrick.BuildFor === "Gecko") {
-		Foxtrick.sessionStore[key] = value;
-	}
-	else if (Foxtrick.BuildFor === "Chrome") {
-		chrome.extension.sendRequest({
-			req : "sessionSet",
-			key : key,
-			value : value
-		});
-	}
-};
-Foxtrick.sessionGet = function(key, callback) {
-	if (Foxtrick.BuildFor === "Gecko") {
-		callback(Foxtrick.sessionStore[key]);
-	}
-	else if (Foxtrick.BuildFor === "Chrome") {
-		chrome.extension.sendRequest({
-				req : "sessionGet",
-				key : key
-			}, function(n) { callback(n.value); });
-	}
-};
-
-Foxtrick.sessionDeleteBranch = function(del_key) {
-	if (Foxtrick.BuildFor === "Gecko") {
-		for (var key in Foxtrick.sessionStore) {
-			if (key.match(new RegExp('^'+del_key))) 
-				Foxtrick.sessionStore[key] = null;
-		};
-	}
-	else if (Foxtrick.BuildFor === "Chrome") {
-		chrome.extension.sendRequest({
-				req : "sessionDeleteBranch",
-				key : del_key
-			});
-	}
-};
-
 Foxtrick.version = function() {
 	//FoxtrickPrefs.deleteValue("version"); what is that for, is never set. 
 	return FoxtrickPrefs.getString("version");
@@ -626,6 +578,96 @@ Foxtrick.reload_module_css = function(doc) {
 		Foxtrick.log(e);
 	}
 }
+
+
+// loads css file from local resource and return a string with the content for injection into page
+Foxtrick.getCssTextFromFile = function (cssUrl) {
+	// @callback_param cssText - string of CSS content
+	var css_text = "";
+	if (cssUrl && cssUrl.search(/^http|^chrome-extension/) != -1) {
+		try { 
+			// a resource file, get css file content
+			css_xhr = new XMLHttpRequest();
+			css_xhr.open("GET", cssUrl, false);
+			css_xhr.send();
+			css_text = css_xhr.responseText;
+		} catch(e) { Foxtrick.log('get css: ', cssUrl , ' ', e) }
+	}
+	else {
+		// not a file. line is css text already
+		css_text = cssUrl;
+	}
+	// remove moz-document statement
+	if (css_text && css_text.search(/@-moz-document/)!=-1) {
+		css_text = css_text.replace(/@-moz-document[^\{]+\{/, "");
+		var closing_bracket = css_text.lastIndexOf("}");
+		css_text = css_text.substr(0, closing_bracket) + css_text.substr(closing_bracket+1);
+	}
+	return css_text; 
+};
+
+// gets all css from modules.CSS settings
+Foxtrick.getCssTextCollection = function() { 
+	// @callback_param cssTextCollection - string of CSS content of all enabled modules and module options
+	var cssTextCollection = '';
+	for (var i in Foxtrick.modules) { 
+		var module = Foxtrick.modules[i]; 
+		
+		// skip disabled modules
+		if ( !module.CORE_MODULE &&  !FoxtrickPrefs.isModuleEnabled(module) ) 
+			continue;
+			
+		// select layout
+		var cssURL = module.CSS;
+		if (localStorage["isRTL"]=='true' 
+				&& typeof(module.CSS_RTL)!= 'undefined')
+			cssURL = module.CSS_RTL;
+		if (localStorage["isStandard"]=='false' 
+				&& typeof(module.CSS_SIMPLE)!= 'undefined')
+			cssURL = module.CSS_SIMPLE;
+		if (localStorage["isStandard"]=='false' 
+				&& localStorage["isRTL"]=='true' 
+				&& typeof(module.CSS_SIMPLE_RTL)!= 'undefined' )
+			cssURL = module.CSS_SIMPLE_RTL;
+		
+		// get css text from selected resource
+		if (cssURL) {
+			if (typeof(cssURL) === "string")
+				cssTextCollection += Foxtrick.getCssTextFromFile(cssURL);
+			else if (typeof(cssURL) === "object") {
+				for (var j in cssURL)
+					cssTextCollection += Foxtrick.getCssTextFromFile(cssURL[j]);
+			}
+		}
+		// load module options CSS
+		if (module.OPTIONS_CSS) {
+			for (var j = 0; j < module.OPTIONS_CSS.length; ++j) {
+				var enabled = FoxtrickPrefs.isModuleOptionEnabled( module, module.OPTIONS[j] );
+				if (!enabled) continue;
+				
+				var cssURL = '';
+				if (typeof(module.OPTIONS_CSS)!= 'undefined' 
+						&& typeof(module.OPTIONS_CSS[j])!= 'undefined')
+					cssURL = module.OPTIONS_CSS[j];
+				if (localStorage["isRTL"]=='true' 
+						&& typeof(module.OPTIONS_CSS_RTL)!= 'undefined' 
+						&& typeof(module.OPTIONS_CSS_RTL[j])!= 'undefined')
+					cssURL = module.OPTIONS_CSS_RTL[j];
+				if (localStorage["isStandard"]=='false' 
+						&& typeof(module.OPTIONS_CSS_SIMPLE)!= 'undefined' 
+						&& typeof(module.OPTIONS_CSS_SIMPLE[j])!= 'undefined')
+					cssURL = module.OPTIONS_CSS_SIMPLE[j];
+				if (localStorage["isStandard"]=='false' && localStorage["isRTL"]=='true' 
+						&& typeof(module.OPTIONS_CSS_RTL_SIMPLE)!= 'undefined' 
+						&& typeof(module.OPTIONS_CSS_RTL_SIMPLE[j])!= 'undefined')
+					cssURL = module.OPTIONS_CSS_RTL_SIMPLE[j];
+				cssTextCollection += Foxtrick.getCssTextFromFile(cssURL);
+			}
+		}
+	}
+	return cssTextCollection;
+};
+
 
 Foxtrick.dumpCache = "";
 Foxtrick.dumpFlush = function(doc) {

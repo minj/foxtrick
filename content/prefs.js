@@ -9,6 +9,9 @@ var FoxtrickPrefs = {
 	_pref_branch : null,
 	pref_default:'',
 
+	// Chrome only: settings for which no update to preferences is needed after deleteValue resp setValue
+	no_update_needed : {'last-host':true, 'last-page':true},
+
 	init : function() {
 		if (Foxtrick.BuildFor === "Gecko") {
 			var prefs = Components
@@ -318,11 +321,15 @@ var FoxtrickPrefs = {
 				FoxtrickPrefs._pref_branch.clearUserPref(encodeURI(key));   // reset to default
 		}
 		else if (Foxtrick.BuildFor === "Chrome") {
-			delete(FoxtrickPrefs.pref[key]);
-			if (Foxtrick.chromeContext() == "background") 
+			if (Foxtrick.chromeContext() == "background") {
 				localStorage.removeItem(key);
-			else if (Foxtrick.chromeContext() == "content")
-				chrome.extension.sendRequest({ req : "deleteValue", key : key });
+				if ( !FoxtrickPrefs.no_update_needed[key] ) 
+					localStorage.setItem("preferences.updated", 'true');
+			}
+			else if (Foxtrick.chromeContext() == "content") {
+				delete (FoxtrickPrefs.pref[key]);  // local copy
+				chrome.extension.sendRequest({ req : "deleteValue", key : key }); // permanent value
+			}
 		}
 	},
 
@@ -382,7 +389,6 @@ var FoxtrickPrefs = {
 	
 	cleanupBranch : function( branch) {
 		if (!branch) var branch = '';
-		Foxtrick.log('cleanupBranch: "',branch,'"');
 		if (Foxtrick.BuildFor == "Gecko") {
 			try {
 				var array = FoxtrickPrefs._getElemNames(branch);
@@ -400,10 +406,24 @@ var FoxtrickPrefs = {
 			}
 		}
 		else if (Foxtrick.BuildFor == "Chrome") {
-			FoxtrickPrefs.pref = {};
-			chrome.extension.sendRequest({ req : "clearPrefs", branch: branch },
-				Foxtrick.entry.init);
-			return true;
+			if (Foxtrick.chromeContext() == "background") {
+				for (var i in localStorage) {
+					if (i.indexOf(branch)===0) 
+						localStorage.removeItem(i);
+				}
+				localStorage["preferences.updated"] = true;
+			}
+			else {
+				for (var i in FoxtrickPrefs) {
+					if (i.indexOf(branch)===0)  {
+						delete FoxtrickPrefs[i];
+					}
+				}
+				chrome.extension.sendRequest(
+					{ req : "clearPrefs", branch: branch },
+					Foxtrick.entry.init );
+				return true;
+			}
 		}
 	},
 
@@ -509,7 +529,8 @@ var FoxtrickPrefs = {
 
 if (Foxtrick.BuildFor == "Chrome") {
 	FoxtrickPrefs.getValue = function(key) {
-		try { //alert(key,' ',FoxtrickPrefs.pref[key], ' ',FoxtrickPrefs.prefDefault[key]);
+		try { 
+			// retrieve from local copy
 			if (FoxtrickPrefs.pref[key] !== undefined)
 				return FoxtrickPrefs.pref[key];
 			else if (FoxtrickPrefs.prefDefault[key] !== undefined)
@@ -523,22 +544,27 @@ if (Foxtrick.BuildFor == "Chrome") {
 	};
 	FoxtrickPrefs.setValue = function(key, value) {
 		try {
-			if (FoxtrickPrefs.prefDefault[key] === value)
-				FoxtrickPrefs.deleteValue(key);
-			else {
-				FoxtrickPrefs.pref[key] = value; // not default, set it
+			if (FoxtrickPrefs.prefDefault[key] === value) {
+				// deleting sets it back to the wanted default value
 				if (Foxtrick.chromeContext() == "background") 
-					localStorage.setItem(key, JSON.stringify(value));
-				else if (Foxtrick.chromeContext() == "content") 
-					chrome.extension.sendRequest({ req : "setValue", key : key, value : value });
+					localStorage.removeItem(key);
+				else 
+					delete (FoxtrickPrefs.pref[key]);  
 			}
+			else {
+				if (FoxtrickPrefs.pref[key] !== value) {
+					// not default and value changed
+					if (Foxtrick.chromeContext() == "background") 
+						localStorage.setItem(key, JSON.stringify(value));
+					else
+						FoxtrickPrefs.pref[key] = value;  
+				}
+			}
+			if (Foxtrick.chromeContext() == "content") 
+					chrome.extension.sendRequest({ req : "setValue", key : key, value : value });
+			if (Foxtrick.chromeContext() == "background" && !FoxtrickPrefs.no_update_needed[ key ] ) 
+				localStorage.setItem("preferences.updated",'true');
 		}
 		catch (e) {}
-	};
-	FoxtrickPrefs.dumpPrefs = function() {
-		chrome.extension.sendRequest({
-			req : "setPrefs",
-			prefs : FoxtrickPrefs.pref
-		});
 	};
 }

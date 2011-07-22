@@ -7,19 +7,11 @@
 if (!Foxtrick) var Foxtrick={};
 	
 try {
-	
-var runScript_tries = 0;	
 
 function runScript() {
-	try {
-	console.log('runscript')
+  try {
+	Foxtrick.log('runscript');
 	
-	if (!inited()) {
-		Foxtrick.log("Not even initialized! Let's try again "+runScript_tries+" ms later.");
-		if (runScript_tries++ <100) setTimeout(runScript, runScript_tries);
-		return;
-	}
-
 	// disabled?
 	if ( (FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(document) )
 		|| FoxtrickPrefs.getBool("disableTemporary") ) {
@@ -32,7 +24,7 @@ function runScript() {
 	
 	var end = new Date();
 	var runTime = end.getTime() - mid.getTime();
-	Foxtrick.log ("Foxtrick run time: " , runTime , " ms\n");		
+	Foxtrick.log ("Foxtrick run time: " , runTime , " ms\n");
 
 	if (content = document.getElementById("content"))
 		Foxtrick.startListenToChange(document);
@@ -58,7 +50,7 @@ function init() {
 			var begin = new Date();
 			FoxtrickPrefs.pref = data.pref;
 			FoxtrickPrefs.prefDefault = data.prefDefault;
-			
+
 			var parser = new DOMParser();
 			for (var i in data.htLang) {
 				Foxtrickl10n.htLanguagesXml[i] = parser.parseFromString(data.htLang[i], "text/xml");
@@ -90,22 +82,13 @@ function init() {
 			var initTime = new Date() - begin.getTime();
 			Foxtrick.log("init time: " , initTime , " ms");
 
-			if (Foxtrick.isHt(document)) {console.log('from init'); runScript();}
-			else {console.log('from listener');window.addEventListener("DOMContentLoaded", runScript, false);}
-		} catch(e) {console.log('loader init: ', e);}
+			if (Foxtrick.isHt(document)) {Foxtrick.log('from init'); runScript();}
+			else {Foxtrick.log('from listener');window.addEventListener("DOMContentLoaded", runScript, false);}
+		} catch(e) {Foxtrick.log('loader init: ', e);}
 	});
-}
-
-
-
-function inited() { 
-	return (typeof(Foxtrick.XMLData.countryToLeague) == "object"
-		&& typeof(Foxtrickl10n.screenshots) == "string"
-		&& typeof(FoxtrickPrefs.pref) == "object")
-		&& Foxtrick.isHt(document);   // ht document is ready
 }
 
 
 init();
 
-} catch(e) {console.log('loader ', e)}
+} catch(e) {Foxtrick.log('loader ', e)}

@@ -143,7 +143,7 @@ Foxtrick.ApiProxy = {
 	setCacheLifetime : function(doc, parameters_str, cache_lifetime) {
 		Foxtrick.sessionGet('xml_cache.'+parameters_str, function(xml_cache) {  
 			Foxtrick.sessionSet('xml_cache.'+parameters_str,
-								{ xml_string:xml_cache.xml_string, cache_lifetime : cache_lifetime }) 
+								{ xml_string : xml_cache.xml_string, cache_lifetime : cache_lifetime }) 
 		});
 	},
 	
