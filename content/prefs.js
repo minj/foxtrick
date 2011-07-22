@@ -375,7 +375,7 @@ if (Foxtrick.BuildFor === "Chrome") {
 	var FoxtrickPrefsChrome = {
 
 		getString : function(key) {
-			var value = FoxtrickPrefs.getValue(key);
+			var value = String(FoxtrickPrefs.getValue(key));
 			if (typeof(value) == "string")
 				return value;
 			return null;
@@ -386,7 +386,7 @@ if (Foxtrick.BuildFor === "Chrome") {
 		},
 
 		getInt : function(key) {
-			var value = FoxtrickPrefs.getValue(key);
+			var value = Number(FoxtrickPrefs.getValue(key));
 			if (typeof(value) == "number")
 				return value;
 			return null;
@@ -397,7 +397,7 @@ if (Foxtrick.BuildFor === "Chrome") {
 		},
 
 		getBool : function(key) {
-			var value = FoxtrickPrefs.getValue(key);
+			var value = Boolean(FoxtrickPrefs.getValue(key));
 			if (typeof(value) == "boolean")
 				return value;
 			return null;
@@ -470,7 +470,7 @@ if (Foxtrick.BuildFor === "Chrome") {
 			getValue : function(key) {
 				try { 
 					if (localStorage.getItem(key) !== null)
-						return FoxtrickPrefs._user_prefs_chrome[key];
+						return localStorage.getItem(key);
 					else if (FoxtrickPrefs._default_prefs_chrome[key] !== undefined)
 						return FoxtrickPrefs._default_prefs_chrome[key];
 					else

@@ -222,8 +222,8 @@ if (!FoxtrickPrefs.getBool("toolbarInited")) {
 	tooltiptext="FoxTrick"
 	context="foxtrick-menu">
 	<menupopup id="foxtrick-menu">
-		<menuitem id="foxtrick-toolbar-preferences" oncommand="FoxtrickPrefs.show();"/>
-		<menuitem id="foxtrick-toolbar-deactivate" oncommand="FoxtrickPrefs.disable();" type="checkbox" autocheck="true"/>
+		<menuitem id="foxtrick-toolbar-preferences" oncommand="FoxtrickCore.showPreferences();"/>
+		<menuitem id="foxtrick-toolbar-deactivate" oncommand="FoxtrickCore.disable();" type="checkbox" autocheck="true"/>
 	</menupopup>
 </toolbarbutton>
 

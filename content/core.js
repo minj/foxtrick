@@ -146,4 +146,10 @@ var FoxtrickCore = {
 		if (!tab) tab = 'main';
 		Foxtrick.newTab(Foxtrick.ResourcePath + "preferences.xhtml#tab=" + tab);
 	},
+	
+	disable : function() {
+		FoxtrickPrefs.setBool("disableTemporary", !FoxtrickPrefs.getBool("disableTemporary"));
+		if (Foxtrick.BuildFor === "Gecko") Foxtrick.entry.init();
+	},
+		
 };

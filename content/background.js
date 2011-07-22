@@ -180,7 +180,7 @@ Foxtrick.loader.chrome.browserLoad = function(document) {
 
 	// page action listener
 	chrome.pageAction.onClicked.addListener(function(tab) { 
-		FoxtrickPrefs.setBool("disableTemporary", !FoxtrickPrefs.getBool("disableTemporary"));
+		FoxtrickCore.disable();
 		FoxtrickCore.setPageIcon(tab);
 	});
 	
