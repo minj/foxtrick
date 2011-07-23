@@ -1,6 +1,6 @@
 try {
 
-var sessionStore = {};
+
 
 var errors = '';
 var cssTextCollection = '';
@@ -141,7 +141,7 @@ init();
 // callback will be called with a sole Object as argument
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 	try {
-		console.log('request: ',request.req, ' ',request )
+		Foxtrick.log('request: ',request.req, ' ',request )
 		errors = '';
 		var updatePrefs = function () {
 			// @callback_param pref - user preferences
@@ -280,11 +280,6 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 			var xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = function(aEvt) {
 				try {
-					//console.log( xhr.statusText );
-					try { 
-						//if (xhr.getAllResponseHeaders)console.log(String(xhr.getAllResponseHeaders()));
-					} catch(e){}
-					
 					if (xhr.readyState == 4) {
 						sendResponse({data : xhr.responseText, status : xhr.status});
 					}
@@ -330,22 +325,21 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		else if (request.req == "sessionSet") {
 			// @param key - key of session store
 			// @param value - value to store
-			sessionStore[request.key] = request.value;
+			Foxtrick.sessionSet(request.key, request.value);
 		}
 		else if (request.req == "sessionGet") {
 			// @param key - key of session store
 			// @callback_param value - contains the object stored
-			sendResponse({value : sessionStore[request.key]});
+			Foxtrick.sessionGet(request.key, sendResponse );
 		}
 		else if (request.req == "sessionDeleteBranch") {
-			// @param key - initial part of key(s) of session store to delete
-			for (var key in sessionStore) {
-				if (key.match(new RegExp('^'+request.key))) 
-					sessionStore[key] = null;
-			};
+			// @param branch - initial part of key(s) of session store to delete
+			Foxtrick.sessionDeleteBranch(request.branch);
 		}
 	}
 	catch (e) {
+		Foxtrick.log('Foxtrick - background onRequest: ', e)
+		Foxtrick.log(request)
 		sendResponse({ error : 'Foxtrick - background onRequest: ' + e });
 	}
 });
@@ -364,10 +358,10 @@ var copyToClipBoard = function(content) {
 /*
 // context copy stuff. copy ids work
 function linkOnClick(info, tab) {
-  console.log(info);
+  Foxtrick.log(info);
   var id_container = Foxtrick.util.htMl.getIdFromLink(info.linkUrl);
   if (id_container) copyToClipBoard(id_container.id);
-  console.log(id_container);
+  Foxtrick.log(id_container);
 }
 
 function selectionOnClick(info, tab) {

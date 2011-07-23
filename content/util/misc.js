@@ -54,26 +54,32 @@ Foxtrick.playSound = function(url) {
 }
 
 Foxtrick.map = function(array, func) {
-	var ret = [];
-	for (var i = 0; i < array.length; ++i)
-		ret.push(func(array[i]));
-	return ret;
+	try {
+		var ret = [];
+		for (var i = 0; i < array.length; ++i)
+			ret.push(func(array[i]));
+		return ret;
+	} catch(e) {Foxtrick.log('Uncaught function error: ',e)}
 }
 
 Foxtrick.filter = function(array, func) {
-	var ret = [];
-	for (var i = 0; i < array.length; ++i) {
-		if (func(array[i]))
-			ret.push(array[i]);
-	}
-	return ret;
+	try {
+		var ret = [];
+		for (var i = 0; i < array.length; ++i) {
+			if (func(array[i]))
+				ret.push(array[i]);
+		}
+		return ret;
+	} catch(e) {Foxtrick.log('Uncaught function error: ',e)}
 }
 
 Foxtrick.some = function(array, func) {
-	for (var i = 0; i < array.length; ++i)
-		if (func(array[i]))
-			return true;
-	return false;
+	try {
+		for (var i = 0; i < array.length; ++i)
+			if (func(array[i]))
+				return true;
+		return false;
+	} catch(e) {Foxtrick.log('Uncaught function error: ',e)}
 }
 
 /**
@@ -239,54 +245,6 @@ Foxtrick.xml_single_evaluate = function (xmldoc, path, attribute) {
 	else
 		return null;
 }
-
-/*
- * sessionSet() and sessionGet() are a pair of functions that can store some
- * useful information that has its life spanning the browser session.
- * The stored value must be a JSON-serializable object, or of native types.
- * Since for Google Chrome, the content scripts cannot store values across
- * pages, we store it in background script and thus requires asynchronous
- * callback in sessionGet().
- */
-Foxtrick.sessionStore = {};
-Foxtrick.sessionSet = function(key, value) {
-	if (Foxtrick.BuildFor === "Gecko") {
-		Foxtrick.sessionStore[key] = value;
-	}
-	else if (Foxtrick.BuildFor === "Chrome") {
-		chrome.extension.sendRequest({
-			req : "sessionSet",
-			key : key,
-			value : value
-		});
-	}
-};
-Foxtrick.sessionGet = function(key, callback) {
-	if (Foxtrick.BuildFor === "Gecko") {
-		callback(Foxtrick.sessionStore[key]);
-	}
-	else if (Foxtrick.BuildFor === "Chrome") {
-		chrome.extension.sendRequest({
-				req : "sessionGet",
-				key : key
-			}, function(n) { callback(n.value); });
-	}
-};
-
-Foxtrick.sessionDeleteBranch = function(del_key) {
-	if (Foxtrick.BuildFor === "Gecko") {
-		for (var key in Foxtrick.sessionStore) {
-			if (key.match(new RegExp('^'+del_key))) 
-				Foxtrick.sessionStore[key] = null;
-		};
-	}
-	else if (Foxtrick.BuildFor === "Chrome") {
-		chrome.extension.sendRequest({
-				req : "sessionDeleteBranch",
-				key : del_key
-			});
-	}
-};
 
 Foxtrick.version = function() {
 	//FoxtrickPrefs.deleteValue("version"); what is that for, is never set. 

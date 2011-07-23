@@ -4,6 +4,7 @@
 		"js" : [
 			"content/env.js",
 			"content/prefs.js",
+			"content/session-store.js",
 			"content/pages.js",
 			"content/l10n.js",
 			"content/helper.js",
