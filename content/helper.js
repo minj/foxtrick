@@ -38,22 +38,13 @@ var FoxtrickHelper = {
 			this.ownTeam.ownSeriesNum = ownseriesnum;
 			this.ownTeam.ownLevelNum = ownlevelnum ;
 
-			/*Foxtrick.dump('FoxtrickHelper.ownTeam\n'+
-					'ownTeamId ' + this.ownTeam.ownTeamId+'\n'+
-					'ownTeamName ' + this.ownTeam.ownTeamName+'\n'+
-					'ownCountryId ' + this.ownTeam.ownCountryId+'\n'+
-					'ownLeagueName ' + this.ownTeam.ownLeagueName+'\n'+
-					'ownSeriesNum ' + this.ownTeam.ownSeriesNum+'\n'+
-					'ownLevelNum ' + this.ownTeam.ownLevelNum+'\n');*/
-
 			this.ownTeam.ownYouthTeamId = null;
 		}
-		if (Foxtrick.isPage("teamPageAny", doc)) {
+		if (Foxtrick.isPage("teamPageAny", doc) && !Foxtrick.isPage("matchesLive", doc)) {
 			if  (this.ownTeam.ownYouthTeamId==null) {
 				var leftMenuTeamId = FoxtrickHelper.findTeamId(doc.getElementsByClassName("subMenu")[0]);
 				if (this.ownTeam.ownTeamId==leftMenuTeamId) {
 					this.ownTeam.ownYouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementsByClassName("subMenu")[0]);
-					// Foxtrick.dump('ownYouthTeamId: '+this.ownTeam.ownYouthTeamId+'\n');
 				}
 			}
 		}
