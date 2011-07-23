@@ -23,6 +23,7 @@ Foxtrick.loader.chrome.browserLoad = function(document) {
 	var updatePrefs = function () {
 		localStorage.removeItem("preferences.updated");
 		FoxtrickPrefs.init(); 
+		Foxtrickl10n.init(); 
 		cssTextCollection = Foxtrick.getCssTextCollection();
 		Foxtrick.log('prefs updated');
 	};
@@ -78,8 +79,9 @@ Foxtrick.loader.chrome.browserLoad = function(document) {
 						_prefs_chrome_default : FoxtrickPrefs._prefs_chrome_default,
 
 						htLang : htLanguagesText,
-						propsDefault : Foxtrickl10n.properties_default,
-						props : Foxtrickl10n.properties,
+						properties_default : Foxtrickl10n.properties_default,
+						properties : Foxtrickl10n.properties,
+						screenshots_default : Foxtrickl10n.screenshots_default,
 						screenshots : Foxtrickl10n.screenshots,
 
 						currency : currency,

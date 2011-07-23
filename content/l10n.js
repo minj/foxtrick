@@ -61,221 +61,6 @@ var Foxtrickl10n = {
 
 	htLanguagesXml : {},
 
-	_strings_bundle : null,
-	_strings_bundle_default : null,
-	_strings_bundle_screenshots:null,
-	_strings_bundle_screenshots_default:null,
-
-	init : function() {
-		try {
-			if (Foxtrick.BuildFor == "Gecko"
-				|| (Foxtrick.BuildFor == "Chrome" && Foxtrick.chromeContext() == "background")) {
-				// get htlang.xml for each locale
-				for (var i in Foxtrickl10n.locales) {
-					var locale = Foxtrickl10n.locales[i];
-					var url = Foxtrick.ResourcePath + "locale/" + locale + "/htlang.xml";
-					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXml(url);
-				}
-			}
-		}
-		catch (e) {
-			Foxtrick.log(e);
-		}
-		if (Foxtrick.BuildFor === "Gecko") {
-			this._strings_bundle_default =
-				Components.classes["@mozilla.org/intl/stringbundle;1"]
-				.getService(Components.interfaces.nsIStringBundleService)
-				.createBundle("chrome://foxtrick/content/foxtrick.properties");
-			this.get_strings_bundle(FoxtrickPrefs.getString("htLanguage"));
-
-			this._strings_bundle_screenshots_default =
-				Components.classes["@mozilla.org/intl/stringbundle;1"]
-				.getService(Components.interfaces.nsIStringBundleService)
-				.createBundle("chrome://foxtrick/content/foxtrick.screenshots");
-		}
-		else if (Foxtrick.BuildFor === "Chrome") {
-			if (Foxtrick.chromeContext() == "background") {
-				listUrl = chrome.extension.getURL("content/foxtrick.properties");
-				var properties_defaultxhr = new XMLHttpRequest();
-				properties_defaultxhr.open("GET", listUrl, false);
-				properties_defaultxhr.send();
-				this.properties_default = properties_defaultxhr.responseText;
-
-				try {
-					var propertiesxhr = new XMLHttpRequest();
-					var lang = FoxtrickPrefs.getString("htLanguage");
-					listUrl = chrome.extension.getURL("content/locale/" + lang + "/foxtrick.properties");
-					propertiesxhr.open("GET", listUrl, false);
-					propertiesxhr.send();
-					var properties = propertiesxhr.responseText;
-				}
-				catch(e) {
-					var properties = properties_defaultxhr.responseText;
-				}
-				this.properties = properties;
-
-				// get other non changeable ersources
-				listUrl = chrome.extension.getURL("content/foxtrick.screenshots");
-				var screenshotsxhr = new XMLHttpRequest();
-				screenshotsxhr.open("GET", listUrl, false);
-				screenshotsxhr.send();
-				this.screenshots = screenshotsxhr.responseText;
-			}
-			// init for chrome content is in loader_chrome
-		}
-	},
-
-	get_strings_bundle :function(localecode) {
-		try {
-			this._strings_bundle =
-				Components.classes["@mozilla.org/intl/stringbundle;1"]
-				.getService(Components.interfaces.nsIStringBundleService)
-				.createBundle("chrome://foxtrick/content/locale/"+localecode+"/foxtrick.properties");
-			this._strings_bundle_screenshots =
-				Components.classes["@mozilla.org/intl/stringbundle;1"]
-				.getService(Components.interfaces.nsIStringBundleService)
-				.createBundle("chrome://foxtrick/content/locale/"+localecode+"/foxtrick.screenshots");
-		}
-		catch (e) {
-			Foxtrick.log(e);
-		}
-	},
-
-	getString : function(str) {
-		if (Foxtrick.BuildFor === "Gecko") {
-			if (this._strings_bundle) {
-				try {
-					return this._strings_bundle.GetStringFromName(str);
-				}
-				catch (e) {
-					try {
-						if (this._strings_bundle_default)
-							return this._strings_bundle_default.GetStringFromName(str);
-					}
-					catch (ee) {
-						Foxtrick.log("** Localization error 1 ** '" + str + "'");
-						return "** Localization error 1 **";
-					}
-				}
-			}
-			else {
-				Foxtrick.log("** Localization error 2 ** '" + str + "'");
-				return "** Localization error 2 **";
-			}
-		}
-		else if (Foxtrick.BuildFor === "Chrome") {
-			try {
-				var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" );
-				if (Foxtrickl10n.properties.search(string_regexp)!=-1)
-					value = Foxtrickl10n.properties.match(string_regexp)[1];
-				else if (Foxtrickl10n.properties_default.search(string_regexp)!=-1)
-					value = Foxtrickl10n.properties_default.match(string_regexp)[1];
-				else {
-					value = str;
-					console.log('getString error' +str);
-				}
-				return value;
-			}
-			catch (e) {
-				Foxtrick.log(e);
-				return str;
-			}
-		}
-	},
-
-	getFormattedString : function(str, key_array) {
-		if (this._strings_bundle) {
-			try {
-				return this._strings_bundle.formatStringFromName( str, key_array );
-			}
-			catch (e) {
-				try {
-					return this._strings_bundle_default.formatStringFromName( str, key_array );
-				}
-				catch (ee) {
-					return "** Localization error **";
-				}
-			}
-		}
-		else
-			return "** Localization error **";
-	},
-
-	isStringAvailable : function(str) {
-		if (Foxtrick.BuildFor === "Gecko") {
-			if (this._strings_bundle) {
-				try {
-					return this._strings_bundle.GetStringFromName( str ) != null;
-				}
-				catch (e) {
-					try {
-						return this._strings_bundle_default.GetStringFromName( str ) != null;
-					}
-					catch (e) {
-						return false;
-					}
-				}
-			}
-			return false;
-		}
-		else if (Foxtrick.BuildFor === "Chrome") {
-			var string_regexp = new RegExp('\\s'+str+'=(.+)\\s', "i");
-			return (Foxtrickl10n.properties.search(string_regexp)!=-1
-				|| Foxtrickl10n.properties_default.search(string_regexp)!=-1);
-		}
-	},
-
-	isStringAvailableLocal : function(str) {
-		if (Foxtrick.BuildFor === "Gecko") {
-			if (this._strings_bundle) {
-				try {
-					return this._strings_bundle.GetStringFromName( str ) != null;
-				}
-				catch (e) {
-					return false;
-				}
-			}
-			return false;
-		}
-		else if (Foxtrick.BuildFor === "Chrome") {
-			var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" );
-			return (Foxtrickl10n.properties.search(string_regexp)!=-1);
-		}
-	},
-
-	getScreenshot : function(str) {
-		if (Foxtrick.BuildFor === "Gecko") {
-			var link = "";
-			if (this._strings_bundle_screenshots) {
-				try {
-					link = this._strings_bundle_screenshots.GetStringFromName( str );
-				}
-				catch (e) {
-				}
-			}
-			if (link=="") {
-				try {
-					if (this._strings_bundle_screenshots_default)
-						link = this._strings_bundle_screenshots_default.GetStringFromName( str );
-				}
-				catch (ee) {
-				}
-			}
-			return link;
-		}
-		else if (Foxtrick.BuildFor === "Chrome") {
-			try{
-				var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" );
-				if (Foxtrickl10n.screenshots.search(string_regexp)!=-1)
-					return Foxtrickl10n.screenshots.match(string_regexp)[1];
-				return '';
-			}
-			catch (e) {
-				console.log('getscreenshots '+e);
-			}
-		}
-	},
-
 	// this function returns level string of given level type and numeral value.
 	// type could be levels, for normal skills;
 	// agreeability, honesty, and aggressiveness, which are all obvious.
@@ -383,3 +168,244 @@ var Foxtrickl10n = {
 		return shortSpec ? shortSpec : direct();
 	}
 };
+
+
+// ----------------------  Gecko specific get/set preferences --------------------------
+if (Foxtrick.BuildFor === "Gecko") {
+
+	var Foxtrickl10nGecko = {
+
+		// mozilla string bundles of localizations and screenshot links
+		_strings_bundle : null,
+		_strings_bundle_default : null,
+		_strings_bundle_screenshots:null,
+		_strings_bundle_screenshots_default:null,
+
+		init : function() {
+			// get htlang.xml for each locale
+			for (var i in Foxtrickl10n.locales) {
+				var locale = Foxtrickl10n.locales[i];
+				var url = Foxtrick.ResourcePath + "locale/" + locale + "/htlang.xml";
+				this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXml(url);
+			}
+			
+			this._strings_bundle_default =
+				Components.classes["@mozilla.org/intl/stringbundle;1"]
+				.getService(Components.interfaces.nsIStringBundleService)
+				.createBundle("chrome://foxtrick/content/foxtrick.properties");
+			
+			this.setUserLocaleGecko(FoxtrickPrefs.getString("htLanguage"));
+
+			this._strings_bundle_screenshots_default =
+				Components.classes["@mozilla.org/intl/stringbundle;1"]
+				.getService(Components.interfaces.nsIStringBundleService)
+				.createBundle("chrome://foxtrick/content/foxtrick.screenshots");
+		},
+
+		setUserLocaleGecko :function(localecode) {
+			try {
+				this._strings_bundle =
+					Components.classes["@mozilla.org/intl/stringbundle;1"]
+					.getService(Components.interfaces.nsIStringBundleService)
+					.createBundle("chrome://foxtrick/content/locale/"+localecode+"/foxtrick.properties");
+				this._strings_bundle_screenshots =
+					Components.classes["@mozilla.org/intl/stringbundle;1"]
+					.getService(Components.interfaces.nsIStringBundleService)
+					.createBundle("chrome://foxtrick/content/locale/"+localecode+"/foxtrick.screenshots");
+			}
+			catch (e) {
+				Foxtrick.log(e);
+			}
+		},
+
+		getString : function(str) {
+			if (this._strings_bundle) {
+				try {
+					return this._strings_bundle.GetStringFromName(str);
+				}
+				catch (e) {
+					try {
+						if (this._strings_bundle_default)
+							return this._strings_bundle_default.GetStringFromName(str);
+					}
+					catch (ee) {
+						Foxtrick.log("** Localization error 1 ** '" + str + "'");
+						return "** Localization error 1 **";
+					}
+				}
+			}
+			else {
+				Foxtrick.log("** Localization error 2 ** '" + str + "'");
+				return "** Localization error 2 **";
+			}
+		},
+
+		isStringAvailable : function(str) {
+			if (this._strings_bundle) {
+				try {
+					return this._strings_bundle.GetStringFromName( str ) != null;
+				}
+				catch (e) {
+					try {
+						return this._strings_bundle_default.GetStringFromName( str ) != null;
+					}
+					catch (e) {
+						return false;
+					}
+				}
+			}
+			return false;
+		},
+
+		isStringAvailableLocal : function(str) {
+			if (this._strings_bundle) {
+				try {
+					return this._strings_bundle.GetStringFromName( str ) != null;
+				}
+				catch (e) {
+					return false;
+				}
+			}
+			return false;
+		},
+
+		getScreenshot : function(str) {
+			var link = "";
+			if (this._strings_bundle_screenshots) {
+				try {
+					link = this._strings_bundle_screenshots.GetStringFromName( str );
+				}
+				catch (e) {
+				}
+			}
+			if (link=="") {
+				try {
+					if (this._strings_bundle_screenshots_default)
+						link = this._strings_bundle_screenshots_default.GetStringFromName( str );
+				}
+				catch (ee) {
+				}
+			}
+			return link;
+		},
+	};
+
+	for (i in Foxtrickl10nGecko)
+		Foxtrickl10n[i] = Foxtrickl10nGecko[i];
+}
+
+
+
+// ----------------------  Chrome specific get/set preferences --------------------------
+if (Foxtrick.BuildFor === "Chrome") {
+
+	var Foxtrickl10nChrome = {
+
+		// string collection of localizations and screenshot links
+		properties_default : null,
+		properties : null,
+		screenshots_default : null,
+		screenshots : null,
+	
+		init : function() {
+			if (Foxtrick.chromeContext() == "background") {
+				// get htlang.xml for each locale
+				for (var i in Foxtrickl10n.locales) {
+					var locale = Foxtrickl10n.locales[i];
+					var url = Foxtrick.ResourcePath + "locale/" + locale + "/htlang.xml";
+					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXml(url);
+				}
+				
+				// default locale
+				var listUrl = chrome.extension.getURL("content/foxtrick.properties");
+				var properties_defaultxhr = new XMLHttpRequest();
+				properties_defaultxhr.open("GET", listUrl, false);
+				properties_defaultxhr.send();
+				this.properties_default = properties_defaultxhr.responseText;
+
+				// default screenhots
+				listUrl = chrome.extension.getURL("content/foxtrick.screenshots");
+				var screenshotsxhr = new XMLHttpRequest();
+				screenshotsxhr.open("GET", listUrl, false);
+				screenshotsxhr.send();
+				this.screenshots_default = screenshotsxhr.responseText;
+				
+				// user locale
+				try {
+					var propertiesxhr = new XMLHttpRequest();
+					var localecode = FoxtrickPrefs.getString("htLanguage");
+					listUrl = chrome.extension.getURL("content/locale/" + localecode + "/foxtrick.properties");
+					propertiesxhr.open("GET", listUrl, false);
+					propertiesxhr.send();
+					var properties = propertiesxhr.responseText;
+				}
+				catch(e) {
+					var properties = this.properties_default;
+				}
+				this.properties = properties;
+				
+				try {
+					listUrl = chrome.extension.getURL("content/locale/"+localecode+"/foxtrick.screenshots");
+					var screenshotsxhr = new XMLHttpRequest();
+					screenshotsxhr.open("GET", listUrl, false);
+					screenshotsxhr.send();
+					var screenshots = screenshotsxhr.responseText;
+				}
+				catch(e) {
+					var screenshots = this.screenshots_default;
+				}
+				this.screenshots = screenshots;
+			}
+			else if (Foxtrick.chromeContext() == "content") {
+				// init for chrome content is in loader_chrome
+			}
+		},
+
+		getString : function(str) {
+			try {
+				var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" );
+				if (Foxtrickl10n.properties.search(string_regexp)!=-1)
+					value = Foxtrickl10n.properties.match(string_regexp)[1];
+				else if (Foxtrickl10n.properties_default.search(string_regexp)!=-1)
+					value = Foxtrickl10n.properties_default.match(string_regexp)[1];
+				else {
+					value = str;
+					Foxtrick.log('getString error' ,str);
+				}
+				return value;
+			}
+			catch (e) {
+				Foxtrick.log(e);
+				return str;
+			}
+		},
+
+		isStringAvailable : function(str) {
+			var string_regexp = new RegExp('\\s'+str+'=(.+)\\s', "i");
+			return (Foxtrickl10n.properties.search(string_regexp)!=-1
+				|| Foxtrickl10n.properties_default.search(string_regexp)!=-1);
+		},
+
+		isStringAvailableLocal : function(str) {
+			var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" );
+			return (Foxtrickl10n.properties.search(string_regexp)!=-1);
+		},
+
+		getScreenshot : function(str) {
+			try {
+				var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" );
+				if (Foxtrickl10n.screenshots.search(string_regexp)!=-1)
+					return Foxtrickl10n.screenshots.match(string_regexp)[1];
+				else if (Foxtrickl10n.screenshots_default.search(string_regexp)!=-1)
+					return Foxtrickl10n.screenshots_default.match(string_regexp)[1];
+				return '';
+			}
+			catch (e) {
+				Foxtrick.log('getscreenshots ',e);
+			}
+		},
+	};
+	
+	for (i in Foxtrickl10nChrome)
+		Foxtrickl10n[i] = Foxtrickl10nChrome[i];
+}

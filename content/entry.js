@@ -25,6 +25,11 @@ Foxtrick.entry.init = function() {
 				coreModules[i].init();
 		}
 	}
+	else if (Foxtrick.chromeContext() == "background") {
+		// only content side
+		return;
+	}
+	
 	Foxtrick.MakeStatsHash();
 
 	// create arrays for each recognized page that contains modules

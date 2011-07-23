@@ -60,7 +60,7 @@ var FoxtrickReadHtPrefs = {
 				FoxtrickPrefs.setString("htLanguage", newLang);
 				if (Foxtrick.BuildFor == "Gecko") {
 					// change language
-					Foxtrickl10n.get_strings_bundle(newLang);
+					Foxtrickl10n.setUserLocaleGecko(newLang);
 				}
 				var language = Foxtrick.xml_single_evaluate(languages[newLang], "language", "desc");
 				var msg = Foxtrickl10n.getString("HTLanguageChanged").replace("%s", language);
