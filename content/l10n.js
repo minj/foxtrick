@@ -172,7 +172,7 @@ var Foxtrickl10n = {
 					value = Foxtrickl10n.properties_default.match(string_regexp)[1];
 				else {
 					value = str;
-					Foxtrick.log('getString error ' ,str);
+					console.log('getString error' +str);
 				}
 				return value;
 			}
@@ -271,7 +271,7 @@ var Foxtrickl10n = {
 				return '';
 			}
 			catch (e) {
-				Foxtrick.log('getscreenshots ', e);
+				console.log('getscreenshots '+e);
 			}
 		}
 	},

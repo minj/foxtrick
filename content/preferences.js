@@ -305,8 +305,7 @@ function initMainTab()
 	// restore to default
 	$("#pref-stored-restore").click(function() {
 		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("delete_foxtrick_branches_ask"))) {
-			FoxtrickPrefs.cleanupBranch('module', true);  // no user settings
-			Foxtrick.entry.init();
+			FoxtrickPrefs.cleanupBranch();
 			window.location.href = window.location.href + '&imported=true';
 			window.location.reload();
 		}
@@ -315,6 +314,7 @@ function initMainTab()
 	// disable all
 	$("#pref-stored-disable").click(function() {
 		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("disable_all_foxtrick_modules_ask"))) {
+			Foxtrick.log('preferences: diable all');
 			FoxtrickPrefs.disableAll('module'); 
 			window.location.href = window.location.href + '&imported=true';
 			window.location.reload();

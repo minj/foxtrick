@@ -8,7 +8,6 @@
 <script type="application/x-javascript" src="./env.js" />
 <script type="application/x-javascript" src="./loader-gecko.js" />
 <script type="application/x-javascript" src="./prefs.js" />
-<script type="application/x-javascript" src="./session-store.js" />
 <script type="application/x-javascript" src="./pages.js" />
 <script type="application/x-javascript" src="./l10n.js" />
 <script type="application/x-javascript" src="./helper.js" />
@@ -222,8 +221,8 @@ if (!FoxtrickPrefs.getBool("toolbarInited")) {
 	tooltiptext="FoxTrick"
 	context="foxtrick-menu">
 	<menupopup id="foxtrick-menu">
-		<menuitem id="foxtrick-toolbar-preferences" oncommand="FoxtrickCore.showPreferences();"/>
-		<menuitem id="foxtrick-toolbar-deactivate" oncommand="FoxtrickCore.disable();" type="checkbox" autocheck="true"/>
+		<menuitem id="foxtrick-toolbar-preferences" oncommand="FoxtrickPrefs.show();"/>
+		<menuitem id="foxtrick-toolbar-deactivate" oncommand="FoxtrickPrefs.disable();" type="checkbox" autocheck="true"/>
 	</menupopup>
 </toolbarbutton>
 

@@ -32,7 +32,7 @@ Foxtrick.util.links = {
 					var editbox=doc.getElementById("divEDId");
 					if (editbox) editbox.parentNode.removeChild(editbox);
 					var keys={};
-					var array = FoxtrickPrefs.getElemNames(basepref);
+					var array = FoxtrickPrefs._getElemNames(basepref);
 					for (var nl=0;nl<array.length;nl++) {
 						var key=array[nl].replace(basepref+'\.',"");
 						if (key.search(/\./)!=-1) {
@@ -121,7 +121,7 @@ Foxtrick.util.links = {
 
 			// get custon links from pref
 			var keys={};
-			var array = FoxtrickPrefs.getElemNames( basepref );
+			var array = FoxtrickPrefs._getElemNames( basepref );
 			for (var nl=0;nl<array.length;nl++) {
 				var key=array[nl].replace(basepref+'\.',"");
 				if (key.search(/\./)!=-1) {
@@ -208,7 +208,7 @@ Foxtrick.util.links = {
 
 			// get custon links from pref
 			var keys={};
-			var array = FoxtrickPrefs.getElemNames( basepref );
+			var array = FoxtrickPrefs._getElemNames( basepref );
 			for (var nl=0;nl<array.length;nl++) {
 				var key=array[nl].replace(basepref+'\.',"");
 				if (key.search(/\./)!=-1) {key=key.replace(/\..+/,"");keys[key]=key;}
@@ -427,9 +427,9 @@ Foxtrick.util.links = {
 
 			var mylink = evt["target"]["mylink"];
 			var baseprefnl = evt["target"]["baseprefnl"];
-			FoxtrickPrefs.deleteValue(baseprefnl+'.href');
-			FoxtrickPrefs.deleteValue(baseprefnl+'.title');
-			FoxtrickPrefs.deleteValue(baseprefnl+'.img');
+			FoxtrickPrefs.delListPref(baseprefnl+'.href');
+			FoxtrickPrefs.delListPref(baseprefnl+'.title');
+			FoxtrickPrefs.delListPref(baseprefnl+'.img');
 			mylink.parentNode.parentNode.parentNode.removeChild(mylink.parentNode.parentNode);
 		}
 		catch (e) {
@@ -472,7 +472,7 @@ Foxtrick.util.links = {
 				   .createInstance(Components.interfaces.nsIConverterOutputStream);
 			os.init(foStream, "UTF-8", 0, 0x0000);
 
-			var array = FoxtrickPrefs.getElemNames(baseprefnl);
+			var array = FoxtrickPrefs._getElemNames(baseprefnl);
 			for(var i = 0; i < array.length; i++) {
 					var value=FoxtrickPrefs.getString(array[i]);
 					if (value!=null) os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'","'+value+'");\n');

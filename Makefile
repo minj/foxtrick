@@ -36,7 +36,6 @@ CONTENT_FILES = add-class.js \
 	preferences.js \
 	preferences.xhtml \
 	prefs.js \
-	session-store.js \
 	read-ht-prefs.js \
 	redirections.js \
 	release-notes.xml \
