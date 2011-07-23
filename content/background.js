@@ -74,8 +74,8 @@ Foxtrick.loader.chrome.browserLoad = function(document) {
 					sendResponse({
 						cssText : cssTextCollection,
 
-						pref : FoxtrickPrefs.pref,
-						prefDefault : FoxtrickPrefs.prefDefault,
+						_prefs_chrome_user : FoxtrickPrefs._prefs_chrome_user,
+						_prefs_chrome_default : FoxtrickPrefs._prefs_chrome_default,
 
 						htLang : htLanguagesText,
 						propsDefault : Foxtrickl10n.properties_default,

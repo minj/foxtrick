@@ -127,8 +127,8 @@ Foxtrick.ApiProxy = {
 			// link to FAQ
 			var more = doc.createElement("a");
 			more.textContent = Foxtrickl10n.getString("oauth.why");
-			more.href = Foxtrick.ResourcePath + "preferences.xhtml#faq=authorize";
-			more.target = "_blank";
+			more.href = 'javascript:void();'
+			more.addEventListener('click', function() {FoxtrickPrefs.show('#faq=authorize');}, false);
 			div.appendChild(more);
 		};
 		var showFinished = function() {

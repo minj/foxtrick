@@ -56,8 +56,8 @@ function init() {
 			if (data.error) Foxtrick.log(data.error);
 			
 			var begin = new Date();
-			FoxtrickPrefs.pref = data.pref;
-			FoxtrickPrefs.prefDefault = data.prefDefault;
+			FoxtrickPrefs._prefs_chrome_user = data._prefs_chrome_user;
+			FoxtrickPrefs._prefs_chrome_default = data._prefs_chrome_default;
 			
 			var parser = new DOMParser();
 			for (var i in data.htLang) {
@@ -101,7 +101,7 @@ function init() {
 function inited() { 
 	return (typeof(Foxtrick.XMLData.countryToLeague) == "object"
 		&& typeof(Foxtrickl10n.screenshots) == "string"
-		&& typeof(FoxtrickPrefs.pref) == "object")
+		&& typeof(FoxtrickPrefs._prefs_chrome_user) == "object")
 		&& Foxtrick.isHt(document);   // ht document is ready
 }
 

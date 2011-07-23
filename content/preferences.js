@@ -315,7 +315,7 @@ function initMainTab()
 	$("#pref-stored-disable").click(function() {
 		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("disable_all_foxtrick_modules_ask"))) {
 			Foxtrick.log('preferences: diable all');
-			FoxtrickPrefs.disableAll('module'); 
+			FoxtrickPrefs.disableAllModules(); 
 			window.location.href = window.location.href + '&imported=true';
 			window.location.reload();
 		}

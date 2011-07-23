@@ -127,7 +127,7 @@ var FoxtrickCore = {
 	showChangeLog : function(doc) {
 		if (FoxtrickPrefs.getString("oldVersion") !== Foxtrick.version()) {
 			if (FoxtrickPrefs.getBool("showReleaseNotes"))
-				Foxtrick.newTab(Foxtrick.ResourcePath + "preferences.xhtml#tab=changes");
+				FoxtrickPrefs.show('#tab=changes');
 			FoxtrickPrefs.setString("oldVersion", Foxtrick.version());
 		}
 	},
