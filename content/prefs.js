@@ -529,10 +529,4 @@ if (Foxtrick.BuildFor == "Chrome") {
 		}
 		catch (e) {}
 	};
-	FoxtrickPrefs.dumpPrefs = function() {
-		chrome.extension.sendRequest({
-			req : "setPrefs",
-			prefs : FoxtrickPrefs.pref
-		});
-	};
 }
