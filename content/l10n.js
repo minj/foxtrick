@@ -317,14 +317,14 @@ if (Foxtrick.BuildFor === "Chrome") {
 				}
 				
 				// default locale
-				var listUrl = chrome.extension.getURL("content/foxtrick.properties");
+				var listUrl = Foxtrick.ResourcePath+"foxtrick.properties";
 				var properties_defaultxhr = new XMLHttpRequest();
 				properties_defaultxhr.open("GET", listUrl, false);
 				properties_defaultxhr.send();
 				this.properties_default = properties_defaultxhr.responseText;
 
 				// default screenhots
-				listUrl = chrome.extension.getURL("content/foxtrick.screenshots");
+				listUrl =Foxtrick.ResourcePath+"foxtrick.screenshots";
 				var screenshotsxhr = new XMLHttpRequest();
 				screenshotsxhr.open("GET", listUrl, false);
 				screenshotsxhr.send();
@@ -334,7 +334,7 @@ if (Foxtrick.BuildFor === "Chrome") {
 				try {
 					var propertiesxhr = new XMLHttpRequest();
 					var localecode = FoxtrickPrefs.getString("htLanguage");
-					listUrl = chrome.extension.getURL("content/locale/" + localecode + "/foxtrick.properties");
+					listUrl = cFoxtrick.ResourcePath+"locale/" + localecode + "/foxtrick.properties";
 					propertiesxhr.open("GET", listUrl, false);
 					propertiesxhr.send();
 					var properties = propertiesxhr.responseText;
@@ -345,7 +345,7 @@ if (Foxtrick.BuildFor === "Chrome") {
 				this.properties = properties;
 				
 				try {
-					listUrl = chrome.extension.getURL("content/locale/"+localecode+"/foxtrick.screenshots");
+					listUrl = Foxtrick.ResourcePath+"locale/"+localecode+"/foxtrick.screenshots";
 					var screenshotsxhr = new XMLHttpRequest();
 					screenshotsxhr.open("GET", listUrl, false);
 					screenshotsxhr.send();

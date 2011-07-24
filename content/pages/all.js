@@ -3,6 +3,9 @@
  * @author ryanli
  */
 
+if (!Foxtrick) var Foxtrick = {};
+Foxtrick.Pages = {};
+
 Foxtrick.Pages.All = {
 	getId : function(doc) {
 		var parseId = function(link) {

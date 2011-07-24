@@ -30,7 +30,6 @@
 			"content/util/notify.js",
 			"content/util/string.js",
 			"content/util/time.js",
-			"content/pages/pages.js",
 			"content/pages/all.js",
 			"content/pages/country.js",
 			"content/pages/players.js",

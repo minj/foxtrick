@@ -502,7 +502,7 @@ if (Foxtrick.BuildFor === "Chrome") {
 						}
 					}
 
-					var prefUrl = chrome.extension.getURL("defaults/preferences/foxtrick.js");
+					var prefUrl = Foxtrick.ResourcePath+("../defaults/preferences/foxtrick.js");
 					var prefXhr = new XMLHttpRequest();
 					prefXhr.open("GET", prefUrl, false);
 					prefXhr.send();

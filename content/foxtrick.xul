@@ -40,7 +40,6 @@
 <script type="application/x-javascript" src="./util/time.js" />
 
 <!-- page utilities -->
-<script type="application/x-javascript" src="./pages/pages.js" />
 <script type="application/x-javascript" src="./pages/all.js" />
 <script type="application/x-javascript" src="./pages/country.js" />
 <script type="application/x-javascript" src="./pages/players.js" />
