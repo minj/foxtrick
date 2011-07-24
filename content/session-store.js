@@ -14,8 +14,21 @@ if ( Foxtrick.BuildFor === "Gecko") {
 		Foxtrick.sessionStore[key] = value;
 	};
 
-	Foxtrick.sessionGet = function(key, callback) {
-		callback(Foxtrick.sessionStore[key]);
+	// key = string or map of keys and default values
+	// returns value reps. map of keys and values
+	Foxtrick.sessionGet = function(keymap, callback) {
+		if (typeof(keymap) === "string")
+				callback(Foxtrick.sessionStore[keymap]);
+		else if (typeof(keymap) === "object") {
+			var answermap = {};
+			for (var key in keymap) {
+				if (Foxtrick.sessionStore[key]!==null)
+					answermap[key] = Foxtrick.sessionStore[key];
+				else 
+					answermap[key] = keymap[i];
+			}
+				callback(answermap);
+		}
 	};
 
 	Foxtrick.sessionDeleteBranch = function(branch) {
@@ -38,8 +51,21 @@ if (Foxtrick.BuildFor === "Chrome") {
 			Foxtrick.sessionStore[key] = value;
 		};
 
-		Foxtrick.sessionGet = function(key, sendResponse) {
-			sendResponse({ value: Foxtrick.sessionStore[key] });
+		// key = string or map of keys and default values
+		// returns value resp map of keys and values
+		Foxtrick.sessionGet = function(keymap, sendResponse) {
+			if (typeof(keymap) === "string")
+				sendResponse({ value: Foxtrick.sessionStore[keymap] });
+			else if (typeof(keymap) === "object") {
+				var answermap = {};
+				for (var key in keymap) {
+					if (Foxtrick.sessionStore[key]!==null)
+						answermap[key] = Foxtrick.sessionStore[key];
+					else 
+						answermap[key] = keymap[i];
+				}
+				sendResponse({ value: answermap });
+			}
 		};
 
 		Foxtrick.sessionDeleteBranch = function(branch) {
