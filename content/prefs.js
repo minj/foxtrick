@@ -502,11 +502,8 @@ if (Foxtrick.BuildFor === "Chrome") {
 						}
 					}
 
-					var prefUrl = Foxtrick.ResourcePath+("../defaults/preferences/foxtrick.js");
-					var prefXhr = new XMLHttpRequest();
-					prefXhr.open("GET", prefUrl, false);
-					prefXhr.send();
-					var prefList = prefXhr.responseText.split(/[\n\r]+/);
+					var prefText = Foxtrick.load(Foxtrick.ResourcePath+("../defaults/preferences/foxtrick.js"))
+					var prefList = prefText.split(/[\n\r]+/);
 					const prefRe = /pref\("extensions\.foxtrick\.prefs\.(.+)",\s*(.+)\);/;
 					FoxtrickPrefs._prefs_chrome_default = {};
 					for (var i = 0; i < prefList.length; ++i) {

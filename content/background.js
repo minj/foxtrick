@@ -138,10 +138,10 @@ Foxtrick.loader.chrome.browserLoad = function() {
 				// @callback_param data - response text
 				// @callback_param status - HTTP status of request
 				// synchronous, since messaging is async already
-				var xhr = new XMLHttpRequest();
-				xhr.open("GET", request.url, false);
-				xhr.send();
-				sendResponse({data : xhr.responseText, status : xhr.status});
+				var callback = function(responseText,status){
+					sendResponse({data : responseText, status : status});
+				}; 
+				Foxtrick.load(request.url, callback, request.crossSite )
 			}
 			else if (request.req == "newTab") {
 				// @param url - the URL of new tab to create

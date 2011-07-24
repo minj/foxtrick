@@ -316,45 +316,20 @@ if (Foxtrick.BuildFor === "Chrome") {
 					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXml(url);
 				}
 				
-				// default locale
-				var listUrl = Foxtrick.ResourcePath+"foxtrick.properties";
-				var properties_defaultxhr = new XMLHttpRequest();
-				properties_defaultxhr.open("GET", listUrl, false);
-				properties_defaultxhr.send();
-				this.properties_default = properties_defaultxhr.responseText;
-
-				// default screenhots
-				listUrl =Foxtrick.ResourcePath+"foxtrick.screenshots";
-				var screenshotsxhr = new XMLHttpRequest();
-				screenshotsxhr.open("GET", listUrl, false);
-				screenshotsxhr.send();
-				this.screenshots_default = screenshotsxhr.responseText;
+				this.properties_default = Foxtrick.load(Foxtrick.ResourcePath+"foxtrick.properties");
+				this.screenshots_default = Foxtrick.load(Foxtrick.ResourcePath+"foxtrick.screenshots");
 				
-				// user locale
-				try {
-					var propertiesxhr = new XMLHttpRequest();
-					var localecode = FoxtrickPrefs.getString("htLanguage");
-					listUrl = cFoxtrick.ResourcePath+"locale/" + localecode + "/foxtrick.properties";
-					propertiesxhr.open("GET", listUrl, false);
-					propertiesxhr.send();
-					var properties = propertiesxhr.responseText;
+				var localecode = FoxtrickPrefs.getString("htLanguage");
+				try { 
+					this.properties = Foxtrick.load(Foxtrick.ResourcePath+"locale/" + localecode + "/foxtrick.properties");
+				} catch(e) { 
+					this.properties = this.properties_default; 
 				}
-				catch(e) {
-					var properties = this.properties_default;
+				try { 
+					this.screenshots = Foxtrick.load(Foxtrick.ResourcePath+"locale/"+localecode+"/foxtrick.screenshots");
+				} catch(e) { 
+					this.screenshots = this.screenshots_default; 
 				}
-				this.properties = properties;
-				
-				try {
-					listUrl = Foxtrick.ResourcePath+"locale/"+localecode+"/foxtrick.screenshots";
-					var screenshotsxhr = new XMLHttpRequest();
-					screenshotsxhr.open("GET", listUrl, false);
-					screenshotsxhr.send();
-					var screenshots = screenshotsxhr.responseText;
-				}
-				catch(e) {
-					var screenshots = this.screenshots_default;
-				}
-				this.screenshots = screenshots;
 			}
 			else if (Foxtrick.chromeContext() == "content") {
 				// init for chrome content is in loader_chrome

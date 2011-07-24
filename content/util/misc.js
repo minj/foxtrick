@@ -131,7 +131,7 @@ Foxtrick.load = function(url, callback, crossSite) {
 		&& crossSite) {
 		// the evil Chrome that requires us to send a message to
 		// background script for cross-site requests
-		chrome.extension.sendRequest({req : "xml", url : url},
+		chrome.extension.sendRequest({req : "xml", url : url, crossSite: crossSite},
 			function(response) {
 				try {
 					callback(response.data, response.status);
@@ -144,6 +144,10 @@ Foxtrick.load = function(url, callback, crossSite) {
 		);
 	}
 	else {
+		if (!crossSite) {
+			// a request to load local resource
+			url = url.replace(Foxtrick.ResourcePath, Foxtrick.InternalPath);
+		}
 		var req = new XMLHttpRequest();
 		if (!callback) {
 			req.open("GET", url, false);
@@ -333,8 +337,7 @@ Foxtrick.insertAtCursor = function(textarea, text) {
 
 Foxtrick.replaceExtensionDirectory = function(cssTextCollection) {		
 	// replace ff chrome reference by google chrome refs
-	var exturl = chrome.extension.getURL("");
-	return cssTextCollection.replace(RegExp("chrome://foxtrick/", "g"), exturl);
+	return cssTextCollection.replace(RegExp("chrome://foxtrick/content/", "g"), Foxtrick.ResourcePath);
 };
 
 Foxtrick.confirmDialog = function(msg) {
@@ -578,10 +581,7 @@ Foxtrick.getCssTextFromFile = function (cssUrl) {
 	if (cssUrl && cssUrl.search(/^http|^chrome-extension/) != -1) {
 		try { 
 			// a resource file, get css file content
-			css_xhr = new XMLHttpRequest();
-			css_xhr.open("GET", cssUrl, false);
-			css_xhr.send();
-			css_text = css_xhr.responseText;
+			css_text = Foxtrick.load(cssUrl);
 		} catch(e) { Foxtrick.log('get css: ', cssUrl , ' ', e) }
 	}
 	else {

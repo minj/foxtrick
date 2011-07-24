@@ -9,10 +9,12 @@ if (!Foxtrick)
 
 if (typeof(chrome) === "object") {
 	Foxtrick.BuildFor = "Chrome";
+	Foxtrick.InternalPath = chrome.extension.getURL("content/");
 	Foxtrick.ResourcePath = chrome.extension.getURL("content/");
 }
 else {
 	Foxtrick.BuildFor = "Gecko";
+	Foxtrick.InternalPath = "chrome://foxtrick/content/";
 	Foxtrick.ResourcePath = "chrome://foxtrick/content/";
 }
 
