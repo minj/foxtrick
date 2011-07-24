@@ -33,18 +33,20 @@ var FoxtrickCore = {
 		Foxtrick.ResourcePath + "resources/css/flags.css",
 	],
 
-	// called after browser loaded (Gecko-only), with browser chrome
-	// as the argument
+	// called after browser loaded , with browser chrome
+	// as the argument (Gecko-only)
 	// initializes items in menu bar and status bar
 	onLoad : function(document) {
-		// toolbar menu - preferences
-		var toolbarPreferences = document.getElementById("foxtrick-toolbar-preferences");
-		toolbarPreferences.label = Foxtrickl10n.getString("preferences");
-		// toolbar menu - disable
-		var toolbarDisable = document.getElementById("foxtrick-toolbar-deactivate");
-		toolbarDisable.label = Foxtrickl10n.getString("foxtrick.prefs.disableTemporaryLabel");
-		// update status
-		this.updateStatus();
+		if (Foxtrick.BuildFor === "Gecko") {
+			// toolbar menu - preferences
+			var toolbarPreferences = document.getElementById("foxtrick-toolbar-preferences");
+			toolbarPreferences.label = Foxtrickl10n.getString("preferences");
+			// toolbar menu - disable
+			var toolbarDisable = document.getElementById("foxtrick-toolbar-deactivate");
+			toolbarDisable.label = Foxtrickl10n.getString("foxtrick.prefs.disableTemporaryLabel");
+			// update status
+			this.updateStatus();
+		}
 	},
 
 	onTabChange : function(doc) {

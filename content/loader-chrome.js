@@ -1,40 +1,21 @@
 /**
- * loader.js
+ * loader_chrome.js
  * Foxtrick loader
  * @author  convincedd
  */
 
-if (!Foxtrick) var Foxtrick={};
+if (!Foxtrick)
+	var Foxtrick = {};
+if (!Foxtrick.loader)
+	Foxtrick.loader = {};
+Foxtrick.loader.chrome = {};
 
-try {
 
-	var runScript_tries = 0;
-
-	function runScript() {
-	  try {
-		Foxtrick.log('runscript')
+// invoked when an allowed HTML document is load started
+Foxtrick.loader.chrome.docLoadStart = function() {
+	try {
+		if ( !Foxtrick.isHtUrl(document.location.href) )  return;
 		
-		// disabled?
-		if ( (FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(document) )
-			|| FoxtrickPrefs.getBool("disableTemporary") ) {
-			return;
-		}
-
-		var mid = new Date();
-		
-		Foxtrick.entry.run(document);
-		
-		var end = new Date();
-		var runTime = end.getTime() - mid.getTime();
-		Foxtrick.log ("Foxtrick run time: " , runTime , " ms\n");		
-
-		if (content = document.getElementById("content"))
-			Foxtrick.startListenToChange(document);
-	  } catch(e) {console.log('runScript: ',e);}
-	}
-
-		
-	function init() {
 		// check if it's in exclude list
 		for (var i in Foxtrick.pagesExcluded) {
 			var excludeRe = new RegExp(Foxtrick.pagesExcluded[i], "i");
@@ -44,6 +25,8 @@ try {
 			}
 		}
 
+		// request resources from background script
+		// calls/adds Foxtrick.loader.chrome.docLoadEnd 
 		chrome.extension.sendRequest({ req : "init" },
 		function (data) {
 			try {
@@ -87,17 +70,16 @@ try {
 
 				if (Foxtrick.isHt(document)) {
 					Foxtrick.log('Ht domument ready. Run now.'); 
-					runScript();
+					Foxtrick.entry.docLoad();
 				}
 				else {
 					Foxtrick.log('Wait for DOMContentLoaded');
-					window.addEventListener("DOMContentLoaded", runScript, false);
+					window.addEventListener("DOMContentLoaded", Foxtrick.entry.docLoad, false);
 				}
 			} catch(e) {Foxtrick.log('loader init: ', e);}
 		});
-	}
+	} catch(e) {Foxtrick.log(e);}
+};
 
 
-	init();
-
-} catch(e) {Foxtrick.log('loader ', e)}
+Foxtrick.loader.chrome.docLoadStart();

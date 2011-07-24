@@ -15,6 +15,39 @@ Foxtrick.entry.isRtl = false;
 // on it
 Foxtrick.entry.runMap = {};
 
+// invoked on DOMContentLoaded
+Foxtrick.entry.docLoad = function(ev) {
+	if (Foxtrick.BuildFor === "Chrome") var doc = document;  
+	if (Foxtrick.BuildFor === "Gecko") var doc = ev.originalTarget;
+	if (doc.nodeName != "#document")
+		return;
+
+	if (Foxtrick.isHt(doc)) {
+		// check if it's in exclude list
+		for (var i in Foxtrick.pagesExcluded) {
+			var excludeRe = new RegExp(Foxtrick.pagesExcluded[i], "i");
+			// page excluded, return
+			if (doc.location.href.search(excludeRe) > -1) {
+				return;
+			}
+		}
+
+		var begin = (new Date()).getTime();
+		Foxtrick.entry.run(doc);
+		var diff = (new Date()).getTime() - begin;
+		Foxtrick.dump("run time: " + diff + " ms | " + doc.location.pathname+doc.location.search + '\n');
+		// listen to page content changes
+		var content = doc.getElementById("content");
+		if (!content) {
+			Foxtrick.log("Cannot find #content at ", doc.location);
+			return;
+		}
+		Foxtrick.startListenToChange(doc);
+	}
+};
+
+// called on browser load for gecko
+// and on each page for chrome
 Foxtrick.entry.init = function() {
 	const coreModules = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
 	Foxtrick.log("Initializing FoxTrick…");

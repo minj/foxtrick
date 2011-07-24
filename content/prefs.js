@@ -485,51 +485,49 @@ if (Foxtrick.BuildFor === "Chrome") {
 				// get prefrences
 				// this is used when loading from options page, not valid
 				// in content script since access to localStorage is forbidden
-				if (Foxtrick.chromeContext() == "background") {
-					try {
-						// user preferences
-						FoxtrickPrefs._prefs_chrome_user = {};
-						var length = localStorage.length;
-						for (var i = 0; i < length; ++i) {
-							var key = localStorage.key(i);
-							var value = localStorage.getItem(key);
-							try {
-								FoxtrickPrefs._prefs_chrome_user[key] = JSON.parse(value);
-							}
-							catch (e) {
-								Foxtrick.dump("Preference parse error: "
-									+ "key: " + key
-									+ ", value: " + value + "\n");
-							}
+				try {
+					// user preferences
+					FoxtrickPrefs._prefs_chrome_user = {};
+					var length = localStorage.length;
+					for (var i = 0; i < length; ++i) {
+						var key = localStorage.key(i);
+						var value = localStorage.getItem(key);
+						try {
+							FoxtrickPrefs._prefs_chrome_user[key] = JSON.parse(value);
 						}
+						catch (e) {
+							Foxtrick.dump("Preference parse error: "
+								+ "key: " + key
+								+ ", value: " + value + "\n");
+						}
+					}
 
-						var prefUrl = chrome.extension.getURL("defaults/preferences/foxtrick.js");
-						var prefXhr = new XMLHttpRequest();
-						prefXhr.open("GET", prefUrl, false);
-						prefXhr.send();
-						var prefList = prefXhr.responseText.split(/[\n\r]+/);
-						const prefRe = /pref\("extensions\.foxtrick\.prefs\.(.+)",\s*(.+)\);/;
-						FoxtrickPrefs._prefs_chrome_default = {};
-						for (var i = 0; i < prefList.length; ++i) {
-							var pref = prefList[i];
-							var matches = pref.match(prefRe);
-							if (matches) {
-								var key = matches[1];
-								var value = matches[2];
-								if (value == "true")
-									FoxtrickPrefs._prefs_chrome_default[key] = true;
-								else if (value == "false")
-									FoxtrickPrefs._prefs_chrome_default[key] = false;
-								else if (!isNaN(Number(value)))
-									FoxtrickPrefs._prefs_chrome_default[key] = Number(value)
-								else if (value.match(/^"(.*)"$/))
-									FoxtrickPrefs._prefs_chrome_default[key] = String(value.match(/^"(.*)"$/)[1]);
-							}
+					var prefUrl = chrome.extension.getURL("defaults/preferences/foxtrick.js");
+					var prefXhr = new XMLHttpRequest();
+					prefXhr.open("GET", prefUrl, false);
+					prefXhr.send();
+					var prefList = prefXhr.responseText.split(/[\n\r]+/);
+					const prefRe = /pref\("extensions\.foxtrick\.prefs\.(.+)",\s*(.+)\);/;
+					FoxtrickPrefs._prefs_chrome_default = {};
+					for (var i = 0; i < prefList.length; ++i) {
+						var pref = prefList[i];
+						var matches = pref.match(prefRe);
+						if (matches) {
+							var key = matches[1];
+							var value = matches[2];
+							if (value == "true")
+								FoxtrickPrefs._prefs_chrome_default[key] = true;
+							else if (value == "false")
+								FoxtrickPrefs._prefs_chrome_default[key] = false;
+							else if (!isNaN(Number(value)))
+								FoxtrickPrefs._prefs_chrome_default[key] = Number(value)
+							else if (value.match(/^"(.*)"$/))
+								FoxtrickPrefs._prefs_chrome_default[key] = String(value.match(/^"(.*)"$/)[1]);
 						}
 					}
-					catch (e) {
-						Foxtrick.log(e);
-					}
+				}
+				catch (e) {
+					Foxtrick.log(e);
 				}
 			},
 

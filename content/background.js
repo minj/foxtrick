@@ -12,7 +12,7 @@ Foxtrick.loader.chrome = {};
 
 
 // invoked after the browser chrome is loaded
-Foxtrick.loader.chrome.browserLoad = function(document) {
+Foxtrick.loader.chrome.browserLoad = function() {
   try {
 	Foxtrick.log('Foxtrick.loader.chrome.browserLoad');
 
@@ -37,6 +37,19 @@ Foxtrick.loader.chrome.browserLoad = function(document) {
 	}
 
 	
+	// calls module.onLoad() after the browser window is loaded
+	for (var i in Foxtrick.modules) {
+		var module = Foxtrick.modules[i];
+		if (typeof(module.onLoad) === "function") {
+			try {
+				module.onLoad(document);
+			}
+			catch (e) {
+				Foxtrick.log("Error caught in module ", module.MODULE_NAME, ":", e);
+			}
+		}
+	}
+
 	// get resources
 	var core = [ FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData ];
 	for (var i in core) 
@@ -223,4 +236,4 @@ for (var i = 0; i < id_contexts.length; i++) {
 //var child2 = chrome.contextMenus.create({"title": "Child 2", "parentId": parent, "onclick": genericOnClick});
 */
 
-Foxtrick.loader.chrome.browserLoad (document);
+Foxtrick.loader.chrome.browserLoad ();
