@@ -1,3 +1,14 @@
+function initLoader() {	
+	if (Foxtrick.BuildFor === "Gecko" || Foxtrick.chromeContext() === "background")
+		init();
+	else
+		chrome.extension.sendRequest({ req : "init" },
+			function (data) {
+				Foxtrick.entry.setRetrievedLocalResources(data);
+				init();
+		});
+};
+
 function init()
 {
 	try {

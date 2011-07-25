@@ -33,26 +33,9 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 				if (data.error) Foxtrick.log(data.error);
 				
 				var begin = new Date();
-				FoxtrickPrefs._prefs_chrome_user = data._prefs_chrome_user;
-				FoxtrickPrefs._prefs_chrome_default = data._prefs_chrome_default;
 				
-				var parser = new DOMParser();
-				for (var i in data.htLang) {
-					Foxtrickl10n.htLanguagesXml[i] = parser.parseFromString(data.htLang[i], "text/xml");
-				}
+				Foxtrick.entry.setRetrievedLocalResources(data);
 				
-				Foxtrickl10n.properties_default = data.properties_default;
-				Foxtrickl10n.properties = data.properties;
-				Foxtrickl10n.screenshots_default = data.screenshots_default;
-				Foxtrickl10n.screenshots = data.screenshots;
-
-				Foxtrick.XMLData.htCurrencyXml = parser.parseFromString(data.currency, "text/xml");
-				Foxtrick.XMLData.htdateformat = parser.parseFromString(data.dateFormat, "text/xml");
-				Foxtrick.XMLData.aboutXML = parser.parseFromString(data.about, "text/xml");
-				Foxtrick.XMLData.worldDetailsXml = parser.parseFromString(data.worldDetails, "text/xml");
-				Foxtrick.XMLData.League = data.league;
-				Foxtrick.XMLData.countryToLeague = data.countryToLeague;
-
 				if ( (FoxtrickPrefs.getBool("disableOnStage")
 						&& Foxtrick.isStage(document))
 					|| FoxtrickPrefs.getBool("disableTemporary")) {
