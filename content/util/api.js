@@ -58,7 +58,7 @@ Foxtrick.util.api = {
 				linkPar.textContent = ""; // clear linkPar first
 				if (status != 200) {
 					// failed to fetch link
-					linkPar.textContent = Foxtrickl10n.getString("exception.error").replace(/%s/, status);
+					linkPar.textContent = Foxtrick.util.api.getErrorText(text, status) ;
 					return;
 				}
 				var requestToken = text.split(/&/)[0].split(/=/)[1];
@@ -101,13 +101,16 @@ Foxtrick.util.api = {
 					var accessTokenUrl = Foxtrick.util.api.accessTokenUrl + "?" + query;
 					Foxtrick.log("Requesting access token at: ",  Foxtrick.util.api.stripToken(accessTokenUrl));
 					Foxtrick.load(accessTokenUrl, function(text, status) {
-						try{
-							var accessToken = text.split(/&/)[0].split(/=/)[1];
-							var accessTokenSecret = text.split(/&/)[1].split(/=/)[1];
-							Foxtrick.util.api.setAccessToken(accessToken);
-							Foxtrick.util.api.setAccessTokenSecret(accessTokenSecret);
-							showFinished();
-						} catch(e) {showFinished('Error: '+ status);}
+						if (status != 200) {
+							// failed to fetch link
+							showFinished( Foxtrick.util.api.getErrorText(text, status) );
+							return;
+						}
+						var accessToken = text.split(/&/)[0].split(/=/)[1];
+						var accessTokenSecret = text.split(/&/)[1].split(/=/)[1];
+						Foxtrick.util.api.setAccessToken(accessToken);
+						Foxtrick.util.api.setAccessTokenSecret(accessTokenSecret);
+						showFinished();
 					}, true); // save token and secret
 				}, false); // after hitting "authorize" button
 				inputPar.appendChild(button);
@@ -257,7 +260,7 @@ Foxtrick.util.api = {
 							callback(null);
 						}
 						else {
-							Foxtrick.log("ApiProxy: error ", status, 
+							Foxtrick.log("ApiProxy: error ", Foxtrick.util.api.getErrorText(x, status) , 
 										". Arguments: ", Foxtrick.filter(parameters, function(p) {
 															return (p[0]!='oauth_consumer_key' 
 																	&& p[0]!='oauth_token' 
@@ -298,5 +301,14 @@ Foxtrick.util.api = {
 
 	stripToken : function(url) {
 		return url.substr(0,url.search('oauth_consumer_key')-1);
+	},
+	
+	getErrorText : function(text, status) {
+		try {
+			if (typeof(text) == 'string') text = (new DOMParser()).parseFromString(text, "text/xml");
+			return errorText =  text.getElementsByTagName('h2')[0].textContent;
+		} catch(e) {
+			return errorText = Foxtrickl10n.getString("exception.error").replace(/%s/, status);
+		}
 	},
 };
