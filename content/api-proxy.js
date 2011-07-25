@@ -101,12 +101,14 @@ Foxtrick.ApiProxy = {
 					var query = Foxtrick.OAuth.formEncode(msg.parameters);
 					var accessTokenUrl = Foxtrick.ApiProxy.accessTokenUrl + "?" + query;
 					Foxtrick.log("Requesting access token at: ",  Foxtrick.ApiProxy.stripToken(accessTokenUrl));
-					Foxtrick.load(accessTokenUrl, function(text) {
-						var accessToken = text.split(/&/)[0].split(/=/)[1];
-						var accessTokenSecret = text.split(/&/)[1].split(/=/)[1];
-						Foxtrick.ApiProxy.setAccessToken(accessToken);
-						Foxtrick.ApiProxy.setAccessTokenSecret(accessTokenSecret);
-						showFinished();
+					Foxtrick.load(accessTokenUrl, function(text, status) {
+						try{
+							var accessToken = text.split(/&/)[0].split(/=/)[1];
+							var accessTokenSecret = text.split(/&/)[1].split(/=/)[1];
+							Foxtrick.ApiProxy.setAccessToken(accessToken);
+							Foxtrick.ApiProxy.setAccessTokenSecret(accessTokenSecret);
+							showFinished();
+						} catch(e) {showFinished('Error: '+ status);}
 					}, true); // save token and secret
 				}, false); // after hitting "authorize" button
 				inputPar.appendChild(button);
@@ -131,8 +133,9 @@ Foxtrick.ApiProxy = {
 			more.addEventListener('click', function() {FoxtrickPrefs.show('#faq=authorize');}, false);
 			div.appendChild(more);
 		};
-		var showFinished = function() {
-			div.textContent = Foxtrickl10n.getString("oauth.success");
+		var showFinished = function(text) {
+			if (!text) div.textContent = Foxtrickl10n.getString("oauth.success");
+			else div.textContent = text;
 		}
 		Foxtrick.util.note.add(doc, null, "ft-api-proxy-auth", div, null,
 			false, false, false);
