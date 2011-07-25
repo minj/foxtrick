@@ -4,7 +4,6 @@
 		"js" : [
 			"content/env.js",
 			"content/prefs.js",
-			"content/session-store.js",
 			"content/pages.js",
 			"content/l10n.js",
 			"content/helper.js",
@@ -28,6 +27,7 @@
 			"content/util/misc.js",
 			"content/util/note.js",
 			"content/util/notify.js",
+			"content/util/session-store.js",
 			"content/util/string.js",
 			"content/util/time.js",
 			"content/pages/all.js",
