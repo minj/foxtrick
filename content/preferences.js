@@ -1,15 +1,17 @@
 function init()
 {
-	initCoreModules();
-	initListeners();
-	initTabs();
-	initTextAndValues();
-	locateFragment(window.location.toString()); // locate element by fragment
-			
-	if (window.location.href.search(/imported=true/)!==-1) {
-		notice(Foxtrickl10n.getString("foxtrick.prefs.loaded"));
-		window.location.href = window.location.href.substr(0,window.location.href.search(/\&imported=true/));
-	}
+	try {
+		initCoreModules();
+		initListeners();
+		initTabs();
+		initTextAndValues();
+		locateFragment(window.location.toString()); // locate element by fragment
+				
+		if (window.location.href.search(/imported=true/)!==-1) {
+			notice(Foxtrickl10n.getString("foxtrick.prefs.loaded"));
+			window.location.href = window.location.href.substr(0,window.location.href.search(/\&imported=true/));
+		}
+	} catch(e) {Foxtrick.log(e);}
 }
 
 function initCoreModules()

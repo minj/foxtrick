@@ -1,6 +1,6 @@
 /**
- * links.js
- * Utilities for adding links
+ * links-box.js
+ * Utilities for adding link-boxes
  * @author convinced
  */
 
