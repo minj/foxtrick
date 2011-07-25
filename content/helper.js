@@ -8,7 +8,8 @@ var FoxtrickHelper = {
 	CORE_MODULE : true,
 	PAGES : new Array('all', 'teamPageAny'),
 	ownTeam: null,
-
+	NICE: -99, // helper function. other modules depend on ownteam info
+	
 	run : function(doc) {
 		this.getOwnTeamInfo(doc);
 	},
