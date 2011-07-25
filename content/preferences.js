@@ -1,17 +1,19 @@
 function initLoader() {	
-	if (Foxtrick.BuildFor === "Gecko" || Foxtrick.chromeContext() === "background")
+	if (Foxtrick.BuildFor === "Gecko" || Foxtrick.chromeContext() == "background")
 		init();
 	else
-		chrome.extension.sendRequest({ req : "init" },
+		chrome.extension.sendRequest({ req : "init", sender : 'options' },
 			function (data) {
-				Foxtrick.entry.setRetrievedLocalResources(data);
-				init();
+				try {
+					Foxtrick.entry.setRetrievedLocalResources(data);
+					init();
+				} catch(e) {Foxtrick.log('initLoader: ',e);}
 		});
 };
 
 function init()
 {
-	try {
+	try{
 		initCoreModules();
 		initListeners();
 		initTabs();
@@ -22,7 +24,7 @@ function init()
 			notice(Foxtrickl10n.getString("foxtrick.prefs.loaded"));
 			window.location.href = window.location.href.substr(0,window.location.href.search(/\&imported=true/));
 		}
-	} catch(e) {Foxtrick.log(e);}
+	} catch(e){Foxtrick.log('init: ',e);}
 }
 
 function initCoreModules()
