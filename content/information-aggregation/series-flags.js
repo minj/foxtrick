@@ -55,7 +55,7 @@ var FoxtrickSeriesFlags = {
 				else {
 					var args = [["file", "teamdetails"]];
 					args.push(arg);
-					Foxtrick.ApiProxy.retrieve(doc, args,{cache_lifetime:'session', caller_name:this.MODULE_NAME },
+					Foxtrick.util.api.retrieve(doc, args,{cache_lifetime:'session', caller_name:this.MODULE_NAME },
 					function(xml) {
 						if (!xml) return;
 						var data = { // in case LeagueLevelUnit is missing (eg during quali matches)

@@ -221,7 +221,7 @@ var FoxtrickMyMonitor = {
 				args.push(["isYouth", "true"]);
 			var parameters_str = JSON.stringify(args);
 		
-			Foxtrick.ApiProxy.retrieve(doc, args, { cache_lifetime:'default', caller_name:this.MODULE_NAME },
+			Foxtrick.util.api.retrieve(doc, args, { cache_lifetime:'default', caller_name:this.MODULE_NAME },
 			function(xml) {
 				if (xml !== null) {
 					team.name = xml.getElementsByTagName("TeamName")[0].textContent;
@@ -233,7 +233,7 @@ var FoxtrickMyMonitor = {
 				// change expire date of xml to after next match game
 				if (nextmatchdate) {
 					var expire = Foxtrick.util.time.getDateFromText(nextmatchdate, "yyyymmdd");
-					Foxtrick.ApiProxy.setCacheLifetime(doc, parameters_str, expire.getTime()+105*60*1000);
+					Foxtrick.util.api.setCacheLifetime(doc, parameters_str, expire.getTime()+105*60*1000);
 				}
 			});
 			

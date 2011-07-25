@@ -71,7 +71,7 @@ var FoxtrickShowFriendlyBooked = {
 				["file", "teamdetails"],
 				["teamID", teamId]
 			];
-			Foxtrick.ApiProxy.retrieve(doc, parameters,{ cache_lifetime:'default', caller_name:this.MODULE_NAME },
+			Foxtrick.util.api.retrieve(doc, parameters,{ cache_lifetime:'default', caller_name:this.MODULE_NAME },
 			function(xml) {
 				if (xml == null) {
 					// failed to retrieve XML

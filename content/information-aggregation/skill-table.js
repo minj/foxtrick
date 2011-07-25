@@ -126,7 +126,7 @@ var FoxtrickSkillTable = {
 					var args = [];
 					args.push(["teamid", teamid]);
 					args.push(["file", "teamdetails"]);
-					Foxtrick.ApiProxy.retrieve(doc, args, {cache_lifetime:'session', caller_name:this.MODULE_NAME },
+					Foxtrick.util.api.retrieve(doc, args, {cache_lifetime:'session', caller_name:this.MODULE_NAME },
 					function(xml) {
 						if (xml) markRowIfBotOwner(rows, xml);
 						// if processed all, now hide bots
@@ -210,7 +210,7 @@ var FoxtrickSkillTable = {
 		var args = [];
 		args.push(["TeamId", TeamId]);
 		args.push(["file", "teamdetails"]);
-		Foxtrick.ApiProxy.retrieve(doc, args, {cache_lifetime:'session', caller_name:this.MODULE_NAME },
+		Foxtrick.util.api.retrieve(doc, args, {cache_lifetime:'session', caller_name:this.MODULE_NAME },
 		function(xml) {
 			if (xml) 	
 				var activationDate = xml.getElementsByTagName("ActivationDate")[0].textContent;
@@ -227,7 +227,7 @@ var FoxtrickSkillTable = {
 						var args = [];
 						args.push(["playerid", player.id]);
 						args.push(["file", "transfersPlayer"]);
-						Foxtrick.ApiProxy.retrieve(doc, args, {cache_lifetime:'session', caller_name:this.MODULE_NAME },
+						Foxtrick.util.api.retrieve(doc, args, {cache_lifetime:'session', caller_name:this.MODULE_NAME },
 						function(xml) { 
 							var hasTransfers = false;
 							if (xml) {	
@@ -242,7 +242,7 @@ var FoxtrickSkillTable = {
 									var args = [];
 									args.push(["playerid", player.id]);
 									args.push(["file", "playerevents"]);
-									Foxtrick.ApiProxy.retrieve(doc, args, { cache_lifetime:'session', caller_name:this.MODULE_NAME },
+									Foxtrick.util.api.retrieve(doc, args, { cache_lifetime:'session', caller_name:this.MODULE_NAME },
 									function(xml) { 
 										if (xml) 
 											var was_pulled = setJoinedSinceFromPullDate(xml, list);
@@ -306,7 +306,7 @@ var FoxtrickSkillTable = {
 						var args = [];
 						args.push(["playerid", player.id]);
 						args.push(["file", "transfersPlayer"]);
-						Foxtrick.ApiProxy.retrieve(doc, args, {cache_lifetime:'session', caller_name:this.MODULE_NAME },
+						Foxtrick.util.api.retrieve(doc, args, {cache_lifetime:'session', caller_name:this.MODULE_NAME },
 						function(xml) {
 							if (xml) {
 								var homeGrown = getHomeGrownStatus(TeamId, xml);
@@ -1069,7 +1069,7 @@ var FoxtrickSkillTable = {
 		Foxtrick.listen(switchViewLink, "click", FoxtrickSkillTable.view, false);
 		switchView.appendChild(switchViewLink);
 		
-		if (Foxtrick.ApiProxy.authorized() ) {
+		if (Foxtrick.util.api.authorized() ) {
 			if (Foxtrick.Pages.Players.isOldiesPage(doc)) {
 				var options = doc.createElement("div");
 				var addHomegrownLink = doc.createElement("a");

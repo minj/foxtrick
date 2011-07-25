@@ -1,16 +1,15 @@
 /**
- * api-proxy.js
+ * api.js
  * Proxy for authorizing and retrieving XML data from Hattrick
  * @author ryanli
  */
 
-if (!Foxtrick) var Foxtrick = {};
+if (!Foxtrick)
+	var Foxtrick = {};
+if (!Foxtrick.util)
+	Foxtrick.util = {};
 
-Foxtrick.ApiProxy = {
-	MODULE_NAME : "ApiProxy",
-	CORE_MODULE : true,
-	PAGES : ["all"],
-
+Foxtrick.util.api = {
 	consumerKey : "sKDixHQBSGgdJ3a9O6lRtL",
 	consumerSecret : "DIZIDBTX64d0+-9fPq8GrYN5PNHtMxYhpS9ZKsbcPqf",
 
@@ -21,22 +20,22 @@ Foxtrick.ApiProxy = {
 	resourceUrl : "http://chpp.hattrick.org/chppxml.ashx",
 
 	authorized : function() {
-		return Foxtrick.ApiProxy.getAccessToken()
-			&& Foxtrick.ApiProxy.getAccessTokenSecret();
+		return Foxtrick.util.api.getAccessToken()
+			&& Foxtrick.util.api.getAccessTokenSecret();
 	},
 
 	authorize : function(doc) {
 		var div = doc.createElement("div");
 		var accessor = {
-			consumerSecret : Foxtrick.ApiProxy.consumerSecret,
+			consumerSecret : Foxtrick.util.api.consumerSecret,
 			tokenSecret : null
 		};
 		var msg = {
-			action : Foxtrick.ApiProxy.requestTokenUrl,
+			action : Foxtrick.util.api.requestTokenUrl,
 			method : "get",
 			parameters : [
-				["oauth_consumer_key", Foxtrick.ApiProxy.consumerKey],
-				["oauth_signature_method", Foxtrick.ApiProxy.signatureMethod],
+				["oauth_consumer_key", Foxtrick.util.api.consumerKey],
+				["oauth_signature_method", Foxtrick.util.api.signatureMethod],
 				["oauth_signature", ""],
 				["oauth_timestamp", ""],
 				["oauth_nonce", ""],
@@ -45,7 +44,7 @@ Foxtrick.ApiProxy = {
 		};
 		Foxtrick.OAuth.setTimestampAndNonce(msg);
 		Foxtrick.OAuth.SignatureMethod.sign(msg, accessor);
-		var requestTokenUrl = Foxtrick.OAuth.addToURL(Foxtrick.ApiProxy.requestTokenUrl, msg.parameters);
+		var requestTokenUrl = Foxtrick.OAuth.addToURL(Foxtrick.util.api.requestTokenUrl, msg.parameters);
 		var link = doc.createElement("a");
 		link.className = "ft-link";
 		link.textContent = Foxtrickl10n.getString("oauth.authorize");
@@ -54,7 +53,7 @@ Foxtrick.ApiProxy = {
 			var linkPar = doc.createElement("p");
 			div.appendChild(linkPar);
 			linkPar.appendChild(Foxtrick.util.note.createLoading(doc, true));
-			Foxtrick.log("Requesting token at: ", Foxtrick.ApiProxy.stripToken(requestTokenUrl) );
+			Foxtrick.log("Requesting token at: ", Foxtrick.util.api.stripToken(requestTokenUrl) );
 			Foxtrick.load(requestTokenUrl, function(text, status) {
 				linkPar.textContent = ""; // clear linkPar first
 				if (status != 200) {
@@ -66,7 +65,7 @@ Foxtrick.ApiProxy = {
 				var requestTokenSecret = text.split(/&/)[1].split(/=/)[1];
 				// link
 				var link = doc.createElement("a");
-				link.title = link.href = Foxtrick.ApiProxy.authorizeUrl + "?" + text;
+				link.title = link.href = Foxtrick.util.api.authorizeUrl + "?" + text;
 				link.textContent = Foxtrickl10n.getString("oauth.link");
 				link.target = "_blank";
 				linkPar.appendChild(link);
@@ -80,16 +79,16 @@ Foxtrick.ApiProxy = {
 				button.value = Foxtrickl10n.getString("button.authorize");
 				button.addEventListener("click", function(ev) {
 					var accessor = {
-						consumerSecret : Foxtrick.ApiProxy.consumerSecret,
+						consumerSecret : Foxtrick.util.api.consumerSecret,
 						tokenSecret : requestTokenSecret
 					};
 					var msg = {
-						action : Foxtrick.ApiProxy.accessTokenUrl,
+						action : Foxtrick.util.api.accessTokenUrl,
 						method : "get",
 						parameters : [
-							["oauth_consumer_key", Foxtrick.ApiProxy.consumerKey],
+							["oauth_consumer_key", Foxtrick.util.api.consumerKey],
 							["oauth_token", requestToken],
-							["oauth_signature_method", Foxtrick.ApiProxy.signatureMethod],
+							["oauth_signature_method", Foxtrick.util.api.signatureMethod],
 							["oauth_signature", ""],
 							["oauth_timestamp", ""],
 							["oauth_nonce", ""],
@@ -99,14 +98,14 @@ Foxtrick.ApiProxy = {
 					Foxtrick.OAuth.setTimestampAndNonce(msg);
 					Foxtrick.OAuth.SignatureMethod.sign(msg, accessor);
 					var query = Foxtrick.OAuth.formEncode(msg.parameters);
-					var accessTokenUrl = Foxtrick.ApiProxy.accessTokenUrl + "?" + query;
-					Foxtrick.log("Requesting access token at: ",  Foxtrick.ApiProxy.stripToken(accessTokenUrl));
+					var accessTokenUrl = Foxtrick.util.api.accessTokenUrl + "?" + query;
+					Foxtrick.log("Requesting access token at: ",  Foxtrick.util.api.stripToken(accessTokenUrl));
 					Foxtrick.load(accessTokenUrl, function(text, status) {
 						try{
 							var accessToken = text.split(/&/)[0].split(/=/)[1];
 							var accessTokenSecret = text.split(/&/)[1].split(/=/)[1];
-							Foxtrick.ApiProxy.setAccessToken(accessToken);
-							Foxtrick.ApiProxy.setAccessTokenSecret(accessTokenSecret);
+							Foxtrick.util.api.setAccessToken(accessToken);
+							Foxtrick.util.api.setAccessTokenSecret(accessTokenSecret);
 							showFinished();
 						} catch(e) {showFinished('Error: '+ status);}
 					}, true); // save token and secret
@@ -192,7 +191,7 @@ Foxtrick.ApiProxy = {
 						clear_cache_span.id='ft_clear_cache';
 						clear_cache_span.textContent = Foxtrickl10n.getString('action.clearCache');
 						clear_cache_span.title = Foxtrickl10n.getString('action.clearCache.title');
-						clear_cache_span.addEventListener('click',Foxtrick.ApiProxy.clearCache,false);
+						clear_cache_span.addEventListener('click',Foxtrick.util.api.clearCache,false);
 						bottom.insertBefore(clear_cache_span, bottom.firstChild);
 					}
 				}
@@ -216,33 +215,33 @@ Foxtrick.ApiProxy = {
 					var caller_name='';
 					if (options && options.caller_name) caller_name =  options.caller_name+' ';
 					Foxtrick.log("ApiProxy: "+caller_name+"attempting to retrieve: ", parameters, "…");
-					if (!Foxtrick.ApiProxy.authorized()) {
+					if (!Foxtrick.util.api.authorized()) {
 						Foxtrick.log("ApiProxy: unauthorized.");
-						Foxtrick.ApiProxy.authorize(doc);
+						Foxtrick.util.api.authorize(doc);
 						callback(null);
 						return;
 					}
 					var accessor = {
-						consumerSecret : Foxtrick.ApiProxy.consumerSecret,
-						tokenSecret : Foxtrick.ApiProxy.getAccessTokenSecret()
+						consumerSecret : Foxtrick.util.api.consumerSecret,
+						tokenSecret : Foxtrick.util.api.getAccessTokenSecret()
 					};
 					var msg = {
-						action : Foxtrick.ApiProxy.resourceUrl,
+						action : Foxtrick.util.api.resourceUrl,
 						method : "get",
 						parameters : parameters
 					};
 					Foxtrick.OAuth.setParameters(msg, [
-						["oauth_consumer_key", Foxtrick.ApiProxy.consumerKey],
-						["oauth_token", Foxtrick.ApiProxy.getAccessToken()],
-						["oauth_signature_method", Foxtrick.ApiProxy.signatureMethod],
+						["oauth_consumer_key", Foxtrick.util.api.consumerKey],
+						["oauth_token", Foxtrick.util.api.getAccessToken()],
+						["oauth_signature_method", Foxtrick.util.api.signatureMethod],
 						["oauth_signature", ""],
 						["oauth_timestamp", ""],
 						["oauth_nonce", ""],
 					]);
 					Foxtrick.OAuth.setTimestampAndNonce(msg);
 					Foxtrick.OAuth.SignatureMethod.sign(msg, accessor);
-					var url = Foxtrick.OAuth.addToURL(Foxtrick.ApiProxy.resourceUrl, msg.parameters);
-					Foxtrick.log(caller_name,": Fetching XML data from ",  Foxtrick.ApiProxy.stripToken(url));
+					var url = Foxtrick.OAuth.addToURL(Foxtrick.util.api.resourceUrl, msg.parameters);
+					Foxtrick.log(caller_name,": Fetching XML data from ",  Foxtrick.util.api.stripToken(url));
 					Foxtrick.loadXml(url, function(x, status) {
 						if (status == 200) {
 							var serializer = new XMLSerializer();
@@ -253,8 +252,8 @@ Foxtrick.ApiProxy = {
 						}
 						else if (status == 401) {
 							Foxtrick.log("ApiProxy: error 401, unauthorized. Arguments: ", parameters);
-							Foxtrick.ApiProxy.invalidateAccessToken(doc);
-							Foxtrick.ApiProxy.authorize(doc);
+							Foxtrick.util.api.invalidateAccessToken(doc);
+							Foxtrick.util.api.authorize(doc);
 							callback(null);
 						}
 						else {
@@ -273,8 +272,8 @@ Foxtrick.ApiProxy = {
 	},
 
 	invalidateAccessToken : function() {
-		Foxtrick.ApiProxy.setAccessToken("");
-		Foxtrick.ApiProxy.setAccessTokenSecret("");
+		Foxtrick.util.api.setAccessToken("");
+		Foxtrick.util.api.setAccessTokenSecret("");
 	},
 
 	getAccessToken : function() {

@@ -69,7 +69,7 @@ var FoxtrickNtPeek = {
 			["teamID", ntId]
 		];
 		var parameters_nt_str = JSON.stringify(ntArgs);
-		Foxtrick.ApiProxy.retrieve(doc, ntArgs,{cache_lifetime:'default', caller_name:this.MODULE_NAME },
+		Foxtrick.util.api.retrieve(doc, ntArgs,{cache_lifetime:'default', caller_name:this.MODULE_NAME },
 		function(xml) {
 			if (xml) {
 				var nextmatchdate = Foxtrick.util.matchView.fillMatches(
@@ -77,7 +77,7 @@ var FoxtrickNtPeek = {
 										xml );
 				if (nextmatchdate) {
 					var expire = Foxtrick.util.time.getDateFromText(nextmatchdate, "yyyymmdd");
-					Foxtrick.ApiProxy.setCacheLifetime(doc, parameters_nt_str, expire.getTime());
+					Foxtrick.util.api.setCacheLifetime(doc, parameters_nt_str, expire.getTime());
 				}
 			}
 		});
@@ -87,7 +87,7 @@ var FoxtrickNtPeek = {
 			["teamID", u20Id]
 		];
 		var parameters_u20_str = JSON.stringify(u20Args);
-		Foxtrick.ApiProxy.retrieve(doc, u20Args,{ ccache_lifetime:'default', caller_name:this.MODULE_NAME }, 
+		Foxtrick.util.api.retrieve(doc, u20Args,{ ccache_lifetime:'default', caller_name:this.MODULE_NAME }, 
 		function(xml) {
 			if (xml) {
 				var nextmatchdate = Foxtrick.util.matchView.fillMatches(
@@ -95,7 +95,7 @@ var FoxtrickNtPeek = {
 										xml );
 				if (nextmatchdate) {
 					var expire = Foxtrick.util.time.getDateFromText(nextmatchdate, "yyyymmdd");
-					Foxtrick.ApiProxy.setCacheLifetime(doc, parameters_u20_str, expire.getTime());
+					Foxtrick.util.api.setCacheLifetime(doc, parameters_u20_str, expire.getTime());
 				}
 			}
 		});

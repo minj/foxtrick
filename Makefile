@@ -21,7 +21,6 @@ CONTENT_FOLDERS = alert/ \
 	shortcuts-and-tweaks/ \
 	util/
 CONTENT_FILES = add-class.js \
-	api-proxy.js \
 	core.js \
 	entry.js \
 	env.js \

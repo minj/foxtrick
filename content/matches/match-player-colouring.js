@@ -92,9 +92,9 @@ var FoxtrickMatchPlayerColouring = {
 				return Number(m[1]);
 			return null;
 		};
-		Foxtrick.ApiProxy.retrieve(doc, homeArgs,{cache_lifetime:'session', caller_name:this.MODULE_NAME },
+		Foxtrick.util.api.retrieve(doc, homeArgs,{cache_lifetime:'session', caller_name:this.MODULE_NAME },
 		function(homeXml) {
-			Foxtrick.ApiProxy.retrieve(doc, awayArgs,{ cache_lifetime:'session', caller_name:this.MODULE_NAME },
+			Foxtrick.util.api.retrieve(doc, awayArgs,{ cache_lifetime:'session', caller_name:this.MODULE_NAME },
 			function(awayXml) {
 				// remove the loading note
 				if (loading) loading.parentNode.removeChild(loading);

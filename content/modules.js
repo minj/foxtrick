@@ -14,7 +14,6 @@ if (!Foxtrick) var Foxtrick={};
 Foxtrick.modules = [
 	FoxtrickCore,
 	FoxtrickHelper,
-	Foxtrick.ApiProxy,
 	FoxtrickReadHtPrefs,
 	Foxtrick.AddClass,
 	FoxtrickForumStripHattrickLinks,
