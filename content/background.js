@@ -34,8 +34,17 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		clipboardStore.value = content;
 		clipboardStore.select();
 		document.execCommand("Copy");
-	}
+	};
 
+	var updatePageAction = function(request, sender) {
+		if (typeof(opera) === "object") {
+			if (request.sender!='options') FoxtrickCore.setOperaIcon(Foxtrick.loader.chrome.button);
+		}
+		else if (typeof(chrome) === "object") {
+			chrome.pageAction.show(sender.tab.id);
+			FoxtrickCore.setChromeIcon(sender.tab);
+		}
+	};
 	
 	// calls module.onLoad() after the browser window is loaded
 	for (var i in Foxtrick.modules) {
@@ -73,12 +82,11 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	// callback will be called with a sole Object as argument
 	chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		try {
-			Foxtrick.log('request: ',request.req, ' ',request )
+			//Foxtrick.log('request: ',request.req, ' ',request )
 				
 			if (request.req == "init") {
 				try {
-					chrome.pageAction.show(sender.tab.id);
-					FoxtrickCore.setPageIcon(sender.tab);
+					updatePageAction(request, sender);
 					
 					if (localStorage["preferences.updated"]
 						&& JSON.parse(localStorage["preferences.updated"])) {
@@ -195,9 +203,25 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	});
 
 	
-	// page action listener
-	chrome.pageAction.onClicked.addListener(function(tab) { FoxtrickPrefs.disable(tab); });
-
+	// page action init and listeners
+	if (typeof(opera) === "object") {
+		// Specify the properties of the button before creating it.
+		var UIItemProperties = {
+			disabled: false,
+			title: "FoxTrick",
+			icon: "skin/icon-16.png",
+			onclick: function(event) {
+				FoxtrickPrefs.disable(event.currentTarget);
+			}
+		};
+		// Create the button and add it to the toolbar.
+		Foxtrick.loader.chrome.button = opera.contexts.toolbar.createItem( UIItemProperties );
+		opera.contexts.toolbar.addItem(Foxtrick.loader.chrome.button);
+		FoxtrickCore.setOperaIcon(Foxtrick.loader.chrome.button);
+	}
+	else if (typeof(chrome) === "object") {
+		chrome.pageAction.onClicked.addListener(function(tab) { FoxtrickPrefs.disable(tab); });
+	}
   } catch (e) {Foxtrick.log('Foxtrick.loader.chrome.browserLoad: ', e );}
 };
 

@@ -278,14 +278,16 @@ var FoxtrickPrefs = {
 		Foxtrick.newTab(Foxtrick.ResourcePath + "preferences.xhtml" + page);
 	},
 
-	disable : function(tab) {
+	disable : function(sender) {
 		FoxtrickPrefs.setBool("disableTemporary", !FoxtrickPrefs.getBool("disableTemporary"));
 		if (Foxtrick.BuildFor === "Gecko") {
 			FoxtrickCore.updateStatus();
 			Foxtrick.entry.init();
 		}
-		else if (Foxtrick.BuildFor === "Chrome") {
-			FoxtrickCore.setPageIcon(tab);
+		else if (typeof(opera) === "object") {
+			FoxtrickCore.setOperaIcon(sender);
+		} else if (Foxtrick.BuildFor === "Chrome") {
+			FoxtrickCore.setChromeIcon(sender);
 		}
 	}
 };

@@ -64,7 +64,7 @@ var FoxtrickCore = {
 		this.updateLastHost(doc);
 	},
 
-	setPageIcon : function(tab) { 
+	setChromeIcon : function(tab) { 
 		// update page icon image and tooltip (chrome-only)
 		var icon = ''; var statusText='';
 		if (FoxtrickPrefs.getBool("disableTemporary")) {
@@ -78,6 +78,22 @@ var FoxtrickCore = {
 		var tooltipText = Foxtrickl10n.getString("foxtrick") + " " + Foxtrick.version() + " (" + statusText + ")";
 		chrome.pageAction.setIcon({tabId : tab.id, path : icon});
 		chrome.pageAction.setTitle({tabId : tab.id, title: tooltipText})
+	},
+
+	setOperaIcon : function(button) { 
+		// update page icon image and tooltip (chrome-only)
+		Foxtrick.log('setOperaIcon');
+		var icon = ''; var statusText='';
+		if (FoxtrickPrefs.getBool("disableTemporary")) {
+			button.icon = "skin/disabled-24.png";
+			statusText = Foxtrickl10n.getString("status.disabled");
+		}
+		else {
+			statusText = Foxtrickl10n.getString("status.active");
+			button.icon = "skin/icon-24.png";
+		}
+		var tooltipText = Foxtrickl10n.getString("foxtrick") + " " + Foxtrick.version() + " (" + statusText + ")";
+		button.title = tooltipText;
 	},
 
 	updateStatus : function() {
