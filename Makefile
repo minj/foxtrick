@@ -131,11 +131,11 @@ opera:
 	# content/
 	mkdir $(BUILD_DIR)/includes 
 	cd content/; \
-	cp -r $(subst /,/.,$(SCRIPT_FOLDERS) $(CONTENT_FILES_OPERA) \
+	cp -r $(subst /,/.,$(SCRIPT_FOLDERS)) $(CONTENT_FILES_OPERA) \
 		../$(BUILD_DIR)/includes
 	mv $(BUILD_DIR)/includes/env.js $(BUILD_DIR)/includes/aa00_env.js 
 	mv $(BUILD_DIR)/includes/modules.js $(BUILD_DIR)/includes/zz10_modules.js 
-	mv $(BUILD_DIR)/includes/loader_chrome.js $(BUILD_DIR)/includes/zz99_loader_chrome.js 
+	mv $(BUILD_DIR)/includes/loader-chrome.js $(BUILD_DIR)/includes/zz99_loader-chrome.js 
 	mkdir $(BUILD_DIR)/content 
 	cd content/; \
 	cp -r $(RESOURCE_FOLDERS) \
