@@ -5,21 +5,21 @@ ZIP = zip -q
 
 ROOT_FILES_FIREFOX = chrome.manifest install.rdf icon.png COPYING HACKING
 ROOT_FILES_CHROME = manifest.json
+ROOT_FILES_OPERA = config.xml background_opera.html options.html \
+				content/background.js content/preferences.js
 ROOT_FOLDERS_FIREFOX = defaults/
 ROOT_FOLDERS_CHROME = defaults/ skin/
-CONTENT_FOLDERS = alert/ \
-	data/ \
-	forum/ \
-	information-aggregation/ \
-	lib/ \
+ROOT_FOLDERS_OPERA = defaults/ skin/
+SCRIPT_FOLDERS = lib/ \
 	links/ \
-	locale/ \
 	matches/ \
 	pages/ \
 	presentation/ \
-	resources/ \
 	shortcuts-and-tweaks/ \
 	util/
+RESOURCE_FOLDERS = data/ \
+	locale/ \
+	resources/
 CONTENT_FILES = add-class.js \
 	core.js \
 	entry.js \
@@ -43,12 +43,13 @@ CONTENT_FILES = add-class.js \
 CONTENT_FILES_FIREFOX = $(CONTENT_FILES) foxtrick.xul loader-gecko.js
 CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html background.js \
 	loader-chrome.js
+CONTENT_FILES_OPERA = $(CONTENT_FILES) loader-chrome.js
 
 REVISION = `git svn find-rev HEAD`
 
 DIST_TYPE = nightly
 
-all: firefox chrome
+all: firefox chrome opera
 
 firefox:
 	make clean-firefox clean-build
@@ -58,7 +59,7 @@ firefox:
 	# content/
 	mkdir -p $(BUILD_DIR)/chrome/content
 	cd content/; \
-	cp -r $(CONTENT_FOLDERS) $(CONTENT_FILES_FIREFOX) \
+	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_FIREFOX) \
 		../$(BUILD_DIR)/chrome/content
 	# skin/
 	cp -r skin $(BUILD_DIR)/chrome
@@ -101,7 +102,7 @@ chrome:
 	# content/
 	mkdir $(BUILD_DIR)/content
 	cd content/; \
-	cp -r $(CONTENT_FOLDERS) $(CONTENT_FILES_CHROME) \
+	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_CHROME) \
 		../$(BUILD_DIR)/content
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
@@ -119,6 +120,35 @@ endif
 	# clean up
 	make clean-build
 
+opera:
+	make clean-opera clean-build
+	mkdir $(BUILD_DIR)
+	# copy root files
+	cp -r $(ROOT_FILES_OPERA) $(ROOT_FOLDERS_OPERA) $(BUILD_DIR)
+	# content/
+	mkdir $(BUILD_DIR)/includes 
+	cd content/; \
+	cp -r $(subst /,/.,$(SCRIPT_FOLDERS) $(CONTENT_FILES_OPERA) \
+		../$(BUILD_DIR)/includes
+	mv $(BUILD_DIR)/includes/env.js $(BUILD_DIR)/includes/aa00_env.js 
+	mv $(BUILD_DIR)/includes/modules.js $(BUILD_DIR)/includes/zz10_modules.js 
+	mv $(BUILD_DIR)/includes/loader_chrome.js $(BUILD_DIR)/includes/zz99_loader_chrome.js 
+	mkdir $(BUILD_DIR)/content 
+	cd content/; \
+	cp -r $(RESOURCE_FOLDERS) \
+		../$(BUILD_DIR)/content
+	# modify according to distribution type
+ifeq ($(DIST_TYPE),nightly)
+	cd $(BUILD_DIR); \
+	sed -i -r 's|(version=".+)(" network)|\1.'$(REVISION)'\2|' config.xml; \
+	sed -i -r 's|("extensions\.foxtrick\.prefs\.version", ".+)(")|\1.'$(REVISION)'\2|' defaults/preferences/foxtrick.js
+endif
+	# make oex
+	cd $(BUILD_DIR); \
+	$(ZIP) -r ../$(APP_NAME).oex *
+	# clean up
+	make clean-build
+
 clean-firefox:
 	rm -rf *.xpi
 
@@ -126,8 +156,11 @@ clean-chrome:
 	rm -rf *.crx
 	rm -rf *.zip
 
+clean-opera:
+	rm -rf *.oex
+
 clean-build:
 	rm -rf $(BUILD_DIR)
 
 clean:
-	make clean-firefox clean-chrome clean-build
+	make clean-firefox clean-chrome clean-opera clean-build
