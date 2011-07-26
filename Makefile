@@ -10,7 +10,10 @@ ROOT_FILES_OPERA = config.xml background_opera.html options.html \
 ROOT_FOLDERS_FIREFOX = defaults/
 ROOT_FOLDERS_CHROME = defaults/ skin/
 ROOT_FOLDERS_OPERA = defaults/ skin/
-SCRIPT_FOLDERS = lib/ \
+SCRIPT_FOLDERS = alert/ \
+	forum/ \
+	information-aggregation/ \
+	lib/ \
 	links/ \
 	matches/ \
 	pages/ \
@@ -19,15 +22,16 @@ SCRIPT_FOLDERS = lib/ \
 	util/
 RESOURCE_FOLDERS = data/ \
 	locale/ \
-	resources/
+	resources/ \
+	foxtrick.properties \
+	foxtrick.screenshots \
+	release-notes.xml \
+	faq.xml
 CONTENT_FILES = add-class.js \
 	core.js \
 	entry.js \
 	env.js \
-	faq.xml \
 	forum-stage.js \
-	foxtrick.properties \
-	foxtrick.screenshots \
 	helper.js \
 	l10n.js \
 	modules.js \
@@ -37,7 +41,6 @@ CONTENT_FILES = add-class.js \
 	prefs.js \
 	read-ht-prefs.js \
 	redirections.js \
-	release-notes.xml \
 	stats.js \
 	xml-load.js
 CONTENT_FILES_FIREFOX = $(CONTENT_FILES) foxtrick.xul loader-gecko.js
