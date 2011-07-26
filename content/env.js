@@ -133,8 +133,15 @@ if (typeof(opera) === "object") {
 		},
 	};
 
+	// fix other opera oddities
 	DOMParser = window.DOMParser;
 	if (!XMLSerializer) var XMLSerializer = window.XMLSerializer;
+	var Node = {
+		ELEMENT_NODE : 1,
+		ATTRIBUTE_NODE : 2,
+		TEXT_NODE :3,
+	};
+	
 }
 else if (typeof(chrome) === "object") {
 	Foxtrick.BuildFor = "Chrome";

@@ -44,6 +44,11 @@ Foxtrick.util.note = {
 			old.parentNode.removeChild(old);
 		}
 		var note = this.create(doc, msg, buttons, hasClose);
+		
+		// add paste instruction for opera to copy notes
+		if (typeof(opera)=='object' && id.search('copy-note')!==-1) {
+			note.firstChild.firstChild.textContent += ' '+Foxtrickl10n.getString('PasteClick.desc');
+		}
 		note.id = id;
 		if (insertBefore && insertBefore.parentNode) {
 			insertBefore.parentNode.insertBefore(note, insertBefore);

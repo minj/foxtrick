@@ -51,6 +51,11 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 				var initTime = new Date() - begin.getTime();
 				Foxtrick.log("init time: " , initTime , " ms");
 
+				// listen to clipboard paste
+				if ( typeof(opera)=='object' )  
+					window.addEventListener('mouseup', Foxtrick.loader.chrome.clickListener, false);
+				
+				// if ht doc is already loaded start now, else wait till loaded
 				if (Foxtrick.isHt(document)) {
 					Foxtrick.log('Ht domument ready. Run now.'); 
 					Foxtrick.entry.docLoad();
@@ -64,5 +69,33 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 	} catch(e) {Foxtrick.log(e);}
 };
 
+Foxtrick.loader.chrome.clickListener = function(e) {
+	if ( typeof(e.target.tagName) != "undefined" && 
+		(( e.target.tagName == 'INPUT' && e.target.type=='text') || // text imput
+		e.target.tagName=='TEXTAREA') &&	// or text area
+		e.button == 0 && 		// left mouse button
+		e.shiftKey == true ) { 	// our special key we listen too
+		
+		Foxtrick.sessionGet('clipboard', function(text) {
+			if (text) {
+				// insert clipboard at current position
+				ta = e.target;
+				var s = FoxtrickForumYouthIcons.getSelection(ta);
+				// Opera, Mozilla
+				if (ta.selectionStart || ta.selectionStart == '0') {
+					var st = ta.scrollTop;
+					ta.value = s.textBeforeSelection+
+								text + 
+								s.textAfterSelection;
+					ta.scrollTop = st;
+				}
+				// Others
+				else {
+					ta.value += text;
+				}
+			}
+		});
+	}
+};
 
 Foxtrick.loader.chrome.docLoadStart();

@@ -105,6 +105,9 @@ Foxtrick.copyStringToClipboard = function (string) {
 			.getService(Components.interfaces.nsIClipboardHelper);
 		gClipboardHelper.copyString(string);
 	}
+	else if (typeof(opera) === "object") {
+		Foxtrick.sessionSet('clipboard', string);
+	}
 	else if (Foxtrick.BuildFor === "Chrome") {
 		chrome.extension.sendRequest({req : "clipboard", content : string});
 	}

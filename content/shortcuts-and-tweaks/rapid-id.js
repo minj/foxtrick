@@ -115,6 +115,7 @@ var FoxtrickRapidId = {
 			// the input element
 			input.id = "ft_rapidid_input_" + select.value;
 			input.className = "ft_rapidid_input";
+			input.type='text';
 			input.setAttribute("size", "9");
 
 			// the <input type="button" /> element
