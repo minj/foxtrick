@@ -138,8 +138,18 @@ Foxtrick.loader.chrome.browserLoad = function() {
 				} catch(e) {Foxtrick.log(e)}
 			}
 			else if (request.req == "getCss") {
-				// @param files - a array of files to be added
+				// @param files - an array of files to be loaded into string
 				sendResponse({ cssText : Foxtrick.getCssFileArrayToString(request.files) });
+			}
+			else if (request.req == "convertImages") {
+				// @param files - a string for which image urls are converted to data urls
+				// updates cssTextCollection if module_css conversion was done
+				Foxtrick.convertImageUrlToData(request.cssText,
+						function(cssText){ 
+							if (request.type=='module_css') 
+								cssTextCollection = cssText;
+							sendResponse({cssText:cssText});
+				});
 			}
 			else if (request.req == "xml") {
 				// @param url - the URL of resource to load with XMLHttpRequest

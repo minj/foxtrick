@@ -338,10 +338,61 @@ Foxtrick.insertAtCursor = function(textarea, text) {
 		+ textarea.value.substring(textarea.selectionEnd, textarea.value.length);
 }
 
-Foxtrick.replaceExtensionDirectory = function(cssTextCollection) {		
-	// replace ff chrome reference by google chrome refs
-	return cssTextCollection.replace(RegExp("chrome://foxtrick/content/", "g"), Foxtrick.ResourcePath);
+Foxtrick.convertImageUrlToData = function(cssTextCollection, callback) {
+	var pending = 0;
+		
+	var resolve = function(data) {
+		if (--pending <= 0) {
+			callback(cssTextCollection);
+		}
+	};
+	var replaceImage = function (url) {
+		var image = new Image;
+		image.onload = function() {
+			var canvas = document.createElement("canvas");
+			canvas.width = image.width;
+			canvas.height = image.height;
+			var context = canvas.getContext('2d');
+			context.drawImage(image, 0, 0);
+			cssTextCollection = cssTextCollection.replace(RegExp(url,'g'), canvas.toDataURL());
+			return resolve();
+		};
+		image.onerror = function() {
+			return resolve();
+		};
+		return image.src = url;
+	};
+	
+	if (cssTextCollection) {
+		var fullUrlRegExp = new RegExp("\\(\'?\"?chrome://foxtrick/content/([^\\)]+)\'?\"?\\)", "gi");
+		var urls = cssTextCollection.match(fullUrlRegExp);
+		var resourcePathRegExp = RegExp("chrome://foxtrick/content/", "ig");
+		cssTextCollection = cssTextCollection.replace(resourcePathRegExp, Foxtrick.InternalPath);
+		
+		if (urls)
+			for (var i = 0; i<urls.length; ++i) {
+				urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g,'').replace(resourcePathRegExp, Foxtrick.InternalPath);
+				pending++;
+				replaceImage(urls[i]);
+			}
+	}
 };
+
+Foxtrick.replaceExtensionDirectory = function(cssTextCollection, callback, id) {
+	var resourcePathRegExp = RegExp("chrome://foxtrick/content/", "ig");
+	
+	if (typeof(opera) === "object") {
+		if (cssTextCollection.search(resourcePathRegExp)!=-1 ) 
+			chrome.extension.sendRequest({ req : "convertImages", cssText: cssTextCollection, type: id},
+				function (data) { callback(data.cssText);
+				});
+		else callback(cssTextCollection);
+	}
+	else if (typeof(chrome) === "object") {
+		callback( cssTextCollection.replace(resourcePathRegExp, Foxtrick.InternalPath) );
+	}
+	else callback(cssTextCollection);
+}
 
 Foxtrick.confirmDialog = function(msg) {
 	if (Foxtrick.BuildFor === "Gecko") {
@@ -557,8 +608,7 @@ Foxtrick.load_module_css = function(doc) {
 		chrome.extension.sendRequest(
 			{ req : "getCss", files :Foxtrick.cssFiles },
 			function(data) {
-				Foxtrick.log('getCss response');
-				Foxtrick.util.inject.addStyleSheetSnippet(doc, data.cssText);
+				Foxtrick.util.inject.addStyleSheetSnippet(doc, data.cssText,'module_css');
 			}
 		);
 	}

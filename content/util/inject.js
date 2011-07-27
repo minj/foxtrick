@@ -11,7 +11,7 @@ if (!Foxtrick.util)
 Foxtrick.util.inject = {};
 
 Foxtrick.util.inject.addStyleSheet = function(doc, css) {
-	Foxtrick.dump('addStyleSheet: '+css+'\n');
+	Foxtrick.log('addStyleSheet: '+css+'\n');
 	var path = "head[1]";
 	var head = doc.evaluate(path,doc.documentElement,null,doc.DOCUMENT_NODE,null).singleNodeValue;
 
@@ -24,16 +24,20 @@ Foxtrick.util.inject.addStyleSheet = function(doc, css) {
 };
 
 Foxtrick.util.inject.addStyleSheetSnippet = function(doc, css, id) {
-	if (Foxtrick.BuildFor === "Chrome")
-		css = Foxtrick.replaceExtensionDirectory(css);
-
-	var head = doc.getElementsByTagName("head")[0];
-	var style = doc.createElement("style");
-	style.setAttribute("type", "text/css");
-	if (id)
-		style.id = id;
-	style.appendChild(doc.createTextNode(css));
-	head.appendChild(style);
+	var inject = function (css) {
+		var head = doc.getElementsByTagName("head")[0];
+		var style = doc.createElement("style");
+		style.setAttribute("type", "text/css");
+		if (id) {
+			Foxtrick.util.inject.removeStyleSheetSnippet(doc, id);
+			style.id = id;
+		}
+		style.appendChild(doc.createTextNode(css));
+		head.appendChild(style);
+		//Foxtrick.log('inject: ', id);
+	}
+	
+	Foxtrick.replaceExtensionDirectory(css, inject, id);
 };
 
 Foxtrick.util.inject.removeStyleSheetSnippet = function(doc, id) {
