@@ -13,7 +13,7 @@ var FoxtrickForumChangePosts = {
 
 	run : function(doc) {
 		var do_copy_post_id = FoxtrickPrefs.isModuleEnabled("CopyPostID");
-		var do_add_copy_icon = do_copy_post_id && FoxtrickPrefs.isModuleOptionEnabled( FoxtrickCopyPostID, "AddCopyIcon");
+		var do_add_copy_icon = do_copy_post_id && FoxtrickPrefs.isModuleOptionEnabled("CopyPostID", "AddCopyIcon");
 		var do_copy_posting = FoxtrickPrefs.isModuleEnabled("CopyPosting");
 		var do_default_facecard = FoxtrickPrefs.isModuleEnabled("AddDefaultFaceCard");
 		var do_format_text = FoxtrickPrefs.isModuleEnabled("FormatPostingText");
@@ -21,15 +21,15 @@ var FoxtrickForumChangePosts = {
 		var do_alter_header = FoxtrickPrefs.isModuleEnabled("ForumAlterHeaderLine");
 		var do_redir_to_team = FoxtrickPrefs.isModuleEnabled("ForumRedirManagerToTeam");
 
-		var do_single_header = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled( FoxtrickForumAlterHeaderLine, "SingleHeaderLine");
-		var do_small_header_font = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled( FoxtrickForumAlterHeaderLine, "SmallHeaderFont");
-		var do_single_header_allways = do_alter_header && do_single_header && !FoxtrickPrefs.isModuleOptionEnabled( FoxtrickForumAlterHeaderLine, "CheckDesign");
-		var do_truncate_nicks = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled( FoxtrickForumAlterHeaderLine, "TruncateLongNick");
-		var do_truncate_leaguename = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled( FoxtrickForumAlterHeaderLine, "TruncateLeagueName");
-		var do_hide_old_time = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled( FoxtrickForumAlterHeaderLine, "HideOldTime");
- 		var do_short_postid = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled( FoxtrickForumAlterHeaderLine, "ShortPostId");
-		var do_replace_supporter_star = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled( FoxtrickForumAlterHeaderLine, "ReplaceSupporterStar");
-		var do_HighlightThreadOpener = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled( FoxtrickForumAlterHeaderLine, "HighlightThreadOpener");
+		var do_single_header = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "SingleHeaderLine");
+		var do_small_header_font = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "SmallHeaderFont");
+		var do_single_header_allways = do_alter_header && do_single_header && !FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "CheckDesign");
+		var do_truncate_nicks = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "TruncateLongNick");
+		var do_truncate_leaguename = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "TruncateLeagueName");
+		var do_hide_old_time = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "HideOldTime");
+ 		var do_short_postid = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "ShortPostId");
+		var do_replace_supporter_star = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "ReplaceSupporterStar");
+		var do_HighlightThreadOpener = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "HighlightThreadOpener");
 
 
 		this.bDetailedHeader = false;

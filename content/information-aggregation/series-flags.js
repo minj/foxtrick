@@ -29,7 +29,7 @@ var FoxtrickSeriesFlags = {
 						var countryId = Foxtrick.XMLData.getCountryIdByLeagueId(data["leagueId"]);
 						var country = FoxtrickHelper.createFlagFromCountryId(doc, countryId);
 						flag.appendChild(country);
-						if (!FoxtrickPrefs.isModuleOptionEnabled(FoxtrickSeriesFlags, "CountryOnly") && data["seriesId"]!==0) {
+						if (!FoxtrickPrefs.isModuleOptionEnabled("SeriesFlags", "CountryOnly") && data["seriesId"]!==0) {
 							var series = doc.createElement("a");
 							series.className = "inner";
 							series.textContent = data["seriesName"];

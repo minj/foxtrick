@@ -508,7 +508,7 @@ var FoxtrickSkillTable = {
 						var max = skill.max ? skill.max : "-";
 						cell.appendChild(doc.createTextNode(current + "/" + max));
 						// and we deal with colours
-						if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickSkillTable, "ColouredYouth")) {
+						if (FoxtrickPrefs.isModuleOptionEnabled("SkillTable", "ColouredYouth")) {
 							if (skill.max > 3) {
 								// normalized values for convenience in further calculations
 								var skillBase = {}; // skills below 4 are not regarded as interesting

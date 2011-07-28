@@ -19,7 +19,7 @@ var FoxtrickForumStripHattrickLinks = {
 		if (a.nodeName == "A") {
 			if (Foxtrick.isHtUrl(a.href)) {
 				var hostname = ev.target.ownerDocument.location.hostname;
-				if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickForumStripHattrickLinks, "NoConfirmStripping"))
+				if (FoxtrickPrefs.isModuleOptionEnabled("ForumStripHattrickLinks", "NoConfirmStripping"))
 					setRelPath(a);
 				else if (Foxtrick.confirmDialog('Replace server with '+hostname +'?'))
 					setRelPath(a);
@@ -50,7 +50,7 @@ var FoxtrickForumStripHattrickLinks = {
 	submitListener : function(ev) {
 		var doc = ev.target.ownerDocument;
 		var textarea = doc.getElementById("mainBody").getElementsByTagName("textarea")[0];
-		if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickForumStripHattrickLinks, "NoConfirmStripping")) {
+		if (FoxtrickPrefs.isModuleOptionEnabled("ForumStripHattrickLinks", "NoConfirmStripping")) {
 			textarea.value = FoxtrickForumStripHattrickLinks.strip(textarea.value);
 		}
 		else {

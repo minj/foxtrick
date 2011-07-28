@@ -59,23 +59,23 @@ var FoxtrickForumYouthIcons = {
 		var show_main = false;
 		var show_youth = false;
 		var show_other = false;
-		var enlarge = FoxtrickPrefs.isModuleOptionEnabled(FoxtrickForumYouthIcons, "enlarge_input");
-		if ((FoxtrickPrefs.isModuleOptionEnabled(FoxtrickForumYouthIcons, "user_id")) ||
-			(FoxtrickPrefs.isModuleOptionEnabled(FoxtrickForumYouthIcons, "kit_id")) ||
-			(FoxtrickPrefs.isModuleOptionEnabled(FoxtrickForumYouthIcons, "article_id")) ||
-			(FoxtrickPrefs.isModuleOptionEnabled(FoxtrickForumYouthIcons, "line_br")) ||
-			(FoxtrickPrefs.isModuleOptionEnabled(FoxtrickForumYouthIcons, "clock")) ||
-			(FoxtrickPrefs.isModuleOptionEnabled(FoxtrickForumYouthIcons, "spoiler"))
+		var enlarge = FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "enlarge_input");
+		if ((FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "user_id")) ||
+			(FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "kit_id")) ||
+			(FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "article_id")) ||
+			(FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "line_br")) ||
+			(FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "clock")) ||
+			(FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "spoiler"))
 			)
 			show_main = true;
-		if ((FoxtrickPrefs.isModuleOptionEnabled(FoxtrickForumYouthIcons, "youth_player")) ||
-			(FoxtrickPrefs.isModuleOptionEnabled(FoxtrickForumYouthIcons, "youth_team")) ||
-			(FoxtrickPrefs.isModuleOptionEnabled(FoxtrickForumYouthIcons, "youth_match")) ||
-			(FoxtrickPrefs.isModuleOptionEnabled(FoxtrickForumYouthIcons, "youth_series")))
+		if ((FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "youth_player")) ||
+			(FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "youth_team")) ||
+			(FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "youth_match")) ||
+			(FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "youth_series")))
 			show_youth = true;
 
-		if ((FoxtrickPrefs.isModuleOptionEnabled(FoxtrickForumYouthIcons, "debug")) ||
-		    (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickForumYouthIcons, "settings")))
+		if ((FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "debug")) ||
+		    (FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "settings")))
 			show_other = true;
 
 		var div = doc.getElementById( "ft_youth_icons");
@@ -182,7 +182,7 @@ var FoxtrickForumYouthIcons = {
 		target=target.nextSibling;
 
 		// add quote tag
-		if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickForumYouthIcons, this.icons[0].type)) {
+		if (FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", this.icons[0].type)) {
 			for (var j = 0; j < this.fields.length; j++) {
 				var page = FoxtrickForumYouthIcons.fields[j].page;
 				if (Foxtrick.isPage(page, doc) && FoxtrickForumYouthIcons.fields[j].add_quote==true) {
@@ -199,7 +199,7 @@ var FoxtrickForumYouthIcons = {
 			}
 		}
 		for (var i = 1; i < this.icons.length; i++) {
-			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickForumYouthIcons, this.icons[i].type)) {
+			if (FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", this.icons[i].type)) {
 				if (this.icons[i].alt==null || doc.getElementsByClassName(this.icons[i].alt).length==0) {
 					var newimage = doc.createElement( "img" );
 					newimage.src = "/Img/Icons/transparent.gif";
@@ -275,7 +275,7 @@ var FoxtrickForumYouthIcons = {
 			otherbar.appendChild( otherbar_label);
 
 			for (var i = 0; i < this.othericons.length; i++) {
-				if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickForumYouthIcons, this.othericons[i].type)) {
+				if (FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", this.othericons[i].type)) {
 						var newimage = doc.createElement( "img" );
 						newimage.src = "/Img/Icons/transparent.gif";
 						newimage.addEventListener( "click", this.addTagsClick, false );
@@ -305,7 +305,7 @@ var FoxtrickForumYouthIcons = {
 			youthbar.appendChild( youthbar_label);
 
 			for (var i = 0; i < this.youthicons.length; i++) {
-				if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickForumYouthIcons, this.youthicons[i].type)) {
+				if (FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", this.youthicons[i].type)) {
 						var newimage = doc.createElement( "img" );
 						newimage.src = "/Img/Icons/transparent.gif";
 						newimage.addEventListener( "click", this.addTagsClick, false );

@@ -124,7 +124,7 @@ FoxtrickTeamStats = {
 				return row;
 			};
 
-			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickTeamStats, "General")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled("TeamStats", "General")) {
 				addHeader(Foxtrickl10n.getString("General"));
 				if (totalTSI) {
 					var avgTSI = Math.round(totalTSI / playerList.length);
@@ -166,7 +166,7 @@ FoxtrickTeamStats = {
 					addRow(Foxtrickl10n.getString("Leadership"), Foxtrickl10n.getLevelByTypeAndValue("levels", avgLeadership));
 				}
 			}
-			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickTeamStats, "Speciality")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled("TeamStats", "Speciality")) {
 				if (hasSpecialities) {
 					addHeader(Foxtrickl10n.getString("Speciality"));
 					var specSummary = [];
@@ -180,7 +180,7 @@ FoxtrickTeamStats = {
 					}
 				}
 			}
-			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickTeamStats, "Personality")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled("TeamStats", "Personality")) {
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "aggressiveness")
 					&& Foxtrick.Pages.Players.isPropertyInList(playerList, "agreeability")
 					&& Foxtrick.Pages.Players.isPropertyInList(playerList, "honesty")) {
@@ -193,7 +193,7 @@ FoxtrickTeamStats = {
 					addRow(Foxtrickl10n.getString("Honesty"), Foxtrickl10n.getLevelByTypeAndValue("honesty", avgHonesty));
 				}
 			}
-			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickTeamStats, "Status")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled("TeamStats", "Status")) {
 				if (transferListed || yellowCards || twoYellowCards || redCards || bruised || injured) {
 					addHeader(Foxtrickl10n.getString("Status"));
 				}
@@ -243,7 +243,7 @@ FoxtrickTeamStats = {
 					addRow(img, data);
 				}
 			}
-			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickTeamStats, "Current_league")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled("TeamStats", "Current_league")) {
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "currentLeagueId")) {
 					addHeader(Foxtrickl10n.getString("Current_league"));
 					var leagues = [];
