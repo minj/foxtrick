@@ -292,3 +292,4 @@ FoxtrickTeamStats = {
 		});
 	}
 };
+Foxtrick.util.module.register(FoxtrickTeamStats);

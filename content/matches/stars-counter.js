@@ -129,3 +129,4 @@ var FoxtrickStarsCounter = {
 		return star;
 	}
 };
+Foxtrick.util.module.register(FoxtrickStarsCounter);

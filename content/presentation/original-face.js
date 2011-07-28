@@ -29,3 +29,4 @@ var FoxtrickOriginalFace = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickOriginalFace);

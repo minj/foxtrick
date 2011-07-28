@@ -86,3 +86,4 @@ var FoxtrickLinksTeam = {
 				"fans":fans,'leaguepos':leaguepos};
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksTeam);

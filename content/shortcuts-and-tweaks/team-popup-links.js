@@ -367,3 +367,4 @@ var FoxtrickTeamPopupLinks = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickTeamPopupLinks);

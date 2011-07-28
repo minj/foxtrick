@@ -193,3 +193,4 @@ var FoxtrickContextMenuCopy = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickContextMenuCopy);

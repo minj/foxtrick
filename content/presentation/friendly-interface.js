@@ -105,3 +105,4 @@ FoxtrickFriendlyInterface = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickFriendlyInterface);

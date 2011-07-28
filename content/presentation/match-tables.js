@@ -116,3 +116,4 @@ var FoxtrickMatchTables = {
 		this.removeTime(doc);
 	}
 };
+Foxtrick.util.module.register(FoxtrickMatchTables);

@@ -160,3 +160,4 @@ var FoxtrickCore = {
 		else Foxtrick.log('bottom not loaded yet');
 	}
 };
+Foxtrick.util.module.register(FoxtrickCore);

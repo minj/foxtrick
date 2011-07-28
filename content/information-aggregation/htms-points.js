@@ -262,3 +262,4 @@ var FoxtrickHTMSPoints = {
 		return (new Array(actValue, Math.round(potValue)));
 	}
 };
+Foxtrick.util.module.register(FoxtrickHTMSPoints);

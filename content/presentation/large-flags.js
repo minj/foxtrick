@@ -40,3 +40,4 @@ var FoxtrickLargeFlags = {
 		parentNode.insertBefore(wrapperDiv, nextSibling);
 	}
 };
+Foxtrick.util.module.register(FoxtrickLargeFlags);

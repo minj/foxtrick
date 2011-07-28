@@ -361,3 +361,4 @@ Foxtrick.Ratings = {
 		};
 	}
 };
+Foxtrick.util.module.register(Foxtrick.Ratings);

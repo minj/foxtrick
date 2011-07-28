@@ -279,3 +279,4 @@ var FoxtrickCopyRatings = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickCopyRatings);

@@ -13,3 +13,4 @@ var FoxtrickLinksTracker = {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "trackerplayerlink");
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksTracker);

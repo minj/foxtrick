@@ -337,3 +337,4 @@ var FoxtrickCopyPlayerAd = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickCopyPlayerAd);

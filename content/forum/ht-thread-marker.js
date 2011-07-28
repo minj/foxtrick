@@ -66,3 +66,4 @@
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickHTThreadMarker);

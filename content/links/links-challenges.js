@@ -45,3 +45,4 @@ var FoxtrickLinksChallenges = {
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,{});
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksChallenges);

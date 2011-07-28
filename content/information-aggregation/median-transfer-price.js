@@ -64,3 +64,4 @@ var FoxtrickMedianTransferPrice = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickMedianTransferPrice);

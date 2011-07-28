@@ -9,3 +9,4 @@ var FoxtrickBackgroundFixed = {
 	PAGES : new Array('all'),
 	CSS: Foxtrick.ResourcePath+"resources/css/backgroundfixed.css",
 };
+Foxtrick.util.module.register(FoxtrickBackgroundFixed);

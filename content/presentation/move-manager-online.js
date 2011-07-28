@@ -18,3 +18,4 @@ var FoxtrickMoveManagerOnline= {
 		target.parentNode.insertBefore(managerBox, target);
 	}
 }
+Foxtrick.util.module.register(FoxtrickMoveManagerOnline);

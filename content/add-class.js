@@ -90,3 +90,4 @@ Foxtrick.AddClass = {
 		}
 	}
 };
+Foxtrick.util.module.register(Foxtrick.AddClass);

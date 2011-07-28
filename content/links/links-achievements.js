@@ -46,3 +46,4 @@ var FoxtrickLinksAchievements = {
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname, "userid" : userid });
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksAchievements);

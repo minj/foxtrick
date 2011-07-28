@@ -24,3 +24,4 @@ var FoxtrickShowForumPrefButton = {
 		myForums.appendChild(strong);
 	}
 };
+Foxtrick.util.module.register(FoxtrickShowForumPrefButton);

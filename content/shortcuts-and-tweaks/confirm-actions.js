@@ -239,3 +239,4 @@ var FoxtrickConfirmActions = {
 		this.run(doc);
 	}
 };
+Foxtrick.util.module.register(FoxtrickConfirmActions);

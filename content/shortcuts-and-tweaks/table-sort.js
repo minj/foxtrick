@@ -183,3 +183,4 @@ var FoxtrickTableSort = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickTableSort);

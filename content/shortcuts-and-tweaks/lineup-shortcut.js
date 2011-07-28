@@ -186,3 +186,4 @@ FoxtrickLineupShortcut = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickLineupShortcut);

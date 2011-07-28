@@ -55,3 +55,4 @@ var FoxtrickGoalDifferenceToTables = {
 			this.run(doc);
 	}
 };
+Foxtrick.util.module.register(FoxtrickGoalDifferenceToTables);

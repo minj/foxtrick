@@ -124,3 +124,4 @@ var FoxtrickSmallerPages = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickSmallerPages);

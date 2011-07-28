@@ -52,3 +52,4 @@ var FoxtrickLinksArena = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksArena);

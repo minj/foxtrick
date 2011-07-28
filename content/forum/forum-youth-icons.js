@@ -609,3 +609,4 @@ textCounter : function (field, countfield, maxlimit) {
 }
 
 };
+Foxtrick.util.module.register(FoxtrickForumYouthIcons);

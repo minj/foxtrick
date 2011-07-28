@@ -49,3 +49,4 @@ FoxtrickLastLogin = {
 		div.setAttribute("processed", "processed");
 	}
 };
+Foxtrick.util.module.register(FoxtrickLastLogin);

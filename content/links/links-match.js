@@ -87,3 +87,4 @@ var FoxtrickLinksMatch = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksMatch);

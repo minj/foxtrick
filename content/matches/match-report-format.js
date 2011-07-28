@@ -314,3 +314,4 @@ FoxtrickMatchReportFormat = {
 			0;
 	}
 };
+Foxtrick.util.module.register(FoxtrickMatchReportFormat);

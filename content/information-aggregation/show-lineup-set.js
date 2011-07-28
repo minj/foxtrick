@@ -118,3 +118,4 @@ var FoxtrickShowLineupSet = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickShowLineupSet);

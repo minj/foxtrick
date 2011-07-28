@@ -39,3 +39,4 @@ var FoxtrickLinksStaff = {
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname});
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksStaff);

@@ -25,3 +25,4 @@ FoxtrickForumPresentation = {
 		Foxtrick.ResourcePath+"resources/css/fixes/moved_avatarinfo_fix.css"
 	]
 };
+Foxtrick.util.module.register(FoxtrickForumPresentation);

@@ -71,3 +71,4 @@ var FoxtrickNewMail = {
 		});
  	}
 };
+Foxtrick.util.module.register(FoxtrickNewMail);

@@ -65,3 +65,4 @@ var FoxtrickLinksLeague = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksLeague);

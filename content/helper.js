@@ -369,3 +369,4 @@ var FoxtrickHelper = {
 		return null;
 	}
 };
+Foxtrick.util.module.register(FoxtrickHelper);

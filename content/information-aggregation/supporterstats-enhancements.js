@@ -55,3 +55,4 @@ FoxtrickSupporterStatsEnhancements = {
 		});
 	}
 };
+Foxtrick.util.module.register(FoxtrickSupporterStatsEnhancements);

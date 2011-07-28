@@ -73,3 +73,4 @@ var FoxtrickYouthSeriesEstimation = {
 		this.run(doc);
 	}
 };
+Foxtrick.util.module.register(FoxtrickYouthSeriesEstimation);

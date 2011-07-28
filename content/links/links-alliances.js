@@ -46,3 +46,4 @@ var FoxtrickLinksAlliances = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksAlliances);

@@ -104,3 +104,4 @@ var FoxtrickAddLeaveConfButton = {
 		folderHeader.insertBefore( leaveConf, markAsReadButton);
 	}
 };
+Foxtrick.util.module.register(FoxtrickAddLeaveConfButton);

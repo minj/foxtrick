@@ -34,7 +34,6 @@ CONTENT_FILES = add-class.js \
 	forum-stage.js \
 	helper.js \
 	l10n.js \
-	modules.js \
 	pages.js \
 	preferences.js \
 	preferences.xhtml \
@@ -135,7 +134,6 @@ opera:
 	cp -r $(subst /,/.,$(SCRIPT_FOLDERS)) $(CONTENT_FILES_OPERA) \
 		../$(BUILD_DIR)/includes
 	mv $(BUILD_DIR)/includes/env.js $(BUILD_DIR)/includes/aa00_env.js 
-	mv $(BUILD_DIR)/includes/modules.js $(BUILD_DIR)/includes/zz10_modules.js 
 	mv $(BUILD_DIR)/includes/loader-chrome.js $(BUILD_DIR)/includes/zz99_loader-chrome.js 
 	mkdir $(BUILD_DIR)/content 
 	cd content/; \

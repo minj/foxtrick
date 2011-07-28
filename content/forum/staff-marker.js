@@ -229,3 +229,4 @@ var FoxtrickStaffMarker = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickStaffMarker);

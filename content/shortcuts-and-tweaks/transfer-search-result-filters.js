@@ -4,7 +4,7 @@
  * @author convincedd, ryanli
  */
 
-FoxtrickTransferSearchResultFilters = {
+var FoxtrickTransferSearchResultFilters = {
 	MODULE_NAME : "TransferSearchResultFilters",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ['transferSearchForm','transferSearchResult'],
@@ -224,3 +224,4 @@ FoxtrickTransferSearchResultFilters = {
 		});
 	}
 };
+Foxtrick.util.module.register(FoxtrickTransferSearchResultFilters);

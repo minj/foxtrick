@@ -33,3 +33,4 @@ var FoxtrickSkillColoring = {
 			this.OPTIONS_CSS[3] = Foxtrick.ResourcePath+"resources/skillcolors/skill-number-translated-personal.css";
 	}
 };
+Foxtrick.util.module.register(FoxtrickSkillColoring);

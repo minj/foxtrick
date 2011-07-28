@@ -101,3 +101,4 @@ var FoxtrickNtPeek = {
 		});
 	}
 };
+Foxtrick.util.module.register(FoxtrickNtPeek);

@@ -306,3 +306,4 @@ Foxtrick.AttVsDef = {
 		return values;
 	}
 };
+Foxtrick.util.module.register(Foxtrick.AttVsDef);

@@ -104,3 +104,4 @@ var FoxtrickLocalTime = {
 		});
 	}
 }
+Foxtrick.util.module.register(FoxtrickLocalTime);

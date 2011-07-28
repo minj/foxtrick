@@ -44,3 +44,4 @@ var FoxtrickForumStage = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickForumStage);

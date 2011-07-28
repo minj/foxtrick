@@ -60,3 +60,4 @@ var FoxtrickForumStripHattrickLinks = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickForumStripHattrickLinks);

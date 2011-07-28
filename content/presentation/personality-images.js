@@ -35,3 +35,4 @@ var FoxtrickPersonalityImages = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickPersonalityImages);

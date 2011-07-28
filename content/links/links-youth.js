@@ -44,8 +44,7 @@ var FoxtrickLinksYouthOverview = {
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
 };
-
-
+Foxtrick.util.module.register(FoxtrickLinksYouthOverview);
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksYouthPlayerDetail = {
@@ -110,7 +109,7 @@ var FoxtrickLinksYouthPlayerDetail = {
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
 };
-
+Foxtrick.util.module.register(FoxtrickLinksYouthPlayerDetail);
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksYouthTraining = {
@@ -155,6 +154,7 @@ var FoxtrickLinksYouthTraining = {
 	},
 
 };
+Foxtrick.util.module.register(FoxtrickLinksYouthTraining);
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksYouthPlayerList = {
@@ -241,6 +241,7 @@ var FoxtrickLinksYouthMatchList = {
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksYouthMatchList);
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksYouthLeague = {
@@ -283,3 +284,4 @@ var FoxtrickLinksYouthLeague = {
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksYouthPlayerList);

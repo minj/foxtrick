@@ -98,3 +98,4 @@ FoxtrickTransferDeadline = {
 		this.processNode(selltime_elm, htTime);
 	}
 };
+Foxtrick.util.module.register(FoxtrickTransferDeadline);

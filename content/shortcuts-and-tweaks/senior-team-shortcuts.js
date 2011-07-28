@@ -64,3 +64,4 @@ var FoxtrickSeniorTeamShortCuts = {
 		else bl_header[0].parentNode.appendChild(li2);
 	}
 };
+Foxtrick.util.module.register(FoxtrickSeniorTeamShortCuts);

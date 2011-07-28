@@ -50,3 +50,4 @@ var FoxtrickElectionTable = {
 			this.run(doc);
 	}
 };
+Foxtrick.util.module.register(FoxtrickElectionTable);

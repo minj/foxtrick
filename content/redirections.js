@@ -172,3 +172,4 @@ var FoxtrickRedirections = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickRedirections);

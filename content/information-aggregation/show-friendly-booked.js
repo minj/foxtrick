@@ -98,3 +98,4 @@ var FoxtrickShowFriendlyBooked = {
 		});
 	}
 };
+Foxtrick.util.module.register(FoxtrickShowFriendlyBooked);

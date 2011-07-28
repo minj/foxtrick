@@ -140,3 +140,4 @@ var FoxtrickTickerAlert = {
 			tickerCheck();
 	}
 };
+Foxtrick.util.module.register(FoxtrickTickerAlert);

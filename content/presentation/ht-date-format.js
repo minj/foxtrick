@@ -59,3 +59,4 @@ var FoxtrickHTDateFormat = {
 		FoxtrickHTDateFormat.run(doc);
 	}
 };
+Foxtrick.util.module.register(FoxtrickHTDateFormat);

@@ -51,3 +51,4 @@ var FoxtrickFixcssProblems = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickFixcssProblems);

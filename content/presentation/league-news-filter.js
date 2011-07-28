@@ -110,3 +110,4 @@ var FoxtrickLeagueNewsFilter = {
 		} catch (e) {Foxtrick.dump("FoxtrickLeagueNewsFilter_Select: "+e+'\n');}
 	}
 };
+Foxtrick.util.module.register(FoxtrickLeagueNewsFilter);

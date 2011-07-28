@@ -81,3 +81,4 @@ var FoxtrickPlayerBirthday = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickPlayerBirthday);

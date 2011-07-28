@@ -108,3 +108,4 @@ var FoxtrickReadHtPrefs = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickReadHtPrefs);

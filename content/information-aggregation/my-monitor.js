@@ -415,3 +415,4 @@ var FoxtrickMyMonitor = {
 			return "/Club/?TeamID=" + team.id;
 	}
 };
+Foxtrick.util.module.register(FoxtrickMyMonitor);

@@ -627,3 +627,4 @@ FoxtrickFlagCollectionToMap = {
 		return cImgString;
 	},
 };
+Foxtrick.util.module.register(FoxtrickFlagCollectionToMap);

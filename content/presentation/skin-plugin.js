@@ -49,3 +49,5 @@ var FoxtrickSkinPlugin = {
 		} //old medals
 	}
 };
+if (Foxtrick.BuildFor == "Gecko")
+	Foxtrick.util.module.register(FoxtrickSkinPlugin);

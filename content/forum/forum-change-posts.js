@@ -628,3 +628,4 @@ var FoxtrickForumChangePosts = {
 		ev.target.href='/Forum/Read.aspx?t='+PostID.replace(/\.\d+/,'')+'&n='+PostID.replace(/\d+\./,'');
 	}
 };
+Foxtrick.util.module.register(FoxtrickForumChangePosts);

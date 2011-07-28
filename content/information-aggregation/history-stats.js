@@ -191,3 +191,4 @@ var FoxtrickHistoryStats= {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickHistoryStats);

@@ -156,3 +156,4 @@ var FoxtrickLinksPlayerDetail = {
 		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, params);
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksPlayerDetail);

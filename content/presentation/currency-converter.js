@@ -129,3 +129,4 @@ var FoxtrickCurrencyConverter = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickCurrencyConverter);

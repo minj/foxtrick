@@ -60,3 +60,4 @@ var FoxtrickLinksNational = {
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid,"ntteamid":ntteamid,"LeagueOfficeTypeID":LeagueOfficeTypeID });
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksNational);

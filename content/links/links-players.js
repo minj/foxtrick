@@ -48,3 +48,4 @@ var FoxtrickLinksPlayers = {
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname, "playerids" : playerids });
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksPlayers);

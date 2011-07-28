@@ -71,3 +71,4 @@ var FoxtrickHighlightCupwins = {
 		}
  	}
 };
+Foxtrick.util.module.register(FoxtrickHighlightCupwins);

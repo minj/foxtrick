@@ -58,3 +58,4 @@ var FoxtrickMarkUnread = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickMarkUnread);

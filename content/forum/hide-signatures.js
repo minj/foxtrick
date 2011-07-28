@@ -51,3 +51,4 @@ var FoxtrickHideSignatures = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickHideSignatures);

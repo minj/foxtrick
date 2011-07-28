@@ -32,3 +32,4 @@ var FoxtrickMovePlayerStatement = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickMovePlayerStatement);

@@ -97,3 +97,4 @@ var FoxtrickCopyMatchID = {
 	} catch(e){Foxtrick.log(e);}
 	}
 };
+Foxtrick.util.module.register(FoxtrickCopyMatchID);

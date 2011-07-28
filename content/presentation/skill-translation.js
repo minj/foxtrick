@@ -202,3 +202,4 @@ var FoxtrickSkillTranslation = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickSkillTranslation);

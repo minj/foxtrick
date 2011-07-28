@@ -95,3 +95,5 @@ var FoxtrickHeaderFixLeft = {
 			FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", false );
 	}
 };
+Foxtrick.util.module.register(FoxtrickHeaderFix);
+Foxtrick.util.module.register(FoxtrickHeaderFixLeft);

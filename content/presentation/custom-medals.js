@@ -41,3 +41,4 @@ var FoxtrickCustomMedals = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickCustomMedals);

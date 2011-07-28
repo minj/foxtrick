@@ -164,3 +164,4 @@ var FoxtrickRapidId = {
 		indicator.addEventListener("click", FoxtrickRapidId.onclick, true);
 	}
 };
+Foxtrick.util.module.register(FoxtrickRapidId);

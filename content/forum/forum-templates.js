@@ -249,3 +249,4 @@ var FoxtrickForumTemplates = {
 		container.appendChild(name);
 	}
 };
+Foxtrick.util.module.register(FoxtrickForumTemplates);

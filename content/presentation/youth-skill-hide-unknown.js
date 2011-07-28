@@ -47,3 +47,4 @@ var FoxtrickYouthSkillHideUnknown = {
 		}
 	}
 }
+Foxtrick.util.module.register(FoxtrickYouthSkillHideUnknown);

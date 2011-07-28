@@ -173,3 +173,4 @@ var FoxtrickHTMSPrediction = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickHTMSPrediction);

@@ -1303,4 +1303,5 @@ var FoxtrickSkillTable = {
 			}
 		}
 	}
-}
+};
+Foxtrick.util.module.register(FoxtrickSkillTable);

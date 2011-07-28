@@ -258,3 +258,4 @@ var FoxtrickSeasonStats = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickSeasonStats);

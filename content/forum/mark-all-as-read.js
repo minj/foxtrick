@@ -37,3 +37,4 @@ var FoxtrickMarkAllAsRead = {
 		forumTabs.appendChild(container);
 	}
 };
+Foxtrick.util.module.register(FoxtrickMarkAllAsRead);

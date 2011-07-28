@@ -42,3 +42,4 @@ var FoxtrickLinksClubTransfers = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksClubTransfers);

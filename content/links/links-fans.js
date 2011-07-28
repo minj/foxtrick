@@ -51,3 +51,4 @@ var FoxtrickLinksFans = {
 																		"fans":fans, "fanmood" : fanmood });
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksFans);

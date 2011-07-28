@@ -48,3 +48,4 @@ var FoxtrickTickerColoring = {
 		update();
 	}
 };
+Foxtrick.util.module.register(FoxtrickTickerColoring);

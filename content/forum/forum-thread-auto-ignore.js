@@ -99,3 +99,4 @@ var FoxtrickForumThreadAutoIgnore = {
 		FoxtrickForumThreadAutoIgnore.checkthreads(ev.target.ownerDocument);
 	}
 };
+Foxtrick.util.module.register(FoxtrickForumThreadAutoIgnore);

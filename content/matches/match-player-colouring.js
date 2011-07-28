@@ -157,3 +157,4 @@ var FoxtrickMatchPlayerColouring = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickMatchPlayerColouring);

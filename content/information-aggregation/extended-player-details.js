@@ -48,7 +48,7 @@ FoxtrickExtendedPlayerDetails = {
 		else Foxtrick.dump('  Could not create jointime (NaN)\n');
 	}
 };
-
+Foxtrick.util.module.register(FoxtrickExtendedPlayerDetails);
 
 FoxtrickExtendedPlayerDetailsWage = {
 
@@ -105,3 +105,4 @@ FoxtrickExtendedPlayerDetailsWage = {
 				+ Foxtrickl10n.getString("foxtrick.ExtendedPlayerDetails.perseason");
 	}
 };
+Foxtrick.util.module.register(FoxtrickExtendedPlayerDetailsWage);

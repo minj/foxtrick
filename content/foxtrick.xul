@@ -5,23 +5,14 @@
 <overlay id="foxtrick"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
+<!-- essential stuffs -->
 <script type="application/x-javascript" src="./env.js" />
 <script type="application/x-javascript" src="./loader-gecko.js" />
 <script type="application/x-javascript" src="./prefs.js" />
-<script type="application/x-javascript" src="./pages.js" />
 <script type="application/x-javascript" src="./l10n.js" />
-<script type="application/x-javascript" src="./helper.js" />
 <script type="application/x-javascript" src="./xml-load.js" />
+<script type="application/x-javascript" src="./pages.js" />
 <script type="application/x-javascript" src="./stats.js" />
-<script type="application/x-javascript" src="./redirections.js" />
-<script type="application/x-javascript" src="./read-ht-prefs.js" />
-<script type="application/x-javascript" src="./forum-stage.js" />
-<script type="application/x-javascript" src="./core.js" />
-<script type="application/x-javascript" src="./add-class.js" />
-
-<!-- external libraries -->
-<script type="application/x-javascript" src="./lib/oauth.js" />
-<script type="application/x-javascript" src="./lib/sha1.js" />
 
 <!-- utilities -->
 <script type="application/x-javascript" src="./util/api.js" />
@@ -40,6 +31,10 @@
 <script type="application/x-javascript" src="./util/string.js" />
 <script type="application/x-javascript" src="./util/time.js" />
 
+<!-- external libraries -->
+<script type="application/x-javascript" src="./lib/oauth.js" />
+<script type="application/x-javascript" src="./lib/sha1.js" />
+
 <!-- page utilities -->
 <script type="application/x-javascript" src="./pages/all.js" />
 <script type="application/x-javascript" src="./pages/country.js" />
@@ -49,7 +44,15 @@
 <script type="application/x-javascript" src="./pages/transfer-search-results.js" />
 <script type="application/x-javascript" src="./pages/match.js" />
 
-<!-- individual modules -->
+<!-- core modules -->
+<script type="application/x-javascript" src="./helper.js" />
+<script type="application/x-javascript" src="./redirections.js" />
+<script type="application/x-javascript" src="./read-ht-prefs.js" />
+<script type="application/x-javascript" src="./forum-stage.js" />
+<script type="application/x-javascript" src="./core.js" />
+<script type="application/x-javascript" src="./add-class.js" />
+
+<!-- categorized modules -->
 <script type="application/x-javascript" src="./alert/live-alert.js" />
 <script type="application/x-javascript" src="./alert/new-mail.js" />
 <script type="application/x-javascript" src="./alert/ticker-alert.js" />
@@ -169,7 +172,6 @@
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/transfer-search-filters.js" />
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/transfer-search-result-filters.js" />
 
-<script type="application/x-javascript" src="./modules.js" />
 <script type="application/x-javascript" src="./entry.js" />
 
 <!-- run init -->

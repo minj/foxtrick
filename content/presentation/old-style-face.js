@@ -19,3 +19,4 @@ var FoxtrickOldStyleFace = {
 		Foxtrick.ResourcePath + "resources/css/old-style-face/edit-avatar.css"
 	]
 };
+Foxtrick.util.module.register(FoxtrickOldStyleFace);

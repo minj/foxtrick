@@ -320,3 +320,4 @@ var FoxtrickCrossTable = {
 		});
 	}
 };
+Foxtrick.util.module.register(FoxtrickCrossTable);

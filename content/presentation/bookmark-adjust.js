@@ -92,3 +92,4 @@ Foxtrick.BookmarkAdjust = {
 	}
 };
 
+Foxtrick.util.module.register(Foxtrick.BookmarkAdjust);

@@ -55,3 +55,4 @@ var FoxtrickForumLastPost = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickForumLastPost);

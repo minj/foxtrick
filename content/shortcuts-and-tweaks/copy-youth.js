@@ -411,3 +411,4 @@ var FoxtrickCopyYouth = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickCopyYouth);

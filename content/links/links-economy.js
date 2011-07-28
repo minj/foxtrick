@@ -54,3 +54,4 @@ var FoxtrickLinksEconomy = {
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,{ "Cash":Cash,"Currency":currencySymbol,"newCash":newCash});
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksEconomy);

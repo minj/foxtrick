@@ -19,3 +19,4 @@ var FoxtrickMovePlayerSelectbox= {
 		sidebar.insertBefore(box,sidebar.firstChild);
 	}
 }
+Foxtrick.util.module.register(FoxtrickMovePlayerSelectbox);

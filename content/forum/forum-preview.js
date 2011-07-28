@@ -389,3 +389,4 @@ var FoxtrickForumPreview = {
 	}
 
 };
+Foxtrick.util.module.register(FoxtrickForumPreview);

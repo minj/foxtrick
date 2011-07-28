@@ -127,3 +127,4 @@ var FoxtrickGoToPostBox = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickGoToPostBox);

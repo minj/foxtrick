@@ -54,3 +54,4 @@ var FoxtrickMatchIncome = {
 		td2b.textContent = Foxtrick.formatNumber(Math.floor(sum), ' ')+' '+Foxtrick.util.currency.getSymbol();
 	}
 };
+Foxtrick.util.module.register(FoxtrickMatchIncome);

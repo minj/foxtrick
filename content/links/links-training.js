@@ -57,3 +57,4 @@ var FoxtrickLinksTraining = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksTraining);

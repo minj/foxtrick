@@ -66,3 +66,4 @@ FoxtrickExtraPlayerInfo = {
 		});
 	}
 };
+Foxtrick.util.module.register(FoxtrickExtraPlayerInfo);

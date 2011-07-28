@@ -25,3 +25,4 @@ FoxtrickSimplePresentation = {
 		Foxtrick.ResourcePath+"resources/css/fixes/NoLogo.css"
 	]
 };
+Foxtrick.util.module.register(FoxtrickSimplePresentation);

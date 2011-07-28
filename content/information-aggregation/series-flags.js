@@ -156,3 +156,4 @@ var FoxtrickSeriesFlags = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickSeriesFlags);

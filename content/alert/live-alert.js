@@ -94,3 +94,4 @@ var FoxtrickLiveAlert = {
 		}
 	}
 }
+Foxtrick.util.module.register(FoxtrickLiveAlert);

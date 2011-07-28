@@ -120,3 +120,4 @@ var FoxtrickManagerButtons = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickManagerButtons);

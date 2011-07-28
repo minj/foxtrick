@@ -51,3 +51,4 @@ var FoxtrickLinksCountry = {
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid });
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksCountry);

@@ -96,6 +96,7 @@ var FoxtrickFormatPostingText = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickFormatPostingText);
 
 var FoxtrickCopyPostID = {
 
@@ -104,6 +105,7 @@ var FoxtrickCopyPostID = {
 	PAGES : new Array("forumViewThread"),
 	OPTIONS : new Array("AddCopyIcon")
 };
+Foxtrick.util.module.register(FoxtrickCopyPostID);
 
 //**********************************************************
 /**
@@ -117,6 +119,7 @@ var FoxtrickCopyPosting = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
 };
+Foxtrick.util.module.register(FoxtrickCopyPosting);
 
 //**********************************************************
 /**
@@ -143,6 +146,7 @@ var FoxtrickForumAlterHeaderLine = {
 
 	CSS_SIMPLE : Foxtrick.ResourcePath+"resources/css/fixes/Forum_Header_Single_SimpleFix.css"
 };
+Foxtrick.util.module.register(FoxtrickForumAlterHeaderLine);
 
 //**********************************************************
 /**
@@ -156,6 +160,7 @@ var FoxtrickForumRedirManagerToTeam = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
 };
+Foxtrick.util.module.register(FoxtrickForumRedirManagerToTeam);
 
 //**********************************************************
 /**
@@ -169,6 +174,7 @@ var FoxtrickMoveLinks = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
 };
+Foxtrick.util.module.register(FoxtrickMoveLinks);
 
 //**********************************************************
 /**
@@ -182,3 +188,4 @@ var FoxtrickAddDefaultFaceCard = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
 };
+Foxtrick.util.module.register(FoxtrickAddDefaultFaceCard);

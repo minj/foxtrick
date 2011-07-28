@@ -18,3 +18,4 @@ FoxtrickHighlightOwnerless = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickHighlightOwnerless);

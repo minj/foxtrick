@@ -122,3 +122,4 @@ var FoxtrickTeamSelectBox = {
 		toggle();
 	}
 };
+Foxtrick.util.module.register(FoxtrickTeamSelectBox);

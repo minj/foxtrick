@@ -38,3 +38,4 @@ var FoxtrickYouthPromotes = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickYouthPromotes);

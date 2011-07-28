@@ -116,3 +116,4 @@ var FoxtrickLeagueAndMatchChat = {
 		}
 	}
 };
+Foxtrick.util.module.register(FoxtrickLeagueAndMatchChat);

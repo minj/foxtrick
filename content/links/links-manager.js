@@ -48,3 +48,4 @@ var FoxtrickLinksManager = {
 												"leagueid" : leagueid ,"owncountryid":owncountryid  });
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksManager);

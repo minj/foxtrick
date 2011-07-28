@@ -242,3 +242,4 @@ var FoxtrickExtraShortcuts = {
 		}, true);
 	}
 }
+Foxtrick.util.module.register(FoxtrickExtraShortcuts);

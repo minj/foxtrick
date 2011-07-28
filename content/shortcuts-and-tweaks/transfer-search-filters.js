@@ -224,3 +224,4 @@ FoxtrickTransferSearchFilters = {
 		td_remove.appendChild(remover);
 	}
 };
+Foxtrick.util.module.register(FoxtrickTransferSearchFilters);

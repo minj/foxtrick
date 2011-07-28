@@ -207,3 +207,4 @@ var FoxtrickCountyList = {
 		Foxtrick.dump('country select activated.\n');
 	}
 };
+Foxtrick.util.module.register(FoxtrickCountyList);
