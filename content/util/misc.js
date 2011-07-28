@@ -41,15 +41,32 @@ Foxtrick.selectFile = function (parentWindow) {
 // Play the sound with URL given as parameter.
 // Gecko only supports WAV format at the moment.
 // May throw an error if unable to play the sound.
-Foxtrick.playSound = function(url) {
-	if (Foxtrick.BuildFor === "Gecko") {
-		var soundService = Components.classes["@mozilla.org/sound;1"].getService(Components.interfaces.nsISound);
-		var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-		soundService.play(ioService.newURI(url, null, null));
-	}
-	else if (Foxtrick.BuildFor === "Sandboxed") {
-		var music = new Audio(url);
-		music.play();
+Foxtrick.playSound = function(url, doc) {
+	try {
+		if (Foxtrick.BuildFor === "Gecko") {
+			var soundService = Components.classes["@mozilla.org/sound;1"].getService(Components.interfaces.nsISound);
+			var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+			soundService.play(ioService.newURI(url, null, null));
+		}
+		else if ( typeof(chrome)=='object' )  {
+			var music = new Audio(url);
+			music.setAttribute("autoplay","autoplay");
+			music.source.type = 'audio/wav';
+			music.play();
+		}
+		else {
+			var music = doc.createElement('audio');
+			music.setAttribute("autoplay","autoplay");
+			var source = doc.createElement('source');
+			source.setAttribute('src',url);
+			source.setAttribute('type','audio/wav');
+			music.appendChild(source);
+			doc.getElementsByTagName('body')[0].appendChild(music);
+			//music.play();
+		} 
+	} catch(e){	
+		Foxtrick.log("Cannot play sound: ", sound);
+		Foxtrick.log(e);
 	}
 }
 

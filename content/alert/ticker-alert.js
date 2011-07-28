@@ -120,16 +120,8 @@ var FoxtrickTickerAlert = {
 						if (sound) {
 							// use foxtrick:// for Foxtrick.ResourcePath
 							// for cross-platform compatibility
-							sound = sound.replace(
-								new RegExp("^foxtrick://"),
-								Foxtrick.ResourcePath
-							);
-							try {
-								Foxtrick.playSound(sound);
-							}
-							catch (e) {
-								Foxtrick.log("Cannot play sound: ", sound);
-							}
+							sound = sound.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
+							Foxtrick.playSound(sound, doc);
 						}
 					}
 				});

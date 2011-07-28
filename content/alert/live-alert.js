@@ -82,12 +82,7 @@ var FoxtrickLiveAlert = {
 					if (FoxtrickPrefs.isModuleOptionEnabled("LiveAlert", "Sound")) {
 						var sound = FoxtrickPrefs.getString("module.LiveAlert.Sound_text");
 						sound = sound.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
-						try {
-							Foxtrick.playSound(sound);
-						}
-						catch (e) {
-							Foxtrick.log("Cannot play sound: ", sound);
-						}
+						Foxtrick.playSound(sound, doc);
 					}
 				}
 			}
