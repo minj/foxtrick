@@ -11,6 +11,7 @@ if (typeof(opera) === "object") {
 	Foxtrick.BuildFor = "Sandboxed";
 	Foxtrick.InternalPath = "content/";
 	Foxtrick.ResourcePath = "http://foxtrick.googlecode.com/svn/trunk/content/";
+	Foxtrick.TickerDOMMutationEventType = 'DOMNodeInserted';
 	
 	// to tell which context the chrome script is running at
 	// either background page, or content script
@@ -150,6 +151,7 @@ else if (typeof(chrome) === "object") {
 	Foxtrick.BuildFor = "Sandboxed";
 	Foxtrick.InternalPath = chrome.extension.getURL("content/");
 	Foxtrick.ResourcePath = chrome.extension.getURL("content/");
+	Foxtrick.TickerDOMMutationEventType = 'DOMSubtreeModified';
 	
 	// to tell which context the chrome script is running at
 	// either background page, or content script
@@ -190,6 +192,7 @@ else {
 	Foxtrick.BuildFor = "Gecko";
 	Foxtrick.InternalPath = "chrome://foxtrick/content/";
 	Foxtrick.ResourcePath = "chrome://foxtrick/content/";
+	Foxtrick.TickerDOMMutationEventType = 'DOMSubtreeModified';
 }
 
 

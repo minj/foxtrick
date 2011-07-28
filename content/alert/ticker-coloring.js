@@ -15,7 +15,7 @@ var FoxtrickTickerColoring = {
 
 		var update = function() {
 			// prevent self-triggered calls
-			ticker.removeEventListener("DOMSubtreeModified", update, false);
+			ticker.removeEventListener(Foxtrick.TickerDOMMutationEventType, update, false);
 
 			var links = ticker.getElementsByTagName("a");
 			for (var i = 0; i < links.length; ++i) {
@@ -42,7 +42,7 @@ var FoxtrickTickerColoring = {
 						Foxtrick.addClass(link, "ft-ticker-myht");
 				}
 			}
-			ticker.addEventListener("DOMSubtreeModified", update, false);
+			ticker.addEventListener(Foxtrick.TickerDOMMutationEventType, update, false);
 		}
 
 		update();

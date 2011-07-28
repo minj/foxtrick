@@ -85,7 +85,7 @@ var FoxtrickTickerAlert = {
 		var tickerCheck = function(ev) {
 			// prevent from multiple tickerCheck() instances running at the
 			// same time
-			ticker.removeEventListener("DOMSubtreeModified", tickerCheck, false);
+			ticker.removeEventListener(Foxtrick.TickerDOMMutationEventType, tickerCheck, false);
 			Foxtrick.sessionGet("tickers", function(tickers) {
 				if (tickers == undefined)
 					tickers = [];
@@ -125,7 +125,7 @@ var FoxtrickTickerAlert = {
 						}
 					}
 				});
-				ticker.addEventListener("DOMSubtreeModified", tickerCheck, false);
+				ticker.addEventListener(Foxtrick.TickerDOMMutationEventType, tickerCheck, false);
 			});
 		};
 		if (Foxtrick.util.layout.isSupporter(doc))
