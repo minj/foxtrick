@@ -16,19 +16,8 @@ http://code.google.com/p/foxtrick/issues/list
 Getting a copy of source
 ========================
 
-You could run the following command to get a read-only local copy of the source:
-svn checkout http://foxtrick.googlecode.com/svn/trunk/ foxtrick-read-only
-
-Or local copy with write access to the repository if you already have the
-privileges:
-svn checkout https://foxtrick.googlecode.com/svn/trunk/ foxtrick --username username@example.org
-
-For client programs like TortoiseSVN, please read the client's manual for
-accessing with that special program, with the locations of the repository
-provided above.
-
-You could also use git-svn for the convenience of git at your local side. Read
-its manual for more information.
+Please refer to the instructions here:
+http://code.google.com/p/foxtrick/source/checkout
 
 
 Committing
