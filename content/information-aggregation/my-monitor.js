@@ -148,7 +148,7 @@ var FoxtrickMyMonitor = {
 			var nameLink = doc.createElement("a");
 			buildLink(team, nameLink);
 			
-			if (FoxtrickPrefs.isModuleOptionEnabled (FoxtrickMyMonitor, 'TeamIcons')) {
+			if (FoxtrickPrefs.isModuleOptionEnabled("MyMonitor", 'TeamIcons')) {
 				var img_height = 18;
 				if (Foxtrick.util.layout.isStandard(doc)) img_height = 24;
 				

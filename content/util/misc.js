@@ -564,7 +564,7 @@ Foxtrick.collect_module_css = function() {
 		// collect module options CSS
 		if (module.OPTIONS_CSS) {
 			for (var j = 0; j < module.OPTIONS_CSS.length; ++j) {
-				if (!FoxtrickPrefs.isModuleOptionEnabled(module, module.OPTIONS[j]))
+				if (!FoxtrickPrefs.isModuleOptionEnabled(module.MODULE_NAME, module.OPTIONS[j]))
 					continue;
 				collectCss(module.OPTIONS_CSS[j],
 					module.OPTIONS_CSS_SIMPLE ? module.OPTIONS_CSS_SIMPLE[j] : null,
