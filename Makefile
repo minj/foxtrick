@@ -144,11 +144,11 @@ opera:
 	mv $(BUILD_DIR)/includes/env.js $(BUILD_DIR)/includes/aa00_env.js 
 	mv $(BUILD_DIR)/includes/module.js $(BUILD_DIR)/includes/aa10_module.js 
 	mv $(BUILD_DIR)/includes/loader-chrome.js $(BUILD_DIR)/includes/zz99_loader-chrome.js 
-	cd $(BUILD_DIR); sed -i -r 's|(\"\./[a-zA-Z0-9_-\)|\"./|' background.html options.html
-	cd $(BUILD_DIR); sed -i -r 's|(\"\./)|\"./includes/' background.html options.html
-	cd $(BUILD_DIR); sed -i -r 's|(/includes/env.js)|/includes/aa00_env.js' background.html options.html
-	cd $(BUILD_DIR); sed -i -r 's|(/includes/module.js)|/includes/aa10_module.js' background.html options.html
-	cd $(BUILD_DIR); sed -i -r 's|(/includes/loader-chrome.js)|/includes/zz99_loader-chrome.js' background.html options.html
+	cd $(BUILD_DIR); sed -i -r 's|(\"\./[a-zA-Z0-9_-]+/)|\"./|' background.html options.html
+	cd $(BUILD_DIR); sed -i -r 's|(\"\./)|\"./includes/|' background.html options.html
+	cd $(BUILD_DIR); sed -i -r 's|(/includes/env.js)|/includes/aa00_env.js|' background.html options.html
+	cd $(BUILD_DIR); sed -i -r 's|(/includes/module.js)|/includes/aa10_module.js|' background.html options.html
+	cd $(BUILD_DIR); sed -i -r 's|(/includes/loader-chrome.js)|/includes/zz99_loader-chrome.js|' background.html options.html
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
