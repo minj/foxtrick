@@ -137,7 +137,7 @@ var FoxtrickLinksPlayerDetail = {
 			}
 		}
 
-		if (FoxtrickPrefs.isModuleEnabled(FoxtrickLinksTracker)) {
+		if (FoxtrickPrefs.isModuleEnabled("LinksTracker")) {
 			var links2 = Foxtrick.LinkCollection.getLinks("trackerplayerlink", params, doc,FoxtrickLinksTracker);
 			if (links2.length > 0) {
 				for (var i = 0; i < links2.length; ++i) {

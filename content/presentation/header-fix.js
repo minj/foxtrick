@@ -91,7 +91,7 @@ var FoxtrickHeaderFixLeft = {
 	CSSRTL : Foxtrick.ResourcePath+"resources/css/headerfix_std_rtl_left.css",
 
 	init : function() {
-		if (!FoxtrickPrefs.isModuleEnabled(FoxtrickHeaderFix))
+		if (!FoxtrickPrefs.isModuleEnabled("HeaderFix"))
 			FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", false );
 	}
 };

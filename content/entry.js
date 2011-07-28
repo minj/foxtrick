@@ -97,7 +97,7 @@ Foxtrick.entry.init = function() {
 	var modules = [];
 	for (var i in Foxtrick.modules) {
 		var module = Foxtrick.modules[i];
-		if (FoxtrickPrefs.isModuleEnabled(module)) {
+		if (FoxtrickPrefs.isModuleEnabled(module.MODULE_NAME)) {
 			// push to array modules for executing init()
 			modules.push(module);
 			// register modules on the pages they are operating on according

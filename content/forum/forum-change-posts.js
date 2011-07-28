@@ -12,14 +12,14 @@ var FoxtrickForumChangePosts = {
 	CSS : Foxtrick.ResourcePath + "resources/css/changepost.css",
 
 	run : function(doc) {
-		var do_copy_post_id = FoxtrickPrefs.isModuleEnabled(FoxtrickCopyPostID);
+		var do_copy_post_id = FoxtrickPrefs.isModuleEnabled("CopyPostID");
 		var do_add_copy_icon = do_copy_post_id && FoxtrickPrefs.isModuleOptionEnabled( FoxtrickCopyPostID, "AddCopyIcon");
-		var do_copy_posting = FoxtrickPrefs.isModuleEnabled(FoxtrickCopyPosting);
-		var do_default_facecard = FoxtrickPrefs.isModuleEnabled(FoxtrickAddDefaultFaceCard);
-		var do_format_text = FoxtrickPrefs.isModuleEnabled(FoxtrickFormatPostingText);
-		var do_move_links = FoxtrickPrefs.isModuleEnabled(FoxtrickMoveLinks);
-		var do_alter_header = FoxtrickPrefs.isModuleEnabled(FoxtrickForumAlterHeaderLine);
-		var do_redir_to_team = FoxtrickPrefs.isModuleEnabled( FoxtrickForumRedirManagerToTeam );
+		var do_copy_posting = FoxtrickPrefs.isModuleEnabled("CopyPosting");
+		var do_default_facecard = FoxtrickPrefs.isModuleEnabled("AddDefaultFaceCard");
+		var do_format_text = FoxtrickPrefs.isModuleEnabled("FormatPostingText");
+		var do_move_links = FoxtrickPrefs.isModuleEnabled("MoveLinks");
+		var do_alter_header = FoxtrickPrefs.isModuleEnabled("ForumAlterHeaderLine");
+		var do_redir_to_team = FoxtrickPrefs.isModuleEnabled("ForumRedirManagerToTeam");
 
 		var do_single_header = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled( FoxtrickForumAlterHeaderLine, "SingleHeaderLine");
 		var do_small_header_font = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled( FoxtrickForumAlterHeaderLine, "SmallHeaderFont");

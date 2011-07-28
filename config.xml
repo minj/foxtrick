@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets" 
 		id="{9d1f059c-cada-4111-9696-41a62d64e3ba}" 
-		version="0.79" network="public private">
+		version="0.7.9" network="public private">
 	<name>FoxTrick</name>
 	<description>FoxTrick addon for hattrick.org</description>
 	<author href="http://code.google.com/p/foxtrick/">FoxTrick team</author>

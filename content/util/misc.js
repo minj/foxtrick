@@ -501,7 +501,7 @@ Foxtrick.collect_module_css = function() {
 	Foxtrick.cssFiles = [];
 	for (var i in Foxtrick.modules) {
 		var module = Foxtrick.modules[i];
-		if (!FoxtrickPrefs.isModuleEnabled(module))
+		if (!FoxtrickPrefs.isModuleEnabled(module.MODULE_NAME))
 			continue;
 		var collectCss = function(normal, simple, rtl, simpleRtl) {
 			var collect_css_impl = function(cssList) {
