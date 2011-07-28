@@ -55,7 +55,7 @@ Foxtrick.modules = [
 	Foxtrick.Ratings,
 	FoxtrickHTMSPrediction,
 	FoxtrickSkillTable,
-	Foxtrick.TeamStats,
+	FoxtrickTeamStats,
 	FoxtrickOriginalFace,
 	FoxtrickBackgroundFixed,
 	FoxtrickCopyPlayerAd,

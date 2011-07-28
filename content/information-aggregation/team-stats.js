@@ -4,7 +4,7 @@
  * @author OBarros, spambot, convinced, ryanli
  */
 ////////////////////////////////////////////////////////////////////////////////
-Foxtrick.TeamStats = {
+FoxtrickTeamStats = {
 
 	MODULE_NAME : "TeamStats",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
@@ -124,7 +124,7 @@ Foxtrick.TeamStats = {
 				return row;
 			};
 
-			if (FoxtrickPrefs.isModuleOptionEnabled(Foxtrick.TeamStats, "General")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickTeamStats, "General")) {
 				addHeader(Foxtrickl10n.getString("General"));
 				if (totalTSI) {
 					var avgTSI = Math.round(totalTSI / playerList.length);
@@ -166,7 +166,7 @@ Foxtrick.TeamStats = {
 					addRow(Foxtrickl10n.getString("Leadership"), Foxtrickl10n.getLevelByTypeAndValue("levels", avgLeadership));
 				}
 			}
-			if (FoxtrickPrefs.isModuleOptionEnabled(Foxtrick.TeamStats, "Speciality")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickTeamStats, "Speciality")) {
 				if (hasSpecialities) {
 					addHeader(Foxtrickl10n.getString("Speciality"));
 					var specSummary = [];
@@ -180,7 +180,7 @@ Foxtrick.TeamStats = {
 					}
 				}
 			}
-			if (FoxtrickPrefs.isModuleOptionEnabled(Foxtrick.TeamStats, "Personality")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickTeamStats, "Personality")) {
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "aggressiveness")
 					&& Foxtrick.Pages.Players.isPropertyInList(playerList, "agreeability")
 					&& Foxtrick.Pages.Players.isPropertyInList(playerList, "honesty")) {
@@ -193,7 +193,7 @@ Foxtrick.TeamStats = {
 					addRow(Foxtrickl10n.getString("Honesty"), Foxtrickl10n.getLevelByTypeAndValue("honesty", avgHonesty));
 				}
 			}
-			if (FoxtrickPrefs.isModuleOptionEnabled(Foxtrick.TeamStats, "Status")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickTeamStats, "Status")) {
 				if (transferListed || yellowCards || twoYellowCards || redCards || bruised || injured) {
 					addHeader(Foxtrickl10n.getString("Status"));
 				}
@@ -243,7 +243,7 @@ Foxtrick.TeamStats = {
 					addRow(img, data);
 				}
 			}
-			if (FoxtrickPrefs.isModuleOptionEnabled(Foxtrick.TeamStats, "Current_league")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled(FoxtrickTeamStats, "Current_league")) {
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "currentLeagueId")) {
 					addHeader(Foxtrickl10n.getString("Current_league"));
 					var leagues = [];
