@@ -385,27 +385,27 @@ var FoxtrickCopyYouth = {
 	},
 
 	run : function(doc) {
-		if (FoxtrickPrefs.isModuleOptionEnabled(this, "TrainingReport")
+		if (FoxtrickPrefs.isModuleOptionEnabled("CopyYouth", "TrainingReport")
 			&& Foxtrick.isPage("YouthTraining", doc)) {
 			this.addTrainingReport(doc);
 		}
-		if (FoxtrickPrefs.isModuleOptionEnabled(this, "ScoutComment")
+		if (FoxtrickPrefs.isModuleOptionEnabled("CopyYouth", "ScoutComment")
 			&& (Foxtrick.isPage("youthplayerdetail", doc)
 				|| Foxtrick.isPage("youthoverview", doc))) {
 			this.addScoutComment(doc);
 		}
-		if (FoxtrickPrefs.isModuleOptionEnabled(this, "PlayerSource")
+		if (FoxtrickPrefs.isModuleOptionEnabled("CopyYouth", "PlayerSource")
 			&& Foxtrick.isPage("youthplayerdetail", doc)) {
 			this.addPlayerSource(doc);
 		}
-		if (FoxtrickPrefs.isModuleOptionEnabled(this, "FixturesSource")
+		if (FoxtrickPrefs.isModuleOptionEnabled("CopyYouth", "FixturesSource")
 			&& Foxtrick.isPage("youthFixtures", doc)) {
 			this.addFixturesSource(doc);
 		}
 	},
 
 	change : function(doc) {
-		if (FoxtrickPrefs.isModuleOptionEnabled(this, "ScoutComment")
+		if (FoxtrickPrefs.isModuleOptionEnabled("CopyYouth", "ScoutComment")
 			&& Foxtrick.isPage("youthoverview", doc)) {
 			this.addScoutComment(doc);
 		}

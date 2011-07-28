@@ -106,7 +106,7 @@ var FoxtrickSeriesFlags = {
 				);
 			});
 		};
-		if (FoxtrickPrefs.isModuleOptionEnabled(this, "Guestbook")
+		if (FoxtrickPrefs.isModuleOptionEnabled("SeriesFlags", "Guestbook")
 			&& Foxtrick.isPage("guestbook", doc)) {
 			// add to guest managers
 			var mainWrapper = doc.getElementById("mainWrapper");
@@ -115,7 +115,7 @@ var FoxtrickSeriesFlags = {
 			modifyUserLinks(userLinks);
 		}
 		//We add also flag to the guestbook entry in teamPage, but we have to skip the own user link
-		if (FoxtrickPrefs.isModuleOptionEnabled(this, "Guestbook")
+		if (FoxtrickPrefs.isModuleOptionEnabled("SeriesFlags", "Guestbook")
 			&& Foxtrick.isPage("teamPage", doc)) {
 			var mainBoxes = doc.getElementById("mainWrapper").getElementsByClassName("mainBox");
 			Foxtrick.map(mainBoxes, function(b) {
@@ -124,7 +124,7 @@ var FoxtrickSeriesFlags = {
 				modifyUserLinks(userLinks);
 			});
 		}
-		if (FoxtrickPrefs.isModuleOptionEnabled(this, "Supporters")
+		if (FoxtrickPrefs.isModuleOptionEnabled("SeriesFlags", "Supporters")
 			&& Foxtrick.isPage("teamPage", doc)) {
 			// add to supporters
 			var sideBar = doc.getElementById("sidebar");
@@ -137,7 +137,7 @@ var FoxtrickSeriesFlags = {
 				modifyUserLinks(userLinks);
 			});
 		}
-		if (FoxtrickPrefs.isModuleOptionEnabled(this, "Visitors")
+		if (FoxtrickPrefs.isModuleOptionEnabled("SeriesFlags", "Visitors")
 			&& Foxtrick.some(["teamPage", "league", "youthleague", "federation"],
 				function(n) { return Foxtrick.isPage(n, doc); })) {
 			// add to visitors

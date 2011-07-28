@@ -21,7 +21,7 @@ var FoxtrickCountyList = {
 	run : function(doc) {
 		var list = doc.getElementById( 'ft_countrylist' );
 		if( list != null ) return;
-		if (FoxtrickPrefs.isModuleOptionEnabled(this, "SelectBoxes")) {
+		if (FoxtrickPrefs.isModuleOptionEnabled("CountryList", "SelectBoxes")) {
 			if (Foxtrick.isPage("transferSearchForm", doc)) {
 				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ddlZone', 10);
 				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ddlBornIn', 1);
@@ -106,7 +106,7 @@ var FoxtrickCountyList = {
 			}
 		}
 
-		if (FoxtrickPrefs.isModuleOptionEnabled(this, "TeamPage")) {
+		if (FoxtrickPrefs.isModuleOptionEnabled("CountryList", "TeamPage")) {
 			if (Foxtrick.isPage("teamPage", doc)) {
 				this._placeCountry(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues', 1);
 			}
@@ -115,7 +115,7 @@ var FoxtrickCountyList = {
 			}
 		}
 
-		if (FoxtrickPrefs.isModuleOptionEnabled( this, "ManagerPage")) {
+		if (FoxtrickPrefs.isModuleOptionEnabled("CountryList", "ManagerPage")) {
 			if (Foxtrick.isPage("managerPage", doc)) 
 				this._placeCountry(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues', 1);
 		}
@@ -127,7 +127,7 @@ var FoxtrickCountyList = {
 		if( cntr == null ) {
 			var league = doc.getElementById("mainWrapper").getElementsByClassName("flag")[0];
 			if (!league) return;
-			if (FoxtrickPrefs.isModuleOptionEnabled( this, "HideFlagOntop")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled("CountryList", "HideFlagOntop")) {
 				league.setAttribute('style', 'display:none');
 			}
 			Foxtrick.dump(league.href+'\n');

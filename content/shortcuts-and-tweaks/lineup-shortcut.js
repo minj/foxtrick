@@ -169,7 +169,7 @@ FoxtrickLineupShortcut = {
 
 	//************************ HIGHLIGHT PLAYER ***********************************
 	_Highlight_Player : function ( doc ) {
-		if (FoxtrickPrefs.isModuleOptionEnabled( this, "HighlightPlayer")) {
+		if (FoxtrickPrefs.isModuleOptionEnabled("LineupShortcut", "HighlightPlayer")) {
 			var newimg="url("+Foxtrick.ResourcePath+"resources/img/box_yellow.gif)";
 			//Getting playerid from url
 			var passedid = doc.baseURI.replace(/.+HighlightPlayerID=/i, "").match(/^\d+/);

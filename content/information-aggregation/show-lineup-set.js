@@ -17,7 +17,7 @@ var FoxtrickShowLineupSet = {
 		var bots = [];
 
 		// check teams that have set a lineup
-		if (FoxtrickPrefs.isModuleOptionEnabled(this, "LineupSet")) {
+		if (FoxtrickPrefs.isModuleOptionEnabled("ShowLineupSet", "LineupSet")) {
 			var newsFeed = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLLUFeed");
 			var items = newsFeed.getElementsByClassName("feedItem");
 			// check whether an item is a set-lineup item, if is, return team
@@ -37,7 +37,7 @@ var FoxtrickShowLineupSet = {
 		}
 
 		// check ownerless teams
-		if (FoxtrickPrefs.isModuleOptionEnabled(this, "Ownerless")) {
+		if (FoxtrickPrefs.isModuleOptionEnabled("ShowLineupSet", "Ownerless")) {
 			var leagueTable = doc.getElementById("mainBody").getElementsByTagName("table")[0];
 			// checks whether a team is ownerless
 			var isOwnerless = function(link) { return Foxtrick.hasClass(link, "shy"); }
@@ -101,7 +101,7 @@ var FoxtrickShowLineupSet = {
 				}
 				// wins (for results only)
 				if (isResultTable(table)
-					&& FoxtrickPrefs.isModuleOptionEnabled(this, "Winning")) {
+					&& FoxtrickPrefs.isModuleOptionEnabled("ShowLineupSet", "Winning")) {
 					var goals = Foxtrick.trim(row.cells[1].textContent).split(/\s*-\s*/);
 					var goal_dif = parseInt(goals[0]) - parseInt(goals[1])
 					if (rtl) goal_dif *= -1; // reverted for rtl 

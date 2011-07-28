@@ -92,13 +92,13 @@ FoxtrickExtendedPlayerDetailsWage = {
 			var formattedWage = Foxtrick.formatNumber(reducedWage, "&nbsp;");
 		}
 
-		if (hasBonus && FoxtrickPrefs.isModuleOptionEnabled(this, "WageWithoutBonus")) {
+		if (hasBonus && FoxtrickPrefs.isModuleOptionEnabled("ExtendedPlayerDetails", "WageWithoutBonus")) {
 			wageElm.innerHTML = part1
 			+ '&nbsp;<span id="ft_bonuswage" style="direction: ltr !important; color:#666666; ">('
 			+ formattedWage + '&nbsp;' + currency + ')</span> '
 			+ part2;
 		}
-		if (FoxtrickPrefs.isModuleOptionEnabled(this, "SeasonWage"))
+		if (FoxtrickPrefs.isModuleOptionEnabled("ExtendedPlayerDetails", "SeasonWage"))
 			wageElm.innerHTML += "<br>"
 				+ Foxtrick.formatNumber(wage * 16, "&nbsp;") + "&nbsp;"
 				+ currency

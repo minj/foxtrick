@@ -74,7 +74,7 @@ var FoxtrickForumTemplates = {
 		new_button.addEventListener("click", FoxtrickForumTemplates._addNewTitle, false);
 		controls_div.appendChild(new_button);
 
-		if (!FoxtrickPrefs.isModuleOptionEnabled(this, "DefaultShow")) {
+		if (!FoxtrickPrefs.isModuleOptionEnabled("ForumTemplates", "DefaultShow")) {
 			var show_button = doc.createElement("a");
 			show_button.setAttribute("id", 'showTemplateId');
 			show_button.setAttribute("href", "javascript:void(0);");

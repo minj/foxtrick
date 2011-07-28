@@ -79,7 +79,7 @@ var FoxtrickLiveAlert = {
 						doc.location
 					);
 					// play sound if enabled
-					if (FoxtrickPrefs.isModuleOptionEnabled(this, "Sound")) {
+					if (FoxtrickPrefs.isModuleOptionEnabled("LiveAlert", "Sound")) {
 						var sound = FoxtrickPrefs.getString("module.LiveAlert.Sound_text");
 						sound = sound.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
 						try {

@@ -29,11 +29,11 @@ var FoxtrickYouthSkillHideUnknown = {
 			var trs = playerInfo.getElementsByTagName("table")[0].getElementsByTagName("tr");
 			for (var j = 0; j < trs.length; j++) {
 				var tds = trs[j].getElementsByTagName("td");
-				if (FoxtrickPrefs.isModuleOptionEnabled(this, "HideUnknown")) {
+				if (FoxtrickPrefs.isModuleOptionEnabled("YouthSkillHideUnknown", "HideUnknown")) {
 					if (isUnknown(tds[1]))
 						Foxtrick.addClass(trs[j], "hidden");
 				}
-				if (FoxtrickPrefs.isModuleOptionEnabled(this, "HideMaximalKeyWord")) {
+				if (FoxtrickPrefs.isModuleOptionEnabled("YouthSkillHideUnknown", "HideMaximalKeyWord")) {
 					var skillBars = doc.getElementsByClassName("youthSkillBar");
 					Foxtrick.map(skillBars, function(skillBar) {
 						var textNodes = Foxtrick.filter(skillBar.childNodes, function(n) {

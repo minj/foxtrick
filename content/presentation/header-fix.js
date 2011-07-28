@@ -18,7 +18,7 @@ var FoxtrickHeaderFix = {
 	OPTIONS_CSS: new Array ("",Foxtrick.ResourcePath+"resources/css/fixes/RemoveHeaderFixFlicker.css"),
 
 	init : function() {
-		if (FoxtrickPrefs.isModuleOptionEnabled( this, "FixLeft"))
+		if (FoxtrickPrefs.isModuleOptionEnabled("HeaderFix", "FixLeft"))
 			FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", true );
 		else FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", false );
 	},

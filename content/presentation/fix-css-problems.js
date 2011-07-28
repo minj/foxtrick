@@ -43,7 +43,7 @@ var FoxtrickFixcssProblems = {
 	],
 
 	run : function(doc) {
-	   if ( Foxtrick.util.layout.isRtl(doc) && FoxtrickPrefs.isModuleOptionEnabled( this, "RTL_Fixes" )) {
+	   if ( Foxtrick.util.layout.isRtl(doc) && FoxtrickPrefs.isModuleOptionEnabled("FixcssProblems", "RTL_Fixes")) {
 			if (!Foxtrick.util.layout.isStandard( doc ) ) {
 				var css = Foxtrick.ResourcePath+"resources/css/fixes/RTL_Fixes_simple.css";
 				Foxtrick.util.inject.addStyleSheet( doc, css );

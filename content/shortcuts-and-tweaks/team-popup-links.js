@@ -196,8 +196,8 @@ var FoxtrickTeamPopupLinks = {
 	},
 
 	_addSpan : function (doc, aLink) {
-		if ((aLink.href.search(/Club\/\?TeamID=/i) > -1 && aLink.href.search(/redir_to/i)===-1 && FoxtrickPrefs.isModuleOptionEnabled(this, "TeamLinks"))
-			|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && FoxtrickPrefs.isModuleOptionEnabled(this, "UserLinks"))) {
+		if ((aLink.href.search(/Club\/\?TeamID=/i) > -1 && aLink.href.search(/redir_to/i)===-1 && FoxtrickPrefs.isModuleOptionEnabled("TeamPopupLinks", "TeamLinks"))
+			|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && FoxtrickPrefs.isModuleOptionEnabled("TeamPopupLinks", "UserLinks"))) {
 			var par = aLink.parentNode;
 			var span = doc.createElement("span");
 			span.setAttribute('class', 'myht1');
@@ -294,7 +294,7 @@ var FoxtrickTeamPopupLinks = {
 					}
 				}
 
-				if (FoxtrickPrefs.isModuleOptionEnabled(this, "CustomLink")) {
+				if (FoxtrickPrefs.isModuleOptionEnabled("TeamPopupLinks", "CustomLink")) {
 					var ownlinks = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "CustomLink_text");
 					ownlinks = ownlinks.split(/<\/a>\s+/);
 					var i=0,ownlink;

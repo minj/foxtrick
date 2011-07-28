@@ -43,7 +43,7 @@ var FoxtrickMatchTables = {
 	removeTime : function(doc) {
 		if (Foxtrick.util.layout.isStandard(doc))
 			return;
-		if (!FoxtrickPrefs.isModuleOptionEnabled(this, "RemoveTime"))
+		if (!FoxtrickPrefs.isModuleOptionEnabled("MatchTables", "RemoveTime"))
 			return;
 		var id = "ft_matchtable";
 		if (doc.getElementById(id))

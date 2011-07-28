@@ -19,7 +19,7 @@ var FoxtrickLeagueAndMatchChat = {
 
 		var nick = FoxtrickHelper.ownTeam.ownTeamName;
 		if (!nick) nick='Guest';
-		if (FoxtrickPrefs.isModuleOptionEnabled(this,'ChatNick')
+		if (FoxtrickPrefs.isModuleOptionEnabled("LeagueAndMatchChat",'ChatNick')
 			&& FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "ChatNick_text")
 			&& FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "ChatNick_text")!='')
 			nick = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "ChatNick_text");

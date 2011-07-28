@@ -64,7 +64,7 @@ Foxtrick.Ratings = {
 		for (var k=ratingsArray.length-1; k>=0; --k) {
 			var selectedRating = ratingsArray[k];
 			//Foxtrick.dump(selectedRating+'\n');
-			if (!FoxtrickPrefs.isModuleOptionEnabled( this, selectedRating)) continue;
+			if (!FoxtrickPrefs.isModuleOptionEnabled("Ratings", selectedRating)) continue;
 
 			var row = ratingstable.insertRow(8);
 			// to be added if needed by foxlinks
@@ -125,7 +125,7 @@ Foxtrick.Ratings = {
 		}
 		
 		//Finally adding HatStats per rating
-		if (FoxtrickPrefs.isModuleOptionEnabled(this, "HatStatsSeparated")) {
+		if (FoxtrickPrefs.isModuleOptionEnabled("Ratings", "HatStatsSeparated")) {
 			for (var j=1;j<3;j++) {
 				for (var i=1;i<8;i++) {
 					var value = Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[i].cells[j]);

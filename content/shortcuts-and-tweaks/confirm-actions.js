@@ -35,7 +35,7 @@ var FoxtrickConfirmActions = {
 	run : function(doc) {
 		// Bid, TransferList, NtChange, StaffChange
 		if (Foxtrick.isPage("playerdetail", doc)) {
-			if (FoxtrickPrefs.isModuleOptionEnabled(this, "Bid")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled("ConfirmActions", "Bid")) {
 				var bidButton = doc.getElementById(FoxtrickConfirmActions.BID.BUTTON_ID);
 				if (bidButton) {
 					bidButton.addEventListener("click", function(ev) {
@@ -85,7 +85,7 @@ var FoxtrickConfirmActions = {
 					}, false);
 				}
 			}
-			if (FoxtrickPrefs.isModuleOptionEnabled(this, "TransferList")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled("ConfirmActions", "TransferList")) {
 				var sellButton = doc.getElementById(FoxtrickConfirmActions.SELL.BUTTON_ID);
 				if (sellButton) {
 					sellButton.addEventListener("click", function(ev) {
@@ -138,7 +138,7 @@ var FoxtrickConfirmActions = {
 					}, false);
 				}
 			}
-			if (FoxtrickPrefs.isModuleOptionEnabled(this, "NtChange")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled("ConfirmActions", "NtChange")) {
 				// one may coach both a U-20 and an NT team
 				var submitLink = doc.getElementById("ctl00_ctl00_CPContent_CPSidebar_ucNTCoachOptions_repNTActions_ctl00_lnkNTAction")
 					|| doc.getElementById("ctl00_ctl00_CPContent_CPSidebar_ucNTCoachOptions_repNTActions_ctl01_lnkNTAction");
@@ -153,7 +153,7 @@ var FoxtrickConfirmActions = {
 			}
 		}
 		else if (Foxtrick.isPage("staff", doc)) {
-			if (FoxtrickPrefs.isModuleOptionEnabled(this, "StaffChange")) {
+			if (FoxtrickPrefs.isModuleOptionEnabled("ConfirmActions", "StaffChange")) {
 				var submitButton = doc.getElementById(FoxtrickConfirmActions.STAFF.SUBMIT_BUTTON_ID);
 				if (submitButton) {
 					submitButton.addEventListener("click", function(ev) {

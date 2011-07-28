@@ -66,7 +66,7 @@ var FoxtrickSkillTable = {
 			return;
 		if (Foxtrick.isPage("transferSearchResult", doc)
 			&& !this.getFullType(doc).subtype === "own"
-			&& !FoxtrickPrefs.isModuleOptionEnabled(this, "OtherTeams")) {
+			&& !FoxtrickPrefs.isModuleOptionEnabled("SkillTable", "OtherTeams")) {
 			return;
 		}
 		FoxtrickSkillTable.addTableDiv(doc);
