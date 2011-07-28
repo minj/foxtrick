@@ -5,7 +5,7 @@ ZIP = zip -q
 
 ROOT_FILES_FIREFOX = chrome.manifest install.rdf icon.png COPYING HACKING
 ROOT_FILES_CHROME = manifest.json
-ROOT_FILES_OPERA = config.xml background_opera.html options.html \
+ROOT_FILES_OPERA = config.xml content/background_opera.html content/options.html \
 				content/background.js content/preferences.js
 ROOT_FOLDERS_FIREFOX = defaults/
 ROOT_FOLDERS_CHROME = defaults/ skin/
