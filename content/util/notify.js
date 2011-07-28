@@ -45,13 +45,13 @@ Foxtrick.util.notify.create = function(msg, url) {
 		}
 	};
 	var createChrome = function() {
-		chrome.extension.sendRequest({req : "notify", msg : msg});
+		sandboxed.extension.sendRequest({req : "notify", msg : msg});
 	};
 
 	if (Foxtrick.BuildFor == "Gecko") {
 		createGecko();
 	}
-	else if (Foxtrick.BuildFor == "Chrome") {
+	else if (Foxtrick.BuildFor == "Sandboxed") {
 		createChrome();
 	}
 };

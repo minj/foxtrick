@@ -18,7 +18,7 @@ Foxtrick.XMLData = {
 
 	init : function() {
 		if (Foxtrick.BuildFor == "Gecko"
-			|| (Foxtrick.BuildFor == "Chrome" && Foxtrick.chromeContext() == "background")) {
+			|| (Foxtrick.BuildFor == "Sandboxed" && Foxtrick.chromeContext() == "background")) {
 			this.htCurrencyXml = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/htcurrency.xml");
 			this.htdateformat = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/htdateformat.xml");
 			this.aboutXML = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/foxtrick_about.xml");

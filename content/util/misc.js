@@ -47,7 +47,7 @@ Foxtrick.playSound = function(url) {
 		var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
 		soundService.play(ioService.newURI(url, null, null));
 	}
-	else if (Foxtrick.BuildFor === "Chrome") {
+	else if (Foxtrick.BuildFor === "Sandboxed") {
 		var music = new Audio(url);
 		music.play();
 	}
@@ -108,8 +108,8 @@ Foxtrick.copyStringToClipboard = function (string) {
 	else if (typeof(opera) === "object") {
 		Foxtrick.sessionSet('clipboard', string);
 	}
-	else if (Foxtrick.BuildFor === "Chrome") {
-		chrome.extension.sendRequest({req : "clipboard", content : string});
+	else if (Foxtrick.BuildFor === "Sandboxed") {
+		sandboxed.extension.sendRequest({req : "clipboard", content : string});
 	}
 }
 
@@ -121,8 +121,8 @@ Foxtrick.newTab = function(url) {
 	if (Foxtrick.BuildFor == "Gecko") {
 		gBrowser.selectedTab = gBrowser.addTab(url);
 	}
-	else if (Foxtrick.BuildFor == "Chrome") {
-		chrome.extension.sendRequest({
+	else if (Foxtrick.BuildFor == "Sandboxed") {
+		sandboxed.extension.sendRequest({
 			req : "newTab",
 			url : url
 		})
@@ -130,11 +130,11 @@ Foxtrick.newTab = function(url) {
 }
 
 Foxtrick.load = function(url, callback, crossSite) {
-	if (Foxtrick.BuildFor == "Chrome" && Foxtrick.chromeContext() == "content"
+	if (Foxtrick.BuildFor == "Sandboxed" && Foxtrick.chromeContext() == "content"
 		&& crossSite) {
 		// the evil Chrome that requires us to send a message to
 		// background script for cross-site requests
-		chrome.extension.sendRequest({req : "xml", url : url, crossSite: crossSite},
+		sandboxed.extension.sendRequest({req : "xml", url : url, crossSite: crossSite},
 			function(response) {
 				try {
 					callback(response.data, response.status);
@@ -383,7 +383,7 @@ Foxtrick.replaceExtensionDirectory = function(cssTextCollection, callback, id) {
 	
 	if (typeof(opera) === "object") {
 		if (cssTextCollection.search(resourcePathRegExp)!=-1 ) 
-			chrome.extension.sendRequest({ req : "convertImages", cssText: cssTextCollection, type: id},
+			sandboxed.extension.sendRequest({ req : "convertImages", cssText: cssTextCollection, type: id},
 				function (data) { callback(data.cssText);
 				});
 		else callback(cssTextCollection);
@@ -604,8 +604,8 @@ Foxtrick.load_module_css = function(doc) {
 			load_css_permanent_impl(Foxtrick.cssFiles[i]);
 		}
 	}
-	else if (Foxtrick.BuildFor === "Chrome") {
-		chrome.extension.sendRequest(
+	else if (Foxtrick.BuildFor === "Sandboxed") {
+		sandboxed.extension.sendRequest(
 			{ req : "getCss", files :Foxtrick.cssFiles },
 			function(data) {
 				Foxtrick.util.inject.addStyleSheetSnippet(doc, data.cssText,'module_css');
@@ -719,7 +719,7 @@ Foxtrick.log = function() {
 				item += "Stack trace: " + content.stack.substr(0,10000);
 				Components.utils.reportError(item);
 			}
-			else if (Foxtrick.BuildFor == "Chrome") {
+			else if (Foxtrick.BuildFor == "Sandboxed") {
 				for (var i in content)
 					item += i + ": " + content[i] + ";\n";
 			}
@@ -742,7 +742,7 @@ Foxtrick.log = function() {
 	if (Foxtrick.BuildFor === "Gecko") {
 		dump("FT: " + concated);
 	}
-	else if (Foxtrick.BuildFor === "Chrome") {
+	else if (Foxtrick.BuildFor === "Sandboxed") {
 		console.log(concated);
 		Foxtrick.dumpFlush(document);
 	}

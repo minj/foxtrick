@@ -27,7 +27,7 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 
 		// request resources from background script
 		// calls/adds Foxtrick.loader.chrome.docLoadEnd 
-		chrome.extension.sendRequest({ req : "init" },
+		sandboxed.extension.sendRequest({ req : "init" },
 		function (data) {
 			try {
 				if (data.error) Foxtrick.log(data.error);

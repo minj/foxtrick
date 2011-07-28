@@ -41,7 +41,7 @@ if ( Foxtrick.BuildFor === "Gecko") {
 }
 
 
-if (Foxtrick.BuildFor === "Chrome") {
+if (Foxtrick.BuildFor === "Sandboxed") {
 	
 	if ( Foxtrick.chromeContext() == "background" )  {
 	
@@ -81,7 +81,7 @@ if (Foxtrick.BuildFor === "Chrome") {
 	else if ( Foxtrick.chromeContext() == "content" )  {
 	
 		Foxtrick.sessionSet = function(key, value) {
-			chrome.extension.sendRequest({
+			sandboxed.extension.sendRequest({
 				req : "sessionSet",
 				key : key,
 				value : value
@@ -89,14 +89,14 @@ if (Foxtrick.BuildFor === "Chrome") {
 		};
 		
 		Foxtrick.sessionGet = function(key, callback) {
-			chrome.extension.sendRequest({
+			sandboxed.extension.sendRequest({
 					req : "sessionGet",
 					key : key
 				}, function(n) { callback(n.value); });
 		};
 
 		Foxtrick.sessionDeleteBranch = function(branch) {
-			chrome.extension.sendRequest({
+			sandboxed.extension.sendRequest({
 				req : "sessionDeleteBranch",
 				branch : branch
 			});

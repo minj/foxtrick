@@ -8,17 +8,16 @@ if (!Foxtrick)
 	var Foxtrick={};
 
 if (typeof(opera) === "object") {
-	Foxtrick.BuildFor = "Chrome";
+	Foxtrick.BuildFor = "Sandboxed";
 	Foxtrick.InternalPath = "content/";
 	Foxtrick.ResourcePath = "http://foxtrick.googlecode.com/svn/trunk/content/";
 	
 	// to tell which context the chrome script is running at
 	// either background page, or content script
 	Foxtrick.chromeContext = function() {
-		if (Foxtrick.BuildFor != "Chrome")
+		if (Foxtrick.BuildFor != "Sandboxed")
 			return null;
 		try {
-			//Foxtrick.log(opera.extension.postMessage);
 			if (opera.extension.postMessage) {
 				return "content";
 			}
@@ -31,19 +30,23 @@ if (typeof(opera) === "object") {
 		}
 	}
 
-	// opera to chrome ports. based on safari adblockplus ports.js
+	// opera ports to sandboxed. based on safari adblockplus ports.js
 	var console = {
 		log : function ( string ) {
 			opera.postError(string);
 		},
 	};
 	
+	// overwritten later. early version here to make sure there is one all times
+	Foxtrick.log = function ( string ) {
+		opera.postError(string);
+	};
 
 	addListener = function(handler) {
 		 opera.extension.addEventListener("message", handler, false);
 	};
 
-	var chrome = {
+	var sandboxed = {
 		// Track tabs that make requests to the global page, assigning them
 		// IDs so we can recognize them later.
 		__getTabId: (function() {
@@ -114,7 +117,7 @@ if (typeof(opera) === "object") {
 							return;
 
 						var request = messageEvent.data.data;
-						var id = chrome.__getTabId(messageEvent.target);
+						var id = sandboxed.__getTabId(messageEvent.target);
 
 						var sender = { tab: { id: id, url: messageEvent.target.url } };
 						var sendResponse = function(dataToSend) {
@@ -144,14 +147,14 @@ if (typeof(opera) === "object") {
 	
 }
 else if (typeof(chrome) === "object") {
-	Foxtrick.BuildFor = "Chrome";
+	Foxtrick.BuildFor = "Sandboxed";
 	Foxtrick.InternalPath = chrome.extension.getURL("content/");
 	Foxtrick.ResourcePath = chrome.extension.getURL("content/");
 	
 	// to tell which context the chrome script is running at
 	// either background page, or content script
 	Foxtrick.chromeContext = function() {
-		if (Foxtrick.BuildFor != "Chrome")
+		if (Foxtrick.BuildFor != "Sandboxed")
 			return null;
 		try {
 			if (chrome.bookmarks) {
@@ -165,7 +168,24 @@ else if (typeof(chrome) === "object") {
 			return "content";
 		}
 	}
+	// port common functions to sandboxed
+	var sandboxed = {
+		extension : {
+			sendRequest: function (data, callback) {
+				if (callback) chrome.extension.sendRequest(data, callback);
+				else chrome.extension.sendRequest(data);
+			},
+			onRequest : {
+				addListener : function (listener) {chrome.extension.onRequest.addListener(listener)},
+			},
+			getURL : function (path) {chrome.extension.getURL(path)},
+		},
+		tabs : {
+			create : function (url) {chrome.tabs.create(url)},
+		},
+	};
 }
+
 else {
 	Foxtrick.BuildFor = "Gecko";
 	Foxtrick.InternalPath = "chrome://foxtrick/content/";

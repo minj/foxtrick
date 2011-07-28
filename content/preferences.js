@@ -2,7 +2,7 @@ function initLoader() {
 	if (Foxtrick.BuildFor === "Gecko" || Foxtrick.chromeContext() == "background")
 		init();
 	else
-		chrome.extension.sendRequest({ req : "init", sender : 'options' },
+		sandboxed.extension.sendRequest({ req : "init", sender : 'options' },
 			function (data) {
 				try {
 					Foxtrick.entry.setRetrievedLocalResources(data);

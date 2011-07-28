@@ -297,7 +297,7 @@ if (Foxtrick.BuildFor === "Gecko") {
 
 
 // ----------------------  Chrome specific get/set preferences --------------------------
-if (Foxtrick.BuildFor === "Chrome") {
+if (Foxtrick.BuildFor === "Sandboxed") {
 
 	var Foxtrickl10nChrome = {
 

@@ -78,9 +78,9 @@ Foxtrick.loader.chrome.browserLoad = function() {
 
 	
 	// one-time message channel
-	// use with chrome.extension.sendRequest({req : "{TYPE}", parameters...}, callback)
+	// use with sandboxed.extension.sendRequest({req : "{TYPE}", parameters...}, callback)
 	// callback will be called with a sole Object as argument
-	chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+	sandboxed.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		try {
 			//Foxtrick.log('request: ',request.req, ' ',request )
 				
@@ -163,7 +163,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 			}
 			else if (request.req == "newTab") {
 				// @param url - the URL of new tab to create
-				chrome.tabs.create({url : request.url});
+				sandboxed.tabs.create({url : request.url});
 			}
 			else if (request.req == "clipboard") {
 				// @param content - content to copy

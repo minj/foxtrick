@@ -186,9 +186,9 @@ var FoxtrickPrefs = {
 				return false;
 			}
 		}
-		else if (Foxtrick.BuildFor == "Chrome") {
+		else if (Foxtrick.BuildFor == "Sandboxed") {
 			FoxtrickPrefs._prefs_chrome_user = {};
-			chrome.extension.sendRequest({ req : "clearPrefs" },
+			sandboxed.extension.sendRequest({ req : "clearPrefs" },
 				Foxtrick.entry.init);
 			return true;
 		}
@@ -284,7 +284,7 @@ var FoxtrickPrefs = {
 		}
 		else if (typeof(opera) === "object") {
 			FoxtrickCore.setOperaIcon(sender);
-		} else if (Foxtrick.BuildFor === "Chrome") {
+		} else if (typeof(chrome) === "object") {
 			FoxtrickCore.setChromeIcon(sender);
 		}
 	}
@@ -400,7 +400,7 @@ for (i in FoxtrickPrefsGecko)
 
 
 // ----------------------  Chrome specific get/set preferences --------------------------
-if (Foxtrick.BuildFor === "Chrome") {
+if (Foxtrick.BuildFor === "Sandboxed") {
 
 	var FoxtrickPrefsChrome = {
 		_prefs_chrome_user : {}, 	// contains mapped copies of user settings localStore.
@@ -567,7 +567,7 @@ if (Foxtrick.BuildFor === "Chrome") {
 					else {
 						// not default, set it
 						FoxtrickPrefs._prefs_chrome_user[key] = value; 
-						chrome.extension.sendRequest({ req : "setValue", key : key, value : value });
+						sandboxed.extension.sendRequest({ req : "setValue", key : key, value : value });
 					}
 				}
 				catch (e) {}
@@ -575,7 +575,7 @@ if (Foxtrick.BuildFor === "Chrome") {
 
 			deleteValue : function(key) {
 				delete(FoxtrickPrefs._prefs_chrome_user[key]);
-				chrome.extension.sendRequest({ req : "deleteValue", key : key });
+				sandboxed.extension.sendRequest({ req : "deleteValue", key : key });
 			},
 		};
 

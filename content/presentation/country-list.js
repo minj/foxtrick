@@ -152,13 +152,21 @@ var FoxtrickCountyList = {
 		var id_sel = 0;
 		try {
 			for (var i = start; i < countries; i++) {
-				if (Foxtrick.BuildFor=='Chrome') { if (options[i].getAttribute('selected')) id_sel = options[i].value;}
-				else { if (i == selected) id_sel = options[i].value;}
+				if (Foxtrick.BuildFor=="Sandboxed") { 
+					if (options[i].getAttribute('selected')) 
+						id_sel = options[i].value;
+				}
+				else { 
+					if (i == selected) id_sel = options[i].value;
+				}
 				try {
-					if (id.search(/leagues/i)!=-1 || id.search(/zone/i)!=-1) {var league = options[i].value;  }
-					else {var league = Foxtrick.XMLData.getLeagueIdByCountryId(options[i].value); }
+					if (id.search(/leagues/i)!=-1 || id.search(/zone/i)!=-1) {
+						var league = options[i].value;  
+					}
+					else {
+						var league = Foxtrick.XMLData.getLeagueIdByCountryId(options[i].value);
+					}
 					var htname = options[i].text;
-					//Foxtrick.dump((start>=10)+' '+options[i].value+' '+league+' '+htname+'\n');
 					htname = FoxtrickHelper.getLeagueDataFromId(league).LeagueName;
 					if (!htname) return -1;
 					options[i].text = htname;
