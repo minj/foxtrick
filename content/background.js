@@ -269,5 +269,6 @@ for (var i = 0; i < id_contexts.length; i++) {
 //var child1 = chrome.contextMenus.create({"title": "Child 1", "parentId": parent, "onclick": genericOnClick});
 //var child2 = chrome.contextMenus.create({"title": "Child 2", "parentId": parent, "onclick": genericOnClick});
 */
-
-Foxtrick.loader.chrome.browserLoad ();
+if (Foxtrick.BuildFor === "Sandboxed" && Foxtrick.chromeContext()==="background" ) {
+	Foxtrick.loader.chrome.browserLoad ();
+}

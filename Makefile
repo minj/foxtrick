@@ -5,8 +5,7 @@ ZIP = zip -q
 
 ROOT_FILES_FIREFOX = chrome.manifest install.rdf icon.png COPYING HACKING
 ROOT_FILES_CHROME = manifest.json
-ROOT_FILES_OPERA = config.xml content/background_opera.html content/options.html \
-				content/background.js content/preferences.js
+ROOT_FILES_OPERA = config.xml content/background.html content/preferences.xhtml
 ROOT_FOLDERS_FIREFOX = defaults/
 ROOT_FOLDERS_CHROME = defaults/ skin/
 ROOT_FOLDERS_OPERA = defaults/ skin/
@@ -36,17 +35,20 @@ CONTENT_FILES = add-class.js \
 	l10n.js \
 	pages.js \
 	preferences.js \
-	preferences.xhtml \
 	prefs.js \
 	read-ht-prefs.js \
 	redirections.js \
 	stats.js \
 	xml-load.js
-CONTENT_FILES_FIREFOX = $(CONTENT_FILES) foxtrick.xul loader-gecko.js
-CONTENT_FILES_CHROME = $(CONTENT_FILES) background-chrome.html \
+CONTENT_FILES_FIREFOX = $(CONTENT_FILES) foxtrick.xul \
+	preferences.xhtml \
+	loader-gecko.js
+CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html \
+	preferences.xhtml \
 	background.js \
 	loader-chrome.js
-CONTENT_FILES_OPERA = $(CONTENT_FILES) loader-chrome.js
+CONTENT_FILES_OPERA = $(CONTENT_FILES) background.js \
+	loader-chrome.js 
 
 REVISION = `git svn find-rev HEAD`
 
@@ -133,13 +135,20 @@ opera:
 	cd content/; \
 	cp -r $(subst /,/.,$(SCRIPT_FOLDERS)) $(CONTENT_FILES_OPERA) \
 		../$(BUILD_DIR)/includes
-	mv $(BUILD_DIR)/includes/env.js $(BUILD_DIR)/includes/aa00_env.js 
-	mv $(BUILD_DIR)/includes/module.js $(BUILD_DIR)/includes/aa10_module.js 
-	mv $(BUILD_DIR)/includes/loader-chrome.js $(BUILD_DIR)/includes/zz99_loader-chrome.js 
 	mkdir $(BUILD_DIR)/content 
 	cd content/; \
 	cp -r $(RESOURCE_FOLDERS) \
 		../$(BUILD_DIR)/content
+	## change files to opera naming
+	mv $(BUILD_DIR)/preferences.xhtml $(BUILD_DIR)/options.html
+	mv $(BUILD_DIR)/includes/env.js $(BUILD_DIR)/includes/aa00_env.js 
+	mv $(BUILD_DIR)/includes/module.js $(BUILD_DIR)/includes/aa10_module.js 
+	mv $(BUILD_DIR)/includes/loader-chrome.js $(BUILD_DIR)/includes/zz99_loader-chrome.js 
+	cd $(BUILD_DIR); sed -i -r 's|(\"\./[a-zA-Z0-9_-\)|\"./|' background.html options.html
+	cd $(BUILD_DIR); sed -i -r 's|(\"\./)|\"./includes/' background.html options.html
+	cd $(BUILD_DIR); sed -i -r 's|(/includes/env.js)|/includes/aa00_env.js' background.html options.html
+	cd $(BUILD_DIR); sed -i -r 's|(/includes/module.js)|/includes/aa10_module.js' background.html options.html
+	cd $(BUILD_DIR); sed -i -r 's|(/includes/loader-chrome.js)|/includes/zz99_loader-chrome.js' background.html options.html
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
