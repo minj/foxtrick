@@ -44,7 +44,8 @@ CONTENT_FILES = add-class.js \
 	stats.js \
 	xml-load.js
 CONTENT_FILES_FIREFOX = $(CONTENT_FILES) foxtrick.xul loader-gecko.js
-CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html background.js \
+CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html \
+	background-chrome.js \
 	loader-chrome.js
 CONTENT_FILES_OPERA = $(CONTENT_FILES) loader-chrome.js
 

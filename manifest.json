@@ -1,5 +1,5 @@
 {
-	"background_page" : "content/background.html",
+	"background_page" : "content/background-chrome.html",
 	"content_scripts" : [ {
 		"js" : [
 			"content/env.js",
