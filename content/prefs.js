@@ -502,26 +502,36 @@ if (Foxtrick.BuildFor === "Sandboxed") {
 						}
 					}
 
-					var prefText = Foxtrick.load(Foxtrick.ResourcePath+("../defaults/preferences/foxtrick.js"))
-					var prefList = prefText.split(/[\n\r]+/);
-					const prefRe = /pref\("extensions\.foxtrick\.prefs\.(.+)",\s*(.+)\);/;
 					FoxtrickPrefs._prefs_chrome_default = {};
-					for (var i = 0; i < prefList.length; ++i) {
-						var pref = prefList[i];
-						var matches = pref.match(prefRe);
-						if (matches) {
-							var key = matches[1];
-							var value = matches[2];
-							if (value == "true")
-								FoxtrickPrefs._prefs_chrome_default[key] = true;
-							else if (value == "false")
-								FoxtrickPrefs._prefs_chrome_default[key] = false;
-							else if (!isNaN(Number(value)))
-								FoxtrickPrefs._prefs_chrome_default[key] = Number(value)
-							else if (value.match(/^"(.*)"$/))
-								FoxtrickPrefs._prefs_chrome_default[key] = String(value.match(/^"(.*)"$/)[1]);
+					
+					var parsePrefsFile = function (url) {
+						var prefText = Foxtrick.load(Foxtrick.ResourcePath+url)
+						var prefList = prefText.split(/[\n\r]+/);
+						const prefRe = /pref\("extensions\.foxtrick\.prefs\.(.+)",\s*(.+)\);/;
+						for (var i = 0; i < prefList.length; ++i) {
+							var pref = prefList[i];
+							var matches = pref.match(prefRe);
+							if (matches) {
+								var key = matches[1];
+								var value = matches[2];
+								if (value == "true")
+									FoxtrickPrefs._prefs_chrome_default[key] = true;
+								else if (value == "false")
+									FoxtrickPrefs._prefs_chrome_default[key] = false;
+								else if (!isNaN(Number(value)))
+									FoxtrickPrefs._prefs_chrome_default[key] = Number(value)
+								else if (value.match(/^"(.*)"$/))
+									FoxtrickPrefs._prefs_chrome_default[key] = String(value.match(/^"(.*)"$/)[1]);
+							}
 						}
-					}
+					};
+					
+					parsePrefsFile("../defaults/preferences/foxtrick.js");
+					if (typeof(opera) === "object")
+						parsePrefsFile("../defaults/preferences/foxtrick.opera");
+					else if (typeof(chrome) === "object")
+						parsePrefsFile("../defaults/preferences/foxtrick.chrome");
+					
 				}
 				catch (e) {
 					Foxtrick.log(e);
