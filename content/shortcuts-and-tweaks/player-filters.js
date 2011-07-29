@@ -63,7 +63,7 @@ FoxtrickPlayerFilters = {
 					if (specialities[player.speciality] === undefined) {
 						specialities[player.speciality] = specialityCount++;
 					}
-					allPlayers[i].setAttribute("speciality-" + specialities[player.speciality], "true");
+					allPlayers[i].setAttribute("speciality-" + player.speciality, "true");
 				}
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "lastMatch")) {
 					if (player.lastMatch
@@ -114,7 +114,7 @@ FoxtrickPlayerFilters = {
 			if (Foxtrick.Pages.Players.isPropertyInList(playerList, "speciality")) {
 				for (var speciality in specialities) {
 					var option = doc.createElement("option");
-					option.value = "speciality-" + specialities[speciality];
+					option.value = "speciality-" + speciality;
 					option.textContent = speciality;
 					filterSelect.appendChild(option);
 				}
@@ -135,7 +135,6 @@ FoxtrickPlayerFilters = {
 			var begin = new Date();
 
 			var filter = filterSelect.value;
-
 			var body = doc.getElementById("mainBody");
 
 			var allElems;
@@ -289,6 +288,7 @@ FoxtrickPlayerFilters = {
 		}, false);
 		filterSelect.addEventListener("change", function() {
 			try {
+				Foxtrick.log('change')
 				changeListener();
 			}
 			catch (e) {
