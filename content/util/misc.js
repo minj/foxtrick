@@ -50,8 +50,6 @@ Foxtrick.playSound = function(url, doc) {
 		}
 		else if ( typeof(chrome)=='object' )  {
 			var music = new Audio(url);
-			music.setAttribute("autoplay","autoplay");
-			music.source.type = 'audio/wav';
 			music.play();
 		}
 		else {
@@ -62,10 +60,9 @@ Foxtrick.playSound = function(url, doc) {
 			source.setAttribute('type','audio/wav');
 			music.appendChild(source);
 			doc.getElementsByTagName('body')[0].appendChild(music);
-			//music.play();
 		} 
 	} catch(e){	
-		Foxtrick.log("Cannot play sound: ", sound);
+		Foxtrick.log("Cannot play sound: ", url);
 		Foxtrick.log(e);
 	}
 }

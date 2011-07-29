@@ -83,6 +83,9 @@ var FoxtrickTickerAlert = {
 			return tickers;
 		};
 		var tickerCheck = function(ev) {
+			if (ev.target) var doc = ev.target.ownerDocument;
+			else var doc = ev; // called directly
+			
 			// prevent from multiple tickerCheck() instances running at the
 			// same time
 			ticker.removeEventListener(Foxtrick.TickerDOMMutationEventType, tickerCheck, false);
@@ -129,7 +132,7 @@ var FoxtrickTickerAlert = {
 			});
 		};
 		if (Foxtrick.util.layout.isSupporter(doc))
-			tickerCheck();
+			tickerCheck(doc);
 	}
 };
 Foxtrick.util.module.register(FoxtrickTickerAlert);
