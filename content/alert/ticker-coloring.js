@@ -11,11 +11,15 @@ var FoxtrickTickerColoring = {
 	CSS : Foxtrick.ResourcePath + "resources/css/ticker-coloring.css",
 
 	run : function(doc) {
+		// type of change to listen to. opera doesn't support DOMSubtreeModified 
+		if (typeof(opera) === "object") var DOMMutationEventType = 'DOMNodeInserted';
+		else var DOMMutationEventType = 'DOMSubtreeModified';
+
 		var ticker = doc.getElementById("ticker");
 
 		var update = function() {
 			// prevent self-triggered calls
-			ticker.removeEventListener(Foxtrick.TickerDOMMutationEventType, update, false);
+			ticker.removeEventListener(DOMMutationEventType, update, false);
 
 			var links = ticker.getElementsByTagName("a");
 			for (var i = 0; i < links.length; ++i) {
@@ -42,7 +46,7 @@ var FoxtrickTickerColoring = {
 						Foxtrick.addClass(link, "ft-ticker-myht");
 				}
 			}
-			ticker.addEventListener(Foxtrick.TickerDOMMutationEventType, update, false);
+			ticker.addEventListener(DOMMutationEventType, update, false);
 		}
 
 		update();

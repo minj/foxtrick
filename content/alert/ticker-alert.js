@@ -61,6 +61,10 @@ var FoxtrickTickerAlert = {
 	},
 
 	run : function(doc) {
+		// type of change to listen to. opera doesn't support DOMSubtreeModified 
+		if (typeof(opera) === "object") var DOMMutationEventType = 'DOMNodeInserted';
+		else var DOMMutationEventType = 'DOMSubtreeModified';
+
 		var getType = function(url) {
 			for (var type in FoxtrickTickerAlert.TYPES) {
 				var regexp = FoxtrickTickerAlert.TYPES[type];
@@ -88,7 +92,7 @@ var FoxtrickTickerAlert = {
 			
 			// prevent from multiple tickerCheck() instances running at the
 			// same time
-			ticker.removeEventListener(Foxtrick.TickerDOMMutationEventType, tickerCheck, false);
+			ticker.removeEventListener(DOMMutationEventType, tickerCheck, false);
 			Foxtrick.sessionGet("tickers", function(tickers) {
 				if (tickers == undefined)
 					tickers = [];
@@ -128,7 +132,7 @@ var FoxtrickTickerAlert = {
 						}
 					}
 				});
-				ticker.addEventListener(Foxtrick.TickerDOMMutationEventType, tickerCheck, false);
+				ticker.addEventListener(DOMMutationEventType, tickerCheck, false);
 			});
 		};
 		if (Foxtrick.util.layout.isSupporter(doc))
