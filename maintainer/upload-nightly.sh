@@ -27,30 +27,39 @@ fi
 
 REVISION=`cd ${SOURCE_DIR} && git svn find-rev HEAD`
 
-# modify update.rdf for Gecko
-cp update-template.rdf update.rdf
+# modify update-firefox.rdf for Gecko
+cp update-tmpl-firefox.rdf update-firefox.rdf
 GECKO_MAJOR_VERSION=`cd ${SOURCE_DIR} && grep '<em:version>' install.rdf | \
 	sed -r -e 's|^.+<em:version>(.+)</em:version>|\1|'`
 GECKO_VERSION="${GECKO_MAJOR_VERSION}.${REVISION}"
 GECKO_SHA1SUM=`sha1sum "${SOURCE_DIR}/foxtrick.xpi" | sed -r 's/\s+.+$//g'`
-sed -i "s|{UPDATE_LINK}|http://foxtrick.foundationhorizont.org/nightly/foxtrick-r${REVISION}.xpi|g" update.rdf
-sed -i "s|{UPDATE_HASH}|sha1:${GECKO_SHA1SUM}|g" update.rdf
-sed -i "s|{VERSION}|${GECKO_VERSION}|g" update.rdf
+sed -i "s|{UPDATE_LINK}|http://foxtrick.foundationhorizont.org/nightly/foxtrick-r${REVISION}.xpi|g" update-firefox.rdf
+sed -i "s|{UPDATE_HASH}|sha1:${GECKO_SHA1SUM}|g" update-firefox.rdf
+sed -i "s|{VERSION}|${GECKO_VERSION}|g" update-firefox.rdf
 
-# modify update.xml for Google Chrome
-cp update-template.xml update.xml
+# modify update-chrome.xml for Google Chrome
+cp update-tmpl-chrome.xml update-chrome.xml
 CHROME_MAJOR_VERSION=`cd ${SOURCE_DIR} && grep '"version"' manifest.json | \
 	sed -r -e 's|^.*"version" : "(.+)".*$|\1|'`
 CHROME_VERSION="${CHROME_MAJOR_VERSION}.${REVISION}"
-sed -i "s|{CODEBASE}|http://foxtrick.foundationhorizont.org/nightly/chrome/foxtrick-r${REVISION}.crx|g" update.xml
-sed -i "s|{VERSION}|${CHROME_VERSION}|g" update.xml
+sed -i "s|{UPDATE_LINK}|http://foxtrick.foundationhorizont.org/nightly/chrome/foxtrick-r${REVISION}.crx|g" update-chrome.xml
+sed -i "s|{VERSION}|${CHROME_VERSION}|g" update-chrome.xml
 
-cp script-template script
-sed -i -e "s|{USER}|${USER}|g" -e "s|{PASSWORD}|${PASSWORD}|g" \
-	-e "s|{HOST}|${HOST}|g" -e "s|{PATH}|${SOURCE_DIR}|g" \
-	-e "s|{GECKO_FILENAME}|foxtrick-r${REVISION}.xpi|g" \
-	-e "s|{CHROME_FILENAME}|foxtrick-r${REVISION}.crx|g" script
+# modify update-opera.xml for Opera
+cp update-tmpl-opera.xml update-opera.xml
+OPERA_MAJOR_VERSION=`cd ${SOURCE_DIR} && grep -E 'version=.+network=.+' config.xml | \
+	sed -r -e 's|^.*version="([^"]+)".*$|\1|'`
+OPERA_VERSION="${OPERA_MAJOR_VERSION}.${REVISION}"
+sed -i "s|{UPDATE_LINK}|http://foxtrick.foundationhorizont.org/nightly/opera/foxtrick-r${REVISION}.crx|g" update-opera.xml
+sed -i "s|{VERSION}|${OPERA_VERSION}|g" update-opera.xml
 
-lftp -f script || exit 3
+cp ftp-tmpl ftp
+sed -i -e "s|{USER}|${USER}|g" \
+	-e "s|{PASSWORD}|${PASSWORD}|g" \
+	-e "s|{HOST}|${HOST}|g" \
+	-e "s|{PATH}|${SOURCE_DIR}|g" \
+	-e "s|{REVISION}|${REVISION}|g" ftp
 
-rm update.rdf update.xml script
+lftp -f ftp || exit 3
+
+rm update-firefox.rdf update-chrome.xml update-opera.xml ftp

@@ -1,8 +1,0 @@
-open {HOST} -e 'set ftp:ssl-allow false; set ftp:ssl-protect-data false; set ftp:ssl-protect-list false;'
-user {USER} {PASSWORD}
-put {PATH}/foxtrick.xpi -o {GECKO_FILENAME}
-put update.rdf -o update.rdf
-cd chrome/
-put {PATH}/foxtrick.crx -o {CHROME_FILENAME}
-put update.xml -o update.xml
-exit

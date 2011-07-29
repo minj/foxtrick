@@ -2,7 +2,7 @@
 <gupdate xmlns="http://www.google.com/update2/response" protocol="2.0">
 	<app appid="kfdfmelkohmkpmpgcbbhpbhgjlkhnepg">
 		<updatecheck
-			codebase="{CODEBASE}"
+			codebase="{UPDATE_LINK}"
 			version="{VERSION}"
 		/>
 	</app>

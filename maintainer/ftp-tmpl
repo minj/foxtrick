@@ -1,0 +1,15 @@
+open {HOST} -e 'set ftp:ssl-allow false; set ftp:ssl-protect-data false; set ftp:ssl-protect-list false;'
+user {USER} {PASSWORD}
+
+put {PATH}/foxtrick.xpi -o foxtrick-r{REVISION}.xpi
+put update-firefox.rdf -o update.rdf
+
+cd chrome/
+put {PATH}/foxtrick.crx -o foxtrick-r{REVISION}.crx
+put update-chrome.xml -o update.xml
+
+cd ../opera/
+put {PATH}/foxtrick.oex -o foxtrick-r{REVISION}.oex
+put update-opera.xml -o update.xml
+
+exit
