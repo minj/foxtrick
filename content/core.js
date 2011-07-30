@@ -144,8 +144,113 @@ var FoxtrickCore = {
 
 	showChangeLog : function(doc) {
 		if (FoxtrickPrefs.getString("oldVersion") !== Foxtrick.version()) {
-			if (FoxtrickPrefs.getBool("showReleaseNotes"))
-				FoxtrickPrefs.show('#tab=changes');
+			if (FoxtrickPrefs.getBool("showReleaseNotes")) {
+				if ( typeof(opera)!='object' )
+					FoxtrickPrefs.show('#tab=changes');
+				else { // opera inline version since we can't open options in opera
+					var show = function(releaseNotes) {
+						var changes = doc.createElement('div');
+						changes.id = "pane-changes";
+						var div = doc.createElement('div');
+						changes.appendChild(div);
+						var label = doc.createElement('h2');
+						label.textContent = 'FoxTrick '+Foxtrick.version();
+						div.appendChild(label);
+						var label = doc.createElement('p');
+						label.textContent = Foxtrickl10n.getString('foxtrick.versionReleaseNotes');
+						div.appendChild(label);
+						var select = doc.createElement('select');
+						select.id = 'pref-version-release-notes';
+						div.appendChild(select);
+						var div = doc.createElement('div');
+						div.id = 'pref-notepad';
+						changes.appendChild(div);
+						var ul = doc.createElement('ul');
+						ul.id = 'pref-notepad-list';
+						div.appendChild(ul);
+						
+						var note = Foxtrick.util.note.create(doc,changes, false,true)
+						doc.getElementById('mainBody').insertBefore(note, doc.getElementById('mainBody').firstChild);
+						
+						function importContent(from, to)
+						{
+							for (var i = 0; i < from.childNodes.length; ++i) {
+								var node = from.childNodes[i];
+								if (node.nodeType == Node.ELEMENT_NODE
+									&& node.nodeName.toLowerCase() == "module") {
+									var link = document.createElement("a");
+									link.textContent = node.textContent;
+									link.href = Foxtrick.ResourcePath + "preferences.xhtml#module=" + link.textContent;
+									to.appendChild(link);
+								}
+								else {
+									var importedNode = document.importNode(node, true);
+									to.appendChild(importedNode);
+								}
+							}
+						}
+
+						var notes = {};
+
+						var parseNotes = function(xml, dest) {
+							if (!xml) {
+								dest = {};
+								return;
+							}
+							var noteElements = xml.getElementsByTagName("note");
+							for (var i = 0; i < noteElements.length; ++i) {
+								var version = noteElements[i].getAttribute("version");
+								dest[version] = noteElements[i];
+							}
+						}
+						parseNotes(releaseNotes, notes);
+
+						var select = doc.getElementById("pref-version-release-notes");
+						for (var i in notes) {
+							// unique version name
+							var version = notes[i].getAttribute("version");
+							// localized version name
+							// search by:
+							// 1. localized-version in localized release notes
+							// 2. localized-version in master release notes
+							// 3. version as fall-back
+							var localizedVersion = (notes[version] && notes[version].getAttribute("localized-version"))
+								|| version;
+							var item = document.createElement("option");
+							item.textContent = localizedVersion;
+							item.value = version;
+							select.appendChild(item);
+						}
+
+						var updateNotepad = function() {
+							var version = select.options[select.selectedIndex].value;
+							var list = document.getElementById("pref-notepad-list");
+							list.textContent = ""; // clear list
+							const note = notes[version];
+							if (!note)
+								return;
+							var items = note.getElementsByTagName("item");
+							for (var i = 0; i < items.length; ++i) {
+								var item = document.createElement("li");
+								list.appendChild(item);
+								importContent(items[i], item);
+							}
+						}
+
+						var version = Foxtrick.version();
+						for (var i = 0; i < select.options.length; ++i) {
+							if (select.options[i].value == version) {
+								select.selectedIndex = i;
+								break;
+							}
+						}
+						
+						updateNotepad();
+						select.addEventListener('change',updateNotepad, false);
+					}
+					Foxtrick.loadXml(Foxtrick.ResourcePath + "release-notes.xml", show, true);
+				}
+			}
 			FoxtrickPrefs.setString("oldVersion", Foxtrick.version());
 		}
 	},
