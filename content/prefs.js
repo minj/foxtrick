@@ -531,6 +531,8 @@ if (Foxtrick.BuildFor === "Sandboxed") {
 						parsePrefsFile("../defaults/preferences/foxtrick.opera");
 					else if (typeof(chrome) === "object")
 						parsePrefsFile("../defaults/preferences/foxtrick.chrome");
+					else if (typeof(safari) === "object")
+						parsePrefsFile("../defaults/preferences/foxtrick.safari");
 					
 				}
 				catch (e) {

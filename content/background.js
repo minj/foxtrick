@@ -232,6 +232,23 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	else if (typeof(chrome) === "object") {
 		chrome.pageAction.onClicked.addListener(function(tab) { FoxtrickPrefs.disable(tab); });
 	}
+	else if (typeof(safari) === "object") {
+	   // Open Options page upon settings checkbox click.
+		safari.extension.settings.openFoxtrickOptions = false;
+		safari.extension.settings.addEventListener("change", function(e) {
+			 try {
+				 if (e.key == 'openFoxtrickOptions')
+					sandboxed.tabs.create({url: Foxtrick.ResourcePath + "preferences.xhtml"});
+			} catch(e) {Foxtrick.log(e)}
+		}, false);
+
+		safari.application.addEventListener("command", function(commandEvent) {
+		  // Open Options page upon Toolbar button click.
+		  if (commandEvent.command == "FoxtrickOptions")
+			sandboxed.tabs.create({url: Foxtrick.ResourcePath+ "preferences.xhtml"});
+		}, false);
+	}
+
   } catch (e) {Foxtrick.log('Foxtrick.loader.chrome.browserLoad: ', e );}
 };
 

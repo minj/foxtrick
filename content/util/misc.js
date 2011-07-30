@@ -52,7 +52,7 @@ Foxtrick.playSound = function(url, doc) {
 			var music = new Audio(url);
 			music.play();
 		}
-		else {
+		else { // opera && safari
 			var music = doc.createElement('audio');
 			music.setAttribute("autoplay","autoplay");
 			var source = doc.createElement('source');
@@ -402,7 +402,7 @@ Foxtrick.replaceExtensionDirectory = function(cssTextCollection, callback, id) {
 				});
 		else callback(cssTextCollection);
 	}
-	else if (typeof(chrome) === "object") {
+	else if (typeof(chrome) === "object" || typeof(safari) === "object") {
 		callback( cssTextCollection.replace(resourcePathRegExp, Foxtrick.InternalPath) );
 	}
 	else callback(cssTextCollection);
@@ -645,7 +645,7 @@ Foxtrick.reload_module_css = function(doc) {
 Foxtrick.getCssTextFromFile = function (cssUrl) {
 	// @callback_param cssText - string of CSS content
 	var css_text = "";
-	if (cssUrl && cssUrl.search(/^http|^chrome-extension/) != -1) {
+	if (cssUrl && cssUrl.search(/{/) == -1) { // has no class
 		try { 
 			// a resource file, get css file content
 			css_text = Foxtrick.load(cssUrl);
