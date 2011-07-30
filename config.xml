@@ -3,11 +3,10 @@
 		id="http://code.google.com/foxtrick/"
 		version="0.7.9" network="public private">
 	<name>FoxTrick</name>
-	<description>FoxTrick addon for hattrick.org</description>
+	<description>A set of presentation enhancements for hattrick.org</description>
 	<author href="http://code.google.com/p/foxtrick/">FoxTrick team</author>
 	<license href="http://www.gnu.org/licenses">GNU General Public License</license>
 	<icon src="skin/icon-64.png" width="64" height="64"/>
-	<icon src="skin/icon-16.png" width="16" height="16"/>
 	<content src="background.html" type="text/html" encoding="utf-8"/>
 	<access origin="*" subdomains="true"/>
 	<update-description href="http://foxtrick.foundationhorizont.org/nightly/opera/update.xml"/>
