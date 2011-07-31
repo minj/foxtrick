@@ -27,7 +27,7 @@ var FoxtrickReadHtPrefs = {
 		if (languages[lang])
 			var language = languages[lang]; // mappings of specified lang
 		else
-			return; // return if language not found
+			return false; // return if language not found
 
 		for (var i = 0, j = 0;
 			i < menuLinks.length && j < items.length;
