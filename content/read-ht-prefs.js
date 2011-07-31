@@ -9,6 +9,7 @@ var FoxtrickReadHtPrefs = {
 	MODULE_NAME : "ReadHtPrefs",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,
 	PAGES : ["all"],
+	NICE : -20,
 
 	menu_strings: new Array('MyHattrick','MyClub','World','Forum','Shop','Help'),
 
