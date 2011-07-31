@@ -51,10 +51,16 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 				var initTime = new Date() - begin.getTime();
 				Foxtrick.log("init time: " , initTime , " ms");
 
-				// listen to clipboard paste
-				if ( typeof(opera)=='object' )  
+				// opera/safari: listen to clipboard paste
+				if ( typeof(opera)=='object' || typeof(safari)=='object')  
 					window.addEventListener('mouseup', Foxtrick.loader.chrome.clickListener, false);
-				
+				// safari: set context menu info
+				if ( typeof(safari)=='object' ) {
+					document.addEventListener("contextmenu", function(event) {
+						safari.self.tab.setContextMenuEventUserInfo(event, {nodeName:event.target.nodeName, href: event.target.href});
+					}, false);
+				}
+
 				// if ht doc is already loaded start now, else wait till loaded
 				if (Foxtrick.isHt(document)) {
 					Foxtrick.log('Ht domument ready. Run now.'); 

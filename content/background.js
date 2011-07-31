@@ -107,12 +107,12 @@ Foxtrick.loader.chrome.browserLoad = function() {
 				}
 			}
 			else if (request.req == "setValue") {
-				localStorage.setItem(request.key, JSON.stringify(request.value));
+				FoxtrickPrefs.setValue(request.key, request.value);
 				if (!no_update_needed[request.key]) 
 					localStorage.setItem("preferences.updated",'true');
 			}
 			else if (request.req == "deleteValue") {
-				localStorage.removeItem(request.key);
+				FoxtrickPrefs.deleteValue(request.key);
 				if (!no_update_needed[request.key]) 
 					localStorage.setItem("preferences.updated",'true');
 			}
@@ -239,6 +239,8 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		  if (commandEvent.command == "FoxtrickOptions")
 			sandboxed.tabs.create({url: Foxtrick.ResourcePath+ "preferences.xhtml"});
 		}, false);
+		
+		Foxtrick.loader.chrome.contextCopySafari();
 	}
 
   } catch (e) {Foxtrick.log('Foxtrick.loader.chrome.browserLoad: ', e );}
@@ -246,13 +248,15 @@ Foxtrick.loader.chrome.browserLoad = function() {
 
 
 
-	// for clipboard
+// for clipboard
 Foxtrick.loader.chrome.copyToClipBoard = function(content) {
-	var clipboardStore = document.getElementById("clipboard-store");
-	clipboardStore.value = content;
-	clipboardStore.select();
-	document.execCommand("Copy");
+		var clipboardStore = document.getElementById("clipboard-store");
+		clipboardStore.value = content;
+		clipboardStore.select();
+		document.execCommand("Copy");
 };
+
+
 
 Foxtrick.loader.chrome.contextCopyChrome = function () {
 	// context copy stuff. copy ids work
@@ -287,7 +291,7 @@ Foxtrick.loader.chrome.contextCopyChrome = function () {
 	else var id_contexts = [];
 	
 	if (FoxtrickPrefs.isModuleOptionEnabled("ContextMenuCopy", "Link")) {
-		id_contexts.push( {'title':local_string+ ': Link in HT-ML', "contexts":["link"], "onclick": linkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*'] });
+		id_contexts.push( {'title':Foxtrickl10n.getString("copy.link"), "contexts":["link"], "onclick": linkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*'] });
 	}		
 	if (FoxtrickPrefs.isModuleOptionEnabled("ContextMenuCopy", "HtMl")) {
 	//not working. just keeping it for future use
@@ -304,6 +308,34 @@ Foxtrick.loader.chrome.contextCopyChrome = function () {
 	//var child2 = chrome.contextMenus.create({"title": "Child 2", "parentId": parent, "onclick": genericOnClick});
 }
 
+Foxtrick.loader.chrome.contextCopySafari = function () {	
+	// Add context menus
+	safari.application.addEventListener("contextmenu", function(event) {
+		try{
+			if (event.userInfo.nodeName === "A") {
+				if (FoxtrickPrefs.isModuleOptionEnabled("ContextMenuCopy", "Id")) {
+					var id = Foxtrick.util.htMl.getIdFromLink(event.userInfo.href);
+					if (id !== null) {
+						var idText = Foxtrickl10n.getString("copy.id").replace("%s", id.type + " ID").replace("%i", id.id);
+						event.contextMenu.appendContextMenuItem("copyid", idText);
+					}
+				}
+				if (FoxtrickPrefs.isModuleOptionEnabled("ContextMenuCopy", "Link")) {
+					var markup = Foxtrick.util.htMl.getMarkupFromLink(event.userInfo.href);
+					if (markup !== null) {
+						event.contextMenu.appendContextMenuItem("copylink", Foxtrickl10n.getString("copy.link"));
+					}
+				}
+				safari.application.addEventListener("command", function(commandEvent) {
+					if (commandEvent.command == "copyid")
+						Foxtrick.copyStringToClipboard(id.id);
+					else if (commandEvent.command == "copylink")
+						Foxtrick.copyStringToClipboard(markup);
+				}, false );
+			}
+		} catch(e){Foxtrick.log(e)}
+	});
+};
 
 
 if (Foxtrick.BuildFor === "Sandboxed" && Foxtrick.chromeContext()==="background" ) {

@@ -119,7 +119,7 @@ Foxtrick.copyStringToClipboard = function (string) {
 			.getService(Components.interfaces.nsIClipboardHelper);
 		gClipboardHelper.copyString(string);
 	}
-	else if (typeof(opera) === "object") {
+	else if (typeof(opera) === "object" || typeof(safari) === "object") {
 		Foxtrick.sessionSet('clipboard', string);
 	}
 	else if (Foxtrick.BuildFor === "Sandboxed") {

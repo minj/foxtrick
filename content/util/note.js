@@ -46,7 +46,7 @@ Foxtrick.util.note = {
 		var note = this.create(doc, msg, buttons, hasClose);
 		
 		// add paste instruction for opera to copy notes
-		if (typeof(opera)=='object' && id.search('copy-note')!==-1) {
+		if ((typeof(opera)=='object' || typeof(safari)=='object') && id.search('copy-note')!==-1) {
 			note.firstChild.firstChild.textContent += ' '+Foxtrickl10n.getString('PasteClick.desc');
 		}
 		note.id = id;
