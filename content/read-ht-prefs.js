@@ -11,25 +11,31 @@ var FoxtrickReadHtPrefs = {
 	PAGES : ["all"],
 	NICE : -20,
 
-	menu_strings: new Array('MyHattrick','MyClub','World','Forum','Shop','Help'),
-
 	run : function(doc) {
+		// only read preferences if logged in
+		if (!Foxtrick.Pages.All.isLoggedIn(doc))
+			return;
 		this.readLanguage(doc);
 		this.readOthers(doc);
 	},
 
 	isLang : function(menuLinks, lang) {
+		const items = ["MyHattrick", "MyClub", "World", "Forum", "Shop", "Help"];
+
 		var languages = Foxtrickl10n.htLanguagesXml;
-		var currentItem = 0; // index of menu item position
-		for (var i = 0; currentItem < this.menu_strings.length && i < menuLinks.length; ++i) {
+		var language = languages[lang]; // mappings of specified lang
+
+		for (var i = 0, j = 0;
+			currentItem < items.length && i < menuLinks.length;
+			++i) {
 			if (menuLinks[i].textContent == "Alltid") // 5th entry might be alltid. skip it
 				continue;
-			var linkTitle = languages[lang].getElementsByTagName(this.menu_strings[currentItem])[0];
-			if (linkTitle === null || menuLinks[i].textContent.indexOf(linkTitle.getAttribute("value")) == -1) {
+			var linkTitle = language.getElementsByTagName(items[j])[0];
+			if (!linkTitle || menuLinks[i].textContent.indexOf(linkTitle.getAttribute("value")) == -1) {
 				// not this language
 				return false;
 			}
-			++currentItem;
+			++j;
 		}
 		return true;
 	},
@@ -42,11 +48,7 @@ var FoxtrickReadHtPrefs = {
 		var menu = doc.getElementById("menu");
 		var menuLinks = menu.getElementsByTagName("a");
 
-		if (menuLinks.length < this.menu_strings.length) // pre-login
-			return;
-
-		var unchanged = (oldLang !== null) && this.isLang(menuLinks, oldLang);
-		if (!unchanged || !oldLang) {
+		if (!this.isLang(menuLinks, oldLang)) {
 			// language has changed or there is none for some reason, look for the new one
 			var found = false;
 			for (var k in languages) {
@@ -77,8 +79,6 @@ var FoxtrickReadHtPrefs = {
 	readOthers : function(doc) {
 		var header = doc.getElementById('header');
 		var teamLinks = doc.getElementById('teamLinks').getElementsByTagName('a');
-
-		if (!teamLinks[0]) return;
 
 		var CountryLink = teamLinks[2];
 		var LeagueId = CountryLink.href.replace(/.+leagueid=/i, "").match(/^\d+/)[0];

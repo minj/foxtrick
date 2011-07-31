@@ -82,5 +82,9 @@ Foxtrick.Pages.All = {
 			Foxtrick.log(e);
 		}
 		return null;
+	},
+	isLoggedIn : function(doc) {
+		var teamLinks = doc.getElementById("teamLinks");
+		return !!teamLinks && teamLinks.getElementsByTagName("a").length > 0;
 	}
 };
