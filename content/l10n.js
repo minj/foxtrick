@@ -218,25 +218,19 @@ if (Foxtrick.BuildFor === "Gecko") {
 			}
 		},
 
-		getString : function(str) {
-			if (this._strings_bundle) {
-				try {
-					return this._strings_bundle.GetStringFromName(str);
-				}
-				catch (e) {
-					try {
-						if (this._strings_bundle_default)
-							return this._strings_bundle_default.GetStringFromName(str);
-					}
-					catch (ee) {
-						Foxtrick.log("** Localization error 1 ** '" + str + "'");
-						return "** Localization error 1 **";
-					}
-				}
+		getString : function(str) {;
+			try {
+				return this._strings_bundle.GetStringFromName(str);
 			}
-			else {
-				Foxtrick.log("** Localization error 2 ** '" + str + "'");
-				return "** Localization error 2 **";
+			catch (e) {
+				try {
+					if (this._strings_bundle_default)
+						return this._strings_bundle_default.GetStringFromName(str);
+				}
+				catch (ee) {
+					Foxtrick.log("** Localization error 1 ** '" + str + "'");
+					return str.substr(str.lastIndexOf('.')+1);
+				}
 			}
 		},
 
@@ -350,14 +344,14 @@ if (Foxtrick.BuildFor === "Sandboxed") {
 				else if (Foxtrickl10n.properties_default.search(string_regexp)!=-1)
 					value = Foxtrickl10n.properties_default.match(string_regexp)[1];
 				else {
-					value = str;
+					value = str.substr(str.lastIndexOf('.')+1);
 					Foxtrick.log('getString error' ,str);
 				}
 				return value;
 			}
 			catch (e) {
 				Foxtrick.log(e);
-				return str;
+				return str.substr(str.lastIndexOf('.')+1);
 			}
 		},
 
