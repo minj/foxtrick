@@ -28,14 +28,6 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		Foxtrick.log('prefs updated');
 	};
 
-	// for clipboard
-	var copyToClipBoard = function(content) {
-		clipboardStore = document.getElementById("clipboard-store");
-		clipboardStore.value = content;
-		clipboardStore.select();
-		document.execCommand("Copy");
-	};
-
 	var updatePageAction = function(request, sender) {
 		if (typeof(opera) === "object") {
 			if (request.sender!='options') FoxtrickCore.setOperaIcon(Foxtrick.loader.chrome.button);
@@ -167,7 +159,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 				// @param content - content to copy
 				// @callback_param status - success status
 				try {
-					copyToClipBoard(request.content);
+					Foxtrick.loader.chrome.copyToClipBoard(request.content);
 					sendResponse({status : true});
 				}
 				catch (e) {
@@ -226,9 +218,11 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		Foxtrick.loader.chrome.button = opera.contexts.toolbar.createItem( UIItemProperties );
 		opera.contexts.toolbar.addItem(Foxtrick.loader.chrome.button);
 		FoxtrickCore.setOperaIcon(Foxtrick.loader.chrome.button);
+
 	}
 	else if (typeof(chrome) === "object") {
 		chrome.pageAction.onClicked.addListener(function(tab) { FoxtrickPrefs.disable(tab); });
+		Foxtrick.loader.chrome.contextCopyChrome();
 	}
 	else if (typeof(safari) === "object") {
 	   // Open Options page upon settings checkbox click.
@@ -250,40 +244,68 @@ Foxtrick.loader.chrome.browserLoad = function() {
   } catch (e) {Foxtrick.log('Foxtrick.loader.chrome.browserLoad: ', e );}
 };
 
-/*
-// context copy stuff. copy ids work
-function linkOnClick(info, tab) {
-  Foxtrick.log(info);
-  var id_container = Foxtrick.util.htMl.getIdFromLink(info.linkUrl);
-  if (id_container) copyToClipBoard(id_container.id);
-  Foxtrick.log(id_container);
+
+
+	// for clipboard
+Foxtrick.loader.chrome.copyToClipBoard = function(content) {
+	var clipboardStore = document.getElementById("clipboard-store");
+	clipboardStore.value = content;
+	clipboardStore.select();
+	document.execCommand("Copy");
+};
+
+Foxtrick.loader.chrome.contextCopyChrome = function () {
+	// context copy stuff. copy ids work
+	function idLinkOnClick(info, tab) {
+	  var id_container = Foxtrick.util.htMl.getIdFromLink(info.linkUrl);
+	  if (id_container) Foxtrick.loader.chrome.copyToClipBoard(id_container.id);
+	}
+
+	function linkOnClick(info, tab) {
+		var markup = Foxtrick.util.htMl.getMarkupFromLink(info.linkUrl);
+		if (markup) Foxtrick.loader.chrome.copyToClipBoard(markup);
+	}
+	
+	function selectionOnClick(info, tab) {
+		// only plain text. useless as it is. maybe scan content document textContent for section and gather nodes there
+		Foxtrick.loader.chrome.copyToClipBoard(info.selectionText);
+	}
+
+	var local_string = Foxtrickl10n.getString('Copy');
+	if (FoxtrickPrefs.isModuleOptionEnabled("ContextMenuCopy", "Id")) {
+		var id_contexts = [
+			{'title':local_string+ ': Team ID', 	"contexts":["link"], "onclick": idLinkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*TeamID=*','*://*.hattrick.org/*teamId=*'] },
+			{'title':local_string+ ': User ID', 	"contexts":["link"], "onclick": idLinkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*UserID=*','*://*.hattrick.org/*userId=*'] },
+			{'title':local_string+ ': Series ID',	"contexts":["link"], "onclick": idLinkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*LeagueLevelUnitID=*','*://*.hattrick.org/*LeagueLevelUnitId=*'] },
+			{'title':local_string+ ': YouthSeries ID',	"contexts":["link"], "onclick": idLinkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*YouthLeagueID=*','*://*.hattrick.org/*YouthLeagueId=*'] },
+			{'title':local_string+ ': Match ID', 	"contexts":["link"], "onclick": idLinkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*matchID=*','*://*.hattrick.org/*matchId=*'] },
+			{'title':local_string+ ': Player ID',	"contexts":["link"], "onclick": idLinkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*PlayerID=*','*://*.hattrick.org/*playerId=*'] },
+			{'title':local_string+ ': Arena ID', 	"contexts":["link"], "onclick": idLinkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*ArenaID=*','*://*.hattrick.org/*arenaId=*'] },
+			{'title':local_string+ ': Post ID', 	"contexts":["link"], "onclick": idLinkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/Forum/Read.aspx?t=*&n=*'] },
+		];
+	}
+	else var id_contexts = [];
+	
+	if (FoxtrickPrefs.isModuleOptionEnabled("ContextMenuCopy", "Link")) {
+		id_contexts.push( {'title':local_string+ ': Link in HT-ML', "contexts":["link"], "onclick": linkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*'] });
+	}		
+	if (FoxtrickPrefs.isModuleOptionEnabled("ContextMenuCopy", "HtMl")) {
+	//not working. just keeping it for future use
+	//	id_contexts.push( {'title':'Copy in HT-ML', 	"contexts":["selection"], "onclick": selectionOnClick, 'documentUrlPatterns': ['*://*.hattrick.org/*'] },);
+	}
+	
+	for (var i = 0; i < id_contexts.length; i++) {
+		chrome.contextMenus.create(id_contexts[i]);
+	}
+
+	// example: Create a parent item and two children.
+	//var parent = chrome.contextMenus.create({"title": "Test parent item"});
+	//var child1 = chrome.contextMenus.create({"title": "Child 1", "parentId": parent, "onclick": genericOnClick});
+	//var child2 = chrome.contextMenus.create({"title": "Child 2", "parentId": parent, "onclick": genericOnClick});
 }
 
-function selectionOnClick(info, tab) {
-	// only plain text. useless as it is. maybe scan content document textContent for section and gather nodes there
-	copyToClipBoard(info.selectionText);
-}
-
-var id_contexts = [
-	{'title':'Copy Team ID', 	"contexts":["link"], "onclick": linkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*TeamID=*','*://*.hattrick.org/*teamId=*'] },
-	{'title':'Copy User ID', 	"contexts":["link"], "onclick": linkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*UserID=*','*://*.hattrick.org/*userId=*'] },
-	{'title':'Copy League ID', 	"contexts":["link"], "onclick": linkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*LeagueLevelUnitID=*','*://*.hattrick.org/*LeagueLevelUnitId=*'] },
-	{'title':'Copy Match ID', 	"contexts":["link"], "onclick": linkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*matchID=*','*://*.hattrick.org/*matchId=*'] },
-	{'title':'Copy Player ID', 	"contexts":["link"], "onclick": linkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*PlayerID=*','*://*.hattrick.org/*playerId=*'] },
-	{'title':'Copy ArenaID', 	"contexts":["link"], "onclick": linkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*ArenaID=*','*://*.hattrick.org/*arenaId=*'] },
-	//{'title':'Copy in HT-ML', 	"contexts":["selection"], "onclick": selectionOnClick, 'documentUrlPatterns': ['*://*.hattrick.org/*'] },
-];
-
-for (var i = 0; i < id_contexts.length; i++) {
-	chrome.contextMenus.create(id_contexts[i]);
-}
 
 
-// example: Create a parent item and two children.
-//var parent = chrome.contextMenus.create({"title": "Test parent item"});
-//var child1 = chrome.contextMenus.create({"title": "Child 1", "parentId": parent, "onclick": genericOnClick});
-//var child2 = chrome.contextMenus.create({"title": "Child 2", "parentId": parent, "onclick": genericOnClick});
-*/
 if (Foxtrick.BuildFor === "Sandboxed" && Foxtrick.chromeContext()==="background" ) {
 	Foxtrick.loader.chrome.browserLoad ();
 }
