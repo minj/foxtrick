@@ -144,49 +144,56 @@ Foxtrick.newTab = function(url) {
 }
 
 Foxtrick.load = function(url, callback, crossSite) {
-	if (Foxtrick.BuildFor == "Sandboxed" && Foxtrick.chromeContext() == "content"
-		&& crossSite) {
-		// the evil Chrome that requires us to send a message to
-		// background script for cross-site requests
-		sandboxed.extension.sendRequest({req : "xml", url : url, crossSite: crossSite},
-			function(response) {
-				try {
-					callback(response.data, response.status);
-				}
-				catch (e) {
-					Foxtrick.dump("Uncaught callback error:");
-					Foxtrick.log(e);
-				}
-			}
-		);
-	}
-	else {
-		if (!crossSite) {
-			// a request to load local resource
-			url = url.replace(Foxtrick.ResourcePath, Foxtrick.InternalPath);
-		}
-		var req = new XMLHttpRequest();
-		if (!callback) {
-			req.open("GET", url, false);
-			req.send(null);
-			var response = req.responseText;
-			return response;
-		}
-		else {
-			req.open("GET", url, true);
-			req.onreadystatechange = function(aEvt) {
-				if (req.readyState == 4) {
+	try { 
+		if (Foxtrick.BuildFor == "Sandboxed" && Foxtrick.chromeContext() == "content"
+			&& crossSite) {
+			// the evil Chrome that requires us to send a message to
+			// background script for cross-site requests
+			sandboxed.extension.sendRequest({req : "xml", url : url, crossSite: crossSite},
+				function(response) {
 					try {
-						callback(req.responseText, req.status);
+						callback(response.data, response.status);
 					}
 					catch (e) {
 						Foxtrick.dump("Uncaught callback error:");
 						Foxtrick.log(e);
 					}
 				}
-			};
-			req.send(null);
+			);
 		}
+		else {
+			if (!crossSite) {
+				// a request to load local resource
+				url = url.replace(Foxtrick.ResourcePath, Foxtrick.InternalPath);
+			}
+			var req = new XMLHttpRequest();
+			if (!callback) {
+				req.open("GET", url, false);
+				req.send(null);
+				var response = req.responseText;
+				return response;
+			}
+			else {
+				req.open("GET", url, true);
+				req.onreadystatechange = function(aEvt) {
+					if (req.readyState == 4) {
+						try {
+							callback(req.responseText, req.status);
+						}
+						catch (e) {
+							Foxtrick.dump("Uncaught callback error:");
+							Foxtrick.log(e);
+						}
+					}
+				};
+				req.send(null);
+			}
+		}
+	}
+	catch (e) {
+		Foxtrick.log('url: ', url, ' callback: ', callback, ' crossSite: ', crossSite);
+		Foxtrick.log(e);
+		if (callback) callback(null);
 	}
 };
 
