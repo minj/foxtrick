@@ -26,7 +26,7 @@ var FoxtrickReadHtPrefs = {
 		var language = languages[lang]; // mappings of specified lang
 
 		for (var i = 0, j = 0;
-			currentItem < items.length && i < menuLinks.length;
+			i < menuLinks.length && j < items.length;
 			++i) {
 			if (menuLinks[i].textContent == "Alltid") // 5th entry might be alltid. skip it
 				continue;
