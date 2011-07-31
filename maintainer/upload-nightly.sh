@@ -50,7 +50,7 @@ cp update-tmpl-opera.xml update-opera.xml
 OPERA_MAJOR_VERSION=`cd ${SOURCE_DIR} && grep -E 'version=.+network=.+' config.xml | \
 	sed -r -e 's|^.*version="([^"]+)".*$|\1|'`
 OPERA_VERSION="${OPERA_MAJOR_VERSION}.${REVISION}"
-sed -i "s|{UPDATE_LINK}|http://foxtrick.foundationhorizont.org/nightly/opera/foxtrick-r${REVISION}.crx|g" update-opera.xml
+sed -i "s|{UPDATE_LINK}|http://foxtrick.foundationhorizont.org/nightly/opera/foxtrick-r${REVISION}.oex|g" update-opera.xml
 sed -i "s|{VERSION}|${OPERA_VERSION}|g" update-opera.xml
 
 cp ftp-tmpl ftp
