@@ -62,7 +62,11 @@ var FoxtrickShowLineupSet = {
 		};
 
 		var tables = doc.getElementById("mainBody").getElementsByTagName("table");
-		for (var k = 1; k < tables.length; ++k) {
+		// only deal with fixture/result tables
+		tables = Foxtrick.filter(tables, function(n) {
+			return isFixtureTable(n) || isResultTable(n);
+		});
+		for (var k = 0; k < tables.length; ++k) {
 			var table = tables[k];
 			for (var i = 1; i < table.rows.length; ++i) {
 				var row = table.rows[i];
