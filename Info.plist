@@ -54,6 +54,7 @@
 				<string>content/stats.js</string>
 				<string>content/lib/oauth.js</string>
 				<string>content/lib/sha1.js</string>
+				<string>content/lib/jquery.js</string>
 				<string>content/util/api.js</string>
 				<string>content/util/currency.js</string>
 				<string>content/util/html.js</string>
@@ -223,6 +224,8 @@
 			<string>All</string>
 		</dict>
 	</dict>
+	<key>Update Manifest URL</key>
+	<string>http://foxtrick.foundationhorizont.org/nightly/safari/update.plist</string>
 	<key>Website</key>
 	<string>http://code.google.com/foxtrick/</string>
 </dict>
