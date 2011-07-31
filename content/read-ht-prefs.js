@@ -25,6 +25,10 @@ var FoxtrickReadHtPrefs = {
 		var languages = Foxtrickl10n.htLanguagesXml;
 		var language = languages[lang]; // mappings of specified lang
 
+		// return if language not found
+		if (!langauge)
+			return;
+
 		for (var i = 0, j = 0;
 			i < menuLinks.length && j < items.length;
 			++i) {
