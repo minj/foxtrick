@@ -46,8 +46,8 @@ var FoxtrickReadHtPrefs = {
 			return;
 
 		var unchanged = (oldLang !== null) && this.isLang(menuLinks, oldLang);
-		if (!unchanged) {
-			// language has changed, look for the new one
+		if (!unchanged || !oldLang) {
+			// language has changed or there is none for some reason, look for the new one
 			var found = false;
 			for (var k in languages) {
 				if (this.isLang(menuLinks, k)) {
