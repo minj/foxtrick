@@ -16,18 +16,18 @@ var FoxtrickReadHtPrefs = {
 		if (!Foxtrick.Pages.All.isLoggedIn(doc))
 			return;
 		this.readLanguage(doc);
-		this.readOthers(doc);
+		this.readCountry(doc);
+		this.readDateFormat(doc);
 	},
 
 	isLang : function(menuLinks, lang) {
 		const items = ["MyHattrick", "MyClub", "World", "Forum", "Shop", "Help"];
 
 		var languages = Foxtrickl10n.htLanguagesXml;
-		var language = languages[lang]; // mappings of specified lang
-
-		// return if language not found
-		if (!langauge)
-			return;
+		if (languages[lang])
+			var language = languages[lang]; // mappings of specified lang
+		else
+			return; // return if language not found
 
 		for (var i = 0, j = 0;
 			i < menuLinks.length && j < items.length;
@@ -79,35 +79,39 @@ var FoxtrickReadHtPrefs = {
 		}
 	},
 
-	// read country and date format
-	readOthers : function(doc) {
+	readCountry : function(doc) {
 		var header = doc.getElementById('header');
 		var teamLinks = doc.getElementById('teamLinks').getElementsByTagName('a');
 
 		var CountryLink = teamLinks[2];
 		var LeagueId = CountryLink.href.replace(/.+leagueid=/i, "").match(/^\d+/)[0];
-		var CountryName = Foxtrick.util.id.getLeagueDataFromId(LeagueId).EnglishName;
-		var OldCountryName = FoxtrickPrefs.getString("htCountry");
+		var country = Foxtrick.util.id.getLeagueDataFromId(LeagueId).EnglishName;
+		FoxtrickPrefs.setString("htCountry", country);
+	},
 
-		if (CountryName != OldCountryName) {
-			FoxtrickPrefs.setString("htCountry", CountryName);
-			// date format
-			var scripts = doc.getElementsByTagName('script');
-			for (var i = 0; i < scripts.length; ++i) {
-				var script = scripts[i].innerHTML;
-				var timeDiffOff = script.indexOf("timeDiff");
-				if (timeDiffOff != -1) {
-					// function call to timeDiff in the script
-					var funcCall = script.substr(timeDiffOff);
-					var dateFormat = funcCall.replace(RegExp("^timeDiff('\\d+','\\d+','\\d+','\\d+','\\d+','\\d+','(.+)');"), "$1");
+	readDateFormat : function(doc) {
+		var scripts = doc.getElementsByTagName("script");
+		for (var i = 0; i < scripts.length; ++i) {
+			var script = scripts[i].innerHTML;
+			var timeDiffOff = script.indexOf("timeDiff");
+			if (timeDiffOff != -1) {
+				// function call to timeDiff in the script
+				var funcCall = script.substr(timeDiffOff);
+				var matched = funcCall.match(RegExp("timeDiff\\('\\d+','\\d+','\\d+','\\d+','\\d+','\\d+','(.+)'\\);"));
+				// failed to match regular expression
+				if (matched == null) {
+					Foxtrick.log("Cannot find date format: ", funcCall);
+				}
+				else {
+					var dateFormat = matched[1];
 					// make sure the format has characters "d", "m", "y" in it
 					if (dateFormat.indexOf("d") != -1
 						&& dateFormat.indexOf("m") != -1
 						&& dateFormat.indexOf("y") != -1) {
 						Foxtrick.util.time.setDateFormat(dateFormat);
-						break;
 					}
 				}
+				return;
 			}
 		}
 	}
