@@ -105,7 +105,6 @@ Foxtrick.loader.chrome.browserLoad = function() {
 						screenshots : Foxtrickl10n.screenshots,
 
 						currency : currency,
-						dateFormat : dateFormat,
 						about : about,
 						worldDetails : worldDetails,
 						league : Foxtrick.XMLData.League,
