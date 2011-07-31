@@ -320,14 +320,20 @@ if (Foxtrick.BuildFor === "Sandboxed") {
 				this.screenshots_default = Foxtrick.load(Foxtrick.ResourcePath+"foxtrick.screenshots");
 				
 				var localecode = FoxtrickPrefs.getString("htLanguage");
+				Foxtrick.log('localecode ',localecode);
 				try { 
 					this.properties = Foxtrick.load(Foxtrick.ResourcePath+"locale/" + localecode + "/foxtrick.properties");
+					if (!this.properties) this.properties =  this.properties_default; 
 				} catch(e) { 
 					this.properties = this.properties_default; 
+					Foxtrick.log('use default properties');
+				
 				}
 				try { 
 					this.screenshots = Foxtrick.load(Foxtrick.ResourcePath+"locale/"+localecode+"/foxtrick.screenshots");
+					if (!this.screenshots) this.screenshots = this.screenshots_default; 
 				} catch(e) { 
+					Foxtrick.log('use default screenshots');
 					this.screenshots = this.screenshots_default; 
 				}
 			}
