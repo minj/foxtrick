@@ -229,7 +229,7 @@ if (Foxtrick.BuildFor === "Gecko") {
 				}
 				catch (ee) {
 					Foxtrick.log("** Localization error 1 ** '" + str + "'");
-					return str.substr(str.lastIndexOf('.')+1);
+					return str;
 				}
 			}
 		},
@@ -344,7 +344,7 @@ if (Foxtrick.BuildFor === "Sandboxed") {
 				else if (Foxtrickl10n.properties_default.search(string_regexp)!=-1)
 					value = Foxtrickl10n.properties_default.match(string_regexp)[1];
 				else {
-					value = str.substr(str.lastIndexOf('.')+1);
+					value = str;
 					Foxtrick.log('getString error' ,str);
 				}
 				return value;
