@@ -385,7 +385,6 @@ var FoxtrickMyMonitor = {
 		}
 		if (!teams) {
 			// return national teams if first run
-			Foxtrick.util.id.getOwnTeamInfo(doc);
 			var leagueId = Foxtrick.util.id.getOwnCountryId();
 			const ntNode = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml,
 				"//League[LeagueID='" + leagueId + "']");
