@@ -73,6 +73,7 @@ var FoxtrickReadHtPrefs = {
 		}
 	},
 
+	// read country and date format
 	readOthers : function(doc) {
 		var header = doc.getElementById('header');
 		var teamLinks = doc.getElementById('teamLinks').getElementsByTagName('a');
@@ -85,27 +86,25 @@ var FoxtrickReadHtPrefs = {
 		var OldCountryName = FoxtrickPrefs.getString("htCountry");
 
 		if (CountryName != OldCountryName) {
-			Foxtrick.log('country changed');
+			FoxtrickPrefs.setString("htCountry", CountryName);
 			// date format
 			var scripts = doc.getElementsByTagName('script');
 			for (var i = 0; i < scripts.length; ++i) {
-				var timeDiffpos = scripts[i].innerHTML.search('timeDiff');
-				if (timeDiffpos != -1) {
-					var timeDiffParams = scripts[i].innerHTML.substr(timeDiffpos+8);
-
-					var dateformat='ddmmyyyy';
-					if (timeDiffParams.search('y') < timeDiffParams.search('d')) {
-						dateformat='yyyymmdd';
+				var script = scripts[i].innerHTML;
+				var timeDiffOff = script.indexOf("timeDiff");
+				if (timeDiffOff != -1) {
+					// function call to timeDiff in the script
+					var funcCall = script.substr(timeDiffOff);
+					var dateFormat = funcCall.replace(RegExp("^timeDiff('\\d+','\\d+','\\d+','\\d+','\\d+','\\d+','(.+)');"), "$1");
+					// make sure the format has characters "d", "m", "y" in it
+					if (dateFormat.indexOf("d") != -1
+						&& dateFormat.indexOf("m") != -1
+						&& dateFormat.indexOf("y") != -1) {
+						Foxtrick.util.time.setDateFormat(dateFormat);
+						break;
 					}
-					else if (timeDiffParams.search('m') < timeDiffParams.search('d')) {
-						dateformat='mmddyyyy';
-					}
-					Foxtrick.util.time.setDateFormat(dateformat);
-					break;
 				}
 			}
-
-			FoxtrickPrefs.setString("htCountry", CountryName);
 		}
 	}
 };

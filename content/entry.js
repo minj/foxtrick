@@ -61,7 +61,6 @@ Foxtrick.entry.setRetrievedLocalResources = function(data) {
 		Foxtrickl10n.screenshots = data.screenshots;
 
 		Foxtrick.XMLData.htCurrencyXml = parser.parseFromString(data.currency, "text/xml");
-		Foxtrick.XMLData.htdateformat = parser.parseFromString(data.dateFormat, "text/xml");
 		Foxtrick.XMLData.aboutXML = parser.parseFromString(data.about, "text/xml");
 		Foxtrick.XMLData.worldDetailsXml = parser.parseFromString(data.worldDetails, "text/xml");
 		Foxtrick.XMLData.League = data.league;

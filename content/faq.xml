@@ -72,48 +72,4 @@
 			</xhtml:p>
 		</answer>
 	</item>
-	<item id="print-date-format">
-		<question>How do I set the print date format?</question>
-		<answer>
-			<xhtml:p>
-				The print date format is used when FoxTrick outputs date and time to the web page.
-				By setting the format you can customize the date format shown.
-			</xhtml:p>
-			<xhtml:p>
-				Parameters are:
-			</xhtml:p>
-			<xhtml:dl>
-				<xhtml:dt><xhtml:code>YYYY</xhtml:code></xhtml:dt>
-				<xhtml:dd>Year</xhtml:dd>
-				<xhtml:dt><xhtml:code>mm/m</xhtml:code></xhtml:dt>
-				<xhtml:dd>Month with or without preceding 0 for one-digit months</xhtml:dd>
-				<xhtml:dt><xhtml:code>dd/d</xhtml:code></xhtml:dt>
-				<xhtml:dd>Date with or without preceding 0 for one-digit dates</xhtml:dd>
-				<xhtml:dt><xhtml:code>HH/H</xhtml:code></xhtml:dt>
-				<xhtml:dd>Hour with or without preceding 0 for one-digit hours</xhtml:dd>
-				<xhtml:dt><xhtml:code>MM/M</xhtml:code></xhtml:dt>
-				<xhtml:dd>Minute with or without preceding 0 for one-digit minutes</xhtml:dd>
-				<xhtml:dt><xhtml:code>SS/S</xhtml:code></xhtml:dt>
-				<xhtml:dd>Second with or without preceding 0 for one-digit seconds</xhtml:dd>
-			</xhtml:dl>
-			<xhtml:p>
-				There are some restrictions:
-			</xhtml:p>
-			<xhtml:ul>
-				<xhtml:li>There must be a space between date and time.</xhtml:li>
-				<xhtml:li>Seconds must be the last item.</xhtml:li>
-			</xhtml:ul>
-			<xhtml:p>
-				Some examples:
-			</xhtml:p>
-			<xhtml:dl>
-				<xhtml:dt><xhtml:code>dd-mm-YYYY HH:MM:SS</xhtml:code></xhtml:dt>
-				<xhtml:dd>23-05-2011 09:08:07</xhtml:dd>
-				<xhtml:dt><xhtml:code>YYYY-m-d HH:MM:SS</xhtml:code></xhtml:dt>
-				<xhtml:dd>2011-5-23 09:08:07</xhtml:dd>
-				<xhtml:dt><xhtml:code>mm/dd/YYYY H.m.s</xhtml:code></xhtml:dt>
-				<xhtml:dd>23/05/2011 9.8.7</xhtml:dd>
-			</xhtml:dl>
-		</answer>
-	</item>
 </faq>

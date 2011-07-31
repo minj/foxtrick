@@ -283,26 +283,6 @@ function initMainTab()
 		$("#pref-read-country").append($(item));
 	}
 
-	// date format
-	var dateFormats = [];
-	var dateFormatXml = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/htdateformat.xml");
-	var dateFormatNodes = dateFormatXml.getElementsByTagName("dateformat");
-	for (var i = 0; i < dateFormatNodes.length; ++i) {
-		var code = dateFormatNodes[i].getAttribute("code");
-		var desc = dateFormatNodes[i].getAttribute("name");
-		dateFormats.push({ code: code, desc : desc });
-	}
-	dateFormats.sort(function(a, b) { return a.desc.localeCompare(b.desc); });
-	const selectedDateFormat = Foxtrick.util.time.getDateFormat();
-	for (var i in dateFormats) {
-		var item = document.createElement("option");
-		item.value = dateFormats[i].code;
-		item.textContent = dateFormats[i].desc;
-		if (selectedDateFormat == item.value)
-			item.selected = "selected";
-		$("#pref-read-date-format").append($(item));
-	}
-
 	// save preferences
 	$("#pref-save-do").click(function() {
 		var savePrefs = $("#pref-save-pref").is(":checked");

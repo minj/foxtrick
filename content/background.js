@@ -67,7 +67,6 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	// prepare resources for later transmission to content script
 	var serializer = new XMLSerializer();
 	var currency = serializer.serializeToString(Foxtrick.XMLData.htCurrencyXml);
-	var dateFormat = serializer.serializeToString(Foxtrick.XMLData.htdateformat);
 	var about = serializer.serializeToString(Foxtrick.XMLData.aboutXML);
 	var worldDetails = serializer.serializeToString(Foxtrick.XMLData.worldDetailsXml);
 	var htLanguagesText = {};

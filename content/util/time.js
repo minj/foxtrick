@@ -7,17 +7,16 @@ if (!Foxtrick) var Foxtrick = {};
 if (!Foxtrick.util) Foxtrick.util = {};
 
 Foxtrick.util.time = {
-	/*
-		Returns the date format of Hattrick
-		Value could be "ddmmyyyy", "mmddyyy", or "yyyymmdd"
+	/* Returns the date format of Hattrick, with "d", "m", and "y"
+	 * indicating day, month, and year respectively
 	 */
 	getDateFormat : function() {
-		return FoxtrickPrefs.getString("htDateformat") || "ddmmyyyy";
+		return FoxtrickPrefs.getString("htDateFormat");
 	},
 
 	/* Sets the date format of Hattrick */
 	setDateFormat : function(format) {
-		FoxtrickPrefs.setString("htDateformat", format);
+		FoxtrickPrefs.setString("htDateFormat", format);
 	},
 
 	/* Returns date format for printing, like "dd-mm-YYYY HH:MM:SS"
@@ -29,7 +28,7 @@ Foxtrick.util.time = {
 	 * SS: second
 	 */
 	getPrintDateFormat : function() {
-		return FoxtrickPrefs.getString("printDateFormat") || "dd-mm-YYYY HH:MM:SS";
+		return Foxtrick.util.time.getDateFormat().replace(RegExp("y", "g"), "Y") + " HH:MM:SS";
 	},
 
 	/*
@@ -60,16 +59,15 @@ Foxtrick.util.time = {
 		*/
 		try {
 			const DATEFORMAT = dateFormat || this.getDateFormat();
-			switch (DATEFORMAT) {
-				case "ddmmyyyy":
-				case "mmddyyyy":
-					var reLong = /(\d{1,2})\D(\d{1,2})\D(\d{4})\D?\s+(\d{2})\D(\d{2})/;
-					var reShort = /(\d{1,2})\D(\d{1,2})\D(\d{4})/;
-					break;
-				case "yyyymmdd":
-					var reLong = /(\d{4})\D(\d{1,2})\D(\d{1,2})\D?\s+(\d{2})\D(\d{2})/;
-					var reShort = /(\d{4})\D(\d{1,2})\D(\d{1,2})/;
-					break;
+			if (DATEFORMAT.indexOf("y") != 0) {
+				// day or month first
+				var reLong = /(\d{1,2})\D(\d{1,2})\D(\d{4})\D?\s+(\d{2})\D(\d{2})/;
+				var reShort = /(\d{1,2})\D(\d{1,2})\D(\d{4})/;
+			}
+			else {
+				// four-digit year first
+				var reLong = /(\d{4})\D(\d{1,2})\D(\d{1,2})\D?\s+(\d{2})\D(\d{2})/;
+				var reShort = /(\d{4})\D(\d{1,2})\D(\d{1,2})/;
 			}
 			var matches;
 			if (text.match(reLong))
@@ -82,22 +80,23 @@ Foxtrick.util.time = {
 			for (var i = 1; i < matches.length; ++i)
 				matches[i] = parseInt(matches[i], 10); // leading zero -> octal
 
-			switch (DATEFORMAT) {
-				case "ddmmyyyy":
-					var day = matches[1];
-					var month = matches[2];
-					var year = matches[3];
-					break;
-				case "mmddyyyy":
-					var day = matches[2];
-					var month = matches[1];
-					var year = matches[3];
-					break;
-				case "yyyymmdd":
-					var day = matches[3];
-					var month = matches[2];
-					var year = matches[1];
-					break;
+			if (DATEFORMAT.indexOf("d") == 0) {
+				// like dd-mm-yyyy
+				var day = matches[1];
+				var month = matches[2];
+				var year = matches[3];
+			}
+			else if (DATEFORMAT.indexOf("m") == 0) {
+				// like mm-dd-yyyy
+				var day = matches[2];
+				var month = matches[1];
+				var year = matches[3];
+			}
+			else if (DATEFORMAT.indexOf("y") == 0) {
+				// like yyyy-mm-dd
+				var day = matches[3];
+				var month = matches[2];
+				var year = matches[1];
 			}
 			var hour = (matches.length == 6) ? matches[4] : 0;
 			var minute = (matches.length == 6) ? matches[5] : 0;
@@ -118,14 +117,13 @@ Foxtrick.util.time = {
 	/* returns whether text has date and time (hours and minutes) in it */
 	hasTime : function(text, dateFormat) {
 		dateFormat = dateFormat || this.getDateFormat();
-		switch (dateFormat) {
-			case "ddmmyyyy":
-			case "mmddyyyy":
-				var re = /(\d{1,2})\D(\d{1,2})\D(\d{4})\D?\s+(\d{2})\D(\d{2})/;
-				break;
-			case "yyyymmdd":
-				var re = /(\d{4})\D(\d{1,2})\D(\d{1,2})\D?\s+(\d{2})\D(\d{2})/;
-				break;
+		if (dateFormat.indexOf("y") != 0) {
+			// day or month first
+			var re = /(\d{1,2})\D(\d{1,2})\D(\d{4})\D?\s+(\d{2})\D(\d{2})/;
+		}
+		else {
+			// four-digit year first
+			var re = /(\d{4})\D(\d{1,2})\D(\d{1,2})\D?\s+(\d{2})\D(\d{2})/;
 		}
 		return (text.match(re) != null);
 	},

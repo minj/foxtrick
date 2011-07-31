@@ -13,14 +13,12 @@ Foxtrick.XMLData = {
 	League : {},
 	countryToLeague : {},
 	htCurrencyXml : null,
-	htdateformat : null,
 	aboutXML : null,
 
 	init : function() {
 		if (Foxtrick.BuildFor == "Gecko"
 			|| (Foxtrick.BuildFor == "Sandboxed" && Foxtrick.chromeContext() == "background")) {
 			this.htCurrencyXml = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/htcurrency.xml");
-			this.htdateformat = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/htdateformat.xml");
 			this.aboutXML = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/foxtrick_about.xml");
 
 			this.worldDetailsXml = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/worlddetails.xml");
