@@ -25,14 +25,14 @@ var FoxtrickLinksTraining = {
 				var alllinks = alldivs[j].getElementsByTagName('a');
 				for (var i = 0; i < alllinks.length; i++) {
 					if (alllinks[i].href.match(/skillshort/i)) {
-						Coach = FoxtrickHelper.getSkillLevelFromLink(alllinks[i]);
+						Coach = Foxtrick.util.id.getSkillLevelFromLink(alllinks[i]);
 						break;
 					}
 				}
 				STA = doc.getElementById("ctl00_ctl00_CPContent_CPMain_txtTrainingLevelStamina").value;
 				TI = doc.getElementById("ctl00_ctl00_CPContent_CPMain_txtTrainingLevel").value;
 				TrainingType = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ddlTrainingType").value;
-				owncountryid = FoxtrickHelper.getOwnCountryId();
+				owncountryid = Foxtrick.util.id.getOwnCountryId();
 
 
 				var links = Foxtrick.LinkCollection.getLinks("traininglink", {"Coach":Coach,"TI":TI,"STA":STA,"TrainingType":TrainingType,'owncountryid':owncountryid}, doc, this);

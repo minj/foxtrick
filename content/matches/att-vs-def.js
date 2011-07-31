@@ -121,7 +121,7 @@ Foxtrick.AttVsDef = {
 		var sidebar = doc.getElementById("sidebar");
 		var percentArray=this._getPercentArray(doc, ratingstable);
 		var balldivnumber=7;
-		if (FoxtrickHelper.findIsYouthMatch(doc.location.href)) {
+		if (Foxtrick.util.id.findIsYouthMatch(doc.location.href)) {
 			balldivnumber=5; //youth haven't the kit div
 		}
 

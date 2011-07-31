@@ -157,9 +157,9 @@ Foxtrick.util.time = {
 	getSeasonOffset : function() {
 		const country = FoxtrickPrefs.getString("htCountry");
 		for (var i in Foxtrick.XMLData.League) {
-			if (country == FoxtrickHelper.getLeagueDataFromId(i).EnglishName) {
-				const offset = FoxtrickHelper.getLeagueDataFromId(1).Season
-					- FoxtrickHelper.getLeagueDataFromId(i).Season;
+			if (country == Foxtrick.util.id.getLeagueDataFromId(i).EnglishName) {
+				const offset = Foxtrick.util.id.getLeagueDataFromId(1).Season
+					- Foxtrick.util.id.getLeagueDataFromId(i).Season;
 				return offset;
 			}
 		}

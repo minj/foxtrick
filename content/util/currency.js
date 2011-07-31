@@ -42,12 +42,12 @@ Foxtrick.util.currency = {
 	},
 
 	getSymbol : function() {
-		var leagueId = FoxtrickHelper.getOwnCountryId();
-		return FoxtrickHelper.getLeagueDataFromId(leagueId).Country.CurrencyName;
+		var leagueId = Foxtrick.util.id.getOwnCountryId();
+		return Foxtrick.util.id.getLeagueDataFromId(leagueId).Country.CurrencyName;
 	},
 
 	getRate : function() {
-		var leagueId = FoxtrickHelper.getOwnCountryId();
-		return parseFloat(FoxtrickHelper.getLeagueDataFromId(leagueId).Country.CurrencyRate.replace(",", ".")) / 10;
+		var leagueId = Foxtrick.util.id.getOwnCountryId();
+		return parseFloat(Foxtrick.util.id.getLeagueDataFromId(leagueId).Country.CurrencyRate.replace(",", ".")) / 10;
 	}
 };

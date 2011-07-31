@@ -17,12 +17,12 @@ var FoxtrickLinksManager = {
 		var ownBoxBody = null;
 		var mainBody = doc.getElementById('mainBody');
 
-		var teamid = FoxtrickHelper.findTeamId(mainBody);
-		var teamname = FoxtrickHelper.extractTeamName(mainBody);
-		var userid = FoxtrickHelper.findUserId(mainBody);
-		var leaguename = FoxtrickHelper.extractLeagueName(mainBody);
-		var leagueid = FoxtrickHelper.findLeagueLeveUnitId(mainBody);;
-   		var owncountryid = FoxtrickHelper.getOwnCountryId();
+		var teamid = Foxtrick.util.id.findTeamId(mainBody);
+		var teamname = Foxtrick.util.id.extractTeamName(mainBody);
+		var userid = Foxtrick.util.id.findUserId(mainBody);
+		var leaguename = Foxtrick.util.id.extractLeagueName(mainBody);
+		var leagueid = Foxtrick.util.id.findLeagueLeveUnitId(mainBody);;
+   		var owncountryid = Foxtrick.util.id.getOwnCountryId();
 
 		var h1 = mainBody.getElementsByTagName('h1')[0];
 		var username = h1.innerHTML.replace(/<.+>/g,'').replace(/^\s+/,'').replace(/\s+$/,'').replace(/\(.+/,'').replace(/\s+$/g, '');

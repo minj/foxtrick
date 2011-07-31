@@ -58,6 +58,7 @@
 				<string>content/util/currency.js</string>
 				<string>content/util/html.js</string>
 				<string>content/util/ht-ml.js</string>
+				<string>content/util/id.js</string>
 				<string>content/util/inject.js</string>
 				<string>content/util/layout.js</string>
 				<string>content/util/links-box.js</string>
@@ -76,7 +77,6 @@
 				<string>content/pages/youth-player.js</string>
 				<string>content/pages/transfer-search-results.js</string>
 				<string>content/pages/match.js</string>
-				<string>content/helper.js</string>
 				<string>content/redirections.js</string>
 				<string>content/read-ht-prefs.js</string>
 				<string>content/forum-stage.js</string>

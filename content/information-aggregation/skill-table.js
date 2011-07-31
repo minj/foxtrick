@@ -401,7 +401,7 @@ var FoxtrickSkillTable = {
 				cell.appendChild(link.cloneNode(true));
 			};
 			var nationality = function(cell, countryId) {
-				var flag = FoxtrickHelper.createFlagFromCountryId(doc, countryId);
+				var flag = Foxtrick.util.id.createFlagFromCountryId(doc, countryId);
 				if (flag) {
 					cell.appendChild(flag);
 					// League name is a -> img.title

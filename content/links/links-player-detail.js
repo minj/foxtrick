@@ -21,7 +21,7 @@ var FoxtrickLinksPlayerDetail = {
 		var mainBox = doc.getElementsByClassName("mainBox")[0];
 		var skillTable = mainBox ? mainBox.getElementsByTagName("table")[0] : null;
 
-		var owncountryid = FoxtrickHelper.getOwnCountryId();
+		var owncountryid = Foxtrick.util.id.getOwnCountryId();
 
 		var deadlineDate = Foxtrick.Pages.Player.getTransferDeadline(doc);
 		var deadline = "";

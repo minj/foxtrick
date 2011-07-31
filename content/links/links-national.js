@@ -22,8 +22,8 @@ var FoxtrickLinksNational = {
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="main mainRegular") {
 					var thisdiv = alldivs[j];
-					countryid = FoxtrickHelper.findCountryId(thisdiv);
-					ntteamid = FoxtrickHelper.findTeamId(thisdiv);
+					countryid = Foxtrick.util.id.findCountryId(thisdiv);
+					ntteamid = Foxtrick.util.id.findTeamId(thisdiv);
 					}
 			}
 

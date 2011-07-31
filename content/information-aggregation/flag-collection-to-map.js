@@ -119,7 +119,7 @@ FoxtrickFlagCollectionToMap = {
 
 	run : function(doc) {
 
-		this.own_countryid = FoxtrickHelper.getOwnCountryId();
+		this.own_countryid = Foxtrick.util.id.getOwnCountryId();
 
 		var mapId = 0;
 		var mainbox = doc.getElementsByClassName("mainBox");

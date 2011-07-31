@@ -248,7 +248,7 @@ var FoxtrickForumChangePosts = {
 							countryLink = user_info_link;
 					} else if (user_info_link.href.search(/LeagueLevelUnitID=/i) != -1) {
 							leagueLinkUserInfo = user_info_link;
-							leagueid = FoxtrickHelper.getLeagueLeveUnitIdFromUrl(user_info_link.href);
+							leagueid = Foxtrick.util.id.getLeagueLeveUnitIdFromUrl(user_info_link.href);
 					}
 				}
 			} // get user info

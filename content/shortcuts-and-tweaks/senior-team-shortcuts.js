@@ -12,11 +12,11 @@ var FoxtrickSeniorTeamShortCuts = {
 	RADIO_OPTIONS : new Array("OnlyOtherPages", "AllPages"),
 
 	run : function(doc) {
-		var ownteamid = FoxtrickHelper.getOwnTeamId();
+		var ownteamid = Foxtrick.util.id.getOwnTeamId();
 
 		var boxleft=doc.getElementsByClassName("subMenu")[0];
 		if (boxleft==null) {return;}
-		var teamid=FoxtrickHelper.findTeamId(boxleft);
+		var teamid=Foxtrick.util.id.findTeamId(boxleft);
 		if (teamid==ownteamid && FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 0) return;
 
 		var pos1=-1; var pos2=-1;
@@ -51,7 +51,7 @@ var FoxtrickSeniorTeamShortCuts = {
 		else {   // nt teams
 			if (doc.location.href.search(/\/Club\/NationalTeam\/NationalTeam/i)!=-1) {
 				var ntinfo=doc.getElementById('teamInfo');
-				var CoachId = FoxtrickHelper.findPlayerId(ntinfo);
+				var CoachId = Foxtrick.util.id.findPlayerId(ntinfo);
 				coachlink.setAttribute('href','/Club/Players/Player.aspx?playerId='+CoachId);
 			}
 			else {coachlink.setAttribute('href', '/Club/NationalTeam/NationalTeam.aspx?teamId='+teamid+'&redir_to_coach=true');}

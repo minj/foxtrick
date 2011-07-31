@@ -214,7 +214,6 @@ Foxtrick.util.api = {
 					}
 					else var cache_lifetime = 0; 
 					
-					FoxtrickHelper.getOwnTeamInfo(doc); // retrieve team ID first
 					var caller_name='';
 					if (options && options.caller_name) caller_name =  options.caller_name+' ';
 					Foxtrick.log("ApiProxy: "+caller_name+"attempting to retrieve: ", parameters, "…");
@@ -280,22 +279,22 @@ Foxtrick.util.api = {
 	},
 
 	getAccessToken : function() {
-		const teamId = FoxtrickHelper.getOwnTeamId();
+		const teamId = Foxtrick.util.id.getOwnTeamId();
 		return FoxtrickPrefs.getString("oauth." + teamId + ".accessToken");
 	},
 
 	setAccessToken : function(token) {
-		const teamId = FoxtrickHelper.getOwnTeamId();
+		const teamId = Foxtrick.util.id.getOwnTeamId();
 		FoxtrickPrefs.setString("oauth." + teamId + ".accessToken", token);
 	},
 
 	getAccessTokenSecret : function() {
-		const teamId = FoxtrickHelper.getOwnTeamId();
+		const teamId = Foxtrick.util.id.getOwnTeamId();
 		return FoxtrickPrefs.getString("oauth." + teamId + ".accessTokenSecret");
 	},
 
 	setAccessTokenSecret : function(secret) {
-		const teamId = FoxtrickHelper.getOwnTeamId();
+		const teamId = Foxtrick.util.id.getOwnTeamId();
 		FoxtrickPrefs.setString("oauth." + teamId + ".accessTokenSecret", secret);
 	},
 

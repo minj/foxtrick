@@ -45,7 +45,7 @@ Foxtrick.Pages.All = {
 	},
 	getOwnTeamId : function(doc) {
 		try {
-			var id =  FoxtrickHelper.getOwnTeamId();
+			var id =  Foxtrick.util.id.getOwnTeamId();
 			if (id) {
 				return id;
 			}
@@ -57,7 +57,7 @@ Foxtrick.Pages.All = {
 	},
 	getTeamId : function(doc) {
 		try {
-			var id = FoxtrickHelper.findTeamId(doc.getElementById("content").getElementsByTagName("div")[0]);
+			var id = Foxtrick.util.id.findTeamId(doc.getElementById("content").getElementsByTagName("div")[0]);
 			if (id) {
 				return id;
 			}

@@ -27,7 +27,7 @@ var FoxtrickSeriesFlags = {
 					if (data["leagueId"]!=0) {
 						flag.className = "ft-series-flag";
 						var countryId = Foxtrick.XMLData.getCountryIdByLeagueId(data["leagueId"]);
-						var country = FoxtrickHelper.createFlagFromCountryId(doc, countryId);
+						var country = Foxtrick.util.id.createFlagFromCountryId(doc, countryId);
 						flag.appendChild(country);
 						if (!FoxtrickPrefs.isModuleOptionEnabled("SeriesFlags", "CountryOnly") && data["seriesId"]!==0) {
 							var series = doc.createElement("a");
@@ -87,7 +87,7 @@ var FoxtrickSeriesFlags = {
 		var modifyUserLinks = function(links) {
 			Foxtrick.map(links, function(n) {
 				buildFlag(
-					["userID", FoxtrickHelper.getUserIdFromUrl(n.href)],
+					["userID", Foxtrick.util.id.getUserIdFromUrl(n.href)],
 					function(flag) {
 						n.parentNode.insertBefore(flag, n.nextSibling);
 						n.parentNode.insertBefore(doc.createTextNode(" "), flag);
@@ -98,7 +98,7 @@ var FoxtrickSeriesFlags = {
 		var modifyTeamLinks = function(links) {
 			Foxtrick.map(links, function(n) {
 				buildFlag(
-					["teamID", FoxtrickHelper.getTeamIdFromUrl(n.href)],
+					["teamID", Foxtrick.util.id.getTeamIdFromUrl(n.href)],
 					function(flag) {
 						n.parentNode.insertBefore(flag, n.nextSibling);
 						n.parentNode.insertBefore(doc.createTextNode(" "), flag);

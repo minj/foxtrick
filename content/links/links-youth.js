@@ -16,11 +16,11 @@ var FoxtrickLinksYouthOverview = {
 	run : function(doc) {
 		var boxleft=doc.getElementsByClassName("subMenu")[0];
 		if (boxleft==null) {return;}
-		var teamid=FoxtrickHelper.findTeamId(boxleft);
+		var teamid=Foxtrick.util.id.findTeamId(boxleft);
 		if (teamid=="") {return;}
-		var ownteamid = FoxtrickHelper.getOwnTeamId();
-		var owncountryid = FoxtrickHelper.getOwnCountryId();
-		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var ownteamid = Foxtrick.util.id.getOwnTeamId();
+		var owncountryid = Foxtrick.util.id.getOwnCountryId();
+		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementById('mainWrapper'));
 		var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 
 
@@ -59,19 +59,19 @@ var FoxtrickLinksYouthPlayerDetail = {
 	run : function(doc) {
 		var boxleft=doc.getElementsByClassName("subMenu")[0];
 		if (boxleft==null) {return;}
-		var teamid=FoxtrickHelper.findTeamId(boxleft);
+		var teamid=Foxtrick.util.id.findTeamId(boxleft);
 		if (teamid=="") {return;}
-		var ownteamid = FoxtrickHelper.getOwnTeamId();
-		var owncountryid = FoxtrickHelper.getOwnCountryId();
-		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var ownteamid = Foxtrick.util.id.getOwnTeamId();
+		var owncountryid = Foxtrick.util.id.getOwnCountryId();
+		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementById('mainWrapper'));
 		var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 
 		var alldivs = doc.getElementById('mainWrapper').getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="main mainRegular") {
 				var thisdiv = alldivs[j];
-				var nationality = FoxtrickHelper.findCountryId(thisdiv);
-				var playerid = FoxtrickHelper.findPlayerId(thisdiv);
+				var nationality = Foxtrick.util.id.findCountryId(thisdiv);
+				var playerid = Foxtrick.util.id.findPlayerId(thisdiv);
 				var playername=thisdiv.getElementsByTagName("a")[1].innerHTML;;
 				var age = null;
 				var age_days;
@@ -126,11 +126,11 @@ var FoxtrickLinksYouthTraining = {
 		var ownteamid=0;
 		var owncountryid=0;
 		if (boxleft==null) {return;}
-		var teamid=FoxtrickHelper.findTeamId(boxleft);
+		var teamid=Foxtrick.util.id.findTeamId(boxleft);
 		if (teamid=="") {return;}
-		var ownteamid = FoxtrickHelper.getOwnTeamId();
-		var owncountryid = FoxtrickHelper.getOwnCountryId();
-		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var ownteamid = Foxtrick.util.id.getOwnTeamId();
+		var owncountryid = Foxtrick.util.id.getOwnCountryId();
+		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementById('mainWrapper'));
 		var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 
 		//addExternalLinksToYouthOverview
@@ -170,11 +170,11 @@ var FoxtrickLinksYouthPlayerList = {
 		var ownteamid=0;
 		var owncountryid=0;
 		if (boxleft==null) {return;}
-		var teamid=FoxtrickHelper.findTeamId(boxleft);
+		var teamid=Foxtrick.util.id.findTeamId(boxleft);
 		if (teamid=="") {return;}
-		var ownteamid = FoxtrickHelper.getOwnTeamId();
-		var owncountryid = FoxtrickHelper.getOwnCountryId();
-		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var ownteamid = Foxtrick.util.id.getOwnTeamId();
+		var owncountryid = Foxtrick.util.id.getOwnCountryId();
+		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementById('mainWrapper'));
 		var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 
 
@@ -213,11 +213,11 @@ var FoxtrickLinksYouthMatchList = {
 		var ownteamid=0;
 		var owncountryid=0;
 		if (boxleft==null) {return;}
-		var teamid=FoxtrickHelper.findTeamId(boxleft);
+		var teamid=Foxtrick.util.id.findTeamId(boxleft);
 		if (teamid=="") {return;}
-		var ownteamid = FoxtrickHelper.getOwnTeamId();
-		var owncountryid = FoxtrickHelper.getOwnCountryId();
-		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var ownteamid = Foxtrick.util.id.getOwnTeamId();
+		var owncountryid = Foxtrick.util.id.getOwnCountryId();
+		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementById('mainWrapper'));
 		var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 
 
@@ -257,12 +257,12 @@ var FoxtrickLinksYouthLeague = {
 		var ownteamid=0;
 		var owncountryid=0;
 		if (boxleft==null) {return;}       
-		var teamid=FoxtrickHelper.findTeamId(boxleft);
+		var teamid=Foxtrick.util.id.findTeamId(boxleft);
 		if (teamid=="") {return;}
-		var ownteamid = FoxtrickHelper.getOwnTeamId();
-		var owncountryid = FoxtrickHelper.getOwnCountryId();
-		var youthteamid = FoxtrickHelper.findYouthTeamId(doc.getElementById('mainWrapper'));
-        var youthleagueid = FoxtrickHelper.findYouthLeagueId(doc.getElementById('mainWrapper'));
+		var ownteamid = Foxtrick.util.id.getOwnTeamId();
+		var owncountryid = Foxtrick.util.id.getOwnCountryId();
+		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementById('mainWrapper'));
+        var youthleagueid = Foxtrick.util.id.findYouthLeagueId(doc.getElementById('mainWrapper'));
 
 		//addExternalLinksToYouthLeague
 		var ownBoxBody=null;

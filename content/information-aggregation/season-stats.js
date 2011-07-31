@@ -67,7 +67,7 @@ var FoxtrickSeasonStats = {
 		var matchestable = doc.getElementById('mainBody').getElementsByTagName('table')[0];
 
 		// get team name. start with current name, but try to get name of that season from first home game
-		var TeamName = FoxtrickHelper.extractTeamName(doc.getElementById('mainWrapper')).substr(0,15);//.replace(/\W/g,'');
+		var TeamName = Foxtrick.util.id.extractTeamName(doc.getElementById('mainWrapper')).substr(0,15);//.replace(/\W/g,'');
 		var TeamNameOld=null;
 		for (var i=0; i<matchestable.rows.length; ++i) {
 			var iswon = matchestable.rows[i].cells[3].getElementsByTagName('span')[0].className=='won';

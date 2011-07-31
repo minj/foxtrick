@@ -17,8 +17,8 @@ var FoxtrickLinksFans = {
 		var ownBoxBody = null;
 		var mainWrapper = doc.getElementById('mainWrapper');
 
-		var teamid = FoxtrickHelper.findTeamId(mainWrapper);
-		var teamname = FoxtrickHelper.extractTeamName(mainWrapper);
+		var teamid = Foxtrick.util.id.findTeamId(mainWrapper);
+		var teamname = Foxtrick.util.id.extractTeamName(mainWrapper);
 		var fanmood='';
 		var fans = mainWrapper.getElementsByTagName('td')[1].innerHTML.match(/\d+/);
 

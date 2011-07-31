@@ -40,11 +40,11 @@ var FoxtrickMatchPlayerColouring = {
 		notifyArea.appendChild(loading);
 
 		var isYouth = (String(doc.location).search(/isYouth=True/i) > -1);
-		var matchId = FoxtrickHelper.getMatchIdFromUrl(doc.location.href);
+		var matchId = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
 
 		//Retrieve teams id
 		if (FoxtrickPrefs.isModuleOptionEnabled("MatchPlayerColouring", "SeparateOwnPlayerColors"))
-			var myTeamId = isYouth ? FoxtrickHelper.getOwnYouthTeamId() : FoxtrickHelper.getOwnTeamId();
+			var myTeamId = isYouth ? Foxtrick.util.id.getOwnYouthTeamId() : Foxtrick.util.id.getOwnTeamId();
 		else
 			var myTeamId = null;
 
@@ -59,8 +59,8 @@ var FoxtrickMatchPlayerColouring = {
 		var homeTeam = teams[0];
 		var awayTeam = teams[1];
 
-		const homeTeamId = FoxtrickHelper.getTeamIdFromUrl(homeTeam.href);
-		const awayTeamId = FoxtrickHelper.getTeamIdFromUrl(awayTeam.href);
+		const homeTeamId = Foxtrick.util.id.getTeamIdFromUrl(homeTeam.href);
+		const awayTeamId = Foxtrick.util.id.getTeamIdFromUrl(awayTeam.href);
 		const homeClass = (myTeamId == homeTeamId) ? "ft-match-player-mine" : "ft-match-player-home";
 		const awayClass = (myTeamId == awayTeamId) ? "ft-match-player-mine" : "ft-match-player-away";
 

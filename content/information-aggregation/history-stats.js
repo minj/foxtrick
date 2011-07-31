@@ -87,7 +87,7 @@ var FoxtrickHistoryStats= {
 							var leagueN = league;
 							if (league.search(/\./) > -1) {
 								league = league.split('.')[0];
-								league = FoxtrickHelper.romantodecimal(league);
+								league = Foxtrick.util.id.romantodecimal(league);
 							}
 							else {
 								league = 1;

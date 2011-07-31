@@ -81,7 +81,7 @@ var FoxtrickReadHtPrefs = {
 
 		var CountryLink = teamLinks[2];
 		var LeagueId = CountryLink.href.replace(/.+leagueid=/i, "").match(/^\d+/)[0];
-		var CountryName = FoxtrickHelper.getLeagueDataFromId(LeagueId).EnglishName;
+		var CountryName = Foxtrick.util.id.getLeagueDataFromId(LeagueId).EnglishName;
 		var OldCountryName = FoxtrickPrefs.getString("htCountry");
 
 		if (CountryName != OldCountryName) {

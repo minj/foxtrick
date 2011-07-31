@@ -8,6 +8,7 @@ var FoxtrickCore = {
 	MODULE_NAME : "Core",
 	CORE_MODULE : true,
 	PAGES : ["all"],
+	NICE : -20,
 	CSS : [
 		Foxtrick.ResourcePath + "resources/css/foxtrick.css",
 		Foxtrick.ResourcePath + "resources/css/headercopyicons.css",
@@ -32,6 +33,8 @@ var FoxtrickCore = {
 		Foxtrick.ResourcePath + "resources/css/headercopyicons_simple_rtl.css",
 		Foxtrick.ResourcePath + "resources/css/flags.css",
 	],
+
+	SELF_TEAM_INFO : {},
 
 	// called after browser loaded , with browser chrome
 	// as the argument (Gecko-only)
@@ -62,6 +65,7 @@ var FoxtrickCore = {
 		this.showVersion(doc);
 		this.updateStatus();
 		this.updateLastHost(doc);
+		this.parseSelfTeamInfo(doc);
 	},
 
 	setChromeIcon : function(tab) { 
@@ -263,6 +267,28 @@ var FoxtrickCore = {
 			server.textContent += " / FoxTrick " + Foxtrick.version();
 		}
 		else Foxtrick.log('bottom not loaded yet');
+	},
+
+	parseSelfTeamInfo : function(doc) {
+		var teamLinks = doc.getElementById("teamLinks");
+		if (teamLinks && teamLinks.getElementsByTagName("a").length > 0) {
+			this.SELF_TEAM_INFO = {
+				teamId : Foxtrick.util.id.findTeamId(teamLinks),
+				countryId : Foxtrick.util.id.findCountryId(teamLinks),
+			};
+		}
+		var subMenu = doc.getElementsByClassName("subMenu")[0];
+		if (subMenu) {
+			if (!this.SELF_TEAM_INFO.youthTeamId) {
+				var leftMenuTeamId = Foxtrick.util.id.findTeamId(subMenu);
+				if (this.SELF_TEAM_INFO.teamId == leftMenuTeamId)
+					this.SELF_TEAM_INFO.youthTeamId = Foxtrick.util.id.findYouthTeamId(subMenu);
+			}
+		}
+	},
+
+	getSelfTeamInfo : function() {
+		return this.SELF_TEAM_INFO;
 	}
 };
 Foxtrick.util.module.register(FoxtrickCore);

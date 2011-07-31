@@ -298,7 +298,7 @@ var FoxtrickMyMonitor = {
 			}
 		}
 		else if ( type == 'nt' ) {
-				var country = FoxtrickHelper.findCountryId(doc.getElementById('mainBody'));
+				var country = Foxtrick.util.id.findCountryId(doc.getElementById('mainBody'));
 				teamIdContainer.country = country;
 				if (existing[0]) existing[0].country = country; //update if not existing from previous builds
 		}
@@ -385,8 +385,8 @@ var FoxtrickMyMonitor = {
 		}
 		if (!teams) {
 			// return national teams if first run
-			FoxtrickHelper.getOwnTeamInfo(doc);
-			var leagueId = FoxtrickHelper.getOwnCountryId();
+			Foxtrick.util.id.getOwnTeamInfo(doc);
+			var leagueId = Foxtrick.util.id.getOwnCountryId();
 			const ntNode = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml,
 				"//League[LeagueID='" + leagueId + "']");
 			const ntName = ntNode.getElementsByTagName("LeagueName")[0].textContent;

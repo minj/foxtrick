@@ -24,12 +24,12 @@ FoxtrickMatchReportFormat = {
 		Foxtrick.util.inject.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/MatchReport.js");
 
 		// Retrieve team IDs
-		var myTeamId = isyouth ? FoxtrickHelper.getOwnYouthTeamId() : FoxtrickHelper.getOwnTeamId();
+		var myTeamId = isyouth ? Foxtrick.util.id.getOwnYouthTeamId() : Foxtrick.util.id.getOwnTeamId();
 		if (!FoxtrickPrefs.isModuleOptionEnabled("MatchReportFormat", 'SeparateOwnTeamColors')) myTeamId=null;
 		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
 		if (!table) return; // match not finished
-		var homeTeamId = FoxtrickHelper.findTeamId(table.rows[0].cells[1]);
-		var AwayTeamId = FoxtrickHelper.findTeamId(table.rows[0].cells[2]);
+		var homeTeamId = Foxtrick.util.id.findTeamId(table.rows[0].cells[1]);
+		var AwayTeamId = Foxtrick.util.id.findTeamId(table.rows[0].cells[2]);
 
 		// class names used for styling the report
 		const HOME_TEAM_CLASS_NAME = (homeTeamId == myTeamId) ? "ft-match-report-team-mine" : "ft-match-report-team-home";

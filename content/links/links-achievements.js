@@ -18,14 +18,14 @@ var FoxtrickLinksAchievements = {
 	run : function(doc) {
 
 		//addExternalLinksToManagerPage
-		var owncountryid = FoxtrickHelper.getOwnCountryId();
+		var owncountryid = Foxtrick.util.id.getOwnCountryId();
 
 		var ownBoxBody = null;
 		var mainBody = doc.getElementById('mainWrapper');
 
-		var teamid = FoxtrickHelper.findTeamId(mainBody);
-		var teamname = FoxtrickHelper.extractTeamName(mainBody);
-		var userid = FoxtrickHelper.findUserId(mainBody);
+		var teamid = Foxtrick.util.id.findTeamId(mainBody);
+		var teamname = Foxtrick.util.id.extractTeamName(mainBody);
+		var userid = Foxtrick.util.id.findUserId(mainBody);
 
 		var links = Foxtrick.LinkCollection.getLinks("achievementslink", { "teamid": teamid, "teamname": teamname, "userid" : userid,"owncountryid":owncountryid }, doc, this);
 		if (links.length > 0){

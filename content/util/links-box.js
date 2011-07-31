@@ -148,7 +148,7 @@ Foxtrick.util.links = {
 						if (Foxtrick.util.links._info[mykey])
 							href=href.replace(mykeytag[i], Foxtrick.util.links._info[mykey]);
 						else
-							href=href.replace(mykeytag[i], FoxtrickHelper.ownTeam[mykey]);
+							href=href.replace(mykeytag[i], Foxtrick.util.id.ownTeam[mykey]);
 					}
 				}
 				try { // add icons
@@ -346,7 +346,7 @@ Foxtrick.util.links = {
 				selectbox.appendChild(option);
 			}
 			try {
-				for (var key in FoxtrickHelper.ownTeam) {
+				for (var key in Foxtrick.util.id.ownTeam) {
 					var option = doc.createElement("option");
 					option.setAttribute("value",key);
 					option.innerHTML='['+key+']';

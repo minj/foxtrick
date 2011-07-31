@@ -31,7 +31,6 @@ CONTENT_FILES = add-class.js \
 	entry.js \
 	env.js \
 	forum-stage.js \
-	helper.js \
 	l10n.js \
 	pages.js \
 	preferences.js \

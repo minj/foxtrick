@@ -61,7 +61,7 @@ var FoxtrickShowFriendlyBooked = {
 		Foxtrick.map(rows, function(n) {
 			var teamCell = n.getElementsByTagName("td")[2];
 			var teamLink = teamCell.getElementsByTagName("a")[0].href;
-			var teamId = FoxtrickHelper.getTeamIdFromUrl(teamLink);
+			var teamId = Foxtrick.util.id.getTeamIdFromUrl(teamLink);
 
 			var destCell = n.getElementsByTagName("td")[3];
 			destCell.textContent = Foxtrickl10n.getString("status.loading.abbr");

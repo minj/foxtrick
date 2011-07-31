@@ -52,7 +52,7 @@ FoxtrickExtraPlayerInfo = {
 					if (!isNtPlayer) {
 						// NT players have flags by default, so only need
 						// to add flags for non-NT players
-						var flag = FoxtrickHelper.createFlagFromCountryId(doc, player.countryId);
+						var flag = Foxtrick.util.id.createFlagFromCountryId(doc, player.countryId);
 						if (flag) {
 							nameLink.parentNode.insertBefore(flag, nameLink.parentNode.firstChild);
 						}

@@ -52,13 +52,13 @@ var FoxtrickLinksTeam = {
 	},
 
 	gatherLinks : function( thisdiv, doc ) {
-		var countryid = FoxtrickHelper.findCountryId(thisdiv);
-  		var teamid = FoxtrickHelper.findTeamId(thisdiv);
-		var teamname = FoxtrickHelper.extractTeamName(thisdiv);
-		var leaguename = FoxtrickHelper.extractLeagueName(thisdiv);
-		var levelnum = FoxtrickHelper.getLevelNum(leaguename, countryid);
-		var leagueid = FoxtrickHelper.findLeagueLeveUnitId(thisdiv);;
-		var userid = FoxtrickHelper.findUserId(thisdiv);
+		var countryid = Foxtrick.util.id.findCountryId(thisdiv);
+  		var teamid = Foxtrick.util.id.findTeamId(thisdiv);
+		var teamname = Foxtrick.util.id.extractTeamName(thisdiv);
+		var leaguename = Foxtrick.util.id.extractLeagueName(thisdiv);
+		var levelnum = Foxtrick.util.id.getLevelNum(leaguename, countryid);
+		var leagueid = Foxtrick.util.id.findLeagueLeveUnitId(thisdiv);;
+		var userid = Foxtrick.util.id.findUserId(thisdiv);
 		if (!leaguename.match(/^[A-Z]+\.\d+/i)) {
 			leaguename="I";
 		}

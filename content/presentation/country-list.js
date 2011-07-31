@@ -134,7 +134,7 @@ var FoxtrickCountyList = {
 			leaguenum = league.href.match(/LeagueID=(\d+)/i)[1];
 			Foxtrick.dump('leaguenum: '+leaguenum+'\n');
 			var htname = league.firstChild.title;
-			htname = FoxtrickHelper.getLeagueDataFromId(leaguenum).LeagueName;
+			htname = Foxtrick.util.id.getLeagueDataFromId(leaguenum).LeagueName;
 			league.firstChild.title = htname
 
 			var byline = doc.getElementsByClassName("byline")[0];
@@ -167,7 +167,7 @@ var FoxtrickCountyList = {
 						var league = Foxtrick.XMLData.getLeagueIdByCountryId(options[i].value);
 					}
 					var htname = options[i].text;
-					htname = FoxtrickHelper.getLeagueDataFromId(league).LeagueName;
+					htname = Foxtrick.util.id.getLeagueDataFromId(league).LeagueName;
 					if (!htname) return -1;
 					options[i].text = htname;
 

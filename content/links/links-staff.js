@@ -17,8 +17,8 @@ var FoxtrickLinksStaff = {
 		var ownBoxBody = null;
 		var mainBody = doc.getElementById('mainWrapper');
 
-		var teamid = FoxtrickHelper.findTeamId(mainBody);
-		var teamname = FoxtrickHelper.extractTeamName(mainBody);
+		var teamid = Foxtrick.util.id.findTeamId(mainBody);
+		var teamname = Foxtrick.util.id.extractTeamName(mainBody);
 
 		var links = Foxtrick.LinkCollection.getLinks("stafflink", { "teamid": teamid, "teamname": teamname}, doc, this);
 		if (links.length > 0){

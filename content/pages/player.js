@@ -108,20 +108,20 @@ Foxtrick.Pages.Player = {
 			var basicSkills = playerInfo.getElementsByClassName("skill");
 			var ret = {};
 			if (basicSkills[1].href.indexOf("skillshort") !== -1) {
-				ret.form = FoxtrickHelper.getSkillLevelFromLink(basicSkills[1]);
-				ret.stamina = FoxtrickHelper.getSkillLevelFromLink(basicSkills[0]);
+				ret.form = Foxtrick.util.id.getSkillLevelFromLink(basicSkills[1]);
+				ret.stamina = Foxtrick.util.id.getSkillLevelFromLink(basicSkills[0]);
 			}
 			else {
-				ret.form = FoxtrickHelper.getSkillLevelFromLink(basicSkills[0]);
-				ret.stamina = FoxtrickHelper.getSkillLevelFromLink(basicSkills[1]);
+				ret.form = Foxtrick.util.id.getSkillLevelFromLink(basicSkills[0]);
+				ret.stamina = Foxtrick.util.id.getSkillLevelFromLink(basicSkills[1]);
 			}
 			if (basicSkills[3].href.indexOf("skillshort") !== -1) {
-				ret.leadership = FoxtrickHelper.getSkillLevelFromLink(basicSkills[3]);
-				ret.experience = FoxtrickHelper.getSkillLevelFromLink(basicSkills[2]);
+				ret.leadership = Foxtrick.util.id.getSkillLevelFromLink(basicSkills[3]);
+				ret.experience = Foxtrick.util.id.getSkillLevelFromLink(basicSkills[2]);
 			}
 			else {
-				ret.leadership = FoxtrickHelper.getSkillLevelFromLink(basicSkills[2]);
-				ret.experience = FoxtrickHelper.getSkillLevelFromLink(basicSkills[3]);
+				ret.leadership = Foxtrick.util.id.getSkillLevelFromLink(basicSkills[2]);
+				ret.experience = Foxtrick.util.id.getSkillLevelFromLink(basicSkills[3]);
 			}
 			return ret;
 		}

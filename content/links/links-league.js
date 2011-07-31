@@ -21,15 +21,15 @@ var FoxtrickLinksLeague = {
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="main mainRegular") {
 				var thisdiv = alldivs[j];
-				var leagueid = FoxtrickHelper.findLeagueLeveUnitId(thisdiv);;
-				var countryid = FoxtrickHelper.findCountryId(thisdiv);
+				var leagueid = Foxtrick.util.id.findLeagueLeveUnitId(thisdiv);;
+				var countryid = Foxtrick.util.id.findCountryId(thisdiv);
 
-				var leaguename = FoxtrickHelper.extractLeagueName(thisdiv);
+				var leaguename = Foxtrick.util.id.extractLeagueName(thisdiv);
 				var leaguename2 = leaguename;
 				var leaguename3 = leaguename;
 
-				var seriesnum = FoxtrickHelper.getSeriesNum(leaguename);
-				var levelnum = FoxtrickHelper.getLevelNum(leaguename, countryid);
+				var seriesnum = Foxtrick.util.id.getSeriesNum(leaguename);
+				var levelnum = Foxtrick.util.id.getLevelNum(leaguename, countryid);
 
 				if (!leaguename.match(/^[A-Z]+\.\d+/i)) {
 					leaguename2="I";

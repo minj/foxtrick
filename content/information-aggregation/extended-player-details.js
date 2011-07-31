@@ -21,7 +21,7 @@ FoxtrickExtendedPlayerDetails = {
 			return;
 
 		var div = doc.getElementsByClassName("playerInfo")[0];
-		if (!FoxtrickHelper.findTeamId(div.getElementsByTagName('table')[0])) return; // player has no team
+		if (!Foxtrick.util.id.findTeamId(div.getElementsByTagName('table')[0])) return; // player has no team
 		
 		var joined_elm = div.getElementsByClassName("shy")[0];
 
@@ -69,7 +69,7 @@ FoxtrickExtendedPlayerDetailsWage = {
 			// no such thing, return
 			return;
 		}
-		if (!FoxtrickHelper.findTeamId(div.getElementsByTagName('table')[0])) return; // player has no team
+		if (!Foxtrick.util.id.findTeamId(div.getElementsByTagName('table')[0])) return; // player has no team
 
 		var wageText = wageElm.textContent;
 		var hasBonus = wageText.indexOf("%") > 0;

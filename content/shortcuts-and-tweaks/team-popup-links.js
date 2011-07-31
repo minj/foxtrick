@@ -165,7 +165,7 @@ var FoxtrickTeamPopupLinks = {
 			}
 		}
 
-		this.ownteamid = FoxtrickHelper.getOwnTeamId();
+		this.ownteamid = Foxtrick.util.id.getOwnTeamId();
 		this.hasScroll = Foxtrick.util.layout.mainBodyHasScroll(doc);
 
 		// team links
@@ -238,10 +238,10 @@ var FoxtrickTeamPopupLinks = {
 			var doc = evt.target.ownerDocument;
 			evt.target.parentNode.removeEventListener("mouseover",FoxtrickTeamPopupLinks.popupshow,false);
 
-			var teamid = FoxtrickHelper.getTeamIdFromUrl(org_link.href);
+			var teamid = Foxtrick.util.id.getTeamIdFromUrl(org_link.href);
 			if (teamid)
 				var teamname = org_link.textContent;
-			var userid = FoxtrickHelper.getUserIdFromUrl(org_link.href);
+			var userid = Foxtrick.util.id.getUserIdFromUrl(org_link.href);
 			if (userid)
 				var username = org_link.textContent;
 

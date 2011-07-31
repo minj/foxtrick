@@ -58,13 +58,13 @@ FoxtrickLineupShortcut = {
 
 		// get player ID from top of the page:
 		var mainWrapper = doc.getElementById('mainWrapper');
-		var playerId = FoxtrickHelper.findPlayerId(mainWrapper);
-		var teamName = FoxtrickHelper.extractTeamName(mainWrapper);
+		var playerId = Foxtrick.util.id.findPlayerId(mainWrapper);
+		var teamName = Foxtrick.util.id.extractTeamName(mainWrapper);
 
 		for (var i = 0; i < matchTable.rows.length; i++) {
 			var link = matchTable.rows[i].cells[1].getElementsByTagName('a')[0];
-			var teamId = FoxtrickHelper.getTeamIdFromUrl(link.href);
-			var matchId = FoxtrickHelper.getMatchIdFromUrl(link.href);
+			var teamId = Foxtrick.util.id.getTeamIdFromUrl(link.href);
+			var matchId = Foxtrick.util.id.getMatchIdFromUrl(link.href);
 
 			// find out home/away team names
 			var teamsTrimmed = link.innerHTML.split(/&nbsp;-&nbsp;/);
@@ -93,7 +93,7 @@ FoxtrickLineupShortcut = {
 		var teamid=doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlPreviousClubs').value;
 		//Now getting playerid from top of the page:
 		var element=doc.getElementById('mainWrapper');
-		var playerid=FoxtrickHelper.findPlayerId(element);
+		var playerid=Foxtrick.util.id.findPlayerId(element);
 		var lineuplabel = Foxtrickl10n.getString( "foxtrick.shortcut.matchlineup" );
 		var matchtable=doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanel1').getElementsByTagName('table').item(0);
 		var checktables = matchtable.getElementsByClassName("ft_lineupheader");
@@ -107,7 +107,7 @@ FoxtrickLineupShortcut = {
 			//We start from second row because first is header
 			for (var i=1;i<matchtable.rows.length;i++) {
 				var link=matchtable.rows[i].cells[1].getElementsByTagName('a').item(0);
-				var matchid=FoxtrickHelper.getMatchIdFromUrl(link.href);
+				var matchid=Foxtrick.util.id.getMatchIdFromUrl(link.href);
 				this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid, 'normal');
 			}
 		}
@@ -156,12 +156,12 @@ FoxtrickLineupShortcut = {
 			matchtable=matchtable.item(0);
 			//Now getting playerid from top of the page:
 			var element=doc.getElementById('mainWrapper');
-			var playerid=FoxtrickHelper.findYouthPlayerId(element);
-			var teamid=FoxtrickHelper.findYouthTeamId(element);
+			var playerid=Foxtrick.util.id.findYouthPlayerId(element);
+			var teamid=Foxtrick.util.id.findYouthTeamId(element);
 			for (i=0;i<matchtable.rows.length;i++) {
 				var link=matchtable.rows[i].cells[1].getElementsByTagName('a').item(0);
-				//var teamid=FoxtrickHelper.getTeamIdFromUrl(link.href); //For youth teamid taken from link is wrong!
-				var matchid=FoxtrickHelper.getMatchIdFromUrl(link.href);
+				//var teamid=Foxtrick.util.id.getTeamIdFromUrl(link.href); //For youth teamid taken from link is wrong!
+				var matchid=Foxtrick.util.id.getMatchIdFromUrl(link.href);
 				this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid, "youth");
 			}
 		}
@@ -176,7 +176,7 @@ FoxtrickLineupShortcut = {
 			if (passedid) {
 				var playerdivs = doc.getElementsByClassName("name");
 				for (var i = 0; i < playerdivs.length; i++) {
-					var playerid=FoxtrickHelper.findPlayerId(playerdivs[i]);
+					var playerid=Foxtrick.util.id.findPlayerId(playerdivs[i]);
 					if (playerid==passedid) {
 						//Found it!
 						playerdivs[i].parentNode.style.backgroundImage=newimg;

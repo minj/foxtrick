@@ -19,9 +19,9 @@ var FoxtrickRedirections = {
 		var alldivs = doc.getElementsByTagName('div');
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="playerInfo") {
-				var teamid=FoxtrickHelper.findTeamId(alldivs[j]);
-				var leagueid=FoxtrickHelper.findLeagueLeveUnitId(alldivs[j]);
-				var ownteamid = FoxtrickHelper.getOwnTeamId();
+				var teamid=Foxtrick.util.id.findTeamId(alldivs[j]);
+				var leagueid=Foxtrick.util.id.findLeagueLeveUnitId(alldivs[j]);
+				var ownteamid = Foxtrick.util.id.getOwnTeamId();
 				var userid = doc.getElementById('mainWrapper').getElementsByTagName('a')[1].href.replace(/.+userid=/i,'');;
 
 
@@ -74,7 +74,7 @@ var FoxtrickRedirections = {
 		//challenge
 		if (doc.location.href.search(/challenge=true/i)!=-1 ) {
 			var teamid_input = doc.getElementById('ctl00_ctl00_CPContent_CPSidebar_tbNewChallangeTeamId');
-			teamid_input.value = FoxtrickHelper.getTeamIdFromUrl(doc.location.href);
+			teamid_input.value = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
 		}
 		//mailto
 		if (doc.location.href.search(/mailto=/i)!=-1 ) {
@@ -100,8 +100,8 @@ var FoxtrickRedirections = {
 		}
 		//redirect to youthmatches
 		if (doc.location.href.search(/redir_to_youthmatches=true/i)!=-1 ) {
-			var YouthTeamId = FoxtrickHelper.findYouthTeamId(doc.getElementsByClassName("subMenu")[0]);
-			var TeamId = FoxtrickHelper.findTeamId(doc.getElementsByClassName("subMenu")[0]);
+			var YouthTeamId = Foxtrick.util.id.findYouthTeamId(doc.getElementsByClassName("subMenu")[0]);
+			var TeamId = Foxtrick.util.id.findTeamId(doc.getElementsByClassName("subMenu")[0]);
 			var tar = serv+"/Club/Matches/?TeamID="+TeamId+"&YouthTeamId="+YouthTeamId; //Foxtrick.dump(tar+'\n');
 			doc.location.replace(tar);
 		}
@@ -111,7 +111,7 @@ var FoxtrickRedirections = {
 				// redirect to coach
 				try {
 					var sidebarBox = doc.getElementById("sidebar").getElementsByClassName("sidebarBox")[0];
-					var coachId = FoxtrickHelper.findPlayerId(sidebarBox);
+					var coachId = Foxtrick.util.id.findPlayerId(sidebarBox);
 					var location = serv+"/Club/Players/Player.aspx?playerId=" + coachId;
 					doc.location.replace(location);
 				}
@@ -122,7 +122,7 @@ var FoxtrickRedirections = {
 			if (doc.location.href.search(/\/Club\/NationalTeam\/NationalTeam/i)!=-1 ){
 				try {
 					var ntinfo=doc.getElementById('teamInfo');
-					var CoachId = FoxtrickHelper.findPlayerId(ntinfo);
+					var CoachId = Foxtrick.util.id.findPlayerId(ntinfo);
 					var tar = serv+'/Club/Players/Player.aspx?playerId='+CoachId;
 					doc.location.replace(tar);
 					}
@@ -134,7 +134,7 @@ var FoxtrickRedirections = {
 			if (doc.location.href.search(/\/Club\/Training/i)!=-1) {
 				try {
 				// redirect to coach
-					var CoachId = FoxtrickHelper.findPlayerId(doc.getElementById("mainBody"));
+					var CoachId = Foxtrick.util.id.findPlayerId(doc.getElementById("mainBody"));
 					var tar = serv+"/Club/Players/Player.aspx?playerId="+CoachId;
 					doc.location.replace(tar);
 				}
