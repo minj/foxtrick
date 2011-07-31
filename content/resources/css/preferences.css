@@ -21,13 +21,18 @@ p
 	margin: 2px 0;
 }
 
-input, button
+input, button, select, textarea
 {
 	color: #2e2e2e;
 	background-color: white;
 	border: 1px solid #b4bac0;
 	padding: 3px;
 	margin: 0 5px 0 0;
+}
+
+input[disabled], button[disabled], select[disabled], textarea[disabled]
+{
+	background-color: #999;
 }
 
 button.active
