@@ -2453,12 +2453,24 @@ Foxtrick.LinkCollection.getLinkElement  = function(link, stat, doc, key, module_
     if (typeof(stat["img"]) == 'undefined') {
         statslink.appendChild(doc.createTextNode(stat.shorttitle));
      } else {
-        var img = doc.createElement("img");
-        img.alt = stat.title;
-        img.title = stat.title;
-        img.style.border="0";
-		img.src = stat.img;
-        statslink.appendChild(img);
+		if (stat.img && typeof(opera)=='object')
+			sandboxed.extension.sendRequest({ req : "getDataUrl", url:stat.img},
+				function (data) {
+					var img = doc.createElement("img");
+					img.alt = stat.title;
+					img.title = stat.title;
+					img.style.border="0";
+					img.src = data.url;
+					statslink.appendChild(img);
+			});
+		else {
+			var img = doc.createElement("img");
+			img.alt = stat.title;
+			img.title = stat.title;
+			img.style.border="0";
+			img.src = stat.img;
+			statslink.appendChild(img);
+		}
     }
 
     statslink.href = link;

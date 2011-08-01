@@ -194,6 +194,25 @@ Foxtrick.loader.chrome.browserLoad = function() {
 				// @param branch - initial part of key(s) of session store to delete
 				Foxtrick.sessionDeleteBranch(request.branch);
 			}
+			else if (request.req == "getDataUrl") {
+				// @param branch - initial part of key(s) of session store to delete
+				var replaceImage = function (url) {
+					var image = new Image;
+					image.onload = function() {
+						var canvas = document.createElement("canvas");
+						canvas.width = image.width;
+						canvas.height = image.height;
+						var context = canvas.getContext('2d');
+						context.drawImage(image, 0, 0);
+						return sendResponse({ url:canvas.toDataURL() });
+					};
+					image.onerror = function() {
+						return sendResponse({ url:'' });
+					};
+					return image.src = url;
+				};
+				replaceImage(request.url);
+			}
 		}
 		catch (e) {
 			Foxtrick.log('Foxtrick - background onRequest: ', e)
