@@ -198,6 +198,7 @@ var FoxtrickLinksYouthPlayerList = {
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
 };
+Foxtrick.util.module.register(FoxtrickLinksYouthPlayerList);
 
 ////////////////////////////////////////////////////////////////////////////////
 var FoxtrickLinksYouthMatchList = {
@@ -284,4 +285,4 @@ var FoxtrickLinksYouthLeague = {
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
 };
-Foxtrick.util.module.register(FoxtrickLinksYouthPlayerList);
+Foxtrick.util.module.register(FoxtrickLinksYouthLeague);
