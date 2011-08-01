@@ -10,7 +10,8 @@ var FoxtrickForumStripHattrickLinks = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','newsletter',"forumModWritePost","forumViewThread"),
 	OPTIONS: new Array("NoConfirmStripping"),
-
+	NICE: -1,
+	
 	onclick : function( ev ) {
 		var setRelPath = function(link) {
 			link.href = link.href.replace(new RegExp("^http://.+?/"), "/");
@@ -38,16 +39,16 @@ var FoxtrickForumStripHattrickLinks = {
 			target = targets[targets.length-2];
 		if (Foxtrick.isPage("guestbook", doc))
 			target = targets[1];
-
+		
 		if (target)
-			target.addEventListener("click", this.submitListener, false);
+			target.addEventListener("click", FoxtrickForumStripHattrickLinks.submitListener, false);
 	},
 
 	strip : function(string) {
 		return string.replace(/\[link=.+(www|www\d+|stage)\.hattrick\.(org|ws|interia\.pl)(.*?)\]/gi, "[link=$3]");
 	},
 
-	submitListener : function(ev) {
+	submitListener : function(ev) { 
 		var doc = ev.target.ownerDocument;
 		var textarea = doc.getElementById("mainBody").getElementsByTagName("textarea")[0];
 		if (FoxtrickPrefs.isModuleOptionEnabled("ForumStripHattrickLinks", "NoConfirmStripping")) {
