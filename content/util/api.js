@@ -207,6 +207,7 @@ Foxtrick.util.api = {
 					if (!FoxtrickPrefs.getBool("xmlLoad")) {
 						Foxtrick.log("XML loading disabled");
 						callback(null);
+						return;
 					}
 					if (options && options.cache_lifetime) { 
 						if (options.cache_lifetime=='default') var cache_lifetime = HT_date+60*60*1000;  //= 1 hour
