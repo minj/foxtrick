@@ -29,9 +29,9 @@ var FoxtrickLocalTime = {
 		localTime.id = "ft-local-time";
 		var updateTime = function() {
 			localTime.textContent = Foxtrick.util.time.buildDate(null, true, true);
-			setTimeout(updateTime, 1000);
 		};
-		updateTime();
+		time.addEventListener('DOMCharacterDataModified',updateTime, false);
+		
 		time.parentNode.insertBefore(localTime, htTimeIcon.nextSibling);
 
 		// icon for local time zone
