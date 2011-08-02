@@ -38,6 +38,29 @@ Foxtrick.selectFile = function (parentWindow) {
 	return null;
 }
 
+
+Foxtrick.filePickerForDataUrl = function(doc, callback) {
+	var form = doc.createElement('form');
+	form.id = 'uploadData';
+	var input = doc.createElement('input');
+	input.type = 'file';
+	input.id = 'fileChooser';
+	input.addEventListener('change',function(ev) {
+		var file = ev.target.files[0];
+		var reader = new FileReader();
+		reader.onerror = function(e) {
+			alert('Error code: ' + e.target.error.code);
+		};
+		reader.onload = function(evt) {
+			callback(evt.target.result);
+		}
+		reader.readAsDataURL(file);
+	}, false);
+	form.appendChild(input);
+	return form;
+}
+
+		
 // Play the sound with URL given as parameter.
 // Gecko only supports WAV format at the moment.
 // May throw an error if unable to play the sound.

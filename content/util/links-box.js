@@ -598,29 +598,13 @@ Foxtrick.util.links = {
 
 	LoadDialog  : function(doc, divED)
 	{		// load image select
-			var form = doc.createElement('form');
-			form.id = 'uploadData';
-			var input = doc.createElement('input');
-			input.type = 'file';
-			input.id = 'fileChooser';
-			input.addEventListener('change',function(ev) {
-				var doc = ev.target.ownerDocument;
-				var file = doc.getElementById('fileChooser').files[0];
-				var reader = new FileReader();
-				reader.onerror = function(e) {
-					alert('Error code: ' + e.target.error.code);
-				};
-				reader.onload = function(evt) {
-					var image = evt.target.result;
-					if (image.length>2000) {Foxtrick.alert("Image too large.");return;}
-					var div=doc.getElementById('inputImgDivID');
-					div.imgref=image;
-					div.style.backgroundImage = "url('" + div.imgref + "')";
-				}
-				reader.readAsDataURL(file);
-			},false);
-			form.appendChild(input);
-			divED.appendChild(form);
+		var form = Foxtrick.filePickerForDataUrl(doc, function(url) {
+			//if (url.length>5000) {Foxtrick.alert("Image too large.");return;}
+			var div=doc.getElementById('inputImgDivID');
+			div.imgref=url;
+			div.style.backgroundImage = "url('" + url + "')";
+		});
+		divED.appendChild(form);
 	},
 
 	SelectBox_Select : function(evt) {
