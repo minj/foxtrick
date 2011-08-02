@@ -39,12 +39,10 @@ Foxtrick.selectFile = function (parentWindow) {
 }
 
 
-Foxtrick.filePickerForDataUrl = function(doc, callback) {
+Foxtrick.filePickerForDataUrl = function(doc, callback, data) {
 	var form = doc.createElement('form');
-	form.id = 'uploadData';
 	var input = doc.createElement('input');
 	input.type = 'file';
-	input.id = 'fileChooser';
 	input.addEventListener('change',function(ev) {
 		var file = ev.target.files[0];
 		var reader = new FileReader();
@@ -52,7 +50,7 @@ Foxtrick.filePickerForDataUrl = function(doc, callback) {
 			alert('Error code: ' + e.target.error.code);
 		};
 		reader.onload = function(evt) {
-			callback(evt.target.result);
+			callback(evt.target.result, data);
 		}
 		reader.readAsDataURL(file);
 	}, false);
@@ -67,23 +65,24 @@ Foxtrick.filePickerForDataUrl = function(doc, callback) {
 Foxtrick.playSound = function(url, doc) {
 	try {
 		if (Foxtrick.BuildFor === "Gecko") {
-			var soundService = Components.classes["@mozilla.org/sound;1"].getService(Components.interfaces.nsISound);
-			var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-			soundService.play(ioService.newURI(url, null, null));
+			try {
+				var soundService = Components.classes["@mozilla.org/sound;1"].getService(Components.interfaces.nsISound);
+				var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+				soundService.play(ioService.newURI(url, null, null));
+				return;
+			} catch(e) {}
 		}
-		else {
-			try  {
-					var music = new Audio(url);
-					music.play();
-				} catch(e) {
-					var music = doc.createElement('audio');
-					music.setAttribute("autoplay","autoplay");
-					var source = doc.createElement('source');
-					source.setAttribute('src',url);
-					source.setAttribute('type','audio/wav');
-					music.appendChild(source);
-					doc.getElementsByTagName('body')[0].appendChild(music);
-				}
+		try  {
+			var music = new Audio(url);
+			music.play();
+		} catch(e) {
+			var music = doc.createElement('audio');
+			music.setAttribute("autoplay","autoplay");
+			var source = doc.createElement('source');
+			source.setAttribute('src',url);
+			source.setAttribute('type','audio/wav');
+			music.appendChild(source);
+			doc.getElementsByTagName('body')[0].appendChild(music);
 		}
 	} catch(e){	
 		Foxtrick.log("Cannot play sound: ", url);
