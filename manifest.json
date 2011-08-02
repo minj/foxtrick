@@ -177,6 +177,7 @@
 	"permissions" : [
 		"contextMenus",
 		"notifications",
+		"clipboardWrite",
 		"*://*.hattrick.org/*",
 		"http://www.hattrick-youthclub.org/*",
 		"http://www.fantamondi.it/*"
