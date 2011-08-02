@@ -168,17 +168,26 @@ Foxtrick.loader.chrome.browserLoad = function() {
 			}
 			else if (request.req == "notify") {
 				// @param msg - message to notify the user
-				var notification = webkitNotifications.createNotification(
-					"resources/img/hattrick-logo.png", // logo location
-					"Hattrick", // notification title
-					request.msg // notification body text
-				);
+				if (window.webkitNotifications) {
+					var notification = webkitNotifications.createNotification(
+						"resources/img/hattrick-logo.png", // logo location
+						"Hattrick", // notification title
+						request.msg // notification body text
+					);
+					notification.onclick = function() { 
+						if ( typeof(chrome)=='object' )
+							chrome.tabs.update(sender.tab.id, { url:request.url, selected:true });
+						else 
+							sandboxed.tabs.create({url: request.url});
+						notification.cancel();
+					};
 
-				// Then show the notification.
-				notification.show();
+					// Then show the notification.
+					notification.show();
 
-				// close after 5 sec
-				setTimeout(function() { notification.cancel(); }, 5000);
+					// close after 10 sec
+					setTimeout(function() { notification.cancel(); }, 10000);
+				}
 			}
 			else if (request.req == "sessionSet") {
 				// @param key - key of session store

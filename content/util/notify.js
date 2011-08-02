@@ -45,7 +45,7 @@ Foxtrick.util.notify.create = function(msg, url) {
 		}
 	};
 	var createChrome = function() {
-		sandboxed.extension.sendRequest({req : "notify", msg : msg});
+		sandboxed.extension.sendRequest({req : "notify", msg : msg, url : url});
 	};
 
 	if (Foxtrick.BuildFor == "Gecko") {
