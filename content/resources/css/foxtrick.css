@@ -22,7 +22,7 @@
 .foxtrickInfo:hover {background-image: url('chrome://foxtrick/content/resources/img/info-hover.png'); width: 16px; }
 .foxtrickScreenshot { background-image: url("chrome://foxtrick/content/resources/img/screenshot.png"); width: 16px; }
 .foxtrickScreenshot:hover { background-image: url("chrome://foxtrick/content/resources/img/screenshot-hover.png"); width: 16px; }
-.foxtrickBrowse { background-image: url("chrome://foxtrick/content/resources/img/browse.png"); width: 16px; }
+.foxtrickBrowse { background-image: url("chrome://foxtrick/content/resources/img/browse.png"); width: 16px; padding:2px; }
 
 div.ft_sidebarBoxCollapsed, div.ft_sidebarBoxUnfolded, div.ft_sidebarBoxCollapsed_rtl, div.ft_sidebarBoxUnfolded_rtl { cursor: pointer; }
 div.ft_sidebarBoxCollapsed h2 { background-image: url("chrome://foxtrick/content/resources/img/link-down.png"); background-position:right ; background-repeat:no-repeat; }

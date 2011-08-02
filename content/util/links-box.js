@@ -254,7 +254,7 @@ Foxtrick.util.links = {
 				td1.appendChild(a);
 				tdiv.appendChild(title);
 				td2.appendChild(tdiv);
-				if (key.length>3) td5.appendChild(Foxtrick.util.links.GetExportLink(doc,a,basepref+'.'+key)); // prevent export of oldstyle keys
+				//if (key.length>3) td5.appendChild(Foxtrick.util.links.GetExportLink(doc,a,basepref+'.'+key)); // prevent export of oldstyle keys
 				td3.appendChild(Foxtrick.util.links.GetEditOldLink(doc,a,basepref+'.'+key));
 				td4.appendChild(Foxtrick.util.links.GetDelLink(doc,a,basepref+'.'+key));
 				tr1.appendChild(td1);
@@ -267,34 +267,28 @@ Foxtrick.util.links = {
 
 			divED.appendChild(table);
 
-			var table2=doc.createElement ("table");
-			table2.setAttribute('id','LinksCustomTable2ID');
-
+			// load image
 			var div = doc.createElement("div");
 			div.id = "inputImgDivID";
-			div.className = "ft_icon foxtrickBrowse";
-
-			// load image button
-			var loadIcon = doc.createElement("a");
-			loadIcon.href = "javascript: void(0);";
-			loadIcon.className = "inner";
-			loadIcon.textContent = Foxtrickl10n.getString("foxtrick.linkscustom.selecticon");
-			Foxtrick.listen( loadIcon, "click", Foxtrick.util.links.LoadDialog, false );
-
-			var tr1 = doc.createElement ("tr");
-			var td1 = doc.createElement ("td");
-			td1.width="20px";
-			var td2 = doc.createElement ("td");
-			td2.setAttribute("style","vertical-align:middle;");
-			td2.width="100%";
-			td1.appendChild(div);
-			td2.appendChild(loadIcon);
-			td2.setAttribute("colspan","4");
-			tr1.appendChild(td1);
-			tr1.appendChild(td2);
-			table.appendChild(tr1);
-
+			div.className = "ft_icon foxtrickBrowse inner";
+			var img = doc.createElement("img");
+			img.src = "/Img/Icons/transparent.gif";
+			img.height = "16";
+			img.width = "16";
+			div.appendChild(img);
+			divED.appendChild(div);
+			var div = doc.createElement("div");
+			divED.appendChild(doc.createTextNode(' '+Foxtrickl10n.getString("foxtrick.linkscustom.selecticon")));
+			divED.appendChild(div);
+		
+			var div = doc.createElement("div");
+			div.id = "inputDiv";
+			divED.appendChild(div);
+			Foxtrick.util.links.LoadDialog(doc, divED);
+			
 			// titel edit field
+			var table2=doc.createElement ("table");
+			table2.setAttribute('id','LinksCustomTable2ID');
 			var inputTitle = doc.createElement ("input");
 			inputTitle.setAttribute("name", "inputTitle");
 			inputTitle.setAttribute("id", "inputTitleID");
@@ -535,7 +529,7 @@ Foxtrick.util.links = {
 			td1.appendChild(a);
 			tdiv.appendChild(title);
 			td2.appendChild(tdiv);
-			td5.appendChild(Foxtrick.util.links.GetExportLink(doc,a,baseprefnl));
+			//td5.appendChild(Foxtrick.util.links.GetExportLink(doc,a,baseprefnl));
 			td3.appendChild(Foxtrick.util.links.GetEditOldLink(doc,a,baseprefnl));
 			td4.appendChild(Foxtrick.util.links.GetDelLink(doc,a,baseprefnl));
 
@@ -602,33 +596,31 @@ Foxtrick.util.links = {
 	},
 
 
-	LoadDialog  : function(evt)
-	{	var doc = evt.target.ownerDocument;
-		var window = evt.view;
-		var path="file://"+Foxtrick.selectFile(window);
-		var pathdel="\\";
-		if (path.charAt(7)=="/") {pathdel="/";}
-		var imgfile=path.substr(path.lastIndexOf(pathdel)+1);
-
-		var pngBinary;
-		// load from file
-		try {
-			var ios = Components.classes["@mozilla.org/network/io-service;1"]
-					.getService(Components.interfaces.nsIIOService);
-			var url = ios.newURI(path, null, null);
-			if (!url || !url.schemeIs("file")) {throw "Expected a file URL.";}
-			var pngFile = url.QueryInterface(Components.interfaces.nsIFileURL).file;
-			var image = Foxtrick.util.links.generateDataURI(pngFile);
-			if (image.length>2000) {Foxtrick.alert("Image too large.");return;}
-			var div=doc.getElementById('inputImgDivID');
-			div.imgref=image;
-			div.style.backgroundImage = "url('" + div.imgref + "')";
- 		}
-		catch (e) {
-			Foxtrick.log(e);
-			Foxtrick.alert(aFileURL+" not found");
-			return;
-		}
+	LoadDialog  : function(doc, divED)
+	{		// load image select
+			var form = doc.createElement('form');
+			form.id = 'uploadData';
+			var input = doc.createElement('input');
+			input.type = 'file';
+			input.id = 'fileChooser';
+			input.addEventListener('change',function(ev) {
+				var doc = ev.target.ownerDocument;
+				var file = doc.getElementById('fileChooser').files[0];
+				var reader = new FileReader();
+				reader.onerror = function(e) {
+					alert('Error code: ' + e.target.error.code);
+				};
+				reader.onload = function(evt) {
+					var image = evt.target.result;
+					if (image.length>2000) {Foxtrick.alert("Image too large.");return;}
+					var div=doc.getElementById('inputImgDivID');
+					div.imgref=image;
+					div.style.backgroundImage = "url('" + div.imgref + "')";
+				}
+				reader.readAsDataURL(file);
+			},false);
+			form.appendChild(input);
+			divED.appendChild(form);
 	},
 
 	SelectBox_Select : function(evt) {
@@ -643,23 +635,4 @@ Foxtrick.util.links = {
 			Foxtrick.log(e);
 		}
 	},
-
-	generateDataURI : function(file) {
-		try {
-			var contentType = Components.classes["@mozilla.org/mime;1"]
-								  .getService(Components.interfaces.nsIMIMEService)
-								  .getTypeFromFile(file);
-			var inputStream = Components.classes["@mozilla.org/network/file-input-stream;1"]
-								  .createInstance(Components.interfaces.nsIFileInputStream);
-			inputStream.init(file, 0x01, 0600, 0);
-			var stream = Components.classes["@mozilla.org/binaryinputstream;1"]
-							 .createInstance(Components.interfaces.nsIBinaryInputStream);
-			stream.setInputStream(inputStream);
-			var encoded = btoa(stream.readBytes(stream.available()));
-			return "data:" + contentType + ";base64," + encoded;
-		}
-		catch (e) {
-			Foxtrick.log(e);
-		}
-	}
 };
