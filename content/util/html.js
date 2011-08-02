@@ -258,3 +258,35 @@ Foxtrick.GetElementPosition = function (This,ref){
 Foxtrick.GetDataURIText = function (filetext) {
 	return "data:text/plain;charset=utf-8,"+encodeURIComponent(filetext);
 }
+
+Foxtrick.addImage = function (doc, elem, features) {
+	if (typeof(opera)=='object')
+		sandboxed.extension.sendRequest({ req : "getDataUrl", url:features.src},
+			function (data) {
+				var img = doc.createElement("img");
+				for (i in features) img[i] = features[i];
+				img.src = data.url;
+				elem.appendChild(img);
+		});
+	else {
+		var img = doc.createElement("img");
+		for (i in features) img[i] = features[i];
+		elem.appendChild(img);
+	}
+};
+
+Foxtrick.getImageFeatures = function (features, callback) {
+	if (typeof(opera)=='object')
+		sandboxed.extension.sendRequest({ req : "getDataUrl", url:features.src},
+			function (data) {
+				var img = {};
+				for (i in features) img[i] = features[i];
+				img.src = data.url;
+				callback(img);
+		});
+	else {
+		var img = {};
+		for (i in features) img[i] = features[i];
+		callback(img);
+	}
+};
