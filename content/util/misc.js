@@ -689,6 +689,18 @@ Foxtrick.getCssTextCollection = function() {
 
 
 // ----------------------------- log and dump ------------------------------
+Foxtrick.dumpHeader = function(doc) {
+	var headString = Foxtrickl10n.getString("foxtrick.log.env")
+				.replace(/%1/, Foxtrick.version())
+				.replace(/%2/, Foxtrick.BuildFor + ' ' + Foxtrick.BuildForDetail)
+				.replace(/%3/, FoxtrickPrefs.getString("htLanguage"))
+				.replace(/%4/, Foxtrick.util.layout.isStandard(doc) ? "standard" : "simple")
+				.replace(/%5/, Foxtrick.util.layout.isRtl(doc) ? "RTL" : "LTR");
+	if (Foxtrick.isStage(doc)) headString += ', Stage';
+	headString += "\n";
+	return headString;
+}
+
 Foxtrick.dumpCache = "";
 Foxtrick.dumpFlush = function(doc) {
 	if (doc.getElementById("page") != null
@@ -703,14 +715,7 @@ Foxtrick.dumpFlush = function(doc) {
 			header.textContent = Foxtrickl10n.getString("foxtrick.log.header");
 			div.appendChild(header);
 			var pre = doc.createElement("pre");
-			pre.textContent = Foxtrickl10n.getString("foxtrick.log.env")
-				.replace(/%1/, Foxtrick.version())
-				.replace(/%2/, Foxtrick.BuildFor)
-				.replace(/%3/, FoxtrickPrefs.getString("htLanguage"))
-				.replace(/%4/, Foxtrick.util.layout.isStandard(doc) ? "standard" : "simple")
-				.replace(/%5/, Foxtrick.util.layout.isRtl(doc) ? "RTL" : "LTR");
-			if (Foxtrick.isStage(doc)) pre.textContent += ', Stage';
-			pre.textContent += "\n";
+			pre.textContent = Foxtrick.dumpHeader(doc);
 			div.appendChild(pre);
 			// add to page
 			var bottom = doc.getElementById("bottom");
