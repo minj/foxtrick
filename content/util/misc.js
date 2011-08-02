@@ -48,19 +48,20 @@ Foxtrick.playSound = function(url, doc) {
 			var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
 			soundService.play(ioService.newURI(url, null, null));
 		}
-		else if ( typeof(chrome)=='object' )  {
-			var music = new Audio(url);
-			music.play();
+		else {
+			try  {
+					var music = new Audio(url);
+					music.play();
+				} catch(e) {
+					var music = doc.createElement('audio');
+					music.setAttribute("autoplay","autoplay");
+					var source = doc.createElement('source');
+					source.setAttribute('src',url);
+					source.setAttribute('type','audio/wav');
+					music.appendChild(source);
+					doc.getElementsByTagName('body')[0].appendChild(music);
+				}
 		}
-		else { // opera && safari
-			var music = doc.createElement('audio');
-			music.setAttribute("autoplay","autoplay");
-			var source = doc.createElement('source');
-			source.setAttribute('src',url);
-			source.setAttribute('type','audio/wav');
-			music.appendChild(source);
-			doc.getElementsByTagName('body')[0].appendChild(music);
-		} 
 	} catch(e){	
 		Foxtrick.log("Cannot play sound: ", url);
 		Foxtrick.log(e);
