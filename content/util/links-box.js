@@ -147,8 +147,12 @@ Foxtrick.util.links = {
 						var mykey=mykeytag[i].replace(/\[/,"").replace(/\]/,"");
 						if (Foxtrick.util.links._info[mykey])
 							href=href.replace(mykeytag[i], Foxtrick.util.links._info[mykey]);
-						else
-							href=href.replace(mykeytag[i], Foxtrick.util.id.ownTeam[mykey]);
+						else {
+							var ownteam = {};
+							for (var key in Foxtrick.util.module.getByName("Core").getSelfTeamInfo()) 
+								ownteam['own'+key] = Foxtrick.util.module.getByName("Core").getSelfTeamInfo()[key];
+							href = href.replace(mykeytag[i], ownteam[mykey]);
+						}
 					}
 				}
 				try { // add icons
@@ -346,7 +350,10 @@ Foxtrick.util.links = {
 				selectbox.appendChild(option);
 			}
 			try {
-				for (var key in Foxtrick.util.id.ownTeam) {
+				var ownteam = {};
+				for (var key in Foxtrick.util.module.getByName("Core").getSelfTeamInfo()) 
+					ownteam['own'+key] = Foxtrick.util.module.getByName("Core").getSelfTeamInfo()[key];
+				for (var key in ownteam) {
 					var option = doc.createElement("option");
 					option.setAttribute("value",key);
 					option.innerHTML='['+key+']';
