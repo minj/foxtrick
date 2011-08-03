@@ -44,6 +44,7 @@ var FoxtrickLocalTime = {
 
 		// to tell whether #time or #ft-local-time should be hidden
 		if (FoxtrickPrefs.getBool("module.LocalTime.local")) {
+			updateTime();
 			Foxtrick.addClass(time, "hidden");
 			Foxtrick.addClass(htTimeIcon, "hidden");
 		}
