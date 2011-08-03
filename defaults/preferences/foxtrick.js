@@ -240,6 +240,8 @@ pref("extensions.foxtrick.prefs.module.LinksMatch.xray_live.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksMatch.xray_livereview.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksMatch.xray_sunray.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksNational.enabled", true);
+pref("extensions.foxtrick.prefs.module.LinksNational.GOInternationals.enabled", true);
+pref("extensions.foxtrick.prefs.module.LinksNational.HattrickNations.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksPlayerDetail.HTPE.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksPlayerDetail.Ht4u.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksPlayerDetail.Training_Team_Evaluation.enabled", true);

@@ -1265,25 +1265,15 @@ stats["Hattrick_training_speed_tool"] =  {
         "img" : Foxtrick.ResourcePath+"resources/linkicons/trainingspeed.png"
 };
 
-stats["natstats"] =  {
-  "url" : "http://doof92.co.uk/",
-  "title" : "NatStats",
-  "img" : Foxtrick.ResourcePath+"resources/linkicons/natstats.png",
+stats["GOInternationals"] =  {
+  "url" : "http://www.goanoei.nl/goht/gonat/",
+  "title" : "GO Internationals",
+  "img" : Foxtrick.ResourcePath+"resources/linkicons/GOInternationals.png",
 
   "nationalteamlink" : { "path"     : "",
                          "filters"  : [],
-                         "params"   : {"ntteamid" : "id","LeagueOfficeTypeID":"LeagueOfficeTypeID" },
-						 "paramfunction" : function(params) {
-
-                            if (params["LeagueOfficeTypeID"] == 2) {
-                             return "HT/team.asp?id=" + params["ntteamid"];
-                            } else {
-                             return "/HT/u20team.asp?id=" + params["ntteamid"];
-                            }
-
-                        }
-  }
-
+                         "params"   : { 'server' : 'server',"ntteamid":"ntteamid" }
+						},
 };
 
 stats["hattrick-youthclub"] =  {
@@ -2357,7 +2347,8 @@ Foxtrick.LinkCollection.getLinks2  = function(stats, stattype, filterparams, doc
 
 
 Foxtrick.LinkCollection.getLinks  = function(stattype, filterparams, doc, module) {
-  return Foxtrick.LinkCollection.getLinks2(Foxtrick.StatsHash[stattype], stattype, filterparams, doc, false, module);
+	filterparams.server=doc.location.hostname;
+	return Foxtrick.LinkCollection.getLinks2(Foxtrick.StatsHash[stattype], stattype, filterparams, doc, false, module);
 };
 
 
