@@ -9,7 +9,7 @@ var FoxtrickForumChangePosts = {
 	CORE_MODULE : true,
 	PAGES : ["forumViewThread"],
 	bDetailedHeader : false,
-	CSS : Foxtrick.ResourcePath + "resources/css/changepost.css",
+	CSS : Foxtrick.ResourcePath + "resources/css/forum-change-post.css",
 
 	run : function(doc) {
 		var do_copy_post_id = FoxtrickPrefs.isModuleEnabled("CopyPostID");
@@ -40,41 +40,31 @@ var FoxtrickForumChangePosts = {
 
 		// part of copypostid
 		var img = doc.createElement('img');
-		img.setAttribute('src',Foxtrick.ResourcePath+"resources/img/copy/copy_yellow_small.png");
-		img.setAttribute('style',"vertical-align: middle; margin-right:3px;");
+		img.src = "/Img/Icons/transparent.gif";
 
 		var copy_link1 = doc.createElement('a');
-		copy_link1.setAttribute('href','javascript:void(0);');
-		copy_link1.setAttribute('title',Foxtrickl10n.getString( 'foxtrick.CopyPostID' ));
+		copy_link1.className = 'ft-copy-small';
+		copy_link1.href = 'javascript:void(0);'
+		copy_link1.title = Foxtrickl10n.getString( 'foxtrick.CopyPostID' );
 		copy_link1.setAttribute('doht_ml',false);
 		copy_link1.appendChild(img);
 
 		// part of copy_posting_link
 		var copy_posting_img = doc.createElement('img');
-		if (Foxtrick.util.layout.isSupporter(doc)) {
-			copy_posting_img.src = "/Img/Icons/transparent.gif";
-			copy_posting_img.style.background = 'url("' + Foxtrick.ResourcePath + 'resources/img/copy/copyNormal_s.png") no-repeat scroll 0 0 transparent';
-			copy_posting_img.style.height = "22px";
-			copy_posting_img.style.width = "21px";
-		}
-		else {
-			copy_posting_img.src = Foxtrick.ResourcePath + "resources/img/copy/copy_yellow_small.png";
-		}
-		copy_posting_img.style.verticalAlign = "middle";
-		copy_posting_img.style.marginLeft = "3px";
+		copy_posting_img.src = "/Img/Icons/transparent.gif";
 		copy_posting_img.title = Foxtrickl10n.getString('CopyPosting').replace('%s', Foxtrickl10n.getString('CopyPosting.style.last') );
 		copy_posting_img.setAttribute('copy_style','last');
 
 		var copy_posting_div = doc.createElement("div");
-		copy_posting_div.className = "ft-pop-up-container";
-		if (Foxtrick.util.layout.isSupporter(doc))
-			copy_posting_div.style.top = "2px";
+		if (Foxtrick.util.layout.isSupporter(doc)) 
+			copy_posting_div.className = "ft-pop-up-container ft-copy";
+		else 
+			copy_posting_div.className = "ft-pop-up-container ft-copy-small";
 		copy_posting_div.appendChild(copy_posting_img);
 
 		var possibleStyles=['ht-ml', 'wiki', 'raw'];
 		var list = doc.createElement("ul");
 		list.className = "ft-pop right top";
-		list.setAttribute('style',"margin-top:15px;");
 		for (var i=0; i<possibleStyles.length; ++i) {
 			var item = doc.createElement("li");
 			var link = doc.createElement("span");
