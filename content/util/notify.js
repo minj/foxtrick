@@ -19,7 +19,8 @@ Foxtrick.util.notify.create = function(msg, url) {
 			observe: function(subject, topic, data) {
 				try {
 					if (topic == "alertclickcallback") {
-						Foxtrick.newTab(url);
+						//Foxtrick.newTab(url);
+						Foxtrick.openAndReuseOneTabPerURL(url, true);
 					}
 					if (topic == "alertfinished") {
 						// empty
