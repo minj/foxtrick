@@ -10,7 +10,7 @@ var FoxtrickForumYouthIcons = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumWritePost","messageWritePost","guestbook","announcements","forumSettings","newsletter","forumModWritePost","ticket"),
 	OPTIONS :  new Array("q", "user_id", "kit_id", "article_id", "line_br", "clock", "spoiler", "pre", "table", "youth_player", "youth_team", "youth_match", "youth_series", "debug", "settings", "enlarge_input"),
-
+	CSS: Foxtrick.ResourcePath + "resources/css/forum-youth-icons.css",
 
 	fields : [
 		// Forum
@@ -192,7 +192,6 @@ var FoxtrickForumYouthIcons = {
 					newimage.setAttribute( "tags", this.icons[0].tags );
 					if ( this.icons[0].replace_text) newimage.setAttribute( "replace_text", this.icons[0].replace_text);
 					newimage.setAttribute( "class", this.icons[0].icon_class);
-					newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/ht-ml/"+this.icons[0].image+"') !important;");
 					newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode."+this.icons[0].string);
 					toolbar.insertBefore( newimage, toolbar.getElementsByTagName('img')[0] );
 				}
@@ -207,7 +206,6 @@ var FoxtrickForumYouthIcons = {
 					newimage.setAttribute( "tags", this.icons[i].tags);
 					if ( this.icons[i].replace_text) newimage.setAttribute( "replace_text", this.icons[i].replace_text);
 					newimage.setAttribute( "class", this.icons[i].icon_class);
-					newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/ht-ml/"+this.icons[i].image+"') !important;");
 					newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode."+this.icons[i].string);
 
 					if (this.icons[i].versions) {
@@ -282,7 +280,6 @@ var FoxtrickForumYouthIcons = {
 						newimage.setAttribute( "tags", this.othericons[i].tags);
 						if ( this.othericons[i].replace_text) newimage.setAttribute( "replace_text", this.othericons[i].replace_text);
 						newimage.setAttribute( "class", this.othericons[i].icon_class);
-						newimage.setAttribute("style","margin:2px; width:22px; height:22px; cursor:pointer; background-image: url('"+Foxtrick.ResourcePath+"resources/img/ht-ml/"+this.othericons[i].image+"') !important;");
 						newimage.title = Foxtrickl10n.getString("ForumOtherIcons."+this.othericons[i].string);
 						otherbar.appendChild( newimage );
 				}
