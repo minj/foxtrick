@@ -47,10 +47,12 @@ var FoxtrickLiveAlert = {
 		var links = tab.getElementsByTagName("a");
 		if (links.length == 2) {
 			// expanded tab with team names as links
-			return [links[0].textContent, links[1].textContent];
+			return [links[0].title, links[1].title];
 		}
 		else {
 			var teams = tab.childNodes[tab.childNodes.length - 1].textContent;
+			if (tab.childNodes[tab.childNodes.length - 1].title) 
+				teams = tab.childNodes[tab.childNodes.length - 1].title;
 			teams = Foxtrick.trim(teams);
 			return teams.split(" - ");
 		}
