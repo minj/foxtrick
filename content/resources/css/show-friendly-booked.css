@@ -1,0 +1,6 @@
+img.ft_friendly {
+	width:15px;
+	height:13px;
+	background: url('chrome://foxtrick/content/resources/img/friendly_small.png') no-repeat scroll 0 0 transparent;
+	margin-left:4px;
+}

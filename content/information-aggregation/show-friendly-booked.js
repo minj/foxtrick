@@ -9,6 +9,7 @@ var FoxtrickShowFriendlyBooked = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["league"],
 	OPTIONS : new Array("OnDemand"),
+	CSS : Foxtrick.ResourcePath + "resources/css/show-friendly-booked.css",
 	
 	run : function(doc) {
 		if (FoxtrickPrefs.isModuleOptionEnabled("ShowFriendlyBooked", "OnDemand"))
@@ -90,8 +91,9 @@ var FoxtrickShowFriendlyBooked = {
 				else if (friendly.textContent != "0") {
 					// friendly booked
 					var img = doc.createElement("img");
-					img.src = Foxtrick.ResourcePath + "resources/img/friendly_small.png";
+					img.src = "/Img/Icons/transparent.gif";
 					img.alt = img.title = Foxtrickl10n.getString("team.status.booked");
+					img.className = "ft_friendly";
 					destCell.appendChild(img);
 				}
 			});

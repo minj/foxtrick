@@ -110,16 +110,14 @@ var FoxtrickCopyRatings = {
 			var copyBoth = doc.createElement("a");
 			copyBoth.className = "inner";
 			copyBoth.title = Foxtrickl10n.getString("CopyRatings.both");
-			copyBoth.setAttribute("style", "cursor: pointer;");
 			copyBoth.setAttribute("teams", "both");
 			copyBoth.setAttribute("place", "box");
 			copyBoth.addEventListener("click", this.createRatings, false);
 
 			var img = doc.createElement("img");
-			img.setAttribute("style", "padding:0px 5px 0px 0px;");
-			img.className = "actionIcon";
+			img.className = "ft_actionicon_large ft_copyMatchRatings";
 			img.alt = Foxtrickl10n.getString("CopyRatings.both");
-			img.src = Foxtrick.ResourcePath + "resources/img/copy/copyMatchRatings.png";
+			img.src = "/Img/Icons/transparent.gif";
 			copyBoth.appendChild(img);
 
 			parentDiv.appendChild(copyBoth);
@@ -132,16 +130,14 @@ var FoxtrickCopyRatings = {
 			var copyHome = doc.createElement("a");
 			copyHome.className = "inner";
 			copyHome.title = Foxtrickl10n.getString("CopyRatings.home");
-			copyHome.setAttribute("style", "cursor: pointer;");
 			copyHome.setAttribute("place", "box");
 			copyHome.setAttribute("teams", "home");
 			copyHome.addEventListener("click", this.createRatings, false);
 
 			var img = doc.createElement("img");
-			img.setAttribute("style", "padding:0px 5px 0px 0px;");
-			img.className = "actionIcon";
+			img.className = "ft_actionicon_large ft_copyHomeRatings";
 			img.alt = Foxtrickl10n.getString("CopyRatings.home");
-			img.src = Foxtrick.ResourcePath+"resources/img/copy/copyHomeRatings.png";
+			img.src = "/Img/Icons/transparent.gif"; 
 			copyHome.appendChild(img);
 
 			parentDiv.appendChild(copyHome);
@@ -154,16 +150,14 @@ var FoxtrickCopyRatings = {
 			var copyAway = doc.createElement("a");
 			copyAway.className = "inner";
 			copyAway.title = Foxtrickl10n.getString("CopyRatings.away");
-			copyAway.setAttribute("style", "cursor: pointer;");
 			copyAway.setAttribute("place", "box");
 			copyAway.setAttribute("teams", "away");
 			copyAway.addEventListener("click", this.createRatings, false);
 
 			var img = doc.createElement("img");
-			img.setAttribute("style","padding:0px 5px 0px 0px;");
-			img.className = "actionIcon";
+			img.className = "ft_actionicon_large ft_copyAwayRatings";
 			img.alt = Foxtrickl10n.getString("CopyRatings.both");
-			img.src = Foxtrick.ResourcePath + "resources/img/copy/copyAwayRatings.png";
+			img.src = "/Img/Icons/transparent.gif";
 			copyAway.appendChild(img);
 
 			parentDiv.appendChild(copyAway);

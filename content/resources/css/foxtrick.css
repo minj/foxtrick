@@ -9,6 +9,11 @@
 /* icons and hover icons */
 .ft_actionicon {cursor: pointer; height: 16px; background: 50% no-repeat; }
 .ft_icon {width: 16px; height: 16px; background: 50% no-repeat; }
+.ft_actionicon_large {cursor: pointer; height: 34px; width:36px; padding:0px 5px 0px 0px; }
+
+.ft_copyMatchRatings {background: url('chrome://foxtrick/content/resources/img/copy/copyMatchRatings.png') no-repeat scroll 0 0 transparent; }
+.ft_copyHomeRatings {background: url('chrome://foxtrick/content/resources/img/copy/copyHomeRatings.png') no-repeat scroll 0 0 transparent; }
+.ft_copyAwayRatings {background: url('chrome://foxtrick/content/resources/img/copy/copyAwayRatings.png') no-repeat scroll 0 0 transparent; }
 
 .foxtrickCopy {background-image: url('chrome://foxtrick/content/resources/img/copy/copy_small.png'); width: 16px; }
 .foxtrickCopy:hover {background-image: url('chrome://foxtrick/content/resources/img/copy/copy_yellow_small.png'); width: 16px; }
