@@ -24,7 +24,6 @@ var FoxtrickCopyRatings = {
 			return;
 
 		var createRatings = function(place, teams) {
-			Foxtrick.log("Called with", place, teams);
 			try {
 				FoxtrickPrefs.setString("copyratings.teams", teams);
 				if (place == "table")
