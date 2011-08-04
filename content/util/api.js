@@ -166,7 +166,8 @@ Foxtrick.util.api = {
 	// timestamp: time in milliseconds since 1970 when a new xml will get retrieved
 	retrieve : function(doc, parameters, options, callback) {
 		var httime = doc.getElementById("time").textContent;
-		try { var HT_date = Foxtrick.util.time.getDateFromText(httime).getTime();
+		try { 
+			var HT_date = Foxtrick.util.time.getDateFromText(httime).getTime();
 		} catch(e) { // no httime yet.we have been to fast. lets put us 1 day in the future
 			Foxtrick.log('no httime yet');
 			var HT_date = (new Date()).getTime()+24*60*60*1000;
@@ -200,7 +201,11 @@ Foxtrick.util.api = {
 				}
 
 				var parser = new DOMParser();
-				callback (parser.parseFromString( JSON.parse(xml_cache.xml_string), "text/xml"));
+				try { 
+					callback (parser.parseFromString( JSON.parse(xml_cache.xml_string), "text/xml"));
+				} catch (e) {
+					Foxtrick.log('ApiProxy: uncaught callback error: ',e);
+				}
 			}
 			else {
 				try { 
@@ -251,7 +256,11 @@ Foxtrick.util.api = {
 							Foxtrick.sessionSet('xml_cache.'+parameters_str,
 												{ xml_string : JSON.stringify(serializer.serializeToString(x)),
 												cache_lifetime:cache_lifetime });
-							callback(x);
+							try { 
+								callback (x);
+							} catch (e) {
+								Foxtrick.log('ApiProxy: uncaught callback error: ',e);
+							}
 						}
 						else if (status == 401 || (typeof(opera)=='object' && status==0) ) { // opera hotfix. returned status not correct
 							Foxtrick.log("ApiProxy: error 401, unauthorized. Arguments: ", parameters);
@@ -269,7 +278,10 @@ Foxtrick.util.api = {
 							callback(null);
 						}
 					}, true);
-				} catch(e){Foxtrick.log(e); callback(null);}
+				} catch(e){
+					Foxtrick.log(e);
+					callback(null);
+				}
 			}
 		});
 	},
