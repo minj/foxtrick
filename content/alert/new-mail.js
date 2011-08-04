@@ -32,7 +32,7 @@ var FoxtrickNewMail = {
 			Foxtrick.sessionSet("mailCount", newMailCount);
 			if (FoxtrickPrefs.isModuleOptionEnabled("NewMail", "NotifyMail")
 				&& newMailCount > oldMailCount) {
-				Foxtrick.util.notify.create(Foxtrickl10n.getString("notify.newMail").replace(/%s/, newMailCount));
+				Foxtrick.util.notify.create(Foxtrickl10n.getString("notify.newMail").replace(/%s/, newMailCount), 'http://'+doc.location.host+'/MyHattrick/Inbox/Default.aspx');
 			}
 
 			// mail count in left menu
@@ -66,7 +66,7 @@ var FoxtrickNewMail = {
 			Foxtrick.sessionSet("forumCount", newForumCount);
 			if (FoxtrickPrefs.isModuleOptionEnabled("NewMail", "NotifyForum")
 				&& newForumCount > oldForumCount) {
-				Foxtrick.util.notify.create(Foxtrickl10n.getString("notify.newForumMessage").replace(/%s/, newForumCount));
+				Foxtrick.util.notify.create(Foxtrickl10n.getString("notify.newForumMessage").replace(/%s/, newForumCount), 'http://'+doc.location.host+'/Forum/Default.aspx?actionType=refresh');
 			}
 		});
  	}
