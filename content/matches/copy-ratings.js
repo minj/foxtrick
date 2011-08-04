@@ -10,6 +10,8 @@ var FoxtrickCopyRatings = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
 
+	NICE : 1,
+
 	CSS : Foxtrick.ResourcePath + "resources/css/copy-ratings.css",
 	CSS_SIMPLE : Foxtrick.ResourcePath + "resources/css/copy-ratings-simple.css",
 
