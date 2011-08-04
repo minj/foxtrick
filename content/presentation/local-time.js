@@ -17,12 +17,7 @@ var FoxtrickLocalTime = {
 	run : function(doc) {
 		var time = doc.getElementById("time");
 		// icon for Hattrick time zone
-		var htTimeIcon = doc.createElement("img");
-		htTimeIcon.id = "ft-ht-time-icon";
-		htTimeIcon.src = Foxtrick.ResourcePath + "resources/img/tz-hattrick.png";
-		htTimeIcon.alt = Foxtrickl10n.getString("LocalTime.hattrick");
-		htTimeIcon.title = Foxtrickl10n.getString("LocalTime.hattrick.title");
-		time.parentNode.insertBefore(htTimeIcon, time.nextSibling);
+		time.title = Foxtrickl10n.getString("LocalTime.hattrick.title");
 
 		// set up local time div at the header
 		var localTime = doc.createElement("div");
@@ -32,33 +27,22 @@ var FoxtrickLocalTime = {
 		};
 		time.addEventListener('DOMCharacterDataModified',updateTime, false);
 		
-		time.parentNode.insertBefore(localTime, htTimeIcon.nextSibling);
-
-		// icon for local time zone
-		var localTimeIcon = doc.createElement("img");
-		localTimeIcon.id = "ft-local-time-icon";
-		localTimeIcon.src = Foxtrick.ResourcePath + "resources/img/tz-local.png";
-		localTimeIcon.alt = Foxtrickl10n.getString("LocalTime.local");
-		localTimeIcon.title = Foxtrickl10n.getString("LocalTime.local.title");
-		time.parentNode.insertBefore(localTimeIcon, localTime.nextSibling);
+		localTime.title = Foxtrickl10n.getString("LocalTime.local.title");
+		time.parentNode.insertBefore(localTime, time);
 
 		// to tell whether #time or #ft-local-time should be hidden
 		if (FoxtrickPrefs.getBool("module.LocalTime.local")) {
 			updateTime();
 			Foxtrick.addClass(time, "hidden");
-			Foxtrick.addClass(htTimeIcon, "hidden");
 		}
 		else {
 			Foxtrick.addClass(localTime, "hidden");
-			Foxtrick.addClass(localTimeIcon, "hidden");
 		}
 		// add on-click events for toggling between local/HT times
 		var toggleDisplay = function(ev) {
 			FoxtrickPrefs.setBool("module.LocalTime.local", !FoxtrickPrefs.getBool("module.LocalTime.local"));
 			Foxtrick.toggleClass(time, "hidden");
-			Foxtrick.toggleClass(htTimeIcon, "hidden");
 			Foxtrick.toggleClass(localTime, "hidden");
-			Foxtrick.toggleClass(localTimeIcon, "hidden");
 			FoxtrickLocalTime.updatePage(doc);
 		};
 		time.addEventListener("click", toggleDisplay, false);

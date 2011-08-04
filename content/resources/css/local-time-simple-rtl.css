@@ -1,8 +1,7 @@
 @-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
-#ft-ht-time-icon, #ft-local-time, #ft-local-time-icon {
+#ft-local-time {
 	float: left;
-	margin-right: 7px;
 	margin-top: 20px;
 }
 
@@ -14,4 +13,15 @@
 	background: url("chrome://foxtrick/content/resources/img/tz-local.png") no-repeat right center;
 	padding-right: 14px !important;
 }
+
+#ft-local-time {
+	background: url("chrome://foxtrick/content/resources/img/tz-local.png") no-repeat right 0;
+	padding-right: 14px !important;
+}
+
+#time {
+	background: url("chrome://foxtrick/content/resources/img/tz-hattrick.png") no-repeat right 0;
+	padding-right: 14px !important;
+}
+
 }
