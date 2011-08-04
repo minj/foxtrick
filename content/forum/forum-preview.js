@@ -121,7 +121,7 @@ var FoxtrickForumPreview = {
 		}
 		
 		//button_ok.setAttribute( "tabindex",  index);
-		if (button_ok && Foxtrickl10n.isStringAvailableLocal("sendmessage")) button_ok.setAttribute( "value",  Foxtrickl10n.getString( 'sendmessage'));
+		if (button_ok && Foxtrickl10n.isStringAvailableLocal("forumPreview.send")) button_ok.setAttribute( "value",  Foxtrickl10n.getString( 'forumPreview.send'));
 		//if (button_cancel) button_cancel.setAttribute( "tabindex",  "12" );
 
 		if (doc.getElementById('idFTPreview') == null) {
