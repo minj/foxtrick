@@ -13,6 +13,9 @@ if (typeof(opera) === "object") {
 	Foxtrick.InternalPath = "content/";
 	Foxtrick.ResourcePath = "http://foxtrick.googlecode.com/svn/trunk/content/";
 	
+	// used to cache dataUrls images in opera
+	Foxtrick.dataUrlStorage = {};
+	
 	// to tell which context the chrome script is running at
 	// either background page, or content script
 	Foxtrick.chromeContext = function() {
