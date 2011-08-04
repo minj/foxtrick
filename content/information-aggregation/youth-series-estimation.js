@@ -37,8 +37,17 @@ var FoxtrickYouthSeriesEstimation = {
 				continue;
 			}
 
-			var firstMatchCell = cells[3];
-			var date = Foxtrick.util.time.getDateFromText(firstMatchCell.textContent);
+			var startsCell = cells[3];
+			var startsSpan = startsCell.getElementsByClassName("date")[0];
+			if (startsSpan.hasAttribute("x-ht-date")) {
+				// node displays local time instead of HT time as modified
+				// in LocalTime, HT time is saved in attribute x-ht-date
+				var date = new Date();
+				date.setTime(startsSpan.getAttribute("x-ht-date"));
+			}
+			else {
+				var date = Foxtrick.util.time.getDateFromText(startsSpan.textContent);
+			}
 			var time = date.getTime();
 			var nowTimeText = doc.getElementById("time").textContent;
 			var nowTime = Foxtrick.util.time.getDateFromText(nowTimeText).getTime();
@@ -64,7 +73,7 @@ var FoxtrickYouthSeriesEstimation = {
 			if (days < 2) { // minimum 1 day
 				Foxtrick.addClass(info, "near-start");
 			}
-			firstMatchCell.appendChild(info);
+			startsCell.appendChild(info);
 		}
 		table.setAttribute(this.ATTRIB_NAME, this.ATTRIB_NAME);
 	},
