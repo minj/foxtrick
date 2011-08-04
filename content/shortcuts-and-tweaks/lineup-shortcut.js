@@ -1,6 +1,6 @@
 /**
  * FoxtrickLineupShortcut (Add a direct shortcut to lineup in player detail page)
- * @author taised
+ * @author taised, ryanli
  */
 
 FoxtrickLineupShortcut = {
@@ -137,33 +137,29 @@ FoxtrickLineupShortcut = {
 
 	//***************** YOUTH TEAM ********************
 	_Analyze_Youth_Player_Page : function ( doc ) {
-		var mainbody = doc.getElementById( "mainBody" );
-		//First thing is to understand if it an own player or a player of another team
-		var boxes=mainbody.getElementsByClassName("mainBox");
-		if (boxes.length>1) {
-			//Own player, the right element is the second
-			var matchElement=boxes[1];
-		}
-		else {
-			//Player of another team, right element is the first (there is only one)
-			var matchElement=boxes[0];
-		}
+		var mainWrapper = doc.getElementById("mainWrapper");
+		var mainBody = doc.getElementById("mainBody");
 
-		//we get the table with rows of played match
-		var matchtable=matchElement.getElementsByTagName('table');
-		if (matchtable.length>0) {
-			//There are matches
-			matchtable=matchtable.item(0);
-			//Now getting playerid from top of the page:
-			var element=doc.getElementById('mainWrapper');
-			var playerid=Foxtrick.util.id.findYouthPlayerId(element);
-			var teamid=Foxtrick.util.id.findYouthTeamId(element);
-			for (i=0;i<matchtable.rows.length;i++) {
-				var link=matchtable.rows[i].cells[1].getElementsByTagName('a').item(0);
-				//var teamid=Foxtrick.util.id.getTeamIdFromUrl(link.href); //For youth teamid taken from link is wrong!
-				var matchid=Foxtrick.util.id.getMatchIdFromUrl(link.href);
-				this._Add_Lineup_Link(doc, matchtable.rows[i], teamid, playerid, matchid, "youth");
-			}
+		var matchLinks = Foxtrick.filter(mainBody.getElementsByTagName("a"),
+			function(n) {
+				return n.href.indexOf("/Club/Matches/Match.aspx") >= 0;
+			});
+		if (!matchLinks.length)
+			return; // hasn't played a match yet
+
+		// get matchTable which contains matches played
+		var matchTable = matchLinks[0];
+		while (matchTable.tagName.toLowerCase() != "table" && matchTable.parentNode)
+			matchTable = matchTable.parentNode;
+		if (matchTable.tagName.toLowerCase() != "table")
+			return;
+
+		var playerid=Foxtrick.util.id.findYouthPlayerId(mainWrapper);
+		var teamid=Foxtrick.util.id.findYouthTeamId(mainWrapper);
+		for (i=0;i<matchTable.rows.length;i++) {
+			var link=matchTable.rows[i].cells[1].getElementsByTagName('a').item(0);
+			var matchid=Foxtrick.util.id.getMatchIdFromUrl(link.href);
+			this._Add_Lineup_Link(doc, matchTable.rows[i], teamid, playerid, matchid, "youth");
 		}
 	},
 
