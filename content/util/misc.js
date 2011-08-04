@@ -864,6 +864,7 @@ Foxtrick.log = function() {
 		dump("FT: " + concated);
 	}
 	else if (Foxtrick.BuildFor === "Sandboxed") {
+		sandboxed.extension.sendRequest({req : "addDebugLog", log : concated});
 		console.log(concated);
 		Foxtrick.dumpFlush(document);
 	}

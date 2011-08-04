@@ -51,8 +51,8 @@ var FoxtrickForumYouthIcons = {
 	],
 
 	othericons : [
-		{ type:"debug", 	icon_class : "f_debug",		image : "format_debug.png", 	string : "debug", 		tags : "debug",		replace_text: "debug"},
-		{ type:"settings", 	icon_class : "f_settings",	image : "format_settings.png", 	string : "settings", 	tags : "settings",	replace_text: "settings"},
+		{ type:"debug", 	icon_class : "f_debug",		image : "format_debug.png", 	string : "debug", 		tags : "debug"},
+		{ type:"settings", 	icon_class : "f_settings",	image : "format_settings.png", 	string : "settings", 	tags : "settings"},
 	],
 
 	run : function(doc) {
@@ -333,10 +333,10 @@ var FoxtrickForumYouthIcons = {
 
 		var version = ev.target.getAttribute('version');
 		if ( version ){
-			Foxtrick.dump(ev.target.getAttribute('version_string')+' '+ version+'\n');
+			Foxtrick.log(ev.target.getAttribute('version_string'),' ', version);
 			if (version=='custom') {
 							var version = prompt(Foxtrickl10n.getString("ForumSpecialBBCode.enterSeparator"));
-							Foxtrick.dump('custom_seperator:'+ version+'\n');
+							Foxtrick.log('custom_seperator: ', version);
 							if (version == null || version=='') return;
 						}
 			FoxtrickPrefs.setString( ev.target.getAttribute('version_string'), version);
@@ -360,40 +360,22 @@ var FoxtrickForumYouthIcons = {
 	var fieldCounter = doc.getElementById(fieldCounterId);
 	if (ta) {
 		// link tags
-		Foxtrick.dump('replaceText: '+replaceText+'\n');
 		if (replaceText) {
 			var s = this.getSelection(ta);
 			var newText = (s.selectionLength > 0) ? openingTag.replace(replaceText, s.selectedText) : openingTag;
 
-			// debug
-			if (replaceText == 'debug'){
-				newText = Foxtrick.dumpHeader(doc); 
-				newText += Foxtrick.dumpCache.substr(Foxtrick.dumpCache.length-3500);
-				// clear the cache
-				Foxtrick.dumpCache = "";
-			}
-
-			Foxtrick.dump('selectedText: '+s.selectedText+'\n');
-			Foxtrick.dump('newText: '+newText+'\n');
-			
-			// settings
-			if (replaceText == 'settings'){
-				var userPrefsText =  FoxtrickPrefs.SavePrefs(true, false, true,'%key:%value'); 
-				var userPrefsTextArray = userPrefsText.split('\n');
-				newText = '';
-				for (var i=0; i<userPrefsTextArray.length; ++i)
-					newText += userPrefsTextArray[i].substr(0,240)+'\n';
-			}
+			Foxtrick.log('selectedText: ', s.selectedText);
+			Foxtrick.log('newText: ', newText);
 
 			// time
-			if (replaceText == 'time'){
+			if (replaceText == 'time') {
 				newText = doc.getElementById('time').textContent;
 			}
 
 			// table
-			else if (replaceText == 'ttt'){
+			else if (replaceText == 'ttt') {
 				var seperator = FoxtrickPrefs.getString("tableSeparator");
-				Foxtrick.dump('seperator'+seperator+'\n');
+				Foxtrick.log('seperator', seperator);
 
 				if (seperator=='TAB') seperator='\\t';
 				if (seperator=='|') seperator='\\|';
@@ -494,64 +476,60 @@ var FoxtrickForumYouthIcons = {
 			}
 		}
 
-		// start/end tags (needed??. closingtag was null for all icons in old version)
-		/*else if ((closingTag) && (counter >= 0)) {
-			var s = this.getSelection(ta);
-			var newText = (s.selectionLength > 0) ? openingTag + s.selectedText + closingTag : (counter % 2 == 1) ? openingTag : closingTag;
-
-			// Opera, Mozilla
-			if (ta.selectionStart || ta.selectionStart == '0') {
-				var st = ta.scrollTop;
-				ta.value = s.textBeforeSelection + newText + s.textAfterSelection;
-				ta.scrollTop = st;
-
-				ta.selectionStart = s.selectionStart + newText.length;
-				ta.selectionEnd = ta.selectionStart;
-			}
-
-			// IE
-			else if (document.selection) {
-				var IESel = document.selection.createRange();
-				IESel.text = newText;
-				IESel.select();
-			}
-
-			// Others
-			else {
-				ta.value += newText;
-			}
-		}
-
-		// Quote
-		else if ((closingTag) && !(counter)) {
-			ta.value = quoteText + '\n' + ta.value;
-		}*/
-
 		// HR
 		else {
 			var s = this.getSelection(ta);
 
-			// Opera, Mozilla
-			if (ta.selectionStart || ta.selectionStart == '0') {
-				var st = ta.scrollTop;
-				ta.value = s.textBeforeSelection + s.selectedText + openingTag + s.textAfterSelection;
-				ta.scrollTop = st;
+			var insertText  = function(text) {
+				// Opera, Mozilla
+				if (ta.selectionStart || ta.selectionStart == '0') {
+					var st = ta.scrollTop;
+					ta.value = s.textBeforeSelection + s.selectedText + text + s.textAfterSelection;
+					ta.scrollTop = st;
 
-				ta.selectionStart = s.selectionEnd + openingTag.length;
-				ta.selectionEnd = ta.selectionStart;
+					ta.selectionStart = s.selectionEnd + text.length;
+					ta.selectionEnd = ta.selectionStart;
+				}
+
+				// IE
+				else if (document.selection) {
+					var IESel = document.selection.createRange();
+					IESel.text = s.selectedText + text;
+					IESel.select();
+				}
+
+				// Others
+				else {
+					ta.value += text;
+				}
+			}
+			
+			// debug
+			if (openingTag == 'debug'){
+				if (Foxtrick.BuildFor === "Sandboxed") {
+					sandboxed.extension.sendRequest(
+						{ req : "getDebugLog" },
+						function(n) {
+							insertText(Foxtrick.dumpHeader(doc)+'\n'+n.log);
+							FoxtrickForumYouthIcons.textCounter(ta, fieldCounter, maxLength);
+						}
+					);
+					return;
+				}
+				else {
+					openingTag = Foxtrick.dumpHeader(doc) + '\n' + Foxtrick.dumpCache.substr(Foxtrick.dumpCache.length-3500);
+				}
+			}
+			// settings
+			if (openingTag == 'settings'){
+				var userPrefsText =  FoxtrickPrefs.SavePrefs(true, false, true,'%key:%value'); 
+				var userPrefsTextArray = userPrefsText.split('\n');
+				openingTag = '';
+				for (var i=0; i<userPrefsTextArray.length; ++i)
+					openingTag += userPrefsTextArray[i].substr(0,240)+'\n';
 			}
 
-			// IE
-			else if (document.selection) {
-				var IESel = document.selection.createRange();
-				IESel.text = s.selectedText + openingTag;
-				IESel.select();
-			}
-
-			// Others
-			else {
-				ta.value += newText;
-			}
+			insertText(openingTag);
 		}
 	}
 	this.textCounter(ta, fieldCounter, maxLength);
