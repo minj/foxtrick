@@ -175,8 +175,12 @@ Foxtrick.loader.chrome.browserLoad = function() {
 						request.msg // notification body text
 					);
 					notification.onclick = function() { 
-						if ( typeof(chrome)=='object' )
-							chrome.tabs.update(sender.tab.id, { url:request.url, selected:true });
+						if ( typeof(chrome)=='object' ) {
+							// focus last window
+							chrome.windows.update( sender.tab.windowId, { focused:true });
+							// goto msg.url in sender tab
+							chrome.tabs.update( sender.tab.id, { url:request.url, selected:true });
+						}
 						else 
 							sandboxed.tabs.create({url: request.url});
 						notification.cancel();

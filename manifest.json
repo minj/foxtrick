@@ -176,6 +176,7 @@
 	},
 	"name" : "FoxTrick",
 	"permissions" : [
+		"tabs",
 		"contextMenus",
 		"notifications",
 		"clipboardWrite",
