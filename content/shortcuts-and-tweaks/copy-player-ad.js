@@ -13,6 +13,7 @@ var FoxtrickCopyPlayerAd = {
 	OPTIONS : ["Sorted", "NonTableStyle"],
 
 	CSS : Foxtrick.ResourcePath + "resources/css/copy-player-ad.css",
+	CSS_SIMPLE : Foxtrick.ResourcePath + "resources/css/copy-player-ad-simple.css",
 
 	run : function(doc) {
 		try {

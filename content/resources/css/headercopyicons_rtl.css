@@ -21,37 +21,6 @@ a.copyicon {
 	width:36px;
 }
 
-.copyplayerad img {
-	background: transparent url(chrome://foxtrick/content/resources/img/copy/copyPlayerAd.png) no-repeat scroll 0 0;
-}
-
-.copyplayerscource img {
-	background: transparent url(chrome://foxtrick/content/resources/img/copy/copyPlayerSource.png) no-repeat scroll 0 0;
-}
-
-.copytrainingreport img {
-	background: transparent url(chrome://foxtrick/content/resources/img/copy/copyTrainingReport.png) no-repeat scroll 0 0;
-}
-
-.copyscoutreport img {
-	background: transparent url(chrome://foxtrick/content/resources/img/copy/copyScoutReport.png) no-repeat scroll 0 0;
-}
-
-.copyratings img {
-	background: transparent url(chrome://foxtrick/content/resources/img/copy/copyMatchRatings.png) no-repeat scroll 0 0;
-}
-
-.copyratingshome img {
-	background: transparent url(chrome://foxtrick/content/resources/img/copy/copyHomeRatings.png) no-repeat scroll 0 0;
-}
-
-.copyratingsaway img {
-	background: transparent url(chrome://foxtrick/content/resources/img/copy/copyAwayRatings.png) no-repeat scroll 0 0;
-}
-
-.copyyouthfixturessource img {
-    background: transparent url(chrome://foxtrick/content/resources/img/copy/copyNormal.png) no-repeat scroll 0 0;
-}
 .linkyouthstatistics img {
     background: transparent url(chrome://foxtrick/content/resources/img/copy/copyNormal.png) no-repeat scroll 0 0;
 }

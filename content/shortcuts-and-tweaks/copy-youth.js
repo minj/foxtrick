@@ -13,6 +13,7 @@ var FoxtrickCopyYouth = {
 		"FixturesSource"],
 
 	CSS : Foxtrick.ResourcePath + "resources/css/copy-youth.css",
+	CSS_SIMPLE : Foxtrick.ResourcePath + "resources/css/copy-youth-simple.css",
 
 	addTrainingReport : function(doc) {
 		// return if training report unread
