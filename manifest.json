@@ -11,6 +11,7 @@
 			"content/lib/oauth.js",
 			"content/lib/sha1.js",
 			"content/util/api.js",
+			"content/util/copy-button.js",
 			"content/util/currency.js",
 			"content/util/html.js",
 			"content/util/ht-ml.js",

@@ -56,6 +56,7 @@
 				<string>content/lib/sha1.js</string>
 				<string>content/lib/jquery.js</string>
 				<string>content/util/api.js</string>
+				<string>content/util/copy-button.js</string>
 				<string>content/util/currency.js</string>
 				<string>content/util/html.js</string>
 				<string>content/util/ht-ml.js</string>
