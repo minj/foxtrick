@@ -378,7 +378,11 @@ var FoxtrickForumYouthIcons = {
 			
 			// settings
 			if (replaceText == 'settings'){
-				newText = FoxtrickPrefs.SavePrefs(true, false, true,'%key:%value'); 
+				var userPrefsText =  FoxtrickPrefs.SavePrefs(true, false, true,'%key:%value'); 
+				var userPrefsTextArray = userPrefsText.split('\n');
+				newText = '';
+				for (var i=0; i<userPrefsTextArray.length; ++i)
+					newText += userPrefsTextArray[i].substr(0,240)+'\n';
 			}
 
 			// time
