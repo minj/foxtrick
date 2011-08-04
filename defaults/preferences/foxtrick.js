@@ -621,7 +621,7 @@ pref("extensions.foxtrick.prefs.module.TeamPopupLinks.Matches.more", false);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.NextMatch.default", false);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.NextMatch.more", true);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.Players.default", true);
-pref("extensions.foxtrick.prefs.module.TeamPopupLinks.Players.more", flase);
+pref("extensions.foxtrick.prefs.module.TeamPopupLinks.Players.more", false);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.SendMessage.default", true);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.SendMessage.more", false);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.TeamAtAlltid.default", false);
