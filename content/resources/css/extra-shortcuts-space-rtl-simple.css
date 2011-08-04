@@ -2,7 +2,7 @@
 
 #scSettingsLink{display:none;}
 div#shortcuts, div#shortcuts div.scContainer {width: 324px !important;}
-#ticker {width:275px; left: 350px;}
+#ticker {width:275px !important; left: 350px;}
 div#ticker div { width:275px !important; overflow:hidden !important; white-space:nowrap !important;}
 div#ticker div a { padding:0 2px !important; }
 
