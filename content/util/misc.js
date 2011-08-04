@@ -385,11 +385,13 @@ Foxtrick.insertAtCursor = function(textarea, text) {
 Foxtrick.convertImageUrlToData = function(cssTextCollection, callback) {
 	var pending = 0;
 		
-	var resolve = function(data) {
+	// send back when all images are converted
+	var resolve = function() {
 		if (--pending <= 0) {
 			callback(cssTextCollection);
 		}
 	};
+	// convert an image
 	var replaceImage = function (url) {
 		var image = new Image;
 		image.onload = function() {
@@ -398,7 +400,9 @@ Foxtrick.convertImageUrlToData = function(cssTextCollection, callback) {
 			canvas.height = image.height;
 			var context = canvas.getContext('2d');
 			context.drawImage(image, 0, 0);
-			cssTextCollection = cssTextCollection.replace(RegExp(url,'g'), canvas.toDataURL());
+			var dataUrl = canvas.toDataURL()
+			Foxtrick.dataUrlStorage[url] = dataUrl;
+			cssTextCollection = cssTextCollection.replace(RegExp(url,'g'), dataUrl);
 			return resolve();
 		};
 		image.onerror = function() {
@@ -413,12 +417,26 @@ Foxtrick.convertImageUrlToData = function(cssTextCollection, callback) {
 		var resourcePathRegExp = RegExp("chrome://foxtrick/content/", "ig");
 		cssTextCollection = cssTextCollection.replace(resourcePathRegExp, Foxtrick.InternalPath);
 		
-		if (urls)
+		if (urls) {
+			// first check dataurl cache
 			for (var i = 0; i<urls.length; ++i) {
 				urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g,'').replace(resourcePathRegExp, Foxtrick.InternalPath);
-				pending++;
-				replaceImage(urls[i]);
+				if (Foxtrick.dataUrlStorage[urls[i]]) {
+					cssTextCollection = cssTextCollection.replace(RegExp(urls[i],'g'), Foxtrick.dataUrlStorage[urls[i]]);
+				}
 			}
+			// convert missing images
+			for (var i = 0; i<urls.length; ++i) {
+				urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g,'').replace(resourcePathRegExp, Foxtrick.InternalPath);
+				if (!Foxtrick.dataUrlStorage[urls[i]]) {
+					pending++;
+					replaceImage(urls[i]);
+				}
+			}
+			// resolve cached dataurls
+			pending++;
+			resolve();
+		}
 	}
 };
 

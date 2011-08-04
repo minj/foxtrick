@@ -213,14 +213,17 @@ Foxtrick.loader.chrome.browserLoad = function() {
 						canvas.height = image.height;
 						var context = canvas.getContext('2d');
 						context.drawImage(image, 0, 0);
-						return sendResponse({ url:canvas.toDataURL() });
+						var dataUrl = canvas.toDataURL()
+						Foxtrick.dataUrlStorage[url] = dataUrl;
+						return sendResponse({ url: dataUrl });
 					};
 					image.onerror = function() {
 						return sendResponse({ url:'' });
 					};
 					return image.src = url;
 				};
-				replaceImage(request.url);
+				if (!Foxtrick.dataUrlStorage[request.url]) replaceImage(request.url);
+				else sendResponse({ url: Foxtrick.dataUrlStorage[request.url] });
 			}
 		}
 		catch (e) {

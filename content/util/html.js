@@ -260,14 +260,16 @@ Foxtrick.GetDataURIText = function (filetext) {
 }
 
 Foxtrick.addImage = function (doc, elem, features) {
-	if (typeof(opera)=='object')
-		sandboxed.extension.sendRequest({ req : "getDataUrl", url:features.src},
+	if (typeof(opera)=='object') {
+		var url  = features.src.replace(Foxtrick.ResourcePath, Foxtrick.InternalPath);
+		sandboxed.extension.sendRequest({ req : "getDataUrl", url:url},
 			function (data) {
 				var img = doc.createElement("img");
 				for (i in features) img[i] = features[i];
 				img.src = data.url;
 				elem.appendChild(img);
 		});
+	}
 	else {
 		var img = doc.createElement("img");
 		for (i in features) img[i] = features[i];
