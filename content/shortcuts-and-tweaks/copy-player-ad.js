@@ -12,6 +12,8 @@ var FoxtrickCopyPlayerAd = {
 	PAGES : ["playerdetail", "youthplayerdetail"],
 	OPTIONS : ["Sorted", "NonTableStyle"],
 
+	CSS : Foxtrick.ResourcePath + "resources/css/copy-player-ad.css",
+
 	run : function(doc) {
 		try {
 			var main = doc.getElementById("mainWrapper");
@@ -32,55 +34,12 @@ var FoxtrickCopyPlayerAd = {
 			return;
 		}
 
-		if (FoxtrickPrefs.getBool("smallcopyicons")) {
-			if (doc.getElementById('copyplayerad')) return;
-			var boxHead = doc.getElementById('mainWrapper').getElementsByTagName('div')[1];
-			if (boxHead.className!='boxHead') return;
-
-			if (Foxtrick.util.layout.isStandard(doc)) doc.getElementById('mainBody').setAttribute('style','padding-top:10px;');
-
-			var messageLink = doc.createElement("a");
-			messageLink.className = "inner copyicon copyplayerad ci_fourth";
-			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyplayerad");
-			messageLink.id = "copyplayerad";
-			messageLink.addEventListener("click", this.createPlayerAd, false);
-
-			var img = doc.createElement("img");
-			img.alt = Foxtrickl10n.getString("foxtrick.tweaks.copyplayerad");
-			img.src = "/Img/Icons/transparent.gif";
-
-			messageLink.appendChild(img);
-			doc.getElementById('mainBody').insertBefore(messageLink, doc.getElementById('mainBody').firstChild);
+		var button = Foxtrick.util.copyButton.add(doc,
+			Foxtrickl10n.getString("foxtrick.tweaks.copyplayerad"));
+		if (button) {
+			Foxtrick.addClass(button, "ft-copy-player-ad");
+			Foxtrick.listen(button, "click", this.createPlayerAd, false);
 		}
-		else {
-			var parentDiv = doc.createElement("div");
-			parentDiv.id = "foxtrick_addactionsbox_parentDiv";
-
-			var messageLink = doc.createElement("a");
-			messageLink.className = "inner";
-			messageLink.title = Foxtrickl10n.getString("foxtrick.tweaks.copyplayerad");
-			messageLink.style.cursor = "pointer";
-			messageLink.addEventListener("click", this.createPlayerAd, false)
-
-			var img = doc.createElement("img");
-			img.style.padding = "0px 5px 0px 0px;";
-			img.className = "actionIcon";
-			img.alt = Foxtrickl10n.getString("foxtrick.tweaks.copyplayerad");
-			img.src = Foxtrick.ResourcePath+"resources/img/copy/copyPlayerAd.png";
-			messageLink.appendChild(img);
-
-			parentDiv.appendChild(messageLink);
-
-			var newBoxId = "foxtrick_actions_box";
-			Foxtrick.addBoxToSidebar(doc, Foxtrickl10n.getString(
-				"foxtrick.tweaks.actions"), parentDiv, newBoxId, "first", "");
-		}
-	},
-
-	change : function(doc) {
-		var id = "foxtrick_addactionsbox_parentDiv";
-		if (!doc.getElementById(id))
-			this.run(doc);
 	},
 
 	createPlayerAd : function(ev) {
