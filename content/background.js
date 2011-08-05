@@ -10,9 +10,6 @@ if (!Foxtrick.loader)
 	Foxtrick.loader = {};
 Foxtrick.loader.chrome = {};
 
-// debug log storage
-var debugLogStorage = '';
-
 // invoked after the browser chrome is loaded
 Foxtrick.loader.chrome.browserLoad = function() {
   try {
@@ -211,12 +208,12 @@ Foxtrick.loader.chrome.browserLoad = function() {
 			}
 			else if (request.req == "addDebugLog") {
 				// @param log - text to add to debug log storage
-				debugLogStorage = debugLogStorage.substr(debugLogStorage.length-3500) + request.log;
+				Foxtrick.addToDebugLogStorage(request.log);
 			}
 			else if (request.req == "getDebugLog") {
 				// @callback_param log - contains the debug log storage
-				sendResponse({ log : debugLogStorage });
-				debugLogStorage = '';
+				sendResponse({ log : Foxtrick.debugLogStorage });
+				Foxtrick.debugLogStorage = '';
 			}
 			else if (request.req == "getDataUrl") {
 				// @param branch - initial part of key(s) of session store to delete

@@ -45,7 +45,7 @@ Foxtrick.filePickerForDataUrl = function(doc, callback, data) {
 	input.type = 'file';
 	input.addEventListener('change',function(ev) {
 		var file = ev.target.files[0];
-		var reader = new FileReader();
+		var reader = new window.FileReader();
 		reader.onerror = function(e) {
 			alert('Error code: ' + e.target.error.code);
 		};
@@ -64,7 +64,7 @@ Foxtrick.filePickerForText = function(doc, callback, data) {
 	input.type = 'file';
 	input.addEventListener('change',function(ev) {
 		var file = ev.target.files[0];
-		var reader = new FileReader();
+		var reader = new window.FileReader();
 		reader.onerror = function(e) {
 			alert('Error code: ' + e.target.error.code);
 		};
@@ -811,6 +811,13 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 }
 
 // ----------------------------- log and dump ------------------------------
+// debug log storage (sandboxed)
+Foxtrick.debugLogStorage = '';
+
+Foxtrick.addToDebugLogStorage = function (text) {
+	Foxtrick.debugLogStorage = Foxtrick.debugLogStorage.substr(Foxtrick.debugLogStorage.length-3500) + text;
+};
+
 Foxtrick.dumpHeader = function(doc) {
 	var headString = Foxtrickl10n.getString("foxtrick.log.env")
 				.replace(/%1/, Foxtrick.version())
@@ -892,7 +899,11 @@ Foxtrick.log = function() {
 		dump("FT: " + concated);
 	}
 	else if (Foxtrick.BuildFor === "Sandboxed") {
-		sandboxed.extension.sendRequest({req : "addDebugLog", log : concated});
+		if (Foxtrick.chromeContext() == "content")
+			sandboxed.extension.sendRequest({req : "addDebugLog", log : concated});
+		else {
+			Foxtrick.addToDebugLogStorage(concated);
+		}
 		console.log(concated);
 		Foxtrick.dumpFlush(document);
 	}
