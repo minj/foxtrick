@@ -580,10 +580,29 @@ Foxtrick.collect_module_css = function() {
 	var isStandard = FoxtrickPrefs.getBool('isStandard');
 	var isRTL = FoxtrickPrefs.getBool('isRTL');
 
+	var collect_module_css_impl = function(module) { 
+		// collect module main CSS
+		collectCss(module.CSS, module.CSS_SIMPLE, module.CSS_RTL, module.CSS_SIMPLE_RTL);
+		
+		// collect module options CSS
+		if (module.OPTIONS_CSS) {
+			for (var j = 0; j < module.OPTIONS_CSS.length; ++j) {
+				if (!FoxtrickPrefs.isModuleOptionEnabled(module.MODULE_NAME, module.OPTIONS[j]))
+					continue;
+				collectCss(module.OPTIONS_CSS[j],
+					module.OPTIONS_CSS_SIMPLE ? module.OPTIONS_CSS_SIMPLE[j] : null,
+					module.OPTIONS_CSS_RTL ? module.OPTIONS_CSS_RTL[j] : null,
+					module.OPTIONS_CSS_RTL_SIMPLE ? module.OPTIONS_CSS_RTL_SIMPLE[j] : null
+					);
+			}
+		}
+	}
+
 	Foxtrick.cssFiles = [];
 	for (var i in Foxtrick.modules) {
 		var module = Foxtrick.modules[i];
-		if (!FoxtrickPrefs.isModuleEnabled(module.MODULE_NAME))
+		if (!FoxtrickPrefs.isModuleEnabled(module.MODULE_NAME) || 
+			module.MODULE_NAME == 'SkinPlugin' )
 			continue;
 		var collectCss = function(normal, simple, rtl, simpleRtl) {
 			var collect_css_impl = function(cssList) {
@@ -639,22 +658,11 @@ Foxtrick.collect_module_css = function() {
 					collect();
 			}
 		}
-
-		// collect module main CSS
-		collectCss(module.CSS, module.CSS_SIMPLE, module.CSS_RTL, module.CSS_SIMPLE_RTL);
-		
-		// collect module options CSS
-		if (module.OPTIONS_CSS) {
-			for (var j = 0; j < module.OPTIONS_CSS.length; ++j) {
-				if (!FoxtrickPrefs.isModuleOptionEnabled(module.MODULE_NAME, module.OPTIONS[j]))
-					continue;
-				collectCss(module.OPTIONS_CSS[j],
-					module.OPTIONS_CSS_SIMPLE ? module.OPTIONS_CSS_SIMPLE[j] : null,
-					module.OPTIONS_CSS_RTL ? module.OPTIONS_CSS_RTL[j] : null,
-					module.OPTIONS_CSS_RTL_SIMPLE ? module.OPTIONS_CSS_RTL_SIMPLE[j] : null
-					);
-			}
-		}
+		collect_module_css_impl(module);
+	}
+	// load last to have user settings overwrite default settings  
+	if (FoxtrickSkinPlugin  && FoxtrickPrefs.isModuleEnabled(FoxtrickSkinPlugin.MODULE_NAME) ) {
+		collect_module_css_impl(FoxtrickSkinPlugin);
 	}
 };
 

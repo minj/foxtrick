@@ -12,17 +12,16 @@ var FoxtrickSkinPlugin = {
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_LOAD_BUTTONS : new Array(true,true),
 	OPTIONS_CSS: new Array ("",""),
-	CSS:'',
 
 	init : function() {
 		if (Foxtrick.BuildFor == "Gecko") {
 			if (FoxtrickPrefs.isModuleOptionEnabled("SkinPlugin", 'Skin1')) {
 				var skinlink = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin1_text");
-				this.CSS = skinlink;
+				this.OPTIONS_CSS[0] = skinlink;
 			}
 			if (FoxtrickPrefs.isModuleOptionEnabled("SkinPlugin", 'Skin2')) {
 				var skinlink = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin2_text");
-				this.CSS = skinlink;
+				this.OPTIONS_CSS[1] = skinlink;
 			}
 		}
 		if (Foxtrick.BuildFor != "Gecko") {
