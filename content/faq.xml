@@ -9,7 +9,7 @@
 				These interfaces are provided through HTML IDs and classes, and you can use CSS to define your preferred style.
 			</xhtml:p>
 			<xhtml:p>
-				An example user style file can be found <xhtml:a href="chrome://foxtrick/content/resources/css/user-content-example.css">here</xhtml:a>, which you can modify to satisfy your need.
+				An example user style file can be found <xhtml:a href="/content/resources/css/user-content-example.css">here</xhtml:a> or <xhtml:a href="http://foxtrick.googlecode.com/svn/trunk/content/resources/css/user-content-example.css">here</xhtml:a>, which you can modify to satisfy your need.
 				After saving the file, you can use the <xhtml:a href="#module=SkinPlugin">SkinPlugin</xhtml:a> module for loading the CSS file to have the user style in effect.
 			</xhtml:p>
 		</answer>
