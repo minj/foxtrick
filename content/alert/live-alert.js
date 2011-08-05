@@ -10,7 +10,8 @@ var FoxtrickLiveAlert = {
 	PAGES : [ "matchesLive" ],
 	OPTIONS : ["Sound"],
 	OPTION_TEXTS : true,
-
+	OPTION_TEXTS_DATAURL_LOAD_BUTTONS : new Array(true),
+	
 	store : {},
 
 	run : function(doc) {

@@ -10,7 +10,7 @@ var FoxtrickSkinPlugin = {
 	PAGES : new Array('all'),
 	OPTIONS : new Array('Skin1','Skin2'),
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_LOAD_BUTTONS : new Array(true,true),
+	OPTION_TEXTS_TEXTFILE_LOAD_BUTTONS : new Array(true,true),
 	OPTIONS_CSS: new Array ("",""),
 
 	init : function() {
