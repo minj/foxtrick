@@ -6,9 +6,11 @@ ZIP = zip -q
 ROOT_FILES_FIREFOX = chrome.manifest install.rdf icon.png COPYING HACKING
 ROOT_FILES_CHROME = manifest.json
 ROOT_FILES_OPERA = config.xml content/background.html content/preferences.xhtml
+ROOT_FILES_SAFARI = Info.plist Settings.plist
 ROOT_FOLDERS_FIREFOX = defaults/
 ROOT_FOLDERS_CHROME = defaults/ skin/
 ROOT_FOLDERS_OPERA = defaults/ skin/
+ROOT_FOLDERS_SAFARI = defaults/ skin/
 SCRIPT_FOLDERS = alert/ \
 	forum/ \
 	information-aggregation/ \
@@ -48,12 +50,16 @@ CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html \
 	loader-chrome.js
 CONTENT_FILES_OPERA = $(CONTENT_FILES) background.js \
 	loader-chrome.js 
+CONTENT_FILES_SAFARI = $(CONTENT_FILES) background.html \
+	preferences.xhtml \
+	background.js \
+	loader-chrome.js
 
 REVISION = `git svn find-rev HEAD`
 
 DIST_TYPE = nightly
 
-all: firefox chrome opera
+all: firefox chrome opera safari
 
 firefox:
 	make clean-firefox clean-build
@@ -161,6 +167,37 @@ endif
 	# clean up
 	make clean-build
 
+safari:
+	make clean-safari clean-build
+	mkdir $(BUILD_DIR)
+	# copy root files
+	cp -r $(ROOT_FILES_SAFARI) $(ROOT_FOLDERS_SAFARI) $(BUILD_DIR)
+	# content/
+	mkdir $(BUILD_DIR)/content
+	cd content/; \
+	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_SAFARI) \
+		../$(BUILD_DIR)/content
+	## remove xml/xhtml reference form preferences.xhtml
+	cd $(BUILD_DIR); sed -i -r 's|(^.+xhtml">)|<html>|' content/preferences.xhtml 
+	# modify according to distribution type
+ifeq ($(DIST_TYPE),nightly)
+	# should replace with file and not within line <-------------------- help
+	cd $(BUILD_DIR); \
+	sed -i -r 's|(<key>CFBundleShortVersionString</key>\s+<string>.+)(</string>)|\1.'$(REVISION)'\2|' Info.plist; \
+	sed -i -r 's|(<key>CFBundleVersion</key>\s+<string>.+)(</string>)|\1.'$(REVISION)'\2|' Info.plist; \
+	sed -i -r 's|("extensions\.foxtrick\.prefs\.version", ".+)(")|\1.'$(REVISION)'\2|' defaults/preferences/foxtrick.js
+endif
+	# make safariextz
+	
+	# set name of directory inside safariextz
+	mv $(BUILD_DIR) foxtrick.safariextension
+	# needs certificate in there somehow <---------------------- help
+	xar -c foxtrick.safariextension -f $(APP_NAME).safariextz
+	
+	mv foxtrick.safariextension $(BUILD_DIR)
+	# clean up
+	make clean-build
+
 clean-firefox:
 	rm -rf *.xpi
 
@@ -171,8 +208,11 @@ clean-chrome:
 clean-opera:
 	rm -rf *.oex
 
+clean-safari:
+	rm -rf *.safariextz
+
 clean-build:
 	rm -rf $(BUILD_DIR)
 
 clean:
-	make clean-firefox clean-chrome clean-opera clean-build
+	make clean-firefox clean-chrome clean-opera clean-safari clean-build
