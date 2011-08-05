@@ -44,9 +44,9 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 					return;
 				}
 				
-				Foxtrick.entry.init();
 				Foxtrick.util.inject.addStyleSheetSnippet(document, data.cssText, 'module_css');
 				Foxtrick.entry.cssLoaded = true;
+				Foxtrick.entry.init();
 
 				var initTime = new Date() - begin.getTime();
 				Foxtrick.log("init time: " , initTime , " ms");

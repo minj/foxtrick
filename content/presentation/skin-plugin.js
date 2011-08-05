@@ -7,6 +7,7 @@ var FoxtrickSkinPlugin = {
 
 	MODULE_NAME : "SkinPlugin",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
+	PAGES : new Array('all'),
 	OPTIONS : new Array('Skin1','Skin2'),
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_LOAD_BUTTONS : new Array(true,true),
@@ -14,40 +15,30 @@ var FoxtrickSkinPlugin = {
 	CSS:'',
 
 	init : function() {
-		if (FoxtrickPrefs.isModuleOptionEnabled("SkinPlugin", 'Skin1')) {
-			var skinlink = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin1_text");
-			this.CSS = skinlink;
+		if (Foxtrick.BuildFor == "Gecko") {
+			if (FoxtrickPrefs.isModuleOptionEnabled("SkinPlugin", 'Skin1')) {
+				var skinlink = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin1_text");
+				this.CSS = skinlink;
+			}
+			if (FoxtrickPrefs.isModuleOptionEnabled("SkinPlugin", 'Skin2')) {
+				var skinlink = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin2_text");
+				this.CSS = skinlink;
+			}
 		}
-		if (FoxtrickPrefs.isModuleOptionEnabled("SkinPlugin", 'Skin2')) {
-			var skinlink = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin2_text");
-			this.CSS = skinlink;
+		if (Foxtrick.BuildFor != "Gecko") {
+			if (FoxtrickPrefs.isModuleOptionEnabled("SkinPlugin", 'Skin1')) {
+				var skin1 = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin1_text");
+				Foxtrick.log(skin1);
+				Foxtrick.util.inject.addStyleSheetSnippet(document, skin1, 'skin1');
+			}
+			if (FoxtrickPrefs.isModuleOptionEnabled("SkinPlugin", 'Skin2')) {
+				var skin2 = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin2_text");
+				Foxtrick.util.inject.addStyleSheetSnippet(document, skin2, 'skin2');
+			}
 		}
 	},
 
 	run : function(doc) {
-		/*OLD MEDALS SCRIPT*/
-		if (FoxtrickPrefs.getBool("module.CustomMedals.enabled")){
-			var sidebar = doc.getElementById('sidebar');
-			if( sidebar ) {
-				var images = sidebar.getElementsByTagName('img');
-				for(var i = 0; i < images.length; i++) {
-					Foxtrick.dump(' => MEDAL ' + images[i].src + '\n');
-					var img = images[i];
-					var imgSrc = img.src;
-					var customMedals = "oldhtmedals";
-					var oldString = "Trophy";
-					var newString = Foxtrick.ResourcePath+"resources/img/"
-						+ "custommedals/" + customMedals + "/";
-					if(imgSrc.search(oldString) != -1) {
-						var startPos = imgSrc.lastIndexOf("=") + 1;
-						imgSrc = imgSrc.substr(startPos);
-						imgSrc = imgSrc.replace("png","gif");
-						img.src = newString + imgSrc;
-					}
-				} //images
-			} //sidebar
-		} //old medals
 	}
 };
-if (Foxtrick.BuildFor == "Gecko")
-	Foxtrick.util.module.register(FoxtrickSkinPlugin);
+Foxtrick.util.module.register(FoxtrickSkinPlugin);

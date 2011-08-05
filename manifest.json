@@ -180,7 +180,7 @@
 		"contextMenus",
 		"notifications",
 		"clipboardWrite",
-		"*://*.hattrick.org/*",
+		"http://*.hattrick.org/*",
 		"http://www.hattrick-youthclub.org/*",
 		"http://www.fantamondi.it/*"
 	],

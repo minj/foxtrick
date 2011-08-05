@@ -467,16 +467,33 @@ function getModule(module)
 
 				// load buttons
 				if (module.OPTION_TEXTS_LOAD_BUTTONS && module.OPTION_TEXTS_LOAD_BUTTONS[i]) {
-					var load = document.createElement("button");
-					textDiv.appendChild(load);
-					load.id = textInput.id + "-load";
-					$(load).attr("text-key", "button.import");
-					$(load).click(function() {
-						const text = $("#" + $(this).attr("id").replace(/-load$/, ""));
-						var file = Foxtrick.selectFile(window);
-						if (file)
-							text[0].value = "file://" + file;
-					});
+					if (Foxtrick.BuildFor == "Gecko") {
+						var load = document.createElement("button");
+						textDiv.appendChild(load);
+						load.id = textInput.id + "-load";
+						$(load).attr("text-key", "button.import");
+						$(load).click(function() {
+							const text = $("#" + $(this).attr("id").replace(/-load$/, ""));
+							var file = Foxtrick.selectFile(window);
+							if (file)
+								text[0].value = "file://" + file;
+						});
+					}
+					else {
+						var callback = function(text, data) {
+							var fullUrlRegExp = new RegExp("\\(\'?\"?file://([^\\)]+)\'?\"?\\)", "gi");
+							var urls = text.match(fullUrlRegExp);
+							if (urls) {
+								// first check dataurl cache
+								for (var i = 0; i<urls.length; ++i) {
+									Foxtrick.log(urls[i]);
+								}
+							}
+							document.getElementById(data.id).value = text;
+						};
+						var load  = Foxtrick.filePickerForText(document, callback, {id: textInput.id });
+						textDiv.appendChild(load);
+					}
 				}
 			}
 		}
