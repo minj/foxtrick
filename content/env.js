@@ -144,6 +144,7 @@ if (typeof(opera) === "object") {
 	DOMParser = window.DOMParser;
 	if (!XMLSerializer) var XMLSerializer = window.XMLSerializer;
 	var FileReader = window.FileReader;
+	var XMLHttpRequest = window.XMLHttpRequest;
 	var Node = {
 		ELEMENT_NODE : 1,
 		ATTRIBUTE_NODE : 2,

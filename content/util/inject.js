@@ -47,13 +47,33 @@ Foxtrick.util.inject.removeStyleSheetSnippet = function(doc, id) {
 		head.removeChild(style);
 };
 
+
+// attaches a JavaScript snippet to the page
+Foxtrick.util.inject.addJavaScriptSnippet = function(doc, js) {
+	Foxtrick.log('addJavaScriptSnippet');
+	var path = "head[1]";
+	var head = doc.evaluate(path,doc.documentElement,null,doc.DOCUMENT_NODE,null).singleNodeValue;
+
+	var script = doc.createElement("script");
+	script.setAttribute("type", "text/javascript");
+	script.textContent = js;
+	head.appendChild(script);
+};
+
+
 // attaches a JavaScript file to the page
-Foxtrick.util.inject.addJavaScript = function(doc, js) {
+Foxtrick.util.inject.addJavaScript = function(doc, url) {
+	/*if (typeof(opera)=='object') {
+		Foxtrick.load(url, function(text) {
+			Foxtrick.util.inject.addJavaScriptSnippet(doc, text);
+		}, false);
+		return;
+	}*/
 	var path = "head[1]";
 	var head = doc.evaluate(path,doc.documentElement,null,doc.DOCUMENT_NODE,null).singleNodeValue;
 
 	var script = doc.createElement("script");
 	script.setAttribute("language", "JavaScript");
-	script.setAttribute("src", js);
+	script.setAttribute("src", url);
 	head.appendChild(script);
 };

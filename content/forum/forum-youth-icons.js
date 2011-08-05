@@ -83,7 +83,8 @@ var FoxtrickForumYouthIcons = {
 		var textarea = doc.getElementsByTagName('textarea')[0]
 		if (textarea == null ) return;
 
-		Foxtrick.util.inject.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/HattrickML.js");
+		if (typeof(opera)!=='object')
+			Foxtrick.util.inject.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/HattrickML.js");
 
 		if (Foxtrick.isPage("newsletter", doc)
 			|| Foxtrick.isPage("mailnewsletter", doc)) {
