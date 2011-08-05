@@ -815,7 +815,9 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 Foxtrick.debugLogStorage = '';
 
 Foxtrick.addToDebugLogStorage = function (text) {
-	Foxtrick.debugLogStorage = Foxtrick.debugLogStorage.substr(Foxtrick.debugLogStorage.length-3500) + text;
+	var cutoff = Foxtrick.debugLogStorage.length-3500;
+	cutoff = (cutoff<0)?0:cutoff;
+	Foxtrick.debugLogStorage = Foxtrick.debugLogStorage.substr(cutoff) + text;
 };
 
 Foxtrick.dumpHeader = function(doc) {
