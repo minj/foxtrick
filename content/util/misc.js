@@ -45,7 +45,7 @@ Foxtrick.filePickerForDataUrl = function(doc, callback, data) {
 	input.type = 'file';
 	input.addEventListener('change',function(ev) {
 		var file = ev.target.files[0];
-		var reader = new window.FileReader();
+		var reader = new FileReader();
 		reader.onerror = function(e) {
 			alert('Error code: ' + e.target.error.code);
 		};
@@ -64,7 +64,7 @@ Foxtrick.filePickerForText = function(doc, callback, data) {
 	input.type = 'file';
 	input.addEventListener('change',function(ev) {
 		var file = ev.target.files[0];
-		var reader = new window.FileReader();
+		var reader = new FileReader();
 		reader.onerror = function(e) {
 			alert('Error code: ' + e.target.error.code);
 		};
