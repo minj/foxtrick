@@ -2347,7 +2347,7 @@ Foxtrick.LinkCollection.getLinks2  = function(stats, stattype, filterparams, doc
 
 
 Foxtrick.LinkCollection.getLinks  = function(stattype, filterparams, doc, module) {
-	filterparams.server=doc.location.hostname;
+	filterparams.server = doc.location.hostname;
 	return Foxtrick.LinkCollection.getLinks2(Foxtrick.StatsHash[stattype], stattype, filterparams, doc, false, module);
 };
 
@@ -2444,7 +2444,11 @@ Foxtrick.LinkCollection.getLinkElement  = function(link, stat, doc, key, module_
     if (typeof(stat["img"]) == 'undefined') {
         statslink.appendChild(doc.createTextNode(stat.shorttitle));
      } else {
-		Foxtrick.addImage(doc, statslink, { alt:stat.title, title: stat.title, src: stat.img });
+		// add img for tracker flags
+		if (module_name === FoxtrickLinksTracker.MODULE_NAME)
+			statslink.appendChild(doc.createElement('img'));  
+		else 
+			Foxtrick.addImage(doc, statslink, { alt:stat.title, title: stat.title, src: stat.img });
     }
 
     statslink.href = link;
