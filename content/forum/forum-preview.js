@@ -343,7 +343,7 @@ var FoxtrickForumPreview = {
 
 		try {
 			var prev_div = doc.getElementById( "forum_preview" );
-			var text =  msg_window.value
+			var text =  String(msg_window.value);
 
 			// format within pre
 			text = FoxtrickFormatPostingText.format(text);
@@ -358,7 +358,8 @@ var FoxtrickForumPreview = {
 			text = text.replace(/<·/g,'&lt;'); // i don't, so just lets do both
 			text = Foxtrick.stripHTML( text);
 
-			text = text.replace(/\n/g, "<br />");
+			text = text.replace(/\n/g, " <br />");
+			text = text.replace(/\r/g, "");
 
 			var nested = ['[q','[b','[i','[u','[spoil','[table','[pre'];
 			var count =  0
