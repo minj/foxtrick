@@ -11,7 +11,7 @@ var FoxtrickGoToPostBox = {
 	CSS: Foxtrick.ResourcePath+"resources/css/gotopostbox.css",
 
 	run : function(doc) {
-		Foxtrick.util.inject.js(doc, Foxtrick.ResourcePath+"resources/js/GoToPostBox.js");
+		Foxtrick.util.inject.jsLink(doc, Foxtrick.ResourcePath+"resources/js/GoToPostBox.js");
 
 		if (Foxtrick.util.layout.isRtl(doc)) doc.getElementById('mainBody').getElementsByTagName('span')[0].setAttribute('style','margin-right:0px');
 			else if (Foxtrick.util.layout.isStandard(doc)) doc.getElementById('mainBody').getElementsByTagName('span')[0].setAttribute('style','margin-right:70px');
