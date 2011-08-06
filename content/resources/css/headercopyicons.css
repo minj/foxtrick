@@ -2,11 +2,18 @@
 
 a.copyicon {
 	cursor: pointer;
-	position:absolute;
-	 top:11px;
-	 z-index:99;
+	top: 11px;
+	height: 36px;
+	width: 36px;
+	z-index:99;
+	background-repeat: no-repeat;
+	display: inline-block !important;
 }
 
+/* For icons in the header */
+#mainBody .copyicon {
+	position: absolute;
+}
 
 .copyicon img {
 	padding: 0px 0px 0px 0px;

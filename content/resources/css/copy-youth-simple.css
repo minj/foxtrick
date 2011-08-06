@@ -1,15 +1,15 @@
-.ft-copy-training-report {
+.copyicon.ft-copy-training-report {
 	background-image: url("chrome://foxtrick/content/resources/img/copy/copyTrainingReport_s.png");
 }
 
-.ft-copy-scout-comment {
+.copyicon.ft-copy-scout-comment {
 	background-image: url("chrome://foxtrick/content/resources/img/copy/copyScoutReport_s.png");
 }
 
-.ft-copy-player-source {
+.copyicon.ft-copy-player-source {
 	background-image: url("chrome://foxtrick/content/resources/img/copy/copyPlayerSource_s.png");
 }
 
-.ft-copy-fixtures-source {
+.copyicon.ft-copy-fixtures-source {
 	background-image: url("chrome://foxtrick/content/resources/img/copy/copyNormal_s.png");
 }

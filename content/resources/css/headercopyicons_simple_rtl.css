@@ -2,9 +2,21 @@
 
 a.copyicon {
 	cursor: pointer;
-	position:absolute;
-	 top:6px;
-	 z-index:99;
+	top:6px;
+	z-index:99;
+	background-repeat: no-repeat;
+	display: inline-block !important;
+}
+
+.copyicon img {
+	padding: 0px 0px 0px 0px;
+	height:22px;
+	width:22px;
+}
+
+/* For icons in the header */
+#mainBody .copyicon {
+	position: absolute;
 }
 
 .ci_first { left:6px;}
@@ -12,13 +24,6 @@ a.copyicon {
 .ci_third {left:56px;}
 .ci_fourth{left:81px;}
 .ci_fifth{left:106px;}
-
-
-.copyicon img {
-	padding: 0px 0px 0px 0px;
-	height:22px;
-	width:22px;
-}
 
 .linkyouthstatistics img {
     background: transparent url(chrome://foxtrick/content/resources/img/copy/copyNormal_s.png) no-repeat scroll 0 0;

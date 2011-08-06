@@ -44,32 +44,36 @@ Foxtrick.util.copyButton.add = function(doc, text) {
 			}
 		}
 
-		var messageLink = doc.createElement("a");
-		messageLink.className = "inner copyicon " + orderClass;
-		messageLink.title = text;
+		var link = doc.createElement("a");
+		link.className = "inner copyicon " + orderClass;
+		link.title = text;
 
 		var img = doc.createElement("img");
 		img.alt = text;
 		img.src = "/Img/Icons/transparent.gif";
 
-		messageLink.appendChild(img);
-		mainBody.insertBefore(messageLink, mainBody.firstChild);
+		link.appendChild(img);
+		mainBody.insertBefore(link, mainBody.firstChild);
 	}
 	else {
 		var link = doc.createElement("a");
-		link.className = "inner";
 		link.title = text;
-		link.style.cursor = "pointer";
 
-		var img = doc.createElement("img");
-		img.style.padding = "0px 5px 0px 0px;";
-		img.className = "actionIcon";
-		img.alt = text;
-		img.src = Foxtrick.ResourcePath+"resources/img/copy/copyPlayerAd.png";
-		link.appendChild(img);
+		if (Foxtrick.util.layout.isStandard(doc)) {
+			link.className = "inner copyicon";
+			var img = doc.createElement("img");
+			img.src = "/Img/Icons/transparent.gif";
+			img.className = "actionIcon";
+			img.alt = text;
+			link.appendChild(img);
+		}
+		else {
+			link.className = "ft-link";
+			link.textContent = text;
+		}
 
 		Foxtrick.addBoxToSidebar(doc,
 			Foxtrickl10n.getString("foxtrick.tweaks.actions"), link, -1);
 	}
-	return messageLink;
+	return link;
 };
