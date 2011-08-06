@@ -5,40 +5,6 @@
 
 if (!Foxtrick) var Foxtrick = {};
 
-Foxtrick.selectFileSave = function (parentWindow) {
-	try {
-		if (Foxtrick.BuildFor === "Gecko") {
-			var fp = Components.classes['@mozilla.org/filepicker;1'].createInstance(Components.interfaces.nsIFilePicker);
-			fp.init(parentWindow, "", fp.modeSave);
-			var ret=fp.show();
-			if (ret == fp.returnOK || ret==fp.returnReplace) {
-				return fp.file.path;
-			}
-		}
-	}
-	catch (e) {
-		Foxtrick.log(e);
-	}
-	return null;
-}
-
-Foxtrick.selectFile = function (parentWindow) {
-	try {
-		if (Foxtrick.BuildFor === "Gecko") {
-			var fp = Components.classes['@mozilla.org/filepicker;1'].createInstance(Components.interfaces.nsIFilePicker);
-			fp.init(parentWindow, "", fp.modeOpen);
-			if (fp.show() == fp.returnOK) {
-				return fp.file.path;
-			}
-		}
-	}
-	catch (e) {
-		Foxtrick.log(e);
-	}
-	return null;
-}
-
-
 Foxtrick.filePickerForDataUrl = function(doc, callback, data) {
 	var form = doc.createElement('form');
 	var input = doc.createElement('input');

@@ -464,42 +464,18 @@ function getModule(module)
 				textInput.setAttribute("module", module.MODULE_NAME);
 				textInput.setAttribute("option", module.OPTIONS[i] + "_text");
 				textDiv.appendChild(textInput);
-
-				// load buttons
-				var addGeckoFileUrlSelectButton = function() {
-					var load = document.createElement("button");
-					textDiv.appendChild(load);
-					load.id = textInput.id + "-load";
-					$(load).attr("text-key", "button.import");
-					$(load).click(function() {
-						const text = $("#" + $(this).attr("id").replace(/-load$/, ""));
-						var file = Foxtrick.selectFile(window);
-						if (file)
-							text[0].value = "file://" + file;
-					});
-				};
 				
 				if (module.OPTION_TEXTS_TEXTFILE_LOAD_BUTTONS && module.OPTION_TEXTS_TEXTFILE_LOAD_BUTTONS[i]) {
-					if (Foxtrick.BuildFor == "Gecko") {
-						addGeckoFileUrlSelectButton();
-					}
-					else {
-						var load  = Foxtrick.filePickerForText(document, function(text, data) {
-								document.getElementById(data.id).value = text;
-						}, { id: textInput.id });
-						textDiv.appendChild(load);
-					}
+					var load  = Foxtrick.filePickerForText(document, function(text, data) {
+							document.getElementById(data.id).value = text;
+					}, { id: textInput.id });
+					textDiv.appendChild(load);
 				}
 				if (module.OPTION_TEXTS_DATAURL_LOAD_BUTTONS && module.OPTION_TEXTS_DATAURL_LOAD_BUTTONS[i]) {
-					if (Foxtrick.BuildFor == "Gecko") {
-						addGeckoFileUrlSelectButton();
-					}
-					else {
-						var load  = Foxtrick.filePickerForDataUrl(document, function(text, data) {
-							document.getElementById(data.id).value = text;
-						}, { id: textInput.id });
-						textDiv.appendChild(load);
-					}
+					var load  = Foxtrick.filePickerForDataUrl(document, function(text, data) {
+						document.getElementById(data.id).value = text;
+					}, { id: textInput.id });
+					textDiv.appendChild(load);
 				}
 			}
 		}
