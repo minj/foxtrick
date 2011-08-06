@@ -535,7 +535,9 @@ Foxtrick.unload_module_css = function(doc) {
 	  }
 	}
 	else {
-		Foxtrick.util.inject.removeStyleSheetSnippet(doc, 'module_css');
+		var moduleCss = doc.getElementById("ft-module-css");
+		if (moduleCss)
+			moduleCss.parentNode.removeChild(moduleCss);
 	}
 }
 
@@ -572,7 +574,11 @@ Foxtrick.unload_css_permanent = function(cssList) {
 				unload_css_permanent_impl(cssList[i]);
 		}
 	}
-	else Foxtrick.util.inject.removeStyleSheetSnippet(doc, 'module_css');
+	else {
+		var moduleCss = doc.getElementById("ft-module-css");
+		if (moduleCss)
+			moduleCss.parentNode.removeChild(moduleCss);
+	}
 }
 
 // collect all enabled module css urls in Foxtrick.cssFiles array
@@ -698,7 +704,8 @@ Foxtrick.load_module_css = function(doc) {
 		sandboxed.extension.sendRequest(
 			{ req : "getCss", files :Foxtrick.cssFiles },
 			function(data) {
-				Foxtrick.util.inject.addStyleSheetSnippet(doc, data.cssText,'module_css');
+				var style = Foxtrick.util.inject.css(doc, data.cssText);
+				style.id = "ft-module-css";
 			}
 		);
 	}

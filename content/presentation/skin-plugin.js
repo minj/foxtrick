@@ -24,20 +24,19 @@ var FoxtrickSkinPlugin = {
 				this.OPTIONS_CSS[1] = skinlink;
 			}
 		}
-		if (Foxtrick.BuildFor != "Gecko") {
-			if (FoxtrickPrefs.isModuleOptionEnabled("SkinPlugin", 'Skin1')) {
-				var skin1 = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin1_text");
-				Foxtrick.log(skin1);
-				Foxtrick.util.inject.addStyleSheetSnippet(document, skin1, 'skin1');
-			}
-			if (FoxtrickPrefs.isModuleOptionEnabled("SkinPlugin", 'Skin2')) {
-				var skin2 = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin2_text");
-				Foxtrick.util.inject.addStyleSheetSnippet(document, skin2, 'skin2');
-			}
-		}
 	},
 
 	run : function(doc) {
+		if (Foxtrick.BuildFor != "Gecko") {
+			if (FoxtrickPrefs.isModuleOptionEnabled("SkinPlugin", 'Skin1')) {
+				var skin1 = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin1_text");
+				Foxtrick.util.inject.css(doc, skin1);
+			}
+			if (FoxtrickPrefs.isModuleOptionEnabled("SkinPlugin", 'Skin2')) {
+				var skin2 = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin2_text");
+				Foxtrick.util.inject.css(doc, skin2);
+			}
+		}
 	}
 };
 Foxtrick.util.module.register(FoxtrickSkinPlugin);

@@ -59,7 +59,7 @@ Foxtrick.AttVsDef = {
 			}
 		}
 
-		Foxtrick.util.inject.addStyleSheet(doc, Foxtrick.ResourcePath+"resources/css/matchgraphs.css");
+		Foxtrick.util.inject.cssLink(doc, Foxtrick.ResourcePath+"resources/css/matchgraphs.css");
 
 		var rText = Foxtrickl10n.getString( "foxtrick.matchdetail.rightshort" );
 		var cText = Foxtrickl10n.getString( "foxtrick.matchdetail.centershort" );

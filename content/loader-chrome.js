@@ -43,8 +43,15 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 					Foxtrick.log(' Foxtrick disabled');
 					return;
 				}
-				
-				Foxtrick.util.inject.addStyleSheetSnippet(document, data.cssText, 'module_css');
+
+				var moduleCss = document.getElementById("ft-module-css");
+				// remove old CSS if exists
+				if (moduleCss)
+					moduleCss.parentNode.removeChild(moduleCss);
+				// inject CSS
+				moduleCss = Foxtrick.util.inject.css(document, data.cssText);
+				moduleCss.id = "ft-module-css";
+
 				Foxtrick.entry.cssLoaded = true;
 				Foxtrick.entry.init();
 

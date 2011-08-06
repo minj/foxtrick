@@ -21,7 +21,7 @@ FoxtrickMatchReportFormat = {
 		var processed = (doc.getElementsByClassName("ft_mR_format").length > 0);
 		if (processed) return;
 
-		Foxtrick.util.inject.addJavaScript(doc, Foxtrick.ResourcePath+"resources/js/MatchReport.js");
+		Foxtrick.util.inject.js(doc, Foxtrick.ResourcePath+"resources/js/MatchReport.js");
 
 		// Retrieve team IDs
 		var myTeamId = isyouth ? Foxtrick.util.id.getOwnYouthTeamId() : Foxtrick.util.id.getOwnTeamId();
