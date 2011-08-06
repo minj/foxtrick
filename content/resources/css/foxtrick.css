@@ -162,8 +162,8 @@ ul.ft-pop {
 	position: absolute;
 	list-style-type: none;
 	z-index: 100;
-	padding-left: 0px;
-	padding-right: 0px;
+	padding: 0px;
+	margin: 0px;
 }
 ul.ft-pop.right {
 	right: 0px;
