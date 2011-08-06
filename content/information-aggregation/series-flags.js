@@ -12,7 +12,7 @@ var FoxtrickSeriesFlags = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["guestbook", "teamPage", "league", "youthleague", "federation"],
 	OPTIONS : ["Guestbook", "Supporters", "Visitors", "CountryOnly"],
-	NICE: +1,
+	NICE: +1,  // some conflict with another module. setting NICE +1 solved it
 
 	run : function(doc) {
 		var buildFlag = function(arg, callback) {

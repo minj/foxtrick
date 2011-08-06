@@ -8,7 +8,7 @@ var FoxtrickLocalTime = {
 	MODULE_NAME : "LocalTime",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
-	NICE : -10,
+	NICE : -10, // place before HTDateFormat, bellow everything that adds dates
 	CSS : Foxtrick.ResourcePath + "resources/css/local-time.css",
 	CSS_SIMPLE: Foxtrick.ResourcePath + "resources/css/local-time-simple.css",
 	CSS_RTL : Foxtrick.ResourcePath + "resources/css/local-time-rtl.css",

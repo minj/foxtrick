@@ -9,7 +9,7 @@ Foxtrick.AddClass = {
 	MODULE_NAME : "AddClass",
 	CORE_MODULE : true,
 	PAGES : ["playerdetail", "search", "bookmarks"],
-	NICE : -20,
+	NICE : -20, // place before all date-related modules
 
 	run : function(doc) {
 		if (Foxtrick.isPage("playerdetail", doc))

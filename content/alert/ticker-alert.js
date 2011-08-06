@@ -8,7 +8,7 @@ var FoxtrickTickerAlert = {
 	MODULE_NAME : "TickerAlert",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
 	PAGES : ["all"],
-	NICE : 20,
+	NICE : 20, // after all other modules that make changes to #ticker
 
 	OPTION_FUNC : function(doc) {
 		var table = doc.createElement("table");

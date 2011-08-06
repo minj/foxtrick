@@ -12,7 +12,7 @@ var FoxtrickHTDateFormat = {
 		'teamevents','history','arena','league','hallOfFame','statsMatchesHeadToHead',
 		'seriesHistory'],
 	ONPAGEPREF_PAGE : 'all',
-	NICE : 20,
+	NICE : 20, // after anthing that adds dates
 	OPTIONS : ["LocalSeason", "FirstDayOfWeekOffset"],
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DISABLED_LIST : [true, false],

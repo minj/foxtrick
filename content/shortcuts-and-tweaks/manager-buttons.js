@@ -11,7 +11,8 @@ var FoxtrickManagerButtons = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array("managerPage", "teamPage","youthoverview"),
 	OPTIONS : ["GuestBook"],
-
+	NICE : -1, // before FoxtrickAddDefaultFaceCard
+	
 	GUESTBOOK_LINK_ID : "ft-guest-book",
 	CHALLENGE_LINK_ID : "ctl00_ctl00_CPContent_CPSidebar_ucVisitorActions_lnkChallenge",
 	MAIL_LINK_ID: "ctl00_ctl00_CPContent_CPSidebar_ucVisitorActions_lnkMail",

@@ -10,7 +10,8 @@ FoxtrickTeamStats = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["players", "YouthPlayers"],
 	OPTIONS : ["General", "Speciality", "Personality", "Status", "Current_league"],
-
+	NICE : -1, // before FoxtrickLinksPlayers
+	
 	CSS : Foxtrick.ResourcePath + "resources/css/team-stats.css",
 
 	run : function(doc) {

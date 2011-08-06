@@ -6,7 +6,7 @@ var FoxtrickCurrencyConverter = {
 	MODULE_NAME : "CurrencyConverter",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
-	NICE : 1,
+	NICE : 10,  // after anythings that adds currencies
 
 	OPTION_FUNC : function(doc) {
 		var currencySelect = doc.createElement("select");

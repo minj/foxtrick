@@ -10,7 +10,7 @@ Foxtrick.AttVsDef = {
 	MODULE_NAME : "AttVsDef",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
-	NICE : -5,
+	NICE : -5, // before Ratings
 	RADIO_OPTIONS : new Array("newstyle", "oldstyle", "oldstyleifkseparated"),
 
 	run : function(doc) {

@@ -8,7 +8,8 @@ var FoxtrickTransferSearchResultFilters = {
 	MODULE_NAME : "TransferSearchResultFilters",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ['transferSearchForm','transferSearchResult'],
-
+	NICE : -1, // before TransferDeadline and HTMSPoints 
+	
 	// functions returning whether to hide a player
 	FILTER_FUNC : {
 		"hideBruised" : function(player, checked) { return player.bruised; },

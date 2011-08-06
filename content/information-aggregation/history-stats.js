@@ -8,7 +8,7 @@ var FoxtrickHistoryStats= {
 	MODULE_NAME : "HistoryStats",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["history"],
-	NICE : -1,
+	NICE : -1,  // before FoxtrickCopyMatchID
 	Buffer : [],
 	Pages : [],
 	Offset : 0,

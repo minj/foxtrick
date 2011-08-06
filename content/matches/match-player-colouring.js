@@ -8,7 +8,7 @@ var FoxtrickMatchPlayerColouring = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ["match", "playerdetail"],
 	OPTIONS : ["SeparateOwnPlayerColors"],
-	NICE: +1,
+	NICE: +1, // needs to be after match-report-format
 
 	CSS : Foxtrick.ResourcePath + "resources/css/match-player-colouring.css",
 
