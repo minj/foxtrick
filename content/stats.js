@@ -1534,17 +1534,17 @@ stats["HattrickNations"] = {
 // ------------------------- nattrick tracker --------------------------------
 
 stats["canadatracker"] = {
-  "url" : "http://nattrick.ca/",
+  "url" : "http://canada.htravenia.com/",
   "img" : Foxtrick.ResourcePath+"resources/linkicons/tracker.png",
   "title" : "Canada U20/NT Tracker",
 
-  "trackernationalteamlink" : { "path"       : "list.php",
+  "trackernationalteamlink" : { "path"       : "",
                          "filters"    : ["countryid"],
-                         "params"     :  []
+                         "params"     :  { 'server':'server' }
                        },
-  "trackerplayerlink" : { "path"       : "update.php",
+  "trackerplayerlink" : { "path"       : "players/",
                    "filters"    : ["nationality"],
-                   "params"     : []
+                   "params"     : { 'playerid': 'id', 'server':'server' }
                  },
 	"countryidranges" : [[17,17]] ,
 	"nationalityranges" : [[17,17]],
