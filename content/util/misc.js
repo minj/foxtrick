@@ -570,12 +570,6 @@ Foxtrick.collect_module_css = function() {
 		}
 	}
 
-	Foxtrick.cssFiles = [];
-	for (var i in Foxtrick.modules) {
-		var module = Foxtrick.modules[i];
-		if (!FoxtrickPrefs.isModuleEnabled(module.MODULE_NAME) || 
-			module.MODULE_NAME == 'SkinPlugin' )
-			continue;
 		var collectCss = function(normal, simple, rtl, simpleRtl) {
 			var collect_css_impl = function(cssList) {
 				if (typeof(cssList) === "string")
@@ -630,6 +624,13 @@ Foxtrick.collect_module_css = function() {
 					collect();
 			}
 		}
+
+	Foxtrick.cssFiles = [];
+	for (var i in Foxtrick.modules) {
+		var module = Foxtrick.modules[i];
+		if (!FoxtrickPrefs.isModuleEnabled(module.MODULE_NAME) || 
+			module.MODULE_NAME == 'SkinPlugin' )
+			continue;
 		collect_module_css_impl(module);
 	}
 	// load last to have user settings overwrite default settings  
@@ -642,6 +643,12 @@ Foxtrick.collect_module_css = function() {
 Foxtrick.load_module_css = function(doc) {
 	var load_css_permanent_impl = function(css) {
 		try {
+			// convert text css to data url
+			if ( css.search(/^[A-Za-z_-]+:\/\//) == -1 ) {
+				// needs to be uncompressed to have the right csss precedence
+				css = 'data:text/css;charset=US-ASCII,'+encodeURIComponent(css);
+			}
+			
 			try {
 				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
 				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
