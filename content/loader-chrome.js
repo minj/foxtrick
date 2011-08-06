@@ -49,8 +49,7 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 				if (moduleCss)
 					moduleCss.parentNode.removeChild(moduleCss);
 				// inject CSS
-				moduleCss = Foxtrick.util.inject.css(document, data.cssText);
-				moduleCss.id = "ft-module-css";
+				Foxtrick.util.inject.css(document, data.cssText, "ft-module-css");
 
 				Foxtrick.entry.cssLoaded = true;
 				Foxtrick.entry.init();

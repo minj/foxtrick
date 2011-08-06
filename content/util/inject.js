@@ -22,10 +22,11 @@ Foxtrick.util.inject.cssLink = function(doc, url) {
 	return link;
 };
 
-Foxtrick.util.inject.css = function(doc, css) {
+Foxtrick.util.inject.css = function(doc, css, id) {
 	var head = doc.getElementsByTagName("head")[0];
 	var style = doc.createElement("style");
 	style.setAttribute("type", "text/css");
+	style.id = id;
 	head.appendChild(style);
 
 	var inject = function(css) {

@@ -132,10 +132,10 @@ Foxtrick.loader.chrome.browserLoad = function() {
 			}
 			else if (request.req == "convertImages") {
 				// @param files - a string for which image urls are converted to data urls
-				// updates cssTextCollection if module_css conversion was done
+				// updates cssTextCollection if "ft-module-css" conversion was done
 				Foxtrick.convertImageUrlToData(request.cssText,
 						function(cssText){ 
-							if (request.type=='module_css') 
+							if (request.type=="ft-module-css") 
 								cssTextCollection = cssText;
 							sendResponse({cssText:cssText});
 				});
