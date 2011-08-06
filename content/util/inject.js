@@ -57,7 +57,7 @@ Foxtrick.util.inject.jsLink = function(doc, url) {
 Foxtrick.util.inject.js = function(doc, js) {
 	var head = doc.getElementsByTagName("head")[0];
 	var script = doc.createElement("script");
-	script.setAttribute("type", "application/javascript");
+	script.setAttribute("type", "text/javascript");
 	script.textContent = js;
 	head.appendChild(script);
 	return script;
