@@ -15,14 +15,13 @@ FoxtrickMatchReportFormat = {
 		var isarchivedmatch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_lblMatchInfo")==null);
 		if (!isarchivedmatch) return;
 
-		var isyouth = (doc.location.search.search(/isYouth=/i) > -1);
+		var isyouth = (doc.location.search.search(/isYouth=true/i) > -1);
 
 		var div = doc.getElementById('mainBody');
 		var processed = (doc.getElementsByClassName("ft_mR_format").length > 0);
 		if (processed) return;
 
 		// used for clicking on match events in the sidebar and jump to event in the report.
-		// not for opera since script injection doesn't work
 		Foxtrick.util.inject.jsLink(doc, Foxtrick.ResourcePath+"resources/js/MatchReport.js");
 
 		// Retrieve team IDs
@@ -164,7 +163,6 @@ FoxtrickMatchReportFormat = {
 
 		if (!isyouth) var scoreboard = doc.getElementById('sidebar').getElementsByTagName('table')[2];
 		else var scoreboard = doc.getElementById('sidebar').getElementsByTagName('table')[1];
-
 		scoreboard.parentNode.id = 'scoreboard';
 		var myTable = new Array();
 
