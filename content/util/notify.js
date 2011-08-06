@@ -49,10 +49,31 @@ Foxtrick.util.notify.create = function(msg, url) {
 		sandboxed.extension.sendRequest({req : "notify", msg : msg, url : url});
 	};
 
+	var createSafariGrowl = function() {
+		showGrowlNotification = function (msg) {
+		  try {
+			if ( window.GrowlSafariBridge.notifyWithOptions !== undefined) {
+				 window.GrowlSafariBridge.notifyWithOptions(msg.name, msg.status, {
+					isSticky: false,
+					priority: -1,
+					imageUrl: msg.img_url
+				});
+			}
+		  } catch(e) {Foxtrick.log(e);}
+		};
+
+		var img = Foxtrick.ResourcePath + "resources/img/hattrick-logo.png";
+		showGrowlNotification({ name: "www.hattrick.org", status: msg, img_url: img });
+	};
+
+	
 	if (Foxtrick.BuildFor == "Gecko") {
 		createGecko();
 	}
-	else if (Foxtrick.BuildFor == "Sandboxed") {
+	else if (typeof(chrome)=='object') {
 		createChrome();
+	}
+	else if (typeof(safari)=='object') {
+		createSafariGrowl();
 	}
 };
