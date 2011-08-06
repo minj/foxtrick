@@ -133,7 +133,6 @@ var FoxtrickSeasonStats = {
 
 		var ownBoxBody = doc.createElement("div");
 		var header = Foxtrickl10n.getString("foxtrick.seasonstats.boxheader");
-		var ownBoxId = "foxtrick_seasonstats_box";
 		var ownBoxBodyId = "foxtrick_seasonstats_content";
 		ownBoxBody.setAttribute("id", ownBoxBodyId);
 
@@ -231,7 +230,7 @@ var FoxtrickSeasonStats = {
 			ownBoxBody.appendChild(br);
 		}
 
-		Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, ownBoxId, "last", "");
+		Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, 1);
 	},
 
 

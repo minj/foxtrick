@@ -122,7 +122,7 @@ var FoxtrickLinksPlayerDetail = {
 		if (num_links>0) {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString("foxtrick.links.boxheader");
-			var ownBoxId = "foxtrick_links_box";
+			var ownBoxId = "ft-links-box";
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.id = ownBoxBodyId;
 
@@ -151,7 +151,10 @@ var FoxtrickLinksPlayerDetail = {
 				}
 			}
 		}
-		if (added) Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, ownBoxId, "first", "");
+		if (added) {
+			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
+			box.id = "ft-links-box";
+		}
 
 		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, params);
 	}

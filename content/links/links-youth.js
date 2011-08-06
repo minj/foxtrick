@@ -31,7 +31,6 @@ var FoxtrickLinksYouthOverview = {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
 						"foxtrick.links.boxheader" );
-			var ownBoxId = "foxtrick_links_box";
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
 
@@ -39,7 +38,8 @@ var FoxtrickLinksYouthOverview = {
 				links[k].link.className ="inner";
 				ownBoxBody.appendChild(links[k].link);
 			}
-			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
+			box.id = "ft-links-box";
 		}
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
@@ -96,7 +96,6 @@ var FoxtrickLinksYouthPlayerDetail = {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
 						"foxtrick.links.boxheader" );
-			var ownBoxId = "foxtrick_links_box";
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
 
@@ -104,7 +103,8 @@ var FoxtrickLinksYouthPlayerDetail = {
 				links[k].link.className ="inner";
 				ownBoxBody.appendChild(links[k].link);
 			}
-			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
+			box.id = "ft-links-box";
 		}
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
@@ -138,9 +138,7 @@ var FoxtrickLinksYouthTraining = {
 		var links = Foxtrick.LinkCollection.getLinks("youthtraininglink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid, 'server':server  }, doc,this);
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
-			var header = Foxtrickl10n.getString(
-						"foxtrick.links.boxheader" );
-			var ownBoxId = "foxtrick_links_box";
+			var header = Foxtrickl10n.getString("foxtrick.links.boxheader");
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
 
@@ -148,7 +146,8 @@ var FoxtrickLinksYouthTraining = {
 				links[k].link.className ="inner";
 				ownBoxBody.appendChild(links[k].link);
 			}
-			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
+			box.id = "ft-links-box";
 		}
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	},
@@ -185,7 +184,6 @@ var FoxtrickLinksYouthPlayerList = {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
 						"foxtrick.links.boxheader" );
-			var ownBoxId = "foxtrick_links_box";
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
 
@@ -193,7 +191,8 @@ var FoxtrickLinksYouthPlayerList = {
 				links[k].link.className ="inner";
 				ownBoxBody.appendChild(links[k].link);
 			}
-			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
+			box.id = "ft-links-box";
 		}
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
@@ -229,7 +228,6 @@ var FoxtrickLinksYouthMatchList = {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
 						"foxtrick.links.boxheader" );
-			var ownBoxId = "foxtrick_links_box";
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
 
@@ -237,7 +235,8 @@ var FoxtrickLinksYouthMatchList = {
 				links[k].link.className ="inner";
 				ownBoxBody.appendChild(links[k].link);
 			}
-			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
+			box.id = "ft-links-box";
 		}
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
@@ -272,7 +271,6 @@ var FoxtrickLinksYouthLeague = {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
 						"foxtrick.links.boxheader" );
-			var ownBoxId = "foxtrick_links_box";
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
 
@@ -280,7 +278,8 @@ var FoxtrickLinksYouthLeague = {
 				links[k].link.className ="inner";
 				ownBoxBody.appendChild(links[k].link);
 			}
-			Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
+			box.id = "ft-links-box";
 		}
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	}

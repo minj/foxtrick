@@ -46,9 +46,10 @@ var FoxtrickPlayerBirthday = {
 		FoxtrickPlayerBirthday.addType(parentDiv, Foxtrickl10n.getString('foxtrick.tweaks.BirthdayLastWeek'), birthdayPast, doc);
 
 		// Append the box to the sidebar
-		var newBoxId = "foxtrick_birthday_box";
 		if (birthdayToday.length + birthdayFuture.length + birthdayPast.length > 0) {
-			Foxtrick.addBoxToSidebar(doc, Foxtrickl10n.getString("foxtrick.tweaks.Birthdays"), parentDiv, newBoxId, "last", "");
+			Foxtrick.addBoxToSidebar(doc,
+				Foxtrickl10n.getString("foxtrick.tweaks.Birthdays"),
+				parentDiv, 10);
 		}
 	},
 

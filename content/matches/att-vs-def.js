@@ -22,7 +22,6 @@ Foxtrick.AttVsDef = {
 		if (Foxtrick.Pages.Match.isWalkOver(ratingstable)) return;
 
 		var header = Foxtrickl10n.getString("foxtrick.matches.attackdefensebars" );
-		var boxId = "foxtrick_attvsdefbars_box";
 
 		var bodydiv=doc.createElement('div');
 		var bodydivid = "foxtrick_attvsdefbars_content";
@@ -39,7 +38,7 @@ Foxtrick.AttVsDef = {
 			bodydiv.innerHTML=Foxtrickl10n.getString( "foxtrick.matches.wronglang" );
 		}
 		var suppstats = Foxtrickl10n.getString( "foxtrick.matches.suppstats" );
-		Foxtrick.addBoxToSidebar( doc, header, bodydiv, boxId, suppstats, "last");
+		Foxtrick.addBoxToSidebar(doc, header, bodydiv, 1);
 
 		if (Foxtrick.util.layout.isStandard(doc) && FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 0) bodydiv.parentNode.style.padding='8px 6px 15px';
 	},

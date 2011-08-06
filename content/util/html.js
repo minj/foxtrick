@@ -63,171 +63,99 @@ Foxtrick.listen = function(target, type, listener, useCapture) {
 };
 
 /* Foxtrick.addBoxToSidebar
-* Parameters:
-* doc - the document the box needs to be added to
-* title - the title of the new box
-* content - the content of the new box (should be a DOM element)
-* id - the id the new box should get (has to be unique!)
-* insertBefore - the header of the reference-object: the new box will be placed *before* this reference-object;
-* 	-- Should be a string with the header, e.g. "Actions"
-* 	-- or a string "last" if it should be put at the very bottom of the sidebar
-* 	-- or a string "first" if it should be put at the very top
-*	-- if left empty, it'll be placed on top
-* altInsertBefore - specify an alternative header if the referenceHeader cannot be found
-* 	-- Can be left empty
-* column - specify which column the box shall be added to
-*
-* Note: if the header is the same as one of the other boxes in the sidebar,
-* the content will be added to that sidebarbox instead of creating a new one
-*/
-Foxtrick.addBoxToSidebar = function(doc, title, content, id, insertBefore, altInsertBefore, column) {
-	try {
-		if (!id || !content.id) {
-			// No id, return
-			Foxtrick.log("addBoxToSidebar: error: id should be specified and content should have an id.");
-			return;
-		}
+ * @desc add a box to the sidebar, either on the right or on the left
+ * @author Ryan Li
+ * @param doc - HTML document the content is to be added on
+ * @param title - the title of the box, will create one if inexists
+ * @param content - HTML node of the content
+ * @param prec - precedence of the box, smaller value will be placed higher
+ * @return box to be added to
+ */
+Foxtrick.addBoxToSidebar = function(doc, title, content, prec) {
+	// class of the box to add
+	var boxClass = "";
+	var sidebar;
+	((sidebar = doc.getElementById("sidebar")) && (boxClass = "sidebarBox"))
+		|| ((sidebar = doc.getElementsByClassName("subMenu")[0]) && (boxClass = "subMenuBox"))
+		|| ((sidebar = doc.getElementsByClassName("subMenuConf")[0]) && (boxClass = "subMenuBox"));
 
-		if (Foxtrick.hasElement(doc, id) || Foxtrick.hasElement(doc, content.id)) {
-			// Box with same id already existed, return
-			return;
-		}
+	if (!sidebar)
+		return;
 
-		var sidebar = null;
-		var boxClass;
-		if (!column || column == "right") {
-			sidebar = doc.getElementById("sidebar");
-			boxClass = "sidebarBox";
-		}
-		else {
-			sidebar = doc.getElementsByClassName("subMenu")[0]
-				|| doc.getElementsByClassName("subMenuConf")[0];
-			boxClass = "subMenuBox";
-		}
-		if (!sidebar) {
-			// No sidebar, nothing can be added.
-			// An option to create sidebar could be implemented sometime.
-			return;
-		}
+	// destination box
+	var dest;
 
-		var divs = sidebar.getElementsByTagName("div");
-
-		// Check if any of the other sidebarboxes have the same header
-		// and find the (alternative/normal) reference-object in the process
-		var existingBox = null;
-		var insertBeforeObject = null;
-		var altInsertBeforeObject = null;
-		var currentBox, i = 0;
-		while (currentBox = divs[i++]) {
-			// Check if this child is of box_class
-			if (currentBox.className === boxClass) {
-				var header = currentBox.getElementsByTagName("h2")[0];
-				if (header.innerHTML === title) {
-					existingBox = currentBox;
-				}
-				if (header.innerHTML === insertBefore) {
-					insertBeforeObject = currentBox;
-				}
-				if (header.innerHTML === altInsertBefore) {
-					altInsertBeforeObject = currentBox;
-				}
-			}
-			currentBox = currentBox.nextSibling;
-		}
-
-		if (!insertBeforeObject && insertBefore != "first"
-			&& insertBefore != "last") {
-			// the reference header could not be found; try the alternative
-			if (!altInsertBeforeObject && altInsertBefore != "first"
-				&& altInsertBefore != "last") {
-				// alternative header couldn't be found either
-				// place the box on top
-				Foxtrick.dump("addBoxToSidebar: Could not find insertBefore " +
-				insertBefore + "\n" + "nor altInsertBefore " +
-				altInsertBefore + "\n");
-				insertBefore = "first";
-			}
-			else {
-				insertBeforeObject = altInsertBeforeObject;
-				insertBefore = altInsertBefore;
-			}
-		}
-		if (insertBefore == "first") {
-			insertBeforeObject = sidebar.firstChild;
-		}
-
+	// existing sidebar boxes
+	var existings = sidebar.getElementsByClassName(boxClass);
+	for (var i = 0; i < existings.length; ++i) {
+		var box = existings[i];
+		var hdr = box.getElementsByTagName("h2")[0].textContent;
+		if (hdr == title)
+			dest = box; // found destination box
+	}
+	// create new box if old one doesn't exist
+	if (!dest) {
+		var dest = doc.createElement("div");
+		dest.className = boxClass;
+		dest.setAttribute("x-precedence", prec);
 		if (Foxtrick.util.layout.isStandard(doc)) {
-			// Standard layout
-			if (existingBox) {
-				existingBox.id = id;
-				var boxBody = existingBox.getElementsByClassName("boxBody")[0];
-				boxBody.insertBefore(content, boxBody.firstChild);
-				return existingBox;
-			}
-			else {
-				// sidebarBox
-				var sidebarBox = doc.createElement("div");
-				sidebarBox.id = id;
-				sidebarBox.className = boxClass;
-				// boxHead
-				var boxHead = doc.createElement("div");
-				boxHead.className = "boxHead";
-				sidebarBox.appendChild(boxHead);
-				// boxHead - boxLeft
-				var headBoxLeft = doc.createElement("div");
-				headBoxLeft.className = "boxLeft";
-				boxHead.appendChild(headBoxLeft);
-				// boxHead - boxLeft - h2
-				var h2 = doc.createElement("h2");
-				h2.innerHTML = title;
-				headBoxLeft.appendChild(h2);
-				// boxBody
-				var boxBody = doc.createElement("div");
-				boxBody.className = "boxBody";
-				sidebarBox.appendChild(boxBody);
-				// append content to boxBody
-				boxBody.appendChild(content);
-				// boxFooter
-				var boxFooter = doc.createElement("div");
-				boxFooter.className = "boxFooter";
-				sidebarBox.appendChild(boxFooter);
-				// boxFooter - boxLeft
-				var footBoxLeft = doc.createElement("div");
-				footBoxLeft.className = "boxLeft";
-				footBoxLeft.innerHTML = "&nbsp;";
-				boxFooter.appendChild(footBoxLeft);
-
-				// insert the sidebar box
-				sidebar.insertBefore(sidebarBox, insertBeforeObject);
-			}
+			// boxHead
+			var boxHead = doc.createElement("div");
+			boxHead.className = "boxHead";
+			dest.appendChild(boxHead);
+			// boxHead - boxLeft
+			var headBoxLeft = doc.createElement("div");
+			headBoxLeft.className = "boxLeft";
+			boxHead.appendChild(headBoxLeft);
+			// boxHead - boxLeft - h2
+			var h2 = doc.createElement("h2");
+			h2.innerHTML = title;
+			headBoxLeft.appendChild(h2);
+			// boxBody
+			var boxBody = doc.createElement("div");
+			boxBody.className = "boxBody";
+			dest.appendChild(boxBody);
+			// append content to boxBody
+			boxBody.appendChild(content);
+			// boxFooter
+			var boxFooter = doc.createElement("div");
+			boxFooter.className = "boxFooter";
+			dest.appendChild(boxFooter);
+			// boxFooter - boxLeft
+			var footBoxLeft = doc.createElement("div");
+			footBoxLeft.className = "boxLeft";
+			boxFooter.appendChild(footBoxLeft);
 		}
 		else {
-			// Simple layout
-			if (existingBox) {
-				var existingBoxHeader = existingBox.getElementsByTagName("h2")[0];
-				existingBox.id = id;
-				existingBox.insertBefore(content, existingBoxHeader.nextSibling);
-			}
-			else {
-				// sidebar box
-				var sidebarBox = doc.createElement("div");
-				sidebarBox.id = id;
-				sidebarBox.className = boxClass;
-				// header
-				var header = doc.createElement("h2");
-				header.innerHTML = title;
-				sidebarBox.appendChild(header);
-				// append content to body
-				sidebarBox.appendChild(content);
-
-				// insert the sidebar box
-				sidebar.insertBefore(sidebarBox, insertBeforeObject);
+			// header
+			var header = doc.createElement("h2");
+			header.innerHTML = title;
+			dest.appendChild(header);
+		}
+		// now we insert the newly created box
+		var inserted = false;
+		for (var i = 0; i < existings.length; ++i) {
+			// precedence of current box, hattrick boxes are set to 0
+			var curPrec = existings[i].hasAttribute("x-precedence")
+				? Number(existings[i].getAttribute("x-precedence"))
+				: 0;
+			if (curPrec > prec) {
+				existings[i].parentNode.insertBefore(dest, existings[i]);
+				inserted = true;
+				break;
 			}
 		}
+		if (!inserted)
+			sidebar.appendChild(dest);
 	}
-	catch (e) {
-		Foxtrick.log(e);
-	}
+
+	// finally we add the content
+	if (Foxtrick.util.layout.isStandard(doc))
+		dest.getElementsByClassName("boxBody")[0].appendChild(content);
+	else
+		dest.appendChild(content);
+
+	return dest;
 }
 
 Foxtrick.setActiveTextBox = function (field, cssClass, text) {

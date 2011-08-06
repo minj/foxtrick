@@ -83,9 +83,9 @@ var FoxtrickManagerButtons = {
 			if (parentDiv === null) {
 				parentDiv = doc.createElement("div");
 				parentDiv.id = "foxtrick_addactionsbox_parentDiv";
-				var newBoxId = "foxtrick_actions_box";
-				Foxtrick.addBoxToSidebar( doc, Foxtrickl10n.getString(
-					"foxtrick.tweaks.actions" ), parentDiv, newBoxId, "first", "");
+				Foxtrick.addBoxToSidebar(doc,
+					Foxtrickl10n.getString("foxtrick.tweaks.actions"),
+					parentDiv, -1);
 			}
 		}
 		else {

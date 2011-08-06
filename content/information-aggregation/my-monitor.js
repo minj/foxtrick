@@ -364,14 +364,10 @@ var FoxtrickMyMonitor = {
 		else
 			Foxtrick.addClass(removeLink, "hidden");
 
-		var sidebar = Foxtrick.addBoxToSidebar(
-			doc,
-			Foxtrickl10n.getString("MyMonitor.header"),
-			container,
-			"ft-monitor-sidebar-box",
-			"first"
-		);
-		
+		var box = Foxtrick.addBoxToSidebar(doc,
+			Foxtrickl10n.getString("MyMonitor.header"), container, -1);
+		box.id = "ft-monitor-sidebar-box";
+
 		FoxtrickMyMonitor.setSavedTeams(teams);
 	},
 

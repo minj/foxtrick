@@ -31,9 +31,7 @@ var FoxtrickLinksNational = {
 
 		var added=0;
 		ownBoxBody = doc.createElement("div");
-		var header = Foxtrickl10n.getString(
-					"foxtrick.links.boxheader" );
-		var ownBoxId = "foxtrick_links_box";
+		var header = Foxtrickl10n.getString("foxtrick.links.boxheader");
 		var ownBoxBodyId = "foxtrick_links_content";
 		ownBoxBody.setAttribute( "id", ownBoxBodyId );
 
@@ -55,7 +53,10 @@ var FoxtrickLinksNational = {
 				++added;
 			}
 		}
-		if (added) Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "first", "");
+		if (added) {
+			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
+			box.id = "ft-links-box";
+		}
 
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid,"ntteamid":ntteamid,"LeagueOfficeTypeID":LeagueOfficeTypeID });
 	}

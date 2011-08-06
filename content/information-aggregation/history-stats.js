@@ -175,11 +175,10 @@ var FoxtrickHistoryStats= {
 			try {
 				var	ownBoxBody = doc.createElement("div");
 				var header = Foxtrickl10n.getString("foxtrick.HistoryStats.label");
-				var ownBoxId = "ft_HistoryStats_box";
 				var ownBoxBodyId = "ft_HistoryStats";
 				ownBoxBody.setAttribute( "id", ownBoxBodyId );
 				ownBoxBody.appendChild(table);
-				Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "");
+				Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, 1);
 			}
 			catch (e) {
 				Foxtrick.log(e);

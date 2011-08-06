@@ -290,11 +290,10 @@ FoxtrickTeamStats = {
 			boxBody.appendChild(table);
 		};
 
-		var boxId = "ft-team-stats-box";
 		var	boxBody = doc.createElement("div");
-		boxBody.id = "ft-team-stats-content";
 		var header = Foxtrickl10n.getString("foxtrick.TeamStats.label");
-		Foxtrick.addBoxToSidebar(doc, header, boxBody, boxId, "last", "");
+		var box = Foxtrick.addBoxToSidebar(doc, header, boxBody, 1);
+		box.id = "ft-team-stats-box";
 
 		var loading = Foxtrick.util.note.createLoading(doc);
 		boxBody.appendChild(loading);

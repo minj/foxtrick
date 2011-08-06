@@ -56,27 +56,20 @@ Foxtrick.util.copyButton.add = function(doc, text) {
 		mainBody.insertBefore(messageLink, mainBody.firstChild);
 	}
 	else {
-		var parentDiv = doc.createElement("div");
-		parentDiv.id = "foxtrick_addactionsbox_parentDiv";
-
-		var messageLink = doc.createElement("a");
-		messageLink.className = "inner";
-		messageLink.title = text;
-		messageLink.style.cursor = "pointer";
+		var link = doc.createElement("a");
+		link.className = "inner";
+		link.title = text;
+		link.style.cursor = "pointer";
 
 		var img = doc.createElement("img");
 		img.style.padding = "0px 5px 0px 0px;";
 		img.className = "actionIcon";
 		img.alt = text;
 		img.src = Foxtrick.ResourcePath+"resources/img/copy/copyPlayerAd.png";
-		messageLink.appendChild(img);
+		link.appendChild(img);
 
-		parentDiv.appendChild(messageLink);
-
-		var newBoxId = "foxtrick_actions_box";
 		Foxtrick.addBoxToSidebar(doc,
-			Foxtrickl10n.getString("foxtrick.tweaks.actions"), parentDiv,
-			newBoxId, "first", "");
+			Foxtrickl10n.getString("foxtrick.tweaks.actions"), link, -1);
 	}
 	return messageLink;
 };

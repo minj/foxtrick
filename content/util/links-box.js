@@ -16,12 +16,12 @@ Foxtrick.util.links = {
 
 			if (ownBoxBody==null) {
 				ownBoxBody = doc.createElement("div");
-				var ownBoxId = "foxtrick_links_box";
 				var ownBoxBodyId = "foxtrick_links_content";
 				var header = Foxtrickl10n.getString("foxtrick.links.boxheader");
 				ownBoxBody.id = ownBoxBodyId;
 
-				Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, ownBoxId, "first", "");
+				var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
+				box.id = "ft-links-box";
 			}
 
 			var expanded = false;
@@ -105,7 +105,7 @@ Foxtrick.util.links = {
 
 	showLinks : function(doc,ownBoxBody,basepref){
 		try {
-			var ownBoxId = "foxtrick_links_box";
+			var ownBoxId = "ft-links-box";
 			var div=doc.getElementById(ownBoxId).firstChild;
 			div.className = "boxHead ft_sidebarBoxCollapsed";
 			if (Foxtrick.util.layout.isRtl(doc))
@@ -183,7 +183,7 @@ Foxtrick.util.links = {
 	showEdit : function( doc , ownBoxBody, basepref) {
 		try {
 			// box
-			var ownBoxId = "foxtrick_links_box";
+			var ownBoxId = "ft-links-box";
 			var div=doc.getElementById(ownBoxId).firstChild;
 			div.setAttribute("class","boxHead ft_sidebarBoxUnfolded");
 			if (Foxtrick.util.layout.isRtl(doc)) div.setAttribute("class","boxHead  ft_sidebarBoxUnfolded_rtl");

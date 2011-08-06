@@ -56,7 +56,6 @@ FoxtrickTransferSearchFilters = {
 
 		var ownBoxBody = doc.createElement("div");
 		var header = Foxtrickl10n.getString("foxtrick.transferfilter.Foxtrick_Filters");
-		var ownBoxId = "foxtrick_transferfilter_box";
 		var ownBoxBodyId = "foxtrick_transferfilter_content";
 		ownBoxBody.id = ownBoxBodyId;
 
@@ -75,7 +74,7 @@ FoxtrickTransferSearchFilters = {
 			this._addFilter(doc, table, namelist[i]);
 		}
 		ownBoxBody.appendChild(table);
-		Foxtrick.addBoxToSidebar( doc, header, ownBoxBody, ownBoxId, "last", "");
+		Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, 1);
 	},
 
 	addNewFilter : function(ev) {
