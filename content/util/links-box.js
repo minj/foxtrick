@@ -254,7 +254,6 @@ Foxtrick.util.links = {
 				td1.appendChild(a);
 				tdiv.appendChild(title);
 				td2.appendChild(tdiv);
-				//if (key.length>3) td5.appendChild(Foxtrick.util.links.GetExportLink(doc,a,basepref+'.'+key)); // prevent export of oldstyle keys
 				td3.appendChild(Foxtrick.util.links.GetEditOldLink(doc,a,basepref+'.'+key));
 				td4.appendChild(Foxtrick.util.links.GetDelLink(doc,a,basepref+'.'+key));
 				tr1.appendChild(td1);
@@ -455,41 +454,6 @@ Foxtrick.util.links = {
 	},
 
 
-	Export : function (evt) {
-		try {
-			var doc = evt.target.ownerDocument;
-			var baseprefnl = evt.target.baseprefnl;
-
-			var locpath=Foxtrick.selectFileSave(doc.defaultView);
-			if (locpath==null) {return;}
-			var File = Components.classes["@mozilla.org/file/local;1"].
-					 createInstance(Components.interfaces.nsILocalFile);
-			File.initWithPath(locpath);
-
-			var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"].
-						 createInstance(Components.interfaces.nsIFileOutputStream);
-			foStream.init(File, 0x02 | 0x08 | 0x10, 0666, 0);  // write, create, append
-			var os = Components.classes["@mozilla.org/intl/converter-output-stream;1"]
-				   .createInstance(Components.interfaces.nsIConverterOutputStream);
-			os.init(foStream, "UTF-8", 0, 0x0000);
-
-			var array = FoxtrickPrefs.getAllKeysOfBranch(baseprefnl);
-			for(var i = 0; i < array.length; i++) {
-					var value=FoxtrickPrefs.getString(array[i]);
-					if (value!=null) os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'","'+value+'");\n');
-					else { value=FoxtrickPrefs.getInt(array[i]);
-						if (value==null) value=FoxtrickPrefs.getBool(array[i]);
-						os.writeString('user_pref("extensions.foxtrick.prefs.'+array[i]+'",'+value+');\n');
-						}
-				}
-			os.close();
-			foStream.close();
-		}
-		catch (e) {
-			Foxtrick.log(e);
-		}
-	},
-
 	saveMyLink : function (evt) {
 		try {
 			var doc = evt.target.ownerDocument;
@@ -529,7 +493,6 @@ Foxtrick.util.links = {
 			td1.appendChild(a);
 			tdiv.appendChild(title);
 			td2.appendChild(tdiv);
-			//td5.appendChild(Foxtrick.util.links.GetExportLink(doc,a,baseprefnl));
 			td3.appendChild(Foxtrick.util.links.GetEditOldLink(doc,a,baseprefnl));
 			td4.appendChild(Foxtrick.util.links.GetDelLink(doc,a,baseprefnl));
 
@@ -579,27 +542,10 @@ Foxtrick.util.links = {
 		}
 	},
 
-
-	GetExportLink  : function(doc,mylink,baseprefnl) {
-		try {
-			var ExportLink = doc.createElement("div");
-			ExportLink.setAttribute("class","ft_actionicon foxtrickExport float_right");
-			ExportLink.setAttribute( "title", Foxtrickl10n.getString("foxtrick.linkscustom.export"));
-			Foxtrick.listen(ExportLink, "click", Foxtrick.util.links.Export, false );
-			ExportLink.baseprefnl = baseprefnl;
-			ExportLink.mylink = mylink;
-			return ExportLink;
-		}
-		catch (e) {
-			Foxtrick.log(e);
-		}
-	},
-
-
 	LoadDialog  : function(doc, divED)
 	{		// load image select
 		var form = Foxtrick.filePickerForDataUrl(doc, function(url) {
-			//if (url.length>5000) {Foxtrick.alert("Image too large.");return;}
+			if (url.length>5000) {Foxtrick.alert("Image too large.");return;}
 			var div=doc.getElementById('inputImgDivID');
 			div.imgref=url;
 			div.style.backgroundImage = "url('" + url + "')";
