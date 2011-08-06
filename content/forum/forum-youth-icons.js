@@ -8,7 +8,7 @@ var FoxtrickForumYouthIcons = {
 
 	MODULE_NAME : "ForumYouthIcons",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forumWritePost","messageWritePost","guestbook","announcements","forumSettings","newsletter","forumModWritePost","ticket"),
+	PAGES : new Array("forumWritePost","messageWritePost","guestbook","announcements","forumSettings","newsletter","mailnewsletter","forumModWritePost","ticket"),
 	OPTIONS :  new Array("q", "user_id", "kit_id", "article_id", "line_br", "clock", "spoiler", "pre", "table", "youth_player", "youth_team", "youth_match", "youth_series", "debug", "settings", "enlarge_input"),
 	CSS: Foxtrick.ResourcePath + "resources/css/forum-youth-icons.css",
 
@@ -20,7 +20,9 @@ var FoxtrickForumYouthIcons = {
 		// mail
 		{ page:"messageWritePost", textarea : "ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtRemLen", length : 1000, add_quote:false },
 		// newsletter
-		{ page:"newsletter", textarea : "ctl00_ctl00_CPContent_CPMain_tbNewsBody", counterfield : "ctl00_ctl00_CPContent_CPMain_txtCharsLeft", length : 1000, add_quote:false },
+		{ page:"newsletter", textarea : "ctl00_ctl00_CPContent_CPMain_txtMessage", counterfield : "ctl00_ctl00_CPContent_CPMain_txtCharsLeft", length : 1000, add_quote:false },
+		// newsletter
+		{ page:"mailnewsletter", textarea : "ctl00_ctl00_CPContent_CPMain_tbNewsBody", counterfield : "ctl00_ctl00_CPContent_CPMain_txtCharsLeft", length : 1000, add_quote:false },
 		// GB
 		{ page:"guestbook", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 300, add_quote:false },
 		// PA
@@ -83,11 +85,9 @@ var FoxtrickForumYouthIcons = {
 		var textarea = doc.getElementsByTagName('textarea')[0]
 		if (textarea == null ) return;
 
-		if (typeof(opera)!=='object')
-			Foxtrick.util.inject.jsLink(doc, Foxtrick.ResourcePath+"resources/js/HattrickML.js");
-
 		if (Foxtrick.isPage("newsletter", doc)
 			|| Foxtrick.isPage("mailnewsletter", doc)) {
+
 			if (Foxtrick.isPage("newsletter", doc))
 				var textbox = 'ctl00_ctl00_CPContent_CPMain_txtMessage';
 			if (Foxtrick.isPage("mailnewsletter", doc))

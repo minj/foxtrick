@@ -17,7 +17,7 @@
 var FoxtrickFormatPostingText = {
 	MODULE_NAME : "FormatPostingText",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','newsletter',"forumModWritePost"),
+	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','newsletter','mailnewsletter',"forumModWritePost"),
 
 	run : function(doc) {
 		//format view
