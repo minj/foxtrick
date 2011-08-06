@@ -39,12 +39,12 @@ Foxtrick.util.inject.css = function(doc, css, id) {
 
 // attaches a JavaScript file to the page
 Foxtrick.util.inject.jsLink = function(doc, url) {
-	/*if (typeof(opera)=='object') {
+	if (typeof(opera)=='object') {
 		Foxtrick.load(url, function(text) {
 			Foxtrick.util.inject.js(doc, text);
-		}, false);
+		}, true);
 		return;
-	}*/
+	}
 	var head = doc.getElementsByTagName("head")[0];
 	var script = doc.createElement("script");
 	script.setAttribute("type", "application/javascript");
