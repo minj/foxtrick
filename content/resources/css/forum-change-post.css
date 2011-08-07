@@ -25,13 +25,23 @@ div[class="message"] pre, #forum_preview  pre, div[class="feedItem"] pre {font-s
 	width: 12px;
 }
 
-.cfWrapper div.ft-copy-small {
+[dir="ltr"] .cfWrapper div.ft-copy-small {
 	margin-left: 3px;
 	z-index:2;
 }
 
-.cfWrapper a.ft-copy-small img {
+[dir="rtl"] .cfWrapper div.ft-copy-small {
 	margin-right: 3px;
+	z-index:2;
+}
+
+[dir="ltr"] .cfWrapper a.ft-copy-small img {
+	margin-right: 3px;
+	z-index:2;
+}
+
+[dir="rtl"] .cfWrapper a.ft-copy-small img {
+	margin-left: 3px;
 	z-index:2;
 }
 

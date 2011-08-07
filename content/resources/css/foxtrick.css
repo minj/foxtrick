@@ -183,8 +183,13 @@ ul.ft-pop {
 	padding: 0px;
 	margin: 0px;
 }
-ul.ft-pop.right {
+[dir="ltr"] ul.ft-pop.right {
 	right: 0px;
+	text-align:left;
+}
+[dir="rtl"] ul.ft-pop.right {
+	left: 0px;
+	text-align:right;
 }
 ul.ft-pop.top {
 	top: 0px;
@@ -197,7 +202,6 @@ ul.ft-pop > li {
 	padding: 2px 2px !important;
 	border-bottom: solid 1px #aaa;
 	margin: 0px 0px;
-	text-align:left;
 }
 ul.ft-pop > li:hover {
 	background-color: #d0d0d0;
