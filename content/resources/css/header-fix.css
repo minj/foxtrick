@@ -5,22 +5,32 @@
 #header {
 	position: fixed !important;
 	top: 0px;
-	z-index: 990;
+	z-index: 9990;
 }
 [x-theme="standard"] #header {
 	width: 949px;
 }
 [x-theme="simple"] #header {
 	width: 764px;
-	margin-left: -11px;
-	padding-right:10px;
-	padding-left: 11px;
 	background-color: white !important;
 	border-color: #DDDDDD;
 	border-style: solid;
 	border-width:  0 1px 0 1px;
 	height: 103px !important
 }
+
+[dir="ltr"][x-theme="simple"] #header {
+	margin-left: -11px;
+	padding-right:10px;
+	padding-left: 11px;
+}
+
+[dir="rtl"][x-theme="simple"] #header {
+	margin-right: -11px;
+	padding-left:10px;
+	padding-right: 11px;
+}
+
 
 /* compensate for fixed header, move menu from the edge */
 [x-theme="standard"] #menu {
@@ -33,6 +43,12 @@
 [x-theme="simple"] #menu {
 	margin-left:10px !important;
 	width: 765px !important;
+}
+[dir="ltr"][x-theme="simple"] #shortcuts {
+	right:11px;
+}
+[dir="rtl"][x-theme="standard"] #sidebar {
+	margin-left: 14px !important;
 }
 
 /* add whitespace below header */
@@ -53,7 +69,7 @@
 
 /* compensate for fixed header */
 #content {
-	padding-top: 100px !important;
+	padding-top: 105px !important;
 }
 
 /* fix for forumbookmark z-index 99999 */
