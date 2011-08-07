@@ -1,9 +1,16 @@
 .ft-mark-all-as-read {
-    background: url("chrome://foxtrick/content/resources/img/tick2.png") no-repeat scroll 50% 50% transparent;
-    cursor: pointer;
-    height: 16px;
-    margin: 0 7px 0 2px;
-    width: 12px;
-    float: right;
-	display:inline;
+	background: url("chrome://foxtrick/content/resources/img/tick2.png") no-repeat scroll 50% 50% transparent;
+	cursor: pointer;
+	height: 16px;
+	width: 12px;
+	display: inline;
+}
+
+[dir="ltr"] .ft-mark-all-as-read {
+	margin: 0 7px 0 2px;
+	float: right;
+}
+[dir="rtl"] .ft-mark-all-as-read {
+	margin: 0 2px 0 7px;
+	float: left;
 }
