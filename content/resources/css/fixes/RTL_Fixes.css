@@ -1,10 +1,12 @@
 @-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
-#shortcuts div {float:left !important;}
-#shortcuts a {float:left !important;}
+[dir="rtl"] #shortcuts div, [dir="rtl"] #shortcuts a {
+	float: left !important;
+}
 
-div.coachInfo, div.playerInfo
-{	float:right !important; }
+[dir="rtl"] div.coachInfo, [dir="rtl"] div.playerInfo {
+	float: right !important;
+}
 
 /*only simple :( div.mainRegular {margin: 0 0px 20px 10px !important;}*/
 

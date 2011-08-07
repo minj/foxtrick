@@ -23,17 +23,6 @@ var FoxtrickFixcssProblems = {
 		Foxtrick.ResourcePath+"resources/css/fixes/Forum_FoxLink_Headers.css",
 		Foxtrick.ResourcePath+"resources/css/fixes/Club_Menu_Teamnames.css",
 		Foxtrick.ResourcePath+"resources/css/fixes/Page_Minimum_Height.css",
-		"",
-		Foxtrick.ResourcePath+"resources/css/fixes/ForumScrollBarFix.css",
-		Foxtrick.ResourcePath+"resources/css/fixes/MatchReportRatingsFontFix.css",
-		Foxtrick.ResourcePath+"resources/css/fixes/RemoveForumSneakPeak.css",
-		Foxtrick.ResourcePath+"resources/css/fixes/calendar-auto-min-height.css",
-		Foxtrick.ResourcePath+"resources/css/fixes/hide-invitation.css"
-	],
-	OPTIONS_CSS_RTL : [
-		Foxtrick.ResourcePath+"resources/css/fixes/Forum_FoxLink_Headers.css",
-		Foxtrick.ResourcePath+"resources/css/fixes/Club_Menu_Teamnames.css",
-		Foxtrick.ResourcePath+"resources/css/fixes/Page_Minimum_Height.css",
 		Foxtrick.ResourcePath+"resources/css/fixes/RTL_Fixes.css",
 		Foxtrick.ResourcePath+"resources/css/fixes/ForumScrollBarFix.css",
 		Foxtrick.ResourcePath+"resources/css/fixes/MatchReportRatingsFontFix.css",
