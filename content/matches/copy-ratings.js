@@ -24,7 +24,6 @@ var FoxtrickCopyRatings = {
 
 		var createRatings = function(place, teams) {
 			try {
-				FoxtrickPrefs.setString("copyratings.teams", teams);
 				if (place == "table")
 					var insertBefore = doc.getElementById('mainBody').getElementsByTagName('h2')[0].parentNode;
 				else if (place == "box")
@@ -150,8 +149,7 @@ var FoxtrickCopyRatings = {
 		awayHeader.appendChild(copyAway);
 
 		var button = Foxtrick.util.copyButton.add(doc,
-			Foxtrickl10n.getString("CopyRatings."
-				+ FoxtrickPrefs.getString("copyratings.teams")));
+			Foxtrickl10n.getString("CopyRatings.both"));
 		if (button) {
 			button.title='';
 			Foxtrick.addClass(button, "ft-copy-ratings ft-pop-up-container");
