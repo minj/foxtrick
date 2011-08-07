@@ -133,6 +133,11 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 			return;
 		}
 
+		// set up direction and style attributes
+		var html = doc.getElementsByTagName("html")[0];
+		html.dir = Foxtrick.util.layout.isRtl(doc) ? "rtl" : "ltr";
+		html.setAttribute("x-theme", Foxtrick.util.layout.isStandard(doc) ? "standard" : "simple");
+
 		var isStandard = FoxtrickPrefs.getBool('isStandard');
 		var isRTL = FoxtrickPrefs.getBool('isRTL');
 		// reload CSS if not loaded or page layout changed
