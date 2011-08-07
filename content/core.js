@@ -17,20 +17,20 @@ var FoxtrickCore = {
 	CSS_SIMPLE : [
 		Foxtrick.ResourcePath + "resources/css/foxtrick.css",
 		Foxtrick.ResourcePath + "resources/css/foxtrick-simple.css",
-		Foxtrick.ResourcePath + "resources/css/headercopyicons_simple.css",
+		Foxtrick.ResourcePath + "resources/css/headercopyicons.css",
 		Foxtrick.ResourcePath + "resources/css/flags.css",
 	],
 	CSS_RTL : [
 		Foxtrick.ResourcePath + "resources/css/foxtrick.css",
 		Foxtrick.ResourcePath + "resources/css/rtl.css",
-		Foxtrick.ResourcePath + "resources/css/headercopyicons_rtl.css",
+		Foxtrick.ResourcePath + "resources/css/headercopyicons.css",
 		Foxtrick.ResourcePath + "resources/css/flags.css",
 	],
 	CSS_SIMPLE_RTL : [
 		Foxtrick.ResourcePath + "resources/css/foxtrick.css",
 		Foxtrick.ResourcePath + "resources/css/foxtrick-simple.css",
 		Foxtrick.ResourcePath + "resources/css/rtl.css",
-		Foxtrick.ResourcePath + "resources/css/headercopyicons_simple_rtl.css",
+		Foxtrick.ResourcePath + "resources/css/headercopyicons.css",
 		Foxtrick.ResourcePath + "resources/css/flags.css",
 	],
 

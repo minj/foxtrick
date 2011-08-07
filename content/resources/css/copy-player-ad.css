@@ -1,3 +1,7 @@
-.copyicon.ft-copy-player-ad {
+[x-theme="standard"] .copyicon.ft-copy-player-ad {
 	background-image: url("chrome://foxtrick/content/resources/img/copy/copyPlayerAd.png");
+}
+
+[x-theme="simple"] .copyicon.ft-copy-player-ad {
+	background-image: url("chrome://foxtrick/content/resources/img/copy/copyPlayerAd_s.png");
 }
