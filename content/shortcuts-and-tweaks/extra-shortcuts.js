@@ -20,7 +20,9 @@ var FoxtrickExtraShortcuts = {
 	],
 	CSS: Foxtrick.ResourcePath+"resources/css/extra-shortcuts.css",
 	
-	OPTIONS_CSS: Foxtrick.ResourcePath+"resources/css/extra-shortcuts-space.css",
+	OPTIONS_CSS: [
+		Foxtrick.ResourcePath+"resources/css/extra-shortcuts-space.css"
+	],
 
 	run : function(doc) {
 		var shortcuts = doc.getElementById ( 'shortcuts' );
