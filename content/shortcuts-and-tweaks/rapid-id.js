@@ -9,8 +9,6 @@ var FoxtrickRapidId = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ["all"],
 	CSS: Foxtrick.ResourcePath+"resources/css/rapidid.css",
-	CSS_SIMPLE: Foxtrick.ResourcePath+"resources/css/rapidid_simple.css",
-
 
 	options: [
 		{ value: "manager", text: "Manager", url: "Club/Manager/?userId=%n" },
