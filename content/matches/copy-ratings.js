@@ -31,8 +31,7 @@ var FoxtrickCopyRatings = {
 					var insertBefore = doc.getElementById('foxtrick_addactionsbox_parentDiv');
 				else {
 					var insertBefore = doc.getElementsByTagName('h1')[0];
-					doc.getElementsByClassName("ft-copy-ratings")[0].title = Foxtrickl10n.getString("CopyRatings." + teams);
-	 			}
+				}
 				var team1 = (teams == "both") || (teams == "home");
 				var team2 = (teams == "both") || (teams == "away");
 
@@ -129,7 +128,6 @@ var FoxtrickCopyRatings = {
 		var copyBoth = doc.createElement("span");
 		copyBoth.className = "ft_copy_rating";
 		copyBoth.appendChild(doc.createTextNode(Foxtrickl10n.getString("Copy")));
-		copyBoth.title = Foxtrickl10n.getString("CopyRatings.both");
 		copyBoth.setAttribute("teams", "both");
 		copyBoth.setAttribute("place", "table");
 		copyBoth.addEventListener("click", function() { createRatings("table", "both"); }, false);
@@ -138,7 +136,6 @@ var FoxtrickCopyRatings = {
 		var copyHome = doc.createElement("span");
 		copyHome.className = "ft_copy_rating";
 		copyHome.appendChild(doc.createTextNode("(" + Foxtrickl10n.getString("Copy") + ")"));
-		copyHome.title = Foxtrickl10n.getString("CopyRatings.home");
 		copyHome.setAttribute("teams", "home");
 		copyHome.setAttribute("place", "table");
 		copyHome.addEventListener("click", function() { createRatings("table", "home"); }, false);
@@ -147,7 +144,6 @@ var FoxtrickCopyRatings = {
 		var copyAway = doc.createElement("span");
 		copyAway.className = "ft_copy_rating";
 		copyAway.appendChild(doc.createTextNode("(" + Foxtrickl10n.getString("Copy") + ")"));
-		copyAway.title = Foxtrickl10n.getString("CopyRatings.away");
 		copyAway.setAttribute("teams", "away");
 		copyAway.setAttribute("place", "table");
 		copyAway.addEventListener("click", function() { createRatings("table", "away"); }, false);
@@ -157,6 +153,7 @@ var FoxtrickCopyRatings = {
 			Foxtrickl10n.getString("CopyRatings."
 				+ FoxtrickPrefs.getString("copyratings.teams")));
 		if (button) {
+			button.title='';
 			Foxtrick.addClass(button, "ft-copy-ratings ft-pop-up-container");
 
 			var versions=['both','home','away'];
