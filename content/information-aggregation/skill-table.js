@@ -12,7 +12,6 @@ var FoxtrickSkillTable = {
 	PAGES : ["players", "oldcoaches","YouthPlayers", "transferSearchResult"],
 	OPTIONS : ["OtherTeams", "ColouredYouth"],
 	CSS : Foxtrick.ResourcePath + "resources/css/skilltable.css",
-	CSS_RTL : Foxtrick.ResourcePath + "resources/css/skilltable_rtl.css",
 
 	// whether skill table is created
 	// returns a Boolean
