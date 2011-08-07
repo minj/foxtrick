@@ -1,7 +1,12 @@
 /* settings here apply to all pages, including non hattrick pages.
    so any own class HAS TO start with eg 'foxtrick_' to make it foxtrick specific */
 
-#stageLogo {background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick.png') !important;}
+[x-theme="standard"] #stageLogo {
+	background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick.png') !important;
+}
+[x-theme="simple"] #stageLogo {
+	background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick_simple.png') !important;
+}
 
 /* faux-link */
 .ft-link { cursor: pointer; text-decoration: underline; }
@@ -36,9 +41,22 @@ div.ft_sidebarBoxCollapsed_rtl h2 { background-image: url("chrome://foxtrick/con
 div.ft_sidebarBoxUnfolded_rtl h2 { background-image: url("chrome://foxtrick/content/resources/img/link-up.png"); background-position: left ; background-repeat:no-repeat; }
 
 /* h2 dropdown */
-h2.ft_boxBodyCollapsed, h2.ft_boxBodyUnfolded { cursor: pointer; }
-h2.ft_boxBodyCollapsed { background-image: url("chrome://foxtrick/content/resources/img/down.gif"); background-repeat:no-repeat; background-position:right; }
-h2.ft_boxBodyUnfolded { background-image: url("chrome://foxtrick/content/resources/img/up.gif"); background-repeat:no-repeat; background-position:right; }
+h2.ft_boxBodyCollapsed, h2.ft_boxBodyUnfolded {
+	cursor: pointer;
+	background-repeat: no-repeat;
+}
+[dir="ltr"] h2.ft_boxBoxyCollapsed, [dir="ltr"] h2.ft_boxBodyUnfolded {
+	background-position: right;
+}
+[dir="rtl"] h2.ft_boxBoxyCollapsed, [dir="rtl"] h2.ft_boxBodyUnfolded {
+	background-position: left;
+}
+h2.ft_boxBodyCollapsed {
+	background-image: url("chrome://foxtrick/content/resources/img/down.gif");
+}
+h2.ft_boxBodyUnfolded {
+	background-image: url("chrome://foxtrick/content/resources/img/up.gif");
+}
 
 /* sidebarbox h3 dropdown image */
 h3.ft_sidebarBoxCollapsed, h3.ft_sidebarBoxUnfolded { cursor: pointer; padding-right: 20px !important; background-repeat: no-repeat; background-position: right; }
@@ -190,3 +208,15 @@ ul.ft-pop > li a, ul.ft-pop span {
 	cursor: pointer;
 }
 #ft_clear_cache {cursor: pointer; color:#3F7137; }
+
+[x-theme="simple"] .transferPlayerSkills {
+	max-width: 62% !important;
+	background-color: white;
+	padding-left: 5px !important;
+}
+[x-theme="simple"] .transferPlayerInformation {
+	max-width: 30% !important;
+}
+[x-theme="simple"] #ctl00_ctl00_CPContent_CPMain_UpdatePanelLiveLeagueTable {
+	white-space: nowrap;
+}
