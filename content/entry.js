@@ -8,9 +8,6 @@ if (!Foxtrick)
 	var Foxtrick = {};
 Foxtrick.entry = {};
 
-Foxtrick.entry.isStandard = true;
-Foxtrick.entry.isRtl = false;
-
 // mapping from page name (defined in pages.js) to array of modules running
 // on it
 Foxtrick.entry.runMap = {};
@@ -138,15 +135,9 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		html.dir = Foxtrick.util.layout.isRtl(doc) ? "rtl" : "ltr";
 		html.setAttribute("x-theme", Foxtrick.util.layout.isStandard(doc) ? "standard" : "simple");
 
-		var isStandard = FoxtrickPrefs.getBool('isStandard');
-		var isRTL = FoxtrickPrefs.getBool('isRTL');
-		// reload CSS if not loaded or page layout changed
-		if (!Foxtrick.entry.cssLoaded
-			|| (Foxtrick.util.layout.isStandard(doc) !== FoxtrickPrefs.getBool('isStandard'))
-			|| (Foxtrick.util.layout.isRtl(doc) !== FoxtrickPrefs.getBool('isRTL'))) {
-			Foxtrick.log('layout change');
-			FoxtrickPrefs.setBool('isStandard', Foxtrick.util.layout.isStandard(doc));
-			FoxtrickPrefs.setBool('isRTL', Foxtrick.util.layout.isRtl(doc));
+		// reload CSS if not loaded
+		if (!Foxtrick.entry.cssLoaded) {
+			Foxtrick.log("CSS not loaded");
 			FoxtrickPrefs.setBool('isStage', Foxtrick.isStage(doc));
 			Foxtrick.reload_module_css(doc);
 			Foxtrick.entry.cssLoaded = true;

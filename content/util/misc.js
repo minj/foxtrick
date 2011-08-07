@@ -472,33 +472,16 @@ Foxtrick.unload_module_css = function(doc) {
 	Foxtrick.dump('unload permanents css\n');
 
 	if (Foxtrick.BuildFor === "Gecko") {
-	  for (var i in Foxtrick.modules) {
-		var module = Foxtrick.modules[i];
-		if (module.MODULE_NAME) {
-			if (module.OLD_CSS && module.OLD_CSS!="")
-				Foxtrick.unload_css_permanent (module.OLD_CSS);
-			if (module.CSS_SIMPLE)
-				Foxtrick.unload_css_permanent (module.CSS_SIMPLE);
-			if (module.CSS_SIMPLE_RTL)
-				Foxtrick.unload_css_permanent (module.CSS_SIMPLE_RTL) ;
+		for (var i in Foxtrick.modules) {
+			var module = Foxtrick.modules[i];
 			if (module.CSS)
-				 Foxtrick.unload_css_permanent (module.CSS);
-			if (module.CSS_RTL)
-				Foxtrick.unload_css_permanent (module.CSS_RTL);
-			if (module.OPTIONS_CSS)
-				for (var k=0; k<module.OPTIONS_CSS.length; ++k)
-					if (module.OPTIONS_CSS[k] != "") Foxtrick.unload_css_permanent (module.OPTIONS_CSS[k]) ;
-			if (module.OPTIONS_CSS_RTL)
-				for (var k=0; k<module.OPTIONS_CSS_RTL.length; ++k)
-					if (module.OPTIONS_CSS_RTL[k] != "") Foxtrick.unload_css_permanent (module.OPTIONS_CSS_RTL[k]) ;
-			if (module.OPTIONS_CSS_SIMPLE)
-				for (var k=0; k<module.OPTIONS_CSS_SIMPLE.length; ++k)
-					if (module.OPTIONS_CSS_SIMPLE[k] != "") Foxtrick.unload_css_permanent (module.OPTIONS_CSS_SIMPLE[k]) ;
-			if (module.OPTIONS_CSS_RTL_SIMPLE)
-				for (var k=0; k<module.OPTIONS_CSS_RTL_SIMPLE.length; ++k)
-					if (module.OPTIONS_CSS_RTL_SIMPLE[k] != "") Foxtrick.unload_css_permanent (module.OPTIONS_CSS_RTL_SIMPLE[k]) ;
+				Foxtrick.unload_css_permanent(module.CSS);
+			if (module.OPTIONS_CSS) {
+				Foxtrick.map(module.OPTIONS_CSS, function(n) {
+					Foxtrick.unload_css_permanent(n);
+				});
+			}
 		}
-	  }
 	}
 	else {
 		var moduleCss = doc.getElementById("ft-module-css");
@@ -549,94 +532,47 @@ Foxtrick.unload_css_permanent = function(cssList) {
 
 // collect all enabled module css urls in Foxtrick.cssFiles array
 Foxtrick.collect_module_css = function() {
-	var isStandard = FoxtrickPrefs.getBool('isStandard');
-	var isRTL = FoxtrickPrefs.getBool('isRTL');
-
-	var collect_module_css_impl = function(module) { 
-		// collect module main CSS
-		collectCss(module.CSS, module.CSS_SIMPLE, module.CSS_RTL, module.CSS_SIMPLE_RTL);
-		
-		// collect module options CSS
-		if (module.OPTIONS_CSS) {
-			for (var j = 0; j < module.OPTIONS_CSS.length; ++j) {
-				if (!FoxtrickPrefs.isModuleOptionEnabled(module.MODULE_NAME, module.OPTIONS[j]))
-					continue;
-				collectCss(module.OPTIONS_CSS[j],
-					module.OPTIONS_CSS_SIMPLE ? module.OPTIONS_CSS_SIMPLE[j] : null,
-					module.OPTIONS_CSS_RTL ? module.OPTIONS_CSS_RTL[j] : null,
-					module.OPTIONS_CSS_RTL_SIMPLE ? module.OPTIONS_CSS_RTL_SIMPLE[j] : null
-					);
-			}
-		}
-	}
-
-		var collectCss = function(normal, simple, rtl, simpleRtl) {
-			var collect_css_impl = function(cssList) {
-				if (typeof(cssList) === "string")
-					Foxtrick.cssFiles.push(cssList);
-				else if (typeof(cssList) === "object") {
-					for (var i in cssList)
-						Foxtrick.cssFiles.push(cssList[i]);
-				}
-			};
-			var collectSimpleRtl = function() {
-				if (simpleRtl)
-					collect_css_impl(simpleRtl);
-				else if (collectRtl(true))
-					;
-				else if (collectSimple(true))
-					;
-				else
-					collect();
-			};
-			var collectRtl = function(noFallback) {
-				if (rtl)
-					collect_css_impl(rtl);
-				else if (!noFallback)
-					collect();
-				else
-					return false;
-				return true;
-			};
-			var collectSimple = function(noFallback) {
-				if (simple)
-					collect_css_impl(simple);
-				else if (!noFallback)
-					collect();
-				else
-					return false;
-				return true;
-			};
-			var collect = function() {
-				if (normal)
-					collect_css_impl(normal);
-			};
-			if (!isStandard) {
-				if (isRTL)
-					collectSimpleRtl();
-				else
-					collectSimple();
-			}
-			else {
-				if (isRTL)
-					collectRtl();
-				else
-					collect();
-			}
-		}
-
 	Foxtrick.cssFiles = [];
-	for (var i in Foxtrick.modules) {
-		var module = Foxtrick.modules[i];
-		if (!FoxtrickPrefs.isModuleEnabled(module.MODULE_NAME) || 
-			module.MODULE_NAME == 'SkinPlugin' )
-			continue;
-		collect_module_css_impl(module);
-	}
-	// load last to have user settings overwrite default settings  
-	if (FoxtrickSkinPlugin  && FoxtrickPrefs.isModuleEnabled(FoxtrickSkinPlugin.MODULE_NAME) ) {
-		collect_module_css_impl(FoxtrickSkinPlugin);
-	}
+	var collect = function(module) {
+		if (FoxtrickPrefs.isModuleEnabled(module.MODULE_NAME)) {
+			// module main CSS
+			if (module.CSS) {
+				if (module.CSS instanceof Array) {
+					for (var i = 0; i < module.CSS.length; ++i)
+						Foxtrick.cssFiles.push(module.CSS[i]);
+				}
+				else if (typeof(module.CSS) == "string") {
+					Foxtrick.cssFiles.push(module.CSS);
+				}
+				else {
+					Foxtrick.log("Unrecognized CSS from module ",
+						module.MODULE_NAME, ": ", module.CSS);
+				}
+			}
+			// module options CSS
+			if (module.OPTIONS && module.OPTIONS_CSS) {
+				for (var i = 0;
+					i < Math.min(module.OPTIONS.length, module.OPTIONS_CSS.length);
+					++i) {
+					if (FoxtrickPrefs.isModuleOptionEnabled(module.MODULE_NAME, module.OPTIONS[i])
+						&& module.OPTIONS_CSS[i])
+						Foxtrick.cssFiles.push(module.OPTIONS_CSS[i]);
+				}
+			}
+		}
+	};
+	// sort modules, place SkinPlugin at last
+	// FIXME - implement a more general method
+	var modules = Foxtrick.modules.slice(0);
+	modules.sort(function(a, b) {
+		if (a.MODULE_NAME == b.MODULE_NAME)
+			return 0;
+		if (a.MODULE_NAME == "SkinPlugin")
+			return 1;
+		if (b.MODULE_NAME == "SkinPlugin")
+			return -1;
+	});
+	Foxtrick.map(modules, collect);
 };
 
 // load all Foxtrick.cssFiles into browser or page
@@ -667,11 +603,10 @@ Foxtrick.load_module_css = function(doc) {
 			Foxtrick.log (e);
 		}
 	};
-		
+
 	if (Foxtrick.BuildFor === "Gecko") {
-		for (var i in Foxtrick.cssFiles) {
+		for (var i = 0; i < Foxtrick.cssFiles.length; ++i)
 			load_css_permanent_impl(Foxtrick.cssFiles[i]);
-		}
 	}
 	else if (Foxtrick.BuildFor === "Sandboxed") {
 		sandboxed.extension.sendRequest(
