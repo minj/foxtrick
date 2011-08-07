@@ -29,14 +29,9 @@ Foxtrick.util.copyButton.add = function(doc, text) {
 		// that can occupy the header
 		// so, take first unoccupied by us or any HT icon
 		var icons = 
-			["ci_first", "ci_second", "ci_third", "ci_fourth", "ci_fifth",
+			["ci_first", "ci_second", "ci_third", "ci_fourth", "ci_fifth", "ci_sixth", "ci_seventh",
 			"bookmark", "backIcon", "statsIcon", "alltidIcon", "forumSettings", "forumSearch", "forumStats", "forumSearch2"];
-		var occupied = 0;
-		for (var i = 0; i < icons.length; ++i) {
-			if (mainBody.getElementsByClassName(icons[i]).length > 0)
-				occupied++;
-		}
-		var orderClass = icons[occupied];
+		var orderClass = icons[ Foxtrick.count(icons, function(n){ return mainBody.getElementsByClassName(n).length > 0; }) ];
 
 		var link = doc.createElement("a");
 		link.className = "inner copyicon " + orderClass;

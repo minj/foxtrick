@@ -105,6 +105,17 @@ Foxtrick.some = function(array, func) {
 	} catch(e) {Foxtrick.log('Uncaught function error: ',e)}
 }
 
+Foxtrick.count = function(array, func) {
+	try {
+		var ret = 0;
+		for (var i = 0; i < array.length; ++i) {
+			if (func(array[i]))
+				++ret;
+		}
+		return ret;
+	} catch(e) {Foxtrick.log('Uncaught function error: ',e)}
+}
+
 /**
  * Return an array with duplicate items reduced to one
  */
@@ -121,6 +132,11 @@ Foxtrick.unique = function(array) {
     return ret;
 }
 
+Foxtrick.in_array = function(a, n) {
+	return Foxtrick.some(a, function(t) { return n === t; });
+}
+
+
 Foxtrick.copyStringToClipboard = function (string) {
 	if (Foxtrick.BuildFor === "Gecko") {
 		var gClipboardHelper = Components
@@ -134,10 +150,6 @@ Foxtrick.copyStringToClipboard = function (string) {
 	else if (Foxtrick.BuildFor === "Sandboxed") {
 		sandboxed.extension.sendRequest({req : "clipboard", content : string});
 	}
-}
-
-Foxtrick.in_array = function(a, n) {
-	return Foxtrick.some(a, function(t) { return n === t; });
 }
 
 Foxtrick.newTab = function(url) {

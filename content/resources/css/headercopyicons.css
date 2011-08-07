@@ -40,24 +40,32 @@ a.copyicon img {
 [x-theme="standard"][dir="ltr"] .ci_third { right: 88px; }
 [x-theme="standard"][dir="ltr"] .ci_fourth { right: 125px; }
 [x-theme="standard"][dir="ltr"] .ci_fifth { right: 162px; }
+[x-theme="standard"][dir="ltr"] .ci_sixth { right: 199px; }
+[x-theme="standard"][dir="ltr"] .ci_seveth { right: 236px; }
 
 [x-theme="standard"][dir="rtl"] .ci_first { left: 14px; }
 [x-theme="standard"][dir="rtl"] .ci_second { left: 51px; }
 [x-theme="standard"][dir="rtl"] .ci_third { left: 88px; }
 [x-theme="standard"][dir="rtl"] .ci_fourth { left: 125px; }
 [x-theme="standard"][dir="rtl"] .ci_fifth { left: 162px; }
+[x-theme="standard"][dir="rtl"] .ci_sixth { right: 199px; }
+[x-theme="standard"][dir="rtl"] .ci_seveth { right: 236px; }
 
 [x-theme="simple"][dir="ltr"] .ci_first { right: 6px; }
 [x-theme="simple"][dir="ltr"] .ci_second { right: 31px; }
 [x-theme="simple"][dir="ltr"] .ci_third { right: 56px; }
 [x-theme="simple"][dir="ltr"] .ci_fourth { right: 81px; }
 [x-theme="simple"][dir="ltr"] .ci_fifth { right: 106px; }
+[x-theme="simple"][dir="ltr"] .ci_sixth { right: 131px; }
+[x-theme="simple"][dir="ltr"] .ci_seveth { right: 156px; }
 
 [x-theme="simple"][dir="rtl"] .ci_first { left: 6px; }
 [x-theme="simple"][dir="rtl"] .ci_second { left: 31px; }
 [x-theme="simple"][dir="rtl"] .ci_third { left: 56px; }
 [x-theme="simple"][dir="rtl"] .ci_fourth { left: 81px; }
 [x-theme="simple"][dir="rtl"] .ci_fifth { left: 106px; }
+[x-theme="simple"][dir="rtl"] .ci_sixth { right: 131px; }
+[x-theme="simple"][dir="rtl"] .ci_seveth { right: 156px; }
 
 .linkyouthstatistics img {
     background: transparent url(chrome://foxtrick/content/resources/img/copy/copyNormal.png) no-repeat scroll 0 0;
