@@ -144,7 +144,7 @@ var FoxtrickForumAlterHeaderLine = {
 							Foxtrick.ResourcePath+"resources/css/fixes/Forum_Header_RemoveSupporterStar.css",
 							Foxtrick.ResourcePath+"resources/css/fixes/BookmarkHeaderSmall.css"),
 
-	CSS_SIMPLE : Foxtrick.ResourcePath+"resources/css/fixes/Forum_Header_Single_SimpleFix.css"
+	CSS : Foxtrick.ResourcePath+"resources/css/fixes/Forum_Header_Single_SimpleFix.css"
 };
 Foxtrick.util.module.register(FoxtrickForumAlterHeaderLine);
 
