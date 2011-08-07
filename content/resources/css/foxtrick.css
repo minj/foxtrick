@@ -45,10 +45,10 @@ h2.ft_boxBodyCollapsed, h2.ft_boxBodyUnfolded {
 	cursor: pointer;
 	background-repeat: no-repeat;
 }
-[dir="ltr"] h2.ft_boxBoxyCollapsed, [dir="ltr"] h2.ft_boxBodyUnfolded {
+[dir="ltr"] h2.ft_boxBodyCollapsed, [dir="ltr"] h2.ft_boxBodyUnfolded {
 	background-position: right;
 }
-[dir="rtl"] h2.ft_boxBoxyCollapsed, [dir="rtl"] h2.ft_boxBodyUnfolded {
+[dir="rtl"] h2.ft_boxBodyCollapsed, [dir="rtl"] h2.ft_boxBodyUnfolded {
 	background-position: left;
 }
 h2.ft_boxBodyCollapsed {
