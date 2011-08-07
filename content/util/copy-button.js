@@ -25,24 +25,18 @@ Foxtrick.util.copyButton.add = function(doc, text) {
 			mainBody.style.paddingTop = "10px";
 
 		// try to get order of the button in the header
-		// orders: contains a list of positions which is a list of classes
-		// that occupy that position
-		var orders = [
-			["ci_first", "backIcon", "statsIcon", "bookmark", "forumSettings", "forumSearch2"],
-			["ci_second"],
-			["ci_third"],
-			["ci_fourth"],
-			["ci_fifth"]
-		];
-		for (var i = 0; i < orders.length; ++i) {
-			var occupied = Foxtrick.some(orders[i], function(n) {
-				return doc.getElementsByClassName(n).length > 0;
-			});
-			if (!occupied) {
-				var orderClass = orders[i][0];
-				break;
-			}
+		// icons: contains a list of icons which is a list of classes
+		// that can occupy the header
+		// so, take first unoccupied by us or any HT icon
+		var icons = 
+			["ci_first", "ci_second", "ci_third", "ci_fourth", "ci_fifth",
+			"bookmark", "backIcon", "statsIcon", "alltidIcon", "forumSettings", "forumSearch", "forumStats", "forumSearch2"];
+		var occupied = 0;
+		for (var i = 0; i < icons.length; ++i) {
+			if (mainBody.getElementsByClassName(icons[i]).length > 0)
+				occupied++;
 		}
+		var orderClass = icons[occupied];
 
 		var link = doc.createElement("a");
 		link.className = "inner copyicon " + orderClass;
