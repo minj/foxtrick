@@ -1,0 +1,69 @@
+/* HeaderFix by Catalyst2950 */
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws) {
+
+/* Fix the header on screen */
+#header {
+	position: fixed !important;
+	top: 0px;
+	z-index: 990;
+}
+[x-theme="standard"] #header {
+	width: 949px;
+}
+[x-theme="simple"] #header {
+	width: 764px;
+	margin-left: -11px;
+	padding-right:10px;
+	padding-left: 11px;
+	background-color: white !important;
+	border-color: #DDDDDD;
+	border-style: solid;
+	border-width:  0 1px 0 1px;
+	height: 103px !important
+}
+
+/* compensate for fixed header, move menu from the edge */
+[x-theme="standard"] #menu {
+	width: 953px !important;
+	padding:0px 0px 0px 4px !important;
+	margin-left:0px !important;
+	border-radius-topright: 10px;
+	border-radius-bottomright: 10px;
+}
+[x-theme="simple"] #menu {
+	margin-left:10px !important;
+	width: 765px !important;
+}
+
+/* add whitespace below header */
+[x-theme="standard"] #menu {
+	margin-bottom: 6px !important;
+}
+[x-theme="simple"] #menu {
+	margin-bottom: 2px !important;
+}
+
+/* Logout botton +radius */
+[dir="ltr"][x-theme="standard"] #menu .logout {
+	margin-right: 11px !important;
+}
+[dir="rtl"][x-theme="standard"] #menu .logout {
+	margin-left: 11px !important;
+}
+
+/* compensate for fixed header */
+#content {
+	padding-top: 100px !important;
+}
+
+/* fix for forumbookmark z-index 99999 */
+.cfWrapper .bookmarkMessage {
+	z-index: 0 !important;
+}
+
+/*forum search fix*/
+#ctl00_ctl00_CPContent_CPMain_updSearch {
+	z-index:9999 !important;
+}
+
+}

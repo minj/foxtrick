@@ -11,10 +11,7 @@ var FoxtrickHeaderFix = {
 	PAGES : new Array('match','arena'),
 	ONPAGEPREF_PAGE : 'all',
 	OPTIONS : new Array("FixLeft","RemoveFlicker"),
-	CSS_SIMPLE : Foxtrick.ResourcePath+"resources/css/headerfix.css",
-	CSS: Foxtrick.ResourcePath+"resources/css/headerfix_std.css",
-	CSS_SIMPLE_RTL : Foxtrick.ResourcePath+"resources/css/headerfix_rtl.css",
-	CSS_RTL : Foxtrick.ResourcePath+"resources/css/headerfix_std_rtl.css",
+	CSS: Foxtrick.ResourcePath+"resources/css/header-fix.css",
 	OPTIONS_CSS: new Array ("",Foxtrick.ResourcePath+"resources/css/fixes/RemoveHeaderFixFlicker.css"),
 
 	init : function() {
@@ -85,10 +82,7 @@ var FoxtrickHeaderFix = {
 
 var FoxtrickHeaderFixLeft = {
 	MODULE_NAME : "HeaderFixLeft",
-	CSS_SIMPLE : Foxtrick.ResourcePath+"resources/css/headerfix_left.css",
-	CSS_SIMPLE_RTL : Foxtrick.ResourcePath+"resources/css/headerfix_rtl_left.css",
-	CSS: Foxtrick.ResourcePath+"resources/css/headerfix_std_left.css",
-	CSSRTL : Foxtrick.ResourcePath+"resources/css/headerfix_std_rtl_left.css",
+	CSS: Foxtrick.ResourcePath+"resources/css/header-fix-left.css",
 
 	init : function() {
 		if (!FoxtrickPrefs.isModuleEnabled("HeaderFix"))

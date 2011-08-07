@@ -1,0 +1,79 @@
+/* HeaderFix by Catalyst2950 */
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws) {
+
+/* fix left submenu */
+#content .subMenu {
+	position: fixed !important;
+}
+[x-theme="simple"] #content .subMenu {
+	background: white !important;
+	border-color: #ddd !important;
+	border-style: solid !important;
+}
+[dir="ltr"][x-theme="simple"] #content .subMenu {
+	margin-left: -11px !important;
+	padding-left: 11px !important;
+	border-width: 0 0 0 1px !important;
+}
+[dir="rtl"][x-theme="simple"] #content .subMenu {
+	margin-right: -11px !important;
+	padding-right: 11px !important;
+	border-width: 0 1px 0 0 !important;
+}
+
+/* show main over left menu */
+#content.mainRegular {
+	z-index:10;
+	background-color:white;
+}
+
+/* compensate for fixed left submenu */
+[dir="ltr"][x-theme="standard"] #content #mainWrapper {
+	margin-left: 175px;
+}
+[dir="ltr"][x-theme="simple"] #content #mainWrapper {
+	margin-left: 135px;
+	min-height: 400px !important;
+}
+[dir="rtl"][x-theme="standard"] #content #mainWrapper {
+	margin-right: 175px;
+}
+[dir="rtl"][x-theme="simple"] #content #mainWrapper {
+	margin-right: 135px;
+	min-height: 400px !important;
+}
+
+/* compensate for fixed left submenu Forum */
+[x-theme="standard"] #content #mainWrapper>div[class="main mainConf"] {
+	width:655px !important;
+}
+[dir="ltr"][x-theme="standard"] #content #mainWrapper>div[class="main mainConf"] {
+	float: left !important;
+	margin-left: -175px;
+}
+[dir="rtl"][x-theme="standard"] #content #mainWrapper>div[class="main mainConf"] {
+	float: right !important;
+	margin-right: -175px;
+}
+
+/* Kitdesignerfix */
+[x-theme="standard"] div#mainWrapper>div[class="main mainFull"] {
+	width: 950px !important;
+}
+[x-theme="standard"] div#mainWrapper>div[class="main mainFull"] {
+	width: 765px !important;
+}
+[dir="ltr"][x-theme="standard"] div#mainWrapper>div[class="main mainFull"] {
+	margin-left: -175px !important;
+}
+[dir="ltr"][x-theme="simple"] div#mainWrapper>div[class="main mainFull"] {
+	margin-left: -135px !important;
+}
+[dir="rtl"][x-theme="standard"] div#mainWrapper>div[class="main mainFull"] {
+	margin-right: -135px !important;
+}
+[dir="rtl"][x-theme="simple"] div#mainWrapper>div[class="main mainFull"] {
+	margin-right: -135px !important;
+}
+
+}
