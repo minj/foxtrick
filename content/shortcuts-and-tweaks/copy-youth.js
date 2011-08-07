@@ -133,12 +133,14 @@ var FoxtrickCopyYouth = {
 		if (Foxtrick.isPage("youthplayerdetail", doc) || has_report) {
 			if (has_report) {
 				var alertdiv = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butScoutPropYes').parentNode;
-				if (alertdiv.parentNode.getElementsByTagName('a')[0]==null) {
+				if (alertdiv.parentNode.getElementsByTagName('a')[0]==null
+					&& doc.getElementById('ft-copy-scout-comment-link')==null) {
 					var a=doc.createElement('a');
 					a.textContent = Foxtrickl10n.getString("CopyYouth.scoutComment");
 					a.style.cssFloat = "right";
 					a.style.marginBottom = "5px";
 					a.href='javascript:void()';
+					a.id = 'ft-copy-scout-comment-link';
 					a.addEventListener("click", copyReport, false)
 					alertdiv.parentNode.insertBefore(a,alertdiv);
 				}
