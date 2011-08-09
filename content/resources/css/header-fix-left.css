@@ -60,7 +60,7 @@
 [x-theme="standard"] div#mainWrapper>div[class="main mainFull"] {
 	width: 950px !important;
 }
-[x-theme="standard"] div#mainWrapper>div[class="main mainFull"] {
+[x-theme="simple"] div#mainWrapper>div[class="main mainFull"] {
 	width: 765px !important;
 }
 [dir="ltr"][x-theme="standard"] div#mainWrapper>div[class="main mainFull"] {
