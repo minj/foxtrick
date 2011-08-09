@@ -102,7 +102,7 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 	var window = doc.defaultView;
 
 	var computedStyle = null;
-	if (node.nodeType === Node.ELEMENT_NODE) {
+	if (node.nodeType === window.Node.ELEMENT_NODE) {
 		computedStyle = window.getComputedStyle(node, null);
 	}
 

@@ -200,7 +200,7 @@ Foxtrick.util.api = {
 					}
 				}
 
-				var parser = new DOMParser();
+				var parser = new window.DOMParser();
 				try { 
 					callback (parser.parseFromString( JSON.parse(xml_cache.xml_string), "text/xml"));
 				} catch (e) {
@@ -252,7 +252,7 @@ Foxtrick.util.api = {
 					Foxtrick.log(caller_name,": Fetching XML data from ",  Foxtrick.util.api.stripToken(url));
 					Foxtrick.loadXml(url, function(x, status) {
 						if (status == 200) {
-							var serializer = new XMLSerializer();
+							var serializer = new window.XMLSerializer();
 							Foxtrick.sessionSet('xml_cache.'+parameters_str,
 												{ xml_string : JSON.stringify(serializer.serializeToString(x)),
 												cache_lifetime:cache_lifetime });
@@ -317,7 +317,7 @@ Foxtrick.util.api = {
 	
 	getErrorText : function(text, status) {
 		try {
-			if (typeof(text) == 'string') text = (new DOMParser()).parseFromString(text, "text/xml");
+			if (typeof(text) == 'string') text = (new window.DOMParser()).parseFromString(text, "text/xml");
 			return errorText =  text.getElementsByTagName('h2')[0].textContent;
 		} catch(e) {
 			return errorText = Foxtrickl10n.getString("exception.error").replace(/%s/, status);

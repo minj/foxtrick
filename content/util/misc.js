@@ -11,7 +11,7 @@ Foxtrick.filePickerForDataUrl = function(doc, callback, data) {
 	input.type = 'file';
 	input.addEventListener('change',function(ev) {
 		var file = ev.target.files[0];
-		var reader = new FileReader();
+		var reader = new window.FileReader();
 		reader.onerror = function(e) {
 			alert('Error code: ' + e.target.error.code);
 		};
@@ -30,7 +30,7 @@ Foxtrick.filePickerForText = function(doc, callback, data) {
 	input.type = 'file';
 	input.addEventListener('change',function(ev) {
 		var file = ev.target.files[0];
-		var reader = new FileReader();
+		var reader = new window.FileReader();
 		reader.onerror = function(e) {
 			alert('Error code: ' + e.target.error.code);
 		};
@@ -187,7 +187,7 @@ Foxtrick.load = function(url, callback, crossSite) {
 				// a request to load local resource
 				url = url.replace(Foxtrick.ResourcePath, Foxtrick.InternalPath);
 			}
-			var req = new XMLHttpRequest();
+			var req = new window.XMLHttpRequest();
 			if (!callback) {
 				req.open("GET", url, false);
 				req.send(null);
@@ -222,7 +222,7 @@ Foxtrick.loadXml = function(url, callback, crossSite) {
 	if (callback) {
 		Foxtrick.load(url, function(text, status) {
 			try {
-				var parser = new DOMParser();
+				var parser = new window.DOMParser();
 				var xml = parser.parseFromString(text, "text/xml");
 				try {
 					callback(xml, status);
@@ -241,7 +241,7 @@ Foxtrick.loadXml = function(url, callback, crossSite) {
 	else {
 		try {
 			var text = Foxtrick.load(url);
-			var parser = new DOMParser();
+			var parser = new window.DOMParser();
 			var xml = parser.parseFromString(text, "text/xml");
 			return xml;
 		}

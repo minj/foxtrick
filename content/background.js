@@ -56,7 +56,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		core[i].init(); 
 		
 	// prepare resources for later transmission to content script
-	var serializer = new XMLSerializer();
+	var serializer = new window.XMLSerializer();
 	var currency = serializer.serializeToString(Foxtrick.XMLData.htCurrencyXml);
 	var about = serializer.serializeToString(Foxtrick.XMLData.aboutXML);
 	var worldDetails = serializer.serializeToString(Foxtrick.XMLData.worldDetailsXml);
@@ -141,7 +141,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 				});
 			}
 			else if (request.req == "xml") {
-				// @param url - the URL of resource to load with XMLHttpRequest
+				// @param url - the URL of resource to load with window.XMLHttpRequest
 				// @callback_param data - response text
 				// @callback_param status - HTTP status of request
 				// synchronous, since messaging is async already
