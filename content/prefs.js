@@ -323,12 +323,16 @@ if (Foxtrick.BuildFor === "Gecko") {
 		},
 
 		setString : function(key, value) {
-			var str = Components
+			if (Foxtrick.InjectedContext)
+				sendSyncMessage("Foxtrick:setValue", { type:'string', key: key, value: value }, true);
+			else { 
+				var str = Components
 					.classes["@mozilla.org/supports-string;1"]
 					.createInstance(Components.interfaces.nsISupportsString);
 				str.data = value;
 				FoxtrickPrefs._prefs_gecko.setComplexValue(encodeURI(key),
 					Components.interfaces.nsISupportsString, str);
+				}
 		},
 
 		getInt : function(key) {
@@ -348,7 +352,10 @@ if (Foxtrick.BuildFor === "Gecko") {
 		},
 
 		setInt : function(key, value) {
-			FoxtrickPrefs._prefs_gecko.setIntPref(encodeURI(key), value);
+			if (Foxtrick.InjectedContext)
+				sendSyncMessage("Foxtrick:setValue", { type:'int', key: key, value: value }, true);
+			else 
+				FoxtrickPrefs._prefs_gecko.setIntPref(encodeURI(key), value);
 		},
 
 		getBool : function(key) {
@@ -368,7 +375,10 @@ if (Foxtrick.BuildFor === "Gecko") {
 		},
 
 		setBool : function(key, value) {
-			FoxtrickPrefs._prefs_gecko.setBoolPref(encodeURI(key), value);
+			if (Foxtrick.InjectedContext)
+				sendSyncMessage("Foxtrick:setValue", { type:'bool', key: key, value: value }, true);
+			else 
+				FoxtrickPrefs._prefs_gecko.setBoolPref(encodeURI(key), value);
 		},
 
 		deleteValue : function(key) {

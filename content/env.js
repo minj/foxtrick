@@ -388,11 +388,17 @@ else {
 	Foxtrick.ResourcePath = "chrome://foxtrick/content/";
 	if ( typeof(window)!='object' ) {
 		// injected scripts in fennec
+		Foxtrick.Fennec = true;
 		Foxtrick.InjectedContext = true
 		window = content;
 	}
-	else 
+	else {
 		Foxtrick.InjectedContext = false;
+		if ( typeof(Browser)!=='undefined' ) 
+			Foxtrick.Fennec = true;
+		else
+			Foxtrick.Fennec = false;
+	}
 }
 
 

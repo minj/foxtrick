@@ -20,17 +20,18 @@ var FoxtrickCore = {
 	// called after browser loaded , with browser chrome
 	// as the argument (Gecko-only)
 	// initializes items in menu bar and status bar
-	onLoad : function(document) {
-		if (Foxtrick.BuildFor === "Gecko") {
-			// toolbar menu - preferences
-			var toolbarPreferences = document.getElementById("foxtrick-toolbar-preferences");
-			toolbarPreferences.label = Foxtrickl10n.getString("preferences");
-			// toolbar menu - disable
-			var toolbarDisable = document.getElementById("foxtrick-toolbar-deactivate");
-			toolbarDisable.label = Foxtrickl10n.getString("foxtrick.prefs.disableTemporaryLabel");
-			// update status
-			this.updateStatus();
-		}
+	onLoad : function(document) { 
+		if (Foxtrick.BuildFor !== "Gecko" || Foxtrick.Fennec) {
+		return;
+}
+		// toolbar menu - preferences
+		var toolbarPreferences = document.getElementById("foxtrick-toolbar-preferences");
+		toolbarPreferences.label = Foxtrickl10n.getString("preferences");
+		// toolbar menu - disable
+		var toolbarDisable = document.getElementById("foxtrick-toolbar-deactivate");
+		toolbarDisable.label = Foxtrickl10n.getString("foxtrick.prefs.disableTemporaryLabel");
+		// update status
+		this.updateStatus();
 	},
 
 	onTabChange : function(doc) {
@@ -83,7 +84,7 @@ var FoxtrickCore = {
 
 	updateStatus : function() {
 		// update status bar icon image and tooltip (Gecko-only)
-		if (Foxtrick.BuildFor !== "Gecko")
+		if (Foxtrick.BuildFor !== "Gecko" || Foxtrick.InjectedContext)
 			return;
 
 		var disableItem = document.getElementById("foxtrick-toolbar-deactivate");
@@ -273,4 +274,5 @@ var FoxtrickCore = {
 		return this.SELF_TEAM_INFO;
 	}
 };
+
 Foxtrick.util.module.register(FoxtrickCore);

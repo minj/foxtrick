@@ -1,4 +1,9 @@
 function initLoader() {	
+	// fennec runs init() from injected entry.js (injected)
+	// called directly, it'll run and save actually for some reason
+	if (Foxtrick.Fennec) 
+		return; 
+	// ff, safari, op
 	if (Foxtrick.BuildFor === "Gecko" || Foxtrick.chromeContext() == "background")
 		init();
 	else

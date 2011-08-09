@@ -154,7 +154,10 @@ Foxtrick.copyStringToClipboard = function (string) {
 
 Foxtrick.newTab = function(url) {
 	if (Foxtrick.BuildFor == "Gecko") {
-		gBrowser.selectedTab = gBrowser.addTab(url);
+		if (Foxtrick.InjectedContext)
+			sendAsyncMessage("Foxtrick:newTab", { url: url });
+		else
+			gBrowser.selectedTab = gBrowser.addTab(url);
 	}
 	else if (Foxtrick.BuildFor == "Sandboxed") {
 		sandboxed.extension.sendRequest({
@@ -228,12 +231,12 @@ Foxtrick.loadXml = function(url, callback, crossSite) {
 					callback(xml, status);
 				}
 				catch (e) {
-					Foxtrick.log("Foxtrick.loadXml: Uncaught callback error:" , url,  ' ', text, ' ', status, ' ', text , " ", e);
+					Foxtrick.log("Foxtrick.loadXml: Uncaught callback error:" , url,  ' ', text, ' ', status, " ", e);
 				}
 			}
 			catch (e) {
 				// invalid XML
-				Foxtrick.log("Foxtrick.loadXml a: Cannot parse XML:\n" , url,  ' ', text, ' ', status, ' ', text , " ", e);
+				Foxtrick.log("Foxtrick.loadXml a: Cannot parse XML:\n" , url,  ' ', text, ' ', status, " ", e);
 				callback(null, status);
 			}
 		}, crossSite);
@@ -247,7 +250,7 @@ Foxtrick.loadXml = function(url, callback, crossSite) {
 		}
 		catch (e) {
 			// invalid XML
-			Foxtrick.log("Foxtrick.loadXml b: Cannot parse XML:\n" , url,  ' ', text, ' ', status, ' ', text , " ", e);
+			Foxtrick.log("Foxtrick.loadXml b: Cannot parse XML:\n" , url,  ' ', text, " ", e);
 			return null;
 		}
 	}
@@ -811,10 +814,10 @@ Foxtrick.log = function() {
 		}
 		else if (typeof(content) != "string") {
 			try {
-				item = JSON.stringify(content);
+				item = JSON.stringify(content).substr(0,1000);
 			}
 			catch (e) {
-				item = String(content);
+				item = String(content).substr(0,1000);
 			}
 		}
 		else {
@@ -825,6 +828,8 @@ Foxtrick.log = function() {
 	concated += "\n";
 	Foxtrick.dumpCache += concated;
 	if (Foxtrick.BuildFor === "Gecko") {
+		if (Foxtrick.InjectedContext) 
+			sendSyncMessage("Foxtrick:dump", { title: concated });
 		dump("FT: " + concated);
 	}
 	else if (Foxtrick.BuildFor === "Sandboxed") {
