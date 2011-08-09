@@ -35,6 +35,21 @@
 						</em:targetApplication>
 					</RDF:Description>
 				</RDF:li>
+				<RDF:li>
+					<RDF:Description>
+						<em:version>{VERSION}</em:version>
+						<!-- Fennec -->
+						<em:targetApplication>
+							<RDF:Description>
+								<em:id>{a23983c0-fd0e-11dc-95ff-0800200c9a66}</em:id>
+								<em:minVersion>2.0a1pre</em:minVersion>
+								<em:maxVersion>8.0</em:maxVersion>
+								<em:updateLink>{UPDATE_LINK}</em:updateLink>
+								<em:updateHash>{UPDATE_HASH}</em:updateHash>
+							</RDF:Description>
+						</em:targetApplication>
+					</RDF:Description>
+				</RDF:li>
 			</RDF:Seq>
 		</em:updates>
 	</RDF:Description>
