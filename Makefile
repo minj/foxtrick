@@ -42,6 +42,7 @@ CONTENT_FILES = add-class.js \
 	stats.js \
 	xml-load.js
 CONTENT_FILES_FIREFOX = $(CONTENT_FILES) foxtrick.xul \
+	foxtrick_fennec.xul \
 	preferences.xhtml \
 	loader-gecko.js
 CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html \
