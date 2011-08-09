@@ -166,7 +166,7 @@ Foxtrick.util.note = {
 			
 			// delay showing 
 			Foxtrick.addClass(note, 'hidden');
-			setTimeout(function() {Foxtrick.removeClass(note,'hidden');}, 500);  
+			window.setTimeout(function() {Foxtrick.removeClass(note,'hidden');}, 500);  
 			
 			return note;
 		}

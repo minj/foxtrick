@@ -271,7 +271,7 @@ FoxtrickPlayerFilters = {
 
 				var tablediv = doc.getElementById("ft_skilltablediv");
 				if (Foxtrick.hasClass(tablediv.getElementsByTagName('h2')[0], "ft_boxBodyUnfolded")) {
-					setTimeout(function() { FoxtrickSkillTable.createTable(doc); }, 0);
+					window.setTimeout(function() { FoxtrickSkillTable.createTable(doc); }, 0);
 				}
 			}
 

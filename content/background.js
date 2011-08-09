@@ -189,7 +189,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 					notification.show();
 
 					// close after 10 sec
-					setTimeout(function() { notification.cancel(); }, 10000);
+					window.setTimeout(function() { notification.cancel(); }, 10000);
 				}
 			}
 			else if (request.req == "sessionSet") {

@@ -100,7 +100,7 @@ if (typeof(opera) === "object") {
 						  return;
 
 						if (callback) callback(messageEvent.data.data);
-						// Change to calling in 0-ms setTimeout, as Safari team thinks
+						// Change to calling in 0-ms window.setTimeout, as Safari team thinks
 						// this will work around their crashing until they can release
 						// a fix.
 						window.setTimeout(function() {
@@ -231,7 +231,7 @@ else if (typeof(safari) === "object") {
 				  return;
 
 				if (callback) callback(messageEvent.message.data);
-				// Change to calling in 0-ms setTimeout, as Safari team thinks
+				// Change to calling in 0-ms window.setTimeout, as Safari team thinks
 				// this will work around their crashing until they can release
 				// a fix.
 				// safari.self.removeEventListener("message", responseHandler, false);
@@ -386,6 +386,13 @@ else {
 	Foxtrick.BuildForDetail = "";
 	Foxtrick.InternalPath = "chrome://foxtrick/content/";
 	Foxtrick.ResourcePath = "chrome://foxtrick/content/";
+	if ( typeof(window)!='object' ) {
+		// injected scripts in fennec
+		Foxtrick.InjectedContext = true
+		window = content;
+	}
+	else 
+		Foxtrick.InjectedContext = false;
 }
 
 
