@@ -18,6 +18,11 @@ Foxtrick.entry.docLoad = function(ev) {
 	if (Foxtrick.BuildFor === "Gecko") var doc = ev.originalTarget;
 	if (doc.nodeName != "#document")
 		return;
+	
+	// prefs in fennec opened. init prefs (injected)
+	if (Foxtrick.Fennec && doc.location.href.search('chrome://foxtrick/content/preferences.xhtml')!=-1) {
+		init(ev);
+	}
 
 	if (Foxtrick.isHt(doc)) {
 		// check if it's in exclude list
@@ -242,3 +247,11 @@ Foxtrick.entry.niceRun = function(modules, pick) {
 		}
 	});
 };
+
+
+// fennec injected script loader
+if (Foxtrick.Fennec) {
+	Foxtrick.entry.init();
+	removeEventListener("DOMContentLoaded", Foxtrick.entry.docLoad, false);
+	addEventListener("DOMContentLoaded", Foxtrick.entry.docLoad, false);
+}

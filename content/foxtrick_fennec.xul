@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay>
+<?xml-stylesheet href="./resources/css/overlay.css" type="text/css"?>
+
+<overlay id="foxtrick"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<!-- essential stuffs -->
+<script type="application/x-javascript" src="./env.js" />
+<script type="application/x-javascript" src="./loader-gecko.js" />
+<script type="application/x-javascript" src="./prefs.js" />
+<script type="application/x-javascript" src="./util/misc.js" />
+<script type="application/x-javascript" src="./util/session-store.js" />
+
+</overlay>

@@ -34,5 +34,14 @@
 				<em:maxVersion>2.5.*</em:maxVersion>
 			</Description>
 		</em:targetApplication>
+
+		<!-- Mobile -->
+		<em:targetApplication>
+			<Description>
+				<em:id>{a23983c0-fd0e-11dc-95ff-0800200c9a66}</em:id>
+				<em:minVersion>2.0a1pre</em:minVersion>
+				<em:maxVersion>8.0</em:maxVersion>
+			</Description>
+		</em:targetApplication>
 	</Description>
 </RDF>
