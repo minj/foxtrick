@@ -126,7 +126,8 @@ var FoxtrickMatchPlayerColouring = {
 
 				// colour all player links
 				Foxtrick.map(links, function(n) {
-					if (id = getPlayerId(n)) {
+					var id =  getPlayerId(n) 
+					if (id) {
 						if (Foxtrick.some(homePlayers, function(n) { return n == id; }))
 							Foxtrick.addClass(n, homeClass);
 						else if (Foxtrick.some(awayPlayers, function(n) { return n == id; }))
