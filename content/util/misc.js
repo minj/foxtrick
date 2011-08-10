@@ -169,8 +169,9 @@ Foxtrick.newTab = function(url) {
 
 Foxtrick.load = function(url, callback, crossSite) {
 	try { 
-		if (Foxtrick.BuildFor == "Sandboxed" && Foxtrick.chromeContext() == "content"
-			&& crossSite) {
+		if ( ((Foxtrick.BuildFor == "Sandboxed" && Foxtrick.chromeContext() == "content" && crossSite) 
+				||	(Foxtrick.Fennec && Foxtrick.InjectedContext && callback))
+			 ) {
 			// the evil Chrome that requires us to send a message to
 			// background script for cross-site requests
 			sandboxed.extension.sendRequest({req : "xml", url : url, crossSite: crossSite},
@@ -186,6 +187,15 @@ Foxtrick.load = function(url, callback, crossSite) {
 			);
 		}
 		else {
+			/*if (Foxtrick.Fennec && Foxtrick.InjectedContext) {
+				if (!callback) 
+					return sendSyncMessage("Foxtrick:getXML", { url: url, crossSite:crossSite, callback:null });
+				 else {
+					addMessageListener("Foxtrick:getXML",
+					sendSyncMessage("Foxtrick:getXML", { url: url, crossSite:crossSite, callback:true });
+					}
+				return;
+			}*/
 			if (!crossSite) {
 				// a request to load local resource
 				url = url.replace(Foxtrick.ResourcePath, Foxtrick.InternalPath);
@@ -804,7 +814,7 @@ Foxtrick.log = function() {
 		if (content instanceof Error) {
 			if (Foxtrick.BuildFor == "Gecko") {
 				item = content.fileName + " (" + content.lineNumber + "): " + String(content) + "\n";
-				item += "Stack trace: " + content.stack.substr(0,10000);
+				item += "Stack trace: " + content.stack.substr(0,1000);
 				Components.utils.reportError(item);
 			}
 			else if (Foxtrick.BuildFor == "Sandboxed") {

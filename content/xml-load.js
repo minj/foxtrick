@@ -16,7 +16,7 @@ Foxtrick.XMLData = {
 	aboutXML : null,
 
 	init : function() {
-		if (Foxtrick.BuildFor == "Gecko"
+		if ( (Foxtrick.BuildFor == "Gecko" && !Foxtrick.InjectedContext)
 			|| (Foxtrick.BuildFor == "Sandboxed" && Foxtrick.chromeContext() == "background")) {
 			this.htCurrencyXml = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/htcurrency.xml");
 			this.aboutXML = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/foxtrick_about.xml");

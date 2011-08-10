@@ -182,11 +182,13 @@ if (Foxtrick.BuildFor === "Gecko") {
 		_strings_bundle_screenshots_default:null,
 
 		init : function() {
-			// get htlang.xml for each locale
-			for (var i in Foxtrickl10n.locales) {
-				var locale = Foxtrickl10n.locales[i];
-				var url = Foxtrick.ResourcePath + "locale/" + locale + "/htlang.xml";
-				this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXml(url);
+			if (!Foxtrick.InjectedContext) { 
+				// get htlang.xml for each locale
+				for (var i in Foxtrickl10n.locales) {
+					var locale = Foxtrickl10n.locales[i];
+					var url = Foxtrick.ResourcePath + "locale/" + locale + "/htlang.xml";
+					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXml(url);
+				}
 			}
 			
 			this._strings_bundle_default =

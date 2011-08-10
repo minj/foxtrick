@@ -91,6 +91,49 @@ if (Foxtrick.Fennec) {
 			else if(message.json.type=='int') FoxtrickPrefs.setInt(message.json.key, message.json.value);
 			else if(message.json.type=='string') FoxtrickPrefs.setString(message.json.key, message.json.value);
 		});
+		messageManager.addMessageListener("Foxtrick:getXML", function (message) {
+		});
+
+		// init core modules
+		FoxtrickPrefs.init();
+		Foxtrick.XMLData.init();
+		Foxtrickl10n.init();
+
+		// prepare resources for later transmission to content script
+		var serializer = new window.XMLSerializer();
+		var currency = serializer.serializeToString(Foxtrick.XMLData.htCurrencyXml);
+		var about = serializer.serializeToString(Foxtrick.XMLData.aboutXML);
+		var worldDetails = serializer.serializeToString(Foxtrick.XMLData.worldDetailsXml);
+		var htLanguagesText = {};
+		for (var i in Foxtrickl10n.htLanguagesXml) {
+			htLanguagesText[i] = serializer.serializeToString(Foxtrickl10n.htLanguagesXml[i]);
+		} 
+
+		sandboxed.extension.onRequest.addListener(function(request, sender, sendResponse) {
+			try {
+				//Foxtrick.log('request: ',request.req, ' ',request )
+				if (request.req == "init") {
+					sendResponse({
+						htLang : htLanguagesText,
+						currency : currency,
+						about : about,
+						worldDetails : worldDetails,
+						league : Foxtrick.XMLData.League,
+						countryToLeague : Foxtrick.XMLData.countryToLeague,
+					});
+				}
+				else if (request.req == "xml") {
+					// @param url - the URL of resource to load with window.XMLHttpRequest
+					// @callback_param data - response text
+					// @callback_param status - HTTP status of request
+					// synchronous, since messaging is async already
+					var callback = function(responseText,status){
+						sendResponse({data : responseText, status : status});
+					}; 
+					Foxtrick.load(request.url, callback, request.crossSite )
+				}
+			} catch(e){Foxtrick.log(e)}
+		});
 		
 		// inject scripts
 		messageManager.loadFrameScript("chrome://foxtrick/content/env.js", true);
@@ -257,9 +300,6 @@ if (Foxtrick.Fennec) {
 
 		messageManager.loadFrameScript("chrome://foxtrick/content/preferences.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/entry.js", true);
-
-		// init core modules
-		FoxtrickPrefs.init();
 
 		} catch(e){Foxtrick.log(e);}
 	};
