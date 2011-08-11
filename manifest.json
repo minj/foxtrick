@@ -182,7 +182,7 @@
 		"contextMenus",
 		"notifications",
 		"clipboardWrite",
-		"https://chpp.hattrick.org/*",
+		"*://chpp.hattrick.org/*",
 		"http://www.hattrick-youthclub.org/*",
 		"http://www.fantamondi.it/*"
 	],
