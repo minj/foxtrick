@@ -154,7 +154,8 @@ FoxtrickTransferSearchFilters = {
 			var filter = ev.target.getAttribute("filter");
 			var doc = ev.target.ownerDocument;
 			// parse it
-			var obj = window.DOMParser.parseFromString(filter, "text/xml");
+			var dp = new window.DOMParser();
+			var obj = dp.parseFromString(filter, "text/xml");
 
 			var root = obj.firstChild;
 
