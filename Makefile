@@ -121,7 +121,7 @@ ifeq ($(DIST_TYPE),nightly)
 	sed -i -r 's|("version" : ".+)(")|\1.'$(REVISION)'\2|' manifest.json; \
 	sed -i -r 's|("extensions\.foxtrick\.prefs\.version", ".+)(")|\1.'$(REVISION)'\2|' defaults/preferences/foxtrick.js
 	# make crx
-	./maintainer/crxmake.sh $(BUILD_DIR) maintainer/chrome_dev.pem
+	./maintainer/crxmake.sh $(BUILD_DIR) maintainer/chrome.pem
 	mv $(BUILD_DIR).crx $(APP_NAME).crx
 else ifeq ($(DIST_TYPE),stable)
 	cd $(BUILD_DIR); \
