@@ -1,0 +1,8 @@
+.*
+*.xpi
+*.crx
+*.oex
+*.safariextz
+maintainer/upload.conf.sh
+maintainer/*.pem
+maintainer/safari.der
