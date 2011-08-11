@@ -5,7 +5,7 @@
  */
 ////////////////////////////////////////////////////////////////////////////////
 
-FoxtrickAttVsDef = {
+var FoxtrickAttVsDef = {
 
 	MODULE_NAME : "AttVsDef",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,

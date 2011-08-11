@@ -4,7 +4,7 @@
  * @author taised, Jestar
  */
 ////////////////////////////////////////////////////////////////////////////////
-FoxtrickRatings = {
+var FoxtrickRatings = {
 
 	MODULE_NAME : "Ratings",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
