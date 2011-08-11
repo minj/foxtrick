@@ -116,6 +116,9 @@ FoxtrickTeamStats = {
 						var evt2 = doc.createEvent("HTMLEvents");
 						evt2.initEvent('change', true, true ); // event type,bubbling,cancelable
 						filterSelect.dispatchEvent(evt2);
+						
+						window.scroll(0, 0);
+						window.scrollBy(0, doc.getElementById('mainWrapper').offsetTop);
 					},false)
 				}
 
@@ -137,7 +140,8 @@ FoxtrickTeamStats = {
 					dataCell.textContent = data;
 				}
 				row.appendChild(dataCell);
-				if (filter) addFilterShortcut(filter,title); 
+				if (filter && FoxtrickPrefs.isModuleEnabled('PlayerFilters'))
+					addFilterShortcut(filter,title); 
 				table.appendChild(row);
 				return row;
 			};
