@@ -12,9 +12,7 @@
 				<key>CFBundleShortVersionString</key>
 					<string>{VERSION}</string>
 				<key>URL</key>
-					<string>
-					{UPDATE_LINK}
-					</string>
+					<string>{UPDATE_LINK}</string>
 			</dict>
 		</array>
 	</dict>
