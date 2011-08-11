@@ -197,7 +197,11 @@ endif
 	cd $(BUILD_DIR); \
 	$(XAR) -cf ../foxtrick.safariextz $(SAFARI_TARGET)
 	# inject signature
-	$(XAR) --sign -f foxtrick.safariextz --data-to-sign sha1-hash.dat --sig-size `: | openssl dgst -sign maintainer/safari.pem -binary | wc -c` --cert-loc maintainer/safari.der
+	$(XAR) --sign -f foxtrick.safariextz --data-to-sign sha1-hash.dat \
+		--sig-size `: | openssl dgst -sign maintainer/safari.pem -binary | wc -c` \
+		--cert-loc maintainer/safari.der \
+		--cert-loc maintainer/safari-cert/cert01 \
+		--cert-loc maintainer/safari-cert/cert02
 	(echo "3021300906052B0E03021A05000414" | xxd -r -p; cat sha1-hash.dat) | openssl rsautl -sign -inkey maintainer/safari.pem > signature.dat
 	xar --inject-sig signature.dat -f foxtrick.safariextz
 	# clean up
