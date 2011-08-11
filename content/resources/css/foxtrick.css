@@ -16,10 +16,6 @@
 .ft_icon {width: 16px; height: 16px; background: 50% no-repeat; }
 .ft_actionicon_large {cursor: pointer; height: 34px; width:36px; padding:0px 5px 0px 0px; }
 
-.ft_copyMatchRatings {background: url('chrome://foxtrick/content/resources/img/copy/copyMatchRatings.png') no-repeat scroll 0 0 transparent; }
-.ft_copyHomeRatings {background: url('chrome://foxtrick/content/resources/img/copy/copyHomeRatings.png') no-repeat scroll 0 0 transparent; }
-.ft_copyAwayRatings {background: url('chrome://foxtrick/content/resources/img/copy/copyAwayRatings.png') no-repeat scroll 0 0 transparent; }
-
 .foxtrickCopy {background-image: url('chrome://foxtrick/content/resources/img/copy/copy_small.png'); width: 16px; }
 .foxtrickCopy:hover {background-image: url('chrome://foxtrick/content/resources/img/copy/copy_yellow_small.png'); width: 16px; }
 .foxtrickHelp {background-image:url('chrome://foxtrick/content/resources/img/help.png'); width: 16px; }
@@ -73,7 +69,6 @@ span.ft_copy_rating { cursor: pointer; font-weight: normal; text-decoration: und
 h2.tblBox span.ft_copy_rating { margin-right: 1em; }
 th span.ft_copy_rating { margin-left: 0.2em; }
 
-#foxtrick_transferfilter_box a { text-decoration: underline; cursor: pointer; }
 #foxtrick_transferfilter_new { margin-bottom: 1em; }
 
 /* personality images */
