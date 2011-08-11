@@ -5,7 +5,7 @@
  */
 ////////////////////////////////////////////////////////////////////////////////
 
-Foxtrick.AttVsDef = {
+FoxtrickAttVsDef = {
 
 	MODULE_NAME : "AttVsDef",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
@@ -305,4 +305,4 @@ Foxtrick.AttVsDef = {
 		return values;
 	}
 };
-Foxtrick.util.module.register(Foxtrick.AttVsDef);
+Foxtrick.util.module.register(FoxtrickAttVsDef);

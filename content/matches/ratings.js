@@ -4,7 +4,7 @@
  * @author taised, Jestar
  */
 ////////////////////////////////////////////////////////////////////////////////
-Foxtrick.Ratings = {
+FoxtrickRatings = {
 
 	MODULE_NAME : "Ratings",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
@@ -17,7 +17,7 @@ Foxtrick.Ratings = {
 	},
 
 	run : function(doc) {
-		var ratingsArray = Foxtrick.filter(Foxtrick.Ratings.OPTIONS, function(x) {
+		var ratingsArray = Foxtrick.filter(FoxtrickRatings.OPTIONS, function(x) {
 			return x != "HatStatsSeparated";
 		});
 		
@@ -160,9 +160,9 @@ Foxtrick.Ratings = {
 			label : function(){return Foxtrickl10n.getString("ratings.HatStats");},
 			title : function(){return Foxtrickl10n.getString("ratings.HatStats");},
 			total: function(midfieldLevel, attackLevel, defenceLevel) {
-				return Foxtrick.Ratings.ratingDefs["HatStatsDetailed"].midfield(midfieldLevel)
-					+ Foxtrick.Ratings.ratingDefs["HatStatsDetailed"].attack(attackLevel)
-					+ Foxtrick.Ratings.ratingDefs["HatStatsDetailed"].defence(defenceLevel);
+				return FoxtrickRatings.ratingDefs["HatStatsDetailed"].midfield(midfieldLevel)
+					+ FoxtrickRatings.ratingDefs["HatStatsDetailed"].attack(attackLevel)
+					+ FoxtrickRatings.ratingDefs["HatStatsDetailed"].defence(defenceLevel);
 			}
 		};
 
@@ -361,4 +361,4 @@ Foxtrick.Ratings = {
 		};
 	}
 };
-Foxtrick.util.module.register(Foxtrick.Ratings);
+Foxtrick.util.module.register(FoxtrickRatings);
