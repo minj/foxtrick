@@ -34,7 +34,7 @@ a good reason to. They are for version bumps in Makefile.
 				<key>Identifier</key>
 				<string>FoxTrickOptions</string>
 				<key>Image</key>
-				<string>skin/icon16.png</string>
+				<string>skin/icon-16.png</string>
 				<key>Label</key>
 				<string>Options</string>
 				<key>Palette Label</key>
