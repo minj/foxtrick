@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+Please don't remove the following comments with "version" unless you have
+a good reason to. They are for version bumps in Makefile.
+-->
 <plist version="1.0">
 <dict>
 	<key>Author</key>
@@ -13,9 +17,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.7.9</string>
+	<string>0.7.9</string><!--version-->
 	<key>CFBundleVersion</key>
-	<string>0.7.9</string>
+	<string>0.7.9</string><!--version-->
 	<key>Chrome</key>
 	<dict>
 		<key>Database Quota</key>

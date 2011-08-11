@@ -1,7 +1,12 @@
 APP_NAME = foxtrick
 
+SAFARI_TARGET = foxtrick.safariextension
+
 BUILD_DIR = build
+SAFARI_BUILD_DIR = build/$(SAFARI_TARGET)
+
 ZIP = zip -q
+XAR = xar
 
 ROOT_FILES_FIREFOX = chrome.manifest install.rdf icon.png COPYING HACKING
 ROOT_FILES_CHROME = manifest.json
@@ -170,32 +175,31 @@ endif
 
 safari:
 	make clean-safari clean-build
-	mkdir $(BUILD_DIR)
+	mkdir -p $(SAFARI_BUILD_DIR)
 	# copy root files
-	cp -r $(ROOT_FILES_SAFARI) $(ROOT_FOLDERS_SAFARI) $(BUILD_DIR)
+	cp -r $(ROOT_FILES_SAFARI) $(ROOT_FOLDERS_SAFARI) $(SAFARI_BUILD_DIR)
 	# content/
-	mkdir $(BUILD_DIR)/content
+	mkdir $(SAFARI_BUILD_DIR)/content
 	cd content/; \
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_SAFARI) \
-		../$(BUILD_DIR)/content
-	## remove xml/xhtml reference form preferences.xhtml
-	cd $(BUILD_DIR); sed -i -r 's|(^.+xhtml">)|<html>|' content/preferences.xhtml 
+		../$(BUILD_DIR)/foxtrick.safariextension/content
+	# remove xml/xhtml reference form preferences.xhtml
+	cd $(SAFARI_BUILD_DIR); \
+	sed -i -r 's|(^.+xhtml">)|<html>|' content/preferences.xhtml
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
-	# should replace with file and not within line <-------------------- help
-	cd $(BUILD_DIR); \
-	sed -i -r 's|(<key>CFBundleShortVersionString</key>\s+<string>.+)(</string>)|\1.'$(REVISION)'\2|' Info.plist; \
-	sed -i -r 's|(<key>CFBundleVersion</key>\s+<string>.+)(</string>)|\1.'$(REVISION)'\2|' Info.plist; \
+	# version bump for nightly
+	cd $(SAFARI_BUILD_DIR); \
+	sed -i -r 's|(<string>.+)(</string><!--version-->)|\1.'$(REVISION)'\2|' Info.plist; \
 	sed -i -r 's|("extensions\.foxtrick\.prefs\.version", ".+)(")|\1.'$(REVISION)'\2|' defaults/preferences/foxtrick.js
 endif
 	# make safariextz
-	
-	# set name of directory inside safariextz
-	mv $(BUILD_DIR) foxtrick.safariextension
-	# needs certificate in there somehow <---------------------- help
-	xar -c foxtrick.safariextension -f $(APP_NAME).safariextz
-	
-	mv foxtrick.safariextension $(BUILD_DIR)
+	cd $(BUILD_DIR); \
+	$(XAR) -cf ../foxtrick.safariextz $(SAFARI_TARGET)
+	# inject signature
+	$(XAR) --sign -f foxtrick.safariextz --data-to-sign sha1-hash.dat --sig-size `: | openssl dgst -sign maintainer/safari.pem -binary | wc -c` --cert-loc maintainer/safari.der
+	(echo "3021300906052B0E03021A05000414" | xxd -r -p; cat sha1-hash.dat) | openssl rsautl -sign -inkey maintainer/safari.pem > signature.dat
+	xar --inject-sig signature.dat -f foxtrick.safariextz
 	# clean up
 	make clean-build
 
@@ -214,6 +218,8 @@ clean-safari:
 
 clean-build:
 	rm -rf $(BUILD_DIR)
+	rm -f sha1-hash.dat
+	rm -f signature.dat
 
 clean:
 	make clean-firefox clean-chrome clean-opera clean-safari clean-build
