@@ -3,12 +3,11 @@
  * @author kolmis, bummerland
  */
 
-FoxtrickTransferSearchFilters = {
-
+var FoxtrickTransferSearchFilters = {
 	MODULE_NAME : "TransferSearchFilters",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array('transferSearchForm'),
-	_MAX_FILTER_DISP_LENGTH : 23,
+	PAGES : ["transferSearchForm"],
+	CSS : Foxtrick.ResourcePath + "resources/css/transfer-search-filters.css",
 
 	backwardCompatibleCodes : {
 		"_01" : "ctl00$ctl00$CPContent$CPMain$ddlDeadline",
@@ -52,24 +51,21 @@ FoxtrickTransferSearchFilters = {
 	},
 
 	run : function(doc) {
-		if ( doc.location.href.search(/TransfersSearchResult/i) > 0 ) return;
-
 		var ownBoxBody = doc.createElement("div");
 		var header = Foxtrickl10n.getString("foxtrick.transferfilter.Foxtrick_Filters");
-		var ownBoxBodyId = "foxtrick_transferfilter_content";
-		ownBoxBody.id = ownBoxBodyId;
 
 		// add link
 		var addlink = doc.createElement("a");
-		addlink.id = "foxtrick_transferfilter_new";
+		addlink.id = "ft-transfer-search-filter-new";
+		addlink.className = "ft-link";
 		addlink.addEventListener("click", FoxtrickTransferSearchFilters.addNewFilter, false);
-		addlink.innerHTML = Foxtrickl10n.getString("foxtrick.transferfilter.save_new_filter");
+		addlink.textContent = Foxtrickl10n.getString("foxtrick.transferfilter.save_new_filter");
 		ownBoxBody.appendChild(addlink);
 
 		var namelist = FoxtrickPrefs.getList("transferfilterlist");
 		namelist.sort();
 		var table = doc.createElement("table");
-		table.id = "table_transfer_filters";
+		table.id = "ft-transfer-search-filter-table";
 		for (var i=0; i< namelist.length; i++) {
 			this._addFilter(doc, table, namelist[i]);
 		}
@@ -83,8 +79,6 @@ FoxtrickTransferSearchFilters = {
 
 			var filtername = prompt(Foxtrickl10n.getString("foxtrick.transferfilter.Enter_filter_name"));
 			if (filtername == '') return;
-
-			filtername = filtername.substring( 0, FoxtrickTransferSearchFilters._MAX_FILTER_DISP_LENGTH );
 
 			var formString = "<root>";
 			for (var i in FoxtrickTransferSearchFilters.backwardCompatibleCodes) {
@@ -128,7 +122,7 @@ FoxtrickTransferSearchFilters = {
 						el.parentNode.removeChild(el);
 			}
 			FoxtrickPrefs.addPrefToList("transferfilterlist", filtername);
-			var table = doc.getElementById("table_transfer_filters");
+			var table = doc.getElementById("ft-transfer-search-filter-table");
 			if (table) {
 				FoxtrickTransferSearchFilters._addFilter(doc, table, filtername);
 			}
@@ -211,6 +205,7 @@ FoxtrickTransferSearchFilters = {
 		tr.appendChild(td_remove);
 
 		var link = doc.createElement("a");
+		link.className = "ft-link";
 		link.addEventListener("click", this.fillForm, false);
 		link.innerHTML = name;
 		link.setAttribute("filter", filter);
