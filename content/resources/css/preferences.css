@@ -163,13 +163,14 @@ html[dir="rtl"] .screenshot
 
 ul#tabs li
 {
+	font-size: 85%;
 	display: inline-block;
 	background-color: white;
 	border: 1px solid #ccc;
-	border-radius: 8px 8px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
 	border-bottom: none;
-	padding: 4px;
-	margin: 0;
+	padding: 3px;
+	margin: 0 1px;
 }
 
 ul#tabs li.hide, #title_seperator.hide
