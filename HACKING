@@ -90,7 +90,7 @@ Generally speaking, all properties except the MODULE_NAME could be omitted.
 
 After creating that JavaScript file and placing it under the appropriate
 directory, you should add a line to content/foxtrick.xul and
-content/preferences.xhtml respectively to inform the browser to load
+content/preferences.html respectively to inform the browser to load
 your script:
 <script type="application/x-javascript" src="chrome://foxtrick/content/category/module.js" />
 

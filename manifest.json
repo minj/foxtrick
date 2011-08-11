@@ -188,7 +188,7 @@
 		"default_icon": "skin/icon-24.png",
 		"default_title": "FoxTrick enabled"
 	},
-	"options_page" : "content/preferences.xhtml",
+	"options_page" : "content/preferences.html",
 	"update_url" : "http://foxtrick.foundationhorizont.org/nightly/chrome/update.xml",
 	"version" : "0.7.9"
 }

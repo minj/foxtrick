@@ -278,7 +278,7 @@ var FoxtrickPrefs = {
 
 	show : function(page) {
 		if (!page) var page = '#tab=main';
-		Foxtrick.newTab(Foxtrick.ResourcePath + "preferences.xhtml" + page);
+		Foxtrick.newTab(Foxtrick.ResourcePath + "preferences.html" + page);
 	},
 
 	disable : function(sender) {

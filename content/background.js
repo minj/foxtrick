@@ -288,14 +288,14 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		safari.extension.settings.addEventListener("change", function(e) {
 			 try {
 				 if (e.key == 'openFoxtrickOptions')
-					sandboxed.tabs.create({url: Foxtrick.ResourcePath + "preferences.xhtml"});
+					sandboxed.tabs.create({url: Foxtrick.ResourcePath + "preferences.html"});
 			} catch(e) {Foxtrick.log(e)}
 		}, false);
 
 		safari.application.addEventListener("command", function(commandEvent) {
 		  // Open Options page upon Toolbar button click.
 		  if (commandEvent.command == "FoxtrickOptions")
-			sandboxed.tabs.create({url: Foxtrick.ResourcePath+ "preferences.xhtml"});
+			sandboxed.tabs.create({url: Foxtrick.ResourcePath+ "preferences.html"});
 		}, false);
 		
 		Foxtrick.loader.chrome.contextCopySafari();

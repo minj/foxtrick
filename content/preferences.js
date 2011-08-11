@@ -744,7 +744,7 @@ function importContent(from, to)
 			&& node.nodeName.toLowerCase() == "module") {
 			var link = document.createElement("a");
 			link.textContent = node.textContent;
-			link.href = Foxtrick.ResourcePath + "preferences.xhtml#module=" + link.textContent;
+			link.href = Foxtrick.ResourcePath + "preferences.html#module=" + link.textContent;
 			to.appendChild(link);
 		}
 		else {

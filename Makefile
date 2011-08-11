@@ -10,7 +10,7 @@ XAR = xar
 
 ROOT_FILES_FIREFOX = chrome.manifest install.rdf icon.png COPYING HACKING
 ROOT_FILES_CHROME = manifest.json
-ROOT_FILES_OPERA = config.xml content/background.html content/preferences.xhtml
+ROOT_FILES_OPERA = config.xml content/background.html content/preferences.html
 ROOT_FILES_SAFARI = Info.plist Settings.plist
 ROOT_FOLDERS_FIREFOX = defaults/
 ROOT_FOLDERS_CHROME = defaults/ skin/
@@ -48,16 +48,16 @@ CONTENT_FILES = add-class.js \
 	xml-load.js
 CONTENT_FILES_FIREFOX = $(CONTENT_FILES) overlay.xul \
 	overlay-fennec.xul \
-	preferences.xhtml \
+	preferences.html \
 	loader-gecko.js
 CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html \
-	preferences.xhtml \
+	preferences.html \
 	background.js \
 	loader-chrome.js
 CONTENT_FILES_OPERA = $(CONTENT_FILES) background.js \
 	loader-chrome.js 
 CONTENT_FILES_SAFARI = $(CONTENT_FILES) background.html \
-	preferences.xhtml \
+	preferences.html \
 	background.js \
 	loader-chrome.js
 
@@ -151,7 +151,7 @@ opera:
 	cp -r $(RESOURCE_FOLDERS) \
 		../$(BUILD_DIR)/content
 	## change files to opera naming
-	mv $(BUILD_DIR)/preferences.xhtml $(BUILD_DIR)/options.html
+	mv $(BUILD_DIR)/preferences.html $(BUILD_DIR)/options.html
 	mv $(BUILD_DIR)/includes/env.js $(BUILD_DIR)/includes/aa00_env.js 
 	mv $(BUILD_DIR)/includes/module.js $(BUILD_DIR)/includes/aa10_module.js 
 	mv $(BUILD_DIR)/includes/loader-chrome.js $(BUILD_DIR)/includes/zz99_loader-chrome.js 
@@ -183,9 +183,6 @@ safari:
 	cd content/; \
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_SAFARI) \
 		../$(BUILD_DIR)/foxtrick.safariextension/content
-	# remove xml/xhtml reference form preferences.xhtml
-	cd $(SAFARI_BUILD_DIR); \
-	sed -i -r 's|(^<\?xml.+\?>)||' content/preferences.xhtml
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	# version bump for nightly
