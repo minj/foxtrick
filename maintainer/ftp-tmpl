@@ -12,4 +12,8 @@ cd ../opera/
 put {PATH}/foxtrick.oex -o foxtrick-r{REVISION}.oex
 put update-opera.xml -o update.xml
 
+cd ../safari/
+put {PATH}/foxtrick.safariextz -o foxtrick-r{REVISION}.safariextz
+put update-safari.plist -o update.plist
+
 exit

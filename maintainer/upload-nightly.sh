@@ -53,6 +53,14 @@ OPERA_VERSION="${OPERA_MAJOR_VERSION}.${REVISION}"
 sed -i "s|{UPDATE_LINK}|http://foxtrick.foundationhorizont.org/nightly/opera/foxtrick-r${REVISION}.oex|g" update-opera.xml
 sed -i "s|{VERSION}|${OPERA_VERSION}|g" update-opera.xml
 
+# modify update-safari.plist for Safari
+cp update-tmpl-safari.plist update-safari.plist
+SAFARI_MAJOR_VERSION=`cd ${SOURCE_DIR} && grep -E '<string>.+</string><!--version-->' info.plist | \
+	sed -r -e 's|<string>(.+)</string><!--version-->|\1|'`
+SAFARI_VERSION="${SAFARI_MAJOR_VERSION}.${REVISION}"
+sed -i "s|{UPDATE_LINK}|http://foxtrick.foundationhorizont.org/nightly/safari/foxtrick-r${REVISION}.safariextz|g" update-safari.plist
+sed -i "s|{VERSION}|${SAFARI_VERSION}|g" update-safari.plist
+
 cp ftp-tmpl ftp
 sed -i -e "s|{USER}|${USER}|g" \
 	-e "s|{PASSWORD}|${PASSWORD}|g" \
@@ -62,4 +70,4 @@ sed -i -e "s|{USER}|${USER}|g" \
 
 lftp -f ftp || exit 3
 
-rm update-firefox.rdf update-chrome.xml update-opera.xml ftp
+rm update-firefox.rdf update-chrome.xml update-opera.xml update-safari.plist ftp

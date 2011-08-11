@@ -1,0 +1,21 @@
+<plist version="1.0">
+	<dict>
+		<key>Extension Updates</key>
+		<array>
+			<dict>
+				<key>CFBundleIdentifier</key>
+					<string>www.ht-foxtrick.com</string>
+				<key>Developer Identifier</key>
+					<string>8J4UNYVFR5</string>
+				<key>CFBundleVersion</key>
+					<string>{VERSION}</string>
+				<key>CFBundleShortVersionString</key>
+					<string>{VERSION}</string>
+				<key>URL</key>
+					<string>
+					{UPDATE_LINK}
+					</string>
+			</dict>
+		</array>
+	</dict>
+</plist>
