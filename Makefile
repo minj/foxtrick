@@ -185,7 +185,7 @@ safari:
 		../$(BUILD_DIR)/foxtrick.safariextension/content
 	# remove xml/xhtml reference form preferences.xhtml
 	cd $(SAFARI_BUILD_DIR); \
-	sed -i -r 's|(^.+xhtml">)|<html>|' content/preferences.xhtml
+	sed -i -r 's|(^<\?xml.+\?>)||' content/preferences.xhtml
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	# version bump for nightly
