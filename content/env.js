@@ -19,8 +19,6 @@ if (typeof(opera) === "object") {
 	// to tell which context the chrome script is running at
 	// either background page, or content script
 	Foxtrick.chromeContext = function() {
-		if (Foxtrick.BuildFor != "Sandboxed")
-			return null;
 		try {
 			if (opera.extension.postMessage) {
 				return "content";
@@ -149,8 +147,6 @@ else if (typeof(safari) === "object") {
 	// to tell which context the chrome script is running at
 	// either background page, or content script
 	Foxtrick.chromeContext = function() {
-		if (Foxtrick.BuildFor != "Sandboxed")
-			return null;
 		try {
 			if (safari.application) {
 				return "background";
@@ -349,8 +345,6 @@ else if (typeof(chrome) === "object") {
 	// to tell which context the chrome script is running at
 	// either background page, or content script
 	Foxtrick.chromeContext = function() {
-		if (Foxtrick.BuildFor != "Sandboxed")
-			return null;
 		try {
 			if (chrome.bookmarks) {
 				return "background";
@@ -363,6 +357,7 @@ else if (typeof(chrome) === "object") {
 			return "content";
 		}
 	}
+	
 	// port common functions to sandboxed
 	var sandboxed = {
 		extension : {
@@ -386,112 +381,127 @@ else {
 	Foxtrick.BuildForDetail = "";
 	Foxtrick.InternalPath = "chrome://foxtrick/content/";
 	Foxtrick.ResourcePath = "chrome://foxtrick/content/";
-	if ( typeof(window)!='object' ) {
-		// injected scripts in fennec
-		Foxtrick.Fennec = true;
-		Foxtrick.InjectedContext = true
-		window = content;
+
+	if ( typeof(window)!=='object' // fennec content
+		|| typeof(Browser)!=='undefined' ) { // fennec background 
+		var fennec = {};
+		Foxtrick.chromeContext = function() {
+			if (typeof(sendSyncMessage)=='function') 
+				return "content";
+			else 
+				return "background";
+		}
 	}
 	else {
-		Foxtrick.InjectedContext = false;
-		if ( typeof(Browser)!=='undefined' ) 
-			Foxtrick.Fennec = true;
-		else
-			Foxtrick.Fennec = false;
+		var firefox = {};
+		Foxtrick.chromeContext = function() { 
+			return 'background' 
+		}
 	}
 
-  if (Foxtrick.Fennec) {
-	addListener = function(name, handler) {
-		var x = typeof(addMessageListener)=='function'?addMessageListener:messageManager.addMessageListener;
-		x(name, handler);
-	};
 
-	// fennec adapter. adapted from adblockplus for safari
-	var sandboxed = {
-		// Track tabs that make requests to the global page, assigning them
-		// IDs so we can recognize them later.
-		__getTabId: (function() {
-		  // Tab objects are destroyed when no one has a reference to them,
-		  // so we keep a list of them, lest our IDs get lost.
-		  var tabs = [];
-		  var lastAssignedTabId = 0;
-		  var theFunction = function(tab) {
-			// Clean up closed tabs, to avoid memory bloat.
-			tabs = tabs.filter(function(t) { return t.browserWindow != null; });
 
-			if (tab.id == undefined) {
-			  // New tab
-			  tab.id = lastAssignedTabId + 1;
-			  lastAssignedTabId = tab.id;
-			  tabs.push(tab); // save so it isn't garbage collected, losing our ID.
-			}
-			return tab.id;
-		  };
-		  return theFunction;
-		})(),
-
-		extension: {
-		  getURL: function(path) { 
-			return 'chrome://foxtrick/' + path;
-		  },
-
-		  sendRequest: (function() {
-			// The function we'll return at the end of all this
-			function theFunction(data, callback) {
-			  var callbackToken = "callback" + Math.random();
-
-			  // Listen for a response for our specific request token.
-			  addOneTimeResponseListener(callbackToken, callback);
-
-			  var x = typeof(sendSyncMessage)=='function'?sendSyncMessage:messageManager.sendSyncMessage;
-			  x("request", {
-				data: data,
-				callbackToken: callbackToken
-			  });
-			}
-
-			// Make a listener that, when it hears sendResponse for the given 
-			// callbackToken, calls callback(resultData) and deregisters the 
-			// listener.
-			function addOneTimeResponseListener(callbackToken, callback) {
-
-			  var responseHandler = function(messageEvent) {
-				try{
-				if (messageEvent.json.callbackToken != callbackToken)
-				  return;
-
-				if (callback) callback(messageEvent.json.data);
-				// Change to calling in 0-ms window.setTimeout, as Safari team thinks
-				// this will work around their crashing until they can release
-				// a fix.
-				removeEventListener("message", responseHandler, false);
-				} catch(e){Foxtrick.log(e)}
-			  };
-
-			  addListener("response", responseHandler);
-			}
-
-			return theFunction;
-		  })(),
-
-		  onRequest: {
-			addListener: function(handler) {
-			  addListener("request", function(messageEvent) {
-				var request = messageEvent.json.data;
-				var id = sandboxed.__getTabId(messageEvent.target);
-
-				var sender = { tab: { id: id, url: messageEvent.target.url } };
-				var sendResponse = function(dataToSend) {
-				  var responseMessage = { callbackToken: messageEvent.json.callbackToken, data: dataToSend };
-				  var x = typeof(sendAsyncMessage)=='function'?sendAsyncMessage:messageManager.sendAsyncMessage;
-				  x("response", responseMessage);
-				}
-				handler(request, sender, sendResponse);
-			  });
-			},
-		  },
+ // fennec ports
+	if (typeof(fennec)==='object') {
+		if (Foxtrick.chromeContext()=='content') {
+			window = content;
 		}
-	  }
+		addListener = function(name, handler) {
+			var x = typeof(addMessageListener)=='function'?addMessageListener:messageManager.addMessageListener;
+			x(name, handler);
+		};
+
+		// fennec adapter. adapted from adblockplus for safari
+		var sandboxed = {
+			// Track tabs that make requests to the global page, assigning them
+			// IDs so we can recognize them later.
+			__getTabId: (function() {
+			  // Tab objects are destroyed when no one has a reference to them,
+			  // so we keep a list of them, lest our IDs get lost.
+			  var tabs = [];
+			  var lastAssignedTabId = 0;
+			  var theFunction = function(tab) {
+				// Clean up closed tabs, to avoid memory bloat.
+				tabs = tabs.filter(function(t) { return t.browserWindow != null; });
+
+				if (tab.id == undefined) {
+				  // New tab
+				  tab.id = lastAssignedTabId + 1;
+				  lastAssignedTabId = tab.id;
+				  tabs.push(tab); // save so it isn't garbage collected, losing our ID.
+				}
+				return tab.id;
+			  };
+			  return theFunction;
+			})(),
+
+			extension: {
+			  getURL: function(path) { 
+				return 'chrome://foxtrick/' + path;
+			  },
+
+			  sendRequest: (function() {
+				// The function we'll return at the end of all this
+				function theFunction(data, callback) {
+				  var callbackToken = "callback" + Math.random();
+
+				  // Listen for a response for our specific request token.
+				  addOneTimeResponseListener(callbackToken, callback);
+
+				  var x = typeof(sendSyncMessage)=='function'?sendSyncMessage:messageManager.sendSyncMessage;
+				  x("request", {
+					data: data,
+					callbackToken: callbackToken
+				  });
+				}
+
+				// Make a listener that, when it hears sendResponse for the given 
+				// callbackToken, calls callback(resultData) and deregisters the 
+				// listener.
+				function addOneTimeResponseListener(callbackToken, callback) {
+
+				  var responseHandler = function(messageEvent) {
+					try{
+					if (messageEvent.json.callbackToken != callbackToken)
+					  return;
+
+					if (callback) callback(messageEvent.json.data);
+					// Change to calling in 0-ms window.setTimeout, as Safari team thinks
+					// this will work around their crashing until they can release
+					// a fix.
+					removeEventListener("message", responseHandler, false);
+					} catch(e){Foxtrick.log(e)}
+				  };
+
+				  addListener("response", responseHandler);
+				}
+
+				return theFunction;
+			  })(),
+
+			  onRequest: {
+				addListener: function(handler) {
+				  addListener("request", function(messageEvent) {
+					var request = messageEvent.json.data;
+					var id = sandboxed.__getTabId(messageEvent.target);
+
+					var sender = { tab: { id: id, url: messageEvent.target.url } };
+					var sendResponse = function(dataToSend) {
+					  var responseMessage = { callbackToken: messageEvent.json.callbackToken, data: dataToSend };
+					  var x = typeof(sendAsyncMessage)=='function'?sendAsyncMessage:messageManager.sendAsyncMessage;
+					  x("response", responseMessage);
+					}
+					handler(request, sender, sendResponse);
+				  });
+				},
+			  },
+			},
+			tabs: {
+			  create: function(data) {
+				Browser.addTab(data.url,true);
+			  }
+			},
+		}
 	}
 }
 
@@ -506,3 +516,4 @@ Foxtrick.moduleCategories = {
 	LINKS : 'links',
 	ALERT : 'alert'
 };
+

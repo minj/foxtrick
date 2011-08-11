@@ -170,20 +170,25 @@ var FoxtrickPrefs = {
 	//  ----------------- function for preference.js ---------------------------
 	cleanupBranch : function() {
 		if (Foxtrick.BuildFor == "Gecko") {
-			try {
-				var array = FoxtrickPrefs.getAllKeysOfBranch('module');
-				for (var i = 0; i < array.length; i++) {
-					if (FoxtrickPrefs.isPrefSetting(array[i])) {
-						FoxtrickPrefs.deleteValue(array[i]);
+			if (Foxtrick.chromeContext()==='background') {
+				try {
+					var array = FoxtrickPrefs.getAllKeysOfBranch('module');
+					for (var i = 0; i < array.length; i++) {
+						if (FoxtrickPrefs.isPrefSetting(array[i])) {
+							FoxtrickPrefs.deleteValue(array[i]);
+						}
 					}
+					FoxtrickPrefs.setBool("preferences.updated", true);
+					Foxtrick.entry.init();
+					return true;
 				}
-				FoxtrickPrefs.setBool("preferences.updated", true);
-				Foxtrick.entry.init();
-				return true;
-			}
-			catch (e) {
-				Foxtrick.log(e);
-				return false;
+				catch (e) {
+					Foxtrick.log(e);
+					return false;
+				}
+			} 
+			else {
+				sandboxed.extension.sendRequest({ req : "clearPrefs" })		
 			}
 		}
 		else if (Foxtrick.BuildFor == "Sandboxed") {
@@ -323,8 +328,8 @@ if (Foxtrick.BuildFor === "Gecko") {
 		},
 
 		setString : function(key, value) {
-			if (Foxtrick.InjectedContext)
-				sendSyncMessage("Foxtrick:setValue", { type:'string', key: key, value: value }, true);
+			if (Foxtrick.chromeContext()==='content')
+				sandboxed.extension.sendRequest({ req : "setValue", type:'string', key: key, value: value });
 			else { 
 				var str = Components
 					.classes["@mozilla.org/supports-string;1"]
@@ -352,8 +357,8 @@ if (Foxtrick.BuildFor === "Gecko") {
 		},
 
 		setInt : function(key, value) {
-			if (Foxtrick.InjectedContext)
-				sendSyncMessage("Foxtrick:setValue", { type:'int', key: key, value: value }, true);
+			if (Foxtrick.chromeContext()==='content')
+				sandboxed.extension.sendRequest({ req : "setValue", type:'int', key: key, value: value });
 			else 
 				FoxtrickPrefs._prefs_gecko.setIntPref(encodeURI(key), value);
 		},
@@ -375,15 +380,30 @@ if (Foxtrick.BuildFor === "Gecko") {
 		},
 
 		setBool : function(key, value) {
-			if (Foxtrick.InjectedContext)
-				sendSyncMessage("Foxtrick:setValue", { type:'bool', key: key, value: value }, true);
+			if (Foxtrick.chromeContext()==='content')
+				sandboxed.extension.sendRequest({ req : "setValue", type:'bool', key: key, value: value });
 			else 
 				FoxtrickPrefs._prefs_gecko.setBoolPref(encodeURI(key), value);
 		},
 
 		deleteValue : function(key) {
-			if (FoxtrickPrefs._prefs_gecko.prefHasUserValue(encodeURI(key)))
-				FoxtrickPrefs._prefs_gecko.clearUserPref(encodeURI(key));   // reset to default
+			if (Foxtrick.chromeContext()==='background') {
+				if (FoxtrickPrefs._prefs_gecko.prefHasUserValue(encodeURI(key)))
+					FoxtrickPrefs._prefs_gecko.clearUserPref(encodeURI(key));   // reset to default
+			}
+			else {
+				sandboxed.extension.sendRequest({ req : "deleteValue", key : key });
+			}
+		},
+
+		// set for fennec background script side
+		setValue : function(key, value, type) {
+			if (type=='string')
+				FoxtrickPrefs.setString(key, value)
+			else if (type=='int')
+				FoxtrickPrefs.setInt(key, value)
+			else if (type=='bool')
+				FoxtrickPrefs.setBool(key, value)
 		},
 
 		prefHasUserValue : function(key) {

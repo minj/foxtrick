@@ -21,9 +21,9 @@ var FoxtrickCore = {
 	// as the argument (Gecko-only)
 	// initializes items in menu bar and status bar
 	onLoad : function(document) { 
-		if (Foxtrick.BuildFor !== "Gecko" || Foxtrick.Fennec) {
-		return;
-}
+		if (typeof(firefox)!=='object') 
+			return;
+
 		// toolbar menu - preferences
 		var toolbarPreferences = document.getElementById("foxtrick-toolbar-preferences");
 		toolbarPreferences.label = Foxtrickl10n.getString("preferences");
@@ -84,7 +84,7 @@ var FoxtrickCore = {
 
 	updateStatus : function() {
 		// update status bar icon image and tooltip (Gecko-only)
-		if (Foxtrick.BuildFor !== "Gecko" || Foxtrick.InjectedContext)
+		if ( typeof(firefox)!=='object' )
 			return;
 
 		var disableItem = document.getElementById("foxtrick-toolbar-deactivate");

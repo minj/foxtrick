@@ -1,11 +1,11 @@
 function initLoader() {	
 	// fennec runs init() from injected entry.js (injected)
 	// called directly, it'll run and save actually for some reason
-	if (Foxtrick.Fennec) 
-		return; 
-	// ff, safari, op
+	
+	// gecko, safari, chrome
 	if (Foxtrick.BuildFor === "Gecko" || Foxtrick.chromeContext() == "background")
 		init();
+	// opera prefs runs in content context. add need resources first
 	else
 		sandboxed.extension.sendRequest({ req : "init", sender : 'options' },
 			function (data) {

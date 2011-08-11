@@ -139,10 +139,15 @@ Foxtrick.in_array = function(a, n) {
 
 Foxtrick.copyStringToClipboard = function (string) {
 	if (Foxtrick.BuildFor === "Gecko") {
-		var gClipboardHelper = Components
-			.classes["@mozilla.org/widget/clipboardhelper;1"]
-			.getService(Components.interfaces.nsIClipboardHelper);
-		gClipboardHelper.copyString(string);
+		if (Foxtrick.chromeContext()==='content') {
+			sandboxed.extension.sendRequest({req : "clipboard", content : string});
+		}
+		else { 
+			var gClipboardHelper = Components
+				.classes["@mozilla.org/widget/clipboardhelper;1"]
+				.getService(Components.interfaces.nsIClipboardHelper);
+			gClipboardHelper.copyString(string);
+		}
 	}
 	else if (typeof(opera) === "object" || typeof(safari) === "object") {
 		Foxtrick.sessionSet('clipboard', string);
@@ -152,28 +157,22 @@ Foxtrick.copyStringToClipboard = function (string) {
 	}
 }
 
-Foxtrick.newTab = function(url) {
-	if (Foxtrick.BuildFor == "Gecko") {
-		if (Foxtrick.InjectedContext)
-			sendAsyncMessage("Foxtrick:newTab", { url: url });
-		else
-			gBrowser.selectedTab = gBrowser.addTab(url);
-	}
-	else if (Foxtrick.BuildFor == "Sandboxed") {
+Foxtrick.newTab = function(url) { 
+	if (Foxtrick.chromeContext()==='content') {
 		sandboxed.extension.sendRequest({
 			req : "newTab",
 			url : url
 		})
 	}
+	else if (typeof(firefox)==='object') {
+		gBrowser.selectedTab = gBrowser.addTab(url);
+	}
 }
 
 Foxtrick.load = function(url, callback, crossSite) {
 	try { 
-		if ( ((Foxtrick.BuildFor == "Sandboxed" && Foxtrick.chromeContext() == "content" && crossSite) 
-				||	(Foxtrick.Fennec && Foxtrick.InjectedContext && callback))
-			 ) {
-			// the evil Chrome that requires us to send a message to
-			// background script for cross-site requests
+		if ( Foxtrick.chromeContext()==='content' && callback ) {
+			// background script for xml requests
 			sandboxed.extension.sendRequest({req : "xml", url : url, crossSite: crossSite},
 				function(response) {
 					try {
@@ -187,15 +186,6 @@ Foxtrick.load = function(url, callback, crossSite) {
 			);
 		}
 		else {
-			/*if (Foxtrick.Fennec && Foxtrick.InjectedContext) {
-				if (!callback) 
-					return sendSyncMessage("Foxtrick:getXML", { url: url, crossSite:crossSite, callback:null });
-				 else {
-					addMessageListener("Foxtrick:getXML",
-					sendSyncMessage("Foxtrick:getXML", { url: url, crossSite:crossSite, callback:true });
-					}
-				return;
-			}*/
 			if (!crossSite) {
 				// a request to load local resource
 				url = url.replace(Foxtrick.ResourcePath, Foxtrick.InternalPath);
@@ -225,8 +215,8 @@ Foxtrick.load = function(url, callback, crossSite) {
 		}
 	}
 	catch (e) {
-		Foxtrick.log('url: ', url, ' callback: ', callback, ' crossSite: ', crossSite);
-		Foxtrick.log(e);
+		Foxtrick.log('xml load error - url: ', url, ' callback: ', callback, ' crossSite: ', crossSite);
+		Foxtrick.dump('error: '+e);
 		if (callback) callback(null);
 	}
 };
@@ -693,6 +683,9 @@ Foxtrick.getCssFileArrayToString = function(cssUrls) {
 
 	// gets all css from modules.CSS settings
 Foxtrick.getCssTextCollection = function() { 
+	// fennec can/does load css direct from content
+	if (typeof(fennec)==='object') 
+		return '';
 	Foxtrick.collect_module_css();
 	return Foxtrick.getCssFileArrayToString(Foxtrick.cssFiles); 
 };
@@ -840,9 +833,10 @@ Foxtrick.log = function() {
 	concated += "\n";
 	Foxtrick.dumpCache += concated;
 	if (Foxtrick.BuildFor === "Gecko") {
-		if (Foxtrick.InjectedContext) 
-			sendSyncMessage("Foxtrick:dump", { title: concated });
-		dump("FT: " + concated);
+		if (Foxtrick.chromeContext() === "content") 
+			sandboxed.extension.sendRequest({ req : "log", log : concated });
+		else
+			dump("FT: " + concated);
 	}
 	else if (Foxtrick.BuildFor === "Sandboxed") {
 		if (Foxtrick.chromeContext() == "content")

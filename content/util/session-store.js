@@ -6,7 +6,7 @@
  * pages, we store it in background script and thus requires asynchronous
  * callback in sessionGet().
  */
-if ( Foxtrick.BuildFor === "Gecko") {
+if ( typeof(firefox)==='object') {
 
 	Foxtrick.sessionStore = {};
 
@@ -39,10 +39,8 @@ if ( Foxtrick.BuildFor === "Gecko") {
 		};
 	};
 }
-
-
-if (Foxtrick.BuildFor === "Sandboxed") {
-	
+// sessionStore in back ground for all other
+else {
 	if ( Foxtrick.chromeContext() == "background" )  {
 	
 		Foxtrick.sessionStore = {};

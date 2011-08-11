@@ -182,7 +182,7 @@ if (Foxtrick.BuildFor === "Gecko") {
 		_strings_bundle_screenshots_default:null,
 
 		init : function() {
-			if (!Foxtrick.InjectedContext) { 
+			if (Foxtrick.chromeContext()==='background') { 
 				// get htlang.xml for each locale
 				for (var i in Foxtrickl10n.locales) {
 					var locale = Foxtrickl10n.locales[i];
