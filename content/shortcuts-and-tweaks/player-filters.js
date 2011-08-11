@@ -270,7 +270,7 @@ FoxtrickPlayerFilters = {
 				table.parentNode.removeChild(table);
 
 				var tablediv = doc.getElementById("ft_skilltablediv");
-				if (Foxtrick.hasClass(tablediv.getElementsByTagName('h2')[0], "ft_boxBodyUnfolded")) {
+				if (Foxtrick.hasClass(tablediv.getElementsByTagName('h2')[0], "ft-expander-expanded")) {
 					window.setTimeout(function() { FoxtrickSkillTable.createTable(doc); }, 0);
 				}
 			}

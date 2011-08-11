@@ -107,9 +107,9 @@ Foxtrick.util.links = {
 		try {
 			var ownBoxId = "ft-links-box";
 			var div=doc.getElementById(ownBoxId).firstChild;
-			div.className = "boxHead ft_sidebarBoxCollapsed";
+			div.className = "boxHead ft-expander-unexpanded";
 			if (Foxtrick.util.layout.isRtl(doc))
-				div.className = "boxHead ft_sidebarBoxCollapsed_rtl";
+				div.className = "boxHead ft-expander-unexpanded_rtl";
 
 			var all_links=ownBoxBody.getElementsByTagName('a');
 			for (var i=0;i<all_links.length;++i) {
@@ -185,8 +185,8 @@ Foxtrick.util.links = {
 			// box
 			var ownBoxId = "ft-links-box";
 			var div=doc.getElementById(ownBoxId).firstChild;
-			div.setAttribute("class","boxHead ft_sidebarBoxUnfolded");
-			if (Foxtrick.util.layout.isRtl(doc)) div.setAttribute("class","boxHead  ft_sidebarBoxUnfolded_rtl");
+			div.setAttribute("class","boxHead ft-expander-expanded");
+			if (Foxtrick.util.layout.isRtl(doc)) div.setAttribute("class","boxHead  ft-expander-expanded_rtl");
 
 			var all_links=ownBoxBody.getElementsByTagName('a');
 			for (var i=0;i<all_links.length;++i) {

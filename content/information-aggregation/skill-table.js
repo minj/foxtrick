@@ -989,7 +989,7 @@ var FoxtrickSkillTable = {
 
 		// table div head
 		var h2 = doc.createElement("h2");
-		h2.className = "ft_boxBodyCollapsed";
+		h2.className = "ft-expander-unexpanded";
 		h2.appendChild(doc.createTextNode(Foxtrickl10n.getString("Skill_table")));
 		var toggleDisplay = function() {
 			try {
@@ -998,9 +998,9 @@ var FoxtrickSkillTable = {
 					FoxtrickSkillTable.createTable(doc);
 				}
 
-				Foxtrick.toggleClass(h2, "ft_boxBodyUnfolded");
-				Foxtrick.toggleClass(h2, "ft_boxBodyCollapsed");
-				var show = Foxtrick.hasClass(h2, "ft_boxBodyUnfolded");
+				Foxtrick.toggleClass(h2, "ft-expander-expanded");
+				Foxtrick.toggleClass(h2, "ft-expander-unexpanded");
+				var show = Foxtrick.hasClass(h2, "ft-expander-expanded");
 
 				var customizeTable = tablediv.getElementsByClassName("ft_skilltable_customizetable")[0];
 				if (show) {

@@ -37,7 +37,7 @@ var FoxtrickCrossTable = {
 		// season graph
 		var graphHeader = doc.createElement("h2");
 		graphHeader.textContent = Foxtrickl10n.getString("CrossTable.graph");
-		graphHeader.className = "ft_boxBodyCollapsed";
+		graphHeader.className = "ft-expander-unexpanded";
 		insertBefore.parentNode.insertBefore(graphHeader, insertBefore);
 		var graphContainer = doc.createElement("div");
 		graphContainer.id = "ft-season-graph-container";
@@ -50,7 +50,7 @@ var FoxtrickCrossTable = {
 		// cross table
 		var tableHeader = doc.createElement("h2");
 		tableHeader.textContent = Foxtrickl10n.getString("CrossTable.table");
-		tableHeader.className = "ft_boxBodyCollapsed";
+		tableHeader.className = "ft-expander-unexpanded";
 		insertBefore.parentNode.insertBefore(tableHeader, insertBefore);
 		var div = doc.createElement("div");
 		div.className = "ft-cross-table-div";
@@ -68,15 +68,15 @@ var FoxtrickCrossTable = {
 		};
 
 		var toggleGraph = function() {
-			Foxtrick.toggleClass(graphHeader, "ft_boxBodyCollapsed");
-			Foxtrick.toggleClass(graphHeader, "ft_boxBodyUnfolded");
+			Foxtrick.toggleClass(graphHeader, "ft-expander-unexpanded");
+			Foxtrick.toggleClass(graphHeader, "ft-expander-expanded");
 			Foxtrick.toggleClass(graphContainer, "hidden");
 			rememberState("graph.expanded", !Foxtrick.hasClass(graphContainer, "hidden"));
 		};
 
 		var toggleTable = function() {
-			Foxtrick.toggleClass(tableHeader, "ft_boxBodyCollapsed");
-			Foxtrick.toggleClass(tableHeader, "ft_boxBodyUnfolded");
+			Foxtrick.toggleClass(tableHeader, "ft-expander-unexpanded");
+			Foxtrick.toggleClass(tableHeader, "ft-expander-expanded");
 			Foxtrick.toggleClass(table, "hidden");
 			rememberState("table.expanded", !Foxtrick.hasClass(table, "hidden"));
 		};
