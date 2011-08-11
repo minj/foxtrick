@@ -130,7 +130,7 @@ FoxtrickLineupShortcut = {
 		else if (type == "U20")
 			img.src += "formation.u20.png";
 		else
-			img.src += "formation.gif.gif";
+			img.src += "formation.png";
 		cell.appendChild(link);
 		link.appendChild(img);
 	},
