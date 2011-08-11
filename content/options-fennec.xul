@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE overlay>
+
+<vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <setting pref="extensions.foxtrick.prefs.disableTemporary" type="bool" title="Disable temporary"/>
+  <setting pref="extensions.foxtrick.prefs.disableOnStage" type="bool" title="Disable on Stage"/>
+  <setting pref="extensions.foxtrick.prefs.xmlLoad" type="bool" title="Load Xmls">
+  Load extra information from Hattrick servers on demand
+  </setting>
+  <setting type="button">Reset to default
+    <button label="Reset" oncommand="if(window.confirm('Are you sure you want to restore to default settings?')){FoxtrickPrefs.cleanupBranch();}"/>
+  </setting>
+   <setting type="button">Show all options
+    <button label="Show" oncommand="Browser.addTab('chrome://foxtrick/content/preferences.html#tab=main',true); window.alert('Options page has been opened in a new tab');"/>
+  </setting> 
+</vbox>
