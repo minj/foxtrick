@@ -26,23 +26,6 @@ a good reason to. They are for version bumps in Makefile.
 		<real>10485760</real>
 		<key>Global Page</key>
 		<string>content/background.html</string>
-		<key>Toolbar Items</key>
-		<array>
-			<dict>
-				<key>Command</key>
-				<string></string>
-				<key>Identifier</key>
-				<string>FoxTrickOptions</string>
-				<key>Image</key>
-				<string>skin/icon-16.png</string>
-				<key>Label</key>
-				<string>Options</string>
-				<key>Palette Label</key>
-				<string></string>
-				<key>Tool Tip</key>
-				<string>FoxTrick Options</string>
-			</dict>
-		</array>
 	</dict>
 	<key>Content</key>
 	<dict>
@@ -210,10 +193,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/loader-chrome.js</string>
 			</array>
 		</dict>
-		<key>Whitelist</key>
-		<array>
-			<string>http://*.hattrick.org/*</string>
-		</array>
 	</dict>
 	<key>Description</key>
 	<string>A set of presentation enhancements for hattrick.org</string>
@@ -223,10 +202,19 @@ a good reason to. They are for version bumps in Makefile.
 	<dict>
 		<key>Website Access</key>
 		<dict>
+			<key>Allowed Domains</key>
+			<array>
+				<string>*.hattrick.org</string>
+				<string>*.hattrick.name</string>
+				<string>*.hattrick.ws</string>
+				<string>*.hat-trick.net</string>
+				<string>*.hattrick.interia.pl</string>
+				<string>*.hattrick.uol.com.br</string>
+			</array>
 			<key>Include Secure Pages</key>
 			<true/>
 			<key>Level</key>
-			<string>All</string>
+			<string>Some</string>
 		</dict>
 	</dict>
 	<key>Update Manifest URL</key>

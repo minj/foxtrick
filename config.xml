@@ -8,6 +8,14 @@
 	<license href="http://www.gnu.org/licenses">GNU General Public License</license>
 	<icon src="skin/icon-64.png" width="64" height="64"/>
 	<content src="background.html" type="text/html" encoding="utf-8"/>
-	<access origin="*" subdomains="true"/>
+	<access origin="http://*.hattrick.org" subdomains="true"/>
+	<access origin="https://chpp.hattrick.org" subdomains="true"/>
+	<access origin="http://*.hattrick.ws" subdomains="true"/>
+	<access origin="http://*.hattrick.name" subdomains="true"/>
+	<access origin="http://*.hatt-rick.net" subdomains="true"/>
+	<access origin="http://*.hattrick.interia.pl" subdomains="true"/>
+	<access origin="http://*.hattrick.uol.com.br" subdomains="true"/>
+	<access origin="http://www.hattrick-youthclub.org" subdomains="true"/>
+	<access origin="http://www.fantamondi.it" subdomains="true"/>
 	<update-description href="http://foxtrick.foundationhorizont.org/nightly/opera/update.xml"/>
 </widget>

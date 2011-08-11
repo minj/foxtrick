@@ -163,6 +163,8 @@
 		"matches" : [
 			"*://*.hattrick.org/*",
 			"*://*.hattrick.ws/*",
+			"*://*.hattrick.name/*",
+			"*://*.hat-trick.net/*",
 			"*://*.hattrick.interia.pl/*",
 			"*://*.hattrick.uol.com.br/*"
 		],
@@ -180,7 +182,7 @@
 		"contextMenus",
 		"notifications",
 		"clipboardWrite",
-		"*://*.hattrick.org/*",
+		"https://chpp.hattrick.org/*",
 		"http://www.hattrick-youthclub.org/*",
 		"http://www.fantamondi.it/*"
 	],
