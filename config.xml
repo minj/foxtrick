@@ -10,6 +10,7 @@
 	<content src="background.html" type="text/html" encoding="utf-8"/>
 	<access origin="http://*.hattrick.org" subdomains="true"/>
 	<access origin="https://chpp.hattrick.org" subdomains="true"/>
+	<access origin="http://chpp.hattrick.org" subdomains="true"/>
 	<access origin="http://*.hattrick.ws" subdomains="true"/>
 	<access origin="http://*.hattrick.name" subdomains="true"/>
 	<access origin="http://*.hatt-rick.net" subdomains="true"/>
