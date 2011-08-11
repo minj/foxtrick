@@ -16,9 +16,9 @@ a good reason to. They are for version bumps in Makefile.
 	<string>www.ht-foxtrick.com</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>CFBundleShortVersionString</key>
-	<string>0.7.9</string><!--version-->
 	<key>CFBundleVersion</key>
+	<string>0.7.9</string><!--version-->
+	<key>CFBundleShortVersionString</key>
 	<string>0.7.9</string><!--version-->
 	<key>Chrome</key>
 	<dict>
