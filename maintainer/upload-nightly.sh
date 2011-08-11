@@ -55,7 +55,7 @@ sed -i "s|{VERSION}|${OPERA_VERSION}|g" update-opera.xml
 
 # modify update-safari.plist for Safari
 cp update-tmpl-safari.plist update-safari.plist
-SAFARI_MAJOR_VERSION=`cd ${SOURCE_DIR} && grep -E '<string>.+</string><!--version-->' info.plist | \
+SAFARI_MAJOR_VERSION=`cd ${SOURCE_DIR} && grep -E '<string>.+</string><!--version-->' Info.plist | \
 	sed -r -e 's|<string>(.+)</string><!--version-->|\1|'`
 SAFARI_VERSION="${SAFARI_MAJOR_VERSION}.${REVISION}"
 sed -i "s|{UPDATE_LINK}|http://foxtrick.foundationhorizont.org/nightly/safari/foxtrick-r${REVISION}.safariextz|g" update-safari.plist
