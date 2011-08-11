@@ -88,7 +88,7 @@ var FoxtrickForumYouthIcons = {
 		if (Foxtrick.isPage("newsletter", doc)
 			|| Foxtrick.isPage("mailnewsletter", doc)) {
 
-			Foxtrick.util.inject.jsLink(doc, Foxtrick.ResourcePath+"resources/js/HattrickML.js");
+			Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath+"resources/js/HattrickML.js");
 
 			if (Foxtrick.isPage("newsletter", doc))
 				var textbox = 'ctl00_ctl00_CPContent_CPMain_txtMessage';

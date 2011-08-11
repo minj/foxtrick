@@ -22,7 +22,7 @@ FoxtrickMatchReportFormat = {
 		if (processed) return;
 
 		// used for clicking on match events in the sidebar and jump to event in the report.
-		Foxtrick.util.inject.jsLink(doc, Foxtrick.ResourcePath+"resources/js/MatchReport.js");
+		Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath+"resources/js/MatchReport.js");
 
 		// Retrieve team IDs
 		var myTeamId = isyouth ? Foxtrick.util.id.getOwnYouthTeamId() : Foxtrick.util.id.getOwnTeamId();
