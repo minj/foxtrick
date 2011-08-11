@@ -1,0 +1,122 @@
+===Browser===
+
+==firefox/seamonkey==
+=rights=
+	all
+=script loading=
+	overlay.xul
+=content starter=
+	loader-gecko.js
+=preferences page=
+	as is
+=prefs=
+	gecko preferences
+=l10n=
+	gecko strings manager
+=xml_resources_load=
+	directly
+=css=
+	into browser
+=sessionStore=
+	directly
+=log=
+	dump directly
+
+
+==fennec==
+=rights=
+	xml and pref setting via background
+=script loading=
+	overlay_fennec.xul (background)
+	background.js (content)
+=content starter=
+	loader-gecko.js
+=preferences page=
+	as is
+=prefs=
+	read: gecko preferences
+	write: gecko preferences via background
+=l10n=
+	gecko strings manager
+=xml_resources_load=
+	via background
+=css=
+	into browser
+=sessionStore=
+	via background
+=log=
+	dump via background
+
+
+==chrome==
+=rights=
+	content scripts can't access extension diretory
+=script loading=
+	background.html (background)
+	manifest.json (content)
+=content starter=
+	loader-chrome.js
+=preferences page=
+	as is
+=prefs=
+	localStore via background
+=l10n=
+	text load via background
+=xml_resources_load=
+	via background
+=css=
+	injected via background
+=sessionStore=
+	via background
+=log=
+	console.log directly
+
+
+==opera==
+=rights=
+	content scripts and html document can't access extension diretory
+=script loading=
+	background.html (background)
+	includes folder, copied from content and subfolders (content)
+=content starter=
+	loader-chrome.js
+=preferences page=
+	runs in content context
+=prefs=
+	localStore via background
+=l10n=
+	text load via background
+=xml_resources_load=
+	via background
+=css=
+	injected via background
+	imgs converted to dataurl
+=sessionStore=
+	via background
+=log=
+	opera.postError directly
+
+
+==safari==
+=rights=
+	content scripts can't access extension diretory
+=script loading=
+	background.html (background)
+	Info.plist (content)
+=content starter=
+	loader-chrome.js
+=preferences page=
+	renamed to options.html without xml reference
+=prefs=
+	localStore via background
+=l10n=
+	text load via background
+=xml_resources_load=
+	via background
+=css=
+	injected via background
+=sessionStore=
+	via background
+=log=
+	console.log directly
+

@@ -568,7 +568,6 @@ var onWindowLoad = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/transfer-search-filters.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/transfer-search-result-filters.js", true);
 
-		messageManager.loadFrameScript("chrome://foxtrick/content/preferences.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/entry.js", true);
 
 		messageManager.loadFrameScript("chrome://foxtrick/content/loader-gecko.js", true);
