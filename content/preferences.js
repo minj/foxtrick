@@ -537,8 +537,8 @@ function getScreenshot(link)
 
 function initChangesTab()
 {
-	const releaseNotes = Foxtrick.loadXml(Foxtrick.ResourcePath + "release-notes.xml");
-	const releaseNotesLocalized = Foxtrick.loadXml(Foxtrick.ResourcePath
+	const releaseNotes = Foxtrick.loadXml(Foxtrick.InternalPath + "release-notes.xml");
+	const releaseNotesLocalized = Foxtrick.loadXml(Foxtrick.InternalPath
 		+ "locale/" + FoxtrickPrefs.getString("htLanguage") + "/release-notes.xml");
 	var notes = {};
 	var notesLocalized = {};
@@ -605,7 +605,7 @@ function initChangesTab()
 function initHelpTab()
 {
 	// external links
-	const aboutXml = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/foxtrick_about.xml");
+	const aboutXml = Foxtrick.loadXml(Foxtrick.InternalPath + "data/foxtrick_about.xml");
 	const links = Foxtrick.XML_evaluate(aboutXml, "about/links/link", "title", "value");
 	for (var i = 0; i < links.length; ++i) {
 		var item = document.createElement("li");
@@ -617,8 +617,8 @@ function initHelpTab()
 	}
 
 	// FAQ (faq.xml or localized locale/code/faq.xml
-	const faq = Foxtrick.loadXml(Foxtrick.ResourcePath + "faq.xml");
-	const faqLocal = Foxtrick.loadXml(Foxtrick.ResourcePath + "locale/"
+	const faq = Foxtrick.loadXml(Foxtrick.InternalPath + "faq.xml");
+	const faqLocal = Foxtrick.loadXml(Foxtrick.InternalPath + "locale/"
 		+ FoxtrickPrefs.getString("htLanguage") + "/faq.xml");
 	const items = {};
 	const itemsLocal = {};
@@ -661,7 +661,7 @@ function initHelpTab()
 
 function initAboutTab()
 {
-	const aboutXml = Foxtrick.loadXml(Foxtrick.ResourcePath + "data/foxtrick_about.xml");
+	const aboutXml = Foxtrick.loadXml(Foxtrick.InternalPath + "data/foxtrick_about.xml");
 	$(".about-list").each(function() {
 		var iterator = aboutXml.evaluate($(this).attr("path"), aboutXml, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
 		var currentNode = iterator.iterateNext();

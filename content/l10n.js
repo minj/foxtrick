@@ -186,7 +186,7 @@ if (Foxtrick.BuildFor === "Gecko") {
 				// get htlang.xml for each locale
 				for (var i in Foxtrickl10n.locales) {
 					var locale = Foxtrickl10n.locales[i];
-					var url = Foxtrick.ResourcePath + "locale/" + locale + "/htlang.xml";
+					var url = Foxtrick.InternalPath + "locale/" + locale + "/htlang.xml";
 					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXml(url);
 				}
 			}
@@ -308,12 +308,12 @@ if (Foxtrick.BuildFor === "Sandboxed") {
 				// get htlang.xml for each locale
 				for (var i in Foxtrickl10n.locales) {
 					var locale = Foxtrickl10n.locales[i];
-					var url = Foxtrick.ResourcePath + "locale/" + locale + "/htlang.xml";
+					var url = Foxtrick.InternalPath + "locale/" + locale + "/htlang.xml";
 					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXml(url);
 				}
 				
-				this.properties_default = Foxtrick.load(Foxtrick.ResourcePath+"foxtrick.properties");
-				this.screenshots_default = Foxtrick.load(Foxtrick.ResourcePath+"foxtrick.screenshots");
+				this.properties_default = Foxtrick.load(Foxtrick.InternalPath+"foxtrick.properties");
+				this.screenshots_default = Foxtrick.load(Foxtrick.InternalPath+"foxtrick.screenshots");
 				
 				var localecode = FoxtrickPrefs.getString("htLanguage");
 				Foxtrick.log('localecode ',localecode);

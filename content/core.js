@@ -234,7 +234,7 @@ var FoxtrickCore = {
 						updateNotepad();
 						select.addEventListener('change',updateNotepad, false);
 					}
-					Foxtrick.loadXml(Foxtrick.ResourcePath + "release-notes.xml", show, true);
+					Foxtrick.loadXml(Foxtrick.InternalPath + "release-notes.xml", show);
 				}
 			}
 			FoxtrickPrefs.setString("oldVersion", Foxtrick.version());
