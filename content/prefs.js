@@ -340,7 +340,7 @@ if (Foxtrick.BuildFor === "Gecko") {
 		},
 
 		getInt : function(key) {
-			try[
+			try {
 				if (typeof(fennec)==='object') {
 					try {
 						return FoxtrickPrefs._prefs_fennec.getIntPref(encodeURI(key),
