@@ -20,7 +20,14 @@ Foxtrick.util.notify.create = function(msg, url) {
 				try {
 					if (topic == "alertclickcallback") {
 						//Foxtrick.newTab(url);
-						Foxtrick.openAndReuseOneTabPerURL(url, true);
+						if (typeof(foxtrick)==='object')
+							Foxtrick.openAndReuseOneTabPerURL(url, true);
+						else {
+							sandboxed.extension.sendRequest({
+								req : "reuseTab",
+								url : url
+							})
+						}
 					}
 					if (topic == "alertfinished") {
 						// empty

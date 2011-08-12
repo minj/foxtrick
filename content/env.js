@@ -419,18 +419,18 @@ else {
 			  // Tab objects are destroyed when no one has a reference to them,
 			  // so we keep a list of them, lest our IDs get lost.
 			  var tabs = [];
-			  var lastAssignedTabId = 0;
+			  var lastAssignedTabId = -1;
 			  var theFunction = function(tab) {
 				// Clean up closed tabs, to avoid memory bloat.
-				tabs = tabs.filter(function(t) { return t.browserWindow != null; });
+				tabs = tabs.filter(function(t) { return t.browser != null; });
 
-				if (tab.id == undefined) {
+				if (tab.tid === undefined) {
 				  // New tab
-				  tab.id = lastAssignedTabId + 1;
-				  lastAssignedTabId = tab.id;
+				  tab.tid = lastAssignedTabId + 1;
+				  lastAssignedTabId = tab.tid;
 				  tabs.push(tab); // save so it isn't garbage collected, losing our ID.
 				}
-				return tab.id;
+				return tab.tid;
 			  };
 			  return theFunction;
 			})(),
@@ -465,7 +465,7 @@ else {
 					if (messageEvent.json.callbackToken != callbackToken)
 					  return;
 
-					if (callback) callback(messageEvent.json.data);
+					if (callback) callback(messageEvent.json.data, messageEvent.target);
 					// Change to calling in 0-ms window.setTimeout, as Safari team thinks
 					// this will work around their crashing until they can release
 					// a fix.
@@ -485,7 +485,7 @@ else {
 					var request = messageEvent.json.data;
 					var id = sandboxed.__getTabId(messageEvent.target);
 
-					var sender = { tab: { id: id, url: messageEvent.target.url } };
+					var sender = { tab: { id: id, url: messageEvent.target.lastLocation, target:messageEvent.target } };
 					var sendResponse = function(dataToSend) {
 					  var responseMessage = { callbackToken: messageEvent.json.callbackToken, data: dataToSend };
 					  var x = typeof(sendAsyncMessage)=='function'?sendAsyncMessage:messageManager.sendAsyncMessage;

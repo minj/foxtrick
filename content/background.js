@@ -160,6 +160,18 @@ Foxtrick.loader.chrome.browserLoad = function() {
 				// @param url - the URL of new tab to create
 				sandboxed.tabs.create({url : request.url});
 			}
+			else if (request.req == "reuseTab") {
+				// @param url - the URL of new tab to create
+				if (typeof(fennec)==='object') {
+					Foxtrick.log(sender.tab.id)
+					for (var i = 0; i<Browser.browsers.length; ++i) {
+						if (sender.tab.id == Browser.browsers[i].tid) {
+							Browser.selectedTab = Browser.getTabAtIndex(i);
+							Browser.browsers[i].loadURI(request.url);
+						}
+					}
+				}
+			}
 			else if (request.req == "clipboard") {
 				// @param content - content to copy
 				// @callback_param status - success status
