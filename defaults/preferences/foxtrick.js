@@ -679,3 +679,6 @@ pref("extensions.foxtrick.prefs.showReleaseNotes", true);
 pref("extensions.foxtrick.prefs.smallcopyicons", true);
 pref("extensions.foxtrick.prefs.table_separator", " ");
 pref("extensions.foxtrick.prefs.xmlLoad", true);
+
+/* fennec prefs */
+pref("extensions.foxtrick.prefs-fennec.module.StaffMarker.enabled", false);

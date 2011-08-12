@@ -307,24 +307,21 @@ if (Foxtrick.BuildFor === "Gecko") {
 				.classes["@mozilla.org/preferences-service;1"]
 				.getService(Components.interfaces.nsIPrefService)
 				.getBranch("extensions.foxtrick.prefs.");
+			FoxtrickPrefs._prefs_fennec = Components
+				.classes["@mozilla.org/preferences-service;1"]
+				.getService(Components.interfaces.nsIPrefService)
+				.getBranch("extensions.foxtrick.prefs-fennec.");
 		},
 		
 		getString : function(key) {
-			var str;
-			try {
-				str = FoxtrickPrefs._prefs_gecko.getComplexValue(encodeURI(key),
-					Components.interfaces.nsISupportsString).data;
-			}
-			catch (e) {
+			if (typeof(fennec)==='object') {
 				try {
-					str = FoxtrickPrefs._prefs_gecko.getComplexValue(pref_name,
+					return FoxtrickPrefs._prefs_fennec.getComplexValue(encodeURI(key),
 						Components.interfaces.nsISupportsString).data;
-	 			}
-	 			catch (e) {
-					str = null;
-				}
+				} catch(e){}
 			}
-	 		return str;
+			return FoxtrickPrefs._prefs_gecko.getComplexValue(encodeURI(key),
+					Components.interfaces.nsISupportsString).data;
 		},
 
 		setString : function(key, value) {
@@ -341,19 +338,13 @@ if (Foxtrick.BuildFor === "Gecko") {
 		},
 
 		getInt : function(key) {
-			var value;
-			try {
-				value = FoxtrickPrefs._prefs_gecko.getIntPref(encodeURI(key));
-			}
-			catch (e) {
+			if (typeof(fennec)==='object') {
 				try {
-					value = FoxtrickPrefs._prefs_gecko.getIntPref(key);
-				}
-				catch (e) {
-					value = null;
-				}
+					return FoxtrickPrefs._prefs_fennec.getIntPref(encodeURI(key),
+						Components.interfaces.nsISupportsString).data;
+				} catch(e){}
 			}
-			return value;
+			return FoxtrickPrefs._prefs_gecko.getIntPref(encodeURI(key));
 		},
 
 		setInt : function(key, value) {
@@ -364,19 +355,13 @@ if (Foxtrick.BuildFor === "Gecko") {
 		},
 
 		getBool : function(key) {
-			var value;
-			try {
-				value = FoxtrickPrefs._prefs_gecko.getBoolPref(encodeURI(key));
-			}
-			catch (e) {
+			if (typeof(fennec)==='object') {
 				try {
-					value = FoxtrickPrefs._prefs_gecko.getBoolPref(key);
-				}
-				catch (e) {
-					value = null;
-				}
+					return FoxtrickPrefs._prefs_fennec.getBoolPref(encodeURI(key),
+						Components.interfaces.nsISupportsString).data;
+				} catch(e){}
 			}
-			return value;
+			return FoxtrickPrefs._prefs_gecko.getBoolPref(encodeURI(key));
 		},
 
 		setBool : function(key, value) {
