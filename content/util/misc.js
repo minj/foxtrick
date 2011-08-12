@@ -833,7 +833,7 @@ Foxtrick.log = function() {
 		}
 		concated += item;
 	}
-	concated += " "+ arguments[0]+"\n";
+	concated += " "+ arguments[1]+"\n";
 	Foxtrick.dumpCache += concated;
 	if (Foxtrick.BuildFor === "Gecko") {
 		if (Foxtrick.chromeContext() === "content") 
