@@ -144,6 +144,7 @@ pref("extensions.foxtrick.prefs.module.GoToPostBox.enabled", true);
 pref("extensions.foxtrick.prefs.module.HeaderFix.enabled", false);
 pref("extensions.foxtrick.prefs.module.HeaderFix.FixLeft.enabled", false);
 pref("extensions.foxtrick.prefs.module.HeaderFix.RemoveFlicker.enabled", false);
+pref("extensions.foxtrick.prefs.module.HeaderFixLeft.enabled", false);
 pref("extensions.foxtrick.prefs.module.HideSignatures.enabled", false);
 pref("extensions.foxtrick.prefs.module.HighlightOwnerless.enabled", false);
 pref("extensions.foxtrick.prefs.module.HighlightCupwins.enabled", true);
@@ -636,7 +637,7 @@ pref("extensions.foxtrick.prefs.module.TeamPopupLinks.TransferHistory.more", tru
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.UserLinks.enabled", true);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.YouthMatches.default", false);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.YouthMatches.more", true);
-pref("extensions.foxtrick.prefs.module.TeamSelectBox.enabled", false);
+pref("extensions.foxtrick.prefs.module.TeamSelectBox.enabled", true);
 pref("extensions.foxtrick.prefs.module.TeamStats.Current_league.enabled", true);
 pref("extensions.foxtrick.prefs.module.TeamStats.enabled", true);
 pref("extensions.foxtrick.prefs.module.TeamStats.General.enabled", true);
@@ -682,3 +683,4 @@ pref("extensions.foxtrick.prefs.xmlLoad", true);
 
 /* fennec prefs */
 pref("extensions.foxtrick.prefs-fennec.module.StaffMarker.enabled", false);
+pref("extensions.foxtrick.prefs-fennec.module.TeamSelectBox.enabled", true);
