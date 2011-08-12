@@ -812,7 +812,7 @@ Foxtrick.log = function() {
 		if (content instanceof Error) {
 			if (Foxtrick.BuildFor == "Gecko") {
 				item = content.fileName + " (" + content.lineNumber + "): " + String(content) + "\n";
-				item += "Stack trace: " + content.stack;
+				item += "Stack trace: " + content.stack.substr(0,1000);
 				Components.utils.reportError(item);
 			}
 			else if (Foxtrick.BuildFor == "Sandboxed") {
@@ -822,10 +822,10 @@ Foxtrick.log = function() {
 		}
 		else if (typeof(content) != "string") {
 			try {
-				item = JSON.stringify(content);
+				item = JSON.stringify(content).substr(0,1000);
 			}
 			catch (e) {
-				item = String(content);
+				item = String(content).substr(0,1000);
 			}
 		}
 		else {
@@ -839,7 +839,7 @@ Foxtrick.log = function() {
 		if (Foxtrick.chromeContext() === "content") 
 			sandboxed.extension.sendRequest({ req : "log", log : concated });
 		else
-			dump("FT: " + concated);
+			dump("FT: " e+' '+ concated);
 	}
 	else if (Foxtrick.BuildFor === "Sandboxed") {
 		if (Foxtrick.chromeContext() == "content")
