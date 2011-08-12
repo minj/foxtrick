@@ -833,13 +833,13 @@ Foxtrick.log = function() {
 		}
 		concated += item;
 	}
-	concated += "\n";
+	concated += " "+ arguments[0]+"\n";
 	Foxtrick.dumpCache += concated;
 	if (Foxtrick.BuildFor === "Gecko") {
 		if (Foxtrick.chromeContext() === "content") 
 			sandboxed.extension.sendRequest({ req : "log", log : concated });
 		else
-			dump("FT: " e+' '+ concated);
+			dump("FT: " + concated);
 	}
 	else if (Foxtrick.BuildFor === "Sandboxed") {
 		if (Foxtrick.chromeContext() == "content")
