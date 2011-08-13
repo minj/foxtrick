@@ -4,6 +4,8 @@
 # Ryan Li <ryan@ryanium.com>
 # Licensed under GNU General Public License v3 or later
 #
+# upload-nightly.sh will pass all of its arguments to Make
+#
 # Exit codes:
 # 0) Success
 # 1) Variables USER and PASSWORD unset (set in upload.conf.sh)
@@ -23,7 +25,7 @@ if [[ -z "${USER}" || -z "${PASSWORD}" ]]; then
 	exit 1
 fi
 
-(cd ${SOURCE_DIR} && make DIST_TYPE=nightly) || exit 2
+(cd ${SOURCE_DIR} && make DIST_TYPE=nightly "$@") || exit 2
 
 REVISION=`cd ${SOURCE_DIR} && git svn find-rev HEAD`
 

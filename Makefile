@@ -6,7 +6,7 @@ BUILD_DIR = build
 SAFARI_BUILD_DIR = build/$(SAFARI_TARGET)
 
 ZIP = zip -q
-XAR = /user/local/bin/xar
+XAR = xar
 
 ROOT_FILES_FIREFOX = chrome.manifest install.rdf icon.png COPYING HACKING
 ROOT_FILES_CHROME = manifest.json
