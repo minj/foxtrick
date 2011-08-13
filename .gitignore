@@ -5,4 +5,5 @@
 *.safariextz
 maintainer/upload.conf.sh
 maintainer/*.pem
-maintainer/safari.der
+maintainer/*.der
+build/
