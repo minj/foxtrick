@@ -6,7 +6,7 @@ BUILD_DIR = build
 SAFARI_BUILD_DIR = build/$(SAFARI_TARGET)
 
 ZIP = zip -q
-XAR = xar
+XAR = /user/local/bin/xar
 
 ROOT_FILES_FIREFOX = chrome.manifest install.rdf icon.png COPYING HACKING
 ROOT_FILES_CHROME = manifest.json
@@ -202,7 +202,7 @@ endif
 		--cert-loc maintainer/safari-cert/cert02
 	(echo "3021300906052B0E03021A05000414" | xxd -r -p; cat sha1-hash.dat) \
 		| openssl rsautl -sign -inkey maintainer/safari.pem > signature.dat
-	xar --inject-sig signature.dat -f foxtrick.safariextz
+	$(XAR) --inject-sig signature.dat -f foxtrick.safariextz
 	# clean up
 	make clean-build
 
