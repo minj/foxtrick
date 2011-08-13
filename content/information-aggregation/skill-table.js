@@ -211,9 +211,14 @@ var FoxtrickSkillTable = {
 		args.push(["file", "teamdetails"]);
 		Foxtrick.util.api.retrieve(doc, args, {cache_lifetime:'session', caller_name:this.MODULE_NAME },
 		function(xml) {
-			if (xml) 	
-				var activationDate = xml.getElementsByTagName("ActivationDate")[0].textContent;
-		
+			if (!xml) {	
+				Foxtrick.Pages.Players.getPlayerList(doc, function(list) {
+					FoxtrickSkillTable.showTable(doc, list);
+				});
+				return;
+			}
+
+			var activationDate = xml.getElementsByTagName("ActivationDate")[0].textContent;
 			// get your players
 			Foxtrick.Pages.Players.getPlayerList(doc, function(list) {
 				var nr_to_process = list.length;
@@ -243,12 +248,12 @@ var FoxtrickSkillTable = {
 									args.push(["file", "playerevents"]);
 									Foxtrick.util.api.retrieve(doc, args, { cache_lifetime:'session', caller_name:this.MODULE_NAME },
 									function(xml) { 
-										if (xml) 
+										if (xml) {
 											var was_pulled = setJoinedSinceFromPullDate(xml, list);
 										
-										if (!was_pulled)  // no pull date = from starting squad. JoinedSince=activationDate
-											Foxtrick.map(list, function(n) {if (n.id==pid) n.joinedSince = activationDate;});
-										
+											if (!was_pulled)  // no pull date = from starting squad. JoinedSince=activationDate
+												Foxtrick.map(list, function(n) {if (n.id==pid) n.joinedSince = activationDate;});
+										}
 										if (--nr_to_process==0)  // processed all. 
 											FoxtrickSkillTable.showTable(doc, list);
 									});
@@ -256,6 +261,8 @@ var FoxtrickSkillTable = {
 								else if (--nr_to_process==0)  // processed all. 
 									FoxtrickSkillTable.showTable(doc, list);
 							}
+							else if (--nr_to_process==0)  // processed all. 
+									FoxtrickSkillTable.showTable(doc, list);
 						});
 					});
 				}
