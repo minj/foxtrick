@@ -5,6 +5,8 @@ SAFARI_TARGET = foxtrick.safariextension
 BUILD_DIR = build
 SAFARI_BUILD_DIR = build/$(SAFARI_TARGET)
 
+# cf safari: xar needs to have sign capabilities ie xar --help shows --sign as option.
+# see http://code.google.com/p/xar/issues/detail?id=76 for an howto 
 ZIP = zip -q
 XAR = xar
 
