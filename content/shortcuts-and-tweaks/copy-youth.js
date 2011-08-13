@@ -147,11 +147,14 @@ var FoxtrickCopyYouth = {
 			}
 
 			// add button
-			var button = Foxtrick.util.copyButton.add(doc,
-				Foxtrickl10n.getString("CopyYouth.scoutComment"));
-			if (button) {
-				Foxtrick.addClass(button, "ft-copy-scout-comment");
-				Foxtrick.listen(button, "click", copyReport, false);
+			if (!doc.getElementById("ft-copy-scout-comment-button")) {
+				var button = Foxtrick.util.copyButton.add(doc,
+					Foxtrickl10n.getString("CopyYouth.scoutComment"));
+				if (button) {
+					button.id = "ft-copy-scout-comment-button";
+					Foxtrick.addClass(button, "ft-copy-scout-comment");
+					Foxtrick.listen(button, "click", copyReport, false);
+				}
 			}
 		}
 	},
