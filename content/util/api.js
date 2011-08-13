@@ -18,7 +18,10 @@ Foxtrick.util.api = {
 	authorizeUrl : "https://chpp.hattrick.org/oauth/authorize.aspx",
 	accessTokenUrl : "https://chpp.hattrick.org/oauth/access_token.ashx",
 	resourceUrl : "http://chpp.hattrick.org/chppxml.ashx",
-
+	
+	// map of requested and unprocessed urls {serialized url : true} 
+	queue: {},
+	
 	authorized : function() {
 		return Foxtrick.util.api.getAccessToken()
 			&& Foxtrick.util.api.getAccessTokenSecret();
@@ -165,6 +168,13 @@ Foxtrick.util.api = {
 	// default: currently 1 hour, see bellow
 	// timestamp: time in milliseconds since 1970 when a new xml will get retrieved
 	retrieve : function(doc, parameters, options, callback) {
+
+		if (!FoxtrickPrefs.getBool("xmlLoad")) {
+			Foxtrick.log("XML loading disabled");
+			callback(null);
+			return;
+		}
+
 		var httime = doc.getElementById("time").textContent;
 		try { 
 			var HT_date = Foxtrick.util.time.getDateFromText(httime).getTime();
@@ -208,27 +218,42 @@ Foxtrick.util.api = {
 				}
 			}
 			else {
+				// add to or create queue
+				if ( typeof(Foxtrick.util.api.queue[parameters_str])!=='undefined' ) {
+					Foxtrick.util.api.queue[parameters_str].push(callback);
+					return;
+				}
+				else {
+					Foxtrick.util.api.queue[parameters_str] = [];
+					Foxtrick.util.api.queue[parameters_str].push(callback);
+				}
+				
+				// process queued requested
+				var process_queued = function(x) {
+					for (var i=0; i< Foxtrick.util.api.queue[parameters_str].length; ++i) 
+						Foxtrick.util.api.queue[parameters_str][i](x);
+					delete (Foxtrick.util.api.queue[parameters_str]);
+				};
+				
+				// determine cache liftime
+				if (options && options.cache_lifetime) { 
+					if (options.cache_lifetime=='default') var cache_lifetime = HT_date+60*60*1000;  //= 1 hour
+					else var cache_lifetime = options.cache_lifetime;
+				}
+				else var cache_lifetime = 0; 
+				
 				try { 
-					if (!FoxtrickPrefs.getBool("xmlLoad")) {
-						Foxtrick.log("XML loading disabled");
-						callback(null);
-						return;
-					}
-					if (options && options.cache_lifetime) { 
-						if (options.cache_lifetime=='default') var cache_lifetime = HT_date+60*60*1000;  //= 1 hour
-						else var cache_lifetime = options.cache_lifetime;
-					}
-					else var cache_lifetime = 0; 
-					
 					var caller_name='';
 					if (options && options.caller_name) caller_name =  options.caller_name+' ';
 					Foxtrick.log("ApiProxy: "+caller_name+"attempting to retrieve: ", parameters, "…");
+					
 					if (!Foxtrick.util.api.authorized()) {
 						Foxtrick.log("ApiProxy: unauthorized.");
 						Foxtrick.util.api.authorize(doc);
-						callback(null);
+						process_queued(null);
 						return;
 					}
+
 					var accessor = {
 						consumerSecret : Foxtrick.util.api.consumerSecret,
 						tokenSecret : Foxtrick.util.api.getAccessTokenSecret()
@@ -257,7 +282,7 @@ Foxtrick.util.api = {
 												{ xml_string : JSON.stringify(serializer.serializeToString(x)),
 												cache_lifetime:cache_lifetime });
 							try { 
-								callback (x);
+								process_queued (x);
 							} catch (e) {
 								Foxtrick.log('ApiProxy: uncaught callback error: ',e);
 							}
@@ -266,7 +291,7 @@ Foxtrick.util.api = {
 							Foxtrick.log("ApiProxy: error 401, unauthorized. Arguments: ", parameters);
 							Foxtrick.util.api.invalidateAccessToken(doc);
 							Foxtrick.util.api.authorize(doc);
-							callback(null);
+							process_queued(null);
 						}
 						else {
 							Foxtrick.log("ApiProxy: error ", Foxtrick.util.api.getErrorText(x, status) , 
@@ -275,12 +300,12 @@ Foxtrick.util.api = {
 																	&& p[0]!='oauth_token' 
 																	&& p[0]!='oauth_signature');
 														}) );
-							callback(null);
+							process_queued(null);
 						}
 					}, true);
 				} catch(e){
 					Foxtrick.log(e);
-					callback(null);
+					process_queued(null);
 				}
 			}
 		});
