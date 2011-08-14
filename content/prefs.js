@@ -301,29 +301,21 @@ if (Foxtrick.BuildFor === "Gecko") {
 
 	var FoxtrickPrefsGecko = {
 		_prefs_gecko : null,
-
+		
 		init : function() {
 			FoxtrickPrefs._prefs_gecko = Components
 				.classes["@mozilla.org/preferences-service;1"]
 				.getService(Components.interfaces.nsIPrefService)
 				.getBranch("extensions.foxtrick.prefs.");
-			FoxtrickPrefs._prefs_fennec = Components
-				.classes["@mozilla.org/preferences-service;1"]
-				.getService(Components.interfaces.nsIPrefService)
-				.getBranch("extensions.foxtrick.prefs-fennec.");
 		},
 		
 		getString : function(key) {
 			try {
-				if (typeof(fennec)==='object') {
-					try {
-						return FoxtrickPrefs._prefs_fennec.getComplexValue(encodeURI(key),
-							Components.interfaces.nsISupportsString).data;
-					} catch(e){}
-				}
 				return FoxtrickPrefs._prefs_gecko.getComplexValue(encodeURI(key),
 						Components.interfaces.nsISupportsString).data;
-			} catch(e){return null;}
+			} catch(e) {
+				return null;
+			}
 		},
 
 		setString : function(key, value) {
@@ -341,14 +333,10 @@ if (Foxtrick.BuildFor === "Gecko") {
 
 		getInt : function(key) {
 			try {
-				if (typeof(fennec)==='object') {
-					try {
-						return FoxtrickPrefs._prefs_fennec.getIntPref(encodeURI(key),
-							Components.interfaces.nsISupportsString).data;
-					} catch(e){}
-				}
 				return FoxtrickPrefs._prefs_gecko.getIntPref(encodeURI(key));
-			} catch(e){return null;}
+			} catch(e) {
+				return null;
+			}
 		},
 
 		setInt : function(key, value) {
@@ -360,14 +348,10 @@ if (Foxtrick.BuildFor === "Gecko") {
 
 		getBool : function(key) {
 			try {
-				if (typeof(fennec)==='object') {
-					try {
-						return FoxtrickPrefs._prefs_fennec.getBoolPref(encodeURI(key),
-							Components.interfaces.nsISupportsString).data;
-					} catch(e){}
-				}
 				return FoxtrickPrefs._prefs_gecko.getBoolPref(encodeURI(key));
-			} catch(e){return null;}
+			} catch(e) {
+				return null;
+			}
 		},
 
 		setBool : function(key, value) {

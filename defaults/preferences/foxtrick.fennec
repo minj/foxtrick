@@ -1,0 +1,2 @@
+pref("extensions.foxtrick.prefs.fennec.module.StaffMarker.enabled", false);
+pref("extensions.foxtrick.prefs.fennec.module.TeamSelectBox.enabled", true);
