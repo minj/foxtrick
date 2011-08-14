@@ -550,6 +550,7 @@ var onWindowLoad = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/league-news-filter.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/local-time.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/match-tables.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/mobile-enhancements.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/move-manager-online.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/move-player-select-box.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/move-player-statement.js", true);
