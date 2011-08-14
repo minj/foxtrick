@@ -19,9 +19,6 @@ Foxtrick.entry.docLoad = function(ev) {
 	if (doc.nodeName != "#document")
 		return;
 	
-	if (typeof(fennec)==='object') {
-		Foxtrick.entry.init();
-	}
 	if (Foxtrick.isHt(doc)) {
 		// check if it's in exclude list
 		for (var i in Foxtrick.pagesExcluded) {
@@ -32,6 +29,10 @@ Foxtrick.entry.docLoad = function(ev) {
 			}
 		}
 
+		if (typeof(fennec)==='object') {
+			Foxtrick.entry.init();
+		}
+		
 		var begin = (new Date()).getTime();
 		Foxtrick.entry.run(doc);
 		var diff = (new Date()).getTime() - begin;

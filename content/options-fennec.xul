@@ -12,6 +12,6 @@
     <button label="Reset" oncommand="if(window.confirm('Are you sure you want to restore to default settings?')){FoxtrickPrefs.cleanupBranch();}"/>
   </setting>
    <setting type="button">Show all options
-    <button label="Show" oncommand="Browser.addTab('chrome://foxtrick/content/preferences.html#tab=main',true); window.alert('Options page has been opened in a new tab');"/>
+    <button label="Show" oncommand="Browser.addTab('chrome://foxtrick/content/preferences.html#tab=main',true,null,{'getAttention':true});"/>
   </setting> 
 </vbox>
