@@ -447,8 +447,7 @@ else {
 
 				  // Listen for a response for our specific request token.
 				  addOneTimeResponseListener(callbackToken, callback);
-
-				  var x = typeof(sendSyncMessage)=='function'?sendSyncMessage:messageManager.sendSyncMessage;
+				  var x = typeof(sendAsyncMessage)=='function'?sendAsyncMessage:messageManager.sendAsyncMessage;
 				  x("request", {
 					data: data,
 					callbackToken: callbackToken

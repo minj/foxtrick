@@ -3,7 +3,6 @@
  * FoxTrick background loader for Chrome platform
  */
 
-
 if (!Foxtrick)
 	var Foxtrick = {};
 if (!Foxtrick.loader)
@@ -34,6 +33,8 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		else if (typeof(chrome) === "object") {
 			chrome.pageAction.show(sender.tab.id);
 			FoxtrickCore.setChromeIcon(sender.tab);
+		}
+		else if (typeof(fennec)==='object') {
 		}
 	};
 	
@@ -66,7 +67,6 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	} 
 	var cssTextCollection = Foxtrick.getCssTextCollection();
 
-	
 	// one-time message channel
 	// use with sandboxed.extension.sendRequest({req : "{TYPE}", parameters...}, callback)
 	// callback will be called with a sole Object as argument
@@ -261,6 +261,9 @@ Foxtrick.loader.chrome.browserLoad = function() {
 				};
 				if (!Foxtrick.dataUrlStorage[request.url]) replaceImage(request.url);
 				else sendResponse({ url: Foxtrick.dataUrlStorage[request.url] });
+			}
+			else if (request.req == "updateViewportSize") {
+				Browser.updateViewportSize();
 			}
 		}
 		catch (e) {
@@ -582,10 +585,12 @@ var onWindowLoad = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/transfer-search-result-filters.js", true);
 
 		messageManager.loadFrameScript("chrome://foxtrick/content/entry.js", true);
-
 		messageManager.loadFrameScript("chrome://foxtrick/content/loader-gecko.js", true);
 		
-	} catch(e){Foxtrick.log(e);}
+		FoxtrickMobileEnhancements.initPageAction();
+
+	} catch(e){Foxtrick.log(e);dump(e)}
 };
 
-Foxtrick.loader.chrome.browserLoad ();
+Foxtrick.loader.chrome.browserLoad();
+

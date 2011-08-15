@@ -12,6 +12,7 @@
 <script type="application/x-javascript" src="./xml-load.js" />
 <script type="application/x-javascript" src="./util/misc.js" />
 <script type="application/x-javascript" src="./util/session-store.js" />
+<script type="application/x-javascript" src="./presentation/mobile-enhancements.js" />
 <script type="application/x-javascript" src="./background.js" />
 
 </overlay>

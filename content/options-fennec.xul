@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE overlay>
+<?xml-stylesheet href="./resources/css/overlay.css" type="text/css"?>
 
 <vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <setting pref="extensions.foxtrick.prefs.disableTemporary" type="bool" title="Disable temporary"/>

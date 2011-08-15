@@ -138,7 +138,8 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		var html = doc.getElementsByTagName("html")[0];
 		html.dir = Foxtrick.util.layout.isRtl(doc) ? "rtl" : "ltr";
 		html.setAttribute("x-theme", Foxtrick.util.layout.isStandard(doc) ? "standard" : "simple");
-
+		html.setAttribute("fennec-theme", doc.location.href.search(/forum/i)==-1 ? "default" : "forum");
+		
 		// reload CSS if not loaded
 		if (!Foxtrick.entry.cssLoaded) {
 			Foxtrick.log("CSS not loaded");

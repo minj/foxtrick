@@ -319,6 +319,7 @@ Foxtrick.isHt = function(doc) {
 
 Foxtrick.isHtUrl = function(url) {
 	var htMatches = [
+		new RegExp("^http://hattrick\.org(/|$)", "i"),
 		new RegExp("^http://www\\d{2}\.hattrick\.org(/|$)", "i"),
 		new RegExp("^http://stage\.hattrick\.org(/|$)", "i"),
 		new RegExp("^http://www\\d{2}\.hattrick\.interia\.pl(/|$)", "i"),
@@ -595,38 +596,40 @@ Foxtrick.collect_module_css = function() {
 	Foxtrick.map(modules, collect);
 };
 
-// load all Foxtrick.cssFiles into browser or page
-Foxtrick.load_module_css = function(doc) {
-	var load_css_permanent_impl = function(css) {
+// load single into browser or page
+Foxtrick.load_css_permanent = function(css) {
+	try {
+		// convert text css to data url
+		if ( css.search(/^[A-Za-z_-]+:\/\//) == -1 ) {
+			// needs to be uncompressed to have the right csss precedence
+			css = 'data:text/css;charset=US-ASCII,'+encodeURIComponent(css);
+		}
+		
 		try {
-			// convert text css to data url
-			if ( css.search(/^[A-Za-z_-]+:\/\//) == -1 ) {
-				// needs to be uncompressed to have the right csss precedence
-				css = 'data:text/css;charset=US-ASCII,'+encodeURIComponent(css);
-			}
-			
-			try {
-				var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
-				var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-				var uri = ios.newURI(css, null, null);
-			}
-			catch (e) {
-				return;
-			}
-			// load
-			if (!sss.sheetRegistered(uri, sss.USER_SHEET)) {
-				sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
-			}
+			var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
+			var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+			var uri = ios.newURI(css, null, null);
 		}
 		catch (e) {
-			Foxtrick.log ('> ERROR load_css_permanent: ' , css , '\n');
-			Foxtrick.log (e);
+			return;
 		}
-	};
+		// load
+		if (!sss.sheetRegistered(uri, sss.USER_SHEET)) {
+			sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
+		}
+	}
+	catch (e) {
+		Foxtrick.log ('> ERROR load_css_permanent: ' , css , '\n');
+		Foxtrick.log (e);
+	}
+};
+
+// load all Foxtrick.cssFiles into browser or page
+Foxtrick.load_module_css = function(doc) {
 
 	if (Foxtrick.BuildFor === "Gecko") {
 		for (var i = 0; i < Foxtrick.cssFiles.length; ++i)
-			load_css_permanent_impl(Foxtrick.cssFiles[i]);
+			Foxtrick.load_css_permanent(Foxtrick.cssFiles[i]);
 	}
 	else if (Foxtrick.BuildFor === "Sandboxed") {
 		sandboxed.extension.sendRequest(
