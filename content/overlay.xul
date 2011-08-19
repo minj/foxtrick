@@ -190,6 +190,7 @@
 </script>
 
 <script type="application/x-javascript">
+<!-- To add FoxTrick button on the navigation bar by default -->
 if (!FoxtrickPrefs.getBool("toolbarInited")) {
 	var buttonId = "foxtrick-toolbar-button"; // ID of FoxTrick button
 	var afterId = "search-container"; // insert after search box
