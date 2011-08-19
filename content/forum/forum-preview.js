@@ -218,119 +218,53 @@ var FoxtrickForumPreview = {
 	},
 
 	_preview : function ( ev ) {
+		var singleReplace = [
+			[/\[kitid=(\d+)\]/gi, "<a href=\"/Community/KitSearch/?KitID=$1\" target=\"_blank\">($1)</a>"],
+			[/\[userid=(\d+)\]/gi, "<a href=\"/Club/Manager/?userId=$1\" target=\"_blank\">($1)</a>"],
+			[/\[playerid=(\d+)\]/gi, "<a href=\"/Club/Players/Player.aspx?playerId=$1\" target=\"_blank\">($1)</a>"],
+			[/\[youthplayerid=(\d+)\]/gi, "<a href=\"/Club/Players/YouthPlayer.aspx?YouthPlayerID=$1\" target=\"_blank\">($1)</a>"],
+			[/\[teamid=(\d+)\]/gi, "<a href=\"/Club/?TeamID=$1\" target=\"_blank\">($1)</a>"],
+			[/\[youthteamid=(\d+)\]/gi, "<a href=\"/Club/Youth/?YouthTeamID=$1\" target=\"_blank\">($1)</a>"],
+			[/\[matchid=(\d+)\]/gi, "<a href=\"/Club/Matches/Match.aspx?matchID=$1\" target=\"_blank\">($1)</a>"],
+			[/\[youthmatchid=(\d+)\]/gi, "<a href=\"/Club/Matches/Match.aspx?matchID=$1&isYouth=True\" target=\"_blank\">($1)</a>"],
+			[/\[federationid=(\d+)\]/gi, "<a href=\"/Community/Federations/Federation.aspx?AllianceID=$1\" target=\"\_blank\">($1)</a>"],
+			[/\[message\=(\d+)\.(\d+)\]/gi, "<a href=\"/Forum/Read.aspx?t=$1&n=$2\" target=\"_blank\">($1.$2)</a>"],
+			[/\[post\=(\d+)\.(\d+)\]/gi, "<a href=\"/Forum/Read.aspx?t=$1&n=$2\" target=\"\_blank\">($1.$2)</a>"],
+			[/\[leagueid=(\d+)\]/gi, "<a href=\"/World/Series/Default.aspx?LeagueLevelUnitID=$1\" target=\"_blank\">($1)</a>"],
+			[/\[youthleagueid=(\d+)\]/gi, "<a href=\"/World/Series/YouthSeries.aspx?YouthLeagueId=$1\" target=\"_blank\">($1)</a>"],
+			[/\[link=(.*?)\]/gi, "<a href=\"$1\" target=\"_blank\">($1)</a>"],
+			[/\[articleid=(.*?)\]/gi, "<a href=\"/Community/Press?ArticleID=$1\" target=\"_blank\">($1)</a>"],
+			[/\[br\]/gi, "<br>"],
+			[/\[hr\]/gi, "<hr>"]
+		];
 
-		var search_single = new Array(
-
-		/\[kitid=(\d+)\]/gi,
-		/\[userid=(\d+)\]/gi,
-		/\[playerid=(\d+)\]/gi,
-		/\[youthplayerid=(\d+)\]/gi,
-		/\[teamid=(\d+)\]/gi,
-		/\[youthteamid=(\d+)\]/gi,
-		/\[matchid=(\d+)\]/gi,
-		/\[youthmatchid=(\d+)\]/gi,
-		/\[federationid=(\d+)\]/gi,
-		/\[message\=(\d+)\.(\d+)\]/gi,
-		/\[post\=(\d+)\.(\d+)\]/gi,
-		/\[leagueid=(\d+)\]/gi,
-		/\[youthleagueid=(\d+)\]/gi,
-		/\[link=(.*?)\]/gi,
-		/\[articleid=(.*?)\]/gi,
-
-		/\[br\]/gi,
-		/\[hr\]/gi
-		);
-
-		var search_nested = new Array(
-		/\[b\](.*?)\[\/b\]/gi,
-		/\[u\](.*?)\[\/u\]/gi,
-		/\[i\](.*?)\[\/i\]/gi,
-
-		/\[q\](.*?)\[\/q\]/gi,
-		/\[quote\=(.*?)\](.*?)\[\/quote\]/gi,
-		/\[q\=(.*?)\](.*?)\[\/q\]/gi,
-		/\[q\=(.*?)\](.*?)\[\/q\]/gi,
-
-		/\[spoiler\](.*?)\[\/spoiler\]/gi,
-
-		/\[pre\](.*?)\[\/pre\]/gi,
-
-		/\[table\](.*?)\[\/table\]/gi,
-		/\[tr(.*?)\](.*?)\[\/tr\]/gi,
-		/\[th([^\]]*?)align=(\w*)([^\]]*)\](.*?)\[\/th\]/gi,
-		/\[td([^\]]*?)align=(\w*)([^\]]*)\](.*?)\[\/td\]/gi,
-		/\[th(.*?)\](.*?)\[\/th\]/gi,
-		/\[td(.*?)\](.*?)\[\/td\]/gi,
-
-		/\<\/td\>\<br \/\>/gi,
-		/\<\/th\>\<br \/\>/gi,
-		/\<\/tr\>\<br \/\>/gi,
-		/\<tr(.*?)\>\<br \/\>/gi,
-		/\<tbody\>\<br \/\>/gi,
-
-		/\<\/td\>\<br \/\>/gi,
-		/\<\/th\>\<br \/\>/gi,
-		/\<\/tr\>\<br \/\>/gi,
-		/\<tr(.*?)\>\<br \/\>/gi,
-		/\<tbody\>\<br \/\>/gi
-
-		);
-
-		var replace_single = new Array(
-		"<a href=\"\/Community\/KitSearch\/\?KitID\=$1\" target=\"\_blank\">($1)</a>",
-		"<a href=\"\/Club\/Manager\/\?userId\=$1\" target=\"\_blank\">($1)</a>",
-		"<a href=\"\/Club\/Players\/Player\.aspx\?playerId\=$1\" target=\"\_blank\">($1)</a>",
-		"<a href=\"\/Club\/Players\/YouthPlayer\.aspx\?YouthPlayerID\=$1\" target=\"\_blank\">($1)</a>",
-		"<a href=\"\/Club\/\?TeamID\=$1\" target=\"\_blank\">($1)</a>",
-		"<a href=\"\/Club\/Youth\/\?YouthTeamID\=$1\" target=\"\_blank\">($1)</a>",
-		"<a href=\"\/Club\/Matches\/Match\.aspx\?matchID\=$1\" target=\"\_blank\">($1)</a>",
-		"<a href=\"\/Club\/Matches\/Match\.aspx\?matchID\=$1\&isYouth\=True\" target=\"\_blank\">($1)</a>",
-		"<a href=\"\/Community\/Federations\/Federation.aspx\?AllianceID\=$1\" target=\"\_blank\">($1)</a>",
-		"<a href=\"\/Forum\/Read\.aspx\?t\=$1\&n\=$2\" target=\"\_blank\">($1.$2)</a>",
-		"<a href=\"\/Forum\/Read\.aspx\?t\=$1\&n\=$2\" target=\"\_blank\">($1.$2)</a>",
-		"<a href=\"\/World\/Series\/Default\.aspx\?LeagueLevelUnitID\=$1\" target=\"\_blank\">($1)</a>",
-		"<a href=\"\/World\/Series\/YouthSeries\.aspx\?YouthLeagueId\=$1\" target=\"\_blank\">($1)</a>",
-		"<a href=\"$1\" target=\"\_blank\">($1)</a>",
-		"<a href=\"\/Community\/Press\?ArticleID\=$1\" target=\"\_blank\">($1)</a>",
-
-		"<br>",
-		"<hr>"
-		);
-
-		var replace_nested = new Array(
-		"<b>$1</b>",
-		"<u>$1</u>",
-		"<i>$1</i>",
-
-		"<blockquote class='quote'>$1</blockquote>",
-		"<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",
-		"<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",
-		"<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>",
-
-		"<blockquote class='spoiler hidden' style='display:block!important'>$1</blockquote>",
-
-		"<pre>$1</pre>",
-
-		"<table class='htMlTable'><tbody>$1</tbody></table>",
-		"<tr $1>$2</tr>",
-		"<th $1 class=$2 $3>$4</th>",
-		"<td $1 class=$2 $3>$4</td>",
-		"<th $1>$2</th>",
-		"<td $1>$2</td>",
-
-		"</td>",
-		"</th>",
-		"</tr>",
-		"<tr$1>",
-
-		"<tbody>",
-		"</td>",
-		"</th>",
-
-		"</tr>",
-		"<tr$1>",
-		"<tbody>"
-		);
+		var nestedReplace = [
+			[/\[b\](.*?)\[\/b\]/gi, "<b>$1</b>"],
+			[/\[u\](.*?)\[\/u\]/gi, "<u>$1</u>"],
+			[/\[i\](.*?)\[\/i\]/gi, "<i>$1</i>"],
+			[/\[q\](.*?)\[\/q\]/gi, "<blockquote class='quote'>$1</blockquote>"],
+			[/\[quote\=(.*?)\](.*?)\[\/quote\]/gi, "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>"],
+			[/\[q\=(.*?)\](.*?)\[\/q\]/gi, "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>"],
+			[/\[q\=(.*?)\](.*?)\[\/q\]/gi, "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>"],
+			[/\[spoiler\](.*?)\[\/spoiler\]/gi, "<blockquote class='spoiler hidden' style='display:block!important'>$1</blockquote>"],
+			[/\[pre\](.*?)\[\/pre\]/gi, "<pre>$1</pre>"],
+			[/\[table\](.*?)\[\/table\]/gi, "<table class='htMlTable'><tbody>$1</tbody></table>"],
+			[/\[tr(.*?)\](.*?)\[\/tr\]/gi, "<tr $1>$2</tr>"],
+			[/\[th([^\]]*?)align=(\w*)([^\]]*)\](.*?)\[\/th\]/gi, "<th $1 class=$2 $3>$4</th>"],
+			[/\[td([^\]]*?)align=(\w*)([^\]]*)\](.*?)\[\/td\]/gi, "<td $1 class=$2 $3>$4</td>"],
+			[/\[th(.*?)\](.*?)\[\/th\]/gi, "<th $1>$2</th>"],
+			[/\[td(.*?)\](.*?)\[\/td\]/gi, "<td $1>$2</td>"],
+			[/\<\/td\>\<br \/\>/gi, "</td>"],
+			[/\<\/th\>\<br \/\>/gi, "</th>"],
+			[/\<\/tr\>\<br \/\>/gi, "</tr>"],
+			[/\<tr(.*?)\>\<br \/\>/gi, "<tr$1>"],
+			[/\<tbody\>\<br \/\>/gi, "<tbody>"],
+			[/\<\/td\>\<br \/\>/gi, "</td>"],
+			[/\<\/th\>\<br \/\>/gi, "</th>"],
+			[/\<\/tr\>\<br \/\>/gi, "</tr>"],
+			[/\<tr(.*?)\>\<br \/\>/gi, "<tr$1>"],
+			[/\<tbody\>\<br \/\>/gi, "<tbody>"]
+		];
 
 		var doc = ev.target.ownerDocument;
 
@@ -368,13 +302,13 @@ var FoxtrickForumPreview = {
 				count = Math.max(count, count_nested);
 			}
 
-			for ( var i = 0; i < search_single.length; i++) {
-				text = text.replace(search_single[i],replace_single[i]);
+			for ( var i = 0; i < singleReplace.length; i++) {
+				text = text.replace(singleReplace[i][0], singleReplace[i][1]);
 			}
 
 			for (var j = 0; j <= count+1; j++) {
-				for ( var i = 0; i < search_nested.length; i++) {
-					text = text.replace(search_nested[i],replace_nested[i]);
+				for ( var i = 0; i < nestedReplace.length; i++) {
+					text = text.replace(nestedReplace[i][0], nestedReplace[i][1]);
 				}
 			}
 
