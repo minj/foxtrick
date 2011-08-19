@@ -1,20 +1,20 @@
 /**
  * forum-preview.js
- * Foxtrick forum post preview
+ * area for forum post preview
  * @author spambot
  */
 
 var FoxtrickForumPreview = {
 	MODULE_NAME : "ForumPreview",
-	MODULE_AUTHOR : "spambot",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : ['forumWritePost','messageWritePost','guestbook','announcements','newsletter','mailnewsletter','forumSettings',"forumModWritePost"],
+	PAGES : ['forumWritePost', 'messageWritePost', 'guestbook', 'announcements', 'newsletter', 'mailnewsletter', 'forumSettings', "forumModWritePost"],
+	CSS : Foxtrick.ResourcePath + "resources/css/forum-preview.css",
 
 	_NEW_MESSAGE_WINDOW : 'ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody',
 	_MAIL_MESSAGE_WINDOW : 'ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtBody',
 
 	run : function(doc) {
-		var check_div = doc.getElementById( "forum_preview" );
+		var check_div = doc.getElementById( "ft-forum-preview-area" );
 		if (check_div != null) return;
 
 		try {
@@ -30,15 +30,6 @@ var FoxtrickForumPreview = {
 		catch (e) {
 			Foxtrick.log(e);
 		}
-
-		// display preview and button above the message window
-		var head = doc.getElementsByTagName("head")[0];
-		var cssstyle = doc.createElement("style");
-		cssstyle.setAttribute("type", "text/css");
-		cssstyle.appendChild(doc.createTextNode("#ctl00_ctl00_CPContent_CPMain_btnOK, #ctl00_ctl00_CPContent_CPMain_btnSendNew, #ctl00_ctl00_CPContent_CPMain_btnCancel {font-weight:bold;} #idFTPreview {margin-left:10px;}"));
-		//cssstyle.appendChild(doc.createTextNode("#idFTPreview {display:inline-block;float:right;}"));
-		head.appendChild(cssstyle);
-
 
 		var preview_ctrl_div = doc.createElement( "div" );
 		preview_ctrl_div.style.marginTop = "1em";
@@ -124,11 +115,11 @@ var FoxtrickForumPreview = {
 		if (button_ok && Foxtrickl10n.isStringAvailableLocal("forumPreview.send")) button_ok.setAttribute( "value",  Foxtrickl10n.getString( 'forumPreview.send'));
 		//if (button_cancel) button_cancel.setAttribute( "tabindex",  "12" );
 
-		if (doc.getElementById('idFTPreview') == null) {
+		if (doc.getElementById('ft-forum-preview-button') == null) {
 			var new_button = doc.createElement( "input" );
 			new_button.setAttribute( "value", Foxtrickl10n.getString( 'preview' ));
 			new_button.setAttribute( "title",  Foxtrickl10n.getString( 'show_preview_from_post' ) );
-			new_button.setAttribute( "id",  "idFTPreview" );
+			new_button.setAttribute( "id",  "ft-forum-preview-button" );
 			new_button.setAttribute( "type",  "button" );
 			//new_button.setAttribute( "tabindex",  index-1 );
 			new_button.setAttribute( "tabindex",  index);
@@ -142,12 +133,10 @@ var FoxtrickForumPreview = {
 		msg_window.parentNode.insertBefore( preview_ctrl_div, msg_window );
 
 		var preview_div = doc.createElement( "div" );
-		preview_div.id = "forum_preview";
+		preview_div.id = "ft-forum-preview-area";
 		preview_div.setAttribute( "class", "cfMessageNoAvatar" );
 		preview_div.style.display = "none";
 		preview_div.style.border = "1px dotted grey";
-		//preview_div.style.width = "465px";
-		//preview_div.style.width = (msg_window.style.width - 30);
 		if (msg_window.style.width=='95%')  preview_div.style.width ='89.5%' ;
 		else preview_div.style.width ='93%' ;
 		preview_div.style.margin = "5px";
@@ -173,7 +162,7 @@ var FoxtrickForumPreview = {
 	},
 
 	change : function(doc) {
-		var check_div = doc.getElementById( "forum_preview" );
+		var check_div = doc.getElementById( "ft-forum-preview-area" );
 		if (check_div == null)
 			this.run(doc);
 	},
@@ -182,7 +171,7 @@ var FoxtrickForumPreview = {
 
 		var doc = ev.target.ownerDocument;
 
-		var obj = doc.getElementById('forum_preview');
+		var obj = doc.getElementById('ft-forum-preview-area');
 		if (obj.style.display == 'block') {
 			obj.style.display = 'none';
 		}
@@ -197,7 +186,7 @@ var FoxtrickForumPreview = {
 			Foxtrick.dump('FoxtrickForumPreview'+e);
 		}
 
-		var prev_div = doc.getElementById( "forum_preview" );
+		var prev_div = doc.getElementById( "ft-forum-preview-area" );
 
 		try {
 			if( prev_div.style.display == "none" ) {
@@ -276,7 +265,7 @@ var FoxtrickForumPreview = {
 		}
 
 		try {
-			var prev_div = doc.getElementById( "forum_preview" );
+			var prev_div = doc.getElementById( "ft-forum-preview-area" );
 			var text =  String(msg_window.value);
 
 			// format within pre
