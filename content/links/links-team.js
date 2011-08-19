@@ -17,6 +17,12 @@ var FoxtrickLinksTeam = {
 		this.AddLinksRight(doc);
 	},
 
+	change : function(doc) {
+		// challenging etc removes box. need to re-add it
+		if (doc.getElementById('ft-links-box')===null)
+			FoxtrickLinksTeam.run(doc);
+	},
+
 	AddLinksRight : function(doc) {
 		if (!this.isTeamPage(doc)) {return;}
 		var alldivs = doc.getElementsByTagName('div');

@@ -24,6 +24,15 @@ var FoxtrickMyMonitor = {
 		}
 	},
 
+	change : function(doc) {
+		// challenging etc removes box. need to re-add it
+		if (doc.getElementById("ft-monitor-sidebar-box")===null 
+			&& 	(Foxtrick.isPage("teamPage", doc)
+				|| Foxtrick.isPage("youthoverview", doc)
+				|| Foxtrick.isPage("national", doc)) )
+			FoxtrickMyMonitor.run(doc);
+	},
+	
 	display : function(doc) {
 		if (Foxtrick.isPage("myhattrick", doc))
 			var insertBefore = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlMain");
