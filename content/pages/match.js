@@ -10,7 +10,8 @@ Foxtrick.Pages.Match = {
 	},
 
 	inProgress : function(doc) {
-		return (doc.getElementById("ctl00_ctl00_CPContent_CPMain_lblMatchStatus") != null);
+		var matchStatus = doc.getElementById("ctl00_ctl00_CPContent_CPMain_lblMatchStatus");
+		return (matchStatus != null) && (matchStatus.textContent != "");
 	},
 
 	getRatingsTable: function(doc) {
