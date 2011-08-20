@@ -16,7 +16,7 @@ var FoxtrickHTDateFormat = {
 	OPTIONS : ["LocalSeason", "FirstDayOfWeekOffset"],
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DISABLED_LIST : [true, false],
-	
+
 	run : function(doc) {
 		var mainBody = doc.getElementById("mainBody");
 		if (!mainBody) return;
@@ -31,8 +31,8 @@ var FoxtrickHTDateFormat = {
 		}
 		if (Foxtrick.isPage("seriesHistory", doc))
 			seperator = '<br/>';
-		
-		
+
+
 		var modifyDate = function(node) {
 			if (Foxtrick.hasClass(node, "ft-date"))
 				return;
@@ -54,7 +54,7 @@ var FoxtrickHTDateFormat = {
 		var dates = mainBody.getElementsByClassName("date");
 		Foxtrick.map(dates, modifyDate);
 	},
-	
+
 	change : function(doc, ev) {
 		FoxtrickHTDateFormat.run(doc);
 	}

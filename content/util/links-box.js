@@ -149,7 +149,7 @@ Foxtrick.util.links = {
 							href=href.replace(mykeytag[i], Foxtrick.util.links._info[mykey]);
 						else {
 							var ownteam = {};
-							for (var key in Foxtrick.util.module.getByName("Core").getSelfTeamInfo()) 
+							for (var key in Foxtrick.util.module.getByName("Core").getSelfTeamInfo())
 								ownteam['own'+key] = Foxtrick.util.module.getByName("Core").getSelfTeamInfo()[key];
 							href = href.replace(mykeytag[i], ownteam[mykey]);
 						}
@@ -279,12 +279,12 @@ Foxtrick.util.links = {
 			var div = doc.createElement("div");
 			divED.appendChild(doc.createTextNode(' '+Foxtrickl10n.getString("foxtrick.linkscustom.selecticon")));
 			divED.appendChild(div);
-		
+
 			var div = doc.createElement("div");
 			div.id = "inputDiv";
 			divED.appendChild(div);
 			Foxtrick.util.links.LoadDialog(doc, divED);
-			
+
 			// titel edit field
 			var table2=doc.createElement ("table");
 			table2.setAttribute('id','LinksCustomTable2ID');
@@ -344,7 +344,7 @@ Foxtrick.util.links = {
 			}
 			try {
 				var ownteam = {};
-				for (var key in Foxtrick.util.module.getByName("Core").getSelfTeamInfo()) 
+				for (var key in Foxtrick.util.module.getByName("Core").getSelfTeamInfo())
 					ownteam['own'+key] = Foxtrick.util.module.getByName("Core").getSelfTeamInfo()[key];
 				for (var key in ownteam) {
 					var option = doc.createElement("option");

@@ -18,8 +18,8 @@ var FoxtrickLinksEconomy = {
 
 		// only on current finances
 		var links = doc.getElementById('mainBody').getElementsByTagName('a');
-		if (links[0] && links[0].href.search('season')!=-1) return; 
-				
+		if (links[0] && links[0].href.search('season')!=-1) return;
+
 		//addExternalLinksToEconomyDetail
 		var Cash=0, newCash=1;
 		var alldivs = doc.getElementsByTagName('div');

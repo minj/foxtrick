@@ -81,7 +81,7 @@ if (typeof(fennec)==='object') {
 			for (var i in data.htLang) {
 				Foxtrickl10n.htLanguagesXml[i] = parser.parseFromString(data.htLang[i], "text/xml");
 			}
-			
+
 			Foxtrick.XMLData.htCurrencyXml = parser.parseFromString(data.currency, "text/xml");
 			Foxtrick.XMLData.aboutXML = parser.parseFromString(data.about, "text/xml");
 			Foxtrick.XMLData.worldDetailsXml = parser.parseFromString(data.worldDetails, "text/xml");

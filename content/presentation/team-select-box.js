@@ -86,8 +86,8 @@ var FoxtrickTeamSelectBox = {
 			var boxBody = listBox.getElementsByClassName("boxBody")[0];
 			if (boxBody) {  // normal skin
 				boxBody.textContent = ""; // clear it first
-				boxBody.appendChild(selectBox); 
-			}	
+				boxBody.appendChild(selectBox);
+			}
 			else {  // simple skin. has no inner boxBody
 				var headerdiv = listBox.getElementsByTagName("div")[0];
 				headerdiv = listBox.removeChild(headerdiv);

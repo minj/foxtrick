@@ -48,7 +48,7 @@ Foxtrick.Pages.Players = {
 			else {
 				args.push(["file", "players"]);
 				args.push(["version", "2.0"]);
-				
+
 				if (!current_squad_externally) {
 					if (Foxtrick.Pages.Players.isOldiesPage(doc))
 						args.push(["actionType", "viewOldies"]);
@@ -71,14 +71,14 @@ Foxtrick.Pages.Players = {
 				// HTML)
 				var player = null;
 				for (j = 0; j < playerList.length; ++j)
-					if (playerList[j].id == id) 
+					if (playerList[j].id == id)
 						{ player = playerList[j];break;}
 				if (!player) {
 					if (!current_squad_externally)	continue; // not present in HTML. skip if not retrieving squad from other page anyways
 					else {
 						playerList.push({id : id});
 						player = playerList[playerList.length - 1];
-						
+
 						player.nameLink = doc.createElement('a');
 						player.nameLink.href = '/Club/Players/Player.aspx?PlayerID='+id;
 						if (playerNode.getElementsByTagName("PlayerName")[0])
@@ -93,23 +93,23 @@ Foxtrick.Pages.Players = {
 							player.redCard=1;
 						}
 						else player.redCard=0;
-						
+
 						player.injured = Number(playerNode.getElementsByTagName("InjuryLevel")[0].textContent);
 						if (player.injured==0) player.bruised=1;
 						else player.bruised = 0;
 						if (player.injured==-1) player.injured=0;
-						
+
 						player.transferListed = Number(playerNode.getElementsByTagName("TransferListed")[0].textContent);
 						player.form = Number(playerNode.getElementsByTagName("PlayerForm")[0].textContent);
 						player.stamina = Number(playerNode.getElementsByTagName("StaminaSkill")[0].textContent);
-						
+
 						var specs={0:'' ,1:'Technical',2:'Quick',3:'Powerful',4:'Unpredictable',5:'Head',6:'Regainer'};
 						var spec = specs[Number(playerNode.getElementsByTagName("Specialty")[0].textContent)];
 						player.speciality = (spec=='')?'':Foxtrickl10n.getShortSpecialityFromEnglish(spec);
 						player.currentSquad = true;
 					}
 				}
-				
+
 				// we found this player in the XML file,
 				// go on the retrieve information
 				if (playerNode.getElementsByTagName("NrOfMatches").length) {
@@ -204,7 +204,7 @@ Foxtrick.Pages.Players = {
 					if (number >= 1 && number < 100) {
 						player.number = number;
 					}
-				} 
+				}
 			}
 		} catch(e) {Foxtrick.log(e);}
 		};

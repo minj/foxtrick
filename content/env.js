@@ -12,10 +12,10 @@ if (typeof(opera) === "object") {
 	Foxtrick.BuildForDetail = "Opera";
 	Foxtrick.InternalPath = "content/";
 	Foxtrick.ResourcePath = "http://foxtrick.googlecode.com/svn/trunk/content/";
-	
+
 	// used to cache dataUrls images in opera
 	Foxtrick.dataUrlStorage = {};
-	
+
 	// to tell which context the chrome script is running at
 	// either background page, or content script
 	Foxtrick.chromeContext = function() {
@@ -38,7 +38,7 @@ if (typeof(opera) === "object") {
 			opera.postError(string);
 		},
 	};
-	
+
 	// overwritten later. early version here to make sure there is one all times
 	Foxtrick.log = function ( string ) {
 		opera.postError(string);
@@ -87,8 +87,8 @@ if (typeof(opera) === "object") {
 					});
 				}
 
-				// Make a listener that, when it hears sendResponse for the given 
-				// callbackToken, calls callback(resultData) and deregisters the 
+				// Make a listener that, when it hears sendResponse for the given
+				// callbackToken, calls callback(resultData) and deregisters the
 				// listener.
 				function addOneTimeResponseListener(callbackToken, callback) {
 					var responseHandler = function(messageEvent) {
@@ -132,9 +132,9 @@ if (typeof(opera) === "object") {
  			},
 			getURL : function (path) {return './'+path;},
 		},
-			
+
 		tabs : {
-			create : function(props){opera.extension.tabs.create(props)},	
+			create : function(props){opera.extension.tabs.create(props)},
 		},
 	};
 }
@@ -143,7 +143,7 @@ else if (typeof(safari) === "object") {
 	Foxtrick.BuildForDetail = "Safari";
 	Foxtrick.InternalPath = safari.extension.baseURI + "content/";
 	Foxtrick.ResourcePath = safari.extension.baseURI + "content/";
-	
+
 	// to tell which context the chrome script is running at
 	// either background page, or content script
 	Foxtrick.chromeContext = function() {
@@ -196,7 +196,7 @@ else if (typeof(safari) === "object") {
 			return safari.extension.globalPage.contentWindow;
 		  },
 
-		  getURL: function(path) { 
+		  getURL: function(path) {
 			return safari.extension.baseURI + path;
 		  },
 
@@ -215,8 +215,8 @@ else if (typeof(safari) === "object") {
 			  });
 			}
 
-			// Make a listener that, when it hears sendResponse for the given 
-			// callbackToken, calls callback(resultData) and deregisters the 
+			// Make a listener that, when it hears sendResponse for the given
+			// callbackToken, calls callback(resultData) and deregisters the
 			// listener.
 			function addOneTimeResponseListener(callbackToken, callback) {
 
@@ -269,17 +269,17 @@ else if (typeof(safari) === "object") {
 
 			var newPort = {
 			  name: port_data.name,
-			  onMessage: { 
+			  onMessage: {
 				addListener: function(listener) {
 				  addListener(function(messageEvent) {
 					// If the message was a port.postMessage to our port, notify our listener.
-					if (messageEvent.name != "port-postMessage") 
+					if (messageEvent.name != "port-postMessage")
 					  return;
 					if (messageEvent.message.portUuid != portUuid)
 					  return;
 					listener(messageEvent.message.data);
 				  });
-				} 
+				}
 			  }
 			};
 			return newPort;
@@ -300,8 +300,8 @@ else if (typeof(safari) === "object") {
 				var newPort = {
 				  name: portName,
 				  sender: { tab: { id: id, url: messageEvent.target.url } },
-				  onDisconnect: { 
-					addListener: function() { 
+				  onDisconnect: {
+					addListener: function() {
 					  console.log("CHROME PORT LIBRARY: chrome.extension.onConnect.addListener: port.onDisconnect is not implemented, so I'm doing nothing.");
 					}
 				  },
@@ -341,7 +341,7 @@ else if (typeof(chrome) === "object") {
 	Foxtrick.BuildForDetail = "Chrome";
 	Foxtrick.InternalPath = chrome.extension.getURL("content/");
 	Foxtrick.ResourcePath = chrome.extension.getURL("content/");
-	
+
 	// to tell which context the chrome script is running at
 	// either background page, or content script
 	Foxtrick.chromeContext = function() {
@@ -357,7 +357,7 @@ else if (typeof(chrome) === "object") {
 			return "content";
 		}
 	}
-	
+
 	// port common functions to sandboxed
 	var sandboxed = {
 		extension : {
@@ -383,19 +383,19 @@ else {
 	Foxtrick.ResourcePath = "chrome://foxtrick/content/";
 
 	if ( typeof(window)!=='object' // fennec content
-		|| typeof(Browser)!=='undefined' ) { // fennec background 
+		|| typeof(Browser)!=='undefined' ) { // fennec background
 		var fennec = {};
 		Foxtrick.chromeContext = function() {
-			if (typeof(sendSyncMessage)=='function') 
+			if (typeof(sendSyncMessage)=='function')
 				return "content";
-			else 
+			else
 				return "background";
 		}
 	}
 	else {
 		var firefox = {};
-		Foxtrick.chromeContext = function() { 
-			return 'background' 
+		Foxtrick.chromeContext = function() {
+			return 'background'
 		}
 	}
 
@@ -436,7 +436,7 @@ else {
 			})(),
 
 			extension: {
-			  getURL: function(path) { 
+			  getURL: function(path) {
 				return 'chrome://foxtrick/' + path;
 			  },
 
@@ -454,8 +454,8 @@ else {
 				  });
 				}
 
-				// Make a listener that, when it hears sendResponse for the given 
-				// callbackToken, calls callback(resultData) and deregisters the 
+				// Make a listener that, when it hears sendResponse for the given
+				// callbackToken, calls callback(resultData) and deregisters the
 				// listener.
 				function addOneTimeResponseListener(callbackToken, callback) {
 

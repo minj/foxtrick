@@ -8,7 +8,7 @@
  */
 
 /* Change Log
- * 
+ *
  * 2011-04-22 Ryan Li <ryan@ryanium.com>
  *   * Wrap functions in Foxtrick.SHA1 and remove unneeded ones to prevent
  *     namespace conflicts in Firefox.

@@ -11,7 +11,7 @@ var FoxtrickForumStripHattrickLinks = {
 	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','newsletter','mailnewsletter',"forumModWritePost","forumViewThread"),
 	OPTIONS: new Array("NoConfirmStripping"),
 	NICE: -1, //  needs to be before forum preview for old submit button (order) detection
-	
+
 	onclick : function( ev ) {
 		var setRelPath = function(link) {
 			link.href = link.href.replace(new RegExp("^http://.+?/"), "/");
@@ -47,7 +47,7 @@ var FoxtrickForumStripHattrickLinks = {
 			target = targets[targets.length-2];
 		if (Foxtrick.isPage("guestbook", doc))
 			target = targets[1];
-		
+
 		if (target)
 			target.addEventListener("click", FoxtrickForumStripHattrickLinks.submitListener, false);
 	},
@@ -57,10 +57,10 @@ var FoxtrickForumStripHattrickLinks = {
 		url = url.replace('[link=safari-extension://www.ht-foxtrick.com-8J4UNYVFR5/2f738eb7/content/', '[link=chrome://foxtrick/content/'); // safari nightly
 		url = url.replace('[link=chrome-extension://bpfbbngccefbbndginomofgpagkjckik/content/','[link=chrome://foxtrick/content/'); 	// official chrome
 		url = url.replace('[link=chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/content/','[link=chrome://foxtrick/content/'); 	// nightly chrome
-		return url; 
+		return url;
 	},
 
-	submitListener : function(ev) { 
+	submitListener : function(ev) {
 		var doc = ev.target.ownerDocument;
 		var textarea = doc.getElementById("mainBody").getElementsByTagName("textarea")[0];
 		if (FoxtrickPrefs.isModuleOptionEnabled("ForumStripHattrickLinks", "NoConfirmStripping")) {

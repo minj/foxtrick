@@ -9,7 +9,7 @@ var FoxtrickMovePlayerSelectbox= {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail'),
 	NICE : -5, // before others on playerdetails page
-	
+
 	run : function(doc) {
 		var select =doc.getElementById('ctl00_ctl00_CPContent_CPSidebar_ddlSquad');
 		if (!select) return;

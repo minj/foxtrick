@@ -44,7 +44,7 @@ Foxtrick.util.note = {
 			old.parentNode.removeChild(old);
 		}
 		var note = this.create(doc, msg, buttons, hasClose);
-		
+
 		// add paste instruction for opera to copy notes
 		if ((typeof(opera)=='object' || typeof(safari)=='object') && id.search('copy-note')!==-1) {
 			note.firstChild.firstChild.textContent += ' '+Foxtrickl10n.getString('PasteClick.desc');
@@ -72,7 +72,7 @@ Foxtrick.util.note = {
 			container.className = "ft-note";
 
 			// msg could be either a string or an HTML node
-			if (typeof(msg) == "string") { 
+			if (typeof(msg) == "string") {
 				var par = doc.createElement("p");
 				par.textContent = msg;
 				container.appendChild(par);
@@ -163,15 +163,15 @@ Foxtrick.util.note = {
 			container.appendChild(doc.createTextNode(" "));
 			container.appendChild(doc.createTextNode(loadingText));
 			var note = this.create(doc, container, null, false);
-			
-			// delay showing 
+
+			// delay showing
 			Foxtrick.addClass(note, 'hidden');
-			window.setTimeout(function() {Foxtrick.removeClass(note,'hidden');}, 500);  
-			
+			window.setTimeout(function() {Foxtrick.removeClass(note,'hidden');}, 500);
+
 			return note;
 		}
 	},
-	
+
 	showObstrusiveLoading : function( doc, loadingText ) {
 		if (doc.getElementsByTagName("body")[0] && !doc.getElementById("FoxTrickLoadingId")) {
 			var loading = this.createLoading(doc, null, loadingText);
@@ -182,6 +182,6 @@ Foxtrick.util.note = {
 	},
 
 	removeObstrusiveLoading : function( doc ) {
-		if (doc.getElementById("FoxTrickLoadingId")) doc.getElementsByTagName("body")[0].removeChild(doc.getElementById("FoxTrickLoadingId"));		
+		if (doc.getElementById("FoxTrickLoadingId")) doc.getElementsByTagName("body")[0].removeChild(doc.getElementById("FoxTrickLoadingId"));
 	}
 };

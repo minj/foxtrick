@@ -9,7 +9,7 @@ var FoxtrickYouthSeriesEstimation = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["search"],
 	CSS: Foxtrick.ResourcePath+"resources/css/youth-series-estimation.css",
-	
+
 	TABLE_ID : "ctl00_ctl00_CPContent_CPMain_grdYouthSeries_ctl00",
 	ATTRIB_NAME : "estimated",
 

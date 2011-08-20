@@ -8,8 +8,8 @@ var FoxtrickTransferSearchResultFilters = {
 	MODULE_NAME : "TransferSearchResultFilters",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ['transferSearchForm','transferSearchResult'],
-	NICE : -1, // before TransferDeadline and HTMSPoints 
-	
+	NICE : -1, // before TransferDeadline and HTMSPoints
+
 	// functions returning whether to hide a player
 	FILTER_FUNC : {
 		"hideBruised" : function(player, checked) { return player.bruised; },
@@ -75,7 +75,7 @@ var FoxtrickTransferSearchResultFilters = {
 			HTProfileRow.parentNode.insertBefore(tr, HTProfileRow.nextSibling)
 		}
 	},
-	
+
 	addExtraFilters : function(doc) {
 		FoxtrickTransferSearchResultFilters.getFilters(function(filters) {
 			var tableAdvanced = doc.getElementById('ctl00_ctl00_CPContent_CPMain_tblAdvanced');

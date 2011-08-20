@@ -256,7 +256,7 @@ var FoxtrickLinksYouthLeague = {
 		var boxleft=doc.getElementsByClassName("subMenu")[0];
 		var ownteamid=0;
 		var owncountryid=0;
-		if (boxleft==null) {return;}       
+		if (boxleft==null) {return;}
 		var teamid=Foxtrick.util.id.findTeamId(boxleft);
 		if (teamid=="") {return;}
 		var ownteamid = Foxtrick.util.id.getOwnTeamId();

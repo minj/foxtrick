@@ -15,7 +15,7 @@ Foxtrick.loader.chrome = {};
 Foxtrick.loader.chrome.docLoadStart = function() {
 	try {
 		if ( !Foxtrick.isHtUrl(document.location.href) )  return;
-		
+
 		// check if it's in exclude list
 		for (var i in Foxtrick.pagesExcluded) {
 			var excludeRe = new RegExp(Foxtrick.pagesExcluded[i], "i");
@@ -26,16 +26,16 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 		}
 
 		// request resources from background script
-		// calls/adds Foxtrick.loader.chrome.docLoadEnd 
+		// calls/adds Foxtrick.loader.chrome.docLoadEnd
 		sandboxed.extension.sendRequest({ req : "init" },
 		function (data) {
 			try {
 				if (data.error) Foxtrick.log(data.error);
-				
+
 				var begin = new Date();
-				
+
 				Foxtrick.entry.setRetrievedLocalResources(data);
-				
+
 				if ( (FoxtrickPrefs.getBool("disableOnStage")
 						&& Foxtrick.isStage(document))
 					|| FoxtrickPrefs.getBool("disableTemporary")) {
@@ -58,7 +58,7 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 				Foxtrick.log("init time: " , initTime , " ms");
 
 				// opera/safari: listen to clipboard paste
-				if ( typeof(opera)=='object' || typeof(safari)=='object')  
+				if ( typeof(opera)=='object' || typeof(safari)=='object')
 					window.addEventListener('mouseup', Foxtrick.loader.chrome.clickListener, false);
 				// safari: set context menu info
 				if ( typeof(safari)=='object' ) {
@@ -70,7 +70,7 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 
 				// if ht doc is already loaded start now, else wait till loaded
 				if (Foxtrick.isHt(document)) {
-					Foxtrick.log('Ht domument ready. Run now.'); 
+					Foxtrick.log('Ht domument ready. Run now.');
 					Foxtrick.entry.docLoad();
 				}
 				else {
@@ -83,12 +83,12 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 };
 
 Foxtrick.loader.chrome.clickListener = function(e) {
-	if ( typeof(e.target.tagName) != "undefined" && 
+	if ( typeof(e.target.tagName) != "undefined" &&
 		(( e.target.tagName == 'INPUT' && e.target.type=='text') || // text imput
 		e.target.tagName=='TEXTAREA') &&	// or text area
 		e.button == 0 && 		// left mouse button
 		e.shiftKey == true ) { 	// our special key we listen too
-		
+
 		Foxtrick.sessionGet('clipboard', function(text) {
 			if (text) {
 				// insert clipboard at current position
@@ -98,7 +98,7 @@ Foxtrick.loader.chrome.clickListener = function(e) {
 				if (ta.selectionStart || ta.selectionStart == '0') {
 					var st = ta.scrollTop;
 					ta.value = s.textBeforeSelection+
-								text + 
+								text +
 								s.textAfterSelection;
 					ta.scrollTop = st;
 				}
@@ -113,7 +113,7 @@ Foxtrick.loader.chrome.clickListener = function(e) {
 
 Foxtrick.loader.chrome.initGrowl = function () {
   try {
-	var object = document.createElement('object');	
+	var object = document.createElement('object');
 	object.setAttribute('type', "application/x-growl-safari-bridge");
 	object.width = '0';
 	object.height = '0';

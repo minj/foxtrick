@@ -28,7 +28,7 @@ Foxtrick.Pages.TransferSearchResults = {
 				});
 				if (bookmarkLinks.length > 0)
 					player.bookmarkLink = bookmarkLinks[0].cloneNode(true);
-				// first row - hotlist link				
+				// first row - hotlist link
 				var hotlistLinks = Foxtrick.filter(divs[0].getElementsByTagName("a"), function(l) {
 					return l.href.search(/hotList/i) != -1;
 				});
@@ -109,7 +109,7 @@ Foxtrick.Pages.TransferSearchResults = {
 				player.transferCompare = doc.createElement('a');
 				player.transferCompare.textContent = Foxtrickl10n.getString('TransferCompare.abbr');
 				player.transferCompare.title = Foxtrickl10n.getString('TransferCompare');
-				player.transferCompare.href = "/Club/Transfers/TransferCompare.aspx?playerId=" + player.id;					
+				player.transferCompare.href = "/Club/Transfers/TransferCompare.aspx?playerId=" + player.id;
 
 				// right skill table - skills
 				var skillTable = playerInfo.getElementsByClassName("transferPlayerSkills")[0].getElementsByTagName("table")[0];

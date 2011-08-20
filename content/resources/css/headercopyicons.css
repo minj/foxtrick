@@ -16,7 +16,7 @@ a.copyicon img {
 	width: 36px;
 }
 
-[x-theme="simple"] a.copyicon, 
+[x-theme="simple"] a.copyicon,
 [x-theme="simple"] a.copyicon img {
 	height: 22px;
 	width: 22px;

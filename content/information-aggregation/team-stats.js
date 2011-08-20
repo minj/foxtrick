@@ -11,7 +11,7 @@ FoxtrickTeamStats = {
 	PAGES : ["players", "YouthPlayers"],
 	OPTIONS : ["General", "Speciality", "Personality", "Status", "Current_league"],
 	NICE : -1, // before FoxtrickLinksPlayers
-	
+
 	CSS : Foxtrick.ResourcePath + "resources/css/team-stats.css",
 
 	run : function(doc) {
@@ -116,7 +116,7 @@ FoxtrickTeamStats = {
 						var evt2 = doc.createEvent("HTMLEvents");
 						evt2.initEvent('change', true, true ); // event type,bubbling,cancelable
 						filterSelect.dispatchEvent(evt2);
-						
+
 						window.scroll(0, 0);
 						window.scrollBy(0, doc.getElementById('mainWrapper').offsetTop);
 					},false)
@@ -141,7 +141,7 @@ FoxtrickTeamStats = {
 				}
 				row.appendChild(dataCell);
 				if (filter && FoxtrickPrefs.isModuleEnabled('PlayerFilters'))
-					addFilterShortcut(filter,title); 
+					addFilterShortcut(filter,title);
 				table.appendChild(row);
 				return row;
 			};

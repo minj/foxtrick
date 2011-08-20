@@ -20,8 +20,8 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	// for updating content preference copy and injected css list
 	var updatePrefs = function () {
 		FoxtrickPrefs.deleteValue("preferences.updated");
-		FoxtrickPrefs.init(); 
-		Foxtrickl10n.init(); 
+		FoxtrickPrefs.init();
+		Foxtrickl10n.init();
 		cssTextCollection = Foxtrick.getCssTextCollection();
 		Foxtrick.log('prefs updated');
 	};
@@ -37,7 +37,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		else if (typeof(fennec)==='object') {
 		}
 	};
-	
+
 	// calls module.onLoad() after the browser window is loaded
 	for (var i in Foxtrick.modules) {
 		var module = Foxtrick.modules[i];
@@ -53,9 +53,9 @@ Foxtrick.loader.chrome.browserLoad = function() {
 
 	// get resources
 	var core = [ FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData ];
-	for (var i in core) 
-		core[i].init(); 
-		
+	for (var i in core)
+		core[i].init();
+
 	// prepare resources for later transmission to content script
 	var serializer = new window.XMLSerializer();
 	var currency = serializer.serializeToString(Foxtrick.XMLData.htCurrencyXml);
@@ -64,7 +64,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	var htLanguagesText = {};
 	for (var i in Foxtrickl10n.htLanguagesXml) {
 		htLanguagesText[i] = serializer.serializeToString(Foxtrickl10n.htLanguagesXml[i]);
-	} 
+	}
 	var cssTextCollection = Foxtrick.getCssTextCollection();
 
 	// one-time message channel
@@ -73,11 +73,11 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	sandboxed.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		try {
 			//Foxtrick.log('request: ',request.req)//, ' ',request )
-				
+
 			if (request.req == "init") {
 				try {
 					updatePageAction(request, sender);
-					
+
 					if (FoxtrickPrefs.getBool("preferences.updated")
 						&& JSON.parse(FoxtrickPrefs.getBool("preferences.updated"))) {
 							updatePrefs();
@@ -108,16 +108,16 @@ Foxtrick.loader.chrome.browserLoad = function() {
 			}
 			else if (request.req == "setValue") {
 				FoxtrickPrefs.setValue(request.key, request.value, request.type);
-				if (!no_update_needed[request.key]) 
+				if (!no_update_needed[request.key])
 					FoxtrickPrefs.setBool("preferences.updated",true);
 			}
 			else if (request.req == "deleteValue") {
 				FoxtrickPrefs.deleteValue(request.key);
-				if (!no_update_needed[request.key]) 
+				if (!no_update_needed[request.key])
 					FoxtrickPrefs.setBool("preferences.updated",true);
 			}
 			else if (request.req == "clearPrefs") {
-				try { 
+				try {
 					Foxtrick.log('clearPrefs ');
 					if (typeof(fennec)==='object') {
 						FoxtrickPrefs.cleanupBranch();
@@ -140,8 +140,8 @@ Foxtrick.loader.chrome.browserLoad = function() {
 				// @param files - a string for which image urls are converted to data urls
 				// updates cssTextCollection if "ft-module-css" conversion was done
 				Foxtrick.convertImageUrlToData(request.cssText,
-						function(cssText){ 
-							if (request.type=="ft-module-css") 
+						function(cssText){
+							if (request.type=="ft-module-css")
 								cssTextCollection = cssText;
 							sendResponse({cssText:cssText});
 				});
@@ -153,7 +153,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 				// synchronous, since messaging is async already
 				var callback = function(responseText,status){
 					sendResponse({data : responseText, status : status});
-				}; 
+				};
 				Foxtrick.load(request.url, callback, request.crossSite )
 			}
 			else if (request.req == "newTab") {
@@ -178,7 +178,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 				try {
 					if (typeof(chrome)=='object')
 						Foxtrick.loader.chrome.copyToClipBoard(request.content);
-					else 
+					else
 						Foxtrick.copyStringToClipboard(request.content)
 					sendResponse({status : true});
 				}
@@ -194,14 +194,14 @@ Foxtrick.loader.chrome.browserLoad = function() {
 						"Hattrick", // notification title
 						request.msg // notification body text
 					);
-					notification.onclick = function() { 
+					notification.onclick = function() {
 						if ( typeof(chrome)=='object' ) {
 							// focus last window
 							chrome.windows.update( sender.tab.windowId, { focused:true });
 							// goto msg.url in sender tab
 							chrome.tabs.update( sender.tab.id, { url:request.url, selected:true });
 						}
-						else 
+						else
 							sandboxed.tabs.create({url: request.url});
 						notification.cancel();
 					};
@@ -273,7 +273,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		}
 	});
 
-	
+
 	// page action init and listeners
 	if (typeof(opera) === "object") {
 		// Specify the properties of the button before creating it.
@@ -291,12 +291,12 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		FoxtrickCore.setOperaIcon(Foxtrick.loader.chrome.button);
 
 	}
-	
+
 	else if (typeof(chrome) === "object") {
 		chrome.pageAction.onClicked.addListener(function(tab) { FoxtrickPrefs.disable(tab); });
 		Foxtrick.loader.chrome.contextCopyChrome();
 	}
-	
+
 	else if (typeof(safari) === "object") {
 	   // Open Options page upon settings checkbox click.
 		safari.extension.settings.openFoxtrickOptions = false;
@@ -312,10 +312,10 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		  if (commandEvent.command == "FoxtrickOptions")
 			sandboxed.tabs.create({url: Foxtrick.ResourcePath+ "preferences.html"});
 		}, false);
-		
+
 		Foxtrick.loader.chrome.contextCopySafari();
 	}
-	
+
 	else if (typeof(fennec)==='object') {
 		addEventListener("UIReady", onWindowLoad, false);
 	}
@@ -345,7 +345,7 @@ Foxtrick.loader.chrome.contextCopyChrome = function () {
 		var markup = Foxtrick.util.htMl.getMarkupFromLink(info.linkUrl);
 		if (markup) Foxtrick.loader.chrome.copyToClipBoard(markup);
 	}
-	
+
 	function selectionOnClick(info, tab) {
 		// only plain text. useless as it is. maybe scan content document textContent for section and gather nodes there
 		Foxtrick.loader.chrome.copyToClipBoard(info.selectionText);
@@ -365,15 +365,15 @@ Foxtrick.loader.chrome.contextCopyChrome = function () {
 		];
 	}
 	else var id_contexts = [];
-	
+
 	if (FoxtrickPrefs.isModuleOptionEnabled("ContextMenuCopy", "Link")) {
 		id_contexts.push( {'title':Foxtrickl10n.getString("copy.link"), "contexts":["link"], "onclick": linkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*'] });
-	}		
+	}
 	if (FoxtrickPrefs.isModuleOptionEnabled("ContextMenuCopy", "HtMl")) {
 	//not working. just keeping it for future use
 	//	id_contexts.push( {'title':'Copy in HT-ML', 	"contexts":["selection"], "onclick": selectionOnClick, 'documentUrlPatterns': ['*://*.hattrick.org/*'] },);
 	}
-	
+
 	for (var i = 0; i < id_contexts.length; i++) {
 		chrome.contextMenus.create(id_contexts[i]);
 	}
@@ -384,7 +384,7 @@ Foxtrick.loader.chrome.contextCopyChrome = function () {
 	//var child2 = chrome.contextMenus.create({"title": "Child 2", "parentId": parent, "onclick": genericOnClick});
 }
 
-Foxtrick.loader.chrome.contextCopySafari = function () {	
+Foxtrick.loader.chrome.contextCopySafari = function () {
 	// Add context menus
 	safari.application.addEventListener("contextmenu", function(event) {
 		try{
@@ -586,7 +586,7 @@ var onWindowLoad = function(event) {
 
 		messageManager.loadFrameScript("chrome://foxtrick/content/entry.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/loader-gecko.js", true);
-		
+
 		FoxtrickMobileEnhancements.initPageAction();
 
 	} catch(e){Foxtrick.log(e);dump(e)}

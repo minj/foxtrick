@@ -254,7 +254,7 @@ Foxtrick.util.id.getLeagueDataFromId = function(id) {
 	try { data = Foxtrick.XMLData.League[id];}
 	catch(e){}
 
-	if (data==null) 
+	if (data==null)
 		Foxtrick.log('getLeagueDataFromId error. id: '+id+'\n');
 	return data;
 };

@@ -70,11 +70,11 @@ var FoxtrickReadHtPrefs = {
 					Foxtrickl10n.setUserLocaleGecko(newLang);
 				}
 				var language = Foxtrick.xml_single_evaluate(languages[newLang], "language", "desc");
-				
+
 				var msg  = Foxtrickl10n.getString("HTLanguageChanged");
 				if ( msg.search('%s')!=-1 ) msg = msg.replace("%s", language);
 				else msg += ' ' + language; // fallback for outdated description
-				
+
 				Foxtrick.util.note.add(doc, null, "ft-language-changed", msg, null, true, true);
 			}
 			else {

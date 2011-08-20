@@ -17,7 +17,7 @@ FoxtrickExtraPlayerInfo = {
 			if (!playerList) {
 				Foxtrick.log("ExtraPlayerInfo: unable to retrieve player list.");
 			}
-						
+
 			var lang = FoxtrickPrefs.getString("htLanguage");
 			var allPlayers = doc.getElementsByClassName("playerInfo");
 			for (var i = 0; i < allPlayers.length; ++i) {

@@ -11,7 +11,7 @@ var FoxtrickLiveAlert = {
 	OPTIONS : ["Sound"],
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DATAURL_LOAD_BUTTONS : new Array(true),
-	
+
 	store : {},
 
 	run : function(doc) {
@@ -52,7 +52,7 @@ var FoxtrickLiveAlert = {
 		}
 		else {
 			var teams = tab.childNodes[tab.childNodes.length - 1].textContent;
-			if (tab.childNodes[tab.childNodes.length - 1].title) 
+			if (tab.childNodes[tab.childNodes.length - 1].title)
 				teams = tab.childNodes[tab.childNodes.length - 1].title;
 			teams = Foxtrick.trim(teams);
 			return teams.split(" - ");

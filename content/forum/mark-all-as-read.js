@@ -19,7 +19,7 @@ var FoxtrickMarkAllAsRead = {
 			var urltest = n.getElementsByClassName("url");
 			var urlclass = (urltest.length != 0) ? "url" : "urlShort";
 			return n.getElementsByClassName(urlclass)[0].getElementsByTagName("a")[0];
-			
+
 		});
 		var threadIds = Foxtrick.map(threadLinks, function(n) {
 			return n.href.match(/\/Forum\/Read\.aspx\?t=(\d+)/)[1];

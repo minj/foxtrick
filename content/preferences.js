@@ -1,7 +1,7 @@
-function initLoader() {	
+function initLoader() {
 	// fennec runs init() from injected entry.js (injected)
 	// called directly, it'll run and save actually for some reason
-	
+
 	// gecko, safari, chrome
 	if (Foxtrick.BuildFor === "Gecko" || Foxtrick.chromeContext() == "background")
 		init();
@@ -24,7 +24,7 @@ function init()
 		initTabs();
 		initTextAndValues();
 		locateFragment(window.location.toString()); // locate element by fragment
-				
+
 		if (window.location.href.search(/imported=true/)!==-1) {
 			notice(Foxtrickl10n.getString("foxtrick.prefs.loaded"));
 			window.location.href = window.location.href.substr(0,window.location.href.search(/\&imported=true/));
@@ -180,7 +180,7 @@ function initTextAndValues()
 
 	document.title = Foxtrickl10n.getString("foxtrick.prefs.preferences");
 	$("#version").text(Foxtrick.version());
-	
+
 	// initialize text
 	$("body [text-key]").each(function() {
 		if ($(this).attr("text-key"))
@@ -246,22 +246,22 @@ function initTextAndValues()
 		dependee.click(function() { updateStatus(); });
 		updateStatus();
 	});
-	
+
 	// init top buttons
-	var pages = [];	
+	var pages = [];
 	for (var i in Foxtrick.modules) {
 		if (Foxtrick.modules[i].MODULE_CATEGORY) {
 			if (Foxtrick.modules[i].ONPAGEPREF_PAGE) {
 				var page = Foxtrick.modules[i].ONPAGEPREF_PAGE;
 				if (page == "all") {}
-				else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) 		
+				else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage()))
 					pages.push(page);
 			}
 			else {
-				for (var j in Foxtrick.modules[i].PAGES) { 
+				for (var j in Foxtrick.modules[i].PAGES) {
 					var page = Foxtrick.modules[i].PAGES[j];
 					if (page == "all") break;
-					else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) {		
+					else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) {
 						pages.push(page);
 						break;
 					}
@@ -339,7 +339,7 @@ function initMainTab()
 	$("#pref-stored-disable").click(function() {
 		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("disable_all_foxtrick_modules_ask"))) {
 			Foxtrick.log('preferences: diable all');
-			FoxtrickPrefs.disableAllModules(); 
+			FoxtrickPrefs.disableAllModules();
 			window.location.href = window.location.href + '&imported=true';
 			window.location.reload();
 		}
@@ -368,7 +368,7 @@ function initon_pageTab()
 	var categories = {};
 	categories['on_page'] = [];
 	categories['universal'] = [];
-	
+
 	for (var i in Foxtrick.modules)
 		if (Foxtrick.modules[i].MODULE_CATEGORY)
 			if (Foxtrick.modules[i].ONPAGEPREF_PAGE) {
@@ -376,17 +376,17 @@ function initon_pageTab()
 				if (page == "all") {
 					categories['universal'].push(i);
 				}
-				else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) {		
+				else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) {
 					categories['on_page'].push(i);
 				}
 			}
-			else for (var j in Foxtrick.modules[i].PAGES) { 
+			else for (var j in Foxtrick.modules[i].PAGES) {
 				var page = Foxtrick.modules[i].PAGES[j];
 				if (page == "all") {
 					categories['universal'].push(i);
 					break;
 				}
-				else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) {		
+				else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) {
 					categories['on_page'].push(i);
 					break;
 				}
@@ -394,17 +394,17 @@ function initon_pageTab()
 	// sort modules in alphabetical order
 	for (var i in categories)
 		categories[i].sort(function(a, b) { return Foxtrick.modules[a].MODULE_NAME.localeCompare(Foxtrick.modules[b].MODULE_NAME); });
-	
-	for (var i in categories) { 
+
+	for (var i in categories) {
 		for (var j in categories[i]) {
-				if (Foxtrick.modules[categories[i][j]].MODULE_CATEGORY == "links") 
+				if (Foxtrick.modules[categories[i][j]].MODULE_CATEGORY == "links")
 					var links = getModule(Foxtrick.modules[categories[i][j]]);
 				else
 					$("#pane-"+i).append(getModule(Foxtrick.modules[categories[i][j]]));
 			}
 			// links at the end so not to spam
 			if (links) $("#pane-on_page").append(links);
-		}		
+		}
 }
 
 function getModule(module)
@@ -495,7 +495,7 @@ function getModule(module)
 				textInput.setAttribute("module", module.MODULE_NAME);
 				textInput.setAttribute("option", module.OPTIONS[i] + "_text");
 				textDiv.appendChild(textInput);
-				
+
 				if (module.OPTION_TEXTS_TEXTFILE_LOAD_BUTTONS && module.OPTION_TEXTS_TEXTFILE_LOAD_BUTTONS[i]) {
 					var load  = Foxtrick.filePickerForText(document, function(text, data) {
 							document.getElementById(data.id).value = text;

@@ -20,8 +20,8 @@ var FoxtrickCore = {
 	// called after browser loaded , with browser chrome
 	// as the argument (Gecko-only)
 	// initializes items in menu bar and status bar
-	onLoad : function(document) { 
-		if (typeof(firefox)!=='object') 
+	onLoad : function(document) {
+		if (typeof(firefox)!=='object')
 			return;
 
 		// toolbar menu - preferences
@@ -50,7 +50,7 @@ var FoxtrickCore = {
 		this.parseSelfTeamInfo(doc);
 	},
 
-	setChromeIcon : function(tab) { 
+	setChromeIcon : function(tab) {
 		// update page icon image and tooltip (chrome-only)
 		var icon = ''; var statusText='';
 		if (FoxtrickPrefs.getBool("disableTemporary")) {
@@ -66,7 +66,7 @@ var FoxtrickCore = {
 		chrome.pageAction.setTitle({tabId : tab.id, title: tooltipText})
 	},
 
-	setOperaIcon : function(button) { 
+	setOperaIcon : function(button) {
 		// update page icon image and tooltip (chrome-only)
 		Foxtrick.log('setOperaIcon');
 		var icon = ''; var statusText='';
@@ -125,7 +125,7 @@ var FoxtrickCore = {
 		Foxtrick.setLastHost(doc.location.protocol + "//"
 			+ doc.location.hostname);
 		Foxtrick.setLastPage(doc.location.href);
-		
+
 	},
 
 	showChangeLog : function(doc) {
@@ -154,10 +154,10 @@ var FoxtrickCore = {
 						var ul = doc.createElement('ul');
 						ul.id = 'pref-notepad-list';
 						div.appendChild(ul);
-						
+
 						var note = Foxtrick.util.note.create(doc,changes, false,true)
 						doc.getElementById('mainBody').insertBefore(note, doc.getElementById('mainBody').firstChild);
-						
+
 						function importContent(from, to)
 						{
 							for (var i = 0; i < from.childNodes.length; ++i) {
@@ -230,7 +230,7 @@ var FoxtrickCore = {
 								break;
 							}
 						}
-						
+
 						updateNotepad();
 						select.addEventListener('change',updateNotepad, false);
 					}

@@ -81,13 +81,13 @@ var FoxtrickNtPeek = {
 				}
 			}
 		});
-		
+
 		const u20Args = [
 			["file", "matches"],
 			["teamID", u20Id]
 		];
 		var parameters_u20_str = JSON.stringify(u20Args);
-		Foxtrick.util.api.retrieve(doc, u20Args,{ ccache_lifetime:'default', caller_name:this.MODULE_NAME }, 
+		Foxtrick.util.api.retrieve(doc, u20Args,{ ccache_lifetime:'default', caller_name:this.MODULE_NAME },
 		function(xml) {
 			if (xml) {
 				var nextmatchdate = Foxtrick.util.matchView.fillMatches(

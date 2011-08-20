@@ -32,12 +32,12 @@ var FoxtrickTableSort = {
 	clickListener : function( ev ) {
 		try {
 			var this_th = ev.target;
-			
+
 			// find table header cell if click was on some inner span or img
-			for (var i=0;i<5;++i) 
-			{	if (this_th.nodeName=='TH') break; 
+			for (var i=0;i<5;++i)
+			{	if (this_th.nodeName=='TH') break;
 				this_th = this_th.parentNode;
-			} 
+			}
 			// get the column (index) and row(sort_start). there had been tables with multiple head rows. thus goto whole table
 			var table = this_th.parentNode.parentNode.parentNode;
 			for (var i = 0; i < table.rows.length; ++i) {
@@ -45,8 +45,8 @@ var FoxtrickTableSort = {
 				var found = false;
 				for (var j = 0; j < table.rows[i].cells.length; ++j) {
 					if (table.rows[i].cells[j]===this_th) {
-						found = true; 
-						break; 
+						found = true;
+						break;
 					}
 					// adjust for colspan in header
 					var colspan = 1;
@@ -57,7 +57,7 @@ var FoxtrickTableSort = {
 			}
 			var sort_start = i;
 			Foxtrick.log('sort_start:',sort_start,'index: ',index);
-			
+
 			// determine sort direction
 			var direction = this_th.hasAttribute("sort-asc") ? 1 : -1;
 			if ( index == table.getAttribute('lastSortIndex') ) {
@@ -66,14 +66,14 @@ var FoxtrickTableSort = {
 				direction *= -1;
 			}
 			table.setAttribute('lastSortIndex', index);
-			
+
 			var is_num = true, is_age=true, is_youthskill = true, is_ordinal=true, is_date=true, is_skill=true;
 			var num_cols = table.rows[sort_start+1].cells.length;
 			for (var i = sort_start+1; i < table.rows.length; ++i) {
-				
+
 				// if num_cols change, we are at the bottom with nonsortable entries (eg transfercompare)
 				if (num_cols != table.rows[i].cells.length) break;
-				
+
 				// adjust index for colspans in table
 				var tdindex = index;
 				for (var j = 0; j < index-1; ++j) {
@@ -81,7 +81,7 @@ var FoxtrickTableSort = {
 						tdindex = tdindex-parseInt(table.rows[i].cells[j].getAttribute('colspan'))+1;
 					}
 				}
-				
+
 				// get sorting format
 				var inner = Foxtrick.trim(Foxtrick.stripHTML(table.rows[i].cells[tdindex].innerHTML));
 				if (isNaN(parseFloat(inner)) && inner!='') {is_num=false;}
@@ -93,7 +93,7 @@ var FoxtrickTableSort = {
 			}
 			var sort_end = i;
 			Foxtrick.log('sort end: ',sort_end);
-			
+
 			// rows to be sorted
 			var rows = new Array();
 			for (var i = sort_start+1; i < sort_end; ++i) {
@@ -106,7 +106,7 @@ var FoxtrickTableSort = {
 				aContent = a.cells[tdindex].innerHTML;
 				bContent = b.cells[tdindex].innerHTML;
 				var lastSort = Number(a.getAttribute('lastSort'))-Number(b.getAttribute('lastSort'));
-				
+
 				if (aContent === bContent) {
 					return lastSort;
 				}

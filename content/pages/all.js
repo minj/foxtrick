@@ -12,7 +12,7 @@
  * their first arguments need to be `doc'.
  */
 
- 
+
 if (!Foxtrick) var Foxtrick = {};
 Foxtrick.Pages = {};
 

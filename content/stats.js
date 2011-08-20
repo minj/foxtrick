@@ -515,7 +515,7 @@ stats["alltid"] =  {
 stats["alltid_add"] =  {
         "url" : "",
 		"urlfunction": function (filterparams) {
-                           return 'javascript:'+	
+                           return 'javascript:'+
 									'var i=parseInt(localStorage.getItem("alltidcompare_index"));'+
 									'if(!i)i=0;'+
 									'var do_remove=false;'+
@@ -2391,7 +2391,7 @@ Foxtrick.LinkCollection.makelink  = function(stat, statlink, filterparams, key, 
     if (url == null) return null;
 
     var link;
-	
+
 	if (typeof(stat["post"]) == 'undefined') {
         link = url + statlink["path"] + args;
     } else {
@@ -2435,7 +2435,7 @@ Foxtrick.LinkCollection.getLinkElement  = function(link, stat, doc, key, module_
        }
     }
 	//if (link.search(/javascript/i)!=-1) statslink.target = "";
-	
+
     statslink.title = stat.title;
     //statslink.style.verticalAlign = "middle";
     statslink.setAttribute('key',key);
@@ -2446,8 +2446,8 @@ Foxtrick.LinkCollection.getLinkElement  = function(link, stat, doc, key, module_
      } else {
 		// add img for tracker flags
 		if (module_name === FoxtrickLinksTracker.MODULE_NAME)
-			statslink.appendChild(doc.createElement('img'));  
-		else 
+			statslink.appendChild(doc.createElement('img'));
+		else
 			Foxtrick.addImage(doc, statslink, { alt:stat.title, title: stat.title, src: stat.img });
     }
 
@@ -2458,9 +2458,9 @@ Foxtrick.LinkCollection.getLinkElement  = function(link, stat, doc, key, module_
 
 Foxtrick.LinkCollection.getSortedLinks = function(links) {
   function sortfunction(a,b) {
-    if (typeof(a.stat["img"]) == 'undefined' && typeof(b.stat["img"]) == 'undefined') return 0;//a.link.title.localeCompare(b.link.title); 
-	else if (typeof(a.stat["img"]) == 'undefined') return 1; 
-    else if (typeof(b.stat["img"]) == 'undefined') return -1; 
+    if (typeof(a.stat["img"]) == 'undefined' && typeof(b.stat["img"]) == 'undefined') return 0;//a.link.title.localeCompare(b.link.title);
+	else if (typeof(a.stat["img"]) == 'undefined') return 1;
+    else if (typeof(b.stat["img"]) == 'undefined') return -1;
 	return a.link.title.localeCompare(b.link.title);
   }
   links.sort(sortfunction);

@@ -24,7 +24,7 @@ if ( typeof(firefox)==='object') {
 			for (var key in keymap) {
 				if (Foxtrick.sessionStore[key]!==null)
 					answermap[key] = Foxtrick.sessionStore[key];
-				else 
+				else
 					answermap[key] = keymap[i];
 			}
 				callback(answermap);
@@ -34,7 +34,7 @@ if ( typeof(firefox)==='object') {
 	Foxtrick.sessionDeleteBranch = function(branch) {
 		if (branch != '') branch += '.';
 		for (var key in Foxtrick.sessionStore) {
-			if (key.indexOf(branch)===0) 
+			if (key.indexOf(branch)===0)
 				Foxtrick.sessionStore[key] = null;
 		};
 	};
@@ -42,7 +42,7 @@ if ( typeof(firefox)==='object') {
 // sessionStore in back ground for all other
 else {
 	if ( Foxtrick.chromeContext() == "background" )  {
-	
+
 		Foxtrick.sessionStore = {};
 
 		Foxtrick.sessionSet = function(key, value) {
@@ -59,7 +59,7 @@ else {
 				for (var key in keymap) {
 					if (Foxtrick.sessionStore[key]!==null)
 						answermap[key] = Foxtrick.sessionStore[key];
-					else 
+					else
 						answermap[key] = keymap[i];
 				}
 				sendResponse({ value: answermap });
@@ -69,15 +69,15 @@ else {
 		Foxtrick.sessionDeleteBranch = function(branch) {
 			if (branch != '') branch += '.';
 			for (var key in Foxtrick.sessionStore) {
-				if (key.indexOf(branch)===0) 
+				if (key.indexOf(branch)===0)
 					Foxtrick.sessionStore[key] = null;
 			}
 		};
-	}	
-	
-	
+	}
+
+
 	else if ( Foxtrick.chromeContext() == "content" )  {
-	
+
 		Foxtrick.sessionSet = function(key, value) {
 			sandboxed.extension.sendRequest({
 				req : "sessionSet",
@@ -85,7 +85,7 @@ else {
 				value : value
 			});
 		};
-		
+
 		Foxtrick.sessionGet = function(key, callback) {
 			sandboxed.extension.sendRequest({
 					req : "sessionGet",

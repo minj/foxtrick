@@ -19,7 +19,7 @@ var FoxtrickExtraShortcuts = {
 		"http://www.down-times.de/dtrfoxi/dtrstatus.php"
 	],
 	CSS: Foxtrick.ResourcePath+"resources/css/extra-shortcuts.css",
-	
+
 	OPTIONS_CSS: [
 		Foxtrick.ResourcePath+"resources/css/extra-shortcuts-space.css"
 	],
@@ -98,7 +98,7 @@ var FoxtrickExtraShortcuts = {
 						}
 					}
 				}
-			
+
 				if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", "ManageCHPP")) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
@@ -120,7 +120,7 @@ var FoxtrickExtraShortcuts = {
 						}
 					}
 				}
-				
+
 				if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", "FoxTrickPrefs")) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
@@ -142,7 +142,7 @@ var FoxtrickExtraShortcuts = {
 						}
 					}
 				}
-			
+
 			for(i=0; i<this.RADIOS.length; ++i) {
 				var radio = this.RADIOS[i];
 				if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", radio)) {
@@ -189,7 +189,7 @@ var FoxtrickExtraShortcuts = {
 					list = doc.createElement("ul");
 					list.className = "ft-pop";
 					list.setAttribute('style',"margin-top:-1px;");
-							
+
 
 					if (radio_xml.getElementsByTagName('status')[0].textContent==='online') {
 

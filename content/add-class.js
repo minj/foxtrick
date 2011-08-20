@@ -70,7 +70,7 @@ Foxtrick.AddClass = {
 		if (dlPar.getElementsByClassName("date").length == 0)
 			dlPar.innerHTML = dlPar.innerHTML.replace(timeRe, "<span class=\"date\">$1</span>");
 		// reload time
-		var firstLine = transferList.getElementsByClassName("float_left")[0]; 
+		var firstLine = transferList.getElementsByClassName("float_left")[0];
 		if (firstLine.getElementsByClassName("date").length == 0) {
 			var timeNode = firstLine.lastChild;
 			if (timeNode.textContent.search(timeRe) >= 0) {

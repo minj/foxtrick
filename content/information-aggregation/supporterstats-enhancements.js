@@ -14,15 +14,15 @@ FoxtrickSupporterStatsEnhancements = {
 		var options = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlTeams').getElementsByTagName('option');
 		for (var i=0; i<options.length; ++i) {
 			if (options[i].getAttribute('selected')=='selected') { teamid=Number(options[i].value); break; }
-		}			
+		}
 		if (teamid==0) return;
-		
+
 		var args = [];
 		args.push(["teamId", teamid]);
 		args.push(["file", "players"]);
-		
+
 		Foxtrick.util.api.retrieve(doc, args, {cache_lifetime:'session', caller_name:this.MODULE_NAME },
-		function(xml) {	 
+		function(xml) {
 			if (!xml)
 				return;
 			var playerNodes = xml.getElementsByTagName("Player");
@@ -32,7 +32,7 @@ FoxtrickSupporterStatsEnhancements = {
 			th.textContent = Foxtrickl10n.getString('CurrentSquad');
 			th.addEventListener("click", FoxtrickTableSort.clickListener, true);
 			table.getElementsByTagName('tr')[0].appendChild(th);
-				
+
 			var as=doc.getElementById('mainBody').getElementsByTagName('a');
 			for (var i=0; i<as.length; ++i) {
 				if (as[i].href.search(/\/Club\/Players\/Player.aspx\?playerId=\d+/i)!==-1) {
@@ -50,8 +50,8 @@ FoxtrickSupporterStatsEnhancements = {
 					td.className='center';
 					if (inSquad) td.textContent = 'x';
 					as[i].parentNode.parentNode.appendChild(td);
-				}	
-			}	
+				}
+			}
 		});
 	}
 };

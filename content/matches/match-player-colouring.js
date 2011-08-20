@@ -101,7 +101,7 @@ var FoxtrickMatchPlayerColouring = {
 				// remove the loading note
 				if (loading) loading.parentNode.removeChild(loading);
 				if (!homeXml || !awayXml) return;
-				
+
 				Foxtrick.log("Successfully retrieved lineup XML.");
 
 				var homePlayers = getPlayers(homeXml);
@@ -121,13 +121,13 @@ var FoxtrickMatchPlayerColouring = {
 				});
 				homePlayers = Foxtrick.unique(homePlayers);
 				awayPlayers = Foxtrick.unique(awayPlayers);
-				
+
 				Foxtrick.log("Home players: ", homePlayers);
 				Foxtrick.log("Away players: ", awayPlayers);
 
 				// colour all player links
 				Foxtrick.map(links, function(n) {
-					var id =  getPlayerId(n) 
+					var id =  getPlayerId(n)
 					if (id) {
 						if (Foxtrick.some(homePlayers, function(n) { return n == id; }))
 							Foxtrick.addClass(n, homeClass);

@@ -13,5 +13,5 @@
   </setting>
    <setting type="button">Show all options
     <button label="Show" oncommand="Browser.addTab('chrome://foxtrick/content/preferences.html#tab=main',true,null,{'getAttention':true});"/>
-  </setting> 
+  </setting>
 </vbox>

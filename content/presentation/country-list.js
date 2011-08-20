@@ -116,7 +116,7 @@ var FoxtrickCountyList = {
 		}
 
 		if (FoxtrickPrefs.isModuleOptionEnabled("CountryList", "ManagerPage")) {
-			if (Foxtrick.isPage("managerPage", doc)) 
+			if (Foxtrick.isPage("managerPage", doc))
 				this._placeCountry(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues', 1);
 		}
 
@@ -152,16 +152,16 @@ var FoxtrickCountyList = {
 		var id_sel = 0;
 		try {
 			for (var i = start; i < countries; i++) {
-				if (Foxtrick.BuildFor=="Sandboxed") { 
-					if (options[i].getAttribute('selected')) 
+				if (Foxtrick.BuildFor=="Sandboxed") {
+					if (options[i].getAttribute('selected'))
 						id_sel = options[i].value;
 				}
-				else { 
+				else {
 					if (i == selected) id_sel = options[i].value;
 				}
 				try {
 					if (id.search(/leagues/i)!=-1 || id.search(/zone/i)!=-1) {
-						var league = options[i].value;  
+						var league = options[i].value;
 					}
 					else {
 						var league = Foxtrick.XMLData.getLeagueIdByCountryId(options[i].value);

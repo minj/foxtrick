@@ -14,11 +14,11 @@ Foxtrick.entry.runMap = {};
 
 // invoked on DOMContentLoaded
 Foxtrick.entry.docLoad = function(ev) {
-	if (Foxtrick.BuildFor === "Sandboxed") var doc = document;  
+	if (Foxtrick.BuildFor === "Sandboxed") var doc = document;
 	if (Foxtrick.BuildFor === "Gecko") var doc = ev.originalTarget;
 	if (doc.nodeName != "#document")
 		return;
-	
+
 	if (Foxtrick.isHt(doc)) {
 		// check if it's in exclude list
 		for (var i in Foxtrick.pagesExcluded) {
@@ -32,7 +32,7 @@ Foxtrick.entry.docLoad = function(ev) {
 		if (typeof(fennec)==='object') {
 			Foxtrick.entry.init();
 		}
-		
+
 		var begin = (new Date()).getTime();
 		Foxtrick.entry.run(doc);
 		var diff = (new Date()).getTime() - begin;
@@ -50,12 +50,12 @@ Foxtrick.entry.docLoad = function(ev) {
 Foxtrick.entry.setRetrievedLocalResources = function(data) {
 		FoxtrickPrefs._prefs_chrome_user = data._prefs_chrome_user;
 		FoxtrickPrefs._prefs_chrome_default = data._prefs_chrome_default;
-		
+
 		var parser = new window.DOMParser();
 		for (var i in data.htLang) {
 			Foxtrickl10n.htLanguagesXml[i] = parser.parseFromString(data.htLang[i], "text/xml");
 		}
-		
+
 		Foxtrickl10n.properties_default = data.properties_default;
 		Foxtrickl10n.properties = data.properties;
 		Foxtrickl10n.screenshots_default = data.screenshots_default;
@@ -84,7 +84,7 @@ Foxtrick.entry.init = function() {
 		// only content side
 		return;
 	}
-	
+
 	Foxtrick.MakeStatsHash();
 
 	// create arrays for each recognized page that contains modules
@@ -139,7 +139,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		html.dir = Foxtrick.util.layout.isRtl(doc) ? "rtl" : "ltr";
 		html.setAttribute("x-theme", Foxtrick.util.layout.isStandard(doc) ? "standard" : "simple");
 		html.setAttribute("fennec-theme", doc.location.href.search(/forum/i)==-1 ? "default" : "forum");
-		
+
 		// reload CSS if not loaded
 		if (!Foxtrick.entry.cssLoaded) {
 			Foxtrick.log("CSS not loaded");

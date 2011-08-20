@@ -11,7 +11,7 @@ var FoxtrickMyMonitor = {
 	OPTIONS : ["TeamIcons"],
 	CSS : Foxtrick.ResourcePath + "resources/css/my-monitor.css",
 	NICE : -1, // add it before links for consistent sidebar placement
-	
+
 	run : function(doc) {
 		if (Foxtrick.isPage("myhattrick", doc)
 			|| Foxtrick.isPage("dashboard", doc)) {
@@ -26,20 +26,20 @@ var FoxtrickMyMonitor = {
 
 	change : function(doc) {
 		// challenging etc removes box. need to re-add it
-		if (doc.getElementById("ft-monitor-sidebar-box")===null 
+		if (doc.getElementById("ft-monitor-sidebar-box")===null
 			&& 	(Foxtrick.isPage("teamPage", doc)
 				|| Foxtrick.isPage("youthoverview", doc)
 				|| Foxtrick.isPage("national", doc)) )
 			FoxtrickMyMonitor.run(doc);
 	},
-	
+
 	display : function(doc) {
 		if (Foxtrick.isPage("myhattrick", doc))
 			var insertBefore = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlMain");
 		else if (Foxtrick.isPage("dashboard", doc))
 			var insertBefore = doc.getElementById("eventList").nextSibling;
 		var parent = insertBefore.parentNode;
-		
+
 		// header - "My Monitor"
 		var header = doc.createElement("h1");
 		header.id = "ft-monitor-header";
@@ -156,12 +156,12 @@ var FoxtrickMyMonitor = {
 			// link containing team name
 			var nameLink = doc.createElement("a");
 			buildLink(team, nameLink);
-			
+
 			if (FoxtrickPrefs.isModuleOptionEnabled("MyMonitor", 'TeamIcons')) {
 				var img_height = 18;
 				if (Foxtrick.util.layout.isStandard(doc)) img_height = 24;
-				
-				if (team.logo) { 
+
+				if (team.logo) {
 					var img = doc.createElement('img');
 					img.title = team.name;
 					img.height = img_height;
@@ -185,7 +185,7 @@ var FoxtrickMyMonitor = {
 				img.src="../../Img/Icons/transparent.gif"
 				header.appendChild(img);
 			}
-			
+
 			header.appendChild(nameLink);
 
 			var sortdiv = doc.createElement('div');
@@ -196,8 +196,8 @@ var FoxtrickMyMonitor = {
 			img.width = 0;
 			img.src="../../Img/Icons/transparent.gif"
 			sortdiv.appendChild(img);
-			
-			
+
+
 			var uplink = doc.createElement('input');
 			uplink.type="image";
 			uplink.title=Foxtrickl10n.getString('sort.up');
@@ -229,7 +229,7 @@ var FoxtrickMyMonitor = {
 			if (team.type == "youth")
 				args.push(["isYouth", "true"]);
 			var parameters_str = JSON.stringify(args);
-		
+
 			Foxtrick.util.api.retrieve(doc, args, { cache_lifetime:'default', caller_name:this.MODULE_NAME },
 			function(xml) {
 				if (xml !== null) {
@@ -245,7 +245,7 @@ var FoxtrickMyMonitor = {
 					Foxtrick.util.api.setCacheLifetime(doc, parameters_str, expire.getTime()+105*60*1000);
 				}
 			});
-			
+
 		};
 		Foxtrick.map(teams, addTeam);
 	},
@@ -265,7 +265,7 @@ var FoxtrickMyMonitor = {
 		}
 		FoxtrickMyMonitor.setSavedTeams(neworder);
 	},
-	
+
 	move_down: function (ev) {
 		var doc = ev.target.ownerDocument;
 		var teamid = ev.target.getAttribute('teamid');
@@ -295,11 +295,11 @@ var FoxtrickMyMonitor = {
 		var existing = Foxtrick.filter(teams, function(n) {
 			return n.id == teamIdContainer.id && n.type == type;
 		});
-		
+
 		if ( type == 'senior' ) {
 			var logo = doc.getElementsByClassName('teamLogo')[0];// team logo
-			if (logo) { 
-				var logo_link = logo.getElementsByTagName('a')[0];  // better quality. original size 
+			if (logo) {
+				var logo_link = logo.getElementsByTagName('a')[0];  // better quality. original size
 				if (logo_link) {
 					teamIdContainer.logo = logo_link.href;
 					if (existing[0]) existing[0].logo = logo_link.href; //update always
@@ -311,8 +311,8 @@ var FoxtrickMyMonitor = {
 				teamIdContainer.country = country;
 				if (existing[0]) existing[0].country = country; //update if not existing from previous builds
 		}
-		
-		
+
+
 		var container = doc.createElement("div");
 		container.id = "ft-monitor-sidebar-box-container";
 		// link to add team
@@ -345,7 +345,7 @@ var FoxtrickMyMonitor = {
 		// select box containing teams in the monitor
 		var fillSelect = function() {
 			select.textContent = ""; // clear first
-			Foxtrick.listen(select, "change", 
+			Foxtrick.listen(select, "change",
 				function() {
 					if (select.value)
 						doc.location.href = select.value;

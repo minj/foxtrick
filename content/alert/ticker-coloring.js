@@ -11,7 +11,7 @@ var FoxtrickTickerColoring = {
 	CSS : Foxtrick.ResourcePath + "resources/css/ticker-coloring.css",
 
 	run : function(doc) {
-		// type of change to listen to. opera doesn't support DOMSubtreeModified 
+		// type of change to listen to. opera doesn't support DOMSubtreeModified
 		if (typeof(opera) === "object") var DOMMutationEventType = 'DOMNodeInserted';
 		else var DOMMutationEventType = 'DOMSubtreeModified';
 

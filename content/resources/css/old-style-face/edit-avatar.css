@@ -15,13 +15,13 @@ input#ctl00_ctl00_CPContent_CPMain_btnGenerate + div + table > tbody > tr:first-
 }
 
 /* hide unavailable hair color and face tone */
-#ctl00_ctl00_CPContent_CPMain_repHairColors_ctl03_imgHairColor, 
-#ctl00_ctl00_CPContent_CPMain_repHairColors_ctl04_imgHairColor, 
-#ctl00_ctl00_CPContent_CPMain_repHairColors_ctl07_imgHairColor, 
-#ctl00_ctl00_CPContent_CPMain_repHairColors_ctl09_imgHairColor, 
-#ctl00_ctl00_CPContent_CPMain_repHairColors_ctl10_imgHairColor, 
-#ctl00_ctl00_CPContent_CPMain_repFaceTones_ctl02_imgFaceTone, 
-#ctl00_ctl00_CPContent_CPMain_repFaceTones_ctl09_imgFaceTone, 
+#ctl00_ctl00_CPContent_CPMain_repHairColors_ctl03_imgHairColor,
+#ctl00_ctl00_CPContent_CPMain_repHairColors_ctl04_imgHairColor,
+#ctl00_ctl00_CPContent_CPMain_repHairColors_ctl07_imgHairColor,
+#ctl00_ctl00_CPContent_CPMain_repHairColors_ctl09_imgHairColor,
+#ctl00_ctl00_CPContent_CPMain_repHairColors_ctl10_imgHairColor,
+#ctl00_ctl00_CPContent_CPMain_repFaceTones_ctl02_imgFaceTone,
+#ctl00_ctl00_CPContent_CPMain_repFaceTones_ctl09_imgFaceTone,
 #ctl00_ctl00_CPContent_CPMain_repFaceTones_ctl11_imgFaceTone
 {
 	display: none;

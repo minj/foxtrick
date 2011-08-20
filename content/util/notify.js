@@ -73,7 +73,7 @@ Foxtrick.util.notify.create = function(msg, url) {
 		showGrowlNotification({ name: "www.hattrick.org", status: msg, img_url: img });
 	};
 
-	
+
 	if (Foxtrick.BuildFor == "Gecko") {
 		createGecko();
 	}

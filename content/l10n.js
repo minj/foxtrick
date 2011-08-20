@@ -148,10 +148,10 @@ var Foxtrickl10n = {
 		}
 		catch (e) {
 			Foxtrick.log(e);
-		} 
+		}
 		return shortSpec ? shortSpec : direct();
 	},
-	
+
 	getShortSpecialityFromEnglish: function(spec) {
 		var direct = function() {
 			return spec.substr(0, 2);
@@ -164,7 +164,7 @@ var Foxtrickl10n = {
 		}
 		catch (e) {
 			Foxtrick.log(e);
-		} 
+		}
 		return shortSpec ? shortSpec : direct();
 	}
 };
@@ -182,7 +182,7 @@ if (Foxtrick.BuildFor === "Gecko") {
 		_strings_bundle_screenshots_default:null,
 
 		init : function() {
-			if (Foxtrick.chromeContext()==='background') { 
+			if (Foxtrick.chromeContext()==='background') {
 				// get htlang.xml for each locale
 				for (var i in Foxtrickl10n.locales) {
 					var locale = Foxtrickl10n.locales[i];
@@ -190,12 +190,12 @@ if (Foxtrick.BuildFor === "Gecko") {
 					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXml(url);
 				}
 			}
-			
+
 			this._strings_bundle_default =
 				Components.classes["@mozilla.org/intl/stringbundle;1"]
 				.getService(Components.interfaces.nsIStringBundleService)
 				.createBundle("chrome://foxtrick/content/foxtrick.properties");
-			
+
 			this.setUserLocaleGecko(FoxtrickPrefs.getString("htLanguage"));
 
 			this._strings_bundle_screenshots_default =
@@ -302,7 +302,7 @@ if (Foxtrick.BuildFor === "Sandboxed") {
 		properties : null,
 		screenshots_default : null,
 		screenshots : null,
-	
+
 		init : function() {
 			if (Foxtrick.chromeContext() == "background") {
 				// get htlang.xml for each locale
@@ -311,26 +311,26 @@ if (Foxtrick.BuildFor === "Sandboxed") {
 					var url = Foxtrick.InternalPath + "locale/" + locale + "/htlang.xml";
 					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXml(url);
 				}
-				
+
 				this.properties_default = Foxtrick.load(Foxtrick.InternalPath+"foxtrick.properties");
 				this.screenshots_default = Foxtrick.load(Foxtrick.InternalPath+"foxtrick.screenshots");
-				
+
 				var localecode = FoxtrickPrefs.getString("htLanguage");
 				Foxtrick.log('localecode ',localecode);
-				try { 
+				try {
 					this.properties = Foxtrick.load(Foxtrick.ResourcePath+"locale/" + localecode + "/foxtrick.properties");
-					if (!this.properties) this.properties =  this.properties_default; 
-				} catch(e) { 
-					this.properties = this.properties_default; 
+					if (!this.properties) this.properties =  this.properties_default;
+				} catch(e) {
+					this.properties = this.properties_default;
 					Foxtrick.log('use default properties');
-				
+
 				}
-				try { 
+				try {
 					this.screenshots = Foxtrick.load(Foxtrick.ResourcePath+"locale/"+localecode+"/foxtrick.screenshots");
-					if (!this.screenshots) this.screenshots = this.screenshots_default; 
-				} catch(e) { 
+					if (!this.screenshots) this.screenshots = this.screenshots_default;
+				} catch(e) {
 					Foxtrick.log('use default screenshots');
-					this.screenshots = this.screenshots_default; 
+					this.screenshots = this.screenshots_default;
 				}
 			}
 			else if (Foxtrick.chromeContext() == "content") {
@@ -382,7 +382,7 @@ if (Foxtrick.BuildFor === "Sandboxed") {
 			}
 		},
 	};
-	
+
 	for (i in Foxtrickl10nChrome)
 		Foxtrickl10n[i] = Foxtrickl10nChrome[i];
 }

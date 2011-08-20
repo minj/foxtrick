@@ -6,7 +6,7 @@ BUILD_DIR = build
 SAFARI_BUILD_DIR = build/$(SAFARI_TARGET)
 
 # cf safari: xar needs to have sign capabilities ie xar --help shows --sign as option.
-# see http://code.google.com/p/xar/issues/detail?id=76 for an howto 
+# see http://code.google.com/p/xar/issues/detail?id=76 for an howto
 ZIP = zip -q
 XAR = xar
 
@@ -59,7 +59,7 @@ CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html \
 	background.js \
 	loader-chrome.js
 CONTENT_FILES_OPERA = $(CONTENT_FILES) background.js \
-	loader-chrome.js 
+	loader-chrome.js
 CONTENT_FILES_SAFARI = $(CONTENT_FILES) background.html \
 	preferences.html \
 	background.js \
@@ -146,19 +146,19 @@ opera:
 	# copy root files
 	cp -r $(ROOT_FILES_OPERA) $(ROOT_FOLDERS_OPERA) $(BUILD_DIR)
 	# content/
-	mkdir $(BUILD_DIR)/includes 
+	mkdir $(BUILD_DIR)/includes
 	cd content/; \
 	cp -r $(subst /,/.,$(SCRIPT_FOLDERS)) $(CONTENT_FILES_OPERA) \
 		../$(BUILD_DIR)/includes
-	mkdir $(BUILD_DIR)/content 
+	mkdir $(BUILD_DIR)/content
 	cd content/; \
 	cp -r $(RESOURCE_FOLDERS) \
 		../$(BUILD_DIR)/content
 	## change files to opera naming
 	mv $(BUILD_DIR)/preferences.html $(BUILD_DIR)/options.html
-	mv $(BUILD_DIR)/includes/env.js $(BUILD_DIR)/includes/aa00_env.js 
-	mv $(BUILD_DIR)/includes/module.js $(BUILD_DIR)/includes/aa10_module.js 
-	mv $(BUILD_DIR)/includes/loader-chrome.js $(BUILD_DIR)/includes/zz99_loader-chrome.js 
+	mv $(BUILD_DIR)/includes/env.js $(BUILD_DIR)/includes/aa00_env.js
+	mv $(BUILD_DIR)/includes/module.js $(BUILD_DIR)/includes/aa10_module.js
+	mv $(BUILD_DIR)/includes/loader-chrome.js $(BUILD_DIR)/includes/zz99_loader-chrome.js
 	cd $(BUILD_DIR); sed -i -r 's|(href=\"\./)|href=\"./content/|' background.html options.html
 	cd $(BUILD_DIR); sed -i -r 's|(src=\"\./[a-zA-Z0-9_-]+/)|src=\"./|' background.html options.html
 	cd $(BUILD_DIR); sed -i -r 's|(src=\"\./)|src=\"./includes/|' background.html options.html

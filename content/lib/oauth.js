@@ -72,7 +72,7 @@
  */
 
 /* Change Log
- * 
+ *
  * 2011-04-22 Ryan Li <ryan@ryanium.com>
  *   * Add rename OAuth to Foxtrick.OAuth to prevent namespace conflicts
  *     in Firefox.

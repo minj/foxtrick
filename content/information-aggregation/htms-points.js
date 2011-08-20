@@ -34,7 +34,7 @@ var FoxtrickHTMSPoints = {
 			if (skills === null) {
 				return; // no skills available, goodbye
 			}
-				
+
 			var skillList='&anni='+age.years+'&giorni='+age.days;
 			var skillArray=new Array();
 			skillArray['years']=age.years;
@@ -171,7 +171,7 @@ var FoxtrickHTMSPoints = {
 			}
 		}
 	},
-	
+
 	calc : function(skills) {
 		var pointsAge=new Array();
 		pointsAge[17]=10;
@@ -203,7 +203,7 @@ var FoxtrickHTMSPoints = {
 		pointsAge[43]=6.24;
 		pointsAge[44]=6.04;
 		pointsAge[45]=5.83;
-		
+
 		//keeper, defending, playmaking, winger, passing, scoring, setPieces
 		var pointsSkills=new Array();
 		pointsSkills[0]=[0, 0, 0, 0, 0, 0, 0];
@@ -227,7 +227,7 @@ var FoxtrickHTMSPoints = {
 		pointsSkills[18]=[638, 1157, 984, 683, 908, 1025, 210];
 		pointsSkills[19]=[747, 1356, 1153, 800, 1063, 1200, 246];
 		pointsSkills[20]=[872, 1583, 1346, 934, 1242, 1402, 287];
-	
+
 		var actValue=pointsSkills[skills['keeper']][0];
 		actValue+=pointsSkills[skills['defending']][1];
 		actValue+=pointsSkills[skills['playmaking']][2];
@@ -235,7 +235,7 @@ var FoxtrickHTMSPoints = {
 		actValue+=pointsSkills[skills['passing']][4];
 		actValue+=pointsSkills[skills['scoring']][5];
 		actValue+=pointsSkills[skills['setPieces']][6];
-		
+
 		//now calculating the potential at 28yo
 		var points_diff=0;
 		if (skills['years']<28) {
@@ -258,7 +258,7 @@ var FoxtrickHTMSPoints = {
 			points_diff=-points_diff;
 		}
 		var potValue=actValue+points_diff;
-		
+
 		return (new Array(actValue, Math.round(potValue)));
 	}
 };

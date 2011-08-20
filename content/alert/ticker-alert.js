@@ -55,7 +55,7 @@ var FoxtrickTickerAlert = {
 			sound.setAttribute("pref", "module.TickerAlert." + type + ".sound");
 			sound.setAttribute("id", "module.TickerAlert." + type + ".sound");
 			soundc.appendChild(sound);
-			
+
 		}
 
 		return table;
@@ -74,7 +74,7 @@ var FoxtrickTickerAlert = {
 	},
 
 	run : function(doc) {
-		// type of change to listen to. opera doesn't support DOMSubtreeModified 
+		// type of change to listen to. opera doesn't support DOMSubtreeModified
 		if (typeof(opera) === "object") var DOMMutationEventType = 'DOMNodeInserted';
 		else var DOMMutationEventType = 'DOMSubtreeModified';
 
@@ -102,7 +102,7 @@ var FoxtrickTickerAlert = {
 		var tickerCheck = function(ev) {
 			if (ev.target) var doc = ev.target.ownerDocument;
 			else var doc = ev; // called directly
-			
+
 			// prevent from multiple tickerCheck() instances running at the
 			// same time
 			ticker.removeEventListener(DOMMutationEventType, tickerCheck, false);

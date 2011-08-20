@@ -65,7 +65,7 @@ var FoxtrickHighlightCupwins = {
 				}
 			}
 			catch (e) {
-				// cannot parse teams 
+				// cannot parse teams
 				Foxtrick.log("Cannot parse teams: " + matchlink.innerHTML + "");
 			}
 		}

@@ -11,7 +11,7 @@ var FoxtrickSmallerPages = {
 	PAGES : ["all"],
 	OPTIONS : new Array("ReduceBid"),
 	NICE : 5, // after FoxtrickTransferDeadline and probably also after all other player detail adjustment
-	
+
 	TABLE_ID : "foxtrick-smaller-pages-table",
 
 	run : function(doc) {

@@ -214,7 +214,7 @@ var FoxtrickCopyYouth = {
 				linkContainer.innerHTML = Foxtrickl10n.getString("CopyYouth.goto").replace(/%s/,
 					'<a href="' + url + '" target="_blank">http://www.ht-ys.org</a>');
 				container.appendChild(linkContainer);
-				
+
 				var note = Foxtrick.util.note.add(doc, insertBefore, "ft-youthfixtures-source-copy-note", container, null, true);
 			}
 			catch (e) {

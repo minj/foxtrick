@@ -23,7 +23,7 @@ var FoxtrickLocalTime = {
 			localTime.textContent = Foxtrick.util.time.buildDate(null, true, true);
 		};
 		time.addEventListener('DOMCharacterDataModified',updateTime, false);
-		
+
 		localTime.title = Foxtrickl10n.getString("LocalTime.local.title");
 		time.parentNode.insertBefore(localTime, time);
 
@@ -51,7 +51,7 @@ var FoxtrickLocalTime = {
 	change : function(doc) {
 		FoxtrickLocalTime.updatePage(doc);
 	},
-	
+
 	updatePage : function(doc) {
 		// updates all dates within the page
 		if (!FoxtrickPrefs.getBool("module.LocalTime.local"))

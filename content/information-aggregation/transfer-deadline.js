@@ -20,7 +20,7 @@ FoxtrickTransferDeadline = {
 			if (Foxtrick.isPage("transferSearchResult", doc))
 				FoxtrickTransferDeadline.element = 'div'; // display: block
 		}
-		
+
 		if (Foxtrick.isPage("transferSearchResult", doc))
 			this.runTransferResult(doc);
 		else if (Foxtrick.isPage("playerdetail", doc))

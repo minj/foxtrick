@@ -110,7 +110,7 @@ var FoxtrickForumPreview = {
 				var msg_type = 7;
 			}
 		}
-		
+
 		//button_ok.setAttribute( "tabindex",  index);
 		if (button_ok && Foxtrickl10n.isStringAvailableLocal("forumPreview.send")) button_ok.setAttribute( "value",  Foxtrickl10n.getString( 'forumPreview.send'));
 		//if (button_cancel) button_cancel.setAttribute( "tabindex",  "12" );
@@ -147,7 +147,7 @@ var FoxtrickForumPreview = {
 		preview_message.id = "message_preview";
 		preview_message.setAttribute( "class", "message" );
 		preview_div.appendChild( preview_message );
-		
+
 		var divs=doc.getElementById('mainBody').getElementsByTagName('div');
 		var i=0,div;
 		while (div=divs[i++])

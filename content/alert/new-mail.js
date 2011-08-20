@@ -16,7 +16,7 @@ var FoxtrickNewMail = {
 		Foxtrick.sessionGet( {"mailCount":0, "forumCount":0}, function(oldCount) {
 			var oldMailCount = oldCount.mailCount;
 			var oldForumCount = oldCount.forumCount;
-			
+
 			var menu = doc.getElementById("menu");
 			// mail count within My Hattrick link
 			var myHt = menu.getElementsByTagName("a")[0];

@@ -44,7 +44,7 @@ Foxtrick.filePickerForText = function(doc, callback, data) {
 }
 
 
-		
+
 // Play the sound with URL given as parameter.
 // Gecko only supports WAV format at the moment.
 // May throw an error if unable to play the sound.
@@ -70,7 +70,7 @@ Foxtrick.playSound = function(url, doc) {
 			music.appendChild(source);
 			doc.getElementsByTagName('body')[0].appendChild(music);
 		}
-	} catch(e){	
+	} catch(e){
 		Foxtrick.log("Cannot play sound: ", url);
 		Foxtrick.log(e);
 	}
@@ -142,7 +142,7 @@ Foxtrick.copyStringToClipboard = function (string) {
 		if (Foxtrick.chromeContext()==='content') {
 			sandboxed.extension.sendRequest({req : "clipboard", content : string});
 		}
-		else { 
+		else {
 			var gClipboardHelper = Components
 				.classes["@mozilla.org/widget/clipboardhelper;1"]
 				.getService(Components.interfaces.nsIClipboardHelper);
@@ -157,7 +157,7 @@ Foxtrick.copyStringToClipboard = function (string) {
 	}
 }
 
-Foxtrick.newTab = function(url) { 
+Foxtrick.newTab = function(url) {
 	if (Foxtrick.chromeContext()==='content') {
 		sandboxed.extension.sendRequest({
 			req : "newTab",
@@ -170,7 +170,7 @@ Foxtrick.newTab = function(url) {
 }
 
 Foxtrick.load = function(url, callback, crossSite) {
-	try { 
+	try {
 		if ( Foxtrick.chromeContext()==='content' && callback ) {
 			// background script for xml requests
 			sandboxed.extension.sendRequest({req : "xml", url : url, crossSite: crossSite},
@@ -299,7 +299,7 @@ Foxtrick.xml_single_evaluate = function (xmldoc, path, attribute) {
 }
 
 Foxtrick.version = function() {
-	//FoxtrickPrefs.deleteValue("version"); what is that for, is never set. 
+	//FoxtrickPrefs.deleteValue("version"); what is that for, is never set.
 	return FoxtrickPrefs.getString("version");
 };
 
@@ -336,10 +336,10 @@ Foxtrick.isStage = function(doc) {
 	return (Foxtrick.getHref(doc).search(stage_regexp) > -1);
 }
 
-Foxtrick.isLoginPage = function(doc) { 
+Foxtrick.isLoginPage = function(doc) {
 	return (doc.getElementById('teamLinks').getElementsByTagName('a').length===0);
 }
-		
+
 Foxtrick.getPanel = function(doc) {
 	try {
 		if (doc.getElementsByClassName("hattrick").length > 0)
@@ -389,7 +389,7 @@ Foxtrick.insertAtCursor = function(textarea, text) {
 
 Foxtrick.convertImageUrlToData = function(cssTextCollection, callback) {
 	var pending = 0;
-		
+
 	// send back when all images are converted
 	var resolve = function() {
 		if (--pending <= 0) {
@@ -415,13 +415,13 @@ Foxtrick.convertImageUrlToData = function(cssTextCollection, callback) {
 		};
 		return image.src = url;
 	};
-	
+
 	if (cssTextCollection) {
 		var fullUrlRegExp = new RegExp("\\(\'?\"?chrome://foxtrick/content/([^\\)]+)\'?\"?\\)", "gi");
 		var urls = cssTextCollection.match(fullUrlRegExp);
 		var resourcePathRegExp = RegExp("chrome://foxtrick/content/", "ig");
 		cssTextCollection = cssTextCollection.replace(resourcePathRegExp, Foxtrick.InternalPath);
-		
+
 		if (urls) {
 			// first check dataurl cache
 			for (var i = 0; i<urls.length; ++i) {
@@ -447,9 +447,9 @@ Foxtrick.convertImageUrlToData = function(cssTextCollection, callback) {
 
 Foxtrick.replaceExtensionDirectory = function(cssTextCollection, callback, id) {
 	var resourcePathRegExp = RegExp("chrome://foxtrick/content/", "ig");
-	
+
 	if (typeof(opera) === "object") {
-		if (cssTextCollection.search(resourcePathRegExp)!=-1 ) 
+		if (cssTextCollection.search(resourcePathRegExp)!=-1 )
 			sandboxed.extension.sendRequest({ req : "convertImages", cssText: cssTextCollection, type: id},
 				function (data) { callback(data.cssText);
 				});
@@ -604,7 +604,7 @@ Foxtrick.load_css_permanent = function(css) {
 			// needs to be uncompressed to have the right csss precedence
 			css = 'data:text/css;charset=US-ASCII,'+encodeURIComponent(css);
 		}
-		
+
 		try {
 			var sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
 			var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
@@ -660,7 +660,7 @@ Foxtrick.getCssTextFromFile = function (cssUrl) {
 	// @callback_param cssText - string of CSS content
 	var css_text = "";
 	if (cssUrl && cssUrl.search(/{/) == -1) { // has no class
-		try { 
+		try {
 			// a resource file, get css file content
 			css_text = Foxtrick.load(cssUrl);
 		} catch(e) { Foxtrick.log('get css: ', cssUrl , ' ', e) }
@@ -675,11 +675,11 @@ Foxtrick.getCssTextFromFile = function (cssUrl) {
 		var closing_bracket = css_text.lastIndexOf("}");
 		css_text = css_text.substr(0, closing_bracket) + css_text.substr(closing_bracket+1);
 	}
-	return css_text; 
+	return css_text;
 };
 
 // gets all css from modules.CSS settings
-Foxtrick.getCssFileArrayToString = function(cssUrls) { 
+Foxtrick.getCssFileArrayToString = function(cssUrls) {
 	var cssTextCollection='';
 	for (var i = 0; i < cssUrls.length; ++i) {
 		cssTextCollection += Foxtrick.getCssTextFromFile(cssUrls[i]);
@@ -688,12 +688,12 @@ Foxtrick.getCssFileArrayToString = function(cssUrls) {
 };
 
 	// gets all css from modules.CSS settings
-Foxtrick.getCssTextCollection = function() { 
+Foxtrick.getCssTextCollection = function() {
 	// fennec can/does load css direct from content
-	if (typeof(fennec)==='object') 
+	if (typeof(fennec)==='object')
 		return '';
 	Foxtrick.collect_module_css();
-	return Foxtrick.getCssFileArrayToString(Foxtrick.cssFiles); 
+	return Foxtrick.getCssFileArrayToString(Foxtrick.cssFiles);
 };
 
 
@@ -703,7 +703,7 @@ Foxtrick.getCssTextCollection = function() {
 Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 	try{
 	  var host = url.match(/(http:\/\/[a-zA-Z0-9_.-]+)/)[1];
-	  
+
 	  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
 						 .getService(Components.interfaces.nsIWindowMediator);
 	  var browserEnumerator = wm.getEnumerator("navigator:browser");
@@ -719,7 +719,7 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 		for(var index=0; index<numTabs; index++) {
 		  var currentBrowser = tabbrowser.getBrowserAtIndex(index);
 		  Foxtrick.log('tab: ',currentBrowser.currentURI.spec,' is searched url: ',host,' = '+(currentBrowser.currentURI.spec.search(host)!=-1));
-		  if (currentBrowser.currentURI.spec.search(host)!=-1) 
+		  if (currentBrowser.currentURI.spec.search(host)!=-1)
 			{
 			// The URL is already opened. Select this tab.
 			tabbrowser.selectedTab = tabbrowser.mTabs[index];
@@ -839,7 +839,7 @@ Foxtrick.log = function() {
 	concated += "\n";
 	Foxtrick.dumpCache += concated;
 	if (Foxtrick.BuildFor === "Gecko") {
-		if (Foxtrick.chromeContext() === "content") 
+		if (Foxtrick.chromeContext() === "content")
 			sandboxed.extension.sendRequest({ req : "log", log : concated });
 		else
 			dump("FT: " + concated);

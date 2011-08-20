@@ -320,7 +320,7 @@ var FoxtrickForumYouthIcons = {
 
 			var head = toolbar.parentNode;
 			head.insertBefore( youthbar, toolbar.nextSibling );
-		}		
+		}
 	},
 
 	change : function(doc) {
@@ -507,7 +507,7 @@ var FoxtrickForumYouthIcons = {
 					ta.value += text;
 				}
 			}
-			
+
 			// debug
 			if (openingTag == 'debug'){
 				if (Foxtrick.BuildFor === "Sandboxed") {
@@ -526,7 +526,7 @@ var FoxtrickForumYouthIcons = {
 			}
 			// settings
 			if (openingTag == 'settings'){
-				var userPrefsText =  FoxtrickPrefs.SavePrefs(true, false, true,'%key:%value'); 
+				var userPrefsText =  FoxtrickPrefs.SavePrefs(true, false, true,'%key:%value');
 				var userPrefsTextArray = userPrefsText.split('\n');
 				openingTag = '';
 				for (var i=0; i<userPrefsTextArray.length; ++i)

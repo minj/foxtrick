@@ -17,14 +17,14 @@ var FoxtrickForumThreadAutoIgnore = {
 
 	run : function(doc) {
 		this.checkthreads(doc);
-		Foxtrick.listen(doc.getElementById('ctl00_ctl00_CPContent_ucLeftMenu_pnlLeftMenuScrollContent'),'DOMSubtreeModified',FoxtrickForumThreadAutoIgnore.myforum_change,true); 
+		Foxtrick.listen(doc.getElementById('ctl00_ctl00_CPContent_ucLeftMenu_pnlLeftMenuScrollContent'),'DOMSubtreeModified',FoxtrickForumThreadAutoIgnore.myforum_change,true);
 	},
 
-	
+
 	deleting_thread_id: -1, // stores  thread is is currently trying to delete.
-	
-	checkthreads : function( doc ) { 
-		
+
+	checkthreads : function( doc ) {
+
 		if (!FoxtrickPrefs.isModuleOptionEnabled("ForumThreadAutoIgnore",'Tags')) return;
 		var tags_string = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "Tags_text");
 		if (!tags_string) return;
@@ -80,7 +80,7 @@ var FoxtrickForumThreadAutoIgnore = {
 							// check if finished deleting the last one. if ids match, the last delet order isn't finished. come back with next onchange
 							if (thread_id == FoxtrickForumThreadAutoIgnore.deleting_thread_id) return;
 							FoxtrickForumThreadAutoIgnore.deleting_thread_id = thread_id;
-							
+
 							// ignore thread using ht's javascript link
 							var func = ignore.getAttribute('onclick');
 							doc.location.href = func;
@@ -95,7 +95,7 @@ var FoxtrickForumThreadAutoIgnore = {
 		}
 	},
 
-	myforum_change : function(ev) { 
+	myforum_change : function(ev) {
 		FoxtrickForumThreadAutoIgnore.checkthreads(ev.target.ownerDocument);
 	}
 };

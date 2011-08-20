@@ -71,7 +71,7 @@
 		<level text="katastrofal" value="1" />
 		<level text="obefintlig" value="0" />
 	</levels>
-   
+
        <agreeability>
         <level text="älskad lagkamrat" value="5" />
         <level text="populär kille" value="4" />

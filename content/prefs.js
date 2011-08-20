@@ -32,14 +32,14 @@ var FoxtrickPrefs = {
 			throw "Type error: value is " + typeof(value);
 	},
 
-	
+
 	// -----------------------  list function ----------------------------
-	
+
 	/* list are sets of numbered settings which contain titles
 	/* and the values corresponding to that title
 	/* eg templatelist.0 = 'MyTemplate'
 	/* template.MyTemplate = 'Hello and Goodbye'
-	
+
 
 	/* Add a new preference with value given as argument under a
 	 * specified branch.
@@ -186,9 +186,9 @@ var FoxtrickPrefs = {
 					Foxtrick.log(e);
 					return false;
 				}
-			} 
+			}
 			else {
-				sandboxed.extension.sendRequest({ req : "clearPrefs" })		
+				sandboxed.extension.sendRequest({ req : "clearPrefs" })
 			}
 		}
 		else if (Foxtrick.BuildFor == "Sandboxed") {
@@ -200,9 +200,9 @@ var FoxtrickPrefs = {
 	},
 
 	disableAllModules : function() {
-		try { 
+		try {
 			var array = FoxtrickPrefs.getAllKeysOfBranch('module');
-			
+
 			for (var i = 0; i < array.length; i++) {
 				if (array[i].search(/enabled$/) != -1) {
 					FoxtrickPrefs.setBool(array[i], false);
@@ -226,7 +226,7 @@ var FoxtrickPrefs = {
 			array.sort();
 			for (var i = 0; i < array.length; i++) {
 				var key = array[i]; if(i>0 && key==array[i-1]) continue; // some appear twice!?
-				if (!userSettings || FoxtrickPrefs.prefHasUserValue(key)) 
+				if (!userSettings || FoxtrickPrefs.prefHasUserValue(key))
 				if ((FoxtrickPrefs.isPrefSetting(key) && savePrefs)
 					|| (!FoxtrickPrefs.isPrefSetting(key) && saveNotes)) {
 					var item = format.replace(/%key/, key);
@@ -301,14 +301,14 @@ if (Foxtrick.BuildFor === "Gecko") {
 
 	var FoxtrickPrefsGecko = {
 		_prefs_gecko : null,
-		
+
 		init : function() {
 			FoxtrickPrefs._prefs_gecko = Components
 				.classes["@mozilla.org/preferences-service;1"]
 				.getService(Components.interfaces.nsIPrefService)
 				.getBranch("extensions.foxtrick.prefs.");
 		},
-		
+
 		getString : function(key) {
 			try {
 				return FoxtrickPrefs._prefs_gecko.getComplexValue(encodeURI(key),
@@ -321,7 +321,7 @@ if (Foxtrick.BuildFor === "Gecko") {
 		setString : function(key, value) {
 			if (Foxtrick.chromeContext()==='content')
 				sandboxed.extension.sendRequest({ req : "setValue", type:'string', key: key, value: value });
-			else { 
+			else {
 				var str = Components
 					.classes["@mozilla.org/supports-string;1"]
 					.createInstance(Components.interfaces.nsISupportsString);
@@ -342,7 +342,7 @@ if (Foxtrick.BuildFor === "Gecko") {
 		setInt : function(key, value) {
 			if (Foxtrick.chromeContext()==='content')
 				sandboxed.extension.sendRequest({ req : "setValue", type:'int', key: key, value: value });
-			else 
+			else
 				FoxtrickPrefs._prefs_gecko.setIntPref(encodeURI(key), value);
 		},
 
@@ -357,7 +357,7 @@ if (Foxtrick.BuildFor === "Gecko") {
 		setBool : function(key, value) {
 			if (Foxtrick.chromeContext()==='content')
 				sandboxed.extension.sendRequest({ req : "setValue", type:'bool', key: key, value: value });
-			else 
+			else
 				FoxtrickPrefs._prefs_gecko.setBoolPref(encodeURI(key), value);
 		},
 
@@ -410,7 +410,7 @@ if (Foxtrick.BuildFor === "Sandboxed") {
 	var FoxtrickPrefsChrome = {
 		_prefs_chrome_user : {}, 	// contains mapped copies of user settings localStore.
 		_prefs_chrome_default : {},	// defaults from foxtrick.prefs
-		
+
 		getString : function(key) {
 			var value = this.getValue(key);
 			if (typeof(value) == "string")
@@ -445,7 +445,7 @@ if (Foxtrick.BuildFor === "Sandboxed") {
 		},
 
 		getValue : function(key) {
-			try { 
+			try {
 				if (FoxtrickPrefs._prefs_chrome_user[key] !== undefined)
 					return FoxtrickPrefs._prefs_chrome_user[key];
 				else if (FoxtrickPrefs._prefs_chrome_default[key] !== undefined)
@@ -457,7 +457,7 @@ if (Foxtrick.BuildFor === "Sandboxed") {
 				return null;
 			}
 		},
-		
+
 		prefHasUserValue : function(key) {
 			return (typeof(FoxtrickPrefs._prefs_chrome_user[key])!='undefined');
 		},
@@ -508,7 +508,7 @@ if (Foxtrick.BuildFor === "Sandboxed") {
 					}
 
 					FoxtrickPrefs._prefs_chrome_default = {};
-					
+
 					var parsePrefsFile = function (url) {
 						var prefText = Foxtrick.load(Foxtrick.ResourcePath+url)
 						var prefList = prefText.split(/[\n\r]+/);
@@ -530,7 +530,7 @@ if (Foxtrick.BuildFor === "Sandboxed") {
 							}
 						}
 					};
-					
+
 					parsePrefsFile("../defaults/preferences/foxtrick.js");
 					if (typeof(opera) === "object")
 						parsePrefsFile("../defaults/preferences/foxtrick.opera");
@@ -538,7 +538,7 @@ if (Foxtrick.BuildFor === "Sandboxed") {
 						parsePrefsFile("../defaults/preferences/foxtrick.chrome");
 					else if (typeof(safari) === "object")
 						parsePrefsFile("../defaults/preferences/foxtrick.safari");
-					
+
 				}
 				catch (e) {
 					Foxtrick.log(e);
@@ -568,14 +568,14 @@ if (Foxtrick.BuildFor === "Sandboxed") {
 			FoxtrickPrefsChrome[i] = FoxtrickPrefsChromeBackground[i];
 	}
 
-	
+
 	if (Foxtrick.chromeContext() == "content") {
 		// set and delete for contents script side
 		var FoxtrickPrefsChromeContent = {
 			init : function() {
 				// done in loader_chrome
 			},
-			
+
 			setValue : function(key, value) {
 				try {
 					if (FoxtrickPrefs._prefs_chrome_default[key] === value)
@@ -583,7 +583,7 @@ if (Foxtrick.BuildFor === "Sandboxed") {
 						FoxtrickPrefs.deleteValue(key);
 					else {
 						// not default, set it
-						FoxtrickPrefs._prefs_chrome_user[key] = value; 
+						FoxtrickPrefs._prefs_chrome_user[key] = value;
 						sandboxed.extension.sendRequest({ req : "setValue", key : key, value : value });
 					}
 				}

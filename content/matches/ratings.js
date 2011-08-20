@@ -20,7 +20,7 @@ var FoxtrickRatings = {
 		var ratingsArray = Foxtrick.filter(FoxtrickRatings.OPTIONS, function(x) {
 			return x != "HatStatsSeparated";
 		});
-		
+
 		var isprematch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch")!=null);
 		if (isprematch) return;
 
@@ -42,7 +42,7 @@ var FoxtrickRatings = {
 		var rattack=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[5].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[5].cells[2]));
 		var cattack=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[6].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[6].cells[2]));
 		var lattack=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[7].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[7].cells[2]));
-		
+
 		var tactics;
 		var tacticsLevel;
 		if (ratingstable.rows.length > 12) {
@@ -76,7 +76,7 @@ var FoxtrickRatings = {
 
 			for (var i=0;i<2;i++) {
 				var cell = row.insertCell(i+1);
-				
+
 				this.insertRatingsDet(cell, this.ratingDefs[selectedRating], "defence",
 						 Foxtrickl10n.getString( "foxtrick.matchdetail.defence" ), defenceLevel[i]);
 				this.insertRatingsDet(cell, this.ratingDefs[selectedRating], "special",
@@ -91,7 +91,7 @@ var FoxtrickRatings = {
 						 Foxtrickl10n.getString( "foxtrick.matchdetail.attack" ),  attackLevel[i]);
 				this.insertRatingsDet(cell, this.ratingDefs[selectedRating], "special",
 						 Foxtrickl10n.getString( "foxtrick.matchdetail.attack" ),  rattack[i], cattack[i], lattack[i]);
-				
+
 				try {
 					if (typeof(this.ratingDefs[selectedRating]["total2"]) == "function") {
 						if (tactics[i] == null) {
@@ -120,10 +120,10 @@ var FoxtrickRatings = {
 				}
 				catch (e) {
 					Foxtrick.dump('ratings.js error in rating print ('+selectedRating+'): '+e+"\n");
-				}				
+				}
 			}
 		}
-		
+
 		//Finally adding HatStats per rating
 		if (FoxtrickPrefs.isModuleOptionEnabled("Ratings", "HatStatsSeparated")) {
 			for (var j=1;j<3;j++) {

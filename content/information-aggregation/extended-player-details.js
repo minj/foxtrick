@@ -22,7 +22,7 @@ FoxtrickExtendedPlayerDetails = {
 
 		var div = doc.getElementsByClassName("playerInfo")[0];
 		if (!Foxtrick.util.id.findTeamId(div.getElementsByTagName('table')[0])) return; // player has no team
-		
+
 		var joined_elm = div.getElementsByClassName("shy")[0];
 
 		var dateObj = Foxtrick.util.time.getDateFromText(joined_elm.textContent);

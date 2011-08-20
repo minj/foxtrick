@@ -40,7 +40,7 @@ FoxtrickPlayerFilters = {
 						}
 					}
 				}
-		
+
 				var specialities = {};
 				var specialityCount = 0;
 
@@ -76,7 +76,7 @@ FoxtrickPlayerFilters = {
 						}
 					}
 				}
-		
+
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "redCard")
 					|| Foxtrick.Pages.Players.isPropertyInList(playerList, "yellowCard")) {
 					var option = doc.createElement('option');
@@ -111,7 +111,7 @@ FoxtrickPlayerFilters = {
 					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.NotPlayedLatest.label");
 					filterSelect.appendChild(option);
 				}
-		
+
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "speciality")) {
 					for (var speciality in specialities) {
 						var option = doc.createElement("option");
@@ -128,7 +128,7 @@ FoxtrickPlayerFilters = {
 					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.Pictures.label");
 					filterSelect.appendChild(option);
 				}
-		
+
 				filterSelect.setAttribute("scanned", "true");
 			} catch(e) { Foxtrick.log('Player filter click: ',e) }
 		};

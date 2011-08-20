@@ -29,8 +29,8 @@ var FoxtrickLinksCountry = {
 			var englishdiv = doc.getElementById('mainBody').getElementsByTagName('h1')[0].nextSibling;
 			if (englishdiv.textContent.search(/Englisch: (\w+)/)==-1) englishdiv = englishdiv.nextSibling;
 			var english_name = englishdiv.textContent.match(/Englisch: (\w+)/)[1];
-		} catch(e){Foxtrick.log(e)}	
-		
+		} catch(e){Foxtrick.log(e)}
+
 		var links = Foxtrick.LinkCollection.getLinks("countrylink", { "countryid": countryid, "english_name":english_name }, doc, this);
 
 		if (links.length > 0) {

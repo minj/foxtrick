@@ -17,7 +17,7 @@ var FoxtrickLeagueAndMatchChat = {
 		var icon="http://hattrick.org/App_Themes/Simple/logo_green.png";
 		var icon2 = "http://hattrick.org/favicon.ico";
 
-		var nick = Foxtrick.util.module.getByName("Core").getSelfTeamInfo().teamName; 
+		var nick = Foxtrick.util.module.getByName("Core").getSelfTeamInfo().teamName;
 		if (!nick) nick='Guest';
 		if (FoxtrickPrefs.isModuleOptionEnabled("LeagueAndMatchChat",'ChatNick')
 			&& FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "ChatNick_text")

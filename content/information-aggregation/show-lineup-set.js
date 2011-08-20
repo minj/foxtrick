@@ -108,7 +108,7 @@ var FoxtrickShowLineupSet = {
 					&& FoxtrickPrefs.isModuleOptionEnabled("ShowLineupSet", "Winning")) {
 					var goals = Foxtrick.trim(row.cells[1].textContent).split(/\s*-\s*/);
 					var goal_dif = parseInt(goals[0]) - parseInt(goals[1])
-					if (rtl) goal_dif *= -1; // reverted for rtl 
+					if (rtl) goal_dif *= -1; // reverted for rtl
 					if (goal_dif > 0) {
 						var reg = new RegExp(/(.+)\&nbsp;-/);
 						link.innerHTML = link.innerHTML.replace(reg,'<strong>$1</strong>&nbsp;-');

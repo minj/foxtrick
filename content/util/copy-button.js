@@ -28,7 +28,7 @@ Foxtrick.util.copyButton.add = function(doc, text) {
 		// icons: contains a list of icons which is a list of classes
 		// that can occupy the header
 		// so, take first unoccupied by us or any HT icon
-		var icons = 
+		var icons =
 			["ci_first", "ci_second", "ci_third", "ci_fourth", "ci_fifth", "ci_sixth", "ci_seventh",
 			"bookmark", "backIcon", "statsIcon", "alltidIcon", "forumSettings", "forumSearch", "forumStats", "forumSearch2"];
 		var orderClass = icons[ Foxtrick.count(icons, function(n){ return mainBody.getElementsByClassName(n).length > 0; }) ];

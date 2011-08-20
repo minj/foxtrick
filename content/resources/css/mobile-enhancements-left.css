@@ -3,14 +3,14 @@
 [x-theme='simple'] .main, [x-theme='simple'] #sidebar, [x-theme='simple'] #header, [x-theme='simple'] #bottom
 	{display:none !important}
 
-[fennec-theme='forum'][x-theme='simple'] .hattrick, 
-[fennec-theme='forum'][x-theme='simple'] .hattrickNoSupporter, 
-[fennec-theme='forum'][x-theme='simple'] #page 
+[fennec-theme='forum'][x-theme='simple'] .hattrick,
+[fennec-theme='forum'][x-theme='simple'] .hattrickNoSupporter,
+[fennec-theme='forum'][x-theme='simple'] #page
 	{width:225px!important}
 
-[fennec-theme='default'][x-theme='simple'] .hattrick, 
-[fennec-theme='default'][x-theme='simple'] .hattrickNoSupporter, 
-[fennec-theme='default'][x-theme='simple'] #page 
+[fennec-theme='default'][x-theme='simple'] .hattrick,
+[fennec-theme='default'][x-theme='simple'] .hattrickNoSupporter,
+[fennec-theme='default'][x-theme='simple'] #page
 	{width:125px!important}
 }
 

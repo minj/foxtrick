@@ -42,7 +42,7 @@ Foxtrick.formatNumber = function(num, sep) {
 	}
 	if (negative)
 		output = "-" + output;
-	return output + digits; // add digits again 
+	return output + digits; // add digits again
 }
 
 Foxtrick.substr_count = function (haystack, needle, offset, length) {

@@ -15,7 +15,7 @@ var FoxtrickMatchIncome = {
 		var sidebarBoxes = sidebar.getElementsByClassName('sidebarBox');
 		var isSoldSeats = function(n) {
 			// returns whether a sidebarBox is sold seats box
-			var tables = n.getElementsByTagName('table'); 
+			var tables = n.getElementsByTagName('table');
 			if (tables.length != 1)
 				return false;
 			if (tables[0].rows.length != 4)

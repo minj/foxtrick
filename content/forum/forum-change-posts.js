@@ -56,9 +56,9 @@ var FoxtrickForumChangePosts = {
 		copy_posting_img.setAttribute('copy_style','last');
 
 		var copy_posting_div = doc.createElement("div");
-		if (Foxtrick.util.layout.isSupporter(doc)) 
+		if (Foxtrick.util.layout.isSupporter(doc))
 			copy_posting_div.className = "ft-pop-up-container ft-copy";
-		else 
+		else
 			copy_posting_div.className = "ft-pop-up-container ft-copy-small";
 		copy_posting_div.appendChild(copy_posting_img);
 
@@ -164,7 +164,7 @@ var FoxtrickForumChangePosts = {
 			}
 
 			var k = 0, header_left_link;
-			if (header_left_links[0].href.search(/showMInd/)==-1 ) 
+			if (header_left_links[0].href.search(/showMInd/)==-1 )
 				this.bDetailedHeader = true;
 			while ( header_left_link = header_left_links[k++]) {
 				if (!poster_link1) {
@@ -180,7 +180,7 @@ var FoxtrickForumChangePosts = {
 						}
 					}
 				}
-				else if (!poster_link2 || !post_link2) { 
+				else if (!poster_link2 || !post_link2) {
 					if (header_left_link.href.search(/showMInd|Forum\/Read\.aspx/) != -1)
 						post_link2 = header_left_link;
 					else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1) {
@@ -465,7 +465,7 @@ var FoxtrickForumChangePosts = {
 				var copy_style='ht-ml';
 				var header=ev.target.parentNode.parentNode.parentNode.getElementsByTagName('div')[0];
 			   	if (header.className.search('cfHeader')==-1) header=header.nextSibling; // official. detailed header is one down
-				Foxtrick.log(header.className,'\n');			
+				Foxtrick.log(header.className,'\n');
 			}
 			var insertBefore = header.parentNode;
 

@@ -37,7 +37,7 @@ var FoxtrickSeriesFlags = {
 							flag.appendChild(series);
 						}
 					}
-					else flag.className = "ft-ownerless";	
+					else flag.className = "ft-ownerless";
 					return flag;
 				};
 				// fetch data from stored mapping if available, otherwise

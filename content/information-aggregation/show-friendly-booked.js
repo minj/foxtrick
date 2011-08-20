@@ -10,14 +10,14 @@ var FoxtrickShowFriendlyBooked = {
 	PAGES : ["league"],
 	OPTIONS : new Array("OnDemand"),
 	CSS : Foxtrick.ResourcePath + "resources/css/show-friendly-booked.css",
-	
+
 	run : function(doc) {
 		if (FoxtrickPrefs.isModuleOptionEnabled("ShowFriendlyBooked", "OnDemand"))
 			this.AddOnDemand(doc);
 		else
 			this.AddFriendlies(doc);
 	},
-	
+
 	AddOnDemand : function(doc) {
 		var span = doc.createElement('span');
 		span.setAttribute('id','ShowFriendliesLinkId');
@@ -46,7 +46,7 @@ var FoxtrickShowFriendlyBooked = {
 		doc.getElementById('ShowFriendliesLinkId').setAttribute('style','display:none;');
 		FoxtrickShowFriendlyBooked.AddFriendlies(doc);
 	},
-	
+
 	AddFriendlies : function(doc) {
 		var leagueTableSpan = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLeagueTable");
 		var leagueTable = leagueTableSpan.getElementsByTagName("table")[0];
