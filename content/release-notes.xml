@@ -14,6 +14,25 @@
 <item>You could prevent FoxTrick from poping up this release note after each update by disabling "Show release notes after FoxTrick updates" in <xhtml:a href="#tab=main">main tab</xhtml:a>.</item>
 </note>
 
+<note version="0.8">
+<item>New mechanism for viewing modules by page, old module OnPagePrefs thereby removed. (convincedd, ryanli)</item>
+<item><xhtml:a href="#tab=main">Option</xhtml:a> not to load XML data from Hattrick. (convincedd)</item>
+<item>New module <module>LocalTime</module> for showing time in local timezone. (ryanli)</item>
+<item>New module <module>LinksYouthLeague</module> for links at youth league page. (Parminu)</item>
+<item>New module <module>CopyYouth</module> merges old youth copy modules, and provide link to destinations. New function for copying youth fixtures. (ryanli, Parminu)</item>
+<item>New module <module>SupporterStatsEnhancements</module> which enhances display in supporter statistics. (convincedd)</item>
+<item>Option to hide the invitation box visible on left sidebar in module <module>FixcssProblems</module>. (ryanli)</item>
+<item>Option to reduce the height of my calendar in module <module>FixcssProblems</module>. (ryanli)</item>
+<item>Link to CHPP management page in module <module>ExtraShortcuts</module>. (ljushaff)</item>
+<item>Option to show colourised youth skills in module <module>SkillTable</module>. (asdfasdfasdf@mailinator.com)</item>
+<item>Option to play a sound in module <module>LiveAlert</module>. (ryanli)</item>
+<item>Option to show team icons in module <module>MyMonitor</module>, and teams are now sortable. (convincedd)</item>
+<item>Options to insert FoxTrick debug logs in module <module>ForumYouthIcons</module>. (convincedd)</item>
+<item>Option to load friendly book status on default in module <module>ShowFriendlyBooked</module>, enabled by default. (convincedd)</item>
+<item>Link to load extra player information in module <module>SkillTable</module>. (convincedd)</item>
+<item>Other trivial fixes and enhancements. (convincedd, ryanli)</item>
+</note>
+
 <note version="0.7.2">
 <item>Links for comparing teams at Alltid in module <module>LinksTeam</module>. (convincedd)</item>
 <item>Fixes for skill table at transfer search results. (convincedd, ryanli)</item>
