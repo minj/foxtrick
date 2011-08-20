@@ -9,6 +9,10 @@ Foxtrick.Pages.Match = {
 		return (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch") != null);
 	},
 
+	inProgress : function(doc) {
+		return (doc.getElementById("ctl00_ctl00_CPContent_CPMain_lblMatchStatus") != null);
+	},
+
 	getRatingsTable: function(doc) {
 		var ratingstable = null;
 		var tables = doc.getElementById('mainBody').getElementsByTagName('table')
