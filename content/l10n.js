@@ -315,22 +315,27 @@ if (Foxtrick.BuildFor === "Sandboxed") {
 				this.properties_default = Foxtrick.load(Foxtrick.InternalPath+"foxtrick.properties");
 				this.screenshots_default = Foxtrick.load(Foxtrick.InternalPath+"foxtrick.screenshots");
 
-				var localecode = FoxtrickPrefs.getString("htLanguage");
-				Foxtrick.log('localecode ',localecode);
-				try {
-					this.properties = Foxtrick.load(Foxtrick.ResourcePath+"locale/" + localecode + "/foxtrick.properties");
-					if (!this.properties) this.properties =  this.properties_default;
-				} catch(e) {
+				var locale = FoxtrickPrefs.getString("htLanguage");
+				if (locale == "en") {
+					// en locale is just default locale
 					this.properties = this.properties_default;
-					Foxtrick.log('use default properties');
-
-				}
-				try {
-					this.screenshots = Foxtrick.load(Foxtrick.ResourcePath+"locale/"+localecode+"/foxtrick.screenshots");
-					if (!this.screenshots) this.screenshots = this.screenshots_default;
-				} catch(e) {
-					Foxtrick.log('use default screenshots');
 					this.screenshots = this.screenshots_default;
+				}
+				else {
+					try {
+						this.properties = Foxtrick.load(Foxtrick.ResourcePath + "locale/" + locale + "/foxtrick.properties");
+					}
+					catch (e) {
+						Foxtrick.log("Use default properties for locale ", locale);
+						this.properties = this.properties_default;
+					}
+					try {
+						this.screenshots = Foxtrick.load(Foxtrick.ResourcePath + "locale/" + localecode + "/foxtrick.screenshots");
+					}
+					catch (e) {
+						Foxtrick.log("Use default properties for locale ", locale);
+						this.screenshots = this.screenshots_default;
+					}
 				}
 			}
 			else if (Foxtrick.chromeContext() == "content") {
