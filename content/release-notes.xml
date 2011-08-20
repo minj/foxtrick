@@ -30,8 +30,8 @@
 <item>Options to insert FoxTrick debug logs into postings in module <module>ForumYouthIcons</module>. (convincedd)</item>
 <item>Option to load friendly book status on default in module <module>ShowFriendlyBooked</module>, enabled by default. (convincedd)</item>
 <item>Link to load extra player information in module <module>SkillTable</module>. (convincedd)</item>
-<item>In Firefox the FoxTrick icon was moved to the toolbar. (ryanli)</item>
-<item>In Chrome the FoxTrick icon was moved to the adressbar. Also flickering has been removed and the speed improved (convincedd)</item>
+<item>In Firefox the FoxTrick icon was moved to the address bar and is draggable. (ryanli)</item>
+<item>In Chrome the FoxTrick icon was moved inside the address bar. Also flickering has been removed and the speed improved (convincedd)</item>
 <item>FoxTrick enabled for Fennec/Firefox for mobile. (convincedd)</item>
 <item>FoxTrick available now for Opera and Safari. (convincedd, ryanli)</item>
 <item>Other trivial fixes and enhancements. (convincedd, ryanli)</item>
