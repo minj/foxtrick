@@ -10,8 +10,73 @@
 
 <notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
 <note version="nightly" localized-version="Development build">
-<item>Please view <xhtml:a href="http://code.google.com/p/foxtrick/source/list">commit history</xhtml:a> at Google Code for details.</item>
-<item>You could prevent FoxTrick from poping up this release note after each update by disabling "Show release notes after FoxTrick updates" in <xhtml:a href="#tab=main">main tab</xhtml:a>.</item>
+<item>Siehe <xhtml:a href="http://code.google.com/p/foxtrick/source/list"> für die komplette Veränderungsgeschichte</xhtml:a> auf Google Code.</item>
+<item>Du kannst FoxTrick daran hindern diese Release Notes nach jedem Update anzuzeigen in dem du die "Anzeige der Release Notes nach einem FoxTrick-Update" in den <xhtml:a href="#tab=main">Grundeinstellungen</xhtml:a> deaktivierts.</item>
+</note>
+
+<note version="0.8">
+<item>Neue Methode um Moduloptionen seitenspezifisch anzusehen; Modul OnPagePrefs daher entfernt. (convincedd, ryanli)</item>
+<item><xhtml:a href="#tab=main">Option</xhtml:a> XML Daten von Hattrick nicht zu laden. Des weiteren werden XMLs nun zwischengespeichert und die Möglichkeit den Speicher zu löschen wurde auf den entsprechenden Seiten zugefügt (convincedd)</item>
+<item>Neues Modul <module>LocalTime</module> um die Zeit in der eigenen Zeitzone anzuzeigen. (ryanli)</item>
+<item>Neues Modul <module>LinksYouthLeague</module> für Links auf der Jugendligaseite. (Parminu)</item>
+<item>Neues Modul <module>CopyYouth</module> vereint die alten Jugendkopiermodule und verlinkt zu entsprechenden externen Seiten. Neue Funktion um Jugendligenspielpläne zu kopieren. (ryanli, Parminu)</item>
+<item>Neues Modul <module>SupporterStatsEnhancements</module> für Zusatzinformationen in den Supporterstatistiken. (convincedd)</item>
+<item>Option um die Einladungenbox im linken Seitenmenü zu verbergen <module>FixcssProblems</module>. (ryanli)</item>
+<item>Option um die Höhe des Kalenders zu reduzieren im Modul <module>FixcssProblems</module>. (ryanli)</item>
+<item>Link zur CHPP-Managementseite im Modul <module>ExtraShortcuts</module>. (ljushaff)</item>
+<item>Option für farbkodierte Jugendspielerfähigkeiten im Modul <module>SkillTable</module>. (asdfasdfasdf@mailinator.com)</item>
+<item>Option zum Alarmtonabspielen im Modul <module>LiveAlert</module>. (ryanli)</item>
+<item>Option um Teamlogos anzuzeigen im Modul <module>MyMonitor</module> und die Anzeige ist nun sortierbar. (convincedd)</item>
+<item>Optionen um FoxTrick debug logs in Postings einzufügen im Modul <module>ForumYouthIcons</module>. (convincedd)</item>
+<item>Option um gebuchte Freundschaftsspiele in den Ligentabellen nur nach Bedarf anzuzeigen <module>ShowFriendlyBooked</module>. Standardwert: aktiviert. (convincedd)</item>
+<item>Link um Zusatzinformationen über Spieler zu laden im Modul <module>SkillTable</module>. (convincedd)</item>
+<item>In Firefox wurde das FoxTrick-Icon in die Toolbar versetzt. (ryanli)</item>
+<item>In Chrome wurde das FoxTrick-Icon in die Adressbar versetzt. Des weiteren wurde das Flickern entfernt und die Geschwindigkeit verbessert (convincedd)</item>
+<item>Weitere kleinere Fehlerbehebungen und Verbesserungen. (convincedd, ryanli)</item>
+</note>
+
+<note version="0.7.2">
+<item>Links for comparing teams at Alltid in module <module>LinksTeam</module>. (convincedd)</item>
+<item>Fixes for skill table at transfer search results. (convincedd, ryanli)</item>
+</note>
+
+<note version="0.7.1">
+<item>Module <module>LeagueNewsFilter</module> split into <module>LeagueNewsFilter</module> and <module>ShowLineupSet</module>. (ryanli)</item>
+<item>Modifications to adapt for new transfer search results page. (ryanli, taised)</item>
+<item>Locale updates. (ryanli, CoRrRan, ljushaff, _KOHb_, slader, ElChiquitin)</item>
+<item>Some other trivial fixes. (ryanli)</item>
+</note>
+
+<note version="0.7">
+<item>Icelandic locale. (LA-LordBastard)</item>
+<item>Vlaams locale copied from Dutch. (ryanli)</item>
+<item>New module category, <xhtml:a href="#tab=information_aggregation">Information Aggregation</xhtml:a>. (ryanli)</item>
+<item>New module <module>MyMonitor</module> for monitoring recent matches of selected teams at My Hattrirck. (ryanli)</item>
+<item>New module <module>MarkAllAsRead</module>, a button to mark threads in all forums as read. (ryanli)</item>
+<item>New module <module>ShowFriendlyBooked</module> for showing whether a team has booked a friendly on series page. (ryanli)</item>
+<item>Rewrite of module <module>TickerAlert</module>, integrating former FoxtrickAlert, AlertCustomSound, AlertCustomOff modules. (ryanli)</item>
+<item>Module <module>MatchPlayerColouring</module> loads match lineup from XML. (ryanli)</item>
+<item>Module FoxtrickLineupShortcut renamed to <module>LineupShortcut</module>. (ryanli)</item>
+<item>Module htmsStatistics renamed to <module>HTMSPrediction</module>. (ryanli)</item>
+<item>New option in module <module>FriendlyInterface</module> to hide the secretary if he has nothing to report. (ryanli)</item>
+<item>Module <module>StaffMarker</module> now uses <xhtml:a href="http://www.json.org/">JavaScript Object Notation</xhtml:a> for custom markers. (ryanli)</item>
+<item>New radios in module <module>ExtraShortcuts</module>, Balkaradio and Downtime Radio. (ljushaff, ryanli)</item>
+<item>Option of <module>LeagueAndMatchChat</module> to open Yaplet chat in a frame removed. (ryanli)</item>
+<item>Various trivial fixes. (ryanli, Mod-spambot)</item>
+</note>
+
+<note version="0.6.2">
+<item>Module <module>SeriesFlags</module> now fetches team data directly from Hattrick. (ryanli)</item>
+<item>Locale updates. (ljushaff, csajszi, Mod-spambot)</item>
+<item>Some other trivial fixes. (ryanli)</item>
+</note>
+
+<note version="0.6.1">
+<item>Module <module>HTMSPoints</module> now calculates points locally without connecting to HTMS website. (taised)</item>
+<item>Module <module>htmsStatistics</module> now loads prediction correctly. (taised)</item>
+<item>Locale updates. (Mod-spambot, Mod-OmaniMilani, Baler0, ljushaff, _KOHb_, Slash-ss, MEO_Comandante)</item>
+<item>Compatible with Firefox 4.2 branch. (ryanli)</item>
+<item>Some other trivial fixes. (ryanli)</item>
 </note>
 
 <note version="0.6">
