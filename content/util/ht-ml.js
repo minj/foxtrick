@@ -164,7 +164,7 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 					ret = linkMarkup;
 				}
 				else {
-					ret += linkMarkup;
+					ret += " " + linkMarkup;
 				}
 			}
 			return ret;
