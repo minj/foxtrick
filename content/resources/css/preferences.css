@@ -163,7 +163,7 @@ html[dir="rtl"] .screenshot
 
 #view-by
 {
-	max-width: 50%;
+	padding-right: 5em;
 	border-bottom: 1px solid #ccc;
 	margin-bottom: 0.5em;
 }
@@ -171,6 +171,12 @@ html[dir="rtl"] .screenshot
 #tabs li
 {
 	border-radius: 5px 5px 0 0;
+}
+
+ul.nav
+{
+	float: left;
+	clear: left;
 }
 
 ul.nav li
