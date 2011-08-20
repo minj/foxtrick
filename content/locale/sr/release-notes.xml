@@ -13,6 +13,26 @@
 <item>Уколико желите да вам Фокстрик не приказује обавештење о променама после сваког ажурирања искључите опцију "Прикажи поруку о променама после ажурирања Фокстрика" у табу <xhtml:a href="#tab=main">"Главне опције"</xhtml:a>.</item>
 
 </note>
+
+<note version="0.8">
+<item>Нови механизам приказивања опција активних на страници, стари модул OnPagePrefs је због тога уклоњен. (convincedd, ryanli)</item>
+<item><xhtml:a href="#tab=main">Опција</xhtml:a> за спречавање учитавања XML фајлова са Хеттрика. (convincedd)</item>
+<item>Нови модул <module>LocalTime</module> за приказивање локалног уместо ХТ времена. (ryanli)</item>
+<item>Нови модул <module>LinksYouthLeague</module> за линкове на страници омладинске лиге. (Parminu)</item>
+<item>Нови модул <module>CopyYouth</module> обједињује старе модуле за копирање података о омладинцима, и аутоматски отвара линкове ка алатима који користе ископиране информације. Нова функција за копирање распореда мечева омладинаца. (ryanli, Parminu)</item>
+<item>Нови модул <module>SupporterStatsEnhancements</module> који побољшава приказ података у супортер статистици. (convincedd)</item>
+<item>Опција за уклањање подменија за позивнице у левом менију у модулу <module>FixcssProblems</module>. (ryanli)</item>
+<item>Опција за редуковање висине календара у модулу <module>FixcssProblems</module>. (ryanli)</item>
+<item>Линк до странице за управљање CHPP производима које користите у модулу <module>ExtraShortcuts</module>. (ljushaff)</item>
+<item>Опција за приказивање вештина омладинацу у боји у оквиру модула <module>SkillTable</module>. (asdfasdfasdf@mailinator.com)</item>
+<item>Опција за звучно обавештење у модулу <module>LiveAlert</module>. (ryanli)</item>
+<item>Опција за приказивање иконица за тимове у модулу <module>MyMonitor</module>, осим тога, тимови се сада могу и сортирати. (convincedd)</item>
+<item>Опција за убацивање 'FoxTrick debug' лога у модулу <module>ForumYouthIcons</module>. (convincedd)</item>
+<item>Опција за означавање тимова коју су заказали пријатељски меч на страници лиге у модулу <module>ShowFriendlyBooked</module>, укључена аутоматски. (convincedd)</item>
+<item>Линк за приказивање додатних информација о играчима у модулу <module>SkillTable</module>. (convincedd)</item>
+<item>Још неке ситне поправке и побољшања. (convincedd, ryanli)</item>
+</note>
+
 <note version="0.7.1">
 <item>Модул <module>LeagueNewsFilter</module> подељен у два: <module>LeagueNewsFilter</module> и модул <module>ShowLineupSet</module>. (ryanli)</item>
 <item>Модификације због прилагођавања новој верзији странице са резултатима трансфера. (ryanli, taised)</item>
