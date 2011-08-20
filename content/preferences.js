@@ -55,9 +55,27 @@ function parseFragment(fragment)
 
 function locateFragment(uri)
 {
-	var fragment = "";
-	if (uri.indexOf("#") > -1)
-		fragment = uri.replace(/^.+#/, ""); // only keep the fragment
+	// show functions
+	var showModule = function(module) {
+		const moduleObj = $("#pref-" + String(module));
+		const tab = moduleObj.parent().attr("id").replace(/^pane-/, "");
+		showTab(tab);
+		moduleObj[0].scrollIntoView(true);
+	};
+	var showTab = function(tab) {
+		$("#panes > div[id^='pane-']").hide();
+		$("#tabs > li").removeClass("active");
+		$("#tab-" + tab).addClass("active");
+		$("#pane-" + tab).show();
+	};
+	var showFaq = function(id) {
+		showTab("help");
+		$("#faq-" + id)[0].scrollIntoView(true);
+	};
+
+	// only keep the fragment of URI
+	const fragment = (uri.indexOf("#") > -1)
+		? fragment = uri.replace(/^.+#/, "") : "";
 	const param = parseFragment(fragment);
 	if (param["module"])
 		showModule(param["module"]);
@@ -65,30 +83,35 @@ function locateFragment(uri)
 		showTab(param["tab"]);
 	else if (param["faq"])
 		showFaq(param["faq"]);
+	else if (param["view-by"] == "page")
+		showTab("on_page");
 	else
 		showTab("main"); // show the main tab by default
-}
 
-function showTab(tab)
-{
-	$("#panes > div[id^='pane-']").hide();
-	$("#tabs > li").removeClass("active");
-	$("#tab-" + tab).addClass("active");
-	$("#pane-" + tab).show();
-}
-
-function showModule(module)
-{
-	const moduleObj = $("#pref-" + String(module));
-	const tab = moduleObj.parent().attr("id").replace(/^pane-/, "");
-	showTab(tab);
-	moduleObj[0].scrollIntoView(true);
-}
-
-function showFaq(id)
-{
-	showTab("help");
-	$("#faq-" + id)[0].scrollIntoView(true);
+	// adjust tab visibility according to view-by type
+	const viewByPage = (param["view-by"] == "page");
+	// add class if view by page, remove class if view by category
+	var setClass = function(obj, className) {
+		viewByPage ? obj.addClass(className) : obj.removeClass(className);
+	};
+	// opposite of setClass
+	var unsetClass = function(obj, className) {
+		viewByPage ? obj.removeClass(className) : obj.addClass(className);
+	};
+	// set up tab classes
+	setClass($("#view-by-page"), "active");
+	unsetClass($("#view-by-category"), "active");
+	for (var i in Foxtrick.moduleCategories)
+		setClass($("#tab-" + Foxtrick.moduleCategories[i]), "hide");
+	unsetClass($("#tab-on_page"), "hide");
+	unsetClass($("#tab-universal"), "hide");
+	$("#tabs li a").each(function() {
+		const uri = $(this).attr("href").replace(/&view-by=page/g, "")
+		if (viewByPage)
+			$(this).attr("href", uri + "&view-by=page");
+		else
+			$(this).attr("href", uri);
+	});
 }
 
 function baseURI()
@@ -124,9 +147,6 @@ function initListeners()
 			}
 		}
 	});
-	$("#filter-page").click(function() { window.location.href=window.location.pathname+'#tab=pagefiltered'; window.location.reload(); });
-	$("#filter-all").click(function() { window.location.href=window.location.pathname+'#tab=main'; window.location.reload(); });
-	
 }
 
 function initTabs()
@@ -136,10 +156,13 @@ function initTabs()
 		const tab = $(this).parent().attr("id").replace(/^tab-/, "");
 		$(this).attr("href", generateURI(tab));
 	});
+	// set up href of "view by" links
+	$("#view-by-category a").attr("href", "#view-by=category");
+	$("#view-by-page a").attr("href", "#view-by=page");
 	// initialize the tabs
 	initMainTab();
-	if (window.location.hash.search(/tab=pagefiltered/)==-1) initModuleTabs();
-	else initPageFilteredTab();
+	initModuleTabs();
+	initon_pageTab();
 	initChangesTab();
 	initHelpTab();
 	initAboutTab();
@@ -157,7 +180,6 @@ function initTextAndValues()
 
 	document.title = Foxtrickl10n.getString("foxtrick.prefs.preferences");
 	$("#version").text(Foxtrick.version());
-	if (FoxtrickPrefs.getBool("isStandard")) $("#title_seperator").addClass('hide'); 
 	
 	// initialize text
 	$("body [text-key]").each(function() {
@@ -227,27 +249,29 @@ function initTextAndValues()
 	
 	// init top buttons
 	var pages = [];	
-	for (var i in Foxtrick.modules)
-		if (Foxtrick.modules[i].MODULE_CATEGORY)
+	for (var i in Foxtrick.modules) {
+		if (Foxtrick.modules[i].MODULE_CATEGORY) {
 			if (Foxtrick.modules[i].ONPAGEPREF_PAGE) {
 				var page = Foxtrick.modules[i].ONPAGEPREF_PAGE;
 				if (page == "all") {}
 				else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) 		
-					pages[page] = page;				
+					pages.push(page);
 			}
-			else for (var j in Foxtrick.modules[i].PAGES) { 
-				var page = Foxtrick.modules[i].PAGES[j];
-				if (page == "all") break;
-				else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) {		
-					pages[page] = page;
-					break;
+			else {
+				for (var j in Foxtrick.modules[i].PAGES) { 
+					var page = Foxtrick.modules[i].PAGES[j];
+					if (page == "all") break;
+					else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) {		
+						pages.push(page);
+						break;
+					}
 				}
-			}	
-	var pagelist=': (';
-	for (var i in pages) pagelist += pages[i]+' - ';
-	if (pagelist.length>3) pagelist = pagelist.substr(0,pagelist.length-3);
-	pagelist += ')';	 
-	$("#filter-page").append(document.createTextNode(pagelist));
+			}
+		}
+	}
+	pages = Foxtrick.unique(pages);
+	$("#view-by-page a").text($("#view-by-page a").text()
+		+ " (" + pages.join(", ") + ")");
 }
 
 function initMainTab()
@@ -337,37 +361,33 @@ function initModuleTabs()
 	for (var i in categories)
 		for (var j in categories[i])
 			$("#pane-" + i).append(getModule(Foxtrick.modules[categories[i][j]]));
-	
-	$("#tab-pagefiltered").addClass('hide');
-	$("#tab-allfiltered").addClass('hide');
-	$("#filter-all").addClass('active');
 }
 
-function initPageFilteredTab()
+function initon_pageTab()
 {
 	var categories = {};
-	categories['pagefiltered'] = [];
-	categories['allfiltered'] = [];
+	categories['on_page'] = [];
+	categories['universal'] = [];
 	
 	for (var i in Foxtrick.modules)
 		if (Foxtrick.modules[i].MODULE_CATEGORY)
 			if (Foxtrick.modules[i].ONPAGEPREF_PAGE) {
 				var page = Foxtrick.modules[i].ONPAGEPREF_PAGE;
 				if (page == "all") {
-					categories['allfiltered'].push(i);
+					categories['universal'].push(i);
 				}
 				else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) {		
-					categories['pagefiltered'].push(i);
+					categories['on_page'].push(i);
 				}
 			}
 			else for (var j in Foxtrick.modules[i].PAGES) { 
 				var page = Foxtrick.modules[i].PAGES[j];
 				if (page == "all") {
-					categories['allfiltered'].push(i);
+					categories['universal'].push(i);
 					break;
 				}
 				else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) {		
-					categories['pagefiltered'].push(i);
+					categories['on_page'].push(i);
 					break;
 				}
 			}
@@ -383,15 +403,21 @@ function initPageFilteredTab()
 					$("#pane-"+i).append(getModule(Foxtrick.modules[categories[i][j]]));
 			}
 			// links at the end so not to spam
-			if (links) $("#pane-pagefiltered").append(links);
+			if (links) $("#pane-on_page").append(links);
 		}		
-	for (var i in Foxtrick.moduleCategories)
-		$("#tab-" + Foxtrick.moduleCategories[i]).addClass('hide');	
-	$("#filter-page").addClass('active');
 }
 
 function getModule(module)
 {
+	var getScreenshot = function(link) {
+		var a = document.createElement("a");
+		a.className = "screenshot";
+		a.href = link;
+		a.title = Foxtrickl10n.getString("prefs.screenshot");
+		a.setAttribute('target','_blank');
+		return a;
+	}
+
 	var entry = document.createElement("div");
 	entry.id = "pref-" + module.MODULE_NAME;
 	entry.className = "module";
@@ -523,16 +549,6 @@ function getModule(module)
 	}
 
 	return entry;
-}
-
-function getScreenshot(link)
-{
-	var a = document.createElement("a");
-	a.className = "screenshot";
-	a.href = link;
-	a.title = Foxtrickl10n.getString("prefs.screenshot");
-	a.setAttribute('target','_blank');
-	return a;
 }
 
 function initChangesTab()

@@ -125,7 +125,7 @@ var FoxtrickExtraShortcuts = {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
 					link.href = 'javascript:void();'
-					link.addEventListener('click', function() {FoxtrickPrefs.show('#tab=pagefiltered');}, false);
+					link.addEventListener('click', function() {FoxtrickPrefs.show('#tab=on_page&view-by=page');}, false);
 					var img1 = doc.createElement('img');
 					img1.setAttribute( "class", "ftSCFtPrefs");
 					img1.src = "/Img/Icons/transparent.gif";

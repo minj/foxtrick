@@ -177,19 +177,19 @@
 <h1 id="title">
 	<span text-key="foxtrick.prefs.preferences"></span>
 	<span id="version"></span>
-	<br id="title_seperator"/>
-	<span>
-		<button id="filter-all" text-key="filter.all"></button>
-		<button id="filter-page" text-key="filter.page"></button>
-	</span>
-			
 </h1>
 
+<!-- whether to view by category or view by page -->
+<ul id="view-by" class="nav">
+	<li id="view-by-category"><a text-key="prefs.view.by.category"></a></li>
+	<li id="view-by-page"><a text-key="prefs.view.by.page"></a></li>
+</ul>
+
 <!-- tabs for each category -->
-<ul id="tabs">
+<ul id="tabs" class="nav">
 <li id="tab-main"><a text-key="tab.main"></a></li><!--
---><li id="tab-pagefiltered"><a text-key="tab.pagefiltered"></a></li><!--
---><li id="tab-allfiltered"><a text-key="tab.allfiltered"></a></li><!--
+--><li id="tab-on_page"><a text-key="tab.on_page"></a></li><!--
+--><li id="tab-universal"><a text-key="tab.universal"></a></li><!--
 --><li id="tab-information_aggregation"><a text-key="tab.informationAggregation"></a></li><!--
 --><li id="tab-shortcuts_and_tweaks"><a text-key="tab.shortcutsAndTweaks"></a></li><!--
 --><li id="tab-presentation"><a text-key="tab.presentation"></a></li><!--
@@ -297,8 +297,8 @@
 		</ul>
 	</div>
 </div>
-<div id="pane-pagefiltered"></div>
-<div id="pane-allfiltered"></div>
+<div id="pane-on_page"></div>
+<div id="pane-universal"></div>
 <div id="pane-information_aggregation"></div>
 <div id="pane-shortcuts_and_tweaks"></div>
 <div id="pane-presentation"></div>

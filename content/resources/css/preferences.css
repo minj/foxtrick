@@ -161,37 +161,48 @@ html[dir="rtl"] .screenshot
 	font-size: 50%;
 }
 
-ul#tabs li
+#view-by
+{
+	max-width: 50%;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 0.5em;
+}
+
+#tabs li
+{
+	border-radius: 5px 5px 0 0;
+}
+
+ul.nav li
 {
 	font-size: 85%;
 	display: inline-block;
 	background-color: white;
 	border: 1px solid #ccc;
-	border-radius: 5px 5px 0px 0px;
 	border-bottom: none;
 	padding: 3px;
 	margin: 0 1px;
 }
 
-ul#tabs li.hide, #title_seperator.hide
+ul.nav li.hide
 {
 	display: none;
 }
 
-ul#tabs li.active
+ul.nav li.active
 {
 	background-color: #eef;
-	border: 3px solid #a8a8a8;
+	border: 2px solid #a8a8a8;
 	border-bottom: none;
 }
 
-ul#tabs li a
+ul.nav li a
 {
 	text-decoration: none;
 	color: #444;
 }
 
-ul#tabs li a:hover
+ul.nav li a:hover
 {
 	text-decoration: underline;
 }
