@@ -12,18 +12,15 @@
 	<link title="recentChanges" value="http://code.google.com/p/foxtrick/source/list" />
 </links>
 
-<head_developers value="Head Developer">
-	<head_developer id="8342420" name="ryanli" />
-</head_developers>
+<maintainers>
+	<maintainer id="8342420" name="ryanli" />
+	<maintainer id="7776339" name="convincedd" />
+</maintainers>
 
-<project_owners value="Project Owners">
-	<project_owner id="1270528" name="larsw84" />
-	<project_owner id="2336766" name="spambot" />
-	<project_owner id="7776339" name="convincedd" />
-	<project_owner id="8342420" name="ryanli" />
-</project_owners>
-
-<developers value="Developers">
+<developers>
+	<developer id="1270528" name="larsw84" />
+	<developer id="2336766" name="spambot" />
+	<developer id="7776339" name="convincedd" />
 	<developer id="765274" name="taised" />
 	<developer id="8378622" name="bummerland" />
 	<developer id="3542943" name="Jestar" />
@@ -32,10 +29,11 @@
 	<developer id="7409095" name="stephan57" />
 	<developer id="637644" name="baumanns" />
 	<developer id="4342858" name="ljushaff" />
+	<developer id="8342420" name="ryanli" />
 	<developer id="3410980" name="Aimo_Kanuuna" />
 </developers>
 
-<translations value="Translations">
+<translations>
 	<translation language="Albanian">
 		<translator id="2090503" name="GM-Eagle" />
 	</translation>
