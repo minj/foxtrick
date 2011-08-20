@@ -168,7 +168,7 @@
 </graphics>
 
 <editors>
-    <editor id="553432" name="-Juge-" />
+	<editor id="553432" name="-Juge-" />
 	<editor id="7564618" name="-Shamil-" />
 	<editor id="6200845" name="Abu_Ahmed" />
 	<editor id="1598884" name="Aleksandar-GIGANT" />
@@ -178,14 +178,14 @@
 	<editor id="11002935" name="Blues_" />
 	<editor id="6872278" name="Buska" />
 	<editor id="299466" name="CoachDinamo" />
-	<editor id="9768420" name="Ed-JSLouzao" />
+	<editor id="10388223" name="Ed-FATTH-Extremo" />
 	<editor id="5345028" name="Ed-corb" />
-	<editor id="2596442" name="Ed-pptolomeo" />
 	<editor id="7533491" name="Ed-relu_" />
 	<editor id="3712230" name="Editor-JDelhaRD" />
 	<editor id="9456848" name="FCB-Ier" />
 	<editor id="6931397" name="Frattaglia" />
 	<editor id="5353154" name="GM-7areega" />
+	<editor id="1624293" name="GM-CorPuS" />
 	<editor id="666723" name="GM-Gizmo" />
 	<editor id="9311330" name="GM-OmaniMilani" />
 	<editor id="791586" name="GM-Yarka" />
@@ -198,8 +198,9 @@
 	<editor id="2690274" name="Ishuaia" />
 	<editor id="7646587" name="KerLaeda" />
 	<editor id="1013109" name="Krat64" />
-	<editor id="1077817" name="LA-GQPOZ" />
+	<editor id="9768420" name="LA-Louzao" />
 	<editor id="9372637" name="LA-Murtagsh" />
+	<editor id="1097436" name="LA-Txopin" />
 	<editor id="9164403" name="Mod-Jaredjamesr" />
 	<editor id="8907600" name="Mod-Kanito" />
 	<editor id="2884072" name="Mod-Karlthegreat" />
@@ -211,7 +212,9 @@
 	<editor id="1655586" name="Pedro-Dusbaum" />
 	<editor id="1191014" name="Peluza" />
 	<editor id="98655" name="Petrovitsj" />
+	<editor id="2596442" name="Pptolomeo" />
 	<editor id="3982901" name="PuCeK17" />
+	<editor id="530278" name="Queto" />
 	<editor id="1759252" name="Richard_B_Riddick" />
 	<editor id="64154" name="SH-Patrick" />
 	<editor id="7745399" name="SLV-Andersen" />
@@ -222,22 +225,21 @@
 	<editor id="8964618" name="Zolfaghar" />
 	<editor id="4584362" name="ZurrieqGiants" />
 	<editor id="4494340" name="acarl" />
-	<editor id="608193" name="alea_iacta_est" />
 	<editor id="7890992" name="andrip" />
 	<editor id="8508209" name="bacardi444" />
-	<editor id="1265154" name="bot_fl" />
 	<editor id="9158849" name="c0stas" />
 	<editor id="6764830" name="canaria1907" />
 	<editor id="4310990" name="cenzuriran_apovsic" />
 	<editor id="7838996" name="christ14" />
 	<editor id="6150102" name="daZOOpolitis" />
-	<editor id="783202" name="ermpson" />
+	<editor id="783202" name="ermps" />
 	<editor id="4680707" name="flexor_01" />
 	<editor id="3614556" name="hallenberg" />
 	<editor id="1048018" name="ivo_stoyanov" />
 	<editor id="7258356" name="jcobayliss" />
 	<editor id="5488550" name="kikso" />
 	<editor id="3622447" name="krespim" />
+	<editor id="10721288" name="magu7" />
 	<editor id="9697725" name="mfabiom" />
 	<editor id="4441039" name="mikesoft" />
 	<editor id="7194991" name="pacsey" />
@@ -252,7 +254,6 @@
 	<chpp id="9544213" name="-beawolf-" />
 	<chpp id="4875337" name="-tof-" />
 	<chpp id="816713" name="0scar" />
-	<chpp id="3450392" name="8noortje8" />
 	<chpp id="460090" name="Adjanakis" />
 	<chpp id="9754830" name="AndyGJones" />
 	<chpp id="1822820" name="Anosmie" />
@@ -263,6 +264,7 @@
 	<chpp id="4428988" name="Belette" />
 	<chpp id="2566096" name="Bingeling" />
 	<chpp id="9547828" name="Birne_Helene" />
+	<chpp id="8434564" name="Bitxus" />
 	<chpp id="110259" name="Brzi_" />
 	<chpp id="8996419" name="CAT-jaumebd" />
 	<chpp id="256786" name="CHPP-Alf" />
@@ -271,7 +273,6 @@
 	<chpp id="763236" name="CHPP-gardier" />
 	<chpp id="653581" name="CHPP-teles" />
 	<chpp id="1379674" name="Canhao" />
-	<chpp id="1111924" name="Causea" />
 	<chpp id="2554426" name="DerKanzler" />
 	<chpp id="980430" name="DorkPower" />
 	<chpp id="100856" name="Frederic-HT2D" />
@@ -296,6 +297,7 @@
 	<chpp id="1229170" name="KeithoR" />
 	<chpp id="4154375" name="Knackfloh" />
 	<chpp id="3206114" name="Kusco" />
+	<chpp id="5246225" name="Lizardopoli" />
 	<chpp id="185572" name="Lobster" />
 	<chpp id="40280" name="Loke_" />
 	<chpp id="521166" name="MD-JakobTrier" />
@@ -303,10 +305,12 @@
 	<chpp id="1532705" name="Mackshot" />
 	<chpp id="1184611" name="MarcicoX" />
 	<chpp id="1451294" name="Mati-JFC" />
+	<chpp id="3450392" name="Mevr_Noortje" />
 	<chpp id="146464" name="Minkfish" />
 	<chpp id="2255366" name="Mistr_Moon" />
 	<chpp id="8797370" name="Mlot-44" />
 	<chpp id="2287367" name="Mod-Jacome" />
+	<chpp id="10327880" name="Mod-torden" />
 	<chpp id="2346409" name="Mr_Clean" />
 	<chpp id="443557" name="Multiplex" />
 	<chpp id="10799495" name="Nasder" />
@@ -336,9 +340,9 @@
 	<chpp id="1627403" name="Siramthar" />
 	<chpp id="6932542" name="Sumbun" />
 	<chpp id="9979330" name="Thorlius" />
-	<chpp id="5246225" name="Wallaropoli" />
 	<chpp id="2123928" name="Wladi" />
 	<chpp id="429263" name="Xirius" />
+	<chpp id="7397517" name="_DoC-eNeRGy_" />
 	<chpp id="636733" name="a_alvarez" />
 	<chpp id="1126347" name="abubilla" />
 	<chpp id="1379792" name="abyssahx" />
@@ -350,13 +354,14 @@
 	<chpp id="629771" name="allsports" />
 	<chpp id="1028462" name="beebop" />
 	<chpp id="10207412" name="bennh" />
+	<chpp id="107145" name="bertbert" />
 	<chpp id="2124359" name="borzos" />
 	<chpp id="753905" name="carlesmu" />
-	<chpp id="6158967" name="dApAp0" />
 	<chpp id="2063250" name="dbdbdb" />
 	<chpp id="499303" name="destor77" />
 	<chpp id="999111" name="doof92" />
 	<chpp id="1336001" name="dynamosmurfen" />
+	<chpp id="10717693" name="eLmankku" />
 	<chpp id="4096489" name="fabdan14" />
 	<chpp id="8200747" name="faebuva" />
 	<chpp id="10428577" name="fghty" />
@@ -375,23 +380,23 @@
 	<chpp id="8211239" name="magnusts" />
 	<chpp id="718548" name="makam" />
 	<chpp id="423674" name="me9mill" />
-	<chpp id="8509005" name="mesanchez" />
 	<chpp id="1065875" name="mikehell" />
 	<chpp id="4027272" name="mogito" />
 	<chpp id="8758483" name="nickasimir" />
 	<chpp id="120014" name="obsy_" />
 	<chpp id="3187833" name="rafeeZG" />
+	<chpp id="7006397" name="ravenye" />
 	<chpp id="2540769" name="reuvem" />
 	<chpp id="2370875" name="rodrigobolso" />
 	<chpp id="8342420" name="ryanli" />
 	<chpp id="6886447" name="seralph" />
+	<chpp id="6661049" name="sneu_" />
+	<chpp id="7322247" name="stipsoff" />
 	<chpp id="11073910" name="stylomylo" />
 	<chpp id="765274" name="taised" />
 	<chpp id="3654508" name="taxitzis" />
-	<chpp id="10327880" name="torden" />
 	<chpp id="659104" name="trews" />
 	<chpp id="873814" name="vichenze" />
-	<chpp id="6931827" name="vitrail" />
 	<chpp id="8661936" name="vlaFN" />
 	<chpp id="7160958" name="walperg" />
 	<chpp id="1430685" name="wysota" />
