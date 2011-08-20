@@ -18,7 +18,8 @@ var FoxtrickMatchPlayerColouring = {
 			return;
 		}
 
-		if (Foxtrick.Pages.Match.isPrematch(doc))
+		if (Foxtrick.Pages.Match.isPrematch(doc)
+			|| Foxtrick.Pages.Match.inProgress(doc))
 			return;
 
 		if (doc.location.search.search(/&HighlightPlayerID=(\d+)/) != -1) {
