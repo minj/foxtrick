@@ -7,11 +7,7 @@
 var FoxtrickHTDateFormat = {
 	MODULE_NAME : "HTDateFormat",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : ['transfersTeam','transfersPlayer','transfer','transferCompare','match',
-		'matches','matchesarchiv','teamPageGeneral','achievements','playerevents',
-		'teamevents','history','arena','league','hallOfFame','statsMatchesHeadToHead',
-		'seriesHistory'],
-	ONPAGEPREF_PAGE : 'all',
+	PAGES : ["all"],
 	NICE : 20, // after anthing that adds dates
 	OPTIONS : ["LocalSeason", "FirstDayOfWeekOffset"],
 	OPTION_TEXTS : true,

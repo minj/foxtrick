@@ -8,13 +8,7 @@ var FoxtrickCountyList = {
 
 	MODULE_NAME : "CountryList",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : ['country', 'transferSearchForm', 'press',
-		'statsTransfersBuyers', 'statsTeams', 'statsPlayers',
-		'statsRegions', 'statsNationalTeams', 'statsConfs', 'statsBookmarks',
-		'trainingStats', 'teamPage', 'teamPageBrowser', 'managerPage', 'statsArena',
-		'help_contact'
-	],
-	ONPAGEPREF_PAGE : 'all',
+	PAGES : ["all"],
 	OPTIONS : ["SelectBoxes","TeamPage","ManagerPage", "HideFlagOntop"],
 	CSS: Foxtrick.ResourcePath+"resources/css/CountyList.css",
 

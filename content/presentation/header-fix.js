@@ -8,8 +8,7 @@ var FoxtrickHeaderFix = {
 
 	MODULE_NAME : "HeaderFix",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('match','arena'),
-	ONPAGEPREF_PAGE : 'all',
+	PAGES : ["all"],
 	OPTIONS : new Array("FixLeft","RemoveFlicker"),
 	CSS: Foxtrick.ResourcePath+"resources/css/header-fix.css",
 	OPTIONS_CSS: new Array ("",Foxtrick.ResourcePath+"resources/css/fixes/RemoveHeaderFixFlicker.css"),
@@ -21,10 +20,14 @@ var FoxtrickHeaderFix = {
 	},
 
 	run : function(doc) {
-		if (doc.location.href.search(/isYouth/i)!=-1) return;
-
 		var isArena = Foxtrick.isPage("arena", doc);
 		var isMatch = Foxtrick.isPage("match", doc);
+
+		// nothing to fix other than these two pages
+		if (!isArena && !isMatch)
+			return;
+
+		if (doc.location.href.search(/isYouth/i)!=-1) return;
 
 		var ctl00_ctl00_CPContent_CPMain_pnl = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch");
 		if (isArena)  ctl00_ctl00_CPContent_CPMain_pnl = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlMain");
