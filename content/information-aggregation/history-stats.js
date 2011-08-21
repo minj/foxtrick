@@ -172,7 +172,7 @@ var FoxtrickHistoryStats= {
 			HistoryTable=HistoryTable.replace(/((\%c)|(\%p)|(\%l))\d{1,2}\|/gi,'-').replace(/\|/g,'');;
 			table.innerHTML = HistoryTable;
 
-			try {
+			if (doc.getElementById('ft_HistoryStats')===null) {
 				var	ownBoxBody = doc.createElement("div");
 				var header = Foxtrickl10n.getString("foxtrick.HistoryStats.label");
 				var ownBoxBodyId = "ft_HistoryStats";
@@ -180,10 +180,7 @@ var FoxtrickHistoryStats= {
 				ownBoxBody.appendChild(table);
 				Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, 1);
 			}
-			catch (e) {
-				Foxtrick.log(e);
-			}
-			doc.getElementById('ft_HistoryStats').firstChild.innerHTML = table.innerHTML;
+			else doc.getElementById('ft_HistoryStats').firstChild.innerHTML = table.innerHTML;
 		}
 		catch (e) {
 			Foxtrick.log(e);
