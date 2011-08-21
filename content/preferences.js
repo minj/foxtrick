@@ -267,6 +267,10 @@ function initTextAndValues()
 	// show page IDs in view-by-page
 	$("#view-by-page a").text($("#view-by-page a").text()
 		+ " (" + pageIds.join(", ") + ")");
+
+	// insert links into labels
+	const chpp_url = FoxtrickPrefs.getString("last-host") + "/MyHattrick/Preferences/ExternalAccessGrants.aspx";
+	$("#pref-delete-token-label").html(Foxtrickl10n.getString($("#pref-delete-token-label").attr("x-text")).replace(/%(\w+)/, "<a href='"+chpp_url+"' target='_blank'>$1</a>"));
 }
 
 function initMainTab()
@@ -325,6 +329,20 @@ function initMainTab()
 	$("#pref-stored-restore").click(function() {
 		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("delete_foxtrick_branches_ask"))) {
 			FoxtrickPrefs.cleanupBranch();
+			window.location.href = window.location.href + '&imported=true';
+			window.location.reload();
+		}
+	});
+
+	// delete OAuth token/secret
+	$("#pref-delete-token").click(function() {
+		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("delete_oauth_ask"))) {
+			var array = FoxtrickPrefs.getAllKeysOfBranch('oauth');
+			for (var i = 0; i < array.length; i++) {
+				if (FoxtrickPrefs.isPrefSetting(array[i])) {
+					FoxtrickPrefs.deleteValue(array[i]);
+				}
+			}
 			window.location.href = window.location.href + '&imported=true';
 			window.location.reload();
 		}
