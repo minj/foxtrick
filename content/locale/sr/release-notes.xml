@@ -32,8 +32,8 @@
 <item>Линк за приказивање додатних информација о играчима у модулу <module>SkillTable</module>. (convincedd)</item>
 <item>У Фајерфоксу Фокстрик иконица је пребачена у горњи мени. (ryanli)</item>
 <item>У верзији за 'Chrome' Фокстрик иконица је унутар адресне траке. Такође, треперење је уклоњено и брзина знатно унапређена. (convincedd)</item>
-<item>Фокстрик ради и на прегледнику 'Fennec' (Фајерфокс за мобилне). (convincedd)</item>
-<item>Фокстрик ради и на прегледницима 'Opera' и 'Safari'. (convincedd, ryanli)</item>
+<item>Фокстрик верзија и за 'Fennec' (Фајерфокс за мобилне). (convincedd)</item>
+<item>Бета верзија Фокстрика и за браузере 'Opera' и 'Safari'. (convincedd, ryanli)</item>
 <item>Још неке ситне поправке и побољшања. (convincedd, ryanli)</item>
 </note>
 
