@@ -86,14 +86,14 @@ FoxtrickFriendlyInterface = {
 		}
 		else if (Foxtrick.isPage("guestbook", doc)
 			&& FoxtrickPrefs.isModuleOptionEnabled("FriendlyInterface", "HideAnswerTo")) {
-			var answerToLinks = Foxtrick.filter(links, function(n) { return (n.href.search(/Guestbook\.aspx/i) >= 0); });
-			Foxtrick.map(answerToLinks, function(n) {
+			var answerToLinks = Foxtrick.filter(function(n) { return (n.href.search(/Guestbook\.aspx/i) >= 0); }, links);
+			Foxtrick.map(function(n) {
 				n.style.display="none";
 				n.parentNode.style.marginBottom = "2px";
 				n.parentNode.style.marginTop = "-15px";
 				n.parentNode.style.cssFloat = "right";
 				n.parentNode.style.backgroundColor = "white";
-			});
+			}, answerToLinks);
 		}
 		else if (Foxtrick.isPage("dashboard", doc)
 			&& FoxtrickPrefs.isModuleOptionEnabled("FriendlyInterface", "HideSpeechlessSecretary")) {

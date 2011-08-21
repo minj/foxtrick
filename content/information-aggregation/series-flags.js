@@ -85,7 +85,7 @@ var FoxtrickSeriesFlags = {
 			});
 		};
 		var modifyUserLinks = function(links) {
-			Foxtrick.map(links, function(n) {
+			Foxtrick.map(function(n) {
 				buildFlag(
 					["userID", Foxtrick.util.id.getUserIdFromUrl(n.href)],
 					function(flag) {
@@ -93,10 +93,10 @@ var FoxtrickSeriesFlags = {
 						n.parentNode.insertBefore(doc.createTextNode(" "), flag);
 					}
 				);
-			});
+			}, links);
 		};
 		var modifyTeamLinks = function(links) {
-			Foxtrick.map(links, function(n) {
+			Foxtrick.map(function(n) {
 				buildFlag(
 					["teamID", Foxtrick.util.id.getTeamIdFromUrl(n.href)],
 					function(flag) {
@@ -104,25 +104,25 @@ var FoxtrickSeriesFlags = {
 						n.parentNode.insertBefore(doc.createTextNode(" "), flag);
 					}
 				);
-			});
+			}, links);
 		};
 		if (FoxtrickPrefs.isModuleOptionEnabled("SeriesFlags", "Guestbook")
 			&& Foxtrick.isPage("guestbook", doc)) {
 			// add to guest managers
 			var mainWrapper = doc.getElementById("mainWrapper");
 			var links = mainWrapper.getElementsByTagName("a");
-			var userLinks = Foxtrick.filter(links, function(n) { return (n.href.search(/userId=/i) >= 0); });
+			var userLinks = Foxtrick.filter(function(n) { return (n.href.search(/userId=/i) >= 0); }, links);
 			modifyUserLinks(userLinks);
 		}
 		//We add also flag to the guestbook entry in teamPage, but we have to skip the own user link
 		if (FoxtrickPrefs.isModuleOptionEnabled("SeriesFlags", "Guestbook")
 			&& Foxtrick.isPage("teamPage", doc)) {
 			var mainBoxes = doc.getElementById("mainWrapper").getElementsByClassName("mainBox");
-			Foxtrick.map(mainBoxes, function(b) {
+			Foxtrick.map(function(b) {
 				var links = b.getElementsByTagName("a");
-				var userLinks = Foxtrick.filter(links, function(n) { return (n.href.search(/userId=/i) >= 0); });
+				var userLinks = Foxtrick.filter(function(n) { return (n.href.search(/userId=/i) >= 0); }, links);
 				modifyUserLinks(userLinks);
-			});
+			}, mainBoxes);
 		}
 		if (FoxtrickPrefs.isModuleOptionEnabled("SeriesFlags", "Supporters")
 			&& Foxtrick.isPage("teamPage", doc)) {
@@ -130,28 +130,26 @@ var FoxtrickSeriesFlags = {
 			var sideBar = doc.getElementById("sidebar");
 			var sideBarBoxes = sideBar.getElementsByClassName("sidebarBox");
 			// supporters box is among the boxes without a table
-			var nonVisitorsBoxes = Foxtrick.filter(sideBarBoxes, function(n) { return n.getElementsByTagName("table").length == 0; });
-			Foxtrick.map(nonVisitorsBoxes, function(b) {
+			var nonVisitorsBoxes = Foxtrick.filter(function(n) { return n.getElementsByTagName("table").length == 0; }, sideBarBoxes);
+			Foxtrick.map(function(b) {
 				var links = b.getElementsByTagName("a");
-				var userLinks = Foxtrick.filter(links, function(n) { return (n.href.search(/userId=/i) >= 0); });
+				var userLinks = Foxtrick.filter(function(n) { return (n.href.search(/userId=/i) >= 0); }, links);
 				modifyUserLinks(userLinks);
-			});
+			}, nonVisitorsBoxes);
 		}
 		if (FoxtrickPrefs.isModuleOptionEnabled("SeriesFlags", "Visitors")
-			&& Foxtrick.any(["teamPage", "league", "youthleague", "federation"],
-				function(n) { return Foxtrick.isPage(n, doc); })) {
+			&& Foxtrick.any(function(n) { return Foxtrick.isPage(n, doc); }, ["teamPage", "league", "youthleague", "federation"])) {
 			// add to visitors
 			var sideBar = doc.getElementById("sidebar");
 			var sideBarBoxes = sideBar.getElementsByClassName("sidebarBox");
 			// visitors box is the box with a table
-			Foxtrick.map(
-				Foxtrick.filter(sideBarBoxes,
-					function(n) { return n.getElementsByTagName("table").length > 0; }),
-				function(n) {
+			Foxtrick.map(function(n) {
 					var links = n.getElementsByTagName("a");
-					var userLinks = Foxtrick.filter(links, function(n) { return (n.href.search(/userId=/i) >= 0); });
+					var userLinks = Foxtrick.filter(function(n) { return (n.href.search(/userId=/i) >= 0); }, links);
 					modifyUserLinks(userLinks);
-				}
+				},
+				Foxtrick.filter(function(n) { return n.getElementsByTagName("table").length > 0; },
+					sideBarBoxes)
 			);
 		}
 	}

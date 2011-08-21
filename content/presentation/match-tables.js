@@ -21,10 +21,10 @@ var FoxtrickMatchTables = {
 			// information provided by other modules, namely
 			// ShowFriendlyBooked
 			var cells = table.getElementsByTagName("td");
-			Foxtrick.map(cells, function(n) {
+			Foxtrick.map(function(n) {
 				if (n.innerHTML.search(/&nbsp;/) > -1)
 					n.innerHTML = n.innerHTML.replace(/&nbsp;/g, "");
-			});
+			}, cells);
 		}
 	},
 

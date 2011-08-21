@@ -649,7 +649,7 @@ function initModules()
 	for (var i in Foxtrick.modules)
 		modules.push(Foxtrick.modules[i]);
 	// remove modules without categories
-	modules = Foxtrick.filter(modules, function(m) { return m.MODULE_CATEGORY != undefined; });
+	modules = Foxtrick.filter(function(m) { return m.MODULE_CATEGORY != undefined; }, modules);
 	// sort modules in alphabetical order
 	modules.sort(function(a, b) { return a.MODULE_NAME.localeCompare(b.MODULE_NAME); });
 
@@ -660,7 +660,7 @@ function initModules()
 		$(obj).attr("x-on", module.MODULE_CATEGORY);
 		// show on view-by-page tab
 		if (module.PAGES) {
-			if (Foxtrick.member(module.PAGES, "all"))
+			if (Foxtrick.member("all", module.PAGES))
 				$(obj).attr("x-on", $(obj).attr("x-on") + " universal");
 			else if (Foxtrick.intersect(module.PAGES, pageIds).length > 0)
 				$(obj).attr("x-on", $(obj).attr("x-on") + " on_page");

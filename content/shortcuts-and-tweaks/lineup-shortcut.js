@@ -48,9 +48,9 @@ FoxtrickLineupShortcut = {
 		// to get match history table
 		var mainBody = doc.getElementById("mainBody");
 		var boxes = mainBody.getElementsByClassName("mainBox");
-		boxes = Foxtrick.filter(boxes, function(n) {
+		boxes = Foxtrick.filter(function(n) {
 			return n.id != "trainingDetails";
-		});
+		}, boxes);
 		var matchHistory = boxes[boxes.length - 1];
 		var matchTable = matchHistory.getElementsByTagName("table")[0];
 		if (!matchTable)
@@ -140,10 +140,9 @@ FoxtrickLineupShortcut = {
 		var mainWrapper = doc.getElementById("mainWrapper");
 		var mainBody = doc.getElementById("mainBody");
 
-		var matchLinks = Foxtrick.filter(mainBody.getElementsByTagName("a"),
-			function(n) {
+		var matchLinks = Foxtrick.filter(function(n) {
 				return n.href.indexOf("/Club/Matches/Match.aspx") >= 0;
-			});
+			}, mainBody.getElementsByTagName("a"));
 		if (!matchLinks.length)
 			return; // hasn't played a match yet
 

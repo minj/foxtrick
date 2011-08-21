@@ -221,13 +221,13 @@ Foxtrick.Pages.Players = {
 					continue;
 				var id = Foxtrick.Pages.Players.getPlayerId(playerNode);
 				// see if player is already in playerList, add if not
-				var player = Foxtrick.filter(playerList, function(n) { return n.id == id; })[0];
+				var player = Foxtrick.filter(function(n) { return n.id == id; }, playerList)[0];
 				if (!player) {
 					playerList.push({id : id});
 					player = playerList[playerList.length - 1];
 				}
-				var nameLink = Foxtrick.filter(playerNode.getElementsByTagName("a"),
-					function(n) { return !Foxtrick.hasClass(n, "flag.+"); })[0];
+				var nameLink = Foxtrick.filter(function(n) { return !Foxtrick.hasClass(n, "flag.+"); },
+					playerNode.getElementsByTagName("a"))[0];
 				player.nameLink = nameLink.cloneNode(true);
 
 				var paragraphs = playerNode.getElementsByTagName("p");
@@ -539,8 +539,8 @@ Foxtrick.Pages.Players = {
 	},
 
 	getPlayerId : function(playerInfo) {
-		var nameLink = Foxtrick.filter(playerInfo.getElementsByTagName("a"),
-			function(n) { return !Foxtrick.hasClass(n, "flag.+"); })[0];
+		var nameLink = Foxtrick.filter(function(n) { return !Foxtrick.hasClass(n, "flag.+"); },
+			playerInfo.getElementsByTagName("a"))[0];
 		var id = Number(nameLink.href.match(/playerID=(\d+)/i)[1]);
 		return id;
 	},

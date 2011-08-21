@@ -53,8 +53,7 @@ var FoxtrickPrefs = {
 		var values = FoxtrickPrefs.getList(branch);
 
 		// already exists?
-		var exists = Foxtrick.any(values,
-			function(v) { return v == value; });
+		var exists = Foxtrick.member(v, values);
 
 		if (exists)
 			return false;
@@ -68,17 +67,17 @@ var FoxtrickPrefs = {
 	// returns a list in an array
 	getList : function(branch) {
 		var keys = FoxtrickPrefs.getAllKeysOfBranch(branch);
-		return Foxtrick.map(keys, function(k) {
+		return Foxtrick.map(function(k) {
 			return FoxtrickPrefs.get(k);
-		});
+		}, keys);
 	},
 
 	/** Remove a list element. */
 	delListPref : function(branch, delValue) {
 		var values = FoxtrickPrefs.getList(branch);
-		values = Foxtrick.filter(values, function(e) {
+		values = Foxtrick.filter(function(e) {
 			return e != delValue;
-		});
+		}, values);
 		FoxtrickPrefs.populateList(branch, values);
 	},
 

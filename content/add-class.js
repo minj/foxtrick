@@ -34,10 +34,10 @@ Foxtrick.AddClass = {
 
 		// start time
 		var cells = mainBody.getElementsByTagName("td");
-		Foxtrick.map(cells, function(cell) { //Foxtrick.log(cell.innerHTML, cell.search(timeRe));
+		Foxtrick.map(function(cell) { //Foxtrick.log(cell.innerHTML, cell.search(timeRe));
 			if (cell.getElementsByClassName("date").length == 0)
 				cell.innerHTML = cell.innerHTML.replace(timeRe, "<span class=\"date\">$1</span>");
-		});
+		}, cells);
 	},
 
 	// add date class for youth league search
@@ -50,10 +50,10 @@ Foxtrick.AddClass = {
 
 		// start time
 		var cells = table.getElementsByTagName("td");
-		Foxtrick.map(cells, function(cell) {
+		Foxtrick.map(function(cell) {
 			if (cell.getElementsByClassName("date").length == 0)
 			cell.innerHTML = cell.innerHTML.replace(timeRe, "<span class=\"date\">$1</span>");
-		});
+		}, cells);
 	},
 
 	// add date class for transfer-list

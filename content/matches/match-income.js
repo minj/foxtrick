@@ -28,7 +28,7 @@ var FoxtrickMatchIncome = {
 				return false;
 			return true;
 		};
-		var soldSeatBox = Foxtrick.filter(sidebarBoxes, isSoldSeats)[0];
+		var soldSeatBox = Foxtrick.filter(isSoldSeats, sidebarBoxes)[0];
 		if (!soldSeatBox) // cannot find sold seat boxes
 			return;
 

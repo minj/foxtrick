@@ -25,15 +25,15 @@ var FoxtrickShowLineupSet = {
 			var getLineupTeam = function(item) {
 				var links = item.getElementsByTagName("a");
 				if (links.length == 2) {
-					var isTransfer = Foxtrick.any(links, function(n) { return n.href.indexOf("PlayerID=") >= 0; });
+					var isTransfer = Foxtrick.any(function(n) { return n.href.indexOf("PlayerID=") >= 0; }, links);
 					if (!isTransfer)
 						return links[0].textContent;
 				}
 				return null;
 			};
 
-			lineupSet = Foxtrick.map(items, getLineupTeam);
-			lineupSet = Foxtrick.filter(lineupSet, function(n) { return n != null; });
+			lineupSet = Foxtrick.map(getLineupTeam, items);
+			lineupSet = Foxtrick.filter(function(n) { return n != null; }, lineupSet);
 		}
 
 		// check ownerless teams
@@ -43,8 +43,8 @@ var FoxtrickShowLineupSet = {
 			var isOwnerless = function(link) { return Foxtrick.hasClass(link, "shy"); }
 			// get bots/ownerless
 			var teams = leagueTable.getElementsByTagName("a");
-			var botLinks = Foxtrick.filter(teams, isOwnerless);
-			bots = Foxtrick.map(botLinks, function(n) { return n.textContent; });
+			var botLinks = Foxtrick.filter(isOwnerless, teams);
+			bots = Foxtrick.map(function(n) { return n.textContent; }, botLinks);
 		}
 
 		var isFixtureTable = function(table) {
@@ -63,9 +63,9 @@ var FoxtrickShowLineupSet = {
 
 		var tables = doc.getElementById("mainBody").getElementsByTagName("table");
 		// only deal with fixture/result tables
-		tables = Foxtrick.filter(tables, function(n) {
+		tables = Foxtrick.filter(function(n) {
 			return isFixtureTable(n) || isResultTable(n);
-		});
+		}, tables);
 		for (var k = 0; k < tables.length; ++k) {
 			var table = tables[k];
 			for (var i = 1; i < table.rows.length; ++i) {

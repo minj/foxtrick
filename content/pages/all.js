@@ -37,9 +37,9 @@ Foxtrick.Pages.All = {
 		};
 		var header = doc.getElementsByTagName("h1")[0];
 		var spans = header.getElementsByTagName("span");
-		var idContainer = Foxtrick.filter(spans, function(n) {
+		var idContainer = Foxtrick.filter(function(n) {
 			return parseId(n) !== null;
-		})[0];
+		}, spans)[0];
 		if (idContainer)
 			return parseId(idContainer);
 	},

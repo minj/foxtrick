@@ -312,7 +312,7 @@ Foxtrick.Pages.Player = {
 								return Foxtrick.hasClass(node, "skill")
 									|| Foxtrick.hasClass(node, "shy");
 							};
-							var textNodes = Foxtrick.filter(skillCell.getElementsByClassName("youthSkillBar")[0].childNodes, isSkill);
+							var textNodes = Foxtrick.filter(isSkill, skillCell.getElementsByClassName("youthSkillBar")[0].childNodes);
 							if (textNodes.length >= 2) {
 								currentText = textNodes[0].textContent,
 								maxText = textNodes[1].textContent;

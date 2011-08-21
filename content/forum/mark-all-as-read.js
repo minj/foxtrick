@@ -14,16 +14,16 @@ var FoxtrickMarkAllAsRead = {
 		var threads = doc.getElementsByClassName("threadItem");
 		if (threads.length == 0)
 			return; // no threads!
-		var threadLinks = Foxtrick.map(threads, function(n) {
+		var threadLinks = Foxtrick.map(function(n) {
 			//check if there are url or urlShort
 			var urltest = n.getElementsByClassName("url");
 			var urlclass = (urltest.length != 0) ? "url" : "urlShort";
 			return n.getElementsByClassName(urlclass)[0].getElementsByTagName("a")[0];
 
-		});
-		var threadIds = Foxtrick.map(threadLinks, function(n) {
+		}, threads);
+		var threadIds = Foxtrick.map(function(n) {
 			return n.href.match(/\/Forum\/Read\.aspx\?t=(\d+)/)[1];
-		});
+		}, threadLinks);
 		var threadList = threadIds.join(",");
 		var addr = "javascript:__doPostBack('ctl00$ctl00$CPContent$ucLeftMenu$ucNewPosts','mrk|%s')".replace(/%s/, threadList);
 

@@ -76,7 +76,7 @@ Foxtrick.playSound = function(url, doc) {
 	}
 }
 
-Foxtrick.map = function(array, func) {
+Foxtrick.map = function(func, array) {
 	try {
 		var ret = [];
 		for (var i = 0; i < array.length; ++i)
@@ -85,7 +85,7 @@ Foxtrick.map = function(array, func) {
 	} catch(e) {Foxtrick.log('Uncaught function error: ',e)}
 }
 
-Foxtrick.filter = function(array, func) {
+Foxtrick.filter = function(func, array) {
 	try {
 		var ret = [];
 		for (var i = 0; i < array.length; ++i) {
@@ -96,7 +96,7 @@ Foxtrick.filter = function(array, func) {
 	} catch(e) {Foxtrick.log('Uncaught function error: ',e)}
 }
 
-Foxtrick.any = function(array, func) {
+Foxtrick.any = function(func, array) {
 	try {
 		for (var i = 0; i < array.length; ++i)
 			if (func(array[i]))
@@ -105,7 +105,7 @@ Foxtrick.any = function(array, func) {
 	} catch(e) {Foxtrick.log('Uncaught function error: ',e)}
 }
 
-Foxtrick.count = function(array, func) {
+Foxtrick.count = function(func, array) {
 	try {
 		var ret = 0;
 		for (var i = 0; i < array.length; ++i) {
@@ -132,14 +132,14 @@ Foxtrick.unique = function(array) {
     return ret;
 }
 
-Foxtrick.member = function(a, n) {
-	return Foxtrick.any(a, function(t) { return n === t; });
+Foxtrick.member = function(n, array) {
+	return Foxtrick.any(function(t) { return n === t; }, array);
 }
 
 Foxtrick.intersect = function(a, b) {
 	var r = [];
 	for (var i = 0; i < a.length; ++i)
-		if (Foxtrick.member(b, a[i]))
+		if (Foxtrick.member(a[i], b))
 			r.push(a[i]);
 	r = Foxtrick.unique(r);
 	return r;
@@ -336,7 +336,7 @@ Foxtrick.isHtUrl = function(url) {
 		new RegExp("^http://www\\d{2}\.hat-trick\.net(/|$)", "i"),
 		new RegExp("^http://www\\d{2}\.hattrick\.name(/|$)", "i"),
 	];
-	return Foxtrick.any(htMatches, function(re) { return url.match(re) != null; });
+	return Foxtrick.any(function(re) { return url.match(re) != null; }, htMatches);
 }
 
 Foxtrick.isStage = function(doc) {
@@ -504,9 +504,9 @@ Foxtrick.unload_module_css = function(doc) {
 			if (module.CSS)
 				Foxtrick.unload_css_permanent(module.CSS);
 			if (module.OPTIONS_CSS) {
-				Foxtrick.map(module.OPTIONS_CSS, function(n) {
+				Foxtrick.map(function(n) {
 					Foxtrick.unload_css_permanent(n);
-				});
+				}, module.OPTIONS_CSS);
 			}
 		}
 	}
@@ -601,7 +601,7 @@ Foxtrick.collect_module_css = function() {
 		if (b.MODULE_NAME == "SkinPlugin")
 			return -1;
 	});
-	Foxtrick.map(modules, collect);
+	Foxtrick.map(collect, modules);
 };
 
 // load single into browser or page

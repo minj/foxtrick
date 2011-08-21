@@ -40,9 +40,9 @@ var FoxtrickNewMail = {
 			if (subMenu) {
 				var subMenuBox = subMenu.getElementsByClassName("subMenuBox")[0];
 				var listItems = subMenuBox.getElementsByTagName("li");
-				var mailCountItems = Foxtrick.filter(listItems, function(n) {
+				var mailCountItems = Foxtrick.filter(function(n) {
 					return n.getElementsByTagName("span").length > 0;
-				});
+				}, listItems);
 				if (mailCountItems.length) {
 					var mailCount = mailCountItems[0].getElementsByTagName("span")[0];
 					mailCount.className = "ft-new-mail";

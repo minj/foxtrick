@@ -56,7 +56,7 @@ var FoxtrickMatchPlayerColouring = {
 		};
 		var sidebar = doc.getElementById("sidebar");
 		var teams = sidebar.getElementsByTagName("table")[0].getElementsByTagName("a");
-		teams = Foxtrick.filter(teams, isTeamLink);
+		teams = Foxtrick.filter(isTeamLink, teams);
 		var homeTeam = teams[0];
 		var awayTeam = teams[1];
 
@@ -86,8 +86,8 @@ var FoxtrickMatchPlayerColouring = {
 		];
 
 		var getPlayers = function(xml) {
-			return Foxtrick.map(xml.getElementsByTagName("PlayerID"),
-				function(n) { return Number(n.textContent); });
+			return Foxtrick.map(function(n) { return Number(n.textContent); },
+				xml.getElementsByTagName("PlayerID"));
 		};
 		var getPlayerId =  function(a) {
 			if (m = a.href.match(/PlayerId=(\d+)/i))
@@ -112,13 +112,13 @@ var FoxtrickMatchPlayerColouring = {
 				var team1 = teams[0];
 				var team2 = teams[1];
 				var paragraphs = doc.getElementById('mainBody').innerHTML.split(/<div|\n/);
-				Foxtrick.map(paragraphs, function(n) {
+				Foxtrick.map(function(n) {
 					var node = doc.createElement('div');
 					node.innerHTML = n;
 					var as = node.getElementsByTagName('a');
 					if (as.length==1 && n.search(team1)!=-1 && n.search(team2)==-1) homePlayers.push(as[0].href.match(/\d+/)[0])
 					if (as.length==1 && n.search(team1)==-1 && n.search(team2)!=-1) awayPlayers.push(as[0].href.match(/\d+/)[0])
-				});
+				}, paragraphs);
 				homePlayers = Foxtrick.unique(homePlayers);
 				awayPlayers = Foxtrick.unique(awayPlayers);
 
@@ -126,34 +126,34 @@ var FoxtrickMatchPlayerColouring = {
 				Foxtrick.log("Away players: ", awayPlayers);
 
 				// colour all player links
-				Foxtrick.map(links, function(n) {
+				Foxtrick.map(function(n) {
 					var id =  getPlayerId(n)
 					if (id) {
-						if (Foxtrick.any(homePlayers, function(n) { return n == id; }))
+						if (Foxtrick.member(id, homePlayers))
 							Foxtrick.addClass(n, homeClass);
-						else if (Foxtrick.any(awayPlayers, function(n) { return n == id; }))
+						else if (Foxtrick.member(id, awayPlayers))
 							Foxtrick.addClass(n, awayClass);
 					}
-				});
+				}, links);
 
 				// add class for sidebar event rows
 				var sidebarLinks = sidebar.getElementsByTagName("a");
-				var homeLinks = Foxtrick.filter(sidebarLinks, function(n) {
+				var homeLinks = Foxtrick.filter(function(n) {
 					return (getPlayerId(n) != null)
 						&& Foxtrick.hasClass(n, homeClass);
-				});
-				var awayLinks = Foxtrick.filter(sidebarLinks, function(n) {
+				}, sidebarLinks);
+				var awayLinks = Foxtrick.filter(function(n) {
 					return (getPlayerId(n) != null)
 						&& Foxtrick.hasClass(n, awayClass);
-				});
-				Foxtrick.map(homeLinks, function(n) {
+				}, sidebarLinks);
+				Foxtrick.map(function(n) {
 					Foxtrick.addClass(n.parentNode.parentNode,
 						"ft-match-event-home");
-				});
-				Foxtrick.map(awayLinks, function(n) {
+				}, homeLinks);
+				Foxtrick.map(function(n) {
 					Foxtrick.addClass(n.parentNode.parentNode,
 						"ft-match-event-away");
-				});
+				}, awayLinks);
 			});
 		});
 	},

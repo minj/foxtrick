@@ -35,7 +35,7 @@ var FoxtrickHistoryStats= {
 			catch (e) {
 				var page = 1;
 			}
-			if (!Foxtrick.member(this.Pages,page)) {
+			if (!Foxtrick.member(page, this.Pages)) {
 				this.Pages.push(page);
 
 				// get season offset
@@ -112,12 +112,12 @@ var FoxtrickHistoryStats= {
 						table[i].innerHTML = Foxtrick.trim(table[i].innerHTML.replace(season-this.Offset,''));
 						var pos = table[i].innerHTML.match(/\d{1}/);
 						buff = season + '|' + league + '|' + pos + '|' + leagueN;
-						if (!Foxtrick.member(this.Buffer,buff))
+						if (!Foxtrick.member(buff, this.Buffer))
 							this.Buffer.push(buff);
 					}
 					else if (cup != -1) {
 						buff = season + '|' + cup;
-						if (!Foxtrick.member(this.Buffer,buff))
+						if (!Foxtrick.member(buff, this.Buffer))
 							this.Buffer.push(buff);
 					}
 				}

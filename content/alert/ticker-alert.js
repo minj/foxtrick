@@ -90,13 +90,13 @@ var FoxtrickTickerAlert = {
 		var ticker = doc.getElementById("ticker");
 		var getTickers = function() {
 			const divs = ticker.getElementsByTagName("div");
-			const tickers = Foxtrick.map(divs, function(n) {
+			const tickers = Foxtrick.map(function(n) {
 				return {
 					text : n.textContent,
 					link : n.getElementsByTagName("a")[0].href,
 					isNew : (n.getElementsByTagName("strong").length > 0)
 				};
-			});
+			}, divs);
 			return tickers;
 		};
 		var tickerCheck = function(ev) {
@@ -121,7 +121,7 @@ var FoxtrickTickerAlert = {
 
 				Foxtrick.sessionSet("tickers", tickersNow);
 
-				const newTickers = Foxtrick.filter(tickersNow, function(n) {
+				const newTickers = Foxtrick.filter(function(n) {
 					if (!n.isNew)
 						return false;
 					for (var i = 0; i < tickers.length; ++i) {
@@ -130,9 +130,9 @@ var FoxtrickTickerAlert = {
 							return false;
 					}
 					return true;
-				});
+				}, tickersNow);
 
-				Foxtrick.map(newTickers, function(n) {
+				Foxtrick.map(function(n) {
 					var type = getType(n.link);
 					if (FoxtrickPrefs.getBool("module.TickerAlert." + type + ".enabled")) {
 						Foxtrick.util.notify.create(n.text, n.link);
@@ -144,7 +144,7 @@ var FoxtrickTickerAlert = {
 							Foxtrick.playSound(sound, doc);
 						}
 					}
-				});
+				}, newTickers);
 				ticker.addEventListener(DOMMutationEventType, tickerCheck, false);
 			});
 		};

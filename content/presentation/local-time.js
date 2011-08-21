@@ -61,9 +61,9 @@ var FoxtrickLocalTime = {
 		if (!mainBody)
 			return;
 		var dates = mainBody.getElementsByClassName("date");
-		dates = Foxtrick.filter(dates, function(n) { return !n.hasAttribute("x-lt-proced"); });
+		dates = Foxtrick.filter(function(n) { return !n.hasAttribute("x-lt-proced"); }, dates);
 
-		Foxtrick.map(dates, function(date) {
+		Foxtrick.map(function(date) {
 			date.setAttribute("x-lt-proced", "true");
 			// if text doesn't have time (hours and minutes) in it,
 			// ignore it
@@ -83,7 +83,7 @@ var FoxtrickLocalTime = {
 			// set original time as attribute for reference from
 			// other modules
 			date.setAttribute("x-ht-date", htDate.getTime());
-		});
+		}, dates);
 	}
 }
 Foxtrick.util.module.register(FoxtrickLocalTime);

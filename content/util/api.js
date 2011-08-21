@@ -295,11 +295,11 @@ Foxtrick.util.api = {
 						}
 						else {
 							Foxtrick.log("ApiProxy: error ", Foxtrick.util.api.getErrorText(x, status) ,
-										". Arguments: ", Foxtrick.filter(parameters, function(p) {
+										". Arguments: ", Foxtrick.filter(function(p) {
 															return (p[0]!='oauth_consumer_key'
 																	&& p[0]!='oauth_token'
 																	&& p[0]!='oauth_signature');
-														}) );
+														}, parameters));
 							process_queued(null);
 						}
 					}, true);

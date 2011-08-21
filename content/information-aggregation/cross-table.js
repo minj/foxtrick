@@ -13,7 +13,7 @@ var FoxtrickCrossTable = {
 	run : function(doc) {
 		var teams = [];
 		var getTeam = function(id) {
-			var existing = Foxtrick.filter(teams, function(n) { return n.id == id; })[0];
+			var existing = Foxtrick.filter(function(n) { return n.id == id; }, teams)[0];
 			if (existing)
 				return existing;
 			var created = {
@@ -287,8 +287,8 @@ var FoxtrickCrossTable = {
 					+ "&chxp=1,6.25,18.5,31.75,44,56.25,68.25,81.5,93.75" // Y-axis label position
 					+ "&chg=" + (100 / (roundsPlayed - 1)) + ",0" // Separate lines parallel with Y-axis
 					+ "&chco=008000,FF9900,4684EE,DC3912,00E100,FF00FF,A7A7A7,000080" // line colors
-					+ "&chd=t:" + Foxtrick.map(teams, function(n) { return n.position.join(","); }).join("|") // team position trend
-					+ "&chdl=" + Foxtrick.map(teams, function(n) { return n.name; }).join("|") // team names
+					+ "&chd=t:" + Foxtrick.map(function(n) { return n.position.join(","); }, teams).join("|") // team position trend
+					+ "&chdl=" + Foxtrick.map(function(n) { return n.name; }, teams).join("|") // team names
 					+ "&chdlp=r|l";
 				graph.src = url;
 			}

@@ -17,9 +17,9 @@ var FoxtrickRatings = {
 	},
 
 	run : function(doc) {
-		var ratingsArray = Foxtrick.filter(FoxtrickRatings.OPTIONS, function(x) {
+		var ratingsArray = Foxtrick.filter(function(x) {
 			return x != "HatStatsSeparated";
-		});
+		}, FoxtrickRatings.OPTIONS);
 
 		var isprematch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch")!=null);
 		if (isprematch) return;

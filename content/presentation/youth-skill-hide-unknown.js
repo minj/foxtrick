@@ -35,13 +35,13 @@ var FoxtrickYouthSkillHideUnknown = {
 				}
 				if (FoxtrickPrefs.isModuleOptionEnabled("YouthSkillHideUnknown", "HideMaximalKeyWord")) {
 					var skillBars = doc.getElementsByClassName("youthSkillBar");
-					Foxtrick.map(skillBars, function(skillBar) {
-						var textNodes = Foxtrick.filter(skillBar.childNodes, function(n) {
+					Foxtrick.map(function(skillBar) {
+						var textNodes = Foxtrick.filter(function(n) {
 							return n.nodeType == window.Node.TEXT_NODE;
-						});
+						}, skillBar.childNodes);
 						for (var i = 0; i < textNodes.length; ++i)
 							textNodes[i].textContent = (i == 1) ? " / " : " ";
-					});
+					}, skillBars);
 				}
 			}
 		}

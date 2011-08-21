@@ -21,13 +21,13 @@ var FoxtrickStaffMarker = {
 	init : function() {
 		// parse ID from nodes in aboutXML and record in obj
 		var parseId = function(nodes, obj) {
-			Foxtrick.map(nodes, function(node) {
+			Foxtrick.map(function(node) {
 				if (node.hasAttribute("id")) {
 					var id = Number(node.getAttribute("id"));
 					if (!isNaN(id))
 						obj[id] = true;
 				}
-			});
+			}, nodes);
 		};
 
 		// FoxTrick
@@ -38,10 +38,10 @@ var FoxtrickStaffMarker = {
 			"designer",
 			"translator"
 		];
-		Foxtrick.map(ftTags, function(tag) {
+		Foxtrick.map(function(tag) {
 			var nodes = Foxtrick.XMLData.aboutXML.getElementsByTagName(tag);
 			parseId(nodes, FoxtrickStaffMarker.foxtrickers);
-		});
+		}, ftTags);
 
 		// Editors
 		var editors = Foxtrick.XMLData.aboutXML.getElementsByTagName("editor");
@@ -61,11 +61,11 @@ var FoxtrickStaffMarker = {
 					Foxtrick.loadXml(htyUri, function(xml) {
 						var obj = {};
 						var nodes = xml.getElementsByTagName("User");
-						Foxtrick.map(nodes, function(node) {
+						Foxtrick.map(function(node) {
 							var id = Number(node.getAttribute("ID"));
 							if (!isNaN(id))
 								obj[id] = true;
-						});
+						}, nodes);
 						Foxtrick.sessionSet(htySessionKey, obj);
 						Foxtrick.log("Hattrick-youthclub staffs loaded.");
 						callback(obj);
@@ -152,9 +152,9 @@ var FoxtrickStaffMarker = {
 
 	_MarkAliases_thread : function(doc, modifier) {
 		var userDivs = doc.getElementById("mainWrapper").getElementsByClassName("float_left");
-		Foxtrick.map(userDivs, function(user) {
+		Foxtrick.map(function(user) {
 			var links = user.getElementsByTagName("a");
-			Foxtrick.map(links, function(a) {
+			Foxtrick.map(function(a) {
 				if (!a.href) {Foxtrick.log('error ',a.parentNode.innerHTML);return;}
 				if (a.getAttribute("href").search(/\/Club\/Manager\/\?userId\=/i) == -1
 					|| a.getAttribute("href").search(/redir_to_league=true/i) != -1)
@@ -166,8 +166,8 @@ var FoxtrickStaffMarker = {
 				var uid = a.href.replace(/.+userId=/i, "").match(/^\d+/);
 
 				modifier(uid, uname, a);
-			});
-		});
+			}, links);
+		}, userDivs);
 	},
 
 	_MarkAliases_select : function(doc, modifier) {

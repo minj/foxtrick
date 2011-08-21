@@ -31,7 +31,7 @@ Foxtrick.util.copyButton.add = function(doc, text) {
 		var icons =
 			["ci_first", "ci_second", "ci_third", "ci_fourth", "ci_fifth", "ci_sixth", "ci_seventh",
 			"bookmark", "backIcon", "statsIcon", "alltidIcon", "forumSettings", "forumSearch", "forumStats", "forumSearch2"];
-		var orderClass = icons[ Foxtrick.count(icons, function(n){ return mainBody.getElementsByClassName(n).length > 0; }) ];
+		var orderClass = icons[ Foxtrick.count(function(n){ return mainBody.getElementsByClassName(n).length > 0; }, icons) ];
 
 		var link = doc.createElement("a");
 		link.className = "inner copyicon " + orderClass;

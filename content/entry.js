@@ -237,7 +237,7 @@ Foxtrick.entry.niceRun = function(modules, pick) {
 		var bNice = b.NICE || 0;
 		return aNice - bNice;
 	});
-	Foxtrick.map(modules, function(m) {
+	Foxtrick.map(function(m) {
 		try {
 			if (typeof(pick(m)) == "function")
 				pick(m)();
@@ -245,5 +245,5 @@ Foxtrick.entry.niceRun = function(modules, pick) {
 		catch (e) {
 			Foxtrick.log(e);
 		}
-	});
+	}, modules);
 };

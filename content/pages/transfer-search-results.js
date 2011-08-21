@@ -11,7 +11,7 @@ Foxtrick.Pages.TransferSearchResults = {
 	getPlayerList : function(doc) {
 		var players = doc.getElementsByClassName("transferPlayerInfo");
 
-		return Foxtrick.map(players, function(playerInfo) {
+		return Foxtrick.map(function(playerInfo) {
 			var player = {};
 
 			// return player whenever we encounter a problem
@@ -23,15 +23,15 @@ Foxtrick.Pages.TransferSearchResults = {
 				player.nameLink = divs[0].getElementsByClassName("transfer_search_playername")[0].getElementsByTagName("a")[0].cloneNode(true);
 				player.id = player.nameLink.href.match(/.+playerID=(\d+)/i)[1];
 				// first row - bookmark link
-				var bookmarkLinks = Foxtrick.filter(divs[0].getElementsByTagName("a"), function(l) {
+				var bookmarkLinks = Foxtrick.filter(function(l) {
 					return l.href.indexOf("Bookmarks") >= 0;
-				});
+				}, divs[0].getElementsByTagName("a"));
 				if (bookmarkLinks.length > 0)
 					player.bookmarkLink = bookmarkLinks[0].cloneNode(true);
 				// first row - hotlist link
-				var hotlistLinks = Foxtrick.filter(divs[0].getElementsByTagName("a"), function(l) {
+				var hotlistLinks = Foxtrick.filter(function(l) {
 					return l.href.search(/hotList/i) != -1;
-				});
+				}, divs[0].getElementsByTagName("a"));
 				if (hotlistLinks.length > 0)
 					player.hotlistLink = hotlistLinks[0].cloneNode(true);
 				// first row - cards, injury
@@ -124,6 +124,6 @@ Foxtrick.Pages.TransferSearchResults = {
 			finally {
 				return player;
 			}
-		});
+		}, players);
 	}
 };

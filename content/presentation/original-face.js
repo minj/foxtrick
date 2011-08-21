@@ -21,10 +21,10 @@ var FoxtrickOriginalFace = {
 			if (Foxtrick.isPage("YouthPlayer", doc)
 				|| Foxtrick.isPage("YouthPlayers", doc)) {
 				var imgs = doc.getElementsByTagName("img");
-				var avatarImages = Foxtrick.filter(imgs, function(n) { return (n.src.search(/\/Img\/Avatar/i) >= 0); });
-				Foxtrick.map(avatarImages, function(n) {
+				var avatarImages = Foxtrick.filter(function(n) { return (n.src.search(/\/Img\/Avatar/i) >= 0); }, imgs);
+				Foxtrick.map(function(n) {
 					n.src = n.src.replace(/y_/, "");
-				});
+				}, avatarImages);
 			}
 		}
 	}

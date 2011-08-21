@@ -98,14 +98,14 @@ var FoxtrickMyMonitor = {
 			removeSelect.id = "ft-monitor-remove-select";
 			removeBox.appendChild(removeSelect);
 			// add options to select box
-			Foxtrick.map(teams, function(team) {
+			Foxtrick.map(function(team) {
 				var option = doc.createElement("option");
 				option.textContent = Foxtrickl10n.getString("MyMonitor.removeTeamFormat")
 					.replace(/%n/, team.name)
 					.replace(/%t/, Foxtrickl10n.getString("MyMonitor.type." + team.type))
 					.replace(/%i/, team.id);
 				removeSelect.appendChild(option);
-			});
+			}, teams);
 			// button committing removal
 			var removeButton = doc.createElement("input");
 			removeButton.id = "ft-monitor-remove-button";
@@ -247,7 +247,7 @@ var FoxtrickMyMonitor = {
 			});
 
 		};
-		Foxtrick.map(teams, addTeam);
+		Foxtrick.map(addTeam, teams);
 	},
 
 	move_up: function (ev) {
@@ -292,9 +292,9 @@ var FoxtrickMyMonitor = {
 
 		var teams = FoxtrickMyMonitor.getSavedTeams(doc);
 		var teamIdContainer = Foxtrick.Pages.All.getId(doc);
-		var existing = Foxtrick.filter(teams, function(n) {
+		var existing = Foxtrick.filter(function(n) {
 			return n.id == teamIdContainer.id && n.type == type;
-		});
+		}, teams);
 
 		if ( type == 'senior' ) {
 			var logo = doc.getElementsByClassName('teamLogo')[0];// team logo
@@ -332,9 +332,9 @@ var FoxtrickMyMonitor = {
 		removeLink.className = "ft-link";
 		removeLink.textContent = Foxtrickl10n.getString("MyMonitor.remove");
 		removeLink.addEventListener("click", function() {
-			teams = Foxtrick.filter(teams, function(n) {
+			teams = Foxtrick.filter(function(n) {
 				return n.id != teamIdContainer.id || n.type != type;
-			})
+			}, teams);
 			FoxtrickMyMonitor.setSavedTeams(teams);
 			Foxtrick.removeClass(addLink, "hidden");
 			Foxtrick.addClass(removeLink, "hidden");
@@ -357,12 +357,12 @@ var FoxtrickMyMonitor = {
 			fauxHeader.textContent = Foxtrickl10n.getString("MyMonitor.teams").replace(/%s/, teams.length);
 			select.appendChild(fauxHeader);
 			// now add the teams
-			Foxtrick.map(teams, function(n) {
+			Foxtrick.map(function(n) {
 				var option = doc.createElement("option");
 				option.textContent = n.name;
 				option.value = FoxtrickMyMonitor.getLink(n);
 				select.appendChild(option);
-			});
+			}, teams);
 		};
 		var select = doc.createElement("select");
 		fillSelect();

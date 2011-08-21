@@ -20,16 +20,16 @@ var FoxtrickTeamSelectBox = {
 		var isPlayerLink = function(n) {
 			return n.href.search(/playerId=(\d+)/i) != -1;
 		};
-		linkBoxes = Foxtrick.filter(sidebarBoxes, function(n) {
+		linkBoxes = Foxtrick.filter(function(n) {
 			return n.getElementsByTagName("a").length > 0
 				&& isPlayerLink(n.getElementsByTagName("a")[0]);
-		});
+		}, sidebarBoxes);
 		if (linkBoxes.length == 0)
 			return; // listBox may not be present on oldies page
 
 		linkBoxes.sort(function(a, b) {
-			var aLinks = Foxtrick.filter(a.getElementsByTagName("a"), isPlayerLink);
-			var bLinks = Foxtrick.filter(b.getElementsByTagName("a"), isPlayerLink);
+			var aLinks = Foxtrick.filter(isPlayerLink, a.getElementsByTagName("a"));
+			var bLinks = Foxtrick.filter(isPlayerLink, b.getElementsByTagName("a"));
 			return bLinks.length - aLinks.length;
 		});
 		listBox = linkBoxes[0];

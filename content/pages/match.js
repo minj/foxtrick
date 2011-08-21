@@ -73,12 +73,11 @@ Foxtrick.Pages.Match = {
 			// remove <a> (baseValue above) and <span> (could be added
 			// by HatStatsSeparated in module Ratings
 			var nodeCloned = cell.cloneNode(true);
-			var toRemove = Foxtrick.filter(nodeCloned.childNodes,
-				function(n) {
+			var toRemove = Foxtrick.filter(function(n) {
 					const nn = n.nodeName.toLowerCase();
 					return nn == "a" || nn == "span";
-				});
-			Foxtrick.map(toRemove, function(n) { nodeCloned.removeChild(n); });
+				}, nodeCloned.childNodes);
+			Foxtrick.map(function(n) { nodeCloned.removeChild(n); }, toRemove);
 			var subLevel = Foxtrick.trim(nodeCloned.textContent);
 			var path = "language/ratingSubLevels/sublevel[@text='" + subLevel + "']";
 			subLevelValue = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "value");

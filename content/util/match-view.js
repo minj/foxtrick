@@ -62,12 +62,12 @@ Foxtrick.util.matchView.fillMatches = function(container, xml) {
 	var isYouth = (xml.getElementsByTagName("IsYouth")[0].textContent == "True");
 	var matches = xml.getElementsByTagName("Match");
 	// add one played and one not played
-	var played = Foxtrick.filter(matches, function(n) {
+	var played = Foxtrick.filter(function(n) {
 		return n.getElementsByTagName("Status")[0].textContent == "FINISHED";
-	});
-	var notPlayed = Foxtrick.filter(matches, function(n) {
+	}, matches);
+	var notPlayed = Foxtrick.filter(function(n) {
 		return n.getElementsByTagName("Status")[0].textContent != "FINISHED";
-	});
+	}, matches);
 	var toAdd = [];
 	if (played.length > 0)
 		toAdd.push(played[played.length - 1]);

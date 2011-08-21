@@ -52,14 +52,14 @@ var FoxtrickShowFriendlyBooked = {
 		var leagueTable = leagueTableSpan.getElementsByTagName("table")[0];
 		var rows = leagueTable.getElementsByTagName("tr");
 		// remove header row and ownerless teams
-		rows = Foxtrick.filter(rows, function(n) {
+		rows = Foxtrick.filter(function(n) {
 			var isHeader = function() { return n.getElementsByTagName("th").length > 0; };
 			var inCup = function() { return n.getElementsByTagName("td")[3].getElementsByTagName("img").length > 0; };
 			var isOwnerless = function() { return n.getElementsByClassName("shy").length > 0; };
 			return !isHeader() && !inCup() && !isOwnerless();
-		});
+		}, rows);
 		// see whether friendly booked
-		Foxtrick.map(rows, function(n) {
+		Foxtrick.map(function(n) {
 			var teamCell = n.getElementsByTagName("td")[2];
 			var teamLink = teamCell.getElementsByTagName("a")[0].href;
 			var teamId = Foxtrick.util.id.getTeamIdFromUrl(teamLink);
@@ -97,7 +97,7 @@ var FoxtrickShowFriendlyBooked = {
 					destCell.appendChild(img);
 				}
 			});
-		});
+		}, rows);
 	}
 };
 Foxtrick.util.module.register(FoxtrickShowFriendlyBooked);
