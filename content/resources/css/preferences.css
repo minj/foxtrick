@@ -213,7 +213,7 @@ ul.nav li a:hover
 	text-decoration: underline;
 }
 
-div#panes
+div#pane
 {
 	border: 1px solid #ccc;
 	clear: both;

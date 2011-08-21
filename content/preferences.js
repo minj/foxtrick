@@ -1,3 +1,6 @@
+// page IDs of last page are stored in array pageIds
+var pageIds = [];
+
 function initLoader() {
 	// fennec runs init() from injected entry.js (injected)
 	// called directly, it'll run and save actually for some reason
@@ -21,6 +24,7 @@ function init()
 	try{
 		initCoreModules();
 		initListeners();
+		getPageIds();
 		initTabs();
 		initTextAndValues();
 		locateFragment(window.location.toString()); // locate element by fragment
@@ -58,15 +62,15 @@ function locateFragment(uri)
 	// show functions
 	var showModule = function(module) {
 		const moduleObj = $("#pref-" + String(module));
-		const tab = moduleObj.parent().attr("id").replace(/^pane-/, "");
-		showTab(tab);
+		const category = moduleObj.attr("x-category");
+		showTab(category);
 		moduleObj[0].scrollIntoView(true);
 	};
 	var showTab = function(tab) {
-		$("#panes > div[id^='pane-']").hide();
+		$("#pane > div").hide();
 		$("#tabs > li").removeClass("active");
 		$("#tab-" + tab).addClass("active");
-		$("#pane-" + tab).show();
+		$("#pane > div[x-on*=" + tab + "]").show();
 	};
 	var showFaq = function(id) {
 		showTab("help");
@@ -149,6 +153,20 @@ function initListeners()
 	});
 }
 
+// get page IDs in Foxtrick.ht_pages that last page matches and store them
+// in pageIds
+function getPageIds()
+{
+	const lastPage = Foxtrick.getLastPage();
+	for (var i in Foxtrick.ht_pages) {
+		// ignore PAGE all, it's shown in universal tab
+		if (i == "all")
+			continue;
+		if (Foxtrick.isPageHref(Foxtrick.ht_pages[i], lastPage))
+			pageIds.push(i);
+	}
+}
+
 function initTabs()
 {
 	// attach each tab with corresponding pane
@@ -161,11 +179,10 @@ function initTabs()
 	$("#view-by-page a").attr("href", "#view-by=page");
 	// initialize the tabs
 	initMainTab();
-	initModuleTabs();
-	initon_pageTab();
 	initChangesTab();
 	initHelpTab();
 	initAboutTab();
+	initModules();
 }
 
 function initTextAndValues()
@@ -247,31 +264,9 @@ function initTextAndValues()
 		updateStatus();
 	});
 
-	// init top buttons
-	var pages = [];
-	for (var i in Foxtrick.modules) {
-		if (Foxtrick.modules[i].MODULE_CATEGORY) {
-			if (Foxtrick.modules[i].ONPAGEPREF_PAGE) {
-				var page = Foxtrick.modules[i].ONPAGEPREF_PAGE;
-				if (page == "all") {}
-				else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage()))
-					pages.push(page);
-			}
-			else {
-				for (var j in Foxtrick.modules[i].PAGES) {
-					var page = Foxtrick.modules[i].PAGES[j];
-					if (page == "all") break;
-					else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) {
-						pages.push(page);
-						break;
-					}
-				}
-			}
-		}
-	}
-	pages = Foxtrick.unique(pages);
+	// show page IDs in view-by-page
 	$("#view-by-page a").text($("#view-by-page a").text()
-		+ " (" + pages.join(", ") + ")");
+		+ " (" + pageIds.join(", ") + ")");
 }
 
 function initMainTab()
@@ -346,67 +341,6 @@ function initMainTab()
 	});
 }
 
-function initModuleTabs()
-{
-	var categories = {};
-	for (var i in Foxtrick.moduleCategories)
-		categories[Foxtrick.moduleCategories[i]] = [];
-	for (var i in Foxtrick.modules)
-		if (Foxtrick.modules[i].MODULE_CATEGORY)
-			categories[Foxtrick.modules[i].MODULE_CATEGORY].push(i);
-
-	// sort modules in alphabetical order and add to category's tab
-	for (var i in categories)
-		categories[i].sort(function(a, b) { return Foxtrick.modules[a].MODULE_NAME.localeCompare(Foxtrick.modules[b].MODULE_NAME); });
-	for (var i in categories)
-		for (var j in categories[i])
-			$("#pane-" + i).append(getModule(Foxtrick.modules[categories[i][j]]));
-}
-
-function initon_pageTab()
-{
-	var categories = {};
-	categories['on_page'] = [];
-	categories['universal'] = [];
-
-	for (var i in Foxtrick.modules)
-		if (Foxtrick.modules[i].MODULE_CATEGORY)
-			if (Foxtrick.modules[i].ONPAGEPREF_PAGE) {
-				var page = Foxtrick.modules[i].ONPAGEPREF_PAGE;
-				if (page == "all") {
-					categories['universal'].push(i);
-				}
-				else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) {
-					categories['on_page'].push(i);
-				}
-			}
-			else for (var j in Foxtrick.modules[i].PAGES) {
-				var page = Foxtrick.modules[i].PAGES[j];
-				if (page == "all") {
-					categories['universal'].push(i);
-					break;
-				}
-				else if (Foxtrick.isPageHref(Foxtrick.ht_pages[page], Foxtrick.getLastPage())) {
-					categories['on_page'].push(i);
-					break;
-				}
-			}
-	// sort modules in alphabetical order
-	for (var i in categories)
-		categories[i].sort(function(a, b) { return Foxtrick.modules[a].MODULE_NAME.localeCompare(Foxtrick.modules[b].MODULE_NAME); });
-
-	for (var i in categories) {
-		for (var j in categories[i]) {
-				if (Foxtrick.modules[categories[i][j]].MODULE_CATEGORY == "links")
-					var links = getModule(Foxtrick.modules[categories[i][j]]);
-				else
-					$("#pane-"+i).append(getModule(Foxtrick.modules[categories[i][j]]));
-			}
-			// links at the end so not to spam
-			if (links) $("#pane-on_page").append(links);
-		}
-}
-
 function getModule(module)
 {
 	var getScreenshot = function(link) {
@@ -421,6 +355,7 @@ function getModule(module)
 	var entry = document.createElement("div");
 	entry.id = "pref-" + module.MODULE_NAME;
 	entry.className = "module";
+	entry.setAttribute("x-category", module.MODULE_CATEGORY);
 
 	var title = document.createElement("h3");
 	title.id = entry.id + "-title";
@@ -656,7 +591,8 @@ function initHelpTab()
 		var block = document.createElement("div");
 		block.id = "faq-" + i;
 		block.className = "module";
-		$("#pane-help").append($(block));
+		block.setAttribute("x-on", "help");
+		$("#pane").append($(block));
 		// question
 		var header = document.createElement("h3");
 		header.textContent = item.getElementsByTagName("question")[0].textContent;
@@ -705,6 +641,32 @@ function initAboutTab()
 			currentNode = iterator.iterateNext();
 		}
 	});
+}
+
+function initModules()
+{
+	var modules = [];
+	for (var i in Foxtrick.modules)
+		modules.push(Foxtrick.modules[i]);
+	// remove modules without categories
+	modules = Foxtrick.filter(modules, function(m) { return m.MODULE_CATEGORY != undefined; });
+	// sort modules in alphabetical order
+	modules.sort(function(a, b) { return a.MODULE_NAME.localeCompare(b.MODULE_NAME); });
+
+	for (var i = 0; i < modules.length; ++i) {
+		var module = modules[i];
+		var obj = getModule(module);
+		// show on view-by-category tab
+		$(obj).attr("x-on", module.MODULE_CATEGORY);
+		// show on view-by-page tab
+		if (module.PAGES) {
+			if (Foxtrick.in_array(module.PAGES, "all"))
+				$(obj).attr("x-on", $(obj).attr("x-on") + " universal");
+			else if (Foxtrick.intersect(module.PAGES, pageIds).length > 0)
+				$(obj).attr("x-on", $(obj).attr("x-on") + " on_page");
+		}
+		$("#pane").append(obj);
+	}
 }
 
 function save()

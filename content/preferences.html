@@ -202,111 +202,108 @@
 --><li id="tab-about"><a x-text="tab.about"></a></li>
 </ul>
 
-<!-- content of each tab -->
-<div id="panes">
-<div id="pane-main">
-	<div class="module"><!-- ReadHtPrefs -->
-		<h3 id="pref-read-ht-prefs-title" x-text="foxtrick.prefs.basicPreferences"></h3>
-		<input type="checkbox" id="pref-read-ht-prefs" module="ReadHtPrefs" />
-		<label id="pref-read-ht-prefs-label" for="pref-read-ht-prefs" x-text="foxtrick.ReadHtPrefs.desc"></label>
-		<table>
-			<tr>
-				<td><label id="pref-read-language-label" for="pref-read-language" x-text="foxtrick.prefs.captionHTLanguage"></label></td>
-				<td><select id="pref-read-language" pref="htLanguage" blocked-by="pref-read-ht-prefs"></select></td>
-			</tr>
-			<tr>
-				<td><label id="pref-read-country-label" for="pref-read-country" x-text="foxtrick.prefs.captionHTCountry"></label></td>
-				<td><select id="pref-read-country" pref="htCountry" blocked-by="pref-read-ht-prefs"></select></td>
-			</tr>
-			<tr>
-				<td><label id="pref-read-date-format-label" for="pref-read-date-format" x-text="foxtrick.prefs.captionHTDateformat"></label></td>
-				<td><input id="pref-read-date-format" pref="htDateFormat" blocked-by="pref-read-ht-prefs"></input></td>
-			</tr>
-		</table>
-	</div><!-- ReadHtPrefs -->
-	<div class="module"><!-- LoadSavePrefs -->
-		<h3 id="pref-load-save-title" x-text="foxtrick.prefs.captionLoadSavePrefs"></h3>
-		<h4 id="pref-save" x-text="foxtrick.prefs.labelSavePrefs"></h4>
-		<div>
-			<ul>
-				<li>
-					<input type="checkbox" id="pref-save-pref" pref="SavePrefs_Prefs" />
-					<label id="pref-save-pref-label" for="pref-save-pref" x-text="foxtrick.prefs.labelSavePrefs_Prefs"></label>
-				</li>
-				<li>
-					<input type="checkbox" id="pref-save-data" pref="SavePrefs_Notes" />
-					<label id="pref-save-data-label" for="pref-save-data" x-text="foxtrick.prefs.labelSavePrefs_Notes"></label>
-				</li>
-			</ul>
-			<p><button id="pref-save-do" x-text="button.export"></button></p>
-			<p><textarea id="pref-save-text"></textarea></p>
-			<p x-text="foxtrick.prefs.saveNotice"></p>
-		</div>
-		<h4 id="pref-load" x-text="foxtrick.prefs.labelLoadPrefs"></h4>
-		<div>
-			<p x-text="foxtrick.prefs.loadNotice"></p>
-			<p><textarea id="pref-load-text"></textarea></p>
-			<p><button id="pref-load-do" x-text="button.import"></button></p>
-		</div>
-	</div><!-- LoadSavePrefs -->
-	<div class="module"><!-- StoredPrefs -->
-		<h3 id="pref-stored-title" x-text="foxtrick.prefs.captionCleanupBranch"></h3>
-		<table>
-			<tr>
-				<td><label id="pref-stored-restore-label" x-text="foxtrick.prefs.labelCleanupBranch"></label></td>
-				<td><button id="pref-stored-restore" x-text="button.restoreDefault"></button></td>
-			</tr>
-			<tr>
-				<td><label id="pref-stored-disable-label" x-text="foxtrick.prefs.labelDisableAll"></label></td>
-				<td><button id="pref-stored-disable" x-text="button.disableAll"></button></td>
-			</tr>
-		</table>
-	</div><!-- StoredPrefs -->
-	<div class="module"><!-- disable -->
-		<h3 id="pref-disable-title" x-text="foxtrick.prefs.captionDisableSettings"></h3>
+<!-- pane for showing modules, modules have attribute x-on which is a list
+ of under which tabs it should be shown -->
+<div id="pane">
+<!-- ReadHtPrefs -->
+<div class="module" x-on="main">
+	<h3 id="pref-read-ht-prefs-title" x-text="foxtrick.prefs.basicPreferences"></h3>
+	<input type="checkbox" id="pref-read-ht-prefs" module="ReadHtPrefs" />
+	<label id="pref-read-ht-prefs-label" for="pref-read-ht-prefs" x-text="foxtrick.ReadHtPrefs.desc"></label>
+	<table>
+		<tr>
+			<td><label id="pref-read-language-label" for="pref-read-language" x-text="foxtrick.prefs.captionHTLanguage"></label></td>
+			<td><select id="pref-read-language" pref="htLanguage" blocked-by="pref-read-ht-prefs"></select></td>
+		</tr>
+		<tr>
+			<td><label id="pref-read-country-label" for="pref-read-country" x-text="foxtrick.prefs.captionHTCountry"></label></td>
+			<td><select id="pref-read-country" pref="htCountry" blocked-by="pref-read-ht-prefs"></select></td>
+		</tr>
+		<tr>
+			<td><label id="pref-read-date-format-label" for="pref-read-date-format" x-text="foxtrick.prefs.captionHTDateformat"></label></td>
+			<td><input id="pref-read-date-format" pref="htDateFormat" blocked-by="pref-read-ht-prefs"></input></td>
+		</tr>
+	</table>
+</div>
+<!-- LoadSavePrefs -->
+<div class="module" x-on="main">
+	<h3 id="pref-load-save-title" x-text="foxtrick.prefs.captionLoadSavePrefs"></h3>
+	<h4 id="pref-save" x-text="foxtrick.prefs.labelSavePrefs"></h4>
+	<div>
 		<ul>
 			<li>
-				<input type="checkbox" id="pref-disable-on-stage" pref="disableOnStage" />
-				<label id="pref-disable-on-stage-label" for="pref-disable-on-stage" x-text="foxtrick.prefs.stagepref"></label>
+				<input type="checkbox" id="pref-save-pref" pref="SavePrefs_Prefs" />
+				<label id="pref-save-pref-label" for="pref-save-pref" x-text="foxtrick.prefs.labelSavePrefs_Prefs"></label>
 			</li>
 			<li>
-				<input type="checkbox" id="pref-disable-temporarily" pref="disableTemporary" />
-				<label id="pref-disable-temporarily-label" for="pref-disable-temporarily" x-text="foxtrick.prefs.disableTemporaryLabel"></label>
+				<input type="checkbox" id="pref-save-data" pref="SavePrefs_Notes" />
+				<label id="pref-save-data-label" for="pref-save-data" x-text="foxtrick.prefs.labelSavePrefs_Notes"></label>
 			</li>
 		</ul>
-	</div><!-- disable -->
-	<div class="module"><!-- additional -->
-		<h3 id="pref-additional-title" x-text="foxtrick.prefs.AdditionalOptions"></h3>
-		<ul>
-			<li>
-				<input type="checkbox" id="pref-xml-load" pref="xmlLoad" />
-				<label id="pref-xml-load-label" for="pref-xml-load" x-text="pref.xmlLoad"></label>
-			</li>
-			<li>
-				<input type="checkbox" id="pref-header-icon" pref="smallcopyicons" />
-				<label id="pref-header-icon-label" for="pref-header-icon" x-text="foxtrick.prefs.smallcopyicons"></label>
-			</li>
-			<li>
-				<input type="checkbox" id="pref-show-release-notes" pref="showReleaseNotes" />
-				<label id="pref-show-release-notes-label" for="pref-show-release-notes" x-text="foxtrick.showReleaseNotes"></label>
-			</li>
-			<li>
-				<input type="checkbox" id="pref-debug-info" pref="DisplayHTMLDebugOutput" />
-				<label id="pref-debug-info-label" for="pref-debug-info" x-text="foxtrick.prefs.DisplayHTMLDebugOutput"></label>
-			</li>
-		</ul>
+		<p><button id="pref-save-do" x-text="button.export"></button></p>
+		<p><textarea id="pref-save-text"></textarea></p>
+		<p x-text="foxtrick.prefs.saveNotice"></p>
+	</div>
+	<h4 id="pref-load" x-text="foxtrick.prefs.labelLoadPrefs"></h4>
+	<div>
+		<p x-text="foxtrick.prefs.loadNotice"></p>
+		<p><textarea id="pref-load-text"></textarea></p>
+		<p><button id="pref-load-do" x-text="button.import"></button></p>
 	</div>
 </div>
-<div id="pane-on_page"></div>
-<div id="pane-universal"></div>
-<div id="pane-information_aggregation"></div>
-<div id="pane-shortcuts_and_tweaks"></div>
-<div id="pane-presentation"></div>
-<div id="pane-matches"></div>
-<div id="pane-forum"></div>
-<div id="pane-links"></div>
-<div id="pane-alert"></div>
-<div id="pane-changes">
+<!-- StoredPrefs -->
+<div class="module" x-on="main">
+	<h3 id="pref-stored-title" x-text="foxtrick.prefs.captionCleanupBranch"></h3>
+	<table>
+		<tr>
+			<td><label id="pref-stored-restore-label" x-text="foxtrick.prefs.labelCleanupBranch"></label></td>
+			<td><button id="pref-stored-restore" x-text="button.restoreDefault"></button></td>
+		</tr>
+		<tr>
+			<td><label id="pref-stored-disable-label" x-text="foxtrick.prefs.labelDisableAll"></label></td>
+			<td><button id="pref-stored-disable" x-text="button.disableAll"></button></td>
+		</tr>
+	</table>
+</div>
+<!-- disable -->
+<div class="module" x-on="main">
+	<h3 id="pref-disable-title" x-text="foxtrick.prefs.captionDisableSettings"></h3>
+	<ul>
+		<li>
+			<input type="checkbox" id="pref-disable-on-stage" pref="disableOnStage" />
+			<label id="pref-disable-on-stage-label" for="pref-disable-on-stage" x-text="foxtrick.prefs.stagepref"></label>
+		</li>
+		<li>
+			<input type="checkbox" id="pref-disable-temporarily" pref="disableTemporary" />
+			<label id="pref-disable-temporarily-label" for="pref-disable-temporarily" x-text="foxtrick.prefs.disableTemporaryLabel"></label>
+		</li>
+	</ul>
+</div>
+<!-- additional -->
+<div class="module" x-on="main">
+	<h3 id="pref-additional-title" x-text="foxtrick.prefs.AdditionalOptions"></h3>
+	<ul>
+		<li>
+			<input type="checkbox" id="pref-xml-load" pref="xmlLoad" />
+			<label id="pref-xml-load-label" for="pref-xml-load" x-text="pref.xmlLoad"></label>
+		</li>
+		<li>
+			<input type="checkbox" id="pref-header-icon" pref="smallcopyicons" />
+			<label id="pref-header-icon-label" for="pref-header-icon" x-text="foxtrick.prefs.smallcopyicons"></label>
+		</li>
+		<li>
+			<input type="checkbox" id="pref-show-release-notes" pref="showReleaseNotes" />
+			<label id="pref-show-release-notes-label" for="pref-show-release-notes" x-text="foxtrick.showReleaseNotes"></label>
+		</li>
+		<li>
+			<input type="checkbox" id="pref-debug-info" pref="DisplayHTMLDebugOutput" />
+			<label id="pref-debug-info-label" for="pref-debug-info" x-text="foxtrick.prefs.DisplayHTMLDebugOutput"></label>
+		</li>
+	</ul>
+</div>
+
+<!-- changes -->
+<div class="module" x-on="changes">
 	<div>
 		<label for="pref-version-release-notes" x-text="foxtrick.versionReleaseNotes"></label>
 		<select id="pref-version-release-notes"></select>
@@ -315,77 +312,78 @@
 		<ul id="pref-notepad-list"></ul>
 	</div>
 </div>
-<div id="pane-help">
-	<div class="module">
-		<h3 x-text="link.title"></h3>
-		<ul id="external-links-list"></ul>
-	</div>
+
+<!-- help -->
+<div class="module" x-on="help">
+	<h3 x-text="link.title"></h3>
+	<ul id="external-links-list"></ul>
 </div>
-<div id="pane-about">
-	<div class="module">
-		<h3 x-text="about.copyright"></h3>
-		<h4>FoxTrick - a browser add-on for the Hattrick.org online football manager game</h4>
-		<ul>
-			<li>Copyright &copy; 2005&ndash;2008, Karel Kolman &lt;kolmis@gmail.com&gt;</li>
-			<li>Copyright &copy; 2008&ndash;2009, Mod-PaV</li>
-			<li>Copyright &copy; 2008&ndash;2009, Lars Wortel &lt;larsw84@hotmail.com&gt;</li>
-			<li>Copyright &copy; 2008&ndash;2011, Mod-spambot &lt;daBux@gmx.de&gt;</li>
-			<li>Copyright &copy; 2008&ndash;2011, convincedd &lt;convincedd@googlemail.com&gt;</li>
-			<li>Copyright &copy; 2008&ndash;2011, taised &lt;tiziano.m@gmail.com&gt;</li>
-			<li>Copyright &copy; 2008&ndash;2009, bummerland</li>
-			<li>Copyright &copy; 2008&ndash;2010, Jestar</li>
-			<li>Copyright &copy; 2008&ndash;2010, smates</li>
-			<li>Copyright &copy; 2008&ndash;2009, OBarros</li>
-			<li>Copyright &copy; 2008&ndash;2009, stephan57</li>
-			<li>Copyright &copy; 2009, baumanns</li>
-			<li>Copyright &copy; 2009&ndash;2011, ljushaff</li>
-			<li>Copyright &copy; 2009&ndash;2011, Ryan Li &lt;ryan@ryanium.com&gt;</li>
-			<li>Copyright &copy; 2010, Aimo_Kanuuna &lt;misa.kankare@live.fi&gt;</li>
-		</ul>
-		<p>This program is free software: you can redistribute it and/or modify
-			it under the terms of the GNU General Public License as published by
-		    the Free Software Foundation, either version 3 of the License, or
-		    (at your option) any later version.</p>
 
-		<p>This program is distributed in the hope that it will be useful,
-			but WITHOUT ANY WARRANTY; without even the implied warranty of
-			MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-			GNU General Public License for more details.</p>
+<!-- about -->
+<div class="module" x-on="about">
+	<h3 x-text="about.copyright"></h3>
+	<h4>FoxTrick - a browser add-on for the Hattrick.org online football manager game</h4>
+	<ul>
+		<li>Copyright &copy; 2005&ndash;2008, Karel Kolman &lt;kolmis@gmail.com&gt;</li>
+		<li>Copyright &copy; 2008&ndash;2009, Mod-PaV</li>
+		<li>Copyright &copy; 2008&ndash;2009, Lars Wortel &lt;larsw84@hotmail.com&gt;</li>
+		<li>Copyright &copy; 2008&ndash;2011, Mod-spambot &lt;daBux@gmx.de&gt;</li>
+		<li>Copyright &copy; 2008&ndash;2011, convincedd &lt;convincedd@googlemail.com&gt;</li>
+		<li>Copyright &copy; 2008&ndash;2011, taised &lt;tiziano.m@gmail.com&gt;</li>
+		<li>Copyright &copy; 2008&ndash;2009, bummerland</li>
+		<li>Copyright &copy; 2008&ndash;2010, Jestar</li>
+		<li>Copyright &copy; 2008&ndash;2010, smates</li>
+		<li>Copyright &copy; 2008&ndash;2009, OBarros</li>
+		<li>Copyright &copy; 2008&ndash;2009, stephan57</li>
+		<li>Copyright &copy; 2009, baumanns</li>
+		<li>Copyright &copy; 2009&ndash;2011, ljushaff</li>
+		<li>Copyright &copy; 2009&ndash;2011, Ryan Li &lt;ryan@ryanium.com&gt;</li>
+		<li>Copyright &copy; 2010, Aimo_Kanuuna &lt;misa.kankare@live.fi&gt;</li>
+	</ul>
+	<p>This program is free software: you can redistribute it and/or modify
+		it under the terms of the GNU General Public License as published by
+	    the Free Software Foundation, either version 3 of the License, or
+	    (at your option) any later version.</p>
 
-		<p>We are also very greatful to the following projects which we
-			have used in both source code and distribution:</p>
-		<ul>
-			<li>An OAuth library by Netflix, Inc., under Apache License,
-				version 2.0.</li>
-			<li>A JavaScript implementation of the SHA-1 algorithm by
-				Paul Johnston, et al., under BSD License.</li>
-			<li>Modified Chrome to Safari port by Michael Gundlach
-			under GPLv3 as part of adblockforchrome.googlecode.com</li>
-		</ul>
+	<p>This program is distributed in the hope that it will be useful,
+		but WITHOUT ANY WARRANTY; without even the implied warranty of
+		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+		GNU General Public License for more details.</p>
 
-		<p>Read <a href="http://www.gnu.org/licenses/gpl.html">GNU General
-			Public License in full text</a>.
-			A copy of GNU General Public License is also available at the
-			root directory of source code under the name of
-			<code>COPYING</code></p>
-	</div>
-	<div class="module">
-		<h3 x-text="about.maintainers"></h3>
-		<ul id="about-maintainers" class="about-list" path="about/maintainers/maintainer"></ul>
-	</div>
-	<div class="module">
-		<h3 x-text="about.developers"></h3>
-		<ul id="about-developers" class="about-list" path="about/developers/developer"></ul>
-	</div>
-	<div class="module">
-		<h3 x-text="about.translators"></h3>
-		<ul id="about-translators" class="about-list" path="about/translations/translation/translator"></ul>
-	</div>
-	<div class="module">
-		<h3 x-text="about.designers"></h3>
-		<ul id="about-designers" class="about-list" path="about/graphics/designer"></ul>
-	</div>
+	<p>We are also very greatful to the following projects which we
+		have used in both source code and distribution:</p>
+	<ul>
+		<li>An OAuth library by Netflix, Inc., under Apache License,
+			version 2.0.</li>
+		<li>A JavaScript implementation of the SHA-1 algorithm by
+			Paul Johnston, et al., under BSD License.</li>
+		<li>Modified Chrome to Safari port by Michael Gundlach
+		under GPLv3 as part of adblockforchrome.googlecode.com</li>
+	</ul>
+
+	<p>Read <a href="http://www.gnu.org/licenses/gpl.html">GNU General
+		Public License in full text</a>.
+		A copy of GNU General Public License is also available at the
+		root directory of source code under the name of
+		<code>COPYING</code></p>
 </div>
+<div class="module" x-on="about">
+	<h3 x-text="about.maintainers"></h3>
+	<ul id="about-maintainers" class="about-list" path="about/maintainers/maintainer"></ul>
+</div>
+<div class="module" x-on="about">
+	<h3 x-text="about.developers"></h3>
+	<ul id="about-developers" class="about-list" path="about/developers/developer"></ul>
+</div>
+<div class="module" x-on="about">
+	<h3 x-text="about.translators"></h3>
+	<ul id="about-translators" class="about-list" path="about/translations/translation/translator"></ul>
+</div>
+<div class="module" x-on="about">
+	<h3 x-text="about.designers"></h3>
+	<ul id="about-designers" class="about-list" path="about/graphics/designer"></ul>
+</div>
+
 </div>
 
 <div id="fixed">
