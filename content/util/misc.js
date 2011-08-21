@@ -136,6 +136,14 @@ Foxtrick.in_array = function(a, n) {
 	return Foxtrick.some(a, function(t) { return n === t; });
 }
 
+Foxtrick.intersect = function(a, b) {
+	var r = [];
+	for (var i = 0; i < a.length; ++i)
+		if (Foxtrick.in_array(b, a[i]))
+			r.push(a[i]);
+	r = Foxtrick.unique(r);
+	return r;
+};
 
 Foxtrick.copyStringToClipboard = function (string) {
 	if (Foxtrick.BuildFor === "Gecko") {
