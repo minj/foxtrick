@@ -857,7 +857,7 @@ var FoxtrickSkillTable = {
 
 			var rows = [];
 
-			var sortByIndex = Foxtrick.some(table.rows, function(n) {
+			var sortByIndex = Foxtrick.any(table.rows, function(n) {
 				return n.cells[sortIndex].hasAttribute("index");
 			});
 

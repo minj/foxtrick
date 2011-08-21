@@ -138,7 +138,7 @@ var FoxtrickSeriesFlags = {
 			});
 		}
 		if (FoxtrickPrefs.isModuleOptionEnabled("SeriesFlags", "Visitors")
-			&& Foxtrick.some(["teamPage", "league", "youthleague", "federation"],
+			&& Foxtrick.any(["teamPage", "league", "youthleague", "federation"],
 				function(n) { return Foxtrick.isPage(n, doc); })) {
 			// add to visitors
 			var sideBar = doc.getElementById("sidebar");

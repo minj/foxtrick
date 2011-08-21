@@ -96,7 +96,7 @@ Foxtrick.filter = function(array, func) {
 	} catch(e) {Foxtrick.log('Uncaught function error: ',e)}
 }
 
-Foxtrick.some = function(array, func) {
+Foxtrick.any = function(array, func) {
 	try {
 		for (var i = 0; i < array.length; ++i)
 			if (func(array[i]))
@@ -132,14 +132,14 @@ Foxtrick.unique = function(array) {
     return ret;
 }
 
-Foxtrick.in_array = function(a, n) {
-	return Foxtrick.some(a, function(t) { return n === t; });
+Foxtrick.member = function(a, n) {
+	return Foxtrick.any(a, function(t) { return n === t; });
 }
 
 Foxtrick.intersect = function(a, b) {
 	var r = [];
 	for (var i = 0; i < a.length; ++i)
-		if (Foxtrick.in_array(b, a[i]))
+		if (Foxtrick.member(b, a[i]))
 			r.push(a[i]);
 	r = Foxtrick.unique(r);
 	return r;
@@ -336,7 +336,7 @@ Foxtrick.isHtUrl = function(url) {
 		new RegExp("^http://www\\d{2}\.hat-trick\.net(/|$)", "i"),
 		new RegExp("^http://www\\d{2}\.hattrick\.name(/|$)", "i"),
 	];
-	return Foxtrick.some(htMatches, function(re) { return url.match(re) != null; });
+	return Foxtrick.any(htMatches, function(re) { return url.match(re) != null; });
 }
 
 Foxtrick.isStage = function(doc) {
