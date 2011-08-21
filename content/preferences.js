@@ -182,9 +182,9 @@ function initTextAndValues()
 	$("#version").text(Foxtrick.version());
 
 	// initialize text
-	$("body [text-key]").each(function() {
-		if ($(this).attr("text-key"))
-			$(this).text(Foxtrickl10n.getString($(this).attr("text-key")));
+	$("body [x-text]").each(function() {
+		if ($(this).attr("x-text"))
+			$(this).text(Foxtrickl10n.getString($(this).attr("x-text")));
 	});
 	// initialize modules
 	$("body [module]").each(function() {

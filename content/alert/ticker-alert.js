@@ -20,14 +20,14 @@ var FoxtrickTickerAlert = {
 		var holder = doc.createElement("th");
 		header.appendChild(holder);
 		var enableh = doc.createElement("th");
-		enableh.setAttribute("text-key", "TickerAlert.enable");
+		enableh.setAttribute("x-text", "TickerAlert.enable");
 		enableh.className='col_checkbox';
 		header.appendChild(enableh);
 		var fileh = doc.createElement("th");
 		fileh.className='col_filepicker';
 		header.appendChild(fileh);
 		var soundh = doc.createElement("th");
-		soundh.setAttribute("text-key", "TickerAlert.sound");
+		soundh.setAttribute("x-text", "TickerAlert.sound");
 		soundh.className='col_textfield';
 		header.appendChild(soundh);
 
@@ -35,7 +35,7 @@ var FoxtrickTickerAlert = {
 			var row = doc.createElement("tr");
 			table.appendChild(row);
 			var rhead = doc.createElement("th");
-			rhead.setAttribute("text-key", "ticker.type." + type);
+			rhead.setAttribute("x-text", "ticker.type." + type);
 			row.appendChild(rhead);
 			var enablec = doc.createElement("td");
 			row.appendChild(enablec);
