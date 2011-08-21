@@ -199,7 +199,7 @@ var FoxtrickTransferSearchResultFilters = {
 			// Transform a live NodeList to an array because we'll remove
 			// elements below. Without transformation the index would
 			// point to incorrect nodes.
-			playerInfos = Foxtrick.map(playerInfos, function(n) { return n; });
+			playerInfos = Foxtrick.map(function(n) { return n; }, playerInfos);
 
 			// playerList and playerInfos should have the same order,
 			// and the same length
