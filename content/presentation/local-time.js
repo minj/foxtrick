@@ -42,8 +42,8 @@ var FoxtrickLocalTime = {
 			Foxtrick.toggleClass(localTime, "hidden");
 			FoxtrickLocalTime.updatePage(doc);
 		};
-		time.addEventListener("click", toggleDisplay, false);
-		localTime.addEventListener("click", toggleDisplay, false);
+		Foxtrick.listen(time, "click", toggleDisplay, false);
+		Foxtrick.listen(localTime, "click", toggleDisplay, false);
 
 		FoxtrickLocalTime.updatePage(doc);
 	},
@@ -52,38 +52,51 @@ var FoxtrickLocalTime = {
 		FoxtrickLocalTime.updatePage(doc);
 	},
 
+	// updates all dates within the page
 	updatePage : function(doc) {
-		// updates all dates within the page
-		if (!FoxtrickPrefs.getBool("module.LocalTime.local"))
-			return;
 		// only deal with nodes with class date in mainBody
 		var mainBody = doc.getElementById("mainBody");
 		if (!mainBody)
 			return;
+		// extract local and HT dates
 		var dates = mainBody.getElementsByClassName("date");
-		dates = Foxtrick.filter(function(n) { return !n.hasAttribute("x-lt-proced"); }, dates);
+		var isLocalDate = function(n) { return n.hasAttribute("x-lt-proced"); };
+		var localDates = Foxtrick.filter(isLocalDate, dates);
+		var htDates = Foxtrick.filter(function(n) { return !isLocalDate(n); }, dates);
+		if (FoxtrickPrefs.getBool("module.LocalTime.local")) {
+			// turn HT dates to local dates
+			Foxtrick.map(function(date) {
+				date.setAttribute("x-lt-proced", "true");
+				// if text doesn't have time (hours and minutes) in it,
+				// ignore it
+				var hasTime = Foxtrick.util.time.hasTime(date.textContent);
+				if (!hasTime)
+					return;
 
-		Foxtrick.map(function(date) {
-			date.setAttribute("x-lt-proced", "true");
-			// if text doesn't have time (hours and minutes) in it,
-			// ignore it
-			var hasTime = Foxtrick.util.time.hasTime(date.textContent);
-			if (!hasTime)
-				return;
-
-			var htDate = Foxtrick.util.time.getDateFromText(date.textContent);
-			if (!htDate)
-				return; // may only contain time without date
-			var tzDiff = Foxtrick.util.time.timezoneDiff(doc);
-			var localDate = new Date();
-			localDate.setTime(htDate.getTime() + tzDiff * 60 * 60 * 1000);
-			// always build strings with hours and seconds, but
-			// without seconds
-			date.textContent = Foxtrick.util.time.buildDate(localDate, true, false);
-			// set original time as attribute for reference from
-			// other modules
-			date.setAttribute("x-ht-date", htDate.getTime());
-		}, dates);
+				var htDate = Foxtrick.util.time.getDateFromText(date.textContent);
+				if (!htDate)
+					return; // may only contain time without date
+				var tzDiff = Foxtrick.util.time.timezoneDiff(doc);
+				var localDate = new Date();
+				localDate.setTime(htDate.getTime() + tzDiff * 60 * 60 * 1000);
+				// always build strings with hours and seconds, but
+				// without seconds
+				date.textContent = Foxtrick.util.time.buildDate(localDate, true, false);
+				// set original time as attribute for reference from
+				// other modules
+				date.setAttribute("x-ht-date", htDate.getTime());
+			}, htDates);
+		}
+		else {
+			// turn local dates to HT dates
+			Foxtrick.map(function(date) {
+				var timestamp = new Date();
+				timestamp.setTime(date.getAttribute("x-ht-date"));
+				date.textContent = Foxtrick.util.time.buildDate(timestamp, true, false);
+				date.removeAttribute("x-lt-proced");
+				date.removeAttribute("x-ht-date");
+			}, localDates);
+		}
 	}
 }
 Foxtrick.util.module.register(FoxtrickLocalTime);
