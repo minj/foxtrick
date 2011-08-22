@@ -45,9 +45,16 @@ Foxtrick.util.note = {
 		}
 		var note = this.create(doc, msg, buttons, hasClose);
 
-		// add paste instruction for opera to copy notes
+		// add copy instructions for opera and safari to copy notes
 		if ((typeof(opera)=='object' || typeof(safari)=='object') && id.search('copy-note')!==-1) {
-			note.firstChild.firstChild.textContent += ' '+Foxtrickl10n.getString('PasteClick.desc');
+			Foxtrick.sessionGet('clipboard', function(string) {
+				var msg_p = note.getElementsByTagName('p')[0];
+				msg_p.textContent = Foxtrickl10n.getString('CopySelected.desc');
+				var textarea = doc.createElement('textarea');
+				note.insertBefore(textarea, msg_p.nextSibling);
+				textarea.value = string;
+				textarea.select();
+			});
 		}
 		note.id = id;
 		if (insertBefore && insertBefore.parentNode) {
