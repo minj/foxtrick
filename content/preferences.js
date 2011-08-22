@@ -268,9 +268,18 @@ function initTextAndValues()
 	$("#view-by-page a").text($("#view-by-page a").text()
 		+ " (" + pageIds.join(", ") + ")");
 
-	// insert links into labels
+	// initialize delete-token 
 	const chpp_url = FoxtrickPrefs.getString("last-host") + "/MyHattrick/Preferences/ExternalAccessGrants.aspx";
 	$("#pref-delete-token-label").html(Foxtrickl10n.getString($("#pref-delete-token-label").attr("x-text")).replace(/%(\w+)/, "<a href='"+chpp_url+"' target='_blank'>$1</a>"));
+	var oauth_keys = FoxtrickPrefs.getAllKeysOfBranch('oauth');
+	var teamids = Foxtrick.map( function(n){ return n.match(/\d+/)[0]; }, oauth_keys);
+	teamids = Foxtrick.unique(teamids);
+	for (var i in teamids) {
+		var item = document.createElement("option");
+		item.value = teamids[i];
+		item.textContent = teamids[i];
+		$("#select-delete-token-teamids").append($(item));
+	}
 }
 
 function initMainTab()
@@ -336,8 +345,9 @@ function initMainTab()
 
 	// delete OAuth token/secret
 	$("#pref-delete-token").click(function() {
-		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("delete_oauth_ask"))) {
-			var array = FoxtrickPrefs.getAllKeysOfBranch('oauth');
+		var teamid = $("#select-delete-token-teamids")[0].value;
+		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("delete_oauth_ask").replace('%s',teamid))) {
+			var array = FoxtrickPrefs.getAllKeysOfBranch('oauth.'+teamid);
 			for (var i = 0; i < array.length; i++) {
 				if (FoxtrickPrefs.isPrefSetting(array[i])) {
 					FoxtrickPrefs.deleteValue(array[i]);

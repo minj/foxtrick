@@ -125,7 +125,7 @@ html[dir="rtl"] .module-link
 	margin: 0 2em 0 0;
 }
 
-.button-module tr>td
+.button-module tr>td:first-child
 {
 	width: 80%;
 }
