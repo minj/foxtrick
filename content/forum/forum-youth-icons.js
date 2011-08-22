@@ -139,10 +139,15 @@ var FoxtrickForumYouthIcons = {
 				var anchor = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody');
 				anchor.style.height = '300px';
 		}
-		var toolbar = doc.getElementsByClassName("HTMLToolbar")[0];
-		if (toolbar == null)
+		var toolbars = doc.getElementsByClassName("HTMLToolbar");
+		if (toolbars[0] == null)
 			return;
-		var toolbar_main = toolbar;
+			
+		if (toolbars.length === 1 )
+			var toolbar = toolbars[0];
+		else 
+			// polls have two toolbars. we want the later for now
+			var toolbar = toolbars[1];
 
 		toolbar.setAttribute("style","float:left; margin-right:3px;");
 
