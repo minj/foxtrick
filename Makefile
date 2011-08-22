@@ -170,6 +170,10 @@ ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
 	sed -i -r 's|(version=".+)(" network)|\1.'$(REVISION)'\2|' config.xml; \
 	sed -i -r 's|("extensions\.foxtrick\.prefs\.version", ".+)(")|\1.'$(REVISION)'\2|' defaults/preferences/foxtrick.js
+else ifeq ($(DIST_TYPE),stable)
+	cd $(BUILD_DIR); \
+	sed -i -r '/update-description/d' config.xml; \
+	sed -i -r 's|(id=").+(")|\1www.foxtrick.org\2|' config.xml; 
 endif
 	# make oex
 	cd $(BUILD_DIR); \
@@ -193,6 +197,10 @@ ifeq ($(DIST_TYPE),nightly)
 	cd $(SAFARI_BUILD_DIR); \
 	sed -i -r 's|(<string>.+)(</string><!--version-->)|\1.'$(REVISION)'\2|' Info.plist; \
 	sed -i -r 's|("extensions\.foxtrick\.prefs\.version", ".+)(")|\1.'$(REVISION)'\2|' defaults/preferences/foxtrick.js
+ifeq ($(DIST_TYPE),stable)
+	cd $(BUILD_DIR); \
+	sed -i -r 's|(<string>.+)nightly(.+</string><!--updateurl-->)|\1release\2|' Info.plist; \
+	sed -i -r 's|(<string>).+(</string><!--key-->)|\1www.foxtrick.org\2|' Info.plist; 
 endif
 	# make safariextz
 	cd $(BUILD_DIR); \
