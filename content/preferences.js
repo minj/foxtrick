@@ -678,8 +678,18 @@ function initModules()
 		modules.push(Foxtrick.modules[i]);
 	// remove modules without categories
 	modules = Foxtrick.filter(function(m) { return m.MODULE_CATEGORY != undefined; }, modules);
-	// sort modules in alphabetical order
-	modules.sort(function(a, b) { return a.MODULE_NAME.localeCompare(b.MODULE_NAME); });
+	// sort modules in alphabetical order. Links modules to the end
+	modules.sort(function(a, b) { 
+		if (a.MODULE_NAME.search(/Links/)==0)
+			if (b.MODULE_NAME.search(/Links/)==0)
+				return a.MODULE_NAME.localeCompare(b.MODULE_NAME); 
+			else 
+				return 1;
+		else if (b.MODULE_NAME.search(/Links/)==0)
+			return -1;
+		else
+			return a.MODULE_NAME.localeCompare(b.MODULE_NAME); 
+	});
 
 	for (var i = 0; i < modules.length; ++i) {
 		var module = modules[i];
