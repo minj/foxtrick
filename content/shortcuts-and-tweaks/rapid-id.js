@@ -51,7 +51,7 @@ var FoxtrickRapidId = {
 				var host = doc.location.hostname;
 				var url = FoxtrickRapidId.options[i].url.replace("%n", id);
 				var fullurl = "http://" + host + "/" + url;
-				doc.location.replace(fullurl);
+				doc.location.assign(fullurl);
 			}
 		}
 	},
