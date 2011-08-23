@@ -330,10 +330,10 @@ if (Foxtrick.arch === "Sandboxed") {
 						this.properties = this.properties_default;
 					}
 					try {
-						this.screenshots = Foxtrick.load(Foxtrick.ResourcePath + "locale/" + localecode + "/foxtrick.screenshots");
+						this.screenshots = Foxtrick.load(Foxtrick.ResourcePath + "locale/" + locale + "/foxtrick.screenshots");
 					}
 					catch (e) {
-						Foxtrick.log("Use default properties for locale ", locale);
+						Foxtrick.log("Use default screenshots for locale ", locale);
 						this.screenshots = this.screenshots_default;
 					}
 				}
@@ -352,12 +352,13 @@ if (Foxtrick.arch === "Sandboxed") {
 					value = Foxtrickl10n.properties_default.match(string_regexp)[1];
 				else {
 					value = str;
-					Foxtrick.log('getString error' ,str);
+					Foxtrick.log('getString error: ' ,str);
 				}
 				return value;
 			}
 			catch (e) {
 				Foxtrick.log(e);
+				Foxtrick.log('getString error: ' ,str);
 				return str.substr(str.lastIndexOf('.')+1);
 			}
 		},
