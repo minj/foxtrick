@@ -519,14 +519,14 @@ var FoxtrickForumYouthIcons = {
 					sandboxed.extension.sendRequest(
 						{ req : "getDebugLog" },
 						function(n) {
-							insertText(Foxtrick.dumpHeader(doc)+'\n'+n.log);
+							insertText(Foxtrick.log.header(doc)+'\n'+n.log);
 							FoxtrickForumYouthIcons.textCounter(ta, fieldCounter, maxLength);
 						}
 					);
 					return;
 				}
 				else {
-					openingTag = Foxtrick.dumpHeader(doc) + '\n' + Foxtrick.dumpCache.substr(Foxtrick.dumpCache.length-3500);
+					openingTag = Foxtrick.log.header(doc) + '\n' + Foxtrick.dumpCache.substr(Foxtrick.dumpCache.length-3500);
 				}
 			}
 			// settings
