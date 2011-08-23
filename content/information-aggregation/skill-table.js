@@ -927,7 +927,7 @@ var FoxtrickSkillTable = {
 			if (ev)
 				ev.stopPropagation();
 		}
-		Foxtrick.dumpFlush(doc);
+		Foxtrick.log.flush(doc);
 	},
 
 	view : function(ev) {

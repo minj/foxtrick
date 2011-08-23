@@ -169,7 +169,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 				return function() { m.run(doc); };
 		});
 
-		Foxtrick.dumpFlush(doc);
+		Foxtrick.log.flush(doc);
 	}
 	catch (e) {
 		Foxtrick.log(e);
@@ -216,7 +216,7 @@ Foxtrick.entry.change = function(ev) {
 					return function() { m.change(doc, ev); };
 			});
 
-			Foxtrick.dumpFlush(doc);
+			Foxtrick.log.flush(doc);
 		}
 		// re-add event listener
 		Foxtrick.startListenToChange(doc);

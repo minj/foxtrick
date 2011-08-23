@@ -526,7 +526,7 @@ var FoxtrickForumYouthIcons = {
 					return;
 				}
 				else {
-					openingTag = Foxtrick.log.header(doc) + '\n' + Foxtrick.dumpCache.substr(Foxtrick.dumpCache.length-3500);
+					openingTag = Foxtrick.log.header(doc) + '\n' + Foxtrick.log.cache.substr(Foxtrick.log.cache.length-3500);
 				}
 			}
 			// settings
