@@ -50,7 +50,7 @@ Foxtrick.filePickerForText = function(doc, callback, data) {
 // May throw an error if unable to play the sound.
 Foxtrick.playSound = function(url, doc) {
 	try {
-		if (Foxtrick.BuildFor === "Gecko") {
+		if (Foxtrick.arch === "Gecko") {
 			try {
 				var soundService = Components.classes["@mozilla.org/sound;1"].getService(Components.interfaces.nsISound);
 				var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
@@ -77,7 +77,7 @@ Foxtrick.playSound = function(url, doc) {
 }
 
 Foxtrick.copyStringToClipboard = function (string) {
-	if (Foxtrick.BuildFor === "Gecko") {
+	if (Foxtrick.arch === "Gecko") {
 		if (Foxtrick.chromeContext()==='content') {
 			sandboxed.extension.sendRequest({req : "clipboard", content : string});
 		}
@@ -91,7 +91,7 @@ Foxtrick.copyStringToClipboard = function (string) {
 	else if (typeof(opera) === "object" || typeof(safari) === "object") {
 		Foxtrick.sessionSet('clipboard', string);
 	}
-	else if (Foxtrick.BuildFor === "Sandboxed") {
+	else if (Foxtrick.arch === "Sandboxed") {
 		sandboxed.extension.sendRequest({req : "clipboard", content : string});
 	}
 }
@@ -401,7 +401,7 @@ Foxtrick.replaceExtensionDirectory = function(cssTextCollection, callback, id) {
 }
 
 Foxtrick.confirmDialog = function(msg) {
-	if (Foxtrick.BuildFor === "Gecko") {
+	if (Foxtrick.arch === "Gecko") {
 		var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
 			.getService(Components.interfaces.nsIPromptService);
 		return promptService.confirm(null, null, msg);
@@ -412,7 +412,7 @@ Foxtrick.confirmDialog = function(msg) {
 }
 
 Foxtrick.alert = function(msg) {
-	if (Foxtrick.BuildFor === "Gecko") {
+	if (Foxtrick.arch === "Gecko") {
 		var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
 			.getService(Components.interfaces.nsIPromptService);
 		return promptService.alert(null, null, msg);
@@ -429,7 +429,7 @@ Foxtrick.alert = function(msg) {
 Foxtrick.unload_module_css = function(doc) {
 	Foxtrick.dump('unload permanents css\n');
 
-	if (Foxtrick.BuildFor === "Gecko") {
+	if (Foxtrick.arch === "Gecko") {
 		for (var i in Foxtrick.modules) {
 			var module = Foxtrick.modules[i];
 			if (module.CSS)
@@ -473,7 +473,7 @@ Foxtrick.unload_css_permanent = function(cssList) {
 			Foxtrick.log ('> load_css_permanent ' , e , '\n');
 		}
 	};
-	if (Foxtrick.BuildFor === "Gecko") {
+	if (Foxtrick.arch === "Gecko") {
 		if (typeof(cssList) === "string")
 			unload_css_permanent_impl(cssList);
 		else if (typeof(cssList) === "object") {
@@ -566,11 +566,11 @@ Foxtrick.load_css_permanent = function(css) {
 // load all Foxtrick.cssFiles into browser or page
 Foxtrick.load_module_css = function(doc) {
 
-	if (Foxtrick.BuildFor === "Gecko") {
+	if (Foxtrick.arch === "Gecko") {
 		for (var i = 0; i < Foxtrick.cssFiles.length; ++i)
 			Foxtrick.load_css_permanent(Foxtrick.cssFiles[i]);
 	}
-	else if (Foxtrick.BuildFor === "Sandboxed") {
+	else if (Foxtrick.arch === "Sandboxed") {
 		sandboxed.extension.sendRequest(
 			{ req : "getCss", files :Foxtrick.cssFiles },
 			function(data) {

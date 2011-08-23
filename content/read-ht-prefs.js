@@ -65,7 +65,7 @@ var FoxtrickReadHtPrefs = {
 			}
 			if (found) {
 				FoxtrickPrefs.setString("htLanguage", newLang);
-				if (Foxtrick.BuildFor == "Gecko") {
+				if (Foxtrick.arch == "Gecko") {
 					// change language
 					Foxtrickl10n.setUserLocaleGecko(newLang);
 				}

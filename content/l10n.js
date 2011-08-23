@@ -171,7 +171,7 @@ var Foxtrickl10n = {
 
 
 // ----------------------  Gecko specific get/set preferences --------------------------
-if (Foxtrick.BuildFor === "Gecko") {
+if (Foxtrick.arch === "Gecko") {
 
 	var Foxtrickl10nGecko = {
 
@@ -293,7 +293,7 @@ if (Foxtrick.BuildFor === "Gecko") {
 
 
 // ----------------------  Chrome specific get/set preferences --------------------------
-if (Foxtrick.BuildFor === "Sandboxed") {
+if (Foxtrick.arch === "Sandboxed") {
 
 	var Foxtrickl10nChrome = {
 

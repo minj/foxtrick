@@ -202,7 +202,7 @@ var FoxtrickStaffMarker = {
 					else if (option.value=="by_-1") {
 						Foxtrick.addClass(option, "ft-staff-official");
 					}
-					else if ( do_flag && Foxtrick.BuildFor === "Gecko") { // no background image in chrome for select
+					else if ( do_flag && Foxtrick.arch === "Gecko") { // no background image in chrome for select
 						Foxtrick.addClass(option, "ft-userid-"+uid);
 						if (user_hasClass[uid]) continue;
 						if (FoxtrickStaffMarker.chppHolders[uid] != undefined && hty[uid] !== undefined)

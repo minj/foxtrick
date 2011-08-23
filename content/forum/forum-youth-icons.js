@@ -515,7 +515,7 @@ var FoxtrickForumYouthIcons = {
 
 			// debug
 			if (openingTag == 'debug'){
-				if (Foxtrick.BuildFor === "Sandboxed") {
+				if (Foxtrick.arch === "Sandboxed") {
 					sandboxed.extension.sendRequest(
 						{ req : "getDebugLog" },
 						function(n) {

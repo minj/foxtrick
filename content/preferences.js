@@ -6,7 +6,7 @@ function initLoader() {
 	// called directly, it'll run and save actually for some reason
 
 	// gecko, safari, chrome
-	if (Foxtrick.BuildFor === "Gecko" || Foxtrick.chromeContext() == "background")
+	if (Foxtrick.arch === "Gecko" || Foxtrick.chromeContext() == "background")
 		init();
 	// opera prefs runs in content context. add need resources first
 	else

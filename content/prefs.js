@@ -168,7 +168,7 @@ var FoxtrickPrefs = {
 
 	//  ----------------- function for preference.js ---------------------------
 	cleanupBranch : function() {
-		if (Foxtrick.BuildFor == "Gecko") {
+		if (Foxtrick.arch == "Gecko") {
 			if (Foxtrick.chromeContext()==='background') {
 				try {
 					var array = FoxtrickPrefs.getAllKeysOfBranch('module');
@@ -190,7 +190,7 @@ var FoxtrickPrefs = {
 				sandboxed.extension.sendRequest({ req : "clearPrefs" })
 			}
 		}
-		else if (Foxtrick.BuildFor == "Sandboxed") {
+		else if (Foxtrick.arch == "Sandboxed") {
 			FoxtrickPrefs._prefs_chrome_user = {};
 			sandboxed.extension.sendRequest({ req : "clearPrefs" },
 				Foxtrick.entry.init);
@@ -282,7 +282,7 @@ var FoxtrickPrefs = {
 
 	disable : function(sender) {
 		FoxtrickPrefs.setBool("disableTemporary", !FoxtrickPrefs.getBool("disableTemporary"));
-		if (Foxtrick.BuildFor === "Gecko") {
+		if (Foxtrick.arch === "Gecko") {
 			FoxtrickCore.updateStatus();
 			Foxtrick.entry.init();
 		}
@@ -296,7 +296,7 @@ var FoxtrickPrefs = {
 
 
 // ----------------------  Gecko specific get/set preferences --------------------------
-if (Foxtrick.BuildFor === "Gecko") {
+if (Foxtrick.arch === "Gecko") {
 
 	var FoxtrickPrefsGecko = {
 		_prefs_gecko : null,
@@ -404,7 +404,7 @@ for (i in FoxtrickPrefsGecko)
 
 
 // ----------------------  Chrome specific get/set preferences --------------------------
-if (Foxtrick.BuildFor === "Sandboxed") {
+if (Foxtrick.arch === "Sandboxed") {
 
 	var FoxtrickPrefsChrome = {
 		_prefs_chrome_user : {}, 	// contains mapped copies of user settings localStore.

@@ -14,8 +14,8 @@ Foxtrick.entry.runMap = {};
 
 // invoked on DOMContentLoaded
 Foxtrick.entry.docLoad = function(ev) {
-	if (Foxtrick.BuildFor === "Sandboxed") var doc = document;
-	if (Foxtrick.BuildFor === "Gecko") var doc = ev.originalTarget;
+	if (Foxtrick.arch === "Sandboxed") var doc = document;
+	if (Foxtrick.arch === "Gecko") var doc = ev.originalTarget;
 	if (doc.nodeName != "#document")
 		return;
 
@@ -74,7 +74,7 @@ Foxtrick.entry.init = function() {
 	const coreModules = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
 	Foxtrick.log("Initializing FoxTrick…");
 	// init core modules, for Chrome they are inited in loader-chrome.js
-	if (Foxtrick.BuildFor !== "Sandboxed") {
+	if (Foxtrick.arch !== "Sandboxed") {
 		for (var i in coreModules) {
 			if (typeof(coreModules[i].init) == "function")
 				coreModules[i].init();

@@ -14,7 +14,7 @@ var FoxtrickSkinPlugin = {
 	OPTIONS_CSS: new Array ("",""),
 
 	init : function() {
-		if (Foxtrick.BuildFor == "Gecko") {
+		if (Foxtrick.arch == "Gecko") {
 			if (FoxtrickPrefs.isModuleOptionEnabled("SkinPlugin", 'Skin1')) {
 				var skinlink = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin1_text");
 				this.OPTIONS_CSS[0] = skinlink;
@@ -27,7 +27,7 @@ var FoxtrickSkinPlugin = {
 	},
 
 	run : function(doc) {
-		if (Foxtrick.BuildFor != "Gecko") {
+		if (Foxtrick.arch != "Gecko") {
 			if (FoxtrickPrefs.isModuleOptionEnabled("SkinPlugin", 'Skin1')) {
 				var skin1 = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin1_text");
 				Foxtrick.util.inject.css(doc, skin1);

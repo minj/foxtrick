@@ -14,12 +14,12 @@ Foxtrick.log = function() {
 		var content = arguments[i];
 		var item = "";
 		if (content instanceof Error) {
-			if (Foxtrick.BuildFor == "Gecko") {
+			if (Foxtrick.arch == "Gecko") {
 				item = content.fileName + " (" + content.lineNumber + "): " + String(content) + "\n";
 				item += "Stack trace: " + content.stack.substr(0,1000);
 				Components.utils.reportError(item);
 			}
-			else if (Foxtrick.BuildFor == "Sandboxed") {
+			else if (Foxtrick.arch == "Sandboxed") {
 				for (var i in content)
 					item += i + ": " + content[i] + ";\n";
 			}
@@ -39,13 +39,13 @@ Foxtrick.log = function() {
 	}
 	concated += "\n";
 	Foxtrick.log.cache += concated;
-	if (Foxtrick.BuildFor === "Gecko") {
+	if (Foxtrick.arch === "Gecko") {
 		if (Foxtrick.chromeContext() === "content")
 			sandboxed.extension.sendRequest({ req : "log", log : concated });
 		else
 			dump("FT: " + concated);
 	}
-	else if (Foxtrick.BuildFor === "Sandboxed") {
+	else if (Foxtrick.arch === "Sandboxed") {
 		if (Foxtrick.chromeContext() == "content")
 			sandboxed.extension.sendRequest({req : "addDebugLog", log : concated});
 		else {
@@ -60,7 +60,7 @@ Foxtrick.log = function() {
 Foxtrick.log.header = function(doc) {
 	var headString = Foxtrickl10n.getString("foxtrick.log.env")
 				.replace(/%1/, Foxtrick.version())
-				.replace(/%2/, Foxtrick.BuildFor + ' ' + Foxtrick.BuildForDetail)
+				.replace(/%2/, Foxtrick.arch + ' ' + Foxtrick.platform)
 				.replace(/%3/, FoxtrickPrefs.getString("htLanguage"))
 				.replace(/%4/, Foxtrick.util.layout.isStandard(doc) ? "standard" : "simple")
 				.replace(/%5/, Foxtrick.util.layout.isRtl(doc) ? "RTL" : "LTR");

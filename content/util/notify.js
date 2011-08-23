@@ -74,7 +74,7 @@ Foxtrick.util.notify.create = function(msg, url) {
 	};
 
 
-	if (Foxtrick.BuildFor == "Gecko") {
+	if (Foxtrick.arch == "Gecko") {
 		createGecko();
 	}
 	else if (typeof(chrome)=='object') {

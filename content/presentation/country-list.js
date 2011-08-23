@@ -146,7 +146,7 @@ var FoxtrickCountyList = {
 		var id_sel = 0;
 		try {
 			for (var i = start; i < countries; i++) {
-				if (Foxtrick.BuildFor=="Sandboxed") {
+				if (Foxtrick.arch=="Sandboxed") {
 					if (options[i].getAttribute('selected'))
 						id_sel = options[i].value;
 				}

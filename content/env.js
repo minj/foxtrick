@@ -8,8 +8,8 @@ if (!Foxtrick)
 	var Foxtrick={};
 
 if (typeof(opera) === "object") {
-	Foxtrick.BuildFor = "Sandboxed";
-	Foxtrick.BuildForDetail = "Opera";
+	Foxtrick.arch = "Sandboxed";
+	Foxtrick.platform = "Opera";
 	Foxtrick.InternalPath = "content/";
 	Foxtrick.ResourcePath = "http://foxtrick.googlecode.com/svn/trunk/content/";
 
@@ -139,8 +139,8 @@ if (typeof(opera) === "object") {
 	};
 }
 else if (typeof(safari) === "object") {
-	Foxtrick.BuildFor = "Sandboxed";
-	Foxtrick.BuildForDetail = "Safari";
+	Foxtrick.arch = "Sandboxed";
+	Foxtrick.platform = "Safari";
 	Foxtrick.InternalPath = safari.extension.baseURI + "content/";
 	Foxtrick.ResourcePath = safari.extension.baseURI + "content/";
 
@@ -337,8 +337,8 @@ else if (typeof(safari) === "object") {
 	};
 }
 else if (typeof(chrome) === "object") {
-	Foxtrick.BuildFor = "Sandboxed";
-	Foxtrick.BuildForDetail = "Chrome";
+	Foxtrick.arch = "Sandboxed";
+	Foxtrick.platform = "Chrome";
 	Foxtrick.InternalPath = chrome.extension.getURL("content/");
 	Foxtrick.ResourcePath = chrome.extension.getURL("content/");
 
@@ -377,8 +377,8 @@ else if (typeof(chrome) === "object") {
 }
 
 else {
-	Foxtrick.BuildFor = "Gecko";
-	Foxtrick.BuildForDetail = "";
+	Foxtrick.arch = "Gecko";
+	Foxtrick.platform = "";
 	Foxtrick.InternalPath = "chrome://foxtrick/content/";
 	Foxtrick.ResourcePath = "chrome://foxtrick/content/";
 

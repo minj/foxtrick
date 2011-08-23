@@ -39,7 +39,7 @@ Foxtrick.util.inject.css = function(doc, css, id) {
 
 // attaches a JavaScript file to the page
 Foxtrick.util.inject.jsLink = function(doc, url) {
-	if (Foxtrick.BuildFor == "Sandboxed") {
+	if (Foxtrick.arch == "Sandboxed") {
 		Foxtrick.load(url, function(text) {
 			Foxtrick.util.inject.js(doc, text);
 		}, true);
