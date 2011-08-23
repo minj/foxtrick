@@ -286,9 +286,9 @@ var FoxtrickPrefs = {
 			FoxtrickCore.updateStatus();
 			Foxtrick.entry.init();
 		}
-		else if (typeof(opera) === "object") {
+		else if (Foxtrick.platform == "Opera") {
 			FoxtrickCore.setOperaIcon(sender);
-		} else if (typeof(chrome) === "object") {
+		} else if (Foxtrick.platform == "Chrome") {
 			FoxtrickCore.setChromeIcon(sender);
 		}
 	}
@@ -531,11 +531,11 @@ if (Foxtrick.arch === "Sandboxed") {
 					};
 
 					parsePrefsFile("../defaults/preferences/foxtrick.js");
-					if (typeof(opera) === "object")
+					if (Foxtrick.platform == "Opera")
 						parsePrefsFile("../defaults/preferences/foxtrick.opera");
-					else if (typeof(chrome) === "object")
+					else if (Foxtrick.platform == "Chrome")
 						parsePrefsFile("../defaults/preferences/foxtrick.chrome");
-					else if (typeof(safari) === "object")
+					else if (Foxtrick.platform == "Safari")
 						parsePrefsFile("../defaults/preferences/foxtrick.safari");
 
 				}

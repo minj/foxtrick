@@ -73,7 +73,7 @@ Foxtrick.loader.gecko.docUnload = function(ev) {
 };
 
 // fennec browser load
-if (typeof(fennec)==='object') {
+if (Foxtrick.platform == "Fennec") {
 	Foxtrick.log('script load')
 	sandboxed.extension.sendRequest({ req : "init" },
 		function (data) {

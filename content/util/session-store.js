@@ -6,7 +6,10 @@
  * pages, we store it in background script and thus requires asynchronous
  * callback in sessionGet().
  */
-if ( typeof(firefox)==='object') {
+
+
+// for Firefox
+if (Foxtrick.platform = "Firefox") {
 
 	Foxtrick.sessionStore = {};
 

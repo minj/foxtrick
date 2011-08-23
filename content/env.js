@@ -7,7 +7,7 @@
 if (!Foxtrick)
 	var Foxtrick={};
 
-if (typeof(opera) === "object") {
+if (typeof(opera) == "object") {
 	Foxtrick.arch = "Sandboxed";
 	Foxtrick.platform = "Opera";
 	Foxtrick.InternalPath = "content/";
@@ -138,7 +138,7 @@ if (typeof(opera) === "object") {
 		},
 	};
 }
-else if (typeof(safari) === "object") {
+else if (typeof(safari) == "object") {
 	Foxtrick.arch = "Sandboxed";
 	Foxtrick.platform = "Safari";
 	Foxtrick.InternalPath = safari.extension.baseURI + "content/";
@@ -336,7 +336,7 @@ else if (typeof(safari) === "object") {
 		}
 	};
 }
-else if (typeof(chrome) === "object") {
+else if (typeof(chrome) == "object") {
 	Foxtrick.arch = "Sandboxed";
 	Foxtrick.platform = "Chrome";
 	Foxtrick.InternalPath = chrome.extension.getURL("content/");
@@ -375,16 +375,14 @@ else if (typeof(chrome) === "object") {
 		},
 	};
 }
-
 else {
 	Foxtrick.arch = "Gecko";
-	Foxtrick.platform = "";
 	Foxtrick.InternalPath = "chrome://foxtrick/content/";
 	Foxtrick.ResourcePath = "chrome://foxtrick/content/";
 
 	if ( typeof(window)!=='object' // fennec content
 		|| typeof(Browser)!=='undefined' ) { // fennec background
-		var fennec = {};
+		Foxtrick.platform = "Fennec";
 		Foxtrick.chromeContext = function() {
 			if (typeof(sendSyncMessage)=='function')
 				return "content";
@@ -393,7 +391,7 @@ else {
 		}
 	}
 	else {
-		var firefox = {};
+		Foxtrick.platform = "Firefox";
 		Foxtrick.chromeContext = function() {
 			return 'background'
 		}
@@ -402,7 +400,7 @@ else {
 
 
  // fennec ports
-	if (typeof(fennec)==='object') {
+	if (Foxtrick.platform == "Fennec") {
 		if (Foxtrick.chromeContext()=='content') {
 			window = content;
 		}

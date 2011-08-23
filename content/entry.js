@@ -29,7 +29,7 @@ Foxtrick.entry.docLoad = function(ev) {
 			}
 		}
 
-		if (typeof(fennec)==='object') {
+		if (Foxtrick.platform == "Fennec") {
 			Foxtrick.entry.init();
 		}
 

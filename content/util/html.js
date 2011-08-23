@@ -188,7 +188,7 @@ Foxtrick.GetDataURIText = function (filetext) {
 }
 
 Foxtrick.addImage = function (doc, elem, features) {
-	if (typeof(opera)=='object') {
+	if (Foxtrick.platform == "Opera") {
 		var url  = features.src.replace(Foxtrick.ResourcePath, Foxtrick.InternalPath);
 		sandboxed.extension.sendRequest({ req : "getDataUrl", url:url},
 			function (data) {
@@ -206,7 +206,7 @@ Foxtrick.addImage = function (doc, elem, features) {
 };
 
 Foxtrick.getImageFeatures = function (features, callback) {
-	if (typeof(opera)=='object')
+	if (Foxtrick.platform == "Opera")
 		sandboxed.extension.sendRequest({ req : "getDataUrl", url:features.src},
 			function (data) {
 				var img = {};

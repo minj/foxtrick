@@ -21,7 +21,7 @@ var FoxtrickCore = {
 	// as the argument (Gecko-only)
 	// initializes items in menu bar and status bar
 	onLoad : function(document) {
-		if (typeof(firefox)!=='object')
+		if (Foxtrick.platform != "Firefox")
 			return;
 
 		// toolbar menu - preferences
@@ -84,7 +84,7 @@ var FoxtrickCore = {
 
 	updateStatus : function() {
 		// update status bar icon image and tooltip (Gecko-only)
-		if ( typeof(firefox)!=='object' )
+		if (Foxtrick.platform != "Firefox")
 			return;
 
 		var disableItem = document.getElementById("foxtrick-toolbar-deactivate");
@@ -131,7 +131,7 @@ var FoxtrickCore = {
 	showChangeLog : function(doc) {
 		if (FoxtrickPrefs.getString("oldVersion") !== Foxtrick.version()) {
 			if (FoxtrickPrefs.getBool("showReleaseNotes")) {
-				if ( typeof(opera)!='object' )
+				if ( Foxtrick.platform != "Opera" )
 					FoxtrickPrefs.show('#tab=changes');
 				else { // opera inline version since we can't open options in opera
 					var show = function(releaseNotes) {

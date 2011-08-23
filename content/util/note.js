@@ -46,7 +46,7 @@ Foxtrick.util.note = {
 		var note = this.create(doc, msg, buttons, hasClose);
 
 		// add copy instructions for opera and safari to copy notes
-		if ((typeof(opera)=='object' || typeof(safari)=='object') && id.search('copy-note')!==-1) {
+		if ((Foxtrick.platform == "Opera" || Foxtrick.platform == "Safari") && id.search('copy-note')!==-1) {
 			Foxtrick.sessionGet('clipboard', function(string) {
 				var msg_p = note.getElementsByTagName('p')[0];
 				msg_p.textContent = Foxtrickl10n.getString('CopySelected.desc');

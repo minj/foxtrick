@@ -19,8 +19,7 @@ Foxtrick.util.notify.create = function(msg, url) {
 			observe: function(subject, topic, data) {
 				try {
 					if (topic == "alertclickcallback") {
-						//Foxtrick.newTab(url);
-						if (typeof(firefox)==='object')
+						if (Foxtrick.platform == "Firefox")
 							Foxtrick.openAndReuseOneTabPerURL(url, true);
 						else {
 							sandboxed.extension.sendRequest({
@@ -77,10 +76,10 @@ Foxtrick.util.notify.create = function(msg, url) {
 	if (Foxtrick.arch == "Gecko") {
 		createGecko();
 	}
-	else if (typeof(chrome)=='object') {
+	else if (Foxtrick.platform == "Chrome") {
 		createChrome();
 	}
-	else if (typeof(safari)=='object') {
+	else if (Foxtrick.platform == "Safari") {
 		createSafariGrowl();
 	}
 };

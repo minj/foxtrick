@@ -98,5 +98,5 @@ var FoxtrickMobileEnhancements = {
 		}
 	},
 };
-//if (typeof(fennec)==='object')
+//if (Foxtrick.platform == "Fennec")
 //Foxtrick.util.module.register(FoxtrickMobileEnhancements);

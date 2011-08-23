@@ -88,7 +88,7 @@ Foxtrick.copyStringToClipboard = function (string) {
 			gClipboardHelper.copyString(string);
 		}
 	}
-	else if (typeof(opera) === "object" || typeof(safari) === "object") {
+	else if (Foxtrick.platform == "Opera" || Foxtrick.platform == "Safari") {
 		Foxtrick.sessionSet('clipboard', string);
 	}
 	else if (Foxtrick.arch === "Sandboxed") {
@@ -103,7 +103,7 @@ Foxtrick.newTab = function(url) {
 			url : url
 		})
 	}
-	else if (typeof(firefox)==='object') {
+	else if (Foxtrick.platform == "Firefox") {
 		gBrowser.selectedTab = gBrowser.addTab(url);
 	}
 }
@@ -387,14 +387,14 @@ Foxtrick.convertImageUrlToData = function(cssTextCollection, callback) {
 Foxtrick.replaceExtensionDirectory = function(cssTextCollection, callback, id) {
 	var resourcePathRegExp = RegExp("chrome://foxtrick/content/", "ig");
 
-	if (typeof(opera) === "object") {
+	if (Foxtrick.platform == "Opera") {
 		if (cssTextCollection.search(resourcePathRegExp)!=-1 )
 			sandboxed.extension.sendRequest({ req : "convertImages", cssText: cssTextCollection, type: id},
 				function (data) { callback(data.cssText);
 				});
 		else callback(cssTextCollection);
 	}
-	else if (typeof(chrome) === "object" || typeof(safari) === "object") {
+	else if (Foxtrick.platform == "Chrome" || Foxtrick.platform == "Safari") {
 		callback( cssTextCollection.replace(resourcePathRegExp, Foxtrick.InternalPath) );
 	}
 	else callback(cssTextCollection);
@@ -629,7 +629,7 @@ Foxtrick.getCssFileArrayToString = function(cssUrls) {
 	// gets all css from modules.CSS settings
 Foxtrick.getCssTextCollection = function() {
 	// fennec can/does load css direct from content
-	if (typeof(fennec)==='object')
+	if (Foxtrick.platform == "Fennec")
 		return '';
 	Foxtrick.collect_module_css();
 	return Foxtrick.getCssFileArrayToString(Foxtrick.cssFiles);

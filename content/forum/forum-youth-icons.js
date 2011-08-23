@@ -472,7 +472,7 @@ var FoxtrickForumYouthIcons = {
 					}
 					if (replaceText == 'ttt' && s.selectionLength === 0){
 						ta.selectionStart = s.selectionStart + 17;
-						if (typeof(opera)=='object') ta.selectionStart++; // opera uses \n\r thus we need to add one for that extra \r
+						if (Foxtrick.platform == "Opera") ta.selectionStart++; // opera uses \n\r thus we need to add one for that extra \r
 						ta.selectionEnd = ta.selectionStart + 5;
 					}
 				}

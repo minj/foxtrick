@@ -58,10 +58,10 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 				Foxtrick.log("init time: " , initTime , " ms");
 
 				// opera/safari: listen to clipboard paste
-				if ( typeof(opera)=='object' || typeof(safari)=='object')
+				if ( Foxtrick.platform == "Opera" || Foxtrick.platform == "Safari")
 					window.addEventListener('mouseup', Foxtrick.loader.chrome.clickListener, false);
 				// safari: set context menu info
-				if ( typeof(safari)=='object' ) {
+				if ( Foxtrick.platform == "Safari" ) {
 					document.addEventListener("contextmenu", function(event) {
 						safari.self.tab.setContextMenuEventUserInfo(event, {nodeName:event.target.nodeName, href: event.target.href});
 					}, false);

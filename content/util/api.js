@@ -287,7 +287,7 @@ Foxtrick.util.api = {
 								Foxtrick.log('ApiProxy: uncaught callback error: ',e);
 							}
 						}
-						else if (status == 401 || (typeof(opera)=='object' && status==0) ) { // opera hotfix. returned status not correct
+						else if (status == 401 || (Foxtrick.platform == "Opera" && status==0) ) { // opera hotfix. returned status not correct
 							Foxtrick.log("ApiProxy: error 401, unauthorized. Arguments: ", parameters);
 							Foxtrick.util.api.invalidateAccessToken(doc);
 							Foxtrick.util.api.authorize(doc);

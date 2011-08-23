@@ -27,14 +27,14 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	};
 
 	var updatePageAction = function(request, sender) {
-		if (typeof(opera) === "object") {
+		if (Foxtrick.platform == "Opera") {
 			if (request.sender!='options') FoxtrickCore.setOperaIcon(Foxtrick.loader.chrome.button);
 		}
-		else if (typeof(chrome) === "object") {
+		else if (Foxtrick.platform == "Chrome") {
 			chrome.pageAction.show(sender.tab.id);
 			FoxtrickCore.setChromeIcon(sender.tab);
 		}
-		else if (typeof(fennec)==='object') {
+		else if (Foxtrick.platform == "Fennec") {
 		}
 	};
 
@@ -119,7 +119,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 			else if (request.req == "clearPrefs") {
 				try {
 					Foxtrick.log('clearPrefs ');
-					if (typeof(fennec)==='object') {
+					if (Foxtrick.platform == "Fennec") {
 						FoxtrickPrefs.cleanupBranch();
 					}
 					else {
@@ -162,7 +162,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 			}
 			else if (request.req == "reuseTab") {
 				// @param url - the URL of new tab to create
-				if (typeof(fennec)==='object') {
+				if (Foxtrick.platform == "Fennec") {
 					Foxtrick.log(sender.tab.id)
 					for (var i = 0; i<Browser.browsers.length; ++i) {
 						if (sender.tab.id == Browser.browsers[i].tid) {
@@ -176,7 +176,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 				// @param content - content to copy
 				// @callback_param status - success status
 				try {
-					if (typeof(chrome)=='object')
+					if (Foxtrick.platform == "Chrome")
 						Foxtrick.loader.chrome.copyToClipBoard(request.content);
 					else
 						Foxtrick.copyStringToClipboard(request.content)
@@ -195,7 +195,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 						request.msg // notification body text
 					);
 					notification.onclick = function() {
-						if ( typeof(chrome)=='object' ) {
+						if ( Foxtrick.platform == "Chrome" ) {
 							// focus last window
 							chrome.windows.update( sender.tab.windowId, { focused:true });
 							// goto msg.url in sender tab
@@ -275,7 +275,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 
 
 	// page action init and listeners
-	if (typeof(opera) === "object") {
+	if (Foxtrick.platform == "Opera") {
 		// Specify the properties of the button before creating it.
 		var UIItemProperties = {
 			disabled: false,
@@ -292,12 +292,12 @@ Foxtrick.loader.chrome.browserLoad = function() {
 
 	}
 
-	else if (typeof(chrome) === "object") {
+	else if (Foxtrick.platform == "Chrome") {
 		chrome.pageAction.onClicked.addListener(function(tab) { FoxtrickPrefs.disable(tab); });
 		Foxtrick.loader.chrome.contextCopyChrome();
 	}
 
-	else if (typeof(safari) === "object") {
+	else if (Foxtrick.platform == "Safari") {
 	   // Open Options page upon settings checkbox click.
 		safari.extension.settings.openFoxtrickOptions = false;
 		safari.extension.settings.addEventListener("change", function(e) {
@@ -316,7 +316,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		Foxtrick.loader.chrome.contextCopySafari();
 	}
 
-	else if (typeof(fennec)==='object') {
+	else if (Foxtrick.platform == "Fennec") {
 		addEventListener("UIReady", onWindowLoad, false);
 	}
   } catch (e) {Foxtrick.log('Foxtrick.loader.chrome.browserLoad: ', e );}
