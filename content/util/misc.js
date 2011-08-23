@@ -99,6 +99,13 @@ Foxtrick.any = function(func, array) {
 	return false;
 }
 
+Foxtrick.all = function(func, array) {
+	for (var i = 0; i < array.length; ++i)
+		if (!func(array[i]))
+			return false;
+	return true;
+};
+
 Foxtrick.count = function(func, array) {
 	var ret = 0;
 	for (var i = 0; i < array.length; ++i) {
