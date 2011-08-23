@@ -277,7 +277,7 @@ var FoxtrickPrefs = {
 
 	show : function(page) {
 		if (!page) var page = '#tab=main';
-		Foxtrick.newTab(Foxtrick.ResourcePath + "preferences.html" + page);
+		Foxtrick.newTab(Foxtrick.InternalPath + "preferences.html" + page);
 	},
 
 	disable : function(sender) {
@@ -509,7 +509,7 @@ if (Foxtrick.arch === "Sandboxed") {
 					FoxtrickPrefs._prefs_chrome_default = {};
 
 					var parsePrefsFile = function (url) {
-						var prefText = Foxtrick.load(Foxtrick.ResourcePath+url)
+						var prefText = Foxtrick.load(Foxtrick.InternalPath + url)
 						var prefList = prefText.split(/[\n\r]+/);
 						const prefRe = /pref\("extensions\.foxtrick\.prefs\.(.+)",\s*(.+)\);/;
 						for (var i = 0; i < prefList.length; ++i) {

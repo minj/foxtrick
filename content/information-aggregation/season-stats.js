@@ -11,7 +11,7 @@ var FoxtrickSeasonStats = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ['matchesarchiv','matches'],
 	NICE : -1, // before FoxtrickCopyMatchID
-	CSS: Foxtrick.ResourcePath+"resources/css/seasonstats.css",
+	CSS: Foxtrick.InternalPath+"resources/css/seasonstats.css",
 
 	_season:-1,
 

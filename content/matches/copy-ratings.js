@@ -12,7 +12,7 @@ var FoxtrickCopyRatings = {
 
 	NICE : 1, // after MatchReportFormat.
 
-	CSS : Foxtrick.ResourcePath + "resources/css/copy-ratings.css",
+	CSS : Foxtrick.InternalPath + "resources/css/copy-ratings.css",
 
 	run : function(doc) {
 		if (Foxtrick.Pages.Match.isPrematch(doc))

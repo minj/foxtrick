@@ -10,9 +10,9 @@ var FoxtrickCore = {
 	PAGES : ["all"],
 	NICE : -20,
 	CSS : [
-		Foxtrick.ResourcePath + "resources/css/foxtrick.css",
-		Foxtrick.ResourcePath + "resources/css/headercopyicons.css",
-		Foxtrick.ResourcePath + "resources/css/flags.css",
+		Foxtrick.InternalPath + "resources/css/foxtrick.css",
+		Foxtrick.InternalPath + "resources/css/headercopyicons.css",
+		Foxtrick.InternalPath + "resources/css/flags.css",
 	],
 
 	SELF_TEAM_INFO : {},
@@ -166,7 +166,7 @@ var FoxtrickCore = {
 									&& node.nodeName.toLowerCase() == "module") {
 									var link = document.createElement("a");
 									link.textContent = node.textContent;
-									link.href = Foxtrick.ResourcePath + "preferences.html#module=" + link.textContent;
+									link.href = Foxtrick.InternalPath + "preferences.html#module=" + link.textContent;
 									to.appendChild(link);
 								}
 								else {

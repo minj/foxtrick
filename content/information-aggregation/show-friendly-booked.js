@@ -9,7 +9,7 @@ var FoxtrickShowFriendlyBooked = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["league"],
 	OPTIONS : new Array("OnDemand"),
-	CSS : Foxtrick.ResourcePath + "resources/css/show-friendly-booked.css",
+	CSS : Foxtrick.InternalPath + "resources/css/show-friendly-booked.css",
 
 	run : function(doc) {
 		if (FoxtrickPrefs.isModuleOptionEnabled("ShowFriendlyBooked", "OnDemand"))

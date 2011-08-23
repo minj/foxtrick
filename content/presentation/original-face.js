@@ -10,9 +10,9 @@ var FoxtrickOriginalFace = {
 	PAGES : ["playerdetail", "players", "YouthPlayer", "YouthPlayers"],
 	OPTIONS : ["HideTransfer", "HideInjury", "HideSuspended", "ColouredYouth"],
 	OPTIONS_CSS : [
-		Foxtrick.ResourcePath + "resources/css/HideFaceTransferImages.css",
-		Foxtrick.ResourcePath + "resources/css/HideFaceInjuryImages.css",
-		Foxtrick.ResourcePath + "resources/css/HideFaceSuspendedImages.css",
+		Foxtrick.InternalPath + "resources/css/HideFaceTransferImages.css",
+		Foxtrick.InternalPath + "resources/css/HideFaceInjuryImages.css",
+		Foxtrick.InternalPath + "resources/css/HideFaceSuspendedImages.css",
 		null
 	],
 

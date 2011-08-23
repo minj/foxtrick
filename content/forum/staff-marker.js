@@ -12,7 +12,7 @@ var FoxtrickStaffMarker = {
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DISABLED_LIST : [true, false, true],
 
-	CSS : Foxtrick.ResourcePath + "resources/css/staff-marker.css",
+	CSS : Foxtrick.InternalPath + "resources/css/staff-marker.css",
 
 	chppHolders : {},
 	editors : {},

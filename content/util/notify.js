@@ -12,7 +12,7 @@ Foxtrick.util.notify = {};
 // @param url - URL of event if applicable
 Foxtrick.util.notify.create = function(msg, url) {
 	var createGecko = function() {
-		var img = Foxtrick.ResourcePath + "resources/img/hattrick-logo.png";
+		var img = Foxtrick.InternalPath + "resources/img/hattrick-logo.png";
 		var title = "Hattrick.org";
 		var clickable = true;
 		var listener = {
@@ -68,7 +68,7 @@ Foxtrick.util.notify.create = function(msg, url) {
 		  } catch(e) {Foxtrick.log(e);}
 		};
 
-		var img = Foxtrick.ResourcePath + "resources/img/hattrick-logo.png";
+		var img = Foxtrick.InternalPath + "resources/img/hattrick-logo.png";
 		showGrowlNotification({ name: "www.hattrick.org", status: msg, img_url: img });
 	};
 

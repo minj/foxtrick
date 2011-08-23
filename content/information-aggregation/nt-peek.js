@@ -9,7 +9,7 @@ var FoxtrickNtPeek = {
 	MODULE_NAME : "NtPeek",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["country"],
-	CSS : Foxtrick.ResourcePath + "resources/css/nt-peek.css",
+	CSS : Foxtrick.InternalPath + "resources/css/nt-peek.css",
 
 	run : function(doc) {
 		var buildContainer = function(team, id, isNt) {

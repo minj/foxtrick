@@ -10,7 +10,7 @@ var FoxtrickMatchPlayerColouring = {
 	OPTIONS : ["SeparateOwnPlayerColors"],
 	NICE: +1, // needs to be after match-report-format
 
-	CSS : Foxtrick.ResourcePath + "resources/css/match-player-colouring.css",
+	CSS : Foxtrick.InternalPath + "resources/css/match-player-colouring.css",
 
 	run : function(doc) {
 		if (Foxtrick.isPage("playerdetail", doc)) {

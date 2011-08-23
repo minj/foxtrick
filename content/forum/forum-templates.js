@@ -10,7 +10,7 @@ var FoxtrickForumTemplates = {
 	PAGES : ['forumWritePost','messageWritePost','htpress','forumModWritePost'],
 	OPTIONS : ["DefaultShow"],
 
-	CSS : Foxtrick.ResourcePath + "resources/css/forum-templates.css",
+	CSS : Foxtrick.InternalPath + "resources/css/forum-templates.css",
 
 	_TEMPLATES_DIV_ID : "post_templates",
 	_TEMPLATES_PREFLIST : "post_templates",

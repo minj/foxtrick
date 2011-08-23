@@ -8,7 +8,7 @@ var FoxtrickCrossTable = {
 	MODULE_NAME : "CrossTable",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["fixtures"],
-	CSS : Foxtrick.ResourcePath + "resources/css/cross-table.css",
+	CSS : Foxtrick.InternalPath + "resources/css/cross-table.css",
 
 	run : function(doc) {
 		var teams = [];

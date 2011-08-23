@@ -9,7 +9,7 @@
 	MODULE_NAME : "HTThreadMarker",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forum'),
-	CSS : Foxtrick.ResourcePath + "resources/css/ht-thread.css",
+	CSS : Foxtrick.InternalPath + "resources/css/ht-thread.css",
 
 	run : function(doc) {
 		this.ColorLatest(doc, "threadContent", "folderitem");

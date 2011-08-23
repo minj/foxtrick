@@ -9,14 +9,14 @@ var FoxtrickOldStyleFace = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
 	CSS : [
-		Foxtrick.ResourcePath + "resources/css/old-style-face/main.css",
-		Foxtrick.ResourcePath + "resources/css/old-style-face/beards.css",
-		Foxtrick.ResourcePath + "resources/css/old-style-face/eyes.css",
-		Foxtrick.ResourcePath + "resources/css/old-style-face/faces.css",
-		Foxtrick.ResourcePath + "resources/css/old-style-face/hair.css",
-		Foxtrick.ResourcePath + "resources/css/old-style-face/mouths.css",
-		Foxtrick.ResourcePath + "resources/css/old-style-face/noses.css",
-		Foxtrick.ResourcePath + "resources/css/old-style-face/edit-avatar.css"
+		Foxtrick.InternalPath + "resources/css/old-style-face/main.css",
+		Foxtrick.InternalPath + "resources/css/old-style-face/beards.css",
+		Foxtrick.InternalPath + "resources/css/old-style-face/eyes.css",
+		Foxtrick.InternalPath + "resources/css/old-style-face/faces.css",
+		Foxtrick.InternalPath + "resources/css/old-style-face/hair.css",
+		Foxtrick.InternalPath + "resources/css/old-style-face/mouths.css",
+		Foxtrick.InternalPath + "resources/css/old-style-face/noses.css",
+		Foxtrick.InternalPath + "resources/css/old-style-face/edit-avatar.css"
 	]
 };
 Foxtrick.util.module.register(FoxtrickOldStyleFace);

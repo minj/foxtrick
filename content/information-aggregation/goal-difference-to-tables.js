@@ -9,7 +9,7 @@ var FoxtrickGoalDifferenceToTables = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : new Array('promotion','oldseries','marathon'),
 
-	CSS : Foxtrick.ResourcePath + "resources/css/goal-diff.css",
+	CSS : Foxtrick.InternalPath + "resources/css/goal-diff.css",
 
 	run : function(doc) {
 		var tbl_goaldiff = (doc.getElementById("ft_goaldiff")!=null);

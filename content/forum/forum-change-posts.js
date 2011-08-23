@@ -9,7 +9,7 @@ var FoxtrickForumChangePosts = {
 	CORE_MODULE : true,
 	PAGES : ["forumViewThread"],
 	bDetailedHeader : false,
-	CSS : Foxtrick.ResourcePath + "resources/css/forum-change-post.css",
+	CSS : Foxtrick.InternalPath + "resources/css/forum-change-post.css",
 
 	run : function(doc) {
 		var do_copy_post_id = FoxtrickPrefs.isModuleEnabled("CopyPostID");

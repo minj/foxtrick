@@ -7,7 +7,7 @@ var FoxtrickTransferSearchFilters = {
 	MODULE_NAME : "TransferSearchFilters",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["transferSearchForm"],
-	CSS : Foxtrick.ResourcePath + "resources/css/transfer-search-filters.css",
+	CSS : Foxtrick.InternalPath + "resources/css/transfer-search-filters.css",
 
 	backwardCompatibleCodes : {
 		"_01" : "ctl00$ctl00$CPContent$CPMain$ddlDeadline",

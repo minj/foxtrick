@@ -9,7 +9,7 @@ var FoxtrickTeamPopupLinks = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["all"],
 	NICE : 10, // after anythings that works on team/manager links
-	CSS : Foxtrick.ResourcePath + "resources/css/popup-links.css",
+	CSS : Foxtrick.InternalPath + "resources/css/popup-links.css",
 
 	OPTIONS : [ "TeamLinks", "UserLinks", "CustomLink" ],
 	OPTION_TEXTS : true,

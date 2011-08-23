@@ -18,10 +18,10 @@ var FoxtrickExtraShortcuts = {
 		"http://radio-balkadio.com/radio.xml",
 		"http://www.down-times.de/dtrfoxi/dtrstatus.php"
 	],
-	CSS: Foxtrick.ResourcePath+"resources/css/extra-shortcuts.css",
+	CSS: Foxtrick.InternalPath+"resources/css/extra-shortcuts.css",
 
 	OPTIONS_CSS: [
-		Foxtrick.ResourcePath+"resources/css/extra-shortcuts-space.css"
+		Foxtrick.InternalPath+"resources/css/extra-shortcuts-space.css"
 	],
 
 	run : function(doc) {

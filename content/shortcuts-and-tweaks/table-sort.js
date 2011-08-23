@@ -10,7 +10,7 @@ var FoxtrickTableSort = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["all"],
 	NICE : 10,  // after anythig that adds or changes tables
-	CSS : Foxtrick.ResourcePath + "resources/css/tableSort.css",
+	CSS : Foxtrick.InternalPath + "resources/css/tableSort.css",
 
 	run : function(doc) {
 		if (Foxtrick.isPage("forumViewThread", doc)) {

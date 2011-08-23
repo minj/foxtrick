@@ -18,19 +18,19 @@ var FoxtrickSkillColoring = {
 		"no_skill_links"
 	],
 	OPTIONS_CSS : [
-		Foxtrick.ResourcePath+"resources/skillcolors/skill-color.css",
-		Foxtrick.ResourcePath+"resources/skillcolors/only-skill-color.css",
-		Foxtrick.ResourcePath+"resources/skillcolors/skill-number.css",
-		Foxtrick.ResourcePath+"resources/skillcolors/skill-number-translated.css",
-		Foxtrick.ResourcePath+"resources/skillcolors/skill-number-selectoption.css",
-		Foxtrick.ResourcePath+"resources/skillcolors/no-skill-links.css"
+		Foxtrick.InternalPath+"resources/skillcolors/skill-color.css",
+		Foxtrick.InternalPath+"resources/skillcolors/only-skill-color.css",
+		Foxtrick.InternalPath+"resources/skillcolors/skill-number.css",
+		Foxtrick.InternalPath+"resources/skillcolors/skill-number-translated.css",
+		Foxtrick.InternalPath+"resources/skillcolors/skill-number-selectoption.css",
+		Foxtrick.InternalPath+"resources/skillcolors/no-skill-links.css"
 	],
 
 	init : function() {
 		if (FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_number") && (FoxtrickPrefs.isModuleEnabled("PersonalityImages")))
-			this.OPTIONS_CSS[2] = Foxtrick.ResourcePath+"resources/skillcolors/skill-number-personal.css";
+			this.OPTIONS_CSS[2] = Foxtrick.InternalPath+"resources/skillcolors/skill-number-personal.css";
 		if (FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_number_translated") && (FoxtrickPrefs.isModuleEnabled("PersonalityImages")))
-			this.OPTIONS_CSS[3] = Foxtrick.ResourcePath+"resources/skillcolors/skill-number-translated-personal.css";
+			this.OPTIONS_CSS[3] = Foxtrick.InternalPath+"resources/skillcolors/skill-number-translated-personal.css";
 	}
 };
 Foxtrick.util.module.register(FoxtrickSkillColoring);

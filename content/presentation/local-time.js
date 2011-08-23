@@ -9,7 +9,7 @@ var FoxtrickLocalTime = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
 	NICE : -10, // place before HTDateFormat, bellow everything that adds dates
-	CSS : Foxtrick.ResourcePath + "resources/css/local-time.css",
+	CSS : Foxtrick.InternalPath + "resources/css/local-time.css",
 
 	run : function(doc) {
 		var time = doc.getElementById("time");

@@ -10,7 +10,7 @@ var FoxtrickCountyList = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
 	OPTIONS : ["SelectBoxes","TeamPage","ManagerPage", "HideFlagOntop"],
-	CSS: Foxtrick.ResourcePath+"resources/css/CountyList.css",
+	CSS: Foxtrick.InternalPath+"resources/css/CountyList.css",
 
 	run : function(doc) {
 		var list = doc.getElementById( 'ft_countrylist' );

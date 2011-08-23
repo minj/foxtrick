@@ -134,17 +134,17 @@ var FoxtrickForumAlterHeaderLine = {
 	PAGES : new Array("forumViewThread"),
 	OPTIONS : new Array("SingleHeaderLine", "CheckDesign","TruncateLongNick","TruncateLeagueName","HideOldTime",
 						"SmallHeaderFont","ShortPostId","ReplaceSupporterStar","BookmarkHeaderSmall","HighlightThreadOpener"),
-	OPTIONS_CSS: new Array (Foxtrick.ResourcePath+"resources/css/fixes/Forum_Header_Single.css",
-							Foxtrick.ResourcePath+"resources/css/fixes/Forum_Header_CheckDesign.css",
+	OPTIONS_CSS: new Array (Foxtrick.InternalPath+"resources/css/fixes/Forum_Header_Single.css",
+							Foxtrick.InternalPath+"resources/css/fixes/Forum_Header_CheckDesign.css",
 							"",
 							"",
 							"",
-							Foxtrick.ResourcePath+"resources/css/fixes/Forum_Header_Smallsize_Single.css",
+							Foxtrick.InternalPath+"resources/css/fixes/Forum_Header_Smallsize_Single.css",
 							"",
-							Foxtrick.ResourcePath+"resources/css/fixes/Forum_Header_RemoveSupporterStar.css",
-							Foxtrick.ResourcePath+"resources/css/fixes/BookmarkHeaderSmall.css"),
+							Foxtrick.InternalPath+"resources/css/fixes/Forum_Header_RemoveSupporterStar.css",
+							Foxtrick.InternalPath+"resources/css/fixes/BookmarkHeaderSmall.css"),
 
-	CSS : Foxtrick.ResourcePath+"resources/css/fixes/Forum_Header_Single_SimpleFix.css"
+	CSS : Foxtrick.InternalPath+"resources/css/fixes/Forum_Header_Single_SimpleFix.css"
 };
 Foxtrick.util.module.register(FoxtrickForumAlterHeaderLine);
 

@@ -17,12 +17,12 @@ FoxtrickForumPresentation = {
 		"moved_avatarinfo_fix"
 	],
 	OPTIONS_CSS : [
-		Foxtrick.ResourcePath+"resources/css/fixes/HideFlagsInForumHeader.css",
-		Foxtrick.ResourcePath+"resources/css/fixes/HideLeagueInForumHeader.css",
-		Foxtrick.ResourcePath+"resources/css/fixes/Forum_Spoiler_reveal.css",
-		Foxtrick.ResourcePath+"resources/css/fixes/Forum_NewPostsInBracket.css",
-		Foxtrick.ResourcePath+"resources/css/fixes/Forum_Link_Grey_Icons.css",
-		Foxtrick.ResourcePath+"resources/css/fixes/moved_avatarinfo_fix.css"
+		Foxtrick.InternalPath+"resources/css/fixes/HideFlagsInForumHeader.css",
+		Foxtrick.InternalPath+"resources/css/fixes/HideLeagueInForumHeader.css",
+		Foxtrick.InternalPath+"resources/css/fixes/Forum_Spoiler_reveal.css",
+		Foxtrick.InternalPath+"resources/css/fixes/Forum_NewPostsInBracket.css",
+		Foxtrick.InternalPath+"resources/css/fixes/Forum_Link_Grey_Icons.css",
+		Foxtrick.InternalPath+"resources/css/fixes/moved_avatarinfo_fix.css"
 	]
 };
 Foxtrick.util.module.register(FoxtrickForumPresentation);

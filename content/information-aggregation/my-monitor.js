@@ -9,7 +9,7 @@ var FoxtrickMyMonitor = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["myhattrick", "dashboard", "teamPage", "youthoverview", "national"],
 	OPTIONS : ["TeamIcons"],
-	CSS : Foxtrick.ResourcePath + "resources/css/my-monitor.css",
+	CSS : Foxtrick.InternalPath + "resources/css/my-monitor.css",
 	NICE : -1, // add it before links for consistent sidebar placement
 
 	run : function(doc) {

@@ -125,10 +125,6 @@ Foxtrick.load = function(url, callback, crossSite) {
 			);
 		}
 		else {
-			if (!crossSite) {
-				// a request to load local resource
-				url = url.replace(Foxtrick.ResourcePath, Foxtrick.InternalPath);
-			}
 			var req = new window.XMLHttpRequest();
 			if (!callback) {
 				req.open("GET", url, false);
@@ -358,20 +354,20 @@ Foxtrick.convertImageUrlToData = function(cssTextCollection, callback) {
 	if (cssTextCollection) {
 		var fullUrlRegExp = new RegExp("\\(\'?\"?chrome://foxtrick/content/([^\\)]+)\'?\"?\\)", "gi");
 		var urls = cssTextCollection.match(fullUrlRegExp);
-		var resourcePathRegExp = RegExp("chrome://foxtrick/content/", "ig");
-		cssTextCollection = cssTextCollection.replace(resourcePathRegExp, Foxtrick.InternalPath);
+		var InternalPathRegExp = RegExp("chrome://foxtrick/content/", "ig");
+		cssTextCollection = cssTextCollection.replace(InternalPathRegExp, Foxtrick.InternalPath);
 
 		if (urls) {
 			// first check dataurl cache
 			for (var i = 0; i<urls.length; ++i) {
-				urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g,'').replace(resourcePathRegExp, Foxtrick.InternalPath);
+				urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g,'').replace(InternalPathRegExp, Foxtrick.InternalPath);
 				if (Foxtrick.dataUrlStorage[urls[i]]) {
 					cssTextCollection = cssTextCollection.replace(RegExp(urls[i],'g'), Foxtrick.dataUrlStorage[urls[i]]);
 				}
 			}
 			// convert missing images
 			for (var i = 0; i<urls.length; ++i) {
-				urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g,'').replace(resourcePathRegExp, Foxtrick.InternalPath);
+				urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g,'').replace(InternalPathRegExp, Foxtrick.InternalPath);
 				if (!Foxtrick.dataUrlStorage[urls[i]]) {
 					pending++;
 					replaceImage(urls[i]);
@@ -385,17 +381,17 @@ Foxtrick.convertImageUrlToData = function(cssTextCollection, callback) {
 };
 
 Foxtrick.replaceExtensionDirectory = function(cssTextCollection, callback, id) {
-	var resourcePathRegExp = RegExp("chrome://foxtrick/content/", "ig");
+	var InternalPathRegExp = RegExp("chrome://foxtrick/content/", "ig");
 
 	if (Foxtrick.platform == "Opera") {
-		if (cssTextCollection.search(resourcePathRegExp)!=-1 )
+		if (cssTextCollection.search(InternalPathRegExp)!=-1 )
 			sandboxed.extension.sendRequest({ req : "convertImages", cssText: cssTextCollection, type: id},
 				function (data) { callback(data.cssText);
 				});
 		else callback(cssTextCollection);
 	}
 	else if (Foxtrick.platform == "Chrome" || Foxtrick.platform == "Safari") {
-		callback( cssTextCollection.replace(resourcePathRegExp, Foxtrick.InternalPath) );
+		callback( cssTextCollection.replace(InternalPathRegExp, Foxtrick.InternalPath) );
 	}
 	else callback(cssTextCollection);
 }

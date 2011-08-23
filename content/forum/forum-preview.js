@@ -8,7 +8,7 @@ var FoxtrickForumPreview = {
 	MODULE_NAME : "ForumPreview",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ['forumWritePost', 'messageWritePost', 'guestbook', 'announcements', 'newsletter', 'mailnewsletter', 'forumSettings', "forumModWritePost"],
-	CSS : Foxtrick.ResourcePath + "resources/css/forum-preview.css",
+	CSS : Foxtrick.InternalPath + "resources/css/forum-preview.css",
 
 	_NEW_MESSAGE_WINDOW : 'ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody',
 	_MAIL_MESSAGE_WINDOW : 'ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtBody',

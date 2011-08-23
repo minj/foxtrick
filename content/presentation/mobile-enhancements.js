@@ -8,7 +8,7 @@ var FoxtrickMobileEnhancements = {
 	MODULE_NAME : "MobileEnhancements",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
-	CSS : Foxtrick.ResourcePath + "resources/css/mobile-enhancements.css",
+	CSS : Foxtrick.InternalPath + "resources/css/mobile-enhancements.css",
 
 	ft_pageactions : {
 		'rightSidebar':		{ match:{pattern:"Forum",result:false},	size:{'simple':190, standard:222},	css:'mobile-enhancements-right.css'},
@@ -53,11 +53,11 @@ var FoxtrickMobileEnhancements = {
 
 	setStyle : function(doc, id, css, size) {
 		for (var i in FoxtrickMobileEnhancements.ft_pageactions) {
-			Foxtrick.unload_css_permanent(Foxtrick.ResourcePath + "resources/css/" + FoxtrickMobileEnhancements.ft_pageactions[i].css);
-		Foxtrick.log('unload: ',Foxtrick.ResourcePath + "resources/css/" + FoxtrickMobileEnhancements.ft_pageactions[i].css)
+			Foxtrick.unload_css_permanent(Foxtrick.InternalPath + "resources/css/" + FoxtrickMobileEnhancements.ft_pageactions[i].css);
+		Foxtrick.log('unload: ',Foxtrick.InternalPath + "resources/css/" + FoxtrickMobileEnhancements.ft_pageactions[i].css)
 		}
-		Foxtrick.load_css_permanent(Foxtrick.ResourcePath + "resources/css/" + css);
-		Foxtrick.log('load: ',Foxtrick.ResourcePath + "resources/css/" + FoxtrickMobileEnhancements.ft_pageactions[i].css)
+		Foxtrick.load_css_permanent(Foxtrick.InternalPath + "resources/css/" + css);
+		Foxtrick.log('load: ',Foxtrick.InternalPath + "resources/css/" + FoxtrickMobileEnhancements.ft_pageactions[i].css)
 		var size = Foxtrick.util.layout.isRtl(doc) ? size.standard : size.simple;
 		FoxtrickMobileEnhancements.setMetaViewport(doc, size+'px');
 	},

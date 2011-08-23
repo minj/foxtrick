@@ -20,17 +20,17 @@ var FoxtrickPersonalityImages = {
 			if (skill.href.search(/lt\=honesty/i) > -1
 				|| skill.href.search(/lt\=gentleness/i) > -1) {
 				var level = skill.href.match(/ll\=(\d)/)[1];
-				var img = doc.createElement("img");
-				img.className = "ft-personality-img";
-				img.src = Foxtrick.ResourcePath + "resources/personality/red2blue/" + level + ".jpg";
-				skill.appendChild(img);
+				Foxtrick.addImage(doc, skill, { 
+					className : "ft-personality-img",
+					src : Foxtrick.InternalPath + "resources/personality/red2blue/" + level + ".jpg"
+				});
 			}
 			else if (skill.href.search(/lt\=aggressiveness/i) > -1) {
 				var level = skill.href.match(/ll\=(\d)/)[1];
-				var img = doc.createElement("img");
-				img.className = "ft-personality-img";
-				img.src = Foxtrick.ResourcePath + "resources/personality/blue2red/" + level + ".jpg";
-				skill.appendChild(img);
+				Foxtrick.addImage(doc, skill, { 
+					className : "ft-personality-img",
+					src : Foxtrick.InternalPath + "resources/personality/blue2red/" + level + ".jpg"
+				});
 			}
 		}
 	}

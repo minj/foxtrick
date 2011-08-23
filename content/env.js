@@ -141,8 +141,7 @@ if (typeof(opera) == "object") {
 else if (typeof(safari) == "object") {
 	Foxtrick.arch = "Sandboxed";
 	Foxtrick.platform = "Safari";
-	Foxtrick.InternalPath = safari.extension.baseURI + "content/";
-	Foxtrick.ResourcePath = safari.extension.baseURI + "content/";
+	Foxtrick.InternalPath = Foxtrick.ResourcePath = safari.extension.baseURI + "content/";
 
 	// to tell which context the chrome script is running at
 	// either background page, or content script
@@ -339,8 +338,7 @@ else if (typeof(safari) == "object") {
 else if (typeof(chrome) == "object") {
 	Foxtrick.arch = "Sandboxed";
 	Foxtrick.platform = "Chrome";
-	Foxtrick.InternalPath = chrome.extension.getURL("content/");
-	Foxtrick.ResourcePath = chrome.extension.getURL("content/");
+	Foxtrick.InternalPath = Foxtrick.ResourcePath = chrome.extension.getURL("content/");
 
 	// to tell which context the chrome script is running at
 	// either background page, or content script
@@ -377,8 +375,7 @@ else if (typeof(chrome) == "object") {
 }
 else {
 	Foxtrick.arch = "Gecko";
-	Foxtrick.InternalPath = "chrome://foxtrick/content/";
-	Foxtrick.ResourcePath = "chrome://foxtrick/content/";
+	Foxtrick.InternalPath = Foxtrick.ResourcePath = "chrome://foxtrick/content/";
 
 	if ( typeof(window)!=='object' // fennec content
 		|| typeof(Browser)!=='undefined' ) { // fennec background

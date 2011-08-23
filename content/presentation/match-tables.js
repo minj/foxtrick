@@ -33,10 +33,10 @@ var FoxtrickMatchTables = {
 			return;
 		if (Foxtrick.isPage("league", doc)
 			|| Foxtrick.isPage("youthleague", doc))
-			Foxtrick.util.inject.cssLink(doc,Foxtrick.ResourcePath+"resources/css/FoxtrickMatchTables_league.css");
+			Foxtrick.util.inject.cssLink(doc,Foxtrick.InternalPath+"resources/css/FoxtrickMatchTables_league.css");
 		else if (Foxtrick.isPage("matchesarchiv", doc)
 			|| Foxtrick.isPage("matches", doc))
-			Foxtrick.util.inject.cssLink(doc,Foxtrick.ResourcePath+"resources/css/FoxtrickMatchTables_matches.css");
+			Foxtrick.util.inject.cssLink(doc,Foxtrick.InternalPath+"resources/css/FoxtrickMatchTables_matches.css");
 	},
 
 	// adjust matchtable, remove hour

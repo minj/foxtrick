@@ -17,12 +17,12 @@ FoxtrickSimplePresentation = {
 		"NoLogo"
 	],
 	OPTIONS_CSS : [
-		Foxtrick.ResourcePath+"resources/css/fixes/League_Table.css",
-		Foxtrick.ResourcePath+"resources/css/fixes/Guestbook.css",
-		Foxtrick.ResourcePath+"resources/css/fixes/liveHighlightRed.css",
-		Foxtrick.ResourcePath+"resources/css/fixes/staffmarker.css",
-		Foxtrick.ResourcePath+"resources/css/fixes/achievement_hideicons.css",
-		Foxtrick.ResourcePath+"resources/css/fixes/NoLogo.css"
+		Foxtrick.InternalPath+"resources/css/fixes/League_Table.css",
+		Foxtrick.InternalPath+"resources/css/fixes/Guestbook.css",
+		Foxtrick.InternalPath+"resources/css/fixes/liveHighlightRed.css",
+		Foxtrick.InternalPath+"resources/css/fixes/staffmarker.css",
+		Foxtrick.InternalPath+"resources/css/fixes/achievement_hideicons.css",
+		Foxtrick.InternalPath+"resources/css/fixes/NoLogo.css"
 	]
 };
 Foxtrick.util.module.register(FoxtrickSimplePresentation);

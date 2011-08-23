@@ -10,7 +10,7 @@ var FoxtrickNewMail = {
 	PAGES : ["all"],
 	OPTIONS : ["NotifyMail", "NotifyForum"],
 
-	CSS : Foxtrick.ResourcePath + "resources/css/new-mail.css",
+	CSS : Foxtrick.InternalPath + "resources/css/new-mail.css",
 
 	run : function(doc) {
 		Foxtrick.sessionGet( {"mailCount":0, "forumCount":0}, function(oldCount) {

@@ -10,7 +10,7 @@ var FoxtrickForumYouthIcons = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumWritePost","messageWritePost","guestbook","announcements","forumSettings","newsletter","mailnewsletter","forumModWritePost","ticket"),
 	OPTIONS :  new Array("q", "user_id", "kit_id", "article_id", "line_br", "clock", "spoiler", "pre", "table", "youth_player", "youth_team", "youth_match", "youth_series", "debug", "settings", "enlarge_input"),
-	CSS: Foxtrick.ResourcePath + "resources/css/forum-youth-icons.css",
+	CSS: Foxtrick.InternalPath + "resources/css/forum-youth-icons.css",
 
 	fields : [
 		// Forum

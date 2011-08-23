@@ -12,7 +12,7 @@ var FoxtrickCopyYouth = {
 	OPTIONS : ["TrainingReport", "ScoutComment", "PlayerSource",
 		"FixturesSource"],
 
-	CSS : Foxtrick.ResourcePath + "resources/css/copy-youth.css",
+	CSS : Foxtrick.InternalPath + "resources/css/copy-youth.css",
 
 	addTrainingReport : function(doc) {
 		// return if training report unread

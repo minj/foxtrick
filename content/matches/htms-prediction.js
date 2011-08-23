@@ -8,7 +8,7 @@ var FoxtrickHTMSPrediction = {
 	MODULE_NAME : "HTMSPrediction",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
-	CSS : Foxtrick.ResourcePath + "resources/css/htms-statistics.css",
+	CSS : Foxtrick.InternalPath + "resources/css/htms-statistics.css",
 
 	run : function(doc) {
 		var isprematch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch")!=null);

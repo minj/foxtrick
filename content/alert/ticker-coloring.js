@@ -8,7 +8,7 @@ var FoxtrickTickerColoring = {
 	MODULE_NAME : "TickerColoring",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
 	PAGES : ["all"],
-	CSS : Foxtrick.ResourcePath + "resources/css/ticker-coloring.css",
+	CSS : Foxtrick.InternalPath + "resources/css/ticker-coloring.css",
 
 	run : function(doc) {
 		// type of change to listen to. opera doesn't support DOMSubtreeModified

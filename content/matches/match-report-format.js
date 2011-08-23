@@ -9,7 +9,7 @@ FoxtrickMatchReportFormat = {
 	PAGES : new Array('match'),
 	OPTIONS:['SeparateOwnTeamColors'],
 
-	CSS : Foxtrick.ResourcePath + "resources/css/match-report.css",
+	CSS : Foxtrick.InternalPath + "resources/css/match-report.css",
 
 	run : function(doc) {
 		if (Foxtrick.Pages.Match.isPrematch(doc)

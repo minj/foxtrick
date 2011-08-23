@@ -107,12 +107,12 @@ var FoxtrickManagerButtons = {
 
 			if (Foxtrick.util.layout.isStandard(doc)) {
 				guestbookLink.className = "inner";
-				var img = doc.createElement("img");
-				img.style.padding = "0px 5px 0px 0px";
-				img.className = "actionIcon";
-				img.alt = Foxtrickl10n.getString( "foxtrick.tweaks.writeinguestbook" );
-				img.src = Foxtrick.ResourcePath+"resources/img/guestbook.png";
-				guestbookLink.appendChild(img);
+				Foxtrick.addImage(doc, guestbookLink, {
+					style : "padding: 0px 5px 0px 0px",
+					className : "actionIcon",
+					alt : Foxtrickl10n.getString( "foxtrick.tweaks.writeinguestbook" ), 
+					src : Foxtrick.InternalPath+"resources/img/guestbook.png"
+				});
 			}
 			else {
 				guestbookLink.textContent = Foxtrickl10n.getString("foxtrick.tweaks.writeinguestbook");

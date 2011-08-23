@@ -12,7 +12,7 @@ FoxtrickTeamStats = {
 	OPTIONS : ["General", "Speciality", "Personality", "Status", "Current_league"],
 	NICE : -1, // before FoxtrickLinksPlayers
 
-	CSS : Foxtrick.ResourcePath + "resources/css/team-stats.css",
+	CSS : Foxtrick.InternalPath + "resources/css/team-stats.css",
 
 	run : function(doc) {
 		var show = function(playerList) {

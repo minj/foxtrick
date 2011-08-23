@@ -7,7 +7,7 @@ FoxtrickTransferDeadline = {
 	MODULE_NAME : "TransferDeadline",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["transferSearchResult", "playerdetail", "transfer", "bookmarks"],
-	CSS : Foxtrick.ResourcePath + "resources/css/transfer-deadline.css",
+	CSS : Foxtrick.InternalPath + "resources/css/transfer-deadline.css",
 
 	run : function(doc) {
 		// Check if deadline already set

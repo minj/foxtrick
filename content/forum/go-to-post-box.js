@@ -8,7 +8,7 @@ var FoxtrickGoToPostBox = {
 	MODULE_NAME : "GoToPostBox",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
-	CSS: Foxtrick.ResourcePath+"resources/css/gotopostbox.css",
+	CSS: Foxtrick.InternalPath+"resources/css/gotopostbox.css",
 
 	run : function(doc) {
 

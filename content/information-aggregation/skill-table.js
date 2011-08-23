@@ -11,7 +11,7 @@ var FoxtrickSkillTable = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["players", "oldcoaches","YouthPlayers", "transferSearchResult"],
 	OPTIONS : ["OtherTeams", "ColouredYouth"],
-	CSS : Foxtrick.ResourcePath + "resources/css/skilltable.css",
+	CSS : Foxtrick.InternalPath + "resources/css/skilltable.css",
 
 	// whether skill table is created
 	// returns a Boolean
