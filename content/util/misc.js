@@ -77,43 +77,35 @@ Foxtrick.playSound = function(url, doc) {
 }
 
 Foxtrick.map = function(func, array) {
-	try {
-		var ret = [];
-		for (var i = 0; i < array.length; ++i)
-			ret.push(func(array[i]));
-		return ret;
-	} catch(e) {Foxtrick.log('Uncaught function error: ',e)}
+	var ret = [];
+	for (var i = 0; i < array.length; ++i)
+		ret.push(func(array[i]));
+	return ret;
 }
 
 Foxtrick.filter = function(func, array) {
-	try {
-		var ret = [];
-		for (var i = 0; i < array.length; ++i) {
-			if (func(array[i]))
-				ret.push(array[i]);
-		}
-		return ret;
-	} catch(e) {Foxtrick.log('Uncaught function error: ',e)}
+	var ret = [];
+	for (var i = 0; i < array.length; ++i) {
+		if (func(array[i]))
+			ret.push(array[i]);
+	}
+	return ret;
 }
 
 Foxtrick.any = function(func, array) {
-	try {
-		for (var i = 0; i < array.length; ++i)
-			if (func(array[i]))
-				return true;
-		return false;
-	} catch(e) {Foxtrick.log('Uncaught function error: ',e)}
+	for (var i = 0; i < array.length; ++i)
+		if (func(array[i]))
+			return true;
+	return false;
 }
 
 Foxtrick.count = function(func, array) {
-	try {
-		var ret = 0;
-		for (var i = 0; i < array.length; ++i) {
-			if (func(array[i]))
-				++ret;
-		}
-		return ret;
-	} catch(e) {Foxtrick.log('Uncaught function error: ',e)}
+	var ret = 0;
+	for (var i = 0; i < array.length; ++i) {
+		if (func(array[i]))
+			++ret;
+	}
+	return ret;
 }
 
 /**
