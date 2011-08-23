@@ -123,14 +123,14 @@ FoxtrickLineupShortcut = {
 			link.href = "/Club/Matches/MatchLineup.aspx?MatchID=" + matchid + "&YouthTeamID=" + teamid + "&isYouth=true&HighlightPlayerID=" + playerid;
 		else
 			link.href = "/Club/Matches/MatchLineup.aspx?MatchID=" + matchid + "&TeamID=" + teamid + "&HighlightPlayerID=" + playerid;
-		var src = Foxtrick.InternalPath + "resources/img/";
+		var src = '';
 		if (type == "NT")
-			src += "formation.nt.png";
+			src = "formation.nt.png";
 		else if (type == "U20")
-			src += "formation.u20.png";
+			src = "formation.u20.png";
 		else
-			src += "formation.png";
-		Foxtrick.addImage(doc, link, { src : src });
+			src = "formation.png";
+		Foxtrick.addImage(doc, link, { src : Foxtrick.InternalPath + "resources/img/" + src });
 		cell.appendChild(link);
 	},
 
