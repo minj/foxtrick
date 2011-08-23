@@ -126,7 +126,6 @@ var FoxtrickCountyList = {
 			}
 			Foxtrick.dump(league.href+'\n');
 			leaguenum = league.href.match(/LeagueID=(\d+)/i)[1];
-			Foxtrick.dump('leaguenum: '+leaguenum+'\n');
 			var htname = league.firstChild.title;
 			htname = Foxtrick.util.id.getLeagueDataFromId(leaguenum).LeagueName;
 			league.firstChild.title = htname
