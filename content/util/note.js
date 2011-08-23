@@ -151,9 +151,9 @@ Foxtrick.util.note = {
 		}
 	},
 
-	createLoadingNum :0,
 	createLoading : function(doc, inline, loadingText) {
-		if (!loadingText) loadingText = Foxtrickl10n.getString("status.loading");
+		if (!loadingText)
+			loadingText = Foxtrickl10n.getString("status.loading");
 		if (inline) {
 			// if the note is inline, return a span with nothing special
 			var container = doc.createElement("span");
@@ -177,18 +177,5 @@ Foxtrick.util.note = {
 
 			return note;
 		}
-	},
-
-	showObstrusiveLoading : function( doc, loadingText ) {
-		if (doc.getElementsByTagName("body")[0] && !doc.getElementById("FoxTrickLoadingId")) {
-			var loading = this.createLoading(doc, null, loadingText);
-			loading.setAttribute('id','FoxTrickLoadingId');
-			loading.setAttribute('style','z-index:99999; top:2%; left:50%; position:fixed; background-color: #efefff;border: 1px solid #2f31ff; padding: 15px;');
-			doc.getElementsByTagName("body")[0].insertBefore(loading,doc.getElementsByTagName("body")[0].firstChild);
-		}
-	},
-
-	removeObstrusiveLoading : function( doc ) {
-		if (doc.getElementById("FoxTrickLoadingId")) doc.getElementsByTagName("body")[0].removeChild(doc.getElementById("FoxTrickLoadingId"));
 	}
 };
