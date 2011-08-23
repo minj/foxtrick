@@ -9,7 +9,7 @@
 
 
 // for Firefox
-if (Foxtrick.platform = "Firefox") {
+if (Foxtrick.platform == "Firefox") {
 
 	Foxtrick.sessionStore = {};
 
