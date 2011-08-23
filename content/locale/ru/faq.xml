@@ -9,7 +9,7 @@
 				Эти интерфейсы предоставляются в виде идентификаторов (id) и классов (class) HTML-разметки, и Вы можете использовать CSS для определения своего собственного стиля.
 			</xhtml:p>
 			<xhtml:p>
-				Пример описания стиля можно найти в <xhtml:a href="chrome://foxtrick/content/resources/css/user-content-example.css">файле</xhtml:a>, который Вы можете модифициковать как Вам угодно.
+				Пример описания стиля можно найти в <xhtml:a href="/content/resources/css/user-content-example.css">локальном файле</xhtml:a> или <xhtml:a href="http://foxtrick.googlecode.com/svn/trunk/content/resources/css/user-content-example.css">на сайте проекта foxtrick</xhtml:a>, который Вы можете модифициковать как Вам угодно.
 				После сохранения модификаций в файле, Вы можете использовать модуль <xhtml:a href="#module=SkinPlugin">SkinPlugin</xhtml:a> для загрузки этого файла CSS-стилей.
 			</xhtml:p>
 		</answer>
@@ -70,50 +70,6 @@
 				Единственное исключение — модуль <xhtml:a href="#module=HTMSPrediction">HTMSPrediction</xhtml:a>,
 				в котором рейтинги, показанные в матчах, передаются на сайт <xhtml:a href="http://www.fantamondi.it/HTMS/index.php?page=home&amp;lang=en">Hattrick Match Statistics</xhtml:a> с использованием XMLHttpRequest.
 			</xhtml:p>
-		</answer>
-	</item>
-	<item id="print-date-format">
-		<question>Как можно настроить отображение даты?</question>
-		<answer>
-			<xhtml:p>
-				Формат отображения даты используется, когда FoxTrick помещает дату на страницу.
-				С помощью установки формата Вы можете настроить вид, в котором дата будет показана.
-			</xhtml:p>
-			<xhtml:p>
-				Параметры:
-			</xhtml:p>
-			<xhtml:dl>
-				<xhtml:dt><xhtml:code>YYYY</xhtml:code></xhtml:dt>
-				<xhtml:dd>Год</xhtml:dd>
-				<xhtml:dt><xhtml:code>mm/m</xhtml:code></xhtml:dt>
-				<xhtml:dd>Месяц с или без предшествующего нуля для одноцифрового месяца (например, 03 или 3)</xhtml:dd>
-				<xhtml:dt><xhtml:code>dd/d</xhtml:code></xhtml:dt>
-				<xhtml:dd>День с или без предшествующего нуля для одноцифрового дня (например, 05 или 5)</xhtml:dd>
-				<xhtml:dt><xhtml:code>HH/H</xhtml:code></xhtml:dt>
-				<xhtml:dd>Часы с или без предшествующего нуля для одноцифрового часа (например, 02 или 2)</xhtml:dd>
-				<xhtml:dt><xhtml:code>MM/M</xhtml:code></xhtml:dt>
-				<xhtml:dd>Минуты с или без предшествующего нуля для одной цифры в минутах (например, 01 или 1)</xhtml:dd>
-				<xhtml:dt><xhtml:code>SS/S</xhtml:code></xhtml:dt>
-				<xhtml:dd>Секунды с или без предшествующего нуля для одной цифры в секундах (например, 08 или 8)</xhtml:dd>
-			</xhtml:dl>
-			<xhtml:p>
-				Существуют некоторые ограничения:
-			</xhtml:p>
-			<xhtml:ul>
-				<xhtml:li>Обязательно <xhtml:u>должен</xhtml:u> быть пробел между датой и временем.</xhtml:li>
-				<xhtml:li>Секунды должны быть последним элементом формата.</xhtml:li>
-			</xhtml:ul>
-			<xhtml:p>
-				Примеры:
-			</xhtml:p>
-			<xhtml:dl>
-				<xhtml:dt><xhtml:code>dd-mm-YYYY HH:MM:SS</xhtml:code></xhtml:dt>
-				<xhtml:dd>23-05-2011 09:08:07</xhtml:dd>
-				<xhtml:dt><xhtml:code>YYYY-m-d HH:MM:SS</xhtml:code></xhtml:dt>
-				<xhtml:dd>2011-5-23 09:08:07</xhtml:dd>
-				<xhtml:dt><xhtml:code>mm/dd/YYYY H.m.s</xhtml:code></xhtml:dt>
-				<xhtml:dd>23/05/2011 9.8.7</xhtml:dd>
-			</xhtml:dl>
 		</answer>
 	</item>
 </faq>

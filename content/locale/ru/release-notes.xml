@@ -14,6 +14,29 @@
 		<item>Вы можете отключить показ этого сообщения после каждого обновления, запретив "Показать информацию о выпуске после обновления FoxTrick" на вкладке <xhtml:a href="#tab=main">Главные</xhtml:a> настроек.</item>
 	</note>
 
+	<note version="0.8">
+		<item>Новый механизм для отображения используемых модулей на странице, соответственно старый модуль OnPagePrefs был удалён (convincedd, ryanli).</item>
+		<item><xhtml:a href="#tab=main">Параметр</xhtml:a> для отключения загрузки XML-данных из Hattrick. Также, XML-файлы теперь кэшируются и на соответствующие страницы добавлена функция очистки кэша (convincedd).</item>
+		<item>Новый модуль <module>LocalTime</module> для показа локального времени (ryanli).</item>
+		<item>Новый модуль <module>LinksYouthLeague</module> для ссылок на странице юношеской лиги (Parminu).</item>
+		<item>Новый модуль <module>CopyYouth</module> объединил старые модули для копирования информации о молодёжи и ссылок на использующие её страницы. Новая функция для копирования расписания юношеской лиги (ryanli, Parminu).</item>
+		<item>Новый модуль <module>SupporterStatsEnhancements</module> улучшает отображение статистики supporter-а (convincedd).</item>
+		<item>Параметр для скрытия поля приглашений в левом меню в модуле <module>FixcssProblems</module> (ryanli).</item>
+		<item>Параметр для уменьшения высоты календаря в модуле <module>FixcssProblems</module> (ryanli).</item>
+		<item>Ссылка на страницу настроек приложений CHPP в модуле <module>ExtraShortcuts</module> (ljushaff).</item>
+		<item>Параметр для расцветки навыков игроков юношеской команды в модуле <module>SkillTable</module> (asdfasdfasdf@mailinator.com).</item>
+		<item>Параметр для проигрывания звука в модуле <module>LiveAlert</module> (ryanli).</item>
+		<item>Параметр для показа значков команд в модуле <module>MyMonitor</module>, и команды в нём теперь можно отсортировать (convincedd).</item>
+		<item>Параметр для вставки отладочного протокола FoxTrick в сообщение форума в модуле <module>ForumYouthIcons</module> (convincedd).</item>
+		<item>Параметр для показа наличия/отсутствия назначенной товарищеской игры в модуле <module>ShowFriendlyBooked</module> теперь по умолчанию включен (convincedd).</item>
+		<item>Ссылка для загрузки дополнительной информации об игроке в модуле <module>SkillTable</module> (convincedd).</item>
+		<item>В браузере Firefox значок FoxTrick был перемещён на панель навигации и может быть передвинут куда угодно (ryanli).</item>
+		<item>В браузере Chrome значок FoxTrick был перемещён внутрь панели адреса. Также было убрано мерцание и увеличена скорость работы (convincedd).</item>
+		<item>FoxTrick теперь работает в мобильном Firefox-е (Fennec) (convincedd).</item>
+		<item>Бета-версия FoxTrick доступна для браузеров Opera и Safari (convincedd, ryanli).</item>
+		<item>Прочие мелкие исправления и улучшения (convincedd, ryanli).</item>
+	</note>
+
 	<note version="0.7.2">
 		<item>Ссылки для сравнения команд в Alltid в модуле <module>LinksTeam</module> (convincedd).</item>
 		<item>Исправлена таблица навыков на странице результата поиска трансферов (convincedd, ryanli).</item>
