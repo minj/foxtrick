@@ -115,6 +115,18 @@ Foxtrick.count = function(func, array) {
 	return ret;
 }
 
+// return (n+1)'th value in array that matches func
+// -- return first if n == 0
+// return null if not found
+Foxtrick.nth = function(n, func, array) {
+	var count = 0;
+	for (var i = 0; i < array.length; ++i)
+		if (func(array[i]))
+			if (count++ == n)
+				return array[i];
+	return null;
+};
+
 /**
  * Return an array with duplicate items reduced to one
  */
