@@ -197,7 +197,7 @@ ifeq ($(DIST_TYPE),nightly)
 	cd $(SAFARI_BUILD_DIR); \
 	sed -i -r 's|(<string>.+)(</string><!--version-->)|\1.'$(REVISION)'\2|' Info.plist; \
 	sed -i -r 's|("extensions\.foxtrick\.prefs\.version", ".+)(")|\1.'$(REVISION)'\2|' defaults/preferences/foxtrick.js
-ifeq ($(DIST_TYPE),stable)
+else ifeq ($(DIST_TYPE),stable)
 	cd $(BUILD_DIR); \
 	sed -i -r 's|(<string>.+)nightly(.+</string><!--updateurl-->)|\1release\2|' Info.plist; \
 	sed -i -r 's|(<string>).+(</string><!--key-->)|\1www.foxtrick.org\2|' Info.plist; 
