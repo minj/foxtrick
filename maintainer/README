@@ -1,47 +1,49 @@
-This file is intended for maintainers of FoxTrick, including notes for bumping
+This file is intended for maintainers of FoxTrick, including notes for
 version and releasing.
 
 
+Version Scheme
+==============
+FoxTrick has two major channels of versions, one is stable version for daily
+use and another is nightly version for testing.
+
+The major version number has two digits separated by dot, like 0.7, 0.8, and
+1.0.
+For minor version over major stable releases, a number starting from 1 is
+appended, like: 0.7.1, 0.7.2, etc.
+As for nightly builds, take an example to demonstrate: the nightlies before
+0.7 is 0.6.9 plus revision, like: 0.6.9.6345. When 0.7 is released it's then
+like 0.7.9.6653.
+
 Version Bump
 ============
-A version bump usually take place after a version is recently released. The
-version is therefore needed to increase. For beta versions there is usually
-a "b", denoting "beta" follows a major version number.
+A version bump comes after the release of a major stable version
 
 Keep in mind to modify the following files:
-* install.rdf
-* manifest.json
-* default/preferences/foxtrick.js
+* install.rdf (For Gecko)
+* manifest.json (For Chrome)
+* config.xml (For Opera)
+* Info.plist (For Safari)
+* default/preferences/foxtrick.js (For Foxtrick.version())
 
+Releasing Nightly Versions
+==========================
+These are uploaded to foxtrick.foundationhorizont.org (thanks to ljushaff
+for providing the space!) automatically (thanks to convincedd for providing
+the server!) at 12:00 CET everyday.
 
-Releasing Final Versions
-========================
+Releasing Stable Versions
+=========================
 Do these things in order:
 * Bump version.
-* Write a release notes in Google Code and link to it.
-* Build the release, add to mozdev and submit to addons.mozilla.org with
-  respective <updateURL> in install.rdf. Remove <updateKey> for both.
-  For mozdev, it's:
-    https://www.mozdev.org/p/updates/foxtrick/{9d1f059c-cada-4111-9696-41a62d64e3ba}/update.rdf
-  For addons.mozilla.org, leave the entry out.
-* Create a branch in SVN repository.
+* Build with `make DIST_TYPE=stable`, and (for each platform):
+  * Gecko: Upload foxtrick.xpi to mozdev.org
+  * Chrome: Upload foxtrick.zip to Chrome extension hosting
+  * Opera: Upload foxtrick.oex to Opera's hosting
+  * Safari: Upload foxtrick.safariextz to somewhere we host
+* Build with `make DIST_TYPE=amo`, and upload to addons.mozilla.org.
 * Edit homepage at Google Code and mozdev.
-* Bump version to the beta of next release.
-* Release the new beta version with identical content.
-
-
-Releasing Beta Versions
-=======================
-Do these things in order:
-* Build the release, make sure the <updateURL> in install.rdf is set to:
-    http://foxtrick.mozdev.org/update-beta.rdf
-  Make sure <updateKey> is:
-    MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+ymKUP7cV1XyUU4o5lLQRcvxXKNS79hhtKIhOnUjb4wqdPMMMB5koQN5ZkzG4SW4yVn81S4dCYQ17K7QPHo4lMacyyNviZu48M4/sY0eIu63FDAPHb3TG7GlTL9P7nKgiL9t2SrCftpWAcuoGW436gpqlIIrx97+E7lWVdo6WtQIDAQAB
-* Build the beta, add to mozdev.
-* Edit update-beta.rdf at mozdev accordingly and sign with McCoy.
-* Edit homepage at Google Code and mozdev.
-* Bump version.
-
+* Write a new post at Hattrick forum.
 
 Ryan Li <ryan@ryanium.com>
-5 Dec 2010
+23 Aug 2011
