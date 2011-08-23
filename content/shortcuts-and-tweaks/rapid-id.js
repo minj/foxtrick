@@ -39,21 +39,22 @@ var FoxtrickRapidId = {
 		var select = doc.getElementById("ft_rapidid_select");
 		var type = select.options[select.selectedIndex].getAttribute("value");
 		var input = doc.getElementsByClassName("ft_rapidid_input")[0];
-		var id = input.value;
-		id = Foxtrick.trim(id);
-		// only process int
-		if (isNaN(id) || id === "") {
+		var value = input.value;
+		value = Foxtrick.trim(value);
+		// split the value separated by white space to a list
+		var idList = value.split(/\s+/);
+		// ensure the list is valid
+		if (Foxtrick.any(function(n) { return isNaN(n); }, idList)
+			|| value == "") {
 			return;
 		}
-		for (var i in FoxtrickRapidId.options) {
-			if (FoxtrickRapidId.options[i].value === type) {
-				FoxtrickRapidId.setSelected(type);
-				var host = doc.location.hostname;
-				var url = FoxtrickRapidId.options[i].url.replace("%n", id);
-				var fullurl = "http://" + host + "/" + url;
-				doc.location.assign(fullurl);
-			}
-		}
+		var urlTmpl = doc.location.protocol + "//" + doc.location.host + "/" +
+			Foxtrick.nth(0, function(n) { return n.value == type; }, FoxtrickRapidId.options).url;
+		// open in current tab if only one ID, in new tabs if more than one
+		var open = (idList.length == 1) ? doc.location.assign : Foxtrick.newTab;
+		Foxtrick.map(function(id) {
+			open(urlTmpl.replace("%n", id));
+		}, idList);
 	},
 
 	selectionChange: function(event) {
