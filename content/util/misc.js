@@ -109,51 +109,44 @@ Foxtrick.newTab = function(url) {
 }
 
 Foxtrick.load = function(url, callback, crossSite) {
-	try {
-		if ( Foxtrick.chromeContext()==='content' && callback ) {
-			// background script for xml requests
-			sandboxed.extension.sendRequest({req : "xml", url : url, crossSite: crossSite},
-				function(response) {
+	if ( Foxtrick.chromeContext()==='content' && callback ) {
+		// background script for xml requests
+		sandboxed.extension.sendRequest({req : "xml", url : url, crossSite: crossSite},
+			function(response) {
+				try {
+					callback(response.data, response.status);
+				}
+				catch (e) {
+					Foxtrick.dump('Uncaught callback error: - url: ' + url + ' callback: '+ callback + ' crossSite: ' + crossSite + ' ' + e);
+					Foxtrick.log(e);
+				}
+			}
+		);
+	}
+	else {
+		var req = new window.XMLHttpRequest();
+		req.open("GET", url, callback ? true : false);
+		if (typeof(req.overrideMimeType) == "function")
+			req.overrideMimeType("text/plain");
+		if (!callback) {
+			req.send(null);
+			var response = req.responseText;
+			return response;
+		}
+		else {
+			req.onreadystatechange = function(aEvt) {
+				if (req.readyState == 4) {
 					try {
-						callback(response.data, response.status);
+						callback(req.responseText, req.status);
 					}
 					catch (e) {
-						Foxtrick.dump("Uncaught callback error:");
+						Foxtrick.dump('Uncaught callback error: - url: ' + url + ' callback: '+ callback + ' crossSite: ' + crossSite + ' ' + e);
 						Foxtrick.log(e);
 					}
 				}
-			);
+			};
+			req.send(null);
 		}
-		else {
-			var req = new window.XMLHttpRequest();
-			req.open("GET", url, callback ? true : false);
-			if (typeof(req.overrideMimeType) == "function")
-				req.overrideMimeType("text/plain");
-			if (!callback) {
-				req.send(null);
-				var response = req.responseText;
-				return response;
-			}
-			else {
-				req.onreadystatechange = function(aEvt) {
-					if (req.readyState == 4) {
-						try {
-							callback(req.responseText, req.status);
-						}
-						catch (e) {
-							Foxtrick.dump("Uncaught callback error:");
-							Foxtrick.log(e);
-						}
-					}
-				};
-				req.send(null);
-			}
-		}
-	}
-	catch (e) {
-		Foxtrick.log('xml load error - url: ', url, ' callback: ', callback, ' crossSite: ', crossSite);
-		Foxtrick.dump('error: '+e);
-		if (callback) callback(null);
 	}
 };
 
