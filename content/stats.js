@@ -2445,7 +2445,7 @@ Foxtrick.LinkCollection.getLinkElement  = function(link, stat, doc, key, module_
 		statslink.appendChild(doc.createTextNode(stat.shorttitle));
 	 } else {
 		// add img for tracker flags
-		if (module_name === FoxtrickLinksTracker.MODULE_NAME)
+		if (module_name === "LinksTracker")
 			statslink.appendChild(doc.createElement('img'));
 		else
 			Foxtrick.addImage(doc, statslink, { alt:stat.title, title: stat.title, src: stat.img });
