@@ -12,7 +12,7 @@ if (!Foxtrick.util)
 Foxtrick.util.module = {};
 
 // provided the name of a module, return the module object
-Foxtrick.util.module.getByName = function(n) {
+Foxtrick.util.module.get = function(n) {
 	return Foxtrick.modules ? Foxtrick.modules[n] : null;
 };
 

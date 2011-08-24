@@ -43,7 +43,7 @@ var FoxtrickLinksNational = {
 
 		if (FoxtrickPrefs.isModuleEnabled("LinksTracker")) {
 			var links2 = Foxtrick.LinkCollection.getLinks("trackernationalteamlink", { "countryid": countryid,"ntteamid":ntteamid,"LeagueOfficeTypeID":LeagueOfficeTypeID }, doc,
-			Foxtrick.util.module.getByName("LinksTracker"));
+			Foxtrick.util.module.get("LinksTracker"));
 			for (var k = 0; k < links2.length; k++) {
 				links2[k].link.className ="flag inner";
 				var img=links2[k].link.getElementsByTagName('img')[0];

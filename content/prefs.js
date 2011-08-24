@@ -106,7 +106,7 @@ var FoxtrickPrefs = {
 
 	isModuleEnabled : function(module) {
 		// core modules must be executed no matter what user's preference is
-		var obj = Foxtrick.util.module.getByName(module);
+		var obj = Foxtrick.util.module.get(module);
 		if (!obj)
 			return false;
 		if (obj.CORE_MODULE)
