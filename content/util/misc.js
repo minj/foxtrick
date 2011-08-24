@@ -126,14 +126,15 @@ Foxtrick.load = function(url, callback, crossSite) {
 		}
 		else {
 			var req = new window.XMLHttpRequest();
+			req.open("GET", url, callback ? true : false);
+			if (typeof(req.overrideMimeType) == "function")
+				req.overrideMimeType("text/plain");
 			if (!callback) {
-				req.open("GET", url, false);
 				req.send(null);
 				var response = req.responseText;
 				return response;
 			}
 			else {
-				req.open("GET", url, true);
 				req.onreadystatechange = function(aEvt) {
 					if (req.readyState == 4) {
 						try {
