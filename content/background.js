@@ -347,8 +347,7 @@ Foxtrick.loader.chrome.contextCopyChrome = function () {
 	}
 
 	function selectionOnClick(info, tab) {
-		// only plain text. useless as it is. maybe scan content document textContent for section and gather nodes there
-		Foxtrick.loader.chrome.copyToClipBoard(info.selectionText);
+		chrome.tabs.sendRequest(tab.id, { req : "copySelection" });
 	}
 
 	var local_string = Foxtrickl10n.getString('Copy');
@@ -371,17 +370,12 @@ Foxtrick.loader.chrome.contextCopyChrome = function () {
 	}
 	if (FoxtrickPrefs.isModuleOptionEnabled("ContextMenuCopy", "HtMl")) {
 	//not working. just keeping it for future use
-	//	id_contexts.push( {'title':'Copy in HT-ML', 	"contexts":["selection"], "onclick": selectionOnClick, 'documentUrlPatterns': ['*://*.hattrick.org/*'] },);
+		id_contexts.push( {'title':Foxtrickl10n.getString("copy.ht-ml"), "contexts":["selection"], "onclick": selectionOnClick, 'documentUrlPatterns': ['*://*.hattrick.org/*'] });
 	}
 
 	for (var i = 0; i < id_contexts.length; i++) {
 		chrome.contextMenus.create(id_contexts[i]);
 	}
-
-	// example: Create a parent item and two children.
-	//var parent = chrome.contextMenus.create({"title": "Test parent item"});
-	//var child1 = chrome.contextMenus.create({"title": "Child 1", "parentId": parent, "onclick": genericOnClick});
-	//var child2 = chrome.contextMenus.create({"title": "Child 2", "parentId": parent, "onclick": genericOnClick});
 }
 
 Foxtrick.loader.chrome.contextCopySafari = function () {

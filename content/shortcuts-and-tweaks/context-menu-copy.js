@@ -36,11 +36,33 @@ var FoxtrickContextMenuCopy = {
 	},
 
 	run : function(doc) {
+		// context menu listeners. chrome context menu is set up in background.js
 		if (Foxtrick.arch === "Gecko") {
 			doc.addEventListener("contextmenu", this.onContext, false);
 			this.MENU_LINK.setAttribute("label", Foxtrickl10n.getString("copy.link"));
 			this.MENU_HT_ML.setAttribute("label", Foxtrickl10n.getString("copy.ht-ml"));
 			this.MENU_TABLE.setAttribute("label", Foxtrickl10n.getString("copy.table"));
+		}
+		
+		if ( Foxtrick.platform == "Safari" ) {
+			document.addEventListener("contextmenu", function(event) {
+				safari.self.tab.setContextMenuEventUserInfo(event, {nodeName:event.target.nodeName, href: event.target.href});
+			}, false);
+		}
+		
+		// copy selection request from chrome context menu
+		if (Foxtrick.platform == "Chrome") {
+			chrome.extension.onRequest.addListener(
+			  function(request, sender, sendResponse) {
+				if (request.req == "copySelection") {
+					var selection = window.getSelection();
+					if (!selection.isCollapsed && selection.rangeCount > 0) {
+						FoxtrickContextMenuCopy.SELECTION = selection;
+						Foxtrick.log(selection)
+						FoxtrickContextMenuCopy.copyHtMl();
+					}
+				}
+			});
 		}
 	},
 
