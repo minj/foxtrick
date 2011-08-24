@@ -114,7 +114,7 @@ Foxtrick.loader.chrome.initGrowl = function () {
 	object.width = '0';
 	object.height = '0';
 	object.id = "growl-safari-bridge";
-	document.getElementByTagName('body')[0].appendChild(object);
+	document.getElementsByTagName('body')[0].appendChild(object);
 	window.GrowlSafariBridge = object;
   } catch(e) {Foxtrick.log(e);}
 };
