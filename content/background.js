@@ -294,7 +294,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 
 	else if (Foxtrick.platform == "Chrome") {
 		chrome.pageAction.onClicked.addListener(function(tab) { FoxtrickPrefs.disable(tab); });
-		Foxtrick.loader.chrome.contextCopyChrome();
+		FoxtrickContextMenuCopy.chromeInit();
 	}
 
 	else if (Foxtrick.platform == "Safari") {
@@ -313,7 +313,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 			sandboxed.tabs.create({url: Foxtrick.InternalPath+ "preferences.html"});
 		}, false);
 
-		Foxtrick.loader.chrome.contextCopySafari();
+		FoxtrickContextMenuCopy.safariInit();
 	}
 
 	else if (Foxtrick.platform == "Fennec") {
@@ -332,80 +332,6 @@ Foxtrick.loader.chrome.copyToClipBoard = function(content) {
 	document.execCommand("Copy");
 };
 
-
-
-Foxtrick.loader.chrome.contextCopyChrome = function () {
-	// context copy stuff. copy ids work
-	function idLinkOnClick(info, tab) {
-	  var id_container = Foxtrick.util.htMl.getIdFromLink(info.linkUrl);
-	  if (id_container) Foxtrick.loader.chrome.copyToClipBoard(id_container.id);
-	}
-
-	function linkOnClick(info, tab) {
-		var markup = Foxtrick.util.htMl.getMarkupFromLink(info.linkUrl);
-		if (markup) Foxtrick.loader.chrome.copyToClipBoard(markup);
-	}
-
-	function selectionOnClick(info, tab) {
-		chrome.tabs.sendRequest(tab.id, { req : "copySelection" });
-	}
-
-	var local_string = Foxtrickl10n.getString('Copy');
-	if (FoxtrickPrefs.isModuleOptionEnabled("ContextMenuCopy", "Id")) {
-		var id_contexts = [
-			{'title':local_string+ ': Team ID', 	"contexts":["link"], "onclick": idLinkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*TeamID=*','*://*.hattrick.org/*teamId=*'] },
-			{'title':local_string+ ': User ID', 	"contexts":["link"], "onclick": idLinkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*UserID=*','*://*.hattrick.org/*userId=*'] },
-			{'title':local_string+ ': Series ID',	"contexts":["link"], "onclick": idLinkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*LeagueLevelUnitID=*','*://*.hattrick.org/*LeagueLevelUnitId=*'] },
-			{'title':local_string+ ': YouthSeries ID',	"contexts":["link"], "onclick": idLinkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*YouthLeagueID=*','*://*.hattrick.org/*YouthLeagueId=*'] },
-			{'title':local_string+ ': Match ID', 	"contexts":["link"], "onclick": idLinkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*matchID=*','*://*.hattrick.org/*matchId=*'] },
-			{'title':local_string+ ': Player ID',	"contexts":["link"], "onclick": idLinkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*PlayerID=*','*://*.hattrick.org/*playerId=*'] },
-			{'title':local_string+ ': Arena ID', 	"contexts":["link"], "onclick": idLinkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*ArenaID=*','*://*.hattrick.org/*arenaId=*'] },
-			{'title':local_string+ ': Post ID', 	"contexts":["link"], "onclick": idLinkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/Forum/Read.aspx?t=*&n=*'] },
-		];
-	}
-	else var id_contexts = [];
-
-	if (FoxtrickPrefs.isModuleOptionEnabled("ContextMenuCopy", "Link")) {
-		id_contexts.push( {'title':Foxtrickl10n.getString("copy.link"), "contexts":["link"], "onclick": linkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*'] });
-	}
-	if (FoxtrickPrefs.isModuleOptionEnabled("ContextMenuCopy", "HtMl")) {
-	//not working. just keeping it for future use
-		id_contexts.push( {'title':Foxtrickl10n.getString("copy.ht-ml"), "contexts":["selection"], "onclick": selectionOnClick, 'documentUrlPatterns': ['*://*.hattrick.org/*'] });
-	}
-
-	for (var i = 0; i < id_contexts.length; i++) {
-		chrome.contextMenus.create(id_contexts[i]);
-	}
-}
-
-Foxtrick.loader.chrome.contextCopySafari = function () {
-	// Add context menus
-	safari.application.addEventListener("contextmenu", function(event) {
-		try{
-			if (event.userInfo.nodeName === "A") {
-				if (FoxtrickPrefs.isModuleOptionEnabled("ContextMenuCopy", "Id")) {
-					var id = Foxtrick.util.htMl.getIdFromLink(event.userInfo.href);
-					if (id !== null) {
-						var idText = Foxtrickl10n.getString("copy.id").replace("%s", id.type + " ID").replace("%i", id.id);
-						event.contextMenu.appendContextMenuItem("copyid", idText);
-					}
-				}
-				if (FoxtrickPrefs.isModuleOptionEnabled("ContextMenuCopy", "Link")) {
-					var markup = Foxtrick.util.htMl.getMarkupFromLink(event.userInfo.href);
-					if (markup !== null) {
-						event.contextMenu.appendContextMenuItem("copylink", Foxtrickl10n.getString("copy.link"));
-					}
-				}
-				safari.application.addEventListener("command", function(commandEvent) {
-					if (commandEvent.command == "copyid")
-						Foxtrick.copyStringToClipboard(id.id);
-					else if (commandEvent.command == "copylink")
-						Foxtrick.copyStringToClipboard(markup);
-				}, false );
-			}
-		} catch(e){Foxtrick.log(e)}
-	});
-};
 
 // fennec script injection
 var onWindowLoad = function(event) {
