@@ -349,9 +349,7 @@ function initMainTab()
 		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("delete_oauth_ask").replace('%s',teamid))) {
 			var array = FoxtrickPrefs.getAllKeysOfBranch('oauth.'+teamid);
 			for (var i = 0; i < array.length; i++) {
-				if (FoxtrickPrefs.isPrefSetting(array[i])) {
-					FoxtrickPrefs.deleteValue(array[i]);
-				}
+				FoxtrickPrefs.deleteValue(array[i]);
 			}
 			window.location.href = window.location.href + '&imported=true';
 			window.location.reload();
