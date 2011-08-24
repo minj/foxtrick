@@ -14,6 +14,10 @@ var FoxtrickHTDateFormat = {
 	OPTION_TEXTS_DISABLED_LIST : [true, false],
 
 	run : function(doc) {
+		// don't show where not needed and cluttering
+		if (Foxtrick.isPage("forumDefault", doc))
+			return;
+
 		var mainBody = doc.getElementById("mainBody");
 		if (!mainBody) return;
 
