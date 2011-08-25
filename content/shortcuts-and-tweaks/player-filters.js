@@ -4,7 +4,7 @@
  * @author OBarros, spambot, convinced, ryanli
  */
 
-FoxtrickPlayerFilters = {
+var FoxtrickPlayerFilters = {
 	MODULE_NAME : "PlayerFilters",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array("players", "YouthPlayers"),

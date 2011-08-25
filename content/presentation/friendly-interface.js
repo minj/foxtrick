@@ -4,7 +4,7 @@
  * @author ryanli, convincedd
  */
 
-FoxtrickFriendlyInterface = {
+var FoxtrickFriendlyInterface = {
 	MODULE_NAME : "FriendlyInterface",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["matchLineup", "playerdetail", "guestbook", "dashboard"],

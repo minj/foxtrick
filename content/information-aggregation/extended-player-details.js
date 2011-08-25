@@ -4,7 +4,7 @@
  * @author spambot, ryanli
  */
 
-FoxtrickExtendedPlayerDetails = {
+var FoxtrickExtendedPlayerDetails = {
 	MODULE_NAME : "ExtendedPlayerDetails",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : new Array('playerdetail'),
@@ -50,7 +50,7 @@ FoxtrickExtendedPlayerDetails = {
 };
 Foxtrick.util.module.register(FoxtrickExtendedPlayerDetails);
 
-FoxtrickExtendedPlayerDetailsWage = {
+var FoxtrickExtendedPlayerDetailsWage = {
 
 	MODULE_NAME : "ExtendedPlayerDetailsWage",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,

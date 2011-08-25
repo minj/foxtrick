@@ -3,7 +3,7 @@
  * @author convincedd, ryanli
  */
 
-FoxtrickExtraPlayerInfo = {
+var FoxtrickExtraPlayerInfo = {
 	MODULE_NAME : "ExtraPlayerInfo",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["players"],

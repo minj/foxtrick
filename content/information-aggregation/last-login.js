@@ -3,7 +3,7 @@
  * @author spambot
  */
 
-FoxtrickLastLogin = {
+var FoxtrickLastLogin = {
 	MODULE_NAME : "LastLogin",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : new Array('managerPage'),

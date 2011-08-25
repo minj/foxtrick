@@ -3,7 +3,7 @@
  * @author taised, ryanli
  */
 
-FoxtrickLineupShortcut = {
+var FoxtrickLineupShortcut = {
 	MODULE_NAME : "LineupShortcut",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ['playerdetail','statsBestgames','matchLineup', 'YouthPlayer'],

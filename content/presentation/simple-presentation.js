@@ -3,7 +3,7 @@
  * @author spambot, ljushaff
  */
 
-FoxtrickSimplePresentation = {
+var FoxtrickSimplePresentation = {
 	MODULE_NAME : "SimplePresentation",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],

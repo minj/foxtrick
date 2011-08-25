@@ -3,8 +3,8 @@
  * Foxtrick team overview
  * @author OBarros, spambot, convinced, ryanli
  */
-////////////////////////////////////////////////////////////////////////////////
-FoxtrickTeamStats = {
+
+var FoxtrickTeamStats = {
 
 	MODULE_NAME : "TeamStats",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,

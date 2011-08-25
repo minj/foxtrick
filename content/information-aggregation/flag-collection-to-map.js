@@ -3,7 +3,7 @@
  * @author seben, fixes convincedd
  */
 
-FoxtrickFlagCollectionToMap = {
+var FoxtrickFlagCollectionToMap = {
 
 	MODULE_NAME : "FlagCollectionToMap",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,

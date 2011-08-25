@@ -3,7 +3,7 @@
  * @author convincedd
  */
 
-FoxtrickSupporterStatsEnhancements = {
+var FoxtrickSupporterStatsEnhancements = {
 	MODULE_NAME : "SupporterStatsEnhancements",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["StatsSquad"],

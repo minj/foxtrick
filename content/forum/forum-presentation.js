@@ -3,7 +3,7 @@
  * @author spambot, ljushaff
  */
 
-FoxtrickForumPresentation = {
+var FoxtrickForumPresentation = {
 	MODULE_NAME : "ForumPresentation",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ['forum', 'forumViewThread', 'forumOverView' , 'forumDefault', 'forumWritePost', 'forumModWritePost'],

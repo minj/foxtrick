@@ -4,7 +4,7 @@
  * @author ljushaff, ryanli
  */
 
-FoxtrickHighlightOwnerless = {
+var FoxtrickHighlightOwnerless = {
 	MODULE_NAME : "HighlightOwnerless",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["league"],

@@ -250,7 +250,7 @@ var FoxtrickTeamPopupLinks = {
 			var list = doc.createElement("ul");
 			list.className = "ft-popup-list";
 
-			function addItem(key, isOwnTeam, teamId, userId, userName, ownLink, linkByTeam, linkByUser, linkByUserName) {
+			var addItem = function(key, isOwnTeam, teamId, userId, userName, ownLink, linkByTeam, linkByUser, linkByUserName) {
 				var item = doc.createElement("li");
 				var link = doc.createElement("a");
 				if (isOwnTeam && ownLink)

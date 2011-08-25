@@ -3,7 +3,7 @@
  * @author spambot
  */
 
-FoxtrickMatchReportFormat = {
+var FoxtrickMatchReportFormat = {
 	MODULE_NAME : "MatchReportFormat",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),

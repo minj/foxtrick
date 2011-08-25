@@ -3,7 +3,7 @@
  * @author spambot, ryanli
  */
 
-FoxtrickTransferDeadline = {
+var FoxtrickTransferDeadline = {
 	MODULE_NAME : "TransferDeadline",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["transferSearchResult", "playerdetail", "transfer", "bookmarks"],

@@ -258,7 +258,7 @@ Foxtrick.util.time = {
 		}
 		// only days returned
 		if (useShort) {
-			var display_option = FoxtrickPrefs.getInt("module." + FoxtrickExtendedPlayerDetails.MODULE_NAME + ".value");
+			var display_option = FoxtrickPrefs.getInt("module.ExtendedPlayerDetails.value");
 			if (display_option == null) var display_option = 0;
 			var PJD_D = Math.floor(org_time / 86400);
 			var PJD_W = Math.floor(PJD_D / 7);
