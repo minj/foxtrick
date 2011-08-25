@@ -70,7 +70,7 @@ var Foxtrickl10n = {
 		var text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "text");
 		if (text === null) {
 			Foxtrick.log("Requested level of type " + type + " and value " + val + " don't exist in locale " + lang + ", try en instead.");
-			text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml["en"], path, "text");
+			text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml.en, path, "text");
 			if (text === null) {
 				Foxtrick.log("Requested level of type " + type + " and value " + val + " don't exist, returning raw value.");
 				text = val;
@@ -85,7 +85,7 @@ var Foxtrickl10n = {
 		var text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "text");
 		if (text === null) {
 			Foxtrick.log("Requested sublevel of value " + val + " doesn't exist in locale " + lang + ", try en instead.");
-			text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml["en"], path, "text");
+			text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml.en, path, "text");
 			if (text === null) {
 				Foxtrick.log("Requested sublevel of value " + val + " doesn't exist, returning raw value.");
 				text = val;
@@ -133,7 +133,7 @@ var Foxtrickl10n = {
 		catch (e) {
 			Foxtrick.log(e);
 		}
-		return shortPos ? shortPos : direct();
+		return shortPos || direct();
 	},
 
 	getShortSpeciality: function(spec) {
@@ -149,7 +149,7 @@ var Foxtrickl10n = {
 		catch (e) {
 			Foxtrick.log(e);
 		}
-		return shortSpec ? shortSpec : direct();
+		return shortSpec || direct();
 	},
 
 	getShortSpecialityFromEnglish: function(spec) {
@@ -165,14 +165,14 @@ var Foxtrickl10n = {
 		catch (e) {
 			Foxtrick.log(e);
 		}
-		return shortSpec ? shortSpec : direct();
+		return shortSpec || direct();
 	}
 };
 
 
 // ----------------------  Gecko specific get/set preferences --------------------------
 if (Foxtrick.arch === "Gecko") {
-
+	(function() {
 	var Foxtrickl10nGecko = {
 
 		// mozilla string bundles of localizations and screenshot links
@@ -184,7 +184,8 @@ if (Foxtrick.arch === "Gecko") {
 		init : function() {
 			if (Foxtrick.chromeContext()==='background') {
 				// get htlang.xml for each locale
-				for (var i in Foxtrickl10n.locales) {
+				var i;
+				for (i in Foxtrickl10n.locales) {
 					var locale = Foxtrickl10n.locales[i];
 					var url = Foxtrick.InternalPath + "locale/" + locale + "/htlang.xml";
 					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXml(url);
@@ -220,7 +221,7 @@ if (Foxtrick.arch === "Gecko") {
 			}
 		},
 
-		getString : function(str) {;
+		getString : function(str) {
 			try {
 				return this._strings_bundle.GetStringFromName(str);
 			}
@@ -245,7 +246,7 @@ if (Foxtrick.arch === "Gecko") {
 					try {
 						return this._strings_bundle_default.GetStringFromName( str ) != null;
 					}
-					catch (e) {
+					catch (ee) {
 						return false;
 					}
 				}
@@ -286,8 +287,10 @@ if (Foxtrick.arch === "Gecko") {
 		},
 	};
 
+	var i;
 	for (i in Foxtrickl10nGecko)
 		Foxtrickl10n[i] = Foxtrickl10nGecko[i];
+	}());
 }
 
 
@@ -295,8 +298,8 @@ if (Foxtrick.arch === "Gecko") {
 // ----------------------  Chrome specific get/set preferences --------------------------
 if (Foxtrick.arch === "Sandboxed") {
 
+	(function() {
 	var Foxtrickl10nChrome = {
-
 		// string collection of localizations and screenshot links
 		properties_default : null,
 		properties : null,
@@ -306,8 +309,10 @@ if (Foxtrick.arch === "Sandboxed") {
 		init : function() {
 			if (Foxtrick.chromeContext() == "background") {
 				// get htlang.xml for each locale
-				for (var i in Foxtrickl10n.locales) {
-					var locale = Foxtrickl10n.locales[i];
+				var i;
+				var locale;
+				for (i in Foxtrickl10n.locales) {
+					locale = Foxtrickl10n.locales[i];
 					var url = Foxtrick.InternalPath + "locale/" + locale + "/htlang.xml";
 					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXml(url);
 				}
@@ -315,7 +320,7 @@ if (Foxtrick.arch === "Sandboxed") {
 				this.properties_default = Foxtrick.load(Foxtrick.InternalPath+"foxtrick.properties");
 				this.screenshots_default = Foxtrick.load(Foxtrick.InternalPath+"foxtrick.screenshots");
 
-				var locale = FoxtrickPrefs.getString("htLanguage");
+				locale = FoxtrickPrefs.getString("htLanguage");
 				if (locale == "en") {
 					// en locale is just default locale
 					this.properties = this.properties_default;
@@ -332,20 +337,20 @@ if (Foxtrick.arch === "Sandboxed") {
 					try {
 						this.screenshots = Foxtrick.load(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.screenshots");
 					}
-					catch (e) {
+					catch (ee) {
 						Foxtrick.log("Use default screenshots for locale ", locale);
 						this.screenshots = this.screenshots_default;
 					}
 				}
 			}
-			else if (Foxtrick.chromeContext() == "content") {
-				// init for chrome content is in loader_chrome
-			}
+			// init for content script is in loader-chrome.js
 		},
 
 		getString : function(str) {
 			try {
+				var value;
 				var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" );
+
 				if (Foxtrickl10n.properties.search(string_regexp)!=-1)
 					value = Foxtrickl10n.properties.match(string_regexp)[1];
 				else if (Foxtrickl10n.properties_default.search(string_regexp)!=-1)
@@ -391,6 +396,8 @@ if (Foxtrick.arch === "Sandboxed") {
 		},
 	};
 
+	var i;
 	for (i in Foxtrickl10nChrome)
 		Foxtrickl10n[i] = Foxtrickl10nChrome[i];
+	}());
 }
