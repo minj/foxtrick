@@ -343,14 +343,15 @@ var FoxtrickRatings = {
 				var attack = 0.275*rightAtt + 0.45*centralAtt + 0.275*leftAtt;
 				var tempReal = 4.15*midfield + 2.77*attack + 2.08*defense;
 
+				var tempTactica;
 				if (tactics == 'ca') {
-				tempTactica= (tacticsLevel * defense) / 10;
+					tempTactica= (tacticsLevel * defense) / 10;
 				} else if (tactics == 'aim') {
-				tempTactica= (tacticsLevel * centralAtt) / 7;
+					tempTactica= (tacticsLevel * centralAtt) / 7;
 				} else if (tactics == 'aow') {
-				tempTactica= (tacticsLevel * (rightAtt + leftAtt) / 2) / 7;
+					tempTactica= (tacticsLevel * (rightAtt + leftAtt) / 2) / 7;
 				} else {
-				tempTactica= tempReal / 9;
+					tempTactica= tempReal / 9;
 				}
 
 				var value = tempReal + tempTactica;
