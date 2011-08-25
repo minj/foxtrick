@@ -125,9 +125,9 @@ var FoxtrickCountyList = {
 				league.setAttribute('style', 'display:none');
 			}
 			Foxtrick.dump(league.href+'\n');
-			leaguenum = league.href.match(/LeagueID=(\d+)/i)[1];
+			var leagueId = league.href.match(/LeagueID=(\d+)/i)[1];
 			var htname = league.firstChild.title;
-			htname = Foxtrick.util.id.getLeagueDataFromId(leaguenum).LeagueName;
+			htname = Foxtrick.util.id.getLeagueDataFromId(leagueId).LeagueName;
 			league.firstChild.title = htname
 
 			var byline = doc.getElementsByClassName("byline")[0];
