@@ -228,7 +228,8 @@ Foxtrick.xml_single_evaluate = function (xmldoc, path, attribute) {
 }
 
 Foxtrick.version = function() {
-	//FoxtrickPrefs.deleteValue("version"); what is that for, is never set.
+	// get rid of user-imported value
+	FoxtrickPrefs.deleteValue("version");
 	return FoxtrickPrefs.getString("version");
 };
 
