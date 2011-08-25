@@ -230,7 +230,10 @@ var FoxtrickMyMonitor = {
 				args.push(["isYouth", "true"]);
 			var parameters_str = JSON.stringify(args);
 
-			Foxtrick.util.api.retrieve(doc, args, { cache_lifetime:'default', caller_name:this.MODULE_NAME },
+			Foxtrick.util.api.retrieve(doc, args, {
+				cache_lifetime : "default",
+				caller_name : "MyMonitor"
+			},
 			function(xml) {
 				if (xml !== null) {
 					team.name = xml.getElementsByTagName("TeamName")[0].textContent;

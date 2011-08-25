@@ -284,7 +284,7 @@ var FoxtrickAttVsDef = {
 	_getPercentArray: function(doc, table) {
 		var values=new Array();
 
-		for (j=2;j<8;j++)
+		for (var j=2;j<8;j++)
 		{
 			var val1=Foxtrick.Pages.Match.getStatFromCell(table.rows[j].cells[1]);
 			var val2=Foxtrick.Pages.Match.getStatFromCell(table.rows[9-j].cells[2]);
