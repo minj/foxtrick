@@ -1,2 +1,1 @@
-pref("extensions.foxtrick.prefs.module.ContextMenuCopy.HtMl.enabled", false);
 pref("extensions.foxtrick.prefs.module.ContextMenuCopy.Table.enabled", false);

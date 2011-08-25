@@ -11,48 +11,54 @@ var FoxtrickContextMenuCopy = {
 	PAGES : ["all"],
 	OPTIONS : ["Id", "Link", "HtMl", "Table"],
 
-	MENU_ID : {},
-	MENU_LINK : {},
-	MENU_HT_ML : {},
-	MENU_TABLE : {},
+	contextEntries : 
+			{ "foxtrick-popup-copy-id": null,
+			"foxtrick-popup-copy-link": null,
+			"foxtrick-popup-copy-ht-ml": null,
+			"foxtrick-popup-copy-table": null },
 
+	ID : null,
+	TYPE : null,
+	LINK : null,
 	SELECTION : null,
 	TABLE : null,
 
 	onLoad : function(document) {
-		this.MENU_ID = document.getElementById("foxtrick-popup-copy-id");
-		this.MENU_LINK = document.getElementById("foxtrick-popup-copy-link");
-		this.MENU_HT_ML = document.getElementById("foxtrick-popup-copy-ht-ml");
-		this.MENU_TABLE = document.getElementById("foxtrick-popup-copy-table");
+		for (var contextEntry in this.contextEntries)
+			this[contextEntry] = document.getElementById( contextEntry );
 	},
 
 	onTabChange : function(doc) {
 		if (!Foxtrick.isHt(doc)) {
-			this.MENU_ID.setAttribute("hidden", true);
-			this.MENU_LINK.setAttribute("hidden", true);
-			this.MENU_HT_ML.setAttribute("hidden", true);
-			this.MENU_TABLE.setAttribute("hidden", true);
+			for (var contextEntry in this.contextEntries)
+				this.updateMenu( contextEntry, { "hidden" : true });
 		}
+	},
+
+	updateMenu : function (type, data) {
+		if (Foxtrick.arch !== "Gecko") return;
+		for (var attr in data)
+			FoxtrickContextMenuCopy[type].setAttribute(attr, data[attr]);
 	},
 
 	// called from background script
 	chromeInit : function () {
+		// menu click listeners
 		function idLinkOnClick(info, tab) {
 		  var id_container = Foxtrick.util.htMl.getIdFromLink(info.linkUrl);
 		  if (id_container) Foxtrick.loader.chrome.copyToClipBoard(id_container.id);
 		}
-
 		function linkOnClick(info, tab) {
 			var markup = Foxtrick.util.htMl.getMarkupFromLink(info.linkUrl);
 			if (markup) Foxtrick.loader.chrome.copyToClipBoard(markup);
 		}
-
 		function selectionOnClick(info, tab) {
 			chrome.tabs.sendRequest(tab.id, { req : "copySelection" });
 		}
 
-		var local_string = Foxtrickl10n.getString('Copy');
+		// menue entries
 		if (FoxtrickPrefs.isModuleOptionEnabled("ContextMenuCopy", "Id")) {
+			var local_string = Foxtrickl10n.getString('Copy');
 			var id_contexts = [
 				{'title':local_string+ ': Team ID', 	"contexts":["link"], "onclick": idLinkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*TeamID=*','*://*.hattrick.org/*teamId=*'] },
 				{'title':local_string+ ': User ID', 	"contexts":["link"], "onclick": idLinkOnClick,	'documentUrlPatterns':['*://*.hattrick.org/*'],	'targetUrlPatterns':['*://*.hattrick.org/*UserID=*','*://*.hattrick.org/*userId=*'] },
@@ -80,33 +86,60 @@ var FoxtrickContextMenuCopy = {
 
 	// called from background script
 	safariInit : function () {
-		safari.application.addEventListener("contextmenu", FoxtrickContextMenuCopy.onContext, false);
-		
-		safari.application.addEventListener("command", function(commandEvent) {
-			if (commandEvent.command == "copyid")
-				FoxtrickContextMenuCopy.copyId();
-			else if (commandEvent.command == "copylink")
-				FoxtrickContextMenuCopy.copyLink();
-			else if (commandEvent.command == "copyselection")
-				FoxtrickContextMenuCopy.copyHtMl();
-			else if (commandEvent.command == "copytable")
-				FoxtrickContextMenuCopy.copyTable();
-		}, false );
+		safari.application.addEventListener("contextmenu", function(event) {
+			// transfer copytext from content
+			FoxtrickContextMenuCopy.ID = event.userInfo.ID;
+			FoxtrickContextMenuCopy.TYPE = event.userInfo.TYPE;
+			FoxtrickContextMenuCopy.LINK = event.userInfo.LINK;
+			FoxtrickContextMenuCopy.SELECTION = event.userInfo.SELECTION;
+			FoxtrickContextMenuCopy.TABLE = event.userInfo.TABLE;
+
+			var paste_note =  '. ' + Foxtrickl10n.getString("SpecialPaste.desc");
+			if (FoxtrickContextMenuCopy.ID) {
+				var idText = Foxtrickl10n.getString("copy.id").replace("%s", FoxtrickContextMenuCopy.TYPE + " ID").replace("%i", FoxtrickContextMenuCopy.ID);
+				event.contextMenu.appendContextMenuItem("copyid", idText + paste_note);
+			}
+			if (FoxtrickContextMenuCopy.LINK)
+				event.contextMenu.appendContextMenuItem("copylink", Foxtrickl10n.getString("copy.link") + paste_note);
+			if (FoxtrickContextMenuCopy.SELECTION)
+				event.contextMenu.appendContextMenuItem("copyselection", Foxtrickl10n.getString("copy.ht-ml") + paste_note);
+			if (FoxtrickContextMenuCopy.TABLE)
+				event.contextMenu.appendContextMenuItem("copytable", Foxtrickl10n.getString("copy.table") + paste_note);
+
+			safari.application.addEventListener("command", function(commandEvent) {
+				if (commandEvent.command == "copyid")
+					FoxtrickContextMenuCopy.copyId();
+				else if (commandEvent.command == "copylink")
+					FoxtrickContextMenuCopy.copyLink();
+				else if (commandEvent.command == "copyselection")
+					FoxtrickContextMenuCopy.copyHtMl();
+				else if (commandEvent.command == "copytable")
+					FoxtrickContextMenuCopy.copyTable();
+			}, false );
+		},true)
 	},
 
 	run : function(doc) {
 		// context menu listeners. chrome context menu is set up in background.js
 		if (Foxtrick.arch === "Gecko") {
 			doc.addEventListener("contextmenu", this.onContext, false);
-			this.MENU_LINK.setAttribute("label", Foxtrickl10n.getString("copy.link"));
-			this.MENU_HT_ML.setAttribute("label", Foxtrickl10n.getString("copy.ht-ml"));
-			this.MENU_TABLE.setAttribute("label", Foxtrickl10n.getString("copy.table"));
+			this.updateMenu("foxtrick-popup-copy-link", {"label": Foxtrickl10n.getString("copy.link")});
+			this.updateMenu("foxtrick-popup-copy-ht-ml", {"label": Foxtrickl10n.getString("copy.ht-ml")});
+			this.updateMenu("foxtrick-popup-copy-table", {"label": Foxtrickl10n.getString("copy.table")});
 		}
 		
 		if ( Foxtrick.platform == "Safari" ) {
 			// need to store target for reference in contextmenu-clicklistener
-			document.addEventListener("contextmenu", function(event) {
-				safari.self.tab.setContextMenuEventUserInfo(event, { target : event.target });
+			doc.addEventListener("contextmenu", function(event) {
+				FoxtrickContextMenuCopy.onContext(event);
+				// transfer copytext to background
+				safari.self.tab.setContextMenuEventUserInfo(event, 
+					{ ID :  	FoxtrickContextMenuCopy.ID,
+					TYPE :		FoxtrickContextMenuCopy.TYPE,
+					LINK :		FoxtrickContextMenuCopy.LINK,
+					SELECTION :	FoxtrickContextMenuCopy.SELECTION,
+					TABLE :	 	FoxtrickContextMenuCopy.TABLE }
+				);
 			}, false);
 		}
 		
@@ -115,86 +148,59 @@ var FoxtrickContextMenuCopy = {
 			chrome.extension.onRequest.addListener(
 			  function(request, sender, sendResponse) {
 				if (request.req == "copySelection") {
-					var selection = window.getSelection();
-					if (!selection.isCollapsed && selection.rangeCount > 0) {
-						FoxtrickContextMenuCopy.SELECTION = selection;
-						FoxtrickContextMenuCopy.copyHtMl();
-					}
+					var markup = FoxtrickContextMenuCopy.getselection(window);
+					if (markup)
+						Foxtrick.copyStringToClipboard(markup);
 				}
 			});
 		}
 	},
 
 	copyId : function() {
-		try {
-			if (FoxtrickContextMenuCopy.MENU_ID) {
-				if (FoxtrickContextMenuCopy.MENU_ID.hasAttribute("copy")) {
-					Foxtrick.copyStringToClipboard(FoxtrickContextMenuCopy.MENU_ID.getAttribute("copy"));
-				}
-			}
-		}
-		catch (e) {
-			Foxtrick.log(e);
-		}
+		if (FoxtrickContextMenuCopy.ID)
+			Foxtrick.copyStringToClipboard(FoxtrickContextMenuCopy.ID);
 	},
 
 	copyLink : function() {
-		try {
-			if (FoxtrickContextMenuCopy.MENU_LINK) {
-				if (FoxtrickContextMenuCopy.MENU_LINK.hasAttribute("copy")) {
-					Foxtrick.copyStringToClipboard(FoxtrickContextMenuCopy.MENU_LINK.getAttribute("copy"));
-				}
-			}
-		}
-		catch (e) {
-			Foxtrick.log(e);
-		}
+		if (FoxtrickContextMenuCopy.LINK) 
+			Foxtrick.copyStringToClipboard(FoxtrickContextMenuCopy.LINK);
 	},
 
 	copyHtMl : function() {
-		try {
-			if (!FoxtrickContextMenuCopy.SELECTION) {
-				return;
-			}
+		if (FoxtrickContextMenuCopy.SELECTION) 
+			Foxtrick.copyStringToClipboard(FoxtrickContextMenuCopy.SELECTION);
+	},
+
+	copyTable : function() {
+		if (FoxtrickContextMenuCopy.TABLE) 
+			Foxtrick.copyStringToClipboard(FoxtrickContextMenuCopy.TABLE);
+	},
+
+	getselection : function(window, callback) {
+		var selection = window.getSelection();
+		if (!selection.isCollapsed && selection.rangeCount > 0) {
 			var markup = "";
-			for (var i = 0; i < FoxtrickContextMenuCopy.SELECTION.rangeCount; ++i) {
-				markup += Foxtrick.util.htMl.getMarkupFromNode(FoxtrickContextMenuCopy.SELECTION.getRangeAt(i).cloneContents());
-				if (i !== FoxtrickContextMenuCopy.SELECTION.rangeCount - 1) {
+			for (var i = 0; i < selection.rangeCount; ++i) {
+				markup += Foxtrick.util.htMl.getMarkupFromNode(selection.getRangeAt(i).cloneContents());
+				if (i !== selection.rangeCount - 1) {
 					markup += "\n";
 				}
 			}
 			markup = Foxtrick.trim(markup);
-			Foxtrick.copyStringToClipboard(markup);
+			return markup;
 		}
-		catch (e) {
-			Foxtrick.log(e);
-		}
+		return null;
 	},
-
-	copyTable : function() {
-		try {
-			if (!FoxtrickContextMenuCopy.TABLE) {
-				return;
-			}
-			var markup = Foxtrick.util.htMl.getMarkupFromNode(FoxtrickContextMenuCopy.TABLE);
-			markup = Foxtrick.trim(markup);
-			Foxtrick.copyStringToClipboard(markup);
-		}
-		catch (e) {
-			Foxtrick.log(e);
-		}
-	},
-
+	
 	onContext : function(event) {
 		try {
-			if (Foxtrick.arch === "Gecko") {
-				var target = event.target;
-			}
-			else if ( Foxtrick.platform == "Safari" ) {
-				var paste_note =  '. ' + Foxtrickl10n.getString("SpecialPaste.desc");
-				var target = event.userInfo.target;
-			}
-			
+			FoxtrickContextMenuCopy.ID = null;
+			FoxtrickContextMenuCopy.LINK = null;
+			FoxtrickContextMenuCopy.SELECTION = null;
+			FoxtrickContextMenuCopy.TABLE = null;
+
+			var target = event.target;
+			var menuEntry;
 			var href = null;
 			var currentObj = target;
 			while (currentObj) {
@@ -205,58 +211,39 @@ var FoxtrickContextMenuCopy = {
 				currentObj = currentObj.parentNode;
 			}
 
+			menuEntry = {"hidden": true};
 			if (FoxtrickPrefs.isModuleOptionEnabled("ContextMenuCopy", "Id")) {
 				var id = Foxtrick.util.htMl.getIdFromLink(href);
 				if (id !== null) {
 					var idText = Foxtrickl10n.getString("copy.id").replace("%s", id.type + " ID").replace("%i", id.id);
-					FoxtrickContextMenuCopy.MENU_ID.setAttribute("copy", id.id);
-					FoxtrickContextMenuCopy.MENU_ID.setAttribute("label", idText);
-					FoxtrickContextMenuCopy.MENU_ID.setAttribute("hidden", false);
-					if ( Foxtrick.platform == "Safari" ) 
-							event.contextMenu.appendContextMenuItem("copyid", idText + paste_note);
-					}
-				else {
-					FoxtrickContextMenuCopy.MENU_ID.setAttribute("hidden", true);
+					FoxtrickContextMenuCopy.ID = id.id;
+					FoxtrickContextMenuCopy.TYPE = id.type;
+					menuEntry = {"hidden": false, "label": idText};
 				}
 			}
-			else {
-				FoxtrickContextMenuCopy.MENU_ID.setAttribute("hidden", true);
-			}
+			FoxtrickContextMenuCopy.updateMenu('foxtrick-popup-copy-id', menuEntry);
 
+			menuEntry = {"hidden": true};
 			if (FoxtrickPrefs.isModuleOptionEnabled("ContextMenuCopy", "Link")) {
 				var markup = Foxtrick.util.htMl.getMarkupFromLink(href);
 				if (markup !== null) {
-					FoxtrickContextMenuCopy.MENU_LINK.setAttribute("copy", markup);
-					FoxtrickContextMenuCopy.MENU_LINK.setAttribute("hidden", false);
-					if ( Foxtrick.platform == "Safari" ) 
-						event.contextMenu.appendContextMenuItem("copylink", Foxtrickl10n.getString("copy.link") + paste_note);
-				}
-				else {
-					FoxtrickContextMenuCopy.MENU_LINK.setAttribute("hidden", true);
+					FoxtrickContextMenuCopy.LINK = markup;
+					menuEntry = {"hidden": false};
 				}
 			}
-			else {
-				FoxtrickContextMenuCopy.MENU_LINK.setAttribute("hidden", true);
-			}
+			FoxtrickContextMenuCopy.updateMenu('foxtrick-popup-copy-link', menuEntry);
 
+			menuEntry = {"hidden": true};
 			if (FoxtrickPrefs.isModuleOptionEnabled("ContextMenuCopy", "HtMl")) {
-				var doc = target.ownerDocument;
-				var window = doc.defaultView;
-				var selection = window.getSelection();
-				if (!selection.isCollapsed && selection.rangeCount > 0) {
-					FoxtrickContextMenuCopy.SELECTION = selection;
-					FoxtrickContextMenuCopy.MENU_HT_ML.setAttribute("hidden", false);
-					if ( Foxtrick.platform == "Safari" ) 
-							event.contextMenu.appendContextMenuItem("copyselection", Foxtrickl10n.getString("copy.ht-ml") + paste_note);
-				}
-				else {
-					FoxtrickContextMenuCopy.MENU_HT_ML.setAttribute("hidden", true);
+				var markup = FoxtrickContextMenuCopy.getselection(target.ownerDocument.defaultView);
+				if ( markup !== null ) {
+					FoxtrickContextMenuCopy.SELECTION = markup;
+					menuEntry = {"hidden": false};
 				}
 			}
-			else {
-				FoxtrickContextMenuCopy.MENU_HT_ML.setAttribute("hidden", true);
-			}
+			FoxtrickContextMenuCopy.updateMenu('foxtrick-popup-copy-ht-ml', menuEntry);
 
+			menuEntry = {"hidden": true};
 			if (FoxtrickPrefs.isModuleOptionEnabled("ContextMenuCopy", "Table")) {
 				var table = null;
 				var currentObj = target;
@@ -268,25 +255,18 @@ var FoxtrickContextMenuCopy = {
 					currentObj = currentObj.parentNode;
 				}
 				if (table !== null) {
-					FoxtrickContextMenuCopy.TABLE = table;
-					FoxtrickContextMenuCopy.MENU_TABLE.setAttribute("hidden", false);
-					if ( Foxtrick.platform == "Safari" ) 
-							event.contextMenu.appendContextMenuItem("copytable", Foxtrickl10n.getString("copy.table") + paste_note);
-				}
-				else {
-					FoxtrickContextMenuCopy.MENU_TABLE.setAttribute("hidden", true);
+					var markup = Foxtrick.util.htMl.getMarkupFromNode(table);
+					markup = Foxtrick.trim(markup);
+					FoxtrickContextMenuCopy.TABLE = markup;
+					menuEntry = {"hidden": false};
 				}
 			}
-			else {
-				FoxtrickContextMenuCopy.MENU_TABLE.setAttribute("hidden", true);
-			}
+			FoxtrickContextMenuCopy.updateMenu('foxtrick-popup-copy-table', menuEntry);
 		}
 		catch (e) {
 			Foxtrick.log(e);
-			FoxtrickContextMenuCopy.MENU_ID.setAttribute("hidden", true);
-			FoxtrickContextMenuCopy.MENU_LINK.setAttribute("hidden", true);
-			FoxtrickContextMenuCopy.MENU_HT_ML.setAttribute("hidden", true);
-			FoxtrickContextMenuCopy.MENU_TABLE.setAttribute("hidden", true);
+			for (var contextEntry in FoxtrickContextMenuCopy.contextEntries)
+				FoxtrickContextMenuCopy.updateMenu(contextEntry, { hidden : true });
 		}
 	}
 };
