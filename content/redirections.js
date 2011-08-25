@@ -14,61 +14,56 @@ var FoxtrickRedirections = {
 		if (doc.location.href.search(/mailto|challenge|redir_to_.+\=true/i)==-1) return;
 
 		var serv = 'http://'+doc.location.hostname;
+		var teamid = Foxtrick.util.id.findTeamId(doc.getElementsByClassName("subMenu")[0]);
+		var ownteamid = Foxtrick.util.id.getOwnTeamId();
+		var leagueid = Foxtrick.util.id.findLeagueLeveUnitId(doc.getElementsByClassName("subMenu")[0]);
+		Foxtrick.log('Redirections - teamid: ',teamid,' ownteamid: ',ownteamid,' leagueid: ',leagueid);
 
 		// redirect from manager
-		var alldivs = doc.getElementsByTagName('div');
-		for (var j = 0; j < alldivs.length; j++) {
-			if (alldivs[j].className=="playerInfo") {
-				var teamid=Foxtrick.util.id.findTeamId(alldivs[j]);
-				var leagueid=Foxtrick.util.id.findLeagueLeveUnitId(alldivs[j]);
-				var ownteamid = Foxtrick.util.id.getOwnTeamId();
-				var userid = doc.getElementById('mainWrapper').getElementsByTagName('a')[1].href.replace(/.+userid=/i,'');;
-
-				var target="_self";
-				var tar='';
-				if (doc.location.href.search(/\/Club\/Manager/i)!=-1) {
-					if (doc.location.href.search(/redir_to_team=true/i)!=-1 )
-								tar=serv+"/Club/?TeamID="+teamid;
-					else if (doc.location.href.search(/redir_to_team_at_alltid=true/i)!=-1 )
-								{tar="http://alltid.org/team/"+teamid; target='_blank';}
-					else if (doc.location.href.search(/redir_to_lastlineup=true/i)!=-1 )
-								tar=serv+'/Club/Matches/MatchLineup.aspx?MatchID=&TeamID='+teamid+'&useArchive=True';
-					else if (doc.location.href.search(/redir_to_nextmatch=true/i)!=-1 )
-								tar=serv+'/Club/Matches/?TeamID='+teamid+'&redir_to_nextmatch=true';
-					else if (doc.location.href.search(/redir_to_addnextmatch=true/i)!=-1 )
-								tar=serv+'/Club/Matches/?TeamID='+teamid+'&redir_to_addnextmatch=true';
-					else if (doc.location.href.search(/redir_to_transferhistory=true/i)!=-1 )
-								tar=serv+'/Club/Transfers/transfersTeam.aspx?teamId='+teamid;
-					else if (doc.location.href.search(/redir_to_teamhistory=true/i)!=-1 )
-								tar=serv+'/Club/History/?teamId='+teamid;
-					else if (doc.location.href.search(/redir_to_coach=true/i)!=-1 ) {
-						if (teamid!=ownteamid) tar=serv+'/Club/Players/?TeamID='+teamid+'&redir_to_coach=true';
-						else tar=serv+'/Club/Training/?redir_to_coach=true';
-					}
-					else if (doc.location.href.search(/redir_to_challenge=true/i)!=-1 )
-								tar=serv+'/Club/Challenges/?TeamID='+teamid+'&challenge=true';
-					else if (doc.location.href.search(/redir_to_sendmessage=true/i)!=-1 )
-								tar=serv+'/Club/?TeamID='+teamid+'&SendMessage=true';
-					else if (doc.location.href.search(/redir_to_guestbook=true/i)!=-1 )
-								tar=serv+'/Club/Manager/Guestbook.aspx?teamid='+teamid;
-					else if (doc.location.href.search(/redir_to_achievements=true/i)!=-1 ) {
-								tar=serv+'/Club/Achievements/?userID='+userid+'&teamid='+teamid;}
-					else if (doc.location.href.search(/redir_to_players=true/i)!=-1 )
-								tar=serv+'/Club/Players/?TeamID='+teamid;
-					else if (doc.location.href.search(/redir_to_matches=true/i)!=-1 )
-								tar=serv+'/Club/Matches/?TeamID='+teamid;
-					else if (doc.location.href.search(/redir_to_league=true/i)!=-1 )
-								tar=serv+'/World/Series/Default.aspx?LeagueLevelUnitID='+leagueid;
-					else if (doc.location.href.search(/redir_to_custom=true\&/i)!=-1 ) {
-							tar = doc.location.href.replace(/.+redir_to_custom=true\&/,''); //Foxtrick.dump(tar+'\n');
-							tar = tar.replace(/%5Bteamid%5D|\[teamid\]/i, teamid);
-							tar = tar.replace(/%5Buserid%5D|\[userid\]/i, userid);
-							//if (tar.charAt(0)=='/') tar=serv+tar;
-					}
-					doc.location.replace(tar);
-				}
-				break;
+		if (doc.location.href.search(/\/Club\/Manager/i)!=-1) {
+			var userid = doc.getElementById('mainWrapper').getElementsByTagName('a')[1].href.replace(/.+userid=/i,'');;
+			var target="_self";
+			var tar='';
+			if (doc.location.href.search(/redir_to_team=true/i)!=-1 )
+						tar=serv+"/Club/?TeamID="+teamid;
+			else if (doc.location.href.search(/redir_to_team_at_alltid=true/i)!=-1 )
+						{tar="http://alltid.org/team/"+teamid; target='_blank';}
+			else if (doc.location.href.search(/redir_to_lastlineup=true/i)!=-1 )
+						tar=serv+'/Club/Matches/MatchLineup.aspx?MatchID=&TeamID='+teamid+'&useArchive=True';
+			else if (doc.location.href.search(/redir_to_nextmatch=true/i)!=-1 )
+						tar=serv+'/Club/Matches/?TeamID='+teamid+'&redir_to_nextmatch=true';
+			else if (doc.location.href.search(/redir_to_addnextmatch=true/i)!=-1 )
+						tar=serv+'/Club/Matches/?TeamID='+teamid+'&redir_to_addnextmatch=true';
+			else if (doc.location.href.search(/redir_to_transferhistory=true/i)!=-1 )
+						tar=serv+'/Club/Transfers/transfersTeam.aspx?teamId='+teamid;
+			else if (doc.location.href.search(/redir_to_teamhistory=true/i)!=-1 )
+						tar=serv+'/Club/History/?teamId='+teamid;
+			else if (doc.location.href.search(/redir_to_coach=true/i)!=-1 ) {
+				if (teamid===ownteamid) 
+					tar=serv+'/Club/Training/?redir_to_coach=true';
+				else 
+					tar=serv+'/Club/Players/?TeamID='+teamid+'&redir_to_coach=true';
 			}
+			else if (doc.location.href.search(/redir_to_challenge=true/i)!=-1 )
+						tar=serv+'/Club/Challenges/?TeamID='+teamid+'&challenge=true';
+			else if (doc.location.href.search(/redir_to_sendmessage=true/i)!=-1 )
+						tar=serv+'/Club/?TeamID='+teamid+'&SendMessage=true';
+			else if (doc.location.href.search(/redir_to_guestbook=true/i)!=-1 )
+						tar=serv+'/Club/Manager/Guestbook.aspx?teamid='+teamid;
+			else if (doc.location.href.search(/redir_to_achievements=true/i)!=-1 ) {
+						tar=serv+'/Club/Achievements/?userID='+userid+'&teamid='+teamid;}
+			else if (doc.location.href.search(/redir_to_players=true/i)!=-1 )
+						tar=serv+'/Club/Players/?TeamID='+teamid;
+			else if (doc.location.href.search(/redir_to_matches=true/i)!=-1 )
+						tar=serv+'/Club/Matches/?TeamID='+teamid;
+			else if (doc.location.href.search(/redir_to_league=true/i)!=-1 )
+						tar=serv+'/World/Series/Default.aspx?LeagueLevelUnitID='+leagueid;
+			else if (doc.location.href.search(/redir_to_custom=true\&/i)!=-1 ) {
+					tar = doc.location.href.replace(/.+redir_to_custom=true\&/,'');
+					tar = tar.replace(/%5Bteamid%5D|\[teamid\]/i, teamid);
+					tar = tar.replace(/%5Buserid%5D|\[userid\]/i, userid);
+			}
+			doc.location.replace(tar);
 		}
 		//challenge
 		if (doc.location.href.search(/challenge=true/i)!=-1 ) {
@@ -100,25 +95,23 @@ var FoxtrickRedirections = {
 		//redirect to youthmatches
 		if (doc.location.href.search(/redir_to_youthmatches=true/i)!=-1 ) {
 			var YouthTeamId = Foxtrick.util.id.findYouthTeamId(doc.getElementsByClassName("subMenu")[0]);
-			var TeamId = Foxtrick.util.id.findTeamId(doc.getElementsByClassName("subMenu")[0]);
-			var tar = serv+"/Club/Matches/?TeamID="+TeamId+"&YouthTeamId="+YouthTeamId; //Foxtrick.dump(tar+'\n');
+			var tar = serv+"/Club/Matches/?TeamID="+teamid+"&YouthTeamId="+YouthTeamId; 
 			doc.location.replace(tar);
 		}
 		// redirect to coach
 		if (doc.location.href.search(/redir_to_coach=true/i)!=-1 ) {
 			if (doc.location.href.search(/\/Club\/Players/i)!=-1 ) {
 				// redirect to own coach
-				var teamid=Foxtrick.util.id.findTeamId(alldivs[j]);
-				var ownteamid = Foxtrick.util.id.getOwnTeamId();
-				if (teamid==ownteamid!==null) 
+				if ( teamid===ownteamid ) 
 					doc.location.replace(serv+'/Club/Training/?redir_to_coach=true');
-					
-				// redirect to other coaches
-				var sidebarBox = doc.getElementById("sidebar").getElementsByClassName("sidebarBox")[0];
-				var coachId = Foxtrick.util.id.findPlayerId(sidebarBox);
-				var location = serv+"/Club/Players/Player.aspx?playerId=" + coachId;
-				if (coachId!==null)
-					doc.location.replace(location);
+				else {	
+					// redirect to other coaches
+					var sidebarBox = doc.getElementById("sidebar").getElementsByClassName("sidebarBox")[0];
+					var coachId = Foxtrick.util.id.findPlayerId(sidebarBox);
+					var location = serv+"/Club/Players/Player.aspx?playerId=" + coachId;
+					if (coachId!==null)
+						doc.location.replace(location);
+				}
 			}
 			if (doc.location.href.search(/\/Club\/NationalTeam\/NationalTeam/i)!=-1 ){
 					var ntinfo=doc.getElementById('teamInfo');
