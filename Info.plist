@@ -212,6 +212,8 @@ a good reason to. They are for version bumps in Makefile.
 				<string>*.hat-trick.net</string>
 				<string>*.hattrick.interia.pl</string>
 				<string>*.hattrick.uol.com.br</string>
+				<string>www.hattrick-youthclub.org</string>
+				<string>www.fantamondi.it</string>
 			</array>
 			<key>Include Secure Pages</key>
 			<true/>
