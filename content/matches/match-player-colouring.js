@@ -90,6 +90,7 @@ var FoxtrickMatchPlayerColouring = {
 				xml.getElementsByTagName("PlayerID"));
 		};
 		var getPlayerId =  function(a) {
+			var m;
 			if (m = a.href.match(/PlayerId=(\d+)/i))
 				return Number(m[1]);
 			return null;

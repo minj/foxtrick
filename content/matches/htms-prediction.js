@@ -129,6 +129,7 @@ var FoxtrickHTMSPrediction = {
 
 			var htmstable = doc.getElementById('htmstable');
 			var row = htmstable.rows[htmstable.rows.length-1];
+			var cell;
 
 			var pred1 = xml.getElementsByTagName('T1').item(0).firstChild.nodeValue;
 			var pred2 = xml.getElementsByTagName('T2').item(0).firstChild.nodeValue;

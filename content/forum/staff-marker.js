@@ -185,6 +185,7 @@ var FoxtrickStaffMarker = {
 				try{
 				var i = 1;
 				var user_hasClass = {};
+				var option;
 				while (option = select.options[i++]) {
 					var uname = Foxtrick.trim(option.textContent);
 					uname = uname.substring(0, uname.indexOf(" "));
