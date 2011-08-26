@@ -8,13 +8,14 @@ if (!Foxtrick) var Foxtrick = {};
 if (!Foxtrick.util) Foxtrick.util = {};
 
 Foxtrick.util.htMl = {};
+Foxtrick.util.htMl.get = {};
 
 // if ID is found, will return an object like this:
 // { type : "match", id : "123456789", tag : "matchid" },
 // or like this:
 // { type : "arena", id : "123456" }
 // otherwise, return null
-Foxtrick.util.htMl.getIdFromLink = function(link) {
+Foxtrick.util.htMl.get['Id'] = function(node) {
 	const idTypes = [
 		{ type : "Player", re : /\/Player\.aspx\?playerId=(\d+)/i, tag : "playerid" },
 		{ type : "Youth Player", re : /\?YouthPlayerID=(\d+)/i, tag : "youthplayerid" },
@@ -36,6 +37,15 @@ Foxtrick.util.htMl.getIdFromLink = function(link) {
 		{ type : "National Team", re : /\/Club\/NationalTeam\/NationalTeam\.aspx\?teamId=(\d+)/i }
 	];
 
+	var link = null;
+	var currentObj = node;
+	while (currentObj) {
+		if (currentObj.href !== undefined) {
+			link = currentObj.href;
+			break;
+		}
+		currentObj = currentObj.parentNode;
+	}
 	if (typeof(link) !== "string" || link.search(/^javascript/i) === 0) {
 		return null;
 	}
@@ -51,8 +61,10 @@ Foxtrick.util.htMl.getIdFromLink = function(link) {
 				}
 			}
 			var ret = {};
+			ret.copyTitle = Foxtrickl10n.getString("copy.id").replace("%s", current.type + " ID").replace("%i", id);
 			ret.type = current.type;
 			ret.id = id;
+			ret.markup = id;
 			if (current.tag) {
 				// some ID types may not have corresponding tags
 				ret.tag = current.tag;
@@ -66,11 +78,11 @@ Foxtrick.util.htMl.getIdFromLink = function(link) {
 
 // returns a string link like "[matchid=123456789]"
 // or "[link=/Club/…]" or "[link=ftp://example.org/…]"
-Foxtrick.util.htMl.getMarkupFromLink = function(link) {
-	var idObj = this.getIdFromLink(link);
-	var ret = null;
+Foxtrick.util.htMl.get['Link'] = function(node) {
+	var idObj = Foxtrick.util.htMl.get['Id'](node);
+	var markup = null;
 	if (idObj !== null && idObj.tag !== undefined) {
-		ret = "[" + idObj.tag + "=" + idObj.id + "]";
+		markup = "[" + idObj.tag + "=" + idObj.id + "]";
 	}
 	else if (typeof(link) === "string") {
 		// ignoring boring links
@@ -85,12 +97,12 @@ Foxtrick.util.htMl.getMarkupFromLink = function(link) {
 			const relLink = matched[1];
 			// if it's relative link of Hattrick, remove the host
 			if (Foxtrick.isHtUrl(link))
-				ret = "[link=" + relLink + "]";
+				markup = "[link=" + relLink + "]";
 			else
-				ret = "[link=" + link + "]";
+				markup = "[link=" + link + "]";
 		}
 	}
-	return ret;
+	return {copyTitle : Foxtrickl10n.getString("copy.link"), markup : markup };
 };
 
 Foxtrick.util.htMl.getMarkupFromNode = function(node) {
@@ -146,7 +158,7 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 		var children = node.childNodes;
 		for (var i = 0; i < children.length; ++i) {
 			// recursively get the content of child nodes
-			var childMarkup = this.getMarkupFromNode(children[i]);
+			var childMarkup = Foxtrick.util.htMl.getMarkupFromNode(children[i]);
 			if (childMarkup != null)
 				ret += childMarkup;
 		}
@@ -154,17 +166,17 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 
 	if (nodeName === "a") {
 		if (node.href !== undefined) {
-			var linkMarkup = this.getMarkupFromLink(node.href);
-			var linkId = this.getIdFromLink(node.href);
+			var linkMarkup = Foxtrick.util.htMl.get['Link'](node);
+			var linkId = Foxtrick.util.htMl.get['Id'](node);
 			if (linkMarkup !== null) {
 				if (linkId !== null && linkId.id !== undefined
 					&& ret === "(" + linkId.id + ")") {
 					// if the link is simply a representation of ID,
 					// then only use the markup without extra text
-					ret = linkMarkup;
+					ret = linkMarkup.markup;
 				}
 				else {
-					ret += " " + linkMarkup;
+					ret += " " + linkMarkup.markup;
 				}
 			}
 			return ret;
@@ -202,4 +214,40 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 	}
 
 	return ret;
+};
+
+
+Foxtrick.util.htMl.get['HtMl'] = function(node) {
+	var window = node.ownerDocument.defaultView
+	var selection = window.getSelection();
+	if (!selection.isCollapsed && selection.rangeCount > 0) {
+		var markup = '';
+		for (var i = 0; i < selection.rangeCount; ++i) {
+			markup += Foxtrick.util.htMl.getMarkupFromNode(selection.getRangeAt(i).cloneContents());
+			if (i !== selection.rangeCount - 1) {
+				markup += "\n";
+			}
+		}
+		markup = Foxtrick.trim(markup);
+		return { copyTitle : Foxtrickl10n.getString("copy.ht-ml"), markup : markup };
+	}
+	return null;
+};
+	
+Foxtrick.util.htMl.get['Table'] = function(node) {
+	var table = null;
+	var currentObj = node;
+	while (currentObj) {
+		if (currentObj.nodeName.toLowerCase() === "table") {
+			table = currentObj;
+			break;
+		}
+		currentObj = currentObj.parentNode;
+	}
+	if (table !== null) {
+		var markup = Foxtrick.util.htMl.getMarkupFromNode(table);
+		markup = Foxtrick.trim(markup);
+		return { copyTitle : Foxtrickl10n.getString("copy.table"), markup : markup };
+	}
+	return null;
 };

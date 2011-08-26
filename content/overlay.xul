@@ -235,9 +235,9 @@ if (!FoxtrickPrefs.getBool("toolbarInited")) {
 
 <!-- popup menu -->
 <popup id="contentAreaContextMenu">
-	<menuitem id="foxtrick-popup-copy-id" insertbefore="context-paste" hidden="true" label="Copy ID" oncommand="FoxtrickContextMenuCopy.copyId();" />
-	<menuitem id="foxtrick-popup-copy-link" insertbefore="context-paste" hidden="true" label="Copy Link Location in HT-ML" oncommand="FoxtrickContextMenuCopy.copyLink();" />
-	<menuitem id="foxtrick-popup-copy-ht-ml" insertbefore="context-paste" hidden="true" label="Copy in HT-ML" oncommand="FoxtrickContextMenuCopy.copyHtMl();" />
-	<menuitem id="foxtrick-popup-copy-table" insertbefore="context-paste" hidden="true" label="Copy table in HT-ML" oncommand="FoxtrickContextMenuCopy.copyTable();" />
+	<menuitem id="foxtrick-popup-copy-id" insertbefore="context-paste" hidden="true" label="Copy ID" />
+	<menuitem id="foxtrick-popup-copy-link" insertbefore="context-paste" hidden="true" label="Copy Link Location in HT-ML" />
+	<menuitem id="foxtrick-popup-copy-ht-ml" insertbefore="context-paste" hidden="true" label="Copy in HT-ML" />
+	<menuitem id="foxtrick-popup-copy-table" insertbefore="context-paste" hidden="true" label="Copy table in HT-ML" />
 </popup>
 </overlay>

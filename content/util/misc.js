@@ -92,7 +92,14 @@ Foxtrick.copyStringToClipboard = function (string) {
 		Foxtrick.sessionSet('clipboard', string);
 	}
 	else if (Foxtrick.arch === "Sandboxed") {
-		sandboxed.extension.sendRequest({req : "clipboard", content : string});
+		if (Foxtrick.chromeContext()=='content')
+			sandboxed.extension.sendRequest({req : "clipboard", content : string});
+		else {
+			if (Foxtrick.platform == "Chrome")
+				Foxtrick.loader.chrome.copyToClipBoard(string);
+			else
+				Foxtrick.copyStringToClipboard(string);
+		}
 	}
 }
 
