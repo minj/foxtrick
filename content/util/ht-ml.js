@@ -8,7 +8,6 @@ if (!Foxtrick) var Foxtrick = {};
 if (!Foxtrick.util) Foxtrick.util = {};
 
 Foxtrick.util.htMl = {};
-Foxtrick.util.htMl.get = {};
 
 // @param node: a DOM node which is an <a> element or an <a>'s child node
 // @returns:
