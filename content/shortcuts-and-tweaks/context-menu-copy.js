@@ -86,7 +86,7 @@ var FoxtrickContextMenuCopy = {
 			}
 
 			safari.application.addEventListener( "command", function( commandEvent ) {
-				FoxtrickContextMenuCopy.contextEntries[commandEvent.command].onClick 
+				FoxtrickContextMenuCopy.contextEntries[commandEvent.command].onClick(); 
 			}, false );
 		}, true)
 	},
