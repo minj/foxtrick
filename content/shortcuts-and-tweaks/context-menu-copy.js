@@ -143,9 +143,10 @@ var FoxtrickContextMenuCopy = {
 	bindCopyFunctions : function() {
 		// create onClick functions for all types and bind type to them
 		for (var type in FoxtrickContextMenuCopy.contextEntries) {
-			FoxtrickContextMenuCopy.contextEntries[type].onClick = function (type) {
-				Foxtrick.copyStringToClipboard( FoxtrickContextMenuCopy.contextEntries[type].copyText );
-			}.bind(undefined, type); 
+			var entry = FoxtrickContextMenuCopy.contextEntries[type];
+			entry.onClick = function() {
+				Foxtrick.copyStringToClipboard(this.copyText);
+			}.bind(entry);
 		}
  	},
 
