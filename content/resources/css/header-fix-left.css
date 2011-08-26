@@ -5,17 +5,17 @@
 #content .subMenu {
 	position: fixed !important;
 }
-[x-theme="simple"] #content .subMenu {
+[data-theme="simple"] #content .subMenu {
 	background: white !important;
 	border-color: #ddd !important;
 	border-style: solid !important;
 }
-[dir="ltr"][x-theme="simple"] #content .subMenu {
+[dir="ltr"][data-theme="simple"] #content .subMenu {
 	margin-left: -11px !important;
 	padding-left: 11px !important;
 	border-width: 0 0 0 1px !important;
 }
-[dir="rtl"][x-theme="simple"] #content .subMenu {
+[dir="rtl"][data-theme="simple"] #content .subMenu {
 	margin-right: -11px !important;
 	padding-right: 11px !important;
 	border-width: 0 1px 0 0 !important;
@@ -28,51 +28,51 @@
 }
 
 /* compensate for fixed left submenu */
-[dir="ltr"][x-theme="standard"] #content #mainWrapper {
+[dir="ltr"][data-theme="standard"] #content #mainWrapper {
 	margin-left: 175px;
 }
-[dir="ltr"][x-theme="simple"] #content #mainWrapper {
+[dir="ltr"][data-theme="simple"] #content #mainWrapper {
 	margin-left: 135px;
 	min-height: 400px !important;
 }
-[dir="rtl"][x-theme="standard"] #content #mainWrapper {
+[dir="rtl"][data-theme="standard"] #content #mainWrapper {
 	margin-right: 175px;
 }
-[dir="rtl"][x-theme="simple"] #content #mainWrapper {
+[dir="rtl"][data-theme="simple"] #content #mainWrapper {
 	margin-right: 125px;
 	min-height: 400px !important;
 }
 
 /* compensate for fixed left submenu Forum */
-[x-theme="standard"] #content #mainWrapper>div[class="main mainConf"] {
+[data-theme="standard"] #content #mainWrapper>div[class="main mainConf"] {
 	width:655px !important;
 }
-[dir="ltr"][x-theme="standard"] #content #mainWrapper>div[class="main mainConf"] {
+[dir="ltr"][data-theme="standard"] #content #mainWrapper>div[class="main mainConf"] {
 	float: left !important;
 	margin-left: -175px;
 }
-[dir="rtl"][x-theme="standard"] #content #mainWrapper>div[class="main mainConf"] {
+[dir="rtl"][data-theme="standard"] #content #mainWrapper>div[class="main mainConf"] {
 	float: right !important;
 	margin-right: -175px;
 }
 
 /* Kitdesignerfix */
-[x-theme="standard"] div#mainWrapper>div[class="main mainFull"] {
+[data-theme="standard"] div#mainWrapper>div[class="main mainFull"] {
 	width: 950px !important;
 }
-[x-theme="simple"] div#mainWrapper>div[class="main mainFull"] {
+[data-theme="simple"] div#mainWrapper>div[class="main mainFull"] {
 	width: 765px !important;
 }
-[dir="ltr"][x-theme="standard"] div#mainWrapper>div[class="main mainFull"] {
+[dir="ltr"][data-theme="standard"] div#mainWrapper>div[class="main mainFull"] {
 	margin-left: -175px !important;
 }
-[dir="ltr"][x-theme="simple"] div#mainWrapper>div[class="main mainFull"] {
+[dir="ltr"][data-theme="simple"] div#mainWrapper>div[class="main mainFull"] {
 	margin-left: -135px !important;
 }
-[dir="rtl"][x-theme="standard"] div#mainWrapper>div[class="main mainFull"] {
+[dir="rtl"][data-theme="standard"] div#mainWrapper>div[class="main mainFull"] {
 	margin-right: -135px !important;
 }
-[dir="rtl"][x-theme="simple"] div#mainWrapper>div[class="main mainFull"] {
+[dir="rtl"][data-theme="simple"] div#mainWrapper>div[class="main mainFull"] {
 	margin-right: -135px !important;
 }
 

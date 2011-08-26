@@ -1,10 +1,10 @@
 /* settings here apply to all pages, including non hattrick pages.
    so any own class HAS TO start with eg 'foxtrick_' to make it foxtrick specific */
 
-[x-theme="standard"] #stageLogo {
+[data-theme="standard"] #stageLogo {
 	background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick.png') !important;
 }
-[x-theme="simple"] #stageLogo {
+[data-theme="simple"] #stageLogo {
 	background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick_simple.png') !important;
 }
 
@@ -218,14 +218,14 @@ ul.ft-pop > li a, ul.ft-pop span {
 }
 #ft_clear_cache {cursor: pointer; color:#3F7137; }
 
-[x-theme="simple"] .transferPlayerSkills {
+[data-theme="simple"] .transferPlayerSkills {
 	max-width: 62% !important;
 	background-color: white;
 	padding-left: 5px !important;
 }
-[x-theme="simple"] .transferPlayerInformation {
+[data-theme="simple"] .transferPlayerInformation {
 	max-width: 30% !important;
 }
-[x-theme="simple"] #ctl00_ctl00_CPContent_CPMain_UpdatePanelLiveLeagueTable {
+[data-theme="simple"] #ctl00_ctl00_CPContent_CPMain_UpdatePanelLiveLeagueTable {
 	white-space: nowrap;
 }

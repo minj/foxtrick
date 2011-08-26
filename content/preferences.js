@@ -199,9 +199,9 @@ function initTextAndValues()
 	$("#version").text(Foxtrick.version());
 
 	// initialize text
-	$("body [x-text]").each(function() {
-		if ($(this).attr("x-text"))
-			$(this).text(Foxtrickl10n.getString($(this).attr("x-text")));
+	$("body [data-text]").each(function() {
+		if ($(this).attr("data-text"))
+			$(this).text(Foxtrickl10n.getString($(this).attr("data-text")));
 	});
 	// initialize modules
 	$("body [module]").each(function() {
@@ -270,7 +270,7 @@ function initTextAndValues()
 
 	// initialize delete-token 
 	const chpp_url = FoxtrickPrefs.getString("last-host") + "/MyHattrick/Preferences/ExternalAccessGrants.aspx";
-	$("#pref-delete-token-label").html(Foxtrickl10n.getString($("#pref-delete-token-label").attr("x-text")).replace(/%(\w+)/, "<a href='"+chpp_url+"' target='_blank'>$1</a>"));
+	$("#pref-delete-token-label").html(Foxtrickl10n.getString($("#pref-delete-token-label").attr("data-text")).replace(/%(\w+)/, "<a href='"+chpp_url+"' target='_blank'>$1</a>"));
 	var oauth_keys = FoxtrickPrefs.getAllKeysOfBranch('oauth');
 	var teamids = Foxtrick.map( function(n){ return n.match(/\d+/)[0]; }, oauth_keys);
 	teamids = Foxtrick.unique(teamids);

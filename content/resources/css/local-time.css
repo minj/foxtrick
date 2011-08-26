@@ -8,17 +8,17 @@
 	float: left;
 }
 
-[x-theme="standard"] #ft-local-time {
+[data-theme="standard"] #ft-local-time {
 	margin-top: 9px;
 }
-[x-theme="simple"] #ft-local-time {
+[data-theme="simple"] #ft-local-time {
 	margin-top: 20px;
 }
 
-[dir="ltr"][x-theme="standard"] #ft-local-time {
+[dir="ltr"][data-theme="standard"] #ft-local-time {
 	margin-left: 7px;
 }
-[dir="ltr"][x-theme="simple"] #ft-local-time {
+[dir="ltr"][data-theme="simple"] #ft-local-time {
 	margin-left: 5px;
 }
 

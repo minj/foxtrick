@@ -2,7 +2,7 @@
 
 
 /* broken dsign workaround*/
-[x-theme="simple"] div.cfHeader>div[class="float_right right"]
+[data-theme="simple"] div.cfHeader>div[class="float_right right"]
 {background: inherit;/* #999999 !important;*/}
 
 }

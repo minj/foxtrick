@@ -109,7 +109,7 @@ var FoxtrickTeamPopupLinks = {
 		table.className = "bordered center";
 
 		var caption = doc.createElement("caption");
-		caption.setAttribute("x-text", "TeamPopupLinks.prefsCaption");
+		caption.setAttribute("data-text", "TeamPopupLinks.prefsCaption");
 		table.appendChild(caption);
 
 		var headerRow = doc.createElement("tr");
@@ -118,10 +118,10 @@ var FoxtrickTeamPopupLinks = {
 		var placeHolder = doc.createElement("th");
 		headerRow.appendChild(placeHolder);
 		var enableDefault = doc.createElement("th");
-		enableDefault.setAttribute("x-text", "TeamPopupLinks.ShowByDefault");
+		enableDefault.setAttribute("data-text", "TeamPopupLinks.ShowByDefault");
 		headerRow.appendChild(enableDefault);
 		var enableMore = doc.createElement("th");
-		enableMore.setAttribute("x-text", "TeamPopupLinks.ShowOnMore");
+		enableMore.setAttribute("data-text", "TeamPopupLinks.ShowOnMore");
 		headerRow.appendChild(enableMore);
 
 		for (var i in this.LINKS) {
