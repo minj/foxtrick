@@ -22,7 +22,8 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		FoxtrickPrefs.deleteValue("preferences.updated");
 		FoxtrickPrefs.init();
 		Foxtrickl10n.init();
-		cssTextCollection = Foxtrick.getCssTextCollection();
+		if (Foxtrick.platform != "Fennec")
+			cssTextCollection = Foxtrick.getCssTextCollection();
 		Foxtrick.log('prefs updated');
 	};
 
@@ -65,7 +66,8 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	for (var i in Foxtrickl10n.htLanguagesXml) {
 		htLanguagesText[i] = serializer.serializeToString(Foxtrickl10n.htLanguagesXml[i]);
 	}
-	var cssTextCollection = Foxtrick.getCssTextCollection();
+	if (Foxtrick.platform != "Fennec")
+		var cssTextCollection = Foxtrick.getCssTextCollection();
 
 	// one-time message channel
 	// use with sandboxed.extension.sendRequest({req : "{TYPE}", parameters...}, callback)

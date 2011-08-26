@@ -425,18 +425,11 @@ Foxtrick.alert = function(msg) {
 
 // unload all css files, enabled or not
 Foxtrick.unload_module_css = function(doc) {
-	Foxtrick.dump('unload permanents css\n');
+	Foxtrick.log('unload permanents css');
 
 	if (Foxtrick.arch === "Gecko") {
-		for (var i in Foxtrick.modules) {
-			var module = Foxtrick.modules[i];
-			if (module.CSS)
-				Foxtrick.unload_css_permanent(module.CSS);
-			if (module.OPTIONS_CSS) {
-				Foxtrick.map(function(n) {
-					Foxtrick.unload_css_permanent(n);
-				}, module.OPTIONS_CSS);
-			}
+		if (Foxtrick.current_css) {
+			Foxtrick.unload_css_permanent(Foxtrick.current_css);
 		}
 	}
 	else {
@@ -450,6 +443,11 @@ Foxtrick.unload_module_css = function(doc) {
 Foxtrick.unload_css_permanent = function(cssList) {
 	var unload_css_permanent_impl = function(css) {
 		try {
+			// convert text css to data url
+			if ( css.search(/^[A-Za-z_-]+:\/\//) == -1 ) {
+				// needs to be uncompressed to have the right csss precedence
+				css = 'data:text/css;charset=US-ASCII,'+encodeURIComponent(css);
+			}
 			try {
 				var sss = Components
 					.classes["@mozilla.org/content/style-sheet-service;1"]
@@ -563,12 +561,14 @@ Foxtrick.load_css_permanent = function(css) {
 
 // load all Foxtrick.cssFiles into browser or page
 Foxtrick.load_module_css = function(doc) {
+	Foxtrick.unload_module_css(doc);
 
 	if (Foxtrick.arch === "Gecko") {
-		for (var i = 0; i < Foxtrick.cssFiles.length; ++i)
-			Foxtrick.load_css_permanent(Foxtrick.cssFiles[i]);
+		Foxtrick.current_css = Foxtrick.getCssTextCollection();
+		Foxtrick.load_css_permanent(Foxtrick.current_css);
 	}
 	else if (Foxtrick.arch === "Sandboxed") {
+		Foxtrick.collect_module_css();
 		sandboxed.extension.sendRequest(
 			{ req : "getCss", files :Foxtrick.cssFiles },
 			function(data) {
@@ -581,9 +581,6 @@ Foxtrick.load_module_css = function(doc) {
 
 Foxtrick.reload_module_css = function(doc) {
 	try {
-		Foxtrick.unload_module_css(doc);
-
-		Foxtrick.collect_module_css();
 		Foxtrick.load_module_css(doc);
 	}
 	catch (e) {
@@ -606,11 +603,15 @@ Foxtrick.getCssTextFromFile = function (cssUrl) {
 		// not a file. line is css text already
 		css_text = cssUrl;
 	}
-	// remove moz-document statement
-	if (css_text && css_text.search(/@-moz-document/)!=-1) {
-		css_text = css_text.replace(/@-moz-document[^\{]+\{/, "");
-		var closing_bracket = css_text.lastIndexOf("}");
-		css_text = css_text.substr(0, closing_bracket) + css_text.substr(closing_bracket+1);
+	css_text = css_text.replace(new RegExp('\\[data-theme="'+FoxtrickPrefs.getString('skin')+'"\\]','g'), "");
+	css_text = css_text.replace(new RegExp('\\[dir="'+FoxtrickPrefs.getString('dir')+'"\\]','g'), "");
+	if (Foxtrick.arch == "Sandboxed") {
+		// remove moz-document statement
+		if (css_text && css_text.search(/@-moz-document/)!=-1) {
+			css_text = css_text.replace(/@-moz-document[^\{]+\{/, "");
+			var closing_bracket = css_text.lastIndexOf("}");
+			css_text = css_text.substr(0, closing_bracket) + css_text.substr(closing_bracket+1);
+		}
 	}
 	return css_text;
 };
@@ -626,11 +627,9 @@ Foxtrick.getCssFileArrayToString = function(cssUrls) {
 
 	// gets all css from modules.CSS settings
 Foxtrick.getCssTextCollection = function() {
-	// fennec can/does load css direct from content
-	if (Foxtrick.platform == "Fennec")
-		return '';
+	Foxtrick.log('getCssTextCollection ',FoxtrickPrefs.getString('skin'),' - ',FoxtrickPrefs.getString('dir'));
 	Foxtrick.collect_module_css();
-	return Foxtrick.getCssFileArrayToString(Foxtrick.cssFiles);
+	return 	Foxtrick.getCssFileArrayToString(Foxtrick.cssFiles);
 };
 
 
