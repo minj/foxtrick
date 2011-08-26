@@ -82,13 +82,22 @@ Foxtrick.util.htMl.getId = function(node) {
 // or "[link=/Club/…]" or "[link=ftp://example.org/…]"
 Foxtrick.util.htMl.getLink = function(node) {
 	var idObj = Foxtrick.util.htMl.getId(node);
+	var link = null;
+	var currentObj = node;
+	while (currentObj) {
+		if (currentObj.href !== undefined) {
+			link = currentObj.href;
+			break;
+		}
+		currentObj = currentObj.parentNode;
+	}
 	var markup = null;
 	if (idObj !== null && idObj.tag !== undefined) {
 		markup = "[" + idObj.tag + "=" + idObj.id + "]";
 	}
 	else if (typeof(link) === "string") {
 		// ignoring boring links
-		const ignore = ["/Help/Rules/AppDenominations.aspx"];
+		const ignore = ["/Help/Rules/AppDenominations.aspx","/Help/Supporter/","javascript"];
 		for (var i = 0; i < ignore.length; ++i)
 			if (link.indexOf(ignore[i]) > -1)
 				return null;
@@ -116,7 +125,7 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 	var window = doc.defaultView;
 
 	var computedStyle = null;
-	if (node.nodeType === window.Node.ELEMENT_NODE) {
+	if (node.nodeType === Node.ELEMENT_NODE) {
 		computedStyle = window.getComputedStyle(node, null);
 	}
 
@@ -129,10 +138,10 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 	// we consider these nodes as stand-alone elements
 	if (nodeName === "img") {
 		if (node.hasAttribute("alt") && node.getAttribute("alt") !== "") {
-			return node.getAttribute("alt");
+			return ' [u]'+node.getAttribute("alt")+'[/u] ';
 		}
 		else if (node.hasAttribute("title") && node.getAttribute("title") !== "") {
-			return node.getAttribute("title");
+			return ' [u]'+node.getAttribute("title")+'[/u] ';
 		}
 		else {
 			return "";
@@ -144,8 +153,11 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 	else if (nodeName === "br") {
 		return "\n";
 	}
+	else if (nodeName === "ul" && node.className.indexOf('ft-popup-list') != -1) {
+		return '';
+	}
 
-	var ret = "";
+	var ret = " ";
 
 	var trim = function(string) {
 		return string.replace(RegExp("\\s*\n\\s*", "g"), "\n")
@@ -172,7 +184,7 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 			var linkId = Foxtrick.util.htMl.getId(node);
 			if (linkMarkup !== null) {
 				if (linkId !== null && linkId.id !== undefined
-					&& ret === "(" + linkId.id + ")") {
+					&& ret.replace(/^\s+|\s+$/g,'') === "(" + linkId.id + ")") {
 					// if the link is simply a representation of ID,
 					// then only use the markup without extra text
 					ret = linkMarkup.markup;
@@ -180,6 +192,10 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 				else {
 					ret += " " + linkMarkup.markup;
 				}
+			}
+			else {
+				if (node.href.indexOf('javascript')!==-1)
+					ret = '[u]'+ret+'[/u] ';
 			}
 			return ret;
 		}
@@ -201,7 +217,7 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 	else if (nodeName === "blockquote") {
 		ret = "[q]" + ret + "[/q]";
 	}
-	else if (nodeName === "strong" || nodeName === "b") {
+	else if (nodeName === "strong" || nodeName === "b" || nodeName === "h1" || nodeName === "h2"|| nodeName === "h3" || nodeName === "h4") {
 		ret = "[b]" + ret + "[/b]";
 	}
 	else if (nodeName === "emph" || nodeName === "i") {
@@ -211,11 +227,12 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 		ret = "[u]" + ret + "[/u]";
 	}
 
-	if (computedStyle && computedStyle.getPropertyValue("display") === "block") {
-		ret += "\n";
+	if (computedStyle && computedStyle.getPropertyValue("display") === "block" 
+		|| nodeName === "p" || nodeName === "h1" || nodeName === "h2" || nodeName === "h3" || nodeName === "h4") {
+		ret = '\n' + ret + '\n';
 	}
 
-	return ret;
+	return ret.replace(/ +/g,' ').replace(/\n /g,'\n');
 };
 
 Foxtrick.util.htMl.getHtMl = function(node) {
@@ -224,6 +241,7 @@ Foxtrick.util.htMl.getHtMl = function(node) {
 	if (!selection.isCollapsed && selection.rangeCount > 0) {
 		var markup = '';
 		for (var i = 0; i < selection.rangeCount; ++i) {
+			// in chrome computedStyle gets lost in cloneContents as it seems.
 			markup += Foxtrick.util.htMl.getMarkupFromNode(selection.getRangeAt(i).cloneContents());
 			if (i !== selection.rangeCount - 1) {
 				markup += "\n";
