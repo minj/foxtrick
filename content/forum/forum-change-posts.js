@@ -483,7 +483,7 @@ var FoxtrickForumChangePosts = {
 			// the only text node of head_right, which contains date and time
 			var header_right_text = "";
 			for (var i = 0; i < header_right.childNodes.length; ++i) {
-				if (header_right.childNodes[i].nodeType === window.Node.TEXT_NODE) {
+				if (header_right.childNodes[i].nodeType === Node.TEXT_NODE) {
 					header_right_text = header_right.childNodes[i].textContent;
 					break;
 				}

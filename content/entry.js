@@ -190,7 +190,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 Foxtrick.entry.change = function(ev) {
 	try {
 		var doc = ev.target.ownerDocument;
-		if (ev.target.nodeType !== window.Node.ELEMENT_NODE)
+		if (ev.target.nodeType !== Node.ELEMENT_NODE)
 			return;
 
 		// not on matchlineup

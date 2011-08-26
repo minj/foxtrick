@@ -754,7 +754,7 @@ function importContent(from, to)
 {
 	for (var i = 0; i < from.childNodes.length; ++i) {
 		var node = from.childNodes[i];
-		if (node.nodeType == window.Node.ELEMENT_NODE
+		if (node.nodeType == Node.ELEMENT_NODE
 			&& node.nodeName.toLowerCase() == "module") {
 			var link = document.createElement("a");
 			link.textContent = node.textContent;
