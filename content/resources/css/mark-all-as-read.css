@@ -6,11 +6,11 @@
 	display: inline;
 }
 
-[dir="ltr"] .ft-mark-all-as-read {
+html[dir="ltr"] .ft-mark-all-as-read {
 	margin: 0 7px 0 2px;
 	float: right;
 }
-[dir="rtl"] .ft-mark-all-as-read {
+html[dir="rtl"] .ft-mark-all-as-read {
 	margin: 0 2px 0 7px;
 	float: left;
 }

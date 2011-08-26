@@ -1,7 +1,7 @@
-[data-theme="standard"] .copyicon.ft-copy-ratings {
+html[data-theme="standard"] .copyicon.ft-copy-ratings {
 	background-image: url("chrome://foxtrick/content/resources/img/copy/copyMatchRatings.png");
 }
 
-[data-theme="simple"] .copyicon.ft-copy-ratings {
+html[data-theme="simple"] .copyicon.ft-copy-ratings {
 	background-image: url("chrome://foxtrick/content/resources/img/copy/copyMatchRatings_s.png");
 }

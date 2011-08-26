@@ -1,7 +1,7 @@
-[data-theme="standard"] #ft_rapidid { margin-top: 9px; margin-left: 7px; }
-[data-theme="simple"] #ft_rapidid { margin-top: 20px; margin-left: 5px; }
+html[data-theme="standard"] #ft_rapidid { margin-top: 9px; margin-left: 7px; }
+html[data-theme="simple"] #ft_rapidid { margin-top: 20px; margin-left: 5px; }
 
 #ft_rapidid a { cursor: pointer; text-decoration: underline; }
 
-[data-theme="simple"] #ft_rapidid_form { font-size: 1.1em; }
-[data-theme="simple"] #ft_rapidid_container { font-size: 100%; }
+html[data-theme="simple"] #ft_rapidid_form { font-size: 1.1em; }
+html[data-theme="simple"] #ft_rapidid_container { font-size: 100%; }

@@ -1,10 +1,10 @@
 /* settings here apply to all pages, including non hattrick pages.
    so any own class HAS TO start with eg 'foxtrick_' to make it foxtrick specific */
 
-[data-theme="standard"] #stageLogo {
+html[data-theme="standard"] #stageLogo {
 	background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick.png') !important;
 }
-[data-theme="simple"] #stageLogo {
+html[data-theme="simple"] #stageLogo {
 	background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick_simple.png') !important;
 }
 
@@ -40,12 +40,12 @@ div.ft-expander-unexpanded h2, div.ft-expander-expanded h2 {
 	cursor: pointer;
 	background-repeat: no-repeat;
 }
-[dir="ltr"] .ft-expander-unexpanded, [dir="ltr"] .ft-expander-expanded,
-[dir="ltr"] div.ft-expander-unexpanded h2, [dir="ltr"] div.ft-expander-expanded h2 {
+html[dir="ltr"] .ft-expander-unexpanded, html[dir="ltr"] .ft-expander-expanded,
+html[dir="ltr"] div.ft-expander-unexpanded h2, html[dir="ltr"] div.ft-expander-expanded h2 {
 	background-position: right;
 }
-[dir="rtl"] .ft-expander-unexpanded, [dir="rtl"] .ft-expander-expanded,
-[dir="rtl"] div.ft-expander-unexpanded h2, [dir="rtl"] div.ft-expander-expanded h2 {
+html[dir="rtl"] .ft-expander-unexpanded, html[dir="rtl"] .ft-expander-expanded,
+html[dir="rtl"] div.ft-expander-unexpanded h2, html[dir="rtl"] div.ft-expander-expanded h2 {
 	background-position: left;
 }
 
@@ -64,10 +64,10 @@ h2.ft-expander-unexpanded, h3.ft-expander-unexpanded {
 h2.ft-expander-expanded, h3.ft-expander-expanded {
 	background-image: url("chrome://foxtrick/content/resources/img/up.gif");
 }
-[dir="ltr"] h3.ft-expander-unexpanded, [dir="ltr"] h3.ft-expander-expanded {
+html[dir="ltr"] h3.ft-expander-unexpanded, html[dir="ltr"] h3.ft-expander-expanded {
 	padding-right: 20px !important;
 }
-[dir="rtl"] h3.ft-expander-unexpanded, [dir="rtl"] h3.ft-expander-expanded {
+html[dir="rtl"] h3.ft-expander-unexpanded, html[dir="rtl"] h3.ft-expander-expanded {
 	padding-right: 20px !important;
 }
 
@@ -188,11 +188,11 @@ ul.ft-pop {
 	padding: 0px;
 	margin: 0px;
 }
-[dir="ltr"] ul.ft-pop.right {
+html[dir="ltr"] ul.ft-pop.right {
 	right: 0px;
 	text-align:left;
 }
-[dir="rtl"] ul.ft-pop.right {
+html[dir="rtl"] ul.ft-pop.right {
 	left: 0px;
 	text-align:right;
 }
@@ -218,14 +218,14 @@ ul.ft-pop > li a, ul.ft-pop span {
 }
 #ft_clear_cache {cursor: pointer; color:#3F7137; }
 
-[data-theme="simple"] .transferPlayerSkills {
+html[data-theme="simple"] .transferPlayerSkills {
 	max-width: 62% !important;
 	background-color: white;
 	padding-left: 5px !important;
 }
-[data-theme="simple"] .transferPlayerInformation {
+html[data-theme="simple"] .transferPlayerInformation {
 	max-width: 30% !important;
 }
-[data-theme="simple"] #ctl00_ctl00_CPContent_CPMain_UpdatePanelLiveLeagueTable {
+html[data-theme="simple"] #ctl00_ctl00_CPContent_CPMain_UpdatePanelLiveLeagueTable {
 	white-space: nowrap;
 }

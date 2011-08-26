@@ -1,30 +1,30 @@
-[data-theme="standard"] .copyicon.ft-copy-training-report {
+html[data-theme="standard"] .copyicon.ft-copy-training-report {
 	background-image: url("chrome://foxtrick/content/resources/img/copy/copyTrainingReport.png");
 }
-[data-theme="simple"] .copyicon.ft-copy-training-report {
+html[data-theme="simple"] .copyicon.ft-copy-training-report {
 	background-image: url("chrome://foxtrick/content/resources/img/copy/copyTrainingReport_s.png");
 }
 
 
-[data-theme="standard"] .copyicon.ft-copy-scout-comment {
+html[data-theme="standard"] .copyicon.ft-copy-scout-comment {
 	background-image: url("chrome://foxtrick/content/resources/img/copy/copyScoutReport.png");
 }
-[data-theme="simple"] .copyicon.ft-copy-scout-comment {
+html[data-theme="simple"] .copyicon.ft-copy-scout-comment {
 	background-image: url("chrome://foxtrick/content/resources/img/copy/copyScoutReport_s.png");
 }
 
 
-[data-theme="standard"] .copyicon.ft-copy-player-source {
+html[data-theme="standard"] .copyicon.ft-copy-player-source {
 	background-image: url("chrome://foxtrick/content/resources/img/copy/copyPlayerSource.png");
 }
-[data-theme="simple"] .copyicon.ft-copy-player-source {
+html[data-theme="simple"] .copyicon.ft-copy-player-source {
 	background-image: url("chrome://foxtrick/content/resources/img/copy/copyPlayerSource_s.png");
 }
 
 
-[data-theme="standard"] .copyicon.ft-copy-fixtures-source {
+html[data-theme="standard"] .copyicon.ft-copy-fixtures-source {
 	background-image: url("chrome://foxtrick/content/resources/img/copy/copyNormal.png");
 }
-[data-theme="simple"] .copyicon.ft-copy-fixtures-source {
+html[data-theme="simple"] .copyicon.ft-copy-fixtures-source {
 	background-image: url("chrome://foxtrick/content/resources/img/copy/copyNormal_s.png");
 }

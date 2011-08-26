@@ -7,10 +7,10 @@
 	top: 0px;
 	z-index: 9990;
 }
-[data-theme="standard"] #header {
+html[data-theme="standard"] #header {
 	width: 949px;
 }
-[data-theme="simple"] #header {
+html[data-theme="simple"] #header {
 	width: 764px;
 	background-color: white !important;
 	border-color: #DDDDDD;
@@ -19,13 +19,13 @@
 	height: 103px !important
 }
 
-[dir="ltr"][data-theme="simple"] #header {
+html[dir="ltr"][data-theme="simple"] #header {
 	margin-left: -11px;
 	padding-right:10px;
 	padding-left: 11px;
 }
 
-[dir="rtl"][data-theme="simple"] #header {
+html[dir="rtl"][data-theme="simple"] #header {
 	margin-right: -11px;
 	padding-left:10px;
 	padding-right: 11px;
@@ -33,37 +33,37 @@
 
 
 /* compensate for fixed header, move menu from the edge */
-[data-theme="standard"] #menu {
+html[data-theme="standard"] #menu {
 	width: 953px !important;
 	padding:0px 0px 0px 4px !important;
 	margin-left:0px !important;
 	border-radius-topright: 10px;
 	border-radius-bottomright: 10px;
 }
-[data-theme="simple"] #menu {
+html[data-theme="simple"] #menu {
 	margin-left:10px !important;
 	width: 765px !important;
 }
-[dir="ltr"][data-theme="simple"] #shortcuts {
+html[dir="ltr"][data-theme="simple"] #shortcuts {
 	right:11px;
 }
-[dir="rtl"][data-theme="standard"] #sidebar {
+html[dir="rtl"][data-theme="standard"] #sidebar {
 	margin-left: 14px !important;
 }
 
 /* add whitespace below header */
-[data-theme="standard"] #menu {
+html[data-theme="standard"] #menu {
 	margin-bottom: 6px !important;
 }
-[data-theme="simple"] #menu {
+html[data-theme="simple"] #menu {
 	margin-bottom: 2px !important;
 }
 
 /* Logout botton +radius */
-[dir="ltr"][data-theme="standard"] #menu .logout {
+html[dir="ltr"][data-theme="standard"] #menu .logout {
 	margin-right: 11px !important;
 }
-[dir="rtl"][data-theme="standard"] #menu .logout {
+html[dir="rtl"][data-theme="standard"] #menu .logout {
 	margin-left: 11px !important;
 }
 

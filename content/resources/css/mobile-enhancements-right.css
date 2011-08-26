@@ -1,10 +1,10 @@
 @-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
-[data-theme='simple'] .main, [data-theme='simple'] .subMenu, [data-theme='simple'] #header, [data-theme='simple'] #bottom
+html[data-theme='simple'] .main, html[data-theme='simple'] .subMenu, html[data-theme='simple'] #header, html[data-theme='simple'] #bottom
 	{display:none !important}
 
-[data-theme='simple'] .hattrick,
-[data-theme='simple'] .hattrickNoSupporter,
-[data-theme='simple'] #page
+html[data-theme='simple'] .hattrick,
+html[data-theme='simple'] .hattrickNoSupporter,
+html[data-theme='simple'] #page
 	{width:190px!important}
 }

@@ -10,14 +10,14 @@ a.copyicon img {
 	padding: 0px 0px 0px 0px;
 }
 
-[data-theme="standard"] a.copyicon,
-[data-theme="standard"] a.copyicon img {
+html[data-theme="standard"] a.copyicon,
+html[data-theme="standard"] a.copyicon img {
 	height: 36px;
 	width: 36px;
 }
 
-[data-theme="simple"] a.copyicon,
-[data-theme="simple"] a.copyicon img {
+html[data-theme="simple"] a.copyicon,
+html[data-theme="simple"] a.copyicon img {
 	height: 22px;
 	width: 22px;
 }
@@ -27,45 +27,45 @@ a.copyicon img {
 	position: absolute;
 	z-index: 99;
 }
-[data-theme="standard"] #mainBody .copyicon {
+html[data-theme="standard"] #mainBody .copyicon {
 	top: 11px;
 }
-[data-theme="simple"] #mainBody .copyicon {
+html[data-theme="simple"] #mainBody .copyicon {
 	top: 6px;
 }
 
 /* header icon positions */
-[data-theme="standard"][dir="ltr"] .ci_first { right: 14px; }
-[data-theme="standard"][dir="ltr"] .ci_second { right: 51px; }
-[data-theme="standard"][dir="ltr"] .ci_third { right: 88px; }
-[data-theme="standard"][dir="ltr"] .ci_fourth { right: 125px; }
-[data-theme="standard"][dir="ltr"] .ci_fifth { right: 162px; }
-[data-theme="standard"][dir="ltr"] .ci_sixth { right: 199px; }
-[data-theme="standard"][dir="ltr"] .ci_seveth { right: 236px; }
+html[data-theme="standard"][dir="ltr"] .ci_first { right: 14px; }
+html[data-theme="standard"][dir="ltr"] .ci_second { right: 51px; }
+html[data-theme="standard"][dir="ltr"] .ci_third { right: 88px; }
+html[data-theme="standard"][dir="ltr"] .ci_fourth { right: 125px; }
+html[data-theme="standard"][dir="ltr"] .ci_fifth { right: 162px; }
+html[data-theme="standard"][dir="ltr"] .ci_sixth { right: 199px; }
+html[data-theme="standard"][dir="ltr"] .ci_seveth { right: 236px; }
 
-[data-theme="standard"][dir="rtl"] .ci_first { left: 14px; }
-[data-theme="standard"][dir="rtl"] .ci_second { left: 51px; }
-[data-theme="standard"][dir="rtl"] .ci_third { left: 88px; }
-[data-theme="standard"][dir="rtl"] .ci_fourth { left: 125px; }
-[data-theme="standard"][dir="rtl"] .ci_fifth { left: 162px; }
-[data-theme="standard"][dir="rtl"] .ci_sixth { right: 199px; }
-[data-theme="standard"][dir="rtl"] .ci_seveth { right: 236px; }
+html[data-theme="standard"][dir="rtl"] .ci_first { left: 14px; }
+html[data-theme="standard"][dir="rtl"] .ci_second { left: 51px; }
+html[data-theme="standard"][dir="rtl"] .ci_third { left: 88px; }
+html[data-theme="standard"][dir="rtl"] .ci_fourth { left: 125px; }
+html[data-theme="standard"][dir="rtl"] .ci_fifth { left: 162px; }
+html[data-theme="standard"][dir="rtl"] .ci_sixth { right: 199px; }
+html[data-theme="standard"][dir="rtl"] .ci_seveth { right: 236px; }
 
-[data-theme="simple"][dir="ltr"] .ci_first { right: 6px; }
-[data-theme="simple"][dir="ltr"] .ci_second { right: 31px; }
-[data-theme="simple"][dir="ltr"] .ci_third { right: 56px; }
-[data-theme="simple"][dir="ltr"] .ci_fourth { right: 81px; }
-[data-theme="simple"][dir="ltr"] .ci_fifth { right: 106px; }
-[data-theme="simple"][dir="ltr"] .ci_sixth { right: 131px; }
-[data-theme="simple"][dir="ltr"] .ci_seveth { right: 156px; }
+html[data-theme="simple"][dir="ltr"] .ci_first { right: 6px; }
+html[data-theme="simple"][dir="ltr"] .ci_second { right: 31px; }
+html[data-theme="simple"][dir="ltr"] .ci_third { right: 56px; }
+html[data-theme="simple"][dir="ltr"] .ci_fourth { right: 81px; }
+html[data-theme="simple"][dir="ltr"] .ci_fifth { right: 106px; }
+html[data-theme="simple"][dir="ltr"] .ci_sixth { right: 131px; }
+html[data-theme="simple"][dir="ltr"] .ci_seveth { right: 156px; }
 
-[data-theme="simple"][dir="rtl"] .ci_first { left: 6px; }
-[data-theme="simple"][dir="rtl"] .ci_second { left: 31px; }
-[data-theme="simple"][dir="rtl"] .ci_third { left: 56px; }
-[data-theme="simple"][dir="rtl"] .ci_fourth { left: 81px; }
-[data-theme="simple"][dir="rtl"] .ci_fifth { left: 106px; }
-[data-theme="simple"][dir="rtl"] .ci_sixth { right: 131px; }
-[data-theme="simple"][dir="rtl"] .ci_seveth { right: 156px; }
+html[data-theme="simple"][dir="rtl"] .ci_first { left: 6px; }
+html[data-theme="simple"][dir="rtl"] .ci_second { left: 31px; }
+html[data-theme="simple"][dir="rtl"] .ci_third { left: 56px; }
+html[data-theme="simple"][dir="rtl"] .ci_fourth { left: 81px; }
+html[data-theme="simple"][dir="rtl"] .ci_fifth { left: 106px; }
+html[data-theme="simple"][dir="rtl"] .ci_sixth { right: 131px; }
+html[data-theme="simple"][dir="rtl"] .ci_seveth { right: 156px; }
 
 .linkyouthstatistics img {
     background: transparent url(chrome://foxtrick/content/resources/img/copy/copyNormal.png) no-repeat scroll 0 0;
