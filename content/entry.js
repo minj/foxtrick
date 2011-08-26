@@ -135,20 +135,20 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		}
 
 		// set up direction and style attributes
-		var current_skin = Foxtrick.util.layout.isStandard(doc) ? "standard" : "simple";
+		var current_theme = Foxtrick.util.layout.isStandard(doc) ? "standard" : "simple";
 		var current_dir = Foxtrick.util.layout.isRtl(doc) ? "rtl" : "ltr";
-		var oldskin = FoxtrickPrefs.getString('skin');
+		var oldtheme = FoxtrickPrefs.getString('theme');
 		var olddir = FoxtrickPrefs.getString('dir');
-		if ( current_skin!= oldskin || current_dir != olddir) {
+		if ( current_theme!= oldtheme || current_dir != olddir) {
 			Foxtrick.log('layout change');
-			FoxtrickPrefs.setString('skin', current_skin);
+			FoxtrickPrefs.setString('theme', current_theme);
 			FoxtrickPrefs.setString('dir', current_dir);
 			Foxtrick.reload_module_css(doc);
 			Foxtrick.entry.cssLoaded = true;
 		}
 		var html = doc.getElementsByTagName("html")[0];
 		html.dir = current_dir;
-		html.setAttribute("data-theme", current_skin);
+		html.setAttribute("data-theme", current_theme);
 		html.setAttribute("data-fennec-theme", doc.location.href.search(/forum/i)==-1 ? "default" : "forum");
 
 		// reload CSS if not loaded

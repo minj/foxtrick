@@ -603,7 +603,7 @@ Foxtrick.getCssTextFromFile = function (cssUrl) {
 		// not a file. line is css text already
 		css_text = cssUrl;
 	}
-	css_text = css_text.replace(new RegExp('\\[data-theme="'+FoxtrickPrefs.getString('skin')+'"\\]','g'), "");
+	css_text = css_text.replace(new RegExp('\\[data-theme="'+FoxtrickPrefs.getString('theme')+'"\\]','g'), "");
 	css_text = css_text.replace(new RegExp('\\[dir="'+FoxtrickPrefs.getString('dir')+'"\\]','g'), "");
 	if (Foxtrick.arch == "Sandboxed") {
 		// remove moz-document statement
@@ -627,7 +627,7 @@ Foxtrick.getCssFileArrayToString = function(cssUrls) {
 
 	// gets all css from modules.CSS settings
 Foxtrick.getCssTextCollection = function() {
-	Foxtrick.log('getCssTextCollection ',FoxtrickPrefs.getString('skin'),' - ',FoxtrickPrefs.getString('dir'));
+	Foxtrick.log('getCssTextCollection ',FoxtrickPrefs.getString('theme'),' - ',FoxtrickPrefs.getString('dir'));
 	Foxtrick.collect_module_css();
 	return 	Foxtrick.getCssFileArrayToString(Foxtrick.cssFiles);
 };
