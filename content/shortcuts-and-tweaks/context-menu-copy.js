@@ -16,10 +16,11 @@ var FoxtrickContextMenuCopy = {
 	// menuEntryId: ids for menu entries in firefox and chrome
 	// copyText: text to be copied
 	contextEntries : { 
-			"foxtrick-popup-copy-id": 	{ option: 'Id', 	menuEntryId: null, copyText: null },
-			"foxtrick-popup-copy-link": { option: 'Link', 	menuEntryId: null, copyText: null },
-			"foxtrick-popup-copy-ht-ml":{ option: 'HtMl', 	menuEntryId: null, copyText: null },
-			"foxtrick-popup-copy-table":{ option: 'Table', 	menuEntryId: null, copyText: null } },
+		"foxtrick-popup-copy-id" : { option: 'Id', func: Foxtrick.util.htMl.getId, menuEntryId: null, copyText: null },
+		"foxtrick-popup-copy-link" : { option: 'Link', func: Foxtrick.util.htMl.getLink, menuEntryId: null, copyText: null },
+		"foxtrick-popup-copy-ht-ml" : { option: 'HtMl', func: Foxtrick.util.htMl.getHtMl, menuEntryId: null, copyText: null },
+		"foxtrick-popup-copy-table" : { option: 'Table', func: Foxtrick.util.htMl.getTable, menuEntryId: null, copyText: null }
+	},
 
 	onLoad : function(document) {
 		if (Foxtrick.arch !== "Gecko") return;
@@ -66,7 +67,8 @@ var FoxtrickContextMenuCopy = {
 							'title'		: request.entries[type].title, 
 							'contexts'	: ["all"],
 							'onclick'	: FoxtrickContextMenuCopy.contextEntries[type].onClick, 
-							'documentUrlPatterns': documentUrlPatterns });
+							'documentUrlPatterns': documentUrlPatterns
+						});
 				}
 			}
 		});
@@ -152,7 +154,7 @@ var FoxtrickContextMenuCopy = {
 			for ( var type in FoxtrickContextMenuCopy.contextEntries ) {
 				FoxtrickContextMenuCopy.contextEntries[type].copyText = null;
 				if ( FoxtrickPrefs.isModuleOptionEnabled( "ContextMenuCopy", FoxtrickContextMenuCopy.contextEntries[type].option )) {
-					var markupObj = Foxtrick.util.htMl.get[ FoxtrickContextMenuCopy.contextEntries[type].option ](node);
+					var markupObj = FoxtrickContextMenuCopy.contextEntries[type].func(node);
 					if (markupObj !== null) {
 						FoxtrickContextMenuCopy.contextEntries[type].title = markupObj.copyTitle;
 						FoxtrickContextMenuCopy.contextEntries[type].copyText = markupObj.markup;

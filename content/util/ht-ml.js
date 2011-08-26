@@ -10,12 +10,14 @@ if (!Foxtrick.util) Foxtrick.util = {};
 Foxtrick.util.htMl = {};
 Foxtrick.util.htMl.get = {};
 
+// @param node: a DOM node which is an <a> element or an <a>'s child node
+// @returns:
 // if ID is found, will return an object like this:
 // { type : "match", id : "123456789", tag : "matchid" },
 // or like this:
 // { type : "arena", id : "123456" }
 // otherwise, return null
-Foxtrick.util.htMl.get['Id'] = function(node) {
+Foxtrick.util.htMl.getId = function(node) {
 	const idTypes = [
 		{ type : "Player", re : /\/Player\.aspx\?playerId=(\d+)/i, tag : "playerid" },
 		{ type : "Youth Player", re : /\?YouthPlayerID=(\d+)/i, tag : "youthplayerid" },
@@ -76,10 +78,11 @@ Foxtrick.util.htMl.get['Id'] = function(node) {
 	return null;
 };
 
-// returns a string link like "[matchid=123456789]"
+// @param node: a DOM node which is an <a> element or an <a>'s child node
+// @returns a string link like "[matchid=123456789]"
 // or "[link=/Club/…]" or "[link=ftp://example.org/…]"
-Foxtrick.util.htMl.get['Link'] = function(node) {
-	var idObj = Foxtrick.util.htMl.get['Id'](node);
+Foxtrick.util.htMl.getLink = function(node) {
+	var idObj = Foxtrick.util.htMl.getId(node);
 	var markup = null;
 	if (idObj !== null && idObj.tag !== undefined) {
 		markup = "[" + idObj.tag + "=" + idObj.id + "]";
@@ -166,8 +169,8 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 
 	if (nodeName === "a") {
 		if (node.href !== undefined) {
-			var linkMarkup = Foxtrick.util.htMl.get['Link'](node);
-			var linkId = Foxtrick.util.htMl.get['Id'](node);
+			var linkMarkup = Foxtrick.util.htMl.getLink(node);
+			var linkId = Foxtrick.util.htMl.getId(node);
 			if (linkMarkup !== null) {
 				if (linkId !== null && linkId.id !== undefined
 					&& ret === "(" + linkId.id + ")") {
@@ -216,8 +219,7 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 	return ret;
 };
 
-
-Foxtrick.util.htMl.get['HtMl'] = function(node) {
+Foxtrick.util.htMl.getHtMl = function(node) {
 	var window = node.ownerDocument.defaultView
 	var selection = window.getSelection();
 	if (!selection.isCollapsed && selection.rangeCount > 0) {
@@ -234,7 +236,7 @@ Foxtrick.util.htMl.get['HtMl'] = function(node) {
 	return null;
 };
 	
-Foxtrick.util.htMl.get['Table'] = function(node) {
+Foxtrick.util.htMl.getTable = function(node) {
 	var table = null;
 	var currentObj = node;
 	while (currentObj) {
