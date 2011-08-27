@@ -270,7 +270,7 @@ function initTextAndValues()
 
 	// initialize delete-token 
 	const chpp_url = FoxtrickPrefs.getString("last-host") + "/MyHattrick/Preferences/ExternalAccessGrants.aspx";
-	$("#pref-delete-token-label").html(Foxtrickl10n.getString($("#pref-delete-token-label").attr("data-text")).replace(/%(\w+)/, "<a href='"+chpp_url+"' target='_blank'>$1</a>"));
+	$("#pref-delete-token-desc").html($("#pref-delete-token-desc").text().replace(/\{(.+)\}/, "<a href='"+chpp_url+"' target='_blank'>$1</a>"));
 	var oauth_keys = FoxtrickPrefs.getAllKeysOfBranch('oauth');
 	var teamids = Foxtrick.map( function(n){ return n.match(/\d+/)[0]; }, oauth_keys);
 	teamids = Foxtrick.unique(teamids);
