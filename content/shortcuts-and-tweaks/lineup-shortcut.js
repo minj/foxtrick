@@ -67,11 +67,15 @@ var FoxtrickLineupShortcut = {
 			var matchId = Foxtrick.util.id.getMatchIdFromUrl(link.href);
 
 			// find out home/away team names
-			var teamsTrimmed = link.innerHTML.split(/&nbsp;-&nbsp;/);
+			// \u00a0 is no-break space (entity &nbsp;)
+			// use textContent to deal with encoded entities (like &amp;)
+			// which innerHTML isn't capable of
+			var teamsTrimmed = link.textContent.split(new RegExp("\u00a0-\u00a0"));
 			var teamsText = link.title;
 			var homeIdx = teamsText.indexOf(teamsTrimmed[0]);
 			var awayIdx = teamsText.indexOf(teamsTrimmed[1]);
 			var matchTeams = [teamsText.substr(homeIdx, awayIdx-1), teamsText.substr(awayIdx)];
+			Foxtrick.log("matchTeams: ", matchTeams);
 
 			for (var j = 0; j < matchTeams.length; j++) {
 				switch (matchTeams[j]) {
