@@ -75,7 +75,6 @@ var FoxtrickLineupShortcut = {
 			var homeIdx = teamsText.indexOf(teamsTrimmed[0]);
 			var awayIdx = teamsText.indexOf(teamsTrimmed[1]);
 			var matchTeams = [teamsText.substr(homeIdx, awayIdx-1), teamsText.substr(awayIdx)];
-			Foxtrick.log("matchTeams: ", matchTeams);
 
 			for (var j = 0; j < matchTeams.length; j++) {
 				switch (matchTeams[j]) {
