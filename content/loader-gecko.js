@@ -64,6 +64,7 @@ Foxtrick.loader.gecko.tabFocus = function(ev) {
 			}
 		}
 	}
+	Foxtrick.log.flush(doc);
 };
 
 
