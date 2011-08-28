@@ -13,9 +13,8 @@ Foxtrick.entry = {};
 Foxtrick.entry.runMap = {};
 
 // invoked on DOMContentLoaded
-Foxtrick.entry.docLoad = function(ev) {
-	if (Foxtrick.arch === "Sandboxed") var doc = document;
-	if (Foxtrick.arch === "Gecko") var doc = ev.originalTarget;
+// @param doc - HTML document to run on
+Foxtrick.entry.docLoad = function(doc) {
 	if (doc.nodeName != "#document")
 		return;
 

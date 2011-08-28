@@ -66,11 +66,13 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 				// if ht doc is already loaded start now, else wait till loaded
 				if (Foxtrick.isHt(document)) {
 					Foxtrick.log('Ht domument ready. Run now.');
-					Foxtrick.entry.docLoad();
+					Foxtrick.entry.docLoad(document);
 				}
 				else {
 					Foxtrick.log('Wait for DOMContentLoaded');
-					window.addEventListener("DOMContentLoaded", Foxtrick.entry.docLoad, false);
+					window.addEventListener("DOMContentLoaded", function() {
+						Foxtrick.entry.docLoad(document)
+					}, false);
 				}
 			} catch(e) {Foxtrick.log('loader init: ', e);}
 		});
