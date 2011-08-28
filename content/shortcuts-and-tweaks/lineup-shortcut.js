@@ -142,14 +142,14 @@ var FoxtrickLineupShortcut = {
 		var mainWrapper = doc.getElementById("mainWrapper");
 		var mainBody = doc.getElementById("mainBody");
 
-		var matchLinks = Foxtrick.filter(function(n) {
+		var matchLink = Foxtrick.nth(0, function(n) {
 				return n.href.indexOf("/Club/Matches/Match.aspx") >= 0;
 			}, mainBody.getElementsByTagName("a"));
-		if (!matchLinks.length)
+		if (!matchLink)
 			return; // hasn't played a match yet
 
 		// get matchTable which contains matches played
-		var matchTable = matchLinks[0];
+		var matchTable = matchLink;
 		while (matchTable.tagName.toLowerCase() != "table" && matchTable.parentNode)
 			matchTable = matchTable.parentNode;
 		if (matchTable.tagName.toLowerCase() != "table")
@@ -157,7 +157,7 @@ var FoxtrickLineupShortcut = {
 
 		var playerid=Foxtrick.util.id.findYouthPlayerId(mainWrapper);
 		var teamid=Foxtrick.util.id.findYouthTeamId(mainWrapper);
-		for (i=0;i<matchTable.rows.length;i++) {
+		for (var i=0;i<matchTable.rows.length;i++) {
 			var link=matchTable.rows[i].cells[1].getElementsByTagName('a').item(0);
 			var matchid=Foxtrick.util.id.getMatchIdFromUrl(link.href);
 			this._Add_Lineup_Link(doc, matchTable.rows[i], teamid, playerid, matchid, "youth");
