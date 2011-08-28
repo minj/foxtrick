@@ -13,6 +13,34 @@
 <item>请查阅 Google Code 上的<xhtml:a href="http://code.google.com/p/foxtrick/source/list">版本历史</xhtml:a>.</item>
 </note>
 
+<note version="0.8">
+<item>使用新机制以根据页面查看模块, 因此移除了旧模块 OnPagePrefs. (convincedd, ryanli)</item>
+<item><xhtml:a href="#tab=main">选项</xhtml:a> 以不从 Hattrick 加载 XML 数据. 同时提供了清理 XML 缓存的链接. (convincedd)</item>
+<item>新模块 <module>LocalTime</module>, 以显示本地时区的时间. (ryanli)</item>
+<item>新模块 <module>LinksYouthLeague</module>, 以在青年联赛页面显示外部链接. (Parminu)</item>
+<item>新模块 <module>CopyYouth</module>, 合并了原有复制青年队信息的模块, 提供了到目的地的链接. 添加了复制青年队赛程的功能. (ryanli, Parminu)</item>
+<item>新模块 <module>SupporterStatsEnhancements</module>, 提供了支持者统计信息页面的优化. (convincedd)</item>
+<item>模块 <module>FixcssProblems</module> 中的新选项, 以隐藏左边栏底部的邀请框 (ryanli)</item>
+<item>模块 <module>FixcssProblems</module> 中的新选项, 以缩减日历的高度. (ryanli)</item>
+<item>模块 <module>ExtraShortcuts</module> 中到 CHPP 产品管理页面的链接. (ljushaff)</item>
+<item>模块 <module>SkillTable</module> 中显示彩色的青年球员技能的选项. (asdfasdfasdf@mailinator.com)</item>
+<item>模块 <module>LiveAlert</module> 中播放声音的选项. (ryanli)</item>
+<item>模块 <module>MyMonitor</module> 中显示球队徽标的选项, 球队也能够排序了. (convincedd)</item>
+<item>模块 <module>ForumYouthIcons</module> 中插入 FoxTrick 调试信息的按钮. (convincedd)</item>
+<item>模块 <module>ShowFriendlyBooked</module> 默认只在用户需要时载入友谊赛安排信息. (convincedd)</item>
+<item>模块 <module>SkillTable</module> 能够载入额外的球员信息. (convincedd)</item>
+<item>Firefox 下 FoxTrick 图标被移动到地址栏并且可以拖拽. (ryanli)</item>
+<item>Chrome 下 FoxTrick 图标被移动到地址栏内. 同时还有速度上的优化. (convincedd)</item>
+<item>FoxTrick 现在兼容于 Fennec (Firefox 移动版) 了. (convincedd)</item>
+<item>FoxTrick 现在有了 Opera 和 Safari 下的测试版本. (convincedd, ryanli)</item>
+<item>其他一些细微的更改与改进. (convincedd, ryanli)</item>
+</note>
+
+<note version="0.7.2">
+<item>模块 <module>LinksTeam</module> 中使用 Alltid 比较球队的链接. (convincedd)</item>
+<item>技能表在转会比较结果中的修复. (convincedd, ryanli)</item>
+</note>
+
 <note version="0.7.1">
 <item>模块 <module>LeagueNewsFilter</module> 被分为 <module>LeagueNewsFilter</module> 与 <module>ShowLineupSet</module>. (ryanli)</item>
 <item>用于适应新转会搜索结果页面的一些修正. (ryanli, taised)</item>
