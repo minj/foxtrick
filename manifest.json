@@ -193,6 +193,7 @@
 		"default_title": "FoxTrick enabled"
 	},
 	"options_page" : "content/preferences.html",
+	"homepage_url": "http://http://code.google.com/p/foxtrick/",
 	"update_url" : "http://foxtrick.foundationhorizont.org/nightly/chrome/update.xml",
 	"version" : "0.7.9"
 }
