@@ -198,10 +198,11 @@ Foxtrick.loader.chrome.browserLoad = function() {
 					);
 					notification.onclick = function() {
 						if ( Foxtrick.platform == "Chrome" ) {
-							// focus last window
-							chrome.windows.update( sender.tab.windowId, { focused:true });
 							// goto msg.url in sender tab
 							chrome.tabs.update( sender.tab.id, { url:request.url, selected:true });
+							// focus last window. needs permissions: tabs. only nightly as for now
+							try { chrome.windows.update( sender.tab.windowId, { focused:true });
+							} catch(e){}
 						}
 						else
 							sandboxed.tabs.create({url: request.url});
