@@ -2347,8 +2347,10 @@ Foxtrick.LinkCollection.getLinks2  = function(stats, stattype, filterparams, doc
 
 
 Foxtrick.LinkCollection.getLinks  = function(stattype, filterparams, doc, module) {
-	filterparams.server = doc.location.hostname;
-	return Foxtrick.LinkCollection.getLinks2(Foxtrick.StatsHash[stattype], stattype, filterparams, doc, false, module);
+	try {
+		filterparams.server = doc.location.hostname;
+		return Foxtrick.LinkCollection.getLinks2(Foxtrick.StatsHash[stattype], stattype, filterparams, doc, false, module);
+	} catch (e) { Foxtrick.log('getLinks: ',e) };
 };
 
 

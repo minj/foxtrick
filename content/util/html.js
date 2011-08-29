@@ -189,7 +189,7 @@ Foxtrick.GetDataURIText = function (filetext) {
 
 Foxtrick.addImage = function (doc, elem, features) {
 	if (Foxtrick.platform == "Opera") {
-		sandboxed.extension.sendRequest({ req : "getDataUrl", url:url},
+		sandboxed.extension.sendRequest({ req : "getDataUrl", url:features.src},
 			function (data) {
 				var img = doc.createElement("img");
 				for (i in features) img[i] = features[i];
