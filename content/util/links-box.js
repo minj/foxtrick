@@ -88,10 +88,15 @@ Foxtrick.util.links = {
 				var key = all_links[i].getAttribute('key');
 				var module_name = all_links[i].getAttribute('module');
 				if (key && module_name) {
-					var delLink = doc.createElement("div");
+					var delLink = doc.createElement("span");
 					delLink.className = "ft_actionicon foxtrickRemove";
 					delLink.title = Foxtrickl10n.getString("foxtrick.linkscustom.remove");
 					delLink.addEventListener("click", Foxtrick.util.links.delStdLink, false);
+					var img = doc.createElement("img");
+					img.src = "/Img/Icons/transparent.gif";
+					img.height = "16";
+					img.width = "16";
+					delLink.appendChild(img);
 					ownBoxBody.insertBefore(delLink,all_links[i].nextSibling);
 				}
 			}
@@ -111,12 +116,9 @@ Foxtrick.util.links = {
 			if (Foxtrick.util.layout.isRtl(doc))
 				div.className = "boxHead ft-expander-unexpanded_rtl";
 
-			var all_links=ownBoxBody.getElementsByTagName('a');
-			for (var i=0;i<all_links.length;++i) {
-				var key = all_links[i].getAttribute('key');
-				if (key) {
-					all_links[i].nextSibling.style.display="none";
-				}
+			var foxtrickRemove = ownBoxBody.getElementsByClassName('foxtrickRemove');
+			for (var i=0; i<foxtrickRemove.length; ++i) {
+				Foxtrick.toggleClass(foxtrickRemove[i], "hidden");
 			}
 
 			// get custon links from pref
@@ -188,12 +190,9 @@ Foxtrick.util.links = {
 			div.setAttribute("class","boxHead ft-expander-expanded");
 			if (Foxtrick.util.layout.isRtl(doc)) div.setAttribute("class","boxHead  ft-expander-expanded_rtl");
 
-			var all_links=ownBoxBody.getElementsByTagName('a');
-			for (var i=0;i<all_links.length;++i) {
-				var key = all_links[i].getAttribute('key');
-				if (key) {
-					all_links[i].nextSibling.style.display="";
-				}
+			var foxtrickRemove = ownBoxBody.getElementsByClassName('foxtrickRemove');
+			for (var i=0; i<foxtrickRemove.length; ++i) {
+				Foxtrick.toggleClass(foxtrickRemove[i], "hidden");
 			}
 
 			var divED = doc.createElement("div");
