@@ -243,16 +243,16 @@ var FoxtrickForumPreview = {
 			[/\[td([^\]]*?)align=(\w*)([^\]]*)\](.*?)\[\/td\]/gi, "<td $1 class=$2 $3>$4</td>"],
 			[/\[th(.*?)\](.*?)\[\/th\]/gi, "<th $1>$2</th>"],
 			[/\[td(.*?)\](.*?)\[\/td\]/gi, "<td $1>$2</td>"],
-			[/\<\/td\>\<br \/\>/gi, "</td>"],
-			[/\<\/th\>\<br \/\>/gi, "</th>"],
-			[/\<\/tr\>\<br \/\>/gi, "</tr>"],
-			[/\<tr(.*?)\>\<br \/\>/gi, "<tr$1>"],
-			[/\<tbody\>\<br \/\>/gi, "<tbody>"],
-			[/\<\/td\>\<br \/\>/gi, "</td>"],
-			[/\<\/th\>\<br \/\>/gi, "</th>"],
-			[/\<\/tr\>\<br \/\>/gi, "</tr>"],
-			[/\<tr(.*?)\>\<br \/\>/gi, "<tr$1>"],
-			[/\<tbody\>\<br \/\>/gi, "<tbody>"]
+			[/\<\/td\>\s*\<br \/\>/gi, "</td>"],
+			[/\<\/th\>\s*\<br \/\>/gi, "</th>"],
+			[/\<\/tr\>\s*\<br \/\>/gi, "</tr>"],
+			[/\<tr(.*?)\>\s*\<br \/\>/gi, "<tr$1>"],
+			[/\<tbody\>\s*\<br \/\>/gi, "<tbody>"],
+			[/\<\/td\>\s*\<br \/\>/gi, "</td>"],
+			[/\<\/th\>\s*\<br \/\>/gi, "</th>"],
+			[/\<\/tr\>\s*\<br \/\>/gi, "</tr>"],
+			[/\<tr(.*?)\>\s*\<br \/\>/gi, "<tr$1>"],
+			[/\<tbody\>\s*\<br \/\>/gi, "<tbody>"]
 		];
 
 		var doc = ev.target.ownerDocument;
