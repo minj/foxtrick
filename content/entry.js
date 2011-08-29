@@ -18,32 +18,28 @@ Foxtrick.entry.docLoad = function(doc) {
 	if (doc.nodeName != "#document")
 		return;
 
-	if (Foxtrick.isHt(doc)) {
-		// check if it's in exclude list
-		for (var i in Foxtrick.pagesExcluded) {
-			var excludeRe = new RegExp(Foxtrick.pagesExcluded[i], "i");
-			// page excluded, return
-			if (doc.location.href.search(excludeRe) > -1) {
-				return;
-			}
-		}
+	// we shall not run here
+	if (!Foxtrick.isHt(doc) || Foxtrick.isExcluded(doc))
+		return;
 
-		if (Foxtrick.platform == "Fennec") {
-			Foxtrick.entry.init();
-		}
+	// ensure #content is available
+	var content = doc.getElementById("content");
+	if (!content)
+		return;
 
-		var begin = (new Date()).getTime();
-		Foxtrick.entry.run(doc);
-		var diff = (new Date()).getTime() - begin;
-		Foxtrick.dump("run time: " + diff + " ms | " + doc.location.pathname+doc.location.search + '\n');
-		// listen to page content changes
-		var content = doc.getElementById("content");
-		if (!content) {
-			Foxtrick.log("Cannot find #content at ", doc.location);
-			return;
-		}
-		Foxtrick.startListenToChange(doc);
+	if (Foxtrick.platform == "Fennec") {
+		Foxtrick.entry.init();
 	}
+
+	// run FoxTrick modules
+	var begin = (new Date()).getTime();
+	Foxtrick.entry.run(doc);
+	var diff = (new Date()).getTime() - begin;
+	Foxtrick.log("run time: ", diff, " ms | ",
+		doc.location.pathname, doc.location.search);
+
+	// listen to page content changes
+	Foxtrick.startListenToChange(doc);
 };
 
 Foxtrick.entry.setRetrievedLocalResources = function(data) {

@@ -132,3 +132,13 @@ Foxtrick.isPage = function(page, doc) {
 	else
 		return false;
 };
+
+Foxtrick.isExcluded = function(doc) {
+	for (var i in Foxtrick.pagesExcluded) {
+		var excludeRe = new RegExp(Foxtrick.pagesExcluded[i], "i");
+		// page excluded, return
+		if (doc.location.href.search(excludeRe) > -1)
+			return true;
+	}
+	return false;
+};
