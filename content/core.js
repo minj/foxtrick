@@ -8,7 +8,7 @@ var FoxtrickCore = {
 	MODULE_NAME : "Core",
 	CORE_MODULE : true,
 	PAGES : ["all"],
-	NICE : -20,
+	NICE : -50, // before anything else
 	CSS : [
 		Foxtrick.InternalPath + "resources/css/foxtrick.css",
 		Foxtrick.InternalPath + "resources/css/headercopyicons.css",
