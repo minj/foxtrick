@@ -99,6 +99,9 @@ var FoxtrickLineupShortcut = {
 		var playerid=Foxtrick.util.id.findPlayerId(element);
 		var lineuplabel = Foxtrickl10n.getString( "foxtrick.shortcut.matchlineup" );
 		var matchtable=doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanel1').getElementsByTagName('table').item(0);
+		// matchtable is not present if the player hasn't played for a team
+		if (!matchtable)
+			return;
 		var checktables = matchtable.getElementsByClassName("ft_lineupheader");
 		if (checktables.length == 0)
 		{
