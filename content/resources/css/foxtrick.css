@@ -35,16 +35,16 @@ html[data-theme="simple"] #stageLogo {
  * TODO - use attribute expanded to denote whether expanded
  */
 
-.ft-expander-unexpanded, .ft-expander-expanded,
+h2.ft-expander-unexpanded, h2.ft-expander-expanded,
 div.ft-expander-unexpanded h2, div.ft-expander-expanded h2 {
 	cursor: pointer;
 	background-repeat: no-repeat;
 }
-html[dir="ltr"][data-theme="simple"] .ft-expander-unexpanded, html[dir="ltr"][data-theme="simple"] .ft-expander-expanded,
+html[dir="ltr"] h2.ft-expander-unexpanded, html[dir="ltr"] h2.ft-expander-expanded,
 html[dir="ltr"] div.ft-expander-unexpanded h2, html[dir="ltr"] div.ft-expander-expanded h2 {
 	background-position: right;
 }
-html[dir="rtl"][data-theme="simple"] .ft-expander-unexpanded, html[dir="rtl"][data-theme="simple"] .ft-expander-expanded,
+html[dir="rtl"] h2.ft-expander-unexpanded, html[dir="rtl"] h2.ft-expander-expanded,
 html[dir="rtl"] div.ft-expander-unexpanded h2, html[dir="rtl"] div.ft-expander-expanded h2 {
 	background-position: left;
 }
