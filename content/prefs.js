@@ -53,7 +53,7 @@ var FoxtrickPrefs = {
 		var values = FoxtrickPrefs.getList(branch);
 
 		// already exists?
-		var exists = Foxtrick.member(v, values);
+		var exists = Foxtrick.member(value, values);
 
 		if (exists)
 			return false;
