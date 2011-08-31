@@ -144,7 +144,10 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		var html = doc.getElementsByTagName("html")[0];
 		html.dir = current_dir;
 		html.setAttribute("data-theme", current_theme);
-		html.setAttribute("data-fennec-theme", doc.location.href.search(/forum/i)==-1 ? "default" : "forum");
+		if (Foxtrick.platform == "Fennec") {
+			html.setAttribute("data-fennec-theme",
+				doc.location.href.indexOf("Forum") == -1 ? "default" : "forum");
+		}
 
 		// reload CSS if not loaded
 		if (!Foxtrick.entry.cssLoaded) {
