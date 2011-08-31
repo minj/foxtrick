@@ -220,7 +220,7 @@ var FoxtrickFlagCollectionToMap = {
 		openMapA.name = 'flags' + mapId;
 		openMapA.href = '#';
 		openMapA.id = 'flagsA' + mapId;
-		openMapA.setAttribute('onClick', 'if(document.getElementById(\'foxtrick-map' + mapId + '\').style.display == \'none\'){document.getElementById(\'foxtrick-map' + mapId + '\').style.display = \'block\'; document.getElementById(\'flagsA' + mapId + '\').innerHTML = \'' + HideMap + '\'; }else {document.getElementById(\'foxtrick-map' + mapId +'\').style.display = \'none\';document.getElementById(\'flagsA' + mapId +'\').innerHTML = \'' + ShowMap + '\';}; return false');
+		openMapA.setAttribute('onClick', 'if(document.getElementById(\'foxtrick-map' + mapId + '\').style.display == \'none\'){document.getElementById(\'foxtrick-map' + mapId + '\').style.display = \'\'; document.getElementById(\'flagsA' + mapId + '\').innerHTML = \'' + HideMap + '\'; }else {document.getElementById(\'foxtrick-map' + mapId +'\').style.display = \'none\';document.getElementById(\'flagsA' + mapId +'\').innerHTML = \'' + ShowMap + '\';}; return false');
 
 		this.insertBeforeOrAppend(parent, mapDiv, insertBefore);
 		this.insertBeforeOrAppend(parent, document.createElement('br'), insertBefore);
@@ -447,12 +447,12 @@ var FoxtrickFlagCollectionToMap = {
 		const SAmerica = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.SAmerica");
 		const World = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.World");
 
-		var mapHtml = '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlAfrica +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-neareast-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-africa-'+anchorId+'\').style.display=\'inline-block\';return false;">' + Africa + '</a> |  ';
+		var mapHtml = '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlAfrica +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-neareast-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-africa-'+anchorId+'\').style.display=\'\';return false;">' + Africa + '</a> |  ';
 		mapHtml += '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlAsia  +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-neareast-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-africa-'+anchorId+'\').style.display=\'none\';return false;">' + Asia + '</a> |  ';
-		mapHtml += '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlEurope +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'inline-block\';document.getElementById(\'foxtrick-img-map-fix-neareast-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-africa-'+anchorId+'\').style.display=\'none\';return false;">' + Europe + '</a> |  ';
-		mapHtml += '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlMEast +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-neareast-'+anchorId+'\').style.display=\'inline-block\';document.getElementById(\'foxtrick-img-map-fix-africa-'+anchorId+'\').style.display=\'none\';return false;">' + MEast + '</a>  | ';
+		mapHtml += '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlEurope +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'\';document.getElementById(\'foxtrick-img-map-fix-neareast-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-africa-'+anchorId+'\').style.display=\'none\';return false;">' + Europe + '</a> |  ';
+		mapHtml += '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlMEast +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-neareast-'+anchorId+'\').style.display=\'\';document.getElementById(\'foxtrick-img-map-fix-africa-'+anchorId+'\').style.display=\'none\';return false;">' + MEast + '</a>  | ';
 		mapHtml += '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlSAmerica +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-neareast-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-africa-'+anchorId+'\').style.display=\'none\';return false;">' + SAmerica + '</a> |  ';
-		mapHtml += '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlWorld +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'inline-block\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-neareast-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-africa-'+anchorId+'\').style.display=\'none\';return false;">' + World + '</a><br/>';
+		mapHtml += '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlWorld +'\';document.getElementById(\'foxtrick-img-map-fix-world-'+anchorId+'\').style.display=\'\';document.getElementById(\'foxtrick-img-map-fix-europe-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-neareast-'+anchorId+'\').style.display=\'none\';document.getElementById(\'foxtrick-img-map-fix-africa-'+anchorId+'\').style.display=\'none\';return false;">' + World + '</a><br/>';
 		mapHtml += '<img alt="Map" id="foxtrick-img-map-'+anchorId+'" src="' + urlWorld + '"/>';
 		mapHtml += '<div id="foxtrick-img-map-fix-world-'+anchorId+'">' + fixWorld + '</div>';
 		mapHtml += '<div id="foxtrick-img-map-fix-europe-'+anchorId+'" ' +'style="display:none">' + fixEurope + '</div>';
@@ -524,7 +524,7 @@ var FoxtrickFlagCollectionToMap = {
 
 		// general fix. specifially lesotho
 		var offset=0;
-		offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world.png"> ';
+		offset-=220; cImgString+='<img style="position: absolute; margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world.png"> ';
 
 		for(var i = 0; i < countryIds.length; i++){
 			var countryId = countryIds[i];
@@ -532,16 +532,16 @@ var FoxtrickFlagCollectionToMap = {
 			// uk hack
 			//if(ukIds != 4)
 			{  //only if not added before
-				if (countryId == 61) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_gb_cy.png"> ';}
-				if (countryId == 2) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;"src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_gb_en.png"> ';}
-				if (countryId == 93) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_gb_nie.png"> ';}
-				if (countryId == 26) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_gb_sc.png"> ';}
+				if (countryId == 61) {offset-=220; cImgString+='<img style="position: absolute; margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_gb_cy.png"> ';}
+				if (countryId == 2) {offset-=220; cImgString+='<img style="position: absolute; margin-top:'+offset+'px;"src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_gb_en.png"> ';}
+				if (countryId == 93) {offset-=220; cImgString+='<img style="position: absolute; margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_gb_nie.png"> ';}
+				if (countryId == 26) {offset-=220; cImgString+='<img style="position: absolute; margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_gb_sc.png"> ';}
 			}
 			// yu hack
 			//if(yuIds != 2)
 			{
-				if (countryId == 57) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_rs.png"> ';}
-				if (countryId == 131) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_me.png">';}
+				if (countryId == 57) {offset-=220; cImgString+='<img style="position: absolute; margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_rs.png"> ';}
+				if (countryId == 131) {offset-=220; cImgString+='<img style="position: absolute; margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_world_me.png">';}
 			}
 		}
 		return cImgString;
@@ -576,16 +576,16 @@ var FoxtrickFlagCollectionToMap = {
 			// uk hack
 			//if(ukIds != 4)
 			{  //only if not added before
-				if (countryId == 61) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_gb_cy.png"> ';}
-				if (countryId == 2) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;"src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_gb_en.png"> ';}
-				if (countryId == 93) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_gb_nie.png"> ';}
-				if (countryId == 26) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_gb_sc.png"> ';}
+				if (countryId == 61) {offset-=220; cImgString+='<img style="position: absolute; margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_gb_cy.png"> ';}
+				if (countryId == 2) {offset-=220; cImgString+='<img style="position: absolute; margin-top:'+offset+'px;"src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_gb_en.png"> ';}
+				if (countryId == 93) {offset-=220; cImgString+='<img style="position: absolute; margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_gb_nie.png"> ';}
+				if (countryId == 26) {offset-=220; cImgString+='<img style="position: absolute; margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_gb_sc.png"> ';}
 			}
 			// yu hack
 			// if(yuIds != 2)
 			{
-				if (countryId == 57) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_rs.png"> ';}
-				if (countryId == 131) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_me.png">';}
+				if (countryId == 57) {offset-=220; cImgString+='<img style="position: absolute; margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_rs.png"> ';}
+				if (countryId == 131) {offset-=220; cImgString+='<img style="position: absolute; margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_europe_me.png">';}
 			}
 		}
 		return cImgString;
@@ -611,8 +611,8 @@ var FoxtrickFlagCollectionToMap = {
 			// yu hack
 			//if(yuIds != 2)
 			{
-				if (countryId == 57) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_neareast_rs.png"> ';}
-				if (countryId == 131) {offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_neareast_me.png">';}
+				if (countryId == 57) {offset-=220; cImgString+='<img style="position: absolute; margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_neareast_rs.png"> ';}
+				if (countryId == 131) {offset-=220; cImgString+='<img style="position: absolute; margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_neareast_me.png">';}
 			}
 		}
 		return cImgString;
@@ -623,7 +623,7 @@ var FoxtrickFlagCollectionToMap = {
 
 		// general fix. specifially lesotho
 		var offset=0;
-		offset-=220; cImgString+='<img style="margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_africa.png"> ';
+		offset-=220; cImgString+='<img style="position: absolute; margin-top:'+offset+'px;" src="'+Foxtrick.ResourcePath+'resources/img/maps/chart_africa.png"> ';
 		return cImgString;
 	},
 };
