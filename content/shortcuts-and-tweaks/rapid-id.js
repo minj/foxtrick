@@ -51,9 +51,12 @@ var FoxtrickRapidId = {
 		var urlTmpl = doc.location.protocol + "//" + doc.location.host + "/" +
 			Foxtrick.nth(0, function(n) { return n.value == type; }, FoxtrickRapidId.options).url;
 		// open in current tab if only one ID, in new tabs if more than one
-		var open = (idList.length == 1) ? doc.location.assign : Foxtrick.newTab;
 		Foxtrick.map(function(id) {
-			open(urlTmpl.replace("%n", id));
+			var url = urlTmpl.replace("%n", id);
+			if (idList.length == 1) 
+				doc.location.assign(url);
+			else
+				Foxtrick.newTab(url);
 		}, idList);
 	},
 
