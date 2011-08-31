@@ -13,11 +13,22 @@ var FoxtrickHTDateFormat = {
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DISABLED_LIST : [true, false],
 
-	run : function(doc) {
-		// don't show where not needed and cluttering
-		if (Foxtrick.isPage("forumDefault", doc))
-			return;
+	PAGES_INTERNAL : ['transfersTeam','transfersPlayer','transfer','transferCompare','match',
+			'matches','matchesarchiv','teamPageGeneral','achievements','playerevents',
+			'teamevents','history','arena','league','hallOfFame','statsMatchesHeadToHead',
+			'seriesHistory'],
 
+		run : function(doc) {
+		// don't show where not needed and cluttering
+		var do_run = false;
+		for (var i = 0; i< PAGES_INTERNAL.length; ++i) {
+			if (Foxtrick.isPage(PAGES_INTERNAL[i], doc)) {
+				do_run = true;
+				break;
+			}
+		}
+		if (!do_run) return
+		
 		var mainBody = doc.getElementById("mainBody");
 		if (!mainBody) return;
 
