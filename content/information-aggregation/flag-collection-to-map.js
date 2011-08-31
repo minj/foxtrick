@@ -208,7 +208,7 @@ var FoxtrickFlagCollectionToMap = {
 		const World = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.World");
 
 		// get all required urls
-		var urlAfrica = this.getMapUrl(Africa, countryCodes, colouringOrder,'-35,-20,38,55','440x500');
+		var urlAfrica = this.getMapUrl(Africa, countryCodes, colouringOrder,'-35,-25,38,50','440x500');
 		var urlAsia = this.getMapUrl(Asia, countryCodes, colouringOrder,'-50,40,70,180','440x530');
 		var urlEurope = this.getMapUrl(Europe, countryCodes, colouringOrder,'34,-25,71,50','440x420');
 		var urlMEast = this.getMapUrl(MEast, countryCodes, colouringOrder,'12,24,44,64','440x440');
@@ -408,7 +408,7 @@ var FoxtrickFlagCollectionToMap = {
 		var order = '&chd=t:' + colorOrder;
 		var countries = '&chld=' + countryCodes;
 		var title = '&chtt='+title;
-		var background = '&chf=bg,s,c6eff7'; // bg water color
+		var background = '&chf=bg,s,a6dfe7'; // bg water color
 
 		var url = base + chartType + dimensions + title + colors + background  + order + countries;
 		url=url.replace(',&','&');
