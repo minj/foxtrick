@@ -85,10 +85,11 @@ var FoxtrickMatchReportFormat = {
 		part[0] = part[0].replace(/ (\d{1,2})-(\d{1,2})-(\d{1,2})([., \-])/g," <span class='ft_mR_format' style='font-weight:bold;'>$1</span>-<span class='ft_mR_format' style='font-weight:bold;'>$2</span>-<span class='ft_mR_format' style='font-weight:bold;'>$3</span>$4");
 
 		// goal
-		part[1] = part[1].replace(/(\d{1,2})\! Gäste (\d{1,2})/g, "$1 - $2"); // Italiano LA's work...
+		part[1] = part[1].replace(/(\d{1,2})\! Gäste (\d{1,2})/g, "$1 - $2"); // german LA's work...
 		part[1] = part[1].replace(/(\d{1,2}) a (\d{1,2})/g, "$1 - $2"); // Italiano LA's work...
 		part[1] = part[1].replace(/(\d{1,2}):(\d{1,2})/g, "$1 - $2"); // Čeština LA's work...
 		part[1] = part[1].replace(/(\d{1,2}) према (\d{1,2})/g, "$1 - $2"); // Srpski LA's work...
+		part[1] = part[1].replace(/(\d{1,2}) tsjin (\d{1,2})/g, "$1 - $2"); // frysk LA's work...
 
 		for (var i = 0; i < search.length; i++) {
 			part[1] = part[1].replace(search[i], replace[i]);
@@ -159,7 +160,7 @@ var FoxtrickMatchReportFormat = {
 		div_inner.innerHTML = part[1] + part[2];
 
 		var standing = new Array(0,0);
-		var reg = / (\d{1,2})\-(\d{1,2})(.*?)/i;
+		var reg = /[ \(](\d{1,2})\-(\d{1,2})(.*?)/i;
 		var divs = div.getElementsByTagName('div');
 
 		if (!isyouth) var scoreboard = doc.getElementById('sidebar').getElementsByTagName('table')[2];
