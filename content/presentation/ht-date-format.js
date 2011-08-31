@@ -21,8 +21,8 @@ var FoxtrickHTDateFormat = {
 		run : function(doc) {
 		// don't show where not needed and cluttering
 		var do_run = false;
-		for (var i = 0; i< PAGES_INTERNAL.length; ++i) {
-			if (Foxtrick.isPage(PAGES_INTERNAL[i], doc)) {
+		for (var i = 0; i< this.PAGES_INTERNAL.length; ++i) {
+			if (Foxtrick.isPage(this.PAGES_INTERNAL[i], doc)) {
 				do_run = true;
 				break;
 			}
