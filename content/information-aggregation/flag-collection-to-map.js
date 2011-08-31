@@ -210,7 +210,7 @@ var FoxtrickFlagCollectionToMap = {
 		// get all required urls
 		var urlAfrica = this.getMapUrl(Africa, countryCodes, colouringOrder,'-35,-25,38,50','440x500');
 		var urlAsia = this.getMapUrl(Asia, countryCodes, colouringOrder,'-50,40,70,180','440x530');
-		var urlEurope = this.getMapUrl(Europe, countryCodes, colouringOrder,'34,-25,71,50','440x420');
+		var urlEurope = this.getMapUrl(Europe, countryCodes, colouringOrder,'34,-11,64,30','440x540');
 		var urlMEast = this.getMapUrl(MEast, countryCodes, colouringOrder,'12,24,44,64','440x440');
 		var urlSAmerica = this.getMapUrl(SAmerica, countryCodes, colouringOrder,'-55,-95,25,-30','440x640');
 		var urlWorld = this.getMapUrl(World, countryCodes, colouringOrder,'-60,-180,80,180','440x300');
