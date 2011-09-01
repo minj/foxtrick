@@ -246,5 +246,4 @@ clean-build:
 	rm -f sha1-hash.dat
 	rm -f signature.dat
 
-clean:
-	make clean-firefox clean-chrome clean-opera clean-safari clean-build
+clean: clean-firefox clean-chrome clean-opera clean-safari clean-build
