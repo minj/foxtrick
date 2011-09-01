@@ -117,7 +117,9 @@ if (Foxtrick.platform == "Fennec") {
 			Foxtrick.XMLData.League = data.league;
 			Foxtrick.XMLData.countryToLeague = data.countryToLeague;
 
-			addEventListener("DOMContentLoaded", Foxtrick.entry.docLoad, false);
+			addEventListener("DOMContentLoaded", function(ev){
+				Foxtrick.entry.docLoad(ev.originalTarget);
+			}, false);
 		}
 	);
 }
