@@ -338,7 +338,6 @@ Foxtrick.loader.chrome.copyToClipBoard = function(content) {
 
 // fennec script injection
 var onWindowLoad = function(event) {
-	try {
 		Foxtrick.log('inject scripts');
 		// run only once
 		removeEventListener("UIReady", onWindowLoad, false);
@@ -353,6 +352,7 @@ var onWindowLoad = function(event) {
 
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/module.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/api.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/util/array.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/copy-button.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/currency.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/html.js", true);
@@ -361,6 +361,7 @@ var onWindowLoad = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/inject.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/layout.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/links-box.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/util/log.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/match-view.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/misc.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/note.js", true);
@@ -511,8 +512,6 @@ var onWindowLoad = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/loader-gecko.js", true);
 
 		FoxtrickMobileEnhancements.initPageAction();
-
-	} catch(e){Foxtrick.log(e);dump(e)}
 };
 
 Foxtrick.loader.chrome.browserLoad();
