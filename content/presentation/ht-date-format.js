@@ -13,22 +13,19 @@ var FoxtrickHTDateFormat = {
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DISABLED_LIST : [true, false],
 
-	PAGES_INTERNAL : ['transfersTeam','transfersPlayer','transfer','transferCompare','match',
-			'matches','matchesarchiv','teamPageGeneral','achievements','playerevents',
-			'teamevents','history','arena','league','hallOfFame','statsMatchesHeadToHead',
-			'seriesHistory'],
-
-		run : function(doc) {
-		// don't show where not needed and cluttering
-		var do_run = false;
-		for (var i = 0; i< this.PAGES_INTERNAL.length; ++i) {
-			if (Foxtrick.isPage(this.PAGES_INTERNAL[i], doc)) {
-				do_run = true;
-				break;
-			}
+	run : function(doc) {
+		const pages = ["transfersTeam", "transfersPlayer", "transfer",
+			"transferCompare", "match", "matches", "matchesarchiv",
+			"teamPageGeneral", "achievements", "playerevents",
+			"teamevents", "history", "arena", "league", "hallOfFame",
+			"statsMatchesHeadToHead", "seriesHistory"];
+		// don't show on where not needed and cluttering
+		if (!Foxtrick.any(function(page) {
+				return Foxtrick.isPage(page, doc);
+			}, pages)) {
+			return;
 		}
-		if (!do_run) return
-		
+
 		var mainBody = doc.getElementById("mainBody");
 		if (!mainBody) return;
 
