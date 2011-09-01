@@ -117,28 +117,27 @@ var FoxtrickFlagCollectionToMap = {
 
 		var mapId = 0;
 		var mainbox = doc.getElementsByClassName("mainBox");
+		var countryIdsNV = new Array();
+		var first_map_finished = false;
 		for (var i=0; i< mainbox.length; i++) {
 			var divElement = mainbox[i];
 
 			var countryIds = new Array();
-			var countryIdsNV = new Array();
-
 			for(var j = 0; j < divElement.childNodes.length; j++){
 				var currentNode = divElement.childNodes[j];
 				if (currentNode.nodeName == 'A' && currentNode.href.indexOf('LeagueID=') > -1) {
+					var countryId = currentNode.href.substr(currentNode.href.lastIndexOf('=')+1, currentNode.href.length);
 					if (currentNode.innerHTML.indexOf('inactive') == -1) {
-						var countryId = currentNode.href.substr(currentNode.href.lastIndexOf('=')+1, currentNode.href.length);
 						countryIds.push(countryId);
 					}
-					else {
-						var countryId = currentNode.href.substr(currentNode.href.lastIndexOf('=')+1, currentNode.href.length);
+					if (!first_map_finished) {
 						countryIdsNV.push(countryId);
 					}
 				} else if (currentNode.nodeName == 'P') {
 					// not a flag, flush the buffer
 					this.createAndInsertMap(doc, countryIds, countryIdsNV, mapId++, divElement, currentNode);
 					countryIds = new Array();
-					countryIdsNV = new Array();
+					if (countryIdsNV.length!==0) first_map_finished = true;
 				}
 			}
 			this.createAndInsertMap(doc, countryIds, countryIdsNV, mapId++, divElement, null);
@@ -175,7 +174,7 @@ var FoxtrickFlagCollectionToMap = {
 		for(var i = 0; i < countryIdsNV.length; i++){
 			var countryId = countryIdsNV[i];
 			var countryCode = this.countryCodes['c_'+countryId];
-			if (typeof countryCode != 'undefined') {
+			if (!Foxtrick.any(function(n){return n==countryId;},countryIds) && typeof countryCode != 'undefined') {
 				for (var j=0;j<countryCode.length;++j) {
 				countryCodes += countryCode[j]+'|'
 				colouringOrder += '100,';
