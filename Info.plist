@@ -222,7 +222,7 @@ a good reason to. They are for version bumps in Makefile.
 		</dict>
 	</dict>
 	<key>Update Manifest URL</key>
-	<string>http://foxtrick.foundationhorizont.org/nightly/safari/update.plist</string><!--updateurl-->
+	<string>https://www.foxtrick.org/nightly/safari/update.plist</string><!--updateurl-->
 	<key>Website</key>
 	<string>http://code.google.com/foxtrick/</string>
 </dict>
