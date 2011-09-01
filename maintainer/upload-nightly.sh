@@ -16,6 +16,7 @@ USER=
 PASSWORD=
 HOST='web306.ixwebhosting.com'
 URL_BASE='http://foxtrick.foundationhorizont.org/nightly'
+DEST=.
 
 SOURCE_DIR='..'
 
