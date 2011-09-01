@@ -15,7 +15,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	Foxtrick.log('Foxtrick.loader.chrome.browserLoad');
 
 	// content preference copy not updated if those change
-	var no_update_needed = {'last-host':true, 'last-page':true, 'version': true};
+	var no_update_needed = {'preferences.updated':true, 'last-host':true, 'last-page':true, 'version': true};
 
 	// for updating content preference copy and injected css list
 	var updatePrefs = function () {
@@ -109,8 +109,10 @@ Foxtrick.loader.chrome.browserLoad = function() {
 				}
 			}
 			else if (request.req == "setValue") {
+				if (FoxtrickPrefs.get(request.key)==request.value) 
+					return;
 				FoxtrickPrefs.setValue(request.key, request.value, request.type);
-				if (!no_update_needed[request.key])
+				if ( !no_update_needed[request.key] )
 					FoxtrickPrefs.setBool("preferences.updated",true);
 			}
 			else if (request.req == "deleteValue") {
