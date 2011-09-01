@@ -1,8 +1,18 @@
 APP_NAME = foxtrick
 
-SAFARI_TARGET = foxtrick.safariextension
+# Subversion revision, this is only available with git-svn
+REVISION = `git svn find-rev HEAD`
+
+# Distribution type:
+# Firefox: nightly, stable, amo
+# Others: nightly, stable
+DIST_TYPE = nightly
+
+# URL prefix of nightly update manifest
+NIGHTLY_PREFIX = https://www.foxtrick.org/nightly
 
 BUILD_DIR = build
+SAFARI_TARGET = foxtrick.safariextension
 SAFARI_BUILD_DIR = build/$(SAFARI_TARGET)
 
 # cf safari: xar needs to have sign capabilities ie xar --help shows --sign as option.
@@ -65,10 +75,6 @@ CONTENT_FILES_SAFARI = $(CONTENT_FILES) background.html \
 	background.js \
 	loader-chrome.js
 
-REVISION = `git svn find-rev HEAD`
-
-DIST_TYPE = nightly
-
 all: firefox chrome opera safari
 
 firefox:
@@ -99,6 +105,7 @@ firefox:
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
 	sed -i -r 's|(<em:version>.+)(</em:version>)|\1.'$(REVISION)'\2|' install.rdf; \
+	sed -i -r 's|(<em:updateURL>).+(</em:updateURL>)|\1'$(NIGHTLY_PREFIX)'/update.rdf\2|' install.rdf; \
 	sed -i -r 's|("extensions\.foxtrick\.prefs\.version", ".+)(")|\1.'$(REVISION)'\2|' defaults/preferences/foxtrick.js
 else ifeq ($(DIST_TYPE),stable)
 	cd $(BUILD_DIR); \
@@ -128,6 +135,7 @@ chrome:
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
 	sed -i -r 's|("version" : ".+)(")|\1.'$(REVISION)'\2|' manifest.json; \
+	sed -i -r 's|("update_url" : ").+(")|\1'$(NIGHTLY_PREFIX)'/chrome/update.xml\2|' manifest.json; \
 	sed -i -r 's|("extensions\.foxtrick\.prefs\.version", ".+)(")|\1.'$(REVISION)'\2|' defaults/preferences/foxtrick.js
 	# make crx
 	./maintainer/crxmake.sh $(BUILD_DIR) maintainer/chrome.pem
@@ -170,6 +178,7 @@ opera:
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
 	sed -i -r 's|(version=".+)(" network)|\1.'$(REVISION)'\2|' config.xml; \
+	sed -i -r 's|(<update-description href=").+("/>)|\1'$(NIGHTLY_PREFIX)/opera/update.xml\2|' config.xml; \
 	sed -i -r 's|("extensions\.foxtrick\.prefs\.version", ".+)(")|\1.'$(REVISION)'\2|' defaults/preferences/foxtrick.js
 else ifeq ($(DIST_TYPE),stable)
 	cd $(BUILD_DIR); \
@@ -196,6 +205,7 @@ safari:
 ifeq ($(DIST_TYPE),nightly)
 	# version bump for nightly
 	cd $(SAFARI_BUILD_DIR); \
+	sed -i -r 's|(<string>).+(</string><!--updateurl-->)|\1'$(NIGHTLY_PREFIX)'/safari/update.plist\2|' Info.plist; \
 	sed -i -r 's|(<string>.+)(</string><!--version-->)|\1.'$(REVISION)'\2|' Info.plist; \
 	sed -i -r 's|("extensions\.foxtrick\.prefs\.version", ".+)(")|\1.'$(REVISION)'\2|' defaults/preferences/foxtrick.js
 else ifeq ($(DIST_TYPE),stable)
