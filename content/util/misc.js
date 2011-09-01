@@ -563,17 +563,22 @@ Foxtrick.load_css_permanent = function(css) {
 Foxtrick.load_module_css = function(doc) {
 	Foxtrick.unload_module_css(doc);
 
-	if (Foxtrick.arch === "Gecko") {
+	if (Foxtrick.platform === "Firefox") {
 		Foxtrick.current_css = Foxtrick.getCssTextCollection();
 		Foxtrick.load_css_permanent(Foxtrick.current_css);
 	}
-	else if (Foxtrick.arch === "Sandboxed") {
+	else {
 		Foxtrick.collect_module_css();
 		sandboxed.extension.sendRequest(
 			{ req : "getCss", files :Foxtrick.cssFiles },
-			function(data) {
-				var style = Foxtrick.util.inject.css(doc, data.cssText);
-				style.id = "ft-module-css";
+			function (data) {
+				if (Foxtrick.platform === "Fennec") {
+					Foxtrick.current_css = data.cssText;
+					Foxtrick.load_css_permanent(Foxtrick.current_css);
+				} else {
+					var style = Foxtrick.util.inject.css(doc, data.cssText);
+					style.id = "ft-module-css";
+				}
 			}
 		);
 	}
