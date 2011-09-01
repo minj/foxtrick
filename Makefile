@@ -178,7 +178,7 @@ opera:
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
 	sed -i -r 's|(version=".+)(" network)|\1.'$(REVISION)'\2|' config.xml; \
-	sed -i -r 's|(<update-description href=").+("/>)|\1'$(NIGHTLY_PREFIX)/opera/update.xml\2|' config.xml; \
+	sed -i -r 's|(<update-description href=").+("/>)|\1'$(NIGHTLY_PREFIX)'/opera/update.xml\2|' config.xml; \
 	sed -i -r 's|("extensions\.foxtrick\.prefs\.version", ".+)(")|\1.'$(REVISION)'\2|' defaults/preferences/foxtrick.js
 else ifeq ($(DIST_TYPE),stable)
 	cd $(BUILD_DIR); \
