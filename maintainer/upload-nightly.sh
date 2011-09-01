@@ -65,9 +65,11 @@ sed -i "s|{UPDATE_LINK}|${URL_BASE}/safari/foxtrick-r${REVISION}.safariextz|g" u
 sed -i "s|{VERSION}|${SAFARI_VERSION}|g" update-safari.plist
 
 cp ftp-tmpl ftp
-sed -i -e "s|{USER}|${USER}|g" \
+sed -i \
+	-e "s|{USER}|${USER}|g" \
 	-e "s|{PASSWORD}|${PASSWORD}|g" \
 	-e "s|{HOST}|${HOST}|g" \
+	-e "s|{DEST}|${DEST}|g" \
 	-e "s|{PATH}|${SOURCE_DIR}|g" \
 	-e "s|{REVISION}|${REVISION}|g" ftp
 
