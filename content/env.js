@@ -39,11 +39,6 @@ if (typeof(opera) == "object") {
 		},
 	};
 
-	// overwritten later. early version here to make sure there is one all times
-	Foxtrick.log = function ( string ) {
-		opera.postError(string);
-	};
-
 	addListener = function(handler) {
 		 opera.extension.addEventListener("message", handler, false);
 	};
@@ -137,21 +132,8 @@ if (typeof(opera) == "object") {
 			create : function(props){opera.extension.tabs.create(props)},
 		},
 	};
-	var Node = {
-		ELEMENT_NODE : 1,
-		ATTRIBUTE_NODE : 2,
-		TEXT_NODE : 3,
-		CDATA_SECTION_NODE : 4,
-		ENTITY_REFERENCE_NODE : 5,
-		ENTITY_NODE : 6,
-		PROCESSING_INSTRUCTION_NODE : 7, 
-		COMMENT_NODE : 8,
-		DOCUMENT_NODE : 9,
-		DOCUMENT_TYPE_NODE : 10,
-		DOCUMENT_FRAGMENT_NODE : 11,
-		NOTATION_NODE: 12
-	};
 }
+
 else if (typeof(safari) == "object") {
 	Foxtrick.arch = "Sandboxed";
 	Foxtrick.platform = "Safari";
@@ -343,49 +325,9 @@ else if (typeof(safari) == "object") {
 		  create: function(options) {
 			var window = safari.application.activeBrowserWindow;
 			window.openTab("foreground").url = options.url;
-			//var urlToOpen = chrome.extension.getURL(options.url);
-			//window.openTab("foreground").url = urlToOpen;
 		  }
 		}
 	};
-	
-	// bind seem to miss in safari extensions
-	/** vice-versa Function
-	 * @author      Andrea Giammarchi
-	 * @license     Mit Style License
-	 * @blog        http://webreflection.blogspot.com/
-	 * @project     http://code.google.com/p/vice-versa/
-	 * @version     0.20100221230000
-	 * @note        these method are about ECMAScript 5
-	 */
-
-	/** Function.prototype.bind(thisObj[, arg ... ])
-	 * @target  Chrome, FireFox, Internet Explorer, Opera, Safari
-	 * @see{http://webreflection.blogspot.com/2010/02/functionprototypebind.html}
-	 */
-	if (Function.prototype.bind == null) {
-		Function.prototype.bind = (function (slice){
-			function bind(context) {
-				var self = this;
-				if (1 < arguments.length) {
-					var $arguments = slice.call(arguments, 1);
-					return function () {
-						return self.apply(
-							context,
-							arguments.length ?
-								$arguments.concat(slice.call(arguments)) :
-								$arguments
-						);
-					};
-				}
-				return function () {
-					return arguments.length ? self.apply(context, arguments) : self.call(context);
-				};
-			}
-			return bind;
-
-		}(Array.prototype.slice));
-	}
 }
 else if (typeof(chrome) == "object") {
 	Foxtrick.arch = "Sandboxed";
@@ -425,6 +367,7 @@ else if (typeof(chrome) == "object") {
 		},
 	};
 }
+
 else {
 	Foxtrick.arch = "Gecko";
 	Foxtrick.InternalPath = Foxtrick.ResourcePath = "chrome://foxtrick/content/";
@@ -446,9 +389,14 @@ else {
 		}
 	}
 
+	// have console.log for all browsers to be save
+	var console = {
+		log : function ( string ) {
+			dump(string);
+		},
+	};
 
-
- // fennec ports
+	// fennec ports
 	if (Foxtrick.platform == "Fennec") {
 		if (Foxtrick.chromeContext()=='content') {
 			window = content;
@@ -548,7 +496,21 @@ else {
 			  }
 			},
 		}
-		
+	}
+}
+
+// have early log function in case log.js gets loaded too late
+Foxtrick.log =  function() {
+	var string = '';
+	for (i = 0; i < arguments.length; ++i) {
+		string += arguments[i];
+	}
+	console.log(string);
+};
+
+// Node not available for all browsers. make one if needed
+if (typeof(Node)=='undefined') {
+	if (typeof( window.Node )=='undefined') {
 		var Node = {
 			ELEMENT_NODE : 1,
 			ATTRIBUTE_NODE : 2,
@@ -564,8 +526,47 @@ else {
 			NOTATION_NODE: 12
 		};
 	}
+	else 
+		var Node = window.Node;
 }
 
+// bind seem to miss in safari extensions
+/** vice-versa Function
+ * @author      Andrea Giammarchi
+ * @license     Mit Style License
+ * @blog        http://webreflection.blogspot.com/
+ * @project     http://code.google.com/p/vice-versa/
+ * @version     0.20100221230000
+ * @note        these method are about ECMAScript 5
+ */
+
+/** Function.prototype.bind(thisObj[, arg ... ])
+ * @target  Chrome, FireFox, Internet Explorer, Opera, Safari
+ * @see{http://webreflection.blogspot.com/2010/02/functionprototypebind.html}
+ */
+if (Function.prototype.bind == null) {
+	Function.prototype.bind = (function (slice){
+		function bind(context) {
+			var self = this;
+			if (1 < arguments.length) {
+				var $arguments = slice.call(arguments, 1);
+				return function () {
+					return self.apply(
+						context,
+						arguments.length ?
+							$arguments.concat(slice.call(arguments)) :
+							$arguments
+					);
+				};
+			}
+			return function () {
+				return arguments.length ? self.apply(context, arguments) : self.call(context);
+			};
+		}
+		return bind;
+
+	}(Array.prototype.slice));
+}
 
 // List of categories
 Foxtrick.moduleCategories = {
@@ -577,4 +578,3 @@ Foxtrick.moduleCategories = {
 	LINKS : 'links',
 	ALERT : 'alert'
 };
-
