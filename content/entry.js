@@ -191,11 +191,18 @@ Foxtrick.entry.change = function(ev) {
 		if (ev.target.nodeType !== Node.ELEMENT_NODE)
 			return;
 
-		// not on matchlineup
-		if (doc.location.href.search(/\/Club\/Matches\/MatchOrder\//)!=-1 ||
-			doc.location.href.search(/\/Community\/CHPP\/ChppPrograms\.aspx/)!=-1) {
+		// don't act to changes on the excluded pages
+		const excludes = [
+			new RegExp("/Club/Matches/MatchOrder/", "i"),
+			new RegExp("/Community/CHPP/ChppPrograms\.aspx", "i"),
+			new RegExp("/Club/Arena/ArenaUsage\.aspx", "i")
+		];
+		if (Foxtrick.any(function(ex) {
+				return doc.location.href.search(ex) > -1;
+			}, excludes)) {
 			return;
 		}
+
 		// ignore changes list
 		if (ev.originalTarget && ev.originalTarget.className
 			&& (ev.originalTarget.className=='boxBody'
