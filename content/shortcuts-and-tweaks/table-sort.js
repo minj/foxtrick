@@ -67,6 +67,28 @@ var FoxtrickTableSort = {
 			}
 			table.setAttribute('lastSortIndex', index);
 
+			// get text to sort by. first try textContent, then title
+			var getText = function(el) {
+				var innerHTML = el.innerHTML.replace(/(<desc([^<]+)<\/desc>)/ig,"");
+				var text = Foxtrick.trim(Foxtrick.stripHTML(innerHTML));
+				if (text=='') {
+					// use first title instead
+					var getTitle = function (i_el) {
+						if (i_el.nodeType != Node.ELEMENT_NODE) 
+							return;
+						var title = i_el.getAttribute('title')
+						if (!title) {
+							for (var i=0; i<i_el.childNodes.length && !title; ++i){
+								title = getTitle(i_el.childNodes(i));
+							}
+						}
+						return title;
+					};
+					text = getTitle(el);
+				}
+				return text;
+			};
+			
 			var is_num = true, is_age=true, is_youthskill = true, is_ordinal=true, is_date=true, is_skill=true;
 			var num_cols = table.rows[sort_start+1].cells.length;
 			for (var i = sort_start+1; i < table.rows.length; ++i) {
@@ -83,7 +105,7 @@ var FoxtrickTableSort = {
 				}
 
 				// get sorting format
-				var inner = Foxtrick.trim(Foxtrick.stripHTML(table.rows[i].cells[tdindex].innerHTML));
+				var inner = getText(table.rows[i].cells[tdindex]);
 				if (isNaN(parseFloat(inner)) && inner!='') {is_num=false;}
 				if (inner.search(/^(-|\d)\/(-|\d)$/)==-1 && inner!='') {is_youthskill=false;}
 				if (inner.search(/^\d+\.\d+$/)==-1 && inner!='') {is_age=false;}
@@ -111,8 +133,8 @@ var FoxtrickTableSort = {
 					return lastSort;
 				}
 
-				aContent = Foxtrick.trim(Foxtrick.stripHTML(aContent));
-				bContent = Foxtrick.trim(Foxtrick.stripHTML(bContent));
+				aContent = getText(a.cells[tdindex]);
+				bContent = getText(b.cells[tdindex]);
 
 				// place empty cells at the bottom
 				if (aContent === "" || aContent === null || aContent === undefined) {
