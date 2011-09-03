@@ -15,7 +15,7 @@ var FoxtrickMovePlayerStatement = {
 		var elems = doc.getElementsByTagName("em");
 		for(var i=0; i < elems.length; i++) {
 			if( elems[i].getAttribute("class","shy") ) {
-				contentSpeak = elems[i].innerHTML;
+				contentSpeak = elems[i].textContent;
 				elems[i].parentNode.removeChild(elems[i]);
 			}
 		}

@@ -192,14 +192,16 @@ Foxtrick.addImage = function (doc, elem, features) {
 		sandboxed.extension.sendRequest({ req : "getDataUrl", url:features.src},
 			function (data) {
 				var img = doc.createElement("img");
-				for (i in features) img[i] = features[i];
+				for (i in features) 
+					img.setAttribute(i, features[i]);
 				img.src = data.url;
 				elem.appendChild(img);
 		});
 	}
 	else {
 		var img = doc.createElement("img");
-		for (i in features) img[i] = features[i];
+		for (i in features)  
+			img.setAttribute(i, features[i]);
 		elem.appendChild(img);
 	}
 };
