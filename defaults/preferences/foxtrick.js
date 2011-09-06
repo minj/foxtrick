@@ -292,6 +292,7 @@ pref("extensions.foxtrick.prefs.module.LinksTeam.xray_clubray.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksTeam.alltid_add.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksTeam.alltid_clear.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksTeam.alltid_compare.enabled", true);
+pref("extensions.foxtrick.prefs.module.LinksTeam.HattrickUnited.enabled", false);
 pref("extensions.foxtrick.prefs.module.LinksTracker.armenia_u20tracker.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksTracker.barbadostracker.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksTracker.belgiumtracker.enabled", true);

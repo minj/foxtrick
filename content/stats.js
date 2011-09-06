@@ -1527,6 +1527,18 @@ stats["HattrickNations"] = {
                        },
 };
 
+stats["HattrickUnited"] = {
+  "url" : "http://hattrickunited.org/",
+  "img" : Foxtrick.InternalPath+"resources/linkicons/hattrick_united.png",
+  "title" : "Hattrick United",
+
+  "teamlink" : { "path"       : "",
+                         "filters"    : [],
+                         "params"     :  {"teamid":""}
+                       },
+};
+
+
 // ----------------------------------------------------------------------
 // -------------- tracker & national teams ------------------------------
 // ----------------------------------------------------------------------
