@@ -15,7 +15,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	Foxtrick.log('Foxtrick.loader.chrome.browserLoad');
 
 	// content preference copy not updated if those change
-	var no_update_needed = {'preferences.updated':true, 'last-host':true, 'last-page':true, 'version':true, 'season':true};
+	var no_update_needed = {'preferences.updated':true, 'last-host':true, 'last-page':true, 'version':true};
 
 	// for updating content preference copy and injected css list
 	var updatePrefs = function () {
