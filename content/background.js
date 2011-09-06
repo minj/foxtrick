@@ -80,8 +80,9 @@ Foxtrick.loader.chrome.browserLoad = function() {
 				try {
 					updatePageAction(request, sender);
 
-					if (FoxtrickPrefs.getBool("preferences.updated")
-						&& JSON.parse(FoxtrickPrefs.getBool("preferences.updated"))) {
+					// access user setting directly here, since getBool uses a copy which needs updating just here
+					if ( (Foxtrick.arch == "Sandboxed" && localStorage.getItem("preferences.updated"))
+						|| (Foxtrick.platform == "Fennec" && FoxtrickPrefs._prefs_gecko.getBoolPref("preferences.updated")) ) {
 							updatePrefs();
 					}
 
@@ -104,7 +105,6 @@ Foxtrick.loader.chrome.browserLoad = function() {
 						countryToLeague : Foxtrick.XMLData.countryToLeague,
 					});
 				} catch(e) {
-					dump(e)
 					Foxtrick.log('Foxtrick request.req == "init": ' , e );
 				}
 			}
