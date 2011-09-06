@@ -28,6 +28,11 @@ var FoxtrickFriendlyInterface = {
 				name.style.whiteSpace = "nowrap";
 				name.style.maxWidth = "73px";
 				var link = name.getElementsByTagName("a")[0];
+				// link may not be present for youth matches
+				// (when a team walks over)
+				if (!link) {
+					return;
+				}
 				var setName = function(s) {
 					link.textContent = s;
 				};
