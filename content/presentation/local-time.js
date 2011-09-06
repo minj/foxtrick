@@ -60,6 +60,11 @@ var FoxtrickLocalTime = {
 			return;
 		// extract local and HT dates
 		var dates = mainBody.getElementsByClassName("date");
+		// if text doesn't have time (hours and minutes) in it,
+		// ignore it
+		dates = Foxtrick.filter(function(n) {
+			return Foxtrick.util.time.hasTime(n.textContent);
+		}, dates);
 		var isLocalDate = function(n) { return n.hasAttribute("x-lt-proced"); };
 		var localDates = Foxtrick.filter(isLocalDate, dates);
 		var htDates = Foxtrick.filter(function(n) { return !isLocalDate(n); }, dates);
@@ -67,11 +72,6 @@ var FoxtrickLocalTime = {
 			// turn HT dates to local dates
 			Foxtrick.map(function(date) {
 				date.setAttribute("x-lt-proced", "true");
-				// if text doesn't have time (hours and minutes) in it,
-				// ignore it
-				var hasTime = Foxtrick.util.time.hasTime(date.textContent);
-				if (!hasTime)
-					return;
 
 				var htDate = Foxtrick.util.time.getDateFromText(date.textContent);
 				if (!htDate)
