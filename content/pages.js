@@ -123,7 +123,8 @@ Foxtrick.ht_pages = {
 Foxtrick.pagesExcluded = {
 	"offline"                   : "down.aspx",
 	"oath"						: "chpp.hattrick.org/",
-	"error"						: "/Errors"
+	"error"						: "/Errors",
+	"logout"					: "Logout.aspx"
 };
 
 Foxtrick.isPage = function(page, doc) {
