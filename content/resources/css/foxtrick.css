@@ -228,3 +228,7 @@ html[data-theme="simple"] .transferPlayerInformation {
 html[data-theme="simple"] #ctl00_ctl00_CPContent_CPMain_UpdatePanelLiveLeagueTable {
 	white-space: nowrap;
 }
+
+#ft-monitor-sidebar-box {
+	overflow: hidden;
+}
