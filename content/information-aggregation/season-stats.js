@@ -23,13 +23,14 @@ var FoxtrickSeasonStats = {
 			var as = doc.getElementById('sidebar').getElementsByTagName('a');
 			for (var i=0;i<as.length;++i) {
 				if (as[i].href.search(/\/archive/i)!=-1) {
-					this._season = as[i].href.match(/season=(\d+)/i)[1];
+					FoxtrickPrefs.setInt('season', as[i].href.match(/season=(\d+)/i)[1]);
 					return;
 				}
 			}
 			return;
 		}
-
+		this._season = FoxtrickPrefs.getInt('season');
+		
 		// get range of local seasons
 		var selected_season = doc.location.href.match(/season=(\d+)/i)[1];
 		var season_diff = this._season - selected_season;
@@ -46,11 +47,11 @@ var FoxtrickSeasonStats = {
 
 		selectbox.addEventListener('change',this.SelectBox_Select,false);
 
-		var s=this._season;
-		for (var ls=local_season;ls>0;--ls) {
+		var s = this._season;
+		for (var ls = local_season; ls>0; --ls) {
 			var option = doc.createElement("option");
 			option.setAttribute("value",s);
-			option.innerHTML=ls;
+			option.textContent = ls;
 			selectbox.appendChild(option);
 			--s;
 		}
@@ -86,7 +87,7 @@ var FoxtrickSeasonStats = {
 				}
 			}
 		}
-		Foxtrick.dump('TeamName: '+TeamName+'  TeamNameOld: '+TeamNameOld+'\n');
+		Foxtrick.log('TeamName: ',TeamName,'  TeamNameOld: ',TeamNameOld);
 
 		for (var i=0; i<matchestable.rows.length; ++i) {
 			var type=0;
