@@ -61,6 +61,7 @@ var FoxtrickLineupShortcut = {
 		var playerId = Foxtrick.util.id.findPlayerId(mainWrapper);
 		var teamName = Foxtrick.util.id.extractTeamName(mainWrapper);
 
+		var hasTransfer = false;
 		for (var i = 0; i < matchTable.rows.length; i++) {
 			var link = matchTable.rows[i].cells[1].getElementsByTagName('a')[0];
 			var teamId = Foxtrick.util.id.getTeamIdFromUrl(link.href);
@@ -75,20 +76,27 @@ var FoxtrickLineupShortcut = {
 			var homeIdx = teamsText.indexOf(teamsTrimmed[0]);
 			var awayIdx = teamsText.indexOf(teamsTrimmed[1]);
 			var matchTeams = [teamsText.substr(homeIdx, awayIdx-1), teamsText.substr(awayIdx)];
-
+			var hasMatch = false;
+			
 			for (var j = 0; j < matchTeams.length; j++) {
 				switch (matchTeams[j]) {
 				case teamName:
-					this._Add_Lineup_Link(doc, matchTable.rows[i], teamId, playerId, matchId, 'normal');
+					if (!hasTransfer)
+						this._Add_Lineup_Link(doc, matchTable.rows[i], teamId, playerId, matchId, 'normal');
+					hasMatch = true;
 					break;
 				case ntName:
 					this._Add_Lineup_Link(doc, matchTable.rows[i], ntId, playerId, matchId, 'NT');
+					hasMatch = true;
 					break;
 				case u20Name:
 					this._Add_Lineup_Link(doc, matchTable.rows[i], u20Id, playerId, matchId, 'U20');
+					hasMatch = true;
 					break;
 				}
 			}
+			if (!hasMatch) 
+				hasTransfer = true;
 		}
 	},
 
