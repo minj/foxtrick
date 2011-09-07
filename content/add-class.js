@@ -8,7 +8,7 @@ if (!Foxtrick) var Foxtrick = {};
 Foxtrick.AddClass = {
 	MODULE_NAME : "AddClass",
 	CORE_MODULE : true,
-	PAGES : ["playerdetail", "search", "bookmarks"],
+	PAGES : ["playerdetail", "search", "bookmarks", "match"],
 	NICE : -20, // place before all date-related modules
 
 	run : function(doc) {
@@ -18,13 +18,31 @@ Foxtrick.AddClass = {
 			this.addDateForYouthLeagueSearch(doc);
 		else if (Foxtrick.isPage("bookmarks", doc))
 			this.addDateForBookmarks(doc);
+		else if (Foxtrick.isPage("match", doc))
+			this.addDateForMatch(doc);
 	},
 
 	change : function(doc) {
 		this.run(doc);
 	},
 
-	// add date class for youth league search
+	// add date class for match
+	addDateForMatch : function(doc) {
+		var mainBody = doc.getElementById("mainBody");
+		if (!mainBody)
+			return;
+
+		const timeRe = /(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})/;
+
+		// start time
+		var cells = mainBody.getElementsByClassName("byline");
+		Foxtrick.map(function(cell) { //Foxtrick.log(cell.innerHTML, cell.innerHTML.search(timeRe));
+			if (cell.getElementsByClassName("date").length == 0)
+				cell.innerHTML = cell.innerHTML.replace(timeRe, "<span class=\"date\">$1</span>");
+		}, cells);
+	},
+
+	// add date class for bookmark
 	addDateForBookmarks : function(doc) {
 		var mainBody = doc.getElementById("mainBody");
 		if (!mainBody)
