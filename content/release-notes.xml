@@ -15,6 +15,7 @@
 </note>
 
 <note version="0.8">
+<item>Arabic locale. (GM-OmaniMilani)</item>
 <item>New mechanism for viewing modules by page, old module OnPagePrefs thereby removed. (convincedd, ryanli)</item>
 <item><xhtml:a href="#tab=main">Option</xhtml:a> not to load XML data from Hattrick. Also XMLs are now cached and an option to clear the cache has been added to the approriate pages (convincedd)</item>
 <item>New module <module>LocalTime</module> for showing time in local timezone. (ryanli)</item>
@@ -31,7 +32,7 @@
 <item>Option to load friendly book status on default in module <module>ShowFriendlyBooked</module>, enabled by default. (convincedd)</item>
 <item>Link to load extra player information in module <module>SkillTable</module>. (convincedd)</item>
 <item>In Firefox the FoxTrick icon was moved to the address bar and is draggable. (ryanli)</item>
-<item>In Chrome the FoxTrick icon was moved inside the address bar. Also flickering has been removed and the speed improved (convincedd)</item>
+<item>In Chrome the FoxTrick icon was moved inside the address bar. Also flickering has been removed and the speed improved. (convincedd)</item>
 <item>FoxTrick enabled for Fennec/Firefox for mobile. (convincedd)</item>
 <item>Beta versions of FoxTrick available now for Opera and Safari. (convincedd, ryanli)</item>
 <item>Other trivial fixes and enhancements. (convincedd, ryanli)</item>
