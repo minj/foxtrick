@@ -15,6 +15,7 @@
 </note>
 
 <note version="0.8">
+<item>Арапски језик. (GM-OmaniMilani)</item>
 <item>Нови механизам приказивања опција активних на страници, стари модул OnPagePrefs је због тога уклоњен. (convincedd, ryanli)</item>
 <item><xhtml:a href="#tab=main">Опција</xhtml:a> за спречавање учитавања XML фајлова са Хеттрика. (convincedd)</item>
 <item>Нови модул <module>LocalTime</module> за приказивање локалног уместо ХТ времена. (ryanli)</item>
