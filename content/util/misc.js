@@ -307,14 +307,42 @@ Foxtrick.getLastPage = function(host) {
 	return FoxtrickPrefs.getString("last-page") || "http://www.hattrick.org";
 }
 
-Foxtrick.stopListenToChange = function (doc) {
-	var content = doc.getElementById("content");
-	content.removeEventListener("DOMSubtreeModified", Foxtrick.entry.change, true);
-}
+// global change listeners
+if (Foxtrick.platform == "Opera") {
+// replacement for missing DOMSubtreeModified 
 
-Foxtrick.startListenToChange = function(doc) {
-	var content = doc.getElementById("content");
-	content.addEventListener("DOMSubtreeModified", Foxtrick.entry.change, true);
+	Foxtrick.changeScheduled = false;
+	
+	Foxtrick.waitForChanges = function (ev) {
+		if (Foxtrick.changeScheduled) 
+			return;
+		Foxtrick.changeScheduled = true;
+		window.setTimeout ( function() {
+			Foxtrick.changeScheduled = false;
+			Foxtrick.entry.change(ev);
+		}, 0)
+	}
+	
+	Foxtrick.stopListenToChange = function (doc) {
+		var content = doc.getElementById("content");
+		content.removeEventListener("DOMNodeInserted", Foxtrick.waitForChanges, true);
+	}
+	
+	Foxtrick.startListenToChange = function(doc) {
+		var content = doc.getElementById("content");
+		content.addEventListener("DOMNodeInserted", Foxtrick.waitForChanges, true);
+	}
+}
+else {
+	Foxtrick.stopListenToChange = function (doc) {
+		var content = doc.getElementById("content");
+		content.removeEventListener("DOMSubtreeModified", Foxtrick.entry.change, true);
+	}
+	
+	Foxtrick.startListenToChange = function(doc) {
+		var content = doc.getElementById("content");
+		content.addEventListener("DOMSubtreeModified", Foxtrick.entry.change, true);
+	}
 }
 
 /** Insert text in given textarea at the current position of the cursor */
