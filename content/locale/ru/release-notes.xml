@@ -15,6 +15,7 @@
 	</note>
 
 	<note version="0.8">
+		<item>Арабский перевод (GM-OmaniMilani).</item>
 		<item>Новый механизм для отображения используемых модулей на странице, соответственно старый модуль OnPagePrefs был удалён (convincedd, ryanli).</item>
 		<item><xhtml:a href="#tab=main">Параметр</xhtml:a> для отключения загрузки XML-данных из Hattrick. Также, XML-файлы теперь кэшируются и на соответствующие страницы добавлена функция очистки кэша (convincedd).</item>
 		<item>Новый модуль <module>LocalTime</module> для показа локального времени (ryanli).</item>
