@@ -15,6 +15,7 @@
 </note>
 
 <note version="0.8">
+<item>Übersetzung ins Arabische. (GM-OmaniMilani)</item>
 <item>Neue Methode um Moduloptionen seitenspezifisch anzusehen; Modul OnPagePrefs daher entfernt. (convincedd, ryanli)</item>
 <item><xhtml:a href="#tab=main">Option</xhtml:a> XML Daten von Hattrick nicht zu laden. Des weiteren werden XMLs nun zwischengespeichert und die Möglichkeit den Speicher zu löschen wurde auf den entsprechenden Seiten zugefügt (convincedd)</item>
 <item>Neues Modul <module>LocalTime</module> um die Zeit in der eigenen Zeitzone anzuzeigen. (ryanli)</item>
