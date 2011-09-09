@@ -450,7 +450,7 @@ Foxtrick.Pages.Players = {
 					player.transferCompare = doc.createElement('a');
 					player.transferCompare.textContent = Foxtrickl10n.getString('TransferCompare.abbr');
 					player.transferCompare.title = Foxtrickl10n.getString('TransferCompare');
-					player.transferCompare.href = "/Club/Transfers/TransferCompare.aspx?playerId=" + player.id;
+					player.transferCompare.href = player.nameLink.href.replace("/Club/Players/Player.aspx" ,"/Club/Transfers/TransferCompare.aspx");
 				}
 
 				if (Foxtrick.Pages.Players.isOldiesPage(doc)
