@@ -187,7 +187,6 @@ pref("extensions.foxtrick.prefs.module.LinksChallenges.maptrick_coolness.enabled
 pref("extensions.foxtrick.prefs.module.LinksChallenges.hat_com_coolness.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksChallenges.xray_friendlier.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksClubTransfers.enabled", true);
-pref("extensions.foxtrick.prefs.module.LinksClubTransfers.natstats.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksCoach.coachexperience.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksCoach.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksCoach.nrg_fc.enabled", true);
