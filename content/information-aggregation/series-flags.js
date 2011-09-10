@@ -10,7 +10,7 @@
 var FoxtrickSeriesFlags = {
 	MODULE_NAME : "SeriesFlags",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ["guestbook", "teamPage", "league", "youthleague", "federation"],
+	PAGES : ["guestbook", "teamPage", "series", "youthSeries", "federation"],
 	OPTIONS : ["Guestbook", "Supporters", "Visitors", "CountryOnly"],
 	NICE: +1,  // some conflict with another module. setting NICE +1 solved it
 
@@ -138,7 +138,7 @@ var FoxtrickSeriesFlags = {
 			}, nonVisitorsBoxes);
 		}
 		if (FoxtrickPrefs.isModuleOptionEnabled("SeriesFlags", "Visitors")
-			&& Foxtrick.any(function(n) { return Foxtrick.isPage(n, doc); }, ["teamPage", "league", "youthleague", "federation"])) {
+			&& Foxtrick.any(function(n) { return Foxtrick.isPage(n, doc); }, ["teamPage", "series", "youthSeries", "federation"])) {
 			// add to visitors
 			var sideBar = doc.getElementById("sidebar");
 			var sideBarBoxes = sideBar.getElementsByClassName("sidebarBox");

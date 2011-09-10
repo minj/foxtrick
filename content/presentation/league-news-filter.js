@@ -7,7 +7,7 @@
 var FoxtrickLeagueNewsFilter = {
 	MODULE_NAME : "LeagueNewsFilter",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('league'),
+	PAGES : ["series"],
 	RADIO_OPTIONS : new Array('all','friendlies','transfers','lineup_changes'),
 
 	run : function(doc) {

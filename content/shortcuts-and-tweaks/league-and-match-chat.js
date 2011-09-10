@@ -7,7 +7,7 @@
 var FoxtrickLeagueAndMatchChat = {
 	MODULE_NAME : "LeagueAndMatchChat",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : ['league','youthleague','match','cupoverview','cupmatches','federation'],
+	PAGES : ['series','youthSeries','match','cupoverview','cupmatches','federation'],
 	OPTIONS : ['OpenYapletPopup','OpenGabblyPopup','ChatNick'],
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DISABLED_LIST : [true,true,true,false],
@@ -24,7 +24,7 @@ var FoxtrickLeagueAndMatchChat = {
 			&& FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "ChatNick_text")!='')
 			nick = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "ChatNick_text");
 
-		if (Foxtrick.isPage("league", doc)) {
+		if (Foxtrick.isPage("series", doc)) {
 			var id=doc.location.href.replace(/.+leagueLevelUnitID=/i, "").match(/^\d+/)[0];
 			var channel = "hattrick.org/league"+id;
 			var popupid =  "hattrick_org_league_"+id;
@@ -41,7 +41,7 @@ var FoxtrickLeagueAndMatchChat = {
 			var sidebox_p = doc.getElementById('sidebar').getElementsByTagName('p')[0].parentNode;
 			sidebox_p.appendChild(a);
 		}
-		else if (Foxtrick.isPage("youthleague", doc)) {
+		else if (Foxtrick.isPage("youthSeries", doc)) {
 			var id = doc.location.href.replace(/.+YouthLeagueId=/i, "").match(/^\d+/)[0];
 			var channel = "hattrick.org/youthleague"+id;
 			var popupid =  "hattrick_org_youthleague_"+id;

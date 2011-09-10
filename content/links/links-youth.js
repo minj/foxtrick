@@ -247,7 +247,7 @@ Foxtrick.util.module.register(FoxtrickLinksYouthMatchList);
 var FoxtrickLinksYouthLeague = {
 	MODULE_NAME : "LinksYouthLeague",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	PAGES : new Array('youthleague'),
+	PAGES : new Array('youthSeries'),
 	OPTION_FUNC : function(doc) {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "youthleaguelink");
 	},

@@ -7,7 +7,7 @@
 var FoxtrickHighlightOwnerless = {
 	MODULE_NAME : "HighlightOwnerless",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : ["league"],
+	PAGES : ["series"],
 
 	run : function(doc) {
 		var span = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLeagueTable");

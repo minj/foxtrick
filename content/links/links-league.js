@@ -9,7 +9,7 @@
 var FoxtrickLinksLeague = {
 	MODULE_NAME : "LinksLeague",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	PAGES : new Array('league'),
+	PAGES : ["series"],
 	OPTION_FUNC : function(doc) {
 		return Foxtrick.links.getOptionsHtml(doc, this, false, "leaguelink");
 	},

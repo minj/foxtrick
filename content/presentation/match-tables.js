@@ -6,12 +6,12 @@
 var FoxtrickMatchTables = {
 	MODULE_NAME : "MatchTables",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('matchesarchiv', 'matches','league','youthleague'),
-	OPTIONS :  new Array("RemoveTime"),
+	PAGES : ['matchesarchiv', 'matches','series','youthSeries'],
+	OPTIONS : ["RemoveTime"],
 
 	// remove spaces on league page
 	removeSpace : function(doc) {
-		if (Foxtrick.isPage("league", doc)) {
+		if (Foxtrick.isPage("series", doc)) {
 			// remove non-breaking spaces (&nbsp;) in league table
 			var table = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLeagueTable");
 			if (!table)
@@ -31,8 +31,8 @@ var FoxtrickMatchTables = {
 	addStyleSheet : function(doc) {
 		if (Foxtrick.util.layout.isStandard(doc))
 			return;
-		if (Foxtrick.isPage("league", doc)
-			|| Foxtrick.isPage("youthleague", doc))
+		if (Foxtrick.isPage("series", doc)
+			|| Foxtrick.isPage("youthSeries", doc))
 			Foxtrick.util.inject.cssLink(doc,Foxtrick.InternalPath+"resources/css/FoxtrickMatchTables_league.css");
 		else if (Foxtrick.isPage("matchesarchiv", doc)
 			|| Foxtrick.isPage("matches", doc))
