@@ -14,27 +14,24 @@ var FoxtrickLinksCountry = {
 	},
 
 	run : function(doc) {
-		//addExternalLinksToCountryDetail
-		var ownBoxBody=null;
-		var countryid;
-		var alldivs = doc.getElementsByTagName('div');
-		for (var j = 0; j < alldivs.length; j++) {
-			if (alldivs[j].className=="main mainRegular") {
-					var thisdiv = alldivs[j];
-					countryid = Foxtrick.util.id.findCountryId(thisdiv);
-					}
-			}
+		var flag = doc.getElementsByClassName("flag")[0];
+		var leagueId = Foxtrick.util.id.findCountryId(flag.parentNode);
 
-		try {
-			var englishdiv = doc.getElementById('mainBody').getElementsByTagName('h1')[0].nextSibling;
-			if (englishdiv.textContent.search(/Englisch: (\w+)/)==-1) englishdiv = englishdiv.nextSibling;
-			var english_name = englishdiv.textContent.match(/Englisch: (\w+)/)[1];
-		} catch(e){Foxtrick.log(e)}
+		// get English name
+		var xml = Foxtrick.XMLData.worldDetailsXml;
+		var it = xml.evaluate("//League[LeagueID=" + leagueId + "]/ShortName",
+			xml, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
+		var node = it.iterateNext();
+		if (node)
+			var nameShort = node.textContent;
 
-		var links = Foxtrick.LinkCollection.getLinks("countrylink", { "countryid": countryid, "english_name":english_name }, doc, this);
+		var links = Foxtrick.LinkCollection.getLinks("countrylink", {
+				"countryid" : leagueId,
+				"english_name" : nameShort
+			}, doc, this);
 
 		if (links.length > 0) {
-			ownBoxBody = doc.createElement("div");
+			var ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
 						"foxtrick.links.boxheader" );
 			var ownBoxBodyId = "foxtrick_links_content";
@@ -48,7 +45,7 @@ var FoxtrickLinksCountry = {
 			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
 			box.id = "ft-links-box";
 		}
-		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid });
+		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,{ "countryid": leagueId });
 	}
 };
 Foxtrick.util.module.register(FoxtrickLinksCountry);
