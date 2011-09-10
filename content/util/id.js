@@ -17,8 +17,8 @@ Foxtrick.util.id.getOwnYouthTeamId = function() {
 	return Foxtrick.util.module.get("Core").getSelfTeamInfo().youthTeamId;
 };
 
-Foxtrick.util.id.getOwnCountryId = function() {
-	return Foxtrick.util.module.get("Core").getSelfTeamInfo().countryId;
+Foxtrick.util.id.getOwnLeagueId = function() {
+	return Foxtrick.util.module.get("Core").getSelfTeamInfo().leagueId;
 };
 
 Foxtrick.util.id.isSeriesDetailUrl = function(href) {
@@ -29,7 +29,7 @@ Foxtrick.util.id.getLeagueLeveUnitIdFromUrl = function(url) {
 	return url.replace(/.+leagueLevelUnitID=/i, "").match(/^\d+/);
 };
 
-Foxtrick.util.id.findCountryId = function(element) {
+Foxtrick.util.id.findLeagueId = function(element) {
 	var links = element.getElementsByTagName('a');
 	for (var i=0; i < links.length; i++) {
 		if ( links[i].href.match(/League\.aspx/i) ) {

@@ -22,7 +22,7 @@ var FoxtrickLinksLeague = {
 			if (alldivs[j].className=="main mainRegular") {
 				var thisdiv = alldivs[j];
 				var leagueid = Foxtrick.util.id.findLeagueLeveUnitId(thisdiv);;
-				var countryid = Foxtrick.util.id.findCountryId(thisdiv);
+				var countryid = Foxtrick.util.id.findLeagueId(thisdiv);
 
 				var leaguename = Foxtrick.util.id.extractLeagueName(thisdiv);
 				var leaguename2 = leaguename;

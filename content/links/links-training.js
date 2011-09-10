@@ -32,7 +32,7 @@ var FoxtrickLinksTraining = {
 				STA = doc.getElementById("ctl00_ctl00_CPContent_CPMain_txtTrainingLevelStamina").value;
 				TI = doc.getElementById("ctl00_ctl00_CPContent_CPMain_txtTrainingLevel").value;
 				TrainingType = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ddlTrainingType").value;
-				owncountryid = Foxtrick.util.id.getOwnCountryId();
+				owncountryid = Foxtrick.util.id.getOwnLeagueId();
 
 
 				var links = Foxtrick.LinkCollection.getLinks("traininglink", {"Coach":Coach,"TI":TI,"STA":STA,"TrainingType":TrainingType,'owncountryid':owncountryid}, doc, this);

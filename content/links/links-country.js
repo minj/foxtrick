@@ -15,7 +15,7 @@ var FoxtrickLinksCountry = {
 
 	run : function(doc) {
 		var flag = doc.getElementsByClassName("flag")[0];
-		var leagueId = Foxtrick.util.id.findCountryId(flag.parentNode);
+		var leagueId = Foxtrick.util.id.findLeagueId(flag.parentNode);
 
 		// get English name
 		var xml = Foxtrick.XMLData.worldDetailsXml;

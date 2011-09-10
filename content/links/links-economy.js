@@ -14,7 +14,7 @@ var FoxtrickLinksEconomy = {
 	},
 
 	run : function(doc) {
-		var owncountryid = Foxtrick.util.id.getOwnCountryId();
+		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
 
 		// only on current finances
 		var links = doc.getElementById('mainBody').getElementsByTagName('a');

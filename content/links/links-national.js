@@ -22,7 +22,7 @@ var FoxtrickLinksNational = {
 		for (var j = 0; j < alldivs.length; j++) {
 			if (alldivs[j].className=="main mainRegular") {
 					var thisdiv = alldivs[j];
-					countryid = Foxtrick.util.id.findCountryId(thisdiv);
+					countryid = Foxtrick.util.id.findLeagueId(thisdiv);
 					ntteamid = Foxtrick.util.id.findTeamId(thisdiv);
 					}
 			}

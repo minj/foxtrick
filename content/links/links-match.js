@@ -24,7 +24,7 @@ var FoxtrickLinksMatch = {
 		var isarchivedmatch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch")==null);
 		//Foxtrick.dump('isarchivedmatch:'+isarchivedmatch+'\n');
 		var ownteamid = Foxtrick.util.id.getOwnTeamId();
-		var owncountryid = Foxtrick.util.id.getOwnCountryId();
+		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
 		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementById('mainWrapper'));
 		var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 		var ownyouthteamid = Foxtrick.util.id.getOwnYouthTeamId();

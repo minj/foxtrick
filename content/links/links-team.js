@@ -58,7 +58,7 @@ var FoxtrickLinksTeam = {
 	},
 
 	gatherLinks : function( thisdiv, doc ) {
-		var countryid = Foxtrick.util.id.findCountryId(thisdiv);
+		var countryid = Foxtrick.util.id.findLeagueId(thisdiv);
   		var teamid = Foxtrick.util.id.findTeamId(thisdiv);
 		var teamname = Foxtrick.util.id.extractTeamName(thisdiv);
 		var leaguename = Foxtrick.util.id.extractLeagueName(thisdiv);

@@ -17,7 +17,7 @@ var FoxtrickLinksChallenges = {
 	run : function(doc) {
 		var teamid = Foxtrick.util.id.findTeamId(doc.getElementsByClassName("subMenu")[0] );
 		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementById('mainWrapper'));
-		var ownteamid = Foxtrick.util.id.getOwnCountryId();
+		var ownteamid = Foxtrick.util.id.getOwnLeagueId();
 
 		//addExternalLinksToChallengesDetail
 		var links;

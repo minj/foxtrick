@@ -256,7 +256,7 @@ var FoxtrickCore = {
 		if (teamLinks && teamLinks.getElementsByTagName("a").length > 0) {
 			this.SELF_TEAM_INFO = {
 				teamId : Foxtrick.util.id.findTeamId(teamLinks),
-				countryId : Foxtrick.util.id.findCountryId(teamLinks),
+				leagueId : Foxtrick.util.id.findLeagueId(teamLinks),
 				teamName : Foxtrick.util.id.extractTeamName(teamLinks)
 			};
 		}
