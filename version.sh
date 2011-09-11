@@ -16,11 +16,19 @@ else
 
 	sed -i -r "/extensions\\.foxtrick\\.prefs\\.version/s|\"[0-9.]+\"|\"$VER\"|" defaults/preferences/foxtrick.js
 	# Mozilla
-	sed -i -r "/<em:version>/s|>[0-9.]+<|>$VER<|" install.rdf
+	if [ -f install.rdf ]; then
+		sed -i -r "/<em:version>/s|>[0-9.]+<|>$VER<|" install.rdf
+	fi
 	# Chrome
-	sed -i -r "/\"version\"/s|\"[0-9.]+\"|\"$VER\"|" manifest.json
+	if [ -f manifest.json ]; then
+		sed -i -r "/\"version\"/s|\"[0-9.]+\"|\"$VER\"|" manifest.json
+	fi
 	# Opera
-	sed -i -r "/version=.+network=/s|\"[0-9.]+\"|\"$VER\"|" config.xml
+	if [ -f config.xml ]; then
+		sed -i -r "/version=.+network=/s|\"[0-9.]+\"|\"$VER\"|" config.xml
+	fi
 	# Safari
-	sed -i -r "/<!--version-->/s|>[0-9.]+<|>$VER<|" Info.plist
+	if [ -f Info.plist ]; then
+		sed -i -r "/<!--version-->/s|>[0-9.]+<|>$VER<|" Info.plist
+	fi
 fi
