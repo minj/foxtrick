@@ -4,7 +4,7 @@
 		version="0.7.9" network="public private">
 	<name>FoxTrick</name>
 	<description>A set of presentation enhancements for hattrick.org</description>
-	<author href="http://code.google.com/p/foxtrick/">FoxTrick team</author>
+	<author href="http://www.foxtrick.org/">FoxTrick team</author>
 	<license href="http://www.gnu.org/licenses">GNU General Public License</license>
 	<icon src="skin/icon-64.png" width="64" height="64"/>
 	<content src="background.html" type="text/html" encoding="utf-8"/>
