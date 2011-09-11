@@ -1,12 +1,14 @@
 APP_NAME = foxtrick
 
-# Subversion revision, this is only available with git-svn
-REVISION = `git svn find-rev HEAD`
-
 # Distribution type:
 # Firefox: nightly, stable, amo
 # Others: nightly, stable
 DIST_TYPE = nightly
+
+# Subversion revision, this is only available with git-svn
+REVISION := $(shell git svn find-rev HEAD)
+MAJOR_VERSION := $(shell ./version.sh)
+REV_VERSION := $(MAJOR_VERSION).$(REVISION)
 
 # URL prefix of nightly update manifest
 NIGHTLY_PREFIX = https://www.foxtrick.org/nightly
@@ -104,9 +106,8 @@ firefox:
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
-	sed -i -r 's|(<em:version>.+)(</em:version>)|\1.'$(REVISION)'\2|' install.rdf; \
-	sed -i -r 's|(<em:updateURL>).+(</em:updateURL>)|\1'$(NIGHTLY_PREFIX)'/update.rdf\2|' install.rdf; \
-	sed -i -r 's|("extensions\.foxtrick\.prefs\.version", ".+)(")|\1.'$(REVISION)'\2|' defaults/preferences/foxtrick.js
+	../version.sh $(REV_VERSION); \
+	sed -i -r 's|(<em:updateURL>).+(</em:updateURL>)|\1'$(NIGHTLY_PREFIX)'/update.rdf\2|' install.rdf
 else ifeq ($(DIST_TYPE),stable)
 	cd $(BUILD_DIR); \
 	sed -i -r 's|(<em:updateURL>).+(</em:updateURL>)|\1https://www.mozdev.org/p/updates/foxtrick/{9d1f059c-cada-4111-9696-41a62d64e3ba}/update.rdf\2|' install.rdf
@@ -134,9 +135,8 @@ chrome:
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
-	sed -i -r 's|("version" : ".+)(")|\1.'$(REVISION)'\2|' manifest.json; \
-	sed -i -r 's|("update_url" : ").+(")|\1'$(NIGHTLY_PREFIX)'/chrome/update.xml\2|' manifest.json; \
-	sed -i -r 's|("extensions\.foxtrick\.prefs\.version", ".+)(")|\1.'$(REVISION)'\2|' defaults/preferences/foxtrick.js
+	../version.sh $(REV_VERSION); \
+	sed -i -r 's|("update_url" : ").+(")|\1'$(NIGHTLY_PREFIX)'/chrome/update.xml\2|' manifest.json
 	# make crx
 	./maintainer/crxmake.sh $(BUILD_DIR) maintainer/chrome.pem
 	mv $(BUILD_DIR).crx $(APP_NAME).crx
@@ -177,13 +177,12 @@ opera:
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
-	sed -i -r 's|(version=".+)(" network)|\1.'$(REVISION)'\2|' config.xml; \
-	sed -i -r 's|(<update-description href=").+("/>)|\1'$(NIGHTLY_PREFIX)'/opera/update.xml\2|' config.xml; \
-	sed -i -r 's|("extensions\.foxtrick\.prefs\.version", ".+)(")|\1.'$(REVISION)'\2|' defaults/preferences/foxtrick.js
+	../version.sh $(REV_VERSION); \
+	sed -i -r 's|(<update-description href=").+("/>)|\1'$(NIGHTLY_PREFIX)'/opera/update.xml\2|' config.xml
 else ifeq ($(DIST_TYPE),stable)
 	cd $(BUILD_DIR); \
 	sed -i -r '/update-description/d' config.xml; \
-	sed -i -r 's|(id=").+(")|\1www.foxtrick.org\2|' config.xml; 
+	sed -i -r 's|(id=").+(")|\1www.foxtrick.org\2|' config.xml
 endif
 	# make oex
 	cd $(BUILD_DIR); \
@@ -200,18 +199,17 @@ safari:
 	mkdir $(SAFARI_BUILD_DIR)/content
 	cd content/; \
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_SAFARI) \
-		../$(BUILD_DIR)/foxtrick.safariextension/content
+		../$(SAFARI_BUILD_DIR)/content
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	# version bump for nightly
 	cd $(SAFARI_BUILD_DIR); \
-	sed -i -r 's|(<string>).+(</string><!--updateurl-->)|\1'$(NIGHTLY_PREFIX)'/safari/update.plist\2|' Info.plist; \
-	sed -i -r 's|(<string>.+)(</string><!--version-->)|\1.'$(REVISION)'\2|' Info.plist; \
-	sed -i -r 's|("extensions\.foxtrick\.prefs\.version", ".+)(")|\1.'$(REVISION)'\2|' defaults/preferences/foxtrick.js
+	../../version.sh $(REV_VERSION); \
+	sed -i -r 's|(<string>).+(</string><!--updateurl-->)|\1'$(NIGHTLY_PREFIX)'/safari/update.plist\2|' Info.plist
 else ifeq ($(DIST_TYPE),stable)
 	cd $(BUILD_DIR); \
 	sed -i -r 's|(<string>.+)nightly(.+</string><!--updateurl-->)|\1release\2|' Info.plist; \
-	sed -i -r 's|(<string>).+(</string><!--key-->)|\1www.foxtrick.org\2|' Info.plist; 
+	sed -i -r 's|(<string>).+(</string><!--key-->)|\1www.foxtrick.org\2|' Info.plist
 endif
 	# make safariextz
 	cd $(BUILD_DIR); \
