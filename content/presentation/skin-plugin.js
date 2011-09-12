@@ -7,35 +7,42 @@ var FoxtrickSkinPlugin = {
 
 	MODULE_NAME : "SkinPlugin",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('all'),
-	OPTIONS : new Array('Skin1','Skin2'),
-	OPTION_TEXTS : true,
-	OPTION_TEXTS_TEXTFILE_LOAD_BUTTONS : new Array(true,true),
-	OPTIONS_CSS: new Array ("",""),
+	PAGES : ["all"],
+
+	OPTION_FUNC : function(doc) {
+		var cont = doc.createElement("div");
+		var holder = doc.createElement("textarea");
+		holder.setAttribute("pref", "module.SkinPlugin.skin");
+		cont.appendChild(holder);
+
+		var loader = Foxtrick.filePickerForText(doc, function(text) {
+			holder.textContent += text + "\n";
+		}, null);
+		cont.appendChild(loader);
+
+		return cont;
+	},
 
 	init : function() {
+		// import from old preferences
+		var oldPrefs = ["module.SkinPlugin.Skin1_text", "module.SkinPlugin.Skin2_text"];
+		Foxtrick.map(function(key) {
+			var pref = FoxtrickPrefs.getString(key);
+			if (pref) {
+				FoxtrickPrefs.setString("module.SkinPlugin.skin",
+					FoxtrickPrefs.getString("module.SkinPlugin.skin") + "\n" + pref);
+			}
+		}, oldPrefs);
+
 		if (Foxtrick.arch == "Gecko") {
-			if (FoxtrickPrefs.isModuleOptionEnabled("SkinPlugin", 'Skin1')) {
-				var skinlink = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin1_text");
-				this.OPTIONS_CSS[0] = skinlink;
-			}
-			if (FoxtrickPrefs.isModuleOptionEnabled("SkinPlugin", 'Skin2')) {
-				var skinlink = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin2_text");
-				this.OPTIONS_CSS[1] = skinlink;
-			}
+			this.CSS = FoxtrickPrefs.getString("module.SkinPlugin.skin");
 		}
 	},
 
 	run : function(doc) {
 		if (Foxtrick.arch != "Gecko") {
-			if (FoxtrickPrefs.isModuleOptionEnabled("SkinPlugin", 'Skin1')) {
-				var skin1 = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin1_text");
-				Foxtrick.util.inject.css(doc, skin1);
-			}
-			if (FoxtrickPrefs.isModuleOptionEnabled("SkinPlugin", 'Skin2')) {
-				var skin2 = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".Skin2_text");
-				Foxtrick.util.inject.css(doc, skin2);
-			}
+			var skin = FoxtrickPrefs.getString("module.SkinPlugin.skin");
+			Foxtrick.util.inject.css(doc, skin);
 		}
 	}
 };
