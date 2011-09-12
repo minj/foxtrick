@@ -13,7 +13,7 @@ a good reason to. They are for version bumps in Makefile.
 	<key>CFBundleDisplayName</key>
 	<string>FoxTrick</string>
 	<key>CFBundleIdentifier</key>
-	<string>www.ht-foxtrick.com</string><!--key-->
+	<string>www.foxtrick.org</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleVersion</key>
