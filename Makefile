@@ -1,8 +1,8 @@
 APP_NAME = foxtrick
 
 # Distribution type:
-# Firefox: nightly, stable, amo
-# Others: nightly, stable
+# Firefox, Chrome, Opera: nightly, release, hosting
+# Safari: nightly, release
 DIST_TYPE = nightly
 
 # Subversion revision, this is only available with git-svn
@@ -10,8 +10,9 @@ REVISION := $(shell git svn find-rev HEAD)
 MAJOR_VERSION := $(shell ./version.sh)
 REV_VERSION := $(MAJOR_VERSION).$(REVISION)
 
-# URL prefix of nightly update manifest
+# URL prefix of update manifest
 NIGHTLY_PREFIX = https://www.foxtrick.org/nightly
+RELEASE_PREFIX = https://www.foxtrick.org/release
 
 BUILD_DIR = build
 SAFARI_TARGET = foxtrick.safariextension
@@ -108,10 +109,10 @@ ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
 	../version.sh $(REV_VERSION); \
 	sed -i -r 's|(<em:updateURL>).+(</em:updateURL>)|\1'$(NIGHTLY_PREFIX)'/update.rdf\2|' install.rdf
-else ifeq ($(DIST_TYPE),stable)
+else ifeq ($(DIST_TYPE),release)
 	cd $(BUILD_DIR); \
-	sed -i -r 's|(<em:updateURL>).+(</em:updateURL>)|\1https://www.foxtrick.org/release/update.rdf\2|' install.rdf
-else ifeq ($(DIST_TYPE),amo)
+	sed -i -r 's|(<em:updateURL>).+(</em:updateURL>)|\1'$(RELEASE_PREFIX)'/update.rdf\2|' install.rdf
+else ifeq ($(DIST_TYPE),hosting)
 	# used on addons.mozilla.org, with no update URL
 	cd $(BUILD_DIR); \
 	sed -i '/<em:updateURL>/d' install.rdf
@@ -140,7 +141,14 @@ ifeq ($(DIST_TYPE),nightly)
 	# make crx
 	./maintainer/crxmake.sh $(BUILD_DIR) maintainer/chrome.pem
 	mv $(BUILD_DIR).crx $(APP_NAME).crx
-else ifeq ($(DIST_TYPE),stable)
+else ifeq ($(DIST_TYPE),release)
+	cd $(BUILD_DIR); \
+	sed -i -r 's|("update_url" : ").+(")|\1'$(RELEASE_PREFIX)'/chrome/update.xml\2|' manifest.json; \
+	sed -i -r '/"tabs",/d' manifest.json
+	# make crx
+	./maintainer/crxmake.sh $(BUILD_DIR) maintainer/chrome.pem
+	mv $(BUILD_DIR).crx $(APP_NAME).crx
+else ifeq ($(DIST_TYPE),hosting)
 	cd $(BUILD_DIR); \
 	sed -i -r '/update_url/d' manifest.json; \
 	sed -i -r '/"tabs",/d' manifest.json; \
@@ -179,10 +187,12 @@ ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
 	../version.sh $(REV_VERSION); \
 	sed -i -r 's|(<update-description href=").+("/>)|\1'$(NIGHTLY_PREFIX)'/opera/update.xml\2|' config.xml
-else ifeq ($(DIST_TYPE),stable)
+else ifeq ($(DIST_TYPE),release)
 	cd $(BUILD_DIR); \
-	sed -i -r '/update-description/d' config.xml; \
-	sed -i -r 's|(id=").+(")|\1www.foxtrick.org\2|' config.xml
+	sed -i -r 's|(<update-description href=").+("/>)|\1'$(RELEASE_PREFIX)'/opera/update.xml\2|' config.xml
+else ifeq ($(DIST_TYPE),hosting)
+	cd $(BUILD_DIR); \
+	sed -i -r '/update-description/d' config.xml
 endif
 	# make oex
 	cd $(BUILD_DIR); \
@@ -206,10 +216,9 @@ ifeq ($(DIST_TYPE),nightly)
 	cd $(SAFARI_BUILD_DIR); \
 	../../version.sh $(REV_VERSION); \
 	sed -i -r 's|(<string>).+(</string><!--updateurl-->)|\1'$(NIGHTLY_PREFIX)'/safari/update.plist\2|' Info.plist
-else ifeq ($(DIST_TYPE),stable)
+else ifeq ($(DIST_TYPE),release)
 	cd $(SAFARI_BUILD_DIR); \
-	sed -i -r 's|(<string>.+)nightly(.+</string><!--updateurl-->)|\1release\2|' Info.plist; \
-	sed -i -r 's|(<string>).+(</string><!--key-->)|\1www.foxtrick.org\2|' Info.plist
+	sed -i -r 's|(<string>).+(</string><!--updateurl-->)|\1'$(RELEASE_PREFIX)'/safari/update.plist\2|' Info.plist
 endif
 	# make safariextz
 	cd $(BUILD_DIR); \
