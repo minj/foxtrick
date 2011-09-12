@@ -31,15 +31,19 @@ var FoxtrickHTDateFormat = {
 
 		const useLocal = FoxtrickPrefs.isModuleOptionEnabled("HTDateFormat", "LocalSeason");
 		const weekOffset = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".FirstDayOfWeekOffset_text");
-		var seperator=' ';
-		// some table fixing for simple skin
-		if (!Foxtrick.util.layout.isStandard(doc)) {
-			if (Foxtrick.isPage("matches", doc))
-				seperator = '<br/>';
+		// set up function for separating date and week/season,
+		// with concerns of some table fixing for simple skin
+		if ((!Foxtrick.util.layout.isStandard(doc) && Foxtrick.isPage("matches", doc))
+			|| Foxtrick.isPage("seriesHistory", doc)) {
+			var separate = function(node) {
+				node.appendChild(doc.createElement("br"));
+			};
 		}
-		if (Foxtrick.isPage("seriesHistory", doc))
-			seperator = '<br/>';
-
+		else {
+			var separate = function(node) {
+				node.appendChild(doc.createTextNode(" "));
+			};
+		}
 
 		var modifyDate = function(node) {
 			if (Foxtrick.hasClass(node, "ft-date"))
@@ -55,7 +59,10 @@ var FoxtrickHTDateFormat = {
 			if (date) {
 				var htDate = Foxtrick.util.time.gregorianToHT(date, weekOffset, useLocal);
 				Foxtrick.addClass(node, "ft-date");
-				node.innerHTML = node.innerHTML + seperator + "(" + htDate.week + "/" + htDate.season + ")";
+				separate(node);
+				node.appendChild(doc.createTextNode("(w/s)"
+					.replace(/w/, htDate.week)
+					.replace(/s/, htDate.season)));
 			}
 		};
 
