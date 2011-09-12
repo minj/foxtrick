@@ -458,15 +458,15 @@ function getModule(module)
 				textDiv.appendChild(textInput);
 
 				if (module.OPTION_TEXTS_TEXTFILE_LOAD_BUTTONS && module.OPTION_TEXTS_TEXTFILE_LOAD_BUTTONS[i]) {
-					var load = Foxtrick.filePickerForText(document, function(text) {
-						textInput.value = text;
-					});
+					var load = Foxtrick.filePickerForText(document, (function(textInput) {
+						return function(text) { textInput.value = text; };
+					})(textInput));
 					textDiv.appendChild(load);
 				}
 				if (module.OPTION_TEXTS_DATAURL_LOAD_BUTTONS && module.OPTION_TEXTS_DATAURL_LOAD_BUTTONS[i]) {
-					var load = Foxtrick.filePickerForDataUrl(document, function(text) {
-						textInput.value = text;
-					});
+					var load = Foxtrick.filePickerForDataUrl(document, (function(textInput) {
+						return function(url) { textInput.value = url; };
+					})(textInput));
 					textDiv.appendChild(load);
 				}
 			}
