@@ -225,7 +225,7 @@ function initTextAndValues()
 		else if (FoxtrickPrefs.isModuleEnabled(module)) // module itself
 			$(this).attr("checked", "checked");
 	});
-	// initialize checkboxes
+	// initialize inputs
 	$("body input[pref]").each(function() {
 		if ($(this).is(":checkbox")) {
 			// checkbox
@@ -236,6 +236,9 @@ function initTextAndValues()
 			// text input
 			$(this).attr("value", FoxtrickPrefs.getString($(this).attr("pref")));
 		}
+	});
+	$("body textarea[pref]").each(function() {
+		$(this).text(FoxtrickPrefs.getString($(this).attr("pref")));
 	});
 	// initialize elements with blockers, disable if blocker enabled
 	$("body [blocked-by]").each(function() {
