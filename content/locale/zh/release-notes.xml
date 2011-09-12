@@ -14,6 +14,7 @@
 </note>
 
 <note version="0.8">
+<item>阿拉伯语语言. (GM-OmaniMilani)</item>
 <item>使用新机制以根据页面查看模块, 因此移除了旧模块 OnPagePrefs. (convincedd, ryanli)</item>
 <item><xhtml:a href="#tab=main">选项</xhtml:a> 以不从 Hattrick 加载 XML 数据. 同时提供了清理 XML 缓存的链接. (convincedd)</item>
 <item>新模块 <module>LocalTime</module>, 以显示本地时区的时间. (ryanli)</item>
