@@ -31,6 +31,7 @@ var FoxtrickSkinPlugin = {
 			if (pref) {
 				FoxtrickPrefs.setString("module.SkinPlugin.skin",
 					FoxtrickPrefs.getString("module.SkinPlugin.skin") + "\n" + pref);
+               FoxtrickPrefs.deleteValue(key);
 			}
 		}, oldPrefs);
 
