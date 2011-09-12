@@ -207,7 +207,7 @@ ifeq ($(DIST_TYPE),nightly)
 	../../version.sh $(REV_VERSION); \
 	sed -i -r 's|(<string>).+(</string><!--updateurl-->)|\1'$(NIGHTLY_PREFIX)'/safari/update.plist\2|' Info.plist
 else ifeq ($(DIST_TYPE),stable)
-	cd $(BUILD_DIR); \
+	cd $(SAFARI_BUILD_DIR); \
 	sed -i -r 's|(<string>.+)nightly(.+</string><!--updateurl-->)|\1release\2|' Info.plist; \
 	sed -i -r 's|(<string>).+(</string><!--key-->)|\1www.foxtrick.org\2|' Info.plist
 endif
