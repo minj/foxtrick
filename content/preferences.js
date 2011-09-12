@@ -187,13 +187,10 @@ function initTabs()
 
 function initTextAndValues()
 {
-	const rtl = ["ar", "fa"];
 	const locale = FoxtrickPrefs.getString("htLanguage");
-	for (var i = 0; i < rtl.length; ++i)
-		if (rtl[i] == locale) {
-			$("html").attr("dir", "rtl");
-			break;
-		}
+	
+	if (Foxtrickl10n.getString("direction") == "rtl") 
+		$("html").attr("dir", "rtl");
 
 	document.title = Foxtrickl10n.getString("foxtrick.prefs.preferences");
 	$("#version").text(Foxtrick.version());
