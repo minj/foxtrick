@@ -23,13 +23,13 @@ var FoxtrickTickerAlert = {
 		enableh.setAttribute("data-text", "TickerAlert.enable");
 		enableh.className='col_checkbox';
 		header.appendChild(enableh);
-		var fileh = doc.createElement("th");
-		fileh.className='col_filepicker';
-		header.appendChild(fileh);
 		var soundh = doc.createElement("th");
 		soundh.setAttribute("data-text", "TickerAlert.sound");
 		soundh.className='col_textfield';
 		header.appendChild(soundh);
+		var fileh = doc.createElement("th");
+		fileh.className='col_filepicker';
+		header.appendChild(fileh);
 
 		for (var type in FoxtrickTickerAlert.TYPES) {
 			var row = doc.createElement("tr");
@@ -43,19 +43,17 @@ var FoxtrickTickerAlert = {
 			enable.type = "checkbox";
 			enable.setAttribute("pref", "module.TickerAlert." + type + ".enabled");
 			enablec.appendChild(enable);
-			var filec = doc.createElement("td");
-			row.appendChild(filec);
-			var form = Foxtrick.filePickerForDataUrl(doc, function(url, data){
-				doc.getElementById(data.id).value = url;
-			}, {id: "module.TickerAlert." + type + ".sound"});
-			filec.appendChild(form);
 			var soundc = doc.createElement("td");
 			row.appendChild(soundc);
 			var sound = doc.createElement("input");
 			sound.setAttribute("pref", "module.TickerAlert." + type + ".sound");
-			sound.setAttribute("id", "module.TickerAlert." + type + ".sound");
 			soundc.appendChild(sound);
-
+			var filec = doc.createElement("td");
+			row.appendChild(filec);
+			var input = Foxtrick.filePickerForDataUrl(doc, (function(sound) {
+					return function(url) { sound.value = url; };
+				})(sound));
+			filec.appendChild(input);
 		}
 
 		return table;

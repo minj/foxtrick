@@ -5,8 +5,7 @@
 
 if (!Foxtrick) var Foxtrick = {};
 
-Foxtrick.filePickerForDataUrl = function(doc, callback, data) {
-	var form = doc.createElement('form');
+Foxtrick.filePickerForDataUrl = function(doc, callback) {
 	var input = doc.createElement('input');
 	input.type = 'file';
 	input.addEventListener('change',function(ev) {
@@ -16,16 +15,14 @@ Foxtrick.filePickerForDataUrl = function(doc, callback, data) {
 			alert('Error code: ' + e.target.error.code);
 		};
 		reader.onload = function(evt) {
-			callback(evt.target.result, data);
+			callback(evt.target.result);
 		}
 		reader.readAsDataURL(file);
 	}, false);
-	form.appendChild(input);
-	return form;
+	return input;
 }
 
-Foxtrick.filePickerForText = function(doc, callback, data) {
-	var form = doc.createElement('form');
+Foxtrick.filePickerForText = function(doc, callback) {
 	var input = doc.createElement('input');
 	input.type = 'file';
 	input.addEventListener('change',function(ev) {
@@ -35,15 +32,12 @@ Foxtrick.filePickerForText = function(doc, callback, data) {
 			alert('Error code: ' + e.target.error.code);
 		};
 		reader.onload = function(evt) {
-			callback(evt.target.result, data);
+			callback(evt.target.result);
 		}
 		reader.readAsText(file);
 	}, false);
-	form.appendChild(input);
-	return form;
+	return input;
 }
-
-
 
 // Play the sound with URL given as parameter.
 // Gecko only supports WAV format at the moment.
