@@ -17,7 +17,7 @@ var FoxtrickSkinPlugin = {
 
 		var loader = Foxtrick.filePickerForText(doc, function(text) {
 			holder.textContent += text + "\n";
-		}, null);
+		});
 		cont.appendChild(loader);
 
 		return cont;
@@ -31,7 +31,7 @@ var FoxtrickSkinPlugin = {
 			if (pref) {
 				FoxtrickPrefs.setString("module.SkinPlugin.skin",
 					FoxtrickPrefs.getString("module.SkinPlugin.skin") + "\n" + pref);
-               FoxtrickPrefs.deleteValue(key);
+				FoxtrickPrefs.deleteValue(key);
 			}
 		}, oldPrefs);
 
