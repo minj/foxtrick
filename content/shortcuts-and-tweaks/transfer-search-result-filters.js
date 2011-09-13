@@ -11,11 +11,27 @@ var FoxtrickTransferSearchResultFilters = {
 	NICE : -1, // before TransferDeadline and HTMSPoints
 
 	// functions returning whether to hide a player
+	// need to check availablility of a certain property first since they
+	// may not be available for players just sold
 	FILTER_FUNC : {
-		"hideBruised" : function(player, checked) { return player.bruised; },
-		"hideInjured" : function(player, checked) { return player.injured; },
-		"hideSuspended" : function(player, checked) { return player.redCard == 1; },
+		"hideBruised" : function(player, checked) {
+			if (player.bruised == null)
+				return true;
+			return player.bruised;
+		},
+		"hideInjured" : function(player, checked) {
+			if (player.injured == null)
+				return true;
+			return player.injured;
+		},
+		"hideSuspended" : function(player, checked) {
+			if (player.redCard == null)
+				return true;
+			return player.redCard == 1;
+		},
 		"days" : function(player, min, max) {
+			if (player.age == null)
+				return true;
 			if (typeof(min) == "number" && player.age.days < min)
 				return true;
 			if (typeof(max) == "number" && player.age.days > max)
