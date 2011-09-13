@@ -163,10 +163,17 @@ var FoxtrickTransferSearchResultFilters = {
 
 	saveEdit : function(ev) {
 		FoxtrickTransferSearchResultFilters.getFilters(function(filters) {
-			if (ev.target.type == "text")
-				filters[ev.target.getAttribute("x-ft-filter-idx")][ev.target.getAttribute("x-ft-filter-prop")] = Number(ev.target.value);
+			var value = null;
+			if (ev.target.type == "text") {
+				if (ev.target.value != "" && !isNaN(ev.target.value))
+					value = Number(ev.target.value);
+			}
 			else if (ev.target.type == "checkbox")
-				filters[ev.target.getAttribute("x-ft-filter-idx")][ev.target.getAttribute("x-ft-filter-prop")] = Boolean(ev.target.checked);
+				value = Boolean(ev.target.checked);
+
+			var index = ev.target.getAttribute("x-ft-filter-idx");
+			var prop = ev.target.getAttribute("x-ft-filter-prop");
+			filters[index][prop] = value;
 			FoxtrickTransferSearchResultFilters.setFilters(filters);
 		});
 	},
