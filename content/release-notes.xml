@@ -11,7 +11,6 @@
 <notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
 <note version="nightly" localized-version="Development build">
 <item>Please view <xhtml:a href="http://code.google.com/p/foxtrick/source/list">commit history</xhtml:a> at Google Code for details.</item>
-<item>You could prevent FoxTrick from poping up this release note after each update by disabling "Show release notes after FoxTrick updates" in <xhtml:a href="#tab=main">main tab</xhtml:a>.</item>
 </note>
 
 <note version="0.8">
