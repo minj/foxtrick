@@ -302,10 +302,6 @@
 			<label id="pref-header-icon-label" for="pref-header-icon" data-text="foxtrick.prefs.smallcopyicons"></label>
 		</li>
 		<li>
-			<input type="checkbox" id="pref-show-release-notes" pref="showReleaseNotes" />
-			<label id="pref-show-release-notes-label" for="pref-show-release-notes" data-text="foxtrick.showReleaseNotes"></label>
-		</li>
-		<li>
 			<input type="checkbox" id="pref-debug-info" pref="DisplayHTMLDebugOutput" />
 			<label id="pref-debug-info-label" for="pref-debug-info" data-text="foxtrick.prefs.DisplayHTMLDebugOutput"></label>
 		</li>
@@ -314,6 +310,10 @@
 
 <!-- changes -->
 <div class="module" x-on="changes">
+	<div>
+		<input type="checkbox" id="pref-show-release-notes" pref="showReleaseNotes" />
+		<label id="pref-show-release-notes-label" for="pref-show-release-notes" data-text="foxtrick.showReleaseNotes"></label>
+	</div>
 	<div>
 		<label for="pref-version-release-notes" data-text="foxtrick.versionReleaseNotes"></label>
 		<select id="pref-version-release-notes"></select>
