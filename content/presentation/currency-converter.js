@@ -75,7 +75,7 @@ var FoxtrickCurrencyConverter = {
 			if (node.textContent.search(re) > -1) {
 				var matched = node.textContent.match(re);
 				var oldAmount = matched[1].replace(/\s/g, "");
-				var newAmount = oldAmount * oldRate / rate;
+				var newAmount = Math.floor(oldAmount * oldRate / rate);
 				node.textContent = node.textContent.replace(re, matched[0]
 					+ " (" + Foxtrick.formatNumber(newAmount, "\u00a0") + symbol + ")");
 			}
