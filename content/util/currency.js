@@ -41,13 +41,20 @@ Foxtrick.util.currency = {
 		return null;
 	},
 
+	// returns user's currency symbol
 	getSymbol : function() {
 		var leagueId = Foxtrick.util.id.getOwnLeagueId();
-		return Foxtrick.util.id.getLeagueDataFromId(leagueId).Country.CurrencyName;
+		var name = Foxtrick.util.id.getLeagueDataFromId(leagueId).Country.CurrencyName;
+		return name.replace(/000 /, "");
 	},
 
+	// returns user's currency rate
+	// returns 5 means: 1 ¤ = 5 euro
 	getRate : function() {
 		var leagueId = Foxtrick.util.id.getOwnLeagueId();
-		return parseFloat(Foxtrick.util.id.getLeagueDataFromId(leagueId).Country.CurrencyRate.replace(",", ".")) / 10;
+		var name = Foxtrick.util.id.getLeagueDataFromId(leagueId).Country.CurrencyName;
+		var rate = Foxtrick.util.id.getLeagueDataFromId(leagueId).Country.CurrencyRate.replace(",", ".");
+		var mag = (name.indexOf("000 ") > -1) ? 0.001 : 1;
+		return Number(rate) * mag / 10;
 	}
 };
