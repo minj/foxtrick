@@ -7,7 +7,7 @@
 var FoxtrickCopyYouth = {
 	MODULE_NAME : "CopyYouth",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : ["YouthTraining", "youthplayerdetail", "playerdetail", "youthoverview",
+	PAGES : ["YouthTraining", "youthplayerdetail", "youthoverview",
 		"youthFixtures"],
 	OPTIONS : ["TrainingReport", "ScoutComment", "PlayerSource",
 		"FixturesSource"],
@@ -176,8 +176,7 @@ var FoxtrickCopyYouth = {
 				var container = doc.createElement("div");
 				container.appendChild(doc.createTextNode(Foxtrickl10n.getString("CopyYouth.playerSource.copied")));
 				var linkContainer = doc.createElement("div");
-				if (Foxtrick.isPage('youthplayerdetail', doc))
-					linkContainer.innerHTML = Foxtrickl10n.getString("CopyYouth.goto").replace(/%s/,
+				linkContainer.innerHTML = Foxtrickl10n.getString("CopyYouth.goto").replace(/%s/,
 					'<a href="' + url + '" target="_blank">http://www.hattrick-youthclub.org</a>');
 				container.appendChild(linkContainer);
 				Foxtrick.util.note.add(doc, insertBefore, "ft-player-source-copy-note", container, null, true);
@@ -241,7 +240,7 @@ var FoxtrickCopyYouth = {
 			this.addScoutComment(doc);
 		}
 		if (FoxtrickPrefs.isModuleOptionEnabled("CopyYouth", "PlayerSource")
-			&& (Foxtrick.isPage("youthplayerdetail", doc) || Foxtrick.isPage("playerdetail", doc))) {
+			&& (Foxtrick.isPage("youthplayerdetail", doc))) {
 			this.addPlayerSource(doc);
 		}
 		if (FoxtrickPrefs.isModuleOptionEnabled("CopyYouth", "FixturesSource")
