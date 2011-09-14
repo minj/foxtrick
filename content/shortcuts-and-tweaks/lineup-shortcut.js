@@ -77,23 +77,20 @@ var FoxtrickLineupShortcut = {
 			var awayIdx = teamsText.indexOf(teamsTrimmed[1]);
 			var matchTeams = [teamsText.substr(homeIdx, awayIdx-1), teamsText.substr(awayIdx)];
 			var hasMatch = false;
-			
-			for (var j = 0; j < matchTeams.length; j++) {
-				switch (matchTeams[j]) {
-				case teamName:
-					if (!hasTransfer)
-						this._Add_Lineup_Link(doc, matchTable.rows[i], teamId, playerId, matchId, 'normal');
+
+			if (Foxtrick.member(teamName, matchTeams)) {
+				if (!hasTransfer) {
+					this._Add_Lineup_Link(doc, matchTable.rows[i], teamId, playerId, matchId, 'normal');
 					hasMatch = true;
-					break;
-				case ntName:
-					this._Add_Lineup_Link(doc, matchTable.rows[i], ntId, playerId, matchId, 'NT');
-					hasMatch = true;
-					break;
-				case u20Name:
-					this._Add_Lineup_Link(doc, matchTable.rows[i], u20Id, playerId, matchId, 'U20');
-					hasMatch = true;
-					break;
 				}
+			}
+			else if (Foxtrick.member(ntName, matchTeams)) {
+				this._Add_Lineup_Link(doc, matchTable.rows[i], ntId, playerId, matchId, 'NT');
+				hasMatch = true;
+			}
+			else if (Foxtrick.member(u20Name, matchTeams)) {
+				this._Add_Lineup_Link(doc, matchTable.rows[i], u20Id, playerId, matchId, 'U20');
+				hasMatch = true;
 			}
 			if (!hasMatch) 
 				hasTransfer = true;
