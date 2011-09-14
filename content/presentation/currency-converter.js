@@ -1,6 +1,9 @@
-// script which converting a currency on the all hattrick pages
-// Note dev: only if currency in TD tag and in div[id=page]
-// author by smates
+/*
+ * currency-converter.js
+ * Denote amount of money in a different currency
+ * @author smates
+ * @author ryanli
+ */
 
 var FoxtrickCurrencyConverter = {
 	MODULE_NAME : "CurrencyConverter",
@@ -37,96 +40,53 @@ var FoxtrickCurrencyConverter = {
 		if (Foxtrick.isLoginPage(doc) || doc.location.href.search(/Forum/i) != -1)
 			return;
 
-		var oldSymbol = Foxtrick.util.currency.getSymbol(); //currencysymbol which in the your country
+		// old stuffs
+		var oldSymbol = Foxtrick.util.currency.getSymbol();
 		var oldLength = oldSymbol.length;
 		var oldRate = Foxtrick.util.currency.getRate();
 
+		// new stuffs
 		var code = FoxtrickPrefs.getString("module.CurrencyConverter.to");
 		var symbol = Foxtrick.util.currency.getSymbolByCode(code);
 		var rate = Foxtrick.util.currency.getRateByCode(code);
 
+		// don't convert if both symbol and rate are the same
 		if ((oldSymbol == symbol) && (oldRate == rate))
-			return; // don't convert if both symbol and rate are identical
+			return;
 
-		var myReg = new RegExp('(-\\d+|\\d+)' + oldSymbol);
-		var myDelReg = new RegExp('(-\\d+|\\d+)' + oldSymbol + '|<.+>');
+		// only convert in div#page
+		var page = doc.getElementById("page");
+		// only convert most inner td and p tags
+		var nodes = Foxtrick.filter(function(node) {
+				var tagName = node.tagName.toLowerCase();
+				return Foxtrick.member(tagName, ["td", "p"])
+					&& !Foxtrick.any(function(child) { return node.getElementsByTagName(child).length > 0; }, ["td", "p"]);
+			}, page.getElementsByTagName("*"));
 
-		// near all currencies are im tables
-	   	this.drawNewCurrency(doc, 'td', oldSymbol, oldLength, symbol, oldRate, rate, myReg, myDelReg);
-		// some might be in alert boxes which use <p>
-		this.drawNewCurrency(doc, 'p', oldSymbol, oldLength, symbol, oldRate, rate, myReg, myDelReg);
-	},
+		// regular expressions for getting out money
+		var re = new RegExp("(\\d+(\\d|\\s)+)" + oldSymbol);
 
-	change : function(doc) {
-		this.run(doc);
-	},
+		// filter out nodes without currency symbols
+		var nodes = Foxtrick.filter(function(node) {
+				return node.textContent.search(re) > -1;
+			}, nodes);
 
-	drawNewCurrency : function (doc, tagname, oldCurrencySymbol, oldSymbolLength, currencySymbol, currencyRate, currencyRateNewCurr, myReg, myDelReg) {
-		var posReg = new RegExp('\\d&nbsp;' + oldCurrencySymbol);
-
-		var div = doc.getElementById( 'page' );
-		var table_elm = div.getElementsByTagName( tagname );
-   		for ( var i = 0; i < table_elm.length; i++) {
-			if (table_elm[i].getElementsByTagName('td').length!=0) continue;  // don't do nested. only most inner gets converted
-			else if (table_elm[i].getElementsByTagName('p').length!=0) continue;  // don't do nested. only most inner gets converted
-
-			var pos = table_elm[i].innerHTML.search(posReg);
-
-			if (pos > 0 && (!Foxtrick.hasClass(table_elm[i], "foxtrick-currency-converter") || table_elm[i].innerHTML.indexOf(currencySymbol)==-1)) {
-				var table_inner = Foxtrick.trim(table_elm[i].innerHTML);
-				var inner_raw = table_elm[i].innerHTML;
-				var bdo_br='';
-				if (doc.location.href.search(/Club\/Finances\//)!=-1)
-					bdo_br='<br>';
-				if (inner_raw.search(/bdo dir="ltr"/)!=-1) {
-					inner_raw = table_elm[i].innerHTML.replace(/<bdo dir="ltr">/,'').replace(/<\/bdo>/,'') ;
-				}
-				var res="";
-				var only_one_number = false;
-				var first = true;
-				while (pos!=-1) {
-					pos+=oldSymbolLength+7; // 7 = length(\d+&nbps;)
-					var table_inner_stripped = inner_raw.replace(/\s|\&nbsp\;/g,'');
-					if (first==true && table_inner_stripped.replace(myDelReg,'')=='')
-						only_one_number=true; // remove html tags and currency to check if this is the only real entry.
-					try {
-						var val=table_inner_stripped.match(myReg)[1];
-					}
-					catch (e) {
-						// catching currency symbol of tranfer bid
-						return;
-					}
-					var conv = Foxtrick.formatNumber(Math.floor(val * currencyRate / currencyRateNewCurr),'&nbsp;');
-					conv = conv.replace(/\-\&nbsp\;/,'-');
-
-					// add a <br> if there is only one entry
-					var br='';
-					if (only_one_number==true) br='<br>';
-					// add a space at the end if the next symbol is not ')'
-					var space=' ';
-					var next_char=inner_raw.charAt(pos);
-					if (next_char==')' || next_char=='/' || next_char=='.' || next_char==',')
-						space='';
-					if (inner_raw.charAt(pos)=='<') {
-						next_char=inner_raw.substr(pos).replace(myDelReg,'').charAt(0);
-						if (next_char==')' || next_char=='/' || next_char=='.' || next_char==',')
-							space='';
-					}
-
-					// add left part plus converted
-					res+=inner_raw.substr(0,pos)+' '+br+'<span>('+conv+'&nbsp;'+currencySymbol+')</span>'+space+bdo_br;
-
-					// get the remains and check them in next loop
-					inner_raw = inner_raw.substring(pos);
-					pos = inner_raw.search(posReg);
-					bdo_br='';
-					first=false;
-				}
-
-				table_elm[i].innerHTML = res + inner_raw;
-				Foxtrick.addClass(table_elm[i], "foxtrick-currency-converter");
+		var parseLeaf = function(node) {
+			if (node.textContent.search(re) > -1) {
+				var matched = node.textContent.match(re);
+				var oldAmount = matched[1].replace(/\s/g, "");
+				var newAmount = oldAmount * oldRate / rate;
+				node.textContent = node.textContent.replace(re, matched[0]
+					+ " (" + Foxtrick.formatNumber(newAmount, "\u00a0") + symbol + ")");
 			}
-		}
+		};
+		var traverse = function(node) {
+			if (node.childNodes.length == 0)
+				parseLeaf(node);
+			else
+				Foxtrick.map(traverse, node.childNodes);
+		};
+		Foxtrick.map(traverse, nodes);
 	}
 };
 Foxtrick.util.module.register(FoxtrickCurrencyConverter);
