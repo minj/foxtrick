@@ -1021,6 +1021,8 @@ stats["updated_training"] =  {
         "img" : Foxtrick.InternalPath+"resources/linkicons/training.png"
 };
 
+
+/* //down + no oAuth
 //Training Team Evaluation
 stats["Training_Team_Evaluation"] =  {
         "url" : "http://www.adrianomoutinho.com/tte/",
@@ -1036,7 +1038,7 @@ stats["Training_Team_Evaluation"] =  {
 						},
         "title" : "Training Team Evaluation",
         "img" : Foxtrick.InternalPath+"resources/linkicons/training_evaluation.png"
-};
+}; */
 
 //NrgJack Wage Reduction Calculator
 stats["Wage_Reduction_Calculator"] =  {
@@ -1498,7 +1500,7 @@ stats["ht_bet"] =  {
         "img" : Foxtrick.InternalPath+"resources/linkicons/ht_bet.png"
 };
 
-
+/* //down
 // Team Position Probability Calculator
 stats["tppc"] =  {
         "url" : "http://www.adrianomoutinho.com/hattrick/index.php",
@@ -1513,7 +1515,7 @@ stats["tppc"] =  {
 
         "title" : "Team Position Probability Calculator",
         "img" : Foxtrick.InternalPath+"resources/linkicons/tppc.png"
-};
+};  */
 
 
 stats["HattrickNations"] = {
