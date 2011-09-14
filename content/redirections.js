@@ -64,6 +64,10 @@ var FoxtrickRedirections = {
 					tar = tar.replace(/%5Bteamid%5D|\[teamid\]/i, teamid);
 					tar = tar.replace(/%5Buserid%5D|\[userid\]/i, userid);
 			}
+			else if (doc.location.href.search(/redir_to_youthmatches=true/i)!=-1 ) {
+				var YouthTeamId = Foxtrick.util.id.findYouthTeamId(doc.getElementsByClassName("subMenu")[0]);
+				tar = serv+"/Club/Matches/?TeamID="+teamid+"&YouthTeamId="+YouthTeamId; 
+			}
 		}
 		else {
 			// set challenge team 
