@@ -14,73 +14,55 @@ var FoxtrickStaffMarker = {
 
 	CSS : Foxtrick.InternalPath + "resources/css/staff-marker.css",
 
-	chppHolders : {},
-	editors : {},
-	foxtrickers : {},
-
-	init : function() {
-		// parse ID from nodes in aboutXML and record in obj
-		var parseId = function(nodes, obj) {
-			Foxtrick.map(function(node) {
-				if (node.hasAttribute("id")) {
-					var id = Number(node.getAttribute("id"));
-					if (!isNaN(id))
-						obj[id] = true;
-				}
-			}, nodes);
-		};
-
-		// FoxTrick
-		var ftTags = [
-			"head_developer",
-			"project_owner",
-			"developer",
-			"designer",
-			"translator"
-		];
-		Foxtrick.map(function(tag) {
-			var nodes = Foxtrick.XMLData.aboutXML.getElementsByTagName(tag);
-			parseId(nodes, FoxtrickStaffMarker.foxtrickers);
-		}, ftTags);
-
-		// Editors
-		var editors = Foxtrick.XMLData.aboutXML.getElementsByTagName("editor");
-		parseId(editors, FoxtrickStaffMarker.editors);
-
-		// CHPP holders
-		var chpps = Foxtrick.XMLData.aboutXML.getElementsByTagName("chpp");
-		parseId(chpps, FoxtrickStaffMarker.chppHolders);
+	// get Hattrick-youthclub staffs
+	getData : function(callback) {
+		const dataKey = "staff-marker-data";
+		Foxtrick.sessionGet(dataKey, function(stored) {
+			if (stored == undefined) {
+				var obj = {};
+				// JSON files to be downloaded
+				const uris = [
+					"http://www.foxtrick.org/staff-data/foxtrick.json",
+					"http://www.foxtrick.org/staff-data/chpp.json",
+					"http://www.foxtrick.org/staff-data/editor.json"
+				];
+				// counter of URI remaining to fetch
+				var todo = uris.length;
+				Foxtrick.map(function(uri) {
+					Foxtrick.load(uri, function(text) {
+						try {
+							var parsed = JSON.parse(text);
+						}
+						catch (e) {
+							// JSON.parse failed
+							Foxtrick.log("Cannot parse file from: ", uri);
+						}
+						if (parsed) {
+							var key = parsed["type"];
+							var list = parsed["list"];
+							// add them!
+							obj[key] = {};
+							Foxtrick.map(function(user) {
+								obj[key][user.id] = true;
+							}, list);
+						}
+						// all your data are belong to us
+						if (--todo == 0) {
+							Foxtrick.sessionSet(dataKey, obj);
+							Foxtrick.log("Staff marker data loaded.");
+							callback(obj);
+						}
+					}, true);
+				}, uris);
+			}
+			else {
+				callback(stored);
+			}
+		});
 	},
 
-	// get Hattrick-youthclub staffs
-	getHty : function(callback) { try{
-			const htySessionKey = "staff-marker-hty-list";
-			Foxtrick.sessionGet(htySessionKey, function(stored) {
-				if (stored == undefined) {
-					const htyUri = "http://www.hattrick-youthclub.org/_admin/foxtrick/team.xml";
-					Foxtrick.loadXml(htyUri, function(xml) {
-						var obj = {};
-						var nodes = xml.getElementsByTagName("User");
-						Foxtrick.map(function(node) {
-							var id = Number(node.getAttribute("ID"));
-							if (!isNaN(id))
-								obj[id] = true;
-						}, nodes);
-						Foxtrick.sessionSet(htySessionKey, obj);
-						Foxtrick.log("Hattrick-youthclub staffs loaded.");
-						callback(obj);
-					}, true);
-				}
-				else {
-					callback(stored);
-				}
-			});
-			} catch(e){Foxtrick.log(e);}
-		},
-
 	run : function(doc) {
-		this.getHty(function(hty) {
-			try {
+		this.getData(function(data) {
 			// getting user-defined IDs and colors
 			var customMarker = {};
 			if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker", "own")) {
@@ -120,18 +102,10 @@ var FoxtrickStaffMarker = {
 					Foxtrick.addClass(object, "ft-staff-la");
 				}
 
-				// others
-				if (FoxtrickStaffMarker.editors[id] !== undefined) {
-					Foxtrick.addClass(object, "ft-staff-editor");
-				}
-				if (hty[id] !== undefined) {
-					Foxtrick.addClass(object, "ft-staff-hty");
-				}
-				if (FoxtrickStaffMarker.foxtrickers[id] !== undefined) {
-					Foxtrick.addClass(object, "ft-staff-foxtrick");
-				}
-				if (FoxtrickStaffMarker.chppHolders[id] != undefined) {
-					Foxtrick.addClass(object, "ft-staff-chpp-holder");
+				// data loaded from external files
+				for (var type in data) {
+					if (data[type][id] == true)
+						Foxtrick.addClass(object, "ft-staff-" + type);
 				}
 			};
 			if (Foxtrick.isPage("forumViewThread", doc)) {
@@ -146,7 +120,6 @@ var FoxtrickStaffMarker = {
 					FoxtrickStaffMarker._MarkAliases_thread(doc, modifier);
 				}
 			}
-		} catch(e){Foxtrick.log(e);}
 		});
 	},
 
@@ -181,53 +154,44 @@ var FoxtrickStaffMarker = {
 				return;
 
 			var css = '';
-			this.getHty(function(hty) {
-				try{
-				var i = 1;
-				var user_hasClass = {};
-				var option;
-				while (option = select.options[i++]) {
-					var uname = Foxtrick.trim(option.textContent);
-					uname = uname.substring(0, uname.indexOf(" "));
-					if (uname == "")
-						uname = Foxtrick.trim(option.text);
-					if (uname == "")
-						break;
-					var uid = option.value.replace(/by_|to_/gi, "");
+			var i = 1;
+			var user_hasClass = {};
+			var option;
+			while (option = select.options[i++]) {
+				var uname = Foxtrick.trim(option.textContent);
+				uname = uname.substring(0, uname.indexOf(" "));
+				if (uname == "")
+					uname = Foxtrick.trim(option.text);
+				if (uname == "")
+					break;
+				var uid = option.value.replace(/by_|to_/gi, "");
 
-					modifier(uid, uname, option); // no background image in chrome for select. background-colors only
+				modifier(uid, uname, option); // no background image in chrome for select. background-colors only
 
-					if (option.value==-3) {
-						Foxtrick.addClass(option, "ft-staff-seperator");
-					}
-					else if (option.value=="by_-1") {
-						Foxtrick.addClass(option, "ft-staff-official");
-					}
-					else if ( do_flag && Foxtrick.arch === "Gecko") { // no background image in chrome for select
-						Foxtrick.addClass(option, "ft-userid-"+uid);
-						if (user_hasClass[uid]) continue;
-						if (FoxtrickStaffMarker.chppHolders[uid] != undefined && hty[uid] !== undefined)
-								css += ".ft-staff-chpp-holder.ft-staff-hty.ft-userid-"     +uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'), url('chrome://foxtrick/content/resources/img/staff/chpp.png'),     url('chrome://foxtrick/content/resources/img/staff/hyouthclub.png'); background-position: 180px 50%, 0px 0px, 24px 0px; background-repeat: no-repeat, no-repeat, no-repeat; padding: 1px 1px 1px 24px; width:155px; border-bottom:dotted thin #ddd;}\n";
-						else if (FoxtrickStaffMarker.chppHolders[uid] != undefined && FoxtrickStaffMarker.foxtrickers[uid] !== undefined)
-								css += ".ft-staff-chpp-holder.ft-staff-foxtrick.ft-userid-"+uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'), url('chrome://foxtrick/content/resources/img/staff/chpp.png'),     url('chrome://foxtrick/content/resources/img/staff/foxtrick.png');   background-position: 180px 50%, 0px 0px, 24px 0px; background-repeat: no-repeat, no-repeat, no-repeat, padding: 1px 1px 1px 24px; width:155px; border-bottom:dotted thin #ddd;}\n";
-						else if (FoxtrickStaffMarker.foxtrickers[uid] !== undefined && hty[uid] !== undefined)
-								css += ".ft-staff-foxtrick.ft-staff-hty.ft-userid-"        +uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'), url('chrome://foxtrick/content/resources/img/staff/foxtrick.png'), url('chrome://foxtrick/content/resources/img/staff/hyouthclub.png'); background-position: 180px 50%, 0px 0px, 18px 0px; background-repeat: no-repeat, no-repeat, no-repeat; padding: 1px 1px 1px 18px; width:165px; border-bottom:dotted thin #ddd;}\n";
-						else if (FoxtrickStaffMarker.foxtrickers[uid] !== undefined)
-								css += ".ft-staff-foxtrick.ft-userid-"   +uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'), url('chrome://foxtrick/content/resources/img/staff/foxtrick.png');   background-position: 180px 50%, 0px 0px; background-repeat: no-repeat, no-repeat; padding: 1px 1px 1px 1px; width:183px; border-bottom:dotted thin #ddd;}\n";
-						else if (hty[uid] !== undefined)
-								css += ".ft-staff-hty.ft-userid-"        +uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'), url('chrome://foxtrick/content/resources/img/staff/hyouthclub.png'); background-position: 180px 50%, 0px 0px; background-repeat: no-repeat, no-repeat; padding: 1px 1px 1px 1px; width:183px; border-bottom:dotted thin #ddd;}\n";
-						else if (FoxtrickStaffMarker.chppHolders[uid] != undefined)
-								css += ".ft-staff-chpp-holder.ft-userid-"+uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'), url('chrome://foxtrick/content/resources/img/staff/chpp.png');       background-position: 180px 50%, 0px 0px; background-repeat: no-repeat, no-repeat; padding: 1px 1px 1px 1px; width:175px; border-bottom:dotted thin #ddd;}\n";
-						else 	css += ".ft-userid-"+uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'); background-position: 180px 50%; background-repeat: no-repeat; padding: 1px 1px 1px 1px; width:198px; border-bottom:dotted thin #ddd;}\n";
-						user_hasClass[uid] = true; // css for that users addes
-					}
+				if (option.value==-3) {
+					Foxtrick.addClass(option, "ft-staff-seperator");
 				}
-				if (do_flag)
-					Foxtrick.util.inject.css(doc, css);
-				if ( selects[0] && selects[1] ) selects[1].innerHTML = selects[0].innerHTML;
-			} catch(e){Foxtrick.log(e);}
-
-			});
+				else if (option.value=="by_-1") {
+					Foxtrick.addClass(option, "ft-staff-official");
+				}
+				else if ( do_flag && Foxtrick.arch === "Gecko") { // no background image in chrome for select
+					Foxtrick.addClass(option, "ft-userid-"+uid);
+					if (user_hasClass[uid])
+						continue;
+					css += ".ft-userid-" + uid + " {"
+						+ "background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif');"
+						+ "background-position: 180px 50%;"
+						+ "background-repeat: no-repeat;"
+						+ "padding: 1px 1px 1px 1px;"
+						+ "width: 198px;"
+						+ "border-bottom: dotted thin #ddd;}\n";
+					user_hasClass[uid] = true; // css for that users addes
+				}
+			}
+			if (do_flag)
+				Foxtrick.util.inject.css(doc, css);
+			if (selects[0] && selects[1])
+				selects[1].innerHTML = selects[0].innerHTML;
 		}
 	}
 };

@@ -26,5 +26,9 @@ userList = map((lambda a: (re.search("userId=(\d+)", a.attrib["href"]).group(1),
 userSet = set(userList)
 userList = list(userSet)
 userList.sort(key=lambda x: x[1])
-for pair in userList:
-	print '<%s id="%s" name="%s" />' % (sys.argv[1], pair[0], pair[1])
+print '{'
+print '\t"type": "%s",' % sys.argv[1]
+print '\t"list": ['
+print '\t\t' + ',\n\t\t'.join(map((lambda a: '{ "id": %s, "name": "%s" }' % (a[0], a[1])), userList))
+print '\t]'
+print '}'
