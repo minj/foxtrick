@@ -639,7 +639,13 @@ Foxtrick.getCssTextFromFile = function (cssUrl) {
 		try {
 			// a resource file, get css file content
 			css_text = Foxtrick.load(cssUrl);
-		} catch(e) { Foxtrick.log('get css: ', cssUrl , ' ', e) }
+			if (css_text == null)
+				throw "Cannot load CSS: " + cssUrl;
+		}
+		catch (e) {
+			Foxtrick.log(e);
+			return;
+		}
 	}
 	else {
 		// not a file. line is css text already
