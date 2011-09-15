@@ -16,3 +16,11 @@
 
 .ft-match-player-mine {
 }
+
+.ft-match-event-home > td {
+	text-align: left !important;
+}
+
+.ft-match-event-away > td  {
+	text-align: right !important;
+}
