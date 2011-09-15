@@ -17,10 +17,10 @@
 .ft-match-player-mine {
 }
 
-.ft-match-event-home > td {
+.ft-match-event-home > td:first-child {
 	text-align: left !important;
 }
 
-.ft-match-event-away > td  {
+.ft-match-event-away > td:first-child   {
 	text-align: right !important;
 }
