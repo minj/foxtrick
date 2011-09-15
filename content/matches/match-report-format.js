@@ -173,8 +173,8 @@ var FoxtrickMatchReportFormat = {
 			if (tblbody.rows[ti].cells[2]) {
 				var tbldummy = new Array(
 					Foxtrick.trim(tblbody.rows[ti].cells[0].innerHTML),
-					Foxtrick.trim(tblbody.rows[ti].cells[1].innerHTML),
-					Foxtrick.trim(tblbody.rows[ti].cells[2].innerHTML)
+					tblbody.rows[ti].cells[1].innerHTML,
+					tblbody.rows[ti].cells[2].innerHTML
 				);
 				myTable.push(tbldummy);
 			}
