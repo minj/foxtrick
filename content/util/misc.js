@@ -109,10 +109,18 @@ Foxtrick.newTab = function(url) {
 	}
 }
 
+/*
+ * Load external URL as string
+ * @param url - URL
+ * @param callback - function to be called when succeeded or failed
+ * @param crossSite - whether it's to a site other than current Hattrick host
+ * @callback_param String of text content if success or null if failure
+ * @callback_param HTTP status code
+ */
 Foxtrick.load = function(url, callback, crossSite) {
-	if ( Foxtrick.chromeContext()==='content' && callback ) {
+	if (Foxtrick.chromeContext()==='content' && callback) {
 		// background script for xml requests
-		sandboxed.extension.sendRequest({req : "xml", url : url, crossSite: crossSite},
+		sandboxed.extension.sendRequest({req : "xml", url : url, crossSite: crossSite },
 			function(response) {
 				try {
 					callback(response.data, response.status);
@@ -157,32 +165,27 @@ Foxtrick.loadXml = function(url, callback, crossSite) {
 			try {
 				var parser = new window.DOMParser();
 				var xml = parser.parseFromString(text, "text/xml");
-				try {
-					callback(xml, status);
-				}
-				catch (e) {
-					Foxtrick.log("Foxtrick.loadXml: Uncaught callback error:" , url,  ' ', text, ' ', status, " ", e);
-				}
 			}
 			catch (e) {
 				// invalid XML
-				Foxtrick.log("Foxtrick.loadXml a: Cannot parse XML:\n" , url,  ' ', text, ' ', status, " ", e);
+				Foxtrick.log("Foxtrick.loadXml@async: Cannot parse XML:\n" , url,  ' ', text, ' ', status, " ", e);
 				callback(null, status);
 			}
+			callback(xml, status);
 		}, crossSite);
 	}
 	else {
+		var text = Foxtrick.load(url);
 		try {
-			var text = Foxtrick.load(url);
 			var parser = new window.DOMParser();
 			var xml = parser.parseFromString(text, "text/xml");
-			return xml;
 		}
 		catch (e) {
 			// invalid XML
-			Foxtrick.log("Foxtrick.loadXml b: Cannot parse XML:\n" , url,  ' ', text, " ", e);
+			Foxtrick.log("Foxtrick.loadXml@sync: Cannot parse XML:\n" , url,  ' ', text, " ", e);
 			return null;
 		}
+		return xml;
 	}
 }
 
