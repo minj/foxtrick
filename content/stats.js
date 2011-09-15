@@ -898,6 +898,7 @@ stats["maptrick_botmap"] =  {
         "img" : Foxtrick.InternalPath+"resources/linkicons/maptrick_bot.png"
 };
 
+/*   //down
 stats["hat_com_coolness"] =  {
 	"url" : "http://coolness.hat-com.com/",
 
@@ -914,7 +915,7 @@ stats["hat_com_coolness"] =  {
 
 	"title" : "Hat-com Coolness",
 	"img" : Foxtrick.InternalPath+"resources/linkicons/hat-com.png"
-};
+}; */
 
 stats["ht_deutschland_coolness"] =  {
         "url" : "http://www.ht-deutschland.de/",
