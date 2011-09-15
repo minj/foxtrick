@@ -11,6 +11,12 @@ if (!Foxtrick.util)
 Foxtrick.util.inject = {};
 
 Foxtrick.util.inject.cssLink = function(doc, url) {
+	if (Foxtrick.arch == "Sandboxed") {
+		Foxtrick.load(url, function(text) {
+			Foxtrick.util.inject.css(doc, text);
+		}, true);
+		return;
+	}
 	var head = doc.getElementsByTagName("head")[0];
 	var link = doc.createElement("link");
 	link.setAttribute("rel", "stylesheet");
