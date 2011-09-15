@@ -1,5 +1,8 @@
 /* CSS Document  by baumanns */
 
+/* make space for long skills names */
+div.playerInfo table.thin  td {padding-right: 5px !important;}
+
 a[href*="#skill"] {white-space:nowrap;}
 
 /* SKILL NUMBERS */
