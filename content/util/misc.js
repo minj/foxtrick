@@ -138,8 +138,14 @@ Foxtrick.load = function(url, callback, crossSite) {
 		if (typeof(req.overrideMimeType) == "function")
 			req.overrideMimeType("text/plain");
 		if (!callback) {
-			req.send(null);
-			var response = req.responseText;
+			try {
+				req.send(null);
+				var response = req.responseText;
+			}
+			catch (e) {
+				// catch cross-domain errors
+				response = null;
+			}
 			return response;
 		}
 		else {
@@ -154,7 +160,13 @@ Foxtrick.load = function(url, callback, crossSite) {
 					}
 				}
 			};
-			req.send(null);
+			try {
+				req.send(null);
+			}
+			catch (e) {
+				// catch cross-domain errors
+				callback(req.responseText, 0);
+			}
 		}
 	}
 };
@@ -169,7 +181,7 @@ Foxtrick.loadXml = function(url, callback, crossSite) {
 			catch (e) {
 				// invalid XML
 				Foxtrick.log("Foxtrick.loadXml@async: Cannot parse XML:\n" , url,  ' ', text, ' ', status, " ", e);
-				callback(null, status);
+				xml = null;
 			}
 			callback(xml, status);
 		}, crossSite);
@@ -183,7 +195,7 @@ Foxtrick.loadXml = function(url, callback, crossSite) {
 		catch (e) {
 			// invalid XML
 			Foxtrick.log("Foxtrick.loadXml@sync: Cannot parse XML:\n" , url,  ' ', text, " ", e);
-			return null;
+			xml = null;
 		}
 		return xml;
 	}
