@@ -168,4 +168,5 @@ var FoxtrickContextMenuCopy = {
 		}
 	}
 };
-Foxtrick.util.module.register(FoxtrickContextMenuCopy);
+if (Foxtrick.arch != "Gecko")
+	Foxtrick.util.module.register(FoxtrickContextMenuCopy);
