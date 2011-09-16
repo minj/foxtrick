@@ -64,7 +64,8 @@ var FoxtrickCurrencyConverter = {
 			}, page.getElementsByTagName("*"));
 
 		// regular expressions for getting out money
-		var re = new RegExp("(\\d+(\\d|\\s)+)" + oldSymbol);
+		var re = new RegExp("(\\d+(\\d|\\s)+)"
+			+ oldSymbol.replace(new RegExp("\\$", "g"), "\\$"));
 
 		// filter out nodes without currency symbols
 		var nodes = Foxtrick.filter(function(node) {
