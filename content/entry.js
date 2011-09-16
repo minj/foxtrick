@@ -94,7 +94,7 @@ Foxtrick.entry.init = function() {
 			eval(script);
 		}
 		catch (e) {
-			Foxtrick.log(e);
+			Foxtrick.log("Error evaluating script ", f, ":\n", e);
 		}
 	}, files);
 
