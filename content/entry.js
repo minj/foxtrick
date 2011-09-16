@@ -89,6 +89,7 @@ Foxtrick.entry.init = function() {
 	// evaluate each module
 	Foxtrick.map(function(f) {
 		var script = Foxtrick.load(f);
+		script = "\"use strict\";\n" + script;
 		try {
 			eval(script);
 		}
