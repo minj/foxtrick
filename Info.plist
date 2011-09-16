@@ -192,6 +192,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/shortcuts-and-tweaks/transfer-search-filters.js</string>
 				<string>content/shortcuts-and-tweaks/transfer-search-result-filters.js</string>
 				<string>content/entry.js</string>
+				<string>content/ui.js</string>
 				<string>content/loader-chrome.js</string>
 			</array>
 		</dict>

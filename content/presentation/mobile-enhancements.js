@@ -17,6 +17,38 @@ var FoxtrickMobileEnhancements = {
 		'all':				{ match:{pattern:"."	,result:true},	size:{'simple':770, standard:980},	css:''}
 	},
 
+	onLoad : function() {
+		var pageactionsContainer = document.getElementById('pageactions-container');
+
+		for ( var i in FoxtrickMobileEnhancements.ft_pageactions ) {
+			var action = document.createElement('pageaction');
+			action.id = 'foxtrick-'+i;
+			action.setAttribute("title", Foxtrickl10n.getString('pageAction.'+i));
+			action.setAttribute("type", i);
+			action.className = 'ft-pageaction';
+
+			// page action click
+			action.addEventListener('click',function(ev){
+				var type = ev.target.getAttribute('type');
+				FoxtrickPrefs.setString('FoxtrickMobileEnhancements.selection', type)
+				var css = FoxtrickMobileEnhancements.getStyle(type);
+				sandboxed.extension.sendRequest({ req : "replace_css", css:css ,id:'foxtrick-pageaction-css', size:FoxtrickMobileEnhancements.ft_pageactions[type].size});
+			},false);
+			pageactionsContainer.insertBefore(action, pageactionsContainer.firstChild);
+
+			// page action open
+			PageActions.register('foxtrick-'+i, function(el) {
+				try {
+					var url = getBrowser().currentURI.spec;
+					var type = el.getAttribute('type');
+					return Foxtrick.isHtUrl(url) &&
+						((url.search(new RegExp(FoxtrickMobileEnhancements.ft_pageactions[type].match.pattern,'i'))!==-1)
+								===	FoxtrickMobileEnhancements.ft_pageactions[type].match.result);
+				} catch(e){Foxtrick.log(e)}
+			});
+		}
+	},
+
 	run : function(doc) {
 		// rescale to use all space
 		if (doc.getElementById('ctl00_ctl00_CPContent_ucSubMenu_ucLogin_txtUserName')!==null) {
@@ -66,37 +98,6 @@ var FoxtrickMobileEnhancements = {
 		return FoxtrickMobileEnhancements.ft_pageactions[title].css;
 	},
 
-	initPageAction : function() {
-		var pageactionsContainer = document.getElementById('pageactions-container');
-
-		for ( var i in FoxtrickMobileEnhancements.ft_pageactions ) {
-			var action = document.createElement('pageaction');
-			action.id = 'foxtrick-'+i;
-			action.setAttribute("title", Foxtrickl10n.getString('pageAction.'+i));
-			action.setAttribute("type", i);
-			action.className = 'ft-pageaction';
-
-			// page action click
-			action.addEventListener('click',function(ev){
-				var type = ev.target.getAttribute('type');
-				FoxtrickPrefs.setString('FoxtrickMobileEnhancements.selection', type)
-				var css = FoxtrickMobileEnhancements.getStyle(type);
-				sandboxed.extension.sendRequest({ req : "replace_css", css:css ,id:'foxtrick-pageaction-css', size:FoxtrickMobileEnhancements.ft_pageactions[type].size});
-			},false);
-			pageactionsContainer.insertBefore(action, pageactionsContainer.firstChild);
-
-			// page action open
-			PageActions.register('foxtrick-'+i, function(el) {
-				try {
-					var url = getBrowser().currentURI.spec;
-					var type = el.getAttribute('type');
-					return Foxtrick.isHtUrl(url) &&
-						((url.search(new RegExp(FoxtrickMobileEnhancements.ft_pageactions[type].match.pattern,'i'))!==-1)
-								===	FoxtrickMobileEnhancements.ft_pageactions[type].match.result);
-				} catch(e){Foxtrick.log(e)}
-			});
-		}
-	},
 };
 //if (Foxtrick.platform == "Fennec")
 //Foxtrick.util.module.register(FoxtrickMobileEnhancements);

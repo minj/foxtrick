@@ -27,10 +27,6 @@ Foxtrick.entry.docLoad = function(doc) {
 	if (!content)
 		return;
 
-	if (Foxtrick.platform == "Fennec") {
-		Foxtrick.entry.init();
-	}
-
 	// run FoxTrick modules
 	var begin = (new Date()).getTime();
 	Foxtrick.entry.run(doc);
@@ -143,7 +139,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		// don't execute if not enabled on the document
 		if (!FoxtrickPrefs.isEnabled(doc)) {
 			// potenial disable cleanup
-			Foxtrick.unload_module_css();
+			Foxtrick.unload_module_css(doc);
 			Foxtrick.entry.cssLoaded = false;
 			return;
 		}

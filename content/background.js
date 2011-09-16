@@ -13,7 +13,20 @@ Foxtrick.loader.chrome = {};
 Foxtrick.loader.chrome.browserLoad = function() {
   try {
 	Foxtrick.log('Foxtrick.loader.chrome.browserLoad');
-
+	
+	// calls module.onLoad() after the browser window is loaded
+	for (var i in Foxtrick.modules) {
+		var module = Foxtrick.modules[i];
+		if (typeof(module.onLoad) === "function") {
+			try {
+				module.onLoad(document);
+			}
+			catch (e) {
+				Foxtrick.log("Error caught in module ", module.MODULE_NAME, ":", e);
+			}
+		}
+	}
+	
 	// content preference copy not updated if those change
 	var no_update_needed = {'preferences.updated':true, 'last-host':true, 'last-page':true, 'version':true};
 
@@ -27,30 +40,6 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		Foxtrick.log('prefs updated');
 	};
 
-	var updatePageAction = function(request, sender) {
-		if (Foxtrick.platform == "Opera") {
-			if (request.sender!='options') FoxtrickCore.setOperaIcon(Foxtrick.loader.chrome.button);
-		}
-		else if (Foxtrick.platform == "Chrome") {
-			chrome.pageAction.show(sender.tab.id);
-			FoxtrickCore.setChromeIcon(sender.tab);
-		}
-		else if (Foxtrick.platform == "Fennec") {
-		}
-	};
-
-	// calls module.onLoad() after the browser window is loaded
-	for (var i in Foxtrick.modules) {
-		var module = Foxtrick.modules[i];
-		if (typeof(module.onLoad) === "function") {
-			try {
-				module.onLoad(document);
-			}
-			catch (e) {
-				Foxtrick.log("Error caught in module ", module.MODULE_NAME, ":", e);
-			}
-		}
-	}
 
 	// get resources
 	var core = [ FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData ];
@@ -76,9 +65,13 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		try {
 			//Foxtrick.log('request: ',request.req)//, ' ',request )
 
-			if (request.req == "init") {
+			if (request.req == "pageLoad" ||  		// chrome, opera, safari
+				request.req == "scriptLoad" || 		// fennec
+				request.req == "optionsPageLoad") 	// opera. attention: different scope than background script
+				{
 				try {
-					updatePageAction(request, sender);
+					if (request.req == "pageLoad") 
+						FoxtrickUI.update(sender.tab);
 
 					// access user setting directly here, since getBool uses a copy which needs updating just here
 					if ( (Foxtrick.arch == "Sandboxed" && localStorage.getItem("preferences.updated"))
@@ -277,56 +270,8 @@ Foxtrick.loader.chrome.browserLoad = function() {
 			sendResponse({ error : 'Foxtrick - background onRequest: ' + e });
 		}
 	});
-
-
-	// page action init and listeners
-	if (Foxtrick.platform == "Opera") {
-		// Specify the properties of the button before creating it.
-		var UIItemProperties = {
-			disabled: false,
-			title: "FoxTrick",
-			icon: "skin/icon-16.png",
-			onclick: function(event) {
-				FoxtrickPrefs.disable(event.currentTarget);
-			}
-		};
-		// Create the button and add it to the toolbar.
-		Foxtrick.loader.chrome.button = opera.contexts.toolbar.createItem( UIItemProperties );
-		opera.contexts.toolbar.addItem(Foxtrick.loader.chrome.button);
-		FoxtrickCore.setOperaIcon(Foxtrick.loader.chrome.button);
-
-	}
-
-	else if (Foxtrick.platform == "Chrome") {
-		chrome.pageAction.onClicked.addListener(function(tab) { FoxtrickPrefs.disable(tab); });
-		FoxtrickContextMenuCopy.chromeInit();
-	}
-
-	else if (Foxtrick.platform == "Safari") {
-	   // Open Options page upon settings checkbox click.
-		safari.extension.settings.openFoxtrickOptions = false;
-		safari.extension.settings.addEventListener("change", function(e) {
-			 try {
-				 if (e.key == 'openFoxtrickOptions')
-					sandboxed.tabs.create({url: Foxtrick.InternalPath + "preferences.html"});
-			} catch(e) {Foxtrick.log(e)}
-		}, false);
-
-		safari.application.addEventListener("command", function(commandEvent) {
-		  // Open Options page upon Toolbar button click.
-		  if (commandEvent.command == "FoxtrickOptions")
-			sandboxed.tabs.create({url: Foxtrick.InternalPath+ "preferences.html"});
-		}, false);
-
-		FoxtrickContextMenuCopy.safariInit();
-	}
-
-	else if (Foxtrick.platform == "Fennec") {
-		addEventListener("UIReady", onWindowLoad, false);
-	}
   } catch (e) {Foxtrick.log('Foxtrick.loader.chrome.browserLoad: ', e );}
 };
-
 
 
 // for clipboard
@@ -338,11 +283,10 @@ Foxtrick.loader.chrome.copyToClipBoard = function(content) {
 };
 
 
-// fennec script injection
-var onWindowLoad = function(event) {
+Foxtrick.loader.chrome.fennecScriptInjection= function(event) {
 		Foxtrick.log('inject scripts');
 		// run only once
-		removeEventListener("UIReady", onWindowLoad, false);
+		removeEventListener("UIReady", Foxtrick.loader.chrome.fennecScriptInjection, false);
 
 		// inject scripts
 		messageManager.loadFrameScript("chrome://foxtrick/content/env.js", true);
@@ -511,10 +455,15 @@ var onWindowLoad = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/transfer-search-result-filters.js", true);
 
 		messageManager.loadFrameScript("chrome://foxtrick/content/entry.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/ui.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/loader-gecko.js", true);
-
-		FoxtrickMobileEnhancements.initPageAction();
 };
 
+if (Foxtrick.platform == "Fennec") {
+	addEventListener("UIReady", Foxtrick.loader.chrome.fennecScriptInjection, false);
+};
+
+// run it
 Foxtrick.loader.chrome.browserLoad();
+
 

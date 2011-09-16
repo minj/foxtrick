@@ -13,7 +13,12 @@
 <script type="application/x-javascript" src="./util/log.js" />
 <script type="application/x-javascript" src="./util/misc.js" />
 <script type="application/x-javascript" src="./util/session-store.js" />
+
+<!--ui stuffs -->
 <script type="application/x-javascript" src="./presentation/mobile-enhancements.js" />
+<script type="application/x-javascript" src="./ui.js" />
+
+<!--background script and script injection -->
 <script type="application/x-javascript" src="./background.js" />
 
 </overlay>

@@ -15,28 +15,6 @@ Foxtrick.loader.gecko = {};
 Foxtrick.loader.gecko.browserLoad = function(ev) {
 	Foxtrick.entry.init();
 
-	// to add FoxTrick button on the navigation bar by default
-	if (!FoxtrickPrefs.getBool("toolbarInited")) {
-		var buttonId = "foxtrick-toolbar-button"; // ID of FoxTrick button
-		var afterId = "search-container"; // insert after search box
-		var navBar = document.getElementById("nav-bar");
-		var curSet = navBar.currentSet.split(",");
-
-		if (curSet.indexOf(buttonId) == -1) {
-			var pos = curSet.indexOf(afterId) + 1 || curSet.length;
-			var set = curSet.slice(0, pos).concat(buttonId).concat(curSet.slice(pos));
-
-			navBar.setAttribute("currentset", set.join(","));
-			navBar.currentSet = set.join(",");
-			document.persist(navBar.id, "currentset");
-			try {
-				BrowserToolboxCustomizeDone(true);
-			}
-			catch (e) {}
-		}
-		FoxtrickPrefs.setBool("toolbarInited", true);
-	}
-
 	// calls module.onLoad() after the browser window is loaded
 	for (var i in Foxtrick.modules) {
 		var module = Foxtrick.modules[i];
@@ -54,6 +32,7 @@ Foxtrick.loader.gecko.browserLoad = function(ev) {
 	if (appcontent) {
 		// listen to page loads
 		appcontent.addEventListener("DOMContentLoaded", function(ev) {
+			FoxtrickUI.update();
 			Foxtrick.entry.docLoad(ev.originalTarget);
 		}, true);
 		appcontent.addEventListener("unload", Foxtrick.loader.gecko.docUnload, true);
@@ -104,7 +83,7 @@ Foxtrick.loader.gecko.docUnload = function(ev) {
 // fennec browser load
 if (Foxtrick.platform == "Fennec") {
 	Foxtrick.log('script load')
-	sandboxed.extension.sendRequest({ req : "init" },
+	sandboxed.extension.sendRequest({ req : "scriptLoad" },
 		function (data) {
 			var parser = new window.DOMParser();
 			for (var i in data.htLang) {
@@ -118,6 +97,8 @@ if (Foxtrick.platform == "Fennec") {
 			Foxtrick.XMLData.countryToLeague = data.countryToLeague;
 
 			addEventListener("DOMContentLoaded", function(ev){
+				FoxtrickUI.update();
+				Foxtrick.entry.init();
 				Foxtrick.entry.docLoad(ev.originalTarget);
 			}, false);
 		}

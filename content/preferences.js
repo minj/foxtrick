@@ -10,7 +10,7 @@ function initLoader() {
 		init();
 	// opera prefs runs in content context. add need resources first
 	else
-		sandboxed.extension.sendRequest({ req : "init", sender : 'options' },
+		sandboxed.extension.sendRequest({ req : "optionsPageLoad" },
 			function (data) {
 				try {
 					Foxtrick.entry.setRetrievedLocalResources(data);

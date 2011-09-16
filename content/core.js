@@ -17,106 +17,11 @@ var FoxtrickCore = {
 
 	SELF_TEAM_INFO : {},
 
-	// called after browser loaded , with browser chrome
-	// as the argument (Gecko-only)
-	// initializes items in menu bar and status bar
-	onLoad : function(document) {
-		if (Foxtrick.platform != "Firefox")
-			return;
-
-		// toolbar menu - preferences
-		var toolbarPreferences = document.getElementById("foxtrick-toolbar-preferences");
-		toolbarPreferences.label = Foxtrickl10n.getString("preferences");
-		// toolbar menu - disable
-		var toolbarDisable = document.getElementById("foxtrick-toolbar-deactivate");
-		toolbarDisable.label = Foxtrickl10n.getString("foxtrick.prefs.disableTemporaryLabel");
-		// update status
-		this.updateStatus();
-	},
-
-	onTabChange : function(doc) {
-		this.updateStatus();
-	},
-
-	init : function() {
-		this.updateStatus();
-	},
-
 	run : function(doc) {
 		this.showChangeLog(doc);
 		this.showVersion(doc);
-		this.updateStatus();
 		this.updateLastHost(doc);
 		this.parseSelfTeamInfo(doc);
-	},
-
-	setChromeIcon : function(tab) {
-		// update page icon image and tooltip (chrome-only)
-		var icon = ''; var statusText='';
-		if (FoxtrickPrefs.getBool("disableTemporary")) {
-			icon = "../skin/disabled-24.png";
-			statusText = Foxtrickl10n.getString("status.disabled");
-		}
-		else {
-			icon = "../skin/icon-24.png";
-			statusText = Foxtrickl10n.getString("status.active");
-		}
-		var tooltipText = Foxtrickl10n.getString("foxtrick") + " " + Foxtrick.version() + " (" + statusText + ")";
-		chrome.pageAction.setIcon({tabId : tab.id, path : icon});
-		chrome.pageAction.setTitle({tabId : tab.id, title: tooltipText})
-	},
-
-	setOperaIcon : function(button) {
-		// update page icon image and tooltip (chrome-only)
-		Foxtrick.log('setOperaIcon');
-		var icon = ''; var statusText='';
-		if (FoxtrickPrefs.getBool("disableTemporary")) {
-			button.icon = "skin/disabled-24.png";
-			statusText = Foxtrickl10n.getString("status.disabled");
-		}
-		else {
-			statusText = Foxtrickl10n.getString("status.active");
-			button.icon = "skin/icon-24.png";
-		}
-		var tooltipText = Foxtrickl10n.getString("foxtrick") + " " + Foxtrick.version() + " (" + statusText + ")";
-		button.title = tooltipText;
-	},
-
-	updateStatus : function() {
-		// update status bar icon image and tooltip (Gecko-only)
-		if (Foxtrick.platform != "Firefox")
-			return;
-
-		var disableItem = document.getElementById("foxtrick-toolbar-deactivate");
-		if (disableItem)
-			disableItem.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
-
-		var button = document.getElementById("foxtrick-toolbar-button");
-		if (!button || !content)
-			return;
-		var doc = content.document; // get the document of current tab
-
-		var statusText;
-
-		if (FoxtrickPrefs.getBool("disableTemporary")) {
-			// FoxTrick is disabled temporarily
-			button.setAttribute("status", "disabled");
-			statusText = Foxtrickl10n.getString("status.disabled");
-		}
-		else if (Foxtrick.isHt(doc)
-			&& !(FoxtrickPrefs.getBool("disableOnStage") && Foxtrick.isStage(doc))) {
-			// FoxTrick is enabled, and active on current page
-			button.setAttribute("status", "active");
-			statusText = Foxtrickl10n.getString("status.active");
-		}
-		else {
-			// FoxTrick is enabled, but not active on current page
-			button.setAttribute("status", "enabled");
-			var hostname = doc.location.hostname;
-			statusText = Foxtrickl10n.getString("status.enabled").replace("%s", hostname);
-		}
-		var tooltipText = Foxtrickl10n.getString("foxtrick") + " " + Foxtrick.version() + " (" + statusText + ")";
-		button.setAttribute("tooltiptext", tooltipText);
 	},
 
 	updateLastHost : function(doc) {
@@ -125,7 +30,6 @@ var FoxtrickCore = {
 		Foxtrick.setLastHost(doc.location.protocol + "//"
 			+ doc.location.hostname);
 		Foxtrick.setLastPage(doc.location.href);
-
 	},
 
 	showChangeLog : function(doc) {

@@ -282,14 +282,9 @@ var FoxtrickPrefs = {
 
 	disable : function(sender) {
 		FoxtrickPrefs.setBool("disableTemporary", !FoxtrickPrefs.getBool("disableTemporary"));
+		FoxtrickUI.update(sender);
 		if (Foxtrick.arch === "Gecko") {
-			FoxtrickCore.updateStatus();
 			Foxtrick.entry.init();
-		}
-		else if (Foxtrick.platform == "Opera") {
-			FoxtrickCore.setOperaIcon(sender);
-		} else if (Foxtrick.platform == "Chrome") {
-			FoxtrickCore.setChromeIcon(sender);
 		}
 	}
 };

@@ -22,16 +22,13 @@ var FoxtrickContextMenuCopy = {
 	},
 
 	onLoad : function(document) {
-		if (Foxtrick.arch !== "Gecko")
-			return;
 		
-		this.bindCopyFunctions();
-		var type;
-		for (type in this.contextEntries) {
-			this.contextEntries[type].menuEntryId = document.getElementById(type);
-			this.contextEntries[type].menuEntryId.addEventListener("command",
-				FoxtrickContextMenuCopy.contextEntries[type].onClick, false);
-		}
+	if (Foxtrick.platform == "Firefox") 
+		this.firefoxInit();
+	else if (Foxtrick.platform == "Chrome") 
+		this.chromeInit();
+	else if (Foxtrick.platform == "Safari") 
+		this.safariInit();
 	},
 
 	onTabChange : function(doc) {
@@ -43,8 +40,19 @@ var FoxtrickContextMenuCopy = {
 	},
 
 	// called from background script
+	firefoxInit : function () {
+		this.bindCopyFunctions();
+		var type;
+		for (type in this.contextEntries) {
+			this.contextEntries[type].menuEntryId = document.getElementById(type);
+			this.contextEntries[type].menuEntryId.addEventListener("command",
+				this.contextEntries[type].onClick, false);
+		}
+	},
+	
+	// called from background script
 	chromeInit : function () {
-		FoxtrickContextMenuCopy.bindCopyFunctions();
+		this.bindCopyFunctions();
 		// update menu in background on mousedown
 		chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 			var documentUrlPatterns = [
@@ -80,7 +88,7 @@ var FoxtrickContextMenuCopy = {
 
 	// called from background script
 	safariInit : function() {
-		FoxtrickContextMenuCopy.bindCopyFunctions();
+		this.bindCopyFunctions();
 		safari.application.addEventListener("contextmenu", function(event) {
 			var paste_note =  '. ' + Foxtrickl10n.getString("SpecialPaste.desc");
 			var type;
@@ -97,7 +105,7 @@ var FoxtrickContextMenuCopy = {
 
 	run : function(doc) {
 		// context menu listeners.
-		if (Foxtrick.arch === "Gecko") {
+		if (Foxtrick.platform == "Firefox") {
 			doc.addEventListener("contextmenu", function(ev) {
 				FoxtrickContextMenuCopy.collectCopyData(ev.target);
 				var type;
