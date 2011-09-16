@@ -26,20 +26,6 @@ Foxtrick.loader.chrome.browserLoad = function() {
 			}
 		}
 	}
-	
-	// content preference copy not updated if those change
-	var no_update_needed = {'preferences.updated':true, 'last-host':true, 'last-page':true, 'version':true};
-
-	// for updating content preference copy and injected css list
-	var updatePrefs = function () {
-		FoxtrickPrefs.deleteValue("preferences.updated");
-		FoxtrickPrefs.init();
-		Foxtrickl10n.init();
-		if (Foxtrick.platform != "Fennec")
-			cssTextCollection = Foxtrick.getCssTextCollection();
-		Foxtrick.log('prefs updated');
-	};
-
 
 	// get resources
 	var core = [ FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData ];
@@ -58,211 +44,12 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	if (Foxtrick.platform != "Fennec")
 		var cssTextCollection = Foxtrick.getCssTextCollection();
 
-	// one-time message channel
-	// use with sandboxed.extension.sendRequest({req : "{TYPE}", parameters...}, callback)
-	// callback will be called with a sole Object as argument
-	sandboxed.extension.onRequest.addListener(function(request, sender, sendResponse) {
+	// use with sandboxed.extension.sendRequest({req : "nameOfResponseFunction", parameters...}, callback)
+	// calls bellow response function by name 'request.req'
+	// callback will be called with a sole JSON as argument
+	sandboxed.extension.onRequest.addListener( function(request, sender, sendResponse) {
 		try {
-			//Foxtrick.log('request: ',request.req)//, ' ',request )
-
-			if (request.req == "pageLoad" ||  		// chrome, opera, safari
-				request.req == "scriptLoad" || 		// fennec
-				request.req == "optionsPageLoad") 	// opera. attention: different scope than background script
-				{
-				try {
-					if (request.req == "pageLoad") 
-						FoxtrickUI.update(sender.tab);
-
-					// access user setting directly here, since getBool uses a copy which needs updating just here
-					if ( (Foxtrick.arch == "Sandboxed" && localStorage.getItem("preferences.updated"))
-						|| (Foxtrick.platform == "Fennec" && FoxtrickPrefs._prefs_gecko.getBoolPref("preferences.updated")) ) {
-							updatePrefs();
-					}
-
-					sendResponse({
-						cssText : cssTextCollection,
-
-						_prefs_chrome_user : FoxtrickPrefs._prefs_chrome_user,
-						_prefs_chrome_default : FoxtrickPrefs._prefs_chrome_default,
-
-						htLang : htLanguagesText,
-						properties_default : Foxtrickl10n.properties_default,
-						properties : Foxtrickl10n.properties,
-						screenshots_default : Foxtrickl10n.screenshots_default,
-						screenshots : Foxtrickl10n.screenshots,
-
-						currency : currency,
-						about : about,
-						worldDetails : worldDetails,
-						league : Foxtrick.XMLData.League,
-						countryToLeague : Foxtrick.XMLData.countryToLeague,
-					});
-				} catch(e) {
-					Foxtrick.log('Foxtrick request.req == "init": ' , e );
-				}
-			}
-			else if (request.req == "setValue") {
-				if (FoxtrickPrefs.get(request.key)==request.value) 
-					return;
-				FoxtrickPrefs.setValue(request.key, request.value, request.type);
-				if ( !no_update_needed[request.key] )
-					FoxtrickPrefs.setBool("preferences.updated",true);
-			}
-			else if (request.req == "deleteValue") {
-				FoxtrickPrefs.deleteValue(request.key);
-				if (!no_update_needed[request.key])
-					FoxtrickPrefs.setBool("preferences.updated",true);
-			}
-			else if (request.req == "clearPrefs") {
-				try {
-					Foxtrick.log('clearPrefs ');
-					if (Foxtrick.platform == "Fennec") {
-						FoxtrickPrefs.cleanupBranch();
-					}
-					else {
-						for (var i in localStorage) {
-							if (i.indexOf('module.')===0 && FoxtrickPrefs.isPrefSetting(i)) {
-								localStorage.removeItem(i);
-							}
-						}
-					updatePrefs();
-					}
-				} catch(e) {Foxtrick.log(e)}
-			}
-			else if (request.req == "getCss") {
-				// @param files - an array of files to be loaded into string
-				sendResponse({ cssText : Foxtrick.getCssFileArrayToString(request.files) });
-			}
-			else if (request.req == "convertImages") {
-				// @param files - a string for which image urls are converted to data urls
-				// updates cssTextCollection if "ft-module-css" conversion was done
-				Foxtrick.convertImageUrlToData(request.cssText,
-						function(cssText){
-							if (request.type=="ft-module-css")
-								cssTextCollection = cssText;
-							sendResponse({cssText:cssText});
-				});
-			}
-			else if (request.req == "xml") {
-				// @param url - the URL of resource to load with window.XMLHttpRequest
-				// @callback_param data - response text
-				// @callback_param status - HTTP status of request
-				// synchronous, since messaging is async already
-				var callback = function(responseText,status){
-					sendResponse({data : responseText, status : status});
-				};
-				Foxtrick.load(request.url, callback, request.crossSite )
-			}
-			else if (request.req == "newTab") {
-				// @param url - the URL of new tab to create
-				sandboxed.tabs.create({url : request.url});
-			}
-			else if (request.req == "reuseTab") {
-				// @param url - the URL of new tab to create
-				if (Foxtrick.platform == "Fennec") {
-					Foxtrick.log(sender.tab.id)
-					for (var i = 0; i<Browser.browsers.length; ++i) {
-						if (sender.tab.id == Browser.browsers[i].tid) {
-							Browser.selectedTab = Browser.getTabAtIndex(i);
-							Browser.browsers[i].loadURI(request.url);
-						}
-					}
-				}
-			}
-			else if (request.req == "clipboard") {
-				// @param content - content to copy
-				// @callback_param status - success status
-				try {
-					if (Foxtrick.platform == "Chrome")
-						Foxtrick.loader.chrome.copyToClipBoard(request.content);
-					else
-						Foxtrick.copyStringToClipboard(request.content)
-					sendResponse({status : true});
-				}
-				catch (e) {
-					sendResponse({status : false});
-				}
-			}
-			else if (request.req == "notify") {
-				// @param msg - message to notify the user
-				if (window.webkitNotifications) {
-					var notification = webkitNotifications.createNotification(
-						"resources/img/hattrick-logo.png", // logo location
-						"Hattrick", // notification title
-						request.msg // notification body text
-					);
-					notification.onclick = function() {
-						if ( Foxtrick.platform == "Chrome" ) {
-							// goto msg.url in sender tab
-							chrome.tabs.update( sender.tab.id, { url:request.url, selected:true });
-							// focus last window. needs permissions: tabs. only nightly as for now
-							try { chrome.windows.update( sender.tab.windowId, { focused:true });
-							} catch(e){}
-						}
-						else
-							sandboxed.tabs.create({url: request.url});
-						notification.cancel();
-					};
-
-					// Then show the notification.
-					notification.show();
-
-					// close after 10 sec
-					window.setTimeout(function() { notification.cancel(); }, 10000);
-				}
-			}
-			else if (request.req == "sessionSet") {
-				// @param key - key of session store
-				// @param value - value to store
-				Foxtrick.sessionSet(request.key, request.value);
-			}
-			else if (request.req == "sessionGet") {
-				// @param key - key of session store
-				// @callback_param value - contains the object stored
-				Foxtrick.sessionGet(request.key, sendResponse );
-			}
-			else if (request.req == "sessionDeleteBranch") {
-				// @param branch - initial part of key(s) of session store to delete
-				Foxtrick.sessionDeleteBranch(request.branch);
-			}
-			else if (request.req == "log") {
-				// @param log - text to dump to console (fennec)
-				dump("FT: "+request.log);
-			}
-			else if (request.req == "addDebugLog") {
-				// @param log - text to add to debug log storage
-				Foxtrick.addToDebugLogStorage(request.log);
-			}
-			else if (request.req == "getDebugLog") {
-				// @callback_param log - contains the debug log storage
-				sendResponse({ log : Foxtrick.debugLogStorage });
-				Foxtrick.debugLogStorage = '';
-			}
-			else if (request.req == "getDataUrl") {
-				// @param branch - initial part of key(s) of session store to delete
-				var replaceImage = function (url) {
-					var image = new Image;
-					image.onload = function() {
-						var canvas = document.createElement("canvas");
-						canvas.width = image.width;
-						canvas.height = image.height;
-						var context = canvas.getContext('2d');
-						context.drawImage(image, 0, 0);
-						var dataUrl = canvas.toDataURL()
-						Foxtrick.dataUrlStorage[url] = dataUrl;
-						return sendResponse({ url: dataUrl });
-					};
-					image.onerror = function() {
-						return sendResponse({ url:'' });
-					};
-					return image.src = url;
-				};
-				if (!Foxtrick.dataUrlStorage[request.url]) replaceImage(request.url);
-				else sendResponse({ url: Foxtrick.dataUrlStorage[request.url] });
-			}
-			else if (request.req == "updateViewportSize") {
-				Browser.updateViewportSize();
-			}
+			eval( request.req + '(request, sender, sendResponse)' );
 		}
 		catch (e) {
 			Foxtrick.log('Foxtrick - background onRequest: ', e)
@@ -270,6 +57,232 @@ Foxtrick.loader.chrome.browserLoad = function() {
 			sendResponse({ error : 'Foxtrick - background onRequest: ' + e });
 		}
 	});
+	
+	// for updating content preference copy and injected css list
+	var updatePrefs = function () {
+		FoxtrickPrefs.deleteValue("preferences.updated");
+		FoxtrickPrefs.init();
+		Foxtrickl10n.init();
+		if (Foxtrick.platform != "Fennec")
+			cssTextCollection = Foxtrick.getCssTextCollection();
+		Foxtrick.log('prefs updated');
+	};
+
+	/* called to parse a copy of the settings and data to the content script
+	   pageLoad : on HT pages for chrome/safari/opera
+	   scriptLoad : once per tab/browser(?) for fennec
+	   optionsPageLoad : on options page for opera 
+	*/
+	var pageLoad = scriptLoad = optionsPageLoad = function(request, sender, sendResponse) {
+		if (request.req == "pageLoad") 
+			FoxtrickUI.update(sender.tab);
+
+		// access user setting directly here, since getBool uses a copy which needs updating just here
+		if ( (Foxtrick.arch == "Sandboxed" && localStorage.getItem("preferences.updated"))
+			|| (Foxtrick.platform == "Fennec" && FoxtrickPrefs._prefs_gecko.getBoolPref("preferences.updated")) ) {
+				updatePrefs();
+		}
+
+		sendResponse ({
+			cssText : cssTextCollection,
+
+			_prefs_chrome_user : FoxtrickPrefs._prefs_chrome_user,
+			_prefs_chrome_default : FoxtrickPrefs._prefs_chrome_default,
+
+			htLang : htLanguagesText,
+			properties_default : Foxtrickl10n.properties_default,
+			properties : Foxtrickl10n.properties,
+			screenshots_default : Foxtrickl10n.screenshots_default,
+			screenshots : Foxtrickl10n.screenshots,
+
+			currency : currency,
+			about : about,
+			worldDetails : worldDetails,
+			league : Foxtrick.XMLData.League,
+			countryToLeague : Foxtrick.XMLData.countryToLeague,
+		});
+	};
+	// ----- end of init part. ------
+
+	// content preference copy not updated if those change
+	var no_update_needed = {'preferences.updated':true, 'last-host':true, 'last-page':true, 'version':true};
+
+	// from prefs.js
+	var setValue = function(request, sender, sendResponse) {
+		if (FoxtrickPrefs.get(request.key)==request.value) 
+			return;
+		FoxtrickPrefs.setValue(request.key, request.value, request.type);
+		if ( !no_update_needed[request.key] )
+			FoxtrickPrefs.setBool("preferences.updated",true);
+	}
+	var deleteValue = function(request, sender, sendResponse) {
+		FoxtrickPrefs.deleteValue(request.key);
+		if (!no_update_needed[request.key])
+			FoxtrickPrefs.setBool("preferences.updated",true);
+	}
+	var clearPrefs = function(request, sender, sendResponse) {
+		try {
+			Foxtrick.log('clearPrefs ');
+			if (Foxtrick.platform == "Fennec") {
+				FoxtrickPrefs.cleanupBranch();
+			}
+			else {
+				for (var i in localStorage) {
+					if (i.indexOf('module.')===0 && FoxtrickPrefs.isPrefSetting(i)) {
+						localStorage.removeItem(i);
+					}
+				}
+			updatePrefs();
+			}
+		} catch(e) {Foxtrick.log(e)}
+	}
+
+	// from misc.js. getting files, convert text
+	var getCss = function(request, sender, sendResponse) {
+		// @param files - an array of files to be loaded into string
+		sendResponse({ cssText : Foxtrick.getCssFileArrayToString(request.files) });
+	}
+	var convertImages = function(request, sender, sendResponse) {
+		// @param files - a string for which image urls are converted to data urls
+		// updates cssTextCollection if "ft-module-css" conversion was done
+		Foxtrick.convertImageUrlToData(request.cssText,
+				function(cssText){
+					if (request.type=="ft-module-css")
+						cssTextCollection = cssText;
+					sendResponse({cssText:cssText});
+		});
+	}
+	var getXml = function(request, sender, sendResponse) {
+		// @param url - the URL of resource to load with window.XMLHttpRequest
+		// @callback_param data - response text
+		// @callback_param status - HTTP status of request
+		// synchronous, since messaging is async already
+		var callback = function(responseText,status){
+			sendResponse({data : responseText, status : status});
+		};
+		Foxtrick.load(request.url, callback, request.crossSite )
+	}
+	var getDataUrl = function(request, sender, sendResponse) {
+		// @param branch - initial part of key(s) of session store to delete
+		var replaceImage = function (url) {
+			var image = new Image;
+			image.onload = function() {
+				var canvas = document.createElement("canvas");
+				canvas.width = image.width;
+				canvas.height = image.height;
+				var context = canvas.getContext('2d');
+				context.drawImage(image, 0, 0);
+				var dataUrl = canvas.toDataURL()
+				Foxtrick.dataUrlStorage[url] = dataUrl;
+				return sendResponse({ url: dataUrl });
+			};
+			image.onerror = function() {
+				return sendResponse({ url:'' });
+			};
+			return image.src = url;
+		};
+		if (!Foxtrick.dataUrlStorage[request.url]) replaceImage(request.url);
+		else sendResponse({ url: Foxtrick.dataUrlStorage[request.url] });
+	}
+
+	// from misc.js: tabs
+	var newTab = function(request, sender, sendResponse) {
+		// @param url - the URL of new tab to create
+		sandboxed.tabs.create({url : request.url});
+	}
+	var reuseTab = function(request, sender, sendResponse) {
+		// @param url - the URL of new tab to create
+		if (Foxtrick.platform == "Fennec") {
+			Foxtrick.log(sender.tab.id)
+			for (var i = 0; i<Browser.browsers.length; ++i) {
+				if (sender.tab.id == Browser.browsers[i].tid) {
+					Browser.selectedTab = Browser.getTabAtIndex(i);
+					Browser.browsers[i].loadURI(request.url);
+				}
+			}
+		}
+	}
+
+	// from misc.js
+	var clipboard = function(request, sender, sendResponse) {
+		// @param content - content to copy
+		// @callback_param status - success status
+		try {
+			if (Foxtrick.platform == "Chrome")
+				Foxtrick.loader.chrome.copyToClipBoard(request.content);
+			else
+				Foxtrick.copyStringToClipboard(request.content)
+			sendResponse({status : true});
+		}
+		catch (e) {
+			sendResponse({status : false});
+		}
+	}
+
+	// from notify.js
+	var notify = function(request, sender, sendResponse) {
+		// @param msg - message to notify the user
+		if (window.webkitNotifications) {
+			var notification = webkitNotifications.createNotification(
+				"resources/img/hattrick-logo.png", // logo location
+				"Hattrick", // notification title
+				request.msg // notification body text
+			);
+			notification.onclick = function() {
+				if ( Foxtrick.platform == "Chrome" ) {
+					// goto msg.url in sender tab
+					chrome.tabs.update( sender.tab.id, { url:request.url, selected:true });
+					// focus last window. needs permissions: tabs. only nightly as for now
+					try { chrome.windows.update( sender.tab.windowId, { focused:true });
+					} catch(e){}
+				}
+				else
+					sandboxed.tabs.create({url: request.url});
+				notification.cancel();
+			};
+			// Then show the notification.
+			notification.show();
+			// close after 10 sec
+			window.setTimeout(function() { notification.cancel(); }, 10000);
+		}
+	}
+
+	// from sessionStore.js
+	var sessionSet = function(request, sender, sendResponse) {
+		// @param key - key of session store
+		// @param value - value to store
+		Foxtrick.sessionSet(request.key, request.value);
+	}
+	var sessionGet = function(request, sender, sendResponse) {
+		// @param key - key of session store
+		// @callback_param value - contains the object stored
+		Foxtrick.sessionGet(request.key, sendResponse );
+	}
+	var sessionDeleteBranch = function(request, sender, sendResponse) {
+		// @param branch - initial part of key(s) of session store to delete
+		Foxtrick.sessionDeleteBranch(request.branch);
+	}
+
+	// from log.js
+	var log = function(request, sender, sendResponse) {
+		// @param log - text to dump to console (fennec)
+		dump("FT: "+request.log);
+	}
+	var addDebugLog = function(request, sender, sendResponse) {
+		// @param log - text to add to debug log storage
+		Foxtrick.addToDebugLogStorage(request.log);
+	}
+	var getDebugLog = function(request, sender, sendResponse) {
+		// @callback_param log - contains the debug log storage
+		sendResponse({ log : Foxtrick.debugLogStorage });
+		Foxtrick.debugLogStorage = '';
+	}
+
+	// from mobile-enhancements.js
+	var updateViewportSize = function(request, sender, sendResponse) {
+		Browser.updateViewportSize();
+	}
+
   } catch (e) {Foxtrick.log('Foxtrick.loader.chrome.browserLoad: ', e );}
 };
 

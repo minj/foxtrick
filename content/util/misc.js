@@ -120,7 +120,7 @@ Foxtrick.newTab = function(url) {
 Foxtrick.load = function(url, callback, crossSite) {
 	if (Foxtrick.chromeContext()==='content' && callback) {
 		// background script for xml requests
-		sandboxed.extension.sendRequest({req : "xml", url : url, crossSite: crossSite },
+		sandboxed.extension.sendRequest({req : "getXml", url : url, crossSite: crossSite },
 			function(response) {
 				try {
 					callback(response.data, response.status);
