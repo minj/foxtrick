@@ -278,7 +278,10 @@ Foxtrick.entry.niceRun = function(modules, pick) {
 				pick(m)();
 		}
 		catch (e) {
-			Foxtrick.log(e);
+			if (m.MODULE_NAME)
+				Foxtrick.log("Error in ", m.MODULE_NAME, ": ", e);
+			else
+				Foxtrick.log(e);
 		}
 	}, modules);
 };
