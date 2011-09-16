@@ -66,7 +66,8 @@ CONTENT_FILES_FIREFOX = $(CONTENT_FILES) overlay.xul \
 	preferences.html \
 	options-fennec.xul \
 	background.js \
-	loader-gecko.js
+	loader-gecko.js \
+	modules.json
 CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html \
 	preferences.html \
 	background.js \

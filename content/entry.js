@@ -80,6 +80,23 @@ Foxtrick.entry.init = function() {
 		return;
 	}
 
+	// load modules from scripts
+	var files = Foxtrick.load(Foxtrick.InternalPath + "modules.json");
+	files = JSON.parse(files);
+	files = Foxtrick.map(function(f) {
+		return Foxtrick.InternalPath + f;
+	}, files);
+	// evaluate each module
+	Foxtrick.map(function(f) {
+		var script = Foxtrick.load(f);
+		try {
+			eval(script);
+		}
+		catch (e) {
+			Foxtrick.log(e);
+		}
+	}, files);
+
 	Foxtrick.MakeStatsHash();
 
 	// create arrays for each recognized page that contains modules
