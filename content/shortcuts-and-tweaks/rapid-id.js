@@ -90,7 +90,8 @@ var FoxtrickRapidId = {
 			select.id = "ft_rapidid_select";
 			var currentGroup = null;
 			var saved = this.getSelected();
-			for (var i in this.options) {
+			var i;
+			for (i in this.options) {
 				// if no url, then it's an optgroup
 				if (!this.options[i].url) {
 					var optgroup = doc.createElement("optgroup");
@@ -128,10 +129,11 @@ var FoxtrickRapidId = {
 
 			// hide rightnow on demand
 			var rightnow = doc.getElementById("ctl00_ctl00_ucOngoingEvents_pnlOngoingEvents");
-			if (rightnow) rightnow.setAttribute('style','display:none;');
+			if (rightnow)
+				Foxtrick.addClass(rightnow, "hidden");
 		}
 		catch (e) {
-			Foxtrick.log("RapidId(" + e.lineNumber + "): " + e + "");
+			Foxtrick.log("RapidId(" + e.lineNumber + "): " + e);
 		}
 	},
 
@@ -147,7 +149,8 @@ var FoxtrickRapidId = {
 			return;
 
 		// get labels of optgroup and option
-		for (var i in this.options) {
+		var i;
+		for (i in this.options) {
 			this.options[i].label = Foxtrickl10n.getString(this.options[i].text);
 		}
 
