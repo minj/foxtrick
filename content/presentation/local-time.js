@@ -12,6 +12,8 @@ var FoxtrickLocalTime = {
 	CSS : Foxtrick.InternalPath + "resources/css/local-time.css",
 
 	run : function(doc) {
+		var updatePage = this.updatePage;
+
 		var time = doc.getElementById("time");
 		// icon for Hattrick time zone
 		time.title = Foxtrickl10n.getString("LocalTime.hattrick.title");
@@ -40,16 +42,16 @@ var FoxtrickLocalTime = {
 			FoxtrickPrefs.setBool("module.LocalTime.local", !FoxtrickPrefs.getBool("module.LocalTime.local"));
 			Foxtrick.toggleClass(time, "hidden");
 			Foxtrick.toggleClass(localTime, "hidden");
-			FoxtrickLocalTime.updatePage(doc);
+			updatePage(doc);
 		};
 		Foxtrick.listen(time, "click", toggleDisplay, false);
 		Foxtrick.listen(localTime, "click", toggleDisplay, false);
 
-		FoxtrickLocalTime.updatePage(doc);
+		updatePage(doc);
 	},
 
 	change : function(doc) {
-		FoxtrickLocalTime.updatePage(doc);
+		this.updatePage(doc);
 	},
 
 	// updates all dates within the page
