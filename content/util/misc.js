@@ -133,40 +133,66 @@ Foxtrick.load = function(url, callback, crossSite) {
 		);
 	}
 	else {
-		var req = new window.XMLHttpRequest();
-		req.open("GET", url, callback ? true : false);
-		if (typeof(req.overrideMimeType) == "function")
-			req.overrideMimeType("text/plain");
-		if (!callback) {
-			try {
-				req.send(null);
-				var response = req.responseText;
-			}
-			catch (e) {
-				// catch cross-domain errors
-				response = null;
-			}
-			return response;
-		}
-		else {
-			req.onreadystatechange = function(aEvt) {
-				if (req.readyState == 4) {
-					try {
-						callback(req.responseText, req.status);
-					}
-					catch (e) {
-						Foxtrick.dump('Uncaught callback error: - url: ' + url + ' callback: '+ callback + ' crossSite: ' + crossSite + ' ' + e);
-						Foxtrick.log(e);
-					}
+		var singleLoad = function(url, callback, crossSite){
+			var req = new window.XMLHttpRequest();
+			req.open("GET", url, callback ? true : false);
+			if (typeof(req.overrideMimeType) == "function")
+				req.overrideMimeType("text/plain");
+			if (!callback) {
+				try {
+					req.send(null);
+					var response = req.responseText;
 				}
+				catch (e) {
+					// catch cross-domain errors
+					response = null;
+				}
+				return response;
+			}
+			else {
+				req.onreadystatechange = function(aEvt) {
+					if (req.readyState == 4) {
+						try {
+							callback(req.responseText, req.status);
+						}
+						catch (e) {
+							console.error('Uncaught callback error: - url: ' + url + ' callback: '+ callback + ' crossSite: ' + crossSite + ' ' + e);
+						}
+					}
+				};
+				try {
+					req.send(null);
+				}
+				catch (e) {
+					// catch cross-domain errors
+					console.warn(e);
+					callback(req.responseText, 0);
+				}
+			}
+		}
+		
+		if ( typeof (url) == 'string' ) 
+			return singleLoad(url, callback, crossSite);
+		else {
+			// url = array of urls
+			// returns array of responses with matching indices
+			
+			// batch load. needs a callback
+			if (!callback) 
+				return null;
+			var index = 0, responses = [];
+			var processSingle = function(last_response){
+				// collect responses
+				if (index != 0) 
+					responses.push( last_response );
+				// return if finished
+				if (index == url.length) 
+					callback(responses);
+				else 
+					// load next file
+					singleLoad(url[index++], processSingle, crossSite)
 			};
-			try {
-				req.send(null);
-			}
-			catch (e) {
-				// catch cross-domain errors
-				callback(req.responseText, 0);
-			}
+			processSingle();
 		}
 	}
 };

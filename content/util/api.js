@@ -310,6 +310,30 @@ Foxtrick.util.api = {
 		});
 	},
 
+	// batchParameters: array of parameters for retrieve function
+	// returns array of xml docs with matching indices
+	// still better to later identify xmls by content, not by index
+	batchRetrieve : function(doc, batchParameters, options, callback) {
+		if (!FoxtrickPrefs.getBool("xmlLoad")) {
+			Foxtrick.log("XML loading disabled");
+			callback(null);
+			return;
+		}
+		var index = 0, responses = [];
+		var processSingle = function(last_response){
+			// collect responses
+			if (index != 0) 
+				responses.push( last_response );
+			// return if finished
+			if (index == batchParameters.length) 
+				callback(responses);
+			else
+				// load next file
+				Foxtrick.util.api.retrieve(doc, batchParameters[index++], options, processSingle)
+		};
+		processSingle();
+	},
+	
 	invalidateAccessToken : function() {
 		Foxtrick.util.api.setAccessToken("");
 		Foxtrick.util.api.setAccessTokenSecret("");

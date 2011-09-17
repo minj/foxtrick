@@ -115,38 +115,45 @@ var FoxtrickSkillTable = {
 			// go though all rows of former players, get their owners team.xml and hide if they are bots
 			var rows = doc.getElementById('ft_skilltable').getElementsByTagName("tr");
 			rows = Foxtrick.filter(function(tr) {return !tr.getAttribute('currentsquad');}, rows);
-			var nr_to_process = rows.length;
-			if (nr_to_process>0) {
-				var loading = Foxtrick.util.note.createLoading(doc);
-				doc.getElementsByClassName("ft_skilltable_wrapper")[0].appendChild(loading);
+			
+			var loading = Foxtrick.util.note.createLoading(doc);
+			doc.getElementsByClassName("ft_skilltable_wrapper")[0].appendChild(loading);
 
-				Foxtrick.map(function(row) {
-					var teamid = row.getAttribute('currentclub');
-					var args = [];
-					args.push(["teamid", teamid]);
-					args.push(["file", "teamdetails"]);
-					Foxtrick.util.api.retrieve(doc, args, {cache_lifetime:'session', caller_name:this.MODULE_NAME },
-					function(xml) {
-						if (xml) markRowIfBotOwner(rows, xml);
-						// if processed all, now hide bots
-						if (--nr_to_process==0) {
-							hideRowsWithBotOwner();
-							if (loading) loading.parentNode.removeChild(loading);
+			var batchArgs = [];
+			Foxtrick.map(function(row) {
+				var teamid = row.getAttribute('currentclub');
+				if (!teamid) 
+					return;
+				var args = [];
+				args.push(["teamid", teamid]);
+				args.push(["file", "teamdetails"]);
+				batchArgs.push(args);
+			}, rows);
+
+			Foxtrick.util.api.batchRetrieve(doc, batchArgs, {cache_lifetime:'session', caller_name:this.MODULE_NAME },
+				function(xmls) {
+					if (xmls) {
+						for (var i=0; i<xmls.length; ++i) {
+							if (xmls[i])
+								markRowIfBotOwner(rows, xmls[i]);
 						}
-					});
-				}, rows);
-			}
-		} catch(e) {Foxtrick.log('removeBotPlayers',e);}
+						hideRowsWithBotOwner();
+						if (loading) 
+							loading.parentNode.removeChild(loading);
+					}
+			});
+		} catch(e) {console.error('removeBotPlayers',e);}
 	},
 
 	showTimeInClub : function(ev) {
-	  try {
 		var doc = ev.target.ownerDocument;
 		doc.getElementById('skilltable_showTimeInClubId').setAttribute('style','display:none;');
 		var loading = Foxtrick.util.note.createLoading(doc);
 		doc.getElementsByClassName("ft_skilltable_wrapper")[0].appendChild(loading);
 
-		var setHomeGrownAndJoinedSinceFromTransfers = function(xml, list, TeamId, player_id) {
+		var setHomeGrownAndJoinedSinceFromTransfers = function(xml, list) {
+			var player_id = xml.getElementsByTagName("PlayerID")[0].textContent;
+			var TeamId = xml.getElementsByTagName("TeamId")[0].textContent;
 			var homegrown = false;
 			var Transfers = xml.getElementsByTagName("Transfer");
 			if (Transfers.length > 0) {
@@ -206,69 +213,50 @@ var FoxtrickSkillTable = {
 
 		// first get teams activation date. we'll need it later
 		var TeamId = Foxtrick.Pages.All.getTeamId(doc);
-		var args = [];
-		args.push(["TeamId", TeamId]);
-		args.push(["file", "teamdetails"]);
-		Foxtrick.util.api.retrieve(doc, args, {cache_lifetime:'session', caller_name:this.MODULE_NAME },
-		function(xml) {
-			if (!xml) {
-				Foxtrick.Pages.Players.getPlayerList(doc, function(list) {
-					FoxtrickSkillTable.showTable(doc, list);
-				});
-				return;
-			}
+		var args = [ ["TeamId", TeamId], ["file", "teamdetails"]];
+		Foxtrick.util.api.retrieve(doc, args, {cache_lifetime:'session', caller_name:this.MODULE_NAME }, function(xml) {
 
 			var activationDate = xml.getElementsByTagName("ActivationDate")[0].textContent;
-			// get your players
+			// get the  players
 			Foxtrick.Pages.Players.getPlayerList(doc, function(list) {
-				var nr_to_process = list.length;
-				if (nr_to_process==0) // no players
-					FoxtrickSkillTable.showTable(doc, list);
-				else {
-					// go through all players
-					Foxtrick.map(function(player) {
-						// first we check transfers
-						var args = [];
-						args.push(["playerid", player.id]);
-						args.push(["file", "transfersPlayer"]);
-						Foxtrick.util.api.retrieve(doc, args, {cache_lifetime:'session', caller_name:this.MODULE_NAME },
-						function(xml) {
-							var hasTransfers = false;
-							if (xml) {
-								var pid = xml.getElementsByTagName("PlayerID")[0].textContent;
+				// first we check transfers
+				var argsTransfersPlayer = [];
+				Foxtrick.map(function(player) {
+					argsTransfersPlayer.push([ ["playerid", player.id], ["file", "transfersPlayer"] ]);
+				}, list);
 
-								// if there is a transfer, we are finished with this player
-								var hasTransfers = setHomeGrownAndJoinedSinceFromTransfers(xml, list, TeamId, pid);
-
-								// so, he's from home
-								if ( !hasTransfers ) {
-									// try set joined date from pull date
-									var args = [];
-									args.push(["playerid", player.id]);
-									args.push(["file", "playerevents"]);
-									Foxtrick.util.api.retrieve(doc, args, { cache_lifetime:'session', caller_name:this.MODULE_NAME },
-									function(xml) {
-										if (xml) {
-											var was_pulled = setJoinedSinceFromPullDate(xml, list);
-
-											if (!was_pulled)  // no pull date = from starting squad. JoinedSince=activationDate
-												Foxtrick.map(function(n) {if (n.id==pid) n.joinedSince = activationDate;}, list);
-										}
-										if (--nr_to_process==0)  // processed all.
-											FoxtrickSkillTable.showTable(doc, list);
-									});
-								}
-								else if (--nr_to_process==0)  // processed all.
-									FoxtrickSkillTable.showTable(doc, list);
+				Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer, {cache_lifetime:'session', caller_name:this.MODULE_NAME }, function(xmls) {
+					var argsPlayerevents = [];
+					for (var i=0; i<xmls.length; ++i) {
+						if (xmls[i]) {
+							// if there is a transfer, we are finished with this player
+							var hasTransfers = setHomeGrownAndJoinedSinceFromTransfers(xmls[i], list);
+							if ( !hasTransfers ) {
+								// so, he's from home. need to get pull date from playerevents bellow
+								var pid = xmls[i].getElementsByTagName("PlayerID")[0].textContent;
+								argsPlayerevents.push([ ["playerid", pid], ["file", "playerevents"] ]);
 							}
-							else if (--nr_to_process==0)  // processed all.
-									FoxtrickSkillTable.showTable(doc, list);
-						});
-					}, list);
-				}
+						}
+					}
+					// try set joined date from pull date
+					Foxtrick.util.api.batchRetrieve(doc, argsPlayerevents, {cache_lifetime:'session', caller_name:this.MODULE_NAME }, function(xmls) {
+						for (var i=0; i<xmls.length; ++i) {
+							if (xmls[i]) {
+								var was_pulled = setJoinedSinceFromPullDate(xmls[i], list);
+								if ( !was_pulled ) { 
+									// no pull date = from starting squad. JoinedSince=activationDate
+									var pid = xmls[i].getElementsByTagName("PlayerID")[0].textContent;
+									Foxtrick.map(function(n) {if (n.id==pid) n.joinedSince = activationDate;}, list);
+								}
+							}
+						}
+						
+						// finished. now display results
+						FoxtrickSkillTable.showTable(doc, list);
+					});
+				});
 			});
 		});
-	  } catch(e) {Foxtrick.log('show joindate',e);}
 	},
 
 	showOldiesAndOwn : function(doc) {
@@ -301,33 +289,28 @@ var FoxtrickSkillTable = {
 			// then get current squad (last parameter true) into current_squad_list
 			Foxtrick.Pages.Players.getPlayerList(doc, function(current_squad_list) {
 				// add homegrown from current squad to oldies
-				var nr_to_process = current_squad_list.length;
-				if (nr_to_process==0)
-					// no current squad, just display oldies
-					FoxtrickSkillTable.showTable(doc, oldies_list);
-				else {
-					var TeamId = Foxtrick.Pages.All.getTeamId(doc);
-					// check all current players homegrown status based on transfers.xml of each player
-					Foxtrick.map(function(player) {
-						var args = [];
-						args.push(["playerid", player.id]);
-						args.push(["file", "transfersPlayer"]);
-						Foxtrick.util.api.retrieve(doc, args, {cache_lifetime:'session', caller_name:this.MODULE_NAME },
-						function(xml) {
-							if (xml) {
-								var homeGrown = getHomeGrownStatus(TeamId, xml);
-								if (homeGrown)
-									Foxtrick.map(function(n) {if (n.id== player.id) n.homeGrown = homeGrown;}, current_squad_list);
+				var TeamId = Foxtrick.Pages.All.getTeamId(doc);
+				// check all current players homegrown status based on transfers.xml of each player
+				var argsTransfersPlayer = [];
+				Foxtrick.map(function(player) {
+					argsTransfersPlayer.push([ ["playerid", player.id], ["file", "transfersPlayer"] ]);
+				}, current_squad_list);
+
+				Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer, {cache_lifetime:'session', caller_name:this.MODULE_NAME }, function(xmls) {
+					for (var i=0; i<xmls.length; ++i) {
+						if (xmls[i]) {
+								var homeGrown = getHomeGrownStatus(TeamId, xmls[i]);
+								if (homeGrown) {
+									var pid = xmls[i].getElementsByTagName("PlayerID")[0].textContent;
+									Foxtrick.map(function(n) {if (n.id== pid) n.homeGrown = homeGrown;}, current_squad_list);
+								}
 							}
-							if (--nr_to_process==0) {
-								// processed all. now filter, concat with oldies and display
-								current_squad_list = Foxtrick.filter(function(n) {return n.homeGrown;}, current_squad_list);
-								var full_list = oldies_list.concat(current_squad_list);
-								FoxtrickSkillTable.showTable(doc, full_list);
-							}
-						});
-					}, current_squad_list);
-				}
+					}
+					// filter, concat with oldies and display
+					current_squad_list = Foxtrick.filter(function(n) {return n.homeGrown;}, current_squad_list);
+					var full_list = oldies_list.concat(current_squad_list);
+					FoxtrickSkillTable.showTable(doc, full_list);
+				});
 			}, true);
 		});
 	},
