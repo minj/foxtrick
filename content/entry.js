@@ -59,21 +59,18 @@ Foxtrick.entry.setRetrievedLocalResources = function(data) {
 		Foxtrick.XMLData.countryToLeague = data.countryToLeague;
 };
 
-// called on browser load for gecko
-// and on each page for chrome
+// called on browser load for Gecko
+// and on each page in content scope for others
 Foxtrick.entry.init = function() {
-	const coreModules = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
 	Foxtrick.log("Initializing FoxTrick…");
+
 	// init core modules, for Chrome they are inited in loader-chrome.js
-	if (Foxtrick.arch !== "Sandboxed") {
+	if (Foxtrick.arch == "Gecko") {
+		const coreModules = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
 		for (var i in coreModules) {
 			if (typeof(coreModules[i].init) == "function")
 				coreModules[i].init();
 		}
-	}
-	else if (Foxtrick.chromeContext() == "background") {
-		// only content side
-		return;
 	}
 
 	// load modules from scripts
