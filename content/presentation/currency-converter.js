@@ -77,8 +77,14 @@ var FoxtrickCurrencyConverter = {
 				var matched = node.textContent.match(re);
 				var oldAmount = matched[1].replace(/\s/g, "");
 				var newAmount = Math.floor(oldAmount * oldRate / rate);
-				node.textContent = node.textContent.replace(re, matched[0]
-					+ " (" + Foxtrick.formatNumber(newAmount, "\u00a0") + "\u00a0" + symbol + ")");
+				if (Foxtrick.trim(node.textContent.replace(re,''))=='') {
+					// only the number. usually looks better in new line
+					node.parentNode.appendChild(doc.createElement('br'));
+					node.parentNode.appendChild(doc.createTextNode("("+Foxtrick.formatNumber(newAmount, "\u00a0") + "\u00a0" + symbol + ")"));
+				}
+				else
+					node.textContent = node.textContent.replace(re, matched[0]
+						+ " (" + Foxtrick.formatNumber(newAmount, "\u00a0") + "\u00a0" + symbol + ")");
 			}
 		};
 		var traverse = function(node) {
