@@ -250,6 +250,10 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		}
 	}
 
+	// from context-menu.js: dummy. request handled in there
+	var updateContextMenu = function(request, sender, sendResponse) {
+	}
+
 	// from sessionStore.js
 	var sessionSet = function(request, sender, sendResponse) {
 		// @param key - key of session store
