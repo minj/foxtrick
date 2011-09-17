@@ -34,51 +34,49 @@ var FoxtrickPlayerBirthday = {
 		}
 
 		// sorting of arrays according to days and then years
-		birthdayToday.sort(this.sort);
-		birthdayFuture.sort(this.sort);
-		birthdayPast.sort(this.sort);
+		var sort = function(a, b) {
+			const maxYears = 10000;
+			return (a.age.days * maxYears + a.age.years) - (b.age.days * maxYears + b.age.years);
+		}
+		birthdayToday.sort(sort);
+		birthdayFuture.sort(sort);
+		birthdayPast.sort(sort);
 
 		var parentDiv = doc.createElement("div");
 		parentDiv.id = "foxtrick_addactionsbox_parentDiv";
 
-		FoxtrickPlayerBirthday.addType(parentDiv, Foxtrickl10n.getString('foxtrick.tweaks.BirthdayToday'), birthdayToday, doc);
-		FoxtrickPlayerBirthday.addType(parentDiv, Foxtrickl10n.getString('foxtrick.tweaks.BirthdayNextWeek'), birthdayFuture, doc);
-		FoxtrickPlayerBirthday.addType(parentDiv, Foxtrickl10n.getString('foxtrick.tweaks.BirthdayLastWeek'), birthdayPast, doc);
+		var addType = function(parent, header, players) {
+			if (players == null || players.length === 0) {
+				return;
+			}
+			var div = doc.createElement("div");
+			var caption = doc.createElement("h5");
+			var captionText = doc.createTextNode(header);
+			var list = doc.createElement("ul");
+			parent.appendChild(div);
+			div.appendChild(caption);
+			div.appendChild(list);
+			caption.appendChild(captionText);
+
+			for (var i in players) {
+				var item = doc.createElement("li");
+				var player = players[i].nameLink.cloneNode(true);
+				var age = doc.createTextNode(players[i].ageText);
+				list.appendChild(item);
+				item.appendChild(player);
+				item.appendChild(age);
+			}
+		};
+
+		addType(parentDiv, Foxtrickl10n.getString('foxtrick.tweaks.BirthdayToday'), birthdayToday);
+		addType(parentDiv, Foxtrickl10n.getString('foxtrick.tweaks.BirthdayNextWeek'), birthdayFuture);
+		addType(parentDiv, Foxtrickl10n.getString('foxtrick.tweaks.BirthdayLastWeek'), birthdayPast);
 
 		// Append the box to the sidebar
 		if (birthdayToday.length + birthdayFuture.length + birthdayPast.length > 0) {
 			Foxtrick.addBoxToSidebar(doc,
 				Foxtrickl10n.getString("foxtrick.tweaks.Birthdays"),
 				parentDiv, 10);
-		}
-	},
-
-	sort : function(a, b) {
-		// this should sort players first by days and then by years
-		const maxYears = 10000;
-		return (a.age.days * maxYears + a.age.years) - (b.age.days * maxYears + b.age.years);
-	},
-
-	addType : function(parent, header, players, doc) {
-		if (players == null || players.length === 0) {
-			return;
-		}
-		var div = doc.createElement("div");
-		var caption = doc.createElement("h5");
-		var captionText = doc.createTextNode(header);
-		var list = doc.createElement("ul");
-		parent.appendChild(div);
-		div.appendChild(caption);
-		div.appendChild(list);
-		caption.appendChild(captionText);
-
-		for (var i in players) {
-			var item = doc.createElement("li");
-			var player = players[i].nameLink.cloneNode(true);
-			var age = doc.createTextNode(players[i].ageText);
-			list.appendChild(item);
-			item.appendChild(player);
-			item.appendChild(age);
 		}
 	}
 };
