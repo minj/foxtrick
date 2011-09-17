@@ -3,18 +3,12 @@
  * @author spambot
  */
 
-var FoxtrickLastLogin = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "LastLogin",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : new Array('managerPage'),
+	PAGES : ["managerPage"],
 
 	change : function(doc) {
-		// FIXME - what does this mean? (cvd: i guess no lastlogins on guestbookpage)
-		if (doc.getElementById('ctl00_ctl00_CPContent_CPMain_upGB') != null) return;
-		FoxtrickLastLogin._Show(doc);
-	},
-
-	_Show : function(doc) {
 		var div = doc.getElementById("pnlLogin");
 		if (!div || div.hasAttribute("processed")) {
 			// if the last login div isn't present or has been processed,
@@ -48,5 +42,4 @@ var FoxtrickLastLogin = {
 		div.innerHTML = newInner;
 		div.setAttribute("processed", "processed");
 	}
-};
-Foxtrick.util.module.register(FoxtrickLastLogin);
+});
