@@ -48,28 +48,26 @@ var FoxtrickForumStripHattrickLinks = {
 		if (Foxtrick.isPage("guestbook", doc))
 			target = targets[1];
 
-		if (target)
-			target.addEventListener("click", FoxtrickForumStripHattrickLinks.submitListener, false);
-	},
-
-	strip : function(string) {
-		var url = string.replace(/\[link=.+(www|www\d+|stage)\.hattrick\.(org|ws|interia\.pl)(.*?)\]/gi, "[link=$3]");
-		url = url.replace('[link=safari-extension://www.ht-foxtrick.com-8J4UNYVFR5/2f738eb7/content/', '[link=chrome://foxtrick/content/'); // safari nightly
-		url = url.replace('[link=chrome-extension://bpfbbngccefbbndginomofgpagkjckik/content/','[link=chrome://foxtrick/content/'); 	// official chrome
-		url = url.replace('[link=chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/content/','[link=chrome://foxtrick/content/'); 	// nightly chrome
-		return url;
-	},
-
-	submitListener : function(ev) {
-		var doc = ev.target.ownerDocument;
-		var textarea = doc.getElementById("mainBody").getElementsByTagName("textarea")[0];
-		if (FoxtrickPrefs.isModuleOptionEnabled("ForumStripHattrickLinks", "NoConfirmStripping")) {
-			textarea.value = FoxtrickForumStripHattrickLinks.strip(textarea.value);
-		}
-		else {
-			if (confirm(Foxtrickl10n.getString("foxtrick.confirmstripserver"))) {
-				textarea.value = FoxtrickForumStripHattrickLinks.strip(textarea.value);
-			}
+		if (target) {
+			var strip = function(str) {
+				var url = str.replace(/\[link=.+(www|www\d+|stage)\.hattrick\.(org|ws|interia\.pl)(.*?)\]/gi, "[link=$3]")
+					.replace('[link=safari-extension://www.ht-foxtrick.com-8J4UNYVFR5/2f738eb7/content/', '[link=chrome://foxtrick/content/') // safari nightly
+					.replace('[link=chrome-extension://bpfbbngccefbbndginomofgpagkjckik/content/','[link=chrome://foxtrick/content/') // official chrome
+					.replace('[link=chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/content/','[link=chrome://foxtrick/content/'); // nightly chrome
+				return url;
+			};
+			// add submit listener
+			target.addEventListener("click", function() {
+				var textarea = doc.getElementById("mainBody").getElementsByTagName("textarea")[0];
+				if (FoxtrickPrefs.isModuleOptionEnabled("ForumStripHattrickLinks", "NoConfirmStripping")) {
+					textarea.value = strip(textarea.value);
+				}
+				else {
+					if (confirm(Foxtrickl10n.getString("foxtrick.confirmstripserver"))) {
+						textarea.value = strip(textarea.value);
+					}
+				}
+			}, false);
 		}
 	}
 };
