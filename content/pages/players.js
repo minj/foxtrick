@@ -28,7 +28,7 @@ Foxtrick.Pages.Players = {
 		return (doc.location.href.indexOf("Coaches\.aspx") != -1);
 	},
 
-	getPlayerList : function(doc, callback, current_squad_externally) {
+	getPlayerList : function(doc, callback, options) {
 		var playerList = [];
 
 		var getXml = function(doc, callback) {
@@ -49,7 +49,7 @@ Foxtrick.Pages.Players = {
 				args.push(["file", "players"]);
 				args.push(["version", "2.0"]);
 
-				if (!current_squad_externally) {
+				if (!options || !options.current_squad) {
 					if (Foxtrick.Pages.Players.isOldiesPage(doc))
 						args.push(["actionType", "viewOldies"]);
 					else if (Foxtrick.Pages.Players.isCoachesPage(doc))
@@ -74,7 +74,7 @@ Foxtrick.Pages.Players = {
 					if (playerList[j].id == id)
 						{ player = playerList[j];break;}
 				if (!player) {
-					if (!current_squad_externally)	continue; // not present in HTML. skip if not retrieving squad from other page anyways
+					if (!options || !options.current_squad) continue; // not present in HTML. skip if not retrieving squad from other page anyways
 					else {
 						playerList.push({id : id});
 						player = playerList[playerList.length - 1];
@@ -507,7 +507,7 @@ Foxtrick.Pages.Players = {
 				try {
 					// parse HTML first because players present in XML may
 					// not present in XML (NT players)
-					if (!current_squad_externally) parseHtml();
+					if (!options || !options.current_squad) parseHtml();
 					if (xml) parseXml(xml);
 					callback(playerList);
 				}
