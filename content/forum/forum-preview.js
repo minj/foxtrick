@@ -270,8 +270,10 @@ var FoxtrickForumPreview = {
 			var prev_div = doc.getElementById( "ft-forum-preview-area" );
 			var text =  String(msg_window.value);
 
+			var formatter = Foxtrick.util.module.get("FormatPostingText");
+
 			// format within pre
-			text = FoxtrickFormatPostingText.format(text);
+			text = formatter.format(text);
 
 			// replace &
 			text = text.replace(/\&/g, "&amp;");
@@ -304,7 +306,7 @@ var FoxtrickForumPreview = {
 			}
 
 			// reformat with pre
-			text = FoxtrickFormatPostingText.reformat(text);
+			text = formatter.reformat(text);
 
 			prev_div.innerHTML = text;
 		}
