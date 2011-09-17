@@ -51,7 +51,12 @@ Foxtrick.log = function() {
 		else {
 			Foxtrick.addToDebugLogStorage(concated);
 		}
-		console.log(concated);
+		if (Foxtrick.platform == 'Chrome') {
+			// chrome log displays object directly better
+			console.log(arguments);
+		}
+		else 
+			console.log(concated);
 		Foxtrick.log.flush(document);
 	}
 };
