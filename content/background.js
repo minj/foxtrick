@@ -49,7 +49,10 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	// callback will be called with a sole JSON as argument
 	sandboxed.extension.onRequest.addListener( function(request, sender, sendResponse) {
 		try {
-			eval( request.req + '(request, sender, sendResponse)' );
+			// just for fun get rid of non-alphanums to make all content code useless 
+			var funcString = request.req.replace(/\W+/g,"") + "(request, sender, sendResponse)";
+			// call requested function with parameters
+			eval( funcString );
 		}
 		catch (e) {
 			Foxtrick.log('Foxtrick - background onRequest: ', e)
