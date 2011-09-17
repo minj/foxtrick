@@ -4,8 +4,7 @@
  * @author taised, Jestar
  */
 ////////////////////////////////////////////////////////////////////////////////
-var FoxtrickRatings = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "Ratings",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
@@ -19,7 +18,7 @@ var FoxtrickRatings = {
 	run : function(doc) {
 		var ratingsArray = Foxtrick.filter(function(x) {
 			return x != "HatStatsSeparated";
-		}, FoxtrickRatings.OPTIONS);
+		}, this.OPTIONS);
 
 		var isprematch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch")!=null);
 		if (isprematch) return;
@@ -154,19 +153,18 @@ var FoxtrickRatings = {
 	},
 
 	initHtRatings: function () {
-		this.ratingDefs=new Array();
-
-		this.ratingDefs["HatStats"] = {
+		var ratingDefs = this.ratingDefs;
+		ratingDefs["HatStats"] = {
 			label : function(){return Foxtrickl10n.getString("ratings.HatStats");},
 			title : function(){return Foxtrickl10n.getString("ratings.HatStats");},
 			total: function(midfieldLevel, attackLevel, defenceLevel) {
-				return FoxtrickRatings.ratingDefs["HatStatsDetailed"].midfield(midfieldLevel)
-					+ FoxtrickRatings.ratingDefs["HatStatsDetailed"].attack(attackLevel)
-					+ FoxtrickRatings.ratingDefs["HatStatsDetailed"].defence(defenceLevel);
+				return ratingDefs["HatStatsDetailed"].midfield(midfieldLevel)
+					+ ratingDefs["HatStatsDetailed"].attack(attackLevel)
+					+ ratingDefs["HatStatsDetailed"].defence(defenceLevel);
 			}
 		};
 
-		this.ratingDefs["HatStatsDetailed"] = {
+		ratingDefs["HatStatsDetailed"] = {
 			base : 1.0, weight : 4.0,
 			label : function(){return Foxtrickl10n.getString("ratings.HatStats");},
 			title : function(){return Foxtrickl10n.getString("ratings.HatStats");},
@@ -182,7 +180,7 @@ var FoxtrickRatings = {
 			}
 		};
 
-		this.ratingDefs["LoddarStats"] = { base : 1.0, weight : 4.0,
+		ratingDefs["LoddarStats"] = { base : 1.0, weight : 4.0,
 			label : function(){return "LoddarStats";},
 			title : function(){return "LoddarStats";},
 
@@ -243,7 +241,7 @@ var FoxtrickRatings = {
 
 		 };
 
-		this.ratingDefs["VnukStats"] = { base : 1.0,
+		ratingDefs["VnukStats"] = { base : 1.0,
 			label : function(){return Foxtrickl10n.getString("ratings.VnukStats");},
 			title : function(){return Foxtrickl10n.getString("ratings.VnukStats");},
 
@@ -266,7 +264,7 @@ var FoxtrickRatings = {
 			}
 		};
 
-		this.ratingDefs["PeasoStats"] = { base : 1.0, weight : 4.0,
+		ratingDefs["PeasoStats"] = { base : 1.0, weight : 4.0,
 			label : function(){return Foxtrickl10n.getString("ratings.PeasoStats");},
 			title : function(){return Foxtrickl10n.getString("ratings.PeasoStats");},
 
@@ -293,7 +291,7 @@ var FoxtrickRatings = {
 			}
 		};
 
-		this.ratingDefs["HTitaVal"] = { base : 1.0, weight : 4.0,
+		ratingDefs["HTitaVal"] = { base : 1.0, weight : 4.0,
 			label : function(){return Foxtrickl10n.getString("ratings.HTitaVal");},
 			title : function(){return Foxtrickl10n.getString("ratings.HTitaVal");},
 
@@ -320,7 +318,7 @@ var FoxtrickRatings = {
 			}
 		};
 
-		this.ratingDefs["GardierStats"] = {
+		ratingDefs["GardierStats"] = {
 			base : 1.0, weight : 4.0,
 			label : function(){return Foxtrickl10n.getString("ratings.GardierStats");},
 			title : function(){return Foxtrickl10n.getString("ratings.GardierStats");},
@@ -361,5 +359,4 @@ var FoxtrickRatings = {
 			}
 		};
 	}
-};
-Foxtrick.util.module.register(FoxtrickRatings);
+});
