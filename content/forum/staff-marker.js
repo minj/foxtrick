@@ -24,7 +24,8 @@ var FoxtrickStaffMarker = {
 				const uris = [
 					"http://www.foxtrick.org/staff-data/foxtrick.json",
 					"http://www.foxtrick.org/staff-data/chpp.json",
-					"http://www.foxtrick.org/staff-data/editor.json"
+					"http://www.foxtrick.org/staff-data/editor.json",
+					"http://www.hattrick-youthclub.org/_admin/foxtrick/team.json"
 				];
 				// counter of URI remaining to fetch
 				var todo = uris.length;
