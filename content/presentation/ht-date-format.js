@@ -71,7 +71,7 @@ var FoxtrickHTDateFormat = {
 	},
 
 	change : function(doc, ev) {
-		FoxtrickHTDateFormat.run(doc);
+		this.run(doc);
 	}
 };
 Foxtrick.util.module.register(FoxtrickHTDateFormat);
