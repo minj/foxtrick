@@ -4,14 +4,25 @@
 * @author convinced
 */
 
-var FoxtrickCopyMatchID = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "CopyMatchID",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
  	PAGES : new Array('matches','matchesarchiv','matcheshistory',
 					'matchesLatest','arena','matchLineup','match'),
 
 	run : function(doc) {
+		var copyId = function(ev) {
+			try {
+				var matchid = ev.target.parentNode.getAttribute("matchid");
+				var insertBefore = doc.getElementsByTagName('h1')[0];
+				Foxtrick.copyStringToClipboard(matchid);
+				var note = Foxtrick.util.note.add(doc, insertBefore, "ft-match-id-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.matchidcopied"), null, true, true);
+			}
+			catch (e) {
+				Foxtrick.log(e);
+			}
+		};
+
 		var count = 0;
 
 		if (Foxtrick.isPage("matchesarchiv", doc)
@@ -46,7 +57,7 @@ var FoxtrickCopyMatchID = {
 					link.href='javascript:void(0);';
 					link.setAttribute("matchid", matchid);
 					link.setAttribute("id","_"+this.MODULE_NAME+count);
-					link.addEventListener( "click", FoxtrickCopyMatchID._copy_matchid_to_clipboard, false );
+					link.addEventListener("click", copyId, false);
 					var div=images[j].parentNode;
 					div.replaceChild(link,images[j]);
 
@@ -76,7 +87,7 @@ var FoxtrickCopyMatchID = {
 				link.href='javascript:void(0);';
 				link.setAttribute("matchid", matchid);
 				link.setAttribute("id","_"+this.MODULE_NAME+count);
-				link.addEventListener( "click", FoxtrickCopyMatchID._copy_matchid_to_clipboard, false );
+				link.addEventListener("click", copyId, false);
 				var div=images[i].parentNode;
 				div.replaceChild(link,images[i]);
 
@@ -85,16 +96,5 @@ var FoxtrickCopyMatchID = {
 
 			}
 		}
-	},
-
-	_copy_matchid_to_clipboard : function(ev) {
-	try{
-		var doc = ev.target.ownerDocument;
-		var matchid = ev.target.parentNode.getAttribute("matchid");
-		var insertBefore = doc.getElementsByTagName('h1')[0];
-		Foxtrick.copyStringToClipboard(matchid);
-		var note = Foxtrick.util.note.add(doc, insertBefore, "ft-match-id-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.matchidcopied"), null, true, true);
-	} catch(e){Foxtrick.log(e);}
 	}
-};
-Foxtrick.util.module.register(FoxtrickCopyMatchID);
+});
