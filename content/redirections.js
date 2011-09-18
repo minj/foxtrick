@@ -4,7 +4,7 @@
  * @author convinced
  */
 
-Foxtrick.util.module.register{
+Foxtrick.util.module.register({
 	MODULE_NAME : "Redirections",
 	CORE_MODULE : true,
 	PAGES : ["all"],
