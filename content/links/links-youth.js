@@ -4,8 +4,7 @@
  * @author convinced
  */
 
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickLinksYouthOverview = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "LinksYouthOverview",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('youthoverview'),
@@ -43,12 +42,10 @@ var FoxtrickLinksYouthOverview = {
 		}
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
-};
-Foxtrick.util.module.register(FoxtrickLinksYouthOverview);
+});
 
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickLinksYouthPlayerDetail = {
 
+Foxtrick.util.module.register({
 	MODULE_NAME : "LinksYouthPlayerDetail",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('youthplayerdetail'),
@@ -108,12 +105,10 @@ var FoxtrickLinksYouthPlayerDetail = {
 		}
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
-};
-Foxtrick.util.module.register(FoxtrickLinksYouthPlayerDetail);
+});
 
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickLinksYouthTraining = {
 
+Foxtrick.util.module.register({
 	MODULE_NAME : "LinksYouthTraining",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('YouthTraining'),
@@ -152,11 +147,10 @@ var FoxtrickLinksYouthTraining = {
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	},
 
-};
-Foxtrick.util.module.register(FoxtrickLinksYouthTraining);
+});
 
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickLinksYouthPlayerList = {
+
+Foxtrick.util.module.register({
 	MODULE_NAME : "LinksYouthPlayerList",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('YouthPlayers'),
@@ -196,11 +190,10 @@ var FoxtrickLinksYouthPlayerList = {
 		}
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
-};
-Foxtrick.util.module.register(FoxtrickLinksYouthPlayerList);
+});
 
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickLinksYouthMatchList = {
+
+Foxtrick.util.module.register({
 	MODULE_NAME : "LinksYouthMatchList",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('YouthMatchlist'),
@@ -240,11 +233,10 @@ var FoxtrickLinksYouthMatchList = {
 		}
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
-};
-Foxtrick.util.module.register(FoxtrickLinksYouthMatchList);
+});
 
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickLinksYouthLeague = {
+
+Foxtrick.util.module.register({
 	MODULE_NAME : "LinksYouthLeague",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('youthSeries'),
@@ -283,5 +275,4 @@ var FoxtrickLinksYouthLeague = {
 		}
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
-};
-Foxtrick.util.module.register(FoxtrickLinksYouthLeague);
+});
