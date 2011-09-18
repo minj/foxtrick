@@ -5,8 +5,7 @@
  */
 ////////////////////////////////////////////////////////////////////////////////
 
-var FoxtrickSeasonStats = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "SeasonStats",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ['matchesarchiv','matches'],
@@ -34,8 +33,27 @@ var FoxtrickSeasonStats = {
 		if (Foxtrick.util.layout.isStandard(doc)) selectbox.setAttribute("style","float:right; margin-top:20px;");
 		else  selectbox.setAttribute("style","float:right;margin-top:4px;");
 
+		selectbox.addEventListener('change', function() {
+				try {
+					var actiontype='';
+					var select = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlMatchType');
+					var options = select.getElementsByTagName('option');
+					for (var i=0;i<options.length;++i) {
+						if (options[i].hasAttribute('selected')) {
+							actiontype = options[i].value;
+							break;
+						}
+					}
+					if (doc.location.href.search(/actiontype/i)==-1)// has no actiontype. add one
+						doc.location.href = doc.location.href.replace(/season=\d+/,'season='+ev["target"]["value"])+'&actiontype=' + actiontype;
+					else
+						doc.location.href = doc.location.href.replace(/season=\d+/,'season='+ev["target"]["value"]).replace(/actiontype=.+/,'actiontype='+actiontype);
 
-		selectbox.addEventListener('change',FoxtrickSeasonStats.SelectBox_Select,false);
+				}
+				catch (e) {
+					Foxtrick.log(e);
+				}
+			}, false);
 
 		var s = season;
 		for (var ls = local_season; ls>0; --ls) {
@@ -222,30 +240,5 @@ var FoxtrickSeasonStats = {
 		}
 
 			Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, 1);
-	},
-
-
-	SelectBox_Select : function(ev) {
-		try {
-			var doc = ev.target.ownerDocument;
-			var actiontype='';
-			var select = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlMatchType');
-			var options = select.getElementsByTagName('option');
-			for (var i=0;i<options.length;++i) {
-				if (options[i].hasAttribute('selected')) {
-					actiontype = options[i].value;
-					break;
-				}
-			}
-			if (doc.location.href.search(/actiontype/i)==-1)// has no actiontype. add one
-				doc.location.href = doc.location.href.replace(/season=\d+/,'season='+ev["target"]["value"])+'&actiontype=' + actiontype;
-			else
-				doc.location.href = doc.location.href.replace(/season=\d+/,'season='+ev["target"]["value"]).replace(/actiontype=.+/,'actiontype='+actiontype);
-
-		}
-		catch (e) {
-			Foxtrick.log(e);
-		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickSeasonStats);
+});
