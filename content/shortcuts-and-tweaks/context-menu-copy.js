@@ -23,29 +23,22 @@ var FoxtrickContextMenuCopy = {
 
 	onLoad : function(document) {
 		var entries = this.contextEntries;
-		// create onClick functions for all types and bind type to them
-		var bindCopyFunctions = function() {
-			var entries = entries;
+		// returns copy function on click
+		var copy = function(entry) {
+			return function() {
+				Foxtrick.copyStringToClipboard(entry.copyText);
+			};
+		};
+		var firefoxInit = function() {
 			var type;
 			for (type in entries) {
 				var entry = entries[type];
-				entry.onClick = function() {
-					Foxtrick.copyStringToClipboard(this.copyText);
-				}.bind(entry);
-			}
-		};
-		var firefoxInit = function() {
-			bindCopyFunctions();
-			var type;
-			for (type in entries) {
-				entries[type].menuEntryId = document.getElementById(type);
-				entries[type].menuEntryId.addEventListener("command",
-					entries[type].onClick, false);
+				entry.menuEntryId = document.getElementById(type);
+				entry.menuEntryId.addEventListener("command", copy(entry), false);
 			}
 		};
 		// called from background script
 		var chromeInit = function() {
-			bindCopyFunctions();
 			// update menu in background on mousedown
 			chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 				var documentUrlPatterns = [
@@ -71,7 +64,7 @@ var FoxtrickContextMenuCopy = {
 						entries[type].menuEntryId = chrome.contextMenus.create({
 							title : request.entries[type].title,
 							contexts : ["all"],
-							onclick : entries[type].onClick,
+							onclick : copy(entries[type]),
 							documentUrlPatterns : documentUrlPatterns
 						});
 					}
@@ -80,7 +73,6 @@ var FoxtrickContextMenuCopy = {
 		};
 		// called from background script
 		var safariInit = function() {
-			bindCopyFunctions();
 			safari.application.addEventListener("contextmenu", function(event) {
 				var paste_note =  '. ' + Foxtrickl10n.getString("SpecialPaste.desc");
 				var type;
@@ -90,7 +82,7 @@ var FoxtrickContextMenuCopy = {
 				}
 
 				safari.application.addEventListener("command", function(commandEvent) {
-					entries.contextEntries[commandEvent.command].onClick();
+					copy(entries.contextEntries[commandEvent.command])();
 				}, false);
 			}, true);
 		};
