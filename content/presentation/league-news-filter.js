@@ -4,13 +4,49 @@
  * @author convinced
  */
 
-var FoxtrickLeagueNewsFilter = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "LeagueNewsFilter",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["series"],
 	RADIO_OPTIONS : new Array('all','friendlies','transfers','lineup_changes'),
 
 	run : function(doc) {
+		var showHide = function() {
+			var newsfeed = doc.getElementById('ctl00_ctl00_CPContent_CPMain_repLLUFeed');
+			var selected=doc.getElementById('ft_ownselectboxID').value;
+
+			var feed_count=0;
+			var last_feed=null;
+			var item=null;
+			var items = newsfeed.getElementsByTagName('div');
+			for (var i=0;i<items.length;++i) {
+				item=items[i];
+				if (!Foxtrick.hasClass(item, "feedItem"))
+					continue;
+
+				// show last date if there was an entry shown for that date
+				if (Foxtrick.hasClass(item.previousSibling.previousSibling, "feed")) {
+					if (last_feed) {
+						if (feed_count==0) last_feed.style.display='none';
+						else last_feed.style.display='block';
+					}
+					last_feed=item.previousSibling.previousSibling;
+					feed_count=0;
+				}
+				// show selected
+				if (selected==0 || item.getAttribute('ft_news')==selected) {
+					item.style.display='block';
+					++feed_count;
+				}
+				else item.style.display='none';
+			}
+			// show very last date if there was an entry shown for that date
+			if (last_feed) {
+				if (feed_count==0) last_feed.style.display='none';
+				else last_feed.style.display='block';
+			}
+		};
+
 		var newsfeed = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLLUFeed");
 		var selectdiv=doc.createElement('div');
 		selectdiv.setAttribute('style','display:block');
@@ -18,7 +54,7 @@ var FoxtrickLeagueNewsFilter = {
 		selectdiv.appendChild(doc.createTextNode(' '));
 		var select=doc.createElement('select');
 		select.setAttribute("id","ft_ownselectboxID");
-		Foxtrick.listen(select, 'change',this.SelectClick,false);
+		Foxtrick.listen(select, 'change', showHide, false);
 
 		var option=doc.createElement('option');
 		option.setAttribute('value','0');
@@ -36,7 +72,7 @@ var FoxtrickLeagueNewsFilter = {
 		option.setAttribute('value','3');
 		option.innerHTML=Foxtrickl10n.getString("foxtrick.LeagueNewsFilter.lineup_changes");
 		select.appendChild(option);
-		select.value=FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value");
+		select.value=FoxtrickPrefs.getInt("module.LeagueNewsFilter.value");
 		selectdiv.appendChild(select);
 
 		newsfeed.parentNode.insertBefore(selectdiv,newsfeed.parentNode.firstChild);
@@ -64,50 +100,7 @@ var FoxtrickLeagueNewsFilter = {
 			}
 		}
 
-		if (select.value!=0) this.ShowHide(doc);
-	},
-
-	ShowHide:function(doc) {
-		var newsfeed = doc.getElementById('ctl00_ctl00_CPContent_CPMain_repLLUFeed');
-		var selected=doc.getElementById('ft_ownselectboxID').value;
-
-		var feed_count=0;
-		var last_feed=null;
-		var item=null;
-		var items = newsfeed.getElementsByTagName('div');
-		for (var i=0;i<items.length;++i) {
-			item=items[i];
-			if (!Foxtrick.hasClass(item, "feedItem"))
-				continue;
-
-			// show last date if there was an entry shown for that date
-			if (Foxtrick.hasClass(item.previousSibling.previousSibling, "feed")) {
-				if (last_feed) {
-					if (feed_count==0) last_feed.style.display='none';
-					else last_feed.style.display='block';
-				}
-				last_feed=item.previousSibling.previousSibling;
-				feed_count=0;
-			}
-			// show selected
-			if (selected==0 || item.getAttribute('ft_news')==selected) {
-				item.style.display='block';
-				++feed_count;
-			}
-			else item.style.display='none';
-		}
-		// show very last date if there was an entry shown for that date
-		if (last_feed) {
-			if (feed_count==0) last_feed.style.display='none';
-			else last_feed.style.display='block';
-		}
-	},
-
-	SelectClick : function(ev) {
-		try {
-			var doc = ev.target.ownerDocument;
-			FoxtrickLeagueNewsFilter.ShowHide(doc);
-		} catch (e) {Foxtrick.dump("FoxtrickLeagueNewsFilter_Select: "+e+'\n');}
+		if (select.value!=0)
+			showHide(doc);
 	}
-};
-Foxtrick.util.module.register(FoxtrickLeagueNewsFilter);
+});
