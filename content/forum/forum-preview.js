@@ -4,7 +4,7 @@
  * @author spambot
  */
 
-var FoxtrickForumPreview = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "ForumPreview",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ['forumWritePost', 'messageWritePost', 'guestbook', 'announcements', 'newsletter', 'mailnewsletter', 'forumSettings', "forumModWritePost"],
@@ -14,6 +14,151 @@ var FoxtrickForumPreview = {
 	_MAIL_MESSAGE_WINDOW : 'ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtBody',
 
 	run : function(doc) {
+		var preview = function() {
+			var singleReplace = [
+				[/\[kitid=(\d+)\]/gi, "<a href=\"/Community/KitSearch/?KitID=$1\" target=\"_blank\">($1)</a>"],
+				[/\[userid=(\d+)\]/gi, "<a href=\"/Club/Manager/?userId=$1\" target=\"_blank\">($1)</a>"],
+				[/\[playerid=(\d+)\]/gi, "<a href=\"/Club/Players/Player.aspx?playerId=$1\" target=\"_blank\">($1)</a>"],
+				[/\[youthplayerid=(\d+)\]/gi, "<a href=\"/Club/Players/YouthPlayer.aspx?YouthPlayerID=$1\" target=\"_blank\">($1)</a>"],
+				[/\[teamid=(\d+)\]/gi, "<a href=\"/Club/?TeamID=$1\" target=\"_blank\">($1)</a>"],
+				[/\[youthteamid=(\d+)\]/gi, "<a href=\"/Club/Youth/?YouthTeamID=$1\" target=\"_blank\">($1)</a>"],
+				[/\[matchid=(\d+)\]/gi, "<a href=\"/Club/Matches/Match.aspx?matchID=$1\" target=\"_blank\">($1)</a>"],
+				[/\[youthmatchid=(\d+)\]/gi, "<a href=\"/Club/Matches/Match.aspx?matchID=$1&isYouth=True\" target=\"_blank\">($1)</a>"],
+				[/\[federationid=(\d+)\]/gi, "<a href=\"/Community/Federations/Federation.aspx?AllianceID=$1\" target=\"\_blank\">($1)</a>"],
+				[/\[message\=(\d+)\.(\d+)\]/gi, "<a href=\"/Forum/Read.aspx?t=$1&n=$2\" target=\"_blank\">($1.$2)</a>"],
+				[/\[post\=(\d+)\.(\d+)\]/gi, "<a href=\"/Forum/Read.aspx?t=$1&n=$2\" target=\"\_blank\">($1.$2)</a>"],
+				[/\[leagueid=(\d+)\]/gi, "<a href=\"/World/Series/Default.aspx?LeagueLevelUnitID=$1\" target=\"_blank\">($1)</a>"],
+				[/\[youthleagueid=(\d+)\]/gi, "<a href=\"/World/Series/YouthSeries.aspx?YouthLeagueId=$1\" target=\"_blank\">($1)</a>"],
+				[/\[link=(.*?)\]/gi, "<a href=\"$1\" target=\"_blank\">($1)</a>"],
+				[/\[articleid=(.*?)\]/gi, "<a href=\"/Community/Press?ArticleID=$1\" target=\"_blank\">($1)</a>"],
+				[/\[br\]/gi, "<br>"],
+				[/\[hr\]/gi, "<hr>"]
+			];
+
+			var nestedReplace = [
+				[/\[b\](.*?)\[\/b\]/gi, "<b>$1</b>"],
+				[/\[u\](.*?)\[\/u\]/gi, "<u>$1</u>"],
+				[/\[i\](.*?)\[\/i\]/gi, "<i>$1</i>"],
+				[/\[q\](.*?)\[\/q\]/gi, "<blockquote class='quote'>$1</blockquote>"],
+				[/\[quote\=(.*?)\](.*?)\[\/quote\]/gi, "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>"],
+				[/\[q\=(.*?)\](.*?)\[\/q\]/gi, "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>"],
+				[/\[q\=(.*?)\](.*?)\[\/q\]/gi, "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>"],
+				[/\[spoiler\](.*?)\[\/spoiler\]/gi, "<blockquote class='spoiler hidden' style='display:block!important'>$1</blockquote>"],
+				[/\[pre\](.*?)\[\/pre\]/gi, "<pre>$1</pre>"],
+				[/\[table\](.*?)\[\/table\]/gi, "<table class='htMlTable'><tbody>$1</tbody></table>"],
+				[/\[tr(.*?)\](.*?)\[\/tr\]/gi, "<tr $1>$2</tr>"],
+				[/\[th([^\]]*?)align=(\w*)([^\]]*)\](.*?)\[\/th\]/gi, "<th $1 class=$2 $3>$4</th>"],
+				[/\[td([^\]]*?)align=(\w*)([^\]]*)\](.*?)\[\/td\]/gi, "<td $1 class=$2 $3>$4</td>"],
+				[/\[th(.*?)\](.*?)\[\/th\]/gi, "<th $1>$2</th>"],
+				[/\[td(.*?)\](.*?)\[\/td\]/gi, "<td $1>$2</td>"],
+				[/\<br \/\>\s*\<\/td\>/gi, "<br/></td>"],
+				[/\<br \/\>\s*\<\/th\>/gi, "<br/></th>"],
+				[/\<\/td\>\s*\<br \/\>/gi, "</td>"],
+				[/\<\/th\>\s*\<br \/\>/gi, "</th>"],
+				[/\<\/tr\>\s*\<br \/\>/gi, "</tr>"],
+				[/\<tr(.*?)\>\s*\<br \/\>/gi, "<tr$1>"],
+				[/\<tbody\>\s*\<br \/\>/gi, "<tbody>"],
+				[/\<\/td\>\s*\<br \/\>/gi, "</td>"],
+				[/\<\/th\>\s*\<br \/\>/gi, "</th>"],
+				[/\<\/tr\>\s*\<br \/\>/gi, "</tr>"],
+				[/\<tr(.*?)\>\s*\<br \/\>/gi, "<tr$1>"],
+				[/\<tbody\>\s*\<br \/\>/gi, "<tbody>"]
+			];
+
+			try {
+				var msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
+			}
+			catch(e) {
+				Foxtrick.dump('FoxtrickForumPreview'+e);
+			}
+
+			try {
+				var prev_div = doc.getElementById( "ft-forum-preview-area" );
+				var text =  String(msg_window.value);
+
+				var formatter = Foxtrick.util.module.get("FormatPostingText");
+
+				// format within pre
+				text = formatter.format(text);
+
+				// replace &
+				text = text.replace(/\&/g, "&amp;");
+				// < with space after is allowed
+				text = text.replace(/< /g, "&lt; ");
+
+				// strip links. replace <· with &lt;
+				text = text.replace(/<Â·/g,'&lt;'); // who know why that Â is needed there
+				text = text.replace(/<·/g,'&lt;'); // i don't, so just lets do both
+				text = Foxtrick.stripHTML( text);
+
+				text = text.replace(/\n/g, " <br />");
+				text = text.replace(/\r/g, "");
+
+				var nested = ['[q','[b','[i','[u','[spoil','[table','[pre'];
+				var count =  0
+				for (var i=0; i< nested.length;++i) {
+					var count_nested = Foxtrick.substr_count(text, nested[i]);
+					count = Math.max(count, count_nested);
+				}
+
+				for ( var i = 0; i < singleReplace.length; i++) {
+					text = text.replace(singleReplace[i][0], singleReplace[i][1]);
+				}
+
+				for (var j = 0; j <= count+1; j++) {
+					for ( var i = 0; i < nestedReplace.length; i++) {
+						text = text.replace(nestedReplace[i][0], nestedReplace[i][1]);
+					}
+				}
+
+				// reformat with pre
+				text = formatter.reformat(text);
+
+				prev_div.innerHTML = text;
+			}
+			catch(e) {
+				Foxtrick.log(e);
+			}
+		};
+
+		var toggleListener = function() {
+			var obj = doc.getElementById('ft-forum-preview-area');
+			if (obj.style.display == 'block') {
+				obj.style.display = 'none';
+			}
+			else if (obj.style.display == 'none') {
+				obj.style.display = 'block';
+			}
+
+			try {
+				var msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
+			}
+			catch(e) {
+				Foxtrick.dump('FoxtrickForumPreview'+e);
+			}
+
+			var prev_div = doc.getElementById( "ft-forum-preview-area" );
+
+			try {
+				if( prev_div.style.display == "none" ) {
+					msg_window.removeEventListener("keyup", preview, false);
+					var toolbar = doc.getElementsByClassName("HTMLToolbar");
+					for (var i=0;i< toolbar.length;++i)
+						toolbar[i].removeEventListener("click", preview, false);
+
+				} else {
+					msg_window.addEventListener("keyup", preview, false);
+					var toolbar = doc.getElementsByClassName("HTMLToolbar");
+					for (var i=0;i< toolbar.length;++i)
+						toolbar[i].addEventListener("click", preview, false);
+
+					preview();
+				}
+			} catch(e) {
+				Foxtrick.dump (' FoxtrickForumPreview._toggleListener ' + e) ;
+			}
+		};
+
 		var check_div = doc.getElementById( "ft-forum-preview-area" );
 		if (check_div != null) return;
 
@@ -125,7 +270,7 @@ var FoxtrickForumPreview = {
 			new_button.setAttribute( "tabindex",  index);
 			//if (msg_type != -1)
 			//new_button.setAttribute( "style",  "float:right;");
-			new_button.addEventListener( "click", FoxtrickForumPreview._toggleListener, false );
+			new_button.addEventListener("click", toggleListener, false);
 			//button_ok.parentNode.insertBefore(new_button,button_ok);
 			target.parentNode.insertBefore(new_button,target.nextSibling);
 		}
@@ -165,156 +310,5 @@ var FoxtrickForumPreview = {
 		var check_div = doc.getElementById( "ft-forum-preview-area" );
 		if (check_div == null)
 			this.run(doc);
-	},
-
-	_toggleListener : function( ev ) {
-
-		var doc = ev.target.ownerDocument;
-
-		var obj = doc.getElementById('ft-forum-preview-area');
-		if (obj.style.display == 'block') {
-			obj.style.display = 'none';
-		}
-		else if (obj.style.display == 'none') {
-			obj.style.display = 'block';
-		}
-
-		try {
-			var msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
-		}
-		catch(e) {
-			Foxtrick.dump('FoxtrickForumPreview'+e);
-		}
-
-		var prev_div = doc.getElementById( "ft-forum-preview-area" );
-
-		try {
-			if( prev_div.style.display == "none" ) {
-				msg_window.removeEventListener( "keyup", FoxtrickForumPreview._preview, false );
-				var toolbar = doc.getElementsByClassName("HTMLToolbar");
-				for (var i=0;i< toolbar.length;++i) toolbar[i].removeEventListener( "click", FoxtrickForumPreview._preview, false );
-
-			} else {
-				msg_window.addEventListener( "keyup", FoxtrickForumPreview._preview, false );
-				var toolbar = doc.getElementsByClassName("HTMLToolbar");
-				for (var i=0;i< toolbar.length;++i) toolbar[i].addEventListener( "click", FoxtrickForumPreview._preview, false );
-
-				FoxtrickForumPreview._preview( ev );
-			}
-		} catch(e) {
-			Foxtrick.dump (' FoxtrickForumPreview._toggleListener ' + e) ;
-		}
-	},
-
-	_preview : function ( ev ) {
-		var singleReplace = [
-			[/\[kitid=(\d+)\]/gi, "<a href=\"/Community/KitSearch/?KitID=$1\" target=\"_blank\">($1)</a>"],
-			[/\[userid=(\d+)\]/gi, "<a href=\"/Club/Manager/?userId=$1\" target=\"_blank\">($1)</a>"],
-			[/\[playerid=(\d+)\]/gi, "<a href=\"/Club/Players/Player.aspx?playerId=$1\" target=\"_blank\">($1)</a>"],
-			[/\[youthplayerid=(\d+)\]/gi, "<a href=\"/Club/Players/YouthPlayer.aspx?YouthPlayerID=$1\" target=\"_blank\">($1)</a>"],
-			[/\[teamid=(\d+)\]/gi, "<a href=\"/Club/?TeamID=$1\" target=\"_blank\">($1)</a>"],
-			[/\[youthteamid=(\d+)\]/gi, "<a href=\"/Club/Youth/?YouthTeamID=$1\" target=\"_blank\">($1)</a>"],
-			[/\[matchid=(\d+)\]/gi, "<a href=\"/Club/Matches/Match.aspx?matchID=$1\" target=\"_blank\">($1)</a>"],
-			[/\[youthmatchid=(\d+)\]/gi, "<a href=\"/Club/Matches/Match.aspx?matchID=$1&isYouth=True\" target=\"_blank\">($1)</a>"],
-			[/\[federationid=(\d+)\]/gi, "<a href=\"/Community/Federations/Federation.aspx?AllianceID=$1\" target=\"\_blank\">($1)</a>"],
-			[/\[message\=(\d+)\.(\d+)\]/gi, "<a href=\"/Forum/Read.aspx?t=$1&n=$2\" target=\"_blank\">($1.$2)</a>"],
-			[/\[post\=(\d+)\.(\d+)\]/gi, "<a href=\"/Forum/Read.aspx?t=$1&n=$2\" target=\"\_blank\">($1.$2)</a>"],
-			[/\[leagueid=(\d+)\]/gi, "<a href=\"/World/Series/Default.aspx?LeagueLevelUnitID=$1\" target=\"_blank\">($1)</a>"],
-			[/\[youthleagueid=(\d+)\]/gi, "<a href=\"/World/Series/YouthSeries.aspx?YouthLeagueId=$1\" target=\"_blank\">($1)</a>"],
-			[/\[link=(.*?)\]/gi, "<a href=\"$1\" target=\"_blank\">($1)</a>"],
-			[/\[articleid=(.*?)\]/gi, "<a href=\"/Community/Press?ArticleID=$1\" target=\"_blank\">($1)</a>"],
-			[/\[br\]/gi, "<br>"],
-			[/\[hr\]/gi, "<hr>"]
-		];
-
-		var nestedReplace = [
-			[/\[b\](.*?)\[\/b\]/gi, "<b>$1</b>"],
-			[/\[u\](.*?)\[\/u\]/gi, "<u>$1</u>"],
-			[/\[i\](.*?)\[\/i\]/gi, "<i>$1</i>"],
-			[/\[q\](.*?)\[\/q\]/gi, "<blockquote class='quote'>$1</blockquote>"],
-			[/\[quote\=(.*?)\](.*?)\[\/quote\]/gi, "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>"],
-			[/\[q\=(.*?)\](.*?)\[\/q\]/gi, "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>"],
-			[/\[q\=(.*?)\](.*?)\[\/q\]/gi, "<blockquote class='quote'><div class='quoteto'>$1&nbsp;wrote:</div>$2</blockquote>"],
-			[/\[spoiler\](.*?)\[\/spoiler\]/gi, "<blockquote class='spoiler hidden' style='display:block!important'>$1</blockquote>"],
-			[/\[pre\](.*?)\[\/pre\]/gi, "<pre>$1</pre>"],
-			[/\[table\](.*?)\[\/table\]/gi, "<table class='htMlTable'><tbody>$1</tbody></table>"],
-			[/\[tr(.*?)\](.*?)\[\/tr\]/gi, "<tr $1>$2</tr>"],
-			[/\[th([^\]]*?)align=(\w*)([^\]]*)\](.*?)\[\/th\]/gi, "<th $1 class=$2 $3>$4</th>"],
-			[/\[td([^\]]*?)align=(\w*)([^\]]*)\](.*?)\[\/td\]/gi, "<td $1 class=$2 $3>$4</td>"],
-			[/\[th(.*?)\](.*?)\[\/th\]/gi, "<th $1>$2</th>"],
-			[/\[td(.*?)\](.*?)\[\/td\]/gi, "<td $1>$2</td>"],
-			[/\<br \/\>\s*\<\/td\>/gi, "<br/></td>"],
-			[/\<br \/\>\s*\<\/th\>/gi, "<br/></th>"],
-			[/\<\/td\>\s*\<br \/\>/gi, "</td>"],
-			[/\<\/th\>\s*\<br \/\>/gi, "</th>"],
-			[/\<\/tr\>\s*\<br \/\>/gi, "</tr>"],
-			[/\<tr(.*?)\>\s*\<br \/\>/gi, "<tr$1>"],
-			[/\<tbody\>\s*\<br \/\>/gi, "<tbody>"],
-			[/\<\/td\>\s*\<br \/\>/gi, "</td>"],
-			[/\<\/th\>\s*\<br \/\>/gi, "</th>"],
-			[/\<\/tr\>\s*\<br \/\>/gi, "</tr>"],
-			[/\<tr(.*?)\>\s*\<br \/\>/gi, "<tr$1>"],
-			[/\<tbody\>\s*\<br \/\>/gi, "<tbody>"]
-		];
-
-		var doc = ev.target.ownerDocument;
-
-		try {
-			var msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
-		}
-		catch(e) {
-			Foxtrick.dump('FoxtrickForumPreview'+e);
-		}
-
-		try {
-			var prev_div = doc.getElementById( "ft-forum-preview-area" );
-			var text =  String(msg_window.value);
-
-			var formatter = Foxtrick.util.module.get("FormatPostingText");
-
-			// format within pre
-			text = formatter.format(text);
-
-			// replace &
-			text = text.replace(/\&/g, "&amp;");
-			// < with space after is allowed
-			text = text.replace(/< /g, "&lt; ");
-
-			// strip links. replace <· with &lt;
-			text = text.replace(/<Â·/g,'&lt;'); // who know why that Â is needed there
-			text = text.replace(/<·/g,'&lt;'); // i don't, so just lets do both
-			text = Foxtrick.stripHTML( text);
-
-			text = text.replace(/\n/g, " <br />");
-			text = text.replace(/\r/g, "");
-
-			var nested = ['[q','[b','[i','[u','[spoil','[table','[pre'];
-			var count =  0
-			for (var i=0; i< nested.length;++i) {
-				var count_nested = Foxtrick.substr_count(text, nested[i]);
-				count = Math.max(count, count_nested);
-			}
-
-			for ( var i = 0; i < singleReplace.length; i++) {
-				text = text.replace(singleReplace[i][0], singleReplace[i][1]);
-			}
-
-			for (var j = 0; j <= count+1; j++) {
-				for ( var i = 0; i < nestedReplace.length; i++) {
-					text = text.replace(nestedReplace[i][0], nestedReplace[i][1]);
-				}
-			}
-
-			// reformat with pre
-			text = formatter.reformat(text);
-
-			prev_div.innerHTML = text;
-		}
-		catch(e) {
-			Foxtrick.log(e);
-		}
-
 	}
-
-};
-Foxtrick.util.module.register(FoxtrickForumPreview);
+});
