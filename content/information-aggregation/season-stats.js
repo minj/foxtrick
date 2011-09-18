@@ -16,12 +16,13 @@ Foxtrick.util.module.register({
 	run : function(doc) {
 		// ----------------------------- season select box ---------------------------------
 
-		var htDate = Foxtrick.util.time.getHtDate(doc)
+		// get current season
+		var htDate = Foxtrick.util.time.getHtDate(doc);
 		var season = Foxtrick.util.time.gregorianToHT(htDate).season;
-		if (season==null) return;
-
-		// get range of local seasons
+		// get selected season
 		var selected_season = doc.location.href.match(/season=(\d+)/i)[1];
+		if (season == null || selected_season == null)
+			return;
 		var season_diff = season - selected_season;
 
 		var selected_local_season = doc.getElementById('mainBody').getElementsByTagName('h2')[0].innerHTML.match(/\d+/i);
