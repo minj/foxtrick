@@ -4,7 +4,7 @@
  * @author spambot, ryanli
  */
 
-var FoxtrickExtendedPlayerDetails = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "ExtendedPlayerDetails",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : new Array('playerdetail'),
@@ -47,11 +47,9 @@ var FoxtrickExtendedPlayerDetails = {
 		}
 		else Foxtrick.dump('  Could not create jointime (NaN)\n');
 	}
-};
-Foxtrick.util.module.register(FoxtrickExtendedPlayerDetails);
+});
 
-var FoxtrickExtendedPlayerDetailsWage = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "ExtendedPlayerDetailsWage",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : new Array('playerdetail'),
@@ -104,5 +102,4 @@ var FoxtrickExtendedPlayerDetailsWage = {
 				+ currency
 				+ Foxtrickl10n.getString("foxtrick.ExtendedPlayerDetails.perseason");
 	}
-};
-Foxtrick.util.module.register(FoxtrickExtendedPlayerDetailsWage);
+});
