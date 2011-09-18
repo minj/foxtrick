@@ -4,10 +4,7 @@
 * @author taised, ryanli
 */
 
-////////////////////////////////////////////////// //////////////////////////////
-//---------------------------------------------------------------------------
-
-var FoxtrickSeriesFlags = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "SeriesFlags",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["guestbook", "teamPage", "series", "youthSeries", "federation"],
@@ -153,5 +150,4 @@ var FoxtrickSeriesFlags = {
 			);
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickSeriesFlags);
+});

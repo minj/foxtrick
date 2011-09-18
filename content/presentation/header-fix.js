@@ -4,8 +4,7 @@
  * @author htbaumanns, CSS by Catalyst2950
  */
 
-var FoxtrickHeaderFix = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "HeaderFix",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
@@ -81,9 +80,9 @@ var FoxtrickHeaderFix = {
 		ctl00_ctl00_CPContent_CPMain_pnlArenaFlash.setAttribute('style','margin-top:25px;');
 		if (isArena) 	ctl00_ctl00_CPContent_CPMain_pnlArenaFlash.setAttribute('style','margin-top:25px; margin-left:-8px !important; margin-right:-3px !important;');
 	}
-};
+});
 
-var FoxtrickHeaderFixLeft = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "HeaderFixLeft",
 	CSS: Foxtrick.InternalPath+"resources/css/header-fix-left.css",
 
@@ -91,6 +90,4 @@ var FoxtrickHeaderFixLeft = {
 		if (!FoxtrickPrefs.isModuleEnabled("HeaderFix"))
 			FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", false );
 	}
-};
-Foxtrick.util.module.register(FoxtrickHeaderFix);
-Foxtrick.util.module.register(FoxtrickHeaderFixLeft);
+});

@@ -3,9 +3,8 @@
  * Reduces the dimension of some pages to adapt to small screens
  * @author taised, ryanli
  */
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickSmallerPages = {
 
+Foxtrick.util.module.register({
 	MODULE_NAME : "SmallerPages",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
@@ -124,5 +123,4 @@ var FoxtrickSmallerPages = {
 			}
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickSmallerPages);
+});

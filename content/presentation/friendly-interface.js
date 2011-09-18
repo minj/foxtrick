@@ -4,7 +4,7 @@
  * @author ryanli, convincedd
  */
 
-var FoxtrickFriendlyInterface = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "FriendlyInterface",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["matchLineup", "playerdetail", "guestbook", "dashboard"],
@@ -109,5 +109,4 @@ var FoxtrickFriendlyInterface = {
 			Foxtrick.addClass(container, "hidden");
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickFriendlyInterface);
+});

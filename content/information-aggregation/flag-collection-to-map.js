@@ -3,8 +3,7 @@
  * @author seben, fixes convincedd
  */
 
-var FoxtrickFlagCollectionToMap = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "FlagCollectionToMap",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : new Array('flagCollection'),
@@ -397,5 +396,4 @@ var FoxtrickFlagCollectionToMap = {
 		url=url.replace(',&','&');
 		return url;
 	},
-};
-Foxtrick.util.module.register(FoxtrickFlagCollectionToMap);
+});

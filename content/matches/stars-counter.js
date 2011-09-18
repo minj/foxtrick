@@ -4,10 +4,7 @@
  * @author larsw84, ryanli
  */
 
-////////////////////////////////////////////////////////////////////////////////
-
-var FoxtrickStarsCounter = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "StarsCounter",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array("matchLineup"),
@@ -128,5 +125,4 @@ var FoxtrickStarsCounter = {
 		star.src = "/Img/Matches/star_" + colour + ".png";
 		return star;
 	}
-};
-Foxtrick.util.module.register(FoxtrickStarsCounter);
+});

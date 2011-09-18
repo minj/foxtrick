@@ -3,9 +3,8 @@
  * Foxtrick redirections
  * @author convinced
  */
-////////////////////////////////////////////////////////////////////////////////
 
-var FoxtrickRedirections = {
+Foxtrick.util.module.register{
 	MODULE_NAME : "Redirections",
 	CORE_MODULE : true,
 	PAGES : ["all"],
@@ -152,5 +151,4 @@ var FoxtrickRedirections = {
 		if (tar)
 			doc.location.replace(tar);
 	}
-};
-Foxtrick.util.module.register(FoxtrickRedirections);
+});

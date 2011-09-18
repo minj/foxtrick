@@ -4,8 +4,7 @@
  * @author convinced
  */
 
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickLinksTraining = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "LinksTraining",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('training'),
@@ -56,5 +55,4 @@ var FoxtrickLinksTraining = {
 			}
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickLinksTraining);
+});

@@ -3,9 +3,8 @@
  * Foxtrick add links to team pages
  * @author convinced
  */
-////////////////////////////////////////////////////////////////////////////////
 
-var FoxtrickLinksTeam = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "LinksTeam",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('teamPage'),
@@ -91,5 +90,4 @@ var FoxtrickLinksTeam = {
 				"levelnum" : levelnum ,"leagueid": leagueid,"userid":userid,
 				"fans":fans,'leaguepos':leaguepos};
 	}
-};
-Foxtrick.util.module.register(FoxtrickLinksTeam);
+});

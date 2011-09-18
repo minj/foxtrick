@@ -3,9 +3,8 @@
  * Read Hattrick preferences and change FoxTrick's accordingly.
  * @author convinced, ryanli
  */
-////////////////////////////////////////////////////////////////////////////////
 
-var FoxtrickReadHtPrefs = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "ReadHtPrefs",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,
 	PAGES : ["all"],
@@ -119,5 +118,4 @@ var FoxtrickReadHtPrefs = {
 			}
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickReadHtPrefs);
+});

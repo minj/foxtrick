@@ -4,8 +4,7 @@
  * @author convinced
  */
 
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickLinksPlayerDetail = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "LinksPlayerDetail",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('playerdetail'),
@@ -160,5 +159,4 @@ var FoxtrickLinksPlayerDetail = {
 
 		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, params);
 	}
-};
-Foxtrick.util.module.register(FoxtrickLinksPlayerDetail);
+});

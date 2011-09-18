@@ -4,7 +4,7 @@
  * @author ryanli
  */
 
-var FoxtrickRapidId = {
+Foxtrick.util.module.register({
 	MODULE_NAME: "RapidId",
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ["all"],
@@ -160,5 +160,4 @@ var FoxtrickRapidId = {
 				displayForm(doc);
 			}, true);
 	}
-};
-Foxtrick.util.module.register(FoxtrickRapidId);
+});

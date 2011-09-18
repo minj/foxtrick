@@ -4,7 +4,7 @@
  * @author taised, convincedd, ryanli
  */
 
-var FoxtrickTickerAlert = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "TickerAlert",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
 	PAGES : ["all"],
@@ -31,7 +31,7 @@ var FoxtrickTickerAlert = {
 		fileh.className='col_filepicker';
 		header.appendChild(fileh);
 
-		for (var type in FoxtrickTickerAlert.TYPES) {
+		for (var type in this.TYPES) {
 			var row = doc.createElement("tr");
 			table.appendChild(row);
 			var rhead = doc.createElement("th");
@@ -77,8 +77,8 @@ var FoxtrickTickerAlert = {
 		else var DOMMutationEventType = 'DOMSubtreeModified';
 
 		var getType = function(url) {
-			for (var type in FoxtrickTickerAlert.TYPES) {
-				var regexp = FoxtrickTickerAlert.TYPES[type];
+			for (var type in this.TYPES) {
+				var regexp = this.TYPES[type];
 				if (url.match(regexp))
 					return type;
 			}
@@ -149,5 +149,4 @@ var FoxtrickTickerAlert = {
 		if (Foxtrick.util.layout.isSupporter(doc))
 			tickerCheck(doc);
 	}
-};
-Foxtrick.util.module.register(FoxtrickTickerAlert);
+});

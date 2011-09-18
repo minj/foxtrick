@@ -4,7 +4,7 @@
  * @author smates/convinced
  */
 
-var FoxtrickPersonalityImages = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "PersonalityImages",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array("playerdetail", "training"),
@@ -34,5 +34,4 @@ var FoxtrickPersonalityImages = {
 			}
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickPersonalityImages);
+});

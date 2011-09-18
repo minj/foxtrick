@@ -4,7 +4,7 @@
  * @author convinced, ryanli
  */
 
-var FoxtrickContextMenuCopy = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "ContextMenuCopy",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["all"],
@@ -172,5 +172,4 @@ var FoxtrickContextMenuCopy = {
 			}
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickContextMenuCopy);
+});

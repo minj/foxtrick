@@ -4,7 +4,7 @@
  * @author convinced, ryanli
  */
 ////////////////////////////////////////////////////////////////////////////////
-var FoxtrickMoveManagerOnline= {
+Foxtrick.util.module.register({
 	MODULE_NAME : "MoveManagerOnline",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["region"],
@@ -17,5 +17,4 @@ var FoxtrickMoveManagerOnline= {
 		var target = mainBody.getElementsByClassName("separator")[0].nextSibling;
 		target.parentNode.insertBefore(managerBox, target);
 	}
-}
-Foxtrick.util.module.register(FoxtrickMoveManagerOnline);
+});

@@ -4,7 +4,7 @@
 * @author larsw84, convincedd, Parminu, ryanli
 */
 
-var FoxtrickCopyYouth = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "CopyYouth",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["YouthTraining", "youthplayerdetail", "youthoverview",
@@ -255,5 +255,4 @@ var FoxtrickCopyYouth = {
 			this.addScoutComment(doc);
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickCopyYouth);
+});

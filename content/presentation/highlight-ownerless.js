@@ -4,7 +4,7 @@
  * @author ljushaff, ryanli
  */
 
-var FoxtrickHighlightOwnerless = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "HighlightOwnerless",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["series"],
@@ -17,5 +17,4 @@ var FoxtrickHighlightOwnerless = {
 			Foxtrick.addClass(ownerless[i], "ft-ownerless");
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickHighlightOwnerless);
+});

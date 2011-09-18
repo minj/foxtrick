@@ -3,8 +3,8 @@
  * Monitors matches of friends and foes
  * @author ryanli
  */
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickMyMonitor = {
+
+Foxtrick.util.module.register({
 	MODULE_NAME : "MyMonitor",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["myhattrick", "dashboard", "teamPage", "youthoverview", "national"],
@@ -401,5 +401,4 @@ var FoxtrickMyMonitor = {
 				|| Foxtrick.isPage("national", doc)))
 			this.run(doc);
 	}
-};
-Foxtrick.util.module.register(FoxtrickMyMonitor);
+});

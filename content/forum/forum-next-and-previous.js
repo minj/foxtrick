@@ -4,9 +4,8 @@
  * @author smates
  */
 
-var FoxtrickForumNextAndPrevious = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "ForumNextAndPrevious",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	CSS: Foxtrick.InternalPath+"resources/css/nextandprevious.css"
-};
-Foxtrick.util.module.register(FoxtrickForumNextAndPrevious);
+});

@@ -3,7 +3,6 @@
  * Foxtrick add stats to match archive
  * @author convinced
  */
-////////////////////////////////////////////////////////////////////////////////
 
 Foxtrick.util.module.register({
 	MODULE_NAME : "SeasonStats",

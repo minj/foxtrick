@@ -5,8 +5,7 @@
  */
 
  ////////////////////////////////////////////////////////////////////////////////
-var FoxtrickManagerButtons = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "ManagerButtons",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array("managerPage", "teamPage","youthoverview"),
@@ -120,5 +119,4 @@ var FoxtrickManagerButtons = {
 			parentDiv.insertBefore(guestbookLink, insertBefore);
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickManagerButtons);
+});

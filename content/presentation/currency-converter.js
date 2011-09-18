@@ -5,7 +5,7 @@
  * @author ryanli
  */
 
-var FoxtrickCurrencyConverter = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "CurrencyConverter",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
@@ -95,5 +95,4 @@ var FoxtrickCurrencyConverter = {
 		};
 		Foxtrick.map(traverse, nodes);
 	}
-};
-Foxtrick.util.module.register(FoxtrickCurrencyConverter);
+});

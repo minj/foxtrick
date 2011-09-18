@@ -4,7 +4,7 @@
  * @author bummerland
  */
 
-var FoxtrickGoToPostBox = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "GoToPostBox",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
@@ -112,20 +112,15 @@ var FoxtrickGoToPostBox = {
 			selectBox.parentNode.appendChild(inputBoxLabel2);
 
 			selectBox.parentNode.appendChild(goButton);
-			inputBoxTop.addEventListener("keyup" , FoxtrickGoToPostBox._submit, false);
-		}
-
-	},
-
-	_submit : function(e){
-		var doc = e.target.ownerDocument;
-		var key = e.keyCode;
-		if(key == 13){
-			var goButtonID = e.target.getAttribute("id").replace(/postboxnum/, "okbutton");
-			var goButton = doc.getElementById(goButtonID);
-			if (goButton) goButton.click();
-			return false;
+			inputBoxTop.addEventListener("keyup", function(ev) {
+				var key = ev.keyCode;
+				if(key == 13) {
+					var goButtonID = ev.target.getAttribute("id").replace(/postboxnum/, "okbutton");
+					var goButton = doc.getElementById(goButtonID);
+					if (goButton) goButton.click();
+					return false;
+				}
+			}, false);
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickGoToPostBox);
+});

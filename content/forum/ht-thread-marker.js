@@ -4,8 +4,7 @@
  * @author Mod-PaV
  */
 
- var FoxtrickHTThreadMarker = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "HTThreadMarker",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forum'),
@@ -65,5 +64,4 @@
 			}
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickHTThreadMarker);
+});

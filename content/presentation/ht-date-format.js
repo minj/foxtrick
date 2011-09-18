@@ -4,7 +4,7 @@
  * @author spambot, ryanli
  */
 
-var FoxtrickHTDateFormat = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "HTDateFormat",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
@@ -73,5 +73,4 @@ var FoxtrickHTDateFormat = {
 	change : function(doc, ev) {
 		this.run(doc);
 	}
-};
-Foxtrick.util.module.register(FoxtrickHTDateFormat);
+});

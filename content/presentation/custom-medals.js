@@ -5,8 +5,7 @@
  * @author larsw84
  */
 
- ////////////////////////////////////////////////////////////////////////////////
-var FoxtrickCustomMedals = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "CustomMedals",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('teamPage','history','national'),
@@ -40,5 +39,4 @@ var FoxtrickCustomMedals = {
 			}
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickCustomMedals);
+});

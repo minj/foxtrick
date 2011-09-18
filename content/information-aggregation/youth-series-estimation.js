@@ -4,7 +4,7 @@
  * @author ryanli
  */
 
-var FoxtrickYouthSeriesEstimation = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "YouthSeriesEstimation",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["search"],
@@ -81,5 +81,4 @@ var FoxtrickYouthSeriesEstimation = {
 	change : function(doc) {
 		this.run(doc);
 	}
-};
-Foxtrick.util.module.register(FoxtrickYouthSeriesEstimation);
+});

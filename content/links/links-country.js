@@ -4,8 +4,7 @@
  * @author convinced
  */
 
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickLinksCountry = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "LinksCountry",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('country'),
@@ -47,5 +46,4 @@ var FoxtrickLinksCountry = {
 		}
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,{ "countryid": leagueId });
 	}
-};
-Foxtrick.util.module.register(FoxtrickLinksCountry);
+});

@@ -3,8 +3,8 @@
  * Script which including skins
  * @author smates/convinced
  */
-var FoxtrickSkinPlugin = {
 
+Foxtrick.util.module.register({
 	MODULE_NAME : "SkinPlugin",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
@@ -46,5 +46,4 @@ var FoxtrickSkinPlugin = {
 			Foxtrick.util.inject.css(doc, skin);
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickSkinPlugin);
+});

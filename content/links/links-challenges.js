@@ -4,8 +4,7 @@
  * @author convinced
  */
 
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickLinksChallenges = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "LinksChallenges",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('challenges','youthchallenges'),
@@ -44,5 +43,4 @@ var FoxtrickLinksChallenges = {
 		}
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,{});
 	}
-};
-Foxtrick.util.module.register(FoxtrickLinksChallenges);
+});

@@ -4,8 +4,7 @@
  * @author convinced
  */
 
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickLinksMatch = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "LinksMatch",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('match'),
@@ -86,5 +85,4 @@ var FoxtrickLinksMatch = {
 			Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME+".coming" ,{ "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  });
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickLinksMatch);
+});

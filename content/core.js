@@ -4,7 +4,7 @@
 * @author ryanli
 */
 
-var FoxtrickCore = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "Core",
 	CORE_MODULE : true,
 	PAGES : ["all"],
@@ -177,6 +177,4 @@ var FoxtrickCore = {
 	getSelfTeamInfo : function() {
 		return this.SELF_TEAM_INFO;
 	}
-};
-
-Foxtrick.util.module.register(FoxtrickCore);
+});

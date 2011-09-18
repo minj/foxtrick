@@ -4,9 +4,7 @@
  * @author larsw84, ryanli
  */
 
- ////////////////////////////////////////////////////////////////////////////////
-var FoxtrickCopyPlayerAd = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "CopyPlayerAd",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["playerdetail", "youthplayerdetail"],
@@ -295,5 +293,4 @@ var FoxtrickCopyPlayerAd = {
 			Foxtrick.alert('createPlayerAd '+e);
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickCopyPlayerAd);
+});

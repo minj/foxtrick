@@ -4,7 +4,7 @@
  * @author htbaumanns, ryanli
  */
 
-var FoxtrickNewMail = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "NewMail",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
 	PAGES : ["all"],
@@ -70,5 +70,4 @@ var FoxtrickNewMail = {
 			}
 		});
  	}
-};
-Foxtrick.util.module.register(FoxtrickNewMail);
+});

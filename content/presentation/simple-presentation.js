@@ -3,7 +3,7 @@
  * @author spambot, ljushaff
  */
 
-var FoxtrickSimplePresentation = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "SimplePresentation",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
@@ -24,5 +24,4 @@ var FoxtrickSimplePresentation = {
 		Foxtrick.InternalPath+"resources/css/fixes/achievement_hideicons.css",
 		Foxtrick.InternalPath+"resources/css/fixes/NoLogo.css"
 	]
-};
-Foxtrick.util.module.register(FoxtrickSimplePresentation);
+});

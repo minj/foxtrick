@@ -4,7 +4,7 @@
  * @author ryanli
  */
 
-var FoxtrickMarkAllAsRead = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "MarkAllAsRead",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ["forumViewThread", "forumOverView", "forumDefault", "forumWritePost"],
@@ -35,5 +35,4 @@ var FoxtrickMarkAllAsRead = {
 		var forumTabs = doc.getElementsByClassName("forumTabs")[0];
 		forumTabs.appendChild(container);
 	}
-};
-Foxtrick.util.module.register(FoxtrickMarkAllAsRead);
+});

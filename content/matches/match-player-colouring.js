@@ -3,7 +3,7 @@
  * @author tychobrailleur, Stephan57, convincedd, ryanli
  */
 
-var FoxtrickMatchPlayerColouring = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "MatchPlayerColouring",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ["match", "playerdetail"],
@@ -178,5 +178,4 @@ var FoxtrickMatchPlayerColouring = {
 			}
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickMatchPlayerColouring);
+});

@@ -4,7 +4,7 @@
  * @author spambot
  */
 ////////////////////////////////////////////////////////////////////////////////
-var FoxtrickHistoryStats= {
+Foxtrick.util.module.register({
 	MODULE_NAME : "HistoryStats",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["history"],
@@ -186,5 +186,4 @@ var FoxtrickHistoryStats= {
 			Foxtrick.log(e);
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickHistoryStats);
+});

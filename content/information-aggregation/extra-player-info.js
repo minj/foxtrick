@@ -3,16 +3,16 @@
  * @author convincedd, ryanli
  */
 
-var FoxtrickExtraPlayerInfo = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "ExtraPlayerInfo",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["players"],
 	OPTIONS : ["CoachInfo", "Flag"],
 
-	// used for coloring NT players when AddFlags is enabled
-	NT_COLOR : "#FFCC00",
-
 	run : function(doc) {
+		// used for coloring NT players when AddFlags is enabled
+		const ntColor = "#ffcc00";
+
 		Foxtrick.Pages.Players.getPlayerList(doc, function(playerList) {
 			if (!playerList) {
 				Foxtrick.log("ExtraPlayerInfo: unable to retrieve player list.");
@@ -58,12 +58,11 @@ var FoxtrickExtraPlayerInfo = {
 						}
 					}
 					else {
-						var style = "background-color: " + FoxtrickExtraPlayerInfo.NT_COLOR + ";";
+						var style = "background-color: " + ntColor + ";";
 						nameLink.setAttribute("style", style);
 					}
 				}
 			}
 		});
 	}
-};
-Foxtrick.util.module.register(FoxtrickExtraPlayerInfo);
+});

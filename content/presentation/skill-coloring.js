@@ -4,8 +4,7 @@
  * @author spambot, thx to baumanns
  */
 
-var FoxtrickSkillColoring = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "SkillColoring",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
@@ -32,5 +31,4 @@ var FoxtrickSkillColoring = {
 		if (FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_number_translated") && (FoxtrickPrefs.isModuleEnabled("PersonalityImages")))
 			this.OPTIONS_CSS[3] = Foxtrick.InternalPath+"resources/skillcolors/skill-number-translated-personal.css";
 	}
-};
-Foxtrick.util.module.register(FoxtrickSkillColoring);
+});

@@ -5,7 +5,7 @@
  * @author convinced, ryanli
  */
 
-var FoxtrickShowLineupSet = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "ShowLineupSet",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["series"],
@@ -121,5 +121,4 @@ var FoxtrickShowLineupSet = {
 			}
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickShowLineupSet);
+});

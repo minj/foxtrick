@@ -1,11 +1,10 @@
-//**********************************************************
 /**
 * sortTable.js
 * sorting of HT-ML tables
 * @author convinced
 */
 
-var FoxtrickTableSort = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "TableSort",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["all"],
@@ -205,5 +204,4 @@ var FoxtrickTableSort = {
 			}
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickTableSort);
+});

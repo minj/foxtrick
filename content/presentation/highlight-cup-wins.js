@@ -4,8 +4,7 @@
  * @author convincedd, ryanli
  */
 
-var FoxtrickHighlightCupwins = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "HighlightCupwins",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('cupmatches'),
@@ -70,5 +69,4 @@ var FoxtrickHighlightCupwins = {
 			}
 		}
  	}
-};
-Foxtrick.util.module.register(FoxtrickHighlightCupwins);
+});

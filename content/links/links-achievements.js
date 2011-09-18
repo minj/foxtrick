@@ -4,9 +4,7 @@
  * @author convinced
  */
 
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickLinksAchievements = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "LinksAchievements",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('achievements'),
@@ -45,5 +43,4 @@ var FoxtrickLinksAchievements = {
 		}
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname, "userid" : userid });
 	}
-};
-Foxtrick.util.module.register(FoxtrickLinksAchievements);
+});

@@ -4,7 +4,7 @@
  * @author ryanli
  */
 
-var FoxtrickLiveAlert = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "LiveAlert",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
 	PAGES : [ "matchesLive" ],
@@ -91,5 +91,4 @@ var FoxtrickLiveAlert = {
 			}
 		}
 	}
-}
-Foxtrick.util.module.register(FoxtrickLiveAlert);
+});

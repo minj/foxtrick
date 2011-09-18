@@ -3,8 +3,8 @@
  * option to move player select box up on playersdetail page
  * @author convinced
  */
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickMovePlayerSelectbox= {
+
+Foxtrick.util.module.register({
 	MODULE_NAME : "MovePlayerSelectbox",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail'),
@@ -19,5 +19,4 @@ var FoxtrickMovePlayerSelectbox= {
 		var sidebar=doc.getElementById('ctl00_ctl00_CPContent_CPSidebar_pnlRight');
 		sidebar.insertBefore(box,sidebar.firstChild);
 	}
-}
-Foxtrick.util.module.register(FoxtrickMovePlayerSelectbox);
+});

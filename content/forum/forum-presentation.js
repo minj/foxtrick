@@ -3,7 +3,7 @@
  * @author spambot, ljushaff
  */
 
-var FoxtrickForumPresentation = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "ForumPresentation",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ['forum', 'forumViewThread', 'forumOverView' , 'forumDefault', 'forumWritePost', 'forumModWritePost'],
@@ -24,5 +24,4 @@ var FoxtrickForumPresentation = {
 		Foxtrick.InternalPath+"resources/css/fixes/Forum_Link_Grey_Icons.css",
 		Foxtrick.InternalPath+"resources/css/fixes/moved_avatarinfo_fix.css"
 	]
-};
-Foxtrick.util.module.register(FoxtrickForumPresentation);
+});

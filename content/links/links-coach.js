@@ -4,8 +4,7 @@
  * @author convinced
  */
 
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickLinksCoach = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "LinksCoach",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('coach'),
@@ -34,5 +33,4 @@ var FoxtrickLinksCoach = {
 		}
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
-};
-Foxtrick.util.module.register(FoxtrickLinksCoach);
+});

@@ -4,8 +4,7 @@
  * @author spambot
  */
 
-var FoxtrickElectionTable = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "ElectionTable",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : new Array('election'),
@@ -49,5 +48,4 @@ var FoxtrickElectionTable = {
 		if (!doc.getElementById(id))
 			this.run(doc);
 	}
-};
-Foxtrick.util.module.register(FoxtrickElectionTable);
+});

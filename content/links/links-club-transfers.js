@@ -4,8 +4,7 @@
  * @author convincedd
  */
 
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickLinksClubTransfers = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "LinksClubTransfers",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('transfer'),
@@ -41,5 +40,4 @@ var FoxtrickLinksClubTransfers = {
 			}
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickLinksClubTransfers);
+});

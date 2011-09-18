@@ -3,7 +3,7 @@
  * @author Mod-spambot, ryanli
  */
 
-var FoxtrickMatchTables = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "MatchTables",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ['matchesarchiv', 'matches','series','youthSeries'],
@@ -115,5 +115,4 @@ var FoxtrickMatchTables = {
 	change : function(doc) {
 		this.removeTime(doc);
 	}
-};
-Foxtrick.util.module.register(FoxtrickMatchTables);
+});

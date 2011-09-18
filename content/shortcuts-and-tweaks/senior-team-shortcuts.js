@@ -3,9 +3,8 @@
  * Foxtrick add coach and lastlineup links to team pages
  * @author convinced
  */
-////////////////////////////////////////////////////////////////////////////////
 
-var FoxtrickSeniorTeamShortCuts = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "SeniorTeamShortCuts",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["teamPageGeneral", "series", "youthSeries"],
@@ -63,5 +62,4 @@ var FoxtrickSeniorTeamShortCuts = {
 		if (pos1!=-1) bl_header[pos1].parentNode.insertBefore(li2,bl_header[pos1].nextSibling);
 		else bl_header[0].parentNode.appendChild(li2);
 	}
-};
-Foxtrick.util.module.register(FoxtrickSeniorTeamShortCuts);
+});

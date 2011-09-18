@@ -4,8 +4,7 @@
  * @author OBarros, spambot, convinced, ryanli
  */
 
-var FoxtrickTeamStats = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "TeamStats",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["players", "YouthPlayers"],
@@ -312,5 +311,4 @@ var FoxtrickTeamStats = {
 			}
 		});
 	}
-};
-Foxtrick.util.module.register(FoxtrickTeamStats);
+});

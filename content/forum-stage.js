@@ -4,7 +4,7 @@
 * @author convinced
 */
 
-var FoxtrickForumStage = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "ForumStage",
 	CORE_MODULE : true,
 	PAGES : new Array('forumWritePost'),
@@ -43,5 +43,4 @@ var FoxtrickForumStage = {
 			}, false );
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickForumStage);
+});

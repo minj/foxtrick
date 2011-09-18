@@ -4,7 +4,7 @@
  * @author OBarros, spambot, convinced, ryanli
  */
 
-var FoxtrickPlayerFilters = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "PlayerFilters",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array("players", "YouthPlayers"),
@@ -321,5 +321,4 @@ var FoxtrickPlayerFilters = {
 	change : function(doc) {
 		this.run(doc);
 	}
-};
-Foxtrick.util.module.register(FoxtrickPlayerFilters);
+});

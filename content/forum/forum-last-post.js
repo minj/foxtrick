@@ -4,7 +4,7 @@
  * @author spambot
  */
 
-var FoxtrickForumLastPost = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "ForumLastPost",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ["forum", "forumSettings"],
@@ -54,5 +54,4 @@ var FoxtrickForumLastPost = {
 			FoxtrickPrefs.setInt("perpage", id);
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickForumLastPost);
+});

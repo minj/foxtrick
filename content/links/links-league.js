@@ -4,9 +4,7 @@
  * @author convinced
  */
 
-////////////////////////////////////////////////////////////////////////////////
-
-var FoxtrickLinksLeague = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "LinksLeague",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : ["series"],
@@ -64,5 +62,4 @@ var FoxtrickLinksLeague = {
 			}
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickLinksLeague);
+});

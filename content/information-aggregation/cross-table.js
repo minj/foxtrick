@@ -4,7 +4,7 @@
  * @author spambot, ryanli
  */
 
-var FoxtrickCrossTable = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "CrossTable",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["fixtures"],
@@ -319,5 +319,4 @@ var FoxtrickCrossTable = {
 			}
 		});
 	}
-};
-Foxtrick.util.module.register(FoxtrickCrossTable);
+});

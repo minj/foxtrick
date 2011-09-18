@@ -4,8 +4,7 @@
 * @author spambot
 */
 
-var FoxtrickCountyList = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "CountryList",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
@@ -207,5 +206,4 @@ var FoxtrickCountyList = {
 		selectbox.style.display='inline';
 		Foxtrick.dump('country select activated.\n');
 	}
-};
-Foxtrick.util.module.register(FoxtrickCountyList);
+});

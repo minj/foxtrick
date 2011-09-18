@@ -4,8 +4,7 @@
  * @author spambot
  */
 
-var FoxtrickCopyRatings = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "CopyRatings",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
@@ -172,5 +171,4 @@ var FoxtrickCopyRatings = {
 			button.appendChild(list);
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickCopyRatings);
+});

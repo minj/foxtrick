@@ -3,9 +3,8 @@
  * Colors bookmark icon extracting code from bookmark comment
  * @author taised
  */
-////////////////////////////////////////////////////////////////////////////////
-Foxtrick.BookmarkAdjust = {
 
+Foxtrick.util.module.register({
 	MODULE_NAME : "BookmarkAdjust",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('bookmarks'),
@@ -89,6 +88,4 @@ Foxtrick.BookmarkAdjust = {
 			}
 		}
 	}
-};
-
-Foxtrick.util.module.register(Foxtrick.BookmarkAdjust);
+});

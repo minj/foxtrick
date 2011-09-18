@@ -4,9 +4,7 @@
  * @author larsw84
  */
 
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickLinksAlliances = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "LinksAlliances",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('federation'),
@@ -45,5 +43,4 @@ var FoxtrickLinksAlliances = {
 			}
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickLinksAlliances);
+});

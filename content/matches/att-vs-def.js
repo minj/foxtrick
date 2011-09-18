@@ -3,10 +3,8 @@
  * adds att vs def bars on matches page
  * @author taised, Jestar
  */
-////////////////////////////////////////////////////////////////////////////////
 
-var FoxtrickAttVsDef = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "AttVsDef",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
@@ -304,5 +302,4 @@ var FoxtrickAttVsDef = {
 
 		return values;
 	}
-};
-Foxtrick.util.module.register(FoxtrickAttVsDef);
+});

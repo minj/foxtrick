@@ -4,8 +4,7 @@
  * @author convinced, ryanli
  */
 
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickMatchIncome = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "MatchIncome",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['match'],
@@ -53,5 +52,4 @@ var FoxtrickMatchIncome = {
 		td2b.className = "nowrap";
 		td2b.textContent = Foxtrick.formatNumber(Math.floor(sum), ' ')+' '+Foxtrick.util.currency.getSymbol();
 	}
-};
-Foxtrick.util.module.register(FoxtrickMatchIncome);
+});

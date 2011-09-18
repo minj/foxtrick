@@ -4,7 +4,7 @@
  * @author htbaumanns, ryanli
  */
 
-var FoxtrickTickerColoring = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "TickerColoring",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
 	PAGES : ["all"],
@@ -51,5 +51,4 @@ var FoxtrickTickerColoring = {
 
 		update();
 	}
-};
-Foxtrick.util.module.register(FoxtrickTickerColoring);
+});

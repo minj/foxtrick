@@ -4,8 +4,7 @@
  * @author convinced
  */
 
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickLinksEconomy = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "LinksEconomy",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('finances'),
@@ -53,5 +52,4 @@ var FoxtrickLinksEconomy = {
 		}
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,{ "Cash":Cash,"Currency":currencySymbol,"newCash":newCash});
 	}
-};
-Foxtrick.util.module.register(FoxtrickLinksEconomy);
+});

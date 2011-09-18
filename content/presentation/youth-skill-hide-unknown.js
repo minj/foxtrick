@@ -3,8 +3,8 @@
  * Hide unknown skills and/or "maximum" word on youth players page
  * @author convincedd
  */
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickYouthSkillHideUnknown = {
+
+Foxtrick.util.module.register({
 	MODULE_NAME : "YouthSkillHideUnknown",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["YouthPlayers"],
@@ -46,5 +46,4 @@ var FoxtrickYouthSkillHideUnknown = {
 			}
 		}
 	}
-}
-Foxtrick.util.module.register(FoxtrickYouthSkillHideUnknown);
+});

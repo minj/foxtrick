@@ -3,8 +3,8 @@
  * Foxtrick team select box
  * @author convinced, ryanli
  */
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickTeamSelectBox = {
+
+Foxtrick.util.module.register({
 	MODULE_NAME : "TeamSelectBox",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["players", "YouthPlayers"],
@@ -117,5 +117,4 @@ var FoxtrickTeamSelectBox = {
 		Foxtrick.listen(div, "click", toggle, false);
 		toggle();
 	}
-};
-Foxtrick.util.module.register(FoxtrickTeamSelectBox);
+});

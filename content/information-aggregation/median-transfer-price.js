@@ -3,8 +3,8 @@
  * Foxtrick Add median transfer price
  * @author bummerland
  */
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickMedianTransferPrice = {
+
+Foxtrick.util.module.register({
 	MODULE_NAME : "MedianTransferPrice",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : new Array('transferCompare'),
@@ -63,5 +63,4 @@ var FoxtrickMedianTransferPrice = {
 			cell.colSpan = 2;
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickMedianTransferPrice);
+});

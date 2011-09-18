@@ -4,8 +4,7 @@
  * @author ryanli
  */
 
-if (!Foxtrick) var Foxtrick = {};
-Foxtrick.AddClass = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "AddClass",
 	CORE_MODULE : true,
 	PAGES : ["playerdetail", "search", "bookmarks", "match"],
@@ -107,5 +106,4 @@ Foxtrick.AddClass = {
 			}
 		}
 	}
-};
-Foxtrick.util.module.register(Foxtrick.AddClass);
+});

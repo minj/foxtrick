@@ -4,9 +4,7 @@
  * @author convinced
  */
 
-////////////////////////////////////////////////////////////////////////////////
-var FoxtrickLinksArena = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "LinksArena",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('arena'),
@@ -52,5 +50,4 @@ var FoxtrickLinksArena = {
 			}
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickLinksArena);
+});

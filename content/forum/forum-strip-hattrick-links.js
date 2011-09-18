@@ -4,8 +4,7 @@
 * @author convinced
 */
 
-var FoxtrickForumStripHattrickLinks = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "ForumStripHattrickLinks",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','newsletter','mailnewsletter',"forumModWritePost","forumViewThread"),
@@ -70,5 +69,4 @@ var FoxtrickForumStripHattrickLinks = {
 			}, false);
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickForumStripHattrickLinks);
+});

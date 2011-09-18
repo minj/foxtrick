@@ -3,7 +3,7 @@
  * @author spambot
  */
 
-var FoxtrickMatchReportFormat = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "MatchReportFormat",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
@@ -315,5 +315,4 @@ var FoxtrickMatchReportFormat = {
 			a[2] < b[2] ? -1 :
 			0;
 	}
-};
-Foxtrick.util.module.register(FoxtrickMatchReportFormat);
+});

@@ -4,8 +4,7 @@
  * @author spambot
  */
 
-var FoxtrickMarkUnread = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "MarkUnread",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumViewThread'),
@@ -57,5 +56,4 @@ var FoxtrickMarkUnread = {
 			}
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickMarkUnread);
+});

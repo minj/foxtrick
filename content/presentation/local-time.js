@@ -4,7 +4,7 @@
  * @author ryanli
  */
 
-var FoxtrickLocalTime = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "LocalTime",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
@@ -100,5 +100,4 @@ var FoxtrickLocalTime = {
 			}, localDates);
 		}
 	}
-}
-Foxtrick.util.module.register(FoxtrickLocalTime);
+});

@@ -4,8 +4,7 @@
  * @author ryanli
  */
 
- ////////////////////////////////////////////////////////////////////////////////
-var FoxtrickNtPeek = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "NtPeek",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["country"],
@@ -100,5 +99,4 @@ var FoxtrickNtPeek = {
 			}
 		});
 	}
-};
-Foxtrick.util.module.register(FoxtrickNtPeek);
+});

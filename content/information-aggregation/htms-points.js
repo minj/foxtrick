@@ -4,10 +4,7 @@
 * @author taised
 */
 
-////////////////////////////////////////////////// //////////////////////////////
-//---------------------------------------------------------------------------
-
-var FoxtrickHTMSPoints = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "HTMSPoints",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["playerdetail", "transferSearchResult", "players"],
@@ -261,5 +258,4 @@ var FoxtrickHTMSPoints = {
 
 		return (new Array(actValue, Math.round(potValue)));
 	}
-};
-Foxtrick.util.module.register(FoxtrickHTMSPoints);
+});

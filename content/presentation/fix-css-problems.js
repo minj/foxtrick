@@ -3,7 +3,7 @@
  * @author spambot, ljushaff, ryanli
  */
 
-var FoxtrickFixcssProblems = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "FixcssProblems",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
@@ -39,5 +39,4 @@ var FoxtrickFixcssProblems = {
 			}
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickFixcssProblems);
+});

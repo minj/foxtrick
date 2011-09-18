@@ -4,7 +4,7 @@
  * @Author: smates, ryanli
  */
 
-var FoxtrickYouthPromotes = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "YouthPromotes",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["YouthPlayer"],
@@ -37,5 +37,4 @@ var FoxtrickYouthPromotes = {
 			birthdayCell.appendChild(promotionCell);
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickYouthPromotes);
+});

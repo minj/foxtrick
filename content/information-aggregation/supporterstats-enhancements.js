@@ -3,7 +3,7 @@
  * @author convincedd
  */
 
-var FoxtrickSupporterStatsEnhancements = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "SupporterStatsEnhancements",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["StatsSquad"],
@@ -54,5 +54,4 @@ var FoxtrickSupporterStatsEnhancements = {
 			}
 		});
 	}
-};
-Foxtrick.util.module.register(FoxtrickSupporterStatsEnhancements);
+});

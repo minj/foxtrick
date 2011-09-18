@@ -4,7 +4,7 @@
  * @author smates
  */
 
-var FoxtrickOriginalFace = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "OriginalFace",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["playerdetail", "players", "YouthPlayer", "YouthPlayers"],
@@ -28,5 +28,4 @@ var FoxtrickOriginalFace = {
 			}
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickOriginalFace);
+});
