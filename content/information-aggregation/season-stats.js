@@ -14,16 +14,18 @@ Foxtrick.util.module.register({
 
 
 	run : function(doc) {
-		// ----------------------------- season select box ---------------------------------
-
-		// get current season
-		var htDate = Foxtrick.util.time.getHtDate(doc);
-		var season = Foxtrick.util.time.gregorianToHT(htDate).season;
-		// get selected season
-		var selected_season = doc.location.href.match(/season=(\d+)/i)[1];
-		if (season == null || selected_season == null)
+		try {
+			// get current season
+			var htDate = Foxtrick.util.time.getHtDate(doc);
+			var season = Foxtrick.util.time.gregorianToHT(htDate).season;
+			// get selected season
+			var selected_season = doc.location.href.match(/season=(\d+)/i)[1];
+			var season_diff = season - selected_season;
+		}
+		catch (e) {
+			// either current season or selected season is missing, return
 			return;
-		var season_diff = season - selected_season;
+		}
 
 		var selected_local_season = doc.getElementById('mainBody').getElementsByTagName('h2')[0].innerHTML.match(/\d+/i);
 		var local_season = parseInt(selected_local_season) + season_diff;
