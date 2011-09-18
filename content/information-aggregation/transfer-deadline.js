@@ -3,7 +3,7 @@
  * @author spambot, ryanli
  */
 
-var FoxtrickTransferDeadline = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "TransferDeadline",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["transferSearchResult", "playerdetail", "transfer", "bookmarks"],
@@ -14,11 +14,11 @@ var FoxtrickTransferDeadline = {
 		if (doc.getElementsByClassName("ft-deadline").length > 0)
 			return;
 
-		FoxtrickTransferDeadline.element='span';  // display: inline
+		this.element='span';  // display: inline
 		// some table fixing for simple skin
 		if (!Foxtrick.util.layout.isStandard(doc)) {
 			if (Foxtrick.isPage("transferSearchResult", doc))
-				FoxtrickTransferDeadline.element = 'div'; // display: block
+				this.element = 'div'; // display: block
 		}
 
 		if (Foxtrick.isPage("transferSearchResult", doc))
@@ -52,7 +52,7 @@ var FoxtrickTransferDeadline = {
 		if (deadline) {
 			var countdown = Math.floor((deadline.getTime() - htTime) / 1000);
 			if (!isNaN(countdown) && countdown >= 0) {
-				var countdownNode = doc.createElement(FoxtrickTransferDeadline.element);
+				var countdownNode = doc.createElement(this.element);
 				countdownNode.className = "smallText ft-deadline";
 				countdownNode.innerHTML = "(" + Foxtrick.util.time.timeDifferenceToText(countdown) + ")";
 				node.appendChild(countdownNode);
@@ -97,5 +97,4 @@ var FoxtrickTransferDeadline = {
 
 		this.processNode(selltime_elm, htTime);
 	}
-};
-Foxtrick.util.module.register(FoxtrickTransferDeadline);
+});
