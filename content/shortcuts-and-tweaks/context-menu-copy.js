@@ -10,15 +10,15 @@ var FoxtrickContextMenuCopy = {
 	PAGES : ["all"],
 	OPTIONS : ["Id", "Link", "HtMl", "Table"],
 
-	// keys: same as contextentry ids in overlay.xul
-	// options: same as OPTIONS
-	// menuEntryId: ids for menu entries in firefox and chrome
+	// option: same as OPTIONS
+	// func: function to be called for getting text
+	// item: menu item for Firefox and Chrome
 	// copyText: text to be copied
 	contextEntries : {
-		"foxtrick-popup-copy-id" : { option: 'Id', func: Foxtrick.util.htMl.getId, menuEntryId: null, copyText: null },
-		"foxtrick-popup-copy-link" : { option: 'Link', func: Foxtrick.util.htMl.getLink, menuEntryId: null, copyText: null },
-		"foxtrick-popup-copy-ht-ml" : { option: 'HtMl', func: Foxtrick.util.htMl.getHtMl, menuEntryId: null, copyText: null },
-		"foxtrick-popup-copy-table" : { option: 'Table', func: Foxtrick.util.htMl.getTable, menuEntryId: null, copyText: null }
+		"foxtrick-popup-copy-id" : { option: 'Id', func: Foxtrick.util.htMl.getId, item: null, copyText: null },
+		"foxtrick-popup-copy-link" : { option: 'Link', func: Foxtrick.util.htMl.getLink, item: null, copyText: null },
+		"foxtrick-popup-copy-ht-ml" : { option: 'HtMl', func: Foxtrick.util.htMl.getHtMl, item: null, copyText: null },
+		"foxtrick-popup-copy-table" : { option: 'Table', func: Foxtrick.util.htMl.getTable, item: null, copyText: null }
 	},
 
 	onLoad : function(document) {
@@ -33,8 +33,8 @@ var FoxtrickContextMenuCopy = {
 			var type;
 			for (type in entries) {
 				var entry = entries[type];
-				entry.menuEntryId = document.getElementById(type);
-				entry.menuEntryId.addEventListener("command", copy(entry), false);
+				entry.item = document.getElementById(type);
+				entry.item.addEventListener("command", copy(entry), false);
 			}
 		};
 		// called from background script
@@ -53,15 +53,15 @@ var FoxtrickContextMenuCopy = {
 					// remove old entries
 					var type;
 					for (type in entries) {
-						if (entries[type].menuEntryId !== null) {
-							chrome.contextMenus.remove(entries[type].menuEntryId);
-							entries[type].menuEntryId = null;
+						if (entries[type].item !== null) {
+							chrome.contextMenus.remove(entries[type].item);
+							entries[type].item = null;
 						}
 					}
 					// add new entries
 					for (type in request.entries) {
 						entries[type].copyText = request.entries[type].copyText;
-						entries[type].menuEntryId = chrome.contextMenus.create({
+						entries[type].item = chrome.contextMenus.create({
 							title : request.entries[type].title,
 							contexts : ["all"],
 							onclick : copy(entries[type]),
@@ -100,7 +100,7 @@ var FoxtrickContextMenuCopy = {
 			var entries = this.contextEntries;
 			var type;
 			for (type in entries) {
-				entries[type].menuEntryId.setAttribute("hidden", true);
+				entries[type].item.setAttribute("hidden", true);
 			}
 		}
 	},
@@ -133,11 +133,11 @@ var FoxtrickContextMenuCopy = {
 				var type;
 				for (type in entries) {
 					if (entries[type].copyText !== null) {
-						entries[type].menuEntryId.setAttribute("hidden", false);
-						entries[type].menuEntryId.setAttribute("label", entries[type].title);
+						entries[type].item.setAttribute("hidden", false);
+						entries[type].item.setAttribute("label", entries[type].title);
 					}
 					else
-						entries[type].menuEntryId.setAttribute("hidden", true);
+						entries[type].item.setAttribute("hidden", true);
 				}
 			}, false);
 		}
