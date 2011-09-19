@@ -4,7 +4,7 @@
  * @authors: convincedd, ryanli
  */
 
-var FoxtrickSkillTable = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "SkillTable",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["players", "oldcoaches", "YouthPlayers", "transferSearchResult"],
@@ -1221,5 +1221,4 @@ var FoxtrickSkillTable = {
 	change : function(doc) {
 		this.run(doc);
 	}
-};
-Foxtrick.util.module.register(FoxtrickSkillTable);
+});
