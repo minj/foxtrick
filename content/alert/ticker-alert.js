@@ -77,8 +77,8 @@ Foxtrick.util.module.register({
 		else var DOMMutationEventType = 'DOMSubtreeModified';
 
 		var getType = function(url) {
-			for (var type in this.TYPES) {
-				var regexp = this.TYPES[type];
+			for (var type in Foxtrick.util.module.get('TickerAlert').TYPES) {
+				var regexp = Foxtrick.util.module.get('TickerAlert').TYPES[type];
 				if (url.match(regexp))
 					return type;
 			}
