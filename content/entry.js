@@ -83,8 +83,7 @@ Foxtrick.entry.init = function() {
 		// evaluate each module
 		Foxtrick.map(function(f) {
 			var script = Foxtrick.load(f);
-			// FIXME - need to enable "use strict" after completion of issue 817
-			// script = "\"use strict\";\n" + script;
+			script = "\"use strict\";\n" + script;
 			try {
 				eval(script);
 			}
