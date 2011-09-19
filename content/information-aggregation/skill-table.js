@@ -481,7 +481,7 @@ Foxtrick.util.module.register({
 				table.id = "ft_skilltable";
 				table.className = "ft_skilltable";
 
-				thead = doc.createElement("thead");
+				var thead = doc.createElement("thead");
 				var tr = doc.createElement("tr");
 				thead.appendChild(tr);
 				table.appendChild(thead);
