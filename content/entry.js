@@ -73,25 +73,27 @@ Foxtrick.entry.init = function() {
 		}
 	}
 
-	// load modules from scripts
-	var files = Foxtrick.load(Foxtrick.InternalPath + "modules.json");
-	files = JSON.parse(files);
-	files = Foxtrick.map(function(f) {
-		return Foxtrick.InternalPath + f;
-	}, files);
-	// evaluate each module
-	Foxtrick.map(function(f) {
-		var script = Foxtrick.load(f);
-		// FIXME - need to enable "use strict" after completion of issue 817
-		// script = "\"use strict\";\n" + script;
-		try {
-			eval(script);
-		}
-		catch (e) {
-			Foxtrick.log("Error evaluating script ", f, ":\n", e);
-		}
-	}, files);
-
+	if (Foxtrick.platform=='Firefox' || Foxtrick.platform=='Chrome') {
+		// load modules from scripts
+		var files = Foxtrick.load(Foxtrick.InternalPath + "modules.json");
+		files = JSON.parse(files);
+		files = Foxtrick.map(function(f) {
+			return Foxtrick.InternalPath + f;
+		}, files);
+		// evaluate each module
+		Foxtrick.map(function(f) {
+			var script = Foxtrick.load(f);
+			// FIXME - need to enable "use strict" after completion of issue 817
+			// script = "\"use strict\";\n" + script;
+			try {
+				eval(script);
+			}
+			catch (e) {
+				Foxtrick.log("Error evaluating script ", f, ":\n", e);
+			}
+		}, files);
+	}
+	
 	Foxtrick.MakeStatsHash();
 
 	// create arrays for each recognized page that contains modules
