@@ -36,7 +36,7 @@ Foxtrick.util.module.register({
 							if( divsInFooter[j].className == "float_left" ) {
 								var nr=1;
 								var a = divsInFooter[j].getElementsByTagName("a");
-								ahref = a[a.length-1].href;
+								var ahref = a[a.length-1].href;
 								var reg = /^(.*?)\&n\=(\d+)(.*?)/;
 								var ar = reg.exec(+' ' + ahref + ' ');
 								if (ar[2] != null) {
