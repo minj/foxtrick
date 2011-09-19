@@ -48,21 +48,20 @@ Foxtrick.util.module.register({
 			{ key : "days", type : "minmax", min : null, max : null }
 		];
 		var getFilters = function(callback) {
-			Foxtrick.sessionGet("transfer-search-result-filters", function(n) {
-				try {
-					if (n === undefined) {
-						// set default filters if not set
-						Foxtrick.sessionSet("transfer-search-result-filters", FILTER_VAL);
-						callback(FILTER_VAL);
-					}
-					else {
-						callback(n);
-					}
+			var n = Foxtrick.sessionGet("transfer-search-result-filters");
+			try {
+				if (n === undefined) {
+					// set default filters if not set
+					Foxtrick.sessionSet("transfer-search-result-filters", FILTER_VAL);
+					callback(FILTER_VAL);
 				}
-				catch (e) {
-					Foxtrick.log(e);
+				else {
+					callback(n);
 				}
-			});
+			}
+			catch (e) {
+				Foxtrick.log(e);
+			}
 		};
 		var setFilters = function(filters) {
 			Foxtrick.sessionSet("transfer-search-result-filters", filters);

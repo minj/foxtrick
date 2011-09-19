@@ -2,86 +2,76 @@
  * sessionSet() and sessionGet() are a pair of functions that can store some
  * useful information that has its life spanning the browser session.
  * The stored value must be a JSON-serializable object, or of native types.
- * Since for Google Chrome, the content scripts cannot store values across
- * pages, we store it in background script and thus requires asynchronous
- * callback in sessionGet().
+ * For sandboxed, the content scripts stores copies which get updated 
+ * via background script with every change.
  */
 
 
-// for Firefox
-if (Foxtrick.platform == "Firefox") {
+Foxtrick.sessionStore = {};
 
-	Foxtrick.sessionStore = {};
+Foxtrick._sessionSet = function(key, value) {
+	Foxtrick.sessionStore[key] = value;
+};
 
-	Foxtrick.sessionSet = function(key, value) {
-		Foxtrick.sessionStore[key] = value;
-	};
-
-	// key = string or map of keys and default values
-	// returns value reps. map of keys and values
-	Foxtrick.sessionGet = function(keymap, callback) {
-		if (typeof(keymap) === "string")
-				callback(Foxtrick.sessionStore[keymap]);
-		else if (typeof(keymap) === "object") {
-			var answermap = {};
-			for (var key in keymap) {
-				if (Foxtrick.sessionStore[key]!==null)
-					answermap[key] = Foxtrick.sessionStore[key];
-				else
-					answermap[key] = keymap[i];
-			}
-				callback(answermap);
+// key = string or map of keys and default values
+// returns value reps. map of keys and values
+Foxtrick._sessionGet = function(keymap) {
+	if (typeof(keymap) === "string")
+		return Foxtrick.sessionStore[keymap];
+	else if (typeof(keymap) === "object") {
+		var answermap = {};
+		for (var key in keymap) {
+			if (Foxtrick.sessionStore[key]!==null)
+				answermap[key] = Foxtrick.sessionStore[key];
+			else
+				answermap[key] = keymap[i];
 		}
-	};
+		return answermap;
+	}
+};
 
-	Foxtrick.sessionDeleteBranch = function(branch) {
-		if (branch != '') branch += '.';
-		for (var key in Foxtrick.sessionStore) {
-			if (key.indexOf(branch)===0)
-				Foxtrick.sessionStore[key] = null;
-		};
+Foxtrick._sessionDeleteBranch = function(branch) {
+	if (branch != '') branch += '.';
+	for (var key in Foxtrick.sessionStore) {
+		if (key.indexOf(branch)===0)
+			Foxtrick.sessionStore[key] = null;
 	};
+};
+
+// for Gecko
+if (Foxtrick.arch == "Gecko") {
+	Foxtrick.sessionSet = Foxtrick._sessionSet;
+	Foxtrick.sessionGet = Foxtrick._sessionGet; 
+	Foxtrick.sessionDeleteBranch = Foxtrick._sessionDeleteBranch;
 }
-// sessionStore in back ground for all other
+// sessionStore for all other
 else {
+	// background copy for transmission to tabs on init
 	if ( Foxtrick.chromeContext() == "background" )  {
-
-		Foxtrick.sessionStore = {};
-
-		Foxtrick.sessionSet = function(key, value) {
-			Foxtrick.sessionStore[key] = value;
-		};
-
-		// key = string or map of keys and default values
-		// returns value resp map of keys and values
-		Foxtrick.sessionGet = function(keymap, sendResponse) {
-			if (typeof(keymap) === "string")
-				sendResponse({ value: Foxtrick.sessionStore[keymap] });
-			else if (typeof(keymap) === "object") {
-				var answermap = {};
-				for (var key in keymap) {
-					if (Foxtrick.sessionStore[key]!==null)
-						answermap[key] = Foxtrick.sessionStore[key];
-					else
-						answermap[key] = keymap[i];
-				}
-				sendResponse({ value: answermap });
-			}
-		};
-
-		Foxtrick.sessionDeleteBranch = function(branch) {
-			if (branch != '') branch += '.';
-			for (var key in Foxtrick.sessionStore) {
-				if (key.indexOf(branch)===0)
-					Foxtrick.sessionStore[key] = null;
-			}
-		};
+		Foxtrick.sessionSet = Foxtrick._sessionSet;
+		Foxtrick.sessionGet = Foxtrick._sessionGet; 
+		Foxtrick.sessionDeleteBranch = Foxtrick._sessionDeleteBranch;
 	}
 
-
+	// content copy. updated with every change via background broadcasting
 	else if ( Foxtrick.chromeContext() == "content" )  {
+		
+		// listen to updates from other tabs
+		// don't update if this tab initiated the update
+		sandboxed.extension.onRequest.addListener(
+		 function(request, sender, sendResponse) {
+			if (request.req=='sessionSet' && chrome.extension.tabid != request.senderid ) {
+				Foxtrick._sessionSet(request.key, request.value);
+			}
+			else if (request.req=='sessionDeleteBranch' && chrome.extension.tabid != request.senderid ) {
+				Foxtrick._sessionDeleteBranch(request.branch);
+			}
+		});
 
 		Foxtrick.sessionSet = function(key, value) {
+			// local copy
+			Foxtrick._sessionSet(key, value)
+			// inform background and other tabs
 			sandboxed.extension.sendRequest({
 				req : "sessionSet",
 				key : key,
@@ -89,18 +79,16 @@ else {
 			});
 		};
 
-		Foxtrick.sessionGet = function(key, callback) {
-			sandboxed.extension.sendRequest({
-					req : "sessionGet",
-					key : key
-				}, function(n) { callback(n.value); });
-		};
+		Foxtrick.sessionGet = Foxtrick._sessionGet;
 
 		Foxtrick.sessionDeleteBranch = function(branch) {
+			// local copy
+			Foxtrick._sessionDeleteBranch(branch);
+			// inform background and other tabs
 			sandboxed.extension.sendRequest({
 				req : "sessionDeleteBranch",
 				branch : branch
 			});
 		};
 	}
-};
+}

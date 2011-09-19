@@ -17,49 +17,48 @@ Foxtrick.util.module.register({
 	// get Hattrick-youthclub staffs
 	getData : function(callback) {
 		const dataKey = "staff-marker-data";
-		Foxtrick.sessionGet(dataKey, function(stored) {
-			if (stored == undefined) {
-				var obj = {};
-				// JSON files to be downloaded
-				const uris = [
-					"http://www.foxtrick.org/staff-data/foxtrick.json",
-					"http://www.foxtrick.org/staff-data/chpp.json",
-					"http://www.foxtrick.org/staff-data/editor.json",
-					"http://www.hattrick-youthclub.org/_admin/foxtrick/team.json"
-				];
-				// counter of URI remaining to fetch
-				var todo = uris.length;
-				Foxtrick.map(function(uri) {
-					Foxtrick.load(uri, function(text) {
-						try {
-							var parsed = JSON.parse(text);
-						}
-						catch (e) {
-							// JSON.parse failed
-							Foxtrick.log("Cannot parse file from: ", uri);
-						}
-						if (parsed) {
-							var key = parsed["type"];
-							var list = parsed["list"];
-							// add them!
-							obj[key] = {};
-							Foxtrick.map(function(user) {
-								obj[key][user.id] = true;
-							}, list);
-						}
-						// all your data are belong to us
-						if (--todo == 0) {
-							Foxtrick.sessionSet(dataKey, obj);
-							Foxtrick.log("Staff marker data loaded.");
-							callback(obj);
-						}
-					}, true);
-				}, uris);
-			}
-			else {
-				callback(stored);
-			}
-		});
+		var stored = Foxtrick.sessionGet(dataKey);
+		if (stored == undefined) {
+			var obj = {};
+			// JSON files to be downloaded
+			const uris = [
+				"http://www.foxtrick.org/staff-data/foxtrick.json",
+				"http://www.foxtrick.org/staff-data/chpp.json",
+				"http://www.foxtrick.org/staff-data/editor.json",
+				"http://www.hattrick-youthclub.org/_admin/foxtrick/team.json"
+			];
+			// counter of URI remaining to fetch
+			var todo = uris.length;
+			Foxtrick.map(function(uri) {
+				Foxtrick.load(uri, function(text) {
+					try {
+						var parsed = JSON.parse(text);
+					}
+					catch (e) {
+						// JSON.parse failed
+						Foxtrick.log("Cannot parse file from: ", uri);
+					}
+					if (parsed) {
+						var key = parsed["type"];
+						var list = parsed["list"];
+						// add them!
+						obj[key] = {};
+						Foxtrick.map(function(user) {
+							obj[key][user.id] = true;
+						}, list);
+					}
+					// all your data are belong to us
+					if (--todo == 0) {
+						Foxtrick.sessionSet(dataKey, obj);
+						Foxtrick.log("Staff marker data loaded.");
+						callback(obj);
+					}
+				}, true);
+			}, uris);
+		}
+		else {
+			callback(stored);
+		}
 	},
 
 	run : function(doc) {

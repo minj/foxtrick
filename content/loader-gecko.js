@@ -80,7 +80,7 @@ Foxtrick.loader.gecko.docUnload = function(ev) {
 	// do nothing
 };
 
-// fennec browser load
+// fennec browser load. starts the single! content instance for fennec
 if (Foxtrick.platform == "Fennec") {
 	Foxtrick.log('script load')
 	sandboxed.extension.sendRequest({ req : "scriptLoad" },
@@ -96,9 +96,10 @@ if (Foxtrick.platform == "Fennec") {
 			Foxtrick.XMLData.League = data.league;
 			Foxtrick.XMLData.countryToLeague = data.countryToLeague;
 
+			Foxtrick.entry.init();
+
 			addEventListener("DOMContentLoaded", function(ev){
 				FoxtrickUI.update();
-				Foxtrick.entry.init();
 				Foxtrick.entry.docLoad(ev.originalTarget);
 			}, false);
 		}

@@ -125,11 +125,24 @@ if (typeof(opera) == "object") {
 					});
 				},
  			},
+			// sending everywhere including options and popups
+			broadcastMessage : function (message) { 
+				opera.extension.broadcastMessage(message);
+			},
 			getURL : function (path) {return './'+path;},
 		},
 
 		tabs : {
 			create : function(props){opera.extension.tabs.create(props)},
+			sendRequest : function( tabid, request, callback ) { 
+				opera.extension.broadcastMessage()
+				for (var i=0; i<tabs.length; ++i) {
+					if (tabid == tabs[i].id) {
+					
+						break;
+					}
+				}
+			},
 		},
 	};
 }
@@ -220,15 +233,8 @@ else if (typeof(safari) == "object") {
 				  return;
 				if (messageEvent.message.callbackToken != callbackToken)
 				  return;
-
 				if (callback) callback(messageEvent.message.data);
-				// Change to calling in 0-ms window.setTimeout, as Safari team thinks
-				// this will work around their crashing until they can release
-				// a fix.
-				// safari.self.removeEventListener("message", responseHandler, false);
-				window.setTimeout(function() {
-				  safari.self.removeEventListener("message", responseHandler, false);
-				}, 0);
+				safari.self.removeEventListener("message", responseHandler, false);
 			  };
 
 			  addListener(responseHandler);
@@ -243,7 +249,7 @@ else if (typeof(safari) == "object") {
 				// Only listen for "sendRequest" messages
 				if (messageEvent.name != "request")
 				  return;
-
+				  
 				var request = messageEvent.message.data;
 				var id = sandboxed.__getTabId(messageEvent.target);
 
@@ -256,79 +262,53 @@ else if (typeof(safari) == "object") {
 			  });
 			},
 		  },
+		  // sending to just all tabs
+		  broadcastMessage : (function() {
+			// The function we'll return at the end of all this
+			function theFunction(data, callback) {
+			  for (var i=0; i<safari.application.activeBrowserWindow.tabs.length; ++i) { 
+				  var callbackToken = "callback" + Math.random();
+			  
+				  // Listen for a response for our specific request token.
+				  addOneTimeResponseListener(callbackToken, callback);
 
-		  connect: function(port_data) {
-			var portUuid = "portUuid" + Math.random();
-			var x = safari.self.tab || safari.application.activeBrowserWindow.activeTab.page;
-			x.dispatchMessage("port-create", {name: port_data.name, uuid: portUuid});
-
-			var newPort = {
-			  name: port_data.name,
-			  onMessage: {
-				addListener: function(listener) {
-				  addListener(function(messageEvent) {
-					// If the message was a port.postMessage to our port, notify our listener.
-					if (messageEvent.name != "port-postMessage")
-					  return;
-					if (messageEvent.message.portUuid != portUuid)
-					  return;
-					listener(messageEvent.message.data);
+				  safari.application.activeBrowserWindow.tabs[i].page.dispatchMessage("request", {
+					data: data,
+					callbackToken: callbackToken
 				  });
-				}
 			  }
-			};
-			return newPort;
-		  },
+			}
 
-		  onConnect: {
-			addListener: function(handler) {
-			  // Listen for port creations
-			  addListener(function(messageEvent) {
-				if (messageEvent.name != "port-create")
+			// Make a listener that, when it hears sendResponse for the given
+			// callbackToken, calls callback(resultData) and deregisters the
+			// listener.
+			function addOneTimeResponseListener(callbackToken, callback) {
+
+			  var responseHandler = function(messageEvent) {
+				if (messageEvent.name != "response")
 				  return;
+				if (messageEvent.message.callbackToken != callbackToken)
+				  return;
+				if (callback) callback(messageEvent.message.data);
 
-				var portName = messageEvent.message.name;
-				var portUuid = messageEvent.message.uuid;
+				safari.self.removeEventListener("message", responseHandler, false);
+			  };
 
-				var id = sandboxed.__getTabId(messageEvent.target);
-
-				var newPort = {
-				  name: portName,
-				  sender: { tab: { id: id, url: messageEvent.target.url } },
-				  onDisconnect: {
-					addListener: function() {
-					  console.log("CHROME PORT LIBRARY: chrome.extension.onConnect.addListener: port.onDisconnect is not implemented, so I'm doing nothing.");
-					}
-				  },
-				  postMessage: function(data) {
-					if (! messageEvent.target.page) {
-					  console.log("Oops, this port has already disappeared -- cancelling.");
-					  return;
-					}
-					messageEvent.target.page.dispatchMessage("port-postMessage", { portUuid: portUuid, data: data });
-				  }
-				};
-
-				// Inform the onNewPort caller about the new port
-				handler(newPort);
-			  });
+			  addListener(responseHandler);
 			}
-		  },
 
-		  onRequestExternal: {
-			addListener: function() {
-			  console.log("CHROME PORT LIBRARY: onRequestExternal not supported.");
-			}
-		  }
+			return theFunction;
+		  })(),
 		},
 		tabs: {
 		  create: function(options) {
 			var window = safari.application.activeBrowserWindow;
 			window.openTab("foreground").url = options.url;
-		  }
+		  },
 		}
 	};
 }
+
 else if (typeof(chrome) == "object") {
 	Foxtrick.arch = "Sandboxed";
 	Foxtrick.platform = "Chrome";
@@ -360,12 +340,74 @@ else if (typeof(chrome) == "object") {
 			onRequest : {
 				addListener : function (listener) {chrome.extension.onRequest.addListener(listener)},
 			},
-			getURL : function (path) {chrome.extension.getURL(path)},
+			// send message to all registered tabs
+			broadcastMessage : (function() {
+				// The function we'll return at the end of all this
+				function theFunction(data, callback) {
+				  var i;
+				  for (i in sandboxed.tabs.tab) {
+					  chrome.tabs.sendRequest( Number(i), data, callback );
+				  }
+				}
+
+				return theFunction;
+			})(),
+			getURL : function (path) { 
+				chrome.extension.getURL(path) 
+			},
+			// tabid of a content script
+			tabid : -1,
 		},
 		tabs : {
-			create : function (url) {chrome.tabs.create(url)},
+			create : function (url) { chrome.tabs.create(url) },
+			// activetabs {id: true/false,..}
+			tab : {},
 		},
 	};
+	
+	// register tab for broadcastMessage
+	if (Foxtrick.chromeContext() == "content") {
+		// answer to status check
+		chrome.extension.onRequest.addListener(
+		  function(request, sender, sendResponse) {
+			if (request.req=='checkAlive') {
+				sendResponse( {id: request.id} );
+			}
+		});
+		//  and recieve tab id
+		chrome.extension.sendRequest({ req : "register" }, function(response){
+			chrome.extension.tabid = response.tabid;
+		});
+	}
+	else if (Foxtrick.chromeContext() == "background") { 
+		(function() {
+			// request tabs to confirm being alive
+			function updateTabList(senderid) {
+				var tabListCopy = sandboxed.tabs.tab, i;
+				// clear list and add alibe tabs again
+				sandboxed.tabs.tab = {};
+				for (i in tabListCopy) {
+					// not the sender
+					if (i != senderid ) {
+						chrome.tabs.sendRequest( Number(i), { id: i, req: 'checkAlive' }, 
+						  function(response) { 
+							if (response)
+								sandboxed.tabs.tab[response.id] = true;
+						});
+					}
+				}
+				sandboxed.tabs.tab[senderid] = true;
+			};
+			// listen to tab register
+			chrome.extension.onRequest.addListener( 
+			  function(request, sender, sendResponse) {
+				if (request.req=='register') {
+					updateTabList(sender.tab.id);
+					sendResponse({ tabid: sender.tab.id } );
+				}
+			});
+		})()
+	}
 }
 
 else {
@@ -456,15 +498,15 @@ else {
 
 				  var responseHandler = function(messageEvent) {
 					try{
-					if (messageEvent.json.callbackToken != callbackToken)
-					  return;
-
-					if (callback) callback(messageEvent.json.data, messageEvent.target);
-					// Change to calling in 0-ms window.setTimeout, as Safari team thinks
-					// this will work around their crashing until they can release
-					// a fix.
-					removeEventListener("message", responseHandler, false);
-					} catch(e){Foxtrick.log(e)}
+						if (messageEvent.json.callbackToken != callbackToken)
+						  return;
+	
+						if (callback) callback(messageEvent.json.data, messageEvent.target);
+						// Change to calling in 0-ms window.setTimeout, as Safari team thinks
+						// this will work around their crashing until they can release
+						// a fix.
+						removeEventListener("message", responseHandler, false);
+					} catch(e){Foxtrick.log('callback error:',e)}
 				  };
 
 				  addListener("response", responseHandler);

@@ -104,47 +104,46 @@ Foxtrick.util.module.register({
 			// prevent from multiple tickerCheck() instances running at the
 			// same time
 			ticker.removeEventListener(DOMMutationEventType, tickerCheck, false);
-			Foxtrick.sessionGet("tickers", function(tickers) {
-				if (tickers == undefined)
-					tickers = [];
+			var tickers = Foxtrick.sessionGet("tickers");
+			if (tickers == undefined)
+				tickers = [];
 
-				const tickersNow = getTickers();
-				if (tickersNow.length < tickers.length) {
-					// Hattrick.org clears all tickers before adding a new one,
-					// so to not alert when the tickers are being cleared, we
-					// return when ticker count now is less than old ticker
-					// count
-					return;
-				}
+			const tickersNow = getTickers();
+			if (tickersNow.length < tickers.length) {
+				// Hattrick.org clears all tickers before adding a new one,
+				// so to not alert when the tickers are being cleared, we
+				// return when ticker count now is less than old ticker
+				// count
+				return;
+			}
 
-				Foxtrick.sessionSet("tickers", tickersNow);
+			Foxtrick.sessionSet("tickers", tickersNow);
 
-				const newTickers = Foxtrick.filter(function(n) {
-					if (!n.isNew)
+			const newTickers = Foxtrick.filter(function(n) {
+				if (!n.isNew)
+					return false;
+				for (var i = 0; i < tickers.length; ++i) {
+					var old = tickers[i];
+					if (old.text == n.text && old.link == n.link)
 						return false;
-					for (var i = 0; i < tickers.length; ++i) {
-						var old = tickers[i];
-						if (old.text == n.text && old.link == n.link)
-							return false;
-					}
-					return true;
-				}, tickersNow);
+				}
+				return true;
+			}, tickersNow);
 
-				Foxtrick.map(function(n) {
-					var type = getType(n.link);
-					if (FoxtrickPrefs.getBool("module.TickerAlert." + type + ".enabled")) {
-						Foxtrick.util.notify.create(n.text, n.link);
-						var sound = FoxtrickPrefs.getString("module.TickerAlert." + type + ".sound");
-						if (sound) {
-							// use foxtrick:// for Foxtrick.ResourcePath
-							// for cross-platform compatibility
-							sound = sound.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
-							Foxtrick.playSound(sound, doc);
-						}
+			Foxtrick.map(function(n) {
+				var type = getType(n.link);
+				if (FoxtrickPrefs.getBool("module.TickerAlert." + type + ".enabled")) {
+					Foxtrick.util.notify.create(n.text, n.link);
+					var sound = FoxtrickPrefs.getString("module.TickerAlert." + type + ".sound");
+					if (sound) {
+						// use foxtrick:// for Foxtrick.ResourcePath
+						// for cross-platform compatibility
+						sound = sound.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
+						Foxtrick.playSound(sound, doc);
 					}
-				}, newTickers);
-				ticker.addEventListener(DOMMutationEventType, tickerCheck, false);
-			});
+				}
+			}, newTickers);
+			ticker.addEventListener(DOMMutationEventType, tickerCheck, false);
 		};
 		if (Foxtrick.util.layout.isSupporter(doc))
 			tickerCheck(doc);
