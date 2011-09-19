@@ -5,11 +5,14 @@
  */
 
 var FoxtrickForumYouthIcons = {
-
 	MODULE_NAME : "ForumYouthIcons",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forumWritePost","messageWritePost","guestbook","announcements","forumSettings","newsletter","mailnewsletter","forumModWritePost","ticket"),
-	OPTIONS :  new Array("q", "user_id", "kit_id", "article_id", "line_br", "clock", "spoiler", "pre", "table", "youth_player", "youth_team", "youth_match", "youth_series", "debug", "settings", "enlarge_input"),
+	PAGES : ["forumWritePost", "messageWritePost", "guestbook",
+		"announcements", "forumSettings", "newsletter", "mailnewsletter",
+		"forumModWritePost", "ticket"],
+	OPTIONS : ["q", "user_id", "kit_id", "article_id", "line_br", "clock",
+		"spoiler", "pre", "table", "youth_player", "youth_team",
+		"youth_match", "youth_series", "debug", "settings", "enlarge_input"],
 	CSS: Foxtrick.InternalPath + "resources/css/forum-youth-icons.css",
 
 	fields : [
@@ -58,27 +61,13 @@ var FoxtrickForumYouthIcons = {
 	],
 
 	run : function(doc) {
-		var show_main = false;
-		var show_youth = false;
-		var show_other = false;
+		var show_main = Foxtrick.any(function(option) { return FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", option); },
+			["user_id", "kit_id", "article_id", "line_br", "clock", "spoiler"]);
+		var show_youth = Foxtrick.any(function(option) { return FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", option); },
+			["youth_player", "youth_team", "youth_match", "youth_series"]);
+		var show_other = Foxtrick.any(function(option) { return FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", option); },
+			["debug", "settings"]);
 		var enlarge = FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "enlarge_input");
-		if ((FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "user_id")) ||
-			(FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "kit_id")) ||
-			(FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "article_id")) ||
-			(FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "line_br")) ||
-			(FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "clock")) ||
-			(FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "spoiler"))
-			)
-			show_main = true;
-		if ((FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "youth_player")) ||
-			(FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "youth_team")) ||
-			(FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "youth_match")) ||
-			(FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "youth_series")))
-			show_youth = true;
-
-		if ((FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "debug")) ||
-		    (FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "settings")))
-			show_other = true;
 
 		var div = doc.getElementById( "ft_youth_icons");
 		if (div != null) return;
@@ -362,232 +351,230 @@ var FoxtrickForumYouthIcons = {
 	},
 
    	clickHandler : function (doc, textareaId, openingTag, replaceText, fieldCounterId, maxLength) {
-	try {
+		try {
+			var ta = doc.getElementById(textareaId);
+			var fieldCounter = doc.getElementById(fieldCounterId);
+			if (ta) {
+				// link tags
+				if (replaceText) {
+					var s = this.getSelection(ta);
+					var newText = (s.selectionLength > 0) ? openingTag.replace(replaceText, s.selectedText) : openingTag;
 
-	var ta = doc.getElementById(textareaId);
-	var fieldCounter = doc.getElementById(fieldCounterId);
-	if (ta) {
-		// link tags
-		if (replaceText) {
-			var s = this.getSelection(ta);
-			var newText = (s.selectionLength > 0) ? openingTag.replace(replaceText, s.selectedText) : openingTag;
+					Foxtrick.log('selectedText: ', s.selectedText);
+					Foxtrick.log('newText: ', newText);
 
-			Foxtrick.log('selectedText: ', s.selectedText);
-			Foxtrick.log('newText: ', newText);
-
-			// time
-			if (replaceText == 'time') {
-				newText = doc.getElementById('time').textContent;
-			}
-
-			// table
-			else if (replaceText == 'ttt') {
-				var seperator = FoxtrickPrefs.getString("tableSeparator");
-				Foxtrick.log('seperator', seperator);
-
-				if (seperator=='TAB') seperator='\\t';
-				if (seperator=='|') seperator='\\|';
-				if (seperator=='+') seperator='\\+';
-				if (seperator=='.') seperator='\\.';
-				if (seperator==' ') seperator=' +';
-
-				// deal with some nested tags
-				var myReg = new RegExp('\\[i\\](.+)('+seperator+')(.+)\\[\\/i\\]','g');
-	 			newText = newText.replace(myReg,'[i]$1[/i]$2[i]$3[/i]');
-				var myReg = new RegExp('\\[u\\](.+)('+seperator+')(.+)\\[\\/u\\]','g');
-	 			newText = newText.replace(myReg,'[u]$1[/u]$2[u]$3[/u]');
-				var myReg = new RegExp('\\[b\\](.+)('+seperator+')(.+)\\[\\/b\\]','g');
-	 			newText = newText.replace(myReg,'[b]$1[/b]$2[b]$3[/b]');
-
-				// make the table
-				var myReg = new RegExp( seperator,'g');
-	 			newText = newText.replace(myReg,'[/td][td]');
-				newText = newText.replace(/\n/g,'[/td][/tr][tr][td]');
-
-				// add some colspan for too short rows
-				var rows = newText.split('[/tr]');
-				var max_cells = 0;
-				for (var i=0; i<rows.length-1; ++i) {
-					max_cells =  Math.max(max_cells, rows[i].split('[/td]').length-1);
-				}
-				for (var i=0; i<rows.length-1; ++i) {
-					var missing_col = max_cells - (rows[i].split('[/td]').length-1);
-					if ( missing_col !==0 ) {
-						var last_td = rows[i].lastIndexOf('[td');
-						rows[i] = rows[i].substring(0,last_td+3)+' colspan='+String(missing_col+1)+rows[i].substr(last_td+3);
+					if (replaceText == 'time') {
+						// time
+						newText = doc.getElementById('time').textContent;
 					}
-				}
-				// add header if first row is bold to some part
-				if (rows[0].search(/\[b\].+\[\/b\]/)!=-1) {
-					rows[0] = rows[0].replace(/\[b\]/g,'').replace(/\[\/b\]/g,'').replace(/td\]/g,'th]');
-				}
-				newText='';
-				for (var i=0; i<rows.length-1; ++i) {
-					newText += rows[i]+'[/tr]'
-				}
-				newText += '[/table]';
-				if (s.selectionLength===0) newText='[table][tr][td]cell1[/td][td]cell2[/td][/tr][tr][td]cell3[/td][td]cell4[/td][/tr][/table]';
+					else if (replaceText == 'ttt') {
+						// table
+						var seperator = FoxtrickPrefs.getString("tableSeparator");
+						Foxtrick.log('seperator', seperator);
 
-				// some formating
-				newText = newText.replace(/table\]/g,'table]\n')
-					.replace(/\/tr\]/g,'/tr]\n')
-					.replace(/\[td/g,' [td')
-					.replace(/\[\/td\]/g,'[/td] ')
-					.replace(/\[th/g,' [th')
-					.replace(/\[\/th\]/g,'[/th] ');
-			}
+						if (seperator=='TAB') seperator='\\t';
+						if (seperator=='|') seperator='\\|';
+						if (seperator=='+') seperator='\\+';
+						if (seperator=='.') seperator='\\.';
+						if (seperator==' ') seperator=' +';
 
-			// Opera, Mozilla
-			if (ta.selectionStart || ta.selectionStart == '0') {
-				var st = ta.scrollTop;
-				ta.value = s.textBeforeSelection + newText + s.textAfterSelection;
-				ta.scrollTop = st;
+						// deal with some nested tags
+						var myReg = new RegExp('\\[i\\](.+)('+seperator+')(.+)\\[\\/i\\]','g');
+			 			newText = newText.replace(myReg,'[i]$1[/i]$2[i]$3[/i]');
+						var myReg = new RegExp('\\[u\\](.+)('+seperator+')(.+)\\[\\/u\\]','g');
+			 			newText = newText.replace(myReg,'[u]$1[/u]$2[u]$3[/u]');
+						var myReg = new RegExp('\\[b\\](.+)('+seperator+')(.+)\\[\\/b\\]','g');
+			 			newText = newText.replace(myReg,'[b]$1[/b]$2[b]$3[/b]');
 
-				if ((openingTag.indexOf(' ') > 0) && (openingTag.indexOf(' ') < openingTag.length - 1)) {
-					ta.selectionStart = s.selectionStart + openingTag.indexOf('=') + 1;
-					ta.selectionEnd = ta.selectionStart + openingTag.indexOf(' ') - openingTag.indexOf('=') - 1;
-				}
+						// make the table
+						var myReg = new RegExp( seperator,'g');
+			 			newText = newText.replace(myReg,'[/td][td]');
+						newText = newText.replace(/\n/g,'[/td][/tr][tr][td]');
 
-				// MessageID
-				else {
-					if (s.selectionLength === 0) {
-						ta.selectionStart = s.selectionStart + openingTag.indexOf('=') + 1;
-						ta.selectionEnd = ta.selectionStart + openingTag.indexOf(']') - openingTag.indexOf('=') - 1;
+						// add some colspan for too short rows
+						var rows = newText.split('[/tr]');
+						var max_cells = 0;
+						for (var i=0; i<rows.length-1; ++i) {
+							max_cells =  Math.max(max_cells, rows[i].split('[/td]').length-1);
+						}
+						for (var i=0; i<rows.length-1; ++i) {
+							var missing_col = max_cells - (rows[i].split('[/td]').length-1);
+							if ( missing_col !==0 ) {
+								var last_td = rows[i].lastIndexOf('[td');
+								rows[i] = rows[i].substring(0,last_td+3)+' colspan='+String(missing_col+1)+rows[i].substr(last_td+3);
+							}
+						}
+						// add header if first row is bold to some part
+						if (rows[0].search(/\[b\].+\[\/b\]/)!=-1) {
+							rows[0] = rows[0].replace(/\[b\]/g,'').replace(/\[\/b\]/g,'').replace(/td\]/g,'th]');
+						}
+						newText='';
+						for (var i=0; i<rows.length-1; ++i) {
+							newText += rows[i]+'[/tr]'
+						}
+						newText += '[/table]';
+						if (s.selectionLength===0) newText='[table][tr][td]cell1[/td][td]cell2[/td][/tr][tr][td]cell3[/td][td]cell4[/td][/tr][/table]';
+
+						// some formating
+						newText = newText.replace(/table\]/g,'table]\n')
+							.replace(/\/tr\]/g,'/tr]\n')
+							.replace(/\[td/g,' [td')
+							.replace(/\[\/td\]/g,'[/td] ')
+							.replace(/\[th/g,' [th')
+							.replace(/\[\/th\]/g,'[/th] ');
+					}
+
+					if (ta.selectionStart || ta.selectionStart == '0') {
+						// Opera, Mozilla
+						var st = ta.scrollTop;
+						ta.value = s.textBeforeSelection + newText + s.textAfterSelection;
+						ta.scrollTop = st;
+
+						if ((openingTag.indexOf(' ') > 0) && (openingTag.indexOf(' ') < openingTag.length - 1)) {
+							ta.selectionStart = s.selectionStart + openingTag.indexOf('=') + 1;
+							ta.selectionEnd = ta.selectionStart + openingTag.indexOf(' ') - openingTag.indexOf('=') - 1;
+						}
+
+						// MessageID
+						else {
+							if (s.selectionLength === 0) {
+								ta.selectionStart = s.selectionStart + openingTag.indexOf('=') + 1;
+								ta.selectionEnd = ta.selectionStart + openingTag.indexOf(']') - openingTag.indexOf('=') - 1;
+							}
+							else {
+								ta.selectionStart = s.selectionStart + newText.length;
+								ta.selectionEnd = ta.selectionStart;
+							}
+							if (replaceText == 'yyy' && s.selectionLength === 0){
+								ta.selectionStart = s.selectionStart + 9;
+								ta.selectionEnd = ta.selectionStart + 3;
+							}
+							if (replaceText == 'zzz' && s.selectionLength === 0){
+								ta.selectionStart = s.selectionStart + 5;
+								ta.selectionEnd = ta.selectionStart + 3;
+							}
+							if (replaceText == 'qqq' && s.selectionLength === 0){
+								ta.selectionStart = s.selectionStart + 3;
+								ta.selectionEnd = ta.selectionStart + 3;
+							}
+							if (replaceText == 'ttt' && s.selectionLength === 0){
+								ta.selectionStart = s.selectionStart + 17;
+								if (Foxtrick.platform == "Opera") ta.selectionStart++; // opera uses \n\r thus we need to add one for that extra \r
+								ta.selectionEnd = ta.selectionStart + 5;
+							}
+						}
+
 					}
 					else {
-						ta.selectionStart = s.selectionStart + newText.length;
-						ta.selectionEnd = ta.selectionStart;
-					}
-					if (replaceText == 'yyy' && s.selectionLength === 0){
-						ta.selectionStart = s.selectionStart + 9;
-						ta.selectionEnd = ta.selectionStart + 3;
-					}
-					if (replaceText == 'zzz' && s.selectionLength === 0){
-						ta.selectionStart = s.selectionStart + 5;
-						ta.selectionEnd = ta.selectionStart + 3;
-					}
-					if (replaceText == 'qqq' && s.selectionLength === 0){
-						ta.selectionStart = s.selectionStart + 3;
-						ta.selectionEnd = ta.selectionStart + 3;
-					}
-					if (replaceText == 'ttt' && s.selectionLength === 0){
-						ta.selectionStart = s.selectionStart + 17;
-						if (Foxtrick.platform == "Opera") ta.selectionStart++; // opera uses \n\r thus we need to add one for that extra \r
-						ta.selectionEnd = ta.selectionStart + 5;
+						// Others
+						ta.value += newText;
 					}
 				}
-
-			}
-
-			// Others
-			else {
-				ta.value += newText;
-			}
-		}
-
-		// HR
-		else {
-			var s = this.getSelection(ta);
-
-			var insertText  = function(text) {
-				// Opera, Mozilla
-				if (ta.selectionStart || ta.selectionStart == '0') {
-					var st = ta.scrollTop;
-					ta.value = s.textBeforeSelection + s.selectedText + text + s.textAfterSelection;
-					ta.scrollTop = st;
-
-					ta.selectionStart = s.selectionEnd + text.length;
-					ta.selectionEnd = ta.selectionStart;
-				}
-
-				// IE
-				else if (document.selection) {
-					var IESel = document.selection.createRange();
-					IESel.text = s.selectedText + text;
-					IESel.select();
-				}
-
-				// Others
 				else {
-					ta.value += text;
-				}
-			}
+					// HR
+					var s = this.getSelection(ta);
 
-			// debug
-			if (openingTag == 'debug'){
-				if (Foxtrick.arch === "Sandboxed") {
-					sandboxed.extension.sendRequest(
-						{ req : "getDebugLog" },
-						function(n) {
-							insertText(Foxtrick.log.header(doc)+'\n'+n.log);
-							FoxtrickForumYouthIcons.textCounter(ta, fieldCounter, maxLength);
+					var insertText  = function(text) {
+						// Opera, Mozilla
+						if (ta.selectionStart || ta.selectionStart == '0') {
+							var st = ta.scrollTop;
+							ta.value = s.textBeforeSelection + s.selectedText + text + s.textAfterSelection;
+							ta.scrollTop = st;
+
+							ta.selectionStart = s.selectionEnd + text.length;
+							ta.selectionEnd = ta.selectionStart;
 						}
-					);
-					return;
-				}
-				else {
-					openingTag = Foxtrick.log.header(doc) + '\n' + Foxtrick.log.cache.substr(Foxtrick.log.cache.length-3500);
-				}
-			}
-			// settings
-			if (openingTag == 'settings'){
-				var userPrefsText =  FoxtrickPrefs.SavePrefs(true, false, true,'%key:%value');
-				var userPrefsTextArray = userPrefsText.split('\n');
-				openingTag = '';
-				for (var i=0; i<userPrefsTextArray.length; ++i)
-					openingTag += userPrefsTextArray[i].substr(0,240)+'\n';
-			}
 
-			insertText(openingTag);
+						// IE
+						else if (document.selection) {
+							var IESel = document.selection.createRange();
+							IESel.text = s.selectedText + text;
+							IESel.select();
+						}
+
+						// Others
+						else {
+							ta.value += text;
+						}
+					}
+
+					// debug
+					if (openingTag == 'debug'){
+						if (Foxtrick.arch === "Sandboxed") {
+							sandboxed.extension.sendRequest(
+								{ req : "getDebugLog" },
+								function(n) {
+									insertText(Foxtrick.log.header(doc)+'\n'+n.log);
+									FoxtrickForumYouthIcons.textCounter(ta, fieldCounter, maxLength);
+								}
+							);
+							return;
+						}
+						else {
+							openingTag = Foxtrick.log.header(doc) + '\n' + Foxtrick.log.cache.substr(Foxtrick.log.cache.length-3500);
+						}
+					}
+					// settings
+					if (openingTag == 'settings'){
+						var userPrefsText =  FoxtrickPrefs.SavePrefs(true, false, true,'%key:%value');
+						var userPrefsTextArray = userPrefsText.split('\n');
+						openingTag = '';
+						for (var i=0; i<userPrefsTextArray.length; ++i)
+							openingTag += userPrefsTextArray[i].substr(0,240)+'\n';
+					}
+
+					insertText(openingTag);
+				}
+			}
+			this.textCounter(ta, fieldCounter, maxLength);
 		}
-	}
-	this.textCounter(ta, fieldCounter, maxLength);
-  } catch(e) { Foxtrick.log(e);}
-},
-
-getSelection : function(ta) {
-	if (ta) {
-		ta.focus();
-
-		var textAreaContents = {
-			completeText: '',
-			selectionStart: 0,
-			selectionEnd: 0,
-			selectionLength: 0,
-			textBeforeSelection: '',
-			selectedText: '',
-			textAfterSelection: ''
-		};
-
-		if (ta.selectionStart || ta.selectionStart == '0') {
-			textAreaContents.completeText = ta.value;
-			textAreaContents.selectionStart = ta.selectionStart;
-
-			if ((ta.selectionEnd - ta.selectionStart) !== 0) {
-				while (ta.value.charAt(ta.selectionEnd - 1) == ' ') {
-					ta.selectionEnd--;
-				}
-			}
-
-			textAreaContents.selectionEnd = ta.selectionEnd;
-			textAreaContents.selectionLength = ta.selectionEnd - ta.selectionStart;
-			textAreaContents.textBeforeSelection = ta.value.substring(0, ta.selectionStart);
-
-			var st = ta.value.substring(ta.selectionStart, ta.selectionEnd);
-
-			textAreaContents.selectedText = st;
-			textAreaContents.textAfterSelection = ta.value.substring(ta.selectionEnd, ta.value.length);
-			return textAreaContents;
+		catch (e) {
+			Foxtrick.log(e);
 		}
+	},
+
+	getSelection : function(ta) {
+		if (ta) {
+			ta.focus();
+
+			var textAreaContents = {
+				completeText: '',
+				selectionStart: 0,
+				selectionEnd: 0,
+				selectionLength: 0,
+				textBeforeSelection: '',
+				selectedText: '',
+				textAfterSelection: ''
+			};
+
+			if (ta.selectionStart || ta.selectionStart == '0') {
+				textAreaContents.completeText = ta.value;
+				textAreaContents.selectionStart = ta.selectionStart;
+
+				if ((ta.selectionEnd - ta.selectionStart) !== 0) {
+					while (ta.value.charAt(ta.selectionEnd - 1) == ' ') {
+						ta.selectionEnd--;
+					}
+				}
+
+				textAreaContents.selectionEnd = ta.selectionEnd;
+				textAreaContents.selectionLength = ta.selectionEnd - ta.selectionStart;
+				textAreaContents.textBeforeSelection = ta.value.substring(0, ta.selectionStart);
+
+				var st = ta.value.substring(ta.selectionStart, ta.selectionEnd);
+
+				textAreaContents.selectedText = st;
+				textAreaContents.textAfterSelection = ta.value.substring(ta.selectionEnd, ta.value.length);
+				return textAreaContents;
+			}
+		}
+	},
+
+	textCounter : function (field, countfield, maxlimit) {
+		var text = field.value.replace(/[\r]/g, '').length;
+		var text2 = field.value.replace(/[\r\n]/g, '').length; // Count without \n\r
+		var diff = text - text2;
+		countfield.value = maxlimit - (text2 + diff * 2);
 	}
-},
-
-textCounter : function (field, countfield, maxlimit) {
-	var text = field.value.replace(/[\r]/g, '').length;
-	var text2 = field.value.replace(/[\r\n]/g, '').length; // Count without \n\r
-	var diff = text - text2;
-	countfield.value = maxlimit - (text2 + diff * 2);
-}
-
 };
 Foxtrick.util.module.register(FoxtrickForumYouthIcons);
