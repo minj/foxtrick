@@ -100,7 +100,8 @@ Foxtrick.util.module.register({
 			var entries = this.contextEntries;
 			var type;
 			for (type in entries) {
-				entries[type].item.setAttribute("hidden", true);
+				if (entries[type])
+					entries[type].item.setAttribute("hidden", true);
 			}
 		}
 	},
