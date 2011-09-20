@@ -96,8 +96,8 @@ Foxtrick.util.module.register({
 		}
 
 		dummy = part[0].split(/\n|<br>/);
-		var match_start = dummy.length
-		dummy2 = part[1].split(/<br>/);
+		var match_start = dummy.length;
+		var dummy2 = part[1].split(/<br>/);
 		for (var i=0; i<dummy2.length;i++) {dummy.push(dummy2[i].replace(/<br \/>/g,''));}
 
 		part[1]= '';
@@ -246,7 +246,7 @@ Foxtrick.util.module.register({
 			text = text.replace(/(\d{1,2}) - (\d{1,2})/g, "$1-$2");
 			var score = reg.exec(text);
 
-			if (divs[i].innerHTML.search(team1) > -1) start_g = 6; else start_g = 7;
+			var start_g = (divs[i].innerHTML.search(team1) > -1) ? 6 : 7;
 			if (score && i > start_g) {
 				Foxtrick.dump('- detected @' + divs[i].id + ' [' + score + '] old: [' + standing + ']\n');
 				if (score[1] > standing[0]) {
