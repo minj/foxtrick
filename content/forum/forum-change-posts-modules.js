@@ -10,37 +10,8 @@ Foxtrick.util.module.register({
 	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','newsletter','mailnewsletter',"forumModWritePost"),
 
 	run : function(doc) {
-		var reformat = function(string) {
-			var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
-			var rep = new Array("[pre]$1[/pre]", "");
-			var count_pre = Foxtrick.substr_count(string, '[pre');
-			for (var j = 0; j <= count_pre; j++) {
-				for ( var k = 0; k < org.length; k++) {
-						string = string.replace(org[k],rep[k]);
-				}
-			}
-			return string;
-		};
-		var format = function(string) {
-			string = string.replace(/·/gi, "")
-				.replace(/(\<)(\S)/gi, "<·$2");
-
-				var vstring = string.split('[pre]');
-				var r_string = vstring[0];
-				var remain=0;
-				for (var j = 1; j < vstring.length; j++) {
-					r_string+='[pre]';
-					var ivstring = vstring[j].split('[/pre]');
-					var num_do = Math.min(ivstring.length-1, remain+1);
-					remain -= (num_do-1);
-					for (var i=0;i<num_do;++i) r_string += ivstring[i].replace(/\[/g,'[·')+'[/pre]';
-					for ( var k = num_do; k < ivstring.length; k++) {
-						r_string += ivstring[k];
-					}
-				}
-			return r_string;
-		};
-
+		var format = this.format;
+		var reformat = this.reformat;
 		//format view
 		if (Foxtrick.isPage("messageWritePost", doc)
 			|| Foxtrick.isPage("guestbook", doc)) {
@@ -74,6 +45,38 @@ Foxtrick.util.module.register({
 					}, false);
 			}
 		}
+	},
+	// FIXME - also used by other modules, should extract to util/
+	reformat : function(string) {
+		var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
+		var rep = new Array("[pre]$1[/pre]", "");
+		var count_pre = Foxtrick.substr_count(string, '[pre');
+		for (var j = 0; j <= count_pre; j++) {
+			for ( var k = 0; k < org.length; k++) {
+					string = string.replace(org[k],rep[k]);
+			}
+		}
+		return string;
+	},
+	// FIXME - also used by other modules, should extract to util/
+	format : function(string) {
+		string = string.replace(/·/gi, "")
+			.replace(/(\<)(\S)/gi, "<·$2");
+
+			var vstring = string.split('[pre]');
+			var r_string = vstring[0];
+			var remain=0;
+			for (var j = 1; j < vstring.length; j++) {
+				r_string+='[pre]';
+				var ivstring = vstring[j].split('[/pre]');
+				var num_do = Math.min(ivstring.length-1, remain+1);
+				remain -= (num_do-1);
+				for (var i=0;i<num_do;++i) r_string += ivstring[i].replace(/\[/g,'[·')+'[/pre]';
+				for ( var k = num_do; k < ivstring.length; k++) {
+					r_string += ivstring[k];
+				}
+			}
+		return r_string;
 	}
 });
 
