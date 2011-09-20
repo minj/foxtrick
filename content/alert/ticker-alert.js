@@ -3,6 +3,19 @@
  * display a notification when a new ticker has arrived
  * @author taised, convincedd, ryanli
  */
+(function() {
+	
+	var types =  {
+		"welcome" : /\/MyHattrick\/Dashboard\.aspx$/i,
+		"supporter" : /\/Club\/Manager\/\?teamId=/i,
+		"forum" : /\/Forum/i,
+		"transfer" : /\/Players/i,
+		"challenge" : /\/Challenges/i,
+		"guestbook" : /\/Club\/Manager\/Guestbook\.aspx\?teamid=/i,
+		"mail" : /\/Inbox/i,
+		"myht" : /\/Myhattrick\/Dashboard\.aspx\?actionType=/i,
+		"others" : /.*/
+	};
 
 Foxtrick.util.module.register({
 	MODULE_NAME : "TickerAlert",
@@ -59,23 +72,12 @@ Foxtrick.util.module.register({
 		return table;
 	},
 
-	TYPES : {
-		"welcome" : /\/MyHattrick\/Dashboard\.aspx$/i,
-		"supporter" : /\/Club\/Manager\/\?teamId=/i,
-		"forum" : /\/Forum/i,
-		"transfer" : /\/Players/i,
-		"challenge" : /\/Challenges/i,
-		"guestbook" : /\/Club\/Manager\/Guestbook\.aspx\?teamid=/i,
-		"mail" : /\/Inbox/i,
-		"myht" : /\/Myhattrick\/Dashboard\.aspx\?actionType=/i,
-		"others" : /.*/
-	},
+	TYPES : types,
 
 	run : function(doc) {
 		// type of change to listen to. opera doesn't support DOMSubtreeModified
 		var DOMMutationEventType = (Foxtrick.platform == "Opera") ? "DOMNodeInserted" : "DOMSubtreeModified";
 
-		var types = this.TYPES;
 		var getType = function(url) {
 			for (var type in types) {
 				var regexp = types[type];
@@ -149,3 +151,5 @@ Foxtrick.util.module.register({
 			tickerCheck(doc);
 	}
 });
+
+})()
