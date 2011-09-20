@@ -145,16 +145,16 @@ Foxtrick.util.module.register({
 		else if (Foxtrick.arch == "Sandboxed") {
 			// data to be transfered to background
 			var getEntries = function() {
-				var entries = {};
+				var active_entries = {};
 				var type;
 				for (type in entries) {
 					if (entries[type].copyText !== null) {
-						entries[type] = {};
-						entries[type].copyText = entries[type].copyText;
-						entries[type].title = entries[type].title;
+						active_entries[type] = {};
+						active_entries[type].copyText = entries[type].copyText;
+						active_entries[type].title = entries[type].title;
 					}
 				}
-				return entries;
+				return active_entries;
 			};
 			
 			if (Foxtrick.platform == "Safari") {
