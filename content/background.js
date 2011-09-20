@@ -104,7 +104,8 @@ Foxtrick.loader.chrome.browserLoad = function() {
 			about : about,
 			worldDetails : worldDetails,
 			league : Foxtrick.XMLData.League,
-			countryToLeague : Foxtrick.XMLData.countryToLeague
+			countryToLeague : Foxtrick.XMLData.countryToLeague,
+			
 			sessionStore : Foxtrick.sessionStore,
 		};
 		
