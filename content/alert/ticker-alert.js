@@ -123,8 +123,8 @@ Foxtrick.util.module.register({
 				if (!n.isNew)
 					return false;
 				for (var i = 0; i < tickers.length; ++i) {
-					var old = tickers[i];
-					if (old.text == n.text && old.link == n.link)
+					var old = tickers[i]; 
+					if (old.text == n.text && old.link.replace(/http:\/\/.+\//,'/') == n.link.replace(/http:\/\/.+\//,'/'))
 						return false;
 				}
 				return true;
