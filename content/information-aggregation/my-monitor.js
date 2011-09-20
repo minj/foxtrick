@@ -179,7 +179,7 @@ Foxtrick.util.module.register({
 					if (team.logo) {
 						var img = doc.createElement('img');
 						img.title = team.name;
-						img.display.height = height;
+						img.height = height;
 						img.className = 'teamicon';
 						img.src = team.logo;
 						header.appendChild(img);
