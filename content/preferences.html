@@ -207,26 +207,6 @@
 <!-- pane for showing modules, modules have attribute x-on which is a list
  of under which tabs it should be shown -->
 <div id="pane">
-<!-- ReadHtPrefs -->
-<div class="module" x-on="main">
-	<h3 id="pref-read-ht-prefs-title" data-text="foxtrick.prefs.basicPreferences"></h3>
-	<input type="checkbox" id="pref-read-ht-prefs" module="ReadHtPrefs" />
-	<label id="pref-read-ht-prefs-label" for="pref-read-ht-prefs" data-text="foxtrick.ReadHtPrefs.desc"></label>
-	<table>
-		<tr>
-			<td><label id="pref-read-language-label" for="pref-read-language" data-text="foxtrick.prefs.captionHTLanguage"></label></td>
-			<td><select id="pref-read-language" pref="htLanguage" blocked-by="pref-read-ht-prefs"></select></td>
-		</tr>
-		<tr>
-			<td><label id="pref-read-country-label" for="pref-read-country" data-text="foxtrick.prefs.captionHTCountry"></label></td>
-			<td><select id="pref-read-country" pref="htCountry" blocked-by="pref-read-ht-prefs"></select></td>
-		</tr>
-		<tr>
-			<td><label id="pref-read-date-format-label" for="pref-read-date-format" data-text="foxtrick.prefs.captionHTDateformat"></label></td>
-			<td><input id="pref-read-date-format" pref="htDateFormat" blocked-by="pref-read-ht-prefs"></input></td>
-		</tr>
-	</table>
-</div>
 <!-- LoadSavePrefs -->
 <div class="module" x-on="main">
 	<h3 id="pref-load-save-title" data-text="foxtrick.prefs.captionLoadSavePrefs"></h3>
@@ -306,6 +286,26 @@
 			<label id="pref-debug-info-label" for="pref-debug-info" data-text="foxtrick.prefs.DisplayHTMLDebugOutput"></label>
 		</li>
 	</ul>
+</div>
+<!-- ReadHtPrefs -->
+<div class="module" x-on="main">
+	<h3 id="pref-read-ht-prefs-title" data-text="foxtrick.prefs.basicPreferences"></h3>
+	<input type="checkbox" id="pref-read-ht-prefs" module="ReadHtPrefs" />
+	<label id="pref-read-ht-prefs-label" for="pref-read-ht-prefs" data-text="foxtrick.ReadHtPrefs.desc"></label>
+	<table>
+		<tr>
+			<td><label id="pref-read-language-label" for="pref-read-language" data-text="foxtrick.prefs.captionHTLanguage"></label></td>
+			<td><select id="pref-read-language" pref="htLanguage" blocked-by="pref-read-ht-prefs"></select></td>
+		</tr>
+		<tr>
+			<td><label id="pref-read-country-label" for="pref-read-country" data-text="foxtrick.prefs.captionHTCountry"></label></td>
+			<td><select id="pref-read-country" pref="htCountry" blocked-by="pref-read-ht-prefs"></select></td>
+		</tr>
+		<tr>
+			<td><label id="pref-read-date-format-label" for="pref-read-date-format" data-text="foxtrick.prefs.captionHTDateformat"></label></td>
+			<td><input id="pref-read-date-format" pref="htDateFormat" blocked-by="pref-read-ht-prefs"></input></td>
+		</tr>
+	</table>
 </div>
 
 <!-- changes -->
