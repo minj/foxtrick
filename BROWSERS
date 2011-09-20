@@ -1,6 +1,7 @@
 ===Browser===
 
 ==firefox/seamonkey==
+single threaded
 =rights=
 	all
 =script loading=
@@ -24,6 +25,7 @@
 
 
 ==fennec==
+one background thread and one for each tab (persistant with page reload)
 =rights=
 	xml and pref setting via background
 =script loading=
@@ -43,12 +45,13 @@
 =css=
 	into browser
 =sessionStore=
-	via background
+	updates via background
 =log=
 	dump via background
 
 
 ==chrome==
+one background thread and one for each page (non-persistant with page reload)
 =rights=
 	content scripts can't access extension diretory
 =script loading=
@@ -67,12 +70,13 @@
 =css=
 	injected via background
 =sessionStore=
-	via background
+	updates via background
 =log=
 	console.log directly
 
 
 ==opera==
+one background thread and one for each page (non-persistant with page reload)
 =rights=
 	content scripts and html document can't access extension diretory
 =script loading=
@@ -92,12 +96,13 @@
 	injected via background
 	imgs converted to dataurl
 =sessionStore=
-	via background
+	updates via background
 =log=
 	opera.postError directly
 
 
 ==safari==
+one background thread and one for each page (non-persistant with page reload)
 =rights=
 	content scripts can't access extension diretory
 =script loading=
@@ -116,7 +121,7 @@
 =css=
 	injected via background
 =sessionStore=
-	via background
+	updates via background
 =log=
 	console.log directly
 
