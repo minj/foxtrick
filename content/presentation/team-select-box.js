@@ -20,7 +20,7 @@ Foxtrick.util.module.register({
 		var isPlayerLink = function(n) {
 			return n.href.search(/playerId=(\d+)/i) != -1;
 		};
-		linkBoxes = Foxtrick.filter(function(n) {
+		var linkBoxes = Foxtrick.filter(function(n) {
 			return n.getElementsByTagName("a").length > 0
 				&& isPlayerLink(n.getElementsByTagName("a")[0]);
 		}, sidebarBoxes);
