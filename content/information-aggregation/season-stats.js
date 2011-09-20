@@ -35,7 +35,7 @@ Foxtrick.util.module.register({
 		if (Foxtrick.util.layout.isStandard(doc)) selectbox.setAttribute("style","float:right; margin-top:20px;");
 		else  selectbox.setAttribute("style","float:right;margin-top:4px;");
 
-		selectbox.addEventListener('change', function() {
+		selectbox.addEventListener('change', function(ev) {
 				try {
 					var actiontype='';
 					var select = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlMatchType');
