@@ -72,6 +72,7 @@ Foxtrick.util.module.register({
 		var htDate = Foxtrick.util.time.getHtDate(doc);
 		var htTime = htDate.getTime();
 		var i = 0;
+		var element;
 		while (element = doc.getElementById("ctl00_ctl00_CPContent_CPMain_lstBids_ctrl" + (i++) + "_jsonDeadLine"))
 			this.processNode(element, htTime);
 	},
