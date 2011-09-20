@@ -80,22 +80,13 @@ Foxtrick.loader.gecko.docUnload = function(ev) {
 	// do nothing
 };
 
-// fennec browser load. starts the single! content instance for fennec
+// fennec browser load. starts the content instances for fennec (one per tab. persistant)
 if (Foxtrick.platform == "Fennec") {
 	Foxtrick.log('script load')
 	sandboxed.extension.sendRequest({ req : "scriptLoad" },
 		function (data) {
-			var parser = new window.DOMParser();
-			for (var i in data.htLang) {
-				Foxtrickl10n.htLanguagesXml[i] = parser.parseFromString(data.htLang[i], "text/xml");
-			}
 
-			Foxtrick.XMLData.htCurrencyXml = parser.parseFromString(data.currency, "text/xml");
-			Foxtrick.XMLData.aboutXML = parser.parseFromString(data.about, "text/xml");
-			Foxtrick.XMLData.worldDetailsXml = parser.parseFromString(data.worldDetails, "text/xml");
-			Foxtrick.XMLData.League = data.league;
-			Foxtrick.XMLData.countryToLeague = data.countryToLeague;
-
+			Foxtrick.entry.setRetrievedLocalResources(data);
 			Foxtrick.entry.init();
 
 			addEventListener("DOMContentLoaded", function(ev){

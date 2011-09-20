@@ -38,8 +38,8 @@ Foxtrick._sessionDeleteBranch = function(branch) {
 	};
 };
 
-// for Gecko
-if (Foxtrick.arch == "Gecko") {
+// for Firefox
+if (Foxtrick.platform == "Firefox") {
 	Foxtrick.sessionSet = Foxtrick._sessionSet;
 	Foxtrick.sessionGet = Foxtrick._sessionGet; 
 	Foxtrick.sessionDeleteBranch = Foxtrick._sessionDeleteBranch;
@@ -60,7 +60,7 @@ else {
 		// don't update if this tab initiated the update
 		sandboxed.extension.onRequest.addListener(
 		 function(request, sender, sendResponse) {
-			if (request.req=='sessionSet' && chrome.extension.tabid != request.senderid ) {
+		 if (request.req=='sessionSet' && chrome.extension.tabid != request.senderid ) {
 				Foxtrick._sessionSet(request.key, request.value);
 			}
 			else if (request.req=='sessionDeleteBranch' && chrome.extension.tabid != request.senderid ) {

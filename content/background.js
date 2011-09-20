@@ -216,7 +216,6 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	var reuseTab = function(request, sender, sendResponse) {
 		// @param url - the URL of new tab to create
 		if (Foxtrick.platform == "Fennec") {
-			console.log(sender.tab.id)
 			for (var i = 0; i<Browser.browsers.length; ++i) {
 				if (sender.tab.id == Browser.browsers[i].tid) {
 					Browser.selectedTab = Browser.getTabAtIndex(i);

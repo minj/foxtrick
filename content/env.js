@@ -531,6 +531,43 @@ else {
 				  });
 				},
 			  },
+			  broadcastMessage : (function() {
+				// The function we'll return at the end of all this
+				function theFunction(data, callback) {
+				var callbackToken = "callback_all";
+
+				  // Listen for a response for our specific request token.
+				  addOneTimeResponseListener(callbackToken, callback);
+				  var x = typeof(sendAsyncMessage)=='function'?sendAsyncMessage:messageManager.sendAsyncMessage;
+				  x("request", {
+					data: data,
+					callbackToken: callbackToken
+				  });
+				}
+
+				// Make a listener that, when it hears sendResponse for the given
+				// callbackToken, calls callback(resultData) and deregisters the
+				// listener.
+				function addOneTimeResponseListener(callbackToken, callback) {
+
+				  var responseHandler = function(messageEvent) {
+					try{
+						if (messageEvent.json.callbackToken != callbackToken)
+						  return;
+	
+						if (callback) callback(messageEvent.json.data, messageEvent.target);
+						// Change to calling in 0-ms window.setTimeout, as Safari team thinks
+						// this will work around their crashing until they can release
+						// a fix.
+						removeEventListener("message", responseHandler, false);
+					} catch(e){Foxtrick.log('callback error:',e)}
+				  };
+
+				  addListener("response", responseHandler);
+				}
+
+				return theFunction;
+			  })(),
 			},
 			tabs: {
 			  create: function(data) {

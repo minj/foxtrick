@@ -39,18 +39,21 @@ Foxtrick.entry.docLoad = function(doc) {
 };
 
 Foxtrick.entry.setRetrievedLocalResources = function(data) {
-		FoxtrickPrefs._prefs_chrome_user = data._prefs_chrome_user;
-		FoxtrickPrefs._prefs_chrome_default = data._prefs_chrome_default;
+		if (Foxtrick.platform != "Fennec") {
+			// fennec can read them directly
+			FoxtrickPrefs._prefs_chrome_user = data._prefs_chrome_user;
+			FoxtrickPrefs._prefs_chrome_default = data._prefs_chrome_default;
 
+			Foxtrickl10n.properties_default = data.properties_default;
+			Foxtrickl10n.properties = data.properties;
+			Foxtrickl10n.screenshots_default = data.screenshots_default;
+			Foxtrickl10n.screenshots = data.screenshots;
+		}
+		
 		var parser = new window.DOMParser();
 		for (var i in data.htLang) {
 			Foxtrickl10n.htLanguagesXml[i] = parser.parseFromString(data.htLang[i], "text/xml");
 		}
-
-		Foxtrickl10n.properties_default = data.properties_default;
-		Foxtrickl10n.properties = data.properties;
-		Foxtrickl10n.screenshots_default = data.screenshots_default;
-		Foxtrickl10n.screenshots = data.screenshots;
 
 		Foxtrick.XMLData.htCurrencyXml = parser.parseFromString(data.currency, "text/xml");
 		Foxtrick.XMLData.aboutXML = parser.parseFromString(data.about, "text/xml");
