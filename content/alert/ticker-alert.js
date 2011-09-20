@@ -73,12 +73,12 @@ Foxtrick.util.module.register({
 
 	run : function(doc) {
 		// type of change to listen to. opera doesn't support DOMSubtreeModified
-		if (Foxtrick.platform == "Opera") var DOMMutationEventType = 'DOMNodeInserted';
-		else var DOMMutationEventType = 'DOMSubtreeModified';
+		var DOMMutationEventType = (Foxtrick.platform == "Opera") ? "DOMNodeInserted" : "DOMSubtreeModified";
 
+		var type = this.TYPES;
 		var getType = function(url) {
-			for (var type in Foxtrick.util.module.get('TickerAlert').TYPES) {
-				var regexp = Foxtrick.util.module.get('TickerAlert').TYPES[type];
+			for (var type in types) {
+				var regexp = types[type];
 				if (url.match(regexp))
 					return type;
 			}
