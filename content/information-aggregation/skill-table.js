@@ -686,7 +686,7 @@ Foxtrick.util.module.register({
 				}
 
 				var removeBotPlayersLink=doc.getElementById('skilltable_removeBotPlayersId')
-				if (removeBotPlayersLink) removeBotPlayersLink.setAttribute('style','display:inline;');
+				if (removeBotPlayersLink) Foxtrick.removeClass(removeBotPlayersLink, 'hidden');
 
 			}
 			catch (e) {
@@ -714,13 +714,14 @@ Foxtrick.util.module.register({
 			}
 		};
 		var AddHomegrown = function() {
-			doc.getElementById('skilltable_addHomegrownId').setAttribute('style','display:none;');
+			Foxtrick.toggleClass(doc.getElementById('skilltable_addHomegrownId'), 'hidden');
 
 			var fullType = { type : "oldiesAndOwn"};
 			createTable(fullType);
 		};
 		var showTimeInClub = function() {
-			doc.getElementById('skilltable_showTimeInClubId').setAttribute('style','display:none;');
+			Foxtrick.toggleClass(doc.getElementById('skilltable_showTimeInClubId'), 'hidden');
+
 			var loading = Foxtrick.util.note.createLoading(doc);
 			doc.getElementsByClassName("ft_skilltable_wrapper")[0].appendChild(loading);
 
@@ -881,7 +882,7 @@ Foxtrick.util.module.register({
 		};
 		var removeBotPlayers = function() {
 			try {
-				doc.getElementById('skilltable_removeBotPlayersId').setAttribute('style','display:none;');
+				Foxtrick.toggleClass(doc.getElementById('skilltable_removeBotPlayersId'), 'hidden');
 
 				var markRowIfBotOwner  = function(rows, xml) {
 					// check if player not sold or was first sold by this team -> homegrown

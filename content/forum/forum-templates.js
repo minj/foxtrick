@@ -113,19 +113,19 @@ Foxtrick.util.module.register({
 		};
 		var ShowTemplates = function() {
 			var div = doc.getElementById(templatesDivId);
-			div.style.display="inline";
+			Foxtrick.toggleClass(div,'hidden')
 			var div = doc.getElementById("showTemplateId");
-			div.style.display="none";
+			Foxtrick.toggleClass(div,'hidden'); 
 			var div = doc.getElementById("hideTemplateId");
-			div.style.display="inline-block";
+			Foxtrick.toggleClass(div,'hidden'); 
 		};
 		var HideTemplates = function() {
 			var div = doc.getElementById(templatesDivId);
-			div.style.display="none";
+			Foxtrick.toggleClass(div,'hidden'); 
 			var div = doc.getElementById("showTemplateId");
-			div.style.display="inline-block";
+			Foxtrick.toggleClass(div,'hidden'); 
 			var div = doc.getElementById("hideTemplateId");
-			div.style.display="none";
+			Foxtrick.toggleClass(div,'hidden'); 
 		};
 		var removeTemplate = function(ev) {
 			if (Foxtrick.confirmDialog(Foxtrickl10n.getString('delete_template_ask'))) {
@@ -179,7 +179,7 @@ Foxtrick.util.module.register({
 		if (!msg_window) return; // ie mailbox overview
 		var templates_div = doc.createElement("div");
 		templates_div.setAttribute("class", "folderItem");
-		templates_div.setAttribute('style','display:none; padding-top:5px;');
+		templates_div.setAttribute('style','padding-top:5px;');
 		templates_div.id = templatesDivId;
 
 		msg_window.parentNode.insertBefore(templates_div, msg_window);
@@ -196,17 +196,19 @@ Foxtrick.util.module.register({
 		var new_button = doc.createElement("a");
 		new_button.setAttribute("id", 'addTemplateId');
 		new_button.setAttribute("href", "javascript:void(0)");
-		new_button.setAttribute("style", "display:inline-block;margin-right:10px;");
+		new_button.setAttribute("style", "margin-right:10px;");
 		new_button.setAttribute("tabIndex", "3");
 		new_button.innerHTML = Foxtrickl10n.getString('make_template_from_post');
 		new_button.addEventListener("click", addNewTitle, false);
 		controls_div.appendChild(new_button);
 
 		if (!FoxtrickPrefs.isModuleOptionEnabled("ForumTemplates", "DefaultShow")) {
+			Foxtrick.addClass(templates_div, 'hidden');
+			
 			var show_button = doc.createElement("a");
 			show_button.setAttribute("id", 'showTemplateId');
 			show_button.setAttribute("href", "javascript:void(0);");
-			show_button.setAttribute("style", "display:inline-block; margin-right:10px;");
+			show_button.setAttribute("style", "margin-right:10px;");
 			//show_button.setAttribute("tabIndex", "3");
 			show_button.innerHTML = Foxtrickl10n.getString('show_templates');
 			show_button.addEventListener("click", ShowTemplates, false);
@@ -215,13 +217,13 @@ Foxtrick.util.module.register({
 			var hide_button = doc.createElement("a");
 			hide_button.setAttribute("id", 'hideTemplateId');
 			hide_button.setAttribute("href", "javascript:void(0);");
-			hide_button.setAttribute("style", "display:none; margin-right:10px;");
+			hide_button.className='hidden'
+			hide_button.setAttribute("style", "margin-right:10px;");
 			//hide_button.setAttribute("tabIndex", "3");
 			hide_button.innerHTML = Foxtrickl10n.getString('hide_templates');
 			hide_button.addEventListener("click", HideTemplates, false);
 			controls_div.appendChild(hide_button);
 		}
-		else templates_div.style.display="inline";
 
 	   	msg_window.parentNode.insertBefore(controls_div, msg_window);
 	},

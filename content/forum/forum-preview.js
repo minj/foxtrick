@@ -122,25 +122,18 @@ Foxtrick.util.module.register({
 		};
 
 		var toggleListener = function() {
-			var obj = doc.getElementById('ft-forum-preview-area');
-			if (obj.style.display == 'block') {
-				obj.style.display = 'none';
-			}
-			else if (obj.style.display == 'none') {
-				obj.style.display = 'block';
-			}
+			var prev_div = doc.getElementById('ft-forum-preview-area');
+			Foxtrick.toggleClass(prev_div,'hidden');
 
 			try {
 				var msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
 			}
 			catch(e) {
-				Foxtrick.dump('FoxtrickForumPreview'+e);
+				Foxtrick.log('FoxtrickForumPreview',e);
 			}
 
-			var prev_div = doc.getElementById( "ft-forum-preview-area" );
-
 			try {
-				if( prev_div.style.display == "none" ) {
+				if( Foxtrick.hasClass(prev_div,'hidden') ) {
 					msg_window.removeEventListener("keyup", preview, false);
 					var toolbar = doc.getElementsByClassName("HTMLToolbar");
 					for (var i=0;i< toolbar.length;++i)
@@ -279,8 +272,7 @@ Foxtrick.util.module.register({
 
 		var preview_div = doc.createElement( "div" );
 		preview_div.id = "ft-forum-preview-area";
-		preview_div.setAttribute( "class", "cfMessageNoAvatar" );
-		preview_div.style.display = "none";
+		preview_div.setAttribute( "class", "cfMessageNoAvatar hidden" );
 		preview_div.style.border = "1px dotted grey";
 		if (msg_window.style.width=='95%')  preview_div.style.width ='89.5%' ;
 		else preview_div.style.width ='93%' ;
