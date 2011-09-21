@@ -18,7 +18,7 @@ Foxtrick.util.module.register({
 		var deletingThreadId = -1;
 		var checkThreads = function() {
 			if (!FoxtrickPrefs.isModuleOptionEnabled("ForumThreadAutoIgnore",'Tags')) return;
-			var tags_string = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "Tags_text");
+			var tags_string = FoxtrickPrefs.getString("module.ForumThreadAutoIgnore.Tags_text");
 			if (!tags_string) return;
 
 			// get tags. comma seperated in the prefs
@@ -30,7 +30,7 @@ Foxtrick.util.module.register({
 
 			// get whitelisted threadIDs. comma seperated in the prefs
 			if (FoxtrickPrefs.isModuleOptionEnabled("ForumThreadAutoIgnore",'Whitelist_ThreadIDs')) {
-				var whitelist_string = FoxtrickPrefs.getString("module." + this.MODULE_NAME + "." + "Whitelist_ThreadIDs_text");
+				var whitelist_string = FoxtrickPrefs.getString("module.ForumThreadAutoIgnore.Whitelist_ThreadIDs_text");
 				if (whitelist_string) {
 					this.whitelist = whitelist_string.split(',');
 					for (var i=0; i<this.whitelist.length; ++i) {
