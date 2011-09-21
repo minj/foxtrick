@@ -12,20 +12,29 @@ Foxtrick.util.module.register({
 
 	run : function(doc) {
 		var bDetailedHeader = true;
-		var copy_postid_to_clipboard = function(ev) {
-			var idLink = ev.target.parentNode.nextSibling;
-			var idExpanded = (idLink.href.indexOf("MInd") >= 0);
-			if (idExpanded) {
-				var postId = idLink.href.match(/\d+\.\d+/g)[0];
-			}
-			else {
-				var postId = idLink.title;
-			}
-			var insertBefore = ev.target.parentNode.parentNode.parentNode.parentNode; // cfWrapper
-			Foxtrick.copyStringToClipboard("[post=Oops]".replace("Oops", postId));
-			var note = Foxtrick.util.note.add(doc, insertBefore, "ft-post-id-copy-note-" + postId.replace(/\D/g, "-"),
-				Foxtrickl10n.getString("foxtrick.tweaks.postidcopied").replace("%s", postId),
-				null, true);
+		var addCopyPostId = function(idLink) {
+			// part of copypostid
+			var link = doc.createElement("a");
+			link.className = "ft-copy-small ft-link";
+			link.title = Foxtrickl10n.getString("foxtrick.CopyPostID");
+			var img = doc.createElement("img");
+			img.src = "/Img/Icons/transparent.gif";
+			link.appendChild(img);
+			img.addEventListener("click", function() {
+					var idExpanded = (idLink.href.indexOf("MInd") >= 0);
+					if (idExpanded) {
+						var postId = idLink.href.match(/\d+\.\d+/g)[0];
+					}
+					else {
+						var postId = idLink.title;
+					}
+					var insertBefore = idLink.parentNode.parentNode.parentNode; // cfWrapper
+					Foxtrick.copyStringToClipboard("[post=Oops]".replace("Oops", postId));
+					var note = Foxtrick.util.note.add(doc, insertBefore, "ft-post-id-copy-note-" + postId.replace(/\D/g, "-"),
+						Foxtrickl10n.getString("foxtrick.tweaks.postidcopied").replace("%s", postId),
+						null, true);
+				}, false);
+			idLink.parentNode.insertBefore(link, idLink);
 		};
 		var copy_posting_to_clipboard = function(ev) {
 			try {
@@ -204,17 +213,6 @@ Foxtrick.util.module.register({
 		var isStandardLayout = Foxtrick.util.layout.isStandard ( doc ) ;
 		var notif = doc.getElementById('ctl00_ctl00_CPContent_ucNotifications_updNotifications');
 		var isArchive = notif.innerHTML.search('ctl00_ctl00_CPContent_ucNotifications_error_0')!=-1;
-
-		// part of copypostid
-		var img = doc.createElement('img');
-		img.src = "/Img/Icons/transparent.gif";
-
-		var copy_link1 = doc.createElement('a');
-		copy_link1.className = 'ft-copy-small';
-		copy_link1.href = 'javascript:void(0);'
-		copy_link1.title = Foxtrickl10n.getString( 'foxtrick.CopyPostID' );
-		copy_link1.setAttribute('doht_ml',false);
-		copy_link1.appendChild(img);
 
 		// part of copy_posting_link
 		var copy_posting_img = doc.createElement('img');
@@ -414,9 +412,7 @@ Foxtrick.util.module.register({
 
 			// copy post id ---------------------------------------------
 			if (do_copy_post_id) {
-				var copy_link=copy_link1.cloneNode(true);
-				copy_link.firstChild.addEventListener("click", copy_postid_to_clipboard, false);
-				header_left.insertBefore(copy_link, post_link1);
+				addCopyPostId(post_link1);
 			}  // end copy post id
 
 			// copy posting ---------------------------------------------
