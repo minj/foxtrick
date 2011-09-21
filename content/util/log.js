@@ -84,9 +84,13 @@ Foxtrick.log.flush = (function() {
 	return function(doc) {
 		if (doc)
 			lastDoc = doc;
-		if (!doc && !lastDoc)
-			return;
-		Foxtrick.log.lastDoc = doc;
+		else {
+			if (!doc && !lastDoc)
+				return;
+			else
+				doc = lastDoc;
+		}
+		
 		if (doc.getElementById("page") != null
 			&& FoxtrickPrefs.getBool("DisplayHTMLDebugOutput")
 			&& Foxtrick.log.cache != "") {
