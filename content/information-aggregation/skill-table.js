@@ -1205,12 +1205,12 @@ Foxtrick.util.module.register({
 			}
 			return tablediv;
 		};
-
+	
 		if (doc.getElementById("ft_skilltablediv"))
 			return;
-		if (Foxtrick.isPage("transferSearchResult", doc)
-			&& getFullType().subtype != "own"
-			&& !FoxtrickPrefs.isModuleOptionEnabled("SkillTable", "OtherTeams")) {
+		if ( !Foxtrick.isPage("transferSearchResult", doc)
+				&& getFullType().subtype != "own"
+				&& !FoxtrickPrefs.isModuleOptionEnabled("SkillTable", "OtherTeams")) {
 			return;
 		}
 		addTableDiv();
