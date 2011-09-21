@@ -88,8 +88,7 @@ Foxtrick.entry.init = function() {
 		// evaluate each module
 		Foxtrick.map(function(f) {
 			var script = Foxtrick.load(f);
-			if (Foxtrick.platform=='Firefox') 
-				script = "\"use strict\";\n" + script;
+			script = "\"use strict\";\n" + script;
 			try {
 				eval(script);
 			}
