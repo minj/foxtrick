@@ -21,7 +21,7 @@ Foxtrick.util.module.register({
 		args.push(["teamId", teamid]);
 		args.push(["file", "players"]);
 
-		Foxtrick.util.api.retrieve(doc, args, {cache_lifetime:'session', caller_name:this.MODULE_NAME },
+		Foxtrick.util.api.retrieve(doc, args, {cache_lifetime:'session' },
 		function(xml) {
 			if (!xml)
 				return;

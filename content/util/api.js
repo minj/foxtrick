@@ -161,7 +161,7 @@ Foxtrick.util.api = {
 		} catch (e) {Foxtrick.log(e);}
 	},
 
-	// options: {caller_name:name, cache:'session' or 'default' or timestamp}
+	// options: {cache:'session' or 'default' or timestamp}
 	// session: take xml from this session. xml doesn't expire
 	// default: currently 1 hour, see bellow
 	// timestamp: time in milliseconds since 1970 when a new xml will get retrieved
@@ -241,9 +241,7 @@ Foxtrick.util.api = {
 			else var cache_lifetime = 0;
 
 			try {
-				var caller_name='';
-				if (options && options.caller_name) caller_name =  options.caller_name+' ';
-				Foxtrick.log("ApiProxy: "+caller_name+"attempting to retrieve: ", parameters, "…");
+				Foxtrick.log("ApiProxy: attempting to retrieve: ", parameters, "…");
 
 				if (!Foxtrick.util.api.authorized()) {
 					Foxtrick.log("ApiProxy: unauthorized.");
@@ -272,7 +270,7 @@ Foxtrick.util.api = {
 				Foxtrick.OAuth.setTimestampAndNonce(msg);
 				Foxtrick.OAuth.SignatureMethod.sign(msg, accessor);
 				var url = Foxtrick.OAuth.addToURL(Foxtrick.util.api.resourceUrl, msg.parameters);
-				Foxtrick.log(caller_name,": Fetching XML data from ",  Foxtrick.util.api.stripToken(url));
+				Foxtrick.log("Fetching XML data from ",  Foxtrick.util.api.stripToken(url));
 				Foxtrick.loadXml(url, function(x, status) {
 					if (status == 200) {
 						var serializer = new window.XMLSerializer();

@@ -38,8 +38,7 @@ Foxtrick.util.module.register({
 					["teamID", teamId]
 				];
 				Foxtrick.util.api.retrieve(doc, parameters, {
-						cache_lifetime : "default",
-						caller_name : "ShowFriendlyBooked"
+						cache_lifetime : "default"
 					},
 					function(xml) {
 						if (xml == null) {

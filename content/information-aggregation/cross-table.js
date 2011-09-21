@@ -304,7 +304,7 @@ Foxtrick.util.module.register({
 			["season", season]
 		];
 
-		Foxtrick.util.api.retrieve(doc, args, { cache_lifetime:'session', caller_name:this.MODULE_NAME},
+		Foxtrick.util.api.retrieve(doc, args, { cache_lifetime:'session'},
 		function(xml) {
 			try {
 				if (xml) {

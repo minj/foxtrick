@@ -263,8 +263,7 @@ Foxtrick.util.module.register({
 				var parameters_str = JSON.stringify(args);
 
 				Foxtrick.util.api.retrieve(doc, args, {
-					cache_lifetime : "default",
-					caller_name : "MyMonitor"
+					cache_lifetime : "default"
 				}, function(xml) {
 					if (xml !== null) {
 						team.name = xml.getElementsByTagName("TeamName")[0].textContent;

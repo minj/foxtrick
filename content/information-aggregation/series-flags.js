@@ -52,7 +52,7 @@ Foxtrick.util.module.register({
 			else {
 				var args = [["file", "teamdetails"]];
 				args.push(arg);
-				Foxtrick.util.api.retrieve(doc, args,{cache_lifetime:'session', caller_name: "SeriesFlags" },
+				Foxtrick.util.api.retrieve(doc, args,{cache_lifetime:'session'},
 				function(xml) {
 					if (!xml) return;
 					var data = { // in case LeagueLevelUnit is missing (eg during quali matches)

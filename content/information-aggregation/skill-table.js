@@ -783,7 +783,7 @@ Foxtrick.util.module.register({
 			// first get teams activation date. we'll need it later
 			var TeamId = Foxtrick.Pages.All.getTeamId(doc);
 			var args = [ ["TeamId", TeamId], ["file", "teamdetails"]];
-			Foxtrick.util.api.retrieve(doc, args, {cache_lifetime:'session', caller_name:this.MODULE_NAME }, function(xml) {
+			Foxtrick.util.api.retrieve(doc, args, {cache_lifetime:'session' }, function(xml) {
 
 				var activationDate = xml.getElementsByTagName("ActivationDate")[0].textContent;
 				var list = Foxtrick.Pages.Players.getPlayerList(doc)
@@ -793,7 +793,7 @@ Foxtrick.util.module.register({
 					argsTransfersPlayer.push([ ["playerid", player.id], ["file", "transfersPlayer"] ]);
 				}, list);
 
-				Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer, {cache_lifetime:'session', caller_name:this.MODULE_NAME }, function(xmls) {
+				Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer, {cache_lifetime:'session' }, function(xmls) {
 					var argsPlayerevents = [];
 					for (i=0; i<xmls.length; ++i) {
 						if (xmls[i]) {
@@ -807,7 +807,7 @@ Foxtrick.util.module.register({
 						}
 					}
 					// try set joined date from pull date
-					Foxtrick.util.api.batchRetrieve(doc, argsPlayerevents, {cache_lifetime:'session', caller_name:this.MODULE_NAME }, function(xmls) {
+					Foxtrick.util.api.batchRetrieve(doc, argsPlayerevents, {cache_lifetime:'session' }, function(xmls) {
 						for (i=0; i<xmls.length; ++i) {
 							if (xmls[i]) {
 								var was_pulled = setJoinedSinceFromPullDate(xmls[i], list);
@@ -862,7 +862,7 @@ Foxtrick.util.module.register({
 					argsTransfersPlayer.push([ ["playerid", player.id], ["file", "transfersPlayer"] ]);
 				}, current_squad_list);
 
-				Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer, {cache_lifetime:'session', caller_name:this.MODULE_NAME }, function(xmls) {
+				Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer, {cache_lifetime:'session' }, function(xmls) {
 					for (i = 0; i < xmls.length; ++i) {
 						if (xmls[i]) {
 								var homeGrown = getHomeGrownStatus(TeamId, xmls[i]);
@@ -922,7 +922,7 @@ Foxtrick.util.module.register({
 					batchArgs.push(args);
 				}, rows);
 
-				Foxtrick.util.api.batchRetrieve(doc, batchArgs, {cache_lifetime:'session', caller_name:this.MODULE_NAME },
+				Foxtrick.util.api.batchRetrieve(doc, batchArgs, {cache_lifetime:'session' },
 					function(xmls) {
 						if (xmls) {
 							for (i = 0; i < xmls.length; ++i) {
