@@ -95,10 +95,7 @@ Foxtrick.util.module.register((function() {
 				}, divs);
 				return tickers;
 			};
-			var tickerCheck = function(ev) {
-				if (ev.target) var doc = ev.target.ownerDocument;
-				else var doc = ev; // called directly
-
+			var tickerCheck = function() {
 				// prevent from multiple tickerCheck() instances running at the
 				// same time
 				ticker.removeEventListener(DOMMutationEventType, tickerCheck, false);
@@ -144,7 +141,7 @@ Foxtrick.util.module.register((function() {
 				ticker.addEventListener(DOMMutationEventType, tickerCheck, false);
 			};
 			if (Foxtrick.util.layout.isSupporter(doc))
-				tickerCheck(doc);
+				tickerCheck();
 		}
 	};
 })());
