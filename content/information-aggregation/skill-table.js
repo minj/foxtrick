@@ -1210,7 +1210,7 @@ Foxtrick.util.module.register({
 			return;
 		if ( !Foxtrick.isPage("transferSearchResult", doc)
 				|| ( getFullType().subtype == "others"
-					&& !FoxtrickPrefs.isModuleOptionEnabled("SkillTable", "OtherTeams")) {
+					&& !FoxtrickPrefs.isModuleOptionEnabled("SkillTable", "OtherTeams"))) {
 			return;
 		}
 		addTableDiv();
