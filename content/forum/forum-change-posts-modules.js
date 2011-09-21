@@ -84,8 +84,7 @@ Foxtrick.util.module.register({
 Foxtrick.util.module.register({
 	MODULE_NAME : "CopyPostID",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forumViewThread"),
-	OPTIONS : new Array("AddCopyIcon")
+	PAGES : ["forumViewThread"]
 });
 
 

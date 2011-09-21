@@ -183,7 +183,6 @@ Foxtrick.util.module.register({
 		};
 
 		var do_copy_post_id = FoxtrickPrefs.isModuleEnabled("CopyPostID");
-		var do_add_copy_icon = do_copy_post_id && FoxtrickPrefs.isModuleOptionEnabled("CopyPostID", "AddCopyIcon");
 		var do_copy_posting = FoxtrickPrefs.isModuleEnabled("CopyPosting");
 		var do_default_facecard = FoxtrickPrefs.isModuleEnabled("AddDefaultFaceCard");
 		var do_format_text = FoxtrickPrefs.isModuleEnabled("FormatPostingText");
@@ -415,11 +414,9 @@ Foxtrick.util.module.register({
 
 			// copy post id ---------------------------------------------
 			if (do_copy_post_id) {
-				if (do_add_copy_icon) {
-					var copy_link=copy_link1.cloneNode(true);
-					copy_link.firstChild.addEventListener("click", copy_postid_to_clipboard, false);
-					header_left.insertBefore(copy_link, post_link1);
-				}
+				var copy_link=copy_link1.cloneNode(true);
+				copy_link.firstChild.addEventListener("click", copy_postid_to_clipboard, false);
+				header_left.insertBefore(copy_link, post_link1);
 			}  // end copy post id
 
 			// copy posting ---------------------------------------------

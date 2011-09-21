@@ -27,7 +27,6 @@ pref("extensions.foxtrick.prefs.module.CopyMatchID.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyPlayerAd.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyPlayerAd.Sorted.enabled", false);
 pref("extensions.foxtrick.prefs.module.CopyPlayerAd.NonTableStyle.enabled", false);
-pref("extensions.foxtrick.prefs.module.CopyPostID.AddCopyIcon.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyPostID.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyPosting.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyPosting.value", 2);
