@@ -76,13 +76,15 @@ Foxtrick.util.module.register({
 			["file", "matchlineup"],
 			["matchID", matchId],
 			["teamID", homeTeamId],
-			["isYouth", isYouth]
+			["isYouth", isYouth],
+			["version","1.6"]
 		];
 		var awayArgs = [
 			["file", "matchlineup"],
 			["matchID", matchId],
 			["teamID", awayTeamId],
-			["isYouth", isYouth]
+			["isYouth", isYouth],
+			["version","1.6"]
 		];
 
 		var getPlayers = function(xml) {
@@ -109,7 +111,8 @@ Foxtrick.util.module.register({
 				var homePlayers = getPlayers(homeXml);
 				var awayPlayers = getPlayers(awayXml);
 
-				// check for more players (fix red card+5th injury) in the report
+				/*// check for more players (fix red card+5th injury) in the report
+				// supposably no needed anymore th xml 1.6
 				var teams = doc.getElementById('mainWrapper').getElementsByTagName('a')[0].textContent.split(' - ');
 				var team1 = teams[0];
 				var team2 = teams[1];
@@ -119,10 +122,11 @@ Foxtrick.util.module.register({
 					node.innerHTML = n;
 					var as = node.getElementsByTagName('a');
 					if (as.length==1 && n.search(team1)!=-1 && n.search(team2)==-1)
-						homePlayers.push(as[0].href.match(/\d+/)[0]);
+						homePlayers.push(Number(as[0].href.match(/\d+/)[0]));
 					if (as.length==1 && n.search(team1)==-1 && n.search(team2)!=-1)
-						awayPlayers.push(as[0].href.match(/\d+/)[0]);
+						awayPlayers.push(Number(as[0].href.match(/\d+/)[0]));
 				}, paragraphs);
+				*/
 				homePlayers = Foxtrick.unique(homePlayers);
 				awayPlayers = Foxtrick.unique(awayPlayers);
 
