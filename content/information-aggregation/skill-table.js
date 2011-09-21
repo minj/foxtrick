@@ -794,7 +794,7 @@ Foxtrick.util.module.register({
 				}, list);
 
 				Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer, {cache_lifetime:'session' }, function(xmls) {
-					var argsPlayerevents = [];
+					var argsPlayerevents = [], i;
 					for (i=0; i<xmls.length; ++i) {
 						if (xmls[i]) {
 							// if there is a transfer, we are finished with this player
