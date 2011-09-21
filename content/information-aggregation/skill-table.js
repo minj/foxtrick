@@ -52,6 +52,18 @@ Foxtrick.util.module.register({
 
 			return fullType;
 		};
+		var fullTypeToString = function(fullType) {
+			if (fullType.subtype) {
+				return fullType.type + "." + fullType.subtype;
+			}
+			return fullType.type;
+		};
+		var getColumnEnabled = function(fullType, name) {
+			return FoxtrickPrefs.getBool("module.SkillTable." + fullTypeToString(fullType) + "." + name);
+		};
+		var setColumnEnabled = function(fullType, name, enabled) {
+			FoxtrickPrefs.setBool("module.SkillTable." + fullTypeToString(fullType) + "." + name, enabled);
+		};
 		var showTable = function(playerList) {
 			try {
 				// clear old table and loading note
@@ -377,19 +389,6 @@ Foxtrick.util.module.register({
 					{ name : "TransferCompare", property : "transferCompare", method : link}
 				];
 
-				var fullTypeToString = function(fullType) {
-					if (fullType.subtype) {
-						return fullType.type + "." + fullType.subtype;
-					}
-					return fullType.type;
-				};
-				var getColumnEnabled = function(fullType, name) {
-					return FoxtrickPrefs.getBool("module.SkillTable." + fullTypeToString(fullType) + "." + name);
-				};
-				var setColumnEnabled = function(fullType, name, enabled) {
-					FoxtrickPrefs.setBool("module.SkillTable." + fullTypeToString(fullType) + "." + name, enabled);
-				};
-	
 				for (j = 0; j < columns.length; ++j) {
 					columns[j].available = false;
 					if (columns[j].properties) {
