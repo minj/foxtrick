@@ -13,20 +13,18 @@ Foxtrick.util.module.register({
 	run : function(doc) {
 		var bDetailedHeader = true;
 		var copy_postid_to_clipboard = function(ev) {
-			var PostID = "";
-			if (bDetailedHeader) {
-				PostID = ev.target.parentNode.nextSibling.title;
+			var idLink = ev.target.parentNode.nextSibling;
+			var idExpanded = (idLink.href.indexOf("MInd") >= 0);
+			if (idExpanded) {
+				var postId = idLink.href.match(/\d+\.\d+/g)[0];
 			}
 			else {
-				try {
-					PostID = ev.target.parentNode.nextSibling.href.match(/\d+\.\d+/g)[0];
-				}
-				catch(e){PostID = ev.target.parentNode.nextSibling.title;}
+				var postId = idLink.title;
 			}
 			var insertBefore = ev.target.parentNode.parentNode.parentNode.parentNode; // cfWrapper
-			Foxtrick.copyStringToClipboard("[post="+PostID+"]");
-			var note = Foxtrick.util.note.add(doc, insertBefore, "ft-post-id-copy-note-" + PostID.replace(/\D/g, "-"),
-				Foxtrickl10n.getString("foxtrick.tweaks.postidcopied").replace("%s", PostID),
+			Foxtrick.copyStringToClipboard("[post=Oops]".replace("Oops", postId));
+			var note = Foxtrick.util.note.add(doc, insertBefore, "ft-post-id-copy-note-" + postId.replace(/\D/g, "-"),
+				Foxtrickl10n.getString("foxtrick.tweaks.postidcopied").replace("%s", postId),
 				null, true);
 		};
 		var copy_posting_to_clipboard = function(ev) {
