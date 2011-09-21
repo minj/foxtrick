@@ -34,12 +34,12 @@ Foxtrick.util.module.register({
 		var AwayTeamId = Foxtrick.util.id.findTeamId(table.rows[0].cells[2]);
 
 		// class names used for styling the report
-		const HOME_TEAM_CLASS_NAME = (homeTeamId == myTeamId) ? "ft-match-report-team-mine" : "ft-match-report-team-home";
-		const AWAY_TEAM_CLASS_NAME = (AwayTeamId == myTeamId) ? "ft-match-report-team-mine" : "ft-match-report-team-away";
-		const HOME_GOAL_CLASS_NAME = (homeTeamId == myTeamId) ? "ft-match-report-goal-mine" : "ft-match-report-goal-home";
-		const AWAY_GOAL_CLASS_NAME = (AwayTeamId == myTeamId) ? "ft-match-report-goal-mine" : "ft-match-report-goal-away";
-		const NORMAL_EVENT_CLASS_NAME = "ft-match-report-event-normal";
-		const SPECIAL_EVENT_CLASS_NAME = "ft-match-report-event-special";
+		var HOME_TEAM_CLASS_NAME = (homeTeamId == myTeamId) ? "ft-match-report-team-mine" : "ft-match-report-team-home";
+		var AWAY_TEAM_CLASS_NAME = (AwayTeamId == myTeamId) ? "ft-match-report-team-mine" : "ft-match-report-team-away";
+		var HOME_GOAL_CLASS_NAME = (homeTeamId == myTeamId) ? "ft-match-report-goal-mine" : "ft-match-report-goal-home";
+		var AWAY_GOAL_CLASS_NAME = (AwayTeamId == myTeamId) ? "ft-match-report-goal-mine" : "ft-match-report-goal-away";
+		var NORMAL_EVENT_CLASS_NAME = "ft-match-report-event-normal";
+		var SPECIAL_EVENT_CLASS_NAME = "ft-match-report-event-special";
 
 		// links to lineup at ratings table
 		var homeLineupLink = table.rows[0].cells[1].getElementsByTagName("a")[0];

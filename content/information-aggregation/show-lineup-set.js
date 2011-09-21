@@ -12,7 +12,7 @@ Foxtrick.util.module.register({
 	OPTIONS : ["LineupSet", "Ownerless", "Winning"],
 
 	run : function(doc) {
-		const rtl = Foxtrick.util.layout.isRtl(doc);
+		var rtl = Foxtrick.util.layout.isRtl(doc);
 		var lineupSet = [];
 		var bots = [];
 

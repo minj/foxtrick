@@ -338,22 +338,22 @@ Foxtrick.util.api = {
 	},
 
 	getAccessToken : function() {
-		const teamId = Foxtrick.util.id.getOwnTeamId();
+		var teamId = Foxtrick.util.id.getOwnTeamId();
 		return FoxtrickPrefs.getString("oauth." + teamId + ".accessToken");
 	},
 
 	setAccessToken : function(token) {
-		const teamId = Foxtrick.util.id.getOwnTeamId();
+		var teamId = Foxtrick.util.id.getOwnTeamId();
 		FoxtrickPrefs.setString("oauth." + teamId + ".accessToken", token);
 	},
 
 	getAccessTokenSecret : function() {
-		const teamId = Foxtrick.util.id.getOwnTeamId();
+		var teamId = Foxtrick.util.id.getOwnTeamId();
 		return FoxtrickPrefs.getString("oauth." + teamId + ".accessTokenSecret");
 	},
 
 	setAccessTokenSecret : function(secret) {
-		const teamId = Foxtrick.util.id.getOwnTeamId();
+		var teamId = Foxtrick.util.id.getOwnTeamId();
 		FoxtrickPrefs.setString("oauth." + teamId + ".accessTokenSecret", secret);
 	},
 

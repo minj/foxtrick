@@ -31,7 +31,7 @@ Foxtrick.util.module.register({
 		if (!mainBody)
 			return;
 
-		const timeRe = /(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})/;
+		var timeRe = /(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})/;
 
 		// start time
 		var cells = mainBody.getElementsByClassName("byline");
@@ -47,7 +47,7 @@ Foxtrick.util.module.register({
 		if (!mainBody)
 			return;
 
-		const timeRe = /(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})/;
+		var timeRe = /(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})/;
 
 		// start time
 		var cells = mainBody.getElementsByTagName("td");
@@ -63,7 +63,7 @@ Foxtrick.util.module.register({
 		if (!table)
 			return;
 
-		const timeRe = /(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})/;
+		var timeRe = /(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})/;
 
 		// start time
 		var cells = table.getElementsByTagName("td");
@@ -79,7 +79,7 @@ Foxtrick.util.module.register({
 		if (!transferList)
 			return;
 
-		const timeRe = /(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})/;
+		var timeRe = /(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})/;
 
 		// deadline time
 		var dlPar = transferList.getElementsByTagName("p")[0];

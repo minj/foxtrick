@@ -159,8 +159,8 @@ Foxtrick.Pages.Player = {
 
 	getOwnerClub : function(doc) {
 		try {
-			const head = doc.getElementsByClassName("main")[0].getElementsByTagName("h2")[0];
-			const links = head.getElementsByTagName("a");
+			var head = doc.getElementsByClassName("main")[0].getElementsByTagName("h2")[0];
+			var links = head.getElementsByTagName("a");
 			if (links.length < 2)
 				return null; // free agent
 			return links[0].textContent;

@@ -90,7 +90,7 @@ Foxtrick.Pages.TransferSearchResults = {
 				// they have inserted some empty divs so it's actually divs[3]
 				var characteristics = playerInfo.getElementsByClassName("transferPlayerCharacteristics")[0];
 				var links = characteristics.getElementsByTagName("a");
-				const order = ["experience", "leadership", "form"];
+				var order = ["experience", "leadership", "form"];
 				for (var i = 0; i < order.length; ++i)
 					player[order[i]] = Number(links[i].href.match(/ll=(\d+)/)[1]);
 

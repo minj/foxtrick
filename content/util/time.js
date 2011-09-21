@@ -37,14 +37,14 @@ Foxtrick.util.time = {
 	*/
 	gregorianToHT : function(date, weekdayOffset, useLocal) {
 		// 22th Aug 1997 should be the first day of first season by calculation
-		const origin = new Date(1997, 8, 22);
+		var origin = new Date(1997, 8, 22);
 		weekdayOffset = parseInt(weekdayOffset) || 0;
-		const msDiff = date.getTime() - origin.getTime();
-		const dayDiff = msDiff / 1000 / 60 / 60 / 24 - weekdayOffset;
+		var msDiff = date.getTime() - origin.getTime();
+		var dayDiff = msDiff / 1000 / 60 / 60 / 24 - weekdayOffset;
 		var season = Math.floor(dayDiff / (16 * 7)) + 1;
 		if (useLocal)
 			season -= this.getSeasonOffset();
-		const week = Math.floor((dayDiff % (16 * 7)) / 7) + 1;
+		var week = Math.floor((dayDiff % (16 * 7)) / 7) + 1;
 
 		return { season : season, week : week };
 	},
@@ -58,7 +58,7 @@ Foxtrick.util.time = {
 			while separator and leading zero are irrelevant.
 		*/
 		try {
-			const DATEFORMAT = dateFormat || this.getDateFormat();
+			var DATEFORMAT = dateFormat || this.getDateFormat();
 			if (DATEFORMAT.indexOf("y") != 0) {
 				// day or month first
 				var reLong = /(\d{1,2})\D(\d{1,2})\D(\d{4})\D?\s+(\d{2})\D(\d{2})/;
@@ -153,10 +153,10 @@ Foxtrick.util.time = {
 	},
 
 	getSeasonOffset : function() {
-		const country = FoxtrickPrefs.getString("htCountry");
+		var country = FoxtrickPrefs.getString("htCountry");
 		for (var i in Foxtrick.XMLData.League) {
 			if (country == Foxtrick.util.id.getLeagueDataFromId(i).EnglishName) {
-				const offset = Foxtrick.util.id.getLeagueDataFromId(1).Season
+				var offset = Foxtrick.util.id.getLeagueDataFromId(1).Season
 					- Foxtrick.util.id.getLeagueDataFromId(i).Season;
 				return offset;
 			}
@@ -177,7 +177,7 @@ Foxtrick.util.time = {
 	 * showSecs specifies whether to show seconds
 	 */
 	buildDate : function(date, showTime, showSecs) {
-		const format = this.getPrintDateFormat();
+		var format = this.getPrintDateFormat();
 		if (!date)
 			date = new Date();
 		if (!showTime) {

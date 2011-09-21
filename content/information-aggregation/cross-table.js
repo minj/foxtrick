@@ -157,8 +157,8 @@ Foxtrick.util.module.register({
 
 		var fillCrossTable = function() {
 			var getShortName = function(str) {
-				const minLength = 3; // only suggested
-				const maxLength = 9;
+				var minLength = 3; // only suggested
+				var maxLength = 9;
 				if (str.length <= maxLength) {
 					return str;
 				}

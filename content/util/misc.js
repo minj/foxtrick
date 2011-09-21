@@ -304,7 +304,7 @@ Foxtrick.isHtUrl = function(url) {
 }
 
 Foxtrick.isStage = function(doc) {
-	const stage_regexp = /http:\/\/stage\.hattrick\.org/i;
+	var stage_regexp = /http:\/\/stage\.hattrick\.org/i;
 	return (Foxtrick.getHref(doc).search(stage_regexp) > -1);
 }
 

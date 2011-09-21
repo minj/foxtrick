@@ -39,7 +39,7 @@ function init()
 function initCoreModules()
 {
 	// core functions needed for preferences, localization, etc.
-	const core = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
+	var core = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
 	for (var i in core)
 		core[i].init();
 }
@@ -47,7 +47,7 @@ function initCoreModules()
 // see http://tools.ietf.org/html/rfc3986#section-3.5
 function parseFragment(fragment)
 {
-	const pairs = String(fragment).split(/&/); // key - value pairs use ampersand (&) as delimiter
+	var pairs = String(fragment).split(/&/); // key - value pairs use ampersand (&) as delimiter
 	var ret = {};
 	for (var i in pairs) {
 		var pair = pairs[i].split(/=/); // key and value are separated by equal sign (=)
@@ -61,8 +61,8 @@ function locateFragment(uri)
 {
 	// show functions
 	var showModule = function(module) {
-		const moduleObj = $("#pref-" + String(module));
-		const category = moduleObj.attr("x-category");
+		var moduleObj = $("#pref-" + String(module));
+		var category = moduleObj.attr("x-category");
 		showTab(category);
 		moduleObj[0].scrollIntoView(true);
 	};
@@ -78,9 +78,9 @@ function locateFragment(uri)
 	};
 
 	// only keep the fragment of URI
-	const fragment = (uri.indexOf("#") > -1)
+	var fragment = (uri.indexOf("#") > -1)
 		? fragment = uri.replace(/^.+#/, "") : "";
-	const param = parseFragment(fragment);
+	var param = parseFragment(fragment);
 	if (param["module"])
 		showModule(param["module"]);
 	else if (param["tab"])
@@ -93,7 +93,7 @@ function locateFragment(uri)
 		showTab("main"); // show the main tab by default
 
 	// adjust tab visibility according to view-by type
-	const viewByPage = (param["view-by"] == "page");
+	var viewByPage = (param["view-by"] == "page");
 	// add class if view by page, remove class if view by category
 	var setClass = function(obj, className) {
 		viewByPage ? obj.addClass(className) : obj.removeClass(className);
@@ -110,7 +110,7 @@ function locateFragment(uri)
 	unsetClass($("#tab-on_page"), "hide");
 	unsetClass($("#tab-universal"), "hide");
 	$("#tabs li a").each(function() {
-		const uri = $(this).attr("href").replace(/&view-by=page/g, "")
+		var uri = $(this).attr("href").replace(/&view-by=page/g, "")
 		if (viewByPage)
 			$(this).attr("href", uri + "&view-by=page");
 		else
@@ -125,7 +125,7 @@ function baseURI()
 
 function generateURI(tab, module)
 {
-	const location = baseURI();
+	var location = baseURI();
 	if (tab)
 		return location + "#tab=" + tab;
 	else if (module)
@@ -157,7 +157,7 @@ function initListeners()
 // in pageIds
 function getPageIds()
 {
-	const lastPage = Foxtrick.getLastPage();
+	var lastPage = Foxtrick.getLastPage();
 	for (var i in Foxtrick.ht_pages) {
 		// ignore PAGE all, it's shown in universal tab
 		if (i == "all")
@@ -171,7 +171,7 @@ function initTabs()
 {
 	// attach each tab with corresponding pane
 	$("#tabs li a").each(function() {
-		const tab = $(this).parent().attr("id").replace(/^tab-/, "");
+		var tab = $(this).parent().attr("id").replace(/^tab-/, "");
 		$(this).attr("href", generateURI(tab));
 	});
 	// set up href of "view by" links
@@ -187,7 +187,7 @@ function initTabs()
 
 function initTextAndValues()
 {
-	const locale = FoxtrickPrefs.getString("htLanguage");
+	var locale = FoxtrickPrefs.getString("htLanguage");
 	
 	if (Foxtrickl10n.getString("direction") == "rtl") 
 		$("html").attr("dir", "rtl");
@@ -202,9 +202,9 @@ function initTextAndValues()
 	});
 	// initialize modules
 	$("body [module]").each(function() {
-		const module = $(this).attr("module");
+		var module = $(this).attr("module");
 		if ($(this).attr("option")) {
-			const option = $(this).attr("option");
+			var option = $(this).attr("option");
 			// module option
 			if ($(this).is(":checkbox")) {
 				 if (FoxtrickPrefs.isModuleOptionEnabled(module, option))
@@ -215,7 +215,7 @@ function initTextAndValues()
 		}
 		else if ($(this).is(":radio")) {
 			// radio input
-			const selected = FoxtrickPrefs.getModuleValue(module);
+			var selected = FoxtrickPrefs.getModuleValue(module);
 			if ($(this).attr("value") == selected)
 				$(this).attr("checked", "checked");
 		}
@@ -269,7 +269,7 @@ function initTextAndValues()
 		+ " (" + pageIds.join(", ") + ")");
 
 	// initialize delete-token 
-	const chpp_url = FoxtrickPrefs.getString("last-host") + "/MyHattrick/Preferences/ExternalAccessGrants.aspx";
+	var chpp_url = FoxtrickPrefs.getString("last-host") + "/MyHattrick/Preferences/ExternalAccessGrants.aspx";
 	$("#pref-delete-token-desc").html($("#pref-delete-token-desc").text().replace(/\{(.+)\}/, "<a href='"+chpp_url+"' target='_blank'>$1</a>"));
 	var oauth_keys = FoxtrickPrefs.getAllKeysOfBranch('oauth');
 	var teamids = Foxtrick.map( function(n){ return n.match(/\d+/)[0]; }, oauth_keys);
@@ -292,7 +292,7 @@ function initMainTab()
 		data.push({ name: i,  desc: desc });
 	}
 	data.sort(function(a, b) { return a.desc.localeCompare(b.desc); });
-	const selectedLang = FoxtrickPrefs.getString("htLanguage");
+	var selectedLang = FoxtrickPrefs.getString("htLanguage");
 	for (var i in data) {
 		var locale = data[i];
 		var item = document.createElement("option");
@@ -310,7 +310,7 @@ function initMainTab()
 		leagues.push(league);
 	}
 	leagues.sort(function(a, b) { return a.localeCompare(b); });
-	const selectedLeague = FoxtrickPrefs.getString("htCountry");
+	var selectedLeague = FoxtrickPrefs.getString("htCountry");
 	for (var i in leagues) {
 		var item = document.createElement("option");
 		item.value = leagues[i];
@@ -514,8 +514,8 @@ function getModule(module)
 
 function initChangesTab()
 {
-	const releaseNotes = Foxtrick.loadXml(Foxtrick.InternalPath + "release-notes.xml");
-	const releaseNotesLocalized = Foxtrick.loadXml(Foxtrick.InternalPath
+	var releaseNotes = Foxtrick.loadXml(Foxtrick.InternalPath + "release-notes.xml");
+	var releaseNotesLocalized = Foxtrick.loadXml(Foxtrick.InternalPath
 		+ "locale/" + FoxtrickPrefs.getString("htLanguage") + "/release-notes.xml");
 	var notes = {};
 	var notesLocalized = {};
@@ -556,7 +556,7 @@ function initChangesTab()
 		var version = select.options[select.selectedIndex].value;
 		var list = $("#pref-notepad-list")[0];
 		list.textContent = ""; // clear list
-		const note = notesLocalized[version] || notes[version];
+		var note = notesLocalized[version] || notes[version];
 		if (!note)
 			return;
 		var items = note.getElementsByTagName("item");
@@ -582,8 +582,8 @@ function initChangesTab()
 function initHelpTab()
 {
 	// external links
-	const aboutXml = Foxtrick.loadXml(Foxtrick.InternalPath + "data/foxtrick_about.xml");
-	const links = Foxtrick.XML_evaluate(aboutXml, "about/links/link", "title", "value");
+	var aboutXml = Foxtrick.loadXml(Foxtrick.InternalPath + "data/foxtrick_about.xml");
+	var links = Foxtrick.XML_evaluate(aboutXml, "about/links/link", "title", "value");
 	for (var i = 0; i < links.length; ++i) {
 		var item = document.createElement("li");
 		$("#external-links-list").append($(item));
@@ -594,11 +594,11 @@ function initHelpTab()
 	}
 
 	// FAQ (faq.xml or localized locale/code/faq.xml
-	const faq = Foxtrick.loadXml(Foxtrick.InternalPath + "faq.xml");
-	const faqLocal = Foxtrick.loadXml(Foxtrick.InternalPath + "locale/"
+	var faq = Foxtrick.loadXml(Foxtrick.InternalPath + "faq.xml");
+	var faqLocal = Foxtrick.loadXml(Foxtrick.InternalPath + "locale/"
 		+ FoxtrickPrefs.getString("htLanguage") + "/faq.xml");
-	const items = {};
-	const itemsLocal = {};
+	var items = {};
+	var itemsLocal = {};
 	var parseFaq = function(src, dest) {
 		if (!src)
 			return;
@@ -639,7 +639,7 @@ function initHelpTab()
 
 function initAboutTab()
 {
-	const aboutXml = Foxtrick.loadXml(Foxtrick.InternalPath + "data/foxtrick_about.xml");
+	var aboutXml = Foxtrick.loadXml(Foxtrick.InternalPath + "data/foxtrick_about.xml");
 	$(".about-list").each(function() {
 		var iterator = aboutXml.evaluate($(this).attr("path"), aboutXml, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
 		var currentNode = iterator.iterateNext();
@@ -710,7 +710,7 @@ function save()
 	// global preferences
 	$("body [pref]").each(function() {
 		if ($(this).attr("pref")) {
-			const pref = $(this).attr("pref");
+			var pref = $(this).attr("pref");
 			if ($(this).is(":checkbox"))
 				FoxtrickPrefs.setBool(pref, $(this).is(":checked"));
 			else if ($(this)[0].nodeName == "select")
@@ -722,10 +722,10 @@ function save()
 
 	// per-module preferences
 	$("body [module]").each(function() {
-		const module = $(this).attr("module");
+		var module = $(this).attr("module");
 		if ($(this).attr("option")) {
 			// option of module
-			const option = $(this).attr("option");
+			var option = $(this).attr("option");
 			if ($(this).is(":checkbox"))
 				FoxtrickPrefs.setModuleEnableState(module + "." + option, $(this).is(":checked"));
 			else if ($(this).is(":input"))

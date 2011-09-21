@@ -39,12 +39,12 @@ Foxtrick.util.module.register({
 
 		var leagueId = Foxtrick.Pages.Country.getId(doc);
 
-		const ntNode = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml,
+		var ntNode = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml,
 			"//League[LeagueID='" + leagueId + "']");
-		const ntName = ntNode.getElementsByTagName("LeagueName")[0].textContent;
-		const ntId = ntNode.getElementsByTagName("NationalTeamId")[0].textContent;
-		const u20Name = "U-20 " + ntName;
-		const u20Id = ntNode.getElementsByTagName("U20TeamId")[0].textContent;
+		var ntName = ntNode.getElementsByTagName("LeagueName")[0].textContent;
+		var ntId = ntNode.getElementsByTagName("NationalTeamId")[0].textContent;
+		var u20Name = "U-20 " + ntName;
+		var u20Id = ntNode.getElementsByTagName("U20TeamId")[0].textContent;
 
 		var insertBefore = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ucForumSneakpeek_updSneakpeek");
 
@@ -63,7 +63,7 @@ Foxtrick.util.module.register({
 		separator.className = "separator";
 		container.appendChild(separator);
 
-		const ntArgs = [
+		var ntArgs = [
 			["file", "matches"],
 			["teamID", ntId]
 		];
@@ -81,7 +81,7 @@ Foxtrick.util.module.register({
 			}
 		});
 
-		const u20Args = [
+		var u20Args = [
 			["file", "matches"],
 			["teamID", u20Id]
 		];

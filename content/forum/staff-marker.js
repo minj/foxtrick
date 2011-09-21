@@ -16,12 +16,12 @@ Foxtrick.util.module.register({
 
 	// get Hattrick-youthclub staffs
 	getData : function(callback) {
-		const dataKey = "staff-marker-data";
+		var dataKey = "staff-marker-data";
 		var stored = Foxtrick.sessionGet(dataKey);
 		if (stored == undefined) {
 			var obj = {};
 			// JSON files to be downloaded
-			const uris = [
+			var uris = [
 				"http://www.foxtrick.org/staff-data/foxtrick.json",
 				"http://www.foxtrick.org/staff-data/chpp.json",
 				"http://www.foxtrick.org/staff-data/editor.json",

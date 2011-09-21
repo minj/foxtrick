@@ -66,14 +66,14 @@ Foxtrick.util.module.register({
 			// a player has highlight <=> he is a national player
 			var highlight = playerInfo.getElementsByClassName("highlight")[0];
 			if (highlight) {
-				const text = highlight.textContent;
-				const leagueId = Foxtrick.Pages.Player.getNationalityId(doc);
-				const ntNode = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml,
+				var text = highlight.textContent;
+				var leagueId = Foxtrick.Pages.Player.getNationalityId(doc);
+				var ntNode = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml,
 					"//League[LeagueID='" + leagueId + "']");
-				const ntName = ntNode.getElementsByTagName("LeagueName")[0].textContent;
-				const ntId = ntNode.getElementsByTagName("NationalTeamId")[0].textContent;
-				const u20Name = "U-20 " + ntName;
-				const u20Id = ntNode.getElementsByTagName("U20TeamId")[0].textContent;
+				var ntName = ntNode.getElementsByTagName("LeagueName")[0].textContent;
+				var ntId = ntNode.getElementsByTagName("NationalTeamId")[0].textContent;
+				var u20Name = "U-20 " + ntName;
+				var u20Id = ntNode.getElementsByTagName("U20TeamId")[0].textContent;
 				var replace = function(team, id) {
 					highlight.textContent = text.substr(0, text.indexOf(team));
 					var link = doc.createElement("a");

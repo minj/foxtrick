@@ -52,9 +52,9 @@ Foxtrick.util.module.register({
 			var nowTimeText = doc.getElementById("time").textContent;
 			var nowTime = Foxtrick.util.time.getDateFromText(nowTimeText).getTime();
 
-			const timeHour = 60 * 60 * 1000;
-			const timeDay = 24 * timeHour;
-			const timeWeek = 7 * timeDay;
+			var timeHour = 60 * 60 * 1000;
+			var timeDay = 24 * timeHour;
+			var timeWeek = 7 * timeDay;
 
 			var estimationTime;
 			if (nowTime < time)

@@ -24,7 +24,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml) {
 		// convert match type integer to match type info
 		// source:
 		// http://www.hattrick.org/Community/CHPP/Matches/CHPPMatches.aspx
-		const mapping = {
+		var mapping = {
 			"1" : { key : "league", className : "matchLeague" },
 			"2" : { key : "qualification", className : "matchQualification" },
 			"3" : { key : "cup", className : "matchCup" },
@@ -98,7 +98,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml) {
 		}
 
 		var getMatchRow = function() {
-			const rtl = Foxtrick.util.layout.isRtl(doc);
+			var rtl = Foxtrick.util.layout.isRtl(doc);
 
 			var row = doc.createElement("tr");
 

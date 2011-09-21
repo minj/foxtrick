@@ -71,7 +71,7 @@ Foxtrick.entry.init = function() {
 
 	// init core modules, for Chrome they are inited in loader-chrome.js
 	if (Foxtrick.arch == "Gecko") {
-		const coreModules = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
+		var coreModules = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
 		for (var i in coreModules) {
 			if (typeof(coreModules[i].init) == "function")
 				coreModules[i].init();
@@ -212,7 +212,7 @@ Foxtrick.entry.change = function(ev) {
 			return;
 
 		// don't act to changes on the excluded pages
-		const excludes = [
+		var excludes = [
 			new RegExp("/Club/Matches/MatchOrder/", "i"),
 			new RegExp("/Community/CHPP/ChppPrograms\.aspx", "i"),
 			new RegExp("/Club/Arena/ArenaUsage\.aspx", "i")

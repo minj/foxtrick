@@ -17,7 +17,7 @@ Foxtrick.util.htMl = {};
 // { type : "arena", id : "123456" }
 // otherwise, return null
 Foxtrick.util.htMl.getId = function(node) {
-	const idTypes = [
+	var idTypes = [
 		{ type : "Player", re : /\/Player\.aspx\?playerId=(\d+)/i, tag : "playerid" },
 		{ type : "Youth Player", re : /\?YouthPlayerID=(\d+)/i, tag : "youthplayerid" },
 		{ type : "Team", re : /\/Club\/\?TeamID=(\d+)/i, tag : "teamid" },
@@ -97,15 +97,15 @@ Foxtrick.util.htMl.getLink = function(node) {
 	}
 	else if (typeof(link) === "string") {
 		// ignoring boring links
-		const ignore = ["/Help/Rules/AppDenominations.aspx","/Help/Supporter/","javascript"];
+		var ignore = ["/Help/Rules/AppDenominations.aspx","/Help/Supporter/","javascript"];
 		for (var i = 0; i < ignore.length; ++i)
 			if (link.indexOf(ignore[i]) > -1)
 				return null;
 
-		const relRe = new RegExp("http://[^/]+(/.+)", "i");
+		var relRe = new RegExp("http://[^/]+(/.+)", "i");
 		if (link.match(relRe) !== null) {
-			const matched = link.match(relRe);
-			const relLink = matched[1];
+			var matched = link.match(relRe);
+			var relLink = matched[1];
 			// if it's relative link of Hattrick, remove the host
 			if (Foxtrick.isHtUrl(link))
 				markup = "[link=" + relLink + "]";

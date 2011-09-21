@@ -24,12 +24,12 @@ Foxtrick.util.module.register({
 			if (!teams) {
 				// return national teams if first run
 				var leagueId = Foxtrick.util.id.getOwnLeagueId();
-				const ntNode = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml,
+				var ntNode = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml,
 					"//League[LeagueID='" + leagueId + "']");
-				const ntName = ntNode.getElementsByTagName("LeagueName")[0].textContent;
-				const ntId = ntNode.getElementsByTagName("NationalTeamId")[0].textContent;
-				const u20Name = "U-20 " + ntName;
-				const u20Id = ntNode.getElementsByTagName("U20TeamId")[0].textContent;
+				var ntName = ntNode.getElementsByTagName("LeagueName")[0].textContent;
+				var ntId = ntNode.getElementsByTagName("NationalTeamId")[0].textContent;
+				var u20Name = "U-20 " + ntName;
+				var u20Id = ntNode.getElementsByTagName("U20TeamId")[0].textContent;
 				teams = [
 					{ id : ntId, name : ntName, type : "nt" },
 					{ id : u20Id, name : u20Name, type : "nt" }
@@ -74,7 +74,7 @@ Foxtrick.util.module.register({
 			addLink.className = "ft-link";
 			addLink.textContent = Foxtrickl10n.getString("button.add");
 			addLink.addEventListener("click", function() {
-				const noteId = "ft-monitor-add-note";
+				var noteId = "ft-monitor-add-note";
 				while (note = doc.getElementById(noteId))
 					note.parentNode.removeChild(note);
 				var note = Foxtrick.util.note.create(
@@ -97,7 +97,7 @@ Foxtrick.util.module.register({
 			removeLink.className = "ft-link";
 			removeLink.textContent = Foxtrickl10n.getString("button.remove");
 			removeLink.addEventListener("click", function() {
-				const noteId = "ft-monitor-remove-note"
+				var noteId = "ft-monitor-remove-note"
 				while (note = doc.getElementById(noteId))
 					note.parentNode.removeChild(note);
 
@@ -156,7 +156,7 @@ Foxtrick.util.module.register({
 
 			// add the teams
 			var teams = getSavedTeams(doc);
-			const dateNow = Foxtrick.util.time.getHtDate(doc);
+			var dateNow = Foxtrick.util.time.getHtDate(doc);
 			var addTeam = function(team) {
 				var buildLink = function(team, link) {
 					link.textContent = team.name;

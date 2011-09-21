@@ -20,7 +20,7 @@ Foxtrick.util.module.register({
 	},
 
 	isLang : function(menuLinks, lang) {
-		const items = ["MyHattrick", "MyClub", "World", "Forum", "Shop", "Help"];
+		var items = ["MyHattrick", "MyClub", "World", "Forum", "Shop", "Help"];
 
 		var languages = Foxtrickl10n.htLanguagesXml;
 		if (languages[lang])

@@ -11,7 +11,7 @@ Foxtrick.util.module.register({
 
 	run : function(doc) {
 		// used for coloring NT players when AddFlags is enabled
-		const ntColor = "#ffcc00";
+		var ntColor = "#ffcc00";
 
 		Foxtrick.Pages.Players.getPlayerList(doc, function(playerList) {
 			if (!playerList) {

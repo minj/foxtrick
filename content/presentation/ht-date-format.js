@@ -14,7 +14,7 @@ Foxtrick.util.module.register({
 	OPTION_TEXTS_DISABLED_LIST : [true, false],
 
 	run : function(doc) {
-		const pages = ["transfersTeam", "transfersPlayer", "transfer",
+		var pages = ["transfersTeam", "transfersPlayer", "transfer",
 			"transferCompare", "match", "matches", "matchesarchiv",
 			"teamPageGeneral", "achievements", "playerevents",
 			"teamevents", "history", "arena", "league", "hallOfFame",
@@ -29,8 +29,8 @@ Foxtrick.util.module.register({
 		var mainBody = doc.getElementById("mainBody");
 		if (!mainBody) return;
 
-		const useLocal = FoxtrickPrefs.isModuleOptionEnabled("HTDateFormat", "LocalSeason");
-		const weekOffset = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".FirstDayOfWeekOffset_text");
+		var useLocal = FoxtrickPrefs.isModuleOptionEnabled("HTDateFormat", "LocalSeason");
+		var weekOffset = FoxtrickPrefs.getString("module." + this.MODULE_NAME + ".FirstDayOfWeekOffset_text");
 		// set up function for separating date and week/season,
 		// with concerns of some table fixing for simple skin
 		if ((!Foxtrick.util.layout.isStandard(doc) && Foxtrick.isPage("matches", doc))

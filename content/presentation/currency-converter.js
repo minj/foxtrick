@@ -23,7 +23,7 @@ Foxtrick.util.module.register({
 			currencies.push({ code: code, desc : desc });
 		}
 		currencies.sort(function(a, b) { return a.desc.localeCompare(b.desc); });
-		const selectedCurrencyTo = FoxtrickPrefs.getString("module.CurrencyConverter.to");
+		var selectedCurrencyTo = FoxtrickPrefs.getString("module.CurrencyConverter.to");
 		for (var i in currencies) {
 			var item = doc.createElement("option");
 			item.value = currencies[i].code;

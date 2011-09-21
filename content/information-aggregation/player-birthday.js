@@ -33,7 +33,7 @@ Foxtrick.util.module.register({
 
 		// sorting of arrays according to days and then years
 		var sort = function(a, b) {
-			const maxYears = 10000;
+			var maxYears = 10000;
 			return (a.age.days * maxYears + a.age.years) - (b.age.days * maxYears + b.age.years);
 		}
 		birthdayToday.sort(sort);

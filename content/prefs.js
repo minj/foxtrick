@@ -21,7 +21,7 @@ var FoxtrickPrefs = {
 	},
 
 	set : function(key, value) {
-		const map = {
+		var map = {
 			"string" : FoxtrickPrefs.setString,
 			"number" : FoxtrickPrefs.setInt,
 			"boolean" : FoxtrickPrefs.setBool
@@ -83,7 +83,7 @@ var FoxtrickPrefs = {
 
 	/** Populate list_name with given array deleting if exists */
 	populateList : function(branch, values) {
-		const keys = FoxtrickPrefs.getAllKeysOfBranch(branch);
+		var keys = FoxtrickPrefs.getAllKeysOfBranch(branch);
 		for (var i = 0; i < keys.length; ++i) {
 			FoxtrickPrefs.deleteValue(keys[i]);
 		}
@@ -127,12 +127,12 @@ var FoxtrickPrefs = {
 	},
 
 	getModuleValue : function(module) {
-		const moduleName = (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
+		var moduleName = (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
 		return FoxtrickPrefs.getInt("module." + moduleName + ".value");
 	},
 
 	setModuleValue : function(module, value) {
-		const moduleName = (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
+		var moduleName = (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
 		FoxtrickPrefs.setInt("module." + moduleName + ".value", value);
 	},
 
@@ -250,7 +250,7 @@ var FoxtrickPrefs = {
 	},
 
 	LoadPrefs : function(string) {
-		const format = /user_pref\("extensions\.foxtrick\.prefs\.(.+)",(.+)\);/;
+		var format = /user_pref\("extensions\.foxtrick\.prefs\.(.+)",(.+)\);/;
 		var lines = string.split("\n");
 		for (var i = 0; i < lines.length; ++i) {
 			try {
@@ -506,7 +506,7 @@ if (Foxtrick.arch === "Sandboxed") {
 					var parsePrefsFile = function (url) {
 						var prefText = Foxtrick.load(Foxtrick.InternalPath + url)
 						var prefList = prefText.split(/[\n\r]+/);
-						const prefRe = /pref\("extensions\.foxtrick\.prefs\.(.+)",\s*(.+)\);/;
+						var prefRe = /pref\("extensions\.foxtrick\.prefs\.(.+)",\s*(.+)\);/;
 						for (var i = 0; i < prefList.length; ++i) {
 							var pref = prefList[i];
 							var matches = pref.match(prefRe);

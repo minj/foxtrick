@@ -33,7 +33,7 @@ Foxtrick.util.module.register({
 			return;
 
 		// get leagueId for ntName and u20Name
-		const leagueId = Foxtrick.Pages.Player.getNationalityId(doc);
+		var leagueId = Foxtrick.Pages.Player.getNationalityId(doc);
 		var path = "//League[LeagueID='" + leagueId + "']";
 		var obj = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml, path);
 		if (obj) {

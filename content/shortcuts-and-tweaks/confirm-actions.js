@@ -11,7 +11,7 @@ Foxtrick.util.module.register({
 	OPTIONS : ["Bid", "TransferList", "NtChange", "StaffChange"],
 
 	run : function(doc) {
-		const ids = {
+		var ids = {
 			BID : {
 				ALERT_ID : "ctl00_ctl00_CPContent_CPMain_updBid",
 				BUTTON_ID : "ctl00_ctl00_CPContent_CPMain_btnBid",

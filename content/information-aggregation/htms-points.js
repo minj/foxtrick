@@ -12,8 +12,8 @@ Foxtrick.util.module.register({
 
 	run : function(doc) {
 		var getLink = function(skillList) {
-			const lang = FoxtrickPrefs.getString("htLanguage");
-			const prefix = "http://www.fantamondi.it/HTMS/index.php?page=htmspoints&lang="+lang+"&action=calc";
+			var lang = FoxtrickPrefs.getString("htLanguage");
+			var prefix = "http://www.fantamondi.it/HTMS/index.php?page=htmspoints&lang="+lang+"&action=calc";
 			var link = doc.createElement("a");
 			link.textContent = Foxtrickl10n.getString("HTMSPoints");
 			link.href = prefix + skillList;

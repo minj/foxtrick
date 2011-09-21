@@ -74,7 +74,7 @@ Foxtrick.Pages.Match = {
 			// by HatStatsSeparated in module Ratings
 			var nodeCloned = cell.cloneNode(true);
 			var toRemove = Foxtrick.filter(function(n) {
-					const nn = n.nodeName.toLowerCase();
+					var nn = n.nodeName.toLowerCase();
 					return nn == "a" || nn == "span";
 				}, nodeCloned.childNodes);
 			Foxtrick.map(function(n) { nodeCloned.removeChild(n); }, toRemove);

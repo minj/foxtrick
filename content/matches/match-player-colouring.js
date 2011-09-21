@@ -60,10 +60,10 @@ Foxtrick.util.module.register({
 		var homeTeam = teams[0];
 		var awayTeam = teams[1];
 
-		const homeTeamId = Foxtrick.util.id.getTeamIdFromUrl(homeTeam.href);
-		const awayTeamId = Foxtrick.util.id.getTeamIdFromUrl(awayTeam.href);
-		const homeClass = (myTeamId == homeTeamId) ? "ft-match-player-mine" : "ft-match-player-home";
-		const awayClass = (myTeamId == awayTeamId) ? "ft-match-player-mine" : "ft-match-player-away";
+		var homeTeamId = Foxtrick.util.id.getTeamIdFromUrl(homeTeam.href);
+		var awayTeamId = Foxtrick.util.id.getTeamIdFromUrl(awayTeam.href);
+		var homeClass = (myTeamId == homeTeamId) ? "ft-match-player-mine" : "ft-match-player-home";
+		var awayClass = (myTeamId == awayTeamId) ? "ft-match-player-mine" : "ft-match-player-away";
 
 		Foxtrick.addClass(homeTeam, homeClass);
 		Foxtrick.addClass(awayTeam, awayClass);

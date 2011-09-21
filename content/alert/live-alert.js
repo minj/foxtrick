@@ -29,7 +29,7 @@ Foxtrick.util.module.register({
 				var score = tab.getElementsByClassName("liveTabScore")[0].textContent;
 				if (score == "")
 					return;
-				const scoreRe = new RegExp("(\\d+)\\s*-\\s*(\\d+)");
+				var scoreRe = new RegExp("(\\d+)\\s*-\\s*(\\d+)");
 				var scoreMatch = score.match(scoreRe);
 				if (!Foxtrick.util.layout.isRtl(doc))
 					return [parseInt(scoreMatch[1]), parseInt(scoreMatch[2])];

@@ -116,7 +116,7 @@ Foxtrick.util.module.register({
 							var version = select.options[select.selectedIndex].value;
 							var list = document.getElementById("pref-notepad-list");
 							list.textContent = ""; // clear list
-							const note = notes[version];
+							var note = notes[version];
 							if (!note)
 								return;
 							var items = note.getElementsByTagName("item");

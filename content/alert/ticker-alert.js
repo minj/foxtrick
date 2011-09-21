@@ -85,8 +85,8 @@ Foxtrick.util.module.register((function() {
 			// add watch to ticker
 			var ticker = doc.getElementById("ticker");
 			var getTickers = function() {
-				const divs = ticker.getElementsByTagName("div");
-				const tickers = Foxtrick.map(function(n) {
+				var divs = ticker.getElementsByTagName("div");
+				var tickers = Foxtrick.map(function(n) {
 					return {
 						text : n.textContent,
 						link : n.getElementsByTagName("a")[0].href,
@@ -103,7 +103,7 @@ Foxtrick.util.module.register((function() {
 				if (tickers == undefined)
 					tickers = [];
 
-				const tickersNow = getTickers();
+				var tickersNow = getTickers();
 				if (tickersNow.length < tickers.length) {
 					// Hattrick.org clears all tickers before adding a new one,
 					// so to not alert when the tickers are being cleared, we
@@ -114,7 +114,7 @@ Foxtrick.util.module.register((function() {
 
 				Foxtrick.sessionSet("tickers", tickersNow);
 
-				const newTickers = Foxtrick.filter(function(n) {
+				var newTickers = Foxtrick.filter(function(n) {
 					if (!n.isNew)
 						return false;
 					for (var i = 0; i < tickers.length; ++i) {
