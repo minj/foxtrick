@@ -207,54 +207,6 @@
 <!-- pane for showing modules, modules have attribute x-on which is a list
  of under which tabs it should be shown -->
 <div id="pane">
-<!-- LoadSavePrefs -->
-<div class="module" x-on="main">
-	<h3 id="pref-load-save-title" data-text="foxtrick.prefs.captionLoadSavePrefs"></h3>
-	<h4 id="pref-save" data-text="foxtrick.prefs.labelSavePrefs"></h4>
-	<div>
-		<ul>
-			<li>
-				<input type="checkbox" id="pref-save-pref" pref="SavePrefs_Prefs" />
-				<label id="pref-save-pref-label" for="pref-save-pref" data-text="foxtrick.prefs.labelSavePrefs_Prefs"></label>
-			</li>
-			<li>
-				<input type="checkbox" id="pref-save-data" pref="SavePrefs_Notes" />
-				<label id="pref-save-data-label" for="pref-save-data" data-text="foxtrick.prefs.labelSavePrefs_Notes"></label>
-			</li>
-		</ul>
-		<p><button id="pref-save-do" data-text="button.export"></button></p>
-		<p><textarea id="pref-save-text"></textarea></p>
-		<p data-text="foxtrick.prefs.saveNotice"></p>
-	</div>
-	<h4 id="pref-load" data-text="foxtrick.prefs.labelLoadPrefs"></h4>
-	<div>
-		<p data-text="foxtrick.prefs.loadNotice"></p>
-		<p><textarea id="pref-load-text"></textarea></p>
-		<p><button id="pref-load-do" data-text="button.import"></button></p>
-	</div>
-</div>
-<!-- StoredPrefs -->
-<div class="module" x-on="main">
-	<h3 id="pref-stored-title" data-text="foxtrick.prefs.captionCleanupBranch"></h3>
-	<table>
-		<tr>
-			<td colspan="2"><button id="pref-stored-restore" data-text="button.restoreDefault"></button></td>
-			<td><label id="pref-stored-restore-label" data-text="foxtrick.prefs.labelCleanupBranch"></label></td>
-		</tr>
-		<tr>
-			<td><button id="pref-delete-token" data-text="button.deleteToken"></button></td>
-			<td><select id="select-delete-token-teamids"></select></td>
-			<td>
-				<label id="pref-delete-token-label" data-text="foxtrick.prefs.oauth.delete"></label>
-				<p id="pref-delete-token-desc" data-text="foxtrick.prefs.oauth.delete.desc"></p>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2"><button id="pref-stored-disable" data-text="button.disableAll"></button></td>
-			<td><label id="pref-stored-disable-label" data-text="foxtrick.prefs.labelDisableAll"></label></td>
-		</tr>
-	</table>
-</div>
 <!-- disable -->
 <div class="module" x-on="main">
 	<h3 id="pref-disable-title" data-text="foxtrick.prefs.captionDisableSettings"></h3>
@@ -286,6 +238,54 @@
 			<label id="pref-debug-info-label" for="pref-debug-info" data-text="foxtrick.prefs.DisplayHTMLDebugOutput"></label>
 		</li>
 	</ul>
+</div>
+<!-- StoredPrefs -->
+<div class="module" x-on="main">
+	<h3 id="pref-stored-title" data-text="foxtrick.prefs.captionCleanupBranch"></h3>
+	<table>
+		<tr>
+			<td colspan="2"><button id="pref-stored-restore" data-text="button.restoreDefault"></button></td>
+			<td><label id="pref-stored-restore-label" data-text="foxtrick.prefs.labelCleanupBranch"></label></td>
+		</tr>
+		<tr>
+			<td><button id="pref-delete-token" data-text="button.deleteToken"></button></td>
+			<td><select id="select-delete-token-teamids"></select></td>
+			<td>
+				<label id="pref-delete-token-label" data-text="foxtrick.prefs.oauth.delete"></label>
+				<p id="pref-delete-token-desc" data-text="foxtrick.prefs.oauth.delete.desc"></p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"><button id="pref-stored-disable" data-text="button.disableAll"></button></td>
+			<td><label id="pref-stored-disable-label" data-text="foxtrick.prefs.labelDisableAll"></label></td>
+		</tr>
+	</table>
+</div>
+<!-- LoadSavePrefs -->
+<div class="module" x-on="main">
+	<h3 id="pref-load-save-title" data-text="foxtrick.prefs.captionLoadSavePrefs"></h3>
+	<h4 id="pref-save" data-text="foxtrick.prefs.labelSavePrefs"></h4>
+	<div>
+		<ul>
+			<li>
+				<input type="checkbox" id="pref-save-pref" pref="SavePrefs_Prefs" />
+				<label id="pref-save-pref-label" for="pref-save-pref" data-text="foxtrick.prefs.labelSavePrefs_Prefs"></label>
+			</li>
+			<li>
+				<input type="checkbox" id="pref-save-data" pref="SavePrefs_Notes" />
+				<label id="pref-save-data-label" for="pref-save-data" data-text="foxtrick.prefs.labelSavePrefs_Notes"></label>
+			</li>
+		</ul>
+		<p><button id="pref-save-do" data-text="button.export"></button></p>
+		<p><textarea id="pref-save-text"></textarea></p>
+		<p data-text="foxtrick.prefs.saveNotice"></p>
+	</div>
+	<h4 id="pref-load" data-text="foxtrick.prefs.labelLoadPrefs"></h4>
+	<div>
+		<p data-text="foxtrick.prefs.loadNotice"></p>
+		<p><textarea id="pref-load-text"></textarea></p>
+		<p><button id="pref-load-do" data-text="button.import"></button></p>
+	</div>
 </div>
 <!-- ReadHtPrefs -->
 <div class="module" x-on="main">
