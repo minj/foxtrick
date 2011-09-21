@@ -101,12 +101,11 @@ Foxtrick.util.module.register({
 					for (i = 0; i < allPlayerInfo.length; ++i) {
 						pid = Foxtrick.Pages.Players.getPlayerId(allPlayerInfo[i]);
 						var divs = allPlayerInfo[i].getElementsByTagName('div');
-						if (divs.length>2) {
-							var psicodiv = divs[divs.length-2]; // second last
-							if (psicodiv && psicodiv.innerHTML.search(/\[.+=.+\]=\d+\.\d+/)!=-1) {
-								var psicoTSI = psicodiv.innerHTML.match(/\[[^\[]+=[^\[]+\]=(\d+\.\d+)/g)[1].match(/\d+\.\d+/g);
+						var psicoTSIs = allPlayerInfo[i].innerHTML.match(/\[[^\[]+=[^\[]+\]=(\d+\.\d+)/g);
+						if (psicoTSIs && psicoTSIs.length>0) {
+								// second last is average form
+								var psicoTSI = psicoTSIs[psicoTSIs.length-2].match(/\d+\.\d+/g);
 								Foxtrick.map(function(n) {if (n.id==pid) n.psicoTSI = psicoTSI; }, playerList);
-							}
 						}
 					}
 				}
