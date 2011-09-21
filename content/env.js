@@ -7,6 +7,36 @@
 if (!Foxtrick)
 	var Foxtrick={};
 
+	
+// sandboxed api
+/*
+var sandboxed = {
+	extension : {
+		sendRequest : function (data, callback) { // send JSON data from content to background 
+												// with callback function(JSON data) 
+		},
+		onRequest : {
+			addListener : function (listener) { // listen to requests (background and content side) 
+											// with listener = function(data, sender, callback);
+											// content: var sender = { tab: { id: id, url: messageEvent.target.url } };
+											// background: sender undefined
+				},
+		},
+		broadcastMessage : function( data, callback) { // send JSON data from background to all tabs 
+													// with callback function(JSON data) 
+		},
+		getURL : function (path) { // get extension url of path relative to extension folder
+		},
+	},
+	tabs : {
+		create : function (url) { 
+			// create a tab with url from background
+		},
+	},
+};
+*/
+	
+	
 if (typeof(opera) == "object") {
 	Foxtrick.arch = "Sandboxed";
 	Foxtrick.platform = "Opera";
@@ -367,16 +397,17 @@ else if (typeof(chrome) == "object") {
 	
 	// register tab for broadcastMessage
 	if (Foxtrick.chromeContext() == "content") {
-		// answer to status check
+		//  recieve tab id on register
+		chrome.extension.sendRequest({ req : "register" }, function(response){
+			chrome.extension.tabid = response.tabid;
+		});
+		// answer to status check after every new page load
 		chrome.extension.onRequest.addListener(
 		  function(request, sender, sendResponse) {
 			if (request.req=='checkAlive') {
+				// send bak who answered
 				sendResponse( {id: request.id} );
 			}
-		});
-		//  and recieve tab id
-		chrome.extension.sendRequest({ req : "register" }, function(response){
-			chrome.extension.tabid = response.tabid;
 		});
 	}
 	else if (Foxtrick.chromeContext() == "background") { 
@@ -384,7 +415,7 @@ else if (typeof(chrome) == "object") {
 			// request tabs to confirm being alive
 			function updateTabList(senderid) {
 				var tabListCopy = sandboxed.tabs.tab, i;
-				// clear list and add alibe tabs again
+				// clear list and add alive tabs again
 				sandboxed.tabs.tab = {};
 				for (i in tabListCopy) {
 					// not the sender
