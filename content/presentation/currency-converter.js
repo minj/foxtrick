@@ -64,8 +64,9 @@ Foxtrick.util.module.register({
 			}, page.getElementsByTagName("*"));
 
 		// regular expressions for getting out money
-		var re = new RegExp("(-?\\d+(\\d|\\s)+)"
-			+ oldSymbol.replace(new RegExp("\\$", "g"), "\\$"));
+		var re = new RegExp("(-?\\d+(?:\\d|\\s)+)"
+			+ oldSymbol.replace(new RegExp("\\$", "g"), "\\$")
+			, "g");
 
 		// filter out nodes without currency symbols
 		var nodes = Foxtrick.filter(function(node) {
@@ -73,18 +74,41 @@ Foxtrick.util.module.register({
 			}, nodes);
 
 		var parseLeaf = function(node) {
-			if (node.textContent.search(re) > -1) {
-				var matched = node.textContent.match(re);
+			var formatMoney = function(amt) {
+				return "(" + Foxtrick.formatNumber(newAmount, "\u00a0") + "\u00a0" + symbol + ")";
+			};
+			var matched;
+			// pairs of insert position and money denoted in new currency
+			var pairs = [];
+			// whether the money is the sole content of the node
+			var sole = false;
+			// we may have numerous entries within one node, so we loop to
+			// find out all of them
+			while ((matched = re.exec(node.textContent)) != null) {
 				var oldAmount = matched[1].replace(/\s/g, "");
 				var newAmount = Math.floor(oldAmount * oldRate / rate);
-				if (Foxtrick.trim(node.textContent.replace(re,''))=='') {
-					// only the number. usually looks better in new line
-					node.parentNode.appendChild(doc.createElement('br'));
-					node.parentNode.appendChild(doc.createTextNode("("+Foxtrick.formatNumber(newAmount, "\u00a0") + "\u00a0" + symbol + ")"));
+				var begin = re.lastIndex - matched[0];
+				var end = re.lastIndex;
+				sole = Foxtrick.trim(node.textContent.substr(0, begin)) == ""
+					&& Foxtrick.trim(node.textContent.substr(end)) == "";
+
+				pairs.push([end, formatMoney(newAmount)]);
+			}
+			// now we insert the money denoted in new currency
+			if (sole) {
+				node.parentNode.appendChild(doc.createElement("br"));
+				node.parentNode.appendChild(doc.createTextNode(pairs[0][1]));
+			}
+			else {
+				while (pairs.length) {
+					// reduce the array from the end - otherwise the indices
+					// in upcoming pairs will be wrong
+					var pair = pairs.pop();
+					var pos = pair[0];
+					var ins = pair[1];
+					node.textContent = node.textContent.substr(0, pos) + " "
+						+ ins + node.textContent.substr(pos);
 				}
-				else
-					node.textContent = node.textContent.replace(re, matched[0]
-						+ " (" + Foxtrick.formatNumber(newAmount, "\u00a0") + "\u00a0" + symbol + ")");
 			}
 		};
 		var traverse = function(node) {
