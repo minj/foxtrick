@@ -131,8 +131,6 @@ Foxtrick.entry.init = function() {
 
 Foxtrick.entry.run = function(doc, is_only_css_check) {
 	try {
-		Foxtrick.lastDoc = doc;
-
 		if (FoxtrickPrefs.getBool("preferences.updated")) {
 			Foxtrick.log('prefs updated');
 			Foxtrick.entry.init();

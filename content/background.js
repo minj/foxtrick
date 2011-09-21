@@ -12,9 +12,8 @@ Foxtrick.loader.chrome = {};
 	
 // invoked after the browser chrome is loaded
 Foxtrick.loader.chrome.browserLoad = function() {
-  try {
 	Foxtrick.log('Foxtrick.loader.chrome.browserLoad');
-	
+
 	// calls module.onLoad() after the browser window is loaded
 	var i;
 	for (i in Foxtrick.modules) {
@@ -74,7 +73,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		console.log('prefs updated');
 	};
 
-	
+
 	// called to parse a copy of the settings and data to the content script
 	//   pageLoad : on HT pages for chrome/safari/opera
 	//   scriptLoad : once per tab/browser(?) for fennec
@@ -83,7 +82,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	var pageLoad = function(request, sender, sendResponse) {
 		if (request.req == "pageLoad") 
 			FoxtrickUI.update(sender.tab);
-		
+	
 		// access user setting directly here, since getBool uses a copy which needs updating just here
 		if ( (Foxtrick.arch == "Sandboxed" && localStorage.getItem("preferences.updated"))
 			|| (Foxtrick.platform == "Fennec" && FoxtrickPrefs._prefs_gecko.getBoolPref("preferences.updated")) ) {
@@ -105,28 +104,28 @@ Foxtrick.loader.chrome.browserLoad = function() {
 			worldDetails : worldDetails,
 			league : Foxtrick.XMLData.League,
 			countryToLeague : Foxtrick.XMLData.countryToLeague,
-			
+		
 			sessionStore : Foxtrick.sessionStore,
 		};
-		
+	
 		if (request.req == "pageLoad") {
 			resource.cssText = cssTextCollection;
 		}
-		
+	
 		sendResponse ( resource );
-		
+	
 	};
 	// fennecs single child process
 	var scriptLoad = pageLoad;
-	
+
 	// operas options page
 	var optionsPageLoad = pageLoad;
 	// ----- end of init part. ------
 
 	// from env.js. dummy for tab register
 	var register = function(request, sender, sendResponse) {};
-	
-	
+
+
 	// content preference copy not updated if those change
 	var no_update_needed = {'preferences.updated':true, 'last-host':true, 'last-page':true, 'version':true};
 
@@ -308,8 +307,6 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	var updateViewportSize = function(request, sender, sendResponse) {
 		Browser.updateViewportSize();
 	};
-
-  } catch (e) {dump('Foxtrick.loader.chrome.browserLoad: ', e );}
 };
 
 

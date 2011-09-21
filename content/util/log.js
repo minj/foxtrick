@@ -57,8 +57,8 @@ Foxtrick.log = function() {
 		}
 		else 
 			console.log(concated);
-		Foxtrick.log.flush( Foxtrick.lastDoc );
 	}
+	Foxtrick.log.flush();
 };
 
 // environment info shown in log as header
@@ -79,35 +79,43 @@ Foxtrick.log.header = function(doc) {
 // Foxtrick.log.flush()
 Foxtrick.log.cache = "";
 
-Foxtrick.log.flush = function(doc) {
-	if (doc.getElementById("page") != null
-		&& FoxtrickPrefs.getBool("DisplayHTMLDebugOutput")
-		&& Foxtrick.log.cache != "") {
-		var div = doc.getElementById("ft-log");
-		if (div == null) {
-			// create log container
-			div = doc.createElement("div");
-			div.id = "ft-log";
-			var header = doc.createElement("h2");
-			header.textContent = Foxtrickl10n.getString("foxtrick.log.header");
-			div.appendChild(header);
-			var console = doc.createElement("pre");
-			console.textContent = Foxtrick.log.header(doc);
-			div.appendChild(console);
-			// add to page
-			var bottom = doc.getElementById("bottom");
-			if (bottom)
-				bottom.parentNode.insertBefore(div, bottom);
+Foxtrick.log.flush = (function() {
+	var lastDoc = null;
+	return function(doc) {
+		if (doc)
+			lastDoc = doc;
+		if (!doc && !lastDoc)
+			return;
+		Foxtrick.log.lastDoc = doc;
+		if (doc.getElementById("page") != null
+			&& FoxtrickPrefs.getBool("DisplayHTMLDebugOutput")
+			&& Foxtrick.log.cache != "") {
+			var div = doc.getElementById("ft-log");
+			if (div == null) {
+				// create log container
+				div = doc.createElement("div");
+				div.id = "ft-log";
+				var header = doc.createElement("h2");
+				header.textContent = Foxtrickl10n.getString("foxtrick.log.header");
+				div.appendChild(header);
+				var console = doc.createElement("pre");
+				console.textContent = Foxtrick.log.header(doc);
+				div.appendChild(console);
+				// add to page
+				var bottom = doc.getElementById("bottom");
+				if (bottom)
+					bottom.parentNode.insertBefore(div, bottom);
+			}
+			else {
+				var console = div.getElementsByTagName("pre")[0];
+			}
+			// add to log
+			console.textContent += Foxtrick.log.cache;
+			// clear the cache
+			Foxtrick.log.cache = "";
 		}
-		else {
-			var console = div.getElementsByTagName("pre")[0];
-		}
-		// add to log
-		console.textContent += Foxtrick.log.cache;
-		// clear the cache
-		Foxtrick.log.cache = "";
-	}
-};
+	};
+})();
 
 // debug log storage (sandboxed)
 Foxtrick.debugLogStorage = '';
