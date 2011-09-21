@@ -934,7 +934,7 @@ Foxtrick.util.module.register({
 								loading.parentNode.removeChild(loading);
 						}
 				});
-			} catch(e) {console.error('removeBotPlayers',e);}
+			} catch(e) {Foxtrick.log('removeBotPlayers',e);}
 		};
 		var addTableDiv = function() {
 			var tablediv = doc.createElement("div");
