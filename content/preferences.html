@@ -207,20 +207,6 @@
 <!-- pane for showing modules, modules have attribute x-on which is a list
  of under which tabs it should be shown -->
 <div id="pane">
-<!-- disable -->
-<div class="module" x-on="main">
-	<h3 id="pref-disable-title" data-text="foxtrick.prefs.captionDisableSettings"></h3>
-	<ul>
-		<li>
-			<input type="checkbox" id="pref-disable-on-stage" pref="disableOnStage" />
-			<label id="pref-disable-on-stage-label" for="pref-disable-on-stage" data-text="foxtrick.prefs.stagepref"></label>
-		</li>
-		<li>
-			<input type="checkbox" id="pref-disable-temporarily" pref="disableTemporary" />
-			<label id="pref-disable-temporarily-label" for="pref-disable-temporarily" data-text="foxtrick.prefs.disableTemporaryLabel"></label>
-		</li>
-	</ul>
-</div>
 <!-- additional -->
 <div class="module" x-on="main">
 	<h3 id="pref-additional-title" data-text="foxtrick.prefs.AdditionalOptions"></h3>
@@ -236,6 +222,20 @@
 		<li>
 			<input type="checkbox" id="pref-debug-info" pref="DisplayHTMLDebugOutput" />
 			<label id="pref-debug-info-label" for="pref-debug-info" data-text="foxtrick.prefs.DisplayHTMLDebugOutput"></label>
+		</li>
+	</ul>
+</div>
+<!-- disable -->
+<div class="module" x-on="main">
+	<h3 id="pref-disable-title" data-text="foxtrick.prefs.captionDisableSettings"></h3>
+	<ul>
+		<li>
+			<input type="checkbox" id="pref-disable-on-stage" pref="disableOnStage" />
+			<label id="pref-disable-on-stage-label" for="pref-disable-on-stage" data-text="foxtrick.prefs.stagepref"></label>
+		</li>
+		<li>
+			<input type="checkbox" id="pref-disable-temporarily" pref="disableTemporary" />
+			<label id="pref-disable-temporarily-label" for="pref-disable-temporarily" data-text="foxtrick.prefs.disableTemporaryLabel"></label>
 		</li>
 	</ul>
 </div>
