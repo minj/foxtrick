@@ -131,6 +131,8 @@ Foxtrick.entry.init = function() {
 
 Foxtrick.entry.run = function(doc, is_only_css_check) {
 	try {
+		Foxtrick.lastDoc = doc;
+
 		if (FoxtrickPrefs.getBool("preferences.updated")) {
 			Foxtrick.log('prefs updated');
 			Foxtrick.entry.init();
@@ -222,17 +224,20 @@ Foxtrick.entry.change = function(ev) {
 			return;
 		}
 
+		var content = doc.getElementById("content");
+		if (!content) {
+			Foxtrick.log("Cannot find #content at ", doc.location);
+			return;
+		}
+
+		Foxtrick.lastDoc = doc;
+		
 		// ignore changes list
 		if (ev.originalTarget && ev.originalTarget.className
 			&& (ev.originalTarget.className=='boxBody'
 				|| ev.originalTarget.className=='myht1'))
 			return;
 
-		var content = doc.getElementById("content");
-		if (!content) {
-			Foxtrick.log("Cannot find #content at ", doc.location);
-			return;
-		}
 		// remove event listener while Foxtrick executes
 		Foxtrick.stopListenToChange(doc);
 		if (FoxtrickPrefs.isEnabled(doc)) {

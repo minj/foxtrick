@@ -57,7 +57,7 @@ Foxtrick.log = function() {
 		}
 		else 
 			console.log(concated);
-		Foxtrick.log.flush(document);
+		Foxtrick.log.flush( Foxtrick.lastDoc );
 	}
 };
 
