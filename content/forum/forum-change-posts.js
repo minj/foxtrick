@@ -503,7 +503,7 @@ Foxtrick.util.module.register({
 
 			if (do_short_postid && bDetailedHeader) {
 				var PostID_message = post_link1.title.replace(/\d+\./,'');
-				if (!do_add_copy_icon) {
+				if (!do_copy_post_id) {
 					var PostID_thread = post_link1.title.replace(/\.\d+/g,'');
 					post_link1.href="javascript:showMInd('"+PostID_thread+"-"+PostID_message+"',%20'/Forum/Read.aspx?t="+PostID_thread+"&n="+PostID_message+"&v=2',%20'"+PostID_thread+"."+PostID_message+"');"
 					post_link1.setAttribute('id',PostID_thread+"-"+PostID_message);
