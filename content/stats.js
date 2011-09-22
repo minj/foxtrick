@@ -267,47 +267,6 @@ stats["alltid_compare"] =  {
         "shorttitle":"Compare"
 };
 
-stats["htstats_all"] =  {
-        "url" : "http://www.htstats.com/",
-        "playedmatchlink" : { "path"       : "",
-                         "filters"    : [],
-                         "paramfunction" : function(params) {
-							var matchid=params["matchid"];
-							var lang=FoxtrickPrefs.getString("htLanguage");
-                            if (lang=='ca') lang='cat';
-							else if (lang=='es') lang='es';
-                            else lang='en';
-                            return "matchinfo-" + matchid + "&setlang=" + lang;
-							}
-						 },
-        "playedyouthmatchlink" : { "path"       : "",
-							"filters"    : [],
-							"paramfunction" : function(params) {
-							var matchid=params["matchid"];
-							var lang=FoxtrickPrefs.getString("htLanguage");
-                            if (lang=='ca') lang='cat';
-							else if (lang=='es') lang='es';
-                            else lang='en';
-                            return "matchinfoy-" + matchid + "&setlang=" + lang;
-							}
-						 },
-        "title" : "htstats (played match)",
-        "img" : Foxtrick.InternalPath+"resources/linkicons/htstats.png"
-};
-
-stats["htms_stats"] =  {
-        "url" : "http://www.fantamondi.it/HTMS/index.php?page=predictor",
-        "nextmatchlink" : { "path"       : "",
-                         "filters"    : [],
-                         "paramfunction" : function(params) {
-							var lang=FoxtrickPrefs.getString("htLanguage");
-                            if (lang!='it') lang='en';
-                            return "&lang=" + lang;
-							}
-						 },
-        "title" : "htms predictor",
-        "img" : Foxtrick.InternalPath+"resources/linkicons/htms.png"
-};
 
 // HC Stats - Hellas, Cyprus
 stats["hcstatshellas"] =  {
@@ -635,8 +594,9 @@ Foxtrick.LinkCollection.getLinks  = function(stattype, filterparams, doc, module
 Foxtrick.LinkCollection.makelink  = function(stat, statlink, filterparams, key, doc) {
 
 	var params = statlink["params"];
+	var languages = statlink["languages"];
 	var args = "";
-
+ 
 	if (typeof (statlink["paramfunction"]) == 'undefined') {
 		for (var paramkey in params) {
 		if (params[paramkey].search('ftfilter')==0) continue;
@@ -649,7 +609,20 @@ Foxtrick.LinkCollection.makelink  = function(stat, statlink, filterparams, key, 
 			 }
 
 			 if (!params[paramkey].charAt(0).match(/\w+/)) {temp="";}
-			 //dump(params[paramkey].charAt(0)+' '+ (!params[paramkey].charAt(0).match(/\w+/))+' '+temp+' '+filterparams[paramkey]+'\n');
+			 
+			 if (paramkey=="lang") {
+				for (var lang in languages) {
+					if (lang == FoxtrickPrefs.getString("htLanguage")) {
+						args += temp + params[paramkey] + "=" + encodeURIComponent(languages[lang]);
+						break;
+					}
+					else if (lang == 'any') {
+						args += temp + params[paramkey] + "=" + encodeURIComponent(languages[lang]);
+					}
+				}
+				continue;
+			 }
+			 
 			 if (filterparams[paramkey] != null) {
 				args += ( (params[paramkey] != "" && temp !="") ? (temp + params[paramkey] + "=") : params[paramkey])+ encodeURIComponent(filterparams[paramkey]);
 				}

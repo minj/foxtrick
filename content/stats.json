@@ -261,6 +261,35 @@
 },
 
 
+stats["htstats_all"] =  {
+	"url" : "http://www.htstats.com",
+	"playedmatchlink" : { "path"       : "",
+						"filters"    : [],
+						"languages" : {"ca":"cat", "es":"es", "pt","pt", "ro":"ro", "gl":"gl", "any":"en"},
+						"params" : {"matchid": "/matchinfo-", "lang": "setlang" }
+						 },
+	"playedyouthmatchlink" : { "path"       : "",
+							"filters"    : [],
+							"languages" : {"ca":"cat", "es":"es", "pt","pt", "ro":"ro", "gl":"gl", "any":"en"},
+							"params" : {"matchid": "/matchinfoy-", "lang": "setlang" }
+							},
+	"title" : "htstats (played match)",
+	"img" : "resources/linkicons/htstats.png"
+};
+
+
+stats["htms_stats"] =  {
+	"url" : "http://www.fantamondi.it/HTMS/index.php?page=predictor",
+	"nextmatchlink" : { "path"       : "",
+						"filters"    : [],
+						"languages" : {"it":"it", "fr":"fr", "pl":"pl", "any":"en"},
+						"params" : {"lang": "lang" }
+						},
+	"title" : "htms predictor",
+	"img" : "resources/linkicons/htms.png"
+};
+
+
 "htloto" : {
 	"url" : "http://www.htloto.org/",
 	"teamlink" : { "path" : "",
