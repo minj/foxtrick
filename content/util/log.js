@@ -39,11 +39,25 @@ Foxtrick.log = function() {
 	}
 	concated += "\n";
 	Foxtrick.log.cache += concated;
+
+	// log on browser
+	var args = Array.prototype.slice.apply(arguments);
+	if (typeof(Firebug.Console.log) == "function") {
+		// if Firebug console is available, make use of it
+		Firebug.Console.log.apply(Firebug.Console, args);
+	}
+	if (typeof(console.log) == "function") {
+		// if console.log is available, make use of it
+		console.log.apply(console, args);
+	}
+	else if (typeof(dump) == "function") {
+		dump(concated);
+	}
+
+	// add to stored log
 	if (Foxtrick.arch === "Gecko") {
 		if (Foxtrick.chromeContext() === "content")
 			sandboxed.extension.sendRequest({ req : "log", log : concated });
-		else
-			dump("FT: " + concated);
 	}
 	else if (Foxtrick.arch === "Sandboxed") {
 		if (Foxtrick.chromeContext() == "content")
@@ -51,12 +65,6 @@ Foxtrick.log = function() {
 		else {
 			Foxtrick.addToDebugLogStorage(concated);
 		}
-		if (Foxtrick.platform == 'Chrome') {
-			// chrome log displays object directly better
-			console.log(arguments);
-		}
-		else 
-			console.log(concated);
 	}
 	Foxtrick.log.flush();
 };
