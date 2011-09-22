@@ -111,25 +111,6 @@ Foxtrick.util.module.register({
 				var homePlayers = getPlayers(homeXml);
 				var awayPlayers = getPlayers(awayXml);
 
-				/*// check for more players (fix red card+5th injury) in the report
-				// supposably no needed anymore th xml 1.6
-				var teams = doc.getElementById('mainWrapper').getElementsByTagName('a')[0].textContent.split(' - ');
-				var team1 = teams[0];
-				var team2 = teams[1];
-				var paragraphs = doc.getElementById('mainBody').innerHTML.split(/<div|\n/);
-				Foxtrick.map(function(n) {
-					var node = doc.createElement('div');
-					node.innerHTML = n;
-					var as = node.getElementsByTagName('a');
-					if (as.length==1 && n.search(team1)!=-1 && n.search(team2)==-1)
-						homePlayers.push(Number(as[0].href.match(/\d+/)[0]));
-					if (as.length==1 && n.search(team1)==-1 && n.search(team2)!=-1)
-						awayPlayers.push(Number(as[0].href.match(/\d+/)[0]));
-				}, paragraphs);
-				*/
-				homePlayers = Foxtrick.unique(homePlayers);
-				awayPlayers = Foxtrick.unique(awayPlayers);
-
 				Foxtrick.log("Home players: ", homePlayers);
 				Foxtrick.log("Away players: ", awayPlayers);
 
