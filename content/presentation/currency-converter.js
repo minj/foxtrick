@@ -87,10 +87,11 @@ Foxtrick.util.module.register({
 			while ((matched = re.exec(node.textContent)) != null) {
 				var oldAmount = matched[1].replace(/\s/g, "");
 				var newAmount = Math.floor(oldAmount * oldRate / rate);
-				var begin = re.lastIndex - matched[0];
+				var begin = re.lastIndex - matched[0].length;
 				var end = re.lastIndex;
 				sole = Foxtrick.trim(node.textContent.substr(0, begin)) == ""
-					&& Foxtrick.trim(node.textContent.substr(end)) == "";
+					&& Foxtrick.trim(node.textContent.substr(end)) == ""
+					&& node.parentNode.childNodes.length == 1;
 
 				pairs.push([end, formatMoney(newAmount)]);
 			}
