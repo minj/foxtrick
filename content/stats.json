@@ -1159,6 +1159,7 @@
 	"img" : "resources/linkicons/mexico_scouting.png"
 },
 
+
 "brasileira_tracker" : {
 	"url" : "http://www.opendev.com.br/chpp/br/",
 	"trackerplayerlink" : { "path"		: "",
@@ -1362,6 +1363,7 @@
 	"nationalityranges" : [[50,50]]
 },
 
+
 "srbijatracker" : {
 	"url" : "http://srbijadb.foundationhorizont.org/",
 	"img" : "resources/linkicons/tracker.png",
@@ -1481,6 +1483,7 @@
 	"nationalityranges" : [[32,32],[129,129]]
 },
 
+
 "norwayU20tracker" : {
 	"url" : "http://tracker.sletholt.net/",
 	"img" : "resources/linkicons/tracker.png",
@@ -1518,68 +1521,62 @@
 
 
 "ukrainatracker" : {
- "url" : "http://nt.ht-bet.org/",
- "img" : "resources/linkicons/tracker.png",
- "title" : "Ukraina NT/U-20 DB",
-
- "trackernationalteamlink" : { "path"		: "",
-					"filters"	: ["countryid"],
-					"params"	: []
-					},
- "trackerplayerlink" : { "path"		: "update.php",
-			"filters"	: ["nationality"],
-			"params"	: []
-		},
+	 "url" : "http://nt.ht-bet.org/",
+	 "img" : "resources/linkicons/tracker.png",
+	 "title" : "Ukraina NT/U-20 DB",
+	 "trackernationalteamlink" : { "path"		: "",
+									"filters"	: ["countryid"],
+									"params"	: []
+									},
+	 "trackerplayerlink" : { "path"		: "update.php",
+							"filters"	: ["nationality"],
+							"params"	: []
+							},
 	"countryidranges" : [[68,68]] ,
 	"nationalityranges" : [[68,68]]
 },
 
-"spaintracker" : {
- "url" : "http://www.htspain.es/",
- "img" : "resources/linkicons/tracker.png",
- "title" : "Espana NT/U-20 DB",
 
- "trackernationalteamlink" : { "path"		: "",
-					"filters"	: ["countryid"],
-					"params"	: []
-					},
- "trackerplayerlink" : { "path"		: "index.php?pag=ht_login",
-			"filters"	: ["nationality"],
-			"params"	: []
-		},
+"spaintracker" : {
+	 "url" : "http://www.htspain.es/",
+	 "img" : "resources/linkicons/tracker.png",
+	 "title" : "Espana NT/U-20 DB",
+	 "trackernationalteamlink" : { "path"		: "",
+									"filters"	: ["countryid"],
+									"params"	: []
+									},
+	 "trackerplayerlink" : { "path"		: "index.php?pag=ht_login",
+							"filters"	: ["nationality"],
+							"params"	: []
+							},
 	"countryidranges" : [[36,36]] ,
 	"nationalityranges" : [[36,36]]
 },
 
-"polskatracker" : {
- "url" : "http://www.ntdb.pl/",
- "img" : "resources/linkicons/tracker.png",
- "title" : "Polska NT/U-20 DB",
 
- "trackernationalteamlink" : { "path"		: "",
-					"filters"	: ["countryid"],
-					"params"	: []
-					},
- "trackerplayerlink" : { "path"		: "index.php?page=Logging",
-			"filters"	: ["nationality"],
-			"params"	: []
-		},
+"polskatracker" : {
+	 "url" : "http://www.ntdb.pl/",
+	 "img" : "resources/linkicons/tracker.png",
+	 "title" : "Polska NT/U-20 DB",
+	 "trackernationalteamlink" : { "path"		: "",
+									"filters"	: ["countryid"],
+									"params"	: []
+									},
+	 "trackerplayerlink" : { "path"		: "index.php?page=Logging",
+							"filters"	: ["nationality"],
+							"params"	: []
+							},
 	"countryidranges" : [[24,24]] ,
 	"nationalityranges" : [[24,24]]
 },
 
 
-
-
-
 "ht-ys" : {
 	"url" : "http://www.ht-ys.org/",
-
-	"youthleaguelink" : { "path"		: "?league_id=",
-					"filters"	: [],
-					"params"	: { "youthleagueid" : "" }
-					},
-
+	"youthleaguelink" : { "path"	: "?league_id=",
+						"filters"	: [],
+						"params"	: { "youthleagueid" : "" }
+						},
 	"title" : "Hattrick Youth Statistics",
 	"img" : "resources/linkicons/htys.png"
 }

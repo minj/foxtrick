@@ -538,7 +538,12 @@ Foxtrick.MakeStatsHash = function(){
 		}
 		
 		var externalLinks = Foxtrick.load(Foxtrick.InternalPath + "stats.json");
+		if (externalLinks.indexOf('javascript')!==-1) {
+			Foxtrick.log('No javascript in external links');
+			return;
+		}
 		externalLinks = JSON.parse(externalLinks);
+		
 		for (var key in externalLinks) {
 			var stat = externalLinks[key];
 			for (var prop in stat) {
