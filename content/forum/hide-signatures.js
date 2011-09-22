@@ -19,7 +19,7 @@ Foxtrick.util.module.register({
 				p++;
 				if( !doc.getElementById( "foxtrick-st-link"+p ) ) {
 					try {
-						Foxtrick.addClass(elems[i], hidden);
+						Foxtrick.addClass(elems[i], "hidden");
 						var sigId = elems[i].id;
 						if( !sigId ) {
 							sigId = "foxtrick-signature-"+p;
