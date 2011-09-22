@@ -37,33 +37,37 @@ Foxtrick.log = function() {
 		}
 		concated += item;
 	}
-	concated += "\n";
-	Foxtrick.log.cache += concated;
+	Foxtrick.log.cache += concated + "\n";
 
 	// log on browser
 	var args = Array.prototype.slice.apply(arguments);
-	if (typeof(Firebug.Console.log) == "function") {
-		// if Firebug console is available, make use of it
-		Firebug.Console.log.apply(Firebug.Console, args);
+	if (typeof(Firebug) != "undefined"
+		&& typeof(Firebug.Console) != "undefined"
+		&& typeof(Firebug.Console.log) == "function") {
+		// if Firebug.Console.log is available, make use of it
+		// (only supports one argument)
+		Firebug.Console.log(concated);
 	}
-	if (typeof(console.log) == "function") {
+	if (typeof(console) != "undefined"
+		&& typeof(console.log) == "function") {
 		// if console.log is available, make use of it
+		// (support multiple arguments)
 		console.log.apply(console, args);
 	}
 	else if (typeof(dump) == "function") {
-		dump(concated);
+		dump(concated + "\n");
 	}
 
 	// add to stored log
 	if (Foxtrick.arch === "Gecko") {
 		if (Foxtrick.chromeContext() === "content")
-			sandboxed.extension.sendRequest({ req : "log", log : concated });
+			sandboxed.extension.sendRequest({ req : "log", log : concated + "\n"});
 	}
 	else if (Foxtrick.arch === "Sandboxed") {
 		if (Foxtrick.chromeContext() == "content")
-			sandboxed.extension.sendRequest({req : "addDebugLog", log : concated});
+			sandboxed.extension.sendRequest({req : "addDebugLog", log : concated + "\n"});
 		else {
-			Foxtrick.addToDebugLogStorage(concated);
+			Foxtrick.addToDebugLogStorage(concated + "\n");
 		}
 	}
 	Foxtrick.log.flush();

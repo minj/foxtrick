@@ -34,6 +34,8 @@ Foxtrick.entry.docLoad = function(doc) {
 	Foxtrick.log("run time: ", diff, " ms | ",
 		doc.location.pathname, doc.location.search);
 
+	Foxtrick.log.flush(doc);
+
 	// listen to page content changes
 	Foxtrick.startListenToChange(doc);
 };
@@ -235,8 +237,6 @@ Foxtrick.entry.change = function(ev) {
 			return;
 		}
 
-		Foxtrick.lastDoc = doc;
-		
 		// ignore changes list
 		if (ev.originalTarget && ev.originalTarget.className
 			&& (ev.originalTarget.className=='boxBody'
