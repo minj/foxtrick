@@ -148,7 +148,7 @@ Foxtrick.util.module.register({
 						var uname = Foxtrick.trim(option.textContent);
 						uname = uname.substring(0, uname.indexOf(" "));
 						if (uname == "")
-							uname = Foxtrick.trim(option.text);
+							uname = Foxtrick.trim(option.textContent);
 						if (uname == "")
 							break;
 						var uid = option.value.replace(/by_|to_/gi, "");

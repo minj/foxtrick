@@ -71,7 +71,7 @@ Foxtrick.util.id.extractTeamName = function(element) {
 	var links = element.getElementsByTagName('a');
 	for (var i=0; i<links.length; i++) {
 		if (Foxtrick.util.id.isTeamDetailUrl(links[i].href)) {
-			return Foxtrick.trim(links[i].text);
+			return Foxtrick.trim(links[i].textContent);
 		}
 	}
 	return null;
