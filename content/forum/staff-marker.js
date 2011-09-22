@@ -77,29 +77,24 @@ Foxtrick.util.module.register({
 			// tell whether user is staff by id or alias,
 			// and attach class and/or user-defined style to object
 			var modifier = function(id, alias, object) {
-				var htreg = /^HT-/i;
-				var gmreg = /^GM-/i;
-				var modreg = /^MOD-/i;
-				var chppreg = /^CHPP-/i;
-				var lareg = /^LA-/i;
+				// alias in select boxes might have a Left-to-Right
+				// Overwrite (LRO, U+202D) in front
+				var markers = [
+					[/^\D*HT-/i, "ht"],
+					[/^\D*GM-/i, "gm"],
+					[/^\D*MOD-/i, "mod"],
+					[/^\D*CHPP-/i, "chpp"],
+					[/^\D*LA-/i, "la"]
+				];
 				// user-defined style
 				if (customMarker[id] !== undefined)
 					object.setAttribute("style", customMarker[id]);
 				// exclusive classes for official staffs
-				if (htreg.test(alias)) {
-					Foxtrick.addClass(object, "ft-staff-ht");
-				}
-				else if (gmreg.test(alias)) {
-					Foxtrick.addClass(object, "ft-staff-gm");
-				}
-				else if (modreg.test(alias)) {
-					Foxtrick.addClass(object, "ft-staff-mod");
-				}
-				else if (chppreg.test(alias)) {
-					Foxtrick.addClass(object, "ft-staff-chpp");
-				}
-				else if (lareg.test(alias)) {
-					Foxtrick.addClass(object, "ft-staff-la");
+				var first = Foxtrick.nth(0, function(pair) {
+						return alias.search(pair[0]) == 0;
+					}, markers);
+				if (first) {
+					Foxtrick.addClass(object, "ft-staff-" + first[1]);
 				}
 
 				// data loaded from external files
