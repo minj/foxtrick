@@ -115,7 +115,7 @@ Foxtrick.util.module.register({
 				Foxtrick.map(function(user) {
 					var links = user.getElementsByTagName("a");
 					Foxtrick.map(function(a) {
-						if (!a.href) {Foxtrick.log('error ',a.parentNode.innerHTML);return;}
+						if (!a.href) return; // eg our copy link
 						if (a.getAttribute("href").search(/\/Club\/Manager\/\?userId\=/i) == -1
 							|| a.getAttribute("href").search(/redir_to_league=true/i) != -1)
 							return;
