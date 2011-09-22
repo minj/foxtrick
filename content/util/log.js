@@ -9,11 +9,12 @@ if (!Foxtrick)
 
 // outputs a list of strings/objects/errors to FoxTrick log
 Foxtrick.log = function() {
-	var i, concated = "";
+	var i, concated = "", hasError = false;
 	for (i = 0; i < arguments.length; ++i) {
 		var content = arguments[i];
 		var item = "";
 		if (content instanceof Error) {
+			hasError = true;
 			if (Foxtrick.arch == "Gecko") {
 				item = content.fileName + " (" + content.lineNumber + "): " + String(content) + "\n";
 				item += "Stack trace: " + content.stack.substr(0,1000);
@@ -53,6 +54,8 @@ Foxtrick.log = function() {
 		// if console.log is available, make use of it
 		// (support multiple arguments)
 		console.log.apply(console, args);
+		if (hasError && typeof(console.trace) == "function") 
+			console.trace();
 	}
 	else if (typeof(dump) == "function") {
 		dump(concated + "\n");
