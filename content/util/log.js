@@ -10,6 +10,7 @@ if (!Foxtrick)
 // outputs a list of strings/objects/errors to FoxTrick log
 Foxtrick.log = function() {
 	var i, concated = "", hasError = false;
+	var args = Array.prototype.slice.apply(arguments);
 	for (i = 0; i < arguments.length; ++i) {
 		var content = arguments[i];
 		var item = "";
@@ -21,7 +22,10 @@ Foxtrick.log = function() {
 				Components.utils.reportError(item);
 			}
 			else if (Foxtrick.arch == "Sandboxed") {
-				for (var i in content)
+				if (args[i].arguments) {
+					args[i] =  args[i].arguments.concat(args[i]);
+				}
+				else for (var i in content)
 					item += i + ": " + content[i] + ";\n";
 			}
 		}
@@ -41,7 +45,6 @@ Foxtrick.log = function() {
 	Foxtrick.log.cache += concated + "\n";
 
 	// log on browser
-	var args = Array.prototype.slice.apply(arguments);
 	if (typeof(Firebug) != "undefined"
 		&& typeof(Firebug.Console) != "undefined"
 		&& typeof(Firebug.Console.log) == "function") {
