@@ -1653,6 +1653,24 @@ stats["irantracker"] = {
 	"nationalityranges" : [[85,85]],
 };
 
+stats["guatemelatracker"] = {
+  "url" : "http://www.htguatemala.org/",
+  "img" : Foxtrick.InternalPath+"resources/linkicons/tracker.png",
+  "title" : "Guatemela U20/NT Tracker",
+
+  "trackernationalteamlink" : { "path"       : "",
+                         "filters"    : ["countryid"],
+                         "params"     :  []
+                       },
+  "trackerplayerlink" : { "path"       : "",
+                   "filters"    : ["nationality"],
+                   "params"     : []
+                 },
+	"countryidranges" : [[107,107]],
+	"nationalityranges" : [[107,107]],
+};
+
+
 stats["lebanontracker"] = {
   "url" : "http://lebanon.nattrick.ca/",
   "img" : Foxtrick.InternalPath+"resources/linkicons/tracker.png",
