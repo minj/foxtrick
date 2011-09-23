@@ -326,15 +326,18 @@
 	"url" : "http://htstats.com/",
 	"leaguelink" : { "path"		: "liga.php",
 					"filters"	: ["countryid"],
-					"params"	: { "leagueid" : "htliga"}
+					"languages"	: {"ca":"cat", "es":"es", "pt":"pt", "ro":"ro", "gl":"gl", "any":"en"},
+					"params"	: { "leagueid" : "htliga", "lang": "setlang" }
 					},
 	"teamlink" : { "path"		: "equipo.php",
 					"filters"	: ["countryid"],
-					"params"	: { "teamid" : "htequipo" }
+					"languages"	: {"ca":"cat", "es":"es", "pt":"pt", "ro":"ro", "gl":"gl", "any":"en"},
+					"params"	: { "teamid" : "htequipo" , "lang": "setlang"}
 					},
 	"countrylink" : { "path"	: "",
 					"filters"	: ["countryid"],
-					"params"	: []
+					"languages"	: {"ca":"cat", "es":"es", "pt":"pt", "ro":"ro", "gl":"gl", "any":"en"},
+					"params"	: {"lang": "setlang" }
 					},
 	"countryidranges" : [[36, 36]],
 	"title" : "Peaso Hattrick Stats",
