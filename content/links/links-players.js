@@ -9,7 +9,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('players'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.links.getOptionsHtml(doc, this, false, "playerslink");
+		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "playerslink");
 	},
 
 	run : function(doc) {
@@ -28,7 +28,7 @@ Foxtrick.util.module.register({
 			}
 		}
 
-		var links = Foxtrick.LinkCollection.getLinks("playerslink", { "teamid": teamid, "teamname": teamname, "playerids" : playerids }, doc, this);
+		var links = Foxtrick.util.module.get("Links").getLinks("playerslink", { "teamid": teamid, "teamname": teamname, "playerids" : playerids }, doc, this);
 		if (links.length > 0){
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(

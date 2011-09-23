@@ -9,7 +9,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('training'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.links.getOptionsHtml(doc, this, false, "traininglink");
+		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "traininglink");
 	},
 
 	run : function(doc) {
@@ -34,7 +34,7 @@ Foxtrick.util.module.register({
 				owncountryid = Foxtrick.util.id.getOwnLeagueId();
 
 
-				var links = Foxtrick.LinkCollection.getLinks("traininglink", {"Coach":Coach,"TI":TI,"STA":STA,"TrainingType":TrainingType,'owncountryid':owncountryid}, doc, this);
+				var links = Foxtrick.util.module.get("Links").getLinks("traininglink", {"Coach":Coach,"TI":TI,"STA":STA,"TrainingType":TrainingType,'owncountryid':owncountryid}, doc, this);
 
 				if (links.length > 0) {
 					ownBoxBody = doc.createElement("div");

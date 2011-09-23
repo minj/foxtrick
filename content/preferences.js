@@ -391,7 +391,15 @@ function getModule(module)
 	var check = document.createElement("input");
 	check.id = entry.id + "-check";
 	check.type = "checkbox";
-	check.setAttribute("module", module.MODULE_NAME);
+	// do not allow disabling core modules
+	if (module.CORE_MODULE) {
+		check.setAttribute("checked", "checked");
+		check.setAttribute("disabled", "disabled");
+	}
+	else {
+		check.setAttribute("module", module.MODULE_NAME);
+	}
+
 	label.appendChild(check);
 	label.appendChild(document.createTextNode(module.MODULE_NAME));
 	title.appendChild(label);

@@ -9,7 +9,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('transfer'),
 	OPTION_FUNC : function(doc) {
-		Foxtrick.links.getOptionsHtml(doc, this, false, "clubtransferslink");
+		Foxtrick.util.links.getOptionsHtml(doc, this, false, "clubtransferslink");
 	},
 
 	run : function(doc) {
@@ -19,7 +19,7 @@ Foxtrick.util.module.register({
 			if (alldivs[j].className=="main mainRegular") {
 				var thisdiv = alldivs[j].getElementsByTagName("div")[0];
 
- 				var links = Foxtrick.LinkCollection.getLinks("clubtransferslink", {}, doc, this );
+ 				var links = Foxtrick.util.module.get("Links").getLinks("clubtransferslink", {}, doc, this );
 				if (links.length > 0) {
 					ownBoxBody = doc.createElement("div");
 					var header = Foxtrickl10n.getString(

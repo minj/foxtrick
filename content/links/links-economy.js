@@ -9,7 +9,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('finances'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.links.getOptionsHtml(doc, this, false, "economylink");
+		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "economylink");
 	},
 
 	run : function(doc) {
@@ -33,7 +33,7 @@ Foxtrick.util.module.register({
 			}
 		}
 		var currencySymbol = Foxtrick.util.currency.getSymbol();
-		var links = Foxtrick.LinkCollection.getLinks("economylink", { "Cash":Cash,"newCash":newCash,"Currency":currencySymbol,"owncountryid":owncountryid}, doc, this);
+		var links = Foxtrick.util.module.get("Links").getLinks("economylink", { "Cash":Cash,"newCash":newCash,"Currency":currencySymbol,"owncountryid":owncountryid}, doc, this);
 		var ownBoxBody=null
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");

@@ -10,7 +10,7 @@ Foxtrick.util.module.register({
 	PAGES : new Array('achievements'),
 
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.links.getOptionsHtml(doc, this, false, "achievementslink");
+		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "achievementslink");
 	},
 
 	run : function(doc) {
@@ -25,7 +25,7 @@ Foxtrick.util.module.register({
 		var teamname = Foxtrick.util.id.extractTeamName(mainBody);
 		var userid = Foxtrick.util.id.findUserId(mainBody);
 
-		var links = Foxtrick.LinkCollection.getLinks("achievementslink", { "teamid": teamid, "teamname": teamname, "userid" : userid,"owncountryid":owncountryid }, doc, this);
+		var links = Foxtrick.util.module.get("Links").getLinks("achievementslink", { "teamid": teamid, "teamname": teamname, "userid" : userid,"owncountryid":owncountryid }, doc, this);
 		if (links.length > 0){
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(

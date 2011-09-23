@@ -9,7 +9,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('country'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.links.getOptionsHtml(doc, this, false, "countrylink");
+		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "countrylink");
 	},
 
 	run : function(doc) {
@@ -24,7 +24,7 @@ Foxtrick.util.module.register({
 		if (node)
 			var nameShort = node.textContent;
 
-		var links = Foxtrick.LinkCollection.getLinks("countrylink", {
+		var links = Foxtrick.util.module.get("Links").getLinks("countrylink", {
 				"countryid" : leagueId,
 				"english_name" : nameShort
 			}, doc, this);

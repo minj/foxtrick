@@ -9,7 +9,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('managerPage'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.links.getOptionsHtml(doc, this, false, "managerlink");
+		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "managerlink");
 	},
 
 	run : function(doc) {
@@ -26,7 +26,7 @@ Foxtrick.util.module.register({
 		var h1 = mainBody.getElementsByTagName('h1')[0];
 		var username = h1.innerHTML.replace(/<.+>/g,'').replace(/^\s+/,'').replace(/\s+$/,'').replace(/\(.+/,'').replace(/\s+$/g, '');
 
-		var links = Foxtrick.LinkCollection.getLinks("managerlink", { "teamid": teamid, "teamname": teamname, "userid" : userid,  "username" : username,
+		var links = Foxtrick.util.module.get("Links").getLinks("managerlink", { "teamid": teamid, "teamname": teamname, "userid" : userid,  "username" : username,
 												"leagueid" : leagueid ,"owncountryid":owncountryid  }, doc, this);
 		if (links.length > 0){
 			ownBoxBody = doc.createElement("div");

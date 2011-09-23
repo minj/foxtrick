@@ -100,8 +100,6 @@ Foxtrick.entry.init = function() {
 		}, files);
 	}
 	
-	Foxtrick.MakeStatsHash();
-
 	// create arrays for each recognized page that contains modules
 	// that run on it
 	for (var i in Foxtrick.ht_pages) {

@@ -9,7 +9,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('youthoverview'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.links.getOptionsHtml(doc, this, false, "youthlink");
+		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "youthlink");
 	},
 
 	run : function(doc) {
@@ -25,7 +25,7 @@ Foxtrick.util.module.register({
 
 		//addExternalLinksToYouthOverview
 		var ownBoxBody=null;
-		var links = Foxtrick.LinkCollection.getLinks("youthlink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid, 'server':server  }, doc,this);
+		var links = Foxtrick.util.module.get("Links").getLinks("youthlink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid, 'server':server  }, doc,this);
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
@@ -50,7 +50,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('youthplayerdetail'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.links.getOptionsHtml(doc, this, false, "youthplayerdetaillink");
+		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "youthplayerdetaillink");
 	},
 
 	run : function(doc) {
@@ -88,7 +88,7 @@ Foxtrick.util.module.register({
 
 		//addExternalLinksToYouthdetail
 		var ownBoxBody=null;
-		var links = Foxtrick.LinkCollection.getLinks("youthplayerdetaillink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "playerid" : playerid, "age" : age, "age_days":age_days, "owncountryid": owncountryid, 'server':server }, doc,this);
+		var links = Foxtrick.util.module.get("Links").getLinks("youthplayerdetaillink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "playerid" : playerid, "age" : age, "age_days":age_days, "owncountryid": owncountryid, 'server':server }, doc,this);
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
@@ -113,7 +113,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('YouthTraining'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.links.getOptionsHtml(doc, this, false, "youthtraininglink");
+		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "youthtraininglink");
 	},
 
 	run : function(doc) {
@@ -130,7 +130,7 @@ Foxtrick.util.module.register({
 
 		//addExternalLinksToYouthOverview
 		var ownBoxBody=null;
-		var links = Foxtrick.LinkCollection.getLinks("youthtraininglink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid, 'server':server  }, doc,this);
+		var links = Foxtrick.util.module.get("Links").getLinks("youthtraininglink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid, 'server':server  }, doc,this);
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString("foxtrick.links.boxheader");
@@ -155,7 +155,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('YouthPlayers'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.links.getOptionsHtml(doc, this, false, "youthplayerlistlink");
+		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "youthplayerlistlink");
 	},
 
 	run : function(doc) {
@@ -173,7 +173,7 @@ Foxtrick.util.module.register({
 
 		//addExternalLinksToYouthOverview
 		var ownBoxBody=null;
-		var links = Foxtrick.LinkCollection.getLinks("youthplayerlistlink", {  "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid, 'server':server  }, doc,this);
+		var links = Foxtrick.util.module.get("Links").getLinks("youthplayerlistlink", {  "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid, 'server':server  }, doc,this);
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
@@ -198,7 +198,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('YouthMatchlist'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.links.getOptionsHtml(doc, this, false, "youthmatchlistlink");
+		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "youthmatchlistlink");
 	},
 
 	run : function(doc) {
@@ -216,7 +216,7 @@ Foxtrick.util.module.register({
 
 		//addExternalLinksToYouthOverview
 		var ownBoxBody=null;
-		var links = Foxtrick.LinkCollection.getLinks("youthmatchlistlink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid, 'server':server  }, doc,this);
+		var links = Foxtrick.util.module.get("Links").getLinks("youthmatchlistlink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid, 'server':server  }, doc,this);
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
@@ -241,7 +241,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('youthSeries'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.links.getOptionsHtml(doc, this, false, "youthleaguelink");
+		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "youthleaguelink");
 	},
 
 	run : function(doc) {
@@ -258,7 +258,7 @@ Foxtrick.util.module.register({
 
 		//addExternalLinksToYouthLeague
 		var ownBoxBody=null;
-		var links = Foxtrick.LinkCollection.getLinks("youthleaguelink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid, 'youthleagueid':youthleagueid }, doc,this);
+		var links = Foxtrick.util.module.get("Links").getLinks("youthleaguelink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid, 'youthleagueid':youthleagueid }, doc,this);
 		if (links.length > 0) {
 			ownBoxBody = doc.createElement("div");
 			var header = Foxtrickl10n.getString(
