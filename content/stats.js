@@ -466,7 +466,7 @@ Foxtrick.MakeStatsHash = function(){
 		}
 		for (var key in links) {
 			var link = links[key];
-			if (link.indexOf("javascript:") == 0) {
+			if (link.url.indexOf("javascript:") == 0) {
 				Foxtrick.log("JavaScript not allowed in links.");
 			}
 			else {
@@ -555,7 +555,7 @@ Foxtrick.LinkCollection.makelink = function(stat, statlink, filterparams, key, d
 	var languages = statlink["languages"];
 	var args = "";
  
-	if (params && typeof (statlink["paramfunction"]) == 'undefined') {
+	if (params && typeof(statlink["paramfunction"]) != "function") {
 		for (var paramkey in params) {
 		if (params[paramkey].search('ftfilter')==0) continue;
 			var temp;
@@ -586,8 +586,8 @@ Foxtrick.LinkCollection.makelink = function(stat, statlink, filterparams, key, d
 				}
 			else {args += (params[paramkey] != "" ? temp + params[paramkey] : "");}
 		}
-
-	} else {
+	}
+	else if (typeof(statlink["paramfunction"]) == "function") {
 		args = statlink["paramfunction"](filterparams);
 	}
 
