@@ -51,8 +51,8 @@ Foxtrick.util.module.register({
 		var ls = basicSkills.leadership;
 
 		var wageObj = Foxtrick.Pages.Player.getWage(doc);
-		var wage = wageObj.base;
-		var wagebonus = wageObj.bonus;
+		var wage = Math.round(wageObj.base*Foxtrick.util.currency.getRate());
+		var wagebonus = Math.round(wageObj.bonus*Foxtrick.util.currency.getRate()); ;
 
 		var injuredweeks = Foxtrick.Pages.Player.getInjuryWeeks(doc);
 		if (injuredweeks > 0) {
@@ -118,12 +118,12 @@ Foxtrick.util.module.register({
 		if (links[1] != null) {
 			num_links += links[1].length;
 		}
+		ownBoxBody = doc.createElement("div");
+		var header = Foxtrickl10n.getString("foxtrick.links.boxheader");
+		var ownBoxId = "ft-links-box";
+		var ownBoxBodyId = "foxtrick_links_content";
+		ownBoxBody.id = ownBoxBodyId;
 		if (num_links>0) {
-			ownBoxBody = doc.createElement("div");
-			var header = Foxtrickl10n.getString("foxtrick.links.boxheader");
-			var ownBoxId = "ft-links-box";
-			var ownBoxBodyId = "foxtrick_links_content";
-			ownBoxBody.id = ownBoxBodyId;
 
 			for (var i = 0; i < links.length; ++i) {
 				if (links[i] != null) {
