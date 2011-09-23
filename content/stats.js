@@ -486,7 +486,7 @@ Foxtrick.LinkCollection.getLinks2 = function(stats, stattype, filterparams, doc,
 
 		var allowed = true;
 
-		if (filters.length == 0 && (typeof(stat["allowlink"]) == 'undefined')) {
+		if ( (!filters || filters.length == 0) && (typeof(stat["allowlink"]) == 'undefined')) {
 			allowed = true;
 		} else {
 			if (filters.length > 0) {
@@ -539,10 +539,11 @@ Foxtrick.LinkCollection.getLinks = function(stattype, filterparams, doc, module)
 Foxtrick.LinkCollection.makelink = function(stat, statlink, filterparams, key, doc) {
 
 	var params = statlink["params"];
+	if (!statlink["path"])  statlink["path"] = "";
 	var languages = statlink["languages"];
 	var args = "";
  
-	if (typeof (statlink["paramfunction"]) == 'undefined') {
+	if (params && typeof (statlink["paramfunction"]) == 'undefined') {
 		for (var paramkey in params) {
 		if (params[paramkey].search('ftfilter')==0) continue;
 			var temp;
