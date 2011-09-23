@@ -1020,7 +1020,7 @@ Foxtrick.util.module.register({
 							var i;
 							for (i = 0; i < children.length; ++i) {
 								// recursively get the content of child nodes
-								ret += this._getNode(children[i]) + " ";
+								ret += getNode(children[i]) + " ";
 							}
 							return Foxtrick.trim(ret);
 						}
