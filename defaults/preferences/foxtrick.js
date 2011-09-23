@@ -170,6 +170,7 @@ pref("extensions.foxtrick.prefs.module.LeagueNewsFilter.enabled", true);
 pref("extensions.foxtrick.prefs.module.LeagueNewsFilter.value", 0);
 pref("extensions.foxtrick.prefs.module.LineupShortcut.enabled", true);
 pref("extensions.foxtrick.prefs.module.LineupShortcut.HighlightPlayer.enabled", false);
+pref("extensions.foxtrick.prefs.module.Links.feeds", "http://www.foxtrick.org/data/links.json");
 pref("extensions.foxtrick.prefs.module.LinksAchievements.enabled", false);
 pref("extensions.foxtrick.prefs.module.LinksAlliances.alltid.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksAlliances.enabled", true);
@@ -678,4 +679,3 @@ pref("extensions.foxtrick.prefs.smallcopyicons", true);
 pref("extensions.foxtrick.prefs.table_separator", " ");
 pref("extensions.foxtrick.prefs.xmlLoad", true);
 pref("extensions.foxtrick.prefs.module.MobileEnhancements.enabled", false);
-

@@ -18,6 +18,20 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	CORE_MODULE : true,
 
+	OPTION_FUNC : function(doc) {
+		var cont = doc.createElement("div");
+
+		var label = doc.createElement("p");
+		label.setAttribute("data-text", "Links.feeds");
+		cont.appendChild(label);
+
+		var textarea = doc.createElement("textarea");
+		textarea.setAttribute("pref", "module.Links.feeds");
+		cont.appendChild(textarea);
+
+		return cont;
+	},
+
 	htworld : {
 		"118" : "algerie",
 		"128" : "aliraq",
@@ -368,36 +382,43 @@ Foxtrick.util.module.register({
 			}
 		}
 
-		// load links from external file
-		Foxtrick.load(Foxtrick.DataPath + "links.json", function(text) {
-			if (!text) {
-				Foxtrick.log("Failure loading links file.");
-				return;
-			}
-			try {
-				var links = JSON.parse(text);
-			}
-			catch (e) {
-				Foxtrick.log("Failure parsing links file.");
-				return;
-			}
-			for (var key in links) {
-				var link = links[key];
-				if (link.url.indexOf("javascript:") == 0) {
-					Foxtrick.log("JavaScript not allowed in links.");
+		// load links from external feeds
+		var feeds = FoxtrickPrefs.getString("modules.Links.feeds") || "";
+		feeds = feeds.split(/(\n|\r)+/);
+		// add default feed if no feeds set
+		if (Foxtrick.all(function(n) { return Foxtrick.trim(n) == ""; }, feeds))
+			feeds = [Foxtrick.DataPath + "links.json"];
+		Foxtrick.map(function(feed) {
+			Foxtrick.load(feed, function(text) {
+				if (!text) {
+					Foxtrick.log("Failure loading links file.");
+					return;
 				}
-				else {
-					for (var prop in link) {
-						if (prop.indexOf("link") >= 0) {
-							if (typeof(collection[prop]) == 'undefined') {
-								collection[prop] = {};
+				try {
+					var links = JSON.parse(text);
+				}
+				catch (e) {
+					Foxtrick.log("Failure parsing links file.");
+					return;
+				}
+				for (var key in links) {
+					var link = links[key];
+					if (link.url.indexOf("javascript:") == 0) {
+						Foxtrick.log("JavaScript not allowed in links.");
+					}
+					else {
+						for (var prop in link) {
+							if (prop.indexOf("link") >= 0) {
+								if (typeof(collection[prop]) == 'undefined') {
+									collection[prop] = {};
+								}
+								collection[prop][key] = link;
 							}
-							collection[prop][key] = link;
 						}
 					}
 				}
-			}
-		});
+			});
+		}, feeds);
 	},
 
 	getLinks2 : function(stats, stattype, filterparams, doc, overridesettings, module) {
