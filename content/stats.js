@@ -437,7 +437,8 @@ if (!Foxtrick) var Foxtrick={};
 Foxtrick.StatsHash = {};
 
 Foxtrick.MakeStatsHash = function(){
-	// create stats Hash for Foxtrick.LinkCollection
+	// load links defined above
+	// FIXME - move all links to external sources and remove this
 	for (var key in Foxtrick.LinkCollection.stats) {
 		var stat = Foxtrick.LinkCollection.stats[key];
 		for (var prop in stat) {
@@ -449,27 +450,38 @@ Foxtrick.MakeStatsHash = function(){
 			}
 		}
 	}
-	
-	var externalLinks = Foxtrick.load(Foxtrick.InternalPath + "stats.json");
-	if (externalLinks.indexOf('javascript') !== -1) {
-		Foxtrick.log('No javascript in external links');
-		return;
-	}
-	externalLinks = JSON.parse(externalLinks);
-	
-	for (var key in externalLinks) {
-		var stat = externalLinks[key];
-		for (var prop in stat) {
-			if (prop.match(/link/)) {
-				if (typeof(Foxtrick.StatsHash[prop]) == 'undefined') {
-					Foxtrick.StatsHash[prop] = {};
+
+	// load links from external file
+	Foxtrick.load(Foxtrick.DataPath + "links.json", function(text) {
+		if (!text) {
+			Foxtrick.log("Failure loading links file.");
+			return;
+		}
+		try {
+			var links = JSON.parse(text);
+		}
+		catch (e) {
+			Foxtrick.log("Failure parsing links file.");
+			return;
+		}
+		for (var key in links) {
+			var link = links[key];
+			if (link.indexOf("javascript:") == 0) {
+				Foxtrick.log("JavaScript not allowed in links.");
+			}
+			else {
+				for (var prop in link) {
+					if (prop.indexOf("link") >= 0) {
+						if (typeof(Foxtrick.StatsHash[prop]) == 'undefined') {
+							Foxtrick.StatsHash[prop] = {};
+						}
+						Foxtrick.StatsHash[prop][key] = link;
+					}
 				}
-				Foxtrick.StatsHash[prop][key] = stat;
 			}
 		}
-	}
+	});
 }
-
 
 Foxtrick.LinkCollection.getLinks2 = function(stats, stattype, filterparams, doc, overridesettings, module) {
 	var links = [];

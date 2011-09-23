@@ -35,8 +35,9 @@ var sandboxed = {
 	},
 };
 */
-	
-	
+
+Foxtrick.DataPath = "http://www.foxtrick.org/data/";
+
 if (typeof(opera) == "object") {
 	Foxtrick.arch = "Sandboxed";
 	Foxtrick.platform = "Opera";
