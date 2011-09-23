@@ -22,9 +22,9 @@ Foxtrick.util.module.register({
 			var obj = {};
 			// JSON files to be downloaded
 			var uris = [
-				"http://www.foxtrick.org/staff-data/foxtrick.json",
-				"http://www.foxtrick.org/staff-data/chpp.json",
-				"http://www.foxtrick.org/staff-data/editor.json",
+				"http://www.foxtrick.org/data/staff/foxtrick.json",
+				"http://www.foxtrick.org/data/staff/chpp.json",
+				"http://www.foxtrick.org/data/staff/editor.json",
 				"http://www.hattrick-youthclub.org/_admin/foxtrick/team.json"
 			];
 			// counter of URI remaining to fetch
