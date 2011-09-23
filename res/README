@@ -1,0 +1,7 @@
+Files under this directory will be committed to Google Code, and users will
+access the files via Apache rewrite rule in http://www.foxtrick.org/.
+
+
+---
+Ryan Li <ryan@ryanium.com>
+23 Sep 2011
