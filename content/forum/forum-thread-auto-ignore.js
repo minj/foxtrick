@@ -7,9 +7,13 @@
 Foxtrick.util.module.register((function() {
 
 	var tagmarkers = [['\\[','\\]'],['{','}'],['\\[','}'],['{','\\]']]; // any more known?
+	// blacklst tags
 	var tags = null;
+	// whitelist tags
 	var whitelist = null;
-
+	// id of the thread this i currently deleting. don't do further action till that is gone
+	var deleting_thread_id = null;
+	
 	return {
 		MODULE_NAME : "ForumThreadAutoIgnore",
 		MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
@@ -73,8 +77,8 @@ Foxtrick.util.module.register((function() {
 									if (whitelisted) continue;
 
 									// check if finished deleting the last one. if ids match, the last delet order isn't finished. come back with next onchange
-									if (thread_id == FoxtrickForumThreadAutoIgnore.deleting_thread_id) return;
-									FoxtrickForumThreadAutoIgnore.deleting_thread_id = thread_id;
+									if (thread_id == deleting_thread_id) return;
+									deleting_thread_id = thread_id;
 
 									// ignore thread using ht's javascript link
 									var func = ignore.getAttribute('onclick');
