@@ -27,29 +27,28 @@ Foxtrick.util.module.register({
 				// show last date if there was an entry shown for that date
 				if (Foxtrick.hasClass(item.previousSibling.previousSibling, "feed")) {
 					if (last_feed) {
-						if (feed_count==0) last_feed.style.display='none';
-						else last_feed.style.display='block';
+						if (feed_count==0) Foxtrick.addClass(last_feed,'hidden');
+						else Foxtrick.removeClass(last_feed,'hidden');
 					}
 					last_feed=item.previousSibling.previousSibling;
 					feed_count=0;
 				}
 				// show selected
 				if (selected==0 || item.getAttribute('ft_news')==selected) {
-					item.style.display='block';
+					Foxtrick.removeClass(item,'hidden');
 					++feed_count;
 				}
-				else item.style.display='none';
+				else Foxtrick.addClass(item,'hidden');
 			}
 			// show very last date if there was an entry shown for that date
 			if (last_feed) {
-				if (feed_count==0) last_feed.style.display='none';
-				else last_feed.style.display='block';
+				if (feed_count==0) Foxtrick.addClass(last_feed,'hidden');
+				else Foxtrick.removeClass(last_feed,'hidden');
 			}
 		};
 
 		var newsfeed = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLLUFeed");
 		var selectdiv=doc.createElement('div');
-		selectdiv.setAttribute('style','display:block');
 		selectdiv.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.LeagueNewsFilter.Filter")));
 		selectdiv.appendChild(doc.createTextNode(' '));
 		var select=doc.createElement('select');
