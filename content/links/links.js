@@ -273,28 +273,6 @@ Foxtrick.util.module.register({
 			"title" : "Alltid: compare teams",
 			"shorttitle" : "Compare"
 		},
-		"Wage_Reduction_Calculator" : {
-			"url" : "http://www.nrgjack.altervista.org/",
-			"playerlink" : { 
-				"path"		: "wagereduction.php",
-				"filters"	: ["age"],
-				"paramfunction" : function(params) {
-					var wage=params["wage"];
-					var wagebonus=params["wagebonus"];
-					var age=params["age"];
-					var CurrCode=params["Currency"];
-					if (CurrCode!="EUR"){
-						wage=Math.round(wage*Foxtrick.util.currency.getRate());
-						wagebonus=Math.round(wagebonus*Foxtrick.util.currency.getRate());
-						age=Math.round(age);
-					}
-					return "?wage=" + wage + "&wagebonus=" + wagebonus + "&age=" + age;
-				}
-			},
-			"ageranges" : [[28, 99]],
-			"title" : "Wage Reduction Calculator",
-			"img" : Foxtrick.InternalPath+"resources/linkicons/wagereduction.png"
-		},
 		"hattrick-youthclub" : {
 			"url" : "http://www.",
 			"urlfunction": function (filterparams) {

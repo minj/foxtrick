@@ -1565,8 +1565,21 @@
 	},
 	"title" : "Hattrick Youth Statistics",
 	"img" : "resources/linkicons/htys.png"
+},
+
+"Wage_Reduction_Calculator" : {
+	"url" : "http://www.nrgjack.altervista.org/",
+	"playerlink" : { 
+		"path"		: "wagereduction.php",
+		"filters"	: ["age"],
+		"params" : {
+			"wage" : "wage",
+			"wagebonus" : "wagebonus",
+			"age" : "age"
+		}
+	},
+	"ageranges" : [[28, 99]],
+	"title" : "Wage Reduction Calculator",
+	"img" : Foxtrick.InternalPath+"resources/linkicons/wagereduction.png"
 }
-
-
-
 }
