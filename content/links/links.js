@@ -10,7 +10,6 @@
  * "params"	: { "" : "#text" } -> #text 			//eg maptrick , first letter non alphanumeric
  * "params"	: { "infocode" : "," } -> ,info[infocode] //eg alltid, first letter non alphanumeric
  * "params"	: { "infocode" : "ftfilter_somename" } -> parameter only used for allowlink function and will not be shown in link //eg hattrickchallenge_friendly, first letters = ftfilter
- * for others use the 'paramfunction' eg natstats
  */
 
 Foxtrick.util.module.register({
@@ -465,7 +464,7 @@ Foxtrick.util.module.register({
 		var languages = statlink["languages"];
 		var args = "";
 	 
-		if (params && typeof(statlink["paramfunction"]) != "function") {
+		if (params) {
 			for (var paramkey in params) {
 			if (params[paramkey].search('ftfilter')==0) continue;
 				var temp;
@@ -496,9 +495,6 @@ Foxtrick.util.module.register({
 					}
 				else {args += (params[paramkey] != "" ? temp + params[paramkey] : "");}
 			}
-		}
-		else if (typeof(statlink["paramfunction"]) == "function") {
-			args = statlink["paramfunction"](filterparams);
 		}
 
 		var url=null;
