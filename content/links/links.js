@@ -525,14 +525,14 @@ Foxtrick.util.module.register((function() {
 				}
 			}
 			links.sort(function(a, b) {
-				if (a.link.img == undefined && b.link.img == undefined)
+				if (a.obj.img == undefined && b.obj.img == undefined)
 					return 0;
-				else if (a.link.img == undefined)
+				else if (a.obj.img == undefined)
 					return 1;
-				else if (b.link.img == undefined)
+				else if (b.obj.img == undefined)
 					return -1;
 				else
-					return a.link.title.localeCompare(b.link.title);
+					return a.obj.title.localeCompare(b.obj.title);
 			});
 			return links;
 		}
