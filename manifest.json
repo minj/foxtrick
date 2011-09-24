@@ -7,7 +7,6 @@
 			"content/l10n.js",
 			"content/xml-load.js",
 			"content/pages.js",
-			"content/stats.js",
 			"content/lib/oauth.js",
 			"content/lib/sha1.js",
 			"content/util/api.js",

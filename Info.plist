@@ -38,7 +38,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/l10n.js</string>
 				<string>content/xml-load.js</string>
 				<string>content/pages.js</string>
-				<string>content/stats.js</string>
 				<string>content/lib/oauth.js</string>
 				<string>content/lib/sha1.js</string>
 				<string>content/lib/jquery.js</string>

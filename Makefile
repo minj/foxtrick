@@ -59,7 +59,6 @@ CONTENT_FILES = add-class.js \
 	prefs.js \
 	read-ht-prefs.js \
 	redirections.js \
-	stats.js \
 	ui.js \
 	xml-load.js \
 	modules.json

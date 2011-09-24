@@ -12,7 +12,6 @@
 <script type="application/x-javascript" src="./l10n.js" />
 <script type="application/x-javascript" src="./xml-load.js" />
 <script type="application/x-javascript" src="./pages.js" />
-<script type="application/x-javascript" src="./stats.js" />
 
 <!-- utilities -->
 <script type="application/x-javascript" src="./util/api.js" />

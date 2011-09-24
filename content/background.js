@@ -329,7 +329,6 @@ Foxtrick.loader.chrome.fennecScriptInjection= function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/l10n.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/xml-load.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/pages.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/stats.js", true);
 
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/module.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/api.js", true);
