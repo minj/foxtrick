@@ -105,8 +105,31 @@ Foxtrick.util.module.register({
 
 			var div = doc.createElement('div');
 			div.setAttribute('class','HTMLToolbar');
-			div.setAttribute('style','display:block; width:300px;');
-			div.innerHTML="<img style=\"margin: 2px;\" onclick=\"insertQuote(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" src=\"/Img/Icons/transparent.gif\" class=\"f_quote2\" title=\"[q]\"><img style=\"margin: 2px;\" onclick=\"insertBold(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" src=\"/Img/Icons/transparent.gif\" class=\"f_bold\" title=\"[b]\"><img style=\"margin: 2px;\" onclick=\"insertItalic(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" src=\"/Img/Icons/transparent.gif\" class=\"f_italic\" title=\"[i]\"><img style=\"margin: 2px; width: 22px; height: 22px;\" onclick=\"insertUnderline(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" src=\"/Img/Icons/transparent.gif\" class=\"f_ul\" title=\"[u]\"><img style=\"width: 22px; height: 22px;\" onclick=\"insertRuler(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" src=\"/Img/Icons/transparent.gif\" class=\"f_hr\" title=\"[hr]\"><img onclick=\"insertPlayerID(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" src=\"/Img/Icons/transparent.gif\" class=\"f_player\" title=\"[playerID=xxx]\"><img onclick=\"insertTeamID(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" src=\"/Img/Icons/transparent.gif\" class=\"f_team\" title=\"[teamID=xxx]\"><img onclick=\"insertMatchID(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" src=\"/Img/Icons/transparent.gif\" class=\"f_match\" title=\"[matchID=xxx]\"><img onclick=\"insertFederationID(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" src=\"/Img/Icons/transparent.gif\" class=\"f_fed\" title=\"[fedID=xxx]\"><img onclick=\"insertMessage(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" src=\"/Img/Icons/transparent.gif\" class=\"f_message\" title=\"[post=xxx.yy]\"><img onclick=\"insertLeagueID(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" src=\"/Img/Icons/transparent.gif\" class=\"f_series\" title=\"[leagueID=xxx]\"><img onclick=\"insertLink(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" src=\"/Img/Icons/transparent.gif\" class=\"f_www\" title=\"[link=xxx]\">";
+			div.innerHTML = 
+				"<img onclick=\"insertQuote(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
+					src=\"/Img/Icons/transparent.gif\" class=\"f_quote2\" title=\"[q]\">\
+				<img onclick=\"insertBold(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
+					src=\"/Img/Icons/transparent.gif\" class=\"f_bold\" title=\"[b]\">\
+				<img onclick=\"insertItalic(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
+					src=\"/Img/Icons/transparent.gif\" class=\"f_italic\" title=\"[i]\">\
+				<img onclick=\"insertUnderline(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
+					src=\"/Img/Icons/transparent.gif\" class=\"f_ul\" title=\"[u]\">\
+				<img onclick=\"insertRuler(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
+					src=\"/Img/Icons/transparent.gif\" class=\"f_hr\" title=\"[hr]\">\
+				<img onclick=\"insertPlayerID(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\"  \
+					src=\"/Img/Icons/transparent.gif\" class=\"f_player\" title=\"[playerID=xxx]\">\
+				<img onclick=\"insertTeamID(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
+					src=\"/Img/Icons/transparent.gif\" class=\"f_team\" title=\"[teamID=xxx]\">\
+				<img onclick=\"insertMatchID(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
+					src=\"/Img/Icons/transparent.gif\" class=\"f_match\" title=\"[matchID=xxx]\">\
+				<img onclick=\"insertFederationID(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
+					src=\"/Img/Icons/transparent.gif\" class=\"f_fed\" title=\"[fedID=xxx]\">\
+				<img onclick=\"insertMessage(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
+					src=\"/Img/Icons/transparent.gif\" class=\"f_message\" title=\"[post=xxx.yy]\">\
+				<img onclick=\"insertLeagueID(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
+					src=\"/Img/Icons/transparent.gif\" class=\"f_series\" title=\"[leagueID=xxx]\">\
+				<img onclick=\"insertLink(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
+					src=\"/Img/Icons/transparent.gif\" class=\"f_www\" title=\"[link=xxx]\">";
 			anchor.parentNode.insertBefore( div, anchor );
 		}
 
@@ -158,10 +181,7 @@ Foxtrick.util.module.register({
 					 nextElement.id.search('ctl00_ctl00_CPContent_CPMain_uc') != -1 ||
 					 nextElement.href != null
 				   ) {
-						nextElement.setAttribute("style","display:none")
-				}
-				else {
-					nextElement.setAttribute("style","margin:2px");
+						Foxtrick.addClass(nextElement,"hidden");
 				}
 				nextElement = nextElement.nextSibling;
 			} catch(e) { nextElement = nextElement.nextSibling; }
@@ -481,8 +501,7 @@ Foxtrick.util.module.register({
 		}
 
 		var toolbar_label = doc.createElement( "div" );
-		toolbar_label.innerHTML = Foxtrickl10n.getString("ForumYouthIcons.labelToolbar");
-		toolbar_label.setAttribute( "style" , "background-color:#D0D0D0;;margin-bottom:3px;text-align:center;");
+		toolbar_label.textContent = Foxtrickl10n.getString("ForumYouthIcons.labelToolbar");
 		toolbar.insertBefore( toolbar_label, toolbar.firstChild );
 
 		// Set styles of next siblings
@@ -503,9 +522,8 @@ Foxtrick.util.module.register({
 
 			var otherbar_label = doc.createElement( "div" );
 			otherbar_label.id = "ft_other_icons";
-			otherbar_label.innerHTML = Foxtrickl10n.getString("ForumOtherIcons.label");
-			otherbar_label.setAttribute( "style" , "background-color:#D0D0D0;;margin-bottom:3px;text-align:center;");
-			if (!show_other) otherbar_label.setAttribute( "style" , "display:none;");
+			otherbar_label.textContent = Foxtrickl10n.getString("ForumOtherIcons.label");
+			if (!show_other) otherbar_label.className= "hidden";
 			otherbar.appendChild( otherbar_label);
 
 			for (var i = 0; i < othericons.length; i++) {
@@ -532,9 +550,8 @@ Foxtrick.util.module.register({
 
 			var youthbar_label = doc.createElement( "div" );
 			youthbar_label.id = "ft_youth_icons";
-			youthbar_label.innerHTML = Foxtrickl10n.getString("ForumYouthIcons.label");
-			youthbar_label.setAttribute( "style" , "background-color:#D0D0D0;;margin-bottom:3px;text-align:center;");
-			if (!show_youth) youthbar_label.setAttribute( "style" , "display:none;");
+			youthbar_label.textContent = Foxtrickl10n.getString("ForumYouthIcons.label");
+			if (!show_youth) youthbar_label.className = "hidden";
 			youthbar.appendChild( youthbar_label);
 
 			for (var i = 0; i < youthicons.length; i++) {
@@ -545,7 +562,6 @@ Foxtrick.util.module.register({
 						newimage.setAttribute( "tags", youthicons[i].tags);
 						if ( youthicons[i].replace_text) newimage.setAttribute( "replace_text", youthicons[i].replace_text);
 						newimage.setAttribute( "class", youthicons[i].icon_class);
-						newimage.setAttribute("style","margin:2px;");
 						newimage.title = Foxtrickl10n.getString("ForumYouthIcons."+youthicons[i].string);
 						youthbar.appendChild( newimage );
 				}
