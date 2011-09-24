@@ -94,10 +94,19 @@ Foxtrick.Pages.Players = {
 						}
 						else player.redCard=0;
 
-						player.injured = Number(playerNode.getElementsByTagName("InjuryLevel")[0].textContent);
-						if (player.injured==0) player.bruised=1;
+						player.injuredWeeks = Number(playerNode.getElementsByTagName("InjuryLevel")[0].textContent);
+						if (player.injuredWeeks==0) player.bruised=1;
 						else player.bruised = 0;
-						if (player.injured==-1) player.injured=0;
+						if (player.injuredWeeks==-1) player.injuredWeeks=0;
+
+						if (player.yellowCard + player.redCard != 0) 
+							player.cards = true;
+						else 
+							player.cards = false;
+						if (player.bruised || player.injuredWeeks != 0) 
+							player.injured = true;
+						else
+							player.injured = false;
 
 						player.transferListed = Number(playerNode.getElementsByTagName("TransferListed")[0].textContent);
 						player.form = Number(playerNode.getElementsByTagName("PlayerForm")[0].textContent);
@@ -217,8 +226,6 @@ Foxtrick.Pages.Players = {
 			var playerNodes = doc.getElementsByClassName("playerInfo");
 			for (var i = 0; i < playerNodes.length; ++i) {
 				var playerNode = playerNodes[i];
-				if (playerNode.style.display == "none")
-					continue;
 				var id = Foxtrick.Pages.Players.getPlayerId(playerNode);
 				// see if player is already in playerList, add if not
 				var player = Foxtrick.filter(function(n) { return n.id == id; }, playerList)[0];
@@ -230,6 +237,9 @@ Foxtrick.Pages.Players = {
 					playerNode.getElementsByTagName("a"))[0];
 				player.nameLink = nameLink.cloneNode(true);
 
+				if ( Foxtrick.hasClass(playerNode,'hidden') )
+					player.hidden = true;
+				
 				var paragraphs = playerNode.getElementsByTagName("p");
 				var imgs = playerNode.getElementsByTagName("img");
 				var as = playerNode.getElementsByTagName("a");
@@ -378,10 +388,12 @@ Foxtrick.Pages.Players = {
 				}
 
 				// red/yellow cards and injuries, these are shown as images
+				player.cards = false;
 				player.redCard = 0;
 				player.yellowCard = 0;
+				player.injured = false;
 				player.bruised = false;
-				player.injured = 0;
+				player.injuredWeeks = 0;
 				// only senior players can be transfer-listed
 				if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc)) {
 					player.transferListed = false;
@@ -403,13 +415,15 @@ Foxtrick.Pages.Players = {
 						player.bruised = true;
 					}
 					else if (imgs[j].className == "injuryInjured") {
-						player.injured = Number(imgs[j].nextSibling.textContent);
+						player.injuredWeeks = Number(imgs[j].nextSibling.textContent);
 					}
 					else if (imgs[j].className == "transferListed") {
 						player.transferListed = true;
 					}
 				}
-
+				if (player.yellowCard + player.redCard != 0) player.cards = true;
+				if (player.bruised || player.injuredWeeks != 0) player.injured = true;
+				
 				// HTMS points
 				var htmsPoints = playerNode.getElementsByClassName("ft-htms-points").item(0);
 				if (htmsPoints) {

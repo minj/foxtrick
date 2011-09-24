@@ -157,7 +157,7 @@ Foxtrick.util.module.register({
 					for (var i = 0; i < allElems.length; ++i) {
 						var elem = allElems[i];
 						if (Foxtrick.hasClass(elem, "faceCard")) {
-							elem.style.display='block';
+							Foxtrick.removeClass(elem,'hidden');
 						}
 						else if (Foxtrick.hasClass(elem, "category")
 							|| Foxtrick.hasClass(elem, "playerInfo")
@@ -165,7 +165,7 @@ Foxtrick.util.module.register({
 							|| Foxtrick.hasClass(elem, "separator")
 							|| Foxtrick.hasClass(elem, "youthnotes")) {
 							// these are attached infomation divisions
-							elem.style.display='none';
+							Foxtrick.addClass(elem,'hidden');
 						}
 					}
 
@@ -196,7 +196,7 @@ Foxtrick.util.module.register({
 				var lastCategory = null;
 				var lastborderSeparator = null;
 				var lastFace = null;
-
+				
 				for (var i = 0; i < allElems.length; ++i) {
 					var elem = allElems[i];
 					if (Foxtrick.hasClass(elem, "category")) {
@@ -215,14 +215,15 @@ Foxtrick.util.module.register({
 						lastFace = elem;
 					}
 					else if (Foxtrick.hasClass(elem, "playerInfo")) {
+						var pid = Foxtrick.util.id.findPlayerId(elem);
 						if (elem.getAttribute(filter) === "true"
 							 || elem.getAttribute('speciality') === filter ) {
-							elem.style.display='block';
+							Foxtrick.removeClass(elem,'hidden');
 							hide = false;
 							hideCategory = false;
 						}
 						else {
-							elem.style.display='none';
+							Foxtrick.addClass(elem,'hidden');
 							hide = true;
 						}
 						if (lastFace) {
@@ -241,10 +242,10 @@ Foxtrick.util.module.register({
 						|| Foxtrick.hasClass(elem, "separator")
 						|| Foxtrick.hasClass(elem, "youthnotes")) {
 						if (hide === true) {
-							elem.style.display='none';
+							Foxtrick.addClass(elem,'hidden');
 						}
 						else {
-							elem.style.display='block';
+							Foxtrick.removeClass(elem,'hidden');
 						}
 					}
 					if (Foxtrick.hasClass(elem, "borderSeparator")
@@ -265,13 +266,17 @@ Foxtrick.util.module.register({
 			var h = body.getElementsByTagName("h1")[0];
 			h.textContent = h.textContent.replace(/\d+/, count);
 
-			if (FoxtrickSkillTable.isTableCreated(doc)){
-				var table = doc.getElementById("ft_skilltable");
-				table.parentNode.removeChild(table);
-
-				var tablediv = doc.getElementById("ft_skilltablediv");
-				if (Foxtrick.hasClass(tablediv.getElementsByTagName('h2')[0], "ft-expander-expanded")) {
-					window.setTimeout(function() { FoxtrickSkillTable.createTable(doc); }, 0);
+			var skilltable = doc.getElementById("ft_skilltable");
+			if (skilltable) {
+				for (var i=1; i< skilltable.rows.length; ++i) {
+					var pid = Number(skilltable.rows[i].getAttribute('playerid'));
+					if ( filter == 'all' 
+						|| skilltable.rows[i].getAttribute(filter) 
+						|| skilltable.rows[i].getAttribute('speciality-'+filter) 
+						)
+						Foxtrick.removeClass(skilltable.rows[i], 'hidden');
+					else 
+						Foxtrick.addClass(skilltable.rows[i], 'hidden');
 				}
 			}
 
@@ -319,6 +324,6 @@ Foxtrick.util.module.register({
 	},
 
 	change : function(doc) {
-		this.run(doc);
+		//this.run(doc);
 	}
 });

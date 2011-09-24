@@ -11,7 +11,7 @@ Foxtrick.util.module.register({
 	OPTIONS : ["OtherTeams", "ColouredYouth"],
 	CSS : Foxtrick.InternalPath + "resources/css/skilltable.css",
 
-	run : function(doc) {
+	run : function(doc) { 
 		// returns full type of the document in this format:
 		// { type : ["senior"|"youth"|"transfer"], subtype : ["own"|"others"|"nt"|"oldiesCoach"] }
 		var getFullType = function() {
@@ -183,7 +183,7 @@ Foxtrick.util.module.register({
 						cell.appendChild(img);
 						index += 50;
 					}
-					if (player.injured) {
+					if (player.injuredWeeks) {
 						var img = doc.createElement("img");
 						img.src = "/Img/Icons/injured.gif";
 						img.alt = Foxtrickl10n.getString("Injured.abbr");
@@ -191,9 +191,9 @@ Foxtrick.util.module.register({
 						cell.appendChild(img);
 						// player.injured is number from players page,
 						// or boolean from transfer result page.
-						if (typeof(player.injured) == "number") {
-							cell.appendChild(doc.createTextNode(player.injured));
-							index += player.injured * 100;
+						if (typeof(player.injuredWeeks) == "number") {
+							cell.appendChild(doc.createTextNode(player.injuredWeeks));
+							index += player.injuredWeeks * 100;
 						}
 						else {
 							index += 100;
@@ -351,7 +351,7 @@ Foxtrick.util.module.register({
 					{ name : "Hotlist", property : "hotlistLink", method : link, sortString : true },
 					{ name : "Age", property : "age", method : age, sortAsc : true },
 					{ name : "TSI", property : "tsi", alignRight : true, method : formatNum },
-					{ name : "Status", properties : ["yellowCard", "redCard", "bruised", "injured", "transferListed"], method : status },
+					{ name : "Status", properties : ["yellowCard", "redCard", "bruised", "injuredWeeks", "transferListed"], method : status },
 					{ name : "Speciality", property : "speciality", method : speciality, sortString : true },
 					{ name : "Leadership", property : "leadership" },
 					{ name : "Experience", property : "experience" },
@@ -629,10 +629,19 @@ Foxtrick.util.module.register({
 
 				for (i in playerList) {
 					var row = doc.createElement("tr");
+					
+					// set row attributes for filter module
 					row.setAttribute('playerid', playerList[i].id);
+					if (playerList[i].hidden) Foxtrick.addClass(row,'hidden');
 					if (playerList[i].currentSquad) row.setAttribute('currentsquad', playerList[i].currentSquad);
 					if (playerList[i].currentClubLink) row.setAttribute('currentclub', playerList[i].currentClubLink.href.match(/\/Club\/\?TeamID=(\d+)/i)[1]);
+					if (playerList[i].injured) row.setAttribute('injured', playerList[i].injured);
+					if (playerList[i].cards) row.setAttribute('cards', playerList[i].cards);
+					if (playerList[i].transferListed) row.setAttribute('transfer-listed', playerList[i].transferListed);
+					if (playerList[i].speciality) row.setAttribute('speciality-'+playerList[i].speciality,true);
+					if (playerList[i].isActive) row.setAttribute('isActive', playerList[i].isActive);
 					tbody.appendChild(row);
+					
 					for (j in columns) {
 						if (columns[j].enabled) {
 							var cell = doc.createElement("td");
@@ -1217,8 +1226,4 @@ Foxtrick.util.module.register({
 			addTableDiv();
 		}
 	},
-
-	change : function(doc) {
-		this.run(doc);
-	}
 });
