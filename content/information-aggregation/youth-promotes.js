@@ -15,7 +15,7 @@ Foxtrick.util.module.register({
 			var message = "";
 			if (daysToPromote > 0) { // you have to wait to promote
 				var htDate = Foxtrick.util.time.getHtDate(doc);
-				date = Foxtrick.util.time.addDaysToDate(htDate, daysToPromote);
+				var date = Foxtrick.util.time.addDaysToDate(htDate, daysToPromote);
 				date = Foxtrick.util.time.buildDate(date);
 				message = Foxtrickl10n.getString("YouthPromotes.future")
 					.replace(/%1/, daysToPromote)
