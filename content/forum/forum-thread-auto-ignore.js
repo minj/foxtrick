@@ -6,14 +6,6 @@
 
 Foxtrick.util.module.register((function() {
 
-	var tagmarkers = [['\\[','\\]'],['{','}'],['\\[','}'],['{','\\]']]; // any more known?
-	// blacklst tags
-	var tags = null;
-	// whitelist tags
-	var whitelist = null;
-	// id of the thread this i currently deleting. don't do further action till that is gone
-	var deleting_thread_id = null;
-	
 	return {
 		MODULE_NAME : "ForumThreadAutoIgnore",
 		MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
@@ -22,7 +14,14 @@ Foxtrick.util.module.register((function() {
 		OPTION_TEXTS : true,
 
 		run : function(doc) {
+			var tagmarkers = [['\\[','\\]'],['{','}'],['\\[','}'],['{','\\]']]; // any more known?
+			// blacklist tags
+			var tags = null;
+			// whitelist thread ids 
+			var whitelist = null;
+			// thread id which is currently processed
 			var deletingThreadId = -1;
+			
 			var checkThreads = function() {
 				if (!FoxtrickPrefs.isModuleOptionEnabled("ForumThreadAutoIgnore",'Tags')) return;
 				var tags_string = FoxtrickPrefs.getString("module.ForumThreadAutoIgnore.Tags_text");
@@ -77,8 +76,8 @@ Foxtrick.util.module.register((function() {
 									if (whitelisted) continue;
 
 									// check if finished deleting the last one. if ids match, the last delet order isn't finished. come back with next onchange
-									if (thread_id == deleting_thread_id) return;
-									deleting_thread_id = thread_id;
+									if (thread_id == deletingThreadId) return;
+									deletingThreadId = thread_id;
 
 									// ignore thread using ht's javascript link
 									var func = ignore.getAttribute('onclick');
