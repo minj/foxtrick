@@ -367,13 +367,13 @@ Foxtrick.util.module.register({
 		// load links defined above
 		// FIXME - move all links to external sources and remove this
 		for (var key in this.links) {
-			var stat = this.links[key];
-			for (var prop in this.links) {
+			var link = this.links[key];
+			for (var prop in link) {
 				if (prop.match(/link/)) {
 					if (typeof(collection[prop]) == 'undefined') {
 						collection[prop] = {};
 					}
-					collection[prop][key] = stat;
+					collection[prop][key] = link;
 				}
 			}
 		}
@@ -387,20 +387,20 @@ Foxtrick.util.module.register({
 		Foxtrick.map(function(feed) {
 			Foxtrick.load(feed, function(text) {
 				if (!text) {
-					Foxtrick.log("Failure loading links file.");
+					Foxtrick.log("Failure loading links file: ", feed);
 					return;
 				}
 				try {
 					var links = JSON.parse(text);
 				}
 				catch (e) {
-					Foxtrick.log("Failure parsing links file.");
+					Foxtrick.log("Failure parsing links file: ", text);
 					return;
 				}
 				for (var key in links) {
 					var link = links[key];
 					if (link.url.indexOf("javascript:") == 0) {
-						Foxtrick.log("JavaScript not allowed in links.");
+						Foxtrick.log("JavaScript not allowed in links: ", link.url);
 					}
 					else {
 						for (var prop in link) {
