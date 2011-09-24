@@ -4,39 +4,13 @@
  * @author others, convinced, ryanli
  */
 
-/*
- * "params"	: { "infocode" : "text" } -> ?text=info[infocode]
- * "params"	: { "infocode" : "" } -> info[infocode] // eg alltid
- * "params"	: { "" : "#text" } -> #text 			//eg maptrick , first letter non alphanumeric
- * "params"	: { "infocode" : "," } -> ,info[infocode] //eg alltid, first letter non alphanumeric
- * "params"	: { "infocode" : "ftfilter_somename" } -> parameter only used for allowlink function and will not be shown in link //eg hattrickchallenge_friendly, first letters = ftfilter
- */
-
-Foxtrick.util.module.register({
-	MODULE_NAME : "Links",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	CORE_MODULE : true,
-
-	OPTION_FUNC : function(doc) {
-		var cont = doc.createElement("div");
-
-		var label = doc.createElement("p");
-		label.setAttribute("data-text", "Links.feeds");
-		cont.appendChild(label);
-
-		var textarea = doc.createElement("textarea");
-		textarea.setAttribute("pref", "module.Links.feeds");
-		cont.appendChild(textarea);
-
-		return cont;
-	},
-
-	links : {
+Foxtrick.util.module.register((function() {
+	var predefinedLinks = {
 		"htworld" : {
 			"title" : "HT-World NT/U20 tracker",
 			"img" : Foxtrick.InternalPath+"resources/linkicons/tracker.png",
 			"url" : "http://www.ht-world.org/",
-			"urlfunction": function (filterparams) {
+			"urlfunction": function (args) {
 				var mapping = {
 					"118" : "algerie",
 					"128" : "aliraq",
@@ -163,17 +137,15 @@ Foxtrick.util.module.register({
 					"70" : "vietnam",
 					"3" : "deutschland"
 				};
-				var countryid = filterparams["countryid"];
-				var nationality = filterparams["nationality"];
-				var href = mapping[countryid] || mapping[nationality] || null;
+				var href = mapping[args.countryid] || mapping[args.nationality] || null;
 				return href ? "http://" + href : null;
 			},
-			"trackernationalteamlink" : { 
+			"trackernationalteamlink" : {
 				"path"		: "/index.php?language=2",
 				"filters"	: [],
 				"params"	: []
 			},
-			"trackerplayerlink" : { 
+			"trackerplayerlink" : {
 				"path"		: "/scouting.php?language=2",
 				"filters"	: [],
 				"params"	: []
@@ -181,23 +153,23 @@ Foxtrick.util.module.register({
 		},
 		"hattrickchallenge_friendly" : {
 			"url" : "http://www.hattrickchallenge.com/Tools/Entry.php",
-			"challengeslink" : { 
+			"challengeslink" : {
 				"path"		: "?tool=friendly",
 				"filters"	: [],
 				"params"	: {"teamid":"teamid","ownteamid":"ftfilter_ownteamid"}
 			},
-			"youthchallengeslink" : { 
+			"youthchallengeslink" : {
 				"path"		: "?tool=youthfriendly",
 				"filters"	: [],
 				"params"	: {"youthteamid":"youthteamid","teamid":"teamid","ownteamid":"ftfilter_ownteamid"}
 			},
-			"youthlink" : { 
+			"youthlink" : {
 				"path"		: "?tool=youthfriendly",
 				"filters"	: [],
 				"params"	: {"youthteamid":"youthteamid","teamid":"teamid","ownteamid":"ftfilter_ownteamid"}
 			},
-			"allowlink" : function(filterparams, stattype) {
-				if (filterparams["teamid"] != filterparams["ownteamid"]) {
+			"allowlink" : function(args, stattype) {
+				if (args.teamid != args.ownteamid) {
 					return false;
 				} else {
 					return true;
@@ -208,19 +180,19 @@ Foxtrick.util.module.register({
 		},
 		"alltid_add" : {
 			"url" : "",
-			"urlfunction": function (filterparams) {
+			"urlfunction": function (args) {
 				return 'javascript:'+
 					'var i=parseInt(localStorage.getItem("alltidcompare_index"));'+
 					'if(!i)i=0;'+
 					'var do_remove=false;'+
-					'for(var j=0;j<i+1;++j) {if(parseInt(localStorage.getItem("alltidcompare_teamid"+j))=='+filterparams["teamid"]+'){do_remove=true;break;}}'+
+					'for(var j=0;j<i+1;++j) {if(parseInt(localStorage.getItem("alltidcompare_teamid"+j))=='+args["teamid"]+'){do_remove=true;break;}}'+
 					'if (do_remove) {'+
 					' localStorage.setItem("alltidcompare_teamid"+j,"0");'+
 					' localStorage.setItem("alltidcompare_teamname"+j,"");'+
 					'}'+
 					'else {'+
-					' localStorage.setItem("alltidcompare_teamid"+i, "'+filterparams["teamid"]+'");'+
-					' localStorage.setItem("alltidcompare_teamname"+i, "'+filterparams["teamname"]+'");'+
+					' localStorage.setItem("alltidcompare_teamid"+i, "'+args["teamid"]+'");'+
+					' localStorage.setItem("alltidcompare_teamname"+i, "'+args["teamname"]+'");'+
 					' i=i+1;'+
 					' localStorage.setItem("alltidcompare_index",i);'+
 					'}'+
@@ -229,7 +201,7 @@ Foxtrick.util.module.register({
 					'alert("Selected teams: "+teams)';
 			},
 			"openinthesamewindow" : "true",
-			"teamlink" : { 
+			"teamlink" : {
 				"path"		: "",
 				"filters"	: { "teamid" : "teamid", "teamname" : "teamname" },
 				"params"	: [],
@@ -240,13 +212,13 @@ Foxtrick.util.module.register({
 		},
 		"alltid_clear" : {
 			"url" : "",
-			"urlfunction": function (filterparams) {
+			"urlfunction": function (args) {
 				return 'javascript:'+
 						'localStorage.setItem("alltidcompare_index",0);'+
 						'alert("Cleared team compare list");';
 			},
 			"openinthesamewindow" : "true",
-			"teamlink" : { 
+			"teamlink" : {
 				"path"		: "",
 				"filters"	: [],
 				"params"	: []
@@ -257,7 +229,7 @@ Foxtrick.util.module.register({
 		},
 		"alltid_compare" : {
 			"url" : "",
-			"urlfunction": function (filterparams) {
+			"urlfunction": function (args) {
 				return 'javascript:'+
 						'var alltidcompare_index=parseInt(localStorage.getItem("alltidcompare_index"));'+
 						'var teams="";'+
@@ -274,8 +246,8 @@ Foxtrick.util.module.register({
 		},
 		"hattrick-youthclub" : {
 			"url" : "http://www.",
-			"urlfunction": function (filterparams) {
-						var server = filterparams["server"];
+			"urlfunction": function (args) {
+						var server = args["server"];
 						return "http://" +server + ".hattrick-youthclub.org/";
 					},
 			"youthlink" : { "path"	: "",
@@ -302,11 +274,11 @@ Foxtrick.util.module.register({
 						"filters"	: [],
 						"params"	: {"matchid" : "", "teamid":"ftfilter_teamid", "teamid2":"ftfilter_teamid2", "ownteamid":"ftfilter_ownteamid"}
 					},
-			"allowlink" : function(filterparams, stattype) {
-				if (filterparams["teamid"] === filterparams["ownteamid"] ||
-						(filterparams["ownyouthteamid"] !== null &&
-						(filterparams["teamid"] === filterparams["ownyouthteamid"]
-						|| filterparams["teamid2"] === filterparams["ownyouthteamid"]) ) ) {
+			"allowlink" : function(args, stattype) {
+				if (args["teamid"] === args["ownteamid"] ||
+						(args["ownyouthteamid"] !== null &&
+						(args["teamid"] === args["ownyouthteamid"]
+						|| args["teamid2"] === args["ownyouthteamid"]) ) ) {
 				return true;
 				} else {
 				return false;
@@ -323,9 +295,9 @@ Foxtrick.util.module.register({
 											"winger" : "wi", "defending" : "df",
 											"scoring" : "sc", "goalkeeping" : "gk" }
 							},
-			"allowlink" : function(filterparams, stattype) {
-				if (parseInt(filterparams["passing"])+ parseInt(filterparams["scoring"])+ parseInt(filterparams["playmaking"]) >
-					2*(parseInt(filterparams["winger"]) + parseInt(filterparams["defending"]) + parseInt(filterparams["goalkeeping"])))
+			"allowlink" : function(args, stattype) {
+				if (parseInt(args["passing"])+ parseInt(args["scoring"])+ parseInt(args["playmaking"]) >
+					2*(parseInt(args["winger"]) + parseInt(args["defending"]) + parseInt(args["goalkeeping"])))
 				{
 					return true;
 				} else {
@@ -335,91 +307,197 @@ Foxtrick.util.module.register({
 			"title" : "NRG The Perfect Defensive Forward",
 			"img" : Foxtrick.InternalPath+"resources/linkicons/nrg_deffor.gif"
 		}
-	},
+	};
 
-	collection : {},
+	var collection = {};
 
-	init : function() {
-		var collection = this.collection;
-		// load links defined above
-		// FIXME - move all links to external sources and remove this
-		for (var key in this.links) {
-			var link = this.links[key];
-			for (var prop in link) {
-				if (prop.match(/link/)) {
-					if (typeof(collection[prop]) == 'undefined') {
-						collection[prop] = {};
+	return {
+		MODULE_NAME : "Links",
+		MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
+		CORE_MODULE : true,
+
+		OPTION_FUNC : function(doc) {
+			var cont = doc.createElement("div");
+
+			var label = doc.createElement("p");
+			label.setAttribute("data-text", "Links.feeds");
+			cont.appendChild(label);
+
+			var textarea = doc.createElement("textarea");
+			textarea.setAttribute("pref", "module.Links.feeds");
+			cont.appendChild(textarea);
+
+			return cont;
+		},
+
+
+		init : function() {
+			// load links defined above
+			// FIXME - move all links to external sources and remove this
+			var key, prop;
+			for (key in predefinedLinks) {
+				var link = predefinedLinks[key];
+				for (prop in link) {
+					if (prop.match(/link/)) {
+						if (typeof(collection[prop]) == 'undefined') {
+							collection[prop] = {};
+						}
+						collection[prop][key] = link;
 					}
-					collection[prop][key] = link;
 				}
 			}
-		}
 
-		// load links from external feeds
-		var feeds = FoxtrickPrefs.getString("modules.Links.feeds") || "";
-		feeds = feeds.split(/(\n|\r)+/);
-		// add default feed if no feeds set
-		if (Foxtrick.all(function(n) { return Foxtrick.trim(n) == ""; }, feeds))
-			feeds = [Foxtrick.DataPath + "links.json"];
-		Foxtrick.map(function(feed) {
-			Foxtrick.load(feed, function(text) {
-				if (!text) {
-					Foxtrick.log("Failure loading links file: ", feed);
-					return;
-				}
-				try {
-					var links = JSON.parse(text);
-				}
-				catch (e) {
-					Foxtrick.log("Failure parsing links file: ", text);
-					return;
-				}
-				for (var key in links) {
-					var link = links[key];
-					if (link.url.indexOf("javascript:") == 0) {
-						Foxtrick.log("JavaScript not allowed in links: ", link.url);
+			// load links from external feeds
+			var feeds = FoxtrickPrefs.getString("modules.Links.feeds") || "";
+			feeds = feeds.split(/(\n|\r)+/);
+			// add default feed if no feeds set
+			if (Foxtrick.all(function(n) { return Foxtrick.trim(n) == ""; }, feeds))
+				feeds = [Foxtrick.DataPath + "links.json"];
+			Foxtrick.map(function(feed) {
+				Foxtrick.load(feed, function(text) {
+					if (!text) {
+						Foxtrick.log("Failure loading links file: ", feed);
+						return;
 					}
-					else {
-						for (var prop in link) {
-							if (prop.indexOf("link") >= 0) {
-								if (typeof(collection[prop]) == 'undefined') {
-									collection[prop] = {};
+					try {
+						var links = JSON.parse(text);
+					}
+					catch (e) {
+						Foxtrick.log("Failure parsing links file: ", text);
+						return;
+					}
+					for (key in links) {
+						var link = links[key];
+						if (link.url.indexOf("javascript:") == 0) {
+							Foxtrick.log("JavaScript not allowed in links: ", link.url);
+						}
+						else {
+							for (prop in link) {
+								if (prop.indexOf("link") >= 0) {
+									if (typeof(collection[prop]) == 'undefined') {
+										collection[prop] = {};
+									}
+									collection[prop][key] = link;
 								}
-								collection[prop][key] = link;
 							}
 						}
 					}
+				});
+			}, feeds);
+		},
+
+		getLinks : function(type, args, doc, module) {
+			var makeLink = function(stat, statlink, key) {
+				var params = statlink["params"];
+				if (!statlink["path"])  statlink["path"] = "";
+				var languages = statlink["languages"];
+				var query = "";
+				var paramkey;
+			
+				if (params) {
+					for (paramkey in params) {
+					if (params[paramkey].search('ftfilter')==0) continue;
+						var temp;
+
+						if ((query == "") && statlink["path"].search(/\?/) == -1 && stat["url"].search(/\?/) == -1) {
+							temp = "?";
+						} else {
+							temp = "&";
+						}
+
+						if (!params[paramkey].charAt(0).match(/\w+/)) {temp="";}
+		
+						if (paramkey=="lang") {
+							var lang;
+							for (lang in languages) {
+								if (lang == FoxtrickPrefs.getString("htLanguage")) {
+									query += temp + params[paramkey] + "=" + encodeURIComponent(languages[lang]);
+									break;
+								}
+								else if (lang == 'any') {
+									query += temp + params[paramkey] + "=" + encodeURIComponent(languages[lang]);
+								}
+							}
+							continue;
+						}
+		
+						if (args[paramkey] != null) {
+							query += ( (params[paramkey] != "" && temp !="") ? (temp + params[paramkey] + "=") : params[paramkey])+ encodeURIComponent(args[paramkey]);
+						}
+						else {
+							query += (params[paramkey] != "" ? temp + params[paramkey] : "");
+						}
+					}
 				}
-			});
-		}, feeds);
-	},
 
-	getLinks2 : function(stats, stattype, filterparams, doc, overridesettings, module) {
-		var links = [];
-		var counter = 0;
+				var url=null;
 
-		for (var key in stats) {
+				if (typeof (stat["urlfunction"]) == 'undefined') {
+					url = stat["url"];
+				} else {
+					url = stat["urlfunction"](args);
+				}
 
-			if (!FoxtrickPrefs.isModuleOptionEnabled(module.MODULE_NAME, key) && !overridesettings) {
-				continue;
-			}
-			var stat = stats[key];
-			var statlink = stat[stattype];
-			var filters = statlink["filters"];
+				if (url == null) return null;
 
-			var allowed = true;
+				var link = url + statlink["path"] + query;
+				return link;
+			};
+			var getLinkElement = function(link, url, key, module) {
+				var statslink = doc.createElement("a");
+				if (link.openinthesamewindow == undefined) {
+					statslink.target = "_stats";
+				}
 
-			if ( (!filters || filters.length == 0) && (typeof(stat["allowlink"]) == 'undefined')) {
-				allowed = true;
-			} else {
-				if (filters.length > 0) {
-					for (var i=0; i<filters.length; i++) {
+				statslink.title = link.title;
+				statslink.setAttribute("key", key);
+				statslink.setAttribute("module", module);
+
+				if (link.img == undefined) {
+					statslink.appendChild(doc.createTextNode(link.shorttitle));
+				}
+				else {
+					// add path to internal images
+					if (link.img.indexOf('resources')==0)
+						link.img = Foxtrick.ResourcePath + link.img;
+					// add img for tracker flags
+					if (module === "LinksTracker")
+						link.appendChild(doc.createElement("img"));
+					else
+						Foxtrick.addImage(doc, statslink, { alt: link.shorttitle || link.title, title: link.title, src: link.img });
+				}
+
+				statslink.href = url;
+
+				return statslink;
+			};
+
+			// add current server to args first
+			args.server = doc.location.hostname;
+			// links to return
+			var links = [];
+
+			var key;
+			for (key in collection[type]) {
+				var link = collection[type][key];
+				var linkObj = link[type];
+				var filters = linkObj.filters;
+
+				var allowed;
+				if (!FoxtrickPrefs.isModuleOptionEnabled(module.MODULE_NAME, key)) {
+					// link not enabled
+					allowed = false;
+				}
+				else if (filters && filters.length > 0) {
+					// ranges to determine whether to show
+					var i, j;
+					for (i = 0; i < filters.length; i++) {
 						var filtertype = filters[i];
-						var filterranges = stat[filtertype + "ranges"];
+						var filterranges = link[filtertype + "ranges"];
 						var temp = false;
 
-						for (var j=0; j<filterranges.length; j++) {
-							if ( (filterparams[filtertype] >= filterranges[j][0]) && (filterparams[filtertype] <= filterranges[j][1])) {
+						for (j = 0; j < filterranges.length; j++) {
+							if ( (args[filtertype] >= filterranges[j][0]) && (args[filtertype] <= filterranges[j][1])) {
 								temp = true;
 								break;
 							}
@@ -429,159 +507,34 @@ Foxtrick.util.module.register({
 							break;
 						}
 					}
-				} else {
-					if (typeof(stat["allowlink"]) != 'undefined') {
-						if (stat["allowlink"](filterparams, stattype)) {
-							allowed = true;
-						} else {
-							allowed = false;
-						}
+				}
+				else if (typeof(link.allowlink) == "function") {
+					// function determining whether to show
+					allowed = link.allowlink(args, type);
+				}
+				else {
+					// alway shown
+					allowed = true;
+				}
+
+				if (allowed) {
+					var url = makeLink(link, linkObj, args, key);
+					if (url != null) {
+						links.push({"link" : getLinkElement(link, url, key, module.MODULE_NAME), "obj" : link});
 					}
 				}
 			}
-
-			if (allowed) {
-				var link = Foxtrick.util.module.get("Links").makelink(stat, statlink, filterparams, key, doc);
-				if (link != null) {
-					links.push({"link" : Foxtrick.util.module.get("Links").getLinkElement(link, stat, doc, key, module.MODULE_NAME), "stat" : stat});
-				}
-			}
+			links.sort(function(a, b) {
+				if (a.link.img == undefined && b.link.img == undefined)
+					return 0;
+				else if (a.link.img == undefined)
+					return 1;
+				else if (b.link.img == undefined)
+					return -1;
+				else
+					return a.link.title.localeCompare(b.link.title);
+			});
+			return links;
 		}
-		return Foxtrick.util.module.get("Links").getSortedLinks(links);
-	},
-
-	getLinks : function(stattype, filterparams, doc, module) {
-		try {
-			filterparams.server = doc.location.hostname;
-			return Foxtrick.util.module.get("Links").getLinks2(this.collection[stattype], stattype, filterparams, doc, false, module);
-		} catch (e) { Foxtrick.log('getLinks: ',e) };
-	},
-
-	makelink : function(stat, statlink, filterparams, key, doc) {
-
-		var params = statlink["params"];
-		if (!statlink["path"])  statlink["path"] = "";
-		var languages = statlink["languages"];
-		var args = "";
-	 
-		if (params) {
-			for (var paramkey in params) {
-			if (params[paramkey].search('ftfilter')==0) continue;
-				var temp;
-
-				if ((args == "") && statlink["path"].search(/\?/) == -1 && stat["url"].search(/\?/) == -1) {
-					temp = "?";
-				} else {
-					temp = "&";
-				}
-
-				if (!params[paramkey].charAt(0).match(/\w+/)) {temp="";}
-			
-				if (paramkey=="lang") {
-					for (var lang in languages) {
-						if (lang == FoxtrickPrefs.getString("htLanguage")) {
-							args += temp + params[paramkey] + "=" + encodeURIComponent(languages[lang]);
-							break;
-						}
-						else if (lang == 'any') {
-							args += temp + params[paramkey] + "=" + encodeURIComponent(languages[lang]);
-						}
-					}
-					continue;
-				}
-			
-				if (filterparams[paramkey] != null) {
-					args += ( (params[paramkey] != "" && temp !="") ? (temp + params[paramkey] + "=") : params[paramkey])+ encodeURIComponent(filterparams[paramkey]);
-					}
-				else {args += (params[paramkey] != "" ? temp + params[paramkey] : "");}
-			}
-		}
-
-		var url=null;
-
-		if (typeof (stat["urlfunction"]) == 'undefined') {
-			url = stat["url"];
-		} else {
-			url = stat["urlfunction"](filterparams);
-		}
-
-		if (url == null) return null;
-
-		var link;
-
-		if (typeof(stat["post"]) == 'undefined') {
-			link = url + statlink["path"] + args;
-		} else {
-			var temp = "";
-
-			for (var paramkey in params) {
-				temp = temp + "-" + params[paramkey] + "-" + filterparams[paramkey];
-			}
-
-			link = "javascript:document.forms.namedItem('" + key + temp + "').submit();";
-
-			var form = doc.createElement("form");
-			form.name = key + temp;
-			form.action = url + statlink["path"];
-			form.method = "post";
-			form.target = "_stats";
-			form.style.display = "none";
-
-			for (var paramkey in params) {
-				var input = doc.createElement("input");
-				input.type="hidden";
-				input.name=params[paramkey];
-				input.value=filterparams[paramkey];
-				form.appendChild(input);
-			}
-
-			doc.getElementsByTagName("body")[0].appendChild(form);
-
-		}
-
-		return link;
-	},
-
-	getLinkElement : function(link, stat, doc, key, module_name) {
-		var statslink = doc.createElement("a");
-		if (typeof(stat["post"]) == 'undefined') {
-		if (typeof(stat["openinthesamewindow"]) == 'undefined') {
-			statslink.target = "_stats";
-		}
-		}
-		//if (link.search(/javascript/i)!=-1) statslink.target = "";
-
-		statslink.title = stat.title;
-		//statslink.style.verticalAlign = "middle";
-		statslink.setAttribute('key',key);
-		statslink.setAttribute('module',module_name);
-
-		if (typeof(stat["img"]) == 'undefined') {
-			statslink.appendChild(doc.createTextNode(stat.shorttitle));
-		} else {
-			// add path to internal images
-			if (stat.img.indexOf('resources')==0) 
-				stat.img = Foxtrick.ResourcePath + stat.img;
-			// add img for tracker flags
-			if (module_name === "LinksTracker")
-				statslink.appendChild(doc.createElement('img'));
-			else
-				Foxtrick.addImage(doc, statslink, { alt:stat.title, title: stat.title, src: stat.img });
-		}
-
-		statslink.href = link;
-
-		return statslink;
-	},
-
-	getSortedLinks : function(links) {
-		function sortfunction(a,b) {
-			if (typeof(a.stat["img"]) == 'undefined' && typeof(b.stat["img"]) == 'undefined') return 0;//a.link.title.localeCompare(b.link.title);
-			else if (typeof(a.stat["img"]) == 'undefined') return 1;
-			else if (typeof(b.stat["img"]) == 'undefined') return -1;
-			return a.link.title.localeCompare(b.link.title);
-		}
-		links.sort(sortfunction);
-		return links;
-	}
-});
+	};
+}()));
