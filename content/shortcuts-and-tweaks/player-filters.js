@@ -57,7 +57,7 @@ Foxtrick.util.module.register({
 					if (player.transferListed) {
 						allPlayers[i].setAttribute("transfer-listed", "true");
 					}
-					if (player.bruised || player.injured) {
+					if (player.injured) {
 						allPlayers[i].setAttribute("injured", "true");
 					}
 					if (player.speciality) {

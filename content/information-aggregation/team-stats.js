@@ -69,9 +69,9 @@ Foxtrick.util.module.register({
 				if (current.redCard) {
 					++redCards;
 				}
-				if (current.injured) {
+				if (current.injuredWeeks) {
 					++injured;
-					injuredWeeks += current.injured;
+					injuredWeeks += current.injuredWeeks;
 				}
 				if (current.bruised) {
 					++bruised;
@@ -215,7 +215,7 @@ Foxtrick.util.module.register({
 				}
 			}
 			if (FoxtrickPrefs.isModuleOptionEnabled("TeamStats", "Status")) {
-				if (transferListed || yellowCards || twoYellowCards || redCards || bruised || injured) {
+				if (transferListed || cards || injured) {
 					addHeader(Foxtrickl10n.getString("Status"));
 				}
 				if (transferListed > 0) {
