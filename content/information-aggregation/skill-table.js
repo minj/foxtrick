@@ -792,41 +792,42 @@ Foxtrick.util.module.register({
 			Foxtrick.util.api.retrieve(doc, args, {cache_lifetime:'session' }, function(xml) {
 
 				var activationDate = xml.getElementsByTagName("ActivationDate")[0].textContent;
-				var list = Foxtrick.Pages.Players.getPlayerList(doc)
-				// first we check transfers
-				var argsTransfersPlayer = [];
-				Foxtrick.map(function(player) {
-					argsTransfersPlayer.push([ ["playerid", player.id], ["file", "transfersPlayer"] ]);
-				}, list);
+				Foxtrick.Pages.Players.getPlayerList(doc, function (list) {
+					// first we check transfers
+					var argsTransfersPlayer = [];
+					Foxtrick.map(function(player) {
+						argsTransfersPlayer.push([ ["playerid", player.id], ["file", "transfersPlayer"] ]);
+					}, list);
 
-				Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer, {cache_lifetime:'session' }, function(xmls) {
-					var argsPlayerevents = [], i;
-					for (i=0; i<xmls.length; ++i) {
-						if (xmls[i]) {
-							// if there is a transfer, we are finished with this player
-							var hasTransfers = setHomeGrownAndJoinedSinceFromTransfers(xmls[i], list);
-							if ( !hasTransfers ) {
-								// so, he's from home. need to get pull date from playerevents bellow
-								var pid = xmls[i].getElementsByTagName("PlayerID")[0].textContent;
-								argsPlayerevents.push([ ["playerid", pid], ["file", "playerevents"] ]);
-							}
-						}
-					}
-					// try set joined date from pull date
-					Foxtrick.util.api.batchRetrieve(doc, argsPlayerevents, {cache_lifetime:'session' }, function(xmls) {
+					Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer, {cache_lifetime:'session' }, function(xmls) {
+						var argsPlayerevents = [], i;
 						for (i=0; i<xmls.length; ++i) {
 							if (xmls[i]) {
-								var was_pulled = setJoinedSinceFromPullDate(xmls[i], list);
-								if ( !was_pulled ) { 
-									// no pull date = from starting squad. JoinedSince=activationDate
+								// if there is a transfer, we are finished with this player
+								var hasTransfers = setHomeGrownAndJoinedSinceFromTransfers(xmls[i], list);
+								if ( !hasTransfers ) {
+									// so, he's from home. need to get pull date from playerevents bellow
 									var pid = xmls[i].getElementsByTagName("PlayerID")[0].textContent;
-									Foxtrick.map(function(n) {if (n.id==pid) n.joinedSince = activationDate;}, list);
+									argsPlayerevents.push([ ["playerid", pid], ["file", "playerevents"] ]);
 								}
 							}
 						}
-					
-						// finished. now display results
-						showTable(list);
+						// try set joined date from pull date
+						Foxtrick.util.api.batchRetrieve(doc, argsPlayerevents, {cache_lifetime:'session' }, function(xmls) {
+							for (i=0; i<xmls.length; ++i) {
+								if (xmls[i]) {
+									var was_pulled = setJoinedSinceFromPullDate(xmls[i], list);
+									if ( !was_pulled ) { 
+										// no pull date = from starting squad. JoinedSince=activationDate
+										var pid = xmls[i].getElementsByTagName("PlayerID")[0].textContent;
+										Foxtrick.map(function(n) {if (n.id==pid) n.joinedSince = activationDate;}, list);
+									}
+								}
+							}
+						
+							// finished. now display results
+							showTable(list);
+						});
 					});
 				});
 			});
