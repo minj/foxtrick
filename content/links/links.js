@@ -309,13 +309,13 @@ Foxtrick.util.module.register((function() {
 		}
 	};
 
-	var collection = {};
-
 	return {
 		MODULE_NAME : "Links",
 		MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 		CORE_MODULE : true,
 
+		RESOURCES : {},
+		
 		OPTION_FUNC : function(doc) {
 			var cont = doc.createElement("div");
 
@@ -331,9 +331,10 @@ Foxtrick.util.module.register((function() {
 		},
 
 
-		init : function() {
+		onLoad : function() {
 			// load links defined above
 			// FIXME - move all links to external sources and remove this
+			var collection  = {};
 			var key, prop;
 			for (key in predefinedLinks) {
 				var link = predefinedLinks[key];
@@ -346,6 +347,7 @@ Foxtrick.util.module.register((function() {
 					}
 				}
 			}
+			Foxtrick.util.module.get('Links').RESOURCES = collection; 
 
 			// load links from external feeds
 			var feeds = FoxtrickPrefs.getString("modules.Links.feeds") || "";
@@ -382,6 +384,7 @@ Foxtrick.util.module.register((function() {
 							}
 						}
 					}
+					Foxtrick.util.module.get('Links').RESOURCES = collection; 
 				});
 			}, feeds);
 		},
@@ -478,8 +481,8 @@ Foxtrick.util.module.register((function() {
 			var links = [];
 
 			var key;
-			for (key in collection[type]) {
-				var link = collection[type][key];
+			for (key in this.RESOURCES[type]) {
+				var link = this.RESOURCES[type][key];
 				var linkObj = link[type];
 				var filters = linkObj.filters;
 

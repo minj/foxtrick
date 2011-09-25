@@ -14,20 +14,6 @@ Foxtrick.loader.chrome = {};
 Foxtrick.loader.chrome.browserLoad = function() {
 	Foxtrick.log('Foxtrick.loader.chrome.browserLoad');
 
-	// calls module.onLoad() after the browser window is loaded
-	var i;
-	for (i in Foxtrick.modules) {
-		var module = Foxtrick.modules[i];
-		if (typeof(module.onLoad) === "function") {
-			try {
-				module.onLoad(document);
-			}
-			catch (e) {
-				console.log("Error caught in module ", module.MODULE_NAME, ":", e);
-			}
-		}
-	}
-
 	// get resources
 	var core = [ FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData ], i;
 	for (i in core)
@@ -45,6 +31,20 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	}
 	if (Foxtrick.platform != "Fennec")
 		var cssTextCollection = Foxtrick.getCssTextCollection();
+
+	// calls module.onLoad() after the browser window is loaded
+	var i;
+	for (i in Foxtrick.modules) {
+		var module = Foxtrick.modules[i];
+		if (typeof(module.onLoad) === "function") {
+			try {
+				module.onLoad(document);
+			}
+			catch (e) {
+				console.log("Error caught in module ", module.MODULE_NAME, ":", e);
+			}
+		}
+	}
 
 	// use with sandboxed.extension.sendRequest({req : "nameOfResponseFunction", parameters...}, callback)
 	// calls bellow response function by name 'request.req'
@@ -112,6 +112,20 @@ Foxtrick.loader.chrome.browserLoad = function() {
 			resource.cssText = cssTextCollection;
 		}
 	
+		// add module resources 
+		var i;
+		for (i in Foxtrick.modules) {
+			var module = Foxtrick.modules[i];
+			if (typeof(module.RESOURCES) !== "undefined") {
+				try {
+					resource[module.MODULE_NAME] = module.RESOURCES;
+				}
+				catch (e) {
+					Foxtrick.log("Error caught in module ", module.MODULE_NAME, ":", e);
+				}
+			}
+		}
+
 		sendResponse ( resource );
 	
 	};

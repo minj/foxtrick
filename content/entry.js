@@ -64,6 +64,21 @@ Foxtrick.entry.setRetrievedLocalResources = function(data) {
 		Foxtrick.XMLData.countryToLeague = data.countryToLeague;
 		
 		Foxtrick.sessionStore = data.sessionStore;
+		
+		// set module resources 
+		var i;
+		for (i in Foxtrick.modules) {
+			var module = Foxtrick.modules[i];
+			if (typeof(module.RESOURCES) !== "undefined") {
+				try {
+					module.RESOURCES = data[module.MODULE_NAME];
+				}
+				catch (e) {
+					Foxtrick.log("Error caught in module ", module.MODULE_NAME, ":", e);
+				}
+			}
+		}
+
 };
 
 // called on browser load for Gecko
