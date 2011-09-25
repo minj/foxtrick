@@ -639,7 +639,7 @@ Foxtrick.util.module.register({
 					if (playerList[i].cards) row.setAttribute('cards', playerList[i].cards);
 					if (playerList[i].transferListed) row.setAttribute('transfer-listed', playerList[i].transferListed);
 					if (playerList[i].speciality) row.setAttribute('speciality-'+playerList[i].speciality,true);
-					if (playerList[i].isActive) row.setAttribute('isActive', playerList[i].isActive);
+					if (playerList[i].active) row.setAttribute('active', playerList[i].active);
 					tbody.appendChild(row);
 					
 					for (j in columns) {
@@ -693,10 +693,6 @@ Foxtrick.util.module.register({
 				if (FoxtrickPrefs.getBool("module.SkillTable.top")) {
 					Foxtrick.addClass(container, "on_top");
 				}
-
-				var removeBotPlayersLink=doc.getElementById('skilltable_removeBotPlayersId')
-				if (removeBotPlayersLink) Foxtrick.removeClass(removeBotPlayersLink, 'hidden');
-
 			}
 			catch (e) {
 				Foxtrick.log(e);
@@ -888,63 +884,6 @@ Foxtrick.util.module.register({
 					showTable(full_list);
 				});
 			}, {current_squad : 'true'} );
-		};
-		var removeBotPlayers = function() {
-			try {
-				Foxtrick.toggleClass(doc.getElementById('skilltable_removeBotPlayersId'), 'hidden');
-
-				var markRowIfBotOwner  = function(rows, xml) {
-					// check if player not sold or was first sold by this team -> homegrown
-					var tid = xml.getElementsByTagName("TeamID")[0].textContent;
-					var IsBot = xml.getElementsByTagName("IsBot")[0].textContent;
-					var rows = doc.getElementById('ft_skilltable').getElementsByTagName("tr");
-					if (IsBot=='True')
-						Foxtrick.map(function(tr) {
-							if (tr.getAttribute('currentclub')) {
-								if (tid==tr.getAttribute('currentclub'))
-									tr.setAttribute('isbot',true);
-							}
-						}, rows);
-				};
-				var hideRowsWithBotOwner  = function() {
-					var rows = doc.getElementById('ft_skilltable').getElementsByTagName("tr");
-					Foxtrick.map(function(tr) {
-						if (tr.getAttribute('isbot'))
-							Foxtrick.addClass(tr, 'hidden');
-					}, rows);
-				};
-
-				// go though all rows of former players, get their owners team.xml and hide if they are bots
-				var rows = doc.getElementById('ft_skilltable').getElementsByTagName("tr");
-				rows = Foxtrick.filter(function(tr) {return !tr.getAttribute('currentsquad');}, rows);
-			
-				var loading = Foxtrick.util.note.createLoading(doc);
-				doc.getElementsByClassName("ft_skilltable_wrapper")[0].appendChild(loading);
-
-				var batchArgs = [];
-				Foxtrick.map(function(row) {
-					var teamid = row.getAttribute('currentclub');
-					if (!teamid) 
-						return;
-					var args = [];
-					args.push(["teamid", teamid]);
-					args.push(["file", "teamdetails"]);
-					batchArgs.push(args);
-				}, rows);
-
-				Foxtrick.util.api.batchRetrieve(doc, batchArgs, {cache_lifetime:'session' },
-					function(xmls) {
-						if (xmls) {
-							for (i = 0; i < xmls.length; ++i) {
-								if (xmls[i])
-									markRowIfBotOwner(rows, xmls[i]);
-							}
-							hideRowsWithBotOwner();
-							if (loading) 
-								loading.parentNode.removeChild(loading);
-						}
-				});
-			} catch(e) {Foxtrick.log('removeBotPlayers',e);}
 		};
 		var addTableDiv = function() {
 			var tablediv = doc.createElement("div");
@@ -1149,13 +1088,6 @@ Foxtrick.util.module.register({
 					Foxtrick.listen(addHomegrownLink, "click", AddHomegrown, false);
 					options.appendChild(addHomegrownLink);
 
-					options.appendChild(doc.createElement('br'));
-					var removeBotPlayersLink = doc.createElement("a");
-					removeBotPlayersLink.appendChild(doc.createTextNode(Foxtrickl10n.getString("RemoveBotPlayers")));
-					removeBotPlayersLink.setAttribute("title", Foxtrickl10n.getString("foxtrick.SkillTable.Remove_bot_players_title"));
-					removeBotPlayersLink.setAttribute("id","skilltable_removeBotPlayersId");
-					Foxtrick.listen(removeBotPlayersLink, "click", removeBotPlayers, false);
-					options.appendChild(removeBotPlayersLink);
 				}
 				else if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc)) {
 					var options = doc.createElement("div");

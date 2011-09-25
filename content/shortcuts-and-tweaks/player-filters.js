@@ -121,6 +121,13 @@ Foxtrick.util.module.register({
 					}
 				}
 
+				if (Foxtrick.Pages.Players.isOldiesPage(doc) && Foxtrick.util.api.authorized()) {
+					var option = doc.createElement("option");
+					option.value = "active";
+					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.ActivePlayers.label");
+					filterSelect.appendChild(option);
+				}
+
 				var faceCards = doc.getElementsByClassName("faceCard");
 				if (faceCards.length > 0) {
 					var option = doc.createElement("option");
@@ -133,12 +140,72 @@ Foxtrick.util.module.register({
 			} catch(e) { Foxtrick.log('Player filter click: ',e) }
 		};
 
+
+		var hasBotsMarked = false;
+		var markBotPlayers = function() {
+			var loading = Foxtrick.util.note.createLoading(doc);
+			doc.getElementsByTagName("p")[0].appendChild(loading);
+
+			var list = Foxtrick.Pages.Players.getPlayerList(doc);
+
+			var batchArgs = [];
+			Foxtrick.map(function(n) {
+				var args = {"teamid": n.currentClubId, "file": "teamdetails"};
+				batchArgs.push(args);
+			}, list);
+
+			Foxtrick.util.api.batchRetrieve(doc, batchArgs, {cache_lifetime:'session' },
+				function(xmls) {
+					if (xmls) {
+						for (i = 0; i < xmls.length; ++i) {
+							var xml = xmls[i];
+							var tid = Number(xml.getElementsByTagName("TeamID")[0].textContent);
+							var IsBot = xml.getElementsByTagName("IsBot")[0].textContent;
+							
+							// update playerInfo
+							Foxtrick.map(function(n) {
+								var currentClubId = Foxtrick.util.id.findTeamId(n);
+								if (tid == currentClubId) {
+									if (IsBot == 'True')
+										n.setAttribute('active',false);
+									else 
+										n.setAttribute('active',true);
+								}
+							}, doc.getElementsByClassName('playerInfo') );
+							
+							// update skilltable
+							var skilltable = doc.getElementById("ft_skilltable");
+							if (skilltable) {
+								Foxtrick.map(function(n) {
+									var currentClubId = Foxtrick.util.id.findTeamId(n);
+									if (tid == currentClubId) {
+										if (IsBot == 'True')
+											n.setAttribute('active',false);
+										else 
+											n.setAttribute('active',true);
+									}
+								}, skilltable.rows );
+							}
+						}
+					}
+					hasBotsMarked = true;
+					if (loading) 
+						loading.parentNode.removeChild(loading);
+					changeListener();
+			});
+		};
+
 		var changeListener = function(ev) {
-			var begin = new Date();
-
 			var filter = filterSelect.value;
+			
+			if (filter == 'active' && !hasBotsMarked) {
+				markBotPlayers();
+				return; // comes back here when bots marked
+			}
+			// invalidate again. might be new page next time
+			hasBotsMarked = false;
+			
 			var body = doc.getElementById("mainBody");
-
 			var allElems;
 			if (doc.getElementsByClassName("playerList").length) {
 				var playerList = doc.getElementsByClassName("playerList")[0];
@@ -279,11 +346,6 @@ Foxtrick.util.module.register({
 						Foxtrick.addClass(skilltable.rows[i], 'hidden');
 				}
 			}
-
-			var end = new Date();
-			var time = (end.getSeconds() - begin.getSeconds()) * 1000
-				 + end.getMilliseconds() - begin.getMilliseconds();
-			Foxtrick.log("calculate time: " + time + " ms");
 		};
 
 		filterSelect.addEventListener("click", function() {
@@ -296,7 +358,6 @@ Foxtrick.util.module.register({
 		}, false);
 		filterSelect.addEventListener("change", function() {
 			try {
-				Foxtrick.log('change')
 				changeListener();
 			}
 			catch (e) {

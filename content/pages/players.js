@@ -116,6 +116,7 @@ Foxtrick.Pages.Players = {
 						var spec = specs[Number(playerNode.getElementsByTagName("Specialty")[0].textContent)];
 						player.speciality = (spec=='')?'':Foxtrickl10n.getShortSpecialityFromEnglish(spec);
 						player.currentSquad = true;
+						player.active = true;
 					}
 				}
 
@@ -471,12 +472,13 @@ Foxtrick.Pages.Players = {
 					|| Foxtrick.Pages.Players.isCoachesPage(doc)
 					|| Foxtrick.Pages.Players.isNtPlayersPage(doc)) {
 					var currentPara = null;
-					var currentClubLink = null;
+					var currentClubLink = null, currentClubId = null;
 					for (var j = 0; j < paragraphs.length; ++j) {
 						var links = paragraphs[j].getElementsByTagName("a");
 						for (var k = 0; k < links.length; ++k) {
 							if (links[k].href && links[k].href.search(/TeamID=/i) !== -1) {
 								currentClubLink = links[k];
+								currentClubId = Foxtrick.util.id.getTeamIdFromUrl(links[k].href);
 								break;
 							}
 						}
@@ -487,6 +489,7 @@ Foxtrick.Pages.Players = {
 					}
 					if (currentClubLink !== null) {
 						player.currentClubLink = currentClubLink.cloneNode(true);
+						player.currentClubId = currentClubId;
 
 						if (!Foxtrick.Pages.Players.isNtPlayersPage(doc)) { // not applicable for NT players
 							// we concatenate the text nodes from the containing
