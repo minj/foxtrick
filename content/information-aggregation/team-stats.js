@@ -215,7 +215,7 @@ Foxtrick.util.module.register({
 				}
 			}
 			if (FoxtrickPrefs.isModuleOptionEnabled("TeamStats", "Status")) {
-				if (transferListed || cards || injured) {
+				if (transferListed || yellowCards || twoYellowCards || redCards || bruised || injured) {
 					addHeader(Foxtrickl10n.getString("Status"));
 				}
 				if (transferListed > 0) {
@@ -303,11 +303,12 @@ Foxtrick.util.module.register({
 		boxBody.appendChild(loading);
 
 		Foxtrick.Pages.Players.getPlayerList(doc, function(list) {
-			try {
+			try { 
 				show(list);
 			}
 			catch (e) {
 				Foxtrick.log(e);
+				boxBody.removeChild(loading);
 			}
 		});
 	}

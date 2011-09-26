@@ -708,13 +708,18 @@ Foxtrick.util.module.register({
 			else {
 				var loading = Foxtrick.util.note.createLoading(doc);
 				doc.getElementsByClassName("ft_skilltable_wrapper")[0].appendChild(loading);
-				if (Foxtrick.Pages.Players.isOldiesPage(doc) && fullType.type == "oldiesAndOwn") {
-					showOldiesAndOwn(doc);
-				}
-				else {
-					Foxtrick.Pages.Players.getPlayerList(doc, function(list) {
-						showTable(list);
-					});
+				try {
+					if (Foxtrick.Pages.Players.isOldiesPage(doc) && fullType.type == "oldiesAndOwn") {
+						showOldiesAndOwn(doc);
+					}
+					else {
+						Foxtrick.Pages.Players.getPlayerList(doc, function(list) {
+							showTable(list);
+						});
+					}
+				} catch(e) {
+					Foxtrick.log(e);
+					doc.getElementsByClassName("ft_skilltable_wrapper")[0].removeChild(loading);
 				}
 			}
 		};
