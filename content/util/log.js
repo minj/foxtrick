@@ -14,7 +14,7 @@ Foxtrick.log = function() {
 	for (i = 0; i < arguments.length; ++i) {
 		var content = arguments[i];
 		var item = "";
-		/*if (content instanceof Error) {
+		if (content instanceof Error) {
 			hasError = true;
 			if (Foxtrick.arch == "Gecko") {
 				item = content.fileName + " (" + content.lineNumber + "): " + String(content) + "\n";
@@ -37,10 +37,11 @@ Foxtrick.log = function() {
 				item = String(content).substr(0,1000);
 			}
 		}
-		else*/ {
+		else {
 			item = content;
 		}
-		concated += item;
+		if (item != content) concated += content + ' (' + item + ') ';
+		else concated += item;
 	}
 	Foxtrick.log.cache += concated + "\n";
 
