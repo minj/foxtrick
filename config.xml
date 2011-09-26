@@ -16,6 +16,7 @@
 	<access origin="http://*.hatt-rick.net" subdomains="true"/>
 	<access origin="http://*.hattrick.interia.pl" subdomains="true"/>
 	<access origin="http://*.hattrick.uol.com.br" subdomains="true"/>
+	<access origin="http://*.foxtrick.org" subdomains="true"/>
 	<access origin="http://www.hattrick-youthclub.org" subdomains="true"/>
 	<access origin="http://www.fantamondi.it" subdomains="true"/>
 	<update-description href="https://www.foxtrick.org/nightly/opera/update.xml"/>
