@@ -164,15 +164,8 @@ if (typeof(opera) == "object") {
 		},
 
 		tabs : {
-			create : function(props){opera.extension.tabs.create(props)},
-			sendRequest : function( tabid, request, callback ) { 
-				opera.extension.broadcastMessage()
-				for (var i=0; i<tabs.length; ++i) {
-					if (tabid == tabs[i].id) {
-					
-						break;
-					}
-				}
+			create : function(props){
+				opera.extension.tabs.create(props)
 			},
 		},
 	};
