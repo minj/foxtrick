@@ -197,7 +197,7 @@ Foxtrick.util.module.register({
 						specSummary.sort(function (a, b) { return b.count - a.count } );
 					}
 					for (var i in specSummary) {
-						addRow(specSummary[i].type, specSummary[i].count, "speciality-" + specSummary[i].type, specSummary[i].type);
+						addRow(specSummary[i].type, specSummary[i].count, "speciality-" + Foxtrickl10n.getEnglishSpeciality(specSummary[i].type), specSummary[i].type);
 					}
 				}
 			}

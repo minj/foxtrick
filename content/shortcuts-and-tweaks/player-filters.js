@@ -64,7 +64,7 @@ Foxtrick.util.module.register({
 						if (specialities[player.speciality] === undefined) {
 							specialities[player.speciality] = specialityCount++;
 						}
-						allPlayers[i].setAttribute("speciality","speciality-"+player.speciality);
+						allPlayers[i].setAttribute("speciality","speciality-"+Foxtrickl10n.getEnglishSpeciality(player.speciality));
 					}
 					if (Foxtrick.Pages.Players.isPropertyInList(playerList, "lastMatch")) {
 						if (player.lastMatch
@@ -115,7 +115,7 @@ Foxtrick.util.module.register({
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "speciality")) {
 					for (var speciality in specialities) {
 						var option = doc.createElement("option");
-						option.value = "speciality-" + speciality;
+						option.value = "speciality-" + Foxtrickl10n.getEnglishSpeciality(speciality);
 						option.textContent = speciality;
 						filterSelect.appendChild(option);
 					}

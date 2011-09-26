@@ -166,6 +166,18 @@ var Foxtrickl10n = {
 			Foxtrick.log(e);
 		}
 		return shortSpec || direct();
+	},
+	getEnglishSpeciality: function(spec) {
+		var engSpec = spec;
+		try {
+			var lang = FoxtrickPrefs.getString("htLanguage");
+			var path = "language/specialties/specialty[@value=\"" + spec + "\"]";
+			engSpec = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "type");
+		}
+		catch (e) {
+			Foxtrick.log(e);
+		}
+		return engSpec;
 	}
 };
 

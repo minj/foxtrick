@@ -638,7 +638,7 @@ Foxtrick.util.module.register({
 					if (playerList[i].injured) row.setAttribute('injured', playerList[i].injured);
 					if (playerList[i].cards) row.setAttribute('cards', playerList[i].cards);
 					if (playerList[i].transferListed) row.setAttribute('transfer-listed', playerList[i].transferListed);
-					if (playerList[i].speciality) row.setAttribute('speciality-'+playerList[i].speciality,true);
+					if (playerList[i].speciality) row.setAttribute('speciality-'+Foxtrickl10n.getEnglishSpeciality(playerList[i].speciality),true);
 					if (playerList[i].active) row.setAttribute('active', playerList[i].active);
 					tbody.appendChild(row);
 					
