@@ -126,7 +126,7 @@ Foxtrick.load = function(url, callback, crossSite) {
 					callback(response.data, response.status);
 				}
 				catch (e) {
-					Foxtrick.dump('Uncaught callback error: - url: ' + url + ' callback: '+ callback + ' crossSite: ' + crossSite + ' ' + e);
+					Foxtrick.log('Uncaught callback error: - url: ' , url , ' callback: ', callback , ' crossSite: ', crossSite , ' ' , e);
 					Foxtrick.log(e);
 				}
 			}
@@ -156,7 +156,7 @@ Foxtrick.load = function(url, callback, crossSite) {
 							callback(req.responseText, req.status);
 						}
 						catch (e) {
-							console.error('Uncaught callback error: - url: ' + url + ' callback: '+ callback + ' crossSite: ' + crossSite + ' ' + e);
+							Foxtrick.log('Uncaught callback error: - url: ' , url , ' callback: ', callback , ' crossSite: ' , crossSite , ' ' , e);
 						}
 					}
 				};
@@ -165,7 +165,7 @@ Foxtrick.load = function(url, callback, crossSite) {
 				}
 				catch (e) {
 					// catch cross-domain errors
-					console.warn(e);
+					Foxtrick.log(e);
 					callback(req.responseText, 0);
 				}
 			}
