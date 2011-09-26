@@ -2298,9 +2298,9 @@
 				"age"
 			],
 			"params": {
-				"wage": "wage",
+				"wage": 	"wage",
 				"wagebonus": "wagebonus",
-				"age": "age"
+				"age": 		"age"
 			}
 		},
 		"ageranges": [
@@ -2311,5 +2311,40 @@
 		],
 		"title": "Wage Reduction Calculator",
 		"img": "resources/linkicons/wagereduction.png"
+	},
+	"nrg_deffor" : {
+		"url" : "http://nrgjack.altervista.org/",
+		"playerlink" : { 
+			"path"	: "trequartista.php",
+			"params"	: { 
+				"playmaking" 	: "pm",
+				"passing" 		: "pa",
+				"winger" 		: "wi", 
+				"defending" 	: "df",
+				"scoring" 		: "sc", 
+				"goalkeeping" 	: "gk" 
+			},
+			"SUM" : { 
+				"sum_deffor_skills" : [
+					"passing",
+					"scoring", 
+					"playmaking"
+				], 
+				"sum_non_deffor_skills" : [
+					"winger", 
+					"winger", 
+					"defending", 
+					"goalkeeping"
+				]
+			},
+			"allowlink2" : { 
+				"GREATER" : [
+					"sum_deffor_skills", 
+					"sum_non_deffor_skills"
+				] 
+			}
+		},
+		"title" : "NRG The Perfect Defensive Forward",
+		"img" : "resources/linkicons/nrg_deffor.gif"
 	}
 }

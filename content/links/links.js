@@ -286,26 +286,6 @@ Foxtrick.util.module.register((function() {
 			},
 			"title" : "Hattrick Youthclub",
 			"img" : Foxtrick.InternalPath+"resources/linkicons/hyouthclub.png"
-		},
-		"nrg_deffor" : {
-			"url" : "http://nrgjack.altervista.org/",
-			"playerlink" : { "path"	: "trequartista.php",
-							"filters"	: [],
-							"params"	: { "playmaking" : "pm", "passing" : "pa",
-											"winger" : "wi", "defending" : "df",
-											"scoring" : "sc", "goalkeeping" : "gk" }
-							},
-			"allowlink" : function(args, stattype) {
-				if (parseInt(args["passing"])+ parseInt(args["scoring"])+ parseInt(args["playmaking"]) >
-					2*(parseInt(args["winger"]) + parseInt(args["defending"]) + parseInt(args["goalkeeping"])))
-				{
-					return true;
-				} else {
-					return false;
-				}
-			},
-			"title" : "NRG The Perfect Defensive Forward",
-			"img" : Foxtrick.InternalPath+"resources/linkicons/nrg_deffor.gif"
 		}
 	};
 
@@ -335,6 +315,7 @@ Foxtrick.util.module.register((function() {
 			// load links defined above
 			// FIXME - move all links to external sources and remove this
 			var collection  = {};
+			/* not working atm
 			var key, prop;
 			for (key in predefinedLinks) {
 				var link = predefinedLinks[key];
@@ -348,6 +329,7 @@ Foxtrick.util.module.register((function() {
 				}
 			}
 			Foxtrick.util.module.get('Links').RESOURCES = collection; 
+			*/
 
 			// load links from external feeds
 			var feeds = FoxtrickPrefs.getString("modules.Links.feeds") || "";
@@ -391,6 +373,7 @@ Foxtrick.util.module.register((function() {
 
 		getLinks : function(type, args, doc, module) {
 			var makeLink = function(stat, statlink, key) {
+				var values = args;
 				var params = statlink["params"];
 				if (!statlink["path"])  statlink["path"] = "";
 				var languages = statlink["languages"];
@@ -424,8 +407,32 @@ Foxtrick.util.module.register((function() {
 							continue;
 						}
 		
-						if (args[paramkey] != null) {
-							query += ( (params[paramkey] != "" && temp !="") ? (temp + params[paramkey] + "=") : params[paramkey])+ encodeURIComponent(args[paramkey]);
+						// makes calculation of requested parameteres and place values with the others in params
+						if (statlink["SUM"]) {
+							for (var sum in statlink["SUM"]) {
+								values[sum] = 0;
+								for (var i=0; i<statlink["SUM"][sum].length; ++i) 
+									values[sum] += Number( values[ statlink["SUM"][sum][i] ] );
+							}
+						}
+					 
+						// check allowed based on value comparison
+						if (typeof(statlink["allowlink2"]) != 'undefined') {
+							var allowed = true; 
+							if (statlink["allowlink2"]["GREATER"]) {
+								allowed &= (values[statlink["allowlink2"]["GREATER"][0]] > values[statlink["allowlink2"]["GREATER"][1]]);
+							}
+							if (statlink["allowlink2"]["SMALLER"]) {
+								allowed &= (values[statlink["allowlink2"]["SMALLER"][0]] < values[statlink["allowlink2"]["SMALLER"][1]]);
+							}
+							if (statlink["allowlink2"]["EQUAL"]) {
+								allowed &= (values[statlink["allowlink2"]["EQUAL"][0]] == values[statlink["allowlink2"]["EQUAL"][1]]);
+							}
+							if (!allowed) return null;
+						}
+
+						if (values[paramkey] != null) {
+							query += ( (params[paramkey] != "" && temp !="") ? (temp + params[paramkey] + "=") : params[paramkey])+ encodeURIComponent(values[paramkey]);
 						}
 						else {
 							query += (params[paramkey] != "" ? temp + params[paramkey] : "");
