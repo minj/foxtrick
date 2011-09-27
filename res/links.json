@@ -169,10 +169,10 @@
 			"url": "http://alltid.org/federation/[federationid]"
 		},
 		"playedmatchlink": {
-			"url": "http://alltid.org/teamcompare/[teamid]?, =[teamid2]"
+			"url": "http://alltid.org/teamcompare/[teamid],[teamid2]"
 		},
 		"matchlink": {
-			"url": "http://alltid.org/teamcompare/[teamid]?, =[teamid2]"
+			"url": "http://alltid.org/teamcompare/[teamid],[teamid2]"
 		},
 		"title": "Alltid Hattrick Statistics International",
 		"img": "resources/linkicons/ahstats.png"
