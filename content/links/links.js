@@ -6,7 +6,7 @@
 
 Foxtrick.util.module.register((function() {
 	var storeCollection = function() {
-		var collection = [];
+		var collection = {};
 		// load links from external feeds
 		var feeds = FoxtrickPrefs.getString("module.Links.feeds") || "";
 		feeds = feeds.split(/(\n|\r)+/);
