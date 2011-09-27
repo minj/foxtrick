@@ -83,6 +83,7 @@ Foxtrick.util.module.register({
 					[/^\D*HT-/, "ht"],
 					[/^\D*GM-/, "gm"],
 					[/^\D*Mod-/, "mod"],
+					[/^\D*MOD-/, "mod"],
 					[/^\D*CHPP-/, "chpp"],
 					[/^\D*LA-/, "la"]
 				];
