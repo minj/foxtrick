@@ -34,8 +34,7 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 
 				var begin = new Date();
 
-				FoxtrickPrefs._prefs_chrome_user = data._prefs_chrome_user;
-				FoxtrickPrefs._prefs_chrome_default = data._prefs_chrome_default;
+				Foxtrick.entry.setRetrievedLocalResources(data);
 
 				if ( (FoxtrickPrefs.getBool("disableOnStage")
 						&& Foxtrick.isStage(document))
@@ -53,7 +52,6 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 				Foxtrick.util.inject.css(document, data.cssText, "ft-module-css");
 
 				Foxtrick.entry.init();
-				Foxtrick.entry.setRetrievedLocalResources(data);
 				Foxtrick.entry.cssLoaded = true;
 
 				var initTime = new Date() - begin.getTime();

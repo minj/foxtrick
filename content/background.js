@@ -112,20 +112,6 @@ Foxtrick.loader.chrome.browserLoad = function() {
 			resource.cssText = cssTextCollection;
 		}
 	
-		// add module resources 
-		var i;
-		for (i in Foxtrick.modules) {
-			var module = Foxtrick.modules[i];
-			if (typeof(module.RESOURCES) !== "undefined") {
-				try {
-					resource[module.MODULE_NAME] = module.RESOURCES;
-				}
-				catch (e) {
-					Foxtrick.log("Error caught in module ", module.MODULE_NAME, ":", e);
-				}
-			}
-		}
-
 		sendResponse ( resource );
 	
 	};
