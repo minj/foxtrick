@@ -1910,7 +1910,26 @@
 			"url": "http://nrgjack.altervista.org/trequartista.php?pm=[playmaking]&pa=[passing]&wi=[winger]&df=[defending]&sc=[scoring]&gk=[goalkeeping]"
 		},
 		"title": "NRG The Perfect Defensive Forward",
-		"img": "resources/linkicons/nrg_deffor.gif"
+		"img": "resources/linkicons/nrg_deffor.gif",
+		"SUM": {
+			"sum_deffor_skills": [
+				"passing",
+				"scoring",
+				"playmaking"
+			],
+			"sum_non_deffor_skills": [
+				"winger",
+				"winger",
+				"defending",
+				"goalkeeping"
+			]
+		},
+		"allowlink2": {
+			"GREATER": [
+				"sum_deffor_skills",
+				"sum_non_deffor_skills"
+			]
+		}
 	},
 	"htworld": {
 		"title": "HT-World NT/U20 tracker",
@@ -1978,7 +1997,7 @@
 			"url": "http://www.hattrick-youthclub.org/"
 		},
 		"playedyouthmatchlink": {
-			"url": "http://www.hattrick-youthclub.org/redirect/type/lineup/ht_id/"
+			"url": "http://www.hattrick-youthclub.org/redirect/type/lineup/ht_id/[matchid]"
 		},
 		"title": "Hattrick Youthclub",
 		"img": "resources/linkicons/hyouthclub.png"
