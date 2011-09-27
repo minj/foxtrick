@@ -19,7 +19,7 @@ Foxtrick.util.module.register({
 	change : function(doc) {
 		// challenging etc removes box. need to re-add it
 		if (doc.getElementById('ft-links-box')===null)
-			FoxtrickLinksTeam.run(doc);
+			this.run(doc);
 	},
 
 	AddLinksRight : function(doc) {
