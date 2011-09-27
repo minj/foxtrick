@@ -80,11 +80,11 @@ Foxtrick.util.module.register({
 				// alias in select boxes might have a Left-to-Right
 				// Overwrite (LRO, U+202D) in front
 				var markers = [
-					[/^\D*HT-/i, "ht"],
-					[/^\D*GM-/i, "gm"],
-					[/^\D*MOD-/i, "mod"],
-					[/^\D*CHPP-/i, "chpp"],
-					[/^\D*LA-/i, "la"]
+					[/^\D*HT-/, "ht"],
+					[/^\D*GM-/, "gm"],
+					[/^\D*Mod-/, "mod"],
+					[/^\D*CHPP-/, "chpp"],
+					[/^\D*LA-/, "la"]
 				];
 				// user-defined style
 				if (customMarker[id] !== undefined)
