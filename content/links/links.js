@@ -67,11 +67,7 @@ Foxtrick.util.module.register((function() {
 		},
 
 		init : function() {
-			var collection = Foxtrick.sessionGet("links-collection");
-			// links collection are not available, get them 
-			if (!collection) {
-				storeCollection();
-			}
+			storeCollection();
 		},
 
 		getLinks : function(type, args, doc, module) {
