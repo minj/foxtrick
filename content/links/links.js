@@ -79,17 +79,19 @@ Foxtrick.util.module.register((function() {
 				return url;
 			};
 			var getLinkElement = function(link, url, key, module) {
-				var statslink = doc.createElement("a");
+				var linkNode = doc.createElement("a");
+
+				linkNode.href = url;
 				if (link.openinthesamewindow == undefined) {
-					statslink.target = "_stats";
+					linkNode.target = "_stats";
 				}
 
-				statslink.title = link.title;
-				statslink.setAttribute("key", key);
-				statslink.setAttribute("module", module);
+				linkNode.title = link.title;
+				linkNode.setAttribute("key", key);
+				linkNode.setAttribute("module", module);
 
 				if (link.img == undefined) {
-					statslink.appendChild(doc.createTextNode(link.shorttitle));
+					linkNode.appendChild(doc.createTextNode(link.shorttitle));
 				}
 				else {
 					// add path to internal images
@@ -97,14 +99,12 @@ Foxtrick.util.module.register((function() {
 						link.img = Foxtrick.ResourcePath + link.img;
 					// add img for tracker flags
 					if (module === "LinksTracker")
-						link.appendChild(doc.createElement("img"));
+						linkNode.appendChild(doc.createElement("img"));
 					else
-						Foxtrick.addImage(doc, statslink, { alt: link.shorttitle || link.title, title: link.title, src: link.img });
+						Foxtrick.addImage(doc, linkNode, { alt: link.shorttitle || link.title, title: link.title, src: link.img });
 				}
 
-				statslink.href = url;
-
-				return statslink;
+				return linkNode;
 			};
 
 			var collection = Foxtrick.sessionGet("links-collection");
@@ -154,6 +154,7 @@ Foxtrick.util.module.register((function() {
 				else if (link.SUM != undefined) {
 					// makes calculation of requested parameteres and place values with the others in params
 					var sum, i;
+					var values = {};
 					if (link.SUM) {
 						for (sum in link.SUM) {
 							values[sum] = 0;
@@ -164,14 +165,14 @@ Foxtrick.util.module.register((function() {
 					// check allowed based on value comparison
 					if (link.allowlink2 != undefined) {
 						allowed = true; 
-						if (statlink.allowlink2.GREATER) {
-							allowed = allow && (values[statlink.allowlink2.GREATER[0]] > values[statlink.allowlink2.GREATER[1]]);
+						if (link.allowlink2.GREATER) {
+							allowed = allowed && (values[link.allowlink2.GREATER[0]] > values[link.allowlink2.GREATER[1]]);
 						}
-						if (statlink.allowlink2.SMALLER) {
-							allowed = allow && (values[statlink.allowlink2.SMALLER[0]] < values[statlink.allowlink2.SMALLER[1]]);
+						if (link.allowlink2.SMALLER) {
+							allowed = allowed && (values[link.allowlink2.SMALLER[0]] < values[link.allowlink2.SMALLER[1]]);
 						}
-						if (statlink.allowlink2.EQUAL) {
-							allowed = allow && (values[statlink.allowlink2.EQUAL[0]] == values[statlink.allowlink2.EQUAL[1]]);
+						if (link.allowlink2.EQUAL) {
+							allowed = allowed && (values[link.allowlink2.EQUAL[0]] == values[link.allowlink2.EQUAL[1]]);
 						}
 					}
 				}
