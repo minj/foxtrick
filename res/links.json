@@ -1957,7 +1957,7 @@
 	"alltid_add": {
 		"openinthesamewindow": "true",
 		"teamlink": {
-			"url": "javascript:var i=parseInt(localStorage.getItem(\"alltidcompare_index\"));if(!i)i=0;var do_remove=false;for(var j=0;j<i+1;++j) {if(parseInt(localStorage.getItem(\"alltidcompare_teamid\"+j))==[teamid]){do_remove=true;break;}}if (do_remove) {localStorage.setItem(\"alltidcompare_teamid\"+j,\"0\");localStorage.setItem(\"alltidcompare_teamname\"+j,\"\");}else {localStorage.setItem(\"alltidcompare_teamid\"+i, \"args[\"teamid\"]\");localStorage.setItem(\"alltidcompare_teamname\"+i, \"args[\"teamname\"]\");i=i+1;localStorage.setItem(\"alltidcompare_index\",i);}var teams=\"\";for(var j=0;j<i;++j) {if(localStorage.getItem(\"alltidcompare_teamid\"+j)!=0) teams+=localStorage.getItem(\"alltidcompare_teamname\"+j)+\" --- \";}alert(\"Selected teams: \"+teams);"
+			"url": "javascript:var i=parseInt(localStorage.getItem(\"alltidcompare_index\"));if(!i)i=0;var do_remove=false;for(var j=0;j<i+1;++j) {if(parseInt(localStorage.getItem(\"alltidcompare_teamid\"+j))==[teamid]){do_remove=true;break;}}if (do_remove) {localStorage.setItem(\"alltidcompare_teamid\"+j,\"0\");localStorage.setItem(\"alltidcompare_teamname\"+j,\"\");}else {localStorage.setItem(\"alltidcompare_teamid\"+i, [teamid]);localStorage.setItem(\"alltidcompare_teamname\"+i, \"[teamname]\");i=i+1;localStorage.setItem(\"alltidcompare_index\",i);}var teams=\"\";for(var j=0;j<i;++j) {if(localStorage.getItem(\"alltidcompare_teamid\"+j)!=0) teams+=localStorage.getItem(\"alltidcompare_teamname\"+j)+\" --- \";}alert(\"Selected teams: \"+teams);"
 		},
 		"img": "resources/linkicons/ahaddremove.png",
 		"title": "Alltid: add to or remove from compare list",
