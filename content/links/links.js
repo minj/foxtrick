@@ -289,13 +289,57 @@ Foxtrick.util.module.register((function() {
 		}
 	};
 
+	var storeCollection = function() {
+		var collection = [];
+		// load links from external feeds
+		var feeds = FoxtrickPrefs.getString("modules.Links.feeds") || "";
+		feeds = feeds.split(/(\n|\r)+/);
+		feeds = Foxtrick.filter(function(n) { return Foxtrick.trim(n) != ""; }, feeds);
+		// add default feed if no feeds set
+		if (feeds.length == 0)
+			feeds = [Foxtrick.DataPath + "links.json"];
+		// now load the feeds
+		Foxtrick.map(function(feed) {
+			Foxtrick.load(feed, function(text) {
+				var key, prop;
+
+				if (!text) {
+					Foxtrick.log("Failure loading links file: ", feed);
+					return;
+				}
+				try {
+					var links = JSON.parse(text);
+				}
+				catch (e) {
+					Foxtrick.log("Failure parsing links file: ", text);
+					return;
+				}
+				for (key in links) {
+					var link = links[key];
+					if (link.url.indexOf("javascript:") == 0) {
+						Foxtrick.log("JavaScript not allowed in links: ", link.url);
+					}
+					else {
+						for (prop in link) {
+							if (prop.indexOf("link") >= 0) {
+								if (typeof(collection[prop]) == 'undefined') {
+									collection[prop] = {};
+								}
+								collection[prop][key] = link;
+							}
+						}
+					}
+				}
+				Foxtrick.sessionSet("links-collection", collection);
+			});
+		}, feeds);
+	};
+
 	return {
 		MODULE_NAME : "Links",
 		MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 		CORE_MODULE : true,
 
-		RESOURCES : {},
-		
 		OPTION_FUNC : function(doc) {
 			var cont = doc.createElement("div");
 
@@ -310,65 +354,8 @@ Foxtrick.util.module.register((function() {
 			return cont;
 		},
 
-
-		onLoad : function() {
-			// load links defined above
-			// FIXME - move all links to external sources and remove this
-			var collection  = {};
-			/* not working atm
-			var key, prop;
-			for (key in predefinedLinks) {
-				var link = predefinedLinks[key];
-				for (prop in link) {
-					if (prop.match(/link/)) {
-						if (typeof(collection[prop]) == 'undefined') {
-							collection[prop] = {};
-						}
-						collection[prop][key] = link;
-					}
-				}
-			}
-			Foxtrick.util.module.get('Links').RESOURCES = collection; 
-			*/
-
-			// load links from external feeds
-			var feeds = FoxtrickPrefs.getString("modules.Links.feeds") || "";
-			feeds = feeds.split(/(\n|\r)+/);
-			// add default feed if no feeds set
-			if (Foxtrick.all(function(n) { return Foxtrick.trim(n) == ""; }, feeds))
-				feeds = [Foxtrick.DataPath + "links.json"];
-			Foxtrick.map(function(feed) {
-				Foxtrick.load(feed, function(text) {
-					if (!text) {
-						Foxtrick.log("Failure loading links file: ", feed);
-						return;
-					}
-					try {
-						var links = JSON.parse(text);
-					}
-					catch (e) {
-						Foxtrick.log("Failure parsing links file: ", text);
-						return;
-					}
-					for (key in links) {
-						var link = links[key];
-						if (link.url.indexOf("javascript:") == 0) {
-							Foxtrick.log("JavaScript not allowed in links: ", link.url);
-						}
-						else {
-							for (prop in link) {
-								if (prop.indexOf("link") >= 0) {
-									if (typeof(collection[prop]) == 'undefined') {
-										collection[prop] = {};
-									}
-									collection[prop][key] = link;
-								}
-							}
-						}
-					}
-					Foxtrick.util.module.get('Links').RESOURCES = collection; 
-				});
-			}, feeds);
+		init : function() {
+			storeCollection();
 		},
 
 		getLinks : function(type, args, doc, module) {
@@ -482,14 +469,37 @@ Foxtrick.util.module.register((function() {
 				return statslink;
 			};
 
+			var collection = Foxtrick.sessionGet("links-collection");
+			// links collection are not available, get them and return
+			if (!collection) {
+				storeCollection();
+				return [];
+			}
+
+			// load links defined above
+			// they have functions thus cannot be serialized into JSON objects
+			// FIXME - move all links to external sources and remove this
+			var key, prop;
+			for (key in predefinedLinks) {
+				var link = predefinedLinks[key];
+				for (prop in link) {
+					if (prop.match(/link/)) {
+						if (typeof(collection[prop]) == 'undefined') {
+							collection[prop] = {};
+						}
+						collection[prop][key] = link;
+					}
+				}
+			}
+
 			// add current server to args first
 			args.server = doc.location.hostname;
 			// links to return
 			var links = [];
 
 			var key;
-			for (key in this.RESOURCES[type]) {
-				var link = this.RESOURCES[type][key];
+			for (key in collection[type]) {
+				var link = collection[type][key];
 				var linkObj = link[type];
 				var filters = linkObj.filters;
 
