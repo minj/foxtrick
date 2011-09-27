@@ -1924,12 +1924,11 @@
 				"goalkeeping"
 			]
 		},
-		"allowlink2": {
-			"GREATER": [
-				"sum_deffor_skills",
-				"sum_non_deffor_skills"
-			]
-		}
+		"allowlink": [
+			"GREATER",
+			"sum_deffor_skills",
+			"sum_non_deffor_skills"
+		]
 	},
 	"htworld": {
 		"title": "HT-World NT/U20 tracker",
@@ -1953,6 +1952,10 @@
 		},
 		"title": "HattrickChallenge Friendly ads",
 		"img": "resources/linkicons/hattrickchallenge_main.png"
+		"allowlink": [
+			"EQUAL",
+			"teamid",
+			"ownteamid"
 	},
 	"alltid_add": {
 		"openinthesamewindow": "true",
@@ -1999,6 +2002,24 @@
 		"playedyouthmatchlink": {
 			"url": "http://www.hattrick-youthclub.org/redirect/type/lineup/ht_id/[matchid]"
 		},
+		"allowlink": [
+			"OR",
+			[
+				"EQUAL",
+				"teamid",
+				"ownteamid"
+			],
+			[
+				"EQUAL",
+				"teamid",
+				"ownyouthteamid"
+			],
+			[
+				"EQUAL",
+				"teamid2",
+				"ownyouthteamid"
+			]
+		],
 		"title": "Hattrick Youthclub",
 		"img": "resources/linkicons/hyouthclub.png"
 	}

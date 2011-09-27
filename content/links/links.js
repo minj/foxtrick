@@ -129,6 +129,19 @@ Foxtrick.util.module.register((function() {
 				var link = collection[type][key];
 				var urlTmpl = link[type].url;
 				var filters = link[type].filters;
+				
+				var values = args;
+				if (link.SUM != undefined) {
+					// makes calculation of requested parameteres and place values with the others in params
+					var sum, i;
+					if (link.SUM) {
+						for (sum in link.SUM) {
+							values[sum] = 0;
+							for (i = 0; i < link.SUM[sum].length; ++i) 
+								values[sum] += Number(args[link.SUM[sum][i]]);
+						}
+					}
+				}
 
 				var allowed;
 				if (!FoxtrickPrefs.isModuleOptionEnabled(module.MODULE_NAME, key)) {
@@ -155,30 +168,36 @@ Foxtrick.util.module.register((function() {
 						}
 					}
 				}
-				else if (link.SUM != undefined) {
-					// makes calculation of requested parameteres and place values with the others in params
-					var sum, i;
-					var values = {};
-					if (link.SUM) {
-						for (sum in link.SUM) {
-							values[sum] = 0;
-							for (i = 0; i < link.SUM[sum].length; ++i) 
-								values[sum] += Number(args[link.SUM[sum][i]]);
+				// check allowed based on value comparison
+				else if (link.allowlink != undefined) {
+					
+					var comparisons = {
+						GREATER : function (test) {
+							return values[test[1]] > values[test[2]];
+						},
+						SMALLER : function (test) {
+							return values[test[1]] < values[test[2]]
+						},
+						EQUAL : function (test) { 
+							return values[test[1]] == values[test[2]]
+						},
+						OR : function (test) { 
+							var result = false;
+							for (var i=1; i<test.length; ++i) {
+								result = result || comparisons[ test[i][0] ](test[i])
+							}
+							return result;
+						},
+						AND : function (test) { 
+							var result = true;
+							for (var i=1; i<test.length; ++i) {
+								result = result && comparisons[ test[i][0] ](test[i])
+							}
+							return result;
 						}
 					}
-					// check allowed based on value comparison
-					if (link.allowlink2 != undefined) {
-						allowed = true; 
-						if (link.allowlink2.GREATER) {
-							allowed = allowed && (values[link.allowlink2.GREATER[0]] > values[link.allowlink2.GREATER[1]]);
-						}
-						if (link.allowlink2.SMALLER) {
-							allowed = allowed && (values[link.allowlink2.SMALLER[0]] < values[link.allowlink2.SMALLER[1]]);
-						}
-						if (link.allowlink2.EQUAL) {
-							allowed = allowed && (values[link.allowlink2.EQUAL[0]] == values[link.allowlink2.EQUAL[1]]);
-						}
-					}
+					var test = link.allowlink;
+					allowed = comparisons[ test[0] ](test);
 				}
 				else {
 					// alway shown
