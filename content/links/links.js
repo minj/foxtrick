@@ -292,13 +292,14 @@ Foxtrick.util.module.register((function() {
 	var storeCollection = function() {
 		var collection = [];
 		// load links from external feeds
-		var feeds = FoxtrickPrefs.getString("modules.Links.feeds") || "";
+		var feeds = FoxtrickPrefs.getString("module.Links.feeds") || "";
 		feeds = feeds.split(/(\n|\r)+/);
 		feeds = Foxtrick.filter(function(n) { return Foxtrick.trim(n) != ""; }, feeds);
 		// add default feed if no feeds set
 		if (feeds.length == 0)
 			feeds = [Foxtrick.DataPath + "links.json"];
 		// now load the feeds
+		Foxtrick.log("Loading link feeds from: ", feeds);
 		Foxtrick.map(function(feed) {
 			Foxtrick.load(feed, function(text) {
 				var key, prop;
@@ -359,86 +360,12 @@ Foxtrick.util.module.register((function() {
 		},
 
 		getLinks : function(type, args, doc, module) {
-			var makeLink = function(stat, statlink, key) {
-				var values = args;
-				var params = statlink["params"];
-				if (!statlink["path"])  statlink["path"] = "";
-				var languages = statlink["languages"];
-				var query = "";
-				var paramkey;
-			
-				if (params) {
-					for (paramkey in params) {
-					if (params[paramkey].search('ftfilter')==0) continue;
-						var temp;
-
-						if ((query == "") && statlink["path"].search(/\?/) == -1 && stat["url"].search(/\?/) == -1) {
-							temp = "?";
-						} else {
-							temp = "&";
-						}
-
-						if (!params[paramkey].charAt(0).match(/\w+/)) {temp="";}
-		
-						if (paramkey=="lang") {
-							var lang;
-							for (lang in languages) {
-								if (lang == FoxtrickPrefs.getString("htLanguage")) {
-									query += temp + params[paramkey] + "=" + encodeURIComponent(languages[lang]);
-									break;
-								}
-								else if (lang == 'any') {
-									query += temp + params[paramkey] + "=" + encodeURIComponent(languages[lang]);
-								}
-							}
-							continue;
-						}
-		
-						// makes calculation of requested parameteres and place values with the others in params
-						if (statlink["SUM"]) {
-							for (var sum in statlink["SUM"]) {
-								values[sum] = 0;
-								for (var i=0; i<statlink["SUM"][sum].length; ++i) 
-									values[sum] += Number( values[ statlink["SUM"][sum][i] ] );
-							}
-						}
-					 
-						// check allowed based on value comparison
-						if (typeof(statlink["allowlink2"]) != 'undefined') {
-							var allowed = true; 
-							if (statlink["allowlink2"]["GREATER"]) {
-								allowed &= (values[statlink["allowlink2"]["GREATER"][0]] > values[statlink["allowlink2"]["GREATER"][1]]);
-							}
-							if (statlink["allowlink2"]["SMALLER"]) {
-								allowed &= (values[statlink["allowlink2"]["SMALLER"][0]] < values[statlink["allowlink2"]["SMALLER"][1]]);
-							}
-							if (statlink["allowlink2"]["EQUAL"]) {
-								allowed &= (values[statlink["allowlink2"]["EQUAL"][0]] == values[statlink["allowlink2"]["EQUAL"][1]]);
-							}
-							if (!allowed) return null;
-						}
-
-						if (values[paramkey] != null) {
-							query += ( (params[paramkey] != "" && temp !="") ? (temp + params[paramkey] + "=") : params[paramkey])+ encodeURIComponent(values[paramkey]);
-						}
-						else {
-							query += (params[paramkey] != "" ? temp + params[paramkey] : "");
-						}
-					}
+			var makeLink = function(url) {
+				var i;
+				for (i in args) {
+					url = url.replace(RegExp("\\[" + i + "\\]", "g"), args[i]);
 				}
-
-				var url=null;
-
-				if (typeof (stat["urlfunction"]) == 'undefined') {
-					url = stat["url"];
-				} else {
-					url = stat["urlfunction"](args);
-				}
-
-				if (url == null) return null;
-
-				var link = url + statlink["path"] + query;
-				return link;
+				return url;
 			};
 			var getLinkElement = function(link, url, key, module) {
 				var statslink = doc.createElement("a");
@@ -479,7 +406,7 @@ Foxtrick.util.module.register((function() {
 			// load links defined above
 			// they have functions thus cannot be serialized into JSON objects
 			// FIXME - move all links to external sources and remove this
-			var key, prop;
+			/*var key, prop;
 			for (key in predefinedLinks) {
 				var link = predefinedLinks[key];
 				for (prop in link) {
@@ -490,18 +417,19 @@ Foxtrick.util.module.register((function() {
 						collection[prop][key] = link;
 					}
 				}
-			}
+			}*/
 
 			// add current server to args first
 			args.server = doc.location.hostname;
+
 			// links to return
 			var links = [];
 
 			var key;
 			for (key in collection[type]) {
 				var link = collection[type][key];
-				var linkObj = link[type];
-				var filters = linkObj.filters;
+				var urlTmpl = link[type].url;
+				var filters = link[type].filters;
 
 				var allowed;
 				if (!FoxtrickPrefs.isModuleOptionEnabled(module.MODULE_NAME, key)) {
@@ -528,6 +456,30 @@ Foxtrick.util.module.register((function() {
 						}
 					}
 				}
+				else if (link.SUM != undefined) {
+					// makes calculation of requested parameteres and place values with the others in params
+					var sum, i;
+					if (link.SUM) {
+						for (sum in link.SUM) {
+							values[sum] = 0;
+							for (i = 0; i < link.SUM[sum].length; ++i) 
+								values[sum] += Number(args[link.SUM[sum][i]]);
+						}
+					}
+					// check allowed based on value comparison
+					if (link.allowlink2 != undefined) {
+						allowed = true; 
+						if (statlink.allowlink2.GREATER) {
+							allowed = allow && (values[statlink.allowlink2.GREATER[0]] > values[statlink.allowlink2.GREATER[1]]);
+						}
+						if (statlink.allowlink2.SMALLER) {
+							allowed = allow && (values[statlink.allowlink2.SMALLER[0]] < values[statlink.allowlink2.SMALLER[1]]);
+						}
+						if (statlink.allowlink2.EQUAL) {
+							allowed = allow && (values[statlink.allowlink2.EQUAL[0]] == values[statlink.allowlink2.EQUAL[1]]);
+						}
+					}
+				}
 				else if (typeof(link.allowlink) == "function") {
 					// function determining whether to show
 					allowed = link.allowlink(args, type);
@@ -538,7 +490,7 @@ Foxtrick.util.module.register((function() {
 				}
 
 				if (allowed) {
-					var url = makeLink(link, linkObj, args, key);
+					var url = makeLink(urlTmpl);
 					if (url != null) {
 						links.push({"link" : getLinkElement(link, url, key, module.MODULE_NAME), "obj" : link});
 					}
