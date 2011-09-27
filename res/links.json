@@ -1206,7 +1206,7 @@
 				6
 			]
 		],
-		"title": "Hattrick M\u00e9xico",
+		"title": "Hattrick México",
 		"img": "resources/linkicons/mexico_scouting.png"
 	},
 	"brasileira_tracker": {
@@ -1234,7 +1234,7 @@
 				16
 			]
 		],
-		"title": "Estat\u00edsticas da Sele\u00e7ao Brasileira",
+		"title": "Estatísticas da Seleçao Brasileira",
 		"img": "resources/linkicons/brasileira.png"
 	},
 	"benintracker": {
@@ -1267,7 +1267,7 @@
 	},
 	"czechrepublic_nt": {
 		"img": "resources/linkicons/czech_nt_tracker.png",
-		"title": "Cesk\u00e1 republika U20-NT Tracker",
+		"title": "Ceská republika U20-NT Tracker",
 		"trackernationalteamlink": {
 			"url": "http://tracker.kiekko.cz/players/submit/",
 			"filters": [
@@ -1694,7 +1694,7 @@
 	},
 	"turkeytracker": {
 		"img": "resources/linkicons/tracker.png",
-		"title": "T\u00fcrkiye & Azebaycan Player Database",
+		"title": "Türkiye & Azebaycan Player Database",
 		"trackernationalteamlink": {
 			"url": "http://www.ht-turkiye.com",
 			"filters": [
@@ -1911,5 +1911,76 @@
 		},
 		"title": "NRG The Perfect Defensive Forward",
 		"img": "resources/linkicons/nrg_deffor.gif"
+	},
+	"htworld": {
+		"title": "HT-World NT/U20 tracker",
+		"img": "resources/linkicons/tracker.png",
+		"trackernationalteamlink": {
+			"url": "http://www.ht-world.org/index.php?language=2"
+		},
+		"trackerplayerlink": {
+			"url": "http://www.ht-world.org/scouting.php?language=2"
+		}
+	},
+	"hattrickchallenge_friendly": {
+		"challengeslink": {
+			"url": "http://www.hattrickchallenge.com/Tools/Entry.php?tool=friendly&teamid=[teamid]"
+		},
+		"youthchallengeslink": {
+			"url": "http://www.hattrickchallenge.com/Tools/Entry.php?tool=youthfriendly&youthteamid=[youthteamid]&teamid=[teamid]"
+		},
+		"youthlink": {
+			"url": "http://www.hattrickchallenge.com/Tools/Entry.php?tool=youthfriendly&youthteamid=[youthteamid]&teamid=[teamid]"
+		},
+		"title": "HattrickChallenge Friendly ads",
+		"img": "resources/linkicons/hattrickchallenge_main.png"
+	},
+	"alltid_add": {
+		"openinthesamewindow": "true",
+		"teamlink": {
+			"url": "javascript:var i=parseInt(localStorage.getItem(\"alltidcompare_index\"));if(!i)i=0;var do_remove=false;for(var j=0;j<i+1;++j) {if(parseInt(localStorage.getItem(\"alltidcompare_teamid\"+j))==[teamid]){do_remove=true;break;}}if (do_remove) {localStorage.setItem(\"alltidcompare_teamid\"+j,\"0\");localStorage.setItem(\"alltidcompare_teamname\"+j,\"\");}else {localStorage.setItem(\"alltidcompare_teamid\"+i, \"args[\"teamid\"]\");localStorage.setItem(\"alltidcompare_teamname\"+i, \"args[\"teamname\"]\");i=i+1;localStorage.setItem(\"alltidcompare_index\",i);}var teams=\"\";for(var j=0;j<i;++j) {if(localStorage.getItem(\"alltidcompare_teamid\"+j)!=0) teams+=localStorage.getItem(\"alltidcompare_teamname\"+j)+\" --- \";}alert(\"Selected teams: \"+teams);"
+		},
+		"img": "resources/linkicons/ahaddremove.png",
+		"title": "Alltid: add to or remove from compare list",
+		"shorttitle": "Add/Remove"
+	},
+	"alltid_clear": {
+		"openinthesamewindow": "true",
+		"teamlink": {
+			"url": "javascript: localStorage.setItem(\"alltidcompare_index\", 0); alert(\"Cleared team compare list\");"
+		},
+		"img": "resources/linkicons/ahclear.png",
+		"title": "Alltid: clear compare list",
+		"shorttitle": "Clear"
+	},
+	"alltid_compare": {
+		"teamlink": {
+			"url": "javascript: var alltidcompare_index=parseInt(localStorage.getItem(\"alltidcompare_index\")); var teams=\"\"; for (var i = 0; i < alltidcompare_index; ++i) if(localStorage.getItem(\"alltidcompare_teamid\" + i) != 0) teams += localStorage.getItem(\"alltidcompare_teamid\" + i) + \", \"; location.href=\"http://alltid.org/teamcompare/\"+teams;"
+		},
+		"img": "resources/linkicons/ahcompare.png",
+		"title": "Alltid: compare teams",
+		"shorttitle": "Compare"
+	},
+	"hattrick-youthclub": {
+		"youthlink": {
+			"url": "http://www.hattrick-youthclub.org/"
+		},
+		"youthplayerlistlink": {
+			"url": "http://www.hattrick-youthclub.org/"
+		},
+		"youthplayerdetaillink": {
+			"url": "http://www.hattrick-youthclub.org/redirect/type/player_details/ht_id/[playerid]"
+		},
+		"youthmatchlistlink": {
+			"url": "http://www.hattrick-youthclub.org/site/matches"
+		},
+		"youthtraininglink": {
+			"url": "http://www.hattrick-youthclub.org/"
+		},
+		"playedyouthmatchlink": {
+			"url": "http://www.hattrick-youthclub.org/redirect/type/lineup/ht_id/"
+		},
+		"title": "Hattrick Youthclub",
+		"img": "resources/linkicons/hyouthclub.png"
 	}
 }
