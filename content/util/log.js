@@ -17,8 +17,8 @@ Foxtrick.log = function() {
 		if (content instanceof Error) {
 			hasError = true;
 			if (Foxtrick.arch == "Gecko") {
-				item = content.fileName + " (" + content.lineNumber + "): " + String(content) + "\n";
-				item += "Stack trace: " + content.stack.substr(0,1000);
+				item = content.fileName + " (" + content.lineNumber + "): " + content.message + "\n"
+					+ "Stack trace: " + content.stack.substr(0,1000);
 				Components.utils.reportError(item);
 			}
 			else if (Foxtrick.arch == "Sandboxed") {
