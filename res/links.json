@@ -1951,11 +1951,12 @@
 			"url": "http://www.hattrickchallenge.com/Tools/Entry.php?tool=youthfriendly&youthteamid=[youthteamid]&teamid=[teamid]"
 		},
 		"title": "HattrickChallenge Friendly ads",
-		"img": "resources/linkicons/hattrickchallenge_main.png"
+		"img": "resources/linkicons/hattrickchallenge_main.png",
 		"allowlink": [
 			"EQUAL",
 			"teamid",
 			"ownteamid"
+		]
 	},
 	"alltid_add": {
 		"openinthesamewindow": "true",
