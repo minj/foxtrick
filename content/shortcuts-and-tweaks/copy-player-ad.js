@@ -88,7 +88,8 @@ Foxtrick.util.module.register({
 				ad += Foxtrick.trim(basicInfo.textContent) + "\n\n";
 			}
 			else {
-				var basicInfo = playerInfo.getElementsByTagName("p")[0];
+				// sometime ista string tag sometimes a paragraph seemingly
+				var basicInfo = playerInfo.getElementsByTagName("p")[0] || playerInfo.getElementsByTagName("strong")[0];
 				if (basicInfo) {
 					var speciality = Foxtrick.trim(basicInfo.textContent);
 					// we will bold the speciality part, right after
