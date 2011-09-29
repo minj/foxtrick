@@ -11,10 +11,6 @@ Foxtrick.util.module.register({
 	OPTIONS : ["HatStats", "HatStatsDetailed", "HatStatsSeparated", "LoddarStats", "PeasoStats", "VnukStats", "HTitaVal", "GardierStats"],
 	ratingDefs :  {}, // will be filled in initOptions
 
-	init : function() {
-		this.initHtRatings();
-	},
-
 	run : function(doc) {
 		var ratingsArray = Foxtrick.filter(function(x) {
 			return x != "HatStatsSeparated";
@@ -33,6 +29,8 @@ Foxtrick.util.module.register({
 			cell.innerHTML = Foxtrickl10n.getString( "foxtrick.matches.wronglang" );
 			return;
 		}
+
+		this.initHtRatings();
 
 		var midfieldLevel=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[1].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[1].cells[2]));
 		var rdefence=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[2].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[2].cells[2]));
