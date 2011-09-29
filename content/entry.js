@@ -71,13 +71,10 @@ Foxtrick.entry.setRetrievedLocalResources = function(data) {
 Foxtrick.entry.init = function() {
 	Foxtrick.log("Initializing FoxTrick…");
 
-	// init core modules, for Chrome they are inited in loader-chrome.js
-	if (Foxtrick.arch == "Gecko") {
-		var coreModules = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
-		for (var i in coreModules) {
-			if (typeof(coreModules[i].init) == "function")
-				coreModules[i].init();
-		}
+	var coreModules = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
+	for (var i in coreModules) {
+		if (typeof(coreModules[i].init) == "function")
+			coreModules[i].init();
 	}
 
 	if (Foxtrick.platform=='Firefox') {
@@ -178,6 +175,23 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		// if only a CSS check, return now.
 		if (is_only_css_check)
 			return;
+
+		// create arrays for each recognized page that contains modules
+		// that run on it
+		for (var i in Foxtrick.ht_pages) {
+			Foxtrick.entry.runMap[i] = [];
+		}
+		for (var i in Foxtrick.modules) {
+			var module = Foxtrick.modules[i];
+			if (FoxtrickPrefs.isModuleEnabled(module.MODULE_NAME)) {
+				// register modules on the pages they are operating on according
+				// to their PAGES property
+				if (module.MODULE_NAME && module.PAGES) {
+					for (var i = 0; i < module.PAGES.length; ++i)
+						Foxtrick.entry.runMap[module.PAGES[i]].push(module);
+				}
+			}
+		}
 
 		// call all modules that registered as page listeners
 		// if their page is loaded

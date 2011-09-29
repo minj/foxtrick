@@ -29,7 +29,7 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 		// calls/adds Foxtrick.loader.chrome.docLoadEnd
 		sandboxed.extension.sendRequest({ req : "pageLoad" },
 		function (data) {
-			try {
+			try { 
 				if (data.error) Foxtrick.log(data.error);
 
 				var begin = new Date();
@@ -51,11 +51,10 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 				// inject CSS
 				Foxtrick.util.inject.css(document, data.cssText, "ft-module-css");
 
-				Foxtrick.entry.init();
 				Foxtrick.entry.cssLoaded = true;
 
 				var initTime = new Date() - begin.getTime();
-				Foxtrick.log("init time: " , initTime , " ms");
+				console.log("init time: " , initTime , " ms");
 
 				// safari context menu special paste listener
 				if ( Foxtrick.platform == "Safari" ) {

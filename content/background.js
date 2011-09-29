@@ -14,23 +14,28 @@ Foxtrick.loader.chrome = {};
 Foxtrick.loader.chrome.browserLoad = function() {
 	Foxtrick.log('Foxtrick.loader.chrome.browserLoad');
 
-	// get resources
-	var core = [ FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData ], i;
-	for (i in core)
-		core[i].init();
+	var currency, about, worldDetails, htLanguagesText, cssTextCollection;
+	
+	var updateResources = function() {
+		// init resources
+		Foxtrick.entry.init();
 
-	// prepare resources for later transmission to content script
-	var serializer = new window.XMLSerializer();
-	var currency = serializer.serializeToString(Foxtrick.XMLData.htCurrencyXml);
-	var about = serializer.serializeToString(Foxtrick.XMLData.aboutXML);
-	var worldDetails = serializer.serializeToString(Foxtrick.XMLData.worldDetailsXml);
-	var htLanguagesText = {};
-	var i;
-	for (i in Foxtrickl10n.htLanguagesXml) {
-		htLanguagesText[i] = serializer.serializeToString(Foxtrickl10n.htLanguagesXml[i]);
-	}
-	if (Foxtrick.platform != "Fennec")
-		var cssTextCollection = Foxtrick.getCssTextCollection();
+		// prepare resources for later transmission to content script
+		var serializer = new window.XMLSerializer(), i;
+		
+		currency = serializer.serializeToString(Foxtrick.XMLData.htCurrencyXml);
+		about = serializer.serializeToString(Foxtrick.XMLData.aboutXML);
+		worldDetails = serializer.serializeToString(Foxtrick.XMLData.worldDetailsXml);
+		htLanguagesText = {};
+		for (i in Foxtrickl10n.htLanguagesXml) {
+			htLanguagesText[i] = serializer.serializeToString(Foxtrickl10n.htLanguagesXml[i]);
+		}
+		cssTextCollection = Foxtrick.getCssTextCollection();
+
+		FoxtrickPrefs.deleteValue("preferences.updated");
+	};
+
+	FoxtrickPrefs.setValue("preferences.updated", true);
 
 	// calls module.onLoad() after the browser window is loaded
 	var i;
@@ -63,16 +68,6 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		}
 	});
 
-	// for updating content preference copy and injected css list
-	var updatePrefs = function () {
-		FoxtrickPrefs.deleteValue("preferences.updated");
-		FoxtrickPrefs.init();
-		Foxtrickl10n.init();
-		if (Foxtrick.platform != "Fennec")
-			cssTextCollection = Foxtrick.getCssTextCollection();
-		console.log('prefs updated');
-	};
-
 
 	// called to parse a copy of the settings and data to the content script
 	//   pageLoad : on HT pages for chrome/safari/opera
@@ -80,13 +75,11 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	//   optionsPageLoad : on options page for opera 
 	//
 	var pageLoad = function(request, sender, sendResponse) {
-		if (request.req == "pageLoad") 
-			FoxtrickUI.update(sender.tab);
 	
 		// access user setting directly here, since getBool uses a copy which needs updating just here
 		if ( (Foxtrick.arch == "Sandboxed" && localStorage.getItem("preferences.updated"))
 			|| (Foxtrick.platform == "Fennec" && FoxtrickPrefs._prefs_gecko.getBoolPref("preferences.updated")) ) {
-				updatePrefs();
+				updateResources();
 		}
 
 		var resource = {
@@ -109,6 +102,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		};
 	
 		if (request.req == "pageLoad") {
+			FoxtrickUI.update(sender.tab);
 			resource.cssText = cssTextCollection;
 		}
 	
@@ -144,7 +138,6 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	};
 	var clearPrefs = function(request, sender, sendResponse) {
 		try {
-			console.log('clearPrefs ');
 			if (Foxtrick.platform == "Fennec") {
 				FoxtrickPrefs.cleanupBranch();
 			}
@@ -154,7 +147,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 						localStorage.removeItem(i);
 					}
 				}
-			updatePrefs();
+				updateResources();
 			}
 		} catch(e) {console.log(e)}
 	};

@@ -495,9 +495,7 @@ if (Foxtrick.arch === "Sandboxed") {
 							FoxtrickPrefs._prefs_chrome_user[key] = JSON.parse(value);
 						}
 						catch (e) {
-							Foxtrick.dump("Preference parse error: "
-								+ "key: " + key
-								+ ", value: " + value + "\n");
+							Foxtrick.log("Preference parse error: key: " , key ,", value: " , value);
 						}
 					}
 
@@ -566,11 +564,8 @@ if (Foxtrick.arch === "Sandboxed") {
 	if (Foxtrick.chromeContext() == "content") {
 		// set and delete for contents script side
 		var FoxtrickPrefsChromeContent = {
-			init : function() {
-				// done in loader_chrome
-			},
 
-			setValue : function(key, value) {
+		setValue : function(key, value) {
 				try {
 					if (FoxtrickPrefs._prefs_chrome_default[key] === value)
 						// is default. deleteing user pref, will set it to default

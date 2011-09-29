@@ -16,21 +16,18 @@ Foxtrick.XMLData = {
 	aboutXML : null,
 
 	init : function() {
-		if ( Foxtrick.chromeContext() === "background" ) {
-			this.htCurrencyXml = Foxtrick.loadXml(Foxtrick.InternalPath + "data/htcurrency.xml");
-			this.aboutXML = Foxtrick.loadXml(Foxtrick.InternalPath + "data/foxtrick_about.xml");
+		this.htCurrencyXml = Foxtrick.loadXml(Foxtrick.InternalPath + "data/htcurrency.xml");
+		this.aboutXML = Foxtrick.loadXml(Foxtrick.InternalPath + "data/foxtrick_about.xml");
 
-			this.worldDetailsXml = Foxtrick.loadXml(Foxtrick.InternalPath + "data/worlddetails.xml");
-			var data = {};
-			var name = 'HattrickData';
-			Foxtrick.XMLData.getchilds(this.worldDetailsXml.documentElement, data, name);
+		this.worldDetailsXml = Foxtrick.loadXml(Foxtrick.InternalPath + "data/worlddetails.xml");
+		var data = {};
+		var name = 'HattrickData';
+		Foxtrick.XMLData.getchilds(this.worldDetailsXml.documentElement, data, name);
 
-			for (var i in data.HattrickData.LeagueList.League) {
-				this.League[data.HattrickData.LeagueList.League[i].LeagueID] = data.HattrickData.LeagueList.League[i];
-				this.countryToLeague[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
-			}
+		for (var i in data.HattrickData.LeagueList.League) {
+			this.League[data.HattrickData.LeagueList.League[i].LeagueID] = data.HattrickData.LeagueList.League[i];
+			this.countryToLeague[data.HattrickData.LeagueList.League[i].Country.CountryID] = data.HattrickData.LeagueList.League[i].LeagueID;
 		}
-		// init for chrome content is in loader_chrome
 	},
 
 	getchilds : function(el,parent,tag) {

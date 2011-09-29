@@ -318,44 +318,41 @@ if (Foxtrick.arch === "Sandboxed") {
 		screenshots_default : null,
 		screenshots : null,
 
-		init : function() {
-			if (Foxtrick.chromeContext() == "background") {
-				// get htlang.xml for each locale
-				var i;
-				var locale;
-				for (i in Foxtrickl10n.locales) {
-					locale = Foxtrickl10n.locales[i];
-					var url = Foxtrick.InternalPath + "locale/" + locale + "/htlang.xml";
-					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXml(url);
+		init : function() { 
+			// get htlang.xml for each locale
+			var i;
+			var locale;
+			for (i in Foxtrickl10n.locales) {
+				locale = Foxtrickl10n.locales[i];
+				var url = Foxtrick.InternalPath + "locale/" + locale + "/htlang.xml";
+				this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXml(url);
+			}
+
+			this.properties_default = Foxtrick.load(Foxtrick.InternalPath+"foxtrick.properties");
+			this.screenshots_default = Foxtrick.load(Foxtrick.InternalPath+"foxtrick.screenshots");
+
+			locale = FoxtrickPrefs.getString("htLanguage");
+			if (locale == "en") {
+				// en locale is just default locale
+				this.properties = this.properties_default;
+				this.screenshots = this.screenshots_default;
+			}
+			else {
+				try {
+					this.properties = Foxtrick.load(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.properties");
 				}
-
-				this.properties_default = Foxtrick.load(Foxtrick.InternalPath+"foxtrick.properties");
-				this.screenshots_default = Foxtrick.load(Foxtrick.InternalPath+"foxtrick.screenshots");
-
-				locale = FoxtrickPrefs.getString("htLanguage");
-				if (locale == "en") {
-					// en locale is just default locale
+				catch (e) {
+					Foxtrick.log("Use default properties for locale ", locale);
 					this.properties = this.properties_default;
+				}
+				try {
+					this.screenshots = Foxtrick.load(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.screenshots");
+				}
+				catch (ee) {
+					Foxtrick.log("Use default screenshots for locale ", locale);
 					this.screenshots = this.screenshots_default;
 				}
-				else {
-					try {
-						this.properties = Foxtrick.load(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.properties");
-					}
-					catch (e) {
-						Foxtrick.log("Use default properties for locale ", locale);
-						this.properties = this.properties_default;
-					}
-					try {
-						this.screenshots = Foxtrick.load(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.screenshots");
-					}
-					catch (ee) {
-						Foxtrick.log("Use default screenshots for locale ", locale);
-						this.screenshots = this.screenshots_default;
-					}
-				}
 			}
-			// init for content script is in loader-chrome.js
 		},
 
 		getString : function(str) {
