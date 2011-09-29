@@ -1924,7 +1924,7 @@
 				"goalkeeping"
 			]
 		},
-		"allowlink": [
+		"allow": [
 			"GREATER",
 			"sum_deffor_skills",
 			"sum_non_deffor_skills"
@@ -1952,7 +1952,7 @@
 		},
 		"title": "HattrickChallenge Friendly ads",
 		"img": "resources/linkicons/hattrickchallenge_main.png",
-		"allowlink": [
+		"allow": [
 			"EQUAL",
 			"teamid",
 			"ownteamid"
@@ -1977,7 +1977,7 @@
 		"playedyouthmatchlink": {
 			"url": "http://www.hattrick-youthclub.org/redirect/type/lineup/ht_id/[matchid]"
 		},
-		"allowlink": [
+		"allow": [
 			"OR",
 			[
 				"EQUAL",

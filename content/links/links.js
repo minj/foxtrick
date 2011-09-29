@@ -32,13 +32,18 @@ Foxtrick.util.module.register((function() {
 					return;
 				}
 				for (key in links) {
-					var link = links[key];
-					for (prop in link) {
+					var link = links[key]; 
+					for (prop in link) { 
 						if (prop.indexOf("link") >= 0) {
-							if (typeof(collection[prop]) == 'undefined') {
-								collection[prop] = {};
+							if (link[prop].url.indexOf("javascript:") == 0) {
+								Foxtrick.log("JavaScript not allowed in links: ", link[prop].url);
 							}
-							collection[prop][key] = link;
+							else {
+								if (typeof(collection[prop]) == 'undefined') {
+									collection[prop] = {};
+								}
+								collection[prop][key] = link;
+							}
 						}
 					}
 				}
@@ -165,7 +170,7 @@ Foxtrick.util.module.register((function() {
 					}
 				}
 				// check allowed based on value comparison
-				else if (link.allowlink != undefined) {
+				else if (link.allow != undefined) {
 					
 					var comparisons = {
 						GREATER : function (test) {
@@ -192,7 +197,7 @@ Foxtrick.util.module.register((function() {
 							return result;
 						}
 					}
-					var test = link.allowlink;
+					var test = link.allow;
 					allowed = comparisons[ test[0] ](test);
 				}
 				else {
