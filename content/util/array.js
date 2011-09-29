@@ -94,3 +94,10 @@ Foxtrick.intersect = function(a, b) {
 	return r;
 };
 
+// returns the concat of array a and array b
+Foxtrick.concat = function(a, b) {
+	for (var i = 0; i < b.length; ++i)
+			a.push(b[i]);
+	return a;
+};
+
