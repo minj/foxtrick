@@ -50,7 +50,7 @@ Foxtrick.util.module.register({
 				container.appendChild(doc.createTextNode(Foxtrickl10n.getString("CopyYouth.trainingReport.copied")));
 				var linkContainer = doc.createElement("div");
 				linkContainer.innerHTML = Foxtrickl10n.getString("CopyYouth.goto").replace(/%s/,
-					'<a href="' + url + '" target="_blank">http://www.hattrick-youthclub.org</a>');
+					'<a href="' + url + '" target="_copyYouth">http://www.hattrick-youthclub.org</a>');
 				container.appendChild(linkContainer);
 				Foxtrick.util.note.add(doc, insertBefore, "ft-training-report-copy-note", container, null, true);
 			}
@@ -115,7 +115,7 @@ Foxtrick.util.module.register({
 					container.appendChild(doc.createTextNode(Foxtrickl10n.getString("CopyYouth.scoutComment.copied")));
 					var linkContainer = doc.createElement("div");
 					linkContainer.innerHTML = Foxtrickl10n.getString("CopyYouth.goto").replace(/%s/,
-						'<a href="' + url + '" target="_blank">http://www.hattrick-youthclub.org</a>');
+						'<a href="' + url + '" target="_copyYouth">http://www.hattrick-youthclub.org</a>');
 					container.appendChild(linkContainer);
 					Foxtrick.util.note.add(doc, insertBefore, "ft-scout-report-copy-note", container, null, true);
 				}
@@ -177,7 +177,7 @@ Foxtrick.util.module.register({
 				container.appendChild(doc.createTextNode(Foxtrickl10n.getString("CopyYouth.playerSource.copied")));
 				var linkContainer = doc.createElement("div");
 				linkContainer.innerHTML = Foxtrickl10n.getString("CopyYouth.goto").replace(/%s/,
-					'<a href="' + url + '" target="_blank">http://www.hattrick-youthclub.org</a>');
+					'<a href="' + url + '" target="_copyYouth">http://www.hattrick-youthclub.org</a>');
 				container.appendChild(linkContainer);
 				Foxtrick.util.note.add(doc, insertBefore, "ft-player-source-copy-note", container, null, true);
 			}
@@ -211,7 +211,7 @@ Foxtrick.util.module.register({
 				container.appendChild(doc.createTextNode(Foxtrickl10n.getString("CopyYouth.fixturesSource.copied")));
 				var linkContainer = doc.createElement("div");
 				linkContainer.innerHTML = Foxtrickl10n.getString("CopyYouth.goto").replace(/%s/,
-					'<a href="' + url + '" target="_blank">http://www.ht-ys.org</a>');
+					'<a href="' + url + '" target="_ht_ys">http://www.ht-ys.org</a>');
 				container.appendChild(linkContainer);
 
 				var note = Foxtrick.util.note.add(doc, insertBefore, "ft-youthfixtures-source-copy-note", container, null, true);
