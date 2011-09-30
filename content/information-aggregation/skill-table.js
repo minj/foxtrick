@@ -210,7 +210,7 @@ Foxtrick.util.module.register({
 					Foxtrick.addClass(cell, "status");
 					cell.setAttribute("index", index);
 				};
-				var skill = function(cell, skill) {
+				var skill = function(cell, skill, property) {
 					if (typeof(skill) === "object") {
 						// in youth team, returned skill is an object
 
@@ -260,6 +260,14 @@ Foxtrick.util.module.register({
 					}
 					else {
 						cell.appendChild(doc.createTextNode(skill));
+						var lang = FoxtrickPrefs.getString("htLanguage");
+						if (property != "agreeability" &&
+							property != "aggressiveness" &&
+							property != "honesty") {
+								property = "levels";
+						}
+						var path = "language/" +property+ "/level[@value=\"" +skill + "\"]";
+						cell.title = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "text");
 					}
 				};
 				var speciality = function(cell, spec) {
@@ -353,10 +361,10 @@ Foxtrick.util.module.register({
 					{ name : "TSI", property : "tsi", alignRight : true, method : formatNum },
 					{ name : "Status", properties : ["yellowCard", "redCard", "bruised", "injuredWeeks", "transferListed"], method : status },
 					{ name : "Speciality", property : "speciality", method : speciality, sortString : true },
-					{ name : "Leadership", property : "leadership" },
-					{ name : "Experience", property : "experience" },
-					{ name : "Form", property : "form" },
-					{ name : "Stamina", property : "stamina" },
+					{ name : "Leadership", property : "leadership", method : skill },
+					{ name : "Experience", property : "experience", method : skill },
+					{ name : "Form", property : "form", method : skill },
+					{ name : "Stamina", property : "stamina", method : skill },
 					{ name : "Keeper", property : "keeper", method: skill },
 					{ name : "Defending", property : "defending", method: skill },
 					{ name : "Playmaking", property : "playmaking", method: skill },
@@ -367,9 +375,9 @@ Foxtrick.util.module.register({
 					{ name : "PsicoTSI", property : "psicoTSI", alignRight : true, method: formatNum },
 					{ name : "HTMS_Ability", property : "htmsAbility" },
 					{ name : "HTMS_Potential", property : "htmsPotential" },
-					{ name : "Agreeability", property : "agreeability" },
-					{ name : "Aggressiveness", property : "aggressiveness" },
-					{ name : "Honesty", property : "honesty" },
+					{ name : "Agreeability", property : "agreeability", method: skill },
+					{ name : "Aggressiveness", property : "aggressiveness", method: skill },
+					{ name : "Honesty", property : "honesty", method: skill },
 					{ name : "Last_match", property : "lastMatch", method : lastMatch },
 					{ name : "Last_stars", property : "lastRating", img : "/Img/Matches/star_blue.png" },
 					{ name : "Last_position", property : "lastPosition", method : position, sortString : true },
@@ -662,7 +670,7 @@ Foxtrick.util.module.register({
 							}
 							else if (columns[j].property && playerList[i][columns[j].property] !== undefined) {
 								if (columns[j].method) {
-									columns[j].method(cell, playerList[i][columns[j].property]);
+									columns[j].method(cell, playerList[i][columns[j].property], columns[j].property);
 								}
 								else {
 									cell.textContent = playerList[i][columns[j].property];
