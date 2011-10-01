@@ -267,6 +267,7 @@ pref("extensions.foxtrick.prefs.module.LinksPlayerDetail.xray_healingtsi.enabled
 pref("extensions.foxtrick.prefs.module.LinksPlayerDetail.xray_keeper.enabled", false);
 pref("extensions.foxtrick.prefs.module.LinksPlayers.enabled", false);
 pref("extensions.foxtrick.prefs.module.LinksStaff.enabled", false);
+pref("extensions.foxtrick.prefs.module.LinksTeam.AlltidTeamCompare.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksTeam.akickku.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksTeam.alltid.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksTeam.argenstat.enabled", true);

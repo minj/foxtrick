@@ -70,6 +70,7 @@ Foxtrick.util.module.register({
 	OPTION_FUNC : function(doc) {
 		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "teamlink");
 	},
+	OPTIONS : ["AlltidTeamCompare"],
 
 	run : function(doc) {
 		this.AddLinksRight(doc);
@@ -111,9 +112,11 @@ Foxtrick.util.module.register({
 			if (alldivs[j].className=="main mainRegular") {
 				var teaminfo = this.gatherLinks( alldivs[j], doc );
 
-				var alltidLinks = this.AddAlltidLinks(doc, alldivs[j]);
-				var externalLinks = Foxtrick.util.module.get("Links").getLinks("teamlink", teaminfo, doc, this );
-				var links = Foxtrick.concat(alltidLinks,externalLinks);
+				var links = Foxtrick.util.module.get("Links").getLinks("teamlink", teaminfo, doc, this );
+				if (FoxtrickPrefs.isModuleOptionEnabled("LinksTeam", "AlltidTeamCompare")) {
+					var alltidLinks = this.AddAlltidLinks(doc, alldivs[j]);
+					links = Foxtrick.concat(alltidLinks, links);
+				}
 				
 				if (links.length > 0) {
 					ownBoxBody = doc.createElement("div");
