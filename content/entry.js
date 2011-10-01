@@ -12,7 +12,7 @@ Foxtrick.entry = {};
 // on it
 Foxtrick.entry.runMap = {};
 
-// invoked on DOMContentLoaded
+// invoked on DOMContentLoaded (all browsers)
 // @param doc - HTML document to run on
 Foxtrick.entry.docLoad = function(doc) {
 	if (doc.nodeName != "#document")
@@ -40,6 +40,8 @@ Foxtrick.entry.docLoad = function(doc) {
 	Foxtrick.startListenToChange(doc);
 };
 
+// on sandboxed content side copy retrieved resources to the resp. modules after each 
+// page load for chrome/safari/opera and on new tab open for fennec
 Foxtrick.entry.setRetrievedLocalResources = function(data) {
 		if (Foxtrick.platform != "Fennec") {
 			// fennec can read them directly
@@ -66,8 +68,7 @@ Foxtrick.entry.setRetrievedLocalResources = function(data) {
 		Foxtrick.sessionStore = data.sessionStore;
 };
 
-// called on browser load for Gecko
-// and on each page in content scope for others
+// called on browser load and after preferences changes (background side for sandboxed)
 Foxtrick.entry.init = function() {
 	Foxtrick.log("Initializing FoxTrick…");
 

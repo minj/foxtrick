@@ -206,7 +206,7 @@ Foxtrick.loadXml = function(url, callback, crossSite) {
 			}
 			catch (e) {
 				// invalid XML
-				Foxtrick.log("Foxtrick.loadXml@async: Cannot parse XML:\n" , url,  ' ', text, ' ', status, " ", e);
+				Foxtrick.log("Foxtrick.loadXml@async: Cannot parse XML:\n" , url,  ' ', (text && text.substr(0,100)), ' ', status, " ", e);
 				xml = null;
 			}
 			callback(xml, status);
@@ -220,7 +220,7 @@ Foxtrick.loadXml = function(url, callback, crossSite) {
 		}
 		catch (e) {
 			// invalid XML
-			Foxtrick.log("Foxtrick.loadXml@sync: Cannot parse XML:\n" , url,  ' ', text, " ", e);
+			Foxtrick.log("Foxtrick.loadXml@sync: Cannot parse XML:\n" , url,  ' ', (text && text.substr(0,100)), " ", e);
 			xml = null;
 		}
 		return xml;

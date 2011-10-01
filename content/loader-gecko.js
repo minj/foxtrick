@@ -87,7 +87,7 @@ if (Foxtrick.platform == "Fennec") {
 		function (data) {
 
 			Foxtrick.entry.setRetrievedLocalResources(data);
-			Foxtrick.entry.init();
+//			Foxtrick.entry.init();
 
 			addEventListener("DOMContentLoaded", function(ev){
 				FoxtrickUI.update();

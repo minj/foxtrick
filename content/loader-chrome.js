@@ -54,7 +54,7 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 				Foxtrick.entry.cssLoaded = true;
 
 				var initTime = new Date() - begin.getTime();
-				console.log("init time: " , initTime , " ms");
+				Foxtrick.log("init time: " , initTime , " ms");
 
 				// safari context menu special paste listener
 				if ( Foxtrick.platform == "Safari" ) {

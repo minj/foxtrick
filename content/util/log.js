@@ -12,7 +12,7 @@ Foxtrick.log = function() {
 	var i, concated = "", hasError = false;
 	var args = Array.prototype.slice.apply(arguments);
 	for (i = 0; i < arguments.length; ++i) {
-		var content = arguments[i];
+		var content = arguments[i]; 
 		var item = "";
 		if (content instanceof Error) {
 			hasError = true;
@@ -31,17 +31,17 @@ Foxtrick.log = function() {
 		}
 		else if (typeof(content) != "string") {
 			try {
-				item = JSON.stringify(content).substr(0,1000);
+				item = JSON.stringify(content).substr(0,100);
 			}
 			catch (e) {
-				item = String(content).substr(0,1000);
+				item = String(content).substr(0,100);
 			}
 		}
 		else {
 			item = content;
 		}
-		if (item != content) concated += content + ' (' + item + ') ';
-		else concated += item;
+		/*if (item != content) concated += content + ' (' + item + ') ';
+		else*/ concated += item;
 	}
 	Foxtrick.log.cache += concated + "\n";
 
@@ -60,6 +60,10 @@ Foxtrick.log = function() {
 		console.log.apply(console, args);
 		if (hasError && typeof(console.trace) == "function") 
 			console.trace();
+	}
+	if (typeof(opera) != "undefined"
+		&& typeof(opera.postError) == "function") {
+		opera.postError(concated + "\n", args);
 	}
 	else if (typeof(dump) == "function") {
 		dump(concated + "\n");

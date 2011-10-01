@@ -63,13 +63,6 @@ if (typeof(opera) == "object") {
 		}
 	}
 
-	// opera ports to sandboxed. based on safari adblockplus ports.js
-	var console = {
-		log : function ( string ) {
-			opera.postError(string);
-		},
-	};
-
 	addListener = function(handler) {
 		 opera.extension.addEventListener("message", handler, false);
 	};
@@ -456,13 +449,6 @@ else {
 		}
 	}
 
-	// have console.log for all browsers to be save
-	var console = {
-		log : function ( string ) {
-			dump(string);
-		},
-	};
-
 	// fennec ports
 	if (Foxtrick.platform == "Fennec") {
 		if (Foxtrick.chromeContext()=='content') {
@@ -602,15 +588,6 @@ else {
 		}
 	}
 }
-
-// have early log function in case log.js gets loaded too late
-Foxtrick.log =  function() {
-	var string = '';
-	for (i = 0; i < arguments.length; ++i) {
-		string += arguments[i];
-	}
-	console.log(string);
-};
 
 // Node not available for all browsers. make one if needed
 if (typeof(Node)=='undefined') {

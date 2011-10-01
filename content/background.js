@@ -12,6 +12,7 @@ Foxtrick.loader.chrome = {};
 	
 // invoked after the browser chrome is loaded
 Foxtrick.loader.chrome.browserLoad = function() {
+  try {
 	Foxtrick.log('Foxtrick.loader.chrome.browserLoad');
 
 	var currency, about, worldDetails, htLanguagesText, cssTextCollection;
@@ -35,7 +36,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		FoxtrickPrefs.deleteValue("preferences.updated");
 	};
 
-	FoxtrickPrefs.setValue("preferences.updated", true);
+	updateResources();
 
 	// calls module.onLoad() after the browser window is loaded
 	var i;
@@ -46,7 +47,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 				module.onLoad(document);
 			}
 			catch (e) {
-				console.log("Error caught in module ", module.MODULE_NAME, ":", e);
+				Foxtrick.log("Error caught in module ", module.MODULE_NAME, ":", e);
 			}
 		}
 	}
@@ -62,8 +63,8 @@ Foxtrick.loader.chrome.browserLoad = function() {
 			eval( funcString );
 		}
 		catch (e) {
-			console.log('Foxtrick - background onRequest: ', e)
-			console.log(request)
+			Foxtrick.log('Foxtrick - background onRequest: ', e)
+			Foxtrick.log(request)
 			sendResponse({ error : 'Foxtrick - background onRequest: ' + e });
 		}
 	});
@@ -109,7 +110,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		sendResponse ( resource );
 	
 	};
-	// fennecs single child process
+	// fennecs tab child processes
 	var scriptLoad = pageLoad;
 
 	// operas options page
@@ -149,7 +150,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 				}
 				updateResources();
 			}
-		} catch(e) {console.log(e)}
+		} catch(e) {Foxtrick.log(e)}
 	};
 
 	// from misc.js. getting files, convert text
@@ -300,6 +301,8 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	var updateViewportSize = function(request, sender, sendResponse) {
 		Browser.updateViewportSize();
 	};
+	
+  } catch(e) { Foxtrick.log(e); }
 };
 
 
