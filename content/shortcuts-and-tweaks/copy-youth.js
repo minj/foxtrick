@@ -139,7 +139,7 @@ Foxtrick.util.module.register({
 					a.textContent = Foxtrickl10n.getString("CopyYouth.scoutComment");
 					a.style.cssFloat = "right";
 					a.style.marginBottom = "5px";
-					a.href='javascript:void()';
+					a.href='#mainBody';
 					a.id = 'ft-copy-scout-comment-link';
 					a.addEventListener("click", copyReport, false)
 					alertdiv.parentNode.insertBefore(a,alertdiv);
