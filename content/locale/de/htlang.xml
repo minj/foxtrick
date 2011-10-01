@@ -72,7 +72,7 @@
 		<level text="nicht vorhanden" value="0" />
 	</levels>
 
-		<agreeability>
+	<agreeability>
 		<level text="eine Integrationsfigur" value="5" />
 		<level text="ein beliebter Spieler" value="4" />
 		<level text="ein sympathischer Mensch" value="3" />

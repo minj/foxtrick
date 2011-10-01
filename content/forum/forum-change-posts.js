@@ -12,7 +12,7 @@ Foxtrick.util.module.register({
 
 	run : function(doc) {
 		var bDetailedHeader = true;
-		var addCopyPostId = function(idLink) { try{
+		var addCopyPostId = function(idLink) { 
 			// part of copypostid
 			var link = doc.createElement("a");
 			link.className = "ft-copy-small ft-link";
@@ -34,7 +34,7 @@ Foxtrick.util.module.register({
 						Foxtrickl10n.getString("foxtrick.tweaks.postidcopied").replace("%s", postId),
 						null, true);
 				}, false);
-			idLink.parentNode.insertBefore(link, idLink); }catch(e){console.log(e)}
+			idLink.parentNode.insertBefore(link, idLink);
 		};
 		var copy_posting_to_clipboard = function(ev) {
 			try {
