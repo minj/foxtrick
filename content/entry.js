@@ -129,7 +129,7 @@ Foxtrick.entry.init = function() {
 
 Foxtrick.entry.run = function(doc, is_only_css_check) {
 	try {
-		if (FoxtrickPrefs.getBool("preferences.updated")) {
+		if (Foxtrick.platform=='Firefox' && FoxtrickPrefs.getBool("preferences.updated")) {
 			Foxtrick.log('prefs updated');
 			Foxtrick.entry.init();
 			Foxtrick.reload_module_css(doc);
