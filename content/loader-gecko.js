@@ -82,8 +82,8 @@ Foxtrick.loader.gecko.docUnload = function(ev) {
 
 // fennec browser load. starts the content instances for fennec (one per tab. persistant)
 if (Foxtrick.platform == "Fennec") {
-	Foxtrick.log('script load')
-	sandboxed.extension.sendRequest({ req : "scriptLoad" },
+	Foxtrick.log('tab load')
+	sandboxed.extension.sendRequest({ req : "tabLoad" },
 		function (data) {
 
 			Foxtrick.entry.setRetrievedLocalResources(data);

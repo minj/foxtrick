@@ -111,7 +111,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	
 	};
 	// fennecs tab child processes
-	var scriptLoad = pageLoad;
+	var tabLoad = pageLoad;
 
 	// operas options page
 	var optionsPageLoad = pageLoad;
