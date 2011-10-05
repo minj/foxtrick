@@ -28,10 +28,12 @@ Foxtrick.util.module.register({
 		// Retrieve team IDs
 		var myTeamId = isyouth ? Foxtrick.util.id.getOwnYouthTeamId() : Foxtrick.util.id.getOwnTeamId();
 		if (!FoxtrickPrefs.isModuleOptionEnabled("MatchReportFormat", 'SeparateOwnTeamColors')) myTeamId=null;
-		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
-		if (!table) return; // match not finished
-		var homeTeamId = Foxtrick.util.id.findTeamId(table.rows[0].cells[1]);
-		var AwayTeamId = Foxtrick.util.id.findTeamId(table.rows[0].cells[2]);
+		var sidebarBoxes = doc.getElementById('sidebar').getElementsByClassName('sidebarBox'), sidebarBox;
+		if (sidebarBoxes[0].id == 'ft-links-box') sidebarBox = sidebarBoxes[1]; 
+		else sidebarBox = sidebarBoxes[0];
+		var teams =  sidebarBox.getElementsByTagName('table')[0];
+		var homeTeamId = Foxtrick.util.id.findTeamId(teams.rows[0]);
+		var AwayTeamId = Foxtrick.util.id.findTeamId(teams.rows[1]);
 
 		// class names used for styling the report
 		var HOME_TEAM_CLASS_NAME = (homeTeamId == myTeamId) ? "ft-match-report-team-mine" : "ft-match-report-team-home";
@@ -42,11 +44,13 @@ Foxtrick.util.module.register({
 		var SPECIAL_EVENT_CLASS_NAME = "ft-match-report-event-special";
 
 		// links to lineup at ratings table
-		var homeLineupLink = table.rows[0].cells[1].getElementsByTagName("a")[0];
-		var awayLineupLink = table.rows[0].cells[2].getElementsByTagName("a")[0];
-		Foxtrick.addClass(homeLineupLink, HOME_TEAM_CLASS_NAME);
-		Foxtrick.addClass(awayLineupLink, AWAY_TEAM_CLASS_NAME);
-
+		var table =  doc.getElementById('mainBody').getElementsByTagName('table')[0];
+		if (table) { // match finished
+			var homeLineupLink = table.rows[0].cells[1].getElementsByTagName("a")[0];
+			var awayLineupLink = table.rows[0].cells[2].getElementsByTagName("a")[0];
+			Foxtrick.addClass(homeLineupLink, HOME_TEAM_CLASS_NAME);
+			Foxtrick.addClass(awayLineupLink, AWAY_TEAM_CLASS_NAME);
+		}
 		// lets keep in mind, there could be another problem with supporters
 		// var div_inner = div.getElementsByTagName("*")[Foxtrick.util.layout.isSupporter(doc) ? 3 : 2];
 		var div_inner = div.getElementsByTagName("*")[Foxtrick.util.layout.isSupporter(doc) ? 4 : 2];
