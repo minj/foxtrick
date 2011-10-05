@@ -165,7 +165,7 @@ Foxtrick.util.links = {
 					a.href = href;
 					a.setAttribute("target", "_blank");
 					var img = doc.createElement("img");
-					img.style.width = img.style.height = "16px";
+					//img.style.width = img.style.height = "16px";
 					img.src = FoxtrickPrefs.getString(basepref+'.'+key+'.img');
 					img.alt = FoxtrickPrefs.getString(basepref+'.'+key+'.title');
 					a.appendChild(img);
@@ -544,7 +544,7 @@ Foxtrick.util.links = {
 	LoadDialog  : function(doc, divED)
 	{		// load image select
 		var form = Foxtrick.filePickerForDataUrl(doc, function(url) {
-			if (url.length>5000) {Foxtrick.alert("Image too large.");return;}
+			//if (url.length>5000) {Foxtrick.alert("Image too large.");return;}
 			var div=doc.getElementById('inputImgDivID');
 			div.imgref=url;
 			div.style.backgroundImage = "url('" + url + "')";
