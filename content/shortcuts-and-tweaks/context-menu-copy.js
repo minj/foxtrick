@@ -21,7 +21,7 @@ Foxtrick.util.module.register({
 		"foxtrick-popup-copy-table" : { option: 'Table', func: Foxtrick.util.htMl.getTable, item: null, copyText: null }
 	},
 
-	onLoad : function(document) {
+	init : function(document) {
 		var entries = this.contextEntries;
 		// returns copy function on click
 		var copy = function(entry) {
