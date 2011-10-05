@@ -12,8 +12,7 @@ Foxtrick.util.module.register({
 	CSS : Foxtrick.InternalPath + "resources/css/match-report.css",
 
 	run : function(doc) {
-		if (Foxtrick.Pages.Match.isPrematch(doc)
-			|| Foxtrick.Pages.Match.inProgress(doc))
+		if (Foxtrick.Pages.Match.isPrematch(doc))
 			return;
 
 		var isyouth = (doc.location.search.search(/isYouth=true/i) > -1);
@@ -119,21 +118,24 @@ Foxtrick.util.module.register({
 							textClass = NORMAL_EVENT_CLASS_NAME;
 			}
 			dummy[i] = Foxtrick.trim(dummy[i]);
-			//Foxtrick.dump(i+' '+dummy[i].length+' '+dummy[i].substr(0,160)+' '+dummy[i+1].length+' '+ dummy[i+2].length+'\n');
+			//Foxtrick.log(i+' '+dummy[i].length+' '+dummy[i].substr(0,160)+' '+dummy[i+1].length+' '+ dummy[i+2].length);
 			var next_part=false;
 			if (dummy[i+1].length==0 && dummy[i+2].length==0) {
-				//Foxtrick.dump('-------next part--------\n');
+				//Foxtrick.log('-------next part--------');
 				next_part=true;
 				part_num++;
 			}
 			if (dummy[i] != '') {
+				// get short team names from header
 				if (dummy[i].split(' - ').length == 2 && stage == 0) { //header
-					// Foxtrick.dump('TEAMS FOUND\n');
 					var names = dummy[i].split(' - ');
+					//Foxtrick.log('TEAMS raw:', dummy[i], names);
+					// removed goals
 					var team1 = names[0].split('  ')[0];
 					var team2 = names[1].split('  ')[1];
+					if (!team2) team2 = names[1]; // ongoing match without goals in the header
 					stage = 1;
-					Foxtrick.dump('TEAMS [' + team1 + '|' + team2 + ']\n');
+					Foxtrick.log('TEAMS [' + team1 + '|' + team2 + ']');
 				}
 				if (stage==1 && dummy[i].indexOf('<span>(')!=-1) {
 					dummy[i] = dummy[i].replace(/\<span\>\(/,'<span> (');
@@ -241,7 +243,7 @@ Foxtrick.util.module.register({
 			Foxtrick.log(e);
 		}
 
-		Foxtrick.dump('BEGIN GOALS\n');
+		Foxtrick.log('BEGIN GOALS');
 		var divs = doc.getElementsByTagName('h1')[0].parentNode.getElementsByTagName('div');
 		for (var i = 7; i < divs.length; i++) {
 
@@ -252,7 +254,7 @@ Foxtrick.util.module.register({
 
 			var start_g = (divs[i].innerHTML.search(team1) > -1) ? 6 : 7;
 			if (score && i > start_g) {
-				Foxtrick.dump('- detected @' + divs[i].id + ' [' + score + '] old: [' + standing + ']\n');
+				Foxtrick.log('- detected @' + divs[i].id + ' [' + score + '] old: [' + standing + ']');
 				if (score[1] > standing[0]) {
 					standing[0]++;
 					divs[i].className = HOME_GOAL_CLASS_NAME;
@@ -260,7 +262,7 @@ Foxtrick.util.module.register({
 					var scorerep = standing[0] + '-' + standing[1];
 					scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,
 						'<a onclick="goToElementById(\'' + divs[i].id + '\');" class="ft-match-report-scoreboard"><b>'+standing[0]+'</b> - '+standing[1]+'</a>');
-					Foxtrick.dump('  GOAL for TEAM 1\n');
+					Foxtrick.log('  GOAL for TEAM 1');
 				}
 				else if (score[2] > standing[1]) {
 					standing[1]++;
@@ -269,12 +271,12 @@ Foxtrick.util.module.register({
 					var scorerep = standing[0] + '-' + standing[1];
 					scoreboard.innerHTML = scoreboard.innerHTML.replace(scorerep,
 						'<a onclick="goToElementById(\'' + divs[i].id + '\');" class="ft-match-report-scoreboard">'+standing[0]+' - <b>'+standing[1]+'</b></a>');
-					Foxtrick.dump('  GOAL for TEAM 2\n');
+					Foxtrick.log('  GOAL for TEAM 2');
 				}
-				else Foxtrick.dump('  NO GOALS\n');
+				else Foxtrick.log('  NO GOALS');
 			}
 		}
-		Foxtrick.dump('END OF GOALs\n');
+		Foxtrick.log('END OF GOALs');
 
 		// team names in header
 		var header = doc.getElementsByTagName('h1')[0];
