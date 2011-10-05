@@ -320,6 +320,18 @@ function initMainTab()
 		$("#pref-read-country").append($(item));
 	}
 
+	// date-format
+	var dateFormats = ['dd-mm-yyyy', 'mm-dd-yyyy', 'yyyy-mm-dd'];
+	var selectedFormat = FoxtrickPrefs.getString("htDateFormat");
+	for (var i in dateFormats) {
+		var item = document.createElement("option");
+		item.value = dateFormats[i];
+		item.textContent = dateFormats[i];
+		if (selectedFormat.charAt(0).toLowerCase() == item.value.charAt(0))
+			item.selected = "selected";
+		$("#pref-read-date-format").append($(item));
+	}
+
 	// save preferences
 	$("#pref-save-do").click(function() {
 		var savePrefs = $("#pref-save-pref").is(":checked");
