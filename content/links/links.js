@@ -144,7 +144,7 @@ Foxtrick.util.module.register((function() {
 					}
 				}
 
-				var allowed;
+				var allowed = true; 
 				if (!FoxtrickPrefs.isModuleOptionEnabled(module.MODULE_NAME, key)) {
 					// link not enabled
 					allowed = false;
