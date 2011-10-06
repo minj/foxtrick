@@ -675,7 +675,7 @@
 	},
 	"junnukoira": {
 		"youthplayerdetaillink": {
-			"url": "http://www.saunalahti.fi/pterasti/Hattrick/superlupaukset.html",
+			"url": "http://www.saunalahti.fi/pterasti/Hattrick/junnukoira/index.php",
 			"filters": [
 				"owncountryid"
 			]
@@ -691,7 +691,7 @@
 	},
 	"treenikoira": {
 		"traininglink": {
-			"url": "http://www.saunalahti.fi/pterasti/Hattrick/treenikoira.html?coach=[Coach]&ti=[TI]&sta=[STA]&trainingtype=[TrainingType]",
+			"url": "http://www.saunalahti.fi/pterasti/Hattrick/treenikoira/index.php?coach=[Coach]&ti=[TI]&sta=[STA]&trainingtype=[TrainingType]",
 			"filters": [
 				"owncountryid"
 			]
@@ -817,146 +817,6 @@
 			]
 		]
 	},
-	"suomitracker": {
-		"img": "resources/linkicons/tracker.png",
-		"title": "Suomi U20/NT Tracker",
-		"trackernationalteamlink": {
-			"url": "http://suomi.nattrick.ca/list.php",
-			"filters": [
-				"countryid"
-			]
-		},
-		"trackerplayerlink": {
-			"url": "http://suomi.nattrick.ca/update.php",
-			"filters": [
-				"nationality"
-			]
-		},
-		"countryidranges": [
-			[
-				12,
-				12
-			]
-		],
-		"nationalityranges": [
-			[
-				12,
-				12
-			]
-		]
-	},
-	"indiatracker": {
-		"img": "resources/linkicons/tracker.png",
-		"title": "India U20/NT Tracker",
-		"trackernationalteamlink": {
-			"url": "http://india.nattrick.ca/list.php",
-			"filters": [
-				"countryid"
-			]
-		},
-		"trackerplayerlink": {
-			"url": "http://india.nattrick.ca/update.php",
-			"filters": [
-				"nationality"
-			]
-		},
-		"countryidranges": [
-			[
-				20,
-				20
-			]
-		],
-		"nationalityranges": [
-			[
-				20,
-				20
-			]
-		]
-	},
-	"panamatracker": {
-		"img": "resources/linkicons/tracker.png",
-		"title": "Panama U20/NT Tracker",
-		"trackernationalteamlink": {
-			"url": "http://panama.nattrick.ca/list.php",
-			"filters": [
-				"countryid"
-			]
-		},
-		"trackerplayerlink": {
-			"url": "http://panama.nattrick.ca/update.php",
-			"filters": [
-				"nationality"
-			]
-		},
-		"countryidranges": [
-			[
-				96,
-				96
-			]
-		],
-		"nationalityranges": [
-			[
-				96,
-				96
-			]
-		]
-	},
-	"usatracker": {
-		"img": "resources/linkicons/tracker.png",
-		"title": "USA U20/NT Tracker",
-		"trackernationalteamlink": {
-			"url": "http://usa.nattrick.ca/list/",
-			"filters": [
-				"countryid"
-			]
-		},
-		"trackerplayerlink": {
-			"url": "http://usa.nattrick.ca/update/",
-			"filters": [
-				"nationality"
-			]
-		},
-		"countryidranges": [
-			[
-				8,
-				8
-			]
-		],
-		"nationalityranges": [
-			[
-				8,
-				8
-			]
-		]
-	},
-	"irantracker": {
-		"img": "resources/linkicons/tracker.png",
-		"title": "Iran U20/NT Tracker",
-		"trackernationalteamlink": {
-			"url": "http://iran.nattrick.ca/list.php",
-			"filters": [
-				"countryid"
-			]
-		},
-		"trackerplayerlink": {
-			"url": "http://iran.nattrick.ca/update.php",
-			"filters": [
-				"nationality"
-			]
-		},
-		"countryidranges": [
-			[
-				85,
-				85
-			]
-		],
-		"nationalityranges": [
-			[
-				85,
-				85
-			]
-		]
-	},
 	"guatemelatracker": {
 		"img": "resources/linkicons/tracker.png",
 		"title": "Guatemela U20/NT Tracker",
@@ -982,34 +842,6 @@
 			[
 				107,
 				107
-			]
-		]
-	},
-	"lebanontracker": {
-		"img": "resources/linkicons/tracker.png",
-		"title": "Lebanon U20/NT Tracker",
-		"trackernationalteamlink": {
-			"url": "http://lebanon.nattrick.ca/list.php",
-			"filters": [
-				"countryid"
-			]
-		},
-		"trackerplayerlink": {
-			"url": "http://lebanon.nattrick.ca/update.php",
-			"filters": [
-				"nationality"
-			]
-		},
-		"countryidranges": [
-			[
-				120,
-				120
-			]
-		],
-		"nationalityranges": [
-			[
-				120,
-				120
 			]
 		]
 	},
@@ -1318,34 +1150,6 @@
 			[
 				58,
 				58
-			]
-		]
-	},
-	"belgiumtracker": {
-		"img": "resources/linkicons/tracker.png",
-		"title": "National Team Belgium Database",
-		"trackernationalteamlink": {
-			"url": "http://belgium.beltrick.org/",
-			"filters": [
-				"countryid"
-			]
-		},
-		"trackerplayerlink": {
-			"url": "http://belgium.beltrick.org/",
-			"filters": [
-				"nationality"
-			]
-		},
-		"countryidranges": [
-			[
-				44,
-				44
-			]
-		],
-		"nationalityranges": [
-			[
-				44,
-				44
 			]
 		]
 	},
@@ -1766,7 +1570,7 @@
 		"ageranges": [
 			[
 				17,
-				19
+				20
 			]
 		]
 	},
@@ -1937,7 +1741,7 @@
 			"url": "http://www.ht-world.org/index.php?language=2"
 		},
 		"trackerplayerlink": {
-			"url": "http://www.ht-world.org/scouting.php?language=2"
+			"url": "http://www.ht-world.org/global/scouting.php?language=2"
 		}
 	},
 	"hattrickchallenge_friendly": {
