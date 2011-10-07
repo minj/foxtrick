@@ -14,12 +14,14 @@ Foxtrick.util.module.register({
 			var vValue = this.getVValue( doc );
 
 			if(vValue != "2") {
-				var elems = doc.getElementsByTagName("div");
+				var elems = doc.getElementById('myForums').getElementsByTagName("div");
 				var foldersCounter = 0;
 				for(var i=0; i < elems.length; i++) {
 					if(elems[i].className=="folderHeader"
 					|| elems[i].className=="folderHeaderHighlight"){
-						if (elems[i].getElementsByTagName('div')[0].className.search('foxtrickRemove')!=-1) continue;
+						if (Foxtrick.hasClass(elems[i].getElementsByTagName('div')[0],'foxtrickRemove')) 
+							continue;
+						
 						var divLeaveConfBtn = doc.getElementById(
 							"ftLC-btn" + foldersCounter);
 						this.addButton ( doc, divLeaveConfBtn, elems[i],
@@ -34,7 +36,6 @@ Foxtrick.util.module.register({
 			var confPos = sUrl.search(/LeaveConf=/i);
 			if (confPos > -1){
 				var confName =sUrl.substr(confPos+10).replace(/\%20/g," ");
-				//Foxtrick.dump('confName: ' + confName + '\n');
 				var ul = doc.getElementById("ctl00_ctl00_CPContent_CPMain_rlFolders__rbl");
 				var liElems = ul.getElementsByTagName("li");
 				for(var i=0; i < liElems.length; i++) {
@@ -77,21 +78,18 @@ Foxtrick.util.module.register({
 	},
 
 	addButton : function( doc, divId, folderHeader, foldersCounter, vValue ) {
-		// if (doc == null) return;
+		
 		var a = folderHeader.getElementsByTagName("a");
 		var link;
 		if( a != null ) {
 			link = a[a.length-1];
 		}
-		//Foxtrick.dump('=> link: ' + link + '\n');
 		if (link == null || link.lastChild == null || link.lastChild.data == null || link.innerHTML == null) return;
 
 		var confName = Foxtrick.trim( link.lastChild.data );
-		//Foxtrick.dump('=> confName: ' + confName +'\n');
-
+		
 		var leaveConf = doc.createElement("div");
 		leaveConf.setAttribute("id", "ftLC-btn" + foldersCounter);
-		// Foxtrick.dump('=>counter: ' + foldersCounter +'\n');
 		leaveConf.setAttribute("class","ft_actionicon foxtrickRemove float_right");
 		leaveConf.setAttribute( "title", Foxtrickl10n.getString('leave_conf_button'));
 		leaveConf.setAttribute("onClick","if (confirm( \"" +	Foxtrickl10n.getString(
@@ -99,7 +97,6 @@ Foxtrick.util.module.register({
 			+ "Preferences/ForumSettings.aspx?LeaveConf=" + confName
 			+ "\",\"_self\");} else return false;");
 		var markAsReadButton = folderHeader.childNodes[0];
-		// Foxtrick.dump('=>markAsReadButton: ' + markAsReadButton+'\n');
 		folderHeader.insertBefore( leaveConf, markAsReadButton);
 	}
 });
