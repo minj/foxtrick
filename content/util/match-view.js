@@ -14,9 +14,12 @@ Foxtrick.util.matchView.startLoad = function(container) {
 	container.appendChild(loading);
 };
 
-Foxtrick.util.matchView.fillMatches = function(container, xml) {
+Foxtrick.util.matchView.fillMatches = function(container, xml, status) {
 	if (xml === null) {
-		container.textContent = Foxtrickl10n.getString("api.failure");
+		if (status == 503)
+			container.textContent = Foxtrickl10n.getString("api.serverUnavailable");
+		else
+			container.textContent = Foxtrickl10n.getString("api.failure");
 		return;
 	}
 

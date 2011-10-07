@@ -305,13 +305,19 @@ Foxtrick.util.module.register({
 		];
 
 		Foxtrick.util.api.retrieve(doc, args, { cache_lifetime:'session'},
-		function(xml) {
+		function(xml, status) {
 			try {
 				if (xml) {
 					var matchNodes = xml.getElementsByTagName("Match");
 					processMatches(matchNodes);
-					fillCrossTable();
-					drawSeasonGraph();
+					fillCrossTable(status);
+					drawSeasonGraph(status);
+				}
+				if (status==503) {
+					var note = Foxtrick.util.note.create(doc, Foxtrickl10n.getString("api.serverUnavailable"));
+					graphContainer.appendChild(note);
+					note = Foxtrick.util.note.create(doc, Foxtrickl10n.getString("api.serverUnavailable"));
+					table.appendChild(note);
 				}
 			}
 			catch (e) {

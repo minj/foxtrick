@@ -169,7 +169,7 @@ Foxtrick.util.api = {
 
 		if (!FoxtrickPrefs.getBool("xmlLoad")) {
 			Foxtrick.log("XML loading disabled");
-			callback(null);
+			callback(null,-1);
 			return;
 		}
 
@@ -227,9 +227,9 @@ Foxtrick.util.api = {
 			}
 
 			// process queued requested
-			var process_queued = function(x) {
+			var process_queued = function(x, status) {
 				for (var i=0; i< Foxtrick.util.api.queue[parameters_str].length; ++i)
-					Foxtrick.util.api.queue[parameters_str][i](x);
+					Foxtrick.util.api.queue[parameters_str][i](x, status);
 				delete (Foxtrick.util.api.queue[parameters_str]);
 			};
 
@@ -246,7 +246,7 @@ Foxtrick.util.api = {
 				if (!Foxtrick.util.api.authorized()) {
 					Foxtrick.log("ApiProxy: unauthorized.");
 					Foxtrick.util.api.authorize(doc);
-					process_queued(null);
+					process_queued(null,0);
 					return;
 				}
 
@@ -278,7 +278,7 @@ Foxtrick.util.api = {
 											{ xml_string : JSON.stringify(serializer.serializeToString(x)),
 											cache_lifetime:cache_lifetime });
 						try {
-							process_queued (x);
+							process_queued(x, status);
 						} catch (e) {
 							Foxtrick.log('ApiProxy: uncaught callback error: ',e);
 						}
@@ -287,7 +287,7 @@ Foxtrick.util.api = {
 						Foxtrick.log("ApiProxy: error 401, unauthorized. Arguments: ", parameters);
 						Foxtrick.util.api.invalidateAccessToken(doc);
 						Foxtrick.util.api.authorize(doc);
-						process_queued(null);
+						process_queued(null, 401);
 					}
 					else {
 						Foxtrick.log("ApiProxy: error ", Foxtrick.util.api.getErrorText(x, status) ,
@@ -296,12 +296,12 @@ Foxtrick.util.api = {
 																&& p[0]!='oauth_token'
 																&& p[0]!='oauth_signature');
 													}, parameters));
-						process_queued(null);
+						process_queued(null, status);
 					}
 				}, true);
 			} catch(e){
 				Foxtrick.log(e);
-				process_queued(null);
+				process_queued(null, 0);
 			}
 		}
 	},
