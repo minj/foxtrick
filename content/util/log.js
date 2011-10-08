@@ -67,6 +67,10 @@ Foxtrick.log = function() {
 		opera.postError(concated + "\n", args);
 	}
 	else if (typeof(dump) == "function") {
+		var lines = concated.split(/\n/), concated = '';
+		lines = Foxtrick.map ( function(l){
+			concated += l.substr(0,500);
+		}, lines);
 		dump(concated + "\n");
 	}
 
