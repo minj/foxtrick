@@ -192,15 +192,21 @@ Foxtrick.loadSync = function(url) {
 
 Foxtrick.loadXml = function(url, callback) {
 	Foxtrick.load(url, function(text, status) {
-		try {
-			var xml = Foxtrick.parseXml(text);
+		if (text.indexOf("!DOCTYPE html")==-1) {
+			try {
+				var xml = Foxtrick.parseXml(text);
+			}
+			catch (e) {
+				// invalid XML
+				Foxtrick.log("Cannot parse XML (", url, ")\n", text);
+				xml = null;
+			}
+			callback(xml, status);
 		}
-		catch (e) {
-			// invalid XML
-			Foxtrick.log("Cannot parse XML (", url, ")\n", text);
-			xml = null;
+		else {
+			// eg login page was returned. aka cpp server not reachable
+			callback(null, 503);
 		}
-		callback(xml, status);
 	});
 };
 
