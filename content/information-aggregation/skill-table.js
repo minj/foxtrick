@@ -803,8 +803,7 @@ Foxtrick.util.module.register({
 			// first get teams activation date. we'll need it later
 			var TeamId = Foxtrick.Pages.All.getTeamId(doc);
 			var args = [ ["TeamId", TeamId], ["file", "teamdetails"]];
-			Foxtrick.util.api.retrieve(doc, args, {cache_lifetime:'session' }, function(xml, status) {
-				Foxtrick.log(xml, status)
+			Foxtrick.util.api.retrieve(doc, args, {cache_lifetime:'session' }, function(xml, errorText) {
 				if (xml) {
 					var activationDate = xml.getElementsByTagName("ActivationDate")[0].textContent;
 					Foxtrick.Pages.Players.getPlayerList(doc, function (list) {

@@ -167,10 +167,9 @@ Foxtrick.util.api = {
 	// default: currently 1 hour, see bellow
 	// timestamp: time in milliseconds since 1970 when a new xml will get retrieved
 	retrieve : function(doc, parameters, options, callback) {
-
 		if (!FoxtrickPrefs.getBool("xmlLoad")) {
 			Foxtrick.log("XML loading disabled");
-			callback(null,-1);
+			callback(null);
 			return;
 		}
 
@@ -182,7 +181,7 @@ Foxtrick.util.api = {
 			var HT_date = (new Date()).getTime()+24*60*60*1000;
 		}
 
-		var parameters_str=JSON.stringify(parameters);
+		var parameters_str = JSON.stringify(parameters);
 		var xml_cache = Foxtrick.sessionGet('xml_cache.'+parameters_str);
 		if (xml_cache) Foxtrick.log("ApiProxy: options: ",options,
 								'  cache_lifetime: ',(new Date(xml_cache.cache_lifetime)).toString(),
@@ -229,8 +228,14 @@ Foxtrick.util.api = {
 
 			// process queued requested
 			var process_queued = function(x, status) {
+				var errorText = null;
+				if (x == null) 
+					errorText = Foxtrickl10n.getString("api.failure");
+				if (status == 503) 
+					errorText = Foxtrickl10n.getString("api.serverUnavailable");
+					
 				for (var i=0; i< Foxtrick.util.api.queue[parameters_str].length; ++i)
-					Foxtrick.util.api.queue[parameters_str][i](x, status);
+					Foxtrick.util.api.queue[parameters_str][i](x, errorText);
 				delete (Foxtrick.util.api.queue[parameters_str]);
 			};
 
@@ -317,13 +322,13 @@ Foxtrick.util.api = {
 			return;
 		}
 		var index = 0, responses = [];
-		var processSingle = function(last_response){
+		var processSingle = function(last_response, errorText){
 			// collect responses
 			if (index != 0) 
 				responses.push( last_response );
 			// return if finished
 			if (index == batchParameters.length) 
-				callback(responses);
+				callback(responses, errorText);
 			else
 				// load next file
 				Foxtrick.util.api.retrieve(doc, batchParameters[index++], options, processSingle)

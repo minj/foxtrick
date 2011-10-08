@@ -306,7 +306,7 @@ Foxtrick.util.module.register({
 		];
 
 		Foxtrick.util.api.retrieve(doc, args, { cache_lifetime:'session'},
-		function(xml, status) {
+		function(xml, errorText) {
 			try {
 				if (xml) {
 					var matchNodes = xml.getElementsByTagName("Match");
@@ -314,10 +314,10 @@ Foxtrick.util.module.register({
 					fillCrossTable(status);
 					drawSeasonGraph(status);
 				}
-				if (status==503) {
-					var note = Foxtrick.util.note.create(doc, Foxtrickl10n.getString("api.serverUnavailable"));
+				if (errorText) {
+					var note = Foxtrick.util.note.create(doc, errorText);
 					graphContainer.appendChild(note);
-					note = Foxtrick.util.note.create(doc, Foxtrickl10n.getString("api.serverUnavailable"));
+					note = Foxtrick.util.note.create(doc, errorText);
 					table.appendChild(note);
 				}
 			}

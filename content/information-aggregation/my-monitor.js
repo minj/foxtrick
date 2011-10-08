@@ -265,13 +265,13 @@ Foxtrick.util.module.register({
 
 				Foxtrick.util.api.retrieve(doc, args, {
 					cache_lifetime : "default"
-				}, function(xml, status) {
+				}, function(xml, errorText) {
 					if (xml !== null) {
 						team.name = xml.getElementsByTagName("TeamName")[0].textContent;
 						team.id = xml.getElementsByTagName("TeamID")[0].textContent;
 						buildLink(team, nameLink);
 					}
-					var nextmatchdate = Foxtrick.util.matchView.fillMatches(matchesContainer, xml, status);
+					var nextmatchdate = Foxtrick.util.matchView.fillMatches(matchesContainer, xml, errorText);
 					// change expire date of xml to after next match game
 					if (nextmatchdate) {
 						var expire = Foxtrick.util.time.getDateFromText(nextmatchdate, "yyyymmdd");

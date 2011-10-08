@@ -99,9 +99,9 @@ Foxtrick.util.module.register({
 			return null;
 		};
 		Foxtrick.util.api.retrieve(doc, homeArgs,{cache_lifetime:'session' },
-		function(homeXml) {
+		function(homeXml, errorText) {
 			Foxtrick.util.api.retrieve(doc, awayArgs,{ cache_lifetime:'session' },
-			function(awayXml) {
+			function(awayXml, errorText) {
 				// remove the loading note
 				if (loading) loading.parentNode.removeChild(loading);
 				if (!homeXml || !awayXml)

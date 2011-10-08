@@ -41,16 +41,10 @@ Foxtrick.util.module.register({
 				Foxtrick.util.api.retrieve(doc, parameters, {
 						cache_lifetime : "default"
 					},
-					function(xml, status) {
+					function(xml, errorText) {
 						if (xml == null) {
 							destCell.textContent = Foxtrickl10n.getString("status.error.abbr");
-							if (status==503) {
-								destCell.title = Foxtrickl10n.getString("api.serverUnavailable");
-							}
-							else {
-								// failed to retrieve XML
-								destCell.title = Foxtrickl10n.getString("api.failure");
-							}
+							destCell.title = errorText;
 							return;
 						}
 						// reset textContent and title

@@ -23,7 +23,7 @@ Foxtrick.util.module.register({
 		args.push(["file", "players"]);
 
 		Foxtrick.util.api.retrieve(doc, args, {cache_lifetime:'session' },
-		function(xml, status) {
+		function(xml, errorText) {
 			if (!xml)
 				return;
 			var playerNodes = xml.getElementsByTagName("Player");

@@ -70,11 +70,11 @@ Foxtrick.util.module.register({
 		];
 		var parameters_nt_str = JSON.stringify(ntArgs);
 		Foxtrick.util.api.retrieve(doc, ntArgs,{cache_lifetime:'default' },
-		function(xml, status) {
+		function(xml, errorText) {
 			var nextmatchdate = Foxtrick.util.matchView.fillMatches(
 									ntContainer.getElementsByTagName("div")[0],
 									xml,
-									status);
+									errorText);
 			if (nextmatchdate) {
 				var expire = Foxtrick.util.time.getDateFromText(nextmatchdate, "yyyymmdd");
 				Foxtrick.util.api.setCacheLifetime(doc, parameters_nt_str, expire.getTime());
@@ -87,11 +87,11 @@ Foxtrick.util.module.register({
 		];
 		var parameters_u20_str = JSON.stringify(u20Args);
 		Foxtrick.util.api.retrieve(doc, u20Args,{ cache_lifetime:'default' },
-		function(xml, status) {
+		function(xml, errorText) {
 			var nextmatchdate = Foxtrick.util.matchView.fillMatches(
 									u20Container.getElementsByTagName("div")[0],
 									xml,
-									status);
+									errorText);
 			if (nextmatchdate) {
 				var expire = Foxtrick.util.time.getDateFromText(nextmatchdate, "yyyymmdd");
 				Foxtrick.util.api.setCacheLifetime(doc, parameters_u20_str, expire.getTime());
