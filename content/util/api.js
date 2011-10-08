@@ -154,6 +154,22 @@ Foxtrick.util.api = {
 							{ xml_string:xml_cache.xml_string, cache_lifetime : cache_lifetime })
 	},
 
+	addClearCacheLink : function(doc) {
+		var bottom = doc.getElementById('bottom');
+		if (bottom) {
+			var clear_cache_span = doc.getElementById('ft_clear_cache');
+			// don't add twice
+			if (!clear_cache_span) {
+				clear_cache_span = doc.createElement('span');
+				clear_cache_span.id='ft_clear_cache';
+				clear_cache_span.textContent = Foxtrickl10n.getString('action.clearCache');
+				clear_cache_span.title = Foxtrickl10n.getString('action.clearCache.title');
+				clear_cache_span.addEventListener('click',Foxtrick.util.api.clearCache,false);
+				bottom.insertBefore(clear_cache_span, bottom.firstChild);
+			}
+		}
+	},
+
 	clearCache : function (ev) {
 		try {
 			var doc = ev.target.ownerDocument;
@@ -181,32 +197,30 @@ Foxtrick.util.api = {
 			var HT_date = (new Date()).getTime()+24*60*60*1000;
 		}
 
+		// check global_cache_lifetime first, aka server down
+		var recheckDate = Foxtrick.sessionGet('xml_cache.global_cache_lifetime');
+		if (recheckDate && (Number(recheckDate) > HT_date)) {
+			Foxtrick.log('global_cache_lifetime set. recheck later: ',
+								'  recheckDate: ',(new Date(recheckDate)).toString(),
+								'  current timestamp: ',(new Date(HT_date)).toString());
+			this.addClearCacheLink(doc);
+			callback(null, Foxtrickl10n.getString("api.serverUnavailable"));
+			return;
+		}
+		
 		var parameters_str = JSON.stringify(parameters);
 		var xml_cache = Foxtrick.sessionGet('xml_cache.'+parameters_str);
 		if (xml_cache) Foxtrick.log("ApiProxy: options: ",options,
 								'  cache_lifetime: ',(new Date(xml_cache.cache_lifetime)).toString(),
 								'  current timestamp: ',(new Date(HT_date)).toString());
 
-		// check cache first
+		// check file cache next
 		if (xml_cache && xml_cache.xml_string && options
 				&& 	(  options.cache_lifetime=='session'
 					|| (Number(xml_cache.cache_lifetime) > HT_date ))) {
 			Foxtrick.log('ApiProxy: use cached xml: ' ,parameters_str);
 
-			// add clear cache link
-			var bottom = doc.getElementById('bottom');
-			if (bottom) {
-				var clear_cache_span = doc.getElementById('ft_clear_cache');
-				// don't add twice
-				if (!clear_cache_span) {
-					clear_cache_span = doc.createElement('span');
-					clear_cache_span.id='ft_clear_cache';
-					clear_cache_span.textContent = Foxtrickl10n.getString('action.clearCache');
-					clear_cache_span.title = Foxtrickl10n.getString('action.clearCache.title');
-					clear_cache_span.addEventListener('click',Foxtrick.util.api.clearCache,false);
-					bottom.insertBefore(clear_cache_span, bottom.firstChild);
-				}
-			}
+			this.addClearCacheLink(doc);
 
 			if (xml_cache.xml_string=='503') {
 				// server was down. we wait for cache expires
@@ -314,6 +328,7 @@ Foxtrick.util.api = {
 							Foxtrick.sessionSet('xml_cache.'+parameters_str,
 											{ xml_string : '503',
 											cache_lifetime:recheckDate });
+							Foxtrick.sessionSet('xml_cache.global_cache_lifetime', recheckDate);
 						}
 						process_queued(null, status);
 					}
