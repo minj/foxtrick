@@ -208,6 +208,12 @@ Foxtrick.util.api = {
 				}
 			}
 
+			if (xml_cache.xml_string=='503') {
+				// server was down. we wait for cache expires
+				callback(null, Foxtrickl10n.getString("api.serverUnavailable"));
+				return;
+			}
+			
 			var parser = new window.DOMParser();
 			try {
 				callback (parser.parseFromString( JSON.parse(xml_cache.xml_string), "text/xml"));
@@ -302,6 +308,13 @@ Foxtrick.util.api = {
 																&& p[0]!='oauth_token'
 																&& p[0]!='oauth_signature');
 													}, parameters));
+						// server down. no need to check very page load. let's say we check again in 30 min
+						if (status == 503)  {
+							var recheckDate = (new Date()).getTime()+30*60*1000;
+							Foxtrick.sessionSet('xml_cache.'+parameters_str,
+											{ xml_string : '503',
+											cache_lifetime:recheckDate });
+						}
 						process_queued(null, status);
 					}
 				}, true);
