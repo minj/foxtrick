@@ -70,7 +70,7 @@ Foxtrick.util.module.register({
 				var thisdiv = alldivs[j];
 				var nationality = Foxtrick.util.id.findLeagueId(thisdiv);
 				var playerid = Foxtrick.util.id.findPlayerId(thisdiv);
-				var playername=thisdiv.getElementsByTagName("a")[1].innerHTML;;
+				var playername=thisdiv.getElementsByTagName("a")[1].textContent;
 				var age = null;
 				var age_days;
 

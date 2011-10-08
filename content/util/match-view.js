@@ -118,8 +118,9 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 			var matchLink = doc.createElement("a");
 			matchLink.href = "/Club/Matches/Match.aspx?matchID=" + matchId
 				+ (isYouth ? "&isYouth=True" : "");
-			if (Foxtrick.util.layout.isStandard(doc)) var cutlength = 12; // get them in one line
-			else var cutlength = 18; // won't fit in one line anyway
+			// get in one line for standard theme while won't fit in one
+			// line anyway for simple theme
+			var cutlength = Foxtrick.util.layout.isStandard(doc) ? 12 : 18;
 			if (!rtl) {
 				matchLink.title = homeTeam + " - " + awayTeam;
 				matchLink.innerHTML = "<span class='nowrap'>" + homeTeam.substr(0, cutlength) + "</span>" + " - "

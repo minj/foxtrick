@@ -27,7 +27,7 @@ Foxtrick.util.module.register({
 			return;
 		}
 
-		var selected_local_season = doc.getElementById('mainBody').getElementsByTagName('h2')[0].innerHTML.match(/\d+/i);
+		var selected_local_season = doc.getElementById('mainBody').getElementsByTagName('h2')[0].textContent.match(/\d+/i);
 		var local_season = parseInt(selected_local_season) + season_diff;
 
 		// add season select box
@@ -85,7 +85,7 @@ Foxtrick.util.module.register({
 			var iswon = matchestable.rows[i].cells[3].getElementsByTagName('span')[0].className=='won';
 			var islost = matchestable.rows[i].cells[3].getElementsByTagName('span')[0].className=='lost';
 			var draw = matchestable.rows[i].cells[3].getElementsByTagName('span')[0].className=='draw';
-			var goals = matchestable.rows[i].cells[3].getElementsByTagName('strong')[0].innerHTML.match(/\d+/g);
+			var goals = matchestable.rows[i].cells[3].getElementsByTagName('strong')[0].textContent.match(/\d+/g);
 			var goals0=parseInt(goals[0]);
 			var goals1=parseInt(goals[1]);
 			if (!draw) {
@@ -110,7 +110,7 @@ Foxtrick.util.module.register({
 			var iswon = matchestable.rows[i].cells[3].getElementsByTagName('span')[0].className=='won';
 			var islost = matchestable.rows[i].cells[3].getElementsByTagName('span')[0].className=='lost';
 			var isdraw = matchestable.rows[i].cells[3].getElementsByTagName('span')[0].className=='draw';
-			var goals = matchestable.rows[i].cells[3].getElementsByTagName('strong')[0].innerHTML.match(/\d+/g);
+			var goals = matchestable.rows[i].cells[3].getElementsByTagName('strong')[0].textContent.match(/\d+/g);
 			var goals0=parseInt(goals[0]);
 			var goals1=parseInt(goals[1]);
 			var ishome=1;
@@ -149,13 +149,18 @@ Foxtrick.util.module.register({
 		ownBoxBody.setAttribute("id", ownBoxBodyId);
 
 		for (var type=0;type<4;++type) {
-			if (!sum_matches[type*3]["type"]) continue;
+			if (!sum_matches[type*3]["type"])
+				continue;
 			var head=doc.createElement('strong');
 
-			if (type==0) head.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.league");
-			else if (type==1) head.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.friendly");
-			else if (type==2) head.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.cup");
-			else  head.innerHTML=Foxtrickl10n.getString("foxtrick.seasonstats.masters");
+			if (type==0)
+				head.textContent = Foxtrickl10n.getString("foxtrick.seasonstats.league");
+			else if (type==1)
+				head.textContent = Foxtrickl10n.getString("foxtrick.seasonstats.friendly");
+			else if (type==2)
+				head.textContent = Foxtrickl10n.getString("foxtrick.seasonstats.cup");
+			else
+				head.textContent = Foxtrickl10n.getString("foxtrick.seasonstats.masters");
 
 			ownBoxBody.appendChild(head);
 			var table=doc.createElement('table');

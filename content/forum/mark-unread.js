@@ -24,7 +24,7 @@ Foxtrick.util.module.register({
 						markunread[p] = doc.createElement("a");
 						markunread[p].setAttribute("id","foxtrick-ur-link"+p);
 						markunread[p].className="foxtrick-unreadlink";
-						markunread[p].innerHTML = Foxtrickl10n.getString('foxtrick.conferences.markunread');
+						markunread[p].textContent = Foxtrickl10n.getString('foxtrick.conferences.markunread');
 						markunread[p].title = Foxtrickl10n.getString('foxtrick.conferences.markunread');
 						markunread[p].href = "#";
 						var cfInnerWrapper = elems[i].parentNode.parentNode;
@@ -48,7 +48,7 @@ Foxtrick.util.module.register({
 								// Foxtrick.dump ('\n' + markunread[p].href + '\n');
 							}
 							if( divsInFooter[j].className == "float_right" ) {
-								divsInFooter[j].innerHTML+='&nbsp;';
+								divsInFooter[j].textContent += "\u00a0";
 								divsInFooter[j].appendChild(markunread[p]);
 							}
 						}

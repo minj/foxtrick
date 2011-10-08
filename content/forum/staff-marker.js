@@ -130,8 +130,7 @@ Foxtrick.util.module.register({
 				var do_flag = FoxtrickPrefs.isModuleOptionEnabled("StaffMarker", "flag");
 
 				var selects = doc.getElementById("mainWrapper").getElementsByClassName("threadPagingFilter");
-				var select = selects[0];
-				if ( select ) {
+				Foxtrick.map(function(select) {
 					if (select.id.search(/filter/i) == -1
 						&& select.id.search(/recipient/i) == -1)
 						return;
@@ -173,9 +172,7 @@ Foxtrick.util.module.register({
 					}
 					if (do_flag)
 						Foxtrick.util.inject.css(doc, css);
-					if (selects[0] && selects[1])
-						selects[1].innerHTML = selects[0].innerHTML;
-				}
+				}, selects);
 			};
 
 			if (Foxtrick.isPage("forumViewThread", doc)) {

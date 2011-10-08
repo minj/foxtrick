@@ -34,7 +34,7 @@ Foxtrick.util.module.register({
 				this._newStyleBars(doc, ratingstable, bodydiv);
 			}
 		} else {
-			bodydiv.innerHTML=Foxtrickl10n.getString( "foxtrick.matches.wronglang" );
+			bodydiv.textContent = Foxtrickl10n.getString("foxtrick.matches.wronglang");
 		}
 		var suppstats = Foxtrickl10n.getString( "foxtrick.matches.suppstats" );
 		Foxtrick.addBoxToSidebar(doc, header, bodydiv, 1);
@@ -71,7 +71,7 @@ Foxtrick.util.module.register({
 		tablediv.className = "foxtrick-graphs-table";
 		var p = doc.createElement('div');
 		p.className = "foxtrick-graphs-header";
-		p.innerHTML = Foxtrickl10n.getString( "foxtrick.matches.defense" ) + " - " + Foxtrickl10n.getString( "foxtrick.matches.attack" );
+		p.textContent = Foxtrickl10n.getString( "foxtrick.matches.defense" ) + " - " + Foxtrickl10n.getString( "foxtrick.matches.attack" );
 		barsdiv.appendChild(p);
 		this._createGraphRow(doc, tablediv, ratingsArray[0][0], ratingsArray[5][1], rText, lText, ratingsTextArray[0][0], ratingsTextArray[5][1]);
 		this._createGraphRow(doc, tablediv, ratingsArray[1][0], ratingsArray[4][1], cText, cText, ratingsTextArray[1][0], ratingsTextArray[4][1]);
@@ -87,7 +87,7 @@ Foxtrick.util.module.register({
 		tablediv.className = "foxtrick-graphs-table";
 		var p = doc.createElement('div');
 		p.className = "foxtrick-graphs-header";
-		p.innerHTML = Foxtrickl10n.getString( "foxtrick.matches.attack" ) + " - " + Foxtrickl10n.getString( "foxtrick.matches.defense" );
+		p.textContent = Foxtrickl10n.getString( "foxtrick.matches.attack" ) + " - " + Foxtrickl10n.getString( "foxtrick.matches.defense" );
 		barsdiv.appendChild(p);
 		this._createGraphRow(doc, tablediv, ratingsArray[3][0], ratingsArray[2][1], rText, lText, ratingsTextArray[3][0], ratingsTextArray[2][1]);
 		this._createGraphRow(doc, tablediv, ratingsArray[4][0], ratingsArray[1][1], cText, cText, ratingsTextArray[4][0], ratingsTextArray[1][1]);
@@ -104,7 +104,7 @@ Foxtrick.util.module.register({
 			tablediv.className = "foxtrick-graphs-table";
 			var p = doc.createElement('div');
 			p.className = "foxtrick-graphs-header";
-			p.innerHTML = Foxtrickl10n.getString( "foxtrick.matches.indfreekick" );
+			p.textContent = Foxtrickl10n.getString( "foxtrick.matches.indfreekick" );
 			barsdiv.appendChild(p);
 			this._createGraphRow(doc, tablediv, ratingsArray[6][0], ratingsArray[7][1], iText, iText, ratingsTextArray[6][0], ratingsTextArray[7][1]);
 			this._createGraphRow(doc, tablediv, ratingsArray[7][0], ratingsArray[6][1], iText, iText, ratingsTextArray[7][0], ratingsTextArray[6][1]);
@@ -122,15 +122,6 @@ Foxtrick.util.module.register({
 		if (Foxtrick.util.id.findIsYouthMatch(doc.location.href)) {
 			balldivnumber=5; //youth haven't the kit div
 		}
-
-		/*var strangediv=sidebar.childNodes[balldivnumber].childNodes[1].childNodes[7];
-		//Foxtrick.dump(sidebar.childNodes[balldivnumber].childNodes[1].innerHTML);
-
-		if (strangediv) {}
-		else {
-			strangediv=sidebar.childNodes[balldivnumber].childNodes[8];
-		}
-		*/
 
 		 var strangediv = doc.createElement('div');
 		 strangediv.setAttribute('style','clear: both;')
@@ -168,15 +159,21 @@ Foxtrick.util.module.register({
 	},
 
 	_createTextBox: function(doc, percentage) {
-			var textdiv=doc.createElement('div');
-			textdiv.className='float_left shy smallText';
+		var textdiv=doc.createElement('div');
+		textdiv.className='float_left shy smallText';
 
-			if (percentage>50)
-				textdiv.innerHTML='<strong>'+percentage+'%</strong>';
-			else
-				textdiv.innerHTML=' '+percentage+'%';
+		var inner;
+		if (percentage > 50) {
+			var strong = doc.createElement("strong");
+			textdiv.appendChild(strong);
+			inner = strong;
+		}
+		else {
+			inner = textdiv;
+		}
+		inner.textContent = percentage + "%"
 
-			return textdiv;
+		return textdiv;
 	},
 
 	_displayableRatingLevel: function(val) {
@@ -207,7 +204,7 @@ Foxtrick.util.module.register({
 
 		 var cell = doc.createElement("div");
 		 cell.className = "foxtrick-graphs-cell";
-		 cell.innerHTML =  pt1 + "%";
+		 cell.textContent = pt1 + "%";
 		 row.appendChild(cell);
 
 		 cell = doc.createElement("div");
@@ -225,13 +222,13 @@ Foxtrick.util.module.register({
 		 innercellA.appendChild(innercellB);
 
 		 var span = doc.createElement("span");
-		 span.innerHTML = "&nbsp;";
+		 span.textContent = "\u00a0";
 		 innercellA.appendChild(span);
 
 		 var innercellC = doc.createElement("div");
 		 innercellC.className = "foxtrick-graphs-bar-values";
 		 innercellA.appendChild(innercellC);
-		 innercellC.innerHTML = text1 + " " + this._displayableRatingLevel(val1+1);
+		 innercellC.textContent = text1 + " " + this._displayableRatingLevel(val1+1);
 		 innercellC.style.color = fgcolor1;
 		 innercellC.style.paddingLeft = "2px";
 
@@ -261,13 +258,13 @@ Foxtrick.util.module.register({
 		 innercellA.appendChild(innercellB);
 
 		 span = doc.createElement("span");
-		 span.innerHTML = "&nbsp;";
+		 span.textContent = "\u00a0";
 		 innercellA.appendChild(span);
 
 		 innercellC = doc.createElement("div");
 		 innercellC.className = "foxtrick-graphs-bar-values";
 		 innercellA.appendChild(innercellC);
-		 innercellC.innerHTML = this._displayableRatingLevel(val2+1) + " " + text2;
+		 innercellC.textContent = this._displayableRatingLevel(val2+1) + " " + text2;
 		 innercellC.style.textAlign = "right";
 		 innercellC.style.color = fgcolor2;
 		 innercellC.style.paddingRight = "2px";
@@ -276,7 +273,7 @@ Foxtrick.util.module.register({
 
 		 cell = doc.createElement("div");
 		 cell.className = "foxtrick-graphs-cell";
-		 cell.innerHTML = pt2 + "%";
+		 cell.textContent = pt2 + "%";
 		 row.appendChild(cell);
 	},
 

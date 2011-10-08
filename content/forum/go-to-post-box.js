@@ -103,13 +103,13 @@ Foxtrick.util.module.register({
 				);
 
 			var inputBoxLabel = doc.createElement('span');
-			inputBoxLabel.innerHTML = '&nbsp;'
+			inputBoxLabel.textContent = "\u00a0";
 			selectBox.parentNode.appendChild(inputBoxLabel);
 
 			selectBox.parentNode.appendChild(inputBoxTop);
 
 			var inputBoxLabel2 = doc.createElement('span');
-			inputBoxLabel2.innerHTML = '&nbsp';
+			inputBoxLabel2.textContent = "\u00a0";
 			selectBox.parentNode.appendChild(inputBoxLabel2);
 
 			selectBox.parentNode.appendChild(goButton);

@@ -32,7 +32,7 @@ Foxtrick.util.module.register({
 						showSig[p].setAttribute("id","foxtrick-st-link"+p);
 						showSig[p].title = Foxtrickl10n.getString('foxtrick.conferences.signaturetoggle');
 						showSig[p].className="foxtrick-signaturetoggle";
-						showSig[p].innerHTML = Foxtrickl10n.getString('foxtrick.conferences.signaturetoggle');
+						showSig[p].textContent = Foxtrickl10n.getString('foxtrick.conferences.signaturetoggle');
 						showSig[p].href = "javascript:showHide('" + sigId + "');";
 						// append the show sig link to the right footer
 						var cfInnerWrapper = elems[i].parentNode.parentNode;

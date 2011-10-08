@@ -27,20 +27,20 @@ Foxtrick.util.module.register({
 
 		for (var i=0; i<tblBodyObj.rows.length; i++) {
 			if (tblBodyObj.rows[i].cells[2]) {
-				sum += parseInt(Foxtrick.trim(tblBodyObj.rows[i].cells[2].innerHTML));
+				sum += parseInt(Foxtrick.trim(tblBodyObj.rows[i].cells[2].textContent));
 			}
 		}
 
 		for (var i=0; i<tblBodyObj.rows.length; i++) {
 			if (tblBodyObj.rows[i].cells[2]) {
-				var content = parseInt(Foxtrick.trim(tblBodyObj.rows[i].cells[2].innerHTML));
+				var content = parseInt(Foxtrick.trim(tblBodyObj.rows[i].cells[2].textContent));
 				var result = '(' + Math.floor(content/sum*1000)/10 + '%) ';
-				tblBodyObj.rows[i].cells[3].innerHTML += result;
+				tblBodyObj.rows[i].cells[3].textContent += result;
 			}
 		}
-		var cnt = doc.createElement('div');
-		cnt.innerHTML = '<b>&Sigma; ' + Foxtrick.formatNumber(sum,'.') + '</b>';
-		cnt.setAttribute('style', 'padding-top: 10px;');
+		var cnt = doc.createElement("strong");
+		cnt.textContent = "Σ " + Foxtrick.formatNumber(sum, " ");
+		cnt.style.paddingTop = "10px";
 		div.appendChild(cnt);
 	},
 

@@ -18,7 +18,6 @@ Foxtrick.util.module.register({
 		var ratingstable = Foxtrick.Pages.Match.getRatingsTable(doc);
 		if (ratingstable == null) return;
 		var tacticRow=ratingstable.rows.length-2;
-		//Foxtrick.dump('got table '+tacticRow+' : '+ratingstable.rows[tacticRow].innerHTML)
 		if (Foxtrick.Pages.Match.isWalkOver(ratingstable)) return;
 		if (!Foxtrick.Pages.Match.isCorrectLanguage(ratingstable)) { // incorrect language
 
@@ -26,7 +25,7 @@ Foxtrick.util.module.register({
 			var row = htmstable.insertRow(0);
 			var cell = row.insertCell(0);
 			cell.setAttribute("colspan" , 3);
-			cell.innerHTML = Foxtrickl10n.getString( "foxtrick.matches.wronglang" );
+			cell.textContent = Foxtrickl10n.getString("foxtrick.matches.wronglang");
 			return;
 		}
 

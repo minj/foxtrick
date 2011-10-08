@@ -145,7 +145,7 @@ Foxtrick.util.module.register({
 			var date = header_right_text.replace(/^ /,'');
 			var time ='';
 			if (date.search(/\d+:\d+/)==0) {  // time unaltered
-				var cur_time = doc.getElementById('time').innerHTML;
+				var cur_time = doc.getElementById('time').textContent;
 				var hi = cur_time.search(/\d+:\d+/);
 				time = date;
 				date = cur_time.substring(0,hi);
@@ -213,7 +213,8 @@ Foxtrick.util.module.register({
 		var hasScroll = Foxtrick.util.layout.mainBodyHasScroll(doc);
 		var isStandardLayout = Foxtrick.util.layout.isStandard ( doc ) ;
 		var notif = doc.getElementById('ctl00_ctl00_CPContent_ucNotifications_updNotifications');
-		var isArchive = notif.innerHTML.search('ctl00_ctl00_CPContent_ucNotifications_error_0')!=-1;
+		// archived threads will have this message: "This thread is closed!"
+		var isArchive = notif.getElementsByClassName("error").length > 0;
 
 		// part of copy_posting_link
 		var copy_posting_img = doc.createElement('img');
@@ -258,15 +259,15 @@ Foxtrick.util.module.register({
 		var doubleHeaderStyle = 'height:30px !important; ';
 		var alt_supporter=doc.createElement('a');
 		alt_supporter.href="/Help/Supporter/";
-		alt_supporter.innerHTML='*';
-		alt_supporter.setAttribute('title',"Hattrick Supporter");
+		alt_supporter.textContent = "*";
+		alt_supporter.title = "Hattrick Supporter";
 
 		if (do_HighlightThreadOpener) try {
 			var Ftag = doc.getElementById('ctl00_ucGuestForum_ucGuestForum_updMain');
 			if (!Ftag) {Ftag = doc.getElementById('myForums');}
 			if (Ftag) {
 				Ftag = Ftag.getElementsByTagName('strong')[0];
-				var TName = Ftag.innerHTML;
+				var TName = Ftag.textContent;
 				var TName_lng = Ftag.parentNode.title;
 				TName_lng = TName_lng.replace(TName, "");
 				TName_lng = TName_lng.split(" ")[2];
@@ -395,7 +396,7 @@ Foxtrick.util.module.register({
 				while (user_info_link = user_info_links[++k] ) {
 					if ( user_info_link.href.search(/teamid=/i) != -1) {
 						var teamid = user_info_link.href.match(/\d+$/);
-						var teamname = user_info_link.innerHTML;
+						var teamname = user_info_link.textContent;
 						// set some info used for teampopup
 						poster_link1.setAttribute('teamid', teamid);
 						poster_link1.setAttribute('teamname', teamname);
@@ -439,8 +440,8 @@ Foxtrick.util.module.register({
 			}  // end copy posting
 
 			if (do_hide_old_time) {
-				if (header_right.innerHTML.search(/ \d{1,4}.*?\d{1,2}.*?\d{1,4}.*? \d+:\d+/gi)!=-1)
-					header_right.innerHTML = header_right.innerHTML.replace(/ (\d{1,4}.*?\d{1,2}.*?\d{1,4}.*?)( \d+:\d+)/gi,"<span title='$2'>$1</span>");
+				if (header_right.textContent.search(/ \d{1,4}.*?\d{1,2}.*?\d{1,4}.*? \d+:\d+/gi)!=-1)
+					header_right.textContent = header_right.textContent.replace(/ (\d{1,4}.*?\d{1,2}.*?\d{1,4}.*?)( \d+:\d+)/gi,"<span title='$2'>$1</span>");
 			}
 
 			// redir to team ------------------------------------------
@@ -465,40 +466,42 @@ Foxtrick.util.module.register({
 
 			// single header line ---------------------------------------
 			if (do_truncate_nicks && do_single_header_allways) {
-				var userName1 = poster_link1.innerHTML;
+				var userName1 = poster_link1.textContent;
 				if (userName1.length > trunclength) {
-					poster_link1.setAttribute('longnick',poster_link1.innerHTML);
-					poster_link1.innerHTML = userName1.substr(0,trunclength-2) +"..";
+					poster_link1.setAttribute('longnick',poster_link1.textContent);
+					poster_link1.textContent = userName1.substr(0,trunclength-2) +"..";
 				}
 				if (poster_link2) {
-					var userName2 = poster_link2.innerHTML;
+					var userName2 = poster_link2.textContent;
 					if (userName2.length > trunclength) {
-						poster_link2.setAttribute('longnick',poster_link2.innerHTML);
-						poster_link2.innerHTML = userName2.substr(0,trunclength-2) +"..";
+						poster_link2.setAttribute('longnick',poster_link2.textContent);
+						poster_link2.textContent = userName2.substr(0,trunclength-2) +"..";
 					}
 				}
 				if (league_link1) {
-					var league_name1 = league_link1.innerHTML;
+					var league_name1 = league_link1.textContent;
 					if (league_name1.length > trunclength) {
-						league_link1.innerHTML = league_name1.substr(0,trunclength-2) +"..";
+						league_link1.textContent = league_name1.substr(0,trunclength-2) +"..";
 					}
 				}
 				if (league_link2) {
-					var league_name2 = league_link2.innerHTML;
+					var league_name2 = league_link2.textContent;
 					if (league_name2.length > trunclength) {
-						league_link2.innerHTML = league_name2.substr(0,trunclength-2) +"..";
+						league_link2.textContent = league_name2.substr(0,trunclength-2) +"..";
 					}
 				}
 			}
 
 			if (do_truncate_leaguename) {
 				if (league_link1) {
-					league_link1.innerHTML = league_link1.innerHTML.replace(/\..+/,'');
-					if (league_link1.innerHTML.length>3 && league_link1.innerHTML!='VIII')  league_link1.innerHTML='I';
+					league_link1.textContent = league_link1.textContent.replace(/\..+/,'');
+					if (league_link1.textContent.length>3 && league_link1.textContent!='VIII')
+						league_link1.textContent='I';
 				}
 				if (league_link2) {
-					league_link2.innerHTML = league_link2.innerHTML.replace(/\..+/,'');
-					if (league_link2.innerHTML.length>3 && league_link2.innerHTML!='VIII')  league_link2.innerHTML='I';
+					league_link2.textContent = league_link2.textContent.replace(/\..+/,'');
+					if (league_link2.textContent.length>3 && league_link2.textContent!='VIII')
+						league_link2.textContent='I';
 				}
 			}
 
@@ -509,11 +512,11 @@ Foxtrick.util.module.register({
 					post_link1.href="javascript:showMInd('"+PostID_thread+"-"+PostID_message+"',%20'/Forum/Read.aspx?t="+PostID_thread+"&n="+PostID_message+"&v=2',%20'"+PostID_thread+"."+PostID_message+"');"
 					post_link1.setAttribute('id',PostID_thread+"-"+PostID_message);
 				}
-				post_link1.innerHTML=String(PostID_message);
+				post_link1.textContent = String(PostID_message);
 
 				if (post_link2) {
 					var PostID_message = post_link2.title.replace(/\d+\./,'');
-					post_link2.innerHTML=String(PostID_message);
+					post_link2.textContent = String(PostID_message);
 				}
 
 			}
@@ -528,10 +531,10 @@ Foxtrick.util.module.register({
 
 			if (do_HighlightThreadOpener && TName_lng) {
 				try {
-					if (poster_link1.innerHTML == TName_lng) {
+					if (poster_link1.textContent == TName_lng) {
 						poster_link1.parentNode.parentNode.firstChild.nextSibling.setAttribute('class','ft_slH_PID_left');
 					}
-					else if (poster_link2 && poster_link2.innerHTML == TName_lng) {
+					else if (poster_link2 && poster_link2.textContent == TName_lng) {
 						poster_link2.parentNode.parentNode.firstChild.setAttribute('class','ft_slH_PID_right');
 					}
 				}
@@ -546,28 +549,28 @@ Foxtrick.util.module.register({
 			if (do_single_header && !do_single_header_allways && !is_ignored) {
 				if (header.className == "cfHeader doubleLine") {
 					if (do_truncate_nicks) {
-						var userName1 = poster_link1.innerHTML;
+						var userName1 = poster_link1.textContent;
 						if (userName1.length > trunclength) {
-							poster_link1.setAttribute('longnick',poster_link1.innerHTML);
-							poster_link1.innerHTML = userName1.substr(0,trunclength-2) +"..";
+							poster_link1.setAttribute('longnick',poster_link1.textContent);
+							poster_link1.textContent = userName1.substr(0,trunclength-2) +"..";
 						}
 						if (poster_link2) {
-							var userName2 = poster_link2.innerHTML;
+							var userName2 = poster_link2.textContent;
 							if (userName2.length > trunclength) {
-								poster_link2.setAttribute('longnick',poster_link2.innerHTML);
-								poster_link2.innerHTML = userName2.substr(0,trunclength-2) +"..";
+								poster_link2.setAttribute('longnick',poster_link2.textContent);
+								poster_link2.textContent = userName2.substr(0,trunclength-2) +"..";
 							}
 						}
 						if (league_link1) {
-							var league_name1 = league_link1.innerHTML;
+							var league_name1 = league_link1.textContent;
 							if (league_name1.length > trunclength) {
-								league_link1.innerHTML = league_name1.substr(0,trunclength-2) +"..";
+								league_link1.textContent = league_name1.substr(0,trunclength-2) +"..";
 							}
 						}
 						if (league_link2) {
-							var league_name2 = league_link2.innerHTML;
+							var league_name2 = league_link2.textContent;
 							if (league_name2.length > trunclength) {
-								league_link2.innerHTML = league_name2.substr(0,trunclength-2) +"..";
+								league_link2.textContent = league_name2.substr(0,trunclength-2) +"..";
 							}
 						}
 						if (header.offsetTop-header_right.offsetTop < -3 )  {

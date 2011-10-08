@@ -199,7 +199,7 @@ Foxtrick.util.module.register({
 		new_button.setAttribute("href", "javascript:void(0)");
 		new_button.setAttribute("style", "margin-right:10px;");
 		new_button.setAttribute("tabIndex", "3");
-		new_button.innerHTML = Foxtrickl10n.getString('make_template_from_post');
+		new_button.textContent = Foxtrickl10n.getString('make_template_from_post');
 		new_button.addEventListener("click", addNewTitle, false);
 		controls_div.appendChild(new_button);
 
@@ -211,7 +211,7 @@ Foxtrick.util.module.register({
 			show_button.setAttribute("href", "javascript:void(0);");
 			show_button.setAttribute("style", "margin-right:10px;");
 			//show_button.setAttribute("tabIndex", "3");
-			show_button.innerHTML = Foxtrickl10n.getString('show_templates');
+			show_button.textContent = Foxtrickl10n.getString('show_templates');
 			show_button.addEventListener("click", ShowTemplates, false);
 			controls_div.appendChild(show_button);
 
@@ -221,7 +221,7 @@ Foxtrick.util.module.register({
 			hide_button.className='hidden'
 			hide_button.setAttribute("style", "margin-right:10px;");
 			//hide_button.setAttribute("tabIndex", "3");
-			hide_button.innerHTML = Foxtrickl10n.getString('hide_templates');
+			hide_button.textContent = Foxtrickl10n.getString('hide_templates');
 			hide_button.addEventListener("click", HideTemplates, false);
 			controls_div.appendChild(hide_button);
 		}
