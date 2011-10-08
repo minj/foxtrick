@@ -287,7 +287,7 @@ Foxtrick.Pages.Players = {
 					}
 				}
 
-				specMatch = basicInformation.textContent.match(/\[(\D+)\]/);
+				var specMatch = basicInformation.textContent.match(/\[(\D+)\]/);
 				player.speciality = specMatch ? specMatch[1] : "";
 
 				// this could include form, stamina, leadership and experience

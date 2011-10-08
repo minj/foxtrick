@@ -362,10 +362,12 @@ Foxtrick.util.api = {
 
 	getErrorText : function(text, status) {
 		try {
-			if (typeof(text) == 'string') text = (new window.DOMParser()).parseFromString(text, "text/xml");
-			return errorText =  text.getElementsByTagName('h2')[0].textContent;
-		} catch(e) {
-			return errorText = Foxtrickl10n.getString("exception.error").replace(/%s/, status);
+			var xml = Foxtrick.parseXml(text);
+			var errorText = xml.getElementsByTagName("h2")[0].textContent;
 		}
-	},
+		catch (e) {
+			var errorText = Foxtrickl10n.getString("exception.error").replace(/%s/, status);
+		}
+		return errorText;
+	}
 };
