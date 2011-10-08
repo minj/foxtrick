@@ -136,8 +136,7 @@ Foxtrick.load = function(url, callback) {
 					callback(response.data, response.status);
 				}
 				catch (e) {
-					Foxtrick.log('Uncaught callback error: - url: ' , url , ' callback: ', callback);
-					Foxtrick.log(e);
+					Foxtrick.log('Uncaught callback error: - url: ' , url , ' : ',e);
 				}
 			}
 		);
@@ -154,8 +153,7 @@ Foxtrick.load = function(url, callback) {
 					callback(req.responseText, req.status);
 				}
 				catch (e) {
-					Foxtrick.log('Uncaught callback error: - url: ' , url , ' callback: ', callback);
-					Foxtrick.log(e);
+					Foxtrick.log('Uncaught callback error: - url: ' , url , ' : ', e);
 				}
 			}
 		};
@@ -165,7 +163,7 @@ Foxtrick.load = function(url, callback) {
 		}
 		catch (e) {
 			// catch cross-domain errors
-			Foxtrick.log(e);
+			Foxtrick.log(url, ' ', e);
 			callback(null, 0);
 		}
 	}
@@ -187,7 +185,7 @@ Foxtrick.loadSync = function(url) {
 	}
 	catch (e) {
 		// catch cross-domain errors
-		Foxtrick.log(e);
+		Foxtrick.log(url, ' ', e);
 		return null;
 	}
 };
