@@ -10,7 +10,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["YouthTraining", "youthplayerdetail", "youthoverview",
 		"youthFixtures"],
-	OPTIONS : ["TrainingReport", "ScoutComment", "PlayerSource",
+	OPTIONS : ["TrainingReport", "ScoutComment", "RejectedToHTY", "PlayerSource",
 		"FixturesSource"],
 
 	CSS : Foxtrick.InternalPath + "resources/css/copy-youth.css",
@@ -69,7 +69,7 @@ Foxtrick.util.module.register({
 	},
 
 	addScoutComment : function(doc) {
-		var copyReport = function() {
+		var copyReport = function(openHTY) {
 			try {
 				var mainBody = doc.getElementById('mainBody');
 
@@ -105,20 +105,26 @@ Foxtrick.util.module.register({
 
 					Foxtrick.copyStringToClipboard(plain);
 
-					// display note
-					var insertBefore = doc.getElementsByTagName('h1')[0];
 					var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 					if (rejectreport)
 						var url = "http://" + server + ".hattrick-youthclub.org/site/player_myrejects_add";
 					else
 						var url = "http://" + server + ".hattrick-youthclub.org/";
-					var container = doc.createElement("div");
-					container.appendChild(doc.createTextNode(Foxtrickl10n.getString("CopyYouth.scoutComment.copied")));
-					var linkContainer = doc.createElement("div");
-					linkContainer.innerHTML = Foxtrickl10n.getString("CopyYouth.goto").replace(/%s/,
-						'<a href="' + url + '" target="_copyYouth">http://www.hattrick-youthclub.org</a>');
-					container.appendChild(linkContainer);
-					Foxtrick.util.note.add(doc, insertBefore, "ft-scout-report-copy-note", container, null, true);
+						
+					if (openHTY) {
+						Foxtrick.newTab(url);
+					}
+					else {
+						// display note
+						var insertBefore = doc.getElementsByTagName('h1')[0];
+						var container = doc.createElement("div");
+						container.appendChild(doc.createTextNode(Foxtrickl10n.getString("CopyYouth.scoutComment.copied")));
+						var linkContainer = doc.createElement("div");
+						linkContainer.innerHTML = Foxtrickl10n.getString("CopyYouth.goto").replace(/%s/,
+							'<a href="' + url + '" target="_copyYouth">http://www.hattrick-youthclub.org</a>');
+						container.appendChild(linkContainer);
+						Foxtrick.util.note.add(doc, insertBefore, "ft-scout-report-copy-note", container, null, true);
+					}
 				}
 			}
 			catch (e) {
@@ -134,7 +140,12 @@ Foxtrick.util.module.register({
 		if (Foxtrick.isPage("youthplayerdetail", doc) || has_report) {
 			if (has_report) {
 				var alertdiv = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butScoutPropYes').parentNode;
-				if (alertdiv.parentNode.getElementsByTagName('a')[0]==null
+				
+				if (FoxtrickPrefs.isModuleOptionEnabled("CopyYouth", "RejectedToHTY")) {
+					var rejectButton = alertdiv.getElementsByTagName('input')[1];
+					rejectButton.addEventListener('click', function(){ copyReport(true) }, false)
+				}
+				else if (alertdiv.parentNode.getElementsByTagName('a')[0]==null
 					&& doc.getElementById('ft-copy-scout-comment-link')==null) {
 					var a=doc.createElement('a');
 					a.textContent = Foxtrickl10n.getString("CopyYouth.scoutComment");
