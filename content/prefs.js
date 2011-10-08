@@ -393,8 +393,9 @@ if (Foxtrick.arch === "Gecko") {
 		},
 	}
 
+var i;
 for (i in FoxtrickPrefsGecko)
-		FoxtrickPrefs[i] = FoxtrickPrefsGecko[i];
+	FoxtrickPrefs[i] = FoxtrickPrefsGecko[i];
 }
 
 
@@ -586,10 +587,12 @@ if (Foxtrick.arch === "Sandboxed") {
 			},
 		};
 
+		var i;
 		for (i in FoxtrickPrefsChromeContent)
 			FoxtrickPrefsChrome[i] = FoxtrickPrefsChromeContent[i];
 	}
 
+	var i;
 	for (i in FoxtrickPrefsChrome)
 		FoxtrickPrefs[i] = FoxtrickPrefsChrome[i];
 }
