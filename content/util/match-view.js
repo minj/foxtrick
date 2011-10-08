@@ -43,7 +43,8 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 			"105" : { key : "youth.friendly", className : "matchFriendly" },
 			"106" : { key : "youth.friendly.cup", className : "matchFriendly" },
 		};
-		if (obj = mapping[type]) {
+		var obj = mapping[type];
+		if (obj) {
 			return {
 				str : Foxtrickl10n.getString("match.type." + obj.key),
 				className : obj.className

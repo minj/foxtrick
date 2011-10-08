@@ -70,7 +70,7 @@ Foxtrick.Pages.Players = {
 				var id = Number(playerNode.getElementsByTagName("PlayerID")[0].textContent);
 				// find player with the same ID from playerList (parsed from
 				// HTML)
-				var player = null;
+				var player = null, j;
 				for (j = 0; j < playerList.length; ++j)
 					if (playerList[j].id == id)
 						{ player = playerList[j];break;}
