@@ -12,12 +12,13 @@ var FoxtrickPrefs = {
 	 * return null if not found
 	 */
 	get : function(key) {
-		if ((string = FoxtrickPrefs.getString(key)) != null)
-			return string;
-		if ((num = FoxtrickPrefs.getInt(key)) != null)
-			return num;
-		if ((bool = FoxtrickPrefs.getBool(key)) != null)
-			return bool;
+		var val;
+		if ((val = FoxtrickPrefs.getString(key)) != null)
+			return val;
+		if ((val = FoxtrickPrefs.getInt(key)) != null)
+			return val;
+		if ((val = FoxtrickPrefs.getBool(key)) != null)
+			return val;
 		return null;
 	},
 
@@ -541,6 +542,7 @@ if (Foxtrick.arch === "Sandboxed") {
 
 			// set and delete for background script side
 			setValue : function(key, value) {
+				Foxtrick.log('prefs setvalue')
 				try {
 					if (FoxtrickPrefs._prefs_chrome_default[key] === value)
 						FoxtrickPrefs.deleteValue(key);
@@ -549,7 +551,7 @@ if (Foxtrick.arch === "Sandboxed") {
 						localStorage.setItem(key, JSON.stringify(value));
 					}
 				}
-				catch (e) {}
+				catch (e) {console.log(e)}
 			},
 
 			deleteValue : function(key) {
