@@ -200,7 +200,7 @@ Foxtrick.Pages.Players = {
 					player.countryId = Number(playerNode.getElementsByTagName("CountryID")[0].textContent);
 				}
 				if (playerNode.getElementsByTagName("TrainerData").length) {
-					trainerData = playerNode.getElementsByTagName("TrainerData")[0];
+					var trainerData = playerNode.getElementsByTagName("TrainerData")[0];
 					player.trainerData = {};
 					if (trainerData.getElementsByTagName("TrainerType").length) {
 						player.trainerData.type = Number(trainerData.getElementsByTagName("TrainerType")[0].textContent);
