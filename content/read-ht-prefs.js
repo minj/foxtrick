@@ -9,6 +9,7 @@ Foxtrick.util.module.register({
 	MODULE_NAME : "ReadHtPrefs",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,
 	PAGES : ["all"],
+	CORE_MODULE : true,
 	NICE : -20,
 
 	run : function(doc) {

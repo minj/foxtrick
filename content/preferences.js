@@ -285,53 +285,9 @@ function initTextAndValues()
 
 function initMainTab()
 {
-	// basic preferences
-	// language
-	var data = [];
-	for (var i in Foxtrickl10n.htLanguagesXml) {
-		var desc = Foxtrickl10n.htLanguagesXml[i].getElementsByTagName("language")[0].getAttribute("desc");
-		data.push({ name: i,  desc: desc });
-	}
-	data.sort(function(a, b) { return a.desc.localeCompare(b.desc); });
-	var selectedLang = FoxtrickPrefs.getString("htLanguage");
-	for (var i in data) {
-		var locale = data[i];
-		var item = document.createElement("option");
-		item.value = locale.name;
-		item.textContent = locale.desc;
-		if (selectedLang == item.value)
-			item.selected = "selected";
-		$("#pref-read-language").append($(item));
-	}
-
-	// country
-	var leagues = [];
-	for (var i in Foxtrick.XMLData.League) {
-		var league = Foxtrick.XMLData.League[i]["EnglishName"];
-		leagues.push(league);
-	}
-	leagues.sort(function(a, b) { return a.localeCompare(b); });
-	var selectedLeague = FoxtrickPrefs.getString("htCountry");
-	for (var i in leagues) {
-		var item = document.createElement("option");
-		item.value = leagues[i];
-		item.textContent = leagues[i];
-		if (selectedLeague == item.value)
-			item.selected = "selected";
-		$("#pref-read-country").append($(item));
-	}
-
-	// date-format
-	var dateFormats = ['dd-mm-yyyy', 'mm-dd-yyyy', 'yyyy-mm-dd'];
-	var selectedFormat = FoxtrickPrefs.getString("htDateFormat");
-	for (var i in dateFormats) {
-		var item = document.createElement("option");
-		item.value = dateFormats[i];
-		item.textContent = dateFormats[i];
-		if (selectedFormat.charAt(0).toLowerCase() == item.value.charAt(0))
-			item.selected = "selected";
-		$("#pref-read-date-format").append($(item));
-	}
+	// setup
+	$("#pref-setup-desc").html(Foxtrickl10n.getString("foxtrick.prefs.setup.desc")
+		.replace(/{(.+)}/, "<a href=\"http://code.google.com/p/foxtrick/issues/list\" target=\"_blank\">$1</a>"));
 
 	// save preferences
 	$("#pref-save-do").click(function() {
@@ -425,7 +381,8 @@ function getModule(module)
 	title.appendChild(link);
 
 	// screenshot
-	if (screenshotLink = Foxtrickl10n.getScreenshot(module.MODULE_NAME))
+	var screenshotLink = Foxtrickl10n.getScreenshot(module.MODULE_NAME);
+	if (screenshotLink)
 		title.appendChild(getScreenshot(screenshotLink));
 
 	var desc = document.createElement("p");
