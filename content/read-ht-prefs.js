@@ -1,5 +1,5 @@
 "use strict";
-﻿/**
+/**
  * read-ht-prefs.js
  * Read Hattrick preferences and change FoxTrick's accordingly.
  * @author convinced, ryanli
