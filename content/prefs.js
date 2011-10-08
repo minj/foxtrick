@@ -542,7 +542,6 @@ if (Foxtrick.arch === "Sandboxed") {
 
 			// set and delete for background script side
 			setValue : function(key, value) {
-				Foxtrick.log('prefs setvalue')
 				try {
 					if (FoxtrickPrefs._prefs_chrome_default[key] === value)
 						FoxtrickPrefs.deleteValue(key);
