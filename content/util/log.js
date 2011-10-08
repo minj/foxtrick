@@ -18,7 +18,7 @@ Foxtrick.log = function() {
 			hasError = true;
 			if (Foxtrick.arch == "Gecko") {
 				item = content.fileName + " (" + content.lineNumber + "): " + content.message + "\n"
-					+ "Stack trace: " + content.stack.substr(0,1000);
+					+ "Stack trace: " + content.stack;
 				Components.utils.reportError(item);
 			}
 			else if (Foxtrick.arch == "Sandboxed") {
@@ -31,10 +31,10 @@ Foxtrick.log = function() {
 		}
 		else if (typeof(content) != "string") {
 			try {
-				item = JSON.stringify(content).substr(0,100);
+				item = JSON.stringify(content);
 			}
 			catch (e) {
-				item = String(content).substr(0,100);
+				item = String(content);
 			}
 		}
 		else {
