@@ -173,10 +173,10 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		// @callback_param data - response text
 		// @callback_param status - HTTP status of request
 		// synchronous, since messaging is async already
-		var callback = function(responseText,status){
+		var callback = function(responseText, status){
 			sendResponse({data : responseText, status : status});
 		};
-		Foxtrick.load(request.url, callback, request.crossSite )
+		Foxtrick.load(request.url, callback);
 	};
 	var getDataUrl = function(request, sender, sendResponse) {
 		// @param branch - initial part of key(s) of session store to delete

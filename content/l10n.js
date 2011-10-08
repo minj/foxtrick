@@ -200,7 +200,7 @@ if (Foxtrick.arch === "Gecko") {
 				for (i in Foxtrickl10n.locales) {
 					var locale = Foxtrickl10n.locales[i];
 					var url = Foxtrick.InternalPath + "locale/" + locale + "/htlang.xml";
-					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXml(url);
+					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXmlSync(url);
 				}
 			}
 
@@ -325,11 +325,11 @@ if (Foxtrick.arch === "Sandboxed") {
 			for (i in Foxtrickl10n.locales) {
 				locale = Foxtrickl10n.locales[i];
 				var url = Foxtrick.InternalPath + "locale/" + locale + "/htlang.xml";
-				this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXml(url);
+				this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXmlSync(url);
 			}
 
-			this.properties_default = Foxtrick.load(Foxtrick.InternalPath+"foxtrick.properties");
-			this.screenshots_default = Foxtrick.load(Foxtrick.InternalPath+"foxtrick.screenshots");
+			this.properties_default = Foxtrick.loadSync(Foxtrick.InternalPath+"foxtrick.properties");
+			this.screenshots_default = Foxtrick.loadSync(Foxtrick.InternalPath+"foxtrick.screenshots");
 
 			locale = FoxtrickPrefs.getString("htLanguage");
 			if (locale == "en") {
@@ -339,14 +339,14 @@ if (Foxtrick.arch === "Sandboxed") {
 			}
 			else {
 				try {
-					this.properties = Foxtrick.load(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.properties");
+					this.properties = Foxtrick.loadSync(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.properties");
 				}
 				catch (e) {
 					Foxtrick.log("Use default properties for locale ", locale);
 					this.properties = this.properties_default;
 				}
 				try {
-					this.screenshots = Foxtrick.load(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.screenshots");
+					this.screenshots = Foxtrick.loadSync(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.screenshots");
 				}
 				catch (ee) {
 					Foxtrick.log("Use default screenshots for locale ", locale);

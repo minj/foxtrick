@@ -110,122 +110,113 @@ Foxtrick.newTab = function(url) {
 }
 
 /*
- * Load external URL as string
+ * @desc return an XML file parsed from given text
+ */
+Foxtrick.parseXml = function(text) {
+	var parser = new window.DOMParser();
+	var xml = parser.parseFromString(text, "text/xml");
+	return xml;
+};
+
+/*
+ * Load external URL asynchronously
  * @param url - URL
  * @param callback - function to be called when succeeded or failed
- * @param crossSite - whether it's to a site other than current Hattrick host
  * @callback_param String of text content if success or null if failure
  * @callback_param HTTP status code
  */
-Foxtrick.load = function(url, callback, crossSite) {
-	if (Foxtrick.chromeContext()==='content' && callback) {
+
+Foxtrick.load = function(url, callback) {
+	if (Foxtrick.chromeContext() == "content" && callback) {
 		// background script for xml requests
-		sandboxed.extension.sendRequest({req : "getXml", url : url, crossSite: crossSite },
+		sandboxed.extension.sendRequest({req : "getXml", url : url },
 			function(response) {
 				try {
 					callback(response.data, response.status);
 				}
 				catch (e) {
-					Foxtrick.log('Uncaught callback error: - url: ' , url , ' callback: ', callback , ' crossSite: ', crossSite , ' ' , e);
+					Foxtrick.log('Uncaught callback error: - url: ' , url , ' callback: ', callback);
 					Foxtrick.log(e);
 				}
 			}
 		);
 	}
 	else {
-		var singleLoad = function(url, callback, crossSite){
-			var req = new window.XMLHttpRequest();
-			req.open("GET", url, callback ? true : false);
-			if (typeof(req.overrideMimeType) == "function")
-				req.overrideMimeType("text/plain");
-			if (!callback) {
+		var req = new window.XMLHttpRequest();
+		req.open("GET", url, true);
+		if (typeof(req.overrideMimeType) == "function")
+			req.overrideMimeType("text/plain");
+
+		req.onreadystatechange = function(aEvt) {
+			if (req.readyState == 4) {
 				try {
-					req.send(null);
-					var response = req.responseText;
+					callback(req.responseText, req.status);
 				}
 				catch (e) {
-					// catch cross-domain errors
-					response = null;
-				}
-				return response;
-			}
-			else {
-				req.onreadystatechange = function(aEvt) {
-					if (req.readyState == 4) {
-						try {
-							callback(req.responseText, req.status);
-						}
-						catch (e) {
-							Foxtrick.log('Uncaught callback error: - url: ' , url , ' callback: ', callback , ' crossSite: ' , crossSite , ' ' , e);
-						}
-					}
-				};
-				try {
-					req.send(null);
-				}
-				catch (e) {
-					// catch cross-domain errors
+					Foxtrick.log('Uncaught callback error: - url: ' , url , ' callback: ', callback);
 					Foxtrick.log(e);
-					callback(req.responseText, 0);
 				}
 			}
+		};
+
+		try {
+			req.send(null);
 		}
-		
-		if ( typeof (url) == 'string' ) 
-			return singleLoad(url, callback, crossSite);
-		else {
-			// url = array of urls
-			// returns array of responses with matching indices
-			
-			// batch load. needs a callback
-			if (!callback) 
-				return null;
-			var index = 0, responses = [];
-			var processSingle = function(last_response){
-				// collect responses
-				if (index != 0) 
-					responses.push( last_response );
-				// return if finished
-				if (index == url.length) 
-					callback(responses);
-				else 
-					// load next file
-					singleLoad(url[index++], processSingle, crossSite)
-			};
-			processSingle();
+		catch (e) {
+			// catch cross-domain errors
+			Foxtrick.log(e);
+			callback(null, 0);
 		}
 	}
 };
 
-Foxtrick.loadXml = function(url, callback, crossSite) {
-	if (callback) {
-		Foxtrick.load(url, function(text, status) {
-			try {
-				var parser = new window.DOMParser();
-				var xml = parser.parseFromString(text, "text/xml");
-			}
-			catch (e) {
-				// invalid XML
-				Foxtrick.log("Foxtrick.loadXml@async: Cannot parse XML:\n" , url,  ' ', (text && text.substr(0,100)), ' ', status, " ", e);
-				xml = null;
-			}
-			callback(xml, status);
-		}, crossSite);
+/*
+ * @desc load a resource synchronusly (Not to be used in content modules)
+ */
+Foxtrick.loadSync = function(url) {
+	// load
+	var req = new window.XMLHttpRequest();
+	req.open("GET", url, false);
+	if (typeof(req.overrideMimeType) == "function")
+		req.overrideMimeType("text/plain");
+
+	try {
+		req.send(null);
+		return req.responseText;
 	}
-	else {
-		var text = Foxtrick.load(url);
+	catch (e) {
+		// catch cross-domain errors
+		Foxtrick.log(e);
+		return null;
+	}
+};
+
+Foxtrick.loadXml = function(url, callback) {
+	Foxtrick.load(url, function(text, status) {
 		try {
-			var parser = new window.DOMParser();
-			var xml = parser.parseFromString(text, "text/xml");
+			var xml = Foxtrick.parseXml(text);
 		}
 		catch (e) {
 			// invalid XML
-			Foxtrick.log("Foxtrick.loadXml@sync: Cannot parse XML:\n" , url,  ' ', (text && text.substr(0,100)), " ", e);
+			Foxtrick.log("Cannot parse XML (", url, ")\n", text);
 			xml = null;
 		}
-		return xml;
+		callback(xml, status);
+	});
+};
+
+Foxtrick.loadXmlSync = function(url) {
+	var text = Foxtrick.loadSync(url);
+	try {
+		var xml = Foxtrick.parseXml(text);
 	}
-}
+	catch (e) {
+		// invalid XML
+		Foxtrick.log("Cannot parse XML (", url,  ")\n", text);
+		xml = null;
+	}
+	return xml;
+};
 
 Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, value2str, value3str) {
 	var result = new Array();
@@ -664,7 +655,7 @@ Foxtrick.getCssTextFromFile = function (cssUrl) {
 	if (cssUrl && cssUrl.search(/{/) == -1) { // has no class
 		try {
 			// a resource file, get css file content
-			css_text = Foxtrick.load(cssUrl);
+			css_text = Foxtrick.loadSync(cssUrl);
 			if (css_text == null)
 				throw "Cannot load CSS: " + cssUrl;
 		}
