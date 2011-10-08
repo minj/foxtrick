@@ -1,3 +1,4 @@
+"use strict";
 /**
  * preferences.js
  * Foxtrick preferences service

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * team-popup-links.js
  * Foxtrick show Team Popup

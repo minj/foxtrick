@@ -1,3 +1,4 @@
+"use strict";
 /**
  * player-birthday.js
  * show information about past and coming birthdays

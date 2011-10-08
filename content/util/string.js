@@ -1,3 +1,4 @@
+"use strict";
 /*
  * string.js
  * Utilities for string processing

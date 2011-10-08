@@ -1,3 +1,4 @@
+"use strict";
 /**
  * forumhidesignature.js
  * Script which hides signatures on the forums, but shows a 'Show sig' link

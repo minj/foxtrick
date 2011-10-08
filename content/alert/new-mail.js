@@ -1,3 +1,4 @@
+"use strict";
 /**
  * new-mail.js
  * Script which makes the new mails more visible

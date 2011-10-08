@@ -1,3 +1,4 @@
+"use strict";
 /**
  * addmanager-buttons.js
  * Adds Send Message and Write in Guestbook buttons to manager page

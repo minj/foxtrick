@@ -1,3 +1,4 @@
+"use strict";
 /**
  * go-to-post-box.js
  * Foxtrick Go to post box module

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * FoxtrickSmallerPages.js
  * Reduces the dimension of some pages to adapt to small screens

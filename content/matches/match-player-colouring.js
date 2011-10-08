@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Colors the player name in the match report.
  * @author tychobrailleur, Stephan57, convincedd, ryanli

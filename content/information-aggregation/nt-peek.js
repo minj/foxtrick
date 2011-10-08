@@ -1,3 +1,4 @@
+"use strict";
 /**
  * nt-peek.js
  * peeks NT/U20 matches at MyHT

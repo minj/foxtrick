@@ -1,3 +1,4 @@
+"use strict";
 /*
  * copy-button.js
  * Utilities for adding a button for copying

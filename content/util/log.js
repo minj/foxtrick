@@ -1,3 +1,4 @@
+"use strict";
 /*
  * log.js
  * Debug log functions

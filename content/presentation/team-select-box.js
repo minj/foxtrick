@@ -1,3 +1,4 @@
+"use strict";
 /**
  * team-select-box.js
  * Foxtrick team select box

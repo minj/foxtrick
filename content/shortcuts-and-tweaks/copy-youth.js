@@ -1,3 +1,4 @@
+"use strict";
 /**
 * copy-youth.js
 * Copy functions for youth sources

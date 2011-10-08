@@ -1,3 +1,4 @@
+"use strict";
 /**
 * ui.js
 * UserInterfaces

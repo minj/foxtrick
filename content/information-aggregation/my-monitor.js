@@ -1,3 +1,4 @@
+"use strict";
 /**
  * my-monitor.js
  * Monitors matches of friends and foes

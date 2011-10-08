@@ -1,3 +1,4 @@
+"use strict";
 /**
  * skill-translation.js
  * Script which add trasnlations to english to skills

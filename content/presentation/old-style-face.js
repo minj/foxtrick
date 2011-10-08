@@ -1,3 +1,4 @@
+"use strict";
 /**
  * old-style-face.js
  * Show player's original face

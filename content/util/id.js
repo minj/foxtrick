@@ -1,3 +1,4 @@
+"use strict";
 /**
 * id.js
 * Utilities for dealing with ID

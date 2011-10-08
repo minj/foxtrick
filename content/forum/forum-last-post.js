@@ -1,3 +1,4 @@
+"use strict";
 /**
  * forum-last-post.js
  * Foxtrick replaces the links on forum thread list to last posting of read threads

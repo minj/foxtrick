@@ -1,3 +1,4 @@
+"use strict";
 /**
  * move-player-select-box.js
  * option to move player select box up on playersdetail page

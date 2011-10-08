@@ -1,3 +1,4 @@
+"use strict";
 /**
  * FoxtrickLineupShortcut (Add a direct shortcut to lineup in player detail page)
  * @author taised, ryanli

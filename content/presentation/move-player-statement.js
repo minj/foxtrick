@@ -1,3 +1,4 @@
+"use strict";
 /**
  * move-player-statement.js
  * Move player statement to face

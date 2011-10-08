@@ -1,3 +1,4 @@
+"use strict";
 var qc = 0;
 var bc = 0;
 var uc = 0;

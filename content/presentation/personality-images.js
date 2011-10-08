@@ -1,3 +1,4 @@
+"use strict";
 /**
  * personality-images.js
  * Script which add character image

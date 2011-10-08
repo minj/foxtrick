@@ -1,3 +1,4 @@
+"use strict";
 /**
  * links-achievements.js
  * Foxtrick add links to manager pages

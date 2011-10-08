@@ -1,3 +1,4 @@
+"use strict";
 /**
  * layout.js
  * Utilities for Hattrick layout

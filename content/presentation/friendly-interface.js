@@ -1,3 +1,4 @@
+"use strict";
 /**
  * friendly-interface
  * More friendly interface tweaks

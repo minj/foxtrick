@@ -1,3 +1,4 @@
+"use strict";
 /**
 * series-flags.js
 * Show series flags beside manager links and/or team links

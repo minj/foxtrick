@@ -1,3 +1,4 @@
+"use strict";
 // page IDs of last page are stored in array pageIds
 var pageIds = [];
 

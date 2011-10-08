@@ -1,3 +1,4 @@
+"use strict";
 /**
  * inject.js
  * Utilities for injecting CSS/JavaScript in a page

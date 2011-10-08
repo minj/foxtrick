@@ -1,3 +1,4 @@
+"use strict";
 /**
  * mark-all-as-read.js
  * a button to mark threads in all forums as read

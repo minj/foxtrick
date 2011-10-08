@@ -1,3 +1,4 @@
+"use strict";
 /**
  * LastLogin Modifies last login time with HT Dateformat
  * @author spambot

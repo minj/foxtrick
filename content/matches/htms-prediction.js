@@ -1,3 +1,4 @@
+"use strict";
 /**
  * htms-statistics.js
  * adds some statistics on matches based on HTMS web site info

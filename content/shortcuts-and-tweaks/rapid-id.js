@@ -1,3 +1,4 @@
+"use strict";
 /**
  * rapid-id.js
  * rapid way to view something by id

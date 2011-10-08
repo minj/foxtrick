@@ -1,3 +1,4 @@
+"use strict";
 /**
  * custom-medals.js
  * Replaces medals with old Hattrick medals

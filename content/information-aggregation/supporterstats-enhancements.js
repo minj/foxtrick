@@ -1,3 +1,4 @@
+"use strict";
 /* supporterstats-enhancements.js
  * Add extra information to supporterstats
  * @author convincedd

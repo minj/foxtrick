@@ -1,3 +1,4 @@
+"use strict";
 /* country.js
  * Utilities on country page
  * @author ryanli

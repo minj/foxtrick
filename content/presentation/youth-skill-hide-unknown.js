@@ -1,3 +1,4 @@
+"use strict";
 /**
  * youth-skill-hide-unknown.js
  * Hide unknown skills and/or "maximum" word on youth players page

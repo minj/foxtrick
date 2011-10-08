@@ -1,3 +1,4 @@
+"use strict";
 /*
  * notify.js
  * Utilities for creating a notification

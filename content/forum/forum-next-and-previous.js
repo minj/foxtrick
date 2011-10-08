@@ -1,3 +1,4 @@
+"use strict";
 /**
  * forum-next-and-previous.js
  * Foxtrick Remove Disabled Next and Previous buttons

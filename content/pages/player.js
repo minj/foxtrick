@@ -1,3 +1,4 @@
+"use strict";
 /* player.js
  * Utilities on player page
  * @author ryanli

@@ -1,3 +1,4 @@
+"use strict";
 /*
  * add-class.js
  * Add classes for HTML nodes

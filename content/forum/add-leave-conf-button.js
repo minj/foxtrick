@@ -1,3 +1,4 @@
+"use strict";
 /**
  * foxtrickleaveconfbutton.js
  * Foxtrick Leave Conference module

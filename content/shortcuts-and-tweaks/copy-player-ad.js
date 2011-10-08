@@ -1,3 +1,4 @@
+"use strict";
 /**
  * copy-player-ad.js
  * Copies a player ad to the clipboard

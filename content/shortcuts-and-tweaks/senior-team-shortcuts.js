@@ -1,3 +1,4 @@
+"use strict";
 /**
  * seniorshortcuts.js
  * Foxtrick add coach and lastlineup links to team pages

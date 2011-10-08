@@ -1,3 +1,4 @@
+"use strict";
 /**
  * pages.js
  * @author FoxTrick developers

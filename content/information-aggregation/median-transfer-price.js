@@ -1,3 +1,4 @@
+"use strict";
 /**
  * median-transfer-price.js
  * Foxtrick Add median transfer price

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * highlight-cup-wins.js
  * Highlight winners of cup matches and cupsets (optional)

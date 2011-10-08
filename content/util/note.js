@@ -1,3 +1,4 @@
+"use strict";
 /* note.js
  * Foxtrick.util.note used for creating FoxTrick notes.
  * @author ryanli

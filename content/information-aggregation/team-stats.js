@@ -1,3 +1,4 @@
+"use strict";
 /**
  * team-stats.js
  * Foxtrick team overview

@@ -1,3 +1,4 @@
+"use strict";
 /**
 * extra-shortcuts.js
 * Adds an imagelink to the shortcut

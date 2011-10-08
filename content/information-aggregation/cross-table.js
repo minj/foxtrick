@@ -1,3 +1,4 @@
+"use strict";
 /**
  * cross-table.js
  * add cross table and season graph to fixtures page

@@ -1,3 +1,4 @@
+"use strict";
 /* transfer-search-results.js
  * Utilities on transfer search results page
  * @author convincedd, ryanli

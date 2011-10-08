@@ -1,3 +1,4 @@
+"use strict";
 /**
  * tables.js
  * adds goal difference to tables

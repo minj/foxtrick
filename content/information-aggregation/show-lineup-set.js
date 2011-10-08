@@ -1,3 +1,4 @@
+"use strict";
 /**
  * @file show-lineup-set.js
  * @desc highlight teams that have set a lineup, ownerless teams,

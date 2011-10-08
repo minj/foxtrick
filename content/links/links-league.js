@@ -1,3 +1,4 @@
+"use strict";
 /**
  * links-league.js
  * Foxtrick add links to league pages

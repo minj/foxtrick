@@ -1,3 +1,4 @@
+"use strict";
 /**
  * l10n.js
  * Localization tools.

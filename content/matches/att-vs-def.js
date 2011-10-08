@@ -1,3 +1,4 @@
+"use strict";
 /**
  * matches.js
  * adds att vs def bars on matches page

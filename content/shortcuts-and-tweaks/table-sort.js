@@ -1,3 +1,4 @@
+"use strict";
 /**
 * sortTable.js
 * sorting of HT-ML tables

@@ -1,3 +1,4 @@
+"use strict";
 /*
  * youth-series-estimation.js
  * Estimation of start time of youth series

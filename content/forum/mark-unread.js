@@ -1,3 +1,4 @@
+"use strict";
 /**
  * mark-unread.js
  * adds a link to mark hread unread until...

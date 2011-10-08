@@ -1,3 +1,4 @@
+"use strict";
 /*
  * background.js
  * FoxTrick background loader for sandboxed arch

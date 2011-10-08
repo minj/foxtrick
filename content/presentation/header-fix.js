@@ -1,3 +1,4 @@
+"use strict";
 /**
  * header-fix.js
  * Script which fixes the header

@@ -1,3 +1,4 @@
+"use strict";
 /**
 * htms-points.js
 * Foxtrick show HTMS points in player page

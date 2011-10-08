@@ -1,3 +1,4 @@
+"use strict";
 /**
  * highlight-ownerless.js
  * Highlight ownerless teams

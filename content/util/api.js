@@ -1,3 +1,4 @@
+"use strict";
 /**
  * api.js
  * Proxy for authorizing and retrieving XML data from Hattrick

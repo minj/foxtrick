@@ -1,3 +1,4 @@
+"use strict";
 /**
 * show-forum-pref-button.js
 * Foxtrick shows forum preference link on forum pages

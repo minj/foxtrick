@@ -1,3 +1,4 @@
+"use strict";
 /*
  * loader-gecko.js
  * FoxTrick loader for Gecko platform

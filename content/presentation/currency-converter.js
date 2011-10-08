@@ -1,3 +1,4 @@
+"use strict";
 /*
  * currency-converter.js
  * Denote amount of money in a different currency

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Formats the match report.
  * @author spambot

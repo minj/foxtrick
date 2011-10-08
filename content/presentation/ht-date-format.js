@@ -1,3 +1,4 @@
+"use strict";
 /*
  * ht-date-format.js
  * displays week and season next to date

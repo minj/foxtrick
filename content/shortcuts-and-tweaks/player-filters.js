@@ -1,3 +1,4 @@
+"use strict";
 /*
  * player-filters.js
  * Add a select box for filtering players

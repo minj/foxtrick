@@ -1,3 +1,4 @@
+"use strict";
 /*
  * ht-ml.js
  * Utilities for HT-ML (Hattrick Markup Language)

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Transfer list filters
  * @author kolmis, bummerland

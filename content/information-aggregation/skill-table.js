@@ -1,3 +1,4 @@
+"use strict";
 /**
  * skill-table.js
  * Show a skill table on players list page

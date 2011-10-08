@@ -1,3 +1,4 @@
+"use strict";
 /**
 * forum-change-posts-modules.js
 * module collection of forum-change-posts.js

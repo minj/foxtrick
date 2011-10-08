@@ -1,3 +1,4 @@
+"use strict";
 /**
  * linksClubTransfers.js
  * Foxtrick add links to arena pages

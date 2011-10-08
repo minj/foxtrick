@@ -1,3 +1,4 @@
+"use strict";
 /**
  * ticker-alert.js
  * display a notification when a new ticker has arrived

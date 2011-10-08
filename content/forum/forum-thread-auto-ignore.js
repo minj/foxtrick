@@ -1,3 +1,4 @@
+"use strict";
 /**
  * forum-thread-auto-ignore.js
  * Foxtrick Leave Conference module

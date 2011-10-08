@@ -1,3 +1,4 @@
+"use strict";
 /**
  * transfer-search-result-filters.js
  * Transfer list filters

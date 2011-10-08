@@ -1,3 +1,4 @@
+"use strict";
 /**
  * linksplayer.js
  * Foxtrick add links to team pages

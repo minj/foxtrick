@@ -1,3 +1,4 @@
+"use strict";
 /**
  * links-match.js
  * Foxtrick add links to played matches pages

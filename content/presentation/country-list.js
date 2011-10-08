@@ -1,3 +1,4 @@
+"use strict";
 /**
 * country-list.js
 * displays country names in dropdown in different way

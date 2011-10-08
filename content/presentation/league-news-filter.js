@@ -1,3 +1,4 @@
+"use strict";
 /**
  * league-news-filter.js
  * filters to league news

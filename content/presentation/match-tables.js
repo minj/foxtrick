@@ -1,3 +1,4 @@
+"use strict";
 /*
  * match-tables.js
  * @author Mod-spambot, ryanli

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * copy-ratings.js
  * Copies match ratings (HT-ML style)

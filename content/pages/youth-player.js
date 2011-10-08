@@ -1,3 +1,4 @@
+"use strict";
 /* youth-player.js
  * Utilities on youth player page
  * @author ryanli

@@ -1,3 +1,4 @@
+"use strict";
 /*
  * module.js
  * Utilities for FoxTrick module handling

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * forum-templates.js
  * Foxtrick forum template handling service

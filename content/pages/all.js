@@ -1,3 +1,4 @@
+"use strict";
 /* all.js
  * Utilities on all pages
  * @author ryanli

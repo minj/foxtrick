@@ -1,3 +1,4 @@
+"use strict";
 /**
  * staff-marker.js
  * Foxtrick forum staff (HT, GM, Mod, CHPP, LA) marker

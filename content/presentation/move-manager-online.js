@@ -1,3 +1,4 @@
+"use strict";
 /**
  * move-manager-online.js
  * Move online managers to the top of the page on region page

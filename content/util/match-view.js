@@ -1,3 +1,4 @@
+"use strict";
 /* match-view.js
  * utilities for match view
  *

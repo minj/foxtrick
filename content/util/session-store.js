@@ -1,3 +1,4 @@
+"use strict";
 /*
  * sessionSet() and sessionGet() are a pair of functions that can store some
  * useful information that has its life spanning the browser session.

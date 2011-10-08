@@ -1,3 +1,4 @@
+"use strict";
 /**
  * ExtendedPlayerDetails
  * @desc displays wage without 20% bonus and time since player joined a team

@@ -1,3 +1,4 @@
+"use strict";
 /**
 * league-and-match-chat.js
 * Foxtrick Copies post id to clipboard

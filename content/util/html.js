@@ -1,3 +1,4 @@
+"use strict";
 /*
  * html.js
  * Utilities for HTML and DOM

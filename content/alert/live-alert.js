@@ -1,3 +1,4 @@
+"use strict";
 /*
  * live-alert.js
  * Alerting HT Live goals

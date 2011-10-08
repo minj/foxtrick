@@ -1,3 +1,4 @@
+"use strict";
 /**
  * links-players.js
  * Foxtrick add links to manager pages

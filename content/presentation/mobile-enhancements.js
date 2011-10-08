@@ -1,3 +1,4 @@
+"use strict";
 /**
  * mobile-enhancements.js
  * Collection of enhancements using mobile device/fennec

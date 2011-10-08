@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Forum Presentation Fixes
  * @author spambot, ljushaff

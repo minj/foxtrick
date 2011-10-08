@@ -1,3 +1,4 @@
+"use strict";
 /**
  * local-time.js
  * Show time in local time zone

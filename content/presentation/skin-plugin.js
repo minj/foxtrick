@@ -1,3 +1,4 @@
+"use strict";
 /**
  * skin-plugin.js
  * Script which including skins

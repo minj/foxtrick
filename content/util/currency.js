@@ -1,3 +1,4 @@
+"use strict";
 /*
  * currency.js
  * Utilities for handling currency

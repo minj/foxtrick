@@ -1,3 +1,4 @@
+"use strict";
 function goToElementById(id) {
 	// need to use this in case HeaderFix is enabled
 	try {

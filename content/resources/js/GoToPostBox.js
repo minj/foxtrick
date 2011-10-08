@@ -1,3 +1,4 @@
+"use strict";
 function setActiveTextBox(field, cssClass, text) {
 	var fieldObj = document.getElementById(field);
 	fieldObj.className = cssClass;

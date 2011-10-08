@@ -1,3 +1,4 @@
+"use strict";
 /**
  * confirm-actions.js
  * Ask user to confirm before certain actions

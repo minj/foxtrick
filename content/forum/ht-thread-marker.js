@@ -1,3 +1,4 @@
+"use strict";
 /**
  * ht-thread-marker.js
  * Marks threads created by HTs.

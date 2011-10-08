@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Transfer list deadline
  * @author spambot, ryanli

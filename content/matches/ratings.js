@@ -1,3 +1,4 @@
+"use strict";
 /**
  * matches.js
  * adds ratings to matches page

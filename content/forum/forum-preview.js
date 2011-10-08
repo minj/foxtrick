@@ -1,3 +1,4 @@
+"use strict";
 /**
  * forum-preview.js
  * area for forum post preview

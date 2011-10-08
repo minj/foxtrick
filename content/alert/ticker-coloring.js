@@ -1,3 +1,4 @@
+"use strict";
 /**
  * ticker-coloring.js
  * Script which add colors to the ticker

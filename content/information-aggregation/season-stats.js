@@ -1,3 +1,4 @@
+"use strict";
 /**
  * season-stats.js
  * Foxtrick add stats to match archive

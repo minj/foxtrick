@@ -1,3 +1,4 @@
+"use strict";
 /**
  * stars-counter.js
  * Count stars in match lineup page

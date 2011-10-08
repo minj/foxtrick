@@ -1,3 +1,4 @@
+"use strict";
 /*
  * show-friendly-booked.js
  * Show whether a team has booked friendly on series page

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * election-table.js
  * some more infos on election page

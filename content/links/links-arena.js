@@ -1,3 +1,4 @@
+"use strict";
 /**
  * linksyouthoverview.js
  * Foxtrick add links to arena pages

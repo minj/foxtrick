@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Visited countries map
  * @author seben, fixes convincedd

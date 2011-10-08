@@ -1,3 +1,4 @@
+"use strict";
 /**
  * links-national.js
  * Foxtrick add links to national pages

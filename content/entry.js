@@ -1,3 +1,4 @@
+"use strict";
 /*
  * entry.js
  * Entry point of FoxTrick modules

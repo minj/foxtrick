@@ -1,3 +1,4 @@
+"use strict";
 /*
  * time.js
  * Utilities for date and time

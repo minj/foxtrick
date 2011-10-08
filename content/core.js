@@ -1,3 +1,4 @@
+"use strict";
 /**
 * core.js
 * Some core functions for FoxTrick

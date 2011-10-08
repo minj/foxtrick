@@ -1,3 +1,4 @@
+"use strict";
 /**
  * links.js
  * External links collection

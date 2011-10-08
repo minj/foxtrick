@@ -1,3 +1,4 @@
+"use strict";
 /*
  * misc.js
  * Miscellaneous utilities

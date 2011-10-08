@@ -1,3 +1,4 @@
+"use strict";
 /**
  * links-team.js
  * Foxtrick add links to team pages

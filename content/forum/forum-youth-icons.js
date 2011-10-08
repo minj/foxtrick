@@ -1,3 +1,4 @@
+"use strict";
 /**
  * forum-youth-icons.js
  * Foxtrick forum post youth icons

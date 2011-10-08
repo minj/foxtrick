@@ -1,3 +1,4 @@
+"use strict";
 /**
  * bookmark-adjust.js
  * Colors bookmark icon extracting code from bookmark comment

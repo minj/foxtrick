@@ -1,3 +1,4 @@
+"use strict";
 /**
  * skill-coloring.js
  * Script which add colorizes skills and shows numbers for the skills

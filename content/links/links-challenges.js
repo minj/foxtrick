@@ -1,3 +1,4 @@
+"use strict";
 /**
  * linkschallnges.js
  * Foxtrick add links to challenges pages

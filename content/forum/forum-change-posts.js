@@ -1,3 +1,4 @@
+"use strict";
 /**
 * forum-change-posts.js
 * Foxtrick Copies post id to clipboard
