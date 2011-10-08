@@ -550,7 +550,7 @@ if (Foxtrick.arch === "Sandboxed") {
 						localStorage.setItem(key, JSON.stringify(value));
 					}
 				}
-				catch (e) {console.log(e)}
+				catch (e) {}
 			},
 
 			deleteValue : function(key) {
