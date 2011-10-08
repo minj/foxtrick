@@ -78,26 +78,6 @@ Foxtrick.entry.init = function() {
 			coreModules[i].init();
 	}
 
-	if (Foxtrick.platform=='Firefox') {
-		// load modules from scripts
-		var files = Foxtrick.loadSync(Foxtrick.InternalPath + "modules.json");
-		files = JSON.parse(files);
-		files = Foxtrick.map(function(f) {
-			return Foxtrick.InternalPath + f;
-		}, files);
-		// evaluate each module
-		Foxtrick.map(function(f) {
-			var script = Foxtrick.loadSync(f);
-			script = "\"use strict\";\n" + script;
-			try {
-				eval(script);
-			}
-			catch (e) {
-				Foxtrick.log("Error evaluating script ", f, ":\n", e);
-			}
-		}, files);
-	}
-	
 	// create arrays for each recognized page that contains modules
 	// that run on it
 	for (var i in Foxtrick.ht_pages) {
