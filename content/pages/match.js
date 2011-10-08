@@ -104,11 +104,8 @@ Foxtrick.Pages.Match = {
 
 		try {
 			var path = "language/tactics/tactic[@value=\"" + tactics + "\"]";
-			subLevelValue = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "type");
-			if (subLevelValue)
-				return subLevelValue;
-			else
-				return -1;
+			var subLevelValue = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "type");
+			return subLevelValue || -1;
 		}
 		catch (e) {
 			Foxtrick.log(e);
