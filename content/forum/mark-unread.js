@@ -44,7 +44,13 @@ Foxtrick.util.module.register({
 									//nr = '&n=' + ar[2];
 									nr = ''+ar[2]+'';
 								}
-								markunread[p].href = "javascript:try{document.getElementById('ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_ddlAction').selectedIndex=\"1\";document.getElementById('ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_txtMessageNumber').value=\""+nr+"\";document.getElementById('ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_btnGo').click();}catch(e){}";
+								markunread[p].href = "javascript: \
+								try {\
+									document.getElementById('ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_ddlAction').selectedIndex=\"1\";\
+									document.getElementById('ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_txtMessageNumber').value=\""+nr+"\";\
+									document.getElementById('ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_btnGo').click();\
+									}\
+								catch(e){}";
 								// Foxtrick.dump ('\n' + markunread[p].href + '\n');
 							}
 							if( divsInFooter[j].className == "float_right" ) {
