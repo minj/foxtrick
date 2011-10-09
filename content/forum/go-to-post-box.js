@@ -15,8 +15,6 @@ Foxtrick.util.module.register({
 
 		Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath+"resources/js/GoToPostBox.js");
 
-		if (Foxtrick.util.layout.isRtl(doc)) doc.getElementById('mainBody').getElementsByTagName('span')[0].setAttribute('style','margin-right:0px');
-			else if (Foxtrick.util.layout.isStandard(doc)) doc.getElementById('mainBody').getElementsByTagName('span')[0].setAttribute('style','margin-right:70px');
 		//set up tab on left forums menu
 		var tab = ''
 		try {
