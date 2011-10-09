@@ -102,7 +102,7 @@ Foxtrick.util.module.register((function() {
 				else {
 					// add path to internal images
 					if (link.img.indexOf('resources')==0)
-						link.img = Foxtrick.ResourcePath + link.img;
+						link.img = Foxtrick.InternalPath + link.img;
 					// add img for tracker flags
 					if (module === "LinksTracker")
 						linkNode.appendChild(doc.createElement("img"));
