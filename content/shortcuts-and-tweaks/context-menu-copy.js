@@ -5,6 +5,8 @@
  * @author convinced, ryanli
  */
 
+
+if (Foxtrick.platform !=='Opera' && Foxtrick.platform !== 'Fennec')
 Foxtrick.util.module.register((function() {
 	// option: corresponding to OPTIONS
 	// func: function to be called for getting text
