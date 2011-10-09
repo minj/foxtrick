@@ -45,17 +45,6 @@ Foxtrick.util.note = {
 			old.parentNode.removeChild(old);
 		}
 		var note = this.create(doc, msg, buttons, hasClose);
-
-		// add copy instructions for opera and safari to copy notes
-		if ((Foxtrick.platform == "Opera" || Foxtrick.platform == "Safari") && id.search('copy-note')!==-1) {
-			var string = Foxtrick.sessionGet('clipboard');
-			var msg_p = note.getElementsByTagName('p')[0];
-			msg_p.textContent = Foxtrickl10n.getString('CopySelected.desc');
-			var textarea = doc.createElement('textarea');
-			note.insertBefore(textarea, msg_p.nextSibling);
-			textarea.value = string;
-			textarea.select();
-		}
 		note.id = id;
 		if (insertBefore && insertBefore.parentNode) {
 			insertBefore.parentNode.insertBefore(note, insertBefore);
@@ -70,6 +59,18 @@ Foxtrick.util.note = {
 		// ensure the note is visible
 		if (doJump)
 			note.scrollIntoView(false);
+
+		// add copy instructions for opera and safari to copy notes
+		if ((Foxtrick.platform == "Opera" || Foxtrick.platform == "Safari") && id.indexOf('copy-note')!==-1) {
+			var string = Foxtrick.sessionGet('clipboard');
+			var msg_p = note.getElementsByTagName('p')[0];
+			msg_p.textContent = Foxtrickl10n.getString('CopySelected.desc');
+			var textarea = doc.createElement('textarea');
+			msg_p.parentNode.insertBefore(textarea, msg_p.nextSibling);
+			textarea.value = string;
+			textarea.select();
+		}
+
 		return note;
 	},
 
