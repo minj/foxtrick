@@ -42,7 +42,8 @@ function initCoreModules()
 	// core functions needed for preferences, localization, etc.
 	var core = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
 	for (var i in core)
-		core[i].init();
+		if (typeof(core[i].init)=='function') 
+			core[i].init();
 }
 
 // see http://tools.ietf.org/html/rfc3986#section-3.5
