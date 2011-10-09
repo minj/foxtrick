@@ -62,11 +62,11 @@ Foxtrick.log = function() {
 		if (hasError && typeof(console.trace) == "function") 
 			console.trace();
 	}
-	if (typeof(opera) != "undefined"
+	else if (typeof(opera) != "undefined"
 		&& typeof(opera.postError) == "function") {
 		opera.postError(concated + "\n", args);
 	}
-	else if (typeof(dump) == "function") {
+	if (typeof(dump) == "function") {
 		var lines = concated.split(/\n/), concated = '';
 		lines = Foxtrick.map ( function(l){
 			concated += l.substr(0,500) + '\n';
