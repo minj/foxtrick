@@ -54,7 +54,7 @@ Foxtrick.util.module.register({
 								// Foxtrick.dump ('\n' + markunread[p].href + '\n');
 							}
 							if( divsInFooter[j].className == "float_right" ) {
-								divsInFooter[j].textContent += "\u00a0";
+								divsInFooter[j].appendChild(doc.createTextNode("\u00a0"));
 								divsInFooter[j].appendChild(markunread[p]);
 							}
 						}
