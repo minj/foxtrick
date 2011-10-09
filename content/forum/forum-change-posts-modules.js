@@ -15,11 +15,15 @@ Foxtrick.util.module.register({
 		var reformat = this.reformat;
 		//format view
 		if (Foxtrick.isPage("messageWritePost", doc)
-			|| Foxtrick.isPage("guestbook", doc)) {
+			|| Foxtrick.isPage("guestbook", doc)
+			|| Foxtrick.isPage("forumWritePost", doc)) {
 			try{
 				var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
 				var rep = new Array("<pre>$1</pre>", "");
-				var messages = doc.getElementsByClassName("feedItem");
+				if (Foxtrick.isPage("forumWritePost", doc))
+					var messages = doc.getElementsByClassName("message");
+				else
+					var messages = doc.getElementsByClassName("feedItem");
 				for (var i = 0; i < messages.length; i++){
 					var count_pre = Foxtrick.substr_count(messages[i].innerHTML, '[pre');
 					// Foxtrick.dump('FORMAT TEXT ' + count_pre + '\n');
