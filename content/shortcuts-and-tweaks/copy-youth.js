@@ -111,7 +111,7 @@ Foxtrick.util.module.register({
 					else
 						var url = "http://" + server + ".hattrick-youthclub.org/";
 						
-					if (openHTY) {
+					if (openHTY==true) {
 						Foxtrick.newTab(url);
 					}
 					else {
