@@ -124,6 +124,8 @@ Foxtrick.util.module.register({
 			// first determine lastMatchday
 			var latestMatch = 0, secondLatestMatch = 0;
 			for (var i=0; i<players.length; ++i) {
+				if (!players[i].id) 
+					continue;
 				var id = Number(players[i].id.match(/list_playerID(\d+)/i)[1]);
 				var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
 				var matchDay = Foxtrick.util.time.getDateFromText(player.lastMatchDate,'yyyy-mm-dd').getTime();
@@ -136,6 +138,8 @@ Foxtrick.util.module.register({
 				}
 			}
 			for (var i=0; i<players.length; ++i) {
+				if (!players[i].id) 
+					continue;
 				var id = Number(players[i].id.match(/list_playerID(\d+)/i)[1]);
 				var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
 				var matchDay = Foxtrick.util.time.getDateFromText(player.lastMatchDate,'yyyy-mm-dd').getTime();
