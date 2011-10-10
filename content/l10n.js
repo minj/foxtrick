@@ -62,6 +62,35 @@ var Foxtrickl10n = {
 
 	htLanguagesXml : {},
 
+	// this function returns level including decimal subs from text.
+	getLevelFromText : function(text) {
+		var level, sublevel=0;
+		var lang = FoxtrickPrefs.getString("htLanguage");
+		var xml = Foxtrickl10n.htLanguagesXml[lang];
+
+		var levels = xml.getElementsByTagName('level');
+		for (var i=0; i<levels.length; ++i) {
+			var leveltext = levels[i].getAttribute('text');
+			if (RegExp('^'+leveltext,'i').test(text)) {
+				level = Number(levels[i].getAttribute('value'));
+				break;
+			}
+		}
+		if (level===null)
+			return null;
+
+		var ratingSubLevels = xml.getElementsByTagName('sublevel');
+		for (var i=0; i<ratingSubLevels.length; ++i) {
+			var subleveltext = ratingSubLevels[i].getAttribute('text');
+			if (RegExp(subleveltext+'$','i').test(text)) {
+				sublevel = Number(ratingSubLevels[i].getAttribute('value'));
+				break;
+			}
+		}
+
+		return level + sublevel;
+	},
+
 	// this function returns level string of given level type and numeral value.
 	// type could be levels, for normal skills;
 	// agreeability, honesty, and aggressiveness, which are all obvious.

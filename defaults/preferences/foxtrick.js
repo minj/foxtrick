@@ -377,6 +377,7 @@ pref("extensions.foxtrick.prefs.module.ManagerButtons.GuestBook.enabled", false)
 pref("extensions.foxtrick.prefs.module.MarkAllAsRead.enabled", true);
 pref("extensions.foxtrick.prefs.module.MarkUnread.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchIncome.enabled", true);
+pref("extensions.foxtrick.prefs.module.MatchOrder.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchPlayerColouring.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchPlayerColouring.SeparateOwnPlayerColors.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchReportFormat.enabled", false);

@@ -1,0 +1,13 @@
+#fieldOverlay {
+	height: 370px;
+	position: relative;
+	top: 530px !important;
+}
+#nisse {
+	display: none;
+}
+
+.visible {
+	visibility: visible !important;
+}
+

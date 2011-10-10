@@ -69,6 +69,7 @@ matches/copy-ratings.js
 matches/htms-prediction.js
 matches/match-income.js
 matches/match-player-colouring.js
+matches/match-order.js
 matches/match-report-format.js
 matches/ratings.js
 matches/stars-counter.js
