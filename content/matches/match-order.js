@@ -18,7 +18,66 @@ Foxtrick.util.module.register({
 		var lastNumbers = new Array(7);
 		var showLevelNumbers = function(ev) {
 			var overlayRatings = fieldOverlay.getElementsByClassName('overlayRatings');
-			for (var i=0,count=0; i< overlayRatings.length;++i) {
+			
+			var copyRatings = function(ev) {
+				var text = '';
+				
+				var h2 = doc.getElementsByTagName('h2')[0];
+				var thisTeam = h2.getElementsByTagName('a')[0].textContent;
+				var bothTeams = h2.getElementsByTagName('a')[1].textContent.replace(thisTeam, '[b]' + thisTeam + '[/b]');
+				text += bothTeams+'\n';
+				
+				var matchid = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
+				text += '[matchid=' + matchid + ']'+'\n\n';
+				
+				// ratings
+				text += '[table][tr][th colspan=3 align=center]' + doc.getElementById('calcRatingsClone').value + '[/th][/tr]\n';
+				
+				for (var i=0,count=0; i< overlayRatings.length-1;++i) {
+					if (i==0 || i==6 || i==8) {
+						text += '[tr]'
+					}
+					if (i==6) 
+						text += '[td colspan=3 align=center]' 
+					else {
+						if (i%2==0) 
+							text += '[td align=center]' 
+					}
+					if (Foxtrick.hasClass(overlayRatings[i],'posLabel')) {
+						text += '[b]'+overlayRatings[i].textContent+'[/b]\n';
+					}
+					else {
+						text += overlayRatings[i].textContent + '\n';
+						text += doc.getElementById('ft-full-level' + count++).textContent +'[/td]';
+					}
+					if (i==5 || i==7 || i==13) {
+						text += '[/tr]'
+					}
+				}
+				text += '[/table]';
+				
+				// formation
+				var formations = Foxtrick.stripHTML(doc.getElementById('formations').innerHTML);
+				text += formations +'\n';
+				
+				// pic/mots
+				var speechLevel_select = doc.getElementById('speechLevel');
+				var speechLevel = speechLevel_select.options[speechLevel_select.selectedIndex].textContent;
+				//text += speechLevel_select.parentNode.textContent.replace(/\w+/g,'') + ' : ';
+				text +=speechLevel + '\n';
+				
+				// tactics
+				var teamtactics_select = doc.getElementById('teamtactics');
+				var tactics = teamtactics_select.options[teamtactics_select.selectedIndex].textContent;
+				//text += teamtactics_select.previousSibling.textContent.replace(/\w+/g,'') + ' : ';
+				text += tactics +' / ';
+				text += doc.getElementById('tacticLevelLabel').textContent+'\n';
+				
+				Foxtrick.copyStringToClipboard(text);
+				var note = Foxtrick.util.note.add(doc, doc.getElementById('copyRatingsButton').nextSibling, "ft-ratings-copy-note", Foxtrickl10n.getString("CopyRatings.copied"), null, true);
+			};
+			
+			for (var i=0,count=0; i< overlayRatings.length-1;++i) {
 				if (Foxtrick.hasClass(overlayRatings[i],'posLabel'))
 					continue;
 				var text = overlayRatings[i].textContent;
@@ -63,7 +122,16 @@ Foxtrick.util.module.register({
 				var calcRatingsButtonClone = doc.getElementById('calcRatings').cloneNode(true);
 				calcRatingsButtonClone.id = 'calcRatingsClone';
 				calcRatingsButtonClone.setAttribute('style','float: right; position: absolute; bottom: 0px; right: 100px;');
-				fieldOverlay.appendChild(calcRatingsButtonClone)
+				fieldOverlay.appendChild(calcRatingsButtonClone);
+				
+				var copyButton = doc.createElement('input');
+				copyButton.type='button';
+				copyButton.value = Foxtrickl10n.getString('copy');
+				copyButton.id = 'copyRatingsButton';
+				copyButton.setAttribute('style','float: left; position: absolute; bottom: 0px; left: 10px;');
+				fieldOverlay.appendChild(copyButton);
+				copyButton.addEventListener('click',copyRatings,false);
+				
 			}
 		};
 
