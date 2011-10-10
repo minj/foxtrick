@@ -22,31 +22,36 @@ Foxtrick.util.module.register({
 			var copyRatings = function(ev) {
 				var text = '';
 				
+				// the teams. highlight own team
 				var h2 = doc.getElementsByTagName('h2')[0];
 				var thisTeam = h2.getElementsByTagName('a')[0].textContent;
 				var bothTeams = h2.getElementsByTagName('a')[1].textContent.replace(thisTeam, '[b]' + thisTeam + '[/b]');
 				text += bothTeams+'\n';
 				
+				// match link
 				var matchid = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
 				text += '[matchid=' + matchid + ']'+'\n\n';
 				
 				// ratings
 				text += '[table][tr][th colspan=3 align=center]' + doc.getElementById('calcRatingsClone').value + '[/th][/tr]\n';
-				
 				for (var i=0,count=0; i< overlayRatings.length-1;++i) {
 					if (i==0 || i==6 || i==8) {
 						text += '[tr]'
 					}
 					if (i==6) 
+						// midfield
 						text += '[td colspan=3 align=center]' 
 					else {
 						if (i%2==0) 
 							text += '[td align=center]' 
 					}
+					
 					if (Foxtrick.hasClass(overlayRatings[i],'posLabel')) {
+						// sector label
 						text += '[b]'+overlayRatings[i].textContent+'[/b]\n';
 					}
 					else {
+						// sector rating
 						text += overlayRatings[i].textContent + '\n';
 						text += doc.getElementById('ft-full-level' + count++).textContent +'[/td]';
 					}
@@ -61,21 +66,21 @@ Foxtrick.util.module.register({
 				text += formations +'\n';
 				
 				// pic/mots
-				var speechLevel_select = doc.getElementById('speechLevel');
-				var speechLevel = speechLevel_select.options[speechLevel_select.selectedIndex].textContent;
 				var speechLevelDiv = doc.getElementsByClassName('speechLevel')[0].cloneNode(true);
 				text += speechLevelDiv.innerHTML.split('<select')[0].replace(/\s\s+/g,' ');
+				
+				var speechLevel_select = doc.getElementById('speechLevel');
+				var speechLevel = speechLevel_select.options[speechLevel_select.selectedIndex].textContent;
 				text += '[u]' + speechLevel + '[/u]\n';
 				
 				// tactics
-				var teamtactics_select = doc.getElementById('teamtactics');
-				var tactics = teamtactics_select.options[teamtactics_select.selectedIndex].textContent;
-				var tacticsDiv = doc.getElementsByClassName('speechLevel')[0].cloneNode(true);
-				
 				var teamtacticsDiv = doc.getElementById('tactics').cloneNode(true);
 				teamtacticsDiv.removeChild(teamtacticsDiv.getElementsByClassName('speechLevel')[0]);
 				teamtacticsDiv.removeChild(teamtacticsDiv.getElementsByTagName('select')[0]);
 				text += teamtacticsDiv.innerHTML.replace(/\<[^\>]+?\>/g,'').replace(/\s\s+/g,' ');
+				
+				var teamtactics_select = doc.getElementById('teamtactics');
+				var tactics = teamtactics_select.options[teamtactics_select.selectedIndex].textContent;
 				text += '[u]'+tactics +'[/u] / ';
 				text += doc.getElementById('tacticLevelLabel').textContent+'\n';
 				
