@@ -33,13 +33,15 @@ Foxtrick.Pages.Players = {
 		var playerList = [];
 
 		var getXml = function(doc, callback) {
-			if (!Foxtrick.Pages.Players.isSeniorPlayersPage(doc)) {
+			if (!Foxtrick.Pages.Players.isSeniorPlayersPage(doc) && !options.current_squad) {
 				// not the page we are looking for
 				callback(null);
 				return;
 			}
 			var args = [];
-			if (doc.location.href.match(/teamid=(\d)/i))
+			if (options && options.teamid)
+				args.push(["teamId", options.teamid]);
+			else if (doc.location.href.match(/teamid=(\d)/i))
 				args.push(["teamId", doc.location.href.match(/teamid=(\d+)/i)[1]]);
 			if (Foxtrick.Pages.Players.isNtPlayersPage(doc)) {
 				args.push(["file", "nationalplayers"]);
@@ -57,6 +59,9 @@ Foxtrick.Pages.Players = {
 						args.push(["actionType", "viewOldCoaches"]);
 				}
 			}
+			if (options && options.includeMatchInfo==true)
+				args.push(["includeMatchInfo","true"]);
+			 
 			Foxtrick.util.api.retrieve(doc, args,{ cache_lifetime:'session'}, callback);
 		};
 
@@ -118,6 +123,16 @@ Foxtrick.Pages.Players = {
 						player.speciality = (spec=='')?'':Foxtrickl10n.getShortSpecialityFromEnglish(spec);
 						player.currentSquad = true;
 						player.active = true;
+
+						var LastMatch = playerNode.getElementsByTagName("LastMatch")[0]
+						if (LastMatch) {
+							player.lastPlayedMinutes = Number(LastMatch.getElementsByTagName("PlayedMinutes")[0].textContent);
+							player.lastRatingEndOfGame = Number(LastMatch.getElementsByTagName("RatingEndOfGame")[0].textContent);
+							player.lastPositionCode = Number(LastMatch.getElementsByTagName("PositionCode")[0].textContent);
+							player.lastRating = Number(LastMatch.getElementsByTagName("Rating")[0].textContent);
+							player.lastMatchId = Number(LastMatch.getElementsByTagName("MatchId")[0].textContent);
+							player.lastMatchDate = LastMatch.getElementsByTagName("Date")[0].textContent
+						}
 					}
 				}
 
@@ -462,6 +477,7 @@ Foxtrick.Pages.Players = {
 					var position = matchLink.parentNode.nextSibling.nextSibling.innerHTML.match(/\((.+)\)/)[1];
 					player.lastPosition = position;
 				}
+
 				if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc) && ! Foxtrick.Pages.Players.isOldiesPage(doc)) {
 					player.transferCompare = doc.createElement('a');
 					player.transferCompare.textContent = Foxtrickl10n.getString('TransferCompare.abbr');

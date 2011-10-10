@@ -11,3 +11,7 @@
 	visibility: visible !important;
 }
 
+.playedLast {
+	border-right : 5px solid #48f;
+	padding: 3px 9px 3px 2px !important;
+}
