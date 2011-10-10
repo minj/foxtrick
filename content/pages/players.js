@@ -33,7 +33,7 @@ Foxtrick.Pages.Players = {
 		var playerList = [];
 
 		var getXml = function(doc, callback) {
-			if (!Foxtrick.Pages.Players.isSeniorPlayersPage(doc) && !options.current_squad) {
+			if (!Foxtrick.Pages.Players.isSeniorPlayersPage(doc) && !(options && options.current_squad)) {
 				// not the page we are looking for
 				callback(null);
 				return;
