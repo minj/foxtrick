@@ -96,7 +96,7 @@ Foxtrick.util.module.register({
 			Foxtrick.addImage(doc, linkNode, { 
 				alt: link.shorttitle || link.title, 
 				title: link.title, 
-				src: Foxtrick.ResourcePath + link.img,
+				src: Foxtrick.InternalPath + link.img,
 				teamid: teamid,
 				teamname: teamname
 			});
