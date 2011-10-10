@@ -441,7 +441,7 @@ Foxtrick.util.module.register({
 
 			if (do_hide_old_time) {
 				if (header_right.textContent.search(/ \d{1,4}.*?\d{1,2}.*?\d{1,4}.*? \d+:\d+/gi)!=-1)
-					header_right.textContent = header_right.textContent.replace(/ (\d{1,4}.*?\d{1,2}.*?\d{1,4}.*?)( \d+:\d+)/gi,"<span title='$2'>$1</span>");
+					header_right.innerHTML = header_right.innerHTML.replace(/ (\d{1,4}.*?\d{1,2}.*?\d{1,4}.*?)( \d+:\d+)/gi,"<span title='$2'>$1</span>");
 			}
 
 			// redir to team ------------------------------------------
