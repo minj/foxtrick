@@ -81,7 +81,7 @@ var Foxtrickl10n = {
 
 		var ratingSubLevels = xml.getElementsByTagName('sublevel');
 		for (var i=0; i<ratingSubLevels.length; ++i) {
-			var subleveltext = ratingSubLevels[i].getAttribute('text');
+			var subleveltext = ratingSubLevels[i].getAttribute('text').replace('(','\\(').replace(')','\\)');
 			if (RegExp(subleveltext+'$','i').test(text)) {
 				sublevel = Number(ratingSubLevels[i].getAttribute('value'));
 				break;
