@@ -6,7 +6,7 @@
  */
 
 Foxtrick.util.module.register({
-	MODULE_NAME : "MatchOrder",
+	MODULE_NAME : "MatchOrderInterface",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['matchOrder'],
 	CSS : Foxtrick.InternalPath + "resources/css/match-order.css",
