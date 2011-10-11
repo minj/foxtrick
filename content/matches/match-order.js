@@ -146,35 +146,7 @@ Foxtrick.util.module.register({
 			}
 		};
 
-		// opera doesn't have domtreemodified and webkit not domattrchanged. so we use for all
-		var listenToMutationEvent = function(target, type, listener, useCapture) {
-			if ( type!='DOMNodeInserted' && type!='DOMNodeRemoved' && type!= 'DOMCharacterDataModified' ) {
-				Foxtrick.log('event type not supported by all browser');
-				return;
-			}
-
-			var changeScheduled = false;
-			var waitForChanges = function (ev) {
-				// if we already have been called return and do nothing
-				if (changeScheduled) 
-					return;
-				changeScheduled = true;
-				// use setTimeout append our actual handler to the list of handlers 
-				// which are currently scheduled to be executed
-				window.setTimeout ( function() {
-					// all changes have past and all changehandlers called. no we can call our actual handler
-					changeScheduled = false;
-					target.removeEventListener(type, waitForChanges, useCapture);
-					listener(ev);
-					target.addEventListener(type, waitForChanges, useCapture);
-				}, 0)
-			};
-			// attach an alternative handler which could get executed several times for multiple changes at once. 
-			// since our handler should execute only once, we use a different handler to call ours when all changes have past
-			target.addEventListener(type, waitForChanges, useCapture);
-		};
-
-		listenToMutationEvent(fieldOverlay, "DOMNodeInserted", showLevelNumbers, false);
+		Foxtrick.listenToMutationEvent(fieldOverlay, "DOMNodeInserted", showLevelNumbers, false);
 
 		// add extra info
 		var hasPlayerInfo = false;
@@ -182,11 +154,11 @@ Foxtrick.util.module.register({
 		var hasInterface = false;
 		var teamid = Foxtrick.util.id.findTeamId(doc.getElementById('mainWrapper'));
 		
+		// load ahead players and then wai for interface loaded
 		Foxtrick.Pages.Players.getPlayerList(doc, function(playerInfo) {
 			if (!playerInfo) {
 				Foxtrick.log("ExtraPlayerInfo: unable to retrieve player list.");
 			}
-			Foxtrick.log('hasPlayerInfo');
 			hasPlayerInfo = true;
 			playerList = playerInfo;
 			if (hasInterface)
@@ -194,7 +166,6 @@ Foxtrick.util.module.register({
 		}, {teamid:teamid, current_squad:true, includeMatchInfo:true} );
 		
 		var waitForInterface = function(ev) {
-			Foxtrick.log('hasInterface');
 			hasInterface = true;
 			if (hasPlayerInfo)
 				showPlayerInfo();
@@ -239,7 +210,6 @@ Foxtrick.util.module.register({
 			}
 		};
 
-		listenToMutationEvent(list, "DOMNodeInserted", waitForInterface, false);
-		
+		Foxtrick.listenToMutationEvent(list, "DOMNodeInserted", waitForInterface, false);
 	},
 });

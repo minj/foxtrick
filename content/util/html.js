@@ -64,6 +64,36 @@ Foxtrick.listen = function(target, type, listener, useCapture) {
 	);
 };
 
+// opera doesn't have domtreemodified and webkit not domattrchanged. so we use those for all
+// there would be a workaround for domattrchanged if realy needed (keep a copy of the node attribs and check for changes every second) 
+Foxtrick.listenToMutationEvent = function(target, type, listener, useCapture) {
+	if ( type!='DOMNodeInserted' && type!='DOMNodeRemoved' && type!= 'DOMCharacterDataModified' ) {
+		Foxtrick.log('event type not supported by all browser');
+		return;
+	}
+
+	var changeScheduled = false;
+	var waitForChanges = function (ev) {
+		// if we already have been called return and do nothing
+		if (changeScheduled) 
+			return;
+		changeScheduled = true;
+		// use setTimeout append our actual handler to the list of handlers 
+		// which are currently scheduled to be executed
+		window.setTimeout ( function() {
+			// all changes have past and all changehandlers called. no we can call our actual handler
+			changeScheduled = false;
+			target.removeEventListener(type, waitForChanges, useCapture);
+			listener(ev);
+			target.addEventListener(type, waitForChanges, useCapture);
+		}, 0)
+	};
+	// attach an alternative handler which could get executed several times for multiple changes at once. 
+	// since our handler should execute only once, we use a different handler to call ours when all changes have past
+	target.addEventListener(type, waitForChanges, useCapture);
+};
+
+
 /* Foxtrick.addBoxToSidebar
  * @desc add a box to the sidebar, either on the right or on the left
  * @author Ryan Li
