@@ -1,5 +1,5 @@
 #fieldOverlay {
-	height: 370px;
+	height: 420px;
 	position: relative;
 	top: 530px !important;
 }
@@ -10,4 +10,8 @@
 
 .visible {
 	visibility: visible !important;
+}
+
+#fieldOverlay input {
+	bottom: 40px !important;
 }
