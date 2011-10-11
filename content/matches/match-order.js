@@ -156,9 +156,10 @@ Foxtrick.util.module.register({
 		
 		// load ahead players and then wai for interface loaded
 		Foxtrick.Pages.Players.getPlayerList(doc, function(playerInfo) {
-			if (!playerInfo) {
+			if (!playerInfo || playerInfo.length==0) {
 				Foxtrick.log("ExtraPlayerInfo: unable to retrieve player list.");
-			}
+				return;
+			} 
 			hasPlayerInfo = true;
 			playerList = playerInfo;
 			if (hasInterface)
