@@ -25,7 +25,7 @@ Foxtrick.util.module.register({
 				var text = '';
 				
 				// the teams. highlight own team
-				var h2 = doc.getElementsByTagName('h2')[0];
+				var h2 = doc.getElementById('mainWrapper').getElementsByTagName('h2')[0];
 				var thisTeam = h2.getElementsByTagName('a')[0].textContent;
 				var bothTeams = h2.getElementsByTagName('a')[1].textContent.replace(thisTeam, '[b]' + thisTeam + '[/b]');
 				text += bothTeams+'\n';
@@ -87,7 +87,7 @@ Foxtrick.util.module.register({
 				text += doc.getElementById('tacticLevelLabel').textContent+'\n';
 				
 				Foxtrick.copyStringToClipboard(text);
-				var note = Foxtrick.util.note.add(doc, doc.getElementById('mainBody'), "ft-ratings-copy-note", Foxtrickl10n.getString("CopyRatings.copied"), null, true);
+				var note = Foxtrick.util.note.add(doc, doc.getElementById('mainBody').firstChild, "ft-ratings-copy-note", Foxtrickl10n.getString("CopyRatings.copied"), null, true);
 			};
 			
 			for (var i=0,count=0; i< overlayRatings.length-1;++i) {
