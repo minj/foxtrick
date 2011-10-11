@@ -11,7 +11,6 @@
 <notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
 	<note version="nightly" localized-version="Версия для разработчиков">
 		<item>Пожалуйста, посмотрите <xhtml:a href="http://code.google.com/p/foxtrick/source/list">историю изменений</xhtml:a> на сайте Google Code для деталей.</item>
-		<item>Вы можете отключить показ этого сообщения после каждого обновления, запретив "Показать информацию о выпуске после обновления FoxTrick" на вкладке <xhtml:a href="#tab=main">Главные</xhtml:a> настроек.</item>
 	</note>
 
 	<note version="0.8">
