@@ -186,6 +186,7 @@ Foxtrick.util.module.register({
 			if (!playerInfo) {
 				Foxtrick.log("ExtraPlayerInfo: unable to retrieve player list.");
 			}
+			Foxtrick.log('hasPlayerInfo');
 			hasPlayerInfo = true;
 			playerList = playerInfo;
 			if (hasInterface)
@@ -193,6 +194,7 @@ Foxtrick.util.module.register({
 		}, {teamid:teamid, current_squad:true, includeMatchInfo:true} );
 		
 		var waitForInterface = function(ev) {
+			Foxtrick.log('hasInterface');
 			hasInterface = true;
 			if (hasPlayerInfo)
 				showPlayerInfo();
@@ -201,21 +203,29 @@ Foxtrick.util.module.register({
 		var showPlayerInfo = function() {
 			var players = doc.getElementById('players').getElementsByClassName('player');
 			// first determine lastMatchday
-			var latestMatch = 0, secondLatestMatch = 0;
+			var matchdays = [], matchdays_count = {}, latestMatch = 0, secondLatestMatch = 0;
 			for (var i=0; i<players.length; ++i) {
 				if (!players[i].id) 
 					continue;
 				var id = Number(players[i].id.match(/list_playerID(\d+)/i)[1]);
 				var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
-				var matchDay = Foxtrick.util.time.getDateFromText(player.lastMatchDate,'yyyy-mm-dd').getTime();
-				if (matchDay > latestMatch) {
-					secondLatestMatch = latestMatch;
-					latestMatch = matchDay;
-				}
-				else if (matchDay > secondLatestMatch && matchDay < latestMatch) {
-					secondLatestMatch = matchDay;
-				}
+				var thisMatchday = Foxtrick.util.time.getDateFromText(player.lastMatchDate,'yyyy-mm-dd').getTime();
+				matchdays.push ( thisMatchday );
+				if (!matchdays_count[thisMatchday]) 
+					matchdays_count[thisMatchday] = 1;
+				else
+					++matchdays_count[thisMatchday];
 			}
+			matchdays.sort();
+			latestMatch = matchdays[matchdays.length-1];
+			matchdays =  Foxtrick.filter(function(n){
+				// delete all older than a week and all with too few players (might be transfers)
+				// the '6' is arbitrary
+				return (n > latestMatch-7*24*60*60*1000 && matchdays_count[n] > 6);
+			}, matchdays);
+			latestMatch = matchdays[matchdays.length-1];
+			secondLatestMatch =  matchdays[matchdays.length-1 - matchdays_count[latestMatch] ];
+
 			for (var i=0; i<players.length; ++i) {
 				if (!players[i].id) 
 					continue;
