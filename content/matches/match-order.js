@@ -9,7 +9,9 @@ Foxtrick.util.module.register({
 	MODULE_NAME : "MatchOrderInterface",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['matchOrder'],
+	OPTIONS : ["DisplayRatingsBellow"],
 	CSS : Foxtrick.InternalPath + "resources/css/match-order.css",
+	OPTIONS_CSS : [Foxtrick.InternalPath + "resources/css/match-order-display-ratings-bellow.css"],
 
 	run : function(doc) {
 		var fieldOverlay = doc.getElementById('fieldOverlay');
@@ -33,7 +35,7 @@ Foxtrick.util.module.register({
 				text += '[matchid=' + matchid + ']'+'\n\n';
 				
 				// ratings
-				text += '[table][tr][th colspan=3 align=center]' + doc.getElementById('calcRatingsClone').value + '[/th][/tr]\n';
+				text += '[table][tr][th colspan=3 align=center]' + doc.getElementById('calcRatings').value + '[/th][/tr]\n';
 				for (var i=0,count=0; i< overlayRatings.length-1;++i) {
 					if (i==0 || i==6 || i==8) {
 						text += '[tr]'
@@ -85,7 +87,7 @@ Foxtrick.util.module.register({
 				text += doc.getElementById('tacticLevelLabel').textContent+'\n';
 				
 				Foxtrick.copyStringToClipboard(text);
-				var note = Foxtrick.util.note.add(doc, doc.getElementById('copyRatingsButton').nextSibling, "ft-ratings-copy-note", Foxtrickl10n.getString("CopyRatings.copied"), null, true);
+				var note = Foxtrick.util.note.add(doc, doc.getElementById('mainBody'), "ft-ratings-copy-note", Foxtrickl10n.getString("CopyRatings.copied"), null, true);
 			};
 			
 			for (var i=0,count=0; i< overlayRatings.length-1;++i) {
@@ -119,21 +121,23 @@ Foxtrick.util.module.register({
 			}
 			
 			// open first time
-			if (!doc.getElementById('calcRatingsClone')) {
+			if (!doc.getElementById('copyRatingsButton')) {
 				
-				Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath+"resources/js/matchOrder.js");
-				
-				var hideOverlay = function(ev) {
-					Foxtrick.removeClass(fieldOverlay,'visible');
-				};
-				var closeOverlayButton = doc.getElementById('closeOverlay');
-				closeOverlayButton.addEventListener('click',hideOverlay,false);
-				Foxtrick.addClass(fieldOverlay,'visible');
-				
-				var calcRatingsButtonClone = doc.getElementById('calcRatings').cloneNode(true);
-				calcRatingsButtonClone.id = 'calcRatingsClone';
-				calcRatingsButtonClone.setAttribute('style','float: right; position: absolute; bottom: 0px; right: 100px;');
-				fieldOverlay.appendChild(calcRatingsButtonClone);
+				if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface", "DisplayRatingsBellow")) {
+					Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath+"resources/js/matchOrder.js");
+					
+					var hideOverlay = function(ev) {
+						Foxtrick.removeClass(fieldOverlay,'visible');
+					};
+					var closeOverlayButton = doc.getElementById('closeOverlay');
+					closeOverlayButton.addEventListener('click',hideOverlay,false);
+					Foxtrick.addClass(fieldOverlay,'visible');
+					
+					var calcRatingsButtonClone = doc.getElementById('calcRatings').cloneNode(true);
+					calcRatingsButtonClone.id = 'calcRatingsClone';
+					calcRatingsButtonClone.setAttribute('style','float: right; position: absolute; bottom: 0px; right: 100px;');
+					fieldOverlay.appendChild(calcRatingsButtonClone);
+				}
 				
 				var copyButton = doc.createElement('input');
 				copyButton.type='button';
