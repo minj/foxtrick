@@ -104,11 +104,14 @@ Foxtrick.util.module.register({
 						var diff = fullLevel-lastNumbers[count];
 						var span = doc.createElement('span');
 						span.textContent = ' ['+diff.toFixed(2)+']';
-						if (diff < 0) 
+						if (diff < 0) {
 							span.setAttribute('style','color:red;');
-						else if (diff > 0) 
+							div.appendChild(span);
+						}
+						else if (diff > 0) {
 							span.setAttribute('style','color:blue;');
-						div.appendChild(span);
+							div.appendChild(span);
+						}
 					}
 					else {
 						var div = doc.createElement('div');
