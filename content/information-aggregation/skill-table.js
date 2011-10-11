@@ -73,35 +73,26 @@ Foxtrick.util.module.register({
 				var allPlayerInfo, pid;
 				var i, j;
 				// first determine lastMatchday
-				var matchdays = [], matchdays_count = {}, latestMatch = 0, secondLatestMatch = 0;
 				if (fullType.type != "transfer"
 					&& fullType.subtype != "nt"
 					&& fullType.subtype != "oldiesCoach") {
-					allPlayerInfo = doc.getElementsByClassName("playerInfo");
-					for (i = 0; i < allPlayerInfo.length; ++i) {
-						pid = Foxtrick.Pages.Players.getPlayerId(allPlayerInfo[i]);
-						var as = allPlayerInfo[i].getElementsByTagName("a");
-						
+					
+					var getLastMatchDates = function (PlayerInfo) {
+						pid = Foxtrick.Pages.Players.getPlayerId(PlayerInfo);
+						var as = PlayerInfo.getElementsByTagName("a");
 						for (j = 0; j < as.length; ++j) {
 							if (as[j].href.search(/matchid/i) != -1) {
-								var thisMatchday = Foxtrick.util.time.getDateFromText(as[j].textContent).getTime();
-								matchdays.push ( thisMatchday );
-								if (!matchdays_count[thisMatchday]) 
-									matchdays_count[thisMatchday] = 1;
-								else
-									++matchdays_count[thisMatchday];
+								return Foxtrick.util.time.getDateFromText(as[j].textContent).getTime();
 							}
 						}
-					}
-					matchdays.sort();
-					latestMatch = matchdays[matchdays.length-1];
-					matchdays =  Foxtrick.filter(function(n){
-						// delete all older than a week and all with too few players (might be transfers)
-						// the '6' is arbitrary
-						return (n > latestMatch-7*24*60*60*1000 && matchdays_count[n] > 6);
-					}, matchdays);
-					latestMatch = matchdays[matchdays.length-1];
-					secondLatestMatch =  matchdays[matchdays.length-1 - matchdays_count[latestMatch] ];
+						return 0;
+					};
+					
+					allPlayerInfo = doc.getElementsByClassName("playerInfo");
+					var dates = Foxtrick.Pages.Players.getLastMatchDates(allPlayerInfo, getLastMatchDates);
+					
+					var lastMatchDate = dates.lastMatchDate;
+					var secondLastMatchDate = dates.secondLastMatchDate;
 				}
 
 				if (fullType.type == "transfer") {
@@ -291,10 +282,10 @@ Foxtrick.util.module.register({
 						var matchDay = Foxtrick.util.time.getDateFromText(last.textContent).getTime();
 						cell.appendChild(last);
 						cell.setAttribute("index", matchDay);
-						if (matchDay == latestMatch) {
+						if (matchDay == lastMatchDate) {
 							Foxtrick.addClass(cell, "latest-match");
 						}
-						else if (matchDay == secondLatestMatch) {
+						else if (matchDay == secondLastMatchDate) {
 							Foxtrick.addClass(cell, "second-latest-match");
 						}
 					}

@@ -586,5 +586,32 @@ Foxtrick.Pages.Players = {
 			}
 		}
 		return false;
+	},
+	
+	// returns last and second last match dates from a list
+	// assumes that if there are less then 7 players at a match date that is was a transfer and disregards those
+	// @param players: array which contains matchdates somewhere in
+	// @param getLastMatchDates: function which extract the matchdate from an array element
+	getLastMatchDates : function(players, getLastMatchDates) {
+			var matchdays = [], matchdays_count = {}, lastMatch = 0, secondLastMatch = 0;
+			for (var i=0; i<players.length; ++i) {
+				var thisMatchday = getLastMatchDates(players[i]);
+				matchdays.push ( thisMatchday );
+				if (!matchdays_count[thisMatchday]) 
+					matchdays_count[thisMatchday] = 1;
+				else
+					++matchdays_count[thisMatchday];
+			}
+			matchdays.sort();
+			lastMatch = matchdays[matchdays.length-1];
+			matchdays =  Foxtrick.filter(function(n){
+				// delete all older than a week and all with too few players (might be transfers)
+				// the '6' is arbitrary
+				return (n > lastMatch-7*24*60*60*1000 && matchdays_count[n] > 6);
+			}, matchdays);
+			lastMatch = matchdays[matchdays.length-1];
+			secondLastMatch =  matchdays[matchdays.length-1 - matchdays_count[lastMatch] ];
+			
+			return {lastMatchDate:lastMatch, secondLastMatchDate:secondLastMatch}
 	}
 };
