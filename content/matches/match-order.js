@@ -137,7 +137,7 @@ Foxtrick.util.module.register({
 				
 				var copyButton = doc.createElement('input');
 				copyButton.type='button';
-				copyButton.value = Foxtrickl10n.getString('copy');
+				copyButton.value = Foxtrickl10n.getString('Copy');
 				copyButton.id = 'copyRatingsButton';
 				copyButton.setAttribute('style','float: left; position: absolute; bottom: 0px; left: 10px;');
 				fieldOverlay.appendChild(copyButton);
