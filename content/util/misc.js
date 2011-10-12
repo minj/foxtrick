@@ -572,6 +572,12 @@ Foxtrick.collect_module_css = function() {
 						Foxtrick.cssFiles.push(module.OPTIONS_CSS[i]);
 				}
 			}
+			// module options CSS
+			if (module.RADIO_OPTIONS 
+				&& module.RADIO_OPTIONS_CSS
+				&& module.RADIO_OPTIONS_CSS[ FoxtrickPrefs.getInt("module."+module.MODULE_NAME+".value") ]) {
+					Foxtrick.cssFiles.push(module.RADIO_OPTIONS_CSS[ FoxtrickPrefs.getInt("module."+module.MODULE_NAME+".value") ]);
+			}
 		}
 	};
 	// sort modules, place SkinPlugin at last

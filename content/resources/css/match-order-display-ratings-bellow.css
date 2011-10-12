@@ -1,5 +1,5 @@
 #fieldOverlay {
-	height: 420px;
+	height: 380px;
 	position: relative;
 	top: 530px !important;
 }
@@ -13,5 +13,32 @@
 }
 
 #fieldOverlay input {
-	bottom: 40px !important;
+	bottom: 52px !important;
 }
+
+.ratingInnerBox {
+	font-size: inherit !important;
+	font-weight: inherit !important;
+}
+
+.overlaySector {
+	height : auto !important;
+}
+
+.overlayMidfield {
+	top: 98px !important;
+}
+
+.ratingInnerBox {
+	margin-top: 5px !important;
+	margin-bottom: 5px !important;
+}
+
+#tacticLevelLabel {
+	top: 273px !important;
+}
+
+.overlayRightAttack, .overlayMidAttack, .overlayLeftAttack {
+	top: 184px !important;
+}
+

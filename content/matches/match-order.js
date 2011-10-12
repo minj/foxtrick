@@ -9,9 +9,11 @@ Foxtrick.util.module.register({
 	MODULE_NAME : "MatchOrderInterface",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['matchOrder'],
-	OPTIONS : ["DisplayRatingsBellow"],
+	RADIO_OPTIONS : ["DisplayRatingsOverlay", "DisplayRatingsBellow", "DisplayRatingsRight"],
 	CSS : Foxtrick.InternalPath + "resources/css/match-order.css",
-	OPTIONS_CSS : [Foxtrick.InternalPath + "resources/css/match-order-display-ratings-bellow.css"],
+	RADIO_OPTIONS_CSS : [ "",
+					Foxtrick.InternalPath + "resources/css/match-order-display-ratings-bellow.css",
+					Foxtrick.InternalPath + "resources/css/match-order-display-ratings-right.css"],
 
 	run : function(doc) {
 		var fieldOverlay = doc.getElementById('fieldOverlay');
@@ -125,13 +127,18 @@ Foxtrick.util.module.register({
 			
 			// open first time
 			if (!doc.getElementById('copyRatingsButton')) {
-				
-				if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface", "DisplayRatingsBellow")) {
+				var hideOverlay = function(ev) {
+					Foxtrick.removeClass(fieldOverlay,'visible');
+				};
+					Foxtrick.log(FoxtrickPrefs.getInt("module.MatchOrderInterface.value"))
+				if (FoxtrickPrefs.getInt("module.MatchOrderInterface.value") == 2) {
+					var closeOverlayButton = doc.getElementById('closeOverlay');
+					closeOverlayButton.addEventListener('click',hideOverlay,false);
+					Foxtrick.addClass(fieldOverlay,'visible');
+				}
+				else if (FoxtrickPrefs.getInt("module.MatchOrderInterface.value") == 1) {
 					Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath+"resources/js/matchOrder.js");
 					
-					var hideOverlay = function(ev) {
-						Foxtrick.removeClass(fieldOverlay,'visible');
-					};
 					var closeOverlayButton = doc.getElementById('closeOverlay');
 					closeOverlayButton.addEventListener('click',hideOverlay,false);
 					Foxtrick.addClass(fieldOverlay,'visible');

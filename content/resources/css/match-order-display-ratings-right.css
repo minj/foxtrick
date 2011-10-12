@@ -1,0 +1,10 @@
+#fieldOverlay {
+	height: 520px;
+	position: relative;
+	left: 750px !important;
+}
+
+.visible {
+	visibility: visible !important;
+}
+
