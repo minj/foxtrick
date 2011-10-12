@@ -124,14 +124,14 @@ Foxtrick.Pages.Players = {
 						player.currentSquad = true;
 						player.active = true;
 
-						var LastMatch = playerNode.getElementsByTagName("LastMatch")[0]
-						if (LastMatch) {
+						var LastMatch = playerNode.getElementsByTagName("LastMatch")[0];
+						if ( LastMatch && LastMatch.getElementsByTagName("Date")[0] ) {
 							player.lastPlayedMinutes = Number(LastMatch.getElementsByTagName("PlayedMinutes")[0].textContent);
 							player.lastRatingEndOfGame = Number(LastMatch.getElementsByTagName("RatingEndOfGame")[0].textContent);
 							player.lastPositionCode = Number(LastMatch.getElementsByTagName("PositionCode")[0].textContent);
 							player.lastRating = Number(LastMatch.getElementsByTagName("Rating")[0].textContent);
 							player.lastMatchId = Number(LastMatch.getElementsByTagName("MatchId")[0].textContent);
-							player.lastMatchDate = LastMatch.getElementsByTagName("Date")[0].textContent
+							player.lastMatchDate = LastMatch.getElementsByTagName("Date")[0].textContent;
 						}
 					}
 				}

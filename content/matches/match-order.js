@@ -195,7 +195,10 @@ Foxtrick.util.module.register({
 					return 0;
 				var id = Number(playerNode.id.match(/list_playerID(\d+)/i)[1]);
 				var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
-				return Foxtrick.util.time.getDateFromText(player.lastMatchDate,'yyyy-mm-dd').getTime();
+				if (player.lastMatchDate)
+					return Foxtrick.util.time.getDateFromText(player.lastMatchDate,'yyyy-mm-dd').getTime();
+				else
+					return 0;
 			};
 			
 			var dates = Foxtrick.Pages.Players.getLastMatchDates (players, getLastMatchDates);
