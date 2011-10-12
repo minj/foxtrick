@@ -243,7 +243,19 @@ Foxtrick.util.module.register({
 					}
 				}
 			}
-		};
+			
+			if (FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_number")) {
+				var percentImage = doc.getElementById('details').getElementsByClassName('percentImage');
+				for (var i=0; i<percentImage.length; ++i) {
+					var td = percentImage[i].parentNode;
+					if (Foxtrick.hasClass(td, 'skill_number'))
+						continue;
+					Foxtrick.addClass(td, 'skill_number');
+					td.appendChild(doc.createTextNode( ' ('+percentImage[i].title.match(/\d+/)+')' ));
+				}
+			}
+		}
+		
 
 		Foxtrick.listenToMutationEvent(orders, "DOMNodeInserted", waitForInterface, false);
 	},
