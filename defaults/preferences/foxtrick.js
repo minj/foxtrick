@@ -380,6 +380,7 @@ pref("extensions.foxtrick.prefs.module.MatchIncome.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.DisplayRatingsBellow.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.value", 2);
+pref("extensions.foxtrick.prefs.module.MatchOrderInterface.ShowSpecialties.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchPlayerColouring.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchPlayerColouring.SeparateOwnPlayerColors.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchReportFormat.enabled", false);

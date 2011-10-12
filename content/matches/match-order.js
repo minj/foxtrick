@@ -10,10 +10,12 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['matchOrder'],
 	RADIO_OPTIONS : ["DisplayRatingsOverlay", "DisplayRatingsBellow", "DisplayRatingsRight"],
+	OPTIONS : ["ShowSpecialties"],
 	CSS : Foxtrick.InternalPath + "resources/css/match-order.css",
 	RADIO_OPTIONS_CSS : [ "",
 					Foxtrick.InternalPath + "resources/css/match-order-display-ratings-bellow.css",
-					Foxtrick.InternalPath + "resources/css/match-order-display-ratings-right.css"],
+					Foxtrick.InternalPath + "resources/css/match-order-display-ratings-right.css" ],
+	OPTIONS_CSS : [ Foxtrick.InternalPath + "resources/css/match-order-show-specialties.css" ],
 
 	run : function(doc) {
 		var fieldOverlay = doc.getElementById('fieldOverlay');
@@ -214,6 +216,29 @@ Foxtrick.util.module.register({
 					Foxtrick.addClass( players[i],'playedLast'); 
 				else if (matchDay == dates.secondLastMatchDate)
 					Foxtrick.addClass( players[i],'playedSecondLast'); 
+				else 
+					Foxtrick.addClass( players[i],'playedOther'); 
+			}
+			
+			if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'ShowSpecialties')) {
+				var cards_health = doc.getElementsByClassName('cards_health');
+				for (var i=0; i<cards_health.length; ++i) {
+					var playerNode = cards_health[i].parentNode;
+					if (!playerNode.id) 
+						continue;
+					var id = Number(playerNode.id.match(/list_playerID(\d+)/i)[1]);
+					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
+					if (player.specialityNumber != 0) {
+						var title = Foxtrickl10n.getSpecialityFromNumber(player.specialityNumber);
+						var alt = Foxtrickl10n.getShortSpeciality(title);
+						Foxtrick.addImage(doc, cards_health[i], { 
+							alt: alt, 
+							title: title, 
+							src: Foxtrick.InternalPath + 'resources/img/spec'+player.specialityNumber+'.png',
+							style: 'float:right; margin: 0 2px;'
+						});
+					}
+				}
 			}
 		};
 

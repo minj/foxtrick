@@ -197,6 +197,7 @@ var Foxtrickl10n = {
 		}
 		return shortSpec || direct();
 	},
+	
 	getEnglishSpeciality: function(spec) {
 		var engSpec = spec;
 		try {
@@ -208,6 +209,20 @@ var Foxtrickl10n = {
 			Foxtrick.log(e);
 		}
 		return engSpec;
+	},
+	
+	getSpecialityFromNumber: function(number) {
+		var specs = {0:'', 1:'Technical', 2:'Quick', 3:'Powerful', 4:'Unpredictable', 5:'Head', 6:'Regainer'};
+		var spec = specs[number];
+		try {
+			var lang = FoxtrickPrefs.getString("htLanguage");
+			var path = "language/specialties/specialty[@type=\"" + spec + "\"]";
+			spec = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "value");
+		}
+		catch (e) {
+			Foxtrick.log(e);
+		}
+		return spec;
 	}
 };
 

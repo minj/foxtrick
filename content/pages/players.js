@@ -119,7 +119,8 @@ Foxtrick.Pages.Players = {
 						player.stamina = Number(playerNode.getElementsByTagName("StaminaSkill")[0].textContent);
 
 						var specs={0:'' ,1:'Technical',2:'Quick',3:'Powerful',4:'Unpredictable',5:'Head',6:'Regainer'};
-						var spec = specs[Number(playerNode.getElementsByTagName("Specialty")[0].textContent)];
+						player.specialityNumber = Number(playerNode.getElementsByTagName("Specialty")[0].textContent);
+						var spec = specs[player.specialityNumber];
 						player.speciality = (spec=='')?'':Foxtrickl10n.getShortSpecialityFromEnglish(spec);
 						player.currentSquad = true;
 						player.active = true;

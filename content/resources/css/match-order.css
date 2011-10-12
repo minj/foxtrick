@@ -1,4 +1,25 @@
+/*played last highlighting*/
 .playedLast {
-	border-right : 5px solid #48f;
+	border-right : 4px solid #48f;
+	padding: 3px 25px 3px 2px !important;
+}
+
+.playedOther, .playedSecondLast {
+	border-right : 4px solid transparent;
 	padding: 3px 9px 3px 2px !important;
+}
+
+#orders #players .player .cards_health {
+	right: 1px !important;
+}
+
+
+/* interface size */
+#order_tabs {
+	margin-left: -10px;
+}
+
+#list {
+	margin-right: -10px;
+	width: 150px;
 }
