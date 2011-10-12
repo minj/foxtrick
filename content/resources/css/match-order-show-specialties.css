@@ -26,3 +26,11 @@
 .p19, .p20 {
 	top: 425px !important;
 }
+
+#orders .substitution {
+	min-height: 100px !important;
+}
+
+.substitution .advanced {
+	margin: 40px 0 0 2px !important;
+}

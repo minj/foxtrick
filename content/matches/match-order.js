@@ -19,7 +19,7 @@ Foxtrick.util.module.register({
 
 	run : function(doc) {
 		var fieldOverlay = doc.getElementById('fieldOverlay');
-		var list = doc.getElementById('list');
+		var orders = doc.getElementById('orders');
 		
 		var lastNumbers = new Array(7);
 		var showLevelNumbers = function(ev) {
@@ -224,11 +224,14 @@ Foxtrick.util.module.register({
 				var cards_health = doc.getElementsByClassName('cards_health');
 				for (var i=0; i<cards_health.length; ++i) {
 					var playerNode = cards_health[i].parentNode;
-					if (!playerNode.id) 
+					if (!playerNode.id || Foxtrick.hasClass(cards_health[i], 'specialty')) 
 						continue;
+					
+					
 					var id = Number(playerNode.id.match(/list_playerID(\d+)/i)[1]);
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
 					if (player.specialityNumber != 0) {
+						Foxtrick.addClass(cards_health[i], 'specialty');
 						var title = Foxtrickl10n.getSpecialityFromNumber(player.specialityNumber);
 						var alt = Foxtrickl10n.getShortSpeciality(title);
 						Foxtrick.addImage(doc, cards_health[i], { 
@@ -242,6 +245,6 @@ Foxtrick.util.module.register({
 			}
 		};
 
-		Foxtrick.listenToMutationEvent(list, "DOMNodeInserted", waitForInterface, false);
+		Foxtrick.listenToMutationEvent(orders, "DOMNodeInserted", waitForInterface, false);
 	},
 });
