@@ -258,7 +258,7 @@ Foxtrick.util.module.register({
 		Foxtrick.listenToMutationEvent(details, "DOMNodeInserted", waitForInterface, false);
 		var list = doc.getElementById('list');
 		Foxtrick.listenToMutationEvent(list, "DOMNodeInserted", waitForInterface, false);
-		var tab_order = doc.getElementById('tab_order');
-		Foxtrick.listenToMutationEvent(tab_order, "DOMNodeInserted", waitForInterface, false);
+		var field = doc.getElementById('field');
+		Foxtrick.listenToMutationEvent(field, "DOMNodeInserted", waitForInterface, false);
 	},
 });
