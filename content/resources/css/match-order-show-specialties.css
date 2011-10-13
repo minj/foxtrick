@@ -1,9 +1,9 @@
 #orders .position, #orders .position .player, .player.ui-draggable-dragging {
-	height: 52px;
+	height: 52px !important;
 }
 
 #orders #field .player .cards_health {
-	display: block;
+	display: block !important;
 	top: 38px;
 	left:6px;
 	width: 80px;
@@ -11,7 +11,7 @@
 }
 
 #orders .position .player .name, .player.ui-draggable-dragging .name {
-	bottom: 14px;
+	bottom: 14px !important;
 }
 
 #orders .pos_abbr {

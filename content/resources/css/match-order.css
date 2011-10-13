@@ -16,10 +16,10 @@
 
 /* interface size */
 #order_tabs {
-	margin-left: -10px;
+	margin-left: -10px !important;
 }
 
 #list {
-	margin-right: -10px;
-	width: 150px;
+	margin-right: -10px !important;
+	width: 150px !important;
 }
