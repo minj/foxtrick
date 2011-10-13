@@ -254,9 +254,11 @@ Foxtrick.util.module.register({
 			}
 		}
 		
+		var details = doc.getElementById('details');
+		Foxtrick.listenToMutationEvent(details, "DOMNodeInserted", waitForInterface, false);
 		var list = doc.getElementById('list');
 		Foxtrick.listenToMutationEvent(list, "DOMNodeInserted", waitForInterface, false);
-		var order_tabs = doc.getElementById('order_tabs');
-		Foxtrick.listenToMutationEvent(order_tabs, "DOMNodeInserted", waitForInterface, false);
+		var tab_order = doc.getElementById('tab_order');
+		Foxtrick.listenToMutationEvent(tab_order, "DOMNodeInserted", waitForInterface, false);
 	},
 });
