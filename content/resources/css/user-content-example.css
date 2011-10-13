@@ -300,3 +300,16 @@ font-weight: bold !important;
 color: blue !important;
 font-weight: bold !important;
 }
+
+/* Lineup prediction*/
+
+div#ft-full-level0 span,
+div#ft-full-level1 span,
+div#ft-full-level2 span,
+div#ft-full-level3 span,
+div#ft-full-level4 span,
+div#ft-full-level5 span,
+div#ft-full-level6 span  {
+background: none repeat scroll 0 0 white !important; 
+font-weight: bold !important;
+}  
