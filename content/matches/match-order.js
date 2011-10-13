@@ -17,10 +17,7 @@ Foxtrick.util.module.register({
 					Foxtrick.InternalPath + "resources/css/match-order-display-ratings-right.css" ],
 	OPTIONS_CSS : [ Foxtrick.InternalPath + "resources/css/match-order-show-specialties.css" ],
 
-	run : function(doc) {
-		var fieldOverlay = doc.getElementById('fieldOverlay');
-		var orders = doc.getElementById('orders');
-		
+	run : function(doc) { 
 		var lastNumbers = new Array(7);
 		var showLevelNumbers = function(ev) {
 			var overlayRatings = fieldOverlay.getElementsByClassName('overlayRatings');
@@ -162,6 +159,7 @@ Foxtrick.util.module.register({
 			}
 		};
 
+		var fieldOverlay = doc.getElementById('fieldOverlay');
 		Foxtrick.listenToMutationEvent(fieldOverlay, "DOMNodeInserted", showLevelNumbers, false);
 
 		// add extra info
@@ -256,7 +254,9 @@ Foxtrick.util.module.register({
 			}
 		}
 		
-
-		Foxtrick.listenToMutationEvent(orders, "DOMNodeInserted", waitForInterface, false);
+		var list = doc.getElementById('list');
+		Foxtrick.listenToMutationEvent(list, "DOMNodeInserted", waitForInterface, false);
+		var order_tabs = doc.getElementById('order_tabs');
+		Foxtrick.listenToMutationEvent(order_tabs, "DOMNodeInserted", waitForInterface, false);
 	},
 });
