@@ -6,19 +6,14 @@
 	height: 16px;
 	width: 12px;
 	display: inline;
+	margin-bottom: 4px;
 }
 
 html[dir="ltr"] .ft-mark-all-as-read {
-	margin: 0 7px 0 2px;
 	float: right;
 }
 html[dir="rtl"] .ft-mark-all-as-read {
-	margin: 0 2px 0 7px;
 	float: left;
-}
-
-.forumTabs a {
-	padding: 2px 3px !important;
 }
 
 }
