@@ -33,7 +33,7 @@ Foxtrick.util.module.register({
 		container.title = Foxtrickl10n.getString("MarkAllAsRead.title");
 		container.setAttribute("onclick", addr);
 
-		var forumTabs = doc.getElementsByClassName("forumTabs")[0];
-		forumTabs.appendChild(container);
+		var myForumsH2 = doc.getElementById("myForums").previousSibling;
+		myForumsH2.appendChild(container);
 	}
 });
