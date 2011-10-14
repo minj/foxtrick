@@ -114,9 +114,7 @@ Foxtrick.util.links = {
 			var ownBoxId = "ft-links-box";
 			var div=doc.getElementById(ownBoxId).firstChild;
 			div.className = "boxHead ft-expander-unexpanded";
-			if (Foxtrick.util.layout.isRtl(doc))
-				div.className = "boxHead ft-expander-unexpanded_rtl";
-
+			
 			var foxtrickRemove = ownBoxBody.getElementsByClassName('foxtrickRemove');
 			for (var i=0; i<foxtrickRemove.length; ++i) {
 				Foxtrick.toggleClass(foxtrickRemove[i], "hidden");
@@ -189,8 +187,7 @@ Foxtrick.util.links = {
 			var ownBoxId = "ft-links-box";
 			var div=doc.getElementById(ownBoxId).firstChild;
 			div.setAttribute("class","boxHead ft-expander-expanded");
-			if (Foxtrick.util.layout.isRtl(doc)) div.setAttribute("class","boxHead  ft-expander-expanded_rtl");
-
+			
 			var foxtrickRemove = ownBoxBody.getElementsByClassName('foxtrickRemove');
 			for (var i=0; i<foxtrickRemove.length; ++i) {
 				Foxtrick.toggleClass(foxtrickRemove[i], "hidden");
