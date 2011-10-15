@@ -25,13 +25,16 @@ Foxtrick.util.module.register({
 				else if (Foxtrick.confirmDialog('Replace server with '+hostname +'?'))
 					setRelPath(a);
 			}
-			else if (a.href.search(/^chrome|^safari-extension/)==0) {
+			else if (a.href.search(/^chrome|^safari-extension|^foxtrick/)==0) {
 				var url = a.href;  																		// opera doesn't allow pref access
 				url = url.replace('safari-extension://www.ht-foxtrick.com-8J4UNYVFR5/2f738eb7/content/', '');	// safari nightly
+				url = url.replace('chrome-extension://fbccladbdiidmihcljklpcckbpkjfgnm/content/',''); 	// dev chrome
 				url = url.replace('chrome-extension://bpfbbngccefbbndginomofgpagkjckik/content/',''); 	// official chrome
 				url = url.replace('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/content/',''); 	// nightly chrome
 				url = url.replace('chrome://foxtrick/content/', '');									// all gecko
-				Foxtrick.newTab(Foxtrick.InternalPath +url);
+				url = url.replace('foxtrick://', '');													// our fake type
+				//Foxtrick.newTab(Foxtrick.InternalPath + url);
+				a.href = Foxtrick.InternalPath + url;
 			}
 		}
 	},
@@ -47,13 +50,14 @@ Foxtrick.util.module.register({
 			target = targets[targets.length-2];
 		if (Foxtrick.isPage("guestbook", doc))
 			target = targets[1];
-
 		if (target) {
 			var strip = function(str) {
 				var url = str.replace(/\[link=.+(www|www\d+|stage)\.hattrick\.(org|ws|interia\.pl)(.*?)\]/gi, "[link=$3]")
-					.replace('[link=safari-extension://www.ht-foxtrick.com-8J4UNYVFR5/2f738eb7/content/', '[link=chrome://foxtrick/content/') // safari nightly
-					.replace('[link=chrome-extension://bpfbbngccefbbndginomofgpagkjckik/content/','[link=chrome://foxtrick/content/') // official chrome
-					.replace('[link=chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/content/','[link=chrome://foxtrick/content/'); // nightly chrome
+					.replace('[link=safari-extension://www.ht-foxtrick.com-8J4UNYVFR5/2f738eb7/content/', '[link=foxtrick://')	// safari nightly
+					.replace('[link=chrome-extension://fbccladbdiidmihcljklpcckbpkjfgnm/content/','[link=foxtrick://') 			// dev chrome
+					.replace('[link=chrome-extension://bpfbbngccefbbndginomofgpagkjckik/content/','[link=foxtrick://') 			// official chrome
+					.replace('[link=chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/content/','[link=foxtrick://')	 		// nightly chrome
+					.replace('[link=chrome://foxtrick/content/','[link=foxtrick://'); 											// all gecko
 				return url;
 			};
 			// add submit listener
