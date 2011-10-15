@@ -33,7 +33,10 @@ Foxtrick.util.module.register({
 		container.title = Foxtrickl10n.getString("MarkAllAsRead.title");
 		container.setAttribute("onclick", addr);
 
-		var myForumsH2 = doc.getElementById("myForums").previousSibling;
-		myForumsH2.appendChild(container);
+		if (Foxtrick.util.layout.isStandard(doc))
+			var target = doc.getElementById("myForums").getElementsByClassName("forumTabs")[0];
+		else
+			var target = doc.getElementById("myForums").previousSibling;
+		target.appendChild(container);
 	}
 });
