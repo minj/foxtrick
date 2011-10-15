@@ -15,16 +15,10 @@ Foxtrick.loader.chrome = {};
 // invoked when an allowed HTML document is load started
 Foxtrick.loader.chrome.docLoadStart = function() {
 	try {
-		if ( !Foxtrick.isHtUrl(document.location.href) )  return;
+		if ( !Foxtrick.isHtUrl(document.location.href) 
+			|| Foxtrick.isExcluded(document) )  
+			return;
 
-		// check if it's in exclude list
-		for (var i in Foxtrick.pagesExcluded) {
-			var excludeRe = new RegExp(Foxtrick.pagesExcluded[i], "i");
-			// page excluded, return
-			if (document.location.href.search(excludeRe) > -1) {
-				return;
-			}
-		}
 
 		// request resources from background script
 		// calls/adds Foxtrick.loader.chrome.docLoadEnd

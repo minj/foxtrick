@@ -20,7 +20,7 @@ Foxtrick.entry.docLoad = function(doc) {
 		return;
 
 	// we shall not run here
-	if (!Foxtrick.isHt(doc) || Foxtrick.isExcluded(doc))
+	if (!Foxtrick.isHt(doc) || Foxtrick.isExcluded(doc) || Foxtrick.isLoginPage(doc)) 
 		return;
 
 	// ensure #content is available
