@@ -144,6 +144,31 @@ var Foxtrickl10n = {
 		return mainStr + " " + subStr;
 	},
 
+	getTacticById: function(id) {
+		var tactics = [
+			"normal",	//:	0,
+			"pressing",	//:	1,
+			"ca",		//:	2,
+			"aim",		//:	3,
+			"aow",		//:	4,
+			"creatively",//:5,
+			"longshots"//:6
+		];
+		
+		var lang = FoxtrickPrefs.getString("htLanguage");
+		var path = "language/tactics/tactic[@type='" + tactics[id] + "']";
+		var text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "value");
+		if (text === null) {
+			Foxtrick.log("Requested tactic of id " + tactics[id] + " doesn't exist in locale " + lang + ", try en instead.");
+			text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml.en, path, "value");
+			if (text === null) {
+				Foxtrick.log("Requested tactic of id " + tactics[id] + " doesn't exist, returning raw value.");
+				text = tactics[id];
+			}
+		}
+		return text;
+	},
+
 	getShortPosition: function(pos) {
 		var direct = function() {
 			var space = pos.search(/ /);
@@ -438,7 +463,7 @@ if (Foxtrick.arch === "Sandboxed") {
 		getScreenshot : function(str) {
 			try {
 				var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" );
-				if (Foxtrickl10n.screenshots.search(string_regexp)!=-1)
+				if (Foxtrickl10n.screenshots && Foxtrickl10n.screenshots.search(string_regexp)!=-1)
 					return Foxtrickl10n.screenshots.match(string_regexp)[1];
 				else if (Foxtrickl10n.screenshots_default.search(string_regexp)!=-1)
 					return Foxtrickl10n.screenshots_default.match(string_regexp)[1];
