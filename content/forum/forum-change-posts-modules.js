@@ -9,6 +9,8 @@ Foxtrick.util.module.register({
 	MODULE_NAME : "FormatPostingText",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','newsletter','mailnewsletter',"forumModWritePost"),
+	OPTIONS : ['NestedQoutesAsSpoilers'],
+	OPTION_TEXTS : true,
 
 	run : function(doc) {
 		var format = this.format;

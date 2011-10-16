@@ -83,6 +83,8 @@ pref("extensions.foxtrick.prefs.module.FixcssProblems.Page_Minimum_Height.enable
 pref("extensions.foxtrick.prefs.module.FixcssProblems.RTL_Fixes.enabled", false);
 pref("extensions.foxtrick.prefs.module.FlagCollectionToMap.enabled", true);
 pref("extensions.foxtrick.prefs.module.FormatPostingText.enabled", true);
+pref("extensions.foxtrick.prefs.module.FormatPostingText.NestedQoutesAsSpoilers.enabled", true);
+pref("extensions.foxtrick.prefs.module.FormatPostingText.NestedQoutesAsSpoilers_text", "3");
 pref("extensions.foxtrick.prefs.module.ForumAlterHeaderLine.BookmarkHeaderSmall.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumAlterHeaderLine.CheckDesign.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumAlterHeaderLine.enabled", false);
@@ -378,8 +380,7 @@ pref("extensions.foxtrick.prefs.module.MarkAllAsRead.enabled", true);
 pref("extensions.foxtrick.prefs.module.MarkUnread.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchIncome.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.enabled", true);
-pref("extensions.foxtrick.prefs.module.MatchOrderInterface.DisplayRatingsBellow.enabled", false);
-pref("extensions.foxtrick.prefs.module.MatchOrderInterface.value", 2);
+pref("extensions.foxtrick.prefs.module.MatchOrderInterface.DisplayRatingsRight.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.ShowSpecialties.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchPlayerColouring.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchPlayerColouring.SeparateOwnPlayerColors.enabled", false);

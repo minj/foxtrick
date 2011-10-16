@@ -274,20 +274,61 @@ Foxtrick.util.module.register({
 			} else var TName_lng = false;
 		} catch(e_tag) {Foxtrick.dump('HTO ' + e_tag + '\n'); var TName_lng = false;}
 
-		if (do_format_text) try {
-			var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
-			var rep = new Array("<pre>$1</pre>", "");
-			var messages = doc.getElementsByClassName("message");
-			for (var i = 0; i < messages.length; i++){
-				var count_pre = Foxtrick.substr_count(messages[i].innerHTML, '[pre');
-				// Foxtrick.dump('FORMAT TEXT ' + count_pre + '\n');
-				for (var j = 0; j <= count_pre; j++) {
-					for ( var k = 0; k < org.length; k++) {
-						messages[i].innerHTML = messages[i].innerHTML.replace(org[k],rep[k]);
+		if (do_format_text) 
+			try {
+				var HideLevel = FoxtrickPrefs.getString("module.FormatPostingText.NestedQoutesAsSpoilers_text");
+				var numSpoilerQuotes = 0;
+				
+				var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
+				var rep = new Array("<pre>$1</pre>", "");
+				var messages = doc.getElementsByClassName("message");
+				for (var i = 0; i < messages.length; ++i){
+					var count_pre = Foxtrick.substr_count(messages[i].innerHTML, '[pre');
+					for (var j = 0; j <= count_pre; ++j) {
+						for ( var k = 0; k < org.length; ++k) {
+							messages[i].innerHTML = messages[i].innerHTML.replace(org[k],rep[k]);
+						}
+					}
+
+					if (FoxtrickPrefs.isModuleOptionEnabled("FormatPostingText", "NestedQoutesAsSpoilers")) {
+						var spoilers = [];
+						var getQuotes = function(node, level) {
+							if (level == HideLevel && node.getElementsByClassName('quote').length >= 1 ) {
+								var spoiler_show = doc.createElement('blockquote');
+								spoiler_show.id = 'spoilshow_qouteNum' + (++numSpoilerQuotes);
+								spoiler_show.className = 'spoiler';
+								var open_link = doc.createElement('a');
+								open_link.href = "javascript:showSpoiler('qouteNum" + numSpoilerQuotes + "');";
+								open_link.textContent = Foxtrickl10n.getString('ShowNestedQoutes');
+								spoiler_show.appendChild(open_link);
+								
+								var spoiler_hidden = doc.createElement('blockquote');
+								spoiler_hidden.id = 'spoilhid_qouteNum' + numSpoilerQuotes;
+								spoiler_hidden.className = 'spoiler hidden';
+								spoiler_hidden.appendChild(node.cloneNode(true));
+								node.parentNode.insertBefore(spoiler_show, node.nestSibling);
+								node.parentNode.removeChild(node);
+								spoilers.push([spoiler_show, spoiler_hidden]);
+								
+							}
+							else {
+								var qouteNodes = node.getElementsByClassName('quote');
+								for (var j = 0; j < qouteNodes.length; ++j ) 
+									getQuotes(qouteNodes[j], level +1);
+							}
+						};
+						
+						getQuotes(messages[i], -1);
+						
+						for (var j = 0; j < spoilers.length; ++j ) {
+							spoilers[j][0].parentNode.insertBefore(spoilers[j][1], spoilers[j][0].nextSibling);
+						}
 					}
 				}
+				
+			} catch (e) {
+				Foxtrick.log('FORMAT TEXT ', e);
 			}
-		} catch(e_format) {Foxtrick.dump('FORMAT TEXT ' + e_format + '\n');}
 
 
 		// loop through cfWrapper --------------------------------------------
