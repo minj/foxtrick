@@ -86,12 +86,12 @@ html[data-theme="standard"] #overlayHTMS {
 	min-height: 310px;
 }
 #overlayHTMSCurrent {
-	margin: 4px 50px;
-	padding: 10px 30px;
+	margin: 4px 40px;
+	padding: 10px 20px;
 }
 #overlayHTMSPrevious {
-	margin: 4px 50px;
-	padding: 10px 30px;
+	margin: 4px 40px;
+	padding: 10px 20px;
 	background-color:#eee; 
 }
 

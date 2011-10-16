@@ -11,8 +11,10 @@ Foxtrick.util.module.register({
 	PAGES : new Array('match'),
 	CSS : Foxtrick.InternalPath + "resources/css/htms-statistics.css",
 
-	insertPrediction: function(doc,targetNode, midfieldLevel, rdefence, cdefence, ldefence, rattack, cattack, lattack, tactics, tacticsLevel) {
-	
+	insertPrediction: function(doc,targetNode, midfieldLevel, rdefence, cdefence, ldefence, rattack, cattack, lattack, tactics, tacticsLevel, teams) {
+		var loading = Foxtrick.util.note.createLoading(doc);
+		targetNode.appendChild(loading);
+							
 		midfieldLevel[0]=midfieldLevel[0]*4+1;
 		midfieldLevel[1]=midfieldLevel[1]*4+1;
 		rdefence[0]=rdefence[0]*4+1;
@@ -76,6 +78,21 @@ Foxtrick.util.module.register({
 		h2.appendChild(a);
 		htmstable.parentNode.insertBefore(h2, htmstable);
 
+		if (teams) {
+			var row = htmstable.insertRow(htmstable.rows.length);
+			var cell = row.insertCell(0);
+			cell.className = 'ch ft-htms-leftcell';
+			cell.style.width = '160px';
+			cell.textContent = Foxtrickl10n.getString("HTMSPrediction.team");
+
+			var b = doc.createElement('b');
+			b.appendChild(doc.createTextNode(teams[0]));
+			cell = row.insertCell(1); cell.appendChild(b); cell.className = "left";
+			cell = row.insertCell(2); cell.className = "center";
+			var b = doc.createElement('b');
+			b.appendChild(doc.createTextNode(teams[1]));
+			cell = row.insertCell(3); cell.appendChild(b); cell.className = "right";
+		}
 		var row = htmstable.insertRow(htmstable.rows.length);
 		var cell = row.insertCell(0);
 		cell.className = 'ch ft-htms-leftcell';
@@ -86,6 +103,9 @@ Foxtrick.util.module.register({
 		Foxtrick.loadXml(url, function(xml) {
 				Foxtrick.stopListenToChange(doc);
 
+				if (loading)
+					loading.parentNode.removeChild(loading);
+		
 				var htmstable = doc.getElementById('htmstable');
 				var row = htmstable.rows[htmstable.rows.length-1];
 				var cell;

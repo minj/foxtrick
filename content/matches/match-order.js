@@ -16,7 +16,7 @@ Foxtrick.util.module.register({
 
 	run : function(doc) { 
 		// ratings and tactic for predicted and for selected others team match
-		var currentRatings = new Array(9), currentRatingsOther = new Array(9);
+		var currentRatings = new Array(9), currentRatingsOther = new Array(9), teamNames =  new Array(2), isHome;
 		
 		// updating or adding htms prediction based on rating prediction and seleted match of another team
 		var updateHTMSPrediction = function() {
@@ -69,7 +69,7 @@ Foxtrick.util.module.register({
 				
 				var tactics = [ tacticAbbr[currentRatings[7]], tacticAbbr[currentRatingsOther[7]] ];
 				var tacticsLevel = [ currentRatings[8], currentRatingsOther[8] ];
-				Foxtrick.util.module.get('HTMSPrediction').insertPrediction(doc,overlayHTMSCurrent, midfieldLevel, rdefence, cdefence, ldefence, rattack, cattack, lattack, tactics, tacticsLevel);
+				Foxtrick.util.module.get('HTMSPrediction').insertPrediction(doc,overlayHTMSCurrent, midfieldLevel, rdefence, cdefence, ldefence, rattack, cattack, lattack, tactics, tacticsLevel,teamNames);
 			}
 			else {
 				if (overlayHTMS)
@@ -230,7 +230,7 @@ Foxtrick.util.module.register({
 				var overlayHTMSClone = doc.getElementById('overlayHTMSCurrent').cloneNode(true);
 				var htmstable = overlayHTMSClone.getElementsByTagName('table')[0];
 				if (htmstable) {
-					htmstable.deleteRow(1);
+					htmstable.deleteRow(2);
 					text += '\n' + Foxtrick.util.htMl.getMarkupFromNode(overlayHTMSClone).replace(/\n/g,'').replace('[link=','\n[link=');
 				}
 				
@@ -312,6 +312,9 @@ Foxtrick.util.module.register({
 				
 				// display selection of matches to compare to
 				// first, get team id of other team 
+				var loadingOtherMatches = Foxtrick.util.note.createLoading(doc);
+				doc.getElementById("overlayHTMS").appendChild(loadingOtherMatches);
+				
 				var matchid = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
 				var orderMatchArgs = [
 					["file", "matchdetails"],
@@ -320,6 +323,8 @@ Foxtrick.util.module.register({
 				Foxtrick.util.api.retrieve(doc, orderMatchArgs, {cache_lifetime:'session'},
 				function(orderMatchXml, errorText) {
 					if (errorText) {
+						if (loadingOtherMatches)
+							loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
 						Foxtrick.log(errorText);
 						return;
 					}
@@ -328,7 +333,18 @@ Foxtrick.util.module.register({
 					var AwayTeamID = Number(orderMatchXml.getElementsByTagName('AwayTeamID')[0].textContent);
 					var h2 = doc.getElementById('mainWrapper').getElementsByTagName('h2')[0];
 					var thisTeamID = Foxtrick.util.id.getTeamIdFromUrl(h2.getElementsByTagName('a')[0].href);
-					var otherTeamID = (thisTeamID == HomeTeamID ) ? AwayTeamID : HomeTeamID;
+					if (thisTeamID == HomeTeamID ) {
+						isHome = true;
+						var otherTeamID = AwayTeamID;
+						teamNames[0] = orderMatchXml.getElementsByTagName('HomeTeamName')[0].textContent;
+						teamNames[1] = orderMatchXml.getElementsByTagName('AwayTeamName')[0].textContent;
+					}
+					else {
+						isHome = false;
+						var otherTeamID = HomeTeamID;
+						teamNames[1] = orderMatchXml.getElementsByTagName('HomeTeamName')[0].textContent;
+						teamNames[0] = orderMatchXml.getElementsByTagName('AwayTeamName')[0].textContent;
+					}
 					
 					// now get other teams matches
 					var otherMatchesArgs = [
@@ -337,19 +353,25 @@ Foxtrick.util.module.register({
 					];
 					Foxtrick.util.api.retrieve(doc, otherMatchesArgs, {cache_lifetime:'session'},
 					function(otherMatchesXml, errorText) {
+						if (loadingOtherMatches)
+								loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
 						if (errorText) {
 							Foxtrick.log(errorText);
 							return;
 						}
 
 						var getMatchDetails = function(selectedMatchid, isNew) {
-						// get selected match
+							// get selected match
+							var loadingMatch = Foxtrick.util.note.createLoading(doc);
+							doc.getElementById("overlayHTMS").appendChild(loadingMatch);
 							var selectedMatchArgs = [
 								["file", "matchdetails"],
 								["matchID", selectedMatchid]
 							];
 							Foxtrick.util.api.retrieve(doc, selectedMatchArgs, {cache_lifetime:'session'},
 							function(selectedMatchXML, errorText) {
+								if (loadingMatch)
+										loadingMatch.parentNode.removeChild(loadingMatch);
 								if (errorText) {
 									Foxtrick.log(errorText);
 									return;
@@ -369,13 +391,28 @@ Foxtrick.util.module.register({
 									select.selectedIndex = select.options.length-1;
 								}
 								
-								// get ratings
+								// select team node
+								Foxtrick.log(selectedMatchXML);
 								var HomeTeamID =  Number(selectedMatchXML.getElementsByTagName('HomeTeamID')[0].textContent);
 								var AwayTeamID =  Number(selectedMatchXML.getElementsByTagName('AwayTeamID')[0].textContent);
-								if (otherTeamID == HomeTeamID)
+								if (otherTeamID == HomeTeamID) {
 									var teamNode =  selectedMatchXML.getElementsByTagName('HomeTeam')[0];
-								else
+									teamNames[1] = selectedMatchXML.getElementsByTagName('HomeTeamName')[0].textContent;
+								}
+								else if (otherTeamID == AwayTeamID) {
 									var teamNode =  selectedMatchXML.getElementsByTagName('AwayTeam')[0];
+									teamNames[1] = selectedMatchXML.getElementsByTagName('AwayTeamName')[0].textContent;
+								}
+								else if (isHome) {
+									var teamNode =  selectedMatchXML.getElementsByTagName('AwayTeam')[0];
+									teamNames[1] = selectedMatchXML.getElementsByTagName('AwayTeamName')[0].textContent;
+								}
+								else {
+									var teamNode =  selectedMatchXML.getElementsByTagName('HomeTeam')[0];
+									teamNames[1] = selectedMatchXML.getElementsByTagName('HomeTeamName')[0].textContent;
+								}
+
+								// get ratings
 								var selectedratings = [ 
 									{type:'RatingLeftAtt'},
 									{type:'RatingMidAtt'},
