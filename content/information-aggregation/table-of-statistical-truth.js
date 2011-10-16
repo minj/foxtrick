@@ -50,11 +50,14 @@ Foxtrick.util.module.register({
 					return;
 				}
 				else if (xml.getElementsByTagName('available')[0].textContent=='false') {
-					var a = doc.createElement("a");
-					a.href = 'http://www.fantamondi.it/HTMS/index.php?page=truthtable&lang=en&serie='+serie+'&season='+season;
-					a.target = '_blank';
-					a.textContent = Foxtrickl10n.getString('truthTable.notAvailableYet');
-					insertBefore.parentNode.insertBefore(a, insertBefore);
+					if (!doc.getElementbyId("createTableLink")) { 
+						var a = doc.createElement("a");
+						a.href = 'http://www.fantamondi.it/HTMS/index.php?page=truthtable&lang=en&serie='+serie+'&season='+season;
+						a.id="createTableLink";
+						a.target = '_blank';
+						a.textContent = Foxtrickl10n.getString('truthTable.notAvailableYet');
+						insertBefore.parentNode.insertBefore(a, insertBefore);
+					}
 					return;
 				}
 				
