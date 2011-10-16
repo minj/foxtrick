@@ -379,6 +379,7 @@ function getModule(module)
 	link.className = "module-link";
 	link.textContent = "¶";
 	link.href = generateURI(null, module.MODULE_NAME);
+	link.title=Foxtrickl10n.getString('module.link');
 	title.appendChild(link);
 
 	// screenshot
