@@ -13,12 +13,16 @@ Foxtrick.util.module.register({
 
 	run : function(doc) {
 
-		var leaguetable = doc.getElementById("mainBody").getElementsByTagName('table')[0]
+		var season =  doc.getElementById('mainBody').getElementsByTagName('select')[0].value;
+		var serie =  Foxtrick.util.id.getLeagueLeveUnitIdFromUrl(doc.getElementById('mainWrapper').getElementsByTagName('h2')[0].getElementsByTagName('a')[1].href);
+
+			var leaguetable = doc.getElementById("mainBody").getElementsByTagName('table')[0]
 		var insertBefore = leaguetable.nextSibling;
 
 		var tableHeader = doc.createElement("h2");
 		tableHeader.textContent = Foxtrickl10n.getString("truthTable.table");
 		tableHeader.className = "ft-expander-unexpanded";
+		tableHeader.id = 'ft-truth-table-h2';
 		insertBefore.parentNode.insertBefore(tableHeader, insertBefore);
 		var div = doc.createElement("div");
 		div.className = "ft-truth-table-div";
@@ -37,21 +41,26 @@ Foxtrick.util.module.register({
 
 		tableHeader.addEventListener("click", toggleTable, false);
 		
+				
 		var addTable = function() {
-			var url = "http://www.fantamondi.it/HTMS/dorequest.php?action=truthtable&serie=6050&season=46";
-			Foxtrick.loadXml(url, function(xml) {
+			var url = "http://www.fantamondi.it/HTMS/dorequest.php?action=truthtable&serie="+serie+"&season="+season;
+			Foxtrick.loadXml(url, function(xml) { 
 				if (!xml) {
 					// feedback
 					return;
 				}
 				else if (xml.getElementsByTagName('available')[0].textContent=='false') {
-					// feedback
+					var a = doc.createElement("a");
+					a.href = 'http://www.fantamondi.it/HTMS/index.php?page=truthtable&lang=en&serie='+serie+'&season='+season;
+					a.target = '_blank';
+					a.textContent = Foxtrickl10n.getString('truthTable.notAvailableYet');
+					insertBefore.parentNode.insertBefore(a, insertBefore);
 					return;
 				}
 				
 				var teams = xml.getElementsByTagName('team');
 				
-				var table = doc.createElement("table");
+				table = doc.createElement("table");
 				table.id = "ft-truth-table";
 				div.appendChild(table);
 
@@ -68,6 +77,7 @@ Foxtrick.util.module.register({
 				table.appendChild(headRow);
 				for (var i in colTypes) {
 					var th = doc.createElement("th");
+					th.className = colTypes[i];
 					th.textContent = Foxtrickl10n.getString('truthTable.'+i);
 					headRow.appendChild(th);
 				}
@@ -79,25 +89,34 @@ Foxtrick.util.module.register({
 					for (var i in colTypes) {
 						var cell = doc.createElement("td");
 						cell.className = colTypes[i];
-						if ( i != 'difference') {
+						
+						if ( i == 'name') {
+							var a = doc.createElement("a");
+							a.href = '/Club/?TeamID=' + teams[j].getElementsByTagName( 'id' )[0].textContent;
+							a.textContent = teams[j].getElementsByTagName( i )[0].textContent;
+							cell.appendChild(a);
+						}
+						else if ( i != 'difference') {
 							var text =  teams[j].getElementsByTagName( i )[0].textContent;
 							if ( i =='predicted_points' )
 								text = Number(text).toFixed(2);
+							cell.textContent = text;
 						}
 						else {
-							var text = (Number(teams[j].getElementsByTagName( 'predicted_points' )[0].textContent) -
-										 Number(teams[j].getElementsByTagName( 'real_points' )[0].textContent)).toFixed(2);
-							if (text<0) 
+							var text = ( Number(teams[j].getElementsByTagName( 'real_points' )[0].textContent)-
+										Number(teams[j].getElementsByTagName( 'predicted_points' )[0].textContent) ).toFixed(2) ;
+							if (text>0) 
 								Foxtrick.addClass(cell,'ft-gd-positive');
-							else if (text>0) 
+							else if (text<0) 
 								Foxtrick.addClass(cell,'ft-gd-negative');
+							cell.textContent = text;
 						}
-						cell.textContent = text;
 						row.appendChild(cell);
 					}
 				}
 				
 				insertBefore.parentNode.insertBefore(table, insertBefore);
+				
 				Foxtrick.util.module.get("TableSort").run(doc);
 			}, true);
 		};
