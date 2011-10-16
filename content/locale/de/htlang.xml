@@ -32,7 +32,7 @@
 		<position type="Keeper" value="Torwart" short="T" />
 		<position type="Central defender" value="Innenverteidiger" short="Iv" />
 		<position type="Wing back" value="Außenverteidiger" short="Av" />
-		<position type="Inner midfielder" value="zentrales Mittelfeld" short="zM" />
+		<position type="Inner midfielder" value="zentraler Mittelfeldspieler" short="zM" />
 		<position type="Winger" value="Flügelspieler" short="Fl" />
 		<position type="Forward" value="Stürmer" short="St" />
 	</positions>

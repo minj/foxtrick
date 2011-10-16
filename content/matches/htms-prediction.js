@@ -11,50 +11,23 @@ Foxtrick.util.module.register({
 	PAGES : new Array('match'),
 	CSS : Foxtrick.InternalPath + "resources/css/htms-statistics.css",
 
-	run : function(doc) {
-		var isprematch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch")!=null);
-		if (isprematch) return;
-
-		var ratingstable = Foxtrick.Pages.Match.getRatingsTable(doc);
-		if (ratingstable == null) return;
-		var tacticRow=ratingstable.rows.length-2;
-		if (Foxtrick.Pages.Match.isWalkOver(ratingstable)) return;
-		if (!Foxtrick.Pages.Match.isCorrectLanguage(ratingstable)) { // incorrect language
-
-			var htmstable = ratingstable.parentNode.insertBefore(doc.createElement('table'),ratingstable.nextSibling);
-			var row = htmstable.insertRow(0);
-			var cell = row.insertCell(0);
-			cell.setAttribute("colspan" , 3);
-			cell.textContent = Foxtrickl10n.getString("foxtrick.matches.wronglang");
-			return;
-		}
-
-		var midfieldLevel=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[1].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[1].cells[2]));
+	insertPrediction: function(doc,targetNode, midfieldLevel, rdefence, cdefence, ldefence, rattack, cattack, lattack, tactics, tacticsLevel) {
+	
 		midfieldLevel[0]=midfieldLevel[0]*4+1;
 		midfieldLevel[1]=midfieldLevel[1]*4+1;
-		var rdefence=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[2].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[2].cells[2]));
 		rdefence[0]=rdefence[0]*4+1;
 		rdefence[1]=rdefence[1]*4+1;
-		var cdefence=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[3].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[3].cells[2]));
 		cdefence[0]=cdefence[0]*4+1;
 		cdefence[1]=cdefence[1]*4+1;
-		var ldefence=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[4].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[4].cells[2]));
 		ldefence[0]=ldefence[0]*4+1;
 		ldefence[1]=ldefence[1]*4+1;
-		var rattack=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[5].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[5].cells[2]));
 		rattack[0]=rattack[0]*4+1;
 		rattack[1]=rattack[1]*4+1;
-		var cattack=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[6].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[6].cells[2]));
 		cattack[0]=cattack[0]*4+1;
 		cattack[1]=cattack[1]*4+1;
-		var lattack=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[7].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[7].cells[2]));
 		lattack[0]=lattack[0]*4+1;
 		lattack[1]=lattack[1]*4+1;
-		var tactics;
-		var tacticsLevel;
 
-		tactics=new Array(Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[tacticRow].cells[1]), Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[tacticRow].cells[2]));
-		tacticsLevel=new Array(Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[tacticRow+1].cells[1]), Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[tacticRow+1].cells[2]));
 
 		//Creating params for link
 		var params='&TAM='+midfieldLevel[0]+'&TBM='+midfieldLevel[1];
@@ -90,7 +63,7 @@ Foxtrick.util.module.register({
 		}
 
 		//Inserting the table
-		var htmstable = ratingstable.parentNode.insertBefore(doc.createElement('table'),ratingstable.nextSibling);
+		var htmstable = targetNode.appendChild(doc.createElement('table'));
 		htmstable.id='htmstable';
 
 		//Inserting header
@@ -103,8 +76,8 @@ Foxtrick.util.module.register({
 		h2.appendChild(a);
 		htmstable.parentNode.insertBefore(h2, htmstable);
 
-		row = htmstable.insertRow(htmstable.rows.length);
-		cell = row.insertCell(0);
+		var row = htmstable.insertRow(htmstable.rows.length);
+		var cell = row.insertCell(0);
 		cell.className = 'ch ft-htms-leftcell';
 		cell.style.width = '160px';
 		cell.textContent = Foxtrickl10n.getString("HTMSPrediction.prediction");
@@ -162,6 +135,43 @@ Foxtrick.util.module.register({
 		a.href = "http://www.fantamondi.it/HTMS/index.php?page=predictor&action=showpredict&lang="+lang+params;
 		a.target='_blank';
 		p.appendChild(a);
+		
 		htmstable.parentNode.insertBefore(p, htmstable.nextSibling);
+	},
+	
+	run : function(doc) {
+		var isprematch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch")!=null);
+		if (isprematch) return;
+
+		var ratingstable = Foxtrick.Pages.Match.getRatingsTable(doc);
+		if (ratingstable == null) return;
+		var tacticRow=ratingstable.rows.length-2;
+		if (Foxtrick.Pages.Match.isWalkOver(ratingstable)) return;
+		if (!Foxtrick.Pages.Match.isCorrectLanguage(ratingstable)) { // incorrect language
+
+			var htmstable = ratingstable.parentNode.insertBefore(doc.createElement('table'),ratingstable.nextSibling);
+			var row = htmstable.insertRow(0);
+			var cell = row.insertCell(0);
+			cell.setAttribute("colspan" , 3);
+			cell.textContent = Foxtrickl10n.getString("foxtrick.matches.wronglang");
+			return;
+		}
+
+		var midfieldLevel=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[1].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[1].cells[2]));
+		var rdefence=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[2].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[2].cells[2]));
+		var cdefence=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[3].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[3].cells[2]));
+		var ldefence=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[4].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[4].cells[2]));
+		var rattack=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[5].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[5].cells[2]));
+		var cattack=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[6].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[6].cells[2]));
+		var lattack=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[7].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[7].cells[2]));
+		var tactics=new Array(Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[tacticRow].cells[1]), Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[tacticRow].cells[2]));
+		var tacticsLevel=new Array(Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[tacticRow+1].cells[1]), Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[tacticRow+1].cells[2]));
+
+		var htmsDiv = doc.createElement('div');
+		htmsDiv.id = 'htmsMatchDivId';
+		ratingstable.parentNode.insertBefore(htmsDiv, ratingstable.nextSibling);
+
+		this.insertPrediction(doc,htmsDiv, midfieldLevel, rdefence, cdefence, ldefence, rattack, cattack, lattack, tactics, tacticsLevel);
+
 	}
 });

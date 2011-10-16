@@ -1,36 +1,66 @@
-#orders .position, #orders .position .player, .player.ui-draggable-dragging {
-	height: 52px !important;
+/* specialties in list on thr right with cards */
+#list img.specialty {
+	float:right; 
+	margin: 0 2px;
 }
 
+
+/* increase height of playerboxes for cards+specialties */
+#orders .position, #orders .position .player, .player.ui-draggable-dragging {
+	height: 52px !important;
+
+	}
+
+/* show previously hidden cards on the bottom */
 #orders #field .player .cards_health {
 	display: block !important;
 	top: 38px;
-	left:6px;
 	width: 80px;
 	position: relative;
 }
 
+
+/* in playerbox, cards on one side, specialties on the other */
+html[dir="rtl"] #orders #field .player .cards_health {
+	right:6px;
+}
+html[dir="ltr"] #orders #field .player .cards_health {
+	left:6px;
+}
+html[dir="rtl"] #fieldplayers img.specialty {
+	float:left; 
+	margin: 0 2px;
+}
+html[dir="ltr"] #fieldplayers img.specialty {
+	float:right; 
+	margin: 0 2px;
+}
+
+
+/* name and pos_abbr has to move up */
 #orders .position .player .name, .player.ui-draggable-dragging .name {
 	bottom: 14px !important;
 }
-
 #orders .pos_abbr {
 	top: 10px;
 	margin-top: 0px !important;
 }
 
+
+/* move bench players up a bit since boxes are larger now */
 .p14, .p15, .p16, .p17, .p18 {
 	top: 340px !important;
 }
-
 .p19, .p20 {
 	top: 425px !important;
 }
 
+
+/* substitution box larger and adv. sub somewhat down */
 #orders .substitution {
 	min-height: 100px !important;
 }
-
 .substitution .advanced {
 	margin: 40px 0 0 2px !important;
 }
+

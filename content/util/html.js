@@ -66,12 +66,9 @@ Foxtrick.listen = function(target, type, listener, useCapture) {
 
 // opera doesn't have domtreemodified and webkit not domattrchanged. so we use those for all
 // there would be a workaround for domattrchanged if realy needed (keep a copy of the node attribs and check for changes every second) 
-Foxtrick.listenToMutationEvent = function(target, type, listener, useCapture) {
-	if ( type!='DOMNodeInserted' && type!='DOMNodeRemoved' && type!= 'DOMCharacterDataModified' ) {
-		Foxtrick.log('event type not supported by all browser');
-		return;
-	}
+Foxtrick.MutationEventListeners = [];
 
+Foxtrick.DOMListener = function(target, type, listener, useCapture) {
 	var changeScheduled = false;
 	var waitForChanges = function (ev) {
 		// if we already have been called return and do nothing
@@ -88,9 +85,44 @@ Foxtrick.listenToMutationEvent = function(target, type, listener, useCapture) {
 			target.addEventListener(type, waitForChanges, useCapture);
 		}, 0)
 	};
+	this.start = function () {Foxtrick.log('start',target, type);
+		target.addEventListener(type, waitForChanges, useCapture);
+	};
+	this.stop = function () { Foxtrick.log('stop', target, type);
+		target.removeEventListener(type, waitForChanges, useCapture);
+	};
+};
+
+Foxtrick.addMutationEventListener = function(target, type, listener, useCapture) {
+	if ( type!='DOMNodeInserted' && type!='DOMNodeRemoved' && type!= 'DOMCharacterDataModified' ) {
+		Foxtrick.log('event type not supported by all browser');
+		return;
+	}
+
 	// attach an alternative handler which could get executed several times for multiple changes at once. 
 	// since our handler should execute only once, we use a different handler to call ours when all changes have past
-	target.addEventListener(type, waitForChanges, useCapture);
+	var DOMListener = new Foxtrick.DOMListener(target, type, listener, useCapture);
+	Foxtrick.MutationEventListeners.push( {target:target, type:type, listener:listener, useCapture:useCapture, DOMListener:DOMListener });
+	DOMListener.start();
+};
+
+Foxtrick.removeMutationEventListener = function(target, type, listener, useCapture) {
+	for (var i=0; i<Foxtrick.MutationEventListeners.length; ++i) {
+		if ( target == Foxtrick.MutationEventListeners[i].target
+			&& type == Foxtrick.MutationEventListeners[i].type
+			&& listener == Foxtrick.MutationEventListeners[i].listener
+			&& useCapture == Foxtrick.MutationEventListeners[i].useCapture) {
+			
+			Foxtrick.MutationEventListeners[i].target = null;
+			Foxtrick.MutationEventListeners[i].type = null;
+			Foxtrick.MutationEventListeners[i].listener = null;
+			Foxtrick.MutationEventListeners[i].useCapture = null;
+			
+			Foxtrick.MutationEventListeners[i].DOMListener.stop();
+			delete Foxtrick.MutationEventListeners[i].DOMListener;
+			break;
+		}
+	}
 };
 
 

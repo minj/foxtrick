@@ -127,12 +127,40 @@ Foxtrick.Pages.Players = {
 
 						var LastMatch = playerNode.getElementsByTagName("LastMatch")[0];
 						if ( LastMatch && LastMatch.getElementsByTagName("Date")[0] ) {
+							var MatchRoleIDToPosition = {
+								"100":"Keeper",
+								"101":"Wing back",
+								"102":"Central defender",
+								"103":"Central defender",
+								"104":"Central defender",
+								"105":"Wing back",
+								"106":"Winger",
+								"107":"Inner midfielder",
+								"108":"Inner midfielder",
+								"109":"Inner midfielder",
+								"110":"Winger",
+								"111":"Forward",
+								"112":"Forward",
+								"113":"Forward",
+								"114":"Substitution (Keeper)",
+								"115":"Substitution (Defender)",
+								"116":"Inner midfielder",
+								"117":"Substitution (Winger)",
+								"118":"Substitution (Forward)",
+								"17":"Set pieces",
+								"18":"Captain",
+								"19":"Replaced Player #1",
+								"20":"Replaced Player #2",
+								"21":"Replaced Player #3",
+							};
 							player.lastPlayedMinutes = Number(LastMatch.getElementsByTagName("PlayedMinutes")[0].textContent);
 							player.lastRatingEndOfGame = Number(LastMatch.getElementsByTagName("RatingEndOfGame")[0].textContent);
 							player.lastPositionCode = Number(LastMatch.getElementsByTagName("PositionCode")[0].textContent);
 							player.lastRating = Number(LastMatch.getElementsByTagName("Rating")[0].textContent);
 							player.lastMatchId = Number(LastMatch.getElementsByTagName("MatchId")[0].textContent);
 							player.lastMatchDate = LastMatch.getElementsByTagName("Date")[0].textContent;
+							var position = Foxtrickl10n.getPositionByType(MatchRoleIDToPosition[player.lastPositionCode]);
+							player.lastMatchText = Foxtrickl10n.getString('Last_match_played_as').replace('%1',player.lastPlayedMinutes).replace('%2', position);
 						}
 					}
 				}
