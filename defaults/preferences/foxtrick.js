@@ -672,6 +672,7 @@ pref("extensions.foxtrick.prefs.module.TickerColoring.enabled", true);
 pref("extensions.foxtrick.prefs.module.TransferDeadline.enabled", true);
 pref("extensions.foxtrick.prefs.module.TransferSearchFilters.enabled", true);
 pref("extensions.foxtrick.prefs.module.TransferSearchResultFilters.enabled", true);
+pref("extensions.foxtrick.prefs.module.TableOfStatisticalTruth.enabled", true);
 pref("extensions.foxtrick.prefs.module.YouthPromotes.enabled", true);
 pref("extensions.foxtrick.prefs.module.YouthSeriesEstimation.enabled", true);
 pref("extensions.foxtrick.prefs.module.YouthSkillHideUnknown.enabled", false);
