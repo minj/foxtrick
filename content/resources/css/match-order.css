@@ -137,6 +137,7 @@ html[dir="ltr"] #order_tabs {
 	font-weight: normal !important;
 }
 .overlayRightDefense, .overlayMidDefense, .overlayLeftDefense {
+	top: 9px !important;
 }
 .overlayMidfield {
 	top: 160px !important;
@@ -162,3 +163,9 @@ html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
 #tacticLevelLabel {
 	top: 470px !important;
 }
+
+#fieldOverlay {
+        height: 520px;
+		top: 630px 
+}
+
