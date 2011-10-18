@@ -29,13 +29,13 @@ Foxtrick.util.module.register((function() {
 				["isYouth", isYouth]
 			];
 
-			// add everything after .byline[0] and remove existing ones
-			var byline = doc.getElementsByClassName("byline")[0];
-			while (!Foxtrick.hasClass(byline.nextSibling, "mainBox"))
-				byline.parentNode.removeChild(byline.nextSibling);
-
 			Foxtrick.util.api.retrieve(doc, args, {cache_lifetime: "session"},
 				function(xml) {
+					// add everything after .byline[0] and remove existing ones
+					var byline = doc.getElementsByClassName("byline")[0];
+					while (!Foxtrick.hasClass(byline.nextSibling, "mainBox"))
+						byline.parentNode.removeChild(byline.nextSibling);
+
 					// container of formatted report
 					var report = doc.createElement("div");
 					report.className = "ft-match-report";
