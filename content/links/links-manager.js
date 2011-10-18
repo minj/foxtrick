@@ -10,7 +10,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('managerPage'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "managerlink");
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksManager", "managerlink");
 	},
 
 	run : function(doc) {

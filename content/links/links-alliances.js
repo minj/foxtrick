@@ -10,7 +10,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('federation'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "federationlink");
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksAlliances", "federationlink");
 	},
 
 	run : function(doc) {

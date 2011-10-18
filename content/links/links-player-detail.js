@@ -9,9 +9,8 @@ Foxtrick.util.module.register({
 	MODULE_NAME : "LinksPlayerDetail",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('playerdetail'),
-	LINK_TYPES : [ "playerhealinglink", "playerlink", "keeperlink", "transfercomparelink" ],
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.links.getOptionsHtml(doc, this, true, this.LINK_TYPES);
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksPlayerDetail", ["playerhealinglink", "playerlink", "keeperlink", "transfercomparelink"]);
 	},
 
 	run : function(doc) {

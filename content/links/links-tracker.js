@@ -8,8 +8,7 @@
 Foxtrick.util.module.register({
 	MODULE_NAME : "LinksTracker",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	//PAGES : new Array('trackerplayerlink'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "trackerplayerlink");
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksTracker", "trackerplayerlink");
 	}
 });

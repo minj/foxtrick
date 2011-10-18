@@ -10,7 +10,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('fans'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "fanlink");
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksFans", "fanlink");
 	},
 
 	run : function(doc) {

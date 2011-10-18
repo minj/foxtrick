@@ -10,7 +10,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('country'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "countrylink");
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksCountry", "countrylink");
 	},
 
 	run : function(doc) {

@@ -10,7 +10,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : ["series"],
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "leaguelink");
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksLeague", "leaguelink");
 	},
 
 	run : function(doc) {

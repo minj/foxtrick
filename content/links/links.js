@@ -6,7 +6,8 @@
  */
 
 Foxtrick.util.module.register((function() {
-	var storeCollection = function() {
+	// callback is called after links-collection is stored in session store
+	var storeCollection = function(callback) {
 		var collection = {};
 		// load links from external feeds
 		var feeds = FoxtrickPrefs.getString("module.Links.feeds") || "";
@@ -49,8 +50,20 @@ Foxtrick.util.module.register((function() {
 					}
 				}
 				Foxtrick.sessionSet("links-collection", collection);
+				if (typeof callback == "function")
+					callback(collection);
 			});
 		}, feeds);
+	};
+
+	var getCollection = function(callback) {
+		var collection = Foxtrick.sessionGet("links-collection");
+		if (collection) {
+			callback(collection);
+		}
+		else {
+			storeCollection(callback);
+		}
 	};
 
 	return {
@@ -224,6 +237,40 @@ Foxtrick.util.module.register((function() {
 					return a.obj.title.localeCompare(b.obj.title);
 			});
 			return links;
+		},
+
+		getOptionsHtml : function(doc, module, linkType) {
+			var list = doc.createElement("ul");
+			getCollection(function(collection) {
+				var types = (linkType instanceof Array) ? linkType : [linkType];
+				Foxtrick.map(function(type) {
+					if (collection[type]) {
+						var links = collection[type];
+						var key;
+						for (var key in links) {
+							var link = links[key];
+							var item = doc.createElement("li");
+							list.appendChild(item);
+
+							var label = doc.createElement("label");
+							item.appendChild(label);
+
+							var check = doc.createElement("input");
+							check.type = "checkbox";
+							check.setAttribute("module", module);
+							check.setAttribute("option", key);
+							// since this is appended asychronously, we set
+							// the checked attribute manually
+							if (FoxtrickPrefs.isModuleOptionEnabled(module, key)) {
+								check.setAttribute("checked", "checked");
+							}
+							label.appendChild(check);
+							label.appendChild(doc.createTextNode(link.title));
+						}
+					}
+				}, types);
+			});
+			return list;
 		}
 	};
 }()));

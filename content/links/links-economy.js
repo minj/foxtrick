@@ -10,7 +10,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('finances'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "economylink");
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksEconomy", "economylink");
 	},
 
 	run : function(doc) {

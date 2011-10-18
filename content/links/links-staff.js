@@ -10,7 +10,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('staff'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "stafflink");
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksStaff", "stafflink");
 	},
 
 	run : function(doc) {

@@ -9,9 +9,9 @@ Foxtrick.util.module.register({
 	MODULE_NAME : "LinksMatch",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('match'),
-	LINK_TYPES : [ "playedmatchlink", "playedyouthmatchlink", "nextmatchlink", "matchlink" ],
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.links.getOptionsHtml(doc, this, true, this.LINK_TYPES);
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksMatch",
+			["playedmatchlink", "playedyouthmatchlink", "nextmatchlink", "matchlink"]);
 	},
 
 	run : function(doc) {

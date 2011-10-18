@@ -11,7 +11,7 @@ Foxtrick.util.module.register({
 	PAGES : new Array('challenges','youthchallenges'),
 	LINK_TYPES : [ "challengeslink", "youthchallengeslink" ],
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.links.getOptionsHtml(doc, this, true, this.LINK_TYPES);
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksChallenges", this.LINK_TYPES);
 	},
 
 	run : function(doc) {

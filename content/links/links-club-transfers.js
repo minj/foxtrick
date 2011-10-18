@@ -10,7 +10,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('transfer'),
 	OPTION_FUNC : function(doc) {
-		Foxtrick.util.links.getOptionsHtml(doc, this, false, "clubtransferslink");
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksClubTransfers", "clubtransferslink");
 	},
 
 	run : function(doc) {

@@ -10,7 +10,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('arena'),
 	OPTION_FUNC : function (doc) {
-		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "arenalink");
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksArena", "arenalink");
 	},
 
 	run : function(doc) {

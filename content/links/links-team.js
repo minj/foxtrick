@@ -64,12 +64,11 @@ Foxtrick.util.module.register({
 		}
 	},
 
-
 	MODULE_NAME : "LinksTeam",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('teamPage'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "teamlink");
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksTeam", "teamlink");
 	},
 	OPTIONS : ["AlltidTeamCompare"],
 

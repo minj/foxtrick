@@ -11,7 +11,7 @@ Foxtrick.util.module.register({
 	PAGES : new Array('achievements'),
 
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "achievementslink");
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksAchievements", "achievementslink");
 	},
 
 	run : function(doc) {

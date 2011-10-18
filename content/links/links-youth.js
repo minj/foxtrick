@@ -10,7 +10,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('youthoverview'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "youthlink");
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksYouthOverview", "youthlink");
 	},
 
 	run : function(doc) {
@@ -51,7 +51,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('youthplayerdetail'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "youthplayerdetaillink");
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksYouthPlayerDetail", "youthplayerdetaillink");
 	},
 
 	run : function(doc) {
@@ -114,7 +114,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('YouthTraining'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "youthtraininglink");
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksYouthTraining", "youthtraininglink");
 	},
 
 	run : function(doc) {
@@ -156,7 +156,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('YouthPlayers'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "youthplayerlistlink");
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksYouthPlayerList", "youthplayerlistlink");
 	},
 
 	run : function(doc) {
@@ -199,7 +199,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('YouthMatchlist'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "youthmatchlistlink");
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksYouthMatchList", "youthmatchlistlink");
 	},
 
 	run : function(doc) {
@@ -242,7 +242,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('youthSeries'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.links.getOptionsHtml(doc, this, false, "youthleaguelink");
+		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksYouthLeague", "youthleaguelink");
 	},
 
 	run : function(doc) {
