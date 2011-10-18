@@ -56,15 +56,15 @@ Foxtrick.util.module.register((function() {
 							var item = doc.createElement("div");
 							report.appendChild(item);
 							item.className = "ft-match-report-event";
+							if (evtTeamId == homeId)
+								item.className += " ft-match-report-event-home";
+							else if (evtTeamId == awayId)
+								item.className += " ft-match-report-event-away";
 
 							var minute = doc.createElement("div");
 							item.appendChild(minute);
 							minute.className = "ft-match-report-event-minute";
 							minute.textContent = evtMin + "'";
-							if (evtTeamId == homeId)
-								minute.className += " ft-match-report-event-home";
-							else if (evtTeamId == awayId)
-								minute.className += " ft-match-report-event-away";
 
 							var content = doc.createElement("div");
 							item.appendChild(content);

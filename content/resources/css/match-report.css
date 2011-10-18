@@ -1,19 +1,24 @@
 /* Using display to style events so that users could also style in
  * non-table way.
  */
+
+.ft-match-report {
+	border-spacing: 0 5px;
+}
+
 .ft-match-report-event {
 	display: table-row;
-	border-spacing: 5px 0;
 }
 
 .ft-match-report-event-minute {
 	display: table-cell;
-	width: 40px;
+	width: 30px;
 	font-weight: bold;
 }
 
 .ft-match-report-event-content {
 	display: table-cell;
+	padding-left: 10px;
 }
 
 .ft-match-report-half-time,
@@ -27,12 +32,13 @@
 	font-weight: bold;
 }
 
-/* event of home team */
-.ft-match-report-event-home {
-	color: #d5d5d5;
-}
 
-/* link or text of away team */
-.ft-match-report-event-away {
-	color: #849d84;
+.ft-match-report-event-content {
+	border-left: 3px solid #fff;
+}
+.ft-match-report-event-home .ft-match-report-event-content {
+	border-color: #666;
+}
+.ft-match-report-event-away .ft-match-report-event-content {
+	border-color: #ccc;
 }
