@@ -30,7 +30,7 @@ Foxtrick.util.module.register((function() {
 				["matchEvents", "true"],
 				["matchID", matchId],
 				["isYouth", isYouth],
-				["lang", locale];
+				["lang", locale]
 			];
 
 			Foxtrick.util.api.retrieve(doc, args, {cache_lifetime: "session"},
