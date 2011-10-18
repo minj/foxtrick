@@ -22,11 +22,15 @@ Foxtrick.util.module.register((function() {
 
 			var isYouth = Foxtrick.Pages.Match.isYouth(doc);
 			var matchId = Foxtrick.Pages.Match.getId(doc);
+			// add locale as argument to prevent using old cache after
+			// language changed
+			var locale = FoxtrickPrefs.getString("htLanguage");
 			var args = [
 				["file", "matchdetails"],
 				["matchEvents", "true"],
 				["matchID", matchId],
-				["isYouth", isYouth]
+				["isYouth", isYouth],
+				["lang", locale];
 			];
 
 			Foxtrick.util.api.retrieve(doc, args, {cache_lifetime: "session"},
