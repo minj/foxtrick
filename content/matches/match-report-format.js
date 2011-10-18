@@ -94,6 +94,10 @@ Foxtrick.util.module.register((function() {
 							}
 						}
 					}, events);
+				if (FoxtrickPrefs.isModuleEnabled("MatchPlayerColouring")) {
+					var mod = Foxtrick.util.module.get("MatchPlayerColouring");
+					mod.color(doc);
+				}
 			});
 		}
 	};
