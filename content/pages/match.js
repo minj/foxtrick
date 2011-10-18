@@ -10,6 +10,19 @@ Foxtrick.Pages.Match = {
 		return (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch") != null);
 	},
 
+	isYouth : function(doc) {
+		return (doc.location.search.search(/isYouth=true/i) > -1);
+	},
+
+	getId : function(doc) {
+		try {
+			return (doc.location.search.match(/matchID=(\d+)/i)[1]);
+		}
+		catch (e) {
+			return null;
+		}
+	},
+
 	inProgress : function(doc) {
 		var matchStatus = doc.getElementById("ctl00_ctl00_CPContent_CPMain_lblMatchStatus");
 		return (matchStatus != null) && (matchStatus.textContent != "");

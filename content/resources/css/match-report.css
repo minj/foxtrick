@@ -1,71 +1,38 @@
-.ft-match-report-team-home, .ft-match-report-team-away, .ft-match-report-team-mine {
+/* Using display to style events so that users could also style in
+ * non-table way.
+ */
+.ft-match-report-event {
+	display: table-row;
+	border-spacing: 5px 0;
+}
+
+.ft-match-report-event-minute {
+	display: table-cell;
+	width: 40px;
 	font-weight: bold;
 }
 
-/* link or text of home team */
-.ft-match-report-team-home {
-	border: 1px solid #849D84;
-	color: #849D84 !important;
-	background-color: white !important;
+.ft-match-report-event-content {
+	display: table-cell;
 }
 
-.sidebarBox .ft-match-report-team-home {
-	line-height:1.7;
-	padding: 2px !important
+.ft-match-report-half-time,
+.ft-match-report-full-time {
+	color: white;
+	background-color: #00a9e0;
+	padding: 2px 0 2px 5px;
+	border: 1px solid #ccc;
+	margin: 5px 0;
+	font-size: 115%;
+	font-weight: bold;
+}
+
+/* event of home team */
+.ft-match-report-event-home {
+	color: #d5d5d5;
 }
 
 /* link or text of away team */
-.ft-match-report-team-away {
-	border: 1px solid white;
-	background-color: #849D84;
-	color: white !important;
-}
-
-.sidebarBox .ft-match-report-team-away {
-	line-height:1.7;
-	padding: 2px !important
-}
-
-/* link or text of my team */
-.ft-match-report-team-mine {
-}
-
-/* normal events, involving players */
-.ft-match-report-event-normal {
-	background-color: #EEE;
-}
-
-/* special events, team events */
-.ft-match-report-event-special {
-}
-
-/* separates different parts, eg half time */
-.ft-match-report-separator {
-	border-bottom: 1px solid #849D84;
-	margin-bottom:30px !important;
-	margin-top:10px !important;
-}
-
-
-/* goal scored by my team */
-.ft-match-report-goal-mine {
-}
-
-/* goal scored by home team */
-.ft-match-report-goal-home {
-	border: 2px solid #849D84;
-}
-
-/* goal scored by away team */
-.ft-match-report-goal-away {
-	background-color: #849D84;
-	color:white;
-}
-
-/* scoreboard, the "a" must be specified here to remove the underline */
-tr>td a.ft-match-report-scoreboard {
-	color: black !important;
-	text-decoration: none;
-	white-space: nowrap;
-	cursor: pointer;
+.ft-match-report-event-away {
+	color: #849d84;
 }
