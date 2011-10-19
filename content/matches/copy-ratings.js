@@ -2,7 +2,7 @@
 /**
  * copy-ratings.js
  * Copies match ratings (HT-ML style)
- * @author spambot
+ * @author spambot, ryanli
  */
 
 Foxtrick.util.module.register({
@@ -120,7 +120,7 @@ Foxtrick.util.module.register({
 		};
 
 		// Copy links inside the table
-		var tableHeader = table.parentNode.getElementsByClassName("tblBox")[0];
+		var tableHeader = table.parentNode.parentNode.getElementsByClassName("tblBox")[0];
 		var homeHeader = table.getElementsByTagName("th")[1];
 		var awayHeader = table.getElementsByTagName("th")[2];
 
