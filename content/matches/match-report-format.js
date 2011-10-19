@@ -21,7 +21,8 @@ Foxtrick.util.module.register((function() {
 		CSS : Foxtrick.InternalPath + "resources/css/match-report.css",
 
 		run : function(doc) {
-			if (Foxtrick.Pages.Match.isPrematch(doc))
+			if (Foxtrick.Pages.Match.isPrematch(doc)
+				|| Foxtrick.Pages.Match.inProgress(doc))
 				return;
 
 			var isYouth = Foxtrick.Pages.Match.isYouth(doc);
