@@ -29,13 +29,14 @@ Foxtrick.Pages.Match = {
 	},
 
 	getRatingsTable: function(doc) {
-		var ratingstable = null;
-		var tables = doc.getElementById('mainBody').getElementsByTagName('table')
-		if (tables) { //match is ended
-			//finding the right table
-			ratingstable = tables.item(0);
+		try {
+			return doc.getElementById("mainBody")
+				.getElementsByClassName("mainBox")[0]
+				.getElementsByTagName("table")[0];
 		}
-		return ratingstable;
+		catch (e) {
+			return null;
+		}
 	},
 
 	isWalkOver: function(ratingstable) {
