@@ -96,13 +96,12 @@
 <script type="application/x-javascript" src="./information-aggregation/show-friendly-booked.js"></script>
 <script type="application/x-javascript" src="./information-aggregation/show-lineup-set.js"></script>
 <script type="application/x-javascript" src="./information-aggregation/skill-table.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/supporterstats-enhancements.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/table-of-statistical-truth.js"></script>
 <script type="application/x-javascript" src="./information-aggregation/team-stats.js"></script>
 <script type="application/x-javascript" src="./information-aggregation/transfer-deadline.js"></script>
-<script type="application/x-javascript" src="./information-aggregation/table-of-statistical-truth.js"></script>
 <script type="application/x-javascript" src="./information-aggregation/youth-promotes.js"></script>
 <script type="application/x-javascript" src="./information-aggregation/youth-series-estimation.js"></script>
-<script type="application/x-javascript" src="./information-aggregation/supporterstats-enhancements.js"></script>
-<script type="application/x-javascript" src="./links/links.js"></script>
 <script type="application/x-javascript" src="./links/links-achievements.js"></script>
 <script type="application/x-javascript" src="./links/links-alliances.js"></script>
 <script type="application/x-javascript" src="./links/links-arena.js"></script>
@@ -112,6 +111,7 @@
 <script type="application/x-javascript" src="./links/links-country.js"></script>
 <script type="application/x-javascript" src="./links/links-economy.js"></script>
 <script type="application/x-javascript" src="./links/links-fans.js"></script>
+<script type="application/x-javascript" src="./links/links.js"></script>
 <script type="application/x-javascript" src="./links/links-league.js"></script>
 <script type="application/x-javascript" src="./links/links-manager.js"></script>
 <script type="application/x-javascript" src="./links/links-match.js"></script>
@@ -127,9 +127,9 @@
 <script type="application/x-javascript" src="./matches/copy-ratings.js"></script>
 <script type="application/x-javascript" src="./matches/htms-prediction.js"></script>
 <script type="application/x-javascript" src="./matches/match-income.js"></script>
+<script type="application/x-javascript" src="./matches/match-order.js"></script>
 <script type="application/x-javascript" src="./matches/match-player-colouring.js"></script>
 <script type="application/x-javascript" src="./matches/match-report-format.js"></script>
-<script type="application/x-javascript" src="./matches/match-order.js"></script>
 <script type="application/x-javascript" src="./matches/ratings.js"></script>
 <script type="application/x-javascript" src="./matches/stars-counter.js"></script>
 <script type="application/x-javascript" src="./presentation/background-fixed.js"></script>

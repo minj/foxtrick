@@ -38,12 +38,12 @@ information-aggregation/series-flags.js
 information-aggregation/show-friendly-booked.js
 information-aggregation/show-lineup-set.js
 information-aggregation/skill-table.js
+information-aggregation/supporterstats-enhancements.js
+information-aggregation/table-of-statistical-truth.js
 information-aggregation/team-stats.js
 information-aggregation/transfer-deadline.js
 information-aggregation/youth-promotes.js
 information-aggregation/youth-series-estimation.js
-information-aggregation/supporterstats-enhancements.js
-links/links.js
 links/links-achievements.js
 links/links-alliances.js
 links/links-arena.js
@@ -53,6 +53,7 @@ links/links-coach.js
 links/links-country.js
 links/links-economy.js
 links/links-fans.js
+links/links.js
 links/links-league.js
 links/links-manager.js
 links/links-match.js
@@ -68,8 +69,8 @@ matches/att-vs-def.js
 matches/copy-ratings.js
 matches/htms-prediction.js
 matches/match-income.js
-matches/match-player-colouring.js
 matches/match-order.js
+matches/match-player-colouring.js
 matches/match-report-format.js
 matches/ratings.js
 matches/stars-counter.js

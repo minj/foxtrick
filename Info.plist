@@ -112,12 +112,12 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/information-aggregation/show-friendly-booked.js</string>
 				<string>content/information-aggregation/show-lineup-set.js</string>
 				<string>content/information-aggregation/skill-table.js</string>
+				<string>content/information-aggregation/supporterstats-enhancements.js</string>
+				<string>content/information-aggregation/table-of-statistical-truth.js</string>
 				<string>content/information-aggregation/team-stats.js</string>
 				<string>content/information-aggregation/transfer-deadline.js</string>
 				<string>content/information-aggregation/youth-promotes.js</string>
 				<string>content/information-aggregation/youth-series-estimation.js</string>
-				<string>content/information-aggregation/supporterstats-enhancements.js</string>
-				<string>content/links/links.js</string>
 				<string>content/links/links-achievements.js</string>
 				<string>content/links/links-alliances.js</string>
 				<string>content/links/links-arena.js</string>
@@ -127,6 +127,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/links/links-country.js</string>
 				<string>content/links/links-economy.js</string>
 				<string>content/links/links-fans.js</string>
+				<string>content/links/links.js</string>
 				<string>content/links/links-league.js</string>
 				<string>content/links/links-manager.js</string>
 				<string>content/links/links-match.js</string>
@@ -142,9 +143,9 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/matches/copy-ratings.js</string>
 				<string>content/matches/htms-prediction.js</string>
 				<string>content/matches/match-income.js</string>
+				<string>content/matches/match-order.js</string>
 				<string>content/matches/match-player-colouring.js</string>
 				<string>content/matches/match-report-format.js</string>
-				<string>content/matches/match-order.js</string>
 				<string>content/matches/ratings.js</string>
 				<string>content/matches/stars-counter.js</string>
 				<string>content/presentation/background-fixed.js</string>
