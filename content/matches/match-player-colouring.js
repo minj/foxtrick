@@ -8,13 +8,14 @@ Foxtrick.util.module.register((function() {
 	// add match report highlight links to playerdetails
 	var addHighlightParam = function(doc) {
 		var playerId = Foxtrick.Pages.Player.getId(doc);
-		var as = doc.getElementById("mainBody").getElementsByTagName("a");
-		for (var i = 0; i < as.length; ++i) {
-			if (as[i].href.search(/Club\/Matches\/Match\.aspx\?matchID=/i) != -1
-				&& as[i].href.search(/HighlightPlayerID/) == -1) {
-				as[i].href += "&HighlightPlayerID=" + playerId;
-			}
-		}
+		var links = doc.getElementById("mainBody").getElementsByTagName("a");
+		links = Foxtrick.filter(function(a) {
+			return (a.href.search(/Club\/Matches\/Match\.aspx\?matchID=/i) != -1
+				&& a.href.search(/HighlightPlayerID/) == -1);
+		}, links);
+		Foxtrick.map(function(a) {
+			a.href += "&HighlightPlayerID=" + playerId;
+		}, links);
 	};
 	return {
 		MODULE_NAME : "MatchPlayerColouring",
@@ -47,12 +48,13 @@ Foxtrick.util.module.register((function() {
 				// highlight single player
 				var playerId = doc.location.search.match(/&HighlightPlayerID=(\d+)/)[1];
 				var links = doc.getElementById("mainWrapper").getElementsByTagName("a");
-				for (var i = 0; i < links.length; ++i) {
-					if (links[i].href.indexOf(playerId) > -1) {
-						// add an arbitrarily home class
-						Foxtrick.addClass(links[i], "ft-match-player-home");
-					}
-				}
+				links = Foxtrick.filter(function(a) {
+					return a.href.indexOf(playerId) > -1;
+				}, links);
+				// add an arbitrarily home class
+				Foxtrick.map(function(a) {
+					Foxtrick.addClass(a, "ft-match-player-home");
+				}, links);
 				return;
 			}
 
@@ -114,7 +116,8 @@ Foxtrick.util.module.register((function() {
 			};
 			var getPlayerId =  function(a) {
 				var m;
-				if (m = a.href.match(/PlayerId=(\d+)/i))
+				if (!a.hasAttribute("data-do-not-color")
+					&& (m = a.href.match(/PlayerId=(\d+)/i)))
 					return Number(m[1]);
 				return null;
 			};

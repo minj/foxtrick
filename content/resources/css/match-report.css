@@ -2,6 +2,16 @@
  * non-table way.
  */
 
+.ft-match-lineup li {
+	padding-bottom: 2px !important;
+	border-bottom: 1px solid #eee;
+}
+
+.ft-match-lineup a {
+	text-decoration: none !important;
+	color: #006db5 !important;
+}
+
 .ft-match-report {
 	border-spacing: 0 5px;
 }
