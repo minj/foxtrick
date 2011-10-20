@@ -1,7 +1,7 @@
 "use strict";
 /**
  * table-of-statistical-truth.js
- * add htms prediced table to old series
+ * add htms predicted table to old series
  * @author spambot, ryanli
  */
 
@@ -15,8 +15,9 @@ Foxtrick.util.module.register({
 
 		var season =  doc.getElementById('mainBody').getElementsByTagName('select')[0].value;
 		var serie =  Foxtrick.util.id.getLeagueLeveUnitIdFromUrl(doc.getElementById('mainWrapper').getElementsByTagName('h2')[0].getElementsByTagName('a')[1].href);
+		var lang = FoxtrickPrefs.getString("htLanguage");
 
-			var leaguetable = doc.getElementById("mainBody").getElementsByTagName('table')[0]
+		var leaguetable = doc.getElementById("mainBody").getElementsByTagName('table')[0]
 		var insertBefore = leaguetable.nextSibling;
 
 		var tableHeader = doc.createElement("h2");
@@ -41,7 +42,6 @@ Foxtrick.util.module.register({
 
 		tableHeader.addEventListener("click", toggleTable, false);
 		
-				
 		var addTable = function() {
 			var url = "http://www.fantamondi.it/HTMS/dorequest.php?action=truthtable&serie="+serie+"&season="+season;
 			Foxtrick.loadXml(url, function(xml) { 
@@ -50,14 +50,13 @@ Foxtrick.util.module.register({
 					return;
 				}
 				else if (xml.getElementsByTagName('available')[0].textContent=='false') {
-					if (!doc.getElementbyId("createTableLink")) { 
-						var a = doc.createElement("a");
-						a.href = 'http://www.fantamondi.it/HTMS/index.php?page=truthtable&lang=en&serie='+serie+'&season='+season;
-						a.id="createTableLink";
-						a.target = '_blank';
-						a.textContent = Foxtrickl10n.getString('truthTable.notAvailableYet');
-						insertBefore.parentNode.insertBefore(a, insertBefore);
-					}
+					
+					table = doc.createElement("a");
+					table.href = 'http://www.fantamondi.it/HTMS/index.php?page=truthtable&lang='+lang+'&serie='+serie+'&season='+season;
+					table.id="createTableLink";
+					table.target = '_blank';
+					table.textContent = Foxtrickl10n.getString('truthTable.notAvailableYet');
+					insertBefore.parentNode.insertBefore(table, insertBefore);
 					return;
 				}
 				
