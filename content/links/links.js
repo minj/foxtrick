@@ -135,6 +135,7 @@ Foxtrick.util.module.register((function() {
 
 			// add current server to args first
 			args.server = doc.location.hostname;
+			args.lang = FoxtrickPrefs.getString("htLanguage");
 
 			// links to return
 			var links = [];
