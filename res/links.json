@@ -187,6 +187,13 @@
 		"title": "htstats (played match)",
 		"img": "resources/linkicons/htstats.png"
 	},
+	"htms_matchanalyzer": {
+		"playedmatchlink": {
+			"url": "http://www.fantamondi.it/HTMS/index.php?page=matchanalyze&matchid=[matchid]&lang=[lang]"
+		},
+		"title": "htms match analyzer",
+		"img": "resources/linkicons/htmsanalizer.png"
+	},
 	"htms_stats": {
 		"nextmatchlink": {
 			"url": "http://www.fantamondi.it/HTMS/index.php?page=predictor&lang=[lang]"
