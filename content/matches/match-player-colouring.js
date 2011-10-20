@@ -10,7 +10,8 @@ Foxtrick.util.module.register((function() {
 		var playerId = Foxtrick.Pages.Player.getId(doc);
 		var links = doc.getElementById("mainBody").getElementsByTagName("a");
 		links = Foxtrick.filter(function(a) {
-			return (a.href.search(/Club\/Matches\/Match\.aspx\?matchID=/i) != -1
+			return (a.hasAttribute('href')
+				&& a.href.search(/Club\/Matches\/Match\.aspx\?matchID=/i) != -1
 				&& a.href.search(/HighlightPlayerID/) == -1);
 		}, links);
 		Foxtrick.map(function(a) {
@@ -49,7 +50,7 @@ Foxtrick.util.module.register((function() {
 				var playerId = doc.location.search.match(/&HighlightPlayerID=(\d+)/)[1];
 				var links = doc.getElementById("mainWrapper").getElementsByTagName("a");
 				links = Foxtrick.filter(function(a) {
-					return a.href.indexOf(playerId) > -1;
+					return aLink.hasAttribute('href') && a.href.indexOf(playerId) > -1;
 				}, links);
 				// add an arbitrarily home class
 				Foxtrick.map(function(a) {
@@ -92,8 +93,10 @@ Foxtrick.util.module.register((function() {
 			Foxtrick.addClass(awayTeam, awayClass);
 
 			var mainWrapper = doc.getElementById("mainWrapper");
-			var links = mainWrapper.getElementsByTagName("a");
-
+			var links = Foxtrick.filter(function(n) {
+				return n.hasAttribute('href') ;
+			}, mainWrapper.getElementsByTagName("a"));
+			
 			// arguments for retrieving XML
 			var homeArgs = [
 				["file", "matchlineup"],
@@ -150,7 +153,9 @@ Foxtrick.util.module.register((function() {
 					}, links);
 
 					// add class for sidebar event rows
-					var sidebarLinks = sidebar.getElementsByTagName("a");
+					var sidebarLinks =  Foxtrick.filter(function(n) {
+						return n.hasAttribute('href') ;
+					}, sidebar.getElementsByTagName("a"));
 					var homeLinks = Foxtrick.filter(function(n) {
 						return (getPlayerId(n) != null)
 							&& Foxtrick.hasClass(n, homeClass);

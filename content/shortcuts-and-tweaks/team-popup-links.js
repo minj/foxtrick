@@ -323,7 +323,7 @@ Foxtrick.util.module.register({
 		var aLinks = doc.getElementById('mainBody').getElementsByTagName('a');
 		var i = 0, aLink;
 		while (aLink = aLinks[i++]) {
-			if (aLink.getElementsByTagName('img')[0] != null || aLink.parentNode.className=='liveTabText')
+			if (!aLink.hasAttribute('href') || aLink.getElementsByTagName('img')[0] != null || aLink.parentNode.className=='liveTabText')
 				continue; // don't add to buttons, and htlive tabs
 			addSpan(aLink);
 		}
@@ -333,7 +333,7 @@ Foxtrick.util.module.register({
 			aLinks = sidebar.getElementsByTagName('a');
 			var i = 0, aLink;
 			while (aLink = aLinks[i++]) {
-				if (aLink.getElementsByTagName('img')[0] != null)
+				if (!aLink.hasAttribute('href') || aLink.getElementsByTagName('img')[0] != null)
 					continue; // don't add to buttons
 				addSpan(aLink);
 			}
