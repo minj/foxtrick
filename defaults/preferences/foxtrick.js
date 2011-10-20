@@ -236,6 +236,7 @@ pref("extensions.foxtrick.prefs.module.LinksMatch.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksMatch.gham.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksMatch.halloffame_match.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksMatch.htms_stats.enabled", true);
+pref("extensions.foxtrick.prefs.module.LinksMatch.htms_matchanalyzer.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksMatch.htstats_all.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksMatch.xray_h2h.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksMatch.xray_live.enabled", true);
