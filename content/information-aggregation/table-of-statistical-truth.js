@@ -119,6 +119,16 @@ Foxtrick.util.module.register({
 				
 				insertBefore.parentNode.insertBefore(table, insertBefore);
 				
+				var br = doc.createElement("br");
+				insertBefore.parentNode.insertBefore(br, insertBefore);
+				
+				var link = doc.createElement("a");
+				link.href = 'http://www.fantamondi.it/HTMS/index.php?page=truthtable&lang='+lang+'&serie='+serie+'&season='+season;
+				link.target = '_blank';
+				link.textContent = Foxtrickl10n.getString('truthtable.tableAtHTMS');
+				insertBefore.parentNode.insertBefore(link, insertBefore);
+					
+				
 				Foxtrick.util.module.get("TableSort").run(doc);
 			}, true);
 		};
