@@ -27,6 +27,7 @@
 
 .ft-monitor-frame > h2 > div.ft_sort {
 	float:right;
+	margin-right: 14px;
 	display:none;
 }
 

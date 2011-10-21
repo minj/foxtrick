@@ -75,7 +75,8 @@ Foxtrick.util.module.register({
 		select.value=FoxtrickPrefs.getInt("module.LeagueNewsFilter.value");
 		selectdiv.appendChild(select);
 
-		newsfeed.parentNode.insertBefore(selectdiv,newsfeed.parentNode.firstChild);
+		var h2 = newsfeed.parentNode.getElementsByTagName('h2')[0];
+		newsfeed.parentNode.insertBefore(selectdiv, h2.nextSibling);
 
 		var lineupSet = new Array();
 		var item=null;
