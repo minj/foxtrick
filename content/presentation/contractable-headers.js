@@ -49,38 +49,47 @@ Foxtrick.util.module.register({
 						|| (el.nodeType ==  Node.ELEMENT_NODE && el.getElementsByTagName('h2')[0] == h2)) {
 						elementBeforeHeader = false;
 					}
+					el = el.nextSibling;
+					continue;
 				}
-				else {
-					// if text node, wrap in span on first encounter
-					if (el.nodeType ==  Node.TEXT_NODE) {
-						var target = el.nextSibling;
-						var span =  doc.createElement('span');
-						span.appendChild(el);
-						el = parent.insertBefore(span, target);
-						
-					}
-					// stop with next header or dedicated parentNode mainBox
-					if ( el.className == 'mainBox'
-						|| el.nodeName == 'H1'
-						|| (el.nodeName == 'H2' && !Foxtrick.hasClass(el, 'info'))
-						|| (el.getElementsByTagName('h2')[0] !== undefined && !Foxtrick.hasClass(el.getElementsByTagName('h2')[0],'info') )) {
-						break
-					}
-					Foxtrick.toggleClass(el, 'hidden');
+
+				// if text node, wrap in span on first encounter
+				if (el.nodeType ==  Node.TEXT_NODE) {
+					var target = el.nextSibling;
+					var span =  doc.createElement('span');
+					span.appendChild(el);
+					el = parent.insertBefore(span, target);
 					
-					// count new forum postings
-					if ( Foxtrick.hasClass(el,'hidden') && el.getElementsByClassName('fplThreadInfo')[0] != undefined ) {
-						var rows = el.getElementsByClassName('fplThreadInfo');
-						Foxtrick.map(function(n) {
-							var unread = n.getElementsByClassName('highlight')[0];
-							if (unread !== undefined) {
-								var tid = unread.getAttribute('onclick').match(/'read\|(\d+)'/)[1];
-								if (!forumThreads[tid])
-									numUnread += Number(unread.textContent);
-								forumThreads[tid] = true;
-							}
-						}, rows);
-					}
+				}
+
+				// stop with next header or dedicated parentNode mainBox
+				if ( el.className == 'mainBox'
+					|| el.nodeName == 'H1'
+					|| (el.nodeName == 'H2' && !Foxtrick.hasClass(el, 'info'))
+					|| (el.getElementsByTagName('h2')[0] !== undefined && !Foxtrick.hasClass(el.getElementsByTagName('h2')[0],'info') )) {
+					break
+				}
+
+				// don't show which is hidden originally, eg ft-forum-preview-area 
+				if (el.id == 'ft-forum-preview-area' && Foxtrick.hasClass(el, 'hidden')) {
+					el = el.nextSibling;
+					continue;
+				}
+
+				Foxtrick.toggleClass(el, 'hidden');
+
+				// count new forum postings
+				if ( Foxtrick.hasClass(el,'hidden') && el.getElementsByClassName('fplThreadInfo')[0] != undefined ) {
+					var rows = el.getElementsByClassName('fplThreadInfo');
+					Foxtrick.map(function(n) {
+						var unread = n.getElementsByClassName('highlight')[0];
+						if (unread !== undefined) {
+							var tid = unread.getAttribute('onclick').match(/'read\|(\d+)'/)[1];
+							if (!forumThreads[tid])
+								numUnread += Number(unread.textContent);
+							forumThreads[tid] = true;
+						}
+					}, rows);
 				}
 				el = el.nextSibling;
 			}
