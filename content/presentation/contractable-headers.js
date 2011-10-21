@@ -1,22 +1,22 @@
 "use strict";
 /**
- * subheader-folding.js
+ * contractable-headers.js
  * Foxtrick team select box
  * @author convinced
  */
 
 Foxtrick.util.module.register({
-	MODULE_NAME : "SubheaderFolding",
+	MODULE_NAME : "ContractableHeaders",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
-	NICE : +10, // after we add h2s
+	NICE : +20, // after we add own h2s
 
 	run : function(doc) {
 		
 		var toggle = function(h2) {
 			Foxtrick.toggleClass(h2, 'ft-expander-expanded');
 			Foxtrick.toggleClass(h2, 'ft-expander-unexpanded');
-			FoxtrickPrefs.setBool('SubheaderFolding.'+doc.location.pathname+'.'+h2.textContent+'.folded', Foxtrick.hasClass(h2,'ft-expander-unexpanded'));
+			FoxtrickPrefs.setBool('ContractableHeaders.'+doc.location.pathname+'.'+h2.textContent+'.folded', Foxtrick.hasClass(h2,'ft-expander-unexpanded'));
 
 			// go though all children and toggle 'hidden'. in tables use table rows (eg current matches)
 			if (h2.parentNode.nodeName=='TD')
@@ -66,7 +66,7 @@ Foxtrick.util.module.register({
 			}
 			Foxtrick.listen(n, "click", function(ev){toggle(ev.target);}, false);
 			Foxtrick.addClass(n, 'ft-expander-expanded');
-			if (FoxtrickPrefs.getBool('SubheaderFolding.'+doc.location.pathname+'.'+n.textContent+'.folded'))
+			if (FoxtrickPrefs.getBool('ContractableHeaders.'+doc.location.pathname+'.'+n.textContent+'.folded'))
 				toggle(n);
 		}, h2s);
 	}

@@ -100,7 +100,7 @@ presentation/skill-coloring.js
 presentation/skill-translation.js
 presentation/skin-plugin.js
 presentation/smaller-pages.js
-presentation/subheader-folding.js
+presentation/contractable-headers.js
 presentation/team-select-box.js
 presentation/youth-skill-hide-unknown.js
 shortcuts-and-tweaks/confirm-actions.js
