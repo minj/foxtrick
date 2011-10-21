@@ -19,15 +19,16 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 			|| Foxtrick.isExcluded(document) )  
 			return;
 
+		var beginRequest = new Date();
 
 		// request resources from background script
 		// calls/adds Foxtrick.loader.chrome.docLoadEnd
 		sandboxed.extension.sendRequest({ req : "pageLoad" },
 		function (data) {
 			try { 
-				if (data.error) Foxtrick.log(data.error);
+				var beginInit = new Date();
 
-				var begin = new Date();
+				if (data.error) Foxtrick.log(data.error);
 
 				Foxtrick.entry.setRetrievedLocalResources(data);
 
@@ -48,22 +49,24 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 
 				Foxtrick.entry.cssLoaded = true;
 
-				var initTime = new Date() - begin.getTime();
-				Foxtrick.log("init time: " , initTime , " ms");
-
 				// safari context menu special paste listener
 				if ( Foxtrick.platform == "Safari" ) {
 					window.addEventListener('mouseup', Foxtrick.loader.chrome.clickListener, false);
 					Foxtrick.loader.chrome.initGrowl();
 				}
 
+				var nowTime = new Date(); 
+				var requestTime = beginInit.getTime() - beginRequest.getTime();
+				var initTime = nowTime - beginInit.getTime();
+				Foxtrick.log("request time: ", requestTime ," - init time: " , initTime , " ms");
+
 				// if ht doc is already loaded start now, else wait till loaded
 				if (Foxtrick.isHt(document)) {
-					Foxtrick.log('Ht domument ready. Run now.');
+					Foxtrick.log('I was slow. Ht domument ready. Run now.');
 					Foxtrick.entry.docLoad(document);
 				}
 				else {
-					Foxtrick.log('Wait for DOMContentLoaded');
+					Foxtrick.log('I was fast. Wait for DOMContentLoaded');
 					window.addEventListener("DOMContentLoaded", function() {
 						Foxtrick.entry.docLoad(document)
 					}, false);

@@ -77,7 +77,6 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	//   optionsPageLoad : on options page for opera 
 	//
 	var pageLoad = function(request, sender, sendResponse) {
-	
 		// access user setting directly here, since getBool uses a copy which needs updating just here
 		if ( (Foxtrick.arch == "Sandboxed" && localStorage.getItem("preferences.updated"))
 			|| (Foxtrick.platform == "Fennec" && FoxtrickPrefs._prefs_gecko.getBoolPref("preferences.updated")) ) {
@@ -107,9 +106,8 @@ Foxtrick.loader.chrome.browserLoad = function() {
 			FoxtrickUI.update(sender.tab);
 			resource.cssText = cssTextCollection;
 		}
-	
+		
 		sendResponse ( resource );
-	
 	};
 	// fennecs tab child processes
 	var tabLoad = pageLoad;
@@ -122,21 +120,18 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	var register = function(request, sender, sendResponse) {};
 
 
-	// content preference copy not updated if those change
-	var no_update_needed = {'preferences.updated':true, 'last-host':true, 'last-page':true, 'version':true};
-
 	// from prefs.js
 	var setValue = function(request, sender, sendResponse) {
 		if (FoxtrickPrefs.get(request.key)==request.value) 
 			return;
 		FoxtrickPrefs.setValue(request.key, request.value, request.type);
-		if ( !no_update_needed[request.key] )
-			FoxtrickPrefs.setBool("preferences.updated",true);
+		if ( request.key == 'htLanguage' )
+			Foxtrickl10n.init();
 	};
 	var deleteValue = function(request, sender, sendResponse) {
 		FoxtrickPrefs.deleteValue(request.key);
-		if (!no_update_needed[request.key])
-			FoxtrickPrefs.setBool("preferences.updated",true);
+		if ( request.key == 'htLanguage' )
+			Foxtrickl10n.init();
 	};
 	var clearPrefs = function(request, sender, sendResponse) {
 		try {
