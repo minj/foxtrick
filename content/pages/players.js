@@ -84,6 +84,7 @@ Foxtrick.Pages.Players = {
 					else {
 						playerList.push({id : id});
 						player = playerList[playerList.length - 1];
+						player.xlm = true;
 
 						player.nameLink = doc.createElement('a');
 						player.nameLink.href = '/Club/Players/Player.aspx?PlayerID='+id;
@@ -279,6 +280,7 @@ Foxtrick.Pages.Players = {
 					playerList.push({id : id});
 					player = playerList[playerList.length - 1];
 				}
+				player.html = true;
 				var nameLink = Foxtrick.filter(function(n) { return !Foxtrick.hasClass(n, "flag.+"); },
 					playerNode.getElementsByTagName("a"))[0];
 				player.nameLink = nameLink.cloneNode(true);
@@ -321,11 +323,10 @@ Foxtrick.Pages.Players = {
 					&& !player.tsi) {
 					// youth players don't have TSI, and we can fetch directly
 					// from XML if it's there
-					var tsiMatch = basicHtml.match(RegExp("\\w+\\s*(=|:)\\s*([\\d\\s]*)"));
+					var tsiMatch = basicHtml.replace(/\s+/g,'').match(RegExp("[=:].?(\\d+)"));
 					var tsi;
 					if (tsiMatch) {
-						tsi = tsiMatch[2];
-						tsi = tsi.replace(RegExp("\\s", "g"), "");
+						tsi = tsiMatch[1];
 						tsi = parseInt(tsi);
 						player.tsi = tsi;
 					}

@@ -882,33 +882,34 @@ Foxtrick.util.module.register({
 			};
 
 			// get normal oldies into oldies_list
-			var oldies_list = Foxtrick.Pages.Players.getPlayerList(doc);
-			// then get current squad (last parameter true) into current_squad_list
-			Foxtrick.Pages.Players.getPlayerList(doc, function(current_squad_list) {
-				// add homegrown from current squad to oldies
-				var TeamId = Foxtrick.Pages.All.getTeamId(doc);
-				// check all current players homegrown status based on transfers.xml of each player
-				var argsTransfersPlayer = [];
-				Foxtrick.map(function(player) {
-					argsTransfersPlayer.push([ ["playerid", player.id], ["file", "transfersPlayer"] ]);
-				}, current_squad_list);
+			Foxtrick.Pages.Players.getPlayerList(doc, function(oldies_list) {
+				// then get current squad (last parameter true) into current_squad_list
+				Foxtrick.Pages.Players.getPlayerList(doc, function(current_squad_list) {
+					// add homegrown from current squad to oldies
+					var TeamId = Foxtrick.Pages.All.getTeamId(doc);
+					// check all current players homegrown status based on transfers.xml of each player
+					var argsTransfersPlayer = [];
+					Foxtrick.map(function(player) {
+						argsTransfersPlayer.push([ ["playerid", player.id], ["file", "transfersPlayer"] ]);
+					}, current_squad_list);
 
-				Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer, {cache_lifetime:'session' }, function(xmls) {
-					for (i = 0; i < xmls.length; ++i) {
-						if (xmls[i]) {
-								var homeGrown = getHomeGrownStatus(TeamId, xmls[i]);
-								if (homeGrown) {
-									var pid = xmls[i].getElementsByTagName("PlayerID")[0].textContent;
-									Foxtrick.map(function(n) {if (n.id== pid) n.homeGrown = homeGrown;}, current_squad_list);
+					Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer, {cache_lifetime:'session' }, function(xmls) {
+						for (i = 0; i < xmls.length; ++i) {
+							if (xmls[i]) {
+									var homeGrown = getHomeGrownStatus(TeamId, xmls[i]);
+									if (homeGrown) {
+										var pid = xmls[i].getElementsByTagName("PlayerID")[0].textContent;
+										Foxtrick.map(function(n) {if (n.id== pid) n.homeGrown = homeGrown;}, current_squad_list);
+									}
 								}
-							}
-					}
-					// filter, concat with oldies and display
-					current_squad_list = Foxtrick.filter(function(n) {return n.homeGrown;}, current_squad_list);
-					var full_list = oldies_list.concat(current_squad_list);
-					showTable(full_list);
-				});
-			}, {current_squad : 'true'} );
+						}
+						// filter, concat with oldies and display
+						current_squad_list = Foxtrick.filter(function(n) {return n.homeGrown;}, current_squad_list);
+						var full_list = oldies_list.concat(current_squad_list);
+						showTable(full_list);
+					});
+				}, {current_squad : 'true'} );
+			});
 		};
 		var addTableDiv = function() {
 			var tablediv = doc.createElement("div");
