@@ -81,11 +81,10 @@ Foxtrick.Pages.Players = {
 						{ player = playerList[j];break;}
 				if (!player) {
 					if (!options || !options.current_squad) continue; // not present in HTML. skip if not retrieving squad from other page anyways
-					else {
+					else { 
 						playerList.push({id : id});
 						player = playerList[playerList.length - 1];
-						player.xlm = true;
-
+						
 						player.nameLink = doc.createElement('a');
 						player.nameLink.href = '/Club/Players/Player.aspx?PlayerID='+id;
 						if (playerNode.getElementsByTagName("PlayerName")[0])
@@ -128,40 +127,11 @@ Foxtrick.Pages.Players = {
 
 						var LastMatch = playerNode.getElementsByTagName("LastMatch")[0];
 						if ( LastMatch && LastMatch.getElementsByTagName("Date")[0] ) {
-							var MatchRoleIDToPosition = {
-								"100":"Keeper",
-								"101":"Wing back",
-								"102":"Central defender",
-								"103":"Central defender",
-								"104":"Central defender",
-								"105":"Wing back",
-								"106":"Winger",
-								"107":"Inner midfielder",
-								"108":"Inner midfielder",
-								"109":"Inner midfielder",
-								"110":"Winger",
-								"111":"Forward",
-								"112":"Forward",
-								"113":"Forward",
-								"114":"Substitution (Keeper)",
-								"115":"Substitution (Defender)",
-								"116":"Inner midfielder",
-								"117":"Substitution (Winger)",
-								"118":"Substitution (Forward)",
-								"17":"Set pieces",
-								"18":"Captain",
-								"19":"Replaced Player #1",
-								"20":"Replaced Player #2",
-								"21":"Replaced Player #3",
-							};
-							player.lastPlayedMinutes = Number(LastMatch.getElementsByTagName("PlayedMinutes")[0].textContent);
 							player.lastRatingEndOfGame = Number(LastMatch.getElementsByTagName("RatingEndOfGame")[0].textContent);
-							player.lastPositionCode = Number(LastMatch.getElementsByTagName("PositionCode")[0].textContent);
 							player.lastRating = Number(LastMatch.getElementsByTagName("Rating")[0].textContent);
+							player.lastRatingDecline = player.lastRating - player.lastRatingEndOfGame;
 							player.lastMatchId = Number(LastMatch.getElementsByTagName("MatchId")[0].textContent);
 							player.lastMatchDate = LastMatch.getElementsByTagName("Date")[0].textContent;
-							var position = Foxtrickl10n.getPositionByType(MatchRoleIDToPosition[player.lastPositionCode]);
-							player.lastMatchText = Foxtrickl10n.getString('Last_match_played_as').replace('%1',player.lastPlayedMinutes).replace('%2', position);
 						}
 					}
 				}
@@ -261,6 +231,39 @@ Foxtrick.Pages.Players = {
 						player.number = number;
 					}
 				}
+				var LastMatch = playerNode.getElementsByTagName("LastMatch")[0];
+				if ( LastMatch && LastMatch.getElementsByTagName("Date")[0] ) {
+					var MatchRoleIDToPosition = {
+						"100":"Keeper",
+						"101":"Wing back",
+						"102":"Central defender",
+						"103":"Central defender",
+						"104":"Central defender",
+						"105":"Wing back",
+						"106":"Winger",
+						"107":"Inner midfielder",
+						"108":"Inner midfielder",
+						"109":"Inner midfielder",
+						"110":"Winger",
+						"111":"Forward",
+						"112":"Forward",
+						"113":"Forward",
+						"114":"Substitution (Keeper)",
+						"115":"Substitution (Defender)",
+						"116":"Inner midfielder",
+						"117":"Substitution (Winger)",
+						"118":"Substitution (Forward)",
+						"17":"Set pieces",
+						"18":"Captain",
+						"19":"Replaced Player #1",
+						"20":"Replaced Player #2",
+						"21":"Replaced Player #3",
+					};
+					player.lastPlayedMinutes = Number(LastMatch.getElementsByTagName("PlayedMinutes")[0].textContent);
+					player.lastPositionCode = Number(LastMatch.getElementsByTagName("PositionCode")[0].textContent);
+					var position = Foxtrickl10n.getPositionByType(MatchRoleIDToPosition[player.lastPositionCode]);
+					player.lastMatchText = Foxtrickl10n.getString('Last_match_played_as').replace('%1',player.lastPlayedMinutes).replace('%2', position);
+				}
 			}
 		} catch(e) {Foxtrick.log(e);}
 		};
@@ -280,7 +283,7 @@ Foxtrick.Pages.Players = {
 					playerList.push({id : id});
 					player = playerList[playerList.length - 1];
 				}
-				player.html = true;
+
 				var nameLink = Foxtrick.filter(function(n) { return !Foxtrick.hasClass(n, "flag.+"); },
 					playerNode.getElementsByTagName("a"))[0];
 				player.nameLink = nameLink.cloneNode(true);
@@ -501,6 +504,15 @@ Foxtrick.Pages.Players = {
 					rating += container.getElementsByClassName("starWhole").length * 1;
 					rating += container.getElementsByClassName("starHalf").length * 0.5;
 					player.lastRating = rating;
+					
+					var ratingYellow = 0;
+					ratingYellow += (container.innerHTML.split(/star_big_yellow.png/g).length-1)*5; 
+					ratingYellow += (container.innerHTML.split(/star_yellow.png/g).length-1)*1; 
+					ratingYellow += (container.innerHTML.split(/star_half_yellow.png/g).length-1)*0.5; 
+					ratingYellow += (container.innerHTML.split(/star_yellow_to_brown.png/g).length-1)*0.5; 
+					player.lastRatingEndOfGame = ratingYellow;
+
+					player.lastRatingDecline = rating - ratingYellow;
 				}
 
 				if (matchLink) {
@@ -558,10 +570,16 @@ Foxtrick.Pages.Players = {
 						}
 					}
 				}
+				var psicoLink = null;
 				if (doc.getElementById("psicotsi_show_div_"+i)!==null) 	 // ff
-					player.psicoTSI = doc.getElementById("psicotsi_show_div_"+i).getElementsByTagName("a")[0].textContent.match(/\d+\.\d+/)[0];
+					psicoLink = doc.getElementById("psicotsi_show_div_"+i).getElementsByTagName("a")[0];
 				else if (doc.getElementById("psico_show_div_"+i)!==null) 	 // chrome
-					player.psicoTSI = doc.getElementById("psico_show_div_"+i).getElementsByTagName("a")[0].textContent.match(/\d+\.\d+/)[0];
+					psicoLink = doc.getElementById("psico_show_div_"+i).getElementsByTagName("a")[0];
+				if (psicoLink) {
+					player.psicoTSI = psicoLink.textContent.match(/\d+\.\d+/)[0];
+					player.psicoTitle = psicoLink.textContent.match(/(.+)\s\[/)[1];
+				}
+				
 			}
 		};
 		// if callback is provided, we get list with XML
@@ -571,8 +589,8 @@ Foxtrick.Pages.Players = {
 				try {
 					// parse HTML first because players present in XML may
 					// not present in XML (NT players)
-					if (!options || !options.current_squad) parseHtml();
-					if (xml) parseXml(xml);
+					if (!options || !options.current_squad) parseHtml();Foxtrick.log(playerList)
+					if (xml) parseXml(xml); 
 					callback(playerList);
 				}
 				catch (e) {

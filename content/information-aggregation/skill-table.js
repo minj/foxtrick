@@ -371,14 +371,16 @@ Foxtrick.util.module.register({
 					{ name : "Passing", property : "passing", method: skill },
 					{ name : "Scoring", property : "scoring", method: skill },
 					{ name : "Set_pieces", property : "setPieces", method: skill },
-					{ name : "PsicoTSI", property : "psicoTSI", alignRight : true, method: formatNum },
+					{ name : "PsicoTSI", property : "psicoTSI", alignRight : true, method: formatNum, title:'psicoTitle' },
 					{ name : "HTMS_Ability", property : "htmsAbility" },
 					{ name : "HTMS_Potential", property : "htmsPotential" },
 					{ name : "Agreeability", property : "agreeability", method: skill },
 					{ name : "Aggressiveness", property : "aggressiveness", method: skill },
 					{ name : "Honesty", property : "honesty", method: skill },
 					{ name : "Last_match", property : "lastMatch", method : lastMatch },
-					{ name : "Last_stars", property : "lastRating", img : "/Img/Matches/star_blue.png" },
+					{ name : "Last_stars", property : "lastRating", img : "/Img/Matches/star_yellow_to_brown.png" },
+					{ name : "Last_stars_EndOfGame", property : "lastRatingEndOfGame", img : "/Img/Matches/star_yellow.png" },
+					{ name : "Last_stars_decline", property : "lastRatingDecline", img : "/Img/Matches/star_brown.png" },
 					{ name : "Last_position", property : "lastPosition", method : position, sortString : true },
 					{ name : "Salary", property : "salary", alignRight : true, method : formatNum },
 					{ name : "NrOfMatches", property : "matchCount" },
@@ -673,6 +675,9 @@ Foxtrick.util.module.register({
 								}
 								else {
 									cell.textContent = playerList[i][columns[j].property];
+								}
+								if (columns[j].title) {
+									cell.title = playerList[i][columns[j].title];
 								}
 							}
 							if (columns[j].alignRight) {
