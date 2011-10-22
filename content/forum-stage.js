@@ -35,7 +35,7 @@ Foxtrick.util.module.register({
 			checkdiv.appendChild(desc);
 			divalert.appendChild(checkdiv);
 
-			check.addEventListener("click", function( ev ) {
+			Foxtrick.listen(check, "click", function( ev ) {
 				var doc = ev.target.ownerDocument;
 				var checked = ev.target.checked;
 				var button_ok = doc.getElementById('ctl00_ctl00_CPContent_CPMain_btnOK');

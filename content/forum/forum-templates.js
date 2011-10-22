@@ -89,7 +89,7 @@ Foxtrick.util.module.register({
 					button_ok.setAttribute("id",  "ForumTemplatesOKId");
 					button_ok.setAttribute("type",  "button");
 					button_ok.setAttribute("tabindex", "5");
-					button_ok.addEventListener("click", addNewTemplate, false);
+					Foxtrick.listen(button_ok, "click", addNewTemplate, false);
 					inputTitleDiv.appendChild(button_ok);
 
 					var button_cancel = doc.createElement("input");
@@ -97,7 +97,7 @@ Foxtrick.util.module.register({
 					button_cancel.setAttribute("id",  "ForumTemplatesCancelId");
 					button_cancel.setAttribute("type",  "button");
 					//button_cancel.setAttribute("tabindex", "");
-					button_cancel.addEventListener("click", CancelTitle, false);
+					Foxtrick.listen(button_cancel, "click", CancelTitle, false);
 					inputTitleDiv.appendChild(button_cancel);
 
 					msg_window.parentNode.insertBefore(inputTitleDiv, msg_window);
@@ -158,13 +158,13 @@ Foxtrick.util.module.register({
 			var remover = doc.createElement("span");
 			remover.className = "ft-forum-template-remover ft_actionicon foxtrickRemove";
 			remover.msg = fulltext;
-			remover.addEventListener("click", removeTemplate, false);
+			Foxtrick.listen(remover, "click", removeTemplate, false);
 			container.appendChild(remover);
 			var name = doc.createElement("a");
 			name.className = "ft-link ft-forum-template-name";
 			name.msg = text;
 			name.title = name.textContent = title;
-			name.addEventListener("click", fillMsgWindow, false);
+			Foxtrick.listen(name, "click", fillMsgWindow, false);
 			container.appendChild(name);
 		};
 
@@ -200,7 +200,7 @@ Foxtrick.util.module.register({
 		new_button.setAttribute("style", "margin-right:10px;");
 		new_button.setAttribute("tabIndex", "3");
 		new_button.textContent = Foxtrickl10n.getString('make_template_from_post');
-		new_button.addEventListener("click", addNewTitle, false);
+		Foxtrick.listen(new_button, "click", addNewTitle, false);
 		controls_div.appendChild(new_button);
 
 		if (!FoxtrickPrefs.isModuleOptionEnabled("ForumTemplates", "DefaultShow")) {
@@ -212,7 +212,7 @@ Foxtrick.util.module.register({
 			show_button.setAttribute("style", "margin-right:10px;");
 			//show_button.setAttribute("tabIndex", "3");
 			show_button.textContent = Foxtrickl10n.getString('show_templates');
-			show_button.addEventListener("click", ShowTemplates, false);
+			Foxtrick.listen(show_button, "click", ShowTemplates, false);
 			controls_div.appendChild(show_button);
 
 			var hide_button = doc.createElement("a");
@@ -222,7 +222,7 @@ Foxtrick.util.module.register({
 			hide_button.setAttribute("style", "margin-right:10px;");
 			//hide_button.setAttribute("tabIndex", "3");
 			hide_button.textContent = Foxtrickl10n.getString('hide_templates');
-			hide_button.addEventListener("click", HideTemplates, false);
+			Foxtrick.listen(hide_button, "click", HideTemplates, false);
 			controls_div.appendChild(hide_button);
 		}
 

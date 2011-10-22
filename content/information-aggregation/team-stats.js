@@ -104,7 +104,7 @@ Foxtrick.util.module.register({
 				var addFilterShortcut = function (filter, title) {
 					row.title = Foxtrickl10n.getString("Filter")+': '+title;
 					row.setAttribute('style','cursor:pointer')
-					row.addEventListener("click", function(ev) {
+					Foxtrick.listen(row, "click", function(ev) {
 						var filterSelect = doc.getElementById('foxtrick-filter-select');
 						// init filters
 						var evt = doc.createEvent("HTMLEvents");

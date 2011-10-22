@@ -40,7 +40,7 @@ Foxtrick.util.module.register({
 	},
 
 	run : function(doc) {
-		doc.getElementById('mainBody').addEventListener('click',this.onclick,true);
+		Foxtrick.listen(doc.getElementById('mainBody'), 'click',this.onclick,true);
 		if (Foxtrick.isPage("forumViewThread", doc))
 			return;
 

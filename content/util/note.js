@@ -96,7 +96,7 @@ Foxtrick.util.note = {
 					button.type = "button";
 					button.value = Foxtrickl10n.getString(buttons[i].type.name);
 					if (buttons[i].listener) {
-						button.addEventListener("click", buttons[i].listener, false);
+						Foxtrick.listen(button, "click", buttons[i].listener, false);
 					}
 					else if (buttons[i].onClick) {
 						button.setAttribute("onclick", buttons[i].onClick);
@@ -104,7 +104,7 @@ Foxtrick.util.note = {
 					else if (buttons[i].type == this.BUTTON_CANCEL) {
 						button.setAttribute("container", id);
 						// default event listener for BUTTON_CANCEL
-						button.addEventListener("click", function(ev) {
+						Foxtrick.listen(button, "click", function(ev) {
 								try {
 									var doc = ev.target.ownerDocument;
 									var containerId = ev.currentTarget.getAttribute("container");
@@ -127,7 +127,7 @@ Foxtrick.util.note = {
 				var close = doc.createElement("a");
 				close.className = "close";
 				close.textContent = Foxtrickl10n.getString("button.close");
-				close.addEventListener("click", function(ev) {
+				Foxtrick.listen(close, "click", function(ev) {
 						try {
 							var container = ev.target.parentNode;
 							if (container) {

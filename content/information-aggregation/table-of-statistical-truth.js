@@ -40,7 +40,7 @@ Foxtrick.util.module.register({
 			}
 		};
 
-		tableHeader.addEventListener("click", toggleTable, false);
+		Foxtrick.listen(tableHeader, "click", toggleTable, false);
 		
 		var addTable = function() {
 			var url = "http://www.fantamondi.it/HTMS/dorequest.php?action=truthtable&serie="+serie+"&season="+season;

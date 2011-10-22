@@ -91,7 +91,7 @@ Foxtrick.util.module.register({
 			var link = this.alltid_links[i];
 			var linkNode = doc.createElement('a');
 			linkNode.href = "javascript:void();"
-			linkNode.addEventListener('click', link.handler, false);
+			Foxtrick.listen(linkNode, 'click', link.handler, false);
 			Foxtrick.addImage(doc, linkNode, { 
 				alt: link.shorttitle || link.title, 
 				title: link.title, 

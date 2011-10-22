@@ -76,7 +76,7 @@ Foxtrick.util.links = {
 						var div = doc.createElement("div");
 						div.appendChild(hh);
 						div.title = Foxtrickl10n.getString("foxtrick.linkscustom.addpersonallink");
-						div.addEventListener("click", headerClick, false);
+						Foxtrick.listen(div, "click", headerClick, false);
 						ownBoxBody.setAttribute("basepref", basepref);
 						pn.insertBefore(div,pn.firstChild);
 						break;
@@ -92,7 +92,7 @@ Foxtrick.util.links = {
 					var delLink = doc.createElement("span");
 					delLink.className = "ft_actionicon foxtrickRemove";
 					delLink.title = Foxtrickl10n.getString("foxtrick.linkscustom.remove");
-					delLink.addEventListener("click", Foxtrick.util.links.delStdLink, false);
+					Foxtrick.listen(delLink, "click", Foxtrick.util.links.delStdLink, false);
 					var img = doc.createElement("img");
 					img.src = "/Img/Icons/transparent.gif";
 					img.height = "16";

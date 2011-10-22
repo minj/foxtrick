@@ -299,7 +299,7 @@ Foxtrick.util.module.register({
 					if (overlayHTMS) 
 						Foxtrick.addClass(overlayHTMS,'hidden');
 				};
-				doc.getElementById('closeOverlay').addEventListener('click', hideOverlay, false);
+				Foxtrick.listen(doc.getElementById('closeOverlay'), 'click', hideOverlay, false);
 				
 				// add copy button
 				var copyButton = doc.createElement('input');
@@ -308,7 +308,7 @@ Foxtrick.util.module.register({
 				copyButton.id = 'copyRatingsButton';
 				copyButton.setAttribute('style','float: left; position: absolute; bottom: 0px; left: 10px;');
 				fieldOverlay.appendChild(copyButton);
-				copyButton.addEventListener('click',copyRatings,false);
+				Foxtrick.listen(copyButton, 'click', copyRatings, false);
 				
 				// display selection of matches to compare to
 				// first, get team id of other team 
@@ -751,7 +751,7 @@ Foxtrick.util.module.register({
 				}
 			}
 		}
-		doc.getElementById('players').addEventListener('mouseover',function(ev){
+		Foxtrick.listen(doc.getElementById('players'), 'mouseover', function(ev){
 			if (Foxtrick.hasClass(ev.target,'player')) {
 				var detailsTemplate = doc.getElementById('detailsTemplate');
 				detailsTemplate.setAttribute('playerid', ev.target.id.match(/list_playerID(\d+)/i)[1]);

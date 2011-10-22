@@ -21,7 +21,7 @@ Foxtrick.util.module.register({
 			var img = doc.createElement("img");
 			img.src = "/Img/Icons/transparent.gif";
 			link.appendChild(img);
-			img.addEventListener("click", function() {
+			Foxtrick.listen (img, "click", function() {
 					var idExpanded = (idLink.href.indexOf("MInd") >= 0);
 					if (idExpanded) {
 						var postId = idLink.href.match(/\d+\.\d+/g)[0];
@@ -250,7 +250,7 @@ Foxtrick.util.module.register({
 		copy_posting_link_archive.setAttribute('is_archive_link','true');
 		copy_posting_link_archive.textContent = Foxtrickl10n.getString( 'foxtrick.linkscustom.copy' );
 		copy_posting_link_archive.setAttribute('class','foxtrick-copyfromarchive');
-		copy_posting_link_archive.addEventListener("click", copy_posting_to_clipboard, false);
+		Foxtrick.listen(copy_posting_link_archive, "click", copy_posting_to_clipboard, false);
 
 		// part of alter header
 		var trunclength = 10;
@@ -463,18 +463,18 @@ Foxtrick.util.module.register({
 				var copy_div = copy_posting_div.cloneNode(true);
 				var copy_img = copy_div.getElementsByTagName('img')[0];
 				copy_img.id = 'ft_copy_posting_link_id' + num_wrapper;
-				copy_img.addEventListener("click", copy_posting_to_clipboard, false);
+				Foxtrick.listen(copy_img, "click", copy_posting_to_clipboard, false);
 				copy_img.setAttribute('post_nr',num_wrapper);
 				var copy_links = copy_div.getElementsByTagName('span');
 				for (var cl=0; cl<possibleStyles.length; ++cl){
-					copy_links[cl].addEventListener("click", copy_posting_to_clipboard, false);
+					Foxtrick.listen(copy_links[cl], "click", copy_posting_to_clipboard, false);
 					copy_links[cl].setAttribute('post_nr',num_wrapper);
 				}
 				header_right_inner.appendChild(copy_div);
 
 				if (isArchive) {
 					var copy_link = copy_posting_link_archive.cloneNode(true);
-					copy_link.addEventListener("click", copy_posting_to_clipboard, false);
+					Foxtrick.listen(copy_link, "click", copy_posting_to_clipboard, false);
 					var footer_left = footer.getElementsByTagName('div')[0];
 					footer_left.insertBefore(copy_link,footer_left.firstChild);
 				}

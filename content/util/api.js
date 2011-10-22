@@ -52,7 +52,7 @@ Foxtrick.util.api = {
 		var link = doc.createElement("a");
 		link.className = "ft-link";
 		link.textContent = Foxtrickl10n.getString("oauth.authorize");
-		link.addEventListener("click", function(ev) {
+		Foxtrick.listen(link, "click", function(ev) {
 			showNotice();
 			var linkPar = doc.createElement("p");
 			div.appendChild(linkPar);
@@ -81,7 +81,7 @@ Foxtrick.util.api = {
 				var button = doc.createElement("input");
 				button.type = "button";
 				button.value = Foxtrickl10n.getString("button.authorize");
-				button.addEventListener("click", function(ev) {
+				Foxtrick.listen(button, "click", function(ev) {
 					var accessor = {
 						consumerSecret : Foxtrick.util.api.consumerSecret,
 						tokenSecret : requestTokenSecret
@@ -135,7 +135,7 @@ Foxtrick.util.api = {
 			var more = doc.createElement("a");
 			more.textContent = Foxtrickl10n.getString("oauth.why");
 			more.href = 'javascript:void();'
-			more.addEventListener('click', function() {FoxtrickPrefs.show('#faq=authorize');}, false);
+			Foxtrick.listen(more, 'click', function() {FoxtrickPrefs.show('#faq=authorize');}, false);
 			div.appendChild(more);
 		};
 		var showFinished = function(text) {
@@ -164,7 +164,7 @@ Foxtrick.util.api = {
 				clear_cache_span.id='ft_clear_cache';
 				clear_cache_span.textContent = Foxtrickl10n.getString('action.clearCache');
 				clear_cache_span.title = Foxtrickl10n.getString('action.clearCache.title');
-				clear_cache_span.addEventListener('click',Foxtrick.util.api.clearCache,false);
+				Foxtrick.listen(clear_cache_span, 'click',Foxtrick.util.api.clearCache,false);
 				bottom.insertBefore(clear_cache_span, bottom.firstChild);
 			}
 		}

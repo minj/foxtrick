@@ -152,6 +152,9 @@ Foxtrick.util.module.register({
 		var links = this.LINKS;
 
 		var addSpan = function(aLink) {
+			if (Foxtrick.hasClass(aLink.parentNode,'myht1'))
+				return;
+
 			if ((aLink.href.search(/Club\/\?TeamID=/i) > -1 && aLink.href.search(/redir_to/i)===-1 && FoxtrickPrefs.isModuleOptionEnabled("TeamPopupLinks", "TeamLinks"))
 				|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && FoxtrickPrefs.isModuleOptionEnabled("TeamPopupLinks", "UserLinks"))) {
 				var par = aLink.parentNode;
@@ -175,12 +178,10 @@ Foxtrick.util.module.register({
 						return; // no link found
 					var show_more = false;
 					if (org_link.getAttribute('more')) {
-						org_link.removeEventListener('click', showPopup, true);
 						if (org_link.getAttribute('more')=='true')
 							show_more=true;
 						org_link = org_link.parentNode.parentNode.previousSibling;
 					}
-					ev.target.parentNode.removeEventListener("mouseover", showPopup, false);
 
 					var teamid = Foxtrick.util.id.getTeamIdFromUrl(org_link.href);
 					if (teamid)
@@ -281,7 +282,7 @@ Foxtrick.util.module.register({
 							link.setAttribute('more', 'false');
 							link.textContent = Foxtrickl10n.getString('less');
 						}
-						link.addEventListener('click', showPopup, true);
+						Foxtrick.listen(link, 'click', showPopup, true);
 						item.appendChild(link);
 						list.appendChild(item);
 					}
@@ -305,9 +306,8 @@ Foxtrick.util.module.register({
 					if (Foxtrick.hasClass(org_link.parentNode.lastChild, "ft-popup-list"))
 						org_link.parentNode.removeChild(org_link.parentNode.lastChild);
 					org_link.parentNode.appendChild(list);
-					org_link.removeEventListener("mouseover", showPopup, false);
 				};
-				aLink.addEventListener("mouseover", showPopup, false);
+				Foxtrick.listen(aLink, "mouseover", showPopup, false);
 				span.appendChild(aLink);
 			}
 		};
@@ -338,5 +338,9 @@ Foxtrick.util.module.register({
 				addSpan(aLink);
 			}
 		}
+	},
+	
+	change : function(doc) {
+		this.run(doc);
 	}
 });

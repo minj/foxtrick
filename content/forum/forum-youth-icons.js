@@ -445,7 +445,7 @@ Foxtrick.util.module.register({
 				if (Foxtrick.isPage(page, doc) && fields[j].add_quote==true) {
 					var newimage = doc.createElement( "img" );
 					newimage.src = "/Img/Icons/transparent.gif";
-					newimage.addEventListener( "click", addClick, false);
+					Foxtrick.listen(newimage, "click", addClick, false);
 					newimage.setAttribute( "tags", icons[0].tags );
 					if ( icons[0].replace_text) newimage.setAttribute( "replace_text", icons[0].replace_text);
 					newimage.setAttribute( "class", icons[0].icon_class);
@@ -459,7 +459,7 @@ Foxtrick.util.module.register({
 				if (icons[i].alt==null || doc.getElementsByClassName(icons[i].alt).length==0) {
 					var newimage = doc.createElement( "img" );
 					newimage.src = "/Img/Icons/transparent.gif";
-					newimage.addEventListener( "click", addClick, false );
+					Foxtrick.listen(newimage, "click", addClick, false );
 					newimage.setAttribute( "tags", icons[i].tags);
 					if ( icons[i].replace_text) newimage.setAttribute( "replace_text", icons[i].replace_text);
 					newimage.setAttribute( "class", icons[i].icon_class);
@@ -476,7 +476,7 @@ Foxtrick.util.module.register({
 						for (var j=0; j<icons[i].versions.length; ++j) {
 							var item = doc.createElement("li");
 							var link = doc.createElement("span");
-							link.addEventListener("click", addClick, false);
+							Foxtrick.listen(link, "click", addClick, false);
 							link.setAttribute( "tags", icons[i].tags);
 							if ( icons[i].replace_text) link.setAttribute( "replace_text", icons[i].replace_text);
 							link.setAttribute('version', icons[i].versions[j]);
@@ -531,7 +531,7 @@ Foxtrick.util.module.register({
 				if (FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", othericons[i].type)) {
 						var newimage = doc.createElement( "img" );
 						newimage.src = "/Img/Icons/transparent.gif";
-						newimage.addEventListener( "click", addClick, false );
+						Foxtrick.listen(newimage, "click", addClick, false );
 						newimage.setAttribute( "tags", othericons[i].tags);
 						if ( othericons[i].replace_text) newimage.setAttribute( "replace_text", othericons[i].replace_text);
 						newimage.setAttribute( "class", othericons[i].icon_class);
@@ -559,7 +559,7 @@ Foxtrick.util.module.register({
 				if (FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", youthicons[i].type)) {
 						var newimage = doc.createElement( "img" );
 						newimage.src = "/Img/Icons/transparent.gif";
-						newimage.addEventListener( "click", addClick, false );
+						Foxtrick.listen(newimage, "click", addClick, false );
 						newimage.setAttribute( "tags", youthicons[i].tags);
 						if ( youthicons[i].replace_text) newimage.setAttribute( "replace_text", youthicons[i].replace_text);
 						newimage.setAttribute( "class", youthicons[i].icon_class);

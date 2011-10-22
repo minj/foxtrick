@@ -82,8 +82,8 @@ Foxtrick.util.module.register({
 			rememberState("table.expanded", !Foxtrick.hasClass(table, "hidden"));
 		};
 
-		graphHeader.addEventListener("click", toggleGraph, false);
-		tableHeader.addEventListener("click", toggleTable, false);
+		Foxtrick.listen(graphHeader, "click", toggleGraph, false);
+		Foxtrick.listen(tableHeader, "click", toggleTable, false);
 
 		// if graph or table was expanded last time, expand it now.
 		if (recallState("graph.expanded"))

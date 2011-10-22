@@ -147,7 +147,7 @@ Foxtrick.util.module.register({
 				
 				if (FoxtrickPrefs.isModuleOptionEnabled("CopyYouth", "RejectedToHTY")) {
 					var rejectButton = alertdiv.getElementsByTagName('input')[1];
-					rejectButton.addEventListener('click', function(){ copyReport(true) }, false)
+					Foxtrick.listen(rejectButton, 'click', function(){ copyReport(true) }, false)
 				}
 				else if (alertdiv.parentNode.getElementsByTagName('a')[0]==null
 					&& doc.getElementById('ft-copy-scout-comment-link')==null) {
@@ -157,7 +157,7 @@ Foxtrick.util.module.register({
 					a.style.marginBottom = "5px";
 					a.href='#mainBody';
 					a.id = 'ft-copy-scout-comment-link';
-					a.addEventListener("click", copyReport, false)
+					Foxtrick.listen(a, "click", copyReport, false)
 					alertdiv.parentNode.insertBefore(a,alertdiv);
 				}
 			}

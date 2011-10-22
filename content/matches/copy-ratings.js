@@ -129,7 +129,7 @@ Foxtrick.util.module.register({
 		copyBoth.appendChild(doc.createTextNode(Foxtrickl10n.getString("Copy")));
 		copyBoth.setAttribute("teams", "both");
 		copyBoth.setAttribute("place", "table");
-		copyBoth.addEventListener("click", function() { createRatings("table", "both"); }, false);
+		Foxtrick.listen(copyBoth, "click", function() { createRatings("table", "both"); }, false);
 		tableHeader.appendChild(copyBoth);
 
 		var copyHome = doc.createElement("span");
@@ -137,7 +137,7 @@ Foxtrick.util.module.register({
 		copyHome.appendChild(doc.createTextNode("(" + Foxtrickl10n.getString("Copy") + ")"));
 		copyHome.setAttribute("teams", "home");
 		copyHome.setAttribute("place", "table");
-		copyHome.addEventListener("click", function() { createRatings("table", "home"); }, false);
+		Foxtrick.listen(copyHome, "click", function() { createRatings("table", "home"); }, false);
 		homeHeader.appendChild(copyHome);
 
 		var copyAway = doc.createElement("span");
@@ -145,7 +145,7 @@ Foxtrick.util.module.register({
 		copyAway.appendChild(doc.createTextNode("(" + Foxtrickl10n.getString("Copy") + ")"));
 		copyAway.setAttribute("teams", "away");
 		copyAway.setAttribute("place", "table");
-		copyAway.addEventListener("click", function() { createRatings("table", "away"); }, false);
+		Foxtrick.listen(copyAway, "click", function() { createRatings("table", "away"); }, false);
 		awayHeader.appendChild(copyAway);
 
 		var button = Foxtrick.util.copyButton.add(doc,
@@ -160,7 +160,7 @@ Foxtrick.util.module.register({
 			for (var j=0; j<versions.length; ++j) {
 				var item = doc.createElement("li");
 				var link = doc.createElement("span");
-				link.addEventListener("click", (function(team) {
+				Foxtrick.listen(link, "click", (function(team) {
 					// to keep team variable here
 					return function() { createRatings("box", team); };
 				})(versions[j]), false);

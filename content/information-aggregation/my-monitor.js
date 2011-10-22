@@ -74,7 +74,7 @@ Foxtrick.util.module.register({
 			addLink.id = "ft-monitor-add";
 			addLink.className = "ft-link";
 			addLink.textContent = Foxtrickl10n.getString("button.add");
-			addLink.addEventListener("click", function() {
+			Foxtrick.listen(addLink, "click", function() {
 				var noteId = "ft-monitor-add-note";
 				while (note = doc.getElementById(noteId))
 					note.parentNode.removeChild(note);
@@ -97,7 +97,7 @@ Foxtrick.util.module.register({
 			removeLink.id = "ft-monitor-remove";
 			removeLink.className = "ft-link";
 			removeLink.textContent = Foxtrickl10n.getString("button.remove");
-			removeLink.addEventListener("click", function() {
+			Foxtrick.listen(removeLink, "click", function() {
 				var noteId = "ft-monitor-remove-note"
 				while (note = doc.getElementById(noteId))
 					note.parentNode.removeChild(note);
@@ -129,7 +129,7 @@ Foxtrick.util.module.register({
 				removeButton.id = "ft-monitor-remove-button";
 				removeButton.type = "button";
 				removeButton.value = Foxtrickl10n.getString("button.remove");
-				removeButton.addEventListener("click", function() {
+				Foxtrick.listen(removeButton, "click", function() {
 					var index = removeSelect.selectedIndex;
 					removeSelect.removeChild(removeSelect.options[index]);
 					teams.splice(index, 1); // remove the selected from teams
@@ -320,7 +320,7 @@ Foxtrick.util.module.register({
 			var addLink = doc.createElement("a");
 			addLink.className = "ft-link";
 			addLink.textContent = Foxtrickl10n.getString("MyMonitor.add");
-			addLink.addEventListener("click", function() {
+			Foxtrick.listen(addLink, "click", function() {
 				teams.push({ id : teamIdContainer.id, type : type, name : teamIdContainer.name, logo : teamIdContainer.logo, country:teamIdContainer.country});
 				setSavedTeams(teams);
 				Foxtrick.addClass(addLink, "hidden");
@@ -332,7 +332,7 @@ Foxtrick.util.module.register({
 			var removeLink = doc.createElement("a");
 			removeLink.className = "ft-link";
 			removeLink.textContent = Foxtrickl10n.getString("MyMonitor.remove");
-			removeLink.addEventListener("click", function() {
+			Foxtrick.listen(removeLink, "click", function() {
 				teams = Foxtrick.filter(function(n) {
 					return n.id != teamIdContainer.id || n.type != type;
 				}, teams);

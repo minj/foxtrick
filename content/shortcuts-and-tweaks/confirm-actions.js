@@ -39,7 +39,7 @@ Foxtrick.util.module.register({
 			if (FoxtrickPrefs.isModuleOptionEnabled("ConfirmActions", "Bid")) {
 				var bidButton = doc.getElementById(ids.BID.BUTTON_ID);
 				if (bidButton) {
-					bidButton.addEventListener("click", function(ev) {
+					Foxtrick.listen(bidButton, "click", function(ev) {
 						var doc = ev.target.ownerDocument;
 						var bidAlert = doc.getElementById(ids.BID.ALERT_ID);
 						var bidButton = doc.getElementById(ids.BID.BUTTON_ID);
@@ -89,7 +89,7 @@ Foxtrick.util.module.register({
 			if (FoxtrickPrefs.isModuleOptionEnabled("ConfirmActions", "TransferList")) {
 				var sellButton = doc.getElementById(ids.SELL.BUTTON_ID);
 				if (sellButton) {
-					sellButton.addEventListener("click", function(ev) {
+					Foxtrick.listen(sellButton, "click", function(ev) {
 						var doc = ev.target.ownerDocument;
 						var sellButton = doc.getElementById(ids.SELL.BUTTON_ID);
 						var cancelButton = doc.getElementById(ids.SELL.CANCEL_ID);
@@ -157,7 +157,7 @@ Foxtrick.util.module.register({
 			if (FoxtrickPrefs.isModuleOptionEnabled("ConfirmActions", "StaffChange")) {
 				var submitButton = doc.getElementById(ids.STAFF.SUBMIT_BUTTON_ID);
 				if (submitButton) {
-					submitButton.addEventListener("click", function(ev) {
+					Foxtrick.listen(submitButton, "click", function(ev) {
 						var doc = ev.target.ownerDocument;
 						var submitButton = doc.getElementById(ids.STAFF.SUBMIT_BUTTON_ID);
 						var actionSelect = doc.getElementById(ids.STAFF.ACTION_SELECT_ID);

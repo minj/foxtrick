@@ -349,7 +349,7 @@ Foxtrick.util.module.register({
 			}
 		};
 
-		filterSelect.addEventListener("click", function() {
+		Foxtrick.listen(filterSelect, "click", function() {
 			try {
 				selectClick();
 			}
@@ -357,7 +357,7 @@ Foxtrick.util.module.register({
 				Foxtrick.log(e);
 			}
 		}, false);
-		filterSelect.addEventListener("change", function() {
+		Foxtrick.listen(filterSelect, "change", function() {
 			try {
 				changeListener();
 			}

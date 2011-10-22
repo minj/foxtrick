@@ -137,7 +137,7 @@ Foxtrick.util.module.register({
 						}
 
 						updateNotepad();
-						select.addEventListener('change',updateNotepad, false);
+						Foxtrick.listen(select, 'change', updateNotepad, false);
 					}
 					Foxtrick.loadXml(Foxtrick.InternalPath + "release-notes.xml", show);
 				}

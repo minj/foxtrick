@@ -111,7 +111,7 @@ Foxtrick.util.module.register({
 			selectBox.parentNode.appendChild(inputBoxLabel2);
 
 			selectBox.parentNode.appendChild(goButton);
-			inputBoxTop.addEventListener("keyup", function(ev) {
+			Foxtrick.listen(inputBoxTop, "keyup", function(ev) {
 				var key = ev.keyCode;
 				if(key == 13) {
 					var goButtonID = ev.target.getAttribute("id").replace(/postboxnum/, "okbutton");

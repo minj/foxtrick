@@ -110,7 +110,7 @@ Foxtrick.util.module.register({
 						}
 					}
 				}
-				select.addEventListener("change", selectionChange, false);
+				Foxtrick.listen(select, "change", selectionChange, false);
 
 				// the input element
 				input.id = "ft_rapidid_input_" + select.value;
@@ -121,7 +121,7 @@ Foxtrick.util.module.register({
 				// the <input type="button" /> element
 				button.setAttribute("type", "submit");
 				button.setAttribute("value", Foxtrickl10n.getString("View"));
-				button.addEventListener("click", view, true);
+				Foxtrick.listen(button, "click", view, true);
 
 				// hide rightnow on demand
 				var rightnow = doc.getElementById("ctl00_ctl00_ucOngoingEvents_pnlOngoingEvents");
@@ -156,7 +156,7 @@ Foxtrick.util.module.register({
 		indicator.id = "ft_rapidid_indicator";
 		var viewById = Foxtrickl10n.getString("foxtrick.RapidId.ViewById");
 		indicator.appendChild(doc.createTextNode(viewById));
-		indicator.addEventListener("click", function(ev) {
+		Foxtrick.listen(indicator, "click", function(ev) {
 				ev.preventDefault();
 				displayForm(doc);
 			}, true);

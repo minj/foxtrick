@@ -118,7 +118,7 @@ Foxtrick.util.module.register({
 				input.value = filter.min;
 				input.setAttribute("x-ft-filter-idx", idx);
 				input.setAttribute("x-ft-filter-prop", "min");
-				input.addEventListener("blur", saveValues, false);
+				Foxtrick.listen(input, "blur", saveValues, false);
 				td.appendChild(input);
 
 				var td = doc.createElement('td');
@@ -131,7 +131,7 @@ Foxtrick.util.module.register({
 				input.value = filter.max;
 				input.setAttribute("x-ft-filter-idx", idx);
 				input.setAttribute("x-ft-filter-prop", "max");
-				input.addEventListener("blur", saveValues, false);
+				Foxtrick.listen(input, "blur", saveValues, false);
 				td.appendChild(input);
 			}
 			else if (filter.type == "check") {
@@ -145,7 +145,7 @@ Foxtrick.util.module.register({
 				input.setAttribute("x-ft-filter-prop", "checked");
 				if (filter.checked === true)
 					input.setAttribute("checked", "checked");
-				input.addEventListener("blur", saveValues, false);
+				Foxtrick.listen(input, "blur", saveValues, false);
 				td.appendChild(input);
 				var label = doc.createElement("label");
 				label.textContent = Foxtrickl10n.getString("TransferSearchResultFilters." + filter.key);
@@ -175,7 +175,7 @@ Foxtrick.util.module.register({
 				tableAdvanced.parentNode.insertBefore(table, tableAdvanced.nextSibling);
 
 				var buttonClear = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butClear');
-				buttonClear.addEventListener('click',  function() {
+				Foxtrick.listen(buttonClear, 'click',  function() {
 						getFilters(function(filters) {
 							for (var j = 0; j < filters.length; ++j) {
 								var filter = filters[j];

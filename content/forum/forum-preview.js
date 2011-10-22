@@ -141,10 +141,10 @@ Foxtrick.util.module.register({
 						toolbar[i].removeEventListener("click", preview, false);
 
 				} else {
-					msg_window.addEventListener("keyup", preview, false);
+					Foxtrick.listen(msg_window, "keyup", preview, false);
 					var toolbar = doc.getElementsByClassName("HTMLToolbar");
 					for (var i=0;i< toolbar.length;++i)
-						toolbar[i].addEventListener("click", preview, false);
+						Foxtrick.listen(toolbar[i], "click", preview, false);
 
 					preview();
 				}
@@ -265,7 +265,7 @@ Foxtrick.util.module.register({
 			new_button.setAttribute( "tabindex",  index);
 			//if (msg_type != -1)
 			//new_button.setAttribute( "style",  "float:right;");
-			new_button.addEventListener("click", toggleListener, false);
+			Foxtrick.listen(new_button, "click", toggleListener, false);
 			//button_ok.parentNode.insertBefore(new_button,button_ok);
 			target.parentNode.insertBefore(new_button,target.nextSibling);
 		}
