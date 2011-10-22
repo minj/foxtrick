@@ -18,7 +18,7 @@ Foxtrick.util.module.register({
 		var divs = myForums.getElementsByTagName( "div" );
 		var cname;
 
-		var i = 0, div;
+		var i = 0, div, num=Math.floor(Math.random()*5);
 		while (div = divs[++i]) {
 			cname = div.getAttribute( "class" );
 			if (cname == "url" ) {
@@ -32,7 +32,7 @@ Foxtrick.util.module.register({
 				var poster = title;
 
 				if (poster.match(/ HT-\S+/)) {
-					Foxtrick.addClass(div, "ft-ht-thread"+Math.floor(Math.random()*5));
+					Foxtrick.addClass(div, "ft-ht-thread"+num);
 					Foxtrick.log('Ht thread',poster)
 				}
 			}
