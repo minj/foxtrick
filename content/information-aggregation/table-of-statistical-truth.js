@@ -125,7 +125,7 @@ Foxtrick.util.module.register({
 				var link = doc.createElement("a");
 				link.href = 'http://www.fantamondi.it/HTMS/index.php?page=truthtable&lang='+lang+'&serie='+serie+'&season='+season;
 				link.target = '_blank';
-				link.textContent = Foxtrickl10n.getString('truthtable.tableAtHTMS');
+				link.textContent = Foxtrickl10n.getString('truthTable.tableAtHTMS');
 				insertBefore.parentNode.insertBefore(link, insertBefore);
 					
 				
