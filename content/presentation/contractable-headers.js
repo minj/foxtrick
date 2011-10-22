@@ -109,18 +109,9 @@ Foxtrick.util.module.register({
 		var h2s = doc.getElementById('mainBody').getElementsByTagName('h2');
 		Foxtrick.map( function(n) {
 			// exclude h2 of type info (eg training coach) 
-			if (Foxtrick.hasClass(n, 'info'))
-				return;
-			
-			// might be set already by individual module before
-			// or recalled after change
-			if (Foxtrick.hasClass(n, 'ft-expander-expanded')
+			if (Foxtrick.hasClass(n, 'info')
+				|| Foxtrick.hasClass(n, 'ft-expander-expanded')
 				|| Foxtrick.hasClass(n, 'ft-expander-unexpanded')) {
-
-				// re-add listener after change
-				if (Foxtrick.hasClass(n, 'ft-contractable-header')) 
-					Foxtrick.listen(n, "click", function(ev){toggle(ev.target);}, false);
-
 				return;
 			}
 			Foxtrick.listen(n, "click", function(ev){toggle(ev.target);}, false);
@@ -133,7 +124,6 @@ Foxtrick.util.module.register({
 	},
 	
 	change: function(doc) {
-		this.run(doc); Foxtrick.log('change');
-		
+		this.run(doc); 
 	}
 });

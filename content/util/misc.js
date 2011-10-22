@@ -339,7 +339,7 @@ Foxtrick.getLastPage = function(host) {
 }
 
 // global change listeners
-if (Foxtrick.platform == "Opera") {
+/*if (Foxtrick.platform == "Opera") {*/
 // replacement for missing DOMSubtreeModified 
 
 	Foxtrick.changeScheduled = false;
@@ -362,7 +362,7 @@ if (Foxtrick.platform == "Opera") {
 	Foxtrick.startListenToChange = function(doc) {
 		var content = doc.getElementById("content");
 		content.addEventListener("DOMNodeInserted", Foxtrick.waitForChanges, true);
-	}
+	}/*
 }
 else {
 	Foxtrick.stopListenToChange = function (doc) {
@@ -374,7 +374,7 @@ else {
 		var content = doc.getElementById("content");
 		content.addEventListener("DOMSubtreeModified", Foxtrick.entry.change, true);
 	}
-}
+}*/
 
 /** Insert text in given textarea at the current position of the cursor */
 Foxtrick.insertAtCursor = function(textarea, text) {
