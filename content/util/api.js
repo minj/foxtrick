@@ -332,7 +332,7 @@ Foxtrick.util.api = {
 						}
 						process_queued(null, status);
 					}
-				}, true);
+				});
 			} catch(e){
 				Foxtrick.log(e);
 				process_queued(null, 0);

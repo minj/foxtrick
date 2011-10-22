@@ -83,7 +83,7 @@ Foxtrick.util.module.register({
 						span.appendChild(list);
 					}
 				}
-			}, true);
+			});
 		};
 
 		var shortcuts = doc.getElementById ( 'shortcuts' );

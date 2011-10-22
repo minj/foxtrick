@@ -130,7 +130,7 @@ Foxtrick.util.module.register({
 					
 				
 				Foxtrick.util.module.get("TableSort").run(doc);
-			}, true);
+			});
 		};
 	}
 });
