@@ -91,7 +91,7 @@ Foxtrick.util.module.register({
 
 					// get sorting format
 					var inner = getText(table.rows[i].cells[tdindex]);
-					if (isNaN(parseFloat(inner)) && inner!='') {is_num=false;}
+					if (isNaN(parseInt(inner.replace(/\u202d|&nbsp;|\s+/g,''))) && inner!='') {is_num=false;}
 					if (inner.search(/^(-|\d)\/(-|\d)$/)==-1 && inner!='') {is_youthskill=false;}
 					if (inner.search(/^\d+\.\d+$/)==-1 && inner!='') {is_age=false;}
 					if (inner.search(/^\d+\./)==-1 && inner!='') {is_ordinal=false;}
@@ -159,8 +159,8 @@ Foxtrick.util.module.register({
 						return direction * (aContent - bContent);
 					}
 					else if (is_num) {
-						aContent = parseFloat(aContent);
-						bContent = parseFloat(bContent);
+						aContent = parseFloat(aContent.replace(/\u202d|&nbsp;|\s+/g,''));
+						bContent = parseFloat(bContent.replace(/\u202d|&nbsp;|\s+/g,''));
 						aContent = isNaN(aContent) ? lastSort : aContent;
 						bContent = isNaN(bContent) ? lastSort : bContent;
 						if (aContent === bContent) {
