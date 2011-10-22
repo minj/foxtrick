@@ -12,16 +12,9 @@ Foxtrick.util.module.register({
 	CSS : Foxtrick.InternalPath + "resources/css/ticker-coloring.css",
 
 	run : function(doc) {
-		// type of change to listen to. opera doesn't support DOMSubtreeModified
-		if (Foxtrick.platform == "Opera") var DOMMutationEventType = 'DOMNodeInserted';
-		else var DOMMutationEventType = 'DOMSubtreeModified';
-
 		var ticker = doc.getElementById("ticker");
 
 		var update = function() {
-			// prevent self-triggered calls
-			ticker.removeEventListener(DOMMutationEventType, update, false);
-
 			var links = ticker.getElementsByTagName("a");
 			for (var i = 0; i < links.length; ++i) {
 				var link = links[i];
@@ -47,7 +40,7 @@ Foxtrick.util.module.register({
 						Foxtrick.addClass(link, "ft-ticker-myht");
 				}
 			}
-			ticker.addEventListener(DOMMutationEventType, update, false);
+			ticker.addEventListener('DOMNodeInserted', update, false);
 		}
 
 		update();
