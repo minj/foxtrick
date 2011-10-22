@@ -32,7 +32,8 @@ Foxtrick.util.module.register({
 				var poster = title;
 
 				if (poster.match(/ HT-\S+/)) {
-					Foxtrick.addClass(div, "ft-ht-thread"+Math.floor(Math.random()*3));
+					Foxtrick.addClass(div, "ft-ht-thread"+Math.floor(Math.random()*5));
+					Foxtrick.log('Ht thread',poster)
 				}
 			}
 		}
