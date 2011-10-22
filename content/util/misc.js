@@ -6,6 +6,40 @@
 
 if (!Foxtrick) var Foxtrick = {};
 
+// global change listener.
+// uses setTimout to queue the change function call after 
+// all current DOMNodeInserted events have passed. 
+(function() {
+	var changeQueued = false;
+
+	var waitForChanges = function (ev) {
+		// we ignore further events
+		if (changeQueued) 
+			return;
+		
+		// first call. queue our change function call 
+		changeQueued = true;
+		Foxtrick.stopListenToChange(ev.target.ownerDocument);
+		window.setTimeout ( function() {
+			// all events have passed. run change function now and restart listening to changes
+			Foxtrick.entry.change(ev);
+			Foxtrick.startListenToChange(ev.target.ownerDocument);
+			changeQueued = false;
+		}, 0)
+	}
+
+	Foxtrick.startListenToChange = function(doc) { 
+		var content = doc.getElementById("content");
+		content.addEventListener("DOMNodeInserted", waitForChanges, true);
+	}
+
+	Foxtrick.stopListenToChange = function(doc) { 
+		var content = doc.getElementById("content");
+		content.removeEventListener("DOMNodeInserted", waitForChanges, true);
+	}
+})();
+
+
 Foxtrick.filePickerForDataUrl = function(doc, callback) {
 	var input = doc.createElement('input');
 	input.type = 'file';
@@ -337,44 +371,6 @@ Foxtrick.setLastPage = function(host) {
 Foxtrick.getLastPage = function(host) {
 	return FoxtrickPrefs.getString("last-page") || "http://www.hattrick.org";
 }
-
-// global change listeners
-/*if (Foxtrick.platform == "Opera") {*/
-// replacement for missing DOMSubtreeModified 
-
-	Foxtrick.changeScheduled = false;
-	
-	Foxtrick.waitForChanges = function (ev) {
-		if (Foxtrick.changeScheduled) 
-			return;
-		Foxtrick.changeScheduled = true;
-		window.setTimeout ( function() {
-			Foxtrick.changeScheduled = false;
-			Foxtrick.entry.change(ev);
-		}, 0)
-	}
-	
-	Foxtrick.stopListenToChange = function (doc) {
-		var content = doc.getElementById("content");
-		content.removeEventListener("DOMNodeInserted", Foxtrick.waitForChanges, true);
-	}
-	
-	Foxtrick.startListenToChange = function(doc) {
-		var content = doc.getElementById("content");
-		content.addEventListener("DOMNodeInserted", Foxtrick.waitForChanges, true);
-	}/*
-}
-else {
-	Foxtrick.stopListenToChange = function (doc) {
-		var content = doc.getElementById("content");
-		content.removeEventListener("DOMSubtreeModified", Foxtrick.entry.change, true);
-	}
-	
-	Foxtrick.startListenToChange = function(doc) {
-		var content = doc.getElementById("content");
-		content.addEventListener("DOMSubtreeModified", Foxtrick.entry.change, true);
-	}
-}*/
 
 /** Insert text in given textarea at the current position of the cursor */
 Foxtrick.insertAtCursor = function(textarea, text) {

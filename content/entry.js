@@ -237,8 +237,8 @@ Foxtrick.entry.change = function(ev) {
 				|| ev.originalTarget.className=='myht1'))
 			return;
 
-		// remove event listener while Foxtrick executes
-		Foxtrick.stopListenToChange(doc);
+		Foxtrick.log("call modules change functions");
+
 		if (FoxtrickPrefs.isEnabled(doc)) {
 			var modules = [];
 			// modules running on current page
@@ -257,8 +257,6 @@ Foxtrick.entry.change = function(ev) {
 
 			Foxtrick.log.flush(doc);
 		}
-		// re-add event listener
-		Foxtrick.startListenToChange(doc);
 	}
 	catch (e) {
 		Foxtrick.log(e);
