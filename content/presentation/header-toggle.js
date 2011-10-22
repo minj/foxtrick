@@ -1,12 +1,12 @@
 "use strict";
 /**
- * contractable-headers.js
+ * header-toggle.js
  * Foxtrick team select box
  * @author convinced
  */
 
 Foxtrick.util.module.register({
-	MODULE_NAME : "ContractableHeaders",
+	MODULE_NAME : "HeaderToggle",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
 	NICE : +20, // after we add own h2s
@@ -29,7 +29,7 @@ Foxtrick.util.module.register({
 			Foxtrick.toggleClass(h2, 'ft-expander-expanded');
 			Foxtrick.toggleClass(h2, 'ft-expander-unexpanded');
 			
-			var key  = ('ContractableHeaders.'+doc.location.pathname+'.'+getH2TextContent(h2)+'.folded').replace(/\s+/g, '');
+			var key  = ('HeaderToggle.'+doc.location.pathname+'.'+getH2TextContent(h2)+'.folded').replace(/\s+/g, '');
 			if (Foxtrick.hasClass(h2, 'ft-expander-expanded'))
 				FoxtrickPrefs.deleteValue(key);
 			else
@@ -117,7 +117,7 @@ Foxtrick.util.module.register({
 			Foxtrick.listen(n, "click", function(ev){toggle(ev.target);}, false);
 			
 			Foxtrick.addClass(n, 'ft-expander-expanded ft-contractable-header');
-			var key  = ('ContractableHeaders.'+doc.location.pathname+'.'+getH2TextContent(n)+'.folded').replace(/\s+/g, '');
+			var key  = ('HeaderToggle.'+doc.location.pathname+'.'+getH2TextContent(n)+'.folded').replace(/\s+/g, '');
 			if (FoxtrickPrefs.getBool(key))
 				toggle(n);
 		}, h2s);

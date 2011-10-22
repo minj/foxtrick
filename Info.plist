@@ -156,6 +156,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/presentation/fix-css-problems.js</string>
 				<string>content/presentation/friendly-interface.js</string>
 				<string>content/presentation/header-fix.js</string>
+				<string>content/presentation/header-toggle.js</string>
 				<string>content/presentation/highlight-cup-wins.js</string>
 				<string>content/presentation/highlight-ownerless.js</string>
 				<string>content/presentation/ht-date-format.js</string>
