@@ -63,7 +63,7 @@ Foxtrick.util.module.register({
 				}
 
 				// stop with next header or dedicated parentNode mainBox
-				if ( el.className == 'mainBox'
+				if ( (el.className == 'mainBox' && el.getElementsByTagName('h2')[0] != undefined)
 					|| el.nodeName == 'H1'
 					|| (el.nodeName == 'H2' && !Foxtrick.hasClass(el, 'info'))
 					|| (el.getElementsByTagName('h2')[0] !== undefined && !Foxtrick.hasClass(el.getElementsByTagName('h2')[0],'info') )) {
@@ -108,17 +108,32 @@ Foxtrick.util.module.register({
 		// add listener to all h2s in mainBody
 		var h2s = doc.getElementById('mainBody').getElementsByTagName('h2');
 		Foxtrick.map( function(n) {
-			// exclude h2 of type info (eg training coach or if set already by individual module
-			if (Foxtrick.hasClass(n, 'info')
-				|| Foxtrick.hasClass(n, 'ft-expander-expanded')
+			// exclude h2 of type info (eg training coach) 
+			if (Foxtrick.hasClass(n, 'info'))
+				return;
+			
+			// might be set already by individual module before
+			// or recalled after change
+			if (Foxtrick.hasClass(n, 'ft-expander-expanded')
 				|| Foxtrick.hasClass(n, 'ft-expander-unexpanded')) {
+
+				// re-add listener after change
+				if (Foxtrick.hasClass(n, 'ft-contractable-header')) 
+					Foxtrick.listen(n, "click", function(ev){toggle(ev.target);}, false);
+
 				return;
 			}
 			Foxtrick.listen(n, "click", function(ev){toggle(ev.target);}, false);
-			Foxtrick.addClass(n, 'ft-expander-expanded');
+			
+			Foxtrick.addClass(n, 'ft-expander-expanded ft-contractable-header');
 			var key  = ('ContractableHeaders.'+doc.location.pathname+'.'+getH2TextContent(n)+'.folded').replace(/\s+/g, '');
 			if (FoxtrickPrefs.getBool(key))
 				toggle(n);
 		}, h2s);
+	},
+	
+	change: function(doc) {
+		this.run(doc); Foxtrick.log('change');
+		
 	}
 });
