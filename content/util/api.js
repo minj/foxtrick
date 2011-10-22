@@ -58,7 +58,7 @@ Foxtrick.util.api = {
 			div.appendChild(linkPar);
 			linkPar.appendChild(Foxtrick.util.note.createLoading(doc, true));
 			Foxtrick.log("Requesting token at: ", Foxtrick.util.api.stripToken(requestTokenUrl) );
-			Foxtrick.load(requestTokenUrl, function(text, status) {
+			Foxtrick.load(doc, requestTokenUrl, function(text, status) {
 				linkPar.textContent = ""; // clear linkPar first
 				if (status != 200) {
 					// failed to fetch link
@@ -104,7 +104,7 @@ Foxtrick.util.api = {
 					var query = Foxtrick.OAuth.formEncode(msg.parameters);
 					var accessTokenUrl = Foxtrick.util.api.accessTokenUrl + "?" + query;
 					Foxtrick.log("Requesting access token at: ",  Foxtrick.util.api.stripToken(accessTokenUrl));
-					Foxtrick.load(accessTokenUrl, function(text, status) {
+					Foxtrick.load(doc, accessTokenUrl, function(text, status) {
 						if (status != 200) {
 							// failed to fetch link
 							showFinished( Foxtrick.util.api.getErrorText(text, status) );
@@ -115,10 +115,10 @@ Foxtrick.util.api = {
 						Foxtrick.util.api.setAccessToken(accessToken);
 						Foxtrick.util.api.setAccessTokenSecret(accessTokenSecret);
 						showFinished();
-					}, true); // save token and secret
+					}); // save token and secret
 				}, false); // after hitting "authorize" button
 				inputPar.appendChild(button);
-			}, true); // get authorize URL with Foxtrick.load()
+			}); // get authorize URL with Foxtrick.load()
 		}, false); // initial authorize link event listener
 		div.appendChild(link);
 		var showNotice = function() {
@@ -297,7 +297,7 @@ Foxtrick.util.api = {
 				Foxtrick.OAuth.SignatureMethod.sign(msg, accessor);
 				var url = Foxtrick.OAuth.addToURL(Foxtrick.util.api.resourceUrl, msg.parameters);
 				Foxtrick.log("Fetching XML data from ",  Foxtrick.util.api.stripToken(url));
-				Foxtrick.loadXml(url, function(x, status) {
+				Foxtrick.loadXml(doc, url, function(x, status) {
 					if (status == 200) {
 						var serializer = new window.XMLSerializer();
 						Foxtrick.sessionSet('xml_cache.'+parameters_str,
@@ -332,7 +332,7 @@ Foxtrick.util.api = {
 						}
 						process_queued(null, status);
 					}
-				});
+				}, options);
 			} catch(e){
 				Foxtrick.log(e);
 				process_queued(null, 0);

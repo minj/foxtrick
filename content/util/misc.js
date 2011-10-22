@@ -161,13 +161,19 @@ Foxtrick.parseXml = function(text) {
  * @callback_param HTTP status code
  */
 
-Foxtrick.load = function(url, callback) {
+Foxtrick.load = function(doc, url, callback, options) {
 	if (Foxtrick.chromeContext() == "content" && callback) {
 		// background script for xml requests
 		sandboxed.extension.sendRequest({req : "getXml", url : url },
 			function(response) {
 				try {
+					if (doc && !(options && options.callChange))
+						Foxtrick.stopListenToChange(doc);
+
 					callback(response.data, response.status);
+
+					if (doc && !(options && options.callChange))
+						Foxtrick.startListenToChange(doc);
 				}
 				catch (e) {
 					Foxtrick.log('Uncaught callback error: - url: ' , url , ' : ',e);
@@ -184,7 +190,13 @@ Foxtrick.load = function(url, callback) {
 		req.onreadystatechange = function(aEvt) {
 			if (req.readyState == 4) {
 				try {
+					if (doc && !(options && options.callChange))
+						Foxtrick.stopListenToChange(doc);
+
 					callback(req.responseText, req.status);
+
+					if (doc && !(options && options.callChange))
+						Foxtrick.startListenToChange(doc);
 				}
 				catch (e) {
 					Foxtrick.log('Uncaught callback error: - url: ' , url , ' : ', e);
@@ -224,24 +236,25 @@ Foxtrick.loadSync = function(url) {
 	}
 };
 
-Foxtrick.loadXml = function(url, callback) {
-	Foxtrick.load(url, function(text, status) {
-		if (text.indexOf("!DOCTYPE html")==-1) {
-			try {
-				var xml = Foxtrick.parseXml(text);
-			}
-			catch (e) {
-				// invalid XML
-				Foxtrick.log("Cannot parse XML (", url, ")\n", text);
-				xml = null;
-			}
-			callback(xml, status);
-		}
-		else {
+Foxtrick.loadXml = function(doc, url, callback, options) {
+	Foxtrick.load(doc, url, function(text, status) {
+		if ( text.indexOf("!DOCTYPE html") !== -1 ) {
 			// eg login page was returned. aka cpp server not reachable
+			Foxtrick.log( url + "returned an html page. Server could be down." );
 			callback(null, 503);
+			return;
 		}
-	});
+		
+		try {
+			var xml = Foxtrick.parseXml(text);
+		}
+		catch (e) {
+			// invalid XML
+			Foxtrick.log("Cannot parse XML (", url, ")\n", text);
+			xml = null;
+		}
+		callback(xml, status);
+	}, options);
 };
 
 Foxtrick.loadXmlSync = function(url) {

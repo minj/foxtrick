@@ -19,7 +19,7 @@ Foxtrick.util.module.register((function() {
 		// now load the feeds
 		Foxtrick.log("Loading link feeds from: ", feeds);
 		Foxtrick.map(function(feed) {
-			Foxtrick.load(feed, function(text) {
+			Foxtrick.load(null, feed, function(text) {
 				var key, prop;
 
 				if (!text) {

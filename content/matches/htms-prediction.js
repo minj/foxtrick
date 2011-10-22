@@ -100,7 +100,7 @@ Foxtrick.util.module.register({
 		cell.textContent = Foxtrickl10n.getString("HTMSPrediction.prediction");
 
 		var url = 'http://www.fantamondi.it/HTMS/dorequest.php?action=predict&' + params;
-		Foxtrick.loadXml(url, function(xml) {
+		Foxtrick.loadXml(doc, url, function(xml) {
 				Foxtrick.stopListenToChange(doc);
 
 				if (loading)

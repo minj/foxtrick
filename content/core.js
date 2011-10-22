@@ -139,7 +139,7 @@ Foxtrick.util.module.register({
 						updateNotepad();
 						Foxtrick.listen(select, 'change', updateNotepad, false);
 					}
-					Foxtrick.loadXml(Foxtrick.InternalPath + "release-notes.xml", show);
+					Foxtrick.loadXml(doc, Foxtrick.InternalPath + "release-notes.xml", show);
 				}
 			}
 			FoxtrickPrefs.setString("oldVersion", Foxtrick.version());

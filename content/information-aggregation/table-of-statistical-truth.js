@@ -44,7 +44,7 @@ Foxtrick.util.module.register({
 		
 		var addTable = function() {
 			var url = "http://www.fantamondi.it/HTMS/dorequest.php?action=truthtable&serie="+serie+"&season="+season;
-			Foxtrick.loadXml(url, function(xml) { 
+			Foxtrick.loadXml(doc, url, function(xml) { 
 				if (!xml) {
 					// feedback
 					return;
@@ -130,7 +130,7 @@ Foxtrick.util.module.register({
 					
 				
 				Foxtrick.util.module.get("TableSort").run(doc);
-			});
+			}, {callChange:true} );
 		};
 	}
 });

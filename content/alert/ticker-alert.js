@@ -73,11 +73,11 @@ Foxtrick.util.module.register((function() {
 
 		run : function(doc) {
 			// type of change to listen to. opera doesn't support DOMSubtreeModified
-			var DOMMutationEventType = (Foxtrick.platform == "Opera") ? "DOMNodeInserted" : "DOMSubtreeModified";
 
 			var getType = function(url) {
 				for (var type in types) {
 					var regexp = types[type];
+Foxtrick.log('getType',type, url.match(regexp), url )
 					if (url.match(regexp))
 						return type;
 				}
@@ -97,14 +97,13 @@ Foxtrick.util.module.register((function() {
 				return tickers;
 			};
 			var tickerCheck = function() {
-				// prevent from multiple tickerCheck() instances running at the
-				// same time
-				ticker.removeEventListener(DOMMutationEventType, tickerCheck, false);
+				Foxtrick.log('tickerCheck')
 				var tickers = Foxtrick.sessionGet("tickers");
 				if (tickers == undefined)
 					tickers = [];
-
+Foxtrick.log('old tickers',tickers)
 				var tickersNow = getTickers();
+Foxtrick.log('tickersNow',tickersNow);
 				if (tickersNow.length < tickers.length) {
 					// Hattrick.org clears all tickers before adding a new one,
 					// so to not alert when the tickers are being cleared, we
@@ -125,9 +124,11 @@ Foxtrick.util.module.register((function() {
 					}
 					return true;
 				}, tickersNow);
-
+Foxtrick.log('newTickers',newTickers);
+				
 				Foxtrick.map(function(n) {
 					var type = getType(n.link);
+Foxtrick.log('show',type,FoxtrickPrefs.getBool("module.TickerAlert." + type + ".enabled"),n.link,n.text)
 					if (FoxtrickPrefs.getBool("module.TickerAlert." + type + ".enabled")) {
 						Foxtrick.util.notify.create(n.text, n.link);
 						var sound = FoxtrickPrefs.getString("module.TickerAlert." + type + ".sound");
@@ -139,7 +140,7 @@ Foxtrick.util.module.register((function() {
 						}
 					}
 				}, newTickers);
-				ticker.addEventListener(DOMMutationEventType, tickerCheck, false);
+				ticker.addEventListener('DOMNodeInserted', tickerCheck, false);
 			};
 			if (Foxtrick.util.layout.isSupporter(doc))
 				tickerCheck();

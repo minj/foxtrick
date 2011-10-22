@@ -13,9 +13,9 @@ Foxtrick.util.inject = {};
 
 Foxtrick.util.inject.cssLink = function(doc, url) {
 	if (Foxtrick.arch == "Sandboxed") {
-		Foxtrick.load(url, function(text) {
+		Foxtrick.load(doc, url, function(text) {
 			Foxtrick.util.inject.css(doc, text);
-		}, true);
+		});
 		return;
 	}
 	var head = doc.getElementsByTagName("head")[0];
@@ -47,9 +47,9 @@ Foxtrick.util.inject.css = function(doc, css, id) {
 // attaches a JavaScript file to the page
 Foxtrick.util.inject.jsLink = function(doc, url) {
 	if (Foxtrick.arch == "Sandboxed") {
-		Foxtrick.load(url, function(text) {
+		Foxtrick.load(doc, url, function(text) {
 			Foxtrick.util.inject.js(doc, text);
-		}, true);
+		});
 		return;
 	}
 	var head = doc.getElementsByTagName("head")[0];
