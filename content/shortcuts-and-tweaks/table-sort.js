@@ -198,6 +198,8 @@ Foxtrick.util.module.register({
 		}
 
 		for (var i = 0; i < tables.length; ++i) {
+			if (tables[i].getAttribute('id')=='ft_skilltable') 
+				continue;
 			var ths = tables[i].getElementsByTagName("th");
 			for (var j = 0; j < ths.length; ++j) {
 				if (ths[j].getElementsByTagName('input').length===0 && ths[j].getElementsByTagName('a').length===0)
