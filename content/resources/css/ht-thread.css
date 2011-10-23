@@ -19,7 +19,7 @@
 	background-color: #849D84;
 }
 
-.ft-ht-thread5:before {
+.ft-ht-thread5 a:before {
 	content: "HT: ";
 	color: #ff7a7a;
 	font-weight: bold;
