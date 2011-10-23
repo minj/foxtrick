@@ -51,7 +51,7 @@ Foxtrick.util.module.register({
 				var gameresult_a = Foxtrick.trim(headder.substr(start+3, 2));
 
 				var ad = '\n[table]\n';
-				var table = doc.getElementById('mainBody').getElementsByTagName('h2')[0].parentNode.getElementsByTagName('table')[0].cloneNode(true);
+				var table = doc.getElementsByClassName('mainBox')[0].getElementsByTagName('table')[0].cloneNode(true);
 				for (var row=0; row<table.rows.length; ++row) {
 					if(!team1 && table.rows[row].cells.length>=2) table.rows[row].cells[1].innerHTML='###';
 					if(!team2 && table.rows[row].cells.length>=3) table.rows[row].cells[2].innerHTML='###';
