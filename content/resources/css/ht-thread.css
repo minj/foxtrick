@@ -18,3 +18,9 @@
 .ft-ht-thread4 {
 	background-color: #849D84;
 }
+
+.ft-ht-thread5:before {
+	content: "HT: ";
+	color: #ff7a7a;
+	font-weight: bold;
+}

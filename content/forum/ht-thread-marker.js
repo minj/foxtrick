@@ -18,7 +18,7 @@ Foxtrick.util.module.register({
 		var divs = myForums.getElementsByTagName( "div" );
 		var cname;
 
-		var i = 0, div, num=Math.floor(Math.random()*5);
+		var i = 0, div, num=Math.floor(Math.random()*6);
 		while (div = divs[++i]) {
 			cname = div.getAttribute( "class" );
 			if (cname == "url" ) {
