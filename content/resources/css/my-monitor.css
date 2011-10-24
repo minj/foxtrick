@@ -27,7 +27,6 @@
 
 .ft-monitor-frame > h2 > div.ft_sort {
 	float:right;
-	margin-right: 14px;
 	display:none;
 }
 
@@ -55,4 +54,9 @@
 
 .ft-monitor-frame > h2 > a.flag + img {
 	margin-top:-2px;
+}
+
+/* hide header-toggle icon  */
+div.ft-monitor-container div.ft-monitor-frame h2.ft-contractable-header {
+	background-image: none;
 }
