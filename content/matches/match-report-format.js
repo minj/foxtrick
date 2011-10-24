@@ -9,6 +9,10 @@ Foxtrick.util.module.register((function() {
 		"40" : "possession",
 		"47" : "possession"
 	};
+	var orderTypes = {
+		"1" : "substitution",
+		"2" : "swap"
+	};
 	var roles = {
 		"17" : "setPieces",
 		"18" : "captain"
@@ -37,6 +41,14 @@ Foxtrick.util.module.register((function() {
 				["isYouth", isYouth],
 				["lang", locale]
 			];
+
+			var playerTag = function(id, name) {
+				var link = doc.createElement("a");
+				link.textContent = name;
+				link.href = "/Club/Players/Player.aspx?playerId=" + id;
+				link.setAttribute("data-do-not-color", "true");
+				return link;
+			};
 
 			Foxtrick.util.api.retrieve(doc, detailsArgs, {cache_lifetime: "session"}, function(xml) {
 				var homeId = xml.getElementsByTagName("HomeTeamID")[0].textContent;
@@ -92,30 +104,73 @@ Foxtrick.util.module.register((function() {
 							var list = doc.createElement("ul");
 							cell.appendChild(list);
 
-							var starting = xml.getElementsByTagName("StartingLineup")[0].getElementsByTagName("Player");
+							// collection indexed by player ID, containing
+							// name, list item, comment (in brackets), etc.
 							var collection = {};
+
 							Foxtrick.map(function(player) {
-								var name = player.getElementsByTagName("PlayerName")[0].textContent;
 								var id = player.getElementsByTagName("PlayerID")[0].textContent;
+								var name = player.getElementsByTagName("PlayerName")[0].textContent;
+								if (!collection[id]) {
+									collection[id] = { "name": name };
+								}
+							}, xml.getElementsByTagName("Player"));
+
+							// add comment for player inside brackets
+							var addComment = function(id, node) {
+								if (!collection[id] || !collection[id].item)
+									return;
+								if (!collection[id].comment) {
+									var comment = doc.createElement("span");
+									comment.className = "ft-match-lineup-comment";
+									collection[id].item.appendChild(comment);
+									collection[id].comment = comment;
+								}
+								else {
+									collection[id].comment.appendChild(doc.createTextNode(", "));
+								}
+								collection[id].comment.appendChild(node);
+							};
+
+							// add starting players first
+							var starting = xml.getElementsByTagName("StartingLineup")[0].getElementsByTagName("Player");
+							Foxtrick.map(function(player) {
+								var id = player.getElementsByTagName("PlayerID")[0].textContent;
+								var name = player.getElementsByTagName("PlayerName")[0].textContent;
 								var role = player.getElementsByTagName("RoleID")[0].textContent;
 								if (roles[role] != "setPieces"
 									&& roles[role] != "captain") {
 									var item = doc.createElement("li");
 									list.appendChild(item);
-									var link = doc.createElement("a");
-									item.appendChild(link);
-									link.textContent = name;
-									link.href = "/Club/Players/Player.aspx?playerId=" + id;
-									link.setAttribute("data-do-not-color", "true");
+									item.appendChild(playerTag(id, name));
 									// store item to collection
-									collection[id] = item;
+									collection[id].item = item;
 								}
 								else {
-									if (collection[id]) {
-										collection[id].appendChild(doc.createTextNode("(" + Foxtrickl10n.getString("match.role.#.abbr".replace(/#/, roles[role])) + ")"));
-									}
+									addComment(id, doc.createTextNode(Foxtrickl10n.getString("match.role.#.abbr".replace(/#/, roles[role]))));
 								}
 							}, starting);
+
+							// and then add substitutions
+							var substitutions = xml.getElementsByTagName("Substitution");
+							Foxtrick.map(function(sub) {
+								var type = sub.getElementsByTagName("OrderType")[0].textContent;
+								var subId = sub.getElementsByTagName("SubjectPlayerID")[0].textContent;
+								var objId = sub.getElementsByTagName("ObjectPlayerID")[0].textContent;
+								var minute = sub.getElementsByTagName("MatchMinute")[0].textContent;
+								if (orderTypes[type] == "substitution"
+									&& subId != objId) {
+									var subNode = doc.createElement("span");
+									subNode.appendChild(doc.createTextNode(minute + "' "));
+									subNode.appendChild(playerTag(objId, collection[objId].name));
+									addComment(subId, subNode);
+									// since object player now occupy the
+									// same list item as subject player,
+									// set up item and comment
+									collection[objId].item = collection[subId].item;
+									collection[objId].comment = collection[subId].item;
+								}
+							}, substitutions);
 						}, [[homeName, homeXml], [awayName, awayXml]]);
 
 						Foxtrick.listen(header, "click", function() {

@@ -12,6 +12,18 @@
 	color: #006db5 !important;
 }
 
+.ft-match-lineup-comment:before {
+	content: "(";
+}
+
+.ft-match-lineup-comment {
+	padding-left: 3px;
+}
+
+.ft-match-lineup-comment:after {
+	content: ")";
+}
+
 .ft-match-report {
 	border-spacing: 0 5px;
 }
