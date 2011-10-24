@@ -72,6 +72,7 @@ matches/match-income.js
 matches/match-order.js
 matches/match-player-colouring.js
 matches/match-report-format.js
+matches/match-simulator.js
 matches/ratings.js
 matches/stars-counter.js
 presentation/background-fixed.js

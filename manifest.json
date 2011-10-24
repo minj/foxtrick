@@ -109,6 +109,7 @@
 			"content/matches/match-order.js",
 			"content/matches/match-player-colouring.js",
 			"content/matches/match-report-format.js",
+			"content/matches/match-simulator.js",
 			"content/matches/ratings.js",
 			"content/matches/stars-counter.js",
 			"content/presentation/background-fixed.js",

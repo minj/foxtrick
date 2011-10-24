@@ -26,76 +26,6 @@ html[dir="ltr"] .playedOther, html[dir="ltr"] .playedSecondLast {
 }
 
 
-/* our ratings as number */
-.overlayRatingsNum {
-	border-bottom: 1px solid #79A777;
-	padding-bottom: 3px;
-}
-/* our percent comparions */
-.percentNumber {
-	margin-bottom:2px;
-}
-
-
-/* other teams ratings */
-.otherWrapper{
-	border-top: 1px solid #79A777;
-	padding-top: 3px;
-	padding-bottom: 3px;
-}
-.posLabelOther {
-	color: #79A777;
-}
-.overlayRatingsOther {
-}
-.overlayRatingsNumOther {
-}
-
-
-/* other teams tactics level */
-#tacticLevelLabelOther {
-	position: absolute; 
-	top: 470px;
-	background-color: #fff; 
-	padding: 3px; 
-	border-radius: 7px; 
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px; 
-	border: 2px solid #79A777;
-}
-html[dir="rtl"] #tacticLevelLabelOther {
-	right: 20px; 
-}
-html[dir="ltr"] #tacticLevelLabelOther {
-	right: 20px; 
-}
-
-
-/* htms box */
-#overlayHTMS {
-	background-color: white;
-	border: 2px solid #79A777;
-	top: 520px;
-	position: absolute;
-	width: 597px;
-}
-html[data-theme="simple"] #overlayHTMS {
-	min-height: 270px;
-}
-html[data-theme="standard"] #overlayHTMS {
-	min-height: 310px;
-}
-#overlayHTMSCurrent {
-	margin: 4px 40px;
-	padding: 10px 20px;
-}
-#overlayHTMSPrevious {
-	margin: 4px 40px;
-	padding: 10px 20px;
-	background-color:#eee; 
-}
-
-
 /****** changes to ht sytles ****/
 
 /* highlight levels in details */
@@ -115,57 +45,7 @@ html[dir="ltr"] #order_tabs {
 	margin-left: -10px !important;
 }
 
-
 /* make space for our playedlast highlighting */
 #orders #players .player .cards_health {
 	right: 1px !important;
 }
-
-
-/* adjustings hts rating comparison display*/
-#nisse {
-	display: none;
-}
-.visible {
-	visibility: visible !important;
-}
-.ratingInnerBox {
-	margin: 10px 3px 0px 3px !important;
-	padding: 0px !important;
-}
-.ratingInnerBox div[id$="Rating"], .overlayRatingsOther {
-	font-weight: normal !important;
-}
-.overlayRightDefense, .overlayMidDefense, .overlayLeftDefense {
-	top: 9px !important;
-}
-.overlayMidfield {
-	top: 160px !important;
-}
-.overlayRightAttack, .overlayMidAttack, .overlayLeftAttack {
-	top: 310px !important;
-}
-html[dir="rtl"] .overlayMidDefense, .overlayMidAttack {
-	right: 202px !important;
-}
-html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
-	left: 202px !important;
-}
-.overlaySector {
-	height: 150px !important;
-}
-.ratingInnerBox img{
-	margin-top:7px !important;
-}
-.posLabel  {
-	padding-top: 3px;
-}
-#tacticLevelLabel {
-	top: 470px !important;
-}
-
-#fieldOverlay {
-        height: 520px;
-		top: 630px 
-}
-

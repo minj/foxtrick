@@ -31,5 +31,25 @@ Foxtrick.util.module.register({
 			this.OPTIONS_CSS[2] = Foxtrick.InternalPath+"resources/skillcolors/skill-number-personal.css";
 		if (FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_number_translated") && (FoxtrickPrefs.isModuleEnabled("PersonalityImages")))
 			this.OPTIONS_CSS[3] = Foxtrick.InternalPath+"resources/skillcolors/skill-number-translated-personal.css";
+	},
+	
+	run : function (doc) {
+		
+		var playerDetailsChange = function (ev) { Foxtrick.log('playerDetailsChange')
+			var percentImage = doc.getElementById('details').getElementsByClassName('percentImage');
+			for (var i=0; i<percentImage.length; ++i) {
+				var td = percentImage[i].parentNode;
+				if (Foxtrick.hasClass(td, 'skill_number'))
+					continue;
+				Foxtrick.addClass(td, 'skill_number');
+				td.appendChild(doc.createTextNode( ' ('+percentImage[i].title.match(/\d+/)+')' ));
+			}
+		};
+
+		if ( Foxtrick.isPage('matchOrder', doc) && 
+			(FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_number")
+			|| FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_number_translated"))) {
+			Foxtrick.addMutationEventListener(doc.getElementById('details'), "DOMNodeInserted", playerDetailsChange, false);
+		}
 	}
 });
