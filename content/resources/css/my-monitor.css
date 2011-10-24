@@ -57,6 +57,6 @@
 }
 
 /* hide header-toggle icon  */
-div.ft-monitor-container div.ft-monitor-frame h2.ft-contractable-header {
+#ft-monitor-container div.ft-monitor-frame h2.ft-contractable-header {
 	background-image: none;
 }

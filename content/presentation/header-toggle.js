@@ -10,6 +10,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
 	NICE : +20, // after we add own h2s
+	CSS : Foxtrick.InternalPath + "resources/css/header-toggle.css",
 
 	run : function(doc) {
 		
