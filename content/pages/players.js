@@ -35,6 +35,7 @@ Foxtrick.Pages.Players = {
 		var getXml = function(doc, callback) {
 			if (!Foxtrick.Pages.Players.isSeniorPlayersPage(doc) && !(options && options.current_squad)) {
 				// not the page we are looking for
+				Foxtrick.log('players: wrong page');
 				callback(null);
 				return;
 			}
@@ -589,7 +590,7 @@ Foxtrick.Pages.Players = {
 				try {
 					// parse HTML first because players present in XML may
 					// not present in XML (NT players)
-					if (!options || !options.current_squad) parseHtml();Foxtrick.log(playerList)
+					if (!options || !options.current_squad) parseHtml();
 					if (xml) parseXml(xml); 
 					callback(playerList);
 				}
