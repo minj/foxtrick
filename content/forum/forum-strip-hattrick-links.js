@@ -13,17 +13,14 @@ Foxtrick.util.module.register({
 	NICE: -1, //  needs to be before forum preview for old submit button (order) detection
 
 	onclick : function( ev ) {
-		var setRelPath = function(link) {
-			link.href = link.href.replace(new RegExp("^http://.+?/"), "/");
-		};
 		var a = ev.target;
-		if (a.nodeName == "A") {
+		if (a.nodeName == "A") { 
 			if (Foxtrick.isHtUrl(a.href)) {
 				var hostname = ev.target.ownerDocument.location.hostname;
 				if (FoxtrickPrefs.isModuleOptionEnabled("ForumStripHattrickLinks", "NoConfirmStripping"))
-					setRelPath(a);
+					a.href = a.href.replace(new RegExp("^http://.+?/"), "/");
 				else if (Foxtrick.confirmDialog('Replace server with '+hostname +'?'))
-					setRelPath(a);
+					a.href = a.href.replace(new RegExp("^http://.+?/"), "/");
 			}
 			else if (a.href.search(/^chrome|^safari-extension|^foxtrick/)==0) {
 				var url = a.href;  																		// opera doesn't allow pref access
@@ -33,8 +30,11 @@ Foxtrick.util.module.register({
 				url = url.replace('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/content/',''); 	// nightly chrome
 				url = url.replace('chrome://foxtrick/content/', '');									// all gecko
 				url = url.replace('foxtrick://', '');													// our fake type
-				//Foxtrick.newTab(Foxtrick.InternalPath + url);
-				a.href = Foxtrick.InternalPath + url;
+				a.href = a.href.replace('foxtrick://', Foxtrick.InternalPath);
+				
+				// ff doesn't wanna open the changed href
+				if (Foxtrick.arch == 'Gecko' )
+					Foxtrick.newTab(Foxtrick.InternalPath + url);
 			}
 		}
 	},
