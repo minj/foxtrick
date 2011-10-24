@@ -1,3 +1,16 @@
+/* fixing toggle icon interferences */
+
+/* kicking ht archieve icon */
 #ctl00_ctl00_CPContent_CPMain_lnkArchive  img.archiveLinkIcon {
 	background-image: none !important;
+}
+
+/* copy-ratings */
+h2.ft-expander-expanded span.ft_copy_rating {
+	margin-right : 20px;
+}
+
+/* my-monitor */
+#ft-monitor-container div.ft-monitor-frame h2.ft-contractable-header {
+	background-image: none;
 }
