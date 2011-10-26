@@ -384,6 +384,8 @@ pref("extensions.foxtrick.prefs.module.MatchIncome.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.PlayedLastMatch.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.Specialties.enabled", true);
+pref("extensions.foxtrick.prefs.module.MatchOrderInterface.SwapPositions.enabled", true);
+pref("extensions.foxtrick.prefs.module.MatchOrderInterface.StayOnPage.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchSimulator.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchSimulator.value", 1);
 pref("extensions.foxtrick.prefs.module.MatchPlayerColouring.enabled", true);

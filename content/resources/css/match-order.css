@@ -17,12 +17,18 @@ html[dir="ltr"] .playedOther, html[dir="ltr"] .playedSecondLast {
 }
 
 
-/* rating differences highlighting */
-.colorLower {
-	color: red;
-}
-.colorHigher {
-	color: blue;
+
+#swap_positions {
+	background-color: #3f7137; 
+	float: left; 
+	margin-left: 20px; 
+	cursor: pointer; 
+	padding: 6px; 
+	clear: left;
+	position: relative;
+	top: 255px;
+	color: White; 
+	text-decoration: underline; 
 }
 
 

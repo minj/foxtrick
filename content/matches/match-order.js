@@ -9,11 +9,15 @@ Foxtrick.util.module.register({
 	MODULE_NAME : "MatchOrderInterface",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['matchOrder'],
-	OPTIONS : ["PlayedLastMatch","Specialties"],
+	OPTIONS : ["PlayedLastMatch","Specialties","SwapPositions","StayOnPage"],
 	CSS : Foxtrick.InternalPath + "resources/css/match-order.css",
 	OPTIONS_CSS : [ "", Foxtrick.InternalPath + "resources/css/match-order-specialties.css"],
 
 	run : function(doc) { 
+
+		Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath+"resources/js/matchOrder.js");
+		
+		
 		// add extra info
 		var hasPlayerInfo = false;
 		var hasInterface = false;
@@ -21,23 +25,43 @@ Foxtrick.util.module.register({
 		var teamid = Foxtrick.util.id.findTeamId(doc.getElementById('mainWrapper'));
 		
 		// load ahead players and then wait for interface loaded
-		Foxtrick.Pages.Players.getPlayerList(doc, function(playerInfo) {
-			if (!playerInfo || playerInfo.length==0) {
-				Foxtrick.log("unable to retrieve player list.");
-				return;
-			} 
-			
-			hasPlayerInfo = true;
-			playerList = playerInfo;
-			
-			if (hasInterface)
-				showPlayerInfo();
-		}, {teamid:teamid, current_squad:true, includeMatchInfo:true} );
+		// youth has no api to get
+		if (doc.location.href.search(/isYouth=True/i) == -1) {
+			Foxtrick.Pages.Players.getPlayerList(doc, function(playerInfo) {
+				if (!playerInfo || playerInfo.length==0) {
+					Foxtrick.log("unable to retrieve player list.");
+					return;
+				} 
+				
+				hasPlayerInfo = true;
+				playerList = playerInfo;
+				
+				if (hasInterface)
+					showPlayerInfo();
+			}, {teamid:teamid, current_squad:true, includeMatchInfo:true} );
+		}
 		
 		var waitForInterface = function(ev) {
 			hasInterface = true;
 			if (hasPlayerInfo)
 				showPlayerInfo();
+
+			if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'SwapPositions')
+				&& !doc.getElementById('swap_positions')) {
+				var swapPositionsDiv =  doc.createElement('div');
+				swapPositionsDiv.id = "swap_positions";
+				var swapPositionsLink =  doc.createElement('span');
+				swapPositionsLink.setAttribute('onclick',"javascript:ft_swap_positions();");
+				swapPositionsLink.textContent = Foxtrickl10n.getString("matchOrder.swapPositions");
+				swapPositionsDiv.appendChild(swapPositionsLink);
+				var formations = doc.getElementById('formations');
+				formations.parentNode.insertBefore(swapPositionsDiv, formations.nextSibling);
+			}
+			
+			if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'StayOnPage') 
+				&&  doc.getElementById('send').getAttribute('onclick') == null) {
+				doc.getElementById('send').setAttribute('onclick',"javascript:ft_stay_on_page()");
+			}
 		};
 
 		var showPlayerInfo = function() {
