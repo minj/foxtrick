@@ -155,11 +155,13 @@ Foxtrick.util.module.register((function() {
 							var substitutions = xml.getElementsByTagName("Substitution");
 							Foxtrick.map(function(sub) {
 								var type = sub.getElementsByTagName("OrderType")[0].textContent;
+								// player to be substituted
 								var subId = sub.getElementsByTagName("SubjectPlayerID")[0].textContent;
+								// substitute player
 								var objId = sub.getElementsByTagName("ObjectPlayerID")[0].textContent;
 								var minute = sub.getElementsByTagName("MatchMinute")[0].textContent;
 								if (orderTypes[type] == "substitution"
-									&& subId != objId) {
+									&& subId != objId && objId > 0) {
 									var subNode = doc.createElement("span");
 									subNode.appendChild(doc.createTextNode(minute + "' "));
 									subNode.appendChild(playerTag(objId, collection[objId].name));
