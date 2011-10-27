@@ -8,14 +8,16 @@
 Foxtrick.util.module.register({
 	MODULE_NAME : "AddClass",
 	CORE_MODULE : true,
-	PAGES : ["playerdetail", "search", "bookmarks", "match"],
+	PAGES : ["playerdetail", "search", "bookmarks", "match", "transferCompare"],
 	NICE : -20, // place before all date-related modules
 
 	run : function(doc) {
 		if (Foxtrick.isPage("playerdetail", doc))
 			this.addDateForTl(doc);
 		else if (Foxtrick.isPage("search", doc))
-			this.addDateForYouthLeagueSearch(doc);
+			this.addDateForTable(doc.getElementById("ctl00_ctl00_CPContent_CPMain_grdYouthSeries_ctl00"));
+		else if (Foxtrick.isPage("transferCompare", doc))
+			this.addDateForTable(doc.getElementsByTagName("table")[0]);
 		else if (Foxtrick.isPage("bookmarks", doc))
 			this.addDateForBookmarks(doc);
 		else if (Foxtrick.isPage("match", doc))
@@ -59,18 +61,22 @@ Foxtrick.util.module.register({
 	},
 
 	// add date class for youth league search
-	addDateForYouthLeagueSearch : function(doc) {
-		var table = doc.getElementById("ctl00_ctl00_CPContent_CPMain_grdYouthSeries_ctl00");
+	addDateForTable : function(table) {
 		if (!table)
 			return;
 
-		var timeRe = /(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})/;
+		var timeReFull = /(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})/;
+		var timeReShort = /(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+)/;
 
 		// start time
 		var cells = table.getElementsByTagName("td");
 		Foxtrick.map(function(cell) {
-			if (cell.getElementsByClassName("date").length == 0)
-			cell.innerHTML = cell.innerHTML.replace(timeRe, "<span class=\"date\">$1</span>");
+			if (cell.getElementsByClassName("date").length == 0) {
+				if (cell.innerHTML.search(timeReFull) != -1)
+					cell.innerHTML = cell.innerHTML.replace(timeReFull, "<span class=\"date\">$1</span>");
+				else
+					cell.innerHTML = cell.innerHTML.replace(timeReShort, "<span class=\"date\">$1</span>");
+			}
 		}, cells);
 	},
 
