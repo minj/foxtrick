@@ -2,51 +2,40 @@
 /**
  * election-table.js
  * some more infos on election page
- * @author spambot
+ * @author spambot, ryanli
  */
 
 Foxtrick.util.module.register({
 	MODULE_NAME : "ElectionTable",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : new Array('election'),
+	PAGES : ["election"],
 
 	run : function(doc) {
-		var tbl_election = (doc.getElementById("ft_election")!=null);
-		if (tbl_election) return;
-
 		var sum = 0;
-		var div = doc.getElementById('mainBody');
+		var table = doc.getElementsByClassName("previousCandidates")[0];
 
-		tbl_election = div.getElementsByTagName('TABLE')[0];
-		if (!tbl_election) return;
-		tbl_election.id = 'ft_election';
-
-		var tblBodyObj = tbl_election.tBodies[0];
-		if (!tblBodyObj) return;
-
-
-		for (var i=0; i<tblBodyObj.rows.length; i++) {
-			if (tblBodyObj.rows[i].cells[2]) {
-				sum += parseInt(Foxtrick.trim(tblBodyObj.rows[i].cells[2].textContent));
+		// count up the sum first
+		for (var i = 0; i < table.rows.length; ++i) {
+			if (table.rows[i].cells[2]) {
+				sum += parseInt(Foxtrick.trim(table.rows[i].cells[2].textContent));
 			}
 		}
 
-		for (var i=0; i<tblBodyObj.rows.length; i++) {
-			if (tblBodyObj.rows[i].cells[2]) {
-				var content = parseInt(Foxtrick.trim(tblBodyObj.rows[i].cells[2].textContent));
-				var result = '(' + Math.floor(content/sum*1000)/10 + '%) ';
-				tblBodyObj.rows[i].cells[3].textContent += result;
+		// add percentage for each candidate
+		for (var i = 0; i < table.rows.length; i++) {
+			if (table.rows[i].cells[2]) {
+				var content = parseInt(Foxtrick.trim(table.rows[i].cells[2].textContent));
+				var result = '(' + Math.floor(content/sum*1000)/10 + '%)';
+				table.rows[i].cells[3].textContent += result;
+				// keep consistent padding with the cell on the left
+				table.rows[i].cells[3].style.padding = "0px";
 			}
 		}
+
+		// finally, a sum is displayed
 		var cnt = doc.createElement("strong");
 		cnt.textContent = "Σ " + Foxtrick.formatNumber(sum, " ");
 		cnt.style.paddingTop = "10px";
-		div.appendChild(cnt);
-	},
-
-	change : function(doc) {
-		var id = "ft_election";
-		if (!doc.getElementById(id))
-			this.run(doc);
+		table.parentNode.insertBefore(cnt, table.nextSibling);
 	}
 });
