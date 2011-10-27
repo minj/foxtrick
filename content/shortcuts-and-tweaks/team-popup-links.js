@@ -134,7 +134,7 @@ Foxtrick.util.module.register({
 		return table;
 	},
 
-	run : function(doc) {
+	run : function(doc) { 
 		var sUrl = Foxtrick.getHref(doc);
 		// show last 5 logins
 		if (sUrl.search(/ShowOldConnections=true/i) != -1) {
@@ -146,7 +146,11 @@ Foxtrick.util.module.register({
 				}
 			}
 		}
+		this.add_popup_links(doc);
+	},
 
+	add_popup_links : function(doc) {
+		var sUrl = Foxtrick.getHref(doc);
 		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
 		var hasScroll = Foxtrick.util.layout.mainBodyHasScroll(doc);
 		var links = this.LINKS;
@@ -341,6 +345,6 @@ Foxtrick.util.module.register({
 	},
 	
 	change : function(doc) {
-		this.run(doc);
+		this.add_popup_links(doc);
 	}
 });
