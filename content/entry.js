@@ -19,6 +19,29 @@ Foxtrick.entry.docLoad = function(doc) {
 	if (doc.nodeName != "#document")
 		return;
 
+	// clear ASP.NET_SessionId cookie on login (security leak)
+	if (Foxtrick.arch == "Gecko" && Foxtrick.isLoginPage(doc)) {
+	 	try { 
+			var cookieManager = Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager);
+
+			var iter = cookieManager.enumerator;
+			var cookie_count = 0;
+			while (iter.hasMoreElements()) {
+				var cookie = iter.getNext();
+				if (cookie instanceof Components.interfaces.nsICookie) {
+					//Foxtrick.log(cookie.host, cookie.name, cookie.path, cookie.blocked, cookie);
+					if (Foxtrick.isHtUrl('http://'+cookie.host) && cookie.name.indexOf('ASP.NET_SessionId') != -1) {
+						Foxtrick.log('delete cookie: ',cookie.name);
+						cookieManager.remove(cookie.host, cookie.name, cookie.path, cookie.blocked);
+					}
+					cookie_count++;
+				}
+			}
+		} catch(e) {
+			Foxtrick.log(e);
+		}
+	}
+
 	// we shall not run here
 	if (!Foxtrick.isHt(doc) || Foxtrick.isExcluded(doc) || Foxtrick.isLoginPage(doc)) 
 		return;
