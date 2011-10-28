@@ -99,7 +99,7 @@ Foxtrick.Pages.Match = {
 			if (!subLevelValue)	return -1;
 		}
 		catch (e) {
-			Foxtrick.log(e);
+			Foxtrick.log('getStatFromCell',e, path);
 		}
 
 		return baseValue+parseFloat(subLevelValue);
@@ -113,7 +113,7 @@ Foxtrick.Pages.Match = {
 	},
 
 	getTacticsFromCell: function(cell) {
-		var tactics=Foxtrick.trim(cell.innerHTML);
+		var tactics=Foxtrick.trim(cell.textContent);
 		var lang = FoxtrickPrefs.getString("htLanguage");
 
 		try {
@@ -122,7 +122,7 @@ Foxtrick.Pages.Match = {
 			return subLevelValue || -1;
 		}
 		catch (e) {
-			Foxtrick.log(e);
+			Foxtrick.log('getTacticsFromCell', e, path);
 		}
 		return null;
 	}
