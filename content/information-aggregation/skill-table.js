@@ -329,6 +329,10 @@ Foxtrick.util.module.register({
 					cell.textContent = Foxtrick.formatNumber(num, " ");
 					cell.setAttribute("index", num);
 				};
+				var bool = function(cell, val) {
+					if (val==true)
+						cell.textContent = 'X';
+				};
 
 				// columns used for table information
 				// name: name of the column, used for fetching l10nized string
@@ -364,6 +368,8 @@ Foxtrick.util.module.register({
 					{ name : "Experience", property : "experience", method : skill },
 					{ name : "Form", property : "form", method : skill },
 					{ name : "Stamina", property : "stamina", method : skill },
+					{ name : "Loyality", property : "loyality", method : skill },
+					{ name : "MotherClubBonus", property : "motherClubBonus", method : bool },
 					{ name : "Keeper", property : "keeper", method: skill },
 					{ name : "Defending", property : "defending", method: skill },
 					{ name : "Playmaking", property : "playmaking", method: skill },

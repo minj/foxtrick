@@ -51,7 +51,7 @@ Foxtrick.Pages.Players = {
 			}
 			else {
 				args.push(["file", "players"]);
-				args.push(["version", "2.0"]);
+				args.push(["version", "2.1"]);
 
 				if (!options || !options.current_squad) {
 					if (Foxtrick.Pages.Players.isOldiesPage(doc))
@@ -265,6 +265,10 @@ Foxtrick.Pages.Players = {
 					var position = Foxtrickl10n.getPositionByType(MatchRoleIDToPosition[player.lastPositionCode]);
 					player.lastMatchText = Foxtrickl10n.getString('Last_match_played_as').replace('%1',player.lastPlayedMinutes).replace('%2', position);
 				}
+				if (playerNode.getElementsByTagName("Loyalty").length) 
+					player.loyality = Number(playerNode.getElementsByTagName("Loyalty")[0].textContent);
+				if (playerNode.getElementsByTagName("MotherClubBonus").length) 
+					player.motherClubBonus  = playerNode.getElementsByTagName("MotherClubBonus")[0].textContent=='True';
 			}
 		} catch(e) {Foxtrick.log(e);}
 		};
