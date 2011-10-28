@@ -233,15 +233,10 @@ Foxtrick.util.module.register({
 				}
 				text += '[/table]';
 				
-				// copy htms prediction. remove empty row and fix some newlines
+				// copy htms prediction. 
 				var overlayHTMS = doc.getElementById('overlayHTMSCurrent');
 				if (overlayHTMS) {
-					var overlayHTMSClone = overlayHTMS.cloneNode(true);
-					var htmstable = overlayHTMSClone.getElementsByTagName('table')[0];
-					if (htmstable) {
-						htmstable.deleteRow(2);
-						text += '\n' + Foxtrick.util.htMl.getMarkupFromNode(overlayHTMSClone).replace(/\n/g,'').replace(/\[link=/g,'\n[link=');
-					}
+					text += Foxtrick.util.module.get('HTMSPrediction').copy(overlayHTMS);
 				}
 				
 				Foxtrick.copyStringToClipboard(text);

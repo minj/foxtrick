@@ -67,13 +67,14 @@ Foxtrick.util.module.register({
 					ad += '['+ youth + 'matchid=' + gameid + ']';
 				}
 				ad += '[/th]\n[th]';
-				if (table.rows[0].cells[1]) {
+				if (team1 && table.rows[0].cells[1]) {
 					var teamlink = table.rows[0].cells[1].getElementsByTagName('a')[0];
 					if (teamlink)
 						ad += teamlink.innerHTML + ((team2==true)?(' - ' + gameresult_h):'') + '[br]['+youth+'teamid='+Foxtrick.util.id.getTeamIdFromUrl(teamlink.href)+']';
 				}
-				ad += '[/th]\n[th]';
-				if (table.rows[0].cells[2]) {
+				if (team1 && team2)
+					ad += '[/th]\n[th]';
+				if (team2 && table.rows[0].cells[2]) {
 					var teamlink = table.rows[0].cells[2].getElementsByTagName('a')[0];
 					if (teamlink)
 						ad += teamlink.innerHTML + ((team1==true)?(' - ' + gameresult_a):'') + '[br]['+youth+'teamid='+Foxtrick.util.id.getTeamIdFromUrl(teamlink.href)+']';
@@ -87,26 +88,31 @@ Foxtrick.util.module.register({
 							ad += table.rows[row].cells[0].textContent;
 						}
 						ad += '[/th]\n[td]';
-						if (table.rows[row].cells[1]) {
-							ad += table.rows[row].cells[1].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a).replace(_t, '[br]'+_t);
+						if (team1) {
+							if (table.rows[row].cells[1]) {
+								ad += table.rows[row].cells[1].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a).replace(_t, '[br]'+_t);
+							}
+							if (table.rows[row].cells[3]) {
+								if (table.rows[row].cells[1].getElementsByTagName('a').length !=0
+									&& table.rows[row].cells[1].textContent != table.rows[row].cells[1].getElementsByTagName('a')[0].textContent)
+									ad += ' (' + (Number(table.rows[row].cells[3].textContent.replace(',','.'))/4+0.75).toFixed(2) + ')';
+								else // no sub level
+									ad += ' (' + table.rows[row].cells[3].textContent.replace(',','.') + ')';
+							}
 						}
-						if (table.rows[row].cells[3]) {
-							if (table.rows[row].cells[1].getElementsByTagName('a').length !=0
-								&& table.rows[row].cells[1].textContent != table.rows[row].cells[1].getElementsByTagName('a')[0].textContent)
-								ad += ' (' + (Number(table.rows[row].cells[3].textContent.replace(',','.'))/4+0.75).toFixed(2) + ')';
-							else // no sub level
-								ad += ' (' + table.rows[row].cells[3].textContent.replace(',','.') + ')';
-						}
-						ad += '[/td]\n[td]';
-						if (table.rows[row].cells[2]) {
-							ad += table.rows[row].cells[2].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a).replace(_t, '[br]'+_t);
-						}
-						if (table.rows[row].cells[4]) {
-							if (table.rows[row].cells[2].getElementsByTagName('a').length !=0
-								&& table.rows[row].cells[2].textContent != table.rows[row].cells[2].getElementsByTagName('a')[0].textContent)
-								ad += ' (' + (Number(table.rows[row].cells[4].textContent.replace(',','.'))/4+0.75).toFixed(2) + ')';
-							else // no sub level
-								ad += ' (' + table.rows[row].cells[4].textContent + ')';
+						if (team1 && team2)
+							ad += '[/td]\n[td]';
+						if (team2) {
+							if (table.rows[row].cells[2]) {
+								ad += table.rows[row].cells[2].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a).replace(_t, '[br]'+_t);
+							}
+							if (table.rows[row].cells[4]) {
+								if (table.rows[row].cells[2].getElementsByTagName('a').length !=0
+									&& table.rows[row].cells[2].textContent != table.rows[row].cells[2].getElementsByTagName('a')[0].textContent)
+									ad += ' (' + (Number(table.rows[row].cells[4].textContent.replace(',','.'))/4+0.75).toFixed(2) + ')';
+								else // no sub level
+									ad += ' (' + table.rows[row].cells[4].textContent + ')';
+							}
 						}
 						ad += '[/td]\n\n[/tr]\n';
 					} catch (e) {Foxtrick.log(e)}
@@ -114,15 +120,14 @@ Foxtrick.util.module.register({
 				ad = ad.replace(/\[td\]###\[\/td\]/gi,'');
 				ad += '\n[/table]\n';
 
-				if(!(team1 && team2)) {
-					var ad_s = ad.split('[/tr]');
-					for (var i = 0; i < ad_s.length; i++){
-						if (i == 10) ad_s[i] = '[tr]';
-						ad_s[i] = ad_s[i].replace(/\[th\]\[\/th\]/gi,'');
-						ad_s[i] = ad_s[i].replace(/\[td\]\[\/td\]/gi,'');
+				// copy htms prediction. 
+				if (team1 && team2) {
+ 					var htmsMatchDivId = doc.getElementById('htmsMatchDivId');
+					if (htmsMatchDivId) {
+						ad += Foxtrick.util.module.get('HTMSPrediction').copy(htmsMatchDivId);
 					}
-					ad = ad_s.join('[/tr]').replace(/\[tr\]\[\/tr\]/,'');
 				}
+				
 				Foxtrick.copyStringToClipboard(ad);
 				var note = Foxtrick.util.note.add(doc, insertBefore, "ft-ratings-copy-note", Foxtrickl10n.getString("CopyRatings.copied"), null, true);
 			}

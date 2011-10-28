@@ -11,6 +11,18 @@ Foxtrick.util.module.register({
 	PAGES : new Array('match'),
 	CSS : Foxtrick.InternalPath + "resources/css/htms-statistics.css",
 
+	
+	copy : function(div) {
+		var HTMSClone = div.cloneNode(true);
+		var htmstable = HTMSClone.getElementsByTagName('table')[0];
+		if (htmstable) {
+			// remove empty row and fix some newlines
+			htmstable.deleteRow(htmstable.rows.length-2);
+			return '\n' + Foxtrick.util.htMl.getMarkupFromNode(HTMSClone).replace(/\n/g,'').replace(/\[link=/g,'\n[link=');
+		}
+		return '';
+	},
+	
 	insertPrediction: function(doc,targetNode, midfieldLevel, rdefence, cdefence, ldefence, rattack, cattack, lattack, tactics, tacticsLevel, teams) {
 		var loading = Foxtrick.util.note.createLoading(doc);
 		targetNode.appendChild(loading);
@@ -80,6 +92,7 @@ Foxtrick.util.module.register({
 
 		if (teams) {
 			var row = htmstable.insertRow(htmstable.rows.length);
+			row.className = 'htms_teams';
 			var cell = row.insertCell(0);
 			cell.className = 'ch ft-htms-leftcell';
 			cell.style.width = '160px';
