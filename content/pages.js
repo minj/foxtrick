@@ -100,7 +100,7 @@ Foxtrick.ht_pages = {
 	'htpress'                   : '/Community/Press/Default.aspx',
 	'cupmatches'                : '/World/Cup/CupMatches.aspx',
 	'cupoverview'               : '/World/Cup/?CupID=',
-	'election'                  : '/World/Elections/Default.aspx',
+	'election'                  : '/World/Elections/Default.aspx|World/Elections/$',
 	'denominations'             : '/Help/Rules/AppDenominations.aspx',
 	'help_contact'              : '/Help/Contact.aspx',
 	'statsBestgames'            : '/World/Stats/StatsBestgames.aspx',
