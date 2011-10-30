@@ -646,5 +646,16 @@ Foxtrick.util.module.register({
 		};
 		var fieldOverlay = doc.getElementById('fieldOverlay');
 		Foxtrick.addMutationEventListener(fieldOverlay, "DOMNodeInserted", showLevelNumbers, false);
+		
+		Foxtrick.listen(doc.getElementById('flip_lineup'), "click", function(){
+			if (Foxtrick.util.layout.isFlipped(doc)) {
+				Foxtrick.removeClass(fieldOverlay,'not_flipped');
+				Foxtrick.addClass(fieldOverlay,'flipped');
+			}
+			else {
+				Foxtrick.addClass(fieldOverlay,'not_flipped');
+				Foxtrick.removeClass(fieldOverlay,'flipped');
+			}
+		}, false);
 	}
 });

@@ -88,14 +88,23 @@ html[data-theme="standard"] #overlayHTMS {
 .ratingInnerBox div[id$="Rating"], .overlayRatingsOther {
 	font-weight: normal !important;
 }
-.overlayRightDefense, .overlayMidDefense, .overlayLeftDefense {
+#fieldOverlay.not_flipped .overlayRightDefense, #fieldOverlay.not_flipped .overlayMidDefense, #fieldOverlay.not_flipped .overlayLeftDefense {
 	top: 9px !important;
 }
-.overlayMidfield {
+#fieldOverlay.not_flipped .overlayMidfield {
 	top: 160px !important;
 }
-.overlayRightAttack, .overlayMidAttack, .overlayLeftAttack {
+#fieldOverlay.not_flipped .overlayRightAttack, #fieldOverlay.not_flipped .overlayMidAttack, #fieldOverlay.not_flipped .overlayLeftAttack {
 	top: 310px !important;
+}
+#fieldOverlay.flipped .overlayRightDefense, #fieldOverlay.flipped .overlayMidDefense, #fieldOverlay.flipped .overlayLeftDefense {
+	top: 310px !important;
+}
+#fieldOverlay.flipped .overlayMidfield {
+	top: 160px !important;
+}
+#fieldOverlay.flipped .overlayRightAttack, #fieldOverlay.flipped .overlayMidAttack, #fieldOverlay.flipped .overlayLeftAttack {
+	top: 9px !important;
 }
 html[dir="rtl"] .overlayMidDefense, .overlayMidAttack {
 	right: 202px !important;
