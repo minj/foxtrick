@@ -130,13 +130,13 @@ html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
 #fieldOverlay.displayBellow {
 	height: 520px;
 	position: relative;
-	top: 630px;
+	top: 630px !important;
 }
 
 #fieldOverlay.displayRight {
 	height: 520px;
 	position: relative;
-	top: -80px;
+	top: -80px !important;
 }
 html[dir="rtl"] #fieldOverlay.displayRight {
 	right: 775px !important;
