@@ -650,15 +650,20 @@ Foxtrick.util.module.register({
 		
 		var checkFlipped = function(){
 			if (Foxtrick.util.layout.isFlipped(doc)) {
+				Foxtrick.log('is flipped');
 				Foxtrick.removeClass(fieldOverlay,'not_flipped');
 				Foxtrick.addClass(fieldOverlay,'flipped');
 			}
 			else {
+				Foxtrick.log('not flipped');
 				Foxtrick.addClass(fieldOverlay,'not_flipped');
 				Foxtrick.removeClass(fieldOverlay,'flipped');
 			}
 		};
-		Foxtrick.listen(doc.getElementById('flip_lineup'), "click", checkFlipped, false);
+		Foxtrick.listen(doc.getElementById('flip_lineup'), "click", function(ev) {
+			// ff is too fast. so we cue to ensure css add been added by page already
+			window.setTimeout(checkFlipped,0);
+		}, false);
 		checkFlipped();
 	}
 });
