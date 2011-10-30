@@ -81,7 +81,11 @@ Foxtrick.DOMListener = function(target, type, listener, useCapture) {
 			// all changes have past and all changehandlers called. no we can call our actual handler
 			changeScheduled = false;
 			target.removeEventListener(type, waitForChanges, useCapture);
-			listener(ev);
+			try{
+				listener(ev);
+			} catch(e) {
+				Foxtrick.log('uncaught error in listener',e);
+			}
 			target.addEventListener(type, waitForChanges, useCapture);
 		}, 0)
 	};

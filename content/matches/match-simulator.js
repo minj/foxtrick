@@ -12,7 +12,7 @@ Foxtrick.util.module.register({
 	RADIO_OPTIONS : ["RatingsOnTop","RatingsBellow","RatingsRight"],
 	CSS : Foxtrick.InternalPath + "resources/css/match-simulator.css",
 
-	run : function(doc) { 
+	run : function(doc) {
 		var displayOption = FoxtrickPrefs.getInt("module.MatchSimulator.value");
 		var fieldOverlay = doc.getElementById('fieldOverlay');
 		if (displayOption == 1)
@@ -90,7 +90,8 @@ Foxtrick.util.module.register({
 			
 			var overlayRatings = fieldOverlay.getElementsByClassName('overlayRatings');
 			var posLabel = fieldOverlay.getElementsByClassName('posLabel');
-			
+			var tacticLevelLabel = doc.getElementById('tacticLevelLabel');
+
 			// get some tactics etc lables for common use
 			var speechLevelDiv = doc.getElementsByClassName('speechLevel')[0].cloneNode(true);
 			var speechLevelTitle = speechLevelDiv.innerHTML.split('<select')[0].replace(/\s\s+/g,' ');
@@ -647,7 +648,7 @@ Foxtrick.util.module.register({
 		var fieldOverlay = doc.getElementById('fieldOverlay');
 		Foxtrick.addMutationEventListener(fieldOverlay, "DOMNodeInserted", showLevelNumbers, false);
 		
-		Foxtrick.listen(doc.getElementById('flip_lineup'), "click", function(){
+		var checkFlipped = function(){
 			if (Foxtrick.util.layout.isFlipped(doc)) {
 				Foxtrick.removeClass(fieldOverlay,'not_flipped');
 				Foxtrick.addClass(fieldOverlay,'flipped');
@@ -656,6 +657,8 @@ Foxtrick.util.module.register({
 				Foxtrick.addClass(fieldOverlay,'not_flipped');
 				Foxtrick.removeClass(fieldOverlay,'flipped');
 			}
-		}, false);
+		};
+		Foxtrick.listen(doc.getElementById('flip_lineup'), "click", checkFlipped, false);
+		checkFlipped();
 	}
 });
