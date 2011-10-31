@@ -66,7 +66,7 @@ Foxtrick.Pages.Players = {
 			Foxtrick.util.api.retrieve(doc, args,{ cache_lifetime:'session'}, callback);
 		};
 
-		var parseXml = function(xml) {
+		var parseXml = function(xml) { 
 		try {
 			if (!xml)
 				return;
@@ -134,6 +134,10 @@ Foxtrick.Pages.Players = {
 							player.lastMatchId = Number(LastMatch.getElementsByTagName("MatchId")[0].textContent);
 							player.lastMatchDate = LastMatch.getElementsByTagName("Date")[0].textContent;
 						}
+					if (playerNode.getElementsByTagName("Loyalty").length) 
+						player.loyality = Number(playerNode.getElementsByTagName("Loyalty")[0].textContent);
+					if (playerNode.getElementsByTagName("MotherClubBonus").length) 
+						player.motherClubBonus  = playerNode.getElementsByTagName("MotherClubBonus")[0].textContent=='True';
 					}
 				}
 
@@ -265,10 +269,6 @@ Foxtrick.Pages.Players = {
 					var position = Foxtrickl10n.getPositionByType(MatchRoleIDToPosition[player.lastPositionCode]);
 					player.lastMatchText = Foxtrickl10n.getString('Last_match_played_as').replace('%1',player.lastPlayedMinutes).replace('%2', position);
 				}
-				if (playerNode.getElementsByTagName("Loyalty").length) 
-					player.loyality = Number(playerNode.getElementsByTagName("Loyalty")[0].textContent);
-				if (playerNode.getElementsByTagName("MotherClubBonus").length) 
-					player.motherClubBonus  = playerNode.getElementsByTagName("MotherClubBonus")[0].textContent=='True';
 			}
 		} catch(e) {Foxtrick.log(e);}
 		};
@@ -349,7 +349,8 @@ Foxtrick.Pages.Players = {
 				var basicSkillLinks = basicInformation.getElementsByClassName("skill");
 
 				if (player.form === undefined || player.stamina === undefined
-					|| player.leadership === undefined || player.experience === undefined) {
+					|| player.leadership === undefined || player.experience === undefined
+					|| player.loyality === undefined) {
 					var links = {};
 					if (basicSkillLinks.length >= 2) {
 						if (basicSkillLinks[1].href.search("skillshort") !== -1) {
@@ -371,7 +372,10 @@ Foxtrick.Pages.Players = {
 							links.experience = basicSkillLinks[3];
 						}
 					}
-					var basicSkillNames = ["form", "stamina", "leadership", "experience"];
+					if (basicSkillLinks.length >= 5) {
+						links.loyality = basicSkillLinks[4]; 
+					}
+					var basicSkillNames = ["form", "stamina", "leadership", "experience", "loyality"];
 					for (var j in basicSkillNames) {
 						if (player[basicSkillNames[j]] === undefined
 							&& links[basicSkillNames[j]] !== undefined) {
@@ -449,12 +453,16 @@ Foxtrick.Pages.Players = {
 				player.injured = false;
 				player.bruised = false;
 				player.injuredWeeks = 0;
+				player.motherClubBonus = false
 				// only senior players can be transfer-listed
 				if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc)) {
 					player.transferListed = false;
 				}
 
 				for (var j = 0; j < imgs.length; ++j) {
+					if (imgs[j].className == "motherclubBonus") {
+						player.motherClubBonus = true
+					}
 					if (imgs[j].className == "cardsOne") {
 						if (imgs[j].src.indexOf("red_card", 0) != -1) {
 							player.redCard = 1;
