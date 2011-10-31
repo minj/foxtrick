@@ -148,5 +148,10 @@ Foxtrick.util.module.register({
 					sideBarBoxes)
 			);
 		}
+	},
+	
+	change : function(doc){
+		this.run(doc);
 	}
+	
 });
