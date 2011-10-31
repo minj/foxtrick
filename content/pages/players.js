@@ -331,9 +331,9 @@ Foxtrick.Pages.Players = {
 					&& !player.tsi) {
 					// youth players don't have TSI, and we can fetch directly
 					// from XML if it's there
-					var tsiMatch = basicHtml.replace(/\s+/g,'').match(RegExp("[=:].?(\\d+)"));
+					var tsiMatch = basicHtml.replace(/\s+/g,'').match(RegExp("[=:](\\d+)"));
 					var tsi;
-					if (tsiMatch) {
+					if (tsiMatch) { 
 						tsi = tsiMatch[1];
 						tsi = parseInt(tsi);
 						player.tsi = tsi;
