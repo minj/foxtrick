@@ -85,6 +85,9 @@ Foxtrick.util.module.register({
 				buildFlag(
 					["userID", Foxtrick.util.id.getUserIdFromUrl(n.href)],
 					function(flag) {
+						if (Foxtrick.hasClass(n, 'series-flag')) 
+							return;
+						Foxtrick.addClass(n, 'series-flag');
 						n.parentNode.insertBefore(flag, n.nextSibling);
 						n.parentNode.insertBefore(doc.createTextNode(" "), flag);
 					}
@@ -96,6 +99,9 @@ Foxtrick.util.module.register({
 				buildFlag(
 					["teamID", Foxtrick.util.id.getTeamIdFromUrl(n.href)],
 					function(flag) {
+						if (Foxtrick.hasClass(n, 'series-flag')) 
+							return;
+						Foxtrick.addClass(n, 'series-flag');
 						n.parentNode.insertBefore(flag, n.nextSibling);
 						n.parentNode.insertBefore(doc.createTextNode(" "), flag);
 					}
@@ -150,7 +156,7 @@ Foxtrick.util.module.register({
 		}
 	},
 	
-	change : function(doc){
+	change : function(doc){ 
 		this.run(doc);
 	}
 	
