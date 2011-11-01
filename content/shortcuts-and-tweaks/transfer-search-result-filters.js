@@ -211,7 +211,7 @@ Foxtrick.util.module.register({
 					var hide = false;
 					for (var j = 0; j < filters.length; ++j) {
 						var filter = filters[j];
-						if (filter.type == "minmax") {
+						if (filter.type == "minmax" && (filter.min != null || filter.max != null) ) {
 							if (FILTER_FUNC[filter.key](player, filter.min, filter.max))
 								hide = true;
 						}
