@@ -10,7 +10,7 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
 	CSS : Foxtrick.InternalPath + "resources/css/htms-statistics.css",
-
+	NICE : -1,  // before ratings
 	
 	copy : function(div) {
 		var HTMSClone = div.cloneNode(true);
