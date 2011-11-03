@@ -178,7 +178,7 @@ Foxtrick.util.module.register({
 
 		var ratingstable = Foxtrick.Pages.Match.getRatingsTable(doc);
 		if (ratingstable == null) return;
-		var tacticRow=ratingstable.rows.length-2;
+		var tacticRow=ratingstable.rows.length-7;
 		if (Foxtrick.Pages.Match.isWalkOver(ratingstable)) return;
 		if (!Foxtrick.Pages.Match.isCorrectLanguage(ratingstable)) { // incorrect language
 
