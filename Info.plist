@@ -171,6 +171,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/presentation/old-style-face.js</string>
 				<string>content/presentation/original-face.js</string>
 				<string>content/presentation/personality-images.js</string>
+				<string>content/presentation/ratings-range.js</string>
 				<string>content/presentation/simple-presentation.js</string>
 				<string>content/presentation/skill-coloring.js</string>
 				<string>content/presentation/skill-translation.js</string>
@@ -184,6 +185,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/shortcuts-and-tweaks/copy-player-ad.js</string>
 				<string>content/shortcuts-and-tweaks/copy-youth.js</string>
 				<string>content/shortcuts-and-tweaks/extra-shortcuts.js</string>
+				<string>content/shortcuts-and-tweaks/filter.js</string>
 				<string>content/shortcuts-and-tweaks/league-and-match-chat.js</string>
 				<string>content/shortcuts-and-tweaks/lineup-shortcut.js</string>
 				<string>content/shortcuts-and-tweaks/manager-buttons.js</string>

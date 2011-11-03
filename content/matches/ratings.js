@@ -9,7 +9,7 @@ Foxtrick.util.module.register({
 	MODULE_NAME : "Ratings",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
-	OPTIONS : ["HatStats", "HatStatsDetailed", "HatStatsSeparated", "LoddarStats", "PeasoStats", "VnukStats", "HTitaVal", "GardierStats"],
+	OPTIONS : ["HatStats", "HatStatsDetailed", "LoddarStats", "PeasoStats", "VnukStats", "HTitaVal", "GardierStats"],
 	ratingDefs :  {}, // will be filled in initOptions
 
 	run : function(doc) {
@@ -24,7 +24,7 @@ Foxtrick.util.module.register({
 		if (ratingstable == null) return;
 		if (Foxtrick.Pages.Match.isWalkOver(ratingstable)) return;
 		if (!Foxtrick.Pages.Match.isCorrectLanguage(ratingstable)) { // incorrect language
-			var row = ratingstable.insertRow(8);
+			var row = ratingstable.insertRow(-1);
 			var cell = row.insertCell(0);
 			cell.setAttribute("colspan" , 3);
 			cell.innerHTML = Foxtrickl10n.getString( "foxtrick.matches.wronglang" );
@@ -64,7 +64,7 @@ Foxtrick.util.module.register({
 			//Foxtrick.dump(selectedRating+'\n');
 			if (!FoxtrickPrefs.isModuleOptionEnabled("Ratings", selectedRating)) continue;
 
-			var row = ratingstable.insertRow(8);
+			var row = ratingstable.insertRow(-1);
 			// to be added if needed by foxlinks
 			//row.className='ft_rating_table_row';
 
@@ -121,28 +121,8 @@ Foxtrick.util.module.register({
 				}
 			}
 		}
-
-		//Finally adding HatStats per rating
-		if (FoxtrickPrefs.isModuleOptionEnabled("Ratings", "HatStatsSeparated")) {
-			for (var j=1;j<3;j++) {
-				for (var i=1;i<8;i++) {
-					var value = Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[i].cells[j]);
-					value=value*4+1;
-					if (i==1) {
-						//midfield have to be multiplied by 3
-						value = value*3;
-					}
-					var span = doc.createElement("span");
-					span.className = "ft-ratings-hatstats";
-					span.textContent = "(" + value + ")";
-					ratingstable.rows[i].cells[j].appendChild(doc.createTextNode(" "));
-					ratingstable.rows[i].cells[j].appendChild(span);
-				}
-			}
-		}
 	},
-
-
+	
 	insertRatingsDet: function (cell, rating, ratingType, label, midfieldLevel, attackLevel, defenceLevel) {
 		if (typeof(rating[ratingType]) == 'undefined') return;
 		if (cell.innerHTML.length>2) {

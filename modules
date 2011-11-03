@@ -96,6 +96,7 @@ presentation/move-player-statement.js
 presentation/old-style-face.js
 presentation/original-face.js
 presentation/personality-images.js
+presentation/ratings-range.js
 presentation/simple-presentation.js
 presentation/skill-coloring.js
 presentation/skill-translation.js
@@ -109,6 +110,7 @@ shortcuts-and-tweaks/context-menu-copy.js
 shortcuts-and-tweaks/copy-match-id.js
 shortcuts-and-tweaks/copy-player-ad.js
 shortcuts-and-tweaks/copy-youth.js
+shortcuts-and-tweaks/filter.js
 shortcuts-and-tweaks/extra-shortcuts.js
 shortcuts-and-tweaks/league-and-match-chat.js
 shortcuts-and-tweaks/lineup-shortcut.js

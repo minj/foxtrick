@@ -155,6 +155,7 @@
 <script type="application/x-javascript" src="./presentation/old-style-face.js"></script>
 <script type="application/x-javascript" src="./presentation/original-face.js"></script>
 <script type="application/x-javascript" src="./presentation/personality-images.js"></script>
+<script type="application/x-javascript" src="./presentation/ratings-range.js"></script>
 <script type="application/x-javascript" src="./presentation/simple-presentation.js"></script>
 <script type="application/x-javascript" src="./presentation/skill-coloring.js"></script>
 <script type="application/x-javascript" src="./presentation/skill-translation.js"></script>
@@ -168,6 +169,7 @@
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/copy-player-ad.js"></script>
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/copy-youth.js"></script>
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/extra-shortcuts.js"></script>
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/filter.js"></script>
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/league-and-match-chat.js"></script>
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/lineup-shortcut.js"></script>
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/manager-buttons.js"></script>
