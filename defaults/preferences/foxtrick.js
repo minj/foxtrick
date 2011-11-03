@@ -424,7 +424,7 @@ pref("extensions.foxtrick.prefs.module.Ratings.HTitaVal.enabled", false);
 pref("extensions.foxtrick.prefs.module.Ratings.LoddarStats.enabled", true);
 pref("extensions.foxtrick.prefs.module.Ratings.PeasoStats.enabled", false);
 pref("extensions.foxtrick.prefs.module.Ratings.VnukStats.enabled", false);
-pref("extensions.foxtrick.prefs.module.RatingsRange.enabled", true);
+pref("extensions.foxtrick.prefs.module.RatingsRange.enabled", false);
 pref("extensions.foxtrick.prefs.module.ReadHtPrefs.enabled", true);
 pref("extensions.foxtrick.prefs.module.SeasonStats.enabled", true);
 pref("extensions.foxtrick.prefs.module.SeniorTeamShortCuts.enabled", true);
