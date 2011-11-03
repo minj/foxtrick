@@ -76,6 +76,12 @@ Foxtrick.util.module.register({
 							allPlayers[i].setAttribute("not-played-latest", "true");
 						}
 					}
+					if (player.motherClubBonus) {
+						allPlayers[i].setAttribute("homegrown-player", "true");
+					} 
+					else {
+						allPlayers[i].setAttribute("purchased-player", "true");
+					}
 				}
 
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "redCard")
@@ -135,6 +141,20 @@ Foxtrick.util.module.register({
 					option.value = "face";
 					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.Pictures.label");
 					filterSelect.appendChild(option);
+				}
+				
+				if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc)) {
+					if(Foxtrick.Pages.Players.isPropertyInList(playerList, "motherClubBonus")) {
+						var option = doc.createElement('option');
+						option.value = "homegrown-player";
+						option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.HomeGrownPlayers.label");
+						filterSelect.appendChild(option);
+						
+						var option = doc.createElement('option');
+						option.value = "purchased-player";
+						option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.PurchasedPlayers.label");
+						filterSelect.appendChild(option);
+					}
 				}
 
 				filterSelect.setAttribute("scanned", "true");
