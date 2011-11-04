@@ -160,8 +160,8 @@ Foxtrick.util.module.register({
 		};
 
 		ratingDefs["LoddarStats"] = { base : 1.0, weight : 4.0,
-			label : function(){return "LoddarStats";},
-			title : function(){return "LoddarStats";},
+			label : function(){return Foxtrickl10n.getString("ratings.LoddarStats");},
+			title : function(){return Foxtrickl10n.getString("ratings.LoddarStats");},
 
 			HQ : function(x) {
 				return 2.0*(x/(x+80));
