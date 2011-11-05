@@ -555,7 +555,13 @@ Foxtrick.util.module.register({
 							}
 							if (sortString) {
 								// always sort by ascending order
-								return aContent.localeCompare(bContent);
+								// why? This works perfectly, doesn't it?
+								if (sortAsc) {
+									return bContent.localeCompare(aContent);
+								}
+								else {
+									return aContent.localeCompare(bContent);
+								}
 							}
 							else {
 								aContent = parseFloat(aContent);
