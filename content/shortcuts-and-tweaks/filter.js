@@ -158,9 +158,17 @@ Foxtrick.util.module.register({
 					else 
 						categories[Foxtrickl10n.getString('Filters.none')] = true;
 				}
-				var td = doc.createElement("td");
-				td.colSpan = 5;
+				
+				var td = doc.createElement('td');
 				tr.appendChild(td);
+				var strong = doc.createElement('strong');
+				strong.textContent = Foxtrickl10n.getString("Filters." + filter.key);
+				td.appendChild(strong);
+				
+				var td = doc.createElement("td");
+				td.colSpan = 2;
+				tr.appendChild(td);
+				
 				var select = doc.createElement("select");
 				select.id = "Filters." + filter.key + ".category";
 				select.setAttribute("x-ft-filter-idx", idx);
@@ -169,6 +177,7 @@ Foxtrick.util.module.register({
 				option.textContent = Foxtrickl10n.getString('Filters.noFilter');
 				option.value = 'Filters.noFilter';
 				select.appendChild(option);
+				
 				for (var i in categories) {
 					var option =  doc.createElement("option");
 					option.textContent = i;
@@ -188,10 +197,10 @@ Foxtrick.util.module.register({
 				}
 				Foxtrick.listen(select, "blur", saveValues, false);
 				td.appendChild(select);
-				var label = doc.createElement("label");
-				label.textContent = Foxtrickl10n.getString("Filters." + filter.key);
-				label.htmlFor = select.id;
-				td.appendChild(label);
+				
+				var td = doc.createElement("td");
+				td.colSpan = 2;
+				tr.appendChild(td);
 			}
 			
 		};
