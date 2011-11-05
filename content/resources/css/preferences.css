@@ -168,7 +168,7 @@ html[dir="rtl"] .screenshot
 	margin-bottom: 0.5em;
 }
 
-#tabs li
+#tabs li, #view-by li
 {
 	border-radius: 5px 5px 0 0;
 }
