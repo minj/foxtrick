@@ -29,7 +29,7 @@ Foxtrick.util.module.register({
 		else if (Foxtrick.isPage("transfer", doc))
 			this.runPlayerList(doc);
 		else if (Foxtrick.isPage("bookmarks", doc))
-			this.runPlayerList(doc);
+			this.runTransferResult(doc);
 	},
 
 	change : function(doc) {

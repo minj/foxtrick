@@ -76,17 +76,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	},
-
-	_add_deadLine : function ( doc, cell ) {
-		var htDate = Foxtrick.util.time.getHtDate(doc);
-		var deadline = cell.textContent;
-		var dateObj = Foxtrick.util.time.getDateFromText(deadline);
-		if (dateObj) {
-			var deadline_s = Math.floor((dateObj.getTime() - htDate.getTime()) / 1000); //Sec
-			if (!isNaN(deadline_s) && deadline_s >= 0) {
-				var DeadlineText = Foxtrick.util.time.timeDifferenceToText(deadline_s);
-				cell.innerHTML += '<span class="date smallText ft_deadline" style="margin-left:10px; color:#800000">(' + DeadlineText + ')</span>';
-			}
-		}
-	}
 });
