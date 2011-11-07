@@ -2,7 +2,7 @@ import localetools.l10n
 import localetools.utils.markup
 import localetools.utils.ensuredirectory
 
-def getPageString(Locales):
+def getPageString(Locales, revision):
 	if not isinstance(Locales, localetools.l10n.foxtrickLocalization):
 		raise TypeError, "You beed to pass an instance of localetools.l10n.foxtrickLocalization"
 		
@@ -11,7 +11,7 @@ def getPageString(Locales):
 
 
 	table = localetools.utils.markup.page( )
-	table.init( title="FoxTrick Localization Statistics", 
+	table.init( title="FoxTrick r"+ str(revision) + " Localization Statistics", 
 			   css=('./../style.css'), 
 			   script=([['./../jquery-latest.js','javascript'],[ './../jquery.tablesorter.js','javascript']]))
 				   
@@ -52,12 +52,12 @@ def getPageString(Locales):
 	return str(table)
 
 
-def create(locales, release, outdir):
-	print "Generating index page for r" + str(release)
+def create(locales, revision, outdir):
+	print "Generating index page for r" + str(revision)
 	if isinstance(locales, localetools.l10n.foxtrickLocalization):
-		localetools.utils.ensuredirectory.ensure(outdir +"/"+ str(release))
-		page = getPageString(locales)
-		file = open(outdir +"/"+ str(release)+ "/index.html","w+")
+		localetools.utils.ensuredirectory.ensure(outdir +"/"+ str(revision))
+		page = getPageString(locales, revision)
+		file = open(outdir +"/"+ str(revision)+ "/index.html","w+")
 		file.write(page)
 		file.close()
 	else:

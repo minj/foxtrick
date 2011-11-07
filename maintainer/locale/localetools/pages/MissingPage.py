@@ -2,7 +2,7 @@ import localetools.l10n
 import localetools.utils.markup
 import localetools.utils.ensuredirectory
 
-def getPageString(locale, master):
+def getPageString(locale, master, revision):
 	if not locale or not master:
 		return
 
@@ -10,7 +10,7 @@ def getPageString(locale, master):
 	text = {"locale":"Locale", "entry":"Entry", "masterline":"Line in master"}
 
 	table = localetools.utils.markup.page( )
-	table.init( title="FoxTrick Localization Statistics", 
+	table.init( title="FoxTrick r"+ str(revision) + " Localization Statistics",
 			   css=('./../style.css'), 
 			   script=([['./../jquery-latest.js','javascript'],[ './../jquery.tablesorter.js','javascript']]))
 				   
@@ -40,13 +40,13 @@ def getPageString(locale, master):
 #this also reads all locales, but wont analize anything
 #analization is done when info about missing/abandoned etc. is requested for the first time
 
-def create(locales, release, outdir):
-	print "Generating missing-pages for r" + str(release)
+def create(locales, revision, outdir):
+	print "Generating missing-pages for r" + str(revision)
 	if isinstance(locales, localetools.l10n.foxtrickLocalization):
 		for loc in locales.getAll():
-			localetools.utils.ensuredirectory.ensure(outdir +"/"+ str(release))
-			page = getPageString(loc, locales.getMaster())
-			file = open(outdir +"/"+ str(release)+ "/" + loc.getShortName() + "_missing.html","w+")
+			localetools.utils.ensuredirectory.ensure(outdir +"/"+ str(revision))
+			page = getPageString(loc, locales.getMaster(), revision)
+			file = open(outdir +"/"+ str(revision)+ "/" + loc.getShortName() + "_missing.html","w+")
 			file.write(page)
 			file.close()
 	else:
