@@ -49,6 +49,10 @@ def create(locales, revision, outdir):
 	print "Generating duplicated-pages for r" + str(revision)
 	if isinstance(locales, localetools.l10n.foxtrickLocalization):
 		for loc in locales.getAll():
+			if not loc.getDuplicateCount():
+				print "No duplicated entries for locale: " + loc.getShortName() + " ... skipping file creation"
+				continue
+				
 			localetools.utils.ensuredirectory.ensure(outdir +"/"+ str(revision))
 			page = getPageString(loc, locales.getMaster(), revision)
 			file = open(outdir +"/"+ str(revision)+ "/" + loc.getShortName() + "_duplicates.html","w+")
