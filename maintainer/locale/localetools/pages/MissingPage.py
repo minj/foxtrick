@@ -27,7 +27,7 @@ def getPageString(locale, master, revision):
 		table.tr.open()
 		table.td(locale.getShortName())
 		table.td(m.getKey())
-		table.td(m.getLine())
+		table.td(m.getLine()+1)
 		table.tr.close()
 
 	table.tbody.close()

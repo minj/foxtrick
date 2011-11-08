@@ -28,9 +28,9 @@ def getPageString(locale, master, revision):
 		table.tr.open()
 		table.td(locale.getShortName())
 		table.td(d.getKey())
-		table.td(d.getLine())
+		table.td(d.getLine()+1)
 		if masterTranslation:
-			table.td(masterTranslation.getLine())
+			table.td(masterTranslation.getLine()+1)
 		else:
 			table.td(-1)
 		table.tr.close()
