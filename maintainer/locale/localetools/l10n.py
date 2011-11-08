@@ -52,8 +52,7 @@ class foxtrickLocalization:
 		try:
 			self.master = L10N("Master", rel_path_to_content_dir + '\\' + g_translationFile, None)		
 		except Exception as inst:
-			print inst.args[0]     # arguments stored in .args
-			
+			print inst.args[0]     # arguments stored in .args			
 		
 		#then all others
 		try:
@@ -83,6 +82,15 @@ class foxtrickLocalization:
 					
 	def getAll(self):
 		return self.locales
+		
+	def getProgress(self):
+		masterentries = self.master.getTranslationCount()
+		progress_sum = 0
+		for loc in self.locales:
+			locstatus = loc.getStatus()
+			progress_sum += locstatus["progress"]
+			
+		return float(progress_sum) / float(len(self.locales))
 	
 #a localization file, no comments considered
 class L10N:
