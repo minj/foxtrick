@@ -87,14 +87,18 @@ class foxtrickLocalization:
 		masterentries = self.master.getTranslationCount()
 		progress_sum = 0
 		for loc in self.locales:
-			locstatus = loc.getStatus()
-			progress_sum += locstatus["progress"]
+			progress_sum += loc.getProgress()
 			
-		return float(progress_sum) / float(len(self.locales))
+		try:
+			return float(progress_sum) / float(len(self.locales))
+		except ZeroDivisionError as detail:
+			return 0.0
+			
+		
 	
 #a localization file, no comments considered
 class L10N:
-	"""Reads a Foxtrick localization in Python"""
+	"""A Foxtrick localization in Python"""
 	def __init__(self, name, file, master):
 		#init vars
 		self.master = master
@@ -108,7 +112,7 @@ class L10N:
 		self.validated = 0		#did we validate already
 		self.shortName = name
 		
-		self.chaos = 0			#a percentage value of how well adjusted translations are compared to the master
+		self.chaos = 0.0			#a percentage value of how well adjusted translations are compared to the master
 		
 		if os.path.exists(file):
 			#read from file
@@ -164,7 +168,12 @@ class L10N:
 		if self.validated:
 			return False
 			
-		print self.getShortName() + ': validating ...' 
+		print self.getShortName() + ': First access -> validating ...' 
+			
+		#locale file does not exist, no need to waste time
+		if not self.isFilePresent():
+			self.validated = 1
+			return False
 			
 		# find Abandoned entries not present in master file
 		for translation in self.translations:
@@ -230,7 +239,11 @@ class L10N:
 	def getProgress(self):
 		self.validate()
 		done = len(self.translations) - len(self.Abandoned) - self.getDuplicateCount()
-		return 100* float(done) / float(len(self.master.getTranslations())) 
+		
+		try:
+			return 100* float(done) / float(len(self.master.getTranslations())) 
+		except ZeroDivisionError as detail:
+			return 0.0
 	
 	def getAbandoned(self):
 		self.validate()
