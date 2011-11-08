@@ -40,9 +40,12 @@ def getPageString(locale, master, revision):
 		else:
 			table.td(-1)
 		#edit
-		table.td.open()
-		table.a("Edit", href="http://code.google.com/p/foxtrick/source/browse/trunk/content/locale/"+locale.getShortName()+"/foxtrick.properties?edit=1", title="Edit locale on Google Code")
-		table.td.close()
+		if locale.isFilePresent():
+			table.td.open()
+			table.a("Edit", href="http://code.google.com/p/foxtrick/source/browse/trunk/content/locale/"+locale.getShortName()+"/foxtrick.properties?edit=1", title="Edit locale on Google Code")
+			table.td.close()
+		else:
+			table.td("File not present")
 		
 		table.tr.close()
 
