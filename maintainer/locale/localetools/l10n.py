@@ -120,10 +120,6 @@ class L10N:
 						if partitionated[1] is "=":
 							entry = Translation(linecounter, partitionated[0].lstrip().rstrip(), partitionated[2])
 							self.translations.append(entry)
-							#using lstrip and rstrip to ensure no whitespaces fuck with us
-						#else:
-							#print name + ': Line('+ str(linecounter) +') '+ e_line[0] + ' <' + partitionated[0] + "> is not a comment"
-							
 					
 			fileinput.close();
 		else:
@@ -188,7 +184,6 @@ class L10N:
 					correct += 1
 				else:
 					offset = l_line - mtrans.getLine();
-					#print self.getShortName() + ": " +  translation.getKey() + ' was expected in line ' + str(mtrans.getLine())
 	
 		try:
 			self.chaos = 100*(1.0-float(correct)/float(self.getTranslationCount()))
@@ -263,7 +258,7 @@ class L10N:
 		
 	#delete from list
 		for Abandoned in self.Abandoned:
-			trans = self.getTranslation(Abandoned)
+			trans = self.getTranslation(Abandoned.getKey())
 			if trans:
 				#convertLineToIndex = line - 1
 				entryindex = localetools.utils.convertLineIndex.convertLineToIndex(trans.getLine())
