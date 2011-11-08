@@ -28,12 +28,16 @@ else:
 	#revision, just for naming issues (see outdir)
 	revision = sys.argv[2]
 	
+	#read master and locales
 	Locales = localetools.l10n.foxtrickLocalization(path_to_content)
+	
+	#generate html, most of the time consumming analizing occurs here (on first request)
 	localetools.pages.IndexPage.create(Locales, revision, outdir)
 	localetools.pages.AbandonedPage.create(Locales, revision, outdir)
 	localetools.pages.DuplicatePage.create(Locales, revision, outdir)
 	localetools.pages.MissingPage.create(Locales, revision, outdir)
 	
+	#copy required presentation files to <outdir>
 	print "Copying images, styles and javascript"
 	files = os.listdir('./html/')
 	for file in files:
