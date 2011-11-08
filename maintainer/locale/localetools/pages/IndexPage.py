@@ -2,27 +2,24 @@ import localetools.l10n
 import localetools.utils.markup
 import localetools.utils.ensuredirectory
 
-def getPageString(Locales, revision):
+def getTableString(Locales, id):
 	if not isinstance(Locales, localetools.l10n.foxtrickLocalization):
 		raise TypeError, "You beed to pass an instance of localetools.l10n.foxtrickLocalization"
 		
 	columns = ["locale","progress","entries","translated","missing","abandoned","duplicates", "chaos"]
 	text = {"locale":"Locale", "progress":"Progress", "entries":"Entries", "translated":"Translated","missing":"Missing","abandoned":"Abandoned","duplicates":"Duplicates","chaos":"Chaos"}
 
-
 	table = localetools.utils.markup.page( )
-	table.init( title="FoxTrick r"+ str(revision) + " Localization Statistics", 
-			   css=('./../style.css'), 
-			   script=([['./../jquery-latest.js','javascript'],[ './../jquery.tablesorter.js','javascript']]))
-				   
-
-	table.table.open(id="mytable", _class="tablesorter")
+	
+	table.table.open(id=id, _class="tablesorter")
+	#thead
 	table.thead.open()
 	for c in columns:
 		table.th(text[c])
 	table.thead.close()
-	table.tbody.open()
 
+	#tbody
+	table.tbody.open()
 	for loc in Locales.getAll():
 		locstat = loc.getStatus()
 		table.tr.open()
@@ -47,10 +44,20 @@ def getPageString(Locales, revision):
 
 	table.tbody.close()
 	table.table.close()
-	table.script("$(document).ready(function(){$(\"#mytable\").tablesorter();});", type="text/javascript")
-	table.script.close()
 	return str(table)
+		
+def getPageString(Locales, revision):
+	page = localetools.utils.markup.page( )
+	page.init( title="FoxTrick r"+ str(revision) + " Localization Statistics", 
+			   css=('./../style.css'), 
+			   script=([['./../jquery-latest.js','javascript'],[ './../jquery.tablesorter.js','javascript']]))
+	
+	tablecode = getTableString(Locales, id="mytable")
+	page.addcontent( tablecode )
 
+	page.script("$(document).ready(function(){$(\"#mytable\").tablesorter();});", type="text/javascript")
+	page.script.close()
+	return str(page)
 
 def create(locales, revision, outdir):
 	print "Generating index page for r" + str(revision)

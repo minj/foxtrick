@@ -1,5 +1,3 @@
-#this script is supposed be be ran inside "content"
-
 #for the case this will be changed in the future 
 g_translationFile = "foxtrick.properties"
 g_localDir = "locale"
@@ -35,8 +33,6 @@ class Translation:
 		self.value = value
 		self.line = line
 		
-		#print str(self.line) + " " + self.key
-		
 	def getLine(self):
 		return self.line
 		
@@ -49,8 +45,7 @@ class Translation:
 import os		
 class foxtrickLocalization:
 	"""Interface for Localization"""
-	def __init__(self, rel_path_to_content_dir):
-		
+	def __init__(self, rel_path_to_content_dir):		
 		self.locales = []
 		
 	    #load the master
@@ -106,7 +101,6 @@ class L10N:
 		self.shortName = name
 		
 		self.chaos = 0			#a percentage value of how well adjusted translations are compared to the master
-		self.is_chaos_computed = 0
 		
 		if os.path.exists(file):
 			#read from file
@@ -273,8 +267,7 @@ class L10N:
 	#write back to file
 		fout = open( self.file, "w" )
 		fout.writelines(data_list)
-		fout.close()
-		
+		fout.close()		
 	
 	#convert cr lf to lf
 		if convertCRLFtoLF(self.file):
@@ -304,7 +297,5 @@ class L10N:
 		dict["abandoned"] = self.getAbandonedCount()
 		dict["chaos"] = self.getChaos()
 		dict["duplicates"] = self.getDuplicateCount()
-
 		
 		return dict
-
