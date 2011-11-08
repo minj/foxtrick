@@ -6,8 +6,8 @@ def getPageString(locale, master, revision):
 	if not locale or not master:
 		return
 
-	columns = ["locale","entry","line","masterline"]
-	text = {"locale":"Locale", "entry":"Duplicated entry","line":"Line in locale", "masterline":"Line in master"}
+	columns = ["locale","entry","line","masterline","edit"]
+	text = {"locale":"Locale", "entry":"Duplicated entry","line":"Line in locale", "edit":"Edit locale", "masterline":"Line in master"}
 
 	table = localetools.utils.markup.page( )
 	table.init( title="FoxTrick r"+ str(revision) + " Localization Statistics",
@@ -24,15 +24,26 @@ def getPageString(locale, master, revision):
 
 	duplicates = locale.getDuplicates()
 	for d in duplicates:
-		masterTranslation = master.getTranslation(d.getKey())
+		mt = master.getTranslation(d.getKey())
 		table.tr.open()
+		#loc
 		table.td(locale.getShortName())
+		#key
 		table.td(d.getKey())
+		#line in locale
 		table.td(d.getLine())
-		if masterTranslation:
-			table.td(masterTranslation.getLine())
+		#line in master
+		if mt:
+			table.td.open()
+			table.a(mt.getLine(), href="http://code.google.com/p/foxtrick/source/browse/trunk/content/foxtrick.properties#" + str(mt.getLine()), title="View this line on Google Code")
+			table.td.close()
 		else:
 			table.td(-1)
+		#edit
+		table.td.open()
+		table.a("Edit", href="http://code.google.com/p/foxtrick/source/browse/trunk/content/locale/"+locale.getShortName()+"/foxtrick.properties?edit=1", title="Edit locale on Google Code")
+		table.td.close()
+		
 		table.tr.close()
 
 	table.tbody.close()
@@ -43,14 +54,13 @@ def getPageString(locale, master, revision):
 	
 	
 #this also reads all locales, but wont analize anything
-#analization is done when info about missing/abandoned etc. is requested for the first time
+#locales are beeing analyzed when the info about missing/abandoned etc. is requested for the first time
 
 def create(locales, revision, outdir):
 	print "Generating duplicated-pages for r" + str(revision)
 	if isinstance(locales, localetools.l10n.foxtrickLocalization):
 		for loc in locales.getAll():
 			if not loc.getDuplicateCount():
-				print "No duplicated entries for locale: " + loc.getShortName() + " ... skipping file creation"
 				continue
 				
 			localetools.utils.ensuredirectory.ensure(outdir +"/"+ str(revision))

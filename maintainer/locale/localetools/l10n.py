@@ -96,7 +96,7 @@ class L10N:
 		#init vars
 		self.master = master
 		
-		self.file =  file		#filename for later use, mayb when deleting shit
+		self.file = file		#filename for later use, mayb when deleting shit
 		self.translations = []	#translations in this locale
 		self.missing = []		#missing translations
 		self.Abandoned = []		#undelete artifacts from former times
@@ -123,6 +123,7 @@ class L10N:
 					
 			fileinput.close();
 		else:
+			self.file = None
 			if name.lower() == "master":
 				raise Exception(name + '-localization file \'' + file +  '\' does not exist!')
 
@@ -153,6 +154,9 @@ class L10N:
 	def getChaos(self):
 		self.validate()
 		return self.chaos
+		
+	def isFilePresent(self):
+		return self.file
 		
 	def validate(self):
 		if self.validated:
@@ -246,6 +250,8 @@ class L10N:
 	def deleteAbandoned(self):
 		self.validate()
 		
+		if not self.file:
+			return 0
 	#read file
 		try:
 			fin = open( self.file, "r" )
