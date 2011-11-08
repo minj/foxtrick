@@ -6,7 +6,7 @@ g_localDir = "locale"
 
 import fileinput
 import os
-
+import localetools.utils.convertLineIndex
 
 #convert CR LF windows style newline back to unix sytle
 def convertCRLFtoLF(filename):
@@ -110,7 +110,7 @@ class L10N:
 		
 		if os.path.exists(file):
 			#read from file
-			for (linecounter, o_line) in enumerate(fileinput.input([file])):
+			for (linecounter, o_line) in enumerate(fileinput.input([file]), start=1):
 				#remove trailing and leading whitespaces
 				e_line = o_line.lstrip()
 				e_line = e_line.rstrip()
@@ -265,8 +265,9 @@ class L10N:
 		for Abandoned in self.Abandoned:
 			trans = self.getTranslation(Abandoned)
 			if trans:
-				#print self.getShortName() + ': Deleting' + data_list[trans.getLine()] + ' in Line ' + str(trans.getLine())
-				data_list[trans.getLine()]="\n"
+				#convertLineToIndex = line - 1
+				entryindex = localetools.utils.convertLineIndex.convertLineToIndex(trans.getLine())
+				data_list[entryindex]="\n"
 				
 	#write back to file
 		fout = open( self.file, "w" )
