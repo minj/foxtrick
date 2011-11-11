@@ -94,6 +94,13 @@ class foxtrickLocalization:
 		except ZeroDivisionError as detail:
 			return 0.0
 			
+	def getStatus(self):
+		status = {}
+		for loc in self.locales:
+			status[loc.getShortName()] = loc.getStatus()
+			
+		return status
+			
 		
 	
 #a localization file, no comments considered
