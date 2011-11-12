@@ -47,6 +47,9 @@
 .HTMLToolbar img.ft_table {
 	background: url('chrome://foxtrick/content/resources/img/ht-ml/format_table.png') no-repeat scroll 0 0 transparent;
 }
+.HTMLToolbar img.ft_symbol {
+	background: url('chrome://foxtrick/content/resources/img/ht-ml/format_symbol.png') no-repeat scroll 0 0 transparent;
+}
 
 /* other toolbar */
 .HTMLToolbar img.f_debug {

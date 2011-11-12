@@ -398,6 +398,22 @@ function getModule(module)
 	options.setAttribute("depends-on", check.id);
 	entry.appendChild(options);
 
+	// module-provided function for generating options. will be appended
+	// OPTION_FUNC either returns an HTML object or an array of HTML objects
+	// or purely initializes them and returns null
+	var customCoptions = [];
+	if (typeof(module.OPTION_FUNC) == "function") {
+		var genOptions = module.OPTION_FUNC(document);
+		if (genOptions) {
+			if ($.isArray(genOptions)) {
+				for (var field in genOptions)
+					customCoptions.push(field);
+			}
+			else
+				customCoptions.push(genOptions);
+		}
+	}
+
 	// checkbox options
 	if (module.OPTIONS) {
 		var checkboxes = document.createElement("ul");
@@ -475,20 +491,9 @@ function getModule(module)
 		}
 	}
 
-	// module-provided function for generating options
-	// OPTION_FUNC either returns an HTML object or an array of HTML objects
-	if (typeof(module.OPTION_FUNC) == "function") {
-		var genOptions = module.OPTION_FUNC(document);
-		if (genOptions) {
-			if ($.isArray(genOptions)) {
-				for (var field in genOptions)
-					options.appendChild(field);
-			}
-			else
-				options.appendChild(genOptions);
-		}
+	for (var i=0; i<customCoptions.length; ++i) {
+		options.appendChild(customCoptions[i]);
 	}
-
 	return entry;
 }
 

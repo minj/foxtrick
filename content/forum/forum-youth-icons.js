@@ -12,30 +12,43 @@ Foxtrick.util.module.register({
 		"announcements", "forumSettings", "newsletter", "mailnewsletter",
 		"forumModWritePost", "ticket"],
 	OPTIONS : ["q", "user_id", "kit_id", "article_id", "line_br", "clock",
-		"spoiler", "pre", "table", "youth_player", "youth_team",
+		"spoiler", "pre", "table", "symbols", "youth_player", "youth_team",
 		"youth_match", "youth_series", "debug", "settings", "enlarge_input"],
+	OPTION_TEXTS : true,
+	OPTION_TEXTS_DISABLED_LIST : null,
+
 	CSS: Foxtrick.InternalPath + "resources/css/forum-youth-icons.css",
 
+	OPTION_FUNC : function() {
+		this.OPTION_TEXTS_DISABLED_LIST = new Array(this.OPTIONS.length);
+		for (var i=0; i<this.OPTIONS.length; ++i) {
+			if (this.OPTIONS[i] !== 'symbols') 
+				this.OPTION_TEXTS_DISABLED_LIST[i] = true;
+			else
+				this.OPTION_TEXTS_DISABLED_LIST[i] = false;
+		}
+	},
+	
 	run : function(doc) {
 		var fields = [
 			// Forum
-			{ page:"forumWritePost", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 3900, add_quote:false },
+			{ page:"forumWritePost", 	textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", 	counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen",	length : 3900, 	add_quote:false },
 			// ForumMOD
-			{ page:"forumModWritePost", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 3900, add_quote:false },
+			{ page:"forumModWritePost",	textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", 	counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen",	length : 3900, 	add_quote:false },
 			// mail
-			{ page:"messageWritePost", textarea : "ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtRemLen", length : 1000, add_quote:false },
+			{ page:"messageWritePost", 	textarea : "ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtBody", 		counterfield : "ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtRemLen", 		length : 1000, 	add_quote:false },
 			// newsletter
-			{ page:"newsletter", textarea : "ctl00_ctl00_CPContent_CPMain_txtMessage", counterfield : "ctl00_ctl00_CPContent_CPMain_txtCharsLeft", length : 1000, add_quote:false },
+			{ page:"newsletter", 		textarea : "ctl00_ctl00_CPContent_CPMain_txtMessage", 					counterfield : "ctl00_ctl00_CPContent_CPMain_txtCharsLeft", 				length : 1000, 	add_quote:false },
 			// newsletter
-			{ page:"mailnewsletter", textarea : "ctl00_ctl00_CPContent_CPMain_tbNewsBody", counterfield : "ctl00_ctl00_CPContent_CPMain_txtCharsLeft", length : 1000, add_quote:false },
+			{ page:"mailnewsletter",	textarea : "ctl00_ctl00_CPContent_CPMain_tbNewsBody", 					counterfield : "ctl00_ctl00_CPContent_CPMain_txtCharsLeft", 				length : 1000, 	add_quote:false },
 			// GB
-			{ page:"guestbook", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 300, add_quote:false },
+			{ page:"guestbook",			textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", 	counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen",	length : 300, 	add_quote:false },
 			// PA
-			{ page:"announcements", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 1000, add_quote:true },
+			{ page:"announcements",		textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", 	counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen",	length : 1000, 	add_quote:true },
 			// ticket
-			{ page:"ticket", textarea : "ctl00_ctl00_CPContent_CPMain_ucActionEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucActionEditor_txtRemLen", length : 2950, add_quote:false },
+			{ page:"ticket",			textarea : "ctl00_ctl00_CPContent_CPMain_ucActionEditor_txtBody", 		counterfield : "ctl00_ctl00_CPContent_CPMain_ucActionEditor_txtRemLen",		length : 2950, 	add_quote:false },
 			// signatur
-			{ page:"forumSettings", textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen", length : 500, add_quote:false },
+			{ page:"forumSettings",		textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", 	counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen",	length : 500, 	add_quote:false },
 		];
 		var icons = [
 			{ type:"q", 		icon_class : "ft_q", 	image : "format_q.png", 		string : "q", 		tags : "[q]qqq[/q]", 			replace_text: "qqq",	alt: "f_quote2" },
@@ -46,13 +59,34 @@ Foxtrick.util.module.register({
 			{ type:"clock", 	icon_class : "ft_clock", image : "format_clock.png", 	string : "clock", 	tags : "time",  				replace_text: "time"	},
 			{ type:"spoiler", 	icon_class : "ft_spoiler",image : "format_spoiler.png",	string : "spoiler",	tags : "[spoiler]yyy[/spoiler]",replace_text: "yyy"		},
 			{ type:"pre", 		icon_class : "ft_pre", 	image : "format_pre.png", 		string : "pre", 	tags : "[pre]zzz[/pre]", 		replace_text: "zzz"		},
-			{ type:"table", 	icon_class : "ft_table", image : "format_table.png", 	string : "table", 	tags : "[table][tr][td]ttt[/td][/tr][/table]", replace_text: "ttt",  versions:[' ', 'TAB','custom'], versions_string:'tableSeparator'},
+			{ type:"table", 	icon_class : "ft_table", image : "format_table.png", 	string : "table", 	tags : "[table][tr][td]ttt[/td][/tr][/table]", 	replace_text: "ttt",  	versions:[' ', 'TAB','custom'],	versions_string:'tableSeparator'},
+			{ type:"symbols", 	icon_class : "ft_symbol", image : "format_symbol.png", 	string : "symbols",	tags : "symbol", 								replace_text: "symbol",	versions:[], 		versions_string:'forumSymbol' },
 		];
+		//insert SymbolArray 
+		var symbolsText = FoxtrickPrefs.getString("module.ForumYouthIcons.symbols_text");
+		var word = null;
+		for (var i=0; i<symbolsText.length; ++i) {
+			var charN = symbolsText.charAt(i);
+			if (charN == "'") {
+				if (word === null)
+					word = '';
+				else { 
+					icons[9].versions.push(word);
+					word = null;
+				}
+			}
+			else {
+				if (word !== null)
+					word += charN;
+				else 
+					icons[9].versions.push(charN);
+			}
+		}
 		var youthicons = [
-			{ type:"youth_player", 	icon_class : "f_player", string : "youthplayerid", 	tags : "[youthplayerid=xxx]",  	replace_text: "xxx"	},
-			{ type:"youth_team", 	icon_class : "f_team", 	string : "youthteamid",		tags : "[youthteamid=xxx]",  	replace_text: "xxx"	},
+			{ type:"youth_player", 	icon_class : "f_player", 	string : "youthplayerid", 	tags : "[youthplayerid=xxx]",  	replace_text: "xxx"	},
+			{ type:"youth_team", 	icon_class : "f_team", 		string : "youthteamid",		tags : "[youthteamid=xxx]",  	replace_text: "xxx"	},
 			{ type:"youth_match", 	icon_class : "f_match", 	string : "youthmatchid", 	tags : "[youthmatchid=xxx]",  	replace_text: "xxx"	},
-			{ type:"youth_series", 	icon_class : "f_series", string : "youthseries",		tags : "[youthleagueid=xxx]",  	replace_text: "xxx"	},
+			{ type:"youth_series", 	icon_class : "f_series", 	string : "youthseries",		tags : "[youthleagueid=xxx]",  	replace_text: "xxx"	},
 		];
 		var othericons = [
 			{ type:"debug", 	icon_class : "f_debug",		image : "format_debug.png", 	string : "debug", 		tags : "debug"},
@@ -212,6 +246,10 @@ Foxtrick.util.module.register({
 					if (replaceText == 'time') {
 						// time
 						newText = doc.getElementById('time').textContent;
+					}
+					else if (replaceText == 'symbol') {
+						// symbols
+						newText = FoxtrickPrefs.getString("forumSymbol");
 					}
 					else if (replaceText == 'ttt') {
 						// table
@@ -379,12 +417,12 @@ Foxtrick.util.module.register({
 			if (version) {
 				Foxtrick.log(ev.target.getAttribute('version_string'),' ', version);
 				if (version=='custom') {
-								var version = prompt(Foxtrickl10n.getString("ForumSpecialBBCode.enterSeparator"));
-								Foxtrick.log('custom_seperator: ', version);
-								if (version == null || version=='') return;
-							}
+					var version = prompt(Foxtrickl10n.getString("ForumSpecialBBCode.enterSeparator"));
+					Foxtrick.log('custom_seperator: ', version);
+					if (version == null || version=='') return;
+				}
 				FoxtrickPrefs.setString( ev.target.getAttribute('version_string'), version);
-				doc.getElementById(ev.target.getAttribute('parent_id')).setAttribute('current_version', version);
+				doc.getElementById(ev.target.getAttribute('parent_id')).setAttribute('version', version);
 				doc.getElementById(ev.target.getAttribute('parent_id')).title = doc.getElementById(ev.target.getAttribute('parent_id')).getAttribute('title_raw').replace(/%s/,version);
 			}
 			for (var i = 0; i < fields.length; ++i) {
@@ -465,6 +503,7 @@ Foxtrick.util.module.register({
 					newimage.setAttribute( "class", icons[i].icon_class);
 					newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode."+icons[i].string);
 
+					Foxtrick.log(icons[i].type, icons[i].versions)
 					if (icons[i].versions) {
 						var span = doc.createElement("div");
 						span.className = "ft-pop-up-container icon";

@@ -137,6 +137,8 @@ pref("extensions.foxtrick.prefs.module.ForumYouthIcons.youth_series.enabled", tr
 pref("extensions.foxtrick.prefs.module.ForumYouthIcons.youth_team.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumYouthIcons.debug.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumYouthIcons.settings.enabled", true);
+pref("extensions.foxtrick.prefs.module.ForumYouthIcons.symbols.enabled", true);
+pref("extensions.foxtrick.prefs.module.ForumYouthIcons.symbols_text","★☆►●':þ'");
 pref("extensions.foxtrick.prefs.module.FriendlyInterface.enabled", true);
 pref("extensions.foxtrick.prefs.module.FriendlyInterface.FullPlayerNameInLineUp.enabled", true);
 pref("extensions.foxtrick.prefs.module.FriendlyInterface.NtLinkForNtPlayer.enabled", true);
@@ -695,5 +697,6 @@ pref("extensions.foxtrick.prefs.SavePrefs_Prefs", true);
 pref("extensions.foxtrick.prefs.showReleaseNotes", true);
 pref("extensions.foxtrick.prefs.smallcopyicons", true);
 pref("extensions.foxtrick.prefs.table_separator", " ");
+pref("extensions.foxtrick.prefs.forumSymbol", "●");
 pref("extensions.foxtrick.prefs.xmlLoad", true);
 pref("extensions.foxtrick.prefs.module.MobileEnhancements.enabled", false);
