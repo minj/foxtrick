@@ -9,18 +9,15 @@ Foxtrick.util.module.register({
 	MODULE_NAME : "Ratings",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
-	OPTIONS : ["HatStats", "HatStatsDetailed", "LoddarStats", "PeasoStats", "VnukStats", "HTitaVal", "GardierStats"],
+	OPTIONS : ["HideAverages", "HatStats", "HatStatsDetailed", "LoddarStats", "PeasoStats", "VnukStats", "HTitaVal", "GardierStats"],
 	ratingDefs :  {}, // will be filled in initOptions
 
 	run : function(doc) {
-		var ratingsArray = Foxtrick.filter(function(x) {
-			return x != "HatStatsSeparated";
-		}, this.OPTIONS);
-
 		var isprematch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch")!=null);
 		if (isprematch) return;
 
 		var ratingstable = Foxtrick.Pages.Match.getRatingsTable(doc);
+
 		if (ratingstable == null) return;
 		if (Foxtrick.Pages.Match.isWalkOver(ratingstable)) return;
 		if (!Foxtrick.Pages.Match.isCorrectLanguage(ratingstable)) { // incorrect language
@@ -31,6 +28,13 @@ Foxtrick.util.module.register({
 			return;
 		}
 
+		if (FoxtrickPrefs.isModuleOptionEnabled("Ratings", "HideAverages")) {
+			for (var i=0; i<5; ++i) {
+				ratingstable.deleteRow(-1);
+			}
+		}
+
+		
 		this.initHtRatings();
 
 		var midfieldLevel=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[1].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[1].cells[2]));
@@ -51,7 +55,7 @@ Foxtrick.util.module.register({
 			tactics=new Array(Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[10].cells[1]), Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[10].cells[2]));
 			tacticsLevel=new Array(Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[11].cells[1]), Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[11].cells[2]));
 		}
-		//Foxtrick.dump('Tactics:['+ tactics + '], TacticsLevel:[' +tacticsLevel +']'+ '\n');
+		//Foxtrick.log('Tactics:[', tactics , '], TacticsLevel:[' ,tacticsLevel ,']');
 
 		var defenceLevel = new Array();
 		defenceLevel[0]=ldefence[0] + cdefence[0] + rdefence[0];
@@ -59,9 +63,15 @@ Foxtrick.util.module.register({
 		var attackLevel = new Array();
 		attackLevel[0]= rattack[0] + cattack[0] + lattack[0];
 		attackLevel[1]= rattack[1] + cattack[1] + lattack[1];
-		for (var k=ratingsArray.length-1; k>=0; --k) {
-			var selectedRating = ratingsArray[k];
-			//Foxtrick.dump(selectedRating+'\n');
+
+		// seperator
+		var row = ratingstable.insertRow(-1);
+		var cell = row.insertCell(0);
+		cell.innerHTML='&nbsp;';
+
+		for (var k=1; k<this.OPTIONS.length; ++k) {
+		//for (var k=this.OPTIONS.length-1; k>=0; --k) {
+			var selectedRating = this.OPTIONS[k];
 			if (!FoxtrickPrefs.isModuleOptionEnabled("Ratings", selectedRating)) continue;
 
 			var row = ratingstable.insertRow(-1);
