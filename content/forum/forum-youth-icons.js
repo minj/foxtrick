@@ -56,11 +56,11 @@ Foxtrick.util.module.register({
 			{ type:"user_id", 	icon_class : "ft_uid", 	image : "format_user.png", 		string : "user", 	tags : "[userid=xxx]",  		replace_text: "xxx"		},
 			{ type:"kit_id", 	icon_class : "ft_kit", 	image : "format_kit.png", 		string : "kit",		tags : "[kitid=xxx]",  			replace_text: "xxx"		},
 			{ type:"article_id",icon_class : "ft_aid", 	image : "format_article.png", 	string : "article",	tags : "[articleid=xxx]", 		replace_text: "xxx"		},
-			{ type:"clock", 	icon_class : "ft_clock", image : "format_clock.png", 	string : "clock", 	tags : "time",  				replace_text: "time"	},
+			{ type:"clock", 	icon_class : "ft_clock", image : "format_clock.png", 	string : "clock", 	tags : "time",  				},
 			{ type:"spoiler", 	icon_class : "ft_spoiler",image : "format_spoiler.png",	string : "spoiler",	tags : "[spoiler]yyy[/spoiler]",replace_text: "yyy"		},
 			{ type:"pre", 		icon_class : "ft_pre", 	image : "format_pre.png", 		string : "pre", 	tags : "[pre]zzz[/pre]", 		replace_text: "zzz"		},
 			{ type:"table", 	icon_class : "ft_table", image : "format_table.png", 	string : "table", 	tags : "[table][tr][td]ttt[/td][/tr][/table]", 	replace_text: "ttt",  	versions:[' ', 'TAB','custom'],	versions_string:'tableSeparator'},
-			{ type:"symbols", 	icon_class : "ft_symbol", image : "format_symbol.png", 	string : "symbols",	tags : "symbol", 								replace_text: "symbol",	versions:[], 		versions_string:'forumSymbol' },
+			{ type:"symbols", 	icon_class : "ft_symbol", image : "format_symbol.png", 	string : "symbols",	tags : "symbol", 				versions:[], 	versions_string:'forumSymbol' },
 		];
 		//insert SymbolArray 
 		var symbolsText = FoxtrickPrefs.getString("module.ForumYouthIcons.symbols_text");
@@ -243,15 +243,7 @@ Foxtrick.util.module.register({
 					Foxtrick.log('selectedText: ', s.selectedText);
 					Foxtrick.log('newText: ', newText);
 
-					if (replaceText == 'time') {
-						// time
-						newText = doc.getElementById('time').textContent;
-					}
-					else if (replaceText == 'symbol') {
-						// symbols
-						newText = FoxtrickPrefs.getString("forumSymbol");
-					}
-					else if (replaceText == 'ttt') {
+					if (replaceText == 'ttt') {
 						// table
 						var seperator = FoxtrickPrefs.getString("tableSeparator");
 						Foxtrick.log('seperator', seperator);
@@ -354,6 +346,7 @@ Foxtrick.util.module.register({
 						ta.value += newText;
 					}
 				}
+				// tags that just add and don't replace
 				else {
 					// HR
 					var s = getSelection(ta);
@@ -382,8 +375,15 @@ Foxtrick.util.module.register({
 						}
 					}
 
-					// debug
-					if (openingTag == 'debug'){
+					if (openingTag == 'time') {
+						// time
+						openingTag = doc.getElementById('time').textContent;
+					}
+					else if (openingTag == 'symbol') {
+						// symbols
+						openingTag = FoxtrickPrefs.getString("forumSymbol");
+					}
+					else if (openingTag == 'debug'){
 						if (Foxtrick.arch === "Sandboxed") {
 							sandboxed.extension.sendRequest(
 								{ req : "getDebugLog" },
@@ -398,8 +398,7 @@ Foxtrick.util.module.register({
 							openingTag = Foxtrick.log.header(doc) + '\n' + Foxtrick.log.cache.substr(Foxtrick.log.cache.length-3500);
 						}
 					}
-					// settings
-					if (openingTag == 'settings'){
+					else if (openingTag == 'settings'){
 						var userPrefsText =  FoxtrickPrefs.SavePrefs(true, false, true,'%key:%value');
 						var userPrefsTextArray = userPrefsText.split('\n');
 						openingTag = '';
