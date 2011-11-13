@@ -50,20 +50,27 @@ class foxtrickLocalization:
 		
 	    #load the master
 		try:
-			self.master = L10N("Master", rel_path_to_content_dir + '\\' + g_translationFile, None)		
+			filelocation = os.path.join(rel_path_to_content_dir, g_translationFile)
+			self.master = L10N("Master", filelocation, None)		
 		except Exception as inst:
 			print inst.args[0]     # arguments stored in .args			
 		
 		#then all others
 		try:
-			for localedir in os.listdir(rel_path_to_content_dir + '\\' + g_localDir):
-				local_file_str = rel_path_to_content_dir + '\\' + g_localDir + '\\' + localedir + '\\' + g_translationFile
-				try:
-					locale = L10N(localedir, local_file_str, self.master)
-				except Exception as inst:
-					print inst.args[0]     # arguments stored in .args
+			localesdirectorylocation =  os.path.join(rel_path_to_content_dir, g_localDir)
+			for localedir in os.listdir(localesdirectorylocation):
+				#skip directorys starting with ., like .svn
+				if localedir[0] == ".":		
+					continue
 					
-				self.locales.append(locale)
+				localpropertyfile = os.path.join(localesdirectorylocation, localedir, g_translationFile)
+				if os.path.isfile(localpropertyfile):
+					try:
+						locale = L10N(localedir, localpropertyfile, self.master)
+						self.locales.append(locale)
+					except Exception as inst:
+						print inst.args[0]     # arguments stored in .args
+					
 		except:
 			print 'shit'
 			
