@@ -40,8 +40,12 @@ else:
 	#copy required presentation files to <outdir>
 	print "Copying images, styles and javascript"
 	files = os.listdir('./html/')
-	for file in files:
-		shutil.copy2("./html/" + file, outdir + '/' + file)
+	for filename in files:
+		dir = "./html/"
+		htmlfile = os.path.join(dir, filename)
+		outfile = os.path.join(dir, filename)
+		if os.path.isfile(htmlfile):
+			shutil.copy2("./html/" + filename, outdir + '/' + filename)
 
 	
 
