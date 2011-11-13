@@ -62,26 +62,16 @@ Foxtrick.util.module.register({
 			{ type:"table", 	icon_class : "ft_table", image : "format_table.png", 	string : "table", 	tags : "[table][tr][td]ttt[/td][/tr][/table]", 	replace_text: "ttt",  	versions:[' ', 'TAB','custom'],	versions_string:'tableSeparator'},
 			{ type:"symbols", 	icon_class : "ft_symbol", image : "format_symbol.png", 	string : "symbols",	tags : "symbol", 				versions:[], 	versions_string:'forumSymbol' },
 		];
-		//insert SymbolArray 
+		//insert SymbolArray, forward slash to escape, escaping uses "replace" backwards to tempararily get rid of the semi-colon
 		var symbolsText = FoxtrickPrefs.getString("module.ForumYouthIcons.symbols_text");
-		var word = null;
-		for (var i=0; i<symbolsText.length; ++i) {
-			var charN = symbolsText.charAt(i);
-			if (charN == "'") {
-				if (word === null)
-					word = '';
-				else { 
-					icons[9].versions.push(word);
-					word = null;
-				}
-			}
-			else {
-				if (word !== null)
-					word += charN;
-				else 
-					icons[9].versions.push(charN);
-			}
+		var replaced = symbolsText.replace(/\/;/g,"ecalper");
+		var split = replaced.split(";");
+		for (var i in split)
+		{
+			var fixed = split[i].replace(/ecalper/g,";");
+			icons[9].versions.push(fixed);
 		}
+		
 		var youthicons = [
 			{ type:"youth_player", 	icon_class : "f_player", 	string : "youthplayerid", 	tags : "[youthplayerid=xxx]",  	replace_text: "xxx"	},
 			{ type:"youth_team", 	icon_class : "f_team", 		string : "youthteamid",		tags : "[youthteamid=xxx]",  	replace_text: "xxx"	},
