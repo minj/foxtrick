@@ -43,7 +43,11 @@ Foxtrick.entry.docLoad = function(doc) {
 	}
 
 	// we shall not run here
-	if (!Foxtrick.isHt(doc) || Foxtrick.isExcluded(doc) || Foxtrick.isLoginPage(doc)) 
+	if (!Foxtrick.isHt(doc)) 
+		return;
+	if (Foxtrick.isExcluded(doc)) 
+		return;
+	if (Foxtrick.isLoginPage(doc)) 
 		return;
 
 	// ensure #content is available
