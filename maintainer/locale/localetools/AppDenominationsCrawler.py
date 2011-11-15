@@ -5,7 +5,6 @@ class DenominationsParser(HTMLParser.HTMLParser):
 		HTMLParser.HTMLParser.__init__(self)
 		self.text = ""
 		self.headings = []
-		self.in_a = False
 		self.in_td = False
 		self.skills_comming_up = False
 		self.read_skills = False		
@@ -17,7 +16,6 @@ class DenominationsParser(HTMLParser.HTMLParser):
 		
 	def handle_starttag(self, tag, attrs):
 		if tag == 'a':
-			self.in_a = True
 			for name, value in attrs:
 				if name == 'name':
 					if value in self.names:
@@ -29,9 +27,6 @@ class DenominationsParser(HTMLParser.HTMLParser):
 			self.even = not self.even
 
 	def handle_endtag(self, tag):
-		if tag == 'a':
-			self.in_a = False
-			
 		#append gathered string to result
 		if tag == 'td':
 			self.in_td = False
