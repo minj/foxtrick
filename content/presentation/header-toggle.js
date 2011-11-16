@@ -47,11 +47,15 @@ Foxtrick.util.module.register({
 				while ( el ) { 
 					// if text node, wrap in span on first encounter
 					if (el.nodeType ==  Node.TEXT_NODE) {
-						var target = el.nextSibling;
-						var span =  doc.createElement('span');
-						span.appendChild(el);
-						el = parent.insertBefore(span, target);
-						
+						if (Foxtrick.trim(el.nodeValue) != "") {
+							var target = el.nextSibling;
+							var span =  doc.createElement('span');
+							span.appendChild(el);
+							el = parent.insertBefore(span, target);
+						} else {
+							el = el.nextSibling;
+							continue;
+						}
 					}
 
 					// stop with next header or dedicated parentNode mainBox
@@ -59,7 +63,7 @@ Foxtrick.util.module.register({
 						|| el.nodeName == 'H1'
 						|| (el.nodeName == 'H2' && !Foxtrick.hasClass(el, 'info'))
 						|| (el.getElementsByTagName('h2')[0] !== undefined && !Foxtrick.hasClass(el.getElementsByTagName('h2')[0],'info') )) {
-						break
+						break;
 					}
 
 					// don't show which is hidden originally, eg ft-forum-preview-area 
