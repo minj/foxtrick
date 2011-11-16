@@ -164,13 +164,17 @@ Foxtrick.util.module.register((function() {
 									&& subId != objId && objId > 0) {
 									var subNode = doc.createElement("span");
 									subNode.appendChild(doc.createTextNode(minute + "' "));
-									subNode.appendChild(playerTag(objId, collection[objId].name));
-									addComment(subId, subNode);
-									// since object player now occupy the
-									// same list item as subject player,
-									// set up item and comment
-									collection[objId].item = collection[subId].item;
-									collection[objId].comment = collection[subId].item;
+									try {
+										subNode.appendChild(playerTag(objId, collection[objId].name));
+										addComment(subId, subNode);
+										// since object player now occupy the
+										// same list item as subject player,
+										// set up item and comment
+										collection[objId].item = collection[subId].item;
+										collection[objId].comment = collection[subId].item;
+									} catch(e){
+										Foxtrick.log('Unknown player involved in substitution', e)
+									}
 								}
 							}, substitutions);
 						}, [[homeName, homeXml], [awayName, awayXml]]);
