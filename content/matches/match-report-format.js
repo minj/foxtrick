@@ -7,9 +7,7 @@
 Foxtrick.util.module.register((function() {
 	var eventTypes = {
 		"40" : "possession",
-		"47" : "possession",
-		"599" : "gameended",
-		"21" : "lineup"
+		"47" : "possession"
 	};
 	var orderTypes = {
 		"1" : "substitution",
