@@ -21,7 +21,7 @@ Foxtrick.addClass = function(obj, cls) {
 Foxtrick.removeClass = function(obj, cls) {
 	if (Foxtrick.hasClass(obj, cls)) {
 		var reg = new RegExp("(\\s|^)" + cls + "(\\s|$)", "g");
-		obj.className = obj.className.replace(reg, " ");
+		obj.className = Foxtrick.trim(obj.className.replace(reg, " "));
 	}
 }
 
