@@ -7,7 +7,9 @@
 Foxtrick.util.module.register((function() {
 	var eventTypes = {
 		"40" : "possession",
-		"47" : "possession"
+		"47" : "possession",
+		"599" : "gameended",
+		"21" : "lineup"
 	};
 	var orderTypes = {
 		"1" : "substitution",
@@ -185,6 +187,9 @@ Foxtrick.util.module.register((function() {
 						var report = doc.createElement("div");
 						report.className = "ft-match-report";
 						parent.insertBefore(report, before);
+						
+						// wait for kickoff (walkovers don't allow to count event 21 (lineups))
+						var kickoff_pending = true;
 						// generate report from events
 						var events = xml.getElementsByTagName("Event");
 						Foxtrick.map(function(evt) {
@@ -194,6 +199,14 @@ Foxtrick.util.module.register((function() {
 							var evtType = evt.getElementsByTagName("EventKey")[0].textContent.replace(/_.+/, "");
 
 							if (evtMarkup != "") {
+								//kickoff indicator 
+								if (kickoff_pending && evtMin != "0") {
+									var ind = doc.createElement("div");
+									report.appendChild(ind);
+									ind.className = "ft-match-report-kick-off";
+									ind.textContent = Foxtrickl10n.getString("MatchReportFormat.kickOff");
+									kickoff_pending = false
+								}
 								// item to be added
 								var item = doc.createElement("div");
 								report.appendChild(item);
@@ -216,7 +229,7 @@ Foxtrick.util.module.register((function() {
 								var clear = doc.createElement("div");
 								item.appendChild(clear);
 								clear.className = "clear";
-
+								
 								// half time or full time, add indicator
 								if (eventTypes[evtType] == "possession") {
 									var ind = doc.createElement("div");
