@@ -342,93 +342,97 @@ Foxtrick.util.module.register({
 		|| do_embed_vimeo_videos  
 		|| do_embed_funnyordie_videos)
 		{
-			var regex = {"vimeo":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(vimeo)\.com\/(\\d+)",
-						 "youtube":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(youtube\.[a-zA-Z]{2,3}|youtu\.be)\/.*(v[=\/]([a-zA-Z0-9-_]{11}\\b)|\/([a-zA-Z0-9-_]{11}\\b))",
-						 "funnyordie":"^(http:\/\/)([a-zA-Z]{2,3}.)?(funnyordie)\.(com)\/videos\/([a-zA-Z0-9]*)\\b"
-						};
-			var embedurls = {"vimeo":"http://player.vimeo.com/video/",
-						 "youtube":"http://www.youtube.com/embed/",
-						 "funnyordie":"http://www.funnyordie.com/embed/"
-						};
-			var messages = doc.getElementsByClassName("message");
-			for(var i = 0; i < messages.length; ++i)
-			{
-				var media_links = [];
-				var pot_yt_links = messages[i].getElementsByTagName('a');						
-				for (var j = 0; j < pot_yt_links.length; ++j ) {
+			try {
+				var regex = {"vimeo":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(vimeo)\.com\/(\\d+)",
+							 "youtube":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(youtube\.[a-zA-Z]{2,3}|youtu\.be)\/.*(v[=\/]([a-zA-Z0-9-_]{11}\\b)|\/([a-zA-Z0-9-_]{11}\\b))",
+							 "funnyordie":"^(http:\/\/)([a-zA-Z]{2,3}.)?(funnyordie)\.(com)\/videos\/([a-zA-Z0-9]*)\\b"
+							};
+				var embedurls = {"vimeo":"http://player.vimeo.com/video/",
+							 "youtube":"http://www.youtube.com/embed/",
+							 "funnyordie":"http://www.funnyordie.com/embed/"
+							};
+				var messages = doc.getElementsByClassName("message");
+				for(var i = 0; i < messages.length; ++i)
+				{
+					var media_links = [];
+					var pot_yt_links = messages[i].getElementsByTagName('a');						
+					for (var j = 0; j < pot_yt_links.length; ++j ) {
 
-					var linkMap = {"site":null,"videoId":null, "link":pot_yt_links[j]};
-					var matches,re,matches = null;
-					
-					if(do_embed_youtube_videos && !linkMap["site"]){
-						re = new RegExp(regex["youtube"]);
-						matches = re.exec(pot_yt_links[j].href)
-						if(matches)
-							linkMap["site"] = "youtube";
-					}
-					if(do_embed_vimeo_videos && !linkMap["site"]){
-						re = new RegExp(regex["vimeo"]);
-						matches = re.exec(pot_yt_links[j].href)
-						if(matches)
-							linkMap["site"] = "vimeo";
-					}
-					if(do_embed_funnyordie_videos && !linkMap["site"]){
-						re = new RegExp(regex["funnyordie"]);
-						matches = re.exec(pot_yt_links[j].href)
-						if(matches)
-							linkMap["site"] = "funnyordie";
-					}
-					
-					if(!linkMap["site"])
-						continue;
+						var linkMap = {"site":null,"videoId":null, "link":pot_yt_links[j]};
+						var matches,re,matches = null;
 						
-					if(linkMap["site"] == "youtube"){
-						linkMap["videoId"] = matches[5]?matches[5]:(matches[6]?matches[6]:null);
-						if(linkMap["link"].href.match("user\/"+linkMap["videoId"]))
-							linkMap["videoId"] = null;
-					} else if (linkMap["site"] == "vimeo"){
-						linkMap["videoId"] = matches[4]?matches[4]:null;
-					} else if (linkMap["site"] == "funnyordie"){
-						linkMap["videoId"] = matches[5]?matches[5]:null;
-					}
-					
-					if(!linkMap["videoId"] || !linkMap["link"] || !linkMap["site"])
-						continue;
+						if(do_embed_youtube_videos && !linkMap["site"]){
+							re = new RegExp(regex["youtube"]);
+							matches = re.exec(pot_yt_links[j].href)
+							if(matches)
+								linkMap["site"] = "youtube";
+						}
+						if(do_embed_vimeo_videos && !linkMap["site"]){
+							re = new RegExp(regex["vimeo"]);
+							matches = re.exec(pot_yt_links[j].href)
+							if(matches)
+								linkMap["site"] = "vimeo";
+						}
+						if(do_embed_funnyordie_videos && !linkMap["site"]){
+							re = new RegExp(regex["funnyordie"]);
+							matches = re.exec(pot_yt_links[j].href)
+							if(matches)
+								linkMap["site"] = "funnyordie";
+						}
 						
-					media_links.push(linkMap);
+						if(!linkMap["site"])
+							continue;
+							
+						if(linkMap["site"] == "youtube"){
+							linkMap["videoId"] = matches[5]?matches[5]:(matches[6]?matches[6]:null);
+							if(linkMap["link"].href.match("user\/"+linkMap["videoId"]))
+								linkMap["videoId"] = null;
+						} else if (linkMap["site"] == "vimeo"){
+							linkMap["videoId"] = matches[4]?matches[4]:null;
+						} else if (linkMap["site"] == "funnyordie"){
+							linkMap["videoId"] = matches[5]?matches[5]:null;
+						}
+						
+						if(!linkMap["videoId"] || !linkMap["link"] || !linkMap["site"])
+							continue;
+							
+						media_links.push(linkMap);
+					}
+					for (var j = 0; j < media_links.length; ++j ) {						
+						var site = media_links[j]["site"];
+						var videoId = media_links[j]["videoId"];
+						var link = media_links[j]["link"];
+						var src = null;
+						if ( site == "youtube" && do_embed_youtube_videos) {
+							src = embedurls["youtube"] + videoId;
+						} else if( site == "vimeo" && do_embed_vimeo_videos) {
+							src = embedurls["vimeo"] + videoId;
+						} else if( site == "funnyordie" && do_embed_funnyordie_videos){
+							src = embedurls["funnyordie"] + videoId;
+						} else 
+							continue;
+						
+						if(!src)
+							continue;
+							
+						try {
+							var videocontainer = doc.createElement('div');
+								videocontainer.setAttribute('style', "text-align:center;");
+								var iframe = doc.createElement('iframe');
+								iframe.setAttribute('width', "400");
+								iframe.setAttribute('height', "334");
+								iframe.setAttribute('src', src);
+								iframe.setAttribute('frameborder','0');
+								videocontainer.appendChild(iframe);
+							link.parentNode.replaceChild(videocontainer,link);
+						} 
+						catch(e){
+							Foxtrick.log("MEDIA REPLACE add iframe", e);
+						}
+					}
 				}
-				for (var j = 0; j < media_links.length; ++j ) {						
-					var site = media_links[j]["site"];
-					var videoId = media_links[j]["videoId"];
-					var link = media_links[j]["link"];
-					var src = null;
-					if ( site == "youtube" && do_embed_youtube_videos) {
-						src = embedurls["youtube"] + videoId;
-					} else if( site == "vimeo" && do_embed_vimeo_videos) {
-						src = embedurls["vimeo"] + videoId;
-					} else if( site == "funnyordie" && do_embed_funnyordie_videos){
-						src = embedurls["funnyordie"] + videoId;
-					} else 
-						continue;
-					
-					if(!src)
-						continue;
-						
-					try {
-						var videocontainer = doc.createElement('div');
-							videocontainer.setAttribute('style', "text-align:center;");
-							var iframe = doc.createElement('iframe');
-							iframe.setAttribute('width', "400");
-							iframe.setAttribute('height', "334");
-							iframe.setAttribute('src', src);
-							iframe.setAttribute('frameborder','0');
-							videocontainer.appendChild(iframe);
-						link.parentNode.replaceChild(videocontainer,link);
-					} 
-					catch(e){
-						Foxtrick.log("MEDIA REPLACE", e);
-					}
-				}
+			} catch(e){
+				Foxtrick.log("MEDIA REPLACE", e);
 			}
 		}
 
