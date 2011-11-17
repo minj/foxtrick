@@ -191,25 +191,32 @@ Foxtrick.util.module.register({
 				Foxtrick.log(e);
 			}
 		};
-
+		
+		
+		
 		var do_copy_post_id = FoxtrickPrefs.isModuleEnabled("CopyPostID");
 		var do_copy_posting = FoxtrickPrefs.isModuleEnabled("CopyPosting");
 		var do_default_facecard = FoxtrickPrefs.isModuleEnabled("AddDefaultFaceCard");
 		var do_format_text = FoxtrickPrefs.isModuleEnabled("FormatPostingText");
 		var do_move_links = FoxtrickPrefs.isModuleEnabled("MoveLinks");
-		var do_alter_header = FoxtrickPrefs.isModuleEnabled("ForumAlterHeaderLine");
 		var do_redir_to_team = FoxtrickPrefs.isModuleEnabled("ForumRedirManagerToTeam");
-
-		var do_single_header = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "SingleHeaderLine");
-		var do_small_header_font = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "SmallHeaderFont");
-		var do_single_header_allways = do_alter_header && do_single_header && !FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "CheckDesign");
-		var do_truncate_nicks = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "TruncateLongNick");
-		var do_truncate_leaguename = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "TruncateLeagueName");
-		var do_hide_old_time = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "HideOldTime");
- 		var do_short_postid = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "ShortPostId");
-		var do_replace_supporter_star = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "ReplaceSupporterStar");
-		var do_HighlightThreadOpener = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "HighlightThreadOpener");
-
+		
+		var do_embed_media = FoxtrickPrefs.isModuleEnabled("EmbedMedia");
+			var do_embed_youtube_videos = do_embed_media && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedYoutubeVideos");
+			var do_embed_vimeo_videos = do_embed_media && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedVimeoVideos");
+			var do_embed_funnyordie_videos = do_embed_media && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedFunnyOrDieVideos");
+		
+		var do_alter_header = FoxtrickPrefs.isModuleEnabled("ForumAlterHeaderLine");
+			var do_single_header = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "SingleHeaderLine");
+			var do_small_header_font = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "SmallHeaderFont");
+			var do_single_header_allways = do_alter_header && do_single_header && !FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "CheckDesign");
+			var do_truncate_nicks = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "TruncateLongNick");
+			var do_truncate_leaguename = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "TruncateLeagueName");
+			var do_hide_old_time = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "HideOldTime");
+			var do_short_postid = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "ShortPostId");
+			var do_replace_supporter_star = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "ReplaceSupporterStar");
+			var do_HighlightThreadOpener = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "HighlightThreadOpener");
+		
 		var hasScroll = Foxtrick.util.layout.mainBodyHasScroll(doc);
 		var isStandardLayout = Foxtrick.util.layout.isStandard ( doc ) ;
 		var notif = doc.getElementById('ctl00_ctl00_CPContent_ucNotifications_updNotifications');
@@ -274,7 +281,7 @@ Foxtrick.util.module.register({
 			} else var TName_lng = false;
 		} catch(e_tag) {Foxtrick.dump('HTO ' + e_tag + '\n'); var TName_lng = false;}
 
-		if (do_format_text) 
+		if (do_format_text) {
 			try {
 				var HideLevel = FoxtrickPrefs.getString("module.FormatPostingText.NestedQoutesAsSpoilers_text");
 				var numSpoilerQuotes = 0;
@@ -329,6 +336,101 @@ Foxtrick.util.module.register({
 			} catch (e) {
 				Foxtrick.log('FORMAT TEXT ', e);
 			}
+		}	
+		
+		if(do_embed_youtube_videos 
+		|| do_embed_vimeo_videos  
+		|| do_embed_funnyordie_videos)
+		{
+			var regex = {"vimeo":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(vimeo)\.com\/(\\d+)",
+						 "youtube":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(youtube\.[a-zA-Z]{2,3}|youtu\.be)\/.*(v[=\/]([a-zA-Z0-9-_]{11}\\b)|\/([a-zA-Z0-9-_]{11}\\b))",
+						 "funnyordie":"^(http:\/\/)([a-zA-Z]{2,3}.)?(funnyordie)\.(com)\/videos\/([a-zA-Z0-9]*)\\b"
+						};
+			var embedurls = {"vimeo":"http://player.vimeo.com/video/",
+						 "youtube":"http://www.youtube.com/embed/",
+						 "funnyordie":"http://www.funnyordie.com/embed/"
+						};
+			var messages = doc.getElementsByClassName("message");
+			for(var i = 0; i < messages.length; ++i)
+			{
+				var media_links = [];
+				var pot_yt_links = messages[i].getElementsByTagName('a');						
+				for (var j = 0; j < pot_yt_links.length; ++j ) {
+
+					var linkMap = {"site":null,"videoId":null, "link":pot_yt_links[j]};
+					var matches,re,matches = null;
+					
+					if(do_embed_youtube_videos && !linkMap["site"]){
+						re = new RegExp(regex["youtube"]);
+						matches = re.exec(pot_yt_links[j].href)
+						if(matches)
+							linkMap["site"] = "youtube";
+					}
+					if(do_embed_vimeo_videos && !linkMap["site"]){
+						re = new RegExp(regex["vimeo"]);
+						matches = re.exec(pot_yt_links[j].href)
+						if(matches)
+							linkMap["site"] = "vimeo";
+					}
+					if(do_embed_funnyordie_videos && !linkMap["site"]){
+						re = new RegExp(regex["funnyordie"]);
+						matches = re.exec(pot_yt_links[j].href)
+						if(matches)
+							linkMap["site"] = "funnyordie";
+					}
+					
+					if(!linkMap["site"])
+						continue;
+						
+					if(linkMap["site"] == "youtube"){
+						linkMap["videoId"] = matches[5]?matches[5]:(matches[6]?matches[6]:null);
+						if(linkMap["link"].href.match("user\/"+linkMap["videoId"]))
+							linkMap["videoId"] = null;
+					} else if (linkMap["site"] == "vimeo"){
+						linkMap["videoId"] = matches[4]?matches[4]:null;
+					} else if (linkMap["site"] == "funnyordie"){
+						linkMap["videoId"] = matches[5]?matches[5]:null;
+					}
+					
+					if(!linkMap["videoId"] || !linkMap["link"] || !linkMap["site"])
+						continue;
+						
+					media_links.push(linkMap);
+				}
+				for (var j = 0; j < media_links.length; ++j ) {						
+					var site = media_links[j]["site"];
+					var videoId = media_links[j]["videoId"];
+					var link = media_links[j]["link"];
+					var src = null;
+					if ( site == "youtube" && do_embed_youtube_videos) {
+						src = embedurls["youtube"] + videoId;
+					} else if( site == "vimeo" && do_embed_vimeo_videos) {
+						src = embedurls["vimeo"] + videoId;
+					} else if( site == "funnyordie" && do_embed_funnyordie_videos){
+						src = embedurls["funnyordie"] + videoId;
+					} else 
+						continue;
+					
+					if(!src)
+						continue;
+						
+					try {
+						var videocontainer = doc.createElement('div');
+							videocontainer.setAttribute('style', "text-align:center;");
+							var iframe = doc.createElement('iframe');
+							iframe.setAttribute('width', "400");
+							iframe.setAttribute('height', "334");
+							iframe.setAttribute('src', src);
+							iframe.setAttribute('frameborder','0');
+							videocontainer.appendChild(iframe);
+						link.parentNode.replaceChild(videocontainer,link);
+					} 
+					catch(e){
+						Foxtrick.log("MEDIA REPLACE", e);
+					}
+				}
+			}
+		}
 
 
 		// loop through cfWrapper --------------------------------------------
