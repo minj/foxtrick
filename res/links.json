@@ -177,6 +177,13 @@
 		"title": "Alltid Hattrick Statistics International",
 		"img": "resources/linkicons/ahstats.png"
 	},
+	"tppc":  {
+			"leaguelink" : { 
+				"url" : "http://www.adrianomoutinho.com/hattrick/index.php?LeagueId=[leagueid]&Language=[lang]",
+			},
+			"title" : "Team Position Probability Calculator",
+			"img" : Foxtrick.ResourcePath+"resources/linkicons/tppc.png"
+	},
 	"htstats_all": {
 		"playedmatchlink": {
 			"url": "http://www.htstats.com/matchinfo-[matchid]?setlang=[lang]"
