@@ -205,7 +205,7 @@ Foxtrick.util.module.register({
 			var do_embed_youtube_videos = do_embed_media && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedYoutubeVideos");
 			var do_embed_vimeo_videos = do_embed_media && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedVimeoVideos");
 			var do_embed_funnyordie_videos = do_embed_media && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedFunnyOrDieVideos");
-		
+			var do_embed_dailymotion_videos = do_embed_media && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedDailymotionVideos");
 		var do_alter_header = FoxtrickPrefs.isModuleEnabled("ForumAlterHeaderLine");
 			var do_single_header = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "SingleHeaderLine");
 			var do_small_header_font = do_alter_header && FoxtrickPrefs.isModuleOptionEnabled("ForumAlterHeaderLine", "SmallHeaderFont");
@@ -340,44 +340,55 @@ Foxtrick.util.module.register({
 		
 		if(do_embed_youtube_videos 
 		|| do_embed_vimeo_videos  
-		|| do_embed_funnyordie_videos)
+		|| do_embed_funnyordie_videos
+		|| do_embed_dailymotion_videos)
 		{
 			try {
 				var regex = {"vimeo":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(vimeo)\.com\/(\\d+)",
 							 "youtube":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(youtube\.[a-zA-Z]{2,3}|youtu\.be)\/.*(v[=\/]([a-zA-Z0-9-_]{11}\\b)|\/([a-zA-Z0-9-_]{11}\\b))",
-							 "funnyordie":"^(http:\/\/)([a-zA-Z]{2,3}.)?(funnyordie)\.(com)\/videos\/([a-zA-Z0-9]*)\\b"
+							 "funnyordie":"^(http:\/\/)([a-zA-Z]{2,3}.)?(funnyordie)\.(com)\/videos\/([a-zA-Z0-9]*)\\b",
+							 "dailymotion":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(dailymotion\.com)\/video\/([a-zA-Z0-9-]+)"
 							};
+				//mayb later: http://oembed.com/
 				var embedurls = {"vimeo":"http://player.vimeo.com/video/",
 							 "youtube":"http://www.youtube.com/embed/",
-							 "funnyordie":"http://www.funnyordie.com/embed/"
+							 "funnyordie":"http://www.funnyordie.com/embed/",
+							 "dailymotion":"http://www.dailymotion.com/embed/video/"
 							};
+
 				var messages = doc.getElementsByClassName("message");
 				for(var i = 0; i < messages.length; ++i)
 				{
 					var media_links = [];
-					var pot_yt_links = messages[i].getElementsByTagName('a');						
-					for (var j = 0; j < pot_yt_links.length; ++j ) {
+					var links = messages[i].getElementsByTagName('a');						
+					for (var j = 0; j < links.length; ++j ) {
 
-						var linkMap = {"site":null,"videoId":null, "link":pot_yt_links[j]};
+						var linkMap = {"site":null,"videoId":null, "link":links[j]};
 						var matches,re,matches = null;
 						
 						if(do_embed_youtube_videos && !linkMap["site"]){
-							re = new RegExp(regex["youtube"]);
-							matches = re.exec(pot_yt_links[j].href)
+							re = new RegExp( regex["youtube"] );
+							matches = re.exec(links[j].href)
 							if(matches)
 								linkMap["site"] = "youtube";
 						}
 						if(do_embed_vimeo_videos && !linkMap["site"]){
-							re = new RegExp(regex["vimeo"]);
-							matches = re.exec(pot_yt_links[j].href)
+							re = new RegExp( regex["vimeo"] );
+							matches = re.exec(links[j].href)
 							if(matches)
 								linkMap["site"] = "vimeo";
 						}
 						if(do_embed_funnyordie_videos && !linkMap["site"]){
-							re = new RegExp(regex["funnyordie"]);
-							matches = re.exec(pot_yt_links[j].href)
+							re = new RegExp( regex["funnyordie"] );
+							matches = re.exec(links[j].href)
 							if(matches)
 								linkMap["site"] = "funnyordie";
+						}
+						if(do_embed_dailymotion_videos && !linkMap["site"]){
+							re = new RegExp( regex["dailymotion"] );
+							matches = re.exec(links[j].href)
+							if(matches)
+								linkMap["site"] = "dailymotion";
 						}
 						
 						if(!linkMap["site"])
@@ -391,6 +402,8 @@ Foxtrick.util.module.register({
 							linkMap["videoId"] = matches[4]?matches[4]:null;
 						} else if (linkMap["site"] == "funnyordie"){
 							linkMap["videoId"] = matches[5]?matches[5]:null;
+						} else if (linkMap["site"] == "dailymotion"){
+							linkMap["videoId"] = matches[4]?matches[4]:null;
 						}
 						
 						if(!linkMap["videoId"] || !linkMap["link"] || !linkMap["site"])
@@ -409,6 +422,8 @@ Foxtrick.util.module.register({
 							src = embedurls["vimeo"] + videoId;
 						} else if( site == "funnyordie" && do_embed_funnyordie_videos){
 							src = embedurls["funnyordie"] + videoId;
+						} else if( site == "dailymotion" && do_embed_dailymotion_videos){
+							src = embedurls["dailymotion"] + videoId;
 						} else 
 							continue;
 						
