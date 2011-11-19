@@ -211,7 +211,7 @@ Foxtrick.util.api = {
 		var parameters_str = JSON.stringify(parameters);
 		var xml_cache = Foxtrick.sessionGet('xml_cache.'+parameters_str);
 		if (xml_cache) Foxtrick.log("ApiProxy: options: ",options,
-								'  cache_lifetime: ',(new Date(xml_cache.cache_lifetime)).toString(),
+								'  cache_lifetime: ',(options.cache_lifetime=='session')?'session':(new Date(xml_cache.cache_lifetime)).toString(),
 								'  current timestamp: ',(new Date(HT_date)).toString());
 
 		// check file cache next
