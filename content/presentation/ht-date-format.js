@@ -42,7 +42,7 @@ var FoxtrickHTDateFormat = {
 
 
 		var modifyDate = function(node) {
-			if (Foxtrick.hasClass(node, "ft-date"))
+			if (Foxtrick.hasClass(node, "ft-date") || Foxtrick.hasClass(node, "matchdate"))
 				return;
 			if (node.hasAttribute("x-ht-date")) {
 				// attribute x-ht-date set by LocalTime, while inner
