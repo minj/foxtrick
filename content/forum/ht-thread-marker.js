@@ -33,7 +33,6 @@ Foxtrick.util.module.register({
 
 				if (poster.match(/ HT-\S+/)) {
 					Foxtrick.addClass(div, "ft-ht-thread");
-					Foxtrick.log('Ht thread',poster)
 				}
 			}
 		}
