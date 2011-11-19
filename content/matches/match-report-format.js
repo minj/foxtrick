@@ -142,13 +142,16 @@ Foxtrick.util.module.register((function() {
 								}
 								collection[id].comment.appendChild(node);
 							};
-
 							// add starting players first
 							var starting = xml.getElementsByTagName("StartingLineup")[0].getElementsByTagName("Player");
 							Foxtrick.map(function(player) {
 								var id = player.getElementsByTagName("PlayerID")[0].textContent;
 								var name = player.getElementsByTagName("PlayerName")[0].textContent;
 								var role = player.getElementsByTagName("RoleID")[0].textContent;
+								if (!collection[id]) {
+									// add red carded players
+									collection[id] = { "name": name };
+								}
 								if (roles[role] != "setPieces"
 									&& roles[role] != "captain") {
 									var item = doc.createElement("li");
