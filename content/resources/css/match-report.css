@@ -2,6 +2,10 @@
  * non-table way.
  */
 
+.ft-match-lineup td {
+	vertical-align: top !important;
+}
+
 .ft-match-lineup li {
 	padding-bottom: 2px !important;
 	border-bottom: 1px solid #eee;
