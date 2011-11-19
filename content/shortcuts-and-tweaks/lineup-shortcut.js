@@ -1,9 +1,10 @@
+"use strict";
 /**
  * FoxtrickLineupShortcut (Add a direct shortcut to lineup in player detail page)
  * @author taised, ryanli
  */
 
-var FoxtrickLineupShortcut = {
+Foxtrick.util.module.register({
 	MODULE_NAME : "LineupShortcut",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ['playerdetail','statsBestgames','matchLineup', 'YouthPlayer'],
@@ -28,12 +29,8 @@ var FoxtrickLineupShortcut = {
 	},
 
 	_Analyze_Player_Page : function(doc) {
-		// non-supporters don't have match history listed
-		if (!Foxtrick.util.layout.isSupporter(doc))
-			return;
-
 		// get leagueId for ntName and u20Name
-		const leagueId = Foxtrick.Pages.Player.getNationalityId(doc);
+		var leagueId = Foxtrick.Pages.Player.getNationalityId(doc);
 		var path = "//League[LeagueID='" + leagueId + "']";
 		var obj = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml, path);
 		if (obj) {
@@ -77,23 +74,20 @@ var FoxtrickLineupShortcut = {
 			var awayIdx = teamsText.indexOf(teamsTrimmed[1]);
 			var matchTeams = [teamsText.substr(homeIdx, awayIdx-1), teamsText.substr(awayIdx)];
 			var hasMatch = false;
-			
-			for (var j = 0; j < matchTeams.length; j++) {
-				switch (matchTeams[j]) {
-				case teamName:
-					if (!hasTransfer)
-						this._Add_Lineup_Link(doc, matchTable.rows[i], teamId, playerId, matchId, 'normal');
+
+			if (Foxtrick.member(teamName, matchTeams)) {
+				if (!hasTransfer) {
+					this._Add_Lineup_Link(doc, matchTable.rows[i], teamId, playerId, matchId, 'normal');
 					hasMatch = true;
-					break;
-				case ntName:
-					this._Add_Lineup_Link(doc, matchTable.rows[i], ntId, playerId, matchId, 'NT');
-					hasMatch = true;
-					break;
-				case u20Name:
-					this._Add_Lineup_Link(doc, matchTable.rows[i], u20Id, playerId, matchId, 'U20');
-					hasMatch = true;
-					break;
 				}
+			}
+			else if (Foxtrick.member(ntName, matchTeams)) {
+				this._Add_Lineup_Link(doc, matchTable.rows[i], ntId, playerId, matchId, 'NT');
+				hasMatch = true;
+			}
+			else if (Foxtrick.member(u20Name, matchTeams)) {
+				this._Add_Lineup_Link(doc, matchTable.rows[i], u20Id, playerId, matchId, 'U20');
+				hasMatch = true;
 			}
 			if (!hasMatch) 
 				hasTransfer = true;
@@ -193,5 +187,4 @@ var FoxtrickLineupShortcut = {
 			}
 		}
 	}
-};
-Foxtrick.util.module.register(FoxtrickLineupShortcut);
+});
