@@ -1,5 +1,9 @@
 import HTMLParser
 
+# Crawls the entries from the AppDenominations.aspx page from Hattrick into a multidimensional dictionary
+#
+# CatzHoek
+
 class DenominationsParser(HTMLParser.HTMLParser):
 	def __init__(self):
 		HTMLParser.HTMLParser.__init__(self)
@@ -7,21 +11,24 @@ class DenominationsParser(HTMLParser.HTMLParser):
 		self.headings = []
 		self.in_td = False
 		self.skills_comming_up = False
-		self.read_skills = False		
+		self.read_skills = False	
+		# name attributes in the links <a name="skills"> etc. used to identify which section comes next
 		self.names = ("skill","skillshort","teamskills","sponsors","FanMood","FanMatch","FanSeason","gentleness","honesty","aggressiveness","morale","confidence")
 		self.commingup = None
 		self.entries = {}
 		self.strings = []
 		self.even = True
 		
+	
 	def handle_starttag(self, tag, attrs):
+		# find out which section is next, <a name="" is our keyword
 		if tag == 'a':
 			for name, value in attrs:
 				if name == 'name':
 					if value in self.names:
 						self.commingup = value
 						self.entries[self.commingup] = {}
-						
+				
 		if tag == 'td':
 			self.in_td = True
 			self.even = not self.even
@@ -46,19 +53,18 @@ class DenominationsParser(HTMLParser.HTMLParser):
 	def get(self):
 		return self.entries
 		
-	
 
 import urllib
-def parsePages(sites):
+def parsePages(subdomains):
 	result = {}
 	errors = []
-	for site in sites:
-		url = "http://"+site+".hattrick.org/Help/Rules/AppDenominations.aspx"
+	for subdomain in subdomains:
+		url = "http://"+subdomain+".hattrick.org/Help/Rules/AppDenominations.aspx"
 		try:
 			print "Crawling ", url
 			connection = urllib.urlopen(url)
 		except:
-			errors.append(site)
+			errors.append(subdomain)
 			print "Couldn't connect to", url
 			continue
 		encoding = connection.headers.getparam('charset')
@@ -66,6 +72,6 @@ def parsePages(sites):
 		page.encode('utf-8')
 		denomParser = DenominationsParser()
 		denomParser.feed(page)
-		result[site] = denomParser.get()
+		result[subdomain] = denomParser.get()
 	return result, errors
 		
