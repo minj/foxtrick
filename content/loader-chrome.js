@@ -19,6 +19,9 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 			|| Foxtrick.isExcluded(document) )  
 			return;
 
+		var DOMContentLoaded = false;
+		var LocalResourcesLoaded = false;
+		
 		var beginRequest = new Date();
 
 		// request resources from background script
@@ -60,27 +63,23 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 				var initTime = nowTime - beginInit.getTime();
 				Foxtrick.log("request time: ", requestTime ," - init time: " , initTime , " ms");
 
-				// if ht doc is already loaded start now, else wait till loaded
-				var timeReady = ( document.getElementById('time') && document.getElementById('time').textContent );
-				var isHt = Foxtrick.isHt(document);
-				if (isHt && timeReady) 
-				{
-					Foxtrick.log('I was really slow. ');
+
+				if (DOMContentLoaded) {
+					Foxtrick.log('LocalResourcesLoad took too long. run now. ')
 					Foxtrick.entry.docLoad(document);
 				}
-				else {	
-					if (isHt)
-						Foxtrick.log('I slow fast but HT time is still missing.  Wait for DOMContentLoaded.');
-					else
-						Foxtrick.log('I was fast. Wait for DOMContentLoaded');
-					
-					window.addEventListener("DOMContentLoaded", function() {
-						Foxtrick.log('DOMContentLoaded');	
-						Foxtrick.entry.docLoad(document);
-					}, false);
-				}
+				LocalResourcesLoaded = true;
+				
 			} catch(e) {Foxtrick.log('loader init: ', e);}
 		});
+		
+		// that's our normal entry point unless init took to long.
+		window.addEventListener("DOMContentLoaded", function() {
+			DOMContentLoaded = true;
+			if (LocalResourcesLoaded)
+				Foxtrick.entry.docLoad(document);
+		}, false);
+		
 	} catch(e) {Foxtrick.log(e);}
 };
 
