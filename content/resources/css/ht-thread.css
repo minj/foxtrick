@@ -1,3 +1,5 @@
-.ft-ht-thread {
-	background: #ff7a7a;
+.ft-ht-thread a:before {
+	content: "HT: ";
+	color: #ff7a7a;
+	font-weight: bold;
 }
