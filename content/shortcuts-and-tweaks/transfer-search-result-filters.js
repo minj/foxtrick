@@ -93,7 +93,6 @@ Foxtrick.util.module.register({
 					var prop = ev.target.getAttribute("x-ft-filter-prop");
 					filters[index][prop] = value;
 					setFilters(filters);
-					Foxtrick.log(filters);
 				});
 			};
 
