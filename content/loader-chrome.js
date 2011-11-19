@@ -62,25 +62,25 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 
 				// if ht doc is already loaded start now, else wait till loaded
 				if (Foxtrick.isHt(document)) {
-					Foxtrick.log('I was slow. Ht document already loaded.');
-					if (document.getElementById('teamLinks')) {
-						Foxtrick.log('teamLinks ready, so can run now.');
+					
+					if(document.getElementById('time') && document.getElementById('time').textContent){
+						Foxtrick.log('I was really slow. ');
+						Foxtrick.log('HT Time ready, so can run now.');
 						Foxtrick.entry.docLoad(document);
-					}
-					else {
-						// page not quite ready yet
-						Foxtrick.log('Wrong page or teamLinks not ready. Try with next time tick.');
-						var runOnTick = function(ev) {
-							document.getElementById('time').removeEventListener('DOMCharacterDataModified', runOnTick, false);
+					} else {
+						Foxtrick.log('I was a little slow. Wait for DOMContentLoaded');
+						window.addEventListener("DOMContentLoaded", function() {
+							Foxtrick.log('DOMContentLoaded after slow case');
 							Foxtrick.entry.docLoad(document);
-						};
-						document.getElementById('time').addEventListener('DOMCharacterDataModified', runOnTick, false);
+						}, false);
 					}
 				}
 				else {
+					
 					Foxtrick.log('I was fast. Wait for DOMContentLoaded');
 					window.addEventListener("DOMContentLoaded", function() {
-						Foxtrick.entry.docLoad(document)
+						Foxtrick.log('DOMContentLoaded');	
+						Foxtrick.entry.docLoad(document);
 					}, false);
 				}
 			} catch(e) {Foxtrick.log('loader init: ', e);}
