@@ -62,19 +62,19 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 
 				// if ht doc is already loaded start now, else wait till loaded
 				if (Foxtrick.isHt(document)) {
-					Foxtrick.log('I was slow. Ht domument ready.');
-					if (document.getElementById('time').textContent) {
-						Foxtrick.log('HT Time ready, so can run now.');
+					Foxtrick.log('I was slow. Ht document already loaded.');
+					if (document.getElementById('teamLinks')) {
+						Foxtrick.log('teamLinks ready, so can run now.');
 						Foxtrick.entry.docLoad(document);
 					}
 					else {
 						// page not quite ready yet
-						Foxtrick.log('HT time not ready. Run with next time tick.');
+						Foxtrick.log('Wrong page or teamLinks not ready. Try with next time tick.');
 						var runOnTick = function(ev) {
 							document.getElementById('time').removeEventListener('DOMCharacterDataModified', runOnTick, false);
 							Foxtrick.entry.docLoad(document);
 						};
-						document.getElementaById('time').addEventListener('DOMCharacterDataModified', runOnTick, false);
+						document.getElementById('time').addEventListener('DOMCharacterDataModified', runOnTick, false);
 					}
 				}
 				else {

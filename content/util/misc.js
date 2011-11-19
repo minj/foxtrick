@@ -352,7 +352,8 @@ Foxtrick.isStage = function(doc) {
 }
 
 Foxtrick.isLoginPage = function(doc) {
-	return (doc.getElementById('teamLinks').getElementsByTagName('a').length===0);
+	var teamlinks = doc.getElementById('teamLinks');
+	return (teamLinks && teamLinks.getElementsByTagName('a').length===0);
 }
 
 Foxtrick.getPanel = function(doc) {
