@@ -1,3 +1,12 @@
+# Crawls the entries from the AppDenominations.aspx page from Hattrick into an XML File
+# The list "sites" defines the subdomain used to access the page
+#
+# Caution:
+# - This subdomain is not necessarily the name of the locale in Foxtrick
+# - Definately not complete, i just "guessed" as many subdomains as possible
+#
+# CatzHoek
+
 from xml.dom.minidom import Document
 
 def createXmlFile(filename, result):
