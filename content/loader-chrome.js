@@ -62,8 +62,20 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 
 				// if ht doc is already loaded start now, else wait till loaded
 				if (Foxtrick.isHt(document)) {
-					Foxtrick.log('I was slow. Ht domument ready. Run now.');
-					Foxtrick.entry.docLoad(document);
+					Foxtrick.log('I was slow. Ht domument ready.');
+					if (document.getElementById('time').textContent) {
+						Foxtrick.log('HT Time ready, so can run now.');
+						Foxtrick.entry.docLoad(document);
+					}
+					else {
+						// page not quite ready yet
+						Foxtrick.log('HT time not ready. Run with next time tick.');
+						var runOnTick = function(ev) {
+							document.getElementById('time').removeEventListener('DOMCharacterDataModified', runOnTick, false);
+							Foxtrick.entry.docLoad(document);
+						};
+						document.getElementaById('time').addEventListener('DOMCharacterDataModified', runOnTick, false);
+					}
 				}
 				else {
 					Foxtrick.log('I was fast. Wait for DOMContentLoaded');
