@@ -25,6 +25,8 @@ Foxtrick.util.module.register((function() {
 		CSS : Foxtrick.InternalPath + "resources/css/match-report.css",
 
 		run : function(doc) {
+			var txtUnknownPlayer = Foxtrickl10n.getString("match.player.unknown");
+
 			if (Foxtrick.Pages.Match.isPrematch(doc)
 				|| Foxtrick.Pages.Match.inProgress(doc))
 				return;
@@ -114,7 +116,7 @@ Foxtrick.util.module.register((function() {
 								if (!collection[id]) {
 									collection[id] = { "name": name };
 								}
-							}, xml.getElementsByTagName("Player"));
+							}, xml.getElementsByTagName("Lineup")[0].getElementsByTagName("Player"));
 
 							// add comment for player inside brackets
 							var addComment = function(id, node) {
@@ -164,17 +166,19 @@ Foxtrick.util.module.register((function() {
 									&& subId != objId && objId > 0) {
 									var subNode = doc.createElement("span");
 									subNode.appendChild(doc.createTextNode(minute + "' "));
-									try {
-										subNode.appendChild(playerTag(objId, collection[objId].name));
-										addComment(subId, subNode);
-										// since object player now occupy the
-										// same list item as subject player,
-										// set up item and comment
-										collection[objId].item = collection[subId].item;
-										collection[objId].comment = collection[subId].item;
-									} catch(e){
-										Foxtrick.log('Unknown player involved in substitution', e)
+									// FIXME - due to a bug in HT's matchlineup XML,
+									// substitutions carried off may not be shown
+									if (collection[objId] == undefined) {
+										collection[objId] = { "name": txtUnknownPlayer };
 									}
+									// add in line up
+									subNode.appendChild(playerTag(objId, collection[objId].name));
+									addComment(subId, subNode);
+									// since object player now occupy the
+									// same list item as subject player,
+									// set up item and comment
+									collection[objId].item = collection[subId].item;
+									collection[objId].comment = collection[subId].item;
 								}
 							}, substitutions);
 						}, [[homeName, homeXml], [awayName, awayXml]]);
