@@ -83,7 +83,7 @@ var FoxtrickSkillTable = {
 			var fullType = { type : "oldiesAndOwn"};
 			FoxtrickSkillTable.createTable(doc, fullType );
 
-		} catch(e){console.log('AddHomegrown',e);}
+		} catch(e){Foxtrick.log('AddHomegrown',e);}
 	},
 
 	removeBotPlayers : function(ev) {
@@ -136,7 +136,7 @@ var FoxtrickSkillTable = {
 					});
 				}, rows);
 			}
-		} catch(e) {console.log('removeBotPlayers',e);}
+		} catch(e) {Foxtrick.log('removeBotPlayers',e);}
 	},
 
 	showTimeInClub : function(ev) {
@@ -268,7 +268,7 @@ var FoxtrickSkillTable = {
 				}
 			});
 		});
-	  } catch(e) {console.log('show joindate',e);}
+	  } catch(e) {Foxtrick.log('show joindate',e);}
 	},
 
 	showOldiesAndOwn : function(doc) {
@@ -836,7 +836,7 @@ var FoxtrickSkillTable = {
 
 		}
 		catch (e) {
-			console.log(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -927,13 +927,13 @@ var FoxtrickSkillTable = {
 			table.getElementsByTagName("tbody")[0].innerHTML = newBody.innerHTML;
 		}
 		catch (e) {
-			console.log(e);
+			Foxtrick.log(e);
 		}
 		finally {
 			if (ev)
 				ev.stopPropagation();
 		}
-		console.log.flush(doc);
+		Foxtrick.log.flush(doc);
 	},
 
 	view : function(ev) {
@@ -970,7 +970,7 @@ var FoxtrickSkillTable = {
 			doc.location.reload();
 		}
 		catch (e) {
-			console.log(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -986,7 +986,7 @@ var FoxtrickSkillTable = {
 			Foxtrick.removeClass(container, "hidden");
 		}
 		catch(e) {
-			console.log(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -1030,7 +1030,7 @@ var FoxtrickSkillTable = {
 				}
 			}
 			catch (e) {
-				console.log(e);
+				Foxtrick.log(e);
 			}
 		};
 		Foxtrick.listen(h2, "click", toggleDisplay, false);
@@ -1244,7 +1244,7 @@ var FoxtrickSkillTable = {
 			var note = Foxtrick.util.note.add(doc, table, "ft-skilltable-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.skilltablecopied"), null, true);
 		}
 		catch (e) {
-			console.log(e);
+			Foxtrick.log(e);
 		}
 	},
 
@@ -1272,7 +1272,7 @@ var FoxtrickSkillTable = {
 			return ret;
 		}
 		catch (e) {
-			console.log(e);
+			Foxtrick.log(e);
 		}
 	},
 
