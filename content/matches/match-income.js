@@ -41,6 +41,8 @@ Foxtrick.util.module.register({
 
 		// convert to local currency
 		sum /= Foxtrick.util.currency.getRate();
+		// get rid of possible fraction
+		sum = Math.floor(sum);
 
 		var tr2 = doc.createElement('tr');
 		var td2a = doc.createElement('td');
@@ -51,6 +53,6 @@ Foxtrick.util.module.register({
 		td2a.className = "ch";
 		td2a.textContent = Foxtrickl10n.getString('foxtrick.matches.income');
 		td2b.className = "nowrap";
-		td2b.textContent = Foxtrick.formatNumber(Math.floor(sum), ' ')+' '+Foxtrick.util.currency.getSymbol();
+		td2b.textContent = Foxtrick.formatNumber(sum, ' ')+' '+Foxtrick.util.currency.getSymbol();
 	}
 });
