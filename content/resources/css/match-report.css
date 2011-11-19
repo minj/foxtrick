@@ -45,7 +45,10 @@
 
 .ft-match-report-kick-off,
 .ft-match-report-half-time,
-.ft-match-report-full-time {
+.ft-match-report-full-time,
+.ft-match-report-extra-time,
+.ft-match-report-penalty-shoot-out,
+.ft-match-report-result {
 	color: white;
 	background-color: #00a9e0;
 	padding: 2px 0 2px 5px;
@@ -54,7 +57,6 @@
 	font-size: 115%;
 	font-weight: bold;
 }
-
 
 .ft-match-report-event-content {
 	border-left: 3px solid #fff;

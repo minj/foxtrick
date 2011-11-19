@@ -4,10 +4,19 @@
  * @author spambot, ryanli
  */
 
+/*
+ * Match examples:
+ * Match with penalty shoot-out:
+ * http://www.hattrick.org/Club/Matches/Match.aspx?matchID=347558980
+ */
+
 Foxtrick.util.module.register((function() {
 	var eventTypes = {
 		"40" : "possession",
-		"47" : "possession"
+		"47" : "possession",
+		"70" : "extraTime",
+		"71" : "penaltyShootOut",
+		"599": "result"
 	};
 	var orderTypes = {
 		"1" : "substitution",
@@ -193,9 +202,9 @@ Foxtrick.util.module.register((function() {
 						var report = doc.createElement("div");
 						report.className = "ft-match-report";
 						parent.insertBefore(report, before);
-						
-						// wait for kickoff (walkovers don't allow to count event 21 (lineups))
-						var kickoff_pending = true;
+
+						// wait for kick-off (walkovers don't allow to count event 21 (lineups))
+						var koPending = true;
 						// generate report from events
 						var events = xml.getElementsByTagName("Event");
 						Foxtrick.map(function(evt) {
@@ -206,13 +215,7 @@ Foxtrick.util.module.register((function() {
 
 							if (evtMarkup != "") {
 								//kickoff indicator 
-								if (kickoff_pending && evtMin != "0") {
-									var ind = doc.createElement("div");
-									report.appendChild(ind);
-									ind.className = "ft-match-report-kick-off";
-									ind.textContent = Foxtrickl10n.getString("MatchReportFormat.kickOff");
-									kickoff_pending = false
-								}
+
 								// item to be added
 								var item = doc.createElement("div");
 								report.appendChild(item);
@@ -235,18 +238,65 @@ Foxtrick.util.module.register((function() {
 								var clear = doc.createElement("div");
 								item.appendChild(clear);
 								clear.className = "clear";
-								
-								// half time or full time, add indicator
-								if (eventTypes[evtType] == "possession") {
-									var ind = doc.createElement("div");
-									report.appendChild(ind);
-									if (evtMin == "45") {
-										ind.className = "ft-match-report-half-time";
-										ind.textContent = Foxtrickl10n.getString("MatchReportFormat.halfTime");
+
+								// indicators to be added
+								var indicatorList = [
+									{
+										"class": "kick-off",
+										"text": "kickOff",
+										"before": true,
+										"func": (function() {
+											return function() {
+												if (koPending && evtMin != "0") {
+													koPending = false;
+													return true;
+												}
+												else {
+													return false;
+												}
+											};
+										})()
+									},
+									{
+										"class": "half-time",
+										"text": "halfTime",
+										"func": function() { return (eventTypes[evtType] == "possession") && (evtMin == "45"); }
+									},
+									{
+										"class": "full-time",
+										"text": "fullTime",
+										"func": function() { return (eventTypes[evtType] == "possession") && (evtMin == "90"); }
+									},
+									{
+										"class": "extra-time",
+										"text": "extraTime",
+										"func": function() { return eventTypes[evtType] == "extraTime"; }
+									},
+									{
+										"class": "penalty-shoot-out",
+										"text": "penaltyShootOut",
+										"func": function() { return eventTypes[evtType] == "penaltyShootOut"; }
+									},
+									{
+										"class": "result",
+										"text": "result",
+										"before": true,
+										"func": function() { return eventTypes[evtType] == "result"; }
 									}
-									else if (evtMin == "90") {
-										ind.className = "ft-match-report-full-time";
-										ind.textContent = Foxtrickl10n.getString("MatchReportFormat.fullTime");
+								];
+								var indType = Foxtrick.nth(0, function(n) {
+									return n.func();
+								}, indicatorList);
+								if (indType) {
+									// found a matching indicator
+									var indicator = doc.createElement("div");
+									indicator.textContent = Foxtrickl10n.getString("MatchReportFormat." + indType.text);
+									indicator.className = "ft-match-report-" + indType["class"];
+									if (indType.before) {
+										report.insertBefore(indicator, item);
+									}
+									else {
+										report.appendChild(indicator);
 									}
 								}
 							}
