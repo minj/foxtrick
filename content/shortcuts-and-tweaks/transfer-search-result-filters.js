@@ -93,6 +93,7 @@ Foxtrick.util.module.register({
 					var prop = ev.target.getAttribute("x-ft-filter-prop");
 					filters[index][prop] = value;
 					setFilters(filters);
+					Foxtrick.log(filters);
 				});
 			};
 
@@ -145,7 +146,7 @@ Foxtrick.util.module.register({
 				input.setAttribute("x-ft-filter-prop", "checked");
 				if (filter.checked === true)
 					input.setAttribute("checked", "checked");
-				Foxtrick.listen(input, "blur", saveValues, false);
+				Foxtrick.listen(input, "click", saveValues, false);
 				td.appendChild(input);
 				var label = doc.createElement("label");
 				label.textContent = Foxtrickl10n.getString("TransferSearchResultFilters." + filter.key);
@@ -216,6 +217,7 @@ Foxtrick.util.module.register({
 								hide = true;
 						}
 						else if (filter.type == "check") {
+							Foxtrick.log(filter, filter.checked, FILTER_FUNC[filter.key](player), player)
 							if (filter.checked && FILTER_FUNC[filter.key](player))
 								hide = true;
 						}
