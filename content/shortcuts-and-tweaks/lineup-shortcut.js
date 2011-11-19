@@ -29,10 +29,6 @@ Foxtrick.util.module.register({
 	},
 
 	_Analyze_Player_Page : function(doc) {
-		// non-supporters don't have match history listed
-		if (!Foxtrick.util.layout.isSupporter(doc))
-			return;
-
 		// get leagueId for ntName and u20Name
 		var leagueId = Foxtrick.Pages.Player.getNationalityId(doc);
 		var path = "//League[LeagueID='" + leagueId + "']";
