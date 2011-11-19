@@ -61,23 +61,19 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 				Foxtrick.log("request time: ", requestTime ," - init time: " , initTime , " ms");
 
 				// if ht doc is already loaded start now, else wait till loaded
-				if (Foxtrick.isHt(document)) {
-					
-					if(document.getElementById('time') && document.getElementById('time').textContent){
-						Foxtrick.log('I was really slow. ');
-						Foxtrick.log('HT Time ready, so can run now.');
-						Foxtrick.entry.docLoad(document);
-					} else {
-						Foxtrick.log('I was a little slow. Wait for DOMContentLoaded');
-						window.addEventListener("DOMContentLoaded", function() {
-							Foxtrick.log('DOMContentLoaded after slow case');
-							Foxtrick.entry.docLoad(document);
-						}, false);
-					}
+				var timeReady = ( document.getElementById('time') && document.getElementById('time').textContent );
+				var isHt = Foxtrick.isHt(document);
+				if (isHt && timeReady) 
+				{
+					Foxtrick.log('I was really slow. ');
+					Foxtrick.entry.docLoad(document);
 				}
-				else {
+				else {	
+					if (isHt)
+						Foxtrick.log('I slow fast but HT time is still missing.  Wait for DOMContentLoaded.');
+					else
+						Foxtrick.log('I was fast. Wait for DOMContentLoaded');
 					
-					Foxtrick.log('I was fast. Wait for DOMContentLoaded');
 					window.addEventListener("DOMContentLoaded", function() {
 						Foxtrick.log('DOMContentLoaded');	
 						Foxtrick.entry.docLoad(document);
