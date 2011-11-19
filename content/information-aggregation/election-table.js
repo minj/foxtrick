@@ -1,53 +1,66 @@
+"use strict";
 /**
  * election-table.js
  * some more infos on election page
- * @author spambot
+ * @author spambot, ryanli
  */
 
-var FoxtrickElectionTable = {
-
+Foxtrick.util.module.register({
 	MODULE_NAME : "ElectionTable",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : new Array('election'),
+	PAGES : ["election"],
 
 	run : function(doc) {
-		var tbl_election = (doc.getElementById("ft_election")!=null);
-		if (tbl_election) return;
-
 		var sum = 0;
-		var div = doc.getElementById('mainBody');
+		var table = doc.getElementsByClassName("previousCandidates")[0];
 
-		tbl_election = div.getElementsByTagName('TABLE')[0];
-		if (!tbl_election) return;
-		tbl_election.id = 'ft_election';
+		if (table) {
+			// count up the sum first
+			for (var i = 0; i < table.rows.length; ++i) {
+				if (table.rows[i].cells[2]) {
+					sum += parseInt(Foxtrick.trim(table.rows[i].cells[2].textContent));
+				}
+			}
 
-		var tblBodyObj = tbl_election.tBodies[0];
-		if (!tblBodyObj) return;
+			// add percentage for each candidate
+			for (var i = 0; i < table.rows.length; i++) {
+				if (table.rows[i].cells[2]) {
+					var content = parseInt(Foxtrick.trim(table.rows[i].cells[2].textContent));
+					var result = '(' + Math.floor(content/sum*1000)/10 + '%)';
+					table.rows[i].cells[3].textContent += result;
+					// keep consistent padding with the cell on the left
+					table.rows[i].cells[3].style.padding = "0px";
+				}
+			}
 
+			// finally, a sum is displayed
+			var cnt = doc.createElement("strong");
+			cnt.textContent = "Σ " + Foxtrick.formatNumber(sum, " ");
+			cnt.style.paddingTop = "10px";
+			table.parentNode.insertBefore(cnt, table.nextSibling);
+		}
+		else {
+			// pre election list
+			
+			var list = doc.getElementsByClassName("candidates")[0];
 
-		for (var i=0; i<tblBodyObj.rows.length; i++) {
-			if (tblBodyObj.rows[i].cells[2]) {
-				sum += parseInt(Foxtrick.trim(tblBodyObj.rows[i].cells[2].innerHTML));
+			if (list) {
+				var lis = list.getElementsByTagName("li");
+				var sum = 0;
+				// count up the sum first
+				for (var i = 0; i < lis.length; ++i) {
+					var imgs = lis[i].getElementsByTagName('img');
+					// count only if not withdrawn
+					if (imgs.length < 2 || imgs[1].src.indexOf('withdrawnStamp') != -1)
+						++sum;
+				}
+
+				// display number of candidates
+				var h2 = doc.getElementById('mainBody').getElementsByTagName('h2')[0];
+				var sum_span = doc.createElement('span');
+				sum_span.textContent = " - Σ " + Foxtrick.formatNumber(sum, " ");
+				h2.appendChild(sum_span);
 			}
 		}
-
-		for (var i=0; i<tblBodyObj.rows.length; i++) {
-			if (tblBodyObj.rows[i].cells[2]) {
-				var content = parseInt(Foxtrick.trim(tblBodyObj.rows[i].cells[2].innerHTML));
-				var result = '(' + Math.floor(content/sum*1000)/10 + '%) ';
-				tblBodyObj.rows[i].cells[3].innerHTML += result;
-			}
-		}
-		var cnt = doc.createElement('div');
-		cnt.innerHTML = '<b>&Sigma; ' + Foxtrick.formatNumber(sum,'.') + '</b>';
-		cnt.setAttribute('style', 'padding-top: 10px;');
-		div.appendChild(cnt);
-	},
-
-	change : function(doc) {
-		var id = "ft_election";
-		if (!doc.getElementById(id))
-			this.run(doc);
 	}
-};
-Foxtrick.util.module.register(FoxtrickElectionTable);
+});
