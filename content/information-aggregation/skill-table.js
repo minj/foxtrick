@@ -83,7 +83,7 @@ var FoxtrickSkillTable = {
 			var fullType = { type : "oldiesAndOwn"};
 			FoxtrickSkillTable.createTable(doc, fullType );
 
-		} catch(e){Foxtrick.log('AddHomegrown',e);}
+		} catch(e){console.log('AddHomegrown',e);}
 	},
 
 	removeBotPlayers : function(ev) {
@@ -136,7 +136,7 @@ var FoxtrickSkillTable = {
 					});
 				}, rows);
 			}
-		} catch(e) {Foxtrick.log('removeBotPlayers',e);}
+		} catch(e) {console.log('removeBotPlayers',e);}
 	},
 
 	showTimeInClub : function(ev) {
@@ -268,7 +268,7 @@ var FoxtrickSkillTable = {
 				}
 			});
 		});
-	  } catch(e) {Foxtrick.log('show joindate',e);}
+	  } catch(e) {console.log('show joindate',e);}
 	},
 
 	showOldiesAndOwn : function(doc) {
@@ -619,6 +619,10 @@ var FoxtrickSkillTable = {
 				cell.textContent = Foxtrick.formatNumber(num, " ");
 				cell.setAttribute("index", num);
 			}
+			var bool = function(cell, val) {
+				if (val==true)
+					cell.textContent = 'X';
+			};
 
 // columns used for table information
 // name: name of the column, used for fetching l10nized string
@@ -654,6 +658,8 @@ var FoxtrickSkillTable = {
 				{ name : "Experience", property : "experience" },
 				{ name : "Form", property : "form" },
 				{ name : "Stamina", property : "stamina" },
+				{ name : "Loyality", property : "loyality", method : skill },
+				{ name : "MotherClubBonus", property : "motherClubBonus", method : bool },
 				{ name : "Keeper", property : "keeper", method: skill },
 				{ name : "Defending", property : "defending", method: skill },
 				{ name : "Playmaking", property : "playmaking", method: skill },
@@ -830,7 +836,7 @@ var FoxtrickSkillTable = {
 
 		}
 		catch (e) {
-			Foxtrick.log(e);
+			console.log(e);
 		}
 	},
 
@@ -921,13 +927,13 @@ var FoxtrickSkillTable = {
 			table.getElementsByTagName("tbody")[0].innerHTML = newBody.innerHTML;
 		}
 		catch (e) {
-			Foxtrick.log(e);
+			console.log(e);
 		}
 		finally {
 			if (ev)
 				ev.stopPropagation();
 		}
-		Foxtrick.log.flush(doc);
+		console.log.flush(doc);
 	},
 
 	view : function(ev) {
@@ -964,7 +970,7 @@ var FoxtrickSkillTable = {
 			doc.location.reload();
 		}
 		catch (e) {
-			Foxtrick.log(e);
+			console.log(e);
 		}
 	},
 
@@ -980,7 +986,7 @@ var FoxtrickSkillTable = {
 			Foxtrick.removeClass(container, "hidden");
 		}
 		catch(e) {
-			Foxtrick.log(e);
+			console.log(e);
 		}
 	},
 
@@ -1024,7 +1030,7 @@ var FoxtrickSkillTable = {
 				}
 			}
 			catch (e) {
-				Foxtrick.log(e);
+				console.log(e);
 			}
 		};
 		Foxtrick.listen(h2, "click", toggleDisplay, false);
@@ -1238,7 +1244,7 @@ var FoxtrickSkillTable = {
 			var note = Foxtrick.util.note.add(doc, table, "ft-skilltable-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.skilltablecopied"), null, true);
 		}
 		catch (e) {
-			Foxtrick.log(e);
+			console.log(e);
 		}
 	},
 
@@ -1266,7 +1272,7 @@ var FoxtrickSkillTable = {
 			return ret;
 		}
 		catch (e) {
-			Foxtrick.log(e);
+			console.log(e);
 		}
 	},
 
