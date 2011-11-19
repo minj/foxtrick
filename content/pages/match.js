@@ -1,3 +1,4 @@
+"use strict";
 /**
  * match.js
  * utilities on match page
@@ -9,19 +10,33 @@ Foxtrick.Pages.Match = {
 		return (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch") != null);
 	},
 
+	isYouth : function(doc) {
+		return (doc.location.search.search(/isYouth=true/i) > -1);
+	},
+
+	getId : function(doc) {
+		try {
+			return (doc.location.search.match(/matchID=(\d+)/i)[1]);
+		}
+		catch (e) {
+			return null;
+		}
+	},
+
 	inProgress : function(doc) {
 		var matchStatus = doc.getElementById("ctl00_ctl00_CPContent_CPMain_lblMatchStatus");
 		return (matchStatus != null) && (matchStatus.textContent != "");
 	},
 
 	getRatingsTable: function(doc) {
-		var ratingstable = null;
-		var tables = doc.getElementById('mainBody').getElementsByTagName('table')
-		if (tables) { //match is ended
-			//finding the right table
-			ratingstable = tables.item(0);
+		try {
+			return doc.getElementById("mainBody")
+				.getElementsByClassName("mainBox")[0]
+				.getElementsByTagName("table")[0];
 		}
-		return ratingstable;
+		catch (e) {
+			return null;
+		}
 	},
 
 	isWalkOver: function(ratingstable) {
@@ -74,7 +89,7 @@ Foxtrick.Pages.Match = {
 			// by HatStatsSeparated in module Ratings
 			var nodeCloned = cell.cloneNode(true);
 			var toRemove = Foxtrick.filter(function(n) {
-					const nn = n.nodeName.toLowerCase();
+					var nn = n.nodeName.toLowerCase();
 					return nn == "a" || nn == "span";
 				}, nodeCloned.childNodes);
 			Foxtrick.map(function(n) { nodeCloned.removeChild(n); }, toRemove);
@@ -84,7 +99,7 @@ Foxtrick.Pages.Match = {
 			if (!subLevelValue)	return -1;
 		}
 		catch (e) {
-			Foxtrick.log(e);
+			Foxtrick.log('getStatFromCell',e, path);
 		}
 
 		return baseValue+parseFloat(subLevelValue);
@@ -98,19 +113,16 @@ Foxtrick.Pages.Match = {
 	},
 
 	getTacticsFromCell: function(cell) {
-		var tactics=Foxtrick.trim(cell.innerHTML);
+		var tactics=Foxtrick.trim(cell.textContent);
 		var lang = FoxtrickPrefs.getString("htLanguage");
 
 		try {
 			var path = "language/tactics/tactic[@value=\"" + tactics + "\"]";
-			subLevelValue = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "type");
-			if (subLevelValue)
-				return subLevelValue;
-			else
-				return -1;
+			var subLevelValue = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "type");
+			return subLevelValue || -1;
 		}
 		catch (e) {
-			Foxtrick.log(e);
+			Foxtrick.log('getTacticsFromCell', e, path);
 		}
 		return null;
 	}
