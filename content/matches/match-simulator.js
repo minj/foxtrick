@@ -383,17 +383,16 @@ Foxtrick.util.module.register({
 									Foxtrick.log(errorText);
 									return;
 								}
-
 								// update match select
-								if (isNew) {
+								if (isNew) { 
 									var option = doc.createElement('option');
 									option.value = selectedMatchXML.getElementsByTagName('MatchID')[0].textContent;
 									var MatchDate = Foxtrick.util.time.buildDate( Foxtrick.util.time.getDateFromText(selectedMatchXML.getElementsByTagName('MatchDate')[0].textContent, 'yyyy-mm-dd') );
 									option.textContent = MatchDate
-														+ ' : ' + selectedMatchXML.getElementsByTagName('HomeTeamName')[0].textContent
+														+ ' : ' + selectedMatchXML.getElementsByTagName('HomeTeamName')[0].textContent.substr(0,20)
 														+ ' ' + selectedMatchXML.getElementsByTagName('HomeGoals')[0].textContent
 														+ ' - ' + selectedMatchXML.getElementsByTagName('AwayGoals')[0].textContent
-														+ ' ' + selectedMatchXML.getElementsByTagName('AwayTeamName')[0].textContent;
+														+ ' ' + selectedMatchXML.getElementsByTagName('AwayTeamName')[0].textContent.substr(0,20);
 									select.appendChild(option);
 									select.selectedIndex = select.options.length-1;
 								}
@@ -560,10 +559,10 @@ Foxtrick.util.module.register({
 							option.value = otherMatchesNodes[i].getElementsByTagName('MatchID')[0].textContent;
 							var MatchDate = Foxtrick.util.time.buildDate( Foxtrick.util.time.getDateFromText(otherMatchesNodes[i].getElementsByTagName('MatchDate')[0].textContent, 'yyyy-mm-dd') );
 							option.textContent = MatchDate
-												+ ' : ' + otherMatchesNodes[i].getElementsByTagName('HomeTeamName')[0].textContent
-												+ ' ' + otherMatchesNodes[i].getElementsByTagName('HomeGoals')[0].textContent
-												+ ' - ' + otherMatchesNodes[i].getElementsByTagName('AwayGoals')[0].textContent
-												+ ' ' + otherMatchesNodes[i].getElementsByTagName('AwayTeamName')[0].textContent;
+												+ ' : ' + otherMatchesNodes[i].getElementsByTagName('HomeTeamName')[0].textContent.substr(0,20)
+												+ ' - ' + otherMatchesNodes[i].getElementsByTagName('HomeGoals')[0].textContent
+												+ ':' + otherMatchesNodes[i].getElementsByTagName('AwayGoals')[0].textContent
+												+ ' - ' + otherMatchesNodes[i].getElementsByTagName('AwayTeamName')[0].textContent.substr(0,20);
 							select.appendChild(option);
 							
 						}
