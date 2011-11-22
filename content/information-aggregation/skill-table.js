@@ -89,7 +89,8 @@ Foxtrick.util.module.register({
 					};
 					
 					allPlayerInfo = doc.getElementsByClassName("playerInfo");
-					var dates = Foxtrick.Pages.Players.getLastMatchDates(allPlayerInfo, getLastMatchDates);
+					// (assumes that if there are less then 7 players at a match date that is was a transfer and disregards those)
+					var dates = Foxtrick.Pages.Players.getLastMatchDates(allPlayerInfo, getLastMatchDates, 7);
 					
 					var lastMatchDate = dates.lastMatchDate;
 					var secondLastMatchDate = dates.secondLastMatchDate;

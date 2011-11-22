@@ -23,6 +23,8 @@ Foxtrick.util.module.register({
 		var hasInterface = false;
 		var playerList = null;
 		var teamid = Foxtrick.util.id.findTeamId(doc.getElementById('mainWrapper'));
+		//store most accurate list on first load
+		var lastMatchDates = null;
 		
 		// load ahead players and then wait for interface loaded
 		// youth has no api to get
@@ -78,24 +80,33 @@ Foxtrick.util.module.register({
 						return 0;
 				};
 				var players = doc.getElementById('players').getElementsByClassName('player');
-				var lastMatchDates = Foxtrick.Pages.Players.getLastMatchDates (players, getLastMatchDates);
-
+				
+				//only get the lastMatchDates
+				if( !lastMatchDates )
+					lastMatchDates = Foxtrick.Pages.Players.getLastMatchDates (players, getLastMatchDates);
+				
 				if (lastMatchDates) {
 					for (var i=0; i<players.length; ++i) {
 						if (!players[i].id) 
 							continue;
 						var id = Number(players[i].id.match(/list_playerID(\d+)/i)[1]);
 						var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
+
+							
 						if (player.lastMatchDate)
 							var matchDay = Foxtrick.util.time.getDateFromText(player.lastMatchDate,'yyyy-mm-dd').getTime();
 						else
 							var matchDay = 0;
-						if (matchDay == lastMatchDates.lastMatchDate)
+						if (matchDay == lastMatchDates.lastMatchDate){
+							//Foxtrick.log(id, 'playedLast', player.lastMatchDate)
 							Foxtrick.addClass( players[i],'playedLast'); 
-						else if (matchDay == lastMatchDates.secondLastMatchDate)
+						}else if (matchDay == lastMatchDates.secondLastMatchDate){
+							//Foxtrick.log(id, 'playedSecondLast', player.lastMatchDate)
 							Foxtrick.addClass( players[i],'playedSecondLast'); 
-						else 
+						}else {
+							//Foxtrick.log(id, 'playedOther', player.lastMatchDate)
 							Foxtrick.addClass( players[i],'playedOther'); 
+						}
 					}
 				}
 				
