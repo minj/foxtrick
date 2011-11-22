@@ -91,22 +91,17 @@ Foxtrick.util.module.register({
 							continue;
 						var id = Number(players[i].id.match(/list_playerID(\d+)/i)[1]);
 						var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
-
 							
 						if (player.lastMatchDate)
 							var matchDay = Foxtrick.util.time.getDateFromText(player.lastMatchDate,'yyyy-mm-dd').getTime();
 						else
 							var matchDay = 0;
-						if (matchDay == lastMatchDates.lastMatchDate){
-							//Foxtrick.log(id, 'playedLast', player.lastMatchDate)
+						if (matchDay == lastMatchDates.lastMatchDate)
 							Foxtrick.addClass( players[i],'playedLast'); 
-						}else if (matchDay == lastMatchDates.secondLastMatchDate){
-							//Foxtrick.log(id, 'playedSecondLast', player.lastMatchDate)
+						else if (matchDay == lastMatchDates.secondLastMatchDate)
 							Foxtrick.addClass( players[i],'playedSecondLast'); 
-						}else {
-							//Foxtrick.log(id, 'playedOther', player.lastMatchDate)
-							Foxtrick.addClass( players[i],'playedOther'); 
-						}
+						else 
+							Foxtrick.addClass( players[i],'playedOther'); 						
 					}
 				}
 				
