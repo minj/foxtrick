@@ -47,10 +47,16 @@ Foxtrick.filePickerForDataUrl = function(doc, callback) {
 		var file = ev.target.files[0];
 		var reader = new window.FileReader();
 		reader.onerror = function(e) {
-			alert('Error code: ' + e.target.error.code);
+			window.alert('Error code: ' + e.target.error.code);
+			calback(null);
 		};
 		reader.onload = function(evt) {
-			callback(evt.target.result);
+			var dataUrl = evt.target.result;
+			if (dataUrl.length > 64000) {
+				window.alert('File too large');
+				dataUrl = null;
+			}
+			callback(dataUrl);
 		}
 		reader.readAsDataURL(file);
 	}, false);
@@ -64,10 +70,16 @@ Foxtrick.filePickerForText = function(doc, callback) {
 		var file = ev.target.files[0];
 		var reader = new window.FileReader();
 		reader.onerror = function(e) {
-			alert('Error code: ' + e.target.error.code);
+			window.alert('Error code: ' + e.target.error.code);
+			callback(null);
 		};
 		reader.onload = function(evt) {
-			callback(evt.target.result);
+			var text = evt.target.result;
+			if (text.length > 64000) {
+				window.alert('File too large');
+				text = null;
+			}
+			callback(text);
 		}
 		reader.readAsText(file);
 	}, false);
