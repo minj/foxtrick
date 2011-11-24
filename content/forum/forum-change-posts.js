@@ -432,27 +432,27 @@ Foxtrick.util.module.register({
 							
 						try {
 							var embed = function(src, link){
-								var videocontainer = doc.createElement('div');
-								videocontainer.setAttribute('style', "text-align:center;");
+								//var videocontainer = doc.createElement('div');
+								//videocontainer.setAttribute('style', "text-align:center;");
 								var iframe = doc.createElement('iframe');
 								iframe.setAttribute('width', "400");
 								iframe.setAttribute('height', "334");
 								iframe.setAttribute('src', src);
 								iframe.setAttribute('frameborder','0');
-								videocontainer.appendChild(iframe);
-								link.parentNode.replaceChild(videocontainer,link);
+								//videocontainer.appendChild(iframe);
+								link.parentNode.replaceChild(iframe,link);
 							}
 							var div = doc.createElement('div');
 							var header_a = doc.createElement('a');
 							header_a.textContent = link.textContent;
 							header_a.href=link.href
 							div.appendChild(header_a)
-							Foxtrick.addClass(div, 'ft-media-expander-unexpanded'); 
+							Foxtrick.addClass(div, 'ft-media-expander-unexpanded ' + site); 
 							link.parentNode.insertBefore(div, link);
 							var videocontainer = doc.createElement('div');
-							Foxtrick.addClass(videocontainer, 'hidden')
+							Foxtrick.addClass(videocontainer, 'hidden ft-media-container')
 							var a = doc.createElement('a');
-							a.href=src
+							a.href = src
 							videocontainer.appendChild(a);
 							link.parentNode.replaceChild(videocontainer, link);
 							Foxtrick.listen(div, "click", function(ev){
@@ -472,7 +472,7 @@ Foxtrick.util.module.register({
 							continue;
 						} 
 						catch(e){
-							Foxtrick.log("MEDIA REPLACE add iframe", e);
+							Foxtrick.log("MEDIA REPLACE", e);
 						}
 					}
 				}
