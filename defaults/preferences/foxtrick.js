@@ -47,7 +47,7 @@ pref("extensions.foxtrick.prefs.module.CurrencyConverter.enabled", false);
 pref("extensions.foxtrick.prefs.module.CurrencyConverter.to", "EUR");
 pref("extensions.foxtrick.prefs.module.CustomMedals.enabled", false);
 pref("extensions.foxtrick.prefs.module.ElectionTable.enabled", true);
-pref("extensions.foxtrick.prefs.module.EmbedMedia.enabled", false);
+pref("extensions.foxtrick.prefs.module.EmbedMedia.enabled", true);
 pref("extensions.foxtrick.prefs.module.EmbedMedia.EmbedYoutubeVideos.enabled", true);
 pref("extensions.foxtrick.prefs.module.EmbedMedia.EmbedVimeoVideos.enabled", true);
 pref("extensions.foxtrick.prefs.module.EmbedMedia.EmbedFunnyOrDieVideos.enabled", true);
