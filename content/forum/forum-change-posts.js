@@ -431,48 +431,45 @@ Foxtrick.util.module.register({
 							continue;
 							
 						try {
-								var embed = function(src, link){
-									var videocontainer = doc.createElement('div');
-									videocontainer.setAttribute('style', "text-align:center;");
-									var iframe = doc.createElement('iframe');
-									iframe.setAttribute('width', "400");
-									iframe.setAttribute('height', "334");
-									iframe.setAttribute('src', src);
-									iframe.setAttribute('frameborder','0');
-									videocontainer.appendChild(iframe);
-									link.parentNode.replaceChild(videocontainer,link);
-								}
-							
-								var div = doc.createElement('div');
-								var header_a = doc.createElement('a');
-								header_a.textContent = link.textContent;
-								header_a.href=link.href
-								div.appendChild(header_a)
-								Foxtrick.addClass(div, 'ft-media-expander-unexpanded'); 
-								link.parentNode.insertBefore(div, link);
+							var embed = function(src, link){
 								var videocontainer = doc.createElement('div');
-								Foxtrick.addClass(videocontainer, 'hidden')
-								var a = doc.createElement('a');
-								a.href=src
-								videocontainer.appendChild(a);
-								link.parentNode.replaceChild(videocontainer, link);
-								Foxtrick.listen(div, "click", function(ev){
-									if(!Foxtrick.hasClass(ev.target.nextSibling,'ft-media-embedded')){
-										embed(ev.target.nextSibling.firstChild.href, ev.target.nextSibling.firstChild);
-										Foxtrick.addClass(ev.target.nextSibling,'ft-media-embedded')
-									}	
-									Foxtrick.toggleClass(ev.target.nextSibling,'hidden');
-									if(Foxtrick.hasClass(ev.target,'ft-media-expander-unexpanded')){
-										Foxtrick.removeClass(ev.target,'ft-media-expander-unexpanded')
-										Foxtrick.addClass(ev.target,'ft-media-expander-expanded')
-									}else{
-										Foxtrick.removeClass(ev.target,'ft-media-expander-expanded')
-										Foxtrick.addClass(ev.target,'ft-media-expander-unexpanded')
-										}
-								}, false);
-								continue;
-								
-							
+								videocontainer.setAttribute('style', "text-align:center;");
+								var iframe = doc.createElement('iframe');
+								iframe.setAttribute('width', "400");
+								iframe.setAttribute('height', "334");
+								iframe.setAttribute('src', src);
+								iframe.setAttribute('frameborder','0');
+								videocontainer.appendChild(iframe);
+								link.parentNode.replaceChild(videocontainer,link);
+							}
+							var div = doc.createElement('div');
+							var header_a = doc.createElement('a');
+							header_a.textContent = link.textContent;
+							header_a.href=link.href
+							div.appendChild(header_a)
+							Foxtrick.addClass(div, 'ft-media-expander-unexpanded'); 
+							link.parentNode.insertBefore(div, link);
+							var videocontainer = doc.createElement('div');
+							Foxtrick.addClass(videocontainer, 'hidden')
+							var a = doc.createElement('a');
+							a.href=src
+							videocontainer.appendChild(a);
+							link.parentNode.replaceChild(videocontainer, link);
+							Foxtrick.listen(div, "click", function(ev){
+								if(!Foxtrick.hasClass(ev.target.nextSibling,'ft-media-embedded')){
+									embed(ev.target.nextSibling.firstChild.href, ev.target.nextSibling.firstChild);
+									Foxtrick.addClass(ev.target.nextSibling,'ft-media-embedded')
+								}	
+								Foxtrick.toggleClass(ev.target.nextSibling,'hidden');
+								if(Foxtrick.hasClass(ev.target,'ft-media-expander-unexpanded')){
+									Foxtrick.removeClass(ev.target,'ft-media-expander-unexpanded')
+									Foxtrick.addClass(ev.target,'ft-media-expander-expanded')
+								}else{
+									Foxtrick.removeClass(ev.target,'ft-media-expander-expanded')
+									Foxtrick.addClass(ev.target,'ft-media-expander-unexpanded')
+									}
+							}, false);
+							continue;
 						} 
 						catch(e){
 							Foxtrick.log("MEDIA REPLACE add iframe", e);
