@@ -71,6 +71,32 @@ html[dir="rtl"] h3.ft-expander-unexpanded, html[dir="rtl"] h3.ft-expander-expand
 	padding-right: 20px !important;
 }
 
+/*ft-embed-media expander prototype*/
+div.ft-media-expander-unexpanded {
+	background-image: url("chrome://foxtrick/content/resources/img/down.gif");
+	padding-right: 20px !important;
+	cursor: pointer;
+	background-repeat: no-repeat;
+}
+div.ft-media-expander-expanded {
+	background-image: url("chrome://foxtrick/content/resources/img/up.gif");
+	padding-right: 20px !important;
+	cursor: pointer;
+	background-repeat: no-repeat;
+}
+html[dir="ltr"] div.ft-media-expander-unexpanded {
+	background-position: right;
+}
+html[dir="rtl"] div.ft-media-expander-unexpanded {
+	background-position: left;
+}
+html[dir="ltr"] div.ft-media-expander-expanded {
+	background-position: right;
+}
+html[dir="rtl"] div.ft-media-expander-expanded {
+	background-position: left;
+}
+
 /*Forum HighlighthreadOpener PostID*/
 .ft_slH_PID_right, .ft_slH_PID_left {background-color:#000000!important;}
 
