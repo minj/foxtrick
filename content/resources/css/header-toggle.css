@@ -6,7 +6,7 @@
 }
 
 /* removing toggle icon for my-monitor */
-#ft-monitor-container div.ft-monitor-frame h2.ft-contractable-header
+#ft-monitor-container div.ft-monitor-frame
 {
 	background-image: none;
 }
