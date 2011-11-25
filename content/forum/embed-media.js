@@ -9,7 +9,7 @@ Foxtrick.util.module.register({
 	MODULE_NAME : "EmbedMedia",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
-	NICE : 50,
+	NICE : 1,
 	OPTIONS : ['EmbedYoutubeVideos','EmbedVimeoVideos', 'EmbedFunnyOrDieVideos', 'EmbedDailymotionVideos'],
 	CSS : Foxtrick.InternalPath + "resources/css/embed-media.css",
 
