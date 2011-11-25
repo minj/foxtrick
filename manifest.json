@@ -50,6 +50,7 @@
 			"content/forum/forum-templates.js",
 			"content/forum/forum-thread-auto-ignore.js",
 			"content/forum/forum-youth-icons.js",
+			"content/forum/embed-media.js",
 			"content/forum/go-to-post-box.js",
 			"content/forum/hide-signatures.js",
 			"content/forum/ht-thread-marker.js",

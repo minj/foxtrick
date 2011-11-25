@@ -71,6 +71,7 @@
 <script type="application/x-javascript" src="./forum/forum-templates.js"></script>
 <script type="application/x-javascript" src="./forum/forum-thread-auto-ignore.js"></script>
 <script type="application/x-javascript" src="./forum/forum-youth-icons.js"></script>
+<script type="application/x-javascript" src="./forum/embed-media.js"></script>
 <script type="application/x-javascript" src="./forum/go-to-post-box.js"></script>
 <script type="application/x-javascript" src="./forum/hide-signatures.js"></script>
 <script type="application/x-javascript" src="./forum/ht-thread-marker.js"></script>

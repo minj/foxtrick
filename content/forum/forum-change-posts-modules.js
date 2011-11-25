@@ -171,15 +171,3 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
 });
-
-/**
- * Embed Media
- * @author CatzHoek
- */
-
-Foxtrick.util.module.register({
-	MODULE_NAME : "EmbedMedia",
-	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array("forumViewThread"),
-	OPTIONS : ['EmbedYoutubeVideos','EmbedVimeoVideos', 'EmbedFunnyOrDieVideos', 'EmbedDailymotionVideos'],
-});
