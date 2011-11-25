@@ -89,8 +89,8 @@ specifications:
 Generally speaking, all properties except the MODULE_NAME could be omitted.
 
 After creating that JavaScript file and placing it under the appropriate
-directory, you should add a line to content/foxtrick.xul and
-content/preferences.html respectively to inform the browser to load
+directory, you should add a line to content/overlay.xul,
+content/preferences.html and content/background.html respectively to inform the browser to load
 your script:
 <script type="application/x-javascript" src="chrome://foxtrick/content/category/module.js" />
 
@@ -174,3 +174,4 @@ Ryan Li <ryan@ryanium.com>
 26 June 2010
 Revised 11 June 2011
 Revised 17 July 2011
+Revised 25 November 2011 (CatzHoek)
