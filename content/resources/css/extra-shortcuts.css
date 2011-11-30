@@ -25,4 +25,8 @@
 	background-image: url('chrome://foxtrick/content/resources/img/shortcuts/foxtrick.png') !important;
 }
 
+#header a[target="_blank"] img {
+	margin-right: 160px;
+}
+
 }
