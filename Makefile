@@ -59,7 +59,6 @@ CONTENT_FILES = add-class.js \
 	prefs.js \
 	read-ht-prefs.js \
 	redirections.js \
-	ui.js \
 	xml-load.js
 CONTENT_FILES_FIREFOX = $(CONTENT_FILES) overlay.xul \
 	overlay-fennec.xul \
