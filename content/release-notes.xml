@@ -14,6 +14,16 @@
 <item>You could prevent FoxTrick from poping up this release note after each update by disabling "Show release notes after FoxTrick updates" in <xhtml:a href="#tab=main">main tab</xhtml:a>.</item>
 </note>
 
+<note version="0.8.1">
+<item><module>ElectionTable</module>: adapted to new election page layout. (convincedd, ryanli)</item>
+<item><module>HTThreadMarker</module>: new style. (convincedd, ryanli)</item>
+<item><module>TableSort</module>: prevent conflicting with Hattrick's sorting. (convincedd)</item>
+<item><module>HTMSPrediction</module>, <module>CopyRatings</module>: adapted to new match report layout. (convincedd)</item>
+<item><module>LineupShortcut</module>: also show for non-supporters now. (ryanli)</item>
+<item><module>TransferSearchResultFilters</module>: fix after latest changes. (convincedd)</item>
+<item><module>SkillTable</module>: include loyalty and mother club bonus. (convincedd)</item>
+</note>
+
 <note version="0.8">
 <item>Arabic locale. (GM-OmaniMilani)</item>
 <item>New mechanism for viewing modules by page, old module OnPagePrefs thereby removed. (convincedd, ryanli)</item>
