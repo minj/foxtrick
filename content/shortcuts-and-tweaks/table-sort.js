@@ -74,7 +74,7 @@ Foxtrick.util.module.register({
 					return text;
 				};
 			
-				var is_num = true, is_age=true, is_youthskill = true, is_ordinal=true, is_date=true, is_skill=true;
+				var is_num = true, is_age=true, is_age_brackets=true, is_youthskill = true, is_ordinal=true, is_date=true, is_skill=true;
 				var num_cols = table.rows[sort_start+1].cells.length;
 				for (var i = sort_start+1; i < table.rows.length; ++i) {
 
@@ -89,10 +89,12 @@ Foxtrick.util.module.register({
 						}
 					}
 
+					
 					// get sorting format
 					var inner = getText(table.rows[i].cells[tdindex]);
 					if (isNaN(parseInt(inner.replace(/\u202d|&nbsp;|\s+/g,''))) && inner!='') {is_num=false;}
 					if (inner.search(/^(-|\d)\/(-|\d)$/)==-1 && inner!='') {is_youthskill=false;}
+					if (inner.search(/^\d+\W\(\d+\)$/)==-1 && inner!='') {is_age_parentheses=false;}
 					if (inner.search(/^\d+\.\d+$/)==-1 && inner!='') {is_age=false;}
 					if (inner.search(/^\d+\./)==-1 && inner!='') {is_ordinal=false;}
 					if (!Foxtrick.util.time.getDateFromText(inner)) {is_date=false;}
@@ -148,8 +150,15 @@ Foxtrick.util.module.register({
 					}
 					else if (is_age) {
 						aContent = aContent.match(/^(\d+)\.(\d+)$/);
-						aContent = parseInt(aContent[1]) * 1000 + parseInt(aContent[2]) ;
+						aContent = parseInt(aContent[1]) * 1000 + parseInt(aContent[2]) ;						
 						bContent = bContent.match(/^(\d+)\.(\d+)$/);
+						bContent = parseInt(bContent[1]) * 1000 + parseInt(bContent[2]);						
+						return direction * (aContent - bContent);
+					} 
+					else if (is_age_parentheses) {
+						aContent = aContent.match(/^(\d+)\W\((\d+)\)$/);
+						aContent = parseInt(aContent[1]) * 1000 + parseInt(aContent[2]) ;
+						bContent = bContent.match(/^(\d+)\W\((\d+)\)$/);
 						bContent = parseInt(bContent[1]) * 1000 + parseInt(bContent[2]);
 						return direction * (aContent - bContent);
 					}
