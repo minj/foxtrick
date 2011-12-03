@@ -426,7 +426,7 @@ Foxtrick.util.module.register({
 									{type:'RatingMidfield'},
 									{type:'RatingLeftDef'},
 									{type:'RatingMidDef'},
-									{type:'RatingLeftDef'},
+									{type:'RatingRightDef'},
 									{type:'TacticType'},
 									{type:'TacticSkill'}
 								];
