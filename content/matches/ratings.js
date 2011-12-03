@@ -75,8 +75,7 @@ Foxtrick.util.module.register({
 			if (!FoxtrickPrefs.isModuleOptionEnabled("Ratings", selectedRating)) continue;
 
 			var row = ratingstable.insertRow(-1);
-			// to be added if needed by foxlinks
-			//row.className='ft_rating_table_row';
+			row.className='ft_rating_table_row';
 
 			var cell = row.insertCell(0);
 			cell.className='ch';
