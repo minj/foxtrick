@@ -49,7 +49,6 @@ Foxtrick.Pages.Players = {
 			if ( isYouth ) {
 				args.push(["file", "youthplayerlist"]);
 				args.push(["actionType", "details"]);
-				args.push(["showLastMatch", "true"]);				
 			}
 			else if (Foxtrick.Pages.Players.isNtPlayersPage(doc)) {
 				args.push(["file", "nationalplayers"]);
@@ -67,9 +66,10 @@ Foxtrick.Pages.Players = {
 						args.push(["actionType", "viewOldCoaches"]);
 				}
 			}
-			if (options && options.includeMatchInfo==true)
-				args.push(["includeMatchInfo","true"]);
-			 
+			if (options && options.includeMatchInfo==true) {
+				args.push(["includeMatchInfo","true"]);  // senior
+				args.push(["showLastMatch", "true"]);	 // youth			
+			}
 			Foxtrick.util.api.retrieve(doc, args,{ cache_lifetime:'session'}, callback);
 		};
 
