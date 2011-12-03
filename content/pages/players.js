@@ -276,7 +276,6 @@ Foxtrick.Pages.Players = {
 		var parseHtml = function() {
 			// preparation steps
 			var isOwn = Foxtrick.Pages.Players.isOwnPlayersPage(doc);
-			var isYouth = Foxtrick.Pages.Players.isYouthPlayersPage(doc);
 
 			var playerNodes = doc.getElementsByClassName("playerInfo");
 			for (var i = 0; i < playerNodes.length; ++i) {
