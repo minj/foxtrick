@@ -13,6 +13,16 @@
 		<item>Пожалуйста, посмотрите <xhtml:a href="http://code.google.com/p/foxtrick/source/list">историю изменений</xhtml:a> на сайте Google Code для деталей.</item>
 	</note>
 
+	<note version="0.8.1">
+		<item>Модуль <module>ElectionTable</module>: адаптация к новому виду таблицы голосования (convincedd, ryanli).</item>
+		<item>Модуль <module>HTThreadMarker</module>: новый вид (convincedd, ryanli).</item>
+		<item>Модуль <module>TableSort</module>: предотвращение конфликтования с собственной сортировкой HT (convincedd).</item>
+		<item>Модули <module>HTMSPrediction</module>, <module>CopyRatings</module>: адаптация к новоми виду отчёта о матче (convincedd).</item>
+		<item>Модуль <module>LineupShortcut</module>: также показывается для не-supporter-ов (ryanli).</item>
+		<item>Модуль <module>TransferSearchResultFilters</module>: исправление согласно последним изменениям (convincedd).</item>
+		<item>Модуль <module>SkillTable</module>: включение преданности и бонуса родного клуба (convincedd).</item>
+	</note>
+
 	<note version="0.8">
 		<item>Арабский перевод (GM-OmaniMilani).</item>
 		<item>Новый механизм для отображения используемых модулей на странице, соответственно старый модуль OnPagePrefs был удалён (convincedd, ryanli).</item>
@@ -24,7 +34,7 @@
 		<item>Параметр для скрытия поля приглашений в левом меню в модуле <module>FixcssProblems</module> (ryanli).</item>
 		<item>Параметр для уменьшения высоты календаря в модуле <module>FixcssProblems</module> (ryanli).</item>
 		<item>Ссылка на страницу настроек приложений CHPP в модуле <module>ExtraShortcuts</module> (ljushaff).</item>
-		<item>Параметр для расцветки навыков игроков юношеской команды в модуле <module>SkillTable</module> (asdfasdfasdf@mailinator.com).</item>
+		<item>Параметр для расцветки навыков игроков юношеской команды в модуле <module>SkillTable</module> (foulpelz).</item>
 		<item>Параметр для проигрывания звука в модуле <module>LiveAlert</module> (ryanli).</item>
 		<item>Параметр для показа значков команд в модуле <module>MyMonitor</module>, и команды в нём теперь можно отсортировать (convincedd).</item>
 		<item>Параметр для вставки отладочного протокола FoxTrick в сообщение форума в модуле <module>ForumYouthIcons</module> (convincedd).</item>
