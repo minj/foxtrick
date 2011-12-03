@@ -29,12 +29,12 @@
 
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
-		<position type="Keeper" value="Vartininkas" short="Ke" />
-		<position type="Central defender" value="Vidurio gynėjas" short="Cd" />
-		<position type="Wing back" value="Krašto gynėjas" short="Wb" />
-		<position type="Inner midfielder" value="Saugas" short="Im" />
-		<position type="Winger" value="Krašto saugas" short="Wi" />
-		<position type="Forward" value="Puolėjas" short="Fo" />
+		<position type="Keeper" value="Vartininkas" short="Vr" />
+		<position type="Central defender" value="Vidurio gynėjas" short="Cg" />
+		<position type="Wing back" value="Krašto gynėjas" short="Kg" />
+		<position type="Inner midfielder" value="Saugas" short="Cs" />
+		<position type="Winger" value="Krašto saugas" short="Ks" />
+		<position type="Forward" value="Puolėjas" short="Pl" />
 	</positions>
 
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
