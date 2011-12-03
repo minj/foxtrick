@@ -29,22 +29,31 @@ Foxtrick.Pages.Players = {
 		return (doc.location.href.indexOf("Coaches\.aspx") != -1);
 	},
 
-	getPlayerList : function(doc, callback, options) {
+	getPlayerList : function(doc, callback, options) { 
 		var playerList = [];
 
 		var getXml = function(doc, callback) {
-			if (!Foxtrick.Pages.Players.isSeniorPlayersPage(doc) && !(options && options.current_squad)) {
+			/*if (!Foxtrick.Pages.Players.isSeniorPlayersPage(doc) && !(options && options.current_squad)) {
 				// not the page we are looking for
 				Foxtrick.log('players: wrong page');
 				callback(null);
 				return;
-			}
+			}*/
 			var args = [];
 			if (options && options.teamid)
 				args.push(["teamId", options.teamid]);
-			else if (doc.location.href.match(/teamid=(\d)/i))
-				args.push(["teamId", doc.location.href.match(/teamid=(\d+)/i)[1]]);
-			if (Foxtrick.Pages.Players.isNtPlayersPage(doc)) {
+			else if (doc.location.href.match(/teamid=(\d)/i)) {
+				if (!(Foxtrick.Pages.Players.isYouthPlayersPage(doc)))
+					args.push(["teamId", doc.location.href.match(/teamid=(\d+)/i)[1]]);
+				else 
+					args.push(["youthTeamID", doc.location.href.match(/teamid=(\d+)/i)[1]]);
+			}	
+			if (Foxtrick.Pages.Players.isYouthPlayersPage(doc)) {
+				args.push(["file", "youthplayerlist"]);
+				args.push(["actionType", "details"]);
+				//args.push(["showLastMatch", "showLastMatch"]);
+			}
+			else if (Foxtrick.Pages.Players.isNtPlayersPage(doc)) {
 				args.push(["file", "nationalplayers"]);
 				args.push(["ShowAll", "true"]);
 				args.push(["actionType", "supporterstats"]);
@@ -67,13 +76,20 @@ Foxtrick.Pages.Players = {
 		};
 
 		var parseXml = function(xml) { 
-		try {
+		try { 
 			if (!xml)
 				return;
-			var playerNodes = xml.getElementsByTagName("Player");
+			if (!(Foxtrick.Pages.Players.isYouthPlayersPage(doc)))
+				var playerNodes = xml.getElementsByTagName("Player");
+			else
+				var playerNodes = xml.getElementsByTagName("YouthPlayer");
 			for (var i = 0; i < playerNodes.length; ++i) {
-				var playerNode = playerNodes[i];
-				var id = Number(playerNode.getElementsByTagName("PlayerID")[0].textContent);
+				var playerNode = playerNodes[i]; 
+			
+				if (!(Foxtrick.Pages.Players.isYouthPlayersPage(doc)))
+					var id = Number(playerNode.getElementsByTagName("PlayerID")[0].textContent);
+				else
+					var id = Number(playerNode.getElementsByTagName("YouthPlayerID")[0].textContent);
 				// find player with the same ID from playerList (parsed from
 				// HTML)
 				var player = null, j;
@@ -134,11 +150,11 @@ Foxtrick.Pages.Players = {
 							player.lastMatchId = Number(LastMatch.getElementsByTagName("MatchId")[0].textContent);
 							player.lastMatchDate = LastMatch.getElementsByTagName("Date")[0].textContent;
 						}
-					if (playerNode.getElementsByTagName("Loyalty").length) 
-						player.loyality = Number(playerNode.getElementsByTagName("Loyalty")[0].textContent);
-					if (playerNode.getElementsByTagName("MotherClubBonus").length) 
-						player.motherClubBonus  = playerNode.getElementsByTagName("MotherClubBonus")[0].textContent=='True';
-					}
+						if (playerNode.getElementsByTagName("Loyalty").length) 
+							player.loyality = Number(playerNode.getElementsByTagName("Loyalty")[0].textContent);
+						if (playerNode.getElementsByTagName("MotherClubBonus").length) 
+							player.motherClubBonus  = (playerNode.getElementsByTagName("MotherClubBonus")[0].textContent=='True') ? 1 : 0;
+						}
 				}
 
 				// we found this player in the XML file,
@@ -268,6 +284,19 @@ Foxtrick.Pages.Players = {
 					player.lastPositionCode = Number(LastMatch.getElementsByTagName("PositionCode")[0].textContent);
 					var position = Foxtrickl10n.getPositionByType(MatchRoleIDToPosition[player.lastPositionCode]);
 					player.lastMatchText = Foxtrickl10n.getString('Last_match_played_as').replace('%1',player.lastPlayedMinutes).replace('%2', position);
+				}
+				
+				if (playerNode.getElementsByTagName("CanBePromotedIn").length) {
+					player.canBePromotedIn = playerNode.getElementsByTagName("CanBePromotedIn")[0].textContent;
+				}
+				if (playerNode.getElementsByTagName("ArrivalDate").length) {
+					player.joinedSince = playerNode.getElementsByTagName("ArrivalDate")[0].textContent;
+				}
+				if (playerNode.getElementsByTagName("OwnerNotes").length) {
+					player.ownerNotes = playerNode.getElementsByTagName("OwnerNotes")[0].textContent;
+				}
+				if (playerNode.getElementsByTagName("Statement").length) {
+					player.statement = playerNode.getElementsByTagName("Statement")[0].textContent;
 				}
 			}
 		} catch(e) {Foxtrick.log(e);}
@@ -452,7 +481,6 @@ Foxtrick.Pages.Players = {
 				player.injured = false;
 				player.bruised = false;
 				player.injuredWeeks = 0;
-				player.motherClubBonus = false
 				// only senior players can be transfer-listed
 				if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc)) {
 					player.transferListed = false;

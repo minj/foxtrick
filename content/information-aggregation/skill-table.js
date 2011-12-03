@@ -66,7 +66,7 @@ Foxtrick.util.module.register({
 			FoxtrickPrefs.setBool("module.SkillTable." + fullTypeToString(fullType) + "." + name, enabled);
 		};
 		var showTable = function(playerList) {
-			try {
+			try { 
 				// clear old table and loading note
 				doc.getElementsByClassName("ft_skilltable_wrapper")[0].innerHTML='';
 				var fullType = getFullType(doc);
@@ -331,10 +331,14 @@ Foxtrick.util.module.register({
 					cell.setAttribute("index", num);
 				};
 				var bool = function(cell, val) {
-					if (val==true)
+					if (val)
 						cell.textContent = 'X';
 				};
-
+				var date = function(cell, val) {
+					cell.textContent = val;
+					cell.setAttribute("date", "true");
+				}
+					
 				// columns used for table information
 				// name: name of the column, used for fetching l10nized string
 				// property: value used to retrieve data from Foxtrick.Pages.Players.getPlayerList()
@@ -362,6 +366,8 @@ Foxtrick.util.module.register({
 					{ name : "CurrentBidderShort", property : "currentBidderLinkShort", method : link, sortString : true },
 					{ name : "Hotlist", property : "hotlistLink", method : link, sortString : true },
 					{ name : "Age", property : "age", method : age, sortAsc : true },
+					{ name : "JoinedSince", property : "joinedSince", method : dateText},
+					{ name : "CanBePromotedIn", property : "canBePromotedIn"},
 					{ name : "TSI", property : "tsi", alignRight : true, method : formatNum },
 					{ name : "Status", properties : ["yellowCard", "redCard", "bruised", "injuredWeeks", "transferListed"], method : status },
 					{ name : "Speciality", property : "speciality", method : speciality, sortString : true },
@@ -370,7 +376,7 @@ Foxtrick.util.module.register({
 					{ name : "Form", property : "form", method : skill },
 					{ name : "Stamina", property : "stamina", method : skill },
 					{ name : "Loyality", property : "loyality", method : skill },
-					{ name : "MotherClubBonus", property : "motherClubBonus", method : bool },
+					{ name : "MotherClubBonus", property : "motherClubBonus", method : bool, sortString : true },
 					{ name : "Keeper", property : "keeper", method: skill },
 					{ name : "Defending", property : "defending", method: skill },
 					{ name : "Playmaking", property : "playmaking", method: skill },
@@ -396,12 +402,11 @@ Foxtrick.util.module.register({
 					{ name : "FriendliesGoals", property : "friendliesGoals" },
 					{ name : "CareerGoals", property : "careerGoals" },
 					{ name : "Hattricks", property : "hattricks" },
-					{ name : "JoinedSince", property : "joinedSince", method : dateText},
-					{ name : "HomeGrown", property : "homeGrown", method : link},
 					{ name : "Deadline", property : "deadline", method : dateLink },
 					{ name : "Current_club", property : "currentClubLink", method : link, sortString : true },
 					{ name : "Current_league", property : "currentLeagueId", method: league, sortString : true },
-					{ name : "TransferCompare", property : "transferCompare", method : link}
+					{ name : "TransferCompare", property : "transferCompare", method : link},
+					{ name : "OwnerNotes", property : "OwnerNotes"}
 				];
 
 				for (j = 0; j < columns.length; ++j) {
@@ -516,6 +521,7 @@ Foxtrick.util.module.register({
 
 
 						var sortString = head.hasAttribute("sort-string");
+						var sortDate = head.hasAttribute("sort-date");
 
 						var table = doc.getElementById("ft_skilltable");
 
@@ -544,6 +550,7 @@ Foxtrick.util.module.register({
 								aContent = a.cells[sortIndex].textContent;
 								bContent = b.cells[sortIndex].textContent;
 							}
+							
 							if (aContent === bContent) {
 								return lastSort;
 							}
@@ -562,6 +569,16 @@ Foxtrick.util.module.register({
 								}
 								else {
 									return aContent.localeCompare(bContent);
+								}
+							}
+							else if (sortDate) {
+								var date1 = Foxtrick.util.time.getDateFromText(aContent);
+								var date2 = Foxtrick.util.time.getDateFromText(bContent);
+								if (sortAsc) {
+									return date2.getTime() - date1.getTime();;
+								}
+								else {
+									return date1.getTime() - date2.getTime();
 								}
 							}
 							else {
@@ -604,6 +621,9 @@ Foxtrick.util.module.register({
 						var th = doc.createElement("th");
 						if (columns[j].sortString) {
 							th.setAttribute("sort-string", true);
+						}
+						if (columns[j].sortDate) {
+							th.setAttribute("sort-date", true);
 						}
 						if (columns[j].sortAsc) {
 							th.setAttribute("sort-asc", true);
@@ -671,7 +691,7 @@ Foxtrick.util.module.register({
 						if (columns[j].enabled) {
 							var cell = doc.createElement("td");
 							row.appendChild(cell);
-							if (columns[j].properties) {
+							if (columns[j].properties) { 
 								if (columns[j].method) {
 									columns[j].method(cell, playerList[i]);
 								}
@@ -686,7 +706,11 @@ Foxtrick.util.module.register({
 								}
 							}
 							else if (columns[j].property && playerList[i][columns[j].property] !== undefined) {
-								if (columns[j].method) {
+								if (typeof(playerList[i][columns[j].property])=='object' 
+									&& playerList[i][columns[j].property].getElementsByTagName) {
+									cell.appendChild(playerList[i][columns[j].property]) ;
+								}
+								else if (columns[j].method) {
 									columns[j].method(cell, playerList[i][columns[j].property], columns[j].property);
 								}
 								else {
@@ -773,9 +797,9 @@ Foxtrick.util.module.register({
 					if (seller==TeamId) {
 						Foxtrick.map(function(n) {
 							if (n.id==player_id) {
-								n.homeGrown = doc.createElement('span');
-								n.homeGrown.textContent='*';
-								n.homeGrown.title=Foxtrickl10n.getString("skilltable.rebought_youthplayer");
+								n.motherClubBonus = doc.createElement('span');
+								n.motherClubBonus.textContent = '*';
+								n.motherClubBonus.title = Foxtrickl10n.getString("skilltable.rebought_youthplayer");
 							}
 						}, list);
 					}
@@ -811,9 +835,9 @@ Foxtrick.util.module.register({
 				if (!is_external_coach)
 					Foxtrick.map(function(n) {
 						if (n.id==pid) {
-							n.homeGrown = doc.createElement('span');
-							n.homeGrown.textContent='X';
-							n.homeGrown.title=Foxtrickl10n.getString("skilltable.youthplayer");
+							n.motherClubBonus = doc.createElement('span');
+							n.motherClubBonus.textContent = 'X';
+							n.motherClubBonus.title = Foxtrickl10n.getString("skilltable.youthplayer");
 						}
 					}, list);
 				return was_pulled || is_external_coach;
@@ -831,7 +855,6 @@ Foxtrick.util.module.register({
 						Foxtrick.map(function(player) {
 							argsTransfersPlayer.push([ ["playerid", player.id], ["file", "transfersPlayer"] ]);
 						}, list);
-
 						Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer, {cache_lifetime:'session' }, function(xmls) {
 							var argsPlayerevents = [], i;
 							for (i=0; i<xmls.length; ++i) {
@@ -878,54 +901,13 @@ Foxtrick.util.module.register({
 			});
 		};
 		var showOldiesAndOwn = function(doc) {
-			// check for player not sold or was first sold by this team -> homegrown
-			var getHomeGrownStatus = function(TeamId, xml) {
-				var homeGrown = null;
-				// check transfers
-				var Transfers = xml.getElementsByTagName("Transfer");
-				if (Transfers.length > 0) {
-					var Transfer = Transfers[Transfers.length-1]; // oldest and first transfer
-					var seller = Number(Transfer.getElementsByTagName("SellerTeamID")[0].textContent);
-					if (seller==TeamId) {
-						// first transfer form this team, ergo rebought homegrown
-						homeGrown = doc.createElement('span');
-						homeGrown.textContent = '*';
-						homeGrown.title = Foxtrickl10n.getString("skilltable.rebought_youthplayer");
-					}
-				}
-				else {
-					// no transfer, ergo homegrown
-					homeGrown = doc.createElement('span');
-					homeGrown.textContent = 'X';
-					homeGrown.title = Foxtrickl10n.getString("skilltable.youthplayer");
-				}
-				return homeGrown;
-			};
-
 			// get normal oldies into oldies_list
 			Foxtrick.Pages.Players.getPlayerList(doc, function(oldies_list) {
 				// then get current squad (last parameter true) into current_squad_list
 				Foxtrick.Pages.Players.getPlayerList(doc, function(current_squad_list) {
-					// add homegrown from current squad to oldies
-					var TeamId = Foxtrick.Pages.All.getTeamId(doc);
-					// check all current players homegrown status based on transfers.xml of each player
-					var argsTransfersPlayer = [];
-					Foxtrick.map(function(player) {
-						argsTransfersPlayer.push([ ["playerid", player.id], ["file", "transfersPlayer"] ]);
-					}, current_squad_list);
-
 					Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer, {cache_lifetime:'session' }, function(xmls) {
-						for (i = 0; i < xmls.length; ++i) {
-							if (xmls[i]) {
-									var homeGrown = getHomeGrownStatus(TeamId, xmls[i]);
-									if (homeGrown) {
-										var pid = xmls[i].getElementsByTagName("PlayerID")[0].textContent;
-										Foxtrick.map(function(n) {if (n.id== pid) n.homeGrown = homeGrown;}, current_squad_list);
-									}
-								}
-						}
 						// filter, concat with oldies and display
-						current_squad_list = Foxtrick.filter(function(n) {return n.homeGrown;}, current_squad_list);
+						current_squad_list = Foxtrick.filter(function(n) {return n.motherClubBonus;}, current_squad_list);
 						var full_list = oldies_list.concat(current_squad_list);
 						showTable(full_list);
 					});
