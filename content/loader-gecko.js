@@ -50,6 +50,17 @@ Foxtrick.loader.gecko.browserLoad = function(ev) {
 
 // invoked when a tab is focused
 Foxtrick.loader.gecko.tabFocus = function(ev) {
+
+	// don't execute if disabled
+	if (FoxtrickPrefs.getBool("disableTemporary")) {
+		// potenial disable cleanup
+		if (Foxtrick.entry.cssLoaded) {
+			Foxtrick.unload_module_css();
+			Foxtrick.entry.cssLoaded = false;
+		}
+		return;
+	}
+
 	var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
 		.getService(Components.interfaces.nsIWindowMediator);
 	var browserEnumerator = wm.getEnumerator("navigator:browser");

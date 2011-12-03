@@ -19,6 +19,16 @@ Foxtrick.entry.docLoad = function(doc) {
 	if (doc.nodeName != "#document")
 		return;
 
+	// don't execute if disabled
+	if (FoxtrickPrefs.getBool("disableTemporary")) {
+		// potenial disable cleanup
+		if (Foxtrick.arch == "Gecko" && Foxtrick.entry.cssLoaded) {
+			Foxtrick.unload_module_css();
+			Foxtrick.entry.cssLoaded = false;
+		}
+		return;
+	}
+
 	// clear ASP.NET_SessionId cookie on login (security leak)
 	if (Foxtrick.arch == "Gecko" && Foxtrick.isLoginPage(doc)) {
 	 	try { 
