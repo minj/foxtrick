@@ -23,10 +23,6 @@ Foxtrick.util.module.register({
 		"Manager" : {
 			linkByTeam : "/Club/Manager/?teamId=[teamid]"
 		},
-		"TeamAtAlltid" : {
-			linkByTeam : "http://alltid.org/team/[teamid]",
-			linkByUser : "/Club/Manager/?userId=[userid]&redir_to_team_at_alltid=true"
-		},
 		"Matches" : {
 			ownLink : "/Club/Matches/",
 			linkByTeam : "/Club/Matches/?TeamID=[teamid]",

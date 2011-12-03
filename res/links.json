@@ -152,31 +152,6 @@
 		"title": "Hattrick Hall of Fame (player)",
 		"img": "resources/linkicons/hhof.png"
 	},
-	"alltid": {
-		"leaguelink": {
-			"url": "http://alltid.org/league/[leagueid]"
-		},
-		"teamlink": {
-			"url": "http://alltid.org/team/[teamid]"
-		},
-		"playerlink": {
-			"url": "http://alltid.org/player/[playerid]"
-		},
-		"countrylink": {
-			"url": "http://alltid.org/country/[english_name]"
-		},
-		"federationlink": {
-			"url": "http://alltid.org/federation/[federationid]"
-		},
-		"playedmatchlink": {
-			"url": "http://alltid.org/teamcompare/[teamid],[teamid2]"
-		},
-		"matchlink": {
-			"url": "http://alltid.org/teamcompare/[teamid],[teamid2]"
-		},
-		"title": "Alltid Hattrick Statistics International",
-		"img": "resources/linkicons/ahstats.png"
-	},
 	"tppc":  {
 			"leaguelink" : { 
 				"url" : "http://www.adrianomoutinho.com/hattrick/index.php?LeagueId=[leagueid]&Language=[lang]"

@@ -9,7 +9,7 @@ Foxtrick.util.module.register({
 	MODULE_NAME : "StaffMarker",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ["forumViewThread", "forumWritePost", "teamPage"],
-	OPTIONS : ["flag", "own", "manager"],
+	OPTIONS : ["own", "manager"],
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DISABLED_LIST : [true, false, true],
 
@@ -120,8 +120,6 @@ Foxtrick.util.module.register({
 		};
 		// mark staffs in select box
 		var markSelect = function() {
-			var do_flag = FoxtrickPrefs.isModuleOptionEnabled("StaffMarker", "flag");
-
 			var selects = doc.getElementById("mainWrapper").getElementsByClassName("threadPagingFilter");
 			Foxtrick.map(function(select) {
 				if (select.id.search(/filter/i) == -1
@@ -149,22 +147,7 @@ Foxtrick.util.module.register({
 					else if (option.value=="by_-1") {
 						Foxtrick.addClass(option, "ft-staff-official");
 					}
-					else if ( do_flag && Foxtrick.arch === "Gecko") { // no background image in chrome for select
-						Foxtrick.addClass(option, "ft-userid-"+uid);
-						if (user_hasClass[uid])
-							continue;
-						css += ".ft-userid-" + uid + " {"
-							+ "background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif');"
-							+ "background-position: 180px 50%;"
-							+ "background-repeat: no-repeat;"
-							+ "padding: 1px 1px 1px 1px;"
-							+ "width: 198px;"
-							+ "border-bottom: dotted thin #ddd;}\n";
-						user_hasClass[uid] = true; // css for that users addes
-					}
 				}
-				if (do_flag)
-					Foxtrick.util.inject.css(doc, css);
 			}, selects);
 		};
 

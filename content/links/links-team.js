@@ -6,71 +6,12 @@
  */
 
 Foxtrick.util.module.register({
-	alltid_links : {
-		"alltid_add": {
-			"handler" : function(ev) {
-				var doc = ev.target.ownerDocument;
-				var teamid = Number(ev.target.getAttribute('teamid'));
-				var teamname = ev.target.getAttribute('teamname');
-				
-				var teams = Foxtrick.sessionGet("alltidcompare_teams");
-				var new_teams = [], isNew = true;
-				if (teams)
-					for (var i=0; i<teams.length; ++i) {
-						if (teams[i].teamid != teamid) 
-							new_teams.push(teams[i]); 
-						else isNew = false;
-					}
-				if (isNew) 
-					new_teams.push({ teamid:teamid, teamname:teamname });
-				Foxtrick.sessionSet("alltidcompare_teams", new_teams);
-				
-				var note = doc.createElement('p');
-				var h3 = doc.createElement('h3');
-				h3.appendChild( doc.createTextNode("Selected teams:") );
-				note.appendChild( h3 );
-				for (var j=0; j<new_teams.length; ++j) {
-					note.appendChild( doc.createTextNode(new_teams[j].teamname) );
-					note.appendChild( doc.createElement('br') );
-				}
-				Foxtrick.util.note.add(doc, doc.getElementById('foxtrick_links_content'), "ft-alltid_tc-note", note, null, true);
-			},
-			"img": "resources/linkicons/ahaddremove.png",
-			"title": "Alltid: add to or remove from compare list",
-			"shorttitle": "Add/Remove"
-		},
-		"alltid_clear": {
-			"handler": function(ev) {
-				var doc = ev.target.ownerDocument;
-				Foxtrick.sessionSet("alltidcompare_teams", null);
-				Foxtrick.util.note.add(doc, doc.getElementById('foxtrick_links_content'), "ft-alltid_tc-note", "Cleared team compare list", null, true);
-			},
-			"img": "resources/linkicons/ahclear.png",
-			"title": "Alltid: clear compare list",
-			"shorttitle": "Clear"
-		},
-		"alltid_compare": {
-			"handler": function(ev) {
-				var doc = ev.target.ownerDocument;
-				var teams = Foxtrick.sessionGet("alltidcompare_teams"), teamids="";
-				for (var i = 0; i < teams.length; ++i) {
-					teamids += teams[i].teamid + ",";
-				}
-				Foxtrick.newTab("http://alltid.org/teamcompare/" + teamids);
-			},
-			"img": "resources/linkicons/ahcompare.png",
-			"title": "Alltid: compare teams",
-			"shorttitle": "Compare"
-		}
-	},
-
 	MODULE_NAME : "LinksTeam",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('teamPage'),
 	OPTION_FUNC : function(doc) {
 		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksTeam", "teamlink");
 	},
-	OPTIONS : ["AlltidTeamCompare"],
 
 	run : function(doc) {
 		this.AddLinksRight(doc);
@@ -82,28 +23,6 @@ Foxtrick.util.module.register({
 			this.run(doc);
 	},
 
-	AddAlltidLinks : function(doc, thisdiv) {
-  		var links = [];
-		var teamid = Foxtrick.util.id.findTeamId(thisdiv);
-		var teamname = Foxtrick.util.id.extractTeamName(thisdiv);
-		var i;
-		for (i in this.alltid_links) {
-			var link = this.alltid_links[i];
-			var linkNode = doc.createElement('a');
-			linkNode.href = "javascript:void();"
-			Foxtrick.listen(linkNode, 'click', link.handler, false);
-			Foxtrick.addImage(doc, linkNode, { 
-				alt: link.shorttitle || link.title, 
-				title: link.title, 
-				src: Foxtrick.InternalPath + link.img,
-				teamid: teamid,
-				teamname: teamname
-			});
-			links.push({ link: linkNode });
-		}
-		return links;
-	},
-	
 	AddLinksRight : function(doc) {
 		if (!this.isTeamPage(doc)) {return;}
 		var alldivs = doc.getElementsByTagName('div');
@@ -113,11 +32,6 @@ Foxtrick.util.module.register({
 				var teaminfo = this.gatherLinks( alldivs[j], doc );
 
 				var links = Foxtrick.util.module.get("Links").getLinks("teamlink", teaminfo, doc, this );
-				if (FoxtrickPrefs.isModuleOptionEnabled("LinksTeam", "AlltidTeamCompare")) {
-					var alltidLinks = this.AddAlltidLinks(doc, alldivs[j]);
-					links = Foxtrick.concat(alltidLinks, links);
-				}
-				
 				if (links.length > 0) {
 					ownBoxBody = doc.createElement("div");
 					var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );

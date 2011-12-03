@@ -27,8 +27,6 @@ Foxtrick.util.module.register({
 			var target="_self";
 			if (doc.location.href.search(/redir_to_team=true/i)!=-1 )
 						tar=serv+"/Club/?TeamID="+teamid;
-			else if (doc.location.href.search(/redir_to_team_at_alltid=true/i)!=-1 )
-						{tar="http://alltid.org/team/"+teamid; target='_blank';}
 			else if (doc.location.href.search(/redir_to_lastlineup=true/i)!=-1 )
 						tar=serv+'/Club/Matches/MatchLineup.aspx?MatchID=&TeamID='+teamid+'&useArchive=True';
 			else if (doc.location.href.search(/redir_to_nextmatch=true/i)!=-1 )
