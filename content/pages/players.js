@@ -14,6 +14,9 @@ Foxtrick.Pages.Players = {
 	isYouthPlayersPage : function(doc) {
 		return Foxtrick.isPage("YouthPlayers", doc);
 	},
+	isYouthMatchOrderPage : function(doc) {
+		return Foxtrick.isPage("matchOrder", doc) || doc.location.href.indexOf('isYouth') != -1;
+	},
 	isOwnPlayersPage : function(doc) {
 		var ownTeamId = Foxtrick.Pages.All.getOwnTeamId(doc);
 		var teamId = Foxtrick.Pages.All.getTeamId(doc);
@@ -33,25 +36,20 @@ Foxtrick.Pages.Players = {
 		var playerList = [];
 
 		var getXml = function(doc, callback) {
-			/*if (!Foxtrick.Pages.Players.isSeniorPlayersPage(doc) && !(options && options.current_squad)) {
-				// not the page we are looking for
-				Foxtrick.log('players: wrong page');
-				callback(null);
-				return;
-			}*/
 			var args = [];
+			var isYouth = Foxtrick.Pages.Players.isYouthPlayersPage(doc) || Foxtrick.Pages.Players.isYouthMatchOrderPage(doc);
 			if (options && options.teamid)
 				args.push(["teamId", options.teamid]);
 			else if (doc.location.href.match(/teamid=(\d)/i)) {
-				if (!(Foxtrick.Pages.Players.isYouthPlayersPage(doc)))
+				if (!isYouth)
 					args.push(["teamId", doc.location.href.match(/teamid=(\d+)/i)[1]]);
 				else 
 					args.push(["youthTeamID", doc.location.href.match(/teamid=(\d+)/i)[1]]);
 			}	
-			if (Foxtrick.Pages.Players.isYouthPlayersPage(doc)) {
+			if ( isYouth ) {
 				args.push(["file", "youthplayerlist"]);
 				args.push(["actionType", "details"]);
-				//args.push(["showLastMatch", "showLastMatch"]);
+				args.push(["showLastMatch", "true"]);				
 			}
 			else if (Foxtrick.Pages.Players.isNtPlayersPage(doc)) {
 				args.push(["file", "nationalplayers"]);
@@ -79,14 +77,14 @@ Foxtrick.Pages.Players = {
 		try { 
 			if (!xml)
 				return;
-			if (!(Foxtrick.Pages.Players.isYouthPlayersPage(doc)))
+			var isYouth = Foxtrick.Pages.Players.isYouthPlayersPage(doc) || Foxtrick.Pages.Players.isYouthMatchOrderPage(doc);
+			if (!isYouth)
 				var playerNodes = xml.getElementsByTagName("Player");
 			else
 				var playerNodes = xml.getElementsByTagName("YouthPlayer");
 			for (var i = 0; i < playerNodes.length; ++i) {
 				var playerNode = playerNodes[i]; 
-			
-				if (!(Foxtrick.Pages.Players.isYouthPlayersPage(doc)))
+				if (!isYouth)
 					var id = Number(playerNode.getElementsByTagName("PlayerID")[0].textContent);
 				else
 					var id = Number(playerNode.getElementsByTagName("YouthPlayerID")[0].textContent);
@@ -94,10 +92,13 @@ Foxtrick.Pages.Players = {
 				// HTML)
 				var player = null, j;
 				for (j = 0; j < playerList.length; ++j)
-					if (playerList[j].id == id)
-						{ player = playerList[j];break;}
+					if (playerList[j].id == id) {
+						player = playerList[j]; 
+						break;
+					}
 				if (!player) {
-					if (!options || !options.current_squad) continue; // not present in HTML. skip if not retrieving squad from other page anyways
+					if (!options || !options.current_squad) 
+						continue; // not present in HTML. skip if not retrieving squad from other page anyways
 					else { 
 						playerList.push({id : id});
 						player = playerList[playerList.length - 1];
@@ -117,7 +118,8 @@ Foxtrick.Pages.Players = {
 						}
 						else player.redCard=0;
 
-						player.injuredWeeks = Number(playerNode.getElementsByTagName("InjuryLevel")[0].textContent);
+						if (playerNode.getElementsByTagName("InjuryLevel")[0])
+							player.injuredWeeks = Number(playerNode.getElementsByTagName("InjuryLevel")[0].textContent);
 						if (player.injuredWeeks==0) player.bruised=1;
 						else player.bruised = 0;
 						if (player.injuredWeeks==-1) player.injuredWeeks=0;
@@ -131,9 +133,12 @@ Foxtrick.Pages.Players = {
 						else
 							player.injured = false;
 
-						player.transferListed = Number(playerNode.getElementsByTagName("TransferListed")[0].textContent);
-						player.form = Number(playerNode.getElementsByTagName("PlayerForm")[0].textContent);
-						player.stamina = Number(playerNode.getElementsByTagName("StaminaSkill")[0].textContent);
+						if (playerNode.getElementsByTagName("TransferListed")[0])
+							player.transferListed = Number(playerNode.getElementsByTagName("TransferListed")[0].textContent);
+						if (playerNode.getElementsByTagName("PlayerForm")[0])
+							player.form = Number(playerNode.getElementsByTagName("PlayerForm")[0].textContent);
+						if (playerNode.getElementsByTagName("StaminaSkill")[0])
+							player.stamina = Number(playerNode.getElementsByTagName("StaminaSkill")[0].textContent);
 
 						var specs={0:'' ,1:'Technical',2:'Quick',3:'Powerful',4:'Unpredictable',5:'Head',6:'Regainer'};
 						player.specialityNumber = Number(playerNode.getElementsByTagName("Specialty")[0].textContent);
@@ -144,11 +149,19 @@ Foxtrick.Pages.Players = {
 
 						var LastMatch = playerNode.getElementsByTagName("LastMatch")[0];
 						if ( LastMatch && LastMatch.getElementsByTagName("Date")[0] ) {
-							player.lastRatingEndOfGame = Number(LastMatch.getElementsByTagName("RatingEndOfGame")[0].textContent);
-							player.lastRating = Number(LastMatch.getElementsByTagName("Rating")[0].textContent);
-							player.lastRatingDecline = player.lastRating - player.lastRatingEndOfGame;
-							player.lastMatchId = Number(LastMatch.getElementsByTagName("MatchId")[0].textContent);
-							player.lastMatchDate = LastMatch.getElementsByTagName("Date")[0].textContent;
+							if (LastMatch.getElementsByTagName("Rating")[0]) {
+								player.lastRating = Number(LastMatch.getElementsByTagName("Rating")[0].textContent);
+								if (LastMatch.getElementsByTagName("RatingEndOfGame")[0]) {
+									player.lastRatingEndOfGame = Number(LastMatch.getElementsByTagName("RatingEndOfGame")[0].textContent);
+									player.lastRatingDecline = player.lastRating - player.lastRatingEndOfGame;
+								}
+							}
+							if (LastMatch.getElementsByTagName("MatchId")[0])
+								player.lastMatchId = Number(LastMatch.getElementsByTagName("MatchId")[0].textContent);
+							else if (LastMatch.getElementsByTagName("YouthMatchId")[0])							
+								player.lastMatchId = Number(LastMatch.getElementsByTagName("YouthMatchId")[0].textContent);
+							if (LastMatch.getElementsByTagName("Date")[0])
+								player.lastMatchDate = LastMatch.getElementsByTagName("Date")[0].textContent;
 						}
 						if (playerNode.getElementsByTagName("Loyalty").length) 
 							player.loyality = Number(playerNode.getElementsByTagName("Loyalty")[0].textContent);
@@ -285,7 +298,6 @@ Foxtrick.Pages.Players = {
 					var position = Foxtrickl10n.getPositionByType(MatchRoleIDToPosition[player.lastPositionCode]);
 					player.lastMatchText = Foxtrickl10n.getString('Last_match_played_as').replace('%1',player.lastPlayedMinutes).replace('%2', position);
 				}
-				
 				if (playerNode.getElementsByTagName("CanBePromotedIn").length) {
 					player.canBePromotedIn = playerNode.getElementsByTagName("CanBePromotedIn")[0].textContent;
 				}

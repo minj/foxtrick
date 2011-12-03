@@ -27,21 +27,18 @@ Foxtrick.util.module.register({
 		var lastMatchDates = null;
 		
 		// load ahead players and then wait for interface loaded
-		// youth has no api to get
-		if (doc.location.href.search(/isYouth=True/i) == -1) {
-			Foxtrick.Pages.Players.getPlayerList(doc, function(playerInfo) {
-				if (!playerInfo || playerInfo.length==0) {
-					Foxtrick.log("unable to retrieve player list.");
-					return;
-				} 
-				
-				hasPlayerInfo = true;
-				playerList = playerInfo;
-				
-				if (hasInterface)
-					showPlayerInfo();
-			}, {teamid:teamid, current_squad:true, includeMatchInfo:true} );
-		}
+		Foxtrick.Pages.Players.getPlayerList(doc, function(playerInfo) {
+			if (!playerInfo || playerInfo.length==0) {
+				Foxtrick.log("unable to retrieve player list.");
+				return;
+			} 
+			
+			hasPlayerInfo = true;
+			playerList = playerInfo;
+			
+			if (hasInterface)
+				showPlayerInfo();
+		}, {teamid:teamid, current_squad:true, includeMatchInfo:true} );
 		
 		var waitForInterface = function(ev) {
 			hasInterface = true;
@@ -80,7 +77,6 @@ Foxtrick.util.module.register({
 						return 0;
 				};
 				var players = doc.getElementById('players').getElementsByClassName('player');
-				
 				//only get the lastMatchDates
 				if( !lastMatchDates )
 					lastMatchDates = Foxtrick.Pages.Players.getLastMatchDates (players, getLastMatchDates);
