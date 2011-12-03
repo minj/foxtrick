@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Notes for localization -->
+<!-- Please keep the overall structure and the tags like <note>, <item>,
+     <module> unchanged, and basically translate the text.
+     You could also add HTML tags with namespace specified, like <xhtml:a>
+     instead of <a>. -->
+<!-- For each note, keep the attribute "version" unchanged, and you could
+     translate the "localized-version" attribute. -->
+
+<notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<note version="nightly" localized-version="Development build">
+<item>Peržiūrėkite „Google Code“ <xhtml:a href="http://code.google.com/p/foxtrick/source/list">pakeitimų sąrašą</xhtml:a>.</item>
+</note>
+
+<note version="0.8.1">
+<item><module>ElectionTable</module>: pritaikyta naujajam rinkimų puslapiui. (convincedd, ryanli)</item>
+<item><module>HTThreadMarker</module>: naujas stilius. (convincedd, ryanli)</item>
+<item><module>TableSort</module>: išvengta konfliktų su Hattrick rikiavimu. (convincedd)</item>
+<item><module>HTMSPrediction</module>, <module>CopyRatings</module>: pritaikyta naujai rungtynių ataskaitos versijai. (convincedd)</item>
+<item><module>LineupShortcut</module>: dabar rodoma ir ne rėmėjams. (ryanli)</item>
+<item><module>TransferSearchResultFilters</module>: pritaikyta atnaujinimams. (convincedd)</item>
+<item><module>SkillTable</module>: pridėtas lojalumas ir kilmės klubo premija. (convincedd)</item>
+</note>
+
+<note version="0.8">
+<item>Arabų kalba. (GM-OmaniMilani)</item>
+<item>Naujas modulių peržiūros mechanizmas, todėl panaikintas senasis OnPagePrefs modulis. (convincedd, ryanli)</item>
+<item>Galima <xhtml:a href="#tab=main">išjungti</xhtml:a> CHPP duomenų siuntimą iš Hattrick. Jau parsiųsti duomenys laikomi podėlyje, kurį galima išvalyti atitinkamuose puslapiuose (convincedd)</item>
+<item>Naujas modulis: <module>LocalTime</module> rodo vietos laiką. (ryanli)</item>
+<item>Naujas modulis: <module>LinksYouthLeague</module> jaunių lygos puslapio nuorodoms. (Parminu)</item>
+<item>Naujas modulis: <module>CopyYouth</module> apjungia senuosius jaunių informacijos kopijavimo modulius ir parodo nuorodą. Nauja jaunių rungtynių tvarkaraščio kopijavimo funkcija. (ryanli, Parminu)</item>
+<item>Naujas modulis: <module>SupporterStatsEnhancements</module> pagerina rėmėjo statistikos vaizdavimą. (convincedd)</item>
+<item>Modulyje <module>FixcssProblems</module> atsirado galimybė paslėpti kairėje paraštėje esantį pakvietimų meniu. (ryanli)</item>
+<item>Modulyje <module>FixcssProblems</module> atsirado galimybė sumažinti kalendoriaus aukštį. (ryanli)</item>
+<item>Modulyje <module>ExtraShortcuts</module> pridėta nuoroda į CHPP produktų valdymo puslapį. (ljushaff)</item>
+<item>Modulyje <module>SkillTable</module> atsirado galimybė rodyti spalvotus jaunių įgūdžius. (foulpelz)</item>
+<item>Modulyje <module>LiveAlert</module> atsirado galimybė daryti garsinius pranešimus. (ryanli)</item>
+<item>Modulyje <module>MyMonitor</module> atsirado galimybė rikiuoti komandas ir rodyti jų ikonas. (convincedd)</item>
+<item>Modulyje <module>ForumYouthIcons</module> atsirado galimybė į forumo žinutes nukopijuoti Foxtrick veiklos žurnalus. (convincedd)</item>
+<item>Modulyje <module>ShowFriendlyBooked</module> draugiškų rungtynių būsena įjungta pagal nutylėjimą. (convincedd)</item>
+<item>Modulyje <module>SkillTable</module> pridėta papildomos žaidėjo informacijos nuoroda. (convincedd)</item>
+<item>FoxTrick ikona Firefox naršyklėje perkelta į adresų juostą (galima nutempti kur patinka). (ryanli)</item>
+<item>FoxTrick ikona Chrome naršyklėje perkelta į adresų juostą. Panaikintas mirgėjimas ir padidinta sparta. (convincedd)</item>
+<item>FoxTrick dabar veikia ir Fennec (Firefox mobiliesiems) naršyklėje. (convincedd)</item>
+<item>Atsirado FoxTrick beta versijos Opera ir Safari narųyklėms. (convincedd, ryanli)</item>
+<item>Smulkūs pataisymai ir patobulinimai. (convincedd, ryanli)</item>
+</note>
+
+<note version="0.7.2">
+<item>Links for comparing teams at Alltid in module <module>LinksTeam</module>. (convincedd)</item>
+<item>Fixes for skill table at transfer search results. (convincedd, ryanli)</item>
+</note>
+
+<note version="0.7.1">
+<item>Module <module>LeagueNewsFilter</module> split into <module>LeagueNewsFilter</module> and <module>ShowLineupSet</module>. (ryanli)</item>
+<item>Modifications to adapt for new transfer search results page. (ryanli, taised)</item>
+<item>Locale updates. (ryanli, CoRrRan, ljushaff, _KOHb_, slader, ElChiquitin)</item>
+<item>Some other trivial fixes. (ryanli)</item>
+</note>
+
+<note version="0.7">
+<item>Icelandic locale. (LA-LordBastard)</item>
+<item>Vlaams locale copied from Dutch. (ryanli)</item>
+<item>New module category, <xhtml:a href="#tab=information_aggregation">Information Aggregation</xhtml:a>. (ryanli)</item>
+<item>New module <module>MyMonitor</module> for monitoring recent matches of selected teams at My Hattrirck. (ryanli)</item>
+<item>New module <module>MarkAllAsRead</module>, a button to mark threads in all forums as read. (ryanli)</item>
+<item>New module <module>ShowFriendlyBooked</module> for showing whether a team has booked a friendly on series page. (ryanli)</item>
+<item>Rewrite of module <module>TickerAlert</module>, integrating former FoxtrickAlert, AlertCustomSound, AlertCustomOff modules. (ryanli)</item>
+<item>Module <module>MatchPlayerColouring</module> loads match lineup from XML. (ryanli)</item>
+<item>Module FoxtrickLineupShortcut renamed to <module>LineupShortcut</module>. (ryanli)</item>
+<item>Module htmsStatistics renamed to <module>HTMSPrediction</module>. (ryanli)</item>
+<item>New option in module <module>FriendlyInterface</module> to hide the secretary if he has nothing to report. (ryanli)</item>
+<item>Module <module>StaffMarker</module> now uses <xhtml:a href="http://www.json.org/">JavaScript Object Notation</xhtml:a> for custom markers. (ryanli)</item>
+<item>New radios in module <module>ExtraShortcuts</module>, Balkaradio and Downtime Radio. (ljushaff, ryanli)</item>
+<item>Option of <module>LeagueAndMatchChat</module> to open Yaplet chat in a frame removed. (ryanli)</item>
+<item>Various trivial fixes. (ryanli, Mod-spambot)</item>
+</note>
+
+<note version="0.6.2">
+<item>Module <module>SeriesFlags</module> now fetches team data directly from Hattrick. (ryanli)</item>
+<item>Locale updates. (ljushaff, csajszi, Mod-spambot)</item>
+<item>Some other trivial fixes. (ryanli)</item>
+</note>
+
+<note version="0.6.1">
+<item>Module <module>HTMSPoints</module> now calculates points locally without connecting to HTMS website. (taised)</item>
+<item>Module <module>htmsStatistics</module> now loads prediction correctly. (taised)</item>
+<item>Locale updates. (Mod-spambot, Mod-OmaniMilani, Baler0, ljushaff, _KOHb_, Slash-ss, MEO_Comandante)</item>
+<item>Compatible with Firefox 4.2 branch. (ryanli)</item>
+<item>Some other trivial fixes. (ryanli)</item>
+</note>
+
+<note version="0.6">
+<item>New preferences interface. (ryanli)</item>
+<item>OAuth interface implemented for the new Hattrick CHPP API. (ryanli)</item>
+<item>Module <module>LiveAlert</module> for alerting at HT Live goals. (ryanli)</item>
+<item>Module <module>OldStyleFace</module> for showing faces in old Hattrick style. (Aimo_Kanuuna)</item>
+<item>Module <module>NtPeek</module> for peeking NT/U20 matches at My Hattrick. (ryanli)</item>
+<item>Module <module>SeriesFlags</module> for showing user country and series beside manager and team links. Images provided by <xhtml:a href="http://www.fantamondi.it/HTMS/">HTMS</xhtml:a>. (taised, ryanli)</item>
+<item>Module <module>HTMSPoints</module> for showing player's <xhtml:a href="http://www.fantamondi.it/HTMS/index.php?page=nt&amp;lang=en">HTMS Points</xhtml:a>, i.e. numeralized ability and potential. (taised)</item>
+<item>Module <module>FriendlyInterface</module> with options for showing player's full name in match line up page and showing national teams in links for NT players. (ryanli)</item>
+<item>Module HighlightBotTeams renamed to <module>HighlightOwnerless</module>. (ryanli)</item>
+<item>Module YouthSkillNotes and ShortPA removed. (ryanli)</item>
+<item>Option to hide forum sneak-peek in <module>FixcssProblems</module>. (ljushaff)</item>
+<item>Option to copy advertisement in non-table style in <module>CopyPlayerAd</module>. (ryanli)</item>
+<item>Option to show HatStats per rating in <module>Ratings</module>. (taised)</item>
+<item>Belarusian locale. (LA-Stolik)</item>
+<item>Add some frequently asked questions at <xhtml:a href="#tab=help">Help tab</xhtml:a>. (ryanli)</item>
+<item>New grey icon for report links. (ljushaff)</item>
+<item><module>YouthPromotes</module> also shows the earliest date to promote a player. (ryanli)</item>
+<item>Most features working under Google Chrome. (ryanli)</item>
+<item>Some trivial fixes for latest Hattrick changes. (ryanli, taised, ljushaff)</item>
+<item>Module <module>TeamSelectBox</module> disabled by default. (ryanli)</item>
+<item>Module <module>SmallerPages</module> disabled by default. (ljushaff)</item>
+<item>Radio options in <module>ExtraShortcuts</module> are disabled by default. (ryanli)</item>
+</note>
+</notes>
