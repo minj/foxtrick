@@ -15,24 +15,29 @@ Foxtrick.util.module.register({
 		this.ColorLatest(doc, "threadContent", "folderitem");
 
 		var myForums = doc.getElementById("content").getElementsByTagName('div')[0];
-		var divs = myForums.getElementsByTagName( "div" );
-		var cname;
+		
+		var folders = myForums.getElementsByClassName( "forumFolder" );
+		for (var j = 0 ; j<folders.length; ++j) {
+			var folderName = folders[j].getElementsByClassName( "folderName" )[0].getElementsByTagName('a')[0].textContent;
+			var divs = folders[j].getElementsByTagName( "div" );
+			var cname;
 
-		var i = 0, div;
-		while (div = divs[++i]) {
-			cname = div.getAttribute( "class" );
-			if (cname == "url" ) {
-				var inner =div.childNodes[0];
-				var strong = div.getElementsByTagName('strong');
-				if (strong != null && strong[0] != null) {
-					inner=strong[0];
-				}
-				inner = inner.firstChild.data;
-				var title = div.childNodes[0].getAttribute("title").replace(inner,'');
-				var poster = title;
+			var i = 0, div;
+			while (div = divs[++i]) {
+				cname = div.getAttribute( "class" );
+				if (cname == "url" ) {
+					var inner =div.childNodes[0];
+					var strong = div.getElementsByTagName('strong');
+					if (strong != null && strong[0] != null) {
+						inner=strong[0];
+					}
+					inner = inner.firstChild.data;
+					var title = div.childNodes[0].getAttribute("title").replace(inner,'');
+					var poster = title.replace(folderName,'');
 
-				if (poster.match(/ HT-\S+/)) {
-					Foxtrick.addClass(div, "ft-ht-thread");
+					if (poster.match(/ HT-\S+/)) {
+						Foxtrick.addClass(div, "ft-ht-thread");
+					}
 				}
 			}
 		}
