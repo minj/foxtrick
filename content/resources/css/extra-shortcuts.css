@@ -25,8 +25,11 @@
 	background-image: url('chrome://foxtrick/content/resources/img/shortcuts/foxtrick.png') !important;
 }
 
-#header a[target="_blank"] img {
-	margin-right: 160px;
+html[dir="ltr"] #mediasports .mediasports {
+	margin-right: 160px  !important;
+}
+html[dir="rtl"] #mediasports .mediasports {
+	margin-left: 160px  !important;
 }
 
 }
