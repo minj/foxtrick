@@ -12,12 +12,42 @@
 
 Foxtrick.util.module.register((function() {
 	var eventTypes = {
+		"20" : "formation",
+		"21" : "formation",
 		"40" : "possession",
 		"47" : "possession",
 		"70" : "extraTime",
 		"71" : "penaltyShootOut",
+		"90" : "bruised",
+		"91" : "injured",
+		"92" : "injured",
+		"93" : "injured",
+		"94" : "injured",
+		"95" : "injured",
+		"96" : "injured",
+		"350" : "substitution",
+		"351" : "substitution",
+		"352" : "substitution",
+		"370" : "formation",
+		"371" : "formation",
+		"372" : "formation",
+		"510" : "yellow card",
+		"511" : "yellow card",
+		"512" : "2nd yellow card",
+		"513" : "2nd yellow card",
+		"514" : "red card",
 		"599": "result"
 	};
+	var icons = {
+		"formation":"/Img/Matches/formation.gif",
+		"substitution":"/Img/Matches/substitution.gif",
+		"injured":"/Img/Icons/injured.gif",
+		"bruised":"/Img/Icons/bruised.gif",
+		"yellow card":"/Img/Icons/yellow_card.gif",
+		"2nd yellow card": ["/Img/Icons/yellow_card.gif", "/Img/Icons/red_card.gif"],
+		"red card":"/Img/Icons/red_card.gif"
+	}
+	
 	var orderTypes = {
 		"1" : "substitution",
 		"2" : "swap"
@@ -30,7 +60,7 @@ Foxtrick.util.module.register((function() {
 		MODULE_NAME : "MatchReportFormat",
 		MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 		PAGES : ["match"],
-
+		OPTIONS : ['ShowEventIcons'],
 		CSS : Foxtrick.InternalPath + "resources/css/match-report.css",
 
 		run : function(doc) {
@@ -233,6 +263,30 @@ Foxtrick.util.module.register((function() {
 								minute.className = "ft-match-report-event-minute";
 								minute.textContent = evtMin + "'";
 
+								//event type icon
+								if(FoxtrickPrefs.isModuleOptionEnabled("MatchReportFormat", "ShowEventIcons")){
+									var addEventIcon = function(src, title, alt) {
+										var img = doc.createElement("img");
+										icon.appendChild(img);
+										img.src = src;
+									}
+									
+									var icon = doc.createElement("div");
+									item.appendChild(icon);
+									icon.className = "ft-match-report-event-icon";
+									
+									if(eventTypes[evtType] && icons[eventTypes[evtType]]){
+										if(icons[eventTypes[evtType]] instanceof Array){
+											for(var i = 0; i < icons[eventTypes[evtType]].length; ++i)
+												addEventIcon(icons[eventTypes[evtType]][i]);
+										}
+										else {
+											addEventIcon(icons[eventTypes[evtType]]);
+										}
+									}
+								}
+								
+								//event text
 								var content = doc.createElement("div");
 								item.appendChild(content);
 								content.className = "ft-match-report-event-content";

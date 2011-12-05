@@ -42,6 +42,11 @@
 	font-weight: bold;
 }
 
+.ft-match-report-event-icon {
+	display: table-cell;
+	width: 24px;
+}
+
 .ft-match-report-event-content {
 	display: table-cell;
 	padding-left: 10px;

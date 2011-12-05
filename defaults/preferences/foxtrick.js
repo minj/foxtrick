@@ -389,6 +389,7 @@ pref("extensions.foxtrick.prefs.module.MatchSimulator.value", 1);
 pref("extensions.foxtrick.prefs.module.MatchPlayerColouring.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchPlayerColouring.SeparateOwnPlayerColors.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchReportFormat.enabled", true);
+pref("extensions.foxtrick.prefs.module.MatchReportFormat.ShowEventIcons.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchTables.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchTables.RemoveTime.enabled", false);
 pref("extensions.foxtrick.prefs.module.MedianTransferPrice.enabled", true);
