@@ -19,8 +19,8 @@ Foxtrick.util.module.register((function() {
 		"70" : "extraTime",
 		"71" : "penaltyShootOut",
 		"90" : "bruised",
-		"91" : "injured",
-		"92" : "injured",
+		"91" : "injured_leaves",
+		"92" : "injured_leaves",
 		"93" : "injured",
 		"94" : "injured",
 		"95" : "injured",
@@ -31,9 +31,9 @@ Foxtrick.util.module.register((function() {
 		"360" : "change of tactics",
 		"361" : "change of tactics",
 		"362" : "change of tactics",
-		"370" : "formation",
-		"371" : "formation",
-		"372" : "formation",
+		"370" : "swap",
+		"371" : "swap",
+		"372" : "swap",
 		"510" : "yellow card",
 		"511" : "yellow card",
 		"512" : "2nd yellow card",
@@ -45,11 +45,13 @@ Foxtrick.util.module.register((function() {
 		"formation":"/Img/Matches/formation.gif",
 		"substitution":"/Img/Matches/substitution.gif",
 		"injured":"/Img/Icons/injured.gif",
+		"injured_leaves": ["/Img/Icons/injured.gif","/Img/Matches/substitution.gif"],
 		"bruised":"/Img/Icons/bruised.gif",
 		"yellow card":"/Img/Icons/yellow_card.gif",
 		"2nd yellow card": ["/Img/Icons/yellow_card.gif", "/Img/Icons/red_card.gif"],
 		"red card":"/Img/Icons/red_card.gif",
-		"change of tactics":"/Img/Matches/behaviorchange.gif"
+		"change of tactics":"/Img/Matches/behaviorchange.gif",
+		"swap":"/Img/Matches/player_swap.gif"
 	}
 	
 	var orderTypes = {
@@ -272,7 +274,9 @@ Foxtrick.util.module.register((function() {
 									var addEventIcon = function(src, title, alt) {
 										var img = doc.createElement("img");
 										icon.appendChild(img);
+										img.className = "ft-match-report-event-icon-image";
 										img.src = src;
+										img.title = title;
 									}
 									
 									var icon = doc.createElement("div");
@@ -282,10 +286,10 @@ Foxtrick.util.module.register((function() {
 									if(eventTypes[evtType] && icons[eventTypes[evtType]]){
 										if(icons[eventTypes[evtType]] instanceof Array){
 											for(var i = 0; i < icons[eventTypes[evtType]].length; ++i)
-												addEventIcon(icons[eventTypes[evtType]][i]);
+												addEventIcon(icons[eventTypes[evtType]][i], "Event Id: " + evtType);
 										}
 										else {
-											addEventIcon(icons[eventTypes[evtType]]);
+											addEventIcon(icons[eventTypes[evtType]],"Event Id: " + evtType);
 										}
 									}
 								}
