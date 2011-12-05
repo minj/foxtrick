@@ -28,6 +28,9 @@ Foxtrick.util.module.register((function() {
 		"350" : "substitution",
 		"351" : "substitution",
 		"352" : "substitution",
+		"360" : "change of tactics",
+		"361" : "change of tactics",
+		"362" : "change of tactics",
 		"370" : "formation",
 		"371" : "formation",
 		"372" : "formation",
@@ -45,7 +48,8 @@ Foxtrick.util.module.register((function() {
 		"bruised":"/Img/Icons/bruised.gif",
 		"yellow card":"/Img/Icons/yellow_card.gif",
 		"2nd yellow card": ["/Img/Icons/yellow_card.gif", "/Img/Icons/red_card.gif"],
-		"red card":"/Img/Icons/red_card.gif"
+		"red card":"/Img/Icons/red_card.gif",
+		"change of tactics":"/Img/Matches/behaviorchange.gif"
 	}
 	
 	var orderTypes = {
