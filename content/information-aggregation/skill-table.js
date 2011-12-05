@@ -402,7 +402,7 @@ Foxtrick.util.module.register({
 					{ name : "FriendliesGoals", property : "friendliesGoals" },
 					{ name : "CareerGoals", property : "careerGoals" },
 					{ name : "Hattricks", property : "hattricks" },
-					{ name : "Deadline", property : "deadline", method : dateLink },
+					{ name : "Deadline", property : "deadline", method : dateLink, sortDate : true },
 					{ name : "Current_club", property : "currentClubLink", method : link, sortString : true },
 					{ name : "Current_league", property : "currentLeagueId", method: league, sortString : true },
 					{ name : "TransferCompare", property : "transferCompare", method : link},
