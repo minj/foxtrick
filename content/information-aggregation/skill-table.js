@@ -390,7 +390,7 @@ Foxtrick.util.module.register({
 					{ name : "Agreeability", property : "agreeability", method: skill },
 					{ name : "Aggressiveness", property : "aggressiveness", method: skill },
 					{ name : "Honesty", property : "honesty", method: skill },
-					{ name : "Last_match", property : "lastMatch", method : lastMatch, sortDate : true },
+					{ name : "Last_match", property : "lastMatch", method : lastMatch },
 					{ name : "Last_stars", property : "lastRating", img : "/Img/Matches/star_yellow_to_brown.png" },
 					{ name : "Last_stars_EndOfGame", property : "lastRatingEndOfGame", img : "/Img/Matches/star_yellow.png" },
 					{ name : "Last_stars_decline", property : "lastRatingDecline", img : "/Img/Matches/star_brown.png" },
@@ -402,7 +402,7 @@ Foxtrick.util.module.register({
 					{ name : "FriendliesGoals", property : "friendliesGoals" },
 					{ name : "CareerGoals", property : "careerGoals" },
 					{ name : "Hattricks", property : "hattricks" },
-					{ name : "Deadline", property : "deadline", method : dateLink, sortDate : true },
+					{ name : "Deadline", property : "deadline", method : dateLink },
 					{ name : "Current_club", property : "currentClubLink", method : link, sortString : true },
 					{ name : "Current_league", property : "currentLeagueId", method: league, sortString : true },
 					{ name : "TransferCompare", property : "transferCompare", method : link},
@@ -519,10 +519,7 @@ Foxtrick.util.module.register({
 						}
 						table.setAttribute('lastSortIndex', sortIndex) ;
 
-
 						var sortString = head.hasAttribute("sort-string");
-						var sortDate = head.hasAttribute("sort-date");
-
 						var table = doc.getElementById("ft_skilltable");
 
 						var rows = [];
@@ -571,16 +568,6 @@ Foxtrick.util.module.register({
 									return aContent.localeCompare(bContent);
 								}
 							}
-							else if (sortDate) {
-								var date1 = Foxtrick.util.time.getDateFromText(aContent);
-								var date2 = Foxtrick.util.time.getDateFromText(bContent);
-								if (sortAsc) {
-									return date2.getTime() - date1.getTime();;
-								}
-								else {
-									return date1.getTime() - date2.getTime();
-								}
-							}
 							else {
 								aContent = parseFloat(aContent);
 								bContent = parseFloat(bContent);
@@ -621,9 +608,6 @@ Foxtrick.util.module.register({
 						var th = doc.createElement("th");
 						if (columns[j].sortString) {
 							th.setAttribute("sort-string", true);
-						}
-						if (columns[j].sortDate) {
-							th.setAttribute("sort-date", true);
 						}
 						if (columns[j].sortAsc) {
 							th.setAttribute("sort-asc", true);
@@ -706,12 +690,12 @@ Foxtrick.util.module.register({
 								}
 							}
 							else if (columns[j].property && playerList[i][columns[j].property] !== undefined) {
-								if (typeof(playerList[i][columns[j].property])=='object' 
+								if (columns[j].method) {
+									columns[j].method(cell, playerList[i][columns[j].property], columns[j].property);
+								}
+								else if (typeof(playerList[i][columns[j].property])=='object' 
 									&& playerList[i][columns[j].property].getElementsByTagName) {
 									cell.appendChild(playerList[i][columns[j].property]) ;
-								}
-								else if (columns[j].method) {
-									columns[j].method(cell, playerList[i][columns[j].property], columns[j].property);
 								}
 								else {
 									cell.textContent = playerList[i][columns[j].property];
