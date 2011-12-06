@@ -58,6 +58,9 @@ Foxtrick.util.module.register({
 					if (player.transferListed) {
 						allPlayers[i].setAttribute("transfer-listed", "true");
 					}
+					else {
+						allPlayers[i].setAttribute("not-transfer-listed", "true");
+					}
 					if (player.injured) {
 						allPlayers[i].setAttribute("injured", "true");
 					}
@@ -104,6 +107,11 @@ Foxtrick.util.module.register({
 					var option = doc.createElement("option");
 					option.value = "transfer-listed";
 					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.TransferListed.label");
+					filterSelect.appendChild(option);
+
+					var option = doc.createElement("option");
+					option.value = "not-transfer-listed";
+					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.NotTransferListed.label");
 					filterSelect.appendChild(option);
 				}
 
