@@ -18,7 +18,9 @@ Foxtrick.util.module.register((function() {
 		"21" : "formation",
 		"40" : "possession",
 		"47" : "possession",
-		"55" : "se_technical",
+		"55" : "se_technical_goal",
+		"56" : "goal",
+		"57" : "goal",
 		"70" : "extraTime",
 		"71" : "penaltyShootOut",
 		"90" : "bruised",
@@ -120,16 +122,14 @@ Foxtrick.util.module.register((function() {
 		"599": "result"
 	};
 	var icons = {
+		"2nd yellow card": ["/Img/Icons/yellow_card.gif", "/Img/Icons/red_card.gif"],
+		"bruised":"/Img/Icons/bruised.gif",
+		"change of tactics":"/Img/Matches/behaviorchange.gif",
 		"formation":"/Img/Matches/formation.gif",
-		"substitution":"/Img/Matches/substitution.gif",
+		"goal": Foxtrick.InternalPath + 'resources/img/ball.png',
 		"injured":"/Img/Icons/injured.gif",
 		"injured_leaves": ["/Img/Icons/injured.gif","/Img/Matches/substitution.gif"],
-		"bruised":"/Img/Icons/bruised.gif",
-		"yellow card":"/Img/Icons/yellow_card.gif",
-		"2nd yellow card": ["/Img/Icons/yellow_card.gif", "/Img/Icons/red_card.gif"],
 		"red card":"/Img/Icons/red_card.gif",
-		"change of tactics":"/Img/Matches/behaviorchange.gif",
-		"swap":"/Img/Matches/player_swap.gif",
 		"se_head_specialist": Foxtrick.InternalPath + 'resources/img/spec5.png',
 		"se_technical": Foxtrick.InternalPath + 'resources/img/spec1.png',
 		"se_technical_vs_head": [Foxtrick.InternalPath + 'resources/img/spec1.png', Foxtrick.InternalPath + 'resources/img/spec5.png'],
@@ -137,9 +137,12 @@ Foxtrick.util.module.register((function() {
 		"se_quick": Foxtrick.InternalPath + 'resources/img/spec2.png',
 		"se_quick_vs_quick": [Foxtrick.InternalPath + 'resources/img/spec2.png',Foxtrick.InternalPath + 'resources/img/spec2.png'],
 		"se_unpredictable": Foxtrick.InternalPath + 'resources/img/spec4.png',
-		"goal": Foxtrick.InternalPath + 'resources/img/ball.png',
 		"se_unpredictable_goal": [Foxtrick.InternalPath + 'resources/img/ball.png', Foxtrick.InternalPath + 'resources/img/spec4.png'],
-		"se_head_specialist_goal": [Foxtrick.InternalPath + 'resources/img/ball.png', Foxtrick.InternalPath + 'resources/img/spec5.png']
+		"se_head_specialist_goal": [Foxtrick.InternalPath + 'resources/img/ball.png', Foxtrick.InternalPath + 'resources/img/spec5.png'],
+		"se_technical_goal": [Foxtrick.InternalPath + 'resources/img/ball.png', Foxtrick.InternalPath + 'resources/img/spec1.png'],
+		"substitution":"/Img/Matches/substitution.gif",
+		"swap":"/Img/Matches/player_swap.gif",
+		"yellow card":"/Img/Icons/yellow_card.gif"
 	}
 	
 	var orderTypes = {
