@@ -390,7 +390,7 @@ Foxtrick.util.module.register({
 					{ name : "Agreeability", property : "agreeability", method: skill },
 					{ name : "Aggressiveness", property : "aggressiveness", method: skill },
 					{ name : "Honesty", property : "honesty", method: skill },
-					{ name : "Last_match", property : "lastMatch", method : lastMatch },
+					{ name : "Last_match", property : "lastMatch", method : lastMatch, sortDate : true },
 					{ name : "Last_stars", property : "lastRating", img : "/Img/Matches/star_yellow_to_brown.png" },
 					{ name : "Last_stars_EndOfGame", property : "lastRatingEndOfGame", img : "/Img/Matches/star_yellow.png" },
 					{ name : "Last_stars_decline", property : "lastRatingDecline", img : "/Img/Matches/star_brown.png" },
