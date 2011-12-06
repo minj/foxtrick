@@ -11,11 +11,14 @@
  */
 
 Foxtrick.util.module.register((function() {
+
+	//Community/CHPP/ChppMatchEventTypes.aspx
 	var eventTypes = {
 		"20" : "formation",
 		"21" : "formation",
 		"40" : "possession",
 		"47" : "possession",
+		"55" : "se_technical",
 		"70" : "extraTime",
 		"71" : "penaltyShootOut",
 		"90" : "bruised",
@@ -25,6 +28,33 @@ Foxtrick.util.module.register((function() {
 		"94" : "injured",
 		"95" : "injured",
 		"96" : "injured",
+		"105" : "se_unpredictable",
+		"106" : "se_unpredictable",
+		"107" : "se_unpredictable",
+		"108" : "se_unpredictable",
+		"109" : "se_unpredictable",
+		"119" : "se_head_specialist",
+		"115" : "se_quick",
+		"116" : "se_quick",
+		"125" : "se_unpredictable",
+		"137" : "se_head_specialist",
+		"139" : "se_technical_vs_head",
+		"205" : "se_unpredictable",
+		"206" : "se_unpredictable",
+		"208" : "se_unpredictable",
+		"209" : "se_unpredictable",
+		"215" : "se_quick",
+		"216" : "se_quick",
+		"219" : "se_head_specialist",
+		"225" : "se_unpredictable",
+		"239" : "se_technical_vs_head",
+		"289" : "se_quick_vs_quick",
+		"301" : "se_technical",
+		"302" : "se_powerful",
+		"303" : "se_technical",
+		"304" : "se_powerful",
+		"305" : "se_quick",
+		"306" : "se_quick",
 		"350" : "substitution",
 		"351" : "substitution",
 		"352" : "substitution",
@@ -51,7 +81,14 @@ Foxtrick.util.module.register((function() {
 		"2nd yellow card": ["/Img/Icons/yellow_card.gif", "/Img/Icons/red_card.gif"],
 		"red card":"/Img/Icons/red_card.gif",
 		"change of tactics":"/Img/Matches/behaviorchange.gif",
-		"swap":"/Img/Matches/player_swap.gif"
+		"swap":"/Img/Matches/player_swap.gif",
+		"se_head_specialist": Foxtrick.InternalPath + 'resources/img/spec5.png',
+		"se_technical": Foxtrick.InternalPath + 'resources/img/spec1.png',
+		"se_technical_vs_head": [Foxtrick.InternalPath + 'resources/img/spec1.png', Foxtrick.InternalPath + 'resources/img/spec5.png'],
+		"se_powerful": Foxtrick.InternalPath + 'resources/img/spec3.png',
+		"se_quick": Foxtrick.InternalPath + 'resources/img/spec2.png',
+		"se_quick_vs_quick": [Foxtrick.InternalPath + 'resources/img/spec2.png',Foxtrick.InternalPath + 'resources/img/spec2.png']
+		"se_unpredictable": Foxtrick.InternalPath + 'resources/img/spec4.png'
 	}
 	
 	var orderTypes = {
