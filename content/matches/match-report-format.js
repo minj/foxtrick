@@ -17,6 +17,8 @@ Foxtrick.util.module.register((function() {
 		"20" : "formation",
 		"21" : "formation",
 		"40" : "possession",
+		"41" : "best player",
+		"42" : "worst player",
 		"47" : "possession",
 		"55" : "se_technical_goal",
 		"56" : "goal",
@@ -26,7 +28,7 @@ Foxtrick.util.module.register((function() {
 		"90" : "bruised",
 		"91" : "injured_leaves",
 		"92" : "injured_leaves",
-		"93" : "injured",
+		"93" : "injured_leaves",
 		"94" : "injured",
 		"95" : "injured",
 		"96" : "injured",
@@ -45,8 +47,9 @@ Foxtrick.util.module.register((function() {
 		"112" : "goal",
 		"113" : "goal",
 		"114" : "goal",
-		"115" : "se_quick",
-		"116" : "se_quick",
+		"115" : "se_quick_goal",
+		"116" : "se_quick_goal",
+		"117" : "tired_goal",
 		"118" : "goal",
 		"119" : "se_head_specialist_goal",
 		"120" : "goal",
@@ -61,6 +64,7 @@ Foxtrick.util.module.register((function() {
 		"133" : "goal",
 		"134" : "goal",
 		"137" : "se_head_specialist_goal",
+		"138" : "goal",
 		"139" : "se_technical_vs_head",
 		"140" : "goal",
 		"141" : "goal",
@@ -89,15 +93,68 @@ Foxtrick.util.module.register((function() {
 		"185" : "goal",
 		"186" : "goal",
 		"187" : "goal",
-		"205" : "se_unpredictable",
-		"206" : "se_unpredictable",
-		"208" : "se_unpredictable",
-		"209" : "se_unpredictable",
-		"215" : "se_quick",
-		"216" : "se_quick",
-		"219" : "se_head_specialist",
-		"225" : "se_unpredictable",
-		"239" : "se_technical_vs_head",
+		"200" : "miss",
+		"201" : "miss",
+		"202" : "miss",
+		"203" : "miss",
+		"204" : "miss",
+		"205" : "se_unpredictable_miss",
+		"206" : "se_unpredictable_miss",
+		"208" : "se_unpredictable_miss",
+		"209" : "se_unpredictable_miss",
+		"210" : "miss",
+		"211" : "miss",
+		"212" : "miss",
+		"213" : "miss",
+		"214" : "miss",
+		"215" : "se_quick_miss",
+		"216" : "se_quick_miss",
+		"217" : "tired_miss",
+		"218" : "miss",
+		"219" : "se_head_specialist_miss",
+		"220" : "miss",
+		"221" : "miss",
+		"222" : "miss",
+		"223" : "miss",
+		"224" : "miss",
+		"225" : "se_unpredictable_miss",
+		"230" : "miss",
+		"231" : "miss",
+		"232" : "miss",
+		"233" : "miss",
+		"234" : "miss",
+		"235" : "miss",
+		"236" : "miss",
+		"237" : "miss",
+		"239" : "se_technical_vs_head_miss",
+		"240" : "miss",
+		"241" : "miss",
+		"242" : "miss",
+		"243" : "miss",
+		"250" : "miss",
+		"251" : "miss",
+		"252" : "miss",
+		"253" : "miss",
+		"254" : "miss",
+		"260" : "miss",
+		"261" : "miss",
+		"262" : "miss",
+		"263" : "miss",
+		"264" : "miss",
+		"270" : "miss",
+		"271" : "miss",
+		"272" : "miss",
+		"273" : "miss",
+		"274" : "miss",
+		"280" : "miss",
+		"281" : "miss",
+		"282" : "miss",
+		"283" : "miss",
+		"284" : "miss",
+		"285" : "miss",
+		"286" : "miss",
+		"287" : "miss",
+		"288" : "miss",
 		"289" : "se_quick_vs_quick",
 		"301" : "se_technical",
 		"302" : "se_powerful",
@@ -110,7 +167,7 @@ Foxtrick.util.module.register((function() {
 		"352" : "substitution",
 		"360" : "change of tactics",
 		"361" : "change of tactics",
-		"362" : "change of tactics",
+		"362" : "formation",
 		"370" : "swap",
 		"371" : "swap",
 		"372" : "swap",
@@ -124,6 +181,7 @@ Foxtrick.util.module.register((function() {
 	var icons = {
 		"2nd yellow card": ["/Img/Icons/yellow_card.gif", "/Img/Icons/red_card.gif"],
 		"bruised":"/Img/Icons/bruised.gif",
+		"best player":"/Img/Matches/star_yellow.png",
 		"change of tactics":"/Img/Matches/behaviorchange.gif",
 		"formation":"/Img/Matches/formation.gif",
 		"goal": Foxtrick.InternalPath + 'resources/img/ball.png',
@@ -141,17 +199,45 @@ Foxtrick.util.module.register((function() {
 		"se_head_specialist_goal": [Foxtrick.InternalPath + 'resources/img/ball.png', Foxtrick.InternalPath + 'resources/img/spec5.png'],
 		"se_technical_goal": [Foxtrick.InternalPath + 'resources/img/ball.png', Foxtrick.InternalPath + 'resources/img/spec1.png'],
 		"substitution":"/Img/Matches/substitution.gif",
-		"swap":"/Img/Matches/player_swap.gif",
-		"yellow card":"/Img/Icons/yellow_card.gif"
+		"swap" : "/Img/Matches/player_swap.gif",
+		"worst player" : "/Img/Matches/star_brown.png",
+		"yellow card":"/Img/Icons/yellow_card.gif",
+		"miss" : Foxtrick.InternalPath + 'resources/img/redball.png',
+		"se_unpredictable_miss" : [Foxtrick.InternalPath + 'resources/img/redball.png', Foxtrick.InternalPath + 'resources/img/spec4.png'],
+		"se_quick_miss" : [Foxtrick.InternalPath + 'resources/img/redball.png', Foxtrick.InternalPath + 'resources/img/spec2.png'],
+		"se_technical_vs_head_miss": [Foxtrick.InternalPath + 'resources/img/redball.png', Foxtrick.InternalPath + 'resources/img/spec1.png', Foxtrick.InternalPath + 'resources/img/spec5.png'],
+		"se_quick_goal" : [Foxtrick.InternalPath + 'resources/img/ball.png', Foxtrick.InternalPath + 'resources/img/spec2.png'],
+		"tired_goal" : [Foxtrick.InternalPath + 'resources/img/ball.png', Foxtrick.InternalPath + 'resources/img/tired.png'],
+		"tired_miss" : [Foxtrick.InternalPath + 'resources/img/redball.png', Foxtrick.InternalPath + 'resources/img/tired.png']
 	}
 	
 	var orderTypes = {
 		"1" : "substitution",
 		"2" : "swap"
 	};
+	//Community/CHPP/NewDocs/DataTypes.aspx#matchRoleID
 	var roles = {
 		"17" : "setPieces",
-		"18" : "captain"
+		"18" : "captain",
+		"100" : "Keeper",
+		"101" : "Right back",
+		"102" : "Right central defender",
+		"103" : "Middle central defender",
+		"104" : "Left central defender",
+		"105" : "Left back",
+		"106" : "Right winger",
+		"107" : "Right inner midfield",
+		"108" : "Middle inner midfield",
+		"109" : "Left inner midfield",
+		"110" : "Left winger",
+		"111" : "Right forward",
+		"112" : "Middle forward",
+		"113" : "Left forward",
+		"114" : "Substitution (Keeper)",
+		"115" : "Substitution (Defender)",
+		"116" : "Inner midfield",
+		"117" : "Substitution (Winger)",
+		"118" : "Substitution (Forward)"
 	};
 	return {
 		MODULE_NAME : "MatchReportFormat",
@@ -216,7 +302,7 @@ Foxtrick.util.module.register((function() {
 						while (!Foxtrick.hasClass(byline.nextSibling, "mainBox"))
 							parent.removeChild(byline.nextSibling);
 						var before = byline.nextSibling;
-
+						
 						// lineup header
 						var header = doc.createElement("h2");
 						parent.insertBefore(header, before);
@@ -328,10 +414,22 @@ Foxtrick.util.module.register((function() {
 							Foxtrick.toggleClass(lineup, "hidden");
 						}, false)
 
+						// report header
+						var reportHeader = doc.createElement("h2");
+						parent.insertBefore(reportHeader, before);
+						reportHeader.className = "ft-expander-expanded";
+						reportHeader.textContent = Foxtrickl10n.getString("MatchReportFormat.MatchReport");
+						
 						// container of formatted report
 						var report = doc.createElement("div");
 						report.className = "ft-match-report";
 						parent.insertBefore(report, before);
+						
+						Foxtrick.listen(reportHeader, "click", function() {
+							Foxtrick.toggleClass(reportHeader, "ft-expander-unexpanded");
+							Foxtrick.toggleClass(reportHeader, "ft-expander-expanded");
+							Foxtrick.toggleClass(report, "hidden");
+						}, false)
 
 						// wait for kick-off (walkovers don't allow to count event 21 (lineups))
 						var koPending = true;
@@ -361,37 +459,44 @@ Foxtrick.util.module.register((function() {
 								minute.textContent = evtMin + "'";
 
 								//event type icon
-								if(FoxtrickPrefs.isModuleOptionEnabled("MatchReportFormat", "ShowEventIcons")){
-									var addEventIcon = function(src, title, alt) {
-										var img = doc.createElement("img");
-										icon.appendChild(img);
-										img.className = "ft-match-report-event-icon-image";
-										img.src = src;
-										img.title = title;
-									}
-									
-									var icon = doc.createElement("div");
-									item.appendChild(icon);
-									icon.className = "ft-match-report-event-icon";
-									//icon.textContent = evtType;
-									
-									if(eventTypes[evtType] && icons[eventTypes[evtType]]){
-										if(icons[eventTypes[evtType]] instanceof Array){
-											for(var i = 0; i < icons[eventTypes[evtType]].length; ++i)
-												addEventIcon(icons[eventTypes[evtType]][i], "Event Id: " + evtType);
+								var addEventIcons = function(id){
+									if(FoxtrickPrefs.isModuleOptionEnabled("MatchReportFormat", "ShowEventIcons")){
+										var addEventIcon = function(src, title, alt) {
+											if(id != evtTeamId)
+												return;
+											var img = doc.createElement("img");
+											icon.appendChild(img);
+											img.className = "ft-match-report-event-icon-image";
+											img.src = src;
+											img.title = title;
 										}
-										else {
-											addEventIcon(icons[eventTypes[evtType]],"Event Id: " + evtType);
+										
+										var icon = doc.createElement("div");
+										item.appendChild(icon);
+										icon.className = "ft-match-report-event-icon";
+										//icon.textContent = evtType;
+										
+										if(eventTypes[evtType] && icons[eventTypes[evtType]]){
+											if(icons[eventTypes[evtType]] instanceof Array){
+												for(var i = 0; i < icons[eventTypes[evtType]].length; ++i)
+													addEventIcon(icons[eventTypes[evtType]][i], "Event Id: " + evtType);
+											}
+											else {
+												addEventIcon(icons[eventTypes[evtType]],"Event Id: " + evtType);
+											}
 										}
 									}
 								}
+								
+								addEventIcons(homeId);
+								addEventIcons(awayId);
 								
 								//event text
 								var content = doc.createElement("div");
 								item.appendChild(content);
 								content.className = "ft-match-report-event-content";
 								content.innerHTML = evtMarkup;
-
+								
 								var clear = doc.createElement("div");
 								item.appendChild(clear);
 								clear.className = "clear";
