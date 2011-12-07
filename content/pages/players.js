@@ -57,7 +57,7 @@ Foxtrick.Pages.Players = {
 			}
 			else {
 				args.push(["file", "players"]);
-				args.push(["version", "2.1"]);
+				args.push(["version", "2.2"]);
 
 				if (!options || !options.current_squad) {
 					if (Foxtrick.Pages.Players.isOldiesPage(doc))
@@ -166,7 +166,11 @@ Foxtrick.Pages.Players = {
 						if (playerNode.getElementsByTagName("Loyalty").length) 
 							player.loyality = Number(playerNode.getElementsByTagName("Loyalty")[0].textContent);
 						if (playerNode.getElementsByTagName("MotherClubBonus").length) 
-							player.motherClubBonus  = (playerNode.getElementsByTagName("MotherClubBonus")[0].textContent=='True') ? 1 : 0;
+							if (playerNode.getElementsByTagName("MotherClubBonus")[0].textContent=='True') {
+								player.motherClubBonus = doc.createElement('span');
+								player.motherClubBonus.textContent = 'X';
+								player.motherClubBonus.title = Foxtrickl10n.getString("skilltable.youthplayer");
+							}
 						}
 				}
 
@@ -500,7 +504,9 @@ Foxtrick.Pages.Players = {
 
 				for (var j = 0; j < imgs.length; ++j) {
 					if (imgs[j].className == "motherclubBonus") {
-						player.motherClubBonus = true
+						player.motherClubBonus = doc.createElement('span');
+						player.motherClubBonus.textContent = 'X';
+						player.motherClubBonus.title = Foxtrickl10n.getString("skilltable.youthplayer");
 					}
 					if (imgs[j].className == "cardsOne") {
 						if (imgs[j].src.indexOf("red_card", 0) != -1) {
