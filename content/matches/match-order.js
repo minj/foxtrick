@@ -137,7 +137,7 @@ Foxtrick.util.module.register({
 						Foxtrick.addImage(doc, cards_health[i], { 
 							alt: alt, 
 							title: title, 
-							src: Foxtrick.InternalPath + 'resources/img/spec'+player.specialityNumber+'.png',
+							src: Foxtrick.InternalPath + 'resources/img/matches/spec'+player.specialityNumber+'.png',
 							class: 'specialty'
 						});
 					}
