@@ -222,7 +222,7 @@ Foxtrick.util.module.register((function() {
 		"yellow card":"/Img/Icons/yellow_card.gif",
 		"left wing":"/Img/Matches/sub_in.gif",
 		"right wing":"/Img/Matches/sub_out.gif",
-		"middle": Foxtrick.InternalPath + 'resources/img/matches/middle.png'
+		"middle": Foxtrick.InternalPath + 'resources/img/matches/middle.png',
 		"counter-attack": Foxtrick.InternalPath + 'resources/img/matches/ca.png'
 	}
 	
