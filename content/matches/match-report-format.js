@@ -106,8 +106,8 @@ Foxtrick.util.module.register((function() {
 		"182" : { "team": ["left wing", "goal"] },
 		"183" : { "team": ["goal", "right wing"] },
 		"184" : "goal",
-		"185" : { "team": ["goal", "whistle"] },
-		"186" : { "team": ["goal", "counter-attack", "whistle"] },
+		"185" : { "team": ["goal", "indirect"] },
+		"186" : { "team": ["goal", "counter-attack", "indirect"] },
 		"187" : "goal",
 		"200" : { "team": ["miss", "whistle"] },
 		"201" : { "team": ["miss", "middle"] },
@@ -168,8 +168,8 @@ Foxtrick.util.module.register((function() {
 		"282" : { "team": ["left wing", "miss"] },
 		"283" : { "team": ["miss", "right wing"] },
 		"284" : "miss",
-		"285" : { "team": ["miss", "whistle"] },
-		"286" : { "team": ["miss", "counter-attack", "whistle"] },
+		"285" : { "team": ["miss", "indirect"] },
+		"286" : { "team": ["miss", "counter-attack", "indirect"] },
 		"287" : "miss",
 		"288" : "miss",
 		"289" : { "team": ["se_quick"], "other": ["se_quick"] },
@@ -223,7 +223,8 @@ Foxtrick.util.module.register((function() {
 		"left wing":"/Img/Matches/sub_in.gif",
 		"right wing":"/Img/Matches/sub_out.gif",
 		"middle": Foxtrick.InternalPath + 'resources/img/matches/middle.png',
-		"counter-attack": Foxtrick.InternalPath + 'resources/img/matches/ca.png'
+		"counter-attack": Foxtrick.InternalPath + 'resources/img/matches/ca.png',
+		"indirect": Foxtrick.InternalPath + 'resources/img/matches/indirect.png'
 	}
 	
 	var orderTypes = {
