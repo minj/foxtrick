@@ -64,6 +64,7 @@
 <script type="application/x-javascript" src="./forum/embed-media.js"></script>
 <script type="application/x-javascript" src="./forum/forum-change-posts.js"></script>
 <script type="application/x-javascript" src="./forum/forum-change-posts-modules.js"></script>
+<script type="application/x-javascript" src="./forum/forum-direct-page-links.js"></script>
 <script type="application/x-javascript" src="./forum/forum-last-post.js"></script>
 <script type="application/x-javascript" src="./forum/forum-next-and-previous.js"></script>
 <script type="application/x-javascript" src="./forum/forum-presentation.js"></script>
