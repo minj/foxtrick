@@ -43,6 +43,7 @@
 			"content/forum/embed-media.js",
 			"content/forum/forum-change-posts.js",
 			"content/forum/forum-change-posts-modules.js",
+			"content/forum/forum-direct-page-links.js",
 			"content/forum/forum-last-post.js",
 			"content/forum/forum-next-and-previous.js",
 			"content/forum/forum-presentation.js",

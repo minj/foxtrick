@@ -1,0 +1,14 @@
+.pager a.page {
+	line-height:22px;
+	margin-left: 1px;
+}
+.pager a.page.oneDigit {
+	line-height:22px;
+	margin-left: 1px;
+	padding-left: 9px;
+	padding-right: 8px;
+}
+
+.pager {
+	text-align:center;
+}
