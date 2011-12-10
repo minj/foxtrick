@@ -378,5 +378,6 @@ if (Foxtrick.platform == "Fennec") {
 };
 
 // run it
-Foxtrick.loader.chrome.browserLoad();
+if (Foxtrick.chromeContext() == "background")
+	Foxtrick.loader.chrome.browserLoad();
 
