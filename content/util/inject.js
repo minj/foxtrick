@@ -48,6 +48,7 @@ Foxtrick.util.inject.css = function(doc, css, id) {
 Foxtrick.util.inject.jsLink = function(doc, url) {
 	if (Foxtrick.arch == "Sandboxed") {
 		Foxtrick.get(url)("success", function(text) {
+			console.log('text',text);
 			Foxtrick.util.inject.js(doc, text);
 		});
 		return;
