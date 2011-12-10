@@ -227,6 +227,119 @@ Foxtrick.load = function(doc, url, callback, options) {
 	}
 };
 
+/**
+ * Using XMLHttpRequest by a promise, on which listeners on success and
+ * failure status can be registered.
+ *
+ * Usage:
+   Foxtrick.__load(url)("success", function(responseText) {
+       ...
+   })("failure", function(statusCode) {
+       ...
+   });
+ *
+ * @author ryanli
+ */
+Foxtrick.get = function(url) {
+	// Low-level implementation of XMLHttpRequest:
+	// Arguments passed to cb is an Object, with following members:
+	// status: String, either "success" or "failure"
+	// code: Integer, HTTP status code
+	// text: String, response text
+	if (Foxtrick.chromeContext() == "content") {
+		var loadImpl = function(cb) {
+			sandboxed.extension.sendRequest({req : "getXml", url : url },
+				function(response) {
+					callback({
+						code: response.status,
+						status: (response.status < 400) ? "success" : "failure",
+						text: response.data
+					});
+				}
+			);
+		};
+	}
+	else {
+		var loadImpl = function(cb) {
+			var req = new window.XMLHttpRequest();
+			req.open("GET", url, true);
+
+			if (typeof req.overrideMimeType === "function")
+				req.overrideMimeType("text/plain");
+
+			req.onreadystatechange = function(aEvt) {
+				if (req.readyState == 4) {
+					var status = (req.status < 400) ? "success" : "failure";
+					cb({
+						code: req.status,
+						status: status,
+						text: req.responseText
+					});
+				}
+			};
+
+			try {
+				req.send(null);
+			}
+			catch (e) {
+				// catch cross-domain errors, we return 499 as status code
+				Foxtrick.log("Error fetching " + url + ": ", e);
+				cb({
+					code: 499,
+					status: "failure",
+					text: null
+				});
+			}
+		};
+	}
+
+	var status;
+	// handlers for each status used as FIFO queues
+	var handlers = {};
+	// arguments passed to callback functions for each status
+	var args = {};
+
+	var promise = function(when, cb) {
+		// add inexistent array
+		if (!handlers[when])
+			handlers[when] = [];
+		handlers[when].push(cb);
+		trigger();
+
+		return promise;
+	};
+
+	// calls callback functions according to status
+	var trigger = function() {
+		var handlerLst = handlers[status], argLst = args[status];
+		if (!handlerLst)
+			return;
+
+		while (handlerLst.length) {
+			try {
+				handlerLst.shift().apply(null, argLst);
+			}
+			catch (e) {
+				Foxtrick.log("Uncaught callback error ", e);
+			}
+		}
+	};
+
+	loadImpl(function(response) {
+		if (response.status == "success") {
+			status = "success";
+			args["success"] = [response.text];
+		}
+		else if (response.status == "failure") {
+			status = "failure";
+			args["failure"] = [response.code];
+		}
+		trigger();
+	});
+
+	return promise;
+};
+
 /*
  * @desc load a resource synchronusly (Not to be used in content modules)
  */
