@@ -246,11 +246,11 @@ Foxtrick.get = function(url) {
 		var loadImpl = function(cb) {
 			sandboxed.extension.sendRequest({req : "getXml", url : url },
 				function(response) {
-					callback({
+					return {
 						code: response.status,
 						status: (response.status < 400) ? "success" : "failure",
 						text: response.data
-					});
+					};
 				}
 			);
 		};
