@@ -1,7 +1,6 @@
 "use strict";
 // page IDs of last page are stored in array pageIds
 var pageIds = [];
-var moduleChanges = [];
 
 function initLoader() {
 	// fennec runs init() from injected entry.js (injected)
@@ -108,7 +107,6 @@ function locateFragment(uri)
 	// set up tab classes
 	setClass($("#view-by-page"), "active");
 	unsetClass($("#view-by-category"), "active");
-	unsetClass($("#view-by-new"), "active");
 	for (var i in Foxtrick.moduleCategories)
 		setClass($("#tab-" + Foxtrick.moduleCategories[i]), "hide");
 	unsetClass($("#tab-on_page"), "hide");
@@ -181,7 +179,6 @@ function initTabs()
 	// set up href of "view by" links
 	$("#view-by-category a").attr("href", "#view-by=category");
 	$("#view-by-page a").attr("href", "#view-by=page");
-	$("#view-by-new a").attr("href", "#view-by=new");
 	// initialize the tabs
 	initMainTab();
 	initChangesTab();
@@ -538,16 +535,8 @@ function initChangesTab()
 		item.textContent = localizedVersion;
 		item.value = version;
 		select.appendChild(item);
-		
-		// collect changes of modules
-		var module = notes[i].getElementsByTagName("module");
-		for (var j = 0; j< module.length; ++j) {
-			if (!moduleChanges[module[j].textContent])
-				moduleChanges[module[j].textContent] = [];
-			moduleChanges[module[j].textContent].push(version); 
-		}
 	}
-	
+
 	var updateNotepad = function() {
 		var version = select.options[select.selectedIndex].value;
 		var list = $("#pref-notepad-list")[0];
@@ -696,12 +685,6 @@ function initModules()
 				$(obj).attr("x-on", $(obj).attr("x-on") + " universal");
 			else if (Foxtrick.intersect(module.PAGES, pageIds).length > 0)
 				$(obj).attr("x-on", $(obj).attr("x-on") + " on_page");
-		}
-		// show on view-by-new tab
-		if (moduleChanges[module.MODULE_NAME]) {
-			for (var v = 0; v<moduleChanges[module.MODULE_NAME].length; ++v ) {
-				$(obj).attr("x-on", $(obj).attr("x-on") + " " + moduleChanges[module.MODULE_NAME][v]);
-			}
 		}
 		$("#pane").append(obj);
 	}
