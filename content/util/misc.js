@@ -448,6 +448,18 @@ Foxtrick.getHref = function(doc) {
 	return doc.location.href;
 }
 
+Foxtrick.getParameterFromUrl  = function(url, param)
+{
+	param = param.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+	var regexS = "[\\?&]"+param+"=([^&#]*)";
+	var regex = new RegExp( regexS , "i");
+	var results = regex.exec( url );
+	if( results == null )
+		return null;
+	else
+		return results[1];
+}
+
 Foxtrick.isHt = function(doc) {
 	return (Foxtrick.getPanel(doc) !== null)
 		&& (doc.getElementById("aspnetForm") !== null);
