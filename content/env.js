@@ -64,7 +64,7 @@ if (typeof(opera) == "object") {
 		}
 	}
 
-	addListener = function(handler) {
+	var addListener = function(handler) {
 		 opera.extension.addEventListener("message", handler, false);
 	};
 
@@ -186,7 +186,7 @@ else if (typeof(safari) == "object") {
 		}
 	}
 
-	addListener = function(handler) {
+	var addListener = function(handler) {
 		var x = safari.self;
 		if (!x.addEventListener)
 			x = safari.application;
@@ -455,7 +455,7 @@ else {
 		if (Foxtrick.chromeContext()=='content') {
 			window = content;
 		}
-		addListener = function(name, handler) {
+		var addListener = function(name, handler) {
 			var x = typeof(addMessageListener)=='function'?addMessageListener:messageManager.addMessageListener;
 			x(name, handler);
 		};
