@@ -37,6 +37,14 @@ if (!Foxtrick) var Foxtrick = {};
 		var content = doc.getElementById("content");
 		content.removeEventListener("DOMNodeInserted", waitForChanges, true);
 	}
+
+	Foxtrick.preventChange = function(doc, func) {
+		return function() {
+			Foxtrick.startListenToChange(doc, func);
+			func.apply(func, arguments);
+			Foxtrick.stopListenToChange(doc, func);
+		};
+	};
 })();
 
 
@@ -173,19 +181,13 @@ Foxtrick.parseXml = function(text) {
  * @callback_param HTTP status code
  */
 
-Foxtrick.load = function(doc, url, callback, options) {
-	if (Foxtrick.chromeContext() == "content" && callback) {
+Foxtrick.load = function(url, callback) {
+	if (Foxtrick.chromeContext() == "content") {
 		// background script for xml requests
 		sandboxed.extension.sendRequest({req : "getXml", url : url },
 			function(response) {
 				try {
-					if (doc && !(options && options.callChange))
-						Foxtrick.stopListenToChange(doc);
-
 					callback(response.data, response.status);
-
-					if (doc && !(options && options.callChange))
-						Foxtrick.startListenToChange(doc);
 				}
 				catch (e) {
 					Foxtrick.log('Uncaught callback error: - url: ' , url , ' : ',e);
@@ -202,13 +204,7 @@ Foxtrick.load = function(doc, url, callback, options) {
 		req.onreadystatechange = function(aEvt) {
 			if (req.readyState == 4) {
 				try {
-					if (doc && !(options && options.callChange))
-						Foxtrick.stopListenToChange(doc);
-
 					callback(req.responseText, req.status);
-
-					if (doc && !(options && options.callChange))
-						Foxtrick.startListenToChange(doc);
 				}
 				catch (e) {
 					Foxtrick.log('Uncaught callback error: - url: ' , url , ' : ', e);
@@ -361,8 +357,8 @@ Foxtrick.loadSync = function(url) {
 	}
 };
 
-Foxtrick.loadXml = function(doc, url, callback, options) {
-	Foxtrick.load(doc, url, function(text, status) {
+Foxtrick.loadXml = function(url, callback) {
+	Foxtrick.load(url, function(text, status) {
 		if ( text.indexOf("!DOCTYPE html") !== -1 ) {
 			// eg login page was returned. aka cpp server not reachable
 			Foxtrick.log( url + "returned an html page. Server could be down." );
@@ -379,7 +375,7 @@ Foxtrick.loadXml = function(doc, url, callback, options) {
 			xml = null;
 		}
 		callback(xml, status);
-	}, options);
+	});
 };
 
 Foxtrick.loadXmlSync = function(url) {

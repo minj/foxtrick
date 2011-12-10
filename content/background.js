@@ -172,7 +172,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		var callback = function(responseText, status){
 			sendResponse({data : responseText, status : status});
 		};
-		Foxtrick.load(null, request.url, callback);
+		Foxtrick.load(request.url, callback);
 	};
 	var getDataUrl = function(request, sender, sendResponse) {
 		// @param branch - initial part of key(s) of session store to delete

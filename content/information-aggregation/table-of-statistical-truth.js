@@ -33,9 +33,9 @@ Foxtrick.util.module.register({
 		var toggleTable = function() {
 			Foxtrick.toggleClass(tableHeader, "ft-expander-unexpanded");
 			Foxtrick.toggleClass(tableHeader, "ft-expander-expanded");
-			if (table) 
+			if (table)
 				Foxtrick.toggleClass(table, "hidden");
-			else { 
+			else {
 				addTable();
 			}
 		};
@@ -44,7 +44,7 @@ Foxtrick.util.module.register({
 		
 		var addTable = function() {
 			var url = "http://www.fantamondi.it/HTMS/dorequest.php?action=truthtable&serie="+serie+"&season="+season;
-			Foxtrick.loadXml(doc, url, function(xml) { 
+			Foxtrick.loadXml(url, function(xml) {
 				if (!xml) {
 					// feedback
 					return;
@@ -107,9 +107,9 @@ Foxtrick.util.module.register({
 						else {
 							var text = ( Number(teams[j].getElementsByTagName( 'real_points' )[0].textContent)-
 										Number(teams[j].getElementsByTagName( 'predicted_points' )[0].textContent) ).toFixed(2) ;
-							if (text>0) 
+							if (text>0)
 								Foxtrick.addClass(cell,'ft-gd-positive');
-							else if (text<0) 
+							else if (text<0)
 								Foxtrick.addClass(cell,'ft-gd-negative');
 							cell.textContent = text;
 						}
@@ -130,7 +130,7 @@ Foxtrick.util.module.register({
 					
 				
 				Foxtrick.util.module.get("TableSort").run(doc);
-			}, {callChange:true} );
+			});
 		};
 	}
 });

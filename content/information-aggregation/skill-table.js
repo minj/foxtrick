@@ -862,7 +862,7 @@ Foxtrick.util.module.register({
 								}
 							
 								// finished. now display results
-								showTable(list);
+								Foxtrick.preventChange(doc, showTable)(list);
 							});
 						});
 					});
@@ -889,7 +889,7 @@ Foxtrick.util.module.register({
 						// filter, concat with oldies and display
 						current_squad_list = Foxtrick.filter(function(n) {return n.motherClubBonus;}, current_squad_list);
 						var full_list = oldies_list.concat(current_squad_list);
-						showTable(full_list);
+						Foxtrick.preventChange(doc, showTable)(full_list);
 					});
 				}, {current_squad : 'true'} );
 			});

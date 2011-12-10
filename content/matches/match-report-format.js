@@ -299,7 +299,7 @@ Foxtrick.util.module.register((function() {
 					["version", "1.6"]
 				];
 				Foxtrick.util.api.retrieve(doc, homeLineupArgs, {cache_lifetime: "session"}, function(homeXml) {
-					Foxtrick.util.api.retrieve(doc, awayLineupArgs, {cache_lifetime: "session"}, function(awayXml) {
+					Foxtrick.util.api.retrieve(doc, awayLineupArgs, {cache_lifetime: "session"}, Foxtrick.preventChange(doc, function(awayXml) {
 						// add everything after .byline[0] and remove existing ones
 						var byline = doc.getElementsByClassName("byline")[0];
 						var parent = byline.parentNode;
@@ -585,7 +585,7 @@ Foxtrick.util.module.register((function() {
 							var mod = Foxtrick.util.module.get("MatchPlayerColouring");
 							mod.color(doc);
 						}
-					});
+					}));
 				});
 			});
 		}

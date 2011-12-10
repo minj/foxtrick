@@ -263,22 +263,21 @@ Foxtrick.util.module.register({
 					args.push(["isYouth", "true"]);
 				var parameters_str = JSON.stringify(args);
 
-				Foxtrick.util.api.retrieve(doc, args, {
-					cache_lifetime : "default", 
-					callChange : true
-				}, function(xml, errorText) {
-					if (xml !== null) {
-						team.name = xml.getElementsByTagName("TeamName")[0].textContent;
-						team.id = xml.getElementsByTagName("TeamID")[0].textContent;
-						buildLink(team, nameLink);
+				Foxtrick.util.api.retrieve(doc, args, { cache_lifetime : "default" },
+					function(xml, errorText) {
+						if (xml !== null) {
+							team.name = xml.getElementsByTagName("TeamName")[0].textContent;
+							team.id = xml.getElementsByTagName("TeamID")[0].textContent;
+							buildLink(team, nameLink);
+						}
+						var nextmatchdate = Foxtrick.util.matchView.fillMatches(matchesContainer, xml, errorText);
+						// change expire date of xml to after next match game
+						if (nextmatchdate) {
+							var expire = Foxtrick.util.time.getDateFromText(nextmatchdate, "yyyymmdd");
+							Foxtrick.util.api.setCacheLifetime(doc, parameters_str, expire.getTime()+105*60*1000);
+						}
 					}
-					var nextmatchdate = Foxtrick.util.matchView.fillMatches(matchesContainer, xml, errorText);
-					// change expire date of xml to after next match game
-					if (nextmatchdate) {
-						var expire = Foxtrick.util.time.getDateFromText(nextmatchdate, "yyyymmdd");
-						Foxtrick.util.api.setCacheLifetime(doc, parameters_str, expire.getTime()+105*60*1000);
-					}
-				});
+				);
 
 			};
 			Foxtrick.map(addTeam, teams);
