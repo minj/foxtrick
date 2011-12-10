@@ -6,6 +6,7 @@ forum/add-leave-conf-button.js
 forum/embed-media.js
 forum/forum-change-posts.js
 forum/forum-change-posts-modules.js
+forum/forum-direct-page-links.js
 forum/forum-last-post.js
 forum/forum-next-and-previous.js
 forum/forum-presentation.js
@@ -84,6 +85,7 @@ presentation/custom-medals.js
 presentation/fix-css-problems.js
 presentation/friendly-interface.js
 presentation/header-fix.js
+presentation/header-toggle.js
 presentation/highlight-cup-wins.js
 presentation/highlight-ownerless.js
 presentation/ht-date-format.js
@@ -103,7 +105,6 @@ presentation/skill-coloring.js
 presentation/skill-translation.js
 presentation/skin-plugin.js
 presentation/smaller-pages.js
-presentation/header-toggle.js
 presentation/team-select-box.js
 presentation/youth-skill-hide-unknown.js
 shortcuts-and-tweaks/confirm-actions.js
@@ -111,8 +112,8 @@ shortcuts-and-tweaks/context-menu-copy.js
 shortcuts-and-tweaks/copy-match-id.js
 shortcuts-and-tweaks/copy-player-ad.js
 shortcuts-and-tweaks/copy-youth.js
-shortcuts-and-tweaks/filter.js
 shortcuts-and-tweaks/extra-shortcuts.js
+shortcuts-and-tweaks/filter.js
 shortcuts-and-tweaks/league-and-match-chat.js
 shortcuts-and-tweaks/lineup-shortcut.js
 shortcuts-and-tweaks/manager-buttons.js
