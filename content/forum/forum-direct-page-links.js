@@ -96,11 +96,13 @@ Foxtrick.util.module.register({
 		} 
 		else
 		{
-			start = currentPage - 9;
+			start = currentPage - 6;
 			end = start + 17 > maxpage ? maxpage:start + 17;
 			if(end - start < 17)
 				start = end - 17;
 		}
+		
+			
 		Foxtrick.log("maxpage", maxpage);
 		for(var p = start; p <= end; p++)
 		{
