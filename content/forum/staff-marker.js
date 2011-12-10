@@ -28,7 +28,7 @@ Foxtrick.util.module.register({
 		// counter of URI remaining to fetch
 		var todo = uris.length;
 		Foxtrick.map(function(uri) {
-			Foxtrick.load(null, uri, function(text) {
+			Foxtrick.get(uri)("success", function(text) {
 				try {
 					var parsed = JSON.parse(text);
 				}
@@ -50,6 +50,8 @@ Foxtrick.util.module.register({
 					Foxtrick.sessionSet('staff-marker-data', obj);
 					Foxtrick.log("Staff marker data loaded.");
 				}
+			})("failure", function(code) {
+				Foxtrick.log("Failure loading file: " + uri);
 			});
 		}, uris);
 	},

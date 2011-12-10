@@ -19,13 +19,9 @@ Foxtrick.util.module.register((function() {
 		// now load the feeds
 		Foxtrick.log("Loading link feeds from: ", feeds);
 		Foxtrick.map(function(feed) {
-			Foxtrick.load(null, feed, function(text) {
+			Foxtrick.get(feed)("success", function(text) {
 				var key, prop;
 
-				if (!text) {
-					Foxtrick.log("Failure loading links file: ", feed);
-					return;
-				}
 				try {
 					var links = JSON.parse(text);
 				}
@@ -52,6 +48,8 @@ Foxtrick.util.module.register((function() {
 				Foxtrick.sessionSet("links-collection", collection);
 				if (typeof callback == "function")
 					callback(collection);
+			})("failure", function(code) {
+				Foxtrick.log("Error loading links feed: ", feed);
 			});
 		}, feeds);
 	};
