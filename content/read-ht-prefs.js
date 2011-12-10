@@ -32,8 +32,6 @@ var FoxtrickReadHtPrefs = {
 		for (var i = 0, j = 0;
 			i < menuLinks.length && j < items.length;
 			++i) {
-			if (menuLinks[i].textContent == "Alltid") // 5th entry might be alltid. skip it
-				continue;
 			var linkTitle = language.getElementsByTagName(items[j])[0];
 			if (!linkTitle || menuLinks[i].textContent.indexOf(linkTitle.getAttribute("value")) == -1) {
 				// not this language

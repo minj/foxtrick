@@ -8,7 +8,7 @@ var FoxtrickStaffMarker = {
 	MODULE_NAME : "StaffMarker",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ["forumViewThread", "forumWritePost", "teamPage"],
-	OPTIONS : ["flag", "own", "manager"],
+	OPTIONS : ["own", "manager"],
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DISABLED_LIST : [true, false, true],
 
@@ -171,8 +171,6 @@ var FoxtrickStaffMarker = {
 	},
 
 	_MarkAliases_select : function(doc, modifier) {
-		var do_flag = FoxtrickPrefs.isModuleOptionEnabled("StaffMarker", "flag");
-
 		var selects = doc.getElementById("mainWrapper").getElementsByClassName("threadPagingFilter");
 		var select = selects[0];
 		if ( select ) {
@@ -203,30 +201,9 @@ var FoxtrickStaffMarker = {
 					else if (option.value=="by_-1") {
 						Foxtrick.addClass(option, "ft-staff-official");
 					}
-					else if ( do_flag && Foxtrick.arch === "Gecko") { // no background image in chrome for select
-						Foxtrick.addClass(option, "ft-userid-"+uid);
-						if (user_hasClass[uid]) continue;
-						if (FoxtrickStaffMarker.chppHolders[uid] != undefined && hty[uid] !== undefined)
-								css += ".ft-staff-chpp-holder.ft-staff-hty.ft-userid-"     +uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'), url('chrome://foxtrick/content/resources/img/staff/chpp.png'),     url('chrome://foxtrick/content/resources/img/staff/hyouthclub.png'); background-position: 180px 50%, 0px 0px, 24px 0px; background-repeat: no-repeat, no-repeat, no-repeat; padding: 1px 1px 1px 24px; width:155px; border-bottom:dotted thin #ddd;}\n";
-						else if (FoxtrickStaffMarker.chppHolders[uid] != undefined && FoxtrickStaffMarker.foxtrickers[uid] !== undefined)
-								css += ".ft-staff-chpp-holder.ft-staff-foxtrick.ft-userid-"+uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'), url('chrome://foxtrick/content/resources/img/staff/chpp.png'),     url('chrome://foxtrick/content/resources/img/staff/foxtrick.png');   background-position: 180px 50%, 0px 0px, 24px 0px; background-repeat: no-repeat, no-repeat, no-repeat, padding: 1px 1px 1px 24px; width:155px; border-bottom:dotted thin #ddd;}\n";
-						else if (FoxtrickStaffMarker.foxtrickers[uid] !== undefined && hty[uid] !== undefined)
-								css += ".ft-staff-foxtrick.ft-staff-hty.ft-userid-"        +uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'), url('chrome://foxtrick/content/resources/img/staff/foxtrick.png'), url('chrome://foxtrick/content/resources/img/staff/hyouthclub.png'); background-position: 180px 50%, 0px 0px, 18px 0px; background-repeat: no-repeat, no-repeat, no-repeat; padding: 1px 1px 1px 18px; width:165px; border-bottom:dotted thin #ddd;}\n";
-						else if (FoxtrickStaffMarker.foxtrickers[uid] !== undefined)
-								css += ".ft-staff-foxtrick.ft-userid-"   +uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'), url('chrome://foxtrick/content/resources/img/staff/foxtrick.png');   background-position: 180px 50%, 0px 0px; background-repeat: no-repeat, no-repeat; padding: 1px 1px 1px 1px; width:183px; border-bottom:dotted thin #ddd;}\n";
-						else if (hty[uid] !== undefined)
-								css += ".ft-staff-hty.ft-userid-"        +uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'), url('chrome://foxtrick/content/resources/img/staff/hyouthclub.png'); background-position: 180px 50%, 0px 0px; background-repeat: no-repeat, no-repeat; padding: 1px 1px 1px 1px; width:183px; border-bottom:dotted thin #ddd;}\n";
-						else if (FoxtrickStaffMarker.chppHolders[uid] != undefined)
-								css += ".ft-staff-chpp-holder.ft-userid-"+uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'), url('chrome://foxtrick/content/resources/img/staff/chpp.png');       background-position: 180px 50%, 0px 0px; background-repeat: no-repeat, no-repeat; padding: 1px 1px 1px 1px; width:175px; border-bottom:dotted thin #ddd;}\n";
-						else 	css += ".ft-userid-"+uid+"{background-image: url('http://flags.alltidhattrick.org/userflags/" + uid + ".gif'); background-position: 180px 50%; background-repeat: no-repeat; padding: 1px 1px 1px 1px; width:198px; border-bottom:dotted thin #ddd;}\n";
-						user_hasClass[uid] = true; // css for that users addes
-					}
 				}
-				if (do_flag)
-					Foxtrick.util.inject.css(doc, css);
 				if ( selects[0] && selects[1] ) selects[1].innerHTML = selects[0].innerHTML;
 			} catch(e){Foxtrick.log(e);}
-
 			});
 		}
 	}
