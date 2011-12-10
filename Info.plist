@@ -45,7 +45,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/util/array.js</string>
 				<string>content/util/copy-button.js</string>
 				<string>content/util/currency.js</string>
-				<string>content/util/html.js</string>
+				<string>content/util/dom.js</string>
 				<string>content/util/ht-ml.js</string>
 				<string>content/util/id.js</string>
 				<string>content/util/inject.js</string>

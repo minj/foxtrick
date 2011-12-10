@@ -1,6 +1,6 @@
 "use strict";
 /*
- * html.js
+ * dom.js
  * Utilities for HTML and DOM
  */
 

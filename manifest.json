@@ -13,7 +13,7 @@
 			"content/util/array.js",
 			"content/util/copy-button.js",
 			"content/util/currency.js",
-			"content/util/html.js",
+			"content/util/dom.js",
 			"content/util/ht-ml.js",
 			"content/util/id.js",
 			"content/util/inject.js",

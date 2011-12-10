@@ -327,7 +327,7 @@ Foxtrick.loader.chrome.fennecScriptInjection= function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/array.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/copy-button.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/currency.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/util/html.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/util/dom.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/ht-ml.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/id.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/inject.js", true);
