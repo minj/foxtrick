@@ -329,8 +329,10 @@ Foxtrick.util.module.register({
 				Foxtrick.util.api.retrieve(doc, orderMatchArgs, {cache_lifetime:'session'},
 				function(orderMatchXml, errorText) {
 					if (errorText) {
-						if (loadingOtherMatches)
+						if (loadingOtherMatches) {
 							loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
+							loadingOtherMatches = null;
+						}
 						Foxtrick.log(errorText);
 						return;
 					}
@@ -358,15 +360,23 @@ Foxtrick.util.module.register({
 						["teamID", otherTeamID]
 					];
 					Foxtrick.util.api.retrieve(doc, otherMatchesArgs, {cache_lifetime:'session'},
-					function(otherMatchesXml, errorText) {
-						if (loadingOtherMatches)
-								loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
+					function(otherMatchesXml, errorText) { 
 						if (errorText) {
 							Foxtrick.log(errorText);
-							return;
+							if (loadingOtherMatches)
+								loadingOtherMatches.textContent = errorText;
 						}
-
+						else if (loadingOtherMatches) {
+							loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
+							loadingOtherMatches = null;
+						}
+						
 						var getMatchDetails = function(selectedMatchid, isNew) {
+							if (loadingOtherMatches) {
+								loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
+								loadingOtherMatches = null;
+							}
+						
 							// get selected match
 							var loadingMatch = Foxtrick.util.note.createLoading(doc);
 							var overlayHTMS = doc.getElementById("overlayHTMS");
@@ -377,8 +387,10 @@ Foxtrick.util.module.register({
 							];
 							Foxtrick.util.api.retrieve(doc, selectedMatchArgs, {cache_lifetime:'session'},
 							function(selectedMatchXML, errorText) {
-								if (loadingMatch)
-										loadingMatch.parentNode.removeChild(loadingMatch);
+								if (loadingMatch) {
+									loadingMatch.parentNode.removeChild(loadingMatch);
+									loadingMatch = null;
+								}
 								if (errorText) {
 									Foxtrick.log(errorText);
 									return;
@@ -398,7 +410,6 @@ Foxtrick.util.module.register({
 								}
 								
 								// select team node
-								Foxtrick.log(selectedMatchXML);
 								var HomeTeamID =  Number(selectedMatchXML.getElementsByTagName('HomeTeamID')[0].textContent);
 								var AwayTeamID =  Number(selectedMatchXML.getElementsByTagName('AwayTeamID')[0].textContent);
 								if (otherTeamID == HomeTeamID) {
@@ -547,26 +558,27 @@ Foxtrick.util.module.register({
 						option.textContent = Foxtrickl10n.getString ('matchOrder.AddMatchManually');
 						select.appendChild(option);
 
-						var otherMatchesNodes = otherMatchesXml.getElementsByTagName('Match');
-						for (var i=0; i<otherMatchesNodes.length; ++i) {
-							
-							// not friendlies for now to keep it clean
-							var MatchType = Number(otherMatchesNodes[i].getElementsByTagName('MatchType')[0].textContent);
-							if (MatchType == 4 || MatchType == 5 || MatchType == 8 || MatchType == 9)
-								continue;
+						if (otherMatchesNodes) {
+							var otherMatchesNodes = otherMatchesXml.getElementsByTagName('Match');
+							for (var i=0; i<otherMatchesNodes.length; ++i) {
 								
-							var option = doc.createElement('option');
-							option.value = otherMatchesNodes[i].getElementsByTagName('MatchID')[0].textContent;
-							var MatchDate = Foxtrick.util.time.buildDate( Foxtrick.util.time.getDateFromText(otherMatchesNodes[i].getElementsByTagName('MatchDate')[0].textContent, 'yyyy-mm-dd') );
-							option.textContent = MatchDate
-												+ ' : ' + otherMatchesNodes[i].getElementsByTagName('HomeTeamName')[0].textContent.substr(0,20)
-												+ ' - ' + otherMatchesNodes[i].getElementsByTagName('HomeGoals')[0].textContent
-												+ ':' + otherMatchesNodes[i].getElementsByTagName('AwayGoals')[0].textContent
-												+ ' - ' + otherMatchesNodes[i].getElementsByTagName('AwayTeamName')[0].textContent.substr(0,20);
-							select.appendChild(option);
-							
+								// not friendlies for now to keep it clean
+								var MatchType = Number(otherMatchesNodes[i].getElementsByTagName('MatchType')[0].textContent);
+								if (MatchType == 4 || MatchType == 5 || MatchType == 8 || MatchType == 9)
+									continue;
+									
+								var option = doc.createElement('option');
+								option.value = otherMatchesNodes[i].getElementsByTagName('MatchID')[0].textContent;
+								var MatchDate = Foxtrick.util.time.buildDate( Foxtrick.util.time.getDateFromText(otherMatchesNodes[i].getElementsByTagName('MatchDate')[0].textContent, 'yyyy-mm-dd') );
+								option.textContent = MatchDate
+													+ ' : ' + otherMatchesNodes[i].getElementsByTagName('HomeTeamName')[0].textContent.substr(0,20)
+													+ ' - ' + otherMatchesNodes[i].getElementsByTagName('HomeGoals')[0].textContent
+													+ ':' + otherMatchesNodes[i].getElementsByTagName('AwayGoals')[0].textContent
+													+ ' - ' + otherMatchesNodes[i].getElementsByTagName('AwayTeamName')[0].textContent.substr(0,20);
+								select.appendChild(option);
+								
+							}
 						}
-						
 						// on selecting a match, matchid and get ratings if appropriate
 						var onMatchSelect = function(ev) {
 							var selectedMatchid = Number(select.value);
