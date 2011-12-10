@@ -50,7 +50,7 @@ var FoxtrickMatchReportFormat = {
 		// lets keep in mind, there could be another problem with supporters
 		// var div_inner = div.getElementsByTagName("*")[Foxtrick.util.layout.isSupporter(doc) ? 3 : 2];
 		var div_inner = div.getElementsByTagName("*")[Foxtrick.util.layout.isSupporter(doc) ? 4 : 2];
-		var start = div_inner.innerHTML.indexOf('<br><br>');
+		var start = div_inner.innerHTML.indexOf('<br><br>'); 
 		var end = div_inner.innerHTML.indexOf('<div class="separator">');
 
 		var part = new Array('','','');
@@ -107,7 +107,7 @@ var FoxtrickMatchReportFormat = {
 		var padd = '';
 		var player = false;
 		var part_num = 0;
-		for (var i=0; i<dummy.length-2;i++) {
+		for (var i=1; i<dummy.length-3;i++) {
 			marg = 'margin-top:10px;'
 			padd = 'padding:2px;';
 			var textClass = SPECIAL_EVENT_CLASS_NAME;
@@ -119,7 +119,8 @@ var FoxtrickMatchReportFormat = {
 			var next_part=false;
 			if (dummy[i+1].length==0 && dummy[i+2].length==0) {
 				//Foxtrick.dump('-------next part--------\n');
-				next_part=true;
+				if (part_num>0)
+					next_part=true;
 				part_num++;
 			}
 			if (dummy[i] != '') {
@@ -154,9 +155,10 @@ var FoxtrickMatchReportFormat = {
 				}
 
 			}
-			if (next_part) part[1] += '<div class="ft-match-report-separator"></div>'
+			if (next_part) part[1] += '<div class="ft-match-report-separator"></div>';
 
 		}
+		part[1] += '<div class="ft-match-report-separator"></div>';
 		div_inner.innerHTML = part[1] + part[2];
 
 		var standing = new Array(0,0);
