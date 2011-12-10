@@ -26,8 +26,19 @@ Foxtrick.util.module.register({
 		var prev = left.getElementsByClassName("prev");
 		var first = left.getElementsByClassName("first");
 
-		if(!next.length && !prev.length)
-			return;
+		//fails on right to left languages
+		if(!next.length && !prev.length){
+			last = left.getElementsByClassName("last");
+			next = left.getElementsByClassName("next");
+			prev = right.getElementsByClassName("prev");
+			first = right.getElementsByClassName("first");
+			if(!next.length && !prev.length){
+				return;
+			} else {
+				Foxtrick.log("Switched to RTL Language");
+			}
+		}
+			
 			
 		var parent = 0;
 		var div = doc.createElement("div");
