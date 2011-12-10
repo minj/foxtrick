@@ -14,7 +14,7 @@ Foxtrick.util.module.register({
 	
 		var getThreadPageTargetPostingId = function(href){
 			try {
-			return href.replace(/.+n=/i, "").match(/^\d+/)[0]; 
+				return href.replace(/.+n=/i, "").match(/^\d+/)[0]; 
 			}
 			catch(e) {
 				return 1;
@@ -26,10 +26,8 @@ Foxtrick.util.module.register({
 		var right = doc.getElementsByClassName("threadPagingRight");
 		if(left.length == right.length)
 		{
-			Foxtrick.log("Haeh:", left.length, right.length)
 			for(var i=0; i < left.length; i++)
 			{
-				Foxtrick.log(i, "hm")
 				var ll = left[i];
 				var rr  = right[i];
 		
@@ -47,7 +45,7 @@ Foxtrick.util.module.register({
 					if(!next.length && !prev.length){
 						return;
 					} else {
-						Foxtrick.log("Switched to RTL Language");
+						
 					}
 				}
 					
@@ -87,9 +85,6 @@ Foxtrick.util.module.register({
 				}
 				else
 					maxpage = currentPage;
-					
-				Foxtrick.log(maxpage,"maxpage");
-				Foxtrick.log(currentPage,"currentPage");
 			
 				var end;
 				var start;
@@ -116,8 +111,6 @@ Foxtrick.util.module.register({
 						start = end - 17;
 				}
 				
-					
-				Foxtrick.log("maxpage", maxpage);
 				for(var p = start; p <= end; p++)
 				{
 					var href = Foxtrick.getHref(doc);
@@ -130,33 +123,33 @@ Foxtrick.util.module.register({
 					if(p == currentPage)
 					{
 						var strong = doc.createElement("strong");
-						strong.innerText = p;
+						strong.appendChild(doc.createTextNode(p));
 						a.appendChild(strong);
 					}
 					else if( (p == start) && currentPage != 1)
 					{
 						var href = Foxtrick.getHref(doc);
 						href =  href.replace(/n=\d+/i, "n=1");
-						a.innerText = 1;
+						a.appendChild(doc.createTextNode('1'));
 						a.href = href;
 					}
-					else if( (p == start + 1) && currentPage != 1 && currentPage > 7)
+					else if( (p == start + 1) && currentPage != 1 && currentPage > 7 && maxpage > 18)
 					{
-						a.innerText = '...';
+						a.appendChild(doc.createTextNode('...'));
 					}
-					else if( (p == end - 1) && currentPage != maxpage && (currentPage != maxpage - 2))
+					else if( (p == end - 1) && currentPage != maxpage && (currentPage != maxpage - 2) && maxpage > 18)
 					{
-						a.innerText = '...';
+						a.appendChild(doc.createTextNode('...'));
 					}
 					else if( (p == end) && currentPage != maxpage )
 					{
 						var href = Foxtrick.getHref(doc);
 						href =  href.replace(/n=\d+/i, ("n=" + (((maxpage-1)*step)+1)));
-						a.innerText = maxpage;
+						a.appendChild(doc.createTextNode(maxpage));
 						a.href = href;
 					}
 					else {
-						a.innerText = p;
+						a.appendChild(doc.createTextNode(p));
 						a.href = href;
 					}
 					div.appendChild(a);
