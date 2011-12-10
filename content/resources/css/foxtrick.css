@@ -76,11 +76,6 @@ html[dir="rtl"] h3.ft-expander-unexpanded, html[dir="rtl"] h3.ft-expander-expand
 
 .sidebarBox h5 { font-size: 100%; margin: 0.5em 0; }
 
-/* copy ratings */
-span.ft_copy_rating { cursor: pointer; font-weight: normal; text-decoration: underline; float: right; }
-h2.tblBox span.ft_copy_rating { margin-right: 1em; }
-th span.ft_copy_rating { margin-left: 0.2em; }
-
 /* personality images */
 .ft-personality-img { height: 8px; width: 8px; margin-left: 0.1em;}
 

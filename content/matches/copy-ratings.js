@@ -61,6 +61,19 @@ Foxtrick.util.module.register({
 				var youth = '';
 				if (matchlink.href.search('isYouth=True')!=-1) youth = 'youth';
 
+				var toggleTabHolder = doc.getElementsByClassName('toggleTabHolder')[0];
+				var copyTextRating = Foxtrick.hasClass(doc.getElementById('sortByNumberIcon'),'disabled') ? false : true;
+				var copyNumRating = Foxtrick.hasClass(doc.getElementById('sortByTextIcon'),'disabled') ? false : true;
+				
+				/* needs to be in mouseover or click
+				var copylinks = doc.getElementsByClassName('ft_copy_rating');
+				for (var j=0; j<copylinks.length; ++j) {
+					if (copyTextRating)
+						copylinks.title = Foxtrickl10n.getString('ratings.text');
+					if (copyTextRating)
+						copylinks.title += ' '+Foxtrickl10n.getString('ratings.number');
+				}*/
+				
 				// head row
 				ad += '[tr]\n\n[th]';
 				if ((table.rows[0].cells[0])) {
@@ -87,23 +100,42 @@ Foxtrick.util.module.register({
 						if (table.rows[row].cells[0]) {
 							ad += table.rows[row].cells[0].textContent;
 						}
-						ad += '[/th]\n[td]';
-						if (team1) {
-							if (table.rows[row].cells[1]) {
+						ad += '[/th]\n[td]'; 
+
+						var copyTextRating = table.rows[row].cells[1] !== undefined
+										&& (table.rows[row].cells[1].getAttribute('style') == null
+											|| table.rows[row].cells[1].getAttribute('style').indexOf('display: none') == -1
+											|| table.rows[row].cells[5].getAttribute('style').indexOf('display: none') == -1);
+											
+						var copyNumRating = table.rows[row].cells[4] !== undefined
+										&& (table.rows[row].cells[4].getAttribute('style') == null
+											|| table.rows[row].cells[4].getAttribute('style').indexOf('display: none') == -1
+											|| table.rows[row].cells[6].getAttribute('style').indexOf('display: none') == -1);
+																	
+						if (team1) { 
+							if (Foxtrick.hasClass(table.rows[row],'ft_rating_table_row'))
 								ad += table.rows[row].cells[1].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a).replace(_t, '[br]'+_t);
-							}
-							if (table.rows[row].cells[3]) {
-								//ad += ' (' + table.rows[row].cells[3].textContent.replace(',','.') + ')';
+							else {
+								if (copyTextRating && table.rows[row].cells[1] !== undefined) {
+									ad += table.rows[row].cells[1].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a).replace(_t, '[br]'+_t);
+								}
+								if (copyNumRating && table.rows[row].cells[3] !== undefined) {
+									ad += ' (' + table.rows[row].cells[3].textContent.replace(',','.') + ')';
+								}
 							}
 						}
 						if (team1 && team2)
 							ad += '[/td]\n[td]';
 						if (team2) {
-							if (table.rows[row].cells[2]) {
+							if (Foxtrick.hasClass(table.rows[row],'ft_rating_table_row'))
 								ad += table.rows[row].cells[2].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a).replace(_t, '[br]'+_t);
-							}
-							if (table.rows[row].cells[4]) {
-								//ad += ' (' + table.rows[row].cells[4].textContent + ')';
+							else {
+								if (copyTextRating && table.rows[row].cells[2] !== undefined) {
+									ad += table.rows[row].cells[2].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a).replace(_t, '[br]'+_t);
+								}
+								if (copyNumRating && table.rows[row].cells[4] !== undefined) {
+									ad += ' (' + table.rows[row].cells[4].textContent + ')';
+								}
 							}
 						}
 						ad += '[/td]\n\n[/tr]\n';
