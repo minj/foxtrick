@@ -10,7 +10,7 @@ var FoxtrickStaffMarker = {
 	PAGES : ["forumViewThread", "forumWritePost", "teamPage"],
 	OPTIONS : ["own", "manager"],
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DISABLED_LIST : [true, false, true],
+	OPTION_TEXTS_DISABLED_LIST : [false, true],
 
 	CSS : Foxtrick.InternalPath + "resources/css/staff-marker.css",
 
