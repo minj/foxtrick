@@ -83,7 +83,7 @@ Foxtrick.util.module.register((function() {
 		"134" : { "team": ["goal", "penalty"] },
 		"137" : { "team": ["goal", "se_head_specialist"] },
 		"138" : "goal",
-		"139" : { "team": ["se_technical"], "other": ["se_head_specialist"] },
+		"139" : { "team": ["goal", "se_technical"], "other": ["se_head_specialist"] },
 		"140" : { "team": ["goal", "counter-attack", "whistle"] },
 		"141" : { "team": ["goal", "middle", "counter-attack"] },
 		"142" : { "team": ["left wing", "goal", "counter-attack"] },
