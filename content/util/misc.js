@@ -40,9 +40,9 @@ if (!Foxtrick) var Foxtrick = {};
 
 	Foxtrick.preventChange = function(doc, func) {
 		return function() {
-			Foxtrick.startListenToChange(doc, func);
-			func.apply(func, arguments);
-			Foxtrick.stopListenToChange(doc, func);
+			Foxtrick.stopListenToChange(doc);
+			func.apply(this, arguments);
+			Foxtrick.startListenToChange(doc);
 		};
 	};
 })();
