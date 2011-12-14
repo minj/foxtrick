@@ -30,7 +30,7 @@ Foxtrick.entry.docLoad = function(doc) {
 	}
 
 	// clear ASP.NET_SessionId cookie on login (security leak)
-	if (Foxtrick.arch == "Gecko" && Foxtrick.isLoginPage(doc)) {
+	/*if (Foxtrick.arch == "Gecko" && Foxtrick.isLoginPage(doc)) {
 	 	try { 
 			var cookieManager = Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager);
 
@@ -50,7 +50,7 @@ Foxtrick.entry.docLoad = function(doc) {
 		} catch(e) {
 			Foxtrick.log(e);
 		}
-	}
+	}*/
 
 	// we shall not run here
 	if (!Foxtrick.isHt(doc)) 
@@ -244,7 +244,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 };
 
 Foxtrick.entry.change = function(ev) {
-	try {
+	try {console.log(ev)
 		var doc = ev.target.ownerDocument;
 		if (ev.target.nodeType !== Node.ELEMENT_NODE &&
 			ev.target.nodeType !== Node.TEXT_NODE)
