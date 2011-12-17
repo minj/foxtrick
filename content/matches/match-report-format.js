@@ -466,11 +466,7 @@ Foxtrick.util.module.register((function() {
 								var addEventIcons = function(id){
 									if(FoxtrickPrefs.isModuleOptionEnabled("MatchReportFormat", "ShowEventIcons")){
 										var addEventIcon = function(src, title, alt) {
-											var img = doc.createElement("img");
-											icon.appendChild(img);
-											img.className = "ft-match-report-event-icon-image";
-											img.src = src;
-											img.title = title;
+											Foxtrick.addImage(doc, icon, { alt: title, title: title, src: src , className: "ft-match-report-event-icon-image" });
 										}
 										
 										var icon = doc.createElement("div");
