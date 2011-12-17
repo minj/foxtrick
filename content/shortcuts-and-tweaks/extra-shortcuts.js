@@ -25,7 +25,7 @@ Foxtrick.util.module.register({
 
 	run : function(doc) {
 		var checkRadio = function(url, radio) {
-			Foxtrick.loadXml(doc, url, function(radio_xml) {
+			Foxtrick.loadXml(url, function(radio_xml) {
 				if (radio_xml != null && radio_xml.getElementsByTagName('radio').length!=0) {
 					if (radio_xml.getElementsByTagName('status').length!=0) {
 						var span = doc.getElementById(radio+'Span');

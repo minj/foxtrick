@@ -19,10 +19,10 @@ Foxtrick.util.module.register({
 	SELF_TEAM_INFO : {},
 
 	run : function(doc) {
-		this.showChangeLog(doc);
-		this.showVersion(doc);
-		this.updateLastHost(doc);
 		this.parseSelfTeamInfo(doc);
+		this.updateLastHost(doc);
+		this.showVersion(doc);
+		this.showChangeLog(doc);
 	},
 
 	updateLastHost : function(doc) {
@@ -139,7 +139,7 @@ Foxtrick.util.module.register({
 						updateNotepad();
 						Foxtrick.listen(select, 'change', updateNotepad, false);
 					}
-					Foxtrick.loadXml(doc, Foxtrick.InternalPath + "release-notes.xml", show);
+					Foxtrick.loadXml(Foxtrick.InternalPath + "release-notes.xml", show);
 				}
 			}
 			FoxtrickPrefs.setString("oldVersion", Foxtrick.version());
