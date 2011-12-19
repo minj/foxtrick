@@ -558,8 +558,8 @@ Foxtrick.util.module.register({
 						option.textContent = Foxtrickl10n.getString ('matchOrder.AddMatchManually');
 						select.appendChild(option);
 
+						var otherMatchesNodes = otherMatchesXml.getElementsByTagName('Match');
 						if (otherMatchesNodes) {
-							var otherMatchesNodes = otherMatchesXml.getElementsByTagName('Match');
 							for (var i=0; i<otherMatchesNodes.length; ++i) {
 								
 								// not friendlies for now to keep it clean
