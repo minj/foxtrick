@@ -251,14 +251,16 @@ Foxtrick.util.api = {
 				var errorText = null;
 				if (x == null) 
 					errorText = Foxtrickl10n.getString("api.failure");
+				else {
+					var ErrorNode = x.getElementsByTagName('Error')[0]; 
+					if (typeof(ErrorNode) !== 'undefined') {
+						// chpp api return error xml
+						errorText = ErrorNode.textContent;
+						x = null;
+					}
+				}
 				if (status == 503) 
 					errorText = Foxtrickl10n.getString("api.serverUnavailable");
-				var ErrorNode = x.getElementsByTagName('Error')[0]; 
-				if (typeof(ErrorNode) !== 'undefined') {
-					// chpp api return error xml
-					errorText = ErrorNode.textContent;
-					x = null;
-				}
 				for (var i=0; i< Foxtrick.util.api.queue[parameters_str].length; ++i)
 					Foxtrick.util.api.queue[parameters_str][i](x, errorText);
 				delete (Foxtrick.util.api.queue[parameters_str]);
