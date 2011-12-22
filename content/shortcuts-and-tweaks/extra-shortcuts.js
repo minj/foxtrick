@@ -9,14 +9,13 @@ Foxtrick.util.module.register({
 	MODULE_NAME : "ExtraShortcuts",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('all'),
-	OPTIONS : ["AddSpace","AddLeft","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "ManageCHPP", "HtRadio", "No9", "Latehome", "Balkaradio"],
-	RADIOS: ["HtRadio", "No9", "Latehome", "Balkaradio"],
+	OPTIONS : ["AddSpace","AddLeft","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "ManageCHPP", "HtRadio", "No9", "Latehome"],
+	RADIOS: ["HtRadio", "No9", "Latehome"],
 	RADIO_URLS: [
 		"http://stream.ht-radio.nl/foxtrick/status.php",
 		"http://no9-online.de/_no9/no9status.php",
 		"http://www.latehome.de/foxtrick/status.php",
-		"http://radio-balkadio.com/radio.xml",
-	],
+    ],
 	CSS: Foxtrick.InternalPath+"resources/css/extra-shortcuts.css",
 
 	OPTIONS_CSS: [
