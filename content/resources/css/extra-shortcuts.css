@@ -25,6 +25,21 @@
 	background-image: url('chrome://foxtrick/content/resources/img/shortcuts/foxtrick.png') !important;
 }
 
+/* radio tweaks */
+html[dir="rtl"] .scContainer ul{
+	text-align: right;
+}
+html[dir="ltr"] .scContainer ul{
+	text-align: left;
+}
+.scContainer ul.ft-pop > li {
+	white-space: normal;
+}
+.scContainer ul{
+	width: 200px;
+}
+
+/*non supporter ads moved left to make space for 2 ft icons */
 html[dir="ltr"] #mediasports .mediasports {
 	margin-right: 160px  !important;
 }
