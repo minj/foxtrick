@@ -774,7 +774,6 @@ var neededPermissions = [
 	{ module: "ExtraShortcuts.HtRadio", url: "http://stream.ht-radio.nl/*" },
 	{ module: "ExtraShortcuts.No9", url: "http://no9-online.de/*" },
 	{ module: "ExtraShortcuts.Latehome", url: "http://www.latehome.de/*" },
-	{ module: "ExtraShortcuts.Balkaradio", url: "http://radio-balkadio.com/*" },
 	{ module: "StaffMarker.HT-Youthclub", url: "http://www.hattrick-youthclub.org/*" }		
 ];
 

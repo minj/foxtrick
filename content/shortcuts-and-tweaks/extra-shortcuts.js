@@ -11,6 +11,7 @@ Foxtrick.util.module.register({
 	PAGES : new Array('all'),
 	OPTIONS : ["AddSpace","AddLeft","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "ManageCHPP", "HtRadio", "No9", "Latehome"],
 	RADIOS: ["HtRadio", "No9", "Latehome"],
+	// following also need to be entered in manifest.json->optional_permissions and perferences.js->neededPermissions
 	RADIO_URLS: [
 		"http://stream.ht-radio.nl/foxtrick/status.php",
 		"http://no9-online.de/_no9/no9status.php",
