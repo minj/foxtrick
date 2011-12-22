@@ -9,9 +9,9 @@ Foxtrick.util.module.register({
 	MODULE_NAME : "StaffMarker",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ["forumViewThread", "forumWritePost", "teamPage"],
-	OPTIONS : ["own", "manager"],
+	OPTIONS : ["own", "manager","HT-Youthclub"],
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DISABLED_LIST : [false, true],
+	OPTION_TEXTS_DISABLED_LIST : [false, true, true],
 
 	CSS : Foxtrick.InternalPath + "resources/css/staff-marker.css",
 
@@ -23,8 +23,10 @@ Foxtrick.util.module.register({
 			"http://www.foxtrick.org/data/staff/foxtrick.json",
 			"http://www.foxtrick.org/data/staff/chpp.json",
 			"http://www.foxtrick.org/data/staff/editor.json",
-			"http://www.hattrick-youthclub.org/_admin/foxtrick/team.json"
 		];
+		if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub")) 
+			uris.push("http://www.hattrick-youthclub.org/_admin/foxtrick/team.json");
+
 		// counter of URI remaining to fetch
 		var todo = uris.length;
 		Foxtrick.map(function(uri) {

@@ -29,8 +29,13 @@ function init()
 		initTabs();
 		initTextAndValues();
 		locateFragment(window.location.toString()); // locate element by fragment
+		testPermissions();
 
-		if (window.location.href.search(/imported=true/)!==-1) {
+		if (window.location.href.search(/saved=true/)!==-1) {
+			notice(Foxtrickl10n.getString("foxtrick.prefs.saved"));
+			window.location.href = window.location.href.substr(0,window.location.href.search(/\&saved=true/));
+		}
+		else if (window.location.href.search(/imported=true/)!==-1) {
 			notice(Foxtrickl10n.getString("foxtrick.prefs.loaded"));
 			window.location.href = window.location.href.substr(0,window.location.href.search(/\&imported=true/));
 		}
@@ -689,7 +694,7 @@ function initModules()
 		$("#pane").append(obj);
 	}
 }
-
+	
 function save()
 {
 	// global preferences
@@ -724,6 +729,8 @@ function save()
 			FoxtrickPrefs.setModuleEnableState(module, $(this).is(":checked"));
 	});
 
+	checkPermissions();
+
 	notice(Foxtrickl10n.getString("foxtrick.prefs.saved"));
 
 	FoxtrickPrefs.setBool("preferences.updated", true);
@@ -749,6 +756,83 @@ function importContent(from, to)
 		else {
 			var importedNode = document.importNode(node, true);
 			to.appendChild(importedNode);
+		}
+	}
+}
+
+
+
+// permissions management
+
+// check if permissions are granted in init and ask for permission if needed on saving
+// that's unsave since we don't check permissions right before asking for them
+// but since permission request must be in the click handler and not in a callback
+// this seems to be the only way 
+
+// should move/get that to the resp. modules
+var neededPermissions = [
+	{ module: "ExtraShortcuts.HtRadio", url: "http://stream.ht-radio.nl/*" },
+	{ module: "ExtraShortcuts.No9", url: "http://no9-online.de/*" },
+	{ module: "ExtraShortcuts.Latehome", url: "http://www.latehome.de/*" },
+	{ module: "ExtraShortcuts.Balkaradio", url: "http://radio-balkadio.com/*" },
+	{ module: "StaffMarker.HT-Youthclub", url: "http://www.hattrick-youthclub.org/*" }		
+];
+
+function testPermissions() {
+	// store current permissions in neededPermissions
+	if (Foxtrick.platform === "Chrome") {
+		for (var i=0; i<neededPermissions.length; ++i) { 
+			if (FoxtrickPrefs.getBool("module." + neededPermissions[i].module + ".enabled")) {
+				var testModulePermission = function(neededPermission) {				
+					chrome.permissions.contains({
+						  origins: [neededPermission.url]
+						}, function(result) {
+							neededPermission.granted = result;
+						});
+				};				
+				testModulePermission(neededPermissions[i]);
+			}
+		}
+	}
+}
+
+function checkPermissions() {
+	// ask for permissions if needed
+	if (Foxtrick.platform === "Chrome") {
+		var scheduled = 0, has_declined = false;
+		for (var i=0; i<neededPermissions.length; ++i) { 
+			if (FoxtrickPrefs.getBool("module." + neededPermissions[i].module + ".enabled")) {
+				var getPermission = function(neededPermission) {				
+					alert( Foxtrickl10n.getString("foxtrick.prefs.permissionsHint").replace("%s", neededPermission.module) );
+					// Permissions must be requested from inside a user gesture, like a button's
+					// click handler.
+					chrome.permissions.request({
+						origins: [neededPermission.url]
+						}, function(granted) {
+							// The callback argument will be true if the user granted the permissions.
+							if (granted) {
+								Foxtrick.log('Permission granted: ', neededPermission.module);
+							} else {
+								has_declined = true;
+								FoxtrickPrefs.setBool("module." + neededPermission.module + ".enabled", false);
+								Foxtrick.log('Permission declined: ', neededPermission.module);
+							}
+							Foxtrick.log(scheduled, has_declined)
+							if (--scheduled === 0 && has_declined) {
+								// reload to uncheck declined module options
+								window.location.href = window.location.href + '&saved=true';
+								window.location.reload();							
+							}
+					});
+				};
+				
+				if (neededPermissions[i].granted) {
+					Foxtrick.log('Permission already exist: ', neededPermissions[i].module);
+				} else {
+					++scheduled;
+					getPermission(neededPermissions[i]);
+				}
+			}
 		}
 	}
 }

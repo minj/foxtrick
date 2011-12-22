@@ -609,7 +609,7 @@ pref("extensions.foxtrick.prefs.module.SkinPlugin.skin", "");
 pref("extensions.foxtrick.prefs.module.SmallerPages.enabled", false);
 pref("extensions.foxtrick.prefs.module.SmallerPages.ReduceBid.enabled", false);
 pref("extensions.foxtrick.prefs.module.StaffMarker.enabled", true);
-pref("extensions.foxtrick.prefs.module.StaffMarker.flag.enabled", false);
+pref("extensions.foxtrick.prefs.module.StaffMarker.HT-Youthclub.enabled", true);
 pref("extensions.foxtrick.prefs.module.StaffMarker.manager.enabled", true);
 pref("extensions.foxtrick.prefs.module.StaffMarker.own.enabled", false);
 pref("extensions.foxtrick.prefs.module.StaffMarker.own_text", "{\"1001\" : \"color: red;\", \"1002\" : \"background-color: yellow;\"}");
