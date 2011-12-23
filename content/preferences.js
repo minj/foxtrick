@@ -753,10 +753,12 @@ function save()
 			FoxtrickPrefs.setModuleEnableState(module, $(this).is(":checked"));
 	});
 
-	checkPermissions();
+	var needsPermissions = checkPermissions();
 
-	notice(Foxtrickl10n.getString("foxtrick.prefs.saved"));
-
+	if (!needsPermissions)
+		notice(Foxtrickl10n.getString("foxtrick.prefs.saved"));
+	// else it is shown in permission request callback
+	
 	FoxtrickPrefs.setBool("preferences.updated", true);
 }
 
@@ -841,6 +843,7 @@ function revokePermissions() {
 }
 
 function checkPermissions() {
+	var needsPermissions = false; 
 	// ask for permissions if needed
 	if (Foxtrick.platform === "Chrome") {
 		var scheduled = 0, has_declined = false;
@@ -861,11 +864,17 @@ function checkPermissions() {
 								FoxtrickPrefs.setBool("module." + neededPermission.module + ".enabled", false);
 								Foxtrick.log('Permission declined: ', neededPermission.module);
 							}
-							Foxtrick.log(scheduled, has_declined)
-							if (--scheduled === 0 && has_declined) {
-								// reload to uncheck declined module options
-								window.location.href = window.location.href + '&saved=true';
-								window.location.reload();							
+							--scheduled;
+							Foxtrick.log('scheduled:', scheduled, ' - has_declined:', has_declined);
+							if (scheduled === 0) {
+								if (has_declined) {
+									// reload to uncheck declined module options
+									window.location.href = window.location.href + '&saved=true';
+									window.location.reload();							
+								}
+								else {
+									notice(Foxtrickl10n.getString("foxtrick.prefs.saved"));							
+								}
 							}
 					});
 				};
@@ -874,9 +883,11 @@ function checkPermissions() {
 					Foxtrick.log('Permission already exist: ', neededPermissions[i].module);
 				} else {
 					++scheduled;
+					needsPermissions = true;
 					getPermission(neededPermissions[i]);
 				}
 			}
 		}
 	}
+	return needsPermissions;
 }
