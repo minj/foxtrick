@@ -283,19 +283,24 @@ function initTextAndValues()
 	var oauth_keys = FoxtrickPrefs.getAllKeysOfBranch('oauth');
 	if (oauth_keys)	{
 		var teamids = Foxtrick.map( function(n){ 
-			if (n.match(/\d+/))
-				return n.match(/\d+/)[0]; 
-			else
-				return null;
+			return n.match(/oauth\.(.+)\.accessToken/)[1];
 		}, oauth_keys);
 		teamids = Foxtrick.unique(teamids);
 		for (var i in teamids) {
-			if (!teamids[i])
-				continue;
-			var item = document.createElement("option");
-			item.value = teamids[i];
-			item.textContent = teamids[i];
-			$("#select-delete-token-teamids").append($(item));
+			var id = parseInt(teamids[i]);
+			if ( !isNaN(id) ) {
+				var item = document.createElement("option");
+				item.value = id;
+				item.textContent = id;
+				$("#select-delete-token-teamids").append($(item));
+			}
+			else {
+				// delete invalid 
+				var array = FoxtrickPrefs.getAllKeysOfBranch('oauth.'+teamids[i]);
+				for (var i = 0; i < array.length; i++) {
+					FoxtrickPrefs.deleteValue(array[i]);
+				}
+			}
 		}
 	}
 }
