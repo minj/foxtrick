@@ -356,6 +356,14 @@ function initMainTab()
 			window.location.reload();
 		}
 	});
+
+	// revoke permissions
+	$("#pref-revoke-permissions").click(function() {
+		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("revoke_permissions_ask"))) {
+			Foxtrick.log('preferences: revoke permissions');
+			revokePermissions();
+		}
+	});
 }
 
 function getModule(module)
@@ -804,16 +812,30 @@ function testPermissions() {
 	// store current permissions in neededPermissions
 	if (Foxtrick.platform === "Chrome") {
 		for (var i=0; i<neededPermissions.length; ++i) { 
-			if (FoxtrickPrefs.getBool("module." + neededPermissions[i].module + ".enabled")) {
-				var testModulePermission = function(neededPermission) {				
-					chrome.permissions.contains({
-						  origins: [neededPermission.url]
-						}, function(result) {
-							neededPermission.granted = result;
-						});
-				};				
-				testModulePermission(neededPermissions[i]);
-			}
+			var testModulePermission = function(neededPermission) {				
+				chrome.permissions.contains({
+					  origins: [neededPermission.url]
+					}, function(result) {
+						neededPermission.granted = result;
+					});
+			};				
+			testModulePermission(neededPermissions[i]);
+		}
+	}
+}
+
+function revokePermissions() {
+	// removes current permissions
+	if (Foxtrick.platform === "Chrome") {
+		for (var i=0; i<neededPermissions.length; ++i) { 
+			var revokeModulePermission = function(neededPermission) {				
+				chrome.permissions.remove({
+					  origins: [neededPermission.url]
+					}, function(result) {
+						Foxtrick.log('Permission removed: ', neededPermission.module, result);
+				});
+			};				
+			revokeModulePermission(neededPermissions[i]);
 		}
 	}
 }
