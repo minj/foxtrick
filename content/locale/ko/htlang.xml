@@ -1,74 +1,123 @@
-<language name="ko" desc="í•œêµ­ì–´">
+<language name="ko" desc="ÇÑ±¹¾î">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="ë‚˜ì˜ Hattrick" />
-	<MyClub value="ë‚˜ì˜ í´ëŸ½" />
-	<World value="ì„¸ê³„" />
-	<Forum value="í† ë¡ ìž¥" />
-	<Shop value="ìƒì " />
-	<Help value="ë„ì›€ë§" />
+        <!-- Menu items in the main menu of Hattrick.
+             Translate attribute "value" by copying from there in verbatim. -->
+        <MyHattrick value="³ªÀÇ Hattrick" />
+        <MyClub value="³ªÀÇ Å¬·´" />
+        <World value="¼¼°è" />
+        <Forum value="Åä·ÐÀå" />
+        <Shop value="»óÁ¡" />
+        <Help value="µµ¿ò¸»" />
 
-	<!-- rating sublevels appearing in match detail page. copy "text" -->
-	<ratingSubLevels>
-		<sublevel text="(very low)" value="0.0" />
-		<sublevel text="(low)" value="0.25" />
-		<sublevel text="(high)" value="0.50" />
-		<sublevel text="(very high)" value="0.75" />
-	</ratingSubLevels>
+        <!-- Rating sublevels in match report page.
+             Translate attribute "text" by copying from there in verbatim,
+             keep attribute "value" unchanged. -->
+        <ratingSubLevels>
+                <sublevel text="(¸Å¿ì ³·À½)" value="0.0" />
+                <sublevel text="(³·À½)" value="0.25" />
+                <sublevel text="(³ôÀ½)" value="0.50" />
+                <sublevel text="(¸Å¿ì ³ôÀ½)" value="0.75" />
+        </ratingSubLevels>
 
-	<!-- tactics appearing in match detail page. copy "value" -->
-	<tactics>
-		<tactic type="normal" value="Normal" />
-		<tactic type="pressing" value="Pressing" />
-		<tactic type="ca" value="Counter-attacks" />
-		<tactic type="aow" value="Attack on wings" />
-		<tactic type="aim" value="Attack in the Middle" />
-		<tactic type="creatively" value="Play creatively" />
-		<tactic type="longshots" value="Long shots" />
-	</tactics>
+        <!-- Tactics in match report page.
+             Keep attribute "type" unchanged,
+             translate attribute "value" by copying from there in verbatim. -->
+        <tactics>
+                <tactic type="normal" value="Ç¥ÁØ" />
+                <tactic type="pressing" value="¾Ð¹Ú" />
+                <tactic type="ca" value="¿ª½À" />
+                <tactic type="aow" value="Ãø¸é¿¡¼­ °ø°Ý" />
+                <tactic type="aim" value="Áß¾Ó¿¡¼­ °ø°Ý" />
+                <tactic type="creatively" value="Ã¢Á¶ÀûÀ¸·Î ÇÃ·¹ÀÌ" />
+                <tactic type="longshots" value="Àå°Å¸® ½¸" />
+        </tactics>
 
-	<!-- positions appearing on players page. copy "value". translate "short" -->
-	<positions>
-		<position type="Keeper" value="Keeper" short="GK" />
-		<position type="Central defender" value="Central defender" short="CD" />
-		<position type="Wing back" value="Wing back" short="WB" />
-		<position type="Inner midfielder" value="Inner midfielder" short="IM" />
-		<position type="Winger" value="Winger" short="WI" />
-		<position type="Forward" value="Forward" short="FW" />
-	</positions>
+        <!-- Positions in players page.
+             Keep attribute "type" unchanged,
+             translate attribute "value" by copying from there in verbatim,
+             translate attribute "short" according to your own will. -->
+        <positions>
+                <position type="Keeper" value="°ñÅ°ÆÛ" short="GK" />
+                <position type="Central defender" value="Áß¾Ó ¼öºñ¼ö" short="CD" />
+                <position type="Wing back" value="À® ¹é" short="WB" />
+                <position type="Inner midfielder" value="Áß¾Ó ¹ÌµåÇÊµå" short="IM" />
+                <position type="Winger" value="À®¾î" short="WI" />
+                <position type="Forward" value="Æ÷¿öµå" short="FW" />
+        </positions>
 
-	<!-- specialties appearing on players page. copy "value". translate "short" -->
-	<specialties>
-		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
-		<specialty type="Powerful" value="Powerful" short="Po" />
-		<specialty type="Quick" value="Quick" short="Qu" />
-		<specialty type="Technical" value="Technical" short="Te" />
-		<specialty type="Head" value="Head" short="He" />
-		<specialty type="Regainer" value="Regainer" short="Re" />
-	</specialties>
+        <!-- Specialities in player page.
+             Keep attribute "type" unchanged,
+             translate attribute "value" by copying from there in verbatim,
+             translate attribute "short" according to your own will. -->
+        <specialties>
+                <specialty type="Unpredictable" value="¿¹ÃøÇÒ ¼ö ¾øÀ½" short="Un" />
+                <specialty type="Powerful" value="Èû ÀÖÀ½" short="Po" />
+                <specialty type="Quick" value="ºü¸§" short="Qu" />
+                <specialty type="Technical" value="°ø ¸¶¼ú»ç" short="Te" />
+                <specialty type="Head" value="Çìµù" short="He" />
+                <specialty type="Regainer" value="È¸º¹ÀÎ" short="Re" />
+        </specialties>
 
-	<!-- levels word connections appearing denominations page. copy "text" -->
-	<levels>
-		<level text="divine" value="20" />
-		<level text="utopian" value="19" />
-		<level text="magical" value="18" />
-		<level text="mythical" value="17" />
-		<level text="extra-terrestrial" value="16" />
-		<level text="titanic" value="15" />
-		<level text="supernatural" value="14" />
-		<level text="world class" value="13" />
-		<level text="magnificent" value="12" />
-		<level text="brilliant" value="11" />
-		<level text="outstanding" value="10" />
-		<level text="formidable" value="9" />
-		<level text="excellent" value="8" />
-		<level text="solid" value="7" />
-		<level text="passable" value="6" />
-		<level text="inadequate" value="5" />
-		<level text="weak" value="4" />
-		<level text="poor" value="3" />
-		<level text="wretched" value="2" />
-		<level text="disastrous" value="1" />
-		<level text="non-existent" value="0" />
-	</levels>
+        <!-- Skill levels in denominations page.
+             Translate attribute "text" by copying from there in verbatim,
+             keep attribute "value" unchanged. -->
+        <levels>
+                <level text="½ÅÀÇ °æÁö" value="20" />
+                <level text="ÃÊ¿ùÀû" value="19" />
+                <level text="¸¶¼úÀû" value="18" />
+                <level text="Àü¼³Àû" value="17" />
+                <level text="¿Ü°èÀÎ" value="16" />
+                <level text="¸·°­ÇÔ" value="15" />
+                <level text="ÃÊÀÚ¿¬Àû" value="14" />
+                <level text="¼¼°è ÃÖ°í" value="13" />
+                <level text="ÈÇ¸¢ÇÔ" value="12" />
+                <level text="´«ºÎ½É" value="11" />
+                <level text="°ÉÃâÇÔ" value="10" />
+                <level text="°­·ÂÇÔ" value="9" />
+                <level text="¶Ù¾î³²" value="8" />
+                <level text="¿ì¼ö" value="7" />
+                <level text="¹«³­ÇÔ" value="6" />
+                <level text="ºÒÃæºÐÇÔ" value="5" />
+                <level text="¾àÇÔ" value="4" />
+                <level text="³ª»Ý" value="3" />
+                <level text="ÃÖ¾Ç" value="2" />
+                <level text="ÇüÆí ¾øÀ½" value="1" />
+                <level text="¾øÀ½" value="0" />
+        </levels>
+
+        <!-- Agreeability levels in denominations page.
+             Translate attribute "text" by copying from there in verbatim,
+             keep attribute "value" unchanged. -->
+        <agreeability>
+                <level text="»ç¶û½º·¯¿î ¼±¼ö" value="5" />
+                <level text="ÀÎ±â ÀÖ´Â »ç¶÷" value="4" />
+                <level text="ÀÎÁ¤ ÀÖ´Â »ç¶÷" value="3" />
+                <level text="À¯ÄèÇÑ »ç¶÷" value="2" />
+                <level text="³íÀï»óÀÇ »ç¶÷" value="1" />
+                <level text="½É¼ú±ÄÀº »ç¶÷" value="0" />
+        </agreeability>
+
+        <!-- Honesty levels in denominations page.
+             Translate attribute "text" by copying from there in verbatim,
+             keep attribute "value" unchanged. -->
+        <honesty>
+                <level text="½Å¼ºÇÑ" value="5" />
+                <level text="°øÁ¤ÇÑ" value="4" />
+                <level text="°í°áÇÑ" value="3" />
+                <level text="Á¤Á÷ÇÑ" value="2" />
+                <level text="ºÎÁ¤Á÷ÇÑ" value="1" />
+                <level text="¾Ç¸í³ôÀº" value="0" />
+        </honesty>
+
+        <!-- Aggressiveness levels in denominations page.
+             Translate attribute "text" by copying from there in verbatim,
+             keep attribute "value" unchanged. -->
+        <aggressiveness>
+                <level text="¹«Ã¥ÀÓÇÑ" value="5" />
+                <level text="ºÒ°°Àº ¼ºÁú" value="4" />
+                <level text="º¯´ö½º·¯¿î" value="3" />
+                <level text="Ä§ÂøÇÑ" value="2" />
+                <level text="Æò¿ÂÇÑ" value="1" />
+                <level text="Á¶¿ëÇÑ" value="0" />
+        </aggressiveness>
 </language>
