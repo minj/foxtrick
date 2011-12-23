@@ -39,7 +39,9 @@ function init()
 			notice(Foxtrickl10n.getString("foxtrick.prefs.loaded"));
 			window.location.href = window.location.href.substr(0,window.location.href.search(/\&imported=true/));
 		}
-	} catch(e){Foxtrick.log('init: ',e);}
+	} catch(e){
+		Foxtrick.log('init: ', e);
+	}
 }
 
 function initCoreModules()
@@ -279,13 +281,22 @@ function initTextAndValues()
 	var chpp_url = FoxtrickPrefs.getString("last-host") + "/MyHattrick/Preferences/ExternalAccessGrants.aspx";
 	$("#pref-delete-token-desc").html($("#pref-delete-token-desc").text().replace(/\{(.+)\}/, "<a href='"+chpp_url+"' target='_blank'>$1</a>"));
 	var oauth_keys = FoxtrickPrefs.getAllKeysOfBranch('oauth');
-	var teamids = Foxtrick.map( function(n){ return n.match(/\d+/)[0]; }, oauth_keys);
-	teamids = Foxtrick.unique(teamids);
-	for (var i in teamids) {
-		var item = document.createElement("option");
-		item.value = teamids[i];
-		item.textContent = teamids[i];
-		$("#select-delete-token-teamids").append($(item));
+	if (oauth_keys)	{
+		var teamids = Foxtrick.map( function(n){ 
+			if (n.match(/\d+/))
+				return n.match(/\d+/)[0]; 
+			else
+				return null;
+		}, oauth_keys);
+		teamids = Foxtrick.unique(teamids);
+		for (var i in teamids) {
+			if (!teamids[i])
+				continue;
+			var item = document.createElement("option");
+			item.value = teamids[i];
+			item.textContent = teamids[i];
+			$("#select-delete-token-teamids").append($(item));
+		}
 	}
 }
 
