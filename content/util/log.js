@@ -54,17 +54,17 @@ Foxtrick.log = function() {
 		// (only supports one argument)
 		Firebug.Console.log(concated);
 	}
-	if (typeof(console) != "undefined"
+	else if (typeof(opera) != "undefined"
+		&& typeof(opera.postError) == "function") {
+		opera.postError(args);
+	}
+	else if (typeof(console) != "undefined"
 		&& typeof(console.log) == "function") {
 		// if console.log is available, make use of it
 		// (support multiple arguments)
 		console.log.apply(console, args);
 		if (hasError && typeof(console.trace) == "function") 
 			console.trace();
-	}
-	else if (typeof(opera) != "undefined"
-		&& typeof(opera.postError) == "function") {
-		opera.postError(concated + "\n", args);
 	}
 	if (typeof(dump) == "function") {
 		var lines = concated.split(/\n/), concated = '';
