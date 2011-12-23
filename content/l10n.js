@@ -6,58 +6,58 @@
 ////////////////////////////////////////////////////////////////////////////////
 var Foxtrickl10n = {
 	locales : [
-		"ar",
-		"be",
-		"bg",
-		"bs",
-		"ca",
-		"cs",
-		"da",
-		"de",
-		"ee",
-		"en",
-		"es",
-		"es_ca",
-		"es_SU",
-		"eu",
-		"fa",
-		"fi",
-		"fr",
-		"fur",
-		"fy",
-		"gl",
-		"gr",
-		"he",
-		"hr",
-		"hu",
-		"is",
-		"it",
-		"ja",
-		"ka",
-		"ko",
-		"lb",
-		"lt",
-		"lv",
-		"mk",
-		"mt",
-		"nl",
-		"nn",
-		"no",
-		"pl",
-		"pt",
-		"pt_BR",
-		"ro",
-		"ru",
-		"sk",
-		"sl",
-		"sq",
-		"sr",
-		"sv",
-		"tr",
-		"uk",
-		"vi",
-		"vls",
-		"zh"
+		"ar",	// العربية, arabic
+		"be",	// Беларуская, belorus
+		"bg",	// Български, bulgarian
+		"bs",	// Bosanski
+		"ca",	// Català, catalan
+		"cs",	// Čeština, czech
+		"da",	// Dansk, danish
+		"de",	// Deutsch, german
+		"ee",	// Eesti
+		"en",	// english
+		"es",	// Español
+		"es_ca",	//Español centro-americano
+		"es_SU",	// Español Sudamericano
+		"eu",	// Euskara, basque
+		"fa",	// فارسی, farsi, iranian
+		"fi",	// Suomi, finnish
+		"fr",	// frensh
+		"fur",	// Furlan, northitaly
+		"fy",	// Frysk, east-netherland/north germany
+		"gl",	// Galego, galician
+		"gr",	// Ελληνικά, greek
+		"he",	// עברית, hebrew
+		"hr",	// Hrvatski, croatian
+		"hu",	// Magyar, hungarian
+		"is",	// Íslenska, island
+		"it",	// italian
+		"ja",	// 日本語, japanese
+		"ka",	// Georgian
+		"ko",	// 한국어, korean
+		"lb",	// Lëtzebuergesch
+		"lt",	// Lietuvių
+		"lv",	// Latviešu
+		"mk",	// Македонски, macedonian
+		"mt",	// Malti
+		"nl",	// netherlands
+		"nn",	// Norsk nynorsk
+		"no",	// Norsk bokmål
+		"pl",	// Polski
+		"pt",	// Português
+		"pt_BR",	// Português brasil
+		"ro",	// Română, romanian
+		"ru",	// Русский, russain 
+		"sk",	// Slovenčina, slovak
+		"sl",	// Slovenščina, slovenian 
+		"sq",	// Albanian
+		"sr",	// Српски, serbian
+		"sv",	// Svenska, swedish
+		"tr",	// Türkçe
+		"uk",	// Українська, ukranian
+		"vi",	// Tiếng Việt, vietnamese
+		"vls",	// Vlaams, netherland
+		"zh"	// 中文（简体）, chinese
 	],
 
 	htLanguagesXml : {},
