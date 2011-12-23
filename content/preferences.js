@@ -785,7 +785,14 @@ var neededPermissions = [
 	{ module: "ExtraShortcuts.HtRadio", url: "http://stream.ht-radio.nl/*" },
 	{ module: "ExtraShortcuts.No9", url: "http://no9-online.de/*" },
 	{ module: "ExtraShortcuts.Latehome", url: "http://www.latehome.de/*" },
-	{ module: "StaffMarker.HT-Youthclub", url: "http://www.hattrick-youthclub.org/*" }		
+	{ module: "StaffMarker.HT-Youthclub", url: "http://www.hattrick-youthclub.org/*" },
+	{ module: "EmbedMedia.EmbedVimeoVideos", url: "https://vimeo.com/api/*" },
+	{ module: "EmbedMedia.EmbedYoutubeVideos", url: "https://www.youtube.com/*" },
+	//{ module: "EmbedMedia.EmbedFunnyOrDieVideos", url: "http://www.funnyordie.com/*" },
+	{ module: "EmbedMedia.EmbedDailymotionVideos", url: "https://www.dailymotion.com/services/*" },
+	{ module: "EmbedMedia.EmbedFlickrImages", url: "http://www.flickr.com/services/oembed/*" },
+	{ module: "EmbedMedia.EmbedDeviantArtImages", url: "http://backend.deviantart.com/*" },
+	{ module: "EmbedMedia.EmbedSoundCloud", url: "http://soundcloud.com/*" }
 ];
 
 function testPermissions() {

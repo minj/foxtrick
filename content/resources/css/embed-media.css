@@ -23,29 +23,47 @@ html[dir="rtl"] div.ft-media-expander-expanded {
 	padding-left: 20px;
 	padding-right: 0px;
 }
-html[dir="ltr"] div.vimeo.ft-media-expander-unexpanded {
+html[dir="ltr"] div.ft-media-site-vimeo.ft-media-expander-unexpanded {
 	background-image: url("chrome://foxtrick/content/resources/img/icons/vimeo_down.png");
 }
-html[dir="ltr"] div.vimeo.ft-media-expander-expanded {
+html[dir="ltr"] div.ft-media-site-vimeo.ft-media-expander-expanded {
 	background-image: url("chrome://foxtrick/content/resources/img/icons/vimeo_up.png");
 }
-html[dir="ltr"] div.dailymotion.ft-media-expander-unexpanded {
+html[dir="ltr"] div.ft-media-site-dailymotion.ft-media-expander-unexpanded {
 	background-image: url("chrome://foxtrick/content/resources/img/icons/dailymotion_down.png");
 }
-html[dir="ltr"] div.dailymotion.ft-media-expander-expanded {
+html[dir="ltr"] div.ft-media-site-dailymotion.ft-media-expander-expanded {
 	background-image: url("chrome://foxtrick/content/resources/img/icons/dailymotion_up.png");
 }
-html[dir="ltr"] div.funnyordie.ft-media-expander-unexpanded {
+html[dir="ltr"] div.ft-media-site-funnyordie.ft-media-expander-unexpanded {
 	background-image: url("chrome://foxtrick/content/resources/img/icons/funnyordie_down.png");
 }
-html[dir="ltr"] div.funnyordie.ft-media-expander-expanded {
+html[dir="ltr"] div.ft-media-site-funnyordie.ft-media-expander-expanded {
 	background-image: url("chrome://foxtrick/content/resources/img/icons/funnyordie_up.png");
 }
-html[dir="ltr"] div.youtube.ft-media-expander-unexpanded {
+html[dir="ltr"] div.ft-media-site-youtube.ft-media-expander-unexpanded {
 	background-image: url("chrome://foxtrick/content/resources/img/icons/youtube_down.png");
 }
-html[dir="ltr"] div.youtube.ft-media-expander-expanded {
+html[dir="ltr"] div.ft-media-site-youtube.ft-media-expander-expanded {
 	background-image: url("chrome://foxtrick/content/resources/img/icons/youtube_up.png");
+}
+html[dir="ltr"] div.ft-media-site-soundcloud.ft-media-expander-expanded {
+	background-image: url("chrome://foxtrick/content/resources/img/icons/soundcloud_up.png");
+}
+html[dir="ltr"] div.ft-media-site-soundcloud.ft-media-expander-unexpanded {
+	background-image: url("chrome://foxtrick/content/resources/img/icons/soundcloud_down.png");
+}
+html[dir="ltr"] div.ft-media-site-deviantart.ft-media-expander-expanded {
+	background-image: url("chrome://foxtrick/content/resources/img/icons/deviantart_up.png");
+}
+html[dir="ltr"] div.ft-media-site-deviantart.ft-media-expander-unexpanded {
+	background-image: url("chrome://foxtrick/content/resources/img/icons/deviantart_down.png");
+}
+html[dir="ltr"] div.ft-media-site-flickr.ft-media-expander-expanded {
+	background-image: url("chrome://foxtrick/content/resources/img/icons/flickr_up.png");
+}
+html[dir="ltr"] div.ft-media-site-flickr.ft-media-expander-unexpanded {
+	background-image: url("chrome://foxtrick/content/resources/img/icons/flickr_down.png");
 }
 div.ft-media-container {
 	text-align: center;
@@ -61,28 +79,46 @@ html[dir="rtl"] div.ft-media-expander-expanded {
 	border-bottom: 1px solid #CCC;
 	margin-bottom: 2px;
 }
-html[dir="rtl"] div.vimeo.ft-media-expander-unexpanded {
+html[dir="rtl"] div.ft-media-site-vimeo.ft-media-expander-unexpanded {
 	background-image: url("chrome://foxtrick/content/resources/img/icons/vimeo_down_rtl.png");
 }
-html[dir="rtl"] div.vimeo.ft-media-expander-expanded {
+html[dir="rtl"] div.ft-media-site-vimeo.ft-media-expander-expanded {
 	background-image: url("chrome://foxtrick/content/resources/img/icons/vimeo_up_rtl.png");
 }
-html[dir="rtl"] div.dailymotion.ft-media-expander-unexpanded {
+html[dir="rtl"] div.ft-media-site-dailymotion.ft-media-expander-unexpanded {
 	background-image: url("chrome://foxtrick/content/resources/img/icons/dailymotion_down_rtl.png");
 }
-html[dir="rtl"] div.dailymotion.ft-media-expander-expanded {
+html[dir="rtl"] div.ft-media-site-dailymotion.ft-media-expander-expanded {
 	background-image: url("chrome://foxtrick/content/resources/img/icons/dailymotion_up_rtl.png");
 }
-html[dir="rtl"] div.funnyordie.ft-media-expander-unexpanded {
+html[dir="rtl"] div.ft-media-site-funnyordie.ft-media-expander-unexpanded {
 	background-image: url("chrome://foxtrick/content/resources/img/icons/funnyordie_down_rtl.png");
 }
-html[dir="rtl"] div.funnyordie.ft-media-expander-expanded {
+html[dir="rtl"] div.ft-media-site-funnyordie.ft-media-expander-expanded {
 	background-image: url("chrome://foxtrick/content/resources/img/icons/funnyordie_up_rtl.png");
 }
-html[dir="rtl"] div.youtube.ft-media-expander-unexpanded {
+html[dir="rtl"] div.ft-media-site-youtube.ft-media-expander-unexpanded {
 	background-image: url("chrome://foxtrick/content/resources/img/icons/youtube_down_rtl.png");
 }
-html[dir="rtl"] div.youtube.ft-media-expander-expanded {
+html[dir="rtl"] div.ft-media-site-youtube.ft-media-expander-expanded {
 	background-image: url("chrome://foxtrick/content/resources/img/icons/youtube_up_rtl.png");
+}
+html[dir="rtl"] div.ft-media-site-soundcloud.ft-media-expander-expanded {
+	background-image: url("chrome://foxtrick/content/resources/img/icons/soundcloud_up_rtl.png");
+}
+html[dir="rtl"] div.ft-media-site-soundcloud.ft-media-expander-unexpanded {
+	background-image: url("chrome://foxtrick/content/resources/img/icons/soundcloud_down_rtl.png");
+}
+html[dir="rtl"] div.ft-media-site-deviantart.ft-media-expander-expanded {
+	background-image: url("chrome://foxtrick/content/resources/img/icons/deviantart_up_rtl.png");
+}
+html[dir="rtl"] div.ft-media-site-deviantart.ft-media-expander-unexpanded {
+	background-image: url("chrome://foxtrick/content/resources/img/icons/deviantart_down_rtl.png");
+}
+html[dir="rtl"] div.ft-media-site-flickr.ft-media-expander-expanded {
+	background-image: url("chrome://foxtrick/content/resources/img/icons/flickr_up_rtl.png");
+}
+html[dir="rtl"] div.ft-media-site-flickr.ft-media-expander-unexpanded {
+	background-image: url("chrome://foxtrick/content/resources/img/icons/flickr_down_rtl.png");
 }
 }

@@ -53,6 +53,11 @@ pref("extensions.foxtrick.prefs.module.EmbedMedia.EmbedYoutubeVideos.enabled", t
 pref("extensions.foxtrick.prefs.module.EmbedMedia.EmbedVimeoVideos.enabled", true);
 pref("extensions.foxtrick.prefs.module.EmbedMedia.EmbedFunnyOrDieVideos.enabled", true);
 pref("extensions.foxtrick.prefs.module.EmbedMedia.EmbedDailymotionVideos.enabled", true);
+pref("extensions.foxtrick.prefs.module.EmbedMedia.EmbedModeOEmebed.enabled", false);
+pref("extensions.foxtrick.prefs.module.EmbedMedia.ReplaceLinksByTitles.enabled", false);
+pref("extensions.foxtrick.prefs.module.EmbedMedia.EmbedSoundCloud.enabled", false);
+pref("extensions.foxtrick.prefs.module.EmbedMedia.EmbedFlickrImages.enabled", false);
+pref("extensions.foxtrick.prefs.module.EmbedMedia.EmbedDeviantArtImages.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtendedPlayerDetails.enabled", true);
 pref("extensions.foxtrick.prefs.module.ExtendedPlayerDetails.value", 0);
 pref("extensions.foxtrick.prefs.module.ExtendedPlayerDetailsWage.enabled", true);

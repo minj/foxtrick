@@ -200,7 +200,14 @@
 		"http://www.hattrick-youthclub.org/*",
 		"http://stream.ht-radio.nl/*",
 		"http://no9-online.de/*",
-		"http://www.latehome.de/*"
+		"http://www.latehome.de/*",
+		"https://vimeo.com/api/*",
+		"https://www.youtube.com/*",
+		"http://www.funnyordie.com/*",
+		"https://www.dailymotion.com/services/*",
+		"http://www.flickr.com/services/oembed/*",
+		"http://backend.deviantart.com/*",
+		"http://soundcloud.com/*"
 	],
 	"page_action": {
 		"default_icon": "skin/icon-24.png",
