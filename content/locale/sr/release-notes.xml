@@ -14,6 +14,16 @@
 
 </note>
 
+<note version="0.8.1">
+<item><module>ElectionTable</module>: прилагођен новом изгледу странице за изборе. (convincedd, ryanli)</item>
+<item><module>HTThreadMarker</module>: нови стил за маркирање. (convincedd, ryanli)</item>
+<item><module>TableSort</module>: без конфликата са оригиналним Хеттрик сортирањем. (convincedd)</item>
+<item><module>HTMSPrediction</module>, <module>CopyRatings</module>: прилагођени новом изгледу странице са извештајем са мечева. (convincedd)</item>
+<item><module>LineupShortcut</module>: сада ради и за оне који немају супортер. (ryanli)</item>
+<item><module>TransferSearchResultFilters</module>: исправка после последњих промена. (convincedd)</item>
+<item><module>SkillTable</module>: сада укључује оданост и бонус за матични клуб. (convincedd)</item>
+</note>
+
 <note version="0.8">
 <item>Арапски језик. (GM-OmaniMilani)</item>
 <item>Нови механизам приказивања опција активних на страници, стари модул OnPagePrefs је због тога уклоњен. (convincedd, ryanli)</item>
