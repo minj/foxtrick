@@ -99,7 +99,7 @@ Foxtrick.util.module.register({
 		var do_oEmbed  = function(target, json){
 			var author = json.author_name?json.author_name:"Unknown Author";
 			if(do_replaceLinksByTitles)
-				target.firstChild.innerText = json.title;
+				target.firstChild.innerText = '(' + json.title + ')';
 			
 			switch (json.type){
 				 case "file":
@@ -179,10 +179,9 @@ Foxtrick.util.module.register({
 			var a = doc.createElement('a');
 			
 			//already convert link to embedding url when using iframe method
-			if(!oembed_enabled ){
+			if(!oembed_enabled )
 				a.href = iframe_urls[media_link["site"]] +  media_link["videoid"];
-				Foxtrick.log(a.href);
-			} else
+			else
 				a.href = media_link["link"].href;
 				
 			videocontainer.appendChild(a);
