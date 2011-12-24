@@ -11,8 +11,8 @@ Foxtrick.util.module.register({
 	PAGES : new Array("forumViewThread"),
 	NICE : 1,
 	//no funnyordie atm
-	//OPTIONS : ['EmbedYoutubeVideos','EmbedVimeoVideos', 'EmbedFunnyOrDieVideos', 'EmbedDailymotionVideos', 'EmbedModeOEmebed', 'ReplaceLinksByTitlesLinksToTitles', 'EmbedFlickrImages', 'EmbedDeviantArtImages', 'EmbedSoundCloud'],
-	OPTIONS : ['EmbedYoutubeVideos','EmbedVimeoVideos', 'EmbedDailymotionVideos', 'EmbedModeOEmebed', 'ReplaceLinksByTitles', 'EmbedFlickrImages', 'EmbedDeviantArtImages', 'EmbedSoundCloud'],
+	//OPTIONS : ['EmbedYoutubeVideos','EmbedVimeoVideos', 'EmbedFunnyOrDieVideos', 'EmbedDailymotionVideos', ['EmbedModeOEmebed', 'ReplaceLinksByTitlesLinksToTitles', 'EmbedFlickrImages', 'EmbedDeviantArtImages', 'EmbedSoundCloud']],
+	OPTIONS : ['EmbedYoutubeVideos','EmbedVimeoVideos', 'EmbedDailymotionVideos', ['EmbedModeOEmebed', 'ReplaceLinksByTitles', 'EmbedFlickrImages', 'EmbedDeviantArtImages', 'EmbedSoundCloud']],
 	CSS : Foxtrick.InternalPath + "resources/css/embed-media.css",
 
 	run : function(doc) {
