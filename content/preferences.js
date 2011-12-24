@@ -449,26 +449,61 @@ function getModule(module)
 		options.appendChild(checkboxes);
 		checkboxes.id = module.MODULE_NAME + "-checkboxes";
 
-		for (var i in module.OPTIONS) {
-			var item = document.createElement("li");
-			checkboxes.appendChild(item);
-			var label = document.createElement("label");
-			item.appendChild(label);
-			var checkbox = document.createElement("input");
-			checkbox.type = "checkbox";
-			checkbox.setAttribute("module", module.MODULE_NAME);
-			label.appendChild(checkbox);
+		for (var i in module.OPTIONS) {		
+			var item, label, checkbox = null;
+			
+			var appendOptionToList = function (key, list){
+				item = document.createElement("li");
+				list.appendChild(item);
+				label = document.createElement("label");
+				item.appendChild(label);
+				checkbox = document.createElement("input");
+				checkbox.type = "checkbox";
+				checkbox.setAttribute("module", module.MODULE_NAME);
+				label.appendChild(checkbox);
+				
+				var desc = FoxtrickPrefs.getModuleElementDescription(module.MODULE_NAME, key);
+				checkbox.id = entry.id + "-" + key;
+				checkbox.setAttribute("option", key);
+				label.appendChild(document.createTextNode(desc));
 
+				// screenshot
+				if (screenshotLink = Foxtrickl10n.getScreenshot(module.MODULE_NAME + "." + key))
+					label.appendChild(getScreenshot(screenshotLink));
+			}
+			
+			//supereasy way to create subgroups for options, just supply an array
+			//first element will toggle visibility for entries 1->n
+			//supports nested subgroups
+			if(module.OPTIONS[i] instanceof Array){
+				var parentlist = checkboxes;
+				var appendOptionsArrayToList = function (optionsarray, parentlist){
+					for(var k in optionsarray)
+					{
+						if(k == 1){
+							var item = document.createElement("li");
+							parentlist.appendChild(item);
+							parentlist = document.createElement("ul");
+							parentlist.setAttribute("depends-on", entry.id + "-" + optionsarray[0]);
+							item.appendChild(parentlist);
+							parentlist.id = module.MODULE_NAME + '-' + optionsarray[0] + "-checkboxes";
+						} 
+						
+						if(optionsarray[k] instanceof Array)
+							appendOptionsArrayToList(optionsarray[k], parentlist);
+						else
+							appendOptionToList(optionsarray[k], parentlist);
+					}
+				}
+				appendOptionsArrayToList(module.OPTIONS[i], parentlist);
+				
+				continue;
+			} 
+			
 			var key = module.OPTIONS[i];
-			var desc = FoxtrickPrefs.getModuleElementDescription(module.MODULE_NAME, module.OPTIONS[i]);
-			checkbox.id = entry.id + "-" + key;
-			checkbox.setAttribute("option", key);
-			label.appendChild(document.createTextNode(desc));
-
-			// screenshot
-			if (screenshotLink = Foxtrickl10n.getScreenshot(module.MODULE_NAME + "." + key))
-				label.appendChild(getScreenshot(screenshotLink));
-
+			appendOptionToList(key, checkboxes);
+			
+					
 			if (module.OPTION_TEXTS &&
 				(!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])) {
 				var textDiv = document.createElement("div");

@@ -11,6 +11,13 @@ ul
 	padding: 0;
 }
 
+ul li ul
+{
+	list-style-type: none;
+	margin: 0px 0px 5px 20px;
+	padding: 5px;
+}
+
 h3
 {
 	margin: 5px 0 0;
