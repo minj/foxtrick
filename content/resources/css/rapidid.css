@@ -5,3 +5,5 @@ html[data-theme="simple"] #ft_rapidid { margin-top: 20px; margin-left: 5px; }
 
 html[data-theme="simple"] #ft_rapidid_form { font-size: 1.1em; }
 html[data-theme="simple"] #ft_rapidid_container { font-size: 100%; }
+
+html[data-theme="simple"] #ft_rapidid_form { z-index: 999; position: relative; bottom: 10px; background-color: white;}
