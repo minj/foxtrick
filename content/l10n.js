@@ -6,58 +6,59 @@
 ////////////////////////////////////////////////////////////////////////////////
 var Foxtrickl10n = {
 	locales : [
-		"ar",	// العربية, arabic
-		"be",	// Беларуская, belorus
-		"bg",	// Български, bulgarian
-		"bs",	// Bosanski
-		"ca",	// Català, catalan
-		"cs",	// Čeština, czech
-		"da",	// Dansk, danish
-		"de",	// Deutsch, german
-		"ee",	// Eesti
-		"en",	// english
-		"es",	// Español
-		"es_ca",	//Español centro-americano
-		"es_SU",	// Español Sudamericano
-		"eu",	// Euskara, basque
-		"fa",	// فارسی, farsi, iranian
-		"fi",	// Suomi, finnish
-		"fr",	// frensh
-		"fur",	// Furlan, northitaly
-		"fy",	// Frysk, east-netherland/north germany
-		"gl",	// Galego, galician
-		"gr",	// Ελληνικά, greek
-		"he",	// עברית, hebrew
-		"hr",	// Hrvatski, croatian
-		"hu",	// Magyar, hungarian
-		"is",	// Íslenska, island
-		"it",	// italian
-		"ja",	// 日本語, japanese
-		"ka",	// Georgian
-		"ko",	// 한국어, korean
-		"lb",	// Lëtzebuergesch
-		"lt",	// Lietuvių
-		"lv",	// Latviešu
-		"mk",	// Македонски, macedonian
-		"mt",	// Malti
-		"nl",	// netherlands
-		"nn",	// Norsk nynorsk
-		"no",	// Norsk bokmål
-		"pl",	// Polski
-		"pt",	// Português
-		"pt_BR",	// Português brasil
-		"ro",	// Română, romanian
-		"ru",	// Русский, russain 
-		"sk",	// Slovenčina, slovak
-		"sl",	// Slovenščina, slovenian 
-		"sq",	// Albanian
-		"sr",	// Српски, serbian
-		"sv",	// Svenska, swedish
-		"tr",	// Türkçe
-		"uk",	// Українська, ukranian
-		"vi",	// Tiếng Việt, vietnamese
-		"vls",	// Vlaams, netherland
-		"zh"	// 中文（简体）, chinese
+		"ar",	// العربية, arabic	22
+		"be",	// Беларуская, belorus	84
+		"bg",	// Български, bulgarian	43
+		"bs",	// Bosanski	58
+		"ca",	// Català, catalan	66
+		"cs",	// Čeština, czech	35
+		"da",	// Dansk, danish	3
+		"de",	// Deutsch, german	8
+		"ee",	// Eesti	36
+		"en",	// english	2
+		"es",	// Español	103
+		"es_ca",	//Español centro-americano	51
+		"es_SU",	// Español Sudamericano	6
+		"eu",	// Euskara, basque	110
+		"fa",	// فارسی, farsi, iranian	75
+		"fi",	// Suomi, finnish	9
+		"fr",	// frensh	5
+		"fur",	// Furlan, northitaly	113
+		"fy",	// Frysk, east-netherland/north germany	109
+		"gl",	// Galego, galician	74
+		"gr",	// Ελληνικά, greek	34
+		"he",	// עברית, hebrew	40
+		"hr",	// Hrvatski, croatian	39
+		"hu",	// Magyar, hungarian	33
+		"is",	// Íslenska, island	25
+		"it",	// italian	4
+		"ja",	// 日本語, japanese	12
+		"ka",	// Georgian	90
+		"ko",	// 한국어, korean	17
+		"lb",	// Lëtzebuergesch	111
+		"lt",	// Lietuvių	56
+		"lv",	// Latviešu	37
+		"mk",	// Македонски, macedonian	83
+		"mt",	// Malti	87
+		"nl",	// netherlands	10
+		"nn",	// Norsk nynorsk	136
+		"no",	// Norsk bokmål	7
+		"pl",	// Polski	13
+		"pt",	// Português	11
+		"pt_BR",	// Português brasil	50
+		"ro",	// Română, romanian	23
+		"ru",	// Русский, russain 	14
+		"sk",	// Slovenčina, slovak	53
+		"sl",	// Slovenščina, slovenian 	45
+		"sq",	// Albanian	85
+		"sr",	// Српски, serbian	32
+		"sv",	// Svenska, swedish	1
+		"tr",	// Türkçe	19
+		"uk",	// Українська, ukranian	57
+		"vi",	// Tiếng Việt, vietnamese	55
+		"vls",	// Vlaams, netherland	65
+		"zh"	// 中文（简体）, chinese	15
+				// Kyrgyz	86 
 	],
 
 	htLanguagesXml : {},
