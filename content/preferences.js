@@ -22,7 +22,7 @@ function initLoader() {
 
 function init()
 {
-	try{
+	try {
 		initCoreModules();
 		initListeners();
 		getPageIds();
@@ -39,7 +39,7 @@ function init()
 			notice(Foxtrickl10n.getString("foxtrick.prefs.loaded"));
 			window.location.href = window.location.href.substr(0,window.location.href.search(/\&imported=true/));
 		}
-	} catch(e){
+	} catch (e) {
 		Foxtrick.log('init: ', e);
 	}
 }
@@ -846,19 +846,51 @@ var neededPermissions = [
 ];
 
 function testPermissions() {
-	// store current permissions in neededPermissions
+	// initialize elements which need permissions, ask for permission if needed
 	if (Foxtrick.platform === "Chrome") {
 		for (var i=0; i<neededPermissions.length; ++i) { 
 			var testModulePermission = function(neededPermission) {				
 				chrome.permissions.contains({
 					  origins: [neededPermission.url]
 					}, function(result) {
+						var id = "#pref-" + neededPermission.module.replace(/\./g,"-");
+						$(id).attr("permission-granted", result);
 						neededPermission.granted = result;
+						var checkPermission = function() {
+							if ($(id).attr("permission-granted")=="false")
+								getPermission(neededPermission)
+						};
+						$(id).click(function() { checkPermission(); });
 					});
 			};				
 			testModulePermission(neededPermissions[i]);
 		}
 	}
+}
+
+function getPermission(neededPermission, hint, showSaved) {				
+	if (hint)
+		alert( hint );
+	// Permissions must be requested from inside a user gesture, like a button's
+	// click handler.
+	chrome.permissions.request({
+		origins: [neededPermission.url]
+		}, function(granted) {
+			// The callback argument will be true if the user granted the permissions.
+			var id = "#pref-" + neededPermission.module.replace(/\./g,"-");
+			if (!granted) {
+				$(id).removeAttr("checked");
+				FoxtrickPrefs.setBool("module." + neededPermission.module + ".enabled", false);
+				Foxtrick.log("Permission declined: ", neededPermission.module);
+			}
+			else {
+				$(id).attr("permission-granted", true);
+				Foxtrick.log("Permission granted: ", neededPermission.module);
+			}
+			if (showSaved) {
+				notice(Foxtrickl10n.getString("foxtrick.prefs.saved"));
+			}
+	});
 }
 
 function revokePermissions() {
@@ -869,6 +901,8 @@ function revokePermissions() {
 				chrome.permissions.remove({
 					  origins: [neededPermission.url]
 					}, function(result) {
+						var id = "#pref-" + neededPermission.module.replace(/\./g,"-");
+						$(id).attr("permission-granted", false);
 						Foxtrick.log('Permission removed: ', neededPermission.module, result);
 				});
 			};				
@@ -881,45 +915,13 @@ function checkPermissions() {
 	var needsPermissions = false; 
 	// ask for permissions if needed
 	if (Foxtrick.platform === "Chrome") {
-		var scheduled = 0, has_declined = false;
 		for (var i=0; i<neededPermissions.length; ++i) { 
 			if (FoxtrickPrefs.getBool("module." + neededPermissions[i].module + ".enabled")) {
-				var getPermission = function(neededPermission) {				
-					alert( Foxtrickl10n.getString("foxtrick.prefs.permissionsHint").replace("%s", neededPermission.module) );
-					// Permissions must be requested from inside a user gesture, like a button's
-					// click handler.
-					chrome.permissions.request({
-						origins: [neededPermission.url]
-						}, function(granted) {
-							// The callback argument will be true if the user granted the permissions.
-							if (granted) {
-								Foxtrick.log('Permission granted: ', neededPermission.module);
-							} else {
-								has_declined = true;
-								FoxtrickPrefs.setBool("module." + neededPermission.module + ".enabled", false);
-								Foxtrick.log('Permission declined: ', neededPermission.module);
-							}
-							--scheduled;
-							Foxtrick.log('scheduled:', scheduled, ' - has_declined:', has_declined);
-							if (scheduled === 0) {
-								if (has_declined) {
-									// reload to uncheck declined module options
-									window.location.href = window.location.href + '&saved=true';
-									window.location.reload();							
-								}
-								else {
-									notice(Foxtrickl10n.getString("foxtrick.prefs.saved"));							
-								}
-							}
-					});
-				};
-				
-				if (neededPermissions[i].granted) {
-					Foxtrick.log('Permission already exist: ', neededPermissions[i].module);
-				} else {
-					++scheduled;
+				var id = "#pref-" + neededPermissions[i].module.replace(/\./g,"-");
+				if ($(id).attr("permission-granted")=="false") {
+					var showSaved = (i==neededPermissions.length-1) ? true : false;
 					needsPermissions = true;
-					getPermission(neededPermissions[i]);
+					getPermission(neededPermissions[i], Foxtrickl10n.getString("foxtrick.prefs.permissionsHint").replace("%s", neededPermissions[i].module), showSaved);
 				}
 			}
 		}
