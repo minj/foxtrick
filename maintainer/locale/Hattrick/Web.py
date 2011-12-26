@@ -76,6 +76,20 @@ class HattrickWeb:
 		self.body = unicode(self.body.decode('utf-8'))
 		#self.body = self.body.encode('utf-8')
 	
+	def isLoginRequired(self):
+		self.browser.select_form(name="aspnetForm")
+		try:
+			self.browser.form['ctl00$CPHeader$ucLogin$txtUserName'] = self.username
+		except:
+			try:
+				self.browser.form['ctl00$ctl00$CPContent$ucSubMenu$ucLogin$txtUserName'] = self.username
+			except:
+				return False
+			
+			return True;
+		else:
+			return True;
+		
 	def open(self, url):
 		self.response = self.browser.open(url)
 		self.body = self.response.get_data();
@@ -93,9 +107,15 @@ class HattrickWeb:
 
 		self.browser.open(url)
 		self.browser.select_form(name="aspnetForm")
-		self.browser.form['ctl00$CPHeader$ucLogin$txtUserName'] = self.username
-		self.browser.form['ctl00$CPHeader$ucLogin$txtPassword'] = self.password
 		
+		self.isLoginRequired()
+		
+		try:
+			self.browser.form['ctl00$CPHeader$ucLogin$txtUserName'] = self.username
+			self.browser.form['ctl00$CPHeader$ucLogin$txtPassword'] = self.password
+		except:
+			pass #already logged in
+			
 		self.response = self.browser.submit()
 		self.body = self.response.get_data()
 		self.url = self.response.geturl()
@@ -105,11 +125,21 @@ class HattrickWeb:
 			
 		self.encodeUTF8()
 		
+		if self.isLoginRequired():
+			raise Exception('login_failed')
+		else:
+			print 'Logged in!'
+
+			
 	def setLanguage(self, languageid):
 		self.response = self.browser.open("/")
 		self.browser.select_form(name="aspnetForm")
-		self.browser.form['ctl00$ctl00$CPContent$CPSidebar$ucLanguages$ddlLanguages'] = [  str(languageid)  ]
-
+		
+		try:
+			self.browser.form['ctl00$ctl00$CPContent$CPSidebar$ucLanguages$ddlLanguages'] = [  str(languageid)  ]
+		except:
+			print 'Unable to find language change select, not logged in?'
+			
 		self.response = self.browser.submit()
 		self.body = self.response.get_data()
 		self.encodeUTF8()

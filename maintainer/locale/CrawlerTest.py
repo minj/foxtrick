@@ -31,8 +31,13 @@ def createXml(result):
 	
 def login(username, password):
 	ht = HattrickWeb(username, password)
-	ht.login()
 	
+	try:
+		ht.login()
+	except Exception as e:
+		print 'Exception:', e
+		exit(1)
+		
 	dict = {}
 	
 	for key in Language.Codes:
