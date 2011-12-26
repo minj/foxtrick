@@ -77,6 +77,27 @@ def checkAggressiveness(lang, htlang, lookup):
 	
 	checkNodes(dump_entries, ht_entries)
 	
+
+def checkMainMenuLinks(lang, htlang, lookup):
+	
+	checkMainMenuLink(lang, htlang, lookup, "MyHattrick")
+	checkMainMenuLink(lang, htlang, lookup, "MyClub")
+	checkMainMenuLink(lang, htlang, lookup, "World")
+	checkMainMenuLink(lang, htlang, lookup, "Shop")
+	checkMainMenuLink(lang, htlang, lookup, "Forum")
+	checkMainMenuLink(lang, htlang, lookup, "Help")
+	
+def checkMainMenuLink(lang, htlang, lookup, text):
+	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
+	dump_link = localetools.xml.helpers.findFirstNodeRecursive(dump_lang, text)
+
+	ht_link = localetools.xml.helpers.findFirstNodeRecursive(htlang.documentElement, text)
+	
+	if ht_link.getAttribute("text") != dump_link.getAttribute("text"):
+		print "\t", text, "incorrect"
+	else:
+		print "\t", text ,"ok"
+	
 def checklanguage(lang, lookup):
 	print "Checking", lang
 	file = "./../../content/locale/" + lang + "/htlang.xml"
@@ -94,6 +115,8 @@ def checklanguage(lang, lookup):
 	checkHonesty(lang, htlang, lookup)
 	print "\t","checking Aggressiveness" 
 	checkAggressiveness(lang, htlang, lookup)
+	print "\t","checking Main Menu Links" 
+	checkMainMenuLinks(lang, htlang, lookup)
 	
 from Hattrick import Language
 
