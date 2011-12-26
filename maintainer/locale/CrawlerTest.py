@@ -14,11 +14,17 @@ def createXml(result):
 		language.setAttribute("name", lang)
 		languages.appendChild(language)
 		
-		for category in sorted(result[lang].iterkeys()):
+		for category in sorted(result[lang]["menu"].iterkeys()):
+			cat = doc.createElement(category)
+			cat.setAttribute("value", result[lang]["menu"][category])
+			language.appendChild(cat)
+			
+				
+		for category in sorted(result[lang]["denominations"].iterkeys()):
 			cat = doc.createElement(category)
 			language.appendChild(cat)
-			index = len(result[lang][category]["names"])-1
-			for entry in result[lang][category]["names"]:
+			index = len(result[lang]["denominations"][category]["names"])-1
+			for entry in result[lang]["denominations"][category]["names"]:
 				e = doc.createElement("entry")
 				e.setAttribute("text", entry)
 				e.setAttribute("index", str(index))
@@ -33,33 +39,41 @@ def login(username, password):
 	ht = HattrickWeb(username, password)
 	
 	try:
-		ht.login()
-	except Exception as e:
-		print 'Exception:', e
-		exit(1)
+		try:
+			ht.login()
+		except Exception as e:
+			print 'Exception:', e
+			exit(1)
+			
+		dict = {}
 		
-	dict = {}
-	
-	for key in Language.Codes:
-		print "Crawling ", Language.getLanguageById(key)
-		ht.setLanguage( key )
-		
-		print "Main Menu"
-		menuParser = MenuParser.MenuParser()
-		menuParser.feed(ht.body)
-		
-		print "AppDenominations.aspx"
-		ht.open("/Help/Rules/AppDenominations.aspx")
-		denominationsParser = DenominationsParser.DenominationsParser()
-		denominationsParser.feed(ht.body)
-		
-		lang = Language.getLanguageById(key)
-		result = denominationsParser.get();
-		
-		dict[lang] = result
-		
-	print "writing *.xml"
-	createXml(dict)
+		for key in Language.Codes:
+			languageStuff = {};
+			
+			print "Crawling ", Language.getLanguageById(key)
+			ht.setLanguage( key )
+			
+			print "Main Menu"
+			menuParser = MenuParser.MenuParser()
+			menuParser.feed(ht.body)
+			
+			languageStuff["menu"] = menuParser.get();
+			
+			print "AppDenominations.aspx"
+			ht.open("/Help/Rules/AppDenominations.aspx")
+			denominationsParser = DenominationsParser.DenominationsParser()
+			denominationsParser.feed(ht.body)
+			
+			lang = Language.getLanguageById(key)
+			languageStuff["denominations"] = denominationsParser.get();
+			dict[lang] = languageStuff
+			
+		print "writing *.xml"
+		createXml(dict)
+		#print dict
+	except KeyboardInterrupt:
+		print 'Aborted by user. Byebye.'
+		exit(0)
 	
 
 if __name__ == "__main__":
