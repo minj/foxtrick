@@ -1,5 +1,5 @@
 Codes = {}	
-Codes[1]='se';		#swedish
+Codes[1]='sv';		#swedish
 Codes[2]='en';		#english
 Codes[3]='de';		#german
 Codes[4]='it';		#italian
