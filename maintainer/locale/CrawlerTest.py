@@ -56,4 +56,11 @@ def login(username, password):
 	print "writing *.xml"
 	createXml(dict)
 	
-login('htusername','htpassword')	
+
+if __name__ == "__main__":
+	import os
+	import sys
+	if len(sys.argv) != 3:
+		print "Usage: python", sys.argv[0], "username", "password"
+	else:
+		login(sys.argv[1],sys.argv[2])	
