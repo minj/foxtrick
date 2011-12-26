@@ -38,6 +38,10 @@ def getTableString(Locales, id):
 				table.td.open()
 				table.a(locstat[c], href="./" + loc.getShortName() + "_missing.html" )
 				table.td.close()
+			elif  c == "locale":
+				table.td.open()
+				table.a(locstat[c], href="./../graphs/" + loc.getShortName() + "_graph.html" )
+				table.td.close()
 			else:
 				table.td(locstat[c])
 		table.tr.close()
