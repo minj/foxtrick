@@ -50,13 +50,13 @@
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="کهکشاني" value="20" />
-		<level text="رماني" value="19" />
+		<level text="آرماني" value="19" />
 		<level text="جادويي" value="18" />
-		<level text="فسانهاي" value="17" />
-		<level text="خارقالعاده" value="16" />
+		<level text="افسانه‌اي" value="17" />
+		<level text="خارق‌العاده" value="16" />
 		<level text="استثنايي" value="15" />
-		<level text="وقالعاده" value="14" />
-		<level text="بينالمللي" value="13" />
+		<level text="فوق‌العاده" value="14" />
+		<level text="بين‌المللي" value="13" />
 		<level text="باشکوه" value="12" />
 		<level text="درخشان" value="11" />
 		<level text="برجسته" value="10" />
@@ -64,7 +64,7 @@
 		<level text="عالي" value="8" />
 		<level text="خوب" value="7" />
 		<level text="قابل قبول" value="6" />
-		<level text="ناکافي" value="5" />
+		<level text="ناکافى" value="5" />
 		<level text="ضعيف" value="4" />
 		<level text="ناچيز" value="3" />
 		<level text="اسفبار" value="2" />

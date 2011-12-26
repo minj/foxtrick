@@ -69,6 +69,6 @@
 		<level text="aarmséileg" value="3" />
 		<level text="erbäermlech" value="2" />
 		<level text="katastrophal" value="1" />
-		<level text="näischt do" value="0" />
+		<level text="inexistent" value="0" />
 	</levels>
 </language>

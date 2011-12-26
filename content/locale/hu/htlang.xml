@@ -69,6 +69,6 @@
 		<level text="csapnivaló" value="3" />
 		<level text="pocsék" value="2" />
 		<level text="katasztrofális" value="1" />
-		<level text="nemlétező" value="0" />
+		<level text="nem létező" value="0" />
 	</levels>
 </language>

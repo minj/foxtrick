@@ -69,6 +69,6 @@
 		<level text="ruim" value="3" />
 		<level text="péssima" value="2" />
 		<level text="terrível" value="1" />
-		<level text="inexistente " value="0" />
+		<level text="inexistente" value="0" />
 	</levels>
 </language>

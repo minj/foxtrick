@@ -68,7 +68,7 @@
 		<level text="nõrk" value="4" />
 		<level text="vilets" value="3" />
 		<level text="armetu" value="2" />
-		<level text="kohutav " value="1" />
+		<level text="kohutav" value="1" />
 		<level text="olematu" value="0" />
 	</levels>
 </language>

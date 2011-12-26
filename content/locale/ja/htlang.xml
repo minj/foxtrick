@@ -49,26 +49,26 @@
 
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
-		<level text="divine" value="20" />
-		<level text="utopian" value="19" />
-		<level text="magical" value="18" />
-		<level text="mythical" value="17" />
-		<level text="extra-terrestrial" value="16" />
-		<level text="titanic" value="15" />
-		<level text="supernatural" value="14" />
-		<level text="world class" value="13" />
-		<level text="magnificent" value="12" />
-		<level text="brilliant" value="11" />
-		<level text="outstanding" value="10" />
-		<level text="formidable" value="9" />
-		<level text="excellent" value="8" />
-		<level text="solid" value="7" />
-		<level text="passable" value="6" />
-		<level text="inadequate" value="5" />
-		<level text="weak" value="4" />
-		<level text="poor" value="3" />
-		<level text="wretched" value="2" />
-		<level text="disastrous" value="1" />
-		<level text="non-existent" value="0" />
+		<level text="唯一無二" value="20" />
+		<level text="完璧" value="19" />
+		<level text="魔術的" value="18" />
+		<level text="非現実的" value="17" />
+		<level text="超人的" value="16" />
+		<level text="偉大" value="15" />
+		<level text="神業" value="14" />
+		<level text="ワールド レベル" value="13" />
+		<level text="強大" value="12" />
+		<level text="鮮烈" value="11" />
+		<level text="非凡" value="10" />
+		<level text="驚異的" value="9" />
+		<level text="優秀" value="8" />
+		<level text="良好" value="7" />
+		<level text="平均的" value="6" />
+		<level text="不満" value="5" />
+		<level text="貧弱" value="4" />
+		<level text="劣悪" value="3" />
+		<level text="悲惨" value="2" />
+		<level text="最悪" value="1" />
+		<level text="無価値" value="0" />
 	</levels>
 </language>
