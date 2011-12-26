@@ -12,8 +12,8 @@ var Foxtrickl10n = {
 		"bs",	// Bosanski	58
 		"ca",	// Català, catalan	66
 		"cs",	// Čeština, czech	35
-		"da",	// Dansk, danish	3
-		"de",	// Deutsch, german	8
+		"da",	// Dansk, danish	8
+		"de",	// Deutsch, german	3
 		"ee",	// Eesti	36
 		"en",	// english	2
 		"es",	// Español	103
