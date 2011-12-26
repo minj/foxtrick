@@ -95,15 +95,14 @@ def checklanguage(lang, lookup):
 	print "\t","checking Aggressiveness" 
 	checkAggressiveness(lang, htlang, lookup)
 	
+from Hattrick import Language
 
 if __name__ == "__main__":
 	import sys
-	sites = ("ar", "be", "bg", "bs", "ca", "cs", "da", "de", "el", "en", "es", "eu", "fa", "fi","fr","fy","gl","he","hr","hu","it","ja","ka","ko","lb","lt","lv","mk","mt","nl","nn","pl","pt","ro","ru","sk","sl","sq","sr","sv","tr","uk","vi","zh")
+	
 	if len(sys.argv) != 2:
 		print "Usage:", sys.argv[0], "<dump xml input file>"
 	else:
-		print "CAUTION: Checking hattrick subdomain names against foxtrick localenames!"
-		print "CAUTION: NOT ALL Foxtrick locale files are checked, only those that match with a subdomain name!"
 		dump = parse(sys.argv[1])
-		for site in sites:
-			checklanguage(site, dump)
+		for key in Language.Codes:
+			checklanguage(Language.Codes[key], dump)
