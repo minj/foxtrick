@@ -1,52 +1,56 @@
 Codes = {}	
-Codes[1]='se';	
-Codes[2]='en';
-Codes[3]='de';
-Codes[4]='it';
-Codes[5]='fr';
-Codes[6]='es';
-Codes[7]='no';
-Codes[8]='dk';
-Codes[9]='fi';
-Codes[10]='nl';
-Codes[11]='pt';
-Codes[13]='pl';
-Codes[14]='ru';
-Codes[15]='zh_CN';
-Codes[17]='ko';
-Codes[19]='tr';
-Codes[22]='ar';
-Codes[23]='ro';
-Codes[32]='sr';
-Codes[33]='hu';
-Codes[34]='gr';
-Codes[35]='cs';
-#Codes[35]='cz';
-Codes[36]='ee';
-Codes[37]='lv';
-Codes[39]='hr';
-Codes[40]='he_IL';
-Codes[43]='bg';
-Codes[45]='sl';
-Codes[50]='pt_BR';
-Codes[51]='es_SU';
-Codes[53]='sk';
-Codes[55]='vi';
-Codes[56]='lt';
-Codes[57]='ua';
-Codes[58]='bs';
-Codes[65]='nl_BE';
-Codes[66]='ca';
-Codes[74]='gl_ES';
-Codes[75]='fa';
-Codes[83]='mk';
-Codes[84]='be';
-Codes[85]='sq';
-Codes[103]='es_ca';
-Codes[109]='fy';
-Codes[110]='eu_ES';
-Codes[111]='lb_LU';
-Codes[113]='fur';
+Codes[1]='se';		#swedish
+Codes[2]='en';		#english
+Codes[3]='de';		#german
+Codes[4]='it';		#italian
+Codes[5]='fr';		#french
+Codes[6]='es';		#spanish
+Codes[7]='no';		#Norsk bokmal
+Codes[8]='da';		#danish
+Codes[9]='fi';		#finnish
+Codes[10]='nl';		#Dutch
+Codes[11]='pt';		#Portuguese
+Codes[12]='ja';		#japan
+Codes[13]='pl';		#Polish
+Codes[14]='ru';		#Russian
+Codes[15]='zh';		#chinese
+Codes[17]='ko';		#korean
+Codes[19]='tr';		#Turkish
+Codes[22]='ar'; 	#arabic
+Codes[23]='ro';		#romanian
+Codes[25]='is';		#island
+Codes[32]='sr';		#serbian
+Codes[33]='hu';		#hungarian
+Codes[34]='gr';		#greek
+Codes[35]='cs';		#czech		
+Codes[36]='ee';		#Eesti
+Codes[37]='lv';		#Latvian, Lettish
+Codes[39]='hr';		#croatian
+Codes[40]='he';		#hebrew
+Codes[43]='bg';		#bulgarian
+Codes[45]='sl';		#slovenian
+Codes[50]='pt_BR';	#Portuguese Brasil
+Codes[51]='es_SU';	#spanish, south-america
+Codes[53]='sk';		#Slovak
+Codes[55]='vi';		#vietnamese
+Codes[56]='lt';		#Lithuanian
+Codes[57]='ua';		#ukranian
+Codes[58]='bs';		#Bosanski
+Codes[65]='vls';	#Vlaams, netherland
+Codes[66]='ca';		#Catalan
+Codes[74]='gl';		#Galician
+Codes[75]='fa';		#farsi, iranian
+Codes[83]='mk';		#Macedonian
+Codes[84]='be';		#belarus
+Codes[85]='sq';		#Albanian
+Codes[87]='mt';		#Maltese, Malta
+Codes[90]='ka';		#georgian
+Codes[103]='es_ca';	#spanish, central america
+Codes[109]='fy';	#Frysk, east-netherland/north germany
+Codes[110]='eu';	#Euskara, basque
+Codes[111]='lb';	#Letzebuergesch
+Codes[113]='fur';	#Furlan, northitaly
+Codes[136]='nn';	#Norsk nynorsk
 
 def getIdByLanguage(language):
 	for key in Codes:
@@ -61,3 +65,7 @@ def getLanguageById(id):
 			return Codes[id]
 
 	return None
+	
+
+		
+		
