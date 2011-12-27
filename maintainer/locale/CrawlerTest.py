@@ -24,9 +24,23 @@ def createXml(result):
 		#ratingsublevels
 		cat = doc.createElement("ratingSubLevels")
 		language.appendChild(cat)
+		
+		
 		for category in sorted(result[lang]["ratingSubLevels"].iterkeys()):
 			level = doc.createElement("level")
 			level.setAttribute("text", result[lang]["ratingSubLevels"][category])
+			
+			if category ==  "min":
+				level.setAttribute("value", "0.0");
+			elif category ==  "max":
+				level.setAttribute("value", "0.75"); 
+			elif category ==  "high":
+				level.setAttribute("value", "0.50"); 
+			elif category ==  "low":
+				level.setAttribute("value", "0.25"); 
+			else:
+				raise Exception("unknown subratings keyword");
+			
 			cat.appendChild(level)
 			
 		#denominations
@@ -87,9 +101,9 @@ def login(username, password):
 			matchDetailResult = matchDetailParser.get();
 			if len(matchDetailResult["Team_Home"]) != len(matchDetailResult["Team_Away"]):
 				raise Exception("Match details returned uneven results")
-			elif len(matchDetailResult["Team_Home"]) != 13:
+			elif len(matchDetailResult["Team_Home"]) != 14:
 				raise Exception("Match details returned unexpected amount of ratings", len(matchDetailResult["Team_Home"]))			
-			
+				
 			ratingSubLevels = {}
 			ratingSubLevels["min"] = matchDetailResult["Team_Home"][1];
 			ratingSubLevels["low"] = matchDetailResult["Team_Home"][0];
@@ -97,12 +111,12 @@ def login(username, password):
 			ratingSubLevels["max"] = matchDetailResult["Team_Home"][4];
 			
 			languageStuff["ratingSubLevels"] = ratingSubLevels
-			print languageStuff
 			
 			dict[lang] = languageStuff
 			
 		print "writing *.xml"
 		createXml(dict)
+		
 	except Exception as e:
 		print 'Exception:', e
 		exit(1)

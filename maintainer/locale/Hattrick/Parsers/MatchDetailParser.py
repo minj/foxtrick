@@ -11,10 +11,13 @@ class MatchDetailParser(HTMLParser.HTMLParser):
 		self.teamTextRatings = {"Team_Home":[],"Team_Away":[]}
 		self.in_teamTextRatings_td = False
 		self.in_link = False;
+		self.in_span = False;
+		self.ignore = False;
+		self.string = "";
 		
 	def handle_starttag(self, tag, attrs):
-		if tag == 'a':
-			self.in_link = True;
+		if tag == 'a' or tag == 'span':
+			self.ignore = True;
 		
 		if tag == 'td':
 			self.in_teamTextRatings_td = False
@@ -23,20 +26,24 @@ class MatchDetailParser(HTMLParser.HTMLParser):
 					self.in_teamTextRatings_td = True
 					
 	def handle_endtag(self, tag):
-		
-		if tag == 'a':
-			self.in_link = False;
+		if tag == 'a' or tag == 'span':
+			self.ignore = False;
 			
 		if tag == 'td':
-			self.in_teamTextRatings_td = False;
+			if self.in_teamTextRatings_td:
+				if len(self.teamTextRatings["Team_Home"]) == len(self.teamTextRatings["Team_Away"]):
+					self.teamTextRatings["Team_Home"].append(self.string)
+				else:
+					self.teamTextRatings["Team_Away"].append(self.string)
+			
+				self.string = "";
 
+			self.in_teamTextRatings_td = False;
+			
 	def handle_data(self, data):
 		data = data.lstrip().rstrip();
-		if self.in_teamTextRatings_td and not self.in_link:
-			if len(self.teamTextRatings["Team_Home"]) == len(self.teamTextRatings["Team_Away"]):
-				self.teamTextRatings["Team_Home"].append(data)
-			else:
-				self.teamTextRatings["Team_Away"].append(data)
+		if self.in_teamTextRatings_td and not self.ignore:
+			self.string = self.string + data
 			
 	def get(self):
 		return self.teamTextRatings

@@ -62,11 +62,9 @@ class MenuParser(HTMLParser.HTMLParser):
 			menulink = self.getHtXmlTagForUrl(self.currentlink)
 			if menulink:
 				# get rid of possible (#) (inbox or forum replies)
-				print str
 				pattern = re.compile('(\(\d+\))')
 				str = pattern.sub("", str)
 				str = str.lstrip().rstrip()
-				print str
 				self.entries[menulink] = str
 			
 	def get(self):
