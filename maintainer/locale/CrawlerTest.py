@@ -1,6 +1,7 @@
 from Hattrick.Web import HattrickWeb
 from Hattrick.Parsers import MenuParser
 from Hattrick.Parsers import DenominationsParser
+from Hattrick.Parsers import MatchDetailParser
 from Hattrick import Language
 
 from xml.dom.minidom import Document
@@ -14,12 +15,21 @@ def createXml(result):
 		language.setAttribute("name", lang)
 		languages.appendChild(language)
 		
+		#main menu links
 		for category in sorted(result[lang]["menu"].iterkeys()):
 			cat = doc.createElement(category)
 			cat.setAttribute("value", result[lang]["menu"][category])
 			language.appendChild(cat)
 			
-				
+		#ratingsublevels
+		cat = doc.createElement("ratingSubLevels")
+		language.appendChild(cat)
+		for category in sorted(result[lang]["ratingSubLevels"].iterkeys()):
+			level = doc.createElement("level")
+			level.setAttribute("text", result[lang]["ratingSubLevels"][category])
+			cat.appendChild(level)
+			
+		#denominations
 		for category in sorted(result[lang]["denominations"].iterkeys()):
 			cat = doc.createElement(category)
 			language.appendChild(cat)
@@ -66,11 +76,37 @@ def login(username, password):
 			
 			lang = Language.getLanguageById(key)
 			languageStuff["denominations"] = denominationsParser.get();
+			
+			#go to a specific match where we exactly know where min, max, low, high ratings occur and read the translations from there
+			print "Match Details"
+			ht.open("/Club/Matches/match.aspx?MatchId=362716448")
+			matchDetailParser = MatchDetailParser.MatchDetailParser()
+			matchDetailParser.feed(ht.body)
+			
+			#this is quite fragile to changes in the HT code, so let's have as many checks as possible to throw and error whenever something might be out of order
+			matchDetailResult = matchDetailParser.get();
+			if len(matchDetailResult["Team_Home"]) != len(matchDetailResult["Team_Away"]):
+				raise Exception("Match details returned uneven results")
+			elif len(matchDetailResult["Team_Home"]) != 13:
+				raise Exception("Match details returned unexpected amount of ratings", len(matchDetailResult["Team_Home"]))			
+			
+			ratingSubLevels = {}
+			ratingSubLevels["min"] = matchDetailResult["Team_Home"][1];
+			ratingSubLevels["low"] = matchDetailResult["Team_Home"][0];
+			ratingSubLevels["high"] = matchDetailResult["Team_Home"][2];
+			ratingSubLevels["max"] = matchDetailResult["Team_Home"][4];
+			
+			languageStuff["ratingSubLevels"] = ratingSubLevels
+			print languageStuff
+			
 			dict[lang] = languageStuff
 			
 		print "writing *.xml"
 		createXml(dict)
-		#print dict
+	except Exception as e:
+		print 'Exception:', e
+		exit(1)
+			
 	except KeyboardInterrupt:
 		print 'Aborted by user. Byebye.'
 		exit(0)

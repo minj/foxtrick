@@ -12,9 +12,13 @@ class MenuParser(HTMLParser.HTMLParser):
 		self.in_link = False
 		self.entries = {}
 		self.currentlink = None
+		self.in_span = False
 	
 	def handle_starttag(self, tag, attrs):
 		# find out which section is next, <a name="" is our keyword
+		if tag == 'span':
+			self.in_span = True;
+			
 		if tag == 'a':
 			if self.in_mainnav_menu_div:
 				for name, value in attrs:
@@ -31,6 +35,8 @@ class MenuParser(HTMLParser.HTMLParser):
 	def handle_endtag(self, tag):
 		if tag == 'a':
 			self.in_link = False
+		if tag == 'span':
+			self.in_span = False;
 			
 	def getHtXmlTagForUrl(self, url):
 		if re.search("Club", url):
@@ -51,14 +57,16 @@ class MenuParser(HTMLParser.HTMLParser):
 			
 	def handle_data(self, data):
 		#gather string
-		if self.in_link:
+		if self.in_link and not self.in_span:
 			str = data
 			menulink = self.getHtXmlTagForUrl(self.currentlink)
 			if menulink:
 				# get rid of possible (#) (inbox or forum replies)
+				print str
 				pattern = re.compile('(\(\d+\))')
 				str = pattern.sub("", str)
 				str = str.lstrip().rstrip()
+				print str
 				self.entries[menulink] = str
 			
 	def get(self):
