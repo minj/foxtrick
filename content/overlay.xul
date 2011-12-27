@@ -157,7 +157,7 @@
 <script type="application/x-javascript" src="./presentation/old-style-face.js"></script>
 <script type="application/x-javascript" src="./presentation/original-face.js"></script>
 <script type="application/x-javascript" src="./presentation/personality-images.js"></script>
-<script type="application/x-javascript" src="./presentation/ratings-range.js"></script>
+<script type="application/x-javascript" src="./presentation/ratings-display.js"></script>
 <script type="application/x-javascript" src="./presentation/simple-presentation.js"></script>
 <script type="application/x-javascript" src="./presentation/skill-coloring.js"></script>
 <script type="application/x-javascript" src="./presentation/skill-translation.js"></script>

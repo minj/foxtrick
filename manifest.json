@@ -136,7 +136,7 @@
 			"content/presentation/old-style-face.js",
 			"content/presentation/original-face.js",
 			"content/presentation/personality-images.js",
-			"content/presentation/ratings-range.js",
+			"content/presentation/ratings-display.js",
 			"content/presentation/simple-presentation.js",
 			"content/presentation/skill-coloring.js",
 			"content/presentation/skill-translation.js",
@@ -176,7 +176,8 @@
 			"*://*.hattrick.name/*",
 			"*://*.hat-trick.net/*",
 			"*://*.hattrick.interia.pl/*",
-			"*://*.hattrick.uol.com.br/*"
+			"*://*.hattrick.uol.com.br/*",
+			"*://*/*"
 		],
 		"run_at" : "document_start"
 	} ],
