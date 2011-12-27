@@ -1,15 +1,15 @@
 from xml.dom.minidom import parse
 import localetools.xml.helpers
 
-def checkNodes(dump_entries, ht_entries):
+def checkNodes(dump_entries, ht_entries, dump_key_attrib, ht_key_Attrib, compare_Attrib):
 	left = len(dump_entries)
 	for dump_node in dump_entries:
-		dump_text = dump_node.getAttribute("text")
-		dump_value = dump_node.getAttribute("index")
+		dump_text = dump_node.getAttribute(compare_Attrib)
+		dump_value = dump_node.getAttribute(dump_key_attrib)
 		matched = 0
 		for ht_node in ht_entries:
-			ht_text = ht_node.getAttribute("text")
-			ht_value = ht_node.getAttribute("value")
+			ht_text = ht_node.getAttribute(compare_Attrib)
+			ht_value = ht_node.getAttribute(ht_key_Attrib)
 			if ht_text == dump_text and dump_value == ht_value:
 				matched = 1
 				left -= 1
@@ -33,7 +33,7 @@ def checkLevels(lang, htlang, lookup):
 		print "\t", "missing completly"
 		return
 	
-	checkNodes(dump_entries, ht_entries)
+	checkNodes(dump_entries, ht_entries, "index", "value", "text")
 	
 def checkAgreeability(lang, htlang, lookup):
 	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
@@ -47,7 +47,7 @@ def checkAgreeability(lang, htlang, lookup):
 		print "\t", "missing completly"
 		return
 	
-	checkNodes(dump_entries, ht_entries)
+	checkNodes(dump_entries, ht_entries, "index", "value", "text")
 	
 def checkHonesty(lang, htlang, lookup):
 	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
@@ -61,7 +61,7 @@ def checkHonesty(lang, htlang, lookup):
 		print "\t", "missing completly"
 		return
 	
-	checkNodes(dump_entries, ht_entries)
+	checkNodes(dump_entries, ht_entries, "index", "value", "text")
 	
 def checkAggressiveness(lang, htlang, lookup):
 	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
@@ -75,7 +75,21 @@ def checkAggressiveness(lang, htlang, lookup):
 		print "\t", "missing completly"
 		return
 	
-	checkNodes(dump_entries, ht_entries)
+	checkNodes(dump_entries, ht_entries, "index", "value", "text")
+	
+def checkSpecialties(lang, htlang, lookup):
+	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
+	dump_skills = localetools.xml.helpers.findFirstNodeRecursive(dump_lang, "specialties")
+	dump_entries = localetools.xml.helpers.findAllNodesRecursive(dump_skills, "specialty")
+
+	ht_skills = localetools.xml.helpers.findFirstNodeRecursive(htlang.documentElement, "specialties")
+	ht_entries = localetools.xml.helpers.findAllNodesRecursive(ht_skills, "specialty")
+	
+	if not len(ht_entries):
+		print "\t", "missing completly"
+		return
+	
+	checkNodes(dump_entries, ht_entries, "type", "type", "value")
 	
 def checkRatingSubLevels(lang, htlang, lookup):
 	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
@@ -89,7 +103,7 @@ def checkRatingSubLevels(lang, htlang, lookup):
 		print "\t", "missing completly"
 		return
 	
-	checkNodes(dump_sublevels, ht_sublevels)
+	checkNodes(dump_sublevels, ht_sublevels, "index", "value", "text")
 	
 
 def checkMainMenuLinks(lang, htlang, lookup):	
@@ -132,6 +146,8 @@ def checklanguage(lang, lookup):
 	checkMainMenuLinks(lang, htlang, lookup)
 	print "\t","checking RatingSubLevels"
 	checkRatingSubLevels(lang, htlang, lookup)
+	print "\t","checking Specialties"
+	checkSpecialties(lang, htlang, lookup)
 	
 from Hattrick import Language
 

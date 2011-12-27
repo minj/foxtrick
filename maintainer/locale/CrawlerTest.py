@@ -2,6 +2,7 @@ from Hattrick.Web import HattrickWeb
 from Hattrick.Parsers import MenuParser
 from Hattrick.Parsers import DenominationsParser
 from Hattrick.Parsers import MatchDetailParser
+from Hattrick.Parsers import PlayerDetailParser
 from Hattrick import Language
 
 from xml.dom.minidom import Document
@@ -23,8 +24,7 @@ def createXml(result):
 			
 		#ratingsublevels
 		cat = doc.createElement("ratingSubLevels")
-		language.appendChild(cat)
-		
+		language.appendChild(cat)		
 		
 		for category in sorted(result[lang]["ratingSubLevels"].iterkeys()):
 			level = doc.createElement("level")
@@ -43,6 +43,17 @@ def createXml(result):
 			
 			cat.appendChild(level)
 			
+		#specialties
+		cat = doc.createElement("specialties")
+		language.appendChild(cat)		
+		
+		for category in sorted(result[lang]["specialties"].iterkeys()):
+			level = doc.createElement("specialty")
+			level.setAttribute("value", result[lang]["specialties"][category])
+			level.setAttribute("type", category)
+			level.setAttribute("short", "")
+			cat.appendChild(level)
+			
 		#denominations
 		for category in sorted(result[lang]["denominations"].iterkeys()):
 			cat = doc.createElement(category)
@@ -58,6 +69,24 @@ def createXml(result):
 	file = open("xml_out.xml", "w")
 	file.write(doc.toprettyxml(indent="	", encoding="utf-8"))
 	file.close()
+	
+def getSpecialties(ht, players):
+	specialties = {}
+	for key in players:
+		print "\t", "going to specified", key, "player (", players[key], ")"
+		ht.open("/Club/Players/Player.aspx?PlayerID=" + players[key])
+		playerDetailParser = PlayerDetailParser.PlayerDetailParser()
+		playerDetailParser.feed(ht.body)
+		result =  playerDetailParser.get()
+		if len(result) == 0:
+			continue;
+			
+		if len(result) != 6:
+			raise Exception("unexpected player details result")
+		else:
+			specialties[key] = playerDetailParser.get()[5]
+		
+	return specialties
 	
 def login(username, password):
 	ht = HattrickWeb(username, password)
@@ -91,6 +120,18 @@ def login(username, password):
 			lang = Language.getLanguageById(key)
 			languageStuff["denominations"] = denominationsParser.get();
 			
+			
+			players = {"Unpredictable":"323588063",
+					"Powerful":"308062307",
+					"Quick":"318067207",
+					"Technical":"308395915",
+					"Head":"317596637",
+					"Regainer":"320354435"}
+			try:
+				languageStuff["specialties"] = getSpecialties(ht, players);
+			except:
+				print 'Error getting specialties.'
+			
 			#go to a specific match where we exactly know where min, max, low, high ratings occur and read the translations from there
 			print "Match Details"
 			ht.open("/Club/Matches/match.aspx?MatchId=362716448")
@@ -119,6 +160,7 @@ def login(username, password):
 		
 	except Exception as e:
 		print 'Exception:', e
+		raise
 		exit(1)
 			
 	except KeyboardInterrupt:
