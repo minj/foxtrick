@@ -31,13 +31,13 @@ def createXml(result):
 			level.setAttribute("text", result[lang]["ratingSubLevels"][category])
 			
 			if category ==  "min":
-				level.setAttribute("value", "0.0");
+				level.setAttribute("index", "0.0");
 			elif category ==  "max":
-				level.setAttribute("value", "0.75"); 
+				level.setAttribute("index", "0.75"); 
 			elif category ==  "high":
-				level.setAttribute("value", "0.50"); 
+				level.setAttribute("index", "0.50"); 
 			elif category ==  "low":
-				level.setAttribute("value", "0.25"); 
+				level.setAttribute("index", "0.25"); 
 			else:
 				raise Exception("unknown subratings keyword");
 			

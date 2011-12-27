@@ -77,9 +77,22 @@ def checkAggressiveness(lang, htlang, lookup):
 	
 	checkNodes(dump_entries, ht_entries)
 	
+def checkRatingSubLevels(lang, htlang, lookup):
+	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
+	dump_ratingSubLevels = localetools.xml.helpers.findFirstNodeRecursive(dump_lang, "ratingSubLevels")
+	dump_sublevels = localetools.xml.helpers.findAllNodesRecursive(dump_ratingSubLevels, "level")
 
-def checkMainMenuLinks(lang, htlang, lookup):
+	ht_ratingSubLevels = localetools.xml.helpers.findFirstNodeRecursive(htlang.documentElement, "ratingSubLevels")
+	ht_sublevels = localetools.xml.helpers.findAllNodesRecursive(ht_ratingSubLevels, "sublevel")
 	
+	if not len(ht_sublevels):
+		print "\t", "missing completly"
+		return
+	
+	checkNodes(dump_sublevels, ht_sublevels)
+	
+
+def checkMainMenuLinks(lang, htlang, lookup):	
 	checkMainMenuLink(lang, htlang, lookup, "MyHattrick")
 	checkMainMenuLink(lang, htlang, lookup, "MyClub")
 	checkMainMenuLink(lang, htlang, lookup, "World")
@@ -117,6 +130,8 @@ def checklanguage(lang, lookup):
 	checkAggressiveness(lang, htlang, lookup)
 	print "\t","checking Main Menu Links" 
 	checkMainMenuLinks(lang, htlang, lookup)
+	print "\t","checking RatingSubLevels"
+	checkRatingSubLevels(lang, htlang, lookup)
 	
 from Hattrick import Language
 
