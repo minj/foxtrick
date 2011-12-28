@@ -304,22 +304,15 @@ def crawl(ht, language_id_list = Language.Codes, outfile = 'crawled.xml'):
 			languageStuff["denominations"] = denominationsParser.get();
 			
 			print "Specialties"
-			# players we know have the required speciality
-			players = {"Unpredictable":"323588063",
-					"Powerful":"308062307",
-					"Quick":"318067207",
-					"Technical":"308395915",
-					"Head":"317596637",
-					"Regainer":"320354435"}
 			try:
-				languageStuff["specialties"] = getSpecialties(ht, players);
+				languageStuff["specialties"] = getSpecialties(ht, specialty_players);
 			except:
 				print 'Error getting specialties.'
 			
 			#go to a specific match where we exactly know where min, max, low, high ratings occur and read the translations from there
 			print "Match Details"
-			print "\t", "going to match with known subratings","( 362716448 )"
-			ht.open("/Club/Matches/match.aspx?MatchId=362716448")
+			print "\t", "going to match with known subratings","(",str(sublevel_match['MatchId']),")"
+			ht.open("/Club/Matches/match.aspx?MatchId=" + str(sublevel_match['MatchId']))
 			matchDetailParser = MatchDetailParser.MatchDetailParser()
 			matchDetailParser.feed(ht.body)
 			#this is quite fragile to changes in the HT code, so let's have as many checks as possible to throw and error whenever something might be out of order
@@ -332,27 +325,21 @@ def crawl(ht, language_id_list = Language.Codes, outfile = 'crawled.xml'):
 			
 			#define positions of min. low high max. here
 			ratingSubLevels = {}
-			ratingSubLevels["min"] = matchDetailResult_Text_Ratings["Team_Home"][1];
-			ratingSubLevels["low"] = matchDetailResult_Text_Ratings["Team_Home"][0];
-			ratingSubLevels["high"] = matchDetailResult_Text_Ratings["Team_Home"][2];
-			ratingSubLevels["max"] = matchDetailResult_Text_Ratings["Team_Home"][4];			
+			ratingSubLevels["min"] = matchDetailResult_Text_Ratings["Team_Home"][sublevel_match['order'][0]];
+			ratingSubLevels["low"] = matchDetailResult_Text_Ratings["Team_Home"][sublevel_match['order'][1]];
+			ratingSubLevels["high"] = matchDetailResult_Text_Ratings["Team_Home"][sublevel_match['order'][2]];
+			ratingSubLevels["max"] = matchDetailResult_Text_Ratings["Team_Home"][sublevel_match['order'][3]];			
 			languageStuff["ratingSubLevels"] = ratingSubLevels
 			
-			# matches where the home team played the desired tactics
-			matches = {"normal":"353598577",
-					"pressing":"338165777",
-					"ca":"362511275",
-					"aow":"362716448",
-					"aim":"353598573",
-					"creatively":"362874929",
-					"longshots":"205732724"}
-			
 			print "Tactics"		
-			languageStuff["tactics"] = getTactics(ht, matches);
+			languageStuff["tactics"] = getTactics(ht, tactic_matches);
 			
 			print "Positions"
-			languageStuff['players'] = getPlayersByTeam(ht, 132905)
-			languageStuff['lineup'] = getPlayersFromLineUp(ht, 822514, 353598578)
+			languageStuff['players'] = getPlayersByTeam(ht, all_positions_match_team)
+			
+			tId = position_abbreviation_lineup['TeamId']
+			mId = position_abbreviation_lineup['MatchId']
+			languageStuff['lineup'] = getPlayersFromLineUp(ht, tId, mId)
 			
 			dict[lang] = languageStuff
 		
@@ -372,6 +359,36 @@ def crawl(ht, language_id_list = Language.Codes, outfile = 'crawled.xml'):
 		exit(0)
 	
 
+# matches where the home team played the desired tactics
+tactic_matches = {"normal":"353598577",
+		"pressing":"338165777",
+		"ca":"362511275",
+		"aow":"362716448",
+		"aim":"353598573",
+		"creatively":"362874929",
+		"longshots":"205732724"}
+		
+# players we know have the required speciality
+specialty_players = {"Unpredictable":"323588063",
+		"Powerful":"308062307",
+		"Quick":"318067207",
+		"Technical":"308395915",
+		"Head":"317596637",
+		"Regainer":"320354435"}
+	
+#teamid of a team where all positions are displayed in the "last match date" area 
+all_positions_match_team = 132905
+
+#sublevel match
+#id to a match where the hometeam had min. low high max. ratings
+# @ matchid
+# @ order, array of 4, index of where hometeam reached min.,low, high, max. in this order
+sublevel_match = {'MatchId':362716448, 'order':[1,0,2,4]}
+
+# combination of teamid / matchid for a lineup where all positions are shown
+# -keeper, inner mf, wingback, winger, forward, center defender
+position_abbreviation_lineup = {'TeamId':822514, 'MatchId':353598578}
+		
 if __name__ == "__main__":
 	import os
 	import sys
@@ -383,5 +400,5 @@ if __name__ == "__main__":
 			if len(sys.argv) == 4:
 				crawl(ht, Language.getAll(), sys.argv[3])
 			else:
-				crawl(ht, Language.getAll())
-			#crawl(ht, [Language.getIdByLanguage("de"), Language.getIdByLanguage("en")])
+				#crawl(ht, Language.getAll())
+				crawl(ht, [Language.getIdByLanguage("de"), Language.getIdByLanguage("en")])
