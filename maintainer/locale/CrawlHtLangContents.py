@@ -3,15 +3,112 @@ from Hattrick.Parsers import MenuParser
 from Hattrick.Parsers import DenominationsParser
 from Hattrick.Parsers import MatchDetailParser
 from Hattrick.Parsers import PlayerDetailParser
+from Hattrick.Parsers import PlayerPageParser
+from Hattrick.Parsers import MatchLineUpParser
 from Hattrick import Language
 
 from xml.dom.minidom import Document
-def createXml(result):
-	doc = Document()
-	
+
+def createDenominationsXML(doc, languageNode, lang, result):
+	#denominations
 	rename = {}
 	rename["gentleness"] = "agreeability";
 	rename["skill"] = "levels";
+	
+	for category in sorted(result[lang]["denominations"].iterkeys()):
+		do_rename = False;
+		for renamekey in rename:
+			if renamekey == category:
+				do_rename = True;
+				break;
+		
+		if do_rename:
+			cat = doc.createElement(rename[category])
+		else:
+			cat = doc.createElement(category)
+			
+		languageNode.appendChild(cat)
+		index = len(result[lang]["denominations"][category]["names"])-1
+		for entry in result[lang]["denominations"][category]["names"]:
+			e = doc.createElement("level")
+			e.setAttribute("text", entry)
+			e.setAttribute("value", str(index))
+			cat.appendChild(e)
+			index -= 1
+
+def createTacticsXML(doc, languageNode, lang, result):
+	#tactics
+	cat = doc.createElement("tactics")
+	languageNode.appendChild(cat)		
+	
+	for category in sorted(result[lang]["tactics"].iterkeys()):
+		level = doc.createElement("tactic")
+		level.setAttribute("value", result[lang]["tactics"][category])
+		level.setAttribute("type", category)
+		cat.appendChild(level)
+
+def createSpecialtiesXML(doc, languageNode, lang, result):
+	#specialties
+	cat = doc.createElement("specialties")
+	languageNode.appendChild(cat)		
+	
+	for category in sorted(result[lang]["specialties"].iterkeys()):
+		level = doc.createElement("specialty")
+		level.setAttribute("value", result[lang]["specialties"][category])
+		level.setAttribute("type", category)
+		level.setAttribute("short", "")
+		cat.appendChild(level)
+
+def createRatingSubLevelsXML(doc, languageNode, lang, result):
+	#ratingsublevels
+	cat = doc.createElement("ratingSubLevels")
+	languageNode.appendChild(cat)		
+
+	for category in result[lang]["ratingSubLevels"].iterkeys():
+		level = doc.createElement("sublevel")
+		level.setAttribute("text", result[lang]["ratingSubLevels"][category])
+		
+		if category ==  "min":
+			level.setAttribute("value", "0.0");
+		elif category ==  "max":
+			level.setAttribute("value", "0.75"); 
+		elif category ==  "high":
+			level.setAttribute("value", "0.50"); 
+		elif category ==  "low":
+			level.setAttribute("value", "0.25"); 
+		else:
+			raise Exception("unknown subratings keyword");
+		
+		cat.appendChild(level)
+
+def createMenuLinksXML(doc, languageNode, lang, result):
+	for category in result[lang]["menu"].iterkeys():
+		cat = doc.createElement(category)
+		cat.setAttribute("value", result[lang]["menu"][category])
+		languageNode.appendChild(cat)
+		
+def createPositionsXML(doc, languageNode, lang, result):
+	#positions
+	cat = doc.createElement("positions")
+	languageNode.appendChild(cat)	
+	en = result['en']
+	en_positions = en["positions"]
+	
+	for position in sorted(en["positions"]):
+		p = doc.createElement("position")
+		p.setAttribute("type", en_positions[position]['long'])
+		
+		p.setAttribute("short", "");
+		for entries in result[lang]["positions"][position]:
+			if entries == 'short':
+				p.setAttribute("short", result[lang]["positions"][position]['short']);
+			if entries == 'long':		
+				p.setAttribute("value", result[lang]["positions"][position]['long'])
+	
+		cat.appendChild(p)
+
+def createXml(result, outfile):
+	doc = Document()
 	
 	languages = doc.createElement("languages")
 	doc.appendChild(languages)
@@ -19,81 +116,20 @@ def createXml(result):
 		language = doc.createElement("language")
 		language.setAttribute("name", lang)
 		languages.appendChild(language)
-		
-		#main menu links
-		for category in sorted(result[lang]["menu"].iterkeys()):
-			cat = doc.createElement(category)
-			cat.setAttribute("value", result[lang]["menu"][category])
-			language.appendChild(cat)
 			
-		#ratingsublevels
-		cat = doc.createElement("ratingSubLevels")
-		language.appendChild(cat)		
-		
-		for category in sorted(result[lang]["ratingSubLevels"].iterkeys()):
-			level = doc.createElement("sublevel")
-			level.setAttribute("text", result[lang]["ratingSubLevels"][category])
+		createMenuLinksXML(doc, language, lang, result)
+		createPositionsXML(doc, language, lang, result)
+		createRatingSubLevelsXML(doc, language, lang, result)
+		createSpecialtiesXML(doc, language, lang, result)
+		createTacticsXML(doc, language, lang, result)
+		createDenominationsXML(doc, language, lang, result)
 			
-			if category ==  "min":
-				level.setAttribute("value", "0.0");
-			elif category ==  "max":
-				level.setAttribute("value", "0.75"); 
-			elif category ==  "high":
-				level.setAttribute("value", "0.50"); 
-			elif category ==  "low":
-				level.setAttribute("value", "0.25"); 
-			else:
-				raise Exception("unknown subratings keyword");
-			
-			cat.appendChild(level)
-			
-		#specialties
-		cat = doc.createElement("specialties")
-		language.appendChild(cat)		
-		
-		for category in sorted(result[lang]["specialties"].iterkeys()):
-			level = doc.createElement("specialty")
-			level.setAttribute("value", result[lang]["specialties"][category])
-			level.setAttribute("type", category)
-			level.setAttribute("short", "")
-			cat.appendChild(level)
-			
-		#tactics
-		cat = doc.createElement("tactics")
-		language.appendChild(cat)		
-		
-		for category in sorted(result[lang]["tactics"].iterkeys()):
-			level = doc.createElement("tactic")
-			level.setAttribute("value", result[lang]["tactics"][category])
-			level.setAttribute("type", category)
-			cat.appendChild(level)
-			
-		#denominations
-		for category in sorted(result[lang]["denominations"].iterkeys()):
-			do_rename = False;
-			for renamekey in rename:
-				if renamekey == category:
-					do_rename = True;
-					break;
-			
-			if do_rename:
-				cat = doc.createElement(rename[category])
-			else:
-				cat = doc.createElement(category)
-				
-			language.appendChild(cat)
-			index = len(result[lang]["denominations"][category]["names"])-1
-			for entry in result[lang]["denominations"][category]["names"]:
-				e = doc.createElement("level")
-				e.setAttribute("text", entry)
-				e.setAttribute("value", str(index))
-				cat.appendChild(e)
-				index -= 1
-			
-	file = open("xml_out.xml", "w")
+	file = open( outfile, "w")
 	file.write(doc.toprettyxml(indent="	", encoding="utf-8"))
 	file.close()
 	
+	
+# XML Stuff over, information aggression comming up
 def getSpecialties(ht, players):
 	specialties = {}
 	for key in players:
@@ -141,6 +177,96 @@ def getTactics(ht, matches):
 			
 	return tactics
 	
+def getPlayersFromLineUp(ht, teamid, matchid):
+	print "\t", 'going to specified Match-Lineup Page','(', 'matchID='+ str(matchid) + '&TeamId=' + str(teamid),' )'
+	ht.open('/Club/Matches/MatchLineup.aspx?matchID=' + str(matchid) + '&TeamId=' + str(teamid));
+	matchLineUpParser = MatchLineUpParser.MatchLineUpParser()
+	matchLineUpParser.feed(ht.body)
+	players = matchLineUpParser.get();
+	
+	return players
+	
+def getPlayersByTeam(ht, teamid):
+	#positions
+	print "\t", "going to specified player page","(",teamid,")"
+	ht.open('/Club/Players/?TeamID=' + str(teamid));
+	playerPageParser = PlayerPageParser.PlayerPageParser()
+	playerPageParser.feed(ht.body)
+	players = playerPageParser.get();
+		
+	return players
+	
+def translatePositions( source ):
+	en = source['en']
+	
+	# Position names taken from a teams player overview
+	lookup_players = {}
+	en_players = en['players']
+	for player in en_players:
+		if player['lastposition'] == 'Keeper':
+			lookup_players[player['lastposition']] = player['id']
+		elif player['lastposition'] == 'Central defender':
+			lookup_players[player['lastposition']] = player['id']
+		elif player['lastposition'] == 'Wing back':
+			lookup_players[player['lastposition']] = player['id']
+		elif player['lastposition'] == 'Inner midfielder':
+			lookup_players[player['lastposition']] = player['id']
+		elif player['lastposition'] == 'Winger':
+			lookup_players[player['lastposition']] = player['id']
+		elif player['lastposition'] == 'Forward':
+			lookup_players[player['lastposition']] = player['id']
+			
+	# position abbreviations
+	# WB and WI are not supported because the lineup page makes a difference wether a
+	# player played on the right or the left
+	lookup_lineup = {}
+	en_lineup = en['lineup']
+	for player in en_lineup:
+		if player['position_abbr'] == 'GK':
+			lookup_lineup[player['position_abbr']] = player['id']
+		elif player['position_abbr'] == 'CD':
+			lookup_lineup[player['position_abbr']] = player['id']
+		#elif player['position_abbr'] == 'WB':
+		#	lookup_lineup[player['position_abbr']] = player['id']
+		elif player['position_abbr'] == 'IM':
+			lookup_lineup[player['position_abbr']] = player['id']
+		#elif player['position_abbr'] == 'WI':
+		#	lookup_lineup[player['position_abbr']] = player['id']
+		elif player['position_abbr'] == 'FW':
+			lookup_lineup[player['position_abbr']] = player['id']
+
+	for language in source:
+		languageDict = {}
+		for position in lookup_players:
+			position_player = lookup_players[position]
+			for player in source[language]['players']:
+				if player['id'] == position_player:
+					translated = player['lastposition']
+					languageDict[position] = {'long': translated }
+					continue;
+			
+		# map english shortcuts to english full versions so we can access them later
+		map = {}
+		map["GK"] = "Keeper";
+		map["CD"] = "Central defender";
+		map["IM"] = "Inner midfielder";
+		map["FW"] = "Forward";
+		
+		for position in lookup_lineup:
+			position_player = lookup_lineup[position]
+			for player in source[language]['lineup']:
+				if player['id'] == position_player:
+					translated = player['position_abbr']
+					languageDict[map[position]]['short'] = translated
+					continue;
+		
+		source[language]['positions'] = languageDict
+		source[language]['players'] = None; #delete players
+		source[language]['lineup'] = None; #delete players
+		
+	return source
+	
+	
 def login(username, password):
 	ht = HattrickWeb(username, password)
 	try:
@@ -151,7 +277,7 @@ def login(username, password):
 	
 	return True, ht;
 			
-def crawl(ht, language_id_list = Language.Codes):
+def crawl(ht, language_id_list = Language.Codes, outfile = 'crawled.xml'):
 	try:	
 		dict = {}
 		index = 0
@@ -192,7 +318,7 @@ def crawl(ht, language_id_list = Language.Codes):
 			
 			#go to a specific match where we exactly know where min, max, low, high ratings occur and read the translations from there
 			print "Match Details"
-			print "\t", "going to match with know subratings","( 362716448 )"
+			print "\t", "going to match with known subratings","( 362716448 )"
 			ht.open("/Club/Matches/match.aspx?MatchId=362716448")
 			matchDetailParser = MatchDetailParser.MatchDetailParser()
 			matchDetailParser.feed(ht.body)
@@ -203,7 +329,8 @@ def crawl(ht, language_id_list = Language.Codes):
 				raise Exception("Match details returned uneven results (text ratings)")
 			elif len(matchDetailResult_Text_Ratings["Team_Home"]) != 14:
 				raise Exception("Match details returned unexpected amount of ratings (text ratings)", len(matchDetailResult_Text_Ratings["Team_Home"]))			
-				
+			
+			#define positions of min. low high max. here
 			ratingSubLevels = {}
 			ratingSubLevels["min"] = matchDetailResult_Text_Ratings["Team_Home"][1];
 			ratingSubLevels["low"] = matchDetailResult_Text_Ratings["Team_Home"][0];
@@ -223,10 +350,17 @@ def crawl(ht, language_id_list = Language.Codes):
 			print "Tactics"		
 			languageStuff["tactics"] = getTactics(ht, matches);
 			
+			print "Positions"
+			languageStuff['players'] = getPlayersByTeam(ht, 132905)
+			languageStuff['lineup'] = getPlayersFromLineUp(ht, 822514, 353598578)
+			
 			dict[lang] = languageStuff
+		
+		#get position translations
+		dict = translatePositions( dict )
 			
 		print "writing *.xml"
-		createXml(dict)
+		createXml(dict, outfile)
 		
 	except Exception as e:
 		print 'Exception:', e
@@ -241,10 +375,13 @@ def crawl(ht, language_id_list = Language.Codes):
 if __name__ == "__main__":
 	import os
 	import sys
-	if len(sys.argv) != 3:
-		print "Usage: python", sys.argv[0], "username", "password"
+	if len(sys.argv) < 3 or len(sys.argv) > 4:
+		print "Usage: python", sys.argv[0], "username", "password", out_file (optional)
 	else:
 		success, ht = login(sys.argv[1],sys.argv[2])
 		if success:
-			crawl(ht, Language.getAll())	
-			#crawl(ht, [Language.getIdByLanguage("de")])
+			if len(sys.argv) == 4:
+				crawl(ht, Language.getAll(), sys.argv[3])
+			else:
+				crawl(ht, Language.getAll())
+			#crawl(ht, [Language.getIdByLanguage("de"), Language.getIdByLanguage("en")])

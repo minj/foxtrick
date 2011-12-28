@@ -40,6 +40,20 @@ def checkLevels(lang, htlang, lookup):
 	
 	checkNodes(dump_entries, ht_entries, "value", "value", "text")
 	
+def checkPositions(lang, htlang, lookup):
+	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
+	dump_levelnode = localetools.xml.helpers.findFirstNodeRecursive(dump_lang, "positions")
+	dump_entries = localetools.xml.helpers.findAllNodesRecursive(dump_levelnode, "position")
+
+	ht_levelnode = localetools.xml.helpers.findFirstNodeRecursive(htlang.documentElement, "positions")
+	ht_entries = localetools.xml.helpers.findAllNodesRecursive(ht_levelnode, "position")
+	
+	if not len(ht_entries):
+		print "\t", "missing completly"
+		return
+	
+	checkNodes(dump_entries, ht_entries, "type", "type", "value")
+	
 def checkAgreeability(lang, htlang, lookup):
 	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
 	dump_agreeabilitynode = localetools.xml.helpers.findFirstNodeRecursive(dump_lang, "agreeability")
@@ -126,12 +140,23 @@ def checkTactics(lang, htlang, lookup):
 	
 
 def checkMainMenuLinks(lang, htlang, lookup):	
-	checkMainMenuLink(lang, htlang, lookup, "MyHattrick")
-	checkMainMenuLink(lang, htlang, lookup, "MyClub")
-	checkMainMenuLink(lang, htlang, lookup, "World")
-	checkMainMenuLink(lang, htlang, lookup, "Shop")
-	checkMainMenuLink(lang, htlang, lookup, "Forum")
-	checkMainMenuLink(lang, htlang, lookup, "Help")
+
+	links = ['MyHattrick','MyClub','World','Shop','Forum','Help']
+	correct = 0
+	
+	for link in links:
+		if checkMainMenuLink(lang, htlang, lookup, link):
+			correct += 1
+		else:
+			print '\t', link, 'incorrect'
+			
+	print '\t', correct ,'/',len(links),'correct'
+	# checkMainMenuLink(lang, htlang, lookup, "MyHattrick")
+	# checkMainMenuLink(lang, htlang, lookup, "MyClub")
+	# checkMainMenuLink(lang, htlang, lookup, "World")
+	# checkMainMenuLink(lang, htlang, lookup, "Shop")
+	# checkMainMenuLink(lang, htlang, lookup, "Forum")
+	# checkMainMenuLink(lang, htlang, lookup, "Help")
 	
 def checkMainMenuLink(lang, htlang, lookup, text):
 	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
@@ -140,9 +165,9 @@ def checkMainMenuLink(lang, htlang, lookup, text):
 	ht_link = localetools.xml.helpers.findFirstNodeRecursive(htlang.documentElement, text)
 	
 	if ht_link.getAttribute("text") != dump_link.getAttribute("text"):
-		print "\t", text, "incorrect"
+		return False
 	else:
-		print "\t", text ,"ok"
+		return True
 	
 def checklanguage(lang, lookup):
 	print "Checking", lang
@@ -170,7 +195,8 @@ def checklanguage(lang, lookup):
 	print "\t","checking Tactics"
 	checkTactics(lang, htlang, lookup)
 	print "\t","checking Positions"
-	print "\t","NOT IMPLEMENTED"
+	checkPositions(lang, htlang, lookup)
+	
 from Hattrick import Language
 
 if __name__ == "__main__":
