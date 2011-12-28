@@ -31,9 +31,10 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 			try { 
 				var beginInit = new Date();
 
-				if (data.error) Foxtrick.log(data.error);
+				if (data.error) 
+					Foxtrick.log(data.error);
 
-				Foxtrick.entry.setRetrievedLocalResources(data);
+				Foxtrick.entry.contentScriptInit(data);
 
 				if ( (FoxtrickPrefs.getBool("disableOnStage")
 						&& Foxtrick.isStage(document))
@@ -73,14 +74,16 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 			} catch(e) {Foxtrick.log('loader init: ', e);}
 		});
 		
-		// that's our normal entry point unless init took to long.
+		// that's our normal entry point unless init took too long.
 		window.addEventListener("DOMContentLoaded", function() {
 			DOMContentLoaded = true;
 			if (LocalResourcesLoaded)
 				Foxtrick.entry.docLoad(document);
 		}, false);
 		
-	} catch(e) {Foxtrick.log(e);}
+	} catch(e) {
+		Foxtrick.log(e);
+	}
 };
 
 
@@ -127,4 +130,5 @@ Foxtrick.loader.chrome.initGrowl = function () {
   } catch(e) {Foxtrick.log(e);}
 };
 
+// this is the content side entry point for chrome/opera/safari
 Foxtrick.loader.chrome.docLoadStart();

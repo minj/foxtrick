@@ -7,7 +7,6 @@
 
 <!-- essential stuffs -->
 <script type="application/x-javascript" src="./env.js" />
-<script type="application/x-javascript" src="./loader-gecko.js" />
 <script type="application/x-javascript" src="./prefs.js" />
 <script type="application/x-javascript" src="./l10n.js" />
 <script type="application/x-javascript" src="./xml-load.js" />
@@ -57,6 +56,7 @@
 
 <!--background script and script injection -->
 <script type="application/x-javascript" src="./entry.js" />
+<script type="application/x-javascript" src="./scripts-fennec.js" />
 <script type="application/x-javascript" src="./background.js" />
 
 </overlay>

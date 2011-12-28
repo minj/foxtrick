@@ -8,7 +8,8 @@ if (!Foxtrick)
 	var Foxtrick = {};
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
-Foxtrick.loader.gecko = {};
+if (!Foxtrick.loader.gecko)
+	Foxtrick.loader.gecko = {};
 
 // invoked after the browser chrome is loaded
 // variable *document* is predeclared and used here but means the
@@ -92,13 +93,14 @@ Foxtrick.loader.gecko.docUnload = function(ev) {
 	// do nothing
 };
 
-// fennec browser load. starts the content instances for fennec (one per tab. persistant)
+// fennec tab load. starts the content instances for fennec (one per tab. persistant)
+// this is the content side entry point for fennec
 if (Foxtrick.platform == "Fennec") {
 	Foxtrick.log('new tab load');
 	sandboxed.extension.sendRequest({ req : "tabLoad" },
 		function (data) {
 			try {
-				Foxtrick.entry.setRetrievedLocalResources(data);
+				Foxtrick.entry.contentScriptInit(data);
 
 				addEventListener("DOMContentLoaded", function(ev){
 					try {

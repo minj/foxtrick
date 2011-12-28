@@ -78,9 +78,11 @@ Foxtrick.entry.docLoad = function(doc) {
 	Foxtrick.startListenToChange(doc);
 };
 
-// on sandboxed content side copy retrieved resources to the resp. modules after each 
-// page load for chrome/safari/opera and on new tab open for fennec
-Foxtrick.entry.setRetrievedLocalResources = function(data) {
+// invoved for each new instance of a content script
+// for chrome/safari/opera after each page load 
+// for fennec on new tab opened
+// @param data - copy of the resources passed from the background script
+Foxtrick.entry.contentScriptInit = function(data) {
 		if (Foxtrick.platform != "Fennec") {
 			FoxtrickPrefs._prefs_chrome_user = data._prefs_chrome_user;
 			FoxtrickPrefs._prefs_chrome_default = data._prefs_chrome_default;
@@ -112,7 +114,7 @@ Foxtrick.entry.setRetrievedLocalResources = function(data) {
 		Foxtrick.sessionStore = data.sessionStore;
 };
 
-// called on browser load and after preferences changes (background side for sandboxed)
+// called on browser load and after preferences changes (background side for sandboxed, fennec)
 Foxtrick.entry.init = function() {
 	Foxtrick.log("Initializing FoxTrick...");
 

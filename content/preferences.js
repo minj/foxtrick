@@ -14,7 +14,7 @@ function initLoader() {
 		sandboxed.extension.sendRequest({ req : "optionsPageLoad" },
 			function (data) {
 				try {
-					Foxtrick.entry.setRetrievedLocalResources(data);
+					Foxtrick.entry.contentScriptInit(data);
 					init();
 				} catch(e) {Foxtrick.log('initLoader: ',e);}
 		});
