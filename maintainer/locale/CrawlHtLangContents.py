@@ -70,9 +70,9 @@ def createXml(result):
 			language.appendChild(cat)
 			index = len(result[lang]["denominations"][category]["names"])-1
 			for entry in result[lang]["denominations"][category]["names"]:
-				e = doc.createElement("entry")
+				e = doc.createElement("level")
 				e.setAttribute("text", entry)
-				e.setAttribute("index", str(index))
+				e.setAttribute("value", str(index))
 				cat.appendChild(e)
 				index -= 1
 			

@@ -29,7 +29,7 @@ def checkNodes(dump_entries, ht_entries, dump_key_attrib, ht_key_Attrib, compare
 def checkLevels(lang, htlang, lookup):
 	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
 	dump_skills = localetools.xml.helpers.findFirstNodeRecursive(dump_lang, "skill")
-	dump_entries = localetools.xml.helpers.findAllNodesRecursive(dump_skills, "entry")
+	dump_entries = localetools.xml.helpers.findAllNodesRecursive(dump_skills, "level")
 
 	ht_skills = localetools.xml.helpers.findFirstNodeRecursive(htlang.documentElement, "levels")
 	ht_entries = localetools.xml.helpers.findAllNodesRecursive(ht_skills, "level")
@@ -38,12 +38,12 @@ def checkLevels(lang, htlang, lookup):
 		print "\t", "missing completly"
 		return
 	
-	checkNodes(dump_entries, ht_entries, "index", "value", "text")
+	checkNodes(dump_entries, ht_entries, "value", "value", "text")
 	
 def checkAgreeability(lang, htlang, lookup):
 	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
 	dump_skills = localetools.xml.helpers.findFirstNodeRecursive(dump_lang, "gentleness")
-	dump_entries = localetools.xml.helpers.findAllNodesRecursive(dump_skills, "entry")
+	dump_entries = localetools.xml.helpers.findAllNodesRecursive(dump_skills, "level")
 			
 	ht_skills = localetools.xml.helpers.findFirstNodeRecursive(htlang.documentElement, "agreeability")
 	ht_entries = localetools.xml.helpers.findAllNodesRecursive(ht_skills, "level")
@@ -52,12 +52,12 @@ def checkAgreeability(lang, htlang, lookup):
 		print "\t", "missing completly"
 		return
 	
-	checkNodes(dump_entries, ht_entries, "index", "value", "text")
+	checkNodes(dump_entries, ht_entries, "value", "value", "text")
 	
 def checkHonesty(lang, htlang, lookup):
 	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
 	dump_skills = localetools.xml.helpers.findFirstNodeRecursive(dump_lang, "honesty")
-	dump_entries = localetools.xml.helpers.findAllNodesRecursive(dump_skills, "entry")
+	dump_entries = localetools.xml.helpers.findAllNodesRecursive(dump_skills, "level")
 
 	ht_skills = localetools.xml.helpers.findFirstNodeRecursive(htlang.documentElement, "honesty")
 	ht_entries = localetools.xml.helpers.findAllNodesRecursive(ht_skills, "level")
@@ -66,12 +66,12 @@ def checkHonesty(lang, htlang, lookup):
 		print "\t", "missing completly"
 		return
 	
-	checkNodes(dump_entries, ht_entries, "index", "value", "text")
+	checkNodes(dump_entries, ht_entries, "value", "value", "text")
 	
 def checkAggressiveness(lang, htlang, lookup):
 	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
 	dump_skills = localetools.xml.helpers.findFirstNodeRecursive(dump_lang, "aggressiveness")
-	dump_entries = localetools.xml.helpers.findAllNodesRecursive(dump_skills, "entry")
+	dump_entries = localetools.xml.helpers.findAllNodesRecursive(dump_skills, "level")
 
 	ht_skills = localetools.xml.helpers.findFirstNodeRecursive(htlang.documentElement, "aggressiveness")
 	ht_entries = localetools.xml.helpers.findAllNodesRecursive(ht_skills, "level")
@@ -80,7 +80,7 @@ def checkAggressiveness(lang, htlang, lookup):
 		print "\t", "missing completly"
 		return
 	
-	checkNodes(dump_entries, ht_entries, "index", "value", "text")
+	checkNodes(dump_entries, ht_entries, "value", "value", "text")
 	
 def checkSpecialties(lang, htlang, lookup):
 	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
@@ -108,7 +108,7 @@ def checkRatingSubLevels(lang, htlang, lookup):
 		print "\t", "missing completly"
 		return
 	
-	checkNodes(dump_sublevels, ht_sublevels, "index", "value", "text")
+	checkNodes(dump_sublevels, ht_sublevels, "value", "value", "text")
 	
 def checkTactics(lang, htlang, lookup):
 	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
