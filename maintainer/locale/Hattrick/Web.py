@@ -3,58 +3,6 @@ import cookielib
 import mechanize
 import re
 
-LanguageCodes = {}	
-LanguageCodes['1']='se';	
-LanguageCodes['2']='en';
-LanguageCodes['3']='de';
-LanguageCodes['4']='it';
-LanguageCodes['5']='fr';
-LanguageCodes['6']='es';
-LanguageCodes['7']='no';
-LanguageCodes['8']='dk';
-LanguageCodes['9']='fi';
-LanguageCodes['10']='nl';
-LanguageCodes['11']='pt';
-LanguageCodes['13']='pl';
-LanguageCodes['14']='ru';
-LanguageCodes['15']='zh_CN';
-LanguageCodes['19']='tr';
-LanguageCodes['23']='ro';
-LanguageCodes['32']='sr';
-LanguageCodes['33']='hu';
-LanguageCodes['34']='gr';
-LanguageCodes['35']='cz';
-LanguageCodes['36']='ee';
-LanguageCodes['37']='lv';
-LanguageCodes['39']='hr';
-LanguageCodes['40']='he_IL';
-LanguageCodes['43']='bg';
-LanguageCodes['45']='sl';
-LanguageCodes['50']='pt_BR';
-LanguageCodes['51']='es_SU';
-LanguageCodes['53']='sk';
-LanguageCodes['55']='vi';
-LanguageCodes['56']='lt';
-LanguageCodes['57']='ua';
-LanguageCodes['58']='bs';
-LanguageCodes['65']='nl_BE';
-LanguageCodes['66']='ca';
-LanguageCodes['74']='gl_ES';
-LanguageCodes['75']='fa';
-LanguageCodes['83']='mk';
-LanguageCodes['85']='sq';
-LanguageCodes['103']='es_ca';
-LanguageCodes['109']='fy';
-LanguageCodes['110']='eu_ES';
-LanguageCodes['111']='lb_LU';
-LanguageCodes['113']='fur';
-
-# LanguageCodes['90']='Georgian';
-# LanguageCodes['86']='Kyrgyz';
-# LanguageCodes['84']='Belarusian';
-# LanguageCodes['17']='korean';
-# LanguageCodes['12']='japan';
-	
 class HattrickWeb:
 	def __init__(self, username, password):
 		self.username = username

@@ -35,13 +35,13 @@ def createXml(result):
 			level.setAttribute("text", result[lang]["ratingSubLevels"][category])
 			
 			if category ==  "min":
-				level.setAttribute("index", "0.0");
+				level.setAttribute("value", "0.0");
 			elif category ==  "max":
-				level.setAttribute("index", "0.75"); 
+				level.setAttribute("value", "0.75"); 
 			elif category ==  "high":
-				level.setAttribute("index", "0.50"); 
+				level.setAttribute("value", "0.50"); 
 			elif category ==  "low":
-				level.setAttribute("index", "0.25"); 
+				level.setAttribute("value", "0.25"); 
 			else:
 				raise Exception("unknown subratings keyword");
 			
@@ -177,6 +177,7 @@ def crawl(ht, language_id_list = Language.Codes):
 			lang = Language.getLanguageById(key)
 			languageStuff["denominations"] = denominationsParser.get();
 			
+			print "Specialties"
 			# players we know have the required speciality
 			players = {"Unpredictable":"323588063",
 					"Powerful":"308062307",
@@ -218,7 +219,8 @@ def crawl(ht, language_id_list = Language.Codes):
 					"aim":"353598573",
 					"creatively":"362874929",
 					"longshots":"205732724"}
-					
+			
+			print "Tactics"		
 			languageStuff["tactics"] = getTactics(ht, matches);
 			
 			dict[lang] = languageStuff
