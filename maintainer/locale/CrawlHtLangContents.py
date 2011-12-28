@@ -8,7 +8,11 @@ from Hattrick import Language
 from xml.dom.minidom import Document
 def createXml(result):
 	doc = Document()
-
+	
+	rename = {}
+	rename["gentleness"] = "agreeability";
+	rename["skill"] = "levels";
+	
 	languages = doc.createElement("languages")
 	doc.appendChild(languages)
 	for lang in sorted(result.iterkeys()):
@@ -66,7 +70,17 @@ def createXml(result):
 			
 		#denominations
 		for category in sorted(result[lang]["denominations"].iterkeys()):
-			cat = doc.createElement(category)
+			do_rename = False;
+			for renamekey in rename:
+				if renamekey == category:
+					do_rename = True;
+					break;
+			
+			if do_rename:
+				cat = doc.createElement(rename[category])
+			else:
+				cat = doc.createElement(category)
+				
 			language.appendChild(cat)
 			index = len(result[lang]["denominations"][category]["names"])-1
 			for entry in result[lang]["denominations"][category]["names"]:
@@ -231,3 +245,4 @@ if __name__ == "__main__":
 		success, ht = login(sys.argv[1],sys.argv[2])
 		if success:
 			crawl(ht, Language.getAll())	
+			#crawl(ht, [Language.getIdByLanguage("de")])
