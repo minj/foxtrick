@@ -71,4 +71,40 @@
 		<level text="felaket" value="1" />
 		<level text="kazma" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="sevilen takım arkadaşı" value="5"/>
+		<level text="popüler bir oyuncu" value="4"/>
+		<level text="sempatik bir oyuncu" value="3"/>
+		<level text="canayakın bir oyuncu" value="2"/>
+		<level text="kavgacı bir oyuncu" value="1"/>
+		<level text="pislik bir oyuncu" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="aziz gibi" value="5"/>
+		<level text="erdemli" value="4"/>
+		<level text="güvenilir" value="3"/>
+		<level text="dürüst" value="2"/>
+		<level text="sahtekar" value="1"/>
+		<level text="çirkef" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="dengesiz" value="5"/>
+		<level text="ateşli" value="4"/>
+		<level text="huysuz" value="3"/>
+		<level text="dengeli" value="2"/>
+		<level text="sakin" value="1"/>
+		<level text="durgun" value="0"/>
+	</aggressiveness>
 </language>

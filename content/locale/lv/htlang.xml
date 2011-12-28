@@ -71,4 +71,40 @@
 		<level text="katastrofāli" value="1" />
 		<level text="neeksistē" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="Komandas mīlulis" value="5"/>
+		<level text="Komandas dvēsele" value="4"/>
+		<level text="Simpātiska persona" value="3"/>
+		<level text="Patīkams cilvēks" value="2"/>
+		<level text="Strīdīgs puisis" value="1"/>
+		<level text="Nešpetns tips" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="svētais" value="5"/>
+		<level text="taisnīgs" value="4"/>
+		<level text="krietns" value="3"/>
+		<level text="godprātīgs" value="2"/>
+		<level text="nekrietns" value="1"/>
+		<level text="neģēlis" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="psihopāts" value="5"/>
+		<level text="karstasinīgs" value="4"/>
+		<level text="straujas dabas" value="3"/>
+		<level text="līdzsvarots" value="2"/>
+		<level text="mierīgs" value="1"/>
+		<level text="flegmatisks" value="0"/>
+	</aggressiveness>
 </language>

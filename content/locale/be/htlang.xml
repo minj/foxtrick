@@ -71,4 +71,40 @@
 		<level text="катастрафічна" value="1" />
 		<level text="няісна" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="усеагульны фаварыт" value="5"/>
+		<level text="папулярны хлапец" value="4"/>
+		<level text="абаяльны хлапец" value="3"/>
+		<level text="прыемны хлапец" value="2"/>
+		<level text="непрыемны тып" value="1"/>
+		<level text="мярзотны тып" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="сьвяты" value="5"/>
+		<level text="дабрачынны" value="4"/>
+		<level text="справядлівы" value="3"/>
+		<level text="сумленны" value="2"/>
+		<level text="несумленны" value="1"/>
+		<level text="паскудны" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="нестабільны" value="5"/>
+		<level text="зласьлівы" value="4"/>
+		<level text="тэмпэрамэнтны" value="3"/>
+		<level text="памяркоўны" value="2"/>
+		<level text="стрыманы" value="1"/>
+		<level text="ціхамірны" value="0"/>
+	</aggressiveness>
 </language>

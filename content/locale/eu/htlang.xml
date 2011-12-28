@@ -71,4 +71,40 @@
 		<level text="negargarria" value="1" />
 		<level text="ez daki" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="taldekide maitagarria" value="5"/>
+		<level text="mirestua" value="4"/>
+		<level text="jatorra" value="3"/>
+		<level text="atsegina" value="2"/>
+		<level text="liskartsua" value="1"/>
+		<level text="zakarra" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="ogi puska" value="5"/>
+		<level text="bihotz onekoa" value="4"/>
+		<level text="zuzena" value="3"/>
+		<level text="leiala" value="2"/>
+		<level text="petrala" value="1"/>
+		<level text="gaiztoa" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="buruarina" value="5"/>
+		<level text="suminkorra" value="4"/>
+		<level text="odolberoa" value="3"/>
+		<level text="zentzuduna" value="2"/>
+		<level text="lasaia" value="1"/>
+		<level text="patsadatsua" value="0"/>
+	</aggressiveness>
 </language>

@@ -71,4 +71,40 @@
 		<level text="katastrofal" value="1" />
 		<level text="håbløs" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="elsket holdkammerat" value="5"/>
+		<level text="populær fyr" value="4"/>
+		<level text="sympatisk fyr" value="3"/>
+		<level text="behagelig fyr" value="2"/>
+		<level text="kontroversiel person" value="1"/>
+		<level text="ubehagelig type" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="helgenagtig" value="5"/>
+		<level text="retskaffen" value="4"/>
+		<level text="ærlig" value="3"/>
+		<level text="hæderlig" value="2"/>
+		<level text="uærlig" value="1"/>
+		<level text="berygtet" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="ustabil" value="5"/>
+		<level text="ilter" value="4"/>
+		<level text="temperamentsfuld" value="3"/>
+		<level text="balanceret" value="2"/>
+		<level text="rolig" value="1"/>
+		<level text="stille" value="0"/>
+	</aggressiveness>
 </language>

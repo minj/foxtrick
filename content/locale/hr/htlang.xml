@@ -71,4 +71,40 @@
 		<level text="katastrofalan" value="1" />
 		<level text="nikakav" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="Obožavani član momčadi" value="5"/>
+		<level text="Popularan tip" value="4"/>
+		<level text="Simpatičan momak" value="3"/>
+		<level text="Drag momak" value="2"/>
+		<level text="Svadljiv čovjek" value="1"/>
+		<level text="Opak tip" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="kao svetac" value="5"/>
+		<level text="pravedan" value="4"/>
+		<level text="čestit" value="3"/>
+		<level text="pošten" value="2"/>
+		<level text="nepošten" value="1"/>
+		<level text="na zlu glasu" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="nestabilan" value="5"/>
+		<level text="vatren" value="4"/>
+		<level text="nagao" value="3"/>
+		<level text="uravnotežen" value="2"/>
+		<level text="priseban" value="1"/>
+		<level text="miran" value="0"/>
+	</aggressiveness>
 </language>

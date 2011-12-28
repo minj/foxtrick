@@ -71,4 +71,40 @@
 		<level text="disastrôs" value="1" />
 		<level text="inesistent" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="amât" value="5"/>
+		<level text="popolâr" value="4"/>
+		<level text="simpatic" value="3"/>
+		<level text="plasevul" value="2"/>
+		<level text="storpeôs" value="1"/>
+		<level text="sticeboris" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="farine di fâ ostiis" value="5"/>
+		<level text="virtuôs" value="4"/>
+		<level text="leâl" value="3"/>
+		<level text="onest" value="2"/>
+		<level text="disonest" value="1"/>
+		<level text="carogne" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="lunatic" value="5"/>
+		<level text="scjaldinôs" value="4"/>
+		<level text="impulsîf" value="3"/>
+		<level text="ecuilibrat" value="2"/>
+		<level text="cuiet" value="1"/>
+		<level text="trancuil" value="0"/>
+	</aggressiveness>
 </language>

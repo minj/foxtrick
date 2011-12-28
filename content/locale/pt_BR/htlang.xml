@@ -71,4 +71,40 @@
 		<level text="terrível" value="1" />
 		<level text="inexistente" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="pessoa adorada por todos" value="5"/>
+		<level text="pessoa popular" value="4"/>
+		<level text="pessoa simpática" value="3"/>
+		<level text="pessoa agradável" value="2"/>
+		<level text="pessoa controversa" value="1"/>
+		<level text="pessoa antipática" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="exemplar" value="5"/>
+		<level text="íntegra" value="4"/>
+		<level text="honesta" value="3"/>
+		<level text="decente" value="2"/>
+		<level text="desonesta" value="1"/>
+		<level text="infame" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="instável" value="5"/>
+		<level text="nervosa" value="4"/>
+		<level text="temperamental" value="3"/>
+		<level text="equilibrada" value="2"/>
+		<level text="calma" value="1"/>
+		<level text="tranquila" value="0"/>
+	</aggressiveness>
 </language>

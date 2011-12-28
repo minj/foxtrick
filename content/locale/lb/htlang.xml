@@ -71,4 +71,40 @@
 		<level text="katastrophal" value="1" />
 		<level text="inexistent" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="eng integréiert Persoun" value="5"/>
+		<level text="eng populär Persoun" value="4"/>
+		<level text="eng sympathesch Persoun" value="3"/>
+		<level text="eng beléift Persoun" value="2"/>
+		<level text="eng kontrovers Persoun" value="1"/>
+		<level text="en Ekel" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="gutthäerzeg" value="5"/>
+		<level text="fair" value="4"/>
+		<level text="korrekt" value="3"/>
+		<level text="éierlech" value="2"/>
+		<level text="onéierlech" value="1"/>
+		<level text="dreckeg" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="onzouverlässeg" value="5"/>
+		<level text="opbrausend" value="4"/>
+		<level text="temperamentvoll" value="3"/>
+		<level text="ausgeglach" value="2"/>
+		<level text="roueg" value="1"/>
+		<level text="introvertéiert" value="0"/>
+	</aggressiveness>
 </language>

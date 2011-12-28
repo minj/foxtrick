@@ -71,4 +71,40 @@
 		<level text="rampzalig" value="1" />
 		<level text="niet-bestaand" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="geliefde teamspeler" value="5"/>
+		<level text="populair" value="4"/>
+		<level text="sympathiek" value="3"/>
+		<level text="aangenaam" value="2"/>
+		<level text="controversieel" value="1"/>
+		<level text="gemeen" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="goudeerlijk" value="5"/>
+		<level text="rechtvaardig" value="4"/>
+		<level text="oprecht" value="3"/>
+		<level text="eerlijk" value="2"/>
+		<level text="oneerlijk" value="1"/>
+		<level text="berucht" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="instabiel" value="5"/>
+		<level text="opvliegend" value="4"/>
+		<level text="temperamentvol" value="3"/>
+		<level text="evenwichtig" value="2"/>
+		<level text="kalm" value="1"/>
+		<level text="rustig" value="0"/>
+	</aggressiveness>
 </language>

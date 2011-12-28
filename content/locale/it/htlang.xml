@@ -71,4 +71,41 @@
 		<level text="disastroso" value="1" />
 		<level text="inesistente" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="amata" value="5"/>
+		<level text="popolare" value="4"/>
+		<level text="simpatica" value="3"/>
+		<level text="gradevole" value="2"/>
+		<level text="scontrosa" value="1"/>
+		<level text="attaccabrighe" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="quasi santa" value="5"/>
+		<level text="virtuosa" value="4"/>
+		<level text="retta" value="3"/>
+		<level text="onesta" value="2"/>
+		<level text="disonesta" value="1"/>
+		<level text="infame" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="lunatica" value="5"/>
+		<level text="irascibile" value="4"/>
+		<level text="impulsiva" value="3"/>
+		<level text="equilibrata" value="2"/>
+		<level text="calma" value="1"/>
+		<level text="tranquilla" value="0"/>
+	</aggressiveness>
+	
 </language>
