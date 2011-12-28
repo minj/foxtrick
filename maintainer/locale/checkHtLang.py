@@ -1,6 +1,11 @@
 from xml.dom.minidom import parse
 import localetools.xml.helpers
 
+#dump_entries = Entries from crawled xml dump
+#ht_entries = Entries from existing htlang.xml
+#dump_key_Attrib = name of the "key" attribute in crawled xml dump
+#ht_key_attrib = name of the same "key" attribute in htlang.xml
+#ht name of the attribute to be compared 
 def checkNodes(dump_entries, ht_entries, dump_key_attrib, ht_key_Attrib, compare_Attrib):
 	left = len(dump_entries)
 	for dump_node in dump_entries:
@@ -105,6 +110,20 @@ def checkRatingSubLevels(lang, htlang, lookup):
 	
 	checkNodes(dump_sublevels, ht_sublevels, "index", "value", "text")
 	
+def checkTactics(lang, htlang, lookup):
+	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
+	dump_tacticslist = localetools.xml.helpers.findFirstNodeRecursive(dump_lang, "tactics")
+	dump_tactics = localetools.xml.helpers.findAllNodesRecursive(dump_tacticslist, "tactic")
+
+	ht_tacticslist = localetools.xml.helpers.findFirstNodeRecursive(htlang.documentElement, "tactics")
+	ht_tactics = localetools.xml.helpers.findAllNodesRecursive(ht_tacticslist, "tactic")
+	
+	if not len(ht_tactics):
+		print "\t", "missing completly"
+		return
+	
+	checkNodes(dump_tactics, ht_tactics, "type", "type", "value")
+	
 
 def checkMainMenuLinks(lang, htlang, lookup):	
 	checkMainMenuLink(lang, htlang, lookup, "MyHattrick")
@@ -148,7 +167,10 @@ def checklanguage(lang, lookup):
 	checkRatingSubLevels(lang, htlang, lookup)
 	print "\t","checking Specialties"
 	checkSpecialties(lang, htlang, lookup)
-	
+	print "\t","checking Tactics"
+	checkTactics(lang, htlang, lookup)
+	print "\t","checking Positions"
+	print "\t","NOT IMPLEMENTED"
 from Hattrick import Language
 
 if __name__ == "__main__":

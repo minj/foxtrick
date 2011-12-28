@@ -54,6 +54,16 @@ def createXml(result):
 			level.setAttribute("short", "")
 			cat.appendChild(level)
 			
+		#tactics
+		cat = doc.createElement("tactics")
+		language.appendChild(cat)		
+		
+		for category in sorted(result[lang]["tactics"].iterkeys()):
+			level = doc.createElement("tactic")
+			level.setAttribute("value", result[lang]["tactics"][category])
+			level.setAttribute("type", category)
+			cat.appendChild(level)
+			
 		#denominations
 		for category in sorted(result[lang]["denominations"].iterkeys()):
 			cat = doc.createElement(category)
@@ -88,6 +98,35 @@ def getSpecialties(ht, players):
 		
 	return specialties
 	
+def getTactics(ht, matches):
+	tactics = {}
+	for key in matches:
+		print "\t", "going to specified", key, "match (", matches[key], ")"
+		ht.open("/Club/Matches/Match.aspx?matchID=" + matches[key])
+		matchDetailParser = MatchDetailParser.MatchDetailParser()
+		matchDetailParser.feed(ht.body)
+		result =  matchDetailParser.get()["unclassedRatings"]
+		
+		try:
+			if len(result["Team_Home"]) != len(result["Team_Away"]):
+				raise Exception("Match details returned uneven results (getTactics)")
+			elif len(result["Team_Home"]) != 2:
+				raise Exception("Match details returned unexpected amount of ratings (getTactics)", len(result["Team_Home"]))
+		except Exception as e:
+			print e, "skipping this match"
+			continue;
+			
+		result = result["Team_Home"]
+		if len(result) == 0:
+			continue;
+			
+		if len(result) != 2:
+			raise Exception("unexpected match details result (get tactics)")
+		else:
+			tactics[key] = result[1]
+			
+	return tactics
+	
 def login(username, password):
 	ht = HattrickWeb(username, password)
 	
@@ -100,10 +139,12 @@ def login(username, password):
 			
 		dict = {}
 		
+		index = 0
 		for key in Language.Codes:
 			languageStuff = {};
 			
-			print "Crawling ", Language.getLanguageById(key)
+			index += 1
+			print "Crawling ", Language.getLanguageById(key), index, "/", len(Language.Codes)
 			ht.setLanguage( key )
 			
 			print "Main Menu"
@@ -120,7 +161,7 @@ def login(username, password):
 			lang = Language.getLanguageById(key)
 			languageStuff["denominations"] = denominationsParser.get();
 			
-			
+			# players we know have the required speciality
 			players = {"Unpredictable":"323588063",
 					"Powerful":"308062307",
 					"Quick":"318067207",
@@ -134,24 +175,35 @@ def login(username, password):
 			
 			#go to a specific match where we exactly know where min, max, low, high ratings occur and read the translations from there
 			print "Match Details"
+			print "\t", "going to match with know subratings","( 362716448 )"
 			ht.open("/Club/Matches/match.aspx?MatchId=362716448")
 			matchDetailParser = MatchDetailParser.MatchDetailParser()
 			matchDetailParser.feed(ht.body)
-			
 			#this is quite fragile to changes in the HT code, so let's have as many checks as possible to throw and error whenever something might be out of order
 			matchDetailResult = matchDetailParser.get();
-			if len(matchDetailResult["Team_Home"]) != len(matchDetailResult["Team_Away"]):
-				raise Exception("Match details returned uneven results")
-			elif len(matchDetailResult["Team_Home"]) != 14:
-				raise Exception("Match details returned unexpected amount of ratings", len(matchDetailResult["Team_Home"]))			
+			matchDetailResult_Text_Ratings = matchDetailResult["textRatings"];
+			if len(matchDetailResult_Text_Ratings["Team_Home"]) != len(matchDetailResult_Text_Ratings["Team_Away"]):
+				raise Exception("Match details returned uneven results (text ratings)")
+			elif len(matchDetailResult_Text_Ratings["Team_Home"]) != 14:
+				raise Exception("Match details returned unexpected amount of ratings (text ratings)", len(matchDetailResult_Text_Ratings["Team_Home"]))			
 				
 			ratingSubLevels = {}
-			ratingSubLevels["min"] = matchDetailResult["Team_Home"][1];
-			ratingSubLevels["low"] = matchDetailResult["Team_Home"][0];
-			ratingSubLevels["high"] = matchDetailResult["Team_Home"][2];
-			ratingSubLevels["max"] = matchDetailResult["Team_Home"][4];
-			
+			ratingSubLevels["min"] = matchDetailResult_Text_Ratings["Team_Home"][1];
+			ratingSubLevels["low"] = matchDetailResult_Text_Ratings["Team_Home"][0];
+			ratingSubLevels["high"] = matchDetailResult_Text_Ratings["Team_Home"][2];
+			ratingSubLevels["max"] = matchDetailResult_Text_Ratings["Team_Home"][4];			
 			languageStuff["ratingSubLevels"] = ratingSubLevels
+			
+			# matches where the home team played the desired tactics
+			matches = {"normal":"353598577",
+					"pressing":"338165777",
+					"ca":"362511275",
+					"aow":"362716448",
+					"aim":"353598573",
+					"creatively":"362874929",
+					"longshots":"205732724"}
+					
+			languageStuff["tactics"] = getTactics(ht, matches);
 			
 			dict[lang] = languageStuff
 			
