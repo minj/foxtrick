@@ -20,7 +20,7 @@
 	<tactics>
 		<tactic type="normal" value="Нормално" />
 		<tactic type="pressing" value="Пресинг" />
-		<tactic type="ca" value="Контра напад" />
+		<tactic type="ca" value="Контра-напади" />
 		<tactic type="aow" value="Напад преку крила" />
 		<tactic type="aim" value="Напад по средина" />
 		<tactic type="creatively" value="Играј креативно" />

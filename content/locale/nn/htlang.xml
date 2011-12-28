@@ -39,14 +39,14 @@
 
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
-		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
-		<specialty type="Powerful" value="Powerful" short="Po" />
-		<specialty type="Quick" value="Quick" short="Qu" />
-		<specialty type="Technical" value="Technical" short="Te" />
-		<specialty type="Head" value="Head" short="He" />
-		<specialty type="Regainer" value="Regainer" short="Re" />
+		<specialty type="Unpredictable" value="Omskifteleg" short="Un" />
+		<specialty type="Powerful" value="Sterk" short="Po" />
+		<specialty type="Quick" value="Rask" short="Qu" />
+		<specialty type="Technical" value="Teknisk" short="Te" />
+		<specialty type="Head" value="Hovud" short="He" />
+		<specialty type="Regainer" value="Frisking" short="Re" />
 	</specialties>
-
+	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="guddomleg" value="20" />

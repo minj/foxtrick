@@ -18,11 +18,11 @@
 
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
-		<tactic type="normal" value="Φυσιολογικά" />
+		<tactic type="normal" value="Κανονικά" />
 		<tactic type="pressing" value="Πρεσάρισμα" />
 		<tactic type="ca" value="Αντεπιθέσεις" />
-		<tactic type="aow" value="Επίθεση από το κέντρο" />
-		<tactic type="aim" value="Επίθεση από τα πλάγια" />
+		<tactic type="aow" value="Επίθεση από τα πλάγια" />
+		<tactic type="aim" value="Επίθεση από το κέντρο" />
 		<tactic type="creatively" value="Δημιουργικό Παιχνίδι" />
 		<tactic type="longshots" value="Μακρινά σουτ" />
 	</tactics>

@@ -21,7 +21,7 @@
 		<tactic type="normal" value="Normāli" />
 		<tactic type="pressing" value="Presings" />
 		<tactic type="ca" value="Pretuzbrukumi" />
-		<tactic type="aow" value="Uzbrukumi pa malām" />
+		<tactic type="aow" value="Uzbrukumi pa flangiem" />
 		<tactic type="aim" value="Uzbrukumi pa centru" />
 		<tactic type="creatively" value="Radoša spēle" />
 		<tactic type="longshots" value="Tālsitieni" />
@@ -44,7 +44,7 @@
 		<specialty type="Quick" value="Ātrs" short="Qu" />
 		<specialty type="Technical" value="Tehnisks" short="Te" />
 		<specialty type="Head" value="Spēle ar galvu" short="He" />
-		<specialty type="Regainer" value="Atguvējs" short="Re" />
+		<specialty type="Regainer" value="Veselītis" short="Re" />
 	</specialties>
 
 	<!-- levels word connections appearing denominations page. copy "text" -->

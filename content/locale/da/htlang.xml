@@ -39,8 +39,8 @@
 
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
-		<specialty type="Unpredictable" value="Uberegnelig " short="Un" />
-		<specialty type="Powerful" value="Kraftfuld " short="Po" />
+		<specialty type="Unpredictable" value="Uberegnelig" short="Un" />
+		<specialty type="Powerful" value="Kraftfuld" short="Po" />
 		<specialty type="Quick" value="Hurtig" short="Qu" />
 		<specialty type="Technical" value="Tekniker" short="Te" />
 		<specialty type="Head" value="Hovedstød" short="He" />

@@ -24,7 +24,7 @@
 		<tactic type="aow" value="התקפה מהאגפים" />
 		<tactic type="aim" value="התקפה מהמרכז" />
 		<tactic type="creatively" value="משחק יצירתי" />
-		<tactic type="longshots" value="התקפה מרחוק" />
+		<tactic type="longshots" value="בעיטות מרחוק" />
 	</tactics>
 
 	<!-- positions appearing on players page. copy "value". translate "short" -->

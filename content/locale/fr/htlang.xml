@@ -44,7 +44,7 @@
 		<specialty type="Quick" value="Rapide" short="Qu" />
 		<specialty type="Technical" value="Technique" short="Te" />
 		<specialty type="Head" value="Joueur de tête" short="He" />
-		<specialty type="Regainer" value="Guérison accéléréé" short="Re" />
+		<specialty type="Regainer" value="Guérison accélérée" short="Re" />
 	</specialties>
 
 	<!-- levels word connections appearing denominations page. copy "text" -->

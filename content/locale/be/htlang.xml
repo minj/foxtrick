@@ -40,9 +40,9 @@
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Непрадказальны" short="Не" />
-		<specialty type="Powerful" value="Моцны" short="Мо" />
+		<specialty type="Powerful" value="Магутны" short="Мо" />
 		<specialty type="Quick" value="Хуткі" short="Ху" />
-		<specialty type="Technical" value="Тэхнічы" short="Тэ" />
+		<specialty type="Technical" value="Тэхнічны" short="Тэ" />
 		<specialty type="Head" value="Гульня галавою" short="Гг" />
 		<specialty type="Regainer" value="Адраджэнец" short="Ад" />
 	</specialties>

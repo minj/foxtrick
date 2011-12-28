@@ -10,21 +10,21 @@
 
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
-		<sublevel text="(very low)" value="0.0" />
-		<sublevel text="(low)" value="0.25" />
-		<sublevel text="(high)" value="0.50" />
-		<sublevel text="(very high)" value="0.75" />
+		<sublevel text="(非常に低い)" value="0.0"/>
+		<sublevel text="(低い)" value="0.25"/>
+		<sublevel text="(高い)" value="0.50"/>
+		<sublevel text="(非常に高い)" value="0.75"/>
 	</ratingSubLevels>
 
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
-		<tactic type="normal" value="Normal" />
-		<tactic type="pressing" value="Pressing" />
-		<tactic type="ca" value="Counter-attacks" />
-		<tactic type="aow" value="Attack on wings" />
-		<tactic type="aim" value="Attack in the Middle" />
-		<tactic type="creatively" value="Play creatively" />
-		<tactic type="longshots" value="Long shots" />
+		<tactic type="normal" value="通常" />
+		<tactic type="pressing" value="プレス" />
+		<tactic type="ca" value="カウンター攻撃" />
+		<tactic type="aow" value="サイド攻撃" />
+		<tactic type="aim" value="中央突破" />
+		<tactic type="creatively" value="創造プレ－" />
+		<tactic type="longshots" value="ロング・シュート" />
 	</tactics>
 
 	<!-- positions appearing on players page. copy "value". translate "short" -->
@@ -39,12 +39,12 @@
 
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
-		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
-		<specialty type="Powerful" value="Powerful" short="Po" />
-		<specialty type="Quick" value="Quick" short="Qu" />
-		<specialty type="Technical" value="Technical" short="Te" />
-		<specialty type="Head" value="Head" short="He" />
-		<specialty type="Regainer" value="Regainer" short="Re" />
+		<specialty type="Unpredictable" value="意外性" short="Un" />
+		<specialty type="Powerful" value="パワフル" short="Po" />
+		<specialty type="Quick" value="すばやい" short="Qu" />
+		<specialty type="Technical" value="テクニシャン" short="Te" />
+		<specialty type="Head" value="ヘディング" short="He" />
+		<specialty type="Regainer" value="リゲイナー" short="Re" />
 	</specialties>
 
 	<!-- levels word connections appearing denominations page. copy "text" -->

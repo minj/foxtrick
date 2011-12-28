@@ -19,7 +19,7 @@
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Tavaline" />
-		<tactic type="pressing" value="Pressing" />
+		<tactic type="pressing" value="Surumine" />
 		<tactic type="ca" value="Vasturünnakud" />
 		<tactic type="aow" value="Ründa äärtelt" />
 		<tactic type="aim" value="Ründa keskelt" />
@@ -40,7 +40,7 @@
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Ettearvamatu" short="Un" />
-		<specialty type="Powerful" value="Jõuline " short="Po" />
+		<specialty type="Powerful" value="Jõuline" short="Po" />
 		<specialty type="Quick" value="Kiire" short="Qu" />
 		<specialty type="Technical" value="Tehniline" short="Te" />
 		<specialty type="Head" value="Peamäng" short="He" />

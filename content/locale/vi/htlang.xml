@@ -21,10 +21,10 @@
 		<tactic type="normal" value="Bình thường" />
 		<tactic type="pressing" value="Pressing" />
 		<tactic type="ca" value="Phòng thủ phản công" />
-		<tactic type="aow" value="Tấn công trung lộ" />
-		<tactic type="aim" value="Tấn công cánh" />
+		<tactic type="aow" value="Tấn công cánh" />
+		<tactic type="aim" value="Tấn công trung lộ" />
 		<tactic type="creatively" value="Chơi sáng tạo" />
-		<tactic type="longshots" value="Sút xa " />
+		<tactic type="longshots" value="Sút xa" />
 	</tactics>
 
 	<!-- positions appearing on players page -->

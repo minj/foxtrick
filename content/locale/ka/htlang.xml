@@ -20,9 +20,9 @@
 	<tactics>
 		<tactic type="normal" value="ჩვეულებრივი" />
 		<tactic type="pressing" value="პრესინგი" />
-		<tactic type="ca" value="კონტრ შეტევა" />
-		<tactic type="aow" value="ცენტრიდან შეტევა" />
-		<tactic type="aim" value="ფლანგებიდან შეტევა" />
+		<tactic type="ca" value="კონტრ–შეტევა" />
+		<tactic type="aow" value="ფლანგებიდან შეტევა" />
+		<tactic type="aim" value="ცენტრიდან შეტევა" />
 		<tactic type="creatively" value="შემოქმედებითად თამაში" />
 		<tactic type="longshots" value="შორეული დარტყმები" />
 	</tactics>
@@ -39,10 +39,10 @@
 
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
-		<specialty type="Unpredictable" value="ტექნიკური" short="Un" />
-		<specialty type="Powerful" value="სწრაფი" short="Po" />
-		<specialty type="Quick" value="ძლიერი" short="Qu" />
-		<specialty type="Technical" value="გამოუცნობი" short="Te" />
+		<specialty type="Unpredictable" value="გამოუცნობი" short="Un" />
+		<specialty type="Powerful" value="ძლიერი" short="Po" />
+		<specialty type="Quick" value="სწრაფი" short="Qu" />
+		<specialty type="Technical" value="ტექნიკური" short="Te" />
 		<specialty type="Head" value="თავი" short="He" />
 		<specialty type="Regainer" value="ტრავმების ამტანი" short="Re" />
 	</specialties>

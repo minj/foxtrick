@@ -18,11 +18,11 @@
 
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
-		<tactic type="normal" value="normaal" />
-		<tactic type="pressing" value="druk sette" />
-		<tactic type="ca" value="tsjinoanfallen" />
-		<tactic type="aow" value="oanfal oer de wjukken" />
-		<tactic type="aim" value="oanfal troch it midden" />
+		<tactic type="normal" value="Normaal" />
+		<tactic type="pressing" value="Druk sette" />
+		<tactic type="ca" value="Tsjin-oanfallen" />
+		<tactic type="aow" value="Oanfalle oer de wjukken" />
+		<tactic type="aim" value="Oanfalle yn it midden" />
 		<tactic type="creatively" value="Kreatyf spylje" />
 		<tactic type="longshots" value="Ofstânsskoaten" />
 	</tactics>

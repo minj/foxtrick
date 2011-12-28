@@ -18,8 +18,8 @@
 
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
-		<tactic type="normal" value="Normálna taktika" />
-		<tactic type="pressing" value="Presing" />
+		<tactic type="normal" value="Normálna" />
+		<tactic type="pressing" value="Pressing" />
 		<tactic type="ca" value="Protiútoky" />
 		<tactic type="aow" value="Útok po krídlach" />
 		<tactic type="aim" value="Útok stredom" />

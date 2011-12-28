@@ -20,7 +20,7 @@
 	<tactics>
 		<tactic type="normal" value="Normal" />
 		<tactic type="pressing" value="Pres" />
-		<tactic type="ca" value="Kontra-atak" />
+		<tactic type="ca" value="Kontra atak" />
 		<tactic type="aow" value="Kanattan Atak" />
 		<tactic type="aim" value="Ortadan Atak" />
 		<tactic type="creatively" value="Yaratıcı oyna" />

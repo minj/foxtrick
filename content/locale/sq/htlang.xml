@@ -20,10 +20,10 @@
 	<tactics>
 		<tactic type="normal" value="Normal" />
 		<tactic type="pressing" value="Presing" />
-		<tactic type="ca" value="Kundër sulmet" />
-		<tactic type="aow" value="Sulmo nga krahët" />
-		<tactic type="aim" value="Sulmo në qëndër" />
-		<tactic type="creatively" value="Lojë me fantazi" />
+		<tactic type="ca" value="Kundër-sulme" />
+		<tactic type="aow" value="Sulmoni nga Krahët" />
+		<tactic type="aim" value="Sulmoni në Qëndër" />
+		<tactic type="creatively" value="Luani me kreativitet" />
 		<tactic type="longshots" value="Goditje nga distanca" />
 	</tactics>
 

@@ -18,8 +18,8 @@
 
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
-		<tactic type="normal" value="Običajno" />
-		<tactic type="pressing" value="Tesno pokrivanje nasprotnika" />
+		<tactic type="normal" value="Normalna" />
+		<tactic type="pressing" value="Tesno pokrivanje" />
 		<tactic type="ca" value="Protinapadi" />
 		<tactic type="aow" value="Napad po krilih" />
 		<tactic type="aim" value="Napad po sredini" />

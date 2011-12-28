@@ -40,7 +40,7 @@
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Nepředvídatelný" short="Un" />
-		<specialty type="Powerful" value="Silový " short="Po" />
+		<specialty type="Powerful" value="Silový" short="Po" />
 		<specialty type="Quick" value="Rychlý" short="Qu" />
 		<specialty type="Technical" value="Technický" short="Te" />
 		<specialty type="Head" value="Hlavičkář" short="He" />

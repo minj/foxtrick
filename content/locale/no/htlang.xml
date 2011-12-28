@@ -24,7 +24,7 @@
 		<tactic type="aow" value="Angrep på kantene" />
 		<tactic type="aim" value="Angrep i midten" />
 		<tactic type="creatively" value="Spill kreativt" />
-		<tactic type="longshots" value="Long shots" />
+		<tactic type="longshots" value="Langskudd" />
 	</tactics>
 
 	<!-- positions appearing on players page. copy "value". translate "short" -->
