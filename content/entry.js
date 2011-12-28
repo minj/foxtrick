@@ -82,7 +82,6 @@ Foxtrick.entry.docLoad = function(doc) {
 // page load for chrome/safari/opera and on new tab open for fennec
 Foxtrick.entry.setRetrievedLocalResources = function(data) {
 		if (Foxtrick.platform != "Fennec") {
-			// fennec can read them directly
 			FoxtrickPrefs._prefs_chrome_user = data._prefs_chrome_user;
 			FoxtrickPrefs._prefs_chrome_default = data._prefs_chrome_default;
 
@@ -91,7 +90,14 @@ Foxtrick.entry.setRetrievedLocalResources = function(data) {
 			Foxtrickl10n.screenshots_default = data.screenshots_default;
 			Foxtrickl10n.screenshots = data.screenshots;
 		}
-		
+		else {
+			// fennec can access them from context, but they still need to get initilized
+			var coreModules = [FoxtrickPrefs, Foxtrickl10n];
+			for (var i in coreModules) {
+				if (typeof(coreModules[i].init) == "function")
+					coreModules[i].init();
+			}
+		}
 		var parser = new window.DOMParser();
 		for (var i in data.htLang) {
 			Foxtrickl10n.htLanguagesXml[i] = parser.parseFromString(data.htLang[i], "text/xml");
@@ -108,7 +114,7 @@ Foxtrick.entry.setRetrievedLocalResources = function(data) {
 
 // called on browser load and after preferences changes (background side for sandboxed)
 Foxtrick.entry.init = function() {
-	Foxtrick.log("Initializing FoxTrick…");
+	Foxtrick.log("Initializing FoxTrick...");
 
 	var coreModules = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
 	for (var i in coreModules) {
@@ -244,7 +250,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 };
 
 Foxtrick.entry.change = function(ev) {
-	try {console.log(ev)
+	try {
 		var doc = ev.target.ownerDocument;
 		if (ev.target.nodeType !== Node.ELEMENT_NODE &&
 			ev.target.nodeType !== Node.TEXT_NODE)

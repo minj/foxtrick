@@ -94,17 +94,23 @@ Foxtrick.loader.gecko.docUnload = function(ev) {
 
 // fennec browser load. starts the content instances for fennec (one per tab. persistant)
 if (Foxtrick.platform == "Fennec") {
-	Foxtrick.log('tab load')
+	Foxtrick.log('new tab load');
 	sandboxed.extension.sendRequest({ req : "tabLoad" },
 		function (data) {
+			try {
+				Foxtrick.entry.setRetrievedLocalResources(data);
 
-			Foxtrick.entry.setRetrievedLocalResources(data);
-//			Foxtrick.entry.init();
-
-			addEventListener("DOMContentLoaded", function(ev){
-				FoxtrickUI.update();
-				Foxtrick.entry.docLoad(ev.originalTarget);
-			}, false);
+				addEventListener("DOMContentLoaded", function(ev){
+					try {
+						FoxtrickUI.update();
+						Foxtrick.entry.docLoad(ev.originalTarget);
+					} catch(e) {
+						Foxtrick.log(e);
+					}
+				}, false);
+			} catch(e) {
+				Foxtrick.log(e);
+			}
 		}
 	);
 }

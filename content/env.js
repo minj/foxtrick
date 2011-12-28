@@ -453,8 +453,14 @@ else {
 	// fennec ports
 	if (Foxtrick.platform == "Fennec") {
 		if (Foxtrick.chromeContext()=='content') {
-			window = content;
+			var window = content;
 		}
+		// early log, overwritten later
+		Foxtrick.log = function () {
+			for (var i = 0; i < arguments.length; ++i) {
+				dump(arguments[i]); 
+			}
+		};
 		var addListener = function(name, handler) {
 			var x = typeof(addMessageListener)=='function'?addMessageListener:messageManager.addMessageListener;
 			x(name, handler);
