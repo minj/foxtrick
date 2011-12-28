@@ -108,8 +108,6 @@ class HattrickWeb:
 		self.browser.open(url)
 		self.browser.select_form(name="aspnetForm")
 		
-		self.isLoginRequired()
-		
 		try:
 			self.browser.form['ctl00$CPHeader$ucLogin$txtUserName'] = self.username
 			self.browser.form['ctl00$CPHeader$ucLogin$txtPassword'] = self.password
