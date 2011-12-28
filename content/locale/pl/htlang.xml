@@ -30,9 +30,9 @@
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="bramkarz" short="Ke" />
-		<position type="Central defender" value="środkowy obrońca" short="Cd" />
+		<position type="Central defender" value="stoper" short="Cd" />
 		<position type="Wing back" value="boczny obrońca" short="Wb" />
-		<position type="Inner midfielder" value="środkowy pomocnik" short="Im" />
+		<position type="Inner midfielder" value="pomocnik" short="Im" />
 		<position type="Winger" value="skrzydłowy" short="Wi" />
 		<position type="Forward" value="napastnik" short="Fo" />
 	</positions>

@@ -31,7 +31,7 @@
 	<positions>
 		<position type="Keeper" value="Kapus" short="Ke" />
 		<position type="Central defender" value="Középhátvéd" short="Cd" />
-		<position type="Wing back" value="Szélső hátvéd" short="Wb" />
+		<position type="Wing back" value="Szélsőhátvéd" short="Wb" />
 		<position type="Inner midfielder" value="Középpályás" short="Im" />
 		<position type="Winger" value="Szélső" short="Wi" />
 		<position type="Forward" value="Csatár" short="Fo" />

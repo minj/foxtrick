@@ -29,12 +29,12 @@
 
 	<!-- positions appearing on players page -->
 	<positions>
-		<position type="Keeper" value="Thủ môn" short="Tm" />
-		<position type="Central defender" value="Hậu vệ trung tâm" short="Ht" />
-		<position type="Wing back" value="Hậu vệ biên" short="Hb" />
-		<position type="Inner midfielder" value="Tiền vệ trung tâm" short="Tt" />
+		<position type="Keeper" value="Thủ môn" short="TM" />
+		<position type="Central defender" value="Trung vệ" short="TV" />
+		<position type="Wing back" value="Hậu vệ cánh" short="Hb" />
+		<position type="Inner midfielder" value="Tiền vệ trung tâm" short="TVTT" />
 		<position type="Winger" value="Tiền vệ cánh" short="Tc" />
-		<position type="Forward" value="Tiền đạo" short="Td" />
+		<position type="Forward" value="Tiền đạo" short="TĐ" />
 	</positions>
 
 	<!-- specialties appearing on players page. copy "value". translate "short" -->

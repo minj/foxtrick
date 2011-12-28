@@ -29,12 +29,12 @@
 
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
-		<position type="Keeper" value="Keeper" short="GK" />
-		<position type="Central defender" value="Central defender" short="CD" />
-		<position type="Wing back" value="Wing back" short="WB" />
-		<position type="Inner midfielder" value="Inner midfielder" short="IM" />
-		<position type="Winger" value="Winger" short="WI" />
-		<position type="Forward" value="Forward" short="FW" />
+		<position type="Keeper" value="Målvakt" short="MV" />
+		<position type="Central defender" value="Midtstoppar" short="MS" />
+		<position type="Wing back" value="Sideforsvarar" short="WB" />
+		<position type="Inner midfielder" value="Sentral midtbane" short="SM" />
+		<position type="Winger" value="Kantspelar" short="WI" />
+		<position type="Forward" value="Angripar" short="AN" />
 	</positions>
 
 	<!-- specialties appearing on players page. copy "value". translate "short" -->

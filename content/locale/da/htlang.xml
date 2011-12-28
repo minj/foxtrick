@@ -30,9 +30,9 @@
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Målmand" short="Må" />
-		<position type="Central defender" value="Central forsvar" short="Cf" />
+		<position type="Central defender" value="Central forsvarsspiller" short="Cf" />
 		<position type="Wing back" value="Back" short="Ba" />
-		<position type="Inner midfielder" value="Central midtbane" short="Cm" />
+		<position type="Inner midfielder" value="Central midtbanespiller" short="Cm" />
 		<position type="Winger" value="Fløj" short="Fl" />
 		<position type="Forward" value="Angriber" short="An" />
 	</positions>

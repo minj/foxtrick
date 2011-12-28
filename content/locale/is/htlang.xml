@@ -37,11 +37,11 @@
 ﻿       translate attribute "value" by copying from there in verbatim,
 ﻿       translate attribute "short" according to your own will. -->
 ﻿  <positions>
-﻿  ﻿  <position type="Keeper" value="Markvörður" short="MV" />
+﻿  ﻿  <position type="Keeper" value="Markmaður" short="MV" />
 ﻿  ﻿  <position type="Central defender" value="Varnarmaður" short="VM" />
 ﻿  ﻿  <position type="Wing back" value="Bakvörður" short="BV" />
 ﻿  ﻿  <position type="Inner midfielder" value="Miðjumaður" short="M" />
-﻿  ﻿  <position type="Winger" value="Kantmaður" short="K" />
+﻿  ﻿  <position type="Winger" value="Kantur" short="K" />
 ﻿  ﻿  <position type="Forward" value="Framherji" short="F" />
 ﻿  </positions>
 

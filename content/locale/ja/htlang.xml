@@ -29,12 +29,12 @@
 
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
-		<position type="Keeper" value="Keeper" short="GK" />
-		<position type="Central defender" value="Central defender" short="CD" />
-		<position type="Wing back" value="Wing back" short="WB" />
-		<position type="Inner midfielder" value="Inner midfielder" short="IM" />
-		<position type="Winger" value="Winger" short="WI" />
-		<position type="Forward" value="Forward" short="FW" />
+		<position type="Keeper" value="ゴールキーパー" short="GK" />
+		<position type="Central defender" value="センターバック" short="CD" />
+		<position type="Wing back" value="ウイングバック" short="WB" />
+		<position type="Inner midfielder" value="ミッドフィールダー" short="IM" />
+		<position type="Winger" value="ウイング" short="WI" />
+		<position type="Forward" value="フォワード" short="FW" />
 	</positions>
 
 	<!-- specialties appearing on players page. copy "value". translate "short" -->

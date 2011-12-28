@@ -29,12 +29,12 @@
 
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
-		<position type="Keeper" value="Keeper" short="Ke" />
-		<position type="Central defender" value="Central defender" short="Cd" />
-		<position type="Wing back" value="Wing back" short="Wb" />
-		<position type="Inner midfielder" value="Inner midfielder" short="Im" />
-		<position type="Winger" value="Winger" short="Wi" />
-		<position type="Forward" value="Forward" short="Fo" />
+		<position type="Keeper" value="دروازه‌بان" short="Ke" />
+		<position type="Central defender" value="مدافع وسط" short="Cd" />
+		<position type="Wing back" value="مدافع کنار" short="Wb" />
+		<position type="Inner midfielder" value="هافبک وسط" short="Im" />
+		<position type="Winger" value="هافبک کنار" short="Wi" />
+		<position type="Forward" value="مهاجم" short="Fo" />
 	</positions>
 
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
