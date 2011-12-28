@@ -99,7 +99,7 @@ def checkSpecialties(lang, htlang, lookup):
 def checkRatingSubLevels(lang, htlang, lookup):
 	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
 	dump_ratingSubLevels = localetools.xml.helpers.findFirstNodeRecursive(dump_lang, "ratingSubLevels")
-	dump_sublevels = localetools.xml.helpers.findAllNodesRecursive(dump_ratingSubLevels, "level")
+	dump_sublevels = localetools.xml.helpers.findAllNodesRecursive(dump_ratingSubLevels, "sublevel")
 
 	ht_ratingSubLevels = localetools.xml.helpers.findFirstNodeRecursive(htlang.documentElement, "ratingSubLevels")
 	ht_sublevels = localetools.xml.helpers.findAllNodesRecursive(ht_ratingSubLevels, "sublevel")

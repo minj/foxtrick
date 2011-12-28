@@ -27,7 +27,7 @@ def createXml(result):
 		language.appendChild(cat)		
 		
 		for category in sorted(result[lang]["ratingSubLevels"].iterkeys()):
-			level = doc.createElement("level")
+			level = doc.createElement("sublevel")
 			level.setAttribute("text", result[lang]["ratingSubLevels"][category])
 			
 			if category ==  "min":
