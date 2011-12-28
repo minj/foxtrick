@@ -28,11 +28,11 @@ def checkNodes(dump_entries, ht_entries, dump_key_attrib, ht_key_Attrib, compare
 	
 def checkLevels(lang, htlang, lookup):
 	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
-	dump_skills = localetools.xml.helpers.findFirstNodeRecursive(dump_lang, "skill")
-	dump_entries = localetools.xml.helpers.findAllNodesRecursive(dump_skills, "level")
+	dump_levelnode = localetools.xml.helpers.findFirstNodeRecursive(dump_lang, "levels")
+	dump_entries = localetools.xml.helpers.findAllNodesRecursive(dump_levelnode, "level")
 
-	ht_skills = localetools.xml.helpers.findFirstNodeRecursive(htlang.documentElement, "levels")
-	ht_entries = localetools.xml.helpers.findAllNodesRecursive(ht_skills, "level")
+	ht_levelnode = localetools.xml.helpers.findFirstNodeRecursive(htlang.documentElement, "levels")
+	ht_entries = localetools.xml.helpers.findAllNodesRecursive(ht_levelnode, "level")
 	
 	if not len(ht_entries):
 		print "\t", "missing completly"
@@ -42,11 +42,11 @@ def checkLevels(lang, htlang, lookup):
 	
 def checkAgreeability(lang, htlang, lookup):
 	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
-	dump_skills = localetools.xml.helpers.findFirstNodeRecursive(dump_lang, "gentleness")
-	dump_entries = localetools.xml.helpers.findAllNodesRecursive(dump_skills, "level")
-			
-	ht_skills = localetools.xml.helpers.findFirstNodeRecursive(htlang.documentElement, "agreeability")
-	ht_entries = localetools.xml.helpers.findAllNodesRecursive(ht_skills, "level")
+	dump_agreeabilitynode = localetools.xml.helpers.findFirstNodeRecursive(dump_lang, "agreeability")
+	dump_entries = localetools.xml.helpers.findAllNodesRecursive(dump_agreeabilitynode, "level")
+
+	ht_agreeabilitynode = localetools.xml.helpers.findFirstNodeRecursive(htlang.documentElement, "agreeability")
+	ht_entries = localetools.xml.helpers.findAllNodesRecursive(ht_agreeabilitynode, "level")
 	
 	if not len(ht_entries):
 		print "\t", "missing completly"
