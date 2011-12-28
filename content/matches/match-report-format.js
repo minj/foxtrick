@@ -81,8 +81,10 @@ Foxtrick.util.module.register((function() {
 		"132" : { "team": ["left wing", "goal"] },
 		"133" : { "team": ["goal", "right wing"] },
 		"134" : { "team": ["goal", "penalty"] },
-		"137" : { "team": ["goal", "se_head_specialist"] },
-		"138" : "goal",
+		"135" : { "team": ["goal", "experience"] },
+		"136" : { "team": ["goal"], "other": ["experience"] },
+		"137" : { "team": ["goal", "winger", "se_head_specialist"] },
+		"138" : { "team": ["goal", "winger"] },
 		"139" : { "team": ["goal", "se_technical"], "other": ["se_head_specialist"] },
 		"140" : { "team": ["goal", "counter-attack", "whistle"] },
 		"141" : { "team": ["goal", "middle", "counter-attack"] },
@@ -142,9 +144,9 @@ Foxtrick.util.module.register((function() {
 		"232" : { "team": ["left wing", "miss"] },
 		"233" : { "team": ["miss", "right wing"] },
 		"234" : { "team": ["miss", "penalty"] },
-		"235" : "miss",
-		"236" : "miss",
-		"237" : "miss",
+		"235" : { "team": ["miss", "experience"] },
+		"236" : { "team": ["miss"], "other": ["experience"] },
+		"237" : { "team": ["miss", "winger"] },
 		"239" : { "team": ["miss", "se_technical"], "other": ["se_head_specialist"] },
 		"240" : { "team": ["miss", "counter-attack", "whistle"] },
 		"241" : { "team": ["miss", "middle", "counter-attack"] },
@@ -231,7 +233,9 @@ Foxtrick.util.module.register((function() {
 		"penalty": Foxtrick.InternalPath + 'resources/img/matches/penalty.png',
 		"pullback": Foxtrick.InternalPath + 'resources/img/matches/pullback.png',
 		"longshot": Foxtrick.InternalPath + 'resources/img/matches/longshot.png',
-		"corner": Foxtrick.InternalPath + 'resources/img/matches/corner.png'
+		"corner": Foxtrick.InternalPath + 'resources/img/matches/corner.png',
+		"experience": Foxtrick.InternalPath + 'resources/img/matches/exp.png',
+		"winger": Foxtrick.InternalPath + 'resources/img/matches/winger.png'
 	}
 	
 	var orderTypes = {
