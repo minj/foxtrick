@@ -2,50 +2,57 @@
 /**
  * env.js
  * FoxTrick environment
- * @author FoxTrick developers
+ * @author convinced
  */
 
-if (!Foxtrick)
-	var Foxtrick={};
+if ( !Foxtrick )
+	var Foxtrick = {};
 
 	
-// sandboxed api
+// sandboxed object for chrome, safari, opera and fennec
+// used to communicate between content script and background script
 /*
-var sandboxed = {
-	extension : {
-		sendRequest : function (data, callback) { // send JSON data from content to background 
-												// with callback function(JSON data) 
-		},
-		onRequest : {
-			addListener : function (listener) { // listen to requests (background and content side) 
-											// with listener = function(data, sender, callback);
-											// content: var sender = { tab: { id: id, url: messageEvent.target.url } };
-											// background: sender undefined
-				},
-		},
-		broadcastMessage : function( data, callback) { // send JSON data from background to all tabs 
-													// with callback function(JSON data) 
-		},
-		getURL : function (path) { // get extension url of path relative to extension folder
-		},
-	},
-	tabs : {
-		create : function (url) { 
-			// create a tab with url from background
-		},
-	},
-};
+sandboxed.extension.sendRequest(data, callback)
+// send JSON data from content to background 
+// callback: function(JSON) 
+
+sandboxed.extension.onRequest.addListener(listener)
+// listen to requests (background and content side) 
+// with listener = function(JSON data, sender, callback);
+// sender - content: { tab: { id: id, url: messageEvent.target.url } };
+// sender - background: undefined
+// callback: function(JSON) 
+
+sandboxed.extension.broadcastMessage(data, callback)
+// send JSON data from background to all tabs 
+// with callback function(JSON) 
+
+sandboxed.extension.getURL(path)
+// get extension url of path relative to extension folder
+
+sandboxed.tabs.create(url) 
+// create a tab from background with url
 */
+
+// Foxtrick.arch : "Sandboxed" (chrome,opera,safari) or "Gecko" (firefox, fennec)
+// used mainly in l10n, prefs and css injection
+
+// Foxtrick.platform : "Chrome", "Opera", "Safari", "Firefox", "Fennec"
+// used mainly in UI and script starting
+
+// Foxtrick.InternalPath : called from extension - path to extension folder 
+// Foxtrick.ResourcePath : called from html page - external page (opera, access to extension folder prohibited), path to extension folder (all other)  
+
 
 Foxtrick.DataPath = "http://www.foxtrick.org/data/";
 
-if (typeof(opera) == "object") {
+if ( typeof(opera) == "object" ) {
 	Foxtrick.arch = "Sandboxed";
 	Foxtrick.platform = "Opera";
 	Foxtrick.InternalPath = "content/";
 	Foxtrick.ResourcePath = "http://foxtrick.googlecode.com/svn/trunk/content/";
 
-	// used to cache dataUrls images in opera
+	// used to cache dataUrl images in opera
 	Foxtrick.dataUrlStorage = {};
 
 	// to tell which context the chrome script is running at
@@ -117,13 +124,10 @@ if (typeof(opera) == "object") {
 						if (messageEvent.data.callbackToken != callbackToken)
 						  return;
 
-						if (callback) callback(messageEvent.data.data);
-						// Change to calling in 0-ms window.setTimeout, as Safari team thinks
-						// this will work around their crashing until they can release
-						// a fix.
-						window.setTimeout(function() {
-							opera.extension.removeEventListener("message", responseHandler, false);
-						}, 0);
+						if (callback) 
+							callback(messageEvent.data.data);
+						
+						opera.extension.removeEventListener("message", responseHandler, false);
 					};
 					addListener(responseHandler);
 				}
@@ -154,7 +158,9 @@ if (typeof(opera) == "object") {
 			broadcastMessage : function (message) { 
 				opera.extension.broadcastMessage(message);
 			},
-			getURL : function (path) {return './'+path;},
+			getURL : function (path) {
+				return './'+path;
+			},
 		},
 
 		tabs : {
@@ -307,7 +313,8 @@ else if (typeof(safari) == "object") {
 				  return;
 				if (messageEvent.message.callbackToken != callbackToken)
 				  return;
-				if (callback) callback(messageEvent.message.data);
+				if (callback) 
+					callback(messageEvent.message.data);
 
 				safari.self.removeEventListener("message", responseHandler, false);
 			  };
@@ -352,11 +359,15 @@ else if (typeof(chrome) == "object") {
 	var sandboxed = {
 		extension : {
 			sendRequest: function (data, callback) {
-				if (callback) chrome.extension.sendRequest(data, callback);
-				else chrome.extension.sendRequest(data);
+				if (callback) 
+					chrome.extension.sendRequest(data, callback);
+				else 
+					chrome.extension.sendRequest(data);
 			},
 			onRequest : {
-				addListener : function (listener) {chrome.extension.onRequest.addListener(listener)},
+				addListener : function (listener) {
+					chrome.extension.onRequest.addListener(listener)
+				},
 			},
 			// send message to all registered tabs
 			broadcastMessage : (function() {
@@ -377,7 +388,9 @@ else if (typeof(chrome) == "object") {
 			tabid : -1,
 		},
 		tabs : {
-			create : function (url) { chrome.tabs.create(url) },
+			create : function (url) { 
+				chrome.tabs.create(url) 
+			},
 			// activetabs {id: true/false,..}
 			tab : {},
 		},
@@ -455,14 +468,8 @@ else {
 		if (Foxtrick.chromeContext()=='content') {
 			var window = content;
 		}
-		// early log, overwritten later
-		Foxtrick.log = function () {
-			for (var i = 0; i < arguments.length; ++i) {
-				dump(arguments[i]); 
-			}
-		};
 		var addListener = function(name, handler) {
-			var x = typeof(addMessageListener)=='function'?addMessageListener:messageManager.addMessageListener;
+			var x = typeof(addMessageListener)=='function' ? addMessageListener : messageManager.addMessageListener;
 			x(name, handler);
 		};
 
@@ -502,7 +509,7 @@ else {
 
 				  // Listen for a response for our specific request token.
 				  addOneTimeResponseListener(callbackToken, callback);
-				  var x = typeof(sendAsyncMessage)=='function'?sendAsyncMessage:messageManager.sendAsyncMessage;
+				  var x = typeof(sendAsyncMessage)=='function' ? sendAsyncMessage : messageManager.sendAsyncMessage;
 				  x("request", {
 					data: data,
 					callbackToken: callbackToken
@@ -519,10 +526,9 @@ else {
 						if (messageEvent.json.callbackToken != callbackToken)
 						  return;
 	
-						if (callback) callback(messageEvent.json.data, messageEvent.target);
-						// Change to calling in 0-ms window.setTimeout, as Safari team thinks
-						// this will work around their crashing until they can release
-						// a fix.
+						if (callback) 
+							callback(messageEvent.json.data, messageEvent.target);
+						
 						removeEventListener("message", responseHandler, false);
 					} catch(e){Foxtrick.log('callback error:',e)}
 				  };
@@ -542,7 +548,7 @@ else {
 					var sender = { tab: { id: id, url: messageEvent.target.lastLocation, target:messageEvent.target } };
 					var sendResponse = function(dataToSend) {
 					  var responseMessage = { callbackToken: messageEvent.json.callbackToken, data: dataToSend };
-					  var x = typeof(sendAsyncMessage)=='function'?sendAsyncMessage:messageManager.sendAsyncMessage;
+					  var x = typeof(sendAsyncMessage)=='function' ? sendAsyncMessage : messageManager.sendAsyncMessage;
 					  x("response", responseMessage);
 					}
 					handler(request, sender, sendResponse);
@@ -556,7 +562,7 @@ else {
 
 				  // Listen for a response for our specific request token.
 				  addOneTimeResponseListener(callbackToken, callback);
-				  var x = typeof(sendAsyncMessage)=='function'?sendAsyncMessage:messageManager.sendAsyncMessage;
+				  var x = typeof(sendAsyncMessage)=='function' ? sendAsyncMessage : messageManager.sendAsyncMessage;
 				  x("request", {
 					data: data,
 					callbackToken: callbackToken
@@ -573,12 +579,13 @@ else {
 						if (messageEvent.json.callbackToken != callbackToken)
 						  return;
 	
-						if (callback) callback(messageEvent.json.data, messageEvent.target);
-						// Change to calling in 0-ms window.setTimeout, as Safari team thinks
-						// this will work around their crashing until they can release
-						// a fix.
+						if (callback) 
+							callback(messageEvent.json.data, messageEvent.target);
+
 						removeEventListener("message", responseHandler, false);
-					} catch(e){Foxtrick.log('callback error:',e)}
+					} catch(e) {
+						Foxtrick.log('callback error:', e);
+					}
 				  };
 
 				  addListener("response", responseHandler);
