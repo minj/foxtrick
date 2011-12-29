@@ -70,7 +70,6 @@ class foxtrickLocalization:
 						self.locales.append(locale)
 					except Exception as inst:
 						print inst.args[0]     # arguments stored in .args
-					
 		except:
 			print 'shit'
 			
@@ -177,6 +176,9 @@ class L10N:
 		
 	def isFilePresent(self):
 		return self.file
+		
+	def invalidate(self):
+		self.validated = False;
 		
 	def validate(self):
 		if self.validated:
@@ -292,8 +294,9 @@ class L10N:
 		fin.close()
 		
 	#delete from list
+		print "deleting",self.getAbandonedCount(),"abandoned values"
 		for Abandoned in self.Abandoned:
-			trans = self.getTranslation(Abandoned.getKey())
+			trans = self.getTranslation( Abandoned.getKey() )
 			if trans:
 				#convertLineToIndex = line - 1
 				entryindex = localetools.utils.convertLineIndex.convertLineToIndex(trans.getLine())
@@ -302,7 +305,10 @@ class L10N:
 	#write back to file
 		fout = open( self.file, "w" )
 		fout.writelines(data_list)
-		fout.close()		
+		fout.close()	
+
+	#validation is no longer correct
+		self.invalidate()
 	
 	#convert cr lf to lf
 		if convertCRLFtoLF(self.file):
