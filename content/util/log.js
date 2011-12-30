@@ -33,6 +33,11 @@ Foxtrick.log = function() {
 		else if (typeof(content) != "string") {
 			try {
 				item = JSON.stringify(content);
+				if (item == '{}' && typeof(content) == 'object') {
+					// stringify didn't work as intented
+					for (var j in content)
+						Foxtrick.log(j, ':', content[j]); 
+				}
 			}
 			catch (e) {
 				item = String(content);
