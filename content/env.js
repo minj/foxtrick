@@ -465,9 +465,6 @@ else {
 
 	// fennec ports
 	if (Foxtrick.platform == "Fennec") {
-		if (Foxtrick.chromeContext()=='content') {
-			var window = content;
-		}
 		var addListener = function(name, handler) {
 			var x = typeof(addMessageListener)=='function' ? addMessageListener : messageManager.addMessageListener;
 			x(name, handler);
@@ -603,26 +600,29 @@ else {
 	}
 }
 
+
 // Node not available for all browsers. make one if needed
 if (typeof(Node)=='undefined') {
-	if (typeof( window.Node )=='undefined') {
-		var Node = {
-			ELEMENT_NODE : 1,
-			ATTRIBUTE_NODE : 2,
-			TEXT_NODE : 3,
-			CDATA_SECTION_NODE : 4,
-			ENTITY_REFERENCE_NODE : 5,
-			ENTITY_NODE : 6,
-			PROCESSING_INSTRUCTION_NODE : 7, 
-			COMMENT_NODE : 8,
-			DOCUMENT_NODE : 9,
-			DOCUMENT_TYPE_NODE : 10,
-			DOCUMENT_FRAGMENT_NODE : 11,
-			NOTATION_NODE: 12
-		};
-	}
-	else 
-		var Node = window.Node;
+	var Node = {
+		ELEMENT_NODE : 1,
+		ATTRIBUTE_NODE : 2,
+		TEXT_NODE : 3,
+		CDATA_SECTION_NODE : 4,
+		ENTITY_REFERENCE_NODE : 5,
+		ENTITY_NODE : 6,
+		PROCESSING_INSTRUCTION_NODE : 7, 
+		COMMENT_NODE : 8,
+		DOCUMENT_NODE : 9,
+		DOCUMENT_TYPE_NODE : 10,
+		DOCUMENT_FRAGMENT_NODE : 11,
+		NOTATION_NODE: 12
+	};
+	// try override with browser defined
+	if (typeof( window ) !=='undefined' && typeof( window.Node ) !=='undefined') 
+		Node = window.Node;
+	// fennec. in content context window is called content
+	else if (typeof( content ) !=='undefined' && typeof( content.Node ) !=='undefined') 
+		Node = content.Node;
 }
 
 // bind seem to miss in safari extensions

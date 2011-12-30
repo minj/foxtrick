@@ -188,6 +188,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/transfer-search-result-filters.js", true);
 		// ### categorized modules - end ###
 		
+		messageManager.loadFrameScript("chrome://foxtrick/content/env-fennec.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/entry.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/ui.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/loader-gecko.js", true);
