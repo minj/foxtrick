@@ -41,10 +41,10 @@
 	<specialties>
 		<specialty type="Unpredictable" value="Impredecible" short="Im" />
 		<specialty type="Powerful" value="Potente" short="Po" />
-		<specialty type="Quick" value="rápido" short="Rá" />
+		<specialty type="Quick" value="Rápido" short="Rá" />
 		<specialty type="Technical" value="Técnico" short="Te" />
 		<specialty type="Head" value="Cabeceador" short="Ca" />
-		<specialty type="Regainer" value="Regainer" short="Re" />
+		<specialty type="Regainer" value="Recuperador" short="Re" />
 	</specialties>
 
 	<!-- levels word connections appearing denominations page. copy "text" -->

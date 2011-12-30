@@ -24,7 +24,7 @@
 		<tactic type="aow" value="התקפה מהאגפים" />
 		<tactic type="aim" value="התקפה מהמרכז" />
 		<tactic type="creatively" value="משחק יצירתי" />
-		<tactic type="longshots" value="התקפה מרחוק" />
+		<tactic type="longshots" value="בעיטות מרחוק" />
 	</tactics>
 
 	<!-- positions appearing on players page. copy "value". translate "short" -->
@@ -71,4 +71,40 @@
 		<level text="איום" value="1" />
 		<level text="לא קיים" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="אהוב הקבוצה" value="5"/>
+		<level text="מקובל" value="4"/>
+		<level text="נחמד" value="3"/>
+		<level text="נעים" value="2"/>
+		<level text="שנוי במחלוקת" value="1"/>
+		<level text="בעייתי" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="קדוש" value="5"/>
+		<level text="צדיק" value="4"/>
+		<level text="ישר" value="3"/>
+		<level text="הגון" value="2"/>
+		<level text="בלתי הגון" value="1"/>
+		<level text="ידוע לשמצה" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="פרוע" value="5"/>
+		<level text="סוער" value="4"/>
+		<level text="חם מזג" value="3"/>
+		<level text="מאוזן" value="2"/>
+		<level text="רגוע" value="1"/>
+		<level text="שליו" value="0"/>
+	</aggressiveness>
 </language>

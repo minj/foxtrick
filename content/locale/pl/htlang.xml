@@ -30,9 +30,9 @@
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="bramkarz" short="Ke" />
-		<position type="Central defender" value="środkowy obrońca" short="Cd" />
+		<position type="Central defender" value="stoper" short="Cd" />
 		<position type="Wing back" value="boczny obrońca" short="Wb" />
-		<position type="Inner midfielder" value="środkowy pomocnik" short="Im" />
+		<position type="Inner midfielder" value="pomocnik" short="Im" />
 		<position type="Winger" value="skrzydłowy" short="Wi" />
 		<position type="Forward" value="napastnik" short="Fo" />
 	</positions>
@@ -71,4 +71,40 @@
 		<level text="fatalny" value="1" />
 		<level text="beznadziejny" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="uwielbiany przez zespół" value="5"/>
+		<level text="popularny" value="4"/>
+		<level text="sympatyczny" value="3"/>
+		<level text="przyjemny" value="2"/>
+		<level text="kontrowersyjny" value="1"/>
+		<level text="złośliwy" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="świątobliwy" value="5"/>
+		<level text="szlachetny" value="4"/>
+		<level text="prawy" value="3"/>
+		<level text="uczciwy" value="2"/>
+		<level text="nieuczciwy" value="1"/>
+		<level text="podły" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="niezrównoważony" value="5"/>
+		<level text="porywczy" value="4"/>
+		<level text="z charakterem" value="3"/>
+		<level text="zrównoważony" value="2"/>
+		<level text="opanowany" value="1"/>
+		<level text="spokojny" value="0"/>
+	</aggressiveness>
 </language>

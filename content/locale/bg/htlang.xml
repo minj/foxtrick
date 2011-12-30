@@ -20,7 +20,7 @@
 	<tactics>
 		<tactic type="normal" value="Нормална" />
 		<tactic type="pressing" value="Преса" />
-		<tactic type="ca" value="Контра атаки" />
+		<tactic type="ca" value="Контраатаки" />
 		<tactic type="aow" value="Атака по крилата" />
 		<tactic type="aim" value="Атака в средата" />
 		<tactic type="creatively" value="Играй креативно" />
@@ -40,11 +40,11 @@
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Непредвидим" short="Un" />
-		<specialty type="Powerful" value="Powerful" short="Po" />
+		<specialty type="Powerful" value="Сила" short="Po" />
 		<specialty type="Quick" value="Бърз" short="Qu" />
 		<specialty type="Technical" value="Техничен" short="Te" />
 		<specialty type="Head" value="Игра с глава" short="He" />
-		<specialty type="Regainer" value="Regainer" short="Re" />
+		<specialty type="Regainer" value="Възстановяване" short="Re" />
 	</specialties>
 
 	<!-- levels word connections appearing denominations page. copy "text" -->
@@ -71,4 +71,40 @@
 		<level text="бедствено" value="1" />
 		<level text="липсващо" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="любимец на отбора" value="5"/>
+		<level text="популярен човек" value="4"/>
+		<level text="симпатичен човек" value="3"/>
+		<level text="приятен човек" value="2"/>
+		<level text="противоречив човек" value="1"/>
+		<level text="неприятен човек" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="като светец" value="5"/>
+		<level text="честен" value="4"/>
+		<level text="добър" value="3"/>
+		<level text="почтен" value="2"/>
+		<level text="некоректен" value="1"/>
+		<level text="непочтен" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="неуравновесен" value="5"/>
+		<level text="сприхав" value="4"/>
+		<level text="темпераментен" value="3"/>
+		<level text="уравновесен" value="2"/>
+		<level text="спокоен" value="1"/>
+		<level text="тих" value="0"/>
+	</aggressiveness>
 </language>

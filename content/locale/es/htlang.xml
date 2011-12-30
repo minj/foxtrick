@@ -71,4 +71,40 @@
 		<level text="desastroso" value="1" />
 		<level text="nulo" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="querido compañero de equipo" value="5"/>
+		<level text="popular" value="4"/>
+		<level text="carismático" value="3"/>
+		<level text="agradable" value="2"/>
+		<level text="polémico" value="1"/>
+		<level text="antipático" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="santito" value="5"/>
+		<level text="honorable" value="4"/>
+		<level text="justo" value="3"/>
+		<level text="honesto" value="2"/>
+		<level text="deshonesto" value="1"/>
+		<level text="infame" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="violento" value="5"/>
+		<level text="iracundo" value="4"/>
+		<level text="temperamental" value="3"/>
+		<level text="equilibrado" value="2"/>
+		<level text="calmado" value="1"/>
+		<level text="tranquilo" value="0"/>
+	</aggressiveness>
 </language>

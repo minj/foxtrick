@@ -71,4 +71,40 @@
 		<level text="diżastruż" value="1" />
 		<level text="ineżistenti" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="maħbub mit-tim kollu" value="5"/>
+		<level text="popolari" value="4"/>
+		<level text="simpatiku" value="3"/>
+		<level text="pjaċevoli" value="2"/>
+		<level text="kontroversjali" value="1"/>
+		<level text="kattiv" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="qaddis" value="5"/>
+		<level text="ġust" value="4"/>
+		<level text="sinċier" value="3"/>
+		<level text="onest" value="2"/>
+		<level text="diżonest" value="1"/>
+		<level text="ta' fama ħażina" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="instabbli" value="5"/>
+		<level text="qalil" value="4"/>
+		<level text="nervuż" value="3"/>
+		<level text="normali" value="2"/>
+		<level text="kalm" value="1"/>
+		<level text="trankwill" value="0"/>
+	</aggressiveness>
 </language>

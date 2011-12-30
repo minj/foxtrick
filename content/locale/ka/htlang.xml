@@ -20,9 +20,9 @@
 	<tactics>
 		<tactic type="normal" value="ჩვეულებრივი" />
 		<tactic type="pressing" value="პრესინგი" />
-		<tactic type="ca" value="კონტრ შეტევა" />
-		<tactic type="aow" value="ცენტრიდან შეტევა" />
-		<tactic type="aim" value="ფლანგებიდან შეტევა" />
+		<tactic type="ca" value="კონტრ–შეტევა" />
+		<tactic type="aow" value="ფლანგებიდან შეტევა" />
+		<tactic type="aim" value="ცენტრიდან შეტევა" />
 		<tactic type="creatively" value="შემოქმედებითად თამაში" />
 		<tactic type="longshots" value="შორეული დარტყმები" />
 	</tactics>
@@ -39,10 +39,10 @@
 
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
-		<specialty type="Unpredictable" value="ტექნიკური" short="Un" />
-		<specialty type="Powerful" value="სწრაფი" short="Po" />
-		<specialty type="Quick" value="ძლიერი" short="Qu" />
-		<specialty type="Technical" value="გამოუცნობი" short="Te" />
+		<specialty type="Unpredictable" value="გამოუცნობი" short="Un" />
+		<specialty type="Powerful" value="ძლიერი" short="Po" />
+		<specialty type="Quick" value="სწრაფი" short="Qu" />
+		<specialty type="Technical" value="ტექნიკური" short="Te" />
 		<specialty type="Head" value="თავი" short="He" />
 		<specialty type="Regainer" value="ტრავმების ამტანი" short="Re" />
 	</specialties>
@@ -71,4 +71,40 @@
 		<level text="საშინელი" value="1" />
 		<level text="არანაირი" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="გუნდის გული და სული" value="5"/>
+		<level text="პოპულარული" value="4"/>
+		<level text="საყვარელი" value="3"/>
+		<level text="სასიამოვნო" value="2"/>
+		<level text="საეჭვო" value="1"/>
+		<level text="საძაგელი" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="წმინდანი" value="5"/>
+		<level text="უმწიკვლო" value="4"/>
+		<level text="სამართლიანი" value="3"/>
+		<level text="პატიოსანი" value="2"/>
+		<level text="უსინდისო" value="1"/>
+		<level text="გაიძვერა" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="შმაგი" value="5"/>
+		<level text="აგრესიული" value="4"/>
+		<level text="ფიცხი" value="3"/>
+		<level text="გაწონასწორებული" value="2"/>
+		<level text="მშვიდი" value="1"/>
+		<level text="უშფოთველი" value="0"/>
+	</aggressiveness>
 </language>

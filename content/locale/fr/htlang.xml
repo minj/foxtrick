@@ -44,7 +44,7 @@
 		<specialty type="Quick" value="Rapide" short="Qu" />
 		<specialty type="Technical" value="Technique" short="Te" />
 		<specialty type="Head" value="Joueur de tête" short="He" />
-		<specialty type="Regainer" value="Guérison accéléréé" short="Re" />
+		<specialty type="Regainer" value="Guérison accélérée" short="Re" />
 	</specialties>
 
 	<!-- levels word connections appearing denominations page. copy "text" -->
@@ -71,4 +71,40 @@
 		<level text="catastrophique" value="1" />
 		<level text="inexistant" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="type adulé par ses coéquipiers" value="5"/>
+		<level text="type populaire" value="4"/>
+		<level text="type sympathique" value="3"/>
+		<level text="type aimable" value="2"/>
+		<level text="type controversé" value="1"/>
+		<level text="type désagréable" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="vertueux" value="5"/>
+		<level text="intègre" value="4"/>
+		<level text="sincère" value="3"/>
+		<level text="honnête" value="2"/>
+		<level text="malhonnête" value="1"/>
+		<level text="fourbe" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="instable" value="5"/>
+		<level text="impulsif" value="4"/>
+		<level text="caractériel" value="3"/>
+		<level text="équilibré" value="2"/>
+		<level text="calme" value="1"/>
+		<level text="tranquille" value="0"/>
+	</aggressiveness>
 </language>

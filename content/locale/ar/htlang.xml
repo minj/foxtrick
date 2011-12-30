@@ -21,8 +21,8 @@
 		<tactic type="normal" value="عادي" />
 		<tactic type="pressing" value="الضغط" />
 		<tactic type="ca" value="الهجمات المرتدة" />
-		<tactic type="aow" value="هجوم عن طريق الوسط" />
-		<tactic type="aim" value="هجوم عن طريق الأجنحة" />
+		<tactic type="aow" value="هجوم عن طريق الأجنحة" />
+		<tactic type="aim" value="هجوم عن طريق الوسط" />
 		<tactic type="creatively" value="اللعب الخلاق" />
 		<tactic type="longshots" value="التسديدات البعيدة" />
 	</tactics>
@@ -39,10 +39,10 @@
 
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
-		<specialty type="Unpredictable" value="مهاري" short="Un" />
-		<specialty type="Powerful" value="سريع" short="Po" />
-		<specialty type="Quick" value="قوي" short="Qu" />
-		<specialty type="Technical" value="غير متوقع" short="Te" />
+		<specialty type="Unpredictable" value="غير متوقع" short="Un" />
+		<specialty type="Powerful" value="قوي" short="Po" />
+		<specialty type="Quick" value="سريع" short="Qu" />
+		<specialty type="Technical" value="مهاري" short="Te" />
 		<specialty type="Head" value="ضربات الرأس" short="He" />
 		<specialty type="Regainer" value="مرجاع" short="Re" />
 	</specialties>

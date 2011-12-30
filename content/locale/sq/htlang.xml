@@ -20,10 +20,10 @@
 	<tactics>
 		<tactic type="normal" value="Normal" />
 		<tactic type="pressing" value="Presing" />
-		<tactic type="ca" value="Kundër sulmet" />
-		<tactic type="aow" value="Sulmo nga krahët" />
-		<tactic type="aim" value="Sulmo në qëndër" />
-		<tactic type="creatively" value="Lojë me fantazi" />
+		<tactic type="ca" value="Kundër-sulme" />
+		<tactic type="aow" value="Sulmoni nga Krahët" />
+		<tactic type="aim" value="Sulmoni në Qëndër" />
+		<tactic type="creatively" value="Luani me kreativitet" />
 		<tactic type="longshots" value="Goditje nga distanca" />
 	</tactics>
 
@@ -71,4 +71,40 @@
 		<level text="katastrofë" value="1" />
 		<level text="zero me xhufkë" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="si pëllumb" value="5"/>
+		<level text="djalë i dashur" value="4"/>
+		<level text="djalë miqësor" value="3"/>
+		<level text="djalë i këndshëm" value="2"/>
+		<level text="mistrec" value="1"/>
+		<level text="djalë i ndyrë" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="shejntor" value="5"/>
+		<level text="i drejtë" value="4"/>
+		<level text="i saktë" value="3"/>
+		<level text="i ndershëm" value="2"/>
+		<level text="dallaveraxhi" value="1"/>
+		<level text="mashtrues" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="i zjarrtë" value="5"/>
+		<level text="agresiv" value="4"/>
+		<level text="tekanjoz" value="3"/>
+		<level text="harmonik" value="2"/>
+		<level text="i qetë" value="1"/>
+		<level text="i urtë" value="0"/>
+	</aggressiveness>
 </language>

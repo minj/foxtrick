@@ -18,8 +18,8 @@
 
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
-		<tactic type="normal" value="Normálna taktika" />
-		<tactic type="pressing" value="Presing" />
+		<tactic type="normal" value="Normálna" />
+		<tactic type="pressing" value="Pressing" />
 		<tactic type="ca" value="Protiútoky" />
 		<tactic type="aow" value="Útok po krídlach" />
 		<tactic type="aim" value="Útok stredom" />
@@ -71,4 +71,40 @@
 		<level text="katastrofálny" value="1" />
 		<level text="neexistujúci" value="0" />
 	</levels>
+		
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="Miláčik tímu" value="5"/>
+		<level text="Obľúbený chlapík" value="4"/>
+		<level text="Sympaťák" value="3"/>
+		<level text="Príjemný chlapík" value="2"/>
+		<level text="Hašterivý človek" value="1"/>
+		<level text="Protivný chlap" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="svätec" value="5"/>
+		<level text="spravodlivý" value="4"/>
+		<level text="férový" value="3"/>
+		<level text="čestný" value="2"/>
+		<level text="nečestný" value="1"/>
+		<level text="hanebný" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="nestabilný" value="5"/>
+		<level text="výbušný" value="4"/>
+		<level text="temperamentný" value="3"/>
+		<level text="vyrovnaný" value="2"/>
+		<level text="chladný" value="1"/>
+		<level text="tichý" value="0"/>
+	</aggressiveness>
 </language>

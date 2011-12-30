@@ -31,7 +31,7 @@
 	<positions>
 		<position type="Keeper" value="Kapus" short="Ke" />
 		<position type="Central defender" value="Középhátvéd" short="Cd" />
-		<position type="Wing back" value="Szélső hátvéd" short="Wb" />
+		<position type="Wing back" value="Szélsőhátvéd" short="Wb" />
 		<position type="Inner midfielder" value="Középpályás" short="Im" />
 		<position type="Winger" value="Szélső" short="Wi" />
 		<position type="Forward" value="Csatár" short="Fo" />
@@ -69,6 +69,42 @@
 		<level text="csapnivaló" value="3" />
 		<level text="pocsék" value="2" />
 		<level text="katasztrofális" value="1" />
-		<level text="nemlétező" value="0" />
+		<level text="nem létező" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="Imádott csapattag" value="5"/>
+		<level text="Népszerű fickó" value="4"/>
+		<level text="Szimpatikus fickó" value="3"/>
+		<level text="Kedves fickó" value="2"/>
+		<level text="Öntörvényű ember" value="1"/>
+		<level text="Bajkeverő alak" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="angyali" value="5"/>
+		<level text="igazságos" value="4"/>
+		<level text="egyenes" value="3"/>
+		<level text="becsületes" value="2"/>
+		<level text="sunyi" value="1"/>
+		<level text="balhés" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="bizonytalan" value="5"/>
+		<level text="lobbanékony" value="4"/>
+		<level text="temperamentumos" value="3"/>
+		<level text="kiegyensúlyozott" value="2"/>
+		<level text="higgadt" value="1"/>
+		<level text="jámbor" value="0"/>
+	</aggressiveness>
 </language>

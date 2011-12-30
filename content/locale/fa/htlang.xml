@@ -19,44 +19,44 @@
 	<!-- tactics appearing in match detail page -->
 	<tactics>
 		<tactic type="normal" value="عادی" />
-		<tactic type="pressing" value="پرسینگ" />
+		<tactic type="pressing" value="پرسينگ" />
 		<tactic type="ca" value="ضد حمله" />
-		<tactic type="aow" value="حمله از جناحین" />
+		<tactic type="aow" value="حمله از جناحين" />
 		<tactic type="aim" value="حمله از عمق" />
-		<tactic type="creatively" value="بازی خلاقانه" />
+		<tactic type="creatively" value="بازي خلاقانه" />
 		<tactic type="longshots" value="شوت از راه دور" />
 	</tactics>
 
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
-		<position type="Keeper" value="Keeper" short="Ke" />
-		<position type="Central defender" value="Central defender" short="Cd" />
-		<position type="Wing back" value="Wing back" short="Wb" />
-		<position type="Inner midfielder" value="Inner midfielder" short="Im" />
-		<position type="Winger" value="Winger" short="Wi" />
-		<position type="Forward" value="Forward" short="Fo" />
+		<position type="Keeper" value="دروازه‌بان" short="Ke" />
+		<position type="Central defender" value="مدافع وسط" short="Cd" />
+		<position type="Wing back" value="مدافع کنار" short="Wb" />
+		<position type="Inner midfielder" value="هافبک وسط" short="Im" />
+		<position type="Winger" value="هافبک کنار" short="Wi" />
+		<position type="Forward" value="مهاجم" short="Fo" />
 	</positions>
 
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
-		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
-		<specialty type="Powerful" value="Powerful" short="Po" />
-		<specialty type="Quick" value="Quick" short="Qu" />
-		<specialty type="Technical" value="Technical" short="Te" />
-		<specialty type="Head" value="Head" short="He" />
-		<specialty type="Regainer" value="Regainer" short="Re" />
+		<specialty type="Unpredictable" value="غيرقابل پيش‌بيني" short="Un" />
+		<specialty type="Powerful" value="قدرتي" short="Po" />
+		<specialty type="Quick" value="سرعتي" short="Qu" />
+		<specialty type="Technical" value="تکنيکي" short="Te" />
+		<specialty type="Head" value="سرزن" short="He" />
+		<specialty type="Regainer" value="تندرست" short="Re" />
 	</specialties>
 
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="کهکشاني" value="20" />
-		<level text="رماني" value="19" />
+		<level text="آرماني" value="19" />
 		<level text="جادويي" value="18" />
-		<level text="فسانهاي" value="17" />
-		<level text="خارقالعاده" value="16" />
+		<level text="افسانه‌اي" value="17" />
+		<level text="خارق‌العاده" value="16" />
 		<level text="استثنايي" value="15" />
-		<level text="وقالعاده" value="14" />
-		<level text="بينالمللي" value="13" />
+		<level text="فوق‌العاده" value="14" />
+		<level text="بين‌المللي" value="13" />
 		<level text="باشکوه" value="12" />
 		<level text="درخشان" value="11" />
 		<level text="برجسته" value="10" />
@@ -64,11 +64,47 @@
 		<level text="عالي" value="8" />
 		<level text="خوب" value="7" />
 		<level text="قابل قبول" value="6" />
-		<level text="ناکافي" value="5" />
+		<level text="ناکافى" value="5" />
 		<level text="ضعيف" value="4" />
 		<level text="ناچيز" value="3" />
 		<level text="اسفبار" value="2" />
 		<level text="افتضاح" value="1" />
 		<level text="بدون مهارت" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="دوست داشتنی" value="5"/>
+		<level text="محبوب" value="4"/>
+		<level text="مهربان" value="3"/>
+		<level text="خوش‌‌‌‌‌‌برخورد" value="2"/>
+		<level text="جنجالی" value="1"/>
+		<level text="بداخلاق" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="پاک سرشت" value="5"/>
+		<level text="نیکوکار" value="4"/>
+		<level text="سر به زیر" value="3"/>
+		<level text="درستکار" value="2"/>
+		<level text="غیرقابل اعتماد" value="1"/>
+		<level text="بدنام" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="یاغی" value="5"/>
+		<level text="تند مزاج" value="4"/>
+		<level text="عصبی" value="3"/>
+		<level text="متعادل" value="2"/>
+		<level text="آرام" value="1"/>
+		<level text="خونسرد" value="0"/>
+	</aggressiveness>
 </language>

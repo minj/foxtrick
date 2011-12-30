@@ -80,8 +80,8 @@
                 <level text="불충분함" value="5" />
                 <level text="약함" value="4" />
                 <level text="나쁨" value="3" />
-                <level text="최악" value="2" />
-                <level text="형편 없음" value="1" />
+                <level text="형편 없음" value="2" />
+                <level text="최악" value="1" />
                 <level text="없음" value="0" />
         </levels>
 

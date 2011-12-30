@@ -23,7 +23,7 @@
 		<tactic type="ca" value="Contraatac" />
 		<tactic type="aow" value="Atac pe Flancuri" />
 		<tactic type="aim" value="Atac pe Centru" />
-		<tactic type="creatively" value="Joacă creativ" />
+		<tactic type="creatively" value="Joc creativ" />
 		<tactic type="longshots" value="Şuturi de la distanţă" />
 	</tactics>
 

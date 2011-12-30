@@ -29,24 +29,24 @@
 
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
-		<position type="Keeper" value="Keeper" short="GK" />
-		<position type="Central defender" value="Central defender" short="CD" />
-		<position type="Wing back" value="Wing back" short="WB" />
-		<position type="Inner midfielder" value="Inner midfielder" short="IM" />
-		<position type="Winger" value="Winger" short="WI" />
-		<position type="Forward" value="Forward" short="FW" />
+		<position type="Keeper" value="Målvakt" short="MV" />
+		<position type="Central defender" value="Midtstoppar" short="MS" />
+		<position type="Wing back" value="Sideforsvarar" short="WB" />
+		<position type="Inner midfielder" value="Sentral midtbane" short="SM" />
+		<position type="Winger" value="Kantspelar" short="WI" />
+		<position type="Forward" value="Angripar" short="AN" />
 	</positions>
 
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
-		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
-		<specialty type="Powerful" value="Powerful" short="Po" />
-		<specialty type="Quick" value="Quick" short="Qu" />
-		<specialty type="Technical" value="Technical" short="Te" />
-		<specialty type="Head" value="Head" short="He" />
-		<specialty type="Regainer" value="Regainer" short="Re" />
+		<specialty type="Unpredictable" value="Omskifteleg" short="Un" />
+		<specialty type="Powerful" value="Sterk" short="Po" />
+		<specialty type="Quick" value="Rask" short="Qu" />
+		<specialty type="Technical" value="Teknisk" short="Te" />
+		<specialty type="Head" value="Hovud" short="He" />
+		<specialty type="Regainer" value="Frisking" short="Re" />
 	</specialties>
-
+	
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
 		<level text="guddomleg" value="20" />
@@ -72,30 +72,39 @@
 		<level text="fråverande" value="0" />
 	</levels>
 
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
 	<agreeability>
-		<level text="beloved team member" value="5" />
-		<level text="popular guy" value="4" />
-		<level text="sympathetic guy" value="3" />
-		<level text="pleasant guy" value="2" />
-		<level text="controversial person" value="1" />
-		<level text="nasty fellow" value="0" />
+		<level text="kjær lagkamerat" value="5"/>
+		<level text="populær kar" value="4"/>
+		<level text="sympatisk type" value="3"/>
+		<level text="hyggjeleg kar" value="2"/>
+		<level text="kontroversiell person" value="1"/>
+		<level text="ufin type" value="0"/>
 	</agreeability>
 
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
 	<honesty>
-		<level text="saintly" value="5" />
-		<level text="righteous" value="4" />
-		<level text="upright" value="3" />
-		<level text="honest" value="2" />
-		<level text="dishonest" value="1" />
-		<level text="infamous" value="0" />
+		<level text="helgenaktig" value="5"/>
+		<level text="rettvis" value="4"/>
+		<level text="redeleg" value="3"/>
+		<level text="ærleg" value="2"/>
+		<level text="uærleg" value="1"/>
+		<level text="lystløgnar" value="0"/>
 	</honesty>
 
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
 	<aggressiveness>
-		<level text="unstable" value="5" />
-		<level text="fiery" value="4" />
-		<level text="temperamental" value="3" />
-		<level text="balanced" value="2" />
-		<level text="calm" value="1" />
-		<level text="tranquil" value="0" />
+		<level text="ustabil" value="5"/>
+		<level text="varmblodig" value="4"/>
+		<level text="hissig" value="3"/>
+		<level text="balansert" value="2"/>
+		<level text="sindig" value="1"/>
+		<level text="roleg" value="0"/>
 	</aggressiveness>
 </language>

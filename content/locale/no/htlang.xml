@@ -24,7 +24,7 @@
 		<tactic type="aow" value="Angrep på kantene" />
 		<tactic type="aim" value="Angrep i midten" />
 		<tactic type="creatively" value="Spill kreativt" />
-		<tactic type="longshots" value="Long shots" />
+		<tactic type="longshots" value="Langskudd" />
 	</tactics>
 
 	<!-- positions appearing on players page. copy "value". translate "short" -->
@@ -71,4 +71,40 @@
 		<level text="katastrofal" value="1" />
 		<level text="fraværende" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="elsket lagkamerat" value="5"/>
+		<level text="populær fyr" value="4"/>
+		<level text="sympatisk fyr" value="3"/>
+		<level text="behagelig fyr" value="2"/>
+		<level text="kontroversiell person" value="1"/>
+		<level text="ufordragelig type" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="helgenaktig" value="5"/>
+		<level text="rettskaffen" value="4"/>
+		<level text="oppriktig" value="3"/>
+		<level text="ærlig" value="2"/>
+		<level text="uærlig" value="1"/>
+		<level text="beryktet" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="ustabil" value="5"/>
+		<level text="hissig" value="4"/>
+		<level text="temperamentsfull" value="3"/>
+		<level text="balansert" value="2"/>
+		<level text="rolig" value="1"/>
+		<level text="snill som et lam" value="0"/>
+	</aggressiveness>
 </language>

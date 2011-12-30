@@ -21,20 +21,20 @@
 		<tactic type="normal" value="Bình thường" />
 		<tactic type="pressing" value="Pressing" />
 		<tactic type="ca" value="Phòng thủ phản công" />
-		<tactic type="aow" value="Tấn công trung lộ" />
-		<tactic type="aim" value="Tấn công cánh" />
+		<tactic type="aow" value="Tấn công cánh" />
+		<tactic type="aim" value="Tấn công trung lộ" />
 		<tactic type="creatively" value="Chơi sáng tạo" />
-		<tactic type="longshots" value="Sút xa " />
+		<tactic type="longshots" value="Sút xa" />
 	</tactics>
 
 	<!-- positions appearing on players page -->
 	<positions>
-		<position type="Keeper" value="Thủ môn" short="Tm" />
-		<position type="Central defender" value="Hậu vệ trung tâm" short="Ht" />
-		<position type="Wing back" value="Hậu vệ biên" short="Hb" />
-		<position type="Inner midfielder" value="Tiền vệ trung tâm" short="Tt" />
+		<position type="Keeper" value="Thủ môn" short="TM" />
+		<position type="Central defender" value="Trung vệ" short="TV" />
+		<position type="Wing back" value="Hậu vệ cánh" short="Hb" />
+		<position type="Inner midfielder" value="Tiền vệ trung tâm" short="TVTT" />
 		<position type="Winger" value="Tiền vệ cánh" short="Tc" />
-		<position type="Forward" value="Tiền đạo" short="Td" />
+		<position type="Forward" value="Tiền đạo" short="TĐ" />
 	</positions>
 
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
@@ -60,7 +60,7 @@
 		<level text="tuyệt vời" value="12" />
 		<level text="phi thường" value="11" />
 		<level text="kỳ diệu" value="10" />
-		<level text="vượt trộ" value="9" />
+		<level text="vượt trội" value="9" />
 		<level text="xuất sắc" value="8" />
 		<level text="giỏi" value="7" />
 		<level text="khá" value="6" />
@@ -71,4 +71,40 @@
 		<level text="thảm hại" value="1" />
 		<level text="bất tài" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="thành viên được yêu mến" value="5"/>
+		<level text="người được ngưỡng mộ" value="4"/>
+		<level text="người đáng mến" value="3"/>
+		<level text="người dễ chịu" value="2"/>
+		<level text="người thích tranh cãi" value="1"/>
+		<level text="kẻ cáu bẳn" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="thánh thiện" value="5"/>
+		<level text="cao thượng" value="4"/>
+		<level text="chính trực" value="3"/>
+		<level text="trung thực" value="2"/>
+		<level text="thiếu trung thực" value="1"/>
+		<level text="gian lận" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="thiếu tự chủ" value="5"/>
+		<level text="dễ nổi giận" value="4"/>
+		<level text="thất thường" value="3"/>
+		<level text="ôn hòa" value="2"/>
+		<level text="điềm tĩnh" value="1"/>
+		<level text="hiền lành" value="0"/>
+	</aggressiveness>
 </language>

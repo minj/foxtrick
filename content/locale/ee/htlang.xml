@@ -19,7 +19,7 @@
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Tavaline" />
-		<tactic type="pressing" value="Pressing" />
+		<tactic type="pressing" value="Surumine" />
 		<tactic type="ca" value="Vasturünnakud" />
 		<tactic type="aow" value="Ründa äärtelt" />
 		<tactic type="aim" value="Ründa keskelt" />
@@ -40,7 +40,7 @@
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
 		<specialty type="Unpredictable" value="Ettearvamatu" short="Un" />
-		<specialty type="Powerful" value="Jõuline " short="Po" />
+		<specialty type="Powerful" value="Jõuline" short="Po" />
 		<specialty type="Quick" value="Kiire" short="Qu" />
 		<specialty type="Technical" value="Tehniline" short="Te" />
 		<specialty type="Head" value="Peamäng" short="He" />
@@ -68,7 +68,43 @@
 		<level text="nõrk" value="4" />
 		<level text="vilets" value="3" />
 		<level text="armetu" value="2" />
-		<level text="kohutav " value="1" />
+		<level text="kohutav" value="1" />
 		<level text="olematu" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="Armastatud meeskonnaliige" value="5"/>
+		<level text="Populaarne sell" value="4"/>
+		<level text="Sümpaatne kuju" value="3"/>
+		<level text="Meeldiv sell" value="2"/>
+		<level text="Vastuoluline isiksus" value="1"/>
+		<level text="Ebameeldiv tüüp" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="pühaklik" value="5"/>
+		<level text="äraostmatu" value="4"/>
+		<level text="õiglane" value="3"/>
+		<level text="aus" value="2"/>
+		<level text="ebaaus" value="1"/>
+		<level text="autu" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="ebastabiilne" value="5"/>
+		<level text="äge" value="4"/>
+		<level text="temperamentne" value="3"/>
+		<level text="tasakaalukas" value="2"/>
+		<level text="rahulik" value="1"/>
+		<level text="tasane" value="0"/>
+	</aggressiveness>
 </language>

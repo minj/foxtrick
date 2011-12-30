@@ -44,7 +44,7 @@
 		<specialty type="Quick" value="Швидкий" short="Шв" />
 		<specialty type="Technical" value="Технічний" short="Те" />
 		<specialty type="Head" value="Гра головою" short="Гг" />
-		<specialty type="Regainer" value="Regainer" short="Re" />
+		<specialty type="Regainer" value="Міцне здоров'я" short="Re" />
 	</specialties>
 
 	<!-- levels word connections appearing denominations page. copy "text" -->

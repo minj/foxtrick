@@ -18,11 +18,11 @@
 
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
-		<tactic type="normal" value="Φυσιολογικά" />
+		<tactic type="normal" value="Κανονικά" />
 		<tactic type="pressing" value="Πρεσάρισμα" />
 		<tactic type="ca" value="Αντεπιθέσεις" />
-		<tactic type="aow" value="Επίθεση από το κέντρο" />
-		<tactic type="aim" value="Επίθεση από τα πλάγια" />
+		<tactic type="aow" value="Επίθεση από τα πλάγια" />
+		<tactic type="aim" value="Επίθεση από το κέντρο" />
 		<tactic type="creatively" value="Δημιουργικό Παιχνίδι" />
 		<tactic type="longshots" value="Μακρινά σουτ" />
 	</tactics>
@@ -71,4 +71,40 @@
 		<level text="καταστροφικός" value="1" />
 		<level text="ανύπαρκτος" value="0" />
 	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="αγαπημένος συμπαίκτης" value="5"/>
+		<level text="δημοφιλής τύπος" value="4"/>
+		<level text="συμπαθητικός τύπος" value="3"/>
+		<level text="ευχάριστος τύπος" value="2"/>
+		<level text="αμφιλεγόμενος τύπος" value="1"/>
+		<level text="κακός τύπος" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="σαν άγιος" value="5"/>
+		<level text="δίκαιος" value="4"/>
+		<level text="ευθύς" value="3"/>
+		<level text="έντιμος" value="2"/>
+		<level text="ανέντιμος" value="1"/>
+		<level text="αχρείος" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="ασταθής" value="5"/>
+		<level text="βίαιος" value="4"/>
+		<level text="οξύθυμος" value="3"/>
+		<level text="ισορροπημένος" value="2"/>
+		<level text="ήρεμος" value="1"/>
+		<level text="γαλήνιος" value="0"/>
+	</aggressiveness>
 </language>
