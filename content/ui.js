@@ -85,7 +85,7 @@ if (Foxtrick.platform == "Firefox") {
 		var doc = content.document; // get the document of current tab
 
 		var statusText;
-
+			
 		if (FoxtrickPrefs.getBool("disableTemporary")) {
 			// FoxTrick is disabled temporarily
 			button.setAttribute("status", "disabled");
@@ -100,7 +100,11 @@ if (Foxtrick.platform == "Firefox") {
 		else {
 			// FoxTrick is enabled, but not active on current page
 			button.setAttribute("status", "enabled");
-			var hostname = doc.location.hostname;
+			try { 
+				// it's called twice in ff3.6 and works with one of the calls, thus display is fine
+				// the other raises an error. dunno why and found no proper checks	
+				var hostname = doc.location.hostname;
+			} catch (e) {}
 			statusText = Foxtrickl10n.getString("status.enabled").replace("%s", hostname);
 		}
 		var tooltipText = Foxtrickl10n.getString("foxtrick") + " " + Foxtrick.version() + " (" + statusText + ")";
