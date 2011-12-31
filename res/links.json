@@ -161,10 +161,10 @@
 	},
 	"htstats_all": {
 		"playedmatchlink": {
-			"url": "http://www.htstats.com/matchinfo-[matchid]?lang=[lang]"
+			"url": "http://www.htstats.com/matchinfo-[matchid]&setlang=[lang]"
 		},
 		"playedyouthmatchlink": {
-			"url": "http://www.htstats.com/matchinfoy-[matchid]?lang=[lang]"
+			"url": "http://www.htstats.com/matchinfoy-[matchid]&setlang=[lang]"
 		},
 		"title": "htstats (played match)",
 		"img": "resources/linkicons/htstats.png"
@@ -232,7 +232,7 @@
 			]
 		},
 		"countrylink": {
-			"url": "http://htstats.com/?setlang=[lang]",
+			"url": "http://htstats.com/&setlang=[lang]",
 			"filters": [
 				"countryid"
 			]
