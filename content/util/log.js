@@ -36,7 +36,8 @@ Foxtrick.log = function() {
 				if (item == '{}' && typeof(content) == 'object') {
 					// stringify didn't work as intented
 					for (var j in content)
-						Foxtrick.log(j, ':', content[j]); 
+						//Foxtrick.log(j, ':', content[j]);
+						item += j + ':' + content[j] + '\n';
 				}
 			}
 			catch (e) {
