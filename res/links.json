@@ -1798,7 +1798,7 @@
 		"leaguelink": {
 			"url": "http://htev.org/search_leagueid/?SeriesID=[leagueid]"
 		},
-		"matchlink": {
+		"playedmatchlink": {
 			"url": "http://htev.org/match/[matchid]/"
 		},
 		"title": "HTEV",
