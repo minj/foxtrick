@@ -12,9 +12,9 @@ Foxtrick.util.module.register({
 	NICE : 10, // after anythings that works on team/manager links
 	CSS : Foxtrick.InternalPath + "resources/css/popup-links.css",
 
-	OPTIONS : ["TeamLinks", "UserLinks", "CustomLink","OpenInNewTab"],
+	OPTIONS : ["TeamLinks", "UserLinks", "CustomLink"],
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DISABLED_LIST : [true, true, false, true],
+	OPTION_TEXTS_DISABLED_LIST : [true, true, false],
 
 	LINKS : {
 		"Team" : {
@@ -103,6 +103,9 @@ Foxtrick.util.module.register({
 		var enableMore = doc.createElement("th");
 		enableMore.setAttribute("data-text", "TeamPopupLinks.ShowOnMore");
 		headerRow.appendChild(enableMore);
+		var enableNewTab = doc.createElement("th");
+		enableNewTab.setAttribute("data-text", "TeamPopupLinks.OpenNewTab");
+		headerRow.appendChild(enableNewTab);
 
 		for (var i in this.LINKS) {
 			var row = doc.createElement("tr");
@@ -125,6 +128,13 @@ Foxtrick.util.module.register({
 			moreCheck.type = "checkbox";
 			moreCheck.setAttribute("pref", "module.TeamPopupLinks." + i + ".more");
 			moreCell.appendChild(moreCheck);
+			
+			var newTab = doc.createElement("td");
+			row.appendChild(newTab);
+			var newTabCheck = doc.createElement("input");
+			newTabCheck.type = "checkbox";
+			newTabCheck.setAttribute("pref", "module.TeamPopupLinks." + i + ".newTab");
+			newTab.appendChild(newTabCheck);
 		}
 
 		return table;
@@ -208,8 +218,12 @@ Foxtrick.util.module.register({
 							link.href = linkByUserName.replace(/\[username\]/i, userName);
 						else
 							return;
+							
+						var openInNewTab = function(option ) {
+							return FoxtrickPrefs.getBool("module.TeamPopupLinks." + option + "." + "newTab" );
+						};
 						
-						if( FoxtrickPrefs.isModuleOptionEnabled("TeamPopupLinks", "OpenInNewTab") )
+						if( openInNewTab( key ) )
 							link.target = "_blank";
 						
 						link.textContent = Foxtrickl10n.getString(key);
