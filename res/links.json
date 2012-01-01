@@ -1790,5 +1790,18 @@
 		],
 		"title": "Hattrick Youthclub",
 		"img": "resources/linkicons/hyouthclub.png"
+	},
+	"htev": {
+		"teamlink": {
+			"url": "http://htev.org/team/[teamid]/"
+		},
+		"leaguelink": {
+			"url": "http://htev.org/search_leagueid/?SeriesID=[leagueid]"
+		},
+		"matchlink": {
+			"url": "http://htev.org/match/[matchid]/"
+		},
+		"title": "HTEV",
+		"img": "resources/linkicons/htev.png"
 	}
 }
