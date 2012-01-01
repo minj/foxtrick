@@ -77,11 +77,12 @@ Foxtrick.util.module.register({
 					//htstats style = module.RatingsDisplay.value == 1
 					else if (FoxtrickPrefs.getInt("module.RatingsDisplay.value") == 1)
 					{	
-						//the average cell, multiply by 9 (3 x def, 3x mid, 3x forward)
+						//the total average cell, multiply by 9 (3 x def, 3x mid, 3x forward)
 						if(cells == 2){
 							table.rows[row].cells[cells].getElementsByTagName('a')[0].textContent = val_max * 9;
 							table.rows[row].cells[cells].getElementsByTagName('span')[1].textContent = val_avg * 9;
 						}
+						//individual cells for def, mid, fw ... each entry has a weight of 3 -> multiply by 3
 						else
 						{
 							table.rows[row].cells[cells].getElementsByTagName('a')[0].textContent = val_max * 3;
