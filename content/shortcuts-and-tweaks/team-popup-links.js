@@ -12,9 +12,9 @@ Foxtrick.util.module.register({
 	NICE : 10, // after anythings that works on team/manager links
 	CSS : Foxtrick.InternalPath + "resources/css/popup-links.css",
 
-	OPTIONS : ["TeamLinks", "UserLinks", "CustomLink"],
+	OPTIONS : ["TeamLinks", "UserLinks", "CustomLink","OpenInNewTab"],
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DISABLED_LIST : [true, true, false],
+	OPTION_TEXTS_DISABLED_LIST : [true, true, false, true],
 
 	LINKS : {
 		"Team" : {
@@ -208,6 +208,10 @@ Foxtrick.util.module.register({
 							link.href = linkByUserName.replace(/\[username\]/i, userName);
 						else
 							return;
+						
+						if( FoxtrickPrefs.isModuleOptionEnabled("TeamPopupLinks", "OpenInNewTab") )
+							link.target = "_blank";
+						
 						link.textContent = Foxtrickl10n.getString(key);
 						item.appendChild(link);
 						list.appendChild(item);
