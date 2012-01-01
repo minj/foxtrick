@@ -60,6 +60,8 @@ Foxtrick.util.module.register({
 			}
 		};
 		
+		//series stats
+		//e.g.: http://stage.hattrick.org/World/Series/Stats.aspx?LeagueLevelUnitID=25&TeamID=11598
 		var do_seriesstats = function() {
 			var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
 			for (var row = 1; row < table.rows.length; ++row) {
@@ -73,7 +75,7 @@ Foxtrick.util.module.register({
 						table.rows[row].cells[cells].getElementsByTagName('span')[1].textContent = (val_avg/4+0.75).toFixed(2);
 					}
 					//htstats style = module.RatingsDisplay.value == 1
-					else if (FoxtrickPrefs.getInt("module.RatingsDisplay.value"))
+					else if (FoxtrickPrefs.getInt("module.RatingsDisplay.value") == 1)
 					{	
 						//the average cell, multiply by 9 (3 x def, 3x mid, 3x forward)
 						if(cells == 2){
@@ -86,7 +88,7 @@ Foxtrick.util.module.register({
 							table.rows[row].cells[cells].getElementsByTagName('span')[1].textContent = val_avg * 3;
 						}
 					} else {
-						//leave as it is by default
+						//unsupported representation style, just leave it as it is
 					}
 				}
 			}
