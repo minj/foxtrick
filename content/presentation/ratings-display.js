@@ -67,21 +67,26 @@ Foxtrick.util.module.register({
 				for (var cells = table.rows[row].cells.length-1; cells >1 ; --cells) {
 					var val_max = Number(table.rows[row].cells[cells].getElementsByTagName('a')[0].textContent.replace(',','.'));
 					var val_avg = Number(table.rows[row].cells[cells].getElementsByTagName('span')[1].textContent.replace(',','.'));
+					//denominations display style
 					if (FoxtrickPrefs.getInt("module.RatingsDisplay.value") == 0) {
 						table.rows[row].cells[cells].getElementsByTagName('a')[0].textContent = (val_max/4+0.75).toFixed(2);
 						table.rows[row].cells[cells].getElementsByTagName('span')[1].textContent = (val_avg/4+0.75).toFixed(2);
 					}
-					else {
-						if (cells == 2) {
-							table.rows[row].cells[cells].getElementsByTagName('a')[0].textContent = mean_max;
-							table.rows[row].cells[cells].getElementsByTagName('span')[1].textContent = mean_avg;
+					//htstats style = module.RatingsDisplay.value == 1
+					else if (FoxtrickPrefs.getInt("module.RatingsDisplay.value"))
+					{	
+						//the average cell, multiply by 9 (3 x def, 3x mid, 3x forward)
+						if(cells == 2){
+							table.rows[row].cells[cells].getElementsByTagName('a')[0].textContent = val_max * 9;
+							table.rows[row].cells[cells].getElementsByTagName('span')[1].textContent = val_avg * 9;
 						}
-						else {
-							mean_max += val_max*3;
-							mean_avg += val_avg*3;
+						else
+						{
 							table.rows[row].cells[cells].getElementsByTagName('a')[0].textContent = val_max * 3;
 							table.rows[row].cells[cells].getElementsByTagName('span')[1].textContent = val_avg * 3;
 						}
+					} else {
+						//leave as it is by default
 					}
 				}
 			}
