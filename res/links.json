@@ -1803,5 +1803,12 @@
 		},
 		"title": "HTEV",
 		"img": "resources/linkicons/htev.gif"
+	},
+	"htev_simulator": {
+		"matchlink": {
+			"url": "http://htev.org/furminator/"
+		},
+		"title": "HTEV Simulator",
+		"img": "resources/linkicons/htev.gif"
 	}
 }
