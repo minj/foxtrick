@@ -57,7 +57,10 @@ for locale in required:
 			if partitionated[1] is "=":
 				if partitionated[0].lstrip().rstrip().lower() == oldkey.lower():
 					#replace the first occurance of key in key
-					replaced = line.replace(oldkey, newkey, 1);
+					replaced = line.replace(partitionated[0].lstrip().rstrip(), newkey, 1);
+					if replaced == line:
+						print "\t","replacement had no effect"
+						
 					content[index] = replaced
 					didreplace = 1
 					if verbose:
