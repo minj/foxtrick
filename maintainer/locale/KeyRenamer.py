@@ -1,8 +1,9 @@
 import localetools.l10n
 import sys
-
 	
-path_to_content_input = raw_input("Path to foxtrick: (leave entry -> \"./../../\" )")
+print "Path to foxtrick:  (relative or absolute) leave empty: -> \"./../../\"")
+path_to_content_input = raw_input("Path:")
+
 if path_to_content_input == "":
 	path_to_content_input = "./../../"
 	
@@ -11,7 +12,6 @@ newkey = raw_input("Desired new name: ").lstrip().rstrip()
 
 print "using", path_to_content_input
 print "renaming", oldkey, "to", newkey
-#relativ path to content, looking for mater file there and iterating /locale/
 
 verbose = 1
 
@@ -20,6 +20,8 @@ Locales = localetools.l10n.foxtrickLocalization( path_to_content_input + "/conte
 
 #all locales
 all = Locales.getAll()
+
+# include the master so keys will also be renamed in it if necessary
 all.insert(0, Locales.getMaster())
 
 #will have all locales that require renaming
