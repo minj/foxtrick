@@ -443,7 +443,6 @@ if (Foxtrick.arch === "Sandboxed") {
 
 		getValue : function(key) {
 			try {
-				key = encodeURI(key);
 				if (FoxtrickPrefs._prefs_chrome_user[key] !== undefined)
 					return FoxtrickPrefs._prefs_chrome_user[key];
 				else if (FoxtrickPrefs._prefs_chrome_default[key] !== undefined)
@@ -457,7 +456,6 @@ if (Foxtrick.arch === "Sandboxed") {
 		},
 
 		prefHasUserValue : function(key) {
-			key = encodeURI(key);
 			return (typeof(FoxtrickPrefs._prefs_chrome_user[key])!='undefined');
 		},
 
@@ -572,7 +570,6 @@ if (Foxtrick.arch === "Sandboxed") {
 
 		setValue : function(key, value) {
 				try {
-					key = encodeURI(key);
 					if (FoxtrickPrefs._prefs_chrome_default[key] === value)
 						// is default. deleteing user pref, will set it to default
 						FoxtrickPrefs.deleteValue(key);
@@ -586,7 +583,6 @@ if (Foxtrick.arch === "Sandboxed") {
 			},
 
 			deleteValue : function(key) {
-				key = encodeURI(key);
 				delete(FoxtrickPrefs._prefs_chrome_user[key]);
 				sandboxed.extension.sendRequest({ req : "deleteValue", key : key });
 			},
