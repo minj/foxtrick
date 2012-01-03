@@ -1801,6 +1801,9 @@
 		"playedmatchlink": {
 			"url": "http://htev.org/match/[matchid]/"
 		},
+		"countrylink": {
+			"url": "http://htev.org/country/[countryid]/"
+		},
 		"title": "HTEV",
 		"img": "resources/linkicons/htev.gif"
 	},
