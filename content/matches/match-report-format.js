@@ -399,19 +399,46 @@ Foxtrick.util.module.register((function() {
 									&& subId != objId && objId > 0) {
 									var subNode = doc.createElement("span");
 									subNode.appendChild(doc.createTextNode(minute + "' "));
-									// FIXME - due to a bug in HT's matchlineup XML,
+									// Due to a bug in HT's matchlineup XML,
 									// substitutions carried off may not be shown
 									if (collection[objId] == undefined) {
 										collection[objId] = { "name": txtUnknownPlayer };
+										
+										var playerArgs = [
+											["file", "playerdetails"],
+											["playerID", objId],
+											["version", "2.1"]
+										];
+										//get the player name from playerdetails instead 
+										Foxtrick.util.api.retrieve(doc, playerArgs, {cache_lifetime: "session"}, function(playerXml) {
+											
+											var player = playerXml.getElementsByTagName("Player")[0];
+											var firstName = player.getElementsByTagName("FirstName")[0].textContent;
+											var nickName = player.getElementsByTagName("NickName")[0].textContent;
+											var lastName = player.getElementsByTagName("LastName")[0].textContent;
+
+											collection[objId] = { "name": firstName + " " + lastName};
+											
+											// add in line up
+											subNode.appendChild(playerTag(objId, collection[objId].name));
+											addComment(subId, subNode);
+											// since object player now occupy the
+											// same list item as subject player,
+											// set up item and comment
+											collection[objId].item = collection[subId].item;
+											collection[objId].comment = collection[subId].item;
+										});
+									} 
+									else {
+										// add in line up
+										subNode.appendChild(playerTag(objId, collection[objId].name));
+										addComment(subId, subNode);
+										// since object player now occupy the
+										// same list item as subject player,
+										// set up item and comment
+										collection[objId].item = collection[subId].item;
+										collection[objId].comment = collection[subId].item;
 									}
-									// add in line up
-									subNode.appendChild(playerTag(objId, collection[objId].name));
-									addComment(subId, subNode);
-									// since object player now occupy the
-									// same list item as subject player,
-									// set up item and comment
-									collection[objId].item = collection[subId].item;
-									collection[objId].comment = collection[subId].item;
 								}
 							}, substitutions);
 						}, [[homeName, homeXml], [awayName, awayXml]]);
