@@ -21,7 +21,7 @@ Foxtrick.util.module.register({
 			Foxtrick.addClass(fieldOverlay, 'displayRight');
 
 		// ratings and tactic for predicted and for selected others team match
-		var currentRatings = new Array(9), currentRatingsOther = new Array(9), teamNames =  new Array(2), isHome;
+		var currentRatings = new Array(9), orgRatings = new Array(9), oldRatings = new Array(9), currentRatingsOther = new Array(9), teamNames =  new Array(2), isHome;
 		
 		// updating or adding htms prediction based on rating prediction and seleted match of another team
 		var updateHTMSPrediction = function() {
@@ -85,9 +85,9 @@ Foxtrick.util.module.register({
 		
 		var showLevelNumbers = function(ev) { 
 			// only listen to rating prediction changes
-			if ( !Foxtrick.hasClass(ev.target.parentNode, 'posLabel') ) 
+			if ( !Foxtrick.hasClass(ev.target.parentNode, 'posLabel') && ev.target.id != 'stamina_discount_check') 
 				return;
-			
+			console.log('showLevelNumbers')
 			var overlayRatings = fieldOverlay.getElementsByClassName('overlayRatings');
 			var posLabel = fieldOverlay.getElementsByClassName('posLabel');
 			var tacticLevelLabel = doc.getElementById('tacticLevelLabel');
@@ -256,17 +256,6 @@ Foxtrick.util.module.register({
 					if (currentRatings[i] !== undefined) { 
 						var div = doc.getElementById(id);
 						div.textContent = levelText;
-						var diff = fullLevel-currentRatings[i];
-						var span = doc.createElement('span');
-						span.textContent = ' ('+diff.toFixed(2)+')';
-						if (diff < 0) {
-							span.className = "colorLower ratingChange";
-							div.appendChild(span);
-						}
-						else if (diff > 0) {
-							span.className = "colorHigher ratingChange";
-							div.appendChild(span);
-						}
 					}
 					else {
 						var div = doc.createElement('div');
@@ -275,7 +264,9 @@ Foxtrick.util.module.register({
 						div.textContent = levelText;
 					}
 					ratingInnerBoxs[i].insertBefore(div, overlayRating.nextSibling);
+					oldRatings[i] = currentRatings[i];
 					currentRatings[i] = fullLevel;
+					orgRatings[i] = fullLevel;
 				}
 			}
 			// store tactics for htms
@@ -289,6 +280,30 @@ Foxtrick.util.module.register({
 			var otherChange = fieldOverlay.getElementsByClassName('otherChange');
 			for (var j=0; j<otherChange.length; ++j ){
 				otherChange[j].textContent = ''
+			}
+			
+			var staminaDiscountCheck = document.getElementById("stamina_discount_check");
+			if (staminaDiscountCheck.checked) {
+				ft_stamina_discount();
+			}
+
+			for (var i=0; i< 7; ++i) {
+				if (oldRatings[i] !== undefined) { 
+					var id = 'ft-full-level' + i;
+					var div = doc.getElementById(id);
+					var diff = oldRatings[i]-currentRatings[i];
+					
+					var span = doc.createElement('span');
+					span.textContent = ' ('+diff.toFixed(2)+')';
+					if (diff < 0) {
+						span.className = "colorLower ratingChange";
+						div.appendChild(span);
+					}
+					else if (diff > 0) {
+						span.className = "colorHigher ratingChange";
+						div.appendChild(span);
+					}
+				}
 			}
 			
 			updateBarsAndHTMSPrediction();
@@ -655,10 +670,145 @@ Foxtrick.util.module.register({
 					});
 				});
 			}
+			//Foxtrick.addMutationEventListener(fieldOverlay, "DOMNodeInserted", showLevelNumbers, false);
 		};
-		var fieldOverlay = doc.getElementById('fieldOverlay');
-		Foxtrick.addMutationEventListener(fieldOverlay, "DOMNodeInserted", showLevelNumbers, false);
+
 		
+		// -- stamina discount --
+		// from unwritten manual [post=15172393.4]
+		function getStaminaFactor(stamina) {
+			return Math.pow((stamina+6.5)/14, 0.6); 
+		}
+		
+		var contributions = [
+			{p:0,t:'n',c:[		{s:1,sk:'gk',v:0.866},	{s:1,sk:'df',v:0.425},	{s:0,sk:'gk',v:0.597},	{s:2,sk:'ke',v:0.597},	{s:0,sk:'df',v:0.276},	{s:2,sk:'df',v:0.276},									]},
+			{p:3,t:'n',c:[	{s:3,sk:'pm',v:0.236},		{s:1,sk:'df',v:1.000},			{s:0,sk:'df',v:0.260},	{s:2,sk:'df',v:0.260},									]},
+			{p:3,t:'o',c:[	{s:3,sk:'pm',v:0.318},		{s:1,sk:'df',v:0.725},			{s:0,sk:'df',v:0.190},	{s:2,sk:'df',v:0.190},									]},
+			{p:2,t:'n',c:[	{s:3,sk:'pm',v:0.236},		{s:1,sk:'df',v:1.000},			{s:0,sk:'df',v:0.516},										]},
+			{p:2,t:'tw',c:[	{s:3,sk:'pm',v:0.165},		{s:1,sk:'df',v:0.778},			{s:0,sk:'df',v:0.711},				{s:4,sk:'wi',v:0.246},						]},
+			{p:2,t:'o',c:[	{s:3,sk:'pm',v:0.318},		{s:1,sk:'df',v:0.725},			{s:0,sk:'df',v:0.378},										]},
+			{p:4,t:'n',c:[	{s:3,sk:'pm',v:0.236},		{s:1,sk:'df',v:1.000},				{s:2,sk:'df',v:0.516},									]},
+			{p:4,t:'tw',c:[	{s:3,sk:'pm',v:0.165},		{s:1,sk:'df',v:0.778},				{s:2,sk:'df',v:0.711},				{s:6,sk:'wi',v:0.246},					]},
+			{p:4,t:'o',c:[	{s:3,sk:'pm',v:0.318},		{s:1,sk:'df',v:0.725},				{s:2,sk:'df',v:0.378},									]},
+			{p:1,t:'n',c:[	{s:3,sk:'pm',v:0.167},		{s:1,sk:'df',v:0.450},			{s:0,sk:'df',v:0.919},				{s:4,sk:'wi',v:0.506},						]},
+			{p:1,t:'d',c:[	{s:3,sk:'pm',v:0.066},		{s:1,sk:'df',v:0.479},			{s:0,sk:'df',v:1.000},				{s:4,sk:'wi',v:0.323},						]},
+			{p:1,t:'tm',c:[	{s:3,sk:'pm',v:0.167},		{s:1,sk:'df',v:0.683},			{s:0,sk:'df',v:0.687},				{s:4,sk:'wi',v:0.279},						]},
+			{p:1,t:'o',c:[	{s:3,sk:'pm',v:0.230},		{s:1,sk:'df',v:0.382},			{s:0,sk:'df',v:0.698},				{s:4,sk:'wi',v:0.618},						]},
+			{p:5,t:'n',c:[	{s:3,sk:'pm',v:0.167},		{s:1,sk:'df',v:0.450},				{s:2,sk:'df',v:0.919},				{s:6,sk:'wi',v:0.506},					]},
+			{p:5,t:'d',c:[	{s:3,sk:'pm',v:0.066},		{s:1,sk:'df',v:0.479},				{s:2,sk:'df',v:1.000},				{s:6,sk:'wi',v:0.323},					]},
+			{p:5,t:'tm',c:[	{s:3,sk:'pm',v:0.167},		{s:1,sk:'df',v:0.683},				{s:2,sk:'df',v:0.687},				{s:6,sk:'wi',v:0.279},					]},
+			{p:5,t:'o',c:[	{s:3,sk:'pm',v:0.230},		{s:1,sk:'df',v:0.382},				{s:2,sk:'df',v:0.698},				{s:6,sk:'wi',v:0.618},					]},
+			{p:8,t:'n',c:[	{s:3,sk:'pm',v:1.000},		{s:1,sk:'df',v:0.400},			{s:0,sk:'df',v:0.095},	{s:2,sk:'df',v:0.095},		{s:5,sk:'ps',v:0.325},			{s:4,sk:'ps',v:0.110},	{s:6,sk:'ps',v:0.110},			]},
+			{p:8,t:'o',c:[	{s:3,sk:'pm',v:0.944},		{s:1,sk:'df',v:0.216},			{s:0,sk:'df',v:0.051},	{s:2,sk:'df',v:0.051},		{s:5,sk:'ps',v:0.483},			{s:4,sk:'ps',v:0.110},	{s:6,sk:'ps',v:0.110},			]},
+			{p:8,t:'d',c:[	{s:3,sk:'pm',v:0.944},		{s:1,sk:'df',v:0.594},			{s:0,sk:'df',v:0.135},	{s:2,sk:'df',v:0.135},		{s:5,sk:'ps',v:0.219},			{s:4,sk:'ps',v:0.070},	{s:6,sk:'ps',v:0.070},			]},
+			{p:7,t:'n',c:[	{s:3,sk:'pm',v:1.000},		{s:1,sk:'df',v:0.400},			{s:0,sk:'df',v:0.189},			{s:5,sk:'ps',v:0.325},			{s:4,sk:'ps',v:0.218},				]},
+			{p:7,t:'o',c:[	{s:3,sk:'pm',v:0.944},		{s:1,sk:'df',v:0.216},			{s:0,sk:'df',v:0.102},			{s:5,sk:'ps',v:0.483},			{s:4,sk:'ps',v:0.216},				]},
+			{p:7,t:'d',c:[	{s:3,sk:'pm',v:0.944},		{s:1,sk:'df',v:0.594},			{s:0,sk:'df',v:0.270},			{s:5,sk:'ps',v:0.219},			{s:4,sk:'ps',v:0.140},				]},
+			{p:7,t:'tw',c:[	{s:3,sk:'pm',v:0.881},		{s:1,sk:'df',v:0.348},			{s:0,sk:'df',v:0.291},			{s:5,sk:'ps',v:0.227},	{s:4,sk:'wi',v:0.494},		{s:4,sk:'ps',v:0.271},				]},
+			{p:9,t:'n',c:[	{s:3,sk:'pm',v:1.000},		{s:1,sk:'df',v:0.400},				{s:2,sk:'df',v:0.189},		{s:5,sk:'ps',v:0.325},				{s:6,sk:'ps',v:0.218},			]},
+			{p:9,t:'o',c:[	{s:3,sk:'pm',v:0.944},		{s:1,sk:'df',v:0.216},				{s:2,sk:'df',v:0.102},		{s:5,sk:'ps',v:0.483},				{s:6,sk:'ps',v:0.216},			]},
+			{p:9,t:'d',c:[	{s:3,sk:'pm',v:0.944},		{s:1,sk:'df',v:0.594},				{s:2,sk:'df',v:0.270},		{s:5,sk:'ps',v:0.219},				{s:6,sk:'ps',v:0.140},			]},
+			{p:9,t:'tw',c:[	{s:3,sk:'pm',v:0.881},		{s:1,sk:'df',v:0.348},				{s:2,sk:'df',v:0.291},		{s:5,sk:'ps',v:0.227},		{s:6,sk:'wi',v:0.494},		{s:6,sk:'ps',v:0.271},			]},
+			{p:6,t:'n',c:[	{s:3,sk:'pm',v:0.455},		{s:1,sk:'df',v:0.201},			{s:0,sk:'df',v:0.349},			{s:5,sk:'ps',v:0.104},	{s:4,sk:'wi',v:0.854},		{s:4,sk:'ps',v:0.210},				]},
+			{p:6,t:'o',c:[	{s:3,sk:'pm',v:0.381},		{s:1,sk:'df',v:0.085},			{s:0,sk:'df',v:0.180},			{s:5,sk:'ps',v:0.135},	{s:4,sk:'wi',v:1.000},		{s:4,sk:'ps',v:0.246},				]},
+			{p:6,t:'tm',c:[	{s:3,sk:'pm',v:0.574},		{s:1,sk:'df',v:0.244},			{s:0,sk:'df',v:0.284},			{s:5,sk:'ps',v:0.148},	{s:4,sk:'wi',v:0.564},		{s:4,sk:'ps',v:0.133},				]},
+			{p:6,t:'d',c:[	{s:3,sk:'pm',v:0.381},		{s:1,sk:'df',v:0.264},			{s:0,sk:'df',v:0.485},			{s:5,sk:'ps',v:0.052},	{s:4,sk:'wi',v:0.723},		{s:4,sk:'ps',v:0.173},				]},
+			{p:10,t:'n',c:[	{s:3,sk:'pm',v:0.455},		{s:1,sk:'df',v:0.201},				{s:2,sk:'df',v:0.349},		{s:5,sk:'ps',v:0.104},		{s:6,sk:'wi',v:0.854},		{s:6,sk:'ps',v:0.210},			]},
+			{p:10,t:'o',c:[	{s:3,sk:'pm',v:0.381},		{s:1,sk:'df',v:0.085},				{s:2,sk:'df',v:0.180},		{s:5,sk:'ps',v:0.135},		{s:6,sk:'wi',v:1.000},		{s:6,sk:'ps',v:0.246},			]},
+			{p:10,t:'tm',c:[	{s:3,sk:'pm',v:0.574},		{s:1,sk:'df',v:0.244},				{s:2,sk:'df',v:0.284},		{s:5,sk:'ps',v:0.148},		{s:6,sk:'wi',v:0.564},		{s:6,sk:'ps',v:0.133},			]},
+			{p:10,t:'d',c:[	{s:3,sk:'pm',v:0.381},		{s:1,sk:'df',v:0.264},				{s:2,sk:'df',v:0.485},		{s:5,sk:'ps',v:0.052},		{s:6,sk:'wi',v:0.723},		{s:6,sk:'ps',v:0.173},			]},
+			{p:12,t:'n',c:[								{s:5,sk:'sc',v:1.000},	{s:5,sk:'ps',v:0.369},	{s:4,sk:'wi',v:0.190},	{s:6,sk:'wi',v:0.190},	{s:4,sk:'ps',v:0.122},	{s:6,sk:'ps',v:0.122},	{s:4,sk:'sc',v:0.224},	{s:6,sk:'sc',v:0.224},	]},
+			{p:12,t:'d',c:[	{s:3,sk:'pm',v:0.406},							{s:5,sk:'sc',v:0.583},	{s:5,sk:'ps',v:0.543},	{s:4,sk:'wi',v:0.124},	{s:6,sk:'wi',v:0.124},	{s:4,sk:'ps',v:0.215},	{s:6,sk:'ps',v:0.215},	{s:4,sk:'sc',v:0.109},	{s:6,sk:'sc',v:0.109},	]},
+			{p:11,t:'n',c:[								{s:5,sk:'sc',v:1.000},	{s:5,sk:'ps',v:0.369},	{s:4,sk:'wi',v:0.190},	{s:6,sk:'wi',v:0.190},	{s:4,sk:'ps',v:0.122},	{s:6,sk:'ps',v:0.122},	{s:4,sk:'sc',v:0.224},	{s:6,sk:'sc',v:0.224},	]},
+			{p:11,t:'d',c:[	{s:3,sk:'pm',v:0.406},							{s:5,sk:'sc',v:0.583},	{s:5,sk:'ps',v:0.543},	{s:4,sk:'wi',v:0.124},	{s:6,sk:'wi',v:0.124},	{s:4,sk:'ps',v:0.215},	{s:6,sk:'ps',v:0.215},	{s:4,sk:'sc',v:0.109},	{s:6,sk:'sc',v:0.109},	]},
+			{p:11,t:'tw',c:[								{s:5,sk:'sc',v:0.607},	{s:5,sk:'ps',v:0.261},	{s:4,sk:'wi',v:0.174},	{s:6,sk:'wi',v:0.522},	{s:4,sk:'ps',v:0.060},	{s:6,sk:'ps',v:0.180},	{s:4,sk:'sc',v:0.150},	{s:6,sk:'sc',v:0.451},	]},
+			{p:13,t:'n',c:[								{s:5,sk:'sc',v:1.000},	{s:5,sk:'ps',v:0.369},	{s:4,sk:'wi',v:0.190},	{s:6,sk:'wi',v:0.190},	{s:4,sk:'ps',v:0.122},	{s:6,sk:'ps',v:0.122},	{s:4,sk:'sc',v:0.224},	{s:6,sk:'sc',v:0.224},	]},
+			{p:13,t:'d',c:[	{s:3,sk:'pm',v:0.406},							{s:5,sk:'sc',v:0.583},	{s:5,sk:'ps',v:0.543},	{s:4,sk:'wi',v:0.124},	{s:6,sk:'wi',v:0.124},	{s:4,sk:'ps',v:0.215},	{s:6,sk:'ps',v:0.215},	{s:4,sk:'sc',v:0.109},	{s:6,sk:'sc',v:0.109},	]},
+			{p:13,t:'tw',c:[								{s:5,sk:'sc',v:0.607},	{s:5,sk:'ps',v:0.261},	{s:4,sk:'wi',v:0.522},	{s:6,sk:'wi',v:0.174},	{s:4,sk:'ps',v:0.180},	{s:6,sk:'ps',v:0.060},	{s:4,sk:'sc',v:0.451},	{s:6,sk:'sc',v:0.150},	]},
+		];
+
+		var tactics = {
+			normal:"n",
+			middle:"tm",
+			wing:"tw",
+			offensive:"o",
+			defensive:"d"
+		};
+
+		var skills = {
+			df:"defending",
+			gk:"keeper",
+			ps:"passing",
+			pm:"playmaking",
+			sc:"scoring",
+			sp:"setpieces",
+			wi:"winger"
+		};
+
+		var ft_stamina_discount = function() {
+			try {
+				var overlayRatingsNums = doc.getElementsByClassName('overlayRatingsNum');
+				var playerdivs = doc.getElementById('fieldplayers').getElementsByClassName('position');
+				for (var sector=0; sector< overlayRatingsNums.length; ++sector) {
+					var old_rating = orgRatings[sector];
+					var sum_sq_c_ij_times_func_of_s_i = 0;
+					var sum_sq_c_ij = 0;
+					for (var position=0; position<14; ++position) {	
+						var player = {};
+						player.stamina = Number(playerdivs[position].getAttribute('stamina'));
+						if (!player.stamina) 
+							continue;
+						var tactic = 'normal';
+						for (var t in tactics) {
+							if (Foxtrick.hasClass(playerdivs[position], t)) {
+								tactic = t;
+							}
+						}
+						
+						for (var i=0; i<contributions.length; ++i)  {
+							if (contributions[i].p == position && contributions[i].t == tactics[tactic]) {
+								for (var j=0; j<contributions [i].c.length; ++j)  {
+									if (contributions[i].c[j].s == sector) {
+										var sq_c_ij = contributions[i].c[j].v * contributions[i].c[j].v;
+										sum_sq_c_ij_times_func_of_s_i += sq_c_ij * getStaminaFactor(player.stamina);
+										sum_sq_c_ij += sq_c_ij;
+									}
+								}
+							}
+						}
+					}
+					var new_rating = old_rating * sum_sq_c_ij_times_func_of_s_i / sum_sq_c_ij;
+					overlayRatingsNums[sector].textContent = "["+new_rating.toFixed(2)+"]";
+					currentRatings[sector] = new_rating;
+				}
+			} catch (e) {
+				console.log(e);
+			}
+		};
+		
+		Foxtrick.addMutationEventListener(fieldOverlay, "DOMNodeInserted", showLevelNumbers, false);
+
+
+		// stamina discount
+		var staminaDiscountDiv =  doc.createElement('div');
+		staminaDiscountDiv.id = "stamina_discount";
+		staminaDiscountDiv.className = "overlaySector overlayMidfield";
+		staminaDiscountDiv.setAttribute('style',"left: 395px !important");
+		var staminaDiscountCheck =  doc.createElement('input');
+		staminaDiscountCheck.id = "stamina_discount_check";
+		staminaDiscountCheck.type = "checkbox";
+		staminaDiscountCheck.addEventListener('click',showLevelNumbers, false);
+		staminaDiscountDiv.appendChild(staminaDiscountCheck);
+		var staminaDiscountLabel =  doc.createElement('span');
+		staminaDiscountLabel.textContent = Foxtrickl10n.getString("matchOrder.staminaDiscount");
+		staminaDiscountDiv.appendChild(staminaDiscountLabel);
+		var fieldOverlay = doc.getElementById('fieldOverlay');
+		fieldOverlay.appendChild(staminaDiscountDiv);
+
+		Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath+"resources/js/matchSimulator.js");	
+		
+		
+		// --- flipping ---
 		var checkFlipped = function(){
 			if (Foxtrick.util.layout.isFlipped(doc)) {
 				Foxtrick.log('is flipped');
@@ -675,6 +825,6 @@ Foxtrick.util.module.register({
 			// ff is too fast. so we cue to ensure css add been added by page already
 			window.setTimeout(checkFlipped,0);
 		}, false);
-		checkFlipped();
+		checkFlipped();			
 	}
 });

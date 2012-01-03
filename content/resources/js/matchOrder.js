@@ -4,11 +4,11 @@ function ft_swap_positions() {
 
 	// position ids to swap
 	var swaps = [ 
-		[1,5],
-		[2,4],
-		[6,10],
-		[7,9],
-		[11,13]
+		[1,5],  // right/left WB
+		[2,4],  // right/left CD
+		[6,10], // right/left WI
+		[7,9],  // right/left IM
+		[11,13] // right/left FW
 	];
 	
 	for (var i=0; i<swaps.length; ++i) {
@@ -47,4 +47,3 @@ function ft_swap_positions() {
 function ft_stay_on_page() { 
 	ht.orders.doneURL = document.location.href;
 }
-
