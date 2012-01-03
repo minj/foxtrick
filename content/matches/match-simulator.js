@@ -87,7 +87,7 @@ Foxtrick.util.module.register({
 			// only listen to rating prediction changes
 			if ( !Foxtrick.hasClass(ev.target.parentNode, 'posLabel') && ev.target.id != 'stamina_discount_check') 
 				return;
-			console.log('showLevelNumbers')
+			Foxtrick.log('showLevelNumbers')
 			var overlayRatings = fieldOverlay.getElementsByClassName('overlayRatings');
 			var posLabel = fieldOverlay.getElementsByClassName('posLabel');
 			var tacticLevelLabel = doc.getElementById('tacticLevelLabel');
@@ -282,7 +282,7 @@ Foxtrick.util.module.register({
 				otherChange[j].textContent = ''
 			}
 			
-			var staminaDiscountCheck = document.getElementById("stamina_discount_check");
+			var staminaDiscountCheck = doc.getElementById("stamina_discount_check");
 			if (staminaDiscountCheck.checked) {
 				ft_stamina_discount();
 			}
@@ -782,7 +782,7 @@ Foxtrick.util.module.register({
 					currentRatings[sector] = new_rating;
 				}
 			} catch (e) {
-				console.log(e);
+				Foxtrick.log(e);
 			}
 		};
 		
