@@ -216,6 +216,7 @@ pref("extensions.foxtrick.prefs.module.LinksCountry.hattrick.cl.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksCountry.hattrickchallenge.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksCountry.hcstatshellas.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksCountry.ht_deutschland.enabled", true);
+pref("extensions.foxtrick.prefs.module.LinksCountry.htev.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksCountry.htstats.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksCountry.maptrick_botmap.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksCountry.maptrick_hoc.enabled", true);
