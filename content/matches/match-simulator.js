@@ -291,7 +291,7 @@ Foxtrick.util.module.register({
 				if (oldRatings[i] !== undefined) { 
 					var id = 'ft-full-level' + i;
 					var div = doc.getElementById(id);
-					var diff = oldRatings[i]-currentRatings[i];
+					var diff = currentRatings[i] - oldRatings[i];
 					
 					var span = doc.createElement('span');
 					span.textContent = ' ('+diff.toFixed(2)+')';
