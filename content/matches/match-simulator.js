@@ -247,7 +247,12 @@ Foxtrick.util.module.register({
 			// get levels from ratings text and display them
 			var ratingInnerBoxs = doc.getElementsByClassName('ratingInnerBox');
 			for (var i=0; i< ratingInnerBoxs.length; ++i) {
+				var overlayRatingDiscounted = ratingInnerBoxs[i].getElementsByClassName('overlayRatingsDiscounted')[0];
+				if (overlayRatingDiscounted)
+					overlayRatingDiscounted.parentNode.removeChild(overlayRatingDiscounted);
 				var overlayRating = ratingInnerBoxs[i].getElementsByClassName('overlayRatings')[1];
+				Foxtrick.removeClass(overlayRating,'hidden');
+				
 				var text = overlayRating.textContent;
 				var fullLevel = Foxtrickl10n.getLevelFromText(text);
 				if (fullLevel) { 
@@ -748,6 +753,8 @@ Foxtrick.util.module.register({
 		var ft_stamina_discount = function() {
 			try {
 				var overlayRatingsNums = doc.getElementsByClassName('overlayRatingsNum');
+				var overlayRatings = doc.getElementsByClassName('overlayRatings');
+				var overlayRatingsDiscounted = doc.getElementsByClassName('overlayRatingsDiscounted');				
 				var playerdivs = doc.getElementById('fieldplayers').getElementsByClassName('position');
 				for (var sector=0; sector< overlayRatingsNums.length; ++sector) {
 					var old_rating = orgRatings[sector];
@@ -778,6 +785,11 @@ Foxtrick.util.module.register({
 						}
 					}
 					var new_rating = old_rating * sum_sq_c_ij_times_func_of_s_i / sum_sq_c_ij;
+					var div = doc.createElement('div');
+					div.className = 'overlayRatingsDiscounted';
+					overlayRatings[sector*2+1].parentNode.insertBefore(div, overlayRatings[sector*2+1].nextSibling);
+					div.textContent = Foxtrickl10n.getFullLevelByValue(new_rating);
+					Foxtrick.addClass(overlayRatings[sector*2+1],'hidden');
 					overlayRatingsNums[sector].textContent = "["+new_rating.toFixed(2)+"]";
 					currentRatings[sector] = new_rating;
 				}
