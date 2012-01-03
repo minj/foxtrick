@@ -26,16 +26,20 @@
 }
 
 /* radio tweaks */
-html[dir="rtl"] .scContainer ul{
+html[dir="rtl"] .scContainer ul,
+html[dir="rtl"] .scContainerNoSupporter ul{
 	text-align: right;
 }
-html[dir="ltr"] .scContainer ul{
+html[dir="ltr"] .scContainer ul,
+html[dir="ltr"] .scContainerNoSupporter ul{
 	text-align: left;
 }
-.scContainer ul.ft-pop > li {
+.scContainer ul.ft-pop > li,
+.scContainerNoSupporter ul.ft-pop > li {
 	white-space: normal;
 }
-.scContainer ul{
+.scContainer ul,
+.scContainerNoSupporter ul{
 	width: 200px;
 }
 

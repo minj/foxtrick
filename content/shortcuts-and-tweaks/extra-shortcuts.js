@@ -86,11 +86,15 @@ Foxtrick.util.module.register({
 			});
 		};
 
-		var shortcuts = doc.getElementById ( 'shortcuts' );
+		var shortcuts = doc.getElementById ( 'shortcuts' ) || doc.getElementById ( 'shortcutsNoSupporter' );
+		console.log(shortcuts,doc.getElementById ( 'shortcuts' ),doc.getElementById ( 'shortcutsNoSupporter' ))
 		if (!shortcuts) return;
-		var targetNode = doc.getElementById ( 'shortcuts' ).getElementsByTagName('div');
+		var targetNode = shortcuts.getElementsByTagName('div');
 		var i=0, scCont=null;
-		while (scCont=targetNode[i++]) {if (scCont.className=='scContainer') break;}
+		while (scCont=targetNode[i++]) {
+			if (Foxtrick.hasClass(scCont,'scContainer') || Foxtrick.hasClass(scCont,'scContainerNoSupporter'))
+				break;
+		}
 		targetNode=scCont;
 		if (targetNode) {
 			if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", "Supporterstats")
