@@ -87,7 +87,6 @@ Foxtrick.util.module.register({
 		};
 
 		var shortcuts = doc.getElementById ( 'shortcuts' ) || doc.getElementById ( 'shortcutsNoSupporter' );
-		console.log(shortcuts,doc.getElementById ( 'shortcuts' ),doc.getElementById ( 'shortcutsNoSupporter' ))
 		if (!shortcuts) return;
 		var targetNode = shortcuts.getElementsByTagName('div');
 		var i=0, scCont=null;
