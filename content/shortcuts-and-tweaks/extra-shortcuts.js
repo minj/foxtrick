@@ -9,14 +9,12 @@ var FoxtrickExtraShortcuts = {
 	MODULE_NAME : "ExtraShortcuts",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('all'),
-	OPTIONS : ["AddSpace","AddLeft","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "ManageCHPP", "HtRadio", "No9", "Latehome", "Balkaradio", "Downtime"],
-	RADIOS: ["HtRadio", "No9", "Latehome", "Balkaradio", "Downtime"],
+	OPTIONS : ["AddSpace","AddLeft","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "ManageCHPP", "HtRadio", "No9", "Latehome"],
+	RADIOS: ["HtRadio", "No9", "Latehome"],
 	RADIO_URLS: [
 		"http://stream.ht-radio.nl/foxtrick/status.php",
 		"http://no9-online.de/_no9/no9status.php",
 		"http://www.latehome.de/foxtrick/status.php",
-		"http://radio-balkadio.com/radio.xml",
-		"http://www.down-times.de/dtrfoxi/dtrstatus.php"
 	],
 	CSS: Foxtrick.InternalPath+"resources/css/extra-shortcuts.css",
 
@@ -25,11 +23,14 @@ var FoxtrickExtraShortcuts = {
 	],
 
 	run : function(doc) {
-		var shortcuts = doc.getElementById ( 'shortcuts' );
+		var shortcuts = doc.getElementById ( 'shortcuts' ) || doc.getElementById ( 'shortcutsNoSupporter' );
 		if (!shortcuts) return;
-		var targetNode = doc.getElementById ( 'shortcuts' ).getElementsByTagName('div');
+		var targetNode = shortcuts.getElementsByTagName('div');
 		var i=0, scCont=null;
-		while (scCont=targetNode[i++]) {if (scCont.className=='scContainer') break;}
+		while (scCont=targetNode[i++]) {
+			if (Foxtrick.hasClass(scCont,'scContainer') || Foxtrick.hasClass(scCont,'scContainerNoSupporter'))
+				break;
+		}
 		targetNode=scCont;
 		if (targetNode) {
 			if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", "Supporterstats")
