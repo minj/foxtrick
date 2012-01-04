@@ -389,7 +389,7 @@ Foxtrick.util.module.register({
 						}
 					}
 					else if (openingTag == 'settings'){
-						var userPrefsText =  FoxtrickPrefs.SavePrefs(true, false, true,'%key:%value');
+						var userPrefsText =  FoxtrickPrefs.SavePrefs(true, false, false, true,'%key:%value');
 						var userPrefsTextArray = userPrefsText.split('\n');
 						openingTag = '';
 						for (var i=0; i<userPrefsTextArray.length; ++i)

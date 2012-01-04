@@ -720,6 +720,7 @@ pref("extensions.foxtrick.prefs.preferences.updated", false);
 pref("extensions.foxtrick.prefs.printDateFormat", "dd-mm-YYYY HH:MM:SS");
 pref("extensions.foxtrick.prefs.SavePrefs_Notes", true);
 pref("extensions.foxtrick.prefs.SavePrefs_Prefs", true);
+pref("extensions.foxtrick.prefs.SavePrefs_Token", false);
 pref("extensions.foxtrick.prefs.showReleaseNotes", true);
 pref("extensions.foxtrick.prefs.smallcopyicons", true);
 pref("extensions.foxtrick.prefs.table_separator", " ");

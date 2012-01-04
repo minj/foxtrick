@@ -315,7 +315,8 @@ function initMainTab()
 	$("#pref-save-do").click(function() {
 		var savePrefs = $("#pref-save-pref").is(":checked");
 		var saveNotes = $("#pref-save-data").is(":checked");
-		$("#pref-save-text").val(FoxtrickPrefs.SavePrefs(savePrefs, saveNotes));
+		var saveToken = $("#pref-save-token").is(":checked");
+		$("#pref-save-text").val(FoxtrickPrefs.SavePrefs(savePrefs, saveNotes, saveToken));
 	});
 
 	// load preferences

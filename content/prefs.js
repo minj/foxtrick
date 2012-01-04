@@ -219,7 +219,7 @@ var FoxtrickPrefs = {
 		return true;
 	},
 
-	SavePrefs : function(savePrefs, saveNotes, userSettings, format) {
+	SavePrefs : function(savePrefs, saveNotes, saveToken, userSettings, format) {
 		try {
 			if (!format) format = 'user_pref("extensions.foxtrick.prefs.%key",%value);';
 			var ret = "";
@@ -229,7 +229,8 @@ var FoxtrickPrefs = {
 				var key = array[i]; if(i>0 && key==array[i-1]) continue; // some appear twice!?
 				if (!userSettings || FoxtrickPrefs.prefHasUserValue(key))
 				if ((FoxtrickPrefs.isPrefSetting(key) && savePrefs)
-					|| (!FoxtrickPrefs.isPrefSetting(key) && saveNotes)) {
+					|| (!FoxtrickPrefs.isPrefSetting(key) && key.indexOf("oauth.")==-1 && saveNotes)
+					|| (key.indexOf("oauth")!=-1 && saveToken)) {
 					var item = format.replace(/%key/, key);
 
 					var value = null;
