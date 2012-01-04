@@ -178,7 +178,7 @@
 			"content/shortcuts-and-tweaks/team-popup-links.js",
 			"content/shortcuts-and-tweaks/transfer-search-filters.js",
 			"content/shortcuts-and-tweaks/transfer-search-result-filters.js",
-	
+
 			"content/entry.js",
 			"content/ui.js",
 			"content/loader-chrome.js"
