@@ -13,8 +13,8 @@ my @targets = (
 	},
 	{
 		"file" => "Info.plist",
-		"from" => "<string>content/add-class.js</string>",
-		"to" => "<string>content/entry.js</string>",
+		"from" => "<!-- categorized modules -->",
+		"to" => "^\$",
 		"prefix" => "\t\t\t\t<string>content/",
 		"suffix" => "</string>\n"
 	},
