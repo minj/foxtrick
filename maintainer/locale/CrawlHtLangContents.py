@@ -392,13 +392,36 @@ position_abbreviation_lineup = {'TeamId':822514, 'MatchId':353598578}
 if __name__ == "__main__":
 	import os
 	import sys
-	if len(sys.argv) < 3 or len(sys.argv) > 4:
-		print "Usage: python", sys.argv[0], "username", "password", out_file (optional)
-	else:
-		success, ht = login(sys.argv[1],sys.argv[2])
-		if success:
-			if len(sys.argv) == 4:
-				crawl(ht, Language.getAll(), sys.argv[3])
-			else:
-				#crawl(ht, Language.getAll())
-				crawl(ht, [Language.getIdByLanguage("de"), Language.getIdByLanguage("en")])
+	
+	user = raw_input("Login: ");
+	pw = raw_input("Password: ");
+	outfile = raw_input("Outfile (*.xml): ");
+	print "Locale code (\"all\" for all)"
+	locales = raw_input("Seperate by whitespace to specify multiple languages").split()
+	
+	locales_array = []
+	
+	if "en" not in locales:
+		print "Adding 'en' since it's required for positions and such"
+		locales_array.append( Language.getIdByLanguage( "en" ) )
+		
+	for loc in locales:
+		if loc.lower() == "all":
+			locales_array = Language.getAll()
+			break;
+		else:
+			locales_array.append( Language.getIdByLanguage( loc ) );
+	
+	success = False
+	success, ht = login( user, pw )
+	
+	while not success:
+		success, ht = login( user, pw )
+		user = raw_input("Login:");
+		pw = raw_input("Password:");
+		
+	
+		
+	
+		
+	crawl(ht, locales_array, outfile)

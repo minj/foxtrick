@@ -177,7 +177,12 @@ def checklanguage(lang, lookup):
 	except:
 		print "\t","error opening",file,"! Aborting!" 
 		return;
-	
+		
+	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
+	if not dump_lang:
+		print "No dump found for this language, recrawl or specify correct dump file"
+		return;
+		
 	print "\t","checking Levels" 
 	checkLevels(lang, htlang, lookup)
 	print "\t","checking Agreeability" 
