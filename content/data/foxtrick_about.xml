@@ -33,6 +33,7 @@
 	<developer id="4342858" name="ljushaff" />
 	<developer id="8342420" name="ryanli" />
 	<developer id="3410980" name="Aimo_Kanuuna" />
+	<developer id="11335334" name="CatzHoek" />
 </developers>
 
 <translations>
@@ -61,6 +62,7 @@
 	<translation language="Deutsch">
 		<translator id="2336766" name="spambot" />
 		<translator id="7776339" name="convincedd" />
+		<translator id="11335334" name="CatzHoek" />
 	</translation>
 	<translation language="Ελληνικά">
 		<translator id="5055092" name="GTTWINS" />
@@ -101,6 +103,9 @@
 		<translator id="2902659" name="caracca" />
 		<translator id="765274" name="taised" />
 		<translator id="9559302" name="Sam-Vimes" />
+	</translation>
+	<translation language="한국어">
+		<translator id="9845514" name="SI-CH" />
 	</translation>
 	<translation language="Lithuanian">
 		<translator id="2765378" name="Mod-summercloud" />
