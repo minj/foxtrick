@@ -15,13 +15,14 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		// run only once
 		removeEventListener("UIReady", Foxtrick.loader.gecko.fennecScriptInjection, false);
 
-		// inject scripts
+		//<!-- essential stuffs -->
 		messageManager.loadFrameScript("chrome://foxtrick/content/env.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/prefs.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/l10n.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/xml-load.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/pages.js", true);
 
+		//<!-- utilities -->
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/api.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/array.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/copy-button.js", true);
@@ -42,9 +43,19 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/string.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/time.js", true);
 
+		//<!-- external libraries -->
+		messageManager.loadFrameScript("chrome://foxtrick/content/lib/jquery.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/lib/oauth.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/lib/sha1.js", true);
 
+		//<!-- core modules -->
+		messageManager.loadFrameScript("chrome://foxtrick/content/redirections.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/read-ht-prefs.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/forum-stage.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/core.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/add-class.js", true);
+
+		//<!-- page utilities -->
 		messageManager.loadFrameScript("chrome://foxtrick/content/pages/all.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/pages/country.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/pages/players.js", true);
@@ -53,13 +64,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/pages/transfer-search-results.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/pages/match.js", true);
 
-		messageManager.loadFrameScript("chrome://foxtrick/content/redirections.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/read-ht-prefs.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum-stage.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/core.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/add-class.js", true);
-
-		// ### categorized modules - start ###
+		//<!-- categorized modules -->
 		messageManager.loadFrameScript("chrome://foxtrick/content/alert/live-alert.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/alert/new-mail.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/alert/ticker-alert.js", true);
@@ -186,7 +191,6 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/team-popup-links.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/transfer-search-filters.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/transfer-search-result-filters.js", true);
-		// ### categorized modules - end ###
 		
 		messageManager.loadFrameScript("chrome://foxtrick/content/env-fennec.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/entry.js", true);
