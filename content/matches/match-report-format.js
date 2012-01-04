@@ -103,7 +103,7 @@ Foxtrick.util.module.register((function() {
 		"170" : { "team": ["goal", "whistle"] },
 		"171" : { "team": ["goal_C"] },
 		"172" : { "team": ["goal_L"] },
-		"173" : { "team": ["goal", "right wing"] },
+		"173" : { "team": ["goal_R"] },
 		"174" : { "team": ["goal", "penalty"] },
 		"180" : { "team": ["goal", "whistle"] },
 		"181" : { "team": ["goal_C"] },
