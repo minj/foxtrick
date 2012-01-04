@@ -69,11 +69,12 @@ var FoxtrickHistoryStats= {
 					var leagueN = -1;
 					var season = -1;
 					var cup = -1;
+					var winner_this = false;
 					if (table[i].parentNode.getElementsByClassName("date").length)
 						season = table[i].parentNode.getElementsByClassName("date")[0].textContent;
 					var date = Foxtrick.util.time.getDateFromText(season);
 					season = Foxtrick.util.time.gregorianToHT(date).season;
-					var a = table[i].getElementsByTagName('a');
+					var as = table[i].getElementsByTagName('a');
 					var isLgHist = function(a) {
 						return (a.href.indexOf("LeagueLevelUnitID") > -1)
 							&& (a.href.indexOf("RequestedSeason") > -1);
@@ -81,9 +82,18 @@ var FoxtrickHistoryStats= {
 					var isCupHist = function(a) {
 						return (a.href.indexOf("actiontype=viewcup") > -1);
 					};
-					for (var j = 0; j < a.length; j ++) {
-						if (isLgHist(a[j])) {
-							league = a[j].textContent;
+					var isWinnerAny = function(a) {
+						return (a.href.indexOf("Club/Manager/?userId") > -1);
+					};
+					for (var j = 0; j < as.length; j ++) {
+						if (isWinnerAny(as[j])) {
+							// this entry is for winning something
+							winner_this = true;
+						}
+					}
+					for (var j = 0; j < as.length; j ++) {
+						if (isLgHist(as[j])) {
+							league = as[j].textContent;
 							var leagueN = league;
 							if (league.search(/\./) > -1) {
 								league = league.split('.')[0];
@@ -93,7 +103,7 @@ var FoxtrickHistoryStats= {
 								league = 1;
 							}
 						}
-						if (isCupHist(a[j])) {
+						if (isCupHist(as[j])) {
 							while (table[i].getElementsByTagName('a')[0]) {
 								table[i].removeChild(table[i].getElementsByTagName('a')[0]);
 							}
@@ -104,6 +114,11 @@ var FoxtrickHistoryStats= {
 					}
 					//league
 					if (league != -1) {
+						
+						if (winner_this)
+							// double entry for winning league skipped
+							continue;
+						
 						try {
 							while (table[i].getElementsByTagName('a')[0])
 								table[i].removeChild(table[i].getElementsByTagName('a')[0]);
