@@ -85,7 +85,7 @@ html[data-theme="standard"] #overlayHTMS {
 	margin: 10px 3px 0px 3px !important;
 	padding: 0px !important;
 }
-.ratingInnerBox div[id$="Rating"], .overlayRatingsOther {
+.ratingInnerBox div[id$="Rating"], .overlayRatingsOther, .overlayRatingsDiscounted {
 	font-weight: normal !important;
 }
 #fieldOverlay.not_flipped .overlayRightDefense, #fieldOverlay.not_flipped .overlayMidDefense, #fieldOverlay.not_flipped .overlayLeftDefense {
