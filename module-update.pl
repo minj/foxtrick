@@ -6,8 +6,8 @@
 my @targets = (
 	{
 		"file" => "manifest.json",
-		"from" => "content/pages/match.js",
-		"to" => "content/redirections.js",
+		"from" => "//<!-- categorized modules -->",
+		"to" => "^\$",
 		"prefix" => "\t\t\t\"content/",
 		"suffix" => "\",\n"
 	},

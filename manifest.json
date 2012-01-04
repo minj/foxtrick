@@ -2,13 +2,14 @@
 	"background_page" : "content/background.html",
 	"content_scripts" : [ {
 		"js" : [
+			//<!-- essential stuffs -->
 			"content/env.js",
 			"content/prefs.js",
 			"content/l10n.js",
 			"content/xml-load.js",
 			"content/pages.js",
-			"content/lib/oauth.js",
-			"content/lib/sha1.js",
+			
+			//<!-- utilities -->
 			"content/util/api.js",
 			"content/util/array.js",
 			"content/util/copy-button.js",
@@ -28,6 +29,20 @@
 			"content/util/session-store.js",
 			"content/util/string.js",
 			"content/util/time.js",
+			
+			//<!-- external libraries -->
+			"content/lib/jquery.js",
+			"content/lib/oauth.js",
+			"content/lib/sha1.js",
+			
+			//<!-- core modules -->
+			"content/redirections.js",
+			"content/read-ht-prefs.js",
+			"content/forum-stage.js",
+			"content/core.js",
+			"content/add-class.js",
+
+			//<!-- page utilities -->
 			"content/pages/all.js",
 			"content/pages/country.js",
 			"content/pages/players.js",
@@ -35,6 +50,8 @@
 			"content/pages/youth-player.js",
 			"content/pages/transfer-search-results.js",
 			"content/pages/match.js",
+
+			//<!-- categorized modules -->
 			"content/alert/live-alert.js",
 			"content/alert/new-mail.js",
 			"content/alert/ticker-alert.js",
@@ -161,11 +178,7 @@
 			"content/shortcuts-and-tweaks/team-popup-links.js",
 			"content/shortcuts-and-tweaks/transfer-search-filters.js",
 			"content/shortcuts-and-tweaks/transfer-search-result-filters.js",
-			"content/redirections.js",
-			"content/read-ht-prefs.js",
-			"content/forum-stage.js",
-			"content/core.js",
-			"content/add-class.js",
+	
 			"content/entry.js",
 			"content/ui.js",
 			"content/loader-chrome.js"
