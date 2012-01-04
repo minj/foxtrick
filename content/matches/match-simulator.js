@@ -289,9 +289,13 @@ Foxtrick.util.module.register({
 			
 			var staminaDiscountCheck = doc.getElementById("stamina_discount_check");
 			if (staminaDiscountCheck.checked) {
+				FoxtrickPrefs.setBool("module.MatchSimulator.staminaDiscountOn", true)
 				ft_stamina_discount();
 			}
-
+			else {
+				FoxtrickPrefs.setBool("module.MatchSimulator.staminaDiscountOn", false)
+			}
+			
 			for (var i=0; i< 7; ++i) {
 				if (oldRatings[i] !== undefined) { 
 					var id = 'ft-full-level' + i;
@@ -809,6 +813,8 @@ Foxtrick.util.module.register({
 		var staminaDiscountCheck =  doc.createElement('input');
 		staminaDiscountCheck.id = "stamina_discount_check";
 		staminaDiscountCheck.type = "checkbox";
+		if (FoxtrickPrefs.getBool("module.MatchSimulator.staminaDiscountOn"))
+			staminaDiscountCheck.checked = 'checked';
 		staminaDiscountCheck.addEventListener('click',showLevelNumbers, false);
 		staminaDiscountDiv.appendChild(staminaDiscountCheck);
 		var staminaDiscountLabel =  doc.createElement('span');
