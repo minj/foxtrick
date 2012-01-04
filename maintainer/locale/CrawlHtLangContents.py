@@ -416,12 +416,8 @@ if __name__ == "__main__":
 	success, ht = login( user, pw )
 	
 	while not success:
-		success, ht = login( user, pw )
 		user = raw_input("Login:");
 		pw = raw_input("Password:");
-		
-	
-		
-	
+		success, ht = login( user, pw )
 		
 	crawl(ht, locales_array, outfile)
