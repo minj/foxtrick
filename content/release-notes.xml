@@ -13,6 +13,13 @@
 <item>Please view <xhtml:a href="http://code.google.com/p/foxtrick/source/list">commit history</xhtml:a> at Google Code for details.</item>
 </note>
 
+<note version="0.8.2">
+<item>Korean locale (SI-CH)</item>
+<item>Lithuanian locale (LA-MJ)</item>
+<item>General locale cleaning (CatzHoek)</item>
+<item>Other trivial fixes. (convincedd, CatzHoek)</item>
+</note>
+
 <note version="0.8.1">
 <item><module>ElectionTable</module>: adapted to new election page layout. (convincedd, ryanli)</item>
 <item><module>HTThreadMarker</module>: new style. (convincedd, ryanli)</item>
