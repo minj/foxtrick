@@ -42,6 +42,7 @@ Foxtrick.util.module.register((function() {
 		"68" : "pressing",
 		"70" : "extraTime",
 		"71" : "penaltyShootOut",
+		"73" : "tossing_coin",
 		"90" : "bruised",
 		"91" : { "team": ["injured", "substitution"] },
 		"92" : { "team": ["injured", "substitution"] },
@@ -241,7 +242,8 @@ Foxtrick.util.module.register((function() {
 		"longshot": Foxtrick.InternalPath + 'resources/img/matches/longshot.png',
 		"corner": Foxtrick.InternalPath + 'resources/img/matches/corner.png',
 		"experience": Foxtrick.InternalPath + 'resources/img/matches/exp.png',
-		"winger": Foxtrick.InternalPath + 'resources/img/matches/winger.png'
+		"winger": Foxtrick.InternalPath + 'resources/img/matches/winger.png',
+		"tossing_coin": Foxtrick.InternalPath + 'resources/img/matches/coin.png'
 	}
 	
 	var orderTypes = {
