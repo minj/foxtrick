@@ -353,7 +353,7 @@ Foxtrick.util.module.register({
 				Foxtrick.util.api.retrieve(doc, orderMatchArgs, {cache_lifetime:'session'},
 				function(orderMatchXml, errorText) {
 					if (errorText) {
-						if (loadingOtherMatches) {
+						if (loadingOtherMatches && loadingOtherMatches.parentNode) {
 							loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
 							loadingOtherMatches = null;
 						}
@@ -390,13 +390,13 @@ Foxtrick.util.module.register({
 							if (loadingOtherMatches)
 								loadingOtherMatches.textContent = errorText;
 						}
-						else if (loadingOtherMatches) {
+						else if (loadingOtherMatches && loadingOtherMatches.parentNode) {
 							loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
 							loadingOtherMatches = null;
 						}
 						
 						var getMatchDetails = function(selectedMatchid, isNew) {
-							if (loadingOtherMatches) {
+							if (loadingOtherMatches && loadingOtherMatches.parentNode) {
 								loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
 								loadingOtherMatches = null;
 							}
@@ -411,7 +411,7 @@ Foxtrick.util.module.register({
 							];
 							Foxtrick.util.api.retrieve(doc, selectedMatchArgs, {cache_lifetime:'session'},
 							function(selectedMatchXML, errorText) {
-								if (loadingMatch) {
+								if (loadingMatch && loadingMatch.parentNode) {
 									loadingMatch.parentNode.removeChild(loadingMatch);
 									loadingMatch = null;
 								}
