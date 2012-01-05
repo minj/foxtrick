@@ -10,6 +10,11 @@ if (!Foxtrick)
 
 // outputs a list of strings/objects/errors to FoxTrick log
 Foxtrick.log = function() {
+	try {
+		if (FoxtrickPrefs.getBool("logDisabled"))
+			return;
+	} catch(e) {}
+	
 	var i, concated = "", hasError = false;
 	var args = Array.prototype.slice.apply(arguments);
 	for (i = 0; i < arguments.length; ++i) {
