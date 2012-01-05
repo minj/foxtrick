@@ -89,10 +89,10 @@ Foxtrick.DOMListener = function(target, type, listener, useCapture) {
 			target.addEventListener(type, waitForChanges, useCapture);
 		}, 0)
 	};
-	this.start = function () {Foxtrick.log('start',target, type);
+	this.start = function () {
 		target.addEventListener(type, waitForChanges, useCapture);
 	};
-	this.stop = function () { Foxtrick.log('stop', target, type);
+	this.stop = function () { 
 		target.removeEventListener(type, waitForChanges, useCapture);
 	};
 };
