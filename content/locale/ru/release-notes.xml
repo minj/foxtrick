@@ -13,6 +13,13 @@
 		<item>Пожалуйста, посмотрите <xhtml:a href="http://code.google.com/p/foxtrick/source/list">историю изменений</xhtml:a> на сайте Google Code для деталей.</item>
 	</note>
 
+	<note version="0.8.2">
+		<item>Корейский перевод (SI-CH).</item>
+		<item>Литовский перевод (LA-MJ).</item>
+		<item>Очистка неиспользуемых данных в переводах (CatzHoek).</item>
+		<item>Некоторые мелкие исправления (convincedd, CatzHoek).</item>
+	</note>
+
 	<note version="0.8.1">
 		<item>Модуль <module>ElectionTable</module>: адаптация к новому виду таблицы голосования (convincedd, ryanli).</item>
 		<item>Модуль <module>HTThreadMarker</module>: новый вид (convincedd, ryanli).</item>
