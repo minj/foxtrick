@@ -39,6 +39,13 @@ Foxtrick.Pages.Match = {
 		}
 	},
 
+	hasIndSetPieces: function(ratingstable) {
+		// either iSP level link in that cell or for old matches tactic=no link
+		return ratingstable.rows.length > 10	
+				&& ratingstable.rows[10].cells.length > 1 
+				&& ratingstable.rows[10].cells[1].getElementsByTagName('a').length > 0;
+	},
+
 	isWalkOver: function(ratingstable) {
 		try {
 			for (var i = 1; i <= 7; i++) {

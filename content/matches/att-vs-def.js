@@ -50,7 +50,8 @@ Foxtrick.util.module.register({
 			ratingsTextArray.push(new Array(ratingstable.rows[i].cells[1], ratingstable.rows[i].cells[2]));
 		}
 
-		if (ratingstable.rows.length > 12) { // if there are ratings for indirect free kicks, they are in rows 10 and 11
+		if ( Foxtrick.Pages.Match.hasIndSetPieces(ratingstable) ) { 
+			// if there are ratings for indirect free kicks, they are in rows 10 and 11
 			for (var i = 10; i <= 11; i++) {
 				ratingsArray.push(new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[i].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[i].cells[2])));
 				ratingsTextArray.push(new Array(ratingstable.rows[i].cells[1], ratingstable.rows[i].cells[2]));
@@ -287,7 +288,8 @@ Foxtrick.util.module.register({
 			var percentage=(val1/(val1+val2))*100;
 			values.push(Math.round(percentage));
 		}
-		if (table.rows.length > 12) {
+		if ( Foxtrick.Pages.Match.hasIndSetPieces(table) ) {
+			// if there are ratings for indirect free kicks, they are in rows 10 and 11
 			val1=Foxtrick.Pages.Match.getStatFromCell(table.rows[10].cells[1]);
 			val2=Foxtrick.Pages.Match.getStatFromCell(table.rows[11].cells[2]);
 			percentage=(val1/(val1+val2))*100;
