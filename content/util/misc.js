@@ -352,7 +352,6 @@ Foxtrick.loadSync = function(url) {
 	}
 	catch (e) {
 		// catch cross-domain errors
-		Foxtrick.log(url, ' ', e);
 		return null;
 	}
 };
