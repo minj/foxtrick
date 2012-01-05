@@ -63,7 +63,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		}
 		catch (e) {
 			Foxtrick.log('Foxtrick - background onRequest: ', e);
-			Foxtrick.log(request, Foxtrick.loader.chrome.background);
+			Foxtrick.log(request);
 			sendResponse({ error : 'Foxtrick - background onRequest: ' + e });
 		}
 	});
@@ -287,6 +287,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	Foxtrick.loader.chrome.background.log = function(request, sender, sendResponse) {
 		// @param log - text to dump to console (fennec)
 		dump("FT: "+request.log);
+		Foxtrick.addToDebugLogStorage(request.log);
 	};
 	Foxtrick.loader.chrome.background.addDebugLog = function(request, sender, sendResponse) {
 		// @param log - text to add to debug log storage

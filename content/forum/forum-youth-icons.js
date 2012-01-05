@@ -374,7 +374,7 @@ Foxtrick.util.module.register({
 						openingTag = FoxtrickPrefs.getString("forumSymbol");
 					}
 					else if (openingTag == 'debug'){
-						if (Foxtrick.arch === "Sandboxed") {
+						if (Foxtrick.arch === "Sandboxed" || Foxtrick.platform == "Fennec") {
 							sandboxed.extension.sendRequest(
 								{ req : "getDebugLog" },
 								function(n) {
@@ -492,7 +492,6 @@ Foxtrick.util.module.register({
 					newimage.setAttribute( "class", icons[i].icon_class);
 					newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode."+icons[i].string);
 
-					Foxtrick.log(icons[i].type, icons[i].versions)
 					if (icons[i].versions) {
 						var span = doc.createElement("div");
 						span.className = "ft-pop-up-container icon";

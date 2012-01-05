@@ -351,7 +351,8 @@ Foxtrick.loadSync = function(url) {
 		return req.responseText;
 	}
 	catch (e) {
-		// catch cross-domain errors
+		// catch cross-domain errors and non-existing
+		Foxtrick.log('loadSync: cannot find or load: ', url);
 		return null;
 	}
 };

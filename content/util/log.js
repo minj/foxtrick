@@ -73,19 +73,20 @@ Foxtrick.log = function() {
 			console.trace();
 	}
 	if (typeof(dump) == "function") {
-		var lines = concated.split(/\n/), concated = '';
-		lines = Foxtrick.map ( function(l){
-			concated += l.substr(0,500) + '\n';
-		}, lines);
-		dump(concated + "\n");
+		if (Foxtrick.chromeContext() === "background") {
+			var lines = concated.split(/\n/)
+			lines = Foxtrick.map ( function(l){
+				dump(l.substr(0,500) + '\n');
+			}, lines);
+		}
+		else {
+			// send it via background since fennec doesn't show all dumps from content side
+			sandboxed.extension.sendRequest({ req : "log", log : concated+'\n'});
+		}
 	}
 
 	// add to stored log
-	if (Foxtrick.arch === "Gecko") {
-		if (Foxtrick.chromeContext() === "content")
-			sandboxed.extension.sendRequest({ req : "log", log : concated + "\n"});
-	}
-	else if (Foxtrick.arch === "Sandboxed") {
+	if (Foxtrick.arch === "Sandboxed") {
 		if (Foxtrick.chromeContext() == "content")
 			sandboxed.extension.sendRequest({req : "addDebugLog", log : concated + "\n"});
 		else {
