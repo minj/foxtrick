@@ -45,7 +45,7 @@ var FoxtrickRatings = {
 
 		var tactics;
 		var tacticsLevel;
-		if (ratingstable.rows.length > 12) {
+		if ( Foxtrick.Pages.Match.hasIndSetPieces(ratingstable) ) {
 			tactics=new Array(Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[14].cells[1]), Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[14].cells[2]));
 			tacticsLevel=new Array(Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[15].cells[1]), Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[15].cells[2]));
 		}
