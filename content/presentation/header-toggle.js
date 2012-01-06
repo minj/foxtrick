@@ -122,7 +122,7 @@ Foxtrick.util.module.register({
 			var key  = ('HeaderToggle.'+pathname+'.'+getH2TextContent(n)+'.folded').replace(/\s+/g, '');
 			if (FoxtrickPrefs.getBool(key))
 				toggle(n);
-			else if Foxtrick.isPage('forumDefault'){ //toogle twice to get unread count shown
+			else if (Foxtrick.isPage('forumDefault', doc)){
 				toggle(n);
 				toggle(n);
 			}
