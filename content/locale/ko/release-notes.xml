@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <!-- Notes for localization -->
 <!-- Please keep the overall structure and the tags like <note>, <item>,
@@ -10,7 +10,7 @@
 
 <notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
 <note version="nightly" localized-version="개발 빌드">
-<item>자세한 내용은 Google Code의 <xhtml:a href="http://code.google.com/p/foxtrick/source/list">보고 기록</xhtml:a>을 보세요.</item>
+<item>자세한 내용은 Google Code의 <xhtml:a href="http://code.google.com/p/foxtrick/source/list">보고 기록</xhtml:a>을 참조하세요.</item>
 </note>
 
 <note version="0.8.2">
@@ -25,7 +25,7 @@
 <item><module>HTThreadMarker</module>: 새로운 스타일 추가. (convincedd, ryanli)</item>
 <item><module>TableSort</module>: Hattrick의 정렬과 충돌 방지. (convincedd)</item>
 <item><module>HTMSPrediction</module>, <module>CopyRatings</module>: 새로운 경기 보고서 레이아웃 적용. (convincedd)</item>
-<item><module>LineupShortcut</module>: 이제 비 서포터를위해서도 표시. (ryanli)</item>
+<item><module>LineupShortcut</module>: 이제 비 서포터를 위해서도 표시. (ryanli)</item>
 <item><module>TransferSearchResultFilters</module>: 최신 변경 후에 수정. (convincedd)</item>
 <item><module>SkillTable</module>: 충성도와 모 클럽 보너스 포함. (convincedd)</item>
 </note>
@@ -67,11 +67,11 @@
 </note>
 
 <note version="0.7">
-<item>아이슬란드 언어 추가되었습니다. (LA-LordBastard)</item>
+<item>아이슬란드 언어를 추가하였습니다. (LA-LordBastard)</item>
 <item>플랑드르의 언어는 네덜란드에서 복사하였습니다. (ryanli)</item>
 <item>새로운 모듈 카데고리, <xhtml:a href="#tab=information_aggregation">Information Aggregation</xhtml:a>. (ryanli)</item>
 <item>새로운 모듈 <module>MyMonitor</module> - 나의 Hatrrick에 선택된 팀들의 최근 경기 모니터링. (ryanli)</item>
-<item>새로운 모듈 <module>MarkAllAsRead</module> - 모든 토로장의 스레드를 읽음으로 표시하기 위한 버튼. (ryanli)</item>
+<item>새로운 모듈 <module>MarkAllAsRead</module> - 모든 토론장의 스레드를 읽음으로 표시하기 위한 버튼. (ryanli)</item>
 <item>새로운 모듈 <module>ShowFriendlyBooked</module> - 시리즈 페이지에 친선경기가 예약되어 있는지 표시합니다. (ryanli)</item>
 <item>FoxtrickAlert, AlertCustomSound, AlertCustomOff 모듈을 통합하여 모듈 <module>TickerAlert</module>으로 다시 작성되었습니다. (ryanli)</item>
 <item>Module <module>MatchPlayerColouring</module> loads match lineup from XML. (ryanli)</item>
@@ -81,7 +81,7 @@
 <item>모듈 <module>StaffMarker</module> - 이제 커스텀 마커를 위한 <xhtml:a href="http://www.json.org/">JavaScript Object Notation</xhtml:a> 을 사용합니다.. (ryanli)</item>
 <item>모듈 <module>ExtraShortcuts</module> 안에 새로운 라디오 추가하였습니다. Balkaradio and Downtime Radio. (ljushaff, ryanli)</item>
 <item>프레임에서 Yaplet 채팅을 열기 위한 <module>LeagueAndMatchChat</module>의 옵션 제거되었습니다. (ryanli)</item>
-<item>많은 사소한 수정. (ryanli, Mod-spambot)</item>
+<item>다수의 사소한 수정. (ryanli, Mod-spambot)</item>
 </note>
 
 <note version="0.6.2">
@@ -103,7 +103,7 @@
 <item>새로운 Hattrick CHPP API인 OAuth 인터페이스가 상속되었습니다. (ryanli)</item>
 <item>모듈 <module>LiveAlert</module> - HT Live에서 득점했을 때 경보합니다 (ryanli)</item>
 <item>모듈 <module>OldStyleFace</module> - 이전 Hattrick 스타일로 얼굴 표시합니다. (Aimo_Kanuuna)</item>
-<item>모듈 <module>NtPeek</module> - Hattrick의 NT/U20 경기 쌀짝봅니다. (ryanli)</item>
+<item>모듈 <module>NtPeek</module> - Hattrick의 NT/U20 경기 살짝봅니다. (ryanli)</item>
 <item>모듈 <module>SeriesFlags</module> - 구단주와 팀링크 옆에 사용자의 나라와 시리즈를 표시합니다. 이미지는 <xhtml:a href="http://www.fantamondi.it/HTMS/">HTMS</xhtml:a>에 의해서 제공됩니다. (taised, ryanli)</item>
 <item>모듈 <module>HTMSPoints</module> - 선수의 <xhtml:a href="http://www.fantamondi.it/HTMS/index.php?page=nt&amp;lang=en">HTMS Points</xhtml:a>를 표시, 예-수치화된 능력과 잠재력. (taised)</item>
 <item>모듈 <module>FriendlyInterface</module> -  경기 라인업 페이지와 풀 네임을 표시하는 옵션이며 대표팀 선수의 경우 국가대표팀 링크 표시. (ryanli)</item>
