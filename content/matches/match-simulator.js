@@ -85,7 +85,7 @@ Foxtrick.util.module.register({
 		
 		var showLevelNumbers = function(ev) { 
 			// only listen to rating prediction changes
-			if ( !Foxtrick.hasClass(ev.target.parentNode, 'posLabel') && ev.target.id != 'stamina_discount_check') 
+			if ( !Foxtrick.hasClass(ev.target.parentNode, 'posLabel') && ev.target.id != 'ft_stamina_discount_check') 
 				return;
 			Foxtrick.log('showLevelNumbers')
 			var overlayRatings = fieldOverlay.getElementsByClassName('overlayRatings');
@@ -287,7 +287,7 @@ Foxtrick.util.module.register({
 				otherChange[j].textContent = ''
 			}
 			
-			var staminaDiscountCheck = doc.getElementById("stamina_discount_check");
+			var staminaDiscountCheck = doc.getElementById("ft_stamina_discount_check");
 			if (staminaDiscountCheck.checked) {
 				FoxtrickPrefs.setBool("module.MatchSimulator.staminaDiscountOn", true)
 				ft_stamina_discount();
@@ -807,11 +807,12 @@ Foxtrick.util.module.register({
 
 		// stamina discount
 		var staminaDiscountDiv =  doc.createElement('div');
-		staminaDiscountDiv.id = "stamina_discount";
+		staminaDiscountDiv.id = "ft_stamina_discount";
 		staminaDiscountDiv.className = "overlaySector overlayMidfield";
 		staminaDiscountDiv.setAttribute('style',"left: 395px !important");
+		staminaDiscountDiv.setAttribute('title',Foxtrickl10n.getString("matchOrder.staminaDiscount.title"));
 		var staminaDiscountCheck =  doc.createElement('input');
-		staminaDiscountCheck.id = "stamina_discount_check";
+		staminaDiscountCheck.id = "ft_stamina_discount_check";
 		staminaDiscountCheck.type = "checkbox";
 		if (FoxtrickPrefs.getBool("module.MatchSimulator.staminaDiscountOn"))
 			staminaDiscountCheck.checked = 'checked';

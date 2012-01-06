@@ -147,11 +147,33 @@ Foxtrick.util.module.register({
 	},
 
 	showVersion : function(doc) {
+		var featureHighlight = function() {
+			var css = "[class^='ft'], [id^='ft'], [class^='foxtrick'], [id^='foxtrick']  { background-color:yellow !important; }";
+			var featureCss = doc.getElementById("ft-feature-highlight-css");
+			// remove old CSS if exists
+			if (featureCss) {
+				featureCss.parentNode.removeChild(featureCss);
+				FoxtrickPrefs.setBool("featureHighlight", false);			
+			}
+			else {
+				// inject CSS
+				Foxtrick.util.inject.css(doc, css, "ft-feature-highlight-css");
+				FoxtrickPrefs.setBool("featureHighlight", true);			
+			}
+		};
+		
 		// show version number on the bottom of the page
 		var bottom = doc.getElementById("bottom");
 		if (bottom) { // sometimes bottom is not loaded yet. just skip it in those cases
 			var server = bottom.getElementsByClassName("currentServer")[0];
-			server.textContent += " / FoxTrick " + Foxtrick.version();
+			var span = doc.createElement("span");			
+			span.textContent += " / FoxTrick " + Foxtrick.version();
+			span.title = Foxtrickl10n.getString('featureHighlight.title');
+			span.id = "ft_versionInfo";
+			Foxtrick.listen(span, "click", featureHighlight, false);
+			server.appendChild(span);
+			if (FoxtrickPrefs.getBool("featureHighlight"))
+				featureHighlight();
 		}
 		else Foxtrick.log('bottom not loaded yet');
 	},
