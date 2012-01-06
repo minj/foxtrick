@@ -14,7 +14,7 @@ Foxtrick.util.module.register({
 		var modoption = doc.getElementById("cfModFunctions");
 		if(modoption){
 			var content = doc.getElementById("ctl00_ctl00_CPContent_pnlScrollContent");
-			var div = Foxtrick.createFeaturedElement(doc, this, 'div');
+			var div = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.ForumModeratorIconLinks, 'div');
 			div.className = "ft-mod-link-icons";
 		
 			var links = modoption.getElementsByTagName("a");
