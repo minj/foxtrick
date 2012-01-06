@@ -28,7 +28,7 @@ Foxtrick.util.module.register({
 		header.insertBefore(numHeader, header.firstChild);
 
 		for (var i = 1; i < table.rows.length; ++i) {
-			var numCell = table.rows[i].insertCell(0);
+			var numCell = Foxtrick.insertFeaturedCell(table.rows[i], this, 0);
 			numCell.appendChild(doc.createTextNode(String(i)));
 
 			var goals = table.rows[i].cells[4].innerHTML.match(/\d+/g);

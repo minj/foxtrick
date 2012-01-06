@@ -57,7 +57,7 @@ Foxtrick.util.module.register({
  		// add links box
 		var ownBoxBody=null;
 		if (add_links) {
-			ownBoxBody = doc.createElement("div");
+			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, "div");
 			var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );

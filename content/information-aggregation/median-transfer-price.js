@@ -41,7 +41,7 @@ Foxtrick.util.module.register({
 
 		if (count>0) {
 			var currency = Foxtrick.trim(table.rows[5].cells[3].textContent.match(/\D+$/)[0]);
-			var row = table.insertRow(table.rows.length);
+			var row = Foxtrick.insertFeaturedRow(table, this, table.rows.length);
 			var cell = row.insertCell(0);
 			cell.className = "left bold";
 			cell.colSpan = 3;
@@ -52,7 +52,7 @@ Foxtrick.util.module.register({
 			cell = row.insertCell(2);
 			cell.colSpan = 2;
 
-			row = table.insertRow(table.rows.length);
+			row = Foxtrick.insertFeaturedRow(table, this, table.rows.length);
 			cell = row.insertCell(0);
 			cell.className = "left bold";
 			cell.colSpan = 3;

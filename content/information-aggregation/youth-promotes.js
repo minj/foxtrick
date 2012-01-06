@@ -33,7 +33,7 @@ Foxtrick.util.module.register({
 					birthdayCell = allDivs[i];
 				}
 			}
-			var promotionCell = doc.createElement("p");
+			var promotionCell = Foxtrick.createFeaturedElement(doc, this, "p");
 			promotionCell.appendChild(doc.createTextNode(message));
 			birthdayCell.appendChild(promotionCell);
 		}

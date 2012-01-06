@@ -77,7 +77,7 @@ Foxtrick.util.module.register({
 				continue;
 			var selectBox = aSelectBoxes[i];
 
-			var inputBoxTop = doc.createElement('input');
+			var inputBoxTop = Foxtrick.createFeaturedElement(doc, this, 'input');
 			inputBoxTop.setAttribute('type', 'text');
 			inputBoxTop.setAttribute('size', '4');
 			inputBoxTop.setAttribute('value', '(xxx.)yyy');
@@ -85,7 +85,7 @@ Foxtrick.util.module.register({
 			inputBoxTop.setAttribute('onfocus', 'setActiveTextBox("' + boxId + '", "quickViewBox viewActive", "(xxx.)yyy")');
 			inputBoxTop.setAttribute('onblur', 'setInactiveTextBox("' + boxId + '", "quickViewBox viewInactive", "(xxx.)yyy")');
 
-			var goButton = doc.createElement('input');
+			var goButton = Foxtrick.createFeaturedElement(doc, this, 'input');
 			goButton.setAttribute('id', 'foxtrick_forum_postbox_okbutton_' + i);
 			inputBoxTop.setAttribute('id', boxId);
 			goButton.setAttribute('type', 'button');

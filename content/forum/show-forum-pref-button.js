@@ -16,7 +16,7 @@ Foxtrick.util.module.register({
 			return;
 		var separator = doc.createElement("div");
 		separator.className = "borderSeparator";
-		var strong = doc.createElement("strong");
+		var strong = Foxtrick.createFeaturedElement(doc, this, "strong");
 		var link = doc.createElement("a");
 		link.href = "/MyHattrick/Preferences/ForumSettings.aspx";
 		link.textContent = Foxtrickl10n.getString("forum.preferences");

@@ -178,7 +178,7 @@ Foxtrick.util.module.register({
 
 
 		if (!msg_window) return; // ie mailbox overview
-		var templates_div = doc.createElement("div");
+		var templates_div = Foxtrick.createFeaturedElement(doc, this, "div");
 		templates_div.setAttribute("class", "folderItem");
 		templates_div.setAttribute('style','padding-top:5px;');
 		templates_div.id = templatesDivId;
@@ -191,7 +191,7 @@ Foxtrick.util.module.register({
 			appendTemplate(templates[i], templates_div);
 
 		// display add new template button
-		var controls_div = doc.createElement("div");
+		var controls_div = Foxtrick.createFeaturedElement(doc, this, "div");
 		controls_div.id = sControlsID;
 		controls_div.style.paddingTop = "5px";
 		var new_button = doc.createElement("a");

@@ -224,7 +224,7 @@ Foxtrick.util.module.register({
 		copy_posting_img.title = Foxtrickl10n.getString('CopyPosting').replace('%s', Foxtrickl10n.getString('CopyPosting.style.last') );
 		copy_posting_img.setAttribute('copy_style','last');
 
-		var copy_posting_div = doc.createElement("div");
+		var copy_posting_div = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.CopyPosting, "div");
 		if (Foxtrick.util.layout.isSupporter(doc))
 			copy_posting_div.className = "ft-pop-up-container ft-copy";
 		else
@@ -246,7 +246,7 @@ Foxtrick.util.module.register({
 		}
 		copy_posting_div.appendChild(list);
 
-		var copy_posting_link_archive = doc.createElement('a');
+		var copy_posting_link_archive = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.CopyPosting, 'a');
 		copy_posting_link_archive.setAttribute('href','javascript:void(0);');
 		copy_posting_link_archive.title = Foxtrickl10n.getString('CopyPosting').replace('%s', Foxtrickl10n.getString('CopyPosting.style.ht-ml'));
 		copy_posting_link_archive.setAttribute('is_archive_link','true');
@@ -296,7 +296,7 @@ Foxtrick.util.module.register({
 						var spoilers = [];
 						var getQuotes = function(node, level) {
 							if (level == HideLevel && node.getElementsByClassName('quote').length >= 1 ) {
-								var spoiler_show = doc.createElement('blockquote');
+								var spoiler_show = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.FormatPostingText, 'blockquote');
 								spoiler_show.id = 'spoilshow_qouteNum' + (++numSpoilerQuotes);
 								spoiler_show.className = 'spoiler ft-dummy';
 								var open_link = doc.createElement('a');
@@ -626,7 +626,7 @@ Foxtrick.util.module.register({
 
 			// add default facecard ----------------------------
 			if (do_default_facecard && user && !user_avatar) {
-				var user_avatar = doc.createElement("div");
+				var user_avatar = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.AddDefaultFaceCard, "div");
 				user_avatar.className = "faceCard";
 				user_avatar.style.backgroundImage = "url(\"/Img/Avatar/silhouettes/sil1.png\")";
 				user.insertBefore(user_avatar,user.firstChild);

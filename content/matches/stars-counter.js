@@ -64,7 +64,7 @@ Foxtrick.util.module.register({
 
 		// add the information to the page
 		var mainBody = doc.getElementById("mainBody");
-		var container = doc.createElement("p");
+		var container = Foxtrick.createFeaturedElement(doc, this, ("p");
 		mainBody.appendChild(container);
 		var title = doc.createElement("strong");
 		title.appendChild(doc.createTextNode(Foxtrickl10n.getString("total_stars") + ": "));

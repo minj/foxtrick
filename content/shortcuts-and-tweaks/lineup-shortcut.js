@@ -124,7 +124,7 @@ Foxtrick.util.module.register({
 	//@param type = "normal"|"NT"|"U20"|"youth"
 	_Add_Lineup_Link : function(doc, row, teamid, playerid, matchid, type) {
 		//the link is: /Club/Matches/MatchLineup.aspx?MatchID=<matchid>&TeamID=<teamid>
-		var cell = row.insertCell(-1); // append as the last cell
+		var cell = Foxtrick.insertFeaturedCell(row, this, -1); // append as the last cell
 		cell.className = "ft-lineup-cell";
 		var link = Foxtrick.createFeaturedElement(doc, this, "a");
 		if (type == "youth")

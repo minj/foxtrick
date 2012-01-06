@@ -256,7 +256,7 @@ Foxtrick.util.module.register({
 			if (button_ok && Foxtrickl10n.isStringAvailableLocal("forumPreview.send")) button_ok.setAttribute( "value",  Foxtrickl10n.getString( 'forumPreview.send'));
 			
 			//if (button_cancel) button_cancel.setAttribute( "tabindex",  "12" );
-			var new_button = doc.createElement( "input" );
+			var new_button = Foxtrick.createFeaturedElement(doc, this,  "input" );
 			new_button.setAttribute( "value", Foxtrickl10n.getString( 'preview' ));
 			new_button.setAttribute( "title",  Foxtrickl10n.getString( 'show_preview_from_post' ) );
 			new_button.setAttribute( "id",  "ft-forum-preview-button" );
@@ -272,7 +272,7 @@ Foxtrick.util.module.register({
 
 		msg_window.parentNode.insertBefore( preview_ctrl_div, msg_window );
 
-		var preview_div = doc.createElement( "div" );
+		var preview_div = Foxtrick.createFeaturedElement(doc, this,  "div" );
 		preview_div.id = "ft-forum-preview-area";
 		preview_div.setAttribute( "class", "cfMessageNoAvatar hidden" );
 		preview_div.style.border = "1px dotted grey";

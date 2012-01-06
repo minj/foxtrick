@@ -30,7 +30,7 @@ Foxtrick.util.module.register({
 		var links = Foxtrick.util.module.get("Links").getLinks("nationalteamlink", { "countryid": countryid,"ntteamid":ntteamid,"LeagueOfficeTypeID":LeagueOfficeTypeID }, doc, this);
 
 		var added=0;
-		ownBoxBody = doc.createElement("div");
+		ownBoxBody = Foxtrick.createFeaturedElement(doc, this, "div");
 		var header = Foxtrickl10n.getString("foxtrick.links.boxheader");
 		var ownBoxBodyId = "foxtrick_links_content";
 		ownBoxBody.setAttribute( "id", ownBoxBodyId );

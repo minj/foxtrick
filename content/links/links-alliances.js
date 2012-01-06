@@ -25,7 +25,7 @@ Foxtrick.util.module.register({
 
  				var links = Foxtrick.util.module.get("Links").getLinks("federationlink", { "federationid" : allianceId}, doc, this );
 				if (links.length > 0) {
-					ownBoxBody = doc.createElement("div");
+					ownBoxBody = Foxtrick.createFeaturedElement(doc, this, "div");
 					var header = Foxtrickl10n.getString(
 						"foxtrick.links.boxheader" );
 					var ownBoxBodyId = "foxtrick_links_content";

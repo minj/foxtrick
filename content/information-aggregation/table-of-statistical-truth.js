@@ -20,12 +20,12 @@ Foxtrick.util.module.register({
 		var leaguetable = doc.getElementById("mainBody").getElementsByTagName('table')[0]
 		var insertBefore = leaguetable.nextSibling;
 
-		var tableHeader = doc.createElement("h2");
+		var tableHeader = Foxtrick.createFeaturedElement(doc, this, "h2");
 		tableHeader.textContent = Foxtrickl10n.getString("truthTable.table");
 		tableHeader.className = "ft-expander-unexpanded";
 		tableHeader.id = 'ft-truth-table-h2';
 		insertBefore.parentNode.insertBefore(tableHeader, insertBefore);
-		var div = doc.createElement("div");
+		var div = Foxtrick.createFeaturedElement(doc, this, "div");
 		div.className = "ft-truth-table-div";
 		insertBefore.parentNode.insertBefore(div, insertBefore);
 		var table;

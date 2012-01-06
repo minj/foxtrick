@@ -46,7 +46,7 @@ Foxtrick.util.module.register({
 			}	
 				
 			var parent = 0;
-			var div = doc.createElement("div");
+			var div = Foxtrick.createFeaturedElement(doc, this, "div");
 			Foxtrick.toggleClass(div,"pager");
 			if(ll){
 				parent = ll.parentNode.parentNode;

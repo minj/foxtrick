@@ -119,6 +119,7 @@ Foxtrick.util.module.register({
 			Foxtrick.listen(n, "click", function(ev){toggle(ev.target);}, false);
 			
 			Foxtrick.addClass(n, 'ft-expander-expanded');
+			Foxtrick.makeFeaturedElement(n, Foxtrick.modules.HeaderToggle); 
 			var key  = ('HeaderToggle.'+pathname+'.'+getH2TextContent(n)+'.folded').replace(/\s+/g, '');
 			if (FoxtrickPrefs.getBool(key))
 				toggle(n);

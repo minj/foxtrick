@@ -295,7 +295,7 @@ Foxtrick.util.module.register({
 			boxBody.appendChild(table);
 		};
 
-		var	boxBody = doc.createElement("div");
+		var	boxBody = Foxtrick.createFeaturedElement(doc, this, "div");
 		var header = Foxtrickl10n.getString("foxtrick.TeamStats.label");
 		var box = Foxtrick.addBoxToSidebar(doc, header, boxBody, 1);
 		box.id = "ft-team-stats-box";

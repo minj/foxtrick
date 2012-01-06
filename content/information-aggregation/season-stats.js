@@ -66,7 +66,7 @@ Foxtrick.util.module.register({
 			selectbox.appendChild(option);
 			--s;
 		}
-		selectbox.value=selected_season;
+		selectbox.value = selected_season;
 		doc.getElementById('mainBody').insertBefore(selectbox,doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlMatchType'));
 
 

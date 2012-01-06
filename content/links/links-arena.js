@@ -26,7 +26,7 @@ Foxtrick.util.module.register({
 											"roof" : Foxtrick.trimnum(arenaTable.rows[5].cells[1].textContent),
 											"vip" : Foxtrick.trimnum(arenaTable.rows[6].cells[1].textContent),  }, doc, this );
 				if (links.length > 0) {
-					ownBoxBody = doc.createElement("div");
+					ownBoxBody = Foxtrick.createFeaturedElement(doc, this, "div");
 					var header = Foxtrickl10n.getString(
 						"foxtrick.links.boxheader" );
 					var ownBoxId = "ft-links-box";

@@ -89,7 +89,7 @@ Foxtrick.util.module.register({
 
 		var confName = Foxtrick.trim( link.lastChild.data );
 		
-		var leaveConf = doc.createElement("div");
+		var leaveConf = Foxtrick.createFeaturedElement(doc, this, ("div");
 		leaveConf.setAttribute("id", "ftLC-btn" + foldersCounter);
 		leaveConf.setAttribute("class","ft_actionicon foxtrickRemove float_right");
 		leaveConf.setAttribute( "title", Foxtrickl10n.getString('leave_conf_button'));

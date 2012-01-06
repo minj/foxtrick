@@ -544,7 +544,7 @@ Foxtrick.util.module.register({
 		}
 
 		if (show_other || true) {
-			var otherbar = doc.createElement( "div" );
+			var otherbar = Foxtrick.createFeaturedElement(doc, this,  "div" );
 			otherbar.setAttribute( "class" , "HTMLToolbar");
 			otherbar.setAttribute( "style" , "float:right;");
 
@@ -572,7 +572,7 @@ Foxtrick.util.module.register({
 		}
 
 		if (show_youth || true) {
-			var youthbar = doc.createElement( "div" );
+			var youthbar = Foxtrick.createFeaturedElement(doc, this,  "div" );
 			youthbar.setAttribute( "class" , "HTMLToolbar");
 			youthbar.setAttribute( "style" , "float:left;");
 

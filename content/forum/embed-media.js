@@ -166,7 +166,7 @@ Foxtrick.util.module.register({
 		}
 		
 		var convertLinkToEmbeddingHeader = function( media_link ){
-			var div = doc.createElement('div');
+			var div = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.EmbedMedia, 'div');
 			var header_a = doc.createElement('a');
 			header_a.textContent = media_link["link"].textContent;
 			header_a.href = media_link["link"].href

@@ -75,9 +75,9 @@ Foxtrick.util.module.register({
 			if (totSkills>0) {
 				//creating the new element
 				var table = doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlplayerInfo').getElementsByTagName('table').item(0);
-				var row = table.insertRow(table.rows.length);
+				var row = Foxtrick.insertFeaturedRow(table, this, table.rows.length);
 				row.className = "ft-htms-points";
-				var link = Foxtrick.insertFeaturedCell(row, this, 0);
+				var link = row.insertCell(0);
 				link.appendChild(getLink(skillList));
 				var points = row.insertCell(1);
 				var calcResult=this.calc(skillArray);

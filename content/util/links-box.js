@@ -16,7 +16,7 @@ Foxtrick.util.links = {
 			var basepref = "module.LinksCustom." + pagemodule;
 
 			if (ownBoxBody==null) {
-				ownBoxBody = doc.createElement("div");
+				ownBoxBody = Foxtrick.createFeaturedElement(doc, Foxtrick.modules[pagemodule], "div");
 				var ownBoxBodyId = "foxtrick_links_content";
 				var header = Foxtrickl10n.getString("foxtrick.links.boxheader");
 				ownBoxBody.id = ownBoxBodyId;

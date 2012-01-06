@@ -68,7 +68,7 @@ Foxtrick.util.module.register({
 			var hours = Math.floor((timeDiff - days * timeDay) / timeHour);
 
 			var str = "(" + days + " " + Foxtrickl10n.getString("foxtrick.datetimestrings.days") + " " + hours + " " + Foxtrickl10n.getString("foxtrick.datetimestrings.hours") + ")";
-			var info = doc.createElement("span");
+			var info = Foxtrick.createFeaturedElement(doc, this, "span");
 			info.className = "ft-youth-series-estimation";
 			info.textContent = str;
 			if (days < 2) { // minimum 1 day

@@ -21,7 +21,7 @@ Foxtrick.util.module.register({
 		if (ratingstable == null) return;
 		if (Foxtrick.Pages.Match.isWalkOver(ratingstable)) return;
 		if (!Foxtrick.Pages.Match.isCorrectLanguage(ratingstable)) { // incorrect language
-			var row = ratingstable.insertRow(-1);
+			var row = Foxtrick.insertFeaturedRow(ratingstable, this, -1);
 			var cell = row.insertCell(0);
 			cell.setAttribute("colspan" , 3);
 			cell.innerHTML = Foxtrickl10n.getString( "foxtrick.matches.wronglang" );
@@ -74,7 +74,7 @@ Foxtrick.util.module.register({
 			var selectedRating = this.OPTIONS[k];
 			if (!FoxtrickPrefs.isModuleOptionEnabled("Ratings", selectedRating)) continue;
 
-			var row = ratingstable.insertRow(-1);
+			var row = Foxtrick.insertFeaturedRow(ratingstable, this, -1);
 			row.className='ft_rating_table_row';
 
 			var cell = row.insertCell(0);

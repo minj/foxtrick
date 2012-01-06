@@ -118,7 +118,7 @@ Foxtrick.util.module.register({
 		if (links[1] != null) {
 			num_links += links[1].length;
 		}
-		ownBoxBody = doc.createElement("div");
+		ownBoxBody = Foxtrick.createFeaturedElement(doc, this, "div");
 		var header = Foxtrickl10n.getString("foxtrick.links.boxheader");
 		var ownBoxId = "ft-links-box";
 		var ownBoxBodyId = "foxtrick_links_content";
