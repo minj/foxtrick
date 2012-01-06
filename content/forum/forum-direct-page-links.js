@@ -13,8 +13,8 @@ Foxtrick.util.module.register({
 	run : function(doc) {
 		
 		//current setup is optimized for standart layout, "disable" for simple skin for now
-		if (!Foxtrick.util.layout.isStandard(doc) )
-			return;
+		//if (!Foxtrick.util.layout.isStandard(doc) )
+		//	return;
 			
 		/* Figure out Hattrick Setting about how many posts per page should be displayed */
 		var getPostPerPage = function(nextNodes, prevNodes, currentPostId){
@@ -113,26 +113,31 @@ Foxtrick.util.module.register({
 			var end;
 			var start;
 			
-			if(maxpage <= 18){
+			//standart skin
+			var supportedButtons = 18;
+			if(!Foxtrick.util.layout.isStandard(doc))
+				supportedButtons = 14;
+			
+			if(maxpage <= supportedButtons){
 				end = maxpage;
 				start = 1;
 			}
 			else if( ( maxpage - currentPage ) < 8)
 			{
 				end = maxpage;
-				start = end - 17;
+				start = end - (supportedButtons - 1);
 			} 
 			else if( currentPage < 7)
 			{
 				start = 1;
-				end = start + 17 > maxpage ? maxpage:start + 17;
+				end = start + supportedButtons - 1 > maxpage ? maxpage:start +supportedButtons - 1;
 			} 
 			else
 			{
 				start = currentPage - 6;
-				end = start + 17 > maxpage ? maxpage:start + 17;
-				if(end - start < 17)
-					start = end - 17;
+				end = start + (supportedButtons - 1) > maxpage ? maxpage:start + supportedButtons - 1;
+				if(end - start < + supportedButtons - 1)
+					start = end - (supportedButtons - 1);
 			}
 			
 			for(var p = start; p <= end; p++)
@@ -157,11 +162,11 @@ Foxtrick.util.module.register({
 					a.appendChild(doc.createTextNode('1'));
 					a.href = href;
 				}
-				else if( (p == start + 1) && currentPage != 1 && currentPage > 7 && maxpage > 18)
+				else if( (p == start + 1) && currentPage != 1 && currentPage > 7 && maxpage > supportedButtons)
 				{
 					a.appendChild(doc.createTextNode('...'));
 				}
-				else if( (p == end - 1) && currentPage != maxpage && (currentPage != maxpage - 2) && maxpage > 18)
+				else if( (p == end - 1) && currentPage != maxpage && (currentPage != maxpage - 2) && maxpage > supportedButtons)
 				{
 					a.appendChild(doc.createTextNode('...'));
 				}
