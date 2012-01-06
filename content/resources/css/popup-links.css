@@ -5,6 +5,10 @@
 	display:inline;
 }
 
+.myht1  a{
+	white-space: nowrap;
+}
+
 #ctl00_ctl00_CPContent_CPMain_repLeagueTable td .myht1 {
 	display:block;
 }
