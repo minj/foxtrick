@@ -46,9 +46,9 @@ Foxtrick.util.module.register({
 				showPlayerInfo();
 
 			if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'SwapPositions')
-				&& !doc.getElementById('swap_positions')) {
+				&& !doc.getElementById('ft_swap_positions')) {
 				var swapPositionsDiv =  doc.createElement('div');
-				swapPositionsDiv.id = "swap_positions";
+				swapPositionsDiv.id = "ft_swap_positions";
 				var swapPositionsLink =  doc.createElement('span');
 				swapPositionsLink.setAttribute('onclick',"javascript:ft_swap_positions();");
 				swapPositionsLink.textContent = Foxtrickl10n.getString("matchOrder.swapPositions");
@@ -105,12 +105,12 @@ Foxtrick.util.module.register({
 					// add last match to details
 					var details = doc.getElementById('details');
 					var specials = details.getElementsByClassName('specials')[0];
-					if (specials && !details.getElementsByClassName('extraInfo')[0]) {
+					if (specials && !details.getElementsByClassName('ft-extraInfo')[0]) {
 						var playerid = Number(specials.parentNode.getAttribute('playerid'));
 						if (playerid) {
 							var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, playerid);
 							var span = doc.createElement('span');
-							span.className = 'extraInfo';
+							span.className = 'ft-extraInfo';
 							span.appendChild(doc.createElement('br'));
 							span.appendChild(doc.createTextNode( player.lastMatchText ));
 							specials.appendChild(span);
@@ -125,20 +125,20 @@ Foxtrick.util.module.register({
 				var cards_health = doc.getElementsByClassName('cards_health');
 				for (var i=0; i<cards_health.length; ++i) {
 					var playerNode = cards_health[i].parentNode;
-					if (!playerNode.id || Foxtrick.hasClass(cards_health[i], 'specialty')) 
+					if (!playerNode.id || Foxtrick.hasClass(cards_health[i], 'ft-specialty')) 
 						continue;
 					
 					var id = Number(playerNode.id.match(/list_playerID(\d+)/i)[1]);
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
 					if (player.specialityNumber != 0) {
-						Foxtrick.addClass(cards_health[i], 'specialty');
+						Foxtrick.addClass(cards_health[i], 'ft-specialty');
 						var title = Foxtrickl10n.getSpecialityFromNumber(player.specialityNumber);
 						var alt = Foxtrickl10n.getShortSpeciality(title);
 						Foxtrick.addImage(doc, cards_health[i], { 
 							alt: alt, 
 							title: title, 
 							src: Foxtrick.InternalPath + 'resources/img/matches/spec'+player.specialityNumber+'.png',
-							class: 'specialty'
+							class: 'ft-specialty'
 						});
 					}
 				}

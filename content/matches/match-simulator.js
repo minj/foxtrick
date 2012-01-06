@@ -26,10 +26,10 @@ Foxtrick.util.module.register({
 		// updating or adding htms prediction based on rating prediction and seleted match of another team
 		var updateHTMSPrediction = function() {
 			// create or unhide overlayHTMS
-			var overlayHTMS = doc.getElementById('overlayHTMS');
+			var overlayHTMS = doc.getElementById('ft-overlayHTMS');
 			if (!overlayHTMS) {
 				overlayHTMS = doc.createElement('div');
-				overlayHTMS.id = "overlayHTMS";
+				overlayHTMS.id = "ft-overlayHTMS";
 				doc.getElementById('fieldOverlay').appendChild(overlayHTMS);
 			}
 			else Foxtrick.removeClass(overlayHTMS,'hidden');
@@ -180,7 +180,7 @@ Foxtrick.util.module.register({
 				text += doc.getElementById('tacticLevelLabel').textContent+'\n\n';
 
 				// add other match info if appropriate
-				var matchSelect = doc.getElementById('matchSelect');
+				var matchSelect = doc.getElementById('ft-matchSelect');
 				if (matchSelect) {
 					var otherMatchId = matchSelect.value;
 					if (otherMatchId > 0) {
@@ -221,7 +221,7 @@ Foxtrick.util.module.register({
 						if (otherMatchId && otherMatchId > 0) {
 							var ratingInnerBox = overlayRatings[i].parentNode;
 							text += '[q]' + ratingInnerBox.getElementsByClassName('percentNumber')[0].textContent + '[/q]';
-							var divs = ratingInnerBox.getElementsByClassName('otherWrapper')[0].getElementsByTagName('div');
+							var divs = ratingInnerBox.getElementsByClassName('ft-otherWrapper')[0].getElementsByTagName('div');
 							text += '[b]' + divs[0].textContent + '[/b]\n';
 							text += divs[1].textContent + '\n';
 							text += divs[2].textContent + '\n';
@@ -321,11 +321,11 @@ Foxtrick.util.module.register({
 			Foxtrick.addClass(fieldOverlay,'visible');
 				
 			// opened first time
-			if (!doc.getElementById('copyRatingsButton')) {
+			if (!doc.getElementById('ft-copyRatingsButton')) {
 				// close button tweaked.
 				var hideOverlay = function(ev) {
 					Foxtrick.removeClass(fieldOverlay,'visible');
-					var overlayHTMS = doc.getElementById('overlayHTMS');
+					var overlayHTMS = doc.getElementById('ft-overlayHTMS');
 					if (overlayHTMS) 
 						Foxtrick.addClass(overlayHTMS,'hidden');
 				};
@@ -335,15 +335,14 @@ Foxtrick.util.module.register({
 				var copyButton = doc.createElement('input');
 				copyButton.type = 'button';
 				copyButton.value = Foxtrickl10n.getString('Copy');
-				copyButton.id = 'copyRatingsButton';
-				copyButton.setAttribute('style','float: left; position: absolute; bottom: 0px; left: 10px;');
+				copyButton.id = 'ft-copyRatingsButton';
 				fieldOverlay.appendChild(copyButton);
 				Foxtrick.listen(copyButton, 'click', copyRatings, false);
 				
 				// display selection of matches to compare to
 				// first, get team id of other team 
 				var loadingOtherMatches = Foxtrick.util.note.createLoading(doc);
-				doc.getElementById("overlayHTMS").appendChild(loadingOtherMatches);
+				doc.getElementById("ft-overlayHTMS").appendChild(loadingOtherMatches);
 				
 				var matchid = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
 				var orderMatchArgs = [
@@ -403,7 +402,7 @@ Foxtrick.util.module.register({
 						
 							// get selected match
 							var loadingMatch = Foxtrick.util.note.createLoading(doc);
-							var overlayHTMS = doc.getElementById("overlayHTMS");
+							var overlayHTMS = doc.getElementById("ft-overlayHTMS");
 							overlayHTMS.insertBefore(loadingMatch, overlayHTMS.firstChild);
 							var selectedMatchArgs = [
 								["file", "matchdetails"],
@@ -516,7 +515,7 @@ Foxtrick.util.module.register({
 									else {
 										// no other match ratings had been shown. add other ratings containers and the ratings
 										var otherWrapper = doc.createElement('div');
-										otherWrapper.className = 'otherWrapper';
+										otherWrapper.className = 'ft-otherWrapper';
 										
 										var label = doc.createElement('div');
 										label.className = 'posLabelOther';
@@ -571,7 +570,7 @@ Foxtrick.util.module.register({
 						
 
 						var select = doc.createElement('select');
-						select.id = 'matchSelect';
+						select.id = 'ft-matchSelect';
 						var option = doc.createElement('option');
 						option.value = -1;
 						option.textContent = Foxtrickl10n.getString ('matchOrder.noMatchSelected');
@@ -610,7 +609,7 @@ Foxtrick.util.module.register({
 							// if no match selected, cleanup old ratings display
 							// reset currentRatingsOther, so percentBars and htms gets cleaned as well
 							if (selectedMatchid == -1) {
-								var otherWrappers = fieldOverlay.getElementsByClassName('otherWrapper'), otherWrapper, count=0;
+								var otherWrappers = fieldOverlay.getElementsByClassName('ft-otherWrapper'), otherWrapper, count=0;
 								while (otherWrapper = otherWrappers[0]) {
 									otherWrapper.parentNode.removeChild(otherWrapper);
 									currentRatingsOther[count++] = undefined;

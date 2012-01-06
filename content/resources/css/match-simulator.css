@@ -17,7 +17,7 @@
 }
 
 /* other teams ratings */
-.otherWrapper{
+.ft-otherWrapper{
 	border-top: 1px solid #79A777;
 	padding-top: 3px;
 	padding-bottom: 3px;
@@ -51,17 +51,17 @@ html[dir="ltr"] #tacticLevelLabelOther {
 
 
 /* htms box */
-#overlayHTMS {
+#ft-overlayHTMS {
 	background-color: white;
 	border: 2px solid #79A777;
 	top: 520px;
 	position: absolute;
 	width: 597px;
 }
-html[data-theme="simple"] #overlayHTMS {
+html[data-theme="simple"] #ft-overlayHTMS {
 	min-height: 270px;
 }
-html[data-theme="standard"] #overlayHTMS {
+html[data-theme="standard"] #ft-overlayHTMS {
 	min-height: 310px;
 }
 #overlayHTMSCurrent {
@@ -144,3 +144,8 @@ html[dir="rtl"] #fieldOverlay.displayRight {
 html[dir="ltr"] #fieldOverlay.displayRight {
 	left: 775px !important;
 }
+
+#ft-copyRatingsButton {
+	float: left; position: absolute; bottom: 0px; left: 10px;
+}
+				
