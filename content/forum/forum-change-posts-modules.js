@@ -21,7 +21,7 @@ Foxtrick.util.module.register({
 			|| Foxtrick.isPage("forumWritePost", doc)) {
 			try{
 				var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
-				var rep = new Array("<pre>$1</pre>", "");
+				var rep = new Array("<pre class='ft-dummy'>$1</pre>", "");
 				if (Foxtrick.isPage("forumWritePost", doc))
 					var messages = doc.getElementsByClassName("message");
 				else

@@ -26,9 +26,11 @@ Foxtrick.util.module.register({
 				if (table.rows[row].cells[3]) {
 					if (table.rows[row].cells[1].getElementsByTagName('a').length !=0
 					&& table.rows[row].cells[1].textContent != table.rows[row].cells[1].getElementsByTagName('a')[0].textContent) {
+						Foxtrick.addClass(table.rows[row].cells[3],'ft-dummy');
 						var val = Number(table.rows[row].cells[3].textContent.replace(',','.'));
-						if (FoxtrickPrefs.getInt("module.RatingsDisplay.value") == 0) 
+						if (FoxtrickPrefs.getInt("module.RatingsDisplay.value") == 0) {
 							table.rows[row].cells[3].textContent = (val/4+0.75).toFixed(2);
+						}
 						else {
 							if (row == table.rows.length-1)  {// total average
 								table.rows[row].cells[3].textContent = mean_home;
@@ -43,6 +45,7 @@ Foxtrick.util.module.register({
 				if (table.rows[row].cells[4]) {
 					if (table.rows[row].cells[2].getElementsByTagName('a').length !=0
 					&& table.rows[row].cells[2].textContent != table.rows[row].cells[2].getElementsByTagName('a')[0].textContent) {
+						Foxtrick.addClass(table.rows[row].cells[4],'ft-dummy');
 						var val = Number(table.rows[row].cells[4].textContent.replace(',','.'));
 						if (FoxtrickPrefs.getInt("module.RatingsDisplay.value") == 0) 
 							table.rows[row].cells[4].textContent = (val/4+0.75).toFixed(2);
@@ -67,6 +70,7 @@ Foxtrick.util.module.register({
 			for (var row = 1; row < table.rows.length; ++row) {
 				var mean_avg = 0, mean_max = 0;
 				for (var cells = table.rows[row].cells.length-1; cells >1 ; --cells) {
+					Foxtrick.addClass(table.rows[row].cells[cells],'ft-dummy');
 					var val_max = Number(table.rows[row].cells[cells].getElementsByTagName('a')[0].textContent.replace(',','.'));
 					var val_avg = Number(table.rows[row].cells[cells].getElementsByTagName('span')[1].textContent.replace(',','.'));
 					//denominations display style

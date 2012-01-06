@@ -282,7 +282,7 @@ Foxtrick.util.module.register({
 				var numSpoilerQuotes = 0;
 				
 				var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
-				var rep = new Array("<pre>$1</pre>", "");
+				var rep = new Array("<pre class='ft-dummy'>$1</pre>", "");
 				var messages = doc.getElementsByClassName("message");
 				for (var i = 0; i < messages.length; ++i){
 					var count_pre = Foxtrick.substr_count(messages[i].innerHTML, '[pre');
@@ -298,7 +298,7 @@ Foxtrick.util.module.register({
 							if (level == HideLevel && node.getElementsByClassName('quote').length >= 1 ) {
 								var spoiler_show = doc.createElement('blockquote');
 								spoiler_show.id = 'spoilshow_qouteNum' + (++numSpoilerQuotes);
-								spoiler_show.className = 'spoiler';
+								spoiler_show.className = 'spoiler ft-dummy';
 								var open_link = doc.createElement('a');
 								open_link.href = "javascript:showSpoiler('qouteNum" + numSpoilerQuotes + "');";
 								open_link.textContent = Foxtrickl10n.getString('ShowNestedQoutes');
