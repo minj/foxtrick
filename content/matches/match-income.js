@@ -44,7 +44,7 @@ Foxtrick.util.module.register({
 		// get rid of possible fraction
 		sum = Math.floor(sum);
 
-		var tr2 = doc.createElement('tr');
+		var tr2 = this.createElement(doc,'tr');
 		var td2a = doc.createElement('td');
 		var td2b = doc.createElement('td');
 		tbody.appendChild(tr2);

@@ -98,7 +98,7 @@ Foxtrick.util.module.register({
 		if (targetNode) {
 			if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", "Supporterstats")
 				&& Foxtrick.util.layout.isSupporter(doc)) {
-					var link = doc.createElement('a');
+					var link = this.createElement(doc,'a');
 					link.className = 'ft_extra-shortcuts';
 					link.href = "/World/Stats/";
 
@@ -120,7 +120,7 @@ Foxtrick.util.module.register({
 				}
 
 				if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", "Transfers")) {
-					var link = doc.createElement('a');
+					var link = this.createElement(doc,'a');
 					link.className = 'ft_extra-shortcuts';
 					link.href = "/Club/Transfers/";
 
@@ -142,7 +142,7 @@ Foxtrick.util.module.register({
 				}
 
 				if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", "Prefs")) {
-					var link = doc.createElement('a');
+					var link = this.createElement(doc,'a');
 					link.className = 'ft_extra-shortcuts';
 					link.href = "/MyHattrick/Preferences/";
 
@@ -164,7 +164,7 @@ Foxtrick.util.module.register({
 				}
 
 				if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", "ManageCHPP")) {
-					var link = doc.createElement('a');
+					var link = this.createElement(doc,'a');
 					link.className = 'ft_extra-shortcuts';
 					link.href = "/MyHattrick/Preferences/ExternalAccessGrants.aspx";
 
@@ -186,7 +186,7 @@ Foxtrick.util.module.register({
 				}
 
 				if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", "FoxTrickPrefs")) {
-					var link = doc.createElement('a');
+					var link = this.createElement(doc,'a');
 					link.className = 'ft_extra-shortcuts';
 					link.href = 'javascript:void();'
 					Foxtrick.listen(link, 'click', function() {FoxtrickPrefs.show('#tab=on_page&view-by=page');}, false);
@@ -211,7 +211,7 @@ Foxtrick.util.module.register({
 				var radio = this.RADIOS[i];
 				if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", radio)) {
 
-					var link = doc.createElement('a');
+					var link = this.createElement(doc,'a');
 					link.className = 'ft_extra-shortcuts';
 					//link.target="_blank";
 					link.id = radio+'Id';

@@ -82,7 +82,7 @@ Foxtrick.util.module.register({
 		if (parentDiv === null) {
 			parentDiv = doc.getElementById('foxtrick_addactionsbox_parentDiv');
 			if (parentDiv === null) {
-				parentDiv = doc.createElement("div");
+				parentDiv = this.createElement(doc,"div");
 				parentDiv.id = "foxtrick_addactionsbox_parentDiv";
 				Foxtrick.addBoxToSidebar(doc,
 					Foxtrickl10n.getString("foxtrick.tweaks.actions"),
@@ -100,7 +100,7 @@ Foxtrick.util.module.register({
 
 		//Display GuestBook button only if team is HT-Supporter
 		if (isSupporter) {
-			var guestbookLink = doc.createElement("a");
+			var guestbookLink = this.createElement(doc,"a");
 			guestbookLink.href = "/Club/Manager/Guestbook.aspx?teamid=" + teamId;
 			guestbookLink.title = Foxtrickl10n.getString("foxtrick.tweaks.writeinguestbook");
 			guestbookLink.id = this.GUESTBOOK_LINK_ID;

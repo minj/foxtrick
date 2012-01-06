@@ -21,7 +21,7 @@ Foxtrick.util.module.register({
 		Foxtrick.addClass(time, 'ft-dummy');
 		
 		// set up local time div at the header
-		var localTime = doc.createElement("div");
+		var localTime = this.createElement(doc,"div");
 		localTime.id = "ft-local-time";
 		var updateTime = function() {
 			localTime.textContent = Foxtrick.util.time.buildDate(null, true, true);

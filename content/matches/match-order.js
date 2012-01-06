@@ -47,7 +47,7 @@ Foxtrick.util.module.register({
 
 			if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'SwapPositions')
 				&& !doc.getElementById('ft_swap_positions')) {
-				var swapPositionsDiv =  doc.createElement('div');
+				var swapPositionsDiv =  Foxtrick.modules.MatchOrderInterface.createElement(doc,'div');
 				swapPositionsDiv.id = "ft_swap_positions";
 				var swapPositionsLink =  doc.createElement('span');
 				swapPositionsLink.setAttribute('onclick',"javascript:ft_swap_positions();");

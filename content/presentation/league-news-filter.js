@@ -49,7 +49,7 @@ Foxtrick.util.module.register({
 		};
 
 		var newsfeed = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLLUFeed");
-		var selectdiv=doc.createElement('div');
+		var selectdiv=this.createElement(doc,'div');
 		selectdiv.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.LeagueNewsFilter.Filter")));
 		selectdiv.appendChild(doc.createTextNode(' '));
 		var select=doc.createElement('select');

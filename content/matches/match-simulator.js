@@ -28,7 +28,7 @@ Foxtrick.util.module.register({
 			// create or unhide overlayHTMS
 			var overlayHTMS = doc.getElementById('ft-overlayHTMS');
 			if (!overlayHTMS) {
-				overlayHTMS = doc.createElement('div');
+				overlayHTMS = Foxtrick.modules.MatchSimulator.createElement(doc,'div');
 				overlayHTMS.id = "ft-overlayHTMS";
 				doc.getElementById('fieldOverlay').appendChild(overlayHTMS);
 			}
@@ -805,17 +805,17 @@ Foxtrick.util.module.register({
 
 
 		// stamina discount
-		var staminaDiscountDiv =  doc.createElement('div');
+		var staminaDiscountDiv =  this.createElement(doc,'div');
 		staminaDiscountDiv.id = "ft_stamina_discount";
 		staminaDiscountDiv.className = "overlaySector overlayMidfield";
-		staminaDiscountDiv.setAttribute('style',"left: 395px !important");
-		staminaDiscountDiv.setAttribute('title',Foxtrickl10n.getString("matchOrder.staminaDiscount.title"));
+		staminaDiscountDiv.setAttribute('style', "left: 395px !important");
 		var staminaDiscountCheck =  doc.createElement('input');
 		staminaDiscountCheck.id = "ft_stamina_discount_check";
 		staminaDiscountCheck.type = "checkbox";
+		staminaDiscountCheck.setAttribute('title', Foxtrickl10n.getString("matchOrder.staminaDiscount.title"));
 		if (FoxtrickPrefs.getBool("module.MatchSimulator.staminaDiscountOn"))
 			staminaDiscountCheck.checked = 'checked';
-		staminaDiscountCheck.addEventListener('click',showLevelNumbers, false);
+		staminaDiscountCheck.addEventListener('click', showLevelNumbers, false);
 		staminaDiscountDiv.appendChild(staminaDiscountCheck);
 		var staminaDiscountLabel =  doc.createElement('span');
 		staminaDiscountLabel.textContent = Foxtrickl10n.getString("matchOrder.staminaDiscount");

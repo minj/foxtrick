@@ -23,7 +23,7 @@ Foxtrick.util.module.register({
 
 		// add a column to show the № of matches
 		var header = table.getElementsByTagName("tr")[0];
-		var numHeader = doc.createElement("th");
+		var numHeader = this.createElement(doc,"th");
 		numHeader.appendChild(doc.createTextNode("#"));
 		header.insertBefore(numHeader, header.firstChild);
 

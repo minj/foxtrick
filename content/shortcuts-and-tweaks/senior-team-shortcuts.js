@@ -29,7 +29,7 @@ Foxtrick.util.module.register({
 		}
 		if (pos1==-1) return; // not a team leftbox
 	// last lineup
-		var li = doc.createElement("li");
+		var li = this.createElement(doc,"li");
 		var lastmatchlink = doc.createElement("a");
 		lastmatchlink.setAttribute('href', '/Club/Matches/MatchLineup.aspx?MatchID=&TeamID='+teamid+'&useArchive=True');
 		lastmatchlink.appendChild(doc.createTextNode(Foxtrickl10n.getString( 'LastLineup' )));
@@ -41,7 +41,7 @@ Foxtrick.util.module.register({
 		else bl_header[0].parentNode.appendChild(li);
 
 		// coach make link
-			var li2 = doc.createElement("li");
+		var li2 = this.createElement(doc,"li");
 		var coachlink = doc.createElement("a");
 		if (teamid<3000||teamid>=5000) { // normal teams
 			if (teamid!=ownteamid) {

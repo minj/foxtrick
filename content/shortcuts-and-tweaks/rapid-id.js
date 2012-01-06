@@ -145,7 +145,7 @@ Foxtrick.util.module.register({
 
 		var header = doc.getElementById("header");
 		var online = doc.getElementById("online");
-		var container = doc.createElement("div");
+		var container = this.createElement(doc,"div");
 		header.insertBefore(container, online.nextSibling);
 		container.id = "ft_rapidid";
 		container.className='float_right';

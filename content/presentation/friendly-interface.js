@@ -77,7 +77,7 @@ Foxtrick.util.module.register({
 				var u20Id = ntNode.getElementsByTagName("U20TeamId")[0].textContent;
 				var replace = function(team, id) {
 					highlight.textContent = text.substr(0, text.indexOf(team));
-					var link = doc.createElement("a");
+					var link = this.createElement(doc,"a");
 					link.textContent = team;
 					link.href = "/Club/NationalTeam/NationalTeam.aspx?teamId=" + id;
 					highlight.appendChild(link);
