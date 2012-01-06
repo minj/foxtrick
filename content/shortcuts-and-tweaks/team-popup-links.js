@@ -162,14 +162,14 @@ Foxtrick.util.module.register({
 		var links = this.LINKS;
 
 		var addSpan = function(aLink) {
-			if (Foxtrick.hasClass(aLink.parentNode,'myht1'))
+			if (Foxtrick.hasClass(aLink.parentNode,'ft-popup-span'))
 				return;
 
 			if ((aLink.href.search(/Club\/\?TeamID=/i) > -1 && aLink.href.search(/redir_to/i)===-1 && FoxtrickPrefs.isModuleOptionEnabled("TeamPopupLinks", "TeamLinks"))
 				|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && FoxtrickPrefs.isModuleOptionEnabled("TeamPopupLinks", "UserLinks"))) {
 				var par = aLink.parentNode;
 				var span = doc.createElement("span");
-				span.className = "myht1";
+				span.className = "ft-popup-span";
 						
 				
 				if (  !Foxtrick.isPage("forumViewThread", doc) && !Foxtrick.isPage("forumWritePost", doc) && !Foxtrick.isPage("forumModWritePost", doc)  )

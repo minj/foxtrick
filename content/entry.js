@@ -240,7 +240,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 					m.run(doc); 
 					
 					var diff = (new Date()).getTime() - begin;
-					if( diff >50 ) Foxtrick.log (m.MODULE_NAME, " run time: ", diff, " ms")
+					if( diff /*>50*/ ) Foxtrick.log (m.MODULE_NAME, " run time: ", diff, " ms")
 				};
 		});
 
@@ -279,7 +279,7 @@ Foxtrick.entry.change = function(ev) {
 		// ignore changes list
 		if (ev.originalTarget && ev.originalTarget.className
 			&& (ev.originalTarget.className=='boxBody'
-				|| ev.originalTarget.className=='myht1'))
+				|| ev.originalTarget.className=='ft-popup-span'))
 			return;
 
 		Foxtrick.log("call modules change functions");

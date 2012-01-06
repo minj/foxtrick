@@ -1,11 +1,11 @@
 @-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws) {
 
-.myht1 {
+.ft-popup-span {
 	position: relative;
 	display:inline;
 }
 
-#ctl00_ctl00_CPContent_CPMain_repLeagueTable td .myht1 {
+#ctl00_ctl00_CPContent_CPMain_repLeagueTable td .ft-popup-span {
 	display:block;
 }
 
@@ -35,7 +35,7 @@ ul.ft-popup-list-down {
 	top:12px; /* = line height */
 }
 
-.myht1:hover ul.ft-popup-list {
+.ft-popup-span:hover ul.ft-popup-list {
 	display: block !important;
 }
 ul.ft-popup-list > li {
@@ -57,7 +57,7 @@ ul.ft-popup-list > li > a,  ul.ft-popup-list > li > span {
 ul.ft-popup-list > li:hover {
 	background-color: #c3e7c7 !important;
 }
-#ticker div ul.ft-popup-list, div.message span.myht1:hover ul.ft-popup-list, div.signature-trunc span.myht1:hover ul.ft-popup-list {
+#ticker div ul.ft-popup-list, div.message span.ft-popup-span:hover ul.ft-popup-list, div.signature-trunc span.ft-popup-span:hover ul.ft-popup-list {
 	display: none;
 }
 div.cfMessage, div.edited, div.cfHeader, div.feedItem, div.cfUserInfo, div.signature, div.playerInfo, .alert {
