@@ -170,6 +170,11 @@ Foxtrick.util.module.register({
 				var par = aLink.parentNode;
 				var span = doc.createElement("span");
 				span.className = "myht1";
+						
+				
+				if (  !Foxtrick.isPage("forumViewThread", doc) && !Foxtrick.isPage("forumWritePost", doc) && !Foxtrick.isPage("forumModWritePost", doc)  )
+					Foxtrick.addClass(aLink, "ft-nowrap");
+				
 				par.insertBefore(span, aLink);
 
 				// to show a pop-up!
