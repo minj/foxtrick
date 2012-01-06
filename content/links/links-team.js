@@ -25,27 +25,28 @@ Foxtrick.util.module.register({
 
 	AddLinksRight : function(doc) {
 		if (!this.isTeamPage(doc)) {return;}
-		var div = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
+		var alldivs = doc.getElementsByTagName('div');
 		var ownBoxBody=null;
-		if(!div)
-			return;
+		for (var j = 0; j < alldivs.length; j++) {
+			if (alldivs[j].className=="main mainRegular") {
+				var teaminfo = this.gatherLinks( alldivs[j], doc );
 
-		var teaminfo = this.gatherLinks( div, doc );
+				var links = Foxtrick.util.module.get("Links").getLinks("teamlink", teaminfo, doc, this );
+				if (links.length > 0) {
+					ownBoxBody = doc.createElement("div");
+					var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
+					var ownBoxBodyId = "foxtrick_links_content";
+					ownBoxBody.id = ownBoxBodyId;
 
-		var links = Foxtrick.util.module.get("Links").getLinks("teamlink", teaminfo, doc, this );
-		if (links.length > 0) {
-			ownBoxBody = doc.createElement("div");
-			var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
-			var ownBoxBodyId = "foxtrick_links_content";
-			ownBoxBody.id = ownBoxBodyId;
-
-			for (var k = 0; k < links.length; k++) {
-				links[k].link.className ="inner";
-				ownBoxBody.appendChild(links[k].link);
+					for (var k = 0; k < links.length; k++) {
+						links[k].link.className ="inner";
+						ownBoxBody.appendChild(links[k].link);
+					}
+					var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
+					box.id = "ft-links-box";
+				}
+				break;
 			}
-			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
-			box.id = "ft-links-box";
-
 		}
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,teaminfo);
 	},
