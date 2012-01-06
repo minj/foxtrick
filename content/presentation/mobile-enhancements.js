@@ -5,7 +5,9 @@
  * @author convinced
  */
 
-({
+if(0) 
+if (Foxtrick.platform == "Fennec")
+  Foxtrick.util.module.register({
 	MODULE_NAME : "MobileEnhancements",
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
@@ -18,7 +20,8 @@
 		'all':				{ match:{pattern:"."	,result:true},	size:{'simple':770, standard:980},	css:''}
 	},
 
-	onLoad : function() {
+	onLoad : function() { 
+	try {
 		var pageactionsContainer = document.getElementById('pageactions-container');
 		var pageActions = this.pageActions;
 
@@ -30,11 +33,22 @@
 			action.className = 'ft-pageaction';
 
 			// page action click
-			action.addEventListener('click',function(ev){
-				var type = ev.target.getAttribute('type');
-				FoxtrickPrefs.setString('module.MobileEnhancements.selection', type)
-				var css = this.getStyle(type);
-				sandboxed.extension.sendRequest({ req : "replace_css", css:css ,id:'foxtrick-pageaction-css', size: pageActions[type].size});
+			action.addEventListener('click', function(ev){
+				try {
+					var type = ev.target.getAttribute('type');
+					Foxtrick.sessionSet('MobileEnhancements.selection', type);
+					var css = Foxtrick.modules.MobileEnhancements.getStyle(type);
+					// background to content message
+					Foxtrick.log('action click ', Foxtrick.modules.MobileEnhancements.pageActions[type].size);
+					sandboxed.extension.sendRequest({ 
+						req: "replaceCss", 
+						css: css,
+						id: 'foxtrick-pageaction-css', 
+						size: Foxtrick.modules.MobileEnhancements.pageActions[type].size
+					});
+				} catch (e){
+					Foxtrick.log(e);
+				}
 			},false);
 			pageactionsContainer.insertBefore(action, pageactionsContainer.firstChild);
 
@@ -46,33 +60,33 @@
 					return Foxtrick.isHtUrl(url) &&
 						((url.search(new RegExp(pageActions[type].match.pattern,'i'))!==-1)
 								===	pageActions[type].match.result);
-				} catch(e){Foxtrick.log(e)}
+				} catch(e){
+					Foxtrick.log(e);
+				}
 			});
 		}
+	} catch(e){
+		Foxtrick.log(e);
+	}
 	},
 
-	run : function(doc) {
-		var pageActions = this.pageActions;
-		var getStyle = this.getStyle;
-		var setStyle = this.setStyle;
-		var setMetaViewport = this.setMetaViewport;
-
+	run : function(doc) { 
 		// rescale to use all space
 		if (doc.getElementById('ctl00_ctl00_CPContent_ucSubMenu_ucLogin_txtUserName')!==null) {
-			var css = getStyle('all');
-			setStyle(content.document,'foxtrick-pageaction-css', css, pageActions['all'].size);
+			var css = this.getStyle('all');
+			this.setStyle(content.document,'foxtrick-pageaction-css', css, this.pageActions['all'].size);
 		}
-		else if (FoxtrickPrefs.getString('module.MobileEnhancements.selection')!=='all') {
-			var css = getStyle('mainContent');
-			setStyle(content.document,'foxtrick-pageaction-css', css, pageActions['mainContent'].size);
+		else if (Foxtrick.sessionGet('MobileEnhancements.selection') !== 'all') {
+			var css = this.getStyle('mainContent');
+			this.setStyle(content.document,'foxtrick-pageaction-css', css, this.pageActions['mainContent'].size);
 		}
 		else
-			setMetaViewport(doc, "device-width");
+			this.setMetaViewport(doc, "device-width");
 
-		// listener to viewport resizing
-		sandboxed.extension.onRequest.addListener(function(request, sender, sendResponse) {
-			if (request.req=='replace_css') {
-				setStyle(content.document, request.id, request.css, request.size);
+		// listener to viewport resizing from background page action
+		sandboxed.extension.onRequest.addListener( function(request, sender, sendResponse) {			
+			if (request.req=='replaceCss') {
+				Foxtrick.modules.MobileEnhancements.setStyle(content.document, request.id, request.css, request.size);
 			}
 		});
 	},
@@ -81,7 +95,8 @@
 		Foxtrick.log('setMetaViewport size: ',width)
 		var html = doc.getElementsByTagName('html')[0];
 		var old_viewport = doc.getElementById('foxtrick-viewport');
-		if (old_viewport!==null) html.removeChild(old_viewport);
+		if (old_viewport !== null) 
+			html.removeChild(old_viewport);
 
 		var meta = doc.createElement('meta');
 		meta.id = "foxtrick-viewport";
@@ -91,18 +106,17 @@
 	},
 
 	setStyle : function(doc, id, css, size) {
-		var pageActions = this.pageActions;
-		for (var i in pageActions) {
-			Foxtrick.unload_css_permanent(Foxtrick.InternalPath + "resources/css/" + pageActions[i].css);
-			Foxtrick.log('unload: ',Foxtrick.InternalPath + "resources/css/" + pageActions[i].css);
+		for (var i in this.pageActions) {
+			Foxtrick.unload_css_permanent(Foxtrick.InternalPath + "resources/css/" + this.pageActions[i].css);
+			Foxtrick.log('unload: ',Foxtrick.InternalPath + "resources/css/" + this.pageActions[i].css);
 		}
 		Foxtrick.load_css_permanent(Foxtrick.InternalPath + "resources/css/" + css);
-		Foxtrick.log('load: ',Foxtrick.InternalPath + "resources/css/" + pageActions[i].css);
+		Foxtrick.log('load: ',Foxtrick.InternalPath + "resources/css/" + this.pageActions[i].css);
 		var size = Foxtrick.util.layout.isRtl(doc) ? size.standard : size.simple;
 		this.setMetaViewport(doc, size+'px');
 	},
 
-	getStyle : function(title) {
+	getStyle : function(title) { 
 		return this.pageActions[title].css;
 	}
 });
