@@ -665,8 +665,8 @@ if (Function.prototype.bind == null) {
 
 // List of categories
 Foxtrick.moduleCategories = {
-	INFORMATION_AGGREGATION : 'information_aggregation',
-	SHORTCUTS_AND_TWEAKS : 'shortcuts_and_tweaks',
+	INFORMATION_AGGREGATION : 'informationAggregation',
+	SHORTCUTS_AND_TWEAKS : 'shortcutsAndTweaks',
 	PRESENTATION : 'presentation',
 	MATCHES : 'matches',
 	FORUM : 'forum',
