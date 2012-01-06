@@ -11,14 +11,46 @@ Foxtrick.util.module.register({
 	CSS: Foxtrick.InternalPath + "resources/css/forum-direct-page-links.css",
 
 	run : function(doc) {
-
-		var current = Foxtrick.getParameterFromUrl( Foxtrick.getHref(doc), "n" );
-		if(!current)
-			current = 1;
+	
+		/* Figure out Hattrick Setting about how many posts per page should be displayed */
+		var getPostPerPage = function(nextNodes, prevNodes, currentPostId){
+			var step = 0;
+			
+			if(nextNodes.length && nextNodes[0])
+				var steptonext = Math.abs(currentPostId - Foxtrick.getParameterFromUrl( nextNodes[0].parentNode.href, "n"));
+			
+			if(prevNodes.length && prevNodes[0])
+				var steptolast = Math.abs(currentPostId - Foxtrick.getParameterFromUrl( prevNodes[0].parentNode.href, "n"));
+			
+			step = Math.max( steptonext,steptolast );
+			
+			if(isNaN(steptonext))
+				step = steptolast;
+			else if(isNaN(steptolast))
+				step = steptonext;
+			
+			return step;
+		}
+		
+		/* Figure out the maximum amount of pages in this thread */
+		var getMaxPages = function(nextNodes, lastNodes, postPerPage) {
+			if(lastNodes.length){
+				var lastpagestart = Foxtrick.getParameterFromUrl( lastNodes[0].parentNode.href, "n" );
+				var nextpagestart = Foxtrick.getParameterFromUrl( nextNodes[0].parentNode.href, "n" );
+				var consider = Math.max(lastpagestart, nextpagestart) + postPerPage - 1;
+				return  Math.ceil( consider / postPerPage);
+			}
+			return null;
+		}
 			
 		var left = doc.getElementsByClassName("threadPagingLeft");
 		var right = doc.getElementsByClassName("threadPagingRight");
 		
+		//is a one pager
+		if(!left && !right)
+			return;
+		
+		//shouldn't happen but would horrible fail atm
 		if(left.length != right.length)
 			return;
 		
@@ -38,13 +70,14 @@ Foxtrick.util.module.register({
 				next = ll.getElementsByClassName("next");
 				prev = rr.getElementsByClassName("prev");
 				first = rr.getElementsByClassName("first");
-				if(!next.length && !prev.length){
+				if(!next.length && !prev.length)
 					return;
-				} else {
-					
+				else {
+					//we switched to RTL language
 				}
 			}	
 				
+			//re-parent existing links them to our container
 			var parent = 0;
 			var div = Foxtrick.createFeaturedElement(doc, this, "div");
 			Foxtrick.toggleClass(div,"pager");
@@ -57,34 +90,22 @@ Foxtrick.util.module.register({
 				div.appendChild(rr);
 			}
 			
-			//entries per page
-			var step = 0;
-			if(next.length && next[0])
-				var steptonext = Math.abs(current - Foxtrick.getParameterFromUrl( next[0].parentNode.href, "n"));
-			if(prev.length && prev[0])
-				var steptolast = Math.abs(current - Foxtrick.getParameterFromUrl( prev[0].parentNode.href, "n"));
-			step = Math.max(steptonext,steptolast);
-			if(isNaN(steptonext))
-				step = steptolast;
-			else if(isNaN(steptolast))
-				step = steptonext;
-
-			//currentpage
-			var currentPage = Math.ceil( current / step );
-			
-			//maxpage
-			var maxpage;
-			if(last.length){
-				var lastpagestart = Foxtrick.getParameterFromUrl( last[0].parentNode.href, "n" );
-				var nextpagestart = Foxtrick.getParameterFromUrl( next[0].parentNode.href, "n" );
-				var consider = Math.max(lastpagestart, nextpagestart) + step -1;
-				maxpage = Math.ceil( consider / step);
-			}
-			else
+			//get current situation
+			//current post id
+			var currentPostId = Foxtrick.getParameterFromUrl( Foxtrick.getHref(doc), "n" );
+			if(!currentPostId)
+				currentPostId = 1;
+			//post per page, current page, maximum page count
+			var postPerPage = getPostPerPage(next, prev, currentPostId);
+			var currentPage = Math.ceil( currentPostId / postPerPage );
+			var maxpage = getMaxPages(next, last, postPerPage);
+			if(!maxpage)
 				maxpage = currentPage;
-				
-			//
 		
+			/* Everthing below is basicly visual configuration, with current styles there is room for 18 links
+			 * 
+			 * Determine range of displayed links
+			 */
 			var end;
 			var start;
 			
@@ -113,7 +134,7 @@ Foxtrick.util.module.register({
 			for(var p = start; p <= end; p++)
 			{
 				var href = Foxtrick.getHref(doc);
-				href =  href.replace(/n=\d+/i, "n=" + (current - (currentPage-p)*step));
+				href =  href.replace(/n=\d+/i, "n=" + (currentPostId - (currentPage-p)*postPerPage));
 		
 				var a = doc.createElement("a");
 				Foxtrick.toggleClass(a,"page");
@@ -143,7 +164,7 @@ Foxtrick.util.module.register({
 				else if( (p == end) && currentPage != maxpage )
 				{
 					var href = Foxtrick.getHref(doc);
-					href =  href.replace(/n=\d+/i, ("n=" + (((maxpage-1)*step)+1)));
+					href =  href.replace(/n=\d+/i, ("n=" + (((maxpage-1)*postPerPage)+1)));
 					a.appendChild(doc.createTextNode(maxpage));
 					a.href = href;
 				}
