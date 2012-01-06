@@ -78,7 +78,7 @@ Foxtrick.util.module.register({
 
 		//Inserting the table
 		var htmstable = targetNode.appendChild(doc.createElement('table'));
-		htmstable.id='htmstable';
+		htmstable.id='ft-htmstable';
 
 		//Inserting header
 		var lang = FoxtrickPrefs.getString("htLanguage");
@@ -118,7 +118,7 @@ Foxtrick.util.module.register({
 			if (loading)
 				loading.parentNode.removeChild(loading);
 
-			var htmstable = doc.getElementById('htmstable');
+			var htmstable = doc.getElementById('ft-htmstable');
 			var row = htmstable.rows[htmstable.rows.length-1];
 			var cell;
 
@@ -143,13 +143,13 @@ Foxtrick.util.module.register({
 			var graph = cell.appendChild(doc.createElement('div'));
 			graph.className = "ft-htms-graph";
 			var windiv = graph.appendChild(doc.createElement('div'));
-			windiv.className = "ft-htms-bar ft-htms-stats-win";
+			windiv.className = "htms-bar htms-stats-win";
 			windiv.style.width = winprob+"%";
 			var drawdiv = graph.appendChild(doc.createElement('div'));
-			drawdiv.className = "ft-htms-bar ft-htms-stats-draw";
+			drawdiv.className = "htms-bar htms-stats-draw";
 			drawdiv.style.width = drawprob+"%";
 			var lossdiv = graph.appendChild(doc.createElement('div'));
-			lossdiv.className = "ft-htms-bar ft-htms-stats-loss";
+			lossdiv.className = "htms-bar htms-stats-loss";
 			// use minus to prevent from overall sum exceeding 100%
 			// when there is rounding up
 			lossdiv.style.width = (100 - parseFloat(winprob) - parseFloat(drawprob)) + "%";

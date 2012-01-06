@@ -1,4 +1,4 @@
-.ft-htms-bar {
+.htms-bar {
 	height: 20px;
 	display: inline-block;
 }
@@ -7,14 +7,14 @@
 	border: 1px solid black;
 }
 
-.ft-htms-stats-win {
+.htms-stats-win {
 	background-color: white;
 }
 
-.ft-htms-stats-draw {
+.htms-stats-draw {
 	background-color: #ddd;
 }
 
-.ft-htms-stats-loss {
+.htms-stats-loss {
 	background-color: #849d84;
 }

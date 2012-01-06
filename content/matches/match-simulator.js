@@ -46,7 +46,7 @@ Foxtrick.util.module.register({
 				overlayHTMSPrevious.id = "overlayHTMSPrevious";
 				var table = overlayHTMSPrevious.getElementsByTagName('table')[0];
 				if (table) {
-					table.id = 'htmstablePrevious';
+					table.id = 'ft-htmstablePrevious';
 					var h2 = overlayHTMSPrevious.getElementsByTagName('h2')[0];
 					h2.textContent = Foxtrickl10n.getString("matchOrder.previousPrediction");
 					var link = overlayHTMSPrevious.getElementsByTagName('a')[0];

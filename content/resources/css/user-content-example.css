@@ -61,17 +61,17 @@
 }
 
 /* the bar indicating win probability */
-.ft-htms-stats-win {
+.htms-stats-win {
 	background-color: green;
 }
 
 /* the bar indicating draw probability */
-.ft-htms-stats-draw {
+.htms-stats-draw {
 	background-color: gray;
 }
 
 /* the bar indicating loss probability */
-.ft-htms-stats-loss {
+.htms-stats-loss {
 	background-color: red;
 }
 
