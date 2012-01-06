@@ -21,7 +21,7 @@ Foxtrick.util.module.register({
 			// data is an Object with attributes leagueId, seriesName,
 			// and seriesId
 			var buildFromData = function(data) {
-				var flag = doc.createElement("span");
+				var flag = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.SeriesFlags, "span");
 				if (data["leagueId"]!=0) {
 					flag.className = "ft-series-flag";
 					var countryId = Foxtrick.XMLData.getCountryIdByLeagueId(data["leagueId"]);

@@ -895,7 +895,7 @@ Foxtrick.util.module.register({
 			});
 		};
 		var addTableDiv = function() {
-			var tablediv = doc.createElement("div");
+			var tablediv = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.SkillTable, "div");
 			tablediv.id = "ft_skilltablediv";
 			tablediv.className = "ft_skilltablediv";
 			if (Foxtrick.Pages.TransferSearchResults.isTransferSearchResultsPage(doc)) {

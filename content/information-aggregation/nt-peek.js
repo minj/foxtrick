@@ -49,7 +49,7 @@ Foxtrick.util.module.register({
 
 		var insertBefore = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ucForumSneakpeek_updSneakpeek");
 
-		var container = doc.createElement("div");
+		var container = Foxtrick.createFeaturedElement(doc, this, "div");
 		container.className = "ft-nt-peek";
 		insertBefore.parentNode.insertBefore(container, insertBefore);
 

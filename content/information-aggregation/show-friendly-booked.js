@@ -70,7 +70,7 @@ Foxtrick.util.module.register({
 		// add the stuffs
 		if (FoxtrickPrefs.isModuleOptionEnabled("ShowFriendlyBooked", "OnDemand")) {
 			// show on demand
-			var link = doc.createElement("a");
+			var link = Foxtrick.createFeaturedElement(doc, this, "a");
 			link.id = "ft-show-friendlies";
 			link.className = "float_left ft-link";
 			link.textContent = Foxtrickl10n.getString("ShowFriendlyBooked.ShowFriendlies");

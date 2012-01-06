@@ -41,7 +41,7 @@ Foxtrick.util.module.register({
 		birthdayFuture.sort(sort);
 		birthdayPast.sort(sort);
 
-		var parentDiv = doc.createElement("div");
+		var parentDiv = Foxtrick.createFeaturedElement(doc, this, "div");
 		parentDiv.id = "foxtrick_addactionsbox_parentDiv";
 
 		var addType = function(parent, header, players) {

@@ -77,7 +77,7 @@ Foxtrick.util.module.register({
 				var table = doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlplayerInfo').getElementsByTagName('table').item(0);
 				var row = table.insertRow(table.rows.length);
 				row.className = "ft-htms-points";
-				var link = row.insertCell(0);
+				var link = Foxtrick.insertFeaturedCell(row, this, 0);
 				link.appendChild(getLink(skillList));
 				var points = row.insertCell(1);
 				var calcResult=this.calc(skillArray);
@@ -109,7 +109,7 @@ Foxtrick.util.module.register({
 					}
 					//creating element
 					var firstdiv = transferPlayers[cellId].getElementsByTagName('div')[0];
-					var container = doc.createElement('span');
+					var container = Foxtrick.createFeaturedElement(doc, this, 'span');
 					container.className = "ft-htms-points";
 					container.appendChild(getLink(skillList));
 					container.appendChild(doc.createTextNode(" "));
@@ -149,7 +149,7 @@ Foxtrick.util.module.register({
 				//Only if skill are relevant we show points
 				if (totSkills>0) {
 					// create elements
-					var container = doc.createElement("div");
+					var container = Foxtrick.createFeaturedElement(doc, this, "div");
 					container.className = "ft-htms-points";
 					container.appendChild(getLink(skillList));
 					container.appendChild(doc.createTextNode(" "));

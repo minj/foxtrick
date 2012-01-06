@@ -168,7 +168,7 @@ Foxtrick.util.module.register({
 			if ((aLink.href.search(/Club\/\?TeamID=/i) > -1 && aLink.href.search(/redir_to/i)===-1 && FoxtrickPrefs.isModuleOptionEnabled("TeamPopupLinks", "TeamLinks"))
 				|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) !=-1 && FoxtrickPrefs.isModuleOptionEnabled("TeamPopupLinks", "UserLinks"))) {
 				var par = aLink.parentNode;
-				var span = doc.createElement("span");
+				var span = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.TeamPopupLinks, "span");
 				span.className = "ft-popup-span";
 						
 				if (  !Foxtrick.isPage("forumViewThread", doc) && !Foxtrick.isPage("forumWritePost", doc) && !Foxtrick.isPage("forumModWritePost", doc)  )
@@ -209,7 +209,7 @@ Foxtrick.util.module.register({
 
 					var owntopteamlinks = (org_link.parentNode.parentNode.tagName == "DIV" && org_link.parentNode.parentNode.id == "teamLinks");
 
-					var list = doc.createElement("ul");
+					var list = Foxtrick.createFeaturedElement(doc,  Foxtrick.modules.TeamPopupLinks, "ul");
 					list.className = "ft-popup-list";
 
 					var addItem = function(key, isOwnTeam, teamId, userId, userName, ownLink, linkByTeam, linkByUser, linkByUserName) {

@@ -59,13 +59,13 @@ Foxtrick.util.module.register({
 			var parent = insertBefore.parentNode;
 
 			// header - "My Monitor"
-			var header = doc.createElement("h1");
+			var header = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MyMonitor, "h1");
 			header.id = "ft-monitor-header";
 			header.textContent = Foxtrickl10n.getString("MyMonitor.header");
 			parent.insertBefore(header, insertBefore);
 
 			// line containing add/remove links
-			var addRemove = doc.createElement("div");
+			var addRemove = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MyMonitor, "div");
 			addRemove.id = "ft-monitor-add-remove";
 			parent.insertBefore(addRemove, insertBefore);
 
@@ -146,7 +146,7 @@ Foxtrick.util.module.register({
 			addRemove.appendChild(removeLink);
 
 			// container for the teams
-			var container = doc.createElement("div");
+			var container = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MyMonitor, "div");
 			container.id = "ft-monitor-container";
 			parent.insertBefore(container, insertBefore);
 
@@ -314,7 +314,7 @@ Foxtrick.util.module.register({
 			}
 
 
-			var container = doc.createElement("div");
+			var container = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MyMonitor, "div");
 			container.id = "ft-monitor-sidebar-box-container";
 			// link to add team
 			var addLink = doc.createElement("a");

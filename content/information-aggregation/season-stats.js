@@ -31,7 +31,7 @@ Foxtrick.util.module.register({
 		var local_season = parseInt(selected_local_season) + season_diff;
 
 		// add season select box
-		var selectbox = doc.createElement("select");
+		var selectbox = Foxtrick.createFeaturedElement(doc, this, "select");
 		selectbox.setAttribute("id","ft_season_selectboxID");
 		if (Foxtrick.util.layout.isStandard(doc)) selectbox.setAttribute("style","float:right; margin-top:20px;");
 		else  selectbox.setAttribute("style","float:right;margin-top:4px;");
@@ -143,7 +143,7 @@ Foxtrick.util.module.register({
 			sum_matches[type*3+ishome]["goal1"]+=goals1;
 		}
 
-		var ownBoxBody = doc.createElement("div");
+		var ownBoxBody = Foxtrick.createFeaturedElement(doc, this, "div");
 		var header = Foxtrickl10n.getString("foxtrick.seasonstats.boxheader");
 		var ownBoxBodyId = "foxtrick_seasonstats_content";
 		ownBoxBody.setAttribute("id", ownBoxBodyId);
