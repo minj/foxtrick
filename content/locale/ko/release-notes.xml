@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+ <?xml version="1.0" encoding="utf-8"?>
 
 <!-- Notes for localization -->
 <!-- Please keep the overall structure and the tags like <note>, <item>,
@@ -11,6 +11,13 @@
 <notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
 <note version="nightly" localized-version="개발 빌드">
 <item>자세한 내용은 Google Code의 <xhtml:a href="http://code.google.com/p/foxtrick/source/list">보고 기록</xhtml:a>을 보세요.</item>
+</note>
+
+<note version="0.8.2">
+<item>한국어 업데이트 (SI-CH)</item>
+<item>리투아니아어 업데이트 (LA-MJ)</item>
+<item>기본 언어 정리 (CatzHoek)</item>
+<item>기타 사소한 수정. (convincedd, CatzHoek)</item>
 </note>
 
 <note version="0.8.1">
