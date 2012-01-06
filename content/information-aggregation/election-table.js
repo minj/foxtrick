@@ -34,7 +34,7 @@ Foxtrick.util.module.register({
 			}
 
 			// finally, a sum is displayed
-			var cnt = doc.createElement("strong");
+			var cnt = Foxtrick.createFeaturedElement(doc, this, "strong");
 			cnt.textContent = "Σ " + Foxtrick.formatNumber(sum, " ");
 			cnt.style.paddingTop = "10px";
 			table.parentNode.insertBefore(cnt, table.nextSibling);
@@ -57,7 +57,7 @@ Foxtrick.util.module.register({
 
 				// display number of candidates
 				var h2 = doc.getElementById('mainBody').getElementsByTagName('h2')[0];
-				var sum_span = doc.createElement('span');
+				var sum_span = Foxtrick.createFeaturedElement(doc, this, 'span');
 				sum_span.textContent = " - Σ " + Foxtrick.formatNumber(sum, " ");
 				h2.appendChild(sum_span);
 			}

@@ -52,7 +52,7 @@ Foxtrick.util.module.register({
 					var matchid = href.replace(/.+matchID=/i, "").match(/^\d+/)[0];
 
 					images[j].setAttribute('title',images[j].title+ ' : '+Foxtrickl10n.getString( 'foxtrick.copymatchid'));
-					var link=this.createElement(doc,'a');
+					var link=Foxtrick.createFeaturedElement(doc, this, 'a');
 					link.appendChild(images[j].cloneNode(true));
 					link.href='javascript:void(0);';
 					link.setAttribute("matchid", matchid);
@@ -82,7 +82,7 @@ Foxtrick.util.module.register({
 				var matchid = href.replace(/.+matchID=/i, "").match(/^\d+/)[0];
 
 				images[i].setAttribute('title',images[i].title+ ' : '+Foxtrickl10n.getString( 'foxtrick.copymatchid'));
-				var link=this.createElement(doc,'a');
+				var link=Foxtrick.createFeaturedElement(doc, this, 'a');
 				link.appendChild(images[i].cloneNode(true));
 				link.href='javascript:void(0);';
 				link.setAttribute("matchid", matchid);

@@ -21,7 +21,7 @@ Foxtrick.util.module.register({
 			sortSelect = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ddlSortBy");
 		}
 
-		var filterSelect = this.createElement(doc,"select");
+		var filterSelect = Foxtrick.createFeaturedElement(doc, this, "select");
 		filterSelect.id = this.FILTER_SELECT_ID;
 
 		var selectClick = function() {

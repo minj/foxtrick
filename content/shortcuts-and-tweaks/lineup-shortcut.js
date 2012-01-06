@@ -108,7 +108,7 @@ Foxtrick.util.module.register({
 		if (checktables.length == 0)
 		{
 			//adding lineup to header row
-			var newhead=this.createElement(doc,'th');
+			var newhead=Foxtrick.createFeaturedElement(doc, this, 'th');
 			newhead.className="ft_lineupheader";
 			newhead.innerHTML=lineuplabel;
 			matchtable.rows[0].appendChild(newhead);
@@ -126,7 +126,7 @@ Foxtrick.util.module.register({
 		//the link is: /Club/Matches/MatchLineup.aspx?MatchID=<matchid>&TeamID=<teamid>
 		var cell = row.insertCell(-1); // append as the last cell
 		cell.className = "ft-lineup-cell";
-		var link = this.createElement(doc,"a");
+		var link = Foxtrick.createFeaturedElement(doc, this, "a");
 		if (type == "youth")
 			link.href = "/Club/Matches/MatchLineup.aspx?MatchID=" + matchid + "&YouthTeamID=" + teamid + "&isYouth=true&HighlightPlayerID=" + playerid;
 		else

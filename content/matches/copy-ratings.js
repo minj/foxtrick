@@ -165,7 +165,7 @@ Foxtrick.util.module.register({
 		var homeHeader = table.getElementsByTagName("th")[1];
 		var awayHeader = table.getElementsByTagName("th")[2];
 
-		var copyBoth = this.createElement(doc,"span");
+		var copyBoth = Foxtrick.createFeaturedElement(doc, this, "span");
 		copyBoth.className = "ft_copy_rating";
 		copyBoth.appendChild(doc.createTextNode(Foxtrickl10n.getString("Copy")));
 		copyBoth.setAttribute("teams", "both");
@@ -173,7 +173,7 @@ Foxtrick.util.module.register({
 		Foxtrick.listen(copyBoth, "click", function() { createRatings("table", "both"); }, false);
 		tableHeader.appendChild(copyBoth);
 
-		var copyHome = this.createElement(doc,"span");
+		var copyHome = Foxtrick.createFeaturedElement(doc, this, "span");
 		copyHome.className = "ft_copy_rating";
 		copyHome.appendChild(doc.createTextNode("(" + Foxtrickl10n.getString("Copy") + ")"));
 		copyHome.setAttribute("teams", "home");
@@ -181,7 +181,7 @@ Foxtrick.util.module.register({
 		Foxtrick.listen(copyHome, "click", function() { createRatings("table", "home"); }, false);
 		homeHeader.appendChild(copyHome);
 
-		var copyAway = this.createElement(doc,"span");
+		var copyAway = Foxtrick.createFeaturedElement(doc, this, "span");
 		copyAway.className = "ft_copy_rating";
 		copyAway.appendChild(doc.createTextNode("(" + Foxtrickl10n.getString("Copy") + ")"));
 		copyAway.setAttribute("teams", "away");

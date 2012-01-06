@@ -36,11 +36,11 @@ Foxtrick.util.module.register({
 		var insertBefore = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repFixtures");
 
 		// season graph
-		var graphHeader = doc.createElement("h2");
+		var graphHeader = Foxtrick.createFeaturedElement(doc, this, "h2");
 		graphHeader.textContent = Foxtrickl10n.getString("CrossTable.graph");
 		graphHeader.className = "ft-expander-unexpanded";
 		insertBefore.parentNode.insertBefore(graphHeader, insertBefore);
-		var graphContainer = doc.createElement("div");
+		var graphContainer = Foxtrick.createFeaturedElement(doc, this, "div");
 		graphContainer.id = "ft-season-graph-container";
 		graphContainer.className = "hidden";
 		insertBefore.parentNode.insertBefore(graphContainer, insertBefore);
@@ -49,11 +49,11 @@ Foxtrick.util.module.register({
 		graphContainer.appendChild(graph);
 
 		// cross table
-		var tableHeader = doc.createElement("h2");
+		var tableHeader = Foxtrick.createFeaturedElement(doc, this, "h2");
 		tableHeader.textContent = Foxtrickl10n.getString("CrossTable.table");
 		tableHeader.className = "ft-expander-unexpanded";
 		insertBefore.parentNode.insertBefore(tableHeader, insertBefore);
-		var div = doc.createElement("div");
+		var div = Foxtrick.createFeaturedElement(doc, this, "div");
 		div.className = "ft-cross-table-div";
 		var table = doc.createElement("table");
 		table.id = "ft-cross-table";

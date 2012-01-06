@@ -321,12 +321,12 @@ Foxtrick.util.module.register((function() {
 						var before = byline.nextSibling;
 						
 						// lineup header
-						var header = Foxtrick.modules.MatchReportFormat.createElement(doc,"h2");
+						var header = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchReportFormat, "h2");
 						parent.insertBefore(header, before);
 						header.className = "ft-expander-unexpanded";
 						header.textContent = Foxtrickl10n.getString("MatchReportFormat.lineup");
 						// container of lineup
-						var lineup = Foxtrick.modules.MatchReportFormat.createElement(doc,"table");
+						var lineup = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchReportFormat, "table");
 						lineup.className = "ft-match-lineup hidden";
 						parent.insertBefore(lineup, before);
 						var row = doc.createElement("tr");
@@ -460,13 +460,13 @@ Foxtrick.util.module.register((function() {
 						}, false)
 
 						// report header
-						var reportHeader = Foxtrick.modules.MatchReportFormat.createElement(doc,"h2");
+						var reportHeader = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchReportFormat, "h2");
 						parent.insertBefore(reportHeader, before);
 						reportHeader.className = "ft-expander-expanded";
 						reportHeader.textContent = Foxtrickl10n.getString("MatchReportFormat.MatchReport");
 						
 						// container of formatted report
-						var report = Foxtrick.modules.MatchReportFormat.createElement(doc,"div");
+						var report = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchReportFormat, "div");
 						report.className = "ft-match-report";
 						parent.insertBefore(report, before);
 						

@@ -28,7 +28,7 @@ Foxtrick.util.module.register({
 			// create or unhide overlayHTMS
 			var overlayHTMS = doc.getElementById('ft-overlayHTMS');
 			if (!overlayHTMS) {
-				overlayHTMS = Foxtrick.modules.MatchSimulator.createElement(doc,'div');
+				overlayHTMS = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchSimulator, 'div');
 				overlayHTMS.id = "ft-overlayHTMS";
 				doc.getElementById('fieldOverlay').appendChild(overlayHTMS);
 			}
@@ -805,7 +805,7 @@ Foxtrick.util.module.register({
 
 
 		// stamina discount
-		var staminaDiscountDiv =  this.createElement(doc,'div');
+		var staminaDiscountDiv =  Foxtrick.createFeaturedElement(doc, this, 'div');
 		staminaDiscountDiv.id = "ft_stamina_discount";
 		staminaDiscountDiv.className = "overlaySector overlayMidfield";
 		staminaDiscountDiv.setAttribute('style', "left: 395px !important");

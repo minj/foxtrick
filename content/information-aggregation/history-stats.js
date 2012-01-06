@@ -189,7 +189,7 @@ Foxtrick.util.module.register({
 			table.innerHTML = HistoryTable;
 
 			if (doc.getElementById('ft_HistoryStats')===null) {
-				var	ownBoxBody = doc.createElement("div");
+				var	ownBoxBody = Foxtrick.createFeaturedElement(doc, this, "div");
 				var header = Foxtrickl10n.getString("foxtrick.HistoryStats.label");
 				var ownBoxBodyId = "ft_HistoryStats";
 				ownBoxBody.setAttribute( "id", ownBoxBodyId );

@@ -19,14 +19,6 @@ Foxtrick.util.module.get = function(n) {
 
 // provided an object, register it as a FoxTrick categorized module
 Foxtrick.util.module.register = function(obj) {
-	// adddfunctions to all categorized modules
-	obj.createElement = function(doc, type) {
-		var node = doc.createElement(type);
-		node.className = 'ft-dummy';
-		if (FoxtrickPrefs.getBool("featureHighlight"))
-			node.title = Foxtrickl10n.getString("tab."+obj.MODULE_CATEGORY)+'>'+obj.MODULE_NAME + ': ' + FoxtrickPrefs.getModuleDescription(obj.MODULE_NAME);
-		return node;
-	};
 	if (!Foxtrick.modules)
 		Foxtrick.modules = {};
 	Foxtrick.modules[obj.MODULE_NAME] = obj;

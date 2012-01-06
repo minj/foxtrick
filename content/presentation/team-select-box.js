@@ -41,7 +41,7 @@ Foxtrick.util.module.register({
 		var div=null;
 		if (pn.className!='boxLeft') {
 			var hh=pn.removeChild(header);
-			div = this.createElement(doc,"div");
+			div = Foxtrick.createFeaturedElement(doc, this, "div");
 			div.appendChild(hh);
 			pn.insertBefore(div,pn.firstChild);
 		}

@@ -6,6 +6,22 @@
 
 if (!Foxtrick) var Foxtrick = {};
 
+Foxtrick.createFeaturedElement = function(doc, module, type) {
+	var node = doc.createElement(type);
+	node.className = 'ft-dummy';
+	if (FoxtrickPrefs.getBool("featureHighlight"))
+		node.title = Foxtrickl10n.getString("tab."+module.MODULE_CATEGORY)+'>'+module.MODULE_NAME + ': ' + FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
+	return node;
+};
+
+Foxtrick.insertFeaturedCell = function(row, module, index) {
+	var cell = row.insertCell(index);
+	cell.className = 'ft-dummy';
+	if (FoxtrickPrefs.getBool("featureHighlight"))
+		cell.title = Foxtrickl10n.getString("tab."+module.MODULE_CATEGORY)+'>'+module.MODULE_NAME + ': ' + FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
+	return cell;
+};
+
 Foxtrick.hasClass = function(obj, cls) {
 	return (obj
 		&& obj.className !== undefined

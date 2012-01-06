@@ -193,7 +193,7 @@ Foxtrick.util.module.register({
 		var header = Foxtrickl10n.getString("foxtrick.transferfilter.Foxtrick_Filters");
 
 		// add link
-		var addlink = this.createElement(doc,"a");
+		var addlink = Foxtrick.createFeaturedElement(doc, this, "a");
 		addlink.id = "ft-transfer-search-filter-new";
 		addlink.className = "ft-link";
 		Foxtrick.listen(addlink, "click", addNewFilter, false);
@@ -202,7 +202,7 @@ Foxtrick.util.module.register({
 
 		var namelist = FoxtrickPrefs.getList("transferfilterlist");
 		namelist.sort();
-		var table = this.createElement(doc,"table");
+		var table = Foxtrick.createFeaturedElement(doc, this, "table");
 		table.id = "ft-transfer-search-filter-table";
 		for (var i=0; i< namelist.length; i++) {
 			addFilter(table, namelist[i]);

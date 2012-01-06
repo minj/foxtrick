@@ -73,7 +73,7 @@ Foxtrick.util.module.register({
 				var skilldiv=biddiv.nextSibling.nextSibling;
 				//I get the skilltable and create a new table where to put skilltable and biddiv
 				var skilltable=skilldiv.getElementsByTagName('table').item(0);
-				var newtable=this.createElement(doc,'table');
+				var newtable=Foxtrick.createFeaturedElement(doc, this, 'table');
 				newtable.id = "foxtrick-smaller-pages-table";
 				skilldiv.appendChild(newtable);
 				newtable.insertRow(0);

@@ -181,7 +181,7 @@ Foxtrick.util.module.register({
 		if (Foxtrick.Pages.Match.isWalkOver(ratingstable)) return;
 		if (!Foxtrick.Pages.Match.isCorrectLanguage(ratingstable)) { // incorrect language
 
-			var htmstable = ratingstable.parentNode.insertBefore(this.createElement(doc,'table'),ratingstable.nextSibling);
+			var htmstable = ratingstable.parentNode.insertBefore(Foxtrick.createFeaturedElement(doc, this, 'table'),ratingstable.nextSibling);
 			var row = htmstable.insertRow(0);
 			var cell = row.insertCell(0);
 			cell.setAttribute("colspan" , 3);
@@ -199,7 +199,7 @@ Foxtrick.util.module.register({
 		var tactics=new Array(Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[tacticRow].cells[1]), Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[tacticRow].cells[2]));
 		var tacticsLevel=new Array(Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[tacticRow+1].cells[1]), Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[tacticRow+1].cells[2]));
 
-		var htmsDiv = this.createElement(doc,'div');
+		var htmsDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
 		htmsDiv.id = 'htmsMatchDivId';
 		ratingstable.parentNode.insertBefore(htmsDiv, ratingstable.nextSibling);
 

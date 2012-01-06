@@ -34,7 +34,7 @@ Foxtrick.util.module.register({
 		ownDiv.style.width = "110px";
 		ownDiv.style.margin = "5px 5px 0px 0px";
 		ownDiv.appendChild(flag);
-		var wrapperDiv = this.createElement(doc,"div");
+		var wrapperDiv = Foxtrick.createFeaturedElement(doc, this, "div");
 		wrapperDiv.appendChild(ownDiv);
 		wrapperDiv.appendChild(faceCard);
 		wrapperDiv.style.cssFloat = "left";

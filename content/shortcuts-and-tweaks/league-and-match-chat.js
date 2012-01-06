@@ -29,7 +29,7 @@ Foxtrick.util.module.register({
 			var id=doc.location.href.replace(/.+leagueLevelUnitID=/i, "").match(/^\d+/)[0];
 			var channel = "hattrick.org/league"+id;
 			var popupid =  "hattrick_org_league_"+id;
-			var a = this.createElement(doc,'a');
+			var a = Foxtrick.createFeaturedElement(doc, this, 'a');
 			a.className='ft-dummy';
 			if (FoxtrickPrefs.isModuleOptionEnabled("LeagueAndMatchChat",'OpenYapletPopup'))
 					a.href = "javascript:(function(){window.open('http://embed.yaplet.com/?title="+channel+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"','','width=300,height=500,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no')})()";
@@ -47,7 +47,7 @@ Foxtrick.util.module.register({
 			var id = doc.location.href.replace(/.+YouthLeagueId=/i, "").match(/^\d+/)[0];
 			var channel = "hattrick.org/youthleague"+id;
 			var popupid =  "hattrick_org_youthleague_"+id;
-			var a = this.createElement(doc,'a');
+			var a = Foxtrick.createFeaturedElement(doc, this, 'a');
 			a.className='ft-dummy';
 			if (FoxtrickPrefs.isModuleOptionEnabled("LeagueAndMatchChat",'OpenYapletPopup'))
 					a.href = "javascript:(function(){window.open('http://embed.yaplet.com/?title="+channel+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"','','width=300,height=500,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no')})()";
@@ -65,7 +65,7 @@ Foxtrick.util.module.register({
 			var id = doc.location.href.replace(/.+matchID=/i, "").match(/^\d+/)[0];
 			var channel = "hattrick.org/match" + id;
 			var popupid =  "hattrick_org_match_"+id;
-			var a = this.createElement(doc,'a');
+			var a = Foxtrick.createFeaturedElement(doc, this, 'a');
 			a.className='ft-dummy';
 			if (FoxtrickPrefs.isModuleOptionEnabled("LeagueAndMatchChat",'OpenYapletPopup'))
 					a.href = "javascript:(function(){window.open('http://embed.yaplet.com/?title="+channel+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"','','width=300,height=500,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no')})()";
@@ -85,7 +85,7 @@ Foxtrick.util.module.register({
 			var id = doc.location.href.replace(/.+CupID=/i, "").match(/^\d+/)[0];
 			var channel = "hattrick.org/nationalcup" + id;
 			var popupid =  "hattrick_org_nationalcup_"+id;
-			var a = this.createElement(doc,'a');
+			var a = Foxtrick.createFeaturedElement(doc, this, 'a');
 			a.className='ft-dummy';
 			if (FoxtrickPrefs.isModuleOptionEnabled("LeagueAndMatchChat",'OpenYapletPopup'))
 					a.href = "javascript:(function(){window.open('http://embed.yaplet.com/?title="+channel+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"','','width=300,height=500,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no')})()";
@@ -95,7 +95,7 @@ Foxtrick.util.module.register({
 				a.setAttribute('onclick',"window.open('http://cw.gabbly.com/gabbly/cw.jsp?e=1&t="+channel+"&nick="+nick+"', '"+popupid+"', 'width=400,height=500'); return false");
 			}
 			a.innerHTML = Foxtrickl10n.getString('foxtrick.LeagueAndMatchChat.CupChat');
-			var p = this.createElement(doc,'p');
+			var p = Foxtrick.createFeaturedElement(doc, this, 'p');
 			p.appendChild(a);
 			// add after header
 			var h1 = doc.getElementById('mainBody').getElementsByTagName('h1')[0];
@@ -105,7 +105,7 @@ Foxtrick.util.module.register({
 			var id = doc.location.href.replace(/.+AllianceID=/i, "").match(/^\d+/)[0];
 			var channel = "hattrick.org/federation" + id;
 			var popupid =  "hattrick_org_federation_"+id;
-			var a = this.createElement(doc,'a');
+			var a = Foxtrick.createFeaturedElement(doc, this, 'a');
 			a.className='ft-dummy';
 			if (FoxtrickPrefs.isModuleOptionEnabled("LeagueAndMatchChat",'OpenYapletPopup'))
 					a.href = "javascript:(function(){window.open('http://embed.yaplet.com/?title="+channel+"&yapletlogo="+icon+ "&nick="+nick+"&channel="+channel+"','','width=300,height=500,resizable=yes,scrollbars=no,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no')})()";
