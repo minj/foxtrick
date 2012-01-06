@@ -11,8 +11,14 @@ Foxtrick.util.module.register({
 	CSS: Foxtrick.InternalPath + "resources/css/forum-mod-link-icons.css",
 
 	run : function(doc) {
+		
+		//current setup is optimized for standart layout, "disable" for simple skin for now
+		if(!Foxtrick.util.layout.isStandard(doc))
+			return;
+			
 		var modoption = doc.getElementById("cfModFunctions");
-		if(modoption){
+		
+		if(modoption) {
 			var content = doc.getElementById("ctl00_ctl00_CPContent_pnlScrollContent");
 			var div = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.ForumModeratorIconLinks, 'div');
 			div.className = "ft-mod-link-icons";

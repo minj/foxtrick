@@ -11,7 +11,11 @@ Foxtrick.util.module.register({
 	CSS: Foxtrick.InternalPath + "resources/css/forum-direct-page-links.css",
 
 	run : function(doc) {
-	
+		
+		//current setup is optimized for standart layout, "disable" for simple skin for now
+		if (Foxtrick.util.layout.isStandard(doc) )
+			return;
+			
 		/* Figure out Hattrick Setting about how many posts per page should be displayed */
 		var getPostPerPage = function(nextNodes, prevNodes, currentPostId){
 			var step = 0;
