@@ -13,7 +13,7 @@ Foxtrick.util.module.register({
 	run : function(doc) {
 		
 		//current setup is optimized for standart layout, "disable" for simple skin for now
-		if (Foxtrick.util.layout.isStandard(doc) )
+		if (!Foxtrick.util.layout.isStandard(doc) )
 			return;
 			
 		/* Figure out Hattrick Setting about how many posts per page should be displayed */
