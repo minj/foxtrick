@@ -1,0 +1,12 @@
+.ft-mod-link-icons {
+	padding-bottom: 26px; 
+	padding-right: 1px;
+}
+
+.ft-mod-link {
+	float:right; 
+	position: relative; 
+	top: -15px; 
+	margin-left: 3px; 
+	z-index: 99;
+}
