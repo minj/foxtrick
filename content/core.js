@@ -148,7 +148,9 @@ Foxtrick.util.module.register({
 
 	showVersion : function(doc) {
 		var featureHighlight = function() {
-			var css = "[class^='ft'], [id^='ft'], [class^='foxtrick'], [id^='foxtrick']  { background-color:yellow !important; }";
+			var css = "[class^='ft'], [id^='ft'], [class^='foxtrick'], [id^='foxtrick'], \
+				[class^=' ft'], [id^=' ft'], [class^=' foxtrick'], [id^=' foxtrick'] \
+				{ background-color:yellow !important; }";
 			var featureCss = doc.getElementById("ft-feature-highlight-css");
 			// remove old CSS if exists
 			if (featureCss) {
