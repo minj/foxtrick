@@ -79,7 +79,7 @@ Foxtrick.util.module.register({
 				
 			//re-parent existing links them to our container
 			var parent = 0;
-			var div = Foxtrick.createFeaturedElement(doc, this, "div");
+			var div = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.DirectPageLinks, "div");
 			Foxtrick.toggleClass(div,"pager");
 			if(ll){
 				parent = ll.parentNode.parentNode;
