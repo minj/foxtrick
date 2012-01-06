@@ -18,7 +18,8 @@ Foxtrick.util.module.register({
 		var time = doc.getElementById("time");
 		// icon for Hattrick time zone
 		time.title = Foxtrickl10n.getString("LocalTime.hattrick.title");
-
+		Foxtrick.addClass(time, 'ft-dummy');
+		
 		// set up local time div at the header
 		var localTime = doc.createElement("div");
 		localTime.id = "ft-local-time";

@@ -82,11 +82,13 @@ Foxtrick.util.module.register({
 							// home team has set lineup
 							var reg = new RegExp(/(.+)&nbsp;-/);
 							link.innerHTML = link.innerHTML.replace(reg, '<strong>$1</strong>&nbsp;-');
+							Foxtrick.addClass(link,'ft-dummy');
 						}
 						else if (pos > 0) {
 							// away team has set lineup
 							var reg = new RegExp(/-&nbsp;(.+)/);
 							link.innerHTML = link.innerHTML.replace(reg, '-&nbsp;<strong>$1</strong>');
+							Foxtrick.addClass(link,'ft-dummy');
 						}
 					}
 				}
@@ -97,11 +99,13 @@ Foxtrick.util.module.register({
 						// home team is bot
 						var reg = new RegExp(/(.+)&nbsp;-/);
 						link.innerHTML = link.innerHTML.replace(reg, '<span class="shy">$1</span>&nbsp;-');
+						Foxtrick.addClass(link,'ft-dummy');
 					}
 					else if (pos > 0) {
 						// away team is bot
 						var reg = new RegExp(/-&nbsp;(.+)/);
 						link.innerHTML = link.innerHTML.replace(reg, '-&nbsp;<span class="shy">$1</span>');
+						Foxtrick.addClass(link,'ft-dummy');
 					}
 				}
 				// wins (for results only)
@@ -113,10 +117,12 @@ Foxtrick.util.module.register({
 					if (goal_dif > 0) {
 						var reg = new RegExp(/(.+)\&nbsp;-/);
 						link.innerHTML = link.innerHTML.replace(reg,'<strong>$1</strong>&nbsp;-');
+						Foxtrick.addClass(link,'ft-dummy');
 					}
 					else if (goal_dif < 0) {
 						var reg = new RegExp(/\-&nbsp;(.+)/);
 						link.innerHTML = link.innerHTML.replace(reg,'-&nbsp;<strong>$1</strong>');
+						Foxtrick.addClass(link,'ft-dummy');
 					}
 				}
 			}

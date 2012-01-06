@@ -15,8 +15,11 @@ Foxtrick.util.module.register({
 		if (forum == 'Stage') {
 			var textarea = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
 			var divalert = doc.createElement('div');
-			divalert.className = 'alert';
-			divalert.innerHTML = "Please <b>disable FoxTrick</b> and any other Hattrick extensions (Firefox menu: Tools -> Add-ons) before reporting a bug. Repeated ignorance = Stage kick."
+			divalert.className = 'alert ft-dummy';
+			divalert.innerHTML = "Please <b>disable FoxTrick</b> and any other Hattrick extensions" + 
+								" (Browser menu -> Tools -> Add-ons) before reporting a bug. "+
+								" Repeated ignorance = Stage kick. Clicking on the FoxTrick version info" +
+								" (down right with the stage build) highlights most of FoxTrick's features."; 
 			textarea.parentNode.insertBefore(divalert, textarea.nextSibling);
 
 			// checkbox

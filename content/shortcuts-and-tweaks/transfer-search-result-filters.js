@@ -160,6 +160,7 @@ Foxtrick.util.module.register({
 					return;  //only show if advanced filters is on
 				}
 				var table = doc.createElement('table');
+				table.id = 'ft-ExtraFilters'
 				var tr = doc.createElement('tr');
 				table.appendChild(tr);
 				var td = doc.createElement('td');
