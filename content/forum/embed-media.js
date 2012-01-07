@@ -12,7 +12,7 @@ Foxtrick.util.module.register({
 	NICE : 1,
 	//no funnyordie atm
 	//OPTIONS : ['EmbedYoutubeVideos','EmbedVimeoVideos', 'EmbedFunnyOrDieVideos', 'EmbedDailymotionVideos', ['EmbedModeOEmebed', 'ReplaceLinksByTitlesLinksToTitles', 'EmbedFlickrImages', 'EmbedDeviantArtImages', 'EmbedSoundCloud']],
-	OPTIONS : ['EmbedYoutubeVideos','EmbedVimeoVideos', 'EmbedDailymotionVideos', ['EmbedModeOEmebed', 'ReplaceLinksByTitles', 'EmbedFlickrImages', 'EmbedDeviantArtImages', 'EmbedSoundCloud']],
+	OPTIONS : ['EmbedGenericImages', 'EmbedYoutubeVideos','EmbedVimeoVideos', 'EmbedDailymotionVideos', ['EmbedModeOEmebed', 'ReplaceLinksByTitles', 'EmbedFlickrImages', 'EmbedDeviantArtImages', 'EmbedSoundCloud']],
 	CSS : Foxtrick.InternalPath + "resources/css/embed-media.css",
 
 	run : function(doc) {
@@ -30,6 +30,8 @@ Foxtrick.util.module.register({
 		var do_embed_flickr_images = do_embed_media && oembed_enabled && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedFlickrImages");
 		var do_embed_deviantart_images = do_embed_media && oembed_enabled && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedDeviantArtImages");
 				
+		var do_embed_generic_images = do_embed_media && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedGenericImages");
+		
 		var siteEnabled = {
 			"youtube" : do_embed_youtube_videos,
 			"vimeo" : do_embed_vimeo_videos,
@@ -37,7 +39,8 @@ Foxtrick.util.module.register({
 			"dailymotion" : do_embed_dailymotion_videos,
 			"soundcloud" : do_embed_soundcloud,
 			"flickr" : do_embed_flickr_images,
-			"deviantart" : do_embed_deviantart_images
+			"deviantart" : do_embed_deviantart_images,
+			"genericImage": do_embed_generic_images,
 		};	
 		// get an XmlHTMLRequest Response
 		var oEmbedRequest = function( url ){
@@ -120,6 +123,11 @@ Foxtrick.util.module.register({
 			}
 		}
 		
+		var do_genericImageEmbed = function(target){
+			var title = Foxtrickl10n.getString("foxtrick.EmbedMedia.EmbeddedImage");
+			Foxtrick.addImage(doc, target.nextSibling.firstChild, {src:target.nextSibling.firstChild.href, title: title, alt: title, style:'max-width:100%'});
+		}
+		
 		var extractVideoIdFromUrl = function( url, site ){
 			var re = new RegExp( filter_supported[site] );
 			var matches = re.exec( url )
@@ -147,6 +155,20 @@ Foxtrick.util.module.register({
 			//iterate all links and see if any supported link is found
 			Foxtrick.map( function(link){
 				var linkDict = {"site":null, "link":link};
+				
+				//try if it's a generic image link
+				var image_re = 'http(s)?:\/\/.*(?:gif|jpg|jpeg|png|bmp|GIF|JPEG|JPG|PNG|BMP|Gif|Jpg|Jpeg|Png|Bmp)$'
+				var ire = new RegExp( image_re );
+				var matches = ire.exec(link.href)
+				if(matches)
+					Foxtrick.log(matches);
+				if( matches ){
+					linkDict["site"] = 'genericImage';
+					media_links.push( linkDict );
+					return;
+				} 
+				// //otherwise try the more sophisticated possibilities
+
 				for (var key in filter_supported)	
 				{	
 					var re = new RegExp( filter_supported[key] );
@@ -165,27 +187,27 @@ Foxtrick.util.module.register({
 			return media_links;
 		}
 		
-		var convertLinkToEmbeddingHeader = function( media_link ){
-			var div = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.EmbedMedia, 'div');
+		var convertLinkToEmbeddingHeader = function( media_link ){			
+			var div = Foxtrick.createFeaturedElement(doc, this, 'div');
 			var header_a = doc.createElement('a');
 			header_a.textContent = media_link["link"].textContent;
 			header_a.href = media_link["link"].href
 			div.appendChild(header_a);
-			Foxtrick.addClass(div, 'ft-media-expander-unexpanded ' + media_link["site"]); 
+			Foxtrick.addClass(div, 'ft-media-expander-unexpanded '); 
 			Foxtrick.addClass(div, 'ft-media-site-' + media_link["site"]);
 			media_link["link"].parentNode.insertBefore(div, media_link["link"]);
-			var videocontainer = doc.createElement('div');
-			Foxtrick.addClass(videocontainer, 'hidden ft-media-container')
+			var mediaContainer = doc.createElement('div');
+			Foxtrick.addClass(mediaContainer, 'hidden ft-media-container')
 			var a = doc.createElement('a');
 			
 			//already convert link to embedding url when using iframe method
-			if(!oembed_enabled )
-				a.href = iframe_urls[media_link["site"]] +  media_link["videoid"];
-			else
+			if( oembed_enabled ||  media_link['site'] == 'genericImage')
 				a.href = media_link["link"].href;
+			else
+				a.href = iframe_urls[media_link["site"]] +  media_link["videoid"];
 				
-			videocontainer.appendChild(a);
-			media_link["link"].parentNode.replaceChild(videocontainer, media_link["link"]);
+			mediaContainer.appendChild(a);
+			media_link["link"].parentNode.replaceChild(mediaContainer, media_link["link"]);
 			
 			Foxtrick.listen(div, "click", function(ev){
 				if(!Foxtrick.hasClass(ev.target.nextSibling,'ft-media-embedded')){
@@ -200,12 +222,15 @@ Foxtrick.util.module.register({
 					Foxtrick.removeClass(ev.target,'ft-media-expander-expanded')
 					Foxtrick.addClass(ev.target,'ft-media-expander-unexpanded')
 					}
-			}, false);
-							
+			}, false);		
 		}
 		
-		var embed = function( target ){
-			
+		var embed = function( target ){			
+			if(Foxtrick.hasClass(target, "ft-media-site-genericImage")){
+				do_genericImageEmbed(target);
+				Foxtrick.log(target);
+				return;
+				}
 			if( oembed_enabled ){
 				var oEmbedReq = null;
 				for ( var key in oembed_urls )	
@@ -216,9 +241,8 @@ Foxtrick.util.module.register({
 					}
 				}
 				if( oEmbedReq ){
-					//funnyordie is an asshole
-					oEmbedReq = oEmbedReq.replace(/&quot;/g, '\"').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>')
-					
+					//funnyordie is an asshole and thatfore disabled at this point
+					//oEmbedReq = oEmbedReq.replace(/&quot;/g, '\"').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>')
 					//
 					try {
 						var json = JSON.parse( oEmbedReq );
@@ -248,8 +272,10 @@ Foxtrick.util.module.register({
 		Foxtrick.map( function( message ){
 			var found_media_links = getSupportedMediaLinksWithDetails( message );
 			Foxtrick.map( function( media_link ){
-				if( siteEnabled[media_link.site] )
+				if( siteEnabled[media_link.site])
 					convertLinkToEmbeddingHeader( media_link );
+				else
+					Foxtrick.log("nono");
 			}, found_media_links);
 		
 		}, messages);
