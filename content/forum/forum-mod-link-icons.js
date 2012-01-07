@@ -25,9 +25,9 @@ Foxtrick.util.module.register({
 					Foxtrick.addImage(doc, node, { alt: alt, title: title, src: src});
 				}
 				var link = srclinknode.cloneNode(true)
-				link.innerText = ''
+				link.textContent = ''
 				link.className = 'ft-mod-link';
-				addModIcon(link, src, srclinknode.innerText, srclinknode.innerText);
+				addModIcon(link, src, srclinknode.textContent, srclinknode.textContent);
 				target.appendChild( link );
 			}
 			

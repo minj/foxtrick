@@ -99,7 +99,7 @@ Foxtrick.util.module.register({
 		var do_oEmbed  = function(target, json){
 			var author = json.author_name?json.author_name:"Unknown Author";
 			if(do_replaceLinksByTitles)
-				target.firstChild.innerText = '(' + json.title + ')';
+				target.firstChild.textContent = '(' + json.title + ')';
 			
 			switch (json.type){
 				 case "file":
@@ -226,7 +226,7 @@ Foxtrick.util.module.register({
 					}
 					catch(e)
 					{
-						target.nextSibling.innerText = "Not a media item, host is down or has uncomprehensive response.";
+						target.nextSibling.textContent = "Not a media item, host is down or has uncomprehensive response.";
 						Foxtrick.log(e);
 					}
 				} 
