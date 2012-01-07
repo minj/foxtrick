@@ -20,7 +20,7 @@ Foxtrick.util.module.register({
 				p++;
 				if( !doc.getElementById( "foxtrick-st-link"+p ) ) {
 					try {
-						Foxtrick.addClass(elems[i], "hidden");
+						elems[i].setAttribute("style","display:none;");
 						var sigId = elems[i].id;
 						if( !sigId ) {
 							sigId = "foxtrick-signature-"+p;
@@ -28,12 +28,13 @@ Foxtrick.util.module.register({
 						}
 
 						var showSig = [];
-						showSig[p] = Foxtrick.createFeaturedElement(doc, this, "a");
+						showSig[p] = doc.createElement("a");
 						showSig[p].setAttribute("id","foxtrick-st-link"+p);
 						showSig[p].title = Foxtrickl10n.getString('foxtrick.conferences.signaturetoggle');
 						showSig[p].className="foxtrick-signaturetoggle";
 						showSig[p].textContent = Foxtrickl10n.getString('foxtrick.conferences.signaturetoggle');
 						showSig[p].href = "javascript:showHide('" + sigId + "');";
+						showSig[p] = Foxtrick.makeFeaturedElement(showSig[p], this );
 						// append the show sig link to the right footer
 						var cfInnerWrapper = elems[i].parentNode.parentNode;
 						var cfFooter = cfInnerWrapper.nextSibling;
