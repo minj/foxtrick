@@ -157,7 +157,7 @@ Foxtrick.util.module.register({
 				var linkDict = {"site":null, "link":link};
 				
 				//try if it's a generic image link
-				var image_re = 'http(s)?:\/\/[a-zAZ0.9.\/]+(?:gif|jpg|jpeg|png|bmp)$'
+				var image_re = 'http(s)?:\/\/[a-zA-Z0-9.\\-_\/]+(?:gif|jpg|jpeg|png|bmp)$'
 				var ire = new RegExp( image_re,"i");
 				var matches = ire.exec(link.href)
 				if(matches)
