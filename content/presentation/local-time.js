@@ -18,10 +18,10 @@ Foxtrick.util.module.register({
 		var time = doc.getElementById("time");
 		// icon for Hattrick time zone
 		time.title = Foxtrickl10n.getString("LocalTime.hattrick.title");
-		Foxtrick.addClass(time, 'ft-dummy');
+		time = Foxtrick.makeFeaturedElement(time, this);
 		
 		// set up local time div at the header
-		var localTime = Foxtrick.createFeaturedElement(doc, this, "div");
+		var localTime = doc.createElement("div");
 		localTime.id = "ft-local-time";
 		var updateTime = function() {
 			localTime.textContent = Foxtrick.util.time.buildDate(null, true, true);
@@ -29,6 +29,7 @@ Foxtrick.util.module.register({
 		time.addEventListener('DOMCharacterDataModified',updateTime, false);
 
 		localTime.title = Foxtrickl10n.getString("LocalTime.local.title");
+		localTime = Foxtrick.makeFeaturedElement(localTime, this);
 		time.parentNode.insertBefore(localTime, time);
 
 		// to tell whether #time or #ft-local-time should be hidden

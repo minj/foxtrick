@@ -28,11 +28,12 @@ Foxtrick.util.module.register({
 		var threadList = threadIds.join(",");
 		var addr = "javascript:__doPostBack('ctl00$ctl00$CPContent$ucLeftMenu$ucNewPosts','mrk|%s')".replace(/%s/, threadList);
 
-		var container = Foxtrick.createFeaturedElement(doc, this, "span");
+		var container = doc.createElement("span");
 		container.className = "ft-mark-all-as-read";
 		container.title = Foxtrickl10n.getString("MarkAllAsRead.title");
 		container.setAttribute("onclick", addr);
-
+		container = Foxtrick.makeFeaturedElement(container, this);
+					
 		if (Foxtrick.util.layout.isStandard(doc))
 			var target = doc.getElementById("myForums").getElementsByClassName("forumTabs")[0];
 		else

@@ -18,7 +18,7 @@ Foxtrick.util.module.register({
 			divalert.className = 'alert ft-dummy';
 			divalert.innerHTML = "Please <b>disable FoxTrick</b> and any other Hattrick extensions" + 
 								" (Browser menu -> Tools -> Add-ons) before reporting a bug. "+
-								" Repeated ignorance = Stage kick. Clicking on the FoxTrick version info" +
+								" Repeated ignorance = Stage kick. Clicking on the <a href='#ft_versionInfo'>FoxTrick version info</a>" +
 								" (down right with the stage build) highlights most of FoxTrick's features."; 
 			textarea.parentNode.insertBefore(divalert, textarea.nextSibling);
 

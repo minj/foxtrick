@@ -18,6 +18,7 @@ Foxtrick.util.module.register({
 			var link = doc.createElement("a");
 			link.className = "ft-copy-small ft-link";
 			link.title = Foxtrickl10n.getString("foxtrick.CopyPostID");
+			link = Foxtrick.makeFeaturedElement(link, Foxtrick.modules.CopyPostID);
 			var img = doc.createElement("img");
 			img.src = "/Img/Icons/transparent.gif";
 			link.appendChild(img);
@@ -246,12 +247,13 @@ Foxtrick.util.module.register({
 		}
 		copy_posting_div.appendChild(list);
 
-		var copy_posting_link_archive = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.CopyPosting, 'a');
+		var copy_posting_link_archive = doc.createElement('a');
 		copy_posting_link_archive.setAttribute('href','javascript:void(0);');
 		copy_posting_link_archive.title = Foxtrickl10n.getString('CopyPosting').replace('%s', Foxtrickl10n.getString('CopyPosting.style.ht-ml'));
 		copy_posting_link_archive.setAttribute('is_archive_link','true');
 		copy_posting_link_archive.textContent = Foxtrickl10n.getString( 'foxtrick.linkscustom.copy' );
 		copy_posting_link_archive.setAttribute('class','foxtrick-copyfromarchive');
+		copy_posting_link_archive = Foxtrick.makeFeaturedElement(copy_posting_link_archive, Foxtrick.modules.CopyPosting);
 		Foxtrick.listen(copy_posting_link_archive, "click", copy_posting_to_clipboard, false);
 
 		// part of alter header

@@ -21,12 +21,13 @@ Foxtrick.util.module.register({
 				if( !doc.getElementById( "foxtrick-ur-link"+p ) ) {
 					try {
 						var markunread = [];
-						markunread[p] = Foxtrick.createFeaturedElement(doc, this, "a");
+						markunread[p] = doc.createNode("a");
 						markunread[p].setAttribute("id","foxtrick-ur-link"+p);
 						markunread[p].className="foxtrick-unreadlink";
 						markunread[p].textContent = Foxtrickl10n.getString('foxtrick.conferences.markunread');
 						markunread[p].title = Foxtrickl10n.getString('foxtrick.conferences.markunread');
 						markunread[p].href = "#";
+						markunread[p] = Foxtrick.makeFeaturedElement(markunread[p], this);
 						var cfInnerWrapper = elems[i].parentNode.parentNode;
 						var cfFooter = cfInnerWrapper.nextSibling;
 						while( cfFooter.className != "cfFooter" ) {

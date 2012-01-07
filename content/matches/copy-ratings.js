@@ -193,6 +193,7 @@ Foxtrick.util.module.register({
 			Foxtrickl10n.getString("CopyRatings.both"));
 		if (button) {
 			button.title='';
+			button = Foxtrick.makeFeaturedElement(button, this);
 			Foxtrick.addClass(button, "ft-copy-ratings ft-pop-up-container");
 
 			var versions=['both','home','away'];

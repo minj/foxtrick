@@ -477,6 +477,7 @@ Foxtrick.util.module.register({
 					if ( icons[0].replace_text) newimage.setAttribute( "replace_text", icons[0].replace_text);
 					newimage.setAttribute( "class", icons[0].icon_class);
 					newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode."+icons[0].string);
+					newimage = Foxtrick.makeFeaturedElement(newimage, this);
 					toolbar.insertBefore( newimage, toolbar.getElementsByTagName('img')[0] );
 				}
 			}
@@ -491,7 +492,8 @@ Foxtrick.util.module.register({
 					if ( icons[i].replace_text) newimage.setAttribute( "replace_text", icons[i].replace_text);
 					newimage.setAttribute( "class", icons[i].icon_class);
 					newimage.title = Foxtrickl10n.getString("ForumSpecialBBCode."+icons[i].string);
-
+					newimage = Foxtrick.makeFeaturedElement(newimage, this);
+					
 					if (icons[i].versions) {
 						var span = doc.createElement("div");
 						span.className = "ft-pop-up-container icon";
@@ -528,7 +530,7 @@ Foxtrick.util.module.register({
 			}
 		}
 
-		var toolbar_label = doc.createElement( "div" );
+		var toolbar_label = Foxtrick.createFeaturedElement(doc, this,  "div" );
 		toolbar_label.textContent = Foxtrickl10n.getString("ForumYouthIcons.labelToolbar");
 		toolbar.insertBefore( toolbar_label, toolbar.firstChild );
 
@@ -563,6 +565,7 @@ Foxtrick.util.module.register({
 						if ( othericons[i].replace_text) newimage.setAttribute( "replace_text", othericons[i].replace_text);
 						newimage.setAttribute( "class", othericons[i].icon_class);
 						newimage.title = Foxtrickl10n.getString("ForumOtherIcons."+othericons[i].string);
+						newimage = Foxtrick.makeFeaturedElement(newimage, this);
 						otherbar.appendChild( newimage );
 				}
 			}
@@ -591,6 +594,7 @@ Foxtrick.util.module.register({
 						if ( youthicons[i].replace_text) newimage.setAttribute( "replace_text", youthicons[i].replace_text);
 						newimage.setAttribute( "class", youthicons[i].icon_class);
 						newimage.title = Foxtrickl10n.getString("ForumYouthIcons."+youthicons[i].string);
+						newimage = Foxtrick.makeFeaturedElement(newimage, this);
 						youthbar.appendChild( newimage );
 				}
 			}

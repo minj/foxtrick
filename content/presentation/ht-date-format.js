@@ -61,9 +61,11 @@ Foxtrick.util.module.register({
 				var htDate = Foxtrick.util.time.gregorianToHT(date, weekOffset, useLocal);
 				Foxtrick.addClass(node, "ft-date");
 				separate(node);
-				node.appendChild(doc.createTextNode("(w/s)"
+				var wsDate= Foxtrick.createFeaturedElement(doc, Foxtrick.modules.HTDateFormat, 'span');
+				wsDate.textContent = "(w/s)"
 					.replace(/w/, htDate.week)
-					.replace(/s/, htDate.season)));
+					.replace(/s/, htDate.season);
+				node.appendChild(wsDate);
 			}
 		};
 

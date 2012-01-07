@@ -63,6 +63,9 @@ Foxtrick.util.module.register({
 					else
 						matchlink.innerHTML = '<strong>' + awayTeam + '</strong>&nbsp;-&nbsp;' + homeTeam;
 				}
+				var strongs = table.rows[i].getElementsByTagName('strong');
+				for (var j=0; j<strongs.length; ++j)
+					Foxtrick.makeFeaturedElement(strongs[j], this);
 			}
 			catch (e) {
 				// cannot parse teams

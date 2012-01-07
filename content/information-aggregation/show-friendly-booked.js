@@ -63,6 +63,7 @@ Foxtrick.util.module.register({
 							img.className = "ft_friendly";
 							destCell.appendChild(img);
 						}
+						destCell = Foxtrick.makeFeaturedElement(destCell, Foxtrick.modules.ShowFriendlyBooked);
 					});
 			}, rows);
 		};

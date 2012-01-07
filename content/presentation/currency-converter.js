@@ -98,8 +98,9 @@ Foxtrick.util.module.register({
 			}
 			// now we insert the money denoted in new currency
 			if (sole) {
-				node.parentNode.appendChild(doc.createElement("br"));
-				node.parentNode.appendChild(doc.createTextNode(pairs[0][1]));
+				var div = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.CurrencyConverter, 'div');
+				div.textContent = pairs[0][1];
+				node.parentNode.appendChild(div);
 			}
 			else {
 				while (pairs.length) {
@@ -111,6 +112,7 @@ Foxtrick.util.module.register({
 					node.textContent = node.textContent.substr(0, pos) + " "
 						+ ins + node.textContent.substr(pos);
 				}
+				Foxtrick.makeFeaturedElement(node.parentNode, Foxtrick.modules.CurrencyConverter);
 			}
 		};
 		var traverse = function(node) {
