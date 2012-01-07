@@ -101,7 +101,7 @@ Foxtrick.entry.contentScriptInit = function(data) {
 			}
 		}
 		var parser = new window.DOMParser();
-		for (var i=0; Foxtrickl10n.htLanguagesXml.length; ++i) {
+		for (var i in data.htLang) {
 			Foxtrickl10n.htLanguagesXml[i] = parser.parseFromString(data.htLang[i], "text/xml");
 		}
 

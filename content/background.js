@@ -30,7 +30,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		about = serializer.serializeToString(Foxtrick.XMLData.aboutXML);
 		worldDetails = serializer.serializeToString(Foxtrick.XMLData.worldDetailsXml);
 		htLanguagesText = {};
-		for (var i=0; Foxtrickl10n.htLanguagesXml.length; ++i) {
+		for (var i in Foxtrickl10n.htLanguagesXml) {
 			htLanguagesText[i] = serializer.serializeToString(Foxtrickl10n.htLanguagesXml[i]);
 		}
 		cssTextCollection = Foxtrick.getCssTextCollection();
