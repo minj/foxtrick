@@ -18,63 +18,45 @@ Foxtrick.util.module.register({
 			
 		var modoption = doc.getElementById("cfModFunctions");
 		
-		if(modoption) {
+		if(modoption) {			
+			
+			var addIconImageLink = function(target, srclinknode, src){
+				var addModIcon = function(node, src, title, alt) {
+					Foxtrick.addImage(doc, node, { alt: alt, title: title, src: src});
+				}
+				var link = srclinknode.cloneNode(true)
+				link.innerText = ''
+				link.className = 'ft-mod-link';
+				addModIcon(link, src, srclinknode.innerText, srclinknode.innerText);
+				target.appendChild( link );
+			}
+			
 			var content = doc.getElementById("ctl00_ctl00_CPContent_pnlScrollContent");
 			var div = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.ForumModeratorIconLinks, 'div');
 			div.className = "ft-mod-link-icons";
-		
+			
 			var links = modoption.getElementsByTagName("a");
 			
 			for(var l = 0; l < links.length; l++){
 				var actionTypeFunctions = Foxtrick.getParameterFromUrl(links[l].href, "actionTypeFunctions");
 				switch(actionTypeFunctions){
 					case "threadclose":
-						var image = doc.createElement("img");
-						image.src = Foxtrick.InternalPath + 'resources/img/moderators/thread_close.png';
-						var link = links[l].cloneNode(true)
-						link.innerText = ''
-						link.className = 'ft-mod-link';
-						div.appendChild( link );
-						link.appendChild( image);
+						addIconImageLink(div, links[l], Foxtrick.InternalPath + 'resources/img/moderators/thread_close.png');						
 						break;
 					case "threaddelete":
-						var image = doc.createElement("img");
-						image.src = Foxtrick.InternalPath + 'resources/img/moderators/thread_delete.png';
-						var link = links[l].cloneNode(true)
-						link.innerText = ''
-						link.className = 'ft-mod-link';
-						div.appendChild( link );
-						link.appendChild( image);
+						addIconImageLink(div, links[l], Foxtrick.InternalPath + 'resources/img/moderators/thread_delete.png');
 						break;
 					case "threadrename":
-						var image = doc.createElement("img");
-						image.src = Foxtrick.InternalPath + 'resources/img/moderators/thread_rename.png';
-						var link = links[l].cloneNode(true)
-						link.innerText = ''
-						link.className = 'ft-mod-link';
-						div.appendChild( link );
-						link.appendChild( image);
+						addIconImageLink(div, links[l], Foxtrick.InternalPath + 'resources/img/moderators/thread_rename.png');
 						break;
 					case "changestickydate":
-						var image = doc.createElement("img");
-						image.src = Foxtrick.InternalPath + 'resources/img/moderators/thread_sticky_settings.png';
-						var link = links[l].cloneNode(true)
-						link.innerText = ''
-						link.className = 'ft-mod-link';
-						div.appendChild( link );
-						link.appendChild( image);
+						addIconImageLink(div, links[l], Foxtrick.InternalPath + 'resources/img/moderators/thread_sticky_settings.png');						
 						break;
 				};
 				var actionTypeWrite = Foxtrick.getParameterFromUrl(links[l].href, "actionTypeWrite");
 				switch(actionTypeWrite){
 					case "threadclosereply":
-						var image = doc.createElement("img");
-						image.src = Foxtrick.InternalPath + 'resources/img/moderators/thread_close_and_answer.png';
-						var link = links[l].cloneNode(true)
-						link.innerText = ''
-						link.className = 'ft-mod-link';
-						div.appendChild( link );
-						link.appendChild( image );
+						addIconImageLink(div, links[l], Foxtrick.InternalPath + 'resources/img/moderators/thread_close_and_answer.png');
 						break;
 				};
 			}
