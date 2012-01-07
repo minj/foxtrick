@@ -22,7 +22,7 @@ Foxtrick.util.module.register({
 
 		var header = Foxtrickl10n.getString("foxtrick.matches.attackdefensebars" );
 
-		var bodydiv=Foxtrick.createFeaturedElement(doc, this, ('div');
+		var bodydiv=Foxtrick.createFeaturedElement(doc, this, 'div');
 		var bodydivid = "foxtrick_attvsdefbars_content";
 		bodydiv.setAttribute( "id", bodydivid );
 
