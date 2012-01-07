@@ -1428,6 +1428,40 @@ stats["HattrickUnited"] = {
 };
 
 
+stats["htev"] = {
+  "url" : "http://htev.org/",
+  "img" : "http://htev.org/static/htevfavicon.gif",
+  "title" : "HTEV",
+
+  "teamlink" : { "path"       : "team/",
+                         "filters"    : [],
+                         "params"     :  {"teamid":""}
+                       },
+  "leaguelink" : { "path"       : "search_leagueid/?SeriesID=",
+                         "filters"    : [],
+                         "params"     :  {"leagueid":""}
+                       },
+  "playedmatchlink" : { "path"       : "match/",
+                         "filters"    : [],
+                         "params"     :  {"matchid":""}
+                       },
+  "countrylink" : { "path"       : "country/",
+                         "filters"    : [],
+                         "params"     :  {"countryid":""}
+                       },
+
+};
+
+stats["htev_simulator"] = {
+  "url" : "http://htev.org/",
+  "img" : "http://htev.org/static/htevfavicon.gif",
+  "title" : "HTEV Simulator",
+
+  "matchlink" : { "path"       : "furminator/",
+                         "filters"    : []
+                       },
+};
+
 // ----------------------------------------------------------------------
 // -------------- tracker & national teams ------------------------------
 // ----------------------------------------------------------------------
