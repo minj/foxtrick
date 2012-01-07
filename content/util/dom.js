@@ -10,7 +10,7 @@ Foxtrick.createFeaturedElement = function(doc, module, type) {
 	var node = doc.createElement(type);
 	node.className = 'ft-dummy';
 	if (FoxtrickPrefs.getBool("featureHighlight"))
-		node.title = Foxtrickl10n.getString("tab."+module.MODULE_CATEGORY)+' > '+module.MODULE_NAME + ': ' + FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
+		node.title = module.MODULE_NAME + ' (' + Foxtrickl10n.getString("tab."+module.MODULE_CATEGORY) + '): ' + FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
 	return node;
 };
 
@@ -18,7 +18,7 @@ Foxtrick.insertFeaturedRow = function(table, module, index) {
 	var row = table.insertRow(index);
 	row.className = 'ft-dummy';
 	if (FoxtrickPrefs.getBool("featureHighlight"))
-		row.title = Foxtrickl10n.getString("tab."+module.MODULE_CATEGORY)+' > '+module.MODULE_NAME + ': ' + FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
+		row.title = module.MODULE_NAME + ' (' + Foxtrickl10n.getString("tab."+module.MODULE_CATEGORY) + '): ' + FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
 	return row;
 };
 
@@ -27,14 +27,14 @@ Foxtrick.insertFeaturedCell = function(row, module, index) {
 	var cell = row.insertCell(index);
 	cell.className = 'ft-dummy';
 	if (FoxtrickPrefs.getBool("featureHighlight"))
-		cell.title = Foxtrickl10n.getString("tab."+module.MODULE_CATEGORY)+' > '+module.MODULE_NAME + ': ' + FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
+		cell.title = module.MODULE_NAME + ' (' + Foxtrickl10n.getString("tab."+module.MODULE_CATEGORY) + '): ' + FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
 	return cell;
 };
 
 Foxtrick.makeFeaturedElement = function(node, module) {
 	Foxtrick.addClass(node, 'ft-dummy');
 	if (FoxtrickPrefs.getBool("featureHighlight"))
-		node.title = Foxtrickl10n.getString("tab."+module.MODULE_CATEGORY)+' > '+module.MODULE_NAME + ': ' + FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
+		node.title = module.MODULE_NAME + ' (' + Foxtrickl10n.getString("tab."+module.MODULE_CATEGORY) + '): ' + FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
 	return node;
 };
 
