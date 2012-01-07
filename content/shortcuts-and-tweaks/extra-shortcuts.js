@@ -10,6 +10,13 @@ Foxtrick.util.module.register({
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('all'),
 	OPTIONS : ["AddSpace","AddLeft","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "ManageCHPP", "HtRadio", "No9", "Latehome"],
+	LINKS: {
+		"Supporterstats":{ link:"/World/Stats/", 		imgClass:"ftSuppStats", 	property:"statistics"},
+		"Transfers":	{ link:"/Club/Transfers/", 		imgClass:"ftMyTransfers", 	property:"transfers"},
+		"Prefs":		{ link:"/MyHattrick/Preferences/", imgClass:"ftSCPrefs", 	property:"prefs"},
+		"ManageCHPP":	{ link:"/MyHattrick/Preferences/ExternalAccessGrants.aspx", imgClass:"ftManageCHPP", property:"ManageCHPP"}
+	},
+
 	RADIOS: ["HtRadio", "No9", "Latehome"],
 	// following also need to be entered in manifest.json->optional_permissions and perferences.js->neededPermissions
 	RADIO_URLS: [
@@ -94,99 +101,35 @@ Foxtrick.util.module.register({
 			if (Foxtrick.hasClass(scCont,'scContainer') || Foxtrick.hasClass(scCont,'scContainerNoSupporter'))
 				break;
 		}
-		targetNode=scCont;
+		targetNode = scCont;
 		if (targetNode) {
-			if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", "Supporterstats")
-				&& Foxtrick.util.layout.isSupporter(doc)) {
-					var link = Foxtrick.createFeaturedElement(doc, this, 'a');
-					link.className = 'ft_extra-shortcuts';
-					link.href = "/World/Stats/";
+				for (var j in this.LINKS) {
+					if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", j)) {
+						var link = doc.createElement('a');
+						link.className = 'ft_extra-shortcuts';
+						link.href = this.LINKS[j].link;
 
-					var img1 = doc.createElement('img');
-					img1.setAttribute( "class", "ftSuppStats");
-					img1.src = "/Img/Icons/transparent.gif";
-					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.statistics");
-
-					link.appendChild(img1);
-					if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
-					else {
-						if (targetNode.lastChild.nodeName=='BR') {
-							targetNode.insertBefore(link,targetNode.lastChild);
-						}
+						var img1 = doc.createElement('img');
+						img1.setAttribute( "class", this.LINKS[j].imgClass);
+						img1.src = "/Img/Icons/transparent.gif";
+						img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts." + this.LINKS[j].property);
+						img1 = Foxtrick.makeFeaturedElement(img1, this);
+						
+						link.appendChild(img1);
+						if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", "AddLeft")) 
+							targetNode.insertBefore(link,targetNode.firstChild);
 						else {
-							targetNode.appendChild(link);
+							if (targetNode.lastChild.nodeName=='BR') {
+								targetNode.insertBefore(link,targetNode.lastChild);
+							}
+							else {
+								targetNode.appendChild(link);
+							}
 						}
 					}
 				}
-
-				if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", "Transfers")) {
-					var link = Foxtrick.createFeaturedElement(doc, this, 'a');
-					link.className = 'ft_extra-shortcuts';
-					link.href = "/Club/Transfers/";
-
-					var img1 = doc.createElement('img');
-					img1.setAttribute( "class", "ftMyTransfers");
-					img1.src = "/Img/Icons/transparent.gif";
-					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.transfers");
-
-					link.appendChild(img1);
-					if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
-					else {
-						if (targetNode.lastChild.nodeName=='BR') {
-							targetNode.insertBefore(link,targetNode.lastChild);
-						}
-						else {
-							targetNode.appendChild(link);
-						}
-					}
-				}
-
-				if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", "Prefs")) {
-					var link = Foxtrick.createFeaturedElement(doc, this, 'a');
-					link.className = 'ft_extra-shortcuts';
-					link.href = "/MyHattrick/Preferences/";
-
-					var img1 = doc.createElement('img');
-					img1.setAttribute( "class", "ftSCPrefs");
-					img1.src = "/Img/Icons/transparent.gif";
-					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.prefs");
-
-					link.appendChild(img1);
-					if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
-					else {
-						if (targetNode.lastChild.nodeName=='BR') {
-							targetNode.insertBefore(link,targetNode.lastChild);
-						}
-						else {
-							targetNode.appendChild(link);
-						}
-					}
-				}
-
-				if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", "ManageCHPP")) {
-					var link = Foxtrick.createFeaturedElement(doc, this, 'a');
-					link.className = 'ft_extra-shortcuts';
-					link.href = "/MyHattrick/Preferences/ExternalAccessGrants.aspx";
-
-					var img1 = doc.createElement('img');
-					img1.setAttribute( "class", "ftManageCHPP");
-					img1.src = "/Img/Icons/transparent.gif";
-					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.ManageCHPP");
-
-					link.appendChild(img1);
-					if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
-					else {
-						if (targetNode.lastChild.nodeName=='BR') {
-							targetNode.insertBefore(link,targetNode.lastChild);
-						}
-						else {
-							targetNode.appendChild(link);
-						}
-					}
-				}
-
 				if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", "FoxTrickPrefs")) {
-					var link = Foxtrick.createFeaturedElement(doc, this, 'a');
+					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
 					link.href = 'javascript:void();'
 					Foxtrick.listen(link, 'click', function() {FoxtrickPrefs.show('#tab=on_page&view-by=page');}, false);
@@ -194,7 +137,8 @@ Foxtrick.util.module.register({
 					img1.setAttribute( "class", "ftSCFtPrefs");
 					img1.src = "/Img/Icons/transparent.gif";
 					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.ftprefs");
-
+					img1 = Foxtrick.makeFeaturedElement(img1, this);
+						
 					link.appendChild(img1);
 					if (FoxtrickPrefs.isModuleOptionEnabled("ExtraShortcuts", "AddLeft")) targetNode.insertBefore(link,targetNode.firstChild);
 					else {
