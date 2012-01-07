@@ -57,7 +57,7 @@ Foxtrick.util.module.register({
 			div.appendChild(list);
 			caption.appendChild(captionText);
 
-			for (var i in players) {
+			for (var i=0; i<players.length; ++i) {
 				var item = doc.createElement("li");
 				var player = players[i].nameLink.cloneNode(true);
 				var age = doc.createTextNode(players[i].ageText);

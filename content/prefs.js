@@ -89,7 +89,7 @@ var FoxtrickPrefs = {
 		for (var i = 0; i < keys.length; ++i) {
 			FoxtrickPrefs.deleteValue(keys[i]);
 		}
-		for (var i in values) {
+		for (var i=0; i<values.length; ++i) {
 			FoxtrickPrefs.set(decodeURI(branch + "." + i), values[i]);
 		}
 	},

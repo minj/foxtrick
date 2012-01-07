@@ -27,7 +27,7 @@ Foxtrick.util.module.register({
 		var median = 0;
 		var avg = 0;
 		var len = priceArray.length;
-		for (var i in priceArray) {
+		for (var i=0; i<priceArray.length; ++i) {
 			avg = avg + priceArray[i];
 		}
 		avg = Math.round(avg / len);

@@ -48,7 +48,7 @@ function initCoreModules()
 {
 	// core functions needed for preferences, localization, etc.
 	var core = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
-	for (var i in core)
+	for (var i=0; i<core.length;++i)
 		if (typeof(core[i].init)=='function') 
 			core[i].init();
 }
@@ -58,7 +58,7 @@ function parseFragment(fragment)
 {
 	var pairs = String(fragment).split(/&/); // key - value pairs use ampersand (&) as delimiter
 	var ret = {};
-	for (var i in pairs) {
+	for (var i=0; i<pairs.length; ++i) {
 		var pair = pairs[i].split(/=/); // key and value are separated by equal sign (=)
 		if (pair.length == 2)
 			ret[pair[0]] = pair[1];
@@ -286,7 +286,7 @@ function initTextAndValues()
 			return n.match(/oauth\.(.+)\.accessToken/)[1];
 		}, oauth_keys);
 		teamids = Foxtrick.unique(teamids);
-		for (var i in teamids) {
+		for (var i=0; i<teamids.length; ++i) {
 			var id = parseInt(teamids[i]);
 			if ( !isNaN(id) ) {
 				var item = document.createElement("option");
@@ -436,7 +436,7 @@ function getModule(module)
 		var genOptions = module.OPTION_FUNC(document);
 		if (genOptions) {
 			if ($.isArray(genOptions)) {
-				for (var field in genOptions)
+				for (var field=0; field<genOptions.length; ++field)
 					customCoptions.push(field);
 			}
 			else
@@ -450,7 +450,7 @@ function getModule(module)
 		options.appendChild(checkboxes);
 		checkboxes.id = module.MODULE_NAME + "-checkboxes";
 
-		for (var i in module.OPTIONS) {		
+		for (var i=0; i<module.OPTIONS.length; ++i) {		
 			var item, label, checkbox = null;
 			
 			var appendOptionToList = function (key, list){
@@ -479,7 +479,7 @@ function getModule(module)
 			if(module.OPTIONS[i] instanceof Array){
 				var parentlist = checkboxes;
 				var appendOptionsArrayToList = function (optionsarray, parentlist){
-					for(var k in optionsarray)
+					for(var k=0; k<optionsarray.length; ++k)
 					{
 						if(k == 1){
 							var item = document.createElement("li");
@@ -540,7 +540,7 @@ function getModule(module)
 		radios.id = entry.id + "-radios";
 		options.appendChild(radios);
 
-		for (var i in module.RADIO_OPTIONS) {
+		for (var i=0; i<module.RADIO_OPTIONS.length; ++i) {
 			var item = document.createElement("li");
 			radios.appendChild(item);
 			var label = document.createElement("label");

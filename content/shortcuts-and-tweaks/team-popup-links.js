@@ -245,7 +245,7 @@ Foxtrick.util.module.register({
 					if (owntopteamlinks) {
 						// own team's link at the top of the page
 						var ownLinks = [ "Matches", "Players" ];
-						for (var item in ownLinks) {
+						for (var item=0; item<ownLinks.length; ++item) {
 							var link = ownLinks[item];
 							if (links[link]) {
 								addItem(link, true,

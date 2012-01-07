@@ -269,7 +269,7 @@ Foxtrick.util.module.register({
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "currentLeagueId")) {
 					addHeader(Foxtrickl10n.getString("Current_league"));
 					var leagues = [];
-					for (var i in playerList) {
+					for (var i=0; i<playerList.length; ++i) {
 						var id = playerList[i].currentLeagueId;
 						if (id !== undefined) {
 							if (leagues[id] === undefined) {
@@ -281,12 +281,12 @@ Foxtrick.util.module.register({
 						}
 					}
 					var leagueSummary = [];
-					for (var i in leagues) {
+					for (var i=0; i<leagues.length; ++i) {
 						leagueSummary.push({ name: Foxtrick.XMLData.League[i].LeagueName, count: leagues[i] });
 					}
 					leagueSummary.sort(function (a,b) { return a.name.localeCompare(b.name) });
 					leagueSummary.sort(function (a,b) { return b.count - a.count });
-					for (var i in leagueSummary) {
+					for (var i=0; i<leagueSummary.length; ++i) {
 						addRow(leagueSummary[i].name, leagueSummary[i].count);
 					}
 				}

@@ -187,7 +187,7 @@ Foxtrick.util.module.register({
 
 		var templates = FoxtrickPrefs.getList(templatesPrefList);
 
-		for (var i in templates)
+		for (var i=0; i<templates.length; ++i)
 			appendTemplate(templates[i], templates_div);
 
 		// display add new template button

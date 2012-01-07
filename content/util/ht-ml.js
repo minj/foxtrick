@@ -51,7 +51,7 @@ Foxtrick.util.htMl.getId = function(node) {
 	if (typeof(link) !== "string" || link.search(/^javascript/i) === 0) {
 		return null;
 	}
-	for (var index in idTypes) {
+	for (var index=0; index<idTypes.length; ++index) {
 		var current = idTypes[index];
 		if (link.search(current.re) !== -1) {
 			var match = link.match(current.re);

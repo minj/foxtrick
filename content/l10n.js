@@ -268,7 +268,6 @@ var Foxtrickl10n = {
 
 };
 
-
 // ----------------------  Gecko specific get/set preferences --------------------------
 if (Foxtrick.arch === "Gecko") {
 	(function() {
@@ -282,9 +281,8 @@ if (Foxtrick.arch === "Gecko") {
 
 		init : function() {
 			if (Foxtrick.chromeContext()==='background') {
-				// get htlang.xml for each locale
-				var i;
-				for (i in Foxtrickl10n.locales) {
+				// get htlang.xml for each locale			
+				for (var i=0; i<Foxtrickl10n.locales.length; ++i) {
 					var locale = Foxtrickl10n.locales[i];
 					var url = Foxtrick.InternalPath + "locale/" + locale + "/htlang.xml";
 					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXmlSync(url);

@@ -24,13 +24,13 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		Foxtrick.entry.init();
 
 		// prepare resources for later transmission to content script
-		var serializer = new window.XMLSerializer(), i;
+		var serializer = new window.XMLSerializer();
 		
 		currency = serializer.serializeToString(Foxtrick.XMLData.htCurrencyXml);
 		about = serializer.serializeToString(Foxtrick.XMLData.aboutXML);
 		worldDetails = serializer.serializeToString(Foxtrick.XMLData.worldDetailsXml);
 		htLanguagesText = {};
-		for (i in Foxtrickl10n.htLanguagesXml) {
+		for (var i=0; Foxtrickl10n.htLanguagesXml.length; ++i) {
 			htLanguagesText[i] = serializer.serializeToString(Foxtrickl10n.htLanguagesXml[i]);
 		}
 		cssTextCollection = Foxtrick.getCssTextCollection();

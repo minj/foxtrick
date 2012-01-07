@@ -210,20 +210,20 @@ Foxtrick.util.module.register({
 			table.appendChild(headRow);
 			var empty = doc.createElement("th");
 			headRow.appendChild(empty);
-			for (var i in teams) {
+			for (var i=0; i<teams.length; ++i) {
 				var team = doc.createElement("th");
 				team.textContent = getShortName(teams[i].name);
 				team.title = teams[i].name;
 				headRow.appendChild(team);
 			}
 
-			for (var i in teams) {
+			for (var i=0; i<teams.length; ++i) {
 				var row = doc.createElement("tr");
 				table.appendChild(row);
 				var head = doc.createElement("th");
 				head.textContent = teams[i].name;
 				row.appendChild(head);
-				for (var j in teams) {
+				for (var j=0; j<teams.length; ++j) {
 					var cell = doc.createElement("td");
 					row.appendChild(cell);
 					if (!teams[i].match[teams[j].id])

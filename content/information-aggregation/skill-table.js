@@ -653,7 +653,7 @@ Foxtrick.util.module.register({
 				var tbody = doc.createElement("tbody");
 				table.appendChild(tbody);
 
-				for (i in playerList) {
+				for (var i=0; i<playerList.length; ++i) {
 					var row = doc.createElement("tr");
 					
 					// set row attributes for filter module
@@ -671,7 +671,7 @@ Foxtrick.util.module.register({
 					
 					tbody.appendChild(row);
 					
-					for (j in columns) {
+					for (var j = 0; j < columns.length; j++) {
 						if (columns[j].enabled) {
 							var cell = doc.createElement("td");
 							row.appendChild(cell);

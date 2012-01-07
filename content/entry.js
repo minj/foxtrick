@@ -95,13 +95,13 @@ Foxtrick.entry.contentScriptInit = function(data) {
 		else {
 			// fennec can access them from context, but they still need to get initilized
 			var coreModules = [FoxtrickPrefs, Foxtrickl10n];
-			for (var i in coreModules) {
+			for (var i=0; coreModules.length; ++i) {
 				if (typeof(coreModules[i].init) == "function")
 					coreModules[i].init();
 			}
 		}
 		var parser = new window.DOMParser();
-		for (var i in data.htLang) {
+		for (var i=0; Foxtrickl10n.htLanguagesXml.length; ++i) {
 			Foxtrickl10n.htLanguagesXml[i] = parser.parseFromString(data.htLang[i], "text/xml");
 		}
 
@@ -119,7 +119,7 @@ Foxtrick.entry.init = function() {
 	Foxtrick.log("Initializing FoxTrick...");
 
 	var coreModules = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
-	for (var i in coreModules) {
+	for (var i=0; i<coreModules.length; ++i) {
 		if (typeof(coreModules[i].init) == "function")
 			coreModules[i].init();
 	}
@@ -226,7 +226,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		// modules running on current page
 		for (var page in Foxtrick.ht_pages) {
 			if (Foxtrick.isPage(page, doc)) {
-				for (var i in Foxtrick.entry.runMap[page])
+				for (var i=0; i<Foxtrick.entry.runMap[page].length; ++i)
 					modules.push(Foxtrick.entry.runMap[page][i]);
 			}
 		}
@@ -289,7 +289,7 @@ Foxtrick.entry.change = function(ev) {
 			// modules running on current page
 			for (var page in Foxtrick.ht_pages) {
 				if (Foxtrick.isPage(page, doc)) {
-					for (var i in Foxtrick.entry.runMap[page])
+					for (var i=0; i<Foxtrick.entry.runMap[page].length; ++i)
 						modules.push(Foxtrick.entry.runMap[page][i]);
 				}
 			}

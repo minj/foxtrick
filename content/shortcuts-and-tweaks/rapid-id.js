@@ -138,8 +138,7 @@ Foxtrick.util.module.register({
 		if (rightnow && !Foxtrick.util.layout.isStandard(doc))
 			return;
 		// get labels of optgroup and option
-		var i;
-		for (i in options) {
+		for (var i=0; i<options.length; ++i) {
 			options[i].label = Foxtrickl10n.getString(options[i].text);
 		}
 

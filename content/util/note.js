@@ -91,7 +91,7 @@ Foxtrick.util.note = {
 
 			if (buttons && buttons.length) {
 				var buttonContainer = doc.createElement("div");
-				for (var i in buttons) {
+				for (var i=0; i<buttons.length; ++i) {
 					var button = doc.createElement("input");
 					button.type = "button";
 					button.value = Foxtrickl10n.getString(buttons[i].type.name);

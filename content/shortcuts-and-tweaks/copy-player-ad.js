@@ -160,7 +160,7 @@ Foxtrick.util.module.register({
 
 						if (!FoxtrickPrefs.isModuleOptionEnabled("CopyPlayerAd", "NonTableStyle")) {
 							ad += "[table]\n";
-							for (var i in skillArray) {
+							for (var i=0; i<skillArray.length; ++i) {
 								ad += "[tr]"
 									+ "[th]" + skillArray[i].name + "[/th]"
 									+ "[td]" + skillArray[i].text + "[/td]"
@@ -170,7 +170,7 @@ Foxtrick.util.module.register({
 						}
 						else {
 							ad += "\n";
-							for (var i in skillArray) {
+							for (var i=0; i<skillArray.length; ++i) {
 								ad += skillArray[i].name + ": "
 									+ skillArray[i].text + "\n";
 							}
@@ -183,7 +183,7 @@ Foxtrick.util.module.register({
 						if (!FoxtrickPrefs.isModuleOptionEnabled("CopyPlayerAd", "NonTableStyle")) {
 							ad += "[table]\n";
 							var index = 0;
-							for (var skill in skillArray) {
+							for (var skill=0; skill<skillArray.length; ++skill) {
 								if (index % 2 == 0)
 									ad += "[tr]";
 								ad += "[th]" + skillArray[skill].name + "[/th]";
@@ -197,7 +197,7 @@ Foxtrick.util.module.register({
 						else {
 							ad += "\n";
 							var index = 0;
-							for (var skill in skillArray) {
+							for (var skill=0; skill<skillArray.length; ++skill) {
 								if (index % 2 == 1)
 									ad += " ";
 								ad += skillArray[skill].name + ": "
@@ -241,7 +241,7 @@ Foxtrick.util.module.register({
 					}
 					if (!FoxtrickPrefs.isModuleOptionEnabled("CopyPlayerAd", "NonTableStyle")) {
 						ad += "[table]\n";
-						for (var i in skillArray) {
+						for (var i=0; i<skillArray.length; ++i) {
 							ad += "[tr]"
 								+ "[th]" + skillArray[i].name + "[/th]"
 								+ "[td]"
@@ -257,7 +257,7 @@ Foxtrick.util.module.register({
 					}
 					else {
 						ad += "\n";
-						for (var i in skillArray) {
+						for (var i=0; i<skillArray.length; ++i) {
 							ad += skillArray[i].name + ": "
 								+ (skillArray[i].maxed ? "[b]" : "")
 								+ skillArray[i].current.text

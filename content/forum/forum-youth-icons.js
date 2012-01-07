@@ -66,7 +66,7 @@ Foxtrick.util.module.register({
 		var symbolsText = FoxtrickPrefs.getString("module.ForumYouthIcons.symbols_text");
 		var replaced = symbolsText.replace(/\/;/g,"ecalper");
 		var split = replaced.split(";");
-		for (var i in split)
+		for (var i=0; i<split.length; ++i)
 		{
 			var fixed = split[i].replace(/ecalper/g,";");
 			icons[9].versions.push(fixed);

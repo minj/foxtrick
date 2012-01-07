@@ -677,8 +677,8 @@ Foxtrick.unload_css_permanent = function(cssList) {
 	if (Foxtrick.arch === "Gecko") {
 		if (typeof(cssList) === "string")
 			unload_css_permanent_impl(cssList);
-		else if (typeof(cssList) === "object") {
-			for (var i in cssList)
+		else if (cssList instanceof Array) {
+			for (var i=0; i<cssList.length; ++i)
 				unload_css_permanent_impl(cssList[i]);
 		}
 	}

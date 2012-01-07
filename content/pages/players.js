@@ -420,7 +420,7 @@ Foxtrick.Pages.Players = {
 						links.loyality = basicSkillLinks[4]; 
 					}
 					var basicSkillNames = ["form", "stamina", "leadership", "experience", "loyality"];
-					for (var j in basicSkillNames) {
+					for (var j=0; j<basicSkillNames.length; ++j) {
 						if (player[basicSkillNames[j]] === undefined
 							&& links[basicSkillNames[j]] !== undefined) {
 							player[basicSkillNames[j]] = parseInt(links[basicSkillNames[j]].href.match(/ll=(\d+)/)[1]);
@@ -619,7 +619,7 @@ Foxtrick.Pages.Players = {
 									leagueText += currentPara.childNodes[j].textContent;
 								}
 							}
-							for (var j in Foxtrick.XMLData.League) {
+							for (var j=0; j<Foxtrick.XMLData.League.length; ++j) {
 								if (leagueText.indexOf(Foxtrick.XMLData.League[j].LeagueName) !== -1) {
 									player.currentLeagueId = j;
 									break;
@@ -686,7 +686,7 @@ Foxtrick.Pages.Players = {
 	},
 
 	isPropertyInList : function(playerList, property) {
-		for (var i in playerList) {
+		for (var i=0; i<playerList.length; ++i) {
 			if (playerList[i][property] !== undefined) {
 				return true;
 			}
