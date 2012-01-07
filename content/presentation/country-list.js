@@ -132,6 +132,8 @@ Foxtrick.util.module.register({
 
 			var byline = doc.getElementsByClassName("byline")[0];
 			byline.innerHTML = '<a id="ft_cntr_fix" href="'+league.href+'">' + htname + '</a>,' + byline.innerHTML;
+			var cntr = doc.getElementById( 'ft_cntr_fix' );
+			Foxtrick.makeFeaturedElement(cntr, Foxtrick.modules.CountryList);	
 		}
 	},
 
@@ -168,6 +170,7 @@ Foxtrick.util.module.register({
 					Foxtrick.dump('country-list.js countries: '+exml + "\n");
 				}
 			}
+			Foxtrick.makeFeaturedElement(selectbox, Foxtrick.modules.CountryList);			
 		} catch(e) {Foxtrick.dump('countrylist: '+e+'\n');}
 
 

@@ -213,8 +213,11 @@ Foxtrick.util.module.register({
 			for (var j = 0; j < ths.length; ++j) {
 				if (ths[j].getElementsByTagName('input').length === 0 
 					&& ths[j].getElementsByTagName('a').length === 0
-					&& !Foxtrick.hasClass(ths[j],'header') ) // ht sorting
+					&& !Foxtrick.hasClass(ths[j],'header') ) { // ht sorting
+					
+					Foxtrick.makeFeaturedElement(ths[j], this);
 					Foxtrick.listen(ths[j], "click", onClick, false);
+				}
 			}
 		}
 	}

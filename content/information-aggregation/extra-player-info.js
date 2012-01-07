@@ -41,9 +41,10 @@ Foxtrick.util.module.register({
 						trainerTypeStr = Foxtrickl10n.getString('foxtrick.balancedTrainer');
 					}
 					var trainerSkillLink = '<a class="skill" href="/Help/Rules/AppDenominations.aspx?lt=skill&ll='+player.trainerData.skill+'#skill">'+trainerSkillStr+'</a>';
-					var trainerStr = "<br>" + trainerTypeStr.replace("%s", trainerSkillLink);
+					var div = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.ExtraPlayerInfo, 'div');							
+					div.innerHTML = trainerTypeStr.replace("%s", trainerSkillLink);
 					// insert after the second break
-					basics.innerHTML += trainerStr;
+					basics.appendChild(div);
 				}
 				if (FoxtrickPrefs.isModuleOptionEnabled("ExtraPlayerInfo", "Flag")
 					&& player.countryId !== undefined) {
@@ -55,6 +56,7 @@ Foxtrick.util.module.register({
 						// to add flags for non-NT players
 						var flag = Foxtrick.util.id.createFlagFromCountryId(doc, player.countryId);
 						if (flag) {
+							Foxtrick.makeFeaturedElement(flag, Foxtrick.modules.ExtraPlayerInfo);
 							nameLink.parentNode.insertBefore(flag, nameLink.parentNode.firstChild);
 						}
 					}

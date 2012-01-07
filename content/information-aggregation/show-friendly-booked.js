@@ -61,9 +61,9 @@ Foxtrick.util.module.register({
 							img.src = "/Img/Icons/transparent.gif";
 							img.alt = img.title = Foxtrickl10n.getString("team.status.booked");
 							img.className = "ft_friendly";
+							img = Foxtrick.makeFeaturedElement(img, Foxtrick.modules.ShowFriendlyBooked);
 							destCell.appendChild(img);
 						}
-						destCell = Foxtrick.makeFeaturedElement(destCell, Foxtrick.modules.ShowFriendlyBooked);
 					});
 			}, rows);
 		};

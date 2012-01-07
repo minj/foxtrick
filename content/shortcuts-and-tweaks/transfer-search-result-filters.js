@@ -71,7 +71,7 @@ Foxtrick.util.module.register({
 			var HTProfileRow = doc.getElementById('ctl00_ctl00_CPContent_CPMain_rowProfiles');
 			if (HTProfileRow) {
 				var HTProfileSelect = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlSearchProfile');
-				var tr = doc.createElement('tr');
+				var tr = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.TransferSearchResultFilters, 'tr');
 				var td = doc.createElement('td');
 				td.textContent = HTProfileSelect.title;
 				tr.appendChild(td)
@@ -159,7 +159,7 @@ Foxtrick.util.module.register({
 				if (tableAdvanced === null) {
 					return;  //only show if advanced filters is on
 				}
-				var table = doc.createElement('table');
+				var table = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.TransferSearchResultFilters, 'table');
 				table.id = 'ft-ExtraFilters'
 				var tr = doc.createElement('tr');
 				table.appendChild(tr);

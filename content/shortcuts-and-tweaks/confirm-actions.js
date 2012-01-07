@@ -39,6 +39,7 @@ Foxtrick.util.module.register({
 			if (FoxtrickPrefs.isModuleOptionEnabled("ConfirmActions", "Bid")) {
 				var bidButton = doc.getElementById(ids.BID.BUTTON_ID);
 				if (bidButton) {
+					bidButton = Foxtrick.makeFeaturedElement(bidButton, this);
 					Foxtrick.listen(bidButton, "click", function(ev) {
 						var doc = ev.target.ownerDocument;
 						var bidAlert = doc.getElementById(ids.BID.ALERT_ID);
@@ -89,6 +90,7 @@ Foxtrick.util.module.register({
 			if (FoxtrickPrefs.isModuleOptionEnabled("ConfirmActions", "TransferList")) {
 				var sellButton = doc.getElementById(ids.SELL.BUTTON_ID);
 				if (sellButton) {
+					sellButton = Foxtrick.makeFeaturedElement(sellButton, this);
 					Foxtrick.listen(sellButton, "click", function(ev) {
 						var doc = ev.target.ownerDocument;
 						var sellButton = doc.getElementById(ids.SELL.BUTTON_ID);
@@ -144,6 +146,7 @@ Foxtrick.util.module.register({
 				var submitLink = doc.getElementById("ctl00_ctl00_CPContent_CPSidebar_ucNTCoachOptions_repNTActions_ctl00_lnkNTAction")
 					|| doc.getElementById("ctl00_ctl00_CPContent_CPSidebar_ucNTCoachOptions_repNTActions_ctl01_lnkNTAction");
 				if (submitLink) {
+					submitLink = Foxtrick.makeFeaturedElement(submitLink, this);
 					var sOnclick = submitLink.href.replace(/javascript\:/, "");
 					if (sOnclick.search(/confirm/) == -1){ // already added?
 						var sConfirmString = Foxtrickl10n.getString("foxtrick.ntremoveconfirmation");
@@ -157,6 +160,7 @@ Foxtrick.util.module.register({
 			if (FoxtrickPrefs.isModuleOptionEnabled("ConfirmActions", "StaffChange")) {
 				var submitButton = doc.getElementById(ids.STAFF.SUBMIT_BUTTON_ID);
 				if (submitButton) {
+					submitButton = Foxtrick.makeFeaturedElement(submitButton, this);
 					Foxtrick.listen(submitButton, "click", function(ev) {
 						var doc = ev.target.ownerDocument;
 						var submitButton = doc.getElementById(ids.STAFF.SUBMIT_BUTTON_ID);
