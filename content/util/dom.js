@@ -34,7 +34,7 @@ Foxtrick.insertFeaturedCell = function(row, module, index) {
 Foxtrick.makeFeaturedElement = function(node, module) {
 	Foxtrick.addClass(node, 'ft-dummy');
 	if (FoxtrickPrefs.getBool("featureHighlight"))
-		node.title = module.MODULE_NAME + ' (' + Foxtrickl10n.getString("tab."+module.MODULE_CATEGORY) + '): ' + FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
+		node.title = module.MODULE_NAME + ' (' + Foxtrickl10n.getString("tab."+module.MODULE_CATEGORY) + '): ' + FoxtrickPrefs.getModuleDescription(module.MODULE_NAME) + (node.title ? " / " +node.title : "" );
 	return node;
 };
 

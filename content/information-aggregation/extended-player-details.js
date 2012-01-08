@@ -44,7 +44,14 @@ Foxtrick.util.module.register({
 		if (JoinedText.search("NaN") == -1) {
 			var part1 = Foxtrick.substr(joined_elm.innerHTML, 0, Foxtrick.strrpos( joined_elm.innerHTML, ")"));
 			part1 = part1.replace('(', '<span class="shy smallText ft_since"><br>(');
-			joined_elm.innerHTML = part1 + ' <span>('+ season_week.week + '/' + season_week.season + ')</span>, ' + JoinedText + ')</span>';
+			var ws = '';
+			if (FoxtrickPrefs.isModuleEnabled("HTDateFormat")) 
+				ws += '<span>('+ season_week.week + '/' + season_week.season + ')</span>, ';
+			joined_elm.innerHTML = part1 + ' ' +ws + JoinedText + ')</span>';
+			var span = joined_elm.getElementsByClassName('ft_since')[0];
+			Foxtrick.makeFeaturedElement(span, this);
+			if (span.getElementsByTagName('span')[0])
+				Foxtrick.makeFeaturedElement(span.getElementsByTagName('span')[0], Foxtrick.modules.HTDateFormat);
 		}
 		else Foxtrick.dump('  Could not create jointime (NaN)\n');
 	}
@@ -96,11 +103,15 @@ Foxtrick.util.module.register({
 			+ '&nbsp;<span id="ft_bonuswage" style="direction: ltr !important; color:#666666; ">('
 			+ formattedWage + '&nbsp;' + currency + ')</span> '
 			+ part2;
+			Foxtrick.makeFeaturedElement(doc.getElementById('ft_bonuswage'), this);
 		}
-		if (FoxtrickPrefs.isModuleOptionEnabled("ExtendedPlayerDetailsWage", "SeasonWage"))
-			wageElm.innerHTML += "<br>"
+		if (FoxtrickPrefs.isModuleOptionEnabled("ExtendedPlayerDetailsWage", "SeasonWage")) {
+			wageElm.innerHTML += "<br><span id='ft_seasonwage'>"
 				+ Foxtrick.formatNumber(wage * 16, "&nbsp;") + "&nbsp;"
 				+ currency
-				+ Foxtrickl10n.getString("foxtrick.ExtendedPlayerDetails.perseason");
+				+ Foxtrickl10n.getString("foxtrick.ExtendedPlayerDetails.perseason")
+				+ "</span>";
+			Foxtrick.makeFeaturedElement(doc.getElementById('ft_seasonwage'), this);
+		}
 	}
 });
