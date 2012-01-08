@@ -6,6 +6,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 var Foxtrickl10n = {
 	locales : [
+		// english names and ids are also in chpps worldlanguages.xml
 		"ar",	// العربية, arabic	22
 		"be",	// Беларуская, belorus	84
 		"bg",	// Български, bulgarian	43
