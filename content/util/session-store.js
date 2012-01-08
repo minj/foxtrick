@@ -61,11 +61,14 @@ else {
 		// don't update if this tab initiated the update
 		sandboxed.extension.onRequest.addListener(
 		 function(request, sender, sendResponse) {
-		 if (request.req=='sessionSet' && chrome.extension.tabid != request.senderid ) {
+			//Foxtrick.log('sessionStore broadcast listen ', 'this_tabid:', sandboxed.extension.tabid, ' senderid:',request.senderid);
+			if (request.req=='sessionSet' && sandboxed.extension.tabid != request.senderid ) {
+				Foxtrick.log('broadcast sessionSet from ', request.senderid, ' this_tabid:', sandboxed.extension.tabid, ' :', request.key);
 				Foxtrick._sessionSet(request.key, request.value);
 			}
-			else if (request.req=='sessionDeleteBranch' && chrome.extension.tabid != request.senderid ) {
+			else if (request.req=='sessionDeleteBranch' && sandboxed.extension.tabid != request.senderid ) {
 				Foxtrick._sessionDeleteBranch(request.branch);
+				Foxtrick.log('broadcast sessionDeleteBranch from ', request.senderid, ' this_tabid:', sandboxed.extension.tabid, ' :', request.branch);
 			}
 		});
 

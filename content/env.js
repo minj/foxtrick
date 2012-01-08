@@ -399,14 +399,14 @@ else if (typeof(chrome) == "object") {
 	// register tab for broadcastMessage
 	if (Foxtrick.chromeContext() == "content") {
 		//  recieve tab id on register
-		chrome.extension.sendRequest({ req : "register" }, function(response){
-			chrome.extension.tabid = response.tabid;
+		sandboxed.extension.sendRequest({ req : "register" }, function(response){
+			sandboxed.extension.tabid = response.tabid;
 		});
 		// answer to status check after every new page load
-		chrome.extension.onRequest.addListener(
+		sandboxed.extension.onRequest.addListener(
 		  function(request, sender, sendResponse) {
 			if (request.req=='checkAlive') {
-				// send bak who answered
+				// send back who answered
 				sendResponse( {id: request.id} );
 			}
 		});
@@ -431,11 +431,11 @@ else if (typeof(chrome) == "object") {
 				sandboxed.tabs.tab[senderid] = true;
 			};
 			// listen to tab register
-			chrome.extension.onRequest.addListener( 
+			sandboxed.extension.onRequest.addListener( 
 			  function(request, sender, sendResponse) {
 				if (request.req=='register') {
 					updateTabList(sender.tab.id);
-					sendResponse({ tabid: sender.tab.id } );
+					sendResponse({ tabid: sender.tab.id });
 				}
 			});
 		})()
@@ -527,7 +527,9 @@ else {
 							callback(messageEvent.json.data, messageEvent.target);
 						
 						removeEventListener("message", responseHandler, false);
-					} catch(e){Foxtrick.log('callback error:',e)}
+					} catch(e){
+						Foxtrick.log('callback error:',e);
+					}
 				  };
 
 				  addListener("response", responseHandler);
@@ -580,7 +582,7 @@ else {
 							callback(messageEvent.json.data, messageEvent.target);
 
 						removeEventListener("message", responseHandler, false);
-					} catch(e) {
+					} catch (e) {
 						Foxtrick.log('callback error:', e);
 					}
 				  };
@@ -590,12 +592,32 @@ else {
 
 				return theFunction;
 			  })(),
+			// tabid of a content script
+			tabid : -1,
 			},
 			tabs: {
 			  create: function(data) {
 				Browser.addTab(data.url,true);
 			  }
 			},
+		}
+		
+		// register tab for broadcastMessage
+		if (Foxtrick.chromeContext() == "content") {
+			//  recieve tab id on register
+			sandboxed.extension.sendRequest({ req : "register" }, function(response){
+				sandboxed.extension.tabid = response.tabid;
+				Foxtrick.log('register ', response);
+			});
+		}
+		else {
+			// listen to tab register
+			sandboxed.extension.onRequest.addListener( 
+			  function(request, sender, sendResponse) {
+				if (request.req=='register') {
+					sendResponse({ tabid: sender.tab.id });
+				}
+			});
 		}
 	}
 }
