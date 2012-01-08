@@ -29,22 +29,22 @@
 
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
-		<position type="Keeper" value="Vartininkas" short="Vr" />
-		<position type="Central defender" value="Vidurio gynėjas" short="Cg" />
-		<position type="Wing back" value="Krašto gynėjas" short="Kg" />
-		<position type="Inner midfielder" value="Saugas" short="Cs" />
-		<position type="Winger" value="Krašto saugas" short="Ks" />
-		<position type="Forward" value="Puolėjas" short="Pl" />
+		<position type="Keeper" value="Vartininkas" short="VR" />
+		<position type="Central defender" value="Vidurio gynėjas" short="CG" />
+		<position type="Wing back" value="Krašto gynėjas" short="KG" />
+		<position type="Inner midfielder" value="Saugas" short="CS" />
+		<position type="Winger" value="Krašto saugas" short="KS" />
+		<position type="Forward" value="Puolėjas" short="PL" />
 	</positions>
 
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
-		<specialty type="Unpredictable" value="Nenuspėjamas" short="Un" />
-		<specialty type="Powerful" value="Stiprus" short="Po" />
-		<specialty type="Quick" value="Greitas" short="Qu" />
-		<specialty type="Technical" value="Techniškas" short="Te" />
-		<specialty type="Head" value="Aukštas" short="He" />
-		<specialty type="Regainer" value="Atsigaunantis" short="Re" />
+		<specialty type="Unpredictable" value="Nenuspėjamas" short="Nen" />
+		<specialty type="Powerful" value="Stiprus" short="Stp" />
+		<specialty type="Quick" value="Greitas" short="Grt" />
+		<specialty type="Technical" value="Techniškas" short="Tch" />
+		<specialty type="Head" value="Aukštas" short="Auk" />
+		<specialty type="Regainer" value="Atsigaunantis" short="Ats" />
 	</specialties>
 
 	<!-- levels word connections appearing denominations page. copy "text" -->

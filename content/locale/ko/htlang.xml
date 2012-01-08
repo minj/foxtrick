@@ -37,12 +37,12 @@
              translate attribute "value" by copying from there in verbatim,
              translate attribute "short" according to your own will. -->
         <positions>
-                <position type="Keeper" value="골키퍼" short="GK" />
-                <position type="Central defender" value="중앙 수비수" short="CD" />
-                <position type="Wing back" value="윙 백" short="WB" />
-                <position type="Inner midfielder" value="중앙 미드필드" short="IM" />
-                <position type="Winger" value="윙어" short="WI" />
-                <position type="Forward" value="포워드" short="FW" />
+                <position type="Keeper" value="골키퍼" short="키퍼" />
+                <position type="Central defender" value="중앙 수비수" short="수비" />
+                <position type="Wing back" value="윙 백" short="윙백" />
+                <position type="Inner midfielder" value="중앙 미드필드" short="미드" />
+                <position type="Winger" value="윙어" short="윙" />
+                <position type="Forward" value="포워드" short="포워" />
         </positions>
 
         <!-- Specialities in player page.
@@ -50,12 +50,12 @@
              translate attribute "value" by copying from there in verbatim,
              translate attribute "short" according to your own will. -->
         <specialties>
-                <specialty type="Unpredictable" value="예측할 수 없음" short="Un" />
-                <specialty type="Powerful" value="힘 있음" short="Po" />
-                <specialty type="Quick" value="빠름" short="Qu" />
-                <specialty type="Technical" value="공 마술사" short="Te" />
-                <specialty type="Head" value="헤딩" short="He" />
-                <specialty type="Regainer" value="회복인" short="Re" />
+                <specialty type="Unpredictable" value="예측할 수 없음" short="예측" />
+                <specialty type="Powerful" value="힘 있음" short="힘" />
+                <specialty type="Quick" value="빠름" short="빠름" />
+                <specialty type="Technical" value="공 마술사" short="마술" />
+                <specialty type="Head" value="헤딩" short="헤딩" />
+                <specialty type="Regainer" value="회복인" short="회복" />
         </specialties>
 
         <!-- Skill levels in denominations page.

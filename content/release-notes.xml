@@ -14,6 +14,13 @@
 <item>You could prevent FoxTrick from poping up this release note after each update by disabling "Show release notes after FoxTrick updates" in <xhtml:a href="#tab=main">main tab</xhtml:a>.</item>
 </note>
 
+<note version="0.8.2">
+<item>Korean locale (SI-CH)</item>
+<item>Lithuanian locale (LA-MJ)</item>
+<item>General locale cleaning (CatzHoek)</item>
+<item>Other trivial fixes. (convincedd, CatzHoek)</item>
+</note>
+
 <note version="0.8.1">
 <item><module>ElectionTable</module>: adapted to new election page layout. (convincedd, ryanli)</item>
 <item><module>HTThreadMarker</module>: new style. (convincedd, ryanli)</item>
