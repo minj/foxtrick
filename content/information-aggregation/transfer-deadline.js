@@ -53,9 +53,10 @@ Foxtrick.util.module.register({
 		if (deadline) {
 			var countdown = Math.floor((deadline.getTime() - htTime) / 1000);
 			if (!isNaN(countdown) && countdown >= 0) {
-				var countdownNode = Foxtrick.createFeaturedElement(doc, this, this.element);
+				var countdownNode = doc.createElement(this.element);
 				countdownNode.className = "smallText ft-deadline";
-				countdownNode.textContent = "(" + Foxtrick.util.time.timeDifferenceToText(countdown) + ")";
+				countdownNode.innerHTML = "(" + Foxtrick.util.time.timeDifferenceToText(countdown) + ")";
+				Foxtrick.makeFeaturedElement(doc, this);
 				node.appendChild(countdownNode);
 			}
 		}
