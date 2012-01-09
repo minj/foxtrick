@@ -24,5 +24,15 @@ Foxtrick.util.module.register({
 		Foxtrick.InternalPath+"resources/css/fixes/Forum_NewPostsInBracket.css",
 		Foxtrick.InternalPath+"resources/css/fixes/Forum_Link_Grey_Icons.css",
 		Foxtrick.InternalPath+"resources/css/fixes/moved_avatarinfo_fix.css"
-	]
+	],
+
+	run : function(doc) {
+		if(FoxtrickPrefs.isModuleOptionEnabled("ForumPresentation", "Forum_NewPostsInBracket")){
+			Foxtrick.map(function(node){
+				for(var i=0; i < node.childNodes.length; i++)
+					if(node.childNodes[i].tagName === undefined)
+						node.removeChild(node.childNodes[i]);
+			}, doc.getElementsByClassName("threadInfo")); //fplThreadInfo should be added to but that's dynamic in default -> more tricky
+		}	
+	}
 });
