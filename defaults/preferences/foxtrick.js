@@ -676,7 +676,7 @@ pref("extensions.foxtrick.prefs.SavePrefs_Notes", true);
 pref("extensions.foxtrick.prefs.SavePrefs_Prefs", true);
 pref("extensions.foxtrick.prefs.showReleaseNotes", true);
 pref("extensions.foxtrick.prefs.smallcopyicons", true);
-pref("extensions.foxtrick.prefs.table_separator", " ");
+pref("extensions.foxtrick.prefs.tableSeparator", " ");
 pref("extensions.foxtrick.prefs.xmlLoad", true);
 pref("extensions.foxtrick.prefs.module.MobileEnhancements.enabled", false);
 
