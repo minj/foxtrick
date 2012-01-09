@@ -29,6 +29,7 @@ Foxtrick.util.module.register({
 	run : function(doc) {
 		if(FoxtrickPrefs.isModuleOptionEnabled("ForumPresentation", "Forum_NewPostsInBracket")){
 			Foxtrick.map(function(node){
+				Foxtrick.makeFeaturedElement(node, Foxtrick.modules.ForumPresentation);
 				for(var i=0; i < node.childNodes.length; i++)
 					if(node.childNodes[i].tagName === undefined)
 						node.removeChild(node.childNodes[i]);
