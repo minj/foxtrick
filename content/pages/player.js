@@ -348,5 +348,68 @@ Foxtrick.Pages.Player = {
 			Foxtrick.log(e);
 		}
 		return null;
+	},
+	
+	getPlayer : function(doc, playerid, callback) {	
+		var args = [];
+		args.push(["file", "playerdetails"]);
+		args.push(["playerID", playerid]);
+		args.push(["version", "2.1"]);
+		Foxtrick.util.api.retrieve(doc, args,{ cache_lifetime:'session'}, function(xml) {			
+			if (!xml)
+				callback(null);
+			var UserIsSupporter = xml.getElementsByTagName("LastName")[0].textContent == 'TRUE';
+
+			var player = {};
+			player.PlayerID = Number(xml.getElementsByTagName("PlayerID")[0].textContent);
+			player.LastName = xml.getElementsByTagName("LastName")[0].textContent;
+			player.FirstName = xml.getElementsByTagName("FirstName")[0].textContent;
+			player.NickName = xml.getElementsByTagName("NickName")[0].textContent;
+			if (xml.getElementsByTagName("PlayerNumber")[0])
+				player.PlayerNumber = Number(xml.getElementsByTagName("PlayerNumber")[0].textContent);
+			player.Age = Number(xml.getElementsByTagName("Age")[0].textContent);
+			player.AgeDays = Number(xml.getElementsByTagName("AgeDays")[0].textContent);
+			player.NextBirthDay = xml.getElementsByTagName("NextBirthDay")[0].textContent;
+			player.PlayerForm = Number(xml.getElementsByTagName("PlayerForm")[0].textContent);
+			player.Cards = Number(xml.getElementsByTagName("Cards")[0].textContent);
+			player.InjuryLevel = Number(xml.getElementsByTagName("InjuryLevel")[0].textContent);
+			if (UserIsSupporter && xml.getElementsByTagName("Statement")[0])
+				player.Statement = xml.getElementsByTagName("Statement")[0].textContent;			
+			if (UserIsSupporter && xml.getElementsByTagName("PlayerLanguage")[0])
+				player.PlayerLanguage = xml.getElementsByTagName("PlayerLanguage")[0].textContent;
+			if (UserIsSupporter && xml.getElementsByTagName("PlayerLanguageID")[0])
+				player.PlayerLanguageID = Number(xml.getElementsByTagName("PlayerLanguageID")[0].textContent);
+//    <TrainerData />
+/*    <OwningTeam>
+      <TeamID>522356</TeamID>
+      <TeamName>FC Karbrüggen</TeamName>
+      <LeagueID>3</LeagueID>
+    </OwningTeam>*/
+			player.Salary = Number(xml.getElementsByTagName("Salary")[0].textContent);
+			player.IsAbroad = xml.getElementsByTagName("IsAbroad")[0].textContent;
+			player.Agreeability = Number(xml.getElementsByTagName("Agreeability")[0].textContent);
+			player.Aggressiveness = Number(xml.getElementsByTagName("Aggressiveness")[0].textContent);
+			player.Honesty = Number(xml.getElementsByTagName("Honesty")[0].textContent);
+			player.Experience = Number(xml.getElementsByTagName("Experience")[0].textContent);
+			player.Loyalty = Number(xml.getElementsByTagName("Loyalty")[0].textContent);
+			player.MotherClubBonus = xml.getElementsByTagName("MotherClubBonus")[0].textContent;
+			player.Leadership = Number(xml.getElementsByTagName("Leadership")[0].textContent);
+			player.Specialty = Number(xml.getElementsByTagName("Specialty")[0].textContent);
+			player.NativeCountryID = Number(xml.getElementsByTagName("NativeCountryID")[0].textContent);
+			player.NativeLeagueID = Number(xml.getElementsByTagName("NativeLeagueID")[0].textContent);
+			player.NativeLeagueName = xml.getElementsByTagName("NativeLeagueName")[0].textContent;
+			player.TSI = Number(xml.getElementsByTagName("TSI")[0].textContent);
+ //  <PlayerSkills>
+ 			player.StaminaSkill = Number(xml.getElementsByTagName("StaminaSkill")[0].textContent);
+			player.Caps = Number(xml.getElementsByTagName("Caps")[0].textContent);
+			player.CapsU20 = Number(xml.getElementsByTagName("CapsU20")[0].textContent);
+			player.CareerGoals = Number(xml.getElementsByTagName("CareerGoals")[0].textContent);
+			player.CareerHattricks = Number(xml.getElementsByTagName("CareerHattricks")[0].textContent);
+			player.LeagueGoals = Number(xml.getElementsByTagName("LeagueGoals")[0].textContent);
+			player.LeagueGoals = Number(xml.getElementsByTagName("LeagueGoals")[0].textContent);
+			player.TransferListed = xml.getElementsByTagName("TransferListed")[0].textContent;
+// LastMatch			
+			callback(player);
+		});
 	}
 };

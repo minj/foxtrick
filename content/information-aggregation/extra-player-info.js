@@ -65,6 +65,27 @@ Foxtrick.util.module.register({
 						nameLink.setAttribute("style", style);
 					}
 				}
+				
+				// experiment: add language
+				if (FoxtrickPrefs.isModuleOptionEnabled("ExtraPlayerInfo", "Language")) {
+					var addPlayerLanguage = function(playerid, node) {
+						Foxtrick.Pages.Player.getPlayer(doc, playerid, function(player) {
+							if (!player)
+								return;
+							if (player.PlayerLanguage) {
+								var language = Foxtrick.createFeaturedElement(doc,Foxtrick.modules.ExtraPlayerInfo, 'em');
+								Foxtrick.addClass(language, 'shy');
+								language.setAttribute('style', 'font-weight:normal; margin-left:5px;');
+								language.textContent = player.PlayerLanguage;
+								if (player.PlayerLanguageID)
+									language.setAttribute('PlayerLanguageID', player.PlayerLanguageID);
+								node.appendChild(language);
+							}
+						});
+					};
+					var targetNode = allPlayers[i].getElementsByTagName("b")[0];
+					addPlayerLanguage(id, targetNode);
+				}
 			}
 		});
 	}

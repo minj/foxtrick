@@ -13,6 +13,30 @@ Foxtrick.util.module.register({
 
 	run : function(doc) {
 		this._Player_Joined(doc);
+		
+		// experiment: add language
+		if (FoxtrickPrefs.isModuleOptionEnabled("ExtendedPlayerDetails", "Language")) {
+			var addPlayerLanguage = function(playerid, node) {
+				Foxtrick.Pages.Player.getPlayer(doc, playerid, function(player) {
+					console.log(player)
+					if (!player)
+						return;
+					if (player.PlayerLanguage) {
+						var language = Foxtrick.createFeaturedElement(doc,Foxtrick.modules.ExtendedPlayerDetails, 'em');
+						Foxtrick.addClass(language, 'shy');
+						language.setAttribute('style', 'font-weight:normal; margin-left:5px;');
+						language.textContent = player.PlayerLanguage;
+						if (player.PlayerLanguageID)
+							language.setAttribute('PlayerLanguageID', player.PlayerLanguageID);
+						node.appendChild(language);
+					}
+				});
+			};
+			var id = Foxtrick.Pages.Player.getId(doc);
+			var targetNode = doc.getElementById('mainBody').getElementsByClassName("byline")[0];
+			console.log(id, targetNode)
+			addPlayerLanguage(id, targetNode);
+		}
 	},
 
 	_Player_Joined : function(doc) {
