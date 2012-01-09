@@ -50,6 +50,7 @@ pref("extensions.foxtrick.prefs.module.DirectPageLinks.enabled", true);
 pref("extensions.foxtrick.prefs.module.ElectionTable.enabled", true);
 pref("extensions.foxtrick.prefs.module.EmbedMedia.enabled", true);
 pref("extensions.foxtrick.prefs.module.EmbedMedia.EmbedGenericImages.enabled", true);
+pref("extensions.foxtrick.prefs.module.EmbedMedia.EmbedGenericImagesClever.enabled", true);
 pref("extensions.foxtrick.prefs.module.EmbedMedia.EmbedYoutubeVideos.enabled", true);
 pref("extensions.foxtrick.prefs.module.EmbedMedia.EmbedVimeoVideos.enabled", true);
 pref("extensions.foxtrick.prefs.module.EmbedMedia.EmbedFunnyOrDieVideos.enabled", true);

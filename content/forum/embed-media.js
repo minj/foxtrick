@@ -11,8 +11,8 @@ Foxtrick.util.module.register({
 	PAGES : new Array("forumViewThread"),
 	NICE : 1,
 	//no funnyordie atm
-	//OPTIONS : ['EmbedYoutubeVideos','EmbedVimeoVideos', 'EmbedFunnyOrDieVideos', 'EmbedDailymotionVideos', ['EmbedModeOEmebed', 'ReplaceLinksByTitlesLinksToTitles', 'EmbedFlickrImages', 'EmbedDeviantArtImages', 'EmbedSoundCloud']],
-	OPTIONS : ['EmbedGenericImages', 'EmbedYoutubeVideos','EmbedVimeoVideos', 'EmbedDailymotionVideos', ['EmbedModeOEmebed', 'ReplaceLinksByTitles', 'EmbedFlickrImages', 'EmbedDeviantArtImages', 'EmbedSoundCloud']],
+	//OPTIONS : ["EmbedYoutubeVideos","EmbedVimeoVideos", "EmbedFunnyOrDieVideos", "EmbedDailymotionVideos", ["EmbedModeOEmebed", "ReplaceLinksByTitlesLinksToTitles", "EmbedFlickrImages", "EmbedDeviantArtImages", "EmbedSoundCloud"]],
+	OPTIONS : [["EmbedGenericImages", "EmbedGenericImagesClever"], "EmbedYoutubeVideos","EmbedVimeoVideos", "EmbedDailymotionVideos", ["EmbedModeOEmebed", "ReplaceLinksByTitles", "EmbedFlickrImages", "EmbedDeviantArtImages", "EmbedSoundCloud"]],
 	CSS : Foxtrick.InternalPath + "resources/css/embed-media.css",
 
 	run : function(doc) {
@@ -31,7 +31,8 @@ Foxtrick.util.module.register({
 		var do_embed_deviantart_images = do_embed_media && oembed_enabled && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedDeviantArtImages");
 				
 		var do_embed_generic_images = do_embed_media && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedGenericImages");
-		
+		var do_embed_generic_images_clever = do_embed_media && do_embed_generic_images && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedGenericImagesClever");
+
 		var siteEnabled = {
 			"youtube" : do_embed_youtube_videos,
 			"vimeo" : do_embed_vimeo_videos,
@@ -40,9 +41,12 @@ Foxtrick.util.module.register({
 			"soundcloud" : do_embed_soundcloud,
 			"flickr" : do_embed_flickr_images,
 			"deviantart" : do_embed_deviantart_images,
-			"genericImage": do_embed_generic_images,
+			"genericImage": do_embed_generic_images
 		};	
-		// get an XmlHTMLRequest Response
+		//add several things just if we're using clever mode
+			siteEnabled.imgur = do_embed_generic_images_clever
+			siteEnabled.imageshack = do_embed_generic_images_clever
+
 		var oEmbedRequest = function( url ){
 			try {
 				var xmlHttp = null;
@@ -55,7 +59,7 @@ Foxtrick.util.module.register({
 				}
 			return xmlHttp.responseText;
 		}
-		
+
 		//Link validation regex, needs to supply videoid for iframe embedding, 
 		//for oembed support it's sufficient to ensure the deivering network is correct, further details will be determined by oEmbed XmlHTMLRequest request.
 		var filter_supported = {
@@ -65,8 +69,12 @@ Foxtrick.util.module.register({
 			"vimeo":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(vimeo)\.com\/(\\d+)",
 			"flickr":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(flickr)\.com\/",
 			"funnyordie":"^(http:\/\/)([a-zA-Z]{2,3}.)?(funnyordie)\.(com)\/videos\/([a-zA-Z0-9]*)\\b",
-			"dailymotion":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(dailymotion\.com)\/video\/([a-zA-Z0-9-]+)"
-		};	
+			"dailymotion":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(dailymotion\.com)\/video\/([a-zA-Z0-9-]+)",
+			"genericImage":"^http(s)?:\/\/[a-zA-Z0-9.\\-%\\w_~\/]+(?:gif|jpg|jpeg|png|bmp|GIF|JPG|JPEG|PNG|BMP)$",
+		};
+		//add several things just if we"re using clever mode
+		filter_supported.imgur = "^http(s)?:\/\/imgur.com\/([a-zA-Z0-9]+)$"
+		filter_supported.imageshack = "^http(s)?:\/\/[a-zA-Z0-9.\\-%\\w_~\/]+\/(\\d+)\/(\\w+).(gif|jpg|jpeg|png|bmp|GIF|JPG|JPEG|PNG|BMP)"
 		
 		//oEmbed supported sites need entries at this point
 		var oembed_urls = {
@@ -78,7 +86,7 @@ Foxtrick.util.module.register({
 			"deviantart":"http://backend.deviantart.com/oembed?format=json&url=",
 			"soundcloud":"http://soundcloud.com/oembed?format=json&show_comments=false&url="
 		};
-		
+
 		// native and fallback support, base urls to be used when the video ID has been extracted.
 		var iframe_urls = {
 			"vimeo":"http://player.vimeo.com/video/",
@@ -92,7 +100,6 @@ Foxtrick.util.module.register({
 				iframe.setAttribute('width', "400");
 				iframe.setAttribute('height', "334");
 				iframe.setAttribute('src', target.nextSibling.firstChild.href );
-				Foxtrick.log( target.nextSibling.firstChild.href );
 				iframe.setAttribute('frameborder','0');
 				//link.parentNode.replaceChild(iframe,link);
 				target.nextSibling.replaceChild(iframe, target.nextSibling.firstChild);
@@ -142,6 +149,11 @@ Foxtrick.util.module.register({
 				videoid	= matches[5]?matches[5]:null;
 			} else if (site == "dailymotion"){
 				videoid	= matches[4]?matches[4]:null;
+			} else if (site == "imgur"){
+				videoid	= matches[2]?matches[2]:null;
+			} else if (site == "imageshack"){
+				videoid	= matches[3]?matches[3]:null;
+				videoid = videoid + "," +  matches[2] + "," +  matches[4];
 			}
 			return videoid;
 		}
@@ -155,29 +167,25 @@ Foxtrick.util.module.register({
 			//iterate all links and see if any supported link is found
 			Foxtrick.map( function(link){
 				var linkDict = {"site":null, "link":link};
-				
-				//try if it's a generic image link
-				var image_re = 'http(s)?:\/\/[a-zA-Z0-9.\\-_\/]+(?:gif|jpg|jpeg|png|bmp)$'
-				var ire = new RegExp( image_re,"i");
-				var matches = ire.exec(link.href)
-				if(matches)
-					Foxtrick.log(matches);
-				if( matches ){
-					linkDict["site"] = 'genericImage';
-					media_links.push( linkDict );
-					return;
-				} 
-				// //otherwise try the more sophisticated possibilities
 
 				for (var key in filter_supported)	
 				{	
 					var re = new RegExp( filter_supported[key] );
 					var matches = re.exec(link)
-					
 					//link passed regex, add to supported links
 					if( matches ){
+						//ignore imageshack as generic
+						if(key == "genericImage" && link.href.match("imageshack.us"))
+							continue;
+							
 						linkDict["site"] = key
-						linkDict["videoid"] = extractVideoIdFromUrl(link.href, linkDict["site"])
+						if(key != "genericImage" && key != "imageshack")
+							linkDict["mediaId"] = extractVideoIdFromUrl(link.href, linkDict["site"])
+						else if(key == "imageshack"){
+							var imageshack = extractVideoIdFromUrl(link.href, linkDict["site"])
+							var params = imageshack.split(","); 
+							linkDict["params"] = imageshack.split(",");
+						}
 						media_links.push( linkDict );
 						break;
 					}
@@ -198,13 +206,21 @@ Foxtrick.util.module.register({
 			media_link["link"].parentNode.insertBefore(div, media_link["link"]);
 			var mediaContainer = doc.createElement('div');
 			Foxtrick.addClass(mediaContainer, 'hidden ft-media-container')
-			var a = doc.createElement('a');
+			var a = doc.createElement("a");
 			
+			if (media_link["site"] == "imageshack" ){
+				if(media_link["params"].length == 3)
+					a.href = "http://imageshack.us/shareable/?i=" + media_link["params"][0] + "." + media_link["params"][2] + "&s=" + media_link["params"][1]
+			}
 			//already convert link to embedding url when using iframe method
-			if( oembed_enabled ||  media_link['site'] == 'genericImage')
-				a.href = media_link["link"].href;
+			else if( oembed_enabled || media_link['site'] == 'genericImage'){
+				if (media_link["site"] == "imgur")
+					a.href = "http://i.imgur.com/" + media_link["mediaId"] + ".jpg";
+				else 
+					a.href = media_link["link"].href;
+			}
 			else
-				a.href = iframe_urls[media_link["site"]] +  media_link["videoid"];
+				a.href = iframe_urls[media_link["site"]] +  media_link["mediaId"];
 				
 			mediaContainer.appendChild(a);
 			media_link["link"].parentNode.replaceChild(mediaContainer, media_link["link"]);
@@ -226,15 +242,22 @@ Foxtrick.util.module.register({
 		}
 		
 		var embed = function( target ){			
-			if(Foxtrick.hasClass(target, "ft-media-site-genericImage")){
+			if(Foxtrick.hasClass(target, "ft-media-site-genericImage") || Foxtrick.hasClass(target, "ft-media-site-imgur")){
 				do_genericImageEmbed(target);
-				Foxtrick.log(target);
 				return;
-				}
+			} 
+			
+			if(Foxtrick.hasClass(target, "ft-media-site-imageshack")){
+				oEmbedReq = oEmbedRequest(target.nextSibling.firstChild.href)
+				target.nextSibling.firstChild.href = oEmbedReq.match(/\?\"(.*)\":/)[1];
+				do_genericImageEmbed(target);
+				oEmbedReq = null;
+				return;
+			}
 			if( oembed_enabled ){
 				var oEmbedReq = null;
 				for ( var key in oembed_urls )	
-				{
+				{					
 					if( Foxtrick.hasClass( target, "ft-media-site-" +  key ) ){
 						oEmbedReq = oEmbedRequest(oembed_urls[key] + target.firstChild.href)
 						break;
@@ -272,10 +295,9 @@ Foxtrick.util.module.register({
 		Foxtrick.map( function( message ){
 			var found_media_links = getSupportedMediaLinksWithDetails( message );
 			Foxtrick.map( function( media_link ){
-				if( siteEnabled[media_link.site])
+				if( siteEnabled[media_link.site]){
 					convertLinkToEmbeddingHeader( media_link );
-				else
-					Foxtrick.log("nono");
+				}
 			}, found_media_links);
 		
 		}, messages);
