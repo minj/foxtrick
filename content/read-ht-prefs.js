@@ -54,7 +54,7 @@ Foxtrick.util.module.register({
 		if (!this.isLang(menuLinks, oldLang)) {
 			// language has changed or there is none for some reason, look for the new one
 			var found = false;
-			for (var k=0; k<languages.length; ++k) {
+			for (var k in languages) {
 				if (this.isLang(menuLinks, k)) {
 					newLang = k;
 					found = true;
