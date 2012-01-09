@@ -39,7 +39,7 @@ input, button, select, textarea
 
 input[disabled], button[disabled], select[disabled], textarea[disabled]
 {
-	background-color: #999;
+	background-color: #ccc;
 }
 
 button.active
