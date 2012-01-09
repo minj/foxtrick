@@ -281,7 +281,7 @@ Foxtrick.util.module.register({
 						}
 					}
 					var leagueSummary = [];
-					for (var i=0; i<leagues.length; ++i) {
+					for (var i in leagues) {
 						leagueSummary.push({ name: Foxtrick.XMLData.League[i].LeagueName, count: leagues[i] });
 					}
 					leagueSummary.sort(function (a,b) { return a.name.localeCompare(b.name) });
