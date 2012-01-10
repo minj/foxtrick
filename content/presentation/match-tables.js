@@ -14,8 +14,8 @@ Foxtrick.util.module.register({
 	removeSpace : function(doc) {
 		if (Foxtrick.isPage("series", doc)) {
 			// remove non-breaking spaces (&nbsp;) in league table
-			var table = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLeagueTable");
-			if (!table)
+			var span = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLeagueTable");
+			if (!span)
 				return;
 			table = table.getElementsByTagName("table")[0];
 			// need to replace cell by cell otherwise we could overwrite
