@@ -1,5 +1,6 @@
 body
 {
+	max-height: 540px; 
 	font-size: 15px;
 	background-color: #eef;
 }
