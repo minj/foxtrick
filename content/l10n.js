@@ -211,13 +211,20 @@ if (Foxtrick.arch === "Gecko") {
 					Components.classes["@mozilla.org/intl/stringbundle;1"]
 					.getService(Components.interfaces.nsIStringBundleService)
 					.createBundle("chrome://foxtrick/content/locale/"+localecode+"/foxtrick.properties");
+			}
+			catch (e) {
+				this._strings_bundle = this._strings_bundle_default;
+				Foxtrick.log("Use default properties for locale ", locale);
+			}
+			try {
 				this._strings_bundle_screenshots =
 					Components.classes["@mozilla.org/intl/stringbundle;1"]
 					.getService(Components.interfaces.nsIStringBundleService)
 					.createBundle("chrome://foxtrick/content/locale/"+localecode+"/foxtrick.screenshots");
 			}
 			catch (e) {
-				Foxtrick.log(e);
+				this._strings_bundle_screenshots = this._strings_bundle_screenshots_default
+				Foxtrick.log("Use default screenshots for locale ", locale);
 			}
 		},
 
@@ -328,14 +335,22 @@ if (Foxtrick.arch === "Sandboxed") {
 				}
 				else {
 					try {
-						this.properties = Foxtrick.load(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.properties");
+						this.properties = Foxtrick.loadSync(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.properties");
+						if (this.properties == null) {
+							Foxtrick.log("Use default properties for locale ", locale);
+							this.properties = this.properties_default; 
+						}
 					}
 					catch (e) {
 						Foxtrick.log("Use default properties for locale ", locale);
 						this.properties = this.properties_default;
 					}
 					try {
-						this.screenshots = Foxtrick.load(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.screenshots");
+						this.screenshots = Foxtrick.loadSync(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.screenshots");
+						if (this.screenshots == null) {
+							Foxtrick.log("Use default screenshots for locale ", locale);
+							this.screenshots = this.screenshots_default;
+						}
 					}
 					catch (ee) {
 						Foxtrick.log("Use default screenshots for locale ", locale);
