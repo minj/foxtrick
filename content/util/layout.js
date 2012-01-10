@@ -56,6 +56,17 @@ Foxtrick.util.layout.isRtl = function(doc) {
 	return false;
 };
 
+// Returns whether the HTML document uses eastern language
+Foxtrick.util.layout.isEastern = function(doc) {
+	var body = doc.getElementsByTagName("body")[0];
+	if (!body)
+		throw "Not a valid document";
+	var style = body.getAttribute('style');
+	if (style && style.indexOf('font-size:0.79em;') != -1)
+		return true
+	return false;
+};
+
 // Returns whether the match order interface is flipped
 Foxtrick.util.layout.isFlipped = function(doc) {
 	var head = doc.getElementsByTagName("head")[0];
