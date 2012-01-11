@@ -119,6 +119,11 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 	overflow: auto;
 }
 
+/* max-height no good for mobile devices */
+#ctl00_ctl00_pnlMobileLink+form #ft-log {
+	max-height: none !important;
+}
+
 #ft-log h2 {
 	margin: 6px 0 15px 6px !important;
 }

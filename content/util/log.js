@@ -28,15 +28,14 @@ Foxtrick.log = function() {
 					+ content.fileName + ": " + content.lineNumber + "\n"
 					+ "Stack trace:\n" 
 					+ content.stack;
-				Components.utils.reportError(item);
 				item = item.replace(/.+@/g,''); // readability. the place/object doesn't get shown for me in a readable way in any console i tried
+				Components.utils.reportError(item);
 			}
 			else if (Foxtrick.arch == "Sandboxed") {
+				item = content.message;
 				if (args[i].arguments) {
 					args[i] =  args[i].arguments.concat(args[i]);
 				}
-				else for (var i in content)
-					item += i + ": " + content[i] + ";\n";
 			}
 		}
 		else if (typeof(content) != "string") {
@@ -124,7 +123,10 @@ Foxtrick.log.cache = "";
 Foxtrick.log.flush = (function() {
 	var lastDoc = null;
 	return function(doc) {
-		doc = lastDoc = doc || lastDoc;
+		if (Foxtrick.chromeContext() == "background")
+			return;
+
+		doc = (lastDoc = doc || lastDoc);
 		if (!doc)
 			return;
 		
@@ -139,19 +141,19 @@ Foxtrick.log.flush = (function() {
 				var header = doc.createElement("h2");
 				header.textContent = Foxtrickl10n.getString("foxtrick.log.header");
 				div.appendChild(header);
-				var console = doc.createElement("pre");
-				console.textContent = Foxtrick.log.header(doc);
-				div.appendChild(console);
+				var consoleDiv = doc.createElement("pre");
+				consoleDiv.textContent = Foxtrick.log.header(doc);
+				div.appendChild(consoleDiv);
 				// add to page
 				var bottom = doc.getElementById("bottom");
 				if (bottom)
 					bottom.parentNode.insertBefore(div, bottom);
 			}
 			else {
-				var console = div.getElementsByTagName("pre")[0];
+				var consoleDiv = div.getElementsByTagName("pre")[0];
 			}
 			// add to log
-			console.textContent += Foxtrick.log.cache;
+			consoleDiv.textContent += Foxtrick.log.cache;
 			// clear the cache
 			Foxtrick.log.cache = "";
 		}

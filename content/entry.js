@@ -24,6 +24,9 @@ Foxtrick.entry.docLoad = function(doc) {
 	if (doc.nodeName != "#document")
 		return;
 
+	//init html debug (somehow needed for feenc atm)	
+	Foxtrick.log.flush(doc);
+		
 	// don't execute if disabled
 	if (FoxtrickPrefs.getBool("disableTemporary")) {
 		// potenial disable cleanup
