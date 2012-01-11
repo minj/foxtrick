@@ -12,7 +12,7 @@ Foxtrick.util.module.register({
 	NICE : 1,
 	//no funnyordie atm
 	//OPTIONS : ["EmbedYoutubeVideos","EmbedVimeoVideos", "EmbedFunnyOrDieVideos", "EmbedDailymotionVideos", ["EmbedModeOEmebed", "ReplaceLinksByTitlesLinksToTitles", "EmbedFlickrImages", "EmbedDeviantArtImages", "EmbedSoundCloud"]],
-	OPTIONS : [["EmbedGenericImages", "EmbedGenericImagesClever"], "EmbedYoutubeVideos","EmbedVimeoVideos", "EmbedDailymotionVideos", ["EmbedModeOEmebed", "ReplaceLinksByTitles", "EmbedFlickrImages", "EmbedDeviantArtImages", "EmbedSoundCloud"]],
+	OPTIONS : ["OpenOriginalLinkInBlank", ["EmbedGenericImages", "EmbedGenericImagesClever"], "EmbedYoutubeVideos","EmbedVimeoVideos", "EmbedDailymotionVideos", ["EmbedModeOEmebed", "ReplaceLinksByTitles", "EmbedFlickrImages", "EmbedDeviantArtImages", "EmbedSoundCloud"]],
 	CSS : Foxtrick.InternalPath + "resources/css/embed-media.css",
 
 	run : function(doc) {
@@ -32,7 +32,8 @@ Foxtrick.util.module.register({
 				
 		var do_embed_generic_images = do_embed_media && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedGenericImages");
 		var do_embed_generic_images_clever = do_embed_media && do_embed_generic_images && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedGenericImagesClever");
-
+		var do_open_orig_link_in_blank = do_embed_media && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "OpenOriginalLinkInBlank");
+		
 		var siteEnabled = {
 			"youtube" : do_embed_youtube_videos,
 			"vimeo" : do_embed_vimeo_videos,
@@ -201,6 +202,11 @@ Foxtrick.util.module.register({
 			var header_a = doc.createElement('a');
 			header_a.textContent = media_link["link"].textContent;
 			header_a.href = media_link["link"].href
+			
+			//open original link in new tab by default
+			if(do_open_orig_link_in_blank)
+				header_a.setAttribute('target','_blank');
+				
 			div.appendChild(header_a);
 			Foxtrick.addClass(div, 'ft-media-expander-unexpanded '); 
 			Foxtrick.addClass(div, 'ft-media-site-' + media_link["site"]);
@@ -222,6 +228,8 @@ Foxtrick.util.module.register({
 			}
 			else
 				a.href = iframe_urls[media_link["site"]] +  media_link["mediaId"];
+				
+			
 				
 			mediaContainer.appendChild(a);
 			media_link["link"].parentNode.replaceChild(mediaContainer, media_link["link"]);
