@@ -4,7 +4,7 @@ import mechanize
 import re
 
 class HattrickWeb:
-	def __init__(self, username, password):
+	def __init__(self, username, password, stage=False):
 		self.username = username
 		self.password = password
 		self.browser = None
@@ -12,6 +12,7 @@ class HattrickWeb:
 		self.url = ""
 		self.subdomain = ""
 		self.body = ""
+		self.stage = stage
 		
 	def updateRecommendedUrl(self):
 		pattern = re.search("(\w+).hattrick.org", self.url)
@@ -46,6 +47,8 @@ class HattrickWeb:
 		
 	def login(self):
 		url = "http://www.hattrick.org/"
+		if self.stage:
+			url = "http://stage.hattrick.org/"
 
 		cookie = cookielib.CookieJar()
 		self.browser = mechanize.Browser()
