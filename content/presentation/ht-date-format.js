@@ -5,8 +5,7 @@
  * @author spambot, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "HTDateFormat",
+Foxtrick.modules["HTDateFormat"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
 	NICE : 20, // after anthing that adds dates
@@ -76,4 +75,4 @@ Foxtrick.util.module.register({
 	change : function(doc, ev) {
 		this.run(doc);
 	}
-});
+};

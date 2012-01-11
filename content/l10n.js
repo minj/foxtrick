@@ -336,7 +336,7 @@ if (Foxtrick.arch === "Gecko") {
 						return this._strings_bundle_default.GetStringFromName(str);
 				}
 				catch (ee) {
-					Foxtrick.log("** Localization error 1 ** '" + str + "'");
+					Foxtrick.log( Error('Error getString("'+str+')"') );
 					return str;
 				}
 			}
@@ -466,16 +466,14 @@ if (Foxtrick.arch === "Sandboxed") {
 				else if (Foxtrickl10n.properties_default.search(string_regexp)!=-1)
 					value = Foxtrickl10n.properties_default.match(string_regexp)[1];
 				else {
-					value = str;
-					Foxtrick.log('getString error: ' ,str);
+					throw null;
 				}
 				// replace escaped characters as what Gecko does
 				value = value.replace(/\\n/g, "\n");
 				return value;
 			}
 			catch (e) {
-				Foxtrick.log(e);
-				Foxtrick.log('getString error: ' ,str);
+				Foxtrick.log( Error('Error getString("'+str+'")') );
 				return str.substr(str.lastIndexOf('.')+1);
 			}
 		},
@@ -483,12 +481,12 @@ if (Foxtrick.arch === "Sandboxed") {
 		isStringAvailable : function(str) {
 			var string_regexp = new RegExp('\\s'+str+'=(.+)\\s', "i");
 			return (Foxtrickl10n.properties.search(string_regexp)!=-1
-				|| Foxtrickl10n.properties_default.search(string_regexp)!=-1);
+				|| Foxtrickl10n.properties_default.search(string_regexp) != -1 );
 		},
 
 		isStringAvailableLocal : function(str) {
 			var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" );
-			return (Foxtrickl10n.properties.search(string_regexp)!=-1);
+			return ( Foxtrickl10n.properties.search(string_regexp) != -1 );
 		},
 
 		getScreenshot : function(str) {
@@ -501,7 +499,7 @@ if (Foxtrick.arch === "Sandboxed") {
 				return '';
 			}
 			catch (e) {
-				Foxtrick.log('getscreenshots ',e);
+				Foxtrick.log( Error('Error getScreenshot("'+str+'")') );
 			}
 		},
 	};

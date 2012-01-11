@@ -4,7 +4,7 @@
  * display a notification when a new ticker has arrived
  * @author taised, convincedd, ryanli
  */
-Foxtrick.util.module.register((function() {
+(function() {
 	var types = {
 		"welcome" : /\/MyHattrick\/Dashboard\.aspx$/i,
 		"supporter" : /\/Club\/Manager\/\?teamId=/i,
@@ -16,8 +16,7 @@ Foxtrick.util.module.register((function() {
 		"myht" : /\/Myhattrick\/Dashboard\.aspx\?actionType=/i,
 		"others" : /.*/
 	};
-	return {
-		MODULE_NAME : "TickerAlert",
+	Foxtrick.modules.TickerAlert = {
 		MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
 		PAGES : ["all"],
 		NICE : 20, // after all other modules that make changes to #ticker
@@ -146,4 +145,4 @@ Foxtrick.util.module.register((function() {
 				tickerCheck();
 		}
 	};
-})());
+})();

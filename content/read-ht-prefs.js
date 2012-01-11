@@ -5,8 +5,7 @@
  * @author convinced, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "ReadHtPrefs",
+Foxtrick.modules["ReadHtPrefs"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MAIN,
 	PAGES : ["all"],
 	CORE_MODULE : true,
@@ -118,4 +117,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

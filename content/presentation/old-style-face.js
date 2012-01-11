@@ -5,8 +5,7 @@
  * @author Aimo_Kanuuna, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "OldStyleFace",
+Foxtrick.modules["OldStyleFace"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
 	CSS : [
@@ -19,4 +18,4 @@ Foxtrick.util.module.register({
 		Foxtrick.InternalPath + "resources/css/old-style-face/noses.css",
 		Foxtrick.InternalPath + "resources/css/old-style-face/edit-avatar.css"
 	]
-});
+};

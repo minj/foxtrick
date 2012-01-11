@@ -5,8 +5,7 @@
  * @author spambot
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "MarkUnread",
+Foxtrick.modules["MarkUnread"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumViewThread'),
 
@@ -63,4 +62,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

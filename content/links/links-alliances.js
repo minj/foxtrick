@@ -5,8 +5,7 @@
  * @author larsw84
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "LinksAlliances",
+Foxtrick.modules["LinksAlliances"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('federation'),
 	OPTION_FUNC : function(doc) {
@@ -44,4 +43,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

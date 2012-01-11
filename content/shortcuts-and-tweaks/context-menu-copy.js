@@ -7,7 +7,7 @@
 
 
 if (Foxtrick.platform !=='Opera' && Foxtrick.platform !== 'Fennec')
-Foxtrick.util.module.register((function() {
+(function() {
 	// option: corresponding to OPTIONS
 	// func: function to be called for getting text
 	// item: menu item for Firefox and Chrome
@@ -19,8 +19,7 @@ Foxtrick.util.module.register((function() {
 		"foxtrick-popup-copy-table" : { option: 'Table', func: Foxtrick.util.htMl.getTable, item: null, copyText: null }
 	};
 
-	return {
-		MODULE_NAME : "ContextMenuCopy",
+	Foxtrick.modules.ContextMenuCopy = {
 		MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 		PAGES : ["all"],
 		OPTIONS : ["Id", "Link", "HtMl", "Table"],
@@ -178,4 +177,4 @@ Foxtrick.util.module.register((function() {
 			}
 		}
 	};
-}()));
+}());

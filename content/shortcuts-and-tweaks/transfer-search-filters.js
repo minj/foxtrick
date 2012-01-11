@@ -4,8 +4,7 @@
  * @author kolmis, bummerland
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "TransferSearchFilters",
+Foxtrick.modules["TransferSearchFilters"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["transferSearchForm"],
 	CSS : Foxtrick.InternalPath + "resources/css/transfer-search-filters.css",
@@ -210,4 +209,4 @@ Foxtrick.util.module.register({
 		ownBoxBody.appendChild(table);
 		Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, 1);
 	}
-});
+};

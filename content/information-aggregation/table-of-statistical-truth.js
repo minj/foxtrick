@@ -5,8 +5,7 @@
  * @author spambot, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "TableOfStatisticalTruth",
+Foxtrick.modules["TableOfStatisticalTruth"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["oldseries"],
 	CSS : Foxtrick.InternalPath + "resources/css/table-of-statistical-truth.css",
@@ -133,4 +132,4 @@ Foxtrick.util.module.register({
 			});
 		};
 	}
-});
+};

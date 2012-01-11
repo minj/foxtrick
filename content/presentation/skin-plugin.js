@@ -5,8 +5,7 @@
  * @author smates/convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "SkinPlugin",
+Foxtrick.modules["SkinPlugin"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
 
@@ -47,4 +46,4 @@ Foxtrick.util.module.register({
 			Foxtrick.util.inject.css(doc, skin);
 		}
 	}
-});
+};

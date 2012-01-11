@@ -4,8 +4,7 @@
  * @author spambot, ljushaff
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "SimplePresentation",
+Foxtrick.modules["SimplePresentation"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
 
@@ -25,4 +24,4 @@ Foxtrick.util.module.register({
 		Foxtrick.InternalPath+"resources/css/fixes/achievement_hideicons.css",
 		Foxtrick.InternalPath+"resources/css/fixes/NoLogo.css"
 	]
-});
+};

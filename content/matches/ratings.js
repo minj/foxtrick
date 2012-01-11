@@ -5,8 +5,7 @@
  * @author taised, Jestar
  */
 ////////////////////////////////////////////////////////////////////////////////
-Foxtrick.util.module.register({
-	MODULE_NAME : "Ratings",
+Foxtrick.modules["Ratings"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
 	OPTIONS : ["HideAverages", "HatStats", "HatStatsDetailed", "LoddarStats", "PeasoStats", "VnukStats", "HTitaVal", "GardierStats"],
@@ -347,4 +346,4 @@ Foxtrick.util.module.register({
 			}
 		};
 	}
-});
+};

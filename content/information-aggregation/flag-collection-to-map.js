@@ -4,8 +4,7 @@
  * @author seben, fixes convincedd
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "FlagCollectionToMap",
+Foxtrick.modules["FlagCollectionToMap"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : new Array('flagCollection'),
 
@@ -397,4 +396,4 @@ Foxtrick.util.module.register({
 		url=url.replace(',&','&');
 		return url;
 	},
-});
+};

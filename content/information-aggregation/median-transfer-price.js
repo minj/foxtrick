@@ -5,8 +5,7 @@
  * @author bummerland
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "MedianTransferPrice",
+Foxtrick.modules["MedianTransferPrice"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : new Array('transferCompare'),
 
@@ -64,4 +63,4 @@ Foxtrick.util.module.register({
 			cell.colSpan = 2;
 		}
 	}
-});
+};

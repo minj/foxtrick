@@ -5,8 +5,7 @@
  * @author convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "LinksNational",
+Foxtrick.modules["LinksNational"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('national'),
 	OPTION_FUNC : function(doc) {
@@ -61,4 +60,4 @@ Foxtrick.util.module.register({
 
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,{ "countryid": countryid,"ntteamid":ntteamid,"LeagueOfficeTypeID":LeagueOfficeTypeID });
 	}
-});
+};

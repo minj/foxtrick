@@ -5,8 +5,7 @@
  * @author spambot, thx to baumanns
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "SkillColoring",
+Foxtrick.modules["SkillColoring"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
 	OPTIONS : [
@@ -52,4 +51,4 @@ Foxtrick.util.module.register({
 			Foxtrick.addMutationEventListener(doc.getElementById('details'), "DOMNodeInserted", playerDetailsChange, false);
 		}
 	}
-});
+};

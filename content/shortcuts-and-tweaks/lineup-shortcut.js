@@ -4,8 +4,7 @@
  * @author taised, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "LineupShortcut",
+Foxtrick.modules["LineupShortcut"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ['playerdetail','statsBestgames','matchLineup', 'YouthPlayer'],
  	OPTIONS : ["HighlightPlayer"],
@@ -187,4 +186,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

@@ -5,8 +5,7 @@
  * @author bummerland
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "GoToPostBox",
+Foxtrick.modules["GoToPostBox"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
 	CSS: Foxtrick.InternalPath+"resources/css/gotopostbox.css",
@@ -122,4 +121,4 @@ Foxtrick.util.module.register({
 			}, false);
 		}
 	}
-});
+};

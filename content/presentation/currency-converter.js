@@ -6,8 +6,7 @@
  * @author ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "CurrencyConverter",
+Foxtrick.modules["CurrencyConverter"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
 	NICE : 10,  // after anythings that adds currencies
@@ -123,4 +122,4 @@ Foxtrick.util.module.register({
 		};
 		Foxtrick.map(traverse, nodes);
 	}
-});
+};

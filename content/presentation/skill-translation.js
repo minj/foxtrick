@@ -5,8 +5,7 @@
  * @author convincedd
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "SkillTranslation",
+Foxtrick.modules["SkillTranslation"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('denominations'),
 
@@ -202,4 +201,4 @@ Foxtrick.util.module.register({
 			table.rows[index].cells[1].innerHTML += org_skills[i-1] + br + ' <span style="white-space:nowrap;" class="shy">('+denominations[i]+')</span><br>';
 		}
 	}
-});
+};

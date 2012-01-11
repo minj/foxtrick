@@ -6,8 +6,7 @@
  * @author larsw84
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "CustomMedals",
+Foxtrick.modules["CustomMedals"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('teamPage','history','national'),
 
@@ -40,4 +39,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

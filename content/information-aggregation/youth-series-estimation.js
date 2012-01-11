@@ -5,8 +5,7 @@
  * @author ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "YouthSeriesEstimation",
+Foxtrick.modules["YouthSeriesEstimation"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["search"],
 	CSS: Foxtrick.InternalPath+"resources/css/youth-series-estimation.css",
@@ -82,4 +81,4 @@ Foxtrick.util.module.register({
 	change : function(doc) {
 		this.run(doc);
 	}
-});
+};

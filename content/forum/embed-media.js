@@ -5,8 +5,7 @@
 * @author CatzHoek
 */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "EmbedMedia",
+Foxtrick.modules["EmbedMedia"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
 	NICE : 1,
@@ -305,4 +304,4 @@ Foxtrick.util.module.register({
 		
 		}, messages);
 	}
-});
+};

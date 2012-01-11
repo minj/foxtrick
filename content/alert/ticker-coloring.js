@@ -5,8 +5,7 @@
  * @author htbaumanns, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "TickerColoring",
+Foxtrick.modules["TickerColoring"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
 	PAGES : ["all"],
 	CSS : Foxtrick.InternalPath + "resources/css/ticker-coloring.css",
@@ -45,4 +44,4 @@ Foxtrick.util.module.register({
 
 		update();
 	}
-});
+};

@@ -5,8 +5,7 @@
  * @author smates
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "MovePlayerStatement",
+Foxtrick.modules["MovePlayerStatement"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail','YouthPlayer'),
 
@@ -31,4 +30,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

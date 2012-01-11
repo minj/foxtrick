@@ -5,8 +5,7 @@
  * @author Mod-PaV
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "HTThreadMarker",
+Foxtrick.modules["HTThreadMarker"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forum'),
 	CSS : Foxtrick.InternalPath + "resources/css/ht-thread.css",
@@ -70,4 +69,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

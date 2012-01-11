@@ -9,6 +9,11 @@ if (!Foxtrick)
 	var Foxtrick = {};
 Foxtrick.entry = {};
 
+
+// add MODULE_NAME to modules
+for (var i in Foxtrick.modules)
+	Foxtrick.modules[i].MODULE_NAME = i;
+
 // mapping from page name (defined in pages.js) to array of modules running
 // on it
 Foxtrick.entry.runMap = {};
@@ -133,7 +138,7 @@ Foxtrick.entry.init = function() {
 	// initialize all enabled modules
 	var modules = [];
 	for (var i in Foxtrick.modules) {
-		var module = Foxtrick.modules[i];
+		var module = Foxtrick.modules[i];		
 		if (FoxtrickPrefs.isModuleEnabled(module.MODULE_NAME)) {
 			// push to array modules for executing init()
 			modules.push(module);

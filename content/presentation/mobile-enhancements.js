@@ -7,8 +7,7 @@
 
 if(0) 
 if (Foxtrick.platform == "Fennec")
-  Foxtrick.util.module.register({
-	MODULE_NAME : "MobileEnhancements",
+  Foxtrick.modules["MobileEnhancements"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
 	CSS : Foxtrick.InternalPath + "resources/css/mobile-enhancements.css",
@@ -119,4 +118,4 @@ if (Foxtrick.platform == "Fennec")
 	getStyle : function(title) { 
 		return this.pageActions[title].css;
 	}
-});
+};

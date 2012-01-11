@@ -5,8 +5,7 @@
  * @author ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "LiveAlert",
+Foxtrick.modules["LiveAlert"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
 	PAGES : [ "matchesLive" ],
 	OPTIONS : ["Sound"],
@@ -92,4 +91,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

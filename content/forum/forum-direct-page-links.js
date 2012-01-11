@@ -4,8 +4,7 @@
  * @author CatzHoek
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "DirectPageLinks",
+Foxtrick.modules["DirectPageLinks"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
 	CSS: Foxtrick.InternalPath + "resources/css/forum-direct-page-links.css",
@@ -187,4 +186,4 @@ Foxtrick.util.module.register({
 				parent.appendChild(div);
 		}
 	}
-});
+};

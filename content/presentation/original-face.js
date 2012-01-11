@@ -5,8 +5,7 @@
  * @author smates
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "OriginalFace",
+Foxtrick.modules["OriginalFace"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["playerdetail", "players", "YouthPlayer", "YouthPlayers"],
 	OPTIONS : ["HideTransfer", "HideInjury", "HideSuspended", "ColouredYouth"],
@@ -29,4 +28,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

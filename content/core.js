@@ -5,8 +5,7 @@
 * @author ryanli
 */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "Core",
+Foxtrick.modules["Core"]={
 	CORE_MODULE : true,
 	PAGES : ["all"],
 	NICE : -50, // before anything else
@@ -203,4 +202,4 @@ Foxtrick.util.module.register({
 	getSelfTeamInfo : function() {
 		return this.SELF_TEAM_INFO;
 	}
-});
+};

@@ -5,8 +5,7 @@
  * @author convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "LinksTraining",
+Foxtrick.modules["LinksTraining"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('training'),
 	OPTION_FUNC : function(doc) {
@@ -56,4 +55,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

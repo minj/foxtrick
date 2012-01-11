@@ -5,8 +5,7 @@
  * @author spambot, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "ElectionTable",
+Foxtrick.modules["ElectionTable"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["election"],
 
@@ -63,4 +62,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

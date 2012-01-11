@@ -5,8 +5,7 @@
  * @author convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "HeaderToggle",
+Foxtrick.modules["HeaderToggle"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
 	NICE : +20, // after we add own h2s
@@ -43,7 +42,7 @@ Foxtrick.util.module.register({
 			var toggleSiblings = function(el) {
 				var parent = el.parentNode;
 				el = el.nextSibling;
-				var forumThreads = {}, numUnread = 0;
+				var forumThreads = {}, numUnread = 0, idString='';
 				while ( el ) { 
 					// if text node, wrap in span on first encounter
 					if (el.nodeType ==  Node.TEXT_NODE) {
@@ -84,6 +83,11 @@ Foxtrick.util.module.register({
 								if (!forumThreads[tid])
 									numUnread += Number(unread.textContent);
 								forumThreads[tid] = true;
+								if (idString)
+									idString += ',';
+								idString += tid;
+								
+								//idString += "__doPostBack('ctl00$ctl00$CPContent$CPMain$updLatestThreads','read|" + tid + "');\n"
 							}
 						}, rows);
 					}
@@ -92,10 +96,26 @@ Foxtrick.util.module.register({
 				
 				// show new forum postings
 				if (numUnread && h2.getElementsByClassName('highlight')[0] == undefined) {
+					var page_num = 0;
+					var pages = h2.parentNode.getElementsByClassName('page');
+					for (var i=0; i<pages.length; ++i) {
+						if (pages[i].getAttribute('disabled')=='disabled') {
+							page_num = Number(pages[i].textContent)-1;
+						}
+					}
 					h2.appendChild(doc.createTextNode(' '));
 					var span = doc.createElement('span');
-					span.className = 'highlight';
+					span.className = 'highlight ft-dummy';
 					span.textContent = '('+numUnread+')';
+					/*span.title = Foxtrickl10n.getString('headerToggle.markAsRead');
+					span.setAttribute('onclick',"javascript:" +
+						"__doPostBack('ctl00$ctl00$CPContent$ucLeftMenu$ucNewPosts','mrk|" + idString + "');" 
+						//"__doPostBack('ctl00$ctl00$CPContent$CPMain$pgLatestThreads$repPages$ctl0"+page_num+"$p" + page_num + "','');" 
+						//"__doPostBack('ctl00$ctl00$CPContent$CPMain$updLatestThreads','mrk|" + idString + "');" 
+						//"__doPostBack('ctl00$ctl00$CPContent$CPMain$updLatestThreads','read|" + idString + "')"
+						//idString			
+					);*/
+					Foxtrick.makeFeaturedElement(span, Foxtrick.modules.HeaderToggle);
 					h2.appendChild(span);
 				}
 			};
@@ -116,7 +136,9 @@ Foxtrick.util.module.register({
 				|| Foxtrick.hasClass(n, 'ft-expander-unexpanded')) {
 				return;
 			}
-			Foxtrick.listen(n, "click", function(ev){toggle(ev.target);}, false);
+			Foxtrick.listen(n, "click", function(ev){
+				toggle(ev.target);
+			}, false);
 			
 			Foxtrick.addClass(n, 'ft-expander-expanded');
 			Foxtrick.makeFeaturedElement(n, Foxtrick.modules.HeaderToggle); 
@@ -133,4 +155,4 @@ Foxtrick.util.module.register({
 	change: function(doc) {
 		this.run(doc); 
 	}
-});
+};

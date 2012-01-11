@@ -5,8 +5,7 @@
  * @author htbaumanns, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "NewMail",
+Foxtrick.modules["NewMail"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
 	PAGES : ["all"],
 	OPTIONS : ["NotifyMail", "NotifyForum"],
@@ -70,4 +69,4 @@ Foxtrick.util.module.register({
 			Foxtrick.util.notify.create(Foxtrickl10n.getString("notify.newForumMessage").replace(/%s/, newForumCount), 'http://'+doc.location.host+'/Forum/Default.aspx?actionType=refresh');
 		}
  	}
-});
+};

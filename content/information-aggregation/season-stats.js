@@ -5,8 +5,7 @@
  * @author convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "SeasonStats",
+Foxtrick.modules["SeasonStats"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ['matchesarchiv','matches'],
 	NICE : -1, // before FoxtrickCopyMatchID
@@ -249,4 +248,4 @@ Foxtrick.util.module.register({
 
 			Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, 1);
 	}
-});
+};

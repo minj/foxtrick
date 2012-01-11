@@ -5,8 +5,7 @@
  * @author bummerland, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "StaffMarker",
+Foxtrick.modules["StaffMarker"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ["forumViewThread", "forumWritePost", "teamPage"],
 	OPTIONS : ["own", "manager","HT-Youthclub"],
@@ -168,4 +167,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

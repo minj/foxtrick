@@ -5,8 +5,7 @@
  * @author convincedd, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "TransferSearchResultFilters",
+Foxtrick.modules["TransferSearchResultFilters"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ['transferSearchForm','transferSearchResult'],
 	NICE : -1, // before TransferDeadline and HTMSPoints
@@ -236,4 +235,4 @@ Foxtrick.util.module.register({
 		else if (Foxtrick.isPage("transferSearchResult", doc))
 			filterResults();
 	}
-});
+};

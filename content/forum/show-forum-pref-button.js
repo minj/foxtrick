@@ -5,8 +5,7 @@
 * @author convinced, ryanli
 */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "ShowForumPrefButton",
+Foxtrick.modules["ShowForumPrefButton"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumViewThread','forumOverView','forumDefault'),
 
@@ -24,4 +23,4 @@ Foxtrick.util.module.register({
 		myForums.appendChild(separator);
 		myForums.appendChild(strong);
 	}
-});
+};

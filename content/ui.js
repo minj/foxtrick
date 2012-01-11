@@ -5,8 +5,7 @@
 * @author convincedd
 */
 
-var FoxtrickUI = {
-	MODULE_NAME : "UI",
+Foxtrick.modules.UI = {
 	CORE_MODULE : true,
 	PAGES : ["all"],
 
@@ -21,7 +20,6 @@ var FoxtrickUI = {
 	// all: called when en/disabling 
 	update : function(sender) {},
 };
-Foxtrick.util.module.register(FoxtrickUI);
 
 
 
@@ -31,7 +29,7 @@ if (Foxtrick.platform == "Firefox") {
 	// called after browser loaded , with browser chrome
 	// as the argument
 	// initializes items in menu bar and status bar
-	FoxtrickUI.onLoad = function(document) {
+	Foxtrick.modules.UI.onLoad = function(document) {
 
 		// to add FoxTrick button on the navigation bar by default
 		if (!FoxtrickPrefs.getBool("toolbarInited")) {
@@ -62,18 +60,18 @@ if (Foxtrick.platform == "Firefox") {
 		var toolbarDisable = document.getElementById("foxtrick-toolbar-deactivate");
 		toolbarDisable.label = Foxtrickl10n.getString("foxtrick.prefs.disableTemporaryLabel");
 		// update status icon
-		FoxtrickUI.update();
+		Foxtrick.modules.UI.update();
 	};
 
-	FoxtrickUI.onTabChange = function(document) {
-		FoxtrickUI.update();
+	Foxtrick.modules.UI.onTabChange = function(document) {
+		Foxtrick.modules.UI.update();
 	};
 	
-	FoxtrickUI.update = function() {
-		FoxtrickUI.updateIcon();
+	Foxtrick.modules.UI.update = function() {
+		Foxtrick.modules.UI.updateIcon();
 	},
 	
-	FoxtrickUI.updateIcon = function() {
+	Foxtrick.modules.UI.updateIcon = function() {
 
 		var disableItem = document.getElementById("foxtrick-toolbar-deactivate");
 		if (disableItem)
@@ -115,7 +113,7 @@ if (Foxtrick.platform == "Firefox") {
 
 if (Foxtrick.platform == "Opera") {
 
-	FoxtrickUI.onLoad = function() {
+	Foxtrick.modules.UI.onLoad = function() {
 		// Specify the properties of the button before creating it.
 		var UIItemProperties = {
 			disabled: false,
@@ -126,16 +124,16 @@ if (Foxtrick.platform == "Opera") {
 			}
 		};
 		// Create the button and add it to the toolbar.
-		FoxtrickUI.button = opera.contexts.toolbar.createItem( UIItemProperties );
-		opera.contexts.toolbar.addItem(FoxtrickUI.button);
-		FoxtrickUI.updateIcon(FoxtrickUI.button);
+		Foxtrick.modules.UI.button = opera.contexts.toolbar.createItem( UIItemProperties );
+		opera.contexts.toolbar.addItem(Foxtrick.modules.UI.button);
+		Foxtrick.modules.UI.updateIcon(Foxtrick.modules.UI.button);
 	};
 	
-	FoxtrickUI.update = function() {
-		FoxtrickUI.updateIcon(FoxtrickUI.button);
+	Foxtrick.modules.UI.update = function() {
+		Foxtrick.modules.UI.updateIcon(Foxtrick.modules.UI.button);
 	};
 	
-	FoxtrickUI.updateIcon = function(button) {
+	Foxtrick.modules.UI.updateIcon = function(button) {
 		var icon = '', statusText= '';
 		if (FoxtrickPrefs.getBool("disableTemporary")) {
 			button.icon = "skin/disabled-24.png";
@@ -153,17 +151,17 @@ if (Foxtrick.platform == "Opera") {
 
 else if (Foxtrick.platform == "Chrome") {
 
-	FoxtrickUI.onLoad = function() {
+	Foxtrick.modules.UI.onLoad = function() {
 		chrome.pageAction.onClicked.addListener(function(tab) { 
 			FoxtrickPrefs.disable(tab); 
 		});
 	};
 
-	FoxtrickUI.update = function(tab) {
-		FoxtrickUI.updateIcon(tab);
+	Foxtrick.modules.UI.update = function(tab) {
+		Foxtrick.modules.UI.updateIcon(tab);
 	};
 	
-	FoxtrickUI.updateIcon = function(tab) {
+	Foxtrick.modules.UI.updateIcon = function(tab) {
 		chrome.pageAction.show(tab.id);
 		var iconUrl = '', statusText = '';
 		if (FoxtrickPrefs.getBool("disableTemporary")) {
@@ -183,7 +181,7 @@ else if (Foxtrick.platform == "Chrome") {
 
 else if (Foxtrick.platform == "Safari") {
 
-	FoxtrickUI.onLoad = function() {
+	Foxtrick.modules.UI.onLoad = function() {
 	   // Open Options page upon settings checkbox click.
 		safari.extension.settings.openFoxtrickOptions = false;
 		safari.extension.settings.addEventListener("change", function(e) {

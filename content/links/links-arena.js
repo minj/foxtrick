@@ -5,8 +5,7 @@
  * @author convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "LinksArena",
+Foxtrick.modules["LinksArena"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('arena'),
 	OPTION_FUNC : function (doc) {
@@ -51,4 +50,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

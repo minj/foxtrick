@@ -5,8 +5,7 @@
 * @author convinced
 */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "ForumChangePosts",
+Foxtrick.modules["ForumChangePosts"]={
 	CORE_MODULE : true,
 	PAGES : ["forumViewThread"],
 	CSS : Foxtrick.InternalPath + "resources/css/forum-change-post.css",
@@ -637,4 +636,4 @@ Foxtrick.util.module.register({
 			++num_wrapper;
 		}
 	}
-});
+};

@@ -5,8 +5,7 @@
  * @author larsw84, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "CopyPlayerAd",
+Foxtrick.modules["CopyPlayerAd"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["playerdetail", "youthplayerdetail"],
 	OPTIONS : ["Sorted", "NonTableStyle"],
@@ -295,4 +294,4 @@ Foxtrick.util.module.register({
 			Foxtrick.alert('createPlayerAd '+e);
 		}
 	}
-});
+};

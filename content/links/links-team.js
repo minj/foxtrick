@@ -5,8 +5,7 @@
  * @author convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "LinksTeam",
+Foxtrick.modules["LinksTeam"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('teamPage'),
 	OPTION_FUNC : function(doc) {
@@ -91,4 +90,4 @@ Foxtrick.util.module.register({
 				"levelnum" : levelnum ,"leagueid": leagueid,"userid":userid,
 				"fans":fans,'leaguepos':leaguepos};
 	}
-});
+};

@@ -5,8 +5,7 @@
  * @Author: smates, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "YouthPromotes",
+Foxtrick.modules["YouthPromotes"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["YouthPlayer"],
 
@@ -38,4 +37,4 @@ Foxtrick.util.module.register({
 			birthdayCell.appendChild(promotionCell);
 		}
 	}
-});
+};

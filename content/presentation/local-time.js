@@ -5,8 +5,7 @@
  * @author ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "LocalTime",
+Foxtrick.modules["LocalTime"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
 	NICE : -10, // place before HTDateFormat, bellow everything that adds dates
@@ -103,4 +102,4 @@ Foxtrick.util.module.register({
 			}, localDates);
 		}
 	}
-});
+};

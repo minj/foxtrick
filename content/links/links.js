@@ -5,7 +5,7 @@
  * @author others, convinced, ryanli
  */
 
-Foxtrick.util.module.register((function() {
+(function() {
 	// callback is called after links-collection is stored in session store
 	var storeCollection = function(callback) {
 		var collection = {};
@@ -64,8 +64,7 @@ Foxtrick.util.module.register((function() {
 		}
 	};
 
-	return {
-		MODULE_NAME : "Links",
+	Foxtrick.modules["Links"]={
 		MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 		CORE_MODULE : true,
 
@@ -272,4 +271,4 @@ Foxtrick.util.module.register((function() {
 			return list;
 		}
 	};
-}()));
+}());

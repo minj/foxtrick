@@ -5,8 +5,7 @@
  * @author spambot, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "CopyRatings",
+Foxtrick.modules["CopyRatings"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
 
@@ -214,4 +213,4 @@ Foxtrick.util.module.register({
 			button.appendChild(list);
 		}
 	}
-});
+};

@@ -5,8 +5,7 @@
  * @author convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "LinksStaff",
+Foxtrick.modules["LinksStaff"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('staff'),
 	OPTION_FUNC : function(doc) {
@@ -38,4 +37,4 @@ Foxtrick.util.module.register({
 		}
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{ "teamid": teamid, "teamname": teamname});
 	}
-});
+};

@@ -5,8 +5,7 @@
 * @author convinced
 */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "ForumStripHattrickLinks",
+Foxtrick.modules["ForumStripHattrickLinks"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','newsletter','mailnewsletter',"forumModWritePost","forumViewThread"),
 	OPTIONS: new Array("NoConfirmStripping"),
@@ -74,4 +73,4 @@ Foxtrick.util.module.register({
 			}, false);
 		}
 	}
-});
+};

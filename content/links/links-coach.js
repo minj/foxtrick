@@ -5,8 +5,7 @@
  * @author convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "LinksCoach",
+Foxtrick.modules["LinksCoach"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('coach'),
 	OPTION_FUNC : function(doc) {
@@ -34,4 +33,4 @@ Foxtrick.util.module.register({
 		}
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME ,{});
 	}
-});
+};

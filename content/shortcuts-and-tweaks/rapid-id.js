@@ -5,8 +5,7 @@
  * @author ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME: "RapidId",
+Foxtrick.modules["RapidId"]={
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ["all"],
 	CSS: Foxtrick.InternalPath+"resources/css/rapidid.css",
@@ -160,4 +159,4 @@ Foxtrick.util.module.register({
 				displayForm(doc);
 			}, true);
 	}
-});
+};

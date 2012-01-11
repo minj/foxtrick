@@ -4,8 +4,7 @@
  * @author spambot
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "LastLogin",
+Foxtrick.modules["LastLogin"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["managerPage"],
 
@@ -43,4 +42,4 @@ Foxtrick.util.module.register({
 		div.innerHTML = newInner;
 		div.setAttribute("processed", "processed");
 	}
-});
+};

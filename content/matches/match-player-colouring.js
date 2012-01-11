@@ -4,7 +4,7 @@
  * @author tychobrailleur, Stephan57, convincedd, ryanli
  */
 
-Foxtrick.util.module.register((function() {
+(function() {
 	// add match report highlight links to playerdetails
 	var addHighlightParam = function(doc) {
 		var playerId = Foxtrick.Pages.Player.getId(doc);
@@ -18,8 +18,8 @@ Foxtrick.util.module.register((function() {
 			a.href += "&HighlightPlayerID=" + playerId;
 		}, links);
 	};
-	return {
-		MODULE_NAME : "MatchPlayerColouring",
+	
+	Foxtrick.modules.MatchPlayerColouring = {
 		MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 		PAGES : ["match", "playerdetail"],
 		OPTIONS : ["SeparateOwnPlayerColors"],
@@ -176,4 +176,4 @@ Foxtrick.util.module.register((function() {
 			});
 		}
 	};
-}()));
+}());

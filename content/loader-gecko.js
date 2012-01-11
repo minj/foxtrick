@@ -35,7 +35,7 @@ Foxtrick.loader.gecko.browserLoad = function(ev) {
 		if (appcontent) {
 			// listen to page loads
 			appcontent.addEventListener("DOMContentLoaded", function(ev) {
-				FoxtrickUI.update();
+				Foxtrick.modules.UI.update();
 				Foxtrick.entry.docLoad(ev.originalTarget);
 			}, true);
 			appcontent.addEventListener("unload", Foxtrick.loader.gecko.docUnload, true);
@@ -111,7 +111,7 @@ if (Foxtrick.platform == "Fennec") {
 
 				addEventListener("DOMContentLoaded", function(ev){
 					try {
-						FoxtrickUI.update();
+						Foxtrick.modules.UI.update();
 						Foxtrick.entry.docLoad(ev.originalTarget);
 					} catch(e) {
 						Foxtrick.log(e);

@@ -5,8 +5,7 @@
  * @author ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "MyMonitor",
+Foxtrick.modules["MyMonitor"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["myhattrick", "dashboard", "teamPage", "youthoverview", "national"],
 	OPTIONS : ["TeamIcons"],
@@ -401,4 +400,4 @@ Foxtrick.util.module.register({
 				|| Foxtrick.isPage("national", doc)))
 			this.run(doc);
 	}
-});
+};

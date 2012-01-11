@@ -5,8 +5,7 @@
  * @author bummerland, larsw84, convincedd, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "ConfirmActions",
+Foxtrick.modules["ConfirmActions"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["playerdetail", "staff"],
 	OPTIONS : ["Bid", "TransferList", "NtChange", "StaffChange"],
@@ -243,4 +242,4 @@ Foxtrick.util.module.register({
 	change : function(doc) {
 		this.run(doc);
 	}
-});
+};

@@ -285,7 +285,7 @@ var FoxtrickPrefs = {
 
 	disable : function(sender) {
 		FoxtrickPrefs.setBool("disableTemporary", !FoxtrickPrefs.getBool("disableTemporary"));
-		FoxtrickUI.update(sender);
+		Foxtrick.modules.UI.update(sender);
 		if (Foxtrick.arch === "Gecko") {
 			Foxtrick.entry.init();
 		}

@@ -5,8 +5,7 @@
 * @author convinced
 */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "TableSort",
+Foxtrick.modules["TableSort"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["all"],
 	NICE : 10,  // after anythig that adds or changes tables
@@ -221,4 +220,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

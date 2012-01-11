@@ -5,8 +5,7 @@
  * @author taised, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "SmallerPages",
+Foxtrick.modules["SmallerPages"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
 	OPTIONS : new Array("ReduceBid"),
@@ -124,4 +123,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

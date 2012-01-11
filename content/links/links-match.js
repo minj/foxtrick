@@ -5,8 +5,7 @@
  * @author convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "LinksMatch",
+Foxtrick.modules["LinksMatch"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('match'),
 	OPTION_FUNC : function(doc) {
@@ -86,4 +85,4 @@ Foxtrick.util.module.register({
 			Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME+".coming" ,{ "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  });
 		}
 	}
-});
+};

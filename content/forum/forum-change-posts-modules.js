@@ -5,8 +5,7 @@
 * @author convinced
 */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "FormatPostingText",
+Foxtrick.modules["FormatPostingText"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','newsletter','mailnewsletter',"forumModWritePost"),
 	OPTIONS : ['NestedQoutesAsSpoilers'],
@@ -85,14 +84,13 @@ Foxtrick.util.module.register({
 			}
 		return r_string;
 	}
-});
+};
 
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "CopyPostID",
+Foxtrick.modules["CopyPostID"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ["forumViewThread"]
-});
+};
 
 
 /**
@@ -101,11 +99,10 @@ Foxtrick.util.module.register({
 * @author convinced
 */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "CopyPosting",
+Foxtrick.modules["CopyPosting"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
-});
+};
 
 
 /**
@@ -114,8 +111,7 @@ Foxtrick.util.module.register({
  * @author larsw84/convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "ForumAlterHeaderLine",
+Foxtrick.modules["ForumAlterHeaderLine"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
 	OPTIONS : new Array("SingleHeaderLine", "CheckDesign","TruncateLongNick","TruncateLeagueName","HideOldTime",
@@ -131,7 +127,7 @@ Foxtrick.util.module.register({
 							Foxtrick.InternalPath+"resources/css/fixes/BookmarkHeaderSmall.css"),
 
 	CSS : Foxtrick.InternalPath+"resources/css/fixes/Forum_Header_Single_SimpleFix.css"
-});
+};
 
 
 /**
@@ -140,11 +136,10 @@ Foxtrick.util.module.register({
  * @author convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "ForumRedirManagerToTeam",
+Foxtrick.modules["ForumRedirManagerToTeam"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
-});
+};
 
 
 /**
@@ -153,11 +148,10 @@ Foxtrick.util.module.register({
  * @author larsw84
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "MoveLinks",
+Foxtrick.modules["MoveLinks"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
-});
+};
 
 
 /**
@@ -166,8 +160,7 @@ Foxtrick.util.module.register({
  * @author larsw84
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "AddDefaultFaceCard",
+Foxtrick.modules["AddDefaultFaceCard"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
-});
+};

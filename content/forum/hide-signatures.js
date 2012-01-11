@@ -5,8 +5,7 @@
  * @author smates, larsw84
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "HideSignatures",
+Foxtrick.modules["HideSignatures"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumViewThread'),
 
@@ -52,4 +51,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

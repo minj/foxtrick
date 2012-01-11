@@ -5,8 +5,7 @@
 * @author spambot
 */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "CountryList",
+Foxtrick.modules["CountryList"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
 	OPTIONS : ["SelectBoxes","TeamPage","ManagerPage", "HideFlagOntop"],
@@ -210,4 +209,4 @@ Foxtrick.util.module.register({
 		selectbox.style.display='inline';
 		Foxtrick.dump('country select activated.\n');
 	}
-});
+};

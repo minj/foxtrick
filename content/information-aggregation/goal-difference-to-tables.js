@@ -5,8 +5,7 @@
  * @author spambot
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "GoalDifferenceToTables",
+Foxtrick.modules["GoalDifferenceToTables"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : new Array('promotion','oldseries','marathon'),
 
@@ -55,4 +54,4 @@ Foxtrick.util.module.register({
 		if (!doc.getElementById(id))
 			this.run(doc);
 	}
-});
+};

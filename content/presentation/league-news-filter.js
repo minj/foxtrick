@@ -5,8 +5,7 @@
  * @author convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "LeagueNewsFilter",
+Foxtrick.modules["LeagueNewsFilter"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["series"],
 	RADIO_OPTIONS : new Array('all','friendlies','transfers','lineup_changes'),
@@ -104,4 +103,4 @@ Foxtrick.util.module.register({
 		if (select.value!=0)
 			showHide(doc);
 	}
-});
+};

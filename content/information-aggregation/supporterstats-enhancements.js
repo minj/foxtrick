@@ -4,8 +4,7 @@
  * @author convincedd
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "SupporterStatsEnhancements",
+Foxtrick.modules["SupporterStatsEnhancements"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["StatsSquad"],
 
@@ -55,4 +54,4 @@ Foxtrick.util.module.register({
 			}
 		});
 	}
-});
+};

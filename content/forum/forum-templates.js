@@ -5,8 +5,7 @@
  * @author Mod-PaV, convincedd
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "ForumTemplates",
+Foxtrick.modules["ForumTemplates"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ['forumWritePost','messageWritePost','htpress','forumModWritePost'],
 	OPTIONS : ["DefaultShow"],
@@ -232,4 +231,4 @@ Foxtrick.util.module.register({
 	change : function(doc) {
 		this.run(doc);
 	}
-});
+};

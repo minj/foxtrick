@@ -5,8 +5,7 @@
  * @author convincedd
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "YouthSkillHideUnknown",
+Foxtrick.modules["YouthSkillHideUnknown"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["YouthPlayers"],
 	OPTIONS: ["HideUnknown", "HideMaximalKeyWord"],
@@ -47,4 +46,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

@@ -5,8 +5,7 @@
  * @author convinced, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "TeamSelectBox",
+Foxtrick.modules["TeamSelectBox"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["players", "YouthPlayers"],
 
@@ -118,4 +117,4 @@ Foxtrick.util.module.register({
 		Foxtrick.listen(div, "click", toggle, false);
 		toggle();
 	}
-});
+};

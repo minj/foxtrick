@@ -5,8 +5,7 @@
  * @author OBarros, spambot, convinced, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "TeamStats",
+Foxtrick.modules["TeamStats"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["players", "YouthPlayers"],
 	OPTIONS : ["General", "Speciality", "Personality", "Status", "Current_league"],
@@ -313,4 +312,4 @@ Foxtrick.util.module.register({
 			}
 		});
 	}
-});
+};

@@ -5,8 +5,7 @@
  * @author convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "MovePlayerSelectbox",
+Foxtrick.modules["MovePlayerSelectbox"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail'),
 	NICE : -5, // before others on playerdetails page
@@ -20,4 +19,4 @@ Foxtrick.util.module.register({
 		var sidebar=doc.getElementById('ctl00_ctl00_CPContent_CPSidebar_pnlRight');
 		sidebar.insertBefore(box,sidebar.firstChild);
 	}
-});
+};

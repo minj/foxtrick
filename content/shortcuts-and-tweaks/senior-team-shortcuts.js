@@ -5,8 +5,7 @@
  * @author convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "SeniorTeamShortCuts",
+Foxtrick.modules["SeniorTeamShortCuts"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["teamPageGeneral", "series", "youthSeries"],
 	RADIO_OPTIONS : new Array("OnlyOtherPages", "AllPages"),
@@ -63,4 +62,4 @@ Foxtrick.util.module.register({
 		if (pos1!=-1) bl_header[pos1].parentNode.insertBefore(li2,bl_header[pos1].nextSibling);
 		else bl_header[0].parentNode.appendChild(li2);
 	}
-});
+};

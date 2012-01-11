@@ -10,7 +10,6 @@ if (!Foxtrick)
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
 Foxtrick.loader.chrome = {};
-
 	
 // invoked after the browser chrome is loaded
 Foxtrick.loader.chrome.browserLoad = function() {
@@ -105,7 +104,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		};
 	
 		if (request.req == "pageLoad") {
-			FoxtrickUI.update(sender.tab);
+			Foxtrick.modules.UI.update(sender.tab);
 			resource.cssText = cssTextCollection;
 		}
 		

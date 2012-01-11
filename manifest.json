@@ -41,6 +41,7 @@
 			"content/forum-stage.js",
 			"content/core.js",
 			"content/add-class.js",
+			"content/ui.js",
 
 			//<!-- page utilities -->
 			"content/pages/all.js",
@@ -181,7 +182,6 @@
 			"content/shortcuts-and-tweaks/transfer-search-result-filters.js",
 
 			"content/entry.js",
-			"content/ui.js",
 			"content/loader-chrome.js"
 		],
 		"matches" : [

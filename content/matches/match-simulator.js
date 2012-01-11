@@ -5,8 +5,7 @@
  * @author convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "MatchSimulator",
+Foxtrick.modules["MatchSimulator"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['matchOrder'],
 	RADIO_OPTIONS : ["RatingsOnTop","RatingsBellow","RatingsRight"],
@@ -845,4 +844,4 @@ Foxtrick.util.module.register({
 		}, false);
 		checkFlipped();			
 	}
-});
+};

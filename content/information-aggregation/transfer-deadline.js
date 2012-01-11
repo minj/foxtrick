@@ -4,8 +4,7 @@
  * @author spambot, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "TransferDeadline",
+Foxtrick.modules["TransferDeadline"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["transferSearchResult", "playerdetail", "transfer", "bookmarks"],
 	CSS : Foxtrick.InternalPath + "resources/css/transfer-deadline.css",
@@ -100,4 +99,4 @@ Foxtrick.util.module.register({
 
 		this.processNode(selltime_elm, htTime);
 	}
-});
+};

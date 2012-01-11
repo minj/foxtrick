@@ -5,8 +5,7 @@
  * @author ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "NtPeek",
+Foxtrick.modules["NtPeek"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["country"],
 	CSS : Foxtrick.InternalPath + "resources/css/nt-peek.css",
@@ -98,4 +97,4 @@ Foxtrick.util.module.register({
 			}
 		});
 	}
-});
+};

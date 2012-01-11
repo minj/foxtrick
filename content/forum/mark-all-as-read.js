@@ -5,8 +5,7 @@
  * @author ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "MarkAllAsRead",
+Foxtrick.modules["MarkAllAsRead"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ["forumViewThread", "forumOverView", "forumDefault", "forumWritePost"],
 	CSS : Foxtrick.InternalPath + "resources/css/mark-all-as-read.css",
@@ -40,4 +39,4 @@ Foxtrick.util.module.register({
 			var target = doc.getElementById("myForums").previousSibling;
 		target.appendChild(container);
 	}
-});
+};

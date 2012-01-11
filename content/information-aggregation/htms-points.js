@@ -5,8 +5,7 @@
 * @author taised
 */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "HTMSPoints",
+Foxtrick.modules["HTMSPoints"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["playerdetail", "transferSearchResult", "players"],
 	OPTIONS : ["AddToPlayer", "AddToSearchResult", "AddToPlayerList"],
@@ -259,4 +258,4 @@ Foxtrick.util.module.register({
 
 		return (new Array(actValue, Math.round(potValue)));
 	}
-});
+};

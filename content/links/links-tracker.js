@@ -5,10 +5,9 @@
  * @author convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "LinksTracker",
+Foxtrick.modules["LinksTracker"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	OPTION_FUNC : function(doc) {
 		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksTracker", "trackerplayerlink");
 	}
-});
+};

@@ -5,8 +5,7 @@
  * @author convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "LinksLeague",
+Foxtrick.modules["LinksLeague"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : ["series"],
 	OPTION_FUNC : function(doc) {
@@ -63,4 +62,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

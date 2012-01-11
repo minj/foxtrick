@@ -5,8 +5,7 @@
  * @author convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "Redirections",
+Foxtrick.modules["Redirections"]={
 	CORE_MODULE : true,
 	PAGES : ["all"],
 	NICE : -40,  // after Core, before anything else
@@ -150,4 +149,4 @@ Foxtrick.util.module.register({
 		if (tar)
 			doc.location.replace(tar);
 	}
-});
+};

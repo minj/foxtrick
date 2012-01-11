@@ -11,7 +11,6 @@ if (!Foxtrick.loader)
 	Foxtrick.loader = {};
 Foxtrick.loader.chrome = {};
 
-
 // invoked when an allowed HTML document is load started
 Foxtrick.loader.chrome.docLoadStart = function() {
 	try {

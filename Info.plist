@@ -81,6 +81,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/forum-stage.js</string>
 				<string>content/core.js</string>
 				<string>content/add-class.js</string>
+				<string>content/ui.js</string>
 
 				<!-- categorized modules -->
 				<string>content/alert/live-alert.js</string>
@@ -212,7 +213,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/shortcuts-and-tweaks/transfer-search-result-filters.js</string>
 
 				<string>content/entry.js</string>
-				<string>content/ui.js</string>
 				<string>content/loader-chrome.js</string>
 			</array>
 		</dict>

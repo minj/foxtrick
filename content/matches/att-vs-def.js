@@ -5,8 +5,7 @@
  * @author taised, Jestar
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "AttVsDef",
+Foxtrick.modules["AttVsDef"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
 	NICE : -1, // before Ratings
@@ -302,4 +301,4 @@ Foxtrick.util.module.register({
 
 		return values;
 	}
-});
+};

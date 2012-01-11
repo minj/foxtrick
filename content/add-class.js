@@ -5,8 +5,7 @@
  * @author ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "AddClass",
+Foxtrick.modules["AddClass"]={
 	CORE_MODULE : true,
 	PAGES : ["playerdetail", "search", "bookmarks", "match", "transferCompare"],
 	NICE : -20, // place before all date-related modules
@@ -113,4 +112,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+}

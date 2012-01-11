@@ -5,8 +5,7 @@
 * @author baumanns, spambot
 */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "ExtraShortcuts",
+Foxtrick.modules["ExtraShortcuts"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : new Array('all'),
 	OPTIONS : ["AddSpace","AddLeft","Supporterstats", "Transfers", "Prefs", "FoxTrickPrefs", "ManageCHPP", "HtRadio", "No9", "Latehome"],
@@ -186,4 +185,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

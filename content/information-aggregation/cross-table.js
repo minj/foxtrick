@@ -5,8 +5,7 @@
  * @author spambot, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "CrossTable",
+Foxtrick.modules["CrossTable"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["fixtures"],
 	CSS : Foxtrick.InternalPath + "resources/css/cross-table.css",
@@ -326,4 +325,4 @@ Foxtrick.util.module.register({
 			}
 		});
 	}
-});
+}

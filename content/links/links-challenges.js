@@ -5,8 +5,7 @@
  * @author convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "LinksChallenges",
+Foxtrick.modules["LinksChallenges"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('challenges','youthchallenges'),
 	LINK_TYPES : [ "challengeslink", "youthchallengeslink" ],
@@ -44,4 +43,4 @@ Foxtrick.util.module.register({
 		}
 		Foxtrick.util.links.add(doc,ownBoxBody,this.MODULE_NAME,{});
 	}
-});
+};

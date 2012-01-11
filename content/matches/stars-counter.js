@@ -5,8 +5,7 @@
  * @author larsw84, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "StarsCounter",
+Foxtrick.modules["StarsCounter"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array("matchLineup"),
 
@@ -126,4 +125,4 @@ Foxtrick.util.module.register({
 		star.src = "/Img/Matches/star_" + colour + ".png";
 		return star;
 	}
-});
+};

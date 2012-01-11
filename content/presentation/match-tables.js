@@ -4,8 +4,7 @@
  * @author Mod-spambot, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "MatchTables",
+Foxtrick.modules["MatchTables"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ['matchesarchiv', 'matches','series','youthSeries'],
 	OPTIONS : ["RemoveTime"],
@@ -116,4 +115,4 @@ Foxtrick.util.module.register({
 	change : function(doc) {
 		this.removeTime(doc);
 	}
-});
+};

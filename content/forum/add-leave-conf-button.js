@@ -5,8 +5,7 @@
  * @author larsw84
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "AddLeaveConfButton",
+Foxtrick.modules["AddLeaveConfButton"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ["forum", "forumSettings"],
 
@@ -101,4 +100,4 @@ Foxtrick.util.module.register({
 		var markAsReadButton = folderHeader.childNodes[0];
 		folderHeader.insertBefore( leaveConf, markAsReadButton);
 	}
-});
+};

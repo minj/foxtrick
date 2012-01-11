@@ -4,8 +4,7 @@
  * @author convincedd, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "ExtraPlayerInfo",
+Foxtrick.modules["ExtraPlayerInfo"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["players"],
 	OPTIONS : ["CoachInfo", "Flag"],
@@ -89,4 +88,4 @@ Foxtrick.util.module.register({
 			}
 		});
 	}
-});
+};

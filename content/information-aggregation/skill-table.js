@@ -5,8 +5,7 @@
  * @authors: convincedd, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "SkillTable",
+Foxtrick.modules["SkillTable"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["players", "oldcoaches", "YouthPlayers", "transferSearchResult"],
 	OPTIONS : ["OtherTeams", "ColouredYouth"],
@@ -1167,4 +1166,4 @@ Foxtrick.util.module.register({
 			addTableDiv();
 		}
 	},
-});
+};

@@ -5,8 +5,7 @@
 * @author convinced
 */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "LeagueAndMatchChat",
+Foxtrick.modules["LeagueAndMatchChat"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ['series','youthSeries','match','cupoverview','cupmatches','federation'],
 	OPTIONS : ['OpenYapletPopup','OpenGabblyPopup','ChatNick'],
@@ -116,4 +115,4 @@ Foxtrick.util.module.register({
 			lasta.parentNode.insertBefore(a,lasta.nextSibling);
 		}
 	}
-});
+};

@@ -5,8 +5,7 @@
  * @author spambot, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "ExtendedPlayerDetails",
+Foxtrick.modules["ExtendedPlayerDetails"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : new Array('playerdetail'),
 	RADIO_OPTIONS : new Array( "SWD", "SW", "SD", "WD", "D" ),
@@ -79,10 +78,9 @@ Foxtrick.util.module.register({
 		}
 		else Foxtrick.dump('  Could not create jointime (NaN)\n');
 	}
-});
+};
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "ExtendedPlayerDetailsWage",
+Foxtrick.modules["ExtendedPlayerDetailsWage"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : new Array('playerdetail'),
 	OPTIONS : new Array( "WageWithoutBonus", "SeasonWage"),
@@ -138,4 +136,4 @@ Foxtrick.util.module.register({
 			Foxtrick.makeFeaturedElement(doc.getElementById('ft_seasonwage'), this);
 		}
 	}
-});
+};

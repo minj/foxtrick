@@ -10,7 +10,7 @@
  * http://www.hattrick.org/Club/Matches/Match.aspx?matchID=347558980
  */
 
-Foxtrick.util.module.register((function() {
+(function() {
 
 	/* 
 	 * Source: /Community/CHPP/ChppMatchEventTypes.aspx
@@ -256,8 +256,8 @@ Foxtrick.util.module.register((function() {
 		"17" : "setPieces",
 		"18" : "captain"
 	};
-	return {
-		MODULE_NAME : "MatchReportFormat",
+	
+	Foxtrick.modules.MatchReportFormat = {
 		MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 		PAGES : ["match"],
 		OPTIONS : ['ShowEventIcons'],
@@ -627,4 +627,4 @@ Foxtrick.util.module.register((function() {
 			});
 		}
 	};
-}()));
+}());

@@ -5,8 +5,7 @@
  * @author htbaumanns, CSS by Catalyst2950
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "HeaderFix",
+Foxtrick.modules["HeaderFix"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
 	OPTIONS : new Array("FixLeft","RemoveFlicker"),
@@ -81,14 +80,13 @@ Foxtrick.util.module.register({
 		ctl00_ctl00_CPContent_CPMain_pnlArenaFlash.setAttribute('style','margin-top:25px;');
 		if (isArena) 	ctl00_ctl00_CPContent_CPMain_pnlArenaFlash.setAttribute('style','margin-top:25px; margin-left:-8px !important; margin-right:-3px !important;');
 	}
-});
+};
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "HeaderFixLeft",
+Foxtrick.modules["HeaderFixLeft"]={
 	CSS: Foxtrick.InternalPath+"resources/css/header-fix-left.css",
 
 	init : function() {
 		if (!FoxtrickPrefs.isModuleEnabled("HeaderFix"))
 			FoxtrickPrefs.setBool( "module.HeaderFixLeft.enabled", false );
 	}
-});
+};

@@ -5,8 +5,7 @@
  * @author convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "Filter",
+Foxtrick.modules["Filter"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["statsTopPlayers"],
 
@@ -337,4 +336,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

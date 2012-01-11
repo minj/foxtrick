@@ -5,8 +5,7 @@
  * @author ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "ShowFriendlyBooked",
+Foxtrick.modules["ShowFriendlyBooked"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["series"],
 	OPTIONS : ["OnDemand"],
@@ -97,4 +96,4 @@ Foxtrick.util.module.register({
 			show();
 		}
 	}
-});
+};

@@ -5,8 +5,7 @@
  * @author spambot
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "ForumYouthIcons",
+Foxtrick.modules["ForumYouthIcons"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ["forumWritePost", "messageWritePost", "guestbook",
 		"announcements", "forumSettings", "newsletter", "mailnewsletter",
@@ -607,4 +606,4 @@ Foxtrick.util.module.register({
 	change : function(doc) {
 		this.run(doc);
 	}
-});
+};

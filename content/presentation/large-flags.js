@@ -5,8 +5,7 @@
  * @author larsw84
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "LargeFlags",
+Foxtrick.modules["LargeFlags"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail'),
 
@@ -40,4 +39,4 @@ Foxtrick.util.module.register({
 		wrapperDiv.style.cssFloat = "left";
 		parentNode.insertBefore(wrapperDiv, nextSibling);
 	}
-});
+};

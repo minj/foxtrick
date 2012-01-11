@@ -5,8 +5,7 @@
  * @author spambot
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "ForumPreview",
+Foxtrick.modules["ForumPreview"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ['forumWritePost', 'messageWritePost', 'guestbook', 'announcements', 'newsletter', 'mailnewsletter', 'forumSettings', "forumModWritePost"],
 	CSS : Foxtrick.InternalPath + "resources/css/forum-preview.css",
@@ -305,4 +304,4 @@ Foxtrick.util.module.register({
 		if (check_div == null)
 			this.run(doc);
 	}
-});
+};

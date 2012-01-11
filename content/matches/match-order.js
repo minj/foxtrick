@@ -5,8 +5,7 @@
  * @author convinced
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "MatchOrderInterface",
+Foxtrick.modules["MatchOrderInterface"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['matchOrder'],
 	OPTIONS : ["PlayedLastMatch","Specialties","SwapPositions","StayOnPage"],
@@ -171,4 +170,4 @@ Foxtrick.util.module.register({
 		var tab_penaltytakers = doc.getElementById('tab_penaltytakers');
 		Foxtrick.addMutationEventListener(tab_penaltytakers, "DOMNodeInserted", function(ev){Foxtrick.log('tab_penaltytakers change');waitForInterface(ev)}, false);
 	},
-});
+};

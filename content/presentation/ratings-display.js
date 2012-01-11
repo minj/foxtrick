@@ -4,8 +4,7 @@
  * @author convincedd
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "RatingsDisplay",
+Foxtrick.modules["RatingsDisplay"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["statsSeries", "match"],
 
@@ -104,4 +103,4 @@ Foxtrick.util.module.register({
 		else if (Foxtrick.isPage("statsSeries", doc))
 			do_seriesstats();
 	}
-});
+};

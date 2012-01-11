@@ -5,8 +5,7 @@
  * @author spambot
  */
 ////////////////////////////////////////////////////////////////////////////////
-Foxtrick.util.module.register({
-	MODULE_NAME : "HistoryStats",
+Foxtrick.modules["HistoryStats"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["history"],
 	NICE : -1,  // before FoxtrickCopyMatchID
@@ -202,4 +201,4 @@ Foxtrick.util.module.register({
 			Foxtrick.log(e);
 		}
 	}
-});
+};

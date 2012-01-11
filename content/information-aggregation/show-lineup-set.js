@@ -6,8 +6,7 @@
  * @author convinced, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "ShowLineupSet",
+Foxtrick.modules["ShowLineupSet"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["series"],
 	OPTIONS : ["LineupSet", "Ownerless", "Winning"],
@@ -128,4 +127,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

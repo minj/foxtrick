@@ -4,8 +4,7 @@
  * @author spambot, ljushaff
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "ForumPresentation",
+Foxtrick.modules["ForumPresentation"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ['forum', 'forumViewThread', 'forumOverView' , 'forumDefault', 'forumWritePost', 'forumModWritePost'],
 
@@ -36,4 +35,4 @@ Foxtrick.util.module.register({
 			}, doc.getElementsByClassName("threadInfo")); //fplThreadInfo should be added to but that's dynamic in default -> more tricky
 		}	
 	}
-});
+};

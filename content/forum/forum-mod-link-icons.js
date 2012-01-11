@@ -4,8 +4,7 @@
  * @author CatzHoek
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "ForumModeratorIconLinks",
+Foxtrick.modules["ForumModeratorIconLinks"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
 	CSS: Foxtrick.InternalPath + "resources/css/forum-mod-link-icons.css",
@@ -63,4 +62,4 @@ Foxtrick.util.module.register({
 			content.insertBefore(div, content.firstChild);
 		}
 	}
-});
+};

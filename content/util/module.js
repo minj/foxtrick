@@ -17,6 +17,10 @@ Foxtrick.util.module.get = function(n) {
 	return Foxtrick.modules ? Foxtrick.modules[n] : null;
 };
 
+
+if (!Foxtrick.modules)
+	Foxtrick.modules = {};
+
 // provided an object, register it as a FoxTrick categorized module
 Foxtrick.util.module.register = function(obj) {
 	if (!Foxtrick.modules)

@@ -5,8 +5,7 @@
  * @author taised
  */
 ////////////////////////////////////////////////////////////////////////////////
-Foxtrick.util.module.register({
-	MODULE_NAME : "HTMSPrediction",
+Foxtrick.modules["HTMSPrediction"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : new Array('match'),
 	CSS : Foxtrick.InternalPath + "resources/css/htms-statistics.css",
@@ -206,4 +205,4 @@ Foxtrick.util.module.register({
 		this.insertPrediction(doc,htmsDiv, midfieldLevel, rdefence, cdefence, ldefence, rattack, cattack, lattack, tactics, tacticsLevel);
 
 	}
-});
+};

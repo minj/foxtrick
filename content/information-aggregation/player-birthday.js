@@ -5,8 +5,7 @@
  * @author jurosz, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "PlayerBirthday",
+Foxtrick.modules["PlayerBirthday"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ['players','YouthPlayers'],
 
@@ -78,4 +77,4 @@ Foxtrick.util.module.register({
 				parentDiv, 10);
 		}
 	}
-});
+};

@@ -4,8 +4,7 @@
  * @author spambot, ljushaff, ryanli
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "FixcssProblems",
+Foxtrick.modules["FixcssProblems"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
 
@@ -40,4 +39,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};

@@ -5,8 +5,7 @@
  * @author taised
  */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "BookmarkAdjust",
+Foxtrick.modules["BookmarkAdjust"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('bookmarks'),
 
@@ -76,4 +75,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	},
-});
+};

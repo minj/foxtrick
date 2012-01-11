@@ -5,8 +5,7 @@
 * @author convinced
 */
 
-Foxtrick.util.module.register({
-	MODULE_NAME : "CopyMatchID",
+Foxtrick.modules["CopyMatchID"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
  	PAGES : new Array('matches','matchesarchiv','matcheshistory',
 					'matchesLatest','arena','matchLineup','match'),
@@ -99,4 +98,4 @@ Foxtrick.util.module.register({
 			}
 		}
 	}
-});
+};
