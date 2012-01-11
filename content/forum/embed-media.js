@@ -216,12 +216,10 @@ Foxtrick.util.module.register({
 					a.href = "http://imageshack.us/shareable/?i=" + media_link["params"][0] + "." + media_link["params"][2] + "&s=" + media_link["params"][1]
 			}
 			//already convert link to embedding url when using iframe method
-			else if( oembed_enabled || media_link['site'] == 'genericImage'){
-				if (media_link["site"] == "imgur")
-					a.href = "http://i.imgur.com/" + media_link["mediaId"] + ".jpg";
-				else 
+			else if( oembed_enabled || media_link['site'] == 'genericImage')
 					a.href = media_link["link"].href;
-			}
+			else if (media_link["site"] == "imgur")
+					a.href = "http://i.imgur.com/" + media_link["mediaId"] + ".jpg";
 			else
 				a.href = iframe_urls[media_link["site"]] +  media_link["mediaId"];
 				
