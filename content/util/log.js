@@ -23,9 +23,13 @@ Foxtrick.log = function() {
 		if (content instanceof Error) {
 			hasError = true;
 			if (Foxtrick.arch == "Gecko") {
-				item = content.fileName + " (" + content.lineNumber + "): " + content.message + "\n"
-					+ "Stack trace: " + content.stack;
+				// there also would be Components.stack if someone finds a nice way to display it
+				item = content.message + "\n" 
+					+ content.fileName + ": " + content.lineNumber + "\n"
+					+ "Stack trace:\n" 
+					+ content.stack;
 				Components.utils.reportError(item);
+				item = item.replace(/.+@/g,''); // readability. the place/object doesn't get shown for me in a readable way in any console i tried
 			}
 			else if (Foxtrick.arch == "Sandboxed") {
 				if (args[i].arguments) {
@@ -41,7 +45,6 @@ Foxtrick.log = function() {
 				if (item == '{}' && typeof(content) == 'object') {
 					// stringify didn't work as intented
 					for (var j in content)
-						//Foxtrick.log(j, ':', content[j]);
 						item += j + ':' + content[j] + '\n';
 				}
 			}
@@ -52,8 +55,7 @@ Foxtrick.log = function() {
 		else {
 			item = content;
 		}
-		/*if (item != content) concated += content + ' (' + item + ') ';
-		else*/ concated += item;
+		concated += item;
 	}
 	Foxtrick.log.cache += concated + "\n";
 
@@ -62,14 +64,14 @@ Foxtrick.log = function() {
 		&& typeof(Firebug.Console) != "undefined"
 		&& typeof(Firebug.Console.log) == "function") {
 		// if Firebug.Console.log is available, make use of it
-		// (only supports one argument)
+		// could just use just 'args', but i didn't get tracing to work nice
 		Firebug.Console.log(concated);
 	}
 	else if (typeof(opera) != "undefined"
 		&& typeof(opera.postError) == "function") {
 		opera.postError(args);
 	}
-	else if (typeof(console) != "undefined"
+	if (typeof(console) != "undefined"
 		&& typeof(console.log) == "function") {
 		// if console.log is available, make use of it
 		// (support multiple arguments)
