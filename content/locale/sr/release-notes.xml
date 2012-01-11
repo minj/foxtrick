@@ -11,7 +11,14 @@
 <note version="nightly" localized-version="Тест верзија">
 <item>За детаље о променама погледајте  на <xhtml:a href="http://code.google.com/p/foxtrick/source/list">Google Code</xhtml:a> сајту.</item>
 <item>Уколико желите да вам Фокстрик не приказује обавештење о променама после сваког ажурирања искључите опцију "Прикажи поруку о променама после ажурирања Фокстрика" у табу <xhtml:a href="#tab=main">"Главне опције"</xhtml:a>.</item>
+</note>
 
+<note version="0.8.2">
+<item>Корејански језик (SI-CH)</item>
+<item>Литвански језик (LA-MJ)</item>
+<item>Генерално чишћење локализација (CatzHoek)</item>
+<item>Додати линкови за <xhtml:a href="http://www.htev.org/">http://htev.org/</xhtml:a> странице са статистиком.</item>
+<item>Још неке ситне поправке. (convincedd, CatzHoek)</item>
 </note>
 
 <note version="0.8.1">
