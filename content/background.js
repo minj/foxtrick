@@ -9,6 +9,10 @@ if (!Foxtrick.loader)
 	Foxtrick.loader = {};
 Foxtrick.loader.chrome = {};
 
+Foxtrick.chromeContext = function() {
+	return "background";
+}
+
 // invoked after the browser chrome is loaded
 Foxtrick.loader.chrome.browserLoad = function() {
   try {

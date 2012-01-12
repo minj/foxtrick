@@ -336,9 +336,10 @@ else if (typeof(chrome) == "object") {
 
 	// to tell which context the chrome script is running at
 	// either background page, or content script
+	
 	Foxtrick.chromeContext = function() {
 		try {
-			if (chrome.bookmarks) {
+			if (chrome.bookmarks) { // not working fo chrome 17
 				return "background";
 			}
 			else {
