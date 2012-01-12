@@ -343,7 +343,6 @@ else if (typeof(chrome) == "object") {
 	// either background page, or content script
 	Foxtrick.chromeContext = function() {
 		try {
-			console.log(window.location.protocol,window.location.protocol == "chrome-extension:")
 			if (window.location.protocol == "chrome-extension:") {
 				return "background";
 			}
@@ -608,7 +607,6 @@ else {
 			//  recieve tab id on register
 			sandboxed.extension.sendRequest({ req : "register" }, function(response){
 				sandboxed.extension.tabid = response.tabid;
-				Foxtrick.log('register ', response);
 			});
 		}
 		else {
