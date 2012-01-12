@@ -13,7 +13,7 @@ function initLoader() {
 		init();
 	}
 	// opera prefs runs in content context. add need resources first
-	else
+	else {
 		Foxtrick.chromeContext = function() {
 			return "content";
 		}
@@ -24,6 +24,7 @@ function initLoader() {
 					init();
 				} catch(e) {Foxtrick.log('initLoader: ',e);}
 		});
+	}
 };
 
 function init()

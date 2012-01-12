@@ -103,6 +103,9 @@ Foxtrick.loader.gecko.docUnload = function(ev) {
 
 // fennec browser load
 if (Foxtrick.platform == "Fennec") {
+	Foxtrick.chromeContext = function() {
+		return "context";
+	}
 	Foxtrick.log('script load')
 	sandboxed.extension.sendRequest({ req : "init" },
 		function (data) {
@@ -123,4 +126,9 @@ if (Foxtrick.platform == "Fennec") {
 		}
 	);
 }
-
+else { // firefox
+	Foxtrick.chromeContext = function() {
+		return "background";
+	}
+}
+}
