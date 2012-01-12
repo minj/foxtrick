@@ -343,7 +343,8 @@ else if (typeof(chrome) == "object") {
 	// either background page, or content script
 	Foxtrick.chromeContext = function() {
 		try {
-			if (chrome.bookmarks) {
+			console.log(window.location.protocol,window.location.protocol == "chrome-extension:")
+			if (window.location.protocol == "chrome-extension:") {
 				return "background";
 			}
 			else {
