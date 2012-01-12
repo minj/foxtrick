@@ -6,25 +6,17 @@ function initLoader() {
 	// called directly, it'll run and save actually for some reason
 
 	// gecko, safari, chrome
-	if (Foxtrick.arch !== "Opera") {
-		Foxtrick.chromeContext = function() {
-			return "background";
-		}
+	if (Foxtrick.arch === "Gecko" || Foxtrick.chromeContext() == "background")
 		init();
-	}
 	// opera prefs runs in content context. add need resources first
-	else {
-		Foxtrick.chromeContext = function() {
-			return "content";
-		}
-		sandboxed.extension.sendRequest({ req : "init", sender : 'options' },
+	else
+		sandboxed.extension.sendRequest({ req : "optionsPageLoad" },
 			function (data) {
 				try {
-					Foxtrick.entry.setRetrievedLocalResources(data);
+					Foxtrick.entry.contentScriptInit(data);
 					init();
 				} catch(e) {Foxtrick.log('initLoader: ',e);}
 		});
-	}
 };
 
 function init()

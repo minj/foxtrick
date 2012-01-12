@@ -339,7 +339,7 @@ else if (typeof(chrome) == "object") {
 	
 	Foxtrick.chromeContext = function() {
 		try {
-			if (chrome.bookmarks) { // not working fo chrome 17
+			if (window.location.protocol == "chrome-extension:") {
 				return "background";
 			}
 			else {
