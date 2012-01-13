@@ -335,7 +335,7 @@ if (Foxtrick.arch === "Sandboxed") {
 				}
 				else {
 					try {
-						this.properties = Foxtrick.loadSync(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.properties");
+						this.properties = Foxtrick.load(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.properties");
 						if (this.properties == null) {
 							Foxtrick.log("Use default properties for locale ", locale);
 							this.properties = this.properties_default; 
@@ -346,7 +346,7 @@ if (Foxtrick.arch === "Sandboxed") {
 						this.properties = this.properties_default;
 					}
 					try {
-						this.screenshots = Foxtrick.loadSync(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.screenshots");
+						this.screenshots = Foxtrick.load(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.screenshots");
 						if (this.screenshots == null) {
 							Foxtrick.log("Use default screenshots for locale ", locale);
 							this.screenshots = this.screenshots_default;
