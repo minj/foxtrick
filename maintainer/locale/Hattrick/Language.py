@@ -13,7 +13,7 @@ Codes[11]='pt';		#Portuguese
 Codes[12]='ja';		#japan
 Codes[13]='pl';		#Polish
 Codes[14]='ru';		#Russian
-Codes[15]='zh';		#chinese
+Codes[15]='zh';		#chinese simplified
 Codes[17]='ko';		#korean
 Codes[19]='tr';		#Turkish
 Codes[22]='ar'; 	#arabic
@@ -46,7 +46,7 @@ Codes[85]='sq';		#Albanian
 Codes[87]='mt';		#Maltese, Malta
 Codes[90]='ka';		#georgian
 Codes[103]='es_ca';	#spanish, central america
-Codes[109]='fy';	#Frysk, east-netherland/north germany
+Codes[109]='fy';	#Frisian, east-netherland/north germany
 Codes[110]='eu';	#Euskara, basque
 Codes[111]='lb';	#Letzebuergesch
 Codes[113]='fur';	#Furlan, northitaly
@@ -67,7 +67,3 @@ def getLanguageById(id):
 			return Codes[id]
 
 	return None
-	
-
-		
-		
