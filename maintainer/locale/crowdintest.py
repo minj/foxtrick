@@ -1,7 +1,5 @@
 from Hattrick import CrowdIn
-
-#api key needed, can't be published due to vandalism
-apikey = ""
+from crowdinKey import apikey
 
 ci = CrowdIn.Crowdin("foxtrick", apikey)
 ci.getStatus();
