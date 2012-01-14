@@ -63,13 +63,13 @@ Foxtrick.modules["MatchSimulator"]={
 			// if has number from other match, collect and submit them to htms. else clear overlay
 			if (currentRatingsOther[0] != undefined) {
 				var tacticAbbr = ["", "pressing", "ca", "aim", "aow", "cre", "long"];
-				var midfieldLevel = [ currentRatings[3], currentRatingsOther[3] ];
-				var rdefence = [ currentRatings[0], currentRatingsOther[6] ];
-				var cdefence = [ currentRatings[1], currentRatingsOther[5] ];
-				var ldefence = [ currentRatings[2], currentRatingsOther[4] ];
-				var rattack = [ currentRatings[4], currentRatingsOther[2] ];
-				var cattack = [ currentRatings[5], currentRatingsOther[1] ];
-				var lattack = [ currentRatings[6], currentRatingsOther[0] ];
+				var midfieldLevel = [ (Math.floor(currentRatings[3]*4))/4, currentRatingsOther[3] ];
+				var rdefence = [ (Math.floor(currentRatings[0]*4))/4, currentRatingsOther[6] ];
+				var cdefence = [ (Math.floor(currentRatings[1]*4))/4, currentRatingsOther[5] ];
+				var ldefence = [ (Math.floor(currentRatings[2]*4))/4, currentRatingsOther[4] ];
+				var rattack = [ (Math.floor(currentRatings[4]*4))/4, currentRatingsOther[2] ];
+				var cattack = [ (Math.floor(currentRatings[5]*4))/4, currentRatingsOther[1] ];
+				var lattack = [ (Math.floor(currentRatings[6]*4))/4, currentRatingsOther[0] ];
 				
 				var tactics = [ tacticAbbr[currentRatings[7]], tacticAbbr[currentRatingsOther[7]] ];
 				var tacticsLevel = [ currentRatings[8], currentRatingsOther[8] ];
