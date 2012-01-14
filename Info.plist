@@ -33,14 +33,19 @@ a good reason to. They are for version bumps in Makefile.
 		<dict>
 			<key>Start</key>
 			<array>
+				<!-- essential stuffs -->
 				<string>content/env.js</string>
 				<string>content/prefs.js</string>
 				<string>content/l10n.js</string>
 				<string>content/xml-load.js</string>
 				<string>content/pages.js</string>
+				
+				<!-- utilities -->
 				<string>content/lib/oauth.js</string>
 				<string>content/lib/sha1.js</string>
 				<string>content/lib/jquery.js</string>
+
+				<!-- utilities -->
 				<string>content/util/api.js</string>
 				<string>content/util/array.js</string>
 				<string>content/util/copy-button.js</string>
@@ -60,6 +65,8 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/util/session-store.js</string>
 				<string>content/util/string.js</string>
 				<string>content/util/time.js</string>
+
+				<!-- page utilities -->
 				<string>content/pages/all.js</string>
 				<string>content/pages/country.js</string>
 				<string>content/pages/players.js</string>
@@ -67,13 +74,16 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/pages/youth-player.js</string>
 				<string>content/pages/transfer-search-results.js</string>
 				<string>content/pages/match.js</string>
+
+				<!-- core modules -->
 				<string>content/redirections.js</string>
 				<string>content/read-ht-prefs.js</string>
 				<string>content/forum-stage.js</string>
 				<string>content/core.js</string>
 				<string>content/add-class.js</string>
-				<string>content/ui.js</string><!-- categorized modules -->
+				<string>content/ui.js</string>
 
+				<!-- categorized modules -->
 				<string>content/alert/live-alert.js</string>
 				<string>content/alert/new-mail.js</string>
 				<string>content/alert/ticker-alert.js</string>

@@ -222,6 +222,9 @@ else ifeq ($(DIST_TYPE),release)
 	cd $(SAFARI_BUILD_DIR); \
 	sed -i -r 's|(<string>).+(</string><!--updateurl-->)|\1'$(RELEASE_PREFIX)'/safari/update.plist\2|' Info.plist
 endif
+	#remove comments
+	cd $(SAFARI_BUILD_DIR); \
+	sed -i -r 's|(.+)(<!.+-->)|\1|' Info.plist
 	# make safariextz
 	cd $(BUILD_DIR); \
 	$(XAR) -cf ../foxtrick.safariextz $(SAFARI_TARGET)
