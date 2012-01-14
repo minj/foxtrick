@@ -1,12 +1,23 @@
 .ft-mod-link-icons {
 	padding-bottom: 26px; 
+}
+html[dir="ltr"] .ft-mod-link-icons {
 	padding-right: 1px;
+}
+html[dir="rtl"] .ft-mod-link-icons {
+	padding-left: 1px;
 }
 
 .ft-mod-link {
-	float:right; 
 	position: relative; 
 	top: -15px; 
-	margin-left: 3px; 
 	z-index: 99;
+}
+html[dir="ltr"]  .ft-mod-link {
+	float:right; 
+	margin-left: 3px; 
+}
+html[dir="rtl"]  .ft-mod-link {
+	float:left; 
+	margin-right: 3px; 
 }
