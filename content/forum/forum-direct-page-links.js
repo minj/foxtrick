@@ -20,10 +20,10 @@ Foxtrick.modules["DirectPageLinks"]={
 			var step = 0;
 			
 			if(nextNodes.length && nextNodes[0])
-				var steptonext = Math.abs(currentPostId - Foxtrick.getParameterFromUrl( nextNodes[0].parentNode.href, "n"));
+				var steptonext = Math.abs(currentPostId - parseInt( Foxtrick.getParameterFromUrl( nextNodes[0].parentNode.href, "n" ) ) );
 			
 			if(prevNodes.length && prevNodes[0])
-				var steptolast = Math.abs(currentPostId - Foxtrick.getParameterFromUrl( prevNodes[0].parentNode.href, "n"));
+				var steptolast = Math.abs(currentPostId - parseInt( Foxtrick.getParameterFromUrl( prevNodes[0].parentNode.href, "n" ) ) );
 			
 			step = Math.max( steptonext,steptolast );
 			
@@ -36,14 +36,18 @@ Foxtrick.modules["DirectPageLinks"]={
 		}
 		
 		/* Figure out the maximum amount of pages in this thread */
-		var getMaxPages = function(nextNodes, lastNodes, postPerPage) {
+		var getMaxPages = function(prevNodes, lastNodes, postPerPage) {
+			var pages = 1;
 			if(lastNodes.length){
 				var lastpagestart = parseInt(Foxtrick.getParameterFromUrl( lastNodes[0].parentNode.href, "n" ));
 				var max =  lastpagestart + postPerPage - 1;
-				var pages =  Math.ceil( max / postPerPage);
-				return pages;
+				pages =  Math.ceil( max / postPerPage);
+			} else if(!lastNodes.length && prevNodes.length){
+				var secondlastpagestart = parseInt(Foxtrick.getParameterFromUrl( prevNodes[0].parentNode.href, "n" ));
+				var max = secondlastpagestart + postPerPage;
+				pages =  Math.ceil( max / postPerPage);
 			}
-			return null;
+			return pages;
 		}
 			
 		var left = doc.getElementsByClassName("threadPagingLeft");
@@ -101,9 +105,7 @@ Foxtrick.modules["DirectPageLinks"]={
 			//post per page, current page, maximum page count
 			var postPerPage = getPostPerPage(next, prev, currentPostId);
 			var currentPage = Math.ceil( currentPostId / postPerPage );
-			var maxpage = getMaxPages(next, last, postPerPage);
-			if(!maxpage)
-				maxpage = currentPage;
+			var maxpage = getMaxPages(prev, last, postPerPage);
 		
 			/* Everthing below is basicly visual configuration, with current styles there is room for 18 links
 			 * 
