@@ -114,25 +114,29 @@ Foxtrick.modules["DirectPageLinks"]={
 			var end;
 			var start;
 			
-			//standart skin
+			//standard skin
 			var supportedButtons = 18;
 			if(!Foxtrick.util.layout.isStandard(doc))
-				supportedButtons = 14;
+				supportedButtons = 14; //simple skinn
 			
+			//there's room for all pages
 			if(maxpage <= supportedButtons){
 				end = maxpage;
 				start = 1;
 			}
+			//current page is close to maximum
 			else if( ( maxpage - currentPage ) < 8)
 			{
 				end = maxpage;
 				start = end - (supportedButtons - 1);
 			} 
+			//current page is close to first page
 			else if( currentPage < 7)
 			{
 				start = 1;
 				end = start + supportedButtons - 1 > maxpage ? maxpage:start +supportedButtons - 1;
 			} 
+			//any other case
 			else
 			{
 				start = currentPage - 6;
@@ -148,29 +152,27 @@ Foxtrick.modules["DirectPageLinks"]={
 		
 				var a = doc.createElement("a");
 				Foxtrick.toggleClass(a,"page");
+				
+				//adjust class so all buttons have constant width and the layout doesn't break
 				if(p < 10)
 					Foxtrick.toggleClass(a,"oneDigit");
+				
+				//mark current page
 				if(p == currentPage)
 				{
 					var strong = doc.createElement("strong");
 					strong.appendChild(doc.createTextNode(p));
 					a.appendChild(strong);
 				}
-				else if( (p == start) && currentPage != 1)
+				//always include first page
+				else if( ( p == start ) && currentPage != 1)
 				{
 					var href = Foxtrick.getHref(doc);
 					href =  href.replace(/n=\d+/i, "n=1");
 					a.appendChild(doc.createTextNode('1'));
 					a.href = href;
 				}
-				else if( (p == start + 1) && currentPage != 1 && currentPage > 7 && maxpage > supportedButtons)
-				{
-					a.appendChild(doc.createTextNode('...'));
-				}
-				else if( (p == end - 1) && currentPage != maxpage && (currentPage != maxpage - 2) && maxpage > supportedButtons)
-				{
-					a.appendChild(doc.createTextNode('...'));
-				}
+				//always include lastpage
 				else if( (p == end) && currentPage != maxpage )
 				{
 					var href = Foxtrick.getHref(doc);
@@ -178,6 +180,17 @@ Foxtrick.modules["DirectPageLinks"]={
 					a.appendChild(doc.createTextNode(maxpage));
 					a.href = href;
 				}
+				//represent gaps using "...", needs teaking because this also happens then the correct number is replaced, like 1,2,3,4 -> 1,...,3,4
+				else if( (p == start + 1) && currentPage != 1 && currentPage > 7 && maxpage > supportedButtons)
+				{
+					a.appendChild(doc.createTextNode('...'));
+				}
+				//represent gaps using "...", needs teaking because this also happens then the correct number is replaced, like 1,2,3,4 -> 1,...,3,4
+				else if( (p == end - 1) && currentPage != maxpage && (currentPage != maxpage - 2) && maxpage > supportedButtons)
+				{
+					a.appendChild(doc.createTextNode('...'));
+				}
+				//any other page
 				else {
 					a.appendChild(doc.createTextNode(p));
 					a.href = href;
