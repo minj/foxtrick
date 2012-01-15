@@ -1,7 +1,7 @@
 "use strict";
 /**
  * forum-direct-page-links.js
- * @author CatzHoek
+ * @author CatzHoek, idea by 14932093.387: LA-PuhuvaKoira
  */
 
 Foxtrick.modules["DirectPageLinks"]={
