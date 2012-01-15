@@ -1,9 +1,11 @@
 from localetools.l10n import foxtrickLocalization
 import string
 
-locales = foxtrickLocalization('./../../content/')
+localization = foxtrickLocalization('./../../content/');
+locales = localization.getAll();
+locales.append(localization.getMaster());
 
-for locale in locales.getAll():
+for locale in locales:
 	translations = locale.getTranslations();
 	for translation in translations:
 		if string.find(translation.getValue(),';') != -1:
