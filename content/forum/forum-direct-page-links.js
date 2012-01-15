@@ -38,10 +38,10 @@ Foxtrick.modules["DirectPageLinks"]={
 		/* Figure out the maximum amount of pages in this thread */
 		var getMaxPages = function(nextNodes, lastNodes, postPerPage) {
 			if(lastNodes.length){
-				var lastpagestart = Foxtrick.getParameterFromUrl( lastNodes[0].parentNode.href, "n" );
-				var nextpagestart = Foxtrick.getParameterFromUrl( nextNodes[0].parentNode.href, "n" );
-				var consider = Math.max(lastpagestart, nextpagestart) + postPerPage - 1;
-				return  Math.ceil( consider / postPerPage);
+				var lastpagestart = parseInt(Foxtrick.getParameterFromUrl( lastNodes[0].parentNode.href, "n" ));
+				var max =  lastpagestart + postPerPage - 1;
+				var pages =  Math.ceil( max / postPerPage);
+				return pages;
 			}
 			return null;
 		}
