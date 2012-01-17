@@ -388,6 +388,7 @@ pref("extensions.foxtrick.prefs.module.LiveAlert.Sound.enabled", true);
 pref("extensions.foxtrick.prefs.module.LiveAlert.Sound_text", "foxtrick://resources/sounds/DingLing.wav");
 pref("extensions.foxtrick.prefs.module.LocalTime.enabled", true);
 pref("extensions.foxtrick.prefs.module.LocalTime.local", false);
+pref("extensions.foxtrick.prefs.module.LoyalityDisplay.enabled", true);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.enabled", false);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.GuestBook.enabled", false);
 pref("extensions.foxtrick.prefs.module.MarkAllAsRead.enabled", true);
