@@ -7,7 +7,7 @@
 Foxtrick.modules["LoyalityDisplay"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ['players'],
-	CSS : Foxtrick.InternalPath + "resources/css/loyalityDisplay.css",
+	CSS : Foxtrick.InternalPath + "resources/css/loyality-display.css",
 	
 	run : function(doc) {
 	
@@ -62,6 +62,7 @@ Foxtrick.modules["LoyalityDisplay"]={
 					var bars = playersHtml[p].getElementsByClassName("percentImage");
 					for(var i = 0; i < bars.length; i++){
 						Foxtrick.addClass(bars[i], "ft-percentImage-loyality-" + appendix);
+						Foxtrick.addClass(bars[i], "ft-percentImage");
 					}
 				}
 			} else {
@@ -69,6 +70,7 @@ Foxtrick.modules["LoyalityDisplay"]={
 				var bars = playersHtml[p].getElementsByClassName("percentImage");
 				for(var i = 0; i < bars.length; i++){
 					Foxtrick.addClass(bars[i], "ft-percentImage-homegrown");
+					Foxtrick.addClass(bars[i], "ft-percentImage");
 				}
 			}
 		}		
