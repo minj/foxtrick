@@ -73,7 +73,10 @@ Foxtrick.modules["LoyalityDisplay"]={
 				//replace original image by hg with 1,5 addon style
 				var bars = playersHtml[p].getElementsByClassName("percentImage");
 				for(var i = 0; i < bars.length; i++){
-					Foxtrick.addClass(bars[i], "ft-percentImage-homegrown");
+					if(simpleSkin)
+						Foxtrick.addClass(bars[i], "ft-percentImage-homegrown-simple");
+					else
+						Foxtrick.addClass(bars[i], "ft-percentImage-homegrown");
 				}
 			}
 		}		
