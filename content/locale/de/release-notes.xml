@@ -14,6 +14,24 @@
 <item>Du kannst FoxTrick daran hindern diese Release Notes nach jedem Update anzuzeigen in dem du die "Anzeige der Release Notes nach einem FoxTrick-Update" in den <xhtml:a href="#tab=main">Grundeinstellungen</xhtml:a> deaktivierts.</item>
 </note>
 
+<note version="0.8.2">
+<item>Übersetzung ins Koreanische (SI-CH)</item>
+<item>Übersetzung ins Litauische (LA-MJ)</item>
+<item>Diverse Übersetzung aufgeräumt (CatzHoek)</item>
+<item>Links zur <xhtml:a href="http://www.htev.org/">http://htev.org/</xhtml:a> Statistikseite zugefügt. (convincedd, CatzHoek)</item>
+<item>Diverse kleinere Fehler behoben. (convincedd, CatzHoek)</item>
+</note>
+
+<note version="0.8.1">
+<item><module>ElectionTable</module>: adapted to new election page layout. (convincedd, ryanli)</item>
+<item><module>HTThreadMarker</module>: new style. (convincedd, ryanli)</item>
+<item><module>TableSort</module>: prevent conflicting with Hattrick's sorting. (convincedd)</item>
+<item><module>HTMSPrediction</module>, <module>CopyRatings</module>: adapted to new match report layout. (convincedd)</item>
+<item><module>LineupShortcut</module>: also show for non-supporters now. (ryanli)</item>
+<item><module>TransferSearchResultFilters</module>: fix after latest changes. (convincedd)</item>
+<item><module>SkillTable</module>: include loyalty and mother club bonus. (convincedd)</item>
+</note>
+
 <note version="0.8">
 <item>Übersetzung ins Arabische. (GM-OmaniMilani)</item>
 <item>Neue Methode um Moduloptionen seitenspezifisch anzusehen; Modul OnPagePrefs daher entfernt. (convincedd, ryanli)</item>
