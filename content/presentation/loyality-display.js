@@ -25,12 +25,17 @@ Foxtrick.modules["LoyalityDisplay"]={
 			
 			if (players[p].motherClubBonus === undefined || halfEffect){
 				if (players[p].loyality !== undefined){
-					var skillUp = parseFloat(players[p].loyality / 20.0);
+					
+					//formula
+					// loyality = 1 + sqrt(days/336)*19
+					// bonus = sqrt(days/336)
+					// -> bonus = (loyality - 1) / 19
+					var skillUp = ( players[p].loyality - 1 ) / 19.0;
 					
 					//FIXME: Delete next season
 					if(halfEffect)
 						skillUp *= 0.5;
-						
+
 					if(players[p].motherClubBonus !== undefined)
 						skillUp += 0.25;
 					//FIXME: end
