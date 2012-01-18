@@ -3,9 +3,20 @@ img.ft-percentImage-homegrown {
 	margin: 0 0 -3px;
 	padding: 0;
 }
+img.ft-percentImage-homegrown-simple {
+	background: #EEE url("chrome://foxtrick/content/resources/img/loyality/loyality_homegrown_simple.png") top left no-repeat;
+	margin: 0 0 -3px;
+	padding: 0;
+}
 
 img.ft-percentImage-loyality-100 {
 	background: #EEE url("chrome://foxtrick/content/resources/img/loyality/loyality_1000.png") top left no-repeat;
+	margin: 0 0 -3px;
+	padding: 0;
+}
+
+img.ft-percentImage-loyality-100-simple {
+	background: #EEE url("chrome://foxtrick/content/resources/img/loyality/loyality_1000_simple.png") top left no-repeat;
 	margin: 0 0 -3px;
 	padding: 0;
 }
@@ -16,8 +27,20 @@ img.ft-percentImage-loyality-875 {
 	padding: 0;
 }
 
+img.ft-percentImage-loyality-875-simple {
+	background: #EEE url("chrome://foxtrick/content/resources/img/loyality/loyality_875_simple.png") top left no-repeat;
+	margin: 0 0 -3px;
+	padding: 0;
+}
+
 img.ft-percentImage-loyality-750 {
 	background: #EEE url("chrome://foxtrick/content/resources/img/loyality/loyality_750.png") top left no-repeat;
+	margin: 0 0 -3px;
+	padding: 0;
+}
+
+img.ft-percentImage-loyality-750-simple {
+	background: #EEE url("chrome://foxtrick/content/resources/img/loyality/loyality_750_simple.png") top left no-repeat;
 	margin: 0 0 -3px;
 	padding: 0;
 }
@@ -28,8 +51,20 @@ img.ft-percentImage-loyality-625 {
 	padding: 0;
 }
 
+img.ft-percentImage-loyality-625-simple {
+	background: #EEE url("chrome://foxtrick/content/resources/img/loyality/loyality_625_simple.png") top left no-repeat;
+	margin: 0 0 -3px;
+	padding: 0;
+}
+
 img.ft-percentImage-loyality-500 {
 	background: #EEE url("chrome://foxtrick/content/resources/img/loyality/loyality_500.png") top left no-repeat;
+	margin: 0 0 -3px;
+	padding: 0;
+}
+
+img.ft-percentImage-loyality-500-simple {
+	background: #EEE url("chrome://foxtrick/content/resources/img/loyality/loyality_500_simple.png") top left no-repeat;
 	margin: 0 0 -3px;
 	padding: 0;
 }
@@ -40,14 +75,32 @@ img.ft-percentImage-loyality-375 {
 	padding: 0;
 }
 
+img.ft-percentImage-loyality-375-simple {
+	background: #EEE url("chrome://foxtrick/content/resources/img/loyality/loyality_375_simple.png") top left no-repeat;
+	margin: 0 0 -3px;
+	padding: 0;
+}
+
 img.ft-percentImage-loyality-250 {
 	background: #EEE url("chrome://foxtrick/content/resources/img/loyality/loyality_250.png") top left no-repeat;
 	margin: 0 0 -3px;
 	padding: 0;
 }
 
+img.ft-percentImage-loyality-250-simple {
+	background: #EEE url("chrome://foxtrick/content/resources/img/loyality/loyality_250_simple.png") top left no-repeat;
+	margin: 0 0 -3px;
+	padding: 0;
+}
+
 img.ft-percentImage-loyality-125 {
 	background: #EEE url("chrome://foxtrick/content/resources/img/loyality/loyality_125.png") top left no-repeat;
+	margin: 0 0 -3px;
+	padding: 0;
+}
+
+img.ft-percentImage-loyality-125-simple {
+	background: #EEE url("chrome://foxtrick/content/resources/img/loyality/loyality_125_simple.png") top left no-repeat;
 	margin: 0 0 -3px;
 	padding: 0;
 }

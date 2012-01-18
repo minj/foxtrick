@@ -17,6 +17,8 @@ Foxtrick.modules["LoyalityDisplay"]={
 		var playersHtml = doc.getElementsByClassName("playerInfo");
 		var players = Foxtrick.Pages.Players.getPlayerList(doc);
 		
+		var simpleSkin = !Foxtrick.util.layout.isStandard(doc);
+		
 		for (var p=0;p<players.length;p++) {
 			
 			//FIXME: Delete next season
@@ -61,7 +63,10 @@ Foxtrick.modules["LoyalityDisplay"]={
 						
 					var bars = playersHtml[p].getElementsByClassName("percentImage");
 					for(var i = 0; i < bars.length; i++){
-						Foxtrick.addClass(bars[i], "ft-percentImage-loyality-" + appendix);
+						if(simpleSkin)
+							Foxtrick.addClass(bars[i], "ft-percentImage-loyality-" + appendix + "-simple");
+						else
+							Foxtrick.addClass(bars[i], "ft-percentImage-loyality-" + appendix);
 					}
 				}
 			} else {
