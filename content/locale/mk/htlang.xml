@@ -1,7 +1,7 @@
 <language name="mk" desc="Македонски">
 
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="Мој Hattrick " />
+	<MyHattrick value="Мој Hattrick" />
 	<MyClub value="Мојот Клуб" />
 	<World value="Свет" />
 	<Forum value="Форум" />
