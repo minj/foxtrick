@@ -164,7 +164,7 @@ def checkMainMenuLink(lang, htlang, lookup, text):
 
 	ht_link = localetools.xml.helpers.findFirstNodeRecursive(htlang.documentElement, text)
 	
-	if ht_link.getAttribute("value") != dump_link.getAttribute("value"):
+	if ht_link.getAttribute("value") != dump_link.getAttribute("value").rstrip():
 		print '\t', ht_link.getAttribute("value").encode('utf-8'), '!=', dump_link.getAttribute("value").encode('utf-8')
 		return False
 	else:
