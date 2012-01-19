@@ -53,6 +53,7 @@ class PlayerPageParser(HTMLParser.HTMLParser):
 			if self.in_playerInfo_div:
 				self.players.append(self.currentPlayer)
 				self.currentPlayer = {}
+				self.currentPlayer['lastposition'] = '';
 			self.in_playerInfo_div = False; #no nested divs in playerinfo, this is okay
 			
 		if tag == 'span': # no nested spans in position span, this is okay
