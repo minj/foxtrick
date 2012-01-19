@@ -469,7 +469,7 @@ if (Foxtrick.arch === "Sandboxed") {
 					throw null;
 				}
 				// replace escaped characters as what Gecko does
-				value = value.replace(/\\n/g, "\n");
+				value = value.replace(/\\n/g, "\n").replace(/\\:/g, ":").replace(/\\=/g, "=").replace(/\\#/g, "#").replace(/\\!/g, "!");
 				return value;
 			}
 			catch (e) {
