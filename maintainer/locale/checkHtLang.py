@@ -148,7 +148,7 @@ def checkMainMenuLinks(lang, htlang, lookup):
 		if checkMainMenuLink(lang, htlang, lookup, link):
 			correct += 1
 		else:
-			print '\t', link, 'incorrect'
+			print '\t', link.encode('utf-8'), 'incorrect'
 			
 	print '\t', correct ,'/',len(links),'correct'
 	# checkMainMenuLink(lang, htlang, lookup, "MyHattrick")
@@ -164,7 +164,8 @@ def checkMainMenuLink(lang, htlang, lookup, text):
 
 	ht_link = localetools.xml.helpers.findFirstNodeRecursive(htlang.documentElement, text)
 	
-	if ht_link.getAttribute("text") != dump_link.getAttribute("text"):
+	if ht_link.getAttribute("value") != dump_link.getAttribute("value"):
+		print '\t', ht_link.getAttribute("value").encode('utf-8'), '!=', dump_link.getAttribute("value").encode('utf-8')
 		return False
 	else:
 		return True
