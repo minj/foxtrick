@@ -17,7 +17,7 @@ var Foxtrickl10n = {
 		"de",	// Deutsch, german	3
 		"ee",	// Eesti	36
 		"en",	// english	2
-		"es",	// Español	103
+		"es-ES",	// Español	103
 		"es_ca",	//Español centro-americano	51
 		"es_SU",	// Español Sudamericano	6
 		"eu",	// Euskara, basque	110
@@ -43,22 +43,22 @@ var Foxtrickl10n = {
 		"mt",	// Malti	87
 		"nl",	// netherlands	10
 		"nn",	// Norsk nynorsk	136
-		"no",	// Norsk bokmål	7
+		"nn-NO",	// Norsk bokmål	7
 		"pl",	// Polski	13
-		"pt",	// Português	11
-		"pt_BR",	// Português brasil	50
+		"pt-PT",	// Português	11
+		"pt-BR",	// Português brasil	50
 		"ro",	// Română, romanian	23
 		"ru",	// Русский, russain 	14
 		"sk",	// Slovenčina, slovak	53
 		"sl",	// Slovenščina, slovenian 	45
 		"sq",	// Albanian	85
 		"sr",	// Српски, serbian	32
-		"sv",	// Svenska, swedish	1
+		"sv-SE",	// Svenska, swedish	1
 		"tr",	// Türkçe	19
 		"uk",	// Українська, ukranian	57
 		"vi",	// Tiếng Việt, vietnamese	55
 		"vls",	// Vlaams, netherland	65
-		"zh"	// 中文（简体）, chinese	15
+		"zh-CN"	// 中文（简体）, chinese	15
 				// Kyrgyz	86 
 	],
 

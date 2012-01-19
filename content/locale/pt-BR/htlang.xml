@@ -1,4 +1,4 @@
-<language name="pt_BR" desc="Português Brasil">
+<language name="pt-BR" desc="Português Brasil">
 
 	<!-- the 6 strings from the hts menue line. used for language autodetection -->
 	<MyHattrick value="Meu Hattrick" />

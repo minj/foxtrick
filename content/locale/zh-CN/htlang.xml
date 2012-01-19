@@ -1,4 +1,4 @@
-<language name="zh" desc="中文（简体）">
+<language name="zh-CN" desc="中文（简体）">
 
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="我的 Hattrick" />

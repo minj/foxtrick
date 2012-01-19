@@ -246,6 +246,69 @@
 		"tossing_coin": Foxtrick.InternalPath + 'resources/img/matches/coin.png'
 	}
 	
+	/* Event Groups
+	 *
+	 * Used to filter events
+	 * 
+	 * Recursion issues are handled.
+	 */
+	var eventGroups = {
+		"goals":[
+			{ start:55, end:57 },
+			{ start:100, end:199 }
+		],
+		"misses":[
+			58,59,
+			{ start:200, end:299 }
+		],
+		"goalevents":["goals", "misses"],
+	}
+	
+	/* Collect all groups that contain a certain event 
+		@see eventGroups
+	*/
+	var getEventGroupsForEventId = function(eventid){
+		var result = new Array();
+		for (var eventGroup in eventGroups){
+			var addResultForNamedGroup = function(groupname) {
+				//prevent recursive locking and duplicates
+				if(result.indexOf(groupname) != -1)
+					return true;
+					
+				//search for new groups
+				for (var eventRange = 0; eventRange < eventGroups[groupname].length; eventRange++){
+					//dictionaries with min/max keys can be used to handle larger ranges for simplification
+					if(typeof(eventGroups[groupname][eventRange]) == "object"){
+						var min = eventGroups[groupname][eventRange]["start"];
+						var max = eventGroups[groupname][eventRange]["end"];
+						if(eventid >= min && eventid <= max){
+							result.push(groupname);
+							return true;
+						}
+					} 
+					//strings can be used to map to other groups to allow easily include other groups
+					//caution: recursion
+					else if(typeof(eventGroups[groupname][eventRange]) == "string"){
+						if(addResultForNamedGroup(eventGroups[groupname][eventRange]) && result.indexOf(groupname) == -1){
+							result.push(groupname);
+							return true;
+						}
+					} 
+					//single integers are used for single events
+					else if(typeof(eventGroups[groupname][eventRange]) == "number"){
+						if(eventid == eventGroups[groupname][eventRange]){
+							result.push(groupname);
+							return true;
+						}
+					}
+				}
+				return false;
+			}		
+			addResultForNamedGroup(eventGroup);									
+		}
+		return result;
+	}
+	
 	var orderTypes = {
 		"1" : "substitution",
 		"2" : "swap"
@@ -542,7 +605,9 @@
 										}
 									}
 								}
-
+								
+								Foxtrick.log(evtMin, evtType);
+								
 								addEventIcons(homeId);
 								addEventIcons(awayId);
 								

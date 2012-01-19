@@ -1,4 +1,4 @@
-<language name="pt" desc="Português">
+<language name="pt-PT" desc="Português">
 
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="Menu Hattrick" />
