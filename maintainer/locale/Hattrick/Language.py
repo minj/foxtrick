@@ -54,6 +54,7 @@ Codes[136]='nn';	#Norsk nynorsk
 
 def getAll():
 	return Codes
+	
 def getIdByLanguage(language):
 	for key in Codes:
 		if Codes[key].lower() == language.lower():
