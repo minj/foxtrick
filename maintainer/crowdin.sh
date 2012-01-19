@@ -7,6 +7,10 @@ CROWDIN_URL=http://api.crowdin.net/api/project/foxtrick
 . ./upload.conf.sh
 
 
+#export master
+curl \
+-F "files[foxtrick.properties]=@../content/foxtrick.properties" "$CROWDIN_URL"/update-file?key="$CROWDIN_KEY"
+
 #export, pack latest translations
 #curl \
 # "$CROWDIN_URL"/export?key="$CROWDIN_KEY"
