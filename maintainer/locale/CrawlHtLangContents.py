@@ -378,7 +378,7 @@ specialty_players = {"Unpredictable":"323588063",
 		"Regainer":"320354435"}
 	
 #teamid of a team where all positions are displayed in the "last match date" area 
-all_positions_match_team = 132905
+#all_positions_match_team = 132905
 
 #sublevel match
 #id to a match where the hometeam had min. low high max. ratings
@@ -398,11 +398,12 @@ if __name__ == "__main__":
 	pw = raw_input("Password: ");
 	outfile = raw_input("Outfile (*.xml): ");
 	print "Locale code (\"all\" for all)"
-	locales = raw_input("Seperate by whitespace to specify multiple languages").split()
+	locales = raw_input("Seperate by whitespace to specify multiple languages: ").split()
+	all_positions_match_team = raw_input("TeamId where all positions have been played in last match (like bots always do): ")
 	
 	locales_array = []
 	
-	if "en" not in locales:
+	if "en" not in locales and "all" not in locales:
 		print "Adding 'en' since it's required for positions and such"
 		locales_array.append( Language.getIdByLanguage( "en" ) )
 		
