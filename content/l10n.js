@@ -42,8 +42,8 @@ var Foxtrickl10n = {
 		"mk",	// Македонски, macedonian	83
 		"mt",	// Malti	87
 		"nl",	// netherlands	10
-		"nn",	// Norsk nynorsk	136
-		"nn-NO",	// Norsk bokmål	7
+		"nn-NO",	// Norsk nynorsk	136
+		"no",	// Norsk bokmål	7
 		"pl",	// Polski	13
 		"pt-PT",	// Português	11
 		"pt-BR",	// Português brasil	50
