@@ -24,6 +24,7 @@ wget -nv -O langs.zip "$CROWDIN_URL"/download/all.zip?key="$CROWDIN_KEY"
     echo "OK"
   fi
 
+mkdir crowdin/
 mkdir crowdin/locale/
 unzip -q -o -a langs.zip -d crowdin/locale/
   if [ $? -ne 0 ]; then
