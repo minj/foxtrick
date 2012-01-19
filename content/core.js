@@ -150,7 +150,7 @@ Foxtrick.modules["Core"]={
 			var css = 	"[class^='ft'], [id^='ft']," + // 'ft' at front
 						"[class*=' ft'], [id*=' ft']," + // 'ft' at start word 
 						"[class*='foxtrick'], [id*='foxtrick']" + // 'foxtrick' anywhere
-						"{ background-color:#66ccff !important; color:black !important;}";
+						"{ background-color:#66ccff !important; color:black !important; border: 1px solid #66ccff !important;}";
 			var featureCss = doc.getElementById("ft-feature-highlight-css");
 			// remove old CSS if exists
 			if (featureCss) {
