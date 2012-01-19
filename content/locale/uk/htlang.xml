@@ -2,7 +2,7 @@
 
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="Мій Hattrick" />
-	<MyClub value="Мій Клуб" />
+	<MyClub value="Мій клуб" />
 	<World value="Світ" />
 	<Forum value="Форум" />
 	<Shop value="Крамниця" />
