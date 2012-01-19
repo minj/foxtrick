@@ -60,25 +60,20 @@ Foxtrick.modules["LoyalityDisplay"]={
 						appendix = "125";
 						
 					var bars = playersHtml[p].getElementsByClassName("percentImage");
-					for(var i = 0; i < bars.length; i++){
-						Foxtrick.addClass(bars[i], "ft-percentImage-loyality-" + appendix);
-						Foxtrick.addClass(bars[i], "ft-percentImage");
+					while(bars.length){
+						Foxtrick.addClass(bars[0], "ft-percentImage-loyality-" + appendix);
+						Foxtrick.addClass(bars[0], "ft-percentImage");
+						Foxtrick.removeClass(bars[0], "percentImage");
 					}
-						
-					bars = playersHtml[p].getElementsByClassName("ft-percentImage");
-					for(var i = 0; i < bars.length; i++)
-						Foxtrick.removeClass(bars[i], "percentImage");
 				}
 			} else {
 				//replace original image by hg with 1,5 addon style
 				var bars = playersHtml[p].getElementsByClassName("percentImage");
-				for(var i = 0; i < bars.length; i++){
-					Foxtrick.addClass(bars[i], "ft-percentImage-homegrown");
-					Foxtrick.addClass(bars[i], "ft-percentImage");
+				while(bars.length){
+					Foxtrick.addClass(bars[0], "ft-percentImage-homegrown");
+					Foxtrick.addClass(bars[0], "ft-percentImage");
+					Foxtrick.removeClass(bars[0], "percentImage");
 				}
-				bars = playersHtml[p].getElementsByClassName("ft-percentImage");
-				for(var i = 0; i < bars.length; i++)
-					Foxtrick.removeClass(bars[i], "percentImage");
 			}
 		}		
 	}
