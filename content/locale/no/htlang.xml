@@ -1,4 +1,4 @@
-<language name="nn-NO" desc="Norsk, bokmål">
+<language name="no" desc="Norsk, bokmål">
 
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="Mitt Hattrick" />
