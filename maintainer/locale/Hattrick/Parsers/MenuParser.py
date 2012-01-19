@@ -64,8 +64,11 @@ class MenuParser(HTMLParser.HTMLParser):
 				# get rid of possible (#) (inbox or forum replies)
 				pattern = re.compile('(\(\d+\))')
 				str = pattern.sub("", str)
-				str = str.lstrip().rstrip()
-				self.entries[menulink] = str
+				str = str
+				if menulink in self.entries:
+					self.entries[menulink] = self.entries[menulink] + str;
+				else:
+					self.entries[menulink] = str
 			
 	def get(self):
 		return self.entries
