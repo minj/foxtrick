@@ -269,7 +269,7 @@ def translatePositions( source ):
 	
 def login(username, password):
 	#use stage for now
-	ht = HattrickWeb(username, password, stage=True)
+	ht = HattrickWeb(username, password, stage=False)
 	try:
 		ht.login()
 	except Exception as e:
