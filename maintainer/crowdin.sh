@@ -12,8 +12,7 @@ curl \
 -F "files[foxtrick.properties]=@../content/foxtrick.properties" "$CROWDIN_URL"/update-file?key="$CROWDIN_KEY"
 
 #export, pack latest translations
-#curl \
-# "$CROWDIN_URL"/export?key="$CROWDIN_KEY"
+curl "$CROWDIN_URL"/export?key="$CROWDIN_KEY"
 
 
 #Download all translations as a single ZIP archive.
