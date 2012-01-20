@@ -11,5 +11,10 @@
 
 .pager {
 	text-align:center;
+	margin-bottom: 12px;
+}
+
+.left {
+	float:left !important;
 }
 
