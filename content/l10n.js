@@ -336,7 +336,9 @@ if (Foxtrick.arch === "Gecko") {
 						plForm = Number(this._strings_bundle.GetStringFromName("pluralForm"));
 					} catch (e) {}
 					var get = PluralForm.makeGetter(plForm)[0];
-					return get(num, this._strings_bundle.GetStringFromName(str));
+					try {
+						return get(num, this._strings_bundle.GetStringFromName(str));
+					} catch(e) {}
 				}
 				return this._strings_bundle.GetStringFromName(str);
 			}
@@ -352,7 +354,9 @@ if (Foxtrick.arch === "Gecko") {
 							} catch (e) {
 							}
 							var get = PluralForm.makeGetter(plForm)[0];
-							return get(num, this._strings_bundle_default.GetStringFromName(str));
+							try {
+								return get(num, this._strings_bundle_default.GetStringFromName(str));
+							} catch(e) {}
 						}
 						return this._strings_bundle_default.GetStringFromName(str);
 					}
