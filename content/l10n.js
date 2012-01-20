@@ -329,7 +329,7 @@ if (Foxtrick.arch === "Gecko") {
 		getString : function(str, num) {
 			try {
 				if (num !== undefined) {
-					Foxtrick.log('getString: ', str, ' ',num);
+					Foxtrick.log('getString plural: ', str, ' ',num);
 					Components.utils.import("resource://gre/modules/PluralForm.jsm");
 					var plForm = 0;
 					try { 
@@ -338,7 +338,10 @@ if (Foxtrick.arch === "Gecko") {
 					var get = PluralForm.makeGetter(plForm)[0];
 					try {
 						return get(num, this._strings_bundle.GetStringFromName(str));
-					} catch(e) {}
+					} catch(e) {
+						Foxtrick.log('getString plural error. use last string');
+						return this._strings_bundle.GetStringFromName(str).replace(/.+;/g, "");
+					}
 				}
 				return this._strings_bundle.GetStringFromName(str);
 			}
@@ -346,7 +349,7 @@ if (Foxtrick.arch === "Gecko") {
 				try {
 					if (this._strings_bundle_default) {
 						if (num !== undefined) {
-							Foxtrick.log('getString default: ', str, ' ',num);
+							Foxtrick.log('getString plural default: ', str, ' ',num);
 							Components.utils.import("resource://gre/modules/PluralForm.jsm");
 							var plForm = 0;
 							try { 
@@ -356,7 +359,10 @@ if (Foxtrick.arch === "Gecko") {
 							var get = PluralForm.makeGetter(plForm)[0];
 							try {
 								return get(num, this._strings_bundle_default.GetStringFromName(str));
-							} catch(e) {}
+							} catch(e) {
+								Foxtrick.log('getString plural error. use last string');
+								return this._strings_bundle_default.GetStringFromName(str).replace(/.+;/g, "");
+							}
 						}
 						return this._strings_bundle_default.GetStringFromName(str);
 					}
@@ -496,9 +502,22 @@ if (Foxtrick.arch === "Sandboxed") {
 				}
 				// replace escaped characters as what Gecko does
 				value = value.replace(/\\n/g, "\n").replace(/\\:/g, ":").replace(/\\=/g, "=").replace(/\\#/g, "#").replace(/\\!/g, "!");
+				// get plurals
 				if (num !== undefined) {
 					// use last form for now
-					value = value.replace(/.+;/g, "");
+					Foxtrick.log('getString plural: ', str, ' ',num);
+					var plForm = 0;
+					try { 
+						plForm = Number(this.getString("pluralFormRuleID"));
+					} catch (e) {
+					}
+					var get = PluralForm.makeGetter(plForm)[0];
+					try {
+						return get(num, value);
+					} catch(e) {
+						Foxtrick.log('getString plural error. use last string');
+						return value.replace(/.+;/g, "");
+					}
 				}
 				return value;
 			}

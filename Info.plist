@@ -44,6 +44,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/lib/oauth.js</string>
 				<string>content/lib/sha1.js</string>
 				<string>content/lib/jquery.js</string>
+				<string>content/lib/PluralForm.js</string>
 
 				<!-- utilities -->
 				<string>content/util/api.js</string>
