@@ -326,14 +326,36 @@ if (Foxtrick.arch === "Gecko") {
 			}
 		},
 
-		getString : function(str) {
+		getString : function(str, num) {
 			try {
+				if (num !== undefined) {
+					Foxtrick.log('getString: ', str, ' ',num);
+					Components.utils.import("resource://gre/modules/PluralForm.jsm");
+					var plForm = 0;
+					try { 
+						plForm = Number(this._strings_bundle.GetStringFromName("pluralForm"));
+					} catch (e) {}
+					var get = PluralForm.makeGetter(plForm)[0];
+					return get(num, this._strings_bundle.GetStringFromName(str));
+				}
 				return this._strings_bundle.GetStringFromName(str);
 			}
 			catch (e) {
 				try {
-					if (this._strings_bundle_default)
+					if (this._strings_bundle_default) {
+						if (num !== undefined) {
+							Foxtrick.log('getString default: ', str, ' ',num);
+							Components.utils.import("resource://gre/modules/PluralForm.jsm");
+							var plForm = 0;
+							try { 
+								plForm = Number(this._strings_bundle_default.GetStringFromName("pluralForm"));
+							} catch (e) {
+							}
+							var get = PluralForm.makeGetter(plForm)[0];
+							return get(num, this._strings_bundle_default.GetStringFromName(str));
+						}
 						return this._strings_bundle_default.GetStringFromName(str);
+					}
 				}
 				catch (ee) {
 					Foxtrick.log( Error('Error getString("'+str+')"') );
@@ -456,7 +478,7 @@ if (Foxtrick.arch === "Sandboxed") {
 			}
 		},
 
-		getString : function(str) {
+		getString : function(str, num) {
 			try {
 				var value;
 				var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" );
@@ -470,6 +492,10 @@ if (Foxtrick.arch === "Sandboxed") {
 				}
 				// replace escaped characters as what Gecko does
 				value = value.replace(/\\n/g, "\n").replace(/\\:/g, ":").replace(/\\=/g, "=").replace(/\\#/g, "#").replace(/\\!/g, "!");
+				if (num !== undefined) {
+					// use last form for now
+					value = value.replace(/.+;/g, "");
+				}
 				return value;
 			}
 			catch (e) {

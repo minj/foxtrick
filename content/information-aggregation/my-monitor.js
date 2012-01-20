@@ -354,7 +354,7 @@ Foxtrick.modules["MyMonitor"]={
 				// use an option as faux-header
 				var fauxHeader = doc.createElement("option");
 				fauxHeader.selected = "selected";
-				fauxHeader.textContent = Foxtrickl10n.getString("MyMonitor.teams").replace(/%s/, teams.length);
+				fauxHeader.textContent = Foxtrickl10n.getString("MyMonitor.teams",teams.length).replace(/%s/, teams.length);
 				select.appendChild(fauxHeader);
 				// now add the teams
 				Foxtrick.map(function(n) {
