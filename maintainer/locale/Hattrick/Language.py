@@ -1,19 +1,19 @@
 Codes = {}	
-Codes[1]='sv';		#swedish
+Codes[1]='sv-SE';	#swedish
 Codes[2]='en';		#english
 Codes[3]='de';		#german
 Codes[4]='it';		#italian
 Codes[5]='fr';		#french
-Codes[6]='es';		#spanish
+Codes[6]='es-ES';		#spanish
 Codes[7]='no';		#Norsk bokmal
 Codes[8]='da';		#danish
 Codes[9]='fi';		#finnish
 Codes[10]='nl';		#Dutch
-Codes[11]='pt';		#Portuguese
+Codes[11]='pt-PT';	#Portuguese
 Codes[12]='ja';		#japan
 Codes[13]='pl';		#Polish
 Codes[14]='ru';		#Russian
-Codes[15]='zh';		#chinese simplified
+Codes[15]='zh-CN';	#chinese simplified
 Codes[17]='ko';		#korean
 Codes[19]='tr';		#Turkish
 Codes[22]='ar'; 	#arabic
@@ -29,7 +29,7 @@ Codes[39]='hr';		#croatian
 Codes[40]='he';		#hebrew
 Codes[43]='bg';		#bulgarian
 Codes[45]='sl';		#slovenian
-Codes[50]='pt_BR';	#Portuguese Brasil
+Codes[50]='pt-BR';	#Portuguese Brasil
 Codes[51]='es_SU';	#spanish, south-america
 Codes[53]='sk';		#Slovak
 Codes[55]='vi';		#vietnamese
@@ -50,7 +50,7 @@ Codes[109]='fy';	#Frisian, east-netherland/north germany
 Codes[110]='eu';	#Euskara, basque
 Codes[111]='lb';	#Letzebuergesch
 Codes[113]='fur';	#Furlan, northitaly
-Codes[136]='nn';	#Norsk nynorsk
+Codes[136]='nn-NO';	#Norsk nynorsk
 
 def getAll():
 	return Codes
