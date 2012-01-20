@@ -37,6 +37,10 @@ unzip -q -o -a langs.zip -d crowdin/locale/
     echo "Unzipped"
   fi
 
+#get translation status  
+curl \
+  "$CROWDIN_URL"/status?key="$CROWDIN_KEY" > crowdin/locale/status.xml
+ 
 #Download French translations.
 #wget http://api.crowdin.net/api/project/{project-identifier}/download/fr.zip?key={project-key}
 
