@@ -154,9 +154,9 @@ Foxtrick.modules["DirectPageLinks"]={
 				Foxtrick.toggleClass(a,"page");
 				
 				//adjust class so all buttons have constant width and the layout doesn't break
-				if(p < 10)
+				if(p < 10){
 					Foxtrick.toggleClass(a,"oneDigit");
-				
+				}
 				//mark current page
 				if(p == currentPage)
 				{
@@ -171,6 +171,7 @@ Foxtrick.modules["DirectPageLinks"]={
 					href =  href.replace(/n=\d+/i, "n=1");
 					a.appendChild(doc.createTextNode('1'));
 					a.href = href;
+					Foxtrick.addClass(a,"oneDigit");
 				}
 				//always include lastpage
 				else if( (p == end) && currentPage != maxpage )
