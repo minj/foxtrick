@@ -300,7 +300,7 @@ Foxtrick.Pages.Players = {
 					player.lastPlayedMinutes = Number(LastMatch.getElementsByTagName("PlayedMinutes")[0].textContent);
 					player.lastPositionCode = Number(LastMatch.getElementsByTagName("PositionCode")[0].textContent);
 					var position = Foxtrickl10n.getPositionByType(MatchRoleIDToPosition[player.lastPositionCode]);
-					player.lastMatchText = Foxtrickl10n.getString('Last_match_played_as').replace('%1',player.lastPlayedMinutes).replace('%2', position);
+					player.lastMatchText = Foxtrickl10n.getString('Last_match_played_as', player.lastPlayedMinutes).replace('%1',player.lastPlayedMinutes).replace('%2', position);
 				}
 				if (playerNode.getElementsByTagName("CanBePromotedIn").length) {
 					player.canBePromotedIn = playerNode.getElementsByTagName("CanBePromotedIn")[0].textContent;

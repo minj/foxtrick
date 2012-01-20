@@ -17,7 +17,7 @@ Foxtrick.modules["YouthPromotes"]={
 				var htDate = Foxtrick.util.time.getHtDate(doc);
 				var date = Foxtrick.util.time.addDaysToDate(htDate, daysToPromote);
 				date = Foxtrick.util.time.buildDate(date);
-				message = Foxtrickl10n.getString("YouthPromotes.future")
+				message = Foxtrickl10n.getString("YouthPromotes.future", daysToPromote)
 					.replace(/%1/, daysToPromote)
 					.replace(/%2/, date)
 			}
