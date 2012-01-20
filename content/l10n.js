@@ -333,7 +333,7 @@ if (Foxtrick.arch === "Gecko") {
 					Components.utils.import("resource://gre/modules/PluralForm.jsm");
 					var plForm = 0;
 					try { 
-						plForm = Number(this._strings_bundle.GetStringFromName("pluralForm"));
+						plForm = Number(this._strings_bundle.GetStringFromName("pluralFormRuleID"));
 					} catch (e) {}
 					var get = PluralForm.makeGetter(plForm)[0];
 					try {
@@ -350,7 +350,7 @@ if (Foxtrick.arch === "Gecko") {
 							Components.utils.import("resource://gre/modules/PluralForm.jsm");
 							var plForm = 0;
 							try { 
-								plForm = Number(this._strings_bundle_default.GetStringFromName("pluralForm"));
+								plForm = Number(this._strings_bundle_default.GetStringFromName("pluralFormRuleID"));
 							} catch (e) {
 							}
 							var get = PluralForm.makeGetter(plForm)[0];
