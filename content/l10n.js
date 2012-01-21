@@ -18,8 +18,8 @@ var Foxtrickl10n = {
 		"ee",	// Eesti	36
 		"en",	// english	2
 		"es-ES",	// Español	103
-		"es_ca",	//Español centro-americano	51
-		"es_SU",	// Español Sudamericano	6
+		"es-MX",	//Español centro-americano	51
+		"es-AR",	// Español Sudamericano	6
 		"eu",	// Euskara, basque	110
 		"fa",	// فارسی, farsi, iranian	75
 		"fi",	// Suomi, finnish	9
