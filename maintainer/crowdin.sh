@@ -2,6 +2,7 @@
 
 CROWDIN_KEY=
 CROWDIN_URL=http://api.crowdin.net/api/project/foxtrick
+SVN_FILES=../content/locale/*
 
 # load configuration, probably overwriting defaults above
 . ./upload.conf.sh
@@ -12,6 +13,17 @@ echo "upload new master to crowdin"
 curl \
   -F "files[foxtrick.properties]=@../content/foxtrick.properties" "$CROWDIN_URL"/update-file?key="$CROWDIN_KEY"
 
+for LOC in $SVN_FILES
+do
+  # take action on each file. $f store current file name
+  echo "upload ${LOC##*/} to crowdin"
+  curl \
+    -F "files[foxtrick.properties]=@$LOC/foxtrick.properties" \
+    -F "language=${LOC##*/}" \
+    -F "import_eq_suggestions=1" \
+    "$CROWDIN_URL"/upload-translation?key="$CROWDIN_KEY"
+done
+  
 #export, pack latest translations
 echo "order crowdin to repack"
 curl \
