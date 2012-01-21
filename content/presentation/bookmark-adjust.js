@@ -65,13 +65,6 @@ Foxtrick.modules["BookmarkAdjust"]={
 					this._bookmarkColor(imageObj, /\[white\]/i, commentObj, "white");
 					this._bookmarkColor(imageObj, /\[yellow\]/i, commentObj, "yellow");
 				}
-
-				if (setDeadline) {
-					var dateCell=tableObj.rows[i].cells[0].getElementsByClassName('date');
-					if (dateCell.length>0) {
-						this._add_deadLine(doc, dateCell.item(0));
-					}
-				}
 			}
 		}
 	},
