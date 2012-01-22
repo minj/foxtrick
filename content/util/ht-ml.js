@@ -207,13 +207,23 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 	else if (nodeName === "th" || nodeName === "td") {
 		var colspan = "";
 		var rowspan = "";
+		var align = "";
 		if (node.hasAttribute("colspan") && node.getAttribute("colspan") !== "") {
 			colspan = " colspan=" + node.getAttribute("colspan");
 		}
 		if (node.hasAttribute("rowspan") && node.getAttribute("rowspan") !== "") {
 			rowspan = " rowspan=" + node.getAttribute("rowspan");
 		}
-		ret = "[" + nodeName + colspan + rowspan + "]" + ret + "[/" + nodeName + "]";
+		if (Foxtrick.hasClass(node, "center")) {
+			align = " align=center";
+		}
+		else if (Foxtrick.hasClass(node, "left")) {
+			align = " align=left";
+		}
+		else if (Foxtrick.hasClass(node, "right")) {
+			align = " align=right";
+		}
+		ret = "[" + nodeName + colspan + rowspan + align + "]" + ret + "[/" + nodeName + "]";
 	}
 	else if (nodeName === "blockquote") {
 		ret = "[q]" + ret + "[/q]";
