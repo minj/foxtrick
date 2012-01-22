@@ -10,10 +10,6 @@ if (!Foxtrick)
 Foxtrick.entry = {};
 
 
-// add MODULE_NAME to modules
-for (var i in Foxtrick.modules)
-	Foxtrick.modules[i].MODULE_NAME = i;
-
 // mapping from page name (defined in pages.js) to array of modules running
 // on it
 Foxtrick.entry.runMap = {};
@@ -91,7 +87,11 @@ Foxtrick.entry.docLoad = function(doc) {
 // for fennec on new tab opened
 // @param data - copy of the resources passed from the background script
 Foxtrick.entry.contentScriptInit = function(data) {
-		if (Foxtrick.platform != "Fennec") {
+	// add MODULE_NAME to modules
+	for (var i in Foxtrick.modules)
+		Foxtrick.modules[i].MODULE_NAME = i;
+
+	if (Foxtrick.platform != "Fennec") {
 			FoxtrickPrefs._prefs_chrome_user = data._prefs_chrome_user;
 			FoxtrickPrefs._prefs_chrome_default = data._prefs_chrome_default;
 
@@ -127,6 +127,10 @@ Foxtrick.entry.contentScriptInit = function(data) {
 // called on browser load and after preferences changes (background side for sandboxed, fennec)
 Foxtrick.entry.init = function() {
 	Foxtrick.log("Initializing FoxTrick...");
+
+	// add MODULE_NAME to modules
+	for (var i in Foxtrick.modules)
+		Foxtrick.modules[i].MODULE_NAME = i;
 
 	var coreModules = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
 	for (var i=0; i<coreModules.length; ++i) {
