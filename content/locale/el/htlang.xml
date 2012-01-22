@@ -1,4 +1,4 @@
-<language name="gr" desc="Ελληνικά">
+<language name="el" desc="Ελληνικά">
 
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="Το Hattrick μου" />
