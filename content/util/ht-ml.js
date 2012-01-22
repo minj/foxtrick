@@ -239,8 +239,12 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 	}
 
 	if (computedStyle && computedStyle.getPropertyValue("display") === "block" 
-		|| nodeName === "p" || nodeName === "h1" || nodeName === "h2" || nodeName === "h3" || nodeName === "h4") {
+		 || nodeName === "h1" || nodeName === "h2" || nodeName === "h3" || nodeName === "h4") {
 		ret = '\n' + ret + '\n';
+	}
+	if (nodeName === "p") {
+		//ret = '\n' + ret + '\n'; // not working well with qoutes in forum
+		ret = ret;		// not working well somewhere else. we'll use that till we find out what the problem was
 	}
 
 	return ret.replace(/ +/g,' ').replace(/\n /g,'\n');
