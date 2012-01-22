@@ -26,7 +26,7 @@ var Foxtrickl10n = {
 		"fi",	// Suomi, finnish	9
 		"fr",	// french	5
 		"fur",	// Furlan, northitaly	113
-		"fy",	// Frysk, east-netherland/north germany	109
+		"fy-NL",	// Frysk, east-netherland/north germany	109
 		"gl",	// Galego, galician	74
 		"he",	// עברית, hebrew	40
 		"hr",	// Hrvatski, croatian	39

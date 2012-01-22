@@ -1,4 +1,4 @@
-<language name="fy" desc="Frysk">
+<language name="fy-NL" desc="Frysk">
 
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="Myn Hattrick" />
