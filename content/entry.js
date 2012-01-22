@@ -99,6 +99,8 @@ Foxtrick.entry.contentScriptInit = function(data) {
 			Foxtrickl10n.properties = data.properties;
 			Foxtrickl10n.screenshots_default = data.screenshots_default;
 			Foxtrickl10n.screenshots = data.screenshots;
+			Foxtrickl10n.plForm_default = data.plForm_default;
+			Foxtrickl10n.plForm = data.plForm;
 		}
 		else {
 			// fennec can access them from context, but they still need to get initilized

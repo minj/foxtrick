@@ -93,6 +93,8 @@ Foxtrick.loader.chrome.browserLoad = function() {
 			properties : Foxtrickl10n.properties,
 			screenshots_default : Foxtrickl10n.screenshots_default,
 			screenshots : Foxtrickl10n.screenshots,
+			plForm : Foxtrickl10n.plForm,
+			plForm_default : Foxtrickl10n.plForm_default,
 
 			currency : currency,
 			about : about,

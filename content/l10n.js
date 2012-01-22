@@ -64,6 +64,11 @@ var Foxtrickl10n = {
 
 	htLanguagesXml : {},
 
+	// for plural form rule ids see
+	// https://developer.mozilla.org/en/Localization_and_Plurals
+	plForm : 0,  // plural form of selected language
+	plForm_default : 0, // plural form of default language
+									
 	// this function returns level including decimal subs from text.
 	getLevelFromText : function(text) {
 		var level, sublevel=0;
@@ -272,6 +277,9 @@ var Foxtrickl10n = {
 // ----------------------  Gecko specific get/set preferences --------------------------
 if (Foxtrick.arch === "Gecko") {
 	(function() {
+	
+	Components.utils.import("resource://gre/modules/PluralForm.jsm");
+	
 	var Foxtrickl10nGecko = {
 
 		// mozilla string bundles of localizations and screenshot links
@@ -295,6 +303,10 @@ if (Foxtrick.arch === "Gecko") {
 				.getService(Components.interfaces.nsIStringBundleService)
 				.createBundle("chrome://foxtrick/content/foxtrick.properties");
 
+			try { 
+				this.plForm_default = Number(this._strings_bundle_default.GetStringFromName("pluralFormRuleID"));
+			} catch (e) {}
+					
 			this.setUserLocaleGecko(FoxtrickPrefs.getString("htLanguage"));
 
 			this._strings_bundle_screenshots_default =
@@ -314,6 +326,11 @@ if (Foxtrick.arch === "Gecko") {
 				this._strings_bundle = this._strings_bundle_default;
 				Foxtrick.log("Use default properties for locale ", locale);
 			}
+			
+			try { 
+				this.plForm = Number(this._strings_bundle.GetStringFromName("pluralFormRuleID"));
+			} catch (e) {}
+			
 			try {
 				this._strings_bundle_screenshots =
 					Components.classes["@mozilla.org/intl/stringbundle;1"]
@@ -329,17 +346,12 @@ if (Foxtrick.arch === "Gecko") {
 		getString : function(str, num) {
 			try {
 				if (num !== undefined) {
-					Foxtrick.log('getString plural: ', str, ' ',num);
-					Components.utils.import("resource://gre/modules/PluralForm.jsm");
-					var plForm = 0;
-					try { 
-						plForm = Number(this._strings_bundle.GetStringFromName("pluralFormRuleID"));
-					} catch (e) {}
-					var get = PluralForm.makeGetter(plForm)[0];
+					//Foxtrick.log('getString plural: ', str, ' ',num);
+					var get = PluralForm.makeGetter(this.plForm)[0];
 					try {
 						return get(num, this._strings_bundle.GetStringFromName(str));
 					} catch(e) {
-						Foxtrick.log('getString plural error. use last string');
+						//Foxtrick.log('getString plural error. use last string');
 						return this._strings_bundle.GetStringFromName(str).replace(/.+;/g, "");
 					}
 				}
@@ -349,18 +361,12 @@ if (Foxtrick.arch === "Gecko") {
 				try {
 					if (this._strings_bundle_default) {
 						if (num !== undefined) {
-							Foxtrick.log('getString plural default: ', str, ' ',num);
-							Components.utils.import("resource://gre/modules/PluralForm.jsm");
-							var plForm = 0;
-							try { 
-								plForm = Number(this._strings_bundle_default.GetStringFromName("pluralFormRuleID"));
-							} catch (e) {
-							}
-							var get = PluralForm.makeGetter(plForm)[0];
+							//Foxtrick.log('getString plural default: ', str, ' ',num);
+							var get = PluralForm.makeGetter(this.plForm_default)[0];
 							try {
 								return get(num, this._strings_bundle_default.GetStringFromName(str));
 							} catch(e) {
-								Foxtrick.log('getString plural error. use last string');
+								//Foxtrick.log('getString plural error. use last string');
 								return this._strings_bundle_default.GetStringFromName(str).replace(/.+;/g, "");
 							}
 						}
@@ -455,7 +461,10 @@ if (Foxtrick.arch === "Sandboxed") {
 
 			this.properties_default = Foxtrick.loadSync(Foxtrick.InternalPath+"foxtrick.properties");
 			this.screenshots_default = Foxtrick.loadSync(Foxtrick.InternalPath+"foxtrick.screenshots");
-
+			try { 
+				this.plForm_default = Number(this._getString(this.properties_default, "pluralFormRuleID"));
+			} catch (e) {}
+					
 			locale = FoxtrickPrefs.getString("htLanguage");
 			
 			try {
@@ -469,6 +478,9 @@ if (Foxtrick.arch === "Sandboxed") {
 				Foxtrick.log("Use default properties for locale ", locale);
 				this.properties = this.properties_default;
 			}
+			try { 
+				this.plForm = Number(this._getString(this.properties, "pluralFormRuleID"));
+			} catch (e) {}
 			try {
 				this.screenshots = Foxtrick.loadSync(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.screenshots");
 				if (this.screenshots == null) {
@@ -482,29 +494,29 @@ if (Foxtrick.arch === "Sandboxed") {
 			}
 		},
 
+		_getString : function(properties, str) {
+			var string_regexp = RegExp('\\s'+str+'=(.+)\\s','i');
+			if (properties.search(string_regexp)!=-1)
+				return properties.match(string_regexp)[1];
+			return null;
+		},
+		
 		getString : function(str, num) {
 			try {
-				var value;
-				var string_regexp = new RegExp( '\\s'+str+'=(.+)\\s', "i" );
-
-				if (Foxtrickl10n.properties.search(string_regexp)!=-1)
-					value = Foxtrickl10n.properties.match(string_regexp)[1];
-				else if (Foxtrickl10n.properties_default.search(string_regexp)!=-1)
-					value = Foxtrickl10n.properties_default.match(string_regexp)[1];
-				else {
-					throw null;
+				var plForm = this.plForm;
+				var value = this._getString(this.properties, str);
+				if (value === null) {
+					value = this._getString(this.properties_default, str);
+					plForm = this.plForm_default;
 				}
+				if (value === null)
+					throw null;
+
 				// replace escaped characters as what Gecko does
 				value = value.replace(/\\n/g, "\n").replace(/\\:/g, ":").replace(/\\=/g, "=").replace(/\\#/g, "#").replace(/\\!/g, "!");
 				// get plurals
 				if (num !== undefined) {
-					// use last form for now
-					Foxtrick.log('getString plural: ', str, ' ',num);
-					var plForm = 0;
-					try { 
-						plForm = Number(this.getString("pluralFormRuleID"));
-					} catch (e) {
-					}
+					//Foxtrick.log('getString plural: ', str, ' ',num);
 					var get = PluralForm.makeGetter(plForm)[0];
 					try {
 						return get(num, value);
