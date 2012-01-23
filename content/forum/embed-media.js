@@ -174,9 +174,15 @@ Foxtrick.modules["EmbedMedia"]={
 					var matches = re.exec(link)
 					//link passed regex, add to supported links
 					if( matches ){
-						//ignore imageshack as generic
+					
+						Foxtrick.log(key, link.href);
+						//ignore imageshack detected as generic
 						if(key == "genericImage" && link.href.match("imageshack.us"))
 							continue;
+							
+						//but convert to generic if the users already pasted an image link
+						if(key == "imageshack" && link.href.match("http:\/\/img(\\d+).imageshack.us") )
+							key = "genericImage";
 							
 						linkDict["site"] = key
 						if(key != "genericImage" && key != "imageshack")
