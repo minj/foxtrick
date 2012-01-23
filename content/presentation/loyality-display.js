@@ -58,6 +58,8 @@ Foxtrick.modules["LoyalityDisplay"]={
 						appendix = "250";
 					else if(skillUp >= 0.125)
 						appendix = "125";
+					else 
+						continue;
 						
 					var bars = playersHtml[p].getElementsByClassName("percentImage");
 					while(bars.length){
