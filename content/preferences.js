@@ -46,6 +46,10 @@ function init()
 
 function initCoreModules()
 {
+	// add MODULE_NAME to modules
+	for (var i in Foxtrick.modules)
+		Foxtrick.modules[i].MODULE_NAME = i;
+
 	// core functions needed for preferences, localization, etc.
 	var core = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
 	for (var i=0; i<core.length;++i)
