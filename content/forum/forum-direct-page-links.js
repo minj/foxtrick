@@ -148,7 +148,10 @@ Foxtrick.modules["DirectPageLinks"]={
 			for(var p = start; p <= end; p++)
 			{
 				var href = Foxtrick.getHref(doc);
-				href =  href.replace(/n=\d+/i, "n=" + (currentPostId - (currentPage-p)*postPerPage));
+				if( Foxtrick.getParameterFromUrl( href, "n" ) )
+					href = href.replace(/n=\d+/i, "n=" + (currentPostId - (currentPage-p)*postPerPage));
+				else
+					href = href + '&n=' + (currentPostId - (currentPage-p)*postPerPage);
 		
 				var a = doc.createElement("a");
 				Foxtrick.toggleClass(a,"page");
@@ -168,7 +171,7 @@ Foxtrick.modules["DirectPageLinks"]={
 				else if( ( p == start ) && currentPage != 1)
 				{
 					var href = Foxtrick.getHref(doc);
-					href =  href.replace(/n=\d+/i, "n=1");
+					href = href.replace(/n=\d+/i, "n=1");
 					a.appendChild(doc.createTextNode('1'));
 					a.href = href;
 					Foxtrick.addClass(a,"oneDigit");
