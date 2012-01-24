@@ -15,22 +15,21 @@ Foxtrick.modules["EmbedMedia"]={
 	CSS : Foxtrick.InternalPath + "resources/css/embed-media.css",
 
 	run : function(doc) {
-		var do_embed_media = FoxtrickPrefs.isModuleEnabled("EmbedMedia");
-		var do_embed_youtube_videos = do_embed_media && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedYoutubeVideos");
-		var do_embed_vimeo_videos = do_embed_media && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedVimeoVideos");
+		var do_embed_youtube_videos = FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedYoutubeVideos");
+		var do_embed_vimeo_videos = FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedVimeoVideos");
 		//no funnyordie atm
-		//var do_embed_funnyordie_videos = do_embed_media && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedFunnyOrDieVideos");
+		//var do_embed_funnyordie_videos = FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedFunnyOrDieVideos");
 		var do_embed_funnyordie_videos = false;
-		var do_embed_dailymotion_videos = do_embed_media && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedDailymotionVideos");
+		var do_embed_dailymotion_videos = FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedDailymotionVideos");
 		
-		var oembed_enabled = do_embed_media && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedModeOEmebed");
-		var do_replaceLinksByTitles = do_embed_media && oembed_enabled && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "ReplaceLinksByTitles");
-		var do_embed_soundcloud = do_embed_media && oembed_enabled && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedSoundCloud");
-		var do_embed_flickr_images = do_embed_media && oembed_enabled && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedFlickrImages");
-		var do_embed_deviantart_images = do_embed_media && oembed_enabled && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedDeviantArtImages");
+		var oembed_enabled = FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedModeOEmebed");
+		var do_replaceLinksByTitles = oembed_enabled && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "ReplaceLinksByTitles");
+		var do_embed_soundcloud = oembed_enabled && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedSoundCloud");
+		var do_embed_flickr_images = oembed_enabled && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedFlickrImages");
+		var do_embed_deviantart_images = oembed_enabled && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedDeviantArtImages");
 				
-		var do_embed_generic_images = do_embed_media && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedGenericImages");
-		var do_embed_generic_images_clever = do_embed_media && do_embed_generic_images && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedGenericImagesClever");
+		var do_embed_generic_images = FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedGenericImages");
+		var do_embed_generic_images_clever = do_embed_generic_images && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedGenericImagesClever");
 				
 		var siteEnabled = {
 			"youtube" : do_embed_youtube_videos,
