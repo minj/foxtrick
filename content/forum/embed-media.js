@@ -39,11 +39,10 @@ Foxtrick.modules["EmbedMedia"]={
 			"soundcloud" : do_embed_soundcloud,
 			"flickr" : do_embed_flickr_images,
 			"deviantart" : do_embed_deviantart_images,
-			"genericImage": do_embed_generic_images
-		};	
-		//add several things just if we're using clever mode
-			siteEnabled.imgur = do_embed_generic_images_clever
-			siteEnabled.imageshack = do_embed_generic_images_clever
+			"genericImage": do_embed_generic_images,
+			"imgur": do_embed_generic_images_clever,
+			"imageshack" : do_embed_generic_images_clever
+		};
 
 		var oEmbedRequest = function( url ){
 			try {
@@ -58,8 +57,9 @@ Foxtrick.modules["EmbedMedia"]={
 			return xmlHttp.responseText;
 		}
 
-		//Link validation regex, needs to supply videoid for iframe embedding, 
-		//for oembed support it's sufficient to ensure the deivering network is correct, further details will be determined by oEmbed XmlHTMLRequest request.
+		//Link validation regex, check if the link is supported by any means
+		//for oembed (only) supported sites it's sufficient to ensure the delivering network is correct,
+		//otherwise the regex has to grab all relevant data so we can build a correct link later
 		var filter_supported = {
 			"deviantart":"^(http:\/\/)(.*)?(fav)\.me\/",
 			"soundcloud":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(soundcloud)\.com\/",
@@ -69,10 +69,9 @@ Foxtrick.modules["EmbedMedia"]={
 			"funnyordie":"^(http:\/\/)([a-zA-Z]{2,3}.)?(funnyordie)\.(com)\/videos\/([a-zA-Z0-9]*)\\b",
 			"dailymotion":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(dailymotion\.com)\/video\/([a-zA-Z0-9-]+)",
 			"genericImage":"^http(s)?:\/\/[a-zA-Z0-9.\\-%\\w_~\/]+(?:gif|jpg|jpeg|png|bmp|GIF|JPG|JPEG|PNG|BMP)$",
+			"imgur":"^http(s)?:\/\/imgur.com\/([a-zA-Z0-9]+)$",
+			"imageshack":"^http(s)?:\/\/[a-zA-Z0-9.\\-%\\w_~\/]+\/(\\d+)\/(\\w+).(gif|jpg|jpeg|png|bmp|GIF|JPG|JPEG|PNG|BMP)"
 		};
-		//add several things just if we"re using clever mode
-		filter_supported.imgur = "^http(s)?:\/\/imgur.com\/([a-zA-Z0-9]+)$"
-		filter_supported.imageshack = "^http(s)?:\/\/[a-zA-Z0-9.\\-%\\w_~\/]+\/(\\d+)\/(\\w+).(gif|jpg|jpeg|png|bmp|GIF|JPG|JPEG|PNG|BMP)"
 		
 		//oEmbed supported sites need entries at this point
 		var oembed_urls = {
