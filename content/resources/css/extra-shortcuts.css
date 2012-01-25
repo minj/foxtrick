@@ -44,10 +44,10 @@ html[dir="ltr"] .scContainerNoSupporter ul{
 }
 
 /*non supporter ads moved left to make space for 2 ft icons */
-html[dir="ltr"] #mediasports .mediasports {
+html[dir="ltr"] #shortcutsNoSupporter ~ a[target="_blank"][href^="http"] img{
 	margin-right: 160px  !important;
 }
-html[dir="rtl"] #mediasports .mediasports {
+html[dir="rtl"]  #shortcutsNoSupporter ~ a[target="_blank"][href^="http"] img{
 	margin-left: 160px  !important;
 }
 
