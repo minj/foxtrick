@@ -27,7 +27,8 @@ Foxtrick.modules["Ratings"]={
 			return;
 		}
 
-		if (FoxtrickPrefs.isModuleOptionEnabled("Ratings", "HideAverages")) {
+		if (FoxtrickPrefs.isModuleOptionEnabled("Ratings", "HideAverages") 
+			&& !Foxtrick.Pages.Match.isYouth(doc)) {
 			for (var i=0; i<5; ++i) {
 				ratingstable.deleteRow(-1);
 			}
