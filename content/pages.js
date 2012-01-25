@@ -42,7 +42,7 @@ Foxtrick.ht_pages = {
 	'youthSeries'               : '/World/Series/YouthSeries.aspx',
 	'nextSeries'                : '/World/Series/NextSeason.aspx',
 	'country'                   : '/World/Leagues/League.aspx',
-	'region'                    : '/World/Regions/Region.aspx',
+	'region'                    : '/World/Regions/',
 	'challenges'                : '/Club/Challenges/$',
 	'youthchallenges'           : '/Club/Challenges/YouthChallenges',
 	'achievements'              : '/Club/Achievements/',

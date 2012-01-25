@@ -170,7 +170,11 @@ Foxtrick.modules["TeamPopupLinks"]={
 				var span = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.TeamPopupLinks, "span");
 				span.className = "ft-popup-span";
 						
-				if (  !Foxtrick.isPage("forumViewThread", doc) && !Foxtrick.isPage("forumWritePost", doc) && !Foxtrick.isPage("forumModWritePost", doc)  )
+				if (  !Foxtrick.isPage("forumViewThread", doc) 
+					&& !Foxtrick.isPage("forumWritePost", doc) 
+					&& !Foxtrick.isPage("forumModWritePost", doc)  
+					&& !Foxtrick.isPage("region", doc)  
+					)
 					Foxtrick.addClass(aLink, "ft-nowrap");
 				else {
 					Foxtrick.addClass(aLink, "ft-dummy");
