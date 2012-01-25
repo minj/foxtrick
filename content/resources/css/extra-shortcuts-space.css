@@ -4,10 +4,11 @@
 {display:none;}
 
 div#shortcuts, 
-div#shortcuts div.scContainer, 
+div#shortcuts div.scContainer
+{width: 324px !important;}
 div#shortcutsNoSupporter, 
 div#shortcutsNoSupporter div.scContainerNoSupporter 
-{width: 324px !important;}
+{width: 200px !important;}
 
 html[data-theme="standard"] #ticker, html[data-theme="standard"] #ticker div {
 	width: 400px !important;
