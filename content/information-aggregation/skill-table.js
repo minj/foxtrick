@@ -884,6 +884,10 @@ Foxtrick.modules["SkillTable"]={
 			Foxtrick.Pages.Players.getPlayerList(doc, function(oldies_list) {
 				// then get current squad (last parameter true) into current_squad_list
 				Foxtrick.Pages.Players.getPlayerList(doc, function(current_squad_list) {
+					var argsTransfersPlayer = [];
+					Foxtrick.map(function(player) {
+						argsTransfersPlayer.push([ ["playerid", player.id], ["file", "transfersPlayer"] ]);
+					}, current_squad_list);
 					Foxtrick.util.api.batchRetrieve(doc, argsTransfersPlayer, {cache_lifetime:'session' }, function(xmls) {
 						// filter, concat with oldies and display
 						current_squad_list = Foxtrick.filter(function(n) {return n.motherClubBonus;}, current_squad_list);
