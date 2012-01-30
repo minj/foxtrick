@@ -373,11 +373,11 @@ Foxtrick.Pages.Player = {
 			player.PlayerForm = Number(xml.getElementsByTagName("PlayerForm")[0].textContent);
 			player.Cards = Number(xml.getElementsByTagName("Cards")[0].textContent);
 			player.InjuryLevel = Number(xml.getElementsByTagName("InjuryLevel")[0].textContent);
-			if (UserIsSupporter && xml.getElementsByTagName("Statement")[0])
+			if (xml.getElementsByTagName("Statement")[0])
 				player.Statement = xml.getElementsByTagName("Statement")[0].textContent;			
-			if (UserIsSupporter && xml.getElementsByTagName("PlayerLanguage")[0])
+			if (xml.getElementsByTagName("PlayerLanguage")[0])
 				player.PlayerLanguage = xml.getElementsByTagName("PlayerLanguage")[0].textContent;
-			if (UserIsSupporter && xml.getElementsByTagName("PlayerLanguageID")[0])
+			if (xml.getElementsByTagName("PlayerLanguageID")[0])
 				player.PlayerLanguageID = Number(xml.getElementsByTagName("PlayerLanguageID")[0].textContent);
 //    <TrainerData />
 /*    <OwningTeam>
