@@ -72,25 +72,26 @@ sed -i "s|{UPDATE_LINK}|${URL_BASE}/safari/foxtrick-${VERSION}.safariextz|g" upd
 sed -i "s|{VERSION}|${VERSION}|g" update-safari.plist
 
 # upload to googlecode downloads
+echo "upload to googlecode"
 cp ../foxtrick.xpi ../foxtrick-"$VERSION".xpi
 python googlecode_upload.py \
   -s "$DIST" -p foxtrick -u "$GOOGLE_USER" -w "$GOOGLE_PASSWORD" \
   -l Version-"$VERSION",Type-"$DIST",Browser-Foxtrick ../foxtrick-"$VERSION".xpi
 rm ../foxtrick-"$VERSION".xpi
 
-cp ../foxtrick.xpi ../foxtrick-"$VERSION".crx
+cp ../foxtrick.crx ../foxtrick-"$VERSION".crx
 python googlecode_upload.py \
   -s "$DIST" -p foxtrick -u "$GOOGLE_USER" -w "$GOOGLE_PASSWORD" \
   -l Version-"$VERSION",Type-"$DIST",Browser-Chrome ../foxtrick-"$VERSION".crx
 rm ../foxtrick-"$VERSION".crx
 
-cp ../foxtrick.xpi ../foxtrick-"$VERSION".oex
+cp ../foxtrick.oex ../foxtrick-"$VERSION".oex
 python googlecode_upload.py \
   -s "$DIST" -p foxtrick -u "$GOOGLE_USER" -w "$GOOGLE_PASSWORD" \
   -l Version-"$VERSION",Type-"$DIST",Browser-Opera ../foxtrick-"$VERSION".oex
 rm ../foxtrick-"$VERSION".oex
 
-cp ../foxtrick.xpi ../foxtrick-"$VERSION".safariextz
+cp ../foxtrick.safariextz ../foxtrick-"$VERSION".safariextz
 python googlecode_upload.py \
   -s "$DIST" -p foxtrick -u "$GOOGLE_USER" -w "$GOOGLE_PASSWORD" \
   -l Version-"$VERSION",Type-"$DIST",Browser-Safari ../foxtrick-"$VERSION".safariextz
