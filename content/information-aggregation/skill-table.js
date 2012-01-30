@@ -841,7 +841,7 @@ Foxtrick.modules["SkillTable"]={
 									// if there is a transfer, we are finished with this player
 									var hasTransfers = setHomeGrownAndJoinedSinceFromTransfers(xmls[i], list);
 									if ( !hasTransfers ) {
-										// so, he's from home. need to get pull date from playerevents bellow
+										// so, he's from home. need to get pull date from playerevents below
 										var pid = xmls[i].getElementsByTagName("PlayerID")[0].textContent;
 										argsPlayerevents.push([ ["playerid", pid], ["file", "playerevents"] ]);
 									}

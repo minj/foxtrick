@@ -54,7 +54,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	}
 
 	// use with sandboxed.extension.sendRequest({req : "nameOfResponseFunction", parameters...}, callback)
-	// calls bellow response function by name 'request.req'
+	// calls below response function by name 'request.req'
 	// callback will be called with a sole JSON as argument
 	sandboxed.extension.onRequest.addListener( function(request, sender, sendResponse) {
 		try {

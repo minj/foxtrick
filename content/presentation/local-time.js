@@ -8,7 +8,7 @@
 Foxtrick.modules["LocalTime"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
-	NICE : -10, // place before HTDateFormat, bellow everything that adds dates
+	NICE : -10, // place before HTDateFormat, below everything that adds dates
 	CSS : Foxtrick.InternalPath + "resources/css/local-time.css",
 
 	run : function(doc) {

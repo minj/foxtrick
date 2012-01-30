@@ -180,7 +180,7 @@ Foxtrick.util.api = {
 
 	// options: {cache:'session' or 'default' or timestamp}
 	// session: take xml from this session. xml doesn't expire
-	// default: currently 1 hour, see bellow
+	// default: currently 1 hour, see below
 	// timestamp: time in milliseconds since 1970 when a new xml will get retrieved
 	retrieve : function(doc, parameters, options, callback) {
 		if (!FoxtrickPrefs.getBool("xmlLoad")) {

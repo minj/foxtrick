@@ -127,7 +127,7 @@ html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
 
 
 /* field overlay display options */
-#fieldOverlay.displayBellow {
+#fieldOverlay.displayBelow {
 	height: 520px;
 	position: relative;
 	top: 630px !important;

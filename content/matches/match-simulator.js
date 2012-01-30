@@ -8,14 +8,14 @@
 Foxtrick.modules["MatchSimulator"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['matchOrder'],
-	RADIO_OPTIONS : ["RatingsOnTop","RatingsBellow","RatingsRight"],
+	RADIO_OPTIONS : ["RatingsOnTop","RatingsBelow","RatingsRight"],
 	CSS : Foxtrick.InternalPath + "resources/css/match-simulator.css",
 
 	run : function(doc) {
 		var displayOption = FoxtrickPrefs.getInt("module.MatchSimulator.value");
 		var fieldOverlay = doc.getElementById('fieldOverlay');
 		if (displayOption == 1)
-			Foxtrick.addClass(fieldOverlay, 'displayBellow');
+			Foxtrick.addClass(fieldOverlay, 'displayBelow');
 		else if (displayOption == 2)
 			Foxtrick.addClass(fieldOverlay, 'displayRight');
 
