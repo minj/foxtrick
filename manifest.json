@@ -214,6 +214,7 @@
 		"http://www.fantamondi.it/*"
 	],
 	"optional_permissions" : [
+		"http://foxtrick.googlecode.com/svn/trunk/res/staff/",
 		"http://www.hattrick-youthclub.org/*",
 		"http://stream.ht-radio.nl/*",
 		"http://no9-online.de/*",

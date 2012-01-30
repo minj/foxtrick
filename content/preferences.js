@@ -837,6 +837,7 @@ function importContent(from, to)
 
 // should move/get that to the resp. modules
 var neededPermissions = [
+	{ module: "StaffMarker", url: "http://foxtrick.googlecode.com/svn/trunk/res/staff/*" },
 	{ module: "ExtraShortcuts.HtRadio", url: "http://stream.ht-radio.nl/*" },
 	{ module: "ExtraShortcuts.No9", url: "http://no9-online.de/*" },
 	{ module: "ExtraShortcuts.Latehome", url: "http://www.latehome.de/*" },
