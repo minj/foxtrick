@@ -17,10 +17,13 @@ Foxtrick.modules["ExtendedPlayerDetails"]={
 		if (FoxtrickPrefs.isModuleOptionEnabled("ExtendedPlayerDetails", "Language")) {
 			var addPlayerLanguage = function(playerid, node) {
 				Foxtrick.Pages.Player.getPlayer(doc, playerid, function(player) {
-					console.log(player)
 					if (!player)
 						return;
 					if (player.PlayerLanguage) {
+						var br = doc.createElement('br');
+						br.className = 'clear';
+						node.appendChild(br);
+					
 						var language = Foxtrick.createFeaturedElement(doc,Foxtrick.modules.ExtendedPlayerDetails, 'em');
 						Foxtrick.addClass(language, 'shy');
 						language.setAttribute('style', 'font-weight:normal; margin-left:5px;');
