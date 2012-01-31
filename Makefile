@@ -31,7 +31,6 @@ ROOT_FOLDERS_FIREFOX = defaults/
 ROOT_FOLDERS_CHROME = defaults/ skin/
 ROOT_FOLDERS_OPERA = defaults/ skin/
 ROOT_FOLDERS_SAFARI = defaults/ skin/
-EXTERNAL_LOCAL_FOLDER = maintainer/crowdin/locale/
 SCRIPT_FOLDERS = alert/ \
 	forum/ \
 	information-aggregation/ \
@@ -94,8 +93,6 @@ firefox:
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_FIREFOX) \
 		../$(BUILD_DIR)/chrome/content
 	mkdir -p $(BUILD_DIR)/chrome/content
-	# external locale
-	cp -rf $(EXTERNAL_LOCAL_FOLDER) $(BUILD_DIR)/chrome/content/
 	# skin/
 	cp -r skin $(BUILD_DIR)/chrome
 	# build jar
@@ -139,8 +136,6 @@ chrome:
 	cd content/; \
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_CHROME) \
 		../$(BUILD_DIR)/content
-	# external locale
-	cp -rf $(EXTERNAL_LOCAL_FOLDER) $(BUILD_DIR)/content/
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
@@ -179,8 +174,6 @@ opera:
 	cd content/; \
 	cp -r $(RESOURCE_FOLDERS) \
 		../$(BUILD_DIR)/content
-	# external locale
-	cp -rf $(EXTERNAL_LOCAL_FOLDER) $(BUILD_DIR)/content/
 	## change files to opera naming
 	mv $(BUILD_DIR)/preferences.html $(BUILD_DIR)/options.html
 	mv $(BUILD_DIR)/includes/env.js $(BUILD_DIR)/includes/aa00_env.js
@@ -220,8 +213,6 @@ safari:
 	cd content/; \
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_SAFARI) \
 		../$(SAFARI_BUILD_DIR)/content
-	# external locale
-	cp -rf $(EXTERNAL_LOCAL_FOLDER) $(BUILD_DIR)/content/
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	# version bump for nightly
