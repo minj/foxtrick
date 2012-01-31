@@ -18,10 +18,6 @@ PASSWORD=
 HOST='www.foxtrick.org'
 DEST=.
 
-#googlecode settings
-GOOGLE_USER=
-GOOGLE_PASSWORD=
-
 # update manifest settings
 URL_BASE='http://foxtrick.foundationhorizont.org/nightly'
 DIST=nightly
@@ -70,32 +66,6 @@ sed -i "s|{VERSION}|${VERSION}|g" update-opera.xml
 cp update-tmpl-safari.plist update-safari.plist
 sed -i "s|{UPDATE_LINK}|${URL_BASE}/safari/foxtrick-${VERSION}.safariextz|g" update-safari.plist
 sed -i "s|{VERSION}|${VERSION}|g" update-safari.plist
-
-# upload to googlecode downloads
-echo "upload to googlecode"
-cp ../foxtrick.xpi ../foxtrick-"$VERSION".xpi
-python googlecode_upload.py \
-  -s "$DIST" -p foxtrick -u "$GOOGLE_USER" -w "$GOOGLE_PASSWORD" \
-  -l Version-"$VERSION",Type-"$DIST",Browser-Firefox ../foxtrick-"$VERSION".xpi
-rm ../foxtrick-"$VERSION".xpi
-
-cp ../foxtrick.crx ../foxtrick-"$VERSION".crx
-python googlecode_upload.py \
-  -s "$DIST" -p foxtrick -u "$GOOGLE_USER" -w "$GOOGLE_PASSWORD" \
-  -l Version-"$VERSION",Type-"$DIST",Browser-Chrome ../foxtrick-"$VERSION".crx
-rm ../foxtrick-"$VERSION".crx
-
-cp ../foxtrick.oex ../foxtrick-"$VERSION".oex
-python googlecode_upload.py \
-  -s "$DIST" -p foxtrick -u "$GOOGLE_USER" -w "$GOOGLE_PASSWORD" \
-  -l Version-"$VERSION",Type-"$DIST",Browser-Opera ../foxtrick-"$VERSION".oex
-rm ../foxtrick-"$VERSION".oex
-
-cp ../foxtrick.safariextz ../foxtrick-"$VERSION".safariextz
-python googlecode_upload.py \
-  -s "$DIST" -p foxtrick -u "$GOOGLE_USER" -w "$GOOGLE_PASSWORD" \
-  -l Version-"$VERSION",Type-"$DIST",Browser-Safari ../foxtrick-"$VERSION".safariextz
-rm ../foxtrick-"$VERSION".safariextz
 
 cp ftp-tmpl ftp
 sed -i \
