@@ -13,3 +13,4 @@ cp -rf "$EXTERNAL_LOCALE_FOLDER" "$SVN_FILES"
 git commit -a -m "*automated* crowdin locale update"
 git-svn dcommit 
 
+rm -rf "$EXTERNAL_LOCALE_FOLDER"
