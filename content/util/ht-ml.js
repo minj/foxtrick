@@ -243,7 +243,7 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 		ret = '\n' + ret + '\n';
 	}
 	if (nodeName === "p") {
-		//ret = '\n' + ret + '\n'; // not working well with qoutes in forum
+		//ret = '\n' + ret + '\n'; // not working well with quotes in forum
 		ret = ret;		// not working well somewhere else. we'll use that till we find out what the problem was
 	}
 

@@ -279,7 +279,7 @@ Foxtrick.modules["ForumChangePosts"]={
 
 		if (do_format_text) {
 			try {
-				var HideLevel = FoxtrickPrefs.getString("module.FormatPostingText.NestedQoutesAsSpoilers_text");
+				var HideLevel = FoxtrickPrefs.getString("module.FormatPostingText.NestedQuotesAsSpoilers_text");
 				var numSpoilerQuotes = 0;
 				
 				var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
@@ -293,20 +293,20 @@ Foxtrick.modules["ForumChangePosts"]={
 						}
 					}
 
-					if (FoxtrickPrefs.isModuleOptionEnabled("FormatPostingText", "NestedQoutesAsSpoilers")) {
+					if (FoxtrickPrefs.isModuleOptionEnabled("FormatPostingText", "NestedQuotesAsSpoilers")) {
 						var spoilers = [];
 						var getQuotes = function(node, level) {
 							if (level == HideLevel && node.getElementsByClassName('quote').length >= 1 ) {
 								var spoiler_show = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.FormatPostingText, 'blockquote');
-								spoiler_show.id = 'spoilshow_qouteNum' + (++numSpoilerQuotes);
+								spoiler_show.id = 'spoilshow_quoteNum' + (++numSpoilerQuotes);
 								spoiler_show.className = 'spoiler ft-dummy';
 								var open_link = doc.createElement('a');
-								open_link.href = "javascript:showSpoiler('qouteNum" + numSpoilerQuotes + "');";
-								open_link.textContent = Foxtrickl10n.getString('ShowNestedQoutes');
+								open_link.href = "javascript:showSpoiler('quoteNum" + numSpoilerQuotes + "');";
+								open_link.textContent = Foxtrickl10n.getString('ShowNestedQuotes');
 								spoiler_show.appendChild(open_link);
 								
 								var spoiler_hidden = doc.createElement('blockquote');
-								spoiler_hidden.id = 'spoilhid_qouteNum' + numSpoilerQuotes;
+								spoiler_hidden.id = 'spoilhid_quoteNum' + numSpoilerQuotes;
 								spoiler_hidden.className = 'spoiler hidden';
 								spoiler_hidden.appendChild(node.cloneNode(true));
 								node.parentNode.insertBefore(spoiler_show, node.nestSibling);
@@ -315,9 +315,9 @@ Foxtrick.modules["ForumChangePosts"]={
 								
 							}
 							else {
-								var qouteNodes = node.getElementsByClassName('quote');
-								for (var j = 0; j < qouteNodes.length; ++j ) 
-									getQuotes(qouteNodes[j], level +1);
+								var quoteNodes = node.getElementsByClassName('quote');
+								for (var j = 0; j < quoteNodes.length; ++j ) 
+									getQuotes(quoteNodes[j], level +1);
 							}
 						};
 						
