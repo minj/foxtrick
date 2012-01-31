@@ -1,4 +1,4 @@
-<language name="es-MX" desc="Español, Centroamericano">
+<language name="es-CR" desc="Español, Centroamericano">
 
 	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
 	<MyHattrick value="Mi Hattrick" />

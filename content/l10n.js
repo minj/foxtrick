@@ -19,7 +19,7 @@ var Foxtrickl10n = {
 		"el",	// Ελληνικά, greek	34		
 		"en",	// english	2
 		"es-ES",	// Español	103
-		"es-MX",	//Español centro-americano	51
+		"es-CR",	//Español centro-americano	51
 		"es-AR",	// Español Sudamericano	6
 		"eu",	// Euskara, basque	110
 		"fa",	// فارسی, farsi, iranian	75
@@ -304,7 +304,7 @@ if (Foxtrick.arch === "Gecko") {
 				.createBundle("chrome://foxtrick/content/foxtrick.properties");
 
 			try { 
-				this.plForm_default = Number(this._strings_bundle_default.GetStringFromName("pluralFormRuleID"));
+				this.plForm_default = Number(this._strings_bundle_default.GetStringFromName("pluralFormRuleID").match(/\d+/));
 			} catch (e) {}
 					
 			this.setUserLocaleGecko(FoxtrickPrefs.getString("htLanguage"));
@@ -328,7 +328,7 @@ if (Foxtrick.arch === "Gecko") {
 			}
 			
 			try { 
-				this.plForm = Number(this._strings_bundle.GetStringFromName("pluralFormRuleID"));
+				this.plForm = Number(this._strings_bundle.GetStringFromName("pluralFormRuleID").match(/\d+/));
 			} catch (e) {}
 			
 			try {
@@ -462,7 +462,7 @@ if (Foxtrick.arch === "Sandboxed") {
 			this.properties_default = Foxtrick.loadSync(Foxtrick.InternalPath+"foxtrick.properties");
 			this.screenshots_default = Foxtrick.loadSync(Foxtrick.InternalPath+"foxtrick.screenshots");
 			try { 
-				this.plForm_default = Number(this._getString(this.properties_default, "pluralFormRuleID"));
+				this.plForm_default = Number(this._getString(this.properties_default, "pluralFormRuleID").match(/\d+/));
 			} catch (e) {}
 					
 			locale = FoxtrickPrefs.getString("htLanguage");
@@ -479,7 +479,7 @@ if (Foxtrick.arch === "Sandboxed") {
 				this.properties = this.properties_default;
 			}
 			try { 
-				this.plForm = Number(this._getString(this.properties, "pluralFormRuleID"));
+				this.plForm = Number(this._getString(this.properties, "pluralFormRuleID").match(/\d+/));
 			} catch (e) {}
 			try {
 				this.screenshots = Foxtrick.loadSync(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.screenshots");
