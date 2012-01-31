@@ -1,12 +1,21 @@
 #!/bin/bash
 
-SVN_FILES=../content/
+SVN_FILES=../content
 EXTERNAL_LOCALE_FOLDER=crowdin/locale/
+#space seperated blacklist of locales which only use svn 
+BLACKLIST="sr ru"
 
 # load configuration, probably overwriting defaults above
 . ./upload.conf.sh
 
-#copy crowdin to local svn
+#remove blacklisted from crowdin folder
+for LOC in $BLACKLIST
+do
+   echo "rm $EXTERNAL_LOCALE_FOLDER$LOC/*"
+   rm -f "$EXTERNAL_LOCALE_FOLDER$LOC/*"
+done
+
+#copy crowdin locale to svn folder
 cp -rf "$EXTERNAL_LOCALE_FOLDER" "$SVN_FILES"
 
 #commit crowdin to svn
