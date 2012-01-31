@@ -10,6 +10,6 @@ EXTERNAL_LOCALE_FOLDER=crowdin/locale/
 cp -rf "$EXTERNAL_LOCALE_FOLDER" "$SVN_FILES"
 
 #commit crowdin to svn
-git commit -a -m "crowdin locale update"
+git commit -a -m "*automated* crowdin locale update"
 git-svn dcommit 
 
