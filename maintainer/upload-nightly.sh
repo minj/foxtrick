@@ -76,7 +76,7 @@ echo "upload to googlecode"
 cp ../foxtrick.xpi ../foxtrick-"$VERSION".xpi
 python googlecode_upload.py \
   -s "$DIST" -p foxtrick -u "$GOOGLE_USER" -w "$GOOGLE_PASSWORD" \
-  -l Version-"$VERSION",Type-"$DIST",Browser-Foxtrick ../foxtrick-"$VERSION".xpi
+  -l Version-"$VERSION",Type-"$DIST",Browser-Firefox ../foxtrick-"$VERSION".xpi
 rm ../foxtrick-"$VERSION".xpi
 
 cp ../foxtrick.crx ../foxtrick-"$VERSION".crx
