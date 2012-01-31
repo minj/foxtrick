@@ -15,12 +15,12 @@ var Foxtrickl10n = {
 		"cs",	// Čeština, czech	35
 		"da",	// Dansk, danish	8
 		"de",	// Deutsch, german	3
-		"ee",	// Eesti	36
 		"el",	// Ελληνικά, greek	34		
 		"en",	// english	2
 		"es-ES",	// Español	103
 		"es-CR",	//Español centro-americano	51
 		"es-AR",	// Español Sudamericano	6
+		"et",	// Eesti	36
 		"eu",	// Euskara, basque	110
 		"fa",	// فارسی, farsi, iranian	75
 		"fi",	// Suomi, finnish	9
