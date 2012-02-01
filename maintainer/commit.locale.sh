@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SVN_FILES=../content
-EXTERNAL_LOCALE_FOLDER=crowdin/locale/
+EXTERNAL_LOCALE_FOLDER=crowdin/locale
 #space seperated blacklist of locales which only use svn 
 BLACKLIST="sr ru"
 
@@ -11,8 +11,8 @@ BLACKLIST="sr ru"
 #remove blacklisted from crowdin folder
 for LOC in $BLACKLIST
 do
-   echo "rm -rf $EXTERNAL_LOCALE_FOLDER$LOC"
-   rm -rf "$EXTERNAL_LOCALE_FOLDER$LOC"
+   echo "rm $EXTERNAL_LOCALE_FOLDER/$LOC/*"
+   rm -f "$EXTERNAL_LOCALE_FOLDER/$LOC/*"
 done
 
 #copy crowdin locale to svn folder

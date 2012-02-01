@@ -10,7 +10,7 @@ CROWDIN_FOLDER=crowdin/locale
 
 
 #export master
-echo "upload to crowdin"
+echo "upload to crowdin.."
 re="$(curl -s \
   -F "files[foxtrick.properties]=@../content/foxtrick.properties" \
   "$CROWDIN_URL"/update-file?key="$CROWDIN_KEY"  | grep -c success)"
@@ -47,8 +47,8 @@ re="$(curl -s \
   fi
   
 #Download all translations as a single ZIP archive.
-echo "download zip"
-wget -nv -O langs.zip "$CROWDIN_URL"/download/all.zip?key="$CROWDIN_KEY"
+echo "download zip.."
+wget -nvq -O langs.zip "$CROWDIN_URL"/download/all.zip?key="$CROWDIN_KEY"
   if [ $? -ne 0 ]; then
 	echo "failed"
 	exit -1
