@@ -48,7 +48,7 @@ re="$(curl -s \
   
 #Download all translations as a single ZIP archive.
 echo "download zip.."
-wget -nvq -O langs.zip "$CROWDIN_URL"/download/all.zip?key="$CROWDIN_KEY"
+wget -q -O langs.zip "$CROWDIN_URL"/download/all.zip?key="$CROWDIN_KEY"
   if [ $? -ne 0 ]; then
 	echo "failed"
 	exit -1
