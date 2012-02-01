@@ -24,38 +24,43 @@ do
     "$CROWDIN_URL"/upload-translation?key="$CROWDIN_KEY"
 done
   
-#export, pack latest translations
-echo "order crowdin to repack"
-curl \
-  "$CROWDIN_URL"/export?key="$CROWDIN_KEY"
-
-
+#export/pack latest translations
+echo "order crowdin to repack.."
+re="$(curl -s "$CROWDIN_URL"/export?key="$CROWDIN_KEY" | grep -c success)"
+  if [ $re -ne 1 ]; then
+    echo "crowdin repack failed. don't get outdated zip"
+    exit -1
+  else
+    echo "crowdin repacked. get new zip"
+  fi
+  
 #Download all translations as a single ZIP archive.
 wget -nv -O langs.zip "$CROWDIN_URL"/download/all.zip?key="$CROWDIN_KEY"
   if [ $? -ne 0 ]; then
-    echo "Translations download failed"
-    exit -1
+	echo "Translations download failed"
+	exit -1
   else
-    echo "Translations downloaded"
+	echo "Translations downloaded"
   fi
 
 mkdir crowdin/
 mkdir crowdin/locale/
 unzip -q -o -a langs.zip -d crowdin/locale/
   if [ $? -ne 0 ]; then
-    echo "Unzipped failed"
-    exit -1
+	echo "Unzipped failed"
+	exit -1
   else
-    echo "Unzipped"
+	echo "Unzipped"
   fi
 
 #get translation status  
-curl \
-  "$CROWDIN_URL"/status?key="$CROWDIN_KEY" > crowdin/locale/status.xml
+curl -s "$CROWDIN_URL"/status?key="$CROWDIN_KEY" > crowdin/locale/status.xml
  
+#cleanup
+rm -rf langs.zip
+
+
 #Download French translations.
 #wget http://api.crowdin.net/api/project/{project-identifier}/download/fr.zip?key={project-key}
 
-#cleanup
-rm -rf langs.zip
 
