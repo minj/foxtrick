@@ -40,8 +40,15 @@ echo "order crowdin to repack.."
 re="$(curl -s \
   "$CROWDIN_URL"/export?key="$CROWDIN_KEY" | grep -c success)"
   if [ $re -ne 1 ]; then
-    echo "export failed"
-    exit -1
+   echo "failed. try again.."
+	re="$(curl -s \
+	  "$CROWDIN_URL"/export?key="$CROWDIN_KEY" | grep -c success)"
+	  if [ $re -ne 1 ]; then
+		echo "export failed"
+		exit -1
+	  else
+		echo "ok"
+	  fi
   else
     echo "ok"
   fi
