@@ -11,8 +11,8 @@ BLACKLIST="sr ru"
 #remove blacklisted from crowdin folder
 for LOC in $BLACKLIST
 do
-   echo "rm $EXTERNAL_LOCALE_FOLDER$LOC/*"
-   rm -f "$EXTERNAL_LOCALE_FOLDER$LOC/*"
+   echo "rm -rf $EXTERNAL_LOCALE_FOLDER$LOC"
+   rm -rf "$EXTERNAL_LOCALE_FOLDER$LOC"
 done
 
 #copy crowdin locale to svn folder
