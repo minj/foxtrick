@@ -36,7 +36,6 @@ Foxtrick.modules["ExtendedPlayerDetails"]={
 			};
 			var id = Foxtrick.Pages.Player.getId(doc);
 			var targetNode = doc.getElementById('mainBody').getElementsByClassName("byline")[0];
-			console.log(id, targetNode)
 			addPlayerLanguage(id, targetNode);
 		}
 	},
