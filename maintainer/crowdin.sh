@@ -16,12 +16,16 @@ curl \
 for LOC in $SVN_FILES
 do
   # take action on each file. $f store current file name
-  echo "upload ${LOC##*/} to crowdin"
-  curl \
+  re="$(curl -s \
     -F "files[foxtrick.properties]=@$LOC/foxtrick.properties" \
     -F "language=${LOC##*/}" \
     -F "import_eq_suggestions=1" \
-    "$CROWDIN_URL"/upload-translation?key="$CROWDIN_KEY"
+    "$CROWDIN_URL"/upload-translation?key="$CROWDIN_KEY" | grep -c success)"
+  if [ $re -ne 1 ]; then
+    echo "upload ${LOC##*/} to crowdin failed"
+  else
+    echo "uploaded ${LOC##*/} to crowdin"
+  fi
 done
   
 #export/pack latest translations
