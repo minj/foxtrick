@@ -297,11 +297,17 @@ Foxtrick.Pages.Players = {
 						"20":"Replaced Player #2",
 						"21":"Replaced Player #3",
 					};
+					player.lastDate = LastMatch.getElementsByTagName("Date")[0].textContent;
+					var dateObj = Foxtrick.util.time.getDateFromText(player.lastDate, "yyyymmdd");
+					var dateText = Foxtrick.util.time.buildDate(dateObj);
 					player.lastPlayedMinutes = Number(LastMatch.getElementsByTagName("PlayedMinutes")[0].textContent);
 					player.lastPositionCode = Number(LastMatch.getElementsByTagName("PositionCode")[0].textContent);
 					var position = Foxtrickl10n.getPositionByType(MatchRoleIDToPosition[player.lastPositionCode]);
-					player.lastMatchText = Foxtrickl10n.getString('Last_match_played_as', player.lastPlayedMinutes).replace('%1',player.lastPlayedMinutes).replace('%2', position);
+					player.lastMatchText = Foxtrickl10n.getString('Last_match_played_as_at', player.lastPlayedMinutes).replace('%1',player.lastPlayedMinutes).replace('%2', position).replace('%3', dateText);
 				}
+				else
+					player.lastMatchText = Foxtrickl10n.getString('Last_match_didnot_play');
+					
 				if (playerNode.getElementsByTagName("CanBePromotedIn").length) {
 					player.canBePromotedIn = playerNode.getElementsByTagName("CanBePromotedIn")[0].textContent;
 				}
