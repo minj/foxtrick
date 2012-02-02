@@ -497,7 +497,7 @@
 		"title": "Team Confidence Calculator",
 		"img": "resources/linkicons/confidence.png"
 	},
- /*  "ht-u20": {
+  "ht-u20": {
 		"playerlink": {
 			"url": "http://age.ht-u20.com/?years=[age]&days=[age_days]",
 			"filters": [
@@ -515,7 +515,7 @@
 		],
 		"title": "HT-U20 Check age vs U-20 matches",
 		"img": "resources/linkicons/u20.png"
-	}, */
+	}, 
 	"hottrickkeeper": {
 		"keeperlink": {
 			"url": "http://www.hottrick.org/hattrick_keeper_tool.php"
