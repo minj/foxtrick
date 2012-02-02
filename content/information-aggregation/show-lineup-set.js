@@ -51,7 +51,7 @@ Foxtrick.modules["ShowLineupSet"]={
 			try {
 				var row = table.rows[1];
 				return (row.cells.length >= 2)
-					&& (row.cells[1].innerHTML.indexOf("/Club/Matches/Live.aspx?actionType=addMatch") >= 0);
+					&& (row.cells[1].innerHTML.indexOf("/Club/Matches/Live.aspx") >= 0);
 			}
 			catch (e) {
 				return false;
