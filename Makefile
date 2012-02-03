@@ -11,7 +11,7 @@ MAJOR_VERSION := $(shell ./version.sh)
 REV_VERSION := $(MAJOR_VERSION).$(REVISION)
 
 # URL prefix of update manifest
-NIGHTLY_PREFIX = https://foxtrick.c6.ixwebhosting.org/nightly
+NIGHTLY_PREFIX = https://foxtrick.foundationhorizont.org/nightly
 RELEASE_PREFIX = https://www.foxtrick.org/release
 
 BUILD_DIR = build
