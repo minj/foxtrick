@@ -45,37 +45,38 @@ re="$(curl -s \
 	  "$CROWDIN_URL"/export?key="$CROWDIN_KEY" | grep -c success)"
 	  if [ $re -ne 1 ]; then
 		echo "export failed"
-		exit -1
 	  else
 		echo "ok"
+		
 	  fi
   else
     echo "ok"
   fi
   
+if [ $re -ne 1 ]; then
 #Download all translations as a single ZIP archive.
-echo "download zip.."
-wget -q -O langs.zip "$CROWDIN_URL"/download/all.zip?key="$CROWDIN_KEY"
-  if [ $? -ne 0 ]; then
-	echo "failed"
-  else
-	echo "ok"
-	mkdir -p "$CROWDIN_FOLDER"
-	unzip -q -o -a langs.zip -d "$CROWDIN_FOLDER"
+	echo "download zip.."
+	wget -q -O langs.zip "$CROWDIN_URL"/download/all.zip?key="$CROWDIN_KEY"
 	  if [ $? -ne 0 ]; then
-		echo "Unzip failed"
+		echo "failed"
 	  else
-		echo "Unzipped to $CROWDIN_FOLDER"
+		echo "ok"
+		mkdir -p "$CROWDIN_FOLDER"
+		unzip -q -o -a langs.zip -d "$CROWDIN_FOLDER"
+		  if [ $? -ne 0 ]; then
+			echo "Unzip failed"
+		  else
+			echo "Unzipped to $CROWDIN_FOLDER"
+		  fi
 	  fi
-  fi
+#cleanup
+	rm -rf langs.zip
+fi
 
 #get translation status  
 curl -s \
   "$CROWDIN_URL"/status?key="$CROWDIN_KEY" > "$CROWDIN_FOLDER"/status.xml
  
-#cleanup
-rm -rf langs.zip
-
 
 #Download French translations.
 #wget http://api.crowdin.net/api/project/{project-identifier}/download/fr.zip?key={project-key}
