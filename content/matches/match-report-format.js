@@ -280,7 +280,8 @@
 				["matchEvents", "true"],
 				["matchID", matchId],
 				["isYouth", isYouth],
-				["lang", locale]
+				["lang", locale],
+				["version", "2.1"]
 			];
 
 			var playerTag = function(id, name) {
@@ -484,7 +485,7 @@
 							var evtMin = evt.getElementsByTagName("Minute")[0].textContent;
 							var evtMarkup = evt.getElementsByTagName("EventText")[0].textContent.replace(RegExp("<br\\s*/?>", "g"), "");
 							var evtTeamId = evt.getElementsByTagName("SubjectTeamID")[0].textContent;
-							var evtType = evt.getElementsByTagName("EventKey")[0].textContent.replace(/_.+/, "");
+							var evtType = evt.getElementsByTagName("EventTypeID")[0].textContent;
 
 							if (evtMarkup != "") {
 								//kickoff indicator 
@@ -542,8 +543,6 @@
 										}
 									}
 								}
-								
-								Foxtrick.log(evtMin, evtType);
 								
 								addEventIcons(homeId);
 								addEventIcons(awayId);
