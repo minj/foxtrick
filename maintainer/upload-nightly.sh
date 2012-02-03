@@ -12,11 +12,11 @@
 # 2) Failed to make
 # 3) Failed to upload
 
-# FTP settings
-USER=
-PASSWORD=
-HOST='www.foxtrick.org'
-DEST=.
+# FTP settings arrays
+USERS=()
+PASSWORDS=()
+HOSTS=('www.foxtrick.org')
+DESTS=('.')
 
 # update manifest settings
 URL_BASE='http://foxtrick.foundationhorizont.org/nightly'
@@ -67,15 +67,18 @@ cp update-tmpl-safari.plist update-safari.plist
 sed -i "s|{UPDATE_LINK}|${URL_BASE}/safari/foxtrick-${VERSION}.safariextz|g" update-safari.plist
 sed -i "s|{VERSION}|${VERSION}|g" update-safari.plist
 
-cp ftp-tmpl ftp
-sed -i \
-	-e "s|{USER}|${USER}|g" \
-	-e "s|{PASSWORD}|${PASSWORD}|g" \
-	-e "s|{HOST}|${HOST}|g" \
-	-e "s|{DEST}|${DEST}|g" \
+for (( i = 0 ; i < ${#HOSTS[@]} ; i++ ))
+do
+  cp ftp-tmpl ftp
+  sed -i \
+ 	-e "s|{USER}|${USERS[$i]}|g" \
+	-e "s|{PASSWORD}|${PASSWORDS[$i]}|g" \
+	-e "s|{HOST}|${HOSTS[$i]}|g" \
+	-e "s|{DEST}|${DESTS[$i]}|g" \
 	-e "s|{PATH}|${SRC_DIR}|g" \
 	-e "s|{VERSION}|${VERSION}|g" ftp
+  lftp -f ftp || exit 3
+  rm ftp
+done
 
-lftp -f ftp || exit 3
-
-rm update-firefox.rdf update-chrome.xml update-opera.xml update-safari.plist ftp
+rm update-firefox.rdf update-chrome.xml update-opera.xml update-safari.plist
