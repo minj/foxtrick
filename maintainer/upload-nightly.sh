@@ -29,7 +29,7 @@ SRC_DIR=..
 . ./upload.conf.sh
 
 # see if values are set
-if [[ -z "$USER" || -z "$PASSWORD" ]]; then
+if [[ -z "$USERS" || -z "$PASSWORDS" ]]; then
 	echo 'Please specify USER and PASSWORD in upload.conf.sh' >&2
 	exit 1
 fi
