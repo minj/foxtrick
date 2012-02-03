@@ -54,24 +54,42 @@ re="$(curl -s \
   fi
   
 #Download all translations as a single ZIP archive.
+mkdir -p "$CROWDIN_FOLDER"
+
 echo "download zip.."
 wget -q -O langs.zip "$CROWDIN_URL"/download/all.zip?key="$CROWDIN_KEY"
   if [ $? -ne 0 ]; then
 	echo "failed"
-	exit -1
+#	exit -1
+# try individual files	
+	for LOC in $SVN_FILES
+	do
+	  # take action on each file. $f store current file name
+	  wget -q -O langs.zip "$CROWDIN_URL"/download/"${LOC##*/}".zip?key="$CROWDIN_KEY"
+	    if [ $? -ne 0 ]; then
+		  echo "${LOC##*/} ok"
+		  unzip -q -o -a "${LOC##*/}".zip -d "$CROWDIN_FOLDER"
+		    if [ $? -ne 0 ]; then
+			  echo "Unzip failed"
+		    else
+			  echo "Unzipped ${LOC##*/} to $CROWDIN_FOLDER"
+		    fi
+	    else
+		  echo "${LOC##*/} failed"
+	    fi
+	done
   else
 	echo "ok"
+    unzip -q -o -a langs.zip -d "$CROWDIN_FOLDER"
+      if [ $? -ne 0 ]; then
+		echo "Unzip failed"
+#	exit -1
+	  else
+		echo "Unzipped to $CROWDIN_FOLDER"
+      fi
   fi
-
-mkdir -p "$CROWDIN_FOLDER"
-unzip -q -o -a langs.zip -d "$CROWDIN_FOLDER"
-  if [ $? -ne 0 ]; then
-	echo "Unzip failed"
-	exit -1
-  else
-	echo "Unzipped to $CROWDIN_FOLDER"
-  fi
-
+ 
+  
 #get translation status  
 curl -s \
   "$CROWDIN_URL"/status?key="$CROWDIN_KEY" > "$CROWDIN_FOLDER"/status.xml
