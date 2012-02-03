@@ -213,7 +213,10 @@ Foxtrick.modules["MatchSimulator"]={
 					}
 					else {
 						// sector rating
-						text += overlayRatings[i].textContent + '\n';
+						if (!Foxtrick.hasClass(overlayRatings[i],'hidden'))
+							text += overlayRatings[i].textContent + '\n';
+						else // stamina discounted
+							text += overlayRatings[i].nextSibling.textContent + '\n';							
 						text += doc.getElementById('ft-full-level' + count++).textContent + '\n';
 
 						// add other teams ratings if appropriate
