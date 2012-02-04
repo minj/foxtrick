@@ -67,15 +67,14 @@ if [ $re -ne 1 ]; then
 			echo "Unzip failed"
 		  else
 			echo "Unzipped to $CROWDIN_FOLDER"
+#get translation status  
+			curl -s \
+			  "$CROWDIN_URL"/status?key="$CROWDIN_KEY" > "$CROWDIN_FOLDER"/status.xml
 		  fi
 	  fi
 #cleanup
 	rm -rf langs.zip
 fi
-
-#get translation status  
-curl -s \
-  "$CROWDIN_URL"/status?key="$CROWDIN_KEY" > "$CROWDIN_FOLDER"/status.xml
  
 
 #Download French translations.
