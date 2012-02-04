@@ -53,7 +53,7 @@ re="$(curl -s \
     echo "ok"
   fi
   
-if [ $re -ne 1 ]; then
+if [ $re -eq 1 ]; then
 #Download all translations as a single ZIP archive.
 	echo "download zip.."
 	wget -q -O langs.zip "$CROWDIN_URL"/download/all.zip?key="$CROWDIN_KEY"
