@@ -64,7 +64,7 @@
 			var notifyArea = doc.getElementById("ctl00_ctl00_CPContent_ucNotifications_updNotifications");
 			notifyArea.appendChild(loading);
 
-			var isYouth = (String(doc.location).search(/isYouth=True/i) > -1);
+			var isYouth = (String(doc.location).search(/Youth/i) > -1);
 			var matchId = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
 
 			//Retrieve teams id

@@ -11,7 +11,7 @@ Foxtrick.Pages.Match = {
 	},
 
 	isYouth : function(doc) {
-		return (doc.location.search.search(/isYouth=true/i) > -1);
+		return (doc.location.search.search(/Youth/i) > -1);
 	},
 
 	getId : function(doc) {

@@ -58,7 +58,7 @@ Foxtrick.modules["CopyRatings"]={
 				}
 
 				var youth = '';
-				if (matchlink.href.search('isYouth=True')!=-1) youth = 'youth';
+				if (matchlink.href.search('Youth')!=-1) youth = 'youth';
 
 				var toggleTabHolder = doc.getElementsByClassName('toggleTabHolder')[0];
 				var copyTextRating = Foxtrick.hasClass(doc.getElementById('sortByNumberIcon'),'disabled') ? false : true;

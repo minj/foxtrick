@@ -98,7 +98,7 @@ Foxtrick.util.id.findMatchId = function(element) {
 
 Foxtrick.util.id.findIsYouthMatch = function(href) {
 	if (href.match(/Club\/Matches\/Match\.aspx/i) ) {
-		return (href.search(/isYouth=true/i)!=-1);
+		return (href.search(/Youth/i)!=-1);
 	}
 	return false;
 };

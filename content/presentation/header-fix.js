@@ -26,7 +26,7 @@ Foxtrick.modules["HeaderFix"]={
 		if (!isArena && !isMatch)
 			return;
 
-		if (doc.location.href.search(/isYouth/i)!=-1) return;
+		if (doc.location.href.search(/Youth/i)!=-1) return;
 
 		var ctl00_ctl00_CPContent_CPMain_pnl = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch");
 		if (isArena)  ctl00_ctl00_CPContent_CPMain_pnl = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlMain");

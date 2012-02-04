@@ -15,7 +15,7 @@ Foxtrick.Pages.Players = {
 		return Foxtrick.isPage("YouthPlayers", doc);
 	},
 	isYouthMatchOrderPage : function(doc) {
-		return Foxtrick.isPage("matchOrder", doc) && doc.location.href.indexOf('isYouth=True') != -1;
+		return Foxtrick.isPage("matchOrder", doc) && doc.location.href.indexOf('Youth') != -1;
 	},
 	isOwnPlayersPage : function(doc) {
 		var ownTeamId = Foxtrick.Pages.All.getOwnTeamId(doc);
