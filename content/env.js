@@ -638,43 +638,6 @@ Foxtrick.NodeTypes = {
 	NOTATION_NODE: 12
 };
 
-// bind seem to miss in safari extensions
-/** vice-versa Function
- * @author      Andrea Giammarchi
- * @license     Mit Style License
- * @blog        http://webreflection.blogspot.com/
- * @project     http://code.google.com/p/vice-versa/
- * @version     0.20100221230000
- * @note        these method are about ECMAScript 5
- */
-
-/** Function.prototype.bind(thisObj[, arg ... ])
- * @target  Chrome, FireFox, Internet Explorer, Opera, Safari
- * @see{http://webreflection.blogspot.com/2010/02/functionprototypebind.html}
- */
-if (Function.prototype.bind == null) {
-	Function.prototype.bind = (function (slice){
-		function bind(context) {
-			var self = this;
-			if (1 < arguments.length) {
-				var $arguments = slice.call(arguments, 1);
-				return function () {
-					return self.apply(
-						context,
-						arguments.length ?
-							$arguments.concat(slice.call(arguments)) :
-							$arguments
-					);
-				};
-			}
-			return function () {
-				return arguments.length ? self.apply(context, arguments) : self.call(context);
-			};
-		}
-		return bind;
-
-	}(Array.prototype.slice));
-}
 
 // List of categories
 Foxtrick.moduleCategories = {
