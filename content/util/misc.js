@@ -340,6 +340,10 @@ Foxtrick.get = function(url) {
  * @desc load a resource synchronusly (Not to be used in content modules)
  */
 Foxtrick.loadSync = function(url) {
+	if (url.replace(/^\s+/,'').indexOf(Foxtrick.InternalPath) != 0) {
+		Foxtrick.log("loadSync only for internal resources. ", url, "isn't , only ",Foxtrick.InternalPath," is");
+		return null;
+	}
 	// load
 	var req = new window.XMLHttpRequest();
 	req.open("GET", url, false);
