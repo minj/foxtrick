@@ -521,7 +521,7 @@ if (Foxtrick.arch === "Sandboxed") {
 					try {
 						return get(num, value);
 					} catch(e) {
-						Foxtrick.log('getString plural error. use last string');
+						//Foxtrick.log('getString plural error. use last string');
 						return value.replace(/.+;/g, "");
 					}
 				}
