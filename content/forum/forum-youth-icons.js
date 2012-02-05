@@ -129,6 +129,7 @@ Foxtrick.modules["ForumYouthIcons"]={
 
 			var div = doc.createElement('div');
 			div.setAttribute('class','HTMLToolbar');
+			// need to use the webpage's injected script functions
 			div.innerHTML = 
 				"<img onclick=\"insertQuote(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
 					src=\"/Img/Icons/transparent.gif\" class=\"f_quote2\" title=\"[q]\">\

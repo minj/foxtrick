@@ -92,12 +92,19 @@ Foxtrick.modules["GoToPostBox"]={
 			var iTopicId = doc.location.search.match(/\d+/)[0];
 			goButton.setAttribute('value', Foxtrickl10n.getString("button.go"));
 			goButton.setAttribute('class', 'ft_gotobox ft_gotobox_btn');
-			goButton.setAttribute('onclick',
-				'var val=document.getElementById("' + boxId + '").value; ' +
-				'if (val.indexOf(".") > 0) {var aTemp = val.split("."); val = aTemp[0] + "&n=" + aTemp[1];} ' +
-				'else {val = "' + iTopicId + tab + '&n=" + val} ' +
-				'location.href="/Forum/Read.aspx?t=" + val + ""'
-				);
+			var gotoFkt = function(ev) {
+				var boxNum = ev.target.id.match(/\d/)[0];
+				var val = document.getElementById('foxtrick_forum_postbox_postboxnum_' + boxNum).value;
+				if (val.indexOf(".") > 0) {
+					var aTemp = val.split("."); 
+					val = aTemp[0] + "&n=" + aTemp[1];
+				}
+				else {
+					val = "" + iTopicId + tab + "&n=" + val;
+				}
+				doc.location.href = "/Forum/Read.aspx?t=" + val;				
+			};
+			Foxtrick.listen(goButton, 'click', gotoFkt, false);
 
 			var inputBoxLabel = doc.createElement('span');
 			inputBoxLabel.textContent = "\u00a0";

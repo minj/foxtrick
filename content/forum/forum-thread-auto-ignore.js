@@ -77,7 +77,7 @@ Foxtrick.modules.ForumThreadAutoIgnore = {
 								if (thread_id == deletingThreadId) return;
 								deletingThreadId = thread_id;
 
-								// ignore thread using ht's javascript link
+								// ignore thread using ht's javascript link. need to use the webpage's injected script function
 								var func = ignore.getAttribute('onclick');
 								doc.location.href = func;
 								Foxtrick.dump('autoignore '+tags[k]+': '+a.innerHTML+'\n');

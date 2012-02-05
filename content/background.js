@@ -244,6 +244,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 				"Hattrick", // notification title
 				request.msg // notification body text
 			);
+			// this webkit notification. onclick is needed
 			notification.onclick = function() {
 				if ( Foxtrick.platform == "Chrome" ) {
 					// goto msg.url in sender tab

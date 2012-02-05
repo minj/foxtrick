@@ -30,6 +30,8 @@ Foxtrick.modules["MarkAllAsRead"]={
 		var container = doc.createElement("span");
 		container.className = "ft-mark-all-as-read";
 		container.title = Foxtrickl10n.getString("MarkAllAsRead.title");
+		
+		// mark-all-as-read using ht's javascript link. need to use the webpage's injected script function
 		container.setAttribute("onclick", addr);
 		container = Foxtrick.makeFeaturedElement(container, this);
 					
