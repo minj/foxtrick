@@ -172,7 +172,6 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		// @param url - the URL of resource to load with window.XMLHttpRequest
 		// @callback_param data - response text
 		// @callback_param status - HTTP status of request
-		// synchronous, since messaging is async already
 		var callback = function(responseText, status){
 			sendResponse({data : responseText, status : status});
 		};
