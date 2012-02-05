@@ -268,8 +268,8 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 Foxtrick.entry.change = function(ev) {
 	try {
 		var doc = ev.target.ownerDocument;
-		if (ev.target.nodeType !== Node.ELEMENT_NODE &&
-			ev.target.nodeType !== Node.TEXT_NODE)
+		if (ev.target.nodeType !== Foxtrick.NodeTypes.ELEMENT_NODE &&
+			ev.target.nodeType !== Foxtrick.NodeTypes.TEXT_NODE)
 			return;
 
 		// don't act to changes on the excluded pages

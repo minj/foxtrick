@@ -45,7 +45,7 @@ Foxtrick.modules["HeaderToggle"]={
 				var forumThreads = {}, numUnread = 0, idString='';
 				while ( el ) { 
 					// if text node, wrap in span on first encounter
-					if (el.nodeType ==  Node.TEXT_NODE) {
+					if (el.nodeType ==  Foxtrick.NodeTypes.TEXT_NODE) {
 						if (Foxtrick.trim(el.nodeValue) != "") {
 							var target = el.nextSibling;
 							var span =  doc.createElement('span');

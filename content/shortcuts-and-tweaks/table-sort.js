@@ -58,7 +58,7 @@ Foxtrick.modules["TableSort"]={
 					if (text=='') {
 						// use first title instead
 						var getTitle = function (i_el) {
-							if (i_el.nodeType != Node.ELEMENT_NODE) 
+							if (i_el.nodeType != Foxtrick.NodeTypes.ELEMENT_NODE) 
 								return;
 							var title = i_el.getAttribute('title')
 							if (!title) {

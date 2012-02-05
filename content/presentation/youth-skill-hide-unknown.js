@@ -37,7 +37,7 @@ Foxtrick.modules["YouthSkillHideUnknown"]={
 					var skillBars = doc.getElementsByClassName("youthSkillBar");
 					Foxtrick.map(function(skillBar) {
 						var textNodes = Foxtrick.filter(function(n) {
-							return n.nodeType == Node.TEXT_NODE;
+							return n.nodeType == Foxtrick.NodeTypes.TEXT_NODE;
 						}, skillBar.childNodes);
 						for (var i = 0; i < textNodes.length; ++i)
 							textNodes[i].textContent = (i == 1) ? " / " : " ";
