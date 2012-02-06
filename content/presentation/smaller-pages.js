@@ -110,13 +110,6 @@ Foxtrick.modules["SmallerPages"]={
 				for (i=0;toremove.length;i++) {
 					toremove.item(i).parentNode.removeChild(toremove.item(i));
 				}
-				//Now removing text before numbers
-				toremove=biddiv.getElementsByTagName('p');
-				//for (i=0;toremove.length;i++) {
-					//removing all non digit characters NOT WORKING
-					//toremove[i].innerHTML=toremove[i].innerHTML.replace(/&nbsp;/g,"").replace(/[a-z]/g, "").replace(/[A-Z]/g, "");
-					//Analyzing character per character
-				//}
 			}
 			catch (e) {
 				Foxtrick.log(e);

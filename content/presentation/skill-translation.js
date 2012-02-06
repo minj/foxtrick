@@ -174,31 +174,49 @@ Foxtrick.modules["SkillTranslation"]={
 		// is english test
 		if (table.rows[1].cells[0].getElementsByTagName('b')[0].innerHTML==this.player_abilities[0]) return;
 
-			this.translate_category(doc,table,1,this.player_abilities,false);
-			this.translate_category(doc,table,2,this.coach_skills,false);
-			this.translate_category(doc,table,3,this.formation_experience,false);
-			this.translate_category(doc,table,4,this.sponsors,false);
-			this.translate_category(doc,table,5,this.fan_mood,false);
-			this.translate_category(doc,table,6,this.fan_match_expectations,true);
-			this.translate_category(doc,table,7,this.fan_season_expectations,true);
-			this.translate_category(doc,table,8,this.agreeability,true);
-			this.translate_category(doc,table,9,this.honesty,false);
-			this.translate_category(doc,table,10,this.aggressiveness,false);
-			this.translate_category(doc,table,11,this.team_spirit,false);
-			this.translate_category(doc,table,12,this.team_confidence,false);
+			this.translate_category(doc, table, 1, this.player_abilities, false);
+			this.translate_category(doc, table, 2, this.coach_skills, false);
+			this.translate_category(doc, table, 3, this.formation_experience, false);
+			this.translate_category(doc, table, 4, this.sponsors, false);
+			this.translate_category(doc, table, 5, this.fan_mood, false);
+			this.translate_category(doc, table, 6, this.fan_match_expectations, true);
+			this.translate_category(doc, table, 7, this.fan_season_expectations, true);
+			this.translate_category(doc, table, 8, this.agreeability, true);
+			this.translate_category(doc, table, 9, this.honesty, false);
+			this.translate_category(doc, table, 10, this.aggressiveness, false);
+			this.translate_category(doc, table, 11, this.team_spirit, false);
+			this.translate_category(doc, table, 12, this.team_confidence, false);
 
-		doc.location.hash=doc.location.hash;
+		doc.location.hash = doc.location.hash;
 	},
 
-	translate_category: function(doc,table,index,denominations,two_lines) {
-		var br='';
-		if (two_lines) br='<br>';
-		table.rows[index].cells[0].innerHTML += '<br><span class="shy">(' + denominations[0] + '</span>)';
-		var org_skills=table.rows[index].cells[1].innerHTML.split('<br>');
-		table.rows[index].cells[1].innerHTML='';
-		for (var i=1;i<denominations.length;++i) {
-			//Foxtrick.dump(org_skills+'\n'+org_skills[i-1]+'\n');
-			table.rows[index].cells[1].innerHTML += org_skills[i-1] + br + ' <span style="white-space:nowrap;" class="shy">('+denominations[i]+')</span><br>';
+	translate_category: function(doc, table, index, denominations, two_lines) {
+		table.rows[index].cells[0].appendChild(doc.createElement('br'));
+		var span = Foxtrick.createFeaturedElement(doc, this, 'span');
+		Foxtrick.addClass(span, 'shy');
+		span.textContent = '(' + denominations[0] + ')';
+		table.rows[index].cells[0].appendChild(span)
+		
+		var org_skills = table.rows[index].cells[1].innerHTML.split('<br>');
+		table.rows[index].cells[1].innerHTML = '';
+		for (var i=1; i<denominations.length; ++i) {
+			var strong = org_skills[i-1].match(/<strong>(.+)<\/strong>/);
+			if (!strong)
+				table.rows[index].cells[1].appendChild(doc.createTextNode(org_skills[i-1]));
+			else {
+				var node = doc.createElement('strong');
+				node.textContent = strong[1];
+					table.rows[index].cells[1].appendChild(node);
+			}
+			if (two_lines)
+				table.rows[index].cells[1].appendChild(doc.createElement('br'));
+			else
+				table.rows[index].cells[1].appendChild(doc.createTextNode(' '));
+			var span = Foxtrick.createFeaturedElement(doc, this, 'span');
+			Foxtrick.addClass(span,'nowrap shy');
+			span.textContent = '('+denominations[i]+')';
+			table.rows[index].cells[1].appendChild(span)
+			table.rows[index].cells[1].appendChild(doc.createElement('br'));
 		}
 	}
 };

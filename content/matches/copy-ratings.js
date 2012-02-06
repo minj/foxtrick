@@ -53,8 +53,8 @@ Foxtrick.modules["CopyRatings"]={
 				var ad = '\n[table]\n';
 				var table = Foxtrick.Pages.Match.getRatingsTable(doc).cloneNode(true);
 				for (var row=0; row<table.rows.length; ++row) {
-					if(!team1 && table.rows[row].cells.length>=2) table.rows[row].cells[1].innerHTML='###';
-					if(!team2 && table.rows[row].cells.length>=3) table.rows[row].cells[2].innerHTML='###';
+					if(!team1 && table.rows[row].cells.length>=2) table.rows[row].cells[1].textContent = '###';
+					if(!team2 && table.rows[row].cells.length>=3) table.rows[row].cells[2].textContent = '###';
 				}
 
 				var youth = '';
