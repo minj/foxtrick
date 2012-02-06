@@ -47,20 +47,35 @@ Foxtrick.modules["HighlightCupwins"]={
 			try {
 				var homeTeam = !rtl ? teams[1] : teams[2];
 				var awayTeam = !rtl ? teams[2] : teams[1];
+				Foxtrick.addClass(matchlink, 'nowrap');
 				if (win) {
 					if (highlightHomeWin) {
-						table.rows[i].cells[4].innerHTML = '<strong>'+table.rows[i].cells[4].innerHTML+'</strong>';
+						var strong = doc.createElement('strong');
+						strong.textContent = table.rows[i].cells[4].textContent;
+						table.rows[i].cells[4].replaceChild(strong, table.rows[i].cells[4].firstChild);
 					}
-					if (!rtl)
-						matchlink.innerHTML = '<strong>' + homeTeam + '</strong>&nbsp;-&nbsp;' + awayTeam;
-					else
-						matchlink.innerHTML = awayTeam + '&nbsp;-&nbsp;<strong>' + homeTeam + '</strong>';
+					var strong = doc.createElement('strong');
+					strong.textContent = homeTeam;
+					if (!rtl) {
+						matchlink.replaceChild(strong, matchlink.firstChild);
+						matchlink.appendChild(doc.createTextNode(' - ' + awayTeam));
+					}
+					else {
+						matchlink.replaceChild(doc.createTextNode(awayTeam + ' - '), matchlink.firstChild);
+						matchlink.appendChild(strong);
+					}
 				}
 				else if (lose) {
-					if (!rtl)
-						matchlink.innerHTML = homeTeam + '&nbsp;-&nbsp;<strong>' + awayTeam + '</strong>';
-					else
-						matchlink.innerHTML = '<strong>' + awayTeam + '</strong>&nbsp;-&nbsp;' + homeTeam;
+					var strong = doc.createElement('strong');
+					strong.textContent = awayTeam;
+					if (!rtl) {
+						matchlink.replaceChild(doc.createTextNode(homeTeam + ' - '), matchlink.firstChild);
+						matchlink.appendChild(strong);
+					}
+					else{
+						matchlink.replaceChild(strong, matchlink.firstChild);
+						matchlink.appendChild(doc.createTextNode(' - ' + homeTeam));
+					}
 				}
 				var strongs = table.rows[i].getElementsByTagName('strong');
 				for (var j=0; j<strongs.length; ++j)

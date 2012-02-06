@@ -57,19 +57,19 @@ Foxtrick.modules["LeagueNewsFilter"]={
 
 		var option=doc.createElement('option');
 		option.setAttribute('value','0');
-		option.innerHTML=Foxtrickl10n.getString("foxtrick.LeagueNewsFilter.all");
+		option.textContent=Foxtrickl10n.getString("foxtrick.LeagueNewsFilter.all");
 		select.appendChild(option);
 		var option=doc.createElement('option');
 		option.setAttribute('value','1');
-		option.innerHTML=Foxtrickl10n.getString("foxtrick.LeagueNewsFilter.friendlies");
+		option.textContent=Foxtrickl10n.getString("foxtrick.LeagueNewsFilter.friendlies");
 		select.appendChild(option);
 		var option=doc.createElement('option');
 		option.setAttribute('value','2');
-		option.innerHTML=Foxtrickl10n.getString("foxtrick.LeagueNewsFilter.transfers");
+		option.textContent=Foxtrickl10n.getString("foxtrick.LeagueNewsFilter.transfers");
 		select.appendChild(option);
 		var option=doc.createElement('option');
 		option.setAttribute('value','3');
-		option.innerHTML=Foxtrickl10n.getString("foxtrick.LeagueNewsFilter.lineup_changes");
+		option.textContent=Foxtrickl10n.getString("foxtrick.LeagueNewsFilter.lineup_changes");
 		select.appendChild(option);
 		select.value=FoxtrickPrefs.getInt("module.LeagueNewsFilter.value");
 		selectdiv.appendChild(select);

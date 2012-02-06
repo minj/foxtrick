@@ -22,8 +22,8 @@ Foxtrick.modules["Ratings"]={
 		if (!Foxtrick.Pages.Match.isCorrectLanguage(ratingstable)) { // incorrect language
 			var row = Foxtrick.insertFeaturedRow(ratingstable, this, -1);
 			var cell = row.insertCell(0);
-			cell.setAttribute("colspan" , 3);
-			cell.innerHTML = Foxtrickl10n.getString( "foxtrick.matches.wronglang" );
+			cell.setAttribute("colspan", 3);
+			cell.textContent = Foxtrickl10n.getString( "foxtrick.matches.wronglang" );
 			return;
 		}
 
@@ -67,36 +67,37 @@ Foxtrick.modules["Ratings"]={
 		// seperator
 		var row = ratingstable.insertRow(-1);
 		var cell = row.insertCell(0);
-		cell.innerHTML='&nbsp;';
+		cell.textContent='\u00a0';
 
 		for (var k=1; k<this.OPTIONS.length; ++k) {
-		//for (var k=this.OPTIONS.length-1; k>=0; --k) {
 			var selectedRating = this.OPTIONS[k];
-			if (!FoxtrickPrefs.isModuleOptionEnabled("Ratings", selectedRating)) continue;
+			
+			if (!FoxtrickPrefs.isModuleOptionEnabled("Ratings", selectedRating)) 
+				continue;
 
 			var row = Foxtrick.insertFeaturedRow(ratingstable, this, -1);
 			row.className='ft_rating_table_row';
 
 			var cell = row.insertCell(0);
-			cell.className='ch';
-			cell.innerHTML = this.ratingDefs[selectedRating]["label"]();
+			cell.className = 'ch';
+			cell.textContent = this.ratingDefs[selectedRating]["label"]();
 
 			for (var i=0;i<2;i++) {
 				var cell = row.insertCell(i+1);
 
-				this.insertRatingsDet(cell, this.ratingDefs[selectedRating], "defence",
+				this.insertRatingsDet(doc, cell, this.ratingDefs[selectedRating], "defence",
 						 Foxtrickl10n.getString( "foxtrick.matchdetail.defence" ), defenceLevel[i]);
-				this.insertRatingsDet(cell, this.ratingDefs[selectedRating], "special",
+				this.insertRatingsDet(doc, cell, this.ratingDefs[selectedRating], "special",
 						 Foxtrickl10n.getString( "foxtrick.matchdetail.defence" ),  rdefence[i], cdefence[i], ldefence[i]);
 
-				this.insertRatingsDet(cell, this.ratingDefs[selectedRating], "midfield",
+				this.insertRatingsDet(doc, cell, this.ratingDefs[selectedRating], "midfield",
 						 Foxtrickl10n.getString( "foxtrick.matchdetail.midfield" ), midfieldLevel[i]);
-				this.insertRatingsDet(cell, this.ratingDefs[selectedRating], "mystyle",
+				this.insertRatingsDet(doc, cell, this.ratingDefs[selectedRating], "mystyle",
 						 Foxtrickl10n.getString( "foxtrick.matchdetail.midfield" ), midfieldLevel[i]);
 
-				this.insertRatingsDet(cell, this.ratingDefs[selectedRating], "attack",
+				this.insertRatingsDet(doc, cell, this.ratingDefs[selectedRating], "attack",
 						 Foxtrickl10n.getString( "foxtrick.matchdetail.attack" ),  attackLevel[i]);
-				this.insertRatingsDet(cell, this.ratingDefs[selectedRating], "special",
+				this.insertRatingsDet(doc, cell, this.ratingDefs[selectedRating], "special",
 						 Foxtrickl10n.getString( "foxtrick.matchdetail.attack" ),  rattack[i], cattack[i], lattack[i]);
 
 				try {
@@ -106,38 +107,40 @@ Foxtrick.modules["Ratings"]={
 						}
 						if (tactics[i] != null) {
 							if (cell.innerHTML.length>2) {
-								cell.innerHTML+="<br />"+Foxtrickl10n.getString( "foxtrick.matchdetail.total" )+": ";
+								cell.appendChild(doc.createElement('br'));
+								cell.appendChild(doc.createTextNode(Foxtrickl10n.getString( "foxtrick.matchdetail.total" )+": "));
 							}
-							cell.innerHTML += "<b>" +
-												this.ratingDefs[selectedRating]["total2"](midfieldLevel[i], lattack[i], cattack[i], rattack[i],
+							var b = cell.appendChild(doc.createElement('b'));
+							b.textContent = this.ratingDefs[selectedRating]["total2"](midfieldLevel[i], lattack[i], cattack[i], rattack[i],
 																									ldefence[i], cdefence[i], rdefence[i],
 																									tactics[i], tacticsLevel[i]
-																									)
-											+ "</b>";
+																									);
 						}
 					}
 					else if (typeof(this.ratingDefs[selectedRating]["total"]) == "function") {
 						if (cell.innerHTML.length>2) {
-							cell.innerHTML+="<br />"+Foxtrickl10n.getString( "foxtrick.matchdetail.total" )+": ";
+							cell.appendChild(doc.createElement('br'));
+							cell.appendChild(doc.createTextNode(Foxtrickl10n.getString( "foxtrick.matchdetail.total" )+": "));
 						}
-						cell.innerHTML += "<b>" +
-											this.ratingDefs[selectedRating]["total"](midfieldLevel[i], attackLevel[i], defenceLevel[i])
-										+ "</b>";
+						var b = cell.appendChild(doc.createElement('b'));
+						b.textContent = this.ratingDefs[selectedRating]["total"](midfieldLevel[i], attackLevel[i], defenceLevel[i]);
 					}
 				}
 				catch (e) {
-					Foxtrick.dump('ratings.js error in rating print ('+selectedRating+'): '+e+"\n");
+					Foxtrick.log('ratings.js error in rating print ('+selectedRating+'): ', e);
 				}
 			}
 		}
 	},
 	
-	insertRatingsDet: function (cell, rating, ratingType, label, midfieldLevel, attackLevel, defenceLevel) {
+	insertRatingsDet: function (doc, cell, rating, ratingType, label, midfieldLevel, attackLevel, defenceLevel) {
 		if (typeof(rating[ratingType]) == 'undefined') return;
-		if (cell.innerHTML.length>2) {
-			cell.innerHTML+="<br />"
-		}
-		cell.innerHTML+=label+": <b>" + rating[ratingType](midfieldLevel, attackLevel, defenceLevel) + "</b>";
+			if (cell.innerHTML.length>2) {
+				cell.appendChild(doc.createElement('br'));
+			}
+		cell.appendChild(doc.createTextNode(label+": "));
+		var b = cell.appendChild(doc.createElement('b'));
+		b.textContent = rating[ratingType](midfieldLevel, attackLevel, defenceLevel);
 	},
 
 	initHtRatings: function () {

@@ -130,9 +130,12 @@ Foxtrick.modules["CountryList"]={
 			league.firstChild.title = htname
 
 			var byline = doc.getElementsByClassName("byline")[0];
-			byline.innerHTML = '<a id="ft_cntr_fix" href="'+league.href+'">' + htname + '</a>,' + byline.innerHTML;
-			var cntr = doc.getElementById( 'ft_cntr_fix' );
-			Foxtrick.makeFeaturedElement(cntr, Foxtrick.modules.CountryList);	
+			var a = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.CountryList, 'a');	
+			byline.insertBefore(a, byline.firstChild);
+			a.id = "ft_cntr_fix";
+			a.href = league.href;
+			a.textContent = htname;
+			byline.insertBefore(doc.createTextNode(', '), a.nextSibling);
 		}
 	},
 
