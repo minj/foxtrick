@@ -37,7 +37,7 @@ Foxtrick.modules["AddClass"]={
 
 		// start time
 		var cells = mainBody.getElementsByClassName("byline");
-		Foxtrick.map(function(cell) { //Foxtrick.log(cell.innerHTML, cell.innerHTML.search(timeRe));
+		Foxtrick.map(function(cell) { 
 			if (cell.getElementsByClassName("date").length == 0)
 				cell.innerHTML = cell.innerHTML.replace(timeRe, "<span class=\"date\">$1</span>");
 		}, cells);

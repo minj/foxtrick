@@ -10,15 +10,19 @@ Foxtrick.modules["ForumStage"]={
 	PAGES : new Array('forumWritePost'),
 
 	run : function(doc) {
-		var forum = doc.getElementById('mainWrapper').getElementsByTagName("h2")[0].getElementsByTagName("a")[1].innerHTML;
+		var forum = doc.getElementById('mainWrapper')
+						.getElementsByTagName("h2")[0]
+						.getElementsByTagName("a")[1].innerHTML;
 		if (forum == 'Stage') {
 			var textarea = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
 			var divalert = doc.createElement('div');
 			divalert.className = 'alert ft-dummy';
-			divalert.innerHTML = "Please <b>disable FoxTrick</b> and any other Hattrick extensions" + 
-								" (Browser menu -> Tools -> Add-ons) before reporting a bug. "+
-								" Repeated ignorance = Stage kick. Clicking on the <a href='#ft_versionInfo'>FoxTrick version info</a>" +
-								" (down right with the stage build) highlights most of FoxTrick's features."; 
+			divalert.innerHTML = 
+				"Please <b>disable FoxTrick</b> and any other Hattrick extensions" + 
+				" (Browser menu -> Tools -> Add-ons) before reporting a bug. "+
+				" Repeated ignorance = Stage kick. Clicking on the" +
+				" <a href='#ft_versionInfo'>FoxTrick version info</a>" +
+				" (down right with the stage build) highlights most of FoxTrick's features."; 
 			textarea.parentNode.insertBefore(divalert, textarea.nextSibling);
 
 			// checkbox
