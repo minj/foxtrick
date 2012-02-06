@@ -144,13 +144,20 @@ Foxtrick.modules["AttVsDef"]={
 									ifkdefText+' - '+Foxtrickl10n.getString( "foxtrick.matches.attack" ),
 									ifkattText+' - '+Foxtrickl10n.getString( "foxtrick.matches.defense" ));
 
-		for (var i=0;i<percentArray.length;i++) {
-			bodydiv.appendChild(doc.createTextNode(labelArray[i]));
-			bodydiv.appendChild(doc.createElement("br"));
-			bodydiv.appendChild(this._createTextBox(doc, percentArray[i]));
+		for (var i=0; i<percentArray.length; i++) {
+			bodydiv.appendChild( doc.createTextNode(labelArray[i]) );
+			bodydiv.appendChild( doc.createElement("br") );
+			bodydiv.appendChild( this._createTextBox(doc, percentArray[i]) );
 			var bardiv=doc.createElement('div');
 			bardiv.className="possesionbar";
-			bardiv.innerHTML='<img alt="" src="/Img/Matches/filler.gif" width="'+percentArray[i]+'" height="10"><img src="/Img/Matches/possesiontracker.gif" alt="">';
+			var img1 = doc.createElement('img');
+			img1.src = "/Img/Matches/filler.gif";
+			img1.width = percentArray[i];
+			img1.height = 10;
+			bardiv.appendChild(img1);
+			var img2 = doc.createElement('img');
+			img2.src = "/Img/Matches/possesiontracker.gif";
+			bardiv.appendChild(img2);
 			bodydiv.appendChild(bardiv);
 			bodydiv.appendChild(this._createTextBox(doc, 100-percentArray[i]));
 

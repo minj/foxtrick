@@ -84,7 +84,7 @@ Foxtrick.modules["ShowLineupSet"]={
 					link.appendChild(doc.createTextNode(' - '));
 					link.appendChild(teamNode1);
 					Foxtrick.addClass(link, 'nowrap');
-					link = Foxtrick.makeFeaturedElement(link, this);
+					link = Foxtrick.makeFeaturedElement(link, Foxtrick.modules.ShowLineupSet);
 					
 					return [teamNode0, teamNode1];
 				};

@@ -284,10 +284,15 @@ Foxtrick.modules["SkillTable"]={
 						cell.setAttribute("index", matchDay);
 						if (matchDay == lastMatchDate) {
 							Foxtrick.addClass(cell, "latest-match");
+							cell.parentNode.setAttribute('played-latest', true);
 						}
 						else if (matchDay == secondLastMatchDate) {
 							Foxtrick.addClass(cell, "second-latest-match");
+							cell.parentNode.setAttribute('not-played-latest', true);
 						}
+						else
+							cell.parentNode.setAttribute('not-played-latest', true);
+
 					}
 					else {
 						cell.setAttribute("index", 0);
@@ -314,13 +319,12 @@ Foxtrick.modules["SkillTable"]={
 					var JoinedText = 'NaN';
 					try { JoinedText = Foxtrick.util.time.timeDifferenceToText (joined_s , true, true);}
 					catch(ee) {	Foxtrick.dump('  JoinedText >' + ee + '\n');}
-					cell.innerHTML = JoinedText;
+					cell.textContent = JoinedText;
 					cell.title = deadline;
 					cell.setAttribute('class','align-left');
 					cell.setAttribute("index",joined_s);
 				};
 				var dateLink = function(cell, deadline) {
-					deadline.innerHTML = deadline.innerHTML.replace(/div/gi,'span');
 					cell.appendChild(deadline);
 					cell.setAttribute("index", Foxtrick.util.time.getDateFromText(deadline.textContent).getTime());
 				};
@@ -591,7 +595,8 @@ Foxtrick.modules["SkillTable"]={
 							rows[i].setAttribute('lastSort',i);
 							newBody.appendChild(rows[i]);
 						}
-						table.getElementsByTagName("tbody")[0].innerHTML = newBody.innerHTML;
+						table.innerHTML = '';
+						table.appendChild(newBody);
 					}
 					catch (e) {
 						Foxtrick.log(e);
@@ -662,7 +667,8 @@ Foxtrick.modules["SkillTable"]={
 					if (playerList[i].currentClubLink) row.setAttribute('currentclub', playerList[i].currentClubLink.href.match(/\/Club\/\?TeamID=(\d+)/i)[1]);
 					if (playerList[i].injured) row.setAttribute('injured', playerList[i].injured);
 					if (playerList[i].cards) row.setAttribute('cards', playerList[i].cards);
-					if (playerList[i].transferListed) row.setAttribute('transfer-listed', playerList[i].transferListed);
+					if (playerList[i].transferListed) row.setAttribute('transfer-listed', 'true');
+					else row.setAttribute('not-transfer-listed', 'true');
 					if (playerList[i].speciality) row.setAttribute('speciality-'+Foxtrickl10n.getEnglishSpeciality(playerList[i].speciality),true);
 					if (playerList[i].active) row.setAttribute('active', playerList[i].active);
 					if (playerList[i].motherClubBonus) row.setAttribute("homegrown-player", "true");
