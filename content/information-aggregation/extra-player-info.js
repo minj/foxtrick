@@ -39,9 +39,18 @@ Foxtrick.modules["ExtraPlayerInfo"]={
 					else {
 						trainerTypeStr = Foxtrickl10n.getString('foxtrick.balancedTrainer');
 					}
-					var trainerSkillLink = '<a class="skill" href="/Help/Rules/AppDenominations.aspx?lt=skill&ll='+player.trainerData.skill+'#skill">'+trainerSkillStr+'</a>';
+					trainerTypeStr = trainerTypeStr.split('%s');
+					
+					var trainerSkillLink = doc.createElement('a');
+					trainerSkillLink.href = "/Help/Rules/AppDenominations.aspx?lt=skill&ll=" + player.trainerData.skill + "#skill";
+					trainerSkillLink.className = "skill";
+					trainerSkillLink.textContent = trainerSkillStr;
+					
 					var div = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.ExtraPlayerInfo, 'div');							
-					div.innerHTML = trainerTypeStr.replace("%s", trainerSkillLink);
+					div.appendChild(doc.createTextNode(trainerTypeStr[0]));
+					div.appendChild(trainerSkillLink);
+					div.appendChild(doc.createTextNode(trainerTypeStr[1]));
+					
 					// insert after the second break
 					basics.appendChild(div);
 				}

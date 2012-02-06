@@ -8,7 +8,7 @@
 
 Foxtrick.modules["ShowLineupSet"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ["series"],
+	PAGES : ["series", "youthSeries"],
 	OPTIONS : ["LineupSet", "Ownerless", "Winning"],
 
 	run : function(doc) {
@@ -17,7 +17,8 @@ Foxtrick.modules["ShowLineupSet"]={
 		var bots = [];
 
 		// check teams that have set a lineup
-		if (FoxtrickPrefs.isModuleOptionEnabled("ShowLineupSet", "LineupSet")) {
+		if (FoxtrickPrefs.isModuleOptionEnabled("ShowLineupSet", "LineupSet") &&
+			Foxtrick.isPage('series', doc)) {
 			var newsFeed = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLLUFeed");
 			var items = newsFeed.getElementsByClassName("feedItem");
 			// check whether an item is a set-lineup item, if is, return team
@@ -37,16 +38,14 @@ Foxtrick.modules["ShowLineupSet"]={
 		}
 
 		// check ownerless teams
-		if (FoxtrickPrefs.isModuleOptionEnabled("ShowLineupSet", "Ownerless")) {
-			var leagueTable = doc.getElementById("mainBody").getElementsByTagName("table")[0];
-			// checks whether a team is ownerless
-			var isOwnerless = function(link) { return Foxtrick.hasClass(link, "shy"); }
-			// get bots/ownerless
-			var teams = leagueTable.getElementsByTagName("a");
-			var botLinks = Foxtrick.filter(isOwnerless, teams);
-			bots = Foxtrick.map(function(n) { return n.textContent; }, botLinks);
-		}
-
+		var leagueTable = doc.getElementById("mainBody").getElementsByTagName("table")[0];
+		// checks whether a team is ownerless
+		var isOwnerless = function(link) { return Foxtrick.hasClass(link, "shy"); }
+		// get bots/ownerless
+		var teams = leagueTable.getElementsByTagName("a");
+		var botLinks = Foxtrick.filter(isOwnerless, teams);
+		bots = Foxtrick.map(function(n) { return n.textContent; }, botLinks);
+		
 		var isFixtureTable = function(table) {
 			try {
 				var row = table.rows[1];
@@ -72,57 +71,66 @@ Foxtrick.modules["ShowLineupSet"]={
 				var row = table.rows[i];
 				if (row.cells.length < 2)
 					continue; // not a valid fixture/result row
-				var link = row.cells[0].getElementsByTagName('a')[0];
-				// lineup set (for future matches only)
-				if (isFixtureTable(table)) {
-					for (var j = 0; j < lineupSet.length; ++j) {
-						var pos = link.title.indexOf(lineupSet[j]);
-						if (pos == 0) {
-							// home team has set lineup
-							var reg = new RegExp(/(.+)&nbsp;-/);
-							link.innerHTML = link.innerHTML.replace(reg, '<strong>$1</strong>&nbsp;-');
-							link = Foxtrick.makeFeaturedElement(link, this);	
+
+				var makeTeamNodes = function(link) {
+					var teams = link.innerHTML.split('&nbsp;-&nbsp;');
+					var teamNode0 = doc.createElement('span');
+					teamNode0.textContent = teams[0];
+					var teamNode1 = doc.createElement('span');
+					teamNode1.textContent = teams[1];
+					
+					link.textContent = '';
+					link.appendChild(teamNode0);
+					link.appendChild(doc.createTextNode(' - '));
+					link.appendChild(teamNode1);
+					Foxtrick.addClass(link, 'nowrap');
+					link = Foxtrick.makeFeaturedElement(link, this);
+					
+					return [teamNode0, teamNode1];
+				};
+				
+				var markBots = function (link, teams) {
+					for (var j = 0; j < bots.length; ++j) {
+						var pos = link.title.indexOf(bots[j]);
+						if (pos == 0 ) {
+							Foxtrick.addClass(teams[0],'shy');
 						}
 						else if (pos > 0) {
-							// away team has set lineup
-							var reg = new RegExp(/-&nbsp;(.+)/);
-							link.innerHTML = link.innerHTML.replace(reg, '-&nbsp;<strong>$1</strong>');
-							link = Foxtrick.makeFeaturedElement(link, this);	
+							Foxtrick.addClass(teams[1],'shy');
 						}
 					}
-				}
-				// bots (for both results and future matches)
-				for (var j = 0; j < bots.length; ++j) {
-					var pos = link.title.indexOf(bots[j]);
-					if (pos == 0) {
-						// home team is bot
-						var reg = new RegExp(/(.+)&nbsp;-/);
-						link.innerHTML = link.innerHTML.replace(reg, '<span class="shy">$1</span>&nbsp;-');
-						link = Foxtrick.makeFeaturedElement(link, this);
+				};
+
+				var link = row.cells[0].getElementsByTagName('a')[0];
+
+				// lineup set (for future matches only)
+				if (isFixtureTable(table)) {
+					var teams = makeTeamNodes(link);
+					for (var j = 0; j < lineupSet.length; ++j) {
+						var pos = link.title.indexOf(lineupSet[j]);
+						if (pos == 0)
+							teams[0].className = 'bold';
+						else if (pos > 0)
+							teams[1].className = 'bold';
 					}
-					else if (pos > 0) {
-						// away team is bot
-						var reg = new RegExp(/-&nbsp;(.+)/);
-						link.innerHTML = link.innerHTML.replace(reg, '-&nbsp;<span class="shy">$1</span>');
-						link = Foxtrick.makeFeaturedElement(link, this);
-					}
+					markBots(link, teams);
 				}
 				// wins (for results only)
 				if (isResultTable(table)
 					&& FoxtrickPrefs.isModuleOptionEnabled("ShowLineupSet", "Winning")) {
+					
+					var teams = makeTeamNodes(link);
+								
 					var goals = Foxtrick.trim(row.cells[1].textContent).split(/\s*-\s*/);
 					var goal_dif = parseInt(goals[0]) - parseInt(goals[1])
-					if (rtl) goal_dif *= -1; // reverted for rtl
-					if (goal_dif > 0) {
-						var reg = new RegExp(/(.+)\&nbsp;-/);
-						link.innerHTML = link.innerHTML.replace(reg,'<strong>$1</strong>&nbsp;-');
-						link = Foxtrick.makeFeaturedElement(link, this);
-					}
-					else if (goal_dif < 0) {
-						var reg = new RegExp(/\-&nbsp;(.+)/);
-						link.innerHTML = link.innerHTML.replace(reg,'-&nbsp;<strong>$1</strong>');
-						link = Foxtrick.makeFeaturedElement(link, this);
-					}
+					if (rtl) 
+						goal_dif *= -1; // reverted for rtl
+					if (goal_dif > 0)
+						teams[0].className = 'bold';
+					else if (goal_dif < 0)
+						teams[1].className = 'bold';
+
+					markBots(link, teams);
 				}
 			}
 		}
