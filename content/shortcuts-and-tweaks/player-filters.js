@@ -29,7 +29,13 @@ Foxtrick.modules["PlayerFilters"]={
 					// we only scan the players for once and mark it as scanned
 					return;
 				}
-
+				
+				// rename filter to all
+				filterSelect.getElementsByTagName('option')[0].textContent = Foxtrickl10n.getString('Filters.noFilter');
+				
+				// remove 'addFilterOptions'
+				filterSelect.removeChild(filterSelect.getElementsByTagName('option')[1]);
+				
 				var playerList = Foxtrick.Pages.Players.getPlayerList(doc);
 				var lastMatch = 0;
 				for (var i = 0; i < playerList.length; ++i) {
@@ -224,6 +230,11 @@ Foxtrick.modules["PlayerFilters"]={
 		};
 
 		var changeListener = function(ev) {
+			if (filterSelect.getAttribute("scanned") !== "true") {
+				selectClick();
+				return;
+			}
+				
 			var filter = filterSelect.value;
 			
 			if (filter == 'active' && !hasBotsMarked) {
@@ -378,7 +389,8 @@ Foxtrick.modules["PlayerFilters"]={
 
 		Foxtrick.listen(filterSelect, "click", function() {
 			try {
-				selectClick();
+				// replaced with a filter option to fill the select. seems better (and needed for OsX+webkit)
+				//selectClick();
 			}
 			catch (e) {
 				Foxtrick.log(e);
@@ -397,9 +409,15 @@ Foxtrick.modules["PlayerFilters"]={
 		// players
 		var option = doc.createElement("option");
 		option.value = "all";
-		option.textContent = "-- " + Foxtrickl10n.getString("Filter") + " --";
+		option.textContent = "-- " + Foxtrickl10n.getString("Filters") + " --";
 		filterSelect.appendChild(option);
 
+		var option = doc.createElement("option");
+		option.value = "addFilters";
+		option.textContent = Foxtrickl10n.getString("Filters.addFilterOptions");
+		filterSelect.appendChild(option);
+
+		
 		var parentNode = sortSelect.parentNode
 		var insertBefore = sortSelect.nextSibling;
 		sortSelect.parentNode.removeChild(sortSelect);
