@@ -316,10 +316,8 @@ Foxtrick.modules["SkillTable"]={
 					var dateObj = Foxtrick.util.time.getDateFromText(deadline, "yyyymmdd");
 					var htDate = Foxtrick.util.time.getHtDate(doc);
 					var joined_s = Math.floor((htDate.getTime() - dateObj.getTime()) / 1000); //Sec
-					var JoinedHTML = 'NaN';
-					try { JoinedHTML = Foxtrick.util.time.timeDifferenceToHTML (joined_s , true, true);}
-					catch(ee) {	Foxtrick.dump('  JoinedHTML >' + ee + '\n');}
-					cell.textContent = JoinedHTML;
+					var JoinedSpan = Foxtrick.util.time.timeDifferenceToElement (doc, joined_s , true, true);
+					cell.appendChild(JoinedSpan);
 					cell.title = deadline;
 					cell.setAttribute('class','align-left');
 					cell.setAttribute("index",joined_s);

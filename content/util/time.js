@@ -215,13 +215,14 @@ Foxtrick.util.time = {
 		return string;
 	},
 
-	timeDifferenceToHTML : function(time_sec, useShort, useFull) {
+	timeDifferenceToElement : function(doc, time_sec, useShort, useFull) {
 		var org_time = time_sec;
 		// Returns the time differnce as DDD days, HHh MMm
 		// if useShort, only DDD day(s) will be returned
 		// if useFull && useShort, show S W D always
 
-		var Text = "";
+		var datespan = doc.createElement('span');
+		datespan.className = 'nowrap';
 		var Days = 0; var Minutes = 0; var Hours = 0;
 
 		if (Math.floor(time_sec) < 0)
@@ -240,19 +241,19 @@ Foxtrick.util.time = {
 				d2 = d5;
 			}
 
-			Text += Days + '&nbsp;';
+			datespan.textContent += Days + ' ';
 			if (Days == 1) // 1 single day
-				Text += d1
+				datespan.textContent += d1
 			else {
 				// same word for 2-4 and 0,5-9
 				if (d2 == d5)
-					Text += d2;
+					datespan.textContent += d2;
 				else {
 					var units = Days % 10;
 					if (Math.floor((Days % 100) / 10) == 1)
-						Text += d5;
+						datespan.textContent += d5;
 					else
-						Text += (units==1) ? d1 :(((units > 1) && (units < 5)) ? d2 : d5);
+						datespan.textContent += (units==1) ? d1 :(((units > 1) && (units < 5)) ? d2 : d5);
 				}
 			}
 		}
@@ -293,35 +294,50 @@ Foxtrick.util.time = {
 				} // switch
 			} // try
 			catch (e) { }
-			if (print_S == 0 && !useFull) {print_S = '';} else {print_S = '<b>' + print_S + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_seasons");}
-			if ((print_W != 0 && print_S != '') || useFull) print_S += '&nbsp;';
-			if (print_W == 0 && !useFull) {print_W = '';} else {print_W = '<b>' + print_W + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_weeks");}
-			if (print_D != 0 || useFull) print_W += '&nbsp;';
-			if (print_D == 0 && !useFull && (print_S != 0 || print_W != 0)) {print_D = '';} else {print_D = '<b>' + print_D + '</b>'+Foxtrickl10n.getString("foxtrick.datetimestrings.short_days");}
-
-			return print_S + print_W + print_D;
-
-			if (Days == 0)
-				Text += '0&nbsp;' + Foxtrickl10n.getString("foxtrick.datetimestrings.days");
-			return Text;
+			
+			datespan.textContent = '';
+			if (print_S != 0 || useFull) {
+				var b = doc.createElement('b');
+				b.textContent = print_S;
+				datespan.appendChild(b);
+				datespan.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.datetimestrings.short_seasons")));
+			}
+			if ((print_W != 0 && print_S != '') || useFull) 
+				datespan.appendChild(doc.createTextNode(' '));
+			if (print_W != 0 || useFull) {
+				var b = doc.createElement('b');
+				b.textContent = print_W;
+				datespan.appendChild(b);
+				datespan.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.datetimestrings.short_weeks")));
+			}
+			if (print_D != 0 || useFull) 
+				datespan.appendChild(doc.createTextNode(' '));
+			if (print_D != 0 || useFull || (print_S == 0 && print_W == 0)) {
+				var b = doc.createElement('b');
+				b.textContent = print_D;
+				datespan.appendChild(b);
+				datespan.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.datetimestrings.short_days")));
+			}
+			
+			return datespan;
 		}
 
 		//insert white space between days and hours
-		if (Text != "") Text += "&nbsp;";
+		if (datespan.textContent != "") datespan.textContent += " ";
 
 		//hours
 		if ((time_sec >= 3600) || (Days > 0))
 		{
 			Hours = Math.floor(time_sec/3600);
 			time_sec = time_sec-Hours*3600;
-			Text += Hours + Foxtrickl10n.getString("foxtrick.datetimestrings.hours") + '&nbsp;';
+			datespan.textContent += Hours + Foxtrickl10n.getString("foxtrick.datetimestrings.hours") + ' ';
 		}
 
 		//minutes
 		Minutes = Math.floor(time_sec/60);
 		time_sec = time_sec - Minutes * 60;
-		Text += Minutes + Foxtrickl10n.getString("foxtrick.datetimestrings.minutes");
+		datespan.textContent += Minutes + Foxtrickl10n.getString("foxtrick.datetimestrings.minutes");
 
-		return Text;
+		return datespan;
 	}
 };

@@ -58,25 +58,21 @@ Foxtrick.modules["ExtendedPlayerDetails"]={
 
 		var joined_s = Math.floor((htDate.getTime() - dateObj.getTime()) / 1000); //Sec
 
-		var JoinedHTML = 'NaN';
-		try {
-			JoinedHTML = Foxtrick.util.time.timeDifferenceToHTML (joined_s , true);
-		}
-		catch(ee) {
-			Foxtrick.dump('  JoinedHTML >' + ee + '\n');
-		}
-
-		if (JoinedHTML.search("NaN") == -1) {
-			var part1 = Foxtrick.substr(joined_elm.innerHTML, 0, Foxtrick.strrpos( joined_elm.innerHTML, ")"));
-			part1 = part1.replace('(', '<span class="shy smallText ft_since"><br>(');
-			var ws = '';
-			if (FoxtrickPrefs.isModuleEnabled("HTDateFormat")) 
-				ws += '<span>('+ season_week.week + '/' + season_week.season + ')</span>, ';
-			joined_elm.innerHTML = part1 + ' ' +ws + JoinedHTML + ')</span>';
-			var span = joined_elm.getElementsByClassName('ft_since')[0];
-			Foxtrick.makeFeaturedElement(span, this);
-			if (span.getElementsByTagName('span')[0])
-				Foxtrick.makeFeaturedElement(span.getElementsByTagName('span')[0], Foxtrick.modules.HTDateFormat);
+		var JoinedSpan = Foxtrick.util.time.timeDifferenceToElement (doc, joined_s , true);
+		
+		if (JoinedSpan.innerHTML.search("NaN") == -1) {
+			Foxtrick.addClass(joined_elm, 'smallText ft_since');
+			joined_elm.textContent = joined_elm.textContent.replace(')','');
+			joined_elm.insertBefore(doc.createElement('br'),joined_elm.firstChild);
+			
+			if (FoxtrickPrefs.isModuleEnabled("HTDateFormat")) {
+				var dateSpan = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.HTDateFormat, 'span');
+				dateSpan.textContent = '('+ season_week.week + '/' + season_week.season + '), ';
+				joined_elm.appendChild(dateSpan);
+			}
+			joined_elm.appendChild(JoinedSpan);
+			joined_elm.appendChild(doc.createTextNode(')'));
+			Foxtrick.makeFeaturedElement(joined_elm, this);
 		}
 		else Foxtrick.dump('  Could not create jointime (NaN)\n');
 	}
