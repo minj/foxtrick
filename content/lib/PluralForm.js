@@ -172,8 +172,8 @@ var PluralForm = {
 			var caller = '';//PluralForm.get.caller ? PluralForm.get.caller.name : "top";
 
 			// Display a message in the error console
-			Foxtrick.log(["Index #", index, " of '", aWords, "' for value ", aNum,
-				" is invalid -- plural rule #", aRuleNum, "; called by ", caller]);
+			//Foxtrick.log(["Index #", index, " of '", aWords, "' for value ", aNum,
+			//	" is invalid -- plural rule #", aRuleNum, "; called by ", caller]);
 
 			// Default to the first entry (which might be empty, but not undefined)
 			ret = words[0];
