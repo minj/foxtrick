@@ -19,9 +19,9 @@ Foxtrick.modules["StaffMarker"]={
 		var obj = {};
 		// JSON files to be downloaded
 		var uris = [
-			"http://foxtrick.googlecode.com/svn/trunk/res/staff/foxtrick.json",
-			"http://foxtrick.googlecode.com/svn/trunk/res/staff/chpp.json",
-			"http://foxtrick.googlecode.com/svn/trunk/res/staff/editor.json",
+			"http://www.foxtrick.org/data/staff/foxtrick.json",
+			"http://www.foxtrick.org/data/staff/chpp.json",
+			"http://www.foxtrick.org/data/staff/editor.json",
 		];
 		if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub")) 
 			uris.push("http://www.hattrick-youthclub.org/_admin/foxtrick/team.json");
