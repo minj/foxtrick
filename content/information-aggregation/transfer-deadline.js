@@ -47,7 +47,7 @@ Foxtrick.modules["TransferDeadline"]={
 			if (!isNaN(countdown) && countdown >= 0) {
 				var countdownNode = doc.createElement('span');
 				countdownNode.className = "smallText ft-deadline";
-				countdownNode.textContent = "(" + Foxtrick.util.time.timeDifferenceToText(countdown) + ")";
+				countdownNode.textContent = "(" + Foxtrick.util.time.timeDifferenceToHTML(countdown) + ")";
 				Foxtrick.makeFeaturedElement(countdownNode, this);
 				node.appendChild(countdownNode);
 			}

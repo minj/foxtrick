@@ -317,7 +317,7 @@ Foxtrick.modules["SkillTable"]={
 					var htDate = Foxtrick.util.time.getHtDate(doc);
 					var joined_s = Math.floor((htDate.getTime() - dateObj.getTime()) / 1000); //Sec
 					var JoinedText = 'NaN';
-					try { JoinedText = Foxtrick.util.time.timeDifferenceToText (joined_s , true, true);}
+					try { JoinedText = Foxtrick.util.time.timeDifferenceToHTML (joined_s , true, true);}
 					catch(ee) {	Foxtrick.dump('  JoinedText >' + ee + '\n');}
 					cell.textContent = JoinedText;
 					cell.title = deadline;

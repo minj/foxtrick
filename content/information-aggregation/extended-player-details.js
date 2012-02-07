@@ -60,7 +60,7 @@ Foxtrick.modules["ExtendedPlayerDetails"]={
 
 		var JoinedText = 'NaN';
 		try {
-			JoinedText = Foxtrick.util.time.timeDifferenceToText (joined_s , true);
+			JoinedText = Foxtrick.util.time.timeDifferenceToHTML (joined_s , true);
 		}
 		catch(ee) {
 			Foxtrick.dump('  JoinedText >' + ee + '\n');
