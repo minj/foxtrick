@@ -40,7 +40,7 @@ Foxtrick.modules["TableSort"]={
 					if (found) break;
 				}
 				var sort_start = i;
-				Foxtrick.log('sort_start:',sort_start,'index: ',index);
+				//Foxtrick.log('sort_start:',sort_start,'index: ',index);
 
 				// determine sort direction
 				var direction = this_th.hasAttribute("sort-asc") ? 1 : -1;
@@ -100,7 +100,7 @@ Foxtrick.modules["TableSort"]={
 					if (table.rows[i].cells[tdindex].innerHTML.search(/lt=skillshort&amp;ll=\d+/)==-1 && inner!='') {is_skill=false;}
 				}
 				var sort_end = i;
-				Foxtrick.log('sort end: ',sort_end);
+				//Foxtrick.log('sort end: ',sort_end);
 
 				// rows to be sorted
 				var rows = new Array();
@@ -184,7 +184,7 @@ Foxtrick.modules["TableSort"]={
 
 				// put them back
 				for (var i = sort_start+1; i < sort_end; ++i) {
-					table.rows[i].innerHTML = rows[i-1-sort_start].innerHTML;
+					table.rows[i].parentNode.replaceChild(rows[i-1-sort_start], table.rows[i]);
 					table.rows[i].setAttribute('lastSort',i);
 				}
 			}

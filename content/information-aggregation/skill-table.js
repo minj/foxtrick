@@ -588,13 +588,10 @@ Foxtrick.modules["SkillTable"]={
 
 						rows.sort(sortCompare);
 
-						var newBody = doc.createElement("tbody");
 						for (i = 0; i < rows.length; ++i) {
 							rows[i].setAttribute('lastSort',i);
-							newBody.appendChild(rows[i]);
+							table.rows[i+1].parentNode.replaceChild(rows[i], table.rows[i+1]);
 						}
-						table.innerHTML = '';
-						table.appendChild(newBody);
 					}
 					catch (e) {
 						Foxtrick.log(e);
