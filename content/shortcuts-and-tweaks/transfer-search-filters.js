@@ -177,7 +177,7 @@ Foxtrick.modules["TransferSearchFilters"]={
 			var link = doc.createElement("a");
 			link.className = "ft-link";
 			Foxtrick.listen(link, "click", fillForm, false);
-			link.innerHTML = name;
+			link.textContent = name;
 			link.setAttribute("filter", filter);
 			td_fname.appendChild(link);
 

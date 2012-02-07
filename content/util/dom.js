@@ -211,7 +211,7 @@ Foxtrick.addBoxToSidebar = function(doc, title, content, prec) {
 			boxHead.appendChild(headBoxLeft);
 			// boxHead - boxLeft - h2
 			var h2 = doc.createElement("h2");
-			h2.innerHTML = title;
+			h2.textContent = title;
 			headBoxLeft.appendChild(h2);
 			// boxBody
 			var boxBody = doc.createElement("div");
@@ -231,7 +231,7 @@ Foxtrick.addBoxToSidebar = function(doc, title, content, prec) {
 		else {
 			// header
 			var header = doc.createElement("h2");
-			header.innerHTML = title;
+			header.textContent = title;
 			dest.appendChild(header);
 		}
 		// now we insert the newly created box

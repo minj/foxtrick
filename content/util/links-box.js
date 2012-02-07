@@ -202,7 +202,7 @@ Foxtrick.util.links = {
 			table.setAttribute('id','LinksCustomTableID');
 			var tr0 = doc.createElement ("tr");
 			var th = doc.createElement ("th");
-			th.innerHTML =Foxtrickl10n.getString("foxtrick.linkscustom.addpersonallink" );
+			th.textContent =Foxtrickl10n.getString("foxtrick.linkscustom.addpersonallink" );
 			th.setAttribute("colspan","5");
 			tr0.appendChild(th);
 			table.appendChild(tr0);
@@ -329,13 +329,13 @@ Foxtrick.util.links = {
 			Foxtrick.listen(selectbox, 'change', Foxtrick.util.links.SelectBox_Select, false);
 			var option = doc.createElement("option");
 			option.setAttribute("value","");
-			option.innerHTML=Foxtrickl10n.getString("foxtrick.linkscustom.tags");
+			option.textContent=Foxtrickl10n.getString("foxtrick.linkscustom.tags");
 			selectbox.appendChild(option);
 
 			for (var key in Foxtrick.util.links._info) {
 				var option = doc.createElement("option");
 				option.setAttribute("value",key);
-				option.innerHTML='['+key+']';
+				option.textContent='['+key+']';
 				option.setAttribute("style","width:100%;");
 				selectbox.appendChild(option);
 			}
@@ -346,7 +346,7 @@ Foxtrick.util.links = {
 				for (var key in ownteam) {
 					var option = doc.createElement("option");
 					option.setAttribute("value",key);
-					option.innerHTML='['+key+']';
+					option.textContent='['+key+']';
 					option.setAttribute("style","width:100%;");
 					selectbox.appendChild(option);
 					}
@@ -370,7 +370,7 @@ Foxtrick.util.links = {
 			saveLink.setAttribute("name", "savelinkname");
 			saveLink.setAttribute("basepref", basepref);
 			Foxtrick.listen(saveLink, "click", Foxtrick.util.links.saveMyLink, false );
-			saveLink.innerHTML = Foxtrickl10n.getString("foxtrick.linkscustom.addlink" );
+			saveLink.textContent = Foxtrickl10n.getString("foxtrick.linkscustom.addlink" );
 			var trn5 = doc.createElement ("tr");
 			var tdn5 = doc.createElement ("td");
 			tdn5.setAttribute("colspan","2");

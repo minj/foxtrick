@@ -50,10 +50,18 @@ Foxtrick.modules["CopyYouth"]={
 				var p = doc.createElement("p");
 				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("CopyYouth.trainingReport.copied")));
 				container.appendChild(p);
+				
 				var linkContainer = doc.createElement("div");
-				linkContainer.innerHTML = Foxtrickl10n.getString("CopyYouth.goto").replace(/%s/,
-					'<a href="' + url + '" target="_copyYouth">http://www.hattrick-youthclub.org</a>');
+				var string = Foxtrickl10n.getString("CopyYouth.goto").split('%s');
+				linkContainer.appendChild(doc.createTextNode(string[0]));
+				var a = doc.createElement('a');
+				a.href = url;
+				a.target = "_copyYouth";
+				a.textContent = "http://www.hattrick-youthclub.org";
+				linkContainer.appendChild(a);
+				linkContainer.appendChild(doc.createTextNode(string[1]));
 				container.appendChild(linkContainer);
+				
 				Foxtrick.util.note.add(doc, insertBefore, "ft-training-report-copy-note", container, null, true);
 			}
 			catch (e) {
@@ -192,10 +200,18 @@ Foxtrick.modules["CopyYouth"]={
 				var p = doc.createElement("p");
 				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("CopyYouth.playerSource.copied")));
 				container.appendChild(p);
+
 				var linkContainer = doc.createElement("div");
-				linkContainer.innerHTML = Foxtrickl10n.getString("CopyYouth.goto").replace(/%s/,
-					'<a href="' + url + '" target="_copyYouth">http://www.hattrick-youthclub.org</a>');
+				var string = Foxtrickl10n.getString("CopyYouth.goto").split('%s');
+				linkContainer.appendChild(doc.createTextNode(string[0]));
+				var a = doc.createElement('a');
+				a.href = url;
+				a.target = "_copyYouth";
+				a.textContent = "http://www.hattrick-youthclub.org";
+				linkContainer.appendChild(a);
+				linkContainer.appendChild(doc.createTextNode(string[1]));
 				container.appendChild(linkContainer);
+
 				Foxtrick.util.note.add(doc, insertBefore, "ft-player-source-copy-note", container, null, true);
 			}
 			catch (e) {
@@ -228,9 +244,16 @@ Foxtrick.modules["CopyYouth"]={
 				var p = doc.createElement("p");
 				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("CopyYouth.fixturesSource.copied")));
 				container.appendChild(p);
+
 				var linkContainer = doc.createElement("div");
-				linkContainer.innerHTML = Foxtrickl10n.getString("CopyYouth.goto").replace(/%s/,
-					'<a href="' + url + '" target="_ht_ys">http://www.ht-ys.org</a>');
+				var string = Foxtrickl10n.getString("CopyYouth.goto").split('%s');
+				linkContainer.appendChild(doc.createTextNode(string[0]));
+				var a = doc.createElement('a');
+				a.href = url;
+				a.target = "_ht_ys";
+				a.textContent = "http://www.ht-ys.org";
+				linkContainer.appendChild(a);
+				linkContainer.appendChild(doc.createTextNode(string[1]));
 				container.appendChild(linkContainer);
 
 				var note = Foxtrick.util.note.add(doc, insertBefore, "ft-youthfixtures-source-copy-note", container, null, true);

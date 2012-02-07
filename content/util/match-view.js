@@ -123,13 +123,27 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 			var cutlength = Foxtrick.util.layout.isStandard(doc) ? 12 : 18;
 			if (!rtl) {
 				matchLink.title = homeTeam + " - " + awayTeam;
-				matchLink.innerHTML = "<span class='nowrap'>" + homeTeam.substr(0, cutlength) + "</span>" + " - "
-					+ "<span class='nowrap'>" + awayTeam.substr(0, cutlength) + "</span>";
+				var span1= doc.createElement('span');
+				span1.className('nowrap');
+				span1.textContent = homeTeam.substr(0, cutlength);
+				matchLink.appendChild(span1);
+				matchLink.appendChild(doc.createTextNode(' - ');
+				var span1= doc.createElement('span');
+				span1.className('nowrap');
+				span1.textContent = awayTeam.substr(0, cutlength);
+				matchLink.appendChild(span1);
 			}
 			else {
 				matchLink.title = awayTeam + " - " + homeTeam;
-				matchLink.innerHTML = "<span class='nowrap'>" + awayTeam.substr(0, cutlength) + "</span>" + " - "
-					+ "<span class='nowrap'>" + homeTeam.substr(0, cutlength) + "</span>";
+				var span1= doc.createElement('span');
+				span1.className('nowrap');
+				span1.textContent = awayTeam.substr(0, cutlength);
+				matchLink.appendChild(span1);
+				matchLink.appendChild(doc.createTextNode(' - ');
+				var span1= doc.createElement('span');
+				span1.className('nowrap');
+				span1.textContent = homeTeam.substr(0, cutlength);
+				matchLink.appendChild(span1);
 			}
 			matchCell.appendChild(matchLink);
 			row.appendChild(matchCell);
