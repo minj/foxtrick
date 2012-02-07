@@ -130,10 +130,18 @@ Foxtrick.modules["CopyYouth"]={
 						var p = doc.createElement("p");
 						p.appendChild(doc.createTextNode(Foxtrickl10n.getString("CopyYouth.scoutComment.copied")));
 						container.appendChild(p);
+						
 						var linkContainer = doc.createElement("div");
-						linkContainer.innerHTML = Foxtrickl10n.getString("CopyYouth.goto").replace(/%s/,
-							'<a href="' + url + '" target="_copyYouth">http://www.hattrick-youthclub.org</a>');
+						var string = Foxtrickl10n.getString("CopyYouth.goto").split('%s');
+						linkContainer.appendChild(doc.createTextNode(string[0]));
+						var a = doc.createElement('a');
+						a.href = url;
+						a.target = "_copyYouth";
+						a.textContent = "http://www.hattrick-youthclub.org";
+						linkContainer.appendChild(a);
+						linkContainer.appendChild(doc.createTextNode(string[1]));
 						container.appendChild(linkContainer);
+				
 						Foxtrick.util.note.add(doc, insertBefore, "ft-scout-report-copy-note", container, null, true);
 					}
 				}

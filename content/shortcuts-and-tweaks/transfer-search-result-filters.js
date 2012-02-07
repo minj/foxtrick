@@ -216,7 +216,7 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 								hide = true;
 						}
 						else if (filter.type == "check") {
-							Foxtrick.log(filter, filter.checked, FILTER_FUNC[filter.key](player), player)
+							//Foxtrick.log(filter, filter.checked, FILTER_FUNC[filter.key](player), player)
 							if (filter.checked && FILTER_FUNC[filter.key](player))
 								hide = true;
 						}

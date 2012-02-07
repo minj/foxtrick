@@ -44,7 +44,6 @@ Foxtrick.modules["BookmarkAdjust"]={
 				//a comment is on a span with class italic on the first cell
 				var comment=tableObj.rows[i].cells[0].getElementsByClassName('italic');
 				if (comment.length>0) {
-					//Foxtrick.dump('row '+i+' comments: '+comment[0].innerHTML+'\n');
 					var commentObj = comment.item(0);
 					var imageObj=tableObj.rows[i].cells[2].childNodes[1];
 					this._bookmarkColor(imageObj, /\[aqua\]/i, commentObj, "aqua");

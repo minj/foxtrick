@@ -104,9 +104,8 @@ Foxtrick.Pages.TransferSearchResults = {
 				player.tsi = Foxtrick.trimnum(infoTable.rows[2].cells[1].textContent);
 				var speciality = Foxtrick.trim(infoTable.rows[3].cells[1].textContent);
 				player.speciality = (speciality == "-") ? "" : speciality;
-				player.deadline = doc.createElement("span");
-				player.deadline.innerHTML = infoTable.rows[4].cells[1].innerHTML;
-
+				player.deadline = infoTable.rows[4].cells[1].cloneNode(true);
+				
 				player.transferCompare = doc.createElement('a');
 				player.transferCompare.textContent = Foxtrickl10n.getString('TransferCompare.abbr');
 				player.transferCompare.title = Foxtrickl10n.getString('TransferCompare');

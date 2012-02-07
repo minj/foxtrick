@@ -53,7 +53,7 @@ Foxtrick.modules["TableSort"]={
 
 				// get text to sort by. first try textContent, then title
 				var getText = function(el) {
-					var innerHTML = el.innerHTML.replace(/(<desc([^<]+)<\/desc>)/ig,"");
+					var innerHTML = el.innerHTML.replace(/(<desc([^<]+)<\/desc>)/ig,""); // that's for stadium usage i think
 					var text = Foxtrick.trim(Foxtrick.stripHTML(innerHTML));
 					if (text=='') {
 						// use first title instead
@@ -109,18 +109,13 @@ Foxtrick.modules["TableSort"]={
 				}
 
 				var cmp = function (a, b) {
-					var aContent, bContent;
-
-					aContent = a.cells[tdindex].innerHTML;
-					bContent = b.cells[tdindex].innerHTML;
 					var lastSort = Number(a.getAttribute('lastSort'))-Number(b.getAttribute('lastSort'));
-
-					if (aContent === bContent) {
+					if (a.cells[tdindex].innerHTML === b.cells[tdindex].innerHTML) {
 						return lastSort;
 					}
 
-					aContent = getText(a.cells[tdindex]);
-					bContent = getText(b.cells[tdindex]);
+					var aContent = getText(a.cells[tdindex]);
+					var bContent = getText(b.cells[tdindex]);
 
 					// place empty cells at the bottom
 					if (aContent === "" || aContent === null || aContent === undefined) {

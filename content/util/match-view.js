@@ -127,7 +127,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 				span1.className('nowrap');
 				span1.textContent = homeTeam.substr(0, cutlength);
 				matchLink.appendChild(span1);
-				matchLink.appendChild(doc.createTextNode(' - ');
+				matchLink.appendChild(doc.createTextNode(' - '));
 				var span1= doc.createElement('span');
 				span1.className('nowrap');
 				span1.textContent = awayTeam.substr(0, cutlength);
@@ -139,7 +139,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 				span1.className('nowrap');
 				span1.textContent = awayTeam.substr(0, cutlength);
 				matchLink.appendChild(span1);
-				matchLink.appendChild(doc.createTextNode(' - ');
+				matchLink.appendChild(doc.createTextNode(' - '));
 				var span1= doc.createElement('span');
 				span1.className('nowrap');
 				span1.textContent = homeTeam.substr(0, cutlength);

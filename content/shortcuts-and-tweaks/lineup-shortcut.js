@@ -109,7 +109,7 @@ Foxtrick.modules["LineupShortcut"]={
 			//adding lineup to header row
 			var newhead=Foxtrick.createFeaturedElement(doc, this, 'th');
 			newhead.className="ft_lineupheader";
-			newhead.innerHTML=lineuplabel;
+			newhead.textContent=lineuplabel;
 			matchtable.rows[0].appendChild(newhead);
 			//We start from second row because first is header
 			for (var i=1;i<matchtable.rows.length;i++) {

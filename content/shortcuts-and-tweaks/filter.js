@@ -100,7 +100,7 @@ Foxtrick.modules["Filter"]={
 
 				var td = doc.createElement('td');
 				td.colSpan = 2;
-				td.innerHTML = Foxtrickl10n.getString("minimum") + "&nbsp;";
+				td.textContent = Foxtrickl10n.getString("minimum") + "\u00a0";
 				tr.appendChild(td);
 				var input = doc.createElement("input");
 				input.style.width = "90px";
@@ -113,7 +113,7 @@ Foxtrick.modules["Filter"]={
 
 				var td = doc.createElement('td');
 				td.colSpan = 2;
-				td.innerHTML = Foxtrickl10n.getString("maximum") + "&nbsp;";
+				td.textContent = Foxtrickl10n.getString("maximum") + "\u00a0";
 				tr.appendChild(td);
 				var input = doc.createElement("input");
 				input.style.width = "90px";
