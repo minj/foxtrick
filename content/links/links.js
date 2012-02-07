@@ -31,17 +31,19 @@
 				}
 				for (key in links) {
 					var link = links[key]; 
+					if (link.img) {
+						// add path to internal images
+						if (link.img.indexOf('resources')==0)
+							link.img = Foxtrick.InternalPath + link.img;
+						link.img = Foxtrick.util.sanitizeUrl(link.img);
+					}
 					for (prop in link) { 
 						if (prop.indexOf("link") >= 0) {
-							if (link[prop].url.indexOf("javascript:") == 0) {
-								Foxtrick.log("JavaScript not allowed in links: ", link[prop].url);
+							link[prop].url = Foxtrick.util.sanitizeUrl(link[prop].url);
+							if (typeof(collection[prop]) == 'undefined') {
+								collection[prop] = {};
 							}
-							else {
-								if (typeof(collection[prop]) == 'undefined') {
-									collection[prop] = {};
-								}
-								collection[prop][key] = link;
-							}
+							collection[prop][key] = link;
 						}
 					}
 				}
@@ -110,9 +112,6 @@
 					linkNode.appendChild(doc.createTextNode(link.shorttitle));
 				}
 				else {
-					// add path to internal images
-					if (link.img.indexOf('resources')==0)
-						link.img = Foxtrick.InternalPath + link.img;
 					// add img for tracker flags
 					if (module === "LinksTracker")
 						linkNode.appendChild(doc.createElement("img"));

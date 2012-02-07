@@ -52,11 +52,8 @@ Foxtrick.modules["NewMail"]={
 		// new forum message
 		var forum = menu.getElementsByTagName("a")[3];
 		if (forum.textContent.indexOf("(") > -1) {
-			// has new message, no span this time, we need to add it
-			forum.innerHTML = forum.innerHTML.replace(
-				/(\(\d+\))/,
-				"<span class=\"ft-new-forum-msg\">$1</span>"
-			);
+			// has new message, no span this time, we need to add it 
+			forum.innerHTML = forum.innerHTML.replace(/(\(\d+\))/, "<span class=\"ft-new-forum-msg\">$1</span>");
 			var newForumCount = Number(forum.textContent.match(/\d+/)[0]);
 		}
 		else {

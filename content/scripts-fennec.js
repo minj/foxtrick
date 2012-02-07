@@ -39,6 +39,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/module.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/note.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/notify.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/util/sanitize.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/session-store.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/string.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/time.js", true);
