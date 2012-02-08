@@ -19,7 +19,7 @@
 		// now load the feeds
 		Foxtrick.log("Loading link feeds from: ", feeds);
 		Foxtrick.map(function(feed) {
-			Foxtrick.get(feed)("success", function(text) {
+			var parseFeed = function(text) {
 				var key, prop;
 
 				try {
@@ -50,8 +50,15 @@
 				Foxtrick.sessionSet("links-collection", collection);
 				if (typeof callback == "function")
 					callback(collection);
+			};
+			
+			Foxtrick.get(feed)("success", function(text) {
+				parseFeed(text);
+				FoxtrickPrefs.setString("LinksFeed."+feed, text);				
 			})("failure", function(code) {
-				Foxtrick.log("Error loading links feed: ", feed);
+				Foxtrick.log("Error loading links feed: ", feed, ". Using cached feed.");
+				var text =  FoxtrickPrefs.getString("LinksFeed."+feed);
+				parseFeed(text);
 			});
 		}, feeds);
 	};

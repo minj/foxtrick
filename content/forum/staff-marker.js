@@ -29,7 +29,7 @@ Foxtrick.modules["StaffMarker"]={
 		// counter of URI remaining to fetch
 		var todo = uris.length;
 		Foxtrick.map(function(uri) {
-			Foxtrick.get(uri)("success", function(text) {
+			var parseMarkers = function(text) {
 				try {
 					var parsed = JSON.parse(text);
 				}
@@ -51,8 +51,14 @@ Foxtrick.modules["StaffMarker"]={
 					Foxtrick.sessionSet('staff-marker-data', obj);
 					Foxtrick.log("Staff marker data loaded.");
 				}
+			};
+			Foxtrick.get(uri)("success", function(text) {
+				parseMarkers(text);
+				FoxtrickPrefs.setString("Markers."+uri, text);							
 			})("failure", function(code) {
-				Foxtrick.log("Failure loading file: " + uri);
+				Foxtrick.log("Failure loading file: " + uri, ". Using cached markers.");
+				var text =  FoxtrickPrefs.getString("Markers."+uri);
+				parseMarkers(text);
 			});
 		}, uris);
 	},
