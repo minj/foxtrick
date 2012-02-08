@@ -76,6 +76,7 @@ Foxtrick.modules["ExtraShortcuts"]={
 							var item = doc.createElement("li");
 							var h2 = doc.createElement('h2');
 							h2.textContent = radio_xml.getElementsByTagName('iconOffline')[0].getAttribute('value');
+							item.appendChild(h2);
 							list.appendChild(item);
 							
 							var iconurl = Foxtrick.util.sanitizeUrl(radio_xml.getElementsByTagName('iconOffline')[0].textContent);
