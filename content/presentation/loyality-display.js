@@ -1,6 +1,7 @@
 "use strict";
 /*
  * loyality-display.js
+ * Extends the skill bar representation with a version that reflects the Homegrown/loyalty bonus
  * @author CatzHoek
  */
 
@@ -62,8 +63,12 @@ Foxtrick.modules["LoyalityDisplay"]={
 						continue;
 						
 					var bars = playersHtml[p].getElementsByClassName("percentImage");
+					
+					//bars is updated on the fly when removing class "percentageImage", so iterate like this
 					while(bars.length){
 						Foxtrick.makeFeaturedElement(bars[0], this);
+						bars[0].setAttribute("title", bars[0].getAttribute("title") + '\u00a0' + '+' + String(skillUp).substring(0, 4));
+						bars[0].setAttribute("alt", bars[0].getAttribute("alt") + '\u00a0' + '+' + String(skillUp).substring(0, 4));
 						Foxtrick.addClass(bars[0], "ft-percentImage-loyality-" + appendix);
 						Foxtrick.addClass(bars[0], "ft-percentImage");
 						Foxtrick.removeClass(bars[0], "percentImage");
