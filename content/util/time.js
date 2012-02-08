@@ -277,7 +277,7 @@ Foxtrick.util.time = {
 				var b = doc.createElement('b');
 				b.textContent = print_S;
 				datespan.appendChild(b);
-				datespan.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.datetimestrings.short_seasons")));
+				datespan.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.datetimestrings.short_seasons",print_S)));
 			}
 			if ((print_W != 0 && print_S != '') || useFull) 
 				datespan.appendChild(doc.createTextNode(' '));
@@ -285,7 +285,7 @@ Foxtrick.util.time = {
 				var b = doc.createElement('b');
 				b.textContent = print_W;
 				datespan.appendChild(b);
-				datespan.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.datetimestrings.short_weeks")));
+				datespan.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.datetimestrings.short_weeks",print_W)));
 			}
 			if (print_D != 0 || useFull) 
 				datespan.appendChild(doc.createTextNode(' '));
@@ -293,7 +293,7 @@ Foxtrick.util.time = {
 				var b = doc.createElement('b');
 				b.textContent = print_D;
 				datespan.appendChild(b);
-				datespan.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.datetimestrings.short_days")));
+				datespan.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.datetimestrings.short_days",print_D)));
 			}
 			
 			return datespan;
