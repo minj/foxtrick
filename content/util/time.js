@@ -232,30 +232,7 @@ Foxtrick.util.time = {
 		if(time_sec >= 86400) {
 			Days = Math.floor(time_sec/86400);
 			time_sec = time_sec-Days*86400;
-			var d1 = Foxtrickl10n.getString("foxtrick.datetimestrings.day");
-			var d5 = Foxtrickl10n.getString("foxtrick.datetimestrings.days");
-			try {
-				//days for slavian numbers (2 3 4)
-				var d2 = Foxtrickl10n.getString("foxtrick.datetimestrings.days234");
-			} catch(e) {
-				d2 = d5;
-			}
-
-			datespan.textContent += Days + ' ';
-			if (Days == 1) // 1 single day
-				datespan.textContent += d1
-			else {
-				// same word for 2-4 and 0,5-9
-				if (d2 == d5)
-					datespan.textContent += d2;
-				else {
-					var units = Days % 10;
-					if (Math.floor((Days % 100) / 10) == 1)
-						datespan.textContent += d5;
-					else
-						datespan.textContent += (units==1) ? d1 :(((units > 1) && (units < 5)) ? d2 : d5);
-				}
-			}
+			datespan.textContent += Days + ' ' + Foxtrickl10n.getString("foxtrick.datetimestrings.days", Days);
 		}
 		// only days returned
 		if (useShort) {
@@ -330,13 +307,13 @@ Foxtrick.util.time = {
 		{
 			Hours = Math.floor(time_sec/3600);
 			time_sec = time_sec-Hours*3600;
-			datespan.textContent += Hours + Foxtrickl10n.getString("foxtrick.datetimestrings.hours") + ' ';
+			datespan.textContent += Hours + Foxtrickl10n.getString("foxtrick.datetimestrings.hours",Hours) + ' ';
 		}
 
 		//minutes
 		Minutes = Math.floor(time_sec/60);
 		time_sec = time_sec - Minutes * 60;
-		datespan.textContent += Minutes + Foxtrickl10n.getString("foxtrick.datetimestrings.minutes");
+		datespan.textContent += Minutes + Foxtrickl10n.getString("foxtrick.datetimestrings.minutes",Minutes);
 
 		return datespan;
 	}
