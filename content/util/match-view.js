@@ -124,26 +124,26 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 			if (!rtl) {
 				matchLink.title = homeTeam + " - " + awayTeam;
 				var span1= doc.createElement('span');
-				span1.className('nowrap');
+				span1.className='nowrap';
 				span1.textContent = homeTeam.substr(0, cutlength);
 				matchLink.appendChild(span1);
 				matchLink.appendChild(doc.createTextNode(' - '));
-				var span1= doc.createElement('span');
-				span1.className('nowrap');
-				span1.textContent = awayTeam.substr(0, cutlength);
-				matchLink.appendChild(span1);
+				var span2= doc.createElement('span');
+				span2.className='nowrap';
+				span2.textContent = awayTeam.substr(0, cutlength);
+				matchLink.appendChild(span2);
 			}
 			else {
 				matchLink.title = awayTeam + " - " + homeTeam;
 				var span1= doc.createElement('span');
-				span1.className('nowrap');
+				span1.className='nowrap';
 				span1.textContent = awayTeam.substr(0, cutlength);
 				matchLink.appendChild(span1);
 				matchLink.appendChild(doc.createTextNode(' - '));
-				var span1= doc.createElement('span');
-				span1.className('nowrap');
-				span1.textContent = homeTeam.substr(0, cutlength);
-				matchLink.appendChild(span1);
+				var span2= doc.createElement('span');
+				span2.className='nowrap';
+				span2.textContent = homeTeam.substr(0, cutlength);
+				matchLink.appendChild(span2);
 			}
 			matchCell.appendChild(matchLink);
 			row.appendChild(matchCell);
