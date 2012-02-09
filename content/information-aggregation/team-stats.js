@@ -101,7 +101,7 @@ Foxtrick.modules["TeamStats"]={
 			var addRow = function(label, data, filter, title) {
 				var row = doc.createElement("tr");
 				var addFilterShortcut = function (filter, title) {
-					row.title = Foxtrickl10n.getString("Filter")+': '+title;
+					row.title = Foxtrickl10n.getString("foxtrick.TeamStats.FilterFor")+' '+title;
 					row.setAttribute('style','cursor:pointer')
 					Foxtrick.listen(row, "click", function(ev) {
 						var filterSelect = doc.getElementById('foxtrick-filter-select');
