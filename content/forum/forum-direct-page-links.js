@@ -146,7 +146,7 @@ Foxtrick.modules["DirectPageLinks"]={
 			}
 			
 			var rtl = Foxtrick.util.layout.isRtl(doc);
-			for(var pp = start; pp <= end; pp+=inc)
+			for(var pp = start; pp <= end; pp++)
 			{
 				var p = pp;
 				if (rtl)
