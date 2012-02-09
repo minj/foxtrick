@@ -49,7 +49,7 @@ html[data-theme="standard"] img.ft-percentImage-loyalty-500 {
 	background: #EEE url("chrome://foxtrick/content/resources/img/loyalty/loyalty_500.png") top left no-repeat;
 }
 
-html[data-theme="simple"]img.ft-percentImage-loyalty-500 {
+html[data-theme="simple"] img.ft-percentImage-loyalty-500 {
 	background: #EEE url("chrome://foxtrick/content/resources/img/loyalty/loyalty_500_simple.png") top left no-repeat;
 }
 
