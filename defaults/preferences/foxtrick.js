@@ -403,7 +403,7 @@ pref("extensions.foxtrick.prefs.module.MatchOrderInterface.SwapPositions.enabled
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.StayOnPage.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchSimulator.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchSimulator.value", 1);
-pref("extensions.foxtrick.prefs.module.staminaDiscountOn", false);
+pref("extensions.foxtrick.prefs.MatchSimulator.staminaDiscountOn", false);
 pref("extensions.foxtrick.prefs.module.MatchPlayerColouring.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchPlayerColouring.SeparateOwnPlayerColors.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchReportFormat.enabled", true);
@@ -733,3 +733,4 @@ pref("extensions.foxtrick.prefs.tableSeparator", " ");
 pref("extensions.foxtrick.prefs.forumSymbol", "●");
 pref("extensions.foxtrick.prefs.xmlLoad", true);
 pref("extensions.foxtrick.prefs.module.MobileEnhancements.enabled", false);
+pref("extensions.foxtrick.prefs.MatchSimulator.staminaDiscountOn", false);

@@ -291,11 +291,11 @@ Foxtrick.modules["MatchSimulator"]={
 			
 			var staminaDiscountCheck = doc.getElementById("ft_stamina_discount_check");
 			if (staminaDiscountCheck.checked) {
-				FoxtrickPrefs.setBool("module.MatchSimulator.staminaDiscountOn", true)
+				FoxtrickPrefs.setBool("MatchSimulator.staminaDiscountOn", true)
 				ft_stamina_discount();
 			}
 			else {
-				FoxtrickPrefs.setBool("module.MatchSimulator.staminaDiscountOn", false)
+				FoxtrickPrefs.setBool("MatchSimulator.staminaDiscountOn", false)
 			}
 			
 			for (var i=0; i< 7; ++i) {
@@ -815,7 +815,7 @@ Foxtrick.modules["MatchSimulator"]={
 		staminaDiscountCheck.id = "ft_stamina_discount_check";
 		staminaDiscountCheck.type = "checkbox";
 		staminaDiscountCheck.setAttribute('title', Foxtrickl10n.getString("matchOrder.staminaDiscount.title"));
-		if (FoxtrickPrefs.getBool("module.MatchSimulator.staminaDiscountOn"))
+		if (FoxtrickPrefs.getBool("MatchSimulator.staminaDiscountOn"))
 			staminaDiscountCheck.checked = 'checked';
 		staminaDiscountCheck.addEventListener('click', showLevelNumbers, false);
 		staminaDiscountDiv.appendChild(staminaDiscountCheck);
