@@ -145,8 +145,12 @@ Foxtrick.modules["DirectPageLinks"]={
 					start = end - (supportedButtons - 1);
 			}
 			
-			for(var p = start; p <= end; p++)
+			var rtl = Foxtrick.util.layout.isRtl(doc);
+			for(var pp = start; pp <= end; pp+=inc)
 			{
+				var p = pp;
+				if (rtl)
+					p = end - (pp - start);
 				var href = Foxtrick.getHref(doc);
 				if( Foxtrick.getParameterFromUrl( href, "n" ) )
 					href = href.replace(/n=\d+/i, "n=" + (currentPostId - (currentPage-p)*postPerPage));
@@ -154,11 +158,11 @@ Foxtrick.modules["DirectPageLinks"]={
 					href = href + '&n=' + (currentPostId - (currentPage-p)*postPerPage);
 		
 				var a = doc.createElement("a");
-				Foxtrick.toggleClass(a,"page");
+				Foxtrick.addClass(a,"page");
 				
 				//adjust class so all buttons have constant width and the layout doesn't break
 				if(p < 10){
-					Foxtrick.toggleClass(a,"oneDigit");
+					Foxtrick.addClass(a,"oneDigit");
 				}
 				//mark current page
 				if(p == currentPage)
@@ -187,12 +191,18 @@ Foxtrick.modules["DirectPageLinks"]={
 				//represent gaps using "...", needs teaking because this also happens then the correct number is replaced, like 1,2,3,4 -> 1,...,3,4
 				else if( (p == start + 1) && currentPage != 1 && currentPage > 7 && maxpage > supportedButtons)
 				{
-					a.appendChild(doc.createTextNode('...'));
+					if (!rtl)
+						a.appendChild(doc.createTextNode('...'));
+					else
+						a.appendChild(doc.createTextNode('\u00a0'));
 				}
 				//represent gaps using "...", needs teaking because this also happens then the correct number is replaced, like 1,2,3,4 -> 1,...,3,4
 				else if( (p == end - 1) && currentPage != maxpage && (currentPage != maxpage - 2) && maxpage > supportedButtons)
 				{
-					a.appendChild(doc.createTextNode('...'));
+					if (!rtl)
+						a.appendChild(doc.createTextNode('...'));
+					else
+						a.appendChild(doc.createTextNode('\u00a0'));
 				}
 				//any other page
 				else {
