@@ -40,7 +40,7 @@ Foxtrick.modules["LoyaltyDisplay"]={
 					if(halfEffect)
 						skillUp *= 0.5;
 
-					if(mcb == "True" || Foxtrick.Pages.Players.isOwnPlayersPage(doc) && mcb !== undefined)
+					if(mcb == "True" || ( Foxtrick.isPage('players', doc) && mcb !== undefined ) )
 						skillUp += 0.25;
 					//FIXME: end
 					
