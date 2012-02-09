@@ -376,7 +376,7 @@ Foxtrick.modules["SkillTable"]={
 					{ name : "Experience", property : "experience", method : skill },
 					{ name : "Form", property : "form", method : skill },
 					{ name : "Stamina", property : "stamina", method : skill },
-					{ name : "Loyality", property : "loyality", method : skill },
+					{ name : "Loyalty", property : "loyalty", method : skill },
 					{ name : "MotherClubBonus", property : "motherClubBonus", method : object, sortString : true },
 					{ name : "Keeper", property : "keeper", method: skill },
 					{ name : "Defending", property : "defending", method: skill },

@@ -164,7 +164,7 @@ Foxtrick.Pages.Players = {
 								player.lastMatchDate = LastMatch.getElementsByTagName("Date")[0].textContent;
 						}
 						if (playerNode.getElementsByTagName("Loyalty").length) 
-							player.loyality = Number(playerNode.getElementsByTagName("Loyalty")[0].textContent);
+							player.loyalty = Number(playerNode.getElementsByTagName("Loyalty")[0].textContent);
 						if (playerNode.getElementsByTagName("MotherClubBonus").length) 
 							if (playerNode.getElementsByTagName("MotherClubBonus")[0].textContent=='True') {
 								player.motherClubBonus = doc.createElement('span');
@@ -400,7 +400,7 @@ Foxtrick.Pages.Players = {
 
 				if (player.form === undefined || player.stamina === undefined
 					|| player.leadership === undefined || player.experience === undefined
-					|| player.loyality === undefined) {
+					|| player.loyalty === undefined) {
 					var links = {};
 					if (basicSkillLinks.length >= 2) {
 						if (basicSkillLinks[1].href.search("skillshort") !== -1) {
@@ -423,9 +423,9 @@ Foxtrick.Pages.Players = {
 						}
 					}
 					if (basicSkillLinks.length >= 5) {
-						links.loyality = basicSkillLinks[4]; 
+						links.loyalty = basicSkillLinks[4]; 
 					}
-					var basicSkillNames = ["form", "stamina", "leadership", "experience", "loyality"];
+					var basicSkillNames = ["form", "stamina", "leadership", "experience", "loyalty"];
 					for (var j=0; j<basicSkillNames.length; ++j) {
 						if (player[basicSkillNames[j]] === undefined
 							&& links[basicSkillNames[j]] !== undefined) {

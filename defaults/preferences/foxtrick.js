@@ -390,7 +390,7 @@ pref("extensions.foxtrick.prefs.module.LiveAlert.Sound.enabled", true);
 pref("extensions.foxtrick.prefs.module.LiveAlert.Sound_text", "foxtrick://resources/sounds/DingLing.wav");
 pref("extensions.foxtrick.prefs.module.LocalTime.enabled", true);
 pref("extensions.foxtrick.prefs.module.LocalTime.local", false);
-pref("extensions.foxtrick.prefs.module.LoyalityDisplay.enabled", true);
+pref("extensions.foxtrick.prefs.module.LoyaltyDisplay.enabled", true);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.enabled", false);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.GuestBook.enabled", false);
 pref("extensions.foxtrick.prefs.module.MarkAllAsRead.enabled", true);
@@ -519,7 +519,7 @@ pref("extensions.foxtrick.prefs.module.SkillTable.senior.others.Last_position", 
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.others.Last_stars", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.others.Leadership", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.others.LeagueGoals", true);
-pref("extensions.foxtrick.prefs.module.SkillTable.senior.others.Loyality", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.senior.others.Loyalty", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.others.MotherClubBonus", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.others.Nationality", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.others.Passing", true);
@@ -553,7 +553,7 @@ pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Last_position", tru
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Last_stars", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.LeagueGoals", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Leadership", true);
-pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Loyality", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Loyalty", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.MotherClubBonus", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Nationality", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.NrOfMatches", true);

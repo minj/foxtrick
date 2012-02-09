@@ -93,7 +93,7 @@ presentation/ht-date-format.js
 presentation/large-flags.js
 presentation/league-news-filter.js
 presentation/local-time.js
-presentation/loyality-display.js
+presentation/loyalty-display.js
 presentation/match-tables.js
 presentation/move-manager-online.js
 presentation/move-player-select-box.js
