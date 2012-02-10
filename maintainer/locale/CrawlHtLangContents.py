@@ -197,12 +197,16 @@ def getPlayersByTeam(ht, teamid):
 	return players
 	
 def translatePositions( source ):
-	en = source['en']
 	
+	en = source['en']
+	print en['players']
 	# Position names taken from a teams player overview
 	lookup_players = {}
 	en_players = en['players']
 	for player in en_players:
+		if 'lastposition' not in player:
+			continue;
+			
 		if player['lastposition'] == 'Keeper':
 			lookup_players[player['lastposition']] = player['id']
 		elif player['lastposition'] == 'Central defender':
