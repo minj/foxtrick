@@ -9,17 +9,13 @@ Foxtrick.modules["EmbedMedia"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
 	NICE : 1,
-	//no funnyordie atm
-	//OPTIONS : ["EmbedYoutubeVideos","EmbedVimeoVideos", "EmbedFunnyOrDieVideos", "EmbedDailymotionVideos", ["EmbedModeOEmebed", "ReplaceLinksByTitlesLinksToTitles", "EmbedFlickrImages", "EmbedDeviantArtImages", "EmbedSoundCloud"]],
 	OPTIONS : [["EmbedGenericImages", "EmbedGenericImagesClever"], "EmbedYoutubeVideos","EmbedVimeoVideos", "EmbedDailymotionVideos", ["EmbedModeOEmebed", "ReplaceLinksByTitles", "EmbedFlickrImages", "EmbedDeviantArtImages", "EmbedSoundCloud"]],
 	CSS : Foxtrick.InternalPath + "resources/css/embed-media.css",
 
 	run : function(doc) {
+		
 		var do_embed_youtube_videos = FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedYoutubeVideos");
 		var do_embed_vimeo_videos = FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedVimeoVideos");
-		//no funnyordie atm
-		//var do_embed_funnyordie_videos = FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedFunnyOrDieVideos");
-		var do_embed_funnyordie_videos = false;
 		var do_embed_dailymotion_videos = FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedDailymotionVideos");
 		
 		var oembed_enabled = FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedModeOEmebed");
@@ -34,7 +30,6 @@ Foxtrick.modules["EmbedMedia"]={
 		var siteEnabled = {
 			"youtube" : do_embed_youtube_videos,
 			"vimeo" : do_embed_vimeo_videos,
-			"funnyordie" : do_embed_funnyordie_videos,
 			"dailymotion" : do_embed_dailymotion_videos,
 			"soundcloud" : do_embed_soundcloud,
 			"flickr" : do_embed_flickr_images,
@@ -44,17 +39,31 @@ Foxtrick.modules["EmbedMedia"]={
 			"imageshack" : do_embed_generic_images_clever
 		};
 
-		var oEmbedRequest = function( url ){
-			try {
-				var xmlHttp = null;
-				xmlHttp = new XMLHttpRequest();
-				xmlHttp.open( "GET", url, false );
-				xmlHttp.send( null );
-				} catch(e)
-				{
-					return null
+		var oEmbedRequest = function( url, callback ){
+			var req = new window.XMLHttpRequest();
+			req.open("GET", url, true);
+			if (typeof(req.overrideMimeType) == "function")
+				req.overrideMimeType("text/plain");
+
+			req.onreadystatechange = function(aEvt) {
+				if (req.readyState == 4) {
+					try {
+						callback(req.responseText, req.status);
+					}
+					catch (e) {
+						Foxtrick.log('Uncaught callback error: - url: ' , url , ' : ', e);
+					}
 				}
-			return xmlHttp.responseText;
+			};
+
+			try {
+				req.send(null);
+			}
+			catch (e) {
+				// catch cross-domain errors
+				Foxtrick.log(url, ' ', e);
+				callback(null, 0);
+			}
 		}
 
 		//Link validation regex, check if the link is supported by any means
@@ -66,7 +75,6 @@ Foxtrick.modules["EmbedMedia"]={
 			"youtube":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(youtube\.[a-zA-Z]{2,3}|youtu\.be)\/.*(v[=\/]([a-zA-Z0-9-_]{11}\\b)|\/([a-zA-Z0-9-_]{11}\\b))",
 			"vimeo":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(vimeo)\.com\/(\\d+)",
 			"flickr":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(flickr)\.com\/",
-			"funnyordie":"^(http:\/\/)([a-zA-Z]{2,3}.)?(funnyordie)\.(com)\/videos\/([a-zA-Z0-9]*)\\b",
 			"dailymotion":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(dailymotion\.com)\/video\/([a-zA-Z0-9-]+)",
 			"genericImage":"^http(s)?:\/\/[a-zA-Z0-9.\\-%\\w_~\/]+(?:gif|jpg|jpeg|png|bmp|GIF|JPG|JPEG|PNG|BMP)$",
 			"imgur":"^http(s)?:\/\/imgur.com\/([a-zA-Z0-9]+)$",
@@ -77,7 +85,6 @@ Foxtrick.modules["EmbedMedia"]={
 		var oembed_urls = {
 			"vimeo":"https://vimeo.com/api/oembed.json?maxwidth=400&url=",
 			"youtube":"https://www.youtube.com/oembed?format=json&maxwidth=400&url=",
-			"funnyordie":"http://www.funnyordie.com/oembed.json?format=json&maxwidth=400&url=",
 			"dailymotion":"https://www.dailymotion.com/services/oembed?format=json&maxwidth=400&url=",
 			"flickr":"http://www.flickr.com/services/oembed/?format=json&url=",
 			"deviantart":"http://backend.deviantart.com/oembed?format=json&url=",
@@ -88,7 +95,6 @@ Foxtrick.modules["EmbedMedia"]={
 		var iframe_urls = {
 			"vimeo":"http://player.vimeo.com/video/",
 			"youtube":"http://www.youtube.com/embed/",
-			"funnyordie":"http://www.funnyordie.com/embed/",
 			"dailymotion":"http://www.dailymotion.com/embed/video/"
 		};
 		
@@ -103,6 +109,7 @@ Foxtrick.modules["EmbedMedia"]={
 							
 		}
 		// Oembed replacement, requires pre-prepartion (link needs to be converted to div and needs a first child to be altered)
+		// http://oembed.com/
 		var do_oEmbed  = function(target, json){
 			var author = json.author_name?json.author_name:"Unknown Author";
 			if(do_replaceLinksByTitles)
@@ -127,7 +134,7 @@ Foxtrick.modules["EmbedMedia"]={
 			}
 		}
 		
-		var do_genericImageEmbed = function(target){
+		var doEmbedActualImageUrl = function(target){
 			var title = Foxtrickl10n.getString("foxtrick.EmbedMedia.EmbeddedImage");
 			target.nextSibling.firstChild.setAttribute('target','_blank');
 			Foxtrick.addImage(doc, target.nextSibling.firstChild, {src:target.nextSibling.firstChild.href, title: title, alt: title, style:'max-width:100%'});
@@ -143,8 +150,6 @@ Foxtrick.modules["EmbedMedia"]={
 					videoid	= null;
 			} else if (site == "vimeo"){
 				videoid	= matches[4]?matches[4]:null;
-			} else if (site == "funnyordie"){
-				videoid	= matches[5]?matches[5]:null;
 			} else if (site == "dailymotion"){
 				videoid	= matches[4]?matches[4]:null;
 			} else if (site == "imgur"){
@@ -197,7 +202,9 @@ Foxtrick.modules["EmbedMedia"]={
 			return media_links;
 		}
 		
-		var convertLinkToEmbeddingHeader = function( media_link ){			
+		//prepare a link for embedding
+		
+		var prepareLinkForEmbedding = function( media_link ){			
 			var div = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.EmbedMedia, 'div');
 			var header_a = doc.createElement('a');
 			header_a.textContent = media_link["link"].textContent;
@@ -229,9 +236,11 @@ Foxtrick.modules["EmbedMedia"]={
 			mediaContainer.appendChild(a);
 			media_link["link"].parentNode.replaceChild(mediaContainer, media_link["link"]);
 			
+			//setup click listener to actually embed/toggle visibility on demand
 			Foxtrick.listen(div, "click", function(ev){
 				if(!Foxtrick.hasClass(ev.target.nextSibling,'ft-media-embedded')){
 					embed(ev.target);
+					//mark as embedded, no repetitive embedding needed
 					Foxtrick.addClass(ev.target.nextSibling,'ft-media-embedded')
 				}	
 				Foxtrick.toggleClass(ev.target.nextSibling,'hidden');
@@ -241,46 +250,43 @@ Foxtrick.modules["EmbedMedia"]={
 				}else{
 					Foxtrick.removeClass(ev.target,'ft-media-expander-expanded')
 					Foxtrick.addClass(ev.target,'ft-media-expander-unexpanded')
-					}
+				}
 			}, false);		
 		}
 		
 		var embed = function( target ){			
 			if(Foxtrick.hasClass(target, "ft-media-site-genericImage") || Foxtrick.hasClass(target, "ft-media-site-imgur")){
-				do_genericImageEmbed(target);
+				doEmbedActualImageUrl(target);
 				return;
 			} 
 			
 			if(Foxtrick.hasClass(target, "ft-media-site-imageshack")){
-				oEmbedReq = oEmbedRequest(target.nextSibling.firstChild.href)
-				target.nextSibling.firstChild.href = oEmbedReq.match(/\?\"(.*)\":/)[1];
-				do_genericImageEmbed(target);
-				oEmbedReq = null;
+			
+				oEmbedRequest(target.nextSibling.firstChild.href, function(response, status){
+					target.nextSibling.firstChild.href = response.match(/\?\"(.*)\":/)[1];
+					doEmbedActualImageUrl(target);
+				})
 				return;
 			}
 			if( oembed_enabled ){
-				var oEmbedReq = null;
+			
 				for ( var key in oembed_urls )	
 				{					
 					if( Foxtrick.hasClass( target, "ft-media-site-" +  key ) ){
-						oEmbedReq = oEmbedRequest(oembed_urls[key] + target.firstChild.href)
+						
+						var oEmbedRequestURL = oembed_urls[key] + target.firstChild.href;
+						//load json from providers async
+						Foxtrick.get(oEmbedRequestURL)("success", function(response) {
+							var json = JSON.parse( response );
+							do_oEmbed(target, json);
+							
+						})("failure", function(code) {
+							Foxtrick.log("Error loading embed code: ", oembed_urls[key] + target.firstChild.href);
+							target.nextSibling.textContent = "Not a media item, host is down or has uncomprehensive response.";
+						});
 						break;
 					}
 				}
-				if( oEmbedReq ){
-					//funnyordie is an asshole and thatfore disabled at this point
-					//oEmbedReq = oEmbedReq.replace(/&quot;/g, '\"').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>')
-					//
-					try {
-						var json = JSON.parse( oEmbedReq );
-						do_oEmbed(target, json);
-					}
-					catch(e)
-					{
-						target.nextSibling.textContent = "Not a media item, host is down or has uncomprehensive response.";
-						Foxtrick.log(e);
-					}
-				} 
 			} else {
 				for ( var key in iframe_urls )	
 				{
@@ -300,7 +306,7 @@ Foxtrick.modules["EmbedMedia"]={
 			var found_media_links = getSupportedMediaLinksWithDetails( message );
 			Foxtrick.map( function( media_link ){
 				if( siteEnabled[media_link.site]){
-					convertLinkToEmbeddingHeader( media_link );
+					prepareLinkForEmbedding( media_link );
 				}
 			}, found_media_links);
 		
