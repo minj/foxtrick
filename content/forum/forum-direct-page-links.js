@@ -151,6 +151,7 @@ Foxtrick.modules["DirectPageLinks"]={
 				var p = pp;
 				if (rtl)
 					p = end - (pp - start);
+					
 				var href = Foxtrick.getHref(doc);
 				if( Foxtrick.getParameterFromUrl( href, "n" ) )
 					href = href.replace(/n=\d+/i, "n=" + (currentPostId - (currentPage-p)*postPerPage));
@@ -197,7 +198,7 @@ Foxtrick.modules["DirectPageLinks"]={
 						a.appendChild(doc.createTextNode('\u00a0'));
 				}
 				//represent gaps using "...", needs teaking because this also happens then the correct number is replaced, like 1,2,3,4 -> 1,...,3,4
-				else if( (p == end - 1) && currentPage != maxpage && (currentPage != maxpage - 2) && maxpage > supportedButtons)
+				else if( (p == end - 1) && currentPage != maxpage && (currentPage != maxpage - 2) && (p != maxpage - 1) && maxpage > supportedButtons)
 				{
 					if (!rtl)
 						a.appendChild(doc.createTextNode('...'));
