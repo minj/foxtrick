@@ -1813,5 +1813,33 @@
 		},
 		"title": "HTEV Simulator",
 		"img": "http://htev.org/static/htevfavicon.gif"
-	}
+	},
+	"hatstats.net": {
+		"leaguelink": {
+			"url": "http://hatstats.net/oceania/standings.php?series=[leagueid]",
+			"filters": [
+				"countryid"
+			]
+		},
+		"teamlink": {
+			"url": "http://hatstats.net/oceania/team.php?teamID=[teamid]",
+			"filters": [
+				"countryid"
+			]
+		},
+		"countrylink": {
+			"url": "http://hatstats.net/oceania/",
+			"filters": [
+				"countryid"
+			]
+		},
+		"countryidranges": [
+			[
+				15,
+				15
+			]
+		],
+		"title": "hatstats.net",
+		"img": "http://hatstats.net/favicon.ico"
+	},
 }
