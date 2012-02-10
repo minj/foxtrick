@@ -199,7 +199,6 @@ def getPlayersByTeam(ht, teamid):
 def translatePositions( source ):
 	
 	en = source['en']
-	print en['players']
 	# Position names taken from a teams player overview
 	lookup_players = {}
 	en_players = en['players']
