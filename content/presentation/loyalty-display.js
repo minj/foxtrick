@@ -82,8 +82,8 @@ Foxtrick.modules["LoyaltyDisplay"]={
 				if(bars.length)
 					while(bars.length){
 						Foxtrick.makeFeaturedElement(bars[0], this);
-						bars[0].setAttribute("title", bars[0].getAttribute("title") + '\u00a0' + '+' + String(skillUp).substring(0, 4));
-						bars[0].setAttribute("alt", bars[0].getAttribute("alt") + '\u00a0' + '+' + String(skillUp).substring(0, 4));
+						bars[0].setAttribute("title", bars[0].getAttribute("title") + ' +' + String(skillUp).substring(0, 4));
+						bars[0].setAttribute("alt", bars[0].getAttribute("alt") + ' +' + String(skillUp).substring(0, 4));
 						Foxtrick.addClass(bars[0], "ft-percentImage-homegrown");
 						Foxtrick.addClass(bars[0], "ft-percentImage");
 						Foxtrick.removeClass(bars[0], "percentImage");
