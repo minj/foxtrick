@@ -12,7 +12,7 @@ Foxtrick.modules["TableSort"]={
 	CSS : Foxtrick.InternalPath + "resources/css/tableSort.css",
 
 	run : function(doc) {
-		var onClick = function(ev) {
+		var doSort = function(ev) {
 			try {
 				var this_th = ev.target;
 
@@ -210,7 +210,7 @@ Foxtrick.modules["TableSort"]={
 					&& !Foxtrick.hasClass(ths[j],'header') ) { // ht sorting
 					
 					Foxtrick.makeFeaturedElement(ths[j], this);
-					Foxtrick.listen(ths[j], "click", onClick, false);
+					Foxtrick.listen(ths[j], "click", doSort, false);
 				}
 			}
 		}

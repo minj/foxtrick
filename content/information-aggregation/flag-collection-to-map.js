@@ -346,19 +346,30 @@ Foxtrick.modules["FlagCollectionToMap"]={
 		var HideMap = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.HideMap");
 		openMapA.appendChild(document.createTextNode(ShowMap));
 		openMapA.name = 'flags' + mapId;
-		openMapA.href = '#';
+		openMapA.href = '#'+'foxtrick-top-map-'+mapId;
 		openMapA.id = 'flagsA' + mapId;
 		openMapA.style.display='block';
-		openMapA.setAttribute('onClick', 'if(document.getElementById(\'foxtrick-map' + mapId + '\').style.display == \'none\'){document.getElementById(\'foxtrick-map' + mapId + '\').style.display = \'\'; document.getElementById(\'flagsA' + mapId + '\').innerHTML = \'' + HideMap + '\'; }else {document.getElementById(\'foxtrick-map' + mapId +'\').style.display = \'none\';document.getElementById(\'flagsA' + mapId +'\').innerHTML = \'' + ShowMap + '\';}; return false');
+		Foxtrick.listen(openMapA, 'click',function(ev){
+			if(document.getElementById('foxtrick-map' + mapId ).style.display == 'none') {
+				document.getElementById('foxtrick-map' + mapId ).style.display = '';
+				document.getElementById('flagsA' + mapId ).textContent = HideMap; 
+			}
+			else {
+				document.getElementById('foxtrick-map' + mapId ).style.display ='none';
+				document.getElementById('flagsA' + mapId ).textContent = ShowMap;
+			}
+			return false;
+		}, false);
 
 		this.insertBeforeOrAppend(parent, mapDiv, insertBefore);
 		this.insertBeforeOrAppend(parent, openMapA, insertBefore);
 		
-		document.getElementById('foxtrick-map'+mapId).innerHTML = this.getMapHtml(urlAfrica, urlAsia, urlEurope, urlMEast, urlSAmerica, urlWorld, mapId);
+		this.addMap(document, document.getElementById('foxtrick-map'+mapId), urlAfrica, urlAsia, urlEurope, urlMEast, urlSAmerica, urlWorld, mapId);
 	},
 
-	getMapHtml: function(urlAfrica, urlAsia, urlEurope, urlMEast, urlSAmerica, urlWorld, anchorId){
+	addMap: function(doc, map, urlAfrica, urlAsia, urlEurope, urlMEast, urlSAmerica, urlWorld, anchorId){
 		var href = '#'+'foxtrick-img-map-'+anchorId;
+		var hrefTop = '#'+'foxtrick-top-map-'+anchorId;
 		var Africa = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.Africa");
 		var Asia = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.Asia");
 		var Europe = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.Europe");
@@ -366,14 +377,35 @@ Foxtrick.modules["FlagCollectionToMap"]={
 		var SAmerica = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.SAmerica");
 		var World = Foxtrickl10n.getString("foxtrick.FlagCollectionToMap.World");
 
-		var mapHtml = '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlAfrica +'\';return false;">'+ Africa + '</a> |  ';
-		mapHtml += '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlAsia  +'\';return false;">' + Asia + '</a> |  ';
-		mapHtml += '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlEurope +'\';return false;">' + Europe + '</a> |  ';
-		mapHtml += '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlMEast +'\';return false;">' + MEast + '</a>  | ';
-		mapHtml += '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlSAmerica +'\';return false;">' + SAmerica + '</a> |  ';
-		mapHtml += '<a href="'+href+'" onclick="document.getElementById(\'foxtrick-img-map-'+anchorId+'\').src=\''+urlWorld +'\';return false;">' + World + '</a><br/>';
-		mapHtml += '<img alt="Map" id="foxtrick-img-map-'+anchorId+'" src="' + urlWorld + '"/>';
-		return mapHtml;
+		var addNavLink = function(imgUrl, text) {
+			var a = doc.createElement('a');
+			a.href = hrefTop;
+			Foxtrick.listen(a, 'click', function (ev) {
+				doc.getElementById('foxtrick-img-map-'+anchorId).src = imgUrl;
+			}, false);
+			a.textContent = text; 
+			map.appendChild(a);
+			return a;
+		};
+		var top = addNavLink(urlAfrica,'Africa');
+		top.id = "foxtrick-top-map-"+anchorId;
+		map.appendChild(doc.createTextNode(' '));		
+		addNavLink(urlAsia,'Asia');
+		map.appendChild(doc.createTextNode(' '));		
+		addNavLink(urlEurope,'Europe');
+		map.appendChild(doc.createTextNode(' '));		
+		addNavLink(urlMEast,'MEast');
+		map.appendChild(doc.createTextNode(' '));		
+		addNavLink(urlSAmerica,'SAmerica');
+		map.appendChild(doc.createTextNode(' '));		
+		addNavLink(urlWorld,'World');
+		map.appendChild(doc.createTextNode(' '));		
+		
+		var img = doc.createElement('img');
+		img.id = "foxtrick-img-map-"+anchorId;
+		img.alt = "Map";
+		img.src = urlWorld;
+		map.appendChild(img);
 	},
 
 	/**

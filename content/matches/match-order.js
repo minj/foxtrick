@@ -49,6 +49,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 				var swapPositionsDiv =  Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchOrderInterface,'div');
 				swapPositionsDiv.id = "ft_swap_positions";
 				var swapPositionsLink =  doc.createElement('span');
+				// invoke our injected script which changes the webpage's script variables
 				swapPositionsLink.setAttribute('onclick',"javascript:ft_swap_positions();");
 				swapPositionsLink.textContent = Foxtrickl10n.getString("matchOrder.swapPositions");
 				swapPositionsDiv.appendChild(swapPositionsLink);
@@ -58,6 +59,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 			
 			if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'StayOnPage') 
 				&&  doc.getElementById('send').getAttribute('onclick') == null) {
+				// use our injected script to changes the webpage's script after action url
 				doc.getElementById('send').setAttribute('onclick',"javascript:ft_stay_on_page()");
 			}
 		};

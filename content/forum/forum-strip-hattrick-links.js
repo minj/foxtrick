@@ -11,7 +11,7 @@ Foxtrick.modules["ForumStripHattrickLinks"]={
 	OPTIONS: new Array("NoConfirmStripping"),
 	NICE: -1, //  needs to be before forum preview for old submit button (order) detection
 
-	onclick : function( ev ) {
+	changeLinks : function( ev ) {
 		var a = ev.target;
 		if (a.nodeName == "A") { 
 			if (Foxtrick.isHtUrl(a.href)) {
@@ -39,7 +39,7 @@ Foxtrick.modules["ForumStripHattrickLinks"]={
 	},
 
 	run : function(doc) {
-		Foxtrick.listen(doc.getElementById('mainBody'), 'click',this.onclick,true);
+		Foxtrick.listen(doc.getElementById('mainBody'), 'click', this.changeLinks, true);
 		if (Foxtrick.isPage("forumViewThread", doc))
 			return;
 

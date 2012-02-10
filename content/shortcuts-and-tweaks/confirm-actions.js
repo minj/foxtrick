@@ -146,11 +146,12 @@ Foxtrick.modules["ConfirmActions"]={
 					|| doc.getElementById("ctl00_ctl00_CPContent_CPSidebar_ucNTCoachOptions_repNTActions_ctl01_lnkNTAction");
 				if (submitLink) {
 					submitLink = Foxtrick.makeFeaturedElement(submitLink, this);
+					// add a confirm to webpage's javascript link
 					var sOnclick = submitLink.href.replace(/javascript\:/, "");
 					if (sOnclick.search(/confirm/) == -1){ // already added?
 						var sConfirmString = Foxtrickl10n.getString("foxtrick.ntremoveconfirmation");
 						sOnclick = "javascript:if(confirm(\"" + sConfirmString + "\")){" + sOnclick + ";}";
-						submitLink.href=sOnclick;
+						submitLink.href = sOnclick;
 					}
 				}
 			}
@@ -194,6 +195,7 @@ Foxtrick.modules["ConfirmActions"]={
 												amountText.removeAttribute("disabled");
 												var roleSelect = doc.getElementById(ids.STAFF.ROLE_SELECT_ID);
 												roleSelect.removeAttribute("disabled");
+												// after confirm all webpage's javascript link click action
 												var submitButton = doc.getElementById(ids.STAFF.SUBMIT_BUTTON_ID);
 												submitButton.setAttribute("onclick", submitButton.getAttribute("alt-onclick"));
 												submitButton.click();
@@ -222,6 +224,7 @@ Foxtrick.modules["ConfirmActions"]={
 								Foxtrick.addClass(submitButton, "hidden");
 								actionSelect.disabled = amountText.disabled = roleSelect.disabled = "disabled";
 								if (confirmAdded === false) {
+									// after confirm all webpage's javascript link click action
 									submitButton.setAttribute("onclick", submitButton.getAttribute("alt-onclick"));
 									submitButton.click();
 								}

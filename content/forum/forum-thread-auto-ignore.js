@@ -80,7 +80,7 @@ Foxtrick.modules.ForumThreadAutoIgnore = {
 								// ignore thread using ht's javascript link. need to use the webpage's injected script function
 								var func = ignore.getAttribute('onclick');
 								doc.location.href = func;
-								Foxtrick.dump('autoignore '+tags[k]+': '+a.innerHTML+'\n');
+								Foxtrick.log('autoignore '+tags[k]+': '+a.innerHTML+'\n');
 
 								// only one at a time. recheck after page has changed
 								return;
