@@ -1814,7 +1814,7 @@
 		"title": "HTEV Simulator",
 		"img": "http://htev.org/static/htevfavicon.gif"
 	},
-	"hatstats": {
+	"hatstatsnet": {
 		"leaguelink": {
 			"url": "http://hatstats.net/oceania/standings.php?series=[leagueid]",
 			"filters": [
