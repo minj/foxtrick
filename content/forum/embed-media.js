@@ -170,31 +170,33 @@ Foxtrick.modules["EmbedMedia"]={
 			//iterate all links and see if any supported link is found
 			Foxtrick.map( function(link){
 				var linkDict = {"site":null, "link":link};
-
-				for (var key in filter_supported)	
-				{	
-					var re = new RegExp( filter_supported[key] );
-					var matches = re.exec(link)
-					//link passed regex, add to supported links
-					if( matches ){
-						//ignore imageshack detected as generic
-						if(key == "genericImage" && link.href.match("imageshack.us"))
-							continue;
-							
-						//but convert to generic if the users already pasted an image link
-						if(key == "imageshack" && link.href.match("http:\/\/img(\\d+).imageshack.us") )
-							key = "genericImage";
-							
-						linkDict["site"] = key
-						if(key != "genericImage" && key != "imageshack")
-							linkDict["mediaId"] = extractVideoIdFromUrl(link.href, linkDict["site"])
-						else if(key == "imageshack"){
-							var imageshack = extractVideoIdFromUrl(link.href, linkDict["site"])
-							var params = imageshack.split(","); 
-							linkDict["params"] = imageshack.split(",");
+				
+				if(link.href.indexOf('format=json') == -1){ //check very rare case, like when explaining what oembed does and posting example url
+					for (var key in filter_supported)	
+					{	
+						var re = new RegExp( filter_supported[key] );
+						var matches = re.exec(link)
+						//link passed regex, add to supported links
+						if( matches ){
+							//ignore imageshack detected as generic
+							if(key == "genericImage" && link.href.match("imageshack.us"))
+								continue;
+								
+							//but convert to generic if the users already pasted an image link
+							if(key == "imageshack" && link.href.match("http:\/\/img(\\d+).imageshack.us") )
+								key = "genericImage";
+								
+							linkDict["site"] = key
+							if(key != "genericImage" && key != "imageshack")
+								linkDict["mediaId"] = extractVideoIdFromUrl(link.href, linkDict["site"])
+							else if(key == "imageshack"){
+								var imageshack = extractVideoIdFromUrl(link.href, linkDict["site"])
+								var params = imageshack.split(","); 
+								linkDict["params"] = imageshack.split(",");
+							}
+							media_links.push( linkDict );
+							break;
 						}
-						media_links.push( linkDict );
-						break;
 					}
 				}
 			}, all_links);
