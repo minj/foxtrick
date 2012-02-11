@@ -12,8 +12,20 @@ Foxtrick.modules["LoyaltyDisplay"]={
 	
 	run : function(doc) {
 	
+		//on players page, just run for the own team
 		if(Foxtrick.isPage('players', doc) && !Foxtrick.Pages.Players.isOwnPlayersPage(doc))
 			return;
+			
+		var replaceBars = function(bars, skillUp, appendix){
+			while(bars.length){
+			//	Foxtrick.makeFeaturedElement(bars[0], this);
+				bars[0].setAttribute("title", bars[0].getAttribute("title") + ' +' + String(skillUp).substring(0, 4));
+				bars[0].setAttribute("alt", bars[0].getAttribute("alt") + ' +' + String(skillUp).substring(0, 4));
+				Foxtrick.addClass(bars[0], "ft-percentImage-loyalty-" + appendix);
+				Foxtrick.addClass(bars[0], "ft-percentImage");
+				Foxtrick.removeClass(bars[0], "percentImage");
+			}
+		}
 		
 		var replacePercentageImage = function(player, bars){
 			//FIXME: Delete next season
@@ -65,40 +77,24 @@ Foxtrick.modules["LoyaltyDisplay"]={
 					else 
 						return;
 
-					//bars is updated on the fly when removing class "percentageImage", so iterate like this
-					while(bars.length){
-					//	Foxtrick.makeFeaturedElement(bars[0], this);
-						bars[0].setAttribute("title", bars[0].getAttribute("title") + ' +' + String(skillUp).substring(0, 4));
-						bars[0].setAttribute("alt", bars[0].getAttribute("alt") + ' +' + String(skillUp).substring(0, 4));
-						Foxtrick.addClass(bars[0], "ft-percentImage-loyalty-" + appendix);
-						Foxtrick.addClass(bars[0], "ft-percentImage");
-						Foxtrick.removeClass(bars[0], "percentImage");
-					}
+					replaceBars(bars, skillUp, appendix);
 				}
 			} else {
-				//replace original image by hg with 1,5 addon style
-				//var bars = playerHTML.getElementsByClassName("percentImage");
-				
-				if(bars.length)
-					while(bars.length){
-						Foxtrick.makeFeaturedElement(bars[0], this);
-						bars[0].setAttribute("title", bars[0].getAttribute("title") + ' +' + String(skillUp).substring(0, 4));
-						bars[0].setAttribute("alt", bars[0].getAttribute("alt") + ' +' + String(skillUp).substring(0, 4));
-						Foxtrick.addClass(bars[0], "ft-percentImage-homegrown");
-						Foxtrick.addClass(bars[0], "ft-percentImage");
-						Foxtrick.removeClass(bars[0], "percentImage");
-					}
+				//homegrown, skillUp should be 1.5
+				replaceBars(bars, 1.5, 'homegrown');
 			}
 		}
 		
 		if( Foxtrick.Pages.Players.isOwnPlayersPage(doc) && Foxtrick.isPage('players', doc) ){		
 			var playersHTML = doc.getElementsByClassName("playerInfo");
-			var players = Foxtrick.Pages.Players.getPlayerList(doc);
-			for (var p=0;p<players.length;p++) {
-				replacePercentageImage(players[p], playersHTML[p].getElementsByClassName("percentImage"));
-			}		
+			Foxtrick.Pages.Players.getPlayerList(doc, function(playerInfo){
+				for (var p=0;p<playerInfo.length;p++) {
+					replacePercentageImage(playerInfo[p], playersHTML[p].getElementsByClassName("percentImage"));
+				}	
+			});
+				
 		} else {
-				Foxtrick.Pages.Player.getPlayer(doc, Foxtrick.Pages.Player.getId(doc), function(player){
+			Foxtrick.Pages.Player.getPlayer(doc, Foxtrick.Pages.Player.getId(doc), function(player){
 				var bars = doc.getElementsByClassName("percentImage");
 				replacePercentageImage(player, bars);
 			});
