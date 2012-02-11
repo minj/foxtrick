@@ -381,7 +381,11 @@ Foxtrick.util.links = {
 			var helplink = doc.createElement("a");
 			helplink.className = "ft_actionicon foxtrickHelp float_right";
 			helplink.title = Foxtrickl10n.getString("foxtrick.linkscustom.help");
-			helplink.href = "javascript: alert('"+Foxtrickl10n.getString('foxtrick.linkscustom.helptext')+' \n'+Foxtrickl10n.getString('foxtrick.linkscustom.helptext2')+"');";
+			helplink.href = "javascript: void();";
+			Foxtrick.listen(helplink,'click',function(ev) {
+				alert( 	Foxtrickl10n.getString('foxtrick.linkscustom.helptext')+' \n'
+						+ Foxtrickl10n.getString('foxtrick.linkscustom.helptext2'));
+			}, false);
 
 			var tdn5b = doc.createElement ("td");
 			tdn5b.appendChild(helplink);
