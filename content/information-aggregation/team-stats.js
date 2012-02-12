@@ -107,7 +107,7 @@ Foxtrick.modules["TeamStats"]={
 						var filterSelect = doc.getElementById('foxtrick-filter-select');
 						// init filters
 						var evt = doc.createEvent("HTMLEvents");
-						evt.initEvent('click', true, true ); // event type,bubbling,cancelable
+						evt.initEvent('change', true, true ); // event type,bubbling,cancelable
 						filterSelect.dispatchEvent(evt);
 						// set filter
 						filterSelect.value = filter;
