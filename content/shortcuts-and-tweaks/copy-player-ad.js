@@ -145,7 +145,8 @@ Foxtrick.modules["CopyPlayerAd"]={
 							});
 					}
 					if (FoxtrickPrefs.isModuleOptionEnabled("CopyPlayerAd", "Sorted")
-						|| doc.getElementsByClassName("percentImage").length > 0) {
+						|| doc.getElementsByClassName("percentImage").length > 0
+						|| doc.getElementsByClassName("ft-percentImage").length > 0) {
 						// if skills are sorted or skill bars are enabled,
 						// the skills are arranged in a table with one cell
 						// in each row

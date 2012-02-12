@@ -37,7 +37,8 @@ Foxtrick.modules["HTMSPoints"]={
 			skillArray['years']=age.years;
 			skillArray['days']=age.days;
 			//checking if bars or not
-			var hasBars = (doc.getElementsByClassName("percentImage").length > 0);
+			var hasBars = (doc.getElementsByClassName("percentImage").length > 0) 
+							|| (doc.getElementsByClassName("ft-percentImage").length > 0);
 			var totSkills=0;
 			if (hasBars) {
 				//bars

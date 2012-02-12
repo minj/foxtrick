@@ -244,7 +244,8 @@ Foxtrick.Pages.Player = {
 			var skillTable = mainBox.getElementsByTagName("table")[0];
 			if (skillTable) {
 				if (this.isSeniorPlayerPage(doc)) {
-					var hasBars = (skillTable.getElementsByClassName("percentImage").length > 0);
+					var hasBars = (skillTable.getElementsByClassName("percentImage").length > 0)
+								|| (skillTable.getElementsByClassName("ft-percentImage").length > 0);
 					if (hasBars) {
 						var skillOrder = ["keeper", "defending", "playmaking", "winger", "passing", "scoring", "setPieces"];
 						var rows = skillTable.getElementsByTagName("tr");
