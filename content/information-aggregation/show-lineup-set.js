@@ -73,7 +73,7 @@ Foxtrick.modules["ShowLineupSet"]={
 					continue; // not a valid fixture/result row
 
 				var makeTeamNodes = function(link) {
-					var teams = link.innerHTML.split('&nbsp;-&nbsp;');
+					var teams = link.textContent.split('\u00a0-\u00a0');
 					var teamNode0 = doc.createElement('span');
 					teamNode0.textContent = teams[0];
 					var teamNode1 = doc.createElement('span');
