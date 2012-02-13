@@ -94,7 +94,7 @@ Foxtrick.modules["GoToPostBox"]={
 			goButton.setAttribute('class', 'ft_gotobox ft_gotobox_btn');
 			var gotoFkt = function(ev) {
 				var boxNum = ev.target.id.match(/\d/)[0];
-				var val = document.getElementById('foxtrick_forum_postbox_postboxnum_' + boxNum).value;
+				var val = doc.getElementById('foxtrick_forum_postbox_postboxnum_' + boxNum).value;
 				if (val.indexOf(".") > 0) {
 					var aTemp = val.split("."); 
 					val = aTemp[0] + "&n=" + aTemp[1];
