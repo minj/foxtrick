@@ -8,9 +8,8 @@
 Foxtrick.modules["HeaderFix"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
-	OPTIONS : new Array("FixLeft","RemoveFlicker"),
+	OPTIONS : new Array("FixLeft"),
 	CSS: Foxtrick.InternalPath+"resources/css/header-fix.css",
-	OPTIONS_CSS: new Array ("",Foxtrick.InternalPath+"resources/css/fixes/RemoveHeaderFixFlicker.css"),
 
 	init : function() {
 		if (FoxtrickPrefs.isModuleOptionEnabled("HeaderFix", "FixLeft"))
