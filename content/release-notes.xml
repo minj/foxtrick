@@ -19,6 +19,7 @@
 <item>Thanks all. Please continue to help translate FoxTrick at <xhtml:a href="http://crowdin.net/project/foxtrick">http://crowdin.net/project/foxtrick</xhtml:a></item>
 <item>For some info about translations see [post=15466991.1] or [post=15466972.1]</item>
 <item>Many internal changes (ryanli, convincedd)</item>
+<item><module>Ratings</module>: Option to hide Hattrick's average ratings (convinced)</item>
 <item>Links to matches adapted to Hattrick changes (Catzhoek)</item>
 <item>LeagueChat and HeaderFixFlickerFix removed (convincedd)</item>
 </note>
