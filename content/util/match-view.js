@@ -167,7 +167,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 			else {
 				// add HT-Live
 				var liveLink = doc.createElement("a");
-				liveLink.href = "/Club/Matches/Live.aspx?actionType=addMatch&"+ (isYouth ? "youth" : "") + "matchID=" + matchId;
+				liveLink.href = "/Club/Matches/Live.aspx?actionType=addMatch&"+ (isYouth ? "&SourceSystem=Youth" : "&SourceSystem=Hattrick") + "matchID=" + matchId;
 				var liveImg = doc.createElement("img");
 				liveImg.className = "matchHTLive";
 				liveImg.src = "/Img/Icons/transparent.gif";
