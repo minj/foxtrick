@@ -23,7 +23,7 @@ Foxtrick.modules["ForumPreview"]={
 				[/\[teamid=(\d+)\]/gi, "<a href=\"/Club/?TeamID=$1\" target=\"_blank\">($1)</a>"],
 				[/\[youthteamid=(\d+)\]/gi, "<a href=\"/Club/Youth/?YouthTeamID=$1\" target=\"_blank\">($1)</a>"],
 				[/\[matchid=(\d+)\]/gi, "<a href=\"/Club/Matches/Match.aspx?matchID=$1\" target=\"_blank\">($1)</a>"],
-				[/\[youthmatchid=(\d+)\]/gi, "<a href=\"/Club/Matches/Match.aspx?matchID=$1&isYouth=True\" target=\"_blank\">($1)</a>"],
+				[/\[youthmatchid=(\d+)\]/gi, "<a href=\"/Club/Matches/Match.aspx?matchID=$1&SourceSystem=Youth\" target=\"_blank\">($1)</a>"],
 				[/\[federationid=(\d+)\]/gi, "<a href=\"/Community/Federations/Federation.aspx?AllianceID=$1\" target=\"\_blank\">($1)</a>"],
 				[/\[message\=(\d+)\.(\d+)\]/gi, "<a href=\"/Forum/Read.aspx?t=$1&n=$2\" target=\"_blank\">($1.$2)</a>"],
 				[/\[post\=(\d+)\.(\d+)\]/gi, "<a href=\"/Forum/Read.aspx?t=$1&n=$2\" target=\"\_blank\">($1.$2)</a>"],
