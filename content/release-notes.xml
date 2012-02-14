@@ -13,6 +13,16 @@
 <item>Please view <xhtml:a href="http://code.google.com/p/foxtrick/source/list">commit history</xhtml:a> at Google Code for details.</item>
 </note>
 
+<note version="0.9">
+<item>Many translation updates. (Catzhoek and many translators. Amoung others: GM-murko, LambdaB, Paulo Francisco Martins, </item>
+<item>MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, Zayc)</item>
+<item>Thanks all. Please continue to help translate FoxTrick at <xhtml:a href="http://crowdin.net/project/foxtrick">http://crowdin.net/project/foxtrick</xhtml:a></item>
+<item>For some info about translations see [post=15466991.1] or [post=15466972.1]</item>
+<item>Many internal changes (ryanli, convincedd)</item>
+<item>Links to matches adapted to Hattrick changes (Catzhoek)</item>
+<item>LeagueChat and HeaderFixFlickerFix removed (convincedd)</item>
+</note>
+
 <note version="0.8.2">
 <item>Korean locale (SI-CH)</item>
 <item>Lithuanian locale (LA-MJ)</item>
