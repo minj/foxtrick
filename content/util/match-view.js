@@ -117,7 +117,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 			var matchCell = doc.createElement("td");
 			var matchLink = doc.createElement("a");
 			matchLink.href = "/Club/Matches/Match.aspx?matchID=" + matchId
-				+ (isYouth ? "&isYouth=True" : "");
+				+ (isYouth ? "&SourceSystem=Youth" : "&SourceSystem=Hattrick");
 			// get in one line for standard theme while won't fit in one
 			// line anyway for simple theme
 			var cutlength = Foxtrick.util.layout.isStandard(doc) ? 12 : 18;

@@ -23,7 +23,7 @@ Foxtrick.util.htMl.getId = function(node) {
 		{ type : "Youth Player", re : /\?YouthPlayerID=(\d+)/i, tag : "youthplayerid" },
 		{ type : "Team", re : /\/Club\/\?TeamID=(\d+)/i, tag : "teamid" },
 		{ type : "Youth Team", re : /\?YouthTeamID=(\d+)/i, tag : "youthteamid" },
-		{ type : "Youth Match", re : /\?matchID=(\d+)&isYouth=True/i, tag : "youthmatchid" },
+		{ type : "Youth Match", re : /\?matchID=(\d+)&SourceSystem=Youth/i, tag : "youthmatchid" },
 		{ type : "Match", re : /\?matchID=(\d+)/i, tag : "matchid" },
 		{ type : "Federation", re : /\?AllianceID=(\d+)/i, tag : "federationid" },
 		{ type : "Series", re : /\?LeagueLevelUnitID=(\d+)/i, tag : "leagueid" },
