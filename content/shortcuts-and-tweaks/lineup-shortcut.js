@@ -126,9 +126,12 @@ Foxtrick.modules["LineupShortcut"]={
 		var cell = Foxtrick.insertFeaturedCell(row, this, -1); // append as the last cell
 		cell.className = "ft-lineup-cell";
 		var link = Foxtrick.createFeaturedElement(doc, this, "a");
-		if (type == "youth")
-			link.href = "/Club/Matches/MatchLineup.aspx?MatchID=" + matchid + "&YouthTeamID=" + teamid + "&isYouth=true&HighlightPlayerID=" + playerid;
-		else
+		if (type == "youth"){
+			if(Foxtrick.isStage(doc))
+				link.href = "/Club/Matches/MatchLineup.aspx?MatchID=" + matchid + "&YouthTeamID=" + teamid + "&HighlightPlayerID=" + playerid + "&SourceSystem=Youth";
+			else
+				link.href = "/Club/Matches/MatchLineup.aspx?MatchID=" + matchid + "&YouthTeamID=" + teamid + "&isYouth=true&HighlightPlayerID=" + playerid;
+		} else
 			link.href = "/Club/Matches/MatchLineup.aspx?MatchID=" + matchid + "&TeamID=" + teamid + "&HighlightPlayerID=" + playerid;
 		var src = '';
 		if (type == "NT")
