@@ -13,6 +13,17 @@
 <item>자세한 내용은 Google Code의 <xhtml:a href="http://code.google.com/p/foxtrick/source/list">보고 기록</xhtml:a>을 참조하세요.</item>
 </note>
 
+<note version="0.9">
+<item>다수의 번역 업데이트. (Catzhoek 과 많은 번역가들: GM-murko, LambdaB, Paulo Francisco Martins, </item>
+<item>MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, Zayc)</item>
+<item>여러분 모두 감사합니다. <xhtml:a href="http://crowdin.net/project/foxtrick">http://crowdin.net/project/foxtrick</xhtml:a>에서 Foxtrick을 계속 번역해주세요 </item>
+<item>번역에 대한 정보는 [post=15466991.1] 또는 [post=15466972.1]을 보세요</item>
+<item>많은 내부 변화 (ryanli, convincedd)</item>
+<item><module>Ratings</module>: Hattrick의 평균 레이팅을 감추기 위한 옵션 (convinced)</item>
+<item>Hattrick 변화에 맞게 조정된 경기에 대한 링크 (Catzhoek)</item>
+<item>LeagueChat 과 HeaderFixFlickerFix 제거 (convincedd)</item>
+</note>
+
 <note version="0.8.2">
 <item>한국어 업데이트 (SI-CH)</item>
 <item>리투아니아어 업데이트 (LA-MJ)</item>
