@@ -13,11 +13,22 @@
 		<item>Пожалуйста, посмотрите <xhtml:a href="http://code.google.com/p/foxtrick/source/list">историю изменений</xhtml:a> на сайте Google Code для деталей.</item>
 	</note>
 
+	<note version="0.9">
+		<item>Большое количество обновлений переводов (Catzhoek и многие переводчики. Среди прочих: GM-murko, LambdaB, Paulo Francisco Martins, </item>
+		<item>MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, Zayc).</item>
+		<item>Спасибо вам всем. Пожалуйста, продолжайте помогать переводить FoxTrick на сайте <xhtml:a href="http://crowdin.net/project/foxtrick">http://crowdin.net/project/foxtrick</xhtml:a>.</item>
+		<item>Для дополнительной информации о переводе смотрите сообщение [post=15466991.1] или [post=15466972.1].</item>
+		<item>Множество внутренних изменений (ryanli, convincedd).</item>
+		<item>Модуль <module>Ratings</module>: параметр для скрытия средних рейтингов от Hattrick (convinced).</item>
+		<item>Адаптция ссылок на матчи к изменениям в Hattrick (Catzhoek).</item>
+		<item>Модули LeagueChat и HeaderFixFlickerFix удалены (convincedd).</item>
+	</note>
+
 	<note version="0.8.2">
 		<item>Корейский перевод (SI-CH).</item>
 		<item>Литовский перевод (LA-MJ).</item>
 		<item>Очистка неиспользуемых данных в переводах (CatzHoek).</item>
-		<item>Добавлены ссылки на страницу статистики <xhtml:a href="http://www.htev.org/">http://htev.org/</xhtml:a>.</item>
+		<item>Добавлены ссылки на страницу статистики <xhtml:a href="http://www.htev.org/">http://htev.org/</xhtml:a> (convincedd, CatzHoek).</item>
 		<item>Некоторые мелкие исправления (convincedd, CatzHoek).</item>
 	</note>
 
