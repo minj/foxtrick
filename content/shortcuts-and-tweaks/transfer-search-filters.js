@@ -151,6 +151,8 @@ Foxtrick.modules["TransferSearchFilters"]={
 				}
 				catch (e) {
 					Foxtrick.log(e);
+					Foxtrick.log('filter', filter);
+					Foxtrick.log('filter-obj', obj);
 				}
 			};
 			var deleteFilter = function(ev) {
