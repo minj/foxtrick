@@ -25,6 +25,7 @@ Foxtrick.entry.docLoad = function(doc) {
 		
 	// don't execute if disabled
 	if (FoxtrickPrefs.getBool("disableTemporary")) {
+		Foxtrick.log('disabled')
 		// potenial disable cleanup
 		if (Foxtrick.entry.cssLoaded) {
 			Foxtrick.unload_module_css(doc);
@@ -60,8 +61,8 @@ Foxtrick.entry.docLoad = function(doc) {
 	if ( !Foxtrick.isHt(doc) 
 	  || Foxtrick.isExcluded(doc) 
 	  || Foxtrick.isLoginPage(doc) )  {
-		// potential cleanup
-		if (Foxtrick.entry.cssLoaded) {
+		// potential cleanup for injected css
+		if (Foxtrick.arch == "Sandboxed" && Foxtrick.entry.cssLoaded) {
 			Foxtrick.unload_module_css(doc);
 			Foxtrick.entry.cssLoaded = false;
 		}
