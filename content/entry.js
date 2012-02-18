@@ -57,13 +57,17 @@ Foxtrick.entry.docLoad = function(doc) {
 	}*/
 
 	// we shall not run here
-	if (!Foxtrick.isHt(doc)) 
+	if ( !Foxtrick.isHt(doc) 
+	  || Foxtrick.isExcluded(doc) 
+	  || Foxtrick.isLoginPage(doc) )  {
+		// potential cleanup
+		if (Foxtrick.entry.cssLoaded) {
+			Foxtrick.unload_module_css(doc);
+			Foxtrick.entry.cssLoaded = false;
+		}
 		return;
-	if (Foxtrick.isExcluded(doc)) 
-		return;
-	if (Foxtrick.isLoginPage(doc)) 
-		return;
-
+	}
+	
 	// ensure #content is available
 	var content = doc.getElementById("content");
 	if (!content)
