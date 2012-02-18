@@ -279,7 +279,7 @@ Foxtrick.modules["CrossTable"]={
 				// http://code.google.com/apis/chart/docs/gallery/line_charts.html
 				var url = "http://chart.apis.google.com/chart"
 					+ "?cht=lc" // chart type=line chart
-					+ "&chs=" + width + "x200" // chart size=width×20
+					+ "&chs=" + width + "x200" // chart size=widthÃ—20
 					+ "&chds=0.5,8.5" // chart data series range=[0.5,8.5]
 					+ "&chxt=x,y" // visible axis=X, Y
 					+ "&chxr=0,1," + roundsPlayed + ",1" // axis label=x:[1..roundsPlayed](1)
@@ -310,8 +310,8 @@ Foxtrick.modules["CrossTable"]={
 				if (xml) {
 					var matchNodes = xml.getElementsByTagName("Match");
 					processMatches(matchNodes);
-					fillCrossTable(status);
-					drawSeasonGraph(status);
+					fillCrossTable(xml);
+					drawSeasonGraph(xml);
 				}
 				if (errorText) {
 					var note = Foxtrick.util.note.create(doc, errorText);
