@@ -151,8 +151,8 @@ Foxtrick.modules["TransferSearchFilters"]={
 				}
 				catch (e) {
 					Foxtrick.log(e);
-					Foxtrick.log('filter', filter);
-					Foxtrick.log('filter-obj', obj);
+					Foxtrick.log('filter-name: ', filter);
+					Foxtrick.log('filter-obj: ', obj);
 				}
 			};
 			var deleteFilter = function(ev) {
@@ -166,7 +166,12 @@ Foxtrick.modules["TransferSearchFilters"]={
 			};
 
 			var filter = FoxtrickPrefs.getString("transferfilter." + name);
-
+			if (filter === null) {
+				filter = FoxtrickPrefs.getString(encodeURI("transferfilter." + name));
+				if (filter === null)
+					return;
+			}
+		
 			var tr = doc.createElement("tr");
 			tr.id = "filter_" + name;
 			table.appendChild(tr);
@@ -179,13 +184,13 @@ Foxtrick.modules["TransferSearchFilters"]={
 			var link = doc.createElement("a");
 			link.className = "ft-link";
 			Foxtrick.listen(link, "click", fillForm, false);
-			link.textContent = decodeURI(name);
+			link.textContent = name;
 			link.setAttribute("filter", filter);
 			td_fname.appendChild(link);
 
 			var remover = doc.createElement("div");
 			remover.className = "foxtrickRemove";
-			remover.msg = decodeURI(name);
+			remover.msg = name;
 			Foxtrick.listen(remover, "click", deleteFilter, false);
 			td_remove.appendChild(remover);
 		};
