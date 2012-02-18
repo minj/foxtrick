@@ -26,8 +26,8 @@ Foxtrick.entry.docLoad = function(doc) {
 	// don't execute if disabled
 	if (FoxtrickPrefs.getBool("disableTemporary")) {
 		// potenial disable cleanup
-		if (Foxtrick.arch == "Gecko" && Foxtrick.entry.cssLoaded) {
-			Foxtrick.unload_module_css();
+		if (Foxtrick.entry.cssLoaded) {
+			Foxtrick.unload_module_css(doc);
 			Foxtrick.entry.cssLoaded = false;
 		}
 		return;
