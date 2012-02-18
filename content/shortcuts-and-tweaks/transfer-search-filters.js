@@ -179,13 +179,13 @@ Foxtrick.modules["TransferSearchFilters"]={
 			var link = doc.createElement("a");
 			link.className = "ft-link";
 			Foxtrick.listen(link, "click", fillForm, false);
-			link.textContent = name;
+			link.textContent = decodeURI(name);
 			link.setAttribute("filter", filter);
 			td_fname.appendChild(link);
 
 			var remover = doc.createElement("div");
 			remover.className = "foxtrickRemove";
-			remover.msg = name;
+			remover.msg = decodeURI(name);
 			Foxtrick.listen(remover, "click", deleteFilter, false);
 			td_remove.appendChild(remover);
 		};
