@@ -28,9 +28,6 @@ Foxtrick.modules["LoyaltyDisplay"]={
 		}
 		
 		var replacePercentageImage = function(player, bars){
-			//FIXME: Delete next season
-			var halfEffect = true;
-			//FIXME: end
 			
 			var loyalty = player.Loyalty;
 			if(loyalty === undefined)
@@ -40,21 +37,13 @@ Foxtrick.modules["LoyaltyDisplay"]={
 			if(mcb === undefined)
 				mcb  = player.motherClubBonus;
 				
-			if (mcb === undefined || halfEffect){
+			if (mcb === undefined){
 				if (loyalty !== undefined){
 					//formula
 					// loyalty = 1 + sqrt(days/336)*19
 					// bonus = sqrt(days/336)
 					// -> bonus = (loyalty - 1) / 19
 					var skillUp = ( loyalty - 1 ) / 19.0;
-					
-					//FIXME: Delete next season
-					if(halfEffect)
-						skillUp *= 0.5;
-
-					if(mcb == "True" || ( Foxtrick.isPage('players', doc) && mcb !== undefined ) )
-						skillUp += 0.25;
-					//FIXME: end
 					
 					var appendix;
 					//find correct style for this loyalty level

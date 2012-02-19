@@ -5,11 +5,11 @@
 	padding: 0;
 }
 
-html[data-theme="standard"] img.ft-percentImage-homegrown {
+html[data-theme="standard"] img.ft-percentImage-loyalty-homegrown {
 	background: #EEE url("chrome://foxtrick/content/resources/img/loyalty/loyalty_homegrown.png") top left no-repeat;
 }
 
-html[data-theme="simple"] img.ft-percentImage-homegrown {
+html[data-theme="simple"] img.ft-percentImage-loyalty-homegrown {
 	background: #EEE url("chrome://foxtrick/content/resources/img/loyalty/loyalty_homegrown_simple.png") top left no-repeat;
 }
 
