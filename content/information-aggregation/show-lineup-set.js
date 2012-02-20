@@ -57,7 +57,7 @@ Foxtrick.modules["ShowLineupSet"]={
 			}
 		};
 		var isResultTable = function(table) {
-			return Foxtrick.hasClass(table, "left");
+			return Foxtrick.hasClass(table, "left") && !isFixtureTable(table);
 		};
 
 		var tables = doc.getElementById("mainBody").getElementsByTagName("table");
