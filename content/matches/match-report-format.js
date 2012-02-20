@@ -267,7 +267,8 @@
 			var txtUnknownPlayer = Foxtrickl10n.getString("match.player.unknown");
 
 			if (Foxtrick.Pages.Match.isPrematch(doc)
-				|| Foxtrick.Pages.Match.inProgress(doc))
+				|| Foxtrick.Pages.Match.inProgress(doc)
+				|| doc.location.href.search('HTOIntegrated') != -1)
 				return;
 
 			var isYouth = Foxtrick.Pages.Match.isYouth(doc);

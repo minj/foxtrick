@@ -31,7 +31,8 @@
 				addHighlightParam(doc);
 			}
 			else {
-				this.color(doc);
+				if (doc.location.href.search('HTOIntegrated') == -1)
+					this.color(doc);
 			}
 		},
 
