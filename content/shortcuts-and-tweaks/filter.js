@@ -43,7 +43,7 @@ Foxtrick.modules["Filter"]={
 					{ key : "Form", 	filtertype : "minmax", min : null, max : null,	type:'number'	},
 					{ key : "XP", 		filtertype : "minmax", min : null, max : null,	type:'number'	},
 					{ key : "specialty",filtertype : "category", category : null, 		type:'text'		},
-					{ key : "stars", 	filtertype : "minmax", min : null, max : null,	type:'image', 	searchUrl:'star'	}
+					{ key : "stars", 	filtertype : "minmax", min : null, max : null,	type:'image', 	incPerClass: {starWhole:1, starBig:5, starHalf:0.5}	}
 				]
 			}
 		};
@@ -298,8 +298,11 @@ Foxtrick.modules["Filter"]={
 								var imgs = cell[j].getElementsByTagName('img');
 								val = 0;
 								for (var k=0; k<imgs.length; ++k) {
-									if (imgs[k].src.search(RegExp(filter.searchUrl)) != -1)
-										++val;
+									for (var searchStr in filter.incPerClass) {
+										//Foxtrick.log(imgs[k].className, searchStr, imgs[k].src.search(RegExp(searchStr)), filter.incPerClass[searchStr], val )
+										if (imgs[k].className.search(RegExp(searchStr)) != -1)
+											val += filter.incPerClass[searchStr];
+									}
 								}
 							}
 							
