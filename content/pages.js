@@ -121,7 +121,9 @@ Foxtrick.ht_pages = {
 	'search'                    : '/Search/|/Search/Default.aspx',
 	'oldplayers'                : '/Club/Players/Oldies.aspx',
 	'oldcoaches'                : '/Club/Players/Coaches.aspx',
-
+	'Tournaments'				: '/Community/Tournaments/Tournament.aspx',
+	'TournamentsFixtures'		: '/Community/Tournaments/Fixtures.aspx',
+	'TournamentsPlayerStatuses'	: '/Community/Tournaments/PlayerStatuses.aspx'
 };
 
 Foxtrick.pagesExcluded = {

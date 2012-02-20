@@ -8,7 +8,7 @@
 
 Foxtrick.modules["ShowLineupSet"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ["series", "youthSeries"],
+	PAGES : ["series", "youthSeries", "Tournaments"],
 	OPTIONS : ["LineupSet", "Ownerless", "Winning"],
 
 	run : function(doc) {
