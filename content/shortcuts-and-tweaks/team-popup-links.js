@@ -174,7 +174,7 @@ Foxtrick.modules["TeamPopupLinks"]={
 					&& !Foxtrick.isPage("forumWritePost", doc) 
 					&& !Foxtrick.isPage("forumModWritePost", doc)  
 					&& !Foxtrick.isPage("region", doc)  
-					)
+					&& (Foxtrick.util.layout.isStandard(doc) || aLink.parentNode.nodeName!='TD') )
 					Foxtrick.addClass(aLink, "ft-nowrap");
 				else {
 					Foxtrick.addClass(aLink, "ft-dummy");
