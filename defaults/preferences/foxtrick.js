@@ -23,7 +23,7 @@ pref("extensions.foxtrick.prefs.module.ContextMenuCopy.HtMl.enabled", true);
 pref("extensions.foxtrick.prefs.module.ContextMenuCopy.Id.enabled", true);
 pref("extensions.foxtrick.prefs.module.ContextMenuCopy.Link.enabled", true);
 pref("extensions.foxtrick.prefs.module.ContextMenuCopy.Table.enabled", true);
-pref("extensions.foxtrick.prefs.module.HeaderToggle.enabled", true);
+pref("extensions.foxtrick.prefs.module.HeaderToggle.enabled", false);
 pref("extensions.foxtrick.prefs.module.CopyMatchID.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyPlayerAd.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyPlayerAd.Sorted.enabled", false);

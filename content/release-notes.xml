@@ -29,11 +29,12 @@
 <item><module>RatingsDisplay</module>: Optionally displays ratings by Hattrick in a different format (convinced)</item>
 <item><module>LoyaltyDisplay</module>: Adds skill increases by loyalty and mother club bonus to the skillbar representation (Catzhoek)</item>
 <item><module>EmbedMedia</module>: Displays several (linked) medias directly in the forum posts (Catzhoek)</item>
+<item><module>HeaderToggle</module>: Allows to show/hide any content in Hattrick that has an header h2 (convincedd)</item>
 <item>Links and staffmarker are now loaded from foxtrick.org. Thus, we can now update links without needing to upgrade FoxTrick</item>
 <item>Links to matches adapted to Hattrick changes (Catzhoek)</item>
 <item>LeagueChat and HeaderFixFlickerFix removed (convincedd)</item>
 <item>Many internal changes (ryanli, convincedd) and probably several other smaller fixes</item>
-<item> </item>
+<item></item>
 <item><xhtml:b>Feature highlight</xhtml:b></item>
 <item>We also included a feature highlight for easier detection of FoxTrick features and the responsible modules. You can turn this on/off by clicking on the FoxTrick version info down right on every page. After first reload it shows the responsible module in the hover tooltip.</item>
 </note>
