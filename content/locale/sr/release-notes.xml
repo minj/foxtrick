@@ -14,6 +14,7 @@
 </note>
 
 <note version="0.9">
+<item>Локализација: Интеграција са <xhtml:a href="http://www.crowdin.net/project/foxtrick">crowdsourcing</xhtml:a> сервисом за превођење . (CatzHoek, Convincedd)</item>
 <item>Велики број ажурираних превода. (Catzhoek и многи други преводиоци. Између осталих: GM-murko, LambdaB, Paulo Francisco Martins, </item>
 <item>MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, Zayc)</item>
 <item>Хвала свима. Молимо вас да наставите да преводите FoxTrick на <xhtml:a href="http://crowdin.net/project/foxtrick">http://crowdin.net/project/foxtrick</xhtml:a></item>
