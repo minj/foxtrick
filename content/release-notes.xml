@@ -14,15 +14,28 @@
 </note>
 
 <note version="0.9">
-<item>Localization: Integration of the crowdsourcing translation service <xhtml:a href="http://www.crowdin.net/project/foxtrick">http://www.crowdin.net</xhtml:a>. (CatzHoek, Convincedd)</item>
-<item>Localization: Many translation updates. (Catzhoek and many translators. Amoung others: GM-murko, LambdaB, Paulo Francisco Martins, </item>
-<item>MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, Zayc)</item>
+<item><xhtml:b>Localization:</xhtml:b></item>
+<item>Integration of the crowdsourcing translation service <xhtml:a href="http://www.crowdin.net/project/foxtrick">http://www.crowdin.net</xhtml:a>. (CatzHoek, Convincedd)</item>
+<item>Many translation updates. (Catzhoek and many translators. Amoung others: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, Zayc)</item>
 <item>Thanks all. Please continue to help translate FoxTrick at <xhtml:a href="http://crowdin.net/project/foxtrick">http://crowdin.net/project/foxtrick</xhtml:a></item>
 <item>For some info about translations see [post=15466991.1] or [post=15466972.1]</item>
-<item>Many internal changes (ryanli, convincedd)</item>
+<item></item>
+<item><xhtml:b>New features and changes</xhtml:b></item>
+<item><module>MatchReportFormat</module>: Completely reworked match report (ryanli, Catzhoek, ljushaff)</item>
 <item><module>Ratings</module>: Option to hide Hattrick's average ratings (convinced)</item>
+<item><module>Filter</module>: Adds filters to Top players page (convinced)</item>
+<item><module>MatchOrder</module>: Adds more info to the macth order interface and a swap players function (convinced)</item>
+<item><module>MatchSimulator</module>: Adds stamnia discount option and a match simulator using <xhtml:a href="http://www.fantamondi.it/HTMS">HTMS</xhtml:a> (convinced)</item>
+<item><module>RatingsDisplay</module>: Optionally displays ratings by Hattrick in a different format (convinced)</item>
+<item><module>LoyaltyDisplay</module>: Adds skill increases by loyalty and mother club bonus to the skillbar representation (Catzhoek)</item>
+<item><module>EmbedMedia</module>: Displays several (linked) medias directly in the forum posts (Catzhoek)</item>
+<item>Links and staffmarker are now loaded from foxtrick.org. Thus, we can now update links without needing to upgrade FoxTrick</item>
 <item>Links to matches adapted to Hattrick changes (Catzhoek)</item>
 <item>LeagueChat and HeaderFixFlickerFix removed (convincedd)</item>
+<item>Many internal changes (ryanli, convincedd) and probably several other smaller fixes</item>
+<item> </item>
+<item><xhtml:b>Feature highlight</xhtml:b></item>
+<item>We also included a feature highlight for easier detection of FoxTrick features and the responsible modules. You can turn this on/off by clicking on the FoxTrick version info down right on every page. After first reload it shows the responsible module in the hover tooltip.</item>
 </note>
 
 <note version="0.8.2">

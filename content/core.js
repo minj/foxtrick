@@ -124,6 +124,7 @@ Foxtrick.modules["Core"]={
 								var item = document.createElement("li");
 								list.appendChild(item);
 								importContent(items[i], item);
+								item.appendChild(document.createTextNode('\u00a0'));
 							}
 						}
 
