@@ -20,23 +20,26 @@
 <item>Thanks all. Please continue to help translate FoxTrick at <xhtml:a href="http://crowdin.net/project/foxtrick">http://crowdin.net/project/foxtrick</xhtml:a></item>
 <item>For some info about translations see [post=15466991.1] or [post=15466972.1]</item>
 <item></item>
-<item><xhtml:b>New features and changes</xhtml:b></item>
-<item><module>MatchReportFormat</module>: Completely reworked match report (ryanli, Catzhoek, ljushaff)</item>
-<item><module>Ratings</module>: Option to hide Hattrick's average ratings (convinced)</item>
-<item><module>Filter</module>: Adds filters to Top players page (convinced)</item>
-<item><module>MatchOrder</module>: Adds more info to the macth order interface and a swap players function (convinced)</item>
-<item><module>MatchSimulator</module>: Adds stamnia discount option and a match simulator using <xhtml:a href="http://www.fantamondi.it/HTMS">HTMS</xhtml:a> (convinced)</item>
-<item><module>RatingsDisplay</module>: Optionally displays ratings by Hattrick in a different format (convinced)</item>
-<item><module>LoyaltyDisplay</module>: Adds skill increases by loyalty and mother club bonus to the skillbar representation (Catzhoek)</item>
-<item><module>EmbedMedia</module>: Displays several (linked) medias directly in the forum posts (Catzhoek)</item>
-<item><module>HeaderToggle</module>: Allows to show/hide any content in Hattrick that has an header h2 (convincedd)</item>
-<item>Links and staffmarker are now loaded from foxtrick.org. Thus, we can now update links without needing to upgrade FoxTrick</item>
-<item>Links to matches adapted to Hattrick changes (Catzhoek)</item>
-<item>LeagueChat and HeaderFixFlickerFix removed (convincedd)</item>
-<item>Many internal changes (ryanli, convincedd) and probably several other smaller fixes</item>
-<item></item>
 <item><xhtml:b>Feature highlight</xhtml:b></item>
-<item>We also included a feature highlight for easier detection of FoxTrick features and the responsible modules. You can turn this on/off by clicking on the FoxTrick version info down right on every page. After first reload it shows the responsible module in the hover tooltip.</item>
+<item>We included a feature highlight for easier detection of FoxTrick features and the responsible modules. You can turn this on/off by clicking on the FoxTrick version info down right on every page. After first reload it shows the responsible module in the hover tooltip.</item>
+<item></item>
+<item><xhtml:b>New features and changes</xhtml:b></item>
+<item>● <module>MatchReportFormat</module>: Completely reworked match report (ryanli, Catzhoek, ljushaff)</item>
+<item>● <module>Ratings</module>: Option to hide Hattrick's average ratings (convinced)</item>
+<item>● <module>Filter</module>: Adds filters to Top players page (convinced)</item>
+<item>● <module>MatchOrder</module>: Adds more info to the macth order interface and a swap players function (convinced)</item>
+<item>● <module>MatchSimulator</module>: Adds stamnia discount option and a match simulator using <xhtml:a href="http://www.fantamondi.it/HTMS">HTMS</xhtml:a> (convinced)</item>
+<item>● <module>RatingsDisplay</module>: Optionally displays ratings by Hattrick in a different format (convinced)</item>
+<item>● <module>LoyaltyDisplay</module>: Adds skill increases by loyalty and mother club bonus to the skillbar representation (Catzhoek)</item>
+<item>● <module>EmbedMedia</module>: Displays several (linked) medias directly in the forum posts (Catzhoek)</item>
+<item>● <module>HeaderToggle</module>: Allows to show/hide any content in Hattrick that has an header h2 (convincedd)</item>
+<item>● Links and staffmarker are now loaded from foxtrick.org. Thus, we can now update links without needing to upgrade FoxTrick</item>
+<item>● Links to matches adapted to Hattrick changes (Catzhoek)</item>
+<item>● LeagueChat and HeaderFixFlickerFix removed (convincedd)</item>
+<item>● Many internal changes (ryanli, convincedd) and probably several other smaller fixes</item>
+<item></item>
+<item><xhtml:b>For Google Chrome users</xhtml:b></item>
+<item>We implemented Chrome's optional permissions system. There are fewer mandatory permissions needed now when installing FoxTrick. Since you have not set any yet, you have to save the preference once and confirm whichever access you want to allow. Later, you will be asked to allow access to an external resource whenever you enable a module which requires it.</item>
 </note>
 
 <note version="0.8.2">
