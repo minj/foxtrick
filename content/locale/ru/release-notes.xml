@@ -14,14 +14,32 @@
 	</note>
 
 	<note version="0.9">
-		<item>Большое количество обновлений переводов (Catzhoek и многие переводчики. Среди прочих: GM-murko, LambdaB, Paulo Francisco Martins, </item>
-		<item>MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, Zayc).</item>
+		<item><xhtml:b>Локализация:</xhtml:b></item>
+		<item>Внедрение краудсорсинговой службы перевода <xhtml:a href="http://www.crowdin.net/project/foxtrick">http://www.crowdin.net</xhtml:a> (CatzHoek, Convincedd).</item>
+		<item>Большое количество обновлений переводов (Catzhoek многие переводчики. Среди прочих: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, Zayc).</item>
 		<item>Спасибо вам всем. Пожалуйста, продолжайте помогать переводить FoxTrick на сайте <xhtml:a href="http://crowdin.net/project/foxtrick">http://crowdin.net/project/foxtrick</xhtml:a>.</item>
 		<item>Для дополнительной информации о переводе смотрите сообщение [post=15466991.1] или [post=15466972.1].</item>
-		<item>Множество внутренних изменений (ryanli, convincedd).</item>
-		<item>Модуль <module>Ratings</module>: параметр для скрытия средних рейтингов от Hattrick (convinced).</item>
-		<item>Адаптция ссылок на матчи к изменениям в Hattrick (Catzhoek).</item>
-		<item>Модули LeagueChat и HeaderFixFlickerFix удалены (convincedd).</item>
+		<item></item>
+		<item><xhtml:b>Возможность подсветки изменений</xhtml:b></item>
+		<item>Мы добавили возможность подсвечивать изменения, вносимые на страницы HT модулями FoxTrick. Вы можете включить или выключить подсветку нажатием на строку с информацией о версии FoxTrick, которая находится справа в нижней части каждой страницы. Во всплывающем окне-подсказке будет сообщено название модуля, делающего это изменение.</item>
+		<item></item>
+		<item><xhtml:b>Новые возможности и изменения</xhtml:b></item>
+		<item>● Модуль <module>MatchReportFormat</module>: полностью переработан отчёт о матче (ryanli, Catzhoek, ljushaff).</item>
+		<item>● Модуль <module>Ratings</module>: параметр для скрытия средних рейтингов Hattrick (convinced).</item>
+		<item>● Модуль <module>Filter</module>: добавлены фильтры для страницы лучших игроков (convinced).</item>
+		<item>● Модуль <module>MatchOrder</module>: добавлено больше информации на страницу указаний на матч и функция перестановки игроков (convinced).</item>
+		<item>● Модуль <module>MatchSimulator</module>: добавлена возможность учёта выносливости при вычислении рейтингов, а также симулятор матча с использованием <xhtml:a href="http://www.fantamondi.it/HTMS">HTMS</xhtml:a> (convinced).</item>
+		<item>● Модуль <module>RatingsDisplay</module>: возможность отображения рейтингов в различной форме (convinced).</item>
+		<item>● Модуль <module>LoyaltyDisplay</module>: учёт преданности клубу, а также бонуса родного клуба при отображении навыков полосами (Catzhoek).</item>
+		<item>● Модуль <module>EmbedMedia</module>: внедряет некоторые типы мультимедийного контента в сообщение форума (Catzhoek).</item>
+		<item>● Модуль <module>HeaderToggle</module>: позволяет показывать/прятать любой блок информации, имеющий заголовок типа <xhtml:b>h2</xhtml:b> (convincedd).</item>
+		<item>● Шаблоны ссылок, а также список подсвечиваемых имён теперь загружаются с сайта foxtrick.org - таким образом, мы теперь можем обновлять ссылки без необходимости обновления FoxTrick.</item>
+		<item>● Ссылки на матчи адаптированы к изменениям в Hattrick (Catzhoek).</item>
+		<item>● Модули LeagueChat and HeaderFixFlickerFix удалены (convincedd).</item>
+		<item>● Множество внутренних изменений (ryanli, convincedd) и несколько мелких исправлений</item>
+		<item></item>
+		<item><xhtml:b>Для пользователей Google Chrome</xhtml:b></item>
+		<item>Мы внедрили систему дополнительных разрешений для Chrome. Теперь количество разрешений, необходимое для установки FoxTrick, уменьшено. Если Вы не выдали какое-либо из необходимых разрешений, Вам нужно один раз сохранить настройки и позже каждый раз подтверждать разрешение на доступ к внешним ресурсам, запрашиваемый каким-либо модулем.</item>
 	</note>
 
 	<note version="0.8.2">
