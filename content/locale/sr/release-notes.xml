@@ -14,6 +14,9 @@
 </note>
 
 <note version="0.9">
+<item><xhtml:b>Означавање активних Фокстрик функција на страници</xhtml:b></item>
+<item>Такође смо убацили и функцију за означавање активних Фокстрик функција како би их лакше препознали и пронашли одговарајуће модуле одговорне за њих. Да укључите или искључите означавање свих Фокстрик опција активних на одређеној страници, кликните на ознаку Фокстрик верзије која се налази у доњем десном углу сваке странице, поред ознаке Хеттрик сервера на којем сте улоговани. Након првог освежавања странице, пређите мишем изнад означених делова да би вам се приказало и име модула који је одговоран за ту функцију.</item>
+<item></item>
 <item><xhtml:b>Локализација:</xhtml:b></item>
 <item>Интеграција са <xhtml:a href="http://www.crowdin.net/project/foxtrick">crowdsourcing</xhtml:a> сервисом за превођење . (CatzHoek, Convincedd)</item>
 <item>Велики број ажурираних превода. (Catzhoek и многи други преводиоци. Између осталих: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, Zayc)</item>
@@ -21,22 +24,22 @@
 <item>За више информација погледајте [post=15466991.1] или [post=15466972.1]</item>
 <item></item>
 <item><xhtml:b>Нове опције и измене</xhtml:b></item>
-<item><module>MatchReportFormat</module>: Комплетно промењен изглед меч извештаја (ryanli, Catzhoek, ljushaff)</item>
-<item><module>Ratings</module>: Опција за скривање Хеттрикових просечних оцена (convinced)</item>
-<item><module>Filter</module>: Додаје филтере на страницу 'Најбољи играчи' (convinced)</item>
-<item><module>MatchOrder</module>: Додатне информације за страницу меч налога и функција за промену страна играча у постави (convinced)</item>
-<item><module>MatchSimulator</module>: Додатна опција за умањење оцена у зависности од кондиције играча и меч симулатор уз помоћ <xhtml:a href="http://www.fantamondi.it/HTMS">HTMS</xhtml:a> алата. (convinced)</item>
-<item><module>RatingsDisplay</module>: Опционо приказивање Хеттрик рејтинга у другачијем формату (convinced)</item>
-<item><module>LoyaltyDisplay</module>: Означава увећање вештина играча у зависности од њихове оданости и бонуса за матични клуб уколико су вам вештине играча приказане као линије (Catzhoek)</item>
-<item><module>EmbedMedia</module>: Уграђује линковане медија клипове директно у постове на форуму (Catzhoek)</item>
-<item><module>HeaderToggle</module>: Омогућава отварање/затварање било којег садржаја на Хеттрик страницама које имају 'h2' заглавље (convincedd)</item>
-<item>Линкови и 'staffmarker' се учитавају директно са <xhtml:a href="http://foxtrick.org">foxtrick.org</xhtml:a> сајта. Захваљујући томе, сада можемо ажурирати линкове без ажурирања Фокстрика</item>
-<item>Линкови за мечеве адаптирани променама на Хеттрику (Catzhoek)</item>
-<item>Уклоњене опције LeagueChat и HeaderFixFlickerFix (convincedd)</item>
-<item>Многе мање интерне промене и неколико других мањих поправки(ryanli, convincedd)</item>
+<item>● <module>MatchReportFormat</module>: Комплетно промењен изглед меч извештаја (ryanli, Catzhoek, ljushaff)</item>
+<item>● <module>Ratings</module>: Опција за скривање Хеттрикових просечних оцена (convinced)</item>
+<item>● <module>Filter</module>: Додаје филтере на страницу 'Најбољи играчи' (convinced)</item>
+<item>● <module>MatchOrder</module>: Додатне информације за страницу меч налога и функција за промену страна играча у постави (convinced)</item>
+<item>● <module>MatchSimulator</module>: Додатна опција за умањење оцена у зависности од кондиције играча и меч симулатор уз помоћ <xhtml:a href="http://www.fantamondi.it/HTMS">HTMS</xhtml:a> алата. (convinced)</item>
+<item>● <module>RatingsDisplay</module>: Опционо приказивање Хеттрик рејтинга у другачијем формату (convinced)</item>
+<item>● <module>LoyaltyDisplay</module>: Означава увећање вештина играча у зависности од њихове оданости и бонуса за матични клуб уколико су вам вештине играча приказане као линије (Catzhoek)</item>
+<item>● <module>EmbedMedia</module>: Уграђује линковане медија клипове директно у постове на форуму (Catzhoek)</item>
+<item>● <module>HeaderToggle</module>: Омогућава отварање/затварање било којег садржаја на Хеттрик страницама које имају 'h2' заглавље (convincedd)</item>
+<item>● Линкови и 'staffmarker' се учитавају директно са <xhtml:a href="http://foxtrick.org">foxtrick.org</xhtml:a> сајта. Захваљујући томе, сада можемо ажурирати линкове без ажурирања Фокстрика</item>
+<item>● Линкови за мечеве адаптирани променама на Хеттрику (Catzhoek)</item>
+<item>● Уклоњене опције LeagueChat и HeaderFixFlickerFix (convincedd)</item>
+<item>● Многе мање интерне промене и неколико других мањих поправки(ryanli, convincedd)</item>
 <item></item>
-<item><xhtml:b>Означавање активних Фокстрик функција на страници</xhtml:b></item>
-<item>Такође смо убацили и функцију за означавање активних Фокстрик функција како би их лакше препознали и пронашли одговарајуће модуле одговорне за њих. Да укључите или искључите означавање свих Фокстрик опција активних на одређеној страници, кликните на ознаку Фокстрик верзије која се налази у доњем десном углу сваке странице, поред ознаке Хеттрик сервера на којем сте улоговани. Након првог освежавања странице, пређите мишем изнад означених делова да би вам се приказало и име модула који је одговоран за ту функцију.</item>
+<item><xhtml:b>За оне који користе Google Chrome</xhtml:b></item>
+<item>Имплементиран је систем опционих дозвола за Google Chrome. Сада има мање обавезних дозвола потребних за коришћење Фокстрика. Пошто вероватно још нисте подесили ниједну дозволу, потребно је да још једном сачувате своја подешавања и потврдите коју год дозволу за приступ желите да дате. Касније ће Google Chrome тражити од вас да дате дозволу за приступ екстерним ресурсима кад год активирате неки од модула за чије функционисање је то неопходно.</item>
 </note>
 
 <note version="0.8.2">
