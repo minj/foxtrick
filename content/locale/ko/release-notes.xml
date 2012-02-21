@@ -14,14 +14,32 @@
 </note>
 
 <note version="0.9">
-<item>다수의 번역 업데이트. (Catzhoek 과 많은 번역가들: GM-murko, LambdaB, Paulo Francisco Martins, </item>
-<item>MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, Zayc)</item>
-<item>여러분 모두 감사합니다. <xhtml:a href="http://crowdin.net/project/foxtrick">http://crowdin.net/project/foxtrick</xhtml:a>에서 Foxtrick을 계속 번역해주세요 </item>
+<item><xhtml:b>현지화:</xhtml:b></item>
+<item>crowdsourcing 번역 서비스<xhtml:a href="http://www.crowdin.net/project/foxtrick">http://www.crowdin.net</xhtml:a> 통합. (CatzHoek, Convincedd)</item>
+<item>다수의 번역 업데이트. (Catzhoek 과 많은 번역가들: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, Zayc)</item>
+<item>여러분 모두 감사합니다. <xhtml:a href="http://crowdin.net/project/foxtrick">http://crowdin.net/project/foxtrick</xhtml:a>에서 Foxtrick을 계속 번역해주세요</item>
 <item>번역에 대한 정보는 [post=15466991.1] 또는 [post=15466972.1]을 보세요</item>
-<item>많은 내부 변화 (ryanli, convincedd)</item>
-<item><module>Ratings</module>: Hattrick의 평균 레이팅을 감추기 위한 옵션 (convinced)</item>
-<item>Hattrick 변화에 맞게 조정된 경기에 대한 링크 (Catzhoek)</item>
-<item>LeagueChat 과 HeaderFixFlickerFix 제거 (convincedd)</item>
+<item></item>
+<item><xhtml:b>기능 강조</xhtml:b></item>
+<item>우리는 더 쉽게 FoxTrick 기능과 책임 모듈의 감지하기 위한 기능 강조를 포함했습니다. 모든 페이지의 우측 하단의 FoxTrick 버전을 클릭함으로써 켜고 끌 수 있습니다. 한 번 다시 불러온 후에 풍선말 툴팁에 책임 모듈을 나태냅니다.</item>
+<item></item>
+<item><xhtml:b>새로운 기능과 변화</xhtml:b></item>
+<item>● <module>MatchReportFormat</module>: 완전히 수정된 경기 보고서 (ryanli, Catzhoek, ljushaff)</item>
+<item>● <module>Ratings</module>: Hattrick의 평균 레이팅을 감추기 위한 옵션 (convinced)</item>
+<item>● <module>Filter</module>: 최고의 선수 페이지에 필터 추가 (convinced)</item>
+<item>● <module>MatchOrder</module>: 경기 지시 사항 인터페이스에 더 많은 정보와 선수 좌우 바꾸기 기능 추가 (convinced)</item>
+<item>● <module>MatchSimulator</module>: 체력 감소 옵션과 <xhtml:a href="http://www.fantamondi.it/HTMS">HTMS</xhtml:a>을 사용하는 경기 시뮬레이터 추가 (convinced)</item>
+<item>● <module>RatingsDisplay</module>: 다른 형식의 Hattrick의 레이팅을 선택적으로 표시 (convinced)</item>
+<item>● <module>LoyaltyDisplay</module>: 충성도와 모 클럽 보너스에 의한 스킬 증가를 스킬 바에 나타내기 추가 (Catzhoek)</item>
+<item>● <module>EmbedMedia</module>: 토론장 포스트 안에 직접적으로 다수의 (링크된) 미디어 표시 (Catzhoek)</item>
+<item>● <module>HeaderToggle</module>: Hattrick 안에 있는 h2 머리글을 가진 컨텐츠를 나타내거나 감추도록 허용 (convincedd)</item>
+<item>● Links 와 staffmarker 는 이제 foxtrick.org로부터 불러옵니다. 그래서 이제 FoxTrick 업그레이드할 필요 없이 갱신할 수 있습니다</item>
+<item>● Hattrick 변화에 맞게 조정된 경기에 대한 링크 (Catzhoek)</item>
+<item>● LeagueChat 과 HeaderFixFlickerFix 제거 (convincedd)</item>
+<item>● 많은 내부 변화 (ryanli, convincedd) 와 그외 세세한 부분 다수 수정</item>
+<item></item>
+<item><xhtml:b>Google Chrome 사용자를 위해서</xhtml:b></item>
+<item>우리는 Chrome의 선택적 권한 시스템을 구축했습니다. 이제 FoxTrick을 설치할 때 필요한 통과 절차가 몇가지 있습니다. 아직 어떤한 설정을 하지 않았으므로 여러분은 접근을 허용하길 원하는 것을 확인하고 환경설정을 저장해야합니다. 여러분은 나중에 그것에 필요한 모듈을 활성화할 때마다 외부 리소스를 접근을 허용하게 될 것입니다.</item>
 </note>
 
 <note version="0.8.2">
