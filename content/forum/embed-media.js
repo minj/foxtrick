@@ -26,7 +26,7 @@ Foxtrick.modules["EmbedMedia"]={
 				
 		var do_embed_generic_images = FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedGenericImages");
 		var do_embed_generic_images_clever = do_embed_generic_images && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedGenericImagesClever");
-				
+
 		var siteEnabled = {
 			"youtube" : do_embed_youtube_videos,
 			"vimeo" : do_embed_vimeo_videos,
@@ -257,46 +257,44 @@ Foxtrick.modules["EmbedMedia"]={
 		}
 		
 		var embed = function( target ){			
-			if(Foxtrick.hasClass(target, "ft-media-site-genericImage") || Foxtrick.hasClass(target, "ft-media-site-imgur")){
+			if(Foxtrick.hasClass(target, "ft-media-site-genericImage") 
+			|| Foxtrick.hasClass(target, "ft-media-site-imgur")){
 				doEmbedActualImageUrl(target);
 				return;
 			} 
 			
 			if(Foxtrick.hasClass(target, "ft-media-site-imageshack")){
-			
 				oEmbedRequest(target.nextSibling.firstChild.href, function(response, status){
 					target.nextSibling.firstChild.href = response.match(/\?\"(.*)\":/)[1];
 					doEmbedActualImageUrl(target);
 				})
 				return;
 			}
-			if( oembed_enabled ){
-			
-				for ( var key in oembed_urls )	
-				{					
-					if( Foxtrick.hasClass( target, "ft-media-site-" +  key ) ){
+
+			//Sites where IFrame and OEmbed is the only way out
+			for ( var key in oembed_urls )	
+			{					
+				if( !Foxtrick.hasClass( target, "ft-media-site-" +  key ) )
+					continue;
+
+				//oEmbed
+				if( oembed_enabled ){
+					var oEmbedRequestURL = oembed_urls[key] + target.firstChild.href;
+					//load json from providers async
+					Foxtrick.get(oEmbedRequestURL)("success", function(response) {
+						var json = JSON.parse( response );
+						do_oEmbed(target, json);
 						
-						var oEmbedRequestURL = oembed_urls[key] + target.firstChild.href;
-						//load json from providers async
-						Foxtrick.get(oEmbedRequestURL)("success", function(response) {
-							var json = JSON.parse( response );
-							do_oEmbed(target, json);
-							
-						})("failure", function(code) {
-							Foxtrick.log("Error loading embed code: ", oembed_urls[key] + target.firstChild.href);
-							target.nextSibling.textContent = "Not a media item, host is down or has uncomprehensive response.";
-						});
-						break;
-					}
-				}
-			} else {
-				for ( var key in iframe_urls )	
-				{
-					if( Foxtrick.hasClass( target, "ft-media-site-" +  key ) ){
-						do_iframe_embed( target );
-						break;
-					}
-				}
+					})("failure", function(code) {
+						Foxtrick.log("Error loading embed code: ", oembed_urls[key] + target.firstChild.href);
+						target.nextSibling.textContent = "Not a media item, host is down or has uncomprehensive response.";
+					});
+				} 
+				//iFrame
+				else
+					do_iframe_embed( target );
+				
+				break;				
 			}
 		}
 		
