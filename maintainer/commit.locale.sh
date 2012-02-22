@@ -3,13 +3,13 @@
 SVN_FILES=../content
 EXTERNAL_LOCALE_FOLDER=crowdin/locale
 #space seperated blacklist of locales which only use svn 
-BLACKLIST="sr ru es-MX cy th"
+IGNORELIST="sr ru es-MX cy th lb"
 
 # load configuration, probably overwriting defaults above
 . ./upload.conf.sh
 
 #remove blacklisted from crowdin folder
-for LOC in $BLACKLIST
+for LOC in $IGNORELIST
 do
    echo "rm -rf $EXTERNAL_LOCALE_FOLDER/$LOC"
    rm -rfv "$EXTERNAL_LOCALE_FOLDER/$LOC"
