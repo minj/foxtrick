@@ -34,6 +34,7 @@
 <item>● <module>EmbedMedia</module>: Displays several (linked) medias directly in the forum posts (Catzhoek)</item>
 <item>● <module>HeaderToggle</module>: Allows to show/hide any content in Hattrick that has an header h2 (convincedd)</item>
 <item>● Links and staffmarker are now loaded from foxtrick.org. Thus, we can now update links without needing to upgrade FoxTrick</item>
+<item>● Updated staffmarker data about CHPP license owners (Catzhoek)</item>
 <item>● Links to matches adapted to Hattrick changes (Catzhoek)</item>
 <item>● LeagueChat and HeaderFixFlickerFix removed (convincedd)</item>
 <item>● Many internal changes (ryanli, convincedd) and probably several other smaller fixes</item>
