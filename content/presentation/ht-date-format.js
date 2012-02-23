@@ -46,7 +46,7 @@ Foxtrick.modules["HTDateFormat"]={
 		}
 
 		var modifyDate = function(node) {
-			if (Foxtrick.hasClass(node, "matchdate"))
+			if (Foxtrick.hasClass(node, "ft-date") || Foxtrick.hasClass(node, "matchdate"))
 				return;
 			if (node.hasAttribute("x-ht-date")) {
 				// attribute x-ht-date set by LocalTime, while inner
@@ -59,6 +59,7 @@ Foxtrick.modules["HTDateFormat"]={
 			
 			if (date) {
 				var htDate = Foxtrick.util.time.gregorianToHT(date, weekOffset, useLocal);
+				Foxtrick.addClass(node, "ft-date");
 				separate(node);
 				var wsDate= Foxtrick.createFeaturedElement(doc, Foxtrick.modules.HTDateFormat, 'span');
 				wsDate.textContent = "(w/s)"
