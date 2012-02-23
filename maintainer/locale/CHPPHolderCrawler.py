@@ -16,17 +16,13 @@ if __name__ == "__main__":
 	import os
 	import sys
 	
-	user = raw_input("Login: ");
-	pw = raw_input("Password: ");
-	outfile = raw_input("Outfile (*.xml): ");
-	
 	success = False
-	success, ht = login( user, pw )
-	
 	while not success:
 		user = raw_input("Login:");
 		pw = raw_input("Password:");
-		success, ht = login( user, pw )	
+		success, ht = login( user, pw )
+
+	outfile = raw_input("Outfile (*.xml): ");
 
 	ht.open("/Community/CHPP/ChppPrograms.aspx")
 	chppHolderParser = CHPPHolderParser.CHPPHolderParser()
