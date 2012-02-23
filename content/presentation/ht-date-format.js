@@ -61,7 +61,6 @@ Foxtrick.modules["HTDateFormat"]={
 				var htDate = Foxtrick.util.time.gregorianToHT(date, weekOffset, useLocal);
 				separate(node);
 				var wsDate= Foxtrick.createFeaturedElement(doc, Foxtrick.modules.HTDateFormat, 'span');
-				Foxtrick.addClass(wsDate, "ft-date");
 				wsDate.textContent = "(w/s)"
 					.replace(/w/, htDate.week)
 					.replace(/s/, htDate.season);
