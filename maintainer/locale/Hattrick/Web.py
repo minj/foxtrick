@@ -79,16 +79,17 @@ class HattrickWeb:
 		else:
 			print 'Logged in!'
 
-			
-	def setLanguage(self, languageid):
-		self.response = self.browser.open("/")
+	def setFormValue(self, form, value):
 		self.browser.select_form(name="aspnetForm")
-		
 		try:
-			self.browser.form['ctl00$ctl00$CPContent$CPSidebar$ucLanguages$ddlLanguages'] = [  str(languageid)  ]
+			self.browser.form[form] = [  str(value)  ]
 		except:
-			print 'Unable to find language change select, not logged in?'
+			print 'Unable to find the form or value change select, not logged in?'
 			
 		self.response = self.browser.submit()
 		self.body = self.response.get_data()
-		self.encodeUTF8()
+		self.encodeUTF8()	
+			
+	def setLanguage(self, languageid):
+		self.response = self.browser.open("/")
+		self.setFormValue('ctl00$ctl00$CPContent$CPSidebar$ucLanguages$ddlLanguages', languageid)
