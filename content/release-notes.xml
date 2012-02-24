@@ -35,6 +35,7 @@
 <item>● <module>HeaderToggle</module>: Allows to show/hide any content in Hattrick that has an header h2 (convincedd)</item>
 <item>● <module>Links</module> and <module>StaffMarker</module> are now loaded from <xhtml:a href="http://foxtrick.org">foxtrick.org</xhtml:a>. Thus, we can now update links without needing to upgrade FoxTrick</item>
 <item>● Updated <module>StaffMarker</module> data about CHPP license owners (Catzhoek)</item>
+<item>● <module>StaffMarker</module>-Tooltip for CHPP license owners now shows the corresponding application names (Catzhoek)</item>
 <item>● Links to matches adapted to Hattrick changes (Catzhoek)</item>
 <item>● LeagueChat and HeaderFixFlickerFix removed (convincedd)</item>
 <item>● Many internal changes (ryanli, convincedd) and probably several other smaller fixes</item>
