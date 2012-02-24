@@ -20,7 +20,7 @@ Foxtrick.modules["StaffMarker"]={
 		// JSON files to be downloaded
 		var uris = [
 			"http://foxtrick.googlecode.com/svn/trunk/res/staff/foxtrick.json",
-			"http://www.weown.de/tmp/chpp.json",
+			"http://foxtrick.googlecode.com/svn/trunk/res/staff/chpp.json",
 			"http://foxtrick.googlecode.com/svn/trunk/res/staff/editor.json",
 		];
 		if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub")) 
