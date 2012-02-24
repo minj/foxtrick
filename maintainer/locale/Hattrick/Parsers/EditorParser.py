@@ -32,7 +32,8 @@ class EditorParser(HTMLParser.HTMLParser):
 
 	def handle_endtag(self, tag):
 		if tag == 'a' and self.in_user_link:
-			self.users.append(self.currentUser)
+			if self.currentUser not in self.users:
+				self.users.append(self.currentUser)
 			self.currentUser = {}
 			self.in_user_link = False
 			
