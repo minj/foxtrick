@@ -7,6 +7,12 @@
 # ./parse-staff.py [editor|chpp]
 # ./parse-staff.py [editor|chpp] < origin.html > output.xmlfrag
 
+print "Use \maintainer\locale\CHPPHolderCrawler.py to crawl info and generate JSON"
+print "This version does not support application names (yet?)" 
+print "@see: http://code.google.com/p/foxtrick/issues/detail?id=835"
+print "CatzHoek"
+exit()
+
 import sys
 import re
 from lxml import etree
