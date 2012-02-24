@@ -1,6 +1,6 @@
 from Hattrick.Web import HattrickWeb
 from Hattrick.Parsers import CHPPHolderParser
-
+import json
 def login(username, password):
 	#use stage for now
 	ht = HattrickWeb(username, password, stage=True)
@@ -34,7 +34,7 @@ if __name__ == "__main__":
 	file.write('{\n')
 	file.write('\t"type": "%s",\n' % "chpp-holder")
 	file.write('\t"list": [\n')
-	file.write('\t\t' + ',\n\t\t'.join(map(lambda a: '{ "id": %d, "name": "%s", "appName": "%s" }' % (a["id"], a["name"].encode('utf-8'),a["appName"].encode('utf-8')), sorted_users)))
+	file.write('\t\t' + ',\n\t\t'.join(map(lambda a: ('{ "id": %d, "name": "%s", "appNames": [ ' + ', '.join(map(lambda app: '"%s"' % app.encode('utf-8') ,a["appNames"])) + ' ] }') % (a["id"], a["name"].encode('utf-8')), sorted_users)))
 	file.write('\n\t]\n}')
 	file.close()
 	print outfile, 'written'

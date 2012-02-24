@@ -10,7 +10,8 @@ class CHPPHolderParser(HTMLParser.HTMLParser):
 		HTMLParser.HTMLParser.__init__(self)
 		self.users = []
 		self.currentUser = {}
-
+		self.currentUser['appNames'] = []
+		self.currentAppname = ""
 		#in relevant area?
 		self.in_creator_paragraph = False;
 		self.in_approvedApplications = False;
@@ -46,7 +47,7 @@ class CHPPHolderParser(HTMLParser.HTMLParser):
 				if self.in_approvedApplicationsSubDivCount == 1:
 					for name, value in attrs:
 						if name == "title":
-							self.currentUser["appName"] = value
+							self.currentAppname = value
 							#print value.encode('utf-8')
 				return
 
@@ -65,9 +66,20 @@ class CHPPHolderParser(HTMLParser.HTMLParser):
 
 		if tag == 'p':
 			if self.in_creator_paragraph:
-				if self.currentUser not in self.users:
+				found = False
+				for u in self.users:
+					if u['id'] == self.currentUser['id']:
+						found = True
+				if not found:
+					self.currentUser["appNames"].append(self.currentAppname)
 					self.users.append(self.currentUser)
+				else:
+					print "already in there"
+					for u in self.users:
+						if u['id'] == self.currentUser['id']:
+							u['appNames'].append(self.currentAppname)
 				self.currentUser = {}
+				self.currentUser['appNames'] = []
 			self.in_creator_paragraph = False; #no nested divs in playerinfo, this is okay
 			
 			
