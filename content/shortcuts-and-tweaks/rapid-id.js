@@ -22,7 +22,10 @@ Foxtrick.modules["RapidId"]={
 			{ value: "youth-team", text: "Team", url: "Club/Youth/Default.aspx?YouthTeamID=%n" },
 			{ value: "youth-series", text: "Series", url: "World/Series/YouthSeries.aspx?YouthLeagueId=%n" },
 			{ value: "youth-player", text: "Player", url: "Club/Players/YouthPlayer.aspx?YouthPlayerID=%n" },
-			{ value: "youth-match", text: "Match", url: "Club/Matches/Match.aspx?matchID=%n&SourceSystem=Youth" }
+			{ value: "youth-match", text: "Match", url: "Club/Matches/Match.aspx?matchID=%n&SourceSystem=Youth" },
+			{ value: "tournament", text: "Tournaments" },
+			{ value: "match-tournament", text: "Match", url: "Club/Matches/Match.aspx?matchID=%n&SourceSystem=HTOIntegrated" },
+			{ value: "series-tournament", text: "Tournament", url: "Community/Tournaments/Tournament.aspx?tournamentId=%n" }
 		];
 		var setSelected = function(val) {
 			FoxtrickPrefs.setString("module.RapidId.selected", val);
