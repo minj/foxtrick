@@ -33,8 +33,8 @@
 <item>● <module>LoyaltyDisplay</module>: Adds skill increases by loyalty and mother club bonus to the skillbar representation (Catzhoek)</item>
 <item>● <module>EmbedMedia</module>: Displays several (linked) medias directly in the forum posts (Catzhoek)</item>
 <item>● <module>HeaderToggle</module>: Allows to show/hide any content in Hattrick that has an header h2 (convincedd)</item>
-<item>● Links and staffmarker are now loaded from foxtrick.org. Thus, we can now update links without needing to upgrade FoxTrick</item>
-<item>● Updated staffmarker data about CHPP license owners (Catzhoek)</item>
+<item>● <module>Links</module> and <module>StaffMarker</module> are now loaded from <xhtml:a href="http://foxtrick.org">foxtrick.org</xhtml:a>. Thus, we can now update links without needing to upgrade FoxTrick</item>
+<item>● Updated <module>StaffMarker</module> data about CHPP license owners (Catzhoek)</item>
 <item>● Links to matches adapted to Hattrick changes (Catzhoek)</item>
 <item>● LeagueChat and HeaderFixFlickerFix removed (convincedd)</item>
 <item>● Many internal changes (ryanli, convincedd) and probably several other smaller fixes</item>

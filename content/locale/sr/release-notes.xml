@@ -33,7 +33,8 @@
 <item>● <module>LoyaltyDisplay</module>: Означава увећање вештина играча у зависности од њихове оданости и бонуса за матични клуб уколико су вам вештине играча приказане као линије (Catzhoek)</item>
 <item>● <module>EmbedMedia</module>: Уграђује линковане медија клипове директно у постове на форуму (Catzhoek)</item>
 <item>● <module>HeaderToggle</module>: Омогућава отварање/затварање било којег садржаја на Хеттрик страницама које имају 'h2' заглавље (convincedd)</item>
-<item>● Линкови и 'staffmarker' се учитавају директно са <xhtml:a href="http://foxtrick.org">foxtrick.org</xhtml:a> сајта. Захваљујући томе, сада можемо ажурирати линкове без ажурирања Фокстрика</item>
+<item>● <module>Links</module> и <module>StaffMarker</module> се учитавају директно са <xhtml:a href="http://foxtrick.org">foxtrick.org</xhtml:a> сајта. Захваљујући томе, сада можемо ажурирати линкове без ажурирања Фокстрика</item>
+<item>● Ажурирани подаци које користи <module>StaffMarker</module> за означавање власника CHPP лиценци (Catzhoek)</item>
 <item>● Линкови за мечеве адаптирани променама на Хеттрику (Catzhoek)</item>
 <item>● Уклоњене опције LeagueChat и HeaderFixFlickerFix (convincedd)</item>
 <item>● Многе мање интерне промене и неколико других мањих поправки(ryanli, convincedd)</item>
