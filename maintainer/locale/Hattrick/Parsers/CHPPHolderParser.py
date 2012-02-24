@@ -13,6 +13,8 @@ class CHPPHolderParser(HTMLParser.HTMLParser):
 
 		#in relevant area?
 		self.in_creator_paragraph = False;
+		self.in_approvedApplications = False;
+		self.in_approvedApplicationsSubDivCount = 0
 
 	def getUserIdFromUrl(self, url):
 		pattern = re.compile("\/Club\/Manager\/\?userId=(\d+)")
@@ -38,9 +40,30 @@ class CHPPHolderParser(HTMLParser.HTMLParser):
 					except Exception:
 						pass
 
+		if tag == 'div':
+			if self.in_approvedApplications:
+				self.in_approvedApplicationsSubDivCount += 1
+				if self.in_approvedApplicationsSubDivCount == 1:
+					for name, value in attrs:
+						if name == "title":
+							self.currentUser["appName"] = value
+							#print value.encode('utf-8')
+				return
+
+			for name, value in attrs:
+				if name == 'id' and value == 'approvedApplications':		
+					self.in_approvedApplications = True	
+
+
 		
 	def handle_endtag(self, tag):
-		if tag == 'div':
+		if tag == 'div' and self.in_approvedApplications:
+			if self.in_approvedApplicationsSubDivCount == 0:
+				self.in_approvedApplications = False
+			else:
+				self.in_approvedApplicationsSubDivCount -= 1		
+
+		if tag == 'p':
 			if self.in_creator_paragraph:
 				if self.currentUser not in self.users:
 					self.users.append(self.currentUser)
