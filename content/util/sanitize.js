@@ -11,10 +11,10 @@ if (!Foxtrick.util)
 	Foxtrick.util = {};
 
 // only local web, http(s) or internal links
-Foxtrick.util._whitelist_url = new RegExp("[\/|https?:\/\/|"+Foxtrick.InternalPath.replace(/\//g,'\\/').replace(/-/g,'\\-')+"][-a-z0-9+&@#\/%\?=~_\|!:,.;\(\)\[\]]+",'i');
+Foxtrick.util._whitelist_url = new RegExp("[\/|https?:\/\/|"+Foxtrick.InternalPath.replace(/\//g,'\\/').replace(/-/g,'\\-')+"][-a-z0-9+&@#\\/%\\?=~_\\|!:,.;\\(\\)\\[\\]]+",'i');
 
 Foxtrick.util.sanitizeUrl = function(url) {
-	if (url)
+	if (url && Foxtrick.util._whitelist_url.test(url))
 		return url.match(Foxtrick.util._whitelist_url)[0];
 	else
 		return '';
