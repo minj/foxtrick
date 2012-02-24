@@ -22,7 +22,7 @@ if __name__ == "__main__":
 		pw = raw_input("Password:");
 		success, ht = login( user, pw )
 
-	outfile = raw_input("Outfile (*.xml): ");
+	outfile = raw_input("Outfile (ext json): ");
 
 	ht.open("/Community/CHPP/ChppPrograms.aspx")
 	chppHolderParser = CHPPHolderParser.CHPPHolderParser()
@@ -34,7 +34,7 @@ if __name__ == "__main__":
 	file.write('{\n')
 	file.write('\t"type": "%s",\n' % "chpp-holder")
 	file.write('\t"list": [\n')
-	file.write('\t\t' + ',\n\t\t'.join(map(lambda a: '{ "id": %d, "name": "%s" }' % (a["id"], a["name"]), sorted_users)))
+	file.write('\t\t' + ',\n\t\t'.join(map(lambda a: '{ "id": %d, "name": "%s", "appName" = "%s" }' % (a["id"], a["name"].encode('utf-8'),a["appName"].encode('utf-8')), sorted_users)))
 	file.write('\n\t]\n}')
 	file.close()
 	print outfile, 'written'
