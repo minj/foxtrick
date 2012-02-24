@@ -20,7 +20,7 @@ Foxtrick.modules["StaffMarker"]={
 		// JSON files to be downloaded
 		var uris = [
 			"http://foxtrick.googlecode.com/svn/trunk/res/staff/foxtrick.json",
-			"http://foxtrick.googlecode.com/svn/trunk/res/staff/chpp.json",
+			"http://www.weown.de/tmp/chpp.json",
 			"http://foxtrick.googlecode.com/svn/trunk/res/staff/editor.json",
 		];
 		if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub")) 
@@ -42,8 +42,13 @@ Foxtrick.modules["StaffMarker"]={
 					var list = parsed["list"];
 					// add them!
 					obj[key] = {};
+					if(key == "chpp-holder")
+						obj[key]["apps"] = {}
 					Foxtrick.map(function(user) {
 						obj[key][user.id] = true;
+						if (key == "chpp-holder")
+							obj[key]["apps"][user.id] = user.appNames
+						
 					}, list);
 				}
 				// all your data are belong to us
@@ -102,8 +107,16 @@ Foxtrick.modules["StaffMarker"]={
 
 			// data loaded from external files
 			for (var type in data) {
-				if (data[type][id] == true)
+				if (data[type][id] == true){
 					Foxtrick.addClass(object, "ft-staff-" + type);
+					if (type == "chpp-holder"){
+						var appNames = "";
+						Foxtrick.map(function (appName){
+							appNames = appNames + "\n● " + appName
+						}, data[type]["apps"][id])
+						object.setAttribute("title", object.getAttribute("title") + appNames)
+					}
+				}
 			}
 		};
 
