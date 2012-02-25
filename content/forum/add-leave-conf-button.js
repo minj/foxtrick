@@ -94,7 +94,6 @@ Foxtrick.modules["AddLeaveConfButton"]={
 		leaveConf.setAttribute( "title", Foxtrickl10n.getString('leave_conf_button'));
 		Foxtrick.listen(leaveConf, 'click', function(ev) {
 			if (confirm(Foxtrickl10n.getString('leave_conf_button_alert'))) {
-				Foxtrick.log(doc.location.hostname)
 				Foxtrick.newTab("http://" + doc.location.hostname+"/MyHattrick/Preferences/ForumSettings.aspx?LeaveConf=" + confName, "_self");
 			}
 		}, false);
