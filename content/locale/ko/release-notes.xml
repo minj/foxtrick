@@ -34,7 +34,8 @@
 <item>● <module>EmbedMedia</module>: 토론장 포스트 안에 직접적으로 다수의 (링크된) 미디어 표시 (Catzhoek)</item>
 <item>● <module>HeaderToggle</module>: Hattrick 안에 있는 h2 머리글을 가진 컨텐츠를 나타내거나 감추도록 허용 (convincedd)</item>
 <item>● <module>Links</module> 와 <module>StaffMarker</module>는 이제 <xhtml:a href="http://foxtrick.org">foxtrick.org</xhtml:a>으로부터 불러옵니다. 그래서 이제 FoxTrick 업그레이드할 필요 없이 갱신할 수 있습니다</item>
-<item>● CHPP 라이센스 소유자에 대한 staffmarker 데이터를 갱신했습니다 (Catzhoek)</item>
+<item>● <module>StaffMarker</module>: CHPP 라이센스 소유자와 편집자에 대한 staffmarker 데이터를 갱신했습니다 (Catzhoek)</item>
+<item>● <module>StaffMarker</module>: CHPP 라이센스 소유자에 대한 툴팁은 이제 해당하는 응용프로그램 이름을 나타냅니다 (Catzhoek)</item>
 <item>● Hattrick 변화에 맞게 조정된 경기에 대한 링크 (Catzhoek)</item>
 <item>● LeagueChat 과 HeaderFixFlickerFix 제거 (convincedd)</item>
 <item>● 많은 내부 변화 (ryanli, convincedd) 와 그외 세세한 부분 다수 수정</item>
