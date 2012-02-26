@@ -99,7 +99,7 @@ firefox:
 	cp -r skin $(BUILD_DIR)/chrome
 	# ignorelist
 	cd $(BUILD_DIR)/chrome; \
-	find $(IGNORED_FILES) | xargs rm -rf
+	find -name $(IGNORED_FILES) | xargs rm -rf
 	# build jar
 	cd $(BUILD_DIR)/chrome; \
 	$(ZIP) -0 -r $(APP_NAME).jar `find . \( -path '*CVS*' -o -path \
@@ -143,7 +143,7 @@ chrome:
 		../$(BUILD_DIR)/content
 	# ignorelist
 	cd $(BUILD_DIR); \
-	find $(IGNORED_FILES) | xargs rm -rf
+	find -name $(IGNORED_FILES) | xargs rm -rf
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
@@ -184,7 +184,7 @@ opera:
 		../$(BUILD_DIR)/content
 	# ignorelist
 	cd $(BUILD_DIR); \
-	find $(IGNORED_FILES) | xargs rm -rf
+	find -name $(IGNORED_FILES) | xargs rm -rf
 	## change files to opera naming
 	mv $(BUILD_DIR)/preferences.html $(BUILD_DIR)/options.html
 	mv $(BUILD_DIR)/includes/env.js $(BUILD_DIR)/includes/aa00_env.js
@@ -226,7 +226,7 @@ safari:
 		../$(SAFARI_BUILD_DIR)/content
 	# ignorelist
 	cd $(SAFARI_BUILD_DIR); \
-	find $(IGNORED_FILES) | xargs rm -rf
+	find -name $(IGNORED_FILES) | xargs rm -rf
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	# version bump for nightly
