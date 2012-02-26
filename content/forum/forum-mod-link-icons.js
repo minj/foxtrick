@@ -3,7 +3,7 @@
  * forum-mod-link-icons.js
  * @author CatzHoek
  */
-
+/*
 Foxtrick.modules["ForumModeratorIconLinks"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
@@ -62,4 +62,4 @@ Foxtrick.modules["ForumModeratorIconLinks"]={
 			content.insertBefore(div, content.firstChild);
 		}
 	}
-};
+};*/

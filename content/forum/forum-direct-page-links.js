@@ -3,7 +3,7 @@
  * forum-direct-page-links.js
  * @author CatzHoek, idea by 14932093.387: LA-PuhuvaKoira
  */
-
+/*
 Foxtrick.modules["DirectPageLinks"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
@@ -15,7 +15,7 @@ Foxtrick.modules["DirectPageLinks"]={
 		//if (!Foxtrick.util.layout.isStandard(doc) )
 		//	return;
 			
-		/* Figure out Hattrick Setting about how many posts per page should be displayed */
+		// Figure out Hattrick Setting about how many posts per page should be displayed 
 		var getPostPerPage = function(nextNodes, prevNodes, currentPostId){
 			var step = 0;
 			
@@ -35,7 +35,7 @@ Foxtrick.modules["DirectPageLinks"]={
 			return step;
 		}
 		
-		/* Figure out the maximum amount of pages in this thread */
+		// Figure out the maximum amount of pages in this thread 
 		var getMaxPages = function(prevNodes, lastNodes, postPerPage) {
 			var pages = 1;
 			if(lastNodes.length){
@@ -107,10 +107,10 @@ Foxtrick.modules["DirectPageLinks"]={
 			var currentPage = Math.ceil( currentPostId / postPerPage );
 			var maxpage = getMaxPages(prev, last, postPerPage);
 		
-			/* Everthing below is basicly visual configuration, with current styles there is room for 18 links
-			 * 
-			 * Determine range of displayed links
-			 */
+			// Everthing below is basicly visual configuration, with current styles there is room for 18 links
+			//  
+			// Determine range of displayed links
+			// 
 			var end;
 			var start;
 			
@@ -216,4 +216,4 @@ Foxtrick.modules["DirectPageLinks"]={
 				parent.appendChild(div);
 		}
 	}
-};
+};*/
