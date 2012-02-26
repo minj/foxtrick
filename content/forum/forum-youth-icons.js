@@ -402,24 +402,28 @@ Foxtrick.modules["ForumYouthIcons"]={
 			textCounter(ta, fieldCounter, maxLength);
 		};
 		var addClick = function(ev) {
-			var version = ev.target.getAttribute('version');
-			if (version) {
-				Foxtrick.log(ev.target.getAttribute('version_string'),' ', version);
-				if (version=='custom') {
-					var version = prompt(Foxtrickl10n.getString("ForumSpecialBBCode.enterSeparator"));
-					Foxtrick.log('custom_seperator: ', version);
-					if (version == null || version=='') return;
+			try {
+				var version = ev.target.getAttribute('version');
+				if (version) {
+					Foxtrick.log(ev.target.getAttribute('version_string'),' ', version);
+					if (version=='custom') {
+						var version = prompt(Foxtrickl10n.getString("ForumSpecialBBCode.enterSeparator"));
+						Foxtrick.log('custom_seperator: ', version);
+						if (version == null || version=='') return;
+					}
+					FoxtrickPrefs.setString( ev.target.getAttribute('version_string'), version);
+					doc.getElementById(ev.target.getAttribute('parent_id')).setAttribute('version', version);
+					doc.getElementById(ev.target.getAttribute('parent_id')).title = doc.getElementById(ev.target.getAttribute('parent_id')).getAttribute('title_raw').replace(/%s/,version);
 				}
-				FoxtrickPrefs.setString( ev.target.getAttribute('version_string'), version);
-				doc.getElementById(ev.target.getAttribute('parent_id')).setAttribute('version', version);
-				doc.getElementById(ev.target.getAttribute('parent_id')).title = doc.getElementById(ev.target.getAttribute('parent_id')).getAttribute('title_raw').replace(/%s/,version);
-			}
-			for (var i = 0; i < fields.length; ++i) {
-				var page = fields[i].page;
-				if (Foxtrick.isPage(page, doc)) {
-					clickHandler(fields[i].textarea, ev.target.getAttribute('tags'), ev.target.getAttribute('replace_Text'), fields[i].counterfield, fields[i].length);
-					break;
+				for (var i = 0; i < fields.length; ++i) {
+					var page = fields[i].page;
+					if (Foxtrick.isPage(page, doc)) {
+						clickHandler(fields[i].textarea, ev.target.getAttribute('tags'), ev.target.getAttribute('replace_Text'), fields[i].counterfield, fields[i].length);
+						break;
+					}
 				}
+			} catch(e) {
+				Foxtrick.log('addClick error: ', e, 'target: ', ev.target);
 			}
 		};
 		var getSelection = function(ta) {
