@@ -232,7 +232,7 @@ Foxtrick.util.api = {
 			try {
 				callback (parser.parseFromString( JSON.parse(xml_cache.xml_string), "text/xml"));
 			} catch (e) {
-				Foxtrick.log('ApiProxy: uncaught callback error: ',e);
+				Foxtrick.log('ApiProxy: uncaught callback error: ',e , 'parameters: ',parameters);
 			}
 		}
 		else {
@@ -313,7 +313,7 @@ Foxtrick.util.api = {
 						try {
 							process_queued(x, status);
 						} catch (e) {
-							Foxtrick.log('ApiProxy: uncaught callback error: ',e);
+							Foxtrick.log('ApiProxy: uncaught callback error: ',e, 'url: ', url);
 						}
 					}
 					else if (status == 401 || (Foxtrick.platform == "Opera" && status==0) ) { // opera hotfix. returned status not correct
