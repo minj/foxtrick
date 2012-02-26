@@ -111,10 +111,10 @@ Foxtrick.modules["Ratings"]={
 								cell.appendChild(doc.createTextNode(Foxtrickl10n.getString( "foxtrick.matchdetail.total" )+": "));
 							}
 							var b = cell.appendChild(doc.createElement('b'));
-							b.textContent = this.ratingDefs[selectedRating]["total2"](midfieldLevel[i], lattack[i], cattack[i], rattack[i],
+							b.appendChild(this.ratingDefs[selectedRating]["total2"](doc, midfieldLevel[i], lattack[i], cattack[i], rattack[i],
 																									ldefence[i], cdefence[i], rdefence[i],
 																									tactics[i], tacticsLevel[i]
-																									);
+																									));
 						}
 					}
 					else if (typeof(this.ratingDefs[selectedRating]["total"]) == "function") {
@@ -179,10 +179,15 @@ Foxtrick.modules["Ratings"]={
 				return 2.0*(x/(x+80));
 			},
 
-			total2: function( midfieldLevel, lattack, cattack, rattack,
+			total2: function( doc, midfieldLevel, lattack, cattack, rattack,
 											ldefence, cdefence, rdefence,
 										tactics, tacticsLevel ) {
-				if (tactics == '-1') return '<font color="#808080">(n/a)</font>';
+				if (tactics == '-1') {
+					var font = doc.createElement('font');
+					font.setAttribute('color',"#808080");
+					font.textContent='(n/a)';
+					return font;
+				}
 				midfieldLevel = this.base + this.weight*midfieldLevel;
 				lattack = this.base + this.weight*lattack;
 				cattack = this.base + this.weight*cattack;
@@ -225,9 +230,13 @@ Foxtrick.modules["Ratings"]={
 
 				var rounded = Math.round(value*100)/100;
 
-				if (tactics == 'longshots') return '<font color="#808080">' + rounded + '</font>';
-
-				return rounded;
+				if (tactics == 'longshots') {
+					var font = doc.createElement('font');
+					font.setAttribute('color',"#808080");
+					font.textContent = rounded;
+					return font;
+				}
+				return doc.createTextNode(rounded);
 			}
 
 		 };
@@ -259,7 +268,7 @@ Foxtrick.modules["Ratings"]={
 			label : function(){return Foxtrickl10n.getString("ratings.PeasoStats");},
 			title : function(){return Foxtrickl10n.getString("ratings.PeasoStats");},
 
-			total2: function( midfieldLevel, lattack, cattack, rattack,
+			total2: function( doc, midfieldLevel, lattack, cattack, rattack,
 											ldefence, cdefence, rdefence,
 										tactics, tacticsLevel ) {
 
@@ -277,7 +286,7 @@ Foxtrick.modules["Ratings"]={
 				0.22*(0.3*(ldefence+rdefence) + 0.4*cdefence);
 
 				var rounded = Math.round(value*100)/100;
-				return rounded;
+				return doc.createTextNode(rounded);
 
 			}
 		};
@@ -286,7 +295,7 @@ Foxtrick.modules["Ratings"]={
 			label : function(){return Foxtrickl10n.getString("ratings.HTitaVal");},
 			title : function(){return Foxtrickl10n.getString("ratings.HTitaVal");},
 
-			total2: function( midfieldLevel, lattack, cattack, rattack,
+			total2: function( doc, midfieldLevel, lattack, cattack, rattack,
 											ldefence, cdefence, rdefence,
 										tactics, tacticsLevel ) {
 
@@ -304,7 +313,7 @@ Foxtrick.modules["Ratings"]={
 				0.64*(ldefence+rdefence) + 1.12*cdefence;
 
 				var rounded = Math.round(value*10)/10;
-				return rounded;
+				return doc.createTextNode(rounded);
 
 			}
 		};
@@ -314,10 +323,14 @@ Foxtrick.modules["Ratings"]={
 			label : function(){return Foxtrickl10n.getString("ratings.GardierStats");},
 			title : function(){return Foxtrickl10n.getString("ratings.GardierStats");},
 
-			total2: function(midfield, leftAtt, centralAtt, rightAtt, leftDef, centralDef, rightDef, tactics, tacticsLevel) {
+			total2: function(doc, midfield, leftAtt, centralAtt, rightAtt, leftDef, centralDef, rightDef, tactics, tacticsLevel) {
 
-				if (tactics == '-1') return '<font color="#808080">(n/a)</font>';
-
+				if (tactics == '-1') {
+					var font = doc.createElement('font');
+					font.setAttribute('color',"#808080");
+					font.textContent = '(n/a)';
+					return font;
+				}
 				leftAtt = (this.base + this.weight*leftAtt);
 				centralAtt = (this.base + this.weight*centralAtt);
 				rightAtt = (this.base + this.weight*rightAtt);
@@ -345,8 +358,13 @@ Foxtrick.modules["Ratings"]={
 
 				var value = tempReal + tempTactica;
 				var rounded = Math.round(value);
-				if (tactics == 'longshots') return '<font color="#808080">' + rounded + '</font>';
-				return rounded;
+				if (tactics == 'longshots') {
+					var font = doc.createElement('font');
+					font.setAttribute('color',"#808080");
+					font.textContent = rounded;
+					return font;
+				}
+				return doc.createTextNode(rounded);
 			}
 		};
 	}
