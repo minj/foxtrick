@@ -79,7 +79,9 @@ CONTENT_FILES_SAFARI = $(CONTENT_FILES) background.html \
 	preferences.html \
 	background.js \
 	loader-chrome.js
-
+IGNORED_FILES = forum-mod-link-icons.js \
+	forum-direct-page-links.js
+	
 all: firefox chrome opera safari
 
 firefox:
@@ -95,6 +97,9 @@ firefox:
 	mkdir -p $(BUILD_DIR)/chrome/content
 	# skin/
 	cp -r skin $(BUILD_DIR)/chrome
+	# ignorelist
+	cd $(BUILD_DIR)/chrome; \
+	find $(IGNORED_FILES) | xargs rm -rf
 	# build jar
 	cd $(BUILD_DIR)/chrome; \
 	$(ZIP) -0 -r $(APP_NAME).jar `find . \( -path '*CVS*' -o -path \
@@ -136,6 +141,9 @@ chrome:
 	cd content/; \
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_CHROME) \
 		../$(BUILD_DIR)/content
+	# ignorelist
+	cd $(BUILD_DIR); \
+	find $(IGNORED_FILES) | xargs rm -rf
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
@@ -174,6 +182,9 @@ opera:
 	cd content/; \
 	cp -r $(RESOURCE_FOLDERS) \
 		../$(BUILD_DIR)/content
+	# ignorelist
+	cd $(BUILD_DIR); \
+	find $(IGNORED_FILES) | xargs rm -rf
 	## change files to opera naming
 	mv $(BUILD_DIR)/preferences.html $(BUILD_DIR)/options.html
 	mv $(BUILD_DIR)/includes/env.js $(BUILD_DIR)/includes/aa00_env.js
@@ -213,6 +224,9 @@ safari:
 	cd content/; \
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_SAFARI) \
 		../$(SAFARI_BUILD_DIR)/content
+	# ignorelist
+	cd $(SAFARI_BUILD_DIR); \
+	find $(IGNORED_FILES) | xargs rm -rf
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	# version bump for nightly
