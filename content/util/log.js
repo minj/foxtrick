@@ -123,7 +123,7 @@ Foxtrick.log.cache = "";
 Foxtrick.log.flush = (function() {
 	var lastDoc = null;
 	return function(doc) {
-		if (Foxtrick.chromeContext() == "background")
+		if (Foxtrick.arch == 'Sandboxed' && Foxtrick.chromeContext() == "background")
 			return;
 
 		doc = (lastDoc = doc || lastDoc);
