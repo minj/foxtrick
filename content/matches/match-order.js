@@ -32,6 +32,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 				return;
 			} 
 			
+			Foxtrick.log('hasPlayerInfo');
 			hasPlayerInfo = true;
 			playerList = playerInfo;
 			
@@ -40,6 +41,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 		}, {teamid:teamid, current_squad:true, includeMatchInfo:true} );
 		
 		var waitForInterface = function(ev) {
+			Foxtrick.log('hasInterface');
 			hasInterface = true;
 			if (hasPlayerInfo)
 				showPlayerInfo();
