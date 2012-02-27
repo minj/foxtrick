@@ -53,6 +53,8 @@
 			};
 			
 			Foxtrick.get(feed)("success", function(text) {
+				if (text == null) 
+					text = FoxtrickPrefs.getString("LinksFeed."+feed);
 				parseFeed(text);
 				FoxtrickPrefs.setString("LinksFeed."+feed, text);				
 			})("failure", function(code) {
