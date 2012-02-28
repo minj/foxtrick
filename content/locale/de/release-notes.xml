@@ -42,7 +42,7 @@
 <item>● Viele interne Änderungen (ryanli, convincedd) und viele kleinere Verbesserungen</item>
 <item></item>
 <item><xhtml:b>Für Benutzer von Google Chrome</xhtml:b></item>
-<item>We implemented Chrome's optional permissions system. There are fewer mandatory permissions needed now when installing FoxTrick. Since you have not set any yet, you have to save the preference once and confirm whichever access you want to allow. Later, you will be asked to allow access to an external resource whenever you enable a module which requires it.</item>
+<item>Wir haben Chromes optionales Erlaubnissystem eingeführt. Es gibt nun weniger obligatorische Erlaubnisse für das Installieren von FoxTrick. Da Du bisher noch keine optionalen Erlaubnisse gesetzt hast, musst Du einmal in die Einstellungen gehen, speichern und in den folgended Dialogen Zugriff auf diejenigen Seiten zulassen für die Du dies willst. Später wirst Du immer dann nach einer Erlaubmiss gefragt wenn Du eins der Module aktivierst welches Zugriff auf eine externe Seite benötigt.</item>
 </note>
 
 <note version="0.8.2">
