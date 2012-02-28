@@ -38,7 +38,7 @@ Foxtrick.modules["CopyMatchID"]={
 
 				var images = cells[i].getElementsByTagName('img');
 				for (var j = 0; j < images.length; j++) {
-					if (images[j].className.search(/matchLeague|matchFriendly|matchMasters|matchCup|matchQualification/)==-1) continue;
+					if (images[j].className.search(/matchLeague|matchFriendly|matchMasters|matchCup|matchQualification|matchTournament/)==-1) continue;
 
 					var href='';
 					var links = cells[i+1].getElementsByTagName('a');
