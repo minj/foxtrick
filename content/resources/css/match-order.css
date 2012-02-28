@@ -7,19 +7,11 @@ html[dir="ltr"] .playedLast {
 	border-right : 4px solid #48f;
 	padding: 3px 25px 3px 2px !important;
 }
-html[dir="rtl"] .playedSecondLast {
-	border-left : 4px solid #b8f !important;
-	padding: 3px 2px 3px 9px !important;
-}
-html[dir="ltr"] .playedSecondLast {
-	border-right : 4px solid #b8f;
-	padding: 3px 9px 3px 2px !important;
-}
-html[dir="rtl"] .playedOther {
+html[dir="rtl"] .playedOther, html[dir="rtl"] .playedSecondLast {
 	border-left : 4px solid transparent !important;
 	padding: 3px 2px 3px 9px !important;
 }
-html[dir="ltr"] .playedOther {
+html[dir="ltr"] .playedOther, html[dir="ltr"] .playedSecondLast {
 	border-right : 4px solid transparent;
 	padding: 3px 9px 3px 2px !important;
 }
