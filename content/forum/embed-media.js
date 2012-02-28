@@ -182,6 +182,9 @@ Foxtrick.modules["EmbedMedia"]={
 							if(key == "genericImage" && link.href.match("imageshack.us"))
 								continue;
 								
+							//too stipid to support opera atm
+							if(key == "imageshack" && Foxtrick.platform == "Opera")
+								continue;
 							//but convert to generic if the users already pasted an image link
 							if(key == "imageshack" && link.href.match("http:\/\/img(\\d+).imageshack.us") )
 								key = "genericImage";
