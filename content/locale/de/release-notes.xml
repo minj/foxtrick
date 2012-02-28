@@ -14,6 +14,37 @@
 <item>Du kannst FoxTrick daran hindern diese Release Notes nach jedem Update anzuzeigen in dem du die "Anzeige der Release Notes nach einem FoxTrick-Update" in den <xhtml:a href="#tab=main">Grundeinstellungen</xhtml:a> deaktivierts.</item>
 </note>
 
+<note version="0.9">
+<item><xhtml:b>Localization:</xhtml:b></item>
+<item>Integration des Crowd-Sourcing Übersetzungdienstes <xhtml:a href="http://www.crowdin.net/project/foxtrick">http://www.crowdin.net</xhtml:a>. (CatzHoek, Convincedd)</item>
+<item>Viele Verbesseserungen in den Übersetzungen. (Catzhoek und viele Andere. Unter anderem: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, Zayc)</item>
+<item>Vielen Dank dafür. Bitte helft uns weiterhin Foxtrick zu übersetzen. Dies könnt Ihr auf <xhtml:a href="http://crowdin.net/project/foxtrick">http://crowdin.net/project/foxtrick</xhtml:a> erledigen.</item>
+<item>Für Informationen über den Übersetzungsprozess siehe [post=15466991.1] or [post=15466972.1]</item>
+<item></item>
+<item><xhtml:b>Feature highlight</xhtml:b></item>
+<item>Wir haben eine Option hinzugefügt mit der FoxTrick-Elemente leicht identifiziert werden können. Man kann sie ein- bzw. ausschalten indem man in der rechten unteren Ecke jeder Seite auf die FoxTrick Versionsnummer klickt. Nach dem erstmaligen Neuladen wird dann im ToolTip das jeweilige Modul angezeigt.</item>
+<item></item>
+<item><xhtml:b>Neue Features und Änderungen</xhtml:b></item>
+<item>● <module>MatchReportFormat</module>: Spielberichte wurden komplett überarbeitet (ryanli, Catzhoek, ljushaff)</item>
+<item>● <module>Ratings</module>: Option Hattricks Durchschnitratings zu verstecken (convinced)</item>
+<item>● <module>Filter</module>: Fügt oben auf der Spielerübersichtsseite Filter hinzu (convinced)</item>
+<item>● <module>MatchOrder</module>: Mehr Informationen auf der Aufsellungsseite und Option die Seiten zu tauschen (convinced)</item>
+<item>● <module>MatchSimulator</module>: Fügt eine Spielsimulator und eine Option zum abschätzen des Konditionsverlusts unter verwendung von <xhtml:a href="http://www.fantamondi.it/HTMS">HTMS</xhtml:a> (convinced) hinzu</item>
+<item>● <module>RatingsDisplay</module>: Es wurde eine zusätzliche Variante hinzugefügt in welchem Format Hattrick Ratings angezeigt werden (convinced)</item>
+<item>● <module>LoyaltyDisplay</module>: Treuebonus und Heimatvereinbonus können nun zusätzlich in der Balkenansich der Skills angezeigt werden (Catzhoek)</item>
+<item>● <module>EmbedMedia</module>: Viele (verlinkte) Medien wie z.B. Bilder und Videos werden nun direkt in Forenseiten eingebettet wenn man darauf klickt (Catzhoek)</item>
+<item>● <module>HeaderToggle</module>: Elemente die sich innerhalb eines HTML h2 Elements befinden können nun durch klicken ein-/ausgeblendet werden (convincedd)</item>
+<item>● <module>Links</module> und <module>StaffMarker</module> werden nun von <xhtml:a href="http://foxtrick.org">foxtrick.org</xhtml:a> geladen. FoxTrick kann diese Links jetzt auf dem letzten Stand halten ohne eine neue Version releasen zu müssen</item>
+<item>● <module>StaffMarker</module>: Die Informationen über Redakteure und Entwickler von CHPP Anwendungen wurde aktualisiert (Catzhoek)</item>
+<item>● <module>StaffMarker</module>: Für CHPP-Entwickler wird nun im Tooltip angezeigt welche CHPP-Anwendung von diesem User entwickelt werden. (Catzhoek)</item>
+<item>● Links zu Spielen und Spielberichten wurden an neuste Änderungen von Seiten Hattricks angepasst. (Catzhoek)</item>
+<item>● LeagueChat und HeaderFixFlickerFix wurden entfernt (convincedd)</item>
+<item>● Viele interne Änderungen (ryanli, convincedd) und viele kleinere Verbesserungen</item>
+<item></item>
+<item><xhtml:b>Für Benutzer von Google Chrome</xhtml:b></item>
+<item>We implemented Chrome's optional permissions system. There are fewer mandatory permissions needed now when installing FoxTrick. Since you have not set any yet, you have to save the preference once and confirm whichever access you want to allow. Later, you will be asked to allow access to an external resource whenever you enable a module which requires it.</item>
+</note>
+
 <note version="0.8.2">
 <item>Übersetzung ins Koreanische (SI-CH)</item>
 <item>Übersetzung ins Litauische (LA-MJ)</item>
