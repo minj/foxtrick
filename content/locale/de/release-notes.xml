@@ -15,7 +15,7 @@
 </note>
 
 <note version="0.9">
-<item><xhtml:b>Localization:</xhtml:b></item>
+<item><xhtml:b>Übersetzungen:</xhtml:b></item>
 <item>Integration des Crowd-Sourcing Übersetzungdienstes <xhtml:a href="http://www.crowdin.net/project/foxtrick">http://www.crowdin.net</xhtml:a>. (CatzHoek, Convincedd)</item>
 <item>Viele Verbesserungen in den Übersetzungen. (Catzhoek und viele Andere. Unter anderem: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, Zayc)</item>
 <item>Vielen Dank dafür. Bitte helft uns weiterhin Foxtrick zu übersetzen. Dies könnt Ihr auf <xhtml:a href="http://crowdin.net/project/foxtrick">http://crowdin.net/project/foxtrick</xhtml:a> erledigen.</item>
