@@ -33,7 +33,9 @@
 		<item>● Модуль <module>LoyaltyDisplay</module>: учёт преданности клубу, а также бонуса родного клуба при отображении навыков полосами (Catzhoek).</item>
 		<item>● Модуль <module>EmbedMedia</module>: внедряет некоторые типы мультимедийного контента в сообщение форума (Catzhoek).</item>
 		<item>● Модуль <module>HeaderToggle</module>: позволяет показывать/прятать любой блок информации, имеющий заголовок типа <xhtml:b>h2</xhtml:b> (convincedd).</item>
-		<item>● Шаблоны ссылок, а также список подсвечиваемых имён теперь загружаются с сайта foxtrick.org - таким образом, мы теперь можем обновлять ссылки без необходимости обновления FoxTrick.</item>
+		<item>● Модули <module>Links</module> и <module>StaffMarker</module> теперь загружаются с <xhtml:a href="http://foxtrick.org">foxtrick.org</xhtml:a>. Таким образом, мы теперь можем обновлять ссылки без необходимости обновлять версию FoxTrick.</item>
+		<item>● Модуль <module>StaffMarker</module>: данные о владельцах лицензий CHPP и редакторах обновлены (Catzhoek).</item>
+		<item>● Модуль <module>StaffMarker</module>: всплывающее уведомление, показывающее название приложения, написанного соответствующим владельцев лицензии CHPP (Catzhoek).</item>
 		<item>● Ссылки на матчи адаптированы к изменениям в Hattrick (Catzhoek).</item>
 		<item>● Модули LeagueChat and HeaderFixFlickerFix удалены (convincedd).</item>
 		<item>● Множество внутренних изменений (ryanli, convincedd) и несколько мелких исправлений</item>
