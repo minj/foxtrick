@@ -3,7 +3,7 @@
  * forum-direct-page-links.js
  * @author CatzHoek, idea by 14932093.387: LA-PuhuvaKoira
  */
-
+/*
 Foxtrick.modules["DirectPageLinks"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
@@ -226,3 +226,4 @@ Foxtrick.modules["DirectPageLinks"]={
 		}
 	}
 };
+*/
