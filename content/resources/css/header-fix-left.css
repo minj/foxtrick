@@ -25,7 +25,7 @@ html[dir="ltr"] #content #mainWrapper {
 html[dir="rtl"] #content #mainWrapper {
 	float:left;
 }
-html[dir="rtl"] #sidebar {
+html[dir="ltr"] #sidebar {
 	margin-left: 10px;
 }
 html[dir="rtl"] #sidebar {
