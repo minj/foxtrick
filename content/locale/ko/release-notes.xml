@@ -16,12 +16,12 @@
 <note version="0.9">
 <item><xhtml:b>현지화:</xhtml:b></item>
 <item>crowdsourcing 번역 서비스<xhtml:a href="http://www.crowdin.net/project/foxtrick">http://www.crowdin.net</xhtml:a> 통합. (CatzHoek, Convincedd)</item>
-<item>다수의 번역 업데이트. (Catzhoek 과 많은 번역가들: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, Zayc)</item>
+<item>다수의 번역 업데이트. (Catzhoek 과 많은 번역가들: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, TheZayc, -Iuve-, Mcload, Polytropos, MrAli, ripaldo, Ryo567, Louzao, kirja, MartinsPF)</item>
 <item>여러분 모두 감사합니다. <xhtml:a href="http://crowdin.net/project/foxtrick">http://crowdin.net/project/foxtrick</xhtml:a>에서 Foxtrick을 계속 번역해주세요</item>
 <item>번역에 대한 정보는 [post=15466991.1] 또는 [post=15466972.1]을 보세요</item>
 <item></item>
 <item><xhtml:b>기능 강조</xhtml:b></item>
-<item>우리는 더 쉽게 FoxTrick 기능과 책임 모듈의 감지하기 위한 기능 강조를 포함했습니다. 모든 페이지의 우측 하단의 FoxTrick 버전을 클릭함으로써 켜고 끌 수 있습니다. 한 번 다시 불러온 후에 풍선말 툴팁에 책임 모듈을 나태냅니다.</item>
+<item>우리는 더 쉽게 FoxTrick 기능과 책임 모듈의 감지하기 위한 기능 강조를 포함했습니다. 모든 페이지의 우측 하단의 FoxTrick 버전을 클릭함으로써 켜고 끌 수 있습니다. 한 번 다시 불러온 후에 풍선말 툴팁에 책임 모듈을 나타냅니다.</item>
 <item></item>
 <item><xhtml:b>새로운 기능과 변화</xhtml:b></item>
 <item>● <module>MatchReportFormat</module>: 완전히 수정된 경기 보고서 (ryanli, Catzhoek, ljushaff)</item>
@@ -32,16 +32,16 @@
 <item>● <module>RatingsDisplay</module>: 다른 형식의 Hattrick의 레이팅을 선택적으로 표시 (convinced)</item>
 <item>● <module>LoyaltyDisplay</module>: 충성도와 모 클럽 보너스에 의한 스킬 증가를 스킬 바에 나타내기 추가 (Catzhoek)</item>
 <item>● <module>EmbedMedia</module>: 토론장 포스트 안에 직접적으로 다수의 (링크된) 미디어 표시 (Catzhoek)</item>
-<item>● <module>HeaderToggle</module>: Hattrick 안에 있는 h2 머리글을 가진 컨텐츠를 나타내거나 감추도록 허용 (convincedd)</item>
+<item>● <module>HeaderToggle</module>: Hattrick 안에 있는 h2 머리글을 가진 콘텐츠를 나타내거나 감추도록 허용 (convincedd)</item>
 <item>● <module>Links</module> 와 <module>StaffMarker</module>는 이제 <xhtml:a href="http://foxtrick.org">foxtrick.org</xhtml:a>으로부터 불러옵니다. 그래서 이제 FoxTrick 업그레이드할 필요 없이 갱신할 수 있습니다</item>
-<item>● <module>StaffMarker</module>: CHPP 라이센스 소유자와 편집자에 대한 staffmarker 데이터를 갱신했습니다 (Catzhoek)</item>
-<item>● <module>StaffMarker</module>: CHPP 라이센스 소유자에 대한 툴팁은 이제 해당하는 응용프로그램 이름을 나타냅니다 (Catzhoek)</item>
+<item>● <module>StaffMarker</module>: CHPP 라이선스 소유자와 편집자에 대한 staffmarker 데이터를 갱신했습니다 (Catzhoek)</item>
+<item>● <module>StaffMarker</module>: CHPP 라이선스 소유자에 대한 툴팁은 이제 해당하는 응용프로그램 이름을 나타냅니다 (Catzhoek)</item>
 <item>● Hattrick 변화에 맞게 조정된 경기에 대한 링크 (Catzhoek)</item>
 <item>● LeagueChat 과 HeaderFixFlickerFix 제거 (convincedd)</item>
-<item>● 많은 내부 변화 (ryanli, convincedd) 와 그외 세세한 부분 다수 수정</item>
+<item>● 많은 내부 변화 (ryanli, convincedd) 와 그 외 세세한 부분 다수 수정</item>
 <item></item>
 <item><xhtml:b>Google Chrome 사용자를 위해서</xhtml:b></item>
-<item>우리는 Chrome의 선택적 권한 시스템을 구축했습니다. 이제 FoxTrick을 설치할 때 필요한 통과 절차가 몇가지 있습니다. 아직 어떤한 설정을 하지 않았으므로 여러분은 접근을 허용하길 원하는 것을 확인하고 환경설정을 저장해야합니다. 여러분은 나중에 그것에 필요한 모듈을 활성화할 때마다 외부 리소스를 접근을 허용하게 될 것입니다.</item>
+<item>우리는 Chrome의 선택적 권한 시스템을 구축했습니다. 이제 FoxTrick을 설치할 때 필요한 통과 절차가 몇 가지 있습니다. 아직 설정을 하지 않았으므로 여러분은 접근을 허용하길 원하는 것을 확인하고 환경설정을 저장해야 합니다. 여러분은 나중에 그것을 필요한 모듈을 활성화할 때마다 외부 리소스를 접근을 허용하게 될 것입니다.</item>
 </note>
 
 <note version="0.8.2">
@@ -63,15 +63,15 @@
 </note>
 
 <note version="0.8">
-<item>아랍어을 업데이트하였습니다. (GM-OmaniMilani)</item>
-<item>페이지에 모듈들을 보여주기 위한 새로운 매커니즘 추가, 따라서 이전 모듈 OnPagePrefs 은 제거되었습니다. (convincedd, ryanli)</item>
+<item>아랍어를 업데이트하였습니다. (GM-OmaniMilani)</item>
+<item>페이지에 모듈들을 보여주기 위한 새로운 메커니즘 추가, 따라서 이전 모듈 OnPagePrefs 은 제거되었습니다. (convincedd, ryanli)</item>
 <item>Hattrick으로부터 XML 데이터를 불러오지 않기 위한 <xhtml:a href="#tab=main">옵션</xhtml:a>. 그리고 이제 XMLs 캐시와 캐시를 비우는 옵션은 approriate 페이지에 추가되었습니다. (convincedd)</item>
 <item>새로운 모듈 <module>LocalTime</module> - 지역시간대 시간 표시. (ryanli)</item>
 <item>새로운 모듈 <module>LinksYouthLeague</module> - 유소년 리그 페이지에 있는 링크. (Parminu)</item>
 <item>새로운 모듈 <module>CopyYouth</module> 이전 유소년 복사 모듈과 합병하였습니다, 그리고 목적지에 대한 링크를 제공합니다. 유소년 리그 특성을 복사하기 위한 새로운 기능 추가. (ryanli, Parminu)</item>
 <item>새로운 모듈 <module>SupporterStatsEnhancements</module> - 서포터 통계에서 표시 강화. (convincedd)</item>
-<item>모듈 <module>FixcssProblems</module>에 왼쪽 사이드바에 보이는 초대 상자 감추기 위한 옵션 제공. (ryanli)</item>
-<item>모듈 <module>FixcssProblems</module>에 나의 캘린더의 높이 축소을 위한 옵션 제공. (ryanli)</item>
+<item>모듈 <module>FixcssProblems</module>에 왼쪽 사이드 바에 보이는 초대 상자 감추기 위한 옵션 제공. (ryanli)</item>
+<item>모듈 <module>FixcssProblems</module>에 나의 캘린더의 높이 축소를 위한 옵션 제공. (ryanli)</item>
 <item>모듈 <module>ExtraShortcuts</module>에 CHPP 관리 페이지 링크 추가. (ljushaff)</item>
 <item>모듈 <module>SkillTable</module>에 유소년 스킬을 컬러화로 보여주기 위한 옵션 제공. (foulpelz)</item>
 <item>모듈 <module>LiveAlert</module>에 소리 재상을 위한 옵션 제공. (ryanli)</item>
@@ -81,7 +81,7 @@
 <item>모듈 <module>SkillTable</module>에 선수의 추가 정보를 불러오기 위한 링크 추가. (convincedd)</item>
 <item>파이어폭스에서 폭스트릭 아이콘을 주소줄로 이동하였습니다. 아이콘을 드래그 할 수 있습니다. (ryanli)</item>
 <item>크롬에서 폭스트릭 아이콘을 주소줄 안으로 이동하였습니다. 그리고 깜빡임이 제거되고 속도가 개선되었습니다. (convincedd)</item>
-<item>FoxTrick 모바 일용 Fennec / Firefox 용 활성화됩니다. (convincedd)</item>
+<item>FoxTrick 모바일용 Fennec / Firefox 용 활성화됩니다. (convincedd)</item>
 <item>오페라와 사파리에서 현재 사용할 수 FoxTrick의 베타 버전. (convincedd, ryanli)</item>
 <item>기타 사소한 수정 및 개선. (convincedd, ryanli)</item>
 </note>
@@ -93,7 +93,7 @@
 
 <note version="0.7.1">
 <item>모듈 <module>LeagueNewsFilter</module>을 <module>LeagueNewsFilter</module> 과 <module>ShowLineupSet</module>으로 분리합니다. (ryanli)</item>
-<item>새로운 이적 검색 결과 페이지을 적용하기 위해서 몇 가지 수정되었습니다. (ryanli, taised)</item>
+<item>새로운 이적 검색 결과 페이지를 적용하기 위해서 몇 가지 수정되었습니다. (ryanli, taised)</item>
 <item>언어를 업데이트하였습니다. (ryanli, CoRrRan, ljushaff, _KOHb_, slader, ElChiquitin)</item>
 <item>몇 가지 기타 사소한 내용을 수정하였습니다. (ryanli)</item>
 </note>
@@ -101,7 +101,7 @@
 <note version="0.7">
 <item>아이슬란드 언어를 추가하였습니다. (LA-LordBastard)</item>
 <item>플랑드르의 언어는 네덜란드에서 복사하였습니다. (ryanli)</item>
-<item>새로운 모듈 카데고리, <xhtml:a href="#tab=information_aggregation">Information Aggregation</xhtml:a>. (ryanli)</item>
+<item>새로운 모듈 카테고리, <xhtml:a href="#tab=information_aggregation">Information Aggregation</xhtml:a>. (ryanli)</item>
 <item>새로운 모듈 <module>MyMonitor</module> - 나의 Hatrrick에 선택된 팀들의 최근 경기 모니터링. (ryanli)</item>
 <item>새로운 모듈 <module>MarkAllAsRead</module> - 모든 토론장의 스레드를 읽음으로 표시하기 위한 버튼. (ryanli)</item>
 <item>새로운 모듈 <module>ShowFriendlyBooked</module> - 시리즈 페이지에 친선경기가 예약되어 있는지 표시합니다. (ryanli)</item>
@@ -135,10 +135,10 @@
 <item>새로운 Hattrick CHPP API인 OAuth 인터페이스가 상속되었습니다. (ryanli)</item>
 <item>모듈 <module>LiveAlert</module> - HT Live에서 득점했을 때 경보합니다 (ryanli)</item>
 <item>모듈 <module>OldStyleFace</module> - 이전 Hattrick 스타일로 얼굴 표시합니다. (Aimo_Kanuuna)</item>
-<item>모듈 <module>NtPeek</module> - Hattrick의 NT/U20 경기 살짝봅니다. (ryanli)</item>
+<item>모듈 <module>NtPeek</module> - Hattrick의 NT/U20 경기 살짝 봅니다. (ryanli)</item>
 <item>모듈 <module>SeriesFlags</module> - 구단주와 팀링크 옆에 사용자의 나라와 시리즈를 표시합니다. 이미지는 <xhtml:a href="http://www.fantamondi.it/HTMS/">HTMS</xhtml:a>에 의해서 제공됩니다. (taised, ryanli)</item>
 <item>모듈 <module>HTMSPoints</module> - 선수의 <xhtml:a href="http://www.fantamondi.it/HTMS/index.php?page=nt&amp;lang=en">HTMS Points</xhtml:a>를 표시, 예-수치화된 능력과 잠재력. (taised)</item>
-<item>모듈 <module>FriendlyInterface</module> -  경기 라인업 페이지와 풀 네임을 표시하는 옵션이며 대표팀 선수의 경우 국가대표팀 링크 표시. (ryanli)</item>
+<item>모듈 <module>FriendlyInterface</module> -  경기 라인업 페이지와 풀 네임을 표시하는 옵션이며 대표 팀 선수의 경우 국가대표팀 링크 표시. (ryanli)</item>
 <item>모듈 HighlightBotTeams 은 <module>HighlightOwnerless</module>으로 개명되었습니다. (ryanli)</item>
 <item>모듈 YouthSkillNotes 과 ShortPA 은 제거되었습니다. (ryanli)</item>
 <item><module>FixcssProblems</module>에 토론장 쌀짝 숨기기 옵션 제공. (ljushaff)</item>
