@@ -182,12 +182,14 @@ Foxtrick.modules["EmbedMedia"]={
 							if(key == "genericImage" && link.href.match("imageshack.us"))
 								continue;
 								
-							//too stupid to support opera atm, actually the regex later is causing issues but i havent found time to fix em yet
-							if(key == "imageshack" && Foxtrick.platform == "Opera")
-								continue;
 							//but convert to generic if the users already pasted an image link
 							if(key == "imageshack" && link.href.match("http:\/\/img(\\d+).imageshack.us") )
 								key = "genericImage";
+
+							//Opera would need permision for that workarround, FF and Chrome don't seem to require it tho
+							//dunno about safari 
+							if(key == "imageshack" && Foxtrick.platform == "Opera")
+								continue;
 								
 							linkDict["site"] = key
 							if(key != "genericImage" && key != "imageshack")
