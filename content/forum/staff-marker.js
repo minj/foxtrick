@@ -112,7 +112,7 @@ Foxtrick.modules["StaffMarker"]={
 					if (type == "chpp-holder"){
 						var appNames = "";
 						Foxtrick.map(function (appName){
-							appNames = appNames + "\n● " + appName
+							appNames = appNames + " \n● " + appName
 						}, data[type]["apps"][id])
 						object.setAttribute("title", object.getAttribute("title") + appNames)
 					}
