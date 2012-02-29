@@ -12,7 +12,7 @@ Foxtrick.modules["ForumYouthIcons"]={
 		"forumModWritePost", "ticket"],
 	OPTIONS : ["q", "user_id", "kit_id", "article_id", "line_br", "clock",
 		"spoiler", "pre", "table", "symbols", "youth_player", "youth_team",
-		"youth_match", "youth_series", "debug", "settings", "enlarge_input"],
+		"youth_match", "youth_series", "debug", "settings", "enlarge_input", "tournament","tournament_match"],
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DISABLED_LIST : null,
 
@@ -77,6 +77,12 @@ Foxtrick.modules["ForumYouthIcons"]={
 			{ type:"youth_match", 	icon_class : "f_match", 	string : "youthmatchid", 	tags : "[youthmatchid=xxx]",  	replace_text: "xxx"	},
 			{ type:"youth_series", 	icon_class : "f_series", 	string : "youthseries",		tags : "[youthleagueid=xxx]",  	replace_text: "xxx"	},
 		];
+		
+		var tournamenticons = [
+			{ type:"tournament", 	icon_class : "matchLeague", 	string : "tournamentid", 	tags : "[tournamentid=xxx]",  	replace_text: "xxx"	},
+			{ type:"tournament_match", 	icon_class : "f_match", 	string : "tournamentmatchid", 	tags : "[tournamentmatchid=xxx]",  	replace_text: "xxx"	},
+		];
+		
 		var othericons = [
 			{ type:"debug", 	icon_class : "f_debug",		image : "format_debug.png", 	string : "debug", 		tags : "debug"},
 			{ type:"settings", 	icon_class : "f_settings",	image : "format_settings.png", 	string : "settings", 	tags : "settings"},
@@ -87,6 +93,8 @@ Foxtrick.modules["ForumYouthIcons"]={
 			["user_id", "kit_id", "article_id", "line_br", "clock", "spoiler"]);
 		var show_youth = Foxtrick.any(function(option) { return FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", option); },
 			["youth_player", "youth_team", "youth_match", "youth_series"]);
+		var show_tournament = Foxtrick.any(function(option) { return FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", option); },
+			["tournament", "tournament_match"]);
 		var show_other = Foxtrick.any(function(option) { return FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", option); },
 			["debug", "settings"]);
 		var enlarge = FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", "enlarge_input");
@@ -605,6 +613,35 @@ Foxtrick.modules["ForumYouthIcons"]={
 
 			var head = toolbar.parentNode;
 			head.insertBefore( youthbar, toolbar.nextSibling );
+		}
+
+		if (show_tournament || true) {
+			var tournamentbar = Foxtrick.createFeaturedElement(doc, this,  "div" );
+			tournamentbar.setAttribute( "class" , "HTMLToolbar");
+			tournamentbar.setAttribute( "style" , "float:left;");
+
+			var tournamentbar_label = doc.createElement( "div" );
+			tournamentbar_label.id = "ft_tournament_icons";
+			tournamentbar_label.textContent = Foxtrickl10n.getString("ForumYouthIcons.labelTournament");
+			if (!show_tournament) tournamentbar_label.className = "hidden";
+			tournamentbar.appendChild( tournamentbar_label);
+
+			for (var i = 0; i < tournamenticons.length; i++) {
+				if (FoxtrickPrefs.isModuleOptionEnabled("ForumYouthIcons", tournamenticons[i].type)) {
+						var newimage = doc.createElement( "img" );
+						newimage.src = "/Img/Icons/transparent.gif";
+						Foxtrick.listen(newimage, "click", addClick, false );
+						newimage.setAttribute( "tags", tournamenticons[i].tags);
+						if ( tournamenticons[i].replace_text) newimage.setAttribute( "replace_text", tournamenticons[i].replace_text);
+						newimage.setAttribute( "class", tournamenticons[i].icon_class);
+						newimage.title = Foxtrickl10n.getString("ForumYouthIcons."+tournamenticons[i].string);
+						newimage = Foxtrick.makeFeaturedElement(newimage, this);
+						tournamentbar.appendChild( newimage );
+				}
+			}
+
+			var head = toolbar.parentNode;
+			head.insertBefore( tournamentbar, toolbar.nextSibling );
 		}
 	},
 
