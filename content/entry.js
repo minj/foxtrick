@@ -62,7 +62,7 @@ Foxtrick.entry.docLoad = function(doc) {
 	  || Foxtrick.isExcluded(doc) 
 	  || Foxtrick.isLoginPage(doc) )  {
 		// potential cleanup for injected css
-		if (Foxtrick.arch == "Sandboxed" && Foxtrick.entry.cssLoaded) {
+		if (Foxtrick.entry.cssLoaded) {
 			Foxtrick.unload_module_css(doc);
 			Foxtrick.entry.cssLoaded = false;
 		}
