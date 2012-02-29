@@ -10,16 +10,6 @@ html[data-theme="simple"] #content .subMenu {
 	border-color: #ddd !important;
 	border-style: solid !important;
 }
-html[dir="ltr"][data-theme="simple"] #content .subMenu {
-	margin-left: -11px !important;
-	padding-left: 11px !important;
-	border-width: 0 0 0 1px !important;
-}
-html[dir="rtl"][data-theme="simple"] #content .subMenu {
-	margin-right: -11px !important;
-	padding-right: 11px !important;
-	border-width: 0 1px 0 0 !important;
-}
 
 /* show main over left menu */
 #content.mainRegular {
@@ -27,53 +17,19 @@ html[dir="rtl"][data-theme="simple"] #content .subMenu {
 	background-color:white;
 }
 
-/* compensate for fixed left submenu */
-html[dir="ltr"][data-theme="standard"] #content #mainWrapper {
-	margin-left: 175px;
-}
-html[dir="ltr"][data-theme="simple"] #content #mainWrapper {
-	margin-left: 135px;
-	min-height: 400px !important;
-}
-html[dir="rtl"][data-theme="standard"] #content #mainWrapper {
-	margin-right: 175px;
-}
-html[dir="rtl"][data-theme="simple"] #content #mainWrapper {
-	margin-right: 125px;
-	min-height: 400px !important;
-}
 
-/* compensate for fixed left submenu Forum */
-html[data-theme="standard"] #content #mainWrapper>div[class="main mainConf"] {
-	width:655px !important;
+/* following is used on stage. use it generally */
+html[dir="ltr"] #content #mainWrapper {
+	float:right;
 }
-html[dir="ltr"][data-theme="standard"] #content #mainWrapper>div[class="main mainConf"] {
-	float: left !important;
-	margin-left: -175px;
+html[dir="rtl"] #content #mainWrapper {
+	float:left;
 }
-html[dir="rtl"][data-theme="standard"] #content #mainWrapper>div[class="main mainConf"] {
-	float: right !important;
-	margin-right: -175px;
+html[dir="rtl"] #sidebar {
+	margin-left: 10px;
 }
-
-/* Kitdesignerfix */
-html[data-theme="standard"] div#mainWrapper>div[class="main mainFull"] {
-	width: 950px !important;
-}
-html[data-theme="simple"] div#mainWrapper>div[class="main mainFull"] {
-	width: 765px !important;
-}
-html[dir="ltr"][data-theme="standard"] div#mainWrapper>div[class="main mainFull"] {
-	margin-left: -175px !important;
-}
-html[dir="ltr"][data-theme="simple"] div#mainWrapper>div[class="main mainFull"] {
-	margin-left: -135px !important;
-}
-html[dir="rtl"][data-theme="standard"] div#mainWrapper>div[class="main mainFull"] {
-	margin-right: -135px !important;
-}
-html[dir="rtl"][data-theme="simple"] div#mainWrapper>div[class="main mainFull"] {
-	margin-right: -135px !important;
+html[dir="rtl"] #sidebar {
+	margin-right: 10px;
 }
 
 }
