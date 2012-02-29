@@ -5,6 +5,7 @@
 #content .subMenu {
 	position: fixed !important;
 }
+
 html[data-theme="simple"] #content .subMenu {
 	background: white !important;
 	border-color: #ddd !important;
@@ -22,9 +23,11 @@ html[data-theme="simple"] #content .subMenu {
 html[dir="ltr"] #content #mainWrapper {
 	float:right;
 }
+
 html[dir="rtl"] #content #mainWrapper {
 	float:left;
 }
+
 html[dir="rtl"] #sidebar {
 	margin-right: 10px;
 }

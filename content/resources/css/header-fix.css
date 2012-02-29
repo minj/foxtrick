@@ -7,9 +7,11 @@
 	top: 0px;
 	z-index: 9990;
 }
+
 html[data-theme="standard"] #header {
 	width: 949px;
 }
+
 html[data-theme="simple"] #header {
 	width: 764px;
 	background-color: white !important;
@@ -40,13 +42,16 @@ html[data-theme="standard"] #menu {
 	border-radius-topright: 10px;
 	border-radius-bottomright: 10px;
 }
+
 html[data-theme="simple"] #menu {
 	margin-left:10px !important;
 	width: 765px !important;
 }
+
 html[dir="ltr"][data-theme="simple"] #shortcuts {
 	right:11px;
 }
+
 html[dir="rtl"][data-theme="standard"] #sidebar {
 	margin-left: 14px !important;
 }
@@ -55,6 +60,7 @@ html[dir="rtl"][data-theme="standard"] #sidebar {
 html[data-theme="standard"] #menu {
 	margin-bottom: 6px !important;
 }
+
 html[data-theme="simple"] #menu {
 	margin-bottom: 2px !important;
 }
@@ -63,6 +69,7 @@ html[data-theme="simple"] #menu {
 html[dir="ltr"][data-theme="standard"] #menu .logout {
 	margin-right: 11px !important;
 }
+
 html[dir="rtl"][data-theme="standard"] #menu .logout {
 	margin-left: 11px !important;
 }
