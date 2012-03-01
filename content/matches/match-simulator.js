@@ -279,7 +279,7 @@ Foxtrick.modules["MatchSimulator"]={
 			// store tactics for htms
 			var teamtactics_select = doc.getElementById('teamtactics');
 			currentRatings[7] = teamtactics_select.selectedIndex;
-			if (teamtactics_select.selectedIndex!=0) {
+			if (teamtactics_select.selectedIndex!=0 && teamtactics_select.selectedIndex!=7) {
 				currentRatings[8] = tacticLevelLabel.getElementsByTagName('a')[0].href.match(/\d+/)[0];
 			}
 			
