@@ -81,11 +81,10 @@ Foxtrick.modules["MatchOrderInterface"]={
 				};
 				var players = doc.getElementById('players').getElementsByClassName('player');
 				//only get the lastMatchDates
-				if( !lastMatchDates ){
-					//require 3 players to have the same playdate, this helps excluding recent transfers to mess up things
-					lastMatchDates = Foxtrick.Pages.Players.getLastMatchDates (players, getLastMatchDates, 3);
-				}
-				if (lastMatchDates) {
+				//require 3 players to have the same playdate, this helps excluding recent transfers to mess up things
+				lastMatchDates = Foxtrick.Pages.Players.getLastMatchDates (players, getLastMatchDates, 3);
+				
+				if (lastMatchDates && lastMatchDates.lastMatchDate != "undefined" || lastMatchDates.secondLastMatchDate != "undefined") {
 					for (var i=0; i<players.length; ++i) {
 						if (!players[i].id) 
 							continue;
@@ -103,6 +102,8 @@ Foxtrick.modules["MatchOrderInterface"]={
 						else 
 							Foxtrick.addClass( players[i],'playedOther'); 						
 					}
+				} else {
+					Foxtrick.log("Unable to determine last and/or second last match date.");
 				}
 				
 				var addLastMatchtoDetails = function(ev) {
