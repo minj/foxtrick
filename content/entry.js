@@ -58,9 +58,7 @@ Foxtrick.entry.docLoad = function(doc) {
 	}*/
 
 	// we shall not run here
-	if ( !Foxtrick.isHt(doc) 
-	  || Foxtrick.isExcluded(doc) 
-	  || Foxtrick.isLoginPage(doc) )  {
+	if ( Foxtrick.arch == "Sandboxed" && !Foxtrick.isHt(doc) )  {
 		// potential cleanup for injected css
 		if (Foxtrick.arch == "Sandboxed" && Foxtrick.entry.cssLoaded) {
 			Foxtrick.unload_module_css(doc);
@@ -222,7 +220,11 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		if (is_only_css_check)
 			return;
 
-		// create arrays for each recognized page that contains modules
+		if (Foxtrick.isExcluded(doc) 
+		|| 	Foxtrick.isLoginPage(doc) )
+			return
+
+	  // create arrays for each recognized page that contains modules
 		// that run on it
 		for (var i in Foxtrick.ht_pages) {
 			Foxtrick.entry.runMap[i] = [];

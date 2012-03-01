@@ -35,6 +35,11 @@ Foxtrick.loader.gecko.browserLoad = function(ev) {
 		if (appcontent) {
 			// listen to page loads
 			appcontent.addEventListener("DOMContentLoaded", function(ev) {
+				// don't run frames
+				var wn = ev.target.defaultView;
+				if (wn.self != wn.top)
+					return;
+				
 				Foxtrick.modules.UI.update();
 				Foxtrick.entry.docLoad(ev.originalTarget);
 			}, true);
@@ -73,7 +78,7 @@ Foxtrick.loader.gecko.tabFocus = function(ev) {
 		var tabbrowser = browserWin.getBrowser();
 		var currentBrowser = tabbrowser.getBrowserAtIndex(ev.target.selectedIndex);
 		var doc = currentBrowser.contentDocument;
-
+		
 		// calls module.onTabChange() after the tab focus is changed. also on not-ht pages for eg context-menu
 		for (var i in Foxtrick.modules) {
 			var module = Foxtrick.modules[i];
@@ -86,14 +91,6 @@ Foxtrick.loader.gecko.tabFocus = function(ev) {
 				}
 			}
 		}
-
-		// we shall not run here
-		if (!Foxtrick.isHt(doc)) 
-			return;
-		if (Foxtrick.isExcluded(doc)) 
-			return;
-		if (Foxtrick.isLoginPage(doc)) 
-			return;
 
 		Foxtrick.entry.run(doc, true); // recheck css
 
