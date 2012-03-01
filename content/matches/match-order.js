@@ -84,7 +84,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 				//require 3 players to have the same playdate, this helps excluding recent transfers to mess up things
 				lastMatchDates = Foxtrick.Pages.Players.getLastMatchDates (players, getLastMatchDates, 3);
 				
-				if (lastMatchDates && lastMatchDates.lastMatchDate != "undefined" || lastMatchDates.secondLastMatchDate != "undefined") {
+				if (lastMatchDates && lastMatchDates.lastMatchDate != "undefined" && lastMatchDates.secondLastMatchDate != "undefined") {
 					for (var i=0; i<players.length; ++i) {
 						if (!players[i].id) 
 							continue;

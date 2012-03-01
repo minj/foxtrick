@@ -718,14 +718,24 @@ Foxtrick.Pages.Players = {
 			matchdays.sort();
 			lastMatch = matchdays[matchdays.length-1];
 
+			Foxtrick.log('all matchdays: ', matchdays);
 			matchdays =  Foxtrick.filter(function(n){
 				// delete all older than a week and all with too few players (might be transfers)
 				// the '6' is arbitrary
 				return (n > lastMatch-7*24*60*60*1000 && matchdays_count[n] >= mincount);
 			}, matchdays);
-			lastMatch = matchdays[matchdays.length-1];
-			secondLastMatch =  matchdays[matchdays.length-1 - matchdays_count[lastMatch] ];
+			Foxtrick.log('filtered matchdays (min=', mincount,'): ', matchdays);
 			
-			return {lastMatchDate:lastMatch, secondLastMatchDate:secondLastMatch}
+			if (matchdays.length-1 > 0)
+				lastMatch = matchdays[matchdays.length-1];
+			else
+				lastMatch = 0;
+			
+			if (matchdays.length-1 - matchdays_count[lastMatch] > 0)
+				secondLastMatch =  matchdays[matchdays.length-1 - matchdays_count[lastMatch] ];
+			else 
+				secondLastMatch = 0;
+			Foxtrick.log('lastMatch:',lastMatch,' secondLastMatch:',secondLastMatch);
+			return {lastMatchDate:lastMatch, secondLastMatchDate:secondLastMatch};
 	}
 };
