@@ -79,6 +79,7 @@ Foxtrick.loader.gecko.tabFocus = function(ev) {
 		var currentBrowser = tabbrowser.getBrowserAtIndex(ev.target.selectedIndex);
 		var doc = currentBrowser.contentDocument;
 		
+		Foxtrick.log('tab focus: '+ ev.target.selectedIndex);
 		// calls module.onTabChange() after the tab focus is changed. also on not-ht pages for eg context-menu
 		for (var i in Foxtrick.modules) {
 			var module = Foxtrick.modules[i];
@@ -92,6 +93,9 @@ Foxtrick.loader.gecko.tabFocus = function(ev) {
 			}
 		}
 
+		if (!Foxtrick.isHt(doc))
+			return;
+			
 		Foxtrick.entry.run(doc, true); // recheck css
 
 		Foxtrick.log.flush(doc);
