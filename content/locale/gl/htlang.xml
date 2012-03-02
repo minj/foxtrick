@@ -49,7 +49,7 @@
 
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
-		<level text="divino" value="20" />
+		<level text="caralludo" value="20" />
 		<level text="utópico" value="19" />
 		<level text="máxico" value="18" />
 		<level text="lendario" value="17" />

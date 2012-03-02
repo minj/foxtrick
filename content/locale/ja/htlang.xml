@@ -23,17 +23,17 @@
 		<tactic type="ca" value="カウンター攻撃" />
 		<tactic type="aow" value="サイド攻撃" />
 		<tactic type="aim" value="中央突破" />
-		<tactic type="creatively" value="創造プレ－" />
+		<tactic type="creatively" value="創造プレー" />
 		<tactic type="longshots" value="ロング・シュート" />
 	</tactics>
 
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
-		<position type="Keeper" value="ゴールキーパー" short="GK" />
-		<position type="Central defender" value="センターバック" short="CD" />
+		<position type="Keeper" value="キーパー" short="GK" />
+		<position type="Central defender" value="セントラル・ディフェンダー" short="CD" />
 		<position type="Wing back" value="ウイングバック" short="WB" />
-		<position type="Inner midfielder" value="ミッドフィールダー" short="IM" />
-		<position type="Winger" value="ウイング" short="WI" />
+		<position type="Inner midfielder" value="インナー・ミッドフィルダー" short="IM" />
+		<position type="Winger" value="ウインガー" short="WI" />
 		<position type="Forward" value="フォワード" short="FW" />
 	</positions>
 
