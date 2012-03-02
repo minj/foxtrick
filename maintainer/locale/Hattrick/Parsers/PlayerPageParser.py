@@ -18,10 +18,10 @@ class PlayerPageParser(HTMLParser.HTMLParser):
 		self.in_position_span = False;
 		
 	def getPlayerIdFromUrl(self, url):
-		pattern = re.compile("\/Club\/Players\/Player.aspx\?PlayerID=(\d+)")
+		pattern = re.compile("\/Club\/Players\/Player.aspx\?(.*)PlayerID=(\d+)")
 		match = re.match(pattern, url)
-		if match and match.group(1):
-			return match.group(1)
+		if match and match.group(2):
+			return match.group(2)
 			
 		raise Exception("no_player_link", url);
 		
