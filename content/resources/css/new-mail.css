@@ -1,3 +1,5 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+
 .ft-new-mail, .ft-new-forum-msg {
 	color: red !important;
 	font-weight: bold !important;
@@ -5,4 +7,6 @@
 
 img.scNewMail {
 	background: url("chrome://foxtrick/content/resources/img/new_mail.png") !important;
+}
+
 }

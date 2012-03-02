@@ -1,4 +1,4 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws) {
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
 
 #scSettingsLink 
 {display:none;}
@@ -24,4 +24,5 @@ html[dir="rtl"] #ticker { left: 350px; }
 
 #ticker div { overflow:hidden !important; white-space:nowrap !important;}
 #ticker div a { padding:0 2px !important; }
+
 }

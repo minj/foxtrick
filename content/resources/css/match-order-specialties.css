@@ -1,3 +1,5 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+
 /* increase height of playerboxes for cards+specialties */
 #orders .position, #orders .position .player, .player.ui-draggable-dragging {
 	height: 49px !important;
@@ -67,3 +69,4 @@ html[dir="ltr"] #field #list img.specialty {
 	margin: 40px 0 0 2px !important;
 }
 
+}

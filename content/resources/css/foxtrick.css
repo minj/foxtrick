@@ -1,3 +1,5 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+
 /* settings here apply to all pages, including non hattrick pages.
    so any own class HAS TO start with eg 'foxtrick_' to make it foxtrick specific */
 
@@ -244,4 +246,6 @@ html[data-theme="simple"] body[style*="font-size:0.79em;"] #ctl00_ctl00_CPConten
 
 .ft-nowrap {
 	white-space: nowrap;
+}
+
 }

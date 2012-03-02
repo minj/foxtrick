@@ -1,3 +1,4 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
 /* user-content-example.css
  *
  * This file is a list of CSS statements for styling FoxTrick that satisfies
@@ -313,3 +314,5 @@ div#ft-full-level6 span  {
 background: none repeat scroll 0 0 white !important; 
 font-weight: bold !important;
 }  
+
+}
