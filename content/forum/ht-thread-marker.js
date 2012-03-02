@@ -13,7 +13,7 @@ Foxtrick.modules["HTThreadMarker"]={
 	run : function(doc) {
 		this.ColorLatest(doc, "threadContent", "folderitem");
 
-		var myForums = doc.getElementById("content").getElementsByTagName('div')[0];
+		var myForums = doc.getElementsByClassName("subMenuConf")[0];
 		
 		var folders = myForums.getElementsByClassName( "forumFolder" );
 		for (var j = 0 ; j<folders.length; ++j) {
