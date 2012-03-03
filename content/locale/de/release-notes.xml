@@ -29,7 +29,7 @@
 <item>● <module>Ratings</module>: Es gibt eine neue Option um Hattricks Durchschnittratings zu verstecken (convinced)</item>
 <item>● <module>Filter</module>: Fügt oben auf der Spielerübersichtsseite Filteroptionen hinzu (convinced)</item>
 <item>● <module>MatchOrder</module>: Mehrere neue Informationen auf der Aufstellungsseite und eine Option die Seiten zu vertauschen (convinced)</item>
-<item>● <module>MatchSimulator</module>: Fügt einen Spielsimulator und eine Option zum Abschätzen des Konditionsverlusts unter Verwendung von <xhtml:a href="http://www.fantamondi.it/HTMS">HTMS</xhtml:a> (convinced) hinzu</item>
+<item>● <module>MatchSimulator</module>: Fügt einen Spielsimulator und eine Option zum Abschätzen des Konditionsverlusts unter Verwendung von <xhtml:a href="http://www.fantamondi.it/HTMS">HTMS</xhtml:a> hinzu (convinced)</item>
 <item>● <module>RatingsDisplay</module>: Es wurde eine zusätzliche Variante hinzugefügt mit der ausgewählt werden kann in welchem Format Hattrick Ratings angezeigt werden (convinced)</item>
 <item>● <module>LoyaltyDisplay</module>: Treuebonus und Heimatvereinbonus können nun zusätzlich in der Balkenansicht der Skills angezeigt werden (Catzhoek)</item>
 <item>● <module>EmbedMedia</module>: Viele (verlinkte) Medien wie z.B. Bilder und Videos können nun direkt in Forenseiten eingebettet werden (Catzhoek)</item>
