@@ -155,7 +155,7 @@ else ifeq ($(DIST_TYPE),hosting)
 	cd $(BUILD_DIR); \
 	sed -i -r '/update_url/d' manifest.json; \
 	sed -i -r '/"tabs",/d' manifest.json; \
-	sed -i -r '//<!--,/d' manifest.json; \
+	sed -i -r '/\/<!--,/d' manifest.json; \
 	$(ZIP) -r ../$(APP_NAME).zip *
 endif
 	# clean up
