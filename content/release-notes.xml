@@ -42,6 +42,11 @@
 <item></item>
 <item><xhtml:b>For Google Chrome users</xhtml:b></item>
 <item>We implemented Chrome's optional permissions system. There are fewer mandatory permissions needed now when installing FoxTrick. Since you have not set any yet, you have to save the preference once and confirm whichever access you want to allow. Later, you will be asked to allow access to an external resource whenever you enable a module which requires it.</item>
+<item></item>
+<item><xhtml:b>Update 0.9.0.1</xhtml:b></item>
+<item>● Fixed (accidental) excessive permissions for Chrome</item>
+<item>● Fixed LiveAlert </item>
+<item>● Fixed and some css issues (for Chrome, Opera, Safari)</item>
 </note>
 
 <note version="0.8.2">
