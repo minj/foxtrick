@@ -283,8 +283,7 @@ Foxtrick.entry.change = function(ev) {
 		var excludes = [
 			new RegExp("/Club/Matches/MatchOrder/", "i"),
 			new RegExp("/Community/CHPP/ChppPrograms\.aspx", "i"),
-			new RegExp("/Club/Arena/ArenaUsage\.aspx", "i"),
-			new RegExp("Live.aspx", "i")
+			new RegExp("/Club/Arena/ArenaUsage\.aspx", "i")
 		];
 		if (Foxtrick.any(function(ex) {
 				return doc.location.href.search(ex) > -1;
