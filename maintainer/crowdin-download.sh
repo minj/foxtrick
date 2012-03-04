@@ -9,21 +9,20 @@ CROWDIN_FOLDER=crowdin/locale
 . ./upload.conf.sh
   
 #export/pack latest translations
-echo "order crowdin to repack.."
-re="$(curl -s \
-  "$CROWDIN_URL"/export?key="$CROWDIN_KEY" | grep -c success)"
-  if [ $re -ne 1 ]; then
-   echo "failed. try again.."
+for i in {1..5}
+do
+	echo "order crowdin to repack.."
 	re="$(curl -s \
 	  "$CROWDIN_URL"/export?key="$CROWDIN_KEY" | grep -c success)"
 	  if [ $re -ne 1 ]; then
-		echo "export failed"
+		echo "try again in 1 min"
+		sleep 60
 	  else
 		echo "ok"
+		break
 	  fi
-  else
-    echo "ok"
-  fi
+done
+
   
 if [ $re -eq 1 ]; then
 #Download all translations as a single ZIP archive.
