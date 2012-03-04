@@ -1,4 +1,5 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+/*no @moz-doc since it's inject and only on that page anyway.adding @moz-doc will break sandboxed version */
+
 #mainBody table {margin-left:-8px;width:440px !important;}
 #mainBody table tr>td+td+td+td+td+td+td {display:none;}
 #mainBody table tr td {margin-right:2px !important; padding-right:3px !important;}
@@ -9,5 +10,3 @@
 /* small font */
 /*#mainBody table tr .date, #mainBody table tr td.nowrap {font-size: 0.8em !important;}*/
 #mainBody table tr td  {font-size: 0.8em !important; /*white-space:nowrap*/}
-
-}
