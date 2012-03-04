@@ -192,8 +192,7 @@
 			"*://*.hattrick.name/*",
 			"*://*.hat-trick.net/*",
 			"*://*.hattrick.interia.pl/*",
-			"*://*.hattrick.uol.com.br/*",
-			"*://*/*"
+			"*://*.hattrick.uol.com.br/*"
 		],
 		"run_at" : "document_start"
 	} ],
