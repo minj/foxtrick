@@ -12,10 +12,10 @@
 
 /* rating differences highlighting */
 .colorLower {
-	color: red;
+	color: orange;
 }
 .colorHigher {
-	color: blue;
+	color: #00A9E0;
 }
 
 /* other teams ratings */
