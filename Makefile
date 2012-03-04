@@ -147,15 +147,14 @@ ifeq ($(DIST_TYPE),nightly)
 else ifeq ($(DIST_TYPE),release)
 	cd $(BUILD_DIR); \
 	sed -i -r 's|("update_url" : ").+(")|\1'$(RELEASE_PREFIX)'/chrome/update.xml\2|' manifest.json; \
-	sed -i -r '/"tabs",/d' manifest.json
+	sed -i -r '/\/\/<!--/d' manifest.json
 	# make crx
 	./maintainer/crxmake.sh $(BUILD_DIR) maintainer/chrome.pem
 	mv $(BUILD_DIR).crx $(APP_NAME).crx
 else ifeq ($(DIST_TYPE),hosting)
 	cd $(BUILD_DIR); \
 	sed -i -r '/update_url/d' manifest.json; \
-	sed -i -r '/"tabs",/d' manifest.json; \
-	sed -i -r '/\/<!--,/d' manifest.json; \
+	sed -i -r '/\/\/<!--/d' manifest.json; \
 	$(ZIP) -r ../$(APP_NAME).zip *
 endif
 	# clean up

@@ -40,7 +40,7 @@ Do these things in order:
   * Build and upload to foxtrick.org using upload-nightly.sh
 * Build with `make DIST_TYPE=hosting`, 
   * Gecko: Upload foxtrick.xpi to addons.mozilla.org
-  * Chrome: Upload foxtrick.zip to Chrome extension hosting
+  * Chrome: Upload foxtrick.zip to Chrome extension hosting (https://chrome.google.com/webstore/developer/edit/bpfbbngccefbbndginomofgpagkjckik)
   * Opera: Upload foxtrick.oex to Opera's hosting (https://addons.opera.com/de/developer/). no version uploaded yet.  
 * Edit homepage at Google Code and foxtrick.org.
 * Write a new post at Hattrick forum.
