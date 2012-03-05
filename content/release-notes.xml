@@ -51,6 +51,8 @@
 <item><xhtml:b>Update 0.9.0.2</xhtml:b></item>
 <item>● Fixed latest Chrome update causing LoyaltyDisplay to crash</item>
 <item>● Corrected lineup links for youth-players in MatchReportFormat</item>
+<item>● MatchSimulator stamina discount tweaked</item>
+<item>● New symbols for specialties</item>
 <item>● Several translation updates</item>
 </note>
 
