@@ -9,14 +9,14 @@ CROWDIN_FOLDER=crowdin/locale
 . ./upload.conf.sh
   
 #export/pack latest translations
-for i in {1..5}
+for i in {1..10}
 do
 	echo "order crowdin to repack.."
 	re="$(curl -s \
 	  "$CROWDIN_URL"/export?key="$CROWDIN_KEY" | grep -c success)"
 	  if [ $re -ne 1 ]; then
 		echo "try again in 1 min"
-		sleep 60
+		sleep 120
 	  else
 		echo "ok"
 		break
@@ -45,6 +45,8 @@ if [ $re -eq 1 ]; then
 	  fi
 #cleanup
 	rm -rf langs.zip
+else
+	echo "export failed"
 fi
  
 
