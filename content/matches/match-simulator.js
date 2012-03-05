@@ -687,7 +687,7 @@ Foxtrick.modules["MatchSimulator"]={
 		// -- stamina discount --
 		// from unwritten manual [post=15172393.4]
 		function getStaminaFactor(stamina) {
-			return Math.pow((stamina+6.5)/14, 0.6); 
+			return Math.pow((stamina+7.0)/14, 0.6); 
 		}
 		
 		var contributions = [
