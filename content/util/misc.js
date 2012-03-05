@@ -29,6 +29,8 @@ if (!Foxtrick) var Foxtrick = {};
 	}
 
 	Foxtrick.startListenToChange = function(doc) { 
+		if (!Foxtrick.isHt(doc))
+			return;
 		var content = doc.getElementById("content");
 		content.addEventListener("DOMNodeInserted", waitForChanges, true);
 	}
