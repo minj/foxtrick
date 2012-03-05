@@ -13,7 +13,7 @@
 <item>Please view <xhtml:a href="http://code.google.com/p/foxtrick/source/list">commit history</xhtml:a> at Google Code for details.</item>
 </note>
 
-<note version="0.9.0.1">
+<note version="0.9.0.2">
 <item><xhtml:b>Localization:</xhtml:b></item>
 <item>Integration of the crowdsourcing translation service <xhtml:a href="http://www.crowdin.net/project/foxtrick">http://www.crowdin.net</xhtml:a>. (CatzHoek, Convincedd)</item>
 <item>Many translation updates. (Catzhoek and many translators. Amoung others: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, TheZayc, -Iuve-, Mcload, Polytropos, MrAli, ripaldo, Ryo567, Louzao, kirja, MartinsPF)</item>
@@ -47,6 +47,11 @@
 <item>● Fixed (accidental) excessive permissions for Chrome</item>
 <item>● Fixed LiveAlert </item>
 <item>● Fixed and some css issues (for Chrome, Opera, Safari)</item>
+<item></item>
+<item><xhtml:b>Update 0.9.0.2</xhtml:b></item>
+<item>● Fixed latest Chrome update causing LoyaltyDisplay to crash</item>
+<item>● Corrected lineup links for youth-players in MatchReportFormat</item>
+<item>● Several translation updates</item>
 </note>
 
 <note version="0.8.2">
