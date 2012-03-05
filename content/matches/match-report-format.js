@@ -288,7 +288,7 @@
 			var playerTag = function(id, name) {
 				var link = doc.createElement("a");
 				link.textContent = name;
-				link.href = "/Club/Players/Player.aspx?playerId=" + id;
+				link.href = isYouth?"/Club/Players/YouthPlayer.aspx?YouthPlayerID=" + id:"/Club/Players/Player.aspx?playerId=" + id;
 				link.setAttribute("data-do-not-color", "true");
 				return link;
 			};
