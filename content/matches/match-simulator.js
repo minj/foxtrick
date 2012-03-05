@@ -687,7 +687,7 @@ Foxtrick.modules["MatchSimulator"]={
 		// -- stamina discount --
 		// from unwritten manual [post=15172393.4]
 		function getStaminaFactor(stamina) {
-			return Math.pow( Math.min(stamina+5.5, 14)/14, 0.6); 
+			return Math.pow( Math.min(stamina+7, 14)/14, 0.6); 
 		}
 		
 		var contributions = [
@@ -789,7 +789,7 @@ Foxtrick.modules["MatchSimulator"]={
 							}
 						}
 					}
-					var new_rating = old_rating * sum_sq_c_ij_times_func_of_s_i / sum_sq_c_ij;
+					var new_rating = Math.floor((old_rating * sum_sq_c_ij_times_func_of_s_i / sum_sq_c_ij + 0.125) * 4)/4.0;
 					var div = doc.createElement('div');
 					div.className = 'overlayRatingsDiscounted';
 					overlayRatings[sector*2+1].parentNode.insertBefore(div, overlayRatings[sector*2+1].nextSibling);
