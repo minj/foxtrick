@@ -16,18 +16,22 @@ Foxtrick.modules["LoyaltyDisplay"]={
 		if(Foxtrick.isPage('players', doc) && !Foxtrick.Pages.Players.isOwnPlayersPage(doc))
 			return;
 			
-		var replaceBars = function(bars, skillUp, appendix){
-			while(bars.length){
-			//	Foxtrick.makeFeaturedElement(bars[0], this);
-				bars[0].setAttribute("title", bars[0].getAttribute("title") + ' +' + String(skillUp).substring(0, 4));
-				//bars[0].setAttribute("alt", bars[0].getAttribute("alt") + ' +' + String(skillUp).substring(0, 4));
-				Foxtrick.addClass(bars[0], "ft-percentImage-loyalty-" + appendix);
-				Foxtrick.addClass(bars[0], "ft-percentImage");
-				Foxtrick.removeClass(bars[0], "percentImage");
+		var replaceBars = function(node, skillUp, appendix){
+			var count = 0;
+			var bars = node.getElementsByTagName("img");
+			while(count < bars.length && count < 100){
+				if (Foxtrick.hasClass(bars[count], "percentImage")) {
+					bars[count].setAttribute("title", bars[count].getAttribute("title") + ' +' + String(skillUp).substring(0, 4));
+					//bars[0].setAttribute("alt", bars[0].getAttribute("alt") + ' +' + String(skillUp).substring(0, 4));
+					Foxtrick.addClass(bars[count], "ft-percentImage-loyalty-" + appendix);
+					Foxtrick.addClass(bars[count], "ft-percentImage");
+					Foxtrick.removeClass(bars[count], "percentImage");
+				}
+				++count;
 			}
 		}
 		
-		var replacePercentageImage = function(player, bars){
+		var replacePercentageImage = function(player, node){
 			
 			var loyalty = player.Loyalty;
 			if(loyalty === undefined)
@@ -66,26 +70,32 @@ Foxtrick.modules["LoyaltyDisplay"]={
 					else 
 						return;
 
-					replaceBars(bars, skillUp, appendix);
+					replaceBars(node, skillUp, appendix);
 				}
 			} else {
 				//homegrown, skillUp should be 1.5
-				replaceBars(bars, 1.5, 'homegrown');
+				replaceBars(node, 1.5, 'homegrown');
 			}
 		}
 		
 		if( Foxtrick.Pages.Players.isOwnPlayersPage(doc) && Foxtrick.isPage('players', doc) ){		
-			var playersHTML = doc.getElementsByClassName("playerInfo");
+			var playersNode = doc.getElementsByClassName("playerInfo");
 			Foxtrick.Pages.Players.getPlayerList(doc, function(playerInfo){
-				for (var p=0;p<playerInfo.length;p++) {
-					replacePercentageImage(playerInfo[p], playersHTML[p].getElementsByClassName("percentImage"));
+				if (!playerInfo)
+					return;
+				for (var p=0; p<playersNode.length; ++p) {
+					var playerid = Foxtrick.Pages.Players.getPlayerId(playersNode[p]);
+					if (playerid) {
+						var thisPlayerInfo = Foxtrick.Pages.Players.getPlayerFromListById(playerInfo, playerid);
+						if (thisPlayerInfo) 
+							replacePercentageImage(thisPlayerInfo, playersNode[p]);
+					}
 				}	
 			});
 				
 		} else {
 			Foxtrick.Pages.Player.getPlayer(doc, Foxtrick.Pages.Player.getId(doc), function(player){
-				var bars = doc.getElementsByClassName("percentImage");
-				replacePercentageImage(player, bars);
+				replacePercentageImage(player, doc.getElementById('mainBody'));
 			});
 		}
 	}
