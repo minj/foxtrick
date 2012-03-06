@@ -50,7 +50,8 @@ my @targets = (
 
 # get module file list from file *modules*
 my @modules;
-open(MODULES, "<modules");
+my $module_list = $ARGV[0];
+open(MODULES, "<" . $module_list);
 while ($file = <MODULES>) {
 	chop($file);
 	push(@modules, $file);
