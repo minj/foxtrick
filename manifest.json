@@ -182,6 +182,7 @@
 			"content/shortcuts-and-tweaks/team-popup-links.js",
 			"content/shortcuts-and-tweaks/transfer-search-filters.js",
 			"content/shortcuts-and-tweaks/transfer-search-result-filters.js",
+			//<!-- end categorized modules -->
 
 			"content/entry.js",
 			"content/loader-chrome.js"

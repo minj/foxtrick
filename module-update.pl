@@ -7,42 +7,42 @@ my @targets = (
 	{
 		"file" => "manifest.json",
 		"from" => "//<!-- categorized modules -->",
-		"to" => "^\$",
+		"to" => "//<!-- end categorized modules -->",
 		"prefix" => "\t\t\t\"content/",
 		"suffix" => "\",\n"
 	},
 	{
 		"file" => "Info.plist",
 		"from" => "<!-- categorized modules -->",
-		"to" => "^\$",
+		"to" => "<!-- end categorized modules -->",
 		"prefix" => "\t\t\t\t<string>content/",
 		"suffix" => "</string>\n"
 	},
 	{
 		"file" => "content/scripts-fennec.js",
 		"from" => "//<!-- categorized modules -->",
-		"to" => "^\$",
+		"to" => "//<!-- end categorized modules -->",
 		"prefix" => "\t\tmessageManager.loadFrameScript(\"chrome://foxtrick/content/",
 		"suffix" => "\", true);\n"
 	},
 	{
 		"file" => "content/preferences.html",
 		"from" => "<!-- categorized modules -->",
-		"to" => "^\$",
+		"to" => "<!-- end categorized modules -->",
 		"prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
 		"suffix" => "\"></script>\n"
 	},
 	{
 		"file" => "content/background.html",
 		"from" => "<!-- categorized modules -->",
-		"to" => "^\$",
+		"to" => "<!-- end categorized modules -->",
 		"prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
 		"suffix" => "\"></script>\n"
 	},
 	{
 		"file" => "content/overlay.xul",
 		"from" => "<!-- categorized modules -->",
-		"to" => "^\$",
+		"to" => "<!-- end categorized modules -->",
 		"prefix" => "<script type=\"application/x-javascript\" src=\"./",
 		"suffix" => "\"></script>\n"
 	}

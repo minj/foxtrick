@@ -193,6 +193,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/team-popup-links.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/transfer-search-filters.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/transfer-search-result-filters.js", true);
+		//<!-- end categorized modules -->
 
 		messageManager.loadFrameScript("chrome://foxtrick/content/env-fennec.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/ui.js", true);
