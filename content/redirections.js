@@ -22,7 +22,7 @@ Foxtrick.modules["Redirections"]={
 		var tar='';
 		// redirect from manager
 		if (doc.location.href.search(/\/Club\/Manager/i)!=-1) {
-			var userid = doc.getElementById('mainWrapper').getElementsByTagName('a')[1].href.replace(/.+userid=/i,'');;
+			var userid = doc.getElementsByClassName("main")[0].getElementsByTagName('a')[1].href.replace(/.+userid=/i,'');;
 			var target="_self";
 			if (doc.location.href.search(/redir_to_team=true/i)!=-1 )
 						tar=serv+"/Club/?TeamID="+teamid;
@@ -126,7 +126,7 @@ Foxtrick.modules["Redirections"]={
 			else if (doc.location.href.search(/\/Club\/Matches\/\?TeamID=/i)!=-1
 				&& (doc.location.href.search(/redir_to_nextmatch=true/i)!=-1
 					|| doc.location.href.search(/redir_to_addnextmatch=true/i)!=-1 )) {
-				var table = doc.getElementById('mainWrapper').getElementsByTagName('table')[0];
+				var table = doc.getElementsByClassName("main")[0].getElementsByTagName('table')[0];
 				var headercount=0;
 				for (var i=0;i<table.rows.length;++i) {
 					if (table.rows[i].getElementsByTagName('h2')[0]) {

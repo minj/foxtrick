@@ -72,7 +72,7 @@ Foxtrick.modules["CopyMatchID"]={
 				if (images[i].className.search(/matchLeague|matchFriendly|matchMasters|matchCup|matchQualification/)==-1) continue;
 
 				var href='';
-				var links = doc.getElementById('mainWrapper').getElementsByTagName('a');
+				var links = doc.getElementsByClassName("main")[0].getElementsByTagName('a');
 				for (var j=0; j < links.length; j++) {
 					if ( links[j].href.match(/Club\/Matches\/Match\.aspx/i) ) {
 						href = links[j].href;

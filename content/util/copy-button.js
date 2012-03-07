@@ -17,7 +17,7 @@ Foxtrick.util.copyButton = {};
  */
 Foxtrick.util.copyButton.add = function(doc, text) {
 	if (FoxtrickPrefs.getBool("smallcopyicons")) {
-		var mainWrapper = doc.getElementById("mainWrapper");
+		var mainWrapper = doc.getElementsByClassName("main")[0];
 		var mainBody = doc.getElementById("mainBody");
 
 		var boxHead = mainWrapper.getElementsByClassName("boxHead")[0];

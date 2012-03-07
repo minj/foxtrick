@@ -21,17 +21,14 @@ Foxtrick.modules["LinksEconomy"]={
 
 		//addExternalLinksToEconomyDetail
 		var Cash=0, newCash=1;
-		var alldivs = doc.getElementsByTagName('div');
-		for (var j = 0; j < alldivs.length; j++) {
-			if (alldivs[j].className=="main mainRegular") {
-			  var CashTable = alldivs[j].getElementsByTagName("table")[0];
-				var nums=CashTable.rows[0].cells[1].innerHTML.replace(/&nbsp;/g,'').match(/\d+/g);
-				Cash=nums[0];
-				newCash=nums[1];
-				//Foxtrick.dump(Cash + ' - ' + newCash + '\n');
-				break;
-			}
-		}
+		var main = doc.getElementsByClassName("main")[0]; 
+		var ownBoxBody=null;
+		var thisdiv = main.getElementsByTagName("div")[0];
+		var CashTable = main.getElementsByTagName("table")[0];
+		var nums=CashTable.rows[0].cells[1].innerHTML.replace(/&nbsp;/g,'').match(/\d+/g);
+		Cash=nums[0];
+		newCash=nums[1];
+
 		var currencySymbol = Foxtrick.util.currency.getSymbol();
 		var links = Foxtrick.util.module.get("Links").getLinks("economylink", { "Cash":Cash,"newCash":newCash,"Currency":currencySymbol,"owncountryid":owncountryid}, doc, this);
 		var ownBoxBody=null

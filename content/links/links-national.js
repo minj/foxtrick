@@ -16,15 +16,11 @@ Foxtrick.modules["LinksNational"]={
 		var countryid;
 		var ntteamid;
 		var LeagueOfficeTypeID=doc.location.href.replace(/.+LeagueOfficeTypeID=/i, "").match(/^\d+/);
+		var main = doc.getElementsByClassName("main")[0]; 
 		var ownBoxBody=null;
-		var alldivs = doc.getElementsByTagName('div');
-		for (var j = 0; j < alldivs.length; j++) {
-			if (alldivs[j].className=="main mainRegular") {
-					var thisdiv = alldivs[j];
-					countryid = Foxtrick.util.id.findLeagueId(thisdiv);
-					ntteamid = Foxtrick.util.id.findTeamId(thisdiv);
-					}
-			}
+		var thisdiv = main.getElementsByTagName("div")[0];
+		countryid = Foxtrick.util.id.findLeagueId(thisdiv);
+		ntteamid = Foxtrick.util.id.findTeamId(thisdiv);
 
 		var links = Foxtrick.util.module.get("Links").getLinks("nationalteamlink", { "countryid": countryid,"ntteamid":ntteamid,"LeagueOfficeTypeID":LeagueOfficeTypeID }, doc, this);
 

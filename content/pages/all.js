@@ -25,7 +25,7 @@ Foxtrick.Pages.All = {
 				return Number(matched[1]);
 			return null;
 		};
-		var idContainer =  doc.getElementById('mainWrapper').getElementsByTagName("a")[0];
+		var idContainer =  doc.getElementsByClassName("main")[0].getElementsByTagName("a")[0];
 		if (idContainer)
 			return {'id':parseId(idContainer), 'name':idContainer.textContent};
 	},

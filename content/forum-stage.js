@@ -10,7 +10,7 @@ Foxtrick.modules["ForumStage"]={
 	PAGES : new Array('forumWritePost'),
 
 	run : function(doc) {
-		var forum = doc.getElementById('mainWrapper')
+		var forum =  doc.getElementsByClassName("main")[0]
 						.getElementsByTagName("h2")[0]
 						.getElementsByTagName("a")[1].innerHTML;
 		if (forum == 'Stage') {

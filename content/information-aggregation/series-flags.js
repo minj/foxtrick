@@ -110,7 +110,7 @@ Foxtrick.modules["SeriesFlags"]={
 		if (FoxtrickPrefs.isModuleOptionEnabled("SeriesFlags", "Guestbook")
 			&& Foxtrick.isPage("guestbook", doc)) {
 			// add to guest managers
-			var mainWrapper = doc.getElementById("mainWrapper");
+			var mainWrapper = doc.getElementsByClassName("main")[0];
 			var links = mainWrapper.getElementsByTagName("a");
 			var userLinks = Foxtrick.filter(function(n) { return (n.href.search(/userId=/i) >= 0); }, links);
 			modifyUserLinks(userLinks);
@@ -118,7 +118,7 @@ Foxtrick.modules["SeriesFlags"]={
 		//We add also flag to the guestbook entry in teamPage, but we have to skip the own user link
 		if (FoxtrickPrefs.isModuleOptionEnabled("SeriesFlags", "Guestbook")
 			&& Foxtrick.isPage("teamPage", doc)) {
-			var mainBoxes = doc.getElementById("mainWrapper").getElementsByClassName("mainBox");
+			var mainBoxes = doc.getElementsByClassName("main")[0].getElementsByClassName("mainBox");
 			Foxtrick.map(function(b) {
 				var links = b.getElementsByTagName("a");
 				var userLinks = Foxtrick.filter(function(n) { return (n.href.search(/userId=/i) >= 0); }, links);

@@ -152,7 +152,7 @@ Foxtrick.modules["MatchSimulator"]={
 				var text = '';
 				
 				// the teams. highlight own team
-				var h2 = doc.getElementById('mainWrapper').getElementsByTagName('h2')[0];
+				var h2 = ddoc.getElementsByClassName("main")[0].getElementsByTagName('h2')[0];
 				var thisTeam = h2.getElementsByTagName('a')[0].textContent;
 				var bothTeams = h2.getElementsByTagName('a')[1].textContent.replace(thisTeam, '[b]' + thisTeam + '[/b]');
 				text += bothTeams;
@@ -364,7 +364,7 @@ Foxtrick.modules["MatchSimulator"]={
 					// determine otherTeamId
 					var HomeTeamID = Number(orderMatchXml.getElementsByTagName('HomeTeamID')[0].textContent);
 					var AwayTeamID = Number(orderMatchXml.getElementsByTagName('AwayTeamID')[0].textContent);
-					var h2 = doc.getElementById('mainWrapper').getElementsByTagName('h2')[0];
+					var h2 = doc.getElementsByClassName("main")[0].getElementsByTagName('h2')[0];
 					var thisTeamID = Foxtrick.util.id.getTeamIdFromUrl(h2.getElementsByTagName('a')[0].href);
 					if (thisTeamID == HomeTeamID ) {
 						isHome = true;

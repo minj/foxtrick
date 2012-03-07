@@ -21,7 +21,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 		var hasPlayerInfo = false;
 		var hasInterface = false;
 		var playerList = null;
-		var teamid = Foxtrick.util.id.findTeamId(doc.getElementById('mainWrapper'));
+		var teamid = Foxtrick.util.id.findTeamId(doc.getElementsByClassName("main")[0]);
 		//store most accurate list on first load
 		var lastMatchDates = null;
 		

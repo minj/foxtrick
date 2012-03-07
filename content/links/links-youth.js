@@ -19,7 +19,7 @@ Foxtrick.modules["LinksYouthOverview"]={
 		if (teamid=="") {return;}
 		var ownteamid = Foxtrick.util.id.getOwnTeamId();
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
-		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementsByClassName("main")[0]);
 		var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 
 
@@ -57,30 +57,26 @@ Foxtrick.modules["LinksYouthPlayerDetail"]={
 		if (boxleft==null) {return;}
 		var teamid=Foxtrick.util.id.findTeamId(boxleft);
 		if (teamid=="") {return;}
+
+		var main = doc.getElementsByClassName("main")[0]; 
 		var ownteamid = Foxtrick.util.id.getOwnTeamId();
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
-		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var youthteamid = Foxtrick.util.id.findYouthTeamId(main);
 		var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 
-		var alldivs = doc.getElementById('mainWrapper').getElementsByTagName('div');
-		for (var j = 0; j < alldivs.length; j++) {
-			if (alldivs[j].className=="main mainRegular") {
-				var thisdiv = alldivs[j];
-				var nationality = Foxtrick.util.id.findLeagueId(thisdiv);
-				var playerid = Foxtrick.util.id.findPlayerId(thisdiv);
-				var playername=thisdiv.getElementsByTagName("a")[1].textContent;
-				var age = null;
-				var age_days;
+		var thisdiv = main.getElementsByTagName("div")[0];
+		var nationality = Foxtrick.util.id.findLeagueId(thisdiv);
+		var playerid = Foxtrick.util.id.findPlayerId(thisdiv);
+		var playername=thisdiv.getElementsByTagName("a")[1].textContent;
+		var age = null;
+		var age_days;
 
-				// age
-				var divs= thisdiv.getElementsByTagName('div');
-				for (var j=0; j < divs.length; j++) {
-					if ( divs[j].className=="byline" ) {
-						age = divs[j].textContent.match(/\d+/)[0];
-						age_days = divs[j].textContent.match(/(\d+)/g)[1];
-						break;
-					}
-				}
+		// age
+		var divs= thisdiv.getElementsByTagName('div');
+		for (var j=0; j < divs.length; j++) {
+			if ( divs[j].className=="byline" ) {
+				age = divs[j].textContent.match(/\d+/)[0];
+				age_days = divs[j].textContent.match(/(\d+)/g)[1];
 				break;
 			}
 		}
@@ -123,7 +119,7 @@ Foxtrick.modules["LinksYouthTraining"]={
 		if (teamid=="") {return;}
 		var ownteamid = Foxtrick.util.id.getOwnTeamId();
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
-		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementsByClassName("main")[0]);
 		var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 
 		//addExternalLinksToYouthOverview
@@ -164,7 +160,7 @@ Foxtrick.modules["LinksYouthPlayerList"]={
 		if (teamid=="") {return;}
 		var ownteamid = Foxtrick.util.id.getOwnTeamId();
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
-		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementsByClassName("main")[0]);
 		var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 
 
@@ -206,7 +202,7 @@ Foxtrick.modules["LinksYouthMatchList"]={
 		if (teamid=="") {return;}
 		var ownteamid = Foxtrick.util.id.getOwnTeamId();
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
-		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementById('mainWrapper'));
+		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementsByClassName("main")[0]);
 		var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
 
 
@@ -248,8 +244,8 @@ Foxtrick.modules["LinksYouthLeague"]={
 		if (teamid=="") {return;}
 		var ownteamid = Foxtrick.util.id.getOwnTeamId();
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
-		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementById('mainWrapper'));
-        var youthleagueid = Foxtrick.util.id.findYouthLeagueId(doc.getElementById('mainWrapper'));
+		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementsByClassName("main")[0]);
+        var youthleagueid = Foxtrick.util.id.findYouthLeagueId(doc.getElementsByClassName("main")[0]);
 
 		//addExternalLinksToYouthLeague
 		var ownBoxBody=null;

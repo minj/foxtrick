@@ -44,7 +44,7 @@ Foxtrick.Pages.Player = {
 	},
 
 	getName : function(doc) {
-		var mainWrapper = doc.getElementById("mainWrapper");
+		var mainWrapper = doc.getElementsByClassName("main")[0];
 		var h2 = mainWrapper.getElementsByTagName("h2")[0];
 		var links = h2.getElementsByTagName("a");
 		for (var i = 0; i < links.length; ++i) {

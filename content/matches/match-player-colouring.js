@@ -49,7 +49,7 @@
 			if (doc.location.search.search(/&HighlightPlayerID=(\d+)/) != -1) {
 				// highlight single player
 				var playerId = doc.location.search.match(/&HighlightPlayerID=(\d+)/)[1];
-				var links = doc.getElementById("mainWrapper").getElementsByTagName("a");
+				var links = doc.getElementsByClassName("main")[0].getElementsByTagName("a");
 				links = Foxtrick.filter(function(a) {
 					return aLink.hasAttribute('href') && a.href.indexOf(playerId) > -1;
 				}, links);
@@ -93,7 +93,7 @@
 			Foxtrick.addClass(homeTeam, homeClass);
 			Foxtrick.addClass(awayTeam, awayClass);
 
-			var mainWrapper = doc.getElementById("mainWrapper");
+			var mainWrapper = doc.getElementsByClassName("main")[0];
 			var links = Foxtrick.filter(function(n) {
 				return n.hasAttribute('href') ;
 			}, mainWrapper.getElementsByTagName("a"));

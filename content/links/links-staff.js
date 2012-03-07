@@ -14,7 +14,7 @@ Foxtrick.modules["LinksStaff"]={
 
 	run : function(doc) {
 		var ownBoxBody = null;
-		var mainBody = doc.getElementById('mainWrapper');
+		var mainBody = doc.getElementsByClassName("main")[0];
 
 		var teamid = Foxtrick.util.id.findTeamId(mainBody);
 		var teamname = Foxtrick.util.id.extractTeamName(mainBody);
