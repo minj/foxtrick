@@ -6,6 +6,10 @@
 #
 # upload-nightly.sh will pass all of its arguments to Make
 #
+# Options:
+# -c : name of the config file sh 
+# any other arguments resp anything after is passed to Make
+#
 # Exit codes:
 # 0) Success
 # 1) Variables USER and PASSWORD unset (set in upload.conf.sh)
@@ -13,10 +17,10 @@
 # 3) Failed to upload
 
 # FTP settings arrays
-USERS=()
-PASSWORDS=()
-HOSTS=('www.foxtrick.org')
-DESTS=('.')
+USER=''
+PASSWORD=''
+HOST='www.foxtrick.org'
+DEST='.'
 
 # update manifest settings
 URL_BASE='http://foxtrick.foundationhorizont.org/nightly'
@@ -26,10 +30,21 @@ DIST=nightly
 SRC_DIR=..
 
 # load configuration, probably overwriting defaults above
-. ./upload.conf.sh
+CONFIG_FILE='./upload.conf.sh'
+if [ $1 ]; then
+  if [ $1 == "-c" ]; then
+	shift
+	if [ -f $1 ]; then
+		CONFIG_FILE=$1
+		shift
+	fi
+  fi
+fi
+echo "using config file: $CONFIG_FILE"
+. $CONFIG_FILE
 
 # see if values are set
-if [[ -z "$USERS" || -z "$PASSWORDS" ]]; then
+if [[ -z "$USER" || -z "$PASSWORD" ]]; then
 	echo 'Please specify USER and PASSWORD in upload.conf.sh' >&2
 	exit 1
 fi
@@ -67,18 +82,15 @@ cp update-tmpl-safari.plist update-safari.plist
 sed -i "s|{UPDATE_LINK}|${URL_BASE}/safari/foxtrick-${VERSION}.safariextz|g" update-safari.plist
 sed -i "s|{VERSION}|${VERSION}|g" update-safari.plist
 
-for (( i = 0 ; i < ${#HOSTS[@]} ; i++ ))
-do
-  cp ftp-tmpl ftp
-  sed -i \
- 	-e "s|{USER}|${USERS[$i]}|g" \
-	-e "s|{PASSWORD}|${PASSWORDS[$i]}|g" \
-	-e "s|{HOST}|${HOSTS[$i]}|g" \
-	-e "s|{DEST}|${DESTS[$i]}|g" \
-	-e "s|{PATH}|${SRC_DIR}|g" \
-	-e "s|{VERSION}|${VERSION}|g" ftp
-  lftp -f ftp || exit 3
-  rm ftp
-done
+cp ftp-tmpl ftp
+sed -i \
+    -e "s|{USER}|${USER}|g" \
+    -e "s|{PASSWORD}|${PASSWORD}|g" \
+    -e "s|{HOST}|${HOST}|g" \
+    -e "s|{DEST}|${DEST}|g" \
+    -e "s|{PATH}|${SRC_DIR}|g" \
+    -e "s|{VERSION}|${VERSION}|g" ftp
+lftp -f ftp || exit 3
+rm ftp
 
 rm update-firefox.rdf update-chrome.xml update-opera.xml update-safari.plist
