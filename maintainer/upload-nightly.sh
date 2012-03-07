@@ -21,6 +21,7 @@ USER=''
 PASSWORD=''
 HOST='www.foxtrick.org'
 DEST='.'
+UPLOAD_UPDATE_FILES='true'
 
 # update manifest settings
 URL_BASE='http://foxtrick.foundationhorizont.org/nightly'
@@ -60,28 +61,30 @@ fi
 
 (cd "$SRC_DIR" && make DIST_TYPE="$DIST" "$@") || exit 2
 
-# modify update-firefox.rdf for Gecko
-cp update-tmpl-firefox.rdf update-firefox.rdf
-GECKO_SHA1SUM=`sha1sum "${SRC_DIR}/foxtrick.xpi" | sed -r 's/\s+.+$//g'`
-sed -i "s|{UPDATE_LINK}|${URL_BASE}/foxtrick-${VERSION}.xpi|g" update-firefox.rdf
-sed -i "s|{UPDATE_HASH}|sha1:${GECKO_SHA1SUM}|g" update-firefox.rdf
-sed -i "s|{VERSION}|${VERSION}|g" update-firefox.rdf
+if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
+	# modify update-firefox.rdf for Gecko
+	cp update-tmpl-firefox.rdf update-firefox.rdf
+	GECKO_SHA1SUM=`sha1sum "${SRC_DIR}/foxtrick.xpi" | sed -r 's/\s+.+$//g'`
+	sed -i "s|{UPDATE_LINK}|${URL_BASE}/foxtrick-${VERSION}.xpi|g" update-firefox.rdf
+	sed -i "s|{UPDATE_HASH}|sha1:${GECKO_SHA1SUM}|g" update-firefox.rdf
+	sed -i "s|{VERSION}|${VERSION}|g" update-firefox.rdf
 
-# modify update-chrome.xml for Google Chrome
-cp update-tmpl-chrome.xml update-chrome.xml
-sed -i "s|{UPDATE_LINK}|${URL_BASE}/chrome/foxtrick-${VERSION}.crx|g" update-chrome.xml
-sed -i "s|{VERSION}|${VERSION}|g" update-chrome.xml
+	# modify update-chrome.xml for Google Chrome
+	cp update-tmpl-chrome.xml update-chrome.xml
+	sed -i "s|{UPDATE_LINK}|${URL_BASE}/chrome/foxtrick-${VERSION}.crx|g" update-chrome.xml
+	sed -i "s|{VERSION}|${VERSION}|g" update-chrome.xml
 
-# modify update-opera.xml for Opera
-cp update-tmpl-opera.xml update-opera.xml
-sed -i "s|{UPDATE_LINK}|${URL_BASE}/opera/foxtrick-${VERSION}.oex|g" update-opera.xml
-sed -i "s|{VERSION}|${VERSION}|g" update-opera.xml
+	# modify update-opera.xml for Opera
+	cp update-tmpl-opera.xml update-opera.xml
+	sed -i "s|{UPDATE_LINK}|${URL_BASE}/opera/foxtrick-${VERSION}.oex|g" update-opera.xml
+	sed -i "s|{VERSION}|${VERSION}|g" update-opera.xml
 
-# modify update-safari.plist for Safari
-cp update-tmpl-safari.plist update-safari.plist
-sed -i "s|{UPDATE_LINK}|${URL_BASE}/safari/foxtrick-${VERSION}.safariextz|g" update-safari.plist
-sed -i "s|{VERSION}|${VERSION}|g" update-safari.plist
-
+	# modify update-safari.plist for Safari
+	cp update-tmpl-safari.plist update-safari.plist
+	sed -i "s|{UPDATE_LINK}|${URL_BASE}/safari/foxtrick-${VERSION}.safariextz|g" update-safari.plist
+	sed -i "s|{VERSION}|${VERSION}|g" update-safari.plist
+fi
+	
 cp ftp-tmpl ftp
 sed -i \
     -e "s|{USER}|${USER}|g" \
@@ -93,4 +96,4 @@ sed -i \
 lftp -f ftp || exit 3
 rm ftp
 
-rm update-firefox.rdf update-chrome.xml update-opera.xml update-safari.plist
+rm -f update-firefox.rdf update-chrome.xml update-opera.xml update-safari.plist
