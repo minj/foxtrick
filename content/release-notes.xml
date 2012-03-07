@@ -15,7 +15,7 @@
 
 <note version="0.9.0.3">
 <item><xhtml:b>Update 0.9.0.3</xhtml:b></item>
-<item>● Stage only: Fixed several modules after a change in HTs page layout</item>
+<item>● Fixed several modules after a change in HTs page layout</item>
 <item></item>
 <item><xhtml:b>Update 0.9.0.2</xhtml:b></item>
 <item>● Fixed latest Chrome update causing LoyaltyDisplay to crash</item>

@@ -15,7 +15,7 @@
 
 <note version="0.9.0.3">
 <item><xhtml:b>Промене у верзији Фокстрик 0.9.0.3</xhtml:b></item>
-<item>● Само за Stage: Исправке за неколико модула после промена изгледа страница</item>
+<item>● Исправке за неколико модула после промена изгледа страница</item>
 <item></item>
 <item>● Исправка за последњу верзију Chrome због које је модул <module>LoyaltyDisplay</module> блокирао</item>
 <item>● Поправљени линкови до поставе у мечу за омладинце у модулу <module>MatchReportFormat</module></item>

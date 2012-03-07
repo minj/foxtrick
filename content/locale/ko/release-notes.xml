@@ -13,7 +13,7 @@
 <item>자세한 내용은 Google Code의 <xhtml:a href="http://code.google.com/p/foxtrick/source/list">보고 기록</xhtml:a>을 참조하세요.</item>
 </note>
 
-<note version="0.9.0.2">
+<note version="0.9.0.3">
 <item><xhtml:b>0.9.0.2 업데이트</xhtml:b></item>
 <item>● LoyaltyDisplay 충돌을 야기시키는 최근 Chrome 업데이트 수정</item>
 <item>● MatchReportFormat의 유소년 선수의 라인업 연결 수정</item>
