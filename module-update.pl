@@ -2,6 +2,11 @@
 # Update module listing in manifest files
 #
 # Author: Ryan Li <ryan@ryanium.com>
+#
+# arguments
+# first: filename of categorized modules file
+# second: filename of ignored modules file
+# third: path to targets
 
 my @targets = (
 	{
@@ -58,9 +63,20 @@ while ($file = <MODULES>) {
 }
 close(MODULES);
 
+my @ignored_modules;
+my $ignored_module_list = $ARGV[1];
+open(IGNORED_MODULES, "<" . $ignored_module_list);
+while ($file = <IGNORED_MODULES>) {
+	chop($file);
+	push(@ignored_modules, $file);
+}
+close(IGNORED_MODULES);
+
+my path = $ARGV[2];
+
 foreach my $target (@targets) {
 	my $content = "";
-	open(TARGET, "<" . $target->{"file"});
+	open(TARGET, "<" . $path . $target->{"file"});
 
 	my $line;
 	while (my $line = <TARGET>) {
@@ -84,10 +100,21 @@ foreach my $target (@targets) {
 	while (my $line = <TARGET>) {
 		$content .= $line;
 	}
-
+	
 	close(TARGET);
-
-	open(TARGET, ">" . $target->{"file"});
-	print TARGET $content;
+	
+	# remove entries from ignored_modules
+	my $cleaned_content = "";
+	my $lines = split(/\n/, $content);
+	foreach my $module (@ignored_modules) {
+		foreach my $line (@lines) {
+			if ($line !~ $module) {
+				$cleaned_content .= $line . '\n';
+			}
+		}
+	}
+	
+	open(TARGET, ">" . $path . $target->{"file"});
+	print TARGET $cleaned_content;
 	close(TARGET);
 }
