@@ -72,7 +72,7 @@ while ($file = <IGNORED_MODULES>) {
 }
 close(IGNORED_MODULES);
 
-my path = $ARGV[2];
+my $path = $ARGV[2];
 
 foreach my $target (@targets) {
 	my $content = "";
@@ -105,15 +105,21 @@ foreach my $target (@targets) {
 	
 	# remove entries from ignored_modules
 	my $cleaned_content = "";
-	my $lines = split(/\n/, $content);
+	
+	my @lines = split(/\n/, $content);
 	foreach my $module (@ignored_modules) {
 		foreach my $line (@lines) {
 			if ($line !~ $module) {
-				$cleaned_content .= $line . '\n';
+				$cleaned_content .= $line . "\n";
 			}
 		}
 	}
 	
+	open (TARGET, ">tmp");
+	print TARGET $cleaned_content;
+	close TARGET;
+	exit;
+
 	open(TARGET, ">" . $path . $target->{"file"});
 	print TARGET $cleaned_content;
 	close(TARGET);
