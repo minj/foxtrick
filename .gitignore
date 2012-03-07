@@ -3,8 +3,7 @@
 *.crx
 *.oex
 *.safariextz
-maintainer/upload.conf.sh
-maintainer/upload.ixweb.conf.sh
+maintainer/upload.conf.*
 maintainer/locale/crowdinKey.py
 maintainer/*.pem
 maintainer/*.der
