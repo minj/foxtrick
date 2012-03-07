@@ -1,5 +1,4 @@
 import localetools.l10n
-import sys
 	
 path_to_content_input = "./../../"
 
