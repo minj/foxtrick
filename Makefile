@@ -3,7 +3,7 @@ APP_NAME = foxtrick
 # Distribution type:
 # Firefox, Chrome, Opera: nightly, release, hosting
 # Safari: nightly, release
-DIST_TYPE = release
+DIST_TYPE = nightly
 
 # Subversion revision, this is only available with git-svn
 REVISION := $(shell git svn find-rev HEAD)
