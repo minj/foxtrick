@@ -264,7 +264,7 @@ clean-safari:
 	rm -rf *.safariextz
 
 clean-build:
-#	rm -rf $(BUILD_DIR)
+	rm -rf $(BUILD_DIR)
 	rm -f sha1-hash.dat
 	rm -f signature.dat
 
