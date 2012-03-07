@@ -20,7 +20,18 @@ DIST=nightly
 SRC_DIR=..
 
 # load configuration, probably overwriting defaults above
-. ./upload.conf.sh
+CONFIG_FILE='./upload.conf.sh'
+if [ $1 ]; then
+  if [ $1 == "-c" ]; then
+	shift
+	if [ -f $1 ]; then
+		CONFIG_FILE=$1
+		shift
+	fi
+  fi
+fi
+echo "using config file: $CONFIG_FILE"
+. $CONFIG_FILE
 
 # see if values are set
 if [[ -z "$GOOGLE_USER" || -z "$GOOGLE_PASSWORD" ]]; then
