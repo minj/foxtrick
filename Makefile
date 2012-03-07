@@ -3,7 +3,7 @@ APP_NAME = foxtrick
 # Distribution type:
 # Firefox, Chrome, Opera: nightly, release, hosting
 # Safari: nightly, release
-DIST_TYPE = nightly
+DIST_TYPE = release
 
 # Subversion revision, this is only available with git-svn
 REVISION := $(shell git svn find-rev HEAD)
@@ -95,6 +95,8 @@ firefox:
 	mkdir -p $(BUILD_DIR)/chrome/content
 	# skin/
 	cp -r skin $(BUILD_DIR)/chrome
+	# remove ignore modules from files
+	perl module-update.pl modules ignored-modules $(BUILD_DIR)/chrome/
 	# build jar
 	cd $(BUILD_DIR)/chrome; \
 	$(ZIP) -0 -r $(APP_NAME).jar `find . \( -path '*CVS*' -o -path \
@@ -136,7 +138,9 @@ chrome:
 	cd content/; \
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_CHROME) \
 		../$(BUILD_DIR)/content
-	# modify according to distribution type
+	# remove ignore modules from files
+	perl module-update.pl modules ignored-modules $(BUILD_DIR)/
+# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
 	../version.sh $(REV_VERSION); \
@@ -170,6 +174,7 @@ opera:
 	cd content/; \
 	cp -r $(subst /,/.,$(SCRIPT_FOLDERS)) $(CONTENT_FILES_OPERA) \
 		../$(BUILD_DIR)/includes
+	# remove ignore modules from files
 	mkdir $(BUILD_DIR)/content
 	cd content/; \
 	cp -r $(RESOURCE_FOLDERS) \
@@ -185,6 +190,8 @@ opera:
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/env.js)|/includes/aa00_env.js|' background.html options.html
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/module.js)|/includes/aa10_module.js|' background.html options.html
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/loader-chrome.js)|/includes/zz99_loader-chrome.js|' background.html options.html
+	# remove ignore modules from files
+	perl module-update.pl modules ignored-modules $(BUILD_DIR)/
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
@@ -213,6 +220,8 @@ safari:
 	cd content/; \
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_SAFARI) \
 		../$(SAFARI_BUILD_DIR)/content
+	# remove ignore modules from files
+	perl module-update.pl modules ignored-modules $(SAFARI_BUILD_DIR)/
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	# version bump for nightly
@@ -255,7 +264,7 @@ clean-safari:
 	rm -rf *.safariextz
 
 clean-build:
-	rm -rf $(BUILD_DIR)
+#	rm -rf $(BUILD_DIR)
 	rm -f sha1-hash.dat
 	rm -f signature.dat
 

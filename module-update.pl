@@ -37,21 +37,35 @@ my @targets = (
 		"prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
 		"suffix" => "\"></script>\n"
 	},
+        {
+                "file" => "content/background.html",
+                "from" => "<!-- categorized modules -->",
+                "to" => "<!-- end categorized modules -->",
+                "prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
+                "suffix" => "\"></script>\n"
+        },
+        {
+                "file" => "content/overlay.xul",
+                "from" => "<!-- categorized modules -->",
+                "to" => "<!-- end categorized modules -->",
+                "prefix" => "<script type=\"application/x-javascript\" src=\"./",
+                "suffix" => "\"></script>\n"
+        },
 	{
-		"file" => "content/background.html",
+		"file" => "background.html",
 		"from" => "<!-- categorized modules -->",
 		"to" => "<!-- end categorized modules -->",
 		"prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
 		"suffix" => "\"></script>\n"
 	},
-	{
-		"file" => "content/overlay.xul",
-		"from" => "<!-- categorized modules -->",
-		"to" => "<!-- end categorized modules -->",
-		"prefix" => "<script type=\"application/x-javascript\" src=\"./",
-		"suffix" => "\"></script>\n"
-	}
-);
+        {
+                "file" => "options.html",
+                "from" => "<!-- categorized modules -->",
+                "to" => "<!-- end categorized modules -->",
+                "prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
+                "suffix" => "\"></script>\n"
+        }
+ );
 
 # get module file list from file *modules*
 my @modules;
@@ -68,7 +82,9 @@ my $ignored_module_list = $ARGV[1];
 open(IGNORED_MODULES, "<" . $ignored_module_list);
 while ($file = <IGNORED_MODULES>) {
 	chop($file);
-	push(@ignored_modules, $file);
+	if ($file) {
+		push(@ignored_modules, $file);
+	}
 }
 close(IGNORED_MODULES);
 
@@ -76,8 +92,9 @@ my $path = $ARGV[2];
 
 foreach my $target (@targets) {
 	my $content = "";
-	open(TARGET, "<" . $path . $target->{"file"});
-
+	open(TARGET, "<" . $path . $target->{"file"}) || next;
+	print "handle " . $path . $target->{"file"} . "\n";
+	
 	my $line;
 	while (my $line = <TARGET>) {
 		$content .= $line;
@@ -107,19 +124,18 @@ foreach my $target (@targets) {
 	my $cleaned_content = "";
 	
 	my @lines = split(/\n/, $content);
-	foreach my $module (@ignored_modules) {
-		foreach my $line (@lines) {
-			if ($line !~ $module) {
-				$cleaned_content .= $line . "\n";
+	foreach my $line (@lines) {
+		my $ignore = 0;
+		foreach my $module (@ignored_modules) {
+			if ($line =~ $module) {
+				$ignore = 1;
 			}
+		}
+		if ( $ignore == 0 ) {
+			$cleaned_content .= $line . "\n";
 		}
 	}
 	
-	open (TARGET, ">tmp");
-	print TARGET $cleaned_content;
-	close TARGET;
-	exit;
-
 	open(TARGET, ">" . $path . $target->{"file"});
 	print TARGET $cleaned_content;
 	close(TARGET);
