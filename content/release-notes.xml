@@ -13,7 +13,10 @@
 <item>Please view <xhtml:a href="http://code.google.com/p/foxtrick/source/list">commit history</xhtml:a> at Google Code for details.</item>
 </note>
 
-<note version="0.9.0.3">
+<note version="0.9.0.4">
+<item><xhtml:b>Update 0.9.0.4</xhtml:b></item>
+<item>● Links resources moved to another server</item>
+<item></item>
 <item><xhtml:b>Update 0.9.0.3</xhtml:b></item>
 <item>● Fixed several modules after a change in HTs page layout</item>
 <item></item>
