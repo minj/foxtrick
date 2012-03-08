@@ -210,10 +210,12 @@
 		"clipboardWrite",
 		"*://chpp.hattrick.org/*",
 		"*://*.foxtrick.org/*",
+		"https://foxtrick.c6.ixwebhosting.org/",
+		"http://foxtrick.symbiosis.org.gr/*",
+		"http://foxtrick.googlecode.com/svn/*",
 		"http://www.fantamondi.it/*"
 	],
 	"optional_permissions" : [
-		"http://foxtrick.googlecode.com/svn/*",
 		"http://www.hattrick-youthclub.org/*",
 		"http://stream.ht-radio.nl/*",
 		"http://no9-online.de/*",
