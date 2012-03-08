@@ -16,6 +16,8 @@
 <note version="0.9.0.4">
 <item><xhtml:b>Update 0.9.0.4</xhtml:b></item>
 <item>● Links resources moved to another server</item>
+<item>● Added basic english event texts to the icons' titles in MatchReportFormat</item>
+<item>● Enabled MatchReportFormat and MatchPlayerColoring for tournament matches</item>
 <item></item>
 <item><xhtml:b>Update 0.9.0.3</xhtml:b></item>
 <item>● Fixed several modules after a change in HTs page layout</item>
