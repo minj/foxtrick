@@ -319,9 +319,7 @@
 					["version", "1.8"]
 				];
 				Foxtrick.util.api.retrieve(doc, homeLineupArgs, {cache_lifetime: "session"}, function(homeXml) {
-					Foxtrick.log(homeXml);
 					Foxtrick.util.api.retrieve(doc, awayLineupArgs, {cache_lifetime: "session"}, Foxtrick.preventChange(doc, function(awayXml) {
-						Foxtrick.log(awayXml);
 						// add everything after .byline[0] and remove existing ones
 						var byline = doc.getElementsByClassName("byline")[0];
 						var parent = byline.parentNode;
