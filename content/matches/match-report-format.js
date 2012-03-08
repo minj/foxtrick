@@ -509,37 +509,43 @@
 								var addEventIcons = function(id){
 									if(FoxtrickPrefs.isModuleOptionEnabled("MatchReportFormat", "ShowEventIcons")){
 										var addEventIcon = function(src, title, alt) {
-											Foxtrick.addImage(doc, icon, { alt: title, title: title, src: src , className: "ft-match-report-event-icon-image" });
+											return Foxtrick.addImage(doc, icon, { alt: alt, title: title, src: src , className: "ft-match-report-event-icon-image" });
 										}
 										
 										var icon = doc.createElement("div");
 										item.appendChild(icon);
 										icon.className = "ft-match-report-event-icon";
-										
+										var title = "Event Id " + evtType + " : ";
+
 										//icons for both columns (e.g.: Header vs. quick etc.)
 										if(typeof(eventTypes[evtType]) == "object"){
 											//event team
 											if(evtTeamId == id) {
-												if (eventTypes[evtType]["team"])
+												if (eventTypes[evtType]["team"]) {
+													title += eventTypes[evtType]["team"] + " ";
 													for(var i = 0; i < eventTypes[evtType]["team"].length; ++i)
-														addEventIcon(icons[eventTypes[evtType]["team"][i]], "Event Id: " + evtType);											
+														addEventIcon(icons[eventTypes[evtType]["team"][i]], title, "Event Id " + evtType + " : " + eventTypes[evtType]["team"][i]);
+												}
 											} 
 											else {
-												if (eventTypes[evtType]["other"])
+												if (eventTypes[evtType]["other"]) {
+													title += eventTypes[evtType]["other"] + " ";
 													for(var i = 0; i < eventTypes[evtType]["other"].length; ++i)
-														addEventIcon(icons[eventTypes[evtType]["other"][i]], "Event Id: " + evtType);
+														addEventIcon(icons[eventTypes[evtType]["other"][i]], title, "Event Id " + evtType + " : " + eventTypes[evtType]["team"][i]);
+												}
 											} 
 										} 
 										//simple case, display icon for team
 										else if(eventTypes[evtType] && icons[eventTypes[evtType]]){
 											if(id != evtTeamId)
 												return;
+											title += eventTypes[evtType] + " ";
 											if(icons[eventTypes[evtType]] instanceof Array){
 												for(var i = 0; i < icons[eventTypes[evtType]].length; ++i)
-													addEventIcon(icons[eventTypes[evtType]][i], "Event Id: " + evtType);
+													addEventIcon(icons[eventTypes[evtType]][i], title, "Event Id " + evtType + " : " +eventTypes[evtType]);
 											}
 											else {
-												addEventIcon(icons[eventTypes[evtType]],"Event Id: " + evtType);
+												addEventIcon(icons[eventTypes[evtType]], title, "Event Id " + evtType + " : " +eventTypes[evtType]);
 											}
 										}
 									}
