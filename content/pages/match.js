@@ -14,6 +14,10 @@ Foxtrick.Pages.Match = {
 		return (doc.location.search.search(/isYouth=true|SourceSystem=Youth/i) > -1);
 	},
 
+	isHTOIntegrated : function(doc) {
+		return (doc.location.search.search(/SourceSystem=HTOIntegrated/i) > -1);
+	},
+
 	getId : function(doc) {
 		try {
 			return (doc.location.search.match(/matchID=(\d+)/i)[1]);
