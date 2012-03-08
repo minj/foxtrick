@@ -267,11 +267,16 @@
 			var txtUnknownPlayer = Foxtrickl10n.getString("match.player.unknown");
 
 			if (Foxtrick.Pages.Match.isPrematch(doc)
-				|| Foxtrick.Pages.Match.inProgress(doc)
-				|| doc.location.href.search('HTOIntegrated') != -1)
+				|| Foxtrick.Pages.Match.inProgress(doc) )
 				return;
 
+			var SourceSystem = "Hattrick";
 			var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+			var isHTOIntegrated = Foxtrick.Pages.Match.isHTOIntegrated(doc);
+			if (isYouth)
+				SourceSystem = "Youth";
+			if (isHTOIntegrated)
+				SourceSystem = "HTOIntegrated";
 			var matchId = Foxtrick.Pages.Match.getId(doc);
 			// add locale as argument to prevent using old cache after
 			// language changed
@@ -280,9 +285,9 @@
 				["file", "matchdetails"],
 				["matchEvents", "true"],
 				["matchID", matchId],
-				["isYouth", isYouth],
-				["lang", locale],
-				["version", "2.1"]
+				["SourceSystem", SourceSystem],
+				["version", "2.3"],
+				["lang", locale]
 			];
 
 			var playerTag = function(id, name) {
@@ -303,18 +308,20 @@
 					["file", "matchlineup"],
 					["matchID", matchId],
 					["teamID", homeId],
-					["isYouth", isYouth],
-					["version", "1.6"]
+					["SourceSystem", SourceSystem],
+					["version", "1.8"]
 				];
 				var awayLineupArgs = [
 					["file", "matchlineup"],
 					["matchID", matchId],
 					["teamID", awayId],
-					["isYouth", isYouth],
-					["version", "1.6"]
+					["SourceSystem", SourceSystem],
+					["version", "1.8"]
 				];
 				Foxtrick.util.api.retrieve(doc, homeLineupArgs, {cache_lifetime: "session"}, function(homeXml) {
+					Foxtrick.log(homeXml);
 					Foxtrick.util.api.retrieve(doc, awayLineupArgs, {cache_lifetime: "session"}, Foxtrick.preventChange(doc, function(awayXml) {
+						Foxtrick.log(awayXml);
 						// add everything after .byline[0] and remove existing ones
 						var byline = doc.getElementsByClassName("byline")[0];
 						var parent = byline.parentNode;
@@ -353,9 +360,11 @@
 
 							Foxtrick.map(function(player) {
 								var id = player.getElementsByTagName("PlayerID")[0].textContent;
-								var name = player.getElementsByTagName("PlayerName")[0].textContent;
+								var firstName = player.getElementsByTagName("FirstName")[0].textContent;
+								var lastName = player.getElementsByTagName("LastName")[0].textContent;
+								var nickName = player.getElementsByTagName("NickName")[0].textContent;
 								if (!collection[id]) {
-									collection[id] = { "name": name };
+									collection[id] = { "name":  firstName + (nickName?(" "+nickName):"") + " " +lastName};
 								}
 							}, xml.getElementsByTagName("Lineup")[0].getElementsByTagName("Player"));
 
@@ -378,7 +387,10 @@
 							var starting = xml.getElementsByTagName("StartingLineup")[0].getElementsByTagName("Player");
 							Foxtrick.map(function(player) {
 								var id = player.getElementsByTagName("PlayerID")[0].textContent;
-								var name = player.getElementsByTagName("PlayerName")[0].textContent;
+								var firstName = player.getElementsByTagName("FirstName")[0].textContent;
+								var lastName = player.getElementsByTagName("LastName")[0].textContent;
+								var nickName = player.getElementsByTagName("NickName")[0].textContent;
+								var name = firstName + (nickName?(" "+nickName):"") + " " +lastName;
 								var role = player.getElementsByTagName("RoleID")[0].textContent;
 								if (!collection[id]) {
 									// add red carded players

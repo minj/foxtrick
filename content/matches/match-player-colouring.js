@@ -31,8 +31,7 @@
 				addHighlightParam(doc);
 			}
 			else {
-				if (doc.location.href.search('HTOIntegrated') == -1)
-					this.color(doc);
+				this.color(doc);
 			}
 		},
 
@@ -65,7 +64,13 @@
 			var notifyArea = doc.getElementById("ctl00_ctl00_CPContent_ucNotifications_updNotifications");
 			notifyArea.appendChild(loading);
 
-			var isYouth = (String(doc.location).search(/Youth/i) > -1);
+			var SourceSystem = "Hattrick";
+			var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+			var isHTOIntegrated = Foxtrick.Pages.Match.isHTOIntegrated(doc);
+			if (isYouth)
+				SourceSystem = "Youth";
+			if (isHTOIntegrated)
+				SourceSystem = "HTOIntegrated";
 			var matchId = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
 
 			//Retrieve teams id
@@ -103,15 +108,15 @@
 				["file", "matchlineup"],
 				["matchID", matchId],
 				["teamID", homeTeamId],
-				["isYouth", isYouth],
-				["version","1.6"]
+				["SourceSystem", SourceSystem],
+				["version","1.8"]
 			];
 			var awayArgs = [
 				["file", "matchlineup"],
 				["matchID", matchId],
 				["teamID", awayTeamId],
-				["isYouth", isYouth],
-				["version","1.6"]
+				["SourceSystem", SourceSystem],
+				["version","1.8"]
 			];
 
 			var getPlayers = function(xml) {
@@ -138,9 +143,6 @@
 
 					var homePlayers = getPlayers(homeXml);
 					var awayPlayers = getPlayers(awayXml);
-
-					Foxtrick.log("Home players: ", homePlayers);
-					Foxtrick.log("Away players: ", awayPlayers);
 
 					// colour all player links
 					Foxtrick.map(function(n) {
