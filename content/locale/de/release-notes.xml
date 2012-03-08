@@ -14,7 +14,7 @@
 <item>Du kannst FoxTrick daran hindern diese Release Notes nach jedem Update anzuzeigen in dem du die "Anzeige der Release Notes nach einem FoxTrick-Update" in den <xhtml:a href="#tab=main">Grundeinstellungen</xhtml:a> deaktivierts.</item>
 </note>
 
-<note version="0.9.0.3">
+<note version="0.9.0.4">
 <item><xhtml:b>Übersetzungen:</xhtml:b></item>
 <item>Integration des Crowd-Sourcing Übersetzungdienstes <xhtml:a href="http://www.crowdin.net/project/foxtrick">http://www.crowdin.net</xhtml:a>. (CatzHoek, Convincedd)</item>
 <item>Viele Verbesserungen in den Übersetzungen. (Catzhoek und viele Andere. Unter anderem: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, Zayc, , Mcload)</item>
