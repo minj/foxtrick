@@ -17,12 +17,16 @@ Foxtrick.modules["ForumStage"]={
 			var textarea = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
 			var divalert = doc.createElement('div');
 			divalert.className = 'alert ft-dummy';
-			divalert.innerHTML = 
-				"Please <b>disable FoxTrick</b> and any other Hattrick extensions" + 
+			divalert.appendChild(doc.createTextNode("Please "));
+			var b  = divalert.appendChild(doc.createElement("b"));
+			b.appendChild(doc.createTextNode("disable FoxTrick"));
+			divalert.appendChild(doc.createTextNode("and any other Hattrick extensions" + 
 				" (Browser menu -> Tools -> Add-ons) before reporting a bug. "+
-				" Repeated ignorance = Stage kick. Clicking on the" +
-				" <a href='#ft_versionInfo'>FoxTrick version info</a>" +
-				" (down right with the stage build) highlights most of FoxTrick's features."; 
+				" Repeated ignorance = Stage kick. Clicking on the "));
+			var a  = divalert.appendChild(doc.createElement("a"));
+			a.appendChild(doc.createTextNode("FoxTrick version info"));
+			a.href = "#ft_versionInfo";
+			divalert.appendChild(doc.createTextNode(" (down right with the stage build) highlights most of FoxTrick's features."))
 			textarea.parentNode.insertBefore(divalert, textarea.nextSibling);
 
 			// checkbox
