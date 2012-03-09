@@ -87,7 +87,7 @@ Foxtrick.modules["ForumPreview"]={
 				text = text.replace(/< /g, "&lt; ");
 
 				// strip links. replace <· with &lt;
-				text = text.replace(/<Â·/g,'&lt;'); // who know why that Â is needed there
+				text = text.replace(/<Â·/g,'&lt;'); // who know why that Â is needed there. i think that happens at times with uft8 vs ansi
 				text = text.replace(/<·/g,'&lt;'); // i don't, so just lets do both
 				text = Foxtrick.stripHTML( text);
 
@@ -114,7 +114,7 @@ Foxtrick.modules["ForumPreview"]={
 				// reformat with pre
 				text = formatter.reformat(text);
 
-				prev_div.innerHTML = text;
+				prev_div.innerHTML = Foxtrick.util.sanitizeHTML(text);
 			}
 			catch(e) {
 				Foxtrick.log(e);
