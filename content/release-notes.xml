@@ -16,6 +16,7 @@
 <note version="0.9.1">
 <item>● <module>TeamPopupLinks</module>: Format for custom links changed</item>
 <item>● <module>MatchSimulator</module>: Copy ratings fixed</item>
+<item>● Some internal changes to improve AMO compliance</item>
 </note>
 
 <note version="0.9.0.4">
