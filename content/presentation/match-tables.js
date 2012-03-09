@@ -16,15 +16,17 @@ Foxtrick.modules["MatchTables"]={
 			var span = doc.getElementById("ctl00_ctl00_CPContent_CPMain_repLeagueTable");
 			if (!span)
 				return;
-			table = table.getElementsByTagName("table")[0];
+			var table = span.getElementsByTagName("table")[0];
 			// need to replace cell by cell otherwise we could overwrite
 			// information provided by other modules, namely
 			// ShowFriendlyBooked
-			var cells = table.getElementsByTagName("td");
-			Foxtrick.map(function(n) {
-				if (n.innerHTML.search(/&nbsp;/) > -1)
-					n.innerHTML = n.innerHTML.replace(/&nbsp;/g, "");
-			}, cells);
+			var node = table.firstChild;
+			while (node) {
+				if (node.NodeTypes == Foxtrick.NodeTypes.TEXT_NODE) {				
+					n.textContent = n.textContent.replace(/\u00a0/g, "");
+				}
+				node = node.nextSibling;
+			};
 		}
 	},
 
