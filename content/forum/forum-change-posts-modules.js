@@ -19,15 +19,14 @@ Foxtrick.modules["FormatPostingText"]={
 			|| Foxtrick.isPage("guestbook", doc)
 			|| Foxtrick.isPage("forumWritePost", doc)) {
 			try{
-				var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
-				var rep = new Array("<pre class='ft-dummy'>$1</pre>", "");
 				if (Foxtrick.isPage("forumWritePost", doc))
 					var messages = doc.getElementsByClassName("message");
 				else
 					var messages = doc.getElementsByClassName("feedItem");
 				for (var i = 0; i < messages.length; i++){
 					var count_pre = Foxtrick.substr_count(messages[i].innerHTML, '[pre');
-					// Foxtrick.dump('FORMAT TEXT ' + count_pre + '\n');
+					var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
+					var rep = new Array("<pre class='ft-dummy'>$1</pre>", "");
 					for (var j = 0; j <= count_pre; j++) {
 						for ( var k = 0; k < org.length; k++) {
 							messages[i].innerHTML = messages[i].innerHTML.replace(org[k],rep[k]);

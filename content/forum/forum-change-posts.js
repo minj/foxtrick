@@ -484,8 +484,14 @@ Foxtrick.modules["ForumChangePosts"]={
 			}  // end copy posting
 
 			if (do_hide_old_time) {
-				if (header_right.textContent.search(/ \d{1,4}.*?\d{1,2}.*?\d{1,4}.*? \d+:\d+/gi)!=-1)
-					header_right.innerHTML = header_right.innerHTML.replace(/ (\d{1,4}.*?\d{1,2}.*?\d{1,4}.*?)( \d+:\d+)/gi,"<span title='$2'>$1</span>");
+				var node = header_right.firstChild;
+				while ( node ) {
+					if (node.textContent.search(/ \d{1,4}.*?\d{1,2}.*?\d{1,4}.*? \d+:\d+/gi)!=-1) {
+						node.textContent = node.textContent.replace(/ (\d{1,4}.*?\d{1,2}.*?\d{1,4}.*?)( \d+:\d+)/gi,"<span title='$2'>$1</span>");
+						break;
+					}
+					node = node.nextSibling;
+				}
 			}
 
 			// redir to team ------------------------------------------
