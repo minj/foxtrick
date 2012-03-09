@@ -28,7 +28,22 @@ Foxtrick.util.api = {
 			&& Foxtrick.util.api.getAccessTokenSecret();
 	},
 
+	authorizationQueued : false,
 	authorize : function(doc) {
+		if (Foxtrick.util.api.authorizationQueued)
+			return;			
+		else {
+			Foxtrick.util.api.authorizationQueued = true;
+			window.setTimeout(function(){
+				Foxtrick.util.api.authorizationQueued = false;
+				Foxtrick.util.api._authorize(doc);
+			},0);
+		}
+	},
+	
+	_authorize : function(doc) {
+		Foxtrick.stopListenToChange(doc);
+
 		var div = doc.createElement("div");
 		var accessor = {
 			consumerSecret : Foxtrick.util.api.consumerSecret,
@@ -53,12 +68,14 @@ Foxtrick.util.api = {
 		link.className = "ft-link";
 		link.textContent = Foxtrickl10n.getString("oauth.authorize");
 		Foxtrick.listen(link, "click", function(ev) {
+			Foxtrick.stopListenToChange(doc);
 			showNotice();
 			var linkPar = doc.createElement("p");
 			div.appendChild(linkPar);
 			linkPar.appendChild(Foxtrick.util.note.createLoading(doc, true));
 			Foxtrick.log("Requesting token at: ", Foxtrick.util.api.stripToken(requestTokenUrl) );
 			Foxtrick.load(requestTokenUrl, function(text, status) {
+				Foxtrick.stopListenToChange(doc);
 				linkPar.textContent = ""; // clear linkPar first
 				if (status != 200) {
 					// failed to fetch link
@@ -118,7 +135,9 @@ Foxtrick.util.api = {
 					}); // save token and secret
 				}, false); // after hitting "authorize" button
 				inputPar.appendChild(button);
+				Foxtrick.startListenToChange(doc);
 			}); // get authorize URL with Foxtrick.load()
+			Foxtrick.startListenToChange(doc);
 		}, false); // initial authorize link event listener
 		div.appendChild(link);
 		var showNotice = function() {
@@ -144,6 +163,7 @@ Foxtrick.util.api = {
 		}
 		Foxtrick.util.note.add(doc, null, "ft-api-proxy-auth", div, null,
 			false, false, false);
+		Foxtrick.startListenToChange(doc);
 	},
 
 
