@@ -770,8 +770,8 @@ var eventText = {
 								//event text
 								var content = doc.createElement("div");
 								item.appendChild(content);
-								content.className = "ft-match-report-event-content";
-								content.innerHTML = evtMarkup;
+								content.className = "ft-match-report-event-content";								
+								content.innerHTML = Foxtrick.util.sanitizeHTML(evtMarkup); // loaded markup from trusted source: https://chpp.hattrick.org
 								
 								var clear = doc.createElement("div");
 								item.appendChild(clear);
