@@ -137,32 +137,32 @@ Foxtrick.modules["ForumYouthIcons"]={
 
 			var div = doc.createElement('div');
 			div.setAttribute('class','HTMLToolbar');
-			// need to use the webpage's injected script functions
-			div.innerHTML = 
-				"<img onclick=\"insertQuote(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
-					src=\"/Img/Icons/transparent.gif\" class=\"f_quote2\" title=\"[q]\">\
-				<img onclick=\"insertBold(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
-					src=\"/Img/Icons/transparent.gif\" class=\"f_bold\" title=\"[b]\">\
-				<img onclick=\"insertItalic(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
-					src=\"/Img/Icons/transparent.gif\" class=\"f_italic\" title=\"[i]\">\
-				<img onclick=\"insertUnderline(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
-					src=\"/Img/Icons/transparent.gif\" class=\"f_ul\" title=\"[u]\">\
-				<img onclick=\"insertRuler(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
-					src=\"/Img/Icons/transparent.gif\" class=\"f_hr\" title=\"[hr]\">\
-				<img onclick=\"insertPlayerID(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\"  \
-					src=\"/Img/Icons/transparent.gif\" class=\"f_player\" title=\"[playerID=xxx]\">\
-				<img onclick=\"insertTeamID(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
-					src=\"/Img/Icons/transparent.gif\" class=\"f_team\" title=\"[teamID=xxx]\">\
-				<img onclick=\"insertMatchID(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
-					src=\"/Img/Icons/transparent.gif\" class=\"f_match\" title=\"[matchID=xxx]\">\
-				<img onclick=\"insertFederationID(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
-					src=\"/Img/Icons/transparent.gif\" class=\"f_fed\" title=\"[fedID=xxx]\">\
-				<img onclick=\"insertMessage(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
-					src=\"/Img/Icons/transparent.gif\" class=\"f_message\" title=\"[post=xxx.yy]\">\
-				<img onclick=\"insertLeagueID(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
-					src=\"/Img/Icons/transparent.gif\" class=\"f_series\" title=\"[leagueID=xxx]\">\
-				<img onclick=\"insertLink(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ");\" \
-					src=\"/Img/Icons/transparent.gif\" class=\"f_www\" title=\"[link=xxx]\">";
+			var forumButtons = [
+				{onclick:"insertQuote", className:"f_quote2", title:"[q]"},
+				{onclick:"insertBold", className:"f_bold", title:"[b]"},
+				{onclick:"insertItalic", className:"f_italic", title:"[i]"},
+				{onclick:"insertUnderline", className:"f_ul", title:"[u]"},
+				{onclick:"insertRuler", className:"f_hr", title:"[hr]"},
+				{onclick:"insertPlayerID", className: "f_player", title:"[playerID=xxx]"},
+				{onclick:"insertTeamID", className:"f_team", title:"[teamID=xxx]"},
+				{onclick:"insertMatchID", className:"f_match", title:"[matchID=xxx]"},
+				{onclick:"insertFederationID", className:"f_fed", title:"[fedID=xxx]"},
+				{onclick:"insertMessage", className:"f_message", title:"[post=xxx.yy]"},
+				{onclick:"insertLeagueID", className:"f_series", title:"[leagueID=xxx]"},
+				{onclick:"insertLink", className:"f_www", title:"[link=xxx]"}				
+			];
+			var makeButton = function(json) {
+				var img = doc.createElement('img');
+				// need to use the webpage's injected script functions
+				img.setAttribute('onclick',json.onclick+"(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ")");
+				img.className = json.className;
+				img.setAttribute('title',json.title);
+				return img;
+			};
+			for (var i=0; i< forumButtons.length; ++i) {
+				div.appendChild(makeButton(forumButtons[i]));
+			}
+			
 			anchor.parentNode.insertBefore( div, anchor );
 		}
 
