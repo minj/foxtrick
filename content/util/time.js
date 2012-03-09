@@ -232,7 +232,7 @@ Foxtrick.util.time = {
 		if(time_sec >= 86400) {
 			Days = Math.floor(time_sec/86400);
 			time_sec = time_sec-Days*86400;
-			datespan.textContent += Days + ' ' + Foxtrickl10n.getString("foxtrick.datetimestrings.days", Days);
+			datespan.textContent += Days + '' + Foxtrickl10n.getString("foxtrick.datetimestrings.days", Days);
 		}
 		// only days returned
 		if (useShort) {
