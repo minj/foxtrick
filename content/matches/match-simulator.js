@@ -12,6 +12,9 @@ Foxtrick.modules["MatchSimulator"]={
 	CSS : Foxtrick.InternalPath + "resources/css/match-simulator.css",
 
 	run : function(doc) {
+		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+		var isHTOIntegrated = Foxtrick.Pages.Match.isHTOIntegrated(doc);
+
 		var displayOption = FoxtrickPrefs.getInt("module.MatchSimulator.value");
 		var fieldOverlay = doc.getElementById('fieldOverlay');
 		if (displayOption == 1)
@@ -152,7 +155,7 @@ Foxtrick.modules["MatchSimulator"]={
 				var text = '';
 				
 				// the teams. highlight own team
-				var h2 = ddoc.getElementsByClassName("main")[0].getElementsByTagName('h2')[0];
+				var h2 = doc.getElementsByClassName("main")[0].getElementsByTagName('h2')[0];
 				var thisTeam = h2.getElementsByTagName('a')[0].textContent;
 				var bothTeams = h2.getElementsByTagName('a')[1].textContent.replace(thisTeam, '[b]' + thisTeam + '[/b]');
 				text += bothTeams;
@@ -583,15 +586,21 @@ Foxtrick.modules["MatchSimulator"]={
 						option.textContent = Foxtrickl10n.getString ('matchOrder.AddMatchManually');
 						select.appendChild(option);
 
+						Foxtrick.log(otherMatchesXml)
 						var otherMatchesNodes = otherMatchesXml.getElementsByTagName('Match');
 						if (otherMatchesNodes) {
 							for (var i=0; i<otherMatchesNodes.length; ++i) {
 								
 								// not friendlies for now to keep it clean
 								var MatchType = Number(otherMatchesNodes[i].getElementsByTagName('MatchType')[0].textContent);
-								if (MatchType == 4 || MatchType == 5 || MatchType == 8 || MatchType == 9)
-									continue;
-									
+								if (!isHTOIntegrated) {
+									if (MatchType == 4 || MatchType == 5 || MatchType == 8 || MatchType == 9)
+										continue;
+									}
+								else {
+									//Foxtrick.log(otherMatchesXml)
+								}
+								
 								var option = doc.createElement('option');
 								option.value = otherMatchesNodes[i].getElementsByTagName('MatchID')[0].textContent;
 								var MatchDate = Foxtrick.util.time.buildDate( Foxtrick.util.time.getDateFromText(otherMatchesNodes[i].getElementsByTagName('MatchDate')[0].textContent, 'yyyy-mm-dd') );
