@@ -23,13 +23,16 @@ Foxtrick.modules["ForumStripHattrickLinks"]={
 			}
 			else if (a.href.search(/^chrome|^safari-extension|^foxtrick/)==0) {
 				var url = a.href;  																		// opera doesn't allow pref access
+				Foxtrick.log(url)
 				url = url.replace('safari-extension://www.ht-foxtrick.com-8J4UNYVFR5/2f738eb7/content/', '');	// safari nightly
-				url = url.replace('chrome-extension://fbccladbdiidmihcljklpcckbpkjfgnm/content/',''); 	// dev chrome
+				url = url.replace('chrome-extension://hpmklgcdpljkcojiknpdnjigpidkdcan/content/',''); 	// dev chrome
 				url = url.replace('chrome-extension://bpfbbngccefbbndginomofgpagkjckik/content/',''); 	// official chrome
 				url = url.replace('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/content/',''); 	// nightly chrome
 				url = url.replace('chrome://foxtrick/content/', '');									// all gecko
 				url = url.replace('foxtrick://', '');													// our fake type
+				Foxtrick.log(url)				
 				a.href = a.href.replace('foxtrick://', Foxtrick.InternalPath);
+				Foxtrick.log(url)
 				
 				// ff doesn't wanna open the changed href
 				if (Foxtrick.arch == 'Gecko' )
@@ -52,11 +55,11 @@ Foxtrick.modules["ForumStripHattrickLinks"]={
 		if (target) {
 			var strip = function(str) {
 				var url = str.replace(/\[link=.+(www|www\d+|stage)\.hattrick\.(org|ws|interia\.pl)(.*?)\]/gi, "[link=$3]")
-					.replace('[link=safari-extension://www.ht-foxtrick.com-8J4UNYVFR5/2f738eb7/content/', '[link=foxtrick://')	// safari nightly
-					.replace('[link=chrome-extension://fbccladbdiidmihcljklpcckbpkjfgnm/content/','[link=foxtrick://') 			// dev chrome
-					.replace('[link=chrome-extension://bpfbbngccefbbndginomofgpagkjckik/content/','[link=foxtrick://') 			// official chrome
-					.replace('[link=chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/content/','[link=foxtrick://')	 		// nightly chrome
-					.replace('[link=chrome://foxtrick/content/','[link=foxtrick://'); 											// all gecko
+					.replace(/\[link=safari-extension:\/\/www.ht-foxtrick.com-8J4UNYVFR5\/2f738eb7\/content\//g, '[link=foxtrick://')	// safari nightly
+					.replace(/\[link=chrome-extension:\/\/hpmklgcdpljkcojiknpdnjigpidkdcan\/content\//g,'[link=foxtrick://') 			// dev chrome
+					.replace(/\[link=chrome-extension:\/\/bpfbbngccefbbndginomofgpagkjckik\/content\//g,'[link=foxtrick://') 			// official chrome
+					.replace(/\[link=chrome-extension:\/\/kfdfmelkohmkpmpgcbbhpbhgjlkhnepg\/content\//g,'[link=foxtrick://')	 		// nightly chrome
+					.replace(/\[link=chrome:\/\/foxtrick\/content\//g,'[link=foxtrick://'); 											// all gecko
 				return url;
 			};
 			// add submit listener
