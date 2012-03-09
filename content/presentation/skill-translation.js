@@ -198,7 +198,7 @@ Foxtrick.modules["SkillTranslation"]={
 		table.rows[index].cells[0].appendChild(span)
 		
 		var org_skills = table.rows[index].cells[1].innerHTML.split('<br>');
-		table.rows[index].cells[1].innerHTML = '';
+		table.rows[index].cells[1].textContent = '';
 		for (var i=1; i<denominations.length; ++i) {
 			var strong = org_skills[i-1].match(/<strong>(.+)<\/strong>/);
 			if (!strong)

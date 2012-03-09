@@ -112,7 +112,7 @@ Foxtrick.modules["CopyPlayerAd"]={
 					var cellCopy = table.rows[i].cells[1].cloneNode(true);
 					var popupLinks = cellCopy.getElementsByTagName("a");
 					for (var j = 1; j < popupLinks.length; j++) {
-						popupLinks[j].innerHTML = "";
+						popupLinks[j].textContent = "";
 					}
 					// bolding for speciality
 					ad += (i==5?"[b]":"") + Foxtrick.trim(cellCopy.textContent.replace(/\n/g,"").replace(/\s+/g, " "))
@@ -280,7 +280,7 @@ Foxtrick.modules["CopyPlayerAd"]={
 					var cellCopy = paragraphs[i].cloneNode(true);
 					var popupLinks = cellCopy.getElementsByTagName("a");
 					for (var j = 1; j < popupLinks.length; j++) {
-						popupLinks[j].innerHTML = "";
+						popupLinks[j].textContent = "";
 					}
 					ad += Foxtrick.trim(cellCopy.textContent);
 					ad += "\n";
