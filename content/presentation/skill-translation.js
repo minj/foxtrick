@@ -172,7 +172,7 @@ Foxtrick.modules["SkillTranslation"]={
 		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
 
 		// is english test
-		if (table.rows[1].cells[0].getElementsByTagName('b')[0].innerHTML==this.player_abilities[0]) return;
+		if (table.rows[1].cells[0].getElementsByTagName('b')[0].textContent == this.player_abilities[0]) return;
 
 			this.translate_category(doc, table, 1, this.player_abilities, false);
 			this.translate_category(doc, table, 2, this.coach_skills, false);

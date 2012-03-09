@@ -67,7 +67,13 @@ Foxtrick.modules["SkillTable"]={
 		var showTable = function(playerList) {
 			try { 
 				// clear old table and loading note
-				doc.getElementsByClassName("ft_skilltable_wrapper")[0].innerHTML='';
+				var old_table = doc.getElementById('ft_skilltable');
+				if (old_table)
+					old_table.parentNode.removeChild(old_table);
+				var old_notes = doc.getElementsByClassName('ft_skilltable_wrapper')[0].getElementsByClassName('ft-note')[0];
+				if (old_notes)
+					old_notes.parentNode.removeChild(old_notes);
+				
 				var fullType = getFullType(doc);
 				var allPlayerInfo, pid;
 				var i, j;
