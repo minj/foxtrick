@@ -180,7 +180,7 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 	}
 
 	if (nodeName === "a") {
-		if (node.href !== undefined) {
+		if (node.href && node.href !== undefined) {
 			var linkMarkup = Foxtrick.util.htMl.getLink(node);
 			var linkId = Foxtrick.util.htMl.getId(node);
 			if (linkMarkup !== null) {
@@ -200,6 +200,7 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 			}
 			return ret;
 		}
+		return ' ';
 	}
 	else if (nodeName === "table" || nodeName === "tr") {
 		ret = "[" + nodeName + "]" + ret + "[/" + nodeName + "]\n";
@@ -246,7 +247,6 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 		//ret = '\n' + ret + '\n'; // not working well with quotes in forum
 		ret = ret;		// not working well somewhere else. we'll use that till we find out what the problem was
 	}
-
 	return ret.replace(/ +/g,' ').replace(/\n /g,'\n');
 };
 
@@ -262,6 +262,11 @@ Foxtrick.util.htMl.getHtMl = function(node) {
 				markup += "\n";
 			}
 		}
+		markup = Foxtrick.trim(markup);
+		return { copyTitle : Foxtrickl10n.getString("copy.ht-ml"), markup : markup };
+	}
+	else {
+		var markup = Foxtrick.util.htMl.getMarkupFromNode(node);
 		markup = Foxtrick.trim(markup);
 		return { copyTitle : Foxtrickl10n.getString("copy.ht-ml"), markup : markup };
 	}
