@@ -14,6 +14,11 @@
 </note>
 
 <note version="0.9.0.4">
+<item><xhtml:b>0.9.0.4 업데이트</xhtml:b></item>
+<item>● Links 리소스를 다른 서버로 이전</item>
+<item>● MatchReportFormat에 있는 아이콘 제목으로 기본적인 영어 이벤트 문장 추가</item>
+<item>● 토너먼트 경기에 대해서 MatchReportFormat 과 MatchPlayerColoring 활성화</item>
+<item></item>
 <item><xhtml:b>0.9.0.3 업데이트</xhtml:b></item>
 <item>● Stage만: HT 페이지 양식이 바뀐 후 다수의 모듈 수정</item>
 <item></item>
