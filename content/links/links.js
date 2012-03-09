@@ -7,7 +7,11 @@
 
 (function() {
 	// callback is called after links-collection is stored in session store
+	var callbackStack = [];
 	var storeCollection = function(callback) {
+		callbackStack.push(callback);
+		if (callbackStack.length != 1)
+			return;
 		var collection = {};
 		// load links from external feeds
 		var feeds = FoxtrickPrefs.getString("module.Links.feeds") || "";
@@ -48,8 +52,13 @@
 					}
 				}
 				Foxtrick.sessionSet("links-collection", collection);
-				if (typeof callback == "function")
-					callback(collection);
+				if (callbackStack.length) {
+					for (var i=0; i<callbackStack.length; ++i) {
+						if (typeof callbackStack[i] == "function")
+							callbackStack[i](collection);
+					}
+					callbackStack = [];
+				}
 			};
 			
 			Foxtrick.get(feed)("success", function(text) {
