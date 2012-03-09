@@ -9,7 +9,7 @@ Foxtrick.modules.ForumThreadAutoIgnore = {
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forum'),
 	OPTIONS : ["Tags","Whitelist_ThreadIDs"],
-	OPTION_TEXTS : true,
+	OPTION_EDITS : true,
 
 	run : function(doc) {
 		var tagmarkers = [['\\[','\\]'],['{','}'],['\\[','}'],['{','\\]']]; // any more known?

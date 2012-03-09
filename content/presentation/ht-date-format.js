@@ -10,8 +10,8 @@ Foxtrick.modules["HTDateFormat"]={
 	PAGES : ["all"],
 	NICE : 20, // after anthing that adds dates
 	OPTIONS : ["LocalSeason", "FirstDayOfWeekOffset"],
-	OPTION_TEXTS : true,
-	OPTION_TEXTS_DISABLED_LIST : [true, false],
+	OPTION_EDITS : true,
+	OPTION_EDITS_DISABLED_LIST : [true, false],
 
 	run : function(doc) {
 		var pages = ["transfersTeam", "transfersPlayer", "transfer",

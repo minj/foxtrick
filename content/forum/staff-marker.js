@@ -9,8 +9,8 @@ Foxtrick.modules["StaffMarker"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ["forumViewThread", "forumWritePost", "teamPage"],
 	OPTIONS : ["own", "manager","HT-Youthclub"],
-	OPTION_TEXTS : true,
-	OPTION_TEXTS_DISABLED_LIST : [false, true, true],
+	OPTION_EDITS : true,
+	OPTION_EDITS_DISABLED_LIST : [false, true, true],
 
 	CSS : Foxtrick.InternalPath + "resources/css/staff-marker.css",
 

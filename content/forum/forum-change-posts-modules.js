@@ -9,7 +9,7 @@ Foxtrick.modules["FormatPostingText"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','newsletter','mailnewsletter',"forumModWritePost"),
 	OPTIONS : ['NestedQuotesAsSpoilers'],
-	OPTION_TEXTS : true,
+	OPTION_EDITS : true,
 
 	run : function(doc) {
 		var format = this.format;

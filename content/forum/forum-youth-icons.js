@@ -13,18 +13,18 @@ Foxtrick.modules["ForumYouthIcons"]={
 	OPTIONS : ["q", "user_id", "kit_id", "article_id", "line_br", "clock",
 		"spoiler", "pre", "table", "symbols", "youth_player", "youth_team",
 		"youth_match", "youth_series", "debug", "settings", "enlarge_input", "tournament","tournament_match"],
-	OPTION_TEXTS : true,
-	OPTION_TEXTS_DISABLED_LIST : null,
+	OPTION_EDITS : true,
+	OPTION_EDITS_DISABLED_LIST : null,
 
 	CSS: Foxtrick.InternalPath + "resources/css/forum-youth-icons.css",
 
 	OPTION_FUNC : function() {
-		this.OPTION_TEXTS_DISABLED_LIST = new Array(this.OPTIONS.length);
+		this.OPTION_EDITS_DISABLED_LIST = new Array(this.OPTIONS.length);
 		for (var i=0; i<this.OPTIONS.length; ++i) {
 			if (this.OPTIONS[i] !== 'symbols') 
-				this.OPTION_TEXTS_DISABLED_LIST[i] = true;
+				this.OPTION_EDITS_DISABLED_LIST[i] = true;
 			else
-				this.OPTION_TEXTS_DISABLED_LIST[i] = false;
+				this.OPTION_EDITS_DISABLED_LIST[i] = false;
 		}
 	},
 	

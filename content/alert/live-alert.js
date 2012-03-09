@@ -9,8 +9,8 @@ Foxtrick.modules["LiveAlert"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
 	PAGES : [ "matchesLive" ],
 	OPTIONS : ["Sound"],
-	OPTION_TEXTS : true,
-	OPTION_TEXTS_DATAURL_LOAD_BUTTONS : new Array(true),
+	OPTION_EDITS : true,
+	OPTION_EDITS_DATAURL_LOAD_BUTTONS : new Array(true),
 
 	store : {},
 
