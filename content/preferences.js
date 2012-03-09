@@ -509,8 +509,8 @@ function getModule(module)
 			appendOptionToList(key, checkboxes);
 			
 					
-			if (module.OPTION_TEXTS &&
-				(!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])) {
+			if (module.OPTION_EDITS &&
+				(!module.OPTION_EDITS_DISABLED_LIST || !module.OPTION_EDITS_DISABLED_LIST[i])) {
 				var textDiv = document.createElement("div");
 				textDiv.id = checkbox.id + "-text-div";
 				textDiv.setAttribute("depends-on", checkbox.id);
@@ -522,18 +522,31 @@ function getModule(module)
 				textInput.setAttribute("option", module.OPTIONS[i] + "_text");
 				textDiv.appendChild(textInput);
 
-				if (module.OPTION_TEXTS_TEXTFILE_LOAD_BUTTONS && module.OPTION_TEXTS_TEXTFILE_LOAD_BUTTONS[i]) {
+				if (module.OPTION_EDITS_TEXTFILE_LOAD_BUTTONS && module.OPTION_EDITS_TEXTFILE_LOAD_BUTTONS[i]) {
 					var load = Foxtrick.filePickerForText(document, (function(textInput) {
 						return function(text) { textInput.value = text; };
 					})(textInput));
 					textDiv.appendChild(load);
 				}
-				if (module.OPTION_TEXTS_DATAURL_LOAD_BUTTONS && module.OPTION_TEXTS_DATAURL_LOAD_BUTTONS[i]) {
+				if (module.OPTION_EDITS_DATAURL_LOAD_BUTTONS && module.OPTION_EDITS_DATAURL_LOAD_BUTTONS[i]) {
 					var load = Foxtrick.filePickerForDataUrl(document, (function(textInput) {
 						return function(url) { textInput.value = url; };
 					})(textInput));
 					textDiv.appendChild(load);
 				}
+			}
+			if (module.OPTION_TEXTS &&
+				(!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])) {
+				var textDiv = document.createElement("div");
+				textDiv.id = checkbox.id + "-text-div";
+				textDiv.setAttribute("depends-on", checkbox.id);
+				item.appendChild(textDiv);
+
+				var textInput = document.createElement("textarea");
+				textInput.id = checkbox.id + "-text";
+				textInput.setAttribute("module", module.MODULE_NAME);
+				textInput.setAttribute("option", module.OPTIONS[i] + "_text");
+				textDiv.appendChild(textInput);
 			}
 		}
 	}

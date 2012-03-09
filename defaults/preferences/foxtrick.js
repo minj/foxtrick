@@ -645,7 +645,7 @@ pref("extensions.foxtrick.prefs.module.TeamPopupLinks.Coach.default", false);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.Coach.more", true);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.Coach.newTab", false);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.CustomLink.enabled", false);
-pref("extensions.foxtrick.prefs.module.TeamPopupLinks.CustomLink_text", "<a href='http://www.example.org/team/[teamid]'>example link</a>");
+pref("extensions.foxtrick.prefs.module.TeamPopupLinks.CustomLink_text", "{\"link\":\"http://example.com/[teamid]\", \"title\":\"example title\", \"more\": false, \"newTab\":true}");
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.enabled", true);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.Guestbook.default", true);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.Guestbook.more", false);

@@ -271,33 +271,43 @@ Foxtrick.modules["TeamPopupLinks"]={
 
 						if (FoxtrickPrefs.isModuleOptionEnabled("TeamPopupLinks", "CustomLink")) {
 							var ownlinks = FoxtrickPrefs.getString("module.TeamPopupLinks.CustomLink_text");
-							ownlinks = ownlinks.split(/<\/a>\s+/);
-							var i=0,ownlink;
-							while (ownlink=ownlinks[i++]) {
-								ownlink+='</a>';
-								var item = doc.createElement("li");
-								var redir_to_custom = false;
-								var a6inner = ownlink;
-								if (a6inner.search(/\[teamid\]/) != -1) {
-									if (teamid) a6inner = a6inner.replace(/\[teamid\]/i, teamid);
-									else redir_to_custom = true;
-								}
-								if (a6inner.search(/\[userid\]/) != -1) {
-									if (userid) a6inner = a6inner.replace(/\[userid\]/i, userid);
-									else redir_to_custom = true;
-								}
+							ownlinks = ownlinks.split(/\n/);
+							var i=0, ownlink;
+							while (ownlink = ownlinks[i++]) {
+								try {
+									var redir_to_custom = false;
+									var json = JSON.parse( ownlink );
+									
+									if (show_more != json.more)
+										continue;
+									
+									var item = doc.createElement("li");
+									var a6 = doc.createElement("a");
+									a6.href = Foxtrick.util.sanitizeUrl(json.link);
+									a6.title = json.title;								
+									a6.textContent = json.title;
+									
+									if (a6.href.search(/\[teamid\]/) != -1) {
+										if (teamid) a6.href = a6.href.replace(/\[teamid\]/i, teamid);
+										else redir_to_custom = true;
+									}
+									if (a6.href.search(/\[userid\]/) != -1) {
+										if (userid) a6.href = a6.href.replace(/\[userid\]/i, userid);
+										else redir_to_custom = true;
+									}
 
-								if (redir_to_custom) {
-									item.innerHTML = a6inner;
-									var a6 = item.getElementsByTagName('a')[0];
-									if (teamid==null) a6.href = '/Club/Manager/?userId='+userid+'&redir_to_custom=true'+'&'+a6.href;
-									else a6.href = '/Club/Manager/?teamId='+teamid+'&redir_to_custom=true'+'&'+a6.href;
+									if (redir_to_custom) {
+										if (teamid==null) a6.href = '/Club/Manager/?userId='+userid+'&redir_to_custom=true'+'&'+a6.href;
+										else a6.href = '/Club/Manager/?teamId='+teamid+'&redir_to_custom=true'+'&'+a6.href;
+									}
+									if (json.newTab)
+										a6.target = "_blank";
+									
+									item.appendChild(a6);
+									list.appendChild(item);
+								} catch(e){
+									Foxtrick.log('custom teampopup error: ',e);
 								}
-								else {
-									item.innerHTML = a6inner;
-									var a6 = item.getElementsByTagName('a')[0];
-								}
-								list.appendChild(item);
 							}
 						}
 
