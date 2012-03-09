@@ -14,6 +14,11 @@
 </note>
 
 <note version="0.9.0.4">
+<item><xhtml:b>Промене у верзији Фокстрик 0.9.0.4</xhtml:b></item>
+<item>● Колекција линкова <module>Links</module> пребачена на други сервер</item>
+<item>● Додати текстуални описи за догађаје на мечу на енглеском језику у модулу <module>MatchReportFormat</module></item>
+<item>● Активирани модули <module>MatchReportFormat</module> и <module>MatchPlayerColoring</module> за мечеве са турнира</item>
+<item></item>
 <item><xhtml:b>Промене у верзији Фокстрик 0.9.0.3</xhtml:b></item>
 <item>● Исправке за неколико модула после промена изгледа страница</item>
 <item></item>
