@@ -53,8 +53,7 @@ Foxtrick.modules["TableSort"]={
 
 				// get text to sort by. first try textContent, then title
 				var getText = function(el) {
-					var innerHTML = el.innerHTML.replace(/(<desc([^<]+)<\/desc>)/ig,""); // that's for stadium usage i think
-					var text = Foxtrick.trim(Foxtrick.stripHTML(innerHTML));
+					var text = el.textContent;
 					if (text=='') {
 						// use first title instead
 						var getTitle = function (i_el) {

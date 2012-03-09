@@ -282,11 +282,11 @@ Foxtrick.modules["ForumChangePosts"]={
 				var HideLevel = FoxtrickPrefs.getString("module.FormatPostingText.NestedQuotesAsSpoilers_text");
 				var numSpoilerQuotes = 0;
 				
-				var org = new Array(/\[pre\](.*?)\[\/pre\]/gi , /·/gi);
-				var rep = new Array("<pre class='ft-dummy'>$1</pre>", "");
 				var messages = doc.getElementsByClassName("message");
 				for (var i = 0; i < messages.length; ++i){
 					var count_pre = Foxtrick.substr_count(messages[i].innerHTML, '[pre');
+					var org = [/\[pre\](.*?)\[\/pre\]/gi , /·/gi];
+					var rep = ["<pre class='ft-dummy'>$1</pre>", ""];
 					for (var j = 0; j <= count_pre; ++j) {
 						for ( var k = 0; k < org.length; ++k) {
 							messages[i].innerHTML = messages[i].innerHTML.replace(org[k],rep[k]);

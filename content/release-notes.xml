@@ -16,6 +16,8 @@
 <note version="0.9.1">
 <item>● <module>TeamPopupLinks</module>: Format for custom links changed</item>
 <item>● <module>MatchSimulator</module>: Copy ratings fixed</item>
+<item>● module MatchTables removed since no one used it</item>
+<item>● preference linking "foxtrick://"-style fixed</item>
 <item>● Some internal changes to improve AMO compliance</item>
 </note>
 

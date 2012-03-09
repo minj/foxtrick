@@ -84,7 +84,7 @@ Foxtrick.modules["AddLeaveConfButton"]={
 		if( a != null ) {
 			link = a[a.length-1];
 		}
-		if (link == null || link.lastChild == null || link.lastChild.data == null || link.innerHTML == null) return;
+		if (link == null || link.lastChild == null || link.lastChild.data == null) return;
 
 		var confName = Foxtrick.trim( link.lastChild.data );
 		
