@@ -5,7 +5,7 @@
  * @author ryanli
  */
 
-Foxtrick.modules["AddClass"]={
+Foxtrick.modules.AddClass={
 	CORE_MODULE : true,
 	PAGES : ["playerdetail", "search", "bookmarks", "match", "transferCompare"],
 	NICE : -20, // place before all date-related modules
@@ -14,9 +14,9 @@ Foxtrick.modules["AddClass"]={
 		if (Foxtrick.isPage("playerdetail", doc))
 			this.addDateForTl(doc);
 		else if (Foxtrick.isPage("search", doc))
-			this.addDateForTable(doc.getElementById("ctl00_ctl00_CPContent_CPMain_grdYouthSeries_ctl00"));
+			this.addDateForTable(doc, doc.getElementById("ctl00_ctl00_CPContent_CPMain_grdYouthSeries_ctl00"));
 		else if (Foxtrick.isPage("transferCompare", doc))
-			this.addDateForTable(doc.getElementsByTagName("table")[0]);
+			this.addDateForTable(doc, doc.getElementsByTagName("table")[0]);
 		else if (Foxtrick.isPage("bookmarks", doc))
 			this.addDateForBookmarks(doc);
 		else if (Foxtrick.isPage("match", doc))
@@ -27,20 +27,37 @@ Foxtrick.modules["AddClass"]={
 		this.run(doc);
 	},
 
+	replaceInNode : function(doc, parent, timeRe) {
+		var node = parent.firstChild;
+		while (node) { 
+			if (node.parentNode.getElementsByClassName("date").length == 0
+				&& node.nodeType == Foxtrick.NodeTypes.TEXT_NODE) {
+				
+				var texts = node.textContent.match(timeRe);
+				if (texts) {
+					node.textContent = texts[1];
+					var span = doc.createElement('span');
+					span.textContent = texts[2];
+					span.className = 'date';
+					node.parentNode.insertBefore(span, node.nextSibling);
+					node.parentNode.insertBefore(doc.createTextNode(texts[3]), span.nextSibling);
+					break;
+				}
+			}
+			node = node.nextSibling;
+		}
+	},
+	
 	// add date class for match
 	addDateForMatch : function(doc) {
 		var mainBody = doc.getElementById("mainBody");
 		if (!mainBody)
 			return;
 
-		var timeRe = /(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})/;
-
 		// start time
-		var cells = mainBody.getElementsByClassName("byline");
-		Foxtrick.map(function(cell) { 
-			if (cell.getElementsByClassName("date").length == 0)
-				cell.innerHTML = cell.innerHTML.replace(timeRe, "<span class=\"date\">$1</span>");
-		}, cells);
+		var timeRe = /(\D+?)(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})(\D+?)/;
+		var parent = mainBody.getElementsByClassName("byline")[0];
+		this.replaceInNode(doc, parent, timeRe);
 	},
 
 	// add date class for bookmark
@@ -49,32 +66,29 @@ Foxtrick.modules["AddClass"]={
 		if (!mainBody)
 			return;
 
-		var timeRe = /(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})/;
-
-		// start time
+		var timeRe = /(\D+?)(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})(\D+?)/;
 		var cells = mainBody.getElementsByTagName("td");
-		Foxtrick.map(function(cell) { //Foxtrick.log(cell.innerHTML, cell.search(timeRe));
-			if (cell.getElementsByClassName("date").length == 0)
-				cell.innerHTML = cell.innerHTML.replace(timeRe, "<span class=\"date\">$1</span>");
+		Foxtrick.map(function(cell) { 
+			this.replaceInNode(doc, cell,timeRe);
 		}, cells);
 	},
 
 	// add date class for youth league search
-	addDateForTable : function(table) {
+	addDateForTable : function(doc, table) {
 		if (!table)
 			return;
 
-		var timeReFull = /(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})/;
-		var timeReShort = /(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+)/;
+		var timeReFull = /(\D+?)(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})(\D+?)/;
+		var timeReShort = /(\D+?)(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+)(\D+?)/;
 
 		// start time
 		var cells = table.getElementsByTagName("td");
 		Foxtrick.map(function(cell) {
 			if (cell.getElementsByClassName("date").length == 0) {
-				if (cell.innerHTML.search(timeReFull) != -1)
-					cell.innerHTML = cell.innerHTML.replace(timeReFull, "<span class=\"date\">$1</span>");
+				if (cell.textContent.search(timeReFull) != -1)
+					Foxtrick.modules.AddClass.replaceInNode(doc, cell, timeReFull);
 				else
-					cell.innerHTML = cell.innerHTML.replace(timeReShort, "<span class=\"date\">$1</span>");
+					Foxtrick.modules.AddClass.replaceInNode(doc, cell, timeReShort);
 			}
 		}, cells);
 	},
@@ -85,13 +99,14 @@ Foxtrick.modules["AddClass"]={
 		if (!transferList)
 			return;
 
-		var timeRe = /(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})/;
+		var timeRe = /(\D+?)(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})(\D+?)/;
 
 		// deadline time
 		var dlPar = transferList.getElementsByTagName("p")[0];
 		if (!dlPar) return;
 		if (dlPar.getElementsByClassName("date").length == 0)
-			dlPar.innerHTML = dlPar.innerHTML.replace(timeRe, "<span class=\"date\">$1</span>");
+			this.replaceInNode(doc, dlPar, timeRe);
+		
 		// reload time
 		var firstLine = transferList.getElementsByClassName("float_left")[0];
 		if (firstLine.getElementsByClassName("date").length == 0) {
