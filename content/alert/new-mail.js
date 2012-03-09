@@ -53,8 +53,12 @@ Foxtrick.modules["NewMail"]={
 		var forum = menu.getElementsByTagName("a")[3];
 		if (forum.textContent.indexOf("(") > -1) {
 			// has new message, no span this time, we need to add it 
-			forum.innerHTML = forum.innerHTML.replace(/(\(\d+\))/, "<span class=\"ft-new-forum-msg\">$1</span>");
 			var newForumCount = Number(forum.textContent.match(/\d+/)[0]);
+			forum.textContent = forum.textContent.replace(/\(\d+\)/, "");
+			var span = doc.createElement('span');
+			span.className = "ft-new-forum-msg";
+			span.textContent = "("+newForumCount+")";
+			forum.appendChild(span);
 		}
 		else {
 			// no new forum messages
