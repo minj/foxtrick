@@ -66,13 +66,13 @@ Foxtrick.modules["MatchSimulator"]={
 			// if has number from other match, collect and submit them to htms. else clear overlay
 			if (currentRatingsOther[0] != undefined) {
 				var tacticAbbr = ["", "pressing", "ca", "aim", "aow", "cre", "long"];
-				var midfieldLevel = [ (Math.floor(currentRatings[3]*4))/4 -1, currentRatingsOther[3]-1 ];
-				var rdefence = [ (Math.floor(currentRatings[0]*4))/4 -1, currentRatingsOther[6]-1 ];
-				var cdefence = [ (Math.floor(currentRatings[1]*4))/4 -1, currentRatingsOther[5]-1 ];
-				var ldefence = [ (Math.floor(currentRatings[2]*4))/4 -1, currentRatingsOther[4]-1 ];
-				var rattack = [ (Math.floor(currentRatings[4]*4))/4 -1, currentRatingsOther[2]-1 ];
-				var cattack = [ (Math.floor(currentRatings[5]*4))/4 -1, currentRatingsOther[1]-1 ];
-				var lattack = [ (Math.floor(currentRatings[6]*4))/4 -1, currentRatingsOther[0]-1 ];
+				var midfieldLevel = [ (Math.floor((currentRatings[3]+0.125)*4))/4 -1, currentRatingsOther[3]-1 ];
+				var rdefence = [ (Math.floor((currentRatings[0]+0.125)*4))/4 -1, currentRatingsOther[6]-1 ];
+				var cdefence = [ (Math.floor((currentRatings[1]+0.125)*4))/4 -1, currentRatingsOther[5]-1 ];
+				var ldefence = [ (Math.floor((currentRatings[2]+0.125)*4))/4 -1, currentRatingsOther[4]-1 ];
+				var rattack = [ (Math.floor((currentRatings[4]+0.125)*4))/4 -1, currentRatingsOther[2]-1 ];
+				var cattack = [ (Math.floor((currentRatings[5]+0.125)*4))/4 -1, currentRatingsOther[1]-1 ];
+				var lattack = [ (Math.floor((currentRatings[6]+0.125)*4))/4 -1, currentRatingsOther[0]-1 ];
 				
 				var tactics = [ tacticAbbr[currentRatings[7]], tacticAbbr[currentRatingsOther[7]] ];
 				var tacticsLevel = [ currentRatings[8], currentRatingsOther[8] ];
@@ -89,7 +89,7 @@ Foxtrick.modules["MatchSimulator"]={
 			// only listen to rating prediction changes
 			if ( !Foxtrick.hasClass(ev.target.parentNode, 'posLabel') && ev.target.id != 'ft_stamina_discount_check') 
 				return;
-			Foxtrick.log('showLevelNumbers')
+			//Foxtrick.log('showLevelNumbers')
 			var overlayRatings = fieldOverlay.getElementsByClassName('overlayRatings');
 			var posLabel = fieldOverlay.getElementsByClassName('posLabel');
 			var tacticLevelLabel = doc.getElementById('tacticLevelLabel');
@@ -97,7 +97,7 @@ Foxtrick.modules["MatchSimulator"]={
 			// get some tactics etc lables for common use
 			var speechLevelDiv = doc.getElementsByClassName('speechLevel')[0].cloneNode(true);
 			var speechLevelTitle = speechLevelDiv.firstChild.textContent.replace(/^\s+/g,'').replace(/\s+$/g,'');
-			Foxtrick.log(speechLevelTitle,speechLevelDiv.firstChild.textContent)
+			
 			var teamtacticsDiv = doc.getElementById('tactics').cloneNode(true);
 			teamtacticsDiv.removeChild(teamtacticsDiv.getElementsByClassName('speechLevel')[0]);
 			teamtacticsDiv.removeChild(teamtacticsDiv.getElementsByTagName('select')[0]);
@@ -695,9 +695,12 @@ Foxtrick.modules["MatchSimulator"]={
 
 		
 		// -- stamina discount --
-		// from unwritten manual [post=15172393.4]
 		function getStaminaFactor(stamina) {
+			// from unwritten manual [post=15172393.4]
 			return Math.pow( Math.min(stamina+7, 14)/14, 0.6); 
+			//Foxtrick.log(stamina, (1-0.0072415286*Math.pow(9-stamina,1.9369819898)))
+			// from http://imageshack.us/photo/my-images/854/contributiontablestamin.png/
+			//return (1-0.0072415286*Math.pow(9-stamina,1.9369819898));
 		}
 		
 		var contributions = [
@@ -799,11 +802,12 @@ Foxtrick.modules["MatchSimulator"]={
 							}
 						}
 					}
-					var new_rating = Math.floor((old_rating * sum_sq_c_ij_times_func_of_s_i / sum_sq_c_ij + 0.125) * 4)/4.0;
+					var new_rating = old_rating * sum_sq_c_ij_times_func_of_s_i / sum_sq_c_ij;
+					var new_rating_rounded = Math.floor((new_rating + 0.125) * 4.0)/4.0;
 					var div = doc.createElement('div');
 					div.className = 'overlayRatingsDiscounted';
 					overlayRatings[sector*2+1].parentNode.insertBefore(div, overlayRatings[sector*2+1].nextSibling);
-					div.textContent = Foxtrickl10n.getFullLevelByValue(new_rating);
+					div.textContent = Foxtrickl10n.getFullLevelByValue(new_rating_rounded);	
 					Foxtrick.addClass(overlayRatings[sector*2+1],'hidden');
 					overlayRatingsNums[sector].textContent = "["+new_rating.toFixed(2)+"]";
 					currentRatings[sector] = new_rating;

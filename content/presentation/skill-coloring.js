@@ -34,7 +34,8 @@ Foxtrick.modules["SkillColoring"]={
 	
 	run : function (doc) {
 		
-		var playerDetailsChange = function (ev) { Foxtrick.log('playerDetailsChange')
+		var playerDetailsChange = function (ev) { 
+			//Foxtrick.log('playerDetailsChange')
 			var percentImage = doc.getElementById('details').getElementsByClassName('percentImage');
 			for (var i=0; i<percentImage.length; ++i) {
 				var td = percentImage[i].parentNode;

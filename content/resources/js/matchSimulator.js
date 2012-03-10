@@ -3,7 +3,7 @@
 
 //update Players stamina
 function ft_updatePlayers() {
-	console.log('ft_updatePlayers stamina');
+	//console.log('ft_updatePlayers stamina');
 	var fieldplayers = document.getElementById('fieldplayers');
 	var playerdivs = fieldplayers.getElementsByClassName('position');
 	for (var position=0; position<14; ++position) {	

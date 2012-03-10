@@ -41,7 +41,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 		}, {teamid:teamid, current_squad:true, includeMatchInfo:true} );
 		
 		var waitForInterface = function(ev) {
-			Foxtrick.log('hasInterface');
+			//Foxtrick.log('hasInterface');
 			hasInterface = true;
 			if (hasPlayerInfo)
 				showPlayerInfo();
@@ -162,18 +162,33 @@ Foxtrick.modules["MatchOrderInterface"]={
 		
 		// listen to all that has players (seperatelly to reduce excessive calling)
 		var details = doc.getElementById('details');
-		Foxtrick.addMutationEventListener(details, "DOMNodeInserted", function(ev){Foxtrick.log('details change');waitForInterface(ev)}, false);
+		Foxtrick.addMutationEventListener(details, "DOMNodeInserted", function(ev){
+		//	Foxtrick.log('details change');
+			waitForInterface(ev);
+		}, false);
 		
 		var list = doc.getElementById('list');
-		Foxtrick.addMutationEventListener(list, "DOMNodeInserted", function(ev){Foxtrick.log('list change');waitForInterface(ev)}, false);
+		Foxtrick.addMutationEventListener(list, "DOMNodeInserted", function(ev){
+		//	Foxtrick.log('list change');
+			waitForInterface(ev);
+		}, false);
 		
 		var fieldplayers = doc.getElementById('fieldplayers');
-		Foxtrick.addMutationEventListener(fieldplayers, "DOMNodeInserted", function(ev){Foxtrick.log('fieldplayers change');waitForInterface(ev)}, false);
+		Foxtrick.addMutationEventListener(fieldplayers, "DOMNodeInserted", function(ev){
+		//	Foxtrick.log('fieldplayers change');
+			waitForInterface(ev);
+		}, false);
 		
 		var tab_subs = doc.getElementById('tab_subs');
-		Foxtrick.addMutationEventListener(tab_subs, "DOMNodeInserted", function(ev){Foxtrick.log('tab_subs change');waitForInterface(ev)}, false);
+		Foxtrick.addMutationEventListener(tab_subs, "DOMNodeInserted", function(ev){
+		//	Foxtrick.log('tab_subs change');
+			waitForInterface(ev);
+		}, false);
 		
 		var tab_penaltytakers = doc.getElementById('tab_penaltytakers');
-		Foxtrick.addMutationEventListener(tab_penaltytakers, "DOMNodeInserted", function(ev){Foxtrick.log('tab_penaltytakers change');waitForInterface(ev)}, false);
+		Foxtrick.addMutationEventListener(tab_penaltytakers, "DOMNodeInserted", function(ev){
+		//	Foxtrick.log('tab_penaltytakers change');
+			waitForInterface(ev);
+		}, false);
 	},
 };
