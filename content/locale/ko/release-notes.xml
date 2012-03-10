@@ -15,16 +15,19 @@
 
 <note version="0.9.0.5">
 <item><xhtml:b>0.9.0.5 업데이트</xhtml:b></item>
-<item>● <module>TeamPopupLinks</module>: 커스텀 링크 양식 변경</item>
-<item>● <module>MatchSimulator</module>: 레이팅 복사 수정</item>
+<item>● <module>TeamPopupLinks</module>: 커스텀 링크 양식 변경되었습니다</item>
+<item>● <module>MatchSimulator</module>: 레이팅 복사를 수정하였습니다</item>
+<item>● <module>NewMail</module>: 다시 사운드 옵션이 있습니다</item>
 <item>● 사용하지 않는 MatchTables 모듈 제거</item>
-<item>● "foxtrick://"-style을 연결하는 환경설정 수정</item>
+<item>● "foxtrick://"-style을 연결하는 환경설정을 수정하였습니다</item>
+<item>● MatchSimulator 체력 효과: 텍스트는 반올림하고 수치는 반올림되지 않고 표시합니다</item>
+<item>● 링크 리소스를 아직까지 다른 서버로 이전되었습니다</item>
 <item>● AMO 규정 개선을 위한 몇 가지 내부 변화</item>
 <item></item>
 <item><xhtml:b>0.9.0.4 업데이트</xhtml:b></item>
-<item>● Links 리소스를 다른 서버로 이전</item>
-<item>● MatchReportFormat에 있는 아이콘 제목으로 기본적인 영어 이벤트 문장 추가</item>
-<item>● 토너먼트 경기에 대해서 MatchReportFormat 과 MatchPlayerColoring 활성화</item>
+<item>● 링크 리소스를 다른 서버로 이전되었습니다</item>
+<item>● MatchReportFormat에 있는 아이콘 제목으로 기본적인 영어 이벤트 문장 추가되었습니다</item>
+<item>● 토너먼트 경기에 대해서 MatchReportFormat 과 MatchPlayerColoring 활성화되었습니다</item>
 <item></item>
 <item><xhtml:b>0.9.0.3 업데이트</xhtml:b></item>
 <item>● Stage만: HT 페이지 양식이 바뀐 후 다수의 모듈 수정</item>
