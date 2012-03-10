@@ -13,15 +13,14 @@
 <item>자세한 내용은 Google Code의 <xhtml:a href="http://code.google.com/p/foxtrick/source/list">보고 기록</xhtml:a>을 참조하세요.</item>
 </note>
 
-<note version="0.9.1">
+<note version="0.9.0.5">
+<item><xhtml:b>0.9.0.5 업데이트</xhtml:b></item>
 <item>● <module>TeamPopupLinks</module>: 커스텀 링크 양식 변경</item>
 <item>● <module>MatchSimulator</module>: 레이팅 복사 수정</item>
 <item>● 사용하지 않는 MatchTables 모듈 제거</item>
 <item>● "foxtrick://"-style을 연결하는 환경설정 수정</item>
 <item>● AMO 규정 개선을 위한 몇 가지 내부 변화</item>
-</note>
-
-<note version="0.9.0.4">
+<item></item>
 <item><xhtml:b>0.9.0.4 업데이트</xhtml:b></item>
 <item>● Links 리소스를 다른 서버로 이전</item>
 <item>● MatchReportFormat에 있는 아이콘 제목으로 기본적인 영어 이벤트 문장 추가</item>

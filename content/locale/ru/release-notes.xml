@@ -13,7 +13,7 @@
 		<item>Пожалуйста, посмотрите <xhtml:a href="http://code.google.com/p/foxtrick/source/list">историю изменений</xhtml:a> на сайте Google Code для деталей.</item>
 	</note>
 
-	<note version="0.9.0.4>
+	<note version="0.9.0.5>
 		<item><xhtml:b>Обновление 0.9.0.2</xhtml:b></item>
 		<item>● Поддержка последних версий Chrome, ранее приводивших к фатальному сбою браузера в модуле <module>LoyaltyDisplay</module>.</item>
 		<item>● Поправлены ссылки на игроков в окне расстановки для юношеских команд в модуле <module>MatchReportFormat</module>.</item>
