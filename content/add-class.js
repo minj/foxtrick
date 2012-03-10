@@ -69,7 +69,7 @@ Foxtrick.modules.AddClass={
 		var timeRe = /(\D+?)(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})(\D+?)/;
 		var cells = mainBody.getElementsByTagName("td");
 		Foxtrick.map(function(cell) { 
-			this.replaceInNode(doc, cell,timeRe);
+			Foxtrick.modules.AddClass.replaceInNode(doc, cell,timeRe);
 		}, cells);
 	},
 
