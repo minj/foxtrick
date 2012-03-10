@@ -17,6 +17,7 @@
 <item><xhtml:b>Update 0.9.0.5</xhtml:b></item>
 <item>● <module>TeamPopupLinks</module>: Format for custom links changed</item>
 <item>● <module>MatchSimulator</module>: Copy ratings fixed</item>
+<item>● <module>NewMail</module>: sound option back</item>
 <item>● module MatchTables removed since no one used it</item>
 <item>● preference linking "foxtrick://"-style fixed</item>
 <item>● MatchSimulator stamina effect: show texts rounded and values not rounded</item>
