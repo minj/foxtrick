@@ -587,7 +587,6 @@ Foxtrick.modules["MatchSimulator"]={
 						option.textContent = Foxtrickl10n.getString ('matchOrder.AddMatchManually');
 						select.appendChild(option);
 
-						Foxtrick.log(otherMatchesXml)
 						var otherMatchesNodes = otherMatchesXml.getElementsByTagName('Match');
 						if (otherMatchesNodes) {
 							for (var i=0; i<otherMatchesNodes.length; ++i) {
@@ -697,7 +696,7 @@ Foxtrick.modules["MatchSimulator"]={
 		// -- stamina discount --
 		function getStaminaFactor(stamina) {
 			// from unwritten manual [post=15172393.4]
-			return Math.pow( Math.min(stamina+7, 14)/14, 0.6); 
+			return Math.pow( Math.min(stamina+(14-FoxtrickPrefs.getInt('staminaCutoff')), 14)/14, 0.6); 
 			//Foxtrick.log(stamina, (1-0.0072415286*Math.pow(9-stamina,1.9369819898)))
 			// from http://imageshack.us/photo/my-images/854/contributiontablestamin.png/
 			//return (1-0.0072415286*Math.pow(9-stamina,1.9369819898));
@@ -838,6 +837,7 @@ Foxtrick.modules["MatchSimulator"]={
 		staminaDiscountDiv.appendChild(staminaDiscountLabel);
 		var fieldOverlay = doc.getElementById('fieldOverlay');
 		fieldOverlay.appendChild(staminaDiscountDiv);
+		Foxtrick.log('staminaCutoff: ',FoxtrickPrefs.getInt("staminaCutoff"));
 
 		Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath+"resources/js/matchSimulator.js");	
 		
