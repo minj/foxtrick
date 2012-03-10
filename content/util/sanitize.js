@@ -27,9 +27,9 @@ Foxtrick.util.sanitizeUrl = function(url) {
 // </summary>
 // only allow harmless tags, no attributes other than maybe title, alt, width & height and save href/src for a & img and what we use in forum preview
 Foxtrick.util._tags = new RegExp("<[^>]*(>|$)",'g');
-Foxtrick.util._whitelist = /^<\/?(b(lockquote)?|code|d(d|t|l|el)|em|h(1|2|3)|i|kbd|li|ol|p(re)?|s(ub|up|trong|trike)?|ul|t(able|body|h|r|d))(\sclass=(\"|\')[^\"\'<>]+(\"|\'))?\s?>$|^<(b|h)r\s?\/?>$|^<div class=\'quoteto\'>$|^<\/div>/i;
-Foxtrick.util._whitelist_a = /^<a\shref=(\"|\')(#[-a-z0-9_]+|((https?|ftp|foxtrick):\/\/|\/)[-a-z0-9+&@#\/%\?=~_\|!:,\.;\(\)]+)(\"|\')(\stitle=(\"|\')[^\"\'<>]+(\"|\'))?(\starget=(\"|\')[^\"\'<>]+(\"|\'))?(\sclass=(\"|\')[^\"\'<>]+(\"|\'))?\s?>$|^<\/a>$/i;
-Foxtrick.util._whitelist_img = /^<img\ssrc=(\"|\')(https?|foxtrick):\/\/[-a-z0-9+&@#\/%\?=~_\|!:,\.;\(\)]+(\"|\')(\swidth=\"\d{1,3}\")?(\sheight=\"\d{1,3}\")?(\salt=(\"|\')[^\"\'<>]+(\"|\'))?(\stitle=(\"|\')[^\"\'<>]+(\"|\'))?\s?>$/i;
+Foxtrick.util._whitelist = /^<\/?(b(lockquote)?|code|d(d|t|l|el)|em|h(1|2|3)|i|kbd|li|ol|p(re)?|s(ub|up|trong|trike)?|ul|t(able|body|h|r|d))(\s+colspan=(\d+|(\"|\')[^\"\'<>]+(\"|\')))?(\s+class=(\"|\')[^\"\'<>]+(\"|\'))?\s?>$|^<(b|h)r\s?\/?>$|^<div class=\'quoteto\'>$|^<\/div>|<blockquote class='spoiler hidden' style='display:block!important'>/i;
+Foxtrick.util._whitelist_a = /^<a\shref=(\"|\')(#[-a-z0-9_]+|((https?|ftp|foxtrick):\/\/|\/)[-a-z0-9+&@#\/%\?=~_\|!:,\.;\(\)]+)(\"|\')(\s+title=(\"|\')[^\"\'<>]+(\"|\'))?(\s+target=(\"|\')[^\"\'<>]+(\"|\'))?(\s+class=(\"|\')[^\"\'<>]+(\"|\'))?\s?>$|^<\/a>$/i;
+Foxtrick.util._whitelist_img = /^<img\ssrc=(\"|\')(https?|foxtrick):\/\/[-a-z0-9+&@#\/%\?=~_\|!:,\.;\(\)]+(\"|\')(\s+width=\"\d{1,3}\")?(\s+height=\"\d{1,3}\")?(\s+alt=(\"|\')[^\"\'<>]+(\"|\'))?(\s+title=(\"|\')[^\"\'<>]+(\"|\'))?\s?>$/i;
 
 Foxtrick.util.sanitizeHTML = function(html) {
   try {
