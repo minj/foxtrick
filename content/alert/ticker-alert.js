@@ -62,7 +62,10 @@
 				var filec = doc.createElement("td");
 				row.appendChild(filec);
 				var input = Foxtrick.filePickerForDataUrl(doc, (function(sound) {
-						return function(url) { sound.value = url; };
+						return function(url) { 
+							sound.value = url; 
+							Foxtrick.playSound(url);
+						};
 					})(sound));
 				filec.appendChild(input);
 			}

@@ -530,7 +530,10 @@ function getModule(module)
 				}
 				if (module.OPTION_EDITS_DATAURL_LOAD_BUTTONS && module.OPTION_EDITS_DATAURL_LOAD_BUTTONS[i]) {
 					var load = Foxtrick.filePickerForDataUrl(document, (function(textInput) {
-						return function(url) { textInput.value = url; };
+						return function(url) { 
+							textInput.value = url; 
+							Foxtrick.playSound(url);						
+						};
 					})(textInput));
 					textDiv.appendChild(load);
 				}
