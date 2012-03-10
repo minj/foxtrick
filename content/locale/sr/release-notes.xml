@@ -16,6 +16,9 @@
 <note version="0.9.1">
 <item>● <module>TeamPopupLinks</module>: Промењен формат за постављање персонализованих линкова</item>
 <item>● <module>MatchSimulator</module>: Поправка за копирање оцена делова терена</item>
+<item>● Модул MatchTables уклоњен пошто га нико више не користи</item>
+<item>● Поправљено линковање подешавања "foxtrick://"</item>
+<item>● Још неке поправке ради испуњавања стандарда за Фирефокс екстензије AMO</item>
 </note>
 
 <note version="0.9.0.4">
