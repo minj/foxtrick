@@ -62,7 +62,7 @@ Foxtrick.filePickerForDataUrl = function(doc, callback) {
 		};
 		reader.onload = function(evt) {
 			var dataUrl = evt.target.result;
-			if (dataUrl.length > 64000) {
+			if (dataUrl.length > 164000) {
 				window.alert('File too large');
 				dataUrl = null;
 			}
@@ -107,17 +107,24 @@ Foxtrick.playSound = function(url, doc) {
 				var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
 				soundService.play(ioService.newURI(url, null, null));
 				return;
-			} catch(e) {}
+			} catch(e) {
+				Foxtrick.log("ff soundService can't play ", url);
+			}
 		}
 		try  {
 			var music = new Audio(url);
 			music.play();
 		} catch(e) {
+			var type = 'wav';
+			if (url.indexOf('data:audio')==0)
+				type = url.match(/data:audio\/(.+);/)[1];
+			else
+				type = url.match(/.+\.([^\.]+)$/)[1];
 			var music = doc.createElement('audio');
 			music.setAttribute("autoplay","autoplay");
 			var source = doc.createElement('source');
 			source.setAttribute('src',url);
-			source.setAttribute('type','audio/wav');
+			source.setAttribute('type','audio/'+type);
 			music.appendChild(source);
 			doc.getElementsByTagName('body')[0].appendChild(music);
 		}
