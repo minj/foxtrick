@@ -16,6 +16,8 @@
 <note version="0.9.1">
 <item>● <module>TeamPopupLinks</module>: 커스텀 링크 양식 변경</item>
 <item>● <module>MatchSimulator</module>: 레이팅 복사 수정</item>
+<item>● 사용하지 않는 MatchTables 모듈 제거</item>
+<item>● "foxtrick://"-style을 연결하는 환경설정 수정</item>
 <item>● AMO 규정 개선을 위한 몇 가지 내부 변화</item>
 </note>
 
