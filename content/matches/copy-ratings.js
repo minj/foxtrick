@@ -38,7 +38,7 @@ Foxtrick.modules["CopyRatings"]={
 				var _a = Foxtrickl10n.getString("foxtrick.matchdetail.attack")+':';
 				var _t = Foxtrickl10n.getString("foxtrick.matchdetail.total")+':';
 
-				var headder = doc.getElementsByTagName('h1')[0].innerHTML;
+				var headder = doc.getElementsByTagName('h1')[0].textContent;
 				headder=Foxtrick.trim(headder);
 				var start = Foxtrick.strrpos(headder, '<span>(') +7;
 				var end = Foxtrick.strrpos(headder, ')</span>');
@@ -82,14 +82,14 @@ Foxtrick.modules["CopyRatings"]={
 				if (team1 && table.rows[0].cells[1]) {
 					var teamlink = table.rows[0].cells[1].getElementsByTagName('a')[0];
 					if (teamlink)
-						ad += teamlink.innerHTML + ((team2==true)?(' - ' + gameresult_h):'') + '[br]['+youth+'teamid='+Foxtrick.util.id.getTeamIdFromUrl(teamlink.href)+']';
+						ad += teamlink.textContent + ((team2==true)?(' - ' + gameresult_h):'') + '[br]['+youth+'teamid='+Foxtrick.util.id.getTeamIdFromUrl(teamlink.href)+']';
 				}
 				if (team1 && team2)
 					ad += '[/th]\n[th]';
 				if (team2 && table.rows[0].cells[2]) {
 					var teamlink = table.rows[0].cells[2].getElementsByTagName('a')[0];
 					if (teamlink)
-						ad += teamlink.innerHTML + ((team1==true)?(' - ' + gameresult_a):'') + '[br]['+youth+'teamid='+Foxtrick.util.id.getTeamIdFromUrl(teamlink.href)+']';
+						ad += teamlink.textContent + ((team1==true)?(' - ' + gameresult_a):'') + '[br]['+youth+'teamid='+Foxtrick.util.id.getTeamIdFromUrl(teamlink.href)+']';
 				}
 				ad += '[/th]\n\n[/tr]\n';
 

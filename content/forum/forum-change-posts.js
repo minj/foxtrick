@@ -284,7 +284,7 @@ Foxtrick.modules["ForumChangePosts"]={
 				
 				var messages = doc.getElementsByClassName("message");
 				for (var i = 0; i < messages.length; ++i){
-					var count_pre = Foxtrick.substr_count(messages[i].innerHTML, '[pre');
+					var count_pre = Foxtrick.substr_count(messages[i].textContent, '[pre');
 					var org = [/\[pre\](.*?)\[\/pre\]/gi , /·/gi];
 					var rep = ["<pre class='ft-dummy'>$1</pre>", ""];
 					for (var j = 0; j <= count_pre; ++j) {

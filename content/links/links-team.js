@@ -47,7 +47,7 @@ Foxtrick.modules["LinksTeam"]={
 
 	isTeamPage : function(doc) {
 		var site=doc.location.href;
-		var remain=site.substr(site.search(/Club\//i)+5);  //Foxtrick.dump(remain+' '+remain.search(/TeamID=/i)+'\n');
+		var remain=site.substr(site.search(/Club\//i)+5);  
 		return (remain=="" || remain.search(/TeamID=/i)==1 || remain.search(/TeamID=/i)==13);
 	},
 
@@ -66,16 +66,13 @@ Foxtrick.modules["LinksTeam"]={
 		try {
 		  var teamInfo=doc.getElementById('mainBody').getElementsByTagName('h2')[0].parentNode;
 		  var ps=teamInfo.getElementsByTagName('p');
-		  try {leaguepos=ps[0].innerHTML.replace(/<.+>/,'').match(/(\d)/)[1];}
+		  try {leaguepos=ps[0].textContent.match(/(\d)/)[1];}
 		  catch(e){}; // running game, leaguepos not known
 		  var children=teamInfo.childNodes;
 		  var child,i=0,infocount=0;
 		  while (child=children[i++]) {
 			if (infocount==2 && child.nodeName=='P'){
-			  fans=children[i+1].innerHTML.replace(/&nbsp;/g,'').replace(/<a.+\/a>/ig,'').match(/(\d+)/)[1];
-			  /*var l=children[i+1].innerHTML.lastIndexOf('(');
-			  if (children[i+1].innerHTML.search(/\(/)!=-1) fans=children[i+1].innerHTML.replace(/&nbsp;/g,'').substr(l).match(/(\d+)/)[1];
-			  else fans=children[i+1].innerHTML.replace('&nbsp;','').match(/(\d+)/)[1];*/
+			  fans=children[i+1].textContent.replace(/\u00a0/g,'').match(/(\d+)/)[1];
 			  break;
 			}
 			if (child.className && child.className=='info') infocount++;

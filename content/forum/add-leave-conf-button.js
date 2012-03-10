@@ -42,7 +42,7 @@ Foxtrick.modules["AddLeaveConfButton"]={
 					var subDivs = liElems[i].firstChild.getElementsByTagName("div");
 					for(var k = 0; k < subDivs.length; k++) {
 						if(subDivs[k].className == "float_left prioFolderName"
-							&& Foxtrick.trim(subDivs[k].getElementsByTagName("a")[0].innerHTML) == confName) {
+							&& Foxtrick.trim(subDivs[k].getElementsByTagName("a")[0].textContent) == confName) {
 							var inputs = subDivs[k+1].getElementsByTagName("input");
 							for(var j=0; j < inputs.length; j++) {
 								if (inputs[j].className == "leave"){

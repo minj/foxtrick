@@ -48,9 +48,7 @@ Foxtrick.modules["ShowLineupSet"]={
 		
 		var isFixtureTable = function(table) {
 			try {
-				var row = table.rows[1];
-				return (row.cells.length >= 2)
-					&& (row.cells[1].innerHTML.indexOf("/Club/Matches/Live.aspx") >= 0);
+				return (table.getElementsByTagName('a')[0].href.indexOf("/Club/Matches/Live.aspx") >= 0);
 			}
 			catch (e) {
 				return false;

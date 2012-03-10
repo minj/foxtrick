@@ -25,7 +25,7 @@ Foxtrick.modules["LinksEconomy"]={
 		var ownBoxBody=null;
 		var thisdiv = main.getElementsByTagName("div")[0];
 		var CashTable = main.getElementsByTagName("table")[0];
-		var nums=CashTable.rows[0].cells[1].innerHTML.replace(/&nbsp;/g,'').match(/\d+/g);
+		var nums=CashTable.rows[0].cells[1].textContent.replace(/\u00a0/g,'').match(/\d+/g);
 		Cash=nums[0];
 		newCash=nums[1];
 

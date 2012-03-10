@@ -56,7 +56,7 @@ Foxtrick.modules.ForumThreadAutoIgnore = {
 				for (var j=0; j<tagmarkers.length; ++j){
 					for (var k=0; k<tags.length; ++k){
 						var reg = new RegExp(tagmarkers[j][0] + tags[k] + tagmarkers[j][1], "i");
-						if (a.innerHTML.search(reg)!=-1) {
+						if (a.textContent.search(reg) != -1) {
 							// only autoignore if there is ht's ignore option
 							var ignore = threadItems[i].getElementsByClassName('ignore')[0];
 							if ( ignore ) {
@@ -80,7 +80,7 @@ Foxtrick.modules.ForumThreadAutoIgnore = {
 								// ignore thread using ht's javascript link. need to use the webpage's injected script function
 								var func = ignore.getAttribute('onclick');
 								doc.location.href = func;
-								Foxtrick.log('autoignore '+tags[k]+': '+a.innerHTML+'\n');
+								Foxtrick.log('autoignore '+tags[k]+': '+a.textContent+'\n');
 
 								// only one at a time. recheck after page has changed
 								return;

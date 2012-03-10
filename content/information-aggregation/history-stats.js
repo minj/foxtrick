@@ -107,7 +107,7 @@ Foxtrick.modules["HistoryStats"]={
 							while (table[i].getElementsByTagName('a')[0]) {
 								table[i].removeChild(table[i].getElementsByTagName('a')[0]);
 							}
-							cup = table[i].innerHTML.match(/\d{1,2}/);
+							cup = table[i].textContent.match(/\d{1,2}/);
 							if (!cup)
 								cup = '<span class="bold" title="'+Foxtrickl10n.getString("foxtrick.HistoryStats.cupwinner")+'">' + Foxtrickl10n.getString("foxtrick.HistoryStats.cupwinner.short") + '</span>';
 						}
@@ -125,7 +125,7 @@ Foxtrick.modules["HistoryStats"]={
 						}
 						catch (e_rem) {}
 						table[i].innerHTML = Foxtrick.trim(table[i].innerHTML.replace(season-this.Offset,''));
-						var pos = table[i].innerHTML.match(/\d{1}/);
+						var pos = table[i].textContent.match(/\d{1}/);
 						buff = season + '|' + league + '|' + pos + '|' + leagueN;
 						if (!Foxtrick.member(buff, this.Buffer))
 							this.Buffer.push(buff);

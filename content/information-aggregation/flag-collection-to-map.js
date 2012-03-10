@@ -252,7 +252,7 @@ Foxtrick.modules["FlagCollectionToMap"]={
 				var currentNode = divElement.childNodes[j];
 				if (currentNode.nodeName == 'A' && currentNode.href.indexOf('LeagueID=') > -1) {
 					var countryId = currentNode.href.substr(currentNode.href.lastIndexOf('=')+1, currentNode.href.length);
-					if (currentNode.innerHTML.indexOf('inactive') == -1) {
+					if (currentNode.getElementsByTagName('img')[0].getAttribute('title').search(/inactive/i) == -1) {
 						countryIds.push(countryId);
 					}
 				} else if (currentNode.nodeName == 'P') {

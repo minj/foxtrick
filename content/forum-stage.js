@@ -12,7 +12,7 @@ Foxtrick.modules["ForumStage"]={
 	run : function(doc) {
 		var forum =  doc.getElementsByClassName("main")[0]
 						.getElementsByTagName("h2")[0]
-						.getElementsByTagName("a")[1].innerHTML;
+						.getElementsByTagName("a")[1].textContent;
 		if (forum == 'Stage') {
 			var textarea = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
 			var divalert = doc.createElement('div');

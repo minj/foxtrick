@@ -19,7 +19,7 @@ Foxtrick.modules["LinksFans"]={
 		var teamid = Foxtrick.util.id.findTeamId(mainWrapper);
 		var teamname = Foxtrick.util.id.extractTeamName(mainWrapper);
 		var fanmood='';
-		var fans = mainWrapper.getElementsByTagName('td')[1].innerHTML.match(/\d+/);
+		var fans = mainWrapper.getElementsByTagName('td')[1].textContent.match(/\d+/);
 
 		var links = mainWrapper.getElementsByTagName('a');
 		var i=0,link;

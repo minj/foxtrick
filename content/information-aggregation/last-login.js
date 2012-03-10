@@ -19,13 +19,14 @@ Foxtrick.modules["LastLogin"]={
 		var HT_date = Foxtrick.util.time.getDateFromText(httime);
 		if (!HT_date) return;
 
-		var login_elm = div.innerHTML.split('<br>');
-		var brs = div.getElementsByTagName('br');
+		var login_elm = div.childNodes;
 		for (var i=0; i<login_elm.length; i++) {
-			login_elm[i] = Foxtrick.trim(login_elm[i]);
-			var last = doc.createElement('span');
-			if (login_elm[i].search(/\*\*\*\.\*\*\*/) != -1) {
-				var ST_date = Foxtrick.util.time.getDateFromText(login_elm[i]);
+			if (login_elm[i].nodeType != Foxtrick.NodeTypes.TEXT_NODE )
+				continue;
+			var elm = login_elm[i].textContent;
+			if (elm.search(/\*\*\*\.\*\*\*/) != -1) {
+				var last = doc.createElement('span');
+				var ST_date = Foxtrick.util.time.getDateFromText(elm);
 
 				var _s = Math.floor((HT_date.getTime() - ST_date.getTime()) / 1000); //Sec
 				var DiffText = Foxtrick.util.time.timeDifferenceToElement(doc, _s).textContent;
@@ -35,12 +36,13 @@ Foxtrick.modules["LastLogin"]={
 				}
 				else 
 					Foxtrick.log('Could not create timediff (NaN)');
+				if (i !== login_elm.length - 1) {
+					div.insertBefore(last, login_elm[i].nextSibling);
+				}
+				else
+					div.appendChild(last);
 			}
-			if (i !== login_elm.length - 1) {
-				div.insertBefore(last, brs[i]);
-			}
-			else
-				div.appendChild(last);
+			
 		}
 		div.setAttribute("processed", "processed");
 	}

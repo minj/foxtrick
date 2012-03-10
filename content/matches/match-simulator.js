@@ -96,11 +96,12 @@ Foxtrick.modules["MatchSimulator"]={
 
 			// get some tactics etc lables for common use
 			var speechLevelDiv = doc.getElementsByClassName('speechLevel')[0].cloneNode(true);
-			var speechLevelTitle = speechLevelDiv.innerHTML.split('<select')[0].replace(/\s\s+/g,' ');
+			var speechLevelTitle = speechLevelDiv.firstChild.textContent.replace(/^\s+/g,'').replace(/\s+$/g,'');
+			Foxtrick.log(speechLevelTitle,speechLevelDiv.firstChild.textContent)
 			var teamtacticsDiv = doc.getElementById('tactics').cloneNode(true);
 			teamtacticsDiv.removeChild(teamtacticsDiv.getElementsByClassName('speechLevel')[0]);
 			teamtacticsDiv.removeChild(teamtacticsDiv.getElementsByTagName('select')[0]);
-			var teamtacticsTitle = teamtacticsDiv.innerHTML.replace(/\<[^\>]+?\>/g,'').replace(/\s\s+/g,' ');
+			var teamtacticsTitle = teamtacticsDiv.textContent.replace(/\s\s+/g,' ');
 
 			// change bars to represent percentage of ratings comparision between predicted ratings and selected other teams match ratings
 			// and update HTMSPrediction
