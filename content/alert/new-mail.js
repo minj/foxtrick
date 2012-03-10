@@ -8,14 +8,18 @@
 Foxtrick.modules["NewMail"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
 	PAGES : ["all"],
-	OPTIONS : ["NotifyMail", "NotifyForum"],
+	OPTIONS : ["NotifyMail", "NotifyMailSound", "NotifyForum", "NotifyForumSound"],
+	OPTION_EDITS : true,
+	OPTION_EDITS_DISABLED_LIST : [ true, false, true, false],
+	OPTION_EDITS_DATAURL_LOAD_BUTTONS : [false, true, false, true ],
+
 
 	CSS : Foxtrick.InternalPath + "resources/css/new-mail.css",
 
 	run : function(doc) {
 		var oldCount = Foxtrick.sessionGet( {"mailCount":0, "forumCount":0} );
-		var oldMailCount = oldCount.mailCount;
-		var oldForumCount = oldCount.forumCount;
+		var oldMailCount = oldCount.mailCount || 0;
+		var oldForumCount = oldCount.forumCount || 0;
 
 		var menu = doc.getElementById("menu");
 		// mail count within My Hattrick link
@@ -33,6 +37,12 @@ Foxtrick.modules["NewMail"]={
 		if (FoxtrickPrefs.isModuleOptionEnabled("NewMail", "NotifyMail")
 			&& newMailCount > oldMailCount) {
 			Foxtrick.util.notify.create(Foxtrickl10n.getString("notify.newMail", newMailCount).replace(/%s/, newMailCount), 'http://'+doc.location.host+'/MyHattrick/Inbox/Default.aspx');
+			// play sound if enabled
+			if (FoxtrickPrefs.isModuleOptionEnabled("NewMail", "NotifyMailSound")) {
+				var sound = FoxtrickPrefs.getString("module.NewMail.NotifyMailSound_text");
+				sound = sound.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
+				Foxtrick.playSound(sound, doc);
+			}
 		}
 
 		// mail count in left menu
@@ -67,7 +77,14 @@ Foxtrick.modules["NewMail"]={
 		Foxtrick.sessionSet("forumCount", newForumCount);
 		if (FoxtrickPrefs.isModuleOptionEnabled("NewMail", "NotifyForum")
 			&& newForumCount > oldForumCount) {
+			Foxtrick.log('alert' ,FoxtrickPrefs.isModuleOptionEnabled("NewMail", "NotifyForumSound"),FoxtrickPrefs.getString("module.NewMail.NotifyForumSound_text"))
 			Foxtrick.util.notify.create(Foxtrickl10n.getString("notify.newForumMessage", newForumCount).replace(/%s/, newForumCount), 'http://'+doc.location.host+'/Forum/Default.aspx?actionType=refresh');
+			// play sound if enabled
+			if (FoxtrickPrefs.isModuleOptionEnabled("NewMail", "NotifyForumSound")) {
+				var sound = FoxtrickPrefs.getString("module.NewMail.NotifyForumSound_text");
+				sound = sound.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
+				Foxtrick.playSound(sound, doc);
+			}
 		}
  	}
 };

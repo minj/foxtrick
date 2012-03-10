@@ -10,7 +10,7 @@ Foxtrick.modules["LiveAlert"]={
 	PAGES : [ "matchesLive" ],
 	OPTIONS : ["Sound"],
 	OPTION_EDITS : true,
-	OPTION_EDITS_DATAURL_LOAD_BUTTONS : new Array(true),
+	OPTION_EDITS_DATAURL_LOAD_BUTTONS : [true],
 
 	store : {},
 
