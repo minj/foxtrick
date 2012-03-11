@@ -242,7 +242,11 @@ Foxtrick.addBoxToSidebar = function(doc, title, content, prec) {
 				? Number(existings[i].getAttribute("x-precedence"))
 				: 0;
 			if (curPrec > prec) {
-				existings[i].parentNode.insertBefore(dest, existings[i]);
+				if (i == 0 && curPrec == 0 )
+					// first to be added and placed before HT boxes. add it on top before possible updatepanel div (eg teampage challenge and mailto)
+					sidebar.insertBefore(dest, sidebar.firstChild);
+				else
+					existings[i].parentNode.insertBefore(dest, existings[i]);
 				inserted = true;
 				break;
 			}
