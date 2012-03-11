@@ -83,6 +83,7 @@ CONTENT_FILES_SAFARI = $(CONTENT_FILES) background.html \
 all: firefox chrome opera safari
 
 firefox:
+	echo "############ make firefox ############"
 	make clean-firefox clean-build
 	mkdir $(BUILD_DIR)
 	# copy root files
@@ -129,6 +130,7 @@ endif
 	make clean-build
 
 chrome:
+	echo "############ make chrome ############"
 	make clean-chrome clean-build
 	mkdir $(BUILD_DIR)
 	# copy root files
@@ -165,6 +167,7 @@ endif
 	make clean-build
 
 opera:
+	echo "############ make opera ############"
 	make clean-opera clean-build
 	mkdir $(BUILD_DIR)
 	# copy root files
@@ -211,6 +214,7 @@ endif
 	make clean-build
 
 safari:
+	echo "############ make safari ############"
 	make clean-safari clean-build
 	mkdir -p $(SAFARI_BUILD_DIR)
 	# copy root files
