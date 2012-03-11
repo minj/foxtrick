@@ -73,7 +73,12 @@ Foxtrick.modules["HistoryStats"]={
 					if (table[i].parentNode.getElementsByClassName("date").length)
 						season = table[i].parentNode.getElementsByClassName("date")[0].textContent;
 					var date = Foxtrick.util.time.getDateFromText(season);
-					season = Foxtrick.util.time.gregorianToHT(date).season;
+					try { 
+						season = Foxtrick.util.time.gregorianToHT(date).season;
+					} catch (e) {
+						// in case it's an empty entry. as of now that's for tournaments on productions
+						continue;
+					}
 					var as = table[i].getElementsByTagName('a');
 					var isLgHist = function(a) {
 						return (a.href.indexOf("LeagueLevelUnitID") > -1)
