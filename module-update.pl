@@ -55,14 +55,14 @@ my @targets = (
 		"file" => "background.html",
 		"from" => "<!-- categorized modules -->",
 		"to" => "<!-- end categorized modules -->",
-		"prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
+		"prefix" => "\t<script type=\"application/x-javascript\" src=\"./includes/",
 		"suffix" => "\"></script>\n"
 	},
         {
                 "file" => "options.html",
                 "from" => "<!-- categorized modules -->",
                 "to" => "<!-- end categorized modules -->",
-                "prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
+                "prefix" => "\t<script type=\"application/x-javascript\" src=\"./includes/",
                 "suffix" => "\"></script>\n"
         }
  );
