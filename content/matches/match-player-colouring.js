@@ -98,7 +98,7 @@
 			Foxtrick.addClass(homeTeam, homeClass);
 			Foxtrick.addClass(awayTeam, awayClass);
 
-			var mainWrapper = doc.getElementsByClassName("main")[0];
+			var mainWrapper = doc.getElementsByClassName("main")[0].parentNode;
 			var links = Foxtrick.filter(function(n) {
 				return n.hasAttribute('href') ;
 			}, mainWrapper.getElementsByTagName("a"));
