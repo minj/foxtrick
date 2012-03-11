@@ -243,7 +243,8 @@
 		"corner": Foxtrick.InternalPath + 'resources/img/matches/corner.png',
 		"experience": Foxtrick.InternalPath + 'resources/img/matches/exp.png',
 		"winger": Foxtrick.InternalPath + 'resources/img/matches/winger.png',
-		"tossing_coin": Foxtrick.InternalPath + 'resources/img/matches/coin.png'
+		"tossing_coin": Foxtrick.InternalPath + 'resources/img/matches/coin.png',
+		"transparent": Foxtrick.InternalPath + 'resources/img/matches/trans_14x14.png'
 	}
 	
 var eventText = {
@@ -760,6 +761,10 @@ var eventText = {
 											else {
 												addEventIcon(icons[eventTypes[evtType]], title, "Event Id " + evtType + " : " +eventTypes[evtType]);
 											}
+										}
+										//no icon, put in transparent icon to allow tooltoip
+										else{
+											addEventIcon(icons["transparent"], title, title);	
 										}
 									}
 								}
