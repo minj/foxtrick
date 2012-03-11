@@ -179,6 +179,8 @@ opera:
 	cd content/; \
 	cp -r $(RESOURCE_FOLDERS) \
 		../$(BUILD_DIR)/content
+	# remove ignore modules from files
+	perl module-update.pl modules ignored-modules $(BUILD_DIR)/
 	## change files to opera naming
 	mv $(BUILD_DIR)/preferences.html $(BUILD_DIR)/options.html
 	mv $(BUILD_DIR)/includes/env.js $(BUILD_DIR)/includes/aa00_env.js
@@ -190,8 +192,6 @@ opera:
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/env.js)|/includes/aa00_env.js|' background.html options.html
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/module.js)|/includes/aa10_module.js|' background.html options.html
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/loader-chrome.js)|/includes/zz99_loader-chrome.js|' background.html options.html
-	# remove ignore modules from files
-	perl module-update.pl modules ignored-modules $(BUILD_DIR)/
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \

@@ -37,20 +37,20 @@ my @targets = (
 		"prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
 		"suffix" => "\"></script>\n"
 	},
-        {
-                "file" => "content/background.html",
-                "from" => "<!-- categorized modules -->",
-                "to" => "<!-- end categorized modules -->",
-                "prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
-                "suffix" => "\"></script>\n"
-        },
-        {
-                "file" => "content/overlay.xul",
-                "from" => "<!-- categorized modules -->",
-                "to" => "<!-- end categorized modules -->",
-                "prefix" => "<script type=\"application/x-javascript\" src=\"./",
-                "suffix" => "\"></script>\n"
-        },
+	{
+			"file" => "content/background.html",
+			"from" => "<!-- categorized modules -->",
+			"to" => "<!-- end categorized modules -->",
+			"prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
+			"suffix" => "\"></script>\n"
+	},
+	{
+			"file" => "content/overlay.xul",
+			"from" => "<!-- categorized modules -->",
+			"to" => "<!-- end categorized modules -->",
+			"prefix" => "<script type=\"application/x-javascript\" src=\"./",
+			"suffix" => "\"></script>\n"
+	},
 	{
 		"file" => "background.html",
 		"from" => "<!-- categorized modules -->",
@@ -58,13 +58,13 @@ my @targets = (
 		"prefix" => "\t<script type=\"application/x-javascript\" src=\"./includes/",
 		"suffix" => "\"></script>\n"
 	},
-        {
-                "file" => "options.html",
-                "from" => "<!-- categorized modules -->",
-                "to" => "<!-- end categorized modules -->",
-                "prefix" => "\t<script type=\"application/x-javascript\" src=\"./includes/",
-                "suffix" => "\"></script>\n"
-        }
+	{
+			"file" => "preferences.html",
+			"from" => "<!-- categorized modules -->",
+			"to" => "<!-- end categorized modules -->",
+			"prefix" => "\t<script type=\"application/x-javascript\" src=\"./includes/",
+			"suffix" => "\"></script>\n"
+	}
  );
 
 # get module file list from file *modules*
