@@ -85,7 +85,7 @@ if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 	sed -i "s|{VERSION}|${VERSION}|g" update-safari.plist
 fi
 	
-echo "uploading to $HOST $ DEST"	
+echo "uploading to $HOST $DEST"	
 cp ftp-tmpl ftp
 sed -i \
     -e "s|{USER}|${USER}|g" \
