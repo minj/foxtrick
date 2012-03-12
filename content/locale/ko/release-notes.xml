@@ -14,7 +14,6 @@
 </note>
 
 <note version="0.9.0.5">
-<item><xhtml:b>0.9.0.5 업데이트</xhtml:b></item>
 <item>● <module>TeamPopupLinks</module>: 커스텀 링크 양식 변경되었습니다</item>
 <item>● <module>MatchSimulator</module>: 레이팅 복사를 수정하였습니다</item>
 <item>● <module>NewMail</module>: 다시 사운드 옵션이 있습니다</item>
@@ -24,28 +23,33 @@
 <item>● 링크 리소스를 아직까지 다른 서버로 이전되었습니다</item>
 <item>● AMO 규정 개선을 위한 몇 가지 내부 변화</item>
 <item>● 이제 Matchreport는 모든 이벤트에 대한 풍선말을 표시합니다</item>
-<item></item>
-<item><xhtml:b>0.9.0.4 업데이트</xhtml:b></item>
+</note>
+
+<note version="0.9.0.4">
 <item>● 링크 리소스를 다른 서버로 이전되었습니다</item>
 <item>● MatchReportFormat에 있는 아이콘 제목으로 기본적인 영어 이벤트 문장 추가되었습니다</item>
 <item>● 토너먼트 경기에 대해서 MatchReportFormat 과 MatchPlayerColoring 활성화되었습니다</item>
-<item></item>
-<item><xhtml:b>0.9.0.3 업데이트</xhtml:b></item>
+</note>
+
+<note version="0.9.0.3">
 <item>● Stage만: HT 페이지 양식이 바뀐 후 다수의 모듈 수정</item>
-<item></item>
-<item><xhtml:b>0.9.0.2 업데이트</xhtml:b></item>
+</note>
+
+<note version="0.9.0.2">
 <item>● LoyaltyDisplay 충돌을 야기시키는 최근 Chrome 업데이트 수정</item>
 <item>● MatchReportFormat의 유소년 선수의 라인업 연결 수정</item>
 <item>● MatchSimulator 체력 효과 변경</item>
 <item>● 특수능력에 대한 새로운 기호</item>
 <item>● 다수의 번역 업데이트</item>
-<item></item>
-<item><xhtml:b>0.9.0.1 업데이트</xhtml:b></item>
+</note>
+
+<note version="0.9.0.1">
 <item>● Chrome의 (우발적인)과도한 권한 수정</item>
 <item>● LiveAlert 수정 </item>
 <item>● 몇 가지 css 이슈 수정(Chrome, Opera, Safari)</item>
-<item></item>
-<item><xhtml:b>0.9 배포</xhtml:b></item>
+</note>
+
+<note version="0.9">
 <item><xhtml:b>현지화:</xhtml:b></item>
 <item>crowdsourcing 번역 서비스<xhtml:a href="http://www.crowdin.net/project/foxtrick">http://www.crowdin.net</xhtml:a> 통합. (CatzHoek, Convincedd)</item>
 <item>다수의 번역 업데이트. (Catzhoek 과 많은 번역가들: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, TheZayc, -Iuve-, Mcload, Polytropos, MrAli, ripaldo, Ryo567, Louzao, kirja, MartinsPF)</item>

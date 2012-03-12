@@ -13,8 +13,8 @@
 		<item>Пожалуйста, посмотрите <xhtml:a href="http://code.google.com/p/foxtrick/source/list">историю изменений</xhtml:a> на сайте Google Code для деталей.</item>
 	</note>
 
-	<note version="0.9.0.5>
-		<item><xhtml:b>Обновление 0.9.0.5</xhtml:b></item>
+
+	<note version="0.9.0.5">
 		<item>● Модуль <module>TeamPopupLinks</module>: изменён формат хранения собственных ссылок.</item>
 		<item>● Модуль <module>MatchSimulator</module>: исправлено копирование рейтингов.</item>
 		<item>● Модуль <module>NewMail</module>: вновь добавлена возможность звуковых уведомлений.</item>
@@ -23,28 +23,28 @@
 		<item>● Учёт выносливости в модуле <module>MatchSimulator</module>: Округлённые значения показаны текстом и неокруглённые - числом.</item>
 		<item>● Ресурс со ссылками перемещён на другой сервер.</item>
 		<item>● Некоторые внутренние изменения для улучшения совместимости с <xhtml:a href="https://addons.mozilla.org">AMO</xhtml:a>.</item>
-		<item></item>
-		<item><xhtml:b>Обновление 0.9.0.4</xhtml:b></item>
+	</note>
+	<note version="0.9.0.4">
 		<item>● Ресурс со ссылками перемещён на другой сервер.</item>
 		<item>● Добавлены английские текстовые подписи к значкам матчевых событий в модуле <module>MatchReportFormat</module>.</item>
 		<item>● Модули <module>MatchReportFormat</module> и <module>MatchPlayerColoring</module> включены для матчей турниров.</item>
-		<item></item>
-		<item><xhtml:b>Обновление 0.9.0.3</xhtml:b></item>
+	</note>
+	<note version="0.9.0.3">
 		<item>● Несколько модулей исправлены для соответствия изменениям в страницаъ HT.</item>
-		<item></item>
-		<item><xhtml:b>Обновление 0.9.0.2</xhtml:b></item>
+	</note>
+	<note version="0.9.0.2">
 		<item>● Поддержка последних версий Chrome, ранее приводивших к фатальному сбою браузера в модуле <module>LoyaltyDisplay</module>.</item>
 		<item>● Поправлены ссылки на игроков в окне расстановки для юношеских команд в модуле <module>MatchReportFormat</module>.</item>
 		<item>● В модуле <module>MatchSimulator</module> теперь тоже учитывается выносливость игроков.</item>
 		<item>● Новые значки для специализаций.</item>
 		<item>● Несколько обновлений переводов.</item>
-		<item></item>
-		<item><xhtml:b>Обновление 0.9.0.1</xhtml:b></item>
+	</note>
+	<note version="0.9.0.1">
 		<item>● Исправлены (случайно вставленные) избыточныe разрешения для Chrome.</item>
 		<item>● Исправления в модуле <module>LiveAlert</module>.</item>
 		<item>● Исправлены некоторые ошибки CSS (для Chrome, Opera, Safari).</item>
-		<item></item>
-		<item><xhtml:b>Версия 0.9</xhtml:b></item>
+	</note>
+	<note version="0.9">
 		<item><xhtml:b>Перевод:</xhtml:b></item>
 		<item>Внедрение краудсорсинговой службы перевода <xhtml:a href="http://www.crowdin.net/project/foxtrick">http://www.crowdin.net</xhtml:a> (CatzHoek, Convincedd).</item>
 		<item>Большое количество обновлений переводов (Catzhoek и многие переводчики. Среди прочих: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, TheZayc, -Iuve-, Mcload, Polytropos, MrAli, ripaldo, Ryo567, Louzao, kirja, MartinsPF).</item>

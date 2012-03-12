@@ -596,8 +596,8 @@ function initChangesTab()
 			return;
 		}
 		var noteElements = xml.getElementsByTagName("note");
-		for (var i = 0; i < noteElements.length; ++i) {
-			var version = noteElements[i].getAttribute("version");
+		for (var i = 0; i < noteElements.length; ++i) {			
+			var version = noteElements[i].getAttribute("version");//.replace(/(\d\.\d\.\d)\.\d/,"$1");
 			dest[version] = noteElements[i];
 		}
 	}
@@ -608,6 +608,9 @@ function initChangesTab()
 	for (var i in notes) {
 		// unique version name
 		var version = notes[i].getAttribute("version");
+		// don't add subversions
+		if (version.search(/\d\.\d\.\d\.\d/) != -1)
+			continue;
 		// localized version name
 		// search by:
 		// 1. localized-version in localized release notes
@@ -623,22 +626,36 @@ function initChangesTab()
 	}
 
 	var updateNotepad = function() {
-		var version = select.options[select.selectedIndex].value;
+		var version = select.options[select.selectedIndex].value.replace(/(\d\.\d\.\d)\.\d/,"$1");
 		var list = $("#pref-notepad-list")[0];
 		list.textContent = ""; // clear list
-		var note = notesLocalized[version] || notes[version];
-		if (!note)
-			return;
-		var items = note.getElementsByTagName("item");
-		for (var i = 0; i < items.length; ++i) {
-			var item = document.createElement("li");
-			list.appendChild(item);
-			importContent(items[i], item);
-			item.appendChild(document.createTextNode('\u00a0'));
+		for (var j=10; j>=-1; --j) {
+			var sub = (j!=-1)?("."+j):"";		
+			for (var k=10; k>=-1; --k) {
+				var subsub = (k!=-1)?("."+k):"";		
+				if (j == -1 && k > -1)
+					continue;
+				var note = notesLocalized[version+sub+subsub] || notes[version+sub+subsub];
+				if (!note)
+					continue;
+				list.appendChild(document.createElement("li"))
+							.textContent = "\u00a0";
+				list.appendChild(document.createElement("li"))
+							.appendChild(document.createElement("u"))
+							.textContent = Foxtrickl10n.getString("foxtrick.Version") + " " + version + sub + subsub;
+				
+				var items = note.getElementsByTagName("item");
+				for (var i = 0; i < items.length; ++i) {
+					var item = document.createElement("li");
+					list.appendChild(item);
+					importContent(items[i], item);
+					item.appendChild(document.createTextNode('\u00a0'));
+				}
+			 }
 		}
 	}
 
-	var version = Foxtrick.version();
+	var version = Foxtrick.version().replace(/(\d\.\d\.\d)\.\d/,"$1");
 	for (var i = 0; i < select.options.length; ++i) {
 		if (select.options[i].value == version) {
 			select.selectedIndex = i;
