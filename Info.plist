@@ -183,6 +183,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/presentation/local-time.js</string>
 				<string>content/presentation/loyalty-display.js</string>
 				<string>content/presentation/match-tables.js</string>
+				<string>content/presentation/mobile-enhancements.js</string>
 				<string>content/presentation/move-manager-online.js</string>
 				<string>content/presentation/move-player-select-box.js</string>
 				<string>content/presentation/move-player-statement.js</string>
@@ -190,6 +191,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/presentation/original-face.js</string>
 				<string>content/presentation/personality-images.js</string>
 				<string>content/presentation/ratings-display.js</string>
+				<string>content/presentation/safe-for-work.js</string>
 				<string>content/presentation/simple-presentation.js</string>
 				<string>content/presentation/skill-coloring.js</string>
 				<string>content/presentation/skill-translation.js</string>

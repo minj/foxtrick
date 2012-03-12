@@ -163,6 +163,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/local-time.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/loyalty-display.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/match-tables.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/mobile-enhancements.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/move-manager-online.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/move-player-select-box.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/move-player-statement.js", true);
@@ -170,6 +171,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/original-face.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/personality-images.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/ratings-display.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/safe-for-work.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/simple-presentation.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/skill-coloring.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/skill-translation.js", true);
