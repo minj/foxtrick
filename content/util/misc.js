@@ -374,8 +374,11 @@ Foxtrick.loadXml = function(url, callback) {
 	Foxtrick.load(url, function(text, status) {
 		if ( text.indexOf("!DOCTYPE html") !== -1 ) {
 			// eg login page was returned. aka cpp server not reachable
-			Foxtrick.log( url + "returned an html page. Server could be down." );
-			callback(null, 503);
+			var errorCode = 503;
+			if (text.search(/<title>\d+/i) !== -1)
+				errorCode = text.match(/<title>(\d+)/i)[1];
+			Foxtrick.log( url + "returned an html page. Server could be down. Assumed errorCode: " + errorCode);
+			callback(null, errorCode);
 			return;
 		}
 		
