@@ -97,7 +97,7 @@ firefox:
 	# skin/
 	cp -r skin $(BUILD_DIR)/chrome
 	# remove ignore modules from files
-	perl module-update.pl modules ignored-modules $(BUILD_DIR)/chrome/
+	perl module-update.pl modules ignored-modules-$(DIST_TYPE) $(BUILD_DIR)/chrome/
 	# build jar
 	cd $(BUILD_DIR)/chrome; \
 	$(ZIP) -0 -r $(APP_NAME).jar `find . \( -path '*CVS*' -o -path \
@@ -141,7 +141,7 @@ chrome:
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_CHROME) \
 		../$(BUILD_DIR)/content
 	# remove ignore modules from files
-	perl module-update.pl modules ignored-modules $(BUILD_DIR)/
+	perl module-update.pl modules ignored-modules-$(DIST_TYPE) $(BUILD_DIR)/
 # modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
@@ -183,7 +183,7 @@ opera:
 	cp -r $(RESOURCE_FOLDERS) \
 		../$(BUILD_DIR)/content
 	# remove ignore modules from files
-	perl module-update.pl modules ignored-modules $(BUILD_DIR)/
+	perl module-update.pl modules ignored-modules-$(DIST_TYPE) $(BUILD_DIR)/
 	## change files to opera naming
 	mv $(BUILD_DIR)/preferences.html $(BUILD_DIR)/options.html
 	mv $(BUILD_DIR)/includes/env.js $(BUILD_DIR)/includes/aa00_env.js
@@ -225,7 +225,7 @@ safari:
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_SAFARI) \
 		../$(SAFARI_BUILD_DIR)/content
 	# remove ignore modules from files
-	perl module-update.pl modules ignored-modules $(SAFARI_BUILD_DIR)/
+	perl module-update.pl modules ignored-modules-$(DIST_TYPE) $(SAFARI_BUILD_DIR)/
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	# version bump for nightly
