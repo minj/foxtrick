@@ -23,6 +23,7 @@
 <item>● 링크 리소스를 아직까지 다른 서버로 이전되었습니다</item>
 <item>● AMO 규정 개선을 위한 몇 가지 내부 변화</item>
 <item>● 이제 Matchreport는 모든 이벤트에 대한 풍선말을 표시합니다</item>
+<item>● <module>ForumYouthIcons</module>: 토너먼트 바로가기 추가</item>
 </note>
 
 <note version="0.9.0.4">
