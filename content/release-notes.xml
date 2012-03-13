@@ -26,6 +26,8 @@
 <item>● Matchreport now shows tooltips for all events</item>
 <item>● Added option for alternative player specialties icons in the main tab</item>
 <item>● Moved highlight feature toggle to the FoxTrick Icons</item>
+<item>New module <module>SafeForWork</module> to camouflage Hattrick tabs by changing icon and description</item>
+
 </note>
 
 <note version="0.9.0.4">
