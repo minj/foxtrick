@@ -349,6 +349,7 @@ Foxtrick.util.api = {
 																&& p[0]!='oauth_token'
 																&& p[0]!='oauth_signature');
 													}, parameters));
+						//Foxtrick.log('response was: ', x);
 						// server down. no need to check very page load. let's say we check again in 30 min
 						if (status == 503)  {
 							var recheckDate = (new Date()).getTime()+30*60*1000;
@@ -424,11 +425,16 @@ Foxtrick.util.api = {
 
 	getErrorText : function(text, status) {
 		try {
-			var xml = Foxtrick.parseXml(text);
-			var errorText = xml.getElementsByTagName("h2")[0].textContent;
+			var errorText = text.getElementsByTagName("title")[0].textContent;
 		}
 		catch (e) {
-			var errorText = Foxtrickl10n.getString("exception.error").replace(/%s/, status);
+			try {
+				var xml = Foxtrick.parseXml(text);
+				var errorText = xml.getElementsByTagName("h2")[0].textContent;
+			}
+			catch (e) {
+				var errorText = Foxtrickl10n.getString("exception.error").replace(/%s/, status);
+			}
 		}
 		return errorText;
 	}
