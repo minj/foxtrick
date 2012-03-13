@@ -388,6 +388,9 @@ Foxtrick.modules["MatchSimulator"]={
 						["file", "matchesarchive"],
 						["teamID", otherTeamID]
 					];
+					if (isHTOIntegrated)
+						otherMatchesArgs.push(["SourceSystem","HTOIntegrated"]);
+									
 					Foxtrick.util.api.retrieve(doc, otherMatchesArgs, {cache_lifetime:'session'},
 					function(otherMatchesXml, errorText) { 
 						if (errorText) {
@@ -598,7 +601,9 @@ Foxtrick.modules["MatchSimulator"]={
 										continue;
 									}
 								else {
-									//Foxtrick.log(otherMatchesXml)
+									var SourceSystem = otherMatchesNodes[i].getElementsByTagName('SourceSystem')[0].textContent;
+									if (SourceSystem != "HTOIntegrated" )
+										continue
 								}
 								
 								var option = doc.createElement('option');
