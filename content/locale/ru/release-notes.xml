@@ -9,10 +9,9 @@
      translate the "localized-version" attribute. -->
 
 <notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
-	<note version="nightly" localized-version="Версия для разработчиков">
+	<note version="nightly" localized-version="разрабатываемой версии">
 		<item>Пожалуйста, посмотрите <xhtml:a href="http://code.google.com/p/foxtrick/source/list">историю изменений</xhtml:a> на сайте Google Code для деталей.</item>
 	</note>
-
 
 	<note version="0.9.0.5">
 		<item>● Модуль <module>TeamPopupLinks</module>: изменён формат хранения собственных ссылок.</item>
@@ -20,18 +19,23 @@
 		<item>● Модуль <module>NewMail</module>: вновь добавлена возможность звуковых уведомлений.</item>
 		<item>● Модуль MatchTables был удалён, т.к. его никто не использовал.</item>
 		<item>● Исправление стилей вида "foxtrick://" в настройках.</item>
-		<item>● Учёт выносливости в модуле <module>MatchSimulator</module>: Округлённые значения показаны текстом и неокруглённые - числом.</item>
+		<item>● Учёт выносливости в модуле <module>MatchSimulator</module>: округлённые значения показаны текстом, а неокруглённые - числами.</item>
 		<item>● Ресурс со ссылками перемещён на другой сервер.</item>
 		<item>● Некоторые внутренние изменения для улучшения совместимости с <xhtml:a href="https://addons.mozilla.org">AMO</xhtml:a>.</item>
+		<item>● В отчёте о матче теперь показываются значки для всех событий.</item>
+		<item>● Модуль <module>ForumYouthIcons</module>: добавлены ссылки на турниры.</item>
 	</note>
+	
 	<note version="0.9.0.4">
 		<item>● Ресурс со ссылками перемещён на другой сервер.</item>
 		<item>● Добавлены английские текстовые подписи к значкам матчевых событий в модуле <module>MatchReportFormat</module>.</item>
 		<item>● Модули <module>MatchReportFormat</module> и <module>MatchPlayerColoring</module> включены для матчей турниров.</item>
 	</note>
+	
 	<note version="0.9.0.3">
 		<item>● Несколько модулей исправлены для соответствия изменениям в страницаъ HT.</item>
 	</note>
+	
 	<note version="0.9.0.2">
 		<item>● Поддержка последних версий Chrome, ранее приводивших к фатальному сбою браузера в модуле <module>LoyaltyDisplay</module>.</item>
 		<item>● Поправлены ссылки на игроков в окне расстановки для юношеских команд в модуле <module>MatchReportFormat</module>.</item>
@@ -39,11 +43,13 @@
 		<item>● Новые значки для специализаций.</item>
 		<item>● Несколько обновлений переводов.</item>
 	</note>
+	
 	<note version="0.9.0.1">
 		<item>● Исправлены (случайно вставленные) избыточныe разрешения для Chrome.</item>
 		<item>● Исправления в модуле <module>LiveAlert</module>.</item>
 		<item>● Исправлены некоторые ошибки CSS (для Chrome, Opera, Safari).</item>
 	</note>
+	
 	<note version="0.9">
 		<item><xhtml:b>Перевод:</xhtml:b></item>
 		<item>Внедрение краудсорсинговой службы перевода <xhtml:a href="http://www.crowdin.net/project/foxtrick">http://www.crowdin.net</xhtml:a> (CatzHoek, Convincedd).</item>
