@@ -163,6 +163,7 @@ Foxtrick.modules["Core"]={
 				Foxtrick.util.inject.css(doc, css, "ft-feature-highlight-css");
 				FoxtrickPrefs.setBool("featureHighlight", true);			
 			}
+			Foxtrick.modules.UI.update();
 		};
 		
 		// show version number on the bottom of the page

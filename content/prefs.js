@@ -289,6 +289,13 @@ var FoxtrickPrefs = {
 		if (Foxtrick.arch === "Gecko") {
 			Foxtrick.entry.init();
 		}
+	},
+	highlight : function(sender) {
+		FoxtrickPrefs.setBool("featureHighlight", !FoxtrickPrefs.getBool("featureHighlight"));
+		Foxtrick.modules.UI.update(sender);
+		if (Foxtrick.arch === "Gecko") {
+			Foxtrick.entry.init();
+		}
 	}
 };
 

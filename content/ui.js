@@ -59,6 +59,9 @@ if (Foxtrick.platform == "Firefox") {
 		// toolbar menu - disable
 		var toolbarDisable = document.getElementById("foxtrick-toolbar-deactivate");
 		toolbarDisable.label = Foxtrickl10n.getString("foxtrick.prefs.disableTemporaryLabel");
+		// toolbar menu - highligh
+		var toolbarHighlight = document.getElementById("foxtrick-toolbar-highlight");
+		toolbarHighlight.label = Foxtrickl10n.getString("foxtrick.prefs.featureHighlight");
 		// update status icon
 		Foxtrick.modules.UI.update();
 	};
@@ -76,6 +79,10 @@ if (Foxtrick.platform == "Firefox") {
 		var disableItem = document.getElementById("foxtrick-toolbar-deactivate");
 		if (disableItem)
 			disableItem.setAttribute("checked", FoxtrickPrefs.getBool("disableTemporary"));
+
+		var highlightItem = document.getElementById("foxtrick-toolbar-highlight");
+		if (highlightItem)
+			highlightItem.setAttribute("checked", FoxtrickPrefs.getBool("featureHighlight"));
 
 		var button = document.getElementById("foxtrick-toolbar-button");
 		if (!button || !content)

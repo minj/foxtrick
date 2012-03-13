@@ -70,6 +70,7 @@ CONTENT_FILES_FIREFOX = $(CONTENT_FILES) overlay.xul \
 	loader-gecko.js 
 CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html \
 	preferences.html \
+	popup.html \
 	background.js \
 	loader-chrome.js
 CONTENT_FILES_OPERA = $(CONTENT_FILES) background.js \
