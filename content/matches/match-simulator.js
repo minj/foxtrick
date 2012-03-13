@@ -416,7 +416,12 @@ Foxtrick.modules["MatchSimulator"]={
 							}
 						
 							// get selected match
+							var loading;
+							if (loading = doc.getElementById("loadingMatchID")) {
+									loading.parentNode.removeChild(loading);
+								}
 							var loadingMatch = Foxtrick.util.note.createLoading(doc);
+							loadingMatch.id = "loadingMatchID";
 							var overlayHTMS = doc.getElementById("ft-overlayHTMS");
 							overlayHTMS.insertBefore(loadingMatch, overlayHTMS.firstChild);
 							var selectedMatchArgs = [
@@ -427,13 +432,16 @@ Foxtrick.modules["MatchSimulator"]={
 							];
 							Foxtrick.util.api.retrieve(doc, selectedMatchArgs, {cache_lifetime:'session'},
 							function(selectedMatchXML, errorText) {
+								if (errorText) {
+									if (loadingMatch && loadingMatch.parentNode) {
+										loadingMatch.textContent = errorText;
+									}
+									Foxtrick.log(errorText);
+									return;
+								}
 								if (loadingMatch && loadingMatch.parentNode) {
 									loadingMatch.parentNode.removeChild(loadingMatch);
 									loadingMatch = null;
-								}
-								if (errorText) {
-									Foxtrick.log(errorText);
-									return;
 								}
 								// update match select
 								if (isNew) { 
