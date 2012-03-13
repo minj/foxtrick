@@ -301,8 +301,8 @@ function initTextAndValues()
 			else {
 				// delete invalid 
 				var array = FoxtrickPrefs.getAllKeysOfBranch('oauth.'+teamids[i]);
-				for (var i = 0; i < array.length; i++) {
-					FoxtrickPrefs.deleteValue(array[i]);
+				for (var j = 0; j < array.length; j++) {
+					FoxtrickPrefs.deleteValue(array[j]);
 				}
 			}
 		}

@@ -392,9 +392,11 @@ Foxtrick.util.api = {
 	},
 	
 	invalidateAccessToken : function() {
-		Foxtrick.util.api.setAccessToken("");
-		Foxtrick.util.api.setAccessTokenSecret("");
-	},
+		var teamId = Foxtrick.util.id.getOwnTeamId();
+		var array = FoxtrickPrefs.getAllKeysOfBranch('oauth.'+teamId);
+		for (var i = 0; i < array.length; i++) {
+			FoxtrickPrefs.deleteValue(array[i]);
+		}},
 
 	getAccessToken : function() {
 		var teamId = Foxtrick.util.id.getOwnTeamId();
