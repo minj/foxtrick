@@ -59,7 +59,7 @@ else
 	VERSION="$MAJOR_VERSION"
 fi
 
-(cd "$SRC_DIR" && make DIST_TYPE="$DIST" "$@") || exit 2
+(cd "$SRC_DIR" && make DIST_TYPE="$DIST" UPDATE_URL="$URL_BASE" "$@") || exit 2
 
 if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 	# modify update-firefox.rdf for Gecko

@@ -11,8 +11,7 @@ MAJOR_VERSION := $(shell ./version.sh)
 REV_VERSION := $(MAJOR_VERSION).$(REVISION)
 
 # URL prefix of update manifest
-NIGHTLY_PREFIX = https://www.foxtrick.org/nightly/
-RELEASE_PREFIX = https://www.foxtrick.org/release
+UPDATE_URL = https://www.foxtrick.org/nightly/
 
 BUILD_DIR = build
 SAFARI_TARGET = foxtrick.safariextension
@@ -114,10 +113,10 @@ firefox:
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
 	../version.sh $(REV_VERSION); \
-	sed -i -r 's|(<em:updateURL>).+(</em:updateURL>)|\1'$(NIGHTLY_PREFIX)'/update.rdf\2|' install.rdf
+	sed -i -r 's|(<em:updateURL>).+(</em:updateURL>)|\1'$(UPDATE_URL)'/update.rdf\2|' install.rdf
 else ifeq ($(DIST_TYPE),release)
 	cd $(BUILD_DIR); \
-	sed -i -r 's|(<em:updateURL>).+(</em:updateURL>)|\1'$(RELEASE_PREFIX)'/update.rdf\2|' install.rdf
+	sed -i -r 's|(<em:updateURL>).+(</em:updateURL>)|\1'$(UPDATE_URL)'/update.rdf\2|' install.rdf
 else ifeq ($(DIST_TYPE),hosting)
 	# used on addons.mozilla.org, with no update URL
 	cd $(BUILD_DIR); \
@@ -146,13 +145,13 @@ chrome:
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
 	../version.sh $(REV_VERSION); \
-	sed -i -r 's|("update_url" : ").+(")|\1'$(NIGHTLY_PREFIX)'/chrome/update.xml\2|' manifest.json
+	sed -i -r 's|("update_url" : ").+(")|\1'$(UPDATE_URL)'/chrome/update.xml\2|' manifest.json
 	# make crx
 	./maintainer/crxmake.sh $(BUILD_DIR) maintainer/chrome.pem
 	mv $(BUILD_DIR).crx $(APP_NAME).crx
 else ifeq ($(DIST_TYPE),release)
 	cd $(BUILD_DIR); \
-	sed -i -r 's|("update_url" : ").+(")|\1'$(RELEASE_PREFIX)'/chrome/update.xml\2|' manifest.json; \
+	sed -i -r 's|("update_url" : ").+(")|\1'$(UPDATE_URL)'/chrome/update.xml\2|' manifest.json; \
 	sed -i -r '/\/\/<!--/d' manifest.json
 	# make crx
 	./maintainer/crxmake.sh $(BUILD_DIR) maintainer/chrome.pem
@@ -199,10 +198,10 @@ opera:
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
 	../version.sh $(REV_VERSION); \
-	sed -i -r 's|(<update-description href=").+("/>)|\1'$(NIGHTLY_PREFIX)'/opera/update.xml\2|' config.xml
+	sed -i -r 's|(<update-description href=").+("/>)|\1'$(UPDATE_URL)'/opera/update.xml\2|' config.xml
 else ifeq ($(DIST_TYPE),release)
 	cd $(BUILD_DIR); \
-	sed -i -r 's|(<update-description href=").+("/>)|\1'$(RELEASE_PREFIX)'/opera/update.xml\2|' config.xml
+	sed -i -r 's|(<update-description href=").+("/>)|\1'$(UPDATE_URL)'/opera/update.xml\2|' config.xml
 else ifeq ($(DIST_TYPE),hosting)
 	cd $(BUILD_DIR); \
 	sed -i -r '/update-description/d' config.xml
@@ -231,10 +230,10 @@ ifeq ($(DIST_TYPE),nightly)
 	# version bump for nightly
 	cd $(SAFARI_BUILD_DIR); \
 	../../version.sh $(REV_VERSION); \
-	sed -i -r 's|(<string>).+(</string><!--updateurl-->)|\1'$(NIGHTLY_PREFIX)'/safari/update.plist\2|' Info.plist
+	sed -i -r 's|(<string>).+(</string><!--updateurl-->)|\1'$(UPDATE_URL)'/safari/update.plist\2|' Info.plist
 else ifeq ($(DIST_TYPE),release)
 	cd $(SAFARI_BUILD_DIR); \
-	sed -i -r 's|(<string>).+(</string><!--updateurl-->)|\1'$(RELEASE_PREFIX)'/safari/update.plist\2|' Info.plist
+	sed -i -r 's|(<string>).+(</string><!--updateurl-->)|\1'$(UPDATE_URL)'/safari/update.plist\2|' Info.plist
 endif
 	#remove comments
 	cd $(SAFARI_BUILD_DIR); \
