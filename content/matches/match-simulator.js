@@ -351,10 +351,16 @@ Foxtrick.modules["MatchSimulator"]={
 				doc.getElementById("ft-overlayHTMS").appendChild(loadingOtherMatches);
 				
 				var matchid = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
+				var SourceSystem = "Hattrick";
+				if (isHTOIntegrated)
+					SourceSystem = "HTOIntegrated";
 				var orderMatchArgs = [
 					["file", "matchdetails"],
-					["matchID", matchid]
+					["version", "2.3"],
+					["matchID", matchid],
+					["SourceSystem", SourceSystem]
 				];
+				
 				Foxtrick.util.api.retrieve(doc, orderMatchArgs, {cache_lifetime:'session'},
 				function(orderMatchXml, errorText) {
 					if (errorText) {
@@ -403,7 +409,7 @@ Foxtrick.modules["MatchSimulator"]={
 							loadingOtherMatches = null;
 						}
 						
-						var getMatchDetails = function(selectedMatchid, isNew) {
+						var getMatchDetails = function(selectedMatchid, SourceSystem, isNew) {
 							if (loadingOtherMatches && loadingOtherMatches.parentNode) {
 								loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
 								loadingOtherMatches = null;
@@ -415,7 +421,9 @@ Foxtrick.modules["MatchSimulator"]={
 							overlayHTMS.insertBefore(loadingMatch, overlayHTMS.firstChild);
 							var selectedMatchArgs = [
 								["file", "matchdetails"],
-								["matchID", selectedMatchid]
+								["version", "2.3"],
+								["matchID", selectedMatchid],
+								["SourceSystem", SourceSystem]
 							];
 							Foxtrick.util.api.retrieve(doc, selectedMatchArgs, {cache_lifetime:'session'},
 							function(selectedMatchXML, errorText) {
@@ -431,6 +439,7 @@ Foxtrick.modules["MatchSimulator"]={
 								if (isNew) { 
 									var option = doc.createElement('option');
 									option.value = selectedMatchXML.getElementsByTagName('MatchID')[0].textContent;
+									option.setAttribute('SourceSystem',SourceSystem);
 									var MatchDate = Foxtrick.util.time.buildDate( Foxtrick.util.time.getDateFromText(selectedMatchXML.getElementsByTagName('MatchDate')[0].textContent, 'yyyy-mm-dd') );
 									option.textContent = MatchDate
 														+ ' : ' + selectedMatchXML.getElementsByTagName('HomeTeamName')[0].textContent.substr(0,20)
@@ -595,19 +604,20 @@ Foxtrick.modules["MatchSimulator"]={
 							for (var i=0; i<otherMatchesNodes.length; ++i) {
 								
 								// not friendlies for now to keep it clean
+								var SourceSystem = "Hattrick";//otherMatchesNodes[i].getElementsByTagName('SourceSystem')[0].textContent;
 								var MatchType = Number(otherMatchesNodes[i].getElementsByTagName('MatchType')[0].textContent);
 								if (!isHTOIntegrated) {
 									if (MatchType == 4 || MatchType == 5 || MatchType == 8 || MatchType == 9)
 										continue;
 									}
 								else {
-									var SourceSystem = otherMatchesNodes[i].getElementsByTagName('SourceSystem')[0].textContent;
 									if (SourceSystem != "HTOIntegrated" )
 										continue
 								}
 								
 								var option = doc.createElement('option');
 								option.value = otherMatchesNodes[i].getElementsByTagName('MatchID')[0].textContent;
+								option.setAttribute('SourceSystem', SourceSystem);
 								var MatchDate = Foxtrick.util.time.buildDate( Foxtrick.util.time.getDateFromText(otherMatchesNodes[i].getElementsByTagName('MatchDate')[0].textContent, 'yyyy-mm-dd') );
 								option.textContent = MatchDate
 													+ ' : ' + otherMatchesNodes[i].getElementsByTagName('HomeTeamName')[0].textContent.substr(0,20)
@@ -621,7 +631,7 @@ Foxtrick.modules["MatchSimulator"]={
 						// on selecting a match, matchid and get ratings if appropriate
 						var onMatchSelect = function(ev) {
 							var selectedMatchid = Number(select.value);
-							
+							var SourceSystem = select.options[select.selectedIndex].getAttribute('SourceSystem');
 							// if no match selected, cleanup old ratings display
 							// reset currentRatingsOther, so percentBars and htms gets cleaned as well
 							if (selectedMatchid == -1) {
@@ -644,7 +654,7 @@ Foxtrick.modules["MatchSimulator"]={
 								return;
 							}
 							
-							getMatchDetails(selectedMatchid);
+							getMatchDetails(selectedMatchid, SourceSystem);
 						};
 
 						select.setAttribute('style','float: left; position: absolute; bottom: 0px; left: 100px;');
@@ -663,6 +673,15 @@ Foxtrick.modules["MatchSimulator"]={
 						addMatchText.type = 'text';
 						addMatchDiv.appendChild(addMatchText);
 						
+						var addMatchCheck = doc.createElement('input');
+						addMatchCheck.id = 'addMatchisHTOIntegrated';
+						addMatchCheck.type = 'checkBox';
+						addMatchDiv.appendChild(addMatchCheck);
+
+						var addMatchCheckLabel = doc.createElement('label');
+						addMatchCheckLabel.textContent = Foxtrickl10n.getString("matchOrder.tournamentMatch");
+						addMatchDiv.appendChild(addMatchCheckLabel);
+
 						var addMatchButtonOk = doc.createElement('input');
 						addMatchButtonOk.id = 'addMatchButton';
 						addMatchButtonOk.type = 'button';
@@ -671,7 +690,10 @@ Foxtrick.modules["MatchSimulator"]={
 						
 						var addMatch = function (ev) {
 							var matchid = Number(addMatchText.value);
-							getMatchDetails(matchid, true);
+							var SourceSystem = 'Hattrick';
+							if (doc.getElementById('addMatchisHTOIntegrated'))
+								SourceSystem = "HTOIntegrated";
+							getMatchDetails(matchid, SourceSystem, true);
 							
 							Foxtrick.addClass(addMatchDiv,'hidden');
 							Foxtrick.removeClass(select,'hidden');
