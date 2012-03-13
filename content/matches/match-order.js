@@ -139,10 +139,13 @@ Foxtrick.modules["MatchOrderInterface"]={
 						Foxtrick.addClass(cards_health[i], 'ft-specialty');
 						var title = Foxtrickl10n.getSpecialityFromNumber(player.specialityNumber);
 						var alt = Foxtrickl10n.getShortSpeciality(title);
+						var icon_suffix = "";
+						if (FoxtrickPrefs.getBool("anstoss2icons")) 
+							icon_suffix = "_alt";
 						Foxtrick.addImage(doc, cards_health[i], { 
 							alt: alt, 
 							title: title, 
-							src: Foxtrick.InternalPath + 'resources/img/matches/spec'+player.specialityNumber+'.png',
+							src: Foxtrick.InternalPath + 'resources/img/matches/spec'+player.specialityNumber+icon_suffix+'.png',
 							class: 'ft-specialty'
 						});
 					}

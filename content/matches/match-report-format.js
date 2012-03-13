@@ -480,6 +480,13 @@ var eventText = {
 				|| Foxtrick.Pages.Match.inProgress(doc) )
 				return;
 
+			if (FoxtrickPrefs.getBool("anstoss2icons")) {
+				icons["se_head_specialist"] = Foxtrick.InternalPath + 'resources/img/matches/spec5_alt.png';
+				icons["se_technical"] = Foxtrick.InternalPath + 'resources/img/matches/spec1_alt.png';
+				icons["se_powerful"] = Foxtrick.InternalPath + 'resources/img/matches/spec3_alt.png';
+				icons["se_quick"] = Foxtrick.InternalPath + 'resources/img/matches/spec2_alt.png';	
+				icons["se_unpredictable"] = Foxtrick.InternalPath + 'resources/img/matches/spec4_alt.png';
+			}
 			var SourceSystem = "Hattrick";
 			var isYouth = Foxtrick.Pages.Match.isYouth(doc);
 			var isHTOIntegrated = Foxtrick.Pages.Match.isHTOIntegrated(doc);
