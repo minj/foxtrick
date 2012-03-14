@@ -14,20 +14,19 @@
 </note>
 
 <note version="0.9.0.5">
+<item>● New module <module>SafeForWork</module> to camouflage Hattrick tabs by changing icon and description</item>
+<item>● <module>ForumYouthIcons</module>: added shortcuts for Tournaments</item>
+<item>● <module>NewMail</module>: sound option back</item>
 <item>● <module>TeamPopupLinks</module>: Format for custom links changed</item>
 <item>● <module>MatchSimulator</module>: Copy ratings fixed and some tournament support</item>
-<item>● <module>NewMail</module>: sound option back</item>
-<item>● <module>ForumYouthIcons</module>: added shortcuts for Tournaments</item>
-<item>● module MatchTables removed since no one used it</item>
-<item>● preference linking "foxtrick://"-style fixed</item>
-<item>● MatchSimulator stamina effect: show texts rounded and values not rounded</item>
-<item>● Links resources moved to yet another server</item>
-<item>● Some internal changes to improve AMO compliance</item>
-<item>● Matchreport now shows tooltips for all events</item>
 <item>● Added option for alternative player specialties icons in the main tab</item>
 <item>● Moved the highlight feature toggle to the FoxTrick toolbar icon resp. preferences main tab</item>
-<item>New module <module>SafeForWork</module> to camouflage Hattrick tabs by changing icon and description</item>
-
+<item>● module MatchTables removed since no one used it</item>
+<item>● MatchSimulator stamina effect: show texts rounded and values not rounded</item>
+<item>● preference linking "foxtrick://"-style fixed</item>
+<item>● Matchreport now shows tooltips for all events</item>
+<item>● Links resources moved to yet another server</item>
+<item>● Some internal changes to improve AMO compliance</item>
 </note>
 
 <note version="0.9.0.4">
