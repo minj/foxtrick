@@ -207,7 +207,8 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 			html.setAttribute("data-fennec-theme",
 				doc.location.href.indexOf("Forum") == -1 ? "default" : "forum");
 		}
-
+		html.setAttribute(Foxtrick.platform,"");
+		
 		// reload CSS if not loaded
 		if (!Foxtrick.entry.cssLoaded) {
 			Foxtrick.log("CSS not loaded");

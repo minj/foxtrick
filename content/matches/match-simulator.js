@@ -5,12 +5,37 @@
  * @author convinced
  */
 
-Foxtrick.modules["MatchSimulator"]={
+Foxtrick.modules.MatchSimulator={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['matchOrder'],
 	RADIO_OPTIONS : ["RatingsOnTop","RatingsBelow","RatingsRight"],
 	CSS : Foxtrick.InternalPath + "resources/css/match-simulator.css",
 
+	MatchTypes : {
+		"1":{className:"ftMatchLeague", title:"League match"},
+		"2":{className:"ftMatchQualification", title:"Qualification match"},
+		"3":{className:"ftMatchCup", title:"Cup match (standard league match)"},
+		"4":{className:"ftMatchFriendly", title:"Friendly (normal rules)"},
+		"5":{className:"ftMatchFriendly", title:"Friendly (cup rules)"},
+		"6":{className:"", title:"Not currently in use, but reserved for international competition matches with normal rules (may or may not be implemented at some future point)."},
+		"7":{className:"ftMatchMasters", title:"Hattrick Masters"},
+		"8":{className:"ftMatchFriendly", title:"International friendly (normal rules)"},
+		"9":{className:"ftMatchFriendly", title:"Internation friendly (cup rules)"},
+		"10":{className:"", title:" National teams competition match (normal rules)"},
+		"11":{className:"", title:"National teams competition match (cup rules)"},
+		"12":{className:"", title:"National teams friendly"},
+		"50":{className:"ftMatchTournament", title:"Tournament match  (normal rules)"},
+		"51":{className:"ftMatchTournament", title:"Tournament match  (cup rules)"},
+		"100":{className:"", title:"Youth league match"},
+		"101":{className:"", title:"Youth friendly match"},
+		"102":{className:"", title:"RESERVED"},
+		"103":{className:"", title:"Youth friendly match (cup rules)"},
+		"104":{className:"", title:"RESERVED"},
+		"105":{className:"", title:"Youth international friendly match"},
+		"106":{className:"", title:"Youth international friendly match (Cup rules)"},
+		"107":{className:"", title:"RESERVED"}
+	},
+	
 	run : function(doc) {
 		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
 		var isHTOIntegrated = Foxtrick.Pages.Match.isHTOIntegrated(doc);
@@ -448,8 +473,10 @@ Foxtrick.modules["MatchSimulator"]={
 									var option = doc.createElement('option');
 									option.value = selectedMatchXML.getElementsByTagName('MatchID')[0].textContent;
 									option.setAttribute('SourceSystem',SourceSystem);
+									var MatchType = Number(selectedMatchXML.getElementsByTagName('MatchType')[0].textContent);
+									option.className = "ftOptionIcon " + Foxtrick.modules.MatchSimulator.MatchTypes[MatchType].className;
 									var MatchDate = Foxtrick.util.time.buildDate( Foxtrick.util.time.getDateFromText(selectedMatchXML.getElementsByTagName('MatchDate')[0].textContent, 'yyyy-mm-dd') );
-									option.textContent = MatchDate
+										option.textContent = MatchDate
 														+ ' : ' + selectedMatchXML.getElementsByTagName('HomeTeamName')[0].textContent.substr(0,20)
 														+ ' ' + selectedMatchXML.getElementsByTagName('HomeGoals')[0].textContent
 														+ ' - ' + selectedMatchXML.getElementsByTagName('AwayGoals')[0].textContent
@@ -614,18 +641,21 @@ Foxtrick.modules["MatchSimulator"]={
 								// not friendlies for now to keep it clean
 								var SourceSystem = "Hattrick";//otherMatchesNodes[i].getElementsByTagName('SourceSystem')[0].textContent;
 								var MatchType = Number(otherMatchesNodes[i].getElementsByTagName('MatchType')[0].textContent);
-								if (!isHTOIntegrated) {
+								/*if (!isHTOIntegrated) {
 									if (MatchType == 4 || MatchType == 5 || MatchType == 8 || MatchType == 9)
 										continue;
 									}
 								else {
 									if (SourceSystem != "HTOIntegrated" )
 										continue
+								}*/
+								if (MatchType != 1 && MatchType != 2 && MatchType != 3 && MatchType != 50 && MatchType != 51) {
+									continue;
 								}
-								
 								var option = doc.createElement('option');
 								option.value = otherMatchesNodes[i].getElementsByTagName('MatchID')[0].textContent;
 								option.setAttribute('SourceSystem', SourceSystem);
+								option.className = "ftOptionIcon " + Foxtrick.modules.MatchSimulator.MatchTypes[MatchType].className;
 								var MatchDate = Foxtrick.util.time.buildDate( Foxtrick.util.time.getDateFromText(otherMatchesNodes[i].getElementsByTagName('MatchDate')[0].textContent, 'yyyy-mm-dd') );
 								option.textContent = MatchDate
 													+ ' : ' + otherMatchesNodes[i].getElementsByTagName('HomeTeamName')[0].textContent.substr(0,20)
