@@ -17,6 +17,7 @@ if (!Foxtrick.loader.gecko)
 Foxtrick.loader.gecko.browserLoad = function(ev) {
 	try {
 		Foxtrick.entry.init();
+		FoxtrickPrefs.setBool("featureHighlight", false);
 
 		// calls module.onLoad() after the browser window is loaded
 		for (var i in Foxtrick.modules) {

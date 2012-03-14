@@ -21,6 +21,7 @@ Foxtrick.modules["Core"]={
 		this.parseSelfTeamInfo(doc);
 		this.updateLastHost(doc);
 		this.showVersion(doc);
+		this.featureHighlight(doc);
 		this.showChangeLog(doc);
 	},
 
@@ -146,42 +147,40 @@ Foxtrick.modules["Core"]={
 		}
 	},
 	
-	showVersion : function(doc) {
-		var featureHighlight = function() {
-			var css = 	"[class^='ft'], [id^='ft']," + // 'ft' at front
-						"[class*=' ft'], [id*=' ft']," + // 'ft' at start word 
-						"[class*='foxtrick'], [id*='foxtrick']" + // 'foxtrick' anywhere
-						"{ background-color:#66ccff !important; color:black !important; border: 1px solid #66ccff !important;}";
-			var featureCss = doc.getElementById("ft-feature-highlight-css");
-			// remove old CSS if exists
-			if (featureCss) {
-				featureCss.parentNode.removeChild(featureCss);
-				FoxtrickPrefs.setBool("featureHighlight", false);			
-			}
-			else {
-				// inject CSS
-				Foxtrick.util.inject.css(doc, css, "ft-feature-highlight-css");
-				FoxtrickPrefs.setBool("featureHighlight", true);			
-			}
-			Foxtrick.modules.UI.update();
-		};
-		
+	showVersion : function(doc) {		
 		// show version number on the bottom of the page
 		var bottom = doc.getElementById("bottom");
 		if (bottom) { // sometimes bottom is not loaded yet. just skip it in those cases
 			var server = bottom.getElementsByClassName("currentServer")[0];
 			var span = doc.createElement("span");			
 			span.textContent += " / FoxTrick " + Foxtrick.version();
-			span.title = Foxtrickl10n.getString('featureHighlight.title');
 			span.id = "ft_versionInfo";
-			//Foxtrick.listen(span, "click", featureHighlight, false);
 			server.appendChild(span);
-			if (FoxtrickPrefs.getBool("featureHighlight"))
-				featureHighlight();
 		}
 		else Foxtrick.log('bottom not loaded yet');
 	},
 
+	featureHighlight : function(doc) {
+		if (!FoxtrickPrefs.getBool("featureHighlight"))
+			return;
+		var css = 	"[class^='ft'], [id^='ft']," + // 'ft' at front
+					"[class*=' ft'], [id*=' ft']," + // 'ft' at start word 
+					"[class*='foxtrick'], [id*='foxtrick']" + // 'foxtrick' anywhere
+					"{ background-color:#66ccff !important; color:black !important; border: 1px solid #66ccff !important;}";
+		var featureCss = doc.getElementById("ft-feature-highlight-css");
+		// remove old CSS if exists
+		if (featureCss) {
+			featureCss.parentNode.removeChild(featureCss);
+			FoxtrickPrefs.setBool("featureHighlight", false);			
+		}
+		else {
+			// inject CSS
+			Foxtrick.util.inject.css(doc, css, "ft-feature-highlight-css");
+			FoxtrickPrefs.setBool("featureHighlight", true);			
+		}
+		Foxtrick.modules.UI.update();
+	},
+	
 	parseSelfTeamInfo : function(doc) {
 		var teamLinks = doc.getElementById("teamLinks");
 		if (teamLinks && teamLinks.getElementsByTagName("a").length > 0) {
