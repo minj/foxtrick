@@ -14,16 +14,19 @@
 	</note>
 
 	<note version="0.9.0.5">
-		<item>● Модуль <module>TeamPopupLinks</module>: изменён формат хранения собственных ссылок.</item>
-		<item>● Модуль <module>MatchSimulator</module>: исправлено копирование рейтингов.</item>
+		<item>● Новый модуль <module>SafeForWork</module> для скрытия Hattrick-а с помощью смены значка и заголовка вкладки.</item>
+		<item>● Модуль <module>ForumYouthIcons</module>: добавлены ссылки на турниры.</item>
 		<item>● Модуль <module>NewMail</module>: вновь добавлена возможность звуковых уведомлений.</item>
+		<item>● Модуль <module>TeamPopupLinks</module>: изменён формат хранения собственных ссылок.</item>
+		<item>● Модуль <module>MatchSimulator</module>: исправлено копирование рейтингов, а также добавлена некоторая поддержка турниров.</item>
+		<item>● На вкладку <xhtml:a href="chrome://foxtrick/content/preferences.html#tab=main">Главные</xhtml:a> добавлен параметр для использования альтернативных значков для специализаций игроков.</item>
+		<item>● Переключение выделения изменений перенесено на значок FoxTrick на панели инструментов, а также на страницу настроек Главные.</item>
 		<item>● Модуль MatchTables был удалён, т.к. его никто не использовал.</item>
-		<item>● Исправление стилей вида "foxtrick://" в настройках.</item>
 		<item>● Учёт выносливости в модуле <module>MatchSimulator</module>: округлённые значения показаны текстом, а неокруглённые - числами.</item>
+		<item>● Исправление стилей вида "foxtrick://" в настройках.</item>
+		<item>● В отчёте о матче теперь показываются значки для всех событий.</item>
 		<item>● Ресурс со ссылками перемещён на другой сервер.</item>
 		<item>● Некоторые внутренние изменения для улучшения совместимости с <xhtml:a href="https://addons.mozilla.org">AMO</xhtml:a>.</item>
-		<item>● В отчёте о матче теперь показываются значки для всех событий.</item>
-		<item>● Модуль <module>ForumYouthIcons</module>: добавлены ссылки на турниры.</item>
 	</note>
 	
 	<note version="0.9.0.4">
