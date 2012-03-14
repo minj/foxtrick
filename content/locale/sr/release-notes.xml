@@ -15,15 +15,18 @@
 
 <note version="0.9.0.5">
 <item>● <module>TeamPopupLinks</module>: Промењен формат за постављање персонализованих линкова</item>
-<item>● <module>MatchSimulator</module>: Поправка за копирање оцена делова терена</item>
-<item>● <module>NewMail</module>: враћена опција за звучно обавештење</item> 
+<item>● <module>MatchSimulator</module>: Поправка за копирање оцена делова терена и мечеве на турнирима</item>
+<item>● <module>NewMail</module>: враћена опција за звучно обавештење</item>
+<item>● <module>ForumYouthIcons</module>: додати линкови за турнире</item>
 <item>● Модул MatchTables уклоњен пошто га нико више не користи</item>
 <item>● Поправљено линковање подешавања "foxtrick://"</item>
 <item>● <module>MatchSimulator</module> умањење због кондиције: приказује текстуалне оцене заокружене и бројчане без заокруживања</item>
 <item>● Колекција линкова <module>Links</module> пребачена на други сервер</item>
 <item>● Још неке поправке ради испуњавања стандарда за Фајерфокс екстензије - AMO</item>
 <item>● <module>Matchreport</module> сада приказује текстуални опис типа догађаја кад се мишем пређе преко иконица(само на Енглеском језику)</item>
-<item>● <module>ForumYouthIcons</module>: додати линкови за турнире</item>
+<item>● Додата опција за избор иконица за специјалност играча у табу за главна подешавања</item>
+<item>● Означавање Фокстрик додатака пребачено у главна подешавања и у Фокстрик мени</item>
+<item>Нови модул <module>SafeForWork</module> за камуфлирање Хеттрик табова заменом текста и фавикона</item>
 </note>
 
 <note version="0.9.0.4">
