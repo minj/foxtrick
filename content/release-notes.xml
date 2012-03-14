@@ -25,7 +25,7 @@
 <item>● Some internal changes to improve AMO compliance</item>
 <item>● Matchreport now shows tooltips for all events</item>
 <item>● Added option for alternative player specialties icons in the main tab</item>
-<item>● Moved highlight feature toggle to the FoxTrick's toolbar icons resp. preferences main tab</item>
+<item>● Moved the highlight feature toggle to the FoxTrick toolbar icon resp. preferences main tab</item>
 <item>New module <module>SafeForWork</module> to camouflage Hattrick tabs by changing icon and description</item>
 
 </note>
