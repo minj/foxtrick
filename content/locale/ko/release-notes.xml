@@ -15,15 +15,18 @@
 
 <note version="0.9.0.5">
 <item>● <module>TeamPopupLinks</module>: 커스텀 링크 양식 변경되었습니다</item>
-<item>● <module>MatchSimulator</module>: 레이팅 복사를 수정하였습니다</item>
+<item>● <module>MatchSimulator</module>: 레이팅 복사를 수정하고 토너먼트를 지원합니다</item>
 <item>● <module>NewMail</module>: 다시 사운드 옵션이 있습니다</item>
+<item>● <module>ForumYouthIcons</module>: 토너먼트 바로가기 추가</item>
+<item>● <module>SafeForWork</module> : 아이콘과 설명으로 해트트릭 탭을 위장 기능 추가</item>
 <item>● 사용하지 않는 MatchTables 모듈 제거</item>
 <item>● "foxtrick://"-style을 연결하는 환경설정을 수정하였습니다</item>
 <item>● MatchSimulator 체력 효과: 텍스트는 반올림하고 수치는 반올림되지 않고 표시합니다</item>
 <item>● 링크 리소스를 아직까지 다른 서버로 이전되었습니다</item>
 <item>● AMO 규정 개선을 위한 몇 가지 내부 변화</item>
 <item>● 이제 Matchreport는 모든 이벤트에 대한 풍선말을 표시합니다</item>
-<item>● <module>ForumYouthIcons</module>: 토너먼트 바로가기 추가</item>
+<item>● 메인 탭에 선수 특수능력 아이콘의 선택적인 옵션 추가</item>
+<item>● Foxtrick 툴바 아이콘으로 기능 강조 토글 이동. 환경 메인 탭</item>
 </note>
 
 <note version="0.9.0.4">
