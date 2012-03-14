@@ -120,18 +120,27 @@ if (Foxtrick.platform == "Firefox") {
 
 if (Foxtrick.platform == "Opera") {
 
+	Foxtrick.modules.UI.UIItemProperties = {
+		disabled: false,
+		title: "FoxTrick",
+		icon: "skin/icon-16.png",
+		popup: {
+			href: 'popup-opera.html',
+			width: 200,
+			height: 100
+		},
+		onclick: function(event) {
+			Foxtrick.modules.UI.button.popup.width=200;
+			Foxtrick.modules.UI.button.popup.height=100;
+			//FoxtrickPrefs.disable(event.currentTarget);
+		}
+		
+	};
+
 	Foxtrick.modules.UI.onLoad = function() {
 		// Specify the properties of the button before creating it.
-		var UIItemProperties = {
-			disabled: false,
-			title: "FoxTrick",
-			icon: "skin/icon-16.png",
-			onclick: function(event) {
-				FoxtrickPrefs.disable(event.currentTarget);
-			}
-		};
 		// Create the button and add it to the toolbar.
-		Foxtrick.modules.UI.button = opera.contexts.toolbar.createItem( UIItemProperties );
+		Foxtrick.modules.UI.button = opera.contexts.toolbar.createItem( Foxtrick.modules.UI.UIItemProperties );
 		opera.contexts.toolbar.addItem(Foxtrick.modules.UI.button);
 		Foxtrick.modules.UI.updateIcon(Foxtrick.modules.UI.button);
 	};

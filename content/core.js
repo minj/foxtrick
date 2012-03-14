@@ -174,7 +174,7 @@ Foxtrick.modules["Core"]={
 			span.textContent += " / FoxTrick " + Foxtrick.version();
 			span.title = Foxtrickl10n.getString('featureHighlight.title');
 			span.id = "ft_versionInfo";
-			Foxtrick.listen(span, "click", featureHighlight, false);
+			//Foxtrick.listen(span, "click", featureHighlight, false);
 			server.appendChild(span);
 			if (FoxtrickPrefs.getBool("featureHighlight"))
 				featureHighlight();

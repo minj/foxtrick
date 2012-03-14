@@ -24,7 +24,7 @@ XAR = xar
 
 ROOT_FILES_FIREFOX = chrome.manifest install.rdf icon.png COPYING HACKING
 ROOT_FILES_CHROME = manifest.json
-ROOT_FILES_OPERA = config.xml content/background.html content/preferences.html
+ROOT_FILES_OPERA = config.xml content/background.html content/preferences.html content/popup-opera.html
 ROOT_FILES_SAFARI = Info.plist Settings.plist skin/icon.png
 ROOT_FOLDERS_FIREFOX = defaults/
 ROOT_FOLDERS_CHROME = defaults/ skin/
@@ -70,7 +70,7 @@ CONTENT_FILES_FIREFOX = $(CONTENT_FILES) overlay.xul \
 	loader-gecko.js 
 CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html \
 	preferences.html \
-	popup.html \
+	popup-chrome.html \
 	background.js \
 	loader-chrome.js
 CONTENT_FILES_OPERA = $(CONTENT_FILES) background.js \
