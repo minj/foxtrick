@@ -23,8 +23,9 @@ Foxtrick.util.htMl.getId = function(node) {
 		{ type : "Youth Player", re : /\?YouthPlayerID=(\d+)/i, tag : "youthplayerid" },
 		{ type : "Team", re : /\/Club\/\?TeamID=(\d+)/i, tag : "teamid" },
 		{ type : "Youth Team", re : /\?YouthTeamID=(\d+)/i, tag : "youthteamid" },
-		{ type : "Youth Match", re : /\?matchID=(\d+)&SourceSystem=Youth/i, tag : "youthmatchid" },
-		{ type : "Match", re : /\?matchID=(\d+)/i, tag : "matchid" },
+		{ type : "Youth Match", re : /\?matchID=(\d+).+?&SourceSystem=Youth/i, tag : "youthmatchid" },
+		{ type : "Tournament Match", re : /\?matchID=(\d+).+?SourceSystem=HTOIntegrated/i, tag : "tournamentmatchid"  },
+		{ type : "Match", re : /\?matchID=(\d+)/i, tag : "matchid" }, // behind youth and tournament, so they get detected first
 		{ type : "Federation", re : /\?AllianceID=(\d+)/i, tag : "federationid" },
 		{ type : "Series", re : /\?LeagueLevelUnitID=(\d+)/i, tag : "leagueid" },
 		{ type : "Youth Series", re : /\?YouthLeagueId=(\d+)/i, tag : "youthleagueid" },
@@ -32,13 +33,13 @@ Foxtrick.util.htMl.getId = function(node) {
 		{ type : "Kit", re : /\?KitID=(\d+)/i, tag : "kitid" },
 		{ type : "Article", re : /\?ArticleID=(\d+)/i, tag : "articleid" },
 		{ type : "Post", re : /\/Forum\/Read\.aspx\?t=(\d+).*&n=(\d+)/i, tag : "post" },
+		{ type : "Tournament", re : /\?tournamentId=(\d+)/i, tag : "tournamentid"  },
 		{ type : "Arena", re : /\/Club\/Arena\/Default\.aspx\?ArenaID=(\d+)/i },
 		{ type : "League", re : /\/World\/Leagues\/League\.aspx\?LeagueID=(\d+)/i },
 		{ type : "Cup", re : /\/World\/Cup\/\?CupID=(\d+)/i },
 		{ type : "Region", re : /\/World\/Regions\/Region\.aspx\?RegionID=(\d+)/i },
 		{ type : "National Team", re : /\/Club\/NationalTeam\/NationalTeam\.aspx\?teamId=(\d+)/i }
 	];
-
 	var link = null;
 	var currentObj = node;
 	while (currentObj) {
