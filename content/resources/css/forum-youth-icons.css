@@ -53,6 +53,12 @@
 	background: url('chrome://foxtrick/content/resources/img/ht-ml/format_symbol.png') no-repeat scroll 0 0 transparent;
 }
 
+/* tournament toolbar */
+.HTMLToolbar img.ft_tournament {
+	background: url('chrome://foxtrick/content/resources/img/ht-ml/format_tournament.png') no-repeat scroll 0 0 transparent;
+}
+
+
 /* other toolbar */
 .HTMLToolbar img.f_debug {
 	background: url('chrome://foxtrick/content/resources/img/ht-ml/format_debug.png') no-repeat scroll 0 0 transparent;

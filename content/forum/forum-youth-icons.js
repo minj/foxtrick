@@ -79,7 +79,7 @@ Foxtrick.modules["ForumYouthIcons"]={
 		];
 		
 		var tournamenticons = [
-			{ type:"tournament", 	icon_class : "matchLeague", 	string : "tournamentid", 	tags : "[tournamentid=xxx]",  	replace_text: "xxx"	},
+			{ type:"tournament", 	icon_class : "ft_tournament", 	string : "tournamentid", 	tags : "[tournamentid=xxx]",  	replace_text: "xxx"	},
 			{ type:"tournament_match", 	icon_class : "f_match", 	string : "tournamentmatchid", 	tags : "[tournamentmatchid=xxx]",  	replace_text: "xxx"	},
 		];
 		
