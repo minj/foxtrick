@@ -4,6 +4,7 @@ APP_NAME = foxtrick
 # Firefox, Chrome, Opera: nightly, release, hosting
 # Safari: nightly, release
 DIST_TYPE = nightly
+MODULES = modules
 
 # Subversion revision, this is only available with git-svn
 REVISION := $(shell git svn find-rev HEAD)
@@ -83,7 +84,9 @@ CONTENT_FILES_SAFARI = $(CONTENT_FILES) background.html \
 all: firefox chrome opera safari
 
 firefox:
+	#
 	########### make firefox ############
+	#
 	make clean-firefox clean-build
 	mkdir $(BUILD_DIR)
 	# copy root files
@@ -97,7 +100,7 @@ firefox:
 	# skin/
 	cp -r skin $(BUILD_DIR)/chrome
 	# remove ignore modules from files
-	perl module-update.pl modules ignored-modules-$(DIST_TYPE) $(BUILD_DIR)/chrome/
+	perl module-update.pl $(MODULES) ignored-modules-$(DIST_TYPE) $(BUILD_DIR)/chrome/
 	# build jar
 	cd $(BUILD_DIR)/chrome; \
 	$(ZIP) -0 -r $(APP_NAME).jar `find . \( -path '*CVS*' -o -path \
@@ -130,7 +133,9 @@ endif
 	make clean-build
 
 chrome:
+	#
 	############ make chrome ############
+	#
 	make clean-chrome clean-build
 	mkdir $(BUILD_DIR)
 	# copy root files
@@ -141,7 +146,7 @@ chrome:
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_CHROME) \
 		../$(BUILD_DIR)/content
 	# remove ignore modules from files
-	perl module-update.pl modules ignored-modules-$(DIST_TYPE) $(BUILD_DIR)/
+	perl module-update.pl $(MODULES) ignored-modules-$(DIST_TYPE) $(BUILD_DIR)/
 # modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
@@ -167,7 +172,9 @@ endif
 	make clean-build
 
 opera:
+	#
 	############ make opera ############
+	#
 	make clean-opera clean-build
 	mkdir $(BUILD_DIR)
 	# copy root files
@@ -183,7 +190,7 @@ opera:
 	cp -r $(RESOURCE_FOLDERS) \
 		../$(BUILD_DIR)/content
 	# remove ignore modules from files
-	perl module-update.pl modules ignored-modules-$(DIST_TYPE) $(BUILD_DIR)/
+	perl module-update.pl $(MODULES) ignored-modules-$(DIST_TYPE) $(BUILD_DIR)/
 	## change files to opera naming
 	mv $(BUILD_DIR)/preferences.html $(BUILD_DIR)/options.html
 	mv $(BUILD_DIR)/includes/env.js $(BUILD_DIR)/includes/aa00_env.js
@@ -214,7 +221,9 @@ endif
 	make clean-build
 
 safari:
+	#
 	############ make safari ############
+	#
 	make clean-safari clean-build
 	mkdir -p $(SAFARI_BUILD_DIR)
 	# copy root files
@@ -225,7 +234,7 @@ safari:
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_SAFARI) \
 		../$(SAFARI_BUILD_DIR)/content
 	# remove ignore modules from files
-	perl module-update.pl modules ignored-modules-$(DIST_TYPE) $(SAFARI_BUILD_DIR)/
+	perl module-update.pl $(MODULES) ignored-modules-$(DIST_TYPE) $(SAFARI_BUILD_DIR)/
 	# modify according to distribution type
 ifeq ($(DIST_TYPE),nightly)
 	# version bump for nightly

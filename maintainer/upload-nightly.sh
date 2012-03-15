@@ -22,6 +22,7 @@ PASSWORD=''
 HOST='www.foxtrick.org'
 DEST='.'
 UPLOAD_UPDATE_FILES='true'
+MODULES=modules
 
 # update manifest settings
 URL_BASE='http://foxtrick.foundationhorizont.org/nightly'
@@ -59,7 +60,7 @@ else
 	VERSION="$MAJOR_VERSION"
 fi
 
-(cd "$SRC_DIR" && make DIST_TYPE="$DIST" UPDATE_URL="$URL_BASE" "$@") || exit 2
+(cd "$SRC_DIR" && make DIST_TYPE="$DIST" MODULES="$MODULES" UPDATE_URL="$URL_BASE" "$@")|| exit 2
 
 if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 	# modify update-firefox.rdf for Gecko
