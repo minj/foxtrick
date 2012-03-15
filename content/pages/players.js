@@ -351,7 +351,7 @@ Foxtrick.Pages.Players = {
 				var as = playerNode.getElementsByTagName("a");
 
 				var basicInformation = paragraphs[0];
-				var basicHtml = basicInformation.innerHTML.replace(RegExp("&nbsp;", "g"), "");
+				var basicHtml = basicInformation.firstChild.textContent;
 
 				var ageText = basicHtml;
 				// First we dump TSI out of the string, and then
@@ -360,6 +360,7 @@ Foxtrick.Pages.Players = {
 				if (tsiMatch) {
 					ageText = ageText.replace(tsiMatch[0], "");
 				}
+
 				var ageRe = new RegExp("\\d+\\D+\\d+\\s\\S+");
 				var ageReRussian = new RegExp("\\D+\\d+\\D+\\d+");
 				if (ageText.match(ageRe) !== null) {
