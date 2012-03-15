@@ -1,7 +1,6 @@
 alert/live-alert.js
 alert/new-mail.js
 alert/ticker-alert.js
-alert/ticker-coloring.js
 forum/forum-strip-hattrick-links.js
 forum/forum-templates.js
 forum/forum-thread-auto-ignore.js
@@ -48,7 +47,6 @@ links/links-youth.js
 matches/copy-ratings.js
 matches/htms-prediction.js
 matches/match-income.js
-matches/match-simulator.js
 matches/ratings.js
 presentation/currency-converter.js
 presentation/ht-date-format.js
@@ -56,7 +54,6 @@ presentation/league-news-filter.js
 presentation/local-time.js
 presentation/ratings-display.js
 presentation/safe-for-work.js
-presentation/team-select-box.js
 presentation/youth-skill-hide-unknown.js
 shortcuts-and-tweaks/confirm-actions.js
 shortcuts-and-tweaks/context-menu-copy.js
