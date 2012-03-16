@@ -48,7 +48,7 @@ Foxtrick.modules["Core"]={
 						label.textContent = 'FoxTrick '+Foxtrick.version();
 						div.appendChild(label);
 						var label = doc.createElement('p');
-						label.textContent = Foxtrickl10n.getString('foxtrick.versionReleaseNotes');
+						label.textContent = Foxtrickl10n.getString('releaseNotes.showFor');
 						div.appendChild(label);
 						var select = doc.createElement('select');
 						select.id = 'pref-version-release-notes';

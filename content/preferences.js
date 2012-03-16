@@ -35,11 +35,11 @@ function init()
 		testPermissions();
 
 		if (window.location.href.search(/saved=true/)!==-1) {
-			notice(Foxtrickl10n.getString("foxtrick.prefs.saved"));
+			notice(Foxtrickl10n.getString("prefs.feedback.saved"));
 			window.location.href = window.location.href.substr(0,window.location.href.search(/\&saved=true/));
 		}
 		else if (window.location.href.search(/imported=true/)!==-1) {
-			notice(Foxtrickl10n.getString("foxtrick.prefs.loaded"));
+			notice(Foxtrickl10n.getString("prefs.feedback.loaded"));
 			window.location.href = window.location.href.substr(0,window.location.href.search(/\&imported=true/));
 		}
 	} catch (e) {
@@ -208,7 +208,7 @@ function initTextAndValues()
 	if (Foxtrickl10n.getString("direction") == "rtl") 
 		$("html").attr("dir", "rtl");
 
-	document.title = Foxtrickl10n.getString("foxtrick.prefs.preferences");
+	document.title = Foxtrickl10n.getString("prefs.title");
 	$("#version").text(Foxtrick.version());
 
 	// initialize text
@@ -315,7 +315,7 @@ function initTextAndValues()
 function initMainTab()
 {
 	// setup
-	$("#pref-setup-desc").html(Foxtrickl10n.getString("foxtrick.prefs.setup.desc")
+	$("#pref-setup-desc").html(Foxtrickl10n.getString("prefs.setup.desc")
 		.replace(/{(.+)}/, "<a href=\"http://code.google.com/p/foxtrick/issues/list\" target=\"_blank\">$1</a>"));
 
 	// save preferences
@@ -335,7 +335,7 @@ function initMainTab()
 
 	// restore to default
 	$("#pref-stored-restore").click(function() {
-		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("delete_foxtrick_branches_ask"))) {
+		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("prefs.delete_foxtrick_branches_ask"))) {
 			FoxtrickPrefs.cleanupBranch();
 			window.location.href = window.location.href + '&imported=true';
 			window.location.reload();
@@ -345,7 +345,7 @@ function initMainTab()
 	// delete OAuth token/secret
 	$("#pref-delete-token").click(function() {
 		var teamid = $("#select-delete-token-teamids")[0].value;
-		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("delete_oauth_ask").replace('%s',teamid))) {
+		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("prefs.delete_oauth_ask").replace('%s',teamid))) {
 			var array = FoxtrickPrefs.getAllKeysOfBranch('oauth.'+teamid);
 			for (var i = 0; i < array.length; i++) {
 				FoxtrickPrefs.deleteValue(array[i]);
@@ -357,7 +357,7 @@ function initMainTab()
 
 	// disable all
 	$("#pref-stored-disable").click(function() {
-		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("disable_all_foxtrick_modules_ask"))) {
+		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("prefs.disable_all_foxtrick_modules_ask"))) {
 			Foxtrick.log('preferences: diable all');
 			FoxtrickPrefs.disableAllModules();
 			window.location.href = window.location.href + '&imported=true';
@@ -367,7 +367,7 @@ function initMainTab()
 
 	// revoke permissions
 	$("#pref-revoke-permissions").click(function() {
-		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("revoke_permissions_ask"))) {
+		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("prefs.revoke_permissions_ask"))) {
 			Foxtrick.log('preferences: revoke permissions');
 			revokePermissions();
 		}
@@ -380,7 +380,7 @@ function getModule(module)
 		var a = document.createElement("a");
 		a.className = "screenshot";
 		a.href = link;
-		a.title = Foxtrickl10n.getString("prefs.screenshot");
+		a.title = Foxtrickl10n.getString("module.screenshot");
 		a.setAttribute('target','_blank');
 		return a;
 	}
@@ -645,7 +645,7 @@ function initChangesTab()
 							.textContent = "\u00a0";
 				list.appendChild(document.createElement("li"))
 							.appendChild(document.createElement("u"))
-							.textContent = Foxtrickl10n.getString("foxtrick.Version") + " " + version + sub + subsub;
+							.textContent = Foxtrickl10n.getString("releaseNotes.version") + " " + version + sub + subsub;
 				
 				var items = note.getElementsByTagName("item");
 				for (var i = 0; i < items.length; ++i) {
@@ -833,7 +833,7 @@ function save()
 	var needsPermissions = checkPermissions();
 
 	if (!needsPermissions)
-		notice(Foxtrickl10n.getString("foxtrick.prefs.saved"));
+		notice(Foxtrickl10n.getString("prefs.feedback.saved"));
 	// else it is shown in permission request callback
 	
 	FoxtrickPrefs.setBool("preferences.updated", true);
@@ -930,7 +930,7 @@ function getPermission(neededPermission, hint, showSaved) {
 				Foxtrick.log("Permission granted: ", neededPermission.module);
 			}
 			if (showSaved) {
-				notice(Foxtrickl10n.getString("foxtrick.prefs.saved"));
+				notice(Foxtrickl10n.getString("prefs.feedback.saved"));
 			}
 	});
 }
@@ -963,7 +963,7 @@ function checkPermissions() {
 				if ($(id).attr("permission-granted")=="false") {
 					var showSaved = (i==neededPermissions.length-1) ? true : false;
 					needsPermissions = true;
-					getPermission(neededPermissions[i], Foxtrickl10n.getString("foxtrick.prefs.permissionsHint").replace("%s", neededPermissions[i].module), showSaved);
+					getPermission(neededPermissions[i], Foxtrickl10n.getString("prefs.permissionsHint").replace("%s", neededPermissions[i].module), showSaved);
 				}
 			}
 		}

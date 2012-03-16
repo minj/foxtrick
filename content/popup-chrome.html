@@ -42,10 +42,10 @@ function init()
 {
 	var BackgroundPage = chrome.extension.getBackgroundPage();
 	document.getElementById("foxtrick-toolbar-deactivate").checked = BackgroundPage.FoxtrickPrefs.getBool("disableTemporary");
-	document.getElementById("foxtrick-toolbar-deactivate-label").textContent = BackgroundPage.Foxtrickl10n.getString("foxtrick.prefs.disableTemporaryLabel");
+	document.getElementById("foxtrick-toolbar-deactivate-label").textContent = BackgroundPage.Foxtrickl10n.getString("prefs.disable.temporary");
 	document.getElementById("foxtrick-toolbar-highlight").checked = BackgroundPage.FoxtrickPrefs.getBool("featureHighlight");
-	document.getElementById("foxtrick-toolbar-highlight-label").textContent = BackgroundPage.Foxtrickl10n.getString("foxtrick.prefs.featureHighlight");
-	document.getElementById("foxtrick-toolbar-options-label").textContent = BackgroundPage.Foxtrickl10n.getString("preferences");
+	document.getElementById("foxtrick-toolbar-highlight-label").textContent = BackgroundPage.Foxtrickl10n.getString("prefs.additional.featureHighlight");
+	document.getElementById("foxtrick-toolbar-options-label").textContent = BackgroundPage.Foxtrickl10n.getString("toolbar.preferences");
 	document.getElementById("foxtrick-toolbar-homepage-label").textContent = BackgroundPage.Foxtrickl10n.getString("link.homepage");
 }
 

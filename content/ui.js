@@ -55,13 +55,13 @@ if (Foxtrick.platform == "Firefox") {
 
 		// toolbar menu - preferences
 		var toolbarPreferences = document.getElementById("foxtrick-toolbar-preferences");
-		toolbarPreferences.label = Foxtrickl10n.getString("preferences");
+		toolbarPreferences.label = Foxtrickl10n.getString("toolbar.preferences");
 		// toolbar menu - disable
 		var toolbarDisable = document.getElementById("foxtrick-toolbar-deactivate");
-		toolbarDisable.label = Foxtrickl10n.getString("foxtrick.prefs.disableTemporaryLabel");
+		toolbarDisable.label = Foxtrickl10n.getString("prefs.disable.temporary");
 		// toolbar menu - highligh
 		var toolbarHighlight = document.getElementById("foxtrick-toolbar-highlight");
-		toolbarHighlight.label = Foxtrickl10n.getString("foxtrick.prefs.featureHighlight");
+		toolbarHighlight.label = Foxtrickl10n.getString("prefs.additional.featureHighlight");
 		// update status icon
 		Foxtrick.modules.UI.update();
 	};
@@ -112,7 +112,7 @@ if (Foxtrick.platform == "Firefox") {
 			} catch (e) {}
 			statusText = Foxtrickl10n.getString("status.enabled").replace("%s", hostname);
 		}
-		var tooltipText = Foxtrickl10n.getString("foxtrick") + " " + Foxtrick.version() + " (" + statusText + ")";
+		var tooltipText = Foxtrickl10n.getString("toolbar.title") + " " + Foxtrick.version() + " (" + statusText + ")";
 		button.setAttribute("tooltiptext", tooltipText);
 	};
 }
@@ -159,7 +159,7 @@ if (Foxtrick.platform == "Opera") {
 			statusText = Foxtrickl10n.getString("status.active");
 			button.icon = "skin/icon-24.png";
 		}
-		var tooltipText = Foxtrickl10n.getString("foxtrick") + " " + Foxtrick.version() + " (" + statusText + ")";
+		var tooltipText = Foxtrickl10n.getString("toolbar.title") + " " + Foxtrick.version() + " (" + statusText + ")";
 		button.title = tooltipText;
 	};
 }
@@ -188,7 +188,7 @@ else if (Foxtrick.platform == "Chrome") {
 			iconUrl = "../skin/icon-24.png";
 			statusText = Foxtrickl10n.getString("status.active");
 		}
-		var tooltipText = Foxtrickl10n.getString("foxtrick") + " " + Foxtrick.version() + " (" + statusText + ")";
+		var tooltipText = Foxtrickl10n.getString("toolbar.title") + " " + Foxtrick.version() + " (" + statusText + ")";
 		chrome.pageAction.setIcon({tabId : tab.id, path : iconUrl});
 		chrome.pageAction.setTitle({tabId : tab.id, title: tooltipText})
 	};
