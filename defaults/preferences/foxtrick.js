@@ -738,6 +738,7 @@ pref("extensions.foxtrick.prefs.smallcopyicons", true);
 pref("extensions.foxtrick.prefs.anstoss2icons", false);
 pref("extensions.foxtrick.prefs.staminaCutoff", 7);
 pref("extensions.foxtrick.prefs.tableSeparator", " ");
+pref("extensions.foxtrick.prefs.translationKeys", false);
 pref("extensions.foxtrick.prefs.forumSymbol", "●");
 pref("extensions.foxtrick.prefs.xmlLoad", true);
 pref("extensions.foxtrick.prefs.module.MobileEnhancements.enabled", false);

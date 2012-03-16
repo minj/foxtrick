@@ -39,6 +39,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 
 	updateResources();
 	FoxtrickPrefs.setBool("featureHighlight", false);
+	FoxtrickPrefs.setBool("translationKeys", false);
 
 	// calls module.onLoad() after the extension is loaded
 	var i;

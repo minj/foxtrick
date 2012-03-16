@@ -216,6 +216,7 @@
 		<menuitem id="foxtrick-toolbar-preferences" oncommand="FoxtrickPrefs.show();"/>
 		<menuitem id="foxtrick-toolbar-deactivate" oncommand="FoxtrickPrefs.disable();" type="checkbox" autocheck="true"/>
 		<menuitem id="foxtrick-toolbar-highlight" oncommand="FoxtrickPrefs.highlight();" type="checkbox" autocheck="true"/>
+		<menuitem id="foxtrick-toolbar-translationKeys" oncommand="FoxtrickPrefs.translationKeys();" type="checkbox" autocheck="true"/>
 	</menupopup>
 </toolbarbutton>
 

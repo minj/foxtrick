@@ -345,6 +345,9 @@ if (Foxtrick.arch === "Gecko") {
 
 		getString : function(str, num) {
 			try {
+				if (FoxtrickPrefs.getBool("translationKeys"))
+					return str;
+				
 				if (num !== undefined) {
 					//Foxtrick.log('getString plural: ', str, ' ',num);
 					var get = PluralForm.makeGetter(this.plForm)[0];
@@ -503,6 +506,9 @@ if (Foxtrick.arch === "Sandboxed") {
 		
 		getString : function(str, num) {
 			try {
+				if (FoxtrickPrefs.getBool("translationKeys"))
+					return str;
+				
 				var plForm = this.plForm;
 				var value = this._getString(this.properties, str);
 				if (value === null) {

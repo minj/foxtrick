@@ -296,7 +296,14 @@ var FoxtrickPrefs = {
 		if (Foxtrick.arch === "Gecko") {
 			Foxtrick.entry.init();
 		}
-	}
+	},
+	translationKeys : function(sender) {
+		FoxtrickPrefs.setBool("translationKeys", !FoxtrickPrefs.getBool("translationKeys"));
+		Foxtrick.modules.UI.update(sender);
+		if (Foxtrick.arch === "Gecko") {
+			Foxtrick.entry.init();
+		}
+	}	
 };
 
 
