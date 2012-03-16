@@ -36,7 +36,8 @@ Foxtrick.modules["PlayerFilters"]={
 				// remove 'addFilterOptions'
 				filterSelect.removeChild(filterSelect.getElementsByTagName('option')[1]);
 				
-				var playerList = Foxtrick.Pages.Players.getPlayerList(doc);
+				var playerList = Foxtrick.modules.Core.getPlayerList();
+
 				var lastMatch = 0;
 				for (var i = 0; i < playerList.length; ++i) {
 					if (playerList[i].lastMatch) {
@@ -180,7 +181,7 @@ Foxtrick.modules["PlayerFilters"]={
 			var loading = Foxtrick.util.note.createLoading(doc);
 			doc.getElementsByTagName("p")[0].appendChild(loading);
 
-			var list = Foxtrick.Pages.Players.getPlayerList(doc);
+			var list = Foxtrick.modules.Core.getPlayerList();
 
 			var batchArgs = [];
 			Foxtrick.map(function(n) {

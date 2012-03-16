@@ -15,7 +15,7 @@ Foxtrick.modules["PlayerBirthday"]={
 		var birthdayFuture = new Array();
 		var birthdayPast = new Array();
 
-		var playerList = Foxtrick.Pages.Players.getPlayerList(doc);
+		var playerList = Foxtrick.modules.Core.getPlayerList();
 
 		for (var i = 0; i < playerList.length; ++i) {
 			if (playerList[i].age !== undefined) {
