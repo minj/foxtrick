@@ -29,8 +29,8 @@ function init()
 		initCoreModules();
 		initListeners();
 		getPageIds();
-		initTabs();
 		initTextAndValues();
+		initTabs();
 		locateFragment(window.location.toString()); // locate element by fragment
 		testPermissions();
 
@@ -139,13 +139,15 @@ function baseURI()
 	return window.location.toString().replace(/#.*$/, "");
 }
 
-function generateURI(tab, module)
+function generateURI(tab, module, id)
 {
 	var location = baseURI();
 	if (tab)
 		return location + "#tab=" + tab;
 	else if (module)
 		return location + "#module=" + module;
+	else if (id)
+		return location + "#" + id;
 }
 
 function initListeners()
@@ -216,6 +218,7 @@ function initTextAndValues()
 		if ($(this).attr("data-text"))
 			$(this).text(Foxtrickl10n.getString($(this).attr("data-text")));
 	});
+	
 	// initialize modules
 	$("body [module]").each(function() {
 		var module = $(this).attr("module");
@@ -317,6 +320,18 @@ function initMainTab()
 	// setup
 	$("#pref-setup-desc").html(Foxtrickl10n.getString("prefs.setup.desc")
 		.replace(/{(.+)}/, "<a href=\"http://code.google.com/p/foxtrick/issues/list\" target=\"_blank\">$1</a>"));
+
+	// add links to main tab prefs
+	$("#pane > div[x-on=main] h3").each(function() {
+		if ($(this).attr("id")) {
+			var link = document.createElement("a");
+			link.className = "module-link";
+			link.textContent = "¶";
+			link.href = generateURI(null, null, $(this).attr("id"));
+			link.title = Foxtrickl10n.getString('module.link');
+			$(this).append($(link));
+		}
+	});
 
 	// save preferences
 	$("#pref-save-do").click(function() {
