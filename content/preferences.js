@@ -29,8 +29,8 @@ function init()
 		initCoreModules();
 		initListeners();
 		getPageIds();
-		initTextAndValues();
 		initTabs();
+		initTextAndValues();
 		locateFragment(window.location.toString()); // locate element by fragment
 		testPermissions();
 
