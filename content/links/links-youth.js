@@ -29,7 +29,7 @@ Foxtrick.modules["LinksYouthOverview"]={
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, "div");
 			var header = Foxtrickl10n.getString(
-						"foxtrick.links.boxheader" );
+						"links.boxheader" );
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
 
@@ -87,7 +87,7 @@ Foxtrick.modules["LinksYouthPlayerDetail"]={
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, "div");
 			var header = Foxtrickl10n.getString(
-						"foxtrick.links.boxheader" );
+						"links.boxheader" );
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
 
@@ -127,7 +127,7 @@ Foxtrick.modules["LinksYouthTraining"]={
 		var links = Foxtrick.util.module.get("Links").getLinks("youthtraininglink", { "ownteamid":ownteamid,"teamid":teamid,"youthteamid":youthteamid, "owncountryid": owncountryid, 'server':server  }, doc,this);
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, "div");
-			var header = Foxtrickl10n.getString("foxtrick.links.boxheader");
+			var header = Foxtrickl10n.getString("links.boxheader");
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
 
@@ -170,7 +170,7 @@ Foxtrick.modules["LinksYouthPlayerList"]={
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, "div");
 			var header = Foxtrickl10n.getString(
-						"foxtrick.links.boxheader" );
+						"links.boxheader" );
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
 
@@ -212,7 +212,7 @@ Foxtrick.modules["LinksYouthMatchList"]={
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, "div");
 			var header = Foxtrickl10n.getString(
-						"foxtrick.links.boxheader" );
+						"links.boxheader" );
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
 
@@ -253,7 +253,7 @@ Foxtrick.modules["LinksYouthLeague"]={
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, "div");
 			var header = Foxtrickl10n.getString(
-						"foxtrick.links.boxheader" );
+						"links.boxheader" );
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.setAttribute( "id", ownBoxBodyId );
 

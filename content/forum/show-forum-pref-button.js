@@ -18,7 +18,7 @@ Foxtrick.modules["ShowForumPrefButton"]={
 		var strong = Foxtrick.createFeaturedElement(doc, this, "strong");
 		var link = doc.createElement("a");
 		link.href = "/MyHattrick/Preferences/ForumSettings.aspx";
-		link.textContent = Foxtrickl10n.getString("forum.preferences");
+		link.textContent = Foxtrickl10n.getString("ShowForumPrefButton.forumPreferences");
 		strong.appendChild(link);
 		myForums.appendChild(separator);
 		myForums.appendChild(strong);

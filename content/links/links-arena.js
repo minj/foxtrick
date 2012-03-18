@@ -27,7 +27,7 @@ Foxtrick.modules["LinksArena"]={
 				if (links.length > 0) {
 					ownBoxBody = Foxtrick.createFeaturedElement(doc, this, "div");
 					var header = Foxtrickl10n.getString(
-						"foxtrick.links.boxheader" );
+						"links.boxheader" );
 					var ownBoxId = "ft-links-box";
 					var ownBoxBodyId = "foxtrick_links_content";
 					ownBoxBody.setAttribute( "id", ownBoxBodyId );

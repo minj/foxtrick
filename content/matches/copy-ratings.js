@@ -33,10 +33,10 @@ Foxtrick.modules["CopyRatings"]={
 				var team1 = (teams == "both") || (teams == "home");
 				var team2 = (teams == "both") || (teams == "away");
 
-				var _d = Foxtrickl10n.getString("foxtrick.matchdetail.defence")+':';
-				var _m = Foxtrickl10n.getString("foxtrick.matchdetail.midfield")+':';
-				var _a = Foxtrickl10n.getString("foxtrick.matchdetail.attack")+':';
-				var _t = Foxtrickl10n.getString("foxtrick.matchdetail.total")+':';
+				var _d = Foxtrickl10n.getString("match.ratings.defence")+':';
+				var _m = Foxtrickl10n.getString("match.ratings.midfield")+':';
+				var _a = Foxtrickl10n.getString("match.ratings.attack")+':';
+				var _t = Foxtrickl10n.getString("match.ratings.total")+':';
 
 				var headder = doc.getElementsByTagName('h1')[0].textContent;
 				headder=Foxtrick.trim(headder);

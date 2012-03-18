@@ -119,7 +119,7 @@ Foxtrick.modules["ExtraShortcuts"]={
 						var img1 = doc.createElement('img');
 						img1.setAttribute( "class", this.LINKS[j].imgClass);
 						img1.src = "/Img/Icons/transparent.gif";
-						img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts." + this.LINKS[j].property);
+						img1.title = Foxtrickl10n.getString("ExtraShortcuts." + this.LINKS[j].property);
 						img1 = Foxtrick.makeFeaturedElement(img1, this);
 						
 						link.appendChild(img1);
@@ -143,7 +143,7 @@ Foxtrick.modules["ExtraShortcuts"]={
 					var img1 = doc.createElement('img');
 					img1.setAttribute( "class", "ftSCFtPrefs");
 					img1.src = "/Img/Icons/transparent.gif";
-					img1.title = Foxtrickl10n.getString("foxtrick.ExtraShortcuts.ftprefs");
+					img1.title = Foxtrickl10n.getString("ExtraShortcuts.ftprefs");
 					img1 = Foxtrick.makeFeaturedElement(img1, this);
 						
 					link.appendChild(img1);

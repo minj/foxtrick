@@ -18,7 +18,7 @@ Foxtrick.util.links = {
 			if (ownBoxBody==null) {
 				ownBoxBody = Foxtrick.createFeaturedElement(doc, Foxtrick.modules[pagemodule], "div");
 				var ownBoxBodyId = "foxtrick_links_content";
-				var header = Foxtrickl10n.getString("foxtrick.links.boxheader");
+				var header = Foxtrickl10n.getString("links.boxheader");
 				ownBoxBody.id = ownBoxBodyId;
 
 				var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
@@ -70,7 +70,7 @@ Foxtrick.util.links = {
 			for (var j = 0; j < alldivs.length; j++) {
 				if (alldivs[j].className=="sidebarBox" ) {
 					var header = alldivs[j].getElementsByTagName("h2")[0];
-					if (header.textContent == Foxtrickl10n.getString("foxtrick.links.boxheader")) {
+					if (header.textContent == Foxtrickl10n.getString("links.boxheader")) {
 						var pn=header.parentNode;
 						var hh=pn.removeChild(header);
 						var div = doc.createElement("div");

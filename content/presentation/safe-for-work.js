@@ -13,7 +13,7 @@ Foxtrick.modules["SafeForWork"]={
 			var textDiv = doc.createElement("div");
 
 				var desc = doc.createElement("p");
-				desc.textContent = Foxtrickl10n.getString("foxtrick.SafeForWork.icon");
+				desc.textContent = Foxtrickl10n.getString("SafeForWork.icon");
 				textDiv.appendChild(desc);
 
 				var textInput = doc.createElement("input");
@@ -21,7 +21,7 @@ Foxtrick.modules["SafeForWork"]={
 				textDiv.appendChild(textInput);
 
 				var desc2 = doc.createElement("p");
-				desc2.textContent = Foxtrickl10n.getString("foxtrick.SafeForWork.title");
+				desc2.textContent = Foxtrickl10n.getString("SafeForWork.title");
 				textDiv.appendChild(desc2);
 
 				var textInput2 = doc.createElement("input");

@@ -97,7 +97,7 @@ Foxtrick.modules["PlayerFilters"]={
 					|| Foxtrick.Pages.Players.isPropertyInList(playerList, "yellowCard")) {
 					var option = doc.createElement('option');
 					option.value = "cards";
-					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.Cards.label");
+					option.textContent = Foxtrickl10n.getString("TeamStats.Cards");
 					filterSelect.appendChild(option);
 				}
 
@@ -105,31 +105,31 @@ Foxtrick.modules["PlayerFilters"]={
 					|| Foxtrick.Pages.Players.isPropertyInList(playerList, "bruised")) {
 					var option = doc.createElement("option");
 					option.value = "injured";
-					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.Injured.label");
+					option.textContent = Foxtrickl10n.getString("TeamStats.Injured");
 					filterSelect.appendChild(option);
 				}
 
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "transferListed")) {
 					var option = doc.createElement("option");
 					option.value = "transfer-listed";
-					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.TransferListed.label");
+					option.textContent = Foxtrickl10n.getString("TeamStats.TransferListed");
 					filterSelect.appendChild(option);
 
 					var option = doc.createElement("option");
 					option.value = "not-transfer-listed";
-					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.NotTransferListed.label");
+					option.textContent = Foxtrickl10n.getString("TeamStats.NotTransferListed");
 					filterSelect.appendChild(option);
 				}
 
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "lastMatch")) {
 					var option = doc.createElement("option");
 					option.value = "played-latest";
-					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.PlayedLatest.label");
+					option.textContent = Foxtrickl10n.getString("TeamStats.PlayedLatest");
 					filterSelect.appendChild(option);
 
 					var option = doc.createElement("option");
 					option.value = "not-played-latest";
-					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.NotPlayedLatest.label");
+					option.textContent = Foxtrickl10n.getString("TeamStats.NotPlayedLatest");
 					filterSelect.appendChild(option);
 				}
 
@@ -145,7 +145,7 @@ Foxtrick.modules["PlayerFilters"]={
 				if (Foxtrick.Pages.Players.isOldiesPage(doc) && Foxtrick.util.api.authorized()) {
 					var option = doc.createElement("option");
 					option.value = "active";
-					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.ActivePlayers.label");
+					option.textContent = Foxtrickl10n.getString("TeamStats.ActivePlayers");
 					filterSelect.appendChild(option);
 				}
 
@@ -153,7 +153,7 @@ Foxtrick.modules["PlayerFilters"]={
 				if (faceCards.length > 0) {
 					var option = doc.createElement("option");
 					option.value = "face";
-					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.Pictures.label");
+					option.textContent = Foxtrickl10n.getString("TeamStats.Pictures");
 					filterSelect.appendChild(option);
 				}
 				
@@ -161,12 +161,12 @@ Foxtrick.modules["PlayerFilters"]={
 					if(Foxtrick.Pages.Players.isPropertyInList(playerList, "motherClubBonus")) {
 						var option = doc.createElement('option');
 						option.value = "homegrown-player";
-						option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.HomeGrownPlayers.label");
+						option.textContent = Foxtrickl10n.getString("TeamStats.HomeGrownPlayers");
 						filterSelect.appendChild(option);
 						
 						var option = doc.createElement('option');
 						option.value = "purchased-player";
-						option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.PurchasedPlayers.label");
+						option.textContent = Foxtrickl10n.getString("TeamStats.PurchasedPlayers");
 						filterSelect.appendChild(option);
 					}
 				}

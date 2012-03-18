@@ -35,7 +35,6 @@ Foxtrick.modules["AttVsDef"]={
 		} else {
 			bodydiv.textContent = Foxtrickl10n.getString("matches.wronglang");
 		}
-		var suppstats = Foxtrickl10n.getString( "matches.suppstats" );
 		Foxtrick.addBoxToSidebar(doc, header, bodydiv, 1);
 
 		if (Foxtrick.util.layout.isStandard(doc) && FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 0) bodydiv.parentNode.style.padding='8px 6px 15px';
@@ -59,10 +58,10 @@ Foxtrick.modules["AttVsDef"]={
 
 		Foxtrick.util.inject.cssLink(doc, Foxtrick.InternalPath+"resources/css/matchgraphs.css");
 
-		var rText = Foxtrickl10n.getString( "foxtrick.matchdetail.rightshort" );
-		var cText = Foxtrickl10n.getString( "foxtrick.matchdetail.centershort" );
-		var lText = Foxtrickl10n.getString( "foxtrick.matchdetail.leftshort" );
-		var iText = Foxtrickl10n.getString( "foxtrick.matchdetail.ifkshort" );
+		var rText = Foxtrickl10n.getString( "match.ratings.rightshort" );
+		var cText = Foxtrickl10n.getString( "match.ratings.centershort" );
+		var lText = Foxtrickl10n.getString( "match.ratings.leftshort" );
+		var iText = Foxtrickl10n.getString( "match.ratings.ifkshort" );
 
 		var barsdiv = doc.createElement("div");
 		barsdiv.className = "foxtrick-showgraphs";

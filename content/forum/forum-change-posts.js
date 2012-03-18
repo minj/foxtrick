@@ -16,7 +16,7 @@ Foxtrick.modules["ForumChangePosts"]={
 			// part of copypostid
 			var link = doc.createElement("a");
 			link.className = "ft-copy-small ft-link";
-			link.title = Foxtrickl10n.getString("foxtrick.CopyPostID");
+			link.title = Foxtrickl10n.getString("copy.PostID");
 			link = Foxtrick.makeFeaturedElement(link, Foxtrick.modules.CopyPostID);
 			var img = doc.createElement("img");
 			img.src = "/Img/Icons/transparent.gif";
