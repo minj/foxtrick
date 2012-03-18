@@ -66,14 +66,14 @@ Foxtrick.modules["PlayerBirthday"]={
 			}
 		};
 
-		addType(parentDiv, Foxtrickl10n.getString('copy.BirthdayToday'), birthdayToday);
-		addType(parentDiv, Foxtrickl10n.getString('copy.BirthdayNextWeek'), birthdayFuture);
-		addType(parentDiv, Foxtrickl10n.getString('copy.BirthdayLastWeek'), birthdayPast);
+		addType(parentDiv, Foxtrickl10n.getString('PlayerBirthday.BirthdayToday'), birthdayToday);
+		addType(parentDiv, Foxtrickl10n.getString('PlayerBirthday.BirthdayNextWeek'), birthdayFuture);
+		addType(parentDiv, Foxtrickl10n.getString('PlayerBirthday.BirthdayLastWeek'), birthdayPast);
 
 		// Append the box to the sidebar
 		if (birthdayToday.length + birthdayFuture.length + birthdayPast.length > 0) {
 			Foxtrick.addBoxToSidebar(doc,
-				Foxtrickl10n.getString("copy.Birthdays"),
+				Foxtrickl10n.getString("PlayerBirthday.boxheader"),
 				parentDiv, 10);
 		}
 	}

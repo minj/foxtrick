@@ -46,7 +46,7 @@ Foxtrick.modules["ConfirmActions"]={
 						var bidText = doc.getElementById(ids.BID.TEXT_ID);
 						var confirm = doc.getElementById(ids.BID.CONFIRM_ID);
 						if (bidAlert && bidText && !confirm) {
-							var msgTemplate = Foxtrickl10n.getString("foxtrick.bidconfirmation");
+							var msgTemplate = Foxtrickl10n.getString("ConfirmActions.bid");
 							var price = bidText.value
 								.split("").reverse().join("")
 								.replace(new RegExp("(.{3})(?!$)", "g"), "$1 ")
@@ -97,7 +97,7 @@ Foxtrick.modules["ConfirmActions"]={
 						var sellText = doc.getElementById(ids.SELL.TEXT_ID);
 						var confirm = doc.getElementById("ft-sell-confirm");
 						if (sellText && !confirm) {
-							var msgTemplate = Foxtrickl10n.getString("foxtrick.tlconfirmation");
+							var msgTemplate = Foxtrickl10n.getString("ConfirmActions.transferlist");
 							var price = sellText.value
 								.split("").reverse().join("")
 								.replace(new RegExp("(.{3})(?!$)", "g"), "$1 ")
@@ -149,7 +149,7 @@ Foxtrick.modules["ConfirmActions"]={
 					// add a confirm to webpage's javascript link
 					var sOnclick = submitLink.href.replace(/javascript\:/, "");
 					if (sOnclick.search(/confirm/) == -1){ // already added?
-						var sConfirmString = Foxtrickl10n.getString("foxtrick.ntremoveconfirmation");
+						var sConfirmString = Foxtrickl10n.getString("ConfirmActions.ntremove");
 						sOnclick = "javascript:if(confirm(\"" + sConfirmString + "\")){" + sOnclick + ";}";
 						submitLink.href = sOnclick;
 					}
@@ -177,10 +177,10 @@ Foxtrick.modules["ConfirmActions"]={
 							if (!isNaN(amount) && roleIndex !== 0) {
 								var msgTemplate;
 								if (actionIndex === 0) {
-									msgTemplate = Foxtrickl10n.getString("foxtrick.staffconfirmationhire");
+									msgTemplate = Foxtrickl10n.getString("ConfirmActions.hirestaff");
 								}
 								else if (actionIndex === 1) {
-									msgTemplate = Foxtrickl10n.getString("foxtrick.staffconfirmationsack");
+									msgTemplate = Foxtrickl10n.getString("ConfirmActions.sackstaff");
 								}
 								var msg = msgTemplate.replace(/\%num/, amount).replace(/\%kind/, roleStr);
 								var confirm = Foxtrick.util.note.create(doc, msg,

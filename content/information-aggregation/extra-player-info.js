@@ -31,13 +31,13 @@ Foxtrick.modules["ExtraPlayerInfo"]={
 					var trainerSkillStr = Foxtrickl10n.getLevelByTypeAndValue("levels", player.trainerData.skill);
 					var trainerTypeStr = "";
 					if (player.trainerData.type == 0) {
-						trainerTypeStr = Foxtrickl10n.getString('foxtrick.defensiveTrainer');
+						trainerTypeStr = Foxtrickl10n.getString('ExtraPlayerInfo.defensiveTrainer');
 					}
 					else if (player.trainerData.type == 1) {
-						trainerTypeStr = Foxtrickl10n.getString('foxtrick.offensiveTrainer');
+						trainerTypeStr = Foxtrickl10n.getString('ExtraPlayerInfo.offensiveTrainer');
 					}
 					else {
-						trainerTypeStr = Foxtrickl10n.getString('foxtrick.balancedTrainer');
+						trainerTypeStr = Foxtrickl10n.getString('ExtraPlayerInfo.balancedTrainer');
 					}
 					trainerTypeStr = trainerTypeStr.split('%s');
 					

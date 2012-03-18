@@ -146,7 +146,7 @@ Foxtrick.modules["TeamStats"]={
 			};
 
 			if (FoxtrickPrefs.isModuleOptionEnabled("TeamStats", "General")) {
-				addHeader(Foxtrickl10n.getString("General"));
+				addHeader(Foxtrickl10n.getString("TeamStats.General"));
 				if (totalTSI) {
 					var avgTSI = Math.round(totalTSI / playerList.length);
 					var data = doc.createElement("span");

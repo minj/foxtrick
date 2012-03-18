@@ -232,7 +232,7 @@ Foxtrick.util.time = {
 		if(time_sec >= 86400) {
 			Days = Math.floor(time_sec/86400);
 			time_sec = time_sec-Days*86400;
-			datespan.textContent += Days + '' + Foxtrickl10n.getString("foxtrick.datetimestrings.days", Days);
+			datespan.textContent += Days + '' + Foxtrickl10n.getString("datetimestrings.days", Days);
 		}
 		// only days returned
 		if (useShort) {
@@ -277,7 +277,7 @@ Foxtrick.util.time = {
 				var b = doc.createElement('b');
 				b.textContent = print_S;
 				datespan.appendChild(b);
-				datespan.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.datetimestrings.short_seasons",print_S)));
+				datespan.appendChild(doc.createTextNode(Foxtrickl10n.getString("datetimestrings.short_seasons",print_S)));
 			}
 			if ((print_W != 0 && print_S != '') || useFull) 
 				datespan.appendChild(doc.createTextNode(' '));
@@ -285,7 +285,7 @@ Foxtrick.util.time = {
 				var b = doc.createElement('b');
 				b.textContent = print_W;
 				datespan.appendChild(b);
-				datespan.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.datetimestrings.short_weeks",print_W)));
+				datespan.appendChild(doc.createTextNode(Foxtrickl10n.getString("datetimestrings.short_weeks",print_W)));
 			}
 			if (print_D != 0 || useFull) 
 				datespan.appendChild(doc.createTextNode(' '));
@@ -293,7 +293,7 @@ Foxtrick.util.time = {
 				var b = doc.createElement('b');
 				b.textContent = print_D;
 				datespan.appendChild(b);
-				datespan.appendChild(doc.createTextNode(Foxtrickl10n.getString("foxtrick.datetimestrings.short_days",print_D)));
+				datespan.appendChild(doc.createTextNode(Foxtrickl10n.getString("datetimestrings.short_days",print_D)));
 			}
 			
 			return datespan;
@@ -307,13 +307,13 @@ Foxtrick.util.time = {
 		{
 			Hours = Math.floor(time_sec/3600);
 			time_sec = time_sec-Hours*3600;
-			datespan.textContent += Hours + Foxtrickl10n.getString("foxtrick.datetimestrings.hours",Hours) + ' ';
+			datespan.textContent += Hours + Foxtrickl10n.getString("datetimestrings.hours",Hours) + ' ';
 		}
 
 		//minutes
 		Minutes = Math.floor(time_sec/60);
 		time_sec = time_sec - Minutes * 60;
-		datespan.textContent += Minutes + Foxtrickl10n.getString("foxtrick.datetimestrings.minutes",Minutes);
+		datespan.textContent += Minutes + Foxtrickl10n.getString("datetimestrings.minutes",Minutes);
 
 		return datespan;
 	}

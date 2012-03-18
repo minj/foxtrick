@@ -194,7 +194,7 @@ Foxtrick.modules["HistoryStats"]={
 
 			if (doc.getElementById('ft_HistoryStats')===null) {
 				var	ownBoxBody = Foxtrick.createFeaturedElement(doc, this, "div");
-				var header = Foxtrickl10n.getString("HistoryStats.label");
+				var header = Foxtrickl10n.getString("HistoryStats.boxheader");
 				var ownBoxBodyId = "ft_HistoryStats";
 				ownBoxBody.setAttribute( "id", ownBoxBodyId );
 				ownBoxBody.appendChild(table);

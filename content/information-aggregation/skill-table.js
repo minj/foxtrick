@@ -1087,7 +1087,7 @@ Foxtrick.modules["SkillTable"]={
 			var switchView = doc.createElement("div");
 			var switchViewLink = doc.createElement("a");
 			switchViewLink.appendChild(doc.createTextNode(Foxtrickl10n.getString("Switch_view")));
-			switchViewLink.setAttribute("title", Foxtrickl10n.getString("skillTable.switchView"));
+			switchViewLink.setAttribute("title", Foxtrickl10n.getString("Switch_view.title"));
 			Foxtrick.listen(switchViewLink, "click", function() {
 					var tablediv = doc.getElementById("ft_skilltablediv");
 					var container = tablediv.getElementsByClassName("ft_skilltable_container")[0];

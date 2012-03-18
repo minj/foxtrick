@@ -135,7 +135,7 @@ Foxtrick.modules["ExtendedPlayerDetailsWage"]={
 			span.textContent = 
 				Foxtrick.formatNumber(wage * 16, "\u00a0") + "\u00a0"
 				+ currency
-				+ Foxtrickl10n.getString("foxtrick.ExtendedPlayerDetails.perseason");		
+				+ Foxtrickl10n.getString("ExtendedPlayerDetails.perseason");		
 			wageElm.appendChild(span);
 			Foxtrick.makeFeaturedElement(span, this);
 		}

@@ -50,7 +50,7 @@ Foxtrick.modules["CopyMatchID"]={
 					}
 					var matchid = href.replace(/.+matchID=/i, "").match(/^\d+/)[0];
 
-					images[j].setAttribute('title',images[j].title+ ' : '+Foxtrickl10n.getString( 'foxtrick.copymatchid'));
+					images[j].setAttribute('title',images[j].title+ ' : '+Foxtrickl10n.getString( 'copy.matchid'));
 					images[j] = Foxtrick.makeFeaturedElement(images[j], this);
 					var link=doc.createElement('a');
 					link.appendChild(images[j].cloneNode(true));
@@ -81,7 +81,7 @@ Foxtrick.modules["CopyMatchID"]={
 				}
 				var matchid = href.replace(/.+matchID=/i, "").match(/^\d+/)[0];
 
-				images[i].setAttribute('title',images[i].title+ ' : '+Foxtrickl10n.getString( 'foxtrick.copymatchid'));
+				images[i].setAttribute('title',images[i].title+ ' : '+Foxtrickl10n.getString( 'copy.matchid'));
 				images[i] = Foxtrick.makeFeaturedElement(images[i], this);
 				var link=doc.createElement('a');
 				link.appendChild(images[i].cloneNode(true));

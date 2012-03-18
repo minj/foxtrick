@@ -100,7 +100,7 @@ Foxtrick.modules["Filter"]={
 
 				var td = doc.createElement('td');
 				td.colSpan = 2;
-				td.textContent = Foxtrickl10n.getString("minimum") + "\u00a0";
+				td.textContent = Foxtrickl10n.getString("Filters.minimum") + "\u00a0";
 				tr.appendChild(td);
 				var input = doc.createElement("input");
 				input.style.width = "90px";
@@ -113,7 +113,7 @@ Foxtrick.modules["Filter"]={
 
 				var td = doc.createElement('td');
 				td.colSpan = 2;
-				td.textContent = Foxtrickl10n.getString("maximum") + "\u00a0";
+				td.textContent = Foxtrickl10n.getString("Filters.maximum") + "\u00a0";
 				tr.appendChild(td);
 				var input = doc.createElement("input");
 				input.style.width = "90px";
@@ -218,7 +218,7 @@ Foxtrick.modules["Filter"]={
 				insertBefore.parentNode.insertBefore(filterdiv, insertBefore);
 				
 				var h2 = doc.createElement('h2');
-				h2.textContent = Foxtrickl10n.getString("Filters");
+				h2.textContent = Foxtrickl10n.getString("Filters.label");
 				filterdiv.appendChild(h2);
 				
 				var table = doc.createElement('table');
@@ -235,7 +235,7 @@ Foxtrick.modules["Filter"]={
 
 				var buttonFilter = doc.createElement('input');
 				buttonFilter.type = 'button';
-				buttonFilter.value = Foxtrickl10n.getString("Filters.filter");
+				buttonFilter.value = Foxtrickl10n.getString("Filters.ok");
 				buttonFilter.setAttribute('page', page);
 				filterdiv.appendChild(buttonFilter);
 				Foxtrick.listen(buttonFilter, 'click', filterResults, false);

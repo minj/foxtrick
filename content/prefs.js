@@ -139,7 +139,7 @@ var FoxtrickPrefs = {
 	},
 
 	getModuleDescription : function(module) {
-		var name = "foxtrick." + module + ".desc";
+		var name = "module." + module + ".desc";
 		if (Foxtrickl10n.isStringAvailable(name) )
 			return Foxtrickl10n.getString(name);
 		else {
@@ -149,7 +149,7 @@ var FoxtrickPrefs = {
 	},
 
 	getModuleElementDescription : function(module, option) {
-		var name = "foxtrick." + module + "." + option + ".desc";
+		var name = "module." + module + "." + option + ".desc";
 		if (Foxtrickl10n.isStringAvailable(name))
 			return Foxtrickl10n.getString(name);
 		else {

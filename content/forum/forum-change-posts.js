@@ -250,7 +250,7 @@ Foxtrick.modules["ForumChangePosts"]={
 		copy_posting_link_archive.setAttribute('href','javascript:void(0);');
 		copy_posting_link_archive.title = Foxtrickl10n.getString('CopyPosting').replace('%s', Foxtrickl10n.getString('CopyPosting.style.ht-ml'));
 		copy_posting_link_archive.setAttribute('is_archive_link','true');
-		copy_posting_link_archive.textContent = Foxtrickl10n.getString( 'foxtrick.linkscustom.copy' );
+		copy_posting_link_archive.textContent = Foxtrickl10n.getString( 'button.copy' );
 		copy_posting_link_archive.setAttribute('class','foxtrick-copyfromarchive');
 		copy_posting_link_archive = Foxtrick.makeFeaturedElement(copy_posting_link_archive, Foxtrick.modules.CopyPosting);
 		Foxtrick.listen(copy_posting_link_archive, "click", copy_posting_to_clipboard, false);
@@ -302,7 +302,7 @@ Foxtrick.modules["ForumChangePosts"]={
 								spoiler_show.className = 'spoiler ft-dummy';
 								var open_link = doc.createElement('a');
 								open_link.href = "javascript:showSpoiler('quoteNum" + numSpoilerQuotes + "');";
-								open_link.textContent = Foxtrickl10n.getString('ShowNestedQuotes');
+								open_link.textContent = Foxtrickl10n.getString('FormatPostingText.FormatPostingText.ShowNestedQuotes');
 								spoiler_show.appendChild(open_link);
 								
 								var spoiler_hidden = doc.createElement('blockquote');

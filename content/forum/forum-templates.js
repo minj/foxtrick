@@ -46,12 +46,12 @@ Foxtrick.modules["ForumTemplates"]={
 			var title = Foxtrick.stripHTML(inputTitle.value);
 
 			if (title.search(/\[|\]/)!=-1)
-				Foxtrick.alert(Foxtrickl10n.getString('template_title_illegal'));
+				Foxtrick.alert(Foxtrickl10n.getString('ForumTemplates.templateTitle.error'));
 			else if (FoxtrickPrefs.addPrefToList(templatesPrefList, '[title='+title+']'+text)) {
 		   		appendTemplate('[title='+title+']'+text);
 			}
 			else
-				Foxtrick.alert(Foxtrickl10n.getString('template_exists'));
+				Foxtrick.alert(Foxtrickl10n.getString('ForumTemplates.make.error'));
 
 			var inputTitleDiv = doc.getElementById("ForumTemplatesinputTitleDivId");
 			inputTitleDiv.parentNode.removeChild(inputTitleDiv);
@@ -61,7 +61,7 @@ Foxtrick.modules["ForumTemplates"]={
 			 try {
 				var msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
 				var text = Foxtrick.stripHTML(msg_window.value);
-				if (text==""){ Foxtrick.alert(Foxtrickl10n.getString('template_exists')); return;}
+				if (text==""){ Foxtrick.alert(Foxtrickl10n.getString('ForumTemplates.make.error')); return;}
 				var inputTitleDiv = doc.getElementById("ForumTemplatesinputTitleDivId");
 				var inputTitle = doc.getElementById ("ForumTemplatesInputTitleId");
 				if (!inputTitleDiv) {
@@ -69,7 +69,7 @@ Foxtrick.modules["ForumTemplates"]={
 					inputTitleDiv.setAttribute("id", "ForumTemplatesinputTitleDivId");
 					inputTitleDiv.setAttribute("style", "padding-top:5px;");
 
-					var TitleDesc = doc.createTextNode(Foxtrickl10n.getString('template_title'));
+					var TitleDesc = doc.createTextNode(Foxtrickl10n.getString('ForumTemplates.templateTitle'));
 					inputTitleDiv.appendChild(TitleDesc);
 
 					inputTitle = doc.createElement ("input");
@@ -128,7 +128,7 @@ Foxtrick.modules["ForumTemplates"]={
 			Foxtrick.toggleClass(div,'hidden'); 
 		};
 		var removeTemplate = function(ev) {
-			if (Foxtrick.confirmDialog(Foxtrickl10n.getString('delete_template_ask'))) {
+			if (Foxtrick.confirmDialog(Foxtrickl10n.getString('ForumTemplates.delete.ask'))) {
 				FoxtrickPrefs.delListPref(templatesPrefList, ev.target.msg);
 				ev.target.parentNode.parentNode.removeChild(ev.target.parentNode);
 			}
@@ -198,7 +198,7 @@ Foxtrick.modules["ForumTemplates"]={
 		new_button.setAttribute("href", "javascript:void(0)");
 		new_button.setAttribute("style", "margin-right:10px;");
 		new_button.setAttribute("tabIndex", "3");
-		new_button.textContent = Foxtrickl10n.getString('make_template_from_post');
+		new_button.textContent = Foxtrickl10n.getString('ForumTemplates.make');
 		Foxtrick.listen(new_button, "click", addNewTitle, false);
 		controls_div.appendChild(new_button);
 
@@ -210,7 +210,7 @@ Foxtrick.modules["ForumTemplates"]={
 			show_button.setAttribute("href", "javascript:void(0);");
 			show_button.setAttribute("style", "margin-right:10px;");
 			//show_button.setAttribute("tabIndex", "3");
-			show_button.textContent = Foxtrickl10n.getString('show_templates');
+			show_button.textContent = Foxtrickl10n.getString('ForumTemplates.show');
 			Foxtrick.listen(show_button, "click", ShowTemplates, false);
 			controls_div.appendChild(show_button);
 
@@ -220,7 +220,7 @@ Foxtrick.modules["ForumTemplates"]={
 			hide_button.className='hidden'
 			hide_button.setAttribute("style", "margin-right:10px;");
 			//hide_button.setAttribute("tabIndex", "3");
-			hide_button.textContent = Foxtrickl10n.getString('hide_templates');
+			hide_button.textContent = Foxtrickl10n.getString('ForumTemplates.hide');
 			Foxtrick.listen(hide_button, "click", HideTemplates, false);
 			controls_div.appendChild(hide_button);
 		}

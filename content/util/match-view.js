@@ -172,7 +172,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 				var liveImg = doc.createElement("img");
 				liveImg.className = "matchHTLive";
 				liveImg.src = "/Img/Icons/transparent.gif";
-				liveImg.alt = liveImg.title = Foxtrickl10n.getString("htLive");
+				liveImg.alt = liveImg.title = Foxtrickl10n.getString("matchView.htLive");
 				liveLink.appendChild(liveImg);
 				resultCell.appendChild(liveLink);
 			}

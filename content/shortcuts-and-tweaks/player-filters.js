@@ -410,7 +410,7 @@ Foxtrick.modules["PlayerFilters"]={
 		// players
 		var option = doc.createElement("option");
 		option.value = "all";
-		option.textContent = "-- " + Foxtrickl10n.getString("Filters") + " --";
+		option.textContent = "-- " + Foxtrickl10n.getString("Filters.label") + " --";
 		filterSelect.appendChild(option);
 
 		var option = doc.createElement("option");
