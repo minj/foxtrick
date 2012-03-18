@@ -216,7 +216,7 @@ function initTextAndValues()
 	// initialize text
 	$("body [data-text]").each(function() {
 		if ($(this).attr("data-text"))
-			$(this).text(Foxtrickl10n.getString($(this).attr("data-text")));
+			$(this).prepend(document.createTextNode(Foxtrickl10n.getString($(this).attr("data-text"))));
 	});
 	
 	// initialize modules
@@ -320,7 +320,7 @@ function initMainTab()
 	// setup
 	$("#pref-setup-desc").html(Foxtrickl10n.getString("prefs.setup.desc")
 		.replace(/{(.+)}/, "<a href=\"http://code.google.com/p/foxtrick/issues/list\" target=\"_blank\">$1</a>"));
-/*
+
 	// add links to main tab prefs
 	$("#pane > div[x-on=main] h3").each(function() {
 		if ($(this).attr("id")) {
@@ -332,7 +332,7 @@ function initMainTab()
 			$(this).append($(link));
 		}
 	});
-*/
+
 	// save preferences
 	$("#pref-save-do").click(function() {
 		var savePrefs = $("#pref-save-pref").is(":checked");
