@@ -84,7 +84,7 @@ Foxtrick.modules["ManagerButtons"]={
 				parentDiv = Foxtrick.createFeaturedElement(doc, this, "div");
 				parentDiv.id = "foxtrick_addactionsbox_parentDiv";
 				Foxtrick.addBoxToSidebar(doc,
-					Foxtrickl10n.getString("foxtrick.tweaks.actions"),
+					Foxtrickl10n.getString("sidebarBox.actions"),
 					parentDiv, -1);
 			}
 		}
@@ -101,7 +101,7 @@ Foxtrick.modules["ManagerButtons"]={
 		if (isSupporter) {
 			var guestbookLink = Foxtrick.createFeaturedElement(doc, this, "a");
 			guestbookLink.href = "/Club/Manager/Guestbook.aspx?teamid=" + teamId;
-			guestbookLink.title = Foxtrickl10n.getString("foxtrick.tweaks.writeinguestbook");
+			guestbookLink.title = Foxtrickl10n.getString("managerButtons.writeInGuestbook");
 			guestbookLink.id = this.GUESTBOOK_LINK_ID;
 
 			if (Foxtrick.util.layout.isStandard(doc)) {
@@ -109,12 +109,12 @@ Foxtrick.modules["ManagerButtons"]={
 				Foxtrick.addImage(doc, guestbookLink, {
 					style : "padding: 0px 5px 0px 0px",
 					className : "actionIcon",
-					alt : Foxtrickl10n.getString( "foxtrick.tweaks.writeinguestbook" ), 
+					alt : Foxtrickl10n.getString( "managerButtons.writeInGuestbook" ), 
 					src : Foxtrick.InternalPath+"resources/img/guestbook.png"
 				});
 			}
 			else {
-				guestbookLink.textContent = Foxtrickl10n.getString("foxtrick.tweaks.writeinguestbook");
+				guestbookLink.textContent = Foxtrickl10n.getString("managerButtons.writeInGuestbook");
 			}
 			parentDiv.insertBefore(guestbookLink, insertBefore);
 		}

@@ -23,7 +23,7 @@ Foxtrick.modules["Ratings"]={
 			var row = Foxtrick.insertFeaturedRow(ratingstable, this, -1);
 			var cell = row.insertCell(0);
 			cell.setAttribute("colspan", 3);
-			cell.textContent = Foxtrickl10n.getString( "foxtrick.matches.wronglang" );
+			cell.textContent = Foxtrickl10n.getString( "matches.wronglang" );
 			return;
 		}
 

@@ -50,7 +50,7 @@ Foxtrick.modules["MatchIncome"]={
 		tr2.appendChild(td2a);
 		tr2.appendChild(td2b);
 		td2a.className = "ch";
-		td2a.textContent = Foxtrickl10n.getString('foxtrick.matches.income');
+		td2a.textContent = Foxtrickl10n.getString('matches.income');
 		td2b.className = "nowrap";
 		td2b.textContent = Foxtrick.formatNumber(sum, ' ')+' '+Foxtrick.util.currency.getSymbol();
 	}

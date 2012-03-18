@@ -350,7 +350,7 @@ function initMainTab()
 
 	// restore to default
 	$("#pref-stored-restore").click(function() {
-		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("prefs.delete_foxtrick_branches_ask"))) {
+		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("prefs.restoreDefault.ask"))) {
 			FoxtrickPrefs.cleanupBranch();
 			window.location.href = window.location.href + '&imported=true';
 			window.location.reload();
@@ -360,7 +360,7 @@ function initMainTab()
 	// delete OAuth token/secret
 	$("#pref-delete-token").click(function() {
 		var teamid = $("#select-delete-token-teamids")[0].value;
-		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("prefs.delete_oauth_ask").replace('%s',teamid))) {
+		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("prefs.deleteToken.ask").replace('%s',teamid))) {
 			var array = FoxtrickPrefs.getAllKeysOfBranch('oauth.'+teamid);
 			for (var i = 0; i < array.length; i++) {
 				FoxtrickPrefs.deleteValue(array[i]);
@@ -372,7 +372,7 @@ function initMainTab()
 
 	// disable all
 	$("#pref-stored-disable").click(function() {
-		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("prefs.disable_all_foxtrick_modules_ask"))) {
+		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("prefs.disableAllModules.ask"))) {
 			Foxtrick.log('preferences: diable all');
 			FoxtrickPrefs.disableAllModules();
 			window.location.href = window.location.href + '&imported=true';
@@ -382,7 +382,7 @@ function initMainTab()
 
 	// revoke permissions
 	$("#pref-revoke-permissions").click(function() {
-		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("prefs.revoke_permissions_ask"))) {
+		if (Foxtrick.confirmDialog(Foxtrickl10n.getString("prefs.revokePermissions.ask"))) {
 			Foxtrick.log('preferences: revoke permissions');
 			revokePermissions();
 		}
@@ -978,7 +978,7 @@ function checkPermissions() {
 				if ($(id).attr("permission-granted")=="false") {
 					var showSaved = (i==neededPermissions.length-1) ? true : false;
 					needsPermissions = true;
-					getPermission(neededPermissions[i], Foxtrickl10n.getString("prefs.permissionsHint").replace("%s", neededPermissions[i].module), showSaved);
+					getPermission(neededPermissions[i], Foxtrickl10n.getString("prefs.getPermissions.alert").replace("%s", neededPermissions[i].module), showSaved);
 				}
 			}
 		}

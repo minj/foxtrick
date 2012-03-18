@@ -184,7 +184,7 @@ Foxtrick.modules["HTMSPrediction"]={
 			var row = htmstable.insertRow(0);
 			var cell = row.insertCell(0);
 			cell.setAttribute("colspan" , 3);
-			cell.textContent = Foxtrickl10n.getString("foxtrick.matches.wronglang");
+			cell.textContent = Foxtrickl10n.getString("matches.wronglang");
 			return;
 		}
 

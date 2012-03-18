@@ -32,7 +32,7 @@ Foxtrick.modules["ForumChangePosts"]={
 					var insertBefore = idLink.parentNode.parentNode.parentNode; // cfWrapper
 					Foxtrick.copyStringToClipboard("[post=Oops]".replace("Oops", postId));
 					var note = Foxtrick.util.note.add(doc, insertBefore, "ft-post-id-copy-note-" + postId.replace(/\D/g, "-"),
-						Foxtrickl10n.getString("foxtrick.tweaks.postidcopied").replace("%s", postId),
+						Foxtrickl10n.getString("copy.copied.postid").replace("%s", postId),
 						null, true);
 				}, false);
 			idLink.parentNode.insertBefore(link, idLink);
@@ -184,7 +184,7 @@ Foxtrick.modules["ForumChangePosts"]={
 			Foxtrick.copyStringToClipboard(message);
 
 			var note = Foxtrick.util.note.add(doc, insertBefore, "ft-posting-copy-note-" + post_id1.replace(/\D/, "-"),
-				Foxtrickl10n.getString("foxtrick.tweaks.postingcopied").replace("%s", post_id1),
+				Foxtrickl10n.getString("copy.copied.posting").replace("%s", post_id1),
 				null, true);
 			}
 			catch (e) {

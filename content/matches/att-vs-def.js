@@ -19,7 +19,7 @@ Foxtrick.modules["AttVsDef"]={
 		if (ratingstable == null) return;
 		if (Foxtrick.Pages.Match.isWalkOver(ratingstable)) return;
 
-		var header = Foxtrickl10n.getString("foxtrick.matches.attackdefensebars" );
+		var header = Foxtrickl10n.getString("matches.attackdefensebars" );
 
 		var bodydiv=Foxtrick.createFeaturedElement(doc, this, 'div');
 		var bodydivid = "foxtrick_attvsdefbars_content";
@@ -33,9 +33,9 @@ Foxtrick.modules["AttVsDef"]={
 				this._newStyleBars(doc, ratingstable, bodydiv);
 			}
 		} else {
-			bodydiv.textContent = Foxtrickl10n.getString("foxtrick.matches.wronglang");
+			bodydiv.textContent = Foxtrickl10n.getString("matches.wronglang");
 		}
-		var suppstats = Foxtrickl10n.getString( "foxtrick.matches.suppstats" );
+		var suppstats = Foxtrickl10n.getString( "matches.suppstats" );
 		Foxtrick.addBoxToSidebar(doc, header, bodydiv, 1);
 
 		if (Foxtrick.util.layout.isStandard(doc) && FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 0) bodydiv.parentNode.style.padding='8px 6px 15px';
@@ -71,7 +71,7 @@ Foxtrick.modules["AttVsDef"]={
 		tablediv.className = "foxtrick-graphs-table";
 		var p = doc.createElement('div');
 		p.className = "foxtrick-graphs-header";
-		p.textContent = Foxtrickl10n.getString( "foxtrick.matches.defense" ) + " - " + Foxtrickl10n.getString( "foxtrick.matches.attack" );
+		p.textContent = Foxtrickl10n.getString( "matches.defense" ) + " - " + Foxtrickl10n.getString( "matches.attack" );
 		barsdiv.appendChild(p);
 		this._createGraphRow(doc, tablediv, ratingsArray[0][0], ratingsArray[5][1], rText, lText, ratingsTextArray[0][0], ratingsTextArray[5][1]);
 		this._createGraphRow(doc, tablediv, ratingsArray[1][0], ratingsArray[4][1], cText, cText, ratingsTextArray[1][0], ratingsTextArray[4][1]);
@@ -87,7 +87,7 @@ Foxtrick.modules["AttVsDef"]={
 		tablediv.className = "foxtrick-graphs-table";
 		var p = doc.createElement('div');
 		p.className = "foxtrick-graphs-header";
-		p.textContent = Foxtrickl10n.getString( "foxtrick.matches.attack" ) + " - " + Foxtrickl10n.getString( "foxtrick.matches.defense" );
+		p.textContent = Foxtrickl10n.getString( "matches.attack" ) + " - " + Foxtrickl10n.getString( "matches.defense" );
 		barsdiv.appendChild(p);
 		this._createGraphRow(doc, tablediv, ratingsArray[3][0], ratingsArray[2][1], rText, lText, ratingsTextArray[3][0], ratingsTextArray[2][1]);
 		this._createGraphRow(doc, tablediv, ratingsArray[4][0], ratingsArray[1][1], cText, cText, ratingsTextArray[4][0], ratingsTextArray[1][1]);
@@ -104,7 +104,7 @@ Foxtrick.modules["AttVsDef"]={
 			tablediv.className = "foxtrick-graphs-table";
 			var p = doc.createElement('div');
 			p.className = "foxtrick-graphs-header";
-			p.textContent = Foxtrickl10n.getString( "foxtrick.matches.indfreekick" );
+			p.textContent = Foxtrickl10n.getString( "matches.indfreekick" );
 			barsdiv.appendChild(p);
 			this._createGraphRow(doc, tablediv, ratingsArray[6][0], ratingsArray[7][1], iText, iText, ratingsTextArray[6][0], ratingsTextArray[7][1]);
 			this._createGraphRow(doc, tablediv, ratingsArray[7][0], ratingsArray[6][1], iText, iText, ratingsTextArray[7][0], ratingsTextArray[6][1]);
@@ -126,14 +126,14 @@ Foxtrick.modules["AttVsDef"]={
 		 var strangediv = doc.createElement('div');
 		 strangediv.setAttribute('style','clear: both;')
 
-		var rdefText = Foxtrickl10n.getString( "foxtrick.matches.right" )+' '+Foxtrickl10n.getString( "foxtrick.matches.defense" );
-		var lattText = Foxtrickl10n.getString( "foxtrick.matches.left" )+' '+Foxtrickl10n.getString( "foxtrick.matches.attack" );
-		var cdefText = Foxtrickl10n.getString( "foxtrick.matches.center" )+' '+Foxtrickl10n.getString( "foxtrick.matches.defense" );
-		var cattText = Foxtrickl10n.getString( "foxtrick.matches.center" )+' '+Foxtrickl10n.getString( "foxtrick.matches.attack" );
-		var rattText = Foxtrickl10n.getString( "foxtrick.matches.right" )+' '+Foxtrickl10n.getString( "foxtrick.matches.attack" );
-		var ldefText = Foxtrickl10n.getString( "foxtrick.matches.left" )+' '+Foxtrickl10n.getString( "foxtrick.matches.defense" );
-		var ifkdefText = Foxtrickl10n.getString( "foxtrick.matches.indfreekick" )+' '+Foxtrickl10n.getString( "foxtrick.matches.defense" );
-		var ifkattText = Foxtrickl10n.getString( "foxtrick.matches.indfreekick" )+' '+Foxtrickl10n.getString( "foxtrick.matches.attack" );
+		var rdefText = Foxtrickl10n.getString( "matches.right" )+' '+Foxtrickl10n.getString( "matches.defense" );
+		var lattText = Foxtrickl10n.getString( "matches.left" )+' '+Foxtrickl10n.getString( "matches.attack" );
+		var cdefText = Foxtrickl10n.getString( "matches.center" )+' '+Foxtrickl10n.getString( "matches.defense" );
+		var cattText = Foxtrickl10n.getString( "matches.center" )+' '+Foxtrickl10n.getString( "matches.attack" );
+		var rattText = Foxtrickl10n.getString( "matches.right" )+' '+Foxtrickl10n.getString( "matches.attack" );
+		var ldefText = Foxtrickl10n.getString( "matches.left" )+' '+Foxtrickl10n.getString( "matches.defense" );
+		var ifkdefText = Foxtrickl10n.getString( "matches.indfreekick" )+' '+Foxtrickl10n.getString( "matches.defense" );
+		var ifkattText = Foxtrickl10n.getString( "matches.indfreekick" )+' '+Foxtrickl10n.getString( "matches.attack" );
 
 		var labelArray=new Array(	rdefText+' - '+lattText,
 									cdefText+' - '+cattText,
@@ -141,8 +141,8 @@ Foxtrick.modules["AttVsDef"]={
 									rattText+' - '+ldefText,
 									cattText+' - '+cdefText,
 									lattText+' - '+rdefText,
-									ifkdefText+' - '+Foxtrickl10n.getString( "foxtrick.matches.attack" ),
-									ifkattText+' - '+Foxtrickl10n.getString( "foxtrick.matches.defense" ));
+									ifkdefText+' - '+Foxtrickl10n.getString( "matches.attack" ),
+									ifkattText+' - '+Foxtrickl10n.getString( "matches.defense" ));
 
 		for (var i=0; i<percentArray.length; i++) {
 			bodydiv.appendChild( doc.createTextNode(labelArray[i]) );
