@@ -69,7 +69,7 @@ Foxtrick.modules["ForumStripHattrickLinks"]={
 					textarea.value = strip(textarea.value);
 				}
 				else {
-					if (confirm(Foxtrickl10n.getString("ForumStripHattrickLinks.ask"))) {
+					if (confirm(Foxtrickl10n.getString("foxtrick.confirmstripserver"))) {
 						textarea.value = strip(textarea.value);
 					}
 				}

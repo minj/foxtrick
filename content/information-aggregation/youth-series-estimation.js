@@ -66,7 +66,7 @@ Foxtrick.modules["YouthSeriesEstimation"]={
 			var days = Math.floor(timeDiff / timeDay);
 			var hours = Math.floor((timeDiff - days * timeDay) / timeHour);
 
-			var str = "(" + days + " " + Foxtrickl10n.getString("datetimestrings.days", days) + " " + hours + " " + Foxtrickl10n.getString("datetimestrings.hours",hours) + ")";
+			var str = "(" + days + " " + Foxtrickl10n.getString("foxtrick.datetimestrings.days", days) + " " + hours + " " + Foxtrickl10n.getString("foxtrick.datetimestrings.hours",hours) + ")";
 			var info = Foxtrick.createFeaturedElement(doc, this, "span");
 			info.className = "ft-youth-series-estimation";
 			info.textContent = str;

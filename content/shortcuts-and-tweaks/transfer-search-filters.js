@@ -57,7 +57,7 @@ Foxtrick.modules["TransferSearchFilters"]={
 		};
 		var addNewFilter = function() {
 			try {
-				var filtername = prompt(Foxtrickl10n.getString("TransferSearchFilters.enterName"));
+				var filtername = prompt(Foxtrickl10n.getString("foxtrick.transferfilter.Enter_filter_name"));
 				if (filtername == '') return;
 
 				var formString = "<root>";
@@ -156,7 +156,7 @@ Foxtrick.modules["TransferSearchFilters"]={
 				}
 			};
 			var deleteFilter = function(ev) {
-				if (Foxtrick.confirmDialog(Foxtrickl10n.getString('TransferSearchFilters.deleteFilter.ask'))) {
+				if (Foxtrick.confirmDialog(Foxtrickl10n.getString('foxtrick.transferfilter.delete_filter_ask'))) {
 				  FoxtrickPrefs.delListPref( "transferfilterlist", ev.target.msg );
 				  FoxtrickPrefs.deleteValue("transferfilter." + ev.target.msg);
 					var el = doc.getElementById("filter_" + ev.target.msg);
@@ -196,14 +196,14 @@ Foxtrick.modules["TransferSearchFilters"]={
 		};
 
 		var ownBoxBody = doc.createElement("div");
-		var header = Foxtrickl10n.getString("TransferSearchFilters.boxheader");
+		var header = Foxtrickl10n.getString("foxtrick.transferfilter.Foxtrick_Filters");
 
 		// add link
 		var addlink = Foxtrick.createFeaturedElement(doc, this, "a");
 		addlink.id = "ft-transfer-search-filter-new";
 		addlink.className = "ft-link";
 		Foxtrick.listen(addlink, "click", addNewFilter, false);
-		addlink.textContent = Foxtrickl10n.getString("TransferSearchFilters.saveFilter");
+		addlink.textContent = Foxtrickl10n.getString("foxtrick.transferfilter.save_new_filter");
 		ownBoxBody.appendChild(addlink);
 
 		var namelist = FoxtrickPrefs.getList("transferfilterlist");

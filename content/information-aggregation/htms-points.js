@@ -128,7 +128,7 @@ Foxtrick.modules["HTMSPoints"]={
 		}
 		else if (Foxtrick.isPage("players", doc) && AddToPlayerList) {
 			var playersHtml = doc.getElementsByClassName("playerInfo");
-			var players = Foxtrick.modules.Core.getPlayerList();
+			var players = Foxtrick.Pages.Players.getPlayerList(doc);
 
 			var skillOrder = ["keeper", "playmaking", "passing", "winger", "defending", "scoring", "setPieces"];
 			var htmsValues = ['parate', 'regia', 'passaggi', 'cross', 'difesa', 'attacco', 'cp'];

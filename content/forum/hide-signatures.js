@@ -29,9 +29,9 @@ Foxtrick.modules["HideSignatures"]={
 						var showSig = [];
 						showSig[p] = doc.createElement("a");
 						showSig[p].setAttribute("id","foxtrick-st-link"+p);
-						showSig[p].title = Foxtrickl10n.getString('HideSignatures.signaturetoggle');
+						showSig[p].title = Foxtrickl10n.getString('foxtrick.conferences.signaturetoggle');
 						showSig[p].className="foxtrick-signaturetoggle";
-						showSig[p].textContent = Foxtrickl10n.getString('HideSignatures.signaturetoggle');
+						showSig[p].textContent = Foxtrickl10n.getString('foxtrick.conferences.signaturetoggle');
 						showSig[p].href = "javascript:showHide('" + sigId + "');";
 						showSig[p] = Foxtrick.makeFeaturedElement(showSig[p], this );
 						// append the show sig link to the right footer

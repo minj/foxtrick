@@ -16,7 +16,7 @@ Foxtrick.modules["ForumChangePosts"]={
 			// part of copypostid
 			var link = doc.createElement("a");
 			link.className = "ft-copy-small ft-link";
-			link.title = Foxtrickl10n.getString("copy.PostID");
+			link.title = Foxtrickl10n.getString("foxtrick.CopyPostID");
 			link = Foxtrick.makeFeaturedElement(link, Foxtrick.modules.CopyPostID);
 			var img = doc.createElement("img");
 			img.src = "/Img/Icons/transparent.gif";
@@ -32,7 +32,7 @@ Foxtrick.modules["ForumChangePosts"]={
 					var insertBefore = idLink.parentNode.parentNode.parentNode; // cfWrapper
 					Foxtrick.copyStringToClipboard("[post=Oops]".replace("Oops", postId));
 					var note = Foxtrick.util.note.add(doc, insertBefore, "ft-post-id-copy-note-" + postId.replace(/\D/g, "-"),
-						Foxtrickl10n.getString("copy.copied.postid").replace("%s", postId),
+						Foxtrickl10n.getString("foxtrick.tweaks.postidcopied").replace("%s", postId),
 						null, true);
 				}, false);
 			idLink.parentNode.insertBefore(link, idLink);
@@ -184,7 +184,7 @@ Foxtrick.modules["ForumChangePosts"]={
 			Foxtrick.copyStringToClipboard(message);
 
 			var note = Foxtrick.util.note.add(doc, insertBefore, "ft-posting-copy-note-" + post_id1.replace(/\D/, "-"),
-				Foxtrickl10n.getString("copy.copied.posting").replace("%s", post_id1),
+				Foxtrickl10n.getString("foxtrick.tweaks.postingcopied").replace("%s", post_id1),
 				null, true);
 			}
 			catch (e) {
@@ -250,7 +250,7 @@ Foxtrick.modules["ForumChangePosts"]={
 		copy_posting_link_archive.setAttribute('href','javascript:void(0);');
 		copy_posting_link_archive.title = Foxtrickl10n.getString('CopyPosting').replace('%s', Foxtrickl10n.getString('CopyPosting.style.ht-ml'));
 		copy_posting_link_archive.setAttribute('is_archive_link','true');
-		copy_posting_link_archive.textContent = Foxtrickl10n.getString( 'button.copy' );
+		copy_posting_link_archive.textContent = Foxtrickl10n.getString( 'foxtrick.linkscustom.copy' );
 		copy_posting_link_archive.setAttribute('class','foxtrick-copyfromarchive');
 		copy_posting_link_archive = Foxtrick.makeFeaturedElement(copy_posting_link_archive, Foxtrick.modules.CopyPosting);
 		Foxtrick.listen(copy_posting_link_archive, "click", copy_posting_to_clipboard, false);
@@ -302,7 +302,7 @@ Foxtrick.modules["ForumChangePosts"]={
 								spoiler_show.className = 'spoiler ft-dummy';
 								var open_link = doc.createElement('a');
 								open_link.href = "javascript:showSpoiler('quoteNum" + numSpoilerQuotes + "');";
-								open_link.textContent = Foxtrickl10n.getString('FormatPostingText.FormatPostingText.ShowNestedQuotes');
+								open_link.textContent = Foxtrickl10n.getString('ShowNestedQuotes');
 								spoiler_show.appendChild(open_link);
 								
 								var spoiler_hidden = doc.createElement('blockquote');

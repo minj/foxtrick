@@ -365,7 +365,7 @@ Foxtrick.modules.MatchSimulator={
 				// add copy button
 				var copyButton = doc.createElement('input');
 				copyButton.type = 'button';
-				copyButton.value = Foxtrickl10n.getString("button.copy");
+				copyButton.value = Foxtrickl10n.getString('Copy');
 				copyButton.id = 'ft-copyRatingsButton';
 				fieldOverlay.appendChild(copyButton);
 				Foxtrick.listen(copyButton, 'click', copyRatings, false);

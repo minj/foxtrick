@@ -135,7 +135,7 @@ Foxtrick.modules["EmbedMedia"]={
 		}
 		
 		var doEmbedActualImageUrl = function(target){
-			var title = Foxtrickl10n.getString("EmbedMedia.EmbeddedImage");
+			var title = Foxtrickl10n.getString("foxtrick.EmbedMedia.EmbeddedImage");
 			target.nextSibling.firstChild.setAttribute('target','_blank');
 			Foxtrick.addImage(doc, target.nextSibling.firstChild, {src:target.nextSibling.firstChild.href, title: title, alt: title, style:'max-width:100%'});
 		}

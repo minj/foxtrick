@@ -36,8 +36,7 @@ Foxtrick.modules["PlayerFilters"]={
 				// remove 'addFilterOptions'
 				filterSelect.removeChild(filterSelect.getElementsByTagName('option')[1]);
 				
-				var playerList = Foxtrick.modules.Core.getPlayerList();
-
+				var playerList = Foxtrick.Pages.Players.getPlayerList(doc);
 				var lastMatch = 0;
 				for (var i = 0; i < playerList.length; ++i) {
 					if (playerList[i].lastMatch) {
@@ -97,7 +96,7 @@ Foxtrick.modules["PlayerFilters"]={
 					|| Foxtrick.Pages.Players.isPropertyInList(playerList, "yellowCard")) {
 					var option = doc.createElement('option');
 					option.value = "cards";
-					option.textContent = Foxtrickl10n.getString("TeamStats.Cards");
+					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.Cards.label");
 					filterSelect.appendChild(option);
 				}
 
@@ -105,31 +104,31 @@ Foxtrick.modules["PlayerFilters"]={
 					|| Foxtrick.Pages.Players.isPropertyInList(playerList, "bruised")) {
 					var option = doc.createElement("option");
 					option.value = "injured";
-					option.textContent = Foxtrickl10n.getString("TeamStats.Injured");
+					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.Injured.label");
 					filterSelect.appendChild(option);
 				}
 
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "transferListed")) {
 					var option = doc.createElement("option");
 					option.value = "transfer-listed";
-					option.textContent = Foxtrickl10n.getString("TeamStats.TransferListed");
+					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.TransferListed.label");
 					filterSelect.appendChild(option);
 
 					var option = doc.createElement("option");
 					option.value = "not-transfer-listed";
-					option.textContent = Foxtrickl10n.getString("TeamStats.NotTransferListed");
+					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.NotTransferListed.label");
 					filterSelect.appendChild(option);
 				}
 
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "lastMatch")) {
 					var option = doc.createElement("option");
 					option.value = "played-latest";
-					option.textContent = Foxtrickl10n.getString("TeamStats.PlayedLatest");
+					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.PlayedLatest.label");
 					filterSelect.appendChild(option);
 
 					var option = doc.createElement("option");
 					option.value = "not-played-latest";
-					option.textContent = Foxtrickl10n.getString("TeamStats.NotPlayedLatest");
+					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.NotPlayedLatest.label");
 					filterSelect.appendChild(option);
 				}
 
@@ -145,7 +144,7 @@ Foxtrick.modules["PlayerFilters"]={
 				if (Foxtrick.Pages.Players.isOldiesPage(doc) && Foxtrick.util.api.authorized()) {
 					var option = doc.createElement("option");
 					option.value = "active";
-					option.textContent = Foxtrickl10n.getString("TeamStats.ActivePlayers");
+					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.ActivePlayers.label");
 					filterSelect.appendChild(option);
 				}
 
@@ -153,7 +152,7 @@ Foxtrick.modules["PlayerFilters"]={
 				if (faceCards.length > 0) {
 					var option = doc.createElement("option");
 					option.value = "face";
-					option.textContent = Foxtrickl10n.getString("TeamStats.Pictures");
+					option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.Pictures.label");
 					filterSelect.appendChild(option);
 				}
 				
@@ -161,12 +160,12 @@ Foxtrick.modules["PlayerFilters"]={
 					if(Foxtrick.Pages.Players.isPropertyInList(playerList, "motherClubBonus")) {
 						var option = doc.createElement('option');
 						option.value = "homegrown-player";
-						option.textContent = Foxtrickl10n.getString("TeamStats.HomeGrownPlayers");
+						option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.HomeGrownPlayers.label");
 						filterSelect.appendChild(option);
 						
 						var option = doc.createElement('option');
 						option.value = "purchased-player";
-						option.textContent = Foxtrickl10n.getString("TeamStats.PurchasedPlayers");
+						option.textContent = Foxtrickl10n.getString("foxtrick.TeamStats.PurchasedPlayers.label");
 						filterSelect.appendChild(option);
 					}
 				}
@@ -181,7 +180,7 @@ Foxtrick.modules["PlayerFilters"]={
 			var loading = Foxtrick.util.note.createLoading(doc);
 			doc.getElementsByTagName("p")[0].appendChild(loading);
 
-			var list = Foxtrick.modules.Core.getPlayerList();
+			var list = Foxtrick.Pages.Players.getPlayerList(doc);
 
 			var batchArgs = [];
 			Foxtrick.map(function(n) {
@@ -410,7 +409,7 @@ Foxtrick.modules["PlayerFilters"]={
 		// players
 		var option = doc.createElement("option");
 		option.value = "all";
-		option.textContent = "-- " + Foxtrickl10n.getString("Filters.label") + " --";
+		option.textContent = "-- " + Foxtrickl10n.getString("Filters") + " --";
 		filterSelect.appendChild(option);
 
 		var option = doc.createElement("option");

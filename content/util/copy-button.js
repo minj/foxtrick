@@ -63,7 +63,7 @@ Foxtrick.util.copyButton.add = function(doc, text) {
 		}
 
 		Foxtrick.addBoxToSidebar(doc,
-			Foxtrickl10n.getString("sidebarBox.actions"), link, -1);
+			Foxtrickl10n.getString("foxtrick.tweaks.actions"), link, -1);
 	}
 	return link;
 };

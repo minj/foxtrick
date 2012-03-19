@@ -182,8 +182,8 @@ Foxtrick.util.api = {
 			if (!clear_cache_span) {
 				clear_cache_span = doc.createElement('span');
 				clear_cache_span.id='ft_clear_cache';
-				clear_cache_span.textContent = Foxtrickl10n.getString('api.clearCache');
-				clear_cache_span.title = Foxtrickl10n.getString('api.clearCache.title');
+				clear_cache_span.textContent = Foxtrickl10n.getString('action.clearCache');
+				clear_cache_span.title = Foxtrickl10n.getString('action.clearCache.title');
 				Foxtrick.listen(clear_cache_span, 'click',Foxtrick.util.api.clearCache,false);
 				bottom.insertBefore(clear_cache_span, bottom.firstChild);
 			}

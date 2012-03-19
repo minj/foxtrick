@@ -184,7 +184,7 @@ Foxtrick.modules["HTMSPrediction"]={
 			var row = htmstable.insertRow(0);
 			var cell = row.insertCell(0);
 			cell.setAttribute("colspan" , 3);
-			cell.textContent = Foxtrickl10n.getString("matches.wronglang");
+			cell.textContent = Foxtrickl10n.getString("foxtrick.matches.wronglang");
 			return;
 		}
 
@@ -195,19 +195,13 @@ Foxtrick.modules["HTMSPrediction"]={
 		var rattack=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[5].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[5].cells[2]));
 		var cattack=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[6].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[6].cells[2]));
 		var lattack=new Array(Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[7].cells[1]), Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[7].cells[2]));
-		if ( Foxtrick.Pages.Match.hasIndSetPieces(ratingstable) ) {
-			var tactics=new Array(Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[14].cells[1]), Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[14].cells[2]));
-			var tacticsLevel=new Array(Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[15].cells[1]), Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[15].cells[2]));
-		}
-		else  {
-			var tactics=new Array(Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[10].cells[1]), Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[10].cells[2]));
-			var tacticsLevel=new Array(Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[11].cells[1]), Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[11].cells[2]));
-		}
+		var tactics=new Array(Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[tacticRow].cells[1]), Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[tacticRow].cells[2]));
+		var tacticsLevel=new Array(Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[tacticRow+1].cells[1]), Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[tacticRow+1].cells[2]));
 
 		var htmsDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
 		htmsDiv.id = 'htmsMatchDivId';
 		ratingstable.parentNode.insertBefore(htmsDiv, ratingstable.nextSibling);
-Foxtrick.log(tactics, tacticsLevel);
+
 		this.insertPrediction(doc,htmsDiv, midfieldLevel, rdefence, cdefence, ldefence, rattack, cattack, lattack, tactics, tacticsLevel);
 
 	}

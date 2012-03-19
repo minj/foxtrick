@@ -15,7 +15,7 @@ Foxtrick.modules["PlayerBirthday"]={
 		var birthdayFuture = new Array();
 		var birthdayPast = new Array();
 
-		var playerList = Foxtrick.modules.Core.getPlayerList();
+		var playerList = Foxtrick.Pages.Players.getPlayerList(doc);
 
 		for (var i = 0; i < playerList.length; ++i) {
 			if (playerList[i].age !== undefined) {
@@ -66,14 +66,14 @@ Foxtrick.modules["PlayerBirthday"]={
 			}
 		};
 
-		addType(parentDiv, Foxtrickl10n.getString('PlayerBirthday.BirthdayToday'), birthdayToday);
-		addType(parentDiv, Foxtrickl10n.getString('PlayerBirthday.BirthdayNextWeek'), birthdayFuture);
-		addType(parentDiv, Foxtrickl10n.getString('PlayerBirthday.BirthdayLastWeek'), birthdayPast);
+		addType(parentDiv, Foxtrickl10n.getString('foxtrick.tweaks.BirthdayToday'), birthdayToday);
+		addType(parentDiv, Foxtrickl10n.getString('foxtrick.tweaks.BirthdayNextWeek'), birthdayFuture);
+		addType(parentDiv, Foxtrickl10n.getString('foxtrick.tweaks.BirthdayLastWeek'), birthdayPast);
 
 		// Append the box to the sidebar
 		if (birthdayToday.length + birthdayFuture.length + birthdayPast.length > 0) {
 			Foxtrick.addBoxToSidebar(doc,
-				Foxtrickl10n.getString("PlayerBirthday.boxheader"),
+				Foxtrickl10n.getString("foxtrick.tweaks.Birthdays"),
 				parentDiv, 10);
 		}
 	}

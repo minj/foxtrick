@@ -8,24 +8,24 @@
 Foxtrick.modules["RapidId"]={
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ["all"],
-	CSS: Foxtrick.InternalPath+"resources/css/RapidId.css",
+	CSS: Foxtrick.InternalPath+"resources/css/rapidid.css",
 
 	run: function(doc) {
 		var options = [
 			{ value: "manager", text: "Manager", url: "Club/Manager/?userId=%n" },
-			{ value: "senior", text: "RapidId.Senior" },
+			{ value: "senior", text: "Senior" },
 			{ value: "senior-team", text: "Team", url: "Club/?TeamID=%n" },
 			{ value: "senior-series", text: "Series", url: "World/Series/Default.aspx?LeagueLevelUnitID=%n" },
 			{ value: "senior-player", text: "Player", url: "Club/Players/Player.aspx?playerId=%n" },
 			{ value: "senior-match", text: "Match", url: "Club/Matches/Match.aspx?matchID=%n" },
-			{ value: "youth", text: "RapidId.Youth" },
+			{ value: "youth", text: "Youth" },
 			{ value: "youth-team", text: "Team", url: "Club/Youth/Default.aspx?YouthTeamID=%n" },
 			{ value: "youth-series", text: "Series", url: "World/Series/YouthSeries.aspx?YouthLeagueId=%n" },
 			{ value: "youth-player", text: "Player", url: "Club/Players/YouthPlayer.aspx?YouthPlayerID=%n" },
 			{ value: "youth-match", text: "Match", url: "Club/Matches/Match.aspx?matchID=%n&SourceSystem=Youth" },
-			{ value: "tournament", text: "RapidId.tournaments" },
+			{ value: "tournament", text: "Tournaments" },
 			{ value: "match-tournament", text: "Match", url: "Club/Matches/Match.aspx?matchID=%n&SourceSystem=HTOIntegrated" },
-			{ value: "series-tournament", text: "RapidId.tournament", url: "Community/Tournaments/Tournament.aspx?tournamentId=%n" }
+			{ value: "series-tournament", text: "Tournament", url: "Community/Tournaments/Tournament.aspx?tournamentId=%n" }
 		];
 		var setSelected = function(val) {
 			FoxtrickPrefs.setString("module.RapidId.selected", val);
@@ -122,7 +122,7 @@ Foxtrick.modules["RapidId"]={
 
 				// the <input type="button" /> element
 				button.setAttribute("type", "submit");
-				button.setAttribute("value", Foxtrickl10n.getString("RapidId.view"));
+				button.setAttribute("value", Foxtrickl10n.getString("View"));
 				Foxtrick.listen(button, "click", view, true);
 
 				// hide rightnow on demand
@@ -155,7 +155,7 @@ Foxtrick.modules["RapidId"]={
 
 		// indicator
 		indicator.id = "ft_rapidid_indicator";
-		var viewById = Foxtrickl10n.getString("RapidId.viewById");
+		var viewById = Foxtrickl10n.getString("foxtrick.RapidId.ViewById");
 		indicator.appendChild(doc.createTextNode(viewById));
 		Foxtrick.listen(indicator, "click", function(ev) {
 				ev.preventDefault();

@@ -233,7 +233,7 @@ Foxtrick.modules["MyMonitor"]={
 
 				var uplink = doc.createElement('input');
 				uplink.type="image";
-				uplink.title=Foxtrickl10n.getString('button.up');
+				uplink.title=Foxtrickl10n.getString('sort.up');
 				uplink.className="up";
 				uplink.src="../../Img/Icons/transparent.gif"
 				Foxtrick.listen(uplink, 'click', move("up", team.id), false);
@@ -241,7 +241,7 @@ Foxtrick.modules["MyMonitor"]={
 
 				var downlink = doc.createElement('input');
 				downlink.type="image";
-				downlink.title=Foxtrickl10n.getString('button.down');
+				downlink.title=Foxtrickl10n.getString('sort.down');
 				downlink.className="down";
 				downlink.src="../../Img/Icons/transparent.gif"
 				downlink.setAttribute('teamid',team.id);

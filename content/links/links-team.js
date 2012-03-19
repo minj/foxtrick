@@ -31,7 +31,7 @@ Foxtrick.modules["LinksTeam"]={
 		var links = Foxtrick.util.module.get("Links").getLinks("teamlink", teaminfo, doc, this );
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, "div");
-			var header = Foxtrickl10n.getString("links.boxheader" );
+			var header = Foxtrickl10n.getString("foxtrick.links.boxheader" );
 			var ownBoxBodyId = "foxtrick_links_content";
 			ownBoxBody.id = ownBoxBodyId;
 

@@ -16,12 +16,9 @@ Foxtrick.modules["Core"]={
 	],
 
 	SELF_TEAM_INFO : {},
-	PLAYER_LIST : {},
 
 	run : function(doc) {
 		this.parseSelfTeamInfo(doc);
-		if (Foxtrick.isPage('players', doc)) 
-			this.parsePlayerList(doc);
 		this.updateLastHost(doc);
 		this.showVersion(doc);
 		this.featureHighlight(doc);
@@ -51,7 +48,7 @@ Foxtrick.modules["Core"]={
 						label.textContent = 'FoxTrick '+Foxtrick.version();
 						div.appendChild(label);
 						var label = doc.createElement('p');
-						label.textContent = Foxtrickl10n.getString('releaseNotes.showFor');
+						label.textContent = Foxtrickl10n.getString('foxtrick.versionReleaseNotes');
 						div.appendChild(label);
 						var select = doc.createElement('select');
 						select.id = 'pref-version-release-notes';
@@ -203,16 +200,7 @@ Foxtrick.modules["Core"]={
 		}
 	},
 
-	getSelfTeamInfo : function(){
+	getSelfTeamInfo : function() {
 		return this.SELF_TEAM_INFO;
-	},
-	
-	parsePlayerList : function(doc) {
-		this.PLAYER_LIST = Foxtrick.Pages.Players.getPlayerList(doc);
-	},
-	
-	getPlayerList : function() {	
-		return this.PLAYER_LIST;
-	},
-
+	}
 };

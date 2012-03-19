@@ -104,7 +104,7 @@ Foxtrick.log = function() {
 
 // environment info shown in log as header
 Foxtrick.log.header = function(doc) {
-	var headString = Foxtrickl10n.getString("log.env")
+	var headString = Foxtrickl10n.getString("foxtrick.log.env")
 				.replace(/%1/, Foxtrick.version())
 				.replace(/%2/, Foxtrick.arch + ' ' + Foxtrick.platform)
 				.replace(/%3/, FoxtrickPrefs.getString("htLanguage"))
@@ -139,7 +139,7 @@ Foxtrick.log.flush = (function() {
 				div = doc.createElement("div");
 				div.id = "ft-log";
 				var header = doc.createElement("h2");
-				header.textContent = Foxtrickl10n.getString("log.header");
+				header.textContent = Foxtrickl10n.getString("foxtrick.log.header");
 				div.appendChild(header);
 				var consoleDiv = doc.createElement("pre");
 				consoleDiv.textContent = Foxtrick.log.header(doc);

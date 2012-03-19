@@ -101,7 +101,7 @@ Foxtrick.modules["TeamStats"]={
 			var addRow = function(label, data, filter, title) {
 				var row = doc.createElement("tr");
 				var addFilterShortcut = function (filter, title) {
-					row.title = Foxtrickl10n.getString("TeamStats.FilterFor")+' '+title;
+					row.title = Foxtrickl10n.getString("foxtrick.TeamStats.FilterFor")+' '+title;
 					row.setAttribute('style','cursor:pointer')
 					Foxtrick.listen(row, "click", function(ev) {
 						var filterSelect = doc.getElementById('foxtrick-filter-select');
@@ -146,7 +146,7 @@ Foxtrick.modules["TeamStats"]={
 			};
 
 			if (FoxtrickPrefs.isModuleOptionEnabled("TeamStats", "General")) {
-				addHeader(Foxtrickl10n.getString("TeamStats.General"));
+				addHeader(Foxtrickl10n.getString("General"));
 				if (totalTSI) {
 					var avgTSI = Math.round(totalTSI / playerList.length);
 					var data = doc.createElement("span");
@@ -169,12 +169,12 @@ Foxtrick.modules["TeamStats"]={
 				}
 				if (Foxtrick.Pages.Players.isYouthPlayersPage(doc)) {
 					var youngerThanNineteen = playerList.length - olderThanNineteen;
-					var row = addRow(Foxtrickl10n.getString("TeamStats.PlayerNotToOld"), youngerThanNineteen);
+					var row = addRow(Foxtrickl10n.getString("foxtrick.TeamStats.PlayerNotToOld.label"), youngerThanNineteen);
 					if (youngerThanNineteen < 9) {
 						row.className = "red";
 					}
 					if (olderThanNineteen) {
-						var row = addRow(Foxtrickl10n.getString("TeamStats.PlayerToOld"), olderThanNineteen);
+						var row = addRow(Foxtrickl10n.getString("foxtrick.TeamStats.PlayerToOld.label"), olderThanNineteen);
 						row.className = "red";
 					}
 				}
@@ -222,31 +222,31 @@ Foxtrick.modules["TeamStats"]={
 					var img = doc.createElement("img");
 					img.src = "/Img/Icons/dollar.gif";
 					img.className = "transferListed";
-					addRow(img, transferListed, "transfer-listed", Foxtrickl10n.getString("TeamStats.TransferListed"));
+					addRow(img, transferListed, "transfer-listed", Foxtrickl10n.getString("foxtrick.TeamStats.TransferListed.label"));
 				}
 				if (yellowCards > 0) {
 					var img = doc.createElement("img");
 					img.src = "/Img/Icons/yellow_card.gif";
 					img.className = "cardsOne";
-					addRow(img, yellowCards, "cards",Foxtrickl10n.getString("TeamStats.Cards"));
+					addRow(img, yellowCards, "cards",Foxtrickl10n.getString("foxtrick.TeamStats.Cards.label"));
 				}
 				if (twoYellowCards > 0) {
 					var img = doc.createElement("img");
 					img.src = "/Img/Icons/dual_yellow_card.gif";
 					img.className = "cardsTwo";
-					addRow(img, twoYellowCards, "cards",Foxtrickl10n.getString("TeamStats.Cards"));
+					addRow(img, twoYellowCards, "cards",Foxtrickl10n.getString("foxtrick.TeamStats.Cards.label"));
 				}
 				if (redCards > 0) {
 					var img = doc.createElement("img");
 					img.src = "/Img/Icons/red_card.gif";
 					img.className = "cardsOne";
-					addRow(img, redCards, "cards",Foxtrickl10n.getString("TeamStats.Cards"));
+					addRow(img, redCards, "cards",Foxtrickl10n.getString("foxtrick.TeamStats.Cards.label"));
 				}
 				if (bruised > 0) {
 					var img = doc.createElement("img");
 					img.src = "/Img/Icons/bruised.gif";
 					img.className = "injuryBruised";
-					addRow(img, bruised, "injured",Foxtrickl10n.getString("TeamStats.Injured"));
+					addRow(img, bruised, "injured",Foxtrickl10n.getString("foxtrick.TeamStats.Injured.label"));
 				}
 				if (injured > 0) {
 					var img = doc.createElement("img");
@@ -261,7 +261,7 @@ Foxtrick.modules["TeamStats"]={
 					data.appendChild(weeks);
 					data.appendChild(doc.createTextNode(")"));
 
-					addRow(img, data, "injured",Foxtrickl10n.getString("TeamStats.Injured"));
+					addRow(img, data, "injured",Foxtrickl10n.getString("foxtrick.TeamStats.Injured.label"));
 				}
 			}
 			if (FoxtrickPrefs.isModuleOptionEnabled("TeamStats", "Current_league")) {
@@ -295,7 +295,7 @@ Foxtrick.modules["TeamStats"]={
 		};
 
 		var	boxBody = Foxtrick.createFeaturedElement(doc, this, "div");
-		var header = Foxtrickl10n.getString("TeamStats.boxheader");
+		var header = Foxtrickl10n.getString("foxtrick.TeamStats.label");
 		var box = Foxtrick.addBoxToSidebar(doc, header, boxBody, 1);
 		box.id = "ft-team-stats-box";
 

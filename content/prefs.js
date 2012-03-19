@@ -139,7 +139,7 @@ var FoxtrickPrefs = {
 	},
 
 	getModuleDescription : function(module) {
-		var name = "module." + module + ".desc";
+		var name = "foxtrick." + module + ".desc";
 		if (Foxtrickl10n.isStringAvailable(name) )
 			return Foxtrickl10n.getString(name);
 		else {
@@ -149,7 +149,7 @@ var FoxtrickPrefs = {
 	},
 
 	getModuleElementDescription : function(module, option) {
-		var name = "module." + module + "." + option + ".desc";
+		var name = "foxtrick." + module + "." + option + ".desc";
 		if (Foxtrickl10n.isStringAvailable(name))
 			return Foxtrickl10n.getString(name);
 		else {
@@ -296,14 +296,7 @@ var FoxtrickPrefs = {
 		if (Foxtrick.arch === "Gecko") {
 			Foxtrick.entry.init();
 		}
-	},
-	translationKeys : function(sender) {
-		FoxtrickPrefs.setBool("translationKeys", !FoxtrickPrefs.getBool("translationKeys"));
-		Foxtrick.modules.UI.update(sender);
-		if (Foxtrick.arch === "Gecko") {
-			Foxtrick.entry.init();
-		}
-	}	
+	}
 };
 
 

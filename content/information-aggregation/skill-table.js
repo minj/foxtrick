@@ -957,8 +957,8 @@ Foxtrick.modules["SkillTable"]={
 			// links: copy
 			var copy = doc.createElement("a");
 			copy.className = "customize_item secondary";
-			copy.appendChild(doc.createTextNode(Foxtrickl10n.getString("button.copy")));
-			copy.setAttribute("title", Foxtrickl10n.getString("copy.copy.skilltable"));
+			copy.appendChild(doc.createTextNode(Foxtrickl10n.getString("Copy")));
+			copy.setAttribute("title", Foxtrickl10n.getString("foxtrick.tweaks.copyskilltable"));
 			Foxtrick.listen(copy, "click", function() {
 					/* get the text content in a node and return it.
 					 * for player links, append the [playerid] HT-ML tag
@@ -1027,7 +1027,7 @@ Foxtrick.modules["SkillTable"]={
 					var table = doc.getElementsByClassName("ft_skilltable")[0];
 					Foxtrick.copyStringToClipboard(toHtMl(table));
 
-					var note = Foxtrick.util.note.add(doc, table, "ft-skilltable-copy-note", Foxtrickl10n.getString("copy.copied.skilltable"), null, true);
+					var note = Foxtrick.util.note.add(doc, table, "ft-skilltable-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.skilltablecopied"), null, true);
 				}, false);
 			// links: customize
 			var customize = doc.createElement("a");
@@ -1087,7 +1087,7 @@ Foxtrick.modules["SkillTable"]={
 			var switchView = doc.createElement("div");
 			var switchViewLink = doc.createElement("a");
 			switchViewLink.appendChild(doc.createTextNode(Foxtrickl10n.getString("Switch_view")));
-			switchViewLink.setAttribute("title", Foxtrickl10n.getString("Switch_view.title"));
+			switchViewLink.setAttribute("title", Foxtrickl10n.getString("foxtrick.SkillTable.Switch_view_title"));
 			Foxtrick.listen(switchViewLink, "click", function() {
 					var tablediv = doc.getElementById("ft_skilltablediv");
 					var container = tablediv.getElementsByClassName("ft_skilltable_container")[0];
@@ -1102,7 +1102,7 @@ Foxtrick.modules["SkillTable"]={
 					var options = doc.createElement("div");
 					var addHomegrownLink = doc.createElement("a");
 					addHomegrownLink.appendChild(doc.createTextNode(Foxtrickl10n.getString("AddHomegrown")));
-					addHomegrownLink.setAttribute("title", Foxtrickl10n.getString("skillTable.addHomegrown"));
+					addHomegrownLink.setAttribute("title", Foxtrickl10n.getString("foxtrick.SkillTable.Add_homegrown_title"));
 					addHomegrownLink.setAttribute("id","skilltable_addHomegrownId");
 					Foxtrick.listen(addHomegrownLink, "click", AddHomegrown, false);
 					options.appendChild(addHomegrownLink);
@@ -1112,7 +1112,7 @@ Foxtrick.modules["SkillTable"]={
 					var options = doc.createElement("div");
 					var addHomegrownLink = doc.createElement("a");
 					addHomegrownLink.appendChild(doc.createTextNode(Foxtrickl10n.getString("showTimeInClub")));
-					addHomegrownLink.setAttribute("title", Foxtrickl10n.getString("skillTable.showTimeInClub"));
+					addHomegrownLink.setAttribute("title", Foxtrickl10n.getString("foxtrick.SkillTable.showTimeInClub_title"));
 					addHomegrownLink.setAttribute("id","skilltable_showTimeInClubId");
 					Foxtrick.listen(addHomegrownLink, "click", showTimeInClub, false);
 					options.appendChild(addHomegrownLink);

@@ -254,13 +254,12 @@ Foxtrick.modules["ForumPreview"]={
 
 		if (doc.getElementById('ft-forum-preview-button') == null) {
 			//button_ok.setAttribute( "tabindex",  index);
-			if (button_ok && Foxtrickl10n.isStringAvailableLocal("ForumPreview.send")) 
-				button_ok.setAttribute( "value",  Foxtrickl10n.getString( 'ForumPreview.send'));
+			if (button_ok && Foxtrickl10n.isStringAvailableLocal("forumPreview.send")) button_ok.setAttribute( "value",  Foxtrickl10n.getString( 'forumPreview.send'));
 			
 			//if (button_cancel) button_cancel.setAttribute( "tabindex",  "12" );
 			var new_button = doc.createElement( "input" );
-			new_button.setAttribute( "value", Foxtrickl10n.getString( 'ForumPreview.preview' ));
-			new_button.setAttribute( "title",  Foxtrickl10n.getString( 'ForumPreview.preview.title' ) );
+			new_button.setAttribute( "value", Foxtrickl10n.getString( 'preview' ));
+			new_button.setAttribute( "title",  Foxtrickl10n.getString( 'show_preview_from_post' ) );
 			new_button.setAttribute( "id",  "ft-forum-preview-button" );
 			new_button.setAttribute( "type",  "button" );
 			new_button = Foxtrick.makeFeaturedElement(new_button, this);

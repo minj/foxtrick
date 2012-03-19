@@ -72,7 +72,7 @@ Foxtrick.modules["TeamSelectBox"]={
 			Foxtrick.listen(selectBox, "change", selected, false);
 
 			var option = doc.createElement("option");
-			option.textContent = Foxtrickl10n.getString("TeamSelectBox.selectplayer");
+			option.textContent = Foxtrickl10n.getString("foxtrick.tweaks.selectplayer");
 			selectBox.appendChild(option);
 
 			var players = listBox.getElementsByTagName("a");

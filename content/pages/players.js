@@ -5,10 +5,6 @@
  */
 
 Foxtrick.Pages.Players = {
-	CORE_MODULE : true,
-	PAGES : ["players"],
-	NICE : -50, // before anything else
-	
 	isPlayersPage : function(doc) {
 		return this.isPlayersPage(doc) || this.isYouthPlayersPage(doc);
 	},
@@ -654,22 +650,19 @@ Foxtrick.Pages.Players = {
 		// if callback is provided, we get list with XML
 		// otherwise, we get list synchronously and return it
 		if (callback) {
-			// always display delayed
-			window.setTimeout(function(){
-				getXml(doc, function(xml) {
-					try {
-						// parse HTML first because players present in XML may
-						// not present in XML (NT players)
-						if (!options || !options.current_squad) parseHtml();
-						if (xml) parseXml(xml); 
-						callback(playerList);
-					}
-					catch (e) {
-						Foxtrick.log(e);
-						callback(null);
-					}
-				});
-			}, 0);
+			getXml(doc, function(xml) {
+				try {
+					// parse HTML first because players present in XML may
+					// not present in XML (NT players)
+					if (!options || !options.current_squad) parseHtml();
+					if (xml) parseXml(xml); 
+					callback(playerList);
+				}
+				catch (e) {
+					Foxtrick.log(e);
+					callback(null);
+				}
+			});
 		}
 		else {
 			try {

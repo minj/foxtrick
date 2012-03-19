@@ -25,7 +25,7 @@ Foxtrick.modules["GoalDifferenceToTables"]={
 		var newTH = Foxtrick.createFeaturedElement(doc, this, 'th');
 		Foxtrick.addClass(newTH,"right");
 		tbl_promo.rows[0].appendChild(newTH);
-		newTH.textContent = Foxtrickl10n.getString("seasonstats.goaldiff");
+		newTH.textContent = Foxtrickl10n.getString("foxtrick.seasonstats.goaldiff");
 
 		var tblBodyObj = tbl_promo.tBodies[0];
 		for (var i=1; i<tblBodyObj.rows.length; i++) {

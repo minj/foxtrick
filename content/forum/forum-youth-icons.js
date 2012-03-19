@@ -386,14 +386,14 @@ Foxtrick.modules["ForumYouthIcons"]={
 							sandboxed.extension.sendRequest(
 								{ req : "getDebugLog" },
 								function(n) {
-									insertText(log.header(doc)+'\n'+n.log);
+									insertText(Foxtrick.log.header(doc)+'\n'+n.log);
 									textCounter(ta, fieldCounter, maxLength);
 								}
 							);
 							return;
 						}
 						else {
-							openingTag = log.header(doc) + '\n' + Foxtrick.log.cache.substr(Foxtrick.log.cache.length-3500);
+							openingTag = Foxtrick.log.header(doc) + '\n' + Foxtrick.log.cache.substr(Foxtrick.log.cache.length-3500);
 						}
 					}
 					else if (openingTag == 'settings'){
@@ -543,7 +543,7 @@ Foxtrick.modules["ForumYouthIcons"]={
 		}
 
 		var toolbar_label = Foxtrick.createFeaturedElement(doc, this,  "div" );
-		toolbar_label.textContent = Foxtrickl10n.getString("ForumYouthIcons.toolbar.main");
+		toolbar_label.textContent = Foxtrickl10n.getString("ForumYouthIcons.labelToolbar");
 		toolbar.insertBefore( toolbar_label, toolbar.firstChild );
 
 		// Set styles of next siblings
@@ -564,7 +564,7 @@ Foxtrick.modules["ForumYouthIcons"]={
 
 			var otherbar_label = doc.createElement( "div" );
 			otherbar_label.id = "ft_other_icons";
-			otherbar_label.textContent = Foxtrickl10n.getString("ForumYouthIcons.toolbar.other");
+			otherbar_label.textContent = Foxtrickl10n.getString("ForumOtherIcons.label");
 			if (!show_other) otherbar_label.className= "hidden";
 			otherbar.appendChild( otherbar_label);
 
@@ -576,7 +576,7 @@ Foxtrick.modules["ForumYouthIcons"]={
 						newimage.setAttribute( "tags", othericons[i].tags);
 						if ( othericons[i].replace_text) newimage.setAttribute( "replace_text", othericons[i].replace_text);
 						newimage.setAttribute( "class", othericons[i].icon_class);
-						newimage.title = Foxtrickl10n.getString("ForumYouthIcons."+othericons[i].string);
+						newimage.title = Foxtrickl10n.getString("ForumOtherIcons."+othericons[i].string);
 						newimage = Foxtrick.makeFeaturedElement(newimage, this);
 						otherbar.appendChild( newimage );
 				}
@@ -593,7 +593,7 @@ Foxtrick.modules["ForumYouthIcons"]={
 
 			var youthbar_label = doc.createElement( "div" );
 			youthbar_label.id = "ft_youth_icons";
-			youthbar_label.textContent = Foxtrickl10n.getString("ForumYouthIcons.toolbar.youth");
+			youthbar_label.textContent = Foxtrickl10n.getString("ForumYouthIcons.label");
 			if (!show_youth) youthbar_label.className = "hidden";
 			youthbar.appendChild( youthbar_label);
 
@@ -622,7 +622,7 @@ Foxtrick.modules["ForumYouthIcons"]={
 
 			var tournamentbar_label = doc.createElement( "div" );
 			tournamentbar_label.id = "ft_tournament_icons";
-			tournamentbar_label.textContent = Foxtrickl10n.getString("ForumYouthIcons.toolbar.tournament");
+			tournamentbar_label.textContent = Foxtrickl10n.getString("ForumYouthIcons.labelTournament");
 			if (!show_tournament) tournamentbar_label.className = "hidden";
 			tournamentbar.appendChild( tournamentbar_label);
 
