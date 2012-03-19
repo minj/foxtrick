@@ -6,7 +6,7 @@
 		<em:id>{9d1f059c-cada-4111-9696-41a62d64e3ba}</em:id>
 		<em:type>2</em:type>
 		<em:name>FoxTrick</em:name>
-		<em:version>0.9.9</em:version>
+		<em:version>0.9.1</em:version>
 		<em:description>A set of presentation enhancements for hattrick.org</em:description>
 
 		<em:creator>Karel Kolman</em:creator>
