@@ -152,7 +152,7 @@ Foxtrick.modules["CopyRatings"]={
 				}
 				
 				Foxtrick.copyStringToClipboard(ad);
-				var note = Foxtrick.util.note.add(doc, insertBefore, "ft-ratings-copy-note", Foxtrickl10n.getString("CopyRatings.copied"), null, true);
+				var note = Foxtrick.util.note.add(doc, insertBefore, "ft-ratings-copy-note", Foxtrickl10n.getString("copy.ratings.copied"), null, true);
 			}
 			catch (e) {
 				Foxtrick.log(e);
@@ -189,7 +189,7 @@ Foxtrick.modules["CopyRatings"]={
 		awayHeader.appendChild(copyAway);
 
 		var button = Foxtrick.util.copyButton.add(doc,
-			Foxtrickl10n.getString("CopyRatings.both"));
+			Foxtrickl10n.getString("copy.ratings.both"));
 		if (button) {
 			button.title='';
 			button = Foxtrick.makeFeaturedElement(button, this);

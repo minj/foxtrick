@@ -272,7 +272,7 @@ Foxtrick.modules.MatchSimulator={
 				}
 				
 				Foxtrick.copyStringToClipboard(text);
-				var note = Foxtrick.util.note.add(doc, doc.getElementById('mainBody').firstChild, "ft-ratings-copy-note", Foxtrickl10n.getString("CopyRatings.copied"), null, true);
+				var note = Foxtrick.util.note.add(doc, doc.getElementById('mainBody').firstChild, "ft-ratings-copy-note", Foxtrickl10n.getString("copy.ratings.copied"), null, true);
 			};
 			
 			// get levels from ratings text and display them
