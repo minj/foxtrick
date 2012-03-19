@@ -13,6 +13,11 @@
 <item>Please view <xhtml:a href="http://code.google.com/p/foxtrick/source/list">commit history</xhtml:a> at Google Code for details.</item>
 </note>
 
+<note version="0.9.1">
+<item>● HTMS: tactics used again</item>
+<item>● Tablesort: sort floating numbers</item>
+</note>
+
 <note version="0.9.0.5">
 <item>● New module <module>SafeForWork</module> to camouflage Hattrick tabs by changing icon and description</item>
 <item>● <module>ForumYouthIcons</module>: added shortcuts for Tournaments</item>
