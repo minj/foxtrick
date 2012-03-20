@@ -12,7 +12,7 @@ body {
 }
 
 a { text-decoration: none }
-a:hover { color: #eeeeff }
+a:hover { color: #aaaaff }
 
 
 .ui-button {
@@ -49,6 +49,8 @@ function init()
 	document.getElementById("foxtrick-toolbar-translationKeys-label").textContent = BackgroundPage.Foxtrickl10n.getString("toolbar.translationKeys");
 	document.getElementById("foxtrick-toolbar-options-label").textContent = BackgroundPage.Foxtrickl10n.getString("toolbar.preferences");
 	document.getElementById("foxtrick-toolbar-homepage-label").textContent = BackgroundPage.Foxtrickl10n.getString("link.homepage");
+	document.getElementById("foxtrick-toolbar-clearCache-label").textContent = BackgroundPage.Foxtrickl10n.getString("api.clearCache");
+	document.getElementById("foxtrick-toolbar-clearCache-label").title = BackgroundPage.Foxtrickl10n.getString("api.clearCache.title");
 }
 
 function toggleEnabled()
@@ -82,6 +84,13 @@ function openPrefs()
 	opera.extension.bgProcess.Foxtrick.modules.UI.button.popup.height=800;
 }
 
+function clearCache()
+{
+	var BackgroundPage = chrome.extension.getBackgroundPage();
+	BackgroundPage.Foxtrick.util.api.clearCache();
+	window.close();
+}
+
 </script>
 </head>
 
@@ -102,6 +111,7 @@ function openPrefs()
 <div id="bottomLinks">
 	<a id="foxtrick-toolbar-options-label" href="#" onclick="openPrefs()">Options</a>
 	<a id="foxtrick-toolbar-homepage-label" href="http://code.google.com/p/foxtrick/" style="padding-left:3px">Home</a>
+	<a id="foxtrick-toolbar-clearCache-label" href="#" onclick="clearCache()" style="padding-left:3px">Clear cache</a>
 </div>
 </body>
 </html>

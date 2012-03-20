@@ -59,6 +59,9 @@ if (Foxtrick.platform == "Firefox") {
 		// toolbar menu - disable
 		var toolbarDisable = document.getElementById("foxtrick-toolbar-deactivate");
 		toolbarDisable.label = Foxtrickl10n.getString("toolbar.disableTemporary");
+		// toolbar menu - clearCache
+		var clearCache = document.getElementById("foxtrick-toolbar-clearCache");
+		clearCache.label = Foxtrickl10n.getString("api.clearCache");
 		// toolbar menu - highlight
 		var toolbarHighlight = document.getElementById("foxtrick-toolbar-highlight");
 		toolbarHighlight.label = Foxtrickl10n.getString("toolbar.featureHighlight");
