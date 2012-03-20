@@ -641,14 +641,6 @@ Foxtrick.modules.MatchSimulator={
 								// not friendlies for now to keep it clean
 								var SourceSystem = "Hattrick";//otherMatchesNodes[i].getElementsByTagName('SourceSystem')[0].textContent;
 								var MatchType = Number(otherMatchesNodes[i].getElementsByTagName('MatchType')[0].textContent);
-								/*if (!isHTOIntegrated) {
-									if (MatchType == 4 || MatchType == 5 || MatchType == 8 || MatchType == 9)
-										continue;
-									}
-								else {
-									if (SourceSystem != "HTOIntegrated" )
-										continue
-								}*/
 								if (MatchType != 1 && MatchType != 2 && MatchType != 3 && MatchType != 50 && MatchType != 51) {
 									continue;
 								}
@@ -729,7 +721,7 @@ Foxtrick.modules.MatchSimulator={
 						var addMatch = function (ev) {
 							var matchid = Number(addMatchText.value);
 							var SourceSystem = 'Hattrick';
-							if (doc.getElementById('addMatchisHTOIntegrated'))
+							if (doc.getElementById('addMatchisHTOIntegrated').checked)
 								SourceSystem = "HTOIntegrated";
 							getMatchDetails(matchid, SourceSystem, true);
 							
