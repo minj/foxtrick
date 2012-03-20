@@ -221,7 +221,7 @@ Foxtrick.modules["ForumChangePosts"]={
 		// part of copy_posting_link
 		var copy_posting_img = doc.createElement('img');
 		copy_posting_img.src = "/Img/Icons/transparent.gif";
-		copy_posting_img.title = Foxtrickl10n.getString('CopyPosting').replace('%s', Foxtrickl10n.getString('copy.posting.style.last') );
+		copy_posting_img.title = Foxtrickl10n.getString('copy.posting.title').replace('%s', Foxtrickl10n.getString('copy.posting.style.last') );
 		copy_posting_img.setAttribute('copy_style','last');
 
 		var copy_posting_div = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.CopyPosting, "div");
