@@ -13,7 +13,7 @@ Foxtrick.modules["ForumStripHattrickLinks"]={
 
 	changeLinks : function( ev ) {
 		var a = ev.target;
-		if (a.nodeName == "A") { 
+		if (a.nodeName == "A" && a.href.search('foxtrick://') != -1) { 
 			a.href = a.href.replace('foxtrick://', Foxtrick.InternalPath);
 			
 			// ff doesn't wanna open the changed href
