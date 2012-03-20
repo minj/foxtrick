@@ -917,7 +917,7 @@ Foxtrick.modules["SkillTable"]={
 			// table div head
 			var h2 = doc.createElement("h2");
 			h2.className = "ft-expander-unexpanded";
-			h2.appendChild(doc.createTextNode(Foxtrickl10n.getString("Skill_table")));
+			h2.appendChild(doc.createTextNode(Foxtrickl10n.getString("SkillTable.header")));
 			var toggleDisplay = function() {
 				try {
 					if (!tableCreated) {
