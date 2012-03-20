@@ -14,12 +14,11 @@ Foxtrick.modules["ForumStripHattrickLinks"]={
 	changeLinks : function( ev ) {
 		var a = ev.target;
 		if (a.nodeName == "A") { 
-			url = url.replace('foxtrick://', '');													// our fake type
 			a.href = a.href.replace('foxtrick://', Foxtrick.InternalPath);
 			
 			// ff doesn't wanna open the changed href
 			if (Foxtrick.arch == 'Gecko' )
-				Foxtrick.newTab(Foxtrick.InternalPath + url);
+				Foxtrick.newTab(a.href);
 		}
 	},
 
