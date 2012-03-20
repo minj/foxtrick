@@ -13,12 +13,12 @@ Foxtrick.modules["RapidId"]={
 	run: function(doc) {
 		var options = [
 			{ value: "manager", text: "Manager", url: "Club/Manager/?userId=%n" },
-			{ value: "senior", text: "RapidId.Senior" },
+			{ value: "senior", text: "RapidId.senior" },
 			{ value: "senior-team", text: "Team", url: "Club/?TeamID=%n" },
 			{ value: "senior-series", text: "Series", url: "World/Series/Default.aspx?LeagueLevelUnitID=%n" },
 			{ value: "senior-player", text: "Player", url: "Club/Players/Player.aspx?playerId=%n" },
 			{ value: "senior-match", text: "Match", url: "Club/Matches/Match.aspx?matchID=%n" },
-			{ value: "youth", text: "RapidId.Youth" },
+			{ value: "youth", text: "RapidId.youth" },
 			{ value: "youth-team", text: "Team", url: "Club/Youth/Default.aspx?YouthTeamID=%n" },
 			{ value: "youth-series", text: "Series", url: "World/Series/YouthSeries.aspx?YouthLeagueId=%n" },
 			{ value: "youth-player", text: "Player", url: "Club/Players/YouthPlayer.aspx?YouthPlayerID=%n" },
