@@ -46,13 +46,18 @@ ul.ft-popup-list > li {
 	margin: 0px;
 }
 ul.ft-popup-list > li > a,  ul.ft-popup-list > li > span {
-	text-align: left;
 	cursor: pointer;
 	display: block !important;
 	font-weight: normal !important;
 	text-decoration: underline !important;
 	color: #3f7137 !important;
 	padding: 0 !important;
+}
+html[dir="ltr"] ul.ft-popup-list > li > a, html[dir="ltr"] ul.ft-popup-list > li > span {
+	text-align: left;
+}
+html[dir="rtl"] ul.ft-popup-list > li > a, html[dir="rtl"] ul.ft-popup-list > li > span {
+	text-align: right;
 }
 ul.ft-popup-list > li:hover {
 	background-color: #c3e7c7 !important;
