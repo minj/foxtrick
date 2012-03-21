@@ -35,7 +35,6 @@ pref("extensions.foxtrick.prefs.module.CopyRatings.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyYouth.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyYouth.TrainingReport.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyYouth.ScoutComment.enabled", true);
-pref("extensions.foxtrick.prefs.module.CopyYouth.PlayerSource.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyYouth.FixturesSource.enabled", true);
 pref("extensions.foxtrick.prefs.module.CountryList.enabled", true);
 pref("extensions.foxtrick.prefs.module.CountryList.HideFlagOntop.enabled", false);
