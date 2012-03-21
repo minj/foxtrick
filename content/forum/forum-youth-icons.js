@@ -154,7 +154,8 @@ Foxtrick.modules["ForumYouthIcons"]={
 			var makeButton = function(json) {
 				var img = doc.createElement('img');
 				// need to use the webpage's injected script functions
-				img.setAttribute('onclick',json.onclick+"(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ")");
+				img.src = "/Img/Icons/transparent.gif";
+				img.setAttribute('onclick',json.onclick+"(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ")");			
 				img.className = json.className;
 				img.setAttribute('title',json.title);
 				return img;
