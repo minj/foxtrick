@@ -275,6 +275,7 @@ clean-opera:
 
 clean-safari:
 	rm -rf *.safariextz
+	rm -rf xar.log
 
 clean-build:
 	rm -rf $(BUILD_DIR)

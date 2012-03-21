@@ -1,4 +1,5 @@
 .*
+*.log
 *.xpi
 *.crx
 *.oex
