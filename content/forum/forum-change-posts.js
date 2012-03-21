@@ -302,7 +302,7 @@ Foxtrick.modules["ForumChangePosts"]={
 								spoiler_show.className = 'spoiler ft-dummy';
 								var open_link = doc.createElement('a');
 								open_link.href = "javascript:showSpoiler('quoteNum" + numSpoilerQuotes + "');";
-								open_link.textContent = Foxtrickl10n.getString('FormatPostingText.FormatPostingText.ShowNestedQuotes');
+								open_link.textContent = Foxtrickl10n.getString('FormatPostingText.ShowNestedQuotes');
 								spoiler_show.appendChild(open_link);
 								
 								var spoiler_hidden = doc.createElement('blockquote');
