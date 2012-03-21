@@ -2,7 +2,7 @@
 
 
 /* broken dsign workaround*/
-html[data-theme="simple"] div.cfHeader>div[class="float_right right"]
+html[data-theme="simple"] #aspnetForm[action*="Read.aspx"] div.cfHeader>div[class="float_right right"]
 {background: inherit;/* #999999 !important;*/}
 
 }
