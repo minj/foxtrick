@@ -8,7 +8,7 @@
 Foxtrick.modules["RapidId"]={
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ["all"],
-	CSS: Foxtrick.InternalPath+"resources/css/RapidId.css",
+	CSS: Foxtrick.InternalPath+"resources/css/rapidid.css",
 
 	run: function(doc) {
 		var options = [
