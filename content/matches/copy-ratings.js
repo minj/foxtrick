@@ -182,7 +182,7 @@ Foxtrick.modules["CopyRatings"]={
 
 		var copyAway = Foxtrick.createFeaturedElement(doc, this, "span");
 		copyAway.className = "ft_copy_rating";
-		copyAway.appendChild(doc.createTextNode("(" + Foxtrickl10n.getString("Copy") + ")"));
+		copyAway.appendChild(doc.createTextNode("(" + Foxtrickl10n.getString("button.copy") + ")"));
 		copyAway.setAttribute("teams", "away");
 		copyAway.setAttribute("place", "table");
 		Foxtrick.listen(copyAway, "click", function() { createRatings("table", "away"); }, false);
@@ -206,7 +206,7 @@ Foxtrick.modules["CopyRatings"]={
 					return function() { createRatings("box", team); };
 				})(versions[j]), false);
 				link.setAttribute("teams", versions[j]);
-				link.textContent = Foxtrickl10n.getString("CopyRatings."+versions[j]);
+				link.textContent = Foxtrickl10n.getString("copy.ratings."+versions[j]);
 				item.appendChild(link);
 				list.appendChild(item);
 			}
