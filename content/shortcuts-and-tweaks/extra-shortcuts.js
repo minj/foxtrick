@@ -60,14 +60,14 @@ Foxtrick.modules["ExtraShortcuts"]={
 							for (var j=0; j<streams.length; ++j) {
 								var item = doc.createElement("li");
 								var link = doc.createElement("a");
-								link.href = Foxtrick.util.sanitizeUrl(streams[j].textContent);
+								link.href = Foxtrick.util.sanitize.parseUrl(streams[j].textContent);
 								link.target='_blank';
 								link.textContent = streams[j].getAttribute('value');
 								item.appendChild(link);
 								list.appendChild(item);
 							}
 
-							var iconurl = Foxtrick.util.sanitizeUrl(radio_xml.getElementsByTagName('iconOnline')[0].textContent);
+							var iconurl = Foxtrick.util.sanitize.parseUrl(radio_xml.getElementsByTagName('iconOnline')[0].textContent);
 							var img1 = doc.getElementById(radio+'Icon');
 							img1.setAttribute("style","margin-left:2px; background-repeat:no-repeat; background-image: url('"+iconurl+"') !important;");
 							FoxtrickPrefs.setString(radio+'CurrentIcon', iconurl);
@@ -79,7 +79,7 @@ Foxtrick.modules["ExtraShortcuts"]={
 							item.appendChild(h2);
 							list.appendChild(item);
 							
-							var iconurl = Foxtrick.util.sanitizeUrl(radio_xml.getElementsByTagName('iconOffline')[0].textContent);
+							var iconurl = Foxtrick.util.sanitize.parseUrl(radio_xml.getElementsByTagName('iconOffline')[0].textContent);
 							var img1 = doc.getElementById(radio+'Icon');
 							img1.setAttribute("style","margin-left:2px; background-repeat:no-repeat; background-image: url('"+iconurl+"') !important;");
 							FoxtrickPrefs.setString(radio+'CurrentIcon', iconurl);
@@ -88,7 +88,7 @@ Foxtrick.modules["ExtraShortcuts"]={
 						for (var j=0; j<websites.length; ++j) {
 							var item = doc.createElement("li");
 							var link = doc.createElement("a");
-							link.href = Foxtrick.util.sanitizeUrl(websites[j].textContent);
+							link.href = Foxtrick.util.sanitize.parseUrl(websites[j].textContent);
 							link.target='_blank';
 							link.textContent = websites[j].getAttribute('value');
 							item.appendChild(link);

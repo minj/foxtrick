@@ -116,7 +116,7 @@ Foxtrick.modules["ForumPreview"]={
 				// reformat with pre
 				text = formatter.reformat(text);
 
-				prev_div.innerHTML = Foxtrick.util.sanitizeHTML(text);
+				Foxtrick.util.sanitize.addHTML(doc, text, prev_div);
 			}
 			catch(e) {
 				Foxtrick.log(e);

@@ -362,12 +362,12 @@ Foxtrick.modules["ForumChangePosts"]={
 			var league_link1 = null;
 			var league_link2 = null;
 			var is_ignored = false;
-			if (do_single_header && header_right && header_right.innerHTML.search('showHide')!=-1) {
-				is_ignored = true;
+			if (do_single_header && header_right) {
 				var header_right_links = header_right.getElementsByTagName('a');
 				var k = 0, header_right_link;
 				while (header_right_link = header_right_links[k++]) {
 					if (header_right_link.href.search('showHide')!=-1) {
+						is_ignored = true;
 						header_right_link.parentNode.setAttribute('style','margin-left:3px;');
 						break;
 					}

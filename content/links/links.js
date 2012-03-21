@@ -39,11 +39,11 @@
 						// add path to internal images
 						if (link.img.indexOf('resources')==0)
 							link.img = Foxtrick.InternalPath + link.img;
-						link.img = Foxtrick.util.sanitizeUrl(link.img);
+						link.img = Foxtrick.util.sanitize.parseUrl(link.img);
 					}
 					for (prop in link) { 
 						if (prop.indexOf("link") >= 0) {
-							link[prop].url = Foxtrick.util.sanitizeUrl(link[prop].url);
+							link[prop].url = Foxtrick.util.sanitize.parseUrl(link[prop].url);
 							if (typeof(collection[prop]) == 'undefined') {
 								collection[prop] = {};
 							}

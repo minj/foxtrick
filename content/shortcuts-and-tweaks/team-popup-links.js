@@ -283,7 +283,7 @@ Foxtrick.modules["TeamPopupLinks"]={
 									
 									var item = doc.createElement("li");
 									var a6 = doc.createElement("a");
-									a6.href = Foxtrick.util.sanitizeUrl(json.link);
+									a6.href = Foxtrick.util.sanitize.parseUrl(json.link);
 									a6.title = json.title;								
 									a6.textContent = json.title;
 									
