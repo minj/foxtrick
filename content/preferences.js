@@ -899,7 +899,8 @@ var neededPermissions = [
 	{ module: "EmbedMedia.EmbedModeOEmebed", url: "https://www.dailymotion.com/services/*" },
 	{ module: "EmbedMedia.EmbedFlickrImages", url: "http://www.flickr.com/services/oembed/*" },
 	{ module: "EmbedMedia.EmbedDeviantArtImages", url: "http://backend.deviantart.com/*" },
-	{ module: "EmbedMedia.EmbedSoundCloud", url: "http://soundcloud.com/*" }
+	{ module: "EmbedMedia.EmbedSoundCloud", url: "http://soundcloud.com/*" },
+	{ module: "EmbedMedia.EmbedImageshack", url: "http://imageshack.us/*" }
 ];
 
 function testPermissions() {

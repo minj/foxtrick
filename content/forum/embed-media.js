@@ -9,7 +9,7 @@ Foxtrick.modules["EmbedMedia"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
 	NICE : 1,
-	OPTIONS : [["EmbedGenericImages", "EmbedGenericImagesClever"], "EmbedYoutubeVideos","EmbedVimeoVideos", "EmbedDailymotionVideos", ["EmbedModeOEmebed", "ReplaceLinksByTitles", "EmbedFlickrImages", "EmbedDeviantArtImages", "EmbedSoundCloud"]],
+	OPTIONS : [["EmbedGenericImages", "EmbedGenericImagesClever", "EmbedImageshack"], "EmbedYoutubeVideos","EmbedVimeoVideos", "EmbedDailymotionVideos", ["EmbedModeOEmebed", "ReplaceLinksByTitles", "EmbedFlickrImages", "EmbedDeviantArtImages", "EmbedSoundCloud"]],
 	CSS : Foxtrick.InternalPath + "resources/css/embed-media.css",
 
 	run : function(doc) {
@@ -27,6 +27,8 @@ Foxtrick.modules["EmbedMedia"]={
 		var do_embed_generic_images = FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedGenericImages");
 		var do_embed_generic_images_clever = do_embed_generic_images && FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedGenericImagesClever");
 
+		var do_embed_imageshack =  FoxtrickPrefs.isModuleOptionEnabled("EmbedMedia", "EmbedImageshack");
+		
 		var siteEnabled = {
 			"youtube" : do_embed_youtube_videos,
 			"vimeo" : do_embed_vimeo_videos,
@@ -36,7 +38,7 @@ Foxtrick.modules["EmbedMedia"]={
 			"deviantart" : do_embed_deviantart_images,
 			"genericImage": do_embed_generic_images,
 			"imgur": do_embed_generic_images_clever,
-			"imageshack" : do_embed_generic_images_clever
+			"imageshack" : do_embed_imageshack
 		};
 
 		var oEmbedRequest = function( url, callback ){
@@ -140,7 +142,7 @@ Foxtrick.modules["EmbedMedia"]={
 			Foxtrick.addImage(doc, target.nextSibling.firstChild, {src:target.nextSibling.firstChild.href, title: title, alt: title, style:'max-width:100%'});
 		}
 		
-		var extractVideoIdFromUrl = function( url, site ){
+		var extractMediaIdFromUrl = function( url, site ){
 			var re = new RegExp( filter_supported[site] );
 			var matches = re.exec( url )
 			var videoid	= null;	
@@ -193,9 +195,9 @@ Foxtrick.modules["EmbedMedia"]={
 								
 							linkDict["site"] = key
 							if(key != "genericImage" && key != "imageshack")
-								linkDict["mediaId"] = extractVideoIdFromUrl(link.href, linkDict["site"])
+								linkDict["mediaId"] = extractMediaIdFromUrl(link.href, linkDict["site"])
 							else if(key == "imageshack"){
-								var imageshack = extractVideoIdFromUrl(link.href, linkDict["site"])
+								var imageshack = extractMediaIdFromUrl(link.href, linkDict["site"])
 								var params = imageshack.split(","); 
 								linkDict["params"] = imageshack.split(",");
 							}

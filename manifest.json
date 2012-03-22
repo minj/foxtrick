@@ -227,7 +227,8 @@
 		"https://www.dailymotion.com/services/*",
 		"http://www.flickr.com/services/oembed/*",
 		"http://backend.deviantart.com/*",
-		"http://soundcloud.com/*"
+		"http://soundcloud.com/*",
+		"http://imageshack.us/*"
 	],
 	"page_action": {
 		"default_icon": "skin/icon-24.png",
