@@ -255,10 +255,13 @@
 		},
 
 		getOptionsHtml : function(doc, module, linkType) {
+			try{
 			var list = doc.createElement("ul");
 			getCollection(function(collection) {
 				var types = (linkType instanceof Array) ? linkType : [linkType];
 				Foxtrick.map(function(type) {
+					try {
+					Foxtrick.log(module,linkType,type,collection[type])
 					if (collection[type]) {
 						var links = collection[type];
 						var key;
@@ -283,9 +286,11 @@
 							label.appendChild(doc.createTextNode(link.title));
 						}
 					}
+				} catch(e) {Foxtrick.log(e)};
 				}, types);
 			});
 			return list;
-		}
+		}catch(e) {Foxtrick.log(e)};
+		} 
 	};
 }());
