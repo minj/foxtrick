@@ -31,14 +31,11 @@ Foxtrick.modules["CopyYouth"]={
 				for(var j = 0; j < 6; j++) { // remove end phrase
 					clone.removeChild(clone.lastChild);
 				}
-				var plain = clone.innerHTML;
-				plain=plain.replace(/^\s+/,'');  // remove leading whitespace
-				plain=plain.replace(/\s+/g,' '); // replace inner multiple whitespace by single whitespace
-				plain=plain.replace(/\<br\>\s+/ig,'\n'); // replace <br> with and w/o whitespace with newline
-				plain=plain.replace(/\<br\>/ig,'\n');
+				var plain = clone.textContent;
+				plain = plain.replace(/\s+\n\s+/g,'\n\n'); // replace multiple whitespace+newline by single newline
+				plain = plain.replace(/^\s+|\s+$/g,'');  // remove leading/trailing whitespace
+				plain += '\n';
 
-				while (plain.search(/\<.+>/)!=-1)
-					plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
 				Foxtrick.copyStringToClipboard(plain);
 
 				// display note
