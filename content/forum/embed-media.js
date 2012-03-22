@@ -126,10 +126,10 @@ Foxtrick.modules["EmbedMedia"]={
 					target.nextSibling.replaceChild(img, target.nextSibling.firstChild);
 					break;
 				 case "video":
-					target.nextSibling.innerHTML = json.html;
+					target.nextSibling.innerHTML = json.html.match(/<iframe [^>]+><\/iframe>/i)[0]; //only iframes
 					break;
 				 default:
-					target.nextSibling.innerHTML = json.html;
+					target.nextSibling.innerHTML = json.html.match(/<iframe [^>]+><\/iframe>/i)[0]; //only iframes
 					break;
 			}
 		}
