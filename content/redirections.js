@@ -133,7 +133,7 @@ Foxtrick.modules["Redirections"]={
 						headercount++;
 						if (headercount==1) continue;
 
-						var matchid = table.rows[i+1].innerHTML.match(/matchid=(\d+)/i)[1];
+						var matchid = table.rows[i+1].cells[2].getElementsByTagName['a'][0].href.match(/matchid=(\d+)/i)[1];
 
 						if (doc.location.href.search(/redir_to_nextmatch=true/i)!=-1 )
 									tar=serv+'/Club/Matches/Match.aspx?matchID='+matchid;

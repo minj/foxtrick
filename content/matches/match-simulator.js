@@ -191,7 +191,7 @@ Foxtrick.modules.MatchSimulator={
 				text += ' [matchid=' + matchid + ']'+'\n';
 				
 				// formation
-				var formations = Foxtrick.stripHTML(doc.getElementById('formations').innerHTML);
+				var formations = doc.getElementById('formations').textContent;
 				text += formations +'\n';
 				
 				// pic/mots
