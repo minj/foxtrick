@@ -15,6 +15,7 @@ if (!Foxtrick.util.sanitize)
 	
 Foxtrick.util.sanitize.addHTML = function(doc, html, target) {  
     if (Foxtrick.arch == "Gecko") {
+		target.textConent = "";
 		return target.appendChild( Components.classes["@mozilla.org/feed-unescapehtml;1"]  
                      .getService(Components.interfaces.nsIScriptableUnescapeHTML)  
                      .parseFragment(html, false, null, doc.documentElement) ); 
