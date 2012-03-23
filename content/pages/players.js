@@ -564,7 +564,9 @@ Foxtrick.Pages.Players = {
 				if (matchLink) {
 					player.lastMatch = matchLink.cloneNode(true);
 					var matchDateCell = matchLink.parentNode;
-					var matchRatingCell = matchDateCell.parentNode.cells[1];
+					var matchRatingCell = matchDateCell.nextSibling;
+					if (matchRatingCell.nodeName != "TD")
+						matchRatingCell = matchRatingCell.nextSibling; 
 				}
 
 				// last rating
