@@ -13,6 +13,11 @@
 <item>자세한 내용은 Google Code의 <xhtml:a href="http://code.google.com/p/foxtrick/source/list">보고 기록</xhtml:a>을 참조하세요.</item>
 </note>
 
+<note version="0.9.1">
+<item>● HTMS: 전술을 다시 사용합니다</item>
+<item>● Tablesort: 실수 정렬</item>
+</note>
+
 <note version="0.9.0.5">
 <item>● <module>SafeForWork</module> : 아이콘과 설명으로 해트트릭 탭을 위장 기능 추가</item>
 <item>● <module>ForumYouthIcons</module>: 토너먼트 바로가기 추가</item>
