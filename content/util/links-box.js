@@ -407,12 +407,12 @@ Foxtrick.util.links = {
 	delStdLink : function (evt) {
 		try {
 			var doc = evt.target.ownerDocument;
-
-			var key = evt["target"].previousSibling.getAttribute("key");
-			var module_name = evt["target"].previousSibling.getAttribute("module");
 			var par=evt["target"].parentNode;
-			par.removeChild(evt["target"].previousSibling);
-			par.removeChild(evt["target"]);
+			var key = par.previousSibling.getAttribute("key");
+			var module_name = par.previousSibling.getAttribute("module");
+			var grandpar=par.parentNode;
+			grandpar.removeChild(par.previousSibling);
+			grandpar.removeChild(par);
 			FoxtrickPrefs.setBool( "module." + module_name+'.'+key + ".enabled",false);
 		}
 		catch (e) {
