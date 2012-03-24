@@ -36,6 +36,7 @@
 			"content/lib/oauth.js",
 			"content/lib/sha1.js",
 			"content/lib/PluralForm.js",
+			"content/lib/ZipFile.complete.js",
 			
 			//<!-- core modules -->
 			"content/redirections.js",

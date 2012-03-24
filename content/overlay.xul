@@ -38,6 +38,7 @@
 <!-- external libraries -->
 <script type="application/x-javascript" src="./lib/oauth.js" />
 <script type="application/x-javascript" src="./lib/sha1.js" />
+<script type="application/x-javascript" src="./lib/ZipFile.complete.js" />
 
 <!-- page utilities -->
 <script type="application/x-javascript" src="./pages/all.js" />

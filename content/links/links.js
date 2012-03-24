@@ -20,9 +20,8 @@
 		// add default feed if no feeds set
 		if (feeds.length == 0)
 			feeds = [Foxtrick.DataPath + "links.json"];
-		// now load the feeds
-		Foxtrick.log("Loading link feeds from: ", feeds);
-		Foxtrick.map(function(feed) {
+		feeds = [Foxtrick.InternalPath + "../res/links.json"];
+		
 			var parseFeed = function(text) {
 				var key, prop;
 
@@ -60,7 +59,25 @@
 					callbackStack = [];
 				}
 			};
-			
+		var url = "http://foxtrick.googlecode.com/svn/trunk/res/links.json.zip";
+		//Foxtrick.InternalPath + "../res/links.json.zip"
+		var feedsZip = new ZipFile(url, function(zip){
+			for (var i=0; i<zip.entries.length; i++) {
+				var extractCb = function(entry, entryContent) {
+					Foxtrick.log('parse ', entry.name);
+					parseFeed(entryContent);
+				};
+
+				// extract asynchronously
+				var entry = zip.entries[i];
+				Foxtrick.log('unzip ', entry.name);
+				entry.extract(extractCb, true);
+			}
+		}, 3);
+		/*   
+		// now load the feeds
+		Foxtrick.log("Loading link feeds from: ", feeds);
+		Foxtrick.map(function(feed) {
 			Foxtrick.get(feed)("success", function(text) {
 				if (text == null) 
 					text = FoxtrickPrefs.getString("LinksFeed."+feed);
@@ -72,6 +89,7 @@
 				parseFeed(text);
 			});
 		}, feeds);
+		*/
 	};
 
 	var getCollection = function(callback) {
