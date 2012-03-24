@@ -81,7 +81,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 				};
 				var players = doc.getElementById('players').getElementsByClassName('player');
 				//only get the lastMatchDates
-				//require 1 players to have the same playdate, this helps excluding recent transfers to mess up things
+				//require 3 players to have the same playdate, this helps excluding recent transfers to mess up things
 				if(lastMatchDates === null)
 					lastMatchDates = Foxtrick.Pages.Players.getLastMatchDates (players, getLastMatchDates, 3);
 				
