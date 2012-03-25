@@ -104,8 +104,13 @@ Foxtrick.modules["RatingsDisplay"]={
 					}
 				}
 			}
+			
+			// add averages
 			var tbody = table.appendChild(doc.createElement('tbody'));				
 			tbody.className = 'strong';
+			var sep = tbody.insertRow(-1).insertCell(-1);
+			sep.textContent = "\u00a0";
+			sep.setAttribute('style','visibility:hidden;');
 			var row = tbody.insertRow(-1);
 			var cell = row.insertCell(-1);
 			cell.setAttribute('style','visibility:hidden;');
@@ -140,6 +145,38 @@ Foxtrick.modules["RatingsDisplay"]={
 					spanavg.textContent = averages_avg[cells].toFixed(2);
 					spanmax.textContent = averages_max[cells].toFixed(2);
 				}
+			}
+			
+			//stars
+			var averages_max = ["", "", 0,0,0,0]; //#,rowstring,total,def,mid,att
+			var averages_avg = ["", "", 0,0,0,0]; //#,rowstring,total,def,mid,att
+			var table = doc.getElementById('mainBody').getElementsByTagName('table')[1];
+			for (var row = 1; row < table.rows.length; ++row) {
+				var mean_avg = 0, mean_max = 0;
+				for (var cells = table.rows[row].cells.length-1; cells >1 ; --cells) {
+					var val_max = Number(table.rows[row].cells[cells].getElementsByTagName('a')[0].textContent.replace(',','.'));
+					var val_avg = Number(table.rows[row].cells[cells].getElementsByTagName('span')[1].textContent.replace(',','.'));
+					averages_max[cells] += val_max/8;
+					averages_avg[cells] += val_avg/8;
+				}
+			}
+			var tbody = table.appendChild(doc.createElement('tbody'));				
+			tbody.className = 'strong';
+			var sep = tbody.insertRow(-1).insertCell(-1);
+			sep.textContent = "\u00a0";
+			sep.setAttribute('style','visibility:hidden;');
+			var row = tbody.insertRow(-1);
+			var cell = row.insertCell(-1);
+			cell.setAttribute('style','visibility:hidden;');
+			var cell = row.insertCell(-1).textContent = Foxtrickl10n.getString("rating.average")
+			for (var cells = 2; cells<6; ++cells) {
+				var cell = row.insertCell(-1);
+				var spanavg = cell.appendChild(doc.createElement('span'));
+				spanavg.className = "avgStat hidden";
+				var spanmax = cell.appendChild(doc.createElement('span'));
+				spanmax.className = "maxStat";
+				spanavg.textContent = averages_avg[cells].toFixed(2);
+				spanmax.textContent = averages_max[cells].toFixed(2);
 			}
 		};
 		
