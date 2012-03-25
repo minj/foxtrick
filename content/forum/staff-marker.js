@@ -16,48 +16,71 @@ Foxtrick.modules["StaffMarker"]={
 
 	// get Hattrick-youthclub staffs
 	init : function() {
+		var parseMarkers = function(text) {
+			try {
+				var parsed = JSON.parse(text);
+			}
+			catch (e) {
+				// JSON.parse failed
+				Foxtrick.log("Cannot parse file from: ", uri);
+			}
+			if (parsed) {
+				var key = parsed["type"];
+				var list = parsed["list"];
+				// add them!
+				obj[key] = {};
+				if(key == "chpp-holder")
+					obj[key]["apps"] = {}
+				Foxtrick.map(function(user) {
+					obj[key][user.id] = true;
+					if (key == "chpp-holder")
+						obj[key]["apps"][user.id] = user.appNames
+					
+				}, list);
+			}
+			// all your data are belong to us
+			if (--todo == 0) {
+				Foxtrick.sessionSet('staff-marker-data', obj);
+				Foxtrick.log("Staff marker data loaded.");
+			}
+		};
+
 		var obj = {};
 		// JSON files to be downloaded
 		var uris = [
-			Foxtrick.DataPath + "staff/foxtrick.json",
-			Foxtrick.DataPath + "staff/chpp.json",
-			Foxtrick.DataPath + "staff/editor.json",
+			Foxtrick.DataPath + "staff/foxtrick.json.zip",
+			Foxtrick.DataPath + "staff/chpp.json.zip",
+			Foxtrick.DataPath + "staff/editor.json.zip",
 		];
-		if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub")) 
-			uris.push("http://www.hattrick-youthclub.org/_admin/foxtrick/team.json");
 
 		// counter of URI remaining to fetch
 		var todo = uris.length;
 		Foxtrick.map(function(uri) {
-			var parseMarkers = function(text) {
-				try {
-					var parsed = JSON.parse(text);
+			var feedsZip = new ZipFile(uri, function(zip){
+				for (var i=0; i<zip.entries.length; i++) {
+					var extractCb = function(entry, entryContent) {
+						Foxtrick.log('parse ', entry.name);
+						parseMarkers(entryContent);
+						FoxtrickPrefs.setString("Markers."+uri, entryContent);							
+					};
+
+					// extract asynchronously
+					var entry = zip.entries[i];
+					Foxtrick.log('unzip ', entry.name);
+					entry.extract(extractCb, true);
 				}
-				catch (e) {
-					// JSON.parse failed
-					Foxtrick.log("Cannot parse file from: ", uri);
-				}
-				if (parsed) {
-					var key = parsed["type"];
-					var list = parsed["list"];
-					// add them!
-					obj[key] = {};
-					if(key == "chpp-holder")
-						obj[key]["apps"] = {}
-					Foxtrick.map(function(user) {
-						obj[key][user.id] = true;
-						if (key == "chpp-holder")
-							obj[key]["apps"][user.id] = user.appNames
-						
-					}, list);
-				}
-				// all your data are belong to us
-				if (--todo == 0) {
-					Foxtrick.sessionSet('staff-marker-data', obj);
-					Foxtrick.log("Staff marker data loaded.");
-				}
-			};
+			}, 3);
+		}, uris);
+
+		var unzipped_uris = [];
+		if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub")) {
+			unzipped_uris.push("http://www.hattrick-youthclub.org/_admin/foxtrick/team.json");
+			++todo;
+		}
+		// counter of URI remaining to fetch
+		Foxtrick.map(function(uri) {
 			Foxtrick.get(uri)("success", function(text) {
+				Foxtrick.log('parse ', uri);
 				parseMarkers(text);
 				FoxtrickPrefs.setString("Markers."+uri, text);							
 			})("failure", function(code) {
@@ -65,7 +88,7 @@ Foxtrick.modules["StaffMarker"]={
 				var text =  FoxtrickPrefs.getString("Markers."+uri);
 				parseMarkers(text);
 			});
-		}, uris);
+		}, unzipped_uris);
 	},
 
 	run : function(doc) {
