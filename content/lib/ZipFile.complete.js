@@ -564,8 +564,7 @@
         var _NormalGetBinResource = function(fileURL){
             var binStream= this;
             this.req = new window.XMLHttpRequest();
-            Foxtrick.log(fileURL);
-			this.req.open('GET', fileURL, true);
+            this.req.open('GET', fileURL, true);
             this.req.onreadystatechange = function(aEvt) {
                 if (binStream.req.readyState == 4) {
                     binStream.status = "Status: " + binStream.req.status;
@@ -579,10 +578,11 @@
                         if (typeof binStream.callback == "function"){ binStream.callback(binStream);}
                     }
                     else {
-                        throwException(Exceptions.FileLoadFailed, fileURL);
-                    }
+                    	if (typeof binStream.callback == "function"){ binStream.callback(binStream);}
+                        else throwException(Exceptions.FileLoadFailed, fileURL);
+					}
                 }
-            };
+            }; 
             //XHR binary charset opt by Marcus Granado 2006 [http://mgran.blogspot.com]
             this.req.overrideMimeType('text/plain; charset=x-user-defined');
             this.req.send(null);

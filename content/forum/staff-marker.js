@@ -57,6 +57,11 @@ Foxtrick.modules["StaffMarker"]={
 		var todo = uris.length;
 		Foxtrick.map(function(uri) {
 			var feedsZip = new ZipFile(uri, function(zip){
+				if (zip.entries.length == 0) {
+					Foxtrick.log(uri, zip.status);
+					--todo;
+					return;
+				}
 				for (var i=0; i<zip.entries.length; i++) {
 					var extractCb = function(entry, entryContent) {
 						Foxtrick.log('parse ', entry.name);
