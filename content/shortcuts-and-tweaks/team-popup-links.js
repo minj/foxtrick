@@ -11,7 +11,7 @@ Foxtrick.modules["TeamPopupLinks"]={
 	NICE : 10, // after anythings that works on team/manager links
 	CSS : Foxtrick.InternalPath + "resources/css/popup-links.css",
 
-	OPTIONS : ["OwnTeamHighlight", "TeamLinks", "UserLinks", "CustomLink"],
+	OPTIONS : ["TeamHighlight", "TeamLinks", "UserLinks", "CustomLink"],
 	OPTION_TEXTS : true,
 	OPTION_TEXTS_DISABLED_LIST : [true, true, true, false],
 
@@ -157,8 +157,10 @@ Foxtrick.modules["TeamPopupLinks"]={
 	add_popup_links : function(doc) {
 		var sUrl = Foxtrick.getHref(doc);
 		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
+		var curTeamId = Foxtrick.Pages.All.getTeamId(doc);
 		var hasScroll = Foxtrick.util.layout.mainBodyHasScroll(doc);
 		var links = this.LINKS;
+
 
 		var addSpan = function(aLink) {
 			if (Foxtrick.hasClass(aLink.parentNode,'ft-popup-span'))
@@ -169,13 +171,13 @@ Foxtrick.modules["TeamPopupLinks"]={
 				var par = aLink.parentNode;
 				var span = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.TeamPopupLinks, "span");
 				span.className = "ft-popup-span";
-				if (FoxtrickPrefs.isModuleOptionEnabled("TeamPopupLinks", "OwnTeamHighlight")
+				if (FoxtrickPrefs.isModuleOptionEnabled("TeamPopupLinks", "TeamHighlight")
 					&& aLink.href.search(/Club\/\?TeamID=/i) > -1
-					&& ownTeamId == aLink.href.match(/Club\/\?TeamID=(\d+)/i)[1]){
+					&& curTeamId == aLink.href.match(/Club\/\?TeamID=(\d+)/i)[1]){
 					if (aLink.parentNode.nodeName == "TD")
-						Foxtrick.addClass(aLink.parentNode.parentNode,"ownTeamHighlight");
+						Foxtrick.addClass(aLink.parentNode.parentNode,"ftTeamHighlight");
 					else if (aLink.parentNode.parentNode.nodeName == "TD")
-						Foxtrick.addClass(aLink.parentNode.parentNode.parentNode,"ownTeamHighlight");
+						Foxtrick.addClass(aLink.parentNode.parentNode.parentNode,"ftTeamHighlight");
 				}	
 				
 				if (  !Foxtrick.isPage("forumViewThread", doc) 

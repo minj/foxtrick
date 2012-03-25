@@ -682,7 +682,7 @@ pref("extensions.foxtrick.prefs.module.TeamPopupLinks.SendMessage.newTab", false
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.Team.default", true);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.Team.more", false);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.Team.newTab", false);
-pref("extensions.foxtrick.prefs.module.TeamPopupLinks.OwnTeamHighlight.enabled", true);
+pref("extensions.foxtrick.prefs.module.TeamPopupLinks.TeamHighlight.enabled", true);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.TeamHistory.default", false);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.TeamHistory.more", true);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.TeamHistory.newTab", false);
