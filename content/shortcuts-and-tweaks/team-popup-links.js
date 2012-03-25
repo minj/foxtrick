@@ -11,9 +11,9 @@ Foxtrick.modules["TeamPopupLinks"]={
 	NICE : 10, // after anythings that works on team/manager links
 	CSS : Foxtrick.InternalPath + "resources/css/popup-links.css",
 
-	OPTIONS : ["TeamLinks", "UserLinks", "CustomLink"],
+	OPTIONS : ["OwnTeamHighlight", "TeamLinks", "UserLinks", "CustomLink"],
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DISABLED_LIST : [true, true, false],
+	OPTION_TEXTS_DISABLED_LIST : [true, true, true, false],
 
 	LINKS : {
 		"Team" : {
@@ -169,7 +169,8 @@ Foxtrick.modules["TeamPopupLinks"]={
 				var par = aLink.parentNode;
 				var span = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.TeamPopupLinks, "span");
 				span.className = "ft-popup-span";
-				if (aLink.href.search(/Club\/\?TeamID=/i) > -1
+				if (FoxtrickPrefs.isModuleOptionEnabled("TeamPopupLinks", "OwnTeamHighlight")
+					&& aLink.href.search(/Club\/\?TeamID=/i) > -1
 					&& ownTeamId == aLink.href.match(/Club\/\?TeamID=(\d+)/i)[1]){
 					if (aLink.parentNode.nodeName == "TD")
 						Foxtrick.addClass(aLink.parentNode.parentNode,"ownTeamHighlight");
