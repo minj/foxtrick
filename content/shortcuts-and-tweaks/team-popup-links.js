@@ -169,7 +169,14 @@ Foxtrick.modules["TeamPopupLinks"]={
 				var par = aLink.parentNode;
 				var span = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.TeamPopupLinks, "span");
 				span.className = "ft-popup-span";
-						
+				if (aLink.href.search(/Club\/\?TeamID=/i) > -1
+					&& ownTeamId == aLink.href.match(/Club\/\?TeamID=(\d+)/i)[1]){
+					if (aLink.parentNode.nodeName == "TD")
+						Foxtrick.addClass(aLink.parentNode.parentNode,"ownTeamHighlight");
+					else if (aLink.parentNode.parentNode.nodeName == "TD")
+						Foxtrick.addClass(aLink.parentNode.parentNode.parentNode,"ownTeamHighlight");
+				}	
+				
 				if (  !Foxtrick.isPage("forumViewThread", doc) 
 					&& !Foxtrick.isPage("forumWritePost", doc) 
 					&& !Foxtrick.isPage("forumModWritePost", doc)  
