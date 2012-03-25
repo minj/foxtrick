@@ -189,7 +189,7 @@ pref("extensions.foxtrick.prefs.module.LeagueNewsFilter.enabled", true);
 pref("extensions.foxtrick.prefs.module.LeagueNewsFilter.value", 0);
 pref("extensions.foxtrick.prefs.module.LineupShortcut.enabled", true);
 pref("extensions.foxtrick.prefs.module.LineupShortcut.HighlightPlayer.enabled", false);
-pref("extensions.foxtrick.prefs.module.Links.feeds", "http://foxtrick.googlecode.com/svn/trunk/res/links.json");
+pref("extensions.foxtrick.prefs.module.Links.feeds", "http://foxtrick.googlecode.com/svn/trunk/res/links.json.zip");
 pref("extensions.foxtrick.prefs.module.LinksAchievements.enabled", false);
 pref("extensions.foxtrick.prefs.module.LinksAlliances.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksAlliances.maptrick_hoc.enabled", true);
