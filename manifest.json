@@ -219,7 +219,7 @@
 		"http://www.fantamondi.it/*"
 	],
 	"optional_permissions" : [
-		"http://www.hattrick-youthclub.org/*",
+		"http://*.hattrick-youthclub.org/*",
 		"http://stream.ht-radio.nl/*",
 		"http://no9-online.de/*",
 		"http://www.latehome.de/*",

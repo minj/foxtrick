@@ -52,7 +52,6 @@ Foxtrick.modules["StaffMarker"]={
 			Foxtrick.DataPath + "staff/chpp.json.zip",
 			Foxtrick.DataPath + "staff/editor.json.zip",
 		];
-
 		// counter of URI remaining to fetch
 		var todo = uris.length;
 		Foxtrick.map(function(uri) {
@@ -79,7 +78,7 @@ Foxtrick.modules["StaffMarker"]={
 
 		var unzipped_uris = [];
 		if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub")) {
-			unzipped_uris.push("http://www.hattrick-youthclub.org/_admin/foxtrick/team.json");
+			unzipped_uris.push("http://static.hattrick-youthclub.org/resources/foxtrick/team.json");
 			++todo;
 		}
 		// counter of URI remaining to fetch
