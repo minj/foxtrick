@@ -192,13 +192,16 @@ Foxtrick.modules["Core"]={
 				leagueId : Foxtrick.util.id.findLeagueId(teamLinks),
 				teamName : Foxtrick.util.id.extractTeamName(teamLinks)
 			};
+			Foxtrick.ht_pages["ownPlayers"] = '/Club/Players/$|/Club/Players/default.aspx|/Club/Players/?TeamID=' + this.SELF_TEAM_INFO.teamId;
 		}
 		var subMenu = doc.getElementsByClassName("subMenu")[0];
 		if (subMenu) {
 			if (!this.SELF_TEAM_INFO.youthTeamId) {
 				var leftMenuTeamId = Foxtrick.util.id.findTeamId(subMenu);
-				if (this.SELF_TEAM_INFO.teamId == leftMenuTeamId)
+				if (this.SELF_TEAM_INFO.teamId == leftMenuTeamId) {
 					this.SELF_TEAM_INFO.youthTeamId = Foxtrick.util.id.findYouthTeamId(subMenu);
+					Foxtrick.ht_pages["ownYouthPlayers"] = 'YouthPlayers.aspx$|YouthPlayers.aspx?YouthTeamID=' + this.SELF_TEAM_INFO.youthTeamId;		
+				}
 			}
 		}
 	},
