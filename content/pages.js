@@ -144,6 +144,16 @@ Foxtrick.isPage = function(page, doc) {
 		return false;
 };
 
+Foxtrick.isOneOfPages = function(pages, doc) {
+	if ( pages instanceof Array ) {
+		for (var j = 0; j < pages.length; ++j) {
+			if (Foxtrick.isPage(pages[j], doc))
+				return true;
+		}
+	}
+	return false;
+};
+
 Foxtrick.isExcluded = function(doc) {
 	for (var i in Foxtrick.pagesExcluded) {
 		var excludeRe = new RegExp(Foxtrick.pagesExcluded[i], "i");

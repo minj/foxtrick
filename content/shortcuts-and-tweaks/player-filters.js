@@ -245,12 +245,7 @@ Foxtrick.modules["PlayerFilters"]={
 				option.textContent = "---" +Foxtrickl10n.getString( "Filters.Attributes" ) + "---";
 				filterSelect.appendChild(option);
 				for (var i = 0; i < attributeOptions.length; ++i) {
-					var active = false;
-					for (var j = 0; j < attributeOptions[i].pages.length; ++j) {
-						if (Foxtrick.isPage(attributeOptions[i].pages[j], doc))
-							active = true;
-					}
-					if (!active) 
+					if (!Foxtrick.isOneOfPages (attributeOptions[i].pages, doc))
 						continue;
 					var option = doc.createElement('option');
 					option.value = "attribute-" + attributeOptions[i].property;
