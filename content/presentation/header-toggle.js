@@ -11,7 +11,7 @@ Foxtrick.modules["HeaderToggle"]={
 	NICE : +20, // after we add own h2s
 	CSS : Foxtrick.InternalPath + "resources/css/header-toggle.css",
 
-	run : function(doc) {
+	addToggle : function(doc, header) {
 		
 		var pathname = doc.location.pathname;
 		if (pathname.search(/\/$/)!=-1)
@@ -126,29 +126,33 @@ Foxtrick.modules["HeaderToggle"]={
 				toggleSiblings(h2.parentNode.parentNode);
 			}
 		};
+
+		// exclude h2 of type info (eg training coach) 
+		if (Foxtrick.hasClass(header, 'info')
+			|| Foxtrick.hasClass(header, 'ft-expander-expanded')
+			|| Foxtrick.hasClass(header, 'ft-expander-unexpanded')) {
+			return;
+		}
+		Foxtrick.listen(header, "click", function(ev){
+			toggle(ev.target);
+		}, false);
 		
+		Foxtrick.addClass(header, 'ft-expander-expanded');
+		Foxtrick.makeFeaturedElement(header, Foxtrick.modules.HeaderToggle); 
+		var key  = ('HeaderToggle.'+pathname+'.'+getH2TextContent(header)+'.folded').replace(/\s+/g, '');
+		if (FoxtrickPrefs.getBool(key))
+			toggle(header);
+		else if (Foxtrick.isPage('forumDefault', doc)){
+			toggle(header);
+			toggle(header);
+		}
+	},
+	
+	run : function(doc) {
 		// add listener to all h2s in mainBody
 		var h2s = doc.getElementById('mainBody').getElementsByTagName('h2');
 		Foxtrick.map( function(n) {
-			// exclude h2 of type info (eg training coach) 
-			if (Foxtrick.hasClass(n, 'info')
-				|| Foxtrick.hasClass(n, 'ft-expander-expanded')
-				|| Foxtrick.hasClass(n, 'ft-expander-unexpanded')) {
-				return;
-			}
-			Foxtrick.listen(n, "click", function(ev){
-				toggle(ev.target);
-			}, false);
-			
-			Foxtrick.addClass(n, 'ft-expander-expanded');
-			Foxtrick.makeFeaturedElement(n, Foxtrick.modules.HeaderToggle); 
-			var key  = ('HeaderToggle.'+pathname+'.'+getH2TextContent(n)+'.folded').replace(/\s+/g, '');
-			if (FoxtrickPrefs.getBool(key))
-				toggle(n);
-			else if (Foxtrick.isPage('forumDefault', doc)){
-				toggle(n);
-				toggle(n);
-			}
+			Foxtrick.modules.HeaderToggle.addToggle(doc,n);
 		}, h2s);
 	},
 	
