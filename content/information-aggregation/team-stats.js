@@ -8,7 +8,7 @@
 Foxtrick.modules["TeamStats"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["players", "YouthPlayers"],
-	OPTIONS : ["General", "Speciality", "Personality", "Status", "Current_league"],
+	OPTIONS : ["General", "Attributes", "Skills", "Match", "Speciality", "Personality", "Status", "Current_league"],
 	NICE : -1, // before FoxtrickLinksPlayers
 
 	CSS : Foxtrick.InternalPath + "resources/css/team-stats.css",
@@ -17,13 +17,13 @@ Foxtrick.modules["TeamStats"]={
 		var show = function(playerList) {
 		try{
 				var attributeOptions = [
-					{ category: "TeamStats.General",	name : "TSI.abbr", 			property : "tsi", 		method: "sum_avg",	pages: ["SeniorPlayers", "oldplayers", "NTPlayers"] },
+					{ category: "TeamStats.General",	name : "TSI.abbr", 		property : "tsi", 		method: "sum_avg",	pages: ["SeniorPlayers", "oldplayers", "NTPlayers"] },
 					//{ category: "TeamStats.General",	name : "Age", 			property : "ageYears", 	method: "age",		pages: ["players", "YouthPlayers"] },
 					{ category: "TeamStats.General",	name : "Salary", 		property : "salary", 	method: "sum_avg",	pages: ["players"] },
-					{ category: "TeamStats.Attributes", name : "Form", 		property : "form", 		method: "skill",	pages: ["SeniorPlayers", "oldplayers", "NTPlayers"]},
-					{ category: "TeamStats.Attributes", name : "Stamina", 	property : "stamina", 	method: "skill",	pages: ["SeniorPlayers", "oldplayers", "NTPlayers"]},
+					{ category: "TeamStats.Attributes", name : "Form", 			property : "form", 		method: "skill",	pages: ["SeniorPlayers", "oldplayers", "NTPlayers"]},
+					{ category: "TeamStats.Attributes", name : "Stamina", 		property : "stamina", 	method: "skill",	pages: ["SeniorPlayers", "oldplayers", "NTPlayers"]},
 					{ category: "TeamStats.Attributes", name : "Experience", 	property : "experience", method: "skill",	pages: ["SeniorPlayers", "oldplayers", "NTPlayers"] },
-					{ category: "TeamStats.Attributes", name : "Loyalty", 	property : "loyalty", 	method: "skill",	pages: ["SeniorPlayers", "oldplayers"]},
+					{ category: "TeamStats.Attributes", name : "Loyalty", 		property : "loyalty", 	method: "skill",	pages: ["SeniorPlayers", "oldplayers"]},
 					{ category: "TeamStats.Attributes", name : "Leadership", 	property : "leadership", method: "skill",	pages: ["SeniorPlayers", "oldplayers", "NTPlayers"] },
 					{ category: "TeamStats.Skills", 	name : "Keeper", 		property : "keeper", 	method: "skill",	pages: ["ownPlayers"]},
 					{ category: "TeamStats.Skills", 	name : "Defending", 	property : "defending", method: "skill",	pages: ["ownPlayers"]},
@@ -34,9 +34,9 @@ Foxtrick.modules["TeamStats"]={
 					{ category: "TeamStats.Skills", 	name : "Set_pieces", 	property : "setPieces", method: "skill",	pages: ["ownPlayers"]},
 					/*{ category: "TeamStats.Skills", name : "HTMS_Ability", 		property : "htmsAbility", 	method: "average", pages: ["SeniorPlayers"] },
 					{ category: "TeamStats.Skills", 	name : "HTMS_Potential", 	property : "htmsPotential" , pages: ["SeniorPlayers"]},
-					{ category: "TeamStats.Attributes", name : "Agreeability", 	property : "agreeability", 	pages: ["SeniorPlayers"]},
+					{ category: "TeamStats.Attributes", name : "Agreeability", 		property : "agreeability", 	pages: ["SeniorPlayers"]},
 					{ category: "TeamStats.Attributes", name : "Aggressiveness", 	property : "aggressiveness", pages: ["SeniorPlayers"]},
-					{ category: "TeamStats.Attributes", name : "Honesty", 		property : "honesty", 		pages: ["SeniorPlayers"]},*/
+					{ category: "TeamStats.Attributes", name : "Honesty", 			property : "honesty", 		pages: ["SeniorPlayers"]},*/
 					{ category: "Match", 	name : "Last_stars", 			property : "lastRating", 			method: "sum_avg",	pages: ["SeniorPlayers", "YouthPlayers"]},
 					{ category: "Match", 	name : "Last_stars_EndOfGame", 	property : "lastRatingEndOfGame", 	method: "sum_avg",	pages: ["SeniorPlayers"]},
 					{ category: "Match", 	name : "Last_stars_decline", 	property : "lastRatingDecline", 	method: "sum_avg",	pages: ["SeniorPlayers"]}
@@ -127,6 +127,7 @@ Foxtrick.modules["TeamStats"]={
 //Foxtrick.log('attributeOptions',attributeOptions);
 //Foxtrick.log('playerList',playerList)
 			var table = doc.createElement("table");
+			table.id = "team-stats-table";
 			// label and data could either be strings or document nodes
 			var addRow = function(category, label, data, filter, title) {
 				var tbody = table.getElementsByClassName("TeamStats."+category)[0];
@@ -258,6 +259,8 @@ Foxtrick.modules["TeamStats"]={
 			for (var j = 0; j < attributeOptions.length; ++j) {
 				if (!Foxtrick.isOneOfPages (attributeOptions[j].pages, doc))
 					continue;
+				if (!FoxtrickPrefs.isModuleOptionEnabled("TeamStats", attributeOptions[j].category.replace(/.+\./,''))) 
+					continue;
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, attributeOptions[j].property)) {
 					var text = methods[attributeOptions[j].method](attributeOptions[j].value , numPlayers);
 					addRow(attributeOptions[j].category, Foxtrickl10n.getString(attributeOptions[j].name), text);
@@ -379,8 +382,15 @@ Foxtrick.modules["TeamStats"]={
 					}
 				}
 			}
-			boxBody.textContent = "";
-			boxBody.appendChild(table);
+			var old_table = doc.getElementById("team-stats-table");
+			if (old_table)
+				old_table.parentNode.replaceChild(table, old_table);
+			else
+				boxBody.appendChild(table);
+			var old_note = boxBody.getElementsByClassName('ft-note')[0];
+			if (old_note)
+				old_note.parentNode.removeChild(old_note);
+			
 		} catch(e) {
 			Foxtrick.log(e);
 		}
