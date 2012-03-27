@@ -246,6 +246,7 @@ Foxtrick.Pages.Players = {
 					age.years = Number(playerNode.getElementsByTagName("Age")[0].textContent);
 					age.days = Number(playerNode.getElementsByTagName("AgeDays")[0].textContent);
 					player.age = age;
+					player.ageYears = age.years;
 				}
 				if (playerNode.getElementsByTagName("Leadership").length) {
 					player.leadership = Number(playerNode.getElementsByTagName("Leadership")[0].textContent);
@@ -380,6 +381,7 @@ Foxtrick.Pages.Players = {
 				if (!player.age) {
 					var ageMatch = ageText.match(/(\d+)/g);
 					player.age = { years: Number(ageMatch[0]), days: Number(ageMatch[1]) };
+					player.ageYears = player.age.years;				
 				}
 
 				if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc)

@@ -216,40 +216,46 @@ Foxtrick.modules["PlayerFilters"]={
 				}
 
 				// adding attribute filters (senior pages)
-				if (!Foxtrick.Pages.Players.isYouthPlayersPage(doc)) {
-					var attributeOptions = [
-						{ name : "TSI", property : "tsi" },
-						{ name : "Leadership", property : "leadership" },
-						{ name : "Experience", property : "experience", },
-						{ name : "Form", property : "form"},
-						{ name : "Stamina", property : "stamina"},
-						{ name : "Loyalty", property : "loyalty"},
-						{ name : "Keeper", property : "keeper"},
-						{ name : "Defending", property : "defending"},
-						{ name : "Playmaking", property : "playmaking"},
-						{ name : "Winger", property : "winger"},
-						{ name : "Passing", property : "passing"},
-						{ name : "Scoring", property : "scoring"},
-						{ name : "Set_pieces", property : "setPieces"},
-						/*{ name : "HTMS_Ability", property : "htmsAbility" },
-						{ name : "HTMS_Potential", property : "htmsPotential" },
-						{ name : "Agreeability", property : "agreeability"},
-						{ name : "Aggressiveness", property : "aggressiveness"},
-						{ name : "Honesty", property : "honesty"},*/
-						{ name : "Last_stars", property : "lastRating"},
-						{ name : "Last_stars_EndOfGame", property : "lastRatingEndOfGame"},
-						{ name : "Last_stars_decline", property : "lastRatingDecline"}
-					];
-					var option = doc.createElement('option');
-					option.value = "attribute-all";
-					option.textContent = "---" +Foxtrickl10n.getString( "Filters.Attributes" ) + "---";
-					filterSelect.appendChild(option);
-					for (var i = 0; i < attributeOptions.length; ++i) {
-						var option = doc.createElement('option');
-						option.value = "attribute-" + attributeOptions[i].property;
-						option.textContent = Foxtrickl10n.getString(attributeOptions[i].name);
-						filterSelect.appendChild(option);
+				var attributeOptions = [
+					{ name : "TSI", property : "tsi", pages: ["SeniorPlayers", "oldplayers", "NTPlayers"] },
+					{ name : "Age", property : "ageYears", pages: ["players", "YouthPlayers"] },
+					{ name : "Leadership", property : "leadership", pages: ["SeniorPlayers", "oldplayers", "NTPlayers"] },
+					{ name : "Experience", property : "experience", pages: ["SeniorPlayers", "oldplayers", "NTPlayers"] },
+					{ name : "Form", property : "form", pages: ["SeniorPlayers", "oldplayers", "NTPlayers"]},
+					{ name : "Stamina", property : "stamina", pages: ["SeniorPlayers", "oldplayers", "NTPlayers"]},
+					{ name : "Loyalty", property : "loyalty", pages: ["SeniorPlayers", "oldplayers"]},
+					{ name : "Keeper", property : "keeper", pages: ["SeniorPlayers"]},
+					{ name : "Defending", property : "defending", pages: ["SeniorPlayers"]},
+					{ name : "Playmaking", property : "playmaking", pages: ["SeniorPlayers"]},
+					{ name : "Winger", property : "winger", pages: ["SeniorPlayers"]},
+					{ name : "Passing", property : "passing", pages: ["SeniorPlayers"]},
+					{ name : "Scoring", property : "scoring", pages: ["SeniorPlayers"]},
+					{ name : "Set_pieces", property : "setPieces", pages: ["SeniorPlayers"]},
+					/*{ name : "HTMS_Ability", property : "htmsAbility", pages: ["SeniorPlayers"] },
+					{ name : "HTMS_Potential", property : "htmsPotential" , pages: ["SeniorPlayers"]},
+					{ name : "Agreeability", property : "agreeability", pages: ["SeniorPlayers"]},
+					{ name : "Aggressiveness", property : "aggressiveness", pages: ["SeniorPlayers"]},
+					{ name : "Honesty", property : "honesty", pages: ["SeniorPlayers"]},*/
+					{ name : "Last_stars", property : "lastRating", pages: ["SeniorPlayers", "YouthPlayers"]},
+					{ name : "Last_stars_EndOfGame", property : "lastRatingEndOfGame", pages: ["SeniorPlayers"]},
+					{ name : "Last_stars_decline", property : "lastRatingDecline", pages: ["SeniorPlayers"]}
+				];
+				var option = doc.createElement('option');
+				option.value = "attribute-all";
+				option.textContent = "---" +Foxtrickl10n.getString( "Filters.Attributes" ) + "---";
+				filterSelect.appendChild(option);
+				for (var i = 0; i < attributeOptions.length; ++i) {
+					var active = false;
+					for (var j = 0; j < attributeOptions[i].pages.length; ++j) {
+						if (Foxtrick.isPage(attributeOptions[i].pages[j], doc))
+							active = true;
 					}
+					if (!active) 
+						continue;
+					var option = doc.createElement('option');
+					option.value = "attribute-" + attributeOptions[i].property;
+					option.textContent = Foxtrickl10n.getString(attributeOptions[i].name);
+					filterSelect.appendChild(option);
 				}
 				
 				filterSelect.setAttribute("scanned", "true");
@@ -334,6 +340,21 @@ Foxtrick.modules["PlayerFilters"]={
 			var filterSelectOptions = doc.getElementById("filterSelectOptions").value;
 			var filterSelectOptionsText = doc.getElementById("filterSelectOptionsText").value;
 			
+			var compare = {
+				over: function(a, b) {
+					return a > b;
+				},
+				under: function(a, b) {
+					return a < b;
+				},
+				equal: function(a, b) {
+					return a == b;
+				},
+				notEqual: function(a, b) {
+					return a != b;
+				}
+			};
+
 			var parsedPlayerList = Foxtrick.modules.Core.getPlayerList();
 
 			var lastMatch = 0;
@@ -414,20 +435,6 @@ Foxtrick.modules["PlayerFilters"]={
 						lastFace = elem;
 					}
 					else if (Foxtrick.hasClass(elem, "playerInfo")) {
-						var compare = {
-							over: function(a, b) {
-								return a > b;
-							},
-							under: function(a, b) {
-								return a < b;
-							},
-							equal: function(a, b) {
-								return a == b;
-							},
-							notEqual: function(a, b) {
-								return a != b;
-							}
-						};
 						var pid = Foxtrick.util.id.findPlayerId(elem);
 						var player = Foxtrick.Pages.Players.getPlayerFromListById(parsedPlayerList, pid);
 						if (elem.getAttribute(filter) === "true"
@@ -491,9 +498,15 @@ Foxtrick.modules["PlayerFilters"]={
 			if (skilltable) {
 				for (var i=1; i< skilltable.rows.length; ++i) {
 					var pid = Number(skilltable.rows[i].getAttribute('playerid'));
+					var player = Foxtrick.Pages.Players.getPlayerFromListById(parsedPlayerList, pid);
 					if ( filter == 'all' 
 						|| skilltable.rows[i].getAttribute(filter) 
 						|| skilltable.rows[i].getAttribute('speciality-'+filter) 
+						|| ( attributeFilter != null
+							&& attributeFilter[1] == "all" ) 
+						|| ( attributeFilter != null
+							&& player[attributeFilter[1]] != null 
+							&& compare[filterSelectOptions](player[attributeFilter[1]], filterSelectOptionsText))
 						)
 						Foxtrick.removeClass(skilltable.rows[i], 'hidden');
 					else 
