@@ -58,7 +58,10 @@ Foxtrick.Pages.All = {
 	},
 	getTeamId : function(doc) {
 		try {
-			var id = Foxtrick.util.id.findTeamId(doc.getElementsByClassName("subMenu")[0].getElementsByTagName("div")[0]);
+			var subMenu = doc.getElementsByClassName("subMenu")[0];
+			if (!subMenu)
+				return null;
+			var id = Foxtrick.util.id.findTeamId(subMenu.getElementsByTagName("div")[0]);
 			if (id) {
 				return id;
 			}
