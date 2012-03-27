@@ -92,7 +92,8 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 
 /* TeamStats filter */
 .ft-select-container { float: right; width: auto; }
-.ft-select-container select { display: block; margin: 0 !important; clear: right; }
+.ft-select-container > select { display: block; margin: 0 !important; clear: right; }
+#foxtrick-filter-select option[value="attribute-all"] {background-color:#ccc;}
 
 /* FoxTrick note */
 .ft-note {

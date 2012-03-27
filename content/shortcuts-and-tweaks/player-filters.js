@@ -30,6 +30,50 @@ Foxtrick.modules["PlayerFilters"]={
 					return;
 				}
 				
+				var filterSelectOptionsDiv = doc.createElement("div");
+				filterSelectOptionsDiv.id = "filterSelectOptionsDiv";
+				filterSelectOptionsDiv.className = 'hidden';
+				container.appendChild(filterSelectOptionsDiv);
+				var filterSelectOptions = doc.createElement("select");
+				filterSelectOptions.id = "filterSelectOptions";
+				filterSelectOptions.setAttribute("tabindex", "3");
+				//Foxtrick.listen(filterSelect, "change", changeListener, false);
+				var option = doc.createElement("option");
+				option.value = "equal";
+				option.textContent = Foxtrickl10n.getString("Filters.equal");
+				filterSelectOptions.appendChild(option);
+				var option = doc.createElement("option");
+				option.value = "notEqual";
+				option.textContent = Foxtrickl10n.getString("Filters.notEqual");
+				filterSelectOptions.appendChild(option);
+				var option = doc.createElement("option");
+				option.value = "over";
+				option.textContent = Foxtrickl10n.getString("Filters.over");
+				filterSelectOptions.appendChild(option);
+				var option = doc.createElement("option");
+				option.value = "under";
+				option.textContent = Foxtrickl10n.getString("Filters.under");
+				filterSelectOptions.appendChild(option);
+				filterSelectOptionsDiv.appendChild(filterSelectOptions);
+				
+				var input = doc.createElement ("input");
+				input.setAttribute("id", "filterSelectOptionsText");
+				input.setAttribute("value","");
+				input.setAttribute("type", "text");
+				input.setAttribute("maxlength", "20");
+				input.setAttribute("size", "5");
+				input.setAttribute("tabindex", "4");
+				input.setAttribute("style", "margin-left:5px;margin-right:5px;");
+				filterSelectOptionsDiv.appendChild(input);
+
+				var button_ok = doc.createElement("input");
+				button_ok.setAttribute("value", Foxtrickl10n.getString('button.ok'));
+				button_ok.setAttribute("id",  "filterSelectOptionsOk");
+				button_ok.setAttribute("type",  "button");
+				button_ok.setAttribute("tabindex", "5");
+				Foxtrick.listen(button_ok, "click", changeListener, false);
+				filterSelectOptionsDiv.appendChild(button_ok);
+
 				// rename filter to all
 				filterSelect.getElementsByTagName('option')[0].textContent = Foxtrickl10n.getString('Filters.noFilter');
 				
@@ -92,7 +136,7 @@ Foxtrick.modules["PlayerFilters"]={
 						allPlayers[i].setAttribute("purchased-player", "true");
 					}
 				}
-
+				
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, "redCard")
 					|| Foxtrick.Pages.Players.isPropertyInList(playerList, "yellowCard")) {
 					var option = doc.createElement('option');
@@ -171,6 +215,43 @@ Foxtrick.modules["PlayerFilters"]={
 					}
 				}
 
+				// adding attribute filters (senior pages)
+				if (!Foxtrick.Pages.Players.isYouthPlayersPage(doc)) {
+					var attributeOptions = [
+						{ name : "TSI", property : "tsi" },
+						{ name : "Leadership", property : "leadership" },
+						{ name : "Experience", property : "experience", },
+						{ name : "Form", property : "form"},
+						{ name : "Stamina", property : "stamina"},
+						{ name : "Loyalty", property : "loyalty"},
+						{ name : "Keeper", property : "keeper"},
+						{ name : "Defending", property : "defending"},
+						{ name : "Playmaking", property : "playmaking"},
+						{ name : "Winger", property : "winger"},
+						{ name : "Passing", property : "passing"},
+						{ name : "Scoring", property : "scoring"},
+						{ name : "Set_pieces", property : "setPieces"},
+						/*{ name : "HTMS_Ability", property : "htmsAbility" },
+						{ name : "HTMS_Potential", property : "htmsPotential" },
+						{ name : "Agreeability", property : "agreeability"},
+						{ name : "Aggressiveness", property : "aggressiveness"},
+						{ name : "Honesty", property : "honesty"},*/
+						{ name : "Last_stars", property : "lastRating"},
+						{ name : "Last_stars_EndOfGame", property : "lastRatingEndOfGame"},
+						{ name : "Last_stars_decline", property : "lastRatingDecline"}
+					];
+					var option = doc.createElement('option');
+					option.value = "attribute-all";
+					option.textContent = "---" +Foxtrickl10n.getString( "Filters.Attributes" ) + "---";
+					filterSelect.appendChild(option);
+					for (var i = 0; i < attributeOptions.length; ++i) {
+						var option = doc.createElement('option');
+						option.value = "attribute-" + attributeOptions[i].property;
+						option.textContent = Foxtrickl10n.getString(attributeOptions[i].name);
+						filterSelect.appendChild(option);
+					}
+				}
+				
 				filterSelect.setAttribute("scanned", "true");
 			} catch(e) { Foxtrick.log('Player filter click: ',e) }
 		};
@@ -237,7 +318,6 @@ Foxtrick.modules["PlayerFilters"]={
 			}
 				
 			var filter = filterSelect.value;
-			
 			if (filter == 'active' && !hasBotsMarked) {
 				markBotPlayers();
 				return; // comes back here when bots marked
@@ -245,6 +325,18 @@ Foxtrick.modules["PlayerFilters"]={
 			// invalidate again. might be new page next time
 			hasBotsMarked = false;
 			
+			var filterSelectOptionsDiv = doc.getElementById("filterSelectOptionsDiv");
+			var attributeFilter = filter.match(/attribute-(.+)/);
+			if (attributeFilter) 
+				Foxtrick.removeClass(filterSelectOptionsDiv, 'hidden');
+			else 
+				Foxtrick.addClass(filterSelectOptionsDiv, 'hidden');
+			var filterSelectOptions = doc.getElementById("filterSelectOptions").value;
+			var filterSelectOptionsText = doc.getElementById("filterSelectOptionsText").value;
+			
+			var parsedPlayerList = Foxtrick.modules.Core.getPlayerList();
+
+			var lastMatch = 0;
 			var body = doc.getElementById("mainBody");
 			var allElems;
 			if (doc.getElementsByClassName("playerList").length) {
@@ -322,9 +414,30 @@ Foxtrick.modules["PlayerFilters"]={
 						lastFace = elem;
 					}
 					else if (Foxtrick.hasClass(elem, "playerInfo")) {
+						var compare = {
+							over: function(a, b) {
+								return a > b;
+							},
+							under: function(a, b) {
+								return a < b;
+							},
+							equal: function(a, b) {
+								return a == b;
+							},
+							notEqual: function(a, b) {
+								return a != b;
+							}
+						};
 						var pid = Foxtrick.util.id.findPlayerId(elem);
+						var player = Foxtrick.Pages.Players.getPlayerFromListById(parsedPlayerList, pid);
 						if (elem.getAttribute(filter) === "true"
-							 || elem.getAttribute('speciality') === filter ) {
+							 || elem.getAttribute('speciality') === filter 
+							 || ( attributeFilter != null
+								&& attributeFilter[1] == "all" ) 
+							 || ( attributeFilter != null
+								&& player[attributeFilter[1]] != null 
+								&& compare[filterSelectOptions](player[attributeFilter[1]], filterSelectOptionsText))
+							) {
 							Foxtrick.removeClass(elem,'hidden');
 							hide = false;
 							hideCategory = false;
@@ -424,7 +537,7 @@ Foxtrick.modules["PlayerFilters"]={
 		option.textContent = Foxtrickl10n.getString("Filters.addFilterOptions");
 		filterSelect.appendChild(option);
 
-		
+				
 		var parentNode = sortSelect.parentNode
 		var insertBefore = sortSelect.nextSibling;
 		sortSelect.parentNode.removeChild(sortSelect);

@@ -330,7 +330,6 @@ Foxtrick.modules["TeamStats"]={
 		else {
 			var boxBody = box.getElementsByTagName('div')[0];
 		}
-		Foxtrick.log(boxBody)
 		Foxtrick.Pages.Players.getPlayerList(doc, function(list) {
 			try {
 				Foxtrick.preventChange(doc, show)(list);
