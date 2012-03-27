@@ -373,6 +373,7 @@ Foxtrick.modules["PlayerFilters"]={
 			var h = body.getElementsByTagName("h1")[0];
 			h.textContent = h.textContent.replace(/\d+/, count);
 
+			// update skilltable
 			var skilltable = doc.getElementById("ft_skilltable");
 			if (skilltable) {
 				for (var i=1; i< skilltable.rows.length; ++i) {
@@ -386,8 +387,13 @@ Foxtrick.modules["PlayerFilters"]={
 						Foxtrick.addClass(skilltable.rows[i], 'hidden');
 				}
 			}
+			
+			// update team-stats
+			var	box = doc.getElementById("ft-team-stats-box");
+			if (box) {
+				Foxtrick.modules.TeamStats.run(doc);
+			}
 		};
-
 		Foxtrick.listen(filterSelect, "click", function() {
 			try {
 				// replaced with a filter option to fill the select. seems better (and needed for OsX+webkit)
