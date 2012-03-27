@@ -76,6 +76,7 @@ Foxtrick.modules["StaffMarker"]={
 			}, 3);
 		}, uris);
 
+		// hty server delivers gzipped and the browser itself handles that
 		var unzipped_uris = [];
 		if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub")) {
 			unzipped_uris.push("http://static.hattrick-youthclub.org/resources/foxtrick/team.json");
