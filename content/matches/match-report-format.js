@@ -491,6 +491,11 @@ var eventText = {
 				icons["se_powerful"] = Foxtrick.InternalPath + 'resources/img/matches/spec3_alt.png';
 				icons["se_quick"] = Foxtrick.InternalPath + 'resources/img/matches/spec2_alt.png';	
 				icons["se_unpredictable"] = Foxtrick.InternalPath + 'resources/img/matches/spec4_alt.png';
+				icons["se_head_specialist_negative"] = Foxtrick.InternalPath + 'resources/img/matches/spec5_red_alt.png';
+				icons["se_technical_negative"] = Foxtrick.InternalPath + 'resources/img/matches/spec1_red_alt.png';
+				icons["se_powerful_negative"] = Foxtrick.InternalPath + 'resources/img/matches/spec3_red_alt.png';
+				icons["se_quick_negative"] = Foxtrick.InternalPath + 'resources/img/matches/spec2_red_alt.png';	
+				icons["se_unpredictable_negative"] = Foxtrick.InternalPath + 'resources/img/matches/spec4_red_alt.png';
 			}
 			var SourceSystem = "Hattrick";
 			var isYouth = Foxtrick.Pages.Match.isYouth(doc);
