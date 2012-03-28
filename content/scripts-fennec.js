@@ -104,6 +104,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/my-monitor.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/nt-peek.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/player-birthday.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/player-stats-experience.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/season-stats.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/series-flags.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/show-friendly-booked.js", true);

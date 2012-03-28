@@ -125,6 +125,7 @@ Foxtrick.ht_pages = {
 	'press' 					: '/Community/Press/',
 	'hallOfFame'				: '/Club/HallOfFame/',
 	'search'					: '/Search/|/Search/Default.aspx',
+	'playerStats'				: '/Club/Players/PlayerStats.aspx',
 	'Tournaments'				: '/Community/Tournaments/Tournament.aspx',
 	'TournamentsFixtures'		: '/Community/Tournaments/Fixtures.aspx',
 	'TournamentsPlayerStatuses'	: '/Community/Tournaments/PlayerStatuses.aspx'
