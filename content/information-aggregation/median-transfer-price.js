@@ -17,7 +17,8 @@ Foxtrick.modules["MedianTransferPrice"]={
 		var priceArray = [];
 		for (var i = 5; i<count; i++) {
 			if (table.rows[i].cells[3].textContent.search(/\d/)!=0) {
-				var thisPrice = parseInt(table.rows[i].cells[3].lastChild.textContent.replace(/\s/g, ""));
+				var thisPrice = Foxtrick.trimnum(table.rows[i].cells[3].textContent);
+				Foxtrick.log(table.rows[i].cells[3].textContent, thisPrice);
 				priceArray.push(thisPrice);
 			}
 		}
