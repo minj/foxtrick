@@ -110,7 +110,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		var textNode = doc.createTextNode("Experience Sub is between " + (xp_sub_min/28.0).toFixed(2) + " and " + (xp_sub_max/28.0).toFixed(2));
 		
 		if(!hadXpSkillUp)
-			textNode.textContent = textNode.textContent + ". Info sucks because the player is to fresh or you didn't expand to all matches (Work in progress)";
+			textNode.textContent = textNode.textContent + ". Info might be incorrect because the player has no recorded experience-skillup or you díd not expand to all matches (Work in progress)";
 
 		div.appendChild(textNode);
 		var navigation = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlMatchHistorySlideToggle");
