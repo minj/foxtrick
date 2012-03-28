@@ -9,6 +9,7 @@ Foxtrick.modules.MatchSimulator={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['matchOrder'],
 	RADIO_OPTIONS : ["RatingsOnTop","RatingsBelow","RatingsRight"],
+	OPTIONS : ["HTMSPrediction"],
 	CSS : Foxtrick.InternalPath + "resources/css/match-simulator.css",
 
 	MatchTypes : {
@@ -49,9 +50,13 @@ Foxtrick.modules.MatchSimulator={
 
 		// ratings and tactic for predicted and for selected others team match
 		var currentRatings = new Array(9), orgRatings = new Array(9), oldRatings = new Array(9), currentRatingsOther = new Array(9), teamNames =  new Array(2), isHome;
+		var currentMatchXML = null, currentOtherTeamID = null, currentHomeAway = null;
 		
 		// updating or adding htms prediction based on rating prediction and seleted match of another team
 		var updateHTMSPrediction = function() {
+			if (!FoxtrickPrefs.isModuleOptionEnabled("MatchSimulator", "HTMSPrediction"))
+				return;
+			
 			// create or unhide overlayHTMS
 			var overlayHTMS = doc.getElementById('ft-overlayHTMS');
 			if (!overlayHTMS) {
@@ -112,8 +117,13 @@ Foxtrick.modules.MatchSimulator={
 		
 		var showLevelNumbers = function(ev) { 
 			// only listen to rating prediction changes
-			if ( !Foxtrick.hasClass(ev.target.parentNode, 'posLabel') && ev.target.id != 'ft_stamina_discount_check') 
+			if ( !Foxtrick.hasClass(ev.target.parentNode, 'posLabel')
+				&& ev.target.id != 'ft_stamina_discount_check'
+				&& ev.target.id != 'ft_attVsDef_check') 
 				return;
+			var updateHTMS = (ev.target.id != 'ft_attVsDef_check') ? true : false;
+			var updateOther = (ev.target.id != 'ft_attVsDef_check') ? false : true;
+			
 			//Foxtrick.log('showLevelNumbers')
 			var overlayRatings = fieldOverlay.getElementsByClassName('overlayRatings');
 			var posLabel = fieldOverlay.getElementsByClassName('posLabel');
@@ -128,10 +138,18 @@ Foxtrick.modules.MatchSimulator={
 			teamtacticsDiv.removeChild(teamtacticsDiv.getElementsByTagName('select')[0]);
 			var teamtacticsTitle = teamtacticsDiv.textContent.replace(/\s\s+/g,' ');
 
+			var attVsDefCheck = doc.getElementById("ft_attVsDef_check");
+			if (attVsDefCheck.checked) 
+				FoxtrickPrefs.setBool("MatchSimulator.attVsDefOn", true)
+			else 
+				FoxtrickPrefs.setBool("MatchSimulator.attVsDefOn", false)
+
+			
 			// change bars to represent percentage of ratings comparision between predicted ratings and selected other teams match ratings
 			// and update HTMSPrediction
 			var updateBarsAndHTMSPrediction = function() {
-				updateHTMSPrediction();
+				if (updateHTMS)
+					updateHTMSPrediction();
 				
 				var percentImage = fieldOverlay.getElementsByClassName('percentImage');
 				for (var i=0; i<percentImage.length; ++i ){
@@ -152,17 +170,18 @@ Foxtrick.modules.MatchSimulator={
 						else {
 							var div = percentImage[i].nextSibling;
 							div.textContent = title;
-							
-							var diff = Math.floor(percent*100) - Math.floor(Number(div.getAttribute('percent'))*100);
-							var span = doc.createElement('span');
-							span.textContent = ' ('+diff+'%)';
-							if (diff < 0) {
-								span.className = "colorLower percentChange";
-								div.appendChild(span);
-							}
-							else if (diff > 0) {
-								span.className = "colorHigher percentChange";
-								div.appendChild(span);
+							if (!updateOther) {
+								var diff = Math.floor(percent*100) - Math.floor(Number(div.getAttribute('percent'))*100);
+								var span = doc.createElement('span');
+								span.textContent = ' ('+diff+'%)';
+								if (diff < 0) {
+									span.className = "colorLower percentChange";
+									div.appendChild(span);
+								}
+								else if (diff > 0) {
+									span.className = "colorHigher percentChange";
+									div.appendChild(span);
+								}
 							}
 						}
 						div.setAttribute('percent', percent);
@@ -177,6 +196,147 @@ Foxtrick.modules.MatchSimulator={
 				}
 			};
 			
+			var updateOtherRatings = function(selectedMatchXML, otherTeamID, homeAway) {
+				// select team node
+				var HomeTeamID =  Number(selectedMatchXML.getElementsByTagName('HomeTeamID')[0].textContent);
+				var AwayTeamID =  Number(selectedMatchXML.getElementsByTagName('AwayTeamID')[0].textContent);
+				var h2 = doc.getElementsByClassName("main")[0].getElementsByTagName('h2')[0];
+				var thisTeamID = Foxtrick.util.id.getTeamIdFromUrl(h2.getElementsByTagName('a')[0].href);
+				if (homeAway == "home" || 
+					(homeAway != "away" &&	(otherTeamID == HomeTeamID || thisTeamID == AwayTeamID ))) {
+					var teamNode =  selectedMatchXML.getElementsByTagName('HomeTeam')[0];
+					teamNames[1] = selectedMatchXML.getElementsByTagName('HomeTeamName')[0].textContent;
+				}
+				else if (homeAway == "away" || otherTeamID == AwayTeamID || thisTeamID == HomeTeamID) {
+					var teamNode =  selectedMatchXML.getElementsByTagName('AwayTeam')[0];
+					teamNames[1] = selectedMatchXML.getElementsByTagName('AwayTeamName')[0].textContent;
+				}
+				else if (isHome) {
+					var teamNode =  selectedMatchXML.getElementsByTagName('AwayTeam')[0];
+					teamNames[1] = selectedMatchXML.getElementsByTagName('AwayTeamName')[0].textContent;
+				}
+				else {
+					var teamNode =  selectedMatchXML.getElementsByTagName('HomeTeam')[0];
+					teamNames[1] = selectedMatchXML.getElementsByTagName('HomeTeamName')[0].textContent;
+				}
+				// get ratings
+				var selectedratings = [ 
+					{type:'RatingLeftAtt'},
+					{type:'RatingMidAtt'},
+					{type:'RatingRightAtt'},
+					{type:'RatingMidfield'},
+					{type:'RatingLeftDef'},
+					{type:'RatingMidDef'},
+					{type:'RatingRightDef'},
+					{type:'TacticType'},
+					{type:'TacticSkill'}
+				];
+				
+				// get ratings and ratings text
+				for (var i=0; i<selectedratings.length;++i) {
+					var htvalue = Number(teamNode.getElementsByTagName(selectedratings[i].type)[0].textContent);
+					if (selectedratings[i].type == 'TacticType') {
+						selectedratings[i].value = htvalue;
+						selectedratings[i].text = Foxtrickl10n.getTacticById(htvalue);
+					}
+					else if (selectedratings[i].type == 'TacticSkill') {
+						selectedratings[i].value = htvalue;
+						selectedratings[i].text = Foxtrickl10n.getLevelByTypeAndValue('levels', htvalue);
+					}
+					else {
+						// adjust scale. non-existant has no sublevels
+						selectedratings[i].value = htvalue /4;
+						if (selectedratings[i].value != 0)  
+							selectedratings[i].value += 0.75;
+						
+						selectedratings[i].text = Foxtrickl10n.getFullLevelByValue(selectedratings[i].value);
+					}
+				}
+				
+
+				// display other teams ratings								
+				var attVsDefCheck = doc.getElementById("ft_attVsDef_check");
+				var ratingInnerBoxs = doc.getElementsByClassName('ratingInnerBox');
+				for (var i=0; i< ratingInnerBoxs.length; ++i) {
+					var j = attVsDefCheck.checked ? i : ratingInnerBoxs.length-1-i; // reverse order?
+
+					var fullLevel = selectedratings[j].value;
+					var levelText ='['+fullLevel.toFixed(2)+']';
+					
+					var id = 'ft-full-level-other' + i;
+					var div = doc.getElementById(id);
+					if (div) { 
+						// there was another match selected before. show ratings and differences
+						div.textContent = levelText;
+						if (!updateOther) {							
+							var diff = fullLevel - currentRatingsOther[j];
+							var span = doc.createElement('span');
+							span.textContent = ' ('+diff.toFixed(2)+')';
+							if (diff < 0) {
+								span.className = "colorLower otherChange";
+								div.appendChild(span);
+							}
+							else if (diff > 0) {
+								span.className = "colorHigher otherChange";
+								div.appendChild(span);
+							}
+						}
+						var label = ratingInnerBoxs[i].getElementsByClassName('posLabelOther')[0];
+						label.textContent = posLabel[6-j].textContent; 
+						var overlayRatingOther = ratingInnerBoxs[i].getElementsByClassName('overlayRatingsOther')[0];
+					}
+					else {
+						// no other match ratings had been shown. add other ratings containers and the ratings
+						var otherWrapper = doc.createElement('div');
+						otherWrapper.className = 'ft-otherWrapper';
+						
+						var label = doc.createElement('div');
+						label.className = 'posLabelOther';
+						otherWrapper.appendChild(label);
+						label.textContent = attVsDefCheck.checked ? posLabel[6-i].textContent : posLabel[i].textContent; // reverse order?
+					
+						var overlayRatingOther = doc.createElement('div');
+						overlayRatingOther.className = 'overlayRatingsOther';
+						otherWrapper.appendChild(overlayRatingOther);
+				
+						var div = doc.createElement('div');
+						div.id = id;
+						div.className = 'overlayRatingsNumOther';
+						div.textContent = levelText;
+						otherWrapper.appendChild(div)
+						
+						ratingInnerBoxs[i].appendChild(otherWrapper);
+					}
+					overlayRatingOther.textContent = selectedratings[j].text;
+					
+					currentRatingsOther[i] = fullLevel; // store in regular order (aka use i not j)
+				}
+				
+				// add tactics
+				var tacticLevelLabelOther = doc.getElementById('tacticLevelLabelOther');
+				if (!tacticLevelLabelOther) {
+					var tacticLevelLabelOther = doc.createElement('div');
+					tacticLevelLabelOther.id = 'tacticLevelLabelOther';
+					
+					var tacticLevelLabel = doc.getElementById('tacticLevelLabel');
+					tacticLevelLabel.parentNode.insertBefore(tacticLevelLabelOther, tacticLevelLabel.nextSibling);
+				}
+				var tacticLevelLabelTitle = doc.getElementById('tacticLevelLabel').textContent.split(':')[0];
+				currentRatingsOther[7] = selectedratings[7].value;
+				currentRatingsOther[8] = selectedratings[8].value;
+				
+				tacticLevelLabelOther.textContent = teamtacticsTitle
+												+ selectedratings[7].text 
+												+ ' / ' + tacticLevelLabelTitle + ': '
+												+ selectedratings[8].text
+												+ ' (' + selectedratings[8].value + ')';
+				
+				// remove my rating changes for clearity
+				var ratingChange = fieldOverlay.getElementsByClassName('ratingChange');
+				for (var j=0; j<ratingChange.length; ++j ){
+					ratingChange[j].textContent = ''
+				}
+								};
 			var copyRatings = function(ev) {
 				var text = '';
 				
@@ -348,6 +508,9 @@ Foxtrick.modules.MatchSimulator={
 			
 			updateBarsAndHTMSPrediction();
 			
+			if (updateOther && currentMatchXML)
+				updateOtherRatings(currentMatchXML, currentOtherTeamID, currentHomeAway);
+			
 			// keep it visible till closed
 			Foxtrick.addClass(fieldOverlay,'visible');
 				
@@ -373,7 +536,11 @@ Foxtrick.modules.MatchSimulator={
 				// display selection of matches to compare to
 				// first, get team id of other team 
 				var loadingOtherMatches = Foxtrick.util.note.createLoading(doc);
-				doc.getElementById("ft-overlayHTMS").appendChild(loadingOtherMatches);
+				var overlayHTMS = doc.getElementById("ft-overlayHTMS");
+				if (overlayHTMS) 
+					overlayHTMS.appendChild(loadingOtherMatches);
+				else
+					doc.getElementById("field").appendChild(loadingOtherMatches);
 				
 				var matchid = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
 				var SourceSystem = "Hattrick";
@@ -434,7 +601,7 @@ Foxtrick.modules.MatchSimulator={
 							loadingOtherMatches = null;
 						}
 						
-						var getMatchDetails = function(selectedMatchid, SourceSystem, isNew) {
+						var getMatchDetails = function(selectedMatchid, SourceSystem, homeAway, isNew) {
 							if (loadingOtherMatches && loadingOtherMatches.parentNode) {
 								loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
 								loadingOtherMatches = null;
@@ -448,7 +615,11 @@ Foxtrick.modules.MatchSimulator={
 							var loadingMatch = Foxtrick.util.note.createLoading(doc);
 							loadingMatch.id = "loadingMatchID";
 							var overlayHTMS = doc.getElementById("ft-overlayHTMS");
-							overlayHTMS.insertBefore(loadingMatch, overlayHTMS.firstChild);
+							if (overlayHTMS)
+								overlayHTMS.insertBefore(loadingMatch, overlayHTMS.firstChild);
+							else 
+								doc.getElementById("field").appendChild(loadingMatch);
+								
 							var selectedMatchArgs = [
 								["file", "matchdetails"],
 								["version", "2.3"],
@@ -473,10 +644,17 @@ Foxtrick.modules.MatchSimulator={
 									var option = doc.createElement('option');
 									option.value = selectedMatchXML.getElementsByTagName('MatchID')[0].textContent;
 									option.setAttribute('SourceSystem',SourceSystem);
+									option.setAttribute('homeAway',homeAway);
 									var MatchType = Number(selectedMatchXML.getElementsByTagName('MatchType')[0].textContent);
 									option.className = "ftOptionIcon " + Foxtrick.modules.MatchSimulator.MatchTypes[MatchType].className;
 									var MatchDate = Foxtrick.util.time.buildDate( Foxtrick.util.time.getDateFromText(selectedMatchXML.getElementsByTagName('MatchDate')[0].textContent, 'yyyy-mm-dd') );
-										option.textContent = MatchDate
+									var howeAwayStr = Foxtrickl10n.getString('matchOrder.default.abbr');
+									if (homeAway == "home")
+										howeAwayStr = Foxtrickl10n.getString('matchOrder.home.abbr');
+									if (homeAway == "away")
+										howeAwayStr = Foxtrickl10n.getString('matchOrder.away.abbr');
+									option.textContent = howeAwayStr
+														+': ' + MatchDate
 														+ ' : ' + selectedMatchXML.getElementsByTagName('HomeTeamName')[0].textContent.substr(0,20)
 														+ ' ' + selectedMatchXML.getElementsByTagName('HomeGoals')[0].textContent
 														+ ' - ' + selectedMatchXML.getElementsByTagName('AwayGoals')[0].textContent
@@ -484,138 +662,10 @@ Foxtrick.modules.MatchSimulator={
 									select.appendChild(option);
 									select.selectedIndex = select.options.length-1;
 								}
-								
-								// select team node
-								var HomeTeamID =  Number(selectedMatchXML.getElementsByTagName('HomeTeamID')[0].textContent);
-								var AwayTeamID =  Number(selectedMatchXML.getElementsByTagName('AwayTeamID')[0].textContent);
-								if (otherTeamID == HomeTeamID) {
-									var teamNode =  selectedMatchXML.getElementsByTagName('HomeTeam')[0];
-									teamNames[1] = selectedMatchXML.getElementsByTagName('HomeTeamName')[0].textContent;
-								}
-								else if (otherTeamID == AwayTeamID) {
-									var teamNode =  selectedMatchXML.getElementsByTagName('AwayTeam')[0];
-									teamNames[1] = selectedMatchXML.getElementsByTagName('AwayTeamName')[0].textContent;
-								}
-								else if (isHome) {
-									var teamNode =  selectedMatchXML.getElementsByTagName('AwayTeam')[0];
-									teamNames[1] = selectedMatchXML.getElementsByTagName('AwayTeamName')[0].textContent;
-								}
-								else {
-									var teamNode =  selectedMatchXML.getElementsByTagName('HomeTeam')[0];
-									teamNames[1] = selectedMatchXML.getElementsByTagName('HomeTeamName')[0].textContent;
-								}
-
-								// get ratings
-								var selectedratings = [ 
-									{type:'RatingLeftAtt'},
-									{type:'RatingMidAtt'},
-									{type:'RatingRightAtt'},
-									{type:'RatingMidfield'},
-									{type:'RatingLeftDef'},
-									{type:'RatingMidDef'},
-									{type:'RatingRightDef'},
-									{type:'TacticType'},
-									{type:'TacticSkill'}
-								];
-								
-								// get ratings and ratings text
-								for (var i=0; i<selectedratings.length;++i) {
-									var htvalue = Number(teamNode.getElementsByTagName(selectedratings[i].type)[0].textContent);
-									if (selectedratings[i].type == 'TacticType') {
-										selectedratings[i].value = htvalue;
-										selectedratings[i].text = Foxtrickl10n.getTacticById(htvalue);
-									}
-									else if (selectedratings[i].type == 'TacticSkill') {
-										selectedratings[i].value = htvalue;
-										selectedratings[i].text = Foxtrickl10n.getLevelByTypeAndValue('levels', htvalue);
-									}
-									else {
-										// adjust scale. non-existant has no sublevels
-										selectedratings[i].value = htvalue /4;
-										if (selectedratings[i].value != 0)  
-											selectedratings[i].value += 0.75;
-										
-										selectedratings[i].text = Foxtrickl10n.getFullLevelByValue(selectedratings[i].value);
-									}
-								}
-								
-								// display other teams ratings
-								var ratingInnerBoxs = doc.getElementsByClassName('ratingInnerBox');
-								for (var i=0; i< ratingInnerBoxs.length; ++i) {
-									
-									var fullLevel = selectedratings[i].value;
-									var levelText ='['+fullLevel.toFixed(2)+']';
-									
-									var id = 'ft-full-level-other' + i;
-									if (currentRatingsOther[i] !== undefined) { 
-										// there was another match selected before. show ratings and differences
-										var div = doc.getElementById(id);
-										div.textContent = levelText;
-										var diff = fullLevel - currentRatingsOther[i];
-										var span = doc.createElement('span');
-										span.textContent = ' ('+diff.toFixed(2)+')';
-										if (diff < 0) {
-											span.className = "colorLower otherChange";
-											div.appendChild(span);
-										}
-										else if (diff > 0) {
-											span.className = "colorHigher otherChange";
-											div.appendChild(span);
-										}
-										var label = ratingInnerBoxs[i].getElementsByClassName('posLabelOther')[0];
-										var overlayRatingOther = ratingInnerBoxs[i].getElementsByClassName('overlayRatingsOther')[0];
-									}
-									else {
-										// no other match ratings had been shown. add other ratings containers and the ratings
-										var otherWrapper = doc.createElement('div');
-										otherWrapper.className = 'ft-otherWrapper';
-										
-										var label = doc.createElement('div');
-										label.className = 'posLabelOther';
-										otherWrapper.appendChild(label);
-										label.textContent = posLabel[6-i].textContent;
-									
-										var overlayRatingOther = doc.createElement('div');
-										overlayRatingOther.className = 'overlayRatingsOther';
-										otherWrapper.appendChild(overlayRatingOther);
-								
-										var div = doc.createElement('div');
-										div.id = id;
-										div.className = 'overlayRatingsNumOther';
-										div.textContent = levelText;
-										otherWrapper.appendChild(div)
-										
-										ratingInnerBoxs[i].appendChild(otherWrapper);
-									}
-									overlayRatingOther.textContent = selectedratings[i].text;
-									
-									currentRatingsOther[i] = fullLevel;
-								}
-								
-								// add tactics
-								var tacticLevelLabelOther = doc.getElementById('tacticLevelLabelOther');
-								if (!tacticLevelLabelOther) {
-									var tacticLevelLabelOther = doc.createElement('div');
-									tacticLevelLabelOther.id = 'tacticLevelLabelOther';
-									
-									var tacticLevelLabel = doc.getElementById('tacticLevelLabel');
-									tacticLevelLabel.parentNode.insertBefore(tacticLevelLabelOther, tacticLevelLabel.nextSibling);
-								}
-								var tacticLevelLabelTitle = doc.getElementById('tacticLevelLabel').textContent.split(':')[0];
-								currentRatingsOther[7] = selectedratings[7].value;
-								currentRatingsOther[8] = selectedratings[8].value;
-								
-								tacticLevelLabelOther.textContent = teamtacticsTitle
-																+ selectedratings[7].text 
-																+ ' / ' + tacticLevelLabelTitle + ': '
-																+ selectedratings[8].text
-																+ ' (' + selectedratings[8].value + ')';
-								
-								// remove my rating changes for clearity
-								var ratingChange = fieldOverlay.getElementsByClassName('ratingChange');
-								for (var j=0; j<ratingChange.length; ++j ){
-									ratingChange[j].textContent = ''
-								}
+								currentMatchXML = selectedMatchXML;
+								currentHomeAway = homeAway;
+								currentOtherTeamID = otherTeamID;
+								updateOtherRatings(selectedMatchXML, otherTeamID, homeAway);
 								
 								updateBarsAndHTMSPrediction();
 							});
@@ -654,14 +704,14 @@ Foxtrick.modules.MatchSimulator={
 													+ ' - ' + otherMatchesNodes[i].getElementsByTagName('HomeGoals')[0].textContent
 													+ ':' + otherMatchesNodes[i].getElementsByTagName('AwayGoals')[0].textContent
 													+ ' - ' + otherMatchesNodes[i].getElementsByTagName('AwayTeamName')[0].textContent.substr(0,20);
-								select.appendChild(option);
-								
+								select.appendChild(option);								
 							}
 						}
 						// on selecting a match, matchid and get ratings if appropriate
 						var onMatchSelect = function(ev) {
 							var selectedMatchid = Number(select.value);
 							var SourceSystem = select.options[select.selectedIndex].getAttribute('SourceSystem');
+							var homeAway = select.options[select.selectedIndex].getAttribute('homeAway');
 							// if no match selected, cleanup old ratings display
 							// reset currentRatingsOther, so percentBars and htms gets cleaned as well
 							if (selectedMatchid == -1) {
@@ -684,16 +734,14 @@ Foxtrick.modules.MatchSimulator={
 								return;
 							}
 							
-							getMatchDetails(selectedMatchid, SourceSystem);
+							getMatchDetails(selectedMatchid, SourceSystem, homeAway);
 						};
 
-						select.setAttribute('style','float: left; position: absolute; bottom: 0px; left: 100px;');
 						Foxtrick.listen(select, 'change', onMatchSelect, false); 
 						fieldOverlay.appendChild(select);
 						
 						// manual add a match
 						var addMatchDiv = doc.createElement('addMatchDiv');
-						addMatchDiv.setAttribute('style','float: left; position: absolute; bottom: 0px; left: 100px;');
 						addMatchDiv.className = 'hidden';
 						addMatchDiv.id = 'addMatchDiv';
 						fieldOverlay.appendChild(addMatchDiv);
@@ -701,7 +749,33 @@ Foxtrick.modules.MatchSimulator={
 						var addMatchText = doc.createElement('input');
 						addMatchText.id = 'addMatchText';
 						addMatchText.type = 'text';
+						addMatchText.setAttribute("size", "10");
 						addMatchDiv.appendChild(addMatchText);
+						
+						
+						var addMatchHomeAwayLabel = doc.createElement('label');
+						addMatchHomeAwayLabel.id = 'addMatchhomeAwayLabel';
+						addMatchHomeAwayLabel.textContent = Foxtrickl10n.getString("matchOrder.homeAway.abbr");
+						addMatchHomeAwayLabel.title = Foxtrickl10n.getString("matchOrder.homeAway");
+						addMatchDiv.appendChild(addMatchHomeAwayLabel);
+						
+						var addMatchHomeAwaySelect = doc.createElement('select');
+						addMatchHomeAwaySelect.id = 'addMatchHomeAwaySelect';
+						addMatchHomeAwaySelect.title = Foxtrickl10n.getString("matchOrder.homeAway");
+						addMatchDiv.appendChild(addMatchHomeAwaySelect);
+						
+						var addMatchOption= doc.createElement('option');
+						addMatchOption.value = "default";
+						addMatchOption.textContent = Foxtrickl10n.getString("matchOrder.default");
+						addMatchHomeAwaySelect.appendChild(addMatchOption);
+						var addMatchOption= doc.createElement('option');
+						addMatchOption.value = "home";
+						addMatchOption.textContent = Foxtrickl10n.getString("matchOrder.home");
+						addMatchHomeAwaySelect.appendChild(addMatchOption);
+						var addMatchOption= doc.createElement('option');
+						addMatchOption.value = "away";
+						addMatchOption.textContent = Foxtrickl10n.getString("matchOrder.away");
+						addMatchHomeAwaySelect.appendChild(addMatchOption);
 						
 						var addMatchCheck = doc.createElement('input');
 						addMatchCheck.id = 'addMatchisHTOIntegrated';
@@ -723,7 +797,8 @@ Foxtrick.modules.MatchSimulator={
 							var SourceSystem = 'Hattrick';
 							if (doc.getElementById('addMatchisHTOIntegrated').checked)
 								SourceSystem = "HTOIntegrated";
-							getMatchDetails(matchid, SourceSystem, true);
+							var HomeAway = addMatchHomeAwaySelect.value;
+							getMatchDetails(matchid, SourceSystem, HomeAway, true);
 							
 							Foxtrick.addClass(addMatchDiv,'hidden');
 							Foxtrick.removeClass(select,'hidden');
@@ -877,10 +952,14 @@ Foxtrick.modules.MatchSimulator={
 
 
 		// stamina discount
-		var staminaDiscountDiv =  Foxtrick.createFeaturedElement(doc, this, 'div');
-		staminaDiscountDiv.id = "ft_stamina_discount";
-		staminaDiscountDiv.className = "overlaySector overlayMidfield";
-		staminaDiscountDiv.setAttribute('style', "left: 395px !important");
+		var optionsDiv =  Foxtrick.createFeaturedElement(doc, this, 'div');
+		optionsDiv.id = "ft_matchsimulator_options";
+		optionsDiv.className = "overlaySector overlayMidfield";
+		var fieldOverlay = doc.getElementById('fieldOverlay');
+		fieldOverlay.appendChild(optionsDiv);
+
+		var optionsDivElm =  doc.createElement('div');
+		optionsDiv.appendChild(optionsDivElm);
 		var staminaDiscountCheck =  doc.createElement('input');
 		staminaDiscountCheck.id = "ft_stamina_discount_check";
 		staminaDiscountCheck.type = "checkbox";
@@ -888,12 +967,25 @@ Foxtrick.modules.MatchSimulator={
 		if (FoxtrickPrefs.getBool("MatchSimulator.staminaDiscountOn"))
 			staminaDiscountCheck.checked = 'checked';
 		staminaDiscountCheck.addEventListener('click', showLevelNumbers, false);
-		staminaDiscountDiv.appendChild(staminaDiscountCheck);
+		optionsDivElm.appendChild(staminaDiscountCheck);
 		var staminaDiscountLabel =  doc.createElement('span');
 		staminaDiscountLabel.textContent = Foxtrickl10n.getString("matchOrder.staminaDiscount");
-		staminaDiscountDiv.appendChild(staminaDiscountLabel);
-		var fieldOverlay = doc.getElementById('fieldOverlay');
-		fieldOverlay.appendChild(staminaDiscountDiv);
+		optionsDivElm.appendChild(staminaDiscountLabel);
+
+		var optionsDivElm =  doc.createElement('div');
+		optionsDiv.appendChild(optionsDivElm);
+		var attVsDefCheck =  doc.createElement('input');
+		attVsDefCheck.id = "ft_attVsDef_check";
+		attVsDefCheck.type = "checkbox";
+		attVsDefCheck.setAttribute('title', Foxtrickl10n.getString("matchOrder.attVsDef.title"));
+		if (FoxtrickPrefs.getBool("MatchSimulator.attVsDefOn"))
+			attVsDefCheck.checked = 'checked';
+		attVsDefCheck.addEventListener('click', showLevelNumbers, false);
+		optionsDivElm.appendChild(attVsDefCheck);
+		var attVsDefLabel =  doc.createElement('span');
+		attVsDefLabel.textContent = Foxtrickl10n.getString("matchOrder.attVsDef");
+		optionsDivElm.appendChild(attVsDefLabel);
+
 		Foxtrick.log('staminaCutoff: ',FoxtrickPrefs.getInt("staminaCutoff"));
 
 		Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath+"resources/js/matchSimulator.js");	

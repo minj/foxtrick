@@ -147,7 +147,14 @@ html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
 	top: 470px !important;
 }
 
-
+#ft_matchsimulator_options {
+	left: 395px !important;
+}
+#ft_matchsimulator_options div{
+	float:left;
+	padding-left: 20px;
+}		
+		
 /* field overlay display options */
 #fieldOverlay.displayBelow {
 	height: 520px;
@@ -170,5 +177,25 @@ html[dir="ltr"] #fieldOverlay.displayRight {
 #ft-copyRatingsButton {
 	float: left; position: absolute; bottom: 0px; left: 10px;
 }
+
+
+#ft-matchSelect {
+	float: left; 
+	position: absolute; 
+	bottom: 0px; 
+	left: 80px;
+}
+
+#addMatchDiv {
+	float: left; 
+	left: 80px;
+	position: absolute; 
+	bottom: 0px; 
+}
+
+#addMatchhomeAwayLabel, #addMatchisHTOIntegrated, #addMatchButton {
+	margin-left: 20px;
+}
+
 
 }
