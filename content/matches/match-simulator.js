@@ -51,6 +51,7 @@ Foxtrick.modules.MatchSimulator={
 		// ratings and tactic for predicted and for selected others team match
 		var currentRatings = new Array(9), orgRatings = new Array(9), oldRatings = new Array(9), currentRatingsOther = new Array(9), teamNames =  new Array(2), isHome;
 		var currentMatchXML = null, currentOtherTeamID = null, currentHomeAway = null;
+		var oldLineupId = null;
 		
 		// updating or adding htms prediction based on rating prediction and seleted match of another team
 		var updateHTMSPrediction = function() {
@@ -600,7 +601,7 @@ Foxtrick.modules.MatchSimulator={
 							loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
 							loadingOtherMatches = null;
 						}
-						
+
 						var getMatchDetails = function(selectedMatchid, SourceSystem, homeAway, isNew) {
 							if (loadingOtherMatches && loadingOtherMatches.parentNode) {
 								loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
@@ -670,7 +671,6 @@ Foxtrick.modules.MatchSimulator={
 								updateBarsAndHTMSPrediction();
 							});
 						};
-						
 
 						var select = doc.createElement('select');
 						select.id = 'ft-matchSelect';
@@ -707,6 +707,7 @@ Foxtrick.modules.MatchSimulator={
 								select.appendChild(option);								
 							}
 						}
+
 						// on selecting a match, matchid and get ratings if appropriate
 						var onMatchSelect = function(ev) {
 							var selectedMatchid = Number(select.value);
@@ -749,10 +750,14 @@ Foxtrick.modules.MatchSimulator={
 						var addMatchText = doc.createElement('input');
 						addMatchText.id = 'addMatchText';
 						addMatchText.type = 'text';
+						if (oldLineupId) {
+							addMatchText.value = oldLineupId;
+							Foxtrick.removeClass(addMatchDiv,'hidden');
+							Foxtrick.addClass(select,'hidden');
+						}
 						addMatchText.setAttribute("size", "10");
 						addMatchDiv.appendChild(addMatchText);
-						
-						
+												
 						var addMatchHomeAwayLabel = doc.createElement('label');
 						addMatchHomeAwayLabel.id = 'addMatchhomeAwayLabel';
 						addMatchHomeAwayLabel.textContent = Foxtrickl10n.getString("matchOrder.homeAway.abbr");
@@ -815,16 +820,34 @@ Foxtrick.modules.MatchSimulator={
 							Foxtrick.addClass(addMatchDiv,'hidden');
 							Foxtrick.removeClass(select,'hidden');
 							select.selectedIndex = 0;
-							onMatchSelect();
+							//onMatchSelect();
 						}
-						Foxtrick.listen(addMatchButtonCancel, 'click', addMatchCancel, false); 
+						Foxtrick.listen(addMatchButtonCancel, 'click', addMatchCancel, false); 						
 					});
 				});
-			}
+			}		
 			//Foxtrick.addMutationEventListener(fieldOverlay, "DOMNodeInserted", showLevelNumbers, false);
 		};
 
-		
+		// old lineup import click
+		Foxtrick.listen(doc.getElementById('oldLineups'), "click", function(ev) {
+			var savedLineupNode = ev.target;
+			if (!Foxtrick.hasClass(savedLineupNode,"savedLineup"))
+				savedLineupNode = savedLineupNode.parentNode;
+			if (!Foxtrick.hasClass(savedLineupNode,"savedLineup"))
+				savedLineupNode = savedLineupNode.parentNode;
+			if (!Foxtrick.hasClass(savedLineupNode,"savedLineup"))
+				return;
+			oldLineupId = savedLineupNode.id.match(/matchlineup_(\d+)/)[1];
+			
+			var addMatchText = doc.getElementById("addMatchText");
+			if (addMatchText) {
+				addMatchText.value = oldLineupId;
+				Foxtrick.removeClass(doc.getElementById("addMatchDiv"),'hidden');
+				Foxtrick.addClass(doc.getElementById("ft-matchSelect"),'hidden');
+			}				
+		}, false);
+
 		// -- stamina discount --
 		function getStaminaFactor(stamina) {
 			// from unwritten manual [post=15172393.4]
@@ -1008,6 +1031,6 @@ Foxtrick.modules.MatchSimulator={
 			// ff is too fast. so we cue to ensure css add been added by page already
 			window.setTimeout(checkFlipped,0);
 		}, false);
-		checkFlipped();			
+		checkFlipped();				
 	}
 };
