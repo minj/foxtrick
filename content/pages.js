@@ -128,7 +128,8 @@ Foxtrick.ht_pages = {
 	'playerStats'				: '/Club/Players/PlayerStats.aspx',
 	'Tournaments'				: '/Community/Tournaments/Tournament.aspx',
 	'TournamentsFixtures'		: '/Community/Tournaments/Fixtures.aspx',
-	'TournamentsPlayerStatuses'	: '/Community/Tournaments/PlayerStatuses.aspx'
+	'TournamentsPlayerStatuses'	: '/Community/Tournaments/PlayerStatuses.aspx',
+	'world'						: '/World/$'
 };
 
 Foxtrick.pagesExcluded = {

@@ -158,6 +158,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/links/links-tracker.js</string>
 				<string>content/links/links-training.js</string>
 				<string>content/links/links-youth.js</string>
+				<string>content/links/links-world.js</string>
 				<string>content/matches/att-vs-def.js</string>
 				<string>content/matches/copy-ratings.js</string>
 				<string>content/matches/htms-prediction.js</string>

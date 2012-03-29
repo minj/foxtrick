@@ -137,6 +137,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-tracker.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-training.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-youth.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-world.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/matches/att-vs-def.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/matches/copy-ratings.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/matches/htms-prediction.js", true);
