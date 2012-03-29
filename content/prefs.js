@@ -220,6 +220,9 @@ var FoxtrickPrefs = {
 	},
 
 	SavePrefs : function(savePrefs, saveNotes, saveToken, userSettings, format) {
+		// userSettings = null from prefs export -> output all including default
+		// userSettings = true from forumyouthicon-pref-output-button -> output only non-default		
+		
 		try {
 			if (!format) format = 'user_pref("extensions.foxtrick.prefs.%key",%value);';
 			var ret = "";
@@ -227,21 +230,23 @@ var FoxtrickPrefs = {
 			array.sort();
 			for (var i = 0; i < array.length; i++) {
 				var key = array[i]; if(i>0 && key==array[i-1]) continue; // some appear twice!?
-				if (!userSettings || FoxtrickPrefs.prefHasUserValue(key))
-				if ((FoxtrickPrefs.isPrefSetting(key) && savePrefs)
-					|| (!FoxtrickPrefs.isPrefSetting(key) && key.indexOf("oauth.")==-1 && saveNotes)
-					|| (key.indexOf("oauth")!=-1 && saveToken)) {
-					var item = format.replace(/%key/, key);
+				Foxtrick.log(key, !userSettings , FoxtrickPrefs.prefHasUserValue(key))
+				if (!userSettings || FoxtrickPrefs.prefHasUserValue(key)) { // output all or only non-default switch
+					if ((FoxtrickPrefs.isPrefSetting(key) && savePrefs)
+						|| (!FoxtrickPrefs.isPrefSetting(key) && key.indexOf("oauth.")==-1 && saveNotes)
+						|| (key.indexOf("oauth")!=-1 && saveToken)) {
+						var item = format.replace(/%key/, key);
 
-					var value = null;
-					if ((value = FoxtrickPrefs.getString(key)) !== null)
-						item = item.replace(/%value/, "\"" + value.replace(/\n/g, "\\n") + "\"");
-					else if ((value = FoxtrickPrefs.getInt(key)) !== null)
-						item = item.replace(/%value/, value);
-					else if ((value = FoxtrickPrefs.getBool(key)) !== null)
-						item = item.replace(/%value/, value);
-					if (value !== null)
-						ret += item + "\n";
+						var value = null;
+						if ((value = FoxtrickPrefs.getString(key)) !== null)
+							item = item.replace(/%value/, "\"" + value.replace(/\n/g, "\\n") + "\"");
+						else if ((value = FoxtrickPrefs.getInt(key)) !== null)
+							item = item.replace(/%value/, value);
+						else if ((value = FoxtrickPrefs.getBool(key)) !== null)
+							item = item.replace(/%value/, value);
+						if (value !== null)
+							ret += item + "\n";
+					}
 				}
 			}
 			return ret;
