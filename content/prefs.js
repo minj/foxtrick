@@ -230,7 +230,6 @@ var FoxtrickPrefs = {
 			array.sort();
 			for (var i = 0; i < array.length; i++) {
 				var key = array[i]; if(i>0 && key==array[i-1]) continue; // some appear twice!?
-				Foxtrick.log(key, !userSettings , FoxtrickPrefs.prefHasUserValue(key))
 				if (!userSettings || FoxtrickPrefs.prefHasUserValue(key)) { // output all or only non-default switch
 					if ((FoxtrickPrefs.isPrefSetting(key) && savePrefs)
 						|| (!FoxtrickPrefs.isPrefSetting(key) && key.indexOf("oauth.")==-1 && saveNotes)
