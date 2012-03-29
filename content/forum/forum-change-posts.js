@@ -589,10 +589,10 @@ Foxtrick.modules["ForumChangePosts"]={
 			if (do_HighlightThreadOpener && TName_lng) {
 				try {
 					if (poster_link1.textContent == TName_lng) {
-						poster_link1.parentNode.parentNode.firstChild.nextSibling.setAttribute('class','ft_slH_PID_left');
+						post_link1.setAttribute('class','ft_slH_PID_left');
 					}
 					else if (poster_link2 && poster_link2.textContent == TName_lng) {
-						poster_link2.parentNode.parentNode.firstChild.setAttribute('class','ft_slH_PID_right');
+						post_link2.setAttribute('class','ft_slH_PID_right');
 					}
 				}
 				catch (e) {
