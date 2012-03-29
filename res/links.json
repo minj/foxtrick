@@ -1841,5 +1841,21 @@
 		],
 		"title": "Hatstats",
 		"img": "http://hatstats.net/favicon.ico"
+	},
+	"hattricksnapshot": {
+		"leaguelink": {
+			"url": "http://www.hattricksnapshot.org/league/[leagueid]"
+		},
+		"teamlink": {
+			"url": "http://www.hattricksnapshot.org/team/[teamid]"
+		},
+		"countrylink": {
+			"url": "http://www.hattricksnapshot.org/country/[countryid]"
+		},
+		"worldlink": {
+			"url": "http://www.hattricksnapshot.org/world/"
+		},
+		"title": "hattricksnapshot",
+		"img": "http://www.hattricksnapshot.org/favicon.ico"
 	}
 }
