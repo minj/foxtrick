@@ -96,6 +96,8 @@ Foxtrick.modules["ForumChangePosts"]={
 				var k = 0, header_left_link;
 				if (header_left_links[0].href.search(/showMInd/)==-1 )
 					bDetailedHeader = true;
+				else
+					bDetailedHeader = false;
 				while ( header_left_link = header_left_links[k++]) {
 
 					if (!poster_link1) {
@@ -377,6 +379,8 @@ Foxtrick.modules["ForumChangePosts"]={
 			var k = 0, header_left_link;
 			if (header_left_links[0].href.search(/showMInd/)==-1 )
 				bDetailedHeader = true;
+			else
+				bDetailedHeader = false;
 			while ( header_left_link = header_left_links[k++]) {
 				if (!poster_link1) {
 					if (header_left_link.href.search(/showMInd|Forum\/Read\.aspx/) != -1) post_link1 = header_left_link;
