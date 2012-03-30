@@ -12,12 +12,12 @@ Foxtrick.stripHTML = function(text) {
 }
 
 Foxtrick.trim = function (text) {
-	return text.replace(/^\s+/, "").replace(/\s+$/, '').replace(/&nbsp;/g,"");
+	return text.replace(/^\s+|\s+$|&nbsp;|\u00a0/g,"");
 }
 
 Foxtrick.trimnum = function(text) {
 	text = String(text);
-	return text ? parseInt(text.replace(/&nbsp;/g, "").replace(/\s/g, "")) : 0;
+	return text ? parseInt(text.replace(/\D+|\s|&nbsp;|\u00a0/g, "")) : 0;
 }
 
 Foxtrick.formatNumber = function(num, sep) {

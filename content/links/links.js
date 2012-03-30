@@ -283,10 +283,11 @@
 			try{
 			var list = doc.createElement("ul");
 			getCollection(function(collection) {
+				var hasOption = false;
 				var types = (linkType instanceof Array) ? linkType : [linkType];
 				Foxtrick.map(function(type) {
 					try {
-					Foxtrick.log(module,linkType,type,collection[type])
+					Foxtrick.log(module,linkType,type,collection[type]);
 					if (collection[type]) {
 						var links = collection[type];
 						var key;
@@ -304,12 +305,20 @@
 							check.setAttribute("option", key);
 							// since this is appended asychronously, we set
 							// the checked attribute manually
-							if (FoxtrickPrefs.isModuleOptionEnabled(module, key)) {
+							if (FoxtrickPrefs.isModuleOptionEnabled(module, key) === null
+							||	FoxtrickPrefs.isModuleOptionEnabled(module, key) ) {
 								check.setAttribute("checked", "checked");
+								FoxtrickPrefs.setModuleEnableState(module + "." + key, true);
+								hasOption = true;
 							}
 							label.appendChild(check);
 							label.appendChild(doc.createTextNode(link.title));
 						}
+					}
+					if ( hasOption && FoxtrickPrefs.isModuleEnabled(module) === null) {
+						doc.getElementById("pref-"+module+"-check").setAttribute("checked", "checked");
+						doc.getElementById("pref-"+module+"-options").setAttribute("style", "");
+						FoxtrickPrefs.setModuleEnableState(module, true);
 					}
 				} catch(e) {Foxtrick.log(e)};
 				}, types);

@@ -104,6 +104,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/my-monitor.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/nt-peek.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/player-birthday.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/player-stats-experience.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/season-stats.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/series-flags.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/show-friendly-booked.js", true);
@@ -136,6 +137,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-tracker.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-training.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-youth.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-world.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/matches/att-vs-def.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/matches/copy-ratings.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/matches/htms-prediction.js", true);

@@ -13,6 +13,11 @@
 		<item>Пожалуйста, посмотрите <xhtml:a href="http://code.google.com/p/foxtrick/source/list">историю изменений</xhtml:a> на сайте Google Code для деталей.</item>
 	</note>
 
+	<note version="0.9.1">
+		<item>● HTMS: снова учитываются тактики</item>
+		<item>● Tablesort: сортировка дробных чисел</item>
+	</note>
+
 	<note version="0.9.0.5">
 		<item>● Новый модуль <module>SafeForWork</module> для скрытия Hattrick-а с помощью смены значка и заголовка вкладки.</item>
 		<item>● Модуль <module>ForumYouthIcons</module>: добавлены ссылки на турниры.</item>

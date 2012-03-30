@@ -125,6 +125,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/information-aggregation/my-monitor.js</string>
 				<string>content/information-aggregation/nt-peek.js</string>
 				<string>content/information-aggregation/player-birthday.js</string>
+				<string>content/information-aggregation/player-stats-experience.js</string>
 				<string>content/information-aggregation/season-stats.js</string>
 				<string>content/information-aggregation/series-flags.js</string>
 				<string>content/information-aggregation/show-friendly-booked.js</string>
@@ -157,6 +158,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/links/links-tracker.js</string>
 				<string>content/links/links-training.js</string>
 				<string>content/links/links-youth.js</string>
+				<string>content/links/links-world.js</string>
 				<string>content/matches/att-vs-def.js</string>
 				<string>content/matches/copy-ratings.js</string>
 				<string>content/matches/htms-prediction.js</string>

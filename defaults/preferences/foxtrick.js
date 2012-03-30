@@ -385,6 +385,10 @@ pref("extensions.foxtrick.prefs.module.LinksYouthTraining.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksYouthTraining.englandyadb.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksYouthTraining.hattrick-youthclub.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksYouthTraining.srbijayadb.enabled", true);
+pref("extensions.foxtrick.prefs.module.LinksLeague.hattricksnapshot.enabled", true);
+pref("extensions.foxtrick.prefs.module.LinksTeam.hattricksnapshot.enabled", true);
+pref("extensions.foxtrick.prefs.module.LinksCountry.hattricksnapshot.enabled", true);
+pref("extensions.foxtrick.prefs.module.LinksWorld.hattricksnapshot.enabled", true);
 pref("extensions.foxtrick.prefs.module.LiveAlert.enabled", true);
 pref("extensions.foxtrick.prefs.module.LiveAlert.Sound.enabled", true);
 pref("extensions.foxtrick.prefs.module.LiveAlert.Sound_text", "foxtrick://resources/sounds/DingLing.wav");
@@ -435,6 +439,7 @@ pref("extensions.foxtrick.prefs.module.OriginalFace.HideTransfer.enabled", false
 pref("extensions.foxtrick.prefs.module.PersonalityImages.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerBirthday.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerFilters.enabled", true);
+pref("extensions.foxtrick.prefs.module.PlayerStatsExperience.enabled", false);
 pref("extensions.foxtrick.prefs.module.RapidId.enabled", true);
 pref("extensions.foxtrick.prefs.module.Ratings.enabled", true);
 pref("extensions.foxtrick.prefs.module.Ratings.HideAverages.enabled", false);

@@ -36,7 +36,7 @@ Foxtrick.util.id.findLeagueId = function(element) {
 	}, element.getElementsByTagName("a"));
 	for (var i=0; i < links.length; i++) {
 		if ( links[i].href.match(/League\.aspx/i) ) {
-			return links[i].href.replace(/.+leagueid=/i, "").match(/^\d+/)[0];
+			return Number(links[i].href.replace(/.+leagueid=/i, "").match(/^\d+/)[0]);
 		}
 	}
 	return null;
@@ -48,7 +48,7 @@ Foxtrick.util.id.findUserId = function(element) {
 	}, element.getElementsByTagName("a"));
 	for (var i=0; i < links.length; i++) {
 		if ( links[i].href.match(/userId/i) ) {
-			return links[i].href.replace(/.+userId=/i, "").match(/^\d+/)[0];
+			return Number(links[i].href.replace(/.+userId=/i, "").match(/^\d+/)[0]);
 		}
 	}
 	return null;
@@ -90,7 +90,7 @@ Foxtrick.util.id.findMatchId = function(element) {
 	}, element.getElementsByTagName("a"));
 	for (var i=0; i < links.length; i++) {
 		if ( links[i].href.match(/Club\/Matches\/Match\.aspx/i) ) {
-			return links[i].href.replace(/.+matchID=/i, "").match(/^\d+/)[0];
+			return Number(links[i].href.replace(/.+matchID=/i, "").match(/^\d+/)[0]);
 		}
 	}
 	return null;
@@ -109,7 +109,7 @@ Foxtrick.util.id.findTeamId = function(element) {
 	}, element.getElementsByTagName("a"));
 	for (var i=0; i < links.length; i++) {
 		if ( links[i].href.match(/TeamID=/i) ) {
-			return links[i].href.replace(/.+TeamID=/i, "").match(/^\d+/)[0];
+			return Number(links[i].href.replace(/.+TeamID=/i, "").match(/^\d+/)[0]);
 		}
 	}
 	return false;
@@ -122,7 +122,7 @@ Foxtrick.util.id.findYouthTeamId = function(element) {
 
 	for (var i=0; i < links.length; i++) {
 		if ( links[i].href.match(/YouthTeamID=/i) ) {
-			return links[i].href.replace(/.+YouthTeamID=/i, "").match(/^\d+/)[0];
+			return Number(links[i].href.replace(/.+YouthTeamID=/i, "").match(/^\d+/)[0]);
 		}
 	}
 	return null;
@@ -134,7 +134,7 @@ Foxtrick.util.id.findUserId = function(element) {
 	}, element.getElementsByTagName("a"));
 	for (var i=0; i < links.length; i++) {
 		if ( links[i].href.match(/UserID=/i) ) {
-			return links[i].href.replace(/.+UserID=/i, "").match(/^\d+/);
+			return Number(links[i].href.replace(/.+UserID=/i, "").match(/^\d+/));
 		}
 	}
 	return false;
@@ -148,7 +148,7 @@ Foxtrick.util.id.findSecondTeamId = function(element,firstteamid) {
 	for (var i=0; i < links.length; i++) {
 		if ( links[i].href.match(/TeamID=/i) ) {
 			var id=links[i].href.replace(/.+TeamID=/i, "").match(/^\d+/)[0];
-			if (id!=firstteamid) return id;
+			if (id!=firstteamid) return Number(id);
 		}
 	}
 	return 0;
@@ -160,7 +160,7 @@ Foxtrick.util.id.findPlayerId = function(element) {
 	}, element.getElementsByTagName("a"));
 	for (var i=0; i < links.length; i++) {
 		if ( links[i].href.match(/playerID=/i) ) {
-			return links[i].href.replace(/.+playerID=/i, "").match(/^\d+/)[0];
+			return Number(links[i].href.replace(/.+playerID=/i, "").match(/^\d+/)[0]);
 		}
 	}
 	return null;
@@ -172,7 +172,7 @@ Foxtrick.util.id.findYouthPlayerId = function(element) {
 	}, element.getElementsByTagName("a"));
 	for (var i=0; i < links.length; i++) {
 		if ( links[i].href.match(/YouthPlayerID=/i) ) {
-			return links[i].href.replace(/.+YouthPlayerID=/i, "").match(/^\d+/)[0];
+			return Number(links[i].href.replace(/.+YouthPlayerID=/i, "").match(/^\d+/)[0]);
 		}
 	}
 	return null;
@@ -251,7 +251,7 @@ Foxtrick.util.id.findLeagueLeveUnitId = function(element) {
 	}, element.getElementsByTagName("a"));
 	for (var i=0; i < links.length; i++) {
 		if ( links[i].href.match(/Series\/Default\.aspx/i) ) {
-			return links[i].href.replace(/.+leagueLevelUnitID=/i, "").match(/^\d+/)[0];
+			return Number(links[i].href.replace(/.+leagueLevelUnitID=/i, "").match(/^\d+/)[0]);
 		}
 	}
 	return null;
@@ -321,7 +321,7 @@ Foxtrick.util.id.findYouthLeagueId = function(element) {
 	}, element.getElementsByTagName("a"));
 	for (var i=0; i < links.length; i++) {
 		if ( links[i].href.match(/YouthLeagueId=/i) ) {
-			return links[i].href.replace(/.+YouthLeagueId=/i, "").match(/^\d+/)[0];
+			return Number(links[i].href.replace(/.+YouthLeagueId=/i, "").match(/^\d+/)[0]);
 		}
 	}
 	return null;
