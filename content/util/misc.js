@@ -355,7 +355,7 @@ Foxtrick.loadSync = function(url) {
 	}
 	// load
 	var req = new window.XMLHttpRequest();
-	req.open("GET", url, false);
+	req.open("GET", url, false); //sync load of a chrome resource
 	if (typeof(req.overrideMimeType) == "function")
 		req.overrideMimeType("text/plain");
 
@@ -364,7 +364,7 @@ Foxtrick.loadSync = function(url) {
 		return req.responseText;
 	}
 	catch (e) {
-		// catch cross-domain errors and non-existing
+		// catch non-existing
 		Foxtrick.log('loadSync: cannot find or load: ', url);
 		return null;
 	}

@@ -50,13 +50,5 @@
 				<em:maxVersion>14.0a1</em:maxVersion>
 			</Description>
 		</em:targetApplication>
-
-		<!-- localized desctiptions -->
-		<em:localized>
-			<Description>
-				<em:locale>de-DE</em:locale>
-				<em:description>Browseraddon für das online Fussballmanangerspiel Hattrick.</em:description>
-			</Description>
-		</em:localized>
 	</Description>
 </RDF>
