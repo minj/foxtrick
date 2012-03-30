@@ -11,9 +11,9 @@ Foxtrick.modules["TeamPopupLinks"]={
 	NICE : 10, // after anythings that works on team/manager links
 	CSS : Foxtrick.InternalPath + "resources/css/popup-links.css",
 
-	OPTIONS : ["TeamLinks", "UserLinks", "CustomLink"],
+	OPTIONS : ["TeamHighlight", "TeamLinks", "UserLinks", "CustomLink"],
 	OPTION_TEXTS : true,
-	OPTION_TEXTS_DISABLED_LIST : [true, true, false],
+	OPTION_TEXTS_DISABLED_LIST : [true, true, true, false],
 
 	LINKS : {
 		"Team" : {
@@ -157,8 +157,10 @@ Foxtrick.modules["TeamPopupLinks"]={
 	add_popup_links : function(doc) {
 		var sUrl = Foxtrick.getHref(doc);
 		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
+		var curTeamId = Foxtrick.Pages.All.getTeamId(doc);
 		var hasScroll = Foxtrick.util.layout.mainBodyHasScroll(doc);
 		var links = this.LINKS;
+
 
 		var addSpan = function(aLink) {
 			if (Foxtrick.hasClass(aLink.parentNode,'ft-popup-span'))
@@ -169,7 +171,15 @@ Foxtrick.modules["TeamPopupLinks"]={
 				var par = aLink.parentNode;
 				var span = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.TeamPopupLinks, "span");
 				span.className = "ft-popup-span";
-						
+				if (FoxtrickPrefs.isModuleOptionEnabled("TeamPopupLinks", "TeamHighlight")
+					&& aLink.href.search(/Club\/\?TeamID=/i) > -1
+					&& curTeamId == aLink.href.match(/Club\/\?TeamID=(\d+)/i)[1]){
+					if (aLink.parentNode.nodeName == "TD")
+						Foxtrick.addClass(aLink.parentNode.parentNode,"ftTeamHighlight");
+					else if (aLink.parentNode.parentNode.nodeName == "TD")
+						Foxtrick.addClass(aLink.parentNode.parentNode.parentNode,"ftTeamHighlight");
+				}	
+				
 				if (  !Foxtrick.isPage("forumViewThread", doc) 
 					&& !Foxtrick.isPage("forumWritePost", doc) 
 					&& !Foxtrick.isPage("forumModWritePost", doc)  
@@ -283,7 +293,7 @@ Foxtrick.modules["TeamPopupLinks"]={
 									
 									var item = doc.createElement("li");
 									var a6 = doc.createElement("a");
-									a6.href = Foxtrick.util.sanitizeUrl(json.link);
+									a6.href = Foxtrick.util.sanitize.parseUrl(json.link);
 									a6.title = json.title;								
 									a6.textContent = json.title;
 									

@@ -77,7 +77,7 @@ if (Foxtrick.platform !=='Opera' && Foxtrick.platform !== 'Fennec')
 			// called from background script
 			var safariInit = function() {
 				safari.application.addEventListener("contextmenu", function(event) {
-					var paste_note =  '. ' + Foxtrickl10n.getString("SpecialPaste.desc");
+					var paste_note =  '. ' + Foxtrickl10n.getString("specialPaste.hint");
 					var type;
 					for (type in event.userInfo) {
 						entries[type].copyText = event.userInfo[type].copyText;

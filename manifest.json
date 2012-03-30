@@ -36,6 +36,7 @@
 			"content/lib/oauth.js",
 			"content/lib/sha1.js",
 			"content/lib/PluralForm.js",
+			"content/lib/ZipFile.complete.js",
 			
 			//<!-- core modules -->
 			"content/redirections.js",
@@ -218,7 +219,7 @@
 		"http://www.fantamondi.it/*"
 	],
 	"optional_permissions" : [
-		"http://www.hattrick-youthclub.org/*",
+		"http://*.hattrick-youthclub.org/*",
 		"http://stream.ht-radio.nl/*",
 		"http://no9-online.de/*",
 		"http://www.latehome.de/*",
@@ -227,7 +228,8 @@
 		"https://www.dailymotion.com/services/*",
 		"http://www.flickr.com/services/oembed/*",
 		"http://backend.deviantart.com/*",
-		"http://soundcloud.com/*"
+		"http://soundcloud.com/*",
+		"http://imageshack.us/*"
 	],
 	"page_action": {
 		"default_icon": "skin/icon-24.png",

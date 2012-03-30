@@ -30,7 +30,7 @@ Foxtrick.modules["HighlightCupwins"]={
 			var numCell = Foxtrick.insertFeaturedCell(table.rows[i], this, 0);
 			numCell.appendChild(doc.createTextNode(String(i)));
 
-			var goals = table.rows[i].cells[4].innerHTML.match(/\d+/g);
+			var goals = table.rows[i].cells[4].textContent.match(/\d+/g);
 			if (!goals) {
 				// perhaps some results aren't shown
 				continue;
@@ -83,7 +83,7 @@ Foxtrick.modules["HighlightCupwins"]={
 			}
 			catch (e) {
 				// cannot parse teams
-				Foxtrick.log("Cannot parse teams: " + matchlink.innerHTML + "");
+				Foxtrick.log("Cannot parse teams: " + matchlink.textContent + "");
 			}
 		}
  	}

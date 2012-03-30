@@ -61,8 +61,8 @@ Foxtrick.modules["HistoryStats"]={
 
 				var table = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ucOtherEvents_ctl00").cloneNode(true).getElementsByClassName("otherEventText");
 				for (var i = 0; i < table.length; i++) {
-					if (table[i].innerHTML.search(/\<span class\=\"shy\"\>/) != -1)
-						continue;
+					if (table[i].getElementsByClassName('shy').length != 0)
+						break;
 
 					var buff = '';
 					var league = -1;

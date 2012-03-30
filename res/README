@@ -1,11 +1,2 @@
-Files under this directory will be committed to Google Code, and users will
-access the files via Apache rewrite rule in http://www.foxtrick.org/.
-
-For example, res/staff/chpp.json will be uploaded to
-http://foxtrick.googlecode.com/svn/trunk/res/staff/chpp.json, and users
-will access the file via http://www.foxtrick.org/data/staff/chpp.json.
-
-
----
-Ryan Li <ryan@ryanium.com>
-23 Sep 2011
+Files under this directory will be zipped automatically every day.
+Users load the zipped versions, so there is some delay.

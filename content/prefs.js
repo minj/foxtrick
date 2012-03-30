@@ -263,12 +263,12 @@ var FoxtrickPrefs = {
 					continue;
 				var key = matches[1];
 				var value = matches[2];
-				if (value.match(/^".+"$/))
+				if (value === true || value === false || value === "true" || value === "false")
+					FoxtrickPrefs.setBool(key, (value === true || value == "true"));
+				else if (value.match(/^".+"$/))
 					FoxtrickPrefs.setString(key, value.match(/^"(.+)"$/)[1]);
 				else if (!isNaN(value))
 					FoxtrickPrefs.setInt(key, Number(value));
-				else if (value == "true" || value == "false")
-					FoxtrickPrefs.setBool(key, value == "true");
 			}
 			catch (e) {
 				Foxtrick.dump("Value: " + matches[2]);

@@ -55,13 +55,19 @@ if (Foxtrick.platform == "Firefox") {
 
 		// toolbar menu - preferences
 		var toolbarPreferences = document.getElementById("foxtrick-toolbar-preferences");
-		toolbarPreferences.label = Foxtrickl10n.getString("preferences");
+		toolbarPreferences.label = Foxtrickl10n.getString("toolbar.preferences");
 		// toolbar menu - disable
 		var toolbarDisable = document.getElementById("foxtrick-toolbar-deactivate");
-		toolbarDisable.label = Foxtrickl10n.getString("foxtrick.prefs.disableTemporaryLabel");
-		// toolbar menu - highligh
+		toolbarDisable.label = Foxtrickl10n.getString("toolbar.disableTemporary");
+		// toolbar menu - clearCache
+		var clearCache = document.getElementById("foxtrick-toolbar-clearCache");
+		clearCache.label = Foxtrickl10n.getString("api.clearCache");
+		// toolbar menu - highlight
 		var toolbarHighlight = document.getElementById("foxtrick-toolbar-highlight");
-		toolbarHighlight.label = Foxtrickl10n.getString("foxtrick.prefs.featureHighlight");
+		toolbarHighlight.label = Foxtrickl10n.getString("toolbar.featureHighlight");
+		// toolbar menu - translationKeys
+		var toolbarTranslationKeys = document.getElementById("foxtrick-toolbar-translationKeys");
+		toolbarTranslationKeys.label = Foxtrickl10n.getString("toolbar.translationKeys");
 		// update status icon
 		Foxtrick.modules.UI.update();
 	};
@@ -84,7 +90,11 @@ if (Foxtrick.platform == "Firefox") {
 		if (highlightItem)
 			highlightItem.setAttribute("checked", FoxtrickPrefs.getBool("featureHighlight"));
 
-		var button = document.getElementById("foxtrick-toolbar-button");
+		var translationKeysItem = document.getElementById("foxtrick-toolbar-translationKeys");
+		if (translationKeysItem)
+			translationKeysItem.setAttribute("checked", FoxtrickPrefs.getBool("translationKeys"));
+
+			var button = document.getElementById("foxtrick-toolbar-button");
 		if (!button || !content)
 			return;
 		var doc = content.document; // get the document of current tab
@@ -112,7 +122,7 @@ if (Foxtrick.platform == "Firefox") {
 			} catch (e) {}
 			statusText = Foxtrickl10n.getString("status.enabled").replace("%s", hostname);
 		}
-		var tooltipText = Foxtrickl10n.getString("foxtrick") + " " + Foxtrick.version() + " (" + statusText + ")";
+		var tooltipText = Foxtrickl10n.getString("toolbar.title") + " " + Foxtrick.version() + " (" + statusText + ")";
 		button.setAttribute("tooltiptext", tooltipText);
 	};
 }
@@ -159,7 +169,7 @@ if (Foxtrick.platform == "Opera") {
 			statusText = Foxtrickl10n.getString("status.active");
 			button.icon = "skin/icon-24.png";
 		}
-		var tooltipText = Foxtrickl10n.getString("foxtrick") + " " + Foxtrick.version() + " (" + statusText + ")";
+		var tooltipText = Foxtrickl10n.getString("toolbar.title") + " " + Foxtrick.version() + " (" + statusText + ")";
 		button.title = tooltipText;
 	};
 }
@@ -188,7 +198,7 @@ else if (Foxtrick.platform == "Chrome") {
 			iconUrl = "../skin/icon-24.png";
 			statusText = Foxtrickl10n.getString("status.active");
 		}
-		var tooltipText = Foxtrickl10n.getString("foxtrick") + " " + Foxtrick.version() + " (" + statusText + ")";
+		var tooltipText = Foxtrickl10n.getString("toolbar.title") + " " + Foxtrick.version() + " (" + statusText + ")";
 		chrome.pageAction.setIcon({tabId : tab.id, path : iconUrl});
 		chrome.pageAction.setTitle({tabId : tab.id, title: tooltipText})
 	};

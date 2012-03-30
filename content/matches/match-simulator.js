@@ -21,18 +21,18 @@ Foxtrick.modules.MatchSimulator={
 		"7":{className:"ftMatchMasters", title:"Hattrick Masters"},
 		"8":{className:"ftMatchFriendly", title:"International friendly (normal rules)"},
 		"9":{className:"ftMatchFriendly", title:"Internation friendly (cup rules)"},
-		"10":{className:"", title:" National teams competition match (normal rules)"},
-		"11":{className:"", title:"National teams competition match (cup rules)"},
-		"12":{className:"", title:"National teams friendly"},
+		"10":{className:"ftUpcomingNationalIcon", title:" National teams competition match (normal rules)"},
+		"11":{className:"ftUpcomingNationalIcon", title:"National teams competition match (cup rules)"},
+		"12":{className:"ftMatchFriendly", title:"National teams friendly"},
 		"50":{className:"ftMatchTournament", title:"Tournament match  (normal rules)"},
 		"51":{className:"ftMatchTournament", title:"Tournament match  (cup rules)"},
-		"100":{className:"", title:"Youth league match"},
-		"101":{className:"", title:"Youth friendly match"},
+		"100":{className:"ftMatchLeague", title:"Youth league match"},
+		"101":{className:"ftMatchFriendly", title:"Youth friendly match"},
 		"102":{className:"", title:"RESERVED"},
-		"103":{className:"", title:"Youth friendly match (cup rules)"},
+		"103":{className:"ftMatchFriendly", title:"Youth friendly match (cup rules)"},
 		"104":{className:"", title:"RESERVED"},
-		"105":{className:"", title:"Youth international friendly match"},
-		"106":{className:"", title:"Youth international friendly match (Cup rules)"},
+		"105":{className:"ftMatchFriendly", title:"Youth international friendly match"},
+		"106":{className:"ftMatchFriendly", title:"Youth international friendly match (Cup rules)"},
 		"107":{className:"", title:"RESERVED"}
 	},
 	
@@ -191,7 +191,7 @@ Foxtrick.modules.MatchSimulator={
 				text += ' [matchid=' + matchid + ']'+'\n';
 				
 				// formation
-				var formations = Foxtrick.stripHTML(doc.getElementById('formations').innerHTML);
+				var formations = doc.getElementById('formations').textContent;
 				text += formations +'\n';
 				
 				// pic/mots
@@ -272,7 +272,7 @@ Foxtrick.modules.MatchSimulator={
 				}
 				
 				Foxtrick.copyStringToClipboard(text);
-				var note = Foxtrick.util.note.add(doc, doc.getElementById('mainBody').firstChild, "ft-ratings-copy-note", Foxtrickl10n.getString("CopyRatings.copied"), null, true);
+				var note = Foxtrick.util.note.add(doc, doc.getElementById('mainBody').firstChild, "ft-ratings-copy-note", Foxtrickl10n.getString("copy.ratings.copied"), null, true);
 			};
 			
 			// get levels from ratings text and display them
@@ -641,14 +641,6 @@ Foxtrick.modules.MatchSimulator={
 								// not friendlies for now to keep it clean
 								var SourceSystem = "Hattrick";//otherMatchesNodes[i].getElementsByTagName('SourceSystem')[0].textContent;
 								var MatchType = Number(otherMatchesNodes[i].getElementsByTagName('MatchType')[0].textContent);
-								/*if (!isHTOIntegrated) {
-									if (MatchType == 4 || MatchType == 5 || MatchType == 8 || MatchType == 9)
-										continue;
-									}
-								else {
-									if (SourceSystem != "HTOIntegrated" )
-										continue
-								}*/
 								if (MatchType != 1 && MatchType != 2 && MatchType != 3 && MatchType != 50 && MatchType != 51) {
 									continue;
 								}
@@ -729,7 +721,7 @@ Foxtrick.modules.MatchSimulator={
 						var addMatch = function (ev) {
 							var matchid = Number(addMatchText.value);
 							var SourceSystem = 'Hattrick';
-							if (doc.getElementById('addMatchisHTOIntegrated'))
+							if (doc.getElementById('addMatchisHTOIntegrated').checked)
 								SourceSystem = "HTOIntegrated";
 							getMatchDetails(matchid, SourceSystem, true);
 							

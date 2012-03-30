@@ -220,9 +220,8 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		// if only a CSS check, return now.
 		if (is_only_css_check)
 			return;
-
 		if (Foxtrick.isExcluded(doc) 
-		|| 	Foxtrick.isLoginPage(doc) )
+		|| 	(Foxtrick.isLoginPage(doc) && !FoxtrickPrefs.getBool("runLoggedOff")) )
 			return
 
 	  // create arrays for each recognized page that contains modules

@@ -13,36 +13,18 @@ Foxtrick.modules["ForumStripHattrickLinks"]={
 
 	changeLinks : function( ev ) {
 		var a = ev.target;
-		if (a.nodeName == "A") { 
-			if (Foxtrick.isHtUrl(a.href)) {
-				var hostname = ev.target.ownerDocument.location.hostname;
-				if (FoxtrickPrefs.isModuleOptionEnabled("ForumStripHattrickLinks", "NoConfirmStripping"))
-					a.href = a.href.replace(new RegExp("^http://.+?/"), "/");
-				else if (Foxtrick.confirmDialog('Replace server with '+hostname +'?'))
-					a.href = a.href.replace(new RegExp("^http://.+?/"), "/");
-			}
-			else if (a.href.search(/^chrome|^safari-extension|^foxtrick/)==0) {
-				var url = a.href;  																		// opera doesn't allow pref access
-				Foxtrick.log(url)
-				url = url.replace('safari-extension://www.ht-foxtrick.com-8J4UNYVFR5/2f738eb7/content/', '');	// safari nightly
-				url = url.replace('chrome-extension://hpmklgcdpljkcojiknpdnjigpidkdcan/content/',''); 	// dev chrome
-				url = url.replace('chrome-extension://bpfbbngccefbbndginomofgpagkjckik/content/',''); 	// official chrome
-				url = url.replace('chrome-extension://kfdfmelkohmkpmpgcbbhpbhgjlkhnepg/content/',''); 	// nightly chrome
-				url = url.replace('chrome://foxtrick/content/', '');									// all gecko
-				url = url.replace('foxtrick://', '');													// our fake type
-				Foxtrick.log(url)				
-				a.href = a.href.replace('foxtrick://', Foxtrick.InternalPath);
-				Foxtrick.log(url)
-				
-				// ff doesn't wanna open the changed href
-				if (Foxtrick.arch == 'Gecko' )
-					Foxtrick.newTab(Foxtrick.InternalPath + url);
-			}
+		if (a.nodeName == "A" && a.href.search('foxtrick://') != -1) { 
+			a.href = a.href.replace('foxtrick://', Foxtrick.InternalPath);
+			
+			// ff doesn't wanna open the changed href
+			if (Foxtrick.arch == 'Gecko' )
+				Foxtrick.newTab(a.href);
 		}
 	},
 
 	run : function(doc) {
 		Foxtrick.listen(doc.getElementById('mainBody'), 'click', this.changeLinks, true);
+		
 		if (Foxtrick.isPage("forumViewThread", doc))
 			return;
 
@@ -52,25 +34,28 @@ Foxtrick.modules["ForumStripHattrickLinks"]={
 			target = targets[targets.length-2];
 		if (Foxtrick.isPage("guestbook", doc))
 			target = targets[1];
-		if (target) {
-			var strip = function(str) {
-				var url = str.replace(/\[link=.+(www|www\d+|stage)\.hattrick\.(org|ws|interia\.pl)(.*?)\]/gi, "[link=$3]")
-					.replace(/\[link=safari-extension:\/\/www.ht-foxtrick.com-8J4UNYVFR5\/2f738eb7\/content\//g, '[link=foxtrick://')	// safari nightly
-					.replace(/\[link=chrome-extension:\/\/hpmklgcdpljkcojiknpdnjigpidkdcan\/content\//g,'[link=foxtrick://') 			// dev chrome
-					.replace(/\[link=chrome-extension:\/\/bpfbbngccefbbndginomofgpagkjckik\/content\//g,'[link=foxtrick://') 			// official chrome
-					.replace(/\[link=chrome-extension:\/\/kfdfmelkohmkpmpgcbbhpbhgjlkhnepg\/content\//g,'[link=foxtrick://')	 		// nightly chrome
-					.replace(/\[link=chrome:\/\/foxtrick\/content\//g,'[link=foxtrick://'); 											// all gecko
-				return url;
-			};
+		if (target) {			
 			// add submit listener
 			target.addEventListener("click", function() {
+				var urls = [
+					{reg:/\[link=.+(www|www\d+|stage)\.hattrick\.(org|ws|interia\.pl)(.*?)\]/gi, repl: "[link=$3]"},
+					{reg:/\[link=safari-extension:\/\/www.ht-foxtrick.com-8J4UNYVFR5\/2f738eb7\/content\//g, repl: '[link=foxtrick://'},	// safari nightly
+					{reg:/\[link=chrome-extension:\/\/hpmklgcdpljkcojiknpdnjigpidkdcan\/content\//g, repl: '[link=foxtrick://'},			// dev chrome
+					{reg:/\[link=chrome-extension:\/\/bpfbbngccefbbndginomofgpagkjckik\/content\//g, repl: '[link=foxtrick://'},			// official chrome
+					{reg:/\[link=chrome-extension:\/\/kfdfmelkohmkpmpgcbbhpbhgjlkhnepg\/content\//g, repl: '[link=foxtrick://'},	 		// nightly chrome
+					{reg:/\[link=chrome:\/\/foxtrick\/content\//g, repl:'[link=foxtrick://'}			// all gecko
+				]; 											
 				var textarea = doc.getElementById("mainBody").getElementsByTagName("textarea")[0];
-				if (FoxtrickPrefs.isModuleOptionEnabled("ForumStripHattrickLinks", "NoConfirmStripping")) {
-					textarea.value = strip(textarea.value);
+				var has_url = false;
+				for (var i=0;i<urls.length;++i) {
+					if (urls[i].reg.test(textarea.value) )
+						has_url = true;
 				}
-				else {
-					if (confirm(Foxtrickl10n.getString("foxtrick.confirmstripserver"))) {
-						textarea.value = strip(textarea.value);
+				if (has_url
+					&& ( FoxtrickPrefs.isModuleOptionEnabled("ForumStripHattrickLinks", "NoConfirmStripping")
+						|| confirm(Foxtrickl10n.getString("ForumStripHattrickLinks.ask")) )) {
+					for (var i=0;i<urls.length;++i) {
+						textarea.value = textarea.value.replace(urls[i].reg, urls[i].repl);
 					}
 				}
 			}, false);

@@ -9,8 +9,7 @@ Foxtrick.modules["CopyYouth"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ["YouthTraining", "youthplayerdetail", "youthoverview",
 		"youthFixtures"],
-	OPTIONS : ["TrainingReport", "ScoutComment", "RejectedToHTY", "PlayerSource",
-		"FixturesSource"],
+	OPTIONS : ["TrainingReport", "ScoutComment", "RejectedToHTY", "FixturesSource"],
 
 	CSS : Foxtrick.InternalPath + "resources/css/copy-youth.css",
 
@@ -32,14 +31,11 @@ Foxtrick.modules["CopyYouth"]={
 				for(var j = 0; j < 6; j++) { // remove end phrase
 					clone.removeChild(clone.lastChild);
 				}
-				var plain = clone.innerHTML;
-				plain=plain.replace(/^\s+/,'');  // remove leading whitespace
-				plain=plain.replace(/\s+/g,' '); // replace inner multiple whitespace by single whitespace
-				plain=plain.replace(/\<br\>\s+/ig,'\n'); // replace <br> with and w/o whitespace with newline
-				plain=plain.replace(/\<br\>/ig,'\n');
+				var plain = clone.textContent;
+				plain = plain.replace(/\s+\n\s+/g,'\n\n'); // replace multiple whitespace+newline by single newline
+				plain = plain.replace(/^\s+|\s+$/g,'');  // remove leading/trailing whitespace
+				plain += '\n';
 
-				while (plain.search(/\<.+>/)!=-1)
-					plain=plain.substr(0,plain.search('<'))+plain.substr(plain.search('>')+1);
 				Foxtrick.copyStringToClipboard(plain);
 
 				// display note
@@ -48,11 +44,11 @@ Foxtrick.modules["CopyYouth"]={
 				var url = "http://" + server + ".hattrick-youthclub.org/";
 				var container = doc.createElement("div");
 				var p = doc.createElement("p");
-				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("CopyYouth.trainingReport.copied")));
+				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("copy.trainingReport.copied")));
 				container.appendChild(p);
 				
 				var linkContainer = doc.createElement("div");
-				var string = Foxtrickl10n.getString("CopyYouth.goto").split('%s');
+				var string = Foxtrickl10n.getString("button.goto").split('%s');
 				linkContainer.appendChild(doc.createTextNode(string[0]));
 				var a = doc.createElement('a');
 				a.href = url;
@@ -70,7 +66,7 @@ Foxtrick.modules["CopyYouth"]={
 		};
 		// add button
 		var button = Foxtrick.util.copyButton.add(doc,
-			Foxtrickl10n.getString("CopyYouth.trainingReport"));
+			Foxtrickl10n.getString("copy.trainingReport"));
 		if (button) {
 			Foxtrick.addClass(button, "ft-copy-training-report");
 			Foxtrick.listen(button, "click", copyReport, false);
@@ -128,11 +124,11 @@ Foxtrick.modules["CopyYouth"]={
 						var insertBefore = doc.getElementsByTagName('h1')[0];
 						var container = doc.createElement("div");
 						var p = doc.createElement("p");
-						p.appendChild(doc.createTextNode(Foxtrickl10n.getString("CopyYouth.scoutComment.copied")));
+						p.appendChild(doc.createTextNode(Foxtrickl10n.getString("copy.scoutComment.copied")));
 						container.appendChild(p);
 						
 						var linkContainer = doc.createElement("div");
-						var string = Foxtrickl10n.getString("CopyYouth.goto").split('%s');
+						var string = Foxtrickl10n.getString("button.goto").split('%s');
 						linkContainer.appendChild(doc.createTextNode(string[0]));
 						var a = doc.createElement('a');
 						a.href = url;
@@ -168,7 +164,7 @@ Foxtrick.modules["CopyYouth"]={
 				else if (alertdiv.parentNode.getElementsByTagName('a')[0]==null
 					&& doc.getElementById('ft-copy-scout-comment-link')==null) {
 					var a=doc.createElement('a');
-					a.textContent = Foxtrickl10n.getString("CopyYouth.scoutComment");
+					a.textContent = Foxtrickl10n.getString("copy.scoutComment");
 					a.style.cssFloat = "right";
 					a.style.marginBottom = "5px";
 					a.href='#mainBody';
@@ -181,58 +177,13 @@ Foxtrick.modules["CopyYouth"]={
 			// add button
 			if (!doc.getElementById("ft-copy-scout-comment-button")) {
 				var button = Foxtrick.util.copyButton.add(doc,
-					Foxtrickl10n.getString("CopyYouth.scoutComment"));
+					Foxtrickl10n.getString("copy.scoutComment"));
 				if (button) {
 					button.id = "ft-copy-scout-comment-button";
 					Foxtrick.addClass(button, "ft-copy-scout-comment");
 					Foxtrick.listen(button, "click", copyReport, false);
 				}
 			}
-		}
-	},
-
-	addPlayerSource : function(doc) {
-		var copySource = function() {
-			var fixBr = function(text) {
-				return text.replace(/\<br\>/g,'<br />' );
-			};
-			try {
-				var html = '<html> '+doc.documentElement.innerHTML+' </html>';
-				html = fixBr(html);
-				Foxtrick.copyStringToClipboard(html);
-
-				// display note
-				var insertBefore = doc.getElementsByTagName('h1')[0];
-				var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
-				var url = "http://" + server + ".hattrick-youthclub.org/site/player_cp_add";
-				var container = doc.createElement("div");
-				var p = doc.createElement("p");
-				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("CopyYouth.playerSource.copied")));
-				container.appendChild(p);
-
-				var linkContainer = doc.createElement("div");
-				var string = Foxtrickl10n.getString("CopyYouth.goto").split('%s');
-				linkContainer.appendChild(doc.createTextNode(string[0]));
-				var a = doc.createElement('a');
-				a.href = url;
-				a.target = "_copyYouth";
-				a.textContent = "http://www.hattrick-youthclub.org";
-				linkContainer.appendChild(a);
-				linkContainer.appendChild(doc.createTextNode(string[1]));
-				container.appendChild(linkContainer);
-
-				Foxtrick.util.note.add(doc, insertBefore, "ft-player-source-copy-note", container, null, true);
-			}
-			catch (e) {
-				Foxtrick.log(e);
-			}
-		};
-
-		var button = Foxtrick.util.copyButton.add(doc,
-			Foxtrickl10n.getString("CopyYouth.playerSource"));
-		if (button) {
-			Foxtrick.addClass(button, "ft-copy-player-source");
-			Foxtrick.listen(button, "click", copySource, false);
 		}
 	},
 
@@ -251,11 +202,11 @@ Foxtrick.modules["CopyYouth"]={
 				var url = "http://www.ht-ys.org/read_fixtures";
 				var container = doc.createElement("div");
 				var p = doc.createElement("p");
-				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("CopyYouth.fixturesSource.copied")));
+				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("copy.fixturesSource.copied")));
 				container.appendChild(p);
 
 				var linkContainer = doc.createElement("div");
-				var string = Foxtrickl10n.getString("CopyYouth.goto").split('%s');
+				var string = Foxtrickl10n.getString("button.goto").split('%s');
 				linkContainer.appendChild(doc.createTextNode(string[0]));
 				var a = doc.createElement('a');
 				a.href = url;
@@ -273,7 +224,7 @@ Foxtrick.modules["CopyYouth"]={
 		};
 
 		var button = Foxtrick.util.copyButton.add(doc,
-			Foxtrickl10n.getString("CopyYouth.fixturesSource"));
+			Foxtrickl10n.getString("copy.fixturesSource"));
 		if (button) {
 			Foxtrick.addClass(button, "ft-copy-fixtures-source");
 			Foxtrick.listen(button, "click", copySource, false);
@@ -289,10 +240,6 @@ Foxtrick.modules["CopyYouth"]={
 			&& (Foxtrick.isPage("youthplayerdetail", doc)
 				|| Foxtrick.isPage("youthoverview", doc))) {
 			this.addScoutComment(doc);
-		}
-		if (FoxtrickPrefs.isModuleOptionEnabled("CopyYouth", "PlayerSource")
-			&& (Foxtrick.isPage("youthplayerdetail", doc))) {
-			this.addPlayerSource(doc);
 		}
 		if (FoxtrickPrefs.isModuleOptionEnabled("CopyYouth", "FixturesSource")
 			&& Foxtrick.isPage("youthFixtures", doc)) {

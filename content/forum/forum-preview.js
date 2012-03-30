@@ -116,7 +116,12 @@ Foxtrick.modules["ForumPreview"]={
 				// reformat with pre
 				text = formatter.reformat(text);
 
-				prev_div.innerHTML = Foxtrick.util.sanitizeHTML(text);
+				var preview_message = doc.createElement( "div" );
+				preview_message.id = "message_preview";
+				preview_message.setAttribute( "class", "message" );
+
+				Foxtrick.util.sanitize.addHTML(doc, text, preview_message);
+				preview_div.replaceChild( preview_message , preview_div.firstChild);
 			}
 			catch(e) {
 				Foxtrick.log(e);

@@ -106,7 +106,7 @@ Foxtrick.modules["Ratings"]={
 							tactics[i] = -1;
 						}
 						if (tactics[i] != null) {
-							if (cell.innerHTML.length>2) {
+							if (cell.textContent.length>2) {
 								cell.appendChild(doc.createElement('br'));
 								cell.appendChild(doc.createTextNode(Foxtrickl10n.getString( "foxtrick.matchdetail.total" )+": "));
 							}
@@ -118,7 +118,7 @@ Foxtrick.modules["Ratings"]={
 						}
 					}
 					else if (typeof(this.ratingDefs[selectedRating]["total"]) == "function") {
-						if (cell.innerHTML.length>2) {
+						if (cell.textContent.length>2) {
 							cell.appendChild(doc.createElement('br'));
 							cell.appendChild(doc.createTextNode(Foxtrickl10n.getString( "foxtrick.matchdetail.total" )+": "));
 						}
@@ -135,7 +135,7 @@ Foxtrick.modules["Ratings"]={
 	
 	insertRatingsDet: function (doc, cell, rating, ratingType, label, midfieldLevel, attackLevel, defenceLevel) {
 		if (typeof(rating[ratingType]) == 'undefined') return;
-			if (cell.innerHTML.length>2) {
+			if (cell.textContent.length>2) {
 				cell.appendChild(doc.createElement('br'));
 			}
 		cell.appendChild(doc.createTextNode(label+": "));

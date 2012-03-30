@@ -19,58 +19,83 @@
 		feeds = Foxtrick.filter(function(n) { return Foxtrick.trim(n) != ""; }, feeds);
 		// add default feed if no feeds set
 		if (feeds.length == 0)
-			feeds = [Foxtrick.DataPath + "links.json"];
+			feeds = [Foxtrick.DataPath + "links.json.zip"];
+		
+		var parseFeed = function(text) {
+			var key, prop;
+
+			try {
+				var links = JSON.parse(text);
+			}
+			catch (e) {
+				Foxtrick.log("Failure parsing links file: ", text);
+				return;
+			}
+			for (key in links) {
+				var link = links[key]; 
+				if (link.img) {
+					// add path to internal images
+					if (link.img.indexOf('resources')==0)
+						link.img = Foxtrick.InternalPath + link.img;
+					link.img = Foxtrick.util.sanitize.parseUrl(link.img);
+				}
+				for (prop in link) { 
+					if (prop.indexOf("link") >= 0) {
+						link[prop].url = Foxtrick.util.sanitize.parseUrl(link[prop].url);
+						if (typeof(collection[prop]) == 'undefined') {
+							collection[prop] = {};
+						}
+						collection[prop][key] = link;
+					}
+				}
+			}
+			Foxtrick.sessionSet("links-collection", collection);
+			if (todo == 0 && callbackStack.length) {
+				for (var i=0; i<callbackStack.length; ++i) {
+					if (typeof callbackStack[i] == "function")
+						callbackStack[i](collection);
+				}
+				callbackStack = [];
+				Foxtrick.log("Links feeds loaded");
+			}
+		};
+
 		// now load the feeds
 		Foxtrick.log("Loading link feeds from: ", feeds);
+		var todo = feeds.length;
 		Foxtrick.map(function(feed) {
-			var parseFeed = function(text) {
-				var key, prop;
+			if (feed.search(/\.zip$/i) != -1 ) {
+				// load zipped
+				var feedsZip = new ZipFile(feed, function(zip){
+					--todo;
+					for (var i=0; i<zip.entries.length; i++) {
+						var extractCb = function(entry, entryContent) {
+							Foxtrick.log('parse ', entry.name);
+							parseFeed(entryContent);
+						};
 
-				try {
-					var links = JSON.parse(text);
-				}
-				catch (e) {
-					Foxtrick.log("Failure parsing links file: ", text);
-					return;
-				}
-				for (key in links) {
-					var link = links[key]; 
-					if (link.img) {
-						// add path to internal images
-						if (link.img.indexOf('resources')==0)
-							link.img = Foxtrick.InternalPath + link.img;
-						link.img = Foxtrick.util.sanitizeUrl(link.img);
+						// extract asynchronously
+						var entry = zip.entries[i];
+						Foxtrick.log('unzip ', entry.name);
+						entry.extract(extractCb, true);
 					}
-					for (prop in link) { 
-						if (prop.indexOf("link") >= 0) {
-							link[prop].url = Foxtrick.util.sanitizeUrl(link[prop].url);
-							if (typeof(collection[prop]) == 'undefined') {
-								collection[prop] = {};
-							}
-							collection[prop][key] = link;
-						}
-					}
-				}
-				Foxtrick.sessionSet("links-collection", collection);
-				if (callbackStack.length) {
-					for (var i=0; i<callbackStack.length; ++i) {
-						if (typeof callbackStack[i] == "function")
-							callbackStack[i](collection);
-					}
-					callbackStack = [];
-				}
-			};
-			
-			Foxtrick.get(feed)("success", function(text) {
-				if (text == null) 
-					text = FoxtrickPrefs.getString("LinksFeed."+feed);
-				parseFeed(text);
-				FoxtrickPrefs.setString("LinksFeed."+feed, text);				
-			})("failure", function(code) {
-				Foxtrick.log("Error loading links feed: ", feed, ". Using cached feed.");
-				var text =  FoxtrickPrefs.getString("LinksFeed."+feed);
-				parseFeed(text);
-			});
+				}, 3);
+			} else {
+				// load plain text
+				Foxtrick.get(feed)("success", function(text) {
+					--todo;
+					if (text == null) 
+						text = FoxtrickPrefs.getString("LinksFeed."+feed);
+					Foxtrick.log('parse ', feed);
+					parseFeed(text);
+					FoxtrickPrefs.setString("LinksFeed."+feed, text);				
+				})("failure", function(code) {
+					--todo;
+					Foxtrick.log("Error loading links feed: ", feed, ". Using cached feed.");
+					var text =  FoxtrickPrefs.getString("LinksFeed."+feed);
+					parseFeed(text);
+				});
+			}
 		}, feeds);
 	};
 
@@ -255,10 +280,13 @@
 		},
 
 		getOptionsHtml : function(doc, module, linkType) {
+			try{
 			var list = doc.createElement("ul");
 			getCollection(function(collection) {
 				var types = (linkType instanceof Array) ? linkType : [linkType];
 				Foxtrick.map(function(type) {
+					try {
+					Foxtrick.log(module,linkType,type,collection[type])
 					if (collection[type]) {
 						var links = collection[type];
 						var key;
@@ -283,9 +311,11 @@
 							label.appendChild(doc.createTextNode(link.title));
 						}
 					}
+				} catch(e) {Foxtrick.log(e)};
 				}, types);
 			});
 			return list;
-		}
+		}catch(e) {Foxtrick.log(e)};
+		} 
 	};
 }());

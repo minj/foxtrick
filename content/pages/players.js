@@ -559,29 +559,41 @@ Foxtrick.Pages.Players = {
 				}
 				if (matchLink) {
 					player.lastMatch = matchLink.cloneNode(true);
+					var matchDateCell = matchLink.parentNode;
+					var matchRatingCell = matchDateCell.nextSibling;
+					if (matchRatingCell.nodeName != "TD")
+						matchRatingCell = matchRatingCell.nextSibling; 
 				}
 
 				// last rating
 				if (matchLink) {
-					var container = matchLink.parentNode.parentNode;
 					var rating = 0;
-					rating += container.getElementsByClassName("starBig").length * 5;
-					rating += container.getElementsByClassName("starWhole").length * 1;
-					rating += container.getElementsByClassName("starHalf").length * 0.5;
+					var ratingYellow = 0;					
+					var stars = matchRatingCell.getElementsByTagName('img');
+					for ( var j=0; j< stars.length; ++j) {
+						if (stars[j].className == "starBig" )
+							rating += 5;
+						if (stars[j].className == "starWhole" )
+							rating += 1;
+						if (stars[j].className == "starHalf" )
+							rating += 0.5;
+						
+						if (stars[j].src.search(/star_big_yellow.png/g) != -1)
+							ratingYellow += 5; 
+						if (stars[j].src.search(/star_yellow.png/g) != -1)
+							ratingYellow += 1; 
+						if (stars[j].src.search(/star_half_yellow.png/g) != -1)
+							ratingYellow += 0.5; 
+						if (stars[j].src.search(/star_yellow_to_brown.png/g) != -1)
+							ratingYellow += 0.5; 
+					}
 					player.lastRating = rating;
-					
-					var ratingYellow = 0;
-					ratingYellow += (container.innerHTML.split(/star_big_yellow.png/g).length-1)*5; 
-					ratingYellow += (container.innerHTML.split(/star_yellow.png/g).length-1)*1; 
-					ratingYellow += (container.innerHTML.split(/star_half_yellow.png/g).length-1)*0.5; 
-					ratingYellow += (container.innerHTML.split(/star_yellow_to_brown.png/g).length-1)*0.5; 
 					player.lastRatingEndOfGame = ratingYellow;
-
 					player.lastRatingDecline = rating - ratingYellow;
 				}
 
 				if (matchLink) {
-					var position = matchLink.parentNode.nextSibling.nextSibling.innerHTML.match(/\((.+)\)/)[1];
+					var position = matchRatingCell.getElementsByClassName('shy')[0].textContent.match(/\((.+)\)/)[1];
 					player.lastPosition = position;
 				}
 

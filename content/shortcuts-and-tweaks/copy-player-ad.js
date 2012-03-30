@@ -33,7 +33,7 @@ Foxtrick.modules["CopyPlayerAd"]={
 		}
 
 		var button = Foxtrick.util.copyButton.add(doc,
-			Foxtrickl10n.getString("foxtrick.tweaks.copyplayerad"));
+			Foxtrickl10n.getString("copy.playerad"));
 		if (button) {
 			Foxtrick.addClass(button, "ft-copy-player-ad");
 			Foxtrick.listen(button, "click", this.createPlayerAd, false);
@@ -289,7 +289,7 @@ Foxtrick.modules["CopyPlayerAd"]={
 
 			var insertBefore = doc.getElementsByTagName('h1')[0];
 			Foxtrick.copyStringToClipboard(ad);
-			var note = Foxtrick.util.note.add(doc, insertBefore, "ft-playerad-copy-note", Foxtrickl10n.getString("foxtrick.tweaks.copied"), null, true);
+			var note = Foxtrick.util.note.add(doc, insertBefore, "ft-playerad-copy-note", Foxtrickl10n.getString("copy.playerad.copied"), null, true);
 		}
 		catch (e) {
 			Foxtrick.alert('createPlayerAd '+e);

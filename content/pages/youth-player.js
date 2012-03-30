@@ -29,9 +29,9 @@ Foxtrick.Pages.YouthPlayer = {
 			var playerTable = playerInfo.getElementsByTagName("table")[0];
 			var joinedCell = playerTable.getElementsByTagName("td")[5];
 			// if not joinedRe1, then joinedRe2
-			var joinedMatch = joinedRe1.exec(joinedCell.innerHTML);
+			var joinedMatch = joinedRe1.exec(joinedCell.textContent);
 			if (joinedMatch === null) {
-				joinedMatch = joinedRe2.exec(joinedCell.innerHTML);
+				joinedMatch = joinedRe2.exec(joinedCell.textContent);
 			}
 			var joinedDays = parseInt(joinedMatch[1]);
 			return joinedDays;

@@ -45,6 +45,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/lib/sha1.js</string>
 				<string>content/lib/jquery.js</string>
 				<string>content/lib/PluralForm.js</string>
+				<string>content/lib/ZipFile.complete.js</string>
 
 				<!-- utilities -->
 				<string>content/util/api.js</string>
@@ -242,7 +243,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>foxtrick.symbiosis.org.gr</string>
 				<string>foxtrick.c6.ixwebhosting.org</string>
 				<string>foxtrick.googlecode.com</string>
-				<string>www.hattrick-youthclub.org</string>
+				<string>*.hattrick-youthclub.org</string>
 				<string>www.fantamondi.it</string>
 			</array>
 			<key>Include Secure Pages</key>

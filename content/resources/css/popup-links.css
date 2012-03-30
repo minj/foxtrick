@@ -5,7 +5,8 @@
 	display:inline;
 }
 
-#ctl00_ctl00_CPContent_CPMain_repLeagueTable td .ft-popup-span {
+/* fix for vanishing links in rtl tables*/
+html[dir="rtl"] td .ft-popup-span {
 	display:block;
 }
 
@@ -19,7 +20,12 @@ ul.ft-popup-list {
 	z-index: 10000;
 	list-style-type: none;
 	margin:0px;
+}
+html[dir="ltr"] ul.ft-popup-list {
 	left:10px;
+}
+html[dir="rtl"] ul.ft-popup-list {
+	right:10px;
 }
 
 /* just not in messages*/
@@ -45,8 +51,8 @@ ul.ft-popup-list > li {
 	padding: 0px 2px !important;
 	margin: 0px;
 }
-ul.ft-popup-list > li > a,  ul.ft-popup-list > li > span {
-	text-align: left;
+
+ul.ft-popup-list > li > a, ul.ft-popup-list > li > span {
 	cursor: pointer;
 	display: block !important;
 	font-weight: normal !important;
@@ -54,12 +60,23 @@ ul.ft-popup-list > li > a,  ul.ft-popup-list > li > span {
 	color: #3f7137 !important;
 	padding: 0 !important;
 }
+
+html[dir="ltr"] ul.ft-popup-list > li > a, html[dir="ltr"] ul.ft-popup-list > li > span {
+	text-align: left;
+}
+
+html[dir="rtl"] ul.ft-popup-list > li > a, html[dir="rtl"] ul.ft-popup-list > li > span {
+	text-align: right;
+}
+
 ul.ft-popup-list > li:hover {
 	background-color: #c3e7c7 !important;
 }
+
 #ticker div ul.ft-popup-list, div.message span.ft-popup-span:hover ul.ft-popup-list, div.signature-trunc span.ft-popup-span:hover ul.ft-popup-list {
 	display: none;
 }
+
 div.cfMessage, div.edited, div.cfHeader, div.feedItem, div.cfUserInfo, div.signature, div.playerInfo, .alert {
 	overflow: visible !important;
 }
