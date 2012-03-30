@@ -46,6 +46,7 @@ Foxtrick.modules["SkillColoring"]={
 			}
 		};
 
+		// add skillnumbers to the dynamically filled player details div on the lineup page
 		if ( Foxtrick.isPage('matchOrder', doc) && 
 			(FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_number")
 			|| FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_number_translated"))) {
