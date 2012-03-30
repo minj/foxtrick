@@ -2,54 +2,46 @@
 /* Module TickerColoring */
 
 /* ticker links */
-.ft-ticker-link {
+#ticker a {
 	margin: 2px;
 	color: black;
 }
-
 /* on mouse hover */
-.ft-ticker-link:hover {
+#ticker a:hover {
 	background-color: transparent;
 }
 
 /* login welcome */
-.ft-ticker-welcome {
+#ticker a[href^="/MyHattrick/Dashboard.aspx"] {
 	background-color: #dfefc2;
 }
-
+/* My Hattrick message. being after login style it should take precedence */
+#ticker a[href^="/MyHattrick/Dashboard.aspx?actionType"] {
+	background-color: #dfdfdf;
+}
 /* supporter login */
-.ft-ticker-supporter {
+#ticker a[href^="/Club/Manager/?teamId="] {
 	background-color: #ffe8cf;
 }
-
 /* forum reply */
-.ft-ticker-forum {
+#ticker a[href^="/Forum/"] {
 	background-color: #dfeeff;
 }
-
 /* transfer */
-.ft-ticker-transfer {
+#ticker a[href^="/Club/Players/"] {
 	background-color: #fffbcf;
 }
-
 /* challenge */
-.ft-ticker-challenge {
+#ticker a[href^="/Club/Challenges/"] {
 	background-color: #ffdfe0;
 }
-
 /* guestbook */
-.ft-ticker-guestbook {
+#ticker a[href^="/Club/Manager/Guestbook.aspx?teamid="] {
 	background-color: #dffffd;
 }
-
 /* mail */
-.ft-ticker-mail {
+#ticker a[href^="/Inbox/"] {
 	background-color: #eedfff;
-}
-
-/* My Hattrick message */
-.ft-ticker-myht {
-	background-color: #dfdfdf;
 }
 
 }
