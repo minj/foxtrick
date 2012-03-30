@@ -138,24 +138,24 @@ Foxtrick.modules["ForumYouthIcons"]={
 			var div = doc.createElement('div');
 			div.setAttribute('class','HTMLToolbar');
 			var forumButtons = [
-				{onclick:"insertQuote", className:"f_quote2", title:"[q]"},
-				{onclick:"insertBold", className:"f_bold", title:"[b]"},
-				{onclick:"insertItalic", className:"f_italic", title:"[i]"},
-				{onclick:"insertUnderline", className:"f_ul", title:"[u]"},
-				{onclick:"insertRuler", className:"f_hr", title:"[hr]"},
-				{onclick:"insertPlayerID", className: "f_player", title:"[playerID=xxx]"},
-				{onclick:"insertTeamID", className:"f_team", title:"[teamID=xxx]"},
-				{onclick:"insertMatchID", className:"f_match", title:"[matchID=xxx]"},
-				{onclick:"insertFederationID", className:"f_fed", title:"[fedID=xxx]"},
-				{onclick:"insertMessage", className:"f_message", title:"[post=xxx.yy]"},
-				{onclick:"insertLeagueID", className:"f_series", title:"[leagueID=xxx]"},
-				{onclick:"insertLink", className:"f_www", title:"[link=xxx]"}				
+				{ht_function:"insertQuote", className:"f_quote2", title:"[q]"},
+				{ht_function:"insertBold", className:"f_bold", title:"[b]"},
+				{ht_function:"insertItalic", className:"f_italic", title:"[i]"},
+				{ht_function:"insertUnderline", className:"f_ul", title:"[u]"},
+				{ht_function:"insertRuler", className:"f_hr", title:"[hr]"},
+				{ht_function:"insertPlayerID", className: "f_player", title:"[playerID=xxx]"},
+				{ht_function:"insertTeamID", className:"f_team", title:"[teamID=xxx]"},
+				{ht_function:"insertMatchID", className:"f_match", title:"[matchID=xxx]"},
+				{ht_function:"insertFederationID", className:"f_fed", title:"[fedID=xxx]"},
+				{ht_function:"insertMessage", className:"f_message", title:"[post=xxx.yy]"},
+				{ht_function:"insertLeagueID", className:"f_series", title:"[leagueID=xxx]"},
+				{ht_function:"insertLink", className:"f_www", title:"[link=xxx]"}				
 			];
 			var makeButton = function(json) {
 				var img = doc.createElement('img');
 				// need to use the webpage's injected script functions
 				img.src = "/Img/Icons/transparent.gif";
-				img.setAttribute('onclick',json.onclick+"(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ")");			
+				img.setAttribute('onclick',json.ht_function+"(document.getElementById('" + textbox + "'), document.getElementById('" + count + "'), " + chars + ")");			
 				img.className = json.className;
 				img.setAttribute('title',json.title);
 				return img;
