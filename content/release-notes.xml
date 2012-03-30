@@ -13,6 +13,22 @@
 <item>Please view <xhtml:a href="http://code.google.com/p/foxtrick/source/list">commit history</xhtml:a> at Google Code for details.</item>
 </note>
 
+<note version="0.9.2">
+<item>● Another massive language update. Thanks again to all those translators.</item>
+<item>● <module>TeamPopupLinks</module>: optionally highlights current team in tables (default on)</item>
+<item>● <module>RatingsDisplay</module>: additonally addes average stars and ratings to series stats table</item>
+<item>● Skillable for transferlist search: injured fixed</item>
+<item>● MatchReportFormat: negative SE icons added</item>
+<item>● Links: make dynamic added links default on</item>
+<item>● Links and staffmarker: load zipped to save bandwidth</item>
+<item>● Links: Fixed removing custom links not working</item>
+<item>● ForumAlterHeaderLine: Highlight thread opener and remove postid for simple header fixed</item>
+<item>● ForumStripHattrickLinks: confirm option fixed</item>
+<item>● MatchSimulator: adding non-tournament matches fixed</item>
+<item>● CopyYouth: obsolete copy-player-source removed</item>
+<item>● Some more work on AMO compliance</item>
+</note>
+
 <note version="0.9.1">
 <item>● HTMS: tactics used again</item>
 <item>● Tablesort: sort floating numbers</item>
