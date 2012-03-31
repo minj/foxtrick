@@ -13,6 +13,22 @@
 		<item>Пожалуйста, посмотрите <xhtml:a href="http://code.google.com/p/foxtrick/source/list">историю изменений</xhtml:a> на сайте Google Code для деталей.</item>
 	</note>
 
+	<note version="0.9.2">
+		<item>● Очередное массовое обновление переводов. Снова всем спасибо за эти обновления.</item>
+		<item>● Модуль <module>TeamPopupLinks</module>: выделение текущей команды в таблицах (включено по умолчанию).</item>
+		<item>● Модуль <module>RatingsDisplay</module>: добавляет средние звёзды и рейтинги в таблицу статистики лиги.</item>
+		<item>● Таблица навыков в поиске трансферов: исправлены травмы.</item>
+		<item>● Модуль <module>MatchReportFormat</module>: добавлены значки для негативных специальных событий.</item>
+		<item>● Ссылки: добавление динамических ссылок по умолчанию включено.</item>
+		<item>● Ссылки и участники проекта: загрузка сжатого файла для уменьшения нагрузки на канал.</item>
+		<item>● Ссылки: исправлено не работавшее удаление пользовательских ссылок.</item>
+		<item>● Модуль <module>ForumAlterHeaderLine</module>: исправлены выделение автора темы и удаление номера темы сообщения в заголовке.</item>
+		<item>● Модуль <module>ForumStripHattrickLinks</module>: исправлены параметры подтверждения.</item>
+		<item>● Модуль <module>MatchSimulator</module>: исправлено добавление нетурнирных матчей.</item>
+		<item>● Модуль <module>CopyYouth</module>: удалены устаревшие ссылки на копирование исходного кода страницы.</item>
+		<item>● Некоторые изменения для совместимости с <xhtml:a href="https://addons.mozilla.org">AMO</xhtml:a>.</item>
+	</note>
+
 	<note version="0.9.1">
 		<item>● HTMS: снова учитываются тактики</item>
 		<item>● Tablesort: сортировка дробных чисел</item>
