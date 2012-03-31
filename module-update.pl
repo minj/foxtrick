@@ -140,3 +140,13 @@ foreach my $target (@targets) {
 	print TARGET $cleaned_content;
 	close(TARGET);
 }
+
+# remove files from ignored_modules
+foreach my $module (@ignored_modules) {
+	my ($directory, $filename) = $module =~ m/(.+\/)(.+)$/;
+	print "remove " . $filename . "\n";
+	# ff,chrome,safari
+	unlink($path . "content/" . $module);
+	#opera
+	unlink($path . "includes/" . $filename);
+}
