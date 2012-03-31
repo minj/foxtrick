@@ -25,6 +25,7 @@
 			var key, prop;
 
 			try {
+				Foxtrick.log("parseFeed : ", text.substr(0,200));
 				var links = JSON.parse(text);
 			}
 			catch (e) {
@@ -61,9 +62,10 @@
 		};
 
 		// now load the feeds
-		Foxtrick.log("Loading link feeds from: ", feeds);
+		Foxtrick.log("Loading link feeds from: ", feeds, " length: ", feeds.length);
 		var todo = feeds.length;
 		Foxtrick.map(function(feed) {
+			Foxtrick.log("do feeds: ", feed);
 			if (feed.search(/\.zip$/i) != -1 ) {
 				// load zipped
 				var feedsZip = new ZipFile(feed, function(zip){
@@ -283,15 +285,17 @@
 			try{
 			var list = doc.createElement("ul");
 			getCollection(function(collection) {
-				var hasOption = false;
+				try{ var hasOption = false;
 				var types = (linkType instanceof Array) ? linkType : [linkType];
+				Foxtrick.log('types ', types)
 				Foxtrick.map(function(type) {
 					try {
-					Foxtrick.log(module,linkType,type,collection[type]);
+					Foxtrick.log(module, ' ', linkType, ' ', type);
 					if (collection[type]) {
 						var links = collection[type];
 						var key;
 						for (var key in links) {
+							Foxtrick.log(type, ' ', key);
 							var link = links[key];
 							var item = doc.createElement("li");
 							list.appendChild(item);
@@ -322,6 +326,7 @@
 					}
 				} catch(e) {Foxtrick.log(e)};
 				}, types);
+			} catch(e) {Foxtrick.log(e)};
 			});
 			return list;
 		}catch(e) {Foxtrick.log(e)};
