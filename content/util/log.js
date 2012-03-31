@@ -29,6 +29,7 @@ Foxtrick.log = function() {
 					+ "Stack trace:\n" 
 					+ content.stack;
 				item = item.replace(/.+@/g,''); // readability. the place/object doesn't get shown for me in a readable way in any console i tried
+				// goes to the error console ctrl+shift+j
 				Components.utils.reportError(item);
 			}
 			else if (Foxtrick.arch == "Sandboxed") {
@@ -54,7 +55,7 @@ Foxtrick.log = function() {
 		else {
 			item = content;
 		}
-		concated += item;
+		concated += " " + item;
 	}
 	Foxtrick.log.cache += concated + "\n";
 
@@ -63,8 +64,11 @@ Foxtrick.log = function() {
 		&& typeof(Firebug.Console) != "undefined"
 		&& typeof(Firebug.Console.log) == "function") {
 		// if Firebug.Console.log is available, make use of it
-		// could just use just 'args', but i didn't get tracing to work nice
-		Firebug.Console.log(concated);
+		if (hasError)
+			// could just use just 'args', but i didn't get tracing to work nice
+			Firebug.Console.log(concated);
+		else
+			Firebug.Console.log(args);
 	}
 	else if (typeof(opera) != "undefined"
 		&& typeof(opera.postError) == "function") {
@@ -74,15 +78,22 @@ Foxtrick.log = function() {
 		&& typeof(console.log) == "function") {
 		// if console.log is available, make use of it
 		// (support multiple arguments)
+		// for firefox it's in the webconsole (only injected, thus preferences.html only)
 		console.log.apply(console, args);
 		if (hasError && typeof(console.trace) == "function") 
 			console.trace();
 	}
-	if (typeof(dump) == "function") {
+	if (Foxtrick.arch == "Gecko") {
+		// goes to the error console ctrl+shift+j
+		var consoleService = Components.classes["@mozilla.org/consoleservice;1"]
+							.getService(Components.interfaces.nsIConsoleService);
+		consoleService.logStringMessage("FoxTrick : " + concated);
+	}
+	if (typeof(dump) == "function" && FoxtrickPrefs.getBool("dump")) {
 		if (Foxtrick.chromeContext() === "background") {
 			var lines = concated.split(/\n/)
 			lines = Foxtrick.map ( function(l){
-				dump(l.substr(0,500) + '\n');
+				dump("FT: " + l.substr(0,500) + '\n');
 			}, lines);
 		}
 		else {
@@ -90,7 +101,7 @@ Foxtrick.log = function() {
 			sandboxed.extension.sendRequest({ req : "log", log : concated+'\n'});
 		}
 	}
-
+  
 	// add to stored log
 	if (Foxtrick.arch === "Sandboxed") {
 		if (Foxtrick.chromeContext() == "content")

@@ -755,3 +755,4 @@ pref("extensions.foxtrick.prefs.module.MobileEnhancements.enabled", false);
 pref("extensions.foxtrick.prefs.MatchSimulator.staminaDiscountOn", false);
 pref("extensions.foxtrick.prefs.MatchSimulator.attVsDefOn", true);
 pref("extensions.foxtrick.prefs.runLoggedOff", false);
+pref("extensions.foxtrick.prefs.dump", false);
