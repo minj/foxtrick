@@ -19,8 +19,8 @@
 <item>● <module>RatingsDisplay</module>: просечне оцене и звездице у табели статистке за лигу</item>
 <item>● <module>SkillТable</module> на страници резултата претраге трансфера: исправка грешке код повређених играча</item>
 <item>● <module>MatchReportFormat</module>: додате сиве иконице за негативне специјалне догађаје</item>
-<item>● Links: укључено на опција за додавање динамичких линкова</item>
-<item>● Links и staffmarker: учитавање у зипованом формату ради мањег оптерећења на сервер</item>
+<item>● Links: укључена опција за додавање динамичких линкова</item>
+<item>● Links и staffmarker: учитавање у зипованом формату ради мањег оптерећења серверa</item>
 <item>● Links: Поправка за брисање персонализованих линкова</item>
 <item>● <module>ForumAlterHeaderLine</module>: Поправљено означавање отварача теме и уклањање постИД за једноставно заглавље на Форуму</item>
 <item>● <module>ForumStripHattrickLinks</module>: поправљена опција за потврду</item>
