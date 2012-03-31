@@ -87,7 +87,8 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		var ts_xp = doc.createElement("th");
 		Foxtrick.addClass(ts_xp,"stats");
 		Foxtrick.addClass(ts_xp,"ft-dummy");
-		ts_xp.textContent = "XP+"
+		ts_xp.textContent = Foxtrickl10n.getString("PlayerStatsExperience.ExperienceChange.title.abbr");
+		ts_xp.title = Foxtrickl10n.getString("PlayerStatsExperience.ExperienceChange.title");
 		//stats_head.appendChild(ts_xp);
 		stats_head.insertBefore(ts_xp, stats_head.getElementsByTagName("th")[7]);
 
@@ -140,22 +141,54 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			var ts_xp = doc.createElement("td");
 			ts_xp.textContent = xp_gain.toFixed(2);
 			if(!ntMatch && gameType == "matchFriendly" && minutes > 0)
-				ts_xp.textContent = ts_xp.textContent + "*";
+				ts_xp.textContent =  (xp_gain/2.0).toFixed(2) + "/" + xp_gain.toFixed(2);
 			entry.insertBefore(ts_xp, entry.getElementsByTagName("td")[xp_column+1]);
 
 		}, stats_entries);
 
 		xp_sub_min -= xp_last_min_added;
 
+		var showAllLink=null;
+		var links = doc.getElementsByTagName("a");
+		Foxtrick.map(function (link){
+			if(link.href.search(RegExp("ShowAll=True", "i")) != -1)
+				showAllLink=link;
+		}, links)
 
-		var div = doc.createElement("div");
-		var textNode = doc.createTextNode("Experience is between " + (xp_last + (xp_sub_min/pts_for_skillUp)).toFixed(2) + " (" + xp_sub_min.toFixed(2) +")" + " and " + (xp_last + (xp_sub_max/pts_for_skillUp)).toFixed(2)  + " (" + xp_sub_max.toFixed(2) +"). ");
-		
-		if(!xp_skillUp_detected)
-			textNode.textContent = textNode.textContent + "Info might be incorrect because the player has no recorded experience-skillup or you díd not expand to all matches (Work in progress)";
+		var div = Foxtrick.createFeaturedElement(doc, this, "div"); 
 
-		div.appendChild(textNode);
+		var experienceText = Foxtrickl10n.getString("PlayerStatsExperience.ExperienceText")
+						.replace(/%1/, xp_sub_min.toFixed(2))
+						.replace(/%2/, xp_sub_max.toFixed(2))
+						.replace(/%3/, (xp_last + (xp_sub_min/pts_for_skillUp)).toFixed(2))
+						.replace(/%4/, (xp_last + (xp_sub_max/pts_for_skillUp)).toFixed(2));
+
+		var span =  doc.createElement("span");
+		var textNode = doc.createTextNode(experienceText);
+		span.appendChild(textNode);
+		div.appendChild(span);
+		div.appendChild(doc.createElement("br"));
+		if(showAllLink && !xp_skillUp_detected){
+			var span =  doc.createElement("span");
+			var textNode = doc.createTextNode(Foxtrickl10n.getString("PlayerStatsExperience.NotAllMatchesVisible"));
+			//var textNode2 = doc.createTextNode("The actual value might be higher because not all matches are displayed.");
+			span.appendChild(textNode);
+			div.appendChild(span);
+		} else if (!xp_skillUp_detected) {
+			var span =  doc.createElement("span");
+			var textNode = doc.createTextNode(Foxtrickl10n.getString("PlayerStatsExperience.NoSkillUpFound"));
+			//var textNode2 = doc.createTextNode("The actual value might be higher because no recorded experience-skillup was found.");
+			span.appendChild(textNode);
+			div.appendChild(span);
+		}
+
 		var navigation = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlMatchHistorySlideToggle");
 		navigation.parentNode.insertBefore(div, navigation);
+
+		//if more matches are required, clone showall link for easier access to top of table
+		if(showAllLink && !xp_skillUp_detected){
+			var showAllLinkClone = showAllLink.cloneNode(true);
+			navigation.parentNode.insertBefore(showAllLinkClone, navigation);
+		}
 	}
 };
