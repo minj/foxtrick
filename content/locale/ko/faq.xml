@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 
 <faq xmlns:xhtml="http://www.w3.org/1999/xhtml">
         <item id="style">
-                <question>어떻게 폭스트릭을 내가 스타일을 지정할 수 있어요?</question>
+                <question>어떻게 폭스트릭의 스타일을 지정할 수 있습니까?</question>
                 <answer>
                         <xhtml:p>
-                                폭스트릭은 사용자가 그들의 스타일을 커스터마이즈하기 위한 표시 인터페이스 셋을 제공합니다..
+                                폭스트릭은 사용자가 그들의 스타일을 커스터마이즈하기 위한 표시 인터페이스 모음을 제공합니다..
                                 인터페이스는 HTML ID와 class으로 제공되고 당신이 선호하는 스타일을 정하기 위해서 CSS를 사용할 수 있습니다.
                         </xhtml:p>
                         <xhtml:p>
@@ -15,16 +15,16 @@
                 </answer>
         </item>
         <item id="authorize">
-                <question>나 팀 데이터를 접근하기 위해서 왜 폭스트릭을 인증해야합니까?</question>
+                <question>팀 데이터를 접근하기 위해서 왜 폭스트릭 사용자 인증을 해야합니까?</question>
                 <answer>
                         <xhtml:p>
                                 비록 폭스트릭에 필요한 데이터 대부분을 여러분이 보고 있는 페이지로부터 직접 가져오지만 몇 가지 모듈은 정상적으로 동작하기 위해서 Hattrick으로부터 데이터를 다운로드해야 합니다.
                         </xhtml:p>
                         <xhtml:p>
-                                Hattrick으로부터 팀, 리그, 국가 대표팀 데이터를 다운로드하기 위해서 당신은 사전에 FoxTrick 권한을 부여해야합니다.
+                                Hattrick으로부터 팀, 리그, 국가 대표팀 데이터를 다운로드하기 위해서 사전에 FoxTrick에게 접근 권한을 부여해야 합니다.
                         </xhtml:p>
                         <xhtml:p>
-                                당신은 FoxTrick에게 제공하는 확인 코드의 댓가로 chpp.hattrick.org에 사용자 이름과 비밀 번호를 사용하여 FoxTrick를 승인합니다.
+                                chpp.hattrick.org에서 사용자 이름과 비밀 번호를 사용하여 얻은 확인 코드을 통해 FoxTrick을 승인합니다.
                                 FoxTrick은 전체 과정에서 사용자 이름이나 비밀 번호를 알 수 없습니다.
                         </xhtml:p>
                         <xhtml:p>
@@ -59,11 +59,11 @@
                                 사용자이름, 비밀번호에 국한되지 않은 정보와 스킬에 관련 정보, 선수 ID.
                         </xhtml:p>
                         <xhtml:p>
-                                서드 파티로 전달되는 아래 명시되지 않은 대부분의 데이터는 HTTP GET 메소드를 통해 전달됩니다. 그리고 여러분이 링크를 클릭해야만 보내집니다.
+                                아래 명시되지 않은 대부분의 데이터는 링크를 클릭할 때만 HTTP GET 메소드를 통해 서드 파티로 전달됩니다.
                         </xhtml:p>
                         <xhtml:p>
-                                그것은 외부 링크의 URI (Uniform Resource Identifier)를 검사함으로써 전달되는 것을 볼 수 있습니다.
-                                그리고 동의 없이 보내지는 데이터는 없습니다.
+                                외부 링크의 URI (Uniform Resource Identifier)를 검사함으로써 전달되는 것을 볼 수 있습니다.
+                                그리고 동의 없이 보내는 데이터는 없습니다.
                                 위에서 언급한 바와 같이, 어떤 개인 데이터를 관여하지 않습니다.
                         </xhtml:p>
                         <xhtml:p>
