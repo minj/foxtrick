@@ -7,7 +7,7 @@
 
 Foxtrick.modules["MyMonitor"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ["dashboard", "teamPage", "youthoverview", "national"],
+	PAGES : ["myhattrick", "dashboard", "teamPage", "youthoverview", "national"],
 	OPTIONS : ["TeamIcons"],
 	CSS : Foxtrick.InternalPath + "resources/css/my-monitor.css",
 	NICE : -1, // add it before links for consistent sidebar placement
@@ -49,10 +49,15 @@ Foxtrick.modules["MyMonitor"]={
 			else // default as senior
 				return "/Club/?TeamID=" + team.id;
 		};
-		// display my monitor on dashboard page
+		// display my monitor on myhattrick=news and dashboard page
 		var display = function() {
 			var mydiv = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MyMonitor, "div")
-			if (Foxtrick.isPage("dashboard", doc))
+			mydiv.id = "ft-monitor-div";
+			if (Foxtrick.isPage("myhattrick", doc)) {
+				var h1 = doc.getElementsByTagName("h1")[0];
+				h1.parentNode.insertBefore(mydiv, h1);
+			}
+			else if (Foxtrick.isPage("dashboard", doc))
 				doc.getElementById("mainBody").appendChild(mydiv);
 			else
 				return;
@@ -380,8 +385,9 @@ Foxtrick.modules["MyMonitor"]={
 			setSavedTeams(teams);
 		};
 
-		// call functions from here
-		if (Foxtrick.isPage("dashboard", doc)) {
+		// call functions from here 
+		if (Foxtrick.isPage("myhattrick", doc)
+			|| Foxtrick.isPage("dashboard", doc)) {
 			display(doc);
 		}
 		else if (Foxtrick.isPage("teamPage", doc)

@@ -20,7 +20,7 @@ if (!Foxtrick) var Foxtrick={};
 
 Foxtrick.ht_pages = {
 	// following are mainly used for information gathering. keep on top
-	'myhattrick'				: '/MyHattrick/$',
+	'myhattrick'				: '/MyHattrick/$',  // that's the news page
 	'myhattrickAll' 			: '/MyHattrick/|org/$|pl/$|ws/$',
 	'teamPageAny'   			: '/Club/|/World/Series/Default.aspx',
 
