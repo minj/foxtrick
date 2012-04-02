@@ -460,13 +460,6 @@
 		"title": "HTBox Training",
 		"img": "resources/linkicons/htbox_train.png"
 	},
-	"updated_training": {
-		"traininglink": {
-			"url": "http://hattrick.pdg.pl/trening/new/en/index.php"
-		},
-		"title": "Training speed calculator (updated)",
-		"img": "resources/linkicons/training.png"
-	},
 	"Ht4u": {
 		"playerlink": {
 			"url": "http://ht4u.altervista.org/index.php",
