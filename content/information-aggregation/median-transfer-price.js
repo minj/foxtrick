@@ -15,16 +15,12 @@ Foxtrick.modules["MedianTransferPrice"]={
 		if (table.rows[0].cells.length < 5) return;
 		var count = table.rows.length;
 		var priceArray = [];
-		Foxtrick.log('MedianTransferPrice', count);
 		for (var i = 5; i<count; i++) {
-			Foxtrick.log(i, table.rows[i].cells[3].textContent, table.rows[i].cells[3].textContent.search(/\d/));
-			if (table.rows[i].cells[3].textContent.search(/\d/)!=0) {
+			if (table.rows[i].cells[3].textContent.search(/\d/) != -1) {
 				var thisPrice = Foxtrick.trimnum(table.rows[i].cells[3].textContent);
-				Foxtrick.log('thisPrice', thisPrice);
 				priceArray.push(thisPrice);
 			}
 		}
-		Foxtrick.log('priceArray', priceArray);
 				
 		priceArray.sort(function(a,b){return a-b;});
 		var median = 0;
