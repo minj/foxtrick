@@ -139,6 +139,8 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			}
 
 			var ts_xp = doc.createElement("td");
+			Foxtrick.addClass(ts_xp,"stats");
+			Foxtrick.addClass(ts_xp,"ft-dummy");
 			ts_xp.textContent = xp_gain.toFixed(2);
 			if(!ntMatch && gameType == "matchFriendly" && minutes > 0)
 				ts_xp.textContent =  (xp_gain/2.0).toFixed(2) + "/" + xp_gain.toFixed(2);
