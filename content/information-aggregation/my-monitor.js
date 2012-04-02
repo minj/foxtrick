@@ -7,7 +7,7 @@
 
 Foxtrick.modules["MyMonitor"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ["myhattrick", "dashboard", "teamPage", "youthoverview", "national"],
+	PAGES : ["dashboard", "teamPage", "youthoverview", "national"],
 	OPTIONS : ["TeamIcons"],
 	CSS : Foxtrick.InternalPath + "resources/css/my-monitor.css",
 	NICE : -1, // add it before links for consistent sidebar placement
@@ -49,24 +49,24 @@ Foxtrick.modules["MyMonitor"]={
 			else // default as senior
 				return "/Club/?TeamID=" + team.id;
 		};
-		// display my monitor on dashboard/myhattrick page
+		// display my monitor on dashboard page
 		var display = function() {
-			if (Foxtrick.isPage("myhattrick", doc))
-				var insertBefore = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlMain");
-			else if (Foxtrick.isPage("dashboard", doc))
-				var insertBefore = doc.getElementById("eventList").nextSibling;
-			var parent = insertBefore.parentNode;
+			var mydiv = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MyMonitor, "div")
+			if (Foxtrick.isPage("dashboard", doc))
+				doc.getElementById("mainBody").appendChild(mydiv);
+			else
+				return;
 
 			// header - "My Monitor"
-			var header = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MyMonitor, "h1");
+			var header = doc.createElement("h1");
 			header.id = "ft-monitor-header";
 			header.textContent = Foxtrickl10n.getString("MyMonitor.header");
-			parent.insertBefore(header, insertBefore);
+			mydiv.appendChild(header);
 
 			// line containing add/remove links
 			var addRemove = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MyMonitor, "div");
 			addRemove.id = "ft-monitor-add-remove";
-			parent.insertBefore(addRemove, insertBefore);
+			mydiv.appendChild(addRemove);
 
 			// link for adding a team
 			var addLink = doc.createElement("a");
@@ -84,7 +84,7 @@ Foxtrick.modules["MyMonitor"]={
 					true
 				);
 				note.id = noteId;
-				parent.insertBefore(note, container);
+				mydiv.appendChild(note);
 			}, false);
 			addRemove.appendChild(addLink);
 
@@ -140,14 +140,14 @@ Foxtrick.modules["MyMonitor"]={
 				// add note
 				var note = Foxtrick.util.note.create(doc, removeBox, null, true);
 				note.id = noteId;
-				parent.insertBefore(note, container);
+				mydiv.appendChild(note);
 			}, false);
 			addRemove.appendChild(removeLink);
 
 			// container for the teams
 			var container = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MyMonitor, "div");
 			container.id = "ft-monitor-container";
-			parent.insertBefore(container, insertBefore);
+			mydiv.appendChild(container);
 
 			// separator at the bottom
 			var separator = doc.createElement("div");
@@ -381,8 +381,7 @@ Foxtrick.modules["MyMonitor"]={
 		};
 
 		// call functions from here
-		if (Foxtrick.isPage("myhattrick", doc)
-			|| Foxtrick.isPage("dashboard", doc)) {
+		if (Foxtrick.isPage("dashboard", doc)) {
 			display(doc);
 		}
 		else if (Foxtrick.isPage("teamPage", doc)
