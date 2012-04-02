@@ -23,7 +23,7 @@ Foxtrick.modules["ForumStripHattrickLinks"]={
 	},
 
 	run : function(doc) {
-		Foxtrick.listen(doc.getElementById('mainBody'), 'click', this.changeLinks, true);
+		Foxtrick.listen(doc.getElementById('mainBody'), 'mousedown', this.changeLinks, true);
 		
 		if (Foxtrick.isPage("forumViewThread", doc))
 			return;
