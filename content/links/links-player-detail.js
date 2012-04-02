@@ -154,8 +154,7 @@ Foxtrick.modules["LinksPlayerDetail"]={
 		if (added) {
 			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
 			box.id = "ft-links-box";
+			Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, params);
 		}
-
-		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, params);
 	}
 };
