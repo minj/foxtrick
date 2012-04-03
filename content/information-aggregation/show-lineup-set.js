@@ -10,6 +10,7 @@ Foxtrick.modules["ShowLineupSet"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["series", "youthSeries", "Tournaments"],
 	OPTIONS : ["LineupSet", "Ownerless", "Winning"],
+	CSS : Foxtrick.InternalPath + "resources/css/show-lineup-set.css",
 
 	run : function(doc) {
 		var rtl = Foxtrick.util.layout.isRtl(doc);
@@ -65,6 +66,10 @@ Foxtrick.modules["ShowLineupSet"]={
 		}, tables);
 		for (var k = 0; k < tables.length; ++k) {
 			var table = tables[k];
+			if (isFixtureTable(table))
+				Foxtrick.addClass(table, 'ft_league_matches');
+			else if (isResultTable(table))
+				Foxtrick.addClass(table, 'ft_league_results');
 			for (var i = 1; i < table.rows.length; ++i) {
 				var row = table.rows[i];
 				if (row.cells.length < 2)
