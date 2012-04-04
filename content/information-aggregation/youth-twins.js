@@ -102,22 +102,30 @@
 				var target = playerInfo.getElementsByTagName("b")[0];
 				var playerID = playerInfo.getElementsByTagName("a")[0].href.match(/YouthPlayerID=(\d+)/i)[1];
 				
-				
-				while(target.nextSibling && target.nextSibling.tagName == "IMG"){
-					target = target.nextSibling;
+				//new player pulled, needs a forceUpdate
+				if(json.players[playerID] === undefined){
+					Foxtrick.log("New player pulled", playerID);
+					continue;
 				}
 
+				//icons for representation
 				var icon_green = Foxtrick.InternalPath + 'resources/img/twin.png';
 				var icon_red = Foxtrick.InternalPath + 'resources/img/twin_red.png'; 
-				var icon_black = Foxtrick.InternalPath + 'resources/img/twin_black.png'; 
+				var icon_yellow = Foxtrick.InternalPath + 'resources/img/twin_yellow.png'; 
 
+				//amounts of twins by category
 				var possible = parseInt(json.players[playerID].possible);
-				var marked = parseInt(json.players[playerID].marked);
-				var non = parseInt(json.players[playerID].non);
+				var marked = isHYuser?parseInt(json.players[playerID].marked):0;
+				var non = isHYuser?parseInt(json.players[playerID].non):0;
 				var missing = possible - marked - non;
-
-				var title = "This player has %1 possible twins. Validated Twins: %2 twins. Non Twins: %3 Undecided: %4"
-
+				
+				if(isHYuser)
+					var title = "This player has %1 possible twins.\nValidated Twins: %2\nNon Twins: %3\nUndecided: %4"
+				else
+					var title = "This player has %1 possible twins.\nYou can find out more about this player using Hattrick YouthClub."
+						
+				title = title.replace("%1", possible).replace("%2", marked).replace("%3", non).replace("%4", missing)
+				//repeat twin icon in representative color according to amount of twin category
 				for(var k = possible; k > 0; k--){
 					if(k <= marked){
 						var image = Foxtrick.createImage(doc, { alt: "alt", title: title, class: "ft-youth-twins-icon", src: icon_green}); 
@@ -126,7 +134,7 @@
 						var image = Foxtrick.createImage(doc, { alt: "alt", title: title, class: "ft-youth-twins-icon", src: icon_red}); 
 						target.parentNode.insertBefore(image,target.nextSibling);
 					} else {
-						var image = Foxtrick.createImage(doc, { alt: "alt", title: title, class: "ft-youth-twins-icon", src: icon_black}); 
+						var image = Foxtrick.createImage(doc, { alt: "alt", title: title, class: "ft-youth-twins-icon", src: icon_yellow}); 
 						target.parentNode.insertBefore(image,target.nextSibling);
 					}
 				}
