@@ -121,6 +121,6 @@
 		var teamid = doc.location.href.match(/teamid=(\d+)/i)[1];
 
 		//teamid, forceUpdate, Debug, Callback
-		getTwinsFromHY(teamid, false, true, handleHyResponse);
+		getTwinsFromHY(teamid, false, false, handleHyResponse);
 	}
 };
