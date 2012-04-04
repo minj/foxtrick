@@ -56,6 +56,8 @@ Foxtrick.modules["Redirections"]={
 						tar=serv+'/Club/Matches/?TeamID='+teamid;
 			else if (doc.location.href.search(/redir_to_league=true/i)!=-1 )
 						tar=serv+'/World/Series/Default.aspx?LeagueLevelUnitID='+leagueid;
+			else if (doc.location.href.search(/redir_to_tournaments=true/i)!=-1 )
+						tar=serv+'/Community/Tournaments/Default.aspx?teamId='+teamid;
 			else if (doc.location.href.search(/redir_to_custom=true\&/i)!=-1 ) {
 					tar = doc.location.href.replace(/.+redir_to_custom=true\&/,'');
 					tar = tar.replace(/%5Bteamid%5D|\[teamid\]/i, teamid);

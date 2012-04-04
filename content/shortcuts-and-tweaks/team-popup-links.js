@@ -80,6 +80,10 @@ Foxtrick.modules["TeamPopupLinks"]={
 		"YouthMatches" : {
 			linkByTeam : "/Club/Matches/?TeamID=[teamid]&redir_to_youthmatches=true",
 			linkByUser : "/Club/Manager/?userId=[userid]&redir_to_youthmatches=true"
+		},
+		"Tournaments" : {
+			linkByTeam : "/Community/Tournaments/Default.aspx?teamId=[teamid]",
+			linkByUser : "/Club/Manager/?userId=[userid]&redir_to_tournaments=true"
 		}
 	},
 
