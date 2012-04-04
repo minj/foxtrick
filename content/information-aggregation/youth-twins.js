@@ -8,6 +8,7 @@
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["YouthPlayers"],
 	CSS : Foxtrick.InternalPath + "resources/css/youth-twins.css",
+	OPTIONS : ["debug", "forceupdate"],
 	run : function(doc) { 
 		var getYouthPlayerList = function (teamId, callback){
 			var args = [];
@@ -93,7 +94,7 @@
 				var playerID = playerInfo.getElementsByTagName("a")[0].href.match(/YouthPlayerID=(\d+)/i)[1];
 				
 				
-				while(target.nextSibling && target.tagName == "IMG"){
+				while(target.nextSibling && target.nextSibling.tagName == "IMG"){
 					target = target.nextSibling;
 				}
 
@@ -121,7 +122,12 @@
 		}
 		var teamid = doc.location.href.match(/teamid=(\d+)/i)[1];
 
+		//temporary debug settings
+		var debug = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "debug");
+		var forceUpdate = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "forceupdate");
+		
 		//teamid, forceUpdate, Debug, Callback
-		getTwinsFromHY(teamid, false, false, handleHyResponse);
+		getTwinsFromHY(teamid, forceUpdate, debug, handleHyResponse);
+	
 	}
 };
