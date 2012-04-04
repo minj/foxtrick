@@ -114,17 +114,19 @@
 				var possible = parseInt(json.players[playerID].possible);
 				var marked = parseInt(json.players[playerID].marked);
 				var non = parseInt(json.players[playerID].non);
+				var missing = possible - marked - non;
 
-				var title = "This player has %1 possible twins. You marked "
+				var title = "This player has %1 possible twins. Validated Twins: %2 twins. Non Twins: %3 Undecided: %4"
+
 				for(var k = possible; k > 0; k--){
 					if(k <= marked){
-						var image = Foxtrick.createImage(doc, { alt: "alt", title: "title", class: "ft-youth-twins-icon", src: icon_green}); 
+						var image = Foxtrick.createImage(doc, { alt: "alt", title: title, class: "ft-youth-twins-icon", src: icon_green}); 
 						target.parentNode.insertBefore(image,target.nextSibling);
 					} else if (k <= marked+ non) {
-						var image = Foxtrick.createImage(doc, { alt: "alt", title: "title", class: "ft-youth-twins-icon", src: icon_red}); 
+						var image = Foxtrick.createImage(doc, { alt: "alt", title: title, class: "ft-youth-twins-icon", src: icon_red}); 
 						target.parentNode.insertBefore(image,target.nextSibling);
 					} else {
-						var image = Foxtrick.createImage(doc, { alt: "alt", title: "title", class: "ft-youth-twins-icon", src: icon_black}); 
+						var image = Foxtrick.createImage(doc, { alt: "alt", title: title, class: "ft-youth-twins-icon", src: icon_black}); 
 						target.parentNode.insertBefore(image,target.nextSibling);
 					}
 				}
