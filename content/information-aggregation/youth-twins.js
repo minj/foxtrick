@@ -34,7 +34,7 @@
 					var pl = encodeURIComponent((new XMLSerializer()).serializeToString(playerlist));
 					var av = encodeURIComponent((new XMLSerializer()).serializeToString(avatars));
 					var url = "http://stage.hattrick-youthclub.org/_admin/twins.php";
-					var params = "managerId=" + String(11335334) + "&players=" + pl + "&avatars=" + av;
+					var params = "players=" + pl + "&avatars=" + av;
 					if(forceupdate)
 						params = params + "&forceUpdate=1"
 
@@ -83,6 +83,7 @@
 			if(!response)
 				return;
 
+			alert(response);
 			var json = JSON.parse( response );
 
 			var playerInfos = doc.getElementsByClassName("playerInfo");
