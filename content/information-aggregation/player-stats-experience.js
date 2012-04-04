@@ -173,13 +173,11 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		if(showAllLink && !xp_skillUp_detected){
 			var span =  doc.createElement("span");
 			var textNode = doc.createTextNode(Foxtrickl10n.getString("PlayerStatsExperience.NotAllMatchesVisible"));
-			//var textNode2 = doc.createTextNode("The actual value might be higher because not all matches are displayed.");
 			span.appendChild(textNode);
 			div.appendChild(span);
 		} else if (!xp_skillUp_detected) {
 			var span =  doc.createElement("span");
 			var textNode = doc.createTextNode(Foxtrickl10n.getString("PlayerStatsExperience.NoSkillUpFound"));
-			//var textNode2 = doc.createTextNode("The actual value might be higher because no recorded experience-skillup was found.");
 			span.appendChild(textNode);
 			div.appendChild(span);
 		}
