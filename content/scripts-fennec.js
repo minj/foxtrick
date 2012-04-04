@@ -116,6 +116,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/transfer-deadline.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/youth-promotes.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/youth-series-estimation.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/youth-twins.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-achievements.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-alliances.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-arena.js", true);

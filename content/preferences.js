@@ -900,7 +900,8 @@ var neededPermissions = [
 	{ module: "EmbedMedia.EmbedFlickrImages", url: "http://www.flickr.com/services/oembed/*" },
 	{ module: "EmbedMedia.EmbedDeviantArtImages", url: "http://backend.deviantart.com/*" },
 	{ module: "EmbedMedia.EmbedSoundCloud", url: "http://soundcloud.com/*" },
-	{ module: "EmbedMedia.EmbedImageshack", url: "http://imageshack.us/*" }
+	{ module: "EmbedMedia.EmbedImageshack", url: "http://imageshack.us/*" },
+	{ module: "YouthTwins", url: "http://*.hattrick-youthclub.org/*" }
 ];
 
 function testPermissions() {
