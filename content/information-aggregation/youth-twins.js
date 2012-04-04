@@ -8,7 +8,7 @@
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["YouthPlayers"],
 	CSS : Foxtrick.InternalPath + "resources/css/youth-twins.css",
-	OPTIONS : ["debug", "forceupdate"],
+	OPTIONS : ["debug", "forceupdate", ["FakeUser", "HYUser", "HYForeigner"]],
 	run : function(doc) { 
 		var getYouthPlayerList = function (teamId, callback){
 			var args = [];
@@ -29,7 +29,7 @@
 		//forceUpdate: Force HY to update, avoid!
 		//debug: Fakes a reponse where twins will be present
 		//callback: function to be called after HY was queried
-		var getTwinsFromHY = function (teamid, forceupdate, debug, callback){
+		var getTwinsFromHY = function (teamid, forceupdate, debug, userType, callback){
 			getYouthPlayerList(teamid, function(playerlist) {
 				getYouthAvatars(function(avatars){
 					var pl = encodeURIComponent((new XMLSerializer()).serializeToString(playerlist));
@@ -42,6 +42,15 @@
 					//debug: Fakes a reponse where twins and such will be present
 					if(debug)
 						params = params + "&debug=1"
+
+					//ability to fake if one guy is a hy user or not
+					if(userType == "user")
+						params = params + "&isHyUser=1"
+					else if(userType == "foreigner")
+						params = params + "&isHyUser=0"	
+					else {
+						//HY determines on its own
+					}
 
 					var http = new XMLHttpRequest();
 					http.open("POST", url, true);
@@ -84,8 +93,8 @@
 			if(!response)
 				return;
 
-			alert(response);
 			var json = JSON.parse( response );
+			var isHYuser = json.isHyUser;
 
 			var playerInfos = doc.getElementsByClassName("playerInfo");
 			for(var i = 0; i < playerInfos.length; i++){
@@ -106,6 +115,7 @@
 				var marked = parseInt(json.players[playerID].marked);
 				var non = parseInt(json.players[playerID].non);
 
+				var title = "This player has %1 possible twins. You marked "
 				for(var k = possible; k > 0; k--){
 					if(k <= marked){
 						var image = Foxtrick.createImage(doc, { alt: "alt", title: "title", class: "ft-youth-twins-icon", src: icon_green}); 
@@ -124,10 +134,20 @@
 
 		//temporary debug settings
 		var debug = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "debug");
+
+		var userType = "auto";
+
 		var forceUpdate = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "forceupdate");
-		
-		//teamid, forceUpdate, Debug, Callback
-		getTwinsFromHY(teamid, forceUpdate, debug, handleHyResponse);
+		if(FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "FakeUser")){
+			var forceUser = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "HYUser");
+			if(forceUser)
+				userType = "user";
+			var forceNonUser = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "HYForeigner");
+			if(forceNonUser)
+				userType = "foreigner";
+		}
+		//teamid, forceUpdate, Debug, Callback	
+		getTwinsFromHY(teamid, forceUpdate, debug, userType, handleHyResponse);
 	
 	}
 };
