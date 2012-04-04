@@ -113,28 +113,32 @@
 				var icon_red = Foxtrick.InternalPath + 'resources/img/twin_red.png'; 
 				var icon_yellow = Foxtrick.InternalPath + 'resources/img/twin_yellow.png'; 
 
-				//amounts of twins by category
+				//amounts of twins by category, for non hattrick youthclub users marked and non are not present
 				var possible = parseInt(json.players[playerID].possible);
 				var marked = isHYuser?parseInt(json.players[playerID].marked):0;
 				var non = isHYuser?parseInt(json.players[playerID].non):0;
 				var missing = possible - marked - non;
 				
 				if(isHYuser)
-					var title = "This player has %1 possible twins.\nValidated Twins: %2\nNon Twins: %3\nUndecided: %4"
+					var title = "This player has %1 possible twins.\nTwins: %2\nNon Twins: %3\nUndecided: %4"
 				else
 					var title = "This player has %1 possible twins.\nYou can find out more about this player using Hattrick YouthClub."
 						
 				title = title.replace("%1", possible).replace("%2", marked).replace("%3", non).replace("%4", missing)
 				//repeat twin icon in representative color according to amount of twin category
 				for(var k = possible; k > 0; k--){
+					var usedClass = "ft-youth-twins-icon-following"
+					if(k == 1)
+						usedClass = "ft-youth-twins-icon-first"
+
 					if(k <= marked){
-						var image = Foxtrick.createImage(doc, { alt: "alt", title: title, class: "ft-youth-twins-icon", src: icon_green}); 
+						var image = Foxtrick.createImage(doc, { alt: "alt", title: title, class: usedClass, src: icon_green}); 
 						target.parentNode.insertBefore(image,target.nextSibling);
 					} else if (k <= marked+ non) {
-						var image = Foxtrick.createImage(doc, { alt: "alt", title: title, class: "ft-youth-twins-icon", src: icon_red}); 
+						var image = Foxtrick.createImage(doc, { alt: "alt", title: title, class: usedClass, src: icon_red}); 
 						target.parentNode.insertBefore(image,target.nextSibling);
 					} else {
-						var image = Foxtrick.createImage(doc, { alt: "alt", title: title, class: "ft-youth-twins-icon", src: icon_yellow}); 
+						var image = Foxtrick.createImage(doc, { alt: "alt", title: title, class: usedClass, src: icon_yellow}); 
 						target.parentNode.insertBefore(image,target.nextSibling);
 					}
 				}

@@ -1,6 +1,9 @@
 @-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
 
-.ft-youth-twins-icon {
+.ft-youth-twins-icon-first {
 	padding-left: 4px;	
+}
+.ft-youth-twins-icon-following {
+	padding-left: 1px;	
 }
 }
