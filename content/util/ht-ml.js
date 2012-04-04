@@ -19,8 +19,8 @@ Foxtrick.util.htMl = {};
 // otherwise, return null
 Foxtrick.util.htMl.getId = function(node) {
 	var idTypes = [
-		{ type : "Player", re : /\/Player\.aspx\?playerId=(\d+)/i, tag : "playerid" },
-		{ type : "Youth Player", re : /\?YouthPlayerID=(\d+)/i, tag : "youthplayerid" },
+		{ type : "Player", re : /[\?|&]playerId=(\d+)/i, tag : "playerid" },
+		{ type : "Youth Player", re : /YouthPlayerID=(\d+)/i, tag : "youthplayerid" },
 		{ type : "Team", re : /\/Club\/\?TeamID=(\d+)/i, tag : "teamid" },
 		{ type : "Youth Team", re : /\?YouthTeamID=(\d+)/i, tag : "youthteamid" },
 		{ type : "Youth Match", re : /\?matchID=(\d+).+?&SourceSystem=Youth/i, tag : "youthmatchid" },
