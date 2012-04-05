@@ -1,7 +1,7 @@
 "use strict";
-/* players.js
- * Utilities on players page
- * @author convincedd, ryanli
+/* youth-twins.js
+ * Displays twin information for youth squad players using an API supplied by HY.
+ * @author CatzHoek, HT backend/API by MackShot
  */
 
  Foxtrick.modules["YouthTwins"]={
@@ -132,18 +132,17 @@
 				container.setAttribute("title", title);
 				container.setAttribute("alt", title);
 
-				for(var k = 0; k < marked; k++){
-					var image = Foxtrick.createImage(doc, { alt: "Marked as Twin", class: "ft-youth-twins-icon", src: icon_green}); 
-					container.appendChild(image);
+				//add icons according to amount of occurance
+				var addIcons = function (parent, limit, alt, className, src){
+					for(var k = 0; k < limit; k++){
+						var image = Foxtrick.createImage(doc, { alt: alt, class: className, src: src}); 
+						parent.appendChild(image);
+					}
 				}
-				for(var k = 0; k < missing; k++){
-					var image = Foxtrick.createImage(doc, { alt: "Not marked yet or undecided", class: "ft-youth-twins-icon", src: icon_yellow}); 
-					container.appendChild(image);
-				}
-				for(var k = 0; k < non; k++){
-					var image = Foxtrick.createImage(doc, { alt: "Marked as Non-Twin", class: "ft-youth-twins-icon", src: icon_red}); 
-					container.appendChild(image);
-				}
+				addIcons(container, marked, "Marked as Twin", "ft-youth-twins-icon", icon_green);
+				addIcons(container, missing, "Not marked yet or undecided", "ft-youth-twins-icon", icon_yellow);
+				addIcons(container, non, "Marked as Non-Twin", "ft-youth-twins-icon", icon_red);
+
 				target.parentNode.insertBefore(container,target.nextSibling)
 			}
 		}
