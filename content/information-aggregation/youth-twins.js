@@ -120,28 +120,31 @@
 				var missing = possible - marked - non;
 				
 				if(isHYuser)
-					var title = "This player has %1 possible twins.\nTwins: %2\nNon Twins: %3\nUndecided: %4"
+					var title = "This player has %1 possible twins.\nConfirmed twins: %2\nNon twins: %3\nUndecided: %4"
 				else
-					var title = "This player has %1 possible twins.\nYou can find out more about this player using Hattrick YouthClub."
+					var title = "This player has %1 possible twins.\nYou could find out more about this player's potential using hattrick youthclub."
 						
 				title = title.replace("%1", possible).replace("%2", marked).replace("%3", non).replace("%4", missing)
 				//repeat twin icon in representative color according to amount of twin category
-				for(var k = possible; k > 0; k--){
-					var usedClass = "ft-youth-twins-icon-following"
-					if(k == 1)
-						usedClass = "ft-youth-twins-icon-first"
+				
+				var container = Foxtrick.createFeaturedElement(doc, this, "div");
+				Foxtrick.addClass(container, "ft-youth-twins-container");
+				container.setAttribute("title", title);
+				container.setAttribute("alt", title);
 
-					if(k <= marked){
-						var image = Foxtrick.createImage(doc, { alt: "alt", title: title, class: usedClass, src: icon_green}); 
-						target.parentNode.insertBefore(image,target.nextSibling);
-					} else if (k <= marked+ non) {
-						var image = Foxtrick.createImage(doc, { alt: "alt", title: title, class: usedClass, src: icon_red}); 
-						target.parentNode.insertBefore(image,target.nextSibling);
-					} else {
-						var image = Foxtrick.createImage(doc, { alt: "alt", title: title, class: usedClass, src: icon_yellow}); 
-						target.parentNode.insertBefore(image,target.nextSibling);
-					}
+				for(var k = 0; k < marked; k++){
+					var image = Foxtrick.createImage(doc, { alt: "Marked as Twin", class: "ft-youth-twins-icon", src: icon_green}); 
+					container.appendChild(image);
 				}
+				for(var k = 0; k < missing; k++){
+					var image = Foxtrick.createImage(doc, { alt: "Not marked yet or undecided", class: "ft-youth-twins-icon", src: icon_yellow}); 
+					container.appendChild(image);
+				}
+				for(var k = 0; k < non; k++){
+					var image = Foxtrick.createImage(doc, { alt: "Marked as Non-Twin", class: "ft-youth-twins-icon", src: icon_red}); 
+					container.appendChild(image);
+				}
+				target.parentNode.insertBefore(container,target.nextSibling)
 			}
 		}
 		var teamid = doc.location.href.match(/teamid=(\d+)/i)[1];
