@@ -2,6 +2,37 @@
 /* youth-twins.js
  * Displays twin information for youth squad players using an API supplied by HY.
  * @author CatzHoek, HY backend/API by MackShot
+ *
+ * @Interface:
+ * 		Url: http://www.hattrick-youthclub.org/_admin/twins.php
+ * @params:
+ * 		forceUpdate (optional):
+ *			no param requred but send = 1 for safety reasons
+ *			forces HY to recalculate results, should only be used after a new player was pulled onto the youth squad or if it is really required
+ * 		debug (optional):
+ *			no param requred but send = 1 for safety reasons
+ *			force ht to return a random result so developers can check stuff without having actual twins
+ *		players:
+ *			urlencoded version of youthplayerlist chpp file v1.0 with actiontype = "details"
+ *		avatars:
+ *			urlencoded version of youthavatars chpp file v1.0
+ *		isHyUser (0/1) (optional):
+ *			used to simulate HY users or non-HY users for debugging purposes
+ *			if not present HY will find out the correct value itself
+ *
+ * @response
+ *		JSON:
+ *			isHyUser (true / false)
+ *				the user is using HY already
+ *			players: (dictionary)
+ *				list of players
+ *				non: marked as non twin
+ *				marked: marked as twin
+ *				possible: total number of possible twins
+ *			fetchTime: 
+ *				Unix timestamp of the feteched information
+ *			lifeTime:
+ *				LifeTime of the information in seconds, avoid further requests until fetchTime+lifeTime is met, new pulls to the youth team are a valid reason to disrespect and use forceUpdate. *
  */
 
  Foxtrick.modules["YouthTwins"]={
@@ -10,6 +41,7 @@
 	CSS : Foxtrick.InternalPath + "resources/css/youth-twins.css",
 	OPTIONS : ["debug", "forceupdate", ["FakeUser", "HYUser", "HYForeigner"]],
 	run : function(doc) { 
+
 		var getYouthPlayerList = function (teamId, callback){
 			var args = [];
 			args.push(["file", "youthplayerlist"]);
@@ -21,7 +53,7 @@
 		var getYouthAvatars = function (callback){
 			var args = [];
 			args.push(["file", "youthavatars"]);
-			args.push(["actionType", "1.0"]);
+			args.push(["version", "1.0"]);
 			Foxtrick.util.api.retrieve(doc, args,{ cache_lifetime:'session'}, callback);
 		}
 		//params
@@ -34,7 +66,7 @@
 				getYouthAvatars(function(avatars){
 					var pl = encodeURIComponent((new XMLSerializer()).serializeToString(playerlist));
 					var av = encodeURIComponent((new XMLSerializer()).serializeToString(avatars));
-					var url = "http://stage.hattrick-youthclub.org/_admin/twins.php";
+					var url = "http://www.hattrick-youthclub.org/_admin/twins.php";
 					var params = "players=" + pl + "&avatars=" + av;
 					if(forceupdate)
 						params = params + "&forceUpdate=1"
@@ -63,25 +95,31 @@
 						if(http.readyState == 4){
 							if(http.status == 200) {
 								// 200, everything is fine
-								callback(http.responseText);
+								if(callback)
+									callback(http.responseText);
 							} else if(http.status == 400){
 								// 400 with 2 different cases
 								// - given data is not valid
 								// - not all data is given
 								// response json
-								callback(null) 
+								if(callback)
+									callback(null) 
 							} else if(http.status == 404){
 								// 404... HY is probably moving servers
 								// or they are just 404ing
-								callback(null)
+								if(callback)
+									callback(null) 
 							} else if(http.status == 500){
 								// 500, HY is having problems
-								callback(null)
+								if(callback)
+									callback(null) 
 							} else if(http.status == 503){
 								// 503 service was temporarily disabled by HY
-								callback(null)
+								if(callback)
+									callback(null) 
 							} else {
-								callback(null)
+								if(callback)
+									callback(null) 
 							}
 						}
 					}
@@ -93,6 +131,7 @@
 			if(!response)
 				return;
 
+			Foxtrick.log(response);
 			var json = JSON.parse( response );
 			var isHYuser = json.isHyUser;
 
@@ -162,8 +201,10 @@
 			if(forceNonUser)
 				userType = "foreigner";
 		}
-		//teamid, forceUpdate, Debug, Callback	
+		//teamid, forceUpdate, Debug, Callback
+		// var stress = 50;
+		//	for(var stresstest = 0; stresstest < stress; stresstest++)
+		//		getTwinsFromHY(teamid, false, false, userType, null);
 		getTwinsFromHY(teamid, forceUpdate, debug, userType, handleHyResponse);
-	
 	}
 };
