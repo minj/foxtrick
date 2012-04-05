@@ -61,7 +61,7 @@
 		//forceUpdate: Force HY to update, avoid!
 		//debug: Fakes a reponse where twins will be present
 		//callback: function to be called after HY was queried
-		var getTwinsFromHY = function (teamid, forceupdate, debug, userType, callback){
+		var getTwinsFromHY = function (teamid, forceupdate, debug, userType, callback, errorFunc){
 			getYouthPlayerList(teamid, function(playerlist) {
 				getYouthAvatars(function(avatars){
 					//urlencode xml files
@@ -110,24 +110,24 @@
 								// - given data is not valid
 								// - not all data is given
 								// response json
-								if(callback)
-									callback(null) 
+								if(errorFunc)
+									errorFunc(http) 
 							} else if(http.status == 404){
 								// 404... HY is probably moving servers
 								// or they are just 404ing
-								if(callback)
-									callback(null) 
+								if(errorFunc)
+									errorFunc(http) 
 							} else if(http.status == 500){
 								// 500, HY is having problems
-								if(callback)
-									callback(null) 
+								if(errorFunc)
+									errorFunc(http) 
 							} else if(http.status == 503){
 								// 503 service was temporarily disabled by HY
-								if(callback)
-									callback(null) 
+								if(errorFunc)
+									errorFunc(http) 
 							} else {
-								if(callback)
-									callback(null) 
+								if(errorFunc)
+									errorFunc(http) 
 							}
 						}
 					}
@@ -139,6 +139,9 @@
 		var handleHyResponse = function (response){
 			if(!response)
 				return;
+
+			//save response as pref
+			FoxtrickPrefs.set("YouthTwins.lastResponse", response);
 
 			var json = JSON.parse( response );
 			var isHYuser = json.isHyUser;
@@ -203,11 +206,14 @@
 				target.parentNode.insertBefore(container,target.nextSibling)
 			}
 		}
+		var errorHandling = function (http){
+			Foxtrick.log("error", http.status)
+		}
+
 		var teamid = doc.location.href.match(/teamid=(\d+)/i)[1];
 
 		//temporary debug settings
 		var debug = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "debug");
-
 		var forceUpdate = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "forceupdate");
 
 		//fake the condition where a user has no hy account, used for developing and debugging that case
@@ -220,10 +226,29 @@
 			if(forceNonUser)
 				userType = "foreigner";
 		}
-		//teamid, forceUpdate, Debug, Callback
-		// var stress = 50;
-		//	for(var stresstest = 0; stresstest < stress; stresstest++)
-		//		getTwinsFromHY(teamid, false, false, userType, null);
-		getTwinsFromHY(teamid, forceUpdate, debug, userType, handleHyResponse);
+
+		//get last saved result from
+		var saved = FoxtrickPrefs.get("YouthTwins.lastResponse");
+
+		//noting saved, probably a fresh install
+		if(saved === null){
+			Foxtrick.log("Nothing saved, assuming fresh install!");
+			getTwinsFromHY(teamid, forceUpdate, debug, userType, handleHyResponse, errorHandling);
+		}		
+		else {
+			var json = JSON.parse( saved );
+			var fetchTime = json.fetchTime;
+			var lifeTime = json.lifeTime;
+			var now = (new Date()).getTime();
+			if(now > fetchTime && now < fetchTime + lifeTime){
+				Foxtrick.log("Using last response");
+				handleHyResponse(saved);
+			} else if(now > fetchTime + lifeTime) {
+				Foxtrick.log("Updating from HY");
+				getTwinsFromHY(teamid, forceUpdate, debug, userType, handleHyResponse, errorHandling);
+			} else 
+				Foxtrick.log("You can travel back in time?");	
+		}
+		
 	}
 };
