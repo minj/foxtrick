@@ -39,7 +39,7 @@
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["YouthPlayers"],
 	CSS : Foxtrick.InternalPath + "resources/css/youth-twins.css",
-	OPTIONS : ["debug", "forceupdate"],
+	//OPTIONS : ["debug", "forceupdate"],
 	run : function(doc) { 
 
 		var getYouthPlayerList = function (teamId, callback){
@@ -213,15 +213,15 @@
 		var teamid = doc.location.href.match(/teamid=(\d+)/i)[1];
 
 		//temporary debug settings
-		var debug = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "debug");
-		var forceUpdate = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "forceupdate");
-		
+		//var debug = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "debug");
+		//var forceUpdate = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "forceupdate");
+
 		//get last saved result from
 		var saved = FoxtrickPrefs.get("YouthTwins.lastResponse");
 
 		//noting saved, probably a fresh install, force request
 		if(saved === null){
-			getTwinsFromHY(teamid, forceupdate, debug, handleHyResponse, errorHandling);
+			getTwinsFromHY(teamid, true, false, handleHyResponse, errorHandling);
 		}		
 		else {
 			var json = JSON.parse( saved );
@@ -233,7 +233,7 @@
 				handleHyResponse(saved);
 			} else if(now > fetchTime + lifeTime) {
 				Foxtrick.log("Updating from HY");
-				getTwinsFromHY(teamid, forceupdate, debug, handleHyResponse, errorHandling);
+				getTwinsFromHY(teamid, false, false, handleHyResponse, errorHandling);
 			} else 
 				Foxtrick.log("Dear time traveler, we welcome you!");	
 		}
