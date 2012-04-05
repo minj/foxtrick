@@ -174,9 +174,9 @@
 				var l10n_non_hy_user = Foxtrickl10n.getString("YouthTwins.nonHyUser");
 
 				if(isHYuser)
-					var title = l10n_possible_twins + " " + l10n_marked_twins + " " + l10n_non_twins + " " + l10n_undecided_twins;
+					var title = " " + l10n_possible_twins + "\n " + l10n_marked_twins + "\n " + l10n_non_twins + "\n " + l10n_undecided_twins;
 				else
-					var title = l10n_possible_twins + " " + l10n_non_hy_user;
+					var title = " " + l10n_possible_twins + "\n " + l10n_non_hy_user;
 					//var title = "This player has %1 possible twins.\n You could find out more about this player's potential using hattrick youthclub."
 				
 				//repeat twin icon in representative color according to amount of twin category
