@@ -64,18 +64,25 @@
 		var getTwinsFromHY = function (teamid, forceupdate, debug, userType, callback){
 			getYouthPlayerList(teamid, function(playerlist) {
 				getYouthAvatars(function(avatars){
+					//urlencode xml files
 					var pl = encodeURIComponent((new XMLSerializer()).serializeToString(playerlist));
 					var av = encodeURIComponent((new XMLSerializer()).serializeToString(avatars));
+					
+					//api url
 					var url = "http://www.hattrick-youthclub.org/_admin/twins.php";
+					
+					//assemble param string
 					var params = "players=" + pl + "&avatars=" + av;
+					
+					//forceUpdate to avoid getting the cached HY response, use carefully
 					if(forceupdate)
 						params = params + "&forceUpdate=1"
 
-					//debug: Fakes a reponse where twins and such will be present
+					//debug: Fakes a random reponse where twins will be present
 					if(debug)
 						params = params + "&debug=1"
 
-					//ability to fake if one guy is a hy user or not
+					//ability to fake if the user is a hy user or not, influeces response of "marked and non"
 					if(userType == "user")
 						params = params + "&isHyUser=1"
 					else if(userType == "foreigner")
@@ -84,6 +91,7 @@
 						//HY determines on its own
 					}
 
+					//build actual request
 					var http = new XMLHttpRequest();
 					http.open("POST", url, true);
 
@@ -123,6 +131,7 @@
 							}
 						}
 					}
+					//go!
 					http.send(params);
 				});	
 			});
@@ -158,14 +167,19 @@
 				var non = isHYuser?parseInt(json.players[playerID].non):0;
 				var missing = possible - marked - non;
 				
+				var l10n_possible_twins = Foxtrickl10n.getString("YouthTwins.possibleTwins").replace("%1", possible);
+				var l10n_marked_twins = Foxtrickl10n.getString("YouthTwins.markedTwins").replace("%1", marked);
+				var l10n_non_twins = Foxtrickl10n.getString("YouthTwins.nonTwins").replace("%1", non);
+				var l10n_undecided_twins = Foxtrickl10n.getString("YouthTwins.undecidedTwins").replace("%1", missing);
+				var l10n_non_hy_user = Foxtrickl10n.getString("YouthTwins.nonHyUser");
+
 				if(isHYuser)
-					var title = "This player has %1 possible twins.\nConfirmed twins: %2\nNon twins: %3\nUndecided: %4"
+					var title = l10n_possible_twins + " " + l10n_marked_twins + " " + l10n_non_twins + " " + l10n_undecided_twins;
 				else
-					var title = "This player has %1 possible twins.\nYou could find out more about this player's potential using hattrick youthclub."
-						
-				title = title.replace("%1", possible).replace("%2", marked).replace("%3", non).replace("%4", missing)
-				//repeat twin icon in representative color according to amount of twin category
+					var title = l10n_possible_twins + " " + l10n_non_hy_user;
+					//var title = "This player has %1 possible twins.\n You could find out more about this player's potential using hattrick youthclub."
 				
+				//repeat twin icon in representative color according to amount of twin category
 				var container = Foxtrick.createFeaturedElement(doc, this, "div");
 				Foxtrick.addClass(container, "ft-youth-twins-container");
 				container.setAttribute("title", title);
