@@ -198,9 +198,9 @@
 						parent.appendChild(image);
 					}
 				}
-				addIcons(container, marked, "Marked as Twin", "ft-youth-twins-icon", icon_green);
-				addIcons(container, missing, "Not marked yet or undecided", "ft-youth-twins-icon", icon_yellow);
-				addIcons(container, non, "Marked as Non-Twin", "ft-youth-twins-icon", icon_red);
+				addIcons(container, marked, l10n_marked_twins, "ft-youth-twins-icon", icon_green);
+				addIcons(container, missing, l10n_undecided_twins, "ft-youth-twins-icon", icon_yellow);
+				addIcons(container, non, l10n_non_twins, "ft-youth-twins-icon", icon_red);
 
 				//add the whole stuff to the site
 				target.parentNode.insertBefore(container,target.nextSibling)
@@ -221,7 +221,8 @@
 
 		//noting saved, probably a fresh install, force request
 		if(saved === null){
-			getTwinsFromHY(teamid, true, false, handleHyResponse, errorHandling);
+			Foxtrick.log("No save found ... Updating from HY");
+			getTwinsFromHY(teamid, false, false, handleHyResponse, errorHandling);
 		}		
 		else {
 			var json = JSON.parse( saved );
