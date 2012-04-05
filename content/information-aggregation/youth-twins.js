@@ -26,8 +26,8 @@
  *				the user is using HY already
  *			players: (dictionary)
  *				list of players
- *				non: marked as non twin
- *				marked: marked as twin
+ *				non: number of possible twins marked as non-twin
+ *				marked: number of possible twins marked as twin
  *				possible: total number of possible twins
  *			fetchTime: 
  *				Unix timestamp of the feteched information
