@@ -39,7 +39,7 @@
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["YouthPlayers"],
 	CSS : Foxtrick.InternalPath + "resources/css/youth-twins.css",
-	OPTIONS : ["debug", "forceupdate", ["FakeUser", "HYUser", "HYForeigner"]],
+	OPTIONS : ["debug", "forceupdate"],
 	run : function(doc) { 
 
 		var getYouthPlayerList = function (teamId, callback){
@@ -61,7 +61,7 @@
 		//forceUpdate: Force HY to update, avoid!
 		//debug: Fakes a reponse where twins will be present
 		//callback: function to be called after HY was queried
-		var getTwinsFromHY = function (teamid, forceupdate, debug, userType, callback, errorFunc){
+		var getTwinsFromHY = function (teamid, forceupdate, debug, callback, errorFunc){
 			getYouthPlayerList(teamid, function(playerlist) {
 				getYouthAvatars(function(avatars){
 					//urlencode xml files
@@ -215,25 +215,13 @@
 		//temporary debug settings
 		var debug = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "debug");
 		var forceUpdate = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "forceupdate");
-
-		//fake the condition where a user has no hy account, used for developing and debugging that case
-		var userType = "auto";
-		if(FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "FakeUser")){
-			var forceUser = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "HYUser");
-			if(forceUser)
-				userType = "user";
-			var forceNonUser = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "HYForeigner");
-			if(forceNonUser)
-				userType = "foreigner";
-		}
-
+		
 		//get last saved result from
 		var saved = FoxtrickPrefs.get("YouthTwins.lastResponse");
 
-		//noting saved, probably a fresh install
+		//noting saved, probably a fresh install, force request
 		if(saved === null){
-			Foxtrick.log("Nothing saved, assuming fresh install!");
-			getTwinsFromHY(teamid, forceUpdate, debug, userType, handleHyResponse, errorHandling);
+			getTwinsFromHY(teamid, forceupdate, debug, handleHyResponse, errorHandling);
 		}		
 		else {
 			var json = JSON.parse( saved );
@@ -241,13 +229,13 @@
 			var lifeTime = json.lifeTime;
 			var now = (new Date()).getTime();
 			if(now > fetchTime && now < fetchTime + lifeTime){
-				Foxtrick.log("Using last response");
+				Foxtrick.log("Using cached response");
 				handleHyResponse(saved);
 			} else if(now > fetchTime + lifeTime) {
 				Foxtrick.log("Updating from HY");
-				getTwinsFromHY(teamid, forceUpdate, debug, userType, handleHyResponse, errorHandling);
+				getTwinsFromHY(teamid, forceupdate, debug, handleHyResponse, errorHandling);
 			} else 
-				Foxtrick.log("You can travel back in time?");	
+				Foxtrick.log("Dear time traveler, we welcome you!");	
 		}
 		
 	}
