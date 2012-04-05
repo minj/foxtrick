@@ -140,14 +140,17 @@
 			if(!response)
 				return;
 
-			Foxtrick.log(response);
 			var json = JSON.parse( response );
 			var isHYuser = json.isHyUser;
 
 			var playerInfos = doc.getElementsByClassName("playerInfo");
 			for(var i = 0; i < playerInfos.length; i++){
 				var playerInfo = playerInfos[i];
+
+				//find spot to place the images
 				var target = playerInfo.getElementsByTagName("b")[0];
+				
+				//get playerid
 				var playerID = playerInfo.getElementsByTagName("a")[0].href.match(/YouthPlayerID=(\d+)/i)[1];
 				
 				//new player pulled, needs a forceUpdate
@@ -196,6 +199,7 @@
 				addIcons(container, missing, "Not marked yet or undecided", "ft-youth-twins-icon", icon_yellow);
 				addIcons(container, non, "Marked as Non-Twin", "ft-youth-twins-icon", icon_red);
 
+				//add the whole stuff to the site
 				target.parentNode.insertBefore(container,target.nextSibling)
 			}
 		}
@@ -204,9 +208,10 @@
 		//temporary debug settings
 		var debug = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "debug");
 
-		var userType = "auto";
-
 		var forceUpdate = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "forceupdate");
+
+		//fake the condition where a user has no hy account, used for developing and debugging that case
+		var userType = "auto";
 		if(FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "FakeUser")){
 			var forceUser = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "HYUser");
 			if(forceUser)
