@@ -1,7 +1,7 @@
 "use strict";
 /* youth-twins.js
  * Displays twin information for youth squad players using an API supplied by HY.
- * @author CatzHoek, HT backend/API by MackShot
+ * @author CatzHoek, HY backend/API by MackShot
  */
 
  Foxtrick.modules["YouthTwins"]={
