@@ -177,7 +177,6 @@
 				var l10n_non_twins = Foxtrickl10n.getString("YouthTwins.nonTwins").replace("%1", non);
 				var l10n_undecided_twins = Foxtrickl10n.getString("YouthTwins.undecidedTwins").replace("%1", missing);
 				var l10n_non_hy_user = Foxtrickl10n.getString("YouthTwins.nonHyUser");
-		}	
 
 				if(isHYuser)
 					var title = " " + l10n_possible_twins + "\n " + l10n_marked_twins + "\n " + l10n_non_twins + "\n " + l10n_undecided_twins;
