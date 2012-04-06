@@ -37,7 +37,7 @@
 
  Foxtrick.modules["YouthTwins"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ["YouthPlayers"],
+	PAGES : ["ownYouthPlayers"],
 	CSS : Foxtrick.InternalPath + "resources/css/youth-twins.css",
 	//OPTIONS : ["debug", "forceupdate"],
 	run : function(doc) { 
@@ -206,11 +206,8 @@
 			}
 		}
 
+		//teamid for chpp playerList
 		var teamid = doc.location.href.match(/teamid=(\d+)/i)[1];
-
-		//temporary debug settings
-		//var debug = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "debug");
-		//var forceUpdate = FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "forceupdate");
 
 		//get last saved result from
 		var saved = FoxtrickPrefs.get("YouthTwins.lastResponse");
@@ -222,6 +219,7 @@
 		}		
 		else {
 			var json = JSON.parse( saved );
+			Foxtrick.log(json);
 			var fetchTime = json.fetchTime*1000;
 			var lifeTime = json.lifeTime*1000;
 			var expireTime = fetchTime + lifeTime;
@@ -245,6 +243,7 @@
 				Foxtrick.log("YouthTwins: Using cached response from", fetchDate.toUTCString(),"expires", expireDate.toUTCString());
 				handleHyResponse(saved, 200);
 			} else if(now > fetchTime + lifeTime || !valid) {
+				//teamid, forceUpdate, debug, usertype, response
 				if(valid){
 					Foxtrick.log("YouthTwins: Lifetime expired, updating from HY");
 					getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
@@ -252,8 +251,6 @@
 					Foxtrick.log("YouthTwins: One or more players not found in saved result, updating from HY");
 					getTwinsFromHY(teamid, true, false, "auto", handleHyResponse);
 				}
-				//teamid, forceUpdate, debug, usertype, response
-				getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
 			} else 
 				Foxtrick.log("Dear time traveler, we welcome you!");	
 		}
