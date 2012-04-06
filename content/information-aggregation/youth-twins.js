@@ -41,7 +41,6 @@
 	CSS : Foxtrick.InternalPath + "resources/css/youth-twins.css",
 	//OPTIONS : ["debug", "forceupdate"],
 	run : function(doc) { 
-
 		var getYouthPlayerList = function (teamId, callback){
 			var args = [];
 			args.push(["file", "youthplayerlist"]);
@@ -173,11 +172,12 @@
 				var non = isHYuser?parseInt(json.players[playerID].non):0;
 				var missing = possible - marked - non;
 				
-				var l10n_possible_twins = Foxtrickl10n.getString("YouthTwins.possibleTwins").replace("%1", possible);
+				var l10n_possible_twins =Foxtrickl10n.getString("YouthTwins.possibleTwins", possible).replace("%1", possible);
 				var l10n_marked_twins = Foxtrickl10n.getString("YouthTwins.markedTwins").replace("%1", marked);
 				var l10n_non_twins = Foxtrickl10n.getString("YouthTwins.nonTwins").replace("%1", non);
 				var l10n_undecided_twins = Foxtrickl10n.getString("YouthTwins.undecidedTwins").replace("%1", missing);
 				var l10n_non_hy_user = Foxtrickl10n.getString("YouthTwins.nonHyUser");
+		}	
 
 				if(isHYuser)
 					var title = " " + l10n_possible_twins + "\n " + l10n_marked_twins + "\n " + l10n_non_twins + "\n " + l10n_undecided_twins;
