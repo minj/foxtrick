@@ -30,7 +30,7 @@
  *				marked: number of possible twins marked as twin
  *				possible: total number of possible twins
  *			fetchTime: 
- *				Unix timestamp of the feteched information
+ *				Unix timestamp of the feteched information in seconds
  *			lifeTime:
  *				LifeTime of the information in seconds, avoid further requests until fetchTime+lifeTime is met, new pulls to the youth team are a valid reason to disrespect and use forceUpdate. *
  */
@@ -60,7 +60,7 @@
 		//forceUpdate: Force HY to update, avoid!
 		//debug: Fakes a reponse where twins will be present
 		//callback: function to be called after HY was queried
-		var getTwinsFromHY = function (teamid, forceupdate, debug, callback, errorFunc){
+		var getTwinsFromHY = function (teamid, forceupdate, debug, userType, callback, errorFunc){
 			getYouthPlayerList(teamid, function(playerlist) {
 				getYouthAvatars(function(avatars){
 					//urlencode xml files
@@ -77,7 +77,7 @@
 					if(forceupdate)
 						params = params + "&forceUpdate=1"
 
-					//debug: Fakes a random reponse where twins will be present
+					//debug: Generates a random reponse where twins will be present
 					if(debug)
 						params = params + "&debug=1"
 
@@ -103,30 +103,25 @@
 							if(http.status == 200) {
 								// 200, everything is fine
 								if(callback)
-									callback(http.responseText);
+									callback(http.responseText, http.status);
 							} else if(http.status == 400){
 								// 400 with 2 different cases
 								// - given data is not valid
 								// - not all data is given
 								// response json
-								if(errorFunc)
-									errorFunc(http) 
+								callback(http.responseText, http.status);
 							} else if(http.status == 404){
 								// 404... HY is probably moving servers
 								// or they are just 404ing
-								if(errorFunc)
-									errorFunc(http) 
+								callback(http.responseText, http.status);
 							} else if(http.status == 500){
 								// 500, HY is having problems
-								if(errorFunc)
-									errorFunc(http) 
+								callback(http.responseText, http.status);
 							} else if(http.status == 503){
 								// 503 service was temporarily disabled by HY
-								if(errorFunc)
-									errorFunc(http) 
+								callback(http.responseText, http.status);
 							} else {
-								if(errorFunc)
-									errorFunc(http) 
+								callback(http.responseText, http.status);
 							}
 						}
 					}
@@ -135,9 +130,14 @@
 				});	
 			});
 		}
-		var handleHyResponse = function (response){
+		var handleHyResponse = function (response, status){
 			if(!response)
 				return;
+
+			if(status != 200){
+				Foxtrick.log("YouthTwins: HY returned status: ", status);
+				return;
+			}				
 
 			//save response as pref
 			FoxtrickPrefs.set("YouthTwins.lastResponse", response);
@@ -205,9 +205,6 @@
 				target.parentNode.insertBefore(container,target.nextSibling)
 			}
 		}
-		var errorHandling = function (http){
-			Foxtrick.log("error", http.status)
-		}
 
 		var teamid = doc.location.href.match(/teamid=(\d+)/i)[1];
 
@@ -220,20 +217,42 @@
 
 		//noting saved, probably a fresh install, force request
 		if(saved === null){
-			Foxtrick.log("No save found ... Updating from HY");
-			getTwinsFromHY(teamid, false, false, handleHyResponse, errorHandling);
+			Foxtrick.log("YouthTwins: lastResponse is null  ... Updating from HY");
+			getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
 		}		
 		else {
 			var json = JSON.parse( saved );
-			var fetchTime = json.fetchTime;
-			var lifeTime = json.lifeTime;
+			var fetchTime = json.fetchTime*1000;
+			var lifeTime = json.lifeTime*1000;
+			var expireTime = fetchTime + lifeTime;
+			var fetchDate = new Date();
+			fetchDate.setTime(fetchTime);
+			var expireDate = new Date();
+			expireDate.setTime(expireTime);
+
+			//see if the saved information is still valid
+			var playerInfos = doc.getElementsByClassName("playerInfo");
+			var valid = true;
+			for(var i = 0; i < playerInfos.length; i++){
+				var playerID =  playerInfos[i].getElementsByTagName("a")[0].href.match(/YouthPlayerID=(\d+)/i)[1];
+				if(typeof(json.players[playerID]) !== "object")
+					valid = false;
+			}
+			
 			var now = (new Date()).getTime();
 			if(now > fetchTime && now < fetchTime + lifeTime){
-				Foxtrick.log("Using cached response");
-				handleHyResponse(saved);
-			} else if(now > fetchTime + lifeTime) {
-				Foxtrick.log("Updating from HY");
-				getTwinsFromHY(teamid, false, false, handleHyResponse, errorHandling);
+				Foxtrick.log("YouthTwins: Using cached response from", fetchDate.toUTCString(),"expires", expireDate.toUTCString());
+				handleHyResponse(saved, 200);
+			} else if(now > fetchTime + lifeTime || !valid) {
+				if(valid){
+					Foxtrick.log("YouthTwins: Lifetime expired, updating from HY");
+					getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
+				} else {
+					Foxtrick.log("YouthTwins: One or more players not found in saved result, updating from HY");
+					getTwinsFromHY(teamid, true, false, "auto", handleHyResponse);
+				}
+				//teamid, forceUpdate, debug, usertype, response
+				getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
 			} else 
 				Foxtrick.log("Dear time traveler, we welcome you!");	
 		}
