@@ -55,7 +55,7 @@ Foxtrick.modules.AddClass={
 			return;
 
 		// start time
-		var timeRe = /(\D+?)(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})(\D+?)/;
+		var timeRe = /(.+?\D+?)(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})(\D+?.+?)/;
 		var parent = mainBody.getElementsByClassName("byline")[0];
 		this.replaceInNode(doc, parent, timeRe);
 	},
@@ -66,7 +66,7 @@ Foxtrick.modules.AddClass={
 		if (!mainBody)
 			return;
 
-		var timeRe = /(\D+?)(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})(\D+?)/;
+		var timeRe = /(.+?\D+?)(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})(\D+?.+?)/;
 		var cells = mainBody.getElementsByTagName("td");
 		Foxtrick.map(function(cell) { 
 			Foxtrick.modules.AddClass.replaceInNode(doc, cell,timeRe);
@@ -78,8 +78,8 @@ Foxtrick.modules.AddClass={
 		if (!table)
 			return;
 
-		var timeReFull = /(\D+?)(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})(\D+?)/;
-		var timeReShort = /(\D+?)(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+)(\D+?)/;
+		var timeReFull = /(.+?\D+?)(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})(\D+?.+?)/;
+		var timeReShort = /(.+?\D+?)(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+)(\D+?.+?)/;
 
 		// start time
 		var cells = table.getElementsByTagName("td");
@@ -99,7 +99,7 @@ Foxtrick.modules.AddClass={
 		if (!transferList)
 			return;
 
-		var timeRe = /(\D+?)(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})(\D+?)/;
+		var timeRe = /(.+?\D+?)(\d{1,4}\D\d{1,2}\D\d{1,4}\D?\s+\d{1,2}\D\d{1,2})(\D+?.+?)/;
 
 		// deadline time
 		var dlPar = transferList.getElementsByTagName("p")[0];
