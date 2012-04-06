@@ -240,7 +240,8 @@
 			}
 			
 			var now = (new Date()).getTime();
-			if(now > fetchTime && now < fetchTime + lifeTime){
+			//in lifespan, also saved response seems to be valid
+			if(now > fetchTime && now < fetchTime + lifeTime && valid){
 				Foxtrick.log("YouthTwins: Using cached response from", fetchDate.toUTCString(),"expires", expireDate.toUTCString());
 				handleHyResponse(saved, 200);
 			} else if(now > fetchTime + lifeTime || !valid) {
