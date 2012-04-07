@@ -9,12 +9,12 @@
 }
 html[dir="rtl"] .ft-youth-twins-icon {
 	padding-right: 1px;
-	padding-left: 0px !important;		
+	padding-left: 0px;		
 }
 
 html[dir="rtl"] .ft-youth-twins-container {
 	display: inline;
 	padding-right: 4px;
-	padding-left: 0px !important;
+	padding-left: 0px;
 }
 }
