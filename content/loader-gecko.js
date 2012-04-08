@@ -43,7 +43,8 @@ Foxtrick.loader.gecko.browserLoad = function(ev) {
 					return;
 				
 				Foxtrick.modules.UI.update();
-				Foxtrick.entry.docLoad(ev.originalTarget);
+				if (Foxtrick.isHt(ev.originalTarget))
+					Foxtrick.entry.docLoad(ev.originalTarget);
 			}, true);
 			appcontent.addEventListener("unload", Foxtrick.loader.gecko.docUnload, true);
 
