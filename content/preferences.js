@@ -5,8 +5,6 @@ var pageIds = [];
 function initLoader() {
 	if (document.location.href.search("width=600") != -1)
 		document.getElementsByTagName('body')[0].setAttribute('style','width:600px;');
-	// rtl setting
-	document.getElementsByTagName('html')[0].setAttribute('dir',Foxtrickl10n.getString('direction'));
 	
 	// fennec runs init() from injected entry.js (injected)
 	// called directly, it'll run and save actually for some reason
