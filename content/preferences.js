@@ -916,7 +916,7 @@ function testPermissions() {
 						$(id).attr("permission-granted", result);
 						neededPermission.granted = result;
 						var checkPermission = function() {
-							if ($(id).attr("checked") == "checked" && $(id).attr("permission-granted")=="false")
+							if ($(id+"-check").attr("checked") == "checked" && $(id).attr("permission-granted")=="false")
 								getPermission(neededPermission)
 						};
 						$(id).click(function() { checkPermission(); });
