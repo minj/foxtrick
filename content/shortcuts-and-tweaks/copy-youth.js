@@ -21,6 +21,8 @@ Foxtrick.modules["CopyYouth"]={
 		var copyReport = function() {
 			try {
 				var mainBody = doc.getElementById('mainBody');
+				var matchid = Foxtrick.util.id.findMatchId(mainBody);
+				
 				var subDivs = mainBody.getElementsByTagName("div");
 				// FIXME - what the hell are they using this class‽
 				var playerInfo = mainBody.getElementsByClassName("playerInfo")[0];
@@ -41,7 +43,7 @@ Foxtrick.modules["CopyYouth"]={
 				// display note
 				var insertBefore = doc.getElementsByTagName('h1')[0];
 				var server = FoxtrickPrefs.getBool("hty-stage")?'stage':'www';
-				var url = "http://" + server + ".hattrick-youthclub.org/";
+				var url = "http://" + server + ".hattrick-youthclub.org/site/coachcomments_add/htmatch/"+matchid;
 				var container = doc.createElement("div");
 				var p = doc.createElement("p");
 				p.appendChild(doc.createTextNode(Foxtrickl10n.getString("copy.trainingReport.copied")));
@@ -53,7 +55,7 @@ Foxtrick.modules["CopyYouth"]={
 				var a = doc.createElement('a');
 				a.href = url;
 				a.target = "_copyYouth";
-				a.textContent = "http://www.hattrick-youthclub.org";
+				a.textContent = "http://www.hattrick-youthclub.org/site/coachcomments_add/htmatch/"+matchid;
 				linkContainer.appendChild(a);
 				linkContainer.appendChild(doc.createTextNode(string[1]));
 				container.appendChild(linkContainer);
