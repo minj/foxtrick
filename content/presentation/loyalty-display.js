@@ -15,13 +15,17 @@ Foxtrick.modules["LoyaltyDisplay"]={
 		//on players page, just run for the own team
 		if(Foxtrick.isPage('players', doc) && !Foxtrick.Pages.Players.isOwnPlayersPage(doc))
 			return;
+
+		var str_mcb = Foxtrickl10n.getString('LoyaltyDisplay.motherClubBonus')
+		var str_lo = Foxtrickl10n.getString('LoyaltyDisplay.loyaltyBonus')
 			
 		var replaceBars = function(node, skillUp, appendix){
+			var str = skillUp == 1.5?str_mcb:str_lo;
 			var count = 0;
 			var bars = node.getElementsByTagName("img");
 			while(count < bars.length && count < 100){
 				if (Foxtrick.hasClass(bars[count], "percentImage")) {
-					bars[count].setAttribute("title", bars[count].getAttribute("title") + ' +' + String(skillUp).substring(0, 4));
+					bars[count].setAttribute("title", bars[count].getAttribute("title") + ' +' + String(skillUp).substring(0, 4) + " " + str);
 					//bars[0].setAttribute("alt", bars[0].getAttribute("alt") + ' +' + String(skillUp).substring(0, 4));
 					Foxtrick.addClass(bars[count], "ft-percentImage-loyalty-" + appendix);
 					Foxtrick.addClass(bars[count], "ft-percentImage");
