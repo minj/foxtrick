@@ -274,7 +274,7 @@ Foxtrick.get = function(url) {
 
 			req.onreadystatechange = function(aEvt) {
 				if (req.readyState == 4) {
-					var status = (req.status < 400) ? "success" : "failure";
+					var status = (req.status < 400 && req.responseText != "") ? "success" : "failure";
 					cb({
 						code: req.status,
 						status: status,
