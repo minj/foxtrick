@@ -27,8 +27,8 @@ Foxtrick.modules["ShowLineupSet"]={
 			var getLineupTeam = function(item) {
 				var links = item.getElementsByTagName("a");
 				if (links.length == 2) {
-					var isTransfer = Foxtrick.any(function(n) { return n.href.indexOf("PlayerID=") >= 0; }, links);
-					if (!isTransfer)
+					var isLineup = Foxtrick.all(function(n) { return n.href.indexOf("TeamID=") >= 0; }, links);
+					if (isLineup)
 						return links[0].textContent;
 				}
 				return null;
