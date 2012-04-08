@@ -16,8 +16,10 @@
 <note version="0.9.2">
 <item>● Another massive language update. Thanks again to all those translators.</item>
 <item>● NEW: <module>PlayerStatsExperience</module>: shows how much experience a player gained in invidual matches and shows current subskill (CatzHoek)</item>
-<item>● NEW: <module>TeamPopupLinks</module>: optionally highlights current team in tables (default on)</item>
+<item>● NEW: <module>TeamPopupLinks</module>: added Tournaments. Optionally highlights current team in tables (default on)</item>
 <item>● NEW: <module>RatingsDisplay</module>: additonally addes average stars and ratings to series stats table</item>
+<item>● NEW: <module>TeamStats</module>: updates with filters and more sections</item>
+<item>● PlayerFilters has more filter options now</item>
 <item>● Skillable for transferlist search: injured fixed</item>
 <item>● MatchReportFormat: negative SE icons added</item>
 <item>● Links: make dynamic added links default on</item>
@@ -27,7 +29,14 @@
 <item>● ForumStripHattrickLinks: confirm option fixed</item>
 <item>● MatchSimulator: adding non-tournament matches fixed</item>
 <item>● CopyYouth: obsolete copy-player-source removed</item>
+<item>● CopyYouth: copy-training report linked to corresponding HT-Youthclub page</item>
+<item>● ShowLineupSet: Fixed after some HT change and simple skin broken layout fixed</item>
+<item>● Missing playerid for bookmarked players back</item>
+<item>● Median-transfer-prize fixed for some users</item>
 <item>● Some more work on AMO compliance</item>
+<item></item>
+<item><xhtml:b>For Google Chrome users</xhtml:b></item>
+<item>Seems that Chrome's optional permissions system has problems with revoking and later re-adding optional permissions. Only solution known currently is to reinstall FoxTrick if you need previously revoked permissions back.</item>
 </note>
 
 <note version="0.9.1">
