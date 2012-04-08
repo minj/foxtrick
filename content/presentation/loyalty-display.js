@@ -20,7 +20,7 @@ Foxtrick.modules["LoyaltyDisplay"]={
 		var str_lo = Foxtrickl10n.getString('LoyaltyDisplay.loyaltyBonus')
 			
 		var replaceBars = function(node, skillUp, appendix){
-			var str = skillUp == 1.5?str_mcb:str_lo;
+			var str = (skillUp == 1.5)?str_mcb:str_lo;
 			var count = 0;
 			var bars = node.getElementsByTagName("img");
 			while(count < bars.length && count < 100){
