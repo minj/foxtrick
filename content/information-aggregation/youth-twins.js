@@ -39,7 +39,6 @@
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : [/*"ownYouthPlayers",*/"YouthPlayers"],
 	CSS : Foxtrick.InternalPath + "resources/css/youth-twins.css",
-	//OPTIONS : ["debug", "forceupdate"],
 	run : function(doc) { 
 		var getYouthPlayerList = function (teamId, callback){
 			var args = [];
@@ -100,33 +99,9 @@
 
 					//Call a function when the state changes.
 					http.onreadystatechange = function() {
-						if(http.readyState == 4){
-							if(http.status == 200) {
-								// 200, everything is fine
-								if(callback)
-									callback(http.responseText, http.status);
-							} else if(http.status == 400){
-								// 400 with 2 different cases
-								// - given data is not valid
-								// - not all data is given
-								// response json
-								callback(http.responseText, http.status);
-							} else if(http.status == 404){
-								// 404... HY is probably moving servers
-								// or they are just 404ing
-								callback(http.responseText, http.status);
-							} else if(http.status == 500){
-								// 500, HY is having problems
-								callback(http.responseText, http.status);
-							} else if(http.status == 503){
-								// 503 service was temporarily disabled by HY
-								callback(http.responseText, http.status);
-							} else {
-								Foxtrick.log("YouthTwins: Unexpected result", http.responseText, http.status);
-								//basicly dev null, will terminate
-								callback(null, 0);
-							}
-						}
+						if(http.readyState == 4)
+							callback(http.responseText, http.status);
+						
 					}
 					try {
 						http.send(params);
@@ -140,14 +115,35 @@
 			});
 		}
 		var handleHyResponse = function (response, status){
-			if(!response)
+			if(!response){
+				Foxtrick.log("YouthTwins: Null response, stopping", status);
 				return;
+			}
 
-			if(status != 200){
-				Foxtrick.log("YouthTwins: HY returned status: ", status);
-				return;
-			}				
-
+			switch(status){
+				case 0:
+					Foxtrick.log("YouthTwins: Sending failed", status);
+					return; 
+				case 200: 
+					Foxtrick.log("YouthTwins: Looking fine", status);
+					break;
+				case 400:
+					Foxtrick.log("YouthTwins: Given data is invalid or incomplete", status);
+					return;
+				case 404:
+					Foxtrick.log("YouthTwins: HY is moving servers or is in huge trouble", status);
+					return;
+				case 500: 
+					Foxtrick.log("YouthTwins: HY is in trouble", status);
+					return; 
+				case 503:
+					Foxtrick.log("YouthTwins: HY temporarily disabled the feature", status);
+					return; 
+				default:
+					Foxtrick.log("YouthTwins: HY returned unhandled status", status);
+					return;
+			}
+			
 			//save response as pref
 			FoxtrickPrefs.set("YouthTwins.lastResponse", response);
 
