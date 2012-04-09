@@ -122,7 +122,9 @@
 								// 503 service was temporarily disabled by HY
 								callback(http.responseText, http.status);
 							} else {
-								callback(http.responseText, http.status);
+								Foxtrick.log("YouthTwins: Unexpected result", http.responseText, http.status);
+								//basicly dev null, will terminate
+								callback(null, 0);
 							}
 						}
 					}
