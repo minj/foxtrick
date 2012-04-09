@@ -89,8 +89,8 @@ Foxtrick.modules["LeagueNewsFilter"]={
 				item.setAttribute('ft_news','1');
 			}
 			else if (as.length==2) {		// two links for transfers and lineup
-				var is_transfer= (as[0].href.search('PlayerID=')!=-1 ||		// is_transfer	= one link in a player link
-									as[1].href.search('PlayerID=')!=-1 );
+				var is_transfer= (as[0].href.search(/PlayerID=/i)!=-1 ||		// is_transfer	= one link in a player link
+									as[1].href.search(/PlayerID=/i)!=-1 );
 				if (is_transfer) {
 					item.setAttribute('ft_news','2');
 				}
