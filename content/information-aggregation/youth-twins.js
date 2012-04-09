@@ -6,6 +6,7 @@
  * @Interface:
  * 		Url: http://www.hattrick-youthclub.org/_admin/twins.php
  * @params:
+ *		//params send via http "POST"
  * 		forceUpdate (optional):
  *			no param requred but send = 1 for safety reasons
  *			forces HY to recalculate results, should only be used after a new player was pulled onto the youth squad or if it is really required
@@ -19,6 +20,8 @@
  *		isHyUser (0/1) (optional):
  *			used to simulate HY users or non-HY users for debugging purposes
  *			if not present HY will find out the correct value itself
+ *			@response players[id].marked and
+ *			@response players[id].non are not be present for non HT users.
  *
  * @response
  *		JSON:
@@ -26,8 +29,8 @@
  *				the user is using HY already
  *			players: (dictionary)
  *				list of players
- *				non: number of possible twins marked as non-twin
- *				marked: number of possible twins marked as twin
+ *				non: number of possible twins marked as non-twin (not present if isHyUser = false)
+ *				marked: number of possible twins marked as twin (not present if isHyUser = false)
  *				possible: total number of possible twins
  *			fetchTime: 
  *				Unix timestamp of the feteched information in seconds
@@ -101,7 +104,6 @@
 					http.onreadystatechange = function() {
 						if(http.readyState == 4)
 							callback(http.responseText, http.status);
-						
 					}
 					try {
 						http.send(params);
@@ -272,6 +274,5 @@
 			} else 
 				Foxtrick.log("Dear time traveler, we welcome you!");	
 		}
-		
 	}
 };
