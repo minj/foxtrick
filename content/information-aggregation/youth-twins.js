@@ -37,7 +37,7 @@
 
  Foxtrick.modules["YouthTwins"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ["ownYouthPlayers"],
+	PAGES : [/*"ownYouthPlayers",*/"YouthPlayers"],
 	CSS : Foxtrick.InternalPath + "resources/css/youth-twins.css",
 	//OPTIONS : ["debug", "forceupdate"],
 	run : function(doc) { 
@@ -55,6 +55,7 @@
 			args.push(["version", "1.0"]);
 			Foxtrick.util.api.retrieve(doc, args,{ cache_lifetime:'session'}, callback);
 		}
+
 		//params
 		//teamid : Current Foxtrick user
 		//forceUpdate: Force HY to update, avoid!
@@ -91,6 +92,7 @@
 					}
 
 					//build actual request
+
 					var http = new XMLHttpRequest();
 					http.open("POST", url, true);
 
@@ -143,6 +145,7 @@
 			FoxtrickPrefs.set("YouthTwins.lastResponse", response);
 
 			var json = JSON.parse( response );
+
 			var isHYuser = json.isHyUser;
 
 			var playerInfos = doc.getElementsByClassName("playerInfo");
@@ -182,7 +185,6 @@
 					var title = " " + l10n_possible_twins + "\n " + l10n_marked_twins + "\n " + l10n_non_twins + "\n " + l10n_undecided_twins;
 				else
 					var title = " " + l10n_possible_twins + "\n " + l10n_non_hy_user;
-					//var title = "This player has %1 possible twins.\n You could find out more about this player's potential using hattrick youthclub."
 				
 				//repeat twin icon in representative color according to amount of twin category
 				var container = Foxtrick.createFeaturedElement(doc, this, "div");
@@ -218,10 +220,17 @@
 			getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
 		}		
 		else {
-			var json = JSON.parse( saved );
-			Foxtrick.log(json);
-			var fetchTime = json.fetchTime*1000;
-			var lifeTime = json.lifeTime*1000;
+			try {
+				var json = JSON.parse( saved );
+				var fetchTime = parseInt(json.fetchTime)*1000;
+				var lifeTime = parseInt(json.lifeTime)*1000;
+			} catch(e) {
+				//something might be wrong with the saved result, force an update
+				Foxtrick.log("YouthTwins: corrupted saved JSON", e, saved);
+				//possible emergency fix, forceReload from HY
+				//getTwinsFromHY(teamid, true, false, "auto", handleHyResponse);
+				return;
+			}
 			var expireTime = fetchTime + lifeTime;
 			var fetchDate = new Date();
 			fetchDate.setTime(fetchTime);
@@ -237,18 +246,24 @@
 					valid = false;
 			}
 			
+			//query HY or use cached stuff and alter the site
 			var now = (new Date()).getTime();
-			//in lifespan, also saved response seems to be valid
+
 			if(now > fetchTime && now < fetchTime + lifeTime && valid){
-				Foxtrick.log("YouthTwins: Using cached response from", fetchDate.toUTCString(),"expires", expireDate.toUTCString());
+				//in valid lifespan, also saved response seems to be valid
+				Foxtrick.log("YouthTwins: Using cached response from", fetchDate.toUTCString(),"expires", expireDate.toUTCString(),"now", (new Date()).toUTCString());
 				handleHyResponse(saved, 200);
 			} else if(now > fetchTime + lifeTime || !valid) {
-				//teamid, forceUpdate, debug, usertype, response
+				//saved data expired or saved data is invalud
 				if(valid){
+					//saved data is valid, plain request should suffice
 					Foxtrick.log("YouthTwins: Lifetime expired, updating from HY");
+					//teamid, forceUpdate, debug, usertype, response
 					getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
 				} else {
+					//saved data is not valid, probably because a new guy has been scouted
 					Foxtrick.log("YouthTwins: One or more players not found in saved result, updating from HY");
+					//teamid, forceUpdate, debug, usertype, response
 					getTwinsFromHY(teamid, true, false, "auto", handleHyResponse);
 				}
 			} else 
