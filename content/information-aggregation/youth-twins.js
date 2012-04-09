@@ -20,8 +20,9 @@
  *		isHyUser (0/1) (optional):
  *			used to simulate HY users or non-HY users for debugging purposes
  *			if not present HY will find out the correct value itself
+ *			if set to 1
  *			@response players[id].marked and
- *			@response players[id].non are not be present for non HT users.
+ *			@response players[id].non will not be present for non HT users.
  *
  * @response
  *		JSON:
@@ -169,23 +170,25 @@
 					continue;
 				}
 
-				//icons for representation
+				//icons resources for representation
 				var icon_green = Foxtrick.InternalPath + 'resources/img/twin.png';
 				var icon_red = Foxtrick.InternalPath + 'resources/img/twin_red.png'; 
 				var icon_yellow = Foxtrick.InternalPath + 'resources/img/twin_yellow.png'; 
 
-				//amounts of twins by category, for non hattrick youthclub users marked and non are not present
+				//amounts of twins by category, for non hattrick youthclub users marked and non are not present by api definition
 				var possible = parseInt(json.players[playerID].possible);
 				var marked = isHYuser?parseInt(json.players[playerID].marked):0;
 				var non = isHYuser?parseInt(json.players[playerID].non):0;
 				var missing = possible - marked - non;
 				
+				//l10n strings
 				var l10n_possible_twins =Foxtrickl10n.getString("YouthTwins.possibleTwins", possible).replace("%1", possible);
 				var l10n_marked_twins = Foxtrickl10n.getString("YouthTwins.markedTwins").replace("%1", marked);
 				var l10n_non_twins = Foxtrickl10n.getString("YouthTwins.nonTwins").replace("%1", non);
 				var l10n_undecided_twins = Foxtrickl10n.getString("YouthTwins.undecidedTwins").replace("%1", missing);
 				var l10n_non_hy_user = Foxtrickl10n.getString("YouthTwins.nonHyUser");
 
+				//assemble title
 				if(isHYuser)
 					var title = " " + l10n_possible_twins + "\n " + l10n_marked_twins + "\n " + l10n_non_twins + "\n " + l10n_undecided_twins;
 				else
