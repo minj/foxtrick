@@ -44,6 +44,9 @@
 	PAGES : [/*"ownYouthPlayers",*/"YouthPlayers"],
 	CSS : Foxtrick.InternalPath + "resources/css/youth-twins.css",
 	run : function(doc) { 
+		if (!Foxtrick.isPage('ownYouthPlayers', doc))
+			return;		
+		
 		var getYouthPlayerList = function (teamId, callback){
 			var args = [];
 			args.push(["file", "youthplayerlist"]);
