@@ -61,7 +61,7 @@
 		//forceUpdate: Force HY to update, avoid!
 		//debug: Fakes a reponse where twins will be present
 		//callback: function to be called after HY was queried
-		var getTwinsFromHY = function (teamid, forceupdate, debug, userType, callback, errorFunc){
+		var getTwinsFromHY = function (teamid, forceupdate, debug, userType, callback){
 			getYouthPlayerList(teamid, function(playerlist) {
 				getYouthAvatars(function(avatars){
 					//urlencode xml files
@@ -92,7 +92,6 @@
 					}
 
 					//build actual request
-
 					var http = new XMLHttpRequest();
 					http.open("POST", url, true);
 
@@ -127,8 +126,14 @@
 							}
 						}
 					}
-					//go!
-					http.send(params);
+					try {
+						http.send(params);
+					}
+					catch (e) {
+						// catch cross-domain errors
+						Foxtrick.log("YoutTwins send:", e, params);
+						callback(null, 0);
+					}
 				});	
 			});
 		}
