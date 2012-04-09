@@ -131,7 +131,7 @@
 					Foxtrick.log("YouthTwins: Looking fine", status);
 					break;
 				case 400:
-					Foxtrick.log("YouthTwins: Given data is invalid or incomplete", status);
+					Foxtrick.log("YouthTwins: Given data is invalid or incomplete", status, reponse);
 					return;
 				case 404:
 					Foxtrick.log("YouthTwins: HY is moving servers or is in huge trouble", status);
@@ -140,10 +140,10 @@
 					Foxtrick.log("YouthTwins: HY is in trouble", status);
 					return; 
 				case 503:
-					Foxtrick.log("YouthTwins: HY temporarily disabled the feature", status);
+					Foxtrick.log("YouthTwins: HY temporarily disabled the feature", status, reponse);
 					return; 
 				default:
-					Foxtrick.log("YouthTwins: HY returned unhandled status", status);
+					Foxtrick.log("YouthTwins: HY returned unhandled status", status, reponse);
 					return;
 			}
 			
