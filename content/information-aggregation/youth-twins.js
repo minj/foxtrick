@@ -41,12 +41,12 @@
 
  Foxtrick.modules["YouthTwins"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : [/*"ownYouthPlayers",*/"YouthPlayers"],
+	PAGES : ["YouthPlayers"],
 	CSS : Foxtrick.InternalPath + "resources/css/youth-twins.css",
 	run : function(doc) { 
 		if (!Foxtrick.isPage('ownYouthPlayers', doc))
-			return;		
-		
+			return;
+
 		var getYouthPlayerList = function (teamId, callback){
 			var args = [];
 			args.push(["file", "youthplayerlist"]);
@@ -106,8 +106,12 @@
 
 					//Call a function when the state changes.
 					http.onreadystatechange = function() {
-						if(http.readyState == 4)
-							callback(http.responseText, http.status);
+						if(http.readyState == 4){
+							if(http.responseText)
+								callback(http.responseText, http.status);
+							else
+								callback("", http.status);
+						}
 					}
 					try {
 						http.send(params);
@@ -121,29 +125,35 @@
 			});
 		}
 		var handleHyResponse = function (response, status){
-			if(!response){
-				Foxtrick.log("YouthTwins: Null response, stopping", status);
-				return;
-			}
-
 			switch(status){
 				case 0:
 					Foxtrick.log("YouthTwins: Sending failed", status);
 					return; 
 				case 200: 
-					Foxtrick.log("YouthTwins: Looking fine", status);
+					Foxtrick.log("YouthTwins: Looking fine, ignoreUntil=-1", status);
+					FoxtrickPrefs.set("YouthTwins.ignoreUntil", -1);
 					break;
 				case 400:
 					Foxtrick.log("YouthTwins: Given data is invalid or incomplete", status, reponse);
 					return;
 				case 404:
+					var now = new Date();
+					var ignoreHours = 24;
+					var ignoreUntil = now.setTime(now.getTime() + ignoreHours*60*60*1000);
+					FoxtrickPrefs.set("YouthTwins.ignoreUntil", ignoreUntil);
 					Foxtrick.log("YouthTwins: HY is moving servers or is in huge trouble", status);
+					Foxtrick.log("YouthTwins: No requests for one day.");
 					return;
 				case 500: 
 					Foxtrick.log("YouthTwins: HY is in trouble", status);
 					return; 
 				case 503:
-					Foxtrick.log("YouthTwins: HY temporarily disabled the feature", status, reponse);
+					var now = new Date();
+					var ignoreHours = 24;
+					var ignoreUntil = now.setTime(now.getTime() + ignoreHours*60*60*1000);
+					FoxtrickPrefs.set("YouthTwins.ignoreUntil", ignoreUntil);
+					Foxtrick.log("YouthTwins: HY temporarily disabled the feature", status, "");
+					Foxtrick.log("YouthTwins: No requests for one day.");
 					return; 
 				default:
 					Foxtrick.log("YouthTwins: HY returned unhandled status", status, reponse);
@@ -222,11 +232,16 @@
 		//teamid for chpp playerList
 		var teamid = doc.location.href.match(/teamid=(\d+)/i)[1];
 
-		//get last saved result from
+		//get last saved result from and possible ignoreTime
 		var saved = FoxtrickPrefs.get("YouthTwins.lastResponse");
+		var ignoreUntil = FoxtrickPrefs.get("YouthTwins.ignoreUntil");
+		var now = new Date();		
+
+		if(ignoreUntil === null)
+			ignoreUntil == -1;
 
 		//noting saved, probably a fresh install, force request
-		if(saved === null){
+		if(saved === null && (ignoreUntil == -1 || now.getTime() > ignoreUntil)){
 			Foxtrick.log("YouthTwins: lastResponse is null  ... Updating from HY");
 			getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
 		}		
@@ -258,13 +273,17 @@
 			}
 			
 			//query HY or use cached stuff and alter the site
-			var now = (new Date()).getTime();
-
-			if(now > fetchTime && now < fetchTime + lifeTime && valid){
+			if(now.getTime() > fetchTime && now.getTime() < fetchTime + lifeTime && valid){
 				//in valid lifespan, also saved response seems to be valid
 				Foxtrick.log("YouthTwins: Using cached response from", fetchDate.toUTCString(),"expires", expireDate.toUTCString(),"now", (new Date()).toUTCString());
 				handleHyResponse(saved, 200);
 			} else if(now > fetchTime + lifeTime || !valid) {
+				if(ignoreUntil != -1 && now < ignoreUntil){
+					var until = new Date();
+					until.setTime(ignoreUntil);
+					Foxtrick.log("YouthTwins: Ignore one day", until.toUTCString());
+					return;
+				}
 				//saved data expired or saved data is invalud
 				if(valid){
 					//saved data is valid, plain request should suffice
