@@ -62,6 +62,11 @@
 			Foxtrick.util.api.retrieve(doc, args,{ cache_lifetime:'session'}, callback);
 		}
 
+		//icons resources for representation
+		var icon_green = Foxtrick.InternalPath + 'resources/img/twin.png';
+		var icon_red = Foxtrick.InternalPath + 'resources/img/twin_red.png'; 
+		var icon_yellow = Foxtrick.InternalPath + 'resources/img/twin_yellow.png'; 
+
 		//params
 		//teamid : Current Foxtrick user
 		//forceUpdate: Force HY to update, avoid!
@@ -183,11 +188,6 @@
 					continue;
 				}
 
-				//icons resources for representation
-				var icon_green = Foxtrick.InternalPath + 'resources/img/twin.png';
-				var icon_red = Foxtrick.InternalPath + 'resources/img/twin_red.png'; 
-				var icon_yellow = Foxtrick.InternalPath + 'resources/img/twin_yellow.png'; 
-
 				//amounts of twins by category, for non hattrick youthclub users marked and non are not present by api definition
 				var possible = parseInt(json.players[playerID].possible);
 				var marked = isHYuser?parseInt(json.players[playerID].marked):0;
@@ -208,7 +208,8 @@
 					var title = " " + l10n_possible_twins + "\n " + l10n_non_hy_user;
 				
 				//repeat twin icon in representative color according to amount of twin category
-				var container = Foxtrick.createFeaturedElement(doc, this, "div");
+				var link = Foxtrick.createFeaturedElement(doc, this, "a");
+				var container = Foxtrick.createFeaturedElement(doc, this, "span");
 				Foxtrick.addClass(container, "ft-youth-twins-container");
 				container.setAttribute("title", title);
 				container.setAttribute("alt", title);
@@ -223,9 +224,12 @@
 				addIcons(container, marked, l10n_marked_twins, "ft-youth-twins-icon", icon_green);
 				addIcons(container, missing, l10n_undecided_twins, "ft-youth-twins-icon", icon_yellow);
 				addIcons(container, non, l10n_non_twins, "ft-youth-twins-icon", icon_red);
+				link.appendChild(container);
+				link.setAttribute("href","http://www.hattrick-youthclub.org/site/players");
+				link.setAttribute("target","_blank");
 
 				//add the whole stuff to the site
-				target.parentNode.insertBefore(container,target.nextSibling)
+				target.parentNode.insertBefore(link,target.nextSibling)
 			}
 		}
 
