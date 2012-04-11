@@ -25,7 +25,7 @@ var Foxtrickl10n = {
 		"fa",	// فارسی, farsi, iranian	75
 		"fi",	// Suomi, finnish	9
 		"fr",	// french	5
-		"fu",	// Furlan, northitaly	113
+		"fur",	// Furlan, northitaly	113
 		"fy-NL",	// Frysk, east-netherland/north germany	109
 		"gl",	// Galego, galician	74
 		"he",	// עברית, hebrew	40
@@ -80,7 +80,7 @@ var Foxtrickl10n = {
 		"fa" : "fa",	// فارسی, farsi, iranian	75
 		"fi" : "fi",	// Suomi, finnish	9
 		"fr" : "fr",	// french	5
-		"fur" : "fur",	// Furlan, northitaly	113
+		"fu" : "fur",	// Furlan, northitaly	113
 		"fy" : "fy-NL",	// Frysk, east-netherland/north germany	109
 		"gl" : "gl",	// Galego, galician	74
 		"he" : "he",	// עברית, hebrew	40
