@@ -743,7 +743,7 @@ var eventText = {
 								minute.textContent = evtMin + "'";
 
 								//event type icon
-								var addEventIcons = function(id){
+								var addEventIcons = function(isEventTeam){
 									if (FoxtrickPrefs.isModuleOptionEnabled("MatchReportFormat", "ShowEventIcons")){
 										var addEventIcon = function(src, title, alt) {
 											return Foxtrick.addImage(doc, icon, { alt: alt, title: title, src: src , className: "ft-match-report-event-icon-image" });
@@ -757,7 +757,7 @@ var eventText = {
 										//icons for both columns (e.g.: Header vs. quick etc.)
 										if (typeof(eventTypes[evtType]) == "object"){
 											//event team
-											if (evtTeamId == id) {
+											if (isEventTeam) {
 												if (eventTypes[evtType]["team"]) 
 													for(var i = 0; i < eventTypes[evtType]["team"].length; ++i)
 														addEventIcon(icons[eventTypes[evtType]["team"][i]], title, "Event Id " + evtType + " : " + eventTypes[evtType]["team"][i]);
@@ -770,7 +770,7 @@ var eventText = {
 										} 
 										//simple case, display icon for team
 										else if (eventTypes[evtType] && icons[eventTypes[evtType]]){
-											if (id != evtTeamId)
+											if (!isEventTeam)
 												return;
 											if (icons[eventTypes[evtType]] instanceof Array)
 												for(var i = 0; i < icons[eventTypes[evtType]].length; ++i)
@@ -786,8 +786,8 @@ var eventText = {
 									}
 								}
 								
-								addEventIcons(homeId);
-								addEventIcons(awayId);
+								addEventIcons(homeId == evtTeamId);
+								addEventIcons(awayId == evtTeamId);
 								
 								//event text
 								var content = doc.createElement("div");
