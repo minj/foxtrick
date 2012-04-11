@@ -1,13 +1,5 @@
 <language name="et" desc="Eesti">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="Minu Hattrick" />
-	<MyClub value="Minu klubi" />
-	<World value="Maailm" />
-	<Forum value="Foorum" />
-	<Shop value="Pood" />
-	<Help value="Abi" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(väga madal)" value="0.0" />

@@ -1,14 +1,5 @@
 ﻿<language name="is" desc="Íslenska">
 
-﻿  <!-- Menu items in the main menu of Hattrick.
-﻿       Translate attribute "value" by copying from there in verbatim. -->
-﻿  <MyHattrick value="Mitt Hattrick" />
-﻿  <MyClub value="Liðið mitt" />
-﻿  <World value="Heimur" />
-﻿  <Forum value="Spjallborð" />
-﻿  <Shop value="Verslun" />
-﻿  <Help value="Hjálp" />
-
 ﻿  <!-- Rating sublevels in match report page.
 ﻿       Translate attribute "text" by copying from there in verbatim,
 ﻿       keep attribute "value" unchanged. -->

@@ -1,13 +1,5 @@
 <language name="no" desc="Norsk, bokmål">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="Mitt Hattrick" />
-	<MyClub value="Min klubb" />
-	<World value="Verden" />
-	<Forum value="Forum" />
-	<Shop value="Butikk" />
-	<Help value="Hjelp" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(veldig lav)" value="0.0" />

@@ -1,13 +1,5 @@
 <language name="fy-NL" desc="Frysk">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="Myn Hattrick" />
-	<MyClub value="Myn Klup" />
-	<World value="Wrâld" />
-	<Forum value="Foarums" />
-	<Shop value="Winkel" />
-	<Help value="Hulp" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Tige leech)" value="0.0" />

@@ -1,14 +1,5 @@
 <language name="ko" desc="한국어">
 
-        <!-- Menu items in the main menu of Hattrick.
-             Translate attribute "value" by copying from there in verbatim. -->
-        <MyHattrick value="나의 Hattrick" />
-        <MyClub value="나의 클럽" />
-        <World value="세계" />
-        <Forum value="토론장" />
-        <Shop value="상점" />
-        <Help value="도움말" />
-
         <!-- Rating sublevels in match report page.
              Translate attribute "text" by copying from there in verbatim,
              keep attribute "value" unchanged. -->

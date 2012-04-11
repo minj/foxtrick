@@ -1,13 +1,5 @@
 <language name="pt-BR" desc="Português Brasil">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection -->
-	<MyHattrick value="Meu Hattrick" />
-	<MyClub value="Meu Clube" />
-	<World value="Mundo" />
-	<Forum value="Fórum" />
-	<Shop value="Loja" />
-	<Help value="Ajuda" />
-
 	<!-- Subníveis que aparecem na página de detalhes do jogo -->
 	<ratingSubLevels>
 		<sublevel text="(mt. baixo)" value="0.0"/>

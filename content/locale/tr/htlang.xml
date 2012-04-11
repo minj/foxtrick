@@ -1,13 +1,5 @@
 <language name="tr" desc="Türkçe">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="Hattrick&#39;im" />
-	<MyClub value="Kulübüm" />
-	<World value="Dünya" />
-	<Forum value="Forum" />
-	<Shop value="Market" />
-	<Help value="Yardım" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(çok düşük)" value="0.0" />

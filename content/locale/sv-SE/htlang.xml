@@ -1,13 +1,5 @@
 <language name="sv-SE" desc="Svenska">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="Mitt Hattrick" />
-	<MyClub value="Min Klubb" />
-	<World value="Världen" />
-	<Forum value="Forum" />
-	<Shop value="Shoppen" />
-	<Help value="Hjälp" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(mkt låg)" value="0.0" />

@@ -1,13 +1,5 @@
 <language name="mt" desc="Malti">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection -->
-	<MyHattrick value="Hattrick Tiegħi" />
-	<MyClub value="Il-Klabb Tiegħi" />
-	<World value="Minn Madwar id-Dinja" />
-	<Forum value="Forum" />
-	<Shop value="Il-Ħanut" />
-	<Help value="Għajnuna" />
-
 	<!-- rating sublevels appearing in match detail page -->
 	<ratingSubLevels>
 		<sublevel text="(Baxx ħafna)" value="0.0" />

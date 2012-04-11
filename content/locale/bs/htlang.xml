@@ -1,13 +1,5 @@
 <language name="bs" desc="Bosanski">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection -->
-	<MyHattrick value="Moj Hattrick" />
-	<MyClub value="Moj klub" />
-	<World value="Svijet" />
-	<Forum value="Forum" />
-	<Shop value="Prodavnica" />
-	<Help value="Pomoć" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Veoma nisko)" value="0.0" />

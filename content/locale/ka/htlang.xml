@@ -1,13 +1,5 @@
 <language name="ka" desc="Georgian">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection -->
-	<MyHattrick value="ჩემი ჰეთთრიქი" />
-	<MyClub value="ჩემი კლუბი" />
-	<World value="მსოფლიო" />
-	<Forum value="ფორუმი" />
-	<Shop value="მაღაზია" />
-	<Help value="დახმარება" />
-
 	<!-- rating sublevels appearing in match detail page -->
 	<ratingSubLevels>
 		<sublevel text="(ძალიან დაბალი)" value="0.0" />

@@ -1,13 +1,5 @@
 <language name="lb" desc="Lëtzebuergesch">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection -->
-	<MyHattrick value="Mäin Hattrick" />
-	<MyClub value="Mäi Veräin" />
-	<World value="HT-Welt" />
-	<Forum value="Forum" />
-	<Shop value="Shop" />
-	<Help value="Hëllef" />
-
 	<!-- rating sublevels appearing in match detail page -->
 	<ratingSubLevels>
 		<sublevel text="(Ganz niddereg)" value="0.0" />

@@ -1,13 +1,5 @@
 <language name="sq" desc="Albanian">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="Hattrick-u Im" />
-	<MyClub value="Klubi Im" />
-	<World value="Bota" />
-	<Forum value="Forumi" />
-	<Shop value="Dyqani" />
-	<Help value="Ndihmë" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Sh. ulët)" value="0.0" />

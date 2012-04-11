@@ -1,13 +1,5 @@
 <language name="de" desc="Deutsch">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="Mein Hattrick" />
-	<MyClub value="Mein Verein" />
-	<World value="International" />
-	<Forum value="Forum" />
-	<Shop value="Shop" />
-	<Help value="Hilfe" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="min." value="0.0" />

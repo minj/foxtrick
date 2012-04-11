@@ -1,13 +1,5 @@
 <language name="lt" desc="Lietuvių">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="Mano Hattrick" />
-	<MyClub value="Mano komanda" />
-	<World value="Pasaulis" />
-	<Forum value="Forumai" />
-	<Shop value="Parduotuvė" />
-	<Help value="Pagalba" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(min.)" value="0.0" />

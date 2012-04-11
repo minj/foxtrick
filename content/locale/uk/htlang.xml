@@ -1,13 +1,5 @@
 <language name="uk" desc="Українська">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="Мій Hattrick" />
-	<MyClub value="Мій клуб" />
-	<World value="Світ" />
-	<Forum value="Форум" />
-	<Shop value="Крамниця" />
-	<Help value="Допомога" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Дуже низький)" value="0.0" />

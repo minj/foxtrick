@@ -1,13 +1,5 @@
 <language name="sk" desc="Slovenčina">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="Môj Hattrick" />
-	<MyClub value="Môj klub" />
-	<World value="Svet" />
-	<Forum value="Konferencie" />
-	<Shop value="Obchod" />
-	<Help value="Pomoc" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(veľmi nízky)" value="0.0" />

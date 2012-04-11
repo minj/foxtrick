@@ -1,13 +1,5 @@
 <language name="zh-CN" desc="中文（简体）">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="我的 Hattrick" />
-	<MyClub value="我的俱乐部" />
-	<World value="世界" />
-	<Forum value="论坛" />
-	<Shop value="HT 商店" />
-	<Help value="帮助" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(非常低)" value="0.0" />

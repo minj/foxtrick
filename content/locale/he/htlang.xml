@@ -1,13 +1,5 @@
 <language name="he" desc="עברית">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="האטריק שלי" />
-	<MyClub value="המועדון שלי" />
-	<World value="העולם" />
-	<Forum value="פורום" />
-	<Shop value="חנות" />
-	<Help value="עזרה" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(נמוך מאוד)" value="0.0" />

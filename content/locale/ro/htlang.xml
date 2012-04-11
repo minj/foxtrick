@@ -1,13 +1,5 @@
 <language name="ro" desc="Română">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="Hattrickul meu" />
-	<MyClub value="Clubul meu" />
-	<World value="Internaţional" />
-	<Forum value="Forum" />
-	<Shop value="Magazin" />
-	<Help value="Ajutor" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(foarte scăzut)" value="0.0" />

@@ -1,13 +1,5 @@
 <language name="vls" desc="Vlaams">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="Mijn Hattrick" />
-	<MyClub value="Mijn club" />
-	<World value="Wereld" />
-	<Forum value="Forums" />
-	<Shop value="Winkel" />
-	<Help value="Info &amp; contact" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(heel laag)" value="0.0" />

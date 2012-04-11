@@ -1,13 +1,5 @@
 <language name="fi" desc="Suomi">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection -->
-	<MyHattrick value="Hattrick" />
-	<MyClub value="Seura" />
-	<World value="Maailma" />
-	<Forum value="Foorumi" />
-	<Shop value="Kauppa" />
-	<Help value="Ohje" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(erittäin matala)" value="0.0" />

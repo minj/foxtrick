@@ -1,14 +1,5 @@
 <language name="en" desc="English">
 
-	<!-- Menu items in the main menu of Hattrick.
-	     Translate attribute "value" by copying from there in verbatim. -->
-	<MyHattrick value="My Hattrick" />
-	<MyClub value="My Club" />
-	<World value="World" />
-	<Forum value="Forum" />
-	<Shop value="Shop" />
-	<Help value="Help" />
-
 	<!-- Rating sublevels in match report page.
 	     Translate attribute "text" by copying from there in verbatim,
 	     keep attribute "value" unchanged. -->

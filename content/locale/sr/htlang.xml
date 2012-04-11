@@ -1,13 +1,5 @@
 <language name="sr" desc="Српски">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection -->
-	<MyHattrick value="Мој Хеттрик" />
-	<MyClub value="Мој клуб" />
-	<World value="Свет" />
-	<Forum value="Форум" />
-	<Shop value="Продавница" />
-	<Help value="Помоћ" />
-
 	<!-- rating sublevels appearing in match detail page -->
 	<ratingSubLevels>
 		<sublevel text="(Веома низак)" value="0.0" />

@@ -1,13 +1,5 @@
 <language name="fur" desc="Furlan">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="Il Gno Hattrick" />
-	<MyClub value="La mê Scuadre" />
-	<World value="Mont" />
-	<Forum value="Forum" />
-	<Shop value="Buteghe" />
-	<Help value="Jutori" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Une vore bas)" value="0.0" />

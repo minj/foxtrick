@@ -1,13 +1,5 @@
 <language name="vi" desc="Tiếng Việt">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection -->
-	<MyHattrick value="Hattrick" />
-	<MyClub value="CLB của tôi" />
-	<World value="Thế giới" />
-	<Forum value="Diễn đàn" />
-	<Shop value="Cửa hàng" />
-	<Help value="Trợ giúp" />
-
 	<!-- rating sublevels appearing in match detail page -->
 	<ratingSubLevels>
 		<sublevel text="(Rất thấp)" value="0.0" />

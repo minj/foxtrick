@@ -1,13 +1,5 @@
 <language name="ja" desc="日本語">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="My Hattrick" />
-	<MyClub value="My Club" />
-	<World value="世界" />
-	<Forum value="フォーラム" />
-	<Shop value="ショップ" />
-	<Help value="ヘルプ" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(非常に低い)" value="0.0"/>

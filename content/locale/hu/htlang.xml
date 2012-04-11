@@ -1,13 +1,5 @@
 <language name="hu" desc="Magyar">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="Hattrick" />
-	<MyClub value="Klub" />
-	<World value="Világ" />
-	<Forum value="Fórum" />
-	<Shop value="Bolt" />
-	<Help value="Súgó" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Éppen)" value="0.0" />

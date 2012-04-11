@@ -1,13 +1,5 @@
 <language name="eu" desc="Euskara">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="Nire Hattrick" />
-	<MyClub value="Nire Kluba" />
-	<World value="Nazioartea" />
-	<Forum value="Foroa" />
-	<Shop value="Denda" />
-	<Help value="Laguntza" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Oso baxua)" value="0.0"/>

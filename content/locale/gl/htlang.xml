@@ -1,13 +1,5 @@
 <language name="gl" desc="Galego">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="O meu Hattrick" />
-	<MyClub value="O meu club" />
-	<World value="O mundo" />
-	<Forum value="Conferencias" />
-	<Shop value="Tenda" />
-	<Help value="Axuda" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(Moi baixo)" value="0.0" />

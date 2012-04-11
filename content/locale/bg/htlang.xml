@@ -1,13 +1,5 @@
 <language name="bg" desc="Български">
 
-	<!-- the 6 strings from the hts menue line. used for language autodetection. copy "value"-->
-	<MyHattrick value="Моят Hattrick" />
-	<MyClub value="Моят клуб" />
-	<World value="Светът" />
-	<Forum value="Форум" />
-	<Shop value="Магазин" />
-	<Help value="Помощ" />
-
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
 		<sublevel text="(мн. ниско)" value="0.0" />
