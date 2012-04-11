@@ -130,6 +130,7 @@
 			"content/links/links-youth.js",
 			"content/links/links-world.js",
 			"content/matches/att-vs-def.js",
+			"content/matches/live-match-report-format.js",
 			"content/matches/copy-ratings.js",
 			"content/matches/htms-prediction.js",
 			"content/matches/match-income.js",

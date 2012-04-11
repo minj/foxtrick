@@ -72,6 +72,7 @@ links/links-training.js
 links/links-youth.js
 links/links-world.js
 matches/att-vs-def.js
+matches/live-match-report-format.js
 matches/copy-ratings.js
 matches/htms-prediction.js
 matches/match-income.js
