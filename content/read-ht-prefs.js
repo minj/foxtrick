@@ -27,7 +27,7 @@ Foxtrick.modules["ReadHtPrefs"]={
 			var lang = null;
 			for(var i=0; i < meta.length;i++)
 			{
-				if(meta[i].getAttribute("http-equiv"))
+				if(meta[i].getAttribute("http-equiv") == "Content-Language")
 					var lang = meta[i].getAttribute("content");
 			}
 			return lang;
