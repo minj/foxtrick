@@ -529,8 +529,13 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 				react(event.target);
 			}
 		}, false); 
-		
-			
+
+		//firstload
+		var livereports = doc.getElementsByClassName("liveReport");
+		for(var i=0; i < livereports.length; i++){
+			Foxtrick.log("yo");
+			react(livereports[i]);
+		}
 	},
 }; 
 }());
