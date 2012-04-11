@@ -25,7 +25,7 @@ var Foxtrickl10n = {
 		"fa",	// فارسی, farsi, iranian	75
 		"fi",	// Suomi, finnish	9
 		"fr",	// french	5
-		"fur",	// Furlan, northitaly	113
+		"fu",	// Furlan, northitaly	113
 		"fy-NL",	// Frysk, east-netherland/north germany	109
 		"gl",	// Galego, galician	74
 		"he",	// עברית, hebrew	40
@@ -61,6 +61,61 @@ var Foxtrickl10n = {
 		"zh-CN"	// 中文（简体）, chinese	15
 				// Kyrgyz	86 
 	],
+	htMapping : {
+		"ar" : "ar",	// العربية, arabic	22
+		"be" : "be",	// Беларуская, belorus	84
+		"bg" : "bg",	// Български, bulgarian	43
+		"bs" : "bs",	// Bosanski	58
+		"ca" : "ca",	// Català, catalan	66
+		"cs" : "cs",	// Čeština, czech	35
+		"da" : "da",	// Dansk, danish	8
+		"de" : "de",	// Deutsch, german	3
+		"el" : "el",	// Ελληνικά, greek	34		
+		"en" : "en",	// english	2
+		"es" : "es-ES",	// Español	103
+		"es-mx" : "es-CR",	//Español centro-americano	51
+		"es-ar" : "es-AR",	// Español Sudamericano	6
+		"et" : "et",	// Eesti	36
+		"eu" : "eu",	// Euskara, basque	110
+		"fa" : "fa",	// فارسی, farsi, iranian	75
+		"fi" : "fi",	// Suomi, finnish	9
+		"fr" : "fr",	// french	5
+		"fur" : "fur",	// Furlan, northitaly	113
+		"fy" : "fy-NL",	// Frysk, east-netherland/north germany	109
+		"gl" : "gl",	// Galego, galician	74
+		"he" : "he",	// עברית, hebrew	40
+		"hr" : "hr",	// Hrvatski, croatian	39
+		"hu" : "hu",	// Magyar, hungarian	33
+		"is" : "is",	// Íslenska, island	25
+		"it" : "it",	// italian	4
+		"ja" : "ja",	// 日本語, japanese	12
+		"ka" : "ka",	// Georgian	90
+		"ko" : "ko",	// 한국어, korean	17
+		"lb" : "lb",	// Lëtzebuergesch	111
+		"lt" : "lt",	// Lietuvių	56
+		"lv" : "lv",	// Latviešu	37
+		"mk" : "mk",	// Македонски, macedonian	83
+		"mt" : "mt",	// Malti	87
+		"nl" : "nl",	// netherlands	10
+		"nn-no" : "nn-NO",	// Norsk nynorsk	136
+		"nn" : "no",	// Norsk bokmål	7
+		"pl" : "pl",	// Polski	13
+		"pt" : "pt-PT",	// Português	11
+		"pt-br" : "pt-BR",	// Português brasil	50
+		"ro" : "ro",	// Română, romanian	23
+		"ru" : "ru",	// Русский, russain 	14
+		"sk" : "sk",	// Slovenčina, slovak	53
+		"sl" : "sl",	// Slovenščina, slovenian 	45
+		"sq" : "sq",	// Albanian	85
+		"sr" : "sr",	// Српски, serbian	32
+		"sv" : "sv-SE",	// Svenska, swedish	1
+		"tr" : "tr",	// Türkçe	19
+		"uk" : "uk",	// Українська, ukranian	57
+		"vi" : "vi",	// Tiếng Việt, vietnamese	55
+		"vl" : "vls",	// Vlaams, netherland	65
+		"zh" : "zh-CN"	// 中文（简体）, chinese	15
+				// Kyrgyz	86 
+	},
 
 	htLanguagesXml : {},
 

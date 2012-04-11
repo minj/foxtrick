@@ -19,49 +19,28 @@ Foxtrick.modules["ReadHtPrefs"]={
 		this.readCountry(doc);
 		this.readDateFormat(doc);
 	},
-
-	isLang : function(menuLinks, lang) {
-		var items = ["MyHattrick", "MyClub", "World", "Forum", "Shop", "Help"];
-
-		var languages = Foxtrickl10n.htLanguagesXml;
-		if (languages[lang])
-			var language = languages[lang]; // mappings of specified lang
-		else
-			return false; // return if language not found
-
-		for (var i = 0, j = 0;
-			i < menuLinks.length && j < items.length;
-			++i) {
-			var linkTitle = language.getElementsByTagName(items[j])[0];
-			if (!linkTitle || menuLinks[i].textContent.indexOf(linkTitle.getAttribute("value")) == -1) {
-				// not this language
-				return false;
-			}
-			++j;
-		}
-		return true;
-	},
-
+	
 	readLanguage : function(doc) {
-		var newLang = null;
+
+		var readLanguageFromMetaTag = function(){
+			var meta = doc.getElementsByTagName("meta");
+			var lang = null;
+			for(var i=0; i < meta.length;i++)
+			{
+				if(meta[i].getAttribute("http-equiv"))
+					var lang = meta[i].getAttribute("content");
+			}
+			return lang;
+		}
+
+		var readLang = readLanguageFromMetaTag();
+		var newLang = Foxtrickl10n.htMapping[readLang];
 		var oldLang = FoxtrickPrefs.getString("htLanguage");
 		var languages = Foxtrickl10n.htLanguagesXml;
 
-		var menu = doc.getElementById("menu");
-		var menuLinks = menu.getElementsByTagName("a");
-
-		if (!this.isLang(menuLinks, oldLang)) {
-			// language has changed or there is none for some reason, look for the new one
-			var found = false;
-			for (var k in languages) {
-				if (this.isLang(menuLinks, k)) {
-					newLang = k;
-					found = true;
-					Foxtrick.log("Language changed: " + newLang + ", old language: " + oldLang + ".");
-					break;
-				}
-			}
-			if (found) {
+		if(newLang != oldLang){
+			Foxtrick.log("Language changed. ht: " + readLang + " ft: " + newLang + ", old language: ft: " + oldLang + ".");
+			if(Foxtrickl10n.htLanguagesXml[newLang]){
 				FoxtrickPrefs.setString("htLanguage", newLang);
 				if (Foxtrick.arch == "Gecko") {
 					// change language
@@ -74,9 +53,8 @@ Foxtrick.modules["ReadHtPrefs"]={
 				else msg += ' ' + language; // fallback for outdated description
 
 				Foxtrick.util.note.add(doc, null, "ft-language-changed", msg, null, true, true);
-			}
-			else {
-				Foxtrick.log("Cannot detect language.");
+			} else {
+				Foxtrick.log("Language changed: " + newLang + "(" + readLang + ") but no Foxtrick support yet.");
 			}
 		}
 	},
