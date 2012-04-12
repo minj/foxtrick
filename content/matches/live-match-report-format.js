@@ -523,12 +523,13 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 				
 			}	
 		}
-		var livereports = doc.getElementById("ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch");
-		Foxtrick.listen(livereports, 'DOMNodeInserted', function(event){				
-			if(event.target.className == "liveReport"){
-				react(event.target);
-			}
-		}, false); 
+		var livereportsContainer = doc.getElementById("ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch");
+		if(livereportsContainer)
+			Foxtrick.listen(livereportsContainer, 'DOMNodeInserted', function(event){				
+				if(event.target.className == "liveReport"){
+					react(event.target);
+				}
+			}, false); 
 
 		//firstload
 		var livereports = doc.getElementsByClassName("liveReport");
