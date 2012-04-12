@@ -8,7 +8,7 @@
 Foxtrick.modules["PlayerStatsExperience"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ['playerStats'],
-
+	CSS: Foxtrick.InternalPath + "resources/css/player-stats.css",
 	run : function(doc) {
 		
 		// National friendly match	0.1
@@ -86,8 +86,6 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			return (xp[gametype]/90)*minutes;	
 		}
 
-		
-
 		//both tables you can alter between atm
 		var stats = doc.getElementById("stats");
 		var matches = doc.getElementById("matches");
@@ -113,6 +111,8 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		var xp_skillUp_detected = false;
 		var xp_last_min_added = 0.0;
 
+		var walkover_str = Foxtrickl10n.getString("PlayerStatsExperience.Walkover");
+
 		Foxtrick.map( function( entry ){
 
 			//current skilllevel
@@ -129,6 +129,8 @@ Foxtrick.modules["PlayerStatsExperience"]={
 
 			//check if he also got stars, a game where he got xpgain but has not even half a star must be a walkover
 			var got_stars = gotStars(entry);
+			var walkover = !got_stars && xp_gain > 0;
+			var pseudo_points = xp_gain;
 			xp_gain = got_stars?xp_gain:0;
 			
 
@@ -157,7 +159,13 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			var ts_xp = doc.createElement("td");
 			Foxtrick.addClass(ts_xp,"stats");
 			Foxtrick.addClass(ts_xp,"ft-dummy");
-			ts_xp.textContent = xp_gain.toFixed(2);
+			if(walkover){
+				Foxtrick.addClass(ts_xp,"ft-playerStats-walkover");
+				ts_xp.textContent = pseudo_points.toFixed(2);
+				ts_xp.setAttribute("title", walkover_str);
+			} else {
+				ts_xp.textContent = xp_gain.toFixed(2);
+			}
 			if(!ntMatch && gameType == "matchFriendly" && minutes > 0)
 				ts_xp.textContent =  (xp_gain/2.0).toFixed(2) + "/" + xp_gain.toFixed(2);
 			entry.insertBefore(ts_xp, entry.getElementsByTagName("td")[xp_column+1]);
