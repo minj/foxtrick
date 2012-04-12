@@ -463,8 +463,11 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 		var react = function(liveReport){
 			var events = liveReport.getElementsByTagName("tr");
 			for(var i=0;i<events.length;i++){
+				var is_event = events[i].getAttribute("data-eventtype");
+				if(!is_event)
+					continue;
 				var evtType = events[i].getAttribute("data-eventtype").match(/\d+/)[0];
-
+				
 				var is_HomeEvent = Foxtrick.hasClass(events[i],  "liveHomeEvent");
 				var is_awayEvent = Foxtrick.hasClass(events[i],  "liveAwayEvent");
 				var is_neutralEvent = !(is_HomeEvent || is_awayEvent);
@@ -534,7 +537,6 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 		//firstload
 		var livereports = doc.getElementsByClassName("liveReport");
 		for(var i=0; i < livereports.length; i++){
-			Foxtrick.log("yo");
 			react(livereports[i]);
 		}
 	},
