@@ -464,16 +464,19 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 			var events = liveReport.getElementsByTagName("tr");
 			for(var i=0;i<events.length;i++){
 				var is_event = events[i].getAttribute("data-eventtype");
-				if(!is_event)
+				if(!is_event){
+					var newspan = parseInt(events[i].getAttribute("colspan")) +2;
+					events[i].setAttribute("colspan", newspan);
 					continue;
+				}
 				var evtType = events[i].getAttribute("data-eventtype").match(/\d+/)[0];
 				
-				var is_HomeEvent = Foxtrick.hasClass(events[i],  "liveHomeEvent");
-				var is_awayEvent = Foxtrick.hasClass(events[i],  "liveAwayEvent");
+				var is_HomeEvent = Foxtrick.hasClass(events[i], "liveHomeEvent");
+				var is_awayEvent = Foxtrick.hasClass(events[i], "liveAwayEvent");
 				var is_neutralEvent = !(is_HomeEvent || is_awayEvent);
 
-				var homeIconsContainer = doc.createElement("td");
-				var awayIconContainer = doc.createElement("td");
+				var homeIconsContainer = Foxtrick.createFeaturedElement(doc, Foxtrick.modules["LiveMatchReportFormat"], "td");
+				var awayIconContainer = Foxtrick.createFeaturedElement(doc, Foxtrick.modules["LiveMatchReportFormat"], "td");
 
 				var evtText = eventText[evtType];
 				var title = evtText +" (" + evtType + ")";
