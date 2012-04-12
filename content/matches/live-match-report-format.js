@@ -465,8 +465,8 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 			for(var i=0;i<events.length;i++){
 				var is_event = events[i].getAttribute("data-eventtype");
 				if(!is_event){
-					var newspan = parseInt(events[i].getAttribute("colspan")) +2;
-					events[i].setAttribute("colspan", newspan);
+					var newspan = parseInt(events[i].firstChild.getAttribute("colspan")) +2;
+					events[i].firstChild.setAttribute("colspan", newspan);
 					continue;
 				}
 				var evtType = events[i].getAttribute("data-eventtype").match(/\d+/)[0];
