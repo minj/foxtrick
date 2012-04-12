@@ -462,15 +462,20 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 	run : function(doc) {
 		var react = function(liveReport){
 			var events = liveReport.getElementsByTagName("tr");
+			var koPending = true;
 			for(var i=0;i<events.length;i++){
 				var is_event = events[i].getAttribute("data-eventtype");
 				if(!is_event){
-					var newspan = parseInt(events[i].firstChild.getAttribute("colspan")) +2;
-					events[i].firstChild.setAttribute("colspan", newspan);
+					if(events[i].firstChild.className == "shy"){
+						var newspan = parseInt(events[i].firstChild.getAttribute("colspan")) + 2;
+						events[i].firstChild.setAttribute("colspan", newspan);
+					}
 					continue;
 				}
 				var evtType = events[i].getAttribute("data-eventtype").match(/\d+/)[0];
-				
+
+				var evtMin = parseInt(events[i].firstChild.textContent.match(/\d+/)[0]);
+Foxtrick.log(evtType, evtMin, i, events.length);
 				var is_HomeEvent = Foxtrick.hasClass(events[i], "liveHomeEvent");
 				var is_awayEvent = Foxtrick.hasClass(events[i], "liveAwayEvent");
 				var is_neutralEvent = !(is_HomeEvent || is_awayEvent);
@@ -481,6 +486,72 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 				var evtText = eventText[evtType];
 				var title = evtText +" (" + evtType + ")";
 
+				// indicators to be added
+				var indicatorList = [
+					{
+						"class": "kick-off",
+						"text": "kickOff",
+						"before": true,
+						"func": (function() {
+							return function() {
+								if (koPending && evtMin != "0") {
+									koPending = false;
+									return true;
+								}
+								else {
+									return false;
+								}
+							};
+						})()
+					},
+					{
+						"class": "half-time",
+						"text": "halfTime",
+						"func": function() { return (eventTypes[evtType] == "possession") && (evtMin == "45"); }
+					},
+					{
+						"class": "full-time",
+						"text": "fullTime",
+						"func": function() { return (eventTypes[evtType] == "possession") && (evtMin == "90"); }
+					},
+					{
+						"class": "extra-time",
+						"text": "extraTime",
+						"func": function() { return eventTypes[evtType] == "extraTime"; }
+					},
+					{
+						"class": "penalty-shoot-out",
+						"text": "penaltyShootOut",
+						"func": function() { return eventTypes[evtType] == "penaltyShootOut"; }
+					},
+					{
+						"class": "result",
+						"text": "result",
+						"before": true,
+						"func": function() { return eventTypes[evtType] == "result"; }
+					}
+				];
+				var indType = Foxtrick.nth(0, function(n) {
+					return n.func();
+				}, indicatorList);
+				if (indType){
+					var tr = doc.createElement('tr');
+					Foxtrick.addClass(tr, "ft-match-report-" + indType["class"])
+					var td = doc.createElement('td');
+					var text = doc.createTextNode( Foxtrickl10n.getString("MatchReportFormat." + indType.text) );
+					td.setAttribute("colspan", 6);
+					td.appendChild(text);
+					tr.appendChild(td);					
+					 if (indType.before){
+					 	events[i].parentNode.insertBefore(tr,events[i]);
+					 	i++;
+					 }
+					 else
+						events[i].parentNode.insertBefore(tr,events[i].nextSibling);	
+
+					Foxtrick.log(indType["class"]);
+				}
+					
 				//exact copy of the current match-report-format.js function
 				var addEventIcons = function(parent, isEventTeam, evtType, title){
 					if (FoxtrickPrefs.isModuleOptionEnabled("MatchReportFormat", "ShowEventIcons")){
