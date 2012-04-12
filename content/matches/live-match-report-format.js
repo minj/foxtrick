@@ -536,8 +536,8 @@ Foxtrick.log(evtType, evtMin, i, events.length);
 				}, indicatorList);
 				if (indType){
 					var tr = doc.createElement('tr');
-					Foxtrick.addClass(tr, "ft-match-report-" + indType["class"])
 					var td = doc.createElement('td');
+					Foxtrick.addClass(td, "ft-match-report-" + indType["class"])
 					var text = doc.createTextNode( Foxtrickl10n.getString("MatchReportFormat." + indType.text) );
 					td.setAttribute("colspan", 6);
 					td.appendChild(text);

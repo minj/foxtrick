@@ -70,7 +70,7 @@
 .ft-match-report-result {
 	color: white;
 	background-color: #849D84;
-	padding: 2px 0 2px 5px;
+	padding: 2px 0 2px 5px !important;
 	border: 1px solid #ccc;
 	margin: 5px 0;
 	font-size: 115%;
