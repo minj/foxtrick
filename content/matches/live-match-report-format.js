@@ -619,6 +619,16 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 				}
 			}, false); 
 
+		var lContainer = doc.getElementsByClassName("liveMatchContainer")[0];
+		if(lContainer)
+			Foxtrick.listen(lContainer, 'DOMNodeInserted', function(event){	
+				if(event.target.getAttribute("id") == "ctl00_ctl00_CPContent_CPMain_repM"){
+				var livereports = event.target.getElementsByClassName("liveReport");
+				for(var i=0; i < livereports.length; i++)
+					react(livereports[i]);
+				}
+			}, false); 
+
 		//firstload
 		var livereports = doc.getElementsByClassName("liveReport");
 		for(var i=0; i < livereports.length; i++){
