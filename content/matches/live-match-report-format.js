@@ -463,21 +463,29 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 		var react = function(liveReport){
 			var events = liveReport.getElementsByTagName("tr");
 			var koPending = true;
+			var topDown = true;
+			var firstEventType = parseInt(events[0].getAttribute("data-eventtype").match(/\d+/)[0]);
+			if(firstEventType < 30 || firstEventType > 33)
+				topDown = false;
+			
 			for(var i=0;i<events.length;i++){
-				var is_event = events[i].getAttribute("data-eventtype");
+
+				var event = events[i];
+				if(!topDown)
+					event = events[events.length-1-i];
+
+				var is_event = event.getAttribute("data-eventtype");
 				if(!is_event){
-					if(events[i].firstChild.className == "shy"){
-						var newspan = parseInt(events[i].firstChild.getAttribute("colspan")) + 2;
-						events[i].firstChild.setAttribute("colspan", newspan);
+					if(event.firstChild.className == "shy"){
+						var newspan = parseInt(event.firstChild.getAttribute("colspan")) + 2;
+						event.firstChild.setAttribute("colspan", newspan);
 					}
 					continue;
 				}
-				var evtType = events[i].getAttribute("data-eventtype").match(/\d+/)[0];
-
-				var evtMin = parseInt(events[i].firstChild.textContent.match(/\d+/)[0]);
-Foxtrick.log(evtType, evtMin, i, events.length);
-				var is_HomeEvent = Foxtrick.hasClass(events[i], "liveHomeEvent");
-				var is_awayEvent = Foxtrick.hasClass(events[i], "liveAwayEvent");
+				var evtType = parseInt(event.getAttribute("data-eventtype").match(/\d+/)[0]);				
+				var evtMin = parseInt(event.firstChild.textContent.match(/\d+/)[0]);
+				var is_HomeEvent = Foxtrick.hasClass(event, "liveHomeEvent");
+				var is_awayEvent = Foxtrick.hasClass(event, "liveAwayEvent");
 				var is_neutralEvent = !(is_HomeEvent || is_awayEvent);
 
 				var homeIconsContainer = Foxtrick.createFeaturedElement(doc, Foxtrick.modules["LiveMatchReportFormat"], "td");
@@ -539,17 +547,23 @@ Foxtrick.log(evtType, evtMin, i, events.length);
 					var td = doc.createElement('td');
 					Foxtrick.addClass(td, "ft-match-report-" + indType["class"])
 					var text = doc.createTextNode( Foxtrickl10n.getString("MatchReportFormat." + indType.text) );
-					td.setAttribute("colspan", 6);
+					td.setAttribute("colspan", 4);
 					td.appendChild(text);
-					tr.appendChild(td);					
-					 if (indType.before){
-					 	events[i].parentNode.insertBefore(tr,events[i]);
+					tr.appendChild(td);	
+
+					var before = indType.before;
+					if(!topDown)
+						before = !before;
+
+					if (before){
+					 	event.parentNode.insertBefore(tr,event);
 					 	i++;
 					 }
-					 else
-						events[i].parentNode.insertBefore(tr,events[i].nextSibling);	
-
-					Foxtrick.log(indType["class"]);
+					 else {
+						event.parentNode.insertBefore(tr,event.nextSibling);	
+						if(!topDown)
+							i++;
+					 }
 				}
 					
 				//exact copy of the current match-report-format.js function
@@ -592,12 +606,9 @@ Foxtrick.log(evtType, evtMin, i, events.length);
 				}
 				addEventIcons(homeIconsContainer, is_HomeEvent, evtType, title);
 				addEventIcons(awayIconContainer, is_awayEvent, evtType, title);
-				//homeIconsContainer.appendChild(getEventIcon(Foxtrick.InternalPath + 'resources/img/matches/red_ball_R.png' , title, title));
-				//awayIconContainer.appendChild(getEventIcon(Foxtrick.InternalPath + 'resources/img/matches/red_ball_R.png' , title, title));
 
-				events[i].insertBefore(homeIconsContainer, events[i].firstChild.nextSibling);
-				events[i].insertBefore(awayIconContainer, homeIconsContainer.nextSibling);
-				
+				event.insertBefore(homeIconsContainer, event.firstChild.nextSibling);
+				event.insertBefore(awayIconContainer, homeIconsContainer.nextSibling);
 			}	
 		}
 		var livereportsContainer = doc.getElementById("ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch");
