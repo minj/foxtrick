@@ -53,7 +53,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			//max 90'
 			return Math.min(90, minutes);
 		}
-		var gotStars = function(node, simple){
+		var gotStars = function(node){
 			var stars = node.getElementsByClassName("endColumn2")[0];
 
 			if(Foxtrick.util.layout.isStandard(doc)){
