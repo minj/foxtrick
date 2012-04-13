@@ -57,8 +57,8 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			var stars = node.getElementsByClassName("endColumn2")[0];
 			
 			var wholeStars = stars.getElementsByClassName("starWhole")[0];
-			var halfstars = stars.getElementsByClassName("starWhole")[0];
-			var bistars = stars.getElementsByClassName("starHalf")[0];
+			var halfstars = stars.getElementsByClassName("starHalf")[0];
+			var bistars = stars.getElementsByClassName("starBig")[0];
 
 			return(wholeStars || halfstars || bistars);
 		}
@@ -90,6 +90,9 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		var stats = doc.getElementById("stats");
 		var matches = doc.getElementById("matches");
 
+		if(!stats || !matches)
+			return;
+		
 		//headers
 		var stats_head = stats.getElementsByTagName("thead")[0].getElementsByTagName("tr")[0];
 
