@@ -53,14 +53,17 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			//max 90'
 			return Math.min(90, minutes);
 		}
-		var gotStars = function(node){
+		var gotStars = function(node, simple){
 			var stars = node.getElementsByClassName("endColumn2")[0];
-			
-			var wholeStars = stars.getElementsByClassName("starWhole")[0];
-			var halfstars = stars.getElementsByClassName("starHalf")[0];
-			var bistars = stars.getElementsByClassName("starBig")[0];
 
-			return(wholeStars || halfstars || bistars);
+			if(Foxtrick.util.layout.isStandard(doc)){
+				var wholeStars = stars.getElementsByClassName("starWhole")[0];
+				var halfstars = stars.getElementsByClassName("starHalf")[0];
+				var bistars = stars.getElementsByClassName("starBig")[0];
+				return(wholeStars || halfstars || bistars);
+			} else {
+				return (stars.textContent.match(/\d+/) !== null)?true:false;
+			}
 		}
 
 		var getGameType = function(node){
@@ -92,7 +95,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 
 		if(!stats || !matches)
 			return;
-		
+
 		//headers
 		var stats_head = stats.getElementsByTagName("thead")[0].getElementsByTagName("tr")[0];
 
