@@ -37,7 +37,7 @@
 <item>● Some more work on AMO compliance</item>
 <item></item>
 <item><xhtml:b>For Google Chrome users</xhtml:b></item>
-<item>Seems that Chrome's optional permissions system has problems with revoking and later re-adding optional permissions. Only solution known currently is to reinstall FoxTrick if you need previously revoked permissions back.</item>
+<item>Seems that Chrome 18's optional permissions system is buggy. Feature which require those (HTY staffmarker and EmbedMedia) might not work currently.</item>
 </note>
 
 <note version="0.9.1">
