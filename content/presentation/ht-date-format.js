@@ -18,7 +18,7 @@ Foxtrick.modules["HTDateFormat"]={
 			"transferCompare", "match", "matches", "matchesarchiv",
 			"teamPageGeneral", "achievements", "playerevents",
 			"teamevents", "history", "arena", "league", "hallOfFame",
-			"statsMatchesHeadToHead", "seriesHistory"];
+			"statsMatchesHeadToHead", "seriesHistory","playerStats"];
 		// don't show on where not needed and cluttering
 		if (!Foxtrick.any(function(page) {
 				return Foxtrick.isPage(page, doc);
@@ -46,7 +46,7 @@ Foxtrick.modules["HTDateFormat"]={
 		}
 
 		var modifyDate = function(node) {
-			if (Foxtrick.hasClass(node, "ft-date") || Foxtrick.hasClass(node, "matchdate"))
+			if (Foxtrick.hasClass(node, "ft-date") || ( Foxtrick.hasClass(node, "matchdate") && !Foxtrick.isPage("playerStats", doc)))
 				return;
 			if (node.hasAttribute("x-ht-date")) {
 				// attribute x-ht-date set by LocalTime, while inner
