@@ -38,7 +38,7 @@
 <item>● Још нека унапређења ради усклађивања са <xhtml:a href="https://addons.mozilla.org">AMO</xhtml:a> стандардима</item>
 <item></item>
 <item><xhtml:b>За оне који кристе Google Chrome</xhtml:b></item>
-<item>Изгледа да систем опционих дозвола за Chrome 18 има одређених багова приликом уклањања и поновног давања дозвола. Модули за које су ове дозволе потребне (HTY <module>staffmarker</module> и <module>EmbedMedia</module>) вероватно неће радити.</item>
+<item>Изгледа да систем опционих дозвола за Chrome 18 има одређених багова приликом уклањања и поновног давања дозвола. Модули за које су ове дозволе потребне (HTY <module>StaffMarker</module> и <module>EmbedMedia</module>) вероватно неће радити.</item>
 </note>
 
 <note version="0.9.1">
