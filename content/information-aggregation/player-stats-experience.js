@@ -29,7 +29,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		xp.matchQualification = 2.0;
 		xp.matchMasters = 5.0;
 		xp.matchNtLeague = 10.0;		//fakename: we generate this type (iconsytle + gametype), (semi)-final matches are downgraded to plain WC matches, errors not considered in min-max
- 		
+ 		xp.matchNtFinals = 20.0;
 
 		var xp_column = 6;
 		var pts_for_skillUp = 28.0;
@@ -66,7 +66,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			}
 		}
 
-		var getGameType = function(node){
+		var getGameType = function(node, date){
 
 			var getBasicGameType = function(node){
 				var gametypeParent = node.getElementsByClassName("keyColumn")[0];
@@ -79,8 +79,18 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			if(isNT){
 				if(gameType == "matchFriendly")
 					return "matchNtFriendly"
-				else if(gameType == "matchLeague")
-					return  "matchNtLeague"
+				else if(gameType == "matchLeague"){
+					var useLocal = FoxtrickPrefs.isModuleOptionEnabled("HTDateFormat", "LocalSeason");
+					var weekOffset = FoxtrickPrefs.getString("module.HTDateFormat.FirstDayOfWeekOffset_text"); 
+					var htDate = Foxtrick.util.time.gregorianToHT(date, weekOffset, useLocal);
+					var semifinal = date.getDay() == 5;
+					var _final = date.getDay() == 0;
+					if(htDate.week == 16 && (semifinal || _final)){
+						return "matchNtFinals";
+					}
+					else
+						return "matchNtLeague";
+				}
 			} else
 				return gameType; 
 		}
@@ -109,6 +119,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 
 		//and their entries
 		var stats_entries = stats.getElementsByTagName("tbody")[0].getElementsByTagName("tr");		
+		var matches_entries = matches.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
 
 		var xp_last = null;
 		var xp_sub_min = 0.0;
@@ -119,7 +130,13 @@ Foxtrick.modules["PlayerStatsExperience"]={
 
 		var walkover_str = Foxtrickl10n.getString("PlayerStatsExperience.Walkover");
 
+		//sneak in an iterator to allow access to stuff in the alternative table
+		var entry_idx = 0;
 		Foxtrick.map( function( entry ){
+
+			
+			var match_date = matches_entries[entry_idx].getElementsByClassName("matchdate")[0];
+			var date = Foxtrick.util.time.getDateFromText(match_date.textContent);
 
 			//current skilllevel
 			var	xp_now = parseInt(entry.getElementsByTagName("td")[xp_column].textContent);
@@ -130,7 +147,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 
 			var ntMatch = isNTmatch( entry );
 			var minutes = getPlayedMinutes( entry );
-			var gameType = getGameType( entry );
+			var gameType = getGameType( entry, date );
 			var xp_gain = getXpGain( minutes, gameType );
 
 			//check if he also got stars, a game where he got xpgain but has not even half a star must be a walkover
@@ -176,6 +193,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 				ts_xp.textContent =  (xp_gain/2.0).toFixed(2) + "/" + xp_gain.toFixed(2);
 			entry.insertBefore(ts_xp, entry.getElementsByTagName("td")[xp_column+1]);
 
+			entry_idx++;
 		}, stats_entries);
 
 		xp_sub_min -= xp_last_min_added;
