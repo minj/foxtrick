@@ -257,10 +257,12 @@ Foxtrick.modules["FlagCollectionToMap"]={
 					}
 				} else if (currentNode.nodeName == 'P') {
 					// not a flag, flush the buffer
+					Foxtrick.log(mapId, countryIds);
 					this.createAndInsertMap(doc, countryIds, mapId++, divElement, currentNode);
 					countryIds = new Array();
 				}
 			}
+			Foxtrick.log(mapId, countryIds);
 			this.createAndInsertMap(doc, countryIds, mapId++, divElement, null);
 		}
 
@@ -291,17 +293,20 @@ Foxtrick.modules["FlagCollectionToMap"]={
 				colouringOrder += '0,';
 			}
 		}
-
+Foxtrick.log('flags', collectedCountryCodes)
 		// no flag
+		var noflags='';
 		for (var countryId in this.HT_countries){
 			var countryCodes = this.HT_countries[countryId];
 			if ( !Foxtrick.any( function(n){ return n==countryId; }, countryIdsHasFlags ) ) { // not hasFlag 
 				for (var j=0; j<countryCodes.length; ++j) {
+					noflags += countryCodes[j]+'|'
 					collectedCountryCodes += countryCodes[j]+'|'
 					colouringOrder += '100,';
 				}
 			}
 		}
+Foxtrick.log('noflags', noflags);
 
 		/*
 		// non-ht countries. not updated to new version and url would get too long probably
