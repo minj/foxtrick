@@ -139,24 +139,18 @@ def checkTactics(lang, htlang, lookup):
 	checkNodes(dump_tactics, ht_tactics, "type", "type", "value")
 	
 
-def checkMainMenuLinks(lang, htlang, lookup):	
+# def checkMainMenuLinks(lang, htlang, lookup):	
 
-	links = ['MyHattrick','MyClub','World','Shop','Forum','Help']
-	correct = 0
+# 	links = ['MyHattrick','MyClub','World','Shop','Forum','Help']
+# 	correct = 0
 	
-	for link in links:
-		if checkMainMenuLink(lang, htlang, lookup, link):
-			correct += 1
-		else:
-			print '\t', link.encode('utf-8'), 'incorrect'
+# 	for link in links:
+# 		if checkMainMenuLink(lang, htlang, lookup, link):
+# 			correct += 1
+# 		else:
+# 			print '\t', link.encode('utf-8'), 'incorrect'
 			
-	print '\t', correct ,'/',len(links),'correct'
-	# checkMainMenuLink(lang, htlang, lookup, "MyHattrick")
-	# checkMainMenuLink(lang, htlang, lookup, "MyClub")
-	# checkMainMenuLink(lang, htlang, lookup, "World")
-	# checkMainMenuLink(lang, htlang, lookup, "Shop")
-	# checkMainMenuLink(lang, htlang, lookup, "Forum")
-	# checkMainMenuLink(lang, htlang, lookup, "Help")
+# 	print '\t', correct ,'/',len(links),'correct'
 	
 def checkMainMenuLink(lang, htlang, lookup, text):
 	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
@@ -192,8 +186,8 @@ def checklanguage(lang, lookup):
 	checkHonesty(lang, htlang, lookup)
 	print "\t","checking Aggressiveness" 
 	checkAggressiveness(lang, htlang, lookup)
-	print "\t","checking Main Menu Links" 
-	checkMainMenuLinks(lang, htlang, lookup)
+	# print "\t","checking Main Menu Links" 
+	# checkMainMenuLinks(lang, htlang, lookup)
 	print "\t","checking RatingSubLevels"
 	checkRatingSubLevels(lang, htlang, lookup)
 	print "\t","checking Specialties"

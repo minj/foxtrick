@@ -7,7 +7,7 @@
  * 		Url: http://www.hattrick-youthclub.org/_admin/twins.php
  * @params:
  *		//params send via http "POST"
- * 		forceUpdate (optional):
+ * 		forceUpdate (optional): !!!! NOT SUPPORTED FOR THE MOMENT, will be ignored on HY
  *			no param requred but send = 1 for safety reasons
  *			forces HY to recalculate results, should only be used after a new player was pulled onto the youth squad or if it is really required
  * 		debug (optional):
@@ -202,7 +202,12 @@
 				addIcons(container, missing, l10n_undecided_twins, "ft-youth-twins-icon", icon_yellow);
 				addIcons(container, non, l10n_non_twins, "ft-youth-twins-icon", icon_red);
 				link.appendChild(container);
-				link.setAttribute("href","http://www.hattrick-youthclub.org/site/players");
+
+				if(isHyUser)
+					link.setAttribute("href","http://www.hattrick-youthclub.org/site/players");
+				else
+					link.setAttribute("href","http://www.hattrick-youthclub.org");
+
 				link.setAttribute("target","_blank");
 
 				//add the whole stuff to the site
@@ -246,7 +251,7 @@
 
 			//see if the saved information is still valid
 			var playerInfos = doc.getElementsByClassName("playerInfo");
-			var valid = true;
+			var valid = false;
 			for(var i = 0; i < playerInfos.length; i++){
 				var playerID =  playerInfos[i].getElementsByTagName("a")[0].href.match(/YouthPlayerID=(\d+)/i)[1];
 				if(typeof(json.players[playerID]) !== "object")
