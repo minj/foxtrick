@@ -21,7 +21,7 @@
 <item>● NEW: <module>RatingsDisplay</module>: additonally addes average stars and ratings to series stats table</item>
 <item>● NEW: <module>TeamStats</module>: updates with filters and more sections</item>
 <item>● PlayerFilters has more filter options now</item>
-<item>● Skillable for transferlist search: injured fixed</item>
+<item>● Skilltable for transferlist search: injured fixed</item>
 <item>● MatchReportFormat: negative SE icons added</item>
 <item>● Links: make dynamic added links default on</item>
 <item>● Links and staffmarker: load zipped to save bandwidth</item>
