@@ -252,17 +252,15 @@ Foxtrick.modules["FlagCollectionToMap"]={
 				var currentNode = divElement.childNodes[j];
 				if (currentNode.nodeName == 'A' && currentNode.href.search(/LeagueID=/i) > -1) {
 					var countryId = currentNode.href.substr(currentNode.href.lastIndexOf('=')+1, currentNode.href.length);
-					if (currentNode.getElementsByTagName('img')[0].getAttribute('title').search(/inactive/i) == -1) {
+					if (currentNode.getElementsByTagName('img')[0].getAttribute('style').search(/flags\.gif/i) != -1) {
 						countryIds.push(countryId);
 					}
 				} else if (currentNode.nodeName == 'P') {
 					// not a flag, flush the buffer
-					Foxtrick.log(mapId, countryIds);
 					this.createAndInsertMap(doc, countryIds, mapId++, divElement, currentNode);
 					countryIds = new Array();
 				}
 			}
-			Foxtrick.log(mapId, countryIds);
 			this.createAndInsertMap(doc, countryIds, mapId++, divElement, null);
 		}
 
@@ -293,7 +291,7 @@ Foxtrick.modules["FlagCollectionToMap"]={
 				colouringOrder += '0,';
 			}
 		}
-Foxtrick.log('flags', collectedCountryCodes)
+
 		// no flag
 		var noflags='';
 		for (var countryId in this.HT_countries){
@@ -306,7 +304,6 @@ Foxtrick.log('flags', collectedCountryCodes)
 				}
 			}
 		}
-Foxtrick.log('noflags', noflags);
 
 		/*
 		// non-ht countries. not updated to new version and url would get too long probably
