@@ -203,7 +203,7 @@
 				addIcons(container, non, l10n_non_twins, "ft-youth-twins-icon", icon_red);
 				link.appendChild(container);
 
-				if(isHyUser)
+				if(isHYuser)
 					link.setAttribute("href","http://www.hattrick-youthclub.org/site/players");
 				else
 					link.setAttribute("href","http://www.hattrick-youthclub.org");
@@ -251,7 +251,7 @@
 
 			//see if the saved information is still valid
 			var playerInfos = doc.getElementsByClassName("playerInfo");
-			var valid = false;
+			var valid = true;
 			for(var i = 0; i < playerInfos.length; i++){
 				var playerID =  playerInfos[i].getElementsByTagName("a")[0].href.match(/YouthPlayerID=(\d+)/i)[1];
 				if(typeof(json.players[playerID]) !== "object")
