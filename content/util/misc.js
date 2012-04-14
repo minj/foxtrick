@@ -185,15 +185,16 @@ Foxtrick.parseXml = function(text) {
 /*
  * Load external URL asynchronously
  * @param url - URL
+ * @param params - params != null makes it and used for a POST request
  * @param callback - function to be called when succeeded or failed
  * @callback_param String of text content if success or null if failure
  * @callback_param HTTP status code
  */
 
-Foxtrick.load = function(url, callback) {
+Foxtrick.load = function(url, callback, params) {
 	if (Foxtrick.chromeContext() == "content") {
 		// background script for xml requests
-		sandboxed.extension.sendRequest({req : "getXml", url : url },
+		sandboxed.extension.sendRequest({req : "getXml", url : url, params: params},
 			function(response) {
 				try {
 					callback(response.data, response.status);
@@ -206,27 +207,31 @@ Foxtrick.load = function(url, callback) {
 	}
 	else {
 		var req = new window.XMLHttpRequest();
-		req.open("GET", url, true);
+		var type  = (params != null) ? "POST" : "GET"; 
+		req.open(type, url, true);
 		if (typeof(req.overrideMimeType) == "function")
 			req.overrideMimeType("text/plain");
-
+		//Send the proper header information along with the request
+		if (type == "POST" && typeof(req.setRequestHeader) == "function")
+			req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			
 		req.onreadystatechange = function(aEvt) {
 			if (req.readyState == 4) {
 				try {
 					callback(req.responseText, req.status);
 				}
 				catch (e) {
-					Foxtrick.log('Uncaught callback error: - url: ' , url , ' : ', e);
+					Foxtrick.log('Uncaught callback error: - url: ' + url +' params: ' + params, e);
 				}
 			}
 		};
 
 		try {
-			req.send(null);
+			req.send(params);
 		}
 		catch (e) {
 			// catch cross-domain errors
-			Foxtrick.log(url, ' ', e);
+			Foxtrick.log(url + " " + params, e);
 			callback(null, 0);
 		}
 	}
@@ -245,15 +250,17 @@ Foxtrick.load = function(url, callback) {
  *
  * @author ryanli
  */
-Foxtrick.get = function(url) {
+Foxtrick.get = function(url, params) {
 	// Low-level implementation of XMLHttpRequest:
+	// @param params - params != null makes it and used for a POST request
 	// Arguments passed to cb is an Object, with following members:
 	// status: String, either "success" or "failure"
 	// code: Integer, HTTP status code
 	// text: String, response text
+		
 	if (Foxtrick.chromeContext() == "content") {
 		var loadImpl = function(cb) {
-			sandboxed.extension.sendRequest({req : "getXml", url : url },
+			sandboxed.extension.sendRequest({req : "getXml", url : url, params : params},
 				function(response) {
 					cb({
 						code: response.status,
@@ -267,10 +274,14 @@ Foxtrick.get = function(url) {
 	else {
 		var loadImpl = function(cb) {
 			var req = new window.XMLHttpRequest();
-			req.open("GET", url, true);
+			var type  = (params != null) ? "POST" : "GET"; 
+			req.open(type, url, true);
 
 			if (typeof req.overrideMimeType === "function")
 				req.overrideMimeType("text/plain");
+			//Send the proper header information along with the request
+			if (type == "POST" && typeof(req.setRequestHeader) == "function")
+				req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 			req.onreadystatechange = function(aEvt) {
 				if (req.readyState == 4) {
@@ -284,7 +295,7 @@ Foxtrick.get = function(url) {
 			};
 
 			try {
-				req.send(null);
+				req.send(params);
 			}
 			catch (e) {
 				// catch cross-domain errors, we return 499 as status code

@@ -172,12 +172,14 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	};
 	Foxtrick.loader.chrome.background.getXml = function(request, sender, sendResponse) {
 		// @param url - the URL of resource to load with window.XMLHttpRequest
+		// @param params - params != null makes it and used for a POST request
 		// @callback_param data - response text
 		// @callback_param status - HTTP status of request
+		
 		var callback = function(responseText, status){
 			sendResponse({data : responseText, status : status});
 		};
-		Foxtrick.load(request.url, callback);
+		Foxtrick.load(request.url, callback, request.params);
 	};
 	Foxtrick.loader.chrome.background.getDataUrl = function(request, sender, sendResponse) {
 		// @param branch - initial part of key(s) of session store to delete

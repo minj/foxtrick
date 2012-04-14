@@ -101,31 +101,8 @@
 					else {
 						//HY determines on its own
 					}
-
-					//build actual request
-					var http = new XMLHttpRequest();
-					http.open("POST", url, true);
-
-					//Send the proper header information along with the request
-					http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-					//Call a function when the state changes.
-					http.onreadystatechange = function() {
-						if(http.readyState == 4){
-							if(http.responseText)
-								callback(http.responseText, http.status);
-							else
-								callback("", http.status);
-						}
-					}
-					try {
-						http.send(params);
-					}
-					catch (e) {
-						// catch cross-domain errors
-						Foxtrick.log("YoutTwins send:", e, params);
-						callback(null, 0);
-					}
+					// load and callback
+					Foxtrick.load(url, callback, params);					
 				});	
 			});
 		}
@@ -139,7 +116,7 @@
 					FoxtrickPrefs.set("YouthTwins.ignoreUntil", -1);
 					break;
 				case 400:
-					Foxtrick.log("YouthTwins: Given data is invalid or incomplete", status, reponse);
+					Foxtrick.log("YouthTwins: Given data is invalid or incomplete", status, response);
 					return;
 				case 404:
 					var now = new Date();
@@ -161,7 +138,7 @@
 					Foxtrick.log("YouthTwins: No requests for one day.");
 					return; 
 				default:
-					Foxtrick.log("YouthTwins: HY returned unhandled status", status, reponse);
+					Foxtrick.log("YouthTwins: HY returned unhandled status", status, response);
 					return;
 			}
 			
