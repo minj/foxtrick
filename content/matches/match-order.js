@@ -80,6 +80,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 						return 0;
 				};
 				var players = doc.getElementById('players').getElementsByClassName('player');
+				var fieldplayers = doc.getElementById('fieldplayers').getElementsByClassName('player');
 				//only get the lastMatchDates
 				//require 3 players to have the same playdate, this helps excluding recent transfers to mess up things
 				if(lastMatchDates === null)
@@ -91,17 +92,39 @@ Foxtrick.modules["MatchOrderInterface"]={
 							continue;
 						var id = Number(players[i].id.match(/list_playerID(\d+)/i)[1]);
 						var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
+
+						var fieldindex = null;
+						for (var k=0; k<fieldplayers.length; ++k) {
+							if (!fieldplayers[k].id) 
+								continue;
+
+							if(id == Number(fieldplayers[k].id.match(/list_playerID(\d+)/i)[1])){
+								fieldindex = k;
+								break;
+							}
+						}
+
 							
 						if (player.lastMatchDate)
 							var matchDay = Foxtrick.util.time.getDateFromText(player.lastMatchDate,'yyyy-mm-dd').getTime();
 						else
 							var matchDay = 0;
-						if (matchDay == lastMatchDates.lastMatchDate)
+
+						if (matchDay == lastMatchDates.lastMatchDate){
 							Foxtrick.addClass( players[i],'playedLast'); 
-						else if (matchDay == lastMatchDates.secondLastMatchDate)
+							if(fieldindex !== null)
+								Foxtrick.addClass( fieldplayers[fieldindex],'field-playedLast'); 
+						}	
+						else if (matchDay == lastMatchDates.secondLastMatchDate){
 							Foxtrick.addClass( players[i],'playedSecondLast'); 
-						else 
-							Foxtrick.addClass( players[i],'playedOther'); 						
+							if(fieldindex !== null)
+								Foxtrick.addClass( fieldplayers[fieldindex],'field-playedSecondLast');
+						}
+						else {
+							Foxtrick.addClass( players[i],'playedOther');
+							if(fieldindex !== null)
+								Foxtrick.addClass( fieldplayers[fieldindex],'field-playedOther');						
+						}
 					}
 				} else {
 					Foxtrick.log("Unable to determine last and/or second last match date.");
@@ -133,7 +156,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 					var playerNode = cards_health[i].parentNode;
 					if (!playerNode.id || Foxtrick.hasClass(cards_health[i], 'ft-specialty')) 
 						continue;
-					
+
 					var id = Number(playerNode.id.match(/list_playerID(\d+)/i)[1]);
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
 					if (player.specialityNumber != 0) {

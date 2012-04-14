@@ -18,8 +18,6 @@ html[dir="ltr"] .playedOther, html[dir="ltr"] .playedSecondLast {
 	padding: 3px 9px 3px 2px !important;
 }
 
-
-
 #ft_swap_positions {
 	background-color: #3f7137; 
 	float: left; 
@@ -32,7 +30,6 @@ html[dir="ltr"] .playedOther, html[dir="ltr"] .playedSecondLast {
 	color: White; 
 	text-decoration: underline; 
 }
-
 
 /****** changes to ht sytles ****/
 
@@ -56,6 +53,16 @@ html[dir="ltr"] #order_tabs {
 /* make space for our playedlast highlighting */
 #orders #players .player .cards_health {
 	right: 1px !important;
+}
+
+#orders .position > .player.field-playedLast {
+	border: 2px solid #48f !important;
+}
+
+#orders .position > .player.field-playedSecondLast {
+}
+
+#orders .position > .player.field-playedOther {
 }
 
 }
