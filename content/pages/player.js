@@ -108,7 +108,7 @@ Foxtrick.Pages.Player = {
 			var playerInfo = doc.getElementsByClassName("playerInfo")[0];
 			var basicSkills = playerInfo.getElementsByClassName("skill");
 			var ret = {};
-			if (basicSkills[1].href.indexOf("skillshort") !== -1) {
+			if (basicSkills[1].href.search(/skillshort/i) !== -1) {
 				ret.form = Foxtrick.util.id.getSkillLevelFromLink(basicSkills[1]);
 				ret.stamina = Foxtrick.util.id.getSkillLevelFromLink(basicSkills[0]);
 			}
@@ -116,7 +116,7 @@ Foxtrick.Pages.Player = {
 				ret.form = Foxtrick.util.id.getSkillLevelFromLink(basicSkills[0]);
 				ret.stamina = Foxtrick.util.id.getSkillLevelFromLink(basicSkills[1]);
 			}
-			if (basicSkills[3].href.indexOf("skillshort") !== -1) {
+			if (basicSkills[3].href.search(/skillshort/i) !== -1) {
 				ret.leadership = Foxtrick.util.id.getSkillLevelFromLink(basicSkills[3]);
 				ret.experience = Foxtrick.util.id.getSkillLevelFromLink(basicSkills[2]);
 			}
@@ -138,7 +138,7 @@ Foxtrick.Pages.Player = {
 		var injuryCell = infoTable.rows[4].cells[1];
 		var injuryImages = injuryCell.getElementsByTagName("img");
 		if (injuryImages.length > 0) {
-			if (injuryImages[0].src.indexOf("bruised.gif") !== -1) {
+			if (injuryImages[0].src.search(/bruised.gif/i) !== -1) {
 				return true;
 			}
 		}
@@ -151,7 +151,7 @@ Foxtrick.Pages.Player = {
 		var injuryCell = infoTable.rows[4].cells[1];
 		var injuryImages = injuryCell.getElementsByTagName("img");
 		if (injuryImages.length > 0) {
-			if (injuryImages[0].src.indexOf("injured.gif") !== -1) {
+			if (injuryImages[0].src.search(/injured.gif/i) !== -1) {
 				return parseInt(injuryImages[0].nextSibling.textContent.match(/\d+/)[0]);
 			}
 		}

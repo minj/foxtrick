@@ -27,7 +27,7 @@ Foxtrick.modules["ShowLineupSet"]={
 			var getLineupTeam = function(item) {
 				var links = item.getElementsByTagName("a");
 				if (links.length == 2) {
-					var isTransfer = Foxtrick.any(function(n) { return n.href.toLowerCase().indexOf("playerid=") >= 0; }, links);
+					var isTransfer = Foxtrick.any(function(n) { return n.href.search(/playerid=/i) >= 0; }, links);
 					if (!isTransfer)
 						return links[0].textContent;
 				}
@@ -49,7 +49,7 @@ Foxtrick.modules["ShowLineupSet"]={
 		
 		var isFixtureTable = function(table) {
 			try {
-				return (table.getElementsByTagName('a')[0].href.indexOf("/Club/Matches/Live.aspx") >= 0);
+				return (table.getElementsByTagName('a')[0].href.search(/\/Club\/Matches\/Live.aspx/i) >= 0);
 			}
 			catch (e) {
 				return false;

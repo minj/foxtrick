@@ -27,13 +27,13 @@ Foxtrick.Pages.Players = {
 		return (ownTeamId === teamId && ownTeamId !== null);
 	},
 	isNtPlayersPage : function(doc) {
-		return (doc.location.href.indexOf("NTPlayers") != -1);
+		return (doc.location.href.search(/NTPlayers/i) != -1);
 	},
 	isOldiesPage : function(doc) {
-		return (doc.location.href.indexOf("Oldies\.aspx") != -1);
+		return (doc.location.href.search(/Oldies\.aspx/i) != -1);
 	},
 	isCoachesPage : function(doc) {
-		return (doc.location.href.indexOf("Coaches\.aspx") != -1);
+		return (doc.location.href.search(/Coaches\.aspx/i) != -1);
 	},
 
 	getPlayerList : function(doc, callback, options) { 
@@ -522,7 +522,7 @@ Foxtrick.Pages.Players = {
 						player.motherClubBonus.title = Foxtrickl10n.getString("skilltable.youthplayer");
 					}
 					if (imgs[j].className == "cardsOne") {
-						if (imgs[j].src.indexOf("red_card", 0) != -1) {
+						if (imgs[j].src.search(/red_card/i) != -1) {
 							player.redCard = 1;
 						}
 						else {

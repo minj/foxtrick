@@ -45,7 +45,7 @@ Foxtrick.entry.docLoad = function(doc) {
 				var cookie = iter.getNext();
 				if (cookie instanceof Components.interfaces.nsICookie) {
 					//Foxtrick.log(cookie.host, cookie.name, cookie.path, cookie.blocked, cookie);
-					if (Foxtrick.isHtUrl('http://'+cookie.host) && cookie.name.indexOf('ASP.NET_SessionId') != -1) {
+					if (Foxtrick.isHtUrl('http://'+cookie.host) && cookie.name.search(/ASP.NET_SessionId/i) != -1) {
 						Foxtrick.log('delete cookie: ',cookie.name);
 						cookieManager.remove(cookie.host, cookie.name, cookie.path, cookie.blocked);
 					}
@@ -205,7 +205,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		html.setAttribute("data-theme", current_theme);
 		if (Foxtrick.platform == "Fennec") {
 			html.setAttribute("data-fennec-theme",
-				doc.location.href.indexOf("Forum") == -1 ? "default" : "forum");
+				doc.location.href.search(/Forum/i) == -1 ? "default" : "forum");
 		}
 		html.setAttribute(Foxtrick.platform,"");
 		

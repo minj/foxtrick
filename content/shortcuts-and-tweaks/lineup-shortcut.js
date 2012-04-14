@@ -148,7 +148,7 @@ Foxtrick.modules["LineupShortcut"]={
 		var mainBody = doc.getElementById("mainBody");
 
 		var matchLink = Foxtrick.nth(0, function(n) {
-				return n.href.indexOf("/Club/Matches/Match.aspx") >= 0;
+				return n.href.search(/\/Club\/Matches\/Match\.aspx/i) >= 0;
 			}, mainBody.getElementsByTagName("a"));
 		if (!matchLink)
 			return; // hasn't played a match yet

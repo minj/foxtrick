@@ -81,14 +81,14 @@ Foxtrick.modules["HistoryStats"]={
 					}
 					var as = table[i].getElementsByTagName('a');
 					var isLgHist = function(a) {
-						return (a.href.indexOf("LeagueLevelUnitID") > -1)
-							&& (a.href.indexOf("RequestedSeason") > -1);
+						return (a.href.search(/LeagueLevelUnitID/i) > -1)
+							&& (a.href.search(/RequestedSeason/i) > -1);
 					};
 					var isCupHist = function(a) {
-						return (a.href.indexOf("actiontype=viewcup") > -1);
+						return (a.href.search(/actiontype=viewcup/i) > -1);
 					};
 					var isWinnerAny = function(a) {
-						return (a.href.indexOf("Club/Manager/?userId") > -1);
+						return (a.href.search(/Club\/Manager\/\?userId/i) > -1);
 					};
 					for (var j = 0; j < as.length; j ++) {
 						if (isWinnerAny(as[j])) {

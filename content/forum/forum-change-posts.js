@@ -22,7 +22,7 @@ Foxtrick.modules["ForumChangePosts"]={
 			img.src = "/Img/Icons/transparent.gif";
 			link.appendChild(img);
 			Foxtrick.listen (img, "click", function() {
-					var idExpanded = (idLink.href.indexOf("MInd") >= 0);
+					var idExpanded = (idLink.href.search(/MInd/i) >= 0);
 					if (idExpanded) {
 						var postId = idLink.href.match(/\d+\.\d+/g)[0];
 					}

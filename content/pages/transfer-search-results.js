@@ -6,7 +6,7 @@
 
 Foxtrick.Pages.TransferSearchResults = {
 	isTransferSearchResultsPage : function(doc) {
-		return (doc.location.href.indexOf("TransfersSearchResult\.aspx") != -1);
+		return (doc.location.href.search(/TransfersSearchResult\.aspx/i) != -1);
 	},
 
 	getPlayerList : function(doc) {
@@ -25,7 +25,7 @@ Foxtrick.Pages.TransferSearchResults = {
 				player.id = player.nameLink.href.match(/.+playerID=(\d+)/i)[1];
 				// first row - bookmark link
 				var bookmarkLinks = Foxtrick.filter(function(l) {
-					return l.href.indexOf("Bookmarks") >= 0;
+					return l.href.search(/Bookmarks/i) >= 0;
 				}, divs[0].getElementsByTagName("a"));
 				if (bookmarkLinks.length > 0)
 					player.bookmarkLink = bookmarkLinks[0].cloneNode(true);
@@ -55,7 +55,7 @@ Foxtrick.Pages.TransferSearchResults = {
 				for (var i = 0; i < imgs.length; ++i) {
 					var img = imgs[i]
 					if (img.className == "cardsOne") {
-						if (img.src.indexOf("red_card", 0) != -1) {
+						if (img.src.search(/red_card/i) != -1) {
 							player.redCard = 1;
 						}
 						else {

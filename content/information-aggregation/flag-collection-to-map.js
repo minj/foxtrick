@@ -250,7 +250,7 @@ Foxtrick.modules["FlagCollectionToMap"]={
 			var countryIds = new Array();
 			for(var j = 0; j < divElement.childNodes.length; j++){
 				var currentNode = divElement.childNodes[j];
-				if (currentNode.nodeName == 'A' && currentNode.href.indexOf('LeagueID=') > -1) {
+				if (currentNode.nodeName == 'A' && currentNode.href.search(/LeagueID=/i) > -1) {
 					var countryId = currentNode.href.substr(currentNode.href.lastIndexOf('=')+1, currentNode.href.length);
 					if (currentNode.getElementsByTagName('img')[0].getAttribute('title').search(/inactive/i) == -1) {
 						countryIds.push(countryId);

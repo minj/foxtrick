@@ -73,7 +73,7 @@ Foxtrick.modules["ReadHtPrefs"]={
 		var scripts = doc.getElementsByTagName("script");
 		for (var i = 0; i < scripts.length; ++i) {
 			var script = scripts[i].innerHTML;
-			var timeDiffOff = script.indexOf("timeDiff");
+			var timeDiffOff = script.search(/timeDiff/i);
 			if (timeDiffOff != -1) {
 				// function call to timeDiff in the script
 				var funcCall = script.substr(timeDiffOff);
