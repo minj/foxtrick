@@ -8,7 +8,7 @@
 Foxtrick.modules["MatchOrderInterface"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['matchOrder'],
-	OPTIONS : ["PlayedLastMatch","Specialties","SwapPositions","StayOnPage"],
+	OPTIONS : [["PlayedLastMatch", "PlayedLastMatch.alsoOnField"],"Specialties","SwapPositions","StayOnPage"],
 	CSS : Foxtrick.InternalPath + "resources/css/match-order.css",
 	OPTIONS_CSS : [ "", Foxtrick.InternalPath + "resources/css/match-order-specialties.css"],
 
@@ -94,16 +94,16 @@ Foxtrick.modules["MatchOrderInterface"]={
 						var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
 
 						var fieldindex = null;
-						for (var k=0; k<fieldplayers.length; ++k) {
-							if (!fieldplayers[k].id) 
-								continue;
+						if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PlayedLastMatch.alsoOnField'))
+							for (var k=0; k<fieldplayers.length; ++k) {
+								if (!fieldplayers[k].id) 
+									continue;
 
-							if(id == Number(fieldplayers[k].id.match(/list_playerID(\d+)/i)[1])){
-								fieldindex = k;
-								break;
+								if(id == Number(fieldplayers[k].id.match(/list_playerID(\d+)/i)[1])){
+									fieldindex = k;
+									break;
+								}
 							}
-						}
-
 							
 						if (player.lastMatchDate)
 							var matchDay = Foxtrick.util.time.getDateFromText(player.lastMatchDate,'yyyy-mm-dd').getTime();
