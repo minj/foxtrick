@@ -34,6 +34,7 @@
 <item>● ShowLineupSet: Fixed after some HT change and simple skin broken layout fixed</item>
 <item>● Missing playerid for bookmarked players back</item>
 <item>● Median-transfer-prize fixed for some users</item>
+<item>● MatchOrder: Highlight of players that played in the last can now be shown on the playing field too</item>
 <item>● Some more work on AMO compliance</item>
 <item></item>
 <item><xhtml:b>For Google Chrome users</xhtml:b></item>
