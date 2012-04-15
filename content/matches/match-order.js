@@ -8,7 +8,7 @@
 Foxtrick.modules["MatchOrderInterface"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['matchOrder'],
-	OPTIONS : [["PlayedLastMatch", "PlayedLastMatch.alsoOnField"],"Specialties","SwapPositions","StayOnPage"],
+	OPTIONS : [["PlayedLastMatch", "PlayedLastMatch.alsoOnField", "PlayedLastMatch.disableForTournaments"],"Specialties","SwapPositions","StayOnPage"],
 	CSS : Foxtrick.InternalPath + "resources/css/match-order.css",
 	OPTIONS_CSS : [ "", Foxtrick.InternalPath + "resources/css/match-order-specialties.css"],
 
@@ -68,6 +68,11 @@ Foxtrick.modules["MatchOrderInterface"]={
 
 		var showPlayerInfo = function() {
 			if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PlayedLastMatch')) {
+
+				if(FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PlayedLastMatch.disableForTournaments'))
+					if(Foxtrick.getHref(doc).search("HTOIntegrated") > -1)
+						return;
+					
 				// get lastMatchdates
 				var getLastMatchDates = function (playerNode) {
 					if (!playerNode.id) 

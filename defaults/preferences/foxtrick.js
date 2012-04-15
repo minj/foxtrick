@@ -403,6 +403,7 @@ pref("extensions.foxtrick.prefs.module.MatchIncome.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.PlayedLastMatch.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.PlayedLastMatch.alsoOnField.enabled", true);
+pref("extensions.foxtrick.prefs.module.MatchOrderInterface.PlayedLastMatch.disableForTournaments.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.Specialties.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.SwapPositions.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.StayOnPage.enabled", false);
