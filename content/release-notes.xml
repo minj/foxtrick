@@ -13,6 +13,10 @@
 <item>Please view <xhtml:a href="http://code.google.com/p/foxtrick/source/list">commit history</xhtml:a> at Google Code for details.</item>
 </note>
 
+<note version="0.9.3">
+<item>● MatchOrder: Option to disable last match information and highlighting for tournament games added (default on)</item>
+</note>
+
 <note version="0.9.2">
 <item>● Another massive language update. Thanks again to all those translators.</item>
 <item>● Rewrote language detection. Should never break again</item>
