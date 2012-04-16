@@ -15,6 +15,7 @@
 
 <note version="0.9.3">
 <item>● MatchOrder: Option to disable last match information and highlighting for tournament games added (default on)</item>
+<item>● PlayerStatsExperience: Fixed bug where red cards caused games beeing detected as walkovers</item>
 </note>
 
 <note version="0.9.2">
