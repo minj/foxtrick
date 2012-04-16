@@ -53,7 +53,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			//max 90'
 			return Math.min(90, minutes);
 		}
-		var gotStars = function(node){
+		var gotStars = function( node ){
 			var stars = node.getElementsByClassName("endColumn2")[0];
 
 			if(Foxtrick.util.layout.isStandard(doc)){
@@ -64,6 +64,16 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			} else {
 				return (stars.textContent.match(/\d+/) !== null)?true:false;
 			}
+		}
+
+		var gotRedCard = function( node ){
+			var cards = node.getElementsByTagName("td")[4].getElementsByTagName("img")[0];
+			
+			var redcard = false;
+			if (cards)
+				redcard = cards.src.search("red_card") > -1?true:false;
+			
+			return redcard;
 		}
 
 		var getGameType = function(node, date){
@@ -133,7 +143,6 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		//sneak in an iterator to allow access to stuff in the alternative table
 		var entry_idx = 0;
 		Foxtrick.map( function( entry ){
-
 			
 			var match_date = matches_entries[entry_idx].getElementsByClassName("matchdate")[0];
 			var date = Foxtrick.util.time.getDateFromText(match_date.textContent);
@@ -149,13 +158,13 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			var minutes = getPlayedMinutes( entry );
 			var gameType = getGameType( entry, date );
 			var xp_gain = getXpGain( minutes, gameType );
-
+			var redCard = gotRedCard( matches_entries[entry_idx] );
+			
 			//check if he also got stars, a game where he got xpgain but has not even half a star must be a walkover
 			var got_stars = gotStars(entry);
-			var walkover = !got_stars && xp_gain > 0;
+			var walkover = !got_stars && minutes == 90 && !redCard;
 			var pseudo_points = xp_gain;
-			xp_gain = got_stars?xp_gain:0;
-			
+			xp_gain = walkover?0:xp_gain;
 
 			//adjust min and max values to take care of international vs. nationl friendlies
 			if(xp_now == xp_last){
