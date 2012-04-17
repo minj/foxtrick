@@ -84,7 +84,12 @@ Foxtrick.modules["MatchOrderInterface"]={
 					else
 						return 0;
 				};
+				
+				//players aren't send with the document, but the addMutationEventListeners later will take care
 				var players = doc.getElementById('players').getElementsByClassName('player');
+				if(!players.length)
+					return;
+
 				var fieldplayers = doc.getElementById('fieldplayers').getElementsByClassName('player');
 				//only get the lastMatchDates
 				//require 3 players to have the same playdate, this helps excluding recent transfers to mess up things
