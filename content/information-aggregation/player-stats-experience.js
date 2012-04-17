@@ -140,16 +140,12 @@ Foxtrick.modules["PlayerStatsExperience"]={
 
 		var walkover_str = Foxtrickl10n.getString("PlayerStatsExperience.Walkover");
 
-		//sneak in an iterator to allow access to stuff in the alternative table
-		var entry_idx = 0;
-		Foxtrick.map( function( entry ){
-			//skip header entry
-			if(entry_idx == 0){
-				entry_idx++;
-				return;
-			}
+
+		for(var i = 1; i < stats_entries.length; i++ ){
+
+			var entry = stats_entries[i];
 			
-			var match_date = matches_entries[entry_idx].getElementsByClassName("matchdate")[0];
+			var match_date = matches_entries[i].getElementsByClassName("matchdate")[0];
 			var date = Foxtrick.util.time.getDateFromText(match_date.textContent);
 
 			//current skilllevel
@@ -163,7 +159,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			var minutes = getPlayedMinutes( entry );
 			var gameType = getGameType( entry, date );
 			var xp_gain = getXpGain( minutes, gameType );
-			var redCard = gotRedCard( matches_entries[entry_idx] );
+			var redCard = gotRedCard( matches_entries[i] );
 			
 			//check if he also got stars, a game where he got xpgain but has not even half a star must be a walkover
 			var got_stars = gotStars(entry);
@@ -206,9 +202,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			if(!ntMatch && gameType == "matchFriendly" && minutes > 0)
 				ts_xp.textContent =  (xp_gain/2.0).toFixed(2) + "/" + xp_gain.toFixed(2);
 			entry.insertBefore(ts_xp, entry.cells[xp_column+1]);
-
-			entry_idx++;
-		}, stats_entries);
+		}
 
 		xp_sub_min -= xp_last_min_added;
 
