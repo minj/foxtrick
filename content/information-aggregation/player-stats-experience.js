@@ -121,7 +121,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		var matches_entries = matches.rows;
 
 		//header
-		var stats_head = stats_entries.rows[0];
+		var stats_head = stats_entries[0];
 
 		//add XP column
 		var ts_xp = doc.createElement("th");
