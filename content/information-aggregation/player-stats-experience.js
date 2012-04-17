@@ -116,9 +116,14 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		if(!stats || !matches)
 			return;
 
-		//headers
-		var stats_head = stats.rows[0];
+		//all the entries
+		var stats_entries = stats.rows;		
+		var matches_entries = matches.rows;
 
+		//header
+		var stats_head = stats_entries.rows[0];
+
+		//add XP column
 		var ts_xp = doc.createElement("th");
 		Foxtrick.addClass(ts_xp,"stats");
 		Foxtrick.addClass(ts_xp,"ft-dummy");
@@ -127,14 +132,10 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		
 		stats_head.insertBefore(ts_xp, stats_head.cells[7] );
 
-		//and their entries
-		var stats_entries = stats.rows;		
-		var matches_entries = matches.rows;
-
+		//sum up xp stuff
 		var xp_last = null;
 		var xp_sub_min = 0.0;
 		var xp_sub_max = 0.0;
-		var friendly_count_since_skillup = 0;
 		var xp_skillUp_detected = false;
 		var xp_last_min_added = 0.0;
 
