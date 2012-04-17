@@ -117,7 +117,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			return;
 
 		//headers
-		var stats_head = stats.getElementsByTagName("thead")[0].getElementsByTagName("tr")[0];
+		var stats_head = stats.getElementsByTagName("tr")[0];
 
 		var ts_xp = doc.createElement("th");
 		Foxtrick.addClass(ts_xp,"stats");
@@ -128,8 +128,8 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		stats_head.insertBefore(ts_xp, stats_head.getElementsByTagName("th")[7]);
 
 		//and their entries
-		var stats_entries = stats.getElementsByTagName("tbody")[0].getElementsByTagName("tr");		
-		var matches_entries = matches.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+		var stats_entries = stats.getElementsByTagName("tr");		
+		var matches_entries = matches.getElementsByTagName("tr");
 
 		var xp_last = null;
 		var xp_sub_min = 0.0;
@@ -143,6 +143,11 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		//sneak in an iterator to allow access to stuff in the alternative table
 		var entry_idx = 0;
 		Foxtrick.map( function( entry ){
+			//skip header entry
+			if(entry_idx == 0){
+				entry_idx++;
+				return;
+			}
 			
 			var match_date = matches_entries[entry_idx].getElementsByClassName("matchdate")[0];
 			var date = Foxtrick.util.time.getDateFromText(match_date.textContent);
