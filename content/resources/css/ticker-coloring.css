@@ -23,7 +23,7 @@
 #ticker a[href^="/Club/Manager/?teamId="] {
 	background-color: #ffe8cf;
 }
-/* forum reply */
+/* forum reply - full url: /Forum/Read.aspx?t=... */
 #ticker a[href^="/Forum/"] {
 	background-color: #dfeeff;
 }
@@ -39,8 +39,8 @@
 #ticker a[href^="/Club/Manager/Guestbook.aspx?teamid="] {
 	background-color: #dffffd;
 }
-/* mail */
-#ticker a[href^="/Inbox/"] {
+/* mail - full url: /MyHattrick/Inbox/Default.aspx?actionType=readMail&messageID=... */
+#ticker a[href^="/MyHattrick/Inbox/Default.aspx"] {
 	background-color: #eedfff;
 }
 
