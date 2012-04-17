@@ -17,6 +17,7 @@
 <item>● MatchOrder: Option to disable last match information and highlighting for tournament games added (default on)</item>
 <item>● PlayerStatsExperience: Fixed bug where red cards caused games beeing detected as walkovers</item>
 <item>● PlayerStatsExperience: Fixed issue that caused this module not to work on Firefox 3.6</item>
+<item>● MatchOrderInterface: Fixed bug where the playedLastMatch indicator didn't show on Firefox</item>
 </note>
 
 <note version="0.9.2">
