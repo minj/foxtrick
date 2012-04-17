@@ -1,5 +1,5 @@
 from Hattrick.Web import HattrickWeb
-from Hattrick.Parsers import MenuParser
+#from Hattrick.Parsers import MenuParser
 from Hattrick.Parsers import DenominationsParser
 from Hattrick.Parsers import MatchDetailParser
 from Hattrick.Parsers import PlayerDetailParser
@@ -81,11 +81,11 @@ def createRatingSubLevelsXML(doc, languageNode, lang, result):
 		
 		cat.appendChild(level)
 
-def createMenuLinksXML(doc, languageNode, lang, result):
-	for category in result[lang]["menu"].iterkeys():
-		cat = doc.createElement(category)
-		cat.setAttribute("value", result[lang]["menu"][category])
-		languageNode.appendChild(cat)
+# def createMenuLinksXML(doc, languageNode, lang, result):
+# 	for category in result[lang]["menu"].iterkeys():
+# 		cat = doc.createElement(category)
+# 		cat.setAttribute("value", result[lang]["menu"][category])
+# 		languageNode.appendChild(cat)
 		
 def createPositionsXML(doc, languageNode, lang, result):
 	#positions
@@ -117,7 +117,7 @@ def createXml(result, outfile):
 		language.setAttribute("name", lang)
 		languages.appendChild(language)
 			
-		createMenuLinksXML(doc, language, lang, result)
+		#createMenuLinksXML(doc, language, lang, result)
 		createPositionsXML(doc, language, lang, result)
 		createRatingSubLevelsXML(doc, language, lang, result)
 		createSpecialtiesXML(doc, language, lang, result)
@@ -293,11 +293,11 @@ def crawl(ht, language_id_list = Language.Codes, outfile = 'crawled.xml'):
 			print "Crawling ", Language.getLanguageById(key), index, "/", len( language_id_list )
 			ht.setLanguage( key )
 			
-			print "Main Menu"
-			menuParser = MenuParser.MenuParser()
-			menuParser.feed(ht.body)
+			#print "Main Menu"
+			#menuParser = MenuParser.MenuParser()
+			#menuParser.feed(ht.body)
 			
-			languageStuff["menu"] = menuParser.get();
+			#languageStuff["menu"] = menuParser.get();
 			
 			print "AppDenominations.aspx"
 			ht.open("/Help/Rules/AppDenominations.aspx")
