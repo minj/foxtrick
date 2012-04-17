@@ -117,19 +117,19 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			return;
 
 		//headers
-		var stats_head = stats.getElementsByTagName("tr")[0];
+		var stats_head = stats.rows[0];
 
 		var ts_xp = doc.createElement("th");
 		Foxtrick.addClass(ts_xp,"stats");
 		Foxtrick.addClass(ts_xp,"ft-dummy");
 		ts_xp.textContent = Foxtrickl10n.getString("PlayerStatsExperience.ExperienceChange.title.abbr");
 		ts_xp.title = Foxtrickl10n.getString("PlayerStatsExperience.ExperienceChange.title");
-		//stats_head.appendChild(ts_xp);
-		stats_head.insertBefore(ts_xp, stats_head.getElementsByTagName("th")[7]);
+		
+		stats_head.insertBefore(ts_xp, stats_head.cells[7] );
 
 		//and their entries
-		var stats_entries = stats.getElementsByTagName("tr");		
-		var matches_entries = matches.getElementsByTagName("tr");
+		var stats_entries = stats.rows;		
+		var matches_entries = matches.rows;
 
 		var xp_last = null;
 		var xp_sub_min = 0.0;
@@ -153,7 +153,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			var date = Foxtrick.util.time.getDateFromText(match_date.textContent);
 
 			//current skilllevel
-			var	xp_now = parseInt(entry.getElementsByTagName("td")[xp_column].textContent);
+			var	xp_now = parseInt(entry.cells[xp_column].textContent);
 			
 			//remember current XP Level to detect skilldowns			
 			if(xp_last === null)
@@ -205,7 +205,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			}
 			if(!ntMatch && gameType == "matchFriendly" && minutes > 0)
 				ts_xp.textContent =  (xp_gain/2.0).toFixed(2) + "/" + xp_gain.toFixed(2);
-			entry.insertBefore(ts_xp, entry.getElementsByTagName("td")[xp_column+1]);
+			entry.insertBefore(ts_xp, entry.cells[xp_column+1]);
 
 			entry_idx++;
 		}, stats_entries);
