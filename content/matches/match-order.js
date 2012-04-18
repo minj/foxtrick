@@ -67,12 +67,10 @@ Foxtrick.modules["MatchOrderInterface"]={
 		};
 
 		var showPlayerInfo = function() {
-			if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PlayedLastMatch')) {
-
-				if(FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PlayedLastMatch.disableForTournaments'))
-					if(Foxtrick.getHref(doc).search("HTOIntegrated") > -1)
-						return;
-					
+			if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PlayedLastMatch') 
+			&& ( Foxtrick.getHref(doc).search("HTOIntegrated") == -1 
+				|| !FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PlayedLastMatch.disableForTournaments'))
+			) {	
 				// get lastMatchdates
 				var getLastMatchDates = function (playerNode) {
 					if (!playerNode.id) 
