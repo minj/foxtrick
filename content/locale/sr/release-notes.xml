@@ -15,7 +15,9 @@
 
 <note version="0.9.3">
 <item>● <module>MatchOrderInterface</module>: Опција за искључивање означавања и приказивање информација за мечеве на турнирима</item>
+<item>● <module>MatchOrderInterface</module>: Исправљена грешка због које се у Фајерфоксу нису коректно приказивали играчи који су играли на претходном мечу</item>
 <item>● <module>PlayerStatsExperience</module>: Исправљена грешка за играче који су добили црвени картон код којих су ови мечеви детектовани као да су завршени службеним резултатом</item>
+<item>● <module>PlayerStatsExperience</module>: Исправљена грешка због које модул није радио на Фајерфоксу 3.6</item>
 </note>
 
 <note version="0.9.2">
