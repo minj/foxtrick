@@ -1,19 +1,19 @@
 @-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
 
 /* played last highlighting */
-html[dir="rtl"] .playedLast {
+html[dir="rtl"] #list .playedLast {
 	border-left : 4px solid #48f;
 	padding: 3px 2px 3px 25px !important;
 }
-html[dir="ltr"] .playedLast {
+html[dir="ltr"] #list .playedLast {
 	border-right : 4px solid #48f;
 	padding: 3px 25px 3px 2px !important;
 }
-html[dir="rtl"] .playedOther, html[dir="rtl"] .playedSecondLast {
+html[dir="rtl"] #list .playedOther, html[dir="rtl"]  #list .playedSecondLast {
 	border-left : 4px solid transparent !important;
 	padding: 3px 2px 3px 9px !important;
 }
-html[dir="ltr"] .playedOther, html[dir="ltr"] .playedSecondLast {
+html[dir="ltr"] #list .playedOther, html[dir="ltr"]  #list .playedSecondLast {
 	border-right : 4px solid transparent;
 	padding: 3px 9px 3px 2px !important;
 }
@@ -55,7 +55,7 @@ html[dir="ltr"] #order_tabs {
 	right: 1px !important;
 }
 
-#orders .position > .player.field-playedLast {
+#orders .position > .player.playedLast, #list .playedLast.ui-draggable-dragging {
 	border: 2px solid #48f !important;
 }
 
@@ -65,4 +65,18 @@ html[dir="ltr"] #order_tabs {
 #orders .position > .player.field-playedOther {
 }
 
+#fieldplayers .cards_health > img, #fieldplayers  .ft-specialty > img {
+	float: right;
+}
+
+#list .shirt {
+	display: none;
+}
+#list .ui-draggable-dragging .shirt {
+	display: block;
+}
+
+.loadingAvatars .smallFaceCard {
+	
+}
 }
