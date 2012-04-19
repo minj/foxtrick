@@ -17,6 +17,8 @@ Foxtrick.modules["MatchOrderInterface"]={
 		var check_images = function(doc, target, avatarsXml, getID, scale) {		
 			if (!FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'ShowFaces'))
 				return;
+			if (!Foxtrick.util.layout.isSupporter(doc))
+				return;
 			var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
 			var add_image = function(fieldplayer) {
 				var id = getID(fieldplayer);
@@ -30,6 +32,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 				if (i == players.length)
 					return; // id not found
 				
+				Foxtrick.addClass(fieldplayer, "smallFaceCardBox");
 				var shirt = fieldplayer.getElementsByClassName('shirt')[0];
 				if (!shirt) {
 					var outer = doc.createElement('div');
@@ -97,34 +100,72 @@ Foxtrick.modules["MatchOrderInterface"]={
 			}
 		};
 
+		var check_Specialties = function(doc, target, playerList, getID, targetClass) {		
+			if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'Specialties')) {
+				var cards_health = target.getElementsByClassName(targetClass);
+				for (var i=0; i<cards_health.length; ++i) {
+					var id = getID(cards_health[i]);
+					if (!id || Foxtrick.hasClass(cards_health[i], 'ft-specialty')) 
+						continue;
+					
+					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
+					if (player && player.specialityNumber != 0) {
+						Foxtrick.addClass(cards_health[i], 'ft-specialty');
+						var title = Foxtrickl10n.getSpecialityFromNumber(player.specialityNumber);
+						var alt = Foxtrickl10n.getShortSpeciality(title);
+						var icon_suffix = "";
+						if (FoxtrickPrefs.getBool("anstoss2icons")) 
+							icon_suffix = "_alt";
+						Foxtrick.addImage(doc, cards_health[i], { 
+							alt: alt, 
+							title: title, 
+							src: Foxtrick.InternalPath + 'resources/img/matches/spec'+player.specialityNumber+icon_suffix+'.png',
+							class: 'ft-specialty'
+						});
+					}
+				}
+			}
+		};
+
 		var runMatchLineup = function(doc) { 
 			var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
 			if (isYouth) {
 				var teamid = Foxtrick.util.id.findYouthTeamId(doc.getElementsByClassName("subMenu")[0]);
-				if (teamid != Foxtrick.util.id.getOwnYouthTeamId())
-					return;
+				var ownteamid = Foxtrick.util.id.getOwnYouthTeamId()
 			}
 			else {
 				var teamid = Foxtrick.util.id.findTeamId(doc.getElementsByClassName("subMenu")[0]);
-				if (teamid != Foxtrick.util.id.getOwnTeamId())
-					return;
+				var ownteamid = Foxtrick.util.id.getOwnTeamId();
 			}
 			var getID = function (fieldplayer) {
 				return Foxtrick.util.id.findPlayerId(fieldplayer); 
 			};
 					
-			Foxtrick.util.api.retrieve(doc, [["file", (isYouth?"youth":"")+"avatars"]], {cache_lifetime:'session'},
-			function(xml, errorText) {
-				if (errorText) {
-					/*if (loadingOtherMatches && loadingOtherMatches.parentNode) {
-						loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
-						loadingOtherMatches = null;
-					}*/
-					Foxtrick.log(errorText);
+			// load ahead players and then wait for interface loaded
+			Foxtrick.Pages.Players.getPlayerList(doc, function(playerInfo) {
+				if (!playerInfo || playerInfo.length==0) {
+					Foxtrick.log("unable to retrieve player list.");
 					return;
-				}
-				check_images(doc, doc.getElementsByClassName('field')[0],xml, getID,4);
-			});
+				} 
+				check_Specialties(doc, doc.getElementsByClassName('field')[0], playerInfo, getID, 'box_lineup');	
+				check_Specialties(doc, doc.getElementsByClassName('field')[0], playerInfo, getID, 'box_substitute');	
+			}, {teamid:teamid, current_squad:true, includeMatchInfo:true} );
+
+
+			if (teamid == ownteamid) {
+				Foxtrick.util.api.retrieve(doc, [["file", (isYouth?"youth":"")+"avatars"]], {cache_lifetime:'session'},
+				function(xml, errorText) {
+					if (errorText) {
+						/*if (loadingOtherMatches && loadingOtherMatches.parentNode) {
+							loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
+							loadingOtherMatches = null;
+						}*/
+						Foxtrick.log(errorText);
+						return;
+					}
+					check_images(doc, doc.getElementsByClassName('field')[0],xml, getID,4);
+				});
+			}
 		};
 		
 		var runMatchOrder = function(doc) { 
@@ -133,6 +174,11 @@ Foxtrick.modules["MatchOrderInterface"]={
 				if (!fieldplayer.id)
 					return null;
 				return Number(fieldplayer.id.match(/list_playerID(\d+)/i)[1]);
+			};
+			var getIDParent = function (node) {
+				if (!node.parentNode.id)
+					return null;
+				return Number(node.parentNode.id.match(/list_playerID(\d+)/i)[1]);
 			};
 
 			Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath+"resources/js/matchOrder.js");
@@ -362,33 +408,8 @@ Foxtrick.modules["MatchOrderInterface"]={
 						Foxtrick.log("Unable to determine last and/or second last match date.");
 					}				
 				}
-
-				if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'Specialties')) {
-					var cards_health = target.getElementsByClassName('cards_health');
-					for (var i=0; i<cards_health.length; ++i) {
-						var playerNode = cards_health[i].parentNode;
-						if (!playerNode.id || 
-							Foxtrick.hasClass(cards_health[i], 'ft-specialty')) 
-							continue;
-						
-						var id = Number(playerNode.id.match(/list_playerID(\d+)/i)[1]);
-						var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
-						if (player.specialityNumber != 0) {
-							Foxtrick.addClass(cards_health[i], 'ft-specialty');
-							var title = Foxtrickl10n.getSpecialityFromNumber(player.specialityNumber);
-							var alt = Foxtrickl10n.getShortSpeciality(title);
-							var icon_suffix = "";
-							if (FoxtrickPrefs.getBool("anstoss2icons")) 
-								icon_suffix = "_alt";
-							Foxtrick.addImage(doc, cards_health[i], { 
-								alt: alt, 
-								title: title, 
-								src: Foxtrick.InternalPath + 'resources/img/matches/spec'+player.specialityNumber+icon_suffix+'.png',
-								class: 'ft-specialty'
-							});
-						}
-					}
-				}
+				
+				check_Specialties(doc, target, playerList, getIDParent, 'cards_health');				
 			};
 			
 			loading.addEventListener("DOMCharacterDataModified", waitForInterface, false);
