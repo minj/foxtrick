@@ -208,33 +208,6 @@ Foxtrick.modules["MatchOrderInterface"]={
 					showPlayerInfo(doc.getElementById('orders'));
 			}, {teamid:teamid, current_squad:true, includeMatchInfo:true} );
 
-			//unused yet, intended for lastMatchPlayed later
-			var getTeamMatchDates = function (){
-				var args = [ ["version", "2.6"], ["file", "matches"], ["isYouth", isYouth?"true":"false"]];
-				Foxtrick.util.api.retrieve(doc, args, {cache_lifetime:'session' }, function(xml, errorText) {
-					if(!xml)
-						return;
-
-					var matches = xml.getElementsByTagName("Match");
-					var filter = ["Hattrick"];
-					for(var m=0; m < matches.length; m++){
-						var srcsys = matches[m].getElementsByTagName("SourceSystem")[0].textContent;
-						var status = matches[m].getElementsByTagName("Status")[0].textContent;
-						var matchDate = matches[m].getElementsByTagName("MatchDate")[0].textContent;
-
-						if(status != "FINISHED")
-							continue;
-
-						if(srcsys != "Hattrick" && srcsys != "Youth")
-							continue;
-
-						var date = Foxtrick.util.time.getDateFromText(matchDate,'yyyy-mm-dd').getTime();
-						Foxtrick.log(srcsys, status, matchDate, date);
-					}
-				});
-			}
-			//getTeamMatchDates();
-
 			Foxtrick.util.api.retrieve(doc, [["file",  (isYouth?"youth":"")+"avatars"]], {cache_lifetime:'session'},
 			function(xml, errorText) {
 				if (errorText) {
