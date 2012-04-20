@@ -194,8 +194,7 @@
 				//add icons according to amount of occurance
 				var addIcons = function (parent, limit, alt, className, src){
 					for(var k = 0; k < limit; k++){
-						var image = Foxtrick.createImage(doc, { alt: alt, class: className, src: src}); 
-						parent.appendChild(image);
+						Foxtrick.addImage(doc, parent, { alt: alt, class: className, src: src}); 
 					}
 				}
 				addIcons(container, marked, l10n_marked_twins, "ft-youth-twins-icon", icon_green);

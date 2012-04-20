@@ -293,7 +293,7 @@ Foxtrick.GetDataURIText = function (filetext) {
 	return "data:text/plain;charset=utf-8,"+encodeURIComponent(filetext);
 }
 
-Foxtrick.createImage = function (doc, features) {
+Foxtrick.addImage = function (doc, elem, features) {
 	if (Foxtrick.platform == "Opera" && features.src.indexOf('resources') != -1) {
 		sandboxed.extension.sendRequest({ req : "getDataUrl", url:features.src},
 			function (data) {
@@ -301,20 +301,15 @@ Foxtrick.createImage = function (doc, features) {
 				for (i in features) 
 					img.setAttribute(i, features[i]);
 				img.src = data.url;
-				return img;
+				elem.appendChild( img );
 		});
 	}
 	else {
 		var img = doc.createElement("img");
 		for (i in features)  
 			img.setAttribute(i, features[i]);
-		return img;
+		elem.appendChild( img );
 	}
-};
-
-Foxtrick.addImage = function (doc, elem, features) {
-	var image = Foxtrick.createImage(doc, features);
-	elem.appendChild( image );
 };
 
 Foxtrick.getImageFeatures = function (features, callback) {
