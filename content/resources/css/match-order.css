@@ -17,6 +17,12 @@ html[dir="ltr"] #list .playedOther, html[dir="ltr"]  #list .playedSecondLast {
 	border-right : 4px solid transparent;
 	padding: 3px 9px 3px 2px !important;
 }
+#list .playedLast.ui-draggable-dragging , 
+#list .playedSecondLast.ui-draggable-dragging, 
+#list .playedOther.ui-draggable-dragging {
+	padding: 0px !important;
+	border : 0px;
+}
 
 #ft_swap_positions {
 	background-color: #3f7137; 
@@ -65,10 +71,6 @@ html[dir="ltr"] #order_tabs {
 #orders .position > .player.field-playedOther {
 }
 
-#fieldplayers .cards_health > img, #fieldplayers  .ft-specialty > img {
-	float: right;
-}
-
 #list .shirt {
 	display: none;
 }
@@ -76,7 +78,4 @@ html[dir="ltr"] #order_tabs {
 	display: block;
 }
 
-.loadingAvatars .smallFaceCard {
-	
-}
 }

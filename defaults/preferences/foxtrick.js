@@ -405,6 +405,7 @@ pref("extensions.foxtrick.prefs.module.MatchOrderInterface.PlayedLastMatch.enabl
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.PlayedLastMatch.alsoOnField.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.PlayedLastMatch.disableForTournaments.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.Specialties.enabled", true);
+pref("extensions.foxtrick.prefs.module.MatchOrderInterface.ShowFaces.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.SwapPositions.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.StayOnPage.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchSimulator.enabled", true);

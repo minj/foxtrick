@@ -84,4 +84,26 @@ html[dir="ltr"] #field #list img.specialty {
 	max-width: 50px !important;
 }
 
+html[dir="ltr"] #fieldplayers .cards_health > img, #fieldplayers  .ft-specialty > img {
+	float: right;
+}
+html[dir="rtl"] #fieldplayers .cards_health > img, #fieldplayers  .ft-specialty > img {
+	float: left;
+}
+
+#orders #list .player.ui-draggable-dragging .cards_health {
+display: block !important;
+top: 36px;
+position: relative;
+}
+html[dir="ltr"] #orders #list .player.ui-draggable-dragging .cards_health {
+float: right;
+right: 5px;
+}
+
+html[dir="rtl"] #orders #list .player.ui-draggable-dragging .cards_health {
+float: ltr;
+left: 5px;
+}
+
 }

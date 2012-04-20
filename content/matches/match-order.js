@@ -229,6 +229,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 			var waitForInterface = function(ev) {
 				loading.removeEventListener("DOMCharacterDataModified", waitForInterface, false);
 				loading.removeEventListener("DOMSubtreeModified", waitForInterface, false);
+				loading.removeEventListener("DOMNodeInserted", waitForInterface, false);
 				if (hasInterface)
 					return;
 				Foxtrick.log('hasInterface');
@@ -387,6 +388,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 			
 			loading.addEventListener("DOMCharacterDataModified", waitForInterface, false);
 			loading.addEventListener("DOMSubtreeModified", waitForInterface, false);
+			loading.addEventListener("DOMNodeInserted", waitForInterface, false);
 		};
 	
 		var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
