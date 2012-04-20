@@ -297,6 +297,12 @@ Foxtrick.entry.change = function(ev) {
 			return;
 		}
 
+		var node = ev.target;
+		while(node){
+			if(node && node.className && node.className.search('ft-ignore-changes'))
+				return;
+			node = node.parentNode
+		}
 		// ignore changes list
 		if (ev.originalTarget && ev.originalTarget.className
 			&& (ev.originalTarget.className=='boxBody'
