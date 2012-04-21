@@ -600,7 +600,7 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 						}
 						//no icon, put in transparent icon to allow tooltoip
 						else{
-							createEventIcon(icons["transparent"], title, title));
+							createEventIcon(icons["transparent"], title, title);
 						}
 					}
 				}
@@ -622,7 +622,7 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 		var lContainer = doc.getElementsByClassName("liveMatchContainer")[0];
 		if(lContainer)
 			Foxtrick.listen(lContainer, 'DOMNodeInserted', function(event){	
-				if(event.target.getAttribute("id") == "ctl00_ctl00_CPContent_CPMain_repM"){
+				if(event.target.getAttribute && event.target.getAttribute("id") && event.target.getAttribute("id") == "ctl00_ctl00_CPContent_CPMain_repM"){
 				var livereports = event.target.getElementsByClassName("liveReport");
 				for(var i=0; i < livereports.length; i++)
 					react(livereports[i]);
