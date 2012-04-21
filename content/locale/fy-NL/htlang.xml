@@ -1,0 +1,102 @@
+<language name="fy-NL" desc="Frysk">
+
+	<!-- rating sublevels appearing in match detail page. copy "text" -->
+	<ratingSubLevels>
+		<sublevel text="(Tige leech)" value="0.0" />
+		<sublevel text="(Leech)" value="0.25" />
+		<sublevel text="(Heech)" value="0.50" />
+		<sublevel text="(Tige heech)" value="0.75" />
+	</ratingSubLevels>
+
+	<!-- tactics appearing in match detail page. copy "value" -->
+	<tactics>
+		<tactic type="normal" value="Normaal" />
+		<tactic type="pressing" value="Druk sette" />
+		<tactic type="ca" value="Tsjin-oanfallen" />
+		<tactic type="aow" value="Oanfalle oer de wjukken" />
+		<tactic type="aim" value="Oanfalle yn it midden" />
+		<tactic type="creatively" value="Kreatyf spylje" />
+		<tactic type="longshots" value="Ofstânsskoaten" />
+	</tactics>
+
+	<!-- positions appearing on players page. copy "value". translate "short" -->
+	<positions>
+		<position type="Keeper" value="Doelferdigener" short="Ke" />
+		<position type="Central defender" value="Sintrale Ferdigener" short="Cd" />
+		<position type="Wing back" value="Wjukferdigener" short="Wb" />
+		<position type="Inner midfielder" value="Sintrale Middenfjilder" short="Im" />
+		<position type="Winger" value="Wjukspiler" short="Wi" />
+		<position type="Forward" value="Oanfaller" short="Fo" />
+	</positions>
+
+	<!-- specialties appearing on players page. copy "value". translate "short" -->
+	<specialties>
+		<specialty type="Unpredictable" value="Ûnfoarspelber" short="Un" />
+		<specialty type="Powerful" value="Krêftich" short="Po" />
+		<specialty type="Quick" value="Fluch" short="Qu" />
+		<specialty type="Technical" value="Technysk" short="Te" />
+		<specialty type="Head" value="Koppe" short="He" />
+		<specialty type="Regainer" value="Snelle hersteller" short="Re" />
+	</specialties>
+
+	<!-- levels word connections appearing denominations page. copy "text" -->
+	<levels>
+		<level text="godlik" value="20" />
+		<level text="utopysk" value="19" />
+		<level text="magysk" value="18" />
+		<level text="mytysk" value="17" />
+		<level text="bûtenierdsk" value="16" />
+		<level text="reuseftich" value="15" />
+		<level text="boppennatuerlik" value="14" />
+		<level text="wrâldklasse" value="13" />
+		<level text="bjusterbaarlik" value="12" />
+		<level text="briljant" value="11" />
+		<level text="treflik" value="10" />
+		<level text="formidabel" value="9" />
+		<level text="poerbêst" value="8" />
+		<level text="bêst" value="7" />
+		<level text="aardich" value="6" />
+		<level text="matich" value="5" />
+		<level text="swak" value="4" />
+		<level text="min" value="3" />
+		<level text="neat wurdich" value="2" />
+		<level text="jammerdearlik" value="1" />
+		<level text="net-besteand" value="0" />
+	</levels>
+	
+	<!-- Agreeability levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<agreeability>
+		<level text="spiler wêr't elts fan hâldt" value="5"/>
+		<level text="populêre spiler" value="4"/>
+		<level text="sympatyke spiler" value="3"/>
+		<level text="oangename spiler" value="2"/>
+		<level text="tsjinstridich spiler" value="1"/>
+		<level text="ferfelend figuer" value="0"/>
+	</agreeability>
+	
+	<!-- Honesty levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<honesty>
+		<level text="hillich" value="5"/>
+		<level text="rjochtfeardich" value="4"/>
+		<level text="oprjocht" value="3"/>
+		<level text="earlik" value="2"/>
+		<level text="ûnearlik" value="1"/>
+		<level text="net te fertrouwen" value="0"/>
+	</honesty>
+	
+	<!-- Aggressiveness levels in denominations page.
+	     Translate attribute "text" by copying from there in verbatim,
+	     keep attribute "value" unchanged. -->
+	<aggressiveness>
+		<level text="ûnstabyl" value="5"/>
+		<level text="fier" value="4"/>
+		<level text="temperamentfol" value="3"/>
+		<level text="balansearre" value="2"/>
+		<level text="kalm" value="1"/>
+		<level text="rêstig" value="0"/>
+	</aggressiveness>
+</language>

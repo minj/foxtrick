@@ -1,0 +1,292 @@
+body
+{
+	max-height: 540px; 
+	font-size: 15px;
+	background-color: #eef;
+}
+
+ul
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul li ul
+{
+	list-style-type: none;
+	margin: 0px 0px 5px 20px;
+	padding: 5px;
+}
+
+h3
+{
+	margin: 5px 0 0;
+}
+
+p
+{
+	margin: 2px 0;
+}
+
+input, button, select, textarea
+{
+	color: #2e2e2e;
+	background-color: white;
+	border: 1px solid #b4bac0;
+	padding: 3px;
+	margin: 0 5px 0 0;
+}
+
+input[disabled], button[disabled], select[disabled], textarea[disabled]
+{
+	background-color: #ccc;
+}
+
+button.active
+{
+	background-color: #eef;
+	border: 3px solid #a8a8a8;
+}
+
+
+html[dir="rtl"] input, html[dir="rtl"] button
+{
+	margin: 0 0 0 5px;
+}
+
+input
+{
+	width: 95%;
+}
+
+input[type] /* only set width for text input */
+{
+	width: auto;
+}
+
+textarea {
+	width: 90%;
+	height: 6em;
+}
+
+th.col_checkbox {
+	width: 5%;
+}
+
+th.col_filepicker {
+	width: 10%;
+}
+
+th.col_textfield {
+	width: 60%;
+}
+
+table.bordered, table.bordered td, table.bordered th {
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+}
+
+table {
+	margin-top: 20px;
+}
+
+table.maxed {
+	width: 100%;
+}
+
+table th:first-child {
+	text-align: left;
+}
+
+html[dir="rtl"] table th:first-child {
+	text-align: right;
+}
+
+table.center td {
+	text-align: center;
+}
+
+.module
+{
+	border: 1px solid #ccc;
+	margin: 5px;
+	padding: 5px;
+}
+
+.module:hover
+{
+	background-color: #f8f8ff;
+	border-color: black;
+}
+
+.module-link
+{
+	color: #333;
+	text-decoration: none;
+	font-size: 75%;
+	margin: 0 0 0 2em;
+}
+
+html[dir="rtl"] .module-link
+{
+	margin: 0 2em 0 0;
+}
+
+.screenshot
+{
+	float: right;
+	width: 16px;
+	height: 16px;
+	background: url("../img/screenshot.png") no-repeat 50% 50%;
+}
+
+html[dir="rtl"] .screenshot
+{
+	float: left;
+}
+
+.screenshot:hover
+{
+	background-image: url("../img/screenshot-hover.png");
+}
+
+.clear
+{
+	clear: both;
+}
+
+#version
+{
+	font-family: Georgia;
+	font-style: italic;
+	font-size: 50%;
+	vertical-align: top;
+}
+
+#pagelist
+{
+	font-size: 50%;
+}
+
+#view-by
+{
+	padding-right: 5em;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 0.5em;
+}
+
+#tabs li, #view-by li
+{
+	border-radius: 5px 5px 0 0;
+}
+
+ul.nav
+{
+	float: left;
+	clear: left;
+}
+
+ul.nav li
+{
+	font-size: 85%;
+	display: inline-block;
+	background-color: white;
+	border: 1px solid #ccc;
+	border-bottom: none;
+	padding: 3px;
+	margin: 0 1px;
+}
+
+ul.nav li.hide
+{
+	display: none;
+}
+
+ul.nav li.active
+{
+	background-color: #eef;
+	border: 2px solid #a8a8a8;
+	border-bottom: none;
+}
+
+ul.nav li a
+{
+	text-decoration: none;
+	color: #444;
+}
+
+ul.nav li a:hover
+{
+	text-decoration: underline;
+}
+
+div#pane
+{
+	border: 1px solid #ccc;
+	clear: both;
+	overflow-y: auto;
+}
+
+#fixed
+{
+	position: fixed;
+	right: 20px;
+	top: 20px;
+}
+
+html[dir="rtl"] #fixed
+{
+	right: auto;
+	left: 20px;
+}
+
+#balloon
+{
+	padding: 10px;
+	border: 1px solid #ccc;
+	background-color: #aaa;
+	float: right;
+}
+
+html[dir="rtl"] #fixed
+{
+	float: left;
+}
+
+#balloon a {
+	color: #a5b;
+	text-decoration: none;
+}
+
+#save
+{
+	font-weight: bold;
+}
+
+#note
+{
+	display: none;
+	cursor: pointer;
+	position: relative;
+	z-index: 10;
+	top: 20px;
+	right: 20px;
+	font-size: 200%;
+	font-weight: bold;
+	padding: 40px;
+	color: #b3b3b3;
+	background-color: #7da;
+}
+
+#dismiss-notice {
+	font-size: 50%;
+	margin: 0 auto;
+	font-weight: normal;
+}
+
+html[dir="rtl"] #note
+{
+	right: auto;
+	left: 20px;
+}

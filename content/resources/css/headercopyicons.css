@@ -1,0 +1,74 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+
+a.copyicon {
+	cursor: pointer;
+	background-repeat: no-repeat;
+	display: inline-block !important;
+}
+
+a.copyicon img {
+	padding: 0px 0px 0px 0px;
+}
+
+html[data-theme="standard"] a.copyicon,
+html[data-theme="standard"] a.copyicon img {
+	height: 36px;
+	width: 36px;
+}
+
+html[data-theme="simple"] a.copyicon,
+html[data-theme="simple"] a.copyicon img {
+	height: 22px;
+	width: 22px;
+}
+
+/* For icons in the header */
+#mainBody .copyicon {
+	position: absolute;
+	z-index: 99;
+}
+html[data-theme="standard"] #mainBody .copyicon {
+	top: 11px;
+}
+html[data-theme="simple"] #mainBody .copyicon {
+	top: 6px;
+}
+
+/* header icon positions */
+html[data-theme="standard"][dir="ltr"] .ci_first { right: 14px; }
+html[data-theme="standard"][dir="ltr"] .ci_second { right: 51px; }
+html[data-theme="standard"][dir="ltr"] .ci_third { right: 88px; }
+html[data-theme="standard"][dir="ltr"] .ci_fourth { right: 125px; }
+html[data-theme="standard"][dir="ltr"] .ci_fifth { right: 162px; }
+html[data-theme="standard"][dir="ltr"] .ci_sixth { right: 199px; }
+html[data-theme="standard"][dir="ltr"] .ci_seveth { right: 236px; }
+
+html[data-theme="standard"][dir="rtl"] .ci_first { left: 14px; }
+html[data-theme="standard"][dir="rtl"] .ci_second { left: 51px; }
+html[data-theme="standard"][dir="rtl"] .ci_third { left: 88px; }
+html[data-theme="standard"][dir="rtl"] .ci_fourth { left: 125px; }
+html[data-theme="standard"][dir="rtl"] .ci_fifth { left: 162px; }
+html[data-theme="standard"][dir="rtl"] .ci_sixth { right: 199px; }
+html[data-theme="standard"][dir="rtl"] .ci_seveth { right: 236px; }
+
+html[data-theme="simple"][dir="ltr"] .ci_first { right: 6px; }
+html[data-theme="simple"][dir="ltr"] .ci_second { right: 31px; }
+html[data-theme="simple"][dir="ltr"] .ci_third { right: 56px; }
+html[data-theme="simple"][dir="ltr"] .ci_fourth { right: 81px; }
+html[data-theme="simple"][dir="ltr"] .ci_fifth { right: 106px; }
+html[data-theme="simple"][dir="ltr"] .ci_sixth { right: 131px; }
+html[data-theme="simple"][dir="ltr"] .ci_seveth { right: 156px; }
+
+html[data-theme="simple"][dir="rtl"] .ci_first { left: 6px; }
+html[data-theme="simple"][dir="rtl"] .ci_second { left: 31px; }
+html[data-theme="simple"][dir="rtl"] .ci_third { left: 56px; }
+html[data-theme="simple"][dir="rtl"] .ci_fourth { left: 81px; }
+html[data-theme="simple"][dir="rtl"] .ci_fifth { left: 106px; }
+html[data-theme="simple"][dir="rtl"] .ci_sixth { right: 131px; }
+html[data-theme="simple"][dir="rtl"] .ci_seveth { right: 156px; }
+
+.linkyouthstatistics img {
+    background: transparent url(chrome://foxtrick/content/resources/img/copy/copyNormal.png) no-repeat scroll 0 0;
+}
+
+}

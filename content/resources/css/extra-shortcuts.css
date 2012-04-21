@@ -1,0 +1,55 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+
+.ftManageCHPP {
+	margin-left:2px;
+	background-image: url('chrome://foxtrick/content/resources/img/shortcuts/chpp.png') !important;
+}
+
+.ftSuppStats {
+	margin-left:2px;
+	background-image: url('chrome://foxtrick/content/resources/img/shortcuts/stats.png') !important;
+}
+
+.ftMyTransfers {
+	margin-left:2px;
+	background-image: url('chrome://foxtrick/content/resources/img/shortcuts/transfers.png') !important;
+}
+
+.ftSCPrefs {
+	margin-left:2px;
+	background-image: url('chrome://foxtrick/content/resources/img/shortcuts/options.png') !important;
+}
+
+.ftSCFtPrefs {
+	margin-left:2px;
+	margin-right:4px;
+	background-image: url('chrome://foxtrick/content/resources/img/shortcuts/foxtrick.png') !important;
+}
+
+/* radio tweaks */
+html[dir="rtl"] .scContainer ul,
+html[dir="rtl"] .scContainerNoSupporter ul{
+	text-align: right;
+}
+html[dir="ltr"] .scContainer ul,
+html[dir="ltr"] .scContainerNoSupporter ul{
+	text-align: left;
+}
+.scContainer ul.ft-pop > li,
+.scContainerNoSupporter ul.ft-pop > li {
+	white-space: normal;
+}
+.scContainer ul,
+.scContainerNoSupporter ul{
+	width: 200px;
+}
+
+/*non supporter ads moved left to make space for 2 ft icons */
+html[dir="ltr"] #shortcutsNoSupporter ~ a[target="_blank"][href^="http"] img{
+	margin-right: 200px  !important;
+}
+html[dir="rtl"]  #shortcutsNoSupporter ~ a[target="_blank"][href^="http"] img{
+	margin-left: 200px  !important;
+}
+
+}

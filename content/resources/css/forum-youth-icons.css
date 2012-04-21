@@ -1,0 +1,70 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+
+/* forum-youth-icons.css */
+
+.HTMLToolbar img {
+	margin:2px;
+	width:22px;
+	height:22px;
+	cursor:pointer;
+}
+
+.HTMLToolbar > div:first-child {
+	background-color: #D0D0D0;
+	margin-bottom :3px;
+	text-align: center;
+}
+
+.HTMLToolbar img {
+	margin: 2px;
+	width: 22px; 
+	height: 22px;
+}
+
+/* main tool bar */
+.HTMLToolbar img.ft_q {
+	background: url('chrome://foxtrick/content/resources/img/ht-ml/format_q.png') no-repeat scroll 0 0 transparent;
+}
+.HTMLToolbar img.ft_br {
+	background: url('chrome://foxtrick/content/resources/img/ht-ml/format_br.png') no-repeat scroll 0 0 transparent;
+}
+.HTMLToolbar img.ft_uid {
+	background: url('chrome://foxtrick/content/resources/img/ht-ml/format_user.png') no-repeat scroll 0 0 transparent;
+}
+.HTMLToolbar img.ft_kit {
+	background: url('chrome://foxtrick/content/resources/img/ht-ml/format_kit.png') no-repeat scroll 0 0 transparent;
+}
+.HTMLToolbar img.ft_aid {
+	background: url('chrome://foxtrick/content/resources/img/ht-ml/format_article.png') no-repeat scroll 0 0 transparent;
+}
+.HTMLToolbar img.ft_clock {
+	background: url('chrome://foxtrick/content/resources/img/ht-ml/format_clock.png') no-repeat scroll 0 0 transparent;
+}
+.HTMLToolbar img.ft_spoiler {
+	background: url('chrome://foxtrick/content/resources/img/ht-ml/format_spoiler.png') no-repeat scroll 0 0 transparent;
+}
+.HTMLToolbar img.ft_pre {
+	background: url('chrome://foxtrick/content/resources/img/ht-ml/format_pre.png') no-repeat scroll 0 0 transparent;
+}
+.HTMLToolbar img.ft_table {
+	background: url('chrome://foxtrick/content/resources/img/ht-ml/format_table.png') no-repeat scroll 0 0 transparent;
+}
+.HTMLToolbar img.ft_symbol {
+	background: url('chrome://foxtrick/content/resources/img/ht-ml/format_symbol.png') no-repeat scroll 0 0 transparent;
+}
+
+/* tournament toolbar */
+.HTMLToolbar img.ft_tournament {
+	background: url('chrome://foxtrick/content/resources/img/ht-ml/format_tournament.png') no-repeat scroll 0 0 transparent;
+}
+
+
+/* other toolbar */
+.HTMLToolbar img.f_debug {
+	background: url('chrome://foxtrick/content/resources/img/ht-ml/format_debug.png') no-repeat scroll 0 0 transparent;
+}
+.HTMLToolbar img.f_settings {
+	background: url('chrome://foxtrick/content/resources/img/ht-ml/format_settings.png') no-repeat scroll 0 0 transparent;
+}
+
+}

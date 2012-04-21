@@ -1,0 +1,11 @@
+.*
+*.log
+*.xpi
+*.crx
+*.oex
+*.safariextz
+maintainer/upload.conf.*
+maintainer/locale/crowdinKey.py
+maintainer/*.pem
+maintainer/*.der
+build/

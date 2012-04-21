@@ -1,0 +1,68 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+
+/* played last highlighting */
+html[dir="rtl"] .playedLast {
+	border-left : 4px solid #48f;
+	padding: 3px 2px 3px 25px !important;
+}
+html[dir="ltr"] .playedLast {
+	border-right : 4px solid #48f;
+	padding: 3px 25px 3px 2px !important;
+}
+html[dir="rtl"] .playedOther, html[dir="rtl"] .playedSecondLast {
+	border-left : 4px solid transparent !important;
+	padding: 3px 2px 3px 9px !important;
+}
+html[dir="ltr"] .playedOther, html[dir="ltr"] .playedSecondLast {
+	border-right : 4px solid transparent;
+	padding: 3px 9px 3px 2px !important;
+}
+
+#ft_swap_positions {
+	background-color: #3f7137; 
+	float: left; 
+	margin-left: 20px; 
+	cursor: pointer; 
+	padding: 6px; 
+	clear: left;
+	position: relative;
+	top: 255px;
+	color: White; 
+	text-decoration: underline; 
+}
+
+/****** changes to ht sytles ****/
+
+/* highlight levels in details */
+#details .experienceAndLeadership span, #details .staminaAndForm span {
+	text-decoration: underline;
+}
+
+/* list size increased */
+#list {
+	margin-right: -10px !important;
+	width: 150px !important;
+}
+html[dir="rtl"] #order_tabs {
+	margin-right: -10px !important;
+}
+html[dir="ltr"] #order_tabs {
+	margin-left: -10px !important;
+}
+
+/* make space for our playedlast highlighting */
+#orders #players .player .cards_health {
+	right: 1px !important;
+}
+
+#orders .position > .player.field-playedLast {
+	border: 2px solid #48f !important;
+}
+
+#orders .position > .player.field-playedSecondLast {
+}
+
+#orders .position > .player.field-playedOther {
+}
+
+}

@@ -1,0 +1,34 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+
+html[data-theme="standard"] .copyicon.ft-copy-training-report {
+	background-image: url("chrome://foxtrick/content/resources/img/copy/copyTrainingReport.png");
+}
+html[data-theme="simple"] .copyicon.ft-copy-training-report {
+	background-image: url("chrome://foxtrick/content/resources/img/copy/copyTrainingReport_s.png");
+}
+
+
+html[data-theme="standard"] .copyicon.ft-copy-scout-comment {
+	background-image: url("chrome://foxtrick/content/resources/img/copy/copyScoutReport.png");
+}
+html[data-theme="simple"] .copyicon.ft-copy-scout-comment {
+	background-image: url("chrome://foxtrick/content/resources/img/copy/copyScoutReport_s.png");
+}
+
+
+html[data-theme="standard"] .copyicon.ft-copy-player-source {
+	background-image: url("chrome://foxtrick/content/resources/img/copy/copyPlayerSource.png");
+}
+html[data-theme="simple"] .copyicon.ft-copy-player-source {
+	background-image: url("chrome://foxtrick/content/resources/img/copy/copyPlayerSource_s.png");
+}
+
+
+html[data-theme="standard"] .copyicon.ft-copy-fixtures-source {
+	background-image: url("chrome://foxtrick/content/resources/img/copy/copyNormal.png");
+}
+html[data-theme="simple"] .copyicon.ft-copy-fixtures-source {
+	background-image: url("chrome://foxtrick/content/resources/img/copy/copyNormal_s.png");
+}
+
+}

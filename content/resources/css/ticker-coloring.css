@@ -1,0 +1,47 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+/* Module TickerColoring */
+
+/* ticker links */
+#ticker a {
+	margin: 2px;
+	color: black;
+}
+/* on mouse hover */
+#ticker a:hover {
+	background-color: transparent;
+}
+
+/* login welcome */
+#ticker a[href^="/MyHattrick/Dashboard.aspx"] {
+	background-color: #dfefc2;
+}
+/* My Hattrick message. being after login style it should take precedence */
+#ticker a[href^="/MyHattrick/Dashboard.aspx?actionType"] {
+	background-color: #dfdfdf;
+}
+/* supporter login */
+#ticker a[href^="/Club/Manager/?teamId="] {
+	background-color: #ffe8cf;
+}
+/* forum reply */
+#ticker a[href^="/Forum/"] {
+	background-color: #dfeeff;
+}
+/* transfer */
+#ticker a[href^="/Club/Players/"] {
+	background-color: #fffbcf;
+}
+/* challenge */
+#ticker a[href^="/Club/Challenges/"] {
+	background-color: #ffdfe0;
+}
+/* guestbook */
+#ticker a[href^="/Club/Manager/Guestbook.aspx?teamid="] {
+	background-color: #dffffd;
+}
+/* mail */
+#ticker a[href^="/Inbox/"] {
+	background-color: #eedfff;
+}
+
+}

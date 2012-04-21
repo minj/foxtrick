@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+Please don't remove the following comments with "version" unless you have
+a good reason to. They are for version bumps in Makefile.
+-->
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>FoxTrick team</string>
+	<key>Builder Version</key>
+	<string>534.50</string>
+	<key>CFBundleDisplayName</key>
+	<string>FoxTrick</string>
+	<key>CFBundleIdentifier</key>
+	<string>www.foxtrick.org</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleVersion</key>
+	<string>0.9.9</string><!--version-->
+	<key>CFBundleShortVersionString</key>
+	<string>0.9.9</string><!--version-->
+	<key>Chrome</key>
+	<dict>
+		<key>Database Quota</key>
+		<real>10485760</real>
+		<key>Global Page</key>
+		<string>content/background.html</string>
+	</dict>
+	<key>Content</key>
+	<dict>
+		<key>Scripts</key>
+		<dict>
+			<key>Start</key>
+			<array>
+				<!-- essential stuffs -->
+				<string>content/env.js</string>
+				<string>content/prefs.js</string>
+				<string>content/l10n.js</string>
+				<string>content/xml-load.js</string>
+				<string>content/pages.js</string>
+				
+				<!-- utilities -->
+				<string>content/lib/oauth.js</string>
+				<string>content/lib/sha1.js</string>
+				<string>content/lib/jquery.js</string>
+				<string>content/lib/PluralForm.js</string>
+				<string>content/lib/ZipFile.complete.js</string>
+
+				<!-- utilities -->
+				<string>content/util/api.js</string>
+				<string>content/util/array.js</string>
+				<string>content/util/copy-button.js</string>
+				<string>content/util/currency.js</string>
+				<string>content/util/dom.js</string>
+				<string>content/util/ht-ml.js</string>
+				<string>content/util/id.js</string>
+				<string>content/util/inject.js</string>
+				<string>content/util/layout.js</string>
+				<string>content/util/links-box.js</string>
+				<string>content/util/log.js</string>
+				<string>content/util/match-view.js</string>
+				<string>content/util/misc.js</string>
+				<string>content/util/module.js</string>
+				<string>content/util/note.js</string>
+				<string>content/util/notify.js</string>
+				<string>content/util/sanitize.js</string>
+				<string>content/util/session-store.js</string>
+				<string>content/util/string.js</string>
+				<string>content/util/time.js</string>
+
+				<!-- page utilities -->
+				<string>content/pages/all.js</string>
+				<string>content/pages/country.js</string>
+				<string>content/pages/players.js</string>
+				<string>content/pages/player.js</string>
+				<string>content/pages/youth-player.js</string>
+				<string>content/pages/transfer-search-results.js</string>
+				<string>content/pages/match.js</string>
+
+				<!-- core modules -->
+				<string>content/redirections.js</string>
+				<string>content/read-ht-prefs.js</string>
+				<string>content/forum-stage.js</string>
+				<string>content/core.js</string>
+				<string>content/add-class.js</string>
+				<string>content/ui.js</string>
+
+				<!-- categorized modules -->
+				<string>content/alert/live-alert.js</string>
+				<string>content/alert/new-mail.js</string>
+				<string>content/alert/ticker-alert.js</string>
+				<string>content/alert/ticker-coloring.js</string>
+				<string>content/forum/add-leave-conf-button.js</string>
+				<string>content/forum/embed-media.js</string>
+				<string>content/forum/forum-change-posts.js</string>
+				<string>content/forum/forum-change-posts-modules.js</string>
+				<string>content/forum/forum-direct-page-links.js</string>
+				<string>content/forum/forum-last-post.js</string>
+				<string>content/forum/forum-next-and-previous.js</string>
+				<string>content/forum/forum-mod-link-icons.js</string>
+				<string>content/forum/forum-presentation.js</string>
+				<string>content/forum/forum-preview.js</string>
+				<string>content/forum/forum-strip-hattrick-links.js</string>
+				<string>content/forum/forum-templates.js</string>
+				<string>content/forum/forum-thread-auto-ignore.js</string>
+				<string>content/forum/forum-youth-icons.js</string>
+				<string>content/forum/go-to-post-box.js</string>
+				<string>content/forum/hide-signatures.js</string>
+				<string>content/forum/ht-thread-marker.js</string>
+				<string>content/forum/mark-all-as-read.js</string>
+				<string>content/forum/mark-unread.js</string>
+				<string>content/forum/show-forum-pref-button.js</string>
+				<string>content/forum/staff-marker.js</string>
+				<string>content/information-aggregation/cross-table.js</string>
+				<string>content/information-aggregation/election-table.js</string>
+				<string>content/information-aggregation/extended-player-details.js</string>
+				<string>content/information-aggregation/extra-player-info.js</string>
+				<string>content/information-aggregation/flag-collection-to-map.js</string>
+				<string>content/information-aggregation/goal-difference-to-tables.js</string>
+				<string>content/information-aggregation/history-stats.js</string>
+				<string>content/information-aggregation/htms-points.js</string>
+				<string>content/information-aggregation/last-login.js</string>
+				<string>content/information-aggregation/median-transfer-price.js</string>
+				<string>content/information-aggregation/my-monitor.js</string>
+				<string>content/information-aggregation/nt-peek.js</string>
+				<string>content/information-aggregation/player-birthday.js</string>
+				<string>content/information-aggregation/player-stats-experience.js</string>
+				<string>content/information-aggregation/season-stats.js</string>
+				<string>content/information-aggregation/series-flags.js</string>
+				<string>content/information-aggregation/show-friendly-booked.js</string>
+				<string>content/information-aggregation/show-lineup-set.js</string>
+				<string>content/information-aggregation/skill-table.js</string>
+				<string>content/information-aggregation/supporterstats-enhancements.js</string>
+				<string>content/information-aggregation/table-of-statistical-truth.js</string>
+				<string>content/information-aggregation/team-stats.js</string>
+				<string>content/information-aggregation/transfer-deadline.js</string>
+				<string>content/information-aggregation/youth-promotes.js</string>
+				<string>content/information-aggregation/youth-series-estimation.js</string>
+				<string>content/information-aggregation/youth-twins.js</string>
+				<string>content/links/links-achievements.js</string>
+				<string>content/links/links-alliances.js</string>
+				<string>content/links/links-arena.js</string>
+				<string>content/links/links-challenges.js</string>
+				<string>content/links/links-club-transfers.js</string>
+				<string>content/links/links-coach.js</string>
+				<string>content/links/links-country.js</string>
+				<string>content/links/links-economy.js</string>
+				<string>content/links/links-fans.js</string>
+				<string>content/links/links.js</string>
+				<string>content/links/links-league.js</string>
+				<string>content/links/links-manager.js</string>
+				<string>content/links/links-match.js</string>
+				<string>content/links/links-national.js</string>
+				<string>content/links/links-player-detail.js</string>
+				<string>content/links/links-players.js</string>
+				<string>content/links/links-staff.js</string>
+				<string>content/links/links-team.js</string>
+				<string>content/links/links-tracker.js</string>
+				<string>content/links/links-training.js</string>
+				<string>content/links/links-youth.js</string>
+				<string>content/links/links-world.js</string>
+				<string>content/matches/att-vs-def.js</string>
+				<string>content/matches/live-match-report-format.js</string>
+				<string>content/matches/copy-ratings.js</string>
+				<string>content/matches/htms-prediction.js</string>
+				<string>content/matches/match-income.js</string>
+				<string>content/matches/match-order.js</string>
+				<string>content/matches/match-player-colouring.js</string>
+				<string>content/matches/match-report-format.js</string>
+				<string>content/matches/match-simulator.js</string>
+				<string>content/matches/ratings.js</string>
+				<string>content/matches/stars-counter.js</string>
+				<string>content/presentation/background-fixed.js</string>
+				<string>content/presentation/bookmark-adjust.js</string>
+				<string>content/presentation/country-list.js</string>
+				<string>content/presentation/currency-converter.js</string>
+				<string>content/presentation/custom-medals.js</string>
+				<string>content/presentation/fix-css-problems.js</string>
+				<string>content/presentation/friendly-interface.js</string>
+				<string>content/presentation/header-fix.js</string>
+				<string>content/presentation/header-toggle.js</string>
+				<string>content/presentation/highlight-cup-wins.js</string>
+				<string>content/presentation/highlight-ownerless.js</string>
+				<string>content/presentation/ht-date-format.js</string>
+				<string>content/presentation/large-flags.js</string>
+				<string>content/presentation/league-news-filter.js</string>
+				<string>content/presentation/local-time.js</string>
+				<string>content/presentation/loyalty-display.js</string>
+				<string>content/presentation/match-tables.js</string>
+				<string>content/presentation/mobile-enhancements.js</string>
+				<string>content/presentation/move-manager-online.js</string>
+				<string>content/presentation/move-player-select-box.js</string>
+				<string>content/presentation/move-player-statement.js</string>
+				<string>content/presentation/old-style-face.js</string>
+				<string>content/presentation/original-face.js</string>
+				<string>content/presentation/personality-images.js</string>
+				<string>content/presentation/ratings-display.js</string>
+				<string>content/presentation/safe-for-work.js</string>
+				<string>content/presentation/simple-presentation.js</string>
+				<string>content/presentation/skill-coloring.js</string>
+				<string>content/presentation/skill-translation.js</string>
+				<string>content/presentation/skin-plugin.js</string>
+				<string>content/presentation/smaller-pages.js</string>
+				<string>content/presentation/team-select-box.js</string>
+				<string>content/presentation/youth-skill-hide-unknown.js</string>
+				<string>content/shortcuts-and-tweaks/confirm-actions.js</string>
+				<string>content/shortcuts-and-tweaks/context-menu-copy.js</string>
+				<string>content/shortcuts-and-tweaks/copy-match-id.js</string>
+				<string>content/shortcuts-and-tweaks/copy-player-ad.js</string>
+				<string>content/shortcuts-and-tweaks/copy-youth.js</string>
+				<string>content/shortcuts-and-tweaks/extra-shortcuts.js</string>
+				<string>content/shortcuts-and-tweaks/filter.js</string>
+				<string>content/shortcuts-and-tweaks/lineup-shortcut.js</string>
+				<string>content/shortcuts-and-tweaks/manager-buttons.js</string>
+				<string>content/shortcuts-and-tweaks/player-filters.js</string>
+				<string>content/shortcuts-and-tweaks/rapid-id.js</string>
+				<string>content/shortcuts-and-tweaks/senior-team-shortcuts.js</string>
+				<string>content/shortcuts-and-tweaks/table-sort.js</string>
+				<string>content/shortcuts-and-tweaks/team-popup-links.js</string>
+				<string>content/shortcuts-and-tweaks/transfer-search-filters.js</string>
+				<string>content/shortcuts-and-tweaks/transfer-search-result-filters.js</string>
+				<!-- end categorized modules -->
+
+				<string>content/entry.js</string>
+				<string>content/loader-chrome.js</string>
+			</array>
+		</dict>
+	</dict>
+	<key>Description</key>
+	<string>A set of presentation enhancements for hattrick.org</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Allowed Domains</key>
+			<array>
+				<string>*.hattrick.org</string>
+				<string>*.hattrick.name</string>
+				<string>*.hattrick.ws</string>
+				<string>*.hat-trick.net</string>
+				<string>*.hattrick.interia.pl</string>
+				<string>*.hattrick.uol.com.br</string>
+				<string>*.foxtrick.org</string>
+				<string>foxtrick.symbiosis.org.gr</string>
+				<string>foxtrick.c6.ixwebhosting.org</string>
+				<string>foxtrick.googlecode.com</string>
+				<string>*.hattrick-youthclub.org</string>
+				<string>www.fantamondi.it</string>
+			</array>
+			<key>Include Secure Pages</key>
+			<true/>
+			<key>Level</key>
+			<string>Some</string>
+		</dict>
+	</dict>
+	<key>Update Manifest URL</key>
+	<string>https://www.foxtrick.org/nightly/safari/update.plist</string><!--updateurl-->
+	<key>Website</key>
+	<string>http://www.foxtrick.org/</string>
+</dict>
+</plist>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<about>
+
+<links value="links">
+	<link title="homepage" value="http://www.foxtrick.org/" />
+	<link title="bugTracker" value="http://code.google.com/p/foxtrick/issues/" />
+	<link title="hattrickForum" value="http://www.hattrick.org/Forum/Overview.aspx?v=0&amp;f=173635" />
+	<link title="screenshots" value="http://www.foxtrick.org/screenshots/" />
+	<link title="nightlyFirefox" value="http://www.foxtrick.org/nightly/" />
+	<link title="nightlyChrome" value="http://www.foxtrick.org/nightly/chrome/" />
+	<link title="nightlyOpera" value="http://www.foxtrick.org/nightly/opera/" />
+	<link title="nightlySafari" value="http://www.foxtrick.org/nightly/safari/" />
+	<link title="recentChanges" value="http://code.google.com/p/foxtrick/source/list" />
+</links>
+
+<maintainers>
+	<maintainer id="8342420" name="ryanli" />
+	<maintainer id="7776339" name="convincedd" />
+</maintainers>
+
+<developers>
+	<developer id="1270528" name="larsw84" />
+	<developer id="2336766" name="spambot" />
+	<developer id="7776339" name="convincedd" />
+	<developer id="765274" name="taised" />
+	<developer id="8378622" name="bummerland" />
+	<developer id="3542943" name="Jestar" />
+	<developer id="6228713" name="smates" />
+	<developer id="3737795" name="OBarros" />
+	<developer id="7409095" name="stephan57" />
+	<developer id="637644" name="baumanns" />
+	<developer id="4342858" name="ljushaff" />
+	<developer id="8342420" name="ryanli" />
+	<developer id="3410980" name="Aimo_Kanuuna" />
+	<developer id="11335334" name="CatzHoek" />
+</developers>
+
+<translations>
+	<translation language="Albanian">
+		<translator id="2090503" name="GM-Eagle" />
+	</translation>
+	<translation language="العربية">
+		<translator id="9311330" name="GM-OmaniMilani" />
+	</translation>
+	<translation language="Bosnian">
+		<translator id="5345125" name="Mod-Marin" />
+		<translator id="4342858" name="ljushaff" />
+	</translation>
+	<translation language="Беларуская">
+		<translator id="1512628" name="LA-Stolik" />
+	</translation>
+	<translation language="Catalan">
+		<translator id="753905" name="carlesmu" />
+	</translation>
+	<translation language="Čeština">
+		<translator id="1132186" name="gucan" />
+	</translation>
+	<translation language="Dansk">
+		<translator id="6779565" name="LasseSvendsen" />
+	</translation>
+	<translation language="Deutsch">
+		<translator id="2336766" name="spambot" />
+		<translator id="7776339" name="convincedd" />
+		<translator id="11335334" name="CatzHoek" />
+	</translation>
+	<translation language="Ελληνικά">
+		<translator id="5055092" name="GTTWINS" />
+	</translation>
+	<translation language="Español">
+		<translator id="6345528" name="franory" />
+	</translation>
+	<translation language="Español, Centroamericano">
+		<translator id="335181" name="Baler0" />
+	</translation>
+	<translation language="Español, Sudamericano">
+		<translator id="335181" name="Baler0" />
+		<translator id="6927256" name="ElChiquitin" />
+	</translation>
+	<translation language="Français">
+		<translator id="7409095" name="stephan57" />
+	</translation>
+	<translation language="Frysk">
+		<translator id="440454" name="Foppe-" />
+	</translation>
+	<translation language="فارسی">
+		<translator id="9630939" name="Slash-ss" />
+		<translator id="10038631" name="Mohammad-SE" />
+	</translation>
+	<translation language="Galego">
+		<translator id="524111" name="Piper_101" />
+	</translation>
+	<translation language="Hrvatski">
+		<translator id="2809993" name="GM-damyr" />
+	</translation>
+	<translation language="Hungarian">
+		<translator id="2172516" name="csajszi" />
+	</translation>
+	<translation language="Íslenska">
+		<translator id="9930684" name="LA-LordBastard" />
+	</translation>
+	<translation language="Italiano">
+		<translator id="2902659" name="caracca" />
+		<translator id="765274" name="taised" />
+		<translator id="9559302" name="Sam-Vimes" />
+	</translation>
+	<translation language="한국어">
+		<translator id="9845514" name="SI-CH" />
+	</translation>
+	<translation language="Lithuanian">
+		<translator id="2765378" name="Mod-summercloud" />
+		<translator id="8366392" name="LA-MJ" />
+	</translation>
+	<translation language="Luxembourgish">
+		<translator id="2884072" name="Mod-Karlthegreat" />
+	</translation>
+	<translation language="Macedonian">
+		<translator name="white_eagle" />
+	</translation>
+	<translation language="Malti">
+		<translator id="4149232" name="LA-saviour26" />
+	</translation>
+	<translation language="Nederlands">
+		<translator id="5577946" name="eekels" />
+		<translator id="7126492" name="CoRrRan" />
+	</translation>
+	<translation language="Norwegian, bokmål">
+		<translator id="6350285" name="Skoglund" />
+	</translation>
+	<translation language="Norwegian, nynorsk">
+		<translator id="4387847" name="Krasher" />
+	</translation>
+	<translation language="Polski">
+		<translator id="6801903" name="Homzik" />
+		<translator id="10167326" name="SilesiaVratislavia" />
+	</translation>
+	<translation language="Português">
+		<translator id="3961483" name="_recluso_" />
+		<translator id="6307374" name="GM-ei04004" />
+		<translator id="7135171" name="McTripas" />
+		<translator id="9469076" name="MEO_Comandante" />
+	</translation>
+	<translation language="Português, Brasil">
+		<translator id="8277378" name="MarceloFBrandao" />
+	</translation>
+	<translation language="Romanian">
+		<translator id="552640" name="slader" />
+	</translation>
+	<translation language="Russian">
+		<translator id="621456" name="_KOHb_" />
+	</translation>
+	<translation language="Slovak">
+		<translator id="7873605" name="JAM3SoN" />
+	</translation>
+	<translation language="Srpski">
+		<translator id="4342858" name="ljushaff" />
+	</translation>
+	<translation language="Suomi">
+		<translator id="2689296" name="Pyntsa" />
+		<translator id="6927256" name="ElChiquitin" />
+	</translation>
+	<translation language="Svenska">
+		<translator id="12166" name="GM-murko" />
+		<translator id="6680572" name="GM-Nanouk" />
+	</translation>
+	<translation language="Tiếng Việt">
+		<translator id="9372637" name="Murtagsh" />
+	</translation>
+	<translation language="Ukrainian">
+		<translator id="4727906" name="Grif_07" />
+	</translation>
+	<translation language="中文（简体）">
+		<translator id="8342420" name="ryanli" />
+	</translation>
+</translations>
+
+<graphics value="Graphic Designers">
+	<designer id="3410980" name="Aimo_Kanuuna" />
+</graphics>
+</about>

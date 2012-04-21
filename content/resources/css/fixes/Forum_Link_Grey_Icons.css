@@ -1,0 +1,74 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+
+.cfFooter a[href*="/Forum/Read.aspx?t="]{
+  background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_read.png");
+}
+
+.cfFooter a[href*="/Forum/Functions.aspx?actionTypeFunctions=reportmessage&t="] {
+  background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_reportmessage.png");
+}
+
+.cfFooter a[href*="/Forum/Write.aspx?t="]{
+  background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_reply.png");
+}
+
+.cfFooter a[href*="/Forum/Write.aspx?actionTypeWrite=edit&t="]{
+  background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_edit.png");
+}
+.cfFooter a[href*="/Forum/Write.aspx?actionType=edit&t="]{
+  background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_edit.png");
+}
+
+
+.cfFooter a[href*="/Forum/Functions.aspx?actionTypeFunctions=delete&t="]{
+  background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_del.png");
+}
+
+.cfFooter a[href*="/Forum/Functions.aspx?actionType=delete&t="]{
+  background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_del.png");
+}
+
+.cfFooter a[href*="/MyHattrick/Bookmarks/Default.aspx?actionType=add&BookmarkTypeID=4&ObjectID="]{
+  background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_fav.png");
+}
+
+.cfFooter a[href*="/Forum/Functions.aspx?actionTypeFunctions=ignore&t="]{
+  background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_ignore.png");
+}
+.cfFooter a[href*="/Forum/Functions.aspx?actionType=ignore&t="]{
+  background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_ignore.png");
+}
+.cfFooter .foxtrick-signaturetoggle{
+  background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_sigtoggle.png");
+}
+.cfFooter .foxtrick-unreadlink {
+  background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_markunread.png");
+}
+
+.cfFooter .foxtrick-copyfromarchive {
+  background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_copyposting.png");
+}
+
+.cfFooter a[href*="/Forum/Read.aspx?t="],
+.cfFooter a[href*="/Forum/Functions.aspx?actionTypeFunctions=reportmessage&t="],
+.cfFooter a[href*="/Forum/Write.aspx?t="],
+.cfFooter a[href*="/Forum/Write.aspx?actionTypeWrite=edit&t="],
+.cfFooter a[href*="/Forum/Write.aspx?actionType=edit&t="],
+.cfFooter a[href*="/Forum/Functions.aspx?actionTypeFunctions=delete&t="],
+.cfFooter a[href*="/Forum/Functions.aspx?actionType=delete&t="],
+.cfFooter a[href*="/MyHattrick/Bookmarks/Default.aspx?actionType=add&BookmarkTypeID=4&ObjectID="],
+.cfFooter a[href*="/Forum/Functions.aspx?actionTypeFunctions=ignore&t="],
+.cfFooter a[href*="/Forum/Functions.aspx?actionType=ignore&t="],
+.cfFooter .foxtrick-signaturetoggle,
+.cfFooter .foxtrick-unreadlink,
+.cfFooter .foxtrick-copyfromarchive
+{
+  color: transparent;
+  font-size: 0pt;
+  padding: 12px 23px 4px 0px;
+  margin-top: -12px;
+  margin-bottom: 0px;
+  background-repeat:no-repeat;
+}
+
+}

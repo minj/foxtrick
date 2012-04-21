@@ -1,0 +1,50 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+
+/* local clock positions */
+html[dir="ltr"] #ft-local-time {
+	float: right;
+}
+html[dir="rtl"] #ft-local-time {
+	float: left;
+}
+
+html[data-theme="standard"] #ft-local-time {
+	margin-top: 9px;
+}
+html[data-theme="simple"] #ft-local-time {
+	margin-top: 20px;
+}
+
+html[dir="ltr"][data-theme="standard"] #ft-local-time {
+	margin-left: 7px;
+}
+html[dir="ltr"][data-theme="simple"] #ft-local-time {
+	margin-left: 5px;
+}
+
+/* make the clocks seemingly clickable */
+#ft-local-time, #time {
+	cursor: pointer;
+}
+
+/* background */
+.date[x-ht-date], #ft-local-time {
+	background-image: url("chrome://foxtrick/content/resources/img/tz-local.png");
+	background-repeat: no-repeat;
+}
+#time {
+	background-image: url("chrome://foxtrick/content/resources/img/tz-hattrick.png");
+	background-repeat: no-repeat;
+}
+
+/* reserve space for background */
+html[dir="ltr"] .date[x-ht-date], html[dir="ltr"] #ft-local-time, html[dir="ltr"] #time {
+	padding-left: 14px !important;
+	background-position: left center;
+}
+html[dir="rtl"] .date[x-ht-date], html[dir="rtl"] #ft-local-time, html[dir="rtl"] #time {
+	padding-right: 14px !important;
+	background-position: right center;
+}
+
+}

@@ -1,0 +1,318 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+/* user-content-example.css
+ *
+ * This file is a list of CSS statements for styling FoxTrick that satisfies
+ * user's preferences. There are comments (everything with / * ... * / are comments)
+ * that describes what module each statement belongs to and their meanings.
+ *
+ * For instances given here, you don't need to know CSS in whole. Although a
+ * basic knowledge of CSS will help you a lot. For colors, just replace color
+ * names as preferred. To disable a statement, you could remove it or comment it
+ * out. Sometimes we need to use the "!important" keyword to overwrite the
+ * Hattrick rule.
+ *
+ * After saving it to a file and adjusting the values, you can use
+ * the SkinPlugin module of FoxTrick to load the CSS file in order to have the
+ * user style in effect.
+ *
+ * Example basic color names:
+ * maroon, red, yellow, olive, purple, fuchsia, white, lime, green,
+ * navy, blue, aqua, teal, black, silver, gray, orange
+ *
+ * For a general introduction to CSS:
+ * http://www.w3schools.com/css/css_intro.asp
+ *
+ * For a list of CSS colors:
+ * http://www.w3schools.com/css/css_colornames.asp
+ *
+ */
+
+/* Module GoaldifferenceToTables */
+
+/* positive goal difference */
+.ft-gd-positive {
+	font-weight: bold;
+}
+
+/* goal difference is zero */
+.ft-gd-zero {
+	/* do nothing */
+}
+
+/* negative goal difference */
+.ft-gd-negative {
+	font-style: italic;
+}
+
+
+/* Module HighlightOwnerless */
+
+/* the link to ownerless teams at league page */
+.ft-ownerless {
+	color: white !important;
+	background-color: gray;
+}
+
+
+/* Module htmsstatistics */
+
+/* the graph */
+.ft-htms-graph {
+	border: 1px solid black;
+}
+
+/* the bar indicating win probability */
+.htms-stats-win {
+	background-color: green;
+}
+
+/* the bar indicating draw probability */
+.htms-stats-draw {
+	background-color: gray;
+}
+
+/* the bar indicating loss probability */
+.htms-stats-loss {
+	background-color: red;
+}
+
+
+/* Module HTThreadMarker */
+
+/* Link of threads by HT */
+.ft-ht-thread {
+	background: #ff7a7a;
+}
+
+
+/* Module MatchReportFormat */
+
+.ft-match-report-team-home, .ft-match-report-team-away, .ft-match-report-team-mine {
+	font-weight: bold;
+}
+
+/* link or text of home team */
+.ft-match-report-team-home {
+	color: #9f0202 !important;
+}
+
+/* link or text of away team */
+.ft-match-report-team-away {
+	color: #16029f !important;
+}
+
+/* link or text of my team */
+.ft-match-report-team-mine {
+	color: #55f !important;
+}
+
+/* normal events, involving players */
+.ft-match-report-event-normal {
+	background-color: #f5f5f5;
+}
+
+/* special events, team events */
+.ft-match-report-event-special {
+	background-color: #e0e0e0;
+}
+
+/* goal scored by my team */
+.ft-match-report-goal-mine {
+	background-color: #e3e9ff;
+	border: 1px royalblue solid;
+	-moz-border-radius: 5px;
+}
+
+/* goal scored by home team */
+.ft-match-report-goal-home {
+	background-color: #ffe8e8;
+	border: 1px yellow solid;
+}
+
+/* goal scored by away team */
+.ft-match-report-goal-away {
+	background-color: #e0efe0;
+	border: 1px pink solid;
+}
+
+/* separates different parts, eg half time */
+.ft-match-report-separator {
+	border-bottom: 1px solid #849D84;
+	margin-bottom:30px !important;
+	margin-top:10px !important;
+}
+
+
+/* Module MatchPlayerColouring */
+
+/* general styles for team names on the sidebar */
+.sidebarBox .ft-match-player-home, .sidebarBox .ft-match-player-away,
+.sidebarBox .ft-match-player-mine, .sidebarBox .ft-match-player-unknown {
+	border: 1px solid #ccc;
+}
+
+/* general styles for all players */
+.ft-match-player-home, .ft-match-player-away,
+.ft-match-player-mine, .ft-match-player-unknown {
+	padding: 0 2px !important;
+}
+
+/* styles for home players */
+.ft-match-player-home {
+	background: #ffcdcd;
+	color: black !important;
+	border: 1px solid #CF8181;
+}
+
+/* styles for away players */
+.ft-match-player-away {
+	background: #d2cdff;
+	color: black !important;
+	border: 1px solid #8981CF;
+}
+
+/* styles for my players */
+.ft-match-player-mine {
+	background: white;
+	color: black !important;
+	border: none;
+}
+
+/* styles for players of unknown team */
+.ft-match-player-unknown {
+	background: #f0f0f0;
+}
+
+
+/* Module StaffMarker */
+/* Order by ascending priority since an element may have more than one class
+   so that the last declared one wins.
+   Last number of padding is the size of the icon + .*/
+
+.ft-staff-hty {
+	background-image: url("chrome://foxtrick/content/resources/img/staff/hyouthclub.png");
+	background-repeat: no-repeat;
+	padding: 1px 1px 1px 18px !important;
+}
+
+.ft-staff-foxtrick {
+	background-image: url("chrome://foxtrick/content/resources/img/staff/foxtrick.png");
+	background-repeat: no-repeat;
+	padding: 1px 1px 1px 18px !important;
+}
+
+.ft-staff-chpp-holder {
+	background-image: url("chrome://foxtrick/content/resources/img/staff/chpp.png");
+	background-repeat: no-repeat;
+	padding: 1px 1px 1px 24px !important;
+}
+
+.ft-staff-editor {
+	background-color: #7BB300;
+	color: white !important;
+}
+
+.ft-staff-chpp {
+	background-color: green;
+	color: white !important;
+}
+
+.ft-staff-la {
+	background-color: white;
+	color: green !important;
+}
+
+.ft-staff-mod {
+	background-color: yellow;
+	color: black !important;
+}
+
+.ft-staff-gm {
+	background-color: orange;
+	color: black !important;
+}
+
+.ft-staff-ht {
+	background-color: red;
+}
+
+
+/* Module TickerColoring */
+
+/* ticker links */
+.ft-ticker-link {
+	margin: 2px;
+	color: black;
+}
+
+/* on mouse hover */
+.ft-ticker-link:hover {
+	background-color: transparent;
+}
+
+/* login welcome */
+.ft-ticker-welcome {
+	background-color: #dfefc2;
+}
+
+/* supporter login */
+.ft-ticker-supporter {
+	background-color: #ffe8cf;
+}
+
+/* forum reply */
+.ft-ticker-forum {
+	background-color: #dfeeff;
+}
+
+/* transfer */
+.ft-ticker-transfer {
+	background-color: #fffbcf;
+}
+
+/* challenge */
+.ft-ticker-challenge {
+	background-color: #ffdfe0;
+}
+
+/* guestbook */
+.ft-ticker-guestbook {
+	background-color: #dffffd;
+}
+
+/* mail */
+.ft-ticker-mail {
+	background-color: #eedfff;
+}
+
+/* My Hattrick message */
+.ft-ticker-myht {
+	background-color: #dfdfdf;
+}
+
+/* New HT mail */
+.ft-new-mail {
+color: yellow !important;
+font-weight: bold !important;
+}
+
+/* New Forum repply to me */
+.ft-new-forum-msg {
+color: blue !important;
+font-weight: bold !important;
+}
+
+/* Lineup prediction*/
+
+div#ft-full-level0 span,
+div#ft-full-level1 span,
+div#ft-full-level2 span,
+div#ft-full-level3 span,
+div#ft-full-level4 span,
+div#ft-full-level5 span,
+div#ft-full-level6 span  {
+background: none repeat scroll 0 0 white !important; 
+font-weight: bold !important;
+}  
+
+}

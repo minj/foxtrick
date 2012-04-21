@@ -1,0 +1,65 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+
+#ft-monitor-div {
+	margin-bottom: 20px ;
+}
+
+#ft-monitor-header {
+	margin-bottom: 0px !important;
+	margin-top: 20px !important;
+}
+
+#ft-monitor-add-remove {
+	float: right;
+}
+
+#ft-monitor-container {
+	clear: both;
+}
+
+.ft-monitor-frame {
+	width: 48%;
+	margin: 0 1%;
+	float: left;
+}
+
+.ft-monitor-frame:nth-child(odd) {
+	clear: left; /* two in a row */
+}
+
+.ft-monitor-frame  > h2:hover  > div.ft_sort {
+	display:inline;
+}
+
+.ft-monitor-frame > h2 > div.ft_sort {
+	float:right;
+	display:none;
+}
+
+.ft-monitor-remove {
+	background-image: url("chrome://foxtrick/content/resources/img/cross_small.png");
+	width: 12px;
+	height: 12px;
+	float: right;
+	display: block;
+	cursor: pointer;
+}
+
+.ft-monitor-remove:hover {
+	background-image: url("chrome://foxtrick/content/resources/img/crossRed_small.png");
+}
+
+#ft-monitor-sidebar-box .hidden {
+	display: none !important; /* need to overwrite */
+}
+
+.teamicon {
+	padding: 0 5px 0 0;
+	margin:0 0 -2px
+}
+
+.ft-monitor-frame > h2 > a.flag + img {
+	margin-top:-2px;
+}
+
+}
