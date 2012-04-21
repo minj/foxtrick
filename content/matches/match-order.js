@@ -348,19 +348,19 @@ Foxtrick.modules["MatchOrderInterface"]={
 					};
 					
 					//players aren't send with the document, but the addMutationEventListeners later will take care
-					var fieldplayers = target.getElementsByClassName('player');
-					if(!fieldplayers.length)
+					var listplayers = target.getElementsByClassName('player');
+					if(!listplayers.length)
 						return;
 					//only get the lastMatchDates
 					//require 3 players to have the same playdate, this helps excluding recent transfers to mess up things
 					if(lastMatchDates === null)
-						lastMatchDates = Foxtrick.Pages.Players.getLastMatchDates (fieldplayers, getLastMatchDates, 3);
+						lastMatchDates = Foxtrick.Pages.Players.getLastMatchDates (listplayers, getLastMatchDates, 3);
 					
 					if (lastMatchDates && lastMatchDates.lastMatchDate != "undefined" && lastMatchDates.secondLastMatchDate != "undefined") {
-						for (var i=0; i<fieldplayers.length; ++i) {
-							if (!fieldplayers[i].id) 
+						for (var i=0; i<listplayers.length; ++i) {
+							if (!listplayers[i].id) 
 								continue;
-							var id = Number(fieldplayers[i].id.match(/list_playerID(\d+)/i)[1]);
+							var id = Number(listplayers[i].id.match(/list_playerID(\d+)/i)[1]);
 							var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
 							
 							if (player.lastMatchDate)
@@ -369,13 +369,13 @@ Foxtrick.modules["MatchOrderInterface"]={
 								var matchDay = 0;
 
 							if (matchDay == lastMatchDates.lastMatchDate){
-								Foxtrick.addClass( fieldplayers[i],'playedLast'); 
+								Foxtrick.addClass( listplayers[i],'playedLast'); 
 							}	
 							else if (matchDay == lastMatchDates.secondLastMatchDate){
-								Foxtrick.addClass( fieldplayers[i],'playedSecondLast'); 
+								Foxtrick.addClass( listplayers[i],'playedSecondLast'); 
 							}
 							else {
-								Foxtrick.addClass( fieldplayers[i],'playedOther');
+								Foxtrick.addClass( listplayers[i],'playedOther');
 							}
 						}
 					} else {
