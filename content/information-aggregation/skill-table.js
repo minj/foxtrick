@@ -1005,6 +1005,8 @@ Foxtrick.modules["SkillTable"]={
 						var rowIndex;
 						for (rowIndex = 0; rowIndex < table.rows.length; ++rowIndex) {
 							var row = table.rows[rowIndex];
+							if (Foxtrick.hasClass(row, 'hidden'))
+								continue;
 							ret += "[tr]";
 							var cellIndex;
 							for (cellIndex = 0; cellIndex < row.cells.length; ++cellIndex) {
