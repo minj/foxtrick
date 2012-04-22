@@ -483,7 +483,7 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 					continue;
 				}
 				var evtType = parseInt(event.getAttribute("data-eventtype").match(/\d+/)[0]);				
-				var evtMin = parseInt(event.firstChild.textContent.match(/\d+/)[0]);
+				var evtMin = parseInt(event.firstChild.textContent.match(/\d+/)[0], 10);
 				var is_HomeEvent = Foxtrick.hasClass(event, "liveHomeEvent");
 				var is_awayEvent = Foxtrick.hasClass(event, "liveAwayEvent");
 				var is_neutralEvent = !(is_HomeEvent || is_awayEvent);
