@@ -483,7 +483,7 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 					continue;
 				}
 				var evtType = parseInt(event.getAttribute("data-eventtype").match(/\d+/)[0]);				
-				var evtMin = parseInt(event.firstChild.textContent.match(/\d+/)[0]);
+				var evtMin = parseInt(event.firstChild.textContent.match(/\d+/)[0], 10);
 				var is_HomeEvent = Foxtrick.hasClass(event, "liveHomeEvent");
 				var is_awayEvent = Foxtrick.hasClass(event, "liveAwayEvent");
 				var is_neutralEvent = !(is_HomeEvent || is_awayEvent);
@@ -569,8 +569,8 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 				//exact copy of the current match-report-format.js function
 				var addEventIcons = function(parent, isEventTeam, evtType, title){
 					if (FoxtrickPrefs.isModuleOptionEnabled("MatchReportFormat", "ShowEventIcons")){
-						var createEventIcon = function(src, title, alt) {
-							return Foxtrick.createImage(doc, { alt: alt, title: title, src: src , className: "ft-match-report-event-icon-image" });
+						var createEventIcon = function( src, title, alt) {
+							Foxtrick.addImage(doc, parent, { alt: alt, title: title, src: src , className: "ft-match-report-event-icon-image" });
 						}
 
 						//icons for both columns (e.g.: Header vs. quick etc.)
@@ -579,12 +579,12 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 							if (isEventTeam) {
 								if (eventTypes[evtType]["team"]) 
 									for(var i = 0; i < eventTypes[evtType]["team"].length; ++i)
-										parent.appendChild(createEventIcon(icons[eventTypes[evtType]["team"][i]], title, "Event Id " + evtType + " : " + eventTypes[evtType]["team"][i]));
+										createEventIcon(icons[eventTypes[evtType]["team"][i]], title, "Event Id " + evtType + " : " + eventTypes[evtType]["team"][i]);
 							} 
 							else {
 								if (eventTypes[evtType]["other"])
 									for(var i = 0; i < eventTypes[evtType]["other"].length; ++i)
-										parent.appendChild(createEventIcon(icons[eventTypes[evtType]["other"][i]], title, "Event Id " + evtType + " : " + eventTypes[evtType]["team"][i]));
+										createEventIcon(icons[eventTypes[evtType]["other"][i]], title, "Event Id " + evtType + " : " + eventTypes[evtType]["team"][i]);
 							} 
 						} 
 						//simple case, display icon for team
@@ -593,14 +593,14 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 								return;
 							if (icons[eventTypes[evtType]] instanceof Array)
 								for(var i = 0; i < icons[eventTypes[evtType]].length; ++i)
-									parent.appendChild(createEventIcon(icons[eventTypes[evtType]][i], title, "Event Id " + evtType + " : " +eventTypes[evtType]));
+									createEventIcon(icons[eventTypes[evtType]][i], title, "Event Id " + evtType + " : " +eventTypes[evtType]);
 							else {
-								parent.appendChild(createEventIcon(icons[eventTypes[evtType]], title, "Event Id " + evtType + " : " +eventTypes[evtType]));
+								createEventIcon(icons[eventTypes[evtType]], title, "Event Id " + evtType + " : " +eventTypes[evtType]);
 							}
 						}
 						//no icon, put in transparent icon to allow tooltoip
 						else{
-							parent.appendChild(createEventIcon(icons["transparent"], title, title));
+							createEventIcon(icons["transparent"], title, title);
 						}
 					}
 				}
@@ -622,7 +622,7 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 		var lContainer = doc.getElementsByClassName("liveMatchContainer")[0];
 		if(lContainer)
 			Foxtrick.listen(lContainer, 'DOMNodeInserted', function(event){	
-				if(event.target.getAttribute("id") == "ctl00_ctl00_CPContent_CPMain_repM"){
+				if(event.target.getAttribute && event.target.getAttribute("id") && event.target.getAttribute("id") == "ctl00_ctl00_CPContent_CPMain_repM"){
 				var livereports = event.target.getElementsByClassName("liveReport");
 				for(var i=0; i < livereports.length; i++)
 					react(livereports[i]);

@@ -194,8 +194,7 @@
 				//add icons according to amount of occurance
 				var addIcons = function (parent, limit, alt, className, src){
 					for(var k = 0; k < limit; k++){
-						var image = Foxtrick.createImage(doc, { alt: alt, class: className, src: src}); 
-						parent.appendChild(image);
+						Foxtrick.addImage(doc, parent, { alt: alt, class: className, src: src}); 
 					}
 				}
 				addIcons(container, marked, l10n_marked_twins, "ft-youth-twins-icon", icon_green);
@@ -257,31 +256,25 @@
 				if(typeof(json.players[playerID]) !== "object")
 					valid = false;
 			}
+			Foxtrick.log("YouthTwins: Team is valid:", valid);
 			
 			//query HY or use cached stuff and alter the site
-			if(now.getTime() > fetchTime && now.getTime() < fetchTime + lifeTime && valid){
+			if(now.getTime() > fetchTime && now.getTime() <= fetchTime + lifeTime){
 				//in valid lifespan, also saved response seems to be valid
 				Foxtrick.log("YouthTwins: Using cached response from", fetchDate.toUTCString(),"expires", expireDate.toUTCString(),"now", (new Date()).toUTCString());
 				handleHyResponse(saved, 200);
-			} else if(now > fetchTime + lifeTime || !valid) {
+			} else if(now > fetchTime + lifeTime) {
 				if(ignoreUntil != -1 && now < ignoreUntil){
 					var until = new Date();
 					until.setTime(ignoreUntil);
-					Foxtrick.log("YouthTwins: Ignore one day", until.toUTCString());
+					Foxtrick.log("YouthTwins: Ignoring due to HY request until", until.toUTCString());
 					return;
 				}
-				//saved data expired or saved data is invalud
-				if(valid){
-					//saved data is valid, plain request should suffice
-					Foxtrick.log("YouthTwins: Lifetime expired, updating from HY");
-					//teamid, forceUpdate, debug, usertype, response
-					getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
-				} else {
-					//saved data is not valid, probably because a new guy has been scouted
-					Foxtrick.log("YouthTwins: One or more players not found in saved result, updating from HY");
-					//teamid, forceUpdate, debug, usertype, response
-					getTwinsFromHY(teamid, true, false, "auto", handleHyResponse);
-				}
+				//saved data is valid, plain request should suffice
+				Foxtrick.log("YouthTwins: Lifetime expired, updating from HY");
+				//teamid, forceUpdate, debug, usertype, response
+				getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
+			
 			} else 
 				Foxtrick.log("Dear time traveler, we welcome you!");	
 		}

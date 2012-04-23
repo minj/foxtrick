@@ -67,6 +67,7 @@ class CHPPHolderParser(HTMLParser.HTMLParser):
 		if tag == 'p':
 			if self.in_creator_paragraph:
 				found = False
+				
 				for u in self.users:
 					if u['id'] == self.currentUser['id']:
 						found = True
@@ -84,4 +85,6 @@ class CHPPHolderParser(HTMLParser.HTMLParser):
 			
 			
 	def get(self):
+		for u in self.users:
+			u['appNames'] = sorted(u['appNames'])
 		return self.users

@@ -161,6 +161,9 @@ if ( typeof(opera) == "object" ) {
 			getURL : function (path) {
 				return './'+path;
 			},
+			getBackgroundPage: function() {
+				return opera.extension.bgProcess;
+			},
 		},
 
 		tabs : {

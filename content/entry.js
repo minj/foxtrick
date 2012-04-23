@@ -297,10 +297,16 @@ Foxtrick.entry.change = function(ev) {
 			return;
 		}
 
+		var node = ev.target;
+		while(node){
+			if(node && Foxtrick.hasClass(node, 'ft-ignore-changes'))
+				return;
+			node = node.parentNode
+		}
 		// ignore changes list
-		if (ev.originalTarget && ev.originalTarget.className
-			&& (ev.originalTarget.className=='boxBody'
-				|| ev.originalTarget.className=='ft-popup-span'))
+		if (ev.originalTarget && 
+				(Foxtrick.hasClass(ev.originalTarget, 'boxBody')
+				|| Foxtrick.hasClass(ev.originalTarget,'ft-popup-span')))
 			return;
 
 		Foxtrick.log("call modules change functions");

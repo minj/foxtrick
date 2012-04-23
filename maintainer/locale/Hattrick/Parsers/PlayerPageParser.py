@@ -18,7 +18,7 @@ class PlayerPageParser(HTMLParser.HTMLParser):
 		self.in_position_span = False;
 		
 	def getPlayerIdFromUrl(self, url):
-		pattern = re.compile("\/Club\/Players\/Player.aspx\?(.*)PlayerID=(\d+)")
+		pattern = re.compile("\/Club\/Players\/Player.aspx\?(.*)PlayerID=(\d+)", re.I)
 		match = re.match(pattern, url)
 		if match and match.group(2):
 			return match.group(2)

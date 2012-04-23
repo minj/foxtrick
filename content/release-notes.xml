@@ -13,6 +13,13 @@
 <item>Please view <xhtml:a href="http://code.google.com/p/foxtrick/source/list">commit history</xhtml:a> at Google Code for details.</item>
 </note>
 
+<note version="0.9.3">
+<item>● MatchOrderInterface: Option to disable last match information and highlighting for tournament games added (default on)</item>
+<item>● MatchOrderInterface: Fixed bug where the playedLastMatch indicator didn't show (or showed incorrectly) on Firefox</item>
+<item>● PlayerStatsExperience: Fixed bug where red cards caused games beeing detected as walkovers</item>
+<item>● PlayerStatsExperience: Fixed issue that caused this module not to work on Firefox 3.6</item>
+</note>
+
 <note version="0.9.2">
 <item>● Another massive language update. Thanks again to all those translators.</item>
 <item>● Rewrote language detection. Should never break again</item>
@@ -34,7 +41,7 @@
 <item>● ShowLineupSet: Fixed after some HT change and simple skin broken layout fixed</item>
 <item>● Missing playerid for bookmarked players back</item>
 <item>● Median-transfer-prize fixed for some users</item>
-<item>● MatchOrder: Highlight of players that played in the last can now be shown on the playing field too</item>
+<item>● MatchOrder: Highlight of players that played in the last match can now be shown on the playing field too</item>
 <item>● Some more work on AMO compliance</item>
 <item></item>
 <item><xhtml:b>For Google Chrome users</xhtml:b></item>

@@ -18,8 +18,8 @@ Foxtrick.Pages.Players = {
 	isYouthPlayersPage : function(doc) {
 		return Foxtrick.isPage("YouthPlayers", doc);
 	},
-	isYouthMatchOrderPage : function(doc) {
-		return Foxtrick.isPage("matchOrder", doc) && doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1;
+	isYouthMatchOrderPage : function(doc) { 
+		return doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1;
 	},
 	isOwnPlayersPage : function(doc) {
 		var ownTeamId = Foxtrick.Pages.All.getOwnTeamId(doc);
@@ -42,8 +42,12 @@ Foxtrick.Pages.Players = {
 		var getXml = function(doc, callback) {
 			var args = [];
 			var isYouth = Foxtrick.Pages.Players.isYouthPlayersPage(doc) || Foxtrick.Pages.Players.isYouthMatchOrderPage(doc);
-			if (options && options.teamid)
-				args.push(["teamId", options.teamid]);
+			if (options && options.teamid) {
+				if (!isYouth)
+					args.push(["teamId", options.teamid]);
+				else
+					args.push(["youthTeamID", options.teamid]);
+			}
 			else if (doc.location.href.match(/teamid=(\d)/i)) {
 				if (!isYouth)
 					args.push(["teamId", doc.location.href.match(/teamid=(\d+)/i)[1]]);
