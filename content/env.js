@@ -8,7 +8,7 @@
 if ( !Foxtrick )
 	var Foxtrick = {};
 
-	
+
 // sandboxed object for chrome, safari, opera and fennec
 // used to communicate between content script and background script
 /*
