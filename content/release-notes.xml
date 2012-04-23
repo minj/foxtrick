@@ -14,7 +14,8 @@
 </note>
 
 <note version="0.9.3">
-<item>● MatchOrderInterface: Option to disable last match information and highlighting for tournament games added (default on)</item>
+<item>● <module>MatchOrderInterface</module>: Option to show player faces instead of shirts for future and past line-ups (default on)</item>
+<item>● <module>MatchOrderInterface</module>: Option to disable last match information and highlighting for tournament games added (default on)</item>
 <item>● MatchOrderInterface: Fixed bug where the playedLastMatch indicator didn't show (or showed incorrectly) on Firefox</item>
 <item>● PlayerStatsExperience: Fixed bug where red cards caused games beeing detected as walkovers</item>
 <item>● PlayerStatsExperience: Fixed issue that caused this module not to work on Firefox 3.6</item>
