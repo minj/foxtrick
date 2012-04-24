@@ -14,6 +14,7 @@
 </note>
 
 <note version="0.9.3">
+<item>● NEW: <module>YouthTwins</module>: Shows the amount of possible/marked/non twins on the youth players overview page for supporters (in conjunction with hattrick youthclub)</item>
 <item>● <module>MatchOrderInterface</module>: Option to show player faces instead of shirts for future and past line-ups (default on)</item>
 <item>● <module>MatchOrderInterface</module>: Option to disable last match information and highlighting for tournament games added (default on)</item>
 <item>● MatchOrderInterface: Fixed bug where the playedLastMatch indicator didn't show (or showed incorrectly) on Firefox</item>
