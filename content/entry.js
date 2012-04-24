@@ -254,12 +254,15 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 
 		// invoke niceRun to run modules
 		Foxtrick.entry.niceRun(modules, function(m) {
-			var begin = new Date();
-			
-			Foxtrick.util.module.get(m, "run", doc);			
-			
-			var diff = (new Date()).getTime() - begin;
-			if( diff > 50 ) Foxtrick.log (m.MODULE_NAME, " run time: ", diff, " ms")
+			if (typeof(m.run) == "function")
+				return function() { 
+					var begin = new Date();
+					
+					m.run(doc); 
+					
+					var diff = (new Date()).getTime() - begin;
+					if( diff > 50 ) Foxtrick.log (m.MODULE_NAME, " run time: ", diff, " ms")
+				};
 		});
 
 		Foxtrick.log.flush(doc);
