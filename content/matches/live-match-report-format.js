@@ -454,186 +454,180 @@ var eventText = {
 	599:	"Match finished"
 }
 
-Foxtrick.modules["LiveMatchReportFormat"]={
-	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-	PAGES : [ "matchesLive" ],
-	NICE: 1,
+Foxtrick.modules["LiveMatchReportFormat"].run = function(doc) {
+	var react = function(liveReport){
+		var events = liveReport.getElementsByTagName("tr");
+		var koPending = true;
+		var topDown = true;
+		var firstEventType = parseInt(events[0].getAttribute("data-eventtype").match(/\d+/)[0]);
+		if(firstEventType < 30 || firstEventType > 33)
+			topDown = false;
+		
+		for(var i=0;i<events.length;i++){
 
-	run : function(doc) {
-		var react = function(liveReport){
-			var events = liveReport.getElementsByTagName("tr");
-			var koPending = true;
-			var topDown = true;
-			var firstEventType = parseInt(events[0].getAttribute("data-eventtype").match(/\d+/)[0]);
-			if(firstEventType < 30 || firstEventType > 33)
-				topDown = false;
-			
-			for(var i=0;i<events.length;i++){
+			var event = events[i];
+			if(!topDown)
+				event = events[events.length-1-i];
 
-				var event = events[i];
-				if(!topDown)
-					event = events[events.length-1-i];
-
-				var is_event = event.getAttribute("data-eventtype");
-				if(!is_event){
-					if(event.firstChild.className == "shy"){
-						var newspan = parseInt(event.firstChild.getAttribute("colspan")) + 2;
-						event.firstChild.setAttribute("colspan", newspan);
-					}
-					continue;
+			var is_event = event.getAttribute("data-eventtype");
+			if(!is_event){
+				if(event.firstChild.className == "shy"){
+					var newspan = parseInt(event.firstChild.getAttribute("colspan")) + 2;
+					event.firstChild.setAttribute("colspan", newspan);
 				}
-				var evtType = parseInt(event.getAttribute("data-eventtype").match(/\d+/)[0]);				
-				var evtMin = parseInt(event.firstChild.textContent.match(/\d+/)[0], 10);
-				var is_HomeEvent = Foxtrick.hasClass(event, "liveHomeEvent");
-				var is_awayEvent = Foxtrick.hasClass(event, "liveAwayEvent");
-				var is_neutralEvent = !(is_HomeEvent || is_awayEvent);
+				continue;
+			}
+			var evtType = parseInt(event.getAttribute("data-eventtype").match(/\d+/)[0]);				
+			var evtMin = parseInt(event.firstChild.textContent.match(/\d+/)[0], 10);
+			var is_HomeEvent = Foxtrick.hasClass(event, "liveHomeEvent");
+			var is_awayEvent = Foxtrick.hasClass(event, "liveAwayEvent");
+			var is_neutralEvent = !(is_HomeEvent || is_awayEvent);
 
-				var homeIconsContainer = Foxtrick.createFeaturedElement(doc, Foxtrick.modules["LiveMatchReportFormat"], "td");
-				var awayIconContainer = Foxtrick.createFeaturedElement(doc, Foxtrick.modules["LiveMatchReportFormat"], "td");
+			var homeIconsContainer = Foxtrick.createFeaturedElement(doc, Foxtrick.modules["LiveMatchReportFormat"], "td");
+			var awayIconContainer = Foxtrick.createFeaturedElement(doc, Foxtrick.modules["LiveMatchReportFormat"], "td");
 
-				var evtText = eventText[evtType];
-				var title = evtText +" (" + evtType + ")";
+			var evtText = eventText[evtType];
+			var title = evtText +" (" + evtType + ")";
 
-				// indicators to be added
-				var indicatorList = [
-					{
-						"class": "kick-off",
-						"text": "kickOff",
-						"before": true,
-						"func": (function() {
-							return function() {
-								if (koPending && evtMin != "0") {
-									koPending = false;
-									return true;
-								}
-								else {
-									return false;
-								}
-							};
-						})()
-					},
-					{
-						"class": "half-time",
-						"text": "halfTime",
-						"func": function() { return (eventTypes[evtType] == "possession") && (evtMin == "45"); }
-					},
-					{
-						"class": "full-time",
-						"text": "fullTime",
-						"func": function() { return (eventTypes[evtType] == "possession") && (evtMin == "90"); }
-					},
-					{
-						"class": "extra-time",
-						"text": "extraTime",
-						"func": function() { return eventTypes[evtType] == "extraTime"; }
-					},
-					{
-						"class": "penalty-shoot-out",
-						"text": "penaltyShootOut",
-						"func": function() { return eventTypes[evtType] == "penaltyShootOut"; }
-					},
-					{
-						"class": "result",
-						"text": "result",
-						"before": true,
-						"func": function() { return eventTypes[evtType] == "result"; }
-					}
-				];
-				var indType = Foxtrick.nth(0, function(n) {
-					return n.func();
-				}, indicatorList);
-				if (indType){
-					var tr = doc.createElement('tr');
-					var td = doc.createElement('td');
-					Foxtrick.addClass(td, "ft-match-report-" + indType["class"])
-					var text = doc.createTextNode( Foxtrickl10n.getString("MatchReportFormat." + indType.text) );
-					td.setAttribute("colspan", 4);
-					td.appendChild(text);
-					tr.appendChild(td);	
-
-					var before = indType.before;
-					if(!topDown)
-						before = !before;
-
-					if (before){
-					 	event.parentNode.insertBefore(tr,event);
-					 	i++;
-					 }
-					 else {
-						event.parentNode.insertBefore(tr,event.nextSibling);	
-						if(!topDown)
-							i++;
-					 }
-				}
-					
-				//exact copy of the current match-report-format.js function
-				var addEventIcons = function(parent, isEventTeam, evtType, title){
-					if (FoxtrickPrefs.isModuleOptionEnabled("MatchReportFormat", "ShowEventIcons")){
-						var createEventIcon = function( src, title, alt) {
-							Foxtrick.addImage(doc, parent, { alt: alt, title: title, src: src , className: "ft-match-report-event-icon-image" });
-						}
-
-						//icons for both columns (e.g.: Header vs. quick etc.)
-						if (typeof(eventTypes[evtType]) == "object"){
-							//event team
-							if (isEventTeam) {
-								if (eventTypes[evtType]["team"]) 
-									for(var i = 0; i < eventTypes[evtType]["team"].length; ++i)
-										createEventIcon(icons[eventTypes[evtType]["team"][i]], title, "Event Id " + evtType + " : " + eventTypes[evtType]["team"][i]);
-							} 
-							else {
-								if (eventTypes[evtType]["other"])
-									for(var i = 0; i < eventTypes[evtType]["other"].length; ++i)
-										createEventIcon(icons[eventTypes[evtType]["other"][i]], title, "Event Id " + evtType + " : " + eventTypes[evtType]["team"][i]);
-							} 
-						} 
-						//simple case, display icon for team
-						else if (eventTypes[evtType] && icons[eventTypes[evtType]]){
-							if (!isEventTeam)
-								return;
-							if (icons[eventTypes[evtType]] instanceof Array)
-								for(var i = 0; i < icons[eventTypes[evtType]].length; ++i)
-									createEventIcon(icons[eventTypes[evtType]][i], title, "Event Id " + evtType + " : " +eventTypes[evtType]);
-							else {
-								createEventIcon(icons[eventTypes[evtType]], title, "Event Id " + evtType + " : " +eventTypes[evtType]);
+			// indicators to be added
+			var indicatorList = [
+				{
+					"class": "kick-off",
+					"text": "kickOff",
+					"before": true,
+					"func": (function() {
+						return function() {
+							if (koPending && evtMin != "0") {
+								koPending = false;
+								return true;
 							}
-						}
-						//no icon, put in transparent icon to allow tooltoip
-						else{
-							createEventIcon(icons["transparent"], title, title);
+							else {
+								return false;
+							}
+						};
+					})()
+				},
+				{
+					"class": "half-time",
+					"text": "halfTime",
+					"func": function() { return (eventTypes[evtType] == "possession") && (evtMin == "45"); }
+				},
+				{
+					"class": "full-time",
+					"text": "fullTime",
+					"func": function() { return (eventTypes[evtType] == "possession") && (evtMin == "90"); }
+				},
+				{
+					"class": "extra-time",
+					"text": "extraTime",
+					"func": function() { return eventTypes[evtType] == "extraTime"; }
+				},
+				{
+					"class": "penalty-shoot-out",
+					"text": "penaltyShootOut",
+					"func": function() { return eventTypes[evtType] == "penaltyShootOut"; }
+				},
+				{
+					"class": "result",
+					"text": "result",
+					"before": true,
+					"func": function() { return eventTypes[evtType] == "result"; }
+				}
+			];
+			var indType = Foxtrick.nth(0, function(n) {
+				return n.func();
+			}, indicatorList);
+			if (indType){
+				var tr = doc.createElement('tr');
+				var td = doc.createElement('td');
+				Foxtrick.addClass(td, "ft-match-report-" + indType["class"])
+				var text = doc.createTextNode( Foxtrickl10n.getString("MatchReportFormat." + indType.text) );
+				td.setAttribute("colspan", 4);
+				td.appendChild(text);
+				tr.appendChild(td);	
+
+				var before = indType.before;
+				if(!topDown)
+					before = !before;
+
+				if (before){
+					event.parentNode.insertBefore(tr,event);
+					i++;
+				 }
+				 else {
+					event.parentNode.insertBefore(tr,event.nextSibling);	
+					if(!topDown)
+						i++;
+				 }
+			}
+				
+			//exact copy of the current match-report-format.js function
+			var addEventIcons = function(parent, isEventTeam, evtType, title){
+				if (FoxtrickPrefs.isModuleOptionEnabled("MatchReportFormat", "ShowEventIcons")){
+					var createEventIcon = function( src, title, alt) {
+						Foxtrick.addImage(doc, parent, { alt: alt, title: title, src: src , className: "ft-match-report-event-icon-image" });
+					}
+
+					//icons for both columns (e.g.: Header vs. quick etc.)
+					if (typeof(eventTypes[evtType]) == "object"){
+						//event team
+						if (isEventTeam) {
+							if (eventTypes[evtType]["team"]) 
+								for(var i = 0; i < eventTypes[evtType]["team"].length; ++i)
+									createEventIcon(icons[eventTypes[evtType]["team"][i]], title, "Event Id " + evtType + " : " + eventTypes[evtType]["team"][i]);
+						} 
+						else {
+							if (eventTypes[evtType]["other"])
+								for(var i = 0; i < eventTypes[evtType]["other"].length; ++i)
+									createEventIcon(icons[eventTypes[evtType]["other"][i]], title, "Event Id " + evtType + " : " + eventTypes[evtType]["team"][i]);
+						} 
+					} 
+					//simple case, display icon for team
+					else if (eventTypes[evtType] && icons[eventTypes[evtType]]){
+						if (!isEventTeam)
+							return;
+						if (icons[eventTypes[evtType]] instanceof Array)
+							for(var i = 0; i < icons[eventTypes[evtType]].length; ++i)
+								createEventIcon(icons[eventTypes[evtType]][i], title, "Event Id " + evtType + " : " +eventTypes[evtType]);
+						else {
+							createEventIcon(icons[eventTypes[evtType]], title, "Event Id " + evtType + " : " +eventTypes[evtType]);
 						}
 					}
+					//no icon, put in transparent icon to allow tooltoip
+					else{
+						createEventIcon(icons["transparent"], title, title);
+					}
 				}
-				addEventIcons(homeIconsContainer, is_HomeEvent, evtType, title);
-				addEventIcons(awayIconContainer, is_awayEvent, evtType, title);
+			}
+			addEventIcons(homeIconsContainer, is_HomeEvent, evtType, title);
+			addEventIcons(awayIconContainer, is_awayEvent, evtType, title);
 
-				event.insertBefore(homeIconsContainer, event.firstChild.nextSibling);
-				event.insertBefore(awayIconContainer, homeIconsContainer.nextSibling);
-			}	
-		}
-		var livereportsContainer = doc.getElementById("ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch");
-		if(livereportsContainer)
-			Foxtrick.listen(livereportsContainer, 'DOMNodeInserted', function(event){				
-				if(event.target.className == "liveReport"){
-					react(event.target);
-				}
-			}, false); 
+			event.insertBefore(homeIconsContainer, event.firstChild.nextSibling);
+			event.insertBefore(awayIconContainer, homeIconsContainer.nextSibling);
+		}	
+	}
+	var livereportsContainer = doc.getElementById("ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch");
+	if(livereportsContainer)
+		Foxtrick.listen(livereportsContainer, 'DOMNodeInserted', function(event){				
+			if(event.target.className == "liveReport"){
+				react(event.target);
+			}
+		}, false); 
 
-		var lContainer = doc.getElementsByClassName("liveMatchContainer")[0];
-		if(lContainer)
-			Foxtrick.listen(lContainer, 'DOMNodeInserted', function(event){	
-				if(event.target.getAttribute && event.target.getAttribute("id") && event.target.getAttribute("id") == "ctl00_ctl00_CPContent_CPMain_repM"){
-				var livereports = event.target.getElementsByClassName("liveReport");
-				for(var i=0; i < livereports.length; i++)
-					react(livereports[i]);
-				}
-			}, false); 
+	var lContainer = doc.getElementsByClassName("liveMatchContainer")[0];
+	if(lContainer)
+		Foxtrick.listen(lContainer, 'DOMNodeInserted', function(event){	
+			if(event.target.getAttribute && event.target.getAttribute("id") && event.target.getAttribute("id") == "ctl00_ctl00_CPContent_CPMain_repM"){
+			var livereports = event.target.getElementsByClassName("liveReport");
+			for(var i=0; i < livereports.length; i++)
+				react(livereports[i]);
+			}
+		}, false); 
 
-		//firstload
-		var livereports = doc.getElementsByClassName("liveReport");
-		for(var i=0; i < livereports.length; i++){
-			react(livereports[i]);
-		}
-	},
+	//firstload
+	var livereports = doc.getElementsByClassName("liveReport");
+	for(var i=0; i < livereports.length; i++){
+		react(livereports[i]);
+	}
 }; 
 }());

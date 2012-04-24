@@ -5,11 +5,4 @@
  * @author htbaumanns, ryanli
  */
 
-Foxtrick.modules["TickerColoring"]={
-	MODULE_CATEGORY : Foxtrick.moduleCategories.ALERT,
-	PAGES : ["all"],
-	CSS : Foxtrick.InternalPath + "resources/css/ticker-coloring.css",
-
-	run : function(doc) {
-	}
-};
+/* nothing to do here */

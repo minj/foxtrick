@@ -5,42 +5,11 @@
  * @author taised, Jestar
  */
 
-Foxtrick.modules["AttVsDef"]={
-	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-	PAGES : new Array('match'),
-	NICE : -1, // before Ratings
-	RADIO_OPTIONS : new Array("newstyle", "oldstyle", "oldstyleifkseparated"),
+Foxtrick.modules["AttVsDef"].run = function(doc) {
+	if (Foxtrick.Pages.Match.isPrematch(doc))
+		return;
 
-	run : function(doc) {
-		if (Foxtrick.Pages.Match.isPrematch(doc))
-			return;
-
-		var ratingstable = Foxtrick.Pages.Match.getRatingsTable(doc);
-		if (ratingstable == null) return;
-		if (Foxtrick.Pages.Match.isWalkOver(ratingstable)) return;
-
-		var header = Foxtrickl10n.getString("matches.attackdefensebars" );
-
-		var bodydiv=Foxtrick.createFeaturedElement(doc, this, 'div');
-		var bodydivid = "foxtrick_attvsdefbars_content";
-		bodydiv.setAttribute( "id", bodydivid );
-
-		if (Foxtrick.Pages.Match.isCorrectLanguage(ratingstable)) {
-			if (FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") >= 1) {
-				this._oldStyleBars(doc, ratingstable, bodydiv);
-			}
-			else {
-				this._newStyleBars(doc, ratingstable, bodydiv);
-			}
-		} else {
-			bodydiv.textContent = Foxtrickl10n.getString("matches.wronglang");
-		}
-		Foxtrick.addBoxToSidebar(doc, header, bodydiv, 1);
-
-		if (Foxtrick.util.layout.isStandard(doc) && FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 0) bodydiv.parentNode.style.padding='8px 6px 15px';
-	},
-
-	_oldStyleBars: function (doc, ratingstable, bodydiv) {
+	var _oldStyleBars = function (doc, ratingstable, bodydiv) {
 		var ratingsArray = new Array();
 		var ratingsTextArray = new Array();
 		for (var i = 2; i <= 7; i++) { // normal ratings in rows 2 to 7
@@ -72,12 +41,12 @@ Foxtrick.modules["AttVsDef"]={
 		p.className = "foxtrick-graphs-header";
 		p.textContent = Foxtrickl10n.getString( "matches.defense" ) + " - " + Foxtrickl10n.getString( "matches.attack" );
 		barsdiv.appendChild(p);
-		this._createGraphRow(doc, tablediv, ratingsArray[0][0], ratingsArray[5][1], rText, lText, ratingsTextArray[0][0], ratingsTextArray[5][1]);
-		this._createGraphRow(doc, tablediv, ratingsArray[1][0], ratingsArray[4][1], cText, cText, ratingsTextArray[1][0], ratingsTextArray[4][1]);
-		this._createGraphRow(doc, tablediv, ratingsArray[2][0], ratingsArray[3][1], lText, rText, ratingsTextArray[2][0], ratingsTextArray[3][1]);
+		_createGraphRow(doc, tablediv, ratingsArray[0][0], ratingsArray[5][1], rText, lText, ratingsTextArray[0][0], ratingsTextArray[5][1]);
+		_createGraphRow(doc, tablediv, ratingsArray[1][0], ratingsArray[4][1], cText, cText, ratingsTextArray[1][0], ratingsTextArray[4][1]);
+		_createGraphRow(doc, tablediv, ratingsArray[2][0], ratingsArray[3][1], lText, rText, ratingsTextArray[2][0], ratingsTextArray[3][1]);
 		if ((ratingsArray.length > 6) && (FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 1)) {
 			tablediv.appendChild(doc.createElement('br'));
-			this._createGraphRow(doc, tablediv, ratingsArray[6][0], ratingsArray[7][1], iText, iText, ratingsTextArray[6][0], ratingsTextArray[7][1]);
+			_createGraphRow(doc, tablediv, ratingsArray[6][0], ratingsArray[7][1], iText, iText, ratingsTextArray[6][0], ratingsTextArray[7][1]);
 		}
 		barsdiv.appendChild(tablediv);
 		barsdiv.appendChild(doc.createElement('br'));
@@ -88,12 +57,12 @@ Foxtrick.modules["AttVsDef"]={
 		p.className = "foxtrick-graphs-header";
 		p.textContent = Foxtrickl10n.getString( "matches.attack" ) + " - " + Foxtrickl10n.getString( "matches.defense" );
 		barsdiv.appendChild(p);
-		this._createGraphRow(doc, tablediv, ratingsArray[3][0], ratingsArray[2][1], rText, lText, ratingsTextArray[3][0], ratingsTextArray[2][1]);
-		this._createGraphRow(doc, tablediv, ratingsArray[4][0], ratingsArray[1][1], cText, cText, ratingsTextArray[4][0], ratingsTextArray[1][1]);
-		this._createGraphRow(doc, tablediv, ratingsArray[5][0], ratingsArray[0][1], lText, rText, ratingsTextArray[5][0], ratingsTextArray[0][1]);
+		_createGraphRow(doc, tablediv, ratingsArray[3][0], ratingsArray[2][1], rText, lText, ratingsTextArray[3][0], ratingsTextArray[2][1]);
+		_createGraphRow(doc, tablediv, ratingsArray[4][0], ratingsArray[1][1], cText, cText, ratingsTextArray[4][0], ratingsTextArray[1][1]);
+		_createGraphRow(doc, tablediv, ratingsArray[5][0], ratingsArray[0][1], lText, rText, ratingsTextArray[5][0], ratingsTextArray[0][1]);
 		if ((ratingsArray.length > 6) && (FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 1)) {
 			tablediv.appendChild(doc.createElement('br'));
-			this._createGraphRow(doc, tablediv, ratingsArray[7][0], ratingsArray[6][1], iText, iText, ratingsTextArray[7][0], ratingsTextArray[6][1]);
+			_createGraphRow(doc, tablediv, ratingsArray[7][0], ratingsArray[6][1], iText, iText, ratingsTextArray[7][0], ratingsTextArray[6][1]);
 		}
 		barsdiv.appendChild(tablediv);
 		barsdiv.appendChild(doc.createElement('br'));
@@ -105,21 +74,21 @@ Foxtrick.modules["AttVsDef"]={
 			p.className = "foxtrick-graphs-header";
 			p.textContent = Foxtrickl10n.getString( "matches.indfreekick" );
 			barsdiv.appendChild(p);
-			this._createGraphRow(doc, tablediv, ratingsArray[6][0], ratingsArray[7][1], iText, iText, ratingsTextArray[6][0], ratingsTextArray[7][1]);
-			this._createGraphRow(doc, tablediv, ratingsArray[7][0], ratingsArray[6][1], iText, iText, ratingsTextArray[7][0], ratingsTextArray[6][1]);
+			_createGraphRow(doc, tablediv, ratingsArray[6][0], ratingsArray[7][1], iText, iText, ratingsTextArray[6][0], ratingsTextArray[7][1]);
+			_createGraphRow(doc, tablediv, ratingsArray[7][0], ratingsArray[6][1], iText, iText, ratingsTextArray[7][0], ratingsTextArray[6][1]);
 			barsdiv.appendChild(tablediv);
 			barsdiv.appendChild(doc.createElement('br'));
 		}
 
 		bodydiv.appendChild(barsdiv);
-	},
+	};
 
-	_newStyleBars: function (doc, ratingstable, bodydiv) {
+	var _newStyleBars = function (doc, ratingstable, bodydiv) {
 		var sidebar = doc.getElementById("sidebar");
-		var percentArray=this._getPercentArray(doc, ratingstable);
-		var balldivnumber=7;
+		var percentArray = _getPercentArray(doc, ratingstable);
+		var balldivnumber = 7;
 		if (Foxtrick.util.id.findIsYouthMatch(doc.location.href)) {
-			balldivnumber=5; //youth haven't the kit div
+			balldivnumber = 5; //youth haven't the kit div
 		}
 
 		 var strangediv = doc.createElement('div');
@@ -146,7 +115,7 @@ Foxtrick.modules["AttVsDef"]={
 		for (var i=0; i<percentArray.length; i++) {
 			bodydiv.appendChild( doc.createTextNode(labelArray[i]) );
 			bodydiv.appendChild( doc.createElement("br") );
-			bodydiv.appendChild( this._createTextBox(doc, percentArray[i]) );
+			bodydiv.appendChild( _createTextBox(doc, percentArray[i]) );
 			var bardiv=doc.createElement('div');
 			bardiv.className="possesionbar";
 			var img1 = doc.createElement('img');
@@ -158,13 +127,13 @@ Foxtrick.modules["AttVsDef"]={
 			img2.src = "/Img/Matches/possesiontracker.gif";
 			bardiv.appendChild(img2);
 			bodydiv.appendChild(bardiv);
-			bodydiv.appendChild(this._createTextBox(doc, 100-percentArray[i]));
+			bodydiv.appendChild(_createTextBox(doc, 100-percentArray[i]));
 
 			bodydiv.appendChild(strangediv.cloneNode(true));
 		}
-	},
+	};
 
-	_createTextBox: function(doc, percentage) {
+	var _createTextBox = function(doc, percentage) {
 		var textdiv=doc.createElement('div');
 		textdiv.className='float_left shy smallText';
 
@@ -180,9 +149,9 @@ Foxtrick.modules["AttVsDef"]={
 		inner.textContent = percentage + "%"
 
 		return textdiv;
-	},
+	};
 
-	_displayableRatingLevel: function(val) {
+	var _displayableRatingLevel = function(val) {
 		val = new String(val);
 		if (val.search(/\./i) == -1) return val + "--";
 		val = val.replace(/\.75/i, "++");
@@ -190,17 +159,16 @@ Foxtrick.modules["AttVsDef"]={
 		val = val.replace(/\.25/i, "-");
 
 		return val;
-	},
+	};
 
-	_createGraphRow: function (doc, div, val1, val2, text1, text2, tooltip1, tooltip2) {
+	var _createGraphRow = function (doc, div, val1, val2, text1, text2, tooltip1, tooltip2) {
+		var color1 = "#FFFFFF";
+		var color2 = "#849D84";
+		var fgcolor1 = "#000000";
+		var fgcolor2 = "#000000";
 
-			var color1 = "#FFFFFF";
-			var color2 = "#849D84";
-			var fgcolor1 = "#000000";
-			var fgcolor2 = "#000000";
-
-			var pt1 = Math.round(100 * val1 / (val1 + val2));
-			var pt2 = 100 - pt1;
+		var pt1 = Math.round(100 * val1 / (val1 + val2));
+		var pt2 = 100 - pt1;
 
 		 var cellwidth = 50;
 
@@ -234,7 +202,7 @@ Foxtrick.modules["AttVsDef"]={
 		 var innercellC = doc.createElement("div");
 		 innercellC.className = "foxtrick-graphs-bar-values";
 		 innercellA.appendChild(innercellC);
-		 innercellC.textContent = text1 + " " + this._displayableRatingLevel(val1+1);
+		 innercellC.textContent = text1 + " " + _displayableRatingLevel(val1+1);
 		 innercellC.style.color = fgcolor1;
 		 innercellC.style.paddingLeft = "2px";
 
@@ -270,7 +238,7 @@ Foxtrick.modules["AttVsDef"]={
 		 innercellC = doc.createElement("div");
 		 innercellC.className = "foxtrick-graphs-bar-values";
 		 innercellA.appendChild(innercellC);
-		 innercellC.textContent = this._displayableRatingLevel(val2+1) + " " + text2;
+		 innercellC.textContent = _displayableRatingLevel(val2+1) + " " + text2;
 		 innercellC.style.textAlign = "right";
 		 innercellC.style.color = fgcolor2;
 		 innercellC.style.paddingRight = "2px";
@@ -281,9 +249,9 @@ Foxtrick.modules["AttVsDef"]={
 		 cell.className = "foxtrick-graphs-cell";
 		 cell.textContent = pt2 + "%";
 		 row.appendChild(cell);
-	},
+	};
 
-	_getPercentArray: function(doc, table) {
+	var _getPercentArray = function(doc, table) {
 		var values=new Array();
 
 		for (var j=2;j<8;j++)
@@ -306,5 +274,30 @@ Foxtrick.modules["AttVsDef"]={
 		}
 
 		return values;
+	};
+
+	var ratingstable = Foxtrick.Pages.Match.getRatingsTable(doc);
+	if (ratingstable == null) return;
+	if (Foxtrick.Pages.Match.isWalkOver(ratingstable)) return;
+
+	var header = Foxtrickl10n.getString("matches.attackdefensebars" );
+
+	var bodydiv=Foxtrick.createFeaturedElement(doc, this, 'div');
+	var bodydivid = "foxtrick_attvsdefbars_content";
+	bodydiv.setAttribute( "id", bodydivid );
+
+	if (Foxtrick.Pages.Match.isCorrectLanguage(ratingstable)) {
+		if (FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") >= 1) {
+			_oldStyleBars(doc, ratingstable, bodydiv);
+		}
+		else {
+			_newStyleBars(doc, ratingstable, bodydiv);
+		}
+	} else {
+		bodydiv.textContent = Foxtrickl10n.getString("matches.wronglang");
 	}
+	Foxtrick.addBoxToSidebar(doc, header, bodydiv, 1);
+
+	if (Foxtrick.util.layout.isStandard(doc) && FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 0) bodydiv.parentNode.style.padding='8px 6px 15px';
 };
+

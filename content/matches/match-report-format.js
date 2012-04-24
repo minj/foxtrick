@@ -472,213 +472,196 @@ var eventText = {
 		"18" : "captain"
 	};
 	
-	Foxtrick.modules.MatchReportFormat = {
-		MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-		PAGES : ["match"],
-		OPTIONS : ['ShowEventIcons'],
-		CSS : Foxtrick.InternalPath + "resources/css/match-report.css",
+	Foxtrick.modules["MatchReportFormat"].run = function(doc) {
+		var txtUnknownPlayer = Foxtrickl10n.getString("match.player.unknown");
 
-		run : function(doc) {
-			var txtUnknownPlayer = Foxtrickl10n.getString("match.player.unknown");
+		if (Foxtrick.Pages.Match.isPrematch(doc)
+			|| Foxtrick.Pages.Match.inProgress(doc) )
+			return;
 
-			if (Foxtrick.Pages.Match.isPrematch(doc)
-				|| Foxtrick.Pages.Match.inProgress(doc) )
-				return;
+		if (FoxtrickPrefs.getBool("anstoss2icons")) {
+			icons["se_head_specialist"] = Foxtrick.InternalPath + 'resources/img/matches/spec5_alt.png';
+			icons["se_technical"] = Foxtrick.InternalPath + 'resources/img/matches/spec1_alt.png';
+			icons["se_powerful"] = Foxtrick.InternalPath + 'resources/img/matches/spec3_alt.png';
+			icons["se_quick"] = Foxtrick.InternalPath + 'resources/img/matches/spec2_alt.png';	
+			icons["se_unpredictable"] = Foxtrick.InternalPath + 'resources/img/matches/spec4_alt.png';
+			icons["se_head_specialist_negative"] = Foxtrick.InternalPath + 'resources/img/matches/spec5_red_alt.png';
+			icons["se_technical_negative"] = Foxtrick.InternalPath + 'resources/img/matches/spec1_red_alt.png';
+			icons["se_powerful_negative"] = Foxtrick.InternalPath + 'resources/img/matches/spec3_red_alt.png';
+			icons["se_quick_negative"] = Foxtrick.InternalPath + 'resources/img/matches/spec2_red_alt.png';	
+			icons["se_unpredictable_negative"] = Foxtrick.InternalPath + 'resources/img/matches/spec4_red_alt.png';
+		}
+		var SourceSystem = "Hattrick";
+		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+		var isHTOIntegrated = Foxtrick.Pages.Match.isHTOIntegrated(doc);
+		if (isYouth)
+			SourceSystem = "Youth";
+		if (isHTOIntegrated)
+			SourceSystem = "HTOIntegrated";
+		var matchId = Foxtrick.Pages.Match.getId(doc);
+		// add locale as argument to prevent using old cache after
+		// language changed
+		var locale = FoxtrickPrefs.getString("htLanguage");
+		var detailsArgs = [
+			["file", "matchdetails"],
+			["matchEvents", "true"],
+			["matchID", matchId],
+			["SourceSystem", SourceSystem],
+			["version", "2.3"],
+			["lang", locale]
+		];
 
-			if (FoxtrickPrefs.getBool("anstoss2icons")) {
-				icons["se_head_specialist"] = Foxtrick.InternalPath + 'resources/img/matches/spec5_alt.png';
-				icons["se_technical"] = Foxtrick.InternalPath + 'resources/img/matches/spec1_alt.png';
-				icons["se_powerful"] = Foxtrick.InternalPath + 'resources/img/matches/spec3_alt.png';
-				icons["se_quick"] = Foxtrick.InternalPath + 'resources/img/matches/spec2_alt.png';	
-				icons["se_unpredictable"] = Foxtrick.InternalPath + 'resources/img/matches/spec4_alt.png';
-				icons["se_head_specialist_negative"] = Foxtrick.InternalPath + 'resources/img/matches/spec5_red_alt.png';
-				icons["se_technical_negative"] = Foxtrick.InternalPath + 'resources/img/matches/spec1_red_alt.png';
-				icons["se_powerful_negative"] = Foxtrick.InternalPath + 'resources/img/matches/spec3_red_alt.png';
-				icons["se_quick_negative"] = Foxtrick.InternalPath + 'resources/img/matches/spec2_red_alt.png';	
-				icons["se_unpredictable_negative"] = Foxtrick.InternalPath + 'resources/img/matches/spec4_red_alt.png';
-			}
-			var SourceSystem = "Hattrick";
-			var isYouth = Foxtrick.Pages.Match.isYouth(doc);
-			var isHTOIntegrated = Foxtrick.Pages.Match.isHTOIntegrated(doc);
-			if (isYouth)
-				SourceSystem = "Youth";
-			if (isHTOIntegrated)
-				SourceSystem = "HTOIntegrated";
-			var matchId = Foxtrick.Pages.Match.getId(doc);
-			// add locale as argument to prevent using old cache after
-			// language changed
-			var locale = FoxtrickPrefs.getString("htLanguage");
-			var detailsArgs = [
-				["file", "matchdetails"],
-				["matchEvents", "true"],
+		var playerTag = function(id, name) {
+			var link = doc.createElement("a");
+			link.textContent = name;
+			link.href = isYouth?"/Club/Players/YouthPlayer.aspx?YouthPlayerID=" + id:"/Club/Players/Player.aspx?playerId=" + id;
+			link.setAttribute("data-do-not-color", "true");
+			return link;
+		};
+
+		Foxtrick.util.api.retrieve(doc, detailsArgs, {cache_lifetime: "session"}, function(xml) {
+			var homeId = xml.getElementsByTagName("HomeTeamID")[0].textContent;
+			var awayId = xml.getElementsByTagName("AwayTeamID")[0].textContent;
+			var homeName = xml.getElementsByTagName("HomeTeamName")[0].textContent;
+			var awayName = xml.getElementsByTagName("AwayTeamName")[0].textContent;
+
+			var homeLineupArgs = [
+				["file", "matchlineup"],
 				["matchID", matchId],
+				["teamID", homeId],
 				["SourceSystem", SourceSystem],
-				["version", "2.3"],
-				["lang", locale]
+				["version", "1.8"]
 			];
+			var awayLineupArgs = [
+				["file", "matchlineup"],
+				["matchID", matchId],
+				["teamID", awayId],
+				["SourceSystem", SourceSystem],
+				["version", "1.8"]
+			];
+			Foxtrick.util.api.retrieve(doc, homeLineupArgs, {cache_lifetime: "session"}, function(homeXml) {
+				Foxtrick.util.api.retrieve(doc, awayLineupArgs, {cache_lifetime: "session"}, Foxtrick.preventChange(doc, function(awayXml) {
+					// add everything after .byline[0] and remove existing ones
+					var byline = doc.getElementsByClassName("byline")[0];
+					var parent = byline.parentNode;
+					while (!Foxtrick.hasClass(byline.nextSibling, "mainBox"))
+						parent.removeChild(byline.nextSibling);
+					var before = byline.nextSibling;
+					
+					// lineup header
+					var header = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchReportFormat, "h2");
+					parent.insertBefore(header, before);
+					header.className = "ft-expander-unexpanded";
+					header.textContent = Foxtrickl10n.getString("MatchReportFormat.lineup");
+					// container of lineup
+					var lineup = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchReportFormat, "table");
+					lineup.className = "ft-match-lineup hidden";
+					parent.insertBefore(lineup, before);
+					var row = doc.createElement("tr");
+					lineup.appendChild(row);
+					Foxtrick.map(function(pair) {
+						var teamName = pair[0];
+						var xml = pair[1];
 
-			var playerTag = function(id, name) {
-				var link = doc.createElement("a");
-				link.textContent = name;
-				link.href = isYouth?"/Club/Players/YouthPlayer.aspx?YouthPlayerID=" + id:"/Club/Players/Player.aspx?playerId=" + id;
-				link.setAttribute("data-do-not-color", "true");
-				return link;
-			};
+						var cell = doc.createElement("td");
+						row.appendChild(cell);
 
-			Foxtrick.util.api.retrieve(doc, detailsArgs, {cache_lifetime: "session"}, function(xml) {
-				var homeId = xml.getElementsByTagName("HomeTeamID")[0].textContent;
-				var awayId = xml.getElementsByTagName("AwayTeamID")[0].textContent;
-				var homeName = xml.getElementsByTagName("HomeTeamName")[0].textContent;
-				var awayName = xml.getElementsByTagName("AwayTeamName")[0].textContent;
+						var team = doc.createElement("h3");
+						cell.appendChild(team);
+						team.textContent = teamName;
 
-				var homeLineupArgs = [
-					["file", "matchlineup"],
-					["matchID", matchId],
-					["teamID", homeId],
-					["SourceSystem", SourceSystem],
-					["version", "1.8"]
-				];
-				var awayLineupArgs = [
-					["file", "matchlineup"],
-					["matchID", matchId],
-					["teamID", awayId],
-					["SourceSystem", SourceSystem],
-					["version", "1.8"]
-				];
-				Foxtrick.util.api.retrieve(doc, homeLineupArgs, {cache_lifetime: "session"}, function(homeXml) {
-					Foxtrick.util.api.retrieve(doc, awayLineupArgs, {cache_lifetime: "session"}, Foxtrick.preventChange(doc, function(awayXml) {
-						// add everything after .byline[0] and remove existing ones
-						var byline = doc.getElementsByClassName("byline")[0];
-						var parent = byline.parentNode;
-						while (!Foxtrick.hasClass(byline.nextSibling, "mainBox"))
-							parent.removeChild(byline.nextSibling);
-						var before = byline.nextSibling;
-						
-						// lineup header
-						var header = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchReportFormat, "h2");
-						parent.insertBefore(header, before);
-						header.className = "ft-expander-unexpanded";
-						header.textContent = Foxtrickl10n.getString("MatchReportFormat.lineup");
-						// container of lineup
-						var lineup = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchReportFormat, "table");
-						lineup.className = "ft-match-lineup hidden";
-						parent.insertBefore(lineup, before);
-						var row = doc.createElement("tr");
-						lineup.appendChild(row);
-						Foxtrick.map(function(pair) {
-							var teamName = pair[0];
-							var xml = pair[1];
+						var list = doc.createElement("ul");
+						cell.appendChild(list);
 
-							var cell = doc.createElement("td");
-							row.appendChild(cell);
+						// collection indexed by player ID, containing
+						// name, list item, comment (in brackets), etc.
+						var collection = {};
 
-							var team = doc.createElement("h3");
-							cell.appendChild(team);
-							team.textContent = teamName;
+						Foxtrick.map(function(player) {
+							var id = player.getElementsByTagName("PlayerID")[0].textContent;
+							var firstName = player.getElementsByTagName("FirstName")[0].textContent;
+							var lastName = player.getElementsByTagName("LastName")[0].textContent;
+							var nickName = player.getElementsByTagName("NickName")[0].textContent;
+							if (!collection[id]) {
+								collection[id] = { "name":  firstName + (nickName?(" "+nickName):"") + " " +lastName};
+							}
+						}, xml.getElementsByTagName("Lineup")[0].getElementsByTagName("Player"));
 
-							var list = doc.createElement("ul");
-							cell.appendChild(list);
+						// add comment for player inside brackets
+						var addComment = function(id, node) {
+							if (!collection[id] || !collection[id].item)
+								return;
+							if (!collection[id].comment) {
+								var comment = doc.createElement("span");
+								comment.className = "ft-match-lineup-comment";
+								collection[id].item.appendChild(comment);
+								collection[id].comment = comment;
+							}
+							else {
+								collection[id].comment.appendChild(doc.createTextNode(", "));
+							}
+							collection[id].comment.appendChild(node);
+						};
+						// add starting players first
+						var starting = xml.getElementsByTagName("StartingLineup")[0].getElementsByTagName("Player");
+						Foxtrick.map(function(player) {
+							var id = player.getElementsByTagName("PlayerID")[0].textContent;
+							var firstName = player.getElementsByTagName("FirstName")[0].textContent;
+							var lastName = player.getElementsByTagName("LastName")[0].textContent;
+							var nickName = player.getElementsByTagName("NickName")[0].textContent;
+							var name = firstName + (nickName?(" "+nickName):"") + " " +lastName;
+							var role = player.getElementsByTagName("RoleID")[0].textContent;
+							if (!collection[id]) {
+								// add red carded players
+								collection[id] = { "name": name };
+							}
+							if (roles[role] != "setPieces"
+								&& roles[role] != "captain") {
+								var item = doc.createElement("li");
+								list.appendChild(item);
+								item.appendChild(playerTag(id, name));
+								// store item to collection
+								collection[id].item = item;
+							}
+							else {
+								addComment(id, doc.createTextNode(Foxtrickl10n.getString("match.role.#.abbr".replace(/#/, roles[role]))));
+							}
+						}, starting);
 
-							// collection indexed by player ID, containing
-							// name, list item, comment (in brackets), etc.
-							var collection = {};
+						// and then add substitutions
+						var substitutions = xml.getElementsByTagName("Substitution");
+						Foxtrick.map(function(sub) {
+							var type = sub.getElementsByTagName("OrderType")[0].textContent;
+							// player to be substituted
+							var subId = sub.getElementsByTagName("SubjectPlayerID")[0].textContent;
+							// substitute player
+							var objId = sub.getElementsByTagName("ObjectPlayerID")[0].textContent;
+							var minute = sub.getElementsByTagName("MatchMinute")[0].textContent;
+							if (orderTypes[type] == "substitution"
+								&& subId != objId && objId > 0) {
+								var subNode = doc.createElement("span");
+								subNode.appendChild(doc.createTextNode(minute + "' "));
 
-							Foxtrick.map(function(player) {
-								var id = player.getElementsByTagName("PlayerID")[0].textContent;
-								var firstName = player.getElementsByTagName("FirstName")[0].textContent;
-								var lastName = player.getElementsByTagName("LastName")[0].textContent;
-								var nickName = player.getElementsByTagName("NickName")[0].textContent;
-								if (!collection[id]) {
-									collection[id] = { "name":  firstName + (nickName?(" "+nickName):"") + " " +lastName};
-								}
-							}, xml.getElementsByTagName("Lineup")[0].getElementsByTagName("Player"));
+								// Due to a bug in HT's matchlineup XML,
+								// substitutions carried off may not be shown
+								if (collection[objId] == undefined) {
+									collection[objId] = { "name": txtUnknownPlayer };
 
-							// add comment for player inside brackets
-							var addComment = function(id, node) {
-								if (!collection[id] || !collection[id].item)
-									return;
-								if (!collection[id].comment) {
-									var comment = doc.createElement("span");
-									comment.className = "ft-match-lineup-comment";
-									collection[id].item.appendChild(comment);
-									collection[id].comment = comment;
-								}
-								else {
-									collection[id].comment.appendChild(doc.createTextNode(", "));
-								}
-								collection[id].comment.appendChild(node);
-							};
-							// add starting players first
-							var starting = xml.getElementsByTagName("StartingLineup")[0].getElementsByTagName("Player");
-							Foxtrick.map(function(player) {
-								var id = player.getElementsByTagName("PlayerID")[0].textContent;
-								var firstName = player.getElementsByTagName("FirstName")[0].textContent;
-								var lastName = player.getElementsByTagName("LastName")[0].textContent;
-								var nickName = player.getElementsByTagName("NickName")[0].textContent;
-								var name = firstName + (nickName?(" "+nickName):"") + " " +lastName;
-								var role = player.getElementsByTagName("RoleID")[0].textContent;
-								if (!collection[id]) {
-									// add red carded players
-									collection[id] = { "name": name };
-								}
-								if (roles[role] != "setPieces"
-									&& roles[role] != "captain") {
-									var item = doc.createElement("li");
-									list.appendChild(item);
-									item.appendChild(playerTag(id, name));
-									// store item to collection
-									collection[id].item = item;
-								}
-								else {
-									addComment(id, doc.createTextNode(Foxtrickl10n.getString("match.role.#.abbr".replace(/#/, roles[role]))));
-								}
-							}, starting);
+									var playerArgs = [
+										["file", "playerdetails"],
+										["playerID", objId],
+										["version", "2.1"]
+									];
+									//get the player name from playerdetails instead 
+									Foxtrick.util.api.retrieve(doc, playerArgs, {cache_lifetime: "session"}, function(playerXml) {
+										
+										var player = playerXml.getElementsByTagName("Player")[0];
+										var firstName = player.getElementsByTagName("FirstName")[0].textContent;
+										var nickName = player.getElementsByTagName("NickName")[0].textContent;
+										var lastName = player.getElementsByTagName("LastName")[0].textContent;
 
-							// and then add substitutions
-							var substitutions = xml.getElementsByTagName("Substitution");
-							Foxtrick.map(function(sub) {
-								var type = sub.getElementsByTagName("OrderType")[0].textContent;
-								// player to be substituted
-								var subId = sub.getElementsByTagName("SubjectPlayerID")[0].textContent;
-								// substitute player
-								var objId = sub.getElementsByTagName("ObjectPlayerID")[0].textContent;
-								var minute = sub.getElementsByTagName("MatchMinute")[0].textContent;
-								if (orderTypes[type] == "substitution"
-									&& subId != objId && objId > 0) {
-									var subNode = doc.createElement("span");
-									subNode.appendChild(doc.createTextNode(minute + "' "));
-
-									// Due to a bug in HT's matchlineup XML,
-									// substitutions carried off may not be shown
-									if (collection[objId] == undefined) {
-										collection[objId] = { "name": txtUnknownPlayer };
-
-										var playerArgs = [
-											["file", "playerdetails"],
-											["playerID", objId],
-											["version", "2.1"]
-										];
-										//get the player name from playerdetails instead 
-										Foxtrick.util.api.retrieve(doc, playerArgs, {cache_lifetime: "session"}, function(playerXml) {
-											
-											var player = playerXml.getElementsByTagName("Player")[0];
-											var firstName = player.getElementsByTagName("FirstName")[0].textContent;
-											var nickName = player.getElementsByTagName("NickName")[0].textContent;
-											var lastName = player.getElementsByTagName("LastName")[0].textContent;
-
-											collection[objId] = { "name": firstName + " " + lastName};
-											
-											// add in line up
-											subNode.appendChild(playerTag(objId, collection[objId].name));
-											addComment(subId, subNode);
-											// since object player now occupy the
-											// same list item as subject player,
-											// set up item and comment
-											collection[objId].item = collection[subId].item;
-											collection[objId].comment = collection[subId].item;
-										});
-									} 
-									else {
+										collection[objId] = { "name": firstName + " " + lastName};
+										
 										// add in line up
 										subNode.appendChild(playerTag(objId, collection[objId].name));
 										addComment(subId, subNode);
@@ -687,190 +670,200 @@ var eventText = {
 										// set up item and comment
 										collection[objId].item = collection[subId].item;
 										collection[objId].comment = collection[subId].item;
-									}
+									});
+								} 
+								else {
+									// add in line up
+									subNode.appendChild(playerTag(objId, collection[objId].name));
+									addComment(subId, subNode);
+									// since object player now occupy the
+									// same list item as subject player,
+									// set up item and comment
+									collection[objId].item = collection[subId].item;
+									collection[objId].comment = collection[subId].item;
 								}
-							}, substitutions);
-						}, [[homeName, homeXml], [awayName, awayXml]]);
+							}
+						}, substitutions);
+					}, [[homeName, homeXml], [awayName, awayXml]]);
 
-						Foxtrick.listen(header, "click", function() {
-							Foxtrick.toggleClass(header, "ft-expander-unexpanded");
-							Foxtrick.toggleClass(header, "ft-expander-expanded");
-							Foxtrick.toggleClass(lineup, "hidden");
-						}, false)
+					Foxtrick.listen(header, "click", function() {
+						Foxtrick.toggleClass(header, "ft-expander-unexpanded");
+						Foxtrick.toggleClass(header, "ft-expander-expanded");
+						Foxtrick.toggleClass(lineup, "hidden");
+					}, false)
 
-						// report header
-						var reportHeader = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchReportFormat, "h2");
-						parent.insertBefore(reportHeader, before);
-						reportHeader.className = "ft-expander-expanded";
-						reportHeader.textContent = Foxtrickl10n.getString("MatchReportFormat.MatchReport");
-						
-						// container of formatted report
-						var report = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchReportFormat, "div");
-						report.className = "ft-match-report";
-						parent.insertBefore(report, before);
-						
-						Foxtrick.listen(reportHeader, "click", function() {
-							Foxtrick.toggleClass(reportHeader, "ft-expander-unexpanded");
-							Foxtrick.toggleClass(reportHeader, "ft-expander-expanded");
-							Foxtrick.toggleClass(report, "hidden");
-						}, false)
+					// report header
+					var reportHeader = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchReportFormat, "h2");
+					parent.insertBefore(reportHeader, before);
+					reportHeader.className = "ft-expander-expanded";
+					reportHeader.textContent = Foxtrickl10n.getString("MatchReportFormat.MatchReport");
+					
+					// container of formatted report
+					var report = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchReportFormat, "div");
+					report.className = "ft-match-report";
+					parent.insertBefore(report, before);
+					
+					Foxtrick.listen(reportHeader, "click", function() {
+						Foxtrick.toggleClass(reportHeader, "ft-expander-unexpanded");
+						Foxtrick.toggleClass(reportHeader, "ft-expander-expanded");
+						Foxtrick.toggleClass(report, "hidden");
+					}, false)
 
-						// wait for kick-off (walkovers don't allow to count event 21 (lineups))
-						var koPending = true;
-						// generate report from events
-						var events = xml.getElementsByTagName("Event");
-						Foxtrick.map(function(evt) {
-							var evtMin = evt.getElementsByTagName("Minute")[0].textContent;
-							var evtMarkup = evt.getElementsByTagName("EventText")[0].textContent.replace(RegExp("<br\\s*/?>", "g"), "");
-							var evtTeamId = evt.getElementsByTagName("SubjectTeamID")[0].textContent;
-							var evtType = evt.getElementsByTagName("EventTypeID")[0].textContent;
+					// wait for kick-off (walkovers don't allow to count event 21 (lineups))
+					var koPending = true;
+					// generate report from events
+					var events = xml.getElementsByTagName("Event");
+					Foxtrick.map(function(evt) {
+						var evtMin = evt.getElementsByTagName("Minute")[0].textContent;
+						var evtMarkup = evt.getElementsByTagName("EventText")[0].textContent.replace(RegExp("<br\\s*/?>", "g"), "");
+						var evtTeamId = evt.getElementsByTagName("SubjectTeamID")[0].textContent;
+						var evtType = evt.getElementsByTagName("EventTypeID")[0].textContent;
 
-							if (evtMarkup != "") {
-								//kickoff indicator 
+						if (evtMarkup != "") {
+							//kickoff indicator 
 
-								// item to be added
-								var item = doc.createElement("div");
-								report.appendChild(item);
-								item.className = "ft-match-report-event";
-								if (evtTeamId == homeId)
-									item.className += " ft-match-report-event-home";
-								else if (evtTeamId == awayId)
-									item.className += " ft-match-report-event-away";
+							// item to be added
+							var item = doc.createElement("div");
+							report.appendChild(item);
+							item.className = "ft-match-report-event";
+							if (evtTeamId == homeId)
+								item.className += " ft-match-report-event-home";
+							else if (evtTeamId == awayId)
+								item.className += " ft-match-report-event-away";
 
-								var minute = doc.createElement("div");
-								item.appendChild(minute);
-								minute.className = "ft-match-report-event-minute";
-								minute.textContent = evtMin + "'";
+							var minute = doc.createElement("div");
+							item.appendChild(minute);
+							minute.className = "ft-match-report-event-minute";
+							minute.textContent = evtMin + "'";
 
-								//event type icon
-								var addEventIcons = function(parent, isEventTeam, evtType, title){
-									if (FoxtrickPrefs.isModuleOptionEnabled("MatchReportFormat", "ShowEventIcons")){
-										var createEventIcon = function(src, title, alt) {
-											Foxtrick.addImage(doc, parent, { alt: alt, title: title, src: src , className: "ft-match-report-event-icon-image" });
-										}
+							//event type icon
+							var addEventIcons = function(parent, isEventTeam, evtType, title){
+								if (FoxtrickPrefs.isModuleOptionEnabled("MatchReportFormat", "ShowEventIcons")){
+									var createEventIcon = function(src, title, alt) {
+										Foxtrick.addImage(doc, parent, { alt: alt, title: title, src: src , className: "ft-match-report-event-icon-image" });
+									}
 
-										//icons for both columns (e.g.: Header vs. quick etc.)
-										if (typeof(eventTypes[evtType]) == "object"){
-											//event team
-											if (isEventTeam) {
-												if (eventTypes[evtType]["team"]) 
-													for(var i = 0; i < eventTypes[evtType]["team"].length; ++i)
-														createEventIcon(icons[eventTypes[evtType]["team"][i]], title, "Event Id " + evtType + " : " + eventTypes[evtType]["team"][i]);
-											} 
-											else {
-												if (eventTypes[evtType]["other"])
-													for(var i = 0; i < eventTypes[evtType]["other"].length; ++i)
-														createEventIcon(icons[eventTypes[evtType]["other"][i]], title, "Event Id " + evtType + " : " + eventTypes[evtType]["team"][i]);
-											} 
+									//icons for both columns (e.g.: Header vs. quick etc.)
+									if (typeof(eventTypes[evtType]) == "object"){
+										//event team
+										if (isEventTeam) {
+											if (eventTypes[evtType]["team"]) 
+												for(var i = 0; i < eventTypes[evtType]["team"].length; ++i)
+													createEventIcon(icons[eventTypes[evtType]["team"][i]], title, "Event Id " + evtType + " : " + eventTypes[evtType]["team"][i]);
 										} 
-										//simple case, display icon for team
-										else if (eventTypes[evtType] && icons[eventTypes[evtType]]){
-											if (!isEventTeam)
-												return;
-											if (icons[eventTypes[evtType]] instanceof Array)
-												for(var i = 0; i < icons[eventTypes[evtType]].length; ++i)
-													createEventIcon(icons[eventTypes[evtType]][i], title, "Event Id " + evtType + " : " +eventTypes[evtType]);
-											else {
-												createEventIcon(icons[eventTypes[evtType]], title, "Event Id " + evtType + " : " +eventTypes[evtType]);
-											}
+										else {
+											if (eventTypes[evtType]["other"])
+												for(var i = 0; i < eventTypes[evtType]["other"].length; ++i)
+													createEventIcon(icons[eventTypes[evtType]["other"][i]], title, "Event Id " + evtType + " : " + eventTypes[evtType]["team"][i]);
+										} 
+									} 
+									//simple case, display icon for team
+									else if (eventTypes[evtType] && icons[eventTypes[evtType]]){
+										if (!isEventTeam)
+											return;
+										if (icons[eventTypes[evtType]] instanceof Array)
+											for(var i = 0; i < icons[eventTypes[evtType]].length; ++i)
+												createEventIcon(icons[eventTypes[evtType]][i], title, "Event Id " + evtType + " : " +eventTypes[evtType]);
+										else {
+											createEventIcon(icons[eventTypes[evtType]], title, "Event Id " + evtType + " : " +eventTypes[evtType]);
 										}
-										//no icon, put in transparent icon to allow tooltoip
-										else{
-											createEventIcon(icons["transparent"], title, title);
-										}
 									}
-								}
-								var title = eventText[evtType] +" (" + evtType + ")";
-
-								var icon = doc.createElement("div");
-								icon.className = "ft-match-report-event-icon";
-								item.appendChild(icon);
-								addEventIcons(icon, homeId == evtTeamId, evtType, title);
-
-								var icon = doc.createElement("div");
-								icon.className = "ft-match-report-event-icon";
-								item.appendChild(icon);
-								addEventIcons(icon, awayId == evtTeamId, evtType, title);
-								
-								//event text
-								var content = doc.createElement("div");
-								item.appendChild(content);
-								content.className = "ft-match-report-event-content";								
-								Foxtrick.util.sanitize.addHTML(doc, evtMarkup, content); // loaded markup from trusted source: https://chpp.hattrick.org
-								
-								var clear = doc.createElement("div");
-								item.appendChild(clear);
-								clear.className = "clear";
-
-								// indicators to be added
-								var indicatorList = [
-									{
-										"class": "kick-off",
-										"text": "kickOff",
-										"before": true,
-										"func": (function() {
-											return function() {
-												if (koPending && evtMin != "0") {
-													koPending = false;
-													return true;
-												}
-												else {
-													return false;
-												}
-											};
-										})()
-									},
-									{
-										"class": "half-time",
-										"text": "halfTime",
-										"func": function() { return (eventTypes[evtType] == "possession") && (evtMin == "45"); }
-									},
-									{
-										"class": "full-time",
-										"text": "fullTime",
-										"func": function() { return (eventTypes[evtType] == "possession") && (evtMin == "90"); }
-									},
-									{
-										"class": "extra-time",
-										"text": "extraTime",
-										"func": function() { return eventTypes[evtType] == "extraTime"; }
-									},
-									{
-										"class": "penalty-shoot-out",
-										"text": "penaltyShootOut",
-										"func": function() { return eventTypes[evtType] == "penaltyShootOut"; }
-									},
-									{
-										"class": "result",
-										"text": "result",
-										"before": true,
-										"func": function() { return eventTypes[evtType] == "result"; }
-									}
-								];
-								var indType = Foxtrick.nth(0, function(n) {
-									return n.func();
-								}, indicatorList);
-								if (indType) {
-									// found a matching indicator
-									var indicator = doc.createElement("div");
-									indicator.textContent = Foxtrickl10n.getString("MatchReportFormat." + indType.text);
-									indicator.className = "ft-match-report-" + indType["class"];
-									if (indType.before) {
-										report.insertBefore(indicator, item);
-									}
-									else {
-										report.appendChild(indicator);
+									//no icon, put in transparent icon to allow tooltoip
+									else{
+										createEventIcon(icons["transparent"], title, title);
 									}
 								}
 							}
-						}, events);
-						if (FoxtrickPrefs.isModuleEnabled("MatchPlayerColouring")) {
-							var mod = Foxtrick.modules["MatchPlayerColouring"];
-							mod.color(doc);
+							var title = eventText[evtType] +" (" + evtType + ")";
+
+							var icon = doc.createElement("div");
+							icon.className = "ft-match-report-event-icon";
+							item.appendChild(icon);
+							addEventIcons(icon, homeId == evtTeamId, evtType, title);
+
+							var icon = doc.createElement("div");
+							icon.className = "ft-match-report-event-icon";
+							item.appendChild(icon);
+							addEventIcons(icon, awayId == evtTeamId, evtType, title);
+							
+							//event text
+							var content = doc.createElement("div");
+							item.appendChild(content);
+							content.className = "ft-match-report-event-content";								
+							Foxtrick.util.sanitize.addHTML(doc, evtMarkup, content); // loaded markup from trusted source: https://chpp.hattrick.org
+							
+							var clear = doc.createElement("div");
+							item.appendChild(clear);
+							clear.className = "clear";
+
+							// indicators to be added
+							var indicatorList = [
+								{
+									"class": "kick-off",
+									"text": "kickOff",
+									"before": true,
+									"func": (function() {
+										return function() {
+											if (koPending && evtMin != "0") {
+												koPending = false;
+												return true;
+											}
+											else {
+												return false;
+											}
+										};
+									})()
+								},
+								{
+									"class": "half-time",
+									"text": "halfTime",
+									"func": function() { return (eventTypes[evtType] == "possession") && (evtMin == "45"); }
+								},
+								{
+									"class": "full-time",
+									"text": "fullTime",
+									"func": function() { return (eventTypes[evtType] == "possession") && (evtMin == "90"); }
+								},
+								{
+									"class": "extra-time",
+									"text": "extraTime",
+									"func": function() { return eventTypes[evtType] == "extraTime"; }
+								},
+								{
+									"class": "penalty-shoot-out",
+									"text": "penaltyShootOut",
+									"func": function() { return eventTypes[evtType] == "penaltyShootOut"; }
+								},
+								{
+									"class": "result",
+									"text": "result",
+									"before": true,
+									"func": function() { return eventTypes[evtType] == "result"; }
+								}
+							];
+							var indType = Foxtrick.nth(0, function(n) {
+								return n.func();
+							}, indicatorList);
+							if (indType) {
+								// found a matching indicator
+								var indicator = doc.createElement("div");
+								indicator.textContent = Foxtrickl10n.getString("MatchReportFormat." + indType.text);
+								indicator.className = "ft-match-report-" + indType["class"];
+								if (indType.before) {
+									report.insertBefore(indicator, item);
+								}
+								else {
+									report.appendChild(indicator);
+								}
+							}
 						}
-					}));
-				});
+					}, events);
+					if (FoxtrickPrefs.isModuleEnabled("MatchPlayerColouring")) {
+						var mod = Foxtrick.modules["MatchPlayerColouring"];
+						mod.color(doc);
+					}
+				}));
 			});
-		}
+		});
 	};
 }());
