@@ -10,6 +10,33 @@ if (!Foxtrick)
 
 Foxtrick.util.module = {};
 
+if (!Foxtrick)
+	var Foxtrick = {};
+if (!Foxtrick.util)
+	Foxtrick.util = {};
+
+Foxtrick.util.module = {};
+
+// return function of a categorized module. load on demand if needed
+Foxtrick.util.module.get = function() {
+	var m = arguments[0];
+	var f = arguments[1];
+	
+	var args = [];
+	for (var i=2; i<arguments.length;++i)
+		args.push(arguments[i]);
+	
+	if (typeof(Foxtrick.modules[m.MODULE_NAME][f]) != "function" && m.FILE) {
+		var jstext = Foxtrick.loadSync( Foxtrick.InternalPath + m.FILE );	
+		eval(jstext);
+		m.FILE = null;
+	}
+	if (typeof(Foxtrick.modules[m.MODULE_NAME][f]) == "function")
+		return Foxtrick.modules[m.MODULE_NAME][f](args[0],args[1],args[2],args[3],args[4],args[5],args[6],args[7],args[8],args[9],args[10]);
+	return null;
+};
+
+
 if (!Foxtrick.modules)
 	Foxtrick.modules = {};
 
