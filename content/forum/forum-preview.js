@@ -78,7 +78,7 @@ Foxtrick.modules["ForumPreview"]={
 				var prev_div = doc.getElementById( "ft-forum-preview-area" );
 				var text =  String(msg_window.value);
 
-				var formatter = Foxtrick.util.module.get("FormatPostingText");
+				var formatter = Foxtrick.modules["FormatPostingText"];
 
 				// format within pre
 				text = formatter.format(text);

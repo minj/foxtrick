@@ -8,6 +8,6 @@
 Foxtrick.modules["LinksTracker"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksTracker", "trackerplayerlink");
+		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksTracker", "trackerplayerlink");
 	}
 };

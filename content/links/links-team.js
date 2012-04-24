@@ -9,7 +9,7 @@ Foxtrick.modules["LinksTeam"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('teamPage'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksTeam", "teamlink");
+		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksTeam", "teamlink");
 	},
 
 	run : function(doc) {
@@ -28,7 +28,7 @@ Foxtrick.modules["LinksTeam"]={
 		var ownBoxBody=null;
 		var teaminfo = this.gatherLinks( main, doc );
 
-		var links = Foxtrick.util.module.get("Links").getLinks("teamlink", teaminfo, doc, this );
+		var links = Foxtrick.modules["Links"].getLinks("teamlink", teaminfo, doc, this );
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, "div");
 			var header = Foxtrickl10n.getString("links.boxheader" );

@@ -9,11 +9,11 @@ Foxtrick.modules["LinksCoach"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('coach'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksCoach", "coachlink");
+		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksCoach", "coachlink");
 	},
 
 	run : function(doc) {
-		var links = Foxtrick.util.module.get("Links").getLinks("coachlink", {  }, doc, this);
+		var links = Foxtrick.modules["Links"].getLinks("coachlink", {  }, doc, this);
 		var ownBoxBody=null;
 
 		if (links.length > 0) {

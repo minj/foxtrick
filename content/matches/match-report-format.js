@@ -865,7 +865,7 @@ var eventText = {
 							}
 						}, events);
 						if (FoxtrickPrefs.isModuleEnabled("MatchPlayerColouring")) {
-							var mod = Foxtrick.util.module.get("MatchPlayerColouring");
+							var mod = Foxtrick.modules["MatchPlayerColouring"];
 							mod.color(doc);
 						}
 					}));

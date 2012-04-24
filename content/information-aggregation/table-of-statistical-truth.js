@@ -128,7 +128,7 @@ Foxtrick.modules["TableOfStatisticalTruth"]={
 				insertBefore.parentNode.insertBefore(link, insertBefore);
 					
 				
-				Foxtrick.util.module.get("TableSort").run(doc);
+				Foxtrick.modules["TableSort"].run(doc);
 			});
 		};
 	}

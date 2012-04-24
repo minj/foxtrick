@@ -9,7 +9,7 @@ Foxtrick.modules["LinksClubTransfers"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('transfer'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksClubTransfers", "clubtransferslink");
+		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksClubTransfers", "clubtransferslink");
 	},
 
 	run : function(doc) {
@@ -17,7 +17,7 @@ Foxtrick.modules["LinksClubTransfers"]={
 		var ownBoxBody=null;
 		var thisdiv = main.getElementsByTagName("div")[0];
 		
-		var links = Foxtrick.util.module.get("Links").getLinks("clubtransferslink", {}, doc, this );
+		var links = Foxtrick.modules["Links"].getLinks("clubtransferslink", {}, doc, this );
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, "div");
 			var header = Foxtrickl10n.getString(

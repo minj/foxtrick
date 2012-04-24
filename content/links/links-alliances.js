@@ -9,7 +9,7 @@ Foxtrick.modules["LinksAlliances"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('federation'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksAlliances", "federationlink");
+		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksAlliances", "federationlink");
 	},
 
 	run : function(doc) {
@@ -20,7 +20,7 @@ Foxtrick.modules["LinksAlliances"]={
 		var startPos = allianceLink.href.search("=")+1;
 		var allianceId = allianceLink.href.substr(startPos);
 
-		var links = Foxtrick.util.module.get("Links").getLinks("federationlink", { "federationid" : allianceId}, doc, this );
+		var links = Foxtrick.modules["Links"].getLinks("federationlink", { "federationid" : allianceId}, doc, this );
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, "div");
 			var header = Foxtrickl10n.getString(

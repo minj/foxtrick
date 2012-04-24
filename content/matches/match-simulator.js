@@ -107,7 +107,7 @@ Foxtrick.modules.MatchSimulator={
 				
 				var tactics = [ tacticAbbr[currentRatings[7]], tacticAbbr[currentRatingsOther[7]] ];
 				var tacticsLevel = [ currentRatings[8], currentRatingsOther[8] ];
-				Foxtrick.util.module.get('HTMSPrediction').insertPrediction(doc,overlayHTMSCurrent, midfieldLevel, rdefence, cdefence, ldefence, rattack, cattack, lattack, tactics, tacticsLevel,teamNames);
+				Foxtrick.modules["HTMSPrediction"].insertPrediction(doc,overlayHTMSCurrent, midfieldLevel, rdefence, cdefence, ldefence, rattack, cattack, lattack, tactics, tacticsLevel,teamNames);
 			}
 			else {
 				if (overlayHTMS)
@@ -429,7 +429,7 @@ Foxtrick.modules.MatchSimulator={
 				// copy htms prediction. 
 				var overlayHTMS = doc.getElementById('overlayHTMSCurrent');
 				if (overlayHTMS) {
-					text += Foxtrick.util.module.get('HTMSPrediction').copy(overlayHTMS);
+					text += Foxtrick.modules["HTMSPrediction"].copy(overlayHTMS);
 				}
 				
 				Foxtrick.copyStringToClipboard(text);

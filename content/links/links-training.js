@@ -9,7 +9,7 @@ Foxtrick.modules["LinksTraining"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('training'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksTraining", "traininglink");
+		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksTraining", "traininglink");
 	},
 
 	run : function(doc) {
@@ -32,7 +32,7 @@ Foxtrick.modules["LinksTraining"]={
 		owncountryid = Foxtrick.util.id.getOwnLeagueId();
 
 
-		var links = Foxtrick.util.module.get("Links").getLinks("traininglink", {"Coach":Coach,"TI":TI,"STA":STA,"TrainingType":TrainingType,'owncountryid':owncountryid}, doc, this);
+		var links = Foxtrick.modules["Links"].getLinks("traininglink", {"Coach":Coach,"TI":TI,"STA":STA,"TrainingType":TrainingType,'owncountryid':owncountryid}, doc, this);
 
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, "div");

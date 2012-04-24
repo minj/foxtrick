@@ -106,54 +106,52 @@ var FoxtrickPrefs = {
 		return true;
 	},
 
-	isModuleEnabled : function(module) {
+	isModuleEnabled : function(moduleName) {
 		// core modules must be executed no matter what user's preference is
-		var obj = Foxtrick.util.module.get(module);
+		var obj = Foxtrick.modules[moduleName];
 		if (!obj)
 			return false;
 		if (obj.CORE_MODULE)
 			return true;
-		return FoxtrickPrefs.getBool("module." + module + ".enabled");
+		return FoxtrickPrefs.getBool("module." + moduleName + ".enabled");
 	},
 
-	isModuleOptionEnabled : function(module, option) {
-		return FoxtrickPrefs.getBool("module." + module + "." + option + ".enabled");
+	isModuleOptionEnabled : function(moduleName, option) {
+		return FoxtrickPrefs.getBool("module." + moduleName + "." + option + ".enabled");
 	},
 
-	setModuleEnableState : function(module, value) {
-		FoxtrickPrefs.setBool("module." + module + ".enabled", value);
+	setModuleEnableState : function(moduleName, value) {
+		FoxtrickPrefs.setBool("module." + moduleName + ".enabled", value);
 	},
 
-	setModuleOptionsText : function(module, value) {
-		FoxtrickPrefs.setString("module." + module, value);
+	setModuleOptionsText : function(moduleName, value) {
+		FoxtrickPrefs.setString("module." + moduleName, value);
 	},
 
-	getModuleValue : function(module) {
-		var moduleName = (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
+	getModuleValue : function(moduleName) {
 		return FoxtrickPrefs.getInt("module." + moduleName + ".value");
 	},
 
-	setModuleValue : function(module, value) {
-		var moduleName = (module.MODULE_NAME) ? String(module.MODULE_NAME) : String(module);
+	setModuleValue : function(moduleName, value) {
 		FoxtrickPrefs.setInt("module." + moduleName + ".value", value);
 	},
 
-	getModuleDescription : function(module) {
-		var name = "module." + module + ".desc";
+	getModuleDescription : function(moduleName) {
+		var name = "module." + moduleName + ".desc";
 		if (Foxtrickl10n.isStringAvailable(name) )
 			return Foxtrickl10n.getString(name);
 		else {
-			Foxtrick.log("Module not localized: " + module + ".");
-			return module;
+			Foxtrick.log("Module not localized: " + moduleName + ".");
+			return moduleName;
 		}
 	},
 
-	getModuleElementDescription : function(module, option) {
-		var name = "module." + module + "." + option + ".desc";
+	getModuleElementDescription : function(moduleName, option) {
+		var name = "module." + moduleName + "." + option + ".desc";
 		if (Foxtrickl10n.isStringAvailable(name))
 			return Foxtrickl10n.getString(name);
 		else {
-			Foxtrick.log("Module option not localized: " + module + "." + option + ".");
+			Foxtrick.log("Module option not localized: " + moduleName + "." + option + ".");
 			return option;
 		}
 	},

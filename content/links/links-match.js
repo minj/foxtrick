@@ -9,7 +9,7 @@ Foxtrick.modules["LinksMatch"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('match'),
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksMatch",
+		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksMatch",
 			["playedmatchlink", "playedyouthmatchlink", "nextmatchlink", "matchlink"]);
 	},
 
@@ -43,14 +43,14 @@ Foxtrick.modules["LinksMatch"]={
 		var add_links=false;
 		//addExternalLinksToPlayedMatch
 		if (isarchivedmatch) {
-			if (youthmatch) {links = Foxtrick.util.module.get("Links").getLinks("playedyouthmatchlink", { "ownyouthteamid":ownyouthteamid, "matchid": matchid, "teamid" : teamid,"teamid2":teamid2, 'server':server}, doc, this); }
-			else {links = Foxtrick.util.module.get("Links").getLinks("playedmatchlink", { "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  }, doc, this); }
+			if (youthmatch) {links = Foxtrick.modules["Links"].getLinks("playedyouthmatchlink", { "ownyouthteamid":ownyouthteamid, "matchid": matchid, "teamid" : teamid,"teamid2":teamid2, 'server':server}, doc, this); }
+			else {links = Foxtrick.modules["Links"].getLinks("playedmatchlink", { "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  }, doc, this); }
 			if (links.length>0) add_links = true;
 		}
 		//addExternalLinksToCommingMatch
 		if (!isarchivedmatch && !youthmatch) {
-			links = Foxtrick.util.module.get("Links").getLinks("nextmatchlink", { "matchid": matchid, "teamid" : teamid ,"teamid2":teamid2  }, doc,this);
-			links2 = Foxtrick.util.module.get("Links").getLinks("matchlink", { "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  }, doc,this);
+			links = Foxtrick.modules["Links"].getLinks("nextmatchlink", { "matchid": matchid, "teamid" : teamid ,"teamid2":teamid2  }, doc,this);
+			links2 = Foxtrick.modules["Links"].getLinks("matchlink", { "matchid": matchid, "teamid" : teamid,"teamid2":teamid2  }, doc,this);
 			if (links.length+links2.length>0) add_links = true;
  		}
  		// add links box

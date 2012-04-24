@@ -11,15 +11,15 @@ if (!Foxtrick.util)
 Foxtrick.util.id = {};
 
 Foxtrick.util.id.getOwnTeamId = function() {
-	return Foxtrick.util.module.get("Core").getSelfTeamInfo().teamId;
+	return Foxtrick.modules["Core"].getSelfTeamInfo().teamId;
 };
 
 Foxtrick.util.id.getOwnYouthTeamId = function() {
-	return Foxtrick.util.module.get("Core").getSelfTeamInfo().youthTeamId;
+	return Foxtrick.modules["Core"].getSelfTeamInfo().youthTeamId;
 };
 
 Foxtrick.util.id.getOwnLeagueId = function() {
-	return Foxtrick.util.module.get("Core").getSelfTeamInfo().leagueId;
+	return Foxtrick.modules["Core"].getSelfTeamInfo().leagueId;
 };
 
 Foxtrick.util.id.isSeriesDetailUrl = function(href) {

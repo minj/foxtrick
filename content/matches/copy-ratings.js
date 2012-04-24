@@ -147,7 +147,7 @@ Foxtrick.modules["CopyRatings"]={
 				if (team1 && team2) {
  					var htmsMatchDivId = doc.getElementById('htmsMatchDivId');
 					if (htmsMatchDivId) {
-						ad += Foxtrick.util.module.get('HTMSPrediction').copy(htmsMatchDivId);
+						ad += Foxtrick.modules["HTMSPrediction"].copy(htmsMatchDivId);
 					}
 				}
 				

@@ -10,7 +10,7 @@ Foxtrick.modules["LinksChallenges"]={
 	PAGES : new Array('challenges','youthchallenges'),
 	LINK_TYPES : [ "challengeslink", "youthchallengeslink" ],
 	OPTION_FUNC : function(doc) {
-		return Foxtrick.util.module.get("Links").getOptionsHtml(doc, "LinksChallenges", this.LINK_TYPES);
+		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksChallenges", this.LINK_TYPES);
 	},
 
 	run : function(doc) {
@@ -21,9 +21,9 @@ Foxtrick.modules["LinksChallenges"]={
 		//addExternalLinksToChallengesDetail
 		var links;
 		if (Foxtrick.isPage("challenges", doc))
-			links = Foxtrick.util.module.get("Links").getLinks("challengeslink", {'teamid':teamid, 'ownteamid':ownteamid}, doc, this);
+			links = Foxtrick.modules["Links"].getLinks("challengeslink", {'teamid':teamid, 'ownteamid':ownteamid}, doc, this);
 		else
-			links = Foxtrick.util.module.get("Links").getLinks("youthchallengeslink", {'teamid':teamid, 'youthteamid':youthteamid,'ownteamid':ownteamid}, doc, this);
+			links = Foxtrick.modules["Links"].getLinks("youthchallengeslink", {'teamid':teamid, 'youthteamid':youthteamid,'ownteamid':ownteamid}, doc, this);
 		var ownBoxBody=null;
 
 		if (links.length > 0) {
