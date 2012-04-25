@@ -169,28 +169,23 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			xp_gain = walkover?0:xp_gain;
 
 			//adjust min and max values to take care of international vs. nationl friendlies
-			var dxp = {}
-			if(!ntMatch){
-				 if(gameType == "matchFriendly"){
-				 	dxp.min = xp_gain/2;
-				 	dxp.max = xp_gain;
-				 } else {
-				 	dxp.min = xp_gain;
-				 	dxp.max = xp_gain;
-				 }
-			} else {
-				dxp.min = xp_gain;
-				dxp.max = xp_gain;
-			}
-			
 			if(xp_now == xp_last){
-				xp_sub_min += dxp.min;
-				xp_sub_max += dxp.max;
+				if(!ntMatch){
+					 if(gameType == "matchFriendly"){
+					 	xp_sub_min += xp_gain/2;
+					 	xp_sub_max += xp_gain;
+					 	xp_last_min_added = xp_gain/2;
+					 } else {
+					 	xp_sub_min += xp_gain;
+					 	xp_sub_max += xp_gain;
+					 	xp_last_min_added = xp_gain;
+					 }
+				} else {
+					xp_sub_min += xp_gain;
+					xp_sub_max += xp_gain;
+					xp_last_min_added = xp_gain;
+				}
 			} else {
-				//last game before Skillup might have contributed
-				if(!xp_skillUp_detected)
-					xp_sub_max += dxp.max;
-				
 				//we found a skillup, gathered data is relyable 
 				xp_skillUp_detected = true;
 			}
@@ -209,6 +204,8 @@ Foxtrick.modules["PlayerStatsExperience"]={
 				ts_xp.textContent =  (xp_gain/2.0).toFixed(2) + "/" + xp_gain.toFixed(2);
 			entry.insertBefore(ts_xp, entry.cells[xp_column+1]);
 		}
+
+		xp_sub_min -= xp_last_min_added;
 
 		var showAllLink=null;
 		var links = doc.getElementsByTagName("a");
