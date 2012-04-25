@@ -37,7 +37,8 @@ Foxtrick.modules["Core"]={
 	},
 
 	showChangeLog : function(doc) {
-		if (FoxtrickPrefs.getString("oldVersion") !== Foxtrick.version()) {
+		// show change log if anything but forth number changes
+		if (FoxtrickPrefs.getString("oldVersion").match(/\d+\.\d+\.?\d+?/)[0] !== Foxtrick.version().match(/\d+\.\d+\.?\d+?/)[0]) {
 			if (FoxtrickPrefs.getBool("showReleaseNotes")) {
 				if ( Foxtrick.platform != "Opera" )
 					FoxtrickPrefs.show('#tab=changes');
