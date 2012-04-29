@@ -441,13 +441,14 @@ Foxtrick.modules["PlayerStatsExperience"]={
 
 		table.appendChild(row);
 
-//stuff
+//table
 
 		navigation.parentNode.insertBefore(matchListTable, navigation);
 		table.appendChild(thead);
 		table.appendChild(tbody);
 		matchListTable.appendChild(table);
-		
+//slider
+
 		var container = doc.createElement("div");
 		Foxtrick.addClass(container,"ft-slider-option");
 		Foxtrick.addClass(container,"ft-ignore-changes");
@@ -456,7 +457,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		Foxtrick.addClass(desc,"ft-desc");
 		Foxtrick.addClass(desc,"ft-table-cell");
 		var bold = doc.createElement("b");
-		bold.textContent  = "International friendlies in %:"
+		bold.textContent  = Foxtrickl10n.getString("PlayerStatsExperience.InternationalPercentage");
 		desc.appendChild(bold);
 
 		var sliderContainer = doc.createElement("div");
