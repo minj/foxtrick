@@ -32,7 +32,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		xp.matchNtFriendly = 2.0;		//fakename: we generate this type (iconsytle + gametype)
 		xp.matchQualification = 2.0;
 		xp.matchMasters = 5.0;
-		xp.matchNtLeague = 10.0;		//fakename: we generate this type (iconsytle + gametype), (semi)-final matches are downgraded to plain WC matches, errors not considered in min-max
+		xp.matchNtLeague = 10.0;		//fakename: we generate this type (iconsytle + gametype)
  		xp.matchNtFinals = 20.0;
 
 		var xp_column = 6;
@@ -447,7 +447,8 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		table.appendChild(thead);
 		table.appendChild(tbody);
 		matchListTable.appendChild(table);
-//slider
+
+//slider & coloring
 
 		var container = doc.createElement("div");
 		Foxtrick.addClass(container,"ft-slider-option");
@@ -485,6 +486,9 @@ Foxtrick.modules["PlayerStatsExperience"]={
 
 		navigation.parentNode.insertBefore(container, navigation);
 		navigation.parentNode.insertBefore(div, navigation);
+
+		if(this.store.matches.matchFriendly.minutes == 0)
+			Foxtrick.addClass(container, 'hidden');
 
 		//if more matches are required, clone showall link for easier access to top of table
 		if(showAllLink && !this.store.skillup){
