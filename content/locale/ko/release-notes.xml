@@ -14,10 +14,12 @@
 </note>
 
 <note version="0.9.3">
-<item>● MatchOrderInterface: 최근 경기 정보를 비활성화시키는 옵션과 토너먼트 게임을 강조하는 옵션을 추가하였습니다.(기본적으로 활성화)</item>
-<item>● MatchOrderInterface: Firefox에서 최근 경기 지시자가 표시되지 (않거나 올바르게 표시하지 않던) 버그를 수정하였습니다.</item>
-<item>● PlayerStatsExperience: 레드 카드가 게임을 부전승으로 감지하던 버그를 수정하였습니다.</item>
-<item>● PlayerStatsExperience: 이 모듈이 Firefox 3.6에서 제대로 동작하지 못하도록 야기시키는 문제를 수정하였습니다.</item>
+<item>● NEW: <module>YouthTwins</module>: 서포터즈 유저를 위해 유소선 선수 개요 페이지에 가능성 있는/쌍둥이/비쌍둥이 선수 수를 표시합니다. (hattrick youthclub과 연계)</item>
+<item>● <module>MatchOrderInterface</module>: 라인업의 각 선수의 유니폼 대신에 얼굴을 표시하는 옵션을 추가하였습니다.(기본 활성화)</item>
+<item>● <module>MatchOrderInterface</module>: 최근 경기 정보를 비활성화시키는 옵션과 토너먼트 게임을 강조하는 옵션을 추가하였습니다.(기본적으로 활성화)</item>
+<item>● <module>MatchOrderInterface</module>: Firefox에서 최근 경기 지시자가 표시되지 (않거나 올바르게 표시하지 않던) 버그를 수정하였습니다.</item>
+<item>● <module>PlayerStatsExperience</module>: 레드 카드가 게임을 부전승으로 감지하던 버그를 수정하였습니다.</item>
+<item>● <module>PlayerStatsExperience</module>: 이 모듈이 Firefox 3.6에서 제대로 동작하지 못하도록 야기시키는 문제를 수정하였습니다.</item>
 </note>
 
 <note version="0.9.2">
