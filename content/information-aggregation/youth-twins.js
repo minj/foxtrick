@@ -63,9 +63,9 @@
 		}
 
 		//icons resources for representation
-		var icon_green = Foxtrick.InternalPath + 'resources/img/twin.png';
-		var icon_red = Foxtrick.InternalPath + 'resources/img/twin_red.png'; 
-		var icon_yellow = Foxtrick.InternalPath + 'resources/img/twin_yellow.png'; 
+		var icon_green = Foxtrick.InternalPath + 'resources/img/twins/twin.png';
+		var icon_red = Foxtrick.InternalPath + 'resources/img/twins/twin_red.png'; 
+		var icon_yellow = Foxtrick.InternalPath + 'resources/img/twins/twin_yellow.png'; 
 
 		//params
 		//teamid : Current Foxtrick user
