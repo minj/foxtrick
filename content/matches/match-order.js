@@ -273,6 +273,8 @@ Foxtrick.modules["MatchOrderInterface"]={
 					//Foxtrick.log('details change');
 					if (hasPlayerInfo) {
 						addLastMatchtoDetails();
+						if (FoxtrickPrefs.isModuleEnabled("LoyaltyDisplay"))
+							injectLoyaltyBars();
 					}
 				}, false);
 				
@@ -329,6 +331,19 @@ Foxtrick.modules["MatchOrderInterface"]={
 					}
 				}
 			};
+
+			//loyalty, uses loyalty-display.js module code
+			var injectLoyaltyBars = function(){
+				var details = doc.getElementById('details');
+				var specials = details.getElementsByClassName('specials')[0];
+				if (specials) {
+					var playerid = Number(specials.parentNode.getAttribute('playerid'));
+					if (playerid) {
+						var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, playerid);
+						Foxtrick.modules["LoyaltyDisplay"].replacePercentageImage(player, doc.getElementById('mainBody'));
+					}
+				}
+			};
 			
 			var showPlayerInfo = function(target) {
 				if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PlayedLastMatch') 
@@ -346,11 +361,14 @@ Foxtrick.modules["MatchOrderInterface"]={
 						else
 							return 0;
 					};
-					
+
+
 					//players aren't send with the document, but the addMutationEventListeners later will take care
 					var listplayers = target.getElementsByClassName('player');
+
 					if(!listplayers.length)
-						return;
+						return;					
+
 					//only get the lastMatchDates
 					//require 3 players to have the same playdate, this helps excluding recent transfers to mess up things
 					if(lastMatchDates === null)
