@@ -359,7 +359,6 @@ Foxtrick.Pages.Player = {
 		Foxtrick.util.api.retrieve(doc, args,{ cache_lifetime:'session'}, function(xml) {			
 			if (!xml)
 				callback(null);
-			var UserIsSupporter = xml.getElementsByTagName("LastName")[0].textContent == 'TRUE';
 
 			var player = {};
 			player.PlayerID = Number(xml.getElementsByTagName("PlayerID")[0].textContent);
