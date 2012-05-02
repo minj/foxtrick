@@ -14,28 +14,28 @@
 </note>
 
 <note version="0.9.3">
-<item>● NEW: <module>YouthTwins</module>: 서포터즈 유저를 위해 유소선 선수 개요 페이지에 가능성 있는/쌍둥이/비쌍둥이 선수 수를 표시합니다. (hattrick youthclub과 연계)</item>
-<item>● <module>MatchOrderInterface</module>: 라인업의 각 선수의 유니폼 대신에 얼굴을 표시하는 옵션을 추가하였습니다.(기본 활성화)</item>
-<item>● <module>MatchOrderInterface</module>: 최근 경기 정보를 비활성화시키는 옵션과 토너먼트 게임을 강조하는 옵션을 추가하였습니다.(기본적으로 활성화)</item>
-<item>● <module>MatchOrderInterface</module>: Firefox에서 최근 경기 지시자가 표시되지 (않거나 올바르게 표시하지 않던) 버그를 수정하였습니다.</item>
-<item>● <module>PlayerStatsExperience</module>: 레드 카드가 게임을 부전승으로 감지하던 버그를 수정하였습니다.</item>
-<item>● <module>PlayerStatsExperience</module>: 이 모듈이 Firefox 3.6에서 제대로 동작하지 못하도록 야기시키는 문제를 수정하였습니다.</item>
+<item>● NEW: <module>YouthTwins</module>: 서포터즈 유저를 위해 유소년 선수 개요 페이지에 (가능성 있는/쌍둥이/비쌍둥이) 선수 수를 표시합니다. (hattrick youthclub과 연계)</item>
+<item>● <module>MatchOrderInterface</module>: 라인업 페이지에서 각 선수의 유니폼 대신에 얼굴을 표시하는 옵션을 추가하였습니다.(기본 활성화)</item>
+<item>● <module>MatchOrderInterface</module>: 최근 경기 정보를 비활성화시키는 옵션과 토너먼트 게임을 회색 표시하는 옵션을 추가하였습니다.(기본 활성화)</item>
+<item>● MatchOrderInterface: Firefox에서 최근 경기 지시자가 표시되지 (않거나 올바르게 표시하지 않던) 버그를 수정하였습니다.</item>
+<item>● PlayerStatsExperience: 레드 카드가 게임을 부전승으로 감지하던 버그를 수정하였습니다.</item>
+<item>● PlayerStatsExperience: 이 모듈이 Firefox 3.6에서 제대로 동작하지 못하도록 야기시키는 문제를 수정하였습니다.</item>
 </note>
 
 <note version="0.9.2">
 <item>● 또 하나의 거대한 언어 업데이트. 모든 번역가분들에게 다시 한 번 감사드립니다.</item>
 <item>● 언거 감지를 재작성했습니다. 다시 이런 문제를 일으키진 않을 것입니다.</item>
 <item>● NEW: <module>PlayerStatsExperience</module>: 각 경기에서 획득한 경험 포인트와 현재 소수부를 나타냅니다. (CatzHoek)</item>
-<item>● NEW: <module>TeamPopupLinks</module>: 토너먼트를 추가하였습니다. 테이블의 현재 팀을 선택적으로 강조합니다. (기본 활성화)</item>
+<item>● NEW: <module>TeamPopupLinks</module>: 토너먼트를 추가하였습니다. 테이블의 현재 팀을 회색 표시하는 옵션을 추가합니다. (기본 활성화)</item>
 <item>● NEW: <module>RatingsDisplay</module>: 평균 별점과 평균 레이팅을 시리즈 통계 테이블에 추가합니다.</item>
 <item>● NEW: <module>TeamStats</module>: 필터와 더 많은 개요를 추가하였습니다.</item>
 <item>● PlayerFilters 에 필터 옵션을 추가하였습니다.</item>
-<item>● 이적 명단 검색을 위한 <module>SkillTable</module>: 부상 정보를 수정하였습니다.</item>
+<item>● 이적 명단 검색을 위한 SkillTable: 부상 정보를 수정하였습니다.</item>
 <item>● MatchReportFormat: 부정적인 SE 아이콘 추가하였습니다.</item>
 <item>● Links: 추가된 동적 링크를 기본적으로 활성화합니다.</item>
 <item>● Links and staffmarker: 대역폭 절약을 위해 불러오기를 압축하였습니다.</item>
 <item>● Links: 동작하지 않아 제거 상태인 커스텀 링크를 수정하였습니다.</item>
-<item>● ForumAlterHeaderLine: 토론장 스레드 개설자를 강조하고 간단한 머리글 수정을 위해 postid 제거하였습니다.</item>
+<item>● ForumAlterHeaderLine: 토론장 스레드 개설자를 강조 표시하고 간단한 머리글 수정을 위해 postid 제거하였습니다.</item>
 <item>● ForumStripHattrickLinks: 확인 옵션을 수정하였습니다.</item>
 <item>● MatchSimulator: 비 토너먼트 경기를 추가하는 것을 수정하였습니다.</item>
 <item>● CopyYouth: 쓸모없는 선수 소스 복사 기능을 제거하였습니다.</item>
@@ -43,8 +43,8 @@
 <item>● ShowLineupSet: HT 변경사항에 따른 깨진 레이아웃을 수정하였습니다.</item>
 <item>● 북마크된 선수의 누락된 playerid을 복구하였습니다.</item>
 <item>● 이적료 중간값을 수정하였습니다.</item>
-<item>● MatchOrder: 최근 경기에 출전했던 선수 강조를 이제 경기장에도 표시됩니다.</item>
-<item>● AMO 규정을 위한 몇 가지 작업이 있었습니다.</item>
+<item>● MatchOrder: 최근 경기에 출전했던 선수 강조 표시를 이제 경기장에도 표시됩니다.</item>
+<item>● AMO 준수를 위한 몇 가지 작업이 있었습니다.</item>
 <item></item>
 <item><xhtml:b>Google Chrome 사용자에게</xhtml:b></item>
 <item>Chrome 18의 선택적 권한 허가 시스템에 버그가 있는 것 같습니다. 이것을 필요로 하는 기능(HTY staffmarker and EmbedMedia)이 현재 작동하지 않습니다.</item>
@@ -62,13 +62,13 @@
 <item>● <module>TeamPopupLinks</module>: 커스텀 링크 양식 변경되었습니다.</item>
 <item>● <module>MatchSimulator</module>: 레이팅 복사를 수정하고 토너먼트를 지원합니다.</item>
 <item>● 메인 탭에 선수 특수능력 아이콘의 선택적인 옵션을 추가하였습니다.</item>
-<item>● Foxtrick 툴바 아이콘으로 기능 강조 토글 이동. 환경 메인 탭</item>
+<item>● Foxtrick 툴바 아이콘으로 기능 강조 표시를 토글로 이동. 환경 메인 탭</item>
 <item>● 사용하지 않는 MatchTables 모듈 제거</item>
 <item>● MatchSimulator 체력 효과: 텍스트는 반올림하고 수치는 반올림되지 않고 표시합니다.</item>
 <item>● "foxtrick://"-style을 연결하는 환경설정을 수정하였습니다.</item>
 <item>● 이제 Matchreport는 모든 이벤트에 대한 풍선말을 표시합니다.</item>
 <item>● 링크 리소스를 아직까지 다른 서버로 이전되었습니다.</item>
-<item>● AMO 규정 개선을 위한 몇 가지 내부 변화</item>
+<item>● AMO 준수 개선을 위한 몇 가지 내부 변화</item>
 <item>● 수많은 번역 업데이트: aegeansailor, brauxx, Mod-Utku, ebitechv, Polytropos, gkon13, SOLARIS1973, Fieras, margaale, ipefix, stephan.cardot, OmaniMilani, LambdaB, SI-CH, Convincedd, margaale, ljushaff, serjhanti, playMaker, CoRrRan, Aristodemos, margaale, spider007, FeritAkarsu 그리고 저희가 빠뜨린 분이 상심이 크시다면 저희에게 연락 주세요. 정말 굉장합니다! 여러분 모두에게 감사드립니다!</item>
 </note>
 
@@ -103,8 +103,8 @@
 <item>여러분 모두 감사합니다. <xhtml:a href="http://crowdin.net/project/foxtrick">http://crowdin.net/project/foxtrick</xhtml:a>에서 Foxtrick을 계속 번역해주세요.</item>
 <item>번역에 대한 정보는 [post=15466991.1] 또는 [post=15466972.1]을 보세요.</item>
 <item></item>
-<item><xhtml:b>기능 강조</xhtml:b></item>
-<item>우리는 더 쉽게 FoxTrick 기능과 책임 모듈의 감지하기 위한 기능 강조를 포함했습니다. 모든 페이지의 우측 하단의 FoxTrick 버전을 클릭함으로써 켜고 끌 수 있습니다. 한 번 다시 불러온 후에 풍선말 툴팁에 책임 모듈을 나타냅니다.</item>
+<item><xhtml:b>기능 강조 표시</xhtml:b></item>
+<item>우리는 더 쉽게 FoxTrick 기능과 책임 모듈의 감지하기 위한 기능 강조 표시를 포함했습니다. 모든 페이지의 우측 하단의 FoxTrick 버전을 클릭함으로써 켜고 끌 수 있습니다. 한 번 다시 불러온 후에 풍선말 툴팁에 책임 모듈을 나타냅니다.</item>
 <item></item>
 <item><xhtml:b>새로운 기능과 변화</xhtml:b></item>
 <item>● <module>MatchReportFormat</module>: 완전히 수정된 경기 보고서 (ryanli, Catzhoek, ljushaff)</item>
