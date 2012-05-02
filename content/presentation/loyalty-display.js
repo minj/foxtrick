@@ -18,7 +18,6 @@ Foxtrick.modules["LoyaltyDisplay"]={
 			var str = (skillUp == 1.5)?str_mcb:str_lo;
 			var count = 0;
 			var bars = node.getElementsByTagName("img");
-			Foxtrick.log(bars.length);
 			while(count < bars.length && count < 100){
 				if (Foxtrick.hasClass(bars[count], "percentImage")) {
 					bars[count].setAttribute("title", bars[count].getAttribute("title") + ' +' + String(skillUp).substring(0, 4) + " " + str);
