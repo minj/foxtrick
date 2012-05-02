@@ -298,6 +298,9 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		var navigation = doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlMatchHistorySlideToggle");
 		var types = ["matchFriendly", "matchLeague", "matchCup", "matchMasters", "matchQualification", "matchNtFriendly", "matchNtLeague", "matchNtFinals"];
 
+		var xp_header = doc.createElement('h2');
+		var headerTitle = doc.createTextNode( Foxtrickl10n.getString("PlayerStatsExperience.Experience") );
+		xp_header.appendChild(headerTitle);
 		var matchListTable = doc.createElement('div');
 		
 		var table = doc.createElement('table');
@@ -441,13 +444,13 @@ Foxtrick.modules["PlayerStatsExperience"]={
 
 		table.appendChild(row);
 
-//table
-
+//table & headers
+		navigation.parentNode.insertBefore(xp_header, navigation);
 		navigation.parentNode.insertBefore(matchListTable, navigation);
 		table.appendChild(thead);
 		table.appendChild(tbody);
 		matchListTable.appendChild(table);
-
+		
 //slider & coloring
 
 		var container = doc.createElement("div");
@@ -495,6 +498,12 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			var showAllLinkClone = showAllLink.cloneNode(true);
 			navigation.parentNode.insertBefore(showAllLinkClone, navigation);
 		}
+
+		//header for the old table
+		var table_header = doc.createElement('h2');
+		var table_header_title = doc.createTextNode( Foxtrickl10n.getString("PlayerStatsExperience.PerformanceHistory") );
+		table_header.appendChild(table_header_title);
+		navigation.parentNode.insertBefore(table_header, navigation);
 
 		new Dragdealer(slider, {
 			steps: 1000,
