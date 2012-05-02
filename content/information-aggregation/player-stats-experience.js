@@ -487,7 +487,8 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		container.appendChild(sliderContainer);
 		container.appendChild(value);
 
-		navigation.parentNode.insertBefore(container, navigation);
+		div.appendChild(container);
+		//navigation.parentNode.insertBefore(container, navigation);
 		navigation.parentNode.insertBefore(div, navigation);
 
 		if(this.store.matches.matchFriendly.minutes == 0)
