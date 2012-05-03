@@ -346,7 +346,9 @@ Foxtrick.modules["MatchOrderInterface"]={
 			};
 			
 			var showPlayerInfo = function(target) {
-				if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PlayedLastMatch') 
+				//removed due to HT request
+				//TODO: remove lastPlayed branch if we don't get permission to use it for supporters only or fix it to be supporter only later
+				if (false && FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PlayedLastMatch') 
 				&& ( Foxtrick.getHref(doc).search("HTOIntegrated") == -1 
 					|| !FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PlayedLastMatch.disableForTournaments'))
 				) {	
