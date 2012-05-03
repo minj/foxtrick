@@ -8,7 +8,7 @@
 Foxtrick.modules["MatchOrderInterface"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['matchOrder', 'matchLineup'],
-	OPTIONS : [["PlayedLastMatch", "PlayedLastMatch.alsoOnField", "PlayedLastMatch.disableForTournaments"],"Specialties", "ShowFaces", "SwapPositions","StayOnPage"],
+	OPTIONS : [/*["PlayedLastMatch", "PlayedLastMatch.alsoOnField", "PlayedLastMatch.disableForTournaments"],*/"Specialties", "ShowFaces", "SwapPositions","StayOnPage"],
 	CSS : Foxtrick.InternalPath + "resources/css/match-order.css",
 	OPTIONS_CSS : [ "", Foxtrick.InternalPath + "resources/css/match-order-specialties.css", Foxtrick.InternalPath + "resources/css/match-order-faces.css"],
 
