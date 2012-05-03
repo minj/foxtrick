@@ -8,7 +8,7 @@
 Foxtrick.modules["MatchOrderInterface"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['matchOrder', 'matchLineup'],
-	OPTIONS : [["PlayedLastMatch", "PlayedLastMatch.alsoOnField", "PlayedLastMatch.disableForTournaments"],"Specialties", "ShowFaces", "SwapPositions","StayOnPage"],
+	OPTIONS : [/*["PlayedLastMatch", "PlayedLastMatch.alsoOnField", "PlayedLastMatch.disableForTournaments"],*/"Specialties", "ShowFaces", "SwapPositions","StayOnPage"],
 	CSS : Foxtrick.InternalPath + "resources/css/match-order.css",
 	OPTIONS_CSS : [ "", Foxtrick.InternalPath + "resources/css/match-order-specialties.css", Foxtrick.InternalPath + "resources/css/match-order-faces.css"],
 
@@ -331,7 +331,9 @@ Foxtrick.modules["MatchOrderInterface"]={
 			};
 			
 			var showPlayerInfo = function(target) {
-				if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PlayedLastMatch') 
+				//removed due to HT request
+				//TODO: remove lastPlayed branch if we don't get permission to use it for supporters only or fix it to be supporter only later
+				if (false && FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PlayedLastMatch') 
 				&& ( Foxtrick.getHref(doc).search("HTOIntegrated") == -1 
 					|| !FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PlayedLastMatch.disableForTournaments'))
 				) {	
@@ -346,11 +348,12 @@ Foxtrick.modules["MatchOrderInterface"]={
 						else
 							return 0;
 					};
-					
+
 					//players aren't send with the document, but the addMutationEventListeners later will take care
 					var listplayers = target.getElementsByClassName('player');
 					if(!listplayers.length)
-						return;
+						return;					
+
 					//only get the lastMatchDates
 					//require 3 players to have the same playdate, this helps excluding recent transfers to mess up things
 					if(lastMatchDates === null)
