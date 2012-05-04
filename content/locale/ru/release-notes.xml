@@ -14,8 +14,11 @@
 	</note>
 
 	<note version="0.9.3">
+		<item>● Новый модуль <module>YouthTwins</module>: показывает количество возможных/отмеченных/не близнецов на странице игроков юношеской команды для supporter-ов (в сотрудничестве с hattrick youthclub)</item>
+		<item>● Модуль <module>MatchOrderInterface</module>: параметр для показа лиц игроков вместо рубашек для будущих и прошлых расстановок (включен по умолчанию)</item>
 		<item>● Модуль <module>MatchOrderInterface</module>: добавлен параметр (включён по умолчанию) для исключения матчей турнира из информации о последних матчах и подсветки</item>
 		<item>● Модуль <module>MatchOrderInterface</module>: исправлена ошибка с нерабочим индикатором playedLastMatch в Firefox</item>
+		<item>● Модуль <module>MatchOrderInterface</module>: убрана подстветка игроков, игравших в последнем матче, поскольку разрешение на это отозвано :( (но вскоре появится замена от HT - только для supporter-ов)</item>
 		<item>● Модуль <module>PlayerStatsExperience</module>: исправлена ошибка с учётом полученной красной карточки как пропуска игры из-за технического поражения</item>
 		<item>● Модуль <module>PlayerStatsExperience</module>: исправлена работа модуля в Firefox 3.6</item>
 	</note>
