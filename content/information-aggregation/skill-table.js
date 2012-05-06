@@ -187,8 +187,7 @@ Foxtrick.modules["SkillTable"]={
 						img.title = Foxtrickl10n.getString("Bruised");
 						cell.appendChild(img);
 						index += 50;
-					}
-					if (player.injuredWeeks || player.injured) {
+					} else if (player.injuredWeeks || player.injured) {
 						var img = doc.createElement("img");
 						img.src = "/Img/Icons/injured.gif";
 						img.alt = Foxtrickl10n.getString("Injured.abbr");
