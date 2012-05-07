@@ -80,7 +80,7 @@
 					var av = encodeURIComponent((new XMLSerializer()).serializeToString(avatars));
 					
 					//api url
-					var url = "http://www.hattrick-youthclub.org/_admin/twins.php";
+					var url = "http://www.hattrick-youthclub.org/_data_provider/foxtrick/playersTwinsCheck";
 					
 					//assemble param string
 					var params = "players=" + pl + "&avatars=" + av;
