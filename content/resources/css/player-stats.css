@@ -36,17 +36,17 @@ border-radius: 3px;
 
 .ft-xp-walkover {
 	text-decoration: line-through;
-	background-color: #ffabab;
+	background-color: #ff6666;
 }
 
 .ft-xp-incomplete {
-	background-color: #ffabab;
+	background-color: #ff6666;
 }
 .ft-xp-complete {
-	background-color: #abffab;
+	background-color: #66ff66;
 }
 .ft-xp-skillup {
-	background-color: #feffab !important;
+	background-color: #fcff66 !important;
 }
 
 .ft-xp-data-value {
