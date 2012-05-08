@@ -8,7 +8,7 @@
 Foxtrick.modules["MatchOrderInterface"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['matchOrder', 'matchLineup'],
-	OPTIONS : [/*["PlayedLastMatch", "PlayedLastMatch.alsoOnField", "PlayedLastMatch.disableForTournaments"],*/"Specialties", "ShowFaces", "SwapPositions","StayOnPage"],
+	OPTIONS : ["PlayedLastMatch","Specialties", "ShowFaces", "SwapPositions","StayOnPage"],
 	CSS : Foxtrick.InternalPath + "resources/css/match-order.css",
 	OPTIONS_CSS : [ "", Foxtrick.InternalPath + "resources/css/match-order-specialties.css", Foxtrick.InternalPath + "resources/css/match-order-faces.css"],
 
@@ -272,7 +272,10 @@ Foxtrick.modules["MatchOrderInterface"]={
 				Foxtrick.addMutationEventListener(details, "DOMNodeInserted", function(ev){
 					//Foxtrick.log('details change');
 					if (hasPlayerInfo) {
-						addLastMatchtoDetails();
+						//if (Foxtrick.util.layout.isSupporter(doc))
+							addLastMatchtoDetails();
+						if (FoxtrickPrefs.isModuleEnabled("LoyaltyDisplay"))
+							injectLoyaltyBars();
 					}
 				}, false);
 				
@@ -329,63 +332,37 @@ Foxtrick.modules["MatchOrderInterface"]={
 					}
 				}
 			};
+
+			//loyalty, uses loyalty-display.js module code
+			var injectLoyaltyBars = function(){
+				var details = doc.getElementById('details');
+				var specials = details.getElementsByClassName('specials')[0];
+				if (specials) {
+					var playerid = Number(specials.parentNode.getAttribute('playerid'));
+					if (playerid) {
+						var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, playerid);
+						Foxtrick.modules["LoyaltyDisplay"].replacePercentageImage(player, doc.getElementById('mainBody'));
+					}
+				}
+			};
 			
 			var showPlayerInfo = function(target) {
-				//removed due to HT request
-				//TODO: remove lastPlayed branch if we don't get permission to use it for supporters only or fix it to be supporter only later
-				if (false && FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PlayedLastMatch') 
-				&& ( Foxtrick.getHref(doc).search("HTOIntegrated") == -1 
-					|| !FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PlayedLastMatch.disableForTournaments'))
-				) {	
-					// get lastMatchdates
-					var getLastMatchDates = function (playerNode) {
-						if (!playerNode.id) 
-							return 0;
-						var id = Number(playerNode.id.match(/list_playerID(\d+)/i)[1]);
-						var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
-						if (player.lastMatchDate)
-							return Foxtrick.util.time.getDateFromText(player.lastMatchDate,'yyyy-mm-dd').getTime();
-						else
-							return 0;
-					};
 
+				//original version was removed due to HT request,
+				//this highlights players on the field for supporters only
+				if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PlayedLastMatch')){	
 					//players aren't send with the document, but the addMutationEventListeners later will take care
 					var listplayers = target.getElementsByClassName('player');
+
 					if(!listplayers.length)
-						return;					
-
-					//only get the lastMatchDates
-					//require 3 players to have the same playdate, this helps excluding recent transfers to mess up things
-					if(lastMatchDates === null)
-						lastMatchDates = Foxtrick.Pages.Players.getLastMatchDates (listplayers, getLastMatchDates, 3);
+						return;
 					
-					if (lastMatchDates && lastMatchDates.lastMatchDate != "undefined" && lastMatchDates.secondLastMatchDate != "undefined") {
-						for (var i=0; i<listplayers.length; ++i) {
-							if (!listplayers[i].id) 
-								continue;
-							var id = Number(listplayers[i].id.match(/list_playerID(\d+)/i)[1]);
-							var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
-							
-							if (player.lastMatchDate)
-								var matchDay = Foxtrick.util.time.getDateFromText(player.lastMatchDate,'yyyy-mm-dd').getTime();
-							else
-								var matchDay = 0;
-
-							if (matchDay == lastMatchDates.lastMatchDate){
-								Foxtrick.addClass( listplayers[i],'playedLast'); 
-							}	
-							else if (matchDay == lastMatchDates.secondLastMatchDate){
-								Foxtrick.addClass( listplayers[i],'playedSecondLast'); 
-							}
-							else {
-								Foxtrick.addClass( listplayers[i],'playedOther');
-							}
-						}
-					} else {
-						Foxtrick.log("Unable to determine last and/or second last match date.");
-					}				
+					for (var i=0; i<listplayers.length; ++i)
+						if(Foxtrick.hasClass(listplayers[i], "trained")) //only available for supporters
+							Foxtrick.addClass( listplayers[i],'ft-highlight-onfield');			
 				}
 				
+				//show potential speciality icons
 				check_Specialties(doc, target, playerList, getIDParent, 'cards_health');				
 			};
 			
