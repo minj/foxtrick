@@ -350,18 +350,17 @@ Foxtrick.modules["MatchOrderInterface"]={
 
 				//original version was removed due to HT request,
 				//this highlights players on the field for supporters only
-				if (Foxtrick.util.layout.isSupporter(doc))
-					if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PlayedLastMatch')){	
-						//players aren't send with the document, but the addMutationEventListeners later will take care
-						var listplayers = target.getElementsByClassName('player');
+				if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PlayedLastMatch')){	
+					//players aren't send with the document, but the addMutationEventListeners later will take care
+					var listplayers = target.getElementsByClassName('player');
 
-						if(!listplayers.length)
-							return;
-						
-						for (var i=0; i<listplayers.length; ++i)
-							if(Foxtrick.hasClass(listplayers[i], "trained"))
-								Foxtrick.addClass( listplayers[i],'ft-highlight-onfield');			
-					}
+					if(!listplayers.length)
+						return;
+					
+					for (var i=0; i<listplayers.length; ++i)
+						if(Foxtrick.hasClass(listplayers[i], "trained")) //only available for supporters
+							Foxtrick.addClass( listplayers[i],'ft-highlight-onfield');			
+				}
 				
 				//show potential speciality icons
 				check_Specialties(doc, target, playerList, getIDParent, 'cards_health');				
