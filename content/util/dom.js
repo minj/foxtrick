@@ -42,7 +42,7 @@ Foxtrick.makeFeaturedElement = function(node, module) {
 Foxtrick.hasClass = function(obj, cls) {
 	return (obj
 		&& obj.className !== undefined
-		&& obj.className.match(new RegExp("(\\s|^)" + cls + "(\\s|$)")) !== null);
+		&& obj.className.search(cls) > -1);
 }
 
 Foxtrick.addClass = function(obj, cls) {
