@@ -11,7 +11,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 	OPTIONS : ['AlwaysShowAll'],
 	CSS: Foxtrick.InternalPath + "resources/css/player-stats.css",
 	store : {},
-	pts_for_skillUp : 28.6,
+	pts_for_skillUp : 28.0,
 	run : function(doc) {
 		
 		// National friendly match	0.1
