@@ -18,6 +18,7 @@
 <item>● <module>MatchOrderInterface</module>: 라인업 페이지에서 각 선수의 유니폼 대신에 얼굴을 표시하는 옵션을 추가하였습니다.(기본 활성화)</item>
 <item>● <module>MatchOrderInterface</module>: 최근 경기 정보를 비활성화시키는 옵션과 토너먼트 게임을 회색 표시하는 옵션을 추가하였습니다.(기본 활성화)</item>
 <item>● MatchOrderInterface: Firefox에서 최근 경기 지시자가 표시되지 (않거나 올바르게 표시하지 않던) 버그를 수정하였습니다.</item>
+<item>● MatchOrderInterface: 더 이상 허가받지 않기 때문에 최근 경기 강조 표시를 제거하였습니다:( (이제 서포터즈에게만 제공하는 HT 고유의 기능으로 대체되었습니다.)</item>
 <item>● PlayerStatsExperience: 레드 카드가 게임을 부전승으로 감지하던 버그를 수정하였습니다.</item>
 <item>● PlayerStatsExperience: 이 모듈이 Firefox 3.6에서 제대로 동작하지 못하도록 야기시키는 문제를 수정하였습니다.</item>
 </note>
