@@ -67,11 +67,9 @@ Foxtrick.modules["LoyaltyDisplay"]={
 				else 
 					return;
 
-				Foxtrick.log("Loyalty");
 				replaceBars(node, skillUp, appendix);
 			}
 		} else {
-			Foxtrick.log("homegrown");
 			//homegrown, skillUp should be 1.5
 			replaceBars(node, 1.5, 'homegrown');
 		}
