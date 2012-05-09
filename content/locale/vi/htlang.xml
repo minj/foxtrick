@@ -11,7 +11,7 @@
 	<!-- tactics appearing in match detail page -->
 	<tactics>
 		<tactic type="normal" value="Bình thường" />
-		<tactic type="pressing" value="Pressing" />
+		<tactic type="pressing" value="Kèm chặt" />
 		<tactic type="ca" value="Phòng thủ phản công" />
 		<tactic type="aow" value="Tấn công cánh" />
 		<tactic type="aim" value="Tấn công trung lộ" />
