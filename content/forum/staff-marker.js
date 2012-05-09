@@ -142,7 +142,10 @@ Foxtrick.modules["StaffMarker"]={
 						Foxtrick.map(function (appName){
 							appNames = appNames + " \n● " + appName
 						}, data[type]["apps"][id])
-						object.setAttribute("title", object.getAttribute("title") + appNames)
+						if(object.getAttribute("title"))
+							object.setAttribute("title", object.getAttribute("title") + appNames)
+						else
+							object.setAttribute("title", object.textContent.match(/\S+/)[0] + appNames)
 					}
 				}
 			}
