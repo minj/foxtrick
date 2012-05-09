@@ -19,10 +19,10 @@ def checkNodes(dump_entries, ht_entries, dump_key_attrib, ht_key_Attrib, compare
 				matched = 1
 				left -= 1
 			elif dump_value == ht_value or ht_text == dump_text:
-				print "\t","Possible error:", ht_text.encode('utf-8'),"(",ht_value,")", " <> " +dump_text.encode('utf-8'), "(",dump_value,")"
+				print "\t","Current:", ht_text.encode('utf-8'),"(",ht_value,")", " Should be: " + dump_text.encode('utf-8'), "(",dump_value,")"
 		
 		if not matched:
-			print "\t","missing/missmatching", dump_text.encode('utf-8'), "(" +dump_value.encode('utf-8')+ ")"
+			print "\t","Replace existing entry by: ", dump_text.encode('utf-8'), "(" +dump_value.encode('utf-8')+ ")"
 	
 	print "\t",len(dump_entries) - left, "/", len(dump_entries), "correct"
 	
