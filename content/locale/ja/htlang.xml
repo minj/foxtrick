@@ -22,9 +22,9 @@
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="キーパー" short="GK" />
-		<position type="Central defender" value="セントラル・ディフェンダー" short="CD" />
+		<position type="Central defender" value="セントラルディフェンダー" short="CD" />
 		<position type="Wing back" value="ウイングバック" short="WB" />
-		<position type="Inner midfielder" value="インナー・ミッドフィルダー" short="IM" />
+		<position type="Inner midfielder" value="インナーミッドフィルダー" short="IM" />
 		<position type="Winger" value="ウインガー" short="WI" />
 		<position type="Forward" value="フォワード" short="FW" />
 	</positions>
