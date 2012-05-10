@@ -120,6 +120,7 @@ Foxtrick.modules["ExtraShortcuts"]={
 						img1.setAttribute( "class", this.LINKS[j].imgClass);
 						img1.src = "/Img/Icons/transparent.gif";
 						img1.title = Foxtrickl10n.getString("ExtraShortcuts." + this.LINKS[j].property);
+						img1.alt = Foxtrickl10n.getString("ExtraShortcuts." + this.LINKS[j].property);
 						img1 = Foxtrick.makeFeaturedElement(img1, this);
 						
 						link.appendChild(img1);
@@ -144,6 +145,7 @@ Foxtrick.modules["ExtraShortcuts"]={
 					img1.setAttribute( "class", "ftSCFtPrefs");
 					img1.src = "/Img/Icons/transparent.gif";
 					img1.title = Foxtrickl10n.getString("ExtraShortcuts.ftprefs");
+					img1.alt = Foxtrickl10n.getString("ExtraShortcuts.ftprefs");
 					img1 = Foxtrick.makeFeaturedElement(img1, this);
 						
 					link.appendChild(img1);
