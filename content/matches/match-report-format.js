@@ -755,12 +755,12 @@ var eventText = {
 											if (isEventTeam) {
 												if (eventTypes[evtType]["team"]) 
 													for(var i = 0; i < eventTypes[evtType]["team"].length; ++i)
-														createEventIcon(icons[eventTypes[evtType]["team"][i]], title, "Event Id " + evtType + " : " + eventTypes[evtType]["team"][i]);
+														createEventIcon(icons[eventTypes[evtType]["team"][i]], title, title);
 											} 
 											else {
 												if (eventTypes[evtType]["other"])
 													for(var i = 0; i < eventTypes[evtType]["other"].length; ++i)
-														createEventIcon(icons[eventTypes[evtType]["other"][i]], title, "Event Id " + evtType + " : " + eventTypes[evtType]["team"][i]);
+														createEventIcon(icons[eventTypes[evtType]["other"][i]], title, title);
 											} 
 										} 
 										//simple case, display icon for team
@@ -769,9 +769,9 @@ var eventText = {
 												return;
 											if (icons[eventTypes[evtType]] instanceof Array)
 												for(var i = 0; i < icons[eventTypes[evtType]].length; ++i)
-													createEventIcon(icons[eventTypes[evtType]][i], title, "Event Id " + evtType + " : " +eventTypes[evtType]);
+													createEventIcon(icons[eventTypes[evtType]][i], title, title);
 											else {
-												createEventIcon(icons[eventTypes[evtType]], title, "Event Id " + evtType + " : " +eventTypes[evtType]);
+												createEventIcon(icons[eventTypes[evtType]], title, title);
 											}
 										}
 										//no icon, put in transparent icon to allow tooltoip
