@@ -982,17 +982,21 @@ Foxtrick.modules.MatchSimulator={
 		fieldOverlay.appendChild(optionsDiv);
 
 		var optionsDivElm =  doc.createElement('div');
-		optionsDiv.appendChild(optionsDivElm);
+		optionsDiv.appendChild(optionsDivElm);		
+
 		var staminaDiscountCheck =  doc.createElement('input');
 		staminaDiscountCheck.id = "ft_stamina_discount_check";
 		staminaDiscountCheck.type = "checkbox";
-		staminaDiscountCheck.setAttribute('title', Foxtrickl10n.getString("matchOrder.staminaDiscount.title"));
+		
 		if (FoxtrickPrefs.getBool("MatchSimulator.staminaDiscountOn"))
 			staminaDiscountCheck.checked = 'checked';
 		staminaDiscountCheck.addEventListener('click', showLevelNumbers, false);
 		optionsDivElm.appendChild(staminaDiscountCheck);
-		var staminaDiscountLabel =  doc.createElement('span');
+		
+		var staminaDiscountLabel = doc.createElement('label');
+		staminaDiscountLabel.setAttribute('for', 'ft_stamina_discount_check');
 		staminaDiscountLabel.textContent = Foxtrickl10n.getString("matchOrder.staminaDiscount");
+		staminaDiscountLabel.setAttribute('title', Foxtrickl10n.getString("matchOrder.staminaDiscount.title"));
 		optionsDivElm.appendChild(staminaDiscountLabel);
 
 		var optionsDivElm =  doc.createElement('div');
@@ -1000,13 +1004,15 @@ Foxtrick.modules.MatchSimulator={
 		var attVsDefCheck =  doc.createElement('input');
 		attVsDefCheck.id = "ft_attVsDef_check";
 		attVsDefCheck.type = "checkbox";
-		attVsDefCheck.setAttribute('title', Foxtrickl10n.getString("matchOrder.attVsDef.title"));
 		if (FoxtrickPrefs.getBool("MatchSimulator.attVsDefOn"))
 			attVsDefCheck.checked = 'checked';
 		attVsDefCheck.addEventListener('click', showLevelNumbers, false);
 		optionsDivElm.appendChild(attVsDefCheck);
-		var attVsDefLabel =  doc.createElement('span');
+
+		var attVsDefLabel = doc.createElement('label');
+		attVsDefLabel.setAttribute('for', 'ft_attVsDef_check');
 		attVsDefLabel.textContent = Foxtrickl10n.getString("matchOrder.attVsDef");
+		attVsDefLabel.setAttribute('title', Foxtrickl10n.getString("matchOrder.attVsDef.title"));
 		optionsDivElm.appendChild(attVsDefLabel);
 
 		Foxtrick.log('staminaCutoff: ',FoxtrickPrefs.getInt("staminaCutoff"));
