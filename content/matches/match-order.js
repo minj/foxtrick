@@ -43,8 +43,8 @@ Foxtrick.modules["MatchOrderInterface"]={
 				}
 				if (Foxtrick.hasClass(shirt,'smallFaceCard'))
 					return;
-									
-				Foxtrick.addClass(shirt,'smallFaceCard');
+
+					Foxtrick.addClass(shirt,'smallFaceCard');
 				var style  = 
 					'background-image:url('
 					// cleaning background//+players[i].getElementsByTagName('BackgroundImage')[0].textContent
@@ -53,14 +53,15 @@ Foxtrick.modules["MatchOrderInterface"]={
 				shirt.setAttribute('style',style);
 				var sizes = {
 					backgrounds:[0, 0],// don't show
-					bodies:[92, 123],
+					kits: [92, 123],
+					bodies: [92, 123],
 					faces: [92, 123],
 					eyes: [60, 60],
 					mouths: [50, 50],
 					goatees: [70, 70],
 					noses: [70, 70],
 					hair: [92, 123],
-					misc:[0,0] // don't show (eg cards)
+					misc: [0,0] // don't show (eg cards)
 				};
 				var layers = players[i].getElementsByTagName('Layer');
 				for (var j=0; j<layers.length; ++j) {
@@ -71,8 +72,8 @@ Foxtrick.modules["MatchOrderInterface"]={
 					}
 					if (!bodypart) 
 						continue;
-												
-					var x = Math.round(Number(layers[j].getAttribute('x'))/scale);
+
+						var x = Math.round(Number(layers[j].getAttribute('x'))/scale);
 					var y = Math.round(Number(layers[j].getAttribute('y'))/scale);
 					var img =  doc.createElement('img');
 					if (FoxtrickPrefs.isModuleOptionEnabled("OriginalFace", "ColouredYouth"))
