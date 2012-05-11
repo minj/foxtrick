@@ -280,7 +280,7 @@
 				//in valid lifespan, also saved response seems to be valid
 				Foxtrick.log("YouthTwins: Using cached response from", fetchDate.toUTCString(),"expires", expireDate.toUTCString(),"now", (new Date()).toUTCString());
 				handleHyResponse(saved, 200);
-			} else ifnow > fetchTime + lifeTime) {
+			} else if(now > fetchTime + lifeTime) {
 				if(ignoreUntil != -1 && now < ignoreUntil){
 					var until = new Date();
 					until.setTime(ignoreUntil);
