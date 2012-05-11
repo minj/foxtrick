@@ -10,7 +10,7 @@ Foxtrick.Pages.Players = {
 	NICE : -50, // before anything else
 	
 	isPlayersPage : function(doc) {
-		return this.isPlayersPage(doc) || this.isYouthPlayersPage(doc);
+		return this.isSeniorPlayersPage(doc) || this.isYouthPlayersPage(doc);
 	},
 	isSeniorPlayersPage : function(doc) {
 		return Foxtrick.isPage("players", doc);
