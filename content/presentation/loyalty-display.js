@@ -19,13 +19,14 @@ Foxtrick.modules["LoyaltyDisplay"]={
 			var count = 0;
 			var bars = node.getElementsByTagName("img");
 			while(count < bars.length && count < 100){
-				if (Foxtrick.hasClass(bars[count], "percentImage")) {
-					bars[count].setAttribute("title", bars[count].getAttribute("title") + ' +' + String(skillUp).substring(0, 4) + " " + str);
-					//bars[0].setAttribute("alt", bars[0].getAttribute("alt") + ' +' + String(skillUp).substring(0, 4));
-					Foxtrick.addClass(bars[count], "ft-percentImage-loyalty-" + appendix);
-					Foxtrick.addClass(bars[count], "ft-percentImage");
-					Foxtrick.removeClass(bars[count], "percentImage");
-				}
+				if(bars[count].parentNode.className != "ratingInnerBox")
+					if (Foxtrick.hasClass(bars[count], "percentImage")) {
+						if(bars[count].getAttribute("title"))
+							bars[count].setAttribute("title", bars[count].getAttribute("title").match(/\S+/)[0] + ' +' + String(skillUp).substring(0, 4) + " " + str);
+						Foxtrick.addClass(bars[count], "ft-percentImage-loyalty-" + appendix);
+						Foxtrick.addClass(bars[count], "ft-percentImage");
+						Foxtrick.removeClass(bars[count], "percentImage");
+					}
 				++count;
 			}
 		};
