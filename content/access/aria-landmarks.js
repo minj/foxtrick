@@ -76,7 +76,6 @@ Foxtrick.modules["ARIALandmarks"]={
 				doc.getElementById("footer").setAttribute("role","contentinfo");
 			} catch(e){}
 		}
-		Foxtrick.log("asdsa");
 		addLandmarks(doc);
 	}
 };
