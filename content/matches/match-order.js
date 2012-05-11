@@ -53,7 +53,8 @@ Foxtrick.modules["MatchOrderInterface"]={
 				shirt.setAttribute('style',style);
 				var sizes = {
 					backgrounds:[0, 0],// don't show
-					bodies:[92, 123],
+					kits: [92, 123],
+					bodies: [92, 123],
 					faces: [92, 123],
 					eyes: [60, 60],
 					mouths: [50, 50],
