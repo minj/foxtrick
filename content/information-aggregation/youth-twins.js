@@ -290,7 +290,7 @@
 				//saved data is valid, plain request should suffice
 				Foxtrick.log("YouthTwins: Lifetime expired, updating from HY");
 				//teamid, forceUpdate, debug, usertype, response
-				getTwinsFromHY(teamid, false, developersDebug, "auto", handleHyResponse);
+				getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
 			
 			} else 
 				Foxtrick.log("Dear time traveler, we welcome you!");	
