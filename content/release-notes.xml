@@ -21,6 +21,11 @@
 <item>● MatchOrderInterface: Removed last match highlighting because it's not approved anymore :( (But there's a native HT replacement for supporters now)</item>
 <item>● PlayerStatsExperience: Fixed bug where red cards caused games beeing detected as walkovers</item>
 <item>● PlayerStatsExperience: Fixed issue that caused this module not to work on Firefox 3.6</item>
+<item></item>
+<item><xhtml:b>For visually or hearing impaired users</xhtml:b></item>
+We added a new section to the settings page that will contain all modules that are related to accessibility. 
+<item>● NEW: <module>ARIALandmarks</module>: Adds ARIA landmarks to the website. This should help navigating the site using screenreaders. The two main navigation bars and the list of all subscribed forums got the roSle "navigation". The main content has the role "main". All the sidebars with additional information and links will be marked as "complementary". The links to global search and forum search have the role "search" of course.</item>
+<item>If you have any further suggestions please don't hesitate to contact us. We are also browsing the Hattrick Access forums.</item>
 </note>
 
 <note version="0.9.2">
