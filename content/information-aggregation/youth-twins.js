@@ -274,15 +274,13 @@
 					valid = false;
 			}
 			Foxtrick.log("YouthTwins: Team is valid:", valid);
-
-			var developersDebug = false;
 			
 			//query HY or use cached stuff and alter the site
-			if(!developersDebug && now.getTime() > fetchTime && now.getTime() <= fetchTime + lifeTime){
+			if(now.getTime() > fetchTime && now.getTime() <= fetchTime + lifeTime){
 				//in valid lifespan, also saved response seems to be valid
 				Foxtrick.log("YouthTwins: Using cached response from", fetchDate.toUTCString(),"expires", expireDate.toUTCString(),"now", (new Date()).toUTCString());
 				handleHyResponse(saved, 200);
-			} else if(developersDebug || now > fetchTime + lifeTime) {
+			} else ifnow > fetchTime + lifeTime) {
 				if(ignoreUntil != -1 && now < ignoreUntil){
 					var until = new Date();
 					until.setTime(ignoreUntil);
