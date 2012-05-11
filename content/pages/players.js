@@ -1,4 +1,4 @@
-"use strict";
+	"use strict";
 /* players.js
  * Utilities on players page
  * @author convincedd, ryanli
@@ -18,8 +18,14 @@ Foxtrick.Pages.Players = {
 	isYouthPlayersPage : function(doc) {
 		return Foxtrick.isPage("YouthPlayers", doc);
 	},
+	isMatchOrderPage : function(doc) { 
+		return Foxtrick.isPage("matchOrder", doc) || Foxtrick.isPage("matchOrderSimple", doc);
+	},
 	isYouthMatchOrderPage : function(doc) { 
-		return doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1;
+		return Foxtrick.isMatchOrderPage(doc) && doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1;
+	},
+	isSimpleMatchOrderPage : function(doc) { 
+		return Foxtrick.isPage("matchOrderSimple", doc);
 	},
 	isOwnPlayersPage : function(doc) {
 		var ownTeamId = Foxtrick.Pages.All.getOwnTeamId(doc);
