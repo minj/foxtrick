@@ -14,6 +14,7 @@
 </note>
 
 <note version="0.9.3">
+<item>● A lot of language updates because Foxtrick users are awesome. Thank you so much. Keep contributing at <xhtml:a href="http://www.crowdin.net/project/foxtrick">http://www.crowdin.net</xhtml:a></item>
 <item>● NEW: <module>YouthTwins</module>: Shows the amount of possible/marked/non twins on the youth players overview page for supporters (in conjunction with hattrick youthclub)</item>
 <item>● <module>MatchOrderInterface</module>: Option to show player faces instead of shirts for future and past line-ups (default on)</item>
 <item>● <module>MatchOrderInterface</module>: Option to disable last match information and highlighting for tournament games added (default on)</item>
