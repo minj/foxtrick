@@ -7,6 +7,7 @@ pref("extensions.foxtrick.prefs.DisplayHTMLDebugOutput", false);
 pref("extensions.foxtrick.prefs.htCountry", "Sweden");
 pref("extensions.foxtrick.prefs.htDateFormat", "dd-mm-yyyy");
 pref("extensions.foxtrick.prefs.htLanguage", "en");
+pref("extensions.foxtrick.prefs.module.ARIALandmarks.enabled", true);
 pref("extensions.foxtrick.prefs.module.AddDefaultFaceCard.enabled", false);
 pref("extensions.foxtrick.prefs.module.AddLeaveConfButton.enabled", false);
 pref("extensions.foxtrick.prefs.module.AttVsDef.enabled", true);

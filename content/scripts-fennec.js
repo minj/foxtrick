@@ -66,6 +66,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/pages/match.js", true);
 
 		//<!-- categorized modules -->
+		messageManager.loadFrameScript("chrome://foxtrick/content/access/aria-landmarks.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/alert/live-alert.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/alert/new-mail.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/alert/ticker-alert.js", true);

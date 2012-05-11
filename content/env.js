@@ -650,5 +650,6 @@ Foxtrick.moduleCategories = {
 	MATCHES : 'matches',
 	FORUM : 'forum',
 	LINKS : 'links',
-	ALERT : 'alert'
+	ALERT : 'alert',
+	ACCESSIBILITY : 'accessibility'
 };
