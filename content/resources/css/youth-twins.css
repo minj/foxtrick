@@ -3,13 +3,15 @@
 .ft-youth-twins-icon {
 	padding-left: 1px;	
 }
-.ft-youth-twins-container {
-	display: inline;
-	padding-left: 4px;
-}
+
 html[dir="rtl"] .ft-youth-twins-icon {
 	padding-right: 1px;
 	padding-left: 0px;		
+}
+
+.ft-youth-twins-container {
+	display: inline;
+	padding-left: 4px;
 }
 
 html[dir="rtl"] .ft-youth-twins-container {
@@ -17,4 +19,13 @@ html[dir="rtl"] .ft-youth-twins-container {
 	padding-right: 4px;
 	padding-left: 0px;
 }
+
+.ft-youth-twins-info {
+	padding-left: 2px;
+}
+
+html[dir="rtl"] .ft-youth-twins-info {
+	padding-right: 2px;
+}
+
 }

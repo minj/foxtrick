@@ -44,6 +44,9 @@
 	PAGES : ["YouthPlayers"],
 	CSS : Foxtrick.InternalPath + "resources/css/youth-twins.css",
 	run : function(doc) { 
+
+		var ignoreHours = 24;
+
 		if (!Foxtrick.isPage('ownYouthPlayers', doc))
 			return;
 
@@ -63,9 +66,9 @@
 		}
 
 		//icons resources for representation
-		var icon_green = Foxtrick.InternalPath + 'resources/img/twin.png';
-		var icon_red = Foxtrick.InternalPath + 'resources/img/twin_red.png'; 
-		var icon_yellow = Foxtrick.InternalPath + 'resources/img/twin_yellow.png'; 
+		var icon_green = Foxtrick.InternalPath + 'resources/img/twins/twin.png';
+		var icon_red = Foxtrick.InternalPath + 'resources/img/twins/twin_red.png'; 
+		var icon_yellow = Foxtrick.InternalPath + 'resources/img/twins/twin_yellow.png'; 
 
 		//params
 		//teamid : Current Foxtrick user
@@ -112,7 +115,7 @@
 					Foxtrick.log("YouthTwins: Sending failed", status);
 					return; 
 				case 200: 
-					Foxtrick.log("YouthTwins: Looking fine, ignoreUntil=-1", status);
+					Foxtrick.log("YouthTwins: Looking fine, ignoreUntil set to -1", status);
 					FoxtrickPrefs.set("YouthTwins.ignoreUntil", -1);
 					break;
 				case 400:
@@ -120,22 +123,20 @@
 					return;
 				case 404:
 					var now = new Date();
-					var ignoreHours = 24;
 					var ignoreUntil = now.setTime(now.getTime() + ignoreHours*60*60*1000);
 					FoxtrickPrefs.set("YouthTwins.ignoreUntil", ignoreUntil);
 					Foxtrick.log("YouthTwins: HY is moving servers or is in huge trouble", status);
-					Foxtrick.log("YouthTwins: No requests for one day.");
+					Foxtrick.log("YouthTwins: No requests for " + ignoreHours/24.0 + " day(s).");
 					return;
 				case 500: 
 					Foxtrick.log("YouthTwins: HY is in trouble", status);
 					return; 
 				case 503:
 					var now = new Date();
-					var ignoreHours = 24;
 					var ignoreUntil = now.setTime(now.getTime() + ignoreHours*60*60*1000);
 					FoxtrickPrefs.set("YouthTwins.ignoreUntil", ignoreUntil);
 					Foxtrick.log("YouthTwins: HY temporarily disabled the feature", status, "");
-					Foxtrick.log("YouthTwins: No requests for one day.");
+					Foxtrick.log("YouthTwins: No requests for " + ignoreHours/24.0 + " day(s).");
 					return; 
 				default:
 					Foxtrick.log("YouthTwins: HY returned unhandled status", status, response);
@@ -148,6 +149,7 @@
 			var json = JSON.parse( response );
 
 			var isHYuser = json.isHyUser;
+			Foxtrick.log("YouthTwins: isHyUser: ", isHYuser);
 
 			var playerInfos = doc.getElementsByClassName("playerInfo");
 			for(var i = 0; i < playerInfos.length; i++){
@@ -200,17 +202,31 @@
 				addIcons(container, marked, l10n_marked_twins, "ft-youth-twins-icon", icon_green);
 				addIcons(container, missing, l10n_undecided_twins, "ft-youth-twins-icon", icon_yellow);
 				addIcons(container, non, l10n_non_twins, "ft-youth-twins-icon", icon_red);
+
 				link.appendChild(container);
 
+				//link destinations as Mackshot from HY requested
 				if(isHYuser)
-					link.setAttribute("href","http://www.hattrick-youthclub.org/site/players");
+					link.setAttribute("href","http://www.hattrick-youthclub.org/site/players_twins");
 				else
 					link.setAttribute("href","http://www.hattrick-youthclub.org");
 
 				link.setAttribute("target","_blank");
 
+				if(possible > 0){
+					//and a neat info button
+					var infolink = Foxtrick.createFeaturedElement(doc, this, "a");
+					Foxtrick.addClass(infolink, "ft-youth-twins-info");
+					
+					var infoimg = doc.createElement("img");
+					infoimg.setAttribute("src","/Img/Icons/info.png");
+					infolink.href = "http://www.hattrick-youthclub.org/site/wiki-player_twins";
+					infolink.target = "_blank";
+					infolink.appendChild(infoimg);
+					target.parentNode.insertBefore(infolink,target.nextSibling);
+				}
 				//add the whole stuff to the site
-				target.parentNode.insertBefore(link,target.nextSibling)
+				target.parentNode.insertBefore(link,target.nextSibling);
 			}
 		}
 
@@ -251,19 +267,22 @@
 			//see if the saved information is still valid
 			var playerInfos = doc.getElementsByClassName("playerInfo");
 			var valid = true;
+
 			for(var i = 0; i < playerInfos.length; i++){
 				var playerID =  playerInfos[i].getElementsByTagName("a")[0].href.match(/YouthPlayerID=(\d+)/i)[1];
 				if(typeof(json.players[playerID]) !== "object")
 					valid = false;
 			}
 			Foxtrick.log("YouthTwins: Team is valid:", valid);
+
+			var developersDebug = false;
 			
 			//query HY or use cached stuff and alter the site
-			if(now.getTime() > fetchTime && now.getTime() <= fetchTime + lifeTime){
+			if(!developersDebug && now.getTime() > fetchTime && now.getTime() <= fetchTime + lifeTime){
 				//in valid lifespan, also saved response seems to be valid
 				Foxtrick.log("YouthTwins: Using cached response from", fetchDate.toUTCString(),"expires", expireDate.toUTCString(),"now", (new Date()).toUTCString());
 				handleHyResponse(saved, 200);
-			} else if(now > fetchTime + lifeTime) {
+			} else if(developersDebug || now > fetchTime + lifeTime) {
 				if(ignoreUntil != -1 && now < ignoreUntil){
 					var until = new Date();
 					until.setTime(ignoreUntil);
@@ -273,7 +292,7 @@
 				//saved data is valid, plain request should suffice
 				Foxtrick.log("YouthTwins: Lifetime expired, updating from HY");
 				//teamid, forceUpdate, debug, usertype, response
-				getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
+				getTwinsFromHY(teamid, false, developersDebug, "auto", handleHyResponse);
 			
 			} else 
 				Foxtrick.log("Dear time traveler, we welcome you!");	
