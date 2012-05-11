@@ -1,4 +1,4 @@
-	"use strict";
+"use strict";
 /* players.js
  * Utilities on players page
  * @author convincedd, ryanli
