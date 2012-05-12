@@ -222,6 +222,9 @@
 					infoimg.setAttribute("src","/Img/Icons/info.png");
 					infolink.href = "http://www.hattrick-youthclub.org/site/wiki-player_twins";
 					infolink.target = "_blank";
+					var infotext = Foxtrickl10n.getString("YouthTwins.infoText");
+					infoimg.title = infotext;
+					infoimg.alt = infotext;
 					infolink.appendChild(infoimg);
 					target.parentNode.insertBefore(infolink,target.nextSibling);
 				}
