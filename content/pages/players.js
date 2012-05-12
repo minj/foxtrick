@@ -22,7 +22,7 @@ Foxtrick.Pages.Players = {
 		return Foxtrick.isPage("matchOrder", doc) || Foxtrick.isPage("matchOrderSimple", doc);
 	},
 	isYouthMatchOrderPage : function(doc) { 
-		return Foxtrick.isMatchOrderPage(doc) && doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1;
+		return this.isMatchOrderPage(doc) && doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1;
 	},
 	isSimpleMatchOrderPage : function(doc) { 
 		return Foxtrick.isPage("matchOrderSimple", doc);
