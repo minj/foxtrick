@@ -15,8 +15,8 @@
 		<tactic type="ca" value="カウンター攻撃" />
 		<tactic type="aow" value="サイド攻撃" />
 		<tactic type="aim" value="中央突破" />
-		<tactic type="creatively" value="創造プレー" />
-		<tactic type="longshots" value="ロング・シュート" />
+		<tactic type="creatively" value="創造プレイ" />
+		<tactic type="longshots" value="ロングシュート" />
 	</tactics>
 
 	<!-- positions appearing on players page. copy "value". translate "short" -->
@@ -48,7 +48,7 @@
 		<level text="超人的" value="16" />
 		<level text="偉大" value="15" />
 		<level text="神業" value="14" />
-		<level text="ワールド レベル" value="13" />
+		<level text="ワールドレベル" value="13" />
 		<level text="強大" value="12" />
 		<level text="鮮烈" value="11" />
 		<level text="非凡" value="10" />
