@@ -342,7 +342,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 					var playerid = Number(specials.parentNode.getAttribute('playerid'));
 					if (playerid) {
 						var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, playerid);
-						Foxtrick.modules["LoyaltyDisplay"].replacePercentageImage(player, doc.getElementById('mainBody'));
+						Foxtrick.modules["LoyaltyDisplay"].replacePercentageImage(player, doc.getElementById('details'));
 					}
 				}
 			};
