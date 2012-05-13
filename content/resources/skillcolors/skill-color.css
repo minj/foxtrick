@@ -46,3 +46,6 @@ a[href*="=20#skill"], a[href*="ll=20#FanMood"], a[href*="ll=20#FanMatch"], a[hre
 
 a:hover[href*="#skill"], a:hover[href*="#FanMood"], a:hover[href*="#FanMatch"], a:hover[href*="#FanSeason"], a:hover[href*="#SkillShort"], a:hover[href*="#gentleness"], a:hover[href*="#aggressiveness"], a:hover[href*="#honesty"], a:hover[href*="#teamskills"], a:hover[href*="#sponsors"], a:hover[href*="#morale"], a:hover[href*="#confidence"]
 {background-color:transparent !important; color:#267F30 !important;}
+
+#experienceView-text > li 
+{ padding-bottom: 3px !important; }
