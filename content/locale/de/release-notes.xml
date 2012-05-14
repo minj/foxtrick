@@ -17,11 +17,11 @@
 <note version="0.9.3">
 <item>● Eine Menge Sprachupdates. FoxTrick user sind Klasse. Vielen Dank dafür. Bitte weiterhin auf <xhtml:a href="http://www.crowdin.net/project/foxtrick">http://www.crowdin.net</xhtml:a> weiterhelfen</item>
 <item>● NEU: <module>YouthTwins</module>: Zeigt die Anzahl potentieller Zwillinge deiner Jugendspieler in deinem Jugendkader an. Wenn du HY Benutzer bist kannst du auch sehen wieviele dieser Spieler als Zwilling markiert bzw. als wiederlegt markiert wurden. (In Zusammenarbeit mit <xhtml:a href="http://www.hattrick-youthclub.org/">hattrick youthclub</xhtml:a>). Die Information wird 1x pro Woche erneuert. </item>
-<item>● <module>MatchOrderInterface</module>: Option die Spielergesichter anstelle der Trikots anzuzeigen. Functioniert für zukünftige und vergangene Spiele (default on)</item>
+<item>● <module>MatchOrderInterface</module>: Option die Spielergesichter anstelle der Trikots anzuzeigen. Funktioniert für zukünftige und vergangene Spiele (default on)</item>
 <item>● <module>MatchOrderInterface</module>: Option to disable last match information and highlighting for tournament games added (default on)</item>
 <item>● MatchOrderInterface: Fixed bug where the playedLastMatch indicator didn't show (or showed incorrectly) on Firefox</item>
 <item>● MatchOrderInterface: Der Indikator der anzeigte ob ein Spieler im letzten Spiel auf dem Feld stand musste leider auf Nachfrage herrausgenommen werden. Diese Funktion steht Supportern in verbesserter Form von Haus aus zur Verfügung.</item>
-<item>● PlayerStatsExperience: Bug gefixed wodurch Rote Karten dazu führten dass fäöschlicherweise ein 'Walkover' erkannt wurde.</item>
+<item>● PlayerStatsExperience: Bug gefixed wodurch Rote Karten dazu führten dass fälschlicherweise ein 'Walkover' erkannt wurde.</item>
 <item>● PlayerStatsExperience: Das Modul funktionierte nicht unter FF 3.6. Auch das wurde behoben. Aber bitte updaten, der Browser bekommt keinen Support mehr! </item>
 </note>
 
