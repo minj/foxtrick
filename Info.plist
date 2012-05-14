@@ -220,6 +220,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/shortcuts-and-tweaks/senior-team-shortcuts.js</string>
 				<string>content/shortcuts-and-tweaks/table-sort.js</string>
 				<string>content/shortcuts-and-tweaks/team-popup-links.js</string>
+				<string>content/shortcuts-and-tweaks/transfer-history-filters.js</string>
 				<string>content/shortcuts-and-tweaks/transfer-search-filters.js</string>
 				<string>content/shortcuts-and-tweaks/transfer-search-result-filters.js</string>
 				<!-- end categorized modules -->

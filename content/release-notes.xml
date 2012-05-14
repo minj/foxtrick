@@ -13,6 +13,7 @@
 <item>Please view <xhtml:a href="http://code.google.com/p/foxtrick/source/list">commit history</xhtml:a> at Google Code for details.</item>
 </note>
 <note version="0.9.4">
+<item>● NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)</item>
 <item></item>
 <item><xhtml:b>For visually or hearing impaired users</xhtml:b></item>
 <item>We added a new section to the settings page that will contain all modules that are related to accessibility.</item>

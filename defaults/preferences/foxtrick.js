@@ -735,6 +735,7 @@ pref("extensions.foxtrick.prefs.module.TickerAlert.welcome.enabled", false);
 pref("extensions.foxtrick.prefs.module.TickerAlert.welcome.sound", "");
 pref("extensions.foxtrick.prefs.module.TickerColoring.enabled", true);
 pref("extensions.foxtrick.prefs.module.TransferDeadline.enabled", true);
+pref("extensions.foxtrick.prefs.module.TransferHistoryFilters.enabled", true);
 pref("extensions.foxtrick.prefs.module.TransferSearchFilters.enabled", true);
 pref("extensions.foxtrick.prefs.module.TransferSearchResultFilters.enabled", true);
 pref("extensions.foxtrick.prefs.module.TableOfStatisticalTruth.enabled", true);

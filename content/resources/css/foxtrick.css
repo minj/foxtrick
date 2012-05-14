@@ -248,9 +248,12 @@ html[data-theme="simple"] body[style*="font-size:0.79em;"] #ctl00_ctl00_CPConten
 	white-space: nowrap;
 }
 
-
 .ftTeamHighlight {
 background-color: #eed;
+}
+
+.ft-clear-both {
+	clear:both;
 }
 
 }

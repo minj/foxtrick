@@ -1,0 +1,16 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+
+html[dir="ltr"] .ft-transfer-history-filter-container {
+	float:right;
+}
+html[dir="rtl"] .ft-transfer-history-filter-container {
+	float:left;
+}
+html[dir="ltr"] .ft-transfer-history-filter-label {
+	margin-right: 10px;
+}
+html[dir="rtl"] .ft-transfer-history-filter-label {
+	margin-left: 10px !important;
+}
+
+}
