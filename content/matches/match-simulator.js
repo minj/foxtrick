@@ -157,7 +157,11 @@ Foxtrick.modules.MatchSimulator={
 					if (currentRatingsOther[i] != undefined) {
 						var percent = currentRatings[i]  / (currentRatings[i] + currentRatingsOther[i])
 						var title =  Math.floor(percent*100)+'%'
-						var barPos = Math.floor( -235 + (235-116) * percent );
+						var barPos;
+						if(Foxtrick.util.layout.isStandard(doc))							
+							barPos = Math.floor( -315 + (315-156) * percent );
+						else
+							barPos = Math.floor( -235 + (235-116) * percent );
 						percentImage[i].style.backgroundPosition = barPos + 'px';
 						percentImage[i].title = title;
 						percentImage[i].alt = title;
