@@ -223,7 +223,7 @@
 	<menupopup id="foxtrick-menu">
 		<menuitem id="foxtrick-toolbar-preferences" oncommand="FoxtrickPrefs.show();"/>
 		<menuitem id="foxtrick-toolbar-deactivate" oncommand="FoxtrickPrefs.disable();" type="checkbox" autocheck="true"/>
-		<menuitem id="foxtrick-toolbar-clearCache" oncommand="Fooxtrick.util.api.clearCache();"/>
+		<menuitem id="foxtrick-toolbar-clearCache" oncommand="Foxtrick.util.api.clearCache();"/>
 		<menuitem id="foxtrick-toolbar-highlight" oncommand="FoxtrickPrefs.highlight();" type="checkbox" autocheck="true"/>
 		<menuitem id="foxtrick-toolbar-translationKeys" oncommand="FoxtrickPrefs.translationKeys();" type="checkbox" autocheck="true"/>
 	</menupopup>
