@@ -23,8 +23,7 @@ Foxtrick.modules["LoyaltyDisplay"]={
 					if (Foxtrick.hasClass(bars[count], "percentImage")) {
 						if(bars[count].getAttribute("title"))
 							bars[count].setAttribute("title", bars[count].getAttribute("title").match(/\S+/)[0] + ' +' + String(skillUp).substring(0, 4) + " " + str);
-						Foxtrick.addClass(bars[count], "ft-percentImage-loyalty-" + appendix);
-						Foxtrick.addClass(bars[count], "ft-percentImage");
+						Foxtrick.addClass(bars[count], "ft-percentImage ft-percentImage-loyalty-" + appendix);
 						Foxtrick.removeClass(bars[count], "percentImage");
 					}
 				++count;
