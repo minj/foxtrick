@@ -217,17 +217,12 @@
 					//and a neat info button
 					var infolink = Foxtrick.createFeaturedElement(doc, this, "a");
 					Foxtrick.addClass(infolink, "ft-youth-twins-info");
-					
-					var infoimg = doc.createElement("img");
-					infoimg.setAttribute("src","/Img/Icons/info.png");
 					infolink.href = "http://www.hattrick-youthclub.org/site/wiki-player_twins";
 					infolink.target = "_blank";
 					var infotext = Foxtrickl10n.getString("YouthTwins.infoText");
-					infoimg.title = infotext;
-					infoimg.alt = infotext;
-					infolink.appendChild(infoimg);
-					target.parentNode.insertBefore(infolink,target.nextSibling);
-				}
+					target.parentNode.insertBefore(infolink, target.nextSibling);
+					Foxtrick.addImage(doc, infolink, { alt: infotext, title: infotext, src: "/Img/Icons/info.png"});
+				}	
 				//add the whole stuff to the site
 				target.parentNode.insertBefore(link,target.nextSibling);
 			}
