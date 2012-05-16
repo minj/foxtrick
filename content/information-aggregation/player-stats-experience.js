@@ -217,8 +217,8 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		var div = Foxtrick.createFeaturedElement(doc, this, "div"); 
 
 		var experienceText = Foxtrickl10n.getString("PlayerStatsExperience.ExperienceText")
-						.replace(/%1/, (xp_sub_min.toFixed(2)).toFixed(2))
-						.replace(/%2/, (xp_sub_max.toFixed(2)).toFixed(2))
+						.replace(/%1/, xp_sub_min.toFixed(2))
+						.replace(/%2/, xp_sub_max.toFixed(2))
 						.replace(/%3/, (xp_last + (xp_sub_min/pts_for_skillUp)).toFixed(2))
 						.replace(/%4/, (xp_last + (xp_sub_max/pts_for_skillUp)).toFixed(2));
 
