@@ -42,6 +42,7 @@
  Foxtrick.modules["YouthTwins"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["YouthPlayers"],
+	OPTIONS : ["HideInfoLink"],
 	CSS : Foxtrick.InternalPath + "resources/css/youth-twins.css",
 	run : function(doc) { 
 
@@ -213,7 +214,7 @@
 
 				link.setAttribute("target","_blank");
 
-				if(possible > 0){
+				if(possible > 0 && !FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "HideInfoLink")){
 					//and a neat info button
 					var infolink = Foxtrick.createFeaturedElement(doc, this, "a");
 					Foxtrick.addClass(infolink, "ft-youth-twins-info");

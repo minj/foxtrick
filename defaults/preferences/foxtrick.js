@@ -745,6 +745,7 @@ pref("extensions.foxtrick.prefs.module.YouthSkillHideUnknown.enabled", false);
 pref("extensions.foxtrick.prefs.module.YouthSkillHideUnknown.HideMaximalKeyWord.enabled", false);
 pref("extensions.foxtrick.prefs.module.YouthSkillHideUnknown.HideUnknown.enabled", false);
 pref("extensions.foxtrick.prefs.module.YouthTwins.enabled", true);
+pref("extensions.foxtrick.prefs.module.YouthTwins.HideInfoLink.enabled", false);
 pref("extensions.foxtrick.prefs.preferences.updated", false);
 pref("extensions.foxtrick.prefs.printDateFormat", "dd-mm-YYYY HH:MM:SS");
 pref("extensions.foxtrick.prefs.SavePrefs_Notes", true);
