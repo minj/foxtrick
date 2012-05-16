@@ -42,7 +42,6 @@
  Foxtrick.modules["YouthTwins"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["YouthPlayers"],
-	OPTIONS : ["HideInfoLink"],
 	CSS : Foxtrick.InternalPath + "resources/css/youth-twins.css",
 	run : function(doc) { 
 
