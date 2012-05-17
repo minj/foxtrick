@@ -54,8 +54,8 @@ Foxtrick.modules["StaffMarker"]={
 		];
 		
 		//add HY json hosted on google code
-		//if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub"))
-		//	uris.push(Foxtrick.DataPath + "staff/hy.json.zip");
+		if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub"))
+			uris.push(Foxtrick.DataPath + "staff/hy.json.zip");
 
 		// counter of URI remaining to fetch
 		var todo = uris.length;
@@ -81,24 +81,25 @@ Foxtrick.modules["StaffMarker"]={
 			}, 3);
 		}, uris);
 
+		//leaving in when we need to use it again (zip issue with AMO mayb or whatever)
 		// hty server delivers gzipped and the browser itself handles that
-		var unzipped_uris = [];
-		if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub")) {
-			unzipped_uris.push(Foxtrick.DataPath + "staff/hy.json");
-			++todo;
-		}
-		// counter of URI remaining to fetch
-		Foxtrick.map(function(uri) {
-			Foxtrick.get(uri)("success", function(text) {
-				Foxtrick.log('parse ', uri);
-				parseMarkers(text);
-				FoxtrickPrefs.setString("Markers."+uri, text);							
-			})("failure", function(code) {
-				Foxtrick.log("Failure loading file: " + uri, ". Using cached markers.");
-				var text =  FoxtrickPrefs.getString("Markers."+uri);
-				parseMarkers(text);
-			});
-		}, unzipped_uris);
+		// var unzipped_uris = [];
+		// if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub")) {
+		// 	unzipped_uris.push(Foxtrick.DataPath + "staff/hy.json");
+		// 	++todo;
+		// }
+		// // counter of URI remaining to fetch
+		// Foxtrick.map(function(uri) {
+		// 	Foxtrick.get(uri)("success", function(text) {
+		// 		Foxtrick.log('parse ', uri);
+		// 		parseMarkers(text);
+		// 		FoxtrickPrefs.setString("Markers."+uri, text);							
+		// 	})("failure", function(code) {
+		// 		Foxtrick.log("Failure loading file: " + uri, ". Using cached markers.");
+		// 		var text =  FoxtrickPrefs.getString("Markers."+uri);
+		// 		parseMarkers(text);
+		// 	});
+		// }, unzipped_uris);
 	},
 
 	run : function(doc) {
