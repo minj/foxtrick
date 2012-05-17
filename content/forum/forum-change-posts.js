@@ -564,9 +564,17 @@ Foxtrick.modules["ForumChangePosts"]={
 
 			if (do_short_postid && bDetailedHeader) {
 				var PostID_message = post_link1.title.replace(/\d+\./,'');
-				if (!do_copy_post_id) {
+				if (!do_copy_post_id && !post_link1.id) {
 					var PostID_thread = post_link1.title.replace(/\.\d+/g,'');
-					post_link1.href="javascript:showMInd('"+PostID_thread+"-"+PostID_message+"',%20'/Forum/Read.aspx?t="+PostID_thread+"&n="+PostID_message+"&v=2',%20'"+PostID_thread+"."+PostID_message+"');"
+					post_link1.href = '#';
+					post_link1.addEventListener('click',function(ev){
+						var PostID_message = ev.target.id.replace(/\d+-/,'');
+						var PostID_thread = ev.target.id.replace(/-\d+/,'');
+						if (ev.target.textContent.indexOf(PostID_thread+"."+PostID_message)==-1)
+							ev.preventDefault();
+						ev.target.textContent = PostID_thread+"."+PostID_message;
+						ev.target.href = "/Forum/Read.aspx?t=" + PostID_thread + "&n=" + PostID_message;
+					} , false);
 					post_link1.setAttribute('id',PostID_thread+"-"+PostID_message);
 				}
 				post_link1.textContent = String(PostID_message);
