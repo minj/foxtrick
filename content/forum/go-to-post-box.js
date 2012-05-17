@@ -12,7 +12,6 @@ Foxtrick.modules["GoToPostBox"]={
 
 	run : function(doc) {
 
-		Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath+"resources/js/GoToPostBox.js");
 
 		//set up tab on left forums menu
 		var tab = ''
@@ -81,8 +80,18 @@ Foxtrick.modules["GoToPostBox"]={
 			inputBoxTop.setAttribute('size', '4');
 			inputBoxTop.setAttribute('value', '(xxx.)yyy');
 			inputBoxTop.setAttribute('class', 'quickViewBox viewInactive ft_gotobox');
-			inputBoxTop.setAttribute('onfocus', 'setActiveTextBox("' + boxId + '", "quickViewBox viewActive", "(xxx.)yyy")');
-			inputBoxTop.setAttribute('onblur', 'setInactiveTextBox("' + boxId + '", "quickViewBox viewInactive", "(xxx.)yyy")');
+			inputBoxTop.addEventListener('focus', function (ev) {
+					ev.target.className = "quickViewBox viewActive ft_gotobox";
+					if (ev.target.value == "(xxx.)yyy") {
+						ev.target.value = '';
+					}
+			}, false);
+			inputBoxTop.addEventListener('blur', function (ev) {
+				if (ev.target.value.length === 0) {
+					ev.target.className = "quickViewBox viewInactive ft_gotobox";
+					ev.target.value = "(xxx.)yyy";
+				}
+			}, false);
 
 			var goButton = Foxtrick.createFeaturedElement(doc, this, 'input');
 			goButton.setAttribute('id', 'foxtrick_forum_postbox_okbutton_' + i);
