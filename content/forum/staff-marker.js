@@ -50,9 +50,13 @@ Foxtrick.modules["StaffMarker"]={
 		var uris = [
 			Foxtrick.DataPath + "staff/foxtrick.json.zip",
 			Foxtrick.DataPath + "staff/chpp.json.zip",
-			Foxtrick.DataPath + "staff/editor.json.zip",
-			Foxtrick.DataPath + "staff/hty.json.zip"
+			Foxtrick.DataPath + "staff/editor.json.zip"
 		];
+		
+		//add HY json hosted on google code
+		if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub"))
+			uris.push(Foxtrick.DataPath + "staff/hty.json.zip");
+
 		// counter of URI remaining to fetch
 		var todo = uris.length;
 		Foxtrick.map(function(uri) {
