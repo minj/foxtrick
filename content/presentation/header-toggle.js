@@ -107,14 +107,6 @@ Foxtrick.modules["HeaderToggle"]={
 					var span = doc.createElement('span');
 					span.className = 'highlight ft-dummy';
 					span.textContent = '('+numUnread+')';
-					/*span.title = Foxtrickl10n.getString('headerToggle.markAsRead');
-					span.setAttribute('onclick',"javascript:" +
-						"__doPostBack('ctl00$ctl00$CPContent$ucLeftMenu$ucNewPosts','mrk|" + idString + "');" 
-						//"__doPostBack('ctl00$ctl00$CPContent$CPMain$pgLatestThreads$repPages$ctl0"+page_num+"$p" + page_num + "','');" 
-						//"__doPostBack('ctl00$ctl00$CPContent$CPMain$updLatestThreads','mrk|" + idString + "');" 
-						//"__doPostBack('ctl00$ctl00$CPContent$CPMain$updLatestThreads','read|" + idString + "')"
-						//idString			
-					);*/
 					Foxtrick.makeFeaturedElement(span, Foxtrick.modules.HeaderToggle);
 					h2.appendChild(span);
 				}

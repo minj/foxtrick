@@ -147,12 +147,10 @@ Foxtrick.modules["ConfirmActions"]={
 				if (submitLink) {
 					submitLink = Foxtrick.makeFeaturedElement(submitLink, this);
 					// add a confirm to webpage's javascript link
-					var sOnclick = submitLink.href.replace(/javascript\:/, "");
-					if (sOnclick.search(/confirm/) == -1){ // already added?
-						var sConfirmString = Foxtrickl10n.getString("ConfirmActions.ntremove");
-						sOnclick = "javascript:if(confirm(\"" + sConfirmString + "\")){" + sOnclick + ";}";
-						submitLink.href = sOnclick;
-					}
+					submitLink.addEventListener('click',function(ev){
+						if (!confirm(Foxtrickl10n.getString("ConfirmActions.ntremove")))
+							ev.preventDefault();
+					}, false);
 				}
 			}
 		}
