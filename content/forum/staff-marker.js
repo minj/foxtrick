@@ -51,6 +51,7 @@ Foxtrick.modules["StaffMarker"]={
 			Foxtrick.DataPath + "staff/foxtrick.json.zip",
 			Foxtrick.DataPath + "staff/chpp.json.zip",
 			Foxtrick.DataPath + "staff/editor.json.zip",
+			Foxtrick.DataPath + "staff/hty.json.zip"
 		];
 		// counter of URI remaining to fetch
 		var todo = uris.length;
@@ -78,10 +79,10 @@ Foxtrick.modules["StaffMarker"]={
 
 		// hty server delivers gzipped and the browser itself handles that
 		var unzipped_uris = [];
-		if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub")) {
-			unzipped_uris.push("http://static.hattrick-youthclub.org/resources/foxtrick/team.json");
-			++todo;
-		}
+		// if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub")) {
+		// 	unzipped_uris.push("http://static.hattrick-youthclub.org/resources/foxtrick/team.json");
+		// 	++todo;
+		// }
 		// counter of URI remaining to fetch
 		Foxtrick.map(function(uri) {
 			Foxtrick.get(uri)("success", function(text) {
