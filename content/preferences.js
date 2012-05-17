@@ -893,7 +893,7 @@ var neededPermissions = [
 	{ module: "ExtraShortcuts.HtRadio", url: "http://stream.ht-radio.nl/*" },
 	{ module: "ExtraShortcuts.No9", url: "http://no9-online.de/*" },
 	{ module: "ExtraShortcuts.Latehome", url: "http://www.latehome.de/*" },
-	{ module: "StaffMarker.HT-Youthclub", url: "http://*.hattrick-youthclub.org/*" },
+	{ module: "StaffMarker.HT-Youthclub", url: "http://foxtrick.googlecode.com/svn/trunk/res/staff/*" },
 	{ module: "EmbedMedia.EmbedModeOEmebed", url: "https://vimeo.com/api/*" },
 	{ module: "EmbedMedia.EmbedModeOEmebed", url: "https://www.youtube.com/*" },
 	{ module: "EmbedMedia.EmbedModeOEmebed", url: "https://www.dailymotion.com/services/*" },
