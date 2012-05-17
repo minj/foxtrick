@@ -188,6 +188,8 @@ else if (Foxtrick.platform == "Chrome") {
 	};
 	
 	Foxtrick.modules.UI.updateIcon = function(tab) {
+		if (!tab || !tab.id)
+			return;
 		chrome.pageAction.show(tab.id);
 		var iconUrl = '', statusText = '';
 		if (FoxtrickPrefs.getBool("disableTemporary")) {
