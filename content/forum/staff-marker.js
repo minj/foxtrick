@@ -50,8 +50,13 @@ Foxtrick.modules["StaffMarker"]={
 		var uris = [
 			Foxtrick.DataPath + "staff/foxtrick.json.zip",
 			Foxtrick.DataPath + "staff/chpp.json.zip",
-			Foxtrick.DataPath + "staff/editor.json.zip",
+			Foxtrick.DataPath + "staff/editor.json.zip"
 		];
+		
+		//add HY json hosted on google code
+		//if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub"))
+		//	uris.push(Foxtrick.DataPath + "staff/hy.json.zip");
+
 		// counter of URI remaining to fetch
 		var todo = uris.length;
 		Foxtrick.map(function(uri) {
@@ -79,7 +84,7 @@ Foxtrick.modules["StaffMarker"]={
 		// hty server delivers gzipped and the browser itself handles that
 		var unzipped_uris = [];
 		if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub")) {
-			unzipped_uris.push("http://static.hattrick-youthclub.org/resources/foxtrick/team.json");
+			unzipped_uris.push(Foxtrick.DataPath + "staff/hy.json");
 			++todo;
 		}
 		// counter of URI remaining to fetch
