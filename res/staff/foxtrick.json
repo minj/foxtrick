@@ -1,6 +1,7 @@
 {
-	"type": "foxtrick", 
+	"type": "foxtrick",
 	"list": [
+		{ "id": "000000", "name": "test" },
 		{ "id": "3410980", "name": "Aimo_Kanuuna" },
 		{ "id": "335181", "name": "Baler0" },
 		{ "id": "637644", "name": "baumanns" },
