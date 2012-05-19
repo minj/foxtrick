@@ -15,6 +15,7 @@
 <note version="0.9.4">
 <item>● НОВО:  <module>TransferHistoryFilters</module>: Омогућава филтрирање купљених или продатих играча на страници клупске Историје трансфера</item>
 <item>● <module>PlayerStatsExperience</module>: Нова верзија са више детаља. (Хвала SeanConnery (7751762) за тестирање комбинације боја за особе које не препознају основну нијансу црвене и зелене)</item>
+<item>● <module>MatchOrderInterface</module>: Могућност клонирања постојећих индивидуалних налога за играче. Играчи намерно неће бити убачени.</item>
 <item>● Мање измене у изгледу</item>
 <item>● <module>YouthTwins</module>: Опција за скривање линка ка објашњењу појма 'близанац'</item>
 <item>● <module>StaffMarker</module>: Од сада користимо Google Code за листу Hattrick Youthclub особља како би смањили оптерећење њиховог сервера</item>
