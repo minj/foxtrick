@@ -227,6 +227,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 						cloned.textContent = text;
 						Foxtrick.removeClass(cloned, "remove");
 						Foxtrick.addClass(cloned, class_name);
+						Foxtrick.addClass(cloned, "ft-match-order-clone-button");
 						cloned.setAttribute("title", title);
 						cloned.setAttribute("alt", alt);
 						node.appendChild(cloned);
