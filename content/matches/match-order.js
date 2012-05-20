@@ -311,7 +311,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 					clone_settings(src_id, id);	
 
 					//add clone buttons
-					addCloneBottonsForNode(doc.getElementById("substitution_" + id));
+					addCloneButtonsForNode(doc.getElementById("substitution_" + id));
 				}
 				var cloneById = function(src_id){
 					cloneAsTypeById(src_id, mapping[src_id]);
@@ -327,7 +327,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 					mapping[getLastId()] = "addSwap";
 				}, false);
 
-				var addCloneBottonsForNode = function(node){
+				var addCloneButtonsForNode = function(node){
 					var i = 0;
 					addCloneButtonForNodeByType(node,"clone", ++i);
 					var type = mapping[getIdFromNode(node)];
@@ -344,7 +344,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 				var orders = doc.getElementsByClassName("substitution");
 				if(orders.length){
 					for(var i=0; i < orders.length; i++){
-						addCloneBottonsForNode(orders[i]);
+						addCloneButtonsForNode(orders[i]);
 					}	
 				}
 			}
