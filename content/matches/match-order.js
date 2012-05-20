@@ -206,12 +206,15 @@ Foxtrick.modules["MatchOrderInterface"]={
 						if(id){
 							if(doc.getElementById("change_" + id)){
 								mapping[id] = "addChange";
+								Foxtrick.log(id, mapping[id]);
 							}
 							if(doc.getElementById("swapout_" + id)){
 								mapping[id] = "addSwap";
+								Foxtrick.log(id, mapping[id]);
 							}
 							if(doc.getElementById("out_" + id)){
 								mapping[id] = "addSub";
+								Foxtrick.log(id, mapping[id]);
 							}
 						}
 					}
@@ -289,6 +292,9 @@ Foxtrick.modules["MatchOrderInterface"]={
 						//standingcond
 						doc.getElementById("standingcond_" + targetId).value = doc.getElementById("standingcond_" + sourceId).value;
 						//minifield
+						//it does not make much sence to clone the minifield and might lead to unwanted errors
+						//if we ever want to enabled it, here's the code:
+						/*
 						if(doc.getElementById("minifield_" + sourceId)){
 							var lastactive = doc.getElementById("minifield_" + sourceId).getElementsByClassName("active")[0];
 							if(lastactive && doc.getElementById("minifield_" + targetId)){
@@ -296,6 +302,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 								doc.getElementById("minifield_" + targetId).getElementsByClassName("p"+lastactiveid)[0].click();
 							}
 						}
+						*/
 					}
 					//get button for the order by id
 					var srcTypeButton = doc.getElementById(type);
@@ -328,16 +335,24 @@ Foxtrick.modules["MatchOrderInterface"]={
 				}, false);
 
 				var addCloneButtonsForNode = function(node){
+					Foxtrick.log("adding Icons");
 					var i = 0;
 					addCloneButtonForNodeByType(node,"clone", ++i);
 					var type = mapping[getIdFromNode(node)];
+					Foxtrick.log("detected type:" + type);
 					
-					if(type != "addSub")
+					if(type != "addSub"){
+						Foxtrick.log("adding button addSub " + type);
 						addCloneButtonForNodeByType(node,"addSub", ++i);
-					if(type != "addChange")
+					}
+					if(type != "addChange"){
+						Foxtrick.log("adding button addChange " + type);
 						addCloneButtonForNodeByType(node,"addChange", ++i);
-					if(type != "addSwap")
+					}
+					if(type != "addSwap"){
+						Foxtrick.log("adding button addSwap " + type);
 						addCloneButtonForNodeByType(node,"addSwap", ++i);
+					}
 				}
 
 				figureLoadedOrders();
