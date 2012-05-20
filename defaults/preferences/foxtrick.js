@@ -408,6 +408,8 @@ pref("extensions.foxtrick.prefs.module.MatchOrderInterface.Specialties.enabled",
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.ShowFaces.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.SwapPositions.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.StayOnPage.enabled", false);
+pref("extensions.foxtrick.prefs.module.MatchOrderInterface.CloneOrder.enabled", true);
+pref("extensions.foxtrick.prefs.module.MatchOrderInterface.AutoExpandCloned.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchSimulator.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchSimulator.value", 0);
 pref("extensions.foxtrick.prefs.module.MatchSimulator.HTMSPrediction.enabled", true);
