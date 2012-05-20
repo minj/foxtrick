@@ -225,6 +225,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 						var sub = node.getElementsByClassName("remove")[0];
 						var cloned = sub.cloneNode(true);
 						cloned.textContent = text;
+						Foxtrick.removeClass(cloned, "remove");
 						Foxtrick.addClass(cloned, class_name);
 						cloned.setAttribute("title", title);
 						cloned.setAttribute("alt", alt);
