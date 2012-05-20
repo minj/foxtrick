@@ -282,7 +282,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 						else
 							doc.getElementById("advanced_" + targetId).setAttribute("style", "display:block;");
 						//behaviour
-						if(doc.getElementById("behaviour_" + targetId))
+						if(doc.getElementById("behaviour_" + targetId) && doc.getElementById("behaviour_" + sourceId))
 							doc.getElementById("behaviour_" + targetId).value = doc.getElementById("behaviour_" + sourceId).value;
 						//cardcond
 						doc.getElementById("cardcond_" + targetId).value = doc.getElementById("cardcond_" + sourceId).value;
