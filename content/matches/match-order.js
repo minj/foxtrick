@@ -10,8 +10,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 	PAGES : ['matchOrder', 'matchLineup'],
 	OPTIONS : ["GotTrainingOnField", "DisplayLastMatchInDetails", "Specialties", "ShowFaces", "SwapPositions","StayOnPage", ["CloneOrder", "AutoExpandCloned"]],
 	CSS : Foxtrick.InternalPath + "resources/css/match-order.css",
-	OPTIONS_CSS : [ "", Foxtrick.InternalPath + "resources/css/match-order-specialties.css", Foxtrick.InternalPath + "resources/css/match-order-faces.css"],
-
+	OPTIONS_CSS : [ "", Foxtrick.InternalPath + "resources/css/match-order-specialties.css", Foxtrick.InternalPath + "resources/css/match-order-faces.css", Foxtrick.InternalPath + "resources/css/match-order-clone.css"],
 	run : function(doc) { 
 	
 		var check_images = function(doc, target, avatarsXml, getID, scale) {		
@@ -171,8 +170,10 @@ Foxtrick.modules["MatchOrderInterface"]={
 
 		//button to clone last order
 		var runAddCloneButtons = function(){
-			if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'CloneOrder')) {
+			//the brain, remembers which id is what kind of setting, substitution, swap or change
+			var mapping = {}
 
+			if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'CloneOrder')) {
 				var getLastNode = function(){
 					var orders = doc.getElementsByClassName("substitution");
 					if(!orders.length)
@@ -203,31 +204,71 @@ Foxtrick.modules["MatchOrderInterface"]={
 					for(var i=0; i < orders.length; i++){
 						var id = getIdFromNode(orders[i]);
 						if(id){
-							if(doc.getElementById("change_" + id))
+							if(doc.getElementById("change_" + id)){
 								mapping[id] = "addChange";
-							if(doc.getElementById("swapout_" + id))
+							}
+							if(doc.getElementById("swapout_" + id)){
 								mapping[id] = "addSwap";
-							if(doc.getElementById("out_" + id))
+							}
+							if(doc.getElementById("out_" + id)){
 								mapping[id] = "addSub";
+							}
 						}
 					}
 				}
-				//add clone button for any existing order
-				var addCloneButtonForNode = function(node){
+				//addCloneAsTypeButton
+				var addCloneAsTypeButtonForNode = function(node, type, class_name, title, alt, text, link_type){
+						
+						if(node.getElementsByClassName(class_name).length)
+							return;
+
 						var sub = node.getElementsByClassName("remove")[0];
 						var cloned = sub.cloneNode(true);
-						cloned.textContent = Foxtrickl10n.getString("matchOrder.cloneOrder.abbr");
-						cloned.setAttribute("style", "top:18px; background: #48f;");
-						cloned.setAttribute("title", Foxtrickl10n.getString("matchOrder.cloneOrder"));
-						cloned.setAttribute("alt", Foxtrickl10n.getString("matchOrder.cloneOrder"));
+						cloned.textContent = text;
+						Foxtrick.addClass(cloned, class_name);
+						cloned.setAttribute("title", title);
+						cloned.setAttribute("alt", alt);
 						node.appendChild(cloned);
 
 						Foxtrick.listen(cloned, "click", function(ev){
-							Foxtrick.log(getIdFromNode(ev.target.parentNode));
-							cloneById(getIdFromNode(ev.target.parentNode));
+							cloneAsTypeById(getIdFromNode(ev.target.parentNode), link_type);
+
 						}, false)
 				}
-				var cloneById = function(src_id){
+				var cloneOpts ={
+					"clone": { 
+						title: Foxtrickl10n.getString("matchOrder.cloneOrder"),
+						alt: Foxtrickl10n.getString("matchOrder.cloneOrder"),
+						text: Foxtrickl10n.getString("matchOrder.cloneOrder.abbr"),
+					},
+					"addSwap": { 
+						title: Foxtrickl10n.getString("matchOrder.cloneAsSwap"),
+						alt: Foxtrickl10n.getString("matchOrder.cloneAsSwap"),
+						text: Foxtrickl10n.getString("matchOrder.cloneAsSwap.abbr"),
+					},
+					"addChange": { 
+						title: Foxtrickl10n.getString("matchOrder.cloneAsChange"),
+						alt: Foxtrickl10n.getString("matchOrder.cloneAsChange"),
+						text: Foxtrickl10n.getString("matchOrder.cloneAsChange.abbr"),
+					},
+					"addSub": { 
+						title: Foxtrickl10n.getString("matchOrder.cloneAsSub"),
+						alt: Foxtrickl10n.getString("matchOrder.cloneAsSub"),
+						text: Foxtrickl10n.getString("matchOrder.cloneAsSub.abbr"),
+					},
+
+				};
+				var addCloneButtonForNodeByType = function(node, type, idx){
+					var title = cloneOpts[type].title;
+					var alt = cloneOpts[type].alt;
+					var text = cloneOpts[type].text;
+					if(type == "clone")
+						type = mapping[getIdFromNode(node)];
+
+					var desiredClass = "ft-match-order-clone-" + idx;
+					addCloneAsTypeButtonForNode(node, type, desiredClass, title, alt, text, type);
+				}
+				var cloneAsTypeById = function(src_id, type){
 					var clone_settings = function(sourceId, targetId){
 						//adjust minutes
 						var min = doc.getElementById("minutestext_" + targetId);
@@ -250,14 +291,14 @@ Foxtrick.modules["MatchOrderInterface"]={
 						//minifield
 						if(doc.getElementById("minifield_" + sourceId)){
 							var lastactive = doc.getElementById("minifield_" + sourceId).getElementsByClassName("active")[0];
-							if(lastactive){
+							if(lastactive && doc.getElementById("minifield_" + targetId)){
 								var lastactiveid = lastactive.className.match(/\d+/)[0];
 								doc.getElementById("minifield_" + targetId).getElementsByClassName("p"+lastactiveid)[0].click();
 							}
 						}
 					}
 					//get button for the order by id
-					var srcTypeButton = doc.getElementById(mapping[src_id]);
+					var srcTypeButton = doc.getElementById(type);
 
 					//click it
 					srcTypeButton.click();
@@ -269,30 +310,42 @@ Foxtrick.modules["MatchOrderInterface"]={
 					//clone the settings
 					clone_settings(src_id, id);	
 
-					//add clone button
-					addCloneButtonForNode(doc.getElementById("substitution_" + id));
+					//add clone buttons
+					addCloneBottonsForNode(doc.getElementById("substitution_" + id));
+				}
+				var cloneById = function(src_id){
+					cloneAsTypeById(src_id, mapping[src_id]);
 				}
 
-				//the brain, remembers which id is what kind of setting, substitution, swap or change
-				var mapping = {};
 				Foxtrick.listen(doc.getElementById("addSub"), "click", function(ev){
 					mapping[getLastId()] = "addSub";
-					addCloneButtonForNode(getLastNode());
 				}, false);
 				Foxtrick.listen(doc.getElementById("addChange"), "click", function(ev){
 					mapping[getLastId()] = "addChange";
-					addCloneButtonForNode(getLastNode());
 				}, false);
 				Foxtrick.listen(doc.getElementById("addSwap"), "click", function(ev){
 					mapping[getLastId()] = "addSwap";
-					addCloneButtonForNode(getLastNode());
 				}, false);
+
+				var addCloneBottonsForNode = function(node){
+					var i = 0;
+					addCloneButtonForNodeByType(node,"clone", ++i);
+					var type = mapping[getIdFromNode(node)];
+					
+					if(type != "addSub")
+						addCloneButtonForNodeByType(node,"addSub", ++i);
+					if(type != "addChange")
+						addCloneButtonForNodeByType(node,"addChange", ++i);
+					if(type != "addSwap")
+						addCloneButtonForNodeByType(node,"addSwap", ++i);
+				}
 
 				figureLoadedOrders();
 				var orders = doc.getElementsByClassName("substitution");
 				if(orders.length){
-					for(var i=0; i < orders.length; i++)
-						addCloneButtonForNode(orders[i]);	
+					for(var i=0; i < orders.length; i++){
+						addCloneBottonsForNode(orders[i]);
+					}	
 				}
 			}
 		};
