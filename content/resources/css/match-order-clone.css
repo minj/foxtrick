@@ -1,19 +1,97 @@
 @-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
 
-.ft-match-order-clone-1 {
-	right:20px !important;
-	top: -16px !important;
-	background: #48f !important;
+html[dir="rtl"] .ft-match-order-clone-1 {
+	left:20px;
+	right:auto;
+	top: -16px;
+	background: #48f;
+	border: 2px solid black;
+	border-radius: 7px;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	color: white;
+	position: absolute;
+	font-weight: 900;
+	font-size: 0.8em;
+	cursor: pointer;
+	padding: 3px 5px;
 }
-.ft-match-order-clone-2 {
-	right:49px !important;
-	top: -16px !important;
-	background: #48f !important;
+html[dir="rtl"] .ft-match-order-clone-2 {
+	left:49px;
+	right:auto;
+	top: -16px;
+	background: #48f;
+	border: 2px solid black;
+	border-radius: 7px;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	color: white;
+	position: absolute;
+	font-weight: 900;
+	font-size: 0.8em;
+	cursor: pointer;
+	padding: 3px 5px;
 }
-.ft-match-order-clone-3 {
-	right:78px !important;
-	top: -16px !important;
-	background: #48f !important;
+html[dir="rtl"] .ft-match-order-clone-3 {
+	left:79px;
+	right:auto;
+	top: -16px;
+	background: #48f;
+	border: 2px solid black;
+	border-radius: 7px;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	color: white;
+	position: absolute;
+	font-weight: 900;
+	font-size: 0.8em;
+	cursor: pointer;
+	padding: 3px 5px;
+}
+html[dir="ltr"] .ft-match-order-clone-1 {
+	right:20px;
+	top: -16px;
+	background: #48f;
+	border: 2px solid black;
+	border-radius: 7px;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	color: white;
+	position: absolute;
+	font-weight: 900;
+	font-size: 0.8em;
+	cursor: pointer;
+	padding: 3px 5px;
+}
+html[dir="ltr"]  .ft-match-order-clone-2 {
+	right:49px;
+	top: -16px;
+	background: #48f;
+	border: 2px solid black;
+	border-radius: 7px;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	color: white;
+	position: absolute;
+	font-weight: 900;
+	font-size: 0.8em;
+	cursor: pointer;
+	padding: 3px 5px;
+}
+html[dir="ltr"] .ft-match-order-clone-3 {
+	right:78px;
+	top: -16px;
+	background: #48f;
+	border: 2px solid black;
+	border-radius: 7px;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	color: white;
+	position: absolute;
+	font-weight: 900;
+	font-size: 0.8em;
+	cursor: pointer;
+	padding: 3px 5px;
 }
 
 }
