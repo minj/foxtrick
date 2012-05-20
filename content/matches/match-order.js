@@ -206,15 +206,12 @@ Foxtrick.modules["MatchOrderInterface"]={
 						if(id){
 							if(doc.getElementById("change_" + id)){
 								mapping[id] = "addChange";
-								Foxtrick.log(id, mapping[id]);
 							}
 							if(doc.getElementById("swapout_" + id)){
 								mapping[id] = "addSwap";
-								Foxtrick.log(id, mapping[id]);
 							}
 							if(doc.getElementById("out_" + id)){
 								mapping[id] = "addSub";
-								Foxtrick.log(id, mapping[id]);
 							}
 						}
 					}
@@ -316,9 +313,6 @@ Foxtrick.modules["MatchOrderInterface"]={
 
 					//clone the settings
 					clone_settings(src_id, id);	
-
-					//add clone buttons
-					addCloneButtonsForNode(doc.getElementById("substitution_" + id));
 				}
 				var cloneById = function(src_id){
 					cloneAsTypeById(src_id, mapping[src_id]);
@@ -335,22 +329,21 @@ Foxtrick.modules["MatchOrderInterface"]={
 				}, false);
 
 				var addCloneButtonsForNode = function(node){
-					Foxtrick.log("adding Icons");
-					var i = 0;
+
+					//counter for class naming, used in styling
+					var i = 0;	
+					//normal clone button
 					addCloneButtonForNodeByType(node,"clone", ++i);
+
 					var type = mapping[getIdFromNode(node)];
-					Foxtrick.log("detected type:" + type);
 					
 					if(type != "addSub"){
-						Foxtrick.log("adding button addSub " + type);
 						addCloneButtonForNodeByType(node,"addSub", ++i);
 					}
 					if(type != "addChange"){
-						Foxtrick.log("adding button addChange " + type);
 						addCloneButtonForNodeByType(node,"addChange", ++i);
 					}
 					if(type != "addSwap"){
-						Foxtrick.log("adding button addSwap " + type);
 						addCloneButtonForNodeByType(node,"addSwap", ++i);
 					}
 				}
