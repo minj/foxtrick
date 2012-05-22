@@ -19,7 +19,7 @@
 <item>● A few minor layouting/css changes</item>
 <item>● YouthTwins: Option added to hide the information link about twins (default off)</item>
 <item>● StaffMarker: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on</item>
-<item>● MatchPlayerColouring: Now works properly for players the was put in and left the field before the game ended</item>
+<item>● MatchPlayerColouring: Now works properly for players the were put in and left the field before the game ended</item>
 <item></item>
 <item><xhtml:b>For visually or hearing impaired users</xhtml:b></item>
 <item>We added a new section to the settings page that will contain all modules that are related to accessibility.</item>
