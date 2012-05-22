@@ -149,12 +149,9 @@
 					var homePlayers = getPlayers(homeXml);
 					var awayPlayers = getPlayers(awayXml);
 
-					Foxtrick.log("away", awayPlayers);
-
 					// colour all player links
 					Foxtrick.map(function(n) {
 						var id =  getPlayerId(n);
-						Foxtrick.log(id);
 						if (id) {
 							if (Foxtrick.member(id, homePlayers))
 								Foxtrick.addClass(n, homeClass);
