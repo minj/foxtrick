@@ -120,8 +120,13 @@
 			];
 
 			var getPlayers = function(xml) {
-				return Foxtrick.map(function(n) { return Number(n.textContent); },
-					xml.getElementsByTagName("PlayerID"));
+				var field_start_end = Array.prototype.slice.call(xml.getElementsByTagName("PlayerID"));
+				var subs_in = Array.prototype.slice.call(xml.getElementsByTagName("SubjectPlayerID"));
+				var players = field_start_end.concat(subs_in);
+
+				return Foxtrick.map(function(n) { 
+						return Number(n.textContent); 
+					}, players);
 			};
 			var getPlayerId =  function(a) {
 				var m;
@@ -144,9 +149,12 @@
 					var homePlayers = getPlayers(homeXml);
 					var awayPlayers = getPlayers(awayXml);
 
+					Foxtrick.log("away", awayPlayers);
+
 					// colour all player links
 					Foxtrick.map(function(n) {
-						var id =  getPlayerId(n)
+						var id =  getPlayerId(n);
+						Foxtrick.log(id);
 						if (id) {
 							if (Foxtrick.member(id, homePlayers))
 								Foxtrick.addClass(n, homeClass);
