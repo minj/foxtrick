@@ -183,7 +183,7 @@ Foxtrick.modules["TransferSearchFilters"]={
 
 			var link = doc.createElement("a");
 			link.className = "ft-link";
-			Foxtrick.listen(link, "click", fillForm, false);
+			Foxtrick.onClick(link, fillForm);
 			link.textContent = name;
 			link.setAttribute("filter", filter);
 			td_fname.appendChild(link);
@@ -191,7 +191,7 @@ Foxtrick.modules["TransferSearchFilters"]={
 			var remover = doc.createElement("div");
 			remover.className = "foxtrickRemove";
 			remover.msg = name;
-			Foxtrick.listen(remover, "click", deleteFilter, false);
+			Foxtrick.onClick(remover, deleteFilter);
 			td_remove.appendChild(remover);
 		};
 
@@ -202,7 +202,7 @@ Foxtrick.modules["TransferSearchFilters"]={
 		var addlink = Foxtrick.createFeaturedElement(doc, this, "a");
 		addlink.id = "ft-transfer-search-filter-new";
 		addlink.className = "ft-link";
-		Foxtrick.listen(addlink, "click", addNewFilter, false);
+		Foxtrick.onClick(addlink, addNewFilter);
 		addlink.textContent = Foxtrickl10n.getString("TransferSearchFilters.saveFilter");
 		ownBoxBody.appendChild(addlink);
 

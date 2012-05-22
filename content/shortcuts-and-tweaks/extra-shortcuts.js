@@ -140,7 +140,7 @@ Foxtrick.modules["ExtraShortcuts"]={
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
 					link.href = 'javascript:void();'
-					Foxtrick.listen(link, 'click', function() {FoxtrickPrefs.show('#tab=on_page&view-by=page');}, false);
+					Foxtrick.onClick(link, function() {FoxtrickPrefs.show('#tab=on_page&view-by=page');});
 					var img1 = doc.createElement('img');
 					img1.setAttribute( "class", "ftSCFtPrefs");
 					img1.src = "/Img/Icons/transparent.gif";

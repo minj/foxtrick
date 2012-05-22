@@ -92,11 +92,11 @@ Foxtrick.modules["AddLeaveConfButton"]={
 		leaveConf.setAttribute("id", "ftLC-btn" + foldersCounter);
 		leaveConf.setAttribute("class","ft_actionicon foxtrickRemove float_right");
 		leaveConf.setAttribute( "title", Foxtrickl10n.getString('AddLeaveConfButton.LeaveForum'));
-		Foxtrick.listen(leaveConf, 'click', function(ev) {
+		Foxtrick.onClick(leaveConf, function(ev) {
 			if (confirm(Foxtrickl10n.getString('AddLeaveConfButton.alert'))) {
 				Foxtrick.newTab("http://" + doc.location.hostname+"/MyHattrick/Preferences/ForumSettings.aspx?LeaveConf=" + confName, "_self");
 			}
-		}, false);
+		});
 		leaveConf = Foxtrick.makeFeaturedElement(leaveConf, this);
 		var markAsReadButton = folderHeader.childNodes[0];
 		folderHeader.insertBefore( leaveConf, markAsReadButton);

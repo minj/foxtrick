@@ -39,7 +39,7 @@ Foxtrick.modules["TableOfStatisticalTruth"]={
 			}
 		};
 
-		Foxtrick.listen(tableHeader, "click", toggleTable, false);
+		Foxtrick.onClick(tableHeader, toggleTable);
 		
 		var addTable = function() {
 			var url = "http://www.fantamondi.it/HTMS/dorequest.php?action=truthtable&serie="+serie+"&season="+season;

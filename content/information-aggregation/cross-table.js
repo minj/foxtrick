@@ -81,8 +81,8 @@ Foxtrick.modules["CrossTable"]={
 			rememberState("table.expanded", !Foxtrick.hasClass(table, "hidden"));
 		};
 
-		Foxtrick.listen(graphHeader, "click", toggleGraph, false);
-		Foxtrick.listen(tableHeader, "click", toggleTable, false);
+		Foxtrick.onClick(graphHeader, toggleGraph);
+		Foxtrick.onClick(tableHeader, toggleTable);
 
 		// if graph or table was expanded last time, expand it now.
 		if (recallState("graph.expanded"))

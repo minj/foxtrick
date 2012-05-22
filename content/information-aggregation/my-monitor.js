@@ -78,7 +78,7 @@ Foxtrick.modules["MyMonitor"]={
 			addLink.id = "ft-monitor-add";
 			addLink.className = "ft-link";
 			addLink.textContent = Foxtrickl10n.getString("button.add");
-			Foxtrick.listen(addLink, "click", function() {
+			Foxtrick.onClick(addLink, function() {
 				var noteId = "ft-monitor-add-note";
 				while (note = doc.getElementById(noteId))
 					note.parentNode.removeChild(note);
@@ -90,7 +90,7 @@ Foxtrick.modules["MyMonitor"]={
 				);
 				note.id = noteId;
 				mydiv.appendChild(note);
-			}, false);
+			});
 			addRemove.appendChild(addLink);
 
 			// slash separating add and remove
@@ -101,7 +101,7 @@ Foxtrick.modules["MyMonitor"]={
 			removeLink.id = "ft-monitor-remove";
 			removeLink.className = "ft-link";
 			removeLink.textContent = Foxtrickl10n.getString("button.remove");
-			Foxtrick.listen(removeLink, "click", function() {
+			Foxtrick.onClick(removeLink, function() {
 				var noteId = "ft-monitor-remove-note"
 				while (note = doc.getElementById(noteId))
 					note.parentNode.removeChild(note);
@@ -133,20 +133,20 @@ Foxtrick.modules["MyMonitor"]={
 				removeButton.id = "ft-monitor-remove-button";
 				removeButton.type = "button";
 				removeButton.value = Foxtrickl10n.getString("button.remove");
-				Foxtrick.listen(removeButton, "click", function() {
+				Foxtrick.onClick(removeButton, function() {
 					var index = removeSelect.selectedIndex;
 					removeSelect.removeChild(removeSelect.options[index]);
 					teams.splice(index, 1); // remove the selected from teams
 					setSavedTeams(teams);
 					var frame = doc.getElementsByClassName("ft-monitor-frame")[index];
 					frame.parentNode.removeChild(frame);
-				}, false);
+				});
 				removeBox.appendChild(removeButton);
 				// add note
 				var note = Foxtrick.util.note.create(doc, removeBox, null, true);
 				note.id = noteId;
 				mydiv.appendChild(note);
-			}, false);
+			});
 			addRemove.appendChild(removeLink);
 
 			// container for the teams
@@ -241,7 +241,7 @@ Foxtrick.modules["MyMonitor"]={
 				uplink.title=Foxtrickl10n.getString('button.up');
 				uplink.className="up";
 				uplink.src="../../Img/Icons/transparent.gif"
-				Foxtrick.listen(uplink, 'click', move("up", team.id), false);
+				Foxtrick.onClick(uplink, move("up", team.id));
 				sortdiv.appendChild(uplink);
 
 				var downlink = doc.createElement('input');
@@ -250,7 +250,7 @@ Foxtrick.modules["MyMonitor"]={
 				downlink.className="down";
 				downlink.src="../../Img/Icons/transparent.gif"
 				downlink.setAttribute('teamid',team.id);
-				Foxtrick.listen(downlink, 'click', move("down", team.id), false);
+				Foxtrick.onClick(downlink, move("down", team.id));
 				sortdiv.appendChild(downlink);
 				header.appendChild(sortdiv);
 
@@ -324,19 +324,19 @@ Foxtrick.modules["MyMonitor"]={
 			var addLink = doc.createElement("a");
 			addLink.className = "ft-link";
 			addLink.textContent = Foxtrickl10n.getString("MyMonitor.add");
-			Foxtrick.listen(addLink, "click", function() {
+			Foxtrick.onClick(addLink, function() {
 				teams.push({ id : teamIdContainer.id, type : type, name : teamIdContainer.name, logo : teamIdContainer.logo, country:teamIdContainer.country});
 				setSavedTeams(teams);
 				Foxtrick.addClass(addLink, "hidden");
 				Foxtrick.removeClass(removeLink, "hidden");
 				fillSelect();
-			}, false);
+			});
 			container.appendChild(addLink);
 			// link to remove team
 			var removeLink = doc.createElement("a");
 			removeLink.className = "ft-link";
 			removeLink.textContent = Foxtrickl10n.getString("MyMonitor.remove");
-			Foxtrick.listen(removeLink, "click", function() {
+			Foxtrick.onClick(removeLink, function() {
 				teams = Foxtrick.filter(function(n) {
 					return n.id != teamIdContainer.id || n.type != type;
 				}, teams);
@@ -344,7 +344,7 @@ Foxtrick.modules["MyMonitor"]={
 				Foxtrick.removeClass(addLink, "hidden");
 				Foxtrick.addClass(removeLink, "hidden");
 				fillSelect();
-			}, false);
+			});
 			container.appendChild(removeLink);
 
 			// select box containing teams in the monitor

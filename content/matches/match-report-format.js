@@ -692,11 +692,11 @@ var eventText = {
 							}, substitutions);
 						}, [[homeName, homeXml], [awayName, awayXml]]);
 
-						Foxtrick.listen(header, "click", function() {
+						Foxtrick.onClick(header, function() {
 							Foxtrick.toggleClass(header, "ft-expander-unexpanded");
 							Foxtrick.toggleClass(header, "ft-expander-expanded");
 							Foxtrick.toggleClass(lineup, "hidden");
-						}, false)
+						})
 
 						// report header
 						var reportHeader = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchReportFormat, "h2");
@@ -709,11 +709,11 @@ var eventText = {
 						report.className = "ft-match-report";
 						parent.insertBefore(report, before);
 						
-						Foxtrick.listen(reportHeader, "click", function() {
+						Foxtrick.onClick(reportHeader, function() {
 							Foxtrick.toggleClass(reportHeader, "ft-expander-unexpanded");
 							Foxtrick.toggleClass(reportHeader, "ft-expander-expanded");
 							Foxtrick.toggleClass(report, "hidden");
-						}, false)
+						})
 
 						// wait for kick-off (walkovers don't allow to count event 21 (lineups))
 						var koPending = true;

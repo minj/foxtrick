@@ -36,7 +36,7 @@ Foxtrick.modules["CopyPlayerAd"]={
 			Foxtrickl10n.getString("copy.playerad"));
 		if (button) {
 			Foxtrick.addClass(button, "ft-copy-player-ad");
-			Foxtrick.listen(button, "click", this.createPlayerAd, false);
+			Foxtrick.onClick(button, this.createPlayerAd);
 		}
 	},
 

@@ -232,10 +232,10 @@ Foxtrick.modules["MatchOrderInterface"]={
 						cloned.setAttribute("alt", alt);
 						node.appendChild(cloned);
 
-						Foxtrick.listen(cloned, "click", function(ev){
+						Foxtrick.onClick(cloned, function(ev){
 							cloneAsTypeById(getIdFromNode(ev.target.parentNode), link_type);
 
-						}, false)
+						})
 				}
 				var cloneOpts ={
 					"clone": { 
@@ -320,15 +320,15 @@ Foxtrick.modules["MatchOrderInterface"]={
 					cloneAsTypeById(src_id, mapping[src_id]);
 				}
 
-				Foxtrick.listen(doc.getElementById("addSub"), "click", function(ev){
+				Foxtrick.onClick(doc.getElementById("addSub"), function(ev){
 					mapping[getLastId()] = "addSub";
-				}, false);
-				Foxtrick.listen(doc.getElementById("addChange"), "click", function(ev){
+				});
+				Foxtrick.listen(doc.getElementById("addChange"), function(ev){
 					mapping[getLastId()] = "addChange";
-				}, false);
-				Foxtrick.listen(doc.getElementById("addSwap"), "click", function(ev){
+				});
+				Foxtrick.listen(doc.getElementById("addSwap"), function(ev){
 					mapping[getLastId()] = "addSwap";
-				}, false);
+				});
 
 				var addCloneButtonsForNode = function(node){
 

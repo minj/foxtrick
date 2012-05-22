@@ -39,7 +39,7 @@ Foxtrick.modules["ConfirmActions"]={
 				var bidButton = doc.getElementById(ids.BID.BUTTON_ID);
 				if (bidButton) {
 					bidButton = Foxtrick.makeFeaturedElement(bidButton, this);
-					Foxtrick.listen(bidButton, "click", function(ev) {
+					Foxtrick.onClick(bidButton, function(ev) {
 						var doc = ev.target.ownerDocument;
 						var bidAlert = doc.getElementById(ids.BID.ALERT_ID);
 						var bidButton = doc.getElementById(ids.BID.BUTTON_ID);
@@ -83,14 +83,14 @@ Foxtrick.modules["ConfirmActions"]={
 							bidText.disabled = "disabled";
 							ev.preventDefault();
 						}
-					}, false);
+					});
 				}
 			}
 			if (FoxtrickPrefs.isModuleOptionEnabled("ConfirmActions", "TransferList")) {
 				var sellButton = doc.getElementById(ids.SELL.BUTTON_ID);
 				if (sellButton) {
 					sellButton = Foxtrick.makeFeaturedElement(sellButton, this);
-					Foxtrick.listen(sellButton, "click", function(ev) {
+					Foxtrick.onClick(sellButton, function(ev) {
 						var doc = ev.target.ownerDocument;
 						var sellButton = doc.getElementById(ids.SELL.BUTTON_ID);
 						var cancelButton = doc.getElementById(ids.SELL.CANCEL_ID);
@@ -137,7 +137,7 @@ Foxtrick.modules["ConfirmActions"]={
 							sellText.disabled = "disabled";
 							ev.preventDefault();
 						}
-					}, false);
+					});
 				}
 			}
 			if (FoxtrickPrefs.isModuleOptionEnabled("ConfirmActions", "NtChange")) {
@@ -147,10 +147,10 @@ Foxtrick.modules["ConfirmActions"]={
 				if (submitLink) {
 					submitLink = Foxtrick.makeFeaturedElement(submitLink, this);
 					// add a confirm to webpage's javascript link
-					submitLink.addEventListener('click',function(ev){
+					Foxtrick.onClick(submitLink, function(ev){
 						if (!confirm(Foxtrickl10n.getString("ConfirmActions.ntremove")))
 							ev.preventDefault();
-					}, false);
+					});
 				}
 			}
 		}
@@ -159,7 +159,7 @@ Foxtrick.modules["ConfirmActions"]={
 				var submitButton = doc.getElementById(ids.STAFF.SUBMIT_BUTTON_ID);
 				if (submitButton) {
 					submitButton = Foxtrick.makeFeaturedElement(submitButton, this);
-					Foxtrick.listen(submitButton, "click", function(ev) {
+					Foxtrick.onClick(submitButton, function(ev) {
 						var doc = ev.target.ownerDocument;
 						var submitButton = doc.getElementById(ids.STAFF.SUBMIT_BUTTON_ID);
 						var actionSelect = doc.getElementById(ids.STAFF.ACTION_SELECT_ID);
@@ -229,7 +229,7 @@ Foxtrick.modules["ConfirmActions"]={
 								ev.preventDefault();
 							}
 						}
-					}, false);
+					});
 					// need to store the onclick attribute as alt-onclick
 					// to prevent it from being executed right away
 					// and use it when needed

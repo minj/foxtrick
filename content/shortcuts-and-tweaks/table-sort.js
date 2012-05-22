@@ -209,7 +209,7 @@ Foxtrick.modules["TableSort"]={
 					&& !Foxtrick.hasClass(ths[j],'header') ) { // ht sorting
 					
 					Foxtrick.makeFeaturedElement(ths[j], this);
-					Foxtrick.listen(ths[j], "click", doSort, false);
+					Foxtrick.onClick(ths[j], doSort);
 				}
 			}
 		}

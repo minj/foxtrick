@@ -528,7 +528,7 @@ Foxtrick.modules.MatchSimulator={
 					if (overlayHTMS) 
 						Foxtrick.addClass(overlayHTMS,'hidden');
 				};
-				Foxtrick.listen(doc.getElementById('closeOverlay'), 'click', hideOverlay, false);
+				Foxtrick.onClick(doc.getElementById('closeOverlay'), hideOverlay);
 
 				// add copy button
 				var copyButton = doc.createElement('input');
@@ -536,7 +536,7 @@ Foxtrick.modules.MatchSimulator={
 				copyButton.value = Foxtrickl10n.getString("button.copy");
 				copyButton.id = 'ft-copyRatingsButton';
 				fieldOverlay.appendChild(copyButton);
-				Foxtrick.listen(copyButton, 'click', copyRatings, false);
+				Foxtrick.onClick(copyButton, copyRatings);
 				
 				// display selection of matches to compare to
 				// first, get team id of other team 
@@ -812,7 +812,7 @@ Foxtrick.modules.MatchSimulator={
 							Foxtrick.addClass(addMatchDiv,'hidden');
 							Foxtrick.removeClass(select,'hidden');
 						}
-						Foxtrick.listen(addMatchButtonOk, 'click', addMatch, false); 
+						Foxtrick.onClick(addMatchButtonOk, addMatch); 
 						
 						var addMatchButtonCancel = doc.createElement('input');
 						addMatchButtonCancel.id = 'addMatchButtonCancel';
@@ -826,7 +826,7 @@ Foxtrick.modules.MatchSimulator={
 							select.selectedIndex = 0;
 							//onMatchSelect();
 						}
-						Foxtrick.listen(addMatchButtonCancel, 'click', addMatchCancel, false); 						
+						Foxtrick.onClick(addMatchButtonCancel, addMatchCancel); 						
 					});
 				});
 			}		
@@ -834,7 +834,7 @@ Foxtrick.modules.MatchSimulator={
 		};
 
 		// old lineup import click
-		Foxtrick.listen(doc.getElementById('oldLineups'), "click", function(ev) {
+		Foxtrick.onClick(doc.getElementById('oldLineups'), function(ev) {
 			var savedLineupNode = ev.target;
 			if (!Foxtrick.hasClass(savedLineupNode,"savedLineup"))
 				savedLineupNode = savedLineupNode.parentNode;
@@ -850,7 +850,7 @@ Foxtrick.modules.MatchSimulator={
 				Foxtrick.removeClass(doc.getElementById("addMatchDiv"),'hidden');
 				Foxtrick.addClass(doc.getElementById("ft-matchSelect"),'hidden');
 			}				
-		}, false);
+		});
 
 		// -- stamina discount --
 		function getStaminaFactor(stamina) {
@@ -994,7 +994,7 @@ Foxtrick.modules.MatchSimulator={
 		
 		if (FoxtrickPrefs.getBool("MatchSimulator.staminaDiscountOn"))
 			staminaDiscountCheck.checked = 'checked';
-		staminaDiscountCheck.addEventListener('click', showLevelNumbers, false);
+		Foxtrick.onClick(staminaDiscountCheck, showLevelNumbers);
 		optionsDivElm.appendChild(staminaDiscountCheck);
 		
 		var staminaDiscountLabel = doc.createElement('label');
@@ -1010,7 +1010,7 @@ Foxtrick.modules.MatchSimulator={
 		attVsDefCheck.type = "checkbox";
 		if (FoxtrickPrefs.getBool("MatchSimulator.attVsDefOn"))
 			attVsDefCheck.checked = 'checked';
-		attVsDefCheck.addEventListener('click', showLevelNumbers, false);
+		Foxtrick.onClick(attVsDefCheck, showLevelNumbers);
 		optionsDivElm.appendChild(attVsDefCheck);
 
 		var attVsDefLabel = doc.createElement('label');
@@ -1037,10 +1037,10 @@ Foxtrick.modules.MatchSimulator={
 				Foxtrick.removeClass(fieldOverlay,'flipped');
 			}
 		};
-		Foxtrick.listen(doc.getElementById('flip_lineup'), "click", function(ev) {
+		Foxtrick.onClick(doc.getElementById('flip_lineup'), function(ev) {
 			// ff is too fast. so we cue to ensure css add been added by page already
 			window.setTimeout(checkFlipped,0);
-		}, false);
+		});
 		checkFlipped();				
 	}
 };

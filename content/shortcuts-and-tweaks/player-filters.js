@@ -71,7 +71,7 @@ Foxtrick.modules["PlayerFilters"]={
 				button_ok.setAttribute("id",  "filterSelectOptionsOk");
 				button_ok.setAttribute("type",  "button");
 				button_ok.setAttribute("tabindex", "5");
-				Foxtrick.listen(button_ok, "click", changeListener, false);
+				Foxtrick.onClick(button_ok, changeListener);
 				filterSelectOptionsDiv.appendChild(button_ok);
 
 				// rename filter to all
@@ -515,7 +515,7 @@ Foxtrick.modules["PlayerFilters"]={
 				Foxtrick.modules.TeamStats.run(doc);
 			}
 		};
-		Foxtrick.listen(filterSelect, "click", function() {
+		Foxtrick.onClick(filterSelect, function() {
 			try {
 				// replaced with a filter option to fill the select. seems better (and needed for OsX+webkit)
 				//selectClick();
@@ -523,7 +523,7 @@ Foxtrick.modules["PlayerFilters"]={
 			catch (e) {
 				Foxtrick.log(e);
 			}
-		}, false);
+		});
 		Foxtrick.listen(filterSelect, "change", function() {
 			try {
 				changeListener();

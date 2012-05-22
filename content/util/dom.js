@@ -68,7 +68,6 @@ Foxtrick.toggleClass = function(obj, cls) {
 	}
 }
 
-
 Foxtrick.hasElement = function(doc, id) {
 	if (doc.getElementById(id)) {
 		return true;
@@ -83,6 +82,10 @@ Foxtrick.getChildIndex = function(element) {
 		element = element.previousSibling;
 	}
 	return count;
+}
+
+Foxtrick.onClick = function(target, listener){
+	Foxtrick.listen(target, 'click', listener, false);	
 }
 
 Foxtrick.listen = function(target, type, listener, useCapture) {

@@ -114,7 +114,7 @@ Foxtrick.modules["TeamSelectBox"]={
 				Foxtrick.log(e);
 			}
 		};
-		Foxtrick.listen(div, "click", toggle, false);
+		Foxtrick.onClick(div, toggle);
 		toggle();
 	}
 };

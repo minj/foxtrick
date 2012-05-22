@@ -57,7 +57,7 @@ Foxtrick.modules["CopyMatchID"]={
 					link.href='javascript:void(0);';
 					link.setAttribute("matchid", matchid);
 					link.setAttribute("id","_"+this.MODULE_NAME+count);
-					Foxtrick.listen(link, "click", copyId, false);
+					Foxtrick.onClick(link, copyId);
 					var div=images[j].parentNode;
 					div.replaceChild(link,images[j]);
 
@@ -88,7 +88,7 @@ Foxtrick.modules["CopyMatchID"]={
 				link.href='javascript:void(0);';
 				link.setAttribute("matchid", matchid);
 				link.setAttribute("id","_"+this.MODULE_NAME+count);
-				Foxtrick.listen(link, "click", copyId, false);
+				Foxtrick.onClick(link, copyId);
 				var div=images[i].parentNode;
 				div.replaceChild(link,images[i]);
 

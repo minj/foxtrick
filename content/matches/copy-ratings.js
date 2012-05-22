@@ -169,7 +169,7 @@ Foxtrick.modules["CopyRatings"]={
 		copyBoth.appendChild(doc.createTextNode(Foxtrickl10n.getString("button.copy")));
 		copyBoth.setAttribute("teams", "both");
 		copyBoth.setAttribute("place", "table");
-		Foxtrick.listen(copyBoth, "click", function() { createRatings("table", "both"); }, false);
+		Foxtrick.onClick(copyBoth, function() { createRatings("table", "both"); });
 		tableHeader.appendChild(copyBoth);
 
 		var copyHome = Foxtrick.createFeaturedElement(doc, this, "span");
@@ -177,7 +177,7 @@ Foxtrick.modules["CopyRatings"]={
 		copyHome.appendChild(doc.createTextNode("(" + Foxtrickl10n.getString("button.copy") + ")"));
 		copyHome.setAttribute("teams", "home");
 		copyHome.setAttribute("place", "table");
-		Foxtrick.listen(copyHome, "click", function() { createRatings("table", "home"); }, false);
+		Foxtrick.onClick(copyHome, function() { createRatings("table", "home"); });
 		homeHeader.appendChild(copyHome);
 
 		var copyAway = Foxtrick.createFeaturedElement(doc, this, "span");
@@ -185,7 +185,7 @@ Foxtrick.modules["CopyRatings"]={
 		copyAway.appendChild(doc.createTextNode("(" + Foxtrickl10n.getString("button.copy") + ")"));
 		copyAway.setAttribute("teams", "away");
 		copyAway.setAttribute("place", "table");
-		Foxtrick.listen(copyAway, "click", function() { createRatings("table", "away"); }, false);
+		Foxtrick.onClick(copyAway, function() { createRatings("table", "away"); });
 		awayHeader.appendChild(copyAway);
 
 		var button = Foxtrick.util.copyButton.add(doc,
@@ -201,10 +201,10 @@ Foxtrick.modules["CopyRatings"]={
 			for (var j=0; j<versions.length; ++j) {
 				var item = doc.createElement("li");
 				var link = doc.createElement("span");
-				Foxtrick.listen(link, "click", (function(team) {
+				Foxtrick.onClick(link, (function(team) {
 					// to keep team variable here
 					return function() { createRatings("box", team); };
-				})(versions[j]), false);
+				})(versions[j]));
 				link.setAttribute("teams", versions[j]);
 				link.textContent = Foxtrickl10n.getString("copy.ratings."+versions[j]);
 				item.appendChild(link);

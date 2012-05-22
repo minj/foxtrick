@@ -616,7 +616,7 @@ Foxtrick.modules["SkillTable"]={
 						if (columns[j].sortAsc) {
 							th.setAttribute("sort-asc", true);
 						}
-						Foxtrick.listen(th, "click", sortClick, false);
+						Foxtrick.onClick(th, sortClick);
 
 						var fullName = Foxtrickl10n.getString(columns[j].name);
 						var abbrName = Foxtrickl10n.getString(columns[j].name + ".abbr");
@@ -946,7 +946,7 @@ Foxtrick.modules["SkillTable"]={
 					Foxtrick.log(e);
 				}
 			};
-			Foxtrick.listen(h2, "click", toggleDisplay, false);
+			Foxtrick.onClick(h2, toggleDisplay);
 			tablediv.appendChild(h2);
 
 			// links
@@ -958,7 +958,7 @@ Foxtrick.modules["SkillTable"]={
 			copy.className = "customize_item secondary";
 			copy.appendChild(doc.createTextNode(Foxtrickl10n.getString("button.copy")));
 			copy.setAttribute("title", Foxtrickl10n.getString("copy.skilltable.title"));
-			Foxtrick.listen(copy, "click", function() {
+			Foxtrick.onClick(copy, function() {
 					/* get the text content in a node and return it.
 					 * for player links, append the [playerid] HT-ML tag
 					 * for images, return its alt attribute
@@ -1029,12 +1029,12 @@ Foxtrick.modules["SkillTable"]={
 					Foxtrick.copyStringToClipboard(toHtMl(table));
 
 					var note = Foxtrick.util.note.add(doc, table, "ft-skilltable-copy-note", Foxtrickl10n.getString("copy.skilltable.copied"), null, true);
-				}, false);
+				});
 			// links: customize
 			var customize = doc.createElement("a");
 			customize.className = "customize_item";
 			customize.appendChild(doc.createTextNode(Foxtrickl10n.getString("button.customize")));
-			Foxtrick.listen(customize, "click", function() {
+			Foxtrick.onClick(customize, function() {
 					var links = doc.getElementsByClassName("ft_skilltable_links")[0];
 					Foxtrick.addClass(links, "customizing");
 
@@ -1043,11 +1043,11 @@ Foxtrick.modules["SkillTable"]={
 
 					var container = doc.getElementsByClassName("ft_skilltable_container")[0];
 					Foxtrick.addClass(container, "hidden");
-				}, false);
+				});
 			// links: save
 			var save = doc.createElement("a");
 			save.appendChild(doc.createTextNode(Foxtrickl10n.getString("button.save")));
-			Foxtrick.listen(save, "click", function() {
+			Foxtrick.onClick(save, function() {
 					var fullType = getFullType(doc);
 
 					var tablediv = doc.getElementById("ft_skilltablediv");
@@ -1057,11 +1057,11 @@ Foxtrick.modules["SkillTable"]={
 						setColumnEnabled(fullType, input[i].id, input[i].checked);
 					}
 					doc.location.reload();
-				}, false);
+				});
 			// links: cancel
 			var cancel = doc.createElement("a");
 			cancel.appendChild(doc.createTextNode(Foxtrickl10n.getString("button.cancel")));
-			Foxtrick.listen(cancel, "click", function() {
+			Foxtrick.onClick(cancel, function() {
 					var tablediv = doc.getElementById("ft_skilltablediv");
 					var links = tablediv.getElementsByClassName("ft_skilltable_links")[0];
 					var customizeTable = tablediv.getElementsByClassName("ft_skilltable_customizetable")[0];
@@ -1069,7 +1069,7 @@ Foxtrick.modules["SkillTable"]={
 					Foxtrick.removeClass(links, "customizing");
 					Foxtrick.addClass(customizeTable, "hidden");
 					Foxtrick.removeClass(container, "hidden");
-				}, false);
+				});
 			// links: all children
 			links.appendChild(copy);
 			links.appendChild(customize);
@@ -1089,13 +1089,13 @@ Foxtrick.modules["SkillTable"]={
 			var switchViewLink = doc.createElement("a");
 			switchViewLink.appendChild(doc.createTextNode(Foxtrickl10n.getString("SkillTable.switchView")));
 			switchViewLink.setAttribute("title", Foxtrickl10n.getString("SkillTable.switchView.title"));
-			Foxtrick.listen(switchViewLink, "click", function() {
+			Foxtrick.onClick(switchViewLink, function() {
 					var tablediv = doc.getElementById("ft_skilltablediv");
 					var container = tablediv.getElementsByClassName("ft_skilltable_container")[0];
 					Foxtrick.toggleClass(container, "on_top");
 
 					FoxtrickPrefs.setBool("module.SkillTable.top", Foxtrick.hasClass(container, "on_top"));
-				}, false);
+				});
 			switchView.appendChild(switchViewLink);
 
 			if (Foxtrick.util.api.authorized() ) {
@@ -1105,7 +1105,7 @@ Foxtrick.modules["SkillTable"]={
 					addHomegrownLink.appendChild(doc.createTextNode(Foxtrickl10n.getString("SkillTable.addHomegrown")));
 					addHomegrownLink.setAttribute("title", Foxtrickl10n.getString("SkillTable.addHomegrown.title"));
 					addHomegrownLink.setAttribute("id","skilltable_addHomegrownId");
-					Foxtrick.listen(addHomegrownLink, "click", AddHomegrown, false);
+					Foxtrick.onClick(addHomegrownLink, AddHomegrown);
 					options.appendChild(addHomegrownLink);
 
 				}
@@ -1115,7 +1115,7 @@ Foxtrick.modules["SkillTable"]={
 					addHomegrownLink.appendChild(doc.createTextNode(Foxtrickl10n.getString("SkillTable.showTimeInClub")));
 					addHomegrownLink.setAttribute("title", Foxtrickl10n.getString("SkillTable.showTimeInClub.title"));
 					addHomegrownLink.setAttribute("id","skilltable_showTimeInClubId");
-					Foxtrick.listen(addHomegrownLink, "click", showTimeInClub, false);
+					Foxtrick.onClick(addHomegrownLink, showTimeInClub);
 					options.appendChild(addHomegrownLink);
 				}
 			}

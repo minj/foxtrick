@@ -46,8 +46,8 @@ Foxtrick.modules["LocalTime"]={
 			Foxtrick.toggleClass(localTime, "hidden");
 			updatePage(doc);
 		};
-		Foxtrick.listen(time, "click", toggleDisplay, false);
-		Foxtrick.listen(localTime, "click", toggleDisplay, false);
+		Foxtrick.onClick(time, toggleDisplay);
+		Foxtrick.onClick(localTime, toggleDisplay);
 
 		updatePage(doc);
 	},

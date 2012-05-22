@@ -44,10 +44,10 @@ Foxtrick.modules["FormatPostingText"]={
 		var targets = doc.getElementById("mainBody").getElementsByTagName("input");  // Forum
 		for (var i = 0; i < targets.length; ++i) {
 			if (targets[i].type == "submit") {
-				Foxtrick.listen(targets[i], "click", function() {
+				Foxtrick.onClick(targets[i], function() {
 						var textarea = doc.getElementById("mainBody").getElementsByTagName("textarea")[0];
 						textarea.value = format(textarea.value);
-					}, false);
+					});
 			}
 		}
 	},

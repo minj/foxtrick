@@ -125,9 +125,9 @@ Foxtrick.modules["HeaderToggle"]={
 			|| Foxtrick.hasClass(header, 'ft-expander-unexpanded')) {
 			return;
 		}
-		Foxtrick.listen(header, "click", function(ev){
+		Foxtrick.onClick(header, function(ev){
 			toggle(ev.target);
-		}, false);
+		});
 		
 		Foxtrick.addClass(header, 'ft-expander-expanded');
 		Foxtrick.makeFeaturedElement(header, Foxtrick.modules.HeaderToggle); 

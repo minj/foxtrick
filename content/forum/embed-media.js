@@ -246,7 +246,7 @@ Foxtrick.modules["EmbedMedia"]={
 			media_link["link"].parentNode.replaceChild(mediaContainer, media_link["link"]);
 			
 			//setup click listener to actually embed/toggle visibility on demand
-			Foxtrick.listen(div, "click", function(ev){
+			Foxtrick.onClick(div, function(ev){
 				if(!Foxtrick.hasClass(ev.target.nextSibling,'ft-media-embedded')){
 					embed(ev.target);
 					//mark as embedded, no repetitive embedding needed
@@ -260,7 +260,7 @@ Foxtrick.modules["EmbedMedia"]={
 					Foxtrick.removeClass(ev.target,'ft-media-expander-expanded')
 					Foxtrick.addClass(ev.target,'ft-media-expander-unexpanded')
 				}
-			}, false);		
+			});		
 		}
 		
 		var embed = function( target ){			

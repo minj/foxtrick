@@ -335,7 +335,7 @@ Foxtrick.modules["TeamPopupLinks"]={
 							link.setAttribute('more', 'false');
 							link.textContent = Foxtrickl10n.getString('less');
 						}
-						Foxtrick.listen(link, 'click', showPopup, true);
+						Foxtrick.onClick(link, showPopup);
 						item.appendChild(link);
 						list.appendChild(item);
 					}

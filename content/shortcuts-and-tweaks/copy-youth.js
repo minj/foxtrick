@@ -71,7 +71,7 @@ Foxtrick.modules["CopyYouth"]={
 			Foxtrickl10n.getString("copy.trainingReport"));
 		if (button) {
 			Foxtrick.addClass(button, "ft-copy-training-report");
-			Foxtrick.listen(button, "click", copyReport, false);
+			Foxtrick.onClick(button, copyReport);
 		}
 	},
 
@@ -161,7 +161,7 @@ Foxtrick.modules["CopyYouth"]={
 				if (FoxtrickPrefs.isModuleOptionEnabled("CopyYouth", "RejectedToHTY")) {
 					var rejectButton = alertdiv.getElementsByTagName('input')[1];
 					rejectButton.setAttribute('title', Foxtrickl10n.getString('foxtrick.CopyYouth.RejectedToHTY.desc'));
-					Foxtrick.listen(rejectButton, 'click', function(){ copyReport(true) }, false)
+					Foxtrick.onClick(rejectButton, function(){ copyReport(true) })
 				}
 				else if (alertdiv.parentNode.getElementsByTagName('a')[0]==null
 					&& doc.getElementById('ft-copy-scout-comment-link')==null) {
@@ -171,7 +171,7 @@ Foxtrick.modules["CopyYouth"]={
 					a.style.marginBottom = "5px";
 					a.href='#mainBody';
 					a.id = 'ft-copy-scout-comment-link';
-					Foxtrick.listen(a, "click", copyReport, false)
+					Foxtrick.onClick(a, copyReport)
 					alertdiv.parentNode.insertBefore(a,alertdiv);
 				}
 			}
@@ -183,7 +183,7 @@ Foxtrick.modules["CopyYouth"]={
 				if (button) {
 					button.id = "ft-copy-scout-comment-button";
 					Foxtrick.addClass(button, "ft-copy-scout-comment");
-					Foxtrick.listen(button, "click", copyReport, false);
+					Foxtrick.onClick(button, copyReport);
 				}
 			}
 		}
@@ -229,7 +229,7 @@ Foxtrick.modules["CopyYouth"]={
 			Foxtrickl10n.getString("copy.fixturesSource"));
 		if (button) {
 			Foxtrick.addClass(button, "ft-copy-fixtures-source");
-			Foxtrick.listen(button, "click", copySource, false);
+			Foxtrick.onClick(button, copySource);
 		}
 	},
 

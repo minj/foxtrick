@@ -67,7 +67,7 @@ Foxtrick.util.api = {
 		var link = doc.createElement("a");
 		link.className = "ft-link";
 		link.textContent = Foxtrickl10n.getString("oauth.authorize");
-		Foxtrick.listen(link, "click", function(ev) {
+		Foxtrick.onClick(link, function(ev) {
 			Foxtrick.stopListenToChange(doc);
 			showNotice();
 			var linkPar = doc.createElement("p");
@@ -98,7 +98,7 @@ Foxtrick.util.api = {
 				var button = doc.createElement("input");
 				button.type = "button";
 				button.value = Foxtrickl10n.getString("button.authorize");
-				Foxtrick.listen(button, "click", function(ev) {
+				Foxtrick.onClick(button, function(ev) {
 					var accessor = {
 						consumerSecret : Foxtrick.util.api.consumerSecret,
 						tokenSecret : requestTokenSecret
@@ -133,12 +133,12 @@ Foxtrick.util.api = {
 						Foxtrick.util.api.setAccessTokenSecret(accessTokenSecret);
 						showFinished();
 					}); // save token and secret
-				}, false); // after hitting "authorize" button
+				}); // after hitting "authorize" button
 				inputPar.appendChild(button);
 				Foxtrick.startListenToChange(doc);
 			}); // get authorize URL with Foxtrick.load()
 			Foxtrick.startListenToChange(doc);
-		}, false); // initial authorize link event listener
+		}); // initial authorize link event listener
 		div.appendChild(link);
 		var showNotice = function() {
 			div.removeChild(link);
@@ -154,7 +154,7 @@ Foxtrick.util.api = {
 			var more = doc.createElement("a");
 			more.textContent = Foxtrickl10n.getString("oauth.why");
 			more.href = 'javascript:void();'
-			Foxtrick.listen(more, 'click', function() {FoxtrickPrefs.show('#faq=authorize');}, false);
+			Foxtrick.onClick(more, function() {FoxtrickPrefs.show('#faq=authorize');});
 			div.appendChild(more);
 		};
 		var showFinished = function(text) {
@@ -184,7 +184,7 @@ Foxtrick.util.api = {
 				clear_cache_span.id='ft_clear_cache';
 				clear_cache_span.textContent = Foxtrickl10n.getString('api.clearCache');
 				clear_cache_span.title = Foxtrickl10n.getString('api.clearCache.title');
-				Foxtrick.listen(clear_cache_span, 'click',Foxtrick.util.api.clearCache,false);
+				Foxtrick.onClick(clear_cache_span, Foxtrick.util.api.clearCache);
 				bottom.insertBefore(clear_cache_span, bottom.firstChild);
 			}
 		}

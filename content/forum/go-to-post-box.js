@@ -113,7 +113,7 @@ Foxtrick.modules["GoToPostBox"]={
 				}
 				doc.location.href = "/Forum/Read.aspx?t=" + val;				
 			};
-			Foxtrick.listen(goButton, 'click', gotoFkt, false);
+			Foxtrick.onClick(goButton, gotoFkt);
 
 			var inputBoxLabel = doc.createElement('span');
 			inputBoxLabel.textContent = "\u00a0";

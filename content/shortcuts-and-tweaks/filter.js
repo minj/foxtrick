@@ -238,13 +238,13 @@ Foxtrick.modules["Filter"]={
 				buttonFilter.value = Foxtrickl10n.getString("Filters.ok");
 				buttonFilter.setAttribute('page', page);
 				filterdiv.appendChild(buttonFilter);
-				Foxtrick.listen(buttonFilter, 'click', filterResults, false);
+				Foxtrick.onClick(buttonFilter, filterResults);
 				
 				var buttonClear = doc.createElement('input');
 				buttonClear.type = 'button';
 				buttonClear.value = Foxtrickl10n.getString("Filters.clear"); 
 				filterdiv.appendChild(buttonClear);
-				Foxtrick.listen(buttonClear, 'click',  function() {
+				Foxtrick.onClick(buttonClear, function() {
 					getFilters(page, function(filters) {
 						for (var j = 0; j < filters.length; ++j) {
 							var filter = filters[j];
@@ -264,7 +264,7 @@ Foxtrick.modules["Filter"]={
 							}
 						}
 					});
-				}, false);
+				});
 			});
 		};
 		var filterResults = function(ev) {

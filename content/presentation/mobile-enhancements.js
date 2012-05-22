@@ -32,7 +32,7 @@ if (Foxtrick.platform == "Fennec")
 			action.className = 'ft-pageaction';
 
 			// page action click
-			action.addEventListener('click', function(ev){
+			Foxtrick.onClick(action, function(ev){
 				try {
 					var type = ev.target.getAttribute('type');
 					Foxtrick.sessionSet('MobileEnhancements.selection', type);
@@ -48,7 +48,7 @@ if (Foxtrick.platform == "Fennec")
 				} catch (e){
 					Foxtrick.log(e);
 				}
-			},false);
+			});
 			pageactionsContainer.insertBefore(action, pageactionsContainer.firstChild);
 
 			// page action open

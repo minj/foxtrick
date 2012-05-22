@@ -74,10 +74,10 @@ Foxtrick.modules["ShowFriendlyBooked"]={
 			link.id = "ft-show-friendlies";
 			link.className = "float_left ft-link";
 			link.textContent = Foxtrickl10n.getString("ShowFriendlyBooked.ShowFriendlies");
-			Foxtrick.listen(link, "click", function() {
+			Foxtrick.onClick(link, function() {
 				link.parentNode.removeChild(link);
 				show();
-			}, false);
+			});
 			if (Foxtrick.util.layout.isSupporter(doc)) {
 				var UpdatePanelLiveLeagueTable = doc.getElementById("ctl00_ctl00_CPContent_CPMain_UpdatePanelLiveLeagueTable");
 				UpdatePanelLiveLeagueTable.insertBefore(link, UpdatePanelLiveLeagueTable.getElementsByTagName('br')[0].nextSibling);

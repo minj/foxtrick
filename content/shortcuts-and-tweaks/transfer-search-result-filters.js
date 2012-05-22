@@ -144,7 +144,7 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 				input.setAttribute("x-ft-filter-prop", "checked");
 				if (filter.checked === true)
 					input.setAttribute("checked", "checked");
-				Foxtrick.listen(input, "click", saveValues, false);
+				Foxtrick.onClick(input, saveValues);
 				td.appendChild(input);
 				var label = doc.createElement("label");
 				label.textContent = Foxtrickl10n.getString("TransferSearchResultFilters." + filter.key);
@@ -175,7 +175,7 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 				tableAdvanced.parentNode.insertBefore(table, tableAdvanced.nextSibling);
 
 				var buttonClear = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butClear');
-				Foxtrick.listen(buttonClear, 'click',  function() {
+				Foxtrick.onClick(buttonClear, function() {
 						getFilters(function(filters) {
 							for (var j = 0; j < filters.length; ++j) {
 								var filter = filters[j];
@@ -192,7 +192,7 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 							}
 							setFilters(filters);
 						});
-					}, false);
+					});
 			});
 		};
 		var filterResults = function() {

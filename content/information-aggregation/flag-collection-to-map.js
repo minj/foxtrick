@@ -351,7 +351,7 @@ Foxtrick.modules["FlagCollectionToMap"]={
 		openMapA.href = '#'+'foxtrick-top-map-'+mapId;
 		openMapA.id = 'flagsA' + mapId;
 		openMapA.style.display='block';
-		Foxtrick.listen(openMapA, 'click',function(ev){
+		Foxtrick.onClick(openMapA, function(ev){
 			if(document.getElementById('foxtrick-map' + mapId ).style.display == 'none') {
 				document.getElementById('foxtrick-map' + mapId ).style.display = '';
 				document.getElementById('flagsA' + mapId ).textContent = HideMap; 
@@ -361,7 +361,7 @@ Foxtrick.modules["FlagCollectionToMap"]={
 				document.getElementById('flagsA' + mapId ).textContent = ShowMap;
 			}
 			return false;
-		}, false);
+		});
 
 		this.insertBeforeOrAppend(parent, mapDiv, insertBefore);
 		this.insertBeforeOrAppend(parent, openMapA, insertBefore);
@@ -382,9 +382,9 @@ Foxtrick.modules["FlagCollectionToMap"]={
 		var addNavLink = function(imgUrl, text) {
 			var a = doc.createElement('a');
 			a.href = hrefTop;
-			Foxtrick.listen(a, 'click', function (ev) {
+			Foxtrick.onClick(a, function (ev) {
 				doc.getElementById('foxtrick-img-map-'+anchorId).src = imgUrl;
-			}, false);
+			});
 			a.textContent = text; 
 			map.appendChild(a);
 			return a;

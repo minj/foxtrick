@@ -96,7 +96,7 @@ Foxtrick.util.note = {
 					button.type = "button";
 					button.value = Foxtrickl10n.getString(buttons[i].type.name);
 					if (buttons[i].listener) {
-						Foxtrick.listen(button, "click", buttons[i].listener, false);
+						Foxtrick.onClick(button, buttons[i].listener);
 					}
 					else if (buttons[i].onClick) {
 						button.setAttribute("onclick", buttons[i].onClick);
@@ -104,7 +104,7 @@ Foxtrick.util.note = {
 					else if (buttons[i].type == this.BUTTON_CANCEL) {
 						button.setAttribute("container", id);
 						// default event listener for BUTTON_CANCEL
-						Foxtrick.listen(button, "click", function(ev) {
+						Foxtrick.onClick(button, function(ev) {
 								try {
 									var doc = ev.target.ownerDocument;
 									var containerId = ev.currentTarget.getAttribute("container");
@@ -116,7 +116,7 @@ Foxtrick.util.note = {
 								catch (e) {
 									Foxtrick.log(e);
 								}
-							}, false);
+							});
 					}
 					buttonContainer.appendChild(button);
 				}
@@ -127,7 +127,7 @@ Foxtrick.util.note = {
 				var close = doc.createElement("a");
 				close.className = "close";
 				close.textContent = Foxtrickl10n.getString("button.close");
-				Foxtrick.listen(close, "click", function(ev) {
+				Foxtrick.onClick(close, function(ev) {
 						try {
 							var container = ev.target.parentNode;
 							if (container) {
@@ -137,7 +137,7 @@ Foxtrick.util.note = {
 						catch (e) {
 							Foxtrick.log(e);
 						}
-					}, false);
+					});
 				container.appendChild(close);
 				// we need to add clear since close is floated to the right
 				var clear = doc.createElement("div");

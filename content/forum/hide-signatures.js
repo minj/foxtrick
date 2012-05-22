@@ -35,11 +35,11 @@ Foxtrick.modules["HideSignatures"]={
 						showSig[p] = Foxtrick.makeFeaturedElement(showSig[p], this );
 						showSig[p].setAttribute("style", "cursor: pointer;");
 						
-						Foxtrick.listen(showSig[p], 'click', function(ev) {
+						Foxtrick.onClick(showSig[p], function(ev) {
 							var id = ev.target.getAttribute("id").match(/\d+/)[0];
 							var sig = doc.getElementById("foxtrick-signature-" + id);
 							Foxtrick.toggleClass(sig, "hidden");
-						}, false);
+						});
 
 						// append the show sig link to the right footer
 						var cfInnerWrapper = elems[i].parentNode.parentNode;

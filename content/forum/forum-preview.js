@@ -150,7 +150,7 @@ Foxtrick.modules["ForumPreview"]={
 					Foxtrick.listen(msg_window, "keyup", preview, false);
 					var toolbar = doc.getElementsByClassName("HTMLToolbar");
 					for (var i=0;i< toolbar.length;++i)
-						Foxtrick.listen(toolbar[i], "click", preview, false);
+						Foxtrick.onClick(toolbar[i], preview);
 
 					preview();
 				}
@@ -272,7 +272,7 @@ Foxtrick.modules["ForumPreview"]={
 			new_button.setAttribute( "tabindex",  index);
 			//if (msg_type != -1)
 			//new_button.setAttribute( "style",  "float:right;");
-			Foxtrick.listen(new_button, "click", toggleListener, false);
+			Foxtrick.onClick(new_button, toggleListener);
 			//button_ok.parentNode.insertBefore(new_button,button_ok);
 			target.parentNode.insertBefore(new_button,target.nextSibling);
 		}

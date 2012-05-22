@@ -30,7 +30,7 @@ Foxtrick.modules["SupporterStatsEnhancements"]={
 			var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
 			var th = doc.createElement('th');
 			th.textContent = Foxtrickl10n.getString('CurrentSquad');
-			Foxtrick.listen(th, "click", FoxtrickTableSort.clickListener, true);
+			Foxtrick.onClick(th, FoxtrickTableSort.clickListener);
 			table.getElementsByTagName('tr')[0].appendChild(th);
 
 			var as=doc.getElementById('mainBody').getElementsByTagName('a');
