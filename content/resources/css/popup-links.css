@@ -15,11 +15,15 @@ ul.ft-popup-list {
 	display: none;
 	position: absolute;
 	background-color: #ffffff;
-	border: solid 1px #267f30;
+	border: solid 2px #267f30;
 	padding: 0px;
 	z-index: 10000;
 	list-style-type: none;
 	margin:0px;
+	padding:5px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
 }
 html[dir="ltr"] ul.ft-popup-list {
 	left:10px;
