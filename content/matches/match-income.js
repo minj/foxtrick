@@ -51,7 +51,7 @@ Foxtrick.modules["MatchIncome"]={
 					break;
 				}
 			}
-		
+		}
 		var isCup = doc.getElementsByClassName("matchCup").length > 0?true:false;
 		
 		var table = soldSeatBox.getElementsByTagName('table')[0];
