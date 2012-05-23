@@ -34,6 +34,7 @@
 <item>● NEW: <module>YouthTwins</module>: Shows the amount of possible/marked/non twins on the youth players overview page for supporters (in conjunction with hattrick youthclub)</item>
 <item>● <module>MatchOrderInterface</module>: Option to show player faces instead of shirts for future and past line-ups (default on)</item>
 <item>● <module>MatchOrderInterface</module>: Option to disable last match information and highlighting for tournament games added (default on)</item>
+<item>● <module>MatchIncome</module>: Support for increased ticket prices in season 49. Income is now calculated by the ticket prices that were active when the match was played.</item>
 <item>● MatchOrderInterface: Fixed bug where the playedLastMatch indicator didn't show (or showed incorrectly) on Firefox</item>
 <item>● MatchOrderInterface: Removed last match highlighting because it's not approved anymore :( (But there's a native HT replacement for supporters now)</item>
 <item>● PlayerStatsExperience: Fixed bug where red cards caused games beeing detected as walkovers</item>
