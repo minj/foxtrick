@@ -20,7 +20,7 @@ ul.ft-popup-list {
 	z-index: 10000;
 	list-style-type: none;
 	margin:0px;
-	padding:5px;
+	padding: 3px 2px 3px 2px;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
