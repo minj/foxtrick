@@ -8,7 +8,12 @@
 Foxtrick.modules["MatchIncome"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['match'],
-
+	prices : {
+		terraces : 6.5,
+		basicSeats : 9.5,
+		seatsUnderRoof : 18,
+		vip : 32.5 
+	},
 	run : function(doc) {
 		var sidebar = doc.getElementById('sidebar');
 		var sidebarBoxes = sidebar.getElementsByClassName('sidebarBox');
@@ -33,10 +38,10 @@ Foxtrick.modules["MatchIncome"]={
 
 		var table = soldSeatBox.getElementsByTagName('table')[0];
 		var tbody = table.getElementsByTagName('tbody')[0];
-		var sum = Foxtrick.trimnum(table.rows[0].cells[1].textContent)*6.5
-			+ Foxtrick.trimnum(table.rows[1].cells[1].textContent)*9.5
-			+ Foxtrick.trimnum(table.rows[2].cells[1].textContent)*18
-			+ Foxtrick.trimnum(table.rows[3].cells[1].textContent)*32.5;
+		var sum = Foxtrick.trimnum(table.rows[0].cells[1].textContent)	*	this.prices.terraces
+			+ Foxtrick.trimnum(table.rows[1].cells[1].textContent)		*	this.prices.basicSeats
+			+ Foxtrick.trimnum(table.rows[2].cells[1].textContent)		*	this.prices.seatsUnderRoof
+			+ Foxtrick.trimnum(table.rows[3].cells[1].textContent)		*	this.prices.vip;
 
 		// convert to local currency
 		sum /= Foxtrick.util.currency.getRate();
