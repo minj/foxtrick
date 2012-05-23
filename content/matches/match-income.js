@@ -52,7 +52,7 @@ Foxtrick.modules["MatchIncome"]={
 				}
 			}
 		}
-		var isCup = doc.getElementsByClassName("matchCup").length > 0?true:false;
+		var isCup = doc.getElementsById("mainBody").getElementsByClassName("matchCup").length > 0?true:false;
 		
 		var table = soldSeatBox.getElementsByTagName('table')[0];
 		var tbody = table.getElementsByTagName('tbody')[0];
