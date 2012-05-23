@@ -22,6 +22,7 @@
 <item>● MatchOrderInterface: Removed last match highlighting because it's not approved anymore :( (But there's a native HT replacement for supporters now)</item>
 <item>● PlayerStatsExperience: Fixed bug where red cards caused games beeing detected as walkovers</item>
 <item>● PlayerStatsExperience: Fixed issue that caused this module not to work on Firefox 3.6</item>
+<item>● CustomMedals: Fixed disappearing tournament trophies</item>
 </note>
 
 <note version="0.9.2">
