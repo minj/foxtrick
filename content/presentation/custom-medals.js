@@ -11,9 +11,9 @@ Foxtrick.modules["CustomMedals"]={
 	PAGES : new Array('teamPage','history','national'),
 
 	run : function(doc) {
-		var sidebar = doc.getElementById('sidebar');
-		if( sidebar ) {
-			var images = sidebar.getElementsByTagName('img');
+		var officalTrophiesNodes = doc.getElementsByClassName('officalTrophies');
+		if( officalTrophiesNodes.length ) {
+			var images = officalTrophiesNodes[0].getElementsByTagName('img');
 			for(var i = 0; i < images.length; i++) {
 				var img = images[i];
 				var imgClass = img.className;
