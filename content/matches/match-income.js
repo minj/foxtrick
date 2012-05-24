@@ -32,9 +32,13 @@ Foxtrick.modules["MatchIncome"]={
 			return;
 		
 		//find correct price for match
+		//based on research in post 15703189.1
 		var prices = [
-		{ from: "01.01.1990 00:00", until: "10.06.2012 23:59", terraces : 6.5, basicSeats : 9.5, seatsUnderRoof : 18, vip : 32.5 },
-		{ from: "11.06.2012 00:00", until: null, terraces : 7, basicSeats : 10, seatsUnderRoof : 19, vip : 35 },
+		{ from: "22.09.1997 00:00", until: "10.10.2004 23:59", terraces : 5, basicSeats : 7.5, seatsUnderRoof : 10, vip : 25 },
+		{ from: "11.10.2004 00:00", until: "15.07.2007 23:59", terraces : 5.5, basicSeats : 8, seatsUnderRoof : 11, vip : 27.5 },
+		{ from: "16.07.2007 00:00", until: "24.02.2008 23:59", terraces : 6.5, basicSeats : 9.5, seatsUnderRoof : 13, vip : 32.5 },
+		{ from: "25.02.2008 00:00", until: "10.06.2012 23:59", terraces : 6.5, basicSeats : 9.5, seatsUnderRoof : 18, vip : 32.5 },
+		{ from: "11.06.2012 00:00", until: null,			   terraces : 7, basicSeats : 10, seatsUnderRoof : 19, vip : 35 },
 		];
 
 		var matchDate = Foxtrick.util.time.getDateFromText(doc.getElementsByClassName("date")[0].textContent);
