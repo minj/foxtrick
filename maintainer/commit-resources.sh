@@ -12,4 +12,4 @@ done
 
 #commit res zips to svn
 git commit -a -m "*automated* resource zip update"
-git-svn dcommit 
+git svn dcommit 
