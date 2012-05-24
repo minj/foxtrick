@@ -32,6 +32,7 @@ ROOT_FOLDERS_CHROME = defaults/ skin/
 ROOT_FOLDERS_OPERA = defaults/ skin/
 ROOT_FOLDERS_SAFARI = defaults/ skin/
 SCRIPT_FOLDERS = alert/ \
+	access/ \
 	forum/ \
 	information-aggregation/ \
 	lib/ \
