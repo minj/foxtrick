@@ -1,0 +1,87 @@
+div.ft-htev-popup {
+	display: none;
+	position: absolute;
+	border: solid 2px #838383;
+	left: -40px;
+	bottom:	12px;
+	padding: 5px;
+	z-index: 10000;
+	list-style-type: none;
+	margin:0px;
+	padding: 3px 2px 3px 2px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	font: normal .8em/1.5em Ariel, Helvetica, sans-serif;
+	background-color: #EAEAEA;
+	color: #666;
+}
+
+.ft-htev-nav {
+	margin: 0px;
+	list-style: none;
+	height: 32px;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+    -khtml-border-radius: 4px;	
+	-webkit-box-shadow: 0px 3px 3px #acacac;
+	-moz-box-shadow: 0px 3px 3px #acacac;
+	box-shadow: 0 3px 3px #acacac;
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #787878), color-stop(0.5, #5E5E5E), color-stop(0.51, #707070), color-stop(1, #838383));
+    background-image: -moz-linear-gradient(center bottom, #787878 0%, #5E5E5E 50%, #707070 51%, #838383 100%);
+    background-image: -o-linear-gradient(#838383 ,#707070 50%,#5E5E5E  51%,#787878);
+    background-color: #5f5f5f; /* Fallback */
+}
+
+.ft-htev-nav li:first-child {
+    border-left:none;
+    -webkit-border-top-left-radius: 4px;
+    -moz-border-radius-topleft: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -moz-border-radius-topright: 4px;
+}
+
+.ft-htev-nav li:last-child {  
+    border-right:none;
+}
+
+.ft-htev-nav li {
+	float: left;
+	position: relative;
+	font-size: 13px;
+	color: white;
+	border-right: 1px solid #5d5d5d; 
+	border-left: 1px solid #929292;
+	height: 32px;
+}
+
+.ft-htev-nav a {
+	color: white;
+	text-decoration: none;
+	display: block;
+	padding:  7px 30px;
+    margin: 0px;
+    text-shadow: 0 -1px 3px #202020;
+    background-image: url("http://htev.org/static/htevfavicon.gif");
+    background-repeat: no-repeat;
+    background-position: 5px 7px;
+}
+
+.ft-popup-span:hover div.ft-htev-popup {
+	display: block !important;
+}
+.ft-htev-popup th, .ft-htev-popup td {
+	text-align: center;
+}
+
+.ft-htev-icon {
+	position: absolute;
+	left: -3px;
+	top: 3px;
+	width: 16px;
+	height: 16px;
+	float: right;
+	display: block;
+	cursor: pointer;
+}

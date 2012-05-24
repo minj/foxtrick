@@ -143,6 +143,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/matches/att-vs-def.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/matches/live-match-report-format.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/matches/copy-ratings.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/matches/htev-prediction.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/matches/htms-prediction.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/matches/match-income.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/matches/match-order.js", true);

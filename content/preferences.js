@@ -901,7 +901,8 @@ var neededPermissions = [
 	{ module: "EmbedMedia.EmbedDeviantArtImages", url: "http://backend.deviantart.com/*" },
 	{ module: "EmbedMedia.EmbedSoundCloud", url: "http://soundcloud.com/*" },
 	{ module: "EmbedMedia.EmbedImageshack", url: "http://imageshack.us/*" },
-	{ module: "YouthTwins", url: "http://*.hattrick-youthclub.org/*" }
+	{ module: "YouthTwins", url: "http://*.hattrick-youthclub.org/*" },
+	{ module: "HTEVPrediction", url: "http://htev.org/api/*" },
 ];
 
 function testPermissions() {

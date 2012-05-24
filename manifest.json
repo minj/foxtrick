@@ -134,6 +134,7 @@
 			"content/matches/att-vs-def.js",
 			"content/matches/live-match-report-format.js",
 			"content/matches/copy-ratings.js",
+			"content/matches/htev-prediction.js",
 			"content/matches/htms-prediction.js",
 			"content/matches/match-income.js",
 			"content/matches/match-order.js",
@@ -236,7 +237,8 @@
 		"http://www.flickr.com/services/oembed/*",
 		"http://backend.deviantart.com/*",
 		"http://soundcloud.com/*",
-		"http://imageshack.us/*"
+		"http://imageshack.us/*",
+		"http://htev.org/api/*"
 	],
 	"page_action": {
 		"default_icon": "skin/icon-24.png",
