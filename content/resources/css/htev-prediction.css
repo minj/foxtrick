@@ -71,7 +71,7 @@ div.ft-htev-popup {
 .ft-popup-span:hover div.ft-htev-popup {
 	display: block !important;
 }
-.ft-htev-popup th, .ft-htev-popup td {
+.ft-htev-popup th, .ft-htev-popup td, .ft-htev-popup div {
 	text-align: center !important;
 }
 

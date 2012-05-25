@@ -24,6 +24,10 @@ Foxtrick.modules["HTEVPrediction"]={
 				for(var i = 0; i < links.length; i++){
 					var mID = Foxtrick.util.id.getMatchIdFromUrl(links[i].href);
 					if(matchid == mID && !links[i].parentNode.getElementsByClassName("ft-popup-span").length && !Foxtrick.hasClass(links[i].parentNode,"ft-popup-span")){
+						
+						if(links[i].href.search(/match.aspx/i) == -1)
+							continue;
+
 						var par = links[i].parentNode;
 						var span = Foxtrick.createFeaturedElement(doc, Foxtrick.modules["HTEVPrediction"], "span"); 
 						span.className = "ft-popup-span";
@@ -141,6 +145,7 @@ Foxtrick.modules["HTEVPrediction"]={
 			if(matchid == null)
 				continue;
 
+			Foxtrick.log(links[i].href.search(/match.aspx/i));
 			if(links[i].href.search(/match.aspx/i) == -1)
 				continue;
 
