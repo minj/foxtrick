@@ -57,7 +57,7 @@ div.ft-htev-popup {
 }
 
 .ft-htev-nav a {
-	color: white;
+	color: white !important; 
 	text-decoration: none;
 	display: block;
 	padding:  7px 30px;
@@ -72,7 +72,7 @@ div.ft-htev-popup {
 	display: block !important;
 }
 .ft-htev-popup th, .ft-htev-popup td {
-	text-align: center;
+	text-align: center !important;
 }
 
 .ft-htev-icon {
