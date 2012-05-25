@@ -38,18 +38,25 @@ Foxtrick.modules["HTEVPrediction"]={
 						var ul = doc.createElement("ul");
 						Foxtrick.addClass(div_nav, "ft-htev-nav");
 						
+						//see if its a future match
+						var isFutureMatch = (json.tie == -1)?true:false;
+
+						//league id
+						var leagueId = Foxtrick.util.id.getLeagueLeveUnitIdFromUrl(doc.location.href);
 						var li = doc.createElement("li");						
 						var htev_link = doc.createElement("a");
-						htev_link.href = "http://htev.org/";
+						if(isFutureMatch)
+							htev_link.href = "http://htev.org/search_leagueid/?SeriesID=" + leagueId;
+						else
+							htev_link.href = "http://htev.org/match/" + matchid + "/";
+						
+						htev_link.setAttribute("target","_blank");
 						htev_link.setAttribute("title", Foxtrickl10n.getString("HTEVPrediction.goToHTEV"));
 						htev_link.textContent = "HTEV";
 						li.appendChild(htev_link);
 						ul.appendChild(li);
 						div_nav.appendChild(ul);
 						htev_div.appendChild(div_nav);
-
-						//see if its a future match
-						var isFutureMatch = (json.tie == -1)?true:false;
 
 						//content
 						var table = doc.createElement("table");
