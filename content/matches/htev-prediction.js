@@ -137,18 +137,15 @@ Foxtrick.modules["HTEVPrediction"]={
 			}
 		}
 
-		var sendids = {}
-		
 		var links = doc.getElementById("mainBody").getElementsByTagName("a");
 		for(var i = 0; i < links.length; i++){
 			var matchid = Foxtrick.util.id.getMatchIdFromUrl(links[i].href);
 			if(matchid == null)
 				continue;
 
-			Foxtrick.log(links[i].href.search(/match.aspx/i));
 			if(links[i].href.search(/match.aspx/i) == -1)
 				continue;
-
+			
 			var cachedReplies = Foxtrick.sessionGet("HTEVPrediction.cache");
 			if(cachedReplies && cachedReplies[matchid]){
 				Foxtrick.log("HTEV: using cache");
