@@ -116,7 +116,7 @@ firefox:
 		sed -i -r 's|^(skin\|locale)(\s+\S*\s+\S*\s+)(.*/)$$|\1\2jar:chrome/'$(APP_NAME)'.jar!/\3|' chrome.manifest; \
 	fi
 	# set branch
-	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$BRANCH\"|" defaults/preferences/foxtrick.js
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH)\"|" defaults/preferences/foxtrick.js
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
@@ -152,7 +152,7 @@ chrome:
 	# remove ignore modules from files
 	perl module-update.pl $(MODULES) ignored-modules-$(DIST_TYPE) $(BUILD_DIR)/
 	# set branch
-	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$BRANCH\"|" defaults/preferences/foxtrick.js
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH)\"|" defaults/preferences/foxtrick.js
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
@@ -209,7 +209,7 @@ opera:
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/module.js)|/includes/aa10_module.js|' background.html options.html
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/loader-chrome.js)|/includes/zz99_loader-chrome.js|' background.html options.html
 	# set branch
-	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$BRANCH\"|" defaults/preferences/foxtrick.js
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH)\"|" defaults/preferences/foxtrick.js
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
@@ -244,7 +244,7 @@ safari:
 	# remove ignore modules from files
 	perl module-update.pl $(MODULES) ignored-modules-$(DIST_TYPE) $(SAFARI_BUILD_DIR)/
 	# set branch
-	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$BRANCH\"|" defaults/preferences/foxtrick.js
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH)\"|" defaults/preferences/foxtrick.js
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	# version bump for nightly
