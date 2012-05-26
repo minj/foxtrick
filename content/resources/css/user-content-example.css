@@ -315,4 +315,10 @@ background: none repeat scroll 0 0 white !important;
 font-weight: bold !important;
 }  
 
+/* friendly pool colors */
+.ft-home {background-color:#FC0 !important;} /* played home */
+.ft-away {background-color:#F74 !important;} /* played away */
+.ft-home.ft-away {background-color:#7F0 !important;} /*played both */
+.ft-own {background-color:#DDD !important;} /* own country */
+
 }
