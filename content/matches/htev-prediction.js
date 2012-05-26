@@ -20,6 +20,10 @@ Foxtrick.modules["HTEVPrediction"]={
 
 		var handleHTEVResponse = function(response, status){
 			var addPopups = function(matchid, json){
+				//league id
+				var main = doc.getElementsByClassName("main")[0]; 
+				var thisdiv = main.getElementsByTagName("div")[0];
+				var leagueId = Foxtrick.util.id.findLeagueLeveUnitId(thisdiv);	
 				var links = doc.getElementById("mainBody").getElementsByTagName("a");
 				for(var i = 0; i < links.length; i++){
 					var mID = Foxtrick.util.id.getMatchIdFromUrl(links[i].href);
@@ -46,7 +50,6 @@ Foxtrick.modules["HTEVPrediction"]={
 						var isFutureMatch = (json.tie == -1)?true:false;
 
 						//league id
-						var leagueId = Foxtrick.util.id.getLeagueLeveUnitIdFromUrl(doc.location.href);
 						var li = doc.createElement("li");						
 						var htev_link = doc.createElement("a");
 						if(isFutureMatch)
