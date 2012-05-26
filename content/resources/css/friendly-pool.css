@@ -1,0 +1,19 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+
+.ft-home {
+	background-color:#FC0;
+}
+
+.ft-away {
+	background-color:#F74;
+}
+
+.ft-home.ft-away {
+	background-color:#7F0;
+}
+
+.ft-own {
+	background-color:#DDD;
+}
+
+}

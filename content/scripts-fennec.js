@@ -159,6 +159,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/custom-medals.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/fix-css-problems.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/friendly-interface.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/friendly-pool.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/header-fix.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/header-toggle.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/highlight-cup-wins.js", true);

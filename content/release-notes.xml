@@ -14,6 +14,7 @@
 </note>
 <note version="0.9.4">
 <item>● NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)</item>
+<item>● NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool(default off)</item>
 <item>● PlayerStatsExperience: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)</item>
 <item>● <module>MatchOrderInterface</module>: Possibility to clone an existing order. Players will not be filled in on purpose.</item>
 <item>● A few minor layouting/css changes</item>

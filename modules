@@ -91,6 +91,7 @@ presentation/currency-converter.js
 presentation/custom-medals.js
 presentation/fix-css-problems.js
 presentation/friendly-interface.js
+presentation/friendly-pool.js
 presentation/header-fix.js
 presentation/header-toggle.js
 presentation/highlight-cup-wins.js
