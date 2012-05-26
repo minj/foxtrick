@@ -19,7 +19,7 @@ Foxtrick.modules["HTEVPrediction"]={
 	run : function(doc) {
 
 		var handleHTEVResponse = function(response, status){
-			var addPopups = function(matchid, json){
+			var fillPopups = function(matchid, json){
 				//league id
 				var main = doc.getElementsByClassName("main")[0]; 
 				var thisdiv = main.getElementsByTagName("div")[0];
@@ -27,16 +27,11 @@ Foxtrick.modules["HTEVPrediction"]={
 				var links = doc.getElementById("mainBody").getElementsByTagName("a");
 				for(var i = 0; i < links.length; i++){
 					var mID = Foxtrick.util.id.getMatchIdFromUrl(links[i].href);
-					if(matchid == mID && !links[i].parentNode.getElementsByClassName("ft-popup-span").length && !Foxtrick.hasClass(links[i].parentNode,"ft-popup-span")){
-						
+					if(matchid == mID){
 						if(links[i].href.search(/match.aspx/i) == -1)
 							continue;
 
-						var par = links[i].parentNode;
-						var span = Foxtrick.createFeaturedElement(doc, Foxtrick.modules["HTEVPrediction"], "span"); 
-						span.className = "ft-popup-span";
-						par.insertBefore(span, links[i]);
-						span.appendChild(links[i]);
+						var span = links[i].parentNode;
 
 						var htev_div = Foxtrick.createFeaturedElement(doc, Foxtrick.modules["HTEVPrediction"], "div");
 						Foxtrick.addClass(htev_div, "ft-htev-popup");
@@ -133,11 +128,45 @@ Foxtrick.modules["HTEVPrediction"]={
 						cache[json.matchid] = response;
 						Foxtrick.sessionSet("HTEVPrediction.cache", cache);
 					}
-					addPopups(json.matchid, json);
+					fillPopups(json.matchid, json);
 					break;
 				default:
 					Foxtrick.log("htev error:", response, status);
 			}
+		}
+
+		var addPopup = function(ev){
+			//target can be a member of the link, like a span or so
+			var findLink = function(target){
+				while(!target.href)
+					target = target.parentNode;
+
+				return target;
+			}
+			var link = findLink(ev.target);
+			if(Foxtrick.hasClass(link.parentNode, "ft-popup-span")){
+				//link.removeEventListener("mouseover", addPopup, false); 
+				return;
+			}
+			var matchid = Foxtrick.util.id.getMatchIdFromUrl(link.href);
+			var span = Foxtrick.createFeaturedElement(doc, Foxtrick.modules["HTEVPrediction"], "span");
+			var par = link.parentNode;
+			span.className = "ft-popup-span";
+			par.insertBefore(span, link);
+			span.appendChild(link);
+
+			//actual htev stuff
+			var cachedReplies = Foxtrick.sessionGet("HTEVPrediction.cache");
+			if(cachedReplies && cachedReplies[matchid]){
+				Foxtrick.log("HTEV: using cached");
+				handleHTEVResponse(cachedReplies[matchid], 200);
+			} else {
+				var url = "http://htev.org/api/matchodds/" + matchid +"/"
+				Foxtrick.log("HTEV: request");
+				Foxtrick.load(url, handleHTEVResponse);
+			}
+
+
 		}
 
 		var links = doc.getElementById("mainBody").getElementsByTagName("a");
@@ -149,15 +178,10 @@ Foxtrick.modules["HTEVPrediction"]={
 			if(links[i].href.search(/match.aspx/i) == -1)
 				continue;
 			
-			var cachedReplies = Foxtrick.sessionGet("HTEVPrediction.cache");
-			if(cachedReplies && cachedReplies[matchid]){
-				Foxtrick.log("HTEV: using cache");
-				handleHTEVResponse(cachedReplies[matchid],200);
-			} else {
-				var url = "http://htev.org/api/matchodds/" + matchid +"/"
-				Foxtrick.log("HTEV: request");
-				Foxtrick.load(url, handleHTEVResponse);
-			}
+			Foxtrick.listen(links[i], "mouseover", addPopup, false);
+			continue;
+			
 		}
 	}
 };
+
