@@ -247,7 +247,7 @@ safari:
 	# remove ignore modules from files
 	perl module-update.pl $(MODULES) ignored-modules-$(DIST_TYPE) $(SAFARI_BUILD_DIR)/
 	# set branch
-	cd $(BUILD_DIR); \
+	cd $(SAFARI_BUILD_DIR); \
 	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH)\"|" defaults/preferences/foxtrick.js
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
