@@ -21,6 +21,7 @@ USER=''
 PASSWORD=''
 HOST='www.foxtrick.org'
 DEST='.'
+DO_MAKE='true'
 UPLOAD_UPDATE_FILES='true'
 MODULES=modules
 
@@ -60,7 +61,9 @@ else
 	VERSION="$MAJOR_VERSION"
 fi
 
-(cd "$SRC_DIR" && make DIST_TYPE="$DIST" MODULES="$MODULES" UPDATE_URL="$URL_BASE" "$@")|| exit 2
+if [ "$DO_MAKE" == "true" ]; then
+	(cd "$SRC_DIR" && make DIST_TYPE="$DIST" MODULES="$MODULES" UPDATE_URL="$URL_BASE" "$@")|| exit 2
+fi
 
 if [ "$UPLOAD_UPDATE_FILES" == "true" ]; then
 	# modify update-firefox.rdf for Gecko
