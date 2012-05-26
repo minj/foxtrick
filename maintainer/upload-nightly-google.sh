@@ -44,8 +44,10 @@ MAJOR_VERSION=$(cd ${SRC_DIR} && ./version.sh)
 if [ "$DIST" == "nightly" ]; then
 	REVISION=$(cd "$SRC_DIR" && git svn find-rev HEAD)
 	VERSION="$MAJOR_VERSION.$REVISION"
+	FEARURED=""
 else
 	VERSION="$MAJOR_VERSION"
+	FEARURED="Featured,"
 fi
 
 
@@ -54,24 +56,24 @@ echo "upload to googlecode"
 cp ../foxtrick.xpi ../foxtrick-"$VERSION".xpi
 python googlecode_upload.py \
   -s "$DIST" -p foxtrick -u "$GOOGLE_USER" -w "$GOOGLE_PASSWORD" \
-  -l Version-"$VERSION",Type-"$DIST",Browser-Firefox ../foxtrick-"$VERSION".xpi
+  -l "$FEARURED"Version-"$VERSION",Type-"$DIST",Browser-Firefox ../foxtrick-"$VERSION".xpi
 rm ../foxtrick-"$VERSION".xpi
 
 cp ../foxtrick.crx ../foxtrick-"$VERSION".crx
 python googlecode_upload.py \
   -s "$DIST" -p foxtrick -u "$GOOGLE_USER" -w "$GOOGLE_PASSWORD" \
-  -l Version-"$VERSION",Type-"$DIST",Browser-Chrome ../foxtrick-"$VERSION".crx
+  -l "$FEARURED"Version-"$VERSION",Type-"$DIST",Browser-Chrome ../foxtrick-"$VERSION".crx
 rm ../foxtrick-"$VERSION".crx
 
 cp ../foxtrick.oex ../foxtrick-"$VERSION".oex
 python googlecode_upload.py \
   -s "$DIST" -p foxtrick -u "$GOOGLE_USER" -w "$GOOGLE_PASSWORD" \
-  -l Version-"$VERSION",Type-"$DIST",Browser-Opera ../foxtrick-"$VERSION".oex
+  -l "$FEARURED"Version-"$VERSION",Type-"$DIST",Browser-Opera ../foxtrick-"$VERSION".oex
 rm ../foxtrick-"$VERSION".oex
 
 cp ../foxtrick.safariextz ../foxtrick-"$VERSION".safariextz
 python googlecode_upload.py \
   -s "$DIST" -p foxtrick -u "$GOOGLE_USER" -w "$GOOGLE_PASSWORD" \
-  -l Version-"$VERSION",Type-"$DIST",Browser-Safari ../foxtrick-"$VERSION".safariextz
+  -l "$FEARURED"Version-"$VERSION",Type-"$DIST",Browser-Safari ../foxtrick-"$VERSION".safariextz
 rm ../foxtrick-"$VERSION".safariextz
 
