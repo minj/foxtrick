@@ -211,7 +211,7 @@ function initTextAndValues()
 		$("html").attr("dir", "rtl");
 
 	document.title = Foxtrickl10n.getString("prefs.title");
-	$("#version").text(Foxtrick.version());
+	$("#version").text(Foxtrick.version() + " " + FoxtrickPrefs.getString("branch"));
 
 	// initialize text
 	$("body [data-text]").each(function() {
