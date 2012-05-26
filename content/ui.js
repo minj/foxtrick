@@ -122,7 +122,7 @@ if (Foxtrick.platform == "Firefox") {
 			} catch (e) {}
 			statusText = Foxtrickl10n.getString("status.enabled").replace("%s", hostname);
 		}
-		var tooltipText = Foxtrickl10n.getString("toolbar.title") + " " + Foxtrick.version() + " (" + statusText + ")";
+		var tooltipText = Foxtrickl10n.getString("toolbar.title") + " " + Foxtrick.version() + " " + FoxtrickPrefs.getString("branch")  + " (" + statusText + ")";
 		button.setAttribute("tooltiptext", tooltipText);
 	};
 }
@@ -169,7 +169,7 @@ if (Foxtrick.platform == "Opera") {
 			statusText = Foxtrickl10n.getString("status.active");
 			button.icon = "skin/icon-24.png";
 		}
-		var tooltipText = Foxtrickl10n.getString("toolbar.title") + " " + Foxtrick.version() + " (" + statusText + ")";
+		var tooltipText = Foxtrickl10n.getString("toolbar.title") + " " + Foxtrick.version() + " " + FoxtrickPrefs.getString("branch") + " (" + statusText + ")";
 		button.title = tooltipText;
 	};
 }
@@ -200,7 +200,7 @@ else if (Foxtrick.platform == "Chrome") {
 			iconUrl = "../skin/icon-24.png";
 			statusText = Foxtrickl10n.getString("status.active");
 		}
-		var tooltipText = Foxtrickl10n.getString("toolbar.title") + " " + Foxtrick.version() + " (" + statusText + ")";
+		var tooltipText = Foxtrickl10n.getString("toolbar.title") + " " + Foxtrick.version() + " " + FoxtrickPrefs.getString("branch") + " (" + statusText + ")";
 		chrome.pageAction.setIcon({tabId : tab.id, path : iconUrl});
 		chrome.pageAction.setTitle({tabId : tab.id, title: tooltipText})
 	};

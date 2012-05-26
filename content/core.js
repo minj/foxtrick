@@ -49,7 +49,7 @@ Foxtrick.modules["Core"]={
 						var div = doc.createElement('div');
 						changes.appendChild(div);
 						var label = doc.createElement('h2');
-						label.textContent = 'FoxTrick '+Foxtrick.version();
+						label.textContent = 'FoxTrick '+Foxtrick.version() + " " +  + " " + FoxtrickPrefs.getString("branch");;
 						div.appendChild(label);
 						var label = doc.createElement('p');
 						label.textContent = Foxtrickl10n.getString('releaseNotes.showFor');
@@ -157,7 +157,7 @@ Foxtrick.modules["Core"]={
 		if (bottom) { // sometimes bottom is not loaded yet. just skip it in those cases
 			var server = bottom.getElementsByClassName("currentServer")[0];
 			var span = doc.createElement("span");			
-			span.textContent += " / FoxTrick " + Foxtrick.version();
+			span.textContent += " / FoxTrick " + Foxtrick.version() + " " + FoxtrickPrefs.getString("branch");
 			span.id = "ft_versionInfo";
 			server.appendChild(span);
 		}

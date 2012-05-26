@@ -1,6 +1,6 @@
 APP_NAME = foxtrick
 
-# Distribution type:
+# branch type:
 # Firefox, Chrome, Opera: nightly, release, hosting
 # Safari: nightly, release
 DIST_TYPE = nightly
@@ -10,6 +10,7 @@ MODULES = modules
 REVISION := $(shell git svn find-rev HEAD)
 MAJOR_VERSION := $(shell ./version.sh)
 REV_VERSION := $(MAJOR_VERSION).$(REVISION)
+BRANCH = release
 
 # URL prefix of update manifest
 UPDATE_URL = https://www.foxtrick.org/nightly/
@@ -114,7 +115,9 @@ firefox:
 		sed -i -r 's|^(content\s+\S*\s+)(\S*/)(.*)$$|\1jar:chrome/'$(APP_NAME)'.jar!/\2\3|' chrome.manifest; \
 		sed -i -r 's|^(skin\|locale)(\s+\S*\s+\S*\s+)(.*/)$$|\1\2jar:chrome/'$(APP_NAME)'.jar!/\3|' chrome.manifest; \
 	fi
-	# modify according to distribution type
+	# set branch
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$BRANCH\"|" defaults/preferences/foxtrick.js
+	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
 	../version.sh $(REV_VERSION); \
@@ -148,7 +151,9 @@ chrome:
 		../$(BUILD_DIR)/content
 	# remove ignore modules from files
 	perl module-update.pl $(MODULES) ignored-modules-$(DIST_TYPE) $(BUILD_DIR)/
-# modify according to distribution type
+	# set branch
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$BRANCH\"|" defaults/preferences/foxtrick.js
+	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
 	../version.sh $(REV_VERSION); \
@@ -203,7 +208,9 @@ opera:
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/env.js)|/includes/aa00_env.js|' background.html options.html
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/module.js)|/includes/aa10_module.js|' background.html options.html
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/loader-chrome.js)|/includes/zz99_loader-chrome.js|' background.html options.html
-	# modify according to distribution type
+	# set branch
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$BRANCH\"|" defaults/preferences/foxtrick.js
+	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
 	../version.sh $(REV_VERSION); \
@@ -236,7 +243,9 @@ safari:
 		../$(SAFARI_BUILD_DIR)/content
 	# remove ignore modules from files
 	perl module-update.pl $(MODULES) ignored-modules-$(DIST_TYPE) $(SAFARI_BUILD_DIR)/
-	# modify according to distribution type
+	# set branch
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$BRANCH\"|" defaults/preferences/foxtrick.js
+	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	# version bump for nightly
 	cd $(SAFARI_BUILD_DIR); \
