@@ -138,9 +138,11 @@ Foxtrick.modules["HTEVPrediction"]={
 					//set cache, might be overwritting
 					//see if its a future match
 					var isFutureMatch = (json.tie == -1)?true:false;
-					if(!isFutureMatch)
+					if(!isFutureMatch){
 						Foxtrick.localSet("htev.prediction.past." + json.matchid, json);
-
+					} else {
+						Foxtrick.sessionSet("htev.prediction.future." + json.matchid, json);
+					}
 					//fix the popup contents
 					fillPopups(json.matchid, json);
 					break;
@@ -161,17 +163,28 @@ Foxtrick.modules["HTEVPrediction"]={
 			var link = findLink(ev.target);
 			var matchid = Foxtrick.util.id.getMatchIdFromUrl(link.href);
 			//check local store if we have a record for this match already
-			Foxtrick.localGet("htev.prediction.past." + matchid, function(cache){
+			Foxtrick.localGet("htev.prediction.past." + matchid, function(lcache){
 				//jupp, excellent
-				if(cache){
-					Foxtrick.log("HTEV: using cached");
-					handleHTEVResponse(cache, 200);
+				if(lcache){
+					Foxtrick.log("HTEV: using local cached (past match)");
+					handleHTEVResponse(lcache, 200);
 				} 
 				//nah, ask HTEV
 				else {
-					var url = "http://htev.org/api/matchodds/" + matchid +"/"
-					Foxtrick.log("HTEV: request", url);
-					Foxtrick.load(url, handleHTEVResponse);
+					//try local store
+					Foxtrick.sessionGet("htev.prediction.future." + matchid, function(scache) {
+						//jupp, excellent
+						if(scache){
+							Foxtrick.log("HHTEV: using local cached (future match)");
+							handleHTEVResponse(scache, 200);
+						} 
+						//nah, ask HTEV
+						else {
+							var url = "http://htev.org/api/matchodds/" + matchid +"/"
+							Foxtrick.log("HTEV: request", url);
+							Foxtrick.load(url, handleHTEVResponse);	
+						}
+					});
 				}
 			});
 		}
