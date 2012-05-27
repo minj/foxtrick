@@ -175,7 +175,7 @@ Foxtrick.modules["HTEVPrediction"]={
 					Foxtrick.sessionGet("htev.prediction.future." + matchid, function(scache) {
 						//jupp, excellent
 						if(scache){
-							Foxtrick.log("HHTEV: using local cached (future match)");
+							Foxtrick.log("HHTEV: using session cached (future match)");
 							handleHTEVResponse(scache, 200);
 						} 
 						//nah, ask HTEV
