@@ -16,12 +16,6 @@ Foxtrick.modules["HTEVPrediction"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['series'],
 	CSS : Foxtrick.InternalPath + "resources/css/htev-prediction.css",
-	init : function() {
-		Foxtrick.localGet("HTEVPrediction.Cache", function (cache){
-			if(!cache)
-				Foxtrick.localGet("HTEVPrediction.Cache", {});	
-		});
-	},
 	//save some stuff permanently,
 	//most important stuff will probably be own past games, they will never change again
 		run : function(doc) {
