@@ -20,7 +20,6 @@ div.ft-htev-popup {
 } 
 .ft-htev-nav {
 	margin: 0px;
-	list-style: none;
 	height: 22px;
 	border-radius: 4px;
 	-webkit-border-radius: 4px;
@@ -46,8 +45,15 @@ div.ft-htev-popup {
 .ft-htev-nav li:last-child {  
     border-right:none;
 }
-
+.ft-htev-nav ul {
+	-webkit-padding-start: 0px;
+	-moz-padding-start: 0px;
+	margin-top:2px !important;
+	margin-bottom:2px !important;
+}
 .ft-htev-nav li {
+	padding-bottom: 1px !important;
+	list-style: none;
 	float: left;
 	position: relative;
 	font-size: 11px;
@@ -66,7 +72,7 @@ div.ft-htev-popup {
     text-shadow: 0 -1px 3px #202020;
     background-image: url("http://htev.org/static/htevfavicon.gif");
     background-repeat: no-repeat;
-    background-position: 3px 3px;
+    background-position: 3px 3px !important;
 }
 
 .ft-popup-span:hover div.ft-htev-popup {
@@ -74,6 +80,7 @@ div.ft-htev-popup {
 }
 .ft-htev-popup th, .ft-htev-popup td, .ft-htev-popup div {
 	text-align: center !important;
+	padding: 0px !important;
 }
 
 .ft-htev-icon {
