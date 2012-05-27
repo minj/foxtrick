@@ -49,9 +49,6 @@ Foxtrick.modules["HTEVPrediction"]={
 						//see if its a future match
 						var isFutureMatch = (json.tie == -1)?true:false;
 
-						if(!isFutureMatch)
-							Foxtrick.localSet("htev.prediction.past." + matchid, json);
-
 						//league id
 						var li = doc.createElement("li");						
 						var htev_link = doc.createElement("a");
@@ -139,7 +136,10 @@ Foxtrick.modules["HTEVPrediction"]={
 						var json = response;
 					}
 					//set cache, might be overwritting
-					Foxtrick.localSet("htev.prediction.past." + json.matchid, json);
+					//see if its a future match
+					var isFutureMatch = (json.tie == -1)?true:false;
+					if(!isFutureMatch)
+						Foxtrick.localSet("htev.prediction.past." + json.matchid, json);
 
 					//fix the popup contents
 					fillPopups(json.matchid, json);
