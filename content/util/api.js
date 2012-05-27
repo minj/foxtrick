@@ -169,7 +169,7 @@ Foxtrick.util.api = {
 
 	// used to change expire date of xml_cache eg for to my_monitors nextmachtdate
 	setCacheLifetime : function(doc, parameters_str, cache_lifetime) {
-		Foxtrick.sessionGetAsync('xml_cache.'+parameters_str, function(xml_cache) {
+		Foxtrick.sessionGet('xml_cache.'+parameters_str, function(xml_cache) {
 			Foxtrick.sessionSet('xml_cache.'+parameters_str,
 							{ xml_string:xml_cache.xml_string, cache_lifetime : cache_lifetime });
 		});	
@@ -219,7 +219,7 @@ Foxtrick.util.api = {
 		}
 
 		// check global_cache_lifetime first, aka server down
-		Foxtrick.sessionGetAsync('xml_cache.global_cache_lifetime', function (recheckDate) {
+		Foxtrick.sessionGet('xml_cache.global_cache_lifetime', function (recheckDate) {
 			if (recheckDate && (Number(recheckDate) > HT_date)) {
 				Foxtrick.log('global_cache_lifetime set. recheck later: ',
 									'  recheckDate: ',(new Date(recheckDate)).toString(),
@@ -230,7 +230,7 @@ Foxtrick.util.api = {
 			}
 			
 			var parameters_str = JSON.stringify(parameters);
-			Foxtrick.sessionGetAsync('xml_cache.'+parameters_str, function(xml_cache) {
+			Foxtrick.sessionGet('xml_cache.'+parameters_str, function(xml_cache) {
 				if (xml_cache) Foxtrick.log("ApiProxy: options: ",options,
 										'  cache_lifetime: ',(options.cache_lifetime=='session')?'session':(new Date(xml_cache.cache_lifetime)).toString(),
 										'  current timestamp: ',(new Date(HT_date)).toString());

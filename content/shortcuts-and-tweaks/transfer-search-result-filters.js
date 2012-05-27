@@ -48,7 +48,7 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 			{ key : "days", type : "minmax", min : null, max : null }
 		];
 		var getFilters = function(callback) {
-			Foxtrick.sessionGetAsync("transfer-search-result-filters", function(n) {
+			Foxtrick.sessionGet("transfer-search-result-filters", function(n) {
 				try {
 					if (n === undefined) {
 						// set default filters if not set

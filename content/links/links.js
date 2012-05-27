@@ -124,7 +124,7 @@
 		},
 
 		getCollection : function(callback) {
-			Foxtrick.sessionGetAsync("links-collection", function(col) {
+			Foxtrick.sessionGet("links-collection", function(col) {
 				if (col) {
 					collection = col;
 					callback(collection);

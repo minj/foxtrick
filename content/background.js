@@ -278,14 +278,16 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		// @param key - key of session store
 		// @param value - value to store
 		Foxtrick.sessionSet(request.key, request.value);
-		// inform other tabs to update their copies
-		sandboxed.extension.broadcastMessage( {req: 'sessionSet', senderid: sender.tab.id, key: request.key, value: request.value });
+	};
+	// from sessionStore.js
+	Foxtrick.loader.chrome.background.sessionGet = function(request, sender, sendResponse) {
+		// @param key - key of session store
+		// @param value - value to store
+		sendResponse( {value: Foxtrick.sessionGet(request.key)} );
 	};
 	Foxtrick.loader.chrome.background.sessionDeleteBranch = function(request, sender, sendResponse) {
 		// @param branch - initial part of key(s) of session store to delete
 		Foxtrick.sessionDeleteBranch(request.branch);
-		// inform other tabs to update their copies
-		sandboxed.extension.broadcastMessage( {req: 'sessionDeleteBranch', senderid: sender.tab.id, branch: request.branch });
 	};
 
 	// from log.js

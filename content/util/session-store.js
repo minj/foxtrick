@@ -30,13 +30,6 @@ Foxtrick._sessionGet = function(keymap) {
 		return answermap;
 	}
 };
-// dummy for testing async calls
-Foxtrick.sessionGetAsync = function(key, callback) {
-	window.setTimeout(function(){
-		//Foxtrick.log(key,Foxtrick._sessionGet(key));
-		callback(Foxtrick._sessionGet(key));
-	}, 1);
-};
 
 Foxtrick._sessionDeleteBranch = function(branch) {
 	if (branch != '') branch += '.';
@@ -49,40 +42,25 @@ Foxtrick._sessionDeleteBranch = function(branch) {
 // for Firefox
 if (Foxtrick.platform == "Firefox") {
 	Foxtrick.sessionSet = Foxtrick._sessionSet;
-	Foxtrick.sessionGet = Foxtrick._sessionGet;
+	Foxtrick.sessionGet = function(key, callback) {
+		callback(Foxtrick._sessionGet(key));
+	};
 	Foxtrick.sessionDeleteBranch = Foxtrick._sessionDeleteBranch;
 }
 // sessionStore for all other
 else {
-	// background copy for transmission to tabs on init
+	// background 
 	if ( Foxtrick.chromeContext() == "background" )  {
 		Foxtrick.sessionSet = Foxtrick._sessionSet;
 		Foxtrick.sessionGet = Foxtrick._sessionGet; 
 		Foxtrick.sessionDeleteBranch = Foxtrick._sessionDeleteBranch;
 	}
 
-	// content copy. updated with every change via background broadcasting
+	// content 
 	else if ( Foxtrick.chromeContext() == "content" )  {
 		
-		// listen to updates from other tabs
-		// don't update if this tab initiated the update
-		sandboxed.extension.onRequest.addListener(
-		 function(request, sender, sendResponse) {
-			//Foxtrick.log('sessionStore broadcast listen ', 'this_tabid:', sandboxed.extension.tabid, ' senderid:',request.senderid);
-			if (request.req=='sessionSet' && sandboxed.extension.tabid != request.senderid ) {
-				Foxtrick.log('broadcast sessionSet from ', request.senderid, ' this_tabid:', sandboxed.extension.tabid, ' :', request.key);
-				Foxtrick._sessionSet(request.key, request.value);
-			}
-			else if (request.req=='sessionDeleteBranch' && sandboxed.extension.tabid != request.senderid ) {
-				Foxtrick._sessionDeleteBranch(request.branch);
-				Foxtrick.log('broadcast sessionDeleteBranch from ', request.senderid, ' this_tabid:', sandboxed.extension.tabid, ' :', request.branch);
-			}
-		});
-
 		Foxtrick.sessionSet = function(key, value) {
-			// local copy
-			Foxtrick._sessionSet(key, value)
-			// inform background and other tabs
+			// inform background 
 			sandboxed.extension.sendRequest({
 				req : "sessionSet",
 				key : key,
@@ -90,12 +68,19 @@ else {
 			});
 		};
 
-		Foxtrick.sessionGet = Foxtrick._sessionGet;
+		Foxtrick.sessionGet = function(key, callback) {
+			// get from background 
+			sandboxed.extension.sendRequest({
+				req : "sessionGet",
+				key : key
+			}, function(response){
+				Foxtrick.log(key, response.value)
+				callback(response.value);
+			});
+		};
 
 		Foxtrick.sessionDeleteBranch = function(branch) {
-			// local copy
-			Foxtrick._sessionDeleteBranch(branch);
-			// inform background and other tabs
+			// inform background 
 			sandboxed.extension.sendRequest({
 				req : "sessionDeleteBranch",
 				branch : branch

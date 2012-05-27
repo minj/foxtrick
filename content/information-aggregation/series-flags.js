@@ -13,7 +13,7 @@ Foxtrick.modules["SeriesFlags"]={
 
 	run : function(doc) {
 		var buildFlag = function(arg, callback) {
-			Foxtrick.sessionGetAsync("seriesFlags", function(mapping) {
+			Foxtrick.sessionGet("seriesFlags", function(mapping) {
 				if (mapping == undefined)
 					mapping = { "userID" : {}, "teamID" : {} };
 
@@ -70,7 +70,7 @@ Foxtrick.modules["SeriesFlags"]={
 						}
 						// get newest mapping and store the data, because
 						// it may have changed during the retrieval of XML
-						Foxtrick.sessionGetAsync("seriesFlags", function(mapping) {
+						Foxtrick.sessionGet("seriesFlags", function(mapping) {
 							if (mapping == undefined)
 								mapping = { "userID" : {}, "teamID" : {} };
 							mapping[arg[0]][arg[1]] = data;

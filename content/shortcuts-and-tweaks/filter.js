@@ -48,7 +48,7 @@ Foxtrick.modules["Filter"]={
 			}
 		};
 		var getFilters = function(page, callback) { 
-			Foxtrick.sessionGetAsync("filters." + page, function(n) {
+			Foxtrick.sessionGet("filters." + page, function(n) {
 				try {
 					if (n === undefined) {
 						// set default filters if not set

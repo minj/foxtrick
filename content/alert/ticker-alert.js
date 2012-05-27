@@ -99,7 +99,7 @@
 				return tickers;
 			};
 			var tickerCheck = function() {
-				Foxtrick.sessionGetAsync("tickers", function (tickers) {
+				Foxtrick.sessionGet("tickers", function (tickers) {
 					if (tickers == undefined)
 						tickers = [];
 

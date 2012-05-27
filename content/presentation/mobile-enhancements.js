@@ -70,7 +70,7 @@ if (Foxtrick.platform == "Fennec")
 	},
 
 	run : function(doc) { 
-		Foxtrick.sessionGetAsync('MobileEnhancements.selection', function(selection) {
+		Foxtrick.sessionGet('MobileEnhancements.selection', function(selection) {
 			// rescale to use all space
 			if (doc.getElementById('ctl00_ctl00_CPContent_ucSubMenu_ucLogin_txtUserName')!==null) {
 				var css = this.getStyle('all');

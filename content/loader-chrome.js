@@ -94,7 +94,7 @@ Foxtrick.loader.chrome.clickListener = function(e) {
 			e.button == 0 && 		// left mouse button
 			e.shiftKey == true ) { 	// our special key we listen too
 
-			Foxtrick.sessionGetAsync('clipboard', function(text) {
+			Foxtrick.sessionGet('clipboard', function(text) {
 				if (text) {
 					// insert clipboard at current position
 					ta = e.target;

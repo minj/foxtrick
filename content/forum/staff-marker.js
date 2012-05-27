@@ -103,7 +103,7 @@ Foxtrick.modules["StaffMarker"]={
 	},
 
 	run : function(doc) {
-		Foxtrick.sessionGetAsync('staff-marker-data', function(data) {
+		Foxtrick.sessionGet('staff-marker-data', function(data) {
 			// getting user-defined IDs and colors
 			var customMarker = {};
 			if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker", "own")) {
