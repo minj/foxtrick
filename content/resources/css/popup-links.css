@@ -10,7 +10,7 @@ html[dir="rtl"] td .ft-popup-span {
 	display:block;
 }
 
-ul.ft-popup-list {
+html[data-theme="standard"] ul.ft-popup-list {
 	font-size: 11px;
 	display: none;
 	position: absolute;
@@ -25,6 +25,19 @@ ul.ft-popup-list {
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 }
+html[data-theme="simple"] ul.ft-popup-list {
+	font-size: 11px;
+	display: none;
+	position: absolute;
+	background-color: #ffffff;
+	border: solid 2px #267f30;
+	padding: 0px;
+	z-index: 10000;
+	list-style-type: none;
+	margin:0px;
+	padding: 3px 2px 3px 2px;
+}
+
 html[dir="ltr"] ul.ft-popup-list {
 	left:10px;
 }
