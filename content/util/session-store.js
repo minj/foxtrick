@@ -3,8 +3,6 @@
  * sessionSet() and sessionGet() are a pair of functions that can store some
  * useful information that has its life spanning the browser session.
  * The stored value must be a JSON-serializable object, or of native types.
- * For sandboxed, the content scripts stores copies which get updated 
- * via background script with every change.
  */
 
 

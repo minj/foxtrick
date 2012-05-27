@@ -510,12 +510,18 @@ if (Foxtrick.arch === "Sandboxed") {
 					var length = localStorage.length;
 					for (var i = 0; i < length; ++i) {
 						var key = localStorage.key(i);
-						var value = localStorage.getItem(key);
-						try {
-							FoxtrickPrefs._prefs_chrome_user[key] = JSON.parse(value);
+						if (key.indexOf('localStore')!==0) {
+							var value = localStorage.getItem(key);
+							try {
+								FoxtrickPrefs._prefs_chrome_user[key] = JSON.parse(value);
+							}
+							catch (e) {
+								Foxtrick.log("Preference parse error: key: " , key ,", value: " , value);
+							}
 						}
-						catch (e) {
-							Foxtrick.log("Preference parse error: key: " , key ,", value: " , value);
+						else {
+							// we don't want our localStore to get passed to pages every page load
+							// those values are access async with Foxtrick.localStore
 						}
 					}
 

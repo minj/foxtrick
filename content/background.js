@@ -286,6 +286,21 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		Foxtrick.sessionDeleteBranch(request.branch);
 	};
 
+	// from localStore.js
+	Foxtrick.loader.chrome.background.localSet = function(request, sender, sendResponse) {
+		// @param key - key of local store
+		// @param value - value to store
+		Foxtrick.localSet(request.key, request.value);
+	};
+	Foxtrick.loader.chrome.background.localGet = function(request, sender, sendResponse) {
+		// @param key - key of local store
+		sendResponse( {value: Foxtrick.localGet(request.key)} );
+	};
+	Foxtrick.loader.chrome.background.localDeleteBranch = function(request, sender, sendResponse) {
+		// @param branch - initial part of key(s) of local store to delete
+		Foxtrick.localDeleteBranch(request.branch);
+	};
+
 	// from log.js
 	Foxtrick.loader.chrome.background.log = function(request, sender, sendResponse) {
 		// @param log - text to dump to console (fennec)

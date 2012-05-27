@@ -33,6 +33,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/inject.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/layout.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/links-box.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/util/local-store.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/log.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/match-view.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/misc.js", true);

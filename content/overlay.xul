@@ -24,6 +24,7 @@
 <script type="application/x-javascript" src="./util/inject.js" />
 <script type="application/x-javascript" src="./util/layout.js" />
 <script type="application/x-javascript" src="./util/links-box.js" />
+<script type="application/x-javascript" src="./util/local-store.js" />
 <script type="application/x-javascript" src="./util/log.js" />
 <script type="application/x-javascript" src="./util/match-view.js" />
 <script type="application/x-javascript" src="./util/misc.js" />
