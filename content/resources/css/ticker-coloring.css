@@ -12,15 +12,15 @@
 }
 
 /* login welcome */
-#ticker a[href^="/MyHattrick/Dashboard.aspx"] {
+#ticker a[href^="/MyHattrick/Dashboard.aspx"], #ticker a[href^="/Myhattrick/Dashboard.aspx" {
 	background-color: #dfefc2;
 }
 /* My Hattrick message. being after login style it should take precedence */
-#ticker a[href^="/MyHattrick/Dashboard.aspx?actionType"] {
+#ticker a[href^="/MyHattrick/Dashboard.aspx?actionType"], #ticker a[href^="/Myhattrick/Dashboard.aspx?actionType"] {
 	background-color: #dfdfdf;
 }
 /* supporter login */
-#ticker a[href^="/Club/Manager/?teamId="] {
+#ticker a[href^="/Club/Manager/?teamId="], #ticker a[href^="/Club/Manager/?TeamID="] {
 	background-color: #ffe8cf;
 }
 /* forum reply - full url: /Forum/Read.aspx?t=... */
@@ -36,11 +36,11 @@
 	background-color: #ffdfe0;
 }
 /* guestbook */
-#ticker a[href^="/Club/Manager/Guestbook.aspx?teamid="] {
+#ticker a[href^="/Club/Manager/Guestbook.aspx?teamId="],#ticker a[href^="/Club/Manager/Guestbook.aspx?TeamID="] {
 	background-color: #dffffd;
 }
 /* mail - full url: /MyHattrick/Inbox/Default.aspx?actionType=readMail&messageID=... */
-#ticker a[href^="/MyHattrick/Inbox/Default.aspx"] {
+#ticker a[href^="/MyHattrick/Inbox/Default.aspx"], #ticker a[href^="/Myhattrick/Inbox/Default.aspx"] {
 	background-color: #eedfff;
 }
 
