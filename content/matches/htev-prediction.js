@@ -55,10 +55,14 @@ Foxtrick.modules["HTEVPrediction"]={
 						if(links[i].href.search(/match.aspx/i) == -1)
 							continue;
 
-						var span = links[i].parentNode;
+						if(Foxtrick.hasClass(links[i],"ft-htev-popup-added"))
+							continue;
 
-						var htev_div = Foxtrick.createFeaturedElement(doc, Foxtrick.modules["HTEVPrediction"], "div");
-						Foxtrick.addClass(htev_div, "ft-htev-popup");
+						Foxtrick.addClass(links[i], "ft-htev-popup-added");
+
+						//popup
+						var span = links[i].parentNode;
+						var htev_div = span.getElementsByClassName("ft-htev-popup")[0];
 
 						//navigation
 						var div_nav = doc.createElement("div");
@@ -140,7 +144,6 @@ Foxtrick.modules["HTEVPrediction"]={
 
 							htev_div.appendChild(table);
 						}
-						span.appendChild(htev_div);
 					}
 				}	
 			}
@@ -175,7 +178,7 @@ Foxtrick.modules["HTEVPrediction"]={
 
 			var link = findLink(ev.target);
 			var matchid = Foxtrick.util.id.getMatchIdFromUrl(link.href);
-			
+
 			//actual htev stuff
 			var cachedReplies = Foxtrick.sessionGet("HTEVPrediction.cache");
 			if(cachedReplies && cachedReplies[matchid]){
@@ -198,6 +201,10 @@ Foxtrick.modules["HTEVPrediction"]={
 			span.className = "ft-popup-span";
 			par.insertBefore(span, link);
 			span.appendChild(link);
+
+			var htev_div = Foxtrick.createFeaturedElement(doc, Foxtrick.modules["HTEVPrediction"], "div");
+			Foxtrick.addClass(htev_div, "ft-htev-popup");
+			span.appendChild(htev_div);
 
 			Foxtrick.listen(link, "mouseover", getFromHTEV, false);
 		}
