@@ -1,8 +1,10 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+
 div.ft-htev-popup {
 	display: none;
 	position: absolute;
 	border: solid 2px #838383;
-	left: -40px;
+	left: -80px;
 	bottom:	12px;
 	padding: 5px;
 	z-index: 10000;
@@ -15,12 +17,11 @@ div.ft-htev-popup {
 	font: normal .8em/1.5em Ariel, Helvetica, sans-serif;
 	background-color: #EAEAEA;
 	color: #666;
-}
-
+} 
 .ft-htev-nav {
 	margin: 0px;
 	list-style: none;
-	height: 32px;
+	height: 22px;
 	border-radius: 4px;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
@@ -49,23 +50,23 @@ div.ft-htev-popup {
 .ft-htev-nav li {
 	float: left;
 	position: relative;
-	font-size: 13px;
+	font-size: 11px;
 	color: white;
 	border-right: 1px solid #5d5d5d; 
 	border-left: 1px solid #929292;
-	height: 32px;
+	height: 26px;
 }
 
 .ft-htev-nav a {
 	color: white !important; 
 	text-decoration: none;
 	display: block;
-	padding:  7px 30px;
+	padding:  4px 30px;
     margin: 0px;
     text-shadow: 0 -1px 3px #202020;
     background-image: url("http://htev.org/static/htevfavicon.gif");
     background-repeat: no-repeat;
-    background-position: 5px 7px;
+    background-position: 3px 3px;
 }
 
 .ft-popup-span:hover div.ft-htev-popup {
@@ -84,4 +85,5 @@ div.ft-htev-popup {
 	float: right;
 	display: block;
 	cursor: pointer;
+}
 }

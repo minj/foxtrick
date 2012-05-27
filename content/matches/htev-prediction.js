@@ -16,8 +16,32 @@ Foxtrick.modules["HTEVPrediction"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['series'],
 	CSS : Foxtrick.InternalPath + "resources/css/htev-prediction.css",
+	init : function() { 
+		Foxtrick.modules["HTEVPrediction"].permanentCache.initSession();
+	},
+	//save some stuff permanently,
+	//most important stuff will probably be own past games, they will never change again
+	permanentCache : {
+		setEntry : function(matchid, json){
+			var cache = FoxtrickPrefs.get("HTEVPrediction.cache");
+			if(!cache){ cache = "{}";}
+			var json_cache = JSON.parse(cache);
+			if(json_cache[matchid]){
+				return;
+			}
+			json_cache[matchid] = json;
+			var json_string = JSON.stringify(json_cache,null, 2);
+			FoxtrickPrefs.set("HTEVPrediction.cache", json_string);
+		}, 
+		initSession : function(){
+			var cache = FoxtrickPrefs.get("HTEVPrediction.cache");
+			var json_cache = JSON.parse(cache);
+			if(!json_cache)
+				json_cache = {};
+			Foxtrick.sessionSet("HTEVPrediction.cache", json_cache);
+		}
+	},
 	run : function(doc) {
-
 		var handleHTEVResponse = function(response, status){
 			var fillPopups = function(matchid, json){
 				//league id
@@ -44,6 +68,9 @@ Foxtrick.modules["HTEVPrediction"]={
 						//see if its a future match
 						var isFutureMatch = (json.tie == -1)?true:false;
 
+						if(!isFutureMatch){
+							Foxtrick.modules["HTEVPrediction"].permanentCache.setEntry(matchid, json);
+						}
 						//league id
 						var li = doc.createElement("li");						
 						var htev_link = doc.createElement("a");
@@ -60,11 +87,14 @@ Foxtrick.modules["HTEVPrediction"]={
 						div_nav.appendChild(ul);
 						htev_div.appendChild(div_nav);
 
+						//"no match" response
 						if(json.message && json.message == "no match"){
 							var msg = doc.createElement("div");
 							msg.textContent = "No data";
 							htev_div.appendChild(msg);
-						} else {
+						}
+						//"should be fine"
+						else {
 							//content
 							var table = doc.createElement("table");
 							var thead = doc.createElement("thead");
@@ -118,16 +148,15 @@ Foxtrick.modules["HTEVPrediction"]={
 			//actually react on the load request
 			switch(status){
 				case 200:
-					var json = JSON.parse( response );					
-					var cache = Foxtrick.sessionGet("HTEVPrediction.cache");
-					if(cache){
-						cache[json.matchid] = response;
-						Foxtrick.sessionSet("HTEVPrediction.cache", cache);
-					} else {
-						cache = {};
-						cache[json.matchid] = response;
-						Foxtrick.sessionSet("HTEVPrediction.cache", cache);
+					try{
+						var json = JSON.parse(response);
 					}
+					catch (e){
+						var json = response;
+					}
+					var cache = Foxtrick.sessionGet("HTEVPrediction.cache");
+					cache[json.matchid] = response;
+					Foxtrick.sessionSet("HTEVPrediction.cache", cache);
 					fillPopups(json.matchid, json);
 					break;
 				default:
@@ -135,7 +164,7 @@ Foxtrick.modules["HTEVPrediction"]={
 			}
 		}
 
-		var addPopup = function(ev){
+		var getFromHTEV = function(ev){
 			//target can be a member of the link, like a span or so
 			var findLink = function(target){
 				while(!target.href)
@@ -143,9 +172,24 @@ Foxtrick.modules["HTEVPrediction"]={
 
 				return target;
 			}
+
 			var link = findLink(ev.target);
+			var matchid = Foxtrick.util.id.getMatchIdFromUrl(link.href);
+			
+			//actual htev stuff
+			var cachedReplies = Foxtrick.sessionGet("HTEVPrediction.cache");
+			if(cachedReplies && cachedReplies[matchid]){
+				Foxtrick.log("HTEV: using cached");
+				handleHTEVResponse(cachedReplies[matchid], 200);
+			} else {
+				var url = "http://htev.org/api/matchodds/" + matchid +"/"
+				Foxtrick.log("HTEV: request", url);
+				Foxtrick.load(url, handleHTEVResponse);
+			}
+		}
+
+		var addPopup = function(link){
 			if(Foxtrick.hasClass(link.parentNode, "ft-popup-span")){
-				//link.removeEventListener("mouseover", addPopup, false); 
 				return;
 			}
 			var matchid = Foxtrick.util.id.getMatchIdFromUrl(link.href);
@@ -155,18 +199,7 @@ Foxtrick.modules["HTEVPrediction"]={
 			par.insertBefore(span, link);
 			span.appendChild(link);
 
-			//actual htev stuff
-			var cachedReplies = Foxtrick.sessionGet("HTEVPrediction.cache");
-			if(cachedReplies && cachedReplies[matchid]){
-				Foxtrick.log("HTEV: using cached");
-				handleHTEVResponse(cachedReplies[matchid], 200);
-			} else {
-				var url = "http://htev.org/api/matchodds/" + matchid +"/"
-				Foxtrick.log("HTEV: request");
-				Foxtrick.load(url, handleHTEVResponse);
-			}
-
-
+			Foxtrick.listen(link, "mouseover", getFromHTEV, false);
 		}
 
 		var links = doc.getElementById("mainBody").getElementsByTagName("a");
@@ -178,7 +211,7 @@ Foxtrick.modules["HTEVPrediction"]={
 			if(links[i].href.search(/match.aspx/i) == -1)
 				continue;
 			
-			Foxtrick.listen(links[i], "mouseover", addPopup, false);
+			addPopup(links[i]);
 			continue;
 			
 		}
