@@ -23,6 +23,8 @@ Foxtrick.modules["HTEVPrediction"]={
 	//most important stuff will probably be own past games, they will never change again
 	permanentCache : {
 		setEntry : function(matchid, json){
+			//disabled until session store is converted and this needs to be reimplemented
+			return;
 			var cache = FoxtrickPrefs.get("HTEVPrediction.cache");
 			if(!cache){ cache = "{}";}
 			var json_cache = JSON.parse(cache);
@@ -34,6 +36,8 @@ Foxtrick.modules["HTEVPrediction"]={
 			FoxtrickPrefs.set("HTEVPrediction.cache", json_string);
 		}, 
 		initSession : function(){
+			//disabled until session store is converted and this needs to be reimplemented
+			return;
 			var cache = FoxtrickPrefs.get("HTEVPrediction.cache");
 			var json_cache = JSON.parse(cache);
 			if(!json_cache)
@@ -78,13 +82,15 @@ Foxtrick.modules["HTEVPrediction"]={
 						//league id
 						var li = doc.createElement("li");						
 						var htev_link = doc.createElement("a");
-						if(isFutureMatch)
+						if(isFutureMatch){
 							htev_link.href = "http://htev.org/search_leagueid/?SeriesID=" + leagueId;
-						else
+							htev_link.setAttribute("title", Foxtrickl10n.getString("HTEVPrediction.visitLeague"));
+						}
+						else {
 							htev_link.href = "http://htev.org/match/" + matchid + "/";
-						
+							htev_link.setAttribute("title", Foxtrickl10n.getString("HTEVPrediction.visitDetailed"));
+						}
 						htev_link.setAttribute("target","_blank");
-						htev_link.setAttribute("title", Foxtrickl10n.getString("HTEVPrediction.goToHTEV"));
 						htev_link.textContent = "HTEV";
 						li.appendChild(htev_link);
 						ul.appendChild(li);
