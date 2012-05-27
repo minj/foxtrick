@@ -99,50 +99,50 @@
 				return tickers;
 			};
 			var tickerCheck = function() {
-				Foxtrick.log('tickerCheck')
-				var tickers = Foxtrick.sessionGet("tickers");
-				if (tickers == undefined)
-					tickers = [];
+				Foxtrick.sessionGetAsync("tickers", function (tickers) {
+					if (tickers == undefined)
+						tickers = [];
 
-				var tickersNow = getTickers();
+					var tickersNow = getTickers();
 
-				if (tickersNow.length < tickers.length) {
-					// Hattrick.org clears all tickers before adding a new one,
-					// so to not alert when the tickers are being cleared, we
-					// return when ticker count now is less than old ticker
-					// count
-					return;
-				}
+					if (tickersNow.length < tickers.length) {
+						// Hattrick.org clears all tickers before adding a new one,
+						// so to not alert when the tickers are being cleared, we
+						// return when ticker count now is less than old ticker
+						// count
+						return;
+					}
 
-				Foxtrick.sessionSet("tickers", tickersNow);
+					Foxtrick.sessionSet("tickers", tickersNow);
 
-				var newTickers = Foxtrick.filter(function(n) {
-					if (!n.isNew)
-						return false;
-					for (var i = 0; i < tickers.length; ++i) {
-						var old = tickers[i]; 
-						if (old.text == n.text && old.link.replace(/http:\/\/.+\//,'/') == n.link.replace(/http:\/\/.+\//,'/'))
+					var newTickers = Foxtrick.filter(function(n) {
+						if (!n.isNew)
 							return false;
-					}
-					return true;
-				}, tickersNow);
-
-				
-				Foxtrick.map(function(n) {
-					var type = getType(n.link);
-
-					if (FoxtrickPrefs.getBool("module.TickerAlert." + type + ".enabled")) {
-						Foxtrick.util.notify.create(n.text, n.link);
-						var sound = FoxtrickPrefs.getString("module.TickerAlert." + type + ".sound");
-						if (sound) {
-							// use foxtrick:// for Foxtrick.ResourcePath
-							// for cross-platform compatibility
-							sound = sound.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
-							Foxtrick.playSound(sound, doc);
+						for (var i = 0; i < tickers.length; ++i) {
+							var old = tickers[i]; 
+							if (old.text == n.text && old.link.replace(/http:\/\/.+\//,'/') == n.link.replace(/http:\/\/.+\//,'/'))
+								return false;
 						}
-					}
-				}, newTickers);
-				ticker.addEventListener('DOMNodeInserted', tickerCheck, false);
+						return true;
+					}, tickersNow);
+
+					
+					Foxtrick.map(function(n) {
+						var type = getType(n.link);
+
+						if (FoxtrickPrefs.getBool("module.TickerAlert." + type + ".enabled")) {
+							Foxtrick.util.notify.create(n.text, n.link);
+							var sound = FoxtrickPrefs.getString("module.TickerAlert." + type + ".sound");
+							if (sound) {
+								// use foxtrick:// for Foxtrick.ResourcePath
+								// for cross-platform compatibility
+								sound = sound.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
+								Foxtrick.playSound(sound, doc);
+							}
+						}
+					}, newTickers);
+					ticker.addEventListener('DOMNodeInserted', tickerCheck, false);
+				});
 			};
 			if (Foxtrick.util.layout.isSupporter(doc))
 				tickerCheck();

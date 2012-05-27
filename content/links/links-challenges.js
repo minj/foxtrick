@@ -14,6 +14,13 @@ Foxtrick.modules["LinksChallenges"]={
 	},
 
 	run : function(doc) {
+		var module = this;
+		Foxtrick.modules.Links.getCollection(function(collection){
+			module._run(doc);
+		});
+	},
+	
+	_run : function(doc) {
 		var teamid = Foxtrick.util.id.findTeamId(doc.getElementsByClassName("subMenu")[0] );
 		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementsByClassName("main")[0]);
 		var ownteamid = Foxtrick.util.id.getOwnLeagueId();

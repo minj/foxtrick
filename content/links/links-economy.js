@@ -13,6 +13,13 @@ Foxtrick.modules["LinksEconomy"]={
 	},
 
 	run : function(doc) {
+		var module = this;
+		Foxtrick.modules.Links.getCollection(function(collection){
+			module._run(doc);
+		});
+	},
+	
+	_run : function(doc) {
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
 
 		// only on current finances

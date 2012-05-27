@@ -14,6 +14,13 @@ Foxtrick.modules["LinksAchievements"]={
 	},
 
 	run : function(doc) {
+		var module = this;
+		Foxtrick.modules.Links.getCollection(function(collection){
+			module._run(doc);
+		});
+	},
+	
+	_run : function(doc) {
 
 		//addExternalLinksToManagerPage
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();

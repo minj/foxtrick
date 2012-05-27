@@ -13,6 +13,13 @@ Foxtrick.modules["LinksNational"]={
 	},
 
 	run : function(doc) {
+		var module = this;
+		Foxtrick.modules.Links.getCollection(function(collection){
+			module._run(doc);
+		});
+	},
+	
+	_run : function(doc) {
 		var countryid;
 		var ntteamid;
 		var LeagueOfficeTypeID=doc.location.href.replace(/.+LeagueOfficeTypeID=/i, "").match(/^\d+/);

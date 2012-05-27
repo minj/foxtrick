@@ -169,9 +169,10 @@ Foxtrick.util.api = {
 
 	// used to change expire date of xml_cache eg for to my_monitors nextmachtdate
 	setCacheLifetime : function(doc, parameters_str, cache_lifetime) {
-		var xml_cache = Foxtrick.sessionGet('xml_cache.'+parameters_str);
-		Foxtrick.sessionSet('xml_cache.'+parameters_str,
-							{ xml_string:xml_cache.xml_string, cache_lifetime : cache_lifetime })
+		Foxtrick.sessionGetAsync('xml_cache.'+parameters_str, function(xml_cache) {
+			Foxtrick.sessionSet('xml_cache.'+parameters_str,
+							{ xml_string:xml_cache.xml_string, cache_lifetime : cache_lifetime });
+		});	
 	},
 
 	addClearCacheLink : function(doc) {
@@ -218,154 +219,156 @@ Foxtrick.util.api = {
 		}
 
 		// check global_cache_lifetime first, aka server down
-		var recheckDate = Foxtrick.sessionGet('xml_cache.global_cache_lifetime');
-		if (recheckDate && (Number(recheckDate) > HT_date)) {
-			Foxtrick.log('global_cache_lifetime set. recheck later: ',
-								'  recheckDate: ',(new Date(recheckDate)).toString(),
-								'  current timestamp: ',(new Date(HT_date)).toString());
-			this.addClearCacheLink(doc);
-			callback(null, Foxtrickl10n.getString("api.serverUnavailable"));
-			return;
-		}
-		
-		var parameters_str = JSON.stringify(parameters);
-		var xml_cache = Foxtrick.sessionGet('xml_cache.'+parameters_str);
-		if (xml_cache) Foxtrick.log("ApiProxy: options: ",options,
-								'  cache_lifetime: ',(options.cache_lifetime=='session')?'session':(new Date(xml_cache.cache_lifetime)).toString(),
-								'  current timestamp: ',(new Date(HT_date)).toString());
-
-		// check file cache next
-		if (xml_cache && xml_cache.xml_string && options
-				&& 	(  options.cache_lifetime=='session'
-					|| (Number(xml_cache.cache_lifetime) > HT_date ))) {
-			Foxtrick.log('ApiProxy: use cached xml: ' ,parameters_str);
-
-			this.addClearCacheLink(doc);
-
-			if (xml_cache.xml_string=='503') {
-				// server was down. we wait for cache expires
+		Foxtrick.sessionGetAsync('xml_cache.global_cache_lifetime', function (recheckDate) {
+			if (recheckDate && (Number(recheckDate) > HT_date)) {
+				Foxtrick.log('global_cache_lifetime set. recheck later: ',
+									'  recheckDate: ',(new Date(recheckDate)).toString(),
+									'  current timestamp: ',(new Date(HT_date)).toString());
+				this.addClearCacheLink(doc);
 				callback(null, Foxtrickl10n.getString("api.serverUnavailable"));
 				return;
 			}
 			
-			var parser = new window.DOMParser();
-			try {
-				callback (parser.parseFromString( JSON.parse(xml_cache.xml_string), "text/xml"));
-			} catch (e) {
-				Foxtrick.log('ApiProxy: uncaught callback error: ',e , 'parameters: ',parameters);
-			}
-		}
-		else {
-			// add to or create queue
-			if ( typeof(Foxtrick.util.api.queue[parameters_str])!=='undefined' ) {
-				Foxtrick.util.api.queue[parameters_str].push(callback);
-				return;
-			}
-			else {
-				Foxtrick.util.api.queue[parameters_str] = [];
-				Foxtrick.util.api.queue[parameters_str].push(callback);
-			}
+			var parameters_str = JSON.stringify(parameters);
+			Foxtrick.sessionGetAsync('xml_cache.'+parameters_str, function(xml_cache) {
+				if (xml_cache) Foxtrick.log("ApiProxy: options: ",options,
+										'  cache_lifetime: ',(options.cache_lifetime=='session')?'session':(new Date(xml_cache.cache_lifetime)).toString(),
+										'  current timestamp: ',(new Date(HT_date)).toString());
 
-			// process queued requested
-			var process_queued = function(x, status) {
-				var errorText = null;
-				if (x == null) 
-					errorText = Foxtrickl10n.getString("api.failure");
+				// check file cache next
+				if (xml_cache && xml_cache.xml_string && options
+						&& 	(  options.cache_lifetime=='session'
+							|| (Number(xml_cache.cache_lifetime) > HT_date ))) {
+					Foxtrick.log('ApiProxy: use cached xml: ' ,parameters_str);
+
+					this.addClearCacheLink(doc);
+
+					if (xml_cache.xml_string=='503') {
+						// server was down. we wait for cache expires
+						callback(null, Foxtrickl10n.getString("api.serverUnavailable"));
+						return;
+					}
+					
+					var parser = new window.DOMParser();
+					try {
+						callback (parser.parseFromString( JSON.parse(xml_cache.xml_string), "text/xml"));
+					} catch (e) {
+						Foxtrick.log('ApiProxy: uncaught callback error: ',e , 'parameters: ',parameters);
+					}
+				}
 				else {
-					var ErrorNode = x.getElementsByTagName('Error')[0]; 
-					if (typeof(ErrorNode) !== 'undefined') {
-						// chpp api return error xml
-						errorText = ErrorNode.textContent;
-						x = null;
-					}
-				}
-				if (status == 503) 
-					errorText = Foxtrickl10n.getString("api.serverUnavailable");
-				for (var i=0; i< Foxtrick.util.api.queue[parameters_str].length; ++i)
-					Foxtrick.util.api.queue[parameters_str][i](x, errorText);
-				delete (Foxtrick.util.api.queue[parameters_str]);
-			};
-
-			// determine cache liftime
-			if (options && options.cache_lifetime) {
-				if (options.cache_lifetime=='default') var cache_lifetime = HT_date+60*60*1000;  //= 1 hour
-				else var cache_lifetime = options.cache_lifetime;
-			}
-			else var cache_lifetime = 0;
-
-			try {
-				Foxtrick.log("ApiProxy: attempting to retrieve: ", parameters, "…");
-
-				if (!Foxtrick.util.api.authorized()) {
-					Foxtrick.log("ApiProxy: unauthorized.");
-					Foxtrick.util.api.authorize(doc);
-					process_queued(null,0);
-					return;
-				}
-
-				var accessor = {
-					consumerSecret : Foxtrick.util.api.consumerSecret,
-					tokenSecret : Foxtrick.util.api.getAccessTokenSecret()
-				};
-				var msg = {
-					action : Foxtrick.util.api.resourceUrl,
-					method : "get",
-					parameters : parameters
-				};
-				Foxtrick.OAuth.setParameters(msg, [
-					["oauth_consumer_key", Foxtrick.util.api.consumerKey],
-					["oauth_token", Foxtrick.util.api.getAccessToken()],
-					["oauth_signature_method", Foxtrick.util.api.signatureMethod],
-					["oauth_signature", ""],
-					["oauth_timestamp", ""],
-					["oauth_nonce", ""],
-				]);
-				Foxtrick.OAuth.setTimestampAndNonce(msg);
-				Foxtrick.OAuth.SignatureMethod.sign(msg, accessor);
-				var url = Foxtrick.OAuth.addToURL(Foxtrick.util.api.resourceUrl, msg.parameters);
-				Foxtrick.log("Fetching XML data from ",  Foxtrick.util.api.stripToken(url));
-				Foxtrick.loadXml(url, function(x, status) {
-					if (status == 200) {
-						var serializer = new window.XMLSerializer();
-						Foxtrick.sessionSet('xml_cache.'+parameters_str,
-											{ xml_string : JSON.stringify(serializer.serializeToString(x)),
-											cache_lifetime:cache_lifetime });
-						try {
-							process_queued(x, status);
-						} catch (e) {
-							Foxtrick.log('ApiProxy: uncaught callback error: ',e, 'url: ', url);
-						}
-					}
-					else if (status == 401 || (Foxtrick.platform == "Opera" && status==0) ) { // opera hotfix. returned status not correct
-						Foxtrick.log("ApiProxy: error 401, unauthorized. Arguments: ", parameters);
-						Foxtrick.util.api.invalidateAccessToken(doc);
-						Foxtrick.util.api.authorize(doc);
-						process_queued(null, 401);
+					// add to or create queue
+					if ( typeof(Foxtrick.util.api.queue[parameters_str])!=='undefined' ) {
+						Foxtrick.util.api.queue[parameters_str].push(callback);
+						return;
 					}
 					else {
-						Foxtrick.log("ApiProxy: error ", Foxtrick.util.api.getErrorText(x, status) ,
-									". Arguments: ", Foxtrick.filter(function(p) {
-														return (p[0]!='oauth_consumer_key'
-																&& p[0]!='oauth_token'
-																&& p[0]!='oauth_signature');
-													}, parameters));
-						//Foxtrick.log('response was: ', x);
-						// server down. no need to check very page load. let's say we check again in 30 min
-						if (status == 503)  {
-							var recheckDate = (new Date()).getTime()+30*60*1000;
-							Foxtrick.sessionSet('xml_cache.'+parameters_str,
-											{ xml_string : '503',
-											cache_lifetime:recheckDate });
-							Foxtrick.sessionSet('xml_cache.global_cache_lifetime', recheckDate);
-						}
-						process_queued(null, status);
+						Foxtrick.util.api.queue[parameters_str] = [];
+						Foxtrick.util.api.queue[parameters_str].push(callback);
 					}
-				});
-			} catch(e){
-				Foxtrick.log(e);
-				process_queued(null, 0);
-			}
-		}
+
+					// process queued requested
+					var process_queued = function(x, status) {
+						var errorText = null;
+						if (x == null) 
+							errorText = Foxtrickl10n.getString("api.failure");
+						else {
+							var ErrorNode = x.getElementsByTagName('Error')[0]; 
+							if (typeof(ErrorNode) !== 'undefined') {
+								// chpp api return error xml
+								errorText = ErrorNode.textContent;
+								x = null;
+							}
+						}
+						if (status == 503) 
+							errorText = Foxtrickl10n.getString("api.serverUnavailable");
+						for (var i=0; i< Foxtrick.util.api.queue[parameters_str].length; ++i)
+							Foxtrick.util.api.queue[parameters_str][i](x, errorText);
+						delete (Foxtrick.util.api.queue[parameters_str]);
+					};
+
+					// determine cache liftime
+					if (options && options.cache_lifetime) {
+						if (options.cache_lifetime=='default') var cache_lifetime = HT_date+60*60*1000;  //= 1 hour
+						else var cache_lifetime = options.cache_lifetime;
+					}
+					else var cache_lifetime = 0;
+
+					try {
+						Foxtrick.log("ApiProxy: attempting to retrieve: ", parameters, "…");
+
+						if (!Foxtrick.util.api.authorized()) {
+							Foxtrick.log("ApiProxy: unauthorized.");
+							Foxtrick.util.api.authorize(doc);
+							process_queued(null,0);
+							return;
+						}
+
+						var accessor = {
+							consumerSecret : Foxtrick.util.api.consumerSecret,
+							tokenSecret : Foxtrick.util.api.getAccessTokenSecret()
+						};
+						var msg = {
+							action : Foxtrick.util.api.resourceUrl,
+							method : "get",
+							parameters : parameters
+						};
+						Foxtrick.OAuth.setParameters(msg, [
+							["oauth_consumer_key", Foxtrick.util.api.consumerKey],
+							["oauth_token", Foxtrick.util.api.getAccessToken()],
+							["oauth_signature_method", Foxtrick.util.api.signatureMethod],
+							["oauth_signature", ""],
+							["oauth_timestamp", ""],
+							["oauth_nonce", ""],
+						]);
+						Foxtrick.OAuth.setTimestampAndNonce(msg);
+						Foxtrick.OAuth.SignatureMethod.sign(msg, accessor);
+						var url = Foxtrick.OAuth.addToURL(Foxtrick.util.api.resourceUrl, msg.parameters);
+						Foxtrick.log("Fetching XML data from ",  Foxtrick.util.api.stripToken(url));
+						Foxtrick.loadXml(url, function(x, status) {
+							if (status == 200) {
+								var serializer = new window.XMLSerializer();
+								Foxtrick.sessionSet('xml_cache.'+parameters_str,
+													{ xml_string : JSON.stringify(serializer.serializeToString(x)),
+													cache_lifetime:cache_lifetime });
+								try {
+									process_queued(x, status);
+								} catch (e) {
+									Foxtrick.log('ApiProxy: uncaught callback error: ',e, 'url: ', url);
+								}
+							}
+							else if (status == 401 || (Foxtrick.platform == "Opera" && status==0) ) { // opera hotfix. returned status not correct
+								Foxtrick.log("ApiProxy: error 401, unauthorized. Arguments: ", parameters);
+								Foxtrick.util.api.invalidateAccessToken(doc);
+								Foxtrick.util.api.authorize(doc);
+								process_queued(null, 401);
+							}
+							else {
+								Foxtrick.log("ApiProxy: error ", Foxtrick.util.api.getErrorText(x, status) ,
+											". Arguments: ", Foxtrick.filter(function(p) {
+																return (p[0]!='oauth_consumer_key'
+																		&& p[0]!='oauth_token'
+																		&& p[0]!='oauth_signature');
+															}, parameters));
+								//Foxtrick.log('response was: ', x);
+								// server down. no need to check very page load. let's say we check again in 30 min
+								if (status == 503)  {
+									var recheckDate = (new Date()).getTime()+30*60*1000;
+									Foxtrick.sessionSet('xml_cache.'+parameters_str,
+													{ xml_string : '503',
+													cache_lifetime:recheckDate });
+									Foxtrick.sessionSet('xml_cache.global_cache_lifetime', recheckDate);
+								}
+								process_queued(null, status);
+							}
+						});
+					} catch(e){
+						Foxtrick.log(e);
+						process_queued(null, 0);
+					}
+				}
+			});
+		});
 	},
 
 	// batchParameters: array of parameters for retrieve function

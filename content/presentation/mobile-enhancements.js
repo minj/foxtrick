@@ -70,23 +70,25 @@ if (Foxtrick.platform == "Fennec")
 	},
 
 	run : function(doc) { 
-		// rescale to use all space
-		if (doc.getElementById('ctl00_ctl00_CPContent_ucSubMenu_ucLogin_txtUserName')!==null) {
-			var css = this.getStyle('all');
-			this.setStyle(content.document,'foxtrick-pageaction-css', css, this.pageActions['all'].size);
-		}
-		else if (Foxtrick.sessionGet('MobileEnhancements.selection') !== 'all') {
-			var css = this.getStyle('mainContent');
-			this.setStyle(content.document,'foxtrick-pageaction-css', css, this.pageActions['mainContent'].size);
-		}
-		else
-			this.setMetaViewport(doc, "device-width");
-
-		// listener to viewport resizing from background page action
-		sandboxed.extension.onRequest.addListener( function(request, sender, sendResponse) {			
-			if (request.req=='replaceCss') {
-				Foxtrick.modules.MobileEnhancements.setStyle(content.document, request.id, request.css, request.size);
+		Foxtrick.sessionGetAsync('MobileEnhancements.selection', function(selection) {
+			// rescale to use all space
+			if (doc.getElementById('ctl00_ctl00_CPContent_ucSubMenu_ucLogin_txtUserName')!==null) {
+				var css = this.getStyle('all');
+				this.setStyle(content.document,'foxtrick-pageaction-css', css, this.pageActions['all'].size);
 			}
+			else if (selection !== 'all') {
+				var css = this.getStyle('mainContent');
+				this.setStyle(content.document,'foxtrick-pageaction-css', css, this.pageActions['mainContent'].size);
+			}
+			else
+				this.setMetaViewport(doc, "device-width");
+
+			// listener to viewport resizing from background page action
+			sandboxed.extension.onRequest.addListener( function(request, sender, sendResponse) {			
+				if (request.req=='replaceCss') {
+					Foxtrick.modules.MobileEnhancements.setStyle(content.document, request.id, request.css, request.size);
+				}
+			});
 		});
 	},
 

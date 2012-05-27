@@ -13,6 +13,13 @@ Foxtrick.modules["LinksClubTransfers"]={
 	},
 
 	run : function(doc) {
+		var module = this;
+		Foxtrick.modules.Links.getCollection(function(collection){
+			module._run(doc);
+		});
+	},
+	
+	_run : function(doc) {
 		var main = doc.getElementsByClassName("main")[0]; 
 		var ownBoxBody=null;
 		var thisdiv = main.getElementsByTagName("div")[0];

@@ -103,124 +103,124 @@ Foxtrick.modules["StaffMarker"]={
 	},
 
 	run : function(doc) {
-
-		var data = Foxtrick.sessionGet('staff-marker-data');
-		// getting user-defined IDs and colors
-		var customMarker = {};
-		if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker", "own")) {
-			var customText = FoxtrickPrefs.getString("module.StaffMarker.own_text");
-			try {
-				customMarker = JSON.parse(customText);
-			}
-			catch (e) {
-				Foxtrick.log("JSON parse error: ", customText);
-			}
-		}
-		// tell whether user is staff by id or alias,
-		// and attach class and/or user-defined style to object
-		var modifier = function(id, alias, object) {
-			// alias in select boxes might have a Left-to-Right
-			// Overwrite (LRO, U+202D) in front
-			var markers = [
-				[/^\u202d?HT-/i, "ht"],
-				[/^\u202d?GM-/i, "gm"],
-				[/^\u202d?Mod-/i, "mod"],
-				[/^\u202d?CHPP-/i, "chpp"],
-				[/^\u202d?LA-/i, "la"]
-			];
-			// user-defined style
-			if (customMarker[id] !== undefined)
-				object.setAttribute("style", customMarker[id]);
-			// exclusive classes for official staffs
-			var first = Foxtrick.nth(0, function(pair) {
-					return alias.search(pair[0]) == 0;
-				}, markers);
-			if (first) {
-				Foxtrick.addClass(object, "ft-staff-" + first[1]);
-			}
-
-			// data loaded from external files
-			for (var type in data) {
-				if (data[type][id] == true){
-					Foxtrick.addClass(object, "ft-staff-" + type);
-					if (type == "chpp-holder"){
-						var appNames = "";
-						Foxtrick.map(function (appName){
-							appNames = appNames + " \n● " + appName
-						}, data[type]["apps"][id])
-						if(object.getAttribute("title"))
-							object.setAttribute("title", object.getAttribute("title") + appNames)
-						else
-							object.setAttribute("title", object.textContent.match(/\S+/)[0] + appNames)
-					}
+		Foxtrick.sessionGetAsync('staff-marker-data', function(data) {
+			// getting user-defined IDs and colors
+			var customMarker = {};
+			if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker", "own")) {
+				var customText = FoxtrickPrefs.getString("module.StaffMarker.own_text");
+				try {
+					customMarker = JSON.parse(customText);
+				}
+				catch (e) {
+					Foxtrick.log("JSON parse error: ", customText);
 				}
 			}
-		};
+			// tell whether user is staff by id or alias,
+			// and attach class and/or user-defined style to object
+			var modifier = function(id, alias, object) {
+				// alias in select boxes might have a Left-to-Right
+				// Overwrite (LRO, U+202D) in front
+				var markers = [
+					[/^\u202d?HT-/i, "ht"],
+					[/^\u202d?GM-/i, "gm"],
+					[/^\u202d?Mod-/i, "mod"],
+					[/^\u202d?CHPP-/i, "chpp"],
+					[/^\u202d?LA-/i, "la"]
+				];
+				// user-defined style
+				if (customMarker[id] !== undefined)
+					object.setAttribute("style", customMarker[id]);
+				// exclusive classes for official staffs
+				var first = Foxtrick.nth(0, function(pair) {
+						return alias.search(pair[0]) == 0;
+					}, markers);
+				if (first) {
+					Foxtrick.addClass(object, "ft-staff-" + first[1]);
+				}
 
-		// mark staffs in thread
-		var markThread = function() {
-			var userDivs =  doc.getElementsByClassName("main")[0].getElementsByClassName("float_left");
-			Foxtrick.map(function(user) {
-				var links = user.getElementsByTagName("a");
-				Foxtrick.map(function(a) {
-					if (!a.href) return; // eg our copy link
-					if (a.getAttribute("href").search(/\/Club\/Manager\/\?userId\=/i) == -1
-						|| a.getAttribute("href").search(/redir_to_league=true/i) != -1)
+				// data loaded from external files
+				for (var type in data) {
+					if (data[type][id] == true){
+						Foxtrick.addClass(object, "ft-staff-" + type);
+						if (type == "chpp-holder"){
+							var appNames = "";
+							Foxtrick.map(function (appName){
+								appNames = appNames + " \n● " + appName
+							}, data[type]["apps"][id])
+							if(object.getAttribute("title"))
+								object.setAttribute("title", object.getAttribute("title") + appNames)
+							else
+								object.setAttribute("title", object.textContent.match(/\S+/)[0] + appNames)
+						}
+					}
+				}
+			};
+
+			// mark staffs in thread
+			var markThread = function() {
+				var userDivs =  doc.getElementsByClassName("main")[0].getElementsByClassName("float_left");
+				Foxtrick.map(function(user) {
+					var links = user.getElementsByTagName("a");
+					Foxtrick.map(function(a) {
+						if (!a.href) return; // eg our copy link
+						if (a.getAttribute("href").search(/\/Club\/Manager\/\?userId\=/i) == -1
+							|| a.getAttribute("href").search(/redir_to_league=true/i) != -1)
+							return;
+						var uname = Foxtrick.trim(a.title);
+						// Work-around for supporter star
+						if (uname.lastIndexOf("*") == uname.length-1)
+							uname = uname.substring(0,uname.length-1);
+						var uid = a.href.replace(/.+userId=/i, "").match(/^\d+/);
+
+						modifier(uid, uname, a);
+					}, links);
+				}, userDivs);
+			};
+			// mark staffs in select box
+			var markSelect = function() {
+				var selects =  doc.getElementsByClassName("main")[0].getElementsByClassName("threadPagingFilter");
+				Foxtrick.map(function(select) {
+					if (select.id.search(/filter/i) == -1
+						&& select.id.search(/recipient/i) == -1)
 						return;
-					var uname = Foxtrick.trim(a.title);
-					// Work-around for supporter star
-					if (uname.lastIndexOf("*") == uname.length-1)
-						uname = uname.substring(0,uname.length-1);
-					var uid = a.href.replace(/.+userId=/i, "").match(/^\d+/);
 
-					modifier(uid, uname, a);
-				}, links);
-			}, userDivs);
-		};
-		// mark staffs in select box
-		var markSelect = function() {
-			var selects =  doc.getElementsByClassName("main")[0].getElementsByClassName("threadPagingFilter");
-			Foxtrick.map(function(select) {
-				if (select.id.search(/filter/i) == -1
-					&& select.id.search(/recipient/i) == -1)
-					return;
+					var css = '';
+					var i = 1;
+					var user_hasClass = {};
+					var option;
+					while (option = select.options[i++]) {
+						var uname = Foxtrick.trim(option.textContent);
+						uname = uname.substring(0, uname.indexOf(" "));
+						if (uname == "")
+							uname = Foxtrick.trim(option.textContent);
+						if (uname == "")
+							break;
+						var uid = option.value.replace(/by_|to_/gi, "");
 
-				var css = '';
-				var i = 1;
-				var user_hasClass = {};
-				var option;
-				while (option = select.options[i++]) {
-					var uname = Foxtrick.trim(option.textContent);
-					uname = uname.substring(0, uname.indexOf(" "));
-					if (uname == "")
-						uname = Foxtrick.trim(option.textContent);
-					if (uname == "")
-						break;
-					var uid = option.value.replace(/by_|to_/gi, "");
+						modifier(uid, uname, option); // no background image in chrome for select. background-colors only
 
-					modifier(uid, uname, option); // no background image in chrome for select. background-colors only
-
-					if (option.value==-3) {
-						Foxtrick.addClass(option, "ft-staff-seperator");
+						if (option.value==-3) {
+							Foxtrick.addClass(option, "ft-staff-seperator");
+						}
+						else if (option.value=="by_-1") {
+							Foxtrick.addClass(option, "ft-staff-official");
+						}
 					}
-					else if (option.value=="by_-1") {
-						Foxtrick.addClass(option, "ft-staff-official");
-					}
-				}
-			}, selects);
-		};
+				}, selects);
+			};
 
-		if (Foxtrick.isPage("forumViewThread", doc)) {
-			markThread(doc, modifier);
-			markSelect(doc, modifier);
-		}
-		else if (Foxtrick.isPage("forumWritePost", doc)) {
-			markSelect(doc, modifier);
-		}
-		else if (Foxtrick.isPage("teamPage", doc)) {
-			if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker", "manager")) {
+			if (Foxtrick.isPage("forumViewThread", doc)) {
 				markThread(doc, modifier);
+				markSelect(doc, modifier);
 			}
-		}
+			else if (Foxtrick.isPage("forumWritePost", doc)) {
+				markSelect(doc, modifier);
+			}
+			else if (Foxtrick.isPage("teamPage", doc)) {
+				if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker", "manager")) {
+					markThread(doc, modifier);
+				}
+			}
+		});		
 	}
 };

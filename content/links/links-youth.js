@@ -13,6 +13,13 @@ Foxtrick.modules["LinksYouthOverview"]={
 	},
 
 	run : function(doc) {
+		var module = this;
+		Foxtrick.modules.Links.getCollection(function(collection){
+			module._run(doc);
+		});
+	},
+	
+	_run : function(doc) {
 		var boxleft=doc.getElementsByClassName("subMenu")[0];
 		if (boxleft==null) {return;}
 		var teamid=Foxtrick.util.id.findTeamId(boxleft);
@@ -53,6 +60,13 @@ Foxtrick.modules["LinksYouthPlayerDetail"]={
 	},
 
 	run : function(doc) {
+		var module = this;
+		Foxtrick.modules.Links.getCollection(function(collection){
+			module._run(doc);
+		});
+	},
+	
+	_run : function(doc) {
 		var boxleft=doc.getElementsByClassName("subMenu")[0];
 		if (boxleft==null) {return;}
 		var teamid=Foxtrick.util.id.findTeamId(boxleft);
@@ -104,6 +118,13 @@ Foxtrick.modules["LinksYouthTraining"]={
 	},
 
 	run : function(doc) {
+		var module = this;
+		Foxtrick.modules.Links.getCollection(function(collection){
+			module._run(doc);
+		});
+	},
+	
+	_run : function(doc) {
 		var boxleft=doc.getElementsByClassName("subMenu")[0];
 		var ownteamid=0;
 		var owncountryid=0;
@@ -145,6 +166,13 @@ Foxtrick.modules["LinksYouthPlayerList"]={
 	},
 
 	run : function(doc) {
+		var module = this;
+		Foxtrick.modules.Links.getCollection(function(collection){
+			module._run(doc);
+		});
+	},
+	
+	_run : function(doc) {
 		var boxleft=doc.getElementsByClassName("subMenu")[0];
 		var ownteamid=0;
 		var owncountryid=0;
@@ -187,6 +215,13 @@ Foxtrick.modules["LinksYouthMatchList"]={
 	},
 
 	run : function(doc) {
+		var module = this;
+		Foxtrick.modules.Links.getCollection(function(collection){
+			module._run(doc);
+		});
+	},
+	
+	_run : function(doc) {
 		var boxleft=doc.getElementsByClassName("subMenu")[0];
 		var ownteamid=0;
 		var owncountryid=0;
@@ -229,6 +264,13 @@ Foxtrick.modules["LinksYouthLeague"]={
 	},
 
 	run : function(doc) {
+		var module = this;
+		Foxtrick.modules.Links.getCollection(function(collection){
+			module._run(doc);
+		});
+	},
+	
+	_run : function(doc) {
 		var boxleft=doc.getElementsByClassName("subMenu")[0];
 		var ownteamid=0;
 		var owncountryid=0;

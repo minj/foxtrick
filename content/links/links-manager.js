@@ -13,6 +13,13 @@ Foxtrick.modules["LinksManager"]={
 	},
 
 	run : function(doc) {
+		var module = this;
+		Foxtrick.modules.Links.getCollection(function(collection){
+			module._run(doc);
+		});
+	},
+	
+	_run : function(doc) {
 		var ownBoxBody = null;
 		var mainBody = doc.getElementById('mainBody');
 

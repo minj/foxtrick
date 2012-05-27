@@ -48,20 +48,21 @@ Foxtrick.modules["Filter"]={
 			}
 		};
 		var getFilters = function(page, callback) { 
-			var n = Foxtrick.sessionGet("filters." + page);
-			try {
-				if (n === undefined) {
-					// set default filters if not set
-					Foxtrick.sessionSet("filters." + page, FILTER_VAL[page].filters);
-					callback(FILTER_VAL[page].filters);
+			Foxtrick.sessionGetAsync("filters." + page, function(n) {
+				try {
+					if (n === undefined) {
+						// set default filters if not set
+						Foxtrick.sessionSet("filters." + page, FILTER_VAL[page].filters);
+						callback(FILTER_VAL[page].filters);
+					}
+					else {
+						callback(n);
+					}
 				}
-				else {
-					callback(n);
+				catch (e) {
+					Foxtrick.log(e);
 				}
-			}
-			catch (e) {
-				Foxtrick.log(e);
-			}
+			});
 		};
 		var setFilters = function(page, filters) {
 			Foxtrick.sessionSet("filters." + page, filters);

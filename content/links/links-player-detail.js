@@ -13,6 +13,13 @@ Foxtrick.modules["LinksPlayerDetail"]={
 	},
 
 	run : function(doc) {
+		var module = this;
+		Foxtrick.modules.Links.getCollection(function(collection){
+			module._run(doc);
+		});
+	},
+	
+	_run : function(doc) {
 		//addExternalLinksToPlayerDetail
 		var playerInfo = doc.getElementsByClassName("playerInfo")[0];
 		var infoTable = playerInfo.getElementsByTagName("table")[0];

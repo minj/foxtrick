@@ -13,6 +13,13 @@ Foxtrick.modules["LinksCoach"]={
 	},
 
 	run : function(doc) {
+		var module = this;
+		Foxtrick.modules.Links.getCollection(function(collection){
+			module._run(doc);
+		});
+	},
+	
+	_run : function(doc) {
 		var links = Foxtrick.modules["Links"].getLinks("coachlink", {  }, doc, this);
 		var ownBoxBody=null;
 

@@ -13,6 +13,13 @@ Foxtrick.modules["LinksArena"]={
 	},
 
 	run : function(doc) {
+		var module = this;
+		Foxtrick.modules.Links.getCollection(function(collection){
+			module._run(doc);
+		});
+	},
+	
+	_run : function(doc) {
 		var alldivs = doc.getElementsByTagName('div');
 		var ownBoxBody=null;
 		for (var j = 0; j < alldivs.length; j++) {

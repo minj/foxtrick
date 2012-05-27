@@ -13,6 +13,13 @@ Foxtrick.modules["LinksTraining"]={
 	},
 
 	run : function(doc) {
+		var module = this;
+		Foxtrick.modules.Links.getCollection(function(collection){
+			module._run(doc);
+		});
+	},
+	
+	_run : function(doc) {
 		if (doc.location.href.search(/ChangeCoach/i)>-1 || doc.location.href.search(/YouthTraining/i)>-1) {return;}
 		//addExternalLinksToCoachPage
 

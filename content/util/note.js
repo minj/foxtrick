@@ -62,13 +62,14 @@ Foxtrick.util.note = {
 
 		// add copy instructions for opera and safari to copy notes
 		if ((Foxtrick.platform == "Opera" || Foxtrick.platform == "Safari") && id.indexOf('copy-note')!==-1) {
-			var string = Foxtrick.sessionGet('clipboard');
-			var msg_p = note.getElementsByTagName('p')[0];
-			msg_p.textContent = Foxtrickl10n.getString('specialCopy.hint');
-			var textarea = doc.createElement('textarea');
-			msg_p.parentNode.insertBefore(textarea, msg_p.nextSibling);
-			textarea.value = string;
-			textarea.select();
+			Foxtrick.sessionGetAsync('clipboard', function(string) {
+				var msg_p = note.getElementsByTagName('p')[0];
+				msg_p.textContent = Foxtrickl10n.getString('specialCopy.hint');
+				var textarea = doc.createElement('textarea');
+				msg_p.parentNode.insertBefore(textarea, msg_p.nextSibling);
+				textarea.value = string;
+				textarea.select();
+			});
 		}
 
 		return note;

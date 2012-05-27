@@ -94,25 +94,25 @@ Foxtrick.loader.chrome.clickListener = function(e) {
 			e.button == 0 && 		// left mouse button
 			e.shiftKey == true ) { 	// our special key we listen too
 
-			var text = Foxtrick.sessionGet('clipboard');
-			Foxtrick.log('clipboard: ',text);
-			if (text) {
-				// insert clipboard at current position
-				ta = e.target;
-				var s = FoxtrickForumYouthIcons.getSelection(ta);
-				// Opera, Mozilla
-				if (ta.selectionStart || ta.selectionStart == '0') {
-					var st = ta.scrollTop;
-					ta.value = s.textBeforeSelection+
-								text +
-								s.textAfterSelection;
-					ta.scrollTop = st;
+			Foxtrick.sessionGetAsync('clipboard', function(text) {
+				if (text) {
+					// insert clipboard at current position
+					ta = e.target;
+					var s = FoxtrickForumYouthIcons.getSelection(ta);
+					// Opera, Mozilla
+					if (ta.selectionStart || ta.selectionStart == '0') {
+						var st = ta.scrollTop;
+						ta.value = s.textBeforeSelection+
+									text +
+									s.textAfterSelection;
+						ta.scrollTop = st;
+					}
+					// Others
+					else {
+						ta.value += text;
+					}
 				}
-				// Others
-				else {
-					ta.value += text;
-				}
-			}
+			});	
 		}
 	} catch(e) {Foxtrick.log(e)}
 };

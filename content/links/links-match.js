@@ -14,6 +14,13 @@ Foxtrick.modules["LinksMatch"]={
 	},
 
 	run : function(doc) {
+		var module = this;
+		Foxtrick.modules.Links.getCollection(function(collection){
+			module._run(doc);
+		});
+	},
+	
+	_run : function(doc) {
 		// get ids
 		var youthmatch = Foxtrick.util.id.findIsYouthMatch(doc.location.href);
 		var teamid,teamid2;

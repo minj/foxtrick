@@ -7,12 +7,15 @@
 
 (function() {
 	// callback is called after links-collection is stored in session store
+	var collection = null;
 	var callbackStack = [];
 	var storeCollection = function(callback) {
 		callbackStack.push(callback);
 		if (callbackStack.length != 1)
 			return;
-		var collection = {};
+		if (collection)
+			return;
+		collection = {};
 		// load links from external feeds
 		var feeds = FoxtrickPrefs.getString("module.Links.feeds") || "";
 		feeds = feeds.split(/(\n|\r)+/);
@@ -101,15 +104,6 @@
 		}, feeds);
 	};
 
-	var getCollection = function(callback) {
-		var collection = Foxtrick.sessionGet("links-collection");
-		if (collection) {
-			callback(collection);
-		}
-		else {
-			storeCollection(callback);
-		}
-	};
 
 	Foxtrick.modules["Links"]={
 		MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
@@ -127,6 +121,18 @@
 			cont.appendChild(textarea);
 
 			return cont;
+		},
+
+		getCollection : function(callback) {
+			Foxtrick.sessionGetAsync("links-collection", function(col) {
+				if (col) {
+					collection = col;
+					callback(collection);
+				}
+				else {
+					storeCollection(callback);
+				}
+			});
 		},
 
 		init : function() {
@@ -167,7 +173,6 @@
 				return linkNode;
 			};
 
-			var collection = Foxtrick.sessionGet("links-collection");
 			// links collection are not available, get them and return
 			if (!collection) {
 				storeCollection();
@@ -284,7 +289,7 @@
 		getOptionsHtml : function(doc, module, linkType) {
 			try{
 			var list = doc.createElement("ul");
-			getCollection(function(collection) {
+			this.getCollection(function(collection) {
 				try{ var hasOption = false;
 				var types = (linkType instanceof Array) ? linkType : [linkType];
 				Foxtrick.log('types ', types)

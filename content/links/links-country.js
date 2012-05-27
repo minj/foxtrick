@@ -13,6 +13,13 @@ Foxtrick.modules["LinksCountry"]={
 	},
 
 	run : function(doc) {
+		var module = this;
+		Foxtrick.modules.Links.getCollection(function(collection){
+			module._run(doc);
+		});
+	},
+	
+	_run : function(doc) {
 		var flag = doc.getElementsByClassName("flag")[0];
 		var leagueId = Foxtrick.util.id.findLeagueId(flag.parentNode);
 

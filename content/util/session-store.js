@@ -30,6 +30,13 @@ Foxtrick._sessionGet = function(keymap) {
 		return answermap;
 	}
 };
+// dummy for testing async calls
+Foxtrick.sessionGetAsync = function(key, callback) {
+	window.setTimeout(function(){
+		//Foxtrick.log(key,Foxtrick._sessionGet(key));
+		callback(Foxtrick._sessionGet(key));
+	}, 1);
+};
 
 Foxtrick._sessionDeleteBranch = function(branch) {
 	if (branch != '') branch += '.';
@@ -42,7 +49,7 @@ Foxtrick._sessionDeleteBranch = function(branch) {
 // for Firefox
 if (Foxtrick.platform == "Firefox") {
 	Foxtrick.sessionSet = Foxtrick._sessionSet;
-	Foxtrick.sessionGet = Foxtrick._sessionGet; 
+	Foxtrick.sessionGet = Foxtrick._sessionGet;
 	Foxtrick.sessionDeleteBranch = Foxtrick._sessionDeleteBranch;
 }
 // sessionStore for all other
