@@ -74,7 +74,6 @@ else {
 				req : "sessionGet",
 				key : key
 			}, function(response){
-				Foxtrick.log(key, response.value)
 				callback(response.value);
 			});
 		};

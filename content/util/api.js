@@ -224,7 +224,7 @@ Foxtrick.util.api = {
 				Foxtrick.log('global_cache_lifetime set. recheck later: ',
 									'  recheckDate: ',(new Date(recheckDate)).toString(),
 									'  current timestamp: ',(new Date(HT_date)).toString());
-				this.addClearCacheLink(doc);
+				Foxtrick.util.api.addClearCacheLink(doc);
 				callback(null, Foxtrickl10n.getString("api.serverUnavailable"));
 				return;
 			}
@@ -241,7 +241,7 @@ Foxtrick.util.api = {
 							|| (Number(xml_cache.cache_lifetime) > HT_date ))) {
 					Foxtrick.log('ApiProxy: use cached xml: ' ,parameters_str);
 
-					this.addClearCacheLink(doc);
+					Foxtrick.util.api.addClearCacheLink(doc);
 
 					if (xml_cache.xml_string=='503') {
 						// server was down. we wait for cache expires

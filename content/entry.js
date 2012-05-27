@@ -123,8 +123,6 @@ Foxtrick.entry.contentScriptInit = function(data) {
 		Foxtrick.XMLData.worldDetailsXml = parser.parseFromString(data.worldDetails, "text/xml");
 		Foxtrick.XMLData.League = data.league;
 		Foxtrick.XMLData.countryToLeague = data.countryToLeague;
-		
-		Foxtrick.sessionStore = data.sessionStore;
 };
 
 // called on browser load and after preferences changes (background side for sandboxed, fennec)

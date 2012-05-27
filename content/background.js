@@ -103,8 +103,6 @@ Foxtrick.loader.chrome.browserLoad = function() {
 			worldDetails : worldDetails,
 			league : Foxtrick.XMLData.League,
 			countryToLeague : Foxtrick.XMLData.countryToLeague,
-		
-			sessionStore : Foxtrick.sessionStore,
 		};
 	
 		if (request.req == "pageLoad") {
@@ -279,10 +277,8 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		// @param value - value to store
 		Foxtrick.sessionSet(request.key, request.value);
 	};
-	// from sessionStore.js
 	Foxtrick.loader.chrome.background.sessionGet = function(request, sender, sendResponse) {
 		// @param key - key of session store
-		// @param value - value to store
 		sendResponse( {value: Foxtrick.sessionGet(request.key)} );
 	};
 	Foxtrick.loader.chrome.background.sessionDeleteBranch = function(request, sender, sendResponse) {
