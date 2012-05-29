@@ -465,6 +465,10 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 			if(!events.length)
 				return;
 
+			//no events yet? byebye
+			if(!events[0].getAttribute("data-eventtype"))
+				return;
+
 			var koPending = true;
 			var topDown = true;
 			var firstEventType = parseInt(events[0].getAttribute("data-eventtype").match(/\d+/)[0]);
