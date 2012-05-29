@@ -462,6 +462,9 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 	run : function(doc) {
 		var react = function(liveReport){
 			var events = liveReport.getElementsByTagName("tr");
+			if(!events.length)
+				return;
+			
 			var koPending = true;
 			var topDown = true;
 			var firstEventType = parseInt(events[0].getAttribute("data-eventtype").match(/\d+/)[0]);
