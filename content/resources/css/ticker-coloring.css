@@ -12,7 +12,7 @@
 }
 
 /* login welcome */
-#ticker a[href^="/MyHattrick/Dashboard.aspx"], #ticker a[href^="/Myhattrick/Dashboard.aspx" {
+#ticker a[href^="/MyHattrick/Dashboard.aspx"], #ticker a[href^="/Myhattrick/Dashboard.aspx"] {
 	background-color: #dfefc2;
 }
 /* My Hattrick message. being after login style it should take precedence */
