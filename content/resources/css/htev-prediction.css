@@ -118,7 +118,6 @@ html[data-theme="simple"] .ft-htev-nav ul {
 	text-align: center !important;
 	padding: 0px !important;
 }
-
 .ft-htev-icon {
 	position: absolute;
 	left: -3px;
@@ -128,5 +127,8 @@ html[data-theme="simple"] .ft-htev-nav ul {
 	float: right;
 	display: block;
 	cursor: pointer;
+}
+.ft-htev-info {
+	text-align:center !important;
 }
 }

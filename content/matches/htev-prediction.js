@@ -70,6 +70,7 @@ Foxtrick.modules["HTEVPrediction"]={
 						//"no match" response
 						if(json.message && json.message == "no match"){
 							var msg = doc.createElement("div");
+							Foxtrick.addClass(msg, "ft-htev-info");
 							msg.textContent = "No data";
 							htev_div.appendChild(msg);
 						}
