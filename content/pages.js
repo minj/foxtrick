@@ -77,14 +77,16 @@ Foxtrick.ht_pages = {
 	'marathon'  				: '/World/Series/Marathon.aspx',
 	'promotion' 				: '/World/Series/Promotion.aspx',
 	'fixtures'					: '/World/Series/Fixtures.aspx',
-	'players'					: '/Club/Players/$|/Club/Players/default.aspx|/Club/Players/\?|/Club/Players/?TeamID=|/Club/NationalTeam/NTPlayers.aspx|/Club/Players/Oldies.aspx',
-	'ownPlayers'				: '/Club/Players/$|/Club/Players/default.aspx', // updated in core.js
+	'players'					: '/Club/Players/$|/Club/Players/default.aspx|/Club/Players/\?|/Club/Players/?TeamID=|/Club/NationalTeam/NTPlayers.aspx|/Club/Players/Oldies.aspx|/Club/Players/KeyPlayers.aspx',
+	'ownPlayers'				: '/Club/Players/$|/Club/Players/default.aspx|/Club/Players/KeyPlayers.aspx$', // updated in core.js
 	'SeniorPlayers'				: '/Club/Players/$|/Club/Players/\?|/Club/Players/?TeamID=|/Club/Players/default.aspx',
 	'NTPlayers'					: '/Club/NationalTeam/NTPlayers.aspx',
 	'oldplayers'				: '/Club/Players/Oldies.aspx',
 	'oldcoaches'				: '/Club/Players/Coaches.aspx',
 	'YouthPlayers'  			: 'YouthPlayers.aspx',
 	'ownYouthPlayers'			: 'YouthPlayers.aspx$', // updated in core.js
+	'keyPlayers'				: '/Club/Players/KeyPlayers.aspx',
+	'ownKeyPlayers'				: '/Club/Players/KeyPlayers.aspx$', // updated in core.js
 	'PlayerHistory'				: '/Club/Players/PlayerHistory.aspx',
 	'playerevents'				: '/Club/Players/PlayerHistory.aspx?playerId=\\d+&actionType=playerevents',
 	'trainingevents'			: '/Club/Players/PlayerHistory.aspx?playerId=\\d+&actionType=trainingevents',

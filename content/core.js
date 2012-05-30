@@ -198,7 +198,8 @@ Foxtrick.modules["Core"]={
 				leagueId : Foxtrick.util.id.findLeagueId(teamLinks),
 				teamName : Foxtrick.util.id.extractTeamName(teamLinks)
 			};
-			Foxtrick.ht_pages["ownPlayers"] = '/Club/Players/$|/Club/Players/default.aspx|/Club/Players/?TeamID=' + this.SELF_TEAM_INFO.teamId;
+			Foxtrick.ht_pages["ownPlayers"] = '/Club/Players/$|/Club/Players/default.aspx|/Club/Players/KeyPlayers.aspx$|/Club/Players/?TeamID=' + this.SELF_TEAM_INFO.teamId + '|/Club/Players/KeyPlayers.aspx?teamId=' + this.SELF_TEAM_INFO.teamId;
+			Foxtrick.ht_pages["ownKeyPlayers"] = '/Club/Players/KeyPlayers.aspx$|/Club/Players/KeyPlayers.aspx?teamId=' + this.SELF_TEAM_INFO.teamId;
 		}
 		var subMenu = doc.getElementsByClassName("subMenu")[0];
 		if (subMenu) {

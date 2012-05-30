@@ -22,6 +22,7 @@
 <item>● StaffMarker: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on</item>
 <item>● MatchPlayerColouring: Now works properly for players that were put in and left the field before the game ended</item>
 <item>● TeamPopupLinks: Some restyling to integrate better with the overall look and feel of hattrick.org</item>
+<item>Support for the KeyPlayer page</item>
 <item></item>
 <item><xhtml:b>For visually or hearing impaired users</xhtml:b></item>
 <item>We added a new section to the settings page that will contain all modules that are related to accessibility.</item>
