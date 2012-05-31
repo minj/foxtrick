@@ -14,8 +14,12 @@ Foxtrick.modules["StaffMarker"]={
 
 	CSS : Foxtrick.InternalPath + "resources/css/staff-marker.css",
 
-	// get Hattrick-youthclub staffs
 	init : function() {
+		this.load();
+	},
+
+	// get staffs
+	load : function() {
 		var parseMarkers = function(text) {
 			try {
 				var parsed = JSON.parse(text);
