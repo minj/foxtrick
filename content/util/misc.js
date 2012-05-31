@@ -108,7 +108,7 @@ Foxtrick.playSound = function(url, doc) {
 			else
 				type = url.match(/.+\.([^\.]+)$/)[1];
 		try  {
-			Foxtrick.log('play: '+url)
+			Foxtrick.log('play: '+url.substr(0,160));
 			var music = new Audio(url);
 			var canPlay = music.canPlayType('audio/'+type);
 			Foxtrick.log('can play '+type+':'+canPlay);
@@ -136,7 +136,7 @@ Foxtrick.playSound = function(url, doc) {
 			doc.getElementsByTagName('body')[0].appendChild(music);
 		}
 	} catch(e){
-		Foxtrick.log("Cannot play sound: ", url);
+		Foxtrick.log("Cannot play sound: ", url.substr(0,160));
 		Foxtrick.log(e);
 	}
 }
