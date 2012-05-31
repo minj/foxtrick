@@ -57,7 +57,7 @@ Foxtrick.util.notify.create = function(msg, url) {
 	};
 
 	var createSafariGrowl = function() {
-		var showGrowlNotification = function (msg) {
+		showGrowlNotification = function (msg) {
 		  try {
 			if ( window.GrowlSafariBridge.notifyWithOptions !== undefined) {
 				 window.GrowlSafariBridge.notifyWithOptions(msg.name, msg.status, {
