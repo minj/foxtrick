@@ -14,6 +14,47 @@
 			</xhtml:p>
 		</answer>
 	</item>
+	<item id="sound-format">
+		<question>Which file formats are allowed for alert sounds?</question>
+		<answer>
+			<xhtml:p>
+			    Different browsers allow different file formats. Here's a list:
+			</xhtml:p>
+			<xhtml:p>
+				Mozilla: wav, ogg
+			</xhtml:p>
+			<xhtml:p>
+				Safari: wav, mp3
+			</xhtml:p>
+			<xhtml:p>
+				Chrome:	ogg, mp3
+			</xhtml:p>
+			<xhtml:p>
+				Opera: wav, ogg
+			</xhtml:p>
+		</answer>
+	</item>
+	<item id="sound-location">
+		<question>What is the size limit for alert sounds and where can they be located?</question>
+		<answer>
+			<xhtml:p>
+			    All browsers can play data urls. 
+				Those are the internally saved sounds when you use the load button provided in the preferences.
+				Since they are converted and saved in your preferences, the size is limited to around 160kB per sound.
+			</xhtml:p>
+			<xhtml:p>
+				All browsers also can play sounds from directly the internet (http urls). 
+				Just copy a link to a sound (eg http://foxtrick.org/sound.wav) into the edit field for sounds. No size limit.
+			</xhtml:p>
+			<xhtml:p>
+				Mozilla browsers also can play sounds directly from your harddrive (file urls) with no size limit. 
+				Easiest way to get the right format: 
+				In the browser type Ctrl+o, browse to the sound file and select it. 
+				In the adress bar on top is now the right link to the local file (eg file:///c:/sound.wav).
+				Copy and paste this into the edit field for the sounds.
+			</xhtml:p>
+		</answer>
+	</item>
 	<item id="authorize">
 		<question>Why should I authorize FoxTrick to access my team data?</question>
 		<answer>
@@ -67,8 +108,8 @@
 				As stated above, no private data is involved.
 			</xhtml:p>
 			<xhtml:p>
-				The only exception is module <xhtml:a href="#module=HTMSPrediction">HTMSPrediction</xhtml:a>,
-				where match ratings are passed to <xhtml:a href="http://www.fantamondi.it/HTMS/index.php?page=home&amp;lang=en">Hattrick Match Analysis</xhtml:a> with XMLHttpRequest.
+				The exceptions are modules <xhtml:a href="#module=HTMSPrediction">HTMSPrediction</xhtml:a> and  <xhtml:a href="#module=HTEVPrediction">HTEVPrediction</xhtml:a>,
+				where match ratings are passed to passed to and recieved from the respective sites with XMLHttpRequest.
 			</xhtml:p>
 		</answer>
 	</item>
