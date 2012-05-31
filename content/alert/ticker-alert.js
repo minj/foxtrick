@@ -61,6 +61,7 @@
 				row.appendChild(soundc);
 				var sound = doc.createElement("input");
 				sound.setAttribute("pref", "module.TickerAlert." + type + ".sound");
+				sound.id = "module.TickerAlert." + type + ".id";
 				soundc.appendChild(sound);
 				var filec = doc.createElement("td");
 				row.appendChild(filec);
@@ -77,8 +78,10 @@
 				var playButton = doc.createElement("input");
 				playButton.type = "button";
 				playButton.value = Foxtrickl10n.getString('prefs.play');
+				playButton.setAttribute('soundId', "module.TickerAlert." + type + ".id");
 				playButton.addEventListener('click',function(ev){
-					Foxtrick.playSound(sound.value);
+					var url = doc.getElementById(ev.target.getAttribute('soundId')).value;
+					Foxtrick.playSound(url);
 				}, false);
 				playc.appendChild(playButton);
 			}
