@@ -18,10 +18,10 @@
 		<question>Which file formats are allowed for alert sounds?</question>
 		<answer>
 			<xhtml:p>
-			    Different browsers allow different file formats. Here's a list:
+			    Different browsers allow different file formats. Here's a list (non-listed formats may work if the appropriate plugins are installed, eg Quicktime to play mp3 in Firefox):
 			</xhtml:p>
 			<xhtml:p>
-				Mozilla: wav, ogg (mp3 may work if the proper plugins are installed, eg Quicktime)
+				Mozilla: wav, ogg
 			</xhtml:p>
 			<xhtml:p>
 				Safari (may need Quicktime): wav, mp3
