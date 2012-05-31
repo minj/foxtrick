@@ -22,7 +22,8 @@
 <item>● StaffMarker: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on</item>
 <item>● MatchPlayerColouring: Now works properly for players that were put in and left the field before the game ended</item>
 <item>● TeamPopupLinks: Some restyling to integrate better with the overall look and feel of hattrick.org</item>
-<item>Support for the KeyPlayer page</item>
+<item>● Support for the KeyPlayer page</item>
+<item>● Possibility to test alert sounds in the preferences</item>
 <item></item>
 <item><xhtml:b>For visually or hearing impaired users</xhtml:b></item>
 <item>We added a new section to the settings page that will contain all modules that are related to accessibility.</item>
@@ -41,6 +42,8 @@
 <item>● PlayerStatsExperience: Fixed bug where red cards caused games beeing detected as walkovers</item>
 <item>● PlayerStatsExperience: Fixed issue that caused this module not to work on Firefox 3.6</item>
 <item>● CustomMedals: Fixed disappearing tournament trophies</item>
+<item>● Ogg sounds for mozilla-based browsers enabled</item>
+<item>● Fennec loads staffmarker and link resources from internal sources again. So they aren't updated dynamically but also save bandwidth.</item>
 </note>
 
 <note version="0.9.2">
