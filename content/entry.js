@@ -244,7 +244,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		var modules = [];
 		// modules running on current page
 		for (var page in Foxtrick.ht_pages) {
-			if (Foxtrick.isPage(page, doc)) {
+			if (Foxtrick.isPage(page, doc) && Foxtrick.entry.runMap[page]) {
 				for (var i=0; i<Foxtrick.entry.runMap[page].length; ++i)
 					modules.push(Foxtrick.entry.runMap[page][i]);
 			}
@@ -276,7 +276,7 @@ Foxtrick.entry.change = function(ev) {
 		if (ev.target.nodeType !== Foxtrick.NodeTypes.ELEMENT_NODE &&
 			ev.target.nodeType !== Foxtrick.NodeTypes.TEXT_NODE)
 			return;
-
+			
 		// don't act to changes on the excluded pages
 		var excludes = [
 			new RegExp("/Club/Matches/MatchOrder/", "i"),
@@ -313,7 +313,7 @@ Foxtrick.entry.change = function(ev) {
 			var modules = [];
 			// modules running on current page
 			for (var page in Foxtrick.ht_pages) {
-				if (Foxtrick.isPage(page, doc)) {
+				if (Foxtrick.isPage(page, doc) && Foxtrick.entry.runMap[page]) {
 					for (var i=0; i<Foxtrick.entry.runMap[page].length; ++i)
 						modules.push(Foxtrick.entry.runMap[page][i]);
 				}
