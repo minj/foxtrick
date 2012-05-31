@@ -20,7 +20,7 @@ Foxtrick.modules["PlayerFilters"]={
 			sortSelect = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ddlSortBy");
 		}
 
-		if(!sortSelect);
+		if(!sortSelect)
 			return;
 			
 		var filterSelect = Foxtrick.createFeaturedElement(doc, this, "select");
