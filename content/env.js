@@ -468,6 +468,8 @@ else {
 
 	// fennec ports
 	if (Foxtrick.platform == "Fennec") {
+		Foxtrick.DataPath = "chrome://foxtrick_resources/content/";
+
 		var addListener = function(name, handler) {
 			var x = typeof(addMessageListener)=='function' ? addMessageListener : messageManager.addMessageListener;
 			x(name, handler);

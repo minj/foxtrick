@@ -20,6 +20,9 @@
 		var feeds = FoxtrickPrefs.getString("module.Links.feeds") || "";
 		feeds = feeds.split(/(\n|\r)+/);
 		feeds = Foxtrick.filter(function(n) { return Foxtrick.trim(n) != ""; }, feeds);
+		// stupid fennec overwrite
+		if (Foxtrick.platform == "Fennec")
+			feeds = [Foxtrick.DataPath + "links.json"];
 		// add default feed if no feeds set
 		if (feeds.length == 0)
 			feeds = [Foxtrick.DataPath + "links.json.zip"];
@@ -32,7 +35,7 @@
 				var links = JSON.parse(text);
 			}
 			catch (e) {
-				Foxtrick.log("Failure parsing links file: ", text);
+				Foxtrick.log("Failure parsing links file: ", text.substr(0,200));
 				return;
 			}
 			for (key in links) {
@@ -292,15 +295,15 @@
 			this.getCollection(function(collection) {
 				try{ var hasOption = false;
 				var types = (linkType instanceof Array) ? linkType : [linkType];
-				Foxtrick.log('types ', types)
+				//Foxtrick.log('types ', types)
 				Foxtrick.map(function(type) {
 					try {
-					Foxtrick.log(module, ' ', linkType, ' ', type);
+					//Foxtrick.log(module, ' ', linkType, ' ', type);
 					if (collection[type]) {
 						var links = collection[type];
 						var key;
 						for (var key in links) {
-							Foxtrick.log(type, ' ', key);
+							//Foxtrick.log(type, ' ', key);
 							var link = links[key];
 							var item = doc.createElement("li");
 							list.appendChild(item);
