@@ -108,10 +108,10 @@ Foxtrick.playSound = function(url, doc) {
 			else
 				type = url.match(/.+\.([^\.]+)$/)[1];
 		try  {
-			Foxtrick.log('play: '+url.substr(0,160));
+			Foxtrick.log('play: '+url.substring(0,100));
 			var music = new Audio(url);
 			var canPlay = music.canPlayType('audio/'+type);
-			Foxtrick.log('can play '+type+':'+canPlay);
+			Foxtrick.log('can play '+type+':'+(canPlay==''?'no':canPlay));
 			if (canPlay == 'maybe' || canPlay == 'probably')
 				music.play();
 			else {
@@ -124,6 +124,24 @@ Foxtrick.playSound = function(url, doc) {
 				videoElement.setAttribute("type", "audio/"+type);
 				videoElement.setAttribute("src", url);
 				doc.getElementsByTagName('body')[0].appendChild(videoElement);
+				/*
+				flash need media/OriginalMusicPlayer.swf shipped i guess
+				var videoElement = doc.createElement("object");
+				videoElement.setAttribute('style','visibility:hidden');
+				videoElement.setAttribute('width','1');
+				videoElement.setAttribute('height','1');
+				videoElement.setAttribute("autoplay", "true");
+				videoElement.setAttribute("type", "application/x-shockwave-flash");
+				videoElement.setAttribute("data", "media/OriginalMusicPlayer.swf");
+				var param = doc.createElement("param");
+				param.setAttribute("name", "movie");
+				param.setAttribute("value", "media/OriginalMusicPlayer.swf");
+				videoElement.appendChild(param);
+				var param = doc.createElement("param");
+				param.setAttribute("name", "FlashVars");
+				param.setAttribute("value", "mediaPath="+url);
+				videoElement.appendChild(param);
+				doc.getElementsByTagName('body')[0].appendChild(videoElement);*/
 			}
 	 } catch(e) {
 			Foxtrick.log(e,'\nplay v2');
@@ -136,7 +154,7 @@ Foxtrick.playSound = function(url, doc) {
 			doc.getElementsByTagName('body')[0].appendChild(music);
 		}
 	} catch(e){
-		Foxtrick.log("Cannot play sound: ", url.substr(0,160));
+		Foxtrick.log("Cannot play sound: ", url.substring(0,100));
 		Foxtrick.log(e);
 	}
 }
