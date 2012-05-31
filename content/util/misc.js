@@ -101,16 +101,6 @@ Foxtrick.filePickerForText = function(doc, callback) {
 // May throw an error if unable to play the sound.
 Foxtrick.playSound = function(url, doc) {
 	try {
-		if (Foxtrick.arch === "Gecko") {
-			try {
-				var soundService = Components.classes["@mozilla.org/sound;1"].getService(Components.interfaces.nsISound);
-				var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-				soundService.play(ioService.newURI(url, null, null));
-				return;
-			} catch(e) {
-				Foxtrick.log("ff soundService can't play ", url);
-			}
-		}
 		try  {
 			var music = new Audio(url);
 			music.play();
