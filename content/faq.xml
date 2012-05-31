@@ -21,13 +21,13 @@
 			    Different browsers allow different file formats. Here's a list:
 			</xhtml:p>
 			<xhtml:p>
-				Mozilla: wav, ogg
+				Mozilla: wav, ogg (mp3 may work if the proper plugins are installed, eg Quicktime)
 			</xhtml:p>
 			<xhtml:p>
-				Safari: wav, mp3
+				Safari (may need Quicktime): wav, mp3
 			</xhtml:p>
 			<xhtml:p>
-				Chrome:	ogg, mp3
+				Chrome:	ogg, mp3, wav
 			</xhtml:p>
 			<xhtml:p>
 				Opera: wav, ogg

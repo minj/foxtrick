@@ -68,7 +68,7 @@
 				var input = Foxtrick.filePickerForDataUrl(doc, (function(sound) {
 						return function(url) { 
 							sound.value = url; 
-							Foxtrick.playSound(url);
+							Foxtrick.playSound(url, doc);
 						};
 					})(sound));
 				filec.appendChild(input);
@@ -81,7 +81,7 @@
 				playButton.setAttribute('soundId', "module.TickerAlert." + type + ".id");
 				playButton.addEventListener('click',function(ev){
 					var url = doc.getElementById(ev.target.getAttribute('soundId')).value;
-					Foxtrick.playSound(url);
+					Foxtrick.playSound(url, doc);
 				}, false);
 				playc.appendChild(playButton);
 			}

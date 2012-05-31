@@ -551,7 +551,7 @@ function getModule(module)
 						return function(url) { 
 							textInput.value = url; 
 							if (module.OPTION_EDITS_DATAURL_IS_SOUND && module.OPTION_EDITS_DATAURL_IS_SOUND[i])
-								Foxtrick.playSound(url);						
+								Foxtrick.playSound(url, document);						
 						};
 					})(textInput));
 					textDiv.appendChild(load);
@@ -563,7 +563,7 @@ function getModule(module)
 						playButton.id = checkbox.id + "-playButton";
 						playButton.setAttribute("module", module.MODULE_NAME);
 						playButton.addEventListener('click',function(ev){
-							Foxtrick.playSound(textInput.value);
+							Foxtrick.playSound(textInput.value, document);
 						}, false);
 						textDiv.appendChild(playButton);						
 					}

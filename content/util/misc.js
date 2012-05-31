@@ -102,15 +102,31 @@ Foxtrick.filePickerForText = function(doc, callback) {
 Foxtrick.playSound = function(url, doc) {
 	try {
 		url = url.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
-		try  {
-			var music = new Audio(url);
-			music.play();
-		} catch(e) {
-			var type = 'wav';
+		var type = 'wav';
 			if (url.indexOf('data:audio')==0)
 				type = url.match(/data:audio\/(.+);/)[1];
 			else
 				type = url.match(/.+\.([^\.]+)$/)[1];
+		try  {
+			Foxtrick.log('play: '+url)
+			var music = new Audio(url);
+			var canPlay = music.canPlayType('audio/'+type);
+			Foxtrick.log('can play '+type+':'+canPlay);
+			if (canPlay == 'maybe' || canPlay == 'probably')
+				music.play();
+			else {
+				Foxtrick.log('try embeded');
+				var videoElement = doc.createElement("embed");
+				videoElement.setAttribute('style','visibility:hidden');
+				videoElement.setAttribute('width','1');
+				videoElement.setAttribute('height','1');
+				videoElement.setAttribute("autoplay", "true");
+				videoElement.setAttribute("type", "audio/"+type);
+				videoElement.setAttribute("src", url);
+				doc.getElementsByTagName('body')[0].appendChild(videoElement);
+			}
+	 } catch(e) {
+			Foxtrick.log(e,'\nplay v2');
 			var music = doc.createElement('audio');
 			music.setAttribute("autoplay","autoplay");
 			var source = doc.createElement('source');
