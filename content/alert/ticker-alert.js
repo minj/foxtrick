@@ -41,6 +41,9 @@
 			var fileh = doc.createElement("th");
 			fileh.className='col_filepicker';
 			header.appendChild(fileh);
+			var playh = doc.createElement("th");
+			playh.className='col_play';
+			header.appendChild(playh);
 
 			for (var type in types) {
 				var row = doc.createElement("tr");
@@ -68,6 +71,16 @@
 						};
 					})(sound));
 				filec.appendChild(input);
+
+				var playc = doc.createElement("td");
+				row.appendChild(playc);
+				var playButton = doc.createElement("input");
+				playButton.type = "button";
+				playButton.value = Foxtrickl10n.getString('prefs.play');
+				playButton.addEventListener('click',function(ev){
+					Foxtrick.playSound(sound.value);
+				}, false);
+				playc.appendChild(playButton);
 			}
 
 			return table;
@@ -134,9 +147,6 @@
 							Foxtrick.util.notify.create(n.text, n.link);
 							var sound = FoxtrickPrefs.getString("module.TickerAlert." + type + ".sound");
 							if (sound) {
-								// use foxtrick:// for Foxtrick.ResourcePath
-								// for cross-platform compatibility
-								sound = sound.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
 								Foxtrick.playSound(sound, doc);
 							}
 						}

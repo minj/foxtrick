@@ -12,6 +12,7 @@ Foxtrick.modules["NewMail"]={
 	OPTION_EDITS : true,
 	OPTION_EDITS_DISABLED_LIST : [ true, false, true, false],
 	OPTION_EDITS_DATAURL_LOAD_BUTTONS : [false, true, false, true ],
+	OPTION_EDITS_DATAURL_IS_SOUND : [false, true, false, true ],
 
 
 	CSS : Foxtrick.InternalPath + "resources/css/new-mail.css",
@@ -40,7 +41,6 @@ Foxtrick.modules["NewMail"]={
 				// play sound if enabled
 				if (FoxtrickPrefs.isModuleOptionEnabled("NewMail", "NotifyMailSound")) {
 					var sound = FoxtrickPrefs.getString("module.NewMail.NotifyMailSound_text");
-					sound = sound.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
 					Foxtrick.playSound(sound, doc);
 				}
 			}
@@ -82,7 +82,6 @@ Foxtrick.modules["NewMail"]={
 				// play sound if enabled
 				if (FoxtrickPrefs.isModuleOptionEnabled("NewMail", "NotifyForumSound")) {
 					var sound = FoxtrickPrefs.getString("module.NewMail.NotifyForumSound_text");
-					sound = sound.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
 					Foxtrick.playSound(sound, doc);
 				}
 			}

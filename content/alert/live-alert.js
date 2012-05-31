@@ -11,6 +11,7 @@ Foxtrick.modules["LiveAlert"]={
 	OPTIONS : ["Sound"],
 	OPTION_EDITS : true,
 	OPTION_EDITS_DATAURL_LOAD_BUTTONS : [true],
+	OPTION_EDITS_DATAURL_IS_SOUND : [true],
 
 	store : {},
 
@@ -84,7 +85,6 @@ Foxtrick.modules["LiveAlert"]={
 					// play sound if enabled
 					if (FoxtrickPrefs.isModuleOptionEnabled("LiveAlert", "Sound")) {
 						var sound = FoxtrickPrefs.getString("module.LiveAlert.Sound_text");
-						sound = sound.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
 						Foxtrick.playSound(sound, doc);
 					}
 				}

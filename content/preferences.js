@@ -550,10 +550,23 @@ function getModule(module)
 					var load = Foxtrick.filePickerForDataUrl(document, (function(textInput) {
 						return function(url) { 
 							textInput.value = url; 
-							Foxtrick.playSound(url);						
+							if (module.OPTION_EDITS_DATAURL_IS_SOUND && module.OPTION_EDITS_DATAURL_IS_SOUND[i])
+								Foxtrick.playSound(url);						
 						};
 					})(textInput));
 					textDiv.appendChild(load);
+					
+					if (module.OPTION_EDITS_DATAURL_IS_SOUND && module.OPTION_EDITS_DATAURL_IS_SOUND[i]) {
+						var playButton = document.createElement("input");
+						playButton.type = "button";
+						playButton.value = Foxtrickl10n.getString('prefs.play');
+						playButton.id = checkbox.id + "-playButton";
+						playButton.setAttribute("module", module.MODULE_NAME);
+						playButton.addEventListener('click',function(ev){
+							Foxtrick.playSound(textInput.value);
+						}, false);
+						textDiv.appendChild(playButton);						
+					}
 				}
 			}
 			if (module.OPTION_TEXTS &&
