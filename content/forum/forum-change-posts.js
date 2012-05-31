@@ -303,8 +303,14 @@ Foxtrick.modules["ForumChangePosts"]={
 								spoiler_show.id = 'spoilshow_quoteNum' + (++numSpoilerQuotes);
 								spoiler_show.className = 'spoiler ft-dummy';
 								var open_link = doc.createElement('a');
-								open_link.href = "javascript:showSpoiler('quoteNum" + numSpoilerQuotes + "');";
+								open_link.href = "#";
+								open_link.setAttribute('spoilerID',numSpoilerQuotes);
 								open_link.textContent = Foxtrickl10n.getString('FormatPostingText.ShowNestedQuotes');
+								Foxtrick.listen('click',open_link, function(ev){
+									var id = ev.target.getAttribute('spoilerID');
+									Foxtrick.toggleClass(doc.getElementById('spoilhid_quoteNum'+id), 'hidden');
+									Foxtrick.toggleClass(doc.getElementById('spoilshow_quoteNum'+id), 'hidden');
+								},false);
 								spoiler_show.appendChild(open_link);
 								
 								var spoiler_hidden = doc.createElement('blockquote');
