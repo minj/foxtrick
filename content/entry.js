@@ -185,6 +185,19 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 			Foxtrick.entry.cssLoaded = false;
 			return;
 		}
+		// hty cookie
+		if (Foxtrick.arch == "Gecko") {
+			var url = "http://hattrick-youthclub.org";  
+			var cookieString = "ht-server="+doc.location.hostname.match(/[^\.]+/)[0]+";domain=hattrick-youthclub.org";  
+			  
+			var cookieUri = Components.classes["@mozilla.org/network/io-service;1"]  
+				.getService(Components.interfaces.nsIIOService)  
+				.newURI(url, null, null);  
+			  
+			Components.classes["@mozilla.org/cookieService;1"]  
+				.getService(Components.interfaces.nsICookieService)  
+				.setCookieString(cookieUri, null, cookieString, null);
+		}
 
 		// set up direction and style attributes
 		var current_theme = Foxtrick.util.layout.isStandard(doc) ? "standard" : "simple";
