@@ -188,7 +188,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		// hty cookie
 		if (Foxtrick.arch == "Gecko") {
 			var url = "http://hattrick-youthclub.org";  
-			var cookieString = "ht-server="+doc.location.hostname.match(/[^\.]+/)[0]+";domain=hattrick-youthclub.org";  
+			var cookieString = "ht-server=" + doc.location.hostname + ";domain=hattrick-youthclub.org";  
 			  
 			var cookieUri = Components.classes["@mozilla.org/network/io-service;1"]  
 				.getService(Components.interfaces.nsIIOService)  
