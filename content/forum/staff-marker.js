@@ -51,64 +51,68 @@ Foxtrick.modules["StaffMarker"]={
 
 		var obj = {};
 		// JSON files to be downloaded
+		var ext = (FoxtrickPrefs.getBool('zippedResources')&&Foxtrick.platform!="Fennec")?'.zip':'';
 		var uris = [
-			Foxtrick.DataPath + "staff/foxtrick.json.zip",
-			Foxtrick.DataPath + "staff/chpp.json.zip",
-			Foxtrick.DataPath + "staff/editor.json.zip"
+			Foxtrick.DataPath + "staff/foxtrick.json"+ext,
+			Foxtrick.DataPath + "staff/chpp.json"+ext,
+			Foxtrick.DataPath + "staff/editor.json"+ext
 		];
-		
-		//add HY json hosted on google code
-		if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub"))
-			uris.push(Foxtrick.DataPath + "staff/hy.json.zip");
+		if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub")) {
+		 	uris.push(Foxtrick.DataPath + "staff/hy.json"+ext);
+		 	++todo;
+		}
 
 		// counter of URI remaining to fetch
 		var todo = uris.length;
 		Foxtrick.map(function(uri) {
-			var feedsZip = new ZipFile(uri, function(zip){
-				if (zip.entries.length == 0) {
-					Foxtrick.log(uri, zip.status);
-					--todo;
-					return;
-				}
-				for (var i=0; i<zip.entries.length; i++) {
-					var extractCb = function(entry, entryContent) {
-						Foxtrick.log('parse ', entry.name);
-						parseMarkers(entryContent);
-						FoxtrickPrefs.setString("Markers."+uri, entryContent);							
-					};
+			Foxtrick.log("do feeds: ", uri);
+			if (uri.search(/\.zip$/i) != -1 ) {
+				// load zipped
+				var feedsZip = new ZipFile(uri, function(zip){
+					if (zip.entries.length == 0) {
+						Foxtrick.log(uri, zip.status);
+						--todo;
+						return;
+					}
+					for (var i=0; i<zip.entries.length; i++) {
+						var extractCb = function(entry, entryContent) {
+							Foxtrick.log('parse ', entry.name);
+							parseMarkers(entryContent);
+							FoxtrickPrefs.setString("Markers."+uri, entryContent);							
+						};
 
-					// extract asynchronously
-					var entry = zip.entries[i];
-					Foxtrick.log('unzip ', entry.name);
-					entry.extract(extractCb, true);
-				}
-			}, 3);
+						// extract asynchronously
+						var entry = zip.entries[i];
+						Foxtrick.log('unzip ', entry.name);
+						entry.extract(extractCb, true);
+					}
+				}, 3);
+			}
+			else {
+				// counter of URI remaining to fetch
+				Foxtrick.get(uri)("success", function(text) {
+					Foxtrick.log('parse ', uri);
+					parseMarkers(text);
+					FoxtrickPrefs.setString("Markers."+uri, text);							
+				})("failure", function(code) {
+					Foxtrick.log("Failure loading file: " + uri, ". Using cached markers.");
+					var text =  FoxtrickPrefs.getString("Markers."+uri);
+					parseMarkers(text);
+				});
+			}
 		}, uris);
 
-		//leaving in when we need to use it again (zip issue with AMO mayb or whatever)
-		// hty server delivers gzipped and the browser itself handles that
-		// var unzipped_uris = [];
-		// if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub")) {
-		// 	unzipped_uris.push(Foxtrick.DataPath + "staff/hy.json");
-		// 	++todo;
-		// }
-		// // counter of URI remaining to fetch
-		// Foxtrick.map(function(uri) {
-		// 	Foxtrick.get(uri)("success", function(text) {
-		// 		Foxtrick.log('parse ', uri);
-		// 		parseMarkers(text);
-		// 		FoxtrickPrefs.setString("Markers."+uri, text);							
-		// 	})("failure", function(code) {
-		// 		Foxtrick.log("Failure loading file: " + uri, ". Using cached markers.");
-		// 		var text =  FoxtrickPrefs.getString("Markers."+uri);
-		// 		parseMarkers(text);
-		// 	});
-		// }, unzipped_uris);
 	},
 
 	run : function(doc) {
 
 		var data = Foxtrick.sessionGet('staff-marker-data');
+		if (!data) {
+			// get staffmarker and display on next load. didn't auto call run here to prevent endless loop
+			Foxtrick.modules.StaffMarker.load();
+			return;
+		}
+
 		// getting user-defined IDs and colors
 		var customMarker = {};
 		if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker", "own")) {
