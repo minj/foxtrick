@@ -557,11 +557,9 @@ function getModule(module)
 					textDiv.appendChild(load);
 					
 					if (module.OPTION_EDITS_DATAURL_IS_SOUND && module.OPTION_EDITS_DATAURL_IS_SOUND[i]) {
-						var playButton = document.createElement("input");
-						playButton.type = "button";
-						playButton.value = Foxtrickl10n.getString('prefs.play');
+						var playButton = document.createElement("button");
+						playButton.setAttribute("data-text","button.play");
 						playButton.id = checkbox.id + "-playButton";
-						playButton.setAttribute("module", module.MODULE_NAME);
 						playButton.addEventListener('click',function(ev){
 							Foxtrick.playSound(textInput.value, document);
 						}, false);

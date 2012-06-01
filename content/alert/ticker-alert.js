@@ -75,12 +75,11 @@
 
 				var playc = doc.createElement("td");
 				row.appendChild(playc);
-				var playButton = doc.createElement("input");
-				playButton.type = "button";
-				playButton.value = Foxtrickl10n.getString('prefs.play');
-				playButton.setAttribute('soundId', "module.TickerAlert." + type + ".id");
-				playButton.addEventListener('click',function(ev){
-					var url = doc.getElementById(ev.target.getAttribute('soundId')).value;
+				var playButton = doc.createElement("button");
+				playButton.setAttribute("data-text","button.play");
+				playButton.setAttribute("soundId", "module.TickerAlert." + type + ".id");
+				playButton.addEventListener("click",function(ev){
+					var url = doc.getElementById(ev.target.getAttribute("soundId")).value;
 					Foxtrick.playSound(url, doc);
 				}, false);
 				playc.appendChild(playButton);
