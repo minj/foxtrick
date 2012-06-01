@@ -286,7 +286,6 @@
 							urlTmpl = urlTmpl + "&ht-server=[server]";
 					var url = makeLink(urlTmpl);
 					if (url != null) {
-						Foxtrick.log(urlTmpl,url)
 						links.push({"link" : getLinkElement(link, url, key, module.MODULE_NAME), "obj" : link});
 					}
 				}

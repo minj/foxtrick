@@ -900,20 +900,21 @@ function importContent(from, to)
 
 // should move/get that to the resp. modules
 var neededPermissions = [
-	//{ module: "StaffMarker", url: "http://foxtrick.googlecode.com/svn/trunk/res/staff/*" },
-	{ module: "ExtraShortcuts.HtRadio", url: "http://stream.ht-radio.nl/*" },
-	{ module: "ExtraShortcuts.No9", url: "http://no9-online.de/*" },
-	{ module: "ExtraShortcuts.Latehome", url: "http://www.latehome.de/*" },
-	//{ module: "StaffMarker.HT-Youthclub", url: "http://foxtrick.googlecode.com/svn/trunk/res/staff/*" },
-	{ module: "EmbedMedia.EmbedModeOEmebed", url: "https://vimeo.com/api/*" },
-	{ module: "EmbedMedia.EmbedModeOEmebed", url: "https://www.youtube.com/*" },
-	{ module: "EmbedMedia.EmbedModeOEmebed", url: "https://www.dailymotion.com/services/*" },
-	{ module: "EmbedMedia.EmbedFlickrImages", url: "http://www.flickr.com/services/oembed/*" },
-	{ module: "EmbedMedia.EmbedDeviantArtImages", url: "http://backend.deviantart.com/*" },
-	{ module: "EmbedMedia.EmbedSoundCloud", url: "http://soundcloud.com/*" },
-	{ module: "EmbedMedia.EmbedImageshack", url: "http://imageshack.us/*" },
-	{ module: "YouthTwins", url: "http://*.hattrick-youthclub.org/*" },
-	{ module: "HTEVPrediction", url: "http://htev.org/api/*" },
+	//{ module: "StaffMarker", types:{ origins: "http://foxtrick.googlecode.com/svn/trunk/res/staff/*"]}},
+	{ module: "ExtraShortcuts.HtRadio", types:{ origins: ["http://stream.ht-radio.nl/*"]}},
+	{ module: "ExtraShortcuts.No9", types:{ origins: ["http://no9-online.de/*"]}},
+	{ module: "ExtraShortcuts.Latehome", types:{ origins:["http://www.latehome.de/*"]}},
+	//{ module: "StaffMarker.HT-Youthclub", types:{ origins:["http://foxtrick.googlecode.com/svn/trunk/res/staff/*"]}},
+	{ module: "EmbedMedia.EmbedModeOEmebed", types:{ origins:["https://vimeo.com/api/*"]}},
+	{ module: "EmbedMedia.EmbedModeOEmebed", types:{ origins:["https://www.youtube.com/*"]}},
+	{ module: "EmbedMedia.EmbedModeOEmebed", types:{ origins:["https://www.dailymotion.com/services/*"]}},
+	{ module: "EmbedMedia.EmbedFlickrImages", types:{ origins:["http://www.flickr.com/services/oembed/*"]}},
+	{ module: "EmbedMedia.EmbedDeviantArtImages", types:{ origins:["http://backend.deviantart.com/*"]}},
+	{ module: "EmbedMedia.EmbedSoundCloud", types:{ origins:["http://soundcloud.com/*"]}},
+	{ module: "EmbedMedia.EmbedImageshack", types:{ origins:["http://imageshack.us/*"]}},
+	{ module: "YouthTwins", types:{ origins:["http://*.hattrick-youthclub.org/*"]}},
+	{ module: "Links.AddServer",  types:{ permissions: ["cookies"]}},
+	{ module: "HTEVPrediction", types:{ origins:["http://htev.org/api/*"]}}
 ];
 
 function testPermissions() {
@@ -921,9 +922,7 @@ function testPermissions() {
 	if (Foxtrick.platform === "Chrome") {
 		for (var i=0; i<neededPermissions.length; ++i) { 
 			var testModulePermission = function(neededPermission) {				
-				chrome.permissions.contains({
-					  origins: [neededPermission.url]
-					}, function(result) {
+				chrome.permissions.contains( neededPermission["types"], function(result) {
 						var id = "#pref-" + neededPermission.module.replace(/\./g,"-");
 						$(id).attr("permission-granted", result);
 						neededPermission.granted = result;
@@ -944,9 +943,7 @@ function getPermission(neededPermission, hint, showSaved) {
 		alert( hint );
 	// Permissions must be requested from inside a user gesture, like a button's
 	// click handler.
-	chrome.permissions.request({
-		origins: [neededPermission.url]
-		}, function(granted) {
+	chrome.permissions.request( neededPermission["types"], function(granted) {
 			// The callback argument will be true if the user granted the permissions.
 			var id = "#pref-" + neededPermission.module.replace(/\./g,"-");
 			if (!granted) {
@@ -969,9 +966,7 @@ function revokePermissions() {
 	if (Foxtrick.platform === "Chrome") {
 		for (var i=0; i<neededPermissions.length; ++i) { 
 			var revokeModulePermission = function(neededPermission) {				
-				chrome.permissions.remove({
-					  origins: [neededPermission.url]
-					}, function(result) {
+				chrome.permissions.remove( neededPermission["types"], function(result) {
 						var id = "#pref-" + neededPermission.module.replace(/\./g,"-");
 						$(id).attr("permission-granted", false);
 						Foxtrick.log('Permission removed: ', neededPermission.module, result);

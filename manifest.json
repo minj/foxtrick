@@ -229,6 +229,7 @@
 		"http://www.fantamondi.it/*"
 	],
 	"optional_permissions" : [
+		"cookies",
 		"http://*.hattrick-youthclub.org/*",
 		"http://stream.ht-radio.nl/*",
 		"http://no9-online.de/*",

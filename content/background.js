@@ -301,6 +301,12 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		Foxtrick.localDeleteBranch(request.branch);
 	};
 
+	// from entry.js
+	Foxtrick.loader.chrome.background.cookieSet = function(request, sender, sendResponse) {
+		// @param cookie object - http://code.google.com/chrome/extensions/cookies.html#method-set
+		chrome.cookies.set(request.cookie);	
+	};
+
 	// from log.js
 	Foxtrick.loader.chrome.background.log = function(request, sender, sendResponse) {
 		// @param log - text to dump to console (fennec)
