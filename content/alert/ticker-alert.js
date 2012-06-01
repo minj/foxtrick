@@ -113,8 +113,12 @@
 				}, divs);
 				return tickers;
 			};
+			var callbackStack = 0;
 			var tickerCheck = function() {
-Foxtrick.log('ticker check')				
+				++callbackStack;
+				if (callbackStack != 1)
+					return;
+				//Foxtrick.log('ticker check')				
 				Foxtrick.sessionGet("tickers", function (tickers) {
 					if (tickers == undefined)
 						tickers = [];
@@ -126,10 +130,12 @@ Foxtrick.log('ticker check')
 						// so to not alert when the tickers are being cleared, we
 						// return when ticker count now is less than old ticker
 						// count
+						callbackStack = 0;
 						return;
 					}
-Foxtrick.log('tickers',tickers)
-Foxtrick.log('tickersNow',tickersNow)
+					//Foxtrick.log('tickers',tickers)
+					//Foxtrick.log('tickersNow',tickersNow)
+					
 					Foxtrick.sessionSet("tickers", tickersNow);
 
 					var newTickers = Foxtrick.filter(function(n) {
@@ -142,8 +148,8 @@ Foxtrick.log('tickersNow',tickersNow)
 						}
 						return true;
 					}, tickersNow);
-
-					
+					//Foxtrick.log('tickersNow filtered',newTickers)
+			
 					Foxtrick.map(function(n) {
 						var type = getType(n.link);
 
@@ -155,11 +161,14 @@ Foxtrick.log('tickersNow',tickersNow)
 							}
 						}
 					}, newTickers);
-					ticker.addEventListener('DOMNodeInserted', tickerCheck, false);
+					
+					callbackStack = 0;
 				});
 			};
-			if (Foxtrick.util.layout.isSupporter(doc))
+			if (Foxtrick.util.layout.isSupporter(doc)) {
 				tickerCheck();
+				ticker.addEventListener('DOMNodeInserted', tickerCheck, false);
+			}
 		}
 	};
 })();

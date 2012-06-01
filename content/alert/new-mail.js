@@ -85,8 +85,8 @@ Foxtrick.modules["NewMail"]={
 					Foxtrick.playSound(sound, doc);
 				}
 			}
-			Foxtrick.log('oldCount', oldCount)
-			Foxtrick.log('newCount', newForumCount, newMailCount)
+			//Foxtrick.log('oldCount', oldCount)
+			//Foxtrick.log('newCount', newForumCount, newMailCount)
 		});
  	}
 };
