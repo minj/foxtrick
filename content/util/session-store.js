@@ -14,9 +14,10 @@ Foxtrick._sessionSet = function(key, value) {
 
 // key = string or map of keys and default values
 // returns value reps. map of keys and values
-Foxtrick._sessionGet = function(keymap) {
+Foxtrick._sessionGet = function(keymap, callback) {
+	var answermap;
 	if (typeof(keymap) === "string")
-		return Foxtrick.sessionStore[keymap];
+		answermap =  Foxtrick.sessionStore[keymap];
 	else if (typeof(keymap) === "object") {
 		var answermap = {};
 		for (var key in keymap) {
@@ -25,8 +26,11 @@ Foxtrick._sessionGet = function(keymap) {
 			else
 				answermap[key] = keymap[i];
 		}
-		return answermap;
 	}
+	
+	if (typeof(callback)=='function')
+		callback(answermap);
+	return answermap;
 };
 
 Foxtrick._sessionDeleteBranch = function(branch) {

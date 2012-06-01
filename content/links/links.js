@@ -113,6 +113,14 @@
 		CORE_MODULE : true,
 
 		OPTION_FUNC : function(doc) {
+			// different background context for chrome. needs the links collection
+			Foxtrick.sessionGet("links-collection", function(col) {
+				if (col) 
+					collection = col;
+				else 
+					storeCollection();
+			});
+
 			var cont = doc.createElement("div");
 
 			var label = doc.createElement("p");
