@@ -1,5 +1,12 @@
 @-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
 
+.ft-popup-span {
+	position: relative;
+	display:inline;
+}
+.ft-popup-span:hover div.ft-htev-popup {
+	display: block !important;
+}
 html[data-theme="standard"] div.ft-htev-popup {
 	display: none;
 	position: absolute;
@@ -59,7 +66,6 @@ html[data-theme="simple"] .ft-htev-nav {
     background-image: -o-linear-gradient(#838383 ,#707070 50%,#5E5E5E  51%,#787878);
     background-color: #5f5f5f; /* Fallback */
 }
-
 html[data-theme="standard"] .ft-htev-nav li:first-child {
     border-left:none;
     -webkit-border-top-left-radius: 4px;
@@ -67,11 +73,9 @@ html[data-theme="standard"] .ft-htev-nav li:first-child {
     -webkit-border-top-right-radius: 4px;
     -moz-border-radius-topright: 4px;
 }
-
 html[data-theme="simple"] .ft-htev-nav li:first-child {
     border-left:none;
 }
-
 .ft-htev-nav li:last-child {  
     border-right:none;
 }
@@ -98,7 +102,6 @@ html[data-theme="simple"] .ft-htev-nav ul {
 	border-left: 1px solid #929292;
 	height: 26px;
 }
-
 .ft-htev-nav a {
 	color: white !important; 
 	text-decoration: none;
@@ -109,10 +112,6 @@ html[data-theme="simple"] .ft-htev-nav ul {
     background-image: url("http://htev.org/static/htevfavicon.gif");
     background-repeat: no-repeat;
     background-position: 3px 3px !important;
-}
-
-.ft-popup-span:hover div.ft-htev-popup {
-	display: block !important;
 }
 .ft-htev-popup th, .ft-htev-popup td, .ft-htev-popup div {
 	text-align: center !important;
