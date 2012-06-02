@@ -290,3 +290,11 @@ html[dir="rtl"] #note
 	right: auto;
 	left: 20px;
 }
+
+#alert
+{
+	border: solid 1px orange;
+	background-color: #FCF6DF;
+	padding: 10px 150px 10px 10px;
+	display:none;
+}

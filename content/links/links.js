@@ -31,7 +31,7 @@
 			var key, prop;
 
 			try {
-				Foxtrick.log("parseFeed : ", text.substr(0,200));
+				//Foxtrick.log("parseFeed : ", text.substr(0,200));
 				var links = JSON.parse(text);
 			}
 			catch (e) {
@@ -94,7 +94,7 @@
 					--todo;
 					if (text == null) 
 						text = FoxtrickPrefs.getString("LinksFeed."+feed);
-					Foxtrick.log('parse ', feed);
+					//Foxtrick.log('parse ', feed);
 					parseFeed(text);
 					FoxtrickPrefs.setString("LinksFeed."+feed, text);				
 				})("failure", function(code) {

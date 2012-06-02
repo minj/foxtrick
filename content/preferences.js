@@ -923,6 +923,7 @@ function testPermissions() {
 		for (var i=0; i<neededPermissions.length; ++i) { 
 			var testModulePermission = function(neededPermission) {				
 				chrome.permissions.contains( neededPermission["types"], function(result) {
+						//Foxtrick.log(neededPermission.module, " - enabled: ", FoxtrickPrefs.getBool("module." + neededPermission.module + ".enabled"), " - result: ", result)
 						var id = "#pref-" + neededPermission.module.replace(/\./g,"-");
 						$(id).attr("permission-granted", result);
 						neededPermission.granted = result;
@@ -931,6 +932,11 @@ function testPermissions() {
 								getPermission(neededPermission)
 						};
 						$(id).click(function() { checkPermission(); });
+						
+						if (result==false && FoxtrickPrefs.getBool("module." + neededPermission.module + ".enabled")) {	
+							$("#alert").text(Foxtrickl10n.getString('prefs.needPermissions'));
+							$("#alert").attr("style","display:inline-block;");
+						}							
 					});
 			};				
 			testModulePermission(neededPermissions[i]);
