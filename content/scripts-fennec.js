@@ -43,6 +43,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/sanitize.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/session-store.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/string.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/util/tabs.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/time.js", true);
 
 		//<!-- external libraries -->
@@ -185,6 +186,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/skill-translation.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/skin-plugin.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/smaller-pages.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/tabs-test.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/team-select-box.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/youth-skill-hide-unknown.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/confirm-actions.js", true);

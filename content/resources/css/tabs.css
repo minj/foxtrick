@@ -1,0 +1,58 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+
+#tab
+{
+    position: relative;
+    float: left;
+    width: 100%;
+    padding: 0;
+    margin: 0 0 1em 0;
+    list-style: none;
+    line-height: 1.2em;
+    background: #fff;
+    border-bottom: 1px solid #aaa;
+}
+#tab li
+{
+    float: left;
+    margin: 0;
+    margin-bottom: -1px;
+    padding: 0px !important; 
+}
+#tab a
+{
+    display: block;
+    color: #444;
+    text-decoration: none;
+    background: #edf1ed;
+    margin: 0;
+    padding: 0.25em 1em;
+    border-left: 1px solid #eee;
+    border-top: 1px solid #fff;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #aaa;
+}
+#tab a:hover
+{
+    background: #dce2dc;
+    color: #333;
+}
+#tab a.active
+{
+    background: #fff;
+    color: #000;
+    font-weight: bold;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #bbb;
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #fff;
+}
+
+#ft-tab-main {
+    margin-top: 39px !important;
+}
+
+#ft-tab-main table.naked {
+    margin-top: 0px !important;
+}
+}

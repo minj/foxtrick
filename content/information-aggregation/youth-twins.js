@@ -274,6 +274,12 @@
 			}
 			Foxtrick.log("YouthTwins: Team is valid:", valid);
 			
+			//when we need to force a request due to HY request or so
+			if(true){
+				Foxtrick.log("YouthTwins: Forcing request:", valid);
+				getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
+				return;
+			}
 			//query HY or use cached stuff and alter the site
 			if(now.getTime() > fetchTime && now.getTime() <= fetchTime + lifeTime){
 				//in valid lifespan, also saved response seems to be valid

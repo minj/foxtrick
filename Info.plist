@@ -207,6 +207,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/presentation/skill-translation.js</string>
 				<string>content/presentation/skin-plugin.js</string>
 				<string>content/presentation/smaller-pages.js</string>
+				<string>content/presentation/tabs-test.js</string>
 				<string>content/presentation/team-select-box.js</string>
 				<string>content/presentation/youth-skill-hide-unknown.js</string>
 				<string>content/shortcuts-and-tweaks/confirm-actions.js</string>

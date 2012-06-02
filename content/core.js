@@ -13,6 +13,7 @@ Foxtrick.modules["Core"]={
 		Foxtrick.InternalPath + "resources/css/foxtrick.css",
 		Foxtrick.InternalPath + "resources/css/headercopyicons.css",
 		Foxtrick.InternalPath + "resources/css/flags.css",
+		Foxtrick.InternalPath + "resources/css/tabs.css",
 	],
 
 	SELF_TEAM_INFO : {},

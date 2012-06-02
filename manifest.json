@@ -30,6 +30,7 @@
 			"content/util/sanitize.js",
 			"content/util/session-store.js",
 			"content/util/string.js",
+			"content/util/tabs.js",
 			"content/util/time.js",
 			
 			//<!-- external libraries -->
@@ -176,6 +177,7 @@
 			"content/presentation/skill-translation.js",
 			"content/presentation/skin-plugin.js",
 			"content/presentation/smaller-pages.js",
+			"content/presentation/tabs-test.js",
 			"content/presentation/team-select-box.js",
 			"content/presentation/youth-skill-hide-unknown.js",
 			"content/shortcuts-and-tweaks/confirm-actions.js",

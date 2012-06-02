@@ -34,6 +34,7 @@
 <script type="application/x-javascript" src="./util/sanitize.js" />
 <script type="application/x-javascript" src="./util/session-store.js" />
 <script type="application/x-javascript" src="./util/string.js" />
+<script type="application/x-javascript" src="./util/tabs.js" />
 <script type="application/x-javascript" src="./util/time.js" />
 
 <!-- external libraries -->
@@ -153,6 +154,7 @@
 <script type="application/x-javascript" src="./presentation/custom-medals.js"></script>
 <script type="application/x-javascript" src="./presentation/fix-css-problems.js"></script>
 <script type="application/x-javascript" src="./presentation/friendly-interface.js"></script>
+<script type="application/x-javascript" src="./presentation/friendly-pool.js"></script>
 <script type="application/x-javascript" src="./presentation/header-fix.js"></script>
 <script type="application/x-javascript" src="./presentation/header-toggle.js"></script>
 <script type="application/x-javascript" src="./presentation/highlight-cup-wins.js"></script>
@@ -177,6 +179,7 @@
 <script type="application/x-javascript" src="./presentation/skill-translation.js"></script>
 <script type="application/x-javascript" src="./presentation/skin-plugin.js"></script>
 <script type="application/x-javascript" src="./presentation/smaller-pages.js"></script>
+<script type="application/x-javascript" src="./presentation/tabs-test.js"></script>
 <script type="application/x-javascript" src="./presentation/team-select-box.js"></script>
 <script type="application/x-javascript" src="./presentation/youth-skill-hide-unknown.js"></script>
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/confirm-actions.js"></script>
