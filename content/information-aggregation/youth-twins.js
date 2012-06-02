@@ -275,7 +275,7 @@
 			Foxtrick.log("YouthTwins: Team is valid:", valid);
 			
 			//when we need to force a request due to HY request or so
-			if(true){
+			if(false){
 				Foxtrick.log("YouthTwins: Forcing request:", valid);
 				getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
 				return;
