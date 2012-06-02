@@ -988,7 +988,7 @@ function checkPermissions() {
 	if (Foxtrick.platform === "Chrome") {
 		for (var i=0; i<neededPermissions.length; ++i) { 
 			if (FoxtrickPrefs.getBool("module." + neededPermissions[i].module + ".enabled")) {
-				var id = "#pref-" + neededPermission.module;
+				var id = "#pref-" + neededPermissions[i].module;
 				if (id.indexOf('.')==-1)
 					id = id + "-check"; // main module check
 				else
