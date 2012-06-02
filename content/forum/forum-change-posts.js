@@ -101,8 +101,11 @@ Foxtrick.modules["ForumChangePosts"]={
 				while ( header_left_link = header_left_links[k++]) {
 
 					if (!poster_link1) {
-						if (header_left_link.href.search(/showMInd/) != -1) {
-							post_id1 = header_left_link.href.match(/(\d+\.\d+)/)[1];//header_left_link.href.match(/(\d+)-\d+/)[1]+'.'+header_left_link.href.match(/\d+-(\d+)/,'')[1];
+						if (header_left_link.href.search(/javascript/) != -1) {
+							if (header_left_link.href.search(/showMInd/) != -1)
+								post_id1 = header_left_link.href.match(/(\d+\.\d+)/)[1];//header_left_link.href.match(/(\d+)-\d+/)[1]+'.'+header_left_link.href.match(/\d+-(\d+)/,'')[1];
+							else 
+								post_id1 = header_left_link.title.match(/(\d+\.\d+)/)[1];
 							post_link1 = header_left_link;
 						}
 						else if (header_left_link.href.search(/Forum\/Read\.aspx/) != -1) {
@@ -118,8 +121,11 @@ Foxtrick.modules["ForumChangePosts"]={
 							}
 						}
 					} else if (!poster_link2 || !post_link2) {
-						if (header_left_link.href.search(/showMInd/) != -1) {
-							post_id2 = header_left_link.href.match(/(\d+\.\d+)/)[1];//header_left_link.href.match(/(\d+)-\d+/)[1]+'.'+header_left_link.href.match(/\d+-(\d+)/,'')[1];
+						if (header_left_link.href.search(/javascript/) != -1) {
+							if (header_left_link.href.search(/showMInd/) != -1)
+								post_id2 = header_left_link.href.match(/(\d+\.\d+)/)[1];//header_left_link.href.match(/(\d+)-\d+/)[1]+'.'+header_left_link.href.match(/\d+-(\d+)/,'')[1];
+							else
+								post_id2 = header_left_link.title.match(/(\d+\.\d+)/)[1];
 							post_link2 = header_left_link;
 						}
 						else if (header_left_link.href.search(/Forum\/Read\.aspx/) != -1) {
