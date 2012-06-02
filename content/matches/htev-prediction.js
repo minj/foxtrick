@@ -14,7 +14,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 Foxtrick.modules["HTEVPrediction"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-	PAGES : ['series'],
+	PAGES : ['series', 'matches'],
 	CSS : Foxtrick.InternalPath + "resources/css/htev-prediction.css",
 	//save some stuff permanently,
 	//most important stuff will probably be own past games, they will never change again
@@ -60,22 +60,31 @@ Foxtrick.modules["HTEVPrediction"]={
 							htev_link.href = "http://htev.org/match/" + matchid + "/";
 							htev_link.setAttribute("title", Foxtrickl10n.getString("HTEVPrediction.visitDetailed"));
 						}
+
+						//link to htev
 						htev_link.setAttribute("target","_blank");
 						htev_link.textContent = "HTEV";
 						li.appendChild(htev_link);
 						ul.appendChild(li);
 						div_nav.appendChild(ul);
 						htev_div.appendChild(div_nav);
-
 						//"no match" response
 						if(json.message && json.message == "no match"){
 							var msg = doc.createElement("div");
 							Foxtrick.addClass(msg, "ft-htev-info");
 							msg.textContent = "No data";
 							htev_div.appendChild(msg);
-						}
+						} 						
 						//"should be fine"
 						else {
+							//derby
+							if(json.derby){
+								var msg = doc.createElement("div");
+								Foxtrick.addClass(msg, "ft-htev-derby");
+								msg.textContent = "Derby";
+								htev_div.appendChild(msg);
+							} 
+						
 							//content
 							var table = doc.createElement("table");
 							var thead = doc.createElement("thead");
