@@ -16,7 +16,7 @@ Foxtrick.util.tabs.initialize = function(doc){
 		start = byline.nextSibling;
 
 	var container = doc.createElement("div");
-	container.setAttribute('id','ft-tab-main');
+	container.setAttribute('id','chpp-tab-main');
 	var next = start.nextSibling;
 	while(start){
 		next = start.nextSibling;

@@ -10,7 +10,7 @@ Foxtrick.modules["TabsTest"]={
 
 		Foxtrick.util.tabs.initialize(doc);
 
-		Foxtrick.util.tabs.add(doc, "Main", { alt: "Main", title: "Main", src: "/Img/Icons/cross_small.png"}, "ft-tab-main");
+		Foxtrick.util.tabs.add(doc, "Main", { alt: "Main", title: "Main", src: "/Img/Icons/cross_small.png"}, "chpp-tab-main");
 		Foxtrick.util.tabs.add(doc, "Lorum" , { alt: "Lorum", title: "Lorum", src: "/Img/Icons/cross_small.png"}, "ft-tab-test");
 		Foxtrick.util.tabs.add(doc, "Ipsum", { alt: "Ipsum", title: "Ipsum", src: "/Img/Icons/cross_small.png"} , "ft-tab-test2");
 
@@ -27,6 +27,6 @@ Foxtrick.modules["TabsTest"]={
 		doc.getElementsByTagName("h1")[0].parentNode.appendChild(div1);
 		doc.getElementsByTagName("h1")[0].parentNode.appendChild(div2);
 
-		Foxtrick.util.tabs.show(doc, "ft-tab-main");
+		Foxtrick.util.tabs.show(doc, "chpp-tab-main");
 	}
 }
