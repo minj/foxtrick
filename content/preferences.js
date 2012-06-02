@@ -912,11 +912,15 @@ function testPermissions() {
 				chrome.permissions.contains({
 					  origins: [neededPermission.url]
 					}, function(result) {
-						var id = "#pref-" + neededPermission.module.replace(/\./g,"-");
+						var id = "#pref-" + neededPermission.module;
+						if (id.indexOf('.')==-1)
+							id = id + "-check"; // main module check
+						else
+							id = id.replace(/\./g,"-"); // suboption check
 						$(id).attr("permission-granted", result);
 						neededPermission.granted = result;
 						var checkPermission = function() {
-							if ($(id+"-check").attr("checked") == "checked" && $(id).attr("permission-granted")=="false")
+							if ($(id).attr("checked") == "checked" && $(id).attr("permission-granted")=="false")
 								getPermission(neededPermission)
 						};
 						$(id).click(function() { checkPermission(); });
@@ -936,7 +940,11 @@ function getPermission(neededPermission, hint, showSaved) {
 		origins: [neededPermission.url]
 		}, function(granted) {
 			// The callback argument will be true if the user granted the permissions.
-			var id = "#pref-" + neededPermission.module.replace(/\./g,"-");
+			var id = "#pref-" + neededPermission.module;
+			if (id.indexOf('.')==-1)
+				id = id + "-check"; // main module check
+			else
+				id = id.replace(/\./g,"-"); // suboption check
 			if (!granted) {
 				$(id).removeAttr("checked");
 				FoxtrickPrefs.setBool("module." + neededPermission.module + ".enabled", false);
@@ -960,7 +968,11 @@ function revokePermissions() {
 				chrome.permissions.remove({
 					  origins: [neededPermission.url]
 					}, function(result) {
-						var id = "#pref-" + neededPermission.module.replace(/\./g,"-");
+						var id = "#pref-" + neededPermission.module;
+						if (id.indexOf('.')==-1)
+							id = id + "-check"; // main module check
+						else
+							id = id.replace(/\./g,"-"); // suboption check
 						$(id).attr("permission-granted", false);
 						Foxtrick.log('Permission removed: ', neededPermission.module, result);
 				});
@@ -976,7 +988,11 @@ function checkPermissions() {
 	if (Foxtrick.platform === "Chrome") {
 		for (var i=0; i<neededPermissions.length; ++i) { 
 			if (FoxtrickPrefs.getBool("module." + neededPermissions[i].module + ".enabled")) {
-				var id = "#pref-" + neededPermissions[i].module.replace(/\./g,"-");
+				var id = "#pref-" + neededPermission.module;
+				if (id.indexOf('.')==-1)
+					id = id + "-check"; // main module check
+				else
+					id = id.replace(/\./g,"-"); // suboption check
 				if ($(id).attr("permission-granted")=="false") {
 					var showSaved = (i==neededPermissions.length-1) ? true : false;
 					needsPermissions = true;
