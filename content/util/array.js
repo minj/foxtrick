@@ -102,3 +102,19 @@ Foxtrick.concat = function(a, b) {
 	return a;
 };
 
+// returns the unique concat of array a and array b
+Foxtrick.concat_unique = function(a, b) {
+	for (var i = 0; i < b.length; ++i)
+		if (!Foxtrick.member(b[i], a))
+			a.push(b[i]);
+	return a;
+};
+
+// removes a element b from array a and returns a
+Foxtrick.remove = function(a, b) {
+	var r = [];
+	for (var i = 0; i < a.length; ++i)
+		if (a[i] !== b)
+			r.push(a[i]);
+	return r;
+};

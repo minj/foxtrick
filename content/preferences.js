@@ -900,70 +900,94 @@ function importContent(from, to)
 
 // should move/get that to the resp. modules
 var neededPermissions = [
-	//{ module: "StaffMarker", types:{ origins: "http://foxtrick.googlecode.com/svn/trunk/res/staff/*"]}},
-	{ module: "ExtraShortcuts.HtRadio", types:{ origins: ["http://stream.ht-radio.nl/*"]}},
-	{ module: "ExtraShortcuts.No9", types:{ origins: ["http://no9-online.de/*"]}},
-	{ module: "ExtraShortcuts.Latehome", types:{ origins:["http://www.latehome.de/*"]}},
-	//{ module: "StaffMarker.HT-Youthclub", types:{ origins:["http://foxtrick.googlecode.com/svn/trunk/res/staff/*"]}},
-	{ module: "EmbedMedia.EmbedModeOEmebed", types:{ origins:["https://vimeo.com/api/*"]}},
-	{ module: "EmbedMedia.EmbedModeOEmebed", types:{ origins:["https://www.youtube.com/*"]}},
-	{ module: "EmbedMedia.EmbedModeOEmebed", types:{ origins:["https://www.dailymotion.com/services/*"]}},
-	{ module: "EmbedMedia.EmbedFlickrImages", types:{ origins:["http://www.flickr.com/services/oembed/*"]}},
-	{ module: "EmbedMedia.EmbedDeviantArtImages", types:{ origins:["http://backend.deviantart.com/*"]}},
-	{ module: "EmbedMedia.EmbedSoundCloud", types:{ origins:["http://soundcloud.com/*"]}},
-	{ module: "EmbedMedia.EmbedImageshack", types:{ origins:["http://imageshack.us/*"]}},
-	{ module: "YouthTwins", types:{ origins:["http://*.hattrick-youthclub.org/*"]}},
-	{ module: "Links.AddServer",  types:{ permissions: ["cookies"]}},
-	{ module: "HTEVPrediction", types:{ origins:["http://htev.org/api/*"]}}
+	//{ modules: "StaffMarker", types:{ origins: "http://foxtrick.googlecode.com/svn/trunk/res/staff/*"]}},
+	{ modules: ["ExtraShortcuts.HtRadio"], types:{ origins: ["http://stream.ht-radio.nl/*"]}},
+	{ modules: ["ExtraShortcuts.No9"], types:{ origins: ["http://no9-online.de/*"]}},
+	{ modules: ["ExtraShortcuts.Latehome"], types:{ origins:["http://www.latehome.de/*"]}},
+	//{ modules: "StaffMarker.HT-Youthclub"9, types:{ origins:["http://foxtrick.googlecode.com/svn/trunk/res/staff/*"]}},
+	{ modules: ["EmbedMedia.EmbedModeOEmebed"], types:{ origins:["https://vimeo.com/api/*", "https://www.youtube.com/*", "https://www.dailymotion.com/services/*"]}},
+	{ modules: ["EmbedMedia.EmbedFlickrImages"], types:{ origins:["http://www.flickr.com/services/oembed/*"]}},
+	{ modules: ["EmbedMedia.EmbedDeviantArtImages"], types:{ origins:["http://backend.deviantart.com/*"]}},
+	{ modules: ["EmbedMedia.EmbedSoundCloud"], types:{ origins:["http://soundcloud.com/*"]}},
+	{ modules: ["EmbedMedia.EmbedImageshack"], types:{ origins:["http://imageshack.us/*"]}},
+	{ modules: ["YouthTwins"], types:{ origins:["http://*.hattrick-youthclub.org/*"]}},
+	{ modules: ["Links.AddServer"],  types:{ permissions: ["cookies"]}},
+	{ modules: ["HTEVPrediction"], types:{ origins:["http://htev.org/api/*"]}}
 ];
 
+function permissionsMakeIdFromName(module) {
+	var id = "#pref-" + module;
+	if (id.indexOf('.')==-1)
+		id = id + "-check"; // main module check
+	else
+		id = id.replace(/\./g,"-"); // suboption check
+	return id;
+}
+						
 function testPermissions() {
 	// initialize elements which need permissions, ask for permission if needed
 	if (Foxtrick.platform === "Chrome") {
+		var modulelist = [];
 		for (var i=0; i<neededPermissions.length; ++i) { 
 			var testModulePermission = function(neededPermission) {				
 				chrome.permissions.contains( neededPermission["types"], function(result) {
-						//Foxtrick.log(neededPermission.module, " - enabled: ", FoxtrickPrefs.getBool("module." + neededPermission.module + ".enabled"), " - result: ", result)
-						var id = "#pref-" + neededPermission.module.replace(/\./g,"-");
+					for (var m=0; m<neededPermission.modules.length; ++m) {
+						var module = neededPermission.modules[m];
+						var id = permissionsMakeIdFromName(module); 
 						$(id).attr("permission-granted", result);
 						neededPermission.granted = result;
 						var checkPermission = function() {
-							if ($(id+"-check").attr("checked") == "checked" && $(id).attr("permission-granted")=="false")
+							if ($(id).attr("checked") == "checked" && $(id).attr("permission-granted")=="false")
 								getPermission(neededPermission)
+							else if ($(id).attr("checked") !== "checked") {
+								modulelist = Foxtrick.remove(modulelist, module);
+								if (modulelist.length > 0) {
+									$("#alert").text(Foxtrickl10n.getString('prefs.needPermissions')+" "+modulelist);
+									$("#alert").attr("style","display:inline-block;");
+								}
+								else {
+									$("#alert").text("");
+									$("#alert").attr("style","display:none;");
+								}
+							}
 						};
-						$(id).click(function() { checkPermission(); });
+						$(id).click(function() { 
+							checkPermission(); 
+						});
 						
-						if (result==false && FoxtrickPrefs.getBool("module." + neededPermission.module + ".enabled")) {	
-							$("#alert").text(Foxtrickl10n.getString('prefs.needPermissions'));
+						if (result==false && FoxtrickPrefs.getBool("module." + module + ".enabled")) {	
+							Foxtrick.concat_unique(modulelist, neededPermission.modules);
+							$("#alert").text(Foxtrickl10n.getString('prefs.needPermissions')+" "+modulelist);
 							$("#alert").attr("style","display:inline-block;");
-						}							
-					});
+						}	
+					}
+				});
 			};				
 			testModulePermission(neededPermissions[i]);
 		}
 	}
 }
 
-function getPermission(neededPermission, hint, showSaved) {				
-	if (hint)
-		alert( hint );
+function getPermission(neededPermission, showSaved) {				
 	// Permissions must be requested from inside a user gesture, like a button's
 	// click handler.
 	chrome.permissions.request( neededPermission["types"], function(granted) {
-			// The callback argument will be true if the user granted the permissions.
-			var id = "#pref-" + neededPermission.module.replace(/\./g,"-");
+		// The callback argument will be true if the user granted the permissions.
+		for (var m=0; m<neededPermission.modules.length; ++m) {
+			var id = permissionsMakeIdFromName(neededPermission.modules[m]); 
 			if (!granted) {
 				$(id).removeAttr("checked");
-				FoxtrickPrefs.setBool("module." + neededPermission.module + ".enabled", false);
-				Foxtrick.log("Permission declined: ", neededPermission.module);
+				FoxtrickPrefs.setBool("module." + neededPermission.modules[m] + ".enabled", false);
+				Foxtrick.log("Permission declined: ", neededPermission.modules[m]);
 			}
 			else {
 				$(id).attr("permission-granted", true);
-				Foxtrick.log("Permission granted: ", neededPermission.module);
+				Foxtrick.log("Permission granted: ", neededPermission.modules[m]);
 			}
 			if (showSaved) {
 				notice(Foxtrickl10n.getString("prefs.feedback.saved"));
 			}
+		}
 	});
 }
 
@@ -973,9 +997,11 @@ function revokePermissions() {
 		for (var i=0; i<neededPermissions.length; ++i) { 
 			var revokeModulePermission = function(neededPermission) {				
 				chrome.permissions.remove( neededPermission["types"], function(result) {
-						var id = "#pref-" + neededPermission.module.replace(/\./g,"-");
+					for (var m=0; m<neededPermission.modules.length; ++m) {
+						var id = permissionsMakeIdFromName(neededPermission.modules[m]); 
 						$(id).attr("permission-granted", false);
-						Foxtrick.log('Permission removed: ', neededPermission.module, result);
+						Foxtrick.log('Permission removed: ', neededPermission.modules[m], result);
+					}
 				});
 			};				
 			revokeModulePermission(neededPermissions[i]);
@@ -987,16 +1013,24 @@ function checkPermissions() {
 	var needsPermissions = false; 
 	// ask for permissions if needed
 	if (Foxtrick.platform === "Chrome") {
-		for (var i=0; i<neededPermissions.length; ++i) { 
-			if (FoxtrickPrefs.getBool("module." + neededPermissions[i].module + ".enabled")) {
-				var id = "#pref-" + neededPermissions[i].module.replace(/\./g,"-");
-				if ($(id).attr("permission-granted")=="false") {
-					var showSaved = (i==neededPermissions.length-1) ? true : false;
+		// combine all need permissions into on request
+		var combined_permissions = { modules:[], types:{ permissions:[], origins:[] } };
+		Foxtrick.map(function(neededPermission){
+			for (var m=0; m<neededPermission.modules.length; ++m) {
+				var id = permissionsMakeIdFromName(neededPermission.modules[m]); 
+				if (FoxtrickPrefs.getBool("module." + neededPermission.modules[m] + ".enabled")==true
+					&& $(id).attr("permission-granted")=="false") {
 					needsPermissions = true;
-					getPermission(neededPermissions[i], Foxtrickl10n.getString("prefs.getPermissions.alert").replace("%s", neededPermissions[i].module), showSaved);
+					combined_permissions.modules = Foxtrick.concat_unique(combined_permissions.modules,neededPermission.modules);
+					if (neededPermission.types.permissions)
+						combined_permissions.types.permissions = Foxtrick.concat_unique(combined_permissions.types.permissions,neededPermission.types.permissions);
+					if (neededPermission.types.origins)
+						combined_permissions.types.origins = Foxtrick.concat_unique(combined_permissions.types.origins,neededPermission.types.origins);
 				}
 			}
-		}
+		}, neededPermissions);
+		
+		getPermission(combined_permissions, true);		
 	}
-	return needsPermissions;
+	return needsPermissions; // false prevents save notived be shown. will be shown delayed in getPermissions
 }
