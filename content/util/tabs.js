@@ -10,7 +10,7 @@ Foxtrick.util.tabs.initialize = function(doc){
 	var tabs = doc.getElementById('tab');
 
 	//copy elements in our container
-	var hasByLine = Foxtrick.hasClass(header, "hasByLine");
+	var hasByLine = Foxtrick.hasClass(header, "hasByline");
 	var byline = doc.getElementsByClassName("byline")[0];
 	var start = header.nextSibling;
 	if(hasByLine && byline)
