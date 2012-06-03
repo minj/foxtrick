@@ -48,11 +48,11 @@
     border-bottom: 1px solid #fff;
 }
 
-#chpp-tab-main {
-    margin-top: 39px !important;
+table.naked {
+    margin-top: 0px !important;
 }
 
-#chpp-tab-main table.naked {
-    margin-top: 0px !important;
+#ctl00_ctl00_CPContent_CPMain_udpSpeech {
+     margin-top: 39px !important;
 }
 }
