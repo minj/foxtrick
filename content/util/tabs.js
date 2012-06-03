@@ -30,7 +30,7 @@ Foxtrick.util.tabs.initialize = function(doc){
 				contentNode.setAttribute("tab", "tab-main");
 		}
 		catch(e){
-			Foxtrick.log("TextNode:", contentNode);
+			//Foxtrick.log("TextNode:", contentNode);
 		}
 		contentNode = contentNode.nextSibling;
 	}
@@ -101,7 +101,7 @@ Foxtrick.util.tabs.show = function(doc, id){
 			else
 				Foxtrick.addClass(content, "hidden");
 		} catch(e){
-			Foxtrick.log("TextNode:", content);
+			//Foxtrick.log("TextNode:", content);
 		}
 		content = content.nextSibling;
 	}

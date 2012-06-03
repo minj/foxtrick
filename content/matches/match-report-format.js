@@ -548,11 +548,14 @@ var eventText = {
 				Foxtrick.util.api.retrieve(doc, homeLineupArgs, {cache_lifetime: "session"}, function(homeXml) {
 					Foxtrick.util.api.retrieve(doc, awayLineupArgs, {cache_lifetime: "session"}, Foxtrick.preventChange(doc, function(awayXml) {
 						// add everything after .byline[0] and remove existing ones
-						var byline = doc.getElementsByClassName("byline")[0];
-						var parent = byline.parentNode;
-						while (!Foxtrick.hasClass(byline.nextSibling, "mainBox"))
-							parent.removeChild(byline.nextSibling);
-						var before = byline.nextSibling;
+						var removeAfter = doc.getElementsByClassName("byline")[0];
+						var parent = removeAfter.parentNode;
+						if(removeAfter.nextSibling.id == "tab")
+							removeAfter = removeAfter.nextSibling;
+						
+						while (!Foxtrick.hasClass(removeAfter.nextSibling, "mainBox"))
+							parent.removeChild(removeAfter.nextSibling);
+						var before = removeAfter.nextSibling;
 						
 						// lineup header
 						var header = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchReportFormat, "h2");

@@ -33,5 +33,13 @@ Foxtrick.modules["TabsTest"]={
 		doc.getElementsByTagName("h1")[0].parentNode.appendChild(div3);
 
 		Foxtrick.util.tabs.show(doc, "tab-main");
+
+		var container = doc.getElementsByTagName("h1")[0].parentNode;
+
+		//match report
+		Foxtrick.addMutationEventListener(container, "DOMNodeInserted", function(){
+			Foxtrick.util.tabs.initialize(doc);
+		}, false); 
+
 	}
 }
