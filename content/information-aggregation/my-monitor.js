@@ -64,7 +64,7 @@ Foxtrick.modules["MyMonitor"]={
 
 			// header - "My Monitor"
 			var header = doc.createElement("h1");
-			header.id = "ft-monitor-header";
+			//header.id = "ft-monitor-header";
 			header.textContent = Foxtrickl10n.getString("MyMonitor.header");
 			mydiv.appendChild(header);
 
