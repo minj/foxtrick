@@ -4,13 +4,12 @@ APP_NAME = foxtrick
 # Firefox, Chrome, Opera: nightly, release, hosting
 # Safari: nightly, release
 DIST_TYPE = nightly
-MODULES = modules
 
 # Subversion revision, this is only available with git-svn
 REVISION := $(shell git svn find-rev HEAD)
 MAJOR_VERSION := $(shell ./version.sh)
 REV_VERSION := $(MAJOR_VERSION).$(REVISION)
-BRANCH = release
+BRANCH = nightly
 
 # URL prefix of update manifest
 UPDATE_URL = https://www.foxtrick.org/nightly/
@@ -18,6 +17,12 @@ UPDATE_URL = https://www.foxtrick.org/nightly/
 BUILD_DIR = build
 SAFARI_TARGET = foxtrick.safariextension
 SAFARI_BUILD_DIR = build/$(SAFARI_TARGET)
+
+MODULES = modules
+IGNORED_MODULES=ignored-modules-$(DIST_TYPE)
+ifeq ($(BRANCH),beta)
+IGNORED_MODULES=ignored-modules-release
+endif
 
 # cf safari: xar needs to have sign capabilities ie xar --help shows --sign as option.
 # see http://code.google.com/p/xar/issues/detail?id=76 for an howto
@@ -102,7 +107,7 @@ firefox:
 	# skin/
 	cp -r skin $(BUILD_DIR)/chrome
 	# remove ignore modules from files
-	perl module-update.pl $(MODULES) ignored-modules-$(DIST_TYPE) $(BUILD_DIR)/chrome/
+	perl module-update.pl $(MODULES) $(IGNORED_MODULES) $(BUILD_DIR)/chrome/
 	# build jar
 	cd $(BUILD_DIR)/chrome; \
 	$(ZIP) -0 -r $(APP_NAME).jar `find . \( -path '*CVS*' -o -path \
@@ -117,7 +122,7 @@ firefox:
 	fi
 	# set branch
 	cd $(BUILD_DIR); \
-	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH)\"|" defaults/preferences/foxtrick.js
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH) mozilla\"|" defaults/preferences/foxtrick.js
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
@@ -151,10 +156,10 @@ chrome:
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_CHROME) \
 		../$(BUILD_DIR)/content
 	# remove ignore modules from files
-	perl module-update.pl $(MODULES) ignored-modules-$(DIST_TYPE) $(BUILD_DIR)/
+	perl module-update.pl $(MODULES) $(IGNORED_MODULES) $(BUILD_DIR)/
 	# set branch
 	cd $(BUILD_DIR); \
-	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH)\"|" defaults/preferences/foxtrick.js
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH) chrome\"|" defaults/preferences/foxtrick.js
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
@@ -198,7 +203,7 @@ opera:
 	cp -r $(RESOURCE_FOLDERS) \
 		../$(BUILD_DIR)/content
 	# remove ignore modules from files
-	perl module-update.pl $(MODULES) ignored-modules-$(DIST_TYPE) $(BUILD_DIR)/
+	perl module-update.pl $(MODULES) $(IGNORED_MODULES) $(BUILD_DIR)/
 	## change files to opera naming
 	mv $(BUILD_DIR)/preferences.html $(BUILD_DIR)/options.html
 	mv $(BUILD_DIR)/includes/env.js $(BUILD_DIR)/includes/aa00_env.js
@@ -212,7 +217,7 @@ opera:
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/loader-chrome.js)|/includes/zz99_loader-chrome.js|' background.html options.html
 	# set branch
 	cd $(BUILD_DIR); \
-	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH)\"|" defaults/preferences/foxtrick.js
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH) opera\"|" defaults/preferences/foxtrick.js
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
@@ -245,10 +250,10 @@ safari:
 	cp -r $(SCRIPT_FOLDERS) $(RESOURCE_FOLDERS) $(CONTENT_FILES_SAFARI) \
 		../$(SAFARI_BUILD_DIR)/content
 	# remove ignore modules from files
-	perl module-update.pl $(MODULES) ignored-modules-$(DIST_TYPE) $(SAFARI_BUILD_DIR)/
+	perl module-update.pl $(MODULES) $(IGNORED_MODULES) $(SAFARI_BUILD_DIR)/
 	# set branch
 	cd $(SAFARI_BUILD_DIR); \
-	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH)\"|" defaults/preferences/foxtrick.js
+	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH) safari\"|" defaults/preferences/foxtrick.js
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	# version bump for nightly
