@@ -2,6 +2,9 @@ if (!Foxtrick) var Foxtrick = {};
 if (!Foxtrick.util) Foxtrick.util = {};
 if (!Foxtrick.util.tabs) Foxtrick.util.tabs = {};
 
+//first header is the starting point
+//create or get tab-bar
+//mark all sibling of the tab-bar as content of the main tab
 Foxtrick.util.tabs.initialize = function(doc){
 	if(!Foxtrick.util.tabs.hasTabSupport(doc))
 		return;
@@ -38,7 +41,7 @@ Foxtrick.util.tabs.initialize = function(doc){
 	}
 }
 
-//private
+//private, creates the tab bar and add it's after the h1 header or it's byline
 Foxtrick.util.tabs._create = function(doc){
 	var header = doc.getElementsByTagName("h1")[0];
 	if(!header)
@@ -55,10 +58,12 @@ Foxtrick.util.tabs._create = function(doc){
 	header.parentNode.insertBefore(list, contentNode);
 }
 
+//support only for pages with a h1 header atm
 Foxtrick.util.tabs.hasTabSupport = function(doc) {
 	return doc.getElementsByTagName("h1")[0];
 }
 
+//add's tab hande, requires existing tab
 Foxtrick.util.tabs.addHandle = function(doc, title, icon, shows){
 	if(!Foxtrick.util.tabs.hasTabSupport(doc))
 		return;
@@ -87,6 +92,7 @@ Foxtrick.util.tabs.addHandle = function(doc, title, icon, shows){
 	li.appendChild(link);
 	tabs.appendChild(li);
 }
+//shows last selected tab, if not present, shows "tab-main"
 Foxtrick.util.tabs.showLast = function(doc){
 	var tab = doc.getElementById("tab");
 	var active = tab.getElementsByClassName("active");
@@ -96,8 +102,10 @@ Foxtrick.util.tabs.showLast = function(doc){
 
 	Foxtrick.util.tabs.show(doc, shows);
 }
-
+//shows tab by id
 Foxtrick.util.tabs.show = function(doc, id){
+	Foxtrick.log("Show" + id);
+	
 	//select tab handle
 	var tabs = doc.getElementById("tab");
 	var links = tabs.getElementsByTagName("a");
@@ -111,12 +119,10 @@ Foxtrick.util.tabs.show = function(doc, id){
 	var tabContents = doc.getElementsByClassName("tab-content");
 	for(var i = 0; i < tabContents.length; ++i){
 		var tabs = tabContents[i].getAttribute("tab");
-
-		if(tabs.search(id) > -1){
+		if(tabs.search(id) > -1)
 			Foxtrick.removeClass(tabContents[i], "hidden");
-		} else {
-			Foxtrick.addClass(tabContents[i], "hidden");		
-		}
+		else
+			Foxtrick.addClass(tabContents[i], "hidden");
 	}
 }
 Foxtrick.util.tabs.addToAttribute = function(elem, attrib, value){
@@ -150,18 +156,15 @@ Foxtrick.util.tabs.tabify = function(doc){
 			continue;
 
 		Foxtrick.util.tabs.addHandle(doc, h2s[i].textContent, null, "tab-" + label);
-		Foxtrick.util.tabs.addH2ToTab(doc, h2s[i], "tab-" + label);
-		Foxtrick.addClass(h2s[i], "tab-content");
+		Foxtrick.util.tabs._addH2ToTab(doc, h2s[i], "tab-" + label);
+		
 	}
 	Foxtrick.util.tabs.initialize(doc);
 	Foxtrick.util.tabs.showLast(doc);
 }
 
-Foxtrick.util.tabs.addH2ToTab = function(doc, h2, tab) {
+Foxtrick.util.tabs._addH2ToTab = function(doc, h2, tab) {
 	var setupHeaderSiblings = function(el, tab) {
-
-		Foxtrick.addClass(el, "tab-content");
-
 		var parent = el.parentNode;
 		el = el.nextSibling;
 		var forumThreads = {}, numUnread = 0, idString='';
@@ -235,6 +238,7 @@ Foxtrick.util.tabs.addH2ToTab = function(doc, h2, tab) {
 	};
 
 	Foxtrick.util.tabs.addElementToTab(doc, h2, tab);
+	Foxtrick.addClass(h2, "tab-content");
 	setupHeaderSiblings(h2, tab);
 	if (h2.parentNode.nodeName=='TD') {
 		// in tables we also toggle sibling rows

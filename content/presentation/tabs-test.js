@@ -2,7 +2,7 @@ Foxtrick.modules["TabsTest"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['all'],
 	OPTIONS: ['tabify'],
-	nightly: "This is a proof of concept module. Please report any mayor problems.",
+	nightly: "This is a proof of concept module by Foxtrick. Please report any problems or weird things to the Foxtrick developer.",
 	NICE: 50,
 	run : function(doc) {
 		if(!Foxtrick.util.tabs.hasTabSupport(doc))
@@ -31,6 +31,8 @@ Foxtrick.modules["TabsTest"]={
 			Foxtrick.util.tabs.tabify(doc);
 		}, false);
 
+		Foxtrick.log("fix display");
+		Foxtrick.util.tabs.show(doc, "tab-main");
 		
 	}
 }
