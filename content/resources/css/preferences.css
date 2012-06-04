@@ -291,10 +291,16 @@ html[dir="rtl"] #note
 	left: 20px;
 }
 
-#alert
+.alert
 {
 	border: solid 1px orange;
 	background-color: #FCF6DF;
-	padding: 10px 150px 10px 10px;
+	margin: 10px;
+	padding: 10px 10px 10px 10px;
 	display:none;
+}
+
+#alert
+{
+	padding-right: 150px
 }

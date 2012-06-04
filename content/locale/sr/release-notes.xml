@@ -12,7 +12,7 @@
 <item>За детаље о променама погледајте  на <xhtml:a href="http://code.google.com/p/foxtrick/source/list">Google Code</xhtml:a> сајту.</item>
 </note>
 
-<note version="0.9.4">
+<note version="0.10.0">
 <item>● НОВО:  <module>TransferHistoryFilters</module>: Омогућава филтрирање купљених или продатих играча на страници клупске Историје трансфера</item>
 <item>● <module>PlayerStatsExperience</module>: Нова верзија са више детаља. (Хвала SeanConnery (7751762) за тестирање комбинације боја за особе које не препознају основну нијансу црвене и зелене)</item>
 <item>● <module>MatchOrderInterface</module>: Могућност клонирања постојећих индивидуалних налога за играче. Играчи намерно неће бити убачени.</item>

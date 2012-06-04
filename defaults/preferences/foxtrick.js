@@ -1,7 +1,7 @@
 pref("extensions.foxtrick.prefs.CopyPostingStyle", "ht-ml");
 pref("extensions.foxtrick.prefs.copyratings.teams", "both");
-pref("extensions.foxtrick.prefs.version", "0.9.9");
-pref("extensions.foxtrick.prefs.branch", "svn");
+pref("extensions.foxtrick.prefs.version", "0.10.0");
+pref("extensions.foxtrick.prefs.branch", "beta");
 pref("extensions.foxtrick.prefs.disableOnStage", false);
 pref("extensions.foxtrick.prefs.disableTemporary", false);
 pref("extensions.foxtrick.prefs.DisplayHTMLDebugOutput", false);

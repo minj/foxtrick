@@ -633,10 +633,27 @@ function initChangesTab()
 	parseNotes(releaseNotes, notes);
 	parseNotes(releaseNotesLocalized, notesLocalized);
 
+	// add nightly and beta notes
+	for (var i in notes) {
+		var version = notes[i].getAttribute("version");
+		if (FoxtrickPrefs.getString('branch').indexOf(version) !== -1) {
+			var note = notesLocalized[version] || notes[version];
+			if (!note)
+				continue;
+			var list = $("#translator_note")[0];
+			var item = note.getElementsByTagName("item")[0];
+			importContent(item, list);
+			$("#translator_note").attr("style","display:block;");
+		}
+	}
+
 	var select = $("#pref-version-release-notes")[0];
 	for (var i in notes) {
 		// unique version name
 		var version = notes[i].getAttribute("version");
+		// not beta / nightly notes
+		if (version.search(/^\d/) == -1)
+			continue;
 		// don't add subversions
 		if (version.search(/\d\.\d\.\d\.\d/) != -1)
 			continue;
@@ -943,7 +960,7 @@ function testPermissions() {
 								modulelist = Foxtrick.remove(modulelist, module);
 								if (modulelist.length > 0) {
 									$("#alert").text(Foxtrickl10n.getString('prefs.needPermissions')+" "+modulelist);
-									$("#alert").attr("style","display:inline-block;");
+									$("#alert").attr("style","display:block;");
 								}
 								else {
 									$("#alert").text("");

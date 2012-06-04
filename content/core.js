@@ -41,6 +41,9 @@ Foxtrick.modules["Core"]={
 		try {
 			// show change log if anything but forth number changes
 			if (FoxtrickPrefs.getString("oldVersion") && FoxtrickPrefs.getString("oldVersion").match(/\d+\.\d+\.?\d+?/)[0] !== Foxtrick.version().match(/\d+\.\d+\.?\d+?/)[0]) {
+				// set showReleaseNotes true for this version to get the new  beta changes shown
+				FoxtrickPrefs.setBool("showReleaseNotes", true);
+				
 				if (FoxtrickPrefs.getBool("showReleaseNotes")) {
 					if ( Foxtrick.platform != "Opera" )
 						FoxtrickPrefs.show('#tab=changes');
@@ -106,6 +109,11 @@ Foxtrick.modules["Core"]={
 							for (var i in notes) {
 								// unique version name
 								var version = notes[i].getAttribute("version");
+								if (version.search(/^\d/) == -1)
+									continue;
+								// don't add subversions
+								if (version.search(/\d\.\d\.\d\.\d/) != -1)
+									continue;
 								// localized version name
 								// search by:
 								// 1. localized-version in localized release notes
