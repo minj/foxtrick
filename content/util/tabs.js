@@ -81,6 +81,7 @@ Foxtrick.util.tabs.addHandle = function(doc, title, icon, shows){
 	link.appendChild(text);
 
 	Foxtrick.onClick(link, function() {
+		link.parentNode.setAttribute("active","true");
 		Foxtrick.util.tabs.show(doc, link.getAttribute("shows"));
 	});
 
