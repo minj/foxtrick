@@ -9,10 +9,6 @@
      translate the "localized-version" attribute. -->
 
 <notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
-<note version="nightly" localized-version="Development build">
-<item>Please view <xhtml:a href="http://code.google.com/p/foxtrick/source/list">commit history</xhtml:a> at Google Code for details.</item>
-</note>
-
 <note version="0.9.3">
 <item>● A lot of language updates because Foxtrick users are awesome. Thank you so much. Keep contributing at <xhtml:a href="http://www.crowdin.net/project/foxtrick">http://www.crowdin.net</xhtml:a></item>
 <item>● NEW: <module>YouthTwins</module>: Shows the amount of possible/marked/non twins on the youth players overview page for supporters (in conjunction with hattrick youthclub)</item>

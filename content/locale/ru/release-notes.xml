@@ -9,15 +9,17 @@
      translate the "localized-version" attribute. -->
 
 <notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
-	<note version="nightly" localized-version="разрабатываемой версии">
-		<item>Пожалуйста, смотрите <xhtml:a href="http://code.google.com/p/foxtrick/source/list">историю изменений</xhtml:a> на сайте Google Code для полного списка изменений.</item>
-	</note>
-
 	<note version="0.9.3">
+		<item>● Большое количество обновлений переводов благодаря потрясающим пользователям Foxtrick. Большое вам спасибо. Пожалуйста, продолжайте обновлять переводы на <xhtml:a href="http://www.crowdin.net/project/foxtrick">http://www.crowdin.net</xhtml:a>.</item>
+		<item>● Новый модуль <module>YouthTwins</module>: показывает количество возможных/отмеченных/не близнецов на странице игроков юношеской команды для supporter-ов (в сотрудничестве с hattrick youthclub)</item>
+		<item>● Модуль <module>MatchOrderInterface</module>: параметр для показа лиц игроков вместо рубашек для будущих и прошлых расстановок (включен по умолчанию)</item>
 		<item>● Модуль <module>MatchOrderInterface</module>: добавлен параметр (включён по умолчанию) для исключения матчей турнира из информации о последних матчах и подсветки</item>
+		<item>● Модуль <module>MatchIncome</module>: поддержка увеличения стоимости билетов начиная с 49 сезона. Доход от продажи билетов теперь подсчитывается по ценам, действовавшим во время матча.</item>
 		<item>● Модуль <module>MatchOrderInterface</module>: исправлена ошибка с нерабочим индикатором playedLastMatch в Firefox</item>
+		<item>● Модуль <module>MatchOrderInterface</module>: убрана подстветка игроков, игравших в последнем матче, поскольку разрешение на это отозвано :( (но вскоре появится замена от HT - только для supporter-ов)</item>
 		<item>● Модуль <module>PlayerStatsExperience</module>: исправлена ошибка с учётом полученной красной карточки как пропуска игры из-за технического поражения</item>
 		<item>● Модуль <module>PlayerStatsExperience</module>: исправлена работа модуля в Firefox 3.6</item>
+		<item>● Модуль <module>CustomMedals</module>: исправлено исчезновение турнирных трофеев</item>
 	</note>
 
 	<note version="0.9.2">

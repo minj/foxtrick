@@ -9,11 +9,6 @@
      translate the "localized-version" attribute. -->
 
 <notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
-<note version="nightly" localized-version="Development build">
-<item>Siehe <xhtml:a href="http://code.google.com/p/foxtrick/source/list"> für die komplette Veränderungsgeschichte</xhtml:a> auf Google Code.</item>
-<item>Du kannst FoxTrick daran hindern diese Release Notes nach jedem Update anzuzeigen in dem du die "Anzeige der Release Notes nach einem FoxTrick-Update" in den <xhtml:a href="#tab=main">Grundeinstellungen</xhtml:a> deaktivierts.</item>
-</note>
-
 <note version="0.9.3">
 <item>● Eine Menge Sprachupdates. FoxTrick user sind Klasse. Vielen Dank dafür. Bitte weiterhin auf <xhtml:a href="http://www.crowdin.net/project/foxtrick">http://www.crowdin.net</xhtml:a> weiterhelfen</item>
 <item>● NEU: <module>YouthTwins</module>: Zeigt die Anzahl potentieller Zwillinge deiner Jugendspieler in deinem Jugendkader an. Wenn du HY Benutzer bist kannst du auch sehen wieviele dieser Spieler als Zwilling markiert bzw. als wiederlegt markiert wurden. (In Zusammenarbeit mit <xhtml:a href="http://www.hattrick-youthclub.org/">hattrick youthclub</xhtml:a>). Die Information wird 1x pro Woche erneuert. </item>
