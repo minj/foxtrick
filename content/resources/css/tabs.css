@@ -19,6 +19,9 @@
     margin-bottom: -1px;
     padding: 0px !important; 
 }
+#tab img {
+    float:left;
+}
 #tab a
 {
     display: block;
