@@ -80,8 +80,8 @@
 			getYouthPlayerList(teamid, function(playerlist) {
 				getYouthAvatars(function(avatars){
 					//urlencode xml files
-					var pl = encodeURIComponent((new XMLSerializer()).serializeToString(playerlist));
-					var av = encodeURIComponent((new XMLSerializer()).serializeToString(avatars));
+					var pl = encodeURIComponent((new  window.XMLSerializer()).serializeToString(playerlist));
+					var av = encodeURIComponent((new  window.XMLSerializer()).serializeToString(avatars));
 					
 					//api url
 					var url = "http://www.hattrick-youthclub.org/_data_provider/foxtrick/playersTwinsCheck";
