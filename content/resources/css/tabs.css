@@ -49,10 +49,19 @@
 }
 
 table.naked {
-    margin-top: 0px !important;
+    margin: 0 -8px -8px !important;
 }
 
-#tab + h2, #ctl00_ctl00_CPContent_CPMain_udpSpeech {
-     margin-top: 39px !important;
+
+html[data-theme="standard"] #tab + #mails,
+html[data-theme="standard"] #tab + h2, 
+html[data-theme="standard"] #ctl00_ctl00_CPContent_CPMain_udpSpeech {
+     margin-top: 54px !important;
+}
+
+html[data-theme="simple"] #tab + #mails,
+html[data-theme="simple"] #tab + h2, 
+html[data-theme="simple"] #ctl00_ctl00_CPContent_CPMain_udpSpeech {
+     margin-top: 48px !important;
 }
 }
