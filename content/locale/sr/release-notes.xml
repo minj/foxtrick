@@ -6,7 +6,6 @@
      instead of <a>. -->
 <!-- For each note, keep the attribute "version" unchanged, and you could
      translate the "localized-version" attribute. -->
-а
 <notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
 <note version="0.9.3">
 <item>● НОВО: <module>YouthTwins</module>: Приказује број могућих близанаца на страници са играчима омладинског тима (само за супортере у сарадњи са 'hattrick youthclub')</item>
