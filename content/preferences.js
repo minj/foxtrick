@@ -616,6 +616,17 @@ function initChangesTab()
 	var releaseNotes = Foxtrick.loadXmlSync(Foxtrick.InternalPath + "release-notes.xml");
 	var releaseNotesLocalized = Foxtrick.loadXmlSync(Foxtrick.InternalPath
 		+ "locale/" + FoxtrickPrefs.getString("htLanguage") + "/release-notes.xml");
+	var status = Foxtrick.loadXmlSync(Foxtrick.InternalPath + "locale/status.xml");
+
+	var lang = FoxtrickPrefs.getString("htLanguage");
+	var path = "status/language[code='"+lang+"']/translated_progress";
+	
+	var statusText = "";
+	try {
+		if (lang != "en")
+			var statusText = Foxtrickl10n.getString("releaseNotes.translationStatus").replace(/%s/,Foxtrick.xml_single_evaluate(status, path).textContent);
+	} catch(e) {}
+	
 	var notes = {};
 	var notesLocalized = {};
 
@@ -644,6 +655,8 @@ function initChangesTab()
 			var item = note.getElementsByTagName("item")[0];
 			importContent(item, list);
 			$("#translator_note").attr("style","display:block;");
+			if (version ==  "beta")
+				$("#translator_note").append(statusText);
 		}
 	}
 
