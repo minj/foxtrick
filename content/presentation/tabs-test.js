@@ -8,12 +8,16 @@ Foxtrick.modules["TabsTest"]={
 		if(!Foxtrick.util.tabs.hasTabSupport(doc))
 			return;
 		Foxtrick.util.tabs.initialize(doc);
-		Foxtrick.util.tabs.addHandle(doc, "Main", { alt: "Main", title: "Main", src: "/Img/Icons/cross_small.png"}, "tab-main");
+
+		var h1 = doc.getElementsByTagName("h1")[0].textContent;
+
+		Foxtrick.util.tabs.addHandle(doc, h1, { alt: h1, title: h1, src: "/Img/Icons/cross_small.png"}, "tab-main");
 		Foxtrick.util.tabs.addHandle(doc, "Read me", { alt: "Read me", title: "Read me", src: "/Img/Icons/cross_small.png"} , "ft-tab-readme");
 
 		var div = doc.createElement("div");
 		div.textContent = this.nightly;
 		div.setAttribute("tab", "ft-tab-readme");
+		Foxtrick.addClass(div, "ft-tab-custom")
 
 		doc.getElementsByTagName("h1")[0].parentNode.appendChild(div);
 		Foxtrick.util.tabs.addElementToTab(doc, div, "ft-tab-readme");
@@ -27,6 +31,5 @@ Foxtrick.modules["TabsTest"]={
 		}, false);
 
 		Foxtrick.util.tabs.tabify(doc);
-		Foxtrick.util.tabs.show(doc, "tab-main");
 	}
 }

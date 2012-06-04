@@ -50,11 +50,12 @@
     border-right: 1px solid #999;
     border-bottom: 1px solid #fff;
 }
-
 table.naked {
     margin: 0 -8px -8px !important;
 }
-
+div.ft-tab-custom {
+    float:left;
+}
 
 html[data-theme="standard"] #tab + #mails,
 html[data-theme="standard"] #tab + h2, 
