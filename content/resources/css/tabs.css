@@ -20,8 +20,11 @@
     padding: 0px !important; 
 }
 #tab img {
-    float:left;
+    float: left;
+    margin-right: 4px;
+    padding-top: 1px;
 }
+
 #tab a
 {
     display: block;
@@ -54,6 +57,7 @@ table.naked {
     margin: 0 -8px -8px !important;
 }
 
+.ft-tab-custom,
 #tab + p,
 #tab + div {
     clear:both;

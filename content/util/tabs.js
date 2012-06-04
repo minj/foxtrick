@@ -90,7 +90,10 @@ Foxtrick.util.tabs.addHandle = function(doc, title, icon, shows){
 Foxtrick.util.tabs.showLast = function(doc){
 	var tab = doc.getElementById("tab");
 	var active = tab.getElementsByClassName("active");
-	var shows = active[0].getAttribute("shows");
+	var shows = "tab-main";
+	if(active[0])
+		shows = active[0].getAttribute("shows");
+
 	Foxtrick.util.tabs.show(doc, shows);
 }
 
@@ -110,10 +113,8 @@ Foxtrick.util.tabs.show = function(doc, id){
 		var tabs = tabContents[i].getAttribute("tab");
 
 		if(tabs.search(id) > -1){
-			Foxtrick.log("show");
 			Foxtrick.removeClass(tabContents[i], "hidden");
 		} else {
-			Foxtrick.log("hide");
 			Foxtrick.addClass(tabContents[i], "hidden");		
 		}
 	}
@@ -172,7 +173,6 @@ Foxtrick.util.tabs.addH2ToTab = function(doc, h2, tab) {
 					var span =  doc.createElement('span');
 					span.appendChild(el);
 					el = parent.insertBefore(span, target);
-					Foxtrick.log("textnode in span", el);
 				} else {
 					el = el.nextSibling;
 					continue;
