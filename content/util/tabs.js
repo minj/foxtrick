@@ -81,12 +81,17 @@ Foxtrick.util.tabs.addHandle = function(doc, title, icon, shows){
 	link.appendChild(text);
 
 	Foxtrick.onClick(link, function() {
-		link.parentNode.setAttribute("active","true");
 		Foxtrick.util.tabs.show(doc, link.getAttribute("shows"));
 	});
 
 	li.appendChild(link);
 	tabs.appendChild(li);
+}
+Foxtrick.util.tabs.showLast = function(doc){
+	var tab = doc.getElementById("tab");
+	var active = tab.getElementsByClassName("active");
+	var shows = active[0].getAttribute("shows");
+	Foxtrick.util.tabs.show(doc, shows);
 }
 
 Foxtrick.util.tabs.show = function(doc, id){
@@ -148,7 +153,7 @@ Foxtrick.util.tabs.tabify = function(doc){
 		Foxtrick.addClass(h2s[i], "tab-content");
 	}
 	Foxtrick.util.tabs.initialize(doc);
-	Foxtrick.util.tabs.show(doc, "tab-main");
+	Foxtrick.util.tabs.showLast(doc);
 }
 
 Foxtrick.util.tabs.addH2ToTab = function(doc, h2, tab) {
