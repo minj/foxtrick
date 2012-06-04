@@ -12,6 +12,7 @@ Foxtrick.modules["TabsTest"]={
 		var h1 = doc.getElementsByTagName("h1")[0].textContent;
 
 		Foxtrick.util.tabs.addHandle(doc, h1, { alt: h1, title: h1, src: "/Img/Icons/cross_small.png"}, "tab-main");
+		Foxtrick.util.tabs.tabify(doc);
 		Foxtrick.util.tabs.addHandle(doc, "Read me", { alt: "Read me", title: "Read me", src: "/Img/Icons/cross_small.png"} , "ft-tab-readme");
 
 		var div = doc.createElement("div");
@@ -30,6 +31,6 @@ Foxtrick.modules["TabsTest"]={
 			Foxtrick.util.tabs.tabify(doc);
 		}, false);
 
-		Foxtrick.util.tabs.tabify(doc);
+		
 	}
 }
