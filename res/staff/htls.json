@@ -1,6 +1,6 @@
 {
 	"type": "htls",
-	"icon": { 
+	"icon": {
 		"developer" : "chrome://foxtrick/content/resources/img/staff/htls.png"
 	},
 	"list": [
