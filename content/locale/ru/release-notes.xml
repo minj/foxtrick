@@ -10,7 +10,10 @@
 
 <notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
 	<note version="nightly" localized-version="разрабатываемой версии">
-		<item>Пожалуйста, смотрите <xhtml:a href="http://code.google.com/p/foxtrick/source/list">историю изменений</xhtml:a> на сайте Google Code для полного списка изменений.</item>
+		<item>Это сборка разрабатываемой версии. Используёте её на ваше собственное усмотрение. Пожалуйста, обращайтесь к <xhtml:a href="http://code.google.com/p/foxtrick/source/list">истории изменений</xhtml:a> на сайте Google Code за подробностями.</item>
+	</note>
+	<note version="beta" localized-version="бета-версии">
+		<item>Это - бета-версия следующего выпуска. Пожалуйста, помогите нам с переводом этой версии на краудсорсинговом сайте <xhtml:a href="http://crowdin.net/project/foxtrick">crowdin.net</xhtml:a>. </item>
 	</note>
 	<note version="0.10.0">
 		<item>● НОВЫЙ модуль <module>TransferHistoryFilters</module>: позволяет показывать только проданных или только купленных игроков. Доступно только для истории трансферов команды, не для игроков (включен по умолчанию)</item>
@@ -22,6 +25,8 @@
 		<item>● Модуль <module>StaffMarker</module>: теперь для получения списка администраторов Hattrick Youthclub используется сайт Google Code вместо перегруженных серверов HY</item>
 		<item>● Модуль <module>MatchPlayerColouring</module>: теперь работает корректно и для игроков, проведших неполный предыдущий матч</item>
 		<item>● Модуль <module>TeamPopupLinks</module>: небольшое изменение стиля для лучшей интеграции в общую картину hattrick.org</item>
+		<item>● Поддержка страницы ключевых игроков</item>
+		<item>● Возможность проверить звук на странице настроек</item>
 		<item></item>
 		<item><xhtml:b>Для пользователей с нарушениями зрения или слуха</xhtml:b></item>
 		<item>Мы добавили новую секцию на страницу настроек, на которую поместили все модули, относящиеся к специальным возможностям.</item>
@@ -40,6 +45,8 @@
 		<item>● Модуль <module>PlayerStatsExperience</module>: исправлена ошибка с учётом полученной красной карточки как пропуска игры из-за технического поражения</item>
 		<item>● Модуль <module>PlayerStatsExperience</module>: исправлена работа модуля в Firefox 3.6</item>
 		<item>● Модуль <module>CustomMedals</module>: исправлено исчезновение турнирных трофеев</item>
+		<item>● Поддежка звукового формата ogg в браузерах от Mozilla</item>
+		<item>● Fennec снова загружает список пользователей и ссылки из внутренних ресурсов. Таким образом, они не обновляются динамически для уменьшения траффика.</item>
 	</note>
 
 	<note version="0.9.2">
