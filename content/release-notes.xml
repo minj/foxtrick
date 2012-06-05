@@ -13,7 +13,7 @@
 <item>This is the development build. Use at your own discretion. Please view <xhtml:a href="http://code.google.com/p/foxtrick/source/list">commit history</xhtml:a> at Google Code for details of the changes.</item>
 </note>
 <note version="beta">
-<item>This is the beta version of the next release. Please help translating this version at our super easy crowd-tranlation page <xhtml:a href="http://crowdin.net/project/foxtrick">crowdin.net</xhtml:a>. </item>
+<item>This is the beta version of the next release. Please help translating this version at our super easy crowd-translation page <xhtml:a href="http://crowdin.net/project/foxtrick">crowdin.net</xhtml:a>. </item>
 </note>
 <note version="0.10.0">
 <item>● NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)</item>
