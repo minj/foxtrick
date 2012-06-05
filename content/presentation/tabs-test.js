@@ -1,7 +1,7 @@
 Foxtrick.modules["TabsTest"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['all'],
-	OPTIONS: ['tabify'],
+	OPTIONS: ['Tabify'],
 	nightly: "This is a proof of concept module by Foxtrick. Please report any problems or weird things to the Foxtrick developer.",
 	NICE: 50,
 	run : function(doc) {
@@ -12,7 +12,8 @@ Foxtrick.modules["TabsTest"]={
 		var h1 = doc.getElementsByTagName("h1")[0].textContent;
 
 		Foxtrick.util.tabs.addHandle(doc, h1, { alt: h1, title: h1, src: "/Img/Icons/cross_small.png"}, "tab-main");
-		Foxtrick.util.tabs.tabify(doc);
+		if (FoxtrickPrefs.isModuleOptionEnabled("TabsTest", "Tabify"))
+			Foxtrick.util.tabs.tabify(doc);
 		Foxtrick.util.tabs.addHandle(doc, "Read me", { alt: "Read me", title: "Read me", src: "/Img/Icons/cross_small.png"} , "ft-tab-readme");
 
 		var div = doc.createElement("div");
@@ -28,11 +29,11 @@ Foxtrick.modules["TabsTest"]={
 		//match report
 		Foxtrick.addMutationEventListener(container, "DOMNodeInserted", function(){
 			Foxtrick.util.tabs.initialize(doc);
-			Foxtrick.util.tabs.tabify(doc);
+			if (FoxtrickPrefs.isModuleOptionEnabled("TabsTest", "Tabify"))
+				Foxtrick.util.tabs.tabify(doc);
 		}, false);
 
-		Foxtrick.log("fix display");
+		Foxtrick.log("fix display");		
 		Foxtrick.util.tabs.show(doc, "tab-main");
-		
 	}
 }
