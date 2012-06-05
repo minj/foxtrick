@@ -79,6 +79,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/pages/youth-player.js</string>
 				<string>content/pages/transfer-search-results.js</string>
 				<string>content/pages/match.js</string>
+				<string>content/pages/matches.js</string>
 
 				<!-- core modules -->
 				<string>content/redirections.js</string>

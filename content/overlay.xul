@@ -51,6 +51,7 @@
 <script type="application/x-javascript" src="./pages/youth-player.js" />
 <script type="application/x-javascript" src="./pages/transfer-search-results.js" />
 <script type="application/x-javascript" src="./pages/match.js" />
+<script type="application/x-javascript" src="./pages/matches.js" />
 
 <!-- core modules -->
 <script type="application/x-javascript" src="./redirections.js" />

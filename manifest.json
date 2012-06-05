@@ -57,6 +57,7 @@
 			"content/pages/youth-player.js",
 			"content/pages/transfer-search-results.js",
 			"content/pages/match.js",
+			"content/pages/matches.js",
 
 			//<!-- categorized modules -->
 			"content/access/aria-landmarks.js",

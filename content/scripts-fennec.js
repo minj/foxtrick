@@ -66,6 +66,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/pages/youth-player.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/pages/transfer-search-results.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/pages/match.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/pages/matches.js", true);
 
 		//<!-- categorized modules -->
 		messageManager.loadFrameScript("chrome://foxtrick/content/access/aria-landmarks.js", true);

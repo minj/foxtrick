@@ -217,6 +217,10 @@ Foxtrick.modules["HTEVPrediction"]={
 			Foxtrick.listen(link, "mouseover", getFromHTEV, false);
 		}
 
+		//only run on senior matches page
+		if(Foxtrick.Pages.Matches.isYouthMatchesPage(doc) || Foxtrick.Pages.Matches.isNtMatchesPage(doc))
+			return;
+
 		var links = doc.getElementById("mainBody").getElementsByTagName("a");
 		for(var i = 0; i < links.length; i++){
 			var matchid = Foxtrick.util.id.getMatchIdFromUrl(links[i].href);
