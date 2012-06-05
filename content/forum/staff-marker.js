@@ -8,7 +8,7 @@
 Foxtrick.modules["StaffMarker"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ["forumViewThread", "forumWritePost", "teamPage"],
-	OPTIONS : ["own", "manager","HT-Youthclub"],
+	OPTIONS : ["own", "manager","external"],
 	OPTION_EDITS : true,
 	OPTION_EDITS_DISABLED_LIST : [false, true, true],
 
@@ -26,7 +26,7 @@ Foxtrick.modules["StaffMarker"]={
 			}
 			catch (e) {
 				// JSON.parse failed
-				Foxtrick.log("Cannot parse file from: ", uri);
+				Foxtrick.log("Cannot parse file from: ", text);
 			}
 			if (parsed) {
 				var key = parsed["type"];
@@ -57,15 +57,15 @@ Foxtrick.modules["StaffMarker"]={
 			Foxtrick.DataPath + "staff/chpp.json"+ext,
 			Foxtrick.DataPath + "staff/editor.json"+ext
 		];
-		if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","HT-Youthclub")) {
+		if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","external")) {
 		 	uris.push(Foxtrick.DataPath + "staff/hy.json"+ext);
+		 	uris.push(Foxtrick.DataPath + "staff/htls.json"+ext);
 		 	++todo;
 		}
 
 		// counter of URI remaining to fetch
 		var todo = uris.length;
 		Foxtrick.map(function(uri) {
-			Foxtrick.log("do feeds: ", uri);
 			if (uri.search(/\.zip$/i) != -1 ) {
 				// load zipped
 				var feedsZip = new ZipFile(uri, function(zip){
@@ -111,7 +111,6 @@ Foxtrick.modules["StaffMarker"]={
 				Foxtrick.modules.StaffMarker.load();
 				return;
 			}
-			
 			// getting user-defined IDs and colors
 			var customMarker = {};
 			if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker", "own")) {
@@ -126,6 +125,7 @@ Foxtrick.modules["StaffMarker"]={
 			// tell whether user is staff by id or alias,
 			// and attach class and/or user-defined style to object
 			var modifier = function(id, alias, object) {
+				Foxtrick.log(id, alias)
 				// alias in select boxes might have a Left-to-Right
 				// Overwrite (LRO, U+202D) in front
 				var markers = [
@@ -148,6 +148,7 @@ Foxtrick.modules["StaffMarker"]={
 
 				// data loaded from external files
 				for (var type in data) {
+					Foxtrick.log(data[type][id])
 					if (data[type][id] == true){
 						Foxtrick.addClass(object, "ft-staff-" + type);
 						if (type == "chpp-holder"){
