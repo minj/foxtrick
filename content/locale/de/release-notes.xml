@@ -9,6 +9,11 @@
      translate the "localized-version" attribute. -->
 
 <notes xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<note version="nightly" localized-version="Development build">
+<item>Siehe <xhtml:a href="http://code.google.com/p/foxtrick/source/list"> für die komplette Veränderungsgeschichte</xhtml:a> auf Google Code.</item>
+<item>Du kannst FoxTrick daran hindern diese Release Notes nach jedem Update anzuzeigen in dem du die "Anzeige der Release Notes nach einem FoxTrick-Update" in den <xhtml:a href="#tab=main">Grundeinstellungen</xhtml:a> deaktivierts.</item>
+</note>
+
 <note version="0.9.3">
 <item>● Eine Menge Sprachupdates. FoxTrick user sind Klasse. Vielen Dank dafür. Bitte weiterhin auf <xhtml:a href="http://www.crowdin.net/project/foxtrick">http://www.crowdin.net</xhtml:a> weiterhelfen</item>
 <item>● NEU: <module>YouthTwins</module>: Zeigt die Anzahl potentieller Zwillinge deiner Jugendspieler in deinem Jugendkader an. Wenn du HY Benutzer bist kannst du auch sehen wieviele dieser Spieler als Zwilling markiert bzw. als wiederlegt markiert wurden. (In Zusammenarbeit mit <xhtml:a href="http://www.hattrick-youthclub.org/">hattrick youthclub</xhtml:a>). Die Information wird 1x pro Woche erneuert. </item>
@@ -17,7 +22,10 @@
 <item>● MatchOrderInterface: Fixed bug where the playedLastMatch indicator didn't show (or showed incorrectly) on Firefox</item>
 <item>● MatchOrderInterface: Der Indikator der anzeigte ob ein Spieler im letzten Spiel auf dem Feld stand musste leider auf Nachfrage herrausgenommen werden. Diese Funktion steht Supportern in verbesserter Form von Haus aus zur Verfügung.</item>
 <item>● PlayerStatsExperience: Bug gefixed wodurch Rote Karten dazu führten dass fälschlicherweise ein 'Walkover' erkannt wurde.</item>
-<item>● PlayerStatsExperience: Das Modul funktionierte nicht unter FF 3.6. Auch das wurde behoben. Aber bitte updaten, der Browser bekommt keinen Support mehr! </item>
+<item>● PlayerStatsExperience: Das Modul funktionierte nicht unter FF 3.6. Auch das wurde behoben. Aber bitte updaten, der Browser bekommt keinen Support mehr!</item>
+<item>● CustomMedals: Tournament Trophäen verschwinden nicht mehr.</item>
+<item>● Ogg Support für Mozilla-basierte Browser</item>
+<item>● Fennec läd Ressources für StaffMarker und Links wieder vom internen Speicher. Dadurch werden diese zwar nicht mehr dynamisch aktualisiert aber es wird weniger Datenverkehr verursacht.</item>
 </note>
 
 <note version="0.9">
