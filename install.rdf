@@ -7,7 +7,7 @@
 		<em:unpack>true</em:unpack>
 		<em:type>2</em:type>
 		<em:name>FoxTrick</em:name>
-		<em:version>0.10.0</em:version>
+		<em:version>0.11.0</em:version>
 		<em:description>A set of presentation enhancements for hattrick.org</em:description>
 
 		<em:creator>FoxTrick team</em:creator>
