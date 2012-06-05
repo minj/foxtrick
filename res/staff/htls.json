@@ -1,9 +1,13 @@
 {
 	"type": "htls",
 	"icon": {
-		"developer" : "http://http://htlivesight.sourceforge.net/htls-develoer.png"
+		"developer" : "chrome://foxtrick/content/resources/img/staff/htls.png"
 	},
 	"list": [
 	 	{ "id": "10246801", "name": "silkevicious", status: "developer"},
+     { "id": "7967145", "name": "bigpapy", status: "developer"},
+     { "id": "9100817", "name": "davidatorus", status: "developer"},
+     { "id": "11288067", "name": "pietrisque", status: "developer"},
+     { "id": "11176924", "name": "dame_sans_merci", status: "developer"},
 	]
 }
