@@ -8,7 +8,7 @@ RES_FOLDER="../res/*.json ../res/staff/*.json"
 #zip resources
 for File in $RES_FOLDER; do
 	echo $File
-	zip -fv $File.zip $File
+	zip -f $File.zip $File
 done
 
 #commit res zips to svn
