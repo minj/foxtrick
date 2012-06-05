@@ -1,0 +1,9 @@
+{
+	"type": "htls",
+	"icon": {
+		"developer" : "http://http://htlivesight.sourceforge.net/htls-develoer.png"
+	},
+	"list": [
+	 	{ "id": "10246801", "name": "silkevicious", status: "developer"},
+	]
+}
