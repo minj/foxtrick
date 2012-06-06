@@ -9,9 +9,13 @@ if (!Foxtrick) var Foxtrick = {};
 Foxtrick.createFeaturedElement = function(doc, module, type) {
 	var node = doc.createElement(type);
 	node.className = 'ft-dummy';
-	if (FoxtrickPrefs.getBool("featureHighlight"))
-		node.title = module.MODULE_NAME + ' (' + Foxtrickl10n.getString("tab."+module.MODULE_CATEGORY) + '): ' + FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
-	return node;
+	if(module && module.MODULE_NAME && module.MODULE_CATEGORY){
+		if (FoxtrickPrefs.getBool("featureHighlight"))
+			node.title = module.MODULE_NAME + ' (' + Foxtrickl10n.getString("tab."+module.MODULE_CATEGORY) + '): ' + FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
+		return node;
+	} else {
+		Foxtrick.log("Incorrect usage of Foxtrick.createFeaturedElement. typeof(module) = ", typeof(module));
+	}
 };
 
 Foxtrick.insertFeaturedRow = function(table, module, index) {
