@@ -12,18 +12,25 @@
 <note version="nightly" localized-version="개발 빌드">
 <item>자세한 내용은 Google Code의 <xhtml:a href="http://code.google.com/p/foxtrick/source/list">보고 기록</xhtml:a>을 참조하세요.</item>
 </note>
+<note version="beta">
+<item>이것은 다음 배포의 beta 버전 입니다. 이 버전에서 저희 crowd-tranlation 페이지를 통해 번역해주세요. <xhtml:a href="http://crowdin.net/project/foxtrick">crowdin.net</xhtml:a></item>
+</note>
 <note version="0.10.0">
 <item>● NEW: <module>TransferHistoryFilters</module>: 샀거나 팔린 선수들의 이적들만 필터링하는 것을 허용합니다. 선수 기록이 아닌 클럽 기록만 가능합니다(기본 활성화)</item>
 <item>● NEW: <module>FriendlyPool</module>: 친선 경기 풀 안의 방문한 나라를 색칠합니다. (서포터즈만, 기본 활성화)</item>
+<item>● NEW: <module>HTEVPrediction</module>: <xhtml:a href="http://htev.org">HTEV</xhtml:a>에서 제공하는 리그 경기에 대한 일치 확률을 표시합니다. (기본 활성화)</item>
 <item>● PlayerStatsExperience: 새 버전에 환상적인 기능이 추가되었습니다. 신뢰할 수 있는 데이터가 있다면 더욱 자세하고 컬러풀한 피드백을 얻을 수 있습니다. (적록색맹 유저를 위해 테스트 해주신 SeanConnery (7751762)에게 감사 드립니다)</item>
+<item>● <module>MatchOrderInterface</module>: 기존 지시사항을 복사할 수 있습니다. 선수들은 입력되지 않습니다. </item>
 <item>● 몇 가지 layouting/css을 조금 변경하였습니다.</item>
 <item>● YouthTwins: 쌍둥이에 대한 링크 정보를 숨기는 옵션을 추가하였습니다.(기본 비활성화)</item>
 <item>● StaffMarker: 해트트릭 유스클럽 서버 접근을 줄이기 위해 이제 HY 스탭 정보를 Google Code을 통해 얻습니다.</item>
 <item>● MatchPlayerColouring: 경기 종료 전에 경기장에 들어오고 나간 선수에 대해서도이제 제대로 동작합니다.</item>
 <item>● TeamPopupLinks: hattrick.org의 느낌과 전체적으로 잘 어울리게 몇 가지를 재스타일링 했습니다</item>
+<item>● 핵심 선수 페이지를 지원합니다</item>
+<item>● 환경설정에서 경보 사운드를 테스트 할 수 있습니다.</item>
 <item></item>
 <item><xhtml:b>시각 또는 청각 장애우분들을 위해</xhtml:b></item>
-<item>우리는 설정 페이지에 접근성과 관련된 모든 모듈을 포함할 영역을 추가하였습니다.</item>
+<item>우리는 설정 페이지에 내게 필요한 옵션과 관련된 모든 모듈을 포함할 영역을 추가하였습니다.</item>
 <item>● NEW: <module>ARIALandmarks</module>: 웹사이트에 ARIA landmarks를 추가하였습니다. 이것은 스크린 리더를 사용하여 사이트를 탐색하는데 도움이 됩니다. 두 가지 주요 탐색 바와 구독하는 모든 토론장은 "탐색"이 있습니다. 메인 콘텐츠는 "메인"역할을 가집니다. 모든 추가적인 정보와 링크를 포함하는 사이드 바는 "보충"으로 표시될 것입니다. 전체 검색과 포럼 검색을 "검색" 이 있습니다.</item>
 <item>더 좋은 제안이 있으시면 주저하지 말고 저희에게 연락 주시기 바랍니다. Hattrick Access 토론장에 남겨주셔도 됩니다.</item>
 </note>
@@ -33,10 +40,14 @@
 <item>● NEW: <module>YouthTwins</module>: 서포터즈 유저를 위해 유소년 선수 개요 페이지에 (가능성 있는/쌍둥이/비쌍둥이) 선수 수를 표시합니다. (hattrick youthclub과 연계)</item>
 <item>● <module>MatchOrderInterface</module>: 라인업 페이지에서 각 선수의 유니폼 대신에 얼굴을 표시하는 옵션을 추가하였습니다.(기본 활성화)</item>
 <item>● <module>MatchOrderInterface</module>: 최근 경기 정보를 비활성화시키는 옵션과 토너먼트 게임을 회색 표시하는 옵션을 추가하였습니다.(기본 활성화)</item>
+<item>● <module>MatchIncome</module>: 49 시즌(한국은 38 시즌)의 증가된 티켓 가격을 지원합니다. 경기 수입은 이제 경기가 종료된 후에 적용된 티켓 가격으로 계산합니다.</item>
 <item>● MatchOrderInterface: Firefox에서 최근 경기 지시자가 표시되지 (않거나 올바르게 표시하지 않던) 버그를 수정하였습니다.</item>
 <item>● MatchOrderInterface: 더 이상 허가받지 않기 때문에 최근 경기 강조 표시를 제거하였습니다:( (이제 서포터즈에게만 제공하는 HT 고유의 기능으로 대체되었습니다.)</item>
 <item>● PlayerStatsExperience: 레드 카드가 게임을 부전승으로 감지하던 버그를 수정하였습니다.</item>
 <item>● PlayerStatsExperience: 이 모듈이 Firefox 3.6에서 제대로 동작하지 못하도록 야기시키는 문제를 수정하였습니다.</item>
+<item>● CustomMedals: 토너먼트 트로피가 사라지는 것을 수정하였습니다.</item>
+<item>● Mozilla 기반 브라우저에서 Ogg 사운드를 사용할 수 있습니다</item>
+<item>● Fennec staffmarker와 링크 리소스를 내부 소스로부터 다시 불러옵니다. 그래서 동적으로 업데이트되지 않고 대역폭 또한 저장하지 않습니다.</item>
 </note>
 
 <note version="0.9.2">
