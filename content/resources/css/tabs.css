@@ -53,19 +53,24 @@
     border-right: 1px solid #999;
     border-bottom: 1px solid #fff;
 }
+#tab a.ft-tab-foxtrick {
+    background-image: url("chrome://foxtrick/content/resources/img/staff/foxtrick.png");
+    background-repeat: no-repeat;
+    background-position: 2px 1px;
+    padding-left: 23px;
+}
 table.naked {
     margin: 0 -8px -8px !important;
 }
 
 .ft-tab-custom,
+div.tabcontent,
 #tab + p,
 #tab + div {
-    clear:both;
+    clear:both !important;
 }
 
-.tab-content .seperator {
-    display:none;
-}
+
 
 /*html[data-theme="standard"] #tab + #mails,
 html[data-theme="standard"] #tab + h2, 

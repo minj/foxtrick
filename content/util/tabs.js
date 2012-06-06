@@ -71,7 +71,7 @@ Foxtrick.util.tabs.hasTabSupport = function(doc) {
 //add's tab hande, requires existing tab
 Foxtrick.util.tabs.addHandle = function(doc, title, icon, shows){
 	if(!Foxtrick.util.tabs.hasTabSupport(doc))
-		return;
+		return null;
 
 	var tabs = doc.getElementById("tab");
 	var li = doc.createElement("li");
@@ -82,7 +82,7 @@ Foxtrick.util.tabs.addHandle = function(doc, title, icon, shows){
 	var _shows = link.getAttribute("shows");
 	if(_shows)
 		shows = _shows + ',' + shows;
-
+	
 	link.setAttribute("shows", shows);
 	if(icon){
 		Foxtrick.addImage(doc, link, icon); 
@@ -96,6 +96,7 @@ Foxtrick.util.tabs.addHandle = function(doc, title, icon, shows){
 
 	li.appendChild(link);
 	tabs.appendChild(li);
+	return link;
 }
 //shows last selected tab, if not present, shows "tab-main"
 Foxtrick.util.tabs.showLast = function(doc){

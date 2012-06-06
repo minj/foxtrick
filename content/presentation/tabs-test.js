@@ -2,7 +2,7 @@ Foxtrick.modules["TabsTest"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['all'],
 	OPTIONS: ['Tabify'],
-	nightly: "This is a proof of concept module by Foxtrick. Please report any problems or weird things to the Foxtrick developer.",
+	nightly: "This is a proof of concept module by Foxtrick. Please report any problems or weird things to the Foxtrick developers. If this annoys you just disable it. If you can't even find the disable button please use release or beta. ;)",
 	NICE: 50,
 	run : function(doc) {
 		if(!Foxtrick.util.tabs.hasTabSupport(doc))
@@ -11,10 +11,13 @@ Foxtrick.modules["TabsTest"]={
 
 		var h1 = doc.getElementsByTagName("h1")[0].textContent;
 		
-		Foxtrick.util.tabs.addHandle(doc, h1, { alt: h1, title: h1, src: "/Img/Icons/cross_small.png"}, "tab-main");
+		//Foxtrick.util.tabs.addHandle(doc, h1, { alt: h1, title: h1, src: "/Img/Icons/cross_small.png"}, "tab-main");
+		var main_handle = Foxtrick.util.tabs.addHandle(doc, h1, null, "tab-main");
 		if (FoxtrickPrefs.isModuleOptionEnabled("TabsTest", "Tabify"))
 			Foxtrick.util.tabs.tabify(doc);
-		Foxtrick.util.tabs.addHandle(doc, "Read me", { alt: "Read me", title: "Read me", src: "/Img/Icons/cross_small.png"} , "ft-tab-readme");
+		var ft_handle = Foxtrick.util.tabs.addHandle(doc, "Read me", null , "ft-tab-readme");
+		if(ft_handle)
+			Foxtrick.addClass(ft_handle, "ft-tab-foxtrick");
 
 		var div = doc.createElement("div");
 		div.textContent = this.nightly;
