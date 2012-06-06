@@ -1,5 +1,5 @@
 Foxtrick.modules["TabsTest"]={
-	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
+	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ['all'],
 	OPTIONS: ['Tabify'],
 	nightly: "These tab elements on all pages are part of a proof of concept module by Foxtrick. Please report any problems or weird things to the Foxtrick developers. If this annoys you just disable it. If you can't even find the disable button please use release or beta. ;)",
@@ -22,7 +22,8 @@ Foxtrick.modules["TabsTest"]={
 		var div = doc.createElement("div");
 		div.textContent = this.nightly;
 		div.setAttribute("tab", "ft-tab-readme");
-		Foxtrick.addClass(div, "ft-tab-custom")
+		Foxtrick.addClass(div, "ft-tab-custom");
+		Foxtrick.addClass(div, "tab-content")
 
 		doc.getElementsByTagName("h1")[0].parentNode.appendChild(div);
 		//Foxtrick.util.tabs.addElementToTab(doc, div, "ft-tab-readme");
