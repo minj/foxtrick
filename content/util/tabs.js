@@ -60,7 +60,12 @@ Foxtrick.util.tabs._create = function(doc){
 
 //support only for pages with a h1 header atm
 Foxtrick.util.tabs.hasTabSupport = function(doc) {
-	return doc.getElementsByTagName("h1")[0];
+	var h1 = doc.getElementsByTagName("h1")[0];
+	if(h1){
+		var content = h1.textContent;
+		return content.replace(/ /g,'').replace(/\n/g,'') != '';
+	} else 
+		return false;
 }
 
 //add's tab hande, requires existing tab
@@ -145,12 +150,15 @@ Foxtrick.util.tabs.addElementToTab = function(doc, elem, tab){
 }
 
 Foxtrick.util.tabs.tabify = function(doc){
+	if(!Foxtrick.util.tabs.hasTabSupport(doc))
+		return;
+
 	var parent = doc.getElementsByTagName("h1")[0].parentNode;
 	var h2s = parent.getElementsByTagName("h2");
 	for(var i = 0; i < h2s.length; ++i){
 		if(Foxtrick.hasClass(h2s[i], "info"))
 			continue;
-		
+
 		var label = h2s[i].textContent.replace(/ /g, "");
 		if(doc.getElementById("tab-" + label + "-handle"))
 			continue;
