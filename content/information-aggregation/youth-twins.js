@@ -188,8 +188,8 @@
 					var title = " " + l10n_possible_twins + "\n " + l10n_non_hy_user;
 				
 				//repeat twin icon in representative color according to amount of twin category
-				var link = Foxtrick.createFeaturedElement(doc, this, "a");
-				var container = Foxtrick.createFeaturedElement(doc, this, "span");
+				var link = Foxtrick.createFeaturedElement(doc,  Foxtrick.modules["YouthTwins"], "a");
+				var container = Foxtrick.createFeaturedElement(doc,  Foxtrick.modules["YouthTwins"], "span");
 				Foxtrick.addClass(container, "ft-youth-twins-container");
 				container.setAttribute("title", title);
 				container.setAttribute("alt", title);
@@ -216,7 +216,7 @@
 
 				if(possible > 0 && !FoxtrickPrefs.isModuleOptionEnabled("YouthTwins", "HideInfoLink")){
 					//and a neat info button
-					var infolink = Foxtrick.createFeaturedElement(doc, this, "a");
+					var infolink = Foxtrick.createFeaturedElement(doc,  Foxtrick.modules["YouthTwins"], "a");
 					Foxtrick.addClass(infolink, "ft-youth-twins-info");
 					infolink.href = "http://www.hattrick-youthclub.org/site/wiki-player_twins";
 					infolink.target = "_blank";
