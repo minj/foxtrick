@@ -56,8 +56,8 @@
 #tab a.ft-tab-foxtrick {
     background-image: url("chrome://foxtrick/content/resources/img/staff/foxtrick.png");
     background-repeat: no-repeat;
-    background-position: 2px 1px;
-    padding-left: 23px;
+    background-position: 3px 1px;
+    padding-left: 24px;
 }
 table.naked {
     margin: 0 -8px -8px !important;

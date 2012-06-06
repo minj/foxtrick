@@ -2,7 +2,7 @@ Foxtrick.modules["TabsTest"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['all'],
 	OPTIONS: ['Tabify'],
-	nightly: "This is a proof of concept module by Foxtrick. Please report any problems or weird things to the Foxtrick developers. If this annoys you just disable it. If you can't even find the disable button please use release or beta. ;)",
+	nightly: "These tab elements on all pages are part of a proof of concept module by Foxtrick. Please report any problems or weird things to the Foxtrick developers. If this annoys you just disable it. If you can't even find the disable button please use release or beta. ;)",
 	NICE: 50,
 	run : function(doc) {
 		if(!Foxtrick.util.tabs.hasTabSupport(doc))
@@ -25,7 +25,7 @@ Foxtrick.modules["TabsTest"]={
 		Foxtrick.addClass(div, "ft-tab-custom")
 
 		doc.getElementsByTagName("h1")[0].parentNode.appendChild(div);
-		Foxtrick.util.tabs.addElementToTab(doc, div, "ft-tab-readme");
+		//Foxtrick.util.tabs.addElementToTab(doc, div, "ft-tab-readme");
 
 		var container = doc.getElementsByTagName("h1")[0].parentNode;
 		Foxtrick.log("addMutationEventListener");
