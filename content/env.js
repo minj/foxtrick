@@ -455,8 +455,9 @@ else {
 		
 		if (typeof(Browser)!=='undefined')  // mobile 
 			Foxtrick.platform = "Mobile";
-		else if (typeof(BrowserApp)!=='undefined' ) { // android 
-			Foxtrick.platform == "Android"
+		else if (typeof(BrowserApp)!=='undefined' )  // android 
+			Foxtrick.platform == "Android";
+			
 		Foxtrick.chromeContext = function() {
 			if (typeof(sendSyncMessage)=='function')
 				return "content";
