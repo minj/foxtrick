@@ -13,6 +13,9 @@ Foxtrick.modules["TabsTest"]={
 		
 		//Foxtrick.util.tabs.addHandle(doc, h1, { alt: h1, title: h1, src: "/Img/Icons/cross_small.png"}, "tab-main");
 		var main_handle = Foxtrick.util.tabs.addHandle(doc, h1, null, "tab-main");
+		if(main_handle)
+			Foxtrick.addClass(main_handle, "tab-hattrick");
+
 		if (FoxtrickPrefs.isModuleOptionEnabled("TabsTest", "Tabify"))
 			Foxtrick.util.tabs.tabify(doc);
 		var ft_handle = Foxtrick.util.tabs.addHandle(doc, "Read me", null , "ft-tab-readme");
@@ -21,12 +24,9 @@ Foxtrick.modules["TabsTest"]={
 
 		var div = doc.createElement("div");
 		div.textContent = this.nightly;
-		div.setAttribute("tab", "ft-tab-readme");
 		Foxtrick.addClass(div, "ft-tab-custom");
-		Foxtrick.addClass(div, "tab-content")
-
 		doc.getElementsByTagName("h1")[0].parentNode.appendChild(div);
-		//Foxtrick.util.tabs.addElementToTab(doc, div, "ft-tab-readme");
+		Foxtrick.util.tabs.addElementToTab(doc, div, "ft-tab-readme");
 
 		var container = doc.getElementsByTagName("h1")[0].parentNode;
 		Foxtrick.log("addMutationEventListener");
@@ -37,7 +37,6 @@ Foxtrick.modules["TabsTest"]={
 				Foxtrick.util.tabs.tabify(doc);
 		}, false);
 
-		Foxtrick.log("fix display");		
 		Foxtrick.util.tabs.show(doc, "tab-main");
 	}
 }

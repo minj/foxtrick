@@ -53,6 +53,12 @@
     border-right: 1px solid #999;
     border-bottom: 1px solid #fff;
 }
+#tab a.tab-hattrick {
+    background-image: url("http://www.hattrick.org/favicon.ico");
+    background-repeat: no-repeat;
+    background-position: 3px 2px;
+    padding-left: 24px;
+}
 #tab a.ft-tab-foxtrick {
     background-image: url("chrome://foxtrick/content/resources/img/staff/foxtrick.png");
     background-repeat: no-repeat;
@@ -62,7 +68,6 @@
 table.naked {
     margin: 0 -8px -8px !important;
 }
-
 .ft-tab-custom,
 div.tab-content,
 #tab + p,
