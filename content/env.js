@@ -450,7 +450,8 @@ else {
 	Foxtrick.InternalPath = Foxtrick.ResourcePath = "chrome://foxtrick/content/";
 
 	if ( typeof(window)!=='object' // fennec content
-		|| typeof(Browser)!=='undefined' ) { // fennec background
+		|| typeof(Browser)!=='undefined'  // mobile background
+		|| typeof(BrowserApp)!=='undefined' ) { // android background
 		Foxtrick.platform = "Fennec";
 		Foxtrick.chromeContext = function() {
 			if (typeof(sendSyncMessage)=='function')
