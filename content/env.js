@@ -452,7 +452,7 @@ else {
 	if ( typeof(window)!=='object' // fennec content
 		|| typeof(Browser)!=='undefined'  // mobile background
 		|| typeof(BrowserApp)!=='undefined' ) { // android background
-		
+
 		var isNativeUI = function() {
 			try {
 				var Cc = Components.classes;
@@ -463,8 +463,8 @@ else {
 
 				var appInfoID = Cc["@mozilla.org/xre/app-info;1"].getService(Ci.nsIXULAppInfo).ID;
 				return (appInfoID == "{aa3c5121-dab2-40e2-81ca-7ea25febc110}");
-			} catch(e) {
-				retrun false;
+			} catch (e) {
+				return false;
 			}
 		};
 
@@ -472,7 +472,7 @@ else {
 			Foxtrick.platform = "Android";
 		else
 			Foxtrick.platform = "Mobile";
-			
+
 		Foxtrick.chromeContext = function() {
 			if (typeof(sendSyncMessage)=='function')
 				return "content";
