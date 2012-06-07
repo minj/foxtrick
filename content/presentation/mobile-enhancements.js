@@ -6,7 +6,7 @@
  */
 
 if(0) 
-if (Foxtrick.platform == "Fennec")
+if (Foxtrick.platform == "Mobile")
   Foxtrick.modules["MobileEnhancements"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],

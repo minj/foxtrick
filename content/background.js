@@ -82,7 +82,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	Foxtrick.loader.chrome.background.pageLoad = function(request, sender, sendResponse) {
 		// access user setting directly here, since getBool uses a copy which needs updating just here
 		if ( (Foxtrick.arch == "Sandboxed" && localStorage.getItem("preferences.updated"))
-			|| (Foxtrick.platform == "Fennec" && FoxtrickPrefs._prefs_gecko.getBoolPref("preferences.updated")) ) {
+			|| (Foxtrick.platform == "Mobile" && FoxtrickPrefs._prefs_gecko.getBoolPref("preferences.updated")) ) {
 				updateResources();
 		}
 
@@ -139,7 +139,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	};
 	Foxtrick.loader.chrome.background.clearPrefs = function(request, sender, sendResponse) {
 		try {
-			if (Foxtrick.platform == "Fennec") {
+			if (Foxtrick.platform == "Mobile") {
 				FoxtrickPrefs.cleanupBranch();
 			}
 			else {
@@ -211,7 +211,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	};
 	Foxtrick.loader.chrome.background.reuseTab = function(request, sender, sendResponse) {
 		// @param url - the URL of new tab to create
-		if (Foxtrick.platform == "Fennec") {
+		if (Foxtrick.platform == "Mobile") {
 			for (var i = 0; i<Browser.browsers.length; ++i) {
 				if (sender.tab.id == Browser.browsers[i].tid) {
 					Browser.selectedTab = Browser.getTabAtIndex(i);
@@ -344,7 +344,7 @@ Foxtrick.loader.chrome.copyToClipBoard = function(content) {
 
 
 // fennec injects content scripts at 'runtime'
-if (Foxtrick.platform == "Fennec") 
+if (Foxtrick.platform == "Mobile") 
 	addEventListener("UIReady", Foxtrick.loader.gecko.fennecScriptInjection, false);
 
 

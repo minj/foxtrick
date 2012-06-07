@@ -406,7 +406,7 @@ Foxtrick.modules["ForumYouthIcons"]={
 						openingTag = FoxtrickPrefs.getString("forumSymbol");
 					}
 					else if (openingTag == 'debug'){
-						if (Foxtrick.arch === "Sandboxed" || Foxtrick.platform == "Fennec") {
+						if (Foxtrick.arch === "Sandboxed" || Foxtrick.platform == "Mobile") {
 							sandboxed.extension.sendRequest(
 								{ req : "getDebugLog" },
 								function(n) {
