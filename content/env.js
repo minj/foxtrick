@@ -37,7 +37,7 @@ sandboxed.tabs.create(url)
 // Foxtrick.arch : "Sandboxed" (chrome,opera,safari) or "Gecko" (firefox, fennec)
 // used mainly in l10n, prefs and css injection
 
-// Foxtrick.platform : "Chrome", "Opera", "Safari", "Firefox", "Fennec"
+// Foxtrick.platform : "Chrome", "Opera", "Safari", "Firefox", "Mobile"
 // used mainly in UI and script starting
 
 // Foxtrick.InternalPath : called from extension - path to extension folder 
@@ -452,7 +452,7 @@ else {
 	if ( typeof(window)!=='object' // fennec content
 		|| typeof(Browser)!=='undefined'  // mobile background
 		|| typeof(BrowserApp)!=='undefined' ) { // android background
-		Foxtrick.platform = "Fennec";
+		Foxtrick.platform = "Mobile";
 		Foxtrick.chromeContext = function() {
 			if (typeof(sendSyncMessage)=='function')
 				return "content";
@@ -468,7 +468,7 @@ else {
 	}
 
 	// fennec ports
-	if (Foxtrick.platform == "Fennec") {
+	if (Foxtrick.platform == "Mobile") {
 		Foxtrick.DataPath = "chrome://foxtrick_resources/content/";
 
 		var addListener = function(name, handler) {
