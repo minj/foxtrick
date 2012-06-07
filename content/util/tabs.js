@@ -35,13 +35,28 @@ Foxtrick.util.tabs.initialize = function(doc){
 				}
 			}
 			catch(e){}
+		} else if(contentNode.nodeType == Foxtrick.NodeTypes.TEXT_NODE && contentNode.textContent.replace(/ /g,'').replace(/\n/g,'') != ''){
+			var before = contentNode.nextSibling;
+			var p = doc.createElement("p");
+			Foxtrick.util.tabs.addToAttribute(p, "tab", "tab-main");
+			Foxtrick.addClass(p, "tab-content");
+			p.appendChild(contentNode);
+
+			if(before)
+				header.parentNode.insertBefore(p, before);
+			else
+				header.parentNode.appendChild(p);
+
+			contentNode = before;
+			continue;
 		}
 		contentNode = contentNode.nextSibling;
 	}
-
-	var clear = doc.createElement("div")
-	Foxtrick.addClass(clear, "ft-clear-both");
-	header.parentNode.insertBefore(clear, doc.getElementById("tab").nextSibling);
+	if(!Foxtrick.hasClass(doc.getElementById("tab").nextSibling, "ft-clear-both")){
+		var clear = doc.createElement("div")
+		Foxtrick.addClass(clear, "ft-clear-both");
+		header.parentNode.insertBefore(clear, doc.getElementById("tab").nextSibling);
+	}
 }
 
 //private, creates the tab bar and add it's after the h1 header or it's byline
