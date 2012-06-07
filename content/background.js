@@ -203,6 +203,10 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		else 
 			sendResponse({ url: Foxtrick.dataUrlStorage[request.url] });
 	};
+	Foxtrick.loader.chrome.background.playSound = function(request, sender, sendResponse) {
+		// @param url - the URL of new tab to create
+		Foxtrick.playSound(request.url, document);
+	};
 
 	// from misc.js: tabs
 	Foxtrick.loader.chrome.background.newTab = function(request, sender, sendResponse) {

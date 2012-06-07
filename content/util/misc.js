@@ -144,14 +144,23 @@ Foxtrick.playSound = function(url, doc) {
 				doc.getElementsByTagName('body')[0].appendChild(videoElement);*/
 			}
 	 } catch(e) {
-			Foxtrick.log(e,'\nplay v2');
-			var music = doc.createElement('audio');
-			music.setAttribute("autoplay","autoplay");
-			var source = doc.createElement('source');
-			source.setAttribute('src',url);
-			source.setAttribute('type','audio/'+type);
-			music.appendChild(source);
-			doc.getElementsByTagName('body')[0].appendChild(music);
+			try {
+				Foxtrick.log(e,'\nplay v2');
+				var music = doc.createElement('audio');
+				music.setAttribute("autoplay","autoplay");
+				var source = doc.createElement('source');
+				source.setAttribute('src',url);
+				source.setAttribute('type','audio/'+type);
+				music.appendChild(source);
+				doc.getElementsByTagName('body')[0].appendChild(music);
+			}
+			catch(e) {
+				// try from background
+				if (Foxtrick.chromContext() == 'content') 
+					sandboxed.extension.sendRequest({req : "playSound", url : url});
+				else
+					throw "can play:" +url;
+			}
 		}
 	} catch(e){
 		Foxtrick.log("Cannot play sound: ", url.substring(0,100));
