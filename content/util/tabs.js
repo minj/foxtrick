@@ -23,7 +23,6 @@ Foxtrick.util.tabs.initialize = function(doc){
 	else {
 		header.parentNode.insertBefore(tabs, contentNode);
 	}
-
 	contentNode = doc.getElementById("tab").nextSibling;
 	//mark everything that's already there as main tab content
 	while(contentNode){
@@ -39,6 +38,10 @@ Foxtrick.util.tabs.initialize = function(doc){
 		}
 		contentNode = contentNode.nextSibling;
 	}
+
+	var clear = doc.createElement("div")
+	Foxtrick.addClass(clear, "ft-clear-both");
+	header.parentNode.insertBefore(clear, doc.getElementById("tab").nextSibling);
 }
 
 //private, creates the tab bar and add it's after the h1 header or it's byline

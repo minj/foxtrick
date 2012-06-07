@@ -68,10 +68,4 @@
 table.naked {
     margin: 0 -8px -8px !important;
 }
-.ft-tab-custom,
-div.tab-content,
-#tab + p,
-#tab + div {
-    clear:both !important;
-}
 }
