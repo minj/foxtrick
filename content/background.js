@@ -219,7 +219,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 				}
 			}
 		}
-		else (Foxtrick.platform == "Android") {}
+		else if (Foxtrick.platform == "Android") {}
 		
 	};
 
