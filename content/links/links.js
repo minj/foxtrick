@@ -21,7 +21,7 @@
 		feeds = feeds.split(/(\n|\r)+/);
 		feeds = Foxtrick.filter(function(n) { return Foxtrick.trim(n) != ""; }, feeds);
 		// stupid fennec overwrite
-		if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android")
+		if (Foxtrick.platform == "Fennec")
 			feeds = [Foxtrick.DataPath + "links.json"];
 		// add default feed if no feeds set
 		if (feeds.length == 0)

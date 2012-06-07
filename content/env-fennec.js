@@ -1,6 +1,6 @@
 "use strict";
 /**
- * env-fennec.js
+ * en-fennec.js
  * FoxTrick environment fennec only
  * @author convinced
  */

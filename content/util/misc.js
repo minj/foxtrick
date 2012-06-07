@@ -835,7 +835,7 @@ Foxtrick.load_module_css = function(doc) {
 		sandboxed.extension.sendRequest(
 			{ req : "getCss", files :Foxtrick.cssFiles },
 			function (data) {
-				if (Foxtrick.platform === "Mobile" || Foxtrick.platform === "Android") {
+				if (Foxtrick.platform === "Fennec") {
 					Foxtrick.current_css = data.cssText;
 					Foxtrick.load_css_permanent(Foxtrick.current_css);
 				} else {
