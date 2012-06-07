@@ -622,7 +622,7 @@ else {
 				if (Foxtrick.platform == "Mobile")
 					Browser.addTab(data.url,true);
 				else if (Foxtrick.platform == "Android")
-					BrowserApp.addTab(data.url,true);
+					BrowserApp.addTab(data.url);
 			  }
 			},
 		}
