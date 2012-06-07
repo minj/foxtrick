@@ -144,7 +144,12 @@ Foxtrick.playSound = function(url, doc) {
 				doc.getElementsByTagName('body')[0].appendChild(videoElement);*/
 			}
 	 } catch(e) {
-			try {
+			if (Foxtrick.chromeContext() == 'content') {
+				// via background since internal sounds might not be acessible from the html page itself
+				sandboxed.extension.sendRequest({req : "playSound", url : url});
+			}
+			else
+			{
 				Foxtrick.log(e,'\nplay v2');
 				var music = doc.createElement('audio');
 				music.setAttribute("autoplay","autoplay");
@@ -153,13 +158,6 @@ Foxtrick.playSound = function(url, doc) {
 				source.setAttribute('type','audio/'+type);
 				music.appendChild(source);
 				doc.getElementsByTagName('body')[0].appendChild(music);
-			}
-			catch(e) {
-				// try from background
-				if (Foxtrick.chromContext() == 'content') 
-					sandboxed.extension.sendRequest({req : "playSound", url : url});
-				else
-					throw "can play:" +url;
 			}
 		}
 	} catch(e){
