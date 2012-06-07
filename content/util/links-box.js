@@ -381,7 +381,7 @@ Foxtrick.util.links = {
 			var helplink = doc.createElement("a");
 			helplink.className = "ft_actionicon foxtrickHelp float_right";
 			helplink.title = Foxtrickl10n.getString("links.custom.help");
-			helplink.href = "javascript: void();";
+			helplink.href = "javascript: void(0);";
 			Foxtrick.onClick(helplink,function(ev) {
 				alert( 	Foxtrickl10n.getString('links.custom.helptext')+' \n'
 						+ Foxtrickl10n.getString('links.custom.helptext2'));

@@ -309,7 +309,7 @@ Foxtrick.modules["ForumChangePosts"]={
 								spoiler_show.id = 'spoilshow_quoteNum' + (++numSpoilerQuotes);
 								spoiler_show.className = 'spoiler ft-dummy';
 								var open_link = doc.createElement('a');
-								open_link.href = "javascript:void();";
+								open_link.href = "javascript:void(0);";
 								open_link.setAttribute('spoilerID',numSpoilerQuotes);
 								open_link.textContent = Foxtrickl10n.getString('FormatPostingText.ShowNestedQuotes');
 								Foxtrick.onClick(open_link, function(ev){
@@ -578,7 +578,7 @@ Foxtrick.modules["ForumChangePosts"]={
 				var PostID_message = post_link1.title.replace(/\d+\./,'');
 				if (!do_copy_post_id && !post_link1.id) {
 					var PostID_thread = post_link1.title.replace(/\.\d+/g,'');
-					post_link1.href = "javascript:void();";
+					post_link1.href = "javascript:void(0);";
 					Foxtrick.onClick(post_link1, function(ev){
 						var PostID_message = ev.target.id.replace(/\d+-/,'');
 						var PostID_thread = ev.target.id.replace(/-\d+/,'');
