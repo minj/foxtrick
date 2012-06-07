@@ -449,7 +449,7 @@ else {
 	Foxtrick.arch = "Gecko";
 	Foxtrick.InternalPath = Foxtrick.ResourcePath = "chrome://foxtrick/content/";
 	
-	var getAppID() = function() {
+	var getAppID = function() {
 		try {
 			var Cc = Components.classes;
 			var Ci = Components.interfaces;
