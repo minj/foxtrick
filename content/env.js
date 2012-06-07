@@ -448,24 +448,27 @@ else if (typeof(chrome) == "object") {
 else {
 	Foxtrick.arch = "Gecko";
 	Foxtrick.InternalPath = Foxtrick.ResourcePath = "chrome://foxtrick/content/";
-	
-	var getAppID = function() {
-		try {
-			var Cc = Components.classes;
-			var Ci = Components.interfaces;
-			var Cu = Components.utils;
-			Cu.import("resource://gre/modules/Services.jsm");
-			return Cc["@mozilla.org/xre/app-info;1"].getService(Ci.nsIXULAppInfo).ID;
-		} catch (e) {
-			return "";
-		}
-	};
 
-	var appID = getAppID();
-	if (appID=="{aa3c5121-dab2-40e2-81ca-7ea25febc110}"
-		|| appID=="{a23983c0-fd0e-11dc-95ff-0800200c9a66}") {
+	if ( typeof(window)!=='object' // fennec content
+		|| typeof(Browser)!=='undefined'  // mobile background
+		|| typeof(BrowserApp)!=='undefined' ) { // android background
+		
+		var isNativeUI = function() {
+			try {
+				var Cc = Components.classes;
+				var Ci = Components.interfaces;
+				var Cu = Components.utils;
 
-		if (appID=="{aa3c5121-dab2-40e2-81ca-7ea25febc110}") 
+				Cu.import("resource://gre/modules/Services.jsm");
+
+				var appInfoID = Cc["@mozilla.org/xre/app-info;1"].getService(Ci.nsIXULAppInfo).ID;
+				return (appInfoID == "{aa3c5121-dab2-40e2-81ca-7ea25febc110}");
+			} catch(e) {
+				retrun false;
+			}
+		};
+
+		if (isNativeUI()) 
 			Foxtrick.platform = "Android";
 		else
 			Foxtrick.platform = "Mobile";
