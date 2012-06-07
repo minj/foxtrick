@@ -115,7 +115,7 @@ Foxtrick.loader.gecko.docUnload = function(ev) {
 
 // fennec tab load. starts the content instances for fennec (one per tab. persistant)
 // this is the content side entry point for fennec
-if (Foxtrick.platform == "Mobile") {
+if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android") {
 	Foxtrick.log('new tab load');
 	sandboxed.extension.sendRequest({ req : "tabLoad" },
 		function (data) {

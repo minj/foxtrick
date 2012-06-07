@@ -82,7 +82,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	Foxtrick.loader.chrome.background.pageLoad = function(request, sender, sendResponse) {
 		// access user setting directly here, since getBool uses a copy which needs updating just here
 		if ( (Foxtrick.arch == "Sandboxed" && localStorage.getItem("preferences.updated"))
-			|| (Foxtrick.platform == "Mobile" && FoxtrickPrefs._prefs_gecko.getBoolPref("preferences.updated")) ) {
+			|| ((Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android") && FoxtrickPrefs._prefs_gecko.getBoolPref("preferences.updated")) ) {
 				updateResources();
 		}
 
@@ -139,7 +139,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	};
 	Foxtrick.loader.chrome.background.clearPrefs = function(request, sender, sendResponse) {
 		try {
-			if (Foxtrick.platform == "Mobile") {
+			if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android") {
 				FoxtrickPrefs.cleanupBranch();
 			}
 			else {
@@ -218,6 +218,9 @@ Foxtrick.loader.chrome.browserLoad = function() {
 					Browser.browsers[i].loadURI(request.url);
 				}
 			}
+		}
+		else if (Foxtrick.platform == "Android") {
+		// todo
 		}
 	};
 
@@ -344,7 +347,7 @@ Foxtrick.loader.chrome.copyToClipBoard = function(content) {
 
 
 // fennec injects content scripts at 'runtime'
-if (Foxtrick.platform == "Mobile") 
+if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android") 
 	addEventListener("UIReady", Foxtrick.loader.gecko.fennecScriptInjection, false);
 
 
