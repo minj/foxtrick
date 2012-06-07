@@ -4,18 +4,18 @@
     <name>Romanian</name>
     <code>ro</code>
     <phrases>1083</phrases>
-    <translated>1024</translated>
+    <translated>1083</translated>
     <approved>0</approved>
-    <translated_progress>94</translated_progress>
+    <translated_progress>100</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>French</name>
     <code>fr</code>
     <phrases>1083</phrases>
-    <translated>1024</translated>
+    <translated>1083</translated>
     <approved>0</approved>
-    <translated_progress>94</translated_progress>
+    <translated_progress>100</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -76,18 +76,18 @@
     <name>Danish</name>
     <code>da</code>
     <phrases>1083</phrases>
-    <translated>1024</translated>
+    <translated>1083</translated>
     <approved>0</approved>
-    <translated_progress>94</translated_progress>
+    <translated_progress>100</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>German</name>
     <code>de</code>
     <phrases>1083</phrases>
-    <translated>1072</translated>
+    <translated>1075</translated>
     <approved>1</approved>
-    <translated_progress>98</translated_progress>
+    <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -139,9 +139,9 @@
     <name>Hungarian</name>
     <code>hu</code>
     <phrases>1083</phrases>
-    <translated>1024</translated>
+    <translated>1059</translated>
     <approved>193</approved>
-    <translated_progress>94</translated_progress>
+    <translated_progress>97</translated_progress>
     <approved_progress>17</approved_progress>
   </language>
   <language>
@@ -184,9 +184,9 @@
     <name>Lithuanian</name>
     <code>lt</code>
     <phrases>1083</phrases>
-    <translated>1001</translated>
+    <translated>1017</translated>
     <approved>4</approved>
-    <translated_progress>92</translated_progress>
+    <translated_progress>93</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -355,9 +355,9 @@
     <name>Brazilian Portuguese</name>
     <code>pt-BR</code>
     <phrases>1083</phrases>
-    <translated>637</translated>
+    <translated>823</translated>
     <approved>0</approved>
-    <translated_progress>58</translated_progress>
+    <translated_progress>75</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
