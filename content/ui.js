@@ -220,5 +220,8 @@ else if (Foxtrick.platform == "Safari") {
 }
 
 
-else if (Foxtrick.platform == "Fennec") {
+else if (Foxtrick.platform == "Mobile") {
+}
+
+else if (Foxtrick.platform == "Android") {
 }
