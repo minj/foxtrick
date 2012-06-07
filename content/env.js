@@ -449,12 +449,19 @@ else {
 	Foxtrick.arch = "Gecko";
 	Foxtrick.InternalPath = Foxtrick.ResourcePath = "chrome://foxtrick/content/";
 	
-	var Cc = Components.classes;
-	var Ci = Components.interfaces;
-	var Cu = Components.utils;
-	Cu.import("resource://gre/modules/Services.jsm");
-	var appID = Cc["@mozilla.org/xre/app-info;1"].getService(Ci.nsIXULAppInfo).ID;
+	var getAppID() = function() {
+		try {
+			var Cc = Components.classes;
+			var Ci = Components.interfaces;
+			var Cu = Components.utils;
+			Cu.import("resource://gre/modules/Services.jsm");
+			return Cc["@mozilla.org/xre/app-info;1"].getService(Ci.nsIXULAppInfo).ID;
+		} catch (e) {
+			return "";
+		}
+	};
 
+	var appID = getAppID();
 	if (appID=="{aa3c5121-dab2-40e2-81ca-7ea25febc110}"
 		|| appID=="{a23983c0-fd0e-11dc-95ff-0800200c9a66}") {
 
