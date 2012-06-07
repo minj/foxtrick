@@ -55,6 +55,7 @@ Foxtrick.util.tabs.initialize = function(doc){
 	if(!Foxtrick.hasClass(doc.getElementById("tab").nextSibling, "ft-clear-both")){
 		var clear = doc.createElement("div")
 		Foxtrick.addClass(clear, "ft-clear-both");
+		Foxtrick.util.tabs.addToAttribute(clear, "tabs", "all-tabs");
 		header.parentNode.insertBefore(clear, doc.getElementById("tab").nextSibling);
 	}
 }
@@ -143,7 +144,7 @@ Foxtrick.util.tabs.show = function(doc, id){
 	var tabContents = doc.getElementsByClassName("tab-content");
 	for(var i = 0; i < tabContents.length; ++i){
 		var tabs = tabContents[i].getAttribute("tab");
-		if(tabs.search(id) > -1)
+		if(tabs.search(id) > -1 || tabs.search("all-tabs") > -1)
 			Foxtrick.removeClass(tabContents[i], "hidden");
 		else
 			Foxtrick.addClass(tabContents[i], "hidden");
