@@ -49,7 +49,7 @@ function init()
 
 function initCoreModules()
 {
-	if (Foxtrick.arch === "Gecko") {		
+/*	if (Foxtrick.arch === "Gecko") {		
 		// mobile/android platform overwrite. didn't manage it stable in env.js
 		var getAppID = function() {
 			var Cc = Components.classes;
@@ -63,7 +63,7 @@ function initCoreModules()
 			Foxtrick.platform = "Android";
 		else if (appInfoID=="{a23983c0-fd0e-11dc-95ff-0800200c9a66}")
 			Foxtrick.platform = "Mobile";
-	}
+	}*/
 	
 	// add MODULE_NAME to modules
 	for (var i in Foxtrick.modules)
