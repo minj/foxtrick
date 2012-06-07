@@ -33,7 +33,7 @@ ROOT_FILES_FIREFOX = chrome.manifest install.rdf icon.png COPYING HACKING
 ROOT_FILES_CHROME = manifest.json
 ROOT_FILES_OPERA = config.xml content/background.html content/preferences.html content/popup-opera.html
 ROOT_FILES_SAFARI = Info.plist Settings.plist skin/icon.png
-ROOT_FOLDERS_FIREFOX = defaults/ res/
+ROOT_FOLDERS_FIREFOX = defaults/
 ROOT_FOLDERS_CHROME = defaults/ skin/
 ROOT_FOLDERS_OPERA = defaults/ skin/
 ROOT_FOLDERS_SAFARI = defaults/ skin/
@@ -75,7 +75,8 @@ CONTENT_FILES_FIREFOX = $(CONTENT_FILES) overlay.xul \
 	env-fennec.js \
 	scripts-fennec.js \
 	background.js \
-	loader-gecko.js 
+	loader-gecko.js \
+	../res/
 CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html \
 	preferences.html \
 	popup-chrome.html \

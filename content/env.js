@@ -485,7 +485,7 @@ else {
 
 	// fennec ports
 	if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android") {
-		Foxtrick.DataPath = "chrome://foxtrick_resources/content/";
+		Foxtrick.DataPath = "chrome://foxtrick/content/res/";
 
 		var addListener = function(name, handler) {
 			var x = typeof(addMessageListener)=='function' ? addMessageListener : messageManager.addMessageListener;
