@@ -453,10 +453,21 @@ else {
 		|| typeof(Browser)!=='undefined'  // mobile background
 		|| typeof(BrowserApp)!=='undefined' ) { // android background
 		
-		if (typeof(Browser)!=='undefined')  // mobile 
-			Foxtrick.platform = "Mobile";
-		else if (typeof(BrowserApp)!=='undefined' )  // android 
+		var isNativeUI = function() {
+			var Cc = Components.classes;
+			var Ci = Components.interfaces;
+			var Cu = Components.utils;
+
+			Cu.import("resource://gre/modules/Services.jsm");
+
+			var appInfoID = Cc["@mozilla.org/xre/app-info;1"].getService(Ci.nsIXULAppInfo).ID;
+			return (appInfoID == "{aa3c5121-dab2-40e2-81ca-7ea25febc110}");
+		};
+
+		if (isNativeUI()) 
 			Foxtrick.platform = "Android";
+		else // android 
+			Foxtrick.platform = "Mobile";
 			
 		Foxtrick.chromeContext = function() {
 			if (typeof(sendSyncMessage)=='function')
