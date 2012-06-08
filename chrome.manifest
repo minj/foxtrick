@@ -5,5 +5,6 @@ overlay chrome://navigator/content/navigator.xul chrome://foxtrick/content/overl
 overlay chrome://browser/content/browser.xul chrome://foxtrick/content/overlay-fennec.xul application={a23983c0-fd0e-11dc-95ff-0800200c9a66}
 overlay chrome://browser/content/browser.xul chrome://foxtrick/content/overlay-fennec.xul application={aa3c5121-dab2-40e2-81ca-7ea25febc110}
 style chrome://global/content/customizeToolbar.xul chrome://foxtrick/content/resources/css/overlay.css
-override chrome://foxtrick/content/preferences.html chrome://foxtrick/content/options-fennec.xul application={a23983c0-fd0e-11dc-95ff-0800200c9a66}
+override chrome://foxtrick/content/preferences.html chrome://foxtrick/content/options-mobile.xul application={a23983c0-fd0e-11dc-95ff-0800200c9a66}
+override chrome://foxtrick/content/preferences.html chrome://foxtrick/content/options-android.xul application={aa3c5121-dab2-40e2-81ca-7ea25febc110}
 skin foxtrick classic/1.0 skin/
