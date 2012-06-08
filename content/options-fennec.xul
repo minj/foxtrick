@@ -7,11 +7,4 @@
   <setting pref="extensions.foxtrick.prefs.disableOnStage" type="bool" title="Disable on Stage"/>
   <setting pref="extensions.foxtrick.prefs.additional.xmlLoad" type="bool" title="Load Xmls">
   Load extra information from Hattrick servers on demand
-  </setting>
-  <setting type="button">Reset to default
-    <button label="Reset" oncommand="if(window.confirm('Are you sure you want to restore to default settings?')){FoxtrickPrefs.cleanupBranch();}"/>
-  </setting>
-   <setting type="button">Show all options
-    <button label="Show" oncommand="Browser.addTab('chrome://foxtrick/content/preferences.html#tab=main',true,null,{'getAttention':true});"/>
-  </setting>
 </vbox>
