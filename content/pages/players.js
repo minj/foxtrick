@@ -352,8 +352,7 @@ Foxtrick.Pages.Players = {
 				var as = playerNode.getElementsByTagName("a");
 				var bs = playerNode.getElementsByTagName("b");
 
-				var name_b = bs[0]
-				var id = Foxtrick.Pages.Players.getPlayerId(name_b);
+				var id = Foxtrick.Pages.Players.getPlayerId(playerNode);
 				// see if player is already in playerList, add if not
 				var player = Foxtrick.filter(function(n) { return n.id == id; }, playerList)[0];
 				if (!player) {
@@ -362,19 +361,22 @@ Foxtrick.Pages.Players = {
 				}
 
 				var nameLink = Foxtrick.filter(function(n) { return !Foxtrick.hasClass(n, "flag.+"); },
-					name_b.getElementsByTagName("a"))[0];
+					playerNode.getElementsByTagName("a"))[0];
 				player.nameLink = nameLink.cloneNode(true);
 
-				var num = name_b.textContent.match(/(\d+)\./);
-				if (num != null)
-					player.number = Number(num[1]);
-				var cat = name_b.textContent.match(/\((.+)\)/);
-				if (cat != null) {
-					// stored as catergoy id
-					var categories = {"GK":1, "WB":2, "CD":3, "W":4, "IM":5, "FW":6, "S":7, "R":8, "E1":9, "E2":10};
-					player.category = Number(categories[cat[1]]);
+				if (bs[0]) {
+					var name_b = bs[0]
+					var num = name_b.textContent.match(/(\d+)\./);
+					if (num != null)
+						player.number = Number(num[1]);
+					var cat = name_b.textContent.match(/\((.+)\)/);
+					if (cat != null) {
+						// stored as catergoy id
+						var categories = {"GK":1, "WB":2, "CD":3, "W":4, "IM":5, "FW":6, "S":7, "R":8, "E1":9, "E2":10};
+						player.category = Number(categories[cat[1]]);
+					}
 				}
-
+				
 				if ( Foxtrick.hasClass(playerNode,'hidden') )
 					player.hidden = true;
 								
