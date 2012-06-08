@@ -63,6 +63,7 @@
 <script type="application/x-javascript" src="./links/links.js"></script>
 
 <!--background script and script injection -->
+<script type="application/x-javascript" src="./observer.js" />
 <script type="application/x-javascript" src="./entry.js" />
 <script type="application/x-javascript" src="./scripts-fennec.js" />
 <script type="application/x-javascript" src="./background.js" />

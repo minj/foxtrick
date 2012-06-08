@@ -51,7 +51,7 @@ Foxtrick.modules["StaffMarker"]={
 
 		var obj = {};
 		// JSON files to be downloaded
-		var ext = (FoxtrickPrefs.getBool('zippedResources')&&Foxtrick.platform!="Fennec")?'.zip':'';
+		var ext = (FoxtrickPrefs.getBool('zippedResources') && Foxtrick.platform != "Mobile" && Foxtrick.platform != "Android") ? '.zip' : '';
 		var uris = [
 			Foxtrick.DataPath + "staff/foxtrick.json"+ext,
 			Foxtrick.DataPath + "staff/chpp.json"+ext,

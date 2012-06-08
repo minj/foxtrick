@@ -158,9 +158,12 @@ Foxtrick.newTab = function(url) {
 			url : url
 		})
 	}
-	else if (Foxtrick.platform == "Firefox") {
+	else if (Foxtrick.platform == "Firefox")
 		gBrowser.selectedTab = gBrowser.addTab(url);
-	}
+	else if (Foxtrick.platform == "Mobile") 
+		Browser.addTab(url, true, null, {'getAttention': true} );
+	else if (Foxtrick.platform == "Android") 
+		BrowserApp.addTab(url);
 }
 
 /*
@@ -800,7 +803,7 @@ Foxtrick.load_module_css = function(doc) {
 		sandboxed.extension.sendRequest(
 			{ req : "getCss", files :Foxtrick.cssFiles },
 			function (data) {
-				if (Foxtrick.platform === "Fennec") {
+				if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android") {
 					Foxtrick.current_css = data.cssText;
 					Foxtrick.load_css_permanent(Foxtrick.current_css);
 				} else {
