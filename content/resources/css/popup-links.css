@@ -17,7 +17,7 @@ html[data-theme="standard"] ul.ft-popup-list {
 	background-color: #ffffff;
 	border: solid 2px #267f30;
 	padding: 0px;
-	z-index: 10000;
+	z-index: 10002;
 	list-style-type: none;
 	margin:0px;
 	padding: 3px 2px 3px 2px;
@@ -32,7 +32,7 @@ html[data-theme="simple"] ul.ft-popup-list {
 	background-color: #ffffff;
 	border: solid 2px #267f30;
 	padding: 0px;
-	z-index: 10000;
+	z-index: 10002;
 	list-style-type: none;
 	margin:0px;
 	padding: 3px 2px 3px 2px;
