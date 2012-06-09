@@ -63,7 +63,7 @@ Foxtrick.modules["MyMonitor"]={
 				return;
 
 			// header - "My Monitor"
-			var header = doc.createElement("h1");
+			var header = doc.createElement("h2");
 			//header.id = "ft-monitor-header";
 			header.textContent = Foxtrickl10n.getString("MyMonitor.header");
 			mydiv.appendChild(header);
@@ -173,7 +173,7 @@ Foxtrick.modules["MyMonitor"]={
 				container.insertBefore(frame, separator);
 
 				// team header
-				var header = doc.createElement("h2");
+				var header = doc.createElement("h3");
 				frame.appendChild(header);
 				// link containing team name
 				var nameLink = doc.createElement("a");

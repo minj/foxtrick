@@ -2,6 +2,7 @@
 
 #ft-monitor-div {
 	margin-bottom: 20px ;
+	margin-top: 20px ;
 }
 
 #ft-monitor-add-remove {
@@ -22,11 +23,17 @@
 	clear: left; /* two in a row */
 }
 
-.ft-monitor-frame  > h2:hover  > div.ft_sort {
+.ft-monitor-frame  > h3 {
+	color: #222;
+	background-color: #EDF1ED;
+	border-bottom: solid 2px #DCE0DC;
+}
+
+.ft-monitor-frame  > h3:hover  > div.ft_sort {
 	display:inline;
 }
 
-.ft-monitor-frame > h2 > div.ft_sort {
+.ft-monitor-frame > h3 > div.ft_sort {
 	float:right;
 	display:none;
 }
@@ -53,7 +60,7 @@
 	margin:0 0 -2px
 }
 
-.ft-monitor-frame > h2 > a.flag + img {
+.ft-monitor-frame > h3 > a.flag + img {
 	margin-top:-2px;
 }
 
