@@ -941,7 +941,6 @@ var neededPermissions = [
 	{ modules: ["EmbedMedia.EmbedSoundCloud"], types:{ origins:["http://soundcloud.com/*"]}},
 	{ modules: ["EmbedMedia.EmbedImageshack"], types:{ origins:["http://imageshack.us/*"]}},
 	{ modules: ["YouthTwins"], types:{ origins:["http://*.hattrick-youthclub.org/*"]}},
-	{ modules: ["Links.AddServer"],  types:{ permissions: ["cookies"]}},
 	{ modules: ["HTEVPrediction"], types:{ origins:["http://htev.org/api/*"]}}
 ];
 
