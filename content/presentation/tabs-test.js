@@ -2,7 +2,7 @@ Foxtrick.modules["TabsTest"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ['all'],
 	OPTIONS: ['Tabify'],
-	nightly: "Bam! Found buffy stuff? Please report. The skilltable is a bit off, anything else? Bam, bam, bam!",
+	nightly: "Bam! Found buggy stuff? Please report. The skilltable is a bit off, anything else? Bam, bam, bam!",
 	NICE: 50,
 	run : function(doc) {
 		if(!Foxtrick.util.tabs.hasTabSupport(doc))
