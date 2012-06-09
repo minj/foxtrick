@@ -37,7 +37,7 @@ sandboxed.tabs.create(url)
 // Foxtrick.arch : "Sandboxed" (chrome,opera,safari) or "Gecko" (firefox, fennec)
 // used mainly in l10n, prefs and css injection
 
-// Foxtrick.platform : "Chrome", "Opera", "Safari", "Firefox", "Fennec"
+// Foxtrick.platform : "Chrome", "Opera", "Safari", "Firefox", "Mobile", "Android"
 // used mainly in UI and script starting
 
 // Foxtrick.InternalPath : called from extension - path to extension folder 
@@ -450,8 +450,29 @@ else {
 	Foxtrick.InternalPath = Foxtrick.ResourcePath = "chrome://foxtrick/content/";
 
 	if ( typeof(window)!=='object' // fennec content
-		|| typeof(Browser)!=='undefined' ) { // fennec background
-		Foxtrick.platform = "Fennec";
+		|| typeof(Browser)!=='undefined'  // mobile background
+		|| typeof(BrowserApp)!=='undefined' ) { // android background
+
+		var isNativeUI = function() {
+			try {
+				var Cc = Components.classes;
+				var Ci = Components.interfaces;
+				var Cu = Components.utils;
+
+				Cu.import("resource://gre/modules/Services.jsm");
+
+				var appInfoID = Cc["@mozilla.org/xre/app-info;1"].getService(Ci.nsIXULAppInfo).ID;
+				return (appInfoID == "{aa3c5121-dab2-40e2-81ca-7ea25febc110}");
+			} catch (e) {
+				return false;
+			}
+		};
+
+		if (isNativeUI()) 
+			Foxtrick.platform = "Android";
+		else
+			Foxtrick.platform = "Mobile";
+
 		Foxtrick.chromeContext = function() {
 			if (typeof(sendSyncMessage)=='function')
 				return "content";
@@ -467,8 +488,8 @@ else {
 	}
 
 	// fennec ports
-	if (Foxtrick.platform == "Fennec") {
-		Foxtrick.DataPath = "chrome://foxtrick_resources/content/";
+	if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android") {
+		Foxtrick.DataPath = "chrome://foxtrick/content/res/";
 
 		var addListener = function(name, handler) {
 			var x = typeof(addMessageListener)=='function' ? addMessageListener : messageManager.addMessageListener;
@@ -602,7 +623,10 @@ else {
 			},
 			tabs: {
 			  create: function(data) {
-				Browser.addTab(data.url,true);
+				if (Foxtrick.platform == "Mobile")
+					Browser.addTab(data.url,true);
+				else if (Foxtrick.platform == "Android")
+					BrowserApp.addTab(data.url);
 			  }
 			},
 		}

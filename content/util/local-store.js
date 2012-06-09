@@ -38,7 +38,7 @@ Foxtrick._localDeleteBranch = function(branch) {
 };
 
 // for Firefox
-if (Foxtrick.platform == "Firefox") {
+if (Foxtrick.arch == "Gecko") {
 	var url = "http://localStore.foxtrick.org";
 	var ios = Components.classes["@mozilla.org/network/io-service;1"]
 			  .getService(Components.interfaces.nsIIOService);

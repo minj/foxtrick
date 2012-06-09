@@ -28,7 +28,7 @@
 							<RDF:Description>
 								<em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id>
 								<em:minVersion>2.0</em:minVersion>
-								<em:maxVersion>2.10a1</em:maxVersion>
+								<em:maxVersion>2.13a1</em:maxVersion>
 								<em:updateLink>{UPDATE_LINK}</em:updateLink>
 								<em:updateHash>{UPDATE_HASH}</em:updateHash>
 							</RDF:Description>
