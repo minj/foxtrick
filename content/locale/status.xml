@@ -85,7 +85,7 @@
     <name>German</name>
     <code>de</code>
     <phrases>1083</phrases>
-    <translated>1075</translated>
+    <translated>1080</translated>
     <approved>1</approved>
     <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
@@ -130,9 +130,9 @@
     <name>Hebrew</name>
     <code>he</code>
     <phrases>1083</phrases>
-    <translated>1025</translated>
+    <translated>1067</translated>
     <approved>0</approved>
-    <translated_progress>94</translated_progress>
+    <translated_progress>98</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -238,9 +238,9 @@
     <name>Russian</name>
     <code>ru</code>
     <phrases>1083</phrases>
-    <translated>1082</translated>
+    <translated>1083</translated>
     <approved>0</approved>
-    <translated_progress>99</translated_progress>
+    <translated_progress>100</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -355,9 +355,9 @@
     <name>Brazilian Portuguese</name>
     <code>pt-BR</code>
     <phrases>1083</phrases>
-    <translated>823</translated>
+    <translated>900</translated>
     <approved>0</approved>
-    <translated_progress>75</translated_progress>
+    <translated_progress>83</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
