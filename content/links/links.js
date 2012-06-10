@@ -20,12 +20,9 @@
 		var feeds = FoxtrickPrefs.getString("module.Links.feeds") || "";
 		feeds = feeds.split(/(\n|\r)+/);
 		feeds = Foxtrick.filter(function(n) { return Foxtrick.trim(n) != ""; }, feeds);
-		// stupid fennec overwrite
-		if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android")
-			feeds = [Foxtrick.DataPath + "links.json"];
 		// add default feed if no feeds set
 		if (feeds.length == 0)
-			feeds = [Foxtrick.DataPath + "links.json.zip"];
+			feeds = [Foxtrick.DataPath + "links.json"];
 		
 		var parseFeed = function(text) {
 			var key, prop;
@@ -72,38 +69,20 @@
 		var todo = feeds.length;
 		Foxtrick.map(function(feed) {
 			Foxtrick.log("do feeds: ", feed);
-			if (feed.search(/\.zip$/i) != -1 ) {
-				// load zipped
-				var feedsZip = new ZipFile(feed, function(zip){
-					--todo;
-					for (var i=0; i<zip.entries.length; i++) {
-						var extractCb = function(entry, entryContent) {
-							Foxtrick.log('parse ', entry.name);
-							parseFeed(entryContent);
-						};
-
-						// extract asynchronously
-						var entry = zip.entries[i];
-						Foxtrick.log('unzip ', entry.name);
-						entry.extract(extractCb, true);
-					}
-				}, 3);
-			} else {
-				// load plain text
-				Foxtrick.get(feed)("success", function(text) {
-					--todo;
-					if (text == null) 
-						text = FoxtrickPrefs.getString("LinksFeed."+feed);
-					//Foxtrick.log('parse ', feed);
-					parseFeed(text);
-					FoxtrickPrefs.setString("LinksFeed."+feed, text);				
-				})("failure", function(code) {
-					--todo;
-					Foxtrick.log("Error loading links feed: ", feed, ". Using cached feed.");
-					var text =  FoxtrickPrefs.getString("LinksFeed."+feed);
-					parseFeed(text);
-				});
-			}
+			// load plain text
+			Foxtrick.get(feed)("success", function(text) {
+				--todo;
+				if (text == null) 
+					text = FoxtrickPrefs.getString("LinksFeed."+feed);
+				//Foxtrick.log('parse ', feed);
+				parseFeed(text);
+				FoxtrickPrefs.setString("LinksFeed."+feed, text);				
+			})("failure", function(code) {
+				--todo;
+				Foxtrick.log("Error loading links feed: ", feed, ". Using cached feed.");
+				var text =  FoxtrickPrefs.getString("LinksFeed."+feed);
+				parseFeed(text);
+			});
 		}, feeds);
 	};
 
