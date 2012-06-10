@@ -32,36 +32,52 @@ Foxtrick.insertFeaturedCell = function(row, module, index) {
 	var cell = row.insertCell(index);
 	cell.className = 'ft-dummy';
 	if (FoxtrickPrefs.getBool("featureHighlight"))
-		cell.title = module.MODULE_NAME + ' (' + Foxtrickl10n.getString("tab."+module.MODULE_CATEGORY) + '): ' + FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
+		cell.title = module.MODULE_NAME + ' (' + Foxtrickl10n.getString("tab." + module.MODULE_CATEGORY) + '): ' + FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
 	return cell;
 };
 
 Foxtrick.makeFeaturedElement = function(node, module) {
 	Foxtrick.addClass(node, 'ft-dummy');
 	if (FoxtrickPrefs.getBool("featureHighlight"))
-		node.title = module.MODULE_NAME + ' (' + Foxtrickl10n.getString("tab."+module.MODULE_CATEGORY) + '): ' + FoxtrickPrefs.getModuleDescription(module.MODULE_NAME) + (node.title ? " / " +node.title : "" );
+		node.title = module.MODULE_NAME + ' (' + Foxtrickl10n.getString("tab." + module.MODULE_CATEGORY) + '): ' + FoxtrickPrefs.getModuleDescription(module.MODULE_NAME) + (node.title ? " / " +node.title : "" );
 	return node;
 };
 
+Foxtrick.hasAttributeValue = function(obj, attribute, value) {
+	var reg = new RegExp("(\\s|^)" + value + "(\\s|$)", "g");
+	return (obj && obj.getAttribute !== undefined 
+		&& obj.getAttribute(attribute) 
+		&& reg.test(obj.getAttribute(attribute)));
+}
+
+Foxtrick.addAttributeValue = function(obj, attribute, value) {
+	if (!Foxtrick.hasAttributeValue(obj, attribute, value)){
+		var _attrib = obj.getAttribute(attribute);
+		if(_attrib)
+			obj.setAttribute(attribute, _attrib + " " + value);
+		else
+			obj.setAttribute(attribute, value);
+	}
+}
+
+Foxtrick.removeAttributeValue = function(obj, attribute, value) {
+	var _attrib = obj.getAttribute(attribute);
+	if(_attrib){
+		var reg = new RegExp("(\\s|^)" + value + "(\\s|$)", "g");
+		obj.className = Foxtrick.trim(_attrib.replace(reg, " "));
+	}
+}
 
 Foxtrick.hasClass = function(obj, cls) {
-	var reg = new RegExp("(\\s|^)" + cls + "(\\s|$)", "g");
-	return (obj
-		&& obj.className !== undefined
-		&& reg.test(obj.className));
+	return Foxtrick.hasAttributeValue(obj, "class", cls);
 }
 
 Foxtrick.addClass = function(obj, cls) {
-	if (!Foxtrick.hasClass(obj, cls)) {
-		obj.className += " " + cls;
-	}
+	Foxtrick.addAttributeValue(obj, "class", cls);
 }
 
 Foxtrick.removeClass = function(obj, cls) {
-	if (Foxtrick.hasClass(obj, cls)) {
-		var reg = new RegExp("(\\s|^)" + cls + "(\\s|$)", "g");
-		obj.className = Foxtrick.trim(obj.className.replace(reg, " "));
-	}
+	Foxtrick.removeAttributeValue(obj, "class", cls);
 }
 
 Foxtrick.toggleClass = function(obj, cls) {

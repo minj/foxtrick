@@ -28,9 +28,9 @@ Foxtrick.util.tabs.initialize = function(doc){
 	while(contentNode){
 		if(contentNode.nodeType != Foxtrick.NodeTypes.TEXT_NODE){
 			try {
-				var tab = contentNode.getAttribute("tab");
+				var tab = contentNode.getAttribute("tabs");
 				if(!tab){
-					Foxtrick.util.tabs.addToAttribute(contentNode, "tab", "tab-main");
+					Foxtrick.addAttributeValue(contentNode, "tabs", "tab-main");
 					Foxtrick.addClass(contentNode, "tab-content");
 				}
 			}
@@ -38,7 +38,7 @@ Foxtrick.util.tabs.initialize = function(doc){
 		} else if(contentNode.nodeType == Foxtrick.NodeTypes.TEXT_NODE && contentNode.textContent.replace(/ /g,'').replace(/\n/g,'') != ''){
 			var before = contentNode.nextSibling;
 			var p = doc.createElement("p");
-			Foxtrick.util.tabs.addToAttribute(p, "tab", "tab-main");
+			Foxtrick.addAttributeValue(p, "tabs", "tab-main");
 			Foxtrick.addClass(p, "tab-content");
 			p.appendChild(contentNode);
 
@@ -55,7 +55,7 @@ Foxtrick.util.tabs.initialize = function(doc){
 	if(!Foxtrick.hasClass(doc.getElementById("tab").nextSibling, "ft-clear-both")){
 		var clear = doc.createElement("div")
 		Foxtrick.addClass(clear, "ft-clear-both");
-		Foxtrick.util.tabs.addToAttribute(clear, "tabs", "all-tabs");
+		Foxtrick.addAttributeValue(clear, "tabs", "all-tabs");
 		header.parentNode.insertBefore(clear, doc.getElementById("tab").nextSibling);
 	}
 }
@@ -143,28 +143,21 @@ Foxtrick.util.tabs.show = function(doc, id){
 	//show
 	var tabContents = doc.getElementsByClassName("tab-content");
 	for(var i = 0; i < tabContents.length; ++i){
-		var tabs = tabContents[i].getAttribute("tab");
+		var tabs = tabContents[i].getAttribute("tabs");
 		if(tabs.search(id) > -1 || tabs.search("all-tabs") > -1)
 			Foxtrick.removeClass(tabContents[i], "hidden");
 		else
 			Foxtrick.addClass(tabContents[i], "hidden");
 	}
 }
-Foxtrick.util.tabs.addToAttribute = function(elem, attrib, value){
-	var _attrib = elem.getAttribute(attrib);
-	if(_attrib  && _attrib.search(value) == -1)
-		elem.setAttribute(attrib,_attrib +"," + value);	
-	else
-		elem.setAttribute(attrib, value);	
-} 
 
 Foxtrick.util.tabs.addElementToTab = function(doc, elem, tab){
 	Foxtrick.addClass(elem, "tab-content");
-	Foxtrick.util.tabs.addToAttribute(elem, "tab", tab);
+	Foxtrick.addAttributeValue(elem, "tabs", tab);
 	var parent = doc.getElementsByTagName("h1")[0].parentNode;
 	var elemParent = elem.parentNode;
 	while(elemParent != parent){
-		Foxtrick.util.tabs.addToAttribute(elemParent, "tab", tab);
+		Foxtrick.addAttributeValue(elemParent, "tabs", tab);
 		elemParent = elemParent.parentNode;
 	}
 }
@@ -224,7 +217,7 @@ Foxtrick.util.tabs._addH2ToTab = function(doc, h2, tab) {
 			// 	continue;
 			// }
 			Foxtrick.addClass(el, "tab-content");
-			Foxtrick.util.tabs.addToAttribute(el, "tab", tab);
+			Foxtrick.addAttributeValue(el, "tabs", tab);
 
 			// count new forum postings
 			if ( Foxtrick.hasClass(el,'hidden') && el.getElementsByClassName('fplThreadInfo')[0] != undefined ) {
