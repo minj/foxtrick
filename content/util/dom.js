@@ -64,7 +64,7 @@ Foxtrick.removeAttributeValue = function(obj, attribute, value) {
 	var _attrib = obj.getAttribute(attribute);
 	if(_attrib){
 		var reg = new RegExp("(\\s|^)" + value + "(\\s|$)", "g");
-		obj.className = Foxtrick.trim(_attrib.replace(reg, " "));
+		obj.setAttribute(attribute, Foxtrick.trim(_attrib.replace(reg, " ")));
 	}
 }
 
