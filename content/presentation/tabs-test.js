@@ -2,7 +2,7 @@ Foxtrick.modules["TabsTest"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ['all'],
 	OPTIONS: ['Tabify'],
-	nightly: "Bam! Found buggy stuff? Please report. The skilltable is a bit off, anything else? Bam, bam, bam!",
+	nightly: "Found buggy stuff? Please report. The skilltable is a bit off, anything else? A huge internal change was made. Everything still running?",
 	NICE: 50,
 	run : function(doc) {
 		if(!Foxtrick.util.tabs.hasTabSupport(doc))
@@ -18,7 +18,7 @@ Foxtrick.modules["TabsTest"]={
 
 		if (FoxtrickPrefs.isModuleOptionEnabled("TabsTest", "Tabify"))
 			Foxtrick.util.tabs.tabify(doc);
-		var ft_handle = Foxtrick.util.tabs.addHandle(doc, "Bam!", null , "ft-tab-readme");
+		var ft_handle = Foxtrick.util.tabs.addHandle(doc, "Cheesecake!", null , "ft-tab-readme");
 		if(ft_handle)
 			Foxtrick.addClass(ft_handle, "ft-tab-foxtrick");
 
