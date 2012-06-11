@@ -196,7 +196,7 @@ Foxtrick.modules["Core"]={
 			Foxtrick.util.inject.css(doc, css, "ft-feature-highlight-css");
 			FoxtrickPrefs.setBool("featureHighlight", true);			
 		}
-		Foxtrick.modules.UI.update();
+		Foxtrick.modules.UI.update(doc);
 	},
 	
 	parseSelfTeamInfo : function(doc) {
