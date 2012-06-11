@@ -231,11 +231,11 @@ Foxtrick.modules["TeamStats"]={
 					var data = doc.createElement("span");
 					var total = doc.createElement("span");
 					total.className = "nowrap";
-					total.textContent = Foxtrick.formatNumber(val, " ");
+					total.textContent = Foxtrick.formatNumber(val, "\u00a0");
 					total.setAttribute("title", Foxtrickl10n.getString("TeamStats.Total"));
 					var avgSpan = doc.createElement("span");
 					avgSpan.className = "nowrap";
-					avgSpan.textContent = Foxtrick.formatNumber(avg.toFixed(1), " ");
+					avgSpan.textContent = Foxtrick.formatNumber(avg.toFixed(1), "\u00a0");
 					avgSpan.setAttribute("title", Foxtrickl10n.getString("TeamStats.Average"));
 					data.appendChild(total);
 					data.appendChild(doc.createTextNode(" / "));

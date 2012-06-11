@@ -333,7 +333,7 @@ Foxtrick.modules["SkillTable"]={
 				};
 				var formatNum = function(cell, num) {
 					cell.className = "formatted-num";
-					cell.textContent = Foxtrick.formatNumber(num, " ");
+					cell.textContent = Foxtrick.formatNumber(num, "\u00a0");
 					cell.setAttribute("index", num);
 				};
 				var object = function(cell, val) {

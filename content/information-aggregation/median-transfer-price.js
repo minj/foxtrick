@@ -46,8 +46,8 @@ Foxtrick.modules["MedianTransferPrice"]={
 			cell.colSpan = 3;
 			cell.textContent = Foxtrickl10n.getString( 'MedianTransferPrice.median' );;
 			cell = row.insertCell(1);
-			cell.className = "right bold";
-			cell.textContent = Foxtrick.formatNumber(median) + " " + currency;
+			cell.className = "right bold nowrap";
+			cell.textContent = Foxtrick.formatNumber(median,"\u00a0") + " " + currency;
 			cell = row.insertCell(2);
 			cell.colSpan = 2;
 
@@ -57,8 +57,8 @@ Foxtrick.modules["MedianTransferPrice"]={
 			cell.colSpan = 3;
 			cell.textContent = Foxtrickl10n.getString( 'MedianTransferPrice.average' );;
 			cell = row.insertCell(1);
-			cell.className = "right bold";
-			cell.textContent = Foxtrick.formatNumber(avg) + " " + currency;
+			cell.className = "right bold nowrap";
+			cell.textContent = Foxtrick.formatNumber(avg,"\u00a0") + " " + currency;
 			cell = row.insertCell(2);
 			cell.colSpan = 2;
 		}
