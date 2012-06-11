@@ -7,8 +7,8 @@
 
 Foxtrick.modules["SeriesFlags"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ["guestbook", "teamPage", "series", "youthSeries", "federation"],
-	OPTIONS : ["Guestbook", "Supporters", "Visitors", "CountryOnly"],
+	PAGES : ["guestbook", "teamPage", "series", "youthSeries", "federation", "Tournaments", "TournamentsGroups" ,"TournamentsFixtures"],
+	OPTIONS : ["Guestbook", "Supporters", "Visitors", "Tournaments", "CountryOnly"],
 	NICE: +1,  // some conflict with another module. setting NICE +1 solved it
 
 	run : function(doc) {
@@ -28,7 +28,7 @@ Foxtrick.modules["SeriesFlags"]={
 						flag.appendChild(country);
 						if (!FoxtrickPrefs.isModuleOptionEnabled("SeriesFlags", "CountryOnly") && data["seriesId"]!==0) {
 							var series = doc.createElement("a");
-							series.className = "inner";
+							series.className = "inner smallText";
 							series.textContent = data["seriesName"];
 							series.href = "/World/Series/Default.aspx?LeagueLevelUnitID=" + data["seriesId"];
 							flag.appendChild(series);
@@ -156,6 +156,16 @@ Foxtrick.modules["SeriesFlags"]={
 				Foxtrick.filter(function(n) { return n.getElementsByTagName("table").length > 0; },
 					sideBarBoxes)
 			);
+		}
+		if ( FoxtrickPrefs.isModuleOptionEnabled("SeriesFlags", "Tournaments") 
+			&& ( Foxtrick.isPage("Tournaments", doc) 
+				||  Foxtrick.isPage("TournamentsGroups", doc) 
+				||  Foxtrick.isPage("TournamentsFixtures", doc))) {
+			// add to tournaments table
+			var mainWrapper = doc.getElementsByClassName("main")[0];
+			var links = mainWrapper.getElementsByTagName("a");
+			var teamLinks = Foxtrick.filter(function(n) { return (n.href.search(/matchId=/i) == -1 &&  n.href.search(/teamId=/i) >= 0); }, links);
+			modifyTeamLinks(teamLinks);
 		}
 	},
 	
