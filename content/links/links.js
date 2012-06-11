@@ -28,7 +28,7 @@
 			var key, prop;
 
 			try {
-				//Foxtrick.log("parseFeed : ", text.substr(0,200));
+				Foxtrick.log("parseFeed : ", text.substr(0,200));
 				var links = JSON.parse(text);
 			}
 			catch (e) {
@@ -76,12 +76,11 @@
 					text = FoxtrickPrefs.getString("LinksFeed."+feed);
 				//Foxtrick.log('parse ', feed);
 				parseFeed(text);
-				FoxtrickPrefs.setString("LinksFeed."+feed, text);				
+				Foxtrick.localSet("LinksFeed."+feed, text);				
 			})("failure", function(code) {
 				--todo;
 				Foxtrick.log("Error loading links feed: ", feed, ". Using cached feed.");
-				var text =  FoxtrickPrefs.getString("LinksFeed."+feed);
-				parseFeed(text);
+				Foxtrick.localGet("LinksFeed."+feed, function(text){parseFeed(text);});
 			});
 		}, feeds);
 	};

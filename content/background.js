@@ -301,7 +301,9 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	};
 	Foxtrick.loader.chrome.background.localGet = function(request, sender, sendResponse) {
 		// @param key - key of local store
-		sendResponse( {value: Foxtrick.localGet(request.key)} );
+		Foxtrick.localGet(request.key, function (value) {
+			sendResponse( {value: value} );
+		});
 	};
 	Foxtrick.loader.chrome.background.localDeleteBranch = function(request, sender, sendResponse) {
 		// @param branch - initial part of key(s) of local store to delete
