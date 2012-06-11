@@ -5,10 +5,10 @@
 	display:inline;
 }
 
-/* fix for vanishing links in rtl tables*/
+/* fix for vanishing links in rtl tables (working without now and cause problems with htev+match comments in matcheslist)
 html[dir="rtl"] td .ft-popup-span {
 	display:block;
-}
+}*/
 
 html[data-theme="standard"] ul.ft-popup-list {
 	font-size: 11px;
