@@ -68,6 +68,8 @@
 		Foxtrick.log("Loading link feeds from: ", feeds, " length: ", feeds.length);
 		var todo = feeds.length;
 		Foxtrick.map(function(feed) {
+			// kick zip if still there
+			feed = feed.replace(/\.json\.zip/i,'.json');
 			Foxtrick.log("do feeds: ", feed);
 			// load plain text
 			Foxtrick.get(feed)("success", function(text) {
