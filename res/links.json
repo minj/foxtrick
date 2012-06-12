@@ -1812,7 +1812,7 @@
 	},
 	"hattricksnapshot": {
 		"teamlink": {
-			"url": http://www.hattricksnapshot.org/team/[teamid]/"
+			"url": "http://www.hattricksnapshot.org/team/[teamid]/"
 		},
 		"leaguelink": {
 			"url": "http://www.hattricksnapshot.org/league/[leagueid]/"
