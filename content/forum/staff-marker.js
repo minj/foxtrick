@@ -51,55 +51,30 @@ Foxtrick.modules["StaffMarker"]={
 
 		var obj = {};
 		// JSON files to be downloaded
-		var ext = (FoxtrickPrefs.getBool('zippedResources') && Foxtrick.platform != "Mobile" && Foxtrick.platform != "Android") ? '.zip' : '';
 		var uris = [
-			Foxtrick.DataPath + "staff/foxtrick.json"+ext,
-			Foxtrick.DataPath + "staff/chpp.json"+ext,
-			Foxtrick.DataPath + "staff/editor.json"+ext
+			Foxtrick.DataPath + "staff/foxtrick.json",
+			Foxtrick.DataPath + "staff/chpp.json",
+			Foxtrick.DataPath + "staff/editor.json"
 		];
 		if (FoxtrickPrefs.isModuleOptionEnabled("StaffMarker","external")) {
-		 	uris.push(Foxtrick.DataPath + "staff/hy.json"+ext);
-		 	uris.push(Foxtrick.DataPath + "staff/htls.json"+ext);
+		 	uris.push(Foxtrick.DataPath + "staff/hy.json");
+		 	uris.push(Foxtrick.DataPath + "staff/htls.json");
 		 	++todo;
 		}
 
 		// counter of URI remaining to fetch
 		var todo = uris.length;
 		Foxtrick.map(function(uri) {
-			if (uri.search(/\.zip$/i) != -1 ) {
-				// load zipped
-				var feedsZip = new ZipFile(uri, function(zip){
-					if (zip.entries.length == 0) {
-						Foxtrick.log(uri, zip.status);
-						--todo;
-						return;
-					}
-					for (var i=0; i<zip.entries.length; i++) {
-						var extractCb = function(entry, entryContent) {
-							Foxtrick.log('parse ', entry.name);
-							parseMarkers(entryContent);
-							FoxtrickPrefs.setString("Markers."+uri, entryContent);							
-						};
-
-						// extract asynchronously
-						var entry = zip.entries[i];
-						Foxtrick.log('unzip ', entry.name);
-						entry.extract(extractCb, true);
-					}
-				}, 3);
-			}
-			else {
-				// counter of URI remaining to fetch
-				Foxtrick.get(uri)("success", function(text) {
-					Foxtrick.log('parse ', uri);
-					parseMarkers(text);
-					FoxtrickPrefs.setString("Markers."+uri, text);							
-				})("failure", function(code) {
-					Foxtrick.log("Failure loading file: " + uri, ". Using cached markers.");
-					var text =  FoxtrickPrefs.getString("Markers."+uri);
-					parseMarkers(text);
-				});
-			}
+			// counter of URI remaining to fetch
+			Foxtrick.get(uri)("success", function(text) {
+				Foxtrick.log('parse ', uri);
+				parseMarkers(text);
+				FoxtrickPrefs.setString("Markers."+uri, text);							
+			})("failure", function(code) {
+				Foxtrick.log("Failure loading file: " + uri, ". Using cached markers.");
+				var text =  FoxtrickPrefs.getString("Markers."+uri);
+				parseMarkers(text);
+			});
 		}, uris);
 
 	},
