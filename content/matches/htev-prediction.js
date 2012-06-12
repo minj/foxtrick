@@ -147,11 +147,11 @@ Foxtrick.modules["HTEVPrediction"]={
 					}
 					//set cache, might be overwritting
 					//see if its a future match
-					var isFutureMatch = (json.tie == -1)?true:false;
-					if(!isFutureMatch){
-						Foxtrick.localSet("htev.prediction.past." + json.matchid, json);
-					} else {
+					var storeSession = (json.tie == -1 || json.message == "no match")?true:false;
+					if(storeSession){
 						Foxtrick.sessionSet("htev.prediction.future." + json.matchid, json);
+					} else {
+						Foxtrick.localSet("htev.prediction.past." + json.matchid, json);
 					}
 					//fix the popup contents
 					fillPopups(json.matchid, json);
