@@ -72,7 +72,10 @@ Foxtrick.modules["MatchOrderInterface"]={
 					if (!bodypart) 
 						continue;
 
-						var x = Math.round(Number(layers[j].getAttribute('x'))/scale);
+					if (bodypart == "backgrounds")
+						src = "";
+						
+					var x = Math.round(Number(layers[j].getAttribute('x'))/scale);
 					var y = Math.round(Number(layers[j].getAttribute('y'))/scale);
 					var img =  doc.createElement('img');
 					if (FoxtrickPrefs.isModuleOptionEnabled("OriginalFace", "ColouredYouth"))
