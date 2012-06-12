@@ -161,8 +161,12 @@
 					// add img for tracker flags
 					if (module === "LinksTracker")
 						linkNode.appendChild(doc.createElement("img"));
-					else
-						Foxtrick.addImage(doc, linkNode, { alt: link.shorttitle || link.title, title: link.title, src: link.img, height: 16});
+					else {
+						var height = 16;
+						if (type  == "playerhealinglink" )
+							height = 8;
+						Foxtrick.addImage(doc, linkNode, { alt: link.shorttitle || link.title, title: link.title, src: link.img, height: height});
+					}
 				}
 
 				return linkNode;
