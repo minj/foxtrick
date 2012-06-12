@@ -117,14 +117,6 @@ Foxtrick.Pages.Players = {
 						playerList.push({id : id});
 						player = playerList[playerList.length - 1];
 						
-						player.nameLink = doc.createElement('a');
-						player.nameLink.href = '/Club/Players/Player.aspx?PlayerID='+id;
-						if (playerNode.getElementsByTagName("PlayerName")[0])
-							player.nameLink.textContent = playerNode.getElementsByTagName("PlayerName")[0].textContent;
-						else {
-							player.nameLink.textContent = playerNode.getElementsByTagName("FirstName")[0].textContent+' '
-														+ playerNode.getElementsByTagName("LastName")[0].textContent;
-						}
 						player.yellowCard = Number(playerNode.getElementsByTagName("Cards")[0].textContent);
 						if (player.yellowCard==3) {
 							player.yellowCard=0;
@@ -190,6 +182,24 @@ Foxtrick.Pages.Players = {
 
 				// we found this player in the XML file,
 				// go on the retrieve information
+				player.nameLink = doc.createElement('a');
+				player.nameLink.href = '/Club/Players/Player.aspx?PlayerID='+id;
+				if (playerNode.getElementsByTagName("PlayerName")[0])
+					player.nameLink.textContent = playerNode.getElementsByTagName("PlayerName")[0].textContent;
+				else {
+					player.nameLink.textContent = playerNode.getElementsByTagName("FirstName")[0].textContent
+															.replace(/(-[^\(])([^-\s]+)/g,"$1.")  // replaces first name						
+															.replace(/(\s[^\(])([^-\s]+)/g,"$1.") // replace further first names
+															.replace(/(\(.)([^-\)]+)/g,"$1.") // non-latin in brackets
+															.replace(/(^[^\(])([^-\s]+)/g,"$1.")  // replace names connected with "-"
+												+ ' '
+												+ playerNode.getElementsByTagName("LastName")[0].textContent;
+					// keep full name in title
+					player.nameLink.setAttribute('title', playerNode.getElementsByTagName("FirstName")[0].textContent
+												+ ' '
+												+ playerNode.getElementsByTagName("LastName")[0].textContent);
+				}
+
 				if (playerNode.getElementsByTagName("NrOfMatches").length) {
 					player.matchCount = Number(playerNode.getElementsByTagName("NrOfMatches")[0].textContent);
 				}
