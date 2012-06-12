@@ -69,11 +69,10 @@ Foxtrick.modules["StaffMarker"]={
 			Foxtrick.get(uri)("success", function(text) {
 				Foxtrick.log('parse ', uri);
 				parseMarkers(text);
-				FoxtrickPrefs.setString("Markers."+uri, text);							
+				Foxtrick.localSet("Markers."+uri, text);							
 			})("failure", function(code) {
 				Foxtrick.log("Failure loading file: " + uri, ". Using cached markers.");
-				var text =  FoxtrickPrefs.getString("Markers."+uri);
-				parseMarkers(text);
+				Foxtrick.localGet("Markers."+uri, parseMarkers);
 			});
 		}, uris);
 

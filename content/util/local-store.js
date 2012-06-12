@@ -63,7 +63,9 @@ else {
 	if ( Foxtrick.chromeContext() == "background" )  {
 		Foxtrick.localStore = localStorage;
 		Foxtrick.localSet = Foxtrick._localSet;
-		Foxtrick.localGet = Foxtrick._localGet; 
+		Foxtrick.localGet = function(key, callback) {
+			callback(Foxtrick._localGet(key));
+		};
 		Foxtrick.localDeleteBranch = Foxtrick._localDeleteBranch;
 	}
 
