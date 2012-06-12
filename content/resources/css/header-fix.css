@@ -5,7 +5,7 @@
 #header {
 	position: fixed !important;
 	top: 0px;
-	z-index: 9990;
+	z-index: 10001;
 }
 
 html[data-theme="standard"] #header {
