@@ -34,6 +34,7 @@ Foxtrick._sessionGet = function(keymap, callback) {
 };
 
 Foxtrick._sessionDeleteBranch = function(branch) {
+	if (!branch) branch = '';
 	if (branch != '') branch += '.';
 	for (var key in Foxtrick.sessionStore) {
 		if (key.indexOf(branch)===0)

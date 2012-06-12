@@ -80,7 +80,9 @@ function toggleTranslationKeys()
 function clearCache()
 {
 	var BackgroundPage = chrome.extension.getBackgroundPage();
-	BackgroundPage.Foxtrick.util.api.clearCache();
+	BackgroundPage.Foxtrick.sessionDeleteBranch('');
+	BackgroundPage.Foxtrick.localDeleteBranch('');
+	//BackgroundPage.Foxtrick.util.api.clearCache();
 	window.close();
 }
 

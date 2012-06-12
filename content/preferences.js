@@ -387,6 +387,14 @@ function initMainTab()
 			revokePermissions();
 		}
 	});
+
+	// clear cche
+	$("#pref-stored-clear-cache").click(function() {
+		Foxtrick.sessionDeleteBranch('');
+		Foxtrick.localDeleteBranch('');
+		//Foxtrick.util.api.clearCache();
+		window.location.reload();
+	});
 }
 
 function getModule(module)
