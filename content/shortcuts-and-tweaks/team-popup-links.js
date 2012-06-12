@@ -42,6 +42,7 @@ Foxtrick.modules["TeamPopupLinks"]={
 		},
 		"SendMessage" : {
 			linkByTeam : "/Club/?TeamID=[teamid]&redir_to_mail=true",
+			linkByUser : "/Club/Manager/?userId=[userid]&redir_to_mail=true",
 			linkByUserName : "/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto=[username]"
 		},
 		"Challenge" : {
@@ -233,14 +234,16 @@ Foxtrick.modules["TeamPopupLinks"]={
 					var addItem = function(key, isOwnTeam, teamId, userId, userName, ownLink, linkByTeam, linkByUser, linkByUserName) {
 						var item = doc.createElement("li");
 						var link = doc.createElement("a");
+						if (userName && userId && userId == userName.match(/\d+/))
+							userName = "";	
 						if (isOwnTeam && ownLink)
 							link.href = ownLink;
 						else if (teamId && linkByTeam)
 							link.href = linkByTeam.replace(/\[teamid\]/i, teamId);
-						else if (userId && linkByUser)
-							link.href = linkByUser.replace(/\[userid\]/i, userId);
 						else if (userName && linkByUserName)
 							link.href = linkByUserName.replace(/\[username\]/i, userName);
+						else if (userId && linkByUser)
+							link.href = linkByUser.replace(/\[userid\]/i, userId);
 						else
 							return;
 							

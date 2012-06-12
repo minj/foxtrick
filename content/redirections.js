@@ -23,9 +23,14 @@ Foxtrick.modules["Redirections"]={
 		// redirect from manager
 		if (doc.location.href.search(/\/Club\/Manager/i)!=-1) {
 			var userid = doc.getElementsByClassName("main")[0].getElementsByTagName('a')[1].href.replace(/.+userid=/i,'');;
+			
 			var target="_self";
 			if (doc.location.href.search(/redir_to_team=true/i)!=-1 )
 						tar=serv+"/Club/?TeamID="+teamid;
+			else if (doc.location.href.search(/redir_to_mail=true/i)!=-1 ) {
+				var username =  Foxtrick.trim(doc.getElementsByTagName('h1')[0].getElementsByClassName('speedBrowser')[0].nextSibling.textContent);
+				tar=serv+'/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto='+username;
+			}
 			else if (doc.location.href.search(/redir_to_lastlineup=true/i)!=-1 )
 						tar=serv+'/Club/Matches/MatchLineup.aspx?MatchID=&TeamID='+teamid+'&useArchive=True';
 			else if (doc.location.href.search(/redir_to_nextmatch=true/i)!=-1 )
@@ -44,7 +49,7 @@ Foxtrick.modules["Redirections"]={
 			}
 			else if (doc.location.href.search(/redir_to_challenge=true/i)!=-1 )
 						tar=serv+'/Club/Challenges/?TeamID='+teamid+'&challenge=true';
-			else if (doc.location.href.search(/redir_to_sendmessage=true/i)!=-1 )
+			else if (doc.location.href.search(/redir_to_mail=true/i)!=-1 )
 						tar=serv+'/Club/?TeamID='+teamid+'&SendMessage=true';
 			else if (doc.location.href.search(/redir_to_guestbook=true/i)!=-1 )
 						tar=serv+'/Club/Manager/Guestbook.aspx?teamid='+teamid;
