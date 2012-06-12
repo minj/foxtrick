@@ -1668,6 +1668,42 @@
 			]
 		]
 	},
+	"russiatracker": {
+		"img": "resources/linkicons/tracker.png",
+		"title": "Russia + Kyrgyzstan NT/U-20 DB",
+		"trackernationalteamlink": {
+			"url": "http://www.ntdb.pl/",
+			"filters": [
+				"countryid"
+			]
+		},
+		"trackerplayerlink": {
+			"url": "http://www.ntdb.pl/",
+			"filters": [
+				"nationality"
+			]
+		},
+		"countryidranges": [
+			[
+				35,
+				35
+			],
+			[
+				102,
+				102
+			]
+		],
+		"nationalityranges": [
+			[
+				35,
+				35
+			],
+			[
+				102,
+				102
+			]
+		]
+	},
 	"ht-ys": {
 		"youthleaguelink": {
 			"url": "http://www.ht-ys.org/?league_id=[youthleagueid]"
