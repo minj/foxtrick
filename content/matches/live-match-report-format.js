@@ -465,16 +465,14 @@ Foxtrick.modules["LiveMatchReportFormat"]={
 			if(!events.length)
 				return;
 			
-			//no events yet? byebye
-			if(!events[0].getAttribute("data-eventtype"))
-				return;
-			
-			var koPending = true;
-			var topDown = true;
-			var firstEventType = parseInt(events[0].getAttribute("data-eventtype").match(/\d+/)[0]);
-			if(firstEventType < 30 || firstEventType > 33)
-				topDown = false;
-			
+			// no data for eg halftime note
+			if (events[0].getAttribute("data-eventtype")) {
+				var koPending = true;
+				var topDown = true;
+				var firstEventType = parseInt(events[0].getAttribute("data-eventtype").match(/\d+/)[0]);
+				if(firstEventType < 30 || firstEventType > 33)
+					topDown = false;
+			}
 			for(var i=0;i<events.length;i++){
 
 				var event = events[i];
