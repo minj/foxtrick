@@ -30,10 +30,11 @@ Foxtrick._localGet = function(keymap) {
 };
 
 Foxtrick._localDeleteBranch = function(branch) {
+	if (!branch) branch = '';
 	if (branch != '') branch += '.';
 	for (var key in Foxtrick.localStore) {
 		if (key.indexOf('localStore.'+branch)===0)
-			Foxtrick.localStore.removeItem('localStore.'+key);
+			Foxtrick.localStore.removeItem(key); // <- key already contains localStore.
 	};
 };
 

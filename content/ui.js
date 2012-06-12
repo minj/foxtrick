@@ -64,7 +64,11 @@ if (Foxtrick.platform == "Firefox") {
 		// toolbar menu - clearCache
 		var clearCache = document.getElementById("foxtrick-toolbar-clearCache");
 		clearCache.setAttribute("label", Foxtrickl10n.getString("api.clearCache"));
-		clearCache.addEventListener("click",  function(){Foxtrick.util.api.clearCache()}, false);
+		clearCache.addEventListener("click",  function(){
+			Foxtrick.sessionDeleteBranch('');
+			Foxtrick.localDeleteBranch('');
+			//Foxtrick.util.api.clearCache();
+		}, false);
 		// toolbar menu - highlight
 		var toolbarHighlight = document.getElementById("foxtrick-toolbar-highlight");
 		toolbarHighlight.setAttribute("label", Foxtrickl10n.getString("toolbar.featureHighlight"));
