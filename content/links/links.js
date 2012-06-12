@@ -162,7 +162,7 @@
 					if (module === "LinksTracker")
 						linkNode.appendChild(doc.createElement("img"));
 					else
-						Foxtrick.addImage(doc, linkNode, { alt: link.shorttitle || link.title, title: link.title, src: link.img });
+						Foxtrick.addImage(doc, linkNode, { alt: link.shorttitle || link.title, title: link.title, src: link.img, height: 16});
 				}
 
 				return linkNode;
