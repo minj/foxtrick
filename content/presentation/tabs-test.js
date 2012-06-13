@@ -2,7 +2,7 @@ Foxtrick.modules["TabsTest"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ['all'],
 	OPTIONS: ['Tabify'],
-	nightly: "Found buggy stuff? Please report. The skilltable is a bit off, anything else? A huge internal change was made. Everything still running?",
+	nightly: "Today we celebrate r10000!",
 	NICE: 50,
 	run : function(doc) {
 		if(!Foxtrick.util.tabs.hasTabSupport(doc))
@@ -18,12 +18,16 @@ Foxtrick.modules["TabsTest"]={
 
 		if (FoxtrickPrefs.isModuleOptionEnabled("TabsTest", "Tabify"))
 			Foxtrick.util.tabs.tabify(doc);
-		var ft_handle = Foxtrick.util.tabs.addHandle(doc, "Cheesecake!", null , "ft-tab-readme");
+		var ft_handle = Foxtrick.util.tabs.addHandle(doc, "r10000!", null , "ft-tab-readme");
 		if(ft_handle)
 			Foxtrick.addClass(ft_handle, "ft-tab-foxtrick");
 
 		var div = doc.createElement("div");
-		div.textContent = this.nightly;
+		var r1000h2 = doc.createElement("h2");
+		r1000h2.textContent = "Today we celebrate r10000"
+		var t = doc.createTextNode("Have a beer at your expense ;) Thanks for all your testing, suggestions and for doing translations etc.!");
+		div.appendChild(r1000h2);
+		div.appendChild(t);
 		Foxtrick.addClass(div, "ft-tab-custom");
 		doc.getElementsByTagName("h1")[0].parentNode.appendChild(div);
 		Foxtrick.util.tabs.addElementToTab(doc, div, "ft-tab-readme");
