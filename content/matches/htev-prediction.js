@@ -24,7 +24,8 @@ Foxtrick.modules["HTEVPrediction"]={
 				//league id
 				var main = doc.getElementsByClassName("main")[0]; 
 				var thisdiv = main.getElementsByTagName("div")[0];
-				var leagueId = Foxtrick.util.id.findLeagueLeveUnitId(thisdiv);	
+				var leagueId = Foxtrick.util.id.findLeagueLeveUnitId(thisdiv);
+				var teamId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);	
 				var links = doc.getElementById("mainBody").getElementsByTagName("a");
 				for(var i = 0; i < links.length; i++){
 					var mID = Foxtrick.util.id.getMatchIdFromUrl(links[i].href);
@@ -52,10 +53,13 @@ Foxtrick.modules["HTEVPrediction"]={
 						//league id
 						var li = doc.createElement("li");						
 						var htev_link = doc.createElement("a");
-						if(isFutureMatch){
+						if(isFutureMatch && leagueId){
 							htev_link.href = "http://htev.org/search_leagueid/?SeriesID=" + leagueId;
 							htev_link.setAttribute("title", Foxtrickl10n.getString("HTEVPrediction.visitLeague"));
-						}
+						} else if(isFutureMatch && !leagueId){
+							htev_link.href = "http://htev.org/match_to_league/" + leagueId + "/";
+							htev_link.setAttribute("title", Foxtrickl10n.getString("HTEVPrediction.visitLeague"));
+						} 
 						else {
 							htev_link.href = "http://htev.org/match/" + matchid + "/";
 							htev_link.setAttribute("title", Foxtrickl10n.getString("HTEVPrediction.visitDetailed"));
