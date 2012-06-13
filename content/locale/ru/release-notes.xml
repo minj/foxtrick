@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+		<?xml version="1.0" encoding="utf-8"?>
 
 <!-- Notes for localization -->
 <!-- Please keep the overall structure and the tags like <note>, <item>,
@@ -18,6 +18,7 @@
 	<note version="0.10.0">
 		<item>● НОВЫЙ модуль <module>TransferHistoryFilters</module>: позволяет показывать только проданных или только купленных игроков. Доступно только для истории трансферов команды, не для игроков (включен по умолчанию)</item>
 		<item>● НОВЫЙ модуль <module>FriendlyPool</module>: подсветка посещённых стран в пуле товарищеских матчей (только для supporter-ов, включено по умолчанию)</item>
+		<item>● НОВЫЙ модуль <module>HTEVPrediction</module>: показывает шансы команд по мнению <xhtml:a href="http://htev.org">HTEV</xhtml:a> (включено по умолчанию)</item>
 		<item>● Модуль <module>PlayerStatsExperience</module>: новая версия раскраски с большим количеством деталей и обратной связью при надёжности данных (благодарим SeanConnery (7751762) за тестирование цвета для пользователей, страдающих дейтеранопией - невосприимчивостью к красной и зелёной части спектра).</item>
 		<item>● Модуль <module>MatchOrderInterface</module>: возможность для клонирования существующей расстановки.</item>
 		<item>● Небольшие изменения внешнего вида и стилей css</item>
