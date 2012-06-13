@@ -393,6 +393,7 @@ pref("extensions.foxtrick.prefs.module.LinksYouthTraining.srbijayadb.enabled", t
 pref("extensions.foxtrick.prefs.module.LinksLeague.hattricksnapshot.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksTeam.hattricksnapshot.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksCountry.hattricksnapshot.enabled", true);
+pref("extensions.foxtrick.prefs.module.LinksWorld.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksWorld.hattricksnapshot.enabled", true);
 pref("extensions.foxtrick.prefs.module.LiveAlert.enabled", true);
 pref("extensions.foxtrick.prefs.module.LiveAlert.Sound.enabled", true);
