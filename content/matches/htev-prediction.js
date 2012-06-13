@@ -185,7 +185,7 @@ Foxtrick.modules["HTEVPrediction"]={
 					Foxtrick.sessionGet("htev.prediction.future." + matchid, function(scache) {
 						//jupp, excellent
 						if(scache){
-							Foxtrick.log("HHTEV: using session cached (future match)");
+							Foxtrick.log("HTEV: using session cached (future match)");
 							handleHTEVResponse(scache, 200);
 						} 
 						//nah, ask HTEV
@@ -201,7 +201,7 @@ Foxtrick.modules["HTEVPrediction"]={
 
 		var addPopup = function(link){
 			var matchid = Foxtrick.util.id.getMatchIdFromUrl(link.href);
-			
+
 			//build basic frame for the popup, data/content comes later
 			var span = Foxtrick.createFeaturedElement(doc, Foxtrick.modules["HTEVPrediction"], "span");
 			var par = link.parentNode;
@@ -217,6 +217,25 @@ Foxtrick.modules["HTEVPrediction"]={
 			Foxtrick.listen(link, "mouseover", getFromHTEV, false);
 		}
 
+		//gets the match type for normal formated tabled that have game specific icons
+		var getMatchType = function(node){
+			var parentNode = node.parentNode;
+			var types = ["matchLeague", "matchFriendly", "matchTournament", "matchCup", "matchQualification", "matchMasters"];
+
+			//dont leave parent table if appreciable
+			while(parentNode && parentNode.tagName != "TABLE"){
+				if(parentNode.tagName == "TR"){
+					for(var t in types) {
+						var search = parentNode.getElementsByClassName(types[t]);
+						if(search.length)
+							return types[t];
+					}
+				}
+				parentNode = parentNode.parentNode;
+			}
+			return "matchUnknown";
+		}
+
 		//only run on senior matches page
 		if(Foxtrick.Pages.Matches.isYouthMatchesPage(doc) || Foxtrick.Pages.Matches.isNtMatchesPage(doc))
 			return;
@@ -230,7 +249,8 @@ Foxtrick.modules["HTEVPrediction"]={
 			if(links[i].href.search(/match.aspx/i) == -1)
 				continue;
 			
-			addPopup(links[i]);
+			if(Foxtrick.isPage("series", doc) || getMatchType(links[i]) == "matchLeague")
+				addPopup(links[i]);
 		}
 	}
 };
