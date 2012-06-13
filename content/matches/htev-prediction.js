@@ -57,7 +57,7 @@ Foxtrick.modules["HTEVPrediction"]={
 							htev_link.href = "http://htev.org/search_leagueid/?SeriesID=" + leagueId;
 							htev_link.setAttribute("title", Foxtrickl10n.getString("HTEVPrediction.visitLeague"));
 						} else if(isFutureMatch && !leagueId){
-							htev_link.href = "http://htev.org/match_to_league/" + leagueId + "/";
+							htev_link.href = "http://htev.org/match_to_league/" + matchid + "/";
 							htev_link.setAttribute("title", Foxtrickl10n.getString("HTEVPrediction.visitLeague"));
 						} 
 						else {
