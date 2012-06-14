@@ -157,9 +157,9 @@
     <name>Japanese</name>
     <code>ja</code>
     <phrases>1083</phrases>
-    <translated>1024</translated>
+    <translated>1083</translated>
     <approved>0</approved>
-    <translated_progress>94</translated_progress>
+    <translated_progress>100</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -355,9 +355,9 @@
     <name>Brazilian Portuguese</name>
     <code>pt-BR</code>
     <phrases>1083</phrases>
-    <translated>927</translated>
+    <translated>943</translated>
     <approved>0</approved>
-    <translated_progress>85</translated_progress>
+    <translated_progress>87</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
