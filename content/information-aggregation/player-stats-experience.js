@@ -101,7 +101,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			return redcard;
 		}
 
-		var getGameType = function(node, date){
+		var getGameType = function(node, date, u20){
 
 			var getBasicGameType = function(node){
 				var gametypeParent = node.getElementsByClassName("keyColumn")[0];
@@ -115,14 +115,17 @@ Foxtrick.modules["PlayerStatsExperience"]={
 				if(gameType == "matchFriendly")
 					return "matchNtFriendly"
 				else if(gameType == "matchLeague"){
-					var useLocal = FoxtrickPrefs.isModuleOptionEnabled("HTDateFormat", "LocalSeason");
 					var weekOffset = FoxtrickPrefs.getString("module.HTDateFormat.FirstDayOfWeekOffset_text"); 
-					var htDate = Foxtrick.util.time.gregorianToHT(date, weekOffset, useLocal);
+					var htDate = Foxtrick.util.time.gregorianToHT(date, weekOffset, false);
+					//oldies wc finals are in odd seasons, u20 in even seasons
+					var isWcFinalSeason = htDate.season % 2 && !u20 || (!(htDate.season % 2) && u20);
+					if(!isWcFinalSeason)
+						return "matchNtLeague";	
+					
 					var semifinal = date.getDay() == 5;
 					var _final = date.getDay() == 0;
-					if(htDate.week == 16 && (semifinal || _final)){
+					if(htDate.week == 16 && (semifinal || _final))
 						return "matchNtFinals";
-					}
 					else
 						return "matchNtLeague";
 				}
@@ -189,9 +192,10 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			} else {
 
 			}
+			var u20 = matches_entries[i].getElementsByTagName("a")[0].textContent.search("U-20") > -1;
 			var ntMatch = isNTmatch( entry );
 			var minutes = getPlayedMinutes( entry );
-			var gameType = getGameType( entry, date );
+			var gameType = getGameType( entry, date, u20 );
 			var xp_gain = getXpGain( minutes, gameType );
 			var redCard = gotRedCard( matches_entries[i] );
 			
