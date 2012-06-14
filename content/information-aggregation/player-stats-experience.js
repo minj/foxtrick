@@ -118,7 +118,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 					var weekOffset = FoxtrickPrefs.getString("module.HTDateFormat.FirstDayOfWeekOffset_text"); 
 					var htDate = Foxtrick.util.time.gregorianToHT(date, weekOffset, false);
 					//oldies wc finals are in odd seasons, u20 in even seasons
-					var isWcFinalSeason = htDate.season % 2 && !u20 || (!(htDate.season % 2) && u20);
+					var isWcFinalSeason = (htDate.season % 2 && !u20) || (!(htDate.season % 2) && u20);
 					if(!isWcFinalSeason)
 						return "matchNtLeague";	
 					
