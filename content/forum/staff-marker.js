@@ -99,7 +99,6 @@ Foxtrick.modules["StaffMarker"]={
 			// tell whether user is staff by id or alias,
 			// and attach class and/or user-defined style to object
 			var modifier = function(id, alias, object) {
-				Foxtrick.log(id, alias)
 				// alias in select boxes might have a Left-to-Right
 				// Overwrite (LRO, U+202D) in front
 				var markers = [
@@ -122,7 +121,6 @@ Foxtrick.modules["StaffMarker"]={
 
 				// data loaded from external files
 				for (var type in data) {
-					Foxtrick.log(data[type][id])
 					if (data[type][id] == true){
 						Foxtrick.addClass(object, "ft-staff-" + type);
 						if (type == "chpp-holder"){
