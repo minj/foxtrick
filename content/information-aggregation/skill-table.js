@@ -511,19 +511,22 @@ Foxtrick.modules["SkillTable"]={
 				thead.appendChild(tr);
 				table.appendChild(thead);
 				var sortClick = function(ev) {
+					var modifierPressed = ev.ctrlKey;
 					try {
 						var head = ev.currentTarget;
 						var table = doc.getElementById('ft_skilltable');
 
 						// determine sort direction
+						var lastSortIndex = table.getAttribute("lastSortIndex");
 						var sortIndex = Foxtrick.getChildIndex(head);
 						var sortAsc = head.hasAttribute("sort-asc");
-						if (sortIndex == table.getAttribute('lastSortIndex')) {
+						if (sortIndex == lastSortIndex && !modifierPressed) {
 							if (sortAsc) head.removeAttribute("sort-asc");
 							else head.setAttribute("sort-asc","true");
 							sortAsc = !Boolean(sortAsc);
 						}
-						table.setAttribute('lastSortIndex', sortIndex) ;
+						if(!modifierPressed)
+							table.setAttribute('lastSortIndex', sortIndex) ;
 
 						var sortString = head.hasAttribute("sort-string");
 						var table = doc.getElementById("ft_skilltable");
@@ -543,51 +546,70 @@ Foxtrick.modules["SkillTable"]={
 							key. Otherwise, we use their textContent.
 						*/
 						var sortCompare = function(a, b) {
-							var aContent, bContent;
-							var lastSort = Number(a.getAttribute('lastSort'))-Number(b.getAttribute('lastSort'));
-							if (sortByIndex) {
-								aContent = a.cells[sortIndex].getAttribute("index");
-								bContent = b.cells[sortIndex].getAttribute("index");
-							}
-							else {
-								aContent = a.cells[sortIndex].textContent;
-								bContent = b.cells[sortIndex].textContent;
-							}
-							
-							if (aContent === bContent) {
-								return lastSort;
-							}
-							// place empty cells at the bottom
-							if (aContent === "" || aContent === null || aContent === undefined) {
-								return 1;
-							}
-							if (bContent === "" || bContent === null || bContent === undefined) {
-								return -1;
-							}
-							if (sortString) {
-								// always sort by ascending order
-								// why? This works perfectly, doesn't it?
-								if (sortAsc) {
-									return bContent.localeCompare(aContent);
+							var doSort = function(a, b){
+								var aContent, bContent;
+								var lastSort = Number(a.getAttribute('lastSort'))-Number(b.getAttribute('lastSort'));
+								
+								if (sortByIndex) {
+									aContent = a.cells[sortIndex].getAttribute("index");
+									bContent = b.cells[sortIndex].getAttribute("index");
 								}
 								else {
-									return aContent.localeCompare(bContent);
+									aContent = a.cells[sortIndex].textContent;
+									bContent = b.cells[sortIndex].textContent;
 								}
-							}
-							else {
-								aContent = parseFloat(aContent);
-								bContent = parseFloat(bContent);
-								aContent = isNaN(aContent) ? lastSort : aContent;
-								bContent = isNaN(bContent) ? lastSort : bContent;
+								
 								if (aContent === bContent) {
-									return lastSort;
+									return 0;
 								}
-								if (sortAsc) {
-									return aContent - bContent;
+								// place empty cells at the bottom
+								if (aContent === "" || aContent === null || aContent === undefined) {
+									return 1;
+								}
+								if (bContent === "" || bContent === null || bContent === undefined) {
+									return -1;
+								}
+								if (sortString) {
+									// always sort by ascending order
+									// why? This works perfectly, doesn't it?
+									if (sortAsc) {
+										return bContent.localeCompare(aContent);
+									}
+									else {
+										return aContent.localeCompare(bContent);
+									}
 								}
 								else {
-									return bContent - aContent;
+									aContent = parseFloat(aContent);
+									bContent = parseFloat(bContent);
+									aContent = isNaN(aContent) ? lastSort : aContent;
+									bContent = isNaN(bContent) ? lastSort : bContent;
+									if (aContent === bContent) {
+										return 0;
+									}
+									if (sortAsc) {
+										return aContent - bContent;
+									}
+									else {
+										return bContent - aContent;
+									}
 								}
+							}
+
+							if(modifierPressed){
+								var tmp = sortIndex;
+								sortIndex = lastSortIndex;
+								var result = doSort(a,b);
+								sortIndex = tmp;
+								if(result == 0){
+									var sortResult = doSort(a,b);
+									return sortResult;
+								} else {
+									return result;
+								}
+							}
+							else{
+								return doSort(a,b);
 							}
 						};
 
