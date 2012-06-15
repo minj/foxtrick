@@ -73,11 +73,11 @@ Foxtrick.modules["ReadHtPrefs"]={
 		var scripts = doc.getElementsByTagName("script");
 		for (var i = 0; i < scripts.length; ++i) {
 			var script = scripts[i].innerHTML;
-			var timeDiffOff = script.search(/timeDiff/i);
+			var timeDiffOff = script.search(/HT.Clock.init/i);
 			if (timeDiffOff != -1) {
 				// function call to timeDiff in the script
 				var funcCall = script.substr(timeDiffOff);
-				var matched = funcCall.match(RegExp("timeDiff\\('\\d+','\\d+','\\d+','\\d+','\\d+','\\d+','(.+)'\\);"));
+				var matched = funcCall.match(RegExp("HT.Clock.init\\(\\d+,\\s?\\d+,\\s?\\d+,\\s?\\d+,\\s?\\d+,\\s?\\d+,\\s?'(.+)'\\);"));
 				// failed to match regular expression
 				if (matched == null) {
 					Foxtrick.log("Cannot find date format: ", funcCall);
