@@ -28,7 +28,7 @@
 			var key, prop;
 
 			try {
-				Foxtrick.log("parseFeed : ", text.substr(0,200));
+				//Foxtrick.log("parseFeed : ", text.substr(0,200));
 				var links = JSON.parse(text);
 			}
 			catch (e) {

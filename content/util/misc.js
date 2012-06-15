@@ -103,19 +103,23 @@ Foxtrick.playSound = function(url, doc) {
 	try {
 		url = url.replace(/^foxtrick:\/\//, Foxtrick.ResourcePath);
 		var type = 'wav';
-			if (url.indexOf('data:audio')==0)
-				type = url.match(/data:audio\/(.+);/)[1];
-			else
-				type = url.match(/.+\.([^\.]+)$/)[1];
-		try  {
-			Foxtrick.log('play: '+url.substring(0,100));
-			var music = new Audio(url);
+		if (url.indexOf('data:audio')==0)
+			type = url.match(/data:audio\/(.+);/)[1];
+		else
+			type = url.match(/.+\.([^\.]+)$/)[1];
+		Foxtrick.log('play: '+url.substring(0,100));
+		try {
+			var music = new Audio();
 			var canPlay = music.canPlayType('audio/'+type);
 			Foxtrick.log('can play '+type+':'+(canPlay==''?'no':canPlay));
-			if (canPlay == 'maybe' || canPlay == 'probably')
-				music.play();
+			if (canPlay == 'maybe' || canPlay == 'probably') {
+					music.src = url;
+					// try overwrite mime type (in case server says wrongly it's a generic application/octet-stream )
+					music.type = "audio/"+type;
+					music.play();
+			}
 			else {
-				Foxtrick.log('try embeded');
+				Foxtrick.log('try embeded using plugin');
 				var videoElement = doc.createElement("embed");
 				videoElement.setAttribute('style','visibility:hidden');
 				videoElement.setAttribute('width','1');
@@ -143,14 +147,14 @@ Foxtrick.playSound = function(url, doc) {
 				videoElement.appendChild(param);
 				doc.getElementsByTagName('body')[0].appendChild(videoElement);*/
 			}
-	 } catch(e) {
+		} catch(e) {
 			if (Foxtrick.chromeContext() == 'content') {
 				// via background since internal sounds might not be acessible from the html page itself
 				sandboxed.extension.sendRequest({req : "playSound", url : url});
 			}
 			else
 			{
-				Foxtrick.log(e,'\nplay v2');
+				Foxtrick.log(e,'\ntry play with audio tag in document');
 				var music = doc.createElement('audio');
 				music.setAttribute("autoplay","autoplay");
 				var source = doc.createElement('source');
