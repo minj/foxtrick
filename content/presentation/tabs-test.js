@@ -24,7 +24,7 @@ Foxtrick.modules["TabsTest"]={
 		var div = doc.createElement("div");
 		var r1000h2 = doc.createElement("h2");
 		r1000h2.textContent = "It's over 10000!";
-		var t = doc.createTextNode("Are your ticker/life/alert sounds working properly?");
+		var t = doc.createTextNode("Are your ticker/live/alert sounds working properly?");
 		div.appendChild(r1000h2);
 		div.appendChild(t);
 		Foxtrick.addClass(div, "ft-tab-custom");
