@@ -520,7 +520,7 @@ Foxtrick.modules["SkillTable"]={
 						var lastSortIndex = table.getAttribute("lastSortIndex");
 						var sortIndex = Foxtrick.getChildIndex(head);
 						var sortAsc = head.hasAttribute("sort-asc");
-						if (sortIndex == lastSortIndex && !modifierPressed) {
+						if (sortIndex == lastSortIndex) {
 							if (sortAsc) head.removeAttribute("sort-asc");
 							else head.setAttribute("sort-asc","true");
 							sortAsc = !Boolean(sortAsc);
