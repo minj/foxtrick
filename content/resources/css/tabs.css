@@ -53,15 +53,15 @@
     border-right: 1px solid #999;
     border-bottom: 1px solid #fff;
 }
-#tab a.tab-hattrick {
-    background-image: url("http://www.hattrick.org/favicon.ico");
-    background-repeat: no-repeat;
+#tab a.tab-hattrick, #tab a.tab-hattrick.active {
+    background-image: url("http://www.hattrick.org/favicon.ico") !important;
+    background-repeat: no-repeat !important;
     background-position: 3px 2px;
     padding-left: 24px;
 }
-#tab a.ft-tab-foxtrick {
-    background-image: url("chrome://foxtrick/content/resources/img/staff/foxtrick.png");
-    background-repeat: no-repeat;
+#tab a.ft-tab-foxtrick, #tab a.ft-tab-hattrick.active {
+    background-image: url("chrome://foxtrick/content/resources/img/staff/foxtrick.png") !important;
+    background-repeat: no-repeat !important;
     background-position: 3px 1px;
     padding-left: 24px;
 }
