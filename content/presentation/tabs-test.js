@@ -17,17 +17,30 @@ Foxtrick.modules["TabsTest"]={
 
 		if (FoxtrickPrefs.isModuleOptionEnabled("TabsTest", "Tabify"))
 			Foxtrick.util.tabs.tabify(doc);
-		var ft_handle = Foxtrick.util.tabs.addHandle(doc, "It's over 10000!!!", null , "ft-tab-readme");
+		var ft_handle = Foxtrick.util.tabs.addHandle(doc, "Please test this!", null , "ft-tab-readme");
 		if(ft_handle)
 			Foxtrick.addClass(ft_handle, "ft-tab-foxtrick");
 
 		var div = doc.createElement("div");
-		var r1000h2 = doc.createElement("h2");
-		r1000h2.textContent = "It's over 10000!";
-		var t = doc.createTextNode("Is your ticker/live/alert sounds working properly?");
-		div.appendChild(r1000h2);
-		div.appendChild(t);
+		var header = doc.createElement("h2");
+		header.textContent = "Please test this!";
+		var list = doc.createElement("ul");
+		var addEntry = function(list, text){
+			var entry = doc.createElement("li");
+			var text = doc.createTextNode(text);
+			entry.appendChild(text);
+			list.appendChild(entry);
+		}
+
+		addEntry(list, "- Are your ticker/live/alert sounds working properly?");
+		addEntry(list, "- Is HideSignature working to hide/reveal signatures?");
+		addEntry(list, "- Any sites that act weird or have weird styling? (These tabs could cause it.)");
+		addEntry(list, "- Is everything else alright?");
+
+		div.appendChild(header);
+		div.appendChild(list);
 		Foxtrick.addClass(div, "ft-tab-custom");
+
 		doc.getElementsByTagName("h1")[0].parentNode.appendChild(div);
 		Foxtrick.util.tabs.addElementToTab(doc, div, "ft-tab-readme");
 
