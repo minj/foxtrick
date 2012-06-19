@@ -68,4 +68,7 @@
 table.naked {
     margin: 0 -8px -8px !important;
 }
+#tab ~ .NTLogo{
+    margin: 0px 0 20px !important; 
+}
 }
