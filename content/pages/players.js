@@ -183,7 +183,7 @@ Foxtrick.Pages.Players = {
 				// we found this player in the XML file,
 				// go on the retrieve information
 				player.nameLink = doc.createElement('a');
-				player.nameLink.href = '/Club/Players/Player.aspx?PlayerID='+id;
+				player.nameLink.href = '/Club/Players/'+(isYouth?"Youth":"")+'Player.aspx?'+(isYouth?"Youth":"")+'PlayerID='+id;
 				if (playerNode.getElementsByTagName("PlayerName")[0])
 					player.nameLink.textContent = playerNode.getElementsByTagName("PlayerName")[0].textContent;
 				else {
