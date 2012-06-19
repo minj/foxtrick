@@ -129,16 +129,20 @@ Foxtrick.util.tabs.showLast = function(doc){
 }
 //shows tab by id
 Foxtrick.util.tabs.show = function(doc, id){
-	Foxtrick.log("Show" + id);
-	
 	//select tab handle
 	var tabs = doc.getElementById("tab");
 	var links = tabs.getElementsByTagName("a");
 	for(var i = 0; i < links.length; i++){
-		if(links[i].getAttribute("shows").search(id) > -1)
-			Foxtrick.addClass(links[i], "active");
-		else
+		try {
+			if(links[i].getAttribute("shows").search(id) > -1)
+				Foxtrick.addClass(links[i], "active");
+			else
+				Foxtrick.removeClass(links[i], "active");
+		}
+		catch(e){
 			Foxtrick.removeClass(links[i], "active");
+			Foxtrick.log("Unitialized tab handle is causing problems!");
+		}
 	}
 	//show
 	var tabContents = doc.getElementsByClassName("tab-content");
