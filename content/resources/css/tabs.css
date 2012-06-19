@@ -56,14 +56,14 @@
 #tab a.tab-hattrick, #tab a.tab-hattrick.active {
     background-image: url("http://www.hattrick.org/favicon.ico") !important;
     background-repeat: no-repeat !important;
-    background-position: 3px 2px;
-    padding-left: 24px;
+    background-position: 3px 2px !important;
+    padding-left: 24px !important;
 }
 #tab a.ft-tab-foxtrick, #tab a.ft-tab-hattrick.active {
     background-image: url("chrome://foxtrick/content/resources/img/staff/foxtrick.png") !important;
     background-repeat: no-repeat !important;
-    background-position: 3px 1px;
-    padding-left: 24px;
+    background-position: 3px 1px !important;
+    padding-left: 24px !important;
 }
 table.naked {
     margin: 0 -8px -8px !important;
