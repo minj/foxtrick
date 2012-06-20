@@ -8,6 +8,7 @@ Foxtrick.modules["ForumModeratorIconLinks"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : new Array("forumViewThread"),
 	CSS: Foxtrick.InternalPath + "resources/css/forum-mod-link-icons.css",
+	OPTIONS: ["threadclose", "threadclosereply", "threaddelete", "threadrename", "changestickydate", "threadmove"],
 
 	run : function(doc) {
 		
@@ -40,26 +41,34 @@ Foxtrick.modules["ForumModeratorIconLinks"]={
 				var actionTypeFunctions = Foxtrick.getParameterFromUrl(links[l].href, "actionTypeFunctions");
 				switch(actionTypeFunctions){
 					case "threadclose":
-						addIconImageLink(div, links[l], Foxtrick.InternalPath + 'resources/img/moderators/thread_close.png');						
+						if (FoxtrickPrefs.isModuleOptionEnabled("ForumModeratorIconLinks", "threadclose"))
+							addIconImageLink(div, links[l], Foxtrick.InternalPath + 'resources/img/moderators/thread_close.png');						
 						break;
 					case "threaddelete":
-						addIconImageLink(div, links[l], Foxtrick.InternalPath + 'resources/img/moderators/thread_delete.png');
+						if (FoxtrickPrefs.isModuleOptionEnabled("ForumModeratorIconLinks", "threaddelete"))
+							addIconImageLink(div, links[l], Foxtrick.InternalPath + 'resources/img/moderators/thread_delete.png');
 						break;
 					case "threadrename":
-						addIconImageLink(div, links[l], Foxtrick.InternalPath + 'resources/img/moderators/thread_rename.png');
+						if (FoxtrickPrefs.isModuleOptionEnabled("ForumModeratorIconLinks", "threadrename"))
+							addIconImageLink(div, links[l], Foxtrick.InternalPath + 'resources/img/moderators/thread_rename.png');
 						break;
 					case "changestickydate":
-						addIconImageLink(div, links[l], Foxtrick.InternalPath + 'resources/img/moderators/thread_sticky_settings.png');						
+						if (FoxtrickPrefs.isModuleOptionEnabled("ForumModeratorIconLinks", "changestickydate"))
+							addIconImageLink(div, links[l], Foxtrick.InternalPath + 'resources/img/moderators/thread_sticky_settings.png');						
 						break;
 					case "threadmove":
-						addIconImageLink(div, links[l], Foxtrick.InternalPath + 'resources/img/moderators/thread_move.png');						
+						if (FoxtrickPrefs.isModuleOptionEnabled("ForumModeratorIconLinks", "threadmove"))
+							addIconImageLink(div, links[l], Foxtrick.InternalPath + 'resources/img/moderators/thread_move.png');						
 						break;
-				};
 				};
 				var actionTypeWrite = Foxtrick.getParameterFromUrl(links[l].href, "actionTypeWrite");
 				switch(actionTypeWrite){
-					case "threadclosereply":
-						addIconImageLink(div, links[l], Foxtrick.InternalPath + 'resources/img/moderators/thread_close_and_answer.png');
+					case "threadclosereply":{
+						if (FoxtrickPrefs.isModuleOptionEnabled("ForumModeratorIconLinks", "threadclosereply"))
+							addIconImageLink(div, links[l], Foxtrick.InternalPath + 'resources/img/moderators/thread_close_and_answer.png');
+						break;
+					}
+					default:
 						break;
 				};
 			}
