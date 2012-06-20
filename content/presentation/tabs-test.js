@@ -3,6 +3,8 @@ Foxtrick.modules["TabsTest"]={
 	PAGES : ['all'],
 	OPTIONS: ['Tabify'],
 	NICE: 50,
+	CSS: [ Foxtrick.InternalPath + "resources/css/tabs.css" ],
+
 	run : function(doc) {
 		if(!Foxtrick.util.tabs.hasTabSupport(doc))
 			return;
