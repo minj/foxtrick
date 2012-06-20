@@ -51,6 +51,10 @@ Foxtrick.modules["ForumModeratorIconLinks"]={
 					case "changestickydate":
 						addIconImageLink(div, links[l], Foxtrick.InternalPath + 'resources/img/moderators/thread_sticky_settings.png');						
 						break;
+					case "threadmove":
+						addIconImageLink(div, links[l], Foxtrick.InternalPath + 'resources/img/moderators/thread_move.png');						
+						break;
+				};
 				};
 				var actionTypeWrite = Foxtrick.getParameterFromUrl(links[l].href, "actionTypeWrite");
 				switch(actionTypeWrite){
