@@ -192,7 +192,8 @@ Foxtrick.modules.MatchSimulator={
 						div.setAttribute('percent', percent);
 					}
 					else {
-						if (percentImage[i].nextSibling.className == 'percentNumber') {
+						if ( percentImage[i].nextSibling
+							&& percentImage[i].nextSibling.className == 'percentNumber') {
 							var div = percentImage[i].nextSibling;
 							div.parentNode.removeChild(div);
 						}
