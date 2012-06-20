@@ -94,4 +94,11 @@ table.naked {
     margin: 0px 0 20px !important; 
 }
 
+p.tab-content {
+    display:inline;
+}
+p.tab-content.hidden {
+    display:none;
+}
+
 }
