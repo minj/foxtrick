@@ -514,8 +514,8 @@ Foxtrick.modules["SkillTable"]={
 					var modifierPressed = ev.ctrlKey;
 					try {
 						var head = ev.currentTarget;
-						var table = doc.getElementById('ft_skilltable');
 
+						var table = doc.getElementById("ft_skilltable");
 						// determine sort direction
 						var lastSortIndex = table.getAttribute("lastSortIndex");
 						var sortIndex = Foxtrick.getChildIndex(head);
@@ -526,16 +526,19 @@ Foxtrick.modules["SkillTable"]={
 							sortAsc = !Boolean(sortAsc);
 						}
 						if(!modifierPressed)
-							table.setAttribute('lastSortIndex', sortIndex) ;
+							table.setAttribute('lastSortIndex', sortIndex);
 
 						var sortString = head.hasAttribute("sort-string");
-						var table = doc.getElementById("ft_skilltable");
 
 						var rows = [];
 
-						var sortByIndex = Foxtrick.any(function(n) {
-							return n.cells[sortIndex].hasAttribute("index");
-						}, table.rows);
+						var getSortByIndex = function(index){
+							var res = Foxtrick.any(function(n) {
+								return n.cells[index].hasAttribute("index");
+							}, table.rows);
+							return res;
+						}
+						var sortByIndex = getSortByIndex(sortIndex);
 
 						for (i = 1; i < table.rows.length; ++i)
 							rows.push(table.rows[i].cloneNode(true));
@@ -546,17 +549,17 @@ Foxtrick.modules["SkillTable"]={
 							key. Otherwise, we use their textContent.
 						*/
 						var sortCompare = function(a, b) {
-							var doSort = function(a, b){
+							var doSort = function(aa, bb){
 								var aContent, bContent;
-								var lastSort = Number(a.getAttribute('lastSort'))-Number(b.getAttribute('lastSort'));
+								var lastSort = Number(aa.getAttribute('lastSort'))-Number(bb.getAttribute('lastSort'));
 								
 								if (sortByIndex) {
-									aContent = a.cells[sortIndex].getAttribute("index");
-									bContent = b.cells[sortIndex].getAttribute("index");
+									aContent = aa.cells[sortIndex].getAttribute("index");
+									bContent = bb.cells[sortIndex].getAttribute("index");
 								}
 								else {
-									aContent = a.cells[sortIndex].textContent;
-									bContent = b.cells[sortIndex].textContent;
+									aContent = aa.cells[sortIndex].textContent;
+									bContent = bb.cells[sortIndex].textContent;
 								}
 								
 								if (aContent === bContent) {
@@ -572,12 +575,11 @@ Foxtrick.modules["SkillTable"]={
 								if (sortString) {
 									// always sort by ascending order
 									// why? This works perfectly, doesn't it?
-									if (sortAsc) {
-										return bContent.localeCompare(aContent);
-									}
-									else {
-										return aContent.localeCompare(bContent);
-									}
+									var res = aContent.localeCompare(bContent)
+									if (sortAsc)
+										res = bContent.localeCompare(aContent);
+									
+									return res;
 								}
 								else {
 									aContent = parseFloat(aContent);
@@ -588,7 +590,7 @@ Foxtrick.modules["SkillTable"]={
 										return 0;
 									}
 									if (sortAsc) {
-										return aContent - bContent;
+										return (aContent - bContent);
 									}
 									else {
 										return bContent - aContent;
@@ -596,12 +598,24 @@ Foxtrick.modules["SkillTable"]={
 								}
 							}
 
+							var getSortStringByIndex = function(n) {
+								var table = doc.getElementById("ft_skilltable");
+								var head = table.rows[0].cells[n];
+								return head.hasAttribute("sort-string");
+							}
+
 							if(modifierPressed){
-								var tmp = sortIndex;
+								var tmp_sortIndex = sortIndex;
+								var tmp_sortString = sortString;
+								var tmp_sortByIndex = sortByIndex;
+								sortString = getSortStringByIndex(lastSortIndex);
 								sortIndex = lastSortIndex;
+								sortByIndex = getSortByIndex(lastSortIndex);
 								var result = doSort(a,b);
-								sortIndex = tmp;
-								if(result == 0){
+								sortByIndex = tmp_sortByIndex;
+								sortIndex = tmp_sortIndex;
+								sortString = tmp_sortString;
+								if(result === 0){
 									var sortResult = doSort(a,b);
 									return sortResult;
 								} else {
