@@ -89,7 +89,7 @@ Foxtrick.modules["EmbedMedia"]={
 			"youtube":"https://www.youtube.com/oembed?format=json&maxwidth=400&url=",
 			"dailymotion":"https://www.dailymotion.com/services/oembed?format=json&maxwidth=400&url=",
 			"flickr":"https://www.flickr.com/services/oembed/?format=json&url=",
-			"deviantart":"http://backend.deviantart.com/oembed?format=json&url=",
+			"deviantart":"https://backend.deviantart.com/oembed?format=json&url=",
 			"soundcloud":"https://soundcloud.com/oembed?format=json&show_comments=false&url="
 		};
 
