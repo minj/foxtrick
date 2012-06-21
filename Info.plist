@@ -101,7 +101,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/forum/forum-direct-page-links.js</string>
 				<string>content/forum/forum-last-post.js</string>
 				<string>content/forum/forum-next-and-previous.js</string>
-				<string>content/forum/forum-mod-link-icons.js</string>
+				<string>content/forum/forum-mod-popup.js</string>
 				<string>content/forum/forum-presentation.js</string>
 				<string>content/forum/forum-preview.js</string>
 				<string>content/forum/forum-strip-hattrick-links.js</string>

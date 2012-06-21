@@ -10,7 +10,7 @@ forum/forum-change-posts-modules.js
 forum/forum-direct-page-links.js
 forum/forum-last-post.js
 forum/forum-next-and-previous.js
-forum/forum-mod-link-icons.js
+forum/forum-mod-popup.js
 forum/forum-presentation.js
 forum/forum-preview.js
 forum/forum-strip-hattrick-links.js

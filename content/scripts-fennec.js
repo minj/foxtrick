@@ -81,7 +81,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/forum/forum-direct-page-links.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/forum/forum-last-post.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/forum/forum-next-and-previous.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/forum-mod-link-icons.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/forum/forum-mod-popup.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/forum/forum-presentation.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/forum/forum-preview.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/forum/forum-strip-hattrick-links.js", true);

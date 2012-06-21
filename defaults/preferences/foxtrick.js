@@ -118,13 +118,7 @@ pref("extensions.foxtrick.prefs.module.ForumAlterHeaderLine.TruncateLeagueName.e
 pref("extensions.foxtrick.prefs.module.ForumAlterHeaderLine.TruncateLongNick.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumLastPost.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumLastPost.lastpage.enabled", false);
-pref("extensions.foxtrick.prefs.module.ForumModeratorIconLinks.enabled", true);
-pref("extensions.foxtrick.prefs.module.ForumModeratorIconLinks.threadclose.enabled", false);
-pref("extensions.foxtrick.prefs.module.ForumModeratorIconLinks.threadclosereply.enabled", true);
-pref("extensions.foxtrick.prefs.module.ForumModeratorIconLinks.threaddelete.enabled", false);
-pref("extensions.foxtrick.prefs.module.ForumModeratorIconLinks.threadrename.enabled", true);
-pref("extensions.foxtrick.prefs.module.ForumModeratorIconLinks.changestickydate.enabled", false);
-pref("extensions.foxtrick.prefs.module.ForumModeratorIconLinks.threadmove.enabled", true);
+pref("extensions.foxtrick.prefs.module.ForumModeratorPopup.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumNextAndPrevious.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumPresentation.enabled", false);
 pref("extensions.foxtrick.prefs.module.ForumPresentation.Forum_Link_Grey_Icons.enabled", false);
