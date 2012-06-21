@@ -44,7 +44,7 @@ sandboxed.tabs.create(url)
 // Foxtrick.ResourcePath : called from html page - external page (opera, access to extension folder prohibited), path to extension folder (all other)  
 
 
-Foxtrick.DataPath = "http://foxtrick.googlecode.com/svn/trunk/res/";
+Foxtrick.DataPath = "https://foxtrick.googlecode.com/svn/trunk/res/";
 
 if ( typeof(opera) == "object" ) {
 	Foxtrick.arch = "Sandboxed";
