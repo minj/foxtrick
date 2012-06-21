@@ -192,10 +192,12 @@ ul.ft-pop {
 }
 html[dir="ltr"] ul.ft-pop.right {
 	right: 0px;
+	left: initial;
 	text-align:left;
 }
 html[dir="rtl"] ul.ft-pop.right {
 	left: 0px;
+	right: initial;
 	text-align:right;
 }
 ul.ft-pop.top {

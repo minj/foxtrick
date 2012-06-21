@@ -1,27 +1,30 @@
 @-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
 
-.ft-mod-link-icons {
-	padding-bottom: 26px; 
+html[dir="ltr"] .ft-moderator-popup-align {
+	float:right;
+	margin-right: 4px; 
 }
-html[dir="ltr"] .ft-mod-link-icons {
-	padding-right: 1px;
-}
-html[dir="rtl"] .ft-mod-link-icons {
-	padding-left: 1px;
+html[dir="rtl"] .ft-moderator-popup-align {
+	float: left;
+	margin-left: 4px;
 }
 
-.ft-mod-link {
+html[data-theme="simple"] .ft-moderator-popup {
+	background-color: #ffcc00;
 	position: relative; 
-	top: -15px; 
+	top: -28px; 
 	z-index: 99;
+	border: 1px solid black;
+	padding: 0px 8px 0px 8px;
 }
-html[dir="ltr"]  .ft-mod-link {
-	float:right; 
-	margin-left: 3px; 
-}
-html[dir="rtl"]  .ft-mod-link {
-	float:left; 
-	margin-right: 3px; 
+
+html[data-theme="standard"] .ft-moderator-popup {
+	background-color: #ffcc00;
+	position: relative; 
+	top: -33px; 
+	z-index: 99;
+	border: 1px solid black;
+	padding: 2px 8px 2px 8px;
 }
 
 }
