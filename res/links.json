@@ -1836,6 +1836,9 @@
 		"worldlink": {
 			"url": "http://htev.org/world/"
 		},
+		"nationalteamlink": {
+			"url": "http://htev.org/scout/nat_team/[ntteamid]/"
+		},
 		"title": "HTEV",
 		"img": "http://htev.org/static/htevfavicon.gif"
 	},
