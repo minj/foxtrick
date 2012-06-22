@@ -168,7 +168,7 @@ Foxtrick.modules["TeamPopupLinks"]={
 
 
 		var addSpan = function(aLink) {
-			if (Foxtrick.hasClass(aLink.parentNode,'ft-popup-span'))
+			if (Foxtrick.hasClass(aLink.parentNode,'ft-popup-span') || Foxtrick.hasClass(aLink.parentNodeparentNode,'ft-popup-list'))
 				return;
 
 			if ((aLink.href.search(/Club\/\?TeamID=/i) > -1 && aLink.href.search(/redir_to/i)===-1 && FoxtrickPrefs.isModuleOptionEnabled("TeamPopupLinks", "TeamLinks"))
