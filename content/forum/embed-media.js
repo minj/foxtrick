@@ -72,12 +72,12 @@ Foxtrick.modules["EmbedMedia"]={
 		//for oembed (only) supported sites it's sufficient to ensure the delivering network is correct,
 		//otherwise the regex has to grab all relevant data so we can build a correct link later
 		var filter_supported = {
-			"deviantart":"^(http(s)?:\/\/)(.*)?(fav)\.me\/",
-			"soundcloud":"^(http(s)?:\/\/)([a-zA-Z]{2,3}\.)?(soundcloud)\.com\/",
-			"youtube":"^(http(s)?:\/\/)([a-zA-Z]{2,3}\.)?(youtube\.[a-zA-Z]{2,3}|youtu\.be)\/.*(v[=\/]([a-zA-Z0-9-_]{11}\\b)|\/([a-zA-Z0-9-_]{11}\\b))",
-			"vimeo":"^(http(s)?:\/\/)([a-zA-Z]{2,3}\.)?(vimeo)\.com\/(\\d+)",
-			"flickr":"^(http(s)?:\/\/)([a-zA-Z]{2,3}\.)?(flickr)\.com\/",
-			"dailymotion":"^(http(s)?:\/\/)([a-zA-Z]{2,3}\.)?(dailymotion\.com)\/video\/([a-zA-Z0-9-]+)",
+			"deviantart":"^(http:\/\/)(.*)?(fav)\.me\/",
+			"soundcloud":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(soundcloud)\.com\/",
+			"youtube":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(youtube\.[a-zA-Z]{2,3}|youtu\.be)\/.*(v[=\/]([a-zA-Z0-9-_]{11}\\b)|\/([a-zA-Z0-9-_]{11}\\b))",
+			"vimeo":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(vimeo)\.com\/(\\d+)",
+			"flickr":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(flickr)\.com\/",
+			"dailymotion":"^(http:\/\/)([a-zA-Z]{2,3}\.)?(dailymotion\.com)\/video\/([a-zA-Z0-9-]+)",
 			"genericImage":"^http(s)?:\/\/[a-zA-Z0-9.\\-%\\w_~\/]+(?:gif|jpg|jpeg|png|bmp|GIF|JPG|JPEG|PNG|BMP)$",
 			"imgur":"^http(s)?:\/\/imgur.com\/([a-zA-Z0-9]+)$",
 			"imageshack":"^http(s)?:\/\/[a-zA-Z0-9.\\-%\\w_~\/]+\/(\\d+)\/(\\w+).(gif|jpg|jpeg|png|bmp|GIF|JPG|JPEG|PNG|BMP)"
@@ -88,9 +88,9 @@ Foxtrick.modules["EmbedMedia"]={
 			"vimeo":"https://vimeo.com/api/oembed.json?maxwidth=400&url=",
 			"youtube":"https://www.youtube.com/oembed?format=json&maxwidth=400&url=",
 			"dailymotion":"https://www.dailymotion.com/services/oembed?format=json&maxwidth=400&url=",
-			"flickr":"https://www.flickr.com/services/oembed/?format=json&url=",
-			"deviantart":"https://backend.deviantart.com/oembed?format=json&url=",
-			"soundcloud":"https://soundcloud.com/oembed?format=json&show_comments=false&url="
+			"flickr":"http://www.flickr.com/services/oembed/?format=json&url=",
+			"deviantart":"http://backend.deviantart.com/oembed?format=json&url=",
+			"soundcloud":"http://soundcloud.com/oembed?format=json&show_comments=false&url="
 		};
 
 		// native and fallback support, base urls to be used when the video ID has been extracted.
