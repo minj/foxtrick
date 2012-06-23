@@ -80,7 +80,7 @@ html[dir="ltr"] #field #list img.specialty {
 	left: 28px;	
 }
 
-.box_lineup.ft-specialty .name, .box_substitute.ft-specialty .name{
+.box_replaced.ft-specialty .name, .box_highlighted.ft-specialty .name, .box_lineup.ft-specialty .name, .box_substitute.ft-specialty .name{
 	max-width: 50px !important;
 }
 
