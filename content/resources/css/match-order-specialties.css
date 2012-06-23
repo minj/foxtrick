@@ -69,18 +69,18 @@ html[dir="ltr"] #field #list img.specialty {
 	margin: 40px 0 0 2px !important;
 }
 
-.box_lineup  .ft-specialty, .box_substitute  .ft-specialty {
+.box_replaced  .ft-specialty, .box_highlighted  .ft-specialty, .box_lineup  .ft-specialty, .box_substitute  .ft-specialty {
 	top: 25px;
 	position: relative;
 	left: 28px;	
 }
-.box_lineup  .smallFaceCardOuter+.ft-specialty, .box_substitute  .smallFaceCardOuter+.ft-specialty {
+.box_replaced  .smallFaceCardOuter+.ft-specialty, .box_highlighted  .smallFaceCardOuter+.ft-specialty, .box_lineup  .smallFaceCardOuter+.ft-specialty, .box_substitute  .smallFaceCardOuter+.ft-specialty {
 	top: -6px;
 	position: relative;
 	left: 28px;	
 }
 
-.box_lineup.ft-specialty .name, .box_substitute.ft-specialty .name{
+.box_replaced.ft-specialty .name, .box_highlighted.ft-specialty .name, .box_lineup.ft-specialty .name, .box_substitute.ft-specialty .name{
 	max-width: 50px !important;
 }
 

@@ -74,7 +74,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 
 					if (bodypart == "backgrounds")
 						src = "";
-					
+						
 					var x = Math.round(Number(layers[j].getAttribute('x'))/scale);
 					var y = Math.round(Number(layers[j].getAttribute('y'))/scale);
 					var img =  doc.createElement('img');
@@ -98,6 +98,12 @@ Foxtrick.modules["MatchOrderInterface"]={
 				for (var k=0; k<playerdivs.length; ++k) 
 					add_image(playerdivs[k]);
 				playerdivs = target.getElementsByClassName('box_substitute');				
+				for (var k=0; k<playerdivs.length; ++k) 
+					add_image(playerdivs[k]);
+				playerdivs = target.getElementsByClassName('box_highlighted');				
+				for (var k=0; k<playerdivs.length; ++k) 
+					add_image(playerdivs[k]);
+				playerdivs = target.getElementsByClassName('box_replaced');				
 				for (var k=0; k<playerdivs.length; ++k) 
 					add_image(playerdivs[k]);
 			}
@@ -151,7 +157,9 @@ Foxtrick.modules["MatchOrderInterface"]={
 					return;
 				} 
 				check_Specialties(doc, doc.getElementsByClassName('field')[0], playerInfo, getID, 'box_lineup');	
-				check_Specialties(doc, doc.getElementsByClassName('field')[0], playerInfo, getID, 'box_substitute');	
+				check_Specialties(doc, doc.getElementsByClassName('field')[0], playerInfo, getID, 'box_substitute');
+				check_Specialties(doc, doc.getElementsByClassName('field')[0], playerInfo, getID, 'box_highlighted');	
+				check_Specialties(doc, doc.getElementsByClassName('field')[0], playerInfo, getID, 'box_replaced');	
 			}, {teamid:teamid, current_squad:true, includeMatchInfo:true} );
 
 
