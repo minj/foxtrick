@@ -180,6 +180,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/old-style-face.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/original-face.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/personality-images.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/player-stats-training-week.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/ratings-display.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/safe-for-work.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/simple-presentation.js", true);

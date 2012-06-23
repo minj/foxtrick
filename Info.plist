@@ -200,6 +200,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/presentation/old-style-face.js</string>
 				<string>content/presentation/original-face.js</string>
 				<string>content/presentation/personality-images.js</string>
+				<string>content/presentation/player-stats-training-week.js</string>
 				<string>content/presentation/ratings-display.js</string>
 				<string>content/presentation/safe-for-work.js</string>
 				<string>content/presentation/simple-presentation.js</string>
