@@ -36,7 +36,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 				
 				if (shirt) {
 					var kiturl = shirt.getAttribute("kiturl");
-					if(!kiturl){
+					if(!kiturl && !isYouth){
 						var shirtstyle = shirt.getAttribute("style");
 						var kiturl = shirtstyle.match(/http:\/\/res.hattrick.org\/kits\/\d+\/\d+\/\d+\/\d+\//)[0];
 						shirt.setAttribute("kiturl", kiturl);
@@ -47,8 +47,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 					fieldplayer.appendChild(outer);
 					shirt = doc.createElement('div');
 					outer.appendChild(shirt);
-				}
-							
+				}	
 				
 				if (Foxtrick.hasClass(shirt,'smallFaceCard'))
 					return;
