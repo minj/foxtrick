@@ -19,7 +19,7 @@
 <note version="0.11.0">
 <item>● NEW: <module>ForumModeratorPopup</module>: Added a dropdown menu for forum moderators on top of threads to simplify moderation.</item>
 <item>● <module>SkillTable</module>: Opportunity added to sub-sort an existing ordering using ctrl + leftclick another column header</item>
-<item>● <module>SkillTable</module>: Player names are abbreviated from now on consuming less space.
+<item>● <module>SkillTable</module>: Player names are abbreviated from now on consuming less space.</item>
 <item>● Tabs: Added backend functionality to add custom tabs to most sites. (like the HT own tabs for upcoming matches)</item>
 <item></item>
 <item><xhtml:b>Bugfixes</xhtml:b></item>
