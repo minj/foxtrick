@@ -36,7 +36,7 @@ Foxtrick.modules["PlayerStatsTrainingWeek"]={
 		for(var i=0, row;row=rows[i];++i){
 			if(row.querySelector("span[style] > img.matchLeague")){ //this is NT match!
 				var matchDay = row.querySelector('td:nth-child(2)').firstChild.nodeValue;
-				if(new Date(matchDay).getDay()==1){ //on Monday
+				if(Foxtrick.util.time.getDateFromText(matchDay).getDay()==1){ //on Monday
 					var statsrow = doc.querySelector('#stats > tbody > tr:nth-child('+(i+1)+')'); //nth-child starts @ 1
 					if(Foxtrick.hasClass(row,'odd')){
 						Foxtrick.removeClass(row,'odd');
