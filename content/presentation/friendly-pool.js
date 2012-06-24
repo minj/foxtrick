@@ -9,11 +9,17 @@ Foxtrick.modules["FriendlyPool"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["challengesPool"],
 	CSS : Foxtrick.InternalPath + "resources/css/friendly-pool.css",
+	OPTIONS: ['ExpandCountrySelection'],
 
 	run : function(doc) {
 		var leagueSelect = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ddlPoolLeagues");
 		if (!leagueSelect)
 			return;
+		
+		if(FoxtrickPrefs.isModuleOptionEnabled("FriendlyPool", "ExpandCountrySelection")){
+			leagueSelect.size = leagueSelect.querySelectorAll('option').length;
+		}
+		
 		var ownteamid = Foxtrick.util.id.getOwnTeamId();
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
 		var parameters = [
