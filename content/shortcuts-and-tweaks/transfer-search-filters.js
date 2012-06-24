@@ -87,7 +87,6 @@ Foxtrick.modules["TransferSearchFilters"]={
 					}
 				}
 				formString = formString + "</root>";
-				console.log(formString);
 
 				var namelist = FoxtrickPrefs.getList("transferfilterlist");
 				var bExists = false;
@@ -151,7 +150,6 @@ Foxtrick.modules["TransferSearchFilters"]={
 						if (el.type == 'checkbox' && value == 'true' ) {el.checked = true;} else {el.checked = false;}
 						el.disabled = false;
 						
-						console.log('trying to fire');
 						var e = doc.createEvent('HTMLEvents');
                 	e.initEvent('change', false, true);
 						el.dispatchEvent(e);

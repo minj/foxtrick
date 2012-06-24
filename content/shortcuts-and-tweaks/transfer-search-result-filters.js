@@ -40,7 +40,6 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 				return false;
 			},
 			"form" : function(player, min, max) {
-				console.log('player.form: '+player.form+' min: '+min+' max: '+max);
 				if (player.form == null)
 					return true;
 				if (typeof(min) == "number" && player.form < min)
