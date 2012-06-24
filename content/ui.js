@@ -30,7 +30,6 @@ if (Foxtrick.platform == "Firefox") {
 	// as the argument
 	// initializes items in menu bar and status bar
 	Foxtrick.modules.UI.onLoad = function(document) {
-
 		// to add FoxTrick button on the navigation bar by default
 		if (!FoxtrickPrefs.getBool("toolbarInited")) {
 			var buttonId = "foxtrick-toolbar-button"; // ID of FoxTrick button
@@ -55,10 +54,13 @@ if (Foxtrick.platform == "Firefox") {
 
 		// toolbar menu - preferences
 		var toolbarPreferences = document.getElementById("foxtrick-toolbar-preferences");
-		toolbarPreferences.label = Foxtrickl10n.getString("toolbar.preferences");
+		if (!toolbarPreferences) return; // wrong place somehow
+		toolbarPreferences.setAttribute("label", Foxtrickl10n.getString("toolbar.preferences"));
+		toolbarPreferences.addEventListener("click",  function(){FoxtrickPrefs.show()}, false);
 		// toolbar menu - disable
 		var toolbarDisable = document.getElementById("foxtrick-toolbar-deactivate");
-		toolbarDisable.label = Foxtrickl10n.getString("toolbar.disableTemporary");
+		toolbarDisable.setAttribute("label", Foxtrickl10n.getString("toolbar.disableTemporary"));
+		toolbarDisable.addEventListener("click",  function(){FoxtrickPrefs.disable()}, false);
 		// toolbar menu - clearCache
 		var clearCache = document.getElementById("foxtrick-toolbar-clearCache");
 		clearCache.setAttribute("label", Foxtrickl10n.getString("api.clearCache"));
@@ -69,23 +71,25 @@ if (Foxtrick.platform == "Firefox") {
 		}, false);
 		// toolbar menu - highlight
 		var toolbarHighlight = document.getElementById("foxtrick-toolbar-highlight");
-		toolbarHighlight.label = Foxtrickl10n.getString("toolbar.featureHighlight");
+		toolbarHighlight.setAttribute("label", Foxtrickl10n.getString("toolbar.featureHighlight"));
+		toolbarHighlight.addEventListener("click",  function(){FoxtrickPrefs.highlight()}, false);
 		// toolbar menu - translationKeys
 		var toolbarTranslationKeys = document.getElementById("foxtrick-toolbar-translationKeys");
-		toolbarTranslationKeys.label = Foxtrickl10n.getString("toolbar.translationKeys");
+		toolbarTranslationKeys.setAttribute("label", Foxtrickl10n.getString("toolbar.translationKeys"));
+		toolbarTranslationKeys.addEventListener("click", function(){ FoxtrickPrefs.translationKeys()}, false);
 		// update status icon
 		Foxtrick.modules.UI.update();
 	};
 
 	Foxtrick.modules.UI.onTabChange = function(document) {
-		Foxtrick.modules.UI.update();
+		Foxtrick.modules.UI.update(document);
 	};
 	
-	Foxtrick.modules.UI.update = function() {
-		Foxtrick.modules.UI.updateIcon();
+	Foxtrick.modules.UI.update = function(doc) {
+		Foxtrick.modules.UI.updateIcon(doc);
 	},
 	
-	Foxtrick.modules.UI.updateIcon = function() {
+	Foxtrick.modules.UI.updateIcon = function(doc) {
 
 		var disableItem = document.getElementById("foxtrick-toolbar-deactivate");
 		if (disableItem)
@@ -99,11 +103,11 @@ if (Foxtrick.platform == "Firefox") {
 		if (translationKeysItem)
 			translationKeysItem.setAttribute("checked", FoxtrickPrefs.getBool("translationKeys"));
 
-			var button = document.getElementById("foxtrick-toolbar-button");
-		if (!button || !content)
+		var button = document.getElementById("foxtrick-toolbar-button");
+		
+		if (!button || !doc)
 			return;
-		var doc = content.document; // get the document of current tab
-
+		 
 		var statusText;
 			
 		if (FoxtrickPrefs.getBool("disableTemporary")) {

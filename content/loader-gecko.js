@@ -42,7 +42,7 @@ Foxtrick.loader.gecko.browserLoad = function(ev) {
 				if (wn.self != wn.top)
 					return;
 				
-				Foxtrick.modules.UI.update();
+				Foxtrick.modules.UI.update(ev.originalTarget);
 				if (Foxtrick.isHt(ev.originalTarget))
 					Foxtrick.entry.docLoad(ev.originalTarget);
 			}, true);
@@ -124,7 +124,7 @@ if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android") {
 
 				addEventListener("DOMContentLoaded", function(ev){
 					try {
-						Foxtrick.modules.UI.update();
+						Foxtrick.modules.UI.update(ev.originalTarget);
 						Foxtrick.entry.docLoad(ev.originalTarget);
 					} catch(e) {
 						Foxtrick.log(e);
