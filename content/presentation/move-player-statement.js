@@ -8,6 +8,7 @@
 Foxtrick.modules["MovePlayerStatement"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : new Array('playerdetail','YouthPlayer'),
+	OPTIONS: ['DeleteInstead'],
 
 	run : function(doc) {
 		var contentSpeak = "";
@@ -18,15 +19,17 @@ Foxtrick.modules["MovePlayerStatement"]={
 				elems[i].parentNode.removeChild(elems[i]);
 			}
 		}
-
-		var elemsa = doc.getElementsByTagName("div");
-		for ( var b=0; b < elemsa.length; b++) {
-			if( elemsa[b].className=='faceCard' && contentSpeak != "") {
-				Foxtrick.addImage(doc, elemsa[b], { 
-					src : Foxtrick.InternalPath+"resources/img/speak.png",
-					title : contentSpeak+"",
-					style : "left: 65px; top: 134px;"
-				});
+		
+		if(!FoxtrickPrefs.isModuleOptionEnabled("MovePlayerStatement", "DeleteInstead")){
+			var elemsa = doc.getElementsByTagName("div");
+			for ( var b=0; b < elemsa.length; b++) {
+				if( elemsa[b].className=='faceCard' && contentSpeak != "") {
+					Foxtrick.addImage(doc, elemsa[b], { 
+						src : Foxtrick.InternalPath+"resources/img/speak.png",
+						title : contentSpeak+"",
+						style : "left: 65px; top: 134px;"
+					});
+				}
 			}
 		}
 	}
