@@ -108,6 +108,17 @@ Foxtrick.playSound = function(url, doc) {
 		else
 			type = url.match(/.+\.([^\.]+)$/)[1];
 		Foxtrick.log('play: '+url.substring(0,100));
+		if (Foxtrick.arch === "Gecko" && url.indexOf('chrome') === 0) {
+			try {
+				Foxtrick.log("using ff soundService for chrome url ");
+				var soundService = Components.classes["@mozilla.org/sound;1"].getService(Components.interfaces.nsISound);
+				var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+				soundService.play(ioService.newURI(url, null, null));
+				return;
+			} catch(e) {
+				Foxtrick.log("ff soundService can't play ");
+			}
+		}
 		try {
 			var music = new Audio();
 			var canPlay = music.canPlayType('audio/'+type);
