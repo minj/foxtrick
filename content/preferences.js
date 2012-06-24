@@ -169,6 +169,7 @@ function generateURI(tab, module, id)
 function initListeners()
 {
 	$("#save").click(function() { save(); });
+	$("#save-alt").click(function() { save(); });
 	$("#note").click(function() { $(this).hide("slow"); });
 	$("body").click(function(ev) {
 		if ((ev.target.nodeName.toLowerCase() == "a"
