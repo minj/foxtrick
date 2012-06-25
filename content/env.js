@@ -492,7 +492,7 @@ else {
 		}
 		else // happens for fennec prefs. not needed thus ignored or it would mess up above
 			var addListener = function(name, handler) {}
-log(Foxtrick.platform+Foxtrick.chromeContext())
+
 		// fennec adapter. adapted from adblockplus for safari
 		var sandboxed = {
 			// Track tabs that make requests to the global page, assigning them
