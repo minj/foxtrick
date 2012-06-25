@@ -95,27 +95,6 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 			}
 		};
 		var addNewFilter = function(table, filters, idx) {
-			var saveValues = function(ev) {
-				getFilters(function(filters) {
-					var value = null;
-					if (ev.target.type == "text") {
-						if (ev.target.value != "" && !isNaN(ev.target.value))
-							value = Number(ev.target.value);
-					}
-					else if (ev.target.type == "checkbox")
-						value = Boolean(ev.target.checked);
-					else if (ev.target.nodeName == "SELECT"){
-						var testValue = ev.target.value;
-						if (!isNaN(testValue) && Number(testValue) != -1)
-							value = Number(testValue);
-					}
-
-					var index = ev.target.getAttribute("x-ft-filter-idx");
-					var prop = ev.target.getAttribute("x-ft-filter-prop");
-					filters[index][prop] = value;
-					setFilters(filters);
-				});
-			};
 
 			var filter = filters[idx];
 
@@ -137,9 +116,6 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 				input.style.width = "90px";
 				input.id = "FoxtrickTransferSearchResultFilters." + filter.key + ".min";
 				input.value = filter.min;
-				input.setAttribute("x-ft-filter-idx", idx);
-				input.setAttribute("x-ft-filter-prop", "min");
-				Foxtrick.listen(input, "blur", saveValues, false);
 				td.appendChild(input);
 
 				var td = doc.createElement('td');
@@ -150,9 +126,6 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 				input.style.width = "90px";
 				input.id = "FoxtrickTransferSearchResultFilters." + filter.key + ".max";
 				input.value = filter.max;
-				input.setAttribute("x-ft-filter-idx", idx);
-				input.setAttribute("x-ft-filter-prop", "max");
-				Foxtrick.listen(input, "blur", saveValues, false);
 				td.appendChild(input);
 			}
 			else if (filter.type == "skillselect") {
@@ -180,9 +153,6 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 					select.add(option, null);					
 				}
 				select.value = filter.min;
-				select.setAttribute("x-ft-filter-idx", idx);
-				select.setAttribute("x-ft-filter-prop", "min");
-				Foxtrick.listen(select, "change", saveValues, false);
 				td.appendChild(select);
 
 				var td = doc.createElement('td');
@@ -201,9 +171,6 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 					select.add(option, null);					
 				}
 				select.value = filter.max;
-				select.setAttribute("x-ft-filter-idx", idx);
-				select.setAttribute("x-ft-filter-prop", "max");
-				Foxtrick.listen(select, "change", saveValues, false);
 				td.appendChild(select);
 			}
 			else if (filter.type == "check") {
@@ -213,11 +180,8 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 				var input = doc.createElement("input");
 				input.type = "checkbox";
 				input.id = "FoxtrickTransferSearchResultFilters." + filter.key + ".check";
-				input.setAttribute("x-ft-filter-idx", idx);
-				input.setAttribute("x-ft-filter-prop", "checked");
 				if (filter.checked === true)
 					input.setAttribute("checked", "checked");
-				Foxtrick.listen(input, "change", saveValues, false);
 				td.appendChild(input);
 				var label = doc.createElement("label");
 				label.textContent = Foxtrickl10n.getString("TransferSearchResultFilters." + filter.key);
@@ -247,31 +211,64 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 				}
 				tableAdvanced.parentNode.insertBefore(table, tableAdvanced.nextSibling);
 
-				var buttonClear = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butClear');
+				var buttonClear = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butClear');				
 				Foxtrick.onClick(buttonClear, function() {
-						getFilters(function(filters) {
-							for (var j = 0; j < filters.length; ++j) {
-								var filter = filters[j];
-								if (filter.type == "minmax") {
-									filters[j].min = null;
-									doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".min").value = "";
-									filters[j].max = null;
-									doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".max").value = "";
-								}
-								else if (filter.type == "check") {
-									filters[j].checked = false;
-									doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".check").removeAttribute("checked");
-								}
-								else if (filter.type == "skillselect") {
-									filters[j].min = null;
-									doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".min").value = "-1";
-									filters[j].max = null;
-									doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".max").value = "-1";
-								}
+					getFilters(function(filters) {
+						for (var j = 0; j < filters.length; ++j) {
+							var filter = filters[j];
+							if (filter.type == "minmax") {
+								filters[j].min = null;
+								doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".min").value = "";
+								filters[j].max = null;
+								doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".max").value = "";
 							}
-							setFilters(filters);
-						});
+							else if (filter.type == "check") {
+								filters[j].checked = false;
+								doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".check").removeAttribute("checked");
+							}
+							else if (filter.type == "skillselect") {
+								filters[j].min = null;
+								doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".min").value = "-1";
+								filters[j].max = null;
+								doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".max").value = "-1";
+							}
+						}
+						setFilters(filters);
 					});
+				});
+				var buttonSearch = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butSearch');
+				Foxtrick.onClick(buttonSearch, function() {
+					getFilters(function(filters) {
+						for (var j = 0; j < filters.length; ++j) {
+							var filter = filters[j];
+							if (filter.type == "minmax") {
+								var el = doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".min");
+								if (el.value == "" || isNaN(el.value))
+									filters[j].min = null;
+								else filters[j].min = Number(el.value);
+								var el = doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".max");
+								if (el.value == "" || isNaN(el.value))
+									filters[j].max = null;
+								else filters[j].max = Number(el.value);
+							}
+							else if (filter.type == "check") {
+								var el = doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".check");
+								filters[j].checked = Boolean(el.checked);
+							}
+							else if (filter.type == "skillselect") {
+								var el = doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".min");
+								if (isNaN(el.value) || Number(el.value) == -1)
+									filters[j].min = null;
+								else filters[j].min = Number(el.value);
+								var el = doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".max");
+								if (isNaN(el.value) || Number(el.value) == -1)
+									filters[j].max = null;
+								else filters[j].max = Number(el.value);
+							}
+						}
+						setFilters(filters);
+					});
+				});
 			});
 		};
 		var filterResults = function() {

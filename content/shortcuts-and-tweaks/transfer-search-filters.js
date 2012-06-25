@@ -149,10 +149,6 @@ Foxtrick.modules["TransferSearchFilters"]={
 						}
 						if (el.type == 'checkbox' && value == 'true' ) {el.checked = true;} else {el.checked = false;}
 						el.disabled = false;
-						
-						var e = doc.createEvent('HTMLEvents');
-                	e.initEvent('change', false, true);
-						el.dispatchEvent(e);
 					}
 				}
 				catch (e) {
