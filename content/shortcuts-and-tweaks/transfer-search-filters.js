@@ -12,38 +12,38 @@ Foxtrick.modules["TransferSearchFilters"]={
 	run : function(doc) {
 		// do not modify the mappings - the keys are stored in preferences
 		var backwardCompatibleCodes = {
-			"_01" : "ctl00$ctl00$CPContent$CPMain$ddlDeadline",
-			"_02" : "ctl00$ctl00$CPContent$CPMain$ddlAgeMin",
-			"_03" : "ctl00$ctl00$CPContent$CPMain$ddlAgeMax",
-			"_04" : "ctl00$ctl00$CPContent$CPMain$ddlSkill1",
-			"_05" : "ctl00$ctl00$CPContent$CPMain$ddlSkill1Min",
-			"_06" : "ctl00$ctl00$CPContent$CPMain$ddlSkill1Max",
-			"_07" : "ctl00$ctl00$CPContent$CPMain$ddlSkill2",
-			"_08" : "ctl00$ctl00$CPContent$CPMain$ddlSkill2Min",
-			"_09" : "ctl00$ctl00$CPContent$CPMain$ddlSkill2Max",
-			"_10" : "ctl00$ctl00$CPContent$CPMain$ddlSkill3",
-			"_11" : "ctl00$ctl00$CPContent$CPMain$ddlSkill3Min",
-			"_12" : "ctl00$ctl00$CPContent$CPMain$ddlSkill3Max",
-			"_13" : "ctl00$ctl00$CPContent$CPMain$ddlSkill4",
-			"_14" : "ctl00$ctl00$CPContent$CPMain$ddlSkill4Min",
-			"_15" : "ctl00$ctl00$CPContent$CPMain$ddlSkill4Max",
-			"_16" : "ctl00$ctl00$CPContent$CPMain$ddlSpecialty",
-			"_17" : "ctl00$ctl00$CPContent$CPMain$ddlZone",
-			"_18" : "ctl00$ctl00$CPContent$CPMain$ddlBornIn",
+			"_01" : "ctl00_ctl00_CPContent_CPMain_ddlDeadline",
+			"_02" : "ctl00_ctl00_CPContent_CPMain_ddlAgeMin",
+			"_03" : "ctl00_ctl00_CPContent_CPMain_ddlAgeMax",
+			"_04" : "ctl00_ctl00_CPContent_CPMain_ddlSkill1",
+			"_05" : "ctl00_ctl00_CPContent_CPMain_ddlSkill1Min",
+			"_06" : "ctl00_ctl00_CPContent_CPMain_ddlSkill1Max",
+			"_07" : "ctl00_ctl00_CPContent_CPMain_ddlSkill2",
+			"_08" : "ctl00_ctl00_CPContent_CPMain_ddlSkill2Min",
+			"_09" : "ctl00_ctl00_CPContent_CPMain_ddlSkill2Max",
+			"_10" : "ctl00_ctl00_CPContent_CPMain_ddlSkill3",
+			"_11" : "ctl00_ctl00_CPContent_CPMain_ddlSkill3Min",
+			"_12" : "ctl00_ctl00_CPContent_CPMain_ddlSkill3Max",
+			"_13" : "ctl00_ctl00_CPContent_CPMain_ddlSkill4",
+			"_14" : "ctl00_ctl00_CPContent_CPMain_ddlSkill4Min",
+			"_15" : "ctl00_ctl00_CPContent_CPMain_ddlSkill4Max",
+			"_16" : "ctl00_ctl00_CPContent_CPMain_ddlSpecialty",
+			"_17" : "ctl00_ctl00_CPContent_CPMain_ddlZone",
+			"_18" : "ctl00_ctl00_CPContent_CPMain_ddlBornIn",
 			"_19" : "ctl00_ctl00_CPContent_CPMain_txtTSIMin_text",
-			"_20" : "ctl00$ctl00$CPContent$CPMain$txtTSIMin",
+			"_20" : "ctl00_ctl00_CPContent_CPMain_txtTSIMin",
 	//		"_21" : "ctl00_ctl00_CPContent_CPMain_txtTSIMin_ClientState",
 			"_22" : "ctl00_ctl00_CPContent_CPMain_txtTSIMax_text",
-			"_23" : "ctl00$ctl00$CPContent$CPMain$txtTSIMax",
+			"_23" : "ctl00_ctl00_CPContent_CPMain_txtTSIMax",
 	//		"_24" : "ctl00_ctl00_CPContent_CPMain_txtTSIMax_ClientState",
 			"_25" : "ctl00_ctl00_CPContent_CPMain_txtBidMin_text",
-			"_26" : "ctl00$ctl00$CPContent$CPMain$txtBidMin",
+			"_26" : "ctl00_ctl00_CPContent_CPMain_txtBidMin",
 	//		"_27" : "ctl00_ctl00_CPContent_CPMain_txtBidMin_ClientState",
 			"_28" : "ctl00_ctl00_CPContent_CPMain_txtBidMax_text",
-			"_29" : "ctl00$ctl00$CPContent$CPMain$txtBidMax",
+			"_29" : "ctl00_ctl00_CPContent_CPMain_txtBidMax",
 	//		"_30" : "ctl00_ctl00_CPContent_CPMain_txtBidMax_ClientState",
-			"_31" : "ctl00$ctl00$CPContent$CPMain$ddlGlobalSkillMax",
-			"_32" : "ctl00$ctl00$CPContent$CPMain$chkUseGlobalMax",
+			"_31" : "ctl00_ctl00_CPContent_CPMain_ddlGlobalSkillMax",
+			"_32" : "ctl00_ctl00_CPContent_CPMain_chkUseGlobalMax",
 
 			"_51" : "FoxtrickTransferSearchResultFilters.hideBruised.check",
 			"_52" : "FoxtrickTransferSearchResultFilters.hideInjured.check",
@@ -51,9 +51,8 @@ Foxtrick.modules["TransferSearchFilters"]={
 			"_55" : "FoxtrickTransferSearchResultFilters.days.min",
 			"_56" : "FoxtrickTransferSearchResultFilters.days.max",
 		};
-		var findFormElement = function(name) {
-			var els = doc.getElementsByName(name);
-			return (els.length > 0) ? els[0] : null;
+		var findFormElement = function(id) {
+			return doc.getElementById(id);
 		};
 		var addNewFilter = function() {
 			try {
@@ -62,11 +61,11 @@ Foxtrick.modules["TransferSearchFilters"]={
 
 				var formString = "<root>";
 				for (var i in backwardCompatibleCodes) {
-					var el = findFormElement(i, doc);
+					var el = findFormElement(i);
 					if (el == null) {
 						var subst = backwardCompatibleCodes[i];
 						if (typeof(subst) != 'undefined') {
-							el = findFormElement(subst, doc);
+							el = findFormElement(subst);
 						}
 					}
 					if (el != null && el.type != "radio" && el.type != "checkbox" ) {
@@ -122,7 +121,7 @@ Foxtrick.modules["TransferSearchFilters"]={
 					var root = obj.firstChild;
 
 					for (var i=0; i<root.childNodes.length; i++) {
-						var name = root.childNodes[i].childNodes[0].textContent;
+						var id = root.childNodes[i].childNodes[0].textContent;
 
 						var value;
 						if (root.childNodes[i].childNodes[1].childNodes.length >0) {
@@ -133,15 +132,15 @@ Foxtrick.modules["TransferSearchFilters"]={
 						}
 
 						// set the value in form
-						var el = findFormElement(name, doc);
+						var el = findFormElement(id);
 						if (el == null) {
-							var subst = backwardCompatibleCodes[name];
+							var subst = backwardCompatibleCodes[id];
 							if (typeof(subst) != 'undefined') {
-								el = findFormElement(subst, doc);
+								el = findFormElement(subst);
 							}
 						}
 						if (el == null) continue;
-
+						
 						if (el.type != "radio") {
 							el.value=value;
 						}

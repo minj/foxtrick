@@ -79,22 +79,6 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 			}
 		};
 		var addNewFilter = function(table, filters, idx) {
-			var saveValues = function(ev) {
-				getFilters(function(filters) {
-					var value = null;
-					if (ev.target.type == "text") {
-						if (ev.target.value != "" && !isNaN(ev.target.value))
-							value = Number(ev.target.value);
-					}
-					else if (ev.target.type == "checkbox")
-						value = Boolean(ev.target.checked);
-
-					var index = ev.target.getAttribute("x-ft-filter-idx");
-					var prop = ev.target.getAttribute("x-ft-filter-prop");
-					filters[index][prop] = value;
-					setFilters(filters);
-				});
-			};
 
 			var filter = filters[idx];
 
@@ -116,9 +100,6 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 				input.style.width = "90px";
 				input.id = "FoxtrickTransferSearchResultFilters." + filter.key + ".min";
 				input.value = filter.min;
-				input.setAttribute("x-ft-filter-idx", idx);
-				input.setAttribute("x-ft-filter-prop", "min");
-				Foxtrick.listen(input, "blur", saveValues, false);
 				td.appendChild(input);
 
 				var td = doc.createElement('td');
@@ -129,11 +110,9 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 				input.style.width = "90px";
 				input.id = "FoxtrickTransferSearchResultFilters." + filter.key + ".max";
 				input.value = filter.max;
-				input.setAttribute("x-ft-filter-idx", idx);
-				input.setAttribute("x-ft-filter-prop", "max");
-				Foxtrick.listen(input, "blur", saveValues, false);
 				td.appendChild(input);
 			}
+
 			else if (filter.type == "check") {
 				var td = doc.createElement("td");
 				td.colSpan = 5;
@@ -141,11 +120,8 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 				var input = doc.createElement("input");
 				input.type = "checkbox";
 				input.id = "FoxtrickTransferSearchResultFilters." + filter.key + ".check";
-				input.setAttribute("x-ft-filter-idx", idx);
-				input.setAttribute("x-ft-filter-prop", "checked");
 				if (filter.checked === true)
 					input.setAttribute("checked", "checked");
-				Foxtrick.onClick(input, saveValues);
 				td.appendChild(input);
 				var label = doc.createElement("label");
 				label.textContent = Foxtrickl10n.getString("TransferSearchResultFilters." + filter.key);
@@ -194,6 +170,29 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 							setFilters(filters);
 						});
 					});
+				var buttonSearch = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butSearch');
+				Foxtrick.onClick(buttonSearch, function() {
+					getFilters(function(filters) {
+						for (var j = 0; j < filters.length; ++j) {
+							var filter = filters[j];
+							if (filter.type == "minmax") {
+								var el = doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".min");
+								if (el.value == "" || isNaN(el.value))
+									filters[j].min = null;
+								else filters[j].min = Number(el.value);
+								var el = doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".max");
+								if (el.value == "" || isNaN(el.value))
+									filters[j].max = null;
+								else filters[j].max = Number(el.value);
+							}
+							else if (filter.type == "check") {
+								var el = doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".check");
+								filters[j].checked = Boolean(el.checked);
+							}
+						}
+						setFilters(filters);
+					});
+				});
 			});
 		};
 		var filterResults = function() {

@@ -290,6 +290,38 @@ Foxtrick.modules["ForumChangePosts"]={
 				var HideLevel = FoxtrickPrefs.getString("module.FormatPostingText.NestedQuotesAsSpoilers_text");
 				var numSpoilerQuotes = 0;
 				
+				var getQuotes = function(node, level) {
+					if (level == HideLevel && node.getElementsByClassName('quote').length >= 0 ) {
+						var spoiler_show = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.FormatPostingText, 'blockquote');
+						spoiler_show.id = 'spoilshow_quoteNum' + (++numSpoilerQuotes);
+						spoiler_show.className = 'spoiler ft-dummy';
+						var open_link = doc.createElement('a');
+						open_link.href = "javascript:void(0);";
+						open_link.setAttribute('spoilerID',numSpoilerQuotes);
+						open_link.textContent = Foxtrickl10n.getString('FormatPostingText.ShowNestedQuotes');
+						Foxtrick.onClick(open_link, function(ev){
+							var id = ev.target.getAttribute('spoilerID');
+							Foxtrick.toggleClass(doc.getElementById('spoilhid_quoteNum'+id), 'hidden');
+							Foxtrick.toggleClass(doc.getElementById('spoilshow_quoteNum'+id), 'hidden');
+						});
+						spoiler_show.appendChild(open_link);
+						
+						var spoiler_hidden = doc.createElement('blockquote');
+						spoiler_hidden.id = 'spoilhid_quoteNum' + numSpoilerQuotes;
+						spoiler_hidden.className = 'spoiler hidden';
+						spoiler_hidden.appendChild(node.cloneNode(true));
+						node.parentNode.insertBefore(spoiler_show, node.nestSibling);
+						node.parentNode.removeChild(node);
+						spoilers.push([spoiler_show, spoiler_hidden]);
+						
+					}
+					else {
+						var quoteNodes = node.getElementsByClassName('quote');
+						for (var j = 0; j < quoteNodes.length; ++j ) 
+							getQuotes(quoteNodes[j], level +1);
+					}
+				};
+				
 				var messages = doc.getElementsByClassName("message");
 				for (var i = 0; i < messages.length; ++i){
 					var count_pre = Foxtrick.substr_count(messages[i].textContent, '[pre');
@@ -303,38 +335,7 @@ Foxtrick.modules["ForumChangePosts"]={
 
 					if (FoxtrickPrefs.isModuleOptionEnabled("FormatPostingText", "NestedQuotesAsSpoilers")) {
 						var spoilers = [];
-						var getQuotes = function(node, level) {
-							if (level == HideLevel && node.getElementsByClassName('quote').length >= 1 ) {
-								var spoiler_show = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.FormatPostingText, 'blockquote');
-								spoiler_show.id = 'spoilshow_quoteNum' + (++numSpoilerQuotes);
-								spoiler_show.className = 'spoiler ft-dummy';
-								var open_link = doc.createElement('a');
-								open_link.href = "javascript:void(0);";
-								open_link.setAttribute('spoilerID',numSpoilerQuotes);
-								open_link.textContent = Foxtrickl10n.getString('FormatPostingText.ShowNestedQuotes');
-								Foxtrick.onClick(open_link, function(ev){
-									var id = ev.target.getAttribute('spoilerID');
-									Foxtrick.toggleClass(doc.getElementById('spoilhid_quoteNum'+id), 'hidden');
-									Foxtrick.toggleClass(doc.getElementById('spoilshow_quoteNum'+id), 'hidden');
-								});
-								spoiler_show.appendChild(open_link);
-								
-								var spoiler_hidden = doc.createElement('blockquote');
-								spoiler_hidden.id = 'spoilhid_quoteNum' + numSpoilerQuotes;
-								spoiler_hidden.className = 'spoiler hidden';
-								spoiler_hidden.appendChild(node.cloneNode(true));
-								node.parentNode.insertBefore(spoiler_show, node.nestSibling);
-								node.parentNode.removeChild(node);
-								spoilers.push([spoiler_show, spoiler_hidden]);
-								
-							}
-							else {
-								var quoteNodes = node.getElementsByClassName('quote');
-								for (var j = 0; j < quoteNodes.length; ++j ) 
-									getQuotes(quoteNodes[j], level +1);
-							}
-						};
-						
+			
 						getQuotes(messages[i], -1);
 						
 						for (var j = 0; j < spoilers.length; ++j ) {

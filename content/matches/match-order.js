@@ -11,9 +11,8 @@ Foxtrick.modules["MatchOrderInterface"]={
 	OPTIONS : ["GotTrainingOnField", "DisplayLastMatchInDetails", "Specialties", "ShowFaces", "SwapPositions","StayOnPage", ["CloneOrder", "AutoExpandCloned"]],
 	CSS : Foxtrick.InternalPath + "resources/css/match-order.css",
 	OPTIONS_CSS : [ "", Foxtrick.InternalPath + "resources/css/match-order-specialties.css", Foxtrick.InternalPath + "resources/css/match-order-faces.css", Foxtrick.InternalPath + "resources/css/match-order-clone.css"],
-	run : function(doc) { 
-	
-		var check_images = function(doc, target, avatarsXml, getID, scale) {		
+	run : function(doc) {
+		var check_images = function(doc, target, avatarsXml, getID, scale) {
 			if (!FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'ShowFaces'))
 				return;
 			if (!Foxtrick.util.layout.isSupporter(doc))
@@ -32,14 +31,24 @@ Foxtrick.modules["MatchOrderInterface"]={
 					return; // id not found
 				
 				Foxtrick.addClass(fieldplayer, "smallFaceCardBox");
+
 				var shirt = fieldplayer.getElementsByClassName('shirt')[0];
-				if (!shirt) {
+				
+				if (shirt) {
+					var kiturl = shirt.getAttribute("kiturl");
+					if(!kiturl && !isYouth){
+						var shirtstyle = shirt.getAttribute("style");
+						var kiturl = shirtstyle.match(/http:\/\/res.hattrick.org\/kits\/\d+\/\d+\/\d+\/\d+\//)[0];
+						shirt.setAttribute("kiturl", kiturl);
+					}
+				} else {
 					var outer = doc.createElement('div');
 					outer.className = 'smallFaceCardOuter';
 					fieldplayer.appendChild(outer);
 					shirt = doc.createElement('div');
 					outer.appendChild(shirt);
-				}
+				}	
+				
 				if (Foxtrick.hasClass(shirt,'smallFaceCard'))
 					return;
 
@@ -74,7 +83,11 @@ Foxtrick.modules["MatchOrderInterface"]={
 
 					if (bodypart == "backgrounds")
 						src = "";
-						
+
+					if(kiturl && bodypart == "kits"){
+						var body = src.match(/([^\/]+)(\w+$)/)[0];
+						src = kiturl + body;
+					}	
 					var x = Math.round(Number(layers[j].getAttribute('x'))/scale);
 					var y = Math.round(Number(layers[j].getAttribute('y'))/scale);
 					var img =  doc.createElement('img');
@@ -174,7 +187,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 						Foxtrick.log(errorText);
 						return;
 					}
-					check_images(doc, doc.getElementsByClassName('field')[0],xml, getID,4);
+					check_images(doc, doc.getElementsByClassName('field')[0],xml, getID, 4);
 				});
 			}
 		};
