@@ -449,39 +449,28 @@ else {
 	Foxtrick.arch = "Gecko";
 	Foxtrick.InternalPath = Foxtrick.ResourcePath = "chrome://foxtrick/content/";
 
-	if ( typeof(window)!=='object' // fennec content
-		|| typeof(Browser)!=='undefined'  // mobile background
-		|| typeof(BrowserApp)!=='undefined' ) { // android background
+	var Cc = Components.classes;
+	var Ci = Components.interfaces;
+	var Cu = Components.utils;
+	Cu.import("resource://gre/modules/Services.jsm");
+	var appInfoID = Cc["@mozilla.org/xre/app-info;1"].getService(Ci.nsIXULAppInfo).ID;
 
-		var isNativeUI = function() {
-			try {
-				var Cc = Components.classes;
-				var Ci = Components.interfaces;
-				var Cu = Components.utils;
+	if (appInfoID == "{aa3c5121-dab2-40e2-81ca-7ea25febc110}") 
+		Foxtrick.platform = "Android";
+	else if (appInfoID == "{a23983c0-fd0e-11dc-95ff-0800200c9a66}")
+		Foxtrick.platform = "Mobile";
+	else 
+		Foxtrick.platform = "Firefox";  // includes SeaMonkey here
 
-				Cu.import("resource://gre/modules/Services.jsm");
-
-				var appInfoID = Cc["@mozilla.org/xre/app-info;1"].getService(Ci.nsIXULAppInfo).ID;
-				return (appInfoID == "{aa3c5121-dab2-40e2-81ca-7ea25febc110}");
-			} catch (e) {
-				return false;
-			}
-		};
-
-		if (isNativeUI()) 
-			Foxtrick.platform = "Android";
-		else
-			Foxtrick.platform = "Mobile";
-
+	if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android") {
 		Foxtrick.chromeContext = function() {
 			if (typeof(sendSyncMessage)=='function')
 				return "content";
-			else
+			else 
 				return "background";
 		}
 	}
 	else {
-		Foxtrick.platform = "Firefox";
 		Foxtrick.chromeContext = function() {
 			return 'background'
 		}
@@ -491,10 +480,14 @@ else {
 	if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android") {
 		Foxtrick.DataPath = "chrome://foxtrick/content/res/";
 
-		var addListener = function(name, handler) {
-			var x = typeof(addMessageListener)=='function' ? addMessageListener : messageManager.addMessageListener;
-			x(name, handler);
-		};
+		if (typeof(addMessageListener)!=='undefined' || typeof(messageManager)!=='undefined') {			
+			var addListener = function(name, handler) {
+				var x = typeof(addMessageListener)=='function' ? addMessageListener : messageManager.addMessageListener;
+				x(name, handler);
+			};
+		}
+		else // happens for fennec prefs. not needed thus ignored or it would mess up above
+			var addListener = function(name, handler) {}
 
 		// fennec adapter. adapted from adblockplus for safari
 		var sandboxed = {
