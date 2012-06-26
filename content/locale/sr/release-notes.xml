@@ -12,6 +12,19 @@
 <item>За детаље о променама погледајте  на <xhtml:a href="http://code.google.com/p/foxtrick/source/list">Google Code</xhtml:a> сајту.</item>
 </note>
 
+<note version="0.11.0">
+<item>● НОВО: <module>ForumModeratorPopup</module>: Иконице замењењене менијем за модераторе форума на врху странице ради лакшег модерисања.</item> 
+<item>● НОВО: <module>PlayerStatsTrainingWeek</module>: Додата опција за груписање мечева у Историјату наступа по тренинг недељама уместо календарских ХТ недеља.</item>
+<item>● <module>SkillTable</module>: Могућност за додатно сортирање већ сортираних колона користећи ctrl + леви клик на неку другу несортирану колону.</item>
+<item>● <module>SkillTable</module>: Имена играча су од сада скраћена ради уштеде простора.</item>
+<item>● <module>TransferSearchResultFilters</module>: Додатне опције за филтрирање резултата претраге трансфера на основу форме као и приказивање само играча који имају специјалност.</item>
+<item>● <module>FriendlyPool</module>: Додата опција за аутоматско приказивање менија за одабир државе у раширеном облику.</item>
+<item>● <module>MovePlayerStatement</module>: Опција за потпуно уклањање играчеве изјаве.</item>
+<item>● Табови: Додата функција за додавање табова на свим страницама. (по угледу на ХТ страницу са табовима за надолазеће мечеве).</item>
+<item><xhtml:b>Разне исправке.</xhtml:b></item>
+<item></item>
+</note>
+
 <note version="0.10.0">
 <item>● НОВО:  <module>TransferHistoryFilters</module>: Омогућава филтрирање купљених или продатих играча на страници клупске Историје трансфера</item>
 <item>● <module>PlayerStatsExperience</module>: Нова верзија са више детаља. (Хвала SeanConnery (7751762) за тестирање комбинације боја за особе које не препознају основну нијансу црвене и зелене)</item>
