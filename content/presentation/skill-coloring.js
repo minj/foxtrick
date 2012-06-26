@@ -36,13 +36,13 @@ Foxtrick.modules["SkillColoring"]={
 		
 		var playerDetailsChange = function (ev) { 
 			//Foxtrick.log('playerDetailsChange')
-			var percentImage = doc.getElementById('details').getElementsByClassName('percentImage');
-			for (var i=0; i<percentImage.length; ++i) {
-				var td = percentImage[i].parentNode;
+			var percentImages = doc.getElementById('details').querySelectorAll("img.percentImage, img.ft-percentImage");
+			for (var i=0; i<percentImages.length; ++i) {
+				var td = percentImages[i].parentNode;
 				if (Foxtrick.hasClass(td, 'skill_number'))
 					continue;
 				Foxtrick.addClass(td, 'skill_number');
-				td.appendChild(doc.createTextNode( ' ('+percentImage[i].title.match(/\d+/)+')' ));
+				td.appendChild(doc.createTextNode( ' ('+percentImages[i].title.match(/\d+/)+')' ));
 			}
 		};
 
