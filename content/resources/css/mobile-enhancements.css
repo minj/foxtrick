@@ -1,5 +1,137 @@
 @-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
 
-#ctl00_ctl00_pnlMobileLink, #footer {display:none;}
+div[class^="ad_"] {display: none !important;}
 
+#ctl00_ctl00_pnlMobileLink, #top, #footer {display:none !important;}
+
+#menu {
+	right: -10px !important;
+	left: -10px !important;
+	height: auto !important;
+	position: absolute !important;
+	width: 90px !important;	
+	font-size: 1.1em !important;
+	bottom: 24px !important;
+}
+#menu a {
+	border-bottom: 1px solid #176F21;
+	border-top: 1px solid #479F51;
+	margin: 0px !important;
+	padding: 5px !important;
+	float: none !important;
+	height: auto !important;
+	line-height: inherit !important;	
+}
+#mobile_header_center {
+	background-color: #277F31;
+	position: relative;
+	width: 70px;
+	z-index: 10020;
+	margin-left: auto;
+	margin-right: auto;
+	-webkit-border-radius: 0 0 6px 6px;
+	-moz-border-radius: 0 0 6px 6px;
+	border-radius: 0 0 6px 6px;
+	box-shadow: 0 -3px 
+	rgba(0, 0, 0, .2) inset;
+	-moz-box-shadow: 0 -3px rgba(0,0,0,.2) inset;
+	-webkit-box-shadow: 0 -3px rgba(0, 0, 0, .2) inset;
+}
+#mobile_header_center_tab{
+	width: 70px !important;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+#mobile_header_center  a {
+	padding: 5px !important;
+	display: block !important;
+	color: white !important;
+	font-weight: 700;
+	text-decoration: none;
+	text-align: center;
+}
+#mobile_header_center.out    {
+	top: 207px;
+	-moz-transition: .5s top ease;
+	-webkit-transition: .5s top ease;
+	transition: .5s top ease;
+}
+#mobile_header_center  {
+	top: 0px;
+	-moz-transition: .5s top ease;
+	-webkit-transition: .5s top ease;
+	transition: .5s top ease;
+}
+
+.mainWrapperRegular, .mainWrapperConf, .mainWrapperFull {float:none !important;}
+
+#mobile_header {height: 30px; position:relative;}
+#mobile_header_left, #mobile_header_left_main {float: left;}
+#mobile_header_right, #mobile_header_right_header {float:right;}
+
+
+.hattrick, .hattrickNoSupporter, #page, .mainWrapperRegular, .mainWrapperConf, .main {width:440px !important;}
+.hattrick, .hattrickNoSupporter {position:relative;}
+#page {
+	padding: 0px !important; 
+	position:relative; 
+	top:0px; 
+ 	-moz-transition: .5s top ease;
+	-webkit-transition: .5s top ease;
+	transition: .5s top ease;
+}
+#sidebar, .subMenu, .subMenuConf  {position:absolute; background-color:white; border: 2px solid #849D84; padding: 2px;}
+#header {
+	z-index: 10030;
+	position:absolute !important;
+	background-color:white;
+	border-bottom: 2px solid #849D84;
+	padding-bottom: 5px;
+ 	-moz-transition: .5s top ease;
+	-webkit-transition: .5s top ease;
+	transition: .5s top ease;
+}
+#logo, #stageLogo {left:0px !important;	top:0px !important;}
+#sidebar  {
+	z-index: 10010;
+	right: 0px;
+	-moz-transition: .5s right ease;
+	-webkit-transition: .5s right ease;
+	transition: .5s right ease;
+}
+.subMenu, .subMenuConf  {
+	z-index: 10010;
+	left: 0px;
+ 	-moz-transition: .5s left ease;
+	-webkit-transition: .5s left ease;
+	transition: .5s left ease;
+}
+.subMenu.out {left: -135px;}
+.subMenuConf.out {left: -235px;}
+#sidebar.out {
+	right: -190px;
+}
+#page.out {top: -108px;}
+#mobile_header, #content, #bottom {
+	top: 107px;
+	position: relative;
+	background-color:white;
+}
+ #content {
+	margin-bottom:0px !important; 
+	padding-top:0px !important;
+	border-right: solid 1px #DDD;
+	border-left: solid 1px #DDD;
+	overflow:hidden;
+}
+ #bottom {
+	border-right: solid 1px #DDD;
+	border-left: solid 1px #DDD;
+	border-bottom: solid 1px #DDD;
+}
+.fplLongThreadName {width:145px !important;}
 }

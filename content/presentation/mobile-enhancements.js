@@ -5,91 +5,133 @@
  * @author convinced
  */
 
-if(0) 
-if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android")
+
+//if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android")
   Foxtrick.modules["MobileEnhancements"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
 	CSS : Foxtrick.InternalPath + "resources/css/mobile-enhancements.css",
 
-	pageActions : {
-		'rightSidebar':		{ match:{pattern:"Forum",result:false},	size:{'simple':190, standard:222},	css:'mobile-enhancements-right.css'},
-		'mainContent':		{ match:{pattern:"."	,result:true},	size:{'simple':440, standard:580},	css:'mobile-enhancements-main.css'},
-		'leftSidebar':		{ match:{pattern:"."	,result:true},	size:{'simple':125, standard:180},	css:'mobile-enhancements-left.css'},
-		'all':				{ match:{pattern:"."	,result:true},	size:{'simple':770, standard:980},	css:''}
-	},
-
-	onLoad : function() { 
-	try {
-		var pageactionsContainer = document.getElementById('pageactions-container');
-		var pageActions = this.pageActions;
-
-		for (var i in pageActions) {
-			var action = document.createElement('pageaction');
-			action.id = 'foxtrick-'+i;
-			action.setAttribute("title", Foxtrickl10n.getString('pageAction.'+i));
-			action.setAttribute("type", i);
-			action.className = 'ft-pageaction';
-
-			// page action click
-			Foxtrick.onClick(action, function(ev){
-				try {
-					var type = ev.target.getAttribute('type');
-					Foxtrick.sessionSet('MobileEnhancements.selection', type);
-					var css = Foxtrick.modules.MobileEnhancements.getStyle(type);
-					// background to content message
-					Foxtrick.log('action click ', Foxtrick.modules.MobileEnhancements.pageActions[type].size);
-					sandboxed.extension.sendRequest({ 
-						req: "replaceCss", 
-						css: css,
-						id: 'foxtrick-pageaction-css', 
-						size: Foxtrick.modules.MobileEnhancements.pageActions[type].size
-					});
-				} catch (e){
-					Foxtrick.log(e);
-				}
-			});
-			pageactionsContainer.insertBefore(action, pageactionsContainer.firstChild);
-
-			// page action open
-			PageActions.register('foxtrick-'+i, function(el) {
-				try {
-					var url = getBrowser().currentURI.spec;
-					var type = el.getAttribute('type');
-					return Foxtrick.isHtUrl(url) &&
-						((url.search(new RegExp(pageActions[type].match.pattern,'i'))!==-1)
-								===	pageActions[type].match.result);
-				} catch(e){
-					Foxtrick.log(e);
-				}
-			});
-		}
-	} catch(e){
-		Foxtrick.log(e);
-	}
-	},
 
 	run : function(doc) { 
-		Foxtrick.sessionGet('MobileEnhancements.selection', function(selection) {
-			// rescale to use all space
-			if (doc.getElementById('ctl00_ctl00_CPContent_ucSubMenu_ucLogin_txtUserName')!==null) {
-				var css = this.getStyle('all');
-				this.setStyle(content.document,'foxtrick-pageaction-css', css, this.pageActions['all'].size);
+		var select = function(area) {
+			if (area=="left" && lb) {
+				if (lb)
+					Foxtrick.removeClass(lb,'out');
+				if (rb)
+					Foxtrick.addClass(rb,'out');
+				if (header)
+					Foxtrick.addClass(page,'out');
+			} 
+			else if (area=="right" && rb) {
+				if (rb)
+					Foxtrick.removeClass(rb,'out');
+				if (lb)
+					Foxtrick.addClass(lb,'out');
+				if (header)
+					Foxtrick.addClass(page,'out');
 			}
-			else if (selection !== 'all') {
-				var css = this.getStyle('mainContent');
-				this.setStyle(content.document,'foxtrick-pageaction-css', css, this.pageActions['mainContent'].size);
+			else if ((area=="center" || (area=="right" &&!rb)) && cb ) {
+				if (lb)
+					Foxtrick.addClass(lb,'out');
+				if (rb)
+					Foxtrick.addClass(rb,'out');
+				if (header)
+					Foxtrick.addClass(page,'out');
 			}
-			else
-				this.setMetaViewport(doc, "device-width");
+			else if (area=="header") {
+				if (header)
+					Foxtrick.removeClass(page,'out');
+				if (lb)
+					Foxtrick.addClass(lb,'out');
+				if (rb)
+					Foxtrick.addClass(rb,'out');
+			}
+			Foxtrick.modules["MobileEnhancements"].setMetaViewport(doc, "440");
+		};
 
-			// listener to viewport resizing from background page action
-			sandboxed.extension.onRequest.addListener( function(request, sender, sendResponse) {			
-				if (request.req=='replaceCss') {
-					Foxtrick.modules.MobileEnhancements.setStyle(content.document, request.id, request.css, request.size);
-				}
-			});
+		var lb = doc.getElementsByClassName("subMenu")[0] || doc.getElementsByClassName("subMenuConf")[0];
+		var cb = doc.getElementsByClassName("main")[0];
+		var rb = doc.getElementById("sidebar");
+		var header = doc.getElementById("header"); 
+		var page = doc.getElementById("page"); 
+
+		if (lb)
+			Foxtrick.addClass(lb,'out');
+		if (rb)
+			Foxtrick.addClass(rb,'out');
+		if (header)
+			Foxtrick.addClass(page,'out');
+		Foxtrick.onClick(cb, function(ev){
+			select("center");
 		});
+
+						
+		var header = doc.getElementById("header");
+		var menu = doc.getElementById("menu");
+		var mobile_header = doc.createElement('div');
+		mobile_header.id = 'mobile_header';
+		header.parentNode.insertBefore(mobile_header, header.nextSibling);
+		
+		var mobile_header_left = doc.createElement('div');
+		mobile_header_left.id = 'mobile_header_left';
+		mobile_header_left.textContent = " LB ";
+		Foxtrick.onClick(mobile_header_left, function(ev){
+			select("left");
+		});
+		mobile_header.appendChild(mobile_header_left);
+				
+		var mobile_header_left_main = doc.createElement('div');
+		mobile_header_left_main.id = 'mobile_header_left_main';
+		mobile_header_left_main.textContent = " Mn ";
+		Foxtrick.onClick(mobile_header_left_main, function(ev){
+			select("center");
+		});
+		mobile_header.appendChild(mobile_header_left_main);
+
+		var mobile_header_right_header = doc.createElement('div');
+		mobile_header_right_header.id = 'mobile_header_right_header';
+		mobile_header_right_header.textContent = " Tp ";
+		Foxtrick.onClick(mobile_header_right_header, function(ev){
+			select("header");
+		});
+		mobile_header.appendChild(mobile_header_right_header);
+
+		var mobile_header_right = doc.createElement('div');
+		mobile_header_right.id = 'mobile_header_right';
+		mobile_header_right.textContent = " RB ";
+		Foxtrick.onClick(mobile_header_right, function(ev){
+			select("right");
+		});
+		mobile_header.appendChild(mobile_header_right);
+		
+		var mobile_header_center = doc.createElement('div');
+		mobile_header_center.id = 'mobile_header_center';
+		mobile_header_center.classNme = 'mobile_header_center out';
+		Foxtrick.onClick(mobile_header_center, function(ev){
+			Foxtrick.toggleClass(mobile_header_center,"out");
+		});
+		mobile_header.appendChild(mobile_header_center);
+		
+		mobile_header_center.appendChild(menu);
+		
+		var mobile_header_center_tab = doc.createElement('div');
+		mobile_header_center_tab.id = 'mobile_header_center_tab';
+		var a = doc.createElement('a');
+		a.href="#";
+		a.textContent = "Menu";
+		mobile_header_center_tab.appendChild(a);
+		mobile_header_center.appendChild(mobile_header_center_tab);
+		
+		var as = menu.getElementsByTagName('a');
+		for (var i=0;i<as.length;++i){
+				as[i].setAttribute("tabindex",Number(i+1));
+		}
+
+		if (!Foxtrick.isLoginPage(doc))
+			select("center");
+
+		this.setMetaViewport(doc, "440");
 	},
 
 	setMetaViewport : function (doc, width) {
@@ -107,17 +149,13 @@ if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android")
 	},
 
 	setStyle : function(doc, id, css, size) {
-		for (var i in this.pageActions) {
-			Foxtrick.unload_css_permanent(Foxtrick.InternalPath + "resources/css/" + this.pageActions[i].css);
-			Foxtrick.log('unload: ',Foxtrick.InternalPath + "resources/css/" + this.pageActions[i].css);
+		for (var i in Foxtrick.modules["MobileEnhancements"].pageActions) {
+			Foxtrick.unload_css_permanent(Foxtrick.InternalPath + "resources/css/" + Foxtrick.modules["MobileEnhancements"].pageActions[i].css);
+			Foxtrick.log('unload: ',Foxtrick.InternalPath + "resources/css/" + Foxtrick.modules["MobileEnhancements"].pageActions[i].css);
 		}
 		Foxtrick.load_css_permanent(Foxtrick.InternalPath + "resources/css/" + css);
-		Foxtrick.log('load: ',Foxtrick.InternalPath + "resources/css/" + this.pageActions[i].css);
+		Foxtrick.log('load: ',Foxtrick.InternalPath + "resources/css/" + Foxtrick.modules["MobileEnhancements"].pageActions[i].css);
 		var size = Foxtrick.util.layout.isRtl(doc) ? size.standard : size.simple;
-		this.setMetaViewport(doc, size+'px');
+		Foxtrick.modules["MobileEnhancements"].setMetaViewport(doc, size+'px');
 	},
-
-	getStyle : function(title) { 
-		return this.pageActions[title].css;
-	}
 };
