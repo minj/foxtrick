@@ -300,8 +300,10 @@ Foxtrick.modules["TeamPopupLinks"]={
 									var redir_to_custom = false;
 									var json = JSON.parse( ownlink );
 									
-									if (show_more != json.more)
+									if (show_more != json.more){
+										show_less_more = true;
 										continue;
+									}
 									
 									var item = doc.createElement("li");
 									var a6 = doc.createElement("a");
