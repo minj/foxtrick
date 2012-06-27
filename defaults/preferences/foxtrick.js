@@ -495,7 +495,7 @@ pref("extensions.foxtrick.prefs.module.SimplePresentation.League_Table.enabled",
 pref("extensions.foxtrick.prefs.module.SimplePresentation.liveHighlightRed.enabled", false);
 pref("extensions.foxtrick.prefs.module.SimplePresentation.NoLogo.enabled", false);
 pref("extensions.foxtrick.prefs.module.SkillColoring.enabled", true);
-pref("extensions.foxtrick.prefs.module.SkillColoring.no_skill_links.enabled", false);
+pref("extensions.foxtrick.prefs.module.SkillColoring.no_colors.enabled", false);
 pref("extensions.foxtrick.prefs.module.SkillColoring.only_skill_color.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkillColoring.skill_color.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkillColoring.skill_number.enabled", true);

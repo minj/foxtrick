@@ -114,7 +114,7 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 				tr.appendChild(td);
 				var input = doc.createElement("input");
 				input.style.width = "90px";
-				input.id = "FoxtrickTransferSearchResultFilters." + filter.key + ".min";
+				input.id = "FoxtrickTransferSearchResultFilters." + filter.key + ".Min";
 				input.value = filter.min;
 				td.appendChild(input);
 
@@ -124,7 +124,7 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 				tr.appendChild(td);
 				var input = doc.createElement("input");
 				input.style.width = "90px";
-				input.id = "FoxtrickTransferSearchResultFilters." + filter.key + ".max";
+				input.id = "FoxtrickTransferSearchResultFilters." + filter.key + ".Max";
 				input.value = filter.max;
 				td.appendChild(input);
 			}
@@ -141,7 +141,7 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 				td.colSpan = 2;
 				tr.appendChild(td);
 				var select = doc.createElement("select");
-				select.id = "FoxtrickTransferSearchResultFilters." + filter.key + ".min";
+				select.id = "FoxtrickTransferSearchResultFilters.Skills." + filter.key + ".Min";
 				var optionMin = doc.createElement('option');
 				optionMin.textContent = "-- " + Foxtrickl10n.getString("Filters.minimum") + " --";
 				optionMin.value = "-1";
@@ -159,7 +159,7 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 				td.colSpan = 2;
 				tr.appendChild(td);
 				var select = doc.createElement("select");
-				select.id = "FoxtrickTransferSearchResultFilters." + filter.key + ".max";
+				select.id = "FoxtrickTransferSearchResultFilters.Skills." + filter.key + ".Max";
 				var optionMin = doc.createElement('option');
 				optionMin.textContent = "-- " + Foxtrickl10n.getString("Filters.maximum") + " --";
 				optionMin.value = "-1";
@@ -218,9 +218,9 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 							var filter = filters[j];
 							if (filter.type == "minmax") {
 								filters[j].min = null;
-								doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".min").value = "";
+								doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".Min").value = "";
 								filters[j].max = null;
-								doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".max").value = "";
+								doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".Max").value = "";
 							}
 							else if (filter.type == "check") {
 								filters[j].checked = false;
@@ -228,9 +228,9 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 							}
 							else if (filter.type == "skillselect") {
 								filters[j].min = null;
-								doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".min").value = "-1";
+								doc.getElementById("FoxtrickTransferSearchResultFilters.Skills." + filter.key + ".Min").value = "-1";
 								filters[j].max = null;
-								doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".max").value = "-1";
+								doc.getElementById("FoxtrickTransferSearchResultFilters.Skills." + filter.key + ".Max").value = "-1";
 							}
 						}
 						setFilters(filters);
@@ -242,11 +242,11 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 						for (var j = 0; j < filters.length; ++j) {
 							var filter = filters[j];
 							if (filter.type == "minmax") {
-								var el = doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".min");
+								var el = doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".Min");
 								if (el.value == "" || isNaN(el.value))
 									filters[j].min = null;
 								else filters[j].min = Number(el.value);
-								var el = doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".max");
+								var el = doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".Max");
 								if (el.value == "" || isNaN(el.value))
 									filters[j].max = null;
 								else filters[j].max = Number(el.value);
@@ -256,11 +256,11 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 								filters[j].checked = Boolean(el.checked);
 							}
 							else if (filter.type == "skillselect") {
-								var el = doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".min");
+								var el = doc.getElementById("FoxtrickTransferSearchResultFilters.Skills." + filter.key + ".Min");
 								if (isNaN(el.value) || Number(el.value) == -1)
 									filters[j].min = null;
 								else filters[j].min = Number(el.value);
-								var el = doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".max");
+								var el = doc.getElementById("FoxtrickTransferSearchResultFilters.Skills." + filter.key + ".Max");
 								if (isNaN(el.value) || Number(el.value) == -1)
 									filters[j].max = null;
 								else filters[j].max = Number(el.value);

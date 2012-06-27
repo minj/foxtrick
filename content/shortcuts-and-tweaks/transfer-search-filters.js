@@ -48,10 +48,10 @@ Foxtrick.modules["TransferSearchFilters"]={
 			"_51" : "FoxtrickTransferSearchResultFilters.hideBruised.check",
 			"_52" : "FoxtrickTransferSearchResultFilters.hideInjured.check",
 			"_53" : "FoxtrickTransferSearchResultFilters.hideSuspended.check",
-			"_55" : "FoxtrickTransferSearchResultFilters.days.min",
-			"_56" : "FoxtrickTransferSearchResultFilters.days.max",
-			"_57" : "FoxtrickTransferSearchResultFilters.form.min",
-			"_58" : "FoxtrickTransferSearchResultFilters.form.max",
+			"_55" : "FoxtrickTransferSearchResultFilters.days.Min",
+			"_56" : "FoxtrickTransferSearchResultFilters.days.Max",
+			"_57" : "FoxtrickTransferSearchResultFilters.Skills.form.Min",
+			"_58" : "FoxtrickTransferSearchResultFilters.Skills.form.Max",
 			"_59" : "FoxtrickTransferSearchResultFilters.hideOrdinary.check",
 		};
 		var findFormElement = function(id) {
