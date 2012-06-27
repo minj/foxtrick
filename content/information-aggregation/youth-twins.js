@@ -44,8 +44,7 @@
 	PAGES : ["YouthPlayers"],
 	OPTIONS : ["HideInfoLink"],
 	CSS : Foxtrick.InternalPath + "resources/css/youth-twins.css",
-	run : function(doc) { 
-
+	run : function(doc) {
 		var ignoreHours = 24;
 
 		if (!Foxtrick.isPage('ownYouthPlayers', doc))
@@ -117,7 +116,7 @@
 					return; 
 				case 200: 
 					Foxtrick.log("YouthTwins: Looking fine, ignoreUntil set to -1", status);
-					FoxtrickPrefs.set("YouthTwins.ignoreUntil", -1);
+					Foxtrick.localSet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".ignoreUntil", -1);
 					break;
 				case 400:
 					Foxtrick.log("YouthTwins: Given data is invalid or incomplete", status, response);
@@ -125,7 +124,7 @@
 				case 404:
 					var now = new Date();
 					var ignoreUntil = now.setTime(now.getTime() + ignoreHours*60*60*1000);
-					FoxtrickPrefs.set("YouthTwins.ignoreUntil", ignoreUntil);
+					Foxtrick.localSet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".ignoreUntil", ignoreUntil);
 					Foxtrick.log("YouthTwins: HY is moving servers or is in huge trouble", status);
 					Foxtrick.log("YouthTwins: No requests for " + ignoreHours/24.0 + " day(s).");
 					return;
@@ -135,7 +134,7 @@
 				case 503:
 					var now = new Date();
 					var ignoreUntil = now.setTime(now.getTime() + ignoreHours*60*60*1000);
-					FoxtrickPrefs.set("YouthTwins.ignoreUntil", ignoreUntil);
+					Foxtrick.localSet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".ignoreUntil", ignoreUntil);
 					Foxtrick.log("YouthTwins: HY temporarily disabled the feature", status, "");
 					Foxtrick.log("YouthTwins: No requests for " + ignoreHours/24.0 + " day(s).");
 					return; 
@@ -145,7 +144,7 @@
 			}
 			
 			//save response as pref
-			FoxtrickPrefs.set("YouthTwins.lastResponse", response);
+			Foxtrick.localSet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".lastResponse", response);
 
 			var json = JSON.parse( response );
 
@@ -233,72 +232,73 @@
 		var teamid = doc.location.href.match(/teamid=(\d+)/i)[1];
 
 		//get last saved result from and possible ignoreTime
-		var saved = FoxtrickPrefs.get("YouthTwins.lastResponse");
-		var ignoreUntil = FoxtrickPrefs.get("YouthTwins.ignoreUntil");
-		var now = new Date();		
+		Foxtrick.localGet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".lastResponse", function (saved){
+			Foxtrick.localGet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".ignoreUntil", function (ignoreUntil){
+				var now = new Date();
 
-		if(ignoreUntil === null)
-			ignoreUntil == -1;
+				if(ignoreUntil === null)
+					ignoreUntil == -1;
 
-		//noting saved, probably a fresh install, force request
-		if(saved === null && (ignoreUntil == -1 || now.getTime() > ignoreUntil)){
-			Foxtrick.log("YouthTwins: lastResponse is null  ... Updating from HY");
-			getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
-		}		
-		else {
-			try {
-				var json = JSON.parse( saved );
-				var fetchTime = parseInt(json.fetchTime)*1000;
-				var lifeTime = parseInt(json.lifeTime)*1000;
-			} catch(e) {
-				//something might be wrong with the saved result, force an update
-				Foxtrick.log("YouthTwins: corrupted saved JSON", e, saved);
-				//possible emergency fix, forceReload from HY
-				//getTwinsFromHY(teamid, true, false, "auto", handleHyResponse);
-				return;
-			}
-			var expireTime = fetchTime + lifeTime;
-			var fetchDate = new Date();
-			fetchDate.setTime(fetchTime);
-			var expireDate = new Date();
-			expireDate.setTime(expireTime);
+				//noting saved, probably a fresh install, force request
+				if(saved === null && (ignoreUntil == -1 || now.getTime() > ignoreUntil)){
+					Foxtrick.log("YouthTwins: lastResponse is null  ... Updating from HY");
+					getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
+				}		
+				else {
+					try {
+						var json = JSON.parse( saved );
+						var fetchTime = parseInt(json.fetchTime)*1000;
+						var lifeTime = parseInt(json.lifeTime)*1000;
+					} catch(e) {
+						//something might be wrong with the saved result, force an update
+						Foxtrick.log("YouthTwins: corrupted saved JSON", e, saved);
+						return;
+					}
+					var expireTime = fetchTime + lifeTime;
+					var fetchDate = new Date();
+					fetchDate.setTime(fetchTime);
+					var expireDate = new Date();
+					expireDate.setTime(expireTime);
 
-			//see if the saved information is still valid
-			var playerInfos = doc.getElementsByClassName("playerInfo");
-			var valid = true;
+					//see if the saved information is still valid
+					var playerInfos = doc.getElementsByClassName("playerInfo");
+					var valid = true;
 
-			for(var i = 0; i < playerInfos.length; i++){
-				var playerID =  playerInfos[i].getElementsByTagName("a")[0].href.match(/YouthPlayerID=(\d+)/i)[1];
-				if(typeof(json.players[playerID]) !== "object")
-					valid = false;
-			}
-			Foxtrick.log("YouthTwins: Team is valid:", valid);
-			
-			//when we need to force a request due to HY request or so
-			if(false){
-				Foxtrick.log("YouthTwins: Forcing request:", valid);
-				getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
-				return;
-			}
-			//query HY or use cached stuff and alter the site
-			if(now.getTime() > fetchTime && now.getTime() <= fetchTime + lifeTime){
-				//in valid lifespan, also saved response seems to be valid
-				Foxtrick.log("YouthTwins: Using cached response from", fetchDate.toUTCString(),"expires", expireDate.toUTCString(),"now", (new Date()).toUTCString());
-				handleHyResponse(saved, 200);
-			} else if(now > fetchTime + lifeTime) {
-				if(ignoreUntil != -1 && now < ignoreUntil){
-					var until = new Date();
-					until.setTime(ignoreUntil);
-					Foxtrick.log("YouthTwins: Ignoring due to HY request until", until.toUTCString());
-					return;
+					for(var i = 0; i < playerInfos.length; i++){
+						var playerID =  playerInfos[i].getElementsByTagName("a")[0].href.match(/YouthPlayerID=(\d+)/i)[1];
+						if(typeof(json.players[playerID]) !== "object")
+							valid = false;
+					}
+					Foxtrick.log("YouthTwins: Team is valid:", valid);
+					
+					//when we need to force a request due to HY request or so
+					if(false){
+						Foxtrick.log("YouthTwins: Forcing request:", valid);
+						getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
+						return;
+					}
+					//query HY or use cached stuff and alter the site
+					if(now.getTime() > fetchTime && now.getTime() <= fetchTime + lifeTime){
+						//in valid lifespan, also saved response seems to be valid
+						Foxtrick.log("YouthTwins: Using cached response from", fetchDate.toUTCString(),"expires", expireDate.toUTCString(),"now", (new Date()).toUTCString());
+						handleHyResponse(saved, 200);
+					} else if(now > fetchTime + lifeTime) {
+						if(ignoreUntil != -1 && now < ignoreUntil){
+							var until = new Date();
+							until.setTime(ignoreUntil);
+							Foxtrick.log("YouthTwins: Ignoring due to HY request until", until.toUTCString());
+							return;
+						}
+						//saved data is valid, plain request should suffice
+						Foxtrick.log("YouthTwins: Lifetime expired, updating from HY");
+						//teamid, forceUpdate, debug, usertype, response
+						getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
+					
+					} else 
+						Foxtrick.log("Dear time traveler, we welcome you!");	
 				}
-				//saved data is valid, plain request should suffice
-				Foxtrick.log("YouthTwins: Lifetime expired, updating from HY");
-				//teamid, forceUpdate, debug, usertype, response
-				getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
-			
-			} else 
-				Foxtrick.log("Dear time traveler, we welcome you!");	
-		}
+			});
+		});
+		
 	}
 };
