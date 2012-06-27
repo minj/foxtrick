@@ -56,54 +56,11 @@
 		var header = doc.getElementById("header"); 
 		var page = doc.getElementById("page"); 
 
-		if (lb)
-			Foxtrick.addClass(lb,'out');
-		if (rb)
-			Foxtrick.addClass(rb,'out');
-		if (header)
-			Foxtrick.addClass(page,'out');
-		Foxtrick.onClick(cb, function(ev){
-			select("center");
-		});
-
-						
 		var header = doc.getElementById("header");
 		var menu = doc.getElementById("menu");
 		var mobile_header = doc.createElement('div');
 		mobile_header.id = 'mobile_header';
 		header.parentNode.insertBefore(mobile_header, header.nextSibling);
-		
-		var mobile_header_left = doc.createElement('div');
-		mobile_header_left.id = 'mobile_header_left';
-		mobile_header_left.textContent = " LB ";
-		Foxtrick.onClick(mobile_header_left, function(ev){
-			select("left");
-		});
-		mobile_header.appendChild(mobile_header_left);
-				
-		var mobile_header_left_main = doc.createElement('div');
-		mobile_header_left_main.id = 'mobile_header_left_main';
-		mobile_header_left_main.textContent = " Mn ";
-		Foxtrick.onClick(mobile_header_left_main, function(ev){
-			select("center");
-		});
-		mobile_header.appendChild(mobile_header_left_main);
-
-		var mobile_header_right_header = doc.createElement('div');
-		mobile_header_right_header.id = 'mobile_header_right_header';
-		mobile_header_right_header.textContent = " Tp ";
-		Foxtrick.onClick(mobile_header_right_header, function(ev){
-			select("header");
-		});
-		mobile_header.appendChild(mobile_header_right_header);
-
-		var mobile_header_right = doc.createElement('div');
-		mobile_header_right.id = 'mobile_header_right';
-		mobile_header_right.textContent = " RB ";
-		Foxtrick.onClick(mobile_header_right, function(ev){
-			select("right");
-		});
-		mobile_header.appendChild(mobile_header_right);
 		
 		var mobile_header_center = doc.createElement('div');
 		mobile_header_center.id = 'mobile_header_center';
@@ -122,12 +79,56 @@
 		a.textContent = "Menu";
 		mobile_header_center_tab.appendChild(a);
 		mobile_header_center.appendChild(mobile_header_center_tab);
-		
-		var as = menu.getElementsByTagName('a');
-		for (var i=0;i<as.length;++i){
-				as[i].setAttribute("tabindex",Number(i+1));
-		}
 
+		// attach a handler to the element's swipe event		
+		Foxtrick.jester(cb,{swipeDistance:40})
+				.swipe(function(touches,swipeDirection){
+			Foxtrick.log("swipe",{swipeDirection:swipeDirection});
+			if (swipeDirection.left)
+				select("right")
+			else if (swipeDirection.right)
+				select("left")
+		});
+		Foxtrick.jester(mobile_header,{swipeDistance:5})
+				.swipe(function(touches,swipeDirection){
+			Foxtrick.log("swipe",{swipeDirection:swipeDirection});
+			if (swipeDirection.down)
+				select("header")
+		});
+		Foxtrick.jester(lb,{swipeDistance:10, preventDefault:true})
+				.swipe(function(touches,swipeDirection){
+			Foxtrick.log("swipe",{swipeDirection:swipeDirection});
+			if (swipeDirection.left)
+				select("center")
+		});
+		Foxtrick.jester(rb,{swipeDistance:10, preventDefault:true})
+				.swipe(function(touches,swipeDirection){
+			Foxtrick.log("swipe",{swipeDirection:swipeDirection});
+			if (swipeDirection.right)
+				select("center")
+		});
+		Foxtrick.jester(header,{swipeDistance:10, preventDefault:true})
+				.swipe(function(touches,swipeDirection){
+			Foxtrick.log("swipe",{swipeDirection:swipeDirection});
+			if (swipeDirection.up)
+				select("center")
+		});
+		/*Foxtrick.jester(mobile_header)
+				.tab(function(touches){
+			Foxtrick.log("tab");
+			select("center")
+		});*/
+	
+		if (lb)
+			Foxtrick.addClass(lb,'out');
+		if (rb)
+			Foxtrick.addClass(rb,'out');
+		if (header)
+			Foxtrick.addClass(page,'out');
+		Foxtrick.onClick(cb, function(ev){
+			select("center");
+		});
+		
 		if (!Foxtrick.isLoginPage(doc))
 			select("center");
 

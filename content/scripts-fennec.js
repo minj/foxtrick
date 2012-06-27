@@ -17,6 +17,7 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 
 		//<!-- essential stuffs -->
 		messageManager.loadFrameScript("chrome://foxtrick/content/env.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/env-fennec.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/prefs.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/l10n.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/xml-load.js", true);
@@ -47,9 +48,10 @@ Foxtrick.loader.gecko.fennecScriptInjection = function(event) {
 		messageManager.loadFrameScript("chrome://foxtrick/content/util/time.js", true);
 
 		//<!-- external libraries -->
-		messageManager.loadFrameScript("chrome://foxtrick/content/lib/jquery.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/lib/oauth.js", true);
 		messageManager.loadFrameScript("chrome://foxtrick/content/lib/sha1.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/lib/jquery.js", true);
+		messageManager.loadFrameScript("chrome://foxtrick/content/lib/jester.js", true);
 
 		//<!-- core modules -->
 		messageManager.loadFrameScript("chrome://foxtrick/content/redirections.js", true);
