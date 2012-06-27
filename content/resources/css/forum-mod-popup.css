@@ -2,29 +2,29 @@
 
 html[dir="ltr"] .ft-moderator-popup-align {
 	float:right;
-	margin-right: 4px; 
+	margin-right: 10px;
 }
 html[dir="rtl"] .ft-moderator-popup-align {
 	float: left;
-	margin-left: 4px;
+	margin-left: 10px;
 }
 
 html[data-theme="simple"] .ft-moderator-popup {
 	background-color: #ffcc00;
-	position: relative; 
-	top: -28px; 
+	position: relative;
 	z-index: 99;
 	border: 1px solid black;
 	padding: 0px 8px 0px 8px;
+	margin-top: -28px ;
 }
 
 html[data-theme="standard"] .ft-moderator-popup {
 	background-color: #ffcc00;
-	position: relative; 
-	top: -33px; 
+	position: relative;
 	z-index: 99;
 	border: 1px solid black;
 	padding: 2px 8px 2px 8px;
+	margin-top: -22px;
 }
 
 }

@@ -12,15 +12,20 @@ Foxtrick.modules["ForumModeratorPopup"]={
 	run : function(doc) {
 		var modoption = doc.getElementById("cfModFunctions");
 		if(modoption) {			
-			var content = doc.getElementById("ctl00_ctl00_CPContent_pnlScrollContent");
+			var content = doc.getElementById("mainWrapper");
+			var header = content.getElementsByClassName("boxHead")[0];
 			var popupdiv = Foxtrick.createFeaturedElement(doc, this, "div");
 			Foxtrick.addClass(popupdiv, "ft-pop-up-container");
 			Foxtrick.addClass(popupdiv, "ft-moderator-popup");
 			Foxtrick.addClass(popupdiv, "ft-moderator-popup-align");
 			var lnk = doc.createTextNode(  Foxtrickl10n.getString('ForumModeratorPopup.toModerate') ); 
 			popupdiv.appendChild(lnk);
-			
-			content.insertBefore(popupdiv, content.firstChild);
+			header.appendChild(popupdiv);
+
+			var clear = doc.createElement("div");
+			Foxtrick.addClass(clear, "ft-clear-both");
+			header.parentNode.insertBefore(clear, doc.getElementById("mainBody"));
+
 
 			var ul = doc.createElement("ul");
 			Foxtrick.addClass(ul, "ft-pop right");
