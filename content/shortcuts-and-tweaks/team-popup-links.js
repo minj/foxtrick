@@ -355,17 +355,11 @@ Foxtrick.modules["TeamPopupLinks"]={
 
 					var mainBody = doc.getElementById('mainBody');
 
-					if (hasScroll) {
-						var pT = Foxtrick.GetElementPosition(org_link,mainBody)['top'] - mainBody.scrollTop;
-						if (pT < mainBody.offsetHeight/2) {// = popdown
-							var more = list.removeChild(list.lastChild);
-							list.insertBefore(more, list.firstChild);
-							var down=true;
-						}
-					} else if(FoxtrickPrefs.isModuleEnabled("HeaderFix")){
-						var pT = Foxtrick.GetElementPosition(org_link, mainBody)['top'];
-						if(pT - doc.body.scrollTop < 300)
-							var down=true;
+					var pT = Foxtrick.GetElementPosition(org_link,mainBody)['top'];
+					if ( hasScroll && (pT  - mainBody.scrollTop < mainBody.offsetHeight/2)  || pT - doc.body.scrollTop < 300) {// = popdown
+						var more = list.removeChild(list.lastChild);
+						list.insertBefore(more, list.firstChild);
+						var down=true;
 					}
 
 					if (!down)
