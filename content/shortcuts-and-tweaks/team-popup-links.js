@@ -263,6 +263,8 @@ Foxtrick.modules["TeamPopupLinks"]={
 						return FoxtrickPrefs.getBool("module.TeamPopupLinks." + option + "." + (more ? "more" : "default"));
 					};
 
+					var show_less_more = false;
+
 					if (owntopteamlinks) {
 						// own team's link at the top of the page
 						var ownLinks = [ "Matches", "Players" ];
@@ -283,6 +285,9 @@ Foxtrick.modules["TeamPopupLinks"]={
 									userid, username, links[link].ownLink,
 									links[link].linkByTeam, links[link].linkByUser,
 									links[link].linkByUserName);
+							} else {
+								if(isEnabledWithinContext(link, !show_more))
+									show_less_more = true;
 							}
 						}
 
@@ -328,19 +333,22 @@ Foxtrick.modules["TeamPopupLinks"]={
 							}
 						}
 
-						var item = doc.createElement("li");
-						var link = doc.createElement("a");
-						if (!show_more) {
-							link.setAttribute('more', 'true');
-							link.textContent = Foxtrickl10n.getString('more');
+						if(show_less_more){
+							var item = doc.createElement("li");
+							var link = doc.createElement("a");
+							if (!show_more) {
+								link.setAttribute('more', 'true');
+								link.textContent = Foxtrickl10n.getString('more');
+							}
+							else {
+								link.setAttribute('more', 'false');
+								link.textContent = Foxtrickl10n.getString('less');
+							}
+							Foxtrick.onClick(link, showPopup);
+							item.appendChild(link);
+							list.appendChild(item);
 						}
-						else {
-							link.setAttribute('more', 'false');
-							link.textContent = Foxtrickl10n.getString('less');
-						}
-						Foxtrick.onClick(link, showPopup);
-						item.appendChild(link);
-						list.appendChild(item);
+						
 					}
 
 					var mainBody = doc.getElementById('mainBody');
