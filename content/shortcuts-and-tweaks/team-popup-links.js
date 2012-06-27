@@ -356,7 +356,7 @@ Foxtrick.modules["TeamPopupLinks"]={
 					var mainBody = doc.getElementById('mainBody');
 
 					var pT = Foxtrick.GetElementPosition(org_link,mainBody)['top'];
-					if ( hasScroll && (pT  - mainBody.scrollTop < mainBody.offsetHeight/2)  || pT - doc.body.scrollTop < 300) {// = popdown
+					if ( (hasScroll && (pT  - mainBody.scrollTop < mainBody.offsetHeight/2))  || pT - doc.body.scrollTop < 300) {// = popdown
 						var more = list.removeChild(list.lastChild);
 						list.insertBefore(more, list.firstChild);
 						var down=true;
