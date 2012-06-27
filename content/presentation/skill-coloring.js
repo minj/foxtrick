@@ -225,10 +225,7 @@ Foxtrick.modules["SkillColoring"]={
 			if (details) {
 				var tds = details.getElementsByTagName('td');
 				for (var i = 0, td; td = tds[i]; ++i){
-					if (Foxtrick.hasClass(td, 'type')) continue;
-					if (td.getElementsByTagName('span')[0]) {//Foxtrick.log('reject:'+JSON.stringify(td.innerHTML));
-					continue;}
-					//Foxtrick.log(JSON.stringify());
+					if (Foxtrick.hasClass(td, 'type') || td.getElementsByTagName('span')[0]) continue;
 					var s_name = td.textContent.trim();
 					var percentImage = td.getElementsByTagName('img')[0];
 					var s_level = (percentImage) ? percentImage.title.match(/\d+/) : Foxtrickl10n.getLevelFromText(s_name);
