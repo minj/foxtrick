@@ -494,7 +494,7 @@ Foxtrick.modules["ForumChangePosts"]={
 
 				if (isArchive) {
 					var copy_link = copy_posting_link_archive.cloneNode(true);
-					Foxtrick.listen(copy_link, copy_posting_to_clipboard);
+					Foxtrick.onClick(copy_link, copy_posting_to_clipboard);
 					var footer_left = footer.getElementsByTagName('div')[0];
 					footer_left.insertBefore(copy_link,footer_left.firstChild);
 				}
