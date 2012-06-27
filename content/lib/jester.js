@@ -310,7 +310,8 @@ Foxtrick.log("touchMove")
             };
 
             var touchEnd = function(evt) {
-
+				touches.event = evt;
+				
                 eventSet.execute("end", touches, evt);
 
                 if(opts.preventDefault) evt.preventDefault();

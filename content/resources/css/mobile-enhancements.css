@@ -4,7 +4,7 @@ div[class^="ad_"] {display: none !important;}
 
 #ctl00_ctl00_pnlMobileLink, #top, #footer {display:none !important;}
 
-#menu {
+.ft-mobile #menu {
 	right: -10px !important;
 	left: -10px !important;
 	height: auto !important;
@@ -13,7 +13,7 @@ div[class^="ad_"] {display: none !important;}
 	font-size: 1.1em !important;
 	bottom: 24px !important;
 }
-#menu a {
+.ft-mobile #menu a {
 	border-bottom: 1px solid #176F21;
 	border-top: 1px solid #479F51;
 	margin: 0px !important;
@@ -22,6 +22,7 @@ div[class^="ad_"] {display: none !important;}
 	height: auto !important;
 	line-height: inherit !important;	
 }
+
 #mobile_header_center {
 	background-color: #277F31;
 	position: relative;
@@ -67,16 +68,18 @@ div[class^="ad_"] {display: none !important;}
 	transition: .5s top ease;
 }
 
-.mainWrapperRegular, .mainWrapperConf, .mainWrapperFull {float:none !important;}
+.ft-mobile .mainWrapperRegular, .ft-mobile .mainWrapperConf, .ft-mobile .mainWrapperFull {float:none !important;}
 
 #mobile_header {height: 30px; position:relative;}
 #mobile_header_left, #mobile_header_left_main {float: left;}
 #mobile_header_right, #mobile_header_right_header {float:right;}
 
 
-.hattrick, .hattrickNoSupporter, #page, .mainWrapperRegular, .mainWrapperConf, .main {width:440px !important;}
-.hattrick, .hattrickNoSupporter {position:relative;}
-#page {
+.hattrick.ft-mobile , .hattrickNoSupporter.ft-mobile , .ft-mobile #page,
+.ft-mobile .mainWrapperRegular, .ft-mobile .mainWrapperConf, .ft-mobile .main 
+{width:440px !important;}
+.hattrick.ft-mobile , .hattrickNoSupporter.ft-mobile  {position:relative;}
+.ft-mobile #page {
 	padding: 0px !important; 
 	position:relative; 
 	top:0px; 
@@ -84,8 +87,9 @@ div[class^="ad_"] {display: none !important;}
 	-webkit-transition: .5s top ease;
 	transition: .5s top ease;
 }
-#sidebar, .subMenu, .subMenuConf  {position:absolute; background-color:white; border: 2px solid #849D84; padding: 2px;}
-#header {
+.ft-mobile #sidebar, .ft-mobile .subMenu, .ft-mobile .subMenuConf  
+{position:absolute; background-color:white; border: 2px solid #849D84; padding: 2px;}
+.ft-mobile #header {
 	z-index: 10030;
 	position:absolute !important;
 	background-color:white;
@@ -95,43 +99,46 @@ div[class^="ad_"] {display: none !important;}
 	-webkit-transition: .5s top ease;
 	transition: .5s top ease;
 }
-#logo, #stageLogo {left:0px !important;	top:0px !important;}
-#sidebar  {
+.ft-mobile #logo, .ft-mobile #stageLogo 
+{left:0px !important;	top:0px !important;}
+.ft-mobile #sidebar  {
 	z-index: 10010;
 	right: 0px;
 	-moz-transition: .5s right ease;
 	-webkit-transition: .5s right ease;
 	transition: .5s right ease;
 }
-.subMenu, .subMenuConf  {
+.ft-mobile .subMenu, .ft-mobile .subMenuConf  {
 	z-index: 10010;
 	left: 0px;
  	-moz-transition: .5s left ease;
 	-webkit-transition: .5s left ease;
 	transition: .5s left ease;
 }
-.subMenu.out {left: -135px;}
-.subMenuConf.out {left: -235px;}
-#sidebar.out {
+.ft-mobile .subMenu.out {left: -135px;}
+.ft-mobile .subMenuConf.out {left: -235px;}
+.ft-mobile #sidebar.out {
 	right: -190px;
 }
-#page.out {top: -108px;}
-#mobile_header, #content, #bottom {
+.ft-touch-available.ft-mobile #page.out {top: -108px;}
+.ft-mobile #mobile_header, .ft-mobile #content, .ft-mobile #bottom {
 	top: 107px;
 	position: relative;
 	background-color:white;
 }
- #content {
+.ft-mobile #content {
 	margin-bottom:0px !important; 
 	padding-top:0px !important;
 	border-right: solid 1px #DDD;
 	border-left: solid 1px #DDD;
+}
+.ft-touch-available.ft-mobile #content {
 	overflow:hidden;
 }
- #bottom {
+.ft-mobile #bottom {
 	border-right: solid 1px #DDD;
 	border-left: solid 1px #DDD;
 	border-bottom: solid 1px #DDD;
 }
-.fplLongThreadName {width:145px !important;}
+.ft-mobile .fplLongThreadName {width:145px !important;}
 }

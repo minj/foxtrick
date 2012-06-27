@@ -55,7 +55,8 @@
 		var rb = doc.getElementById("sidebar");
 		var header = doc.getElementById("header"); 
 		var page = doc.getElementById("page"); 
-
+		var hattrick = doc.getElementsByClassName("hattrick")[0] || doc.getElementsByClassName("hattrickNoSupporter")[0];
+		
 		var header = doc.getElementById("header");
 		var menu = doc.getElementById("menu");
 		var mobile_header = doc.createElement('div');
@@ -80,45 +81,75 @@
 		mobile_header_center_tab.appendChild(a);
 		mobile_header_center.appendChild(mobile_header_center_tab);
 
-		// attach a handler to the element's swipe event		
-		Foxtrick.jester(cb,{swipeDistance:40})
-				.swipe(function(touches,swipeDirection){
-			Foxtrick.log("swipe",{swipeDirection:swipeDirection});
-			if (swipeDirection.left)
-				select("right")
-			else if (swipeDirection.right)
-				select("left")
-		});
-		Foxtrick.jester(mobile_header,{swipeDistance:5})
-				.swipe(function(touches,swipeDirection){
-			Foxtrick.log("swipe",{swipeDirection:swipeDirection});
-			if (swipeDirection.down)
-				select("header")
-		});
-		Foxtrick.jester(lb,{swipeDistance:10, preventDefault:true})
-				.swipe(function(touches,swipeDirection){
-			Foxtrick.log("swipe",{swipeDirection:swipeDirection});
-			if (swipeDirection.left)
+		try {
+			// attach a handler to the element's swipe event		
+			if (cb)
+			Foxtrick.jester(cb,{swipeDistance:40})
+					.swipe(function(touches,swipeDirection){
+				Foxtrick.log("swipe",{swipeDirection:swipeDirection});
+				if (swipeDirection.left) {
+					select("right");
+					touches.event.preventDefault();
+				}
+				else if (swipeDirection.right) {
+					select("left")
+					touches.event.preventDefault();
+				}
+			});
+			if (mobile_header)
+			Foxtrick.jester(mobile_header,{swipeDistance:5})
+					.swipe(function(touches,swipeDirection){
+				Foxtrick.log("swipe",{swipeDirection:swipeDirection});
+				if (swipeDirection.down) {
+					select("header")
+					touches.event.preventDefault();
+				}
+			});
+			if (lb)
+			Foxtrick.jester(lb,{swipeDistance:10})
+					.swipe(function(touches,swipeDirection){
+				Foxtrick.log("swipe",{swipeDirection:swipeDirection});
+				if (swipeDirection.left) {
+					select("center")
+					touches.event.preventDefault();
+				}
+			});
+			if (rb)
+			Foxtrick.jester(rb,{swipeDistance:10})
+					.swipe(function(touches,swipeDirection){
+				Foxtrick.log("swipe",{swipeDirection:swipeDirection});
+				if (swipeDirection.right) {
+					select("center")
+					touches.event.preventDefault();
+				}
+			});
+			if (header)
+			Foxtrick.jester(header,{swipeDistance:10})
+					.swipe(function(touches,swipeDirection){
+				Foxtrick.log("swipe",{swipeDirection:swipeDirection});
+				if (swipeDirection.up) {
+					select("center")
+					touches.event.preventDefault();
+				}
+			});
+			/*Foxtrick.jester(header,{swipeDistance:10})
+					.swipe(function(touches,swipeDirection){
+				Foxtrick.log("swipe",{swipeDirection:swipeDirection});
+				if (swipeDirection.up) {
+					select("center")
+					touches.evt.preventDefault();
+				}
+			});*/
+			/*Foxtrick.jester(mobile_header)
+					.tab(function(touches){
+				Foxtrick.log("tab");
 				select("center")
-		});
-		Foxtrick.jester(rb,{swipeDistance:10, preventDefault:true})
-				.swipe(function(touches,swipeDirection){
-			Foxtrick.log("swipe",{swipeDirection:swipeDirection});
-			if (swipeDirection.right)
-				select("center")
-		});
-		Foxtrick.jester(header,{swipeDistance:10, preventDefault:true})
-				.swipe(function(touches,swipeDirection){
-			Foxtrick.log("swipe",{swipeDirection:swipeDirection});
-			if (swipeDirection.up)
-				select("center")
-		});
-		/*Foxtrick.jester(mobile_header)
-				.tab(function(touches){
-			Foxtrick.log("tab");
-			select("center")
-		});*/
-	
+			});*/
+			Foxtrick.addClass(hattrick,"ft-touch-available");
+		} catch(e) {
+			Foxtrick.log("no touch events")
+		}
+		
 		if (lb)
 			Foxtrick.addClass(lb,'out');
 		if (rb)
@@ -132,6 +163,7 @@
 		if (!Foxtrick.isLoginPage(doc))
 			select("center");
 
+		Foxtrick.addClass(hattrick,"ft-mobile");
 		this.setMetaViewport(doc, "440");
 	},
 
