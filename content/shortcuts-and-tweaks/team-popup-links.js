@@ -362,6 +362,10 @@ Foxtrick.modules["TeamPopupLinks"]={
 							list.insertBefore(more, list.firstChild);
 							var down=true;
 						}
+					} else if(FoxtrickPrefs.isModuleEnabled("HeaderFix")){
+						var pT = Foxtrick.GetElementPosition(org_link, mainBody)['top'];
+						if(pT - doc.body.scrollTop < 300)
+							var down=true;
 					}
 
 					if (!down)

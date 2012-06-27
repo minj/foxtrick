@@ -39,14 +39,14 @@ html[data-theme="simple"] ul.ft-popup-list {
 }
 
 html[dir="ltr"] ul.ft-popup-list {
-	right: 0px;
-	left: initial;
-	left: -moz-initial;
-}
-html[dir="rtl"] ul.ft-popup-list {
-	left: 0px;
+	left:  -10px;
 	right: initial;
 	right: -moz-initial;
+}
+html[dir="rtl"] ul.ft-popup-list {
+	right: -10px;
+	left: initial;
+	left: -moz-initial;
 }
 
 /* just not in messages*/
