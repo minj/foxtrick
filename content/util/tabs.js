@@ -176,7 +176,12 @@ Foxtrick.util.tabs.tabify = function(doc){
 		if(Foxtrick.hasClass(h2s[i], "info"))
 			continue;
 
-		var label = h2s[i].textContent.replace(/[^\w\d]/g, "_");
+		var hash = function(e){for(var r=0,i=0;i<e.length;i++)r=(r<<5)-r+e.charCodeAt(i),r&=r;return r};
+
+		var label = "tabified:" + hash(h2s[i].textContent);
+
+
+		//var label = h2s[i].textContent.replace(/[^\w\d]/g, "_");
 		if(doc.getElementById("tab-" + label + "-handle"))
 			continue;
 
