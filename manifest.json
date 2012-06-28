@@ -240,7 +240,7 @@
 		"https://vimeo.com/api/*",
 		"https://www.youtube.com/*",
 		"https://www.dailymotion.com/services/*",
-		"https://www.flickr.com/services/oembed/*",
+		"http://www.flickr.com/services/oembed/*",
 		"http://backend.deviantart.com/*",
 		"http://soundcloud.com/*",
 		"http://imageshack.us/*",
