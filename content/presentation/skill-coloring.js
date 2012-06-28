@@ -185,7 +185,7 @@ Foxtrick.modules["SkillColoring"]={
 			22 : "completely exaggerated",
 		},
 	},
-	addSkill : function(doc, el, type, htIndex, translate){					
+	addSkill : function(doc, el, type, htIndex, skill_number_translated, isProblemPage){					
 		
 		var skill = this.NAMES[type][htIndex];
 		var level, addNum = false;
@@ -193,23 +193,23 @@ Foxtrick.modules["SkillColoring"]={
 			level = this.NAMES[type].indexOf(htIndex);
 		else level = htIndex;
 
-		if ( ! FoxtrickPrefs.isModuleEnabled("PersonalityImages") || 
-			(type != 'gentleness' && type != 'honesty' && type != 'aggressiveness')
+		if ( (type != 'gentleness' && type != 'honesty' && type != 'aggressiveness') || 
+		     ! FoxtrickPrefs.isModuleEnabled("PersonalityImages")			
 		) addNum = true;
 		
-		if ( ! (addNum || translate)) return;
+		if ( ! (addNum || skill_number_translated)) return;
 
 		var n = doc.createElement('span');
 		Foxtrick.addClass(n,'ft-skill-number');
 		var t = doc.createElement('span');
 		Foxtrick.addClass(t,'ft-skill');
-		if ( (Foxtrick.isPage('players', doc) || Foxtrick.isPage('transferSearchResult', doc)) 
-		     && translate && (el.parentNode.nodeName == 'TD' || el.parentNode.parentNode.nodeName == 'TD' ))
+		if ( isProblemPage && skill_number_translated && 
+		(el.parentNode.nodeName == 'TD' || el.parentNode.parentNode.nodeName == 'TD' ))
 			t.appendChild(doc.createElement('br'));
-		n.textContent = (addNum && translate) ? ' ' + level : level;
+		n.textContent = (addNum && skill_number_translated) ? ' ' + level : level;
 
 		t.appendChild(doc.createTextNode(
-			(translate) ? ' (' + skill : ' ('
+			(skill_number_translated) ? ' (' + skill : ' ('
 		));
 		if (addNum) t.appendChild(n);
 		t.appendChild(doc.createTextNode(')'));
@@ -219,8 +219,12 @@ Foxtrick.modules["SkillColoring"]={
 	
 	run : function (doc) {
 		
-		var translate = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_number_translated");
-
+		var skill_number_translated = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_number_translated");
+		var skill_color = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_color");
+		var only_skill_color = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "only_skill_color");
+		var no_colors = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "no_colors");
+		var skill_number = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_number");
+		var skill_select = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_select");
 		var playerDetailsChange = function (ev) { 
 			//Foxtrick.log('playerDetailsChange')
 
@@ -236,30 +240,29 @@ Foxtrick.modules["SkillColoring"]={
 					if (percentImage) td.appendChild(doc.createTextNode('\u00a0'));
 					var newLink = doc.createElement('a');
 					Foxtrick.addClass(newLink, 'ft-skill');
-					if( ! FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_color") &&
-						! FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "only_skill_color")
-						|| FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "no_colors")
+					if( ! skill_color &&
+						! only_skill_color
+						|| no_colors
 					)
 						Foxtrick.addClass(newLink, 'ft-skill-dont-touch');
 					newLink.textContent = s_name;
 					newLink.href = '/Help/Rules/AppDenominations.aspx?lt=skill&ll=' + s_level + '#skill';
 					td.appendChild(newLink);
-					if(translate) translate = !percentImage; // to prevent overflow
-					Foxtrick.modules["SkillColoring"].addSkill(doc, newLink, 'skill', s_level, translate);
+					if(skill_number_translated) skill_number_translated = !percentImage; // to prevent overflow
+					Foxtrick.modules["SkillColoring"].addSkill(doc, newLink, 'skill', s_level, skill_number_translated, false);
 				}
 			}
 		};
 
 		// add skillnumbers to the dynamically filled player details div on the lineup page
 		if ( Foxtrick.isPage('matchOrder', doc) && 
-			(FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_number") || translate)
+			(FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_number") || skill_number_translated)
 		)
 		{
 			Foxtrick.addMutationEventListener(doc.getElementById('details'), "DOMNodeInserted", playerDetailsChange, false);
 		}
 		
-		if ( Foxtrick.isPage('transferSearchForm', doc) && 
-			FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_select") )
+		if ( Foxtrick.isPage('transferSearchForm', doc) &&	skill_select )
 		{
 			var skills = doc.getElementById('mainBody').querySelectorAll('select[id*="Skill"][id$="Min"]>option, select[id*="Skill"][id$="Max"]>option');
 			for (var i = 0, skill; skill = skills[i]; ++i){
@@ -271,14 +274,15 @@ Foxtrick.modules["SkillColoring"]={
 			}
 		}
 		
-		if ( FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_number") || translate){		
+		if ( skill_number || skill_number_translated){
+			var isProblemPage = (Foxtrick.isPage('players', doc) || Foxtrick.isPage('transferSearchResult', doc)); 		
 			var links = doc.getElementsByTagName('a');
 			for (var i = 0, link; link = links[i]; ++i){
 				var e = new RegExp(/\/Help\/Rules\/AppDenominations\.aspx\?lt=\w+&ll=(\d+)#(\w+)/);
 				if (e.test(link.href)){
 					var r = link.href.match(e), type = r[2], htIndex = r[1];
 					
-					this.addSkill(doc, link, type, htIndex, translate);
+					this.addSkill(doc, link, type, htIndex, skill_number_translated, isProblemPage);
 										
 				}
 			}
