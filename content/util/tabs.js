@@ -24,6 +24,7 @@ Foxtrick.util.tabs.initialize = function(doc){
 		header.parentNode.insertBefore(tabs, contentNode);
 	}
 	contentNode = doc.getElementById("tab").nextSibling;
+
 	//mark everything that's already there as main tab content
 	while(contentNode){
 		if(contentNode.nodeType != Foxtrick.NodeTypes.TEXT_NODE){
@@ -176,15 +177,19 @@ Foxtrick.util.tabs.tabify = function(doc){
 		if(Foxtrick.hasClass(h2s[i], "info"))
 			continue;
 
+		//label links the tab handle and all the elements
 		var hash = function(e){for(var r=0,i=0;i<e.length;i++)r=(r<<5)-r+e.charCodeAt(i),r&=r;return r};
-
 		var label = "tabified:" + hash(h2s[i].textContent);
 
-
-		//var label = h2s[i].textContent.replace(/[^\w\d]/g, "_");
+		//tab already present
 		if(doc.getElementById("tab-" + label + "-handle"))
 			continue;
 
+		//don't re-tabify custom headers
+		if(!Foxtrick.hasAttributeValue(h2s[i].parentNode, "tabs", "tab-main"))
+			continue;
+			
+		//add handle and convert h2 content to tab
 		Foxtrick.util.tabs.addHandle(doc, h2s[i].textContent, null, "tab-" + label);
 		Foxtrick.util.tabs._addH2ToTab(doc, h2s[i], "tab-" + label);
 		
