@@ -367,9 +367,10 @@ Foxtrick.modules["TeamPopupLinks"]={
 					else
 						Foxtrick.addClass(list, "ft-popup-list-down");
 
-					if (Foxtrick.hasClass(org_link.parentNode.lastChild, "ft-popup-list"))
-						org_link.parentNode.removeChild(org_link.parentNode.lastChild);
-					org_link.parentNode.appendChild(list);
+					if (org_link.parentNode.getElementsByClassName("ft-popup-list")[0])
+						org_link.parentNode.removeChild(org_link.parentNode.getElementsByClassName("ft-popup-list")[0]);
+					
+					org_link.parentNode.insertBefore(list, org_link);
 				};
 				Foxtrick.listen(aLink, "mouseover", showPopup, false);
 				span.appendChild(aLink);

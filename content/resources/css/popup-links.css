@@ -39,12 +39,12 @@ html[data-theme="simple"] ul.ft-popup-list {
 }
 
 html[dir="ltr"] ul.ft-popup-list {
-	left:  -10px;
+	left:  10px;
 	right: initial;
 	right: -moz-initial;
 }
 html[dir="rtl"] ul.ft-popup-list {
-	right: -10px;
+	right: 10px;
 	left: initial;
 	left: -moz-initial;
 }
