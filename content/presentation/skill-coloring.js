@@ -225,6 +225,7 @@ Foxtrick.modules["SkillColoring"]={
 		var no_colors = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "no_colors");
 		var skill_number = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_number");
 		var skill_select = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_select");
+		
 		var playerDetailsChange = function (ev) { 
 			//Foxtrick.log('playerDetailsChange')
 
@@ -240,10 +241,7 @@ Foxtrick.modules["SkillColoring"]={
 					if (percentImage) td.appendChild(doc.createTextNode('\u00a0'));
 					var newLink = doc.createElement('a');
 					Foxtrick.addClass(newLink, 'ft-skill');
-					if( ! skill_color &&
-						! only_skill_color
-						|| no_colors
-					)
+					if( ! skill_color && ! only_skill_color || no_colors)
 						Foxtrick.addClass(newLink, 'ft-skill-dont-touch');
 					newLink.textContent = s_name;
 					newLink.href = '/Help/Rules/AppDenominations.aspx?lt=skill&ll=' + s_level + '#skill';
@@ -255,15 +253,11 @@ Foxtrick.modules["SkillColoring"]={
 		};
 
 		// add skillnumbers to the dynamically filled player details div on the lineup page
-		if ( Foxtrick.isPage('matchOrder', doc) && 
-			(FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_number") || skill_number_translated)
-		)
-		{
+		if ( Foxtrick.isPage('matchOrder', doc) && (skill_number || skill_number_translated)){
 			Foxtrick.addMutationEventListener(doc.getElementById('details'), "DOMNodeInserted", playerDetailsChange, false);
 		}
 		
-		if ( Foxtrick.isPage('transferSearchForm', doc) &&	skill_select )
-		{
+		if (Foxtrick.isPage('transferSearchForm', doc) &&	skill_select){
 			var skills = doc.getElementById('mainBody').querySelectorAll('select[id*="Skill"][id$="Min"]>option, select[id*="Skill"][id$="Max"]>option');
 			for (var i = 0, skill; skill = skills[i]; ++i){
 				if (skill.value != -1){
@@ -274,7 +268,7 @@ Foxtrick.modules["SkillColoring"]={
 			}
 		}
 		
-		if ( skill_number || skill_number_translated){
+		if (skill_number || skill_number_translated){
 			var isProblemPage = (Foxtrick.isPage('players', doc) || Foxtrick.isPage('transferSearchResult', doc)); 		
 			var links = doc.getElementsByTagName('a');
 			for (var i = 0, link; link = links[i]; ++i){
