@@ -14,6 +14,7 @@ Foxtrick.modules["SkillColoring"]={
 		"no_colors",
 		"skill_number",
 		"skill_number_translated",
+		"skill_translated_title",
 		"skill_select",
 	],
 	OPTIONS_CSS : [
@@ -22,6 +23,7 @@ Foxtrick.modules["SkillColoring"]={
 		Foxtrick.InternalPath+"resources/skillcolors/no-colors.css",
 		Foxtrick.InternalPath+"resources/skillcolors/skill-number.css",
 		Foxtrick.InternalPath+"resources/skillcolors/skill-number.css",
+		null,
 		Foxtrick.InternalPath+"resources/skillcolors/skill-number-selectoption.css",
 	],
 
@@ -185,19 +187,24 @@ Foxtrick.modules["SkillColoring"]={
 			22 : "completely exaggerated",
 		},
 	},
-	addSkill : function(doc, el, type, htIndex, skill_number_translated, isProblemPage){					
+	addSkill : function(doc, el, type, htIndex, skill_number_translated, skill_translated_title, isProblemPage){					
 		
 		var skill = this.NAMES[type][htIndex];
 		var level, addNum = false;
 		if ( ! (this.NAMES[type] instanceof Array))
-			level = this.NAMES[type].indexOf(htIndex);
-		else level = htIndex;
+			level = this.NAMES[type].indexOf(htIndex); //some HT skills follow weird patterns
+
+		else level = htIndex; 
+		if (skill_translated_title) { //add to title instead
+			skill_number_translated = false; 
+			el.setAttribute('title', skill) 
+		}	
 
 		if ( (type != 'gentleness' && type != 'honesty' && type != 'aggressiveness') || 
 		     ! FoxtrickPrefs.isModuleEnabled("PersonalityImages")			
-		) addNum = true;
-		
-		if ( ! (addNum || skill_number_translated)) return;
+		) addNum = true; //don't add number if we have PersonalityImages
+
+		if ( ! (addNum || skill_number_translated)) return; //nothing else to do here
 
 		var n = doc.createElement('span');
 		Foxtrick.addClass(n,'ft-skill-number');
@@ -205,7 +212,7 @@ Foxtrick.modules["SkillColoring"]={
 		Foxtrick.addClass(t,'ft-skill');
 		if ( isProblemPage && skill_number_translated && 
 		(el.parentNode.nodeName == 'TD' || el.parentNode.parentNode.nodeName == 'TD' ))
-			t.appendChild(doc.createElement('br'));
+			t.appendChild(doc.createElement('br')); //add a br to pages with small width
 		n.textContent = (addNum && skill_number_translated) ? ' ' + level : level;
 
 		t.appendChild(doc.createTextNode(
@@ -214,16 +221,16 @@ Foxtrick.modules["SkillColoring"]={
 		if (addNum) t.appendChild(n);
 		t.appendChild(doc.createTextNode(')'));
 		el.appendChild(t);
-		
 	},
 	
 	run : function (doc) {
 		
-		var skill_number_translated = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_number_translated");
 		var skill_color = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_color");
 		var only_skill_color = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "only_skill_color");
 		var no_colors = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "no_colors");
 		var skill_number = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_number");
+		var skill_number_translated = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_number_translated");
+		var skill_translated_title = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_translated_title");
 		var skill_select = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_select");
 		
 		var playerDetailsChange = function (ev) { 
@@ -233,37 +240,42 @@ Foxtrick.modules["SkillColoring"]={
 			if (details) {
 				var tds = details.getElementsByTagName('td');
 				for (var i = 0, td; td = tds[i]; ++i){
-					if (Foxtrick.hasClass(td, 'type') || td.getElementsByTagName('span')[0]) continue;
-					var s_name = td.textContent.trim();
+					if (Foxtrick.hasClass(td, 'type') || td.getElementsByTagName('span')[0]) continue; 
+					// we don't want to do that again and 'type' is for skill names (gk,pm etc)
+					var skill = td.textContent.trim();
 					var percentImage = td.getElementsByTagName('img')[0];
-					var s_level = (percentImage) ? percentImage.title.match(/\d+/) : Foxtrickl10n.getLevelFromText(s_name);
+					var level = (percentImage) ? percentImage.title.match(/\d+/) : Foxtrickl10n.getLevelFromText(skill);
 					td.removeChild(td.lastChild);
 					if (percentImage) td.appendChild(doc.createTextNode('\u00a0'));
-					var newLink = doc.createElement('a');
+					
+					var newLink = doc.createElement('a'); //adding a link to apply styling
 					Foxtrick.addClass(newLink, 'ft-skill');
 					if( ! skill_color && ! only_skill_color || no_colors)
-						Foxtrick.addClass(newLink, 'ft-skill-dont-touch');
-					newLink.textContent = s_name;
-					newLink.href = '/Help/Rules/AppDenominations.aspx?lt=skill&ll=' + s_level + '#skill';
+						Foxtrick.addClass(newLink, 'ft-skill-dont-touch'); 
+						//this a match order page, we don't want white backgrounds here
+					newLink.textContent = skill;
+					newLink.href = '/Help/Rules/AppDenominations.aspx?lt=skill&ll=' + level + '#skill';
 					td.appendChild(newLink);
+					
 					if(skill_number_translated) skill_number_translated = !percentImage; // to prevent overflow
-					Foxtrick.modules["SkillColoring"].addSkill(doc, newLink, 'skill', s_level, skill_number_translated, false);
+					Foxtrick.modules["SkillColoring"].addSkill(doc, newLink, 'skill', level, skill_number_translated, false, false); //no titles needed and not problem page
 				}
 			}
 		};
 
 		// add skillnumbers to the dynamically filled player details div on the lineup page
-		if ( Foxtrick.isPage('matchOrder', doc) && (skill_number || skill_number_translated)){
+		if ((skill_number || skill_number_translated) && Foxtrick.isPage('matchOrder', doc)){
 			Foxtrick.addMutationEventListener(doc.getElementById('details'), "DOMNodeInserted", playerDetailsChange, false);
 		}
 		
-		if (Foxtrick.isPage('transferSearchForm', doc) &&	skill_select){
-			var skills = doc.getElementById('mainBody').querySelectorAll('select[id*="Skill"][id$="Min"]>option, select[id*="Skill"][id$="Max"]>option');
+		if (skill_select && Foxtrick.isPage('transferSearchForm', doc)){
+			var skills = doc.querySelectorAll('#mainBody select[id*="Skill"][id$="Min"]>option, #mainBody select[id*="Skill"][id$="Max"]>option');
 			for (var i = 0, skill; skill = skills[i]; ++i){
 				if (skill.value != -1){
-					var s_level = doc.createElement('span');
-					s_level.textContent = ' (' + skill.value + ')';
-					skill.appendChild(s_level);
+					var level = doc.createElement('span');
+					Foxtrick.addClass(level, 'ft-tl-search-skill')
+					level.textContent = ' (' + skill.value + ')';
+					skill.appendChild(level);
 				}
 			}
 		}
@@ -276,7 +288,7 @@ Foxtrick.modules["SkillColoring"]={
 				if (e.test(link.href)){
 					var r = link.href.match(e), type = r[2], htIndex = r[1];
 					
-					this.addSkill(doc, link, type, htIndex, skill_number_translated, isProblemPage);
+					this.addSkill(doc, link, type, htIndex, skill_number_translated, skill_translated_title, isProblemPage);
 										
 				}
 			}

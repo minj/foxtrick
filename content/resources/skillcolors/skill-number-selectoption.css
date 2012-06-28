@@ -1,4 +1,4 @@
 /* CSS Document by baumanns*/
 
 /* Option Skillnumbers */
-select[id*="Skill"][id$="Min"]>option>span, select[id*="Skill"][id$="Max"]>option>span {color: #CCC !important;}
+span.ft-tl-search-skill {color: #CCC !important;}
