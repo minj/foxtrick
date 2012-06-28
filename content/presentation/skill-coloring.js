@@ -203,6 +203,9 @@ Foxtrick.modules["SkillColoring"]={
 		Foxtrick.addClass(n,'ft-skill-number');
 		var t = doc.createElement('span');
 		Foxtrick.addClass(t,'ft-skill');
+		if ( (Foxtrick.isPage('players', doc) || Foxtrick.isPage('transferSearchResult', doc)) 
+		     && translate && (el.parentNode.nodeName == 'TD' || el.parentNode.parentNode.nodeName == 'TD' ))
+			t.appendChild(doc.createElement('br'));
 		n.textContent = (addNum && translate) ? ' ' + level : level;
 
 		t.appendChild(doc.createTextNode(
