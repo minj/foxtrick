@@ -584,7 +584,7 @@ Foxtrick.Pages.Players = {
 				var htmsPoints = playerNode.getElementsByClassName("ft-htms-points").item(0);
 				if (htmsPoints) {
 					var points = htmsPoints.getElementsByTagName("span")[0].textContent;
-					var matched = points.match(/([\-0-9]+).+?([\-0-9]+)/);
+					var matched = points.match(/:\s?([\-0-9]+).+?:\s?([\-0-9]+)/);
 					if (matched) {
 						player.htmsAbility = Number(matched[1]);
 						player.htmsPotential = Number(matched[2]);
