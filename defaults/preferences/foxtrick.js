@@ -496,12 +496,12 @@ pref("extensions.foxtrick.prefs.module.SimplePresentation.liveHighlightRed.enabl
 pref("extensions.foxtrick.prefs.module.SimplePresentation.NoLogo.enabled", false);
 pref("extensions.foxtrick.prefs.module.SkillColoring.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkillColoring.no_colors.enabled", false);
-pref("extensions.foxtrick.prefs.module.SkillColoring.only_skill_color.enabled", true);
+pref("extensions.foxtrick.prefs.module.SkillColoring.non_skill_color.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkillColoring.skill_color.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkillColoring.skill_number.enabled", true);
-pref("extensions.foxtrick.prefs.module.SkillColoring.skill_number_translated.enabled", false);
-pref("extensions.foxtrick.prefs.module.SkillColoring.skill_translated_title.enabled", false);
 pref("extensions.foxtrick.prefs.module.SkillColoring.skill_select.enabled", true);
+pref("extensions.foxtrick.prefs.module.SkillColoring.skill_translated.enabled", false);
+pref("extensions.foxtrick.prefs.module.SkillColoring.skill_translated_title.enabled", false);
 pref("extensions.foxtrick.prefs.module.SkillTable.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.ColouredYouth.enabled", false);
 pref("extensions.foxtrick.prefs.module.SkillTable.OtherTeams.enabled", true);
