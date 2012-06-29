@@ -32,6 +32,14 @@ html[dir="ltr"] #order_tabs {
 	margin-left: -10px !important;
 }
 
+/* add some space next to youth skill bars */
+html #skills img[class*="youthSkillBar"]{
+	margin-right: 5px !important;
+}
+html[dir="rtl"] #skills img[class*="youthSkillBar"]{
+	margin-left: 5px !important;
+}
+
 /* make space for our playedlast highlighting */
 #orders #players .player .cards_health {
 	right: 1px !important;
