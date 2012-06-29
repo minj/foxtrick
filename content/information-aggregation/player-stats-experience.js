@@ -202,6 +202,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			//check if he also got stars, a game where he got xpgain but has not even half a star must be a walkover
 			var got_stars = gotStars(entry);
 			var walkover = !got_stars && minutes == 90 && !redCard;
+			Foxtrick.log(walkover);
 			var pseudo_points = xp_gain;
 			xp_gain = walkover?0:xp_gain;
 			
