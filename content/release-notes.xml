@@ -21,6 +21,7 @@
 <item>● NEW: <module>PlayerStatsTrainingWeek</module>: Added an opportunity to group matches according to training week instead of calendar week.</item>
 <item>● <module>SkillTable</module>: Opportunity added to sub-sort an existing ordering using ctrl + leftclick another column header.</item>
 <item>● <module>SkillTable</module>: Player names are abbreviated from now on consuming less space.</item>
+<item>● <module>SkillColoring</module>: Full module rewrite, a lot of bug fixes and additions. Options changed. Please set them to your liking again.</item>
 <item>● <module>TransferSearchResultFilters</module>: Opportunity added to filter by form and hide players without speciality. Now cooperates with <module>TransferSearchFilters</module>.</item>
 <item>● <module>FriendlyPool</module>: Opportunity added to expand the country selection box.</item>
 <item>● <module>MovePlayerStatement</module>: Opportunity added to remove the statement altogether.</item>
