@@ -259,38 +259,75 @@ Foxtrick.modules["SkillColoring"]={
 			if (details) {
 				
 				// let's hope LAs don't mess with order of things here
-				var XPandLS = details.getElementsByClassName('experienceAndLeadership')[0].getElementsByTagName('span');
-				if (XPandLS[0].getElementsByTagName('a')[0]) return; // we've been here before
-				var XPspan = XPandLS[0], LSspan = XPandLS[1];
-				var STandFO = details.getElementsByClassName('staminaAndForm')[0].getElementsByTagName('span');
-				var STspan = STandFO[0], FOspan = STandFO[1];
-				var LOspan = details.getElementsByClassName('loyalty')[0].getElementsByTagName('span')[0];
-				
-				toggleSpecials([
-					[XPspan, 'skill'],
-					[LSspan, 'skillshort'],
-					[STspan, 'skill'],
-					[FOspan, 'skillshort'],
-					[LOspan, 'skill'],
-				]);				 
+				var span = details.getElementsByClassName('experienceAndLeadership')[0];
+				var isYouth = ! (span.textContent);
+				if ( ! isYouth){
+					var XPandLS = span.getElementsByTagName('span');
+					if (XPandLS[0].getElementsByTagName('a')[0]) return; // we've been here before
+					var XPspan = XPandLS[0], LSspan = XPandLS[1];
+					var STandFO = details.getElementsByClassName('staminaAndForm')[0].getElementsByTagName('span');
+					var STspan = STandFO[0], FOspan = STandFO[1];
+					var LOspan = details.getElementsByClassName('loyalty')[0].getElementsByTagName('span')[0];
+					
+					toggleSpecials([
+						[XPspan, 'skill'],
+						[LSspan, 'skillshort'],
+						[STspan, 'skill'],
+						[FOspan, 'skillshort'],
+						[LOspan, 'skill'],
+					]);
+				}
 	
 				var tds = details.getElementsByTagName('td');
 				for (var i = 0, td; td = tds[i]; ++i){
-					if (Foxtrick.hasClass(td, 'type')) continue; 
-					// 'type' is for skill names (gk,pm etc)
-					var skill = td.textContent.trim();
-					var percentImage = td.getElementsByTagName('img')[0];
-					var level = (percentImage) ? percentImage.title.match(/\d+/) : Foxtrickl10n.getLevelFromText(skill);
-					td.removeChild(td.lastChild);
-					if (percentImage) td.appendChild(doc.createTextNode('\u00a0'));
-
-					var translated = (skill_translated) ? !percentImage : false; 
-					// if skillbars are activated never show inline translation to prevent overflow
-					// we have to use a 'local' translated not to interfere with specials
-					
-					var newLink = createLink('skill', level, skill, translated); 
-					// adding a link to apply styling
-					td.appendChild(newLink);
+					if (Foxtrick.hasClass(td, 'type')) continue; // 'type' is for skill names (gk,pm etc)
+					if (isYouth) {
+						if (td.getElementsByClassName('ft-skill')[0]) break; // we've been here before
+						var percentImage = td.getElementsByTagName('img')[0];
+						var translated = (skill_translated) ? !percentImage : false;
+						var parent = (percentImage) ? td.firstChild : td;
+						var childs = parent.childNodes;
+						for (var j = 0, child; child = childs[j]; ++j){
+							if (child.nodeType != 3) continue; // we need only text nodes
+							var temp = doc.createElement('span');
+							temp.className = 'ft-skill';
+							td.appendChild(temp);
+							var skills = child.textContent.split('/');
+							if (skills[0]) {
+								var level = Foxtrickl10n.getLevelFromText(skills[0]);
+								var newLink = createLink('skill', level, skills[0], translated);
+								parent.insertBefore(newLink, child);
+								++j;
+							}
+							if (child.textContent.search(/\//) != -1) {
+								parent.insertBefore(doc.createTextNode('/'), child);
+								++j
+							}
+							if (skills[1]) {
+								var level = Foxtrickl10n.getLevelFromText(skills[1]);
+								var newLink = createLink('skill', level, skills[1], translated);
+								parent.insertBefore(newLink, child);
+								++j;
+							}
+							parent.removeChild(child);
+							--j;
+						}
+					}
+					else {
+						var skill = td.textContent.trim();
+						var percentImage = td.getElementsByTagName('img')[0];
+						var level = (percentImage) ? percentImage.title.match(/\d+/) : Foxtrickl10n.getLevelFromText(skill);
+						td.removeChild(td.lastChild);
+						if (percentImage) td.appendChild(doc.createTextNode('\u00a0'));
+	
+						var translated = (skill_translated) ? !percentImage : false;
+						// if skillbars are activated never show inline translation to prevent overflow
+						// we have to use a 'local' translated not to interfere with specials
+						
+						var newLink = createLink('skill', level, skill, translated);
+						// adding a link to apply styling
+						td.appendChild(newLink);
+					}
 				}
 			}
 		};
