@@ -22,7 +22,6 @@ Foxtrick.modules["SkillColoring"]={
 		Foxtrick.InternalPath+"resources/skillcolors/no-colors.css",
 		Foxtrick.InternalPath+"resources/skillcolors/skill-number.css",
 		Foxtrick.InternalPath+"resources/skillcolors/skill-number.css",
-		null,
 		Foxtrick.InternalPath+"resources/skillcolors/skill-number-selectoption.css",
 	],
 
@@ -194,7 +193,7 @@ Foxtrick.modules["SkillColoring"]={
 			skill_translated = false; 
 		}	
 
-		if ( skill_number && (type == 'gentleness' || type == 'honesty' || type == 'aggressiveness') && 
+		if (skill_number && (type == 'gentleness' || type == 'honesty' || type == 'aggressiveness') && 
 		     FoxtrickPrefs.isModuleEnabled("PersonalityImages")			
 		) skill_number = false; //don't add number if we have PersonalityImages
 
@@ -204,9 +203,9 @@ Foxtrick.modules["SkillColoring"]={
 		Foxtrick.addClass(n,'ft-skill-number');
 		var t = doc.createElement('span');
 		Foxtrick.addClass(t,'ft-skill');
-		if ( isProblemPage && skill_translated && 
-		(el.parentNode.nodeName == 'TD' || el.parentNode.parentNode.nodeName == 'TD' ))
-			t.appendChild(doc.createElement('br')); //add a br to pages with small width
+		if (isProblemPage && skill_translated && 
+		     (el.parentNode.nodeName == 'TD' || el.parentNode.parentNode.nodeName == 'TD')
+		) t.appendChild(doc.createElement('br')); //add a br to pages with small width
 		n.textContent = (skill_number && skill_translated) ? ' ' + level : level;
 
 		t.appendChild(doc.createTextNode(
@@ -228,33 +227,70 @@ Foxtrick.modules["SkillColoring"]={
 		var skill_select = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_select");
 		
 		var playerDetailsChange = function (ev) { 
-			//Foxtrick.log('playerDetailsChange')
+			// Foxtrick.log('playerDetailsChange')
+
+			var createLink = function (type, level, skill, skill_translated) {
+				// skill_translated has to be a parameter here to support specials
+				var newLink = doc.createElement('a');
+				Foxtrick.addClass(newLink, 'ft-skill');
+				if( ( ! skill_color && type == 'skill') || ( ! non_skill_color && type != 'skill') || no_colors)
+					Foxtrick.addClass(newLink, 'ft-skill-dont-touch'); 
+					// this is a match order page, we don't want white backgrounds here
+				newLink.textContent = skill;
+				newLink.href = '/Help/Rules/AppDenominations.aspx?lt=' + type + '&ll=' + level + '#' + type;
+
+				Foxtrick.modules["SkillColoring"].addSkill(doc, newLink, type, level, skill_number, skill_translated, skill_translated_title, false); // not problem page
+
+				return newLink;
+			};
+			var toggleSpecials = function (specials){
+				for (var i = 0, special; special = specials[i]; ++i){
+					var span = special[0], type = special[1];
+					var skill = span.textContent;
+					span.textContent = null;
+					var level = Foxtrickl10n.getLevelFromText(skill);
+					var newLink = createLink(type, level, skill, skill_translated);
+					// adding a link to apply styling, using 'global' skill_translated
+					span.appendChild(newLink);
+				}
+			}
 
 			var details = doc.getElementById('details');
 			if (details) {
+				
+				// let's hope LAs don't mess with order of things here
+				var XPandLS = details.getElementsByClassName('experienceAndLeadership')[0].getElementsByTagName('span');
+				if (XPandLS[0].getElementsByTagName('a')[0]) return; // we've been here before
+				var XPspan = XPandLS[0], LSspan = XPandLS[1];
+				var STandFO = details.getElementsByClassName('staminaAndForm')[0].getElementsByTagName('span');
+				var STspan = STandFO[0], FOspan = STandFO[1];
+				var LOspan = details.getElementsByClassName('loyalty')[0].getElementsByTagName('span')[0];
+				
+				toggleSpecials([
+					[XPspan, 'skill'],
+					[LSspan, 'skillshort'],
+					[STspan, 'skill'],
+					[FOspan, 'skillshort'],
+					[LOspan, 'skill'],
+				]);				 
+	
 				var tds = details.getElementsByTagName('td');
 				for (var i = 0, td; td = tds[i]; ++i){
-					if (Foxtrick.hasClass(td, 'type') || td.getElementsByTagName('span')[0]) continue; 
-					// we don't want to do that again and 'type' is for skill names (gk,pm etc)
+					if (Foxtrick.hasClass(td, 'type')) continue; 
+					// 'type' is for skill names (gk,pm etc)
 					var skill = td.textContent.trim();
 					var percentImage = td.getElementsByTagName('img')[0];
 					var level = (percentImage) ? percentImage.title.match(/\d+/) : Foxtrickl10n.getLevelFromText(skill);
 					td.removeChild(td.lastChild);
 					if (percentImage) td.appendChild(doc.createTextNode('\u00a0'));
-					
-					var newLink = doc.createElement('a'); //adding a link to apply styling
-					Foxtrick.addClass(newLink, 'ft-skill');
-					if( ! skill_color || no_colors)
-						Foxtrick.addClass(newLink, 'ft-skill-dont-touch'); 
-						//this is a match order page, we don't want white backgrounds here
-					newLink.textContent = skill;
-					newLink.href = '/Help/Rules/AppDenominations.aspx?lt=skill&ll=' + level + '#skill';
-					td.appendChild(newLink);
-					
-					if(skill_translated) skill_translated = !percentImage; 
+
+					var translated = (skill_translated) ? !percentImage : false; 
 					// if skillbars are activated never show inline translation to prevent overflow
+					// we have to use a 'local' translated not to interfere with specials
 					
-					Foxtrick.modules["SkillColoring"].addSkill(doc, newLink, 'skill', level, skill_number, skill_translated, skill_translated_title, false); //no titles needed and not problem page
+					var newLink = createLink('skill', level, skill, translated); 
+					// adding a link to apply styling
+					td.appendChild(newLink);
 				}
 			}
 		};

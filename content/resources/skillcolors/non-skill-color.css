@@ -1,6 +1,16 @@
 /* CSS Document  by baumanns */
 
 /* NON-SKILL COLOR */
+#details .experienceAndLeadership span, #details .staminaAndForm span, #details .layalty span {
+	text-decoration: none !important;
+}
+a.ft-skill{
+	text-decoration: none !important;
+}
+a.ft-skill-dont-touch{
+	color: #fff !important;
+	background-color: inherit !important;
+}
 a[href*="ll=0#FanMood"], a[href*="ll=0#FanMatch"], a[href*="ll=0#FanSeason"], a[href*="ll=0#skillshort"], a[href*="ll=0#gentleness"], a[href*="ll=0#aggressiveness"], a[href*="ll=0#honesty"], a[href*="ll=0#teamskills"], a[href*="=0#sponsors"], a[href*="=12#morale"], a[href*="=23#confidence"]
 {background-color:#ffffff !important; color:#000 !important;}
 a[href*="ll=1#FanMood"], a[href*="ll=1#FanMatch"], a[href*="ll=1#FanSeason"], a[href*="ll=1#skillshort"], a[href*="ll=1#gentleness"], a[href*="ll=1#aggressiveness"], a[href*="ll=1#honesty"], a[href*="ll=1#teamskills"], a[href*="=1#sponsors"], a[href*="=13#morale"], a[href*="=24#confidence"]

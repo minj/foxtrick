@@ -4,13 +4,19 @@ div.playerInfo table.thin  td {padding-right: 5px !important;}
 a[href*="#skill"] {white-space:nowrap;}
 
 /* SKILL NUMBERS */
+td span.ft-skill
+{
+	vertical-align: text-top;
+}
 span.ft-skill
 {
 	font-size:xx-small;
-	vertical-align: text-top;
+}
+#details .experienceAndLeadership span, #details .staminaAndForm span, #details .layalty span {
+	text-decoration: none !important;
 }
 a.ft-skill{
-	text-decoration: none;
+	text-decoration: none !important;
 }
 a.ft-skill-dont-touch{
 	color: #fff !important;

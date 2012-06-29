@@ -1,7 +1,16 @@
 /* CSS Document  by baumanns */
 
 /* SKILL COLOR */
-
+#details .experienceAndLeadership span, #details .staminaAndForm span, #details .layalty span {
+	text-decoration: none !important;
+}
+a.ft-skill{
+	text-decoration: none !important;
+}
+a.ft-skill-dont-touch{
+	color: #fff !important;
+	background-color: inherit !important;
+}
 a[href$="=0#skill"]
 {background-color:#ffffff !important; color:#000 !important;}
 a[href$="=1#skill"]
