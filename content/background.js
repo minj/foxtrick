@@ -310,10 +310,22 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		Foxtrick.localDeleteBranch(request.branch);
 	};
 
-	// from entry.js
+	// from misc.js
 	Foxtrick.loader.chrome.background.cookieSet = function(request, sender, sendResponse) {
-		// @param cookie object - http://code.google.com/chrome/extensions/cookies.html#method-set
-		chrome.cookies.set(request.cookie);	
+		// @param where - cookies type: see misc.js - cookies map
+		// @param whatjson - value json to add to the cookie
+		// @callback cookie - the new cookie it set
+		Foxtrick.cookieSet(request.where, request.whatjson, function(response){
+			if (sendResponse)
+				sendResponse(response);
+		});	
+	};
+	Foxtrick.loader.chrome.background.cookieGet = function(request, sender, sendResponse) {
+		// @param where - cookies type: see misc.js - cookies map
+		// @callback cookie - the retrived cookie it set
+		Foxtrick.cookieGet(request.where, function(response){
+			sendResponse(response);
+		});	
 	};
 
 	// from log.js

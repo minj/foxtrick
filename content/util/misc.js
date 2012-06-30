@@ -984,4 +984,100 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 		}
 	  }
 	}catch(e){Foxtrick.log(e);}
-}
+};
+
+
+(function() {
+		// cookies for external pages
+		var cookies = { 
+			for_hty: {
+				url:"http://hattrick-youthclub.org/*",
+				name: "fromFoxtrick",
+				domain: "hattrick-youthclub.org"
+			},
+			from_hty: {
+				url:"http://hattrick-youthclub.org/*",
+				name: "forFoxtrick",
+				domain: "hattrick-youthclub.org"
+			},
+			for_htev: {
+				url:"http://htev.org/",
+				name: "fromFoxtrick",
+				domain: "htev.org"
+			}
+		};
+		
+		// defines if cookie being set currently and thuse need wait if needed
+		// depends somewhat one browser implementation. so we'll see how it works
+		var set_scheduled = false; 
+		
+		// @param where - cookies type: see misc.js - cookies map
+		// @param whatjson - value json to add to the cookie
+		// @callback(cookie) - the new cookie it set
+		Foxtrick.cookieSet = function(where, whatjson, callback) {
+			/*if (Foxtrick.arch == "Gecko") {
+				var cookieString = cookie.name + "=" + cookie.value + ";domain="+cookie.domain;  			  
+				var cookieUri = Components.classes["@mozilla.org/network/io-service;1"]  
+					.getService(Components.interfaces.nsIIOService)  
+					.newURI(cookies[i].url, null, null);  			  
+				Components.classes["@mozilla.org/cookieService;1"]  
+					.getService(Components.interfaces.nsICookieService)  
+					.setCookieString(cookieUri, null, cookieString, null);
+			} 
+			else*/ if (Foxtrick.platform == "Chrome") {
+				if (Foxtrick.chromeContext() == "content") {
+					sandboxed.extension.sendRequest({ req:"cookieSet", where:where, whatjson: whatjson},function(reponse){
+						if (callback)
+							callback(reponse);
+					}); 
+				}
+				else {
+					var _set = function(){
+						set_scheduled = true;
+						chrome.cookies.get({url:cookies[where].url, name:cookies[where].name}, function(cookie) {							
+							var new_cookie = cookies[where];
+							new_cookie.value = cookie ? cookie.value : "{}";
+							var valuejson = JSON.parse(new_cookie.value)
+							for (var key in whatjson)
+								valuejson[key] = whatjson[key];
+							new_cookie.value = JSON.stringify(valuejson);
+							chrome.cookies.set(new_cookie, function(){
+								set_scheduled = false;
+								if (callback)
+									callback(new_cookie);
+							});	
+						});
+					};
+					if (set_scheduled) 
+						// if unfinshed set is called, queue behind
+						window.setTimeout(_set, 0);
+					else 
+						_set();
+				}
+			}
+		};
+		// @param where - cookies type: see misc.js - cookies map
+		// @callback cookie - the retrived cookie it set
+		Foxtrick.cookieGet = function(where, callback) {
+			if (Foxtrick.platform == "Chrome") {
+				if (Foxtrick.chromeContext() == "content") {
+					sandboxed.extension.sendRequest({ req:"cookieGet", where:where}, function(response){
+						callback(response);
+					}); 
+				}
+				else {					
+					var _get = function() {
+						chrome.cookies.get({url:cookies[where].url, name:cookies[where].name}, function(cookie) {
+							callback(cookie);
+						});
+					};
+					if (set_scheduled) 
+						// if unfinshed set is called, queue behind
+						window.setTimeout(_get, 0);
+					else 
+						_get();
+				}
+			}
+		};
+})();
+

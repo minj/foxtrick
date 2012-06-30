@@ -185,36 +185,13 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 			Foxtrick.entry.cssLoaded = false;
 			return;
 		}
-		// cookies for external pages
-		var cookies = [{
-				url:"http://hattrick-youthclub.org/*",
-				name: "ht-server",
-				value:  doc.location.hostname,
-				domain: "hattrick-youthclub.org"
-			},
-			{
-				url:"http://htev.org/",
-				name: "ht-server",
-				value:  doc.location.hostname,
-				domain: "htev.org"
-			}
-		];
-		if (Foxtrick.arch == "Gecko") {
-			for (var i=0; i<cookies.length; ++i) {
-				var cookieString = cookies[i].name + "=" + cookies[i].value + ";domain="+cookies[i].domain;  			  
-				var cookieUri = Components.classes["@mozilla.org/network/io-service;1"]  
-					.getService(Components.interfaces.nsIIOService)  
-					.newURI(cookies[i].url, null, null);  			  
-				Components.classes["@mozilla.org/cookieService;1"]  
-					.getService(Components.interfaces.nsICookieService)  
-					.setCookieString(cookieUri, null, cookieString, null);
-			}
-		} 
-		else if (Foxtrick.platform == "Chrome") {
-			for (var i=0; i<cookies.length; ++i) {
-				sandboxed.extension.sendRequest({ req:"cookieSet", cookie: cookies[i]}); 
-			}
-		}
+
+		Foxtrick.cookieGet("for_hty", function(cookie){console.log("get for_hty",cookie)});
+		Foxtrick.cookieGet("from_hty", function(cookie){console.log("get from_hty",cookie)});
+		Foxtrick.cookieSet("for_hty", {"ht-server":  doc.location.hostname},function(cookie){console.log('set for_hty', cookie)});
+		Foxtrick.cookieGet("for_hty", function(cookie){console.log("get for_hty",cookie)});
+		Foxtrick.cookieSet("for_htev", {"ht-server":  doc.location.hostname});
+		
 
 		// set up direction and style attributes
 		var current_theme = Foxtrick.util.layout.isStandard(doc) ? "standard" : "simple";
