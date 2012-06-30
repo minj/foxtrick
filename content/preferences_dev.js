@@ -27,10 +27,10 @@ function init()
 {
 	try {
 		initCoreModules();
-		initSearch();
 		getPageIds();
 		initTabs();
-		initListeners();
+		initSearch(); //important, run after module divs have been created (initTabs)
+		initListeners(); //important, run after module divs have been created (initTabs)
 		initTextAndValues();
 		locateFragment(window.location.toString()); // locate element by fragment
 		testPermissions();
@@ -48,10 +48,12 @@ function init()
 	}
 }
 
+var _modules = {};
 //feed the search bar with options, no effect yet
 function initSearch(){
 	var search = document.getElementById("modulelist");
 	for (var i in Foxtrick.modules){
+		_modules[Foxtrick.modules[i].MODULE_NAME] = $("#pref-" + Foxtrick.modules[i].MODULE_NAME)[0];
 		var option = document.createElement("option");
 		option.setAttribute("value", Foxtrick.modules[i].MODULE_NAME);
 		search.appendChild(option);
@@ -63,14 +65,24 @@ function searchEvent(ev){
 	if(ev.target.value.length > 2){
 		var regex = new RegExp(ev.target.value, "i")
 		for (var i in Foxtrick.modules){
-   			if (Foxtrick.modules[i].MODULE_NAME.search(regex) > -1){
-				$("#pref-" + Foxtrick.modules[i].MODULE_NAME).show();
-			} else
-				$("#pref-" + Foxtrick.modules[i].MODULE_NAME).hide();
+			try{
+	   			if (Foxtrick.modules[i].MODULE_NAME.search(regex) > -1){
+					_modules[Foxtrick.modules[i].MODULE_NAME].className = _modules[Foxtrick.modules[i].MODULE_NAME].className.replace(/hidden/g,"");
+				} else {
+					_modules[Foxtrick.modules[i].MODULE_NAME].className = _modules[Foxtrick.modules[i].MODULE_NAME].className + " hidden";
+				} 
+			} catch(e){
+					continue;
+			}
 		}
 	} else {
-		for (var i in Foxtrick.modules)
-			$("#pref-" + Foxtrick.modules[i].MODULE_NAME).show();
+		for (var i in Foxtrick.modules){
+			try{
+				_modules[Foxtrick.modules[i].MODULE_NAME].className = _modules[Foxtrick.modules[i].MODULE_NAME].className.replace(/hidden/g,"");
+			} catch(e){
+				continue;
+			}
+		}
 	}
 }
 function initCoreModules()

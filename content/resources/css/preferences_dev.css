@@ -351,3 +351,7 @@ html[dir="rtl"] #note
 #search {
 	float: right;
 }
+
+.hidden {
+	display: none !important;
+}
