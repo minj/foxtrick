@@ -7,5 +7,6 @@
 
 Foxtrick.modules["ForumNextAndPrevious"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
+	PAGES: ["forumViewThread"],
 	CSS: Foxtrick.InternalPath+"resources/css/nextandprevious.css"
 };
