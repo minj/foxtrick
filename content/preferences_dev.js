@@ -52,22 +52,31 @@ function init()
 var _modules = {};
 //feed the search bar with options, no effect yet
 function initSearch(){
+
 	var search = document.getElementById("modulelist");
+	function addToModuleList( str ){
+		var option = document.createElement("option");
+		option.setAttribute("value", str);
+		search.appendChild(option);
+	}
+	
 	$(".module").each(function() {
 		try {
 			var name = $(this).attr("id");
-			if(name && name.match(/^pref-/))
+			if(name && name.match(/^pref-/)){
 				_modules[name.replace(/^pref-/,'')] = $("#" + name)[0];
-			else if(name &&  name.match(/^faq-/)){
+				addToModuleList(name.replace(/^pref-/,''));
+			}else if(name &&  name.match(/^faq-/)){
 				var h3 = $(this).children("h3:first");
-				console.log("FAQ " + h3.text().replace("¶",""));
 				_modules[h3.text().replace("¶","")] = $(this)[0];
+				addToModuleList(h3.text().replace("¶",""));
 			}
 			else {
 				var h3 = $(this).children("h3:first");
 				if(h3.attr("data-text")){
 					name = Foxtrickl10n.getString(h3.attr("data-text"));
 					_modules[name] = $(this)[0];
+					addToModuleList(name);
 				} else{
 					console.log("no search support, missing h3 and/or data-text");
 				}
@@ -254,7 +263,7 @@ function initListeners()
 	$("#search-input")[0].addEventListener("input", searchEvent, false);
 	
 
-	//$("#save").click(function() { save(); });
+	$("#save").click(function() { save(); });
 	//$("#save-alt").click(function() { save(); });
 	//$("#note").click(function() { $(this).hide("slow"); });
 	$("body").click(function(ev) {
@@ -1083,11 +1092,11 @@ function testPermissions() {
 							else if ($(id).attr("checked") !== "checked") {
 								modulelist = Foxtrick.remove(modulelist, module);
 								if (modulelist.length > 0) {
-									$("#alert").text(Foxtrickl10n.getString('prefs.needPermissions')+" "+modulelist);
+									$("#alert-text").text(Foxtrickl10n.getString('prefs.needPermissions')+" "+modulelist);
 									$("#alert").attr("style","display:block;");
 								}
 								else {
-									$("#alert").text("");
+									$("#alert-text").text("");
 									$("#alert").attr("style","display:none;");
 								}
 							}
@@ -1098,8 +1107,8 @@ function testPermissions() {
 						
 						if (result==false && FoxtrickPrefs.getBool("module." + module + ".enabled")) {	
 							Foxtrick.concat_unique(modulelist, neededPermission.modules);
-							$("#alert").text(Foxtrickl10n.getString('prefs.needPermissions')+" "+modulelist);
-							$("#alert").attr("style","display:inline-block;");
+							$("#alert-text").text(Foxtrickl10n.getString('prefs.needPermissions')+" "+modulelist);
+							$("#alert").attr("style","display:block;");
 						}	
 					}
 				});

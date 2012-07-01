@@ -140,7 +140,7 @@ html[dir="rtl"] .module-link
 
 .screenshot
 {
-	/*float: right;*/
+	float: right;
 	width: 16px;
 	height: 16px;
 	background: url("../img/screenshot.png") no-repeat 50% 50%;
@@ -158,7 +158,7 @@ html[dir="rtl"] .screenshot
 
 .clear
 {
-	/*clear: both;*/
+	clear: both;
 }
 
 #version
@@ -249,40 +249,46 @@ div#pane
 	box-orient: vertical;
 }
 
-#fixed
+/*#fixed
 {
 	position: fixed;
 	right: 20px;
 	top: 20px;
-}
+}*/
 
-html[dir="rtl"] #fixed
+/*html[dir="rtl"] #fixed
 {
 	right: auto;
 	left: 20px;
-}
+}*/
 
-#balloon
+/*#balloon
 {
 	padding: 10px;
 	border: 1px solid #ccc;
 	background-color: #aaa;
 	float: right;
-}
+}*/
 
-html[dir="rtl"] #fixed
+/*html[dir="rtl"] #fixed
 {
 	float: left;
-}
+}*/
 
-#balloon a {
+/*#balloon a {
 	color: #a5b;
 	text-decoration: none;
-}
+}*/
 
+html[dir="rtl"] #save
+{
+	font-weight: bold;
+	float:left;
+}
 #save
 {
 	font-weight: bold;
+	float:right;
 }
 
 #note
@@ -312,6 +318,14 @@ html[dir="rtl"] #note
 	left: 20px;
 }
 
+html[dir="rtl"] .alert > p
+{
+	padding-left: 100px;
+}
+.alert > p 
+{
+	padding-right: 100px;	
+}
 .alert
 {
 	border: solid 1px orange;
@@ -323,7 +337,6 @@ html[dir="rtl"] #note
 
 #alert
 {
-	margin-right: 200px;
 }
 
 #content {
@@ -335,19 +348,24 @@ html[dir="rtl"] #note
 	-moz-box-orient: horizontal;
 	box-orient: horizontal;
 
-	/*-webkit-box-pack: center;
-	-moz-box-pack: center;
-	box-pack: center;
-*/
 	-webkit-box-align: start;
 	-moz-box-align: start;
 	box-align: start;
+
+/*	-webkit-box-direction: reverse;
+	-moz-box-direction: reverse;
+	box-direction: reverse;*/
 
 	clear: both;
 }
 
 #header {
 }
+
+html[dir="rtl"] #search {
+	float: left;
+}
+
 #search {
 	float: right;
 }
