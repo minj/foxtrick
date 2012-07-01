@@ -215,13 +215,13 @@
 
 
 <div id="subheader">
-	<div>
+	<!-- <div>
 		<ul id="view-by" class="nav">
 			<li id="view-by-category"><a data-text="prefs.view.by.category"></a></li>
 			<li id="view-by-page"><a data-text="prefs.view.by.page"></a></li>
 			<li id="view-by-filter"><a data-text="prefs.view.by.filter"></a></li>
 		</ul>
-	</div>
+	</div> -->
 	<div id="search">
 		<p>Search <input id="search-input" list="modulelist" class="bright border"></p>
 	</div>
@@ -233,6 +233,7 @@
 		<!-- tabs for each category -->
 		<ul id="tabs" class="nav">
 		<li id="tab-main"><a data-text="tab.main"></a></li><!--
+		--><li id="tab-all"><a data-text="tab.all"></a></li><!--
 		--><li id="tab-on_page"><a data-text="tab.on_page"></a></li><!--
 		--><li id="tab-universal"><a data-text="tab.universal"></a></li><!--
 		--><li id="tab-informationAggregation"><a data-text="tab.informationAggregation"></a></li><!--
@@ -254,7 +255,7 @@
 	 of under which tabs it should be shown -->
 	<div id="pane">
 		<!-- Set-up -->
-		<div class="module" x-on="main">
+		<div class="module" x-on="main all">
 			<h3 id="pref-setup" data-text="prefs.setup"></h3>
 			<p id="pref-setup-desc"></p>
 			<table>
@@ -273,7 +274,7 @@
 			</table>
 		</div>
 		<!-- additional -->
-		<div class="module" x-on="main">
+		<div class="module" x-on="main all">
 			<h3 id="pref-additional" data-text="prefs.additional.title"></h3>
 			<ul>
 				<li>
@@ -303,7 +304,7 @@
 			</ul>
 		</div>
 		<!-- disable -->
-		<div class="module" x-on="main">
+		<div class="module" x-on="main all">
 			<h3 id="pref-disable-title" data-text="prefs.disable.title"></h3>
 			<ul>
 				<li>
@@ -317,7 +318,7 @@
 			</ul>
 		</div>
 		<!-- StoredPrefs -->
-		<div class="module" x-on="main">
+		<div class="module" x-on="main all">
 			<h3 id="pref-stored" data-text="prefs.storedData.title"></h3>
 			<table>
 				<tr>
@@ -347,7 +348,7 @@
 			</table>
 		</div>
 		<!-- LoadSavePrefs -->
-		<div class="module" x-on="main">
+		<div class="module" x-on="main all">
 			<h3 id="pref-load-save" data-text="prefs.loadSave.title"></h3>
 			<h4 id="pref-save" data-text="prefs.loadSave.export"></h4>
 			<div>
@@ -377,7 +378,8 @@
 			</div>
 		</div>
 		<!-- changes -->
-		<div class="module" x-on="changes">
+		<div class="module" x-on="changes all">
+			<h3 data-text="changes.title"></h3>
 			<div id="translator_note" class="alert"></div>
 			<div>
 				<input type="checkbox" id="pref-show-release-notes" pref="showReleaseNotes" />
@@ -393,13 +395,13 @@
 		</div>
 
 		<!-- help -->
-		<div class="module" x-on="help">
+		<div class="module" x-on="help all">
 			<h3 data-text="link.title"></h3>
 			<ul id="external-links-list"></ul>
 		</div>
 
 		<!-- about -->
-		<div class="module" x-on="about">
+		<div class="module" x-on="about all">
 			<h3 data-text="about.copyright"></h3>
 			<h4>FoxTrick - a browser add-on for the Hattrick.org online football manager game</h4>
 			<ul>
@@ -450,19 +452,19 @@
 				root directory of source code under the name of
 				<code>COPYING</code></p>
 		</div>
-		<div class="module" x-on="about">
+		<div class="module" x-on="about all">
 			<h3 data-text="about.maintainers"></h3>
 			<ul id="about-maintainers" class="about-list" path="about/maintainers/maintainer"></ul>
 		</div>
-		<div class="module" x-on="about">
+		<div class="module" x-on="about all">
 			<h3 data-text="about.developers"></h3>
 			<ul id="about-developers" class="about-list" path="about/developers/developer"></ul>
 		</div>
-		<div class="module" x-on="about">
+		<div class="module" x-on="about all">
 			<h3 data-text="about.translators"></h3>
 			<ul id="about-translators" class="about-list" path="about/translations/translation/translator"></ul>
 		</div>
-		<div class="module" x-on="about">
+		<div class="module" x-on="about all">
 			<h3 data-text="about.designers"></h3>
 			<ul id="about-designers" class="about-list" path="about/graphics/designer"></ul>
 		</div>

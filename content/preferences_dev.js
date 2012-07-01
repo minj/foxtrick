@@ -48,39 +48,64 @@ function init()
 	}
 }
 
+//used to cache the searchable module items to prevent the search functionality from traversing the dom all the time
 var _modules = {};
 //feed the search bar with options, no effect yet
 function initSearch(){
 	var search = document.getElementById("modulelist");
-	for (var i in Foxtrick.modules){
-		_modules[Foxtrick.modules[i].MODULE_NAME] = $("#pref-" + Foxtrick.modules[i].MODULE_NAME)[0];
-		var option = document.createElement("option");
-		option.setAttribute("value", Foxtrick.modules[i].MODULE_NAME);
-		search.appendChild(option);
-	}
+	$(".module").each(function() {
+		try {
+			var name = $(this).attr("id");
+			if(name && name.match(/^pref-/))
+				_modules[name.replace(/^pref-/,'')] = $("#" + name)[0];
+			else if(name &&  name.match(/^faq-/)){
+				var h3 = $(this).children("h3:first");
+				console.log("FAQ " + h3.text().replace("¶",""));
+				_modules[h3.text().replace("¶","")] = $(this)[0];
+			}
+			else {
+				var h3 = $(this).children("h3:first");
+				if(h3.attr("data-text")){
+					name = Foxtrickl10n.getString(h3.attr("data-text"));
+					_modules[name] = $(this)[0];
+				} else{
+					console.log("no search support, missing h3 and/or data-text");
+				}
+			}
+		}
+		catch(e){
+			console.log("no search support", e)
+		}
+	});
+	console.log(_modules)
+	// for (var i in Foxtrick.modules){
+	// 	_modules[Foxtrick.modules[i].MODULE_NAME] = $("#pref-" + Foxtrick.modules[i].MODULE_NAME)[0];
+	// 	var option = document.createElement("option");
+	// 	option.setAttribute("value", Foxtrick.modules[i].MODULE_NAME);
+	// 	search.appendChild(option);
+	// }
 }
 
 //search
 function searchEvent(ev){
-	if(ev.target.value.length > 2){
+	if(ev.target.value.length > 0){
 		var regex = new RegExp(ev.target.value, "i")
-		for (var i in Foxtrick.modules){
+		for (var i in _modules){
 			try{
-	   			if (Foxtrick.modules[i].MODULE_NAME.search(regex) > -1){
-					_modules[Foxtrick.modules[i].MODULE_NAME].className = _modules[Foxtrick.modules[i].MODULE_NAME].className.replace(/hidden/g,"");
+	   			if (i.search(regex) > -1){
+					_modules[i].className = _modules[i].className.replace(/hidden/g,"");
 				} else {
-					_modules[Foxtrick.modules[i].MODULE_NAME].className = _modules[Foxtrick.modules[i].MODULE_NAME].className + " hidden";
+					_modules[i].className = _modules[i].className + " hidden";
 				} 
 			} catch(e){
 					continue;
 			}
 		}
 	} else {
-		for (var i in Foxtrick.modules){
+		for (var i in _modules.modules){
 			try{
-				_modules[Foxtrick.modules[i].MODULE_NAME].className = _modules[Foxtrick.modules[i].MODULE_NAME].className.replace(/hidden/g,"");
+				_modules[i].className = _modules[i].className.replace(/hidden/g,"");
 			} catch(e){
-				continue;
 			}
 		}
 	}
@@ -160,25 +185,21 @@ function locateFragment(uri)
 		showFaq(param["faq"]);
 	else if (param["view-by"] == "page")
 		showTab("on_page");
-	else if (param["view-by"] == "filter")
-		showTab("filter");
+	//else if (param["view-by"] == "filter")
+	//	showTab("filter");
 	else
 		showTab("main"); // show the main tab by default
 
 	// adjust tab visibility according to view-by type
 	var viewByPage = (param["view-by"] == "page");
-	var viewByFilter = (param["view-by"] == "filter");
 	// add class if view by page, remove class if view by category
 	var setClass = function(obj, className) {
-		obj.addClass(className);
+		viewByPage ? obj.addClass(className) : obj.removeClass(className);
 	};
 	// opposite of setClass
 	var unsetClass = function(obj, className) {
-		obj.removeClass(className);
+		viewByPage ? obj.removeClass(className) : obj.addClass(className) ;
 	};
-	$("#view-by-page").addClass("active");
-	$("#view-by-category").addClass("active");
-	$("#view-by-filter").addClass("active");
 	// set up tab classes
 	//setClass($("#view-by-page"), "active");
 	//unsetClass($("#view-by-category"), "active");
@@ -277,7 +298,6 @@ function initTabs()
 	// set up href of "view by" links
 	$("#view-by-category a").attr("href", "#view-by=category");
 	$("#view-by-page a").attr("href", "#view-by=page");
-	$("#view-by-filter a").attr("href", "#view-by=filter");
 	// initialize the tabs
 	initMainTab();
 	initChangesTab();
@@ -856,7 +876,7 @@ function initHelpTab()
 		var block = document.createElement("div");
 		block.id = "faq-" + i;
 		block.className = "module";
-		block.setAttribute("x-on", "help");
+		block.setAttribute("x-on", "help all");
 		$("#pane").append($(block));
 		// question
 		var header = document.createElement("h3");
@@ -932,7 +952,7 @@ function initModules()
 		var module = modules[i];
 		var obj = getModule(module);
 		// show on view-by-category tab
-		$(obj).attr("x-on", module.MODULE_CATEGORY + "filter");
+		$(obj).attr("x-on", module.MODULE_CATEGORY + " all");
 		// show on view-by-page tab
 		if (module.PAGES) {
 			if (Foxtrick.member("all", module.PAGES))
@@ -975,7 +995,6 @@ function saveEvent(ev){
 		}
 	}
 	FoxtrickPrefs.setBool("preferences.updated", true);
-	//save();
 }
 function save()
 {
