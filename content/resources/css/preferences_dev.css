@@ -8,8 +8,12 @@ body
 ul
 {
 	list-style-type: none;
-	margin: 0;
-	padding: 0;
+	margin: 2px;
+	padding: 2px;
+}
+
+ul.nav {
+	border: 1px solid black;
 }
 
 ul li ul
@@ -20,8 +24,10 @@ ul li ul
 }
 
 h3
-{
-	margin: 5px 0 0;
+{/*
+	display:inline;*/
+	margin: 0px 0 0;
+	border-bottom: 1px solid black;
 }
 
 p
@@ -45,7 +51,8 @@ input[disabled], button[disabled], select[disabled], textarea[disabled]
 
 button.active
 {
-	background-color: #eef;
+	/*background-color: #eef;*/
+	background-color: : #fff;
 	border: 3px solid #a8a8a8;
 }
 
@@ -114,15 +121,16 @@ table.center td {
 
 .module
 {
-	border: 1px solid #ccc;
-	margin: 5px;
-	padding: 5px;
+	/*border: 1px solid #ccc;*/
+	margin:  5px;
+	padding: 0 0 0 5px;
+	/*border-bottom: 1px solid #000;*/
 }
 
 .module:hover
 {
-	background-color: #f8f8ff;
-	border-color: black;
+	/*background-color: #f8f8ff;
+	border-color: black;*/
 }
 
 .module-link
@@ -199,7 +207,8 @@ ul.nav li
 {
 	font-size: 85%;
 	/*display: inline-block;*/
-	background-color: #eef;
+	/*background-color: #eef;*/
+	background-color: #fff;
 	/*border: 1px solid #ccc;*/
 	border-bottom: none;
 	padding: 3px;
@@ -213,10 +222,10 @@ ul.nav li.hide
 
 ul.nav li.active
 {
-	
-	background-color: white;
-	/*border: 2px solid #a8a8a8;*/
-	border-bottom: none;
+	background-color: #a7d3ed;
+	/*background-color: white;*/
+	/*border: 2px solid #a8a8a8;
+	border-bottom: none;*/
 }
 
 ul.nav li a
@@ -225,9 +234,15 @@ ul.nav li a
 	color: #444;
 }
 
+ul.nav li:hover
+{
+	background-color: #a7d3ed;
+}
+
 ul.nav li a:hover
 {
 	text-decoration: underline;
+	
 }
 
 div {
@@ -247,6 +262,24 @@ div#pane
 	-webkit-box-orient: vertical;
 	-moz-box-orient: vertical;
 	box-orient: vertical;
+}
+
+div#main
+{
+	-webkit-box-flex:1;
+	-moz-box-flex: 1;
+	box-flex: 1;
+
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+
+	-webkit-box-orient: vertical;
+	-moz-box-orient: vertical;
+	box-orient: vertical;
+
+	border-left: 1px solid black;
+	padding-left: 5px;
 }
 
 /*#fixed
@@ -372,4 +405,28 @@ html[dir="rtl"] #search {
 
 .hidden {
 	display: none !important;
+}
+
+#breakcrumbs {
+	border: 1px solid black;
+}
+
+.module > h3 {
+	padding-top: 2px;
+	padding-left: 15px;
+	padding-right: 15px;
+	background-color: #a7d3ed;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	border: 1px solid black;
+	border-bottom: none;
+}
+
+.module-content {
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+	border-right: 1px solid black;
+	padding: 5px;
+	background-color: #fff;
 }

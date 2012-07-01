@@ -529,6 +529,9 @@ function getModule(module)
 	title.id = entry.id + "-title";
 	entry.appendChild(title);
 
+	var container = document.createElement("div");
+	container.className = "module-content";
+
 	var label = document.createElement("label");
 	var check = document.createElement("input");
 	check.id = entry.id + "-check";
@@ -562,13 +565,13 @@ function getModule(module)
 	var desc = document.createElement("p");
 	desc.id = entry.id + "-desc";
 	desc.textContent = FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
-	entry.appendChild(desc);
+	container.appendChild(desc);
 
 	// options container
 	var options = document.createElement("div");
 	options.id = entry.id + "-options";
 	options.setAttribute("depends-on", check.id);
-	entry.appendChild(options);
+	container.appendChild(options);
 
 	// module-provided function for generating options. will be appended
 	// OPTION_FUNC either returns an HTML object or an array of HTML objects
@@ -729,6 +732,7 @@ function getModule(module)
 	for (var i=0; i<customCoptions.length; ++i) {
 		options.appendChild(customCoptions[i]);
 	}
+	entry.appendChild(container);
 	return entry;
 }
 
@@ -891,6 +895,10 @@ function initHelpTab()
 		var header = document.createElement("h3");
 		header.textContent = item.getElementsByTagName("question")[0].textContent;
 		block.appendChild(header);
+
+		var container = document.createElement("div");
+		container.className = "module-content";
+
 		// link to question
 		var link = document.createElement("a");
 		link.textContent = "¶";
@@ -901,7 +909,8 @@ function initHelpTab()
 		var content = document.createElement("p");
 		// import child nodes one by one as we may use XHTML there
 		importContent(item.getElementsByTagName("answer")[0], content);
-		block.appendChild(content);
+		container.appendChild(content);
+		block.appendChild(container);
 	}
 }
 
