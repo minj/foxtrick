@@ -102,7 +102,7 @@ function searchEvent(ev){
 			}
 		}
 	} else {
-		for (var i in _modules.modules){
+		for (var i in _modules){
 			try{
 				_modules[i].className = _modules[i].className.replace(/hidden/g,"");
 			} catch(e){
