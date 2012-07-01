@@ -186,10 +186,10 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 			return;
 		}
 
-		Foxtrick.cookieGet("for_hty", function(cookie){console.log("get for_hty",cookie)});
-		Foxtrick.cookieGet("from_hty", function(cookie){console.log("get from_hty",cookie)});
-		Foxtrick.cookieSet("for_hty", {"ht-server":  doc.location.hostname},function(cookie){console.log('set for_hty', cookie)});
-		Foxtrick.cookieGet("for_hty", function(cookie){console.log("get for_hty",cookie)});
+		Foxtrick.cookieGet("for_hty", function(cookie){Foxtrick.log("get for_hty",cookie)});
+		Foxtrick.cookieGet("from_hty", function(cookie){Foxtrick.log("get from_hty",cookie)});
+		Foxtrick.cookieSet("for_hty", {"ht-server":  doc.location.hostname},function(cookie){Foxtrick.log('set for_hty', cookie)});
+		Foxtrick.cookieGet("for_hty", function(cookie){Foxtrick.log("get for_hty",cookie)});
 		Foxtrick.cookieSet("for_htev", {"ht-server":  doc.location.hostname});
 		
 

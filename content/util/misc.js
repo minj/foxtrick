@@ -991,19 +991,19 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 		// cookies for external pages
 		var cookies = { 
 			for_hty: {
-				url:"http://hattrick-youthclub.org/*",
+				url: "http://www.hattrick-youthclub.org/*",
 				name: "fromFoxtrick",
-				domain: "hattrick-youthclub.org"
+				domain: ".hattrick-youthclub.org"
 			},
 			from_hty: {
-				url:"http://hattrick-youthclub.org/*",
+				url: "http://hattrick-youthclub.org/*",
 				name: "forFoxtrick",
-				domain: "hattrick-youthclub.org"
+				domain: ".hattrick-youthclub.org"
 			},
 			for_htev: {
 				url:"http://htev.org/",
 				name: "fromFoxtrick",
-				domain: "htev.org"
+				domain: ".htev.org"
 			}
 		};
 		
@@ -1011,22 +1011,34 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 		// depends somewhat one browser implementation. so we'll see how it works
 		var set_scheduled = false; 
 		
-		// @param where - cookies type: see misc.js - cookies map
+		// @param where - cookies type: see above - cookies map
 		// @param whatjson - value json to add to the cookie
-		// @callback(cookie) - the new cookie it set
+		// (optional) @callback(cookieValue) - the value json it set
 		Foxtrick.cookieSet = function(where, whatjson, callback) {
-			/*if (Foxtrick.arch == "Gecko") {
-				var cookieString = cookie.name + "=" + cookie.value + ";domain="+cookie.domain;  			  
-				var cookieUri = Components.classes["@mozilla.org/network/io-service;1"]  
-					.getService(Components.interfaces.nsIIOService)  
-					.newURI(cookies[i].url, null, null);  			  
-				Components.classes["@mozilla.org/cookieService;1"]  
-					.getService(Components.interfaces.nsICookieService)  
-					.setCookieString(cookieUri, null, cookieString, null);
+			var makeCookie = function (value) {
+				var new_cookie = cookies[where];
+				new_cookie.value = value ? value : "{}";
+				var valuejson = JSON.parse(new_cookie.value)
+				for (var key in whatjson)
+					valuejson[key] = whatjson[key];
+				new_cookie.value = JSON.stringify(valuejson);
+				return new_cookie;
+			};
+			
+			if (Foxtrick.arch == "Gecko") {
+				Foxtrick.cookieGet(where, function(oldValue) {
+					var new_cookie = makeCookie(oldValue);							
+					var cookieManager2 = Components.classes["@mozilla.org/cookiemanager;1"]
+												.getService(Components.interfaces.nsICookieManager2);	
+					var expire =  (new Date()).getTime() + 60*60*24*7;
+					cookieManager2.add(new_cookie.domain, "/", new_cookie.name, new_cookie.value, false, true, false, expire);
+					if (callback)
+						callback(new_cookie.value);
+				});
 			} 
-			else*/ if (Foxtrick.platform == "Chrome") {
+			else if (Foxtrick.platform == "Chrome") {
 				if (Foxtrick.chromeContext() == "content") {
-					sandboxed.extension.sendRequest({ req:"cookieSet", where:where, whatjson: whatjson},function(reponse){
+					sandboxed.extension.sendRequest({ req:"cookieSet", where:where, whatjson: whatjson}, function(reponse) {
 						if (callback)
 							callback(reponse);
 					}); 
@@ -1035,16 +1047,12 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 					var _set = function(){
 						set_scheduled = true;
 						chrome.cookies.get({url:cookies[where].url, name:cookies[where].name}, function(cookie) {							
-							var new_cookie = cookies[where];
-							new_cookie.value = cookie ? cookie.value : "{}";
-							var valuejson = JSON.parse(new_cookie.value)
-							for (var key in whatjson)
-								valuejson[key] = whatjson[key];
-							new_cookie.value = JSON.stringify(valuejson);
+							var oldValue = cookie? cookie.value : null;
+							var new_cookie = makeCookie(oldValue);
 							chrome.cookies.set(new_cookie, function(){
 								set_scheduled = false;
 								if (callback)
-									callback(new_cookie);
+									callback(new_cookie.value);
 							});	
 						});
 					};
@@ -1055,11 +1063,33 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 						_set();
 				}
 			}
+			else 
+				if (callback)
+					callback(null)
 		};
-		// @param where - cookies type: see misc.js - cookies map
-		// @callback cookie - the retrived cookie it set
+		// @param where - cookies type: see above - cookies map
+		// @callback cookieValue - the retrieved value
 		Foxtrick.cookieGet = function(where, callback) {
-			if (Foxtrick.platform == "Chrome") {
+			if (Foxtrick.arch == "Gecko") {
+				var cookieManager2 = Components.classes["@mozilla.org/cookiemanager;1"]
+												.getService(Components.interfaces.nsICookieManager2);	
+				var iter = cookieManager2.getCookiesFromHost(cookies[where].domain);
+				var cookie_count = 0;
+				while (iter.hasMoreElements()) {
+					var cookie = iter.getNext();
+					if (cookie instanceof Components.interfaces.nsICookie) {
+						if (cookie.name == cookies[where].name
+						&& cookie.host == cookies[where].domain)
+						{
+							callback(cookie.value);
+							return;
+						}
+						cookie_count++;
+					}
+				}
+				callback(null);
+				return;
+			} else if (Foxtrick.platform == "Chrome") {
 				if (Foxtrick.chromeContext() == "content") {
 					sandboxed.extension.sendRequest({ req:"cookieGet", where:where}, function(response){
 						callback(response);
@@ -1068,7 +1098,10 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 				else {					
 					var _get = function() {
 						chrome.cookies.get({url:cookies[where].url, name:cookies[where].name}, function(cookie) {
-							callback(cookie);
+							if (cookie)
+								callback(cookie.value);
+							else 
+								callback(null)
 						});
 					};
 					if (set_scheduled) 
@@ -1078,6 +1111,8 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 						_get();
 				}
 			}
+			else 
+				callback(null)
 		};
 })();
 
