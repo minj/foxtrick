@@ -993,12 +993,15 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 			for_hty: {
 				url: "http://www.hattrick-youthclub.org/*",
 				name: "fromFoxtrick",
-				domain: ".hattrick-youthclub.org"
+				domain: ".hattrick-youthclub.org",
+				isJSON: true
 			},
 			from_hty: {
 				url: "http://hattrick-youthclub.org/*",
 				name: "forFoxtrick",
-				domain: ".hattrick-youthclub.org"
+				addId: true,
+				domain: ".hattrick-youthclub.org",
+				isJSON: true
 			},
 			for_htev: {
 				url:"http://htev.org/",
@@ -1008,68 +1011,87 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 		};
 		
 		// defines if cookie being set currently and thuse need wait if needed
+		var makeCookie = function (where, name, oldvalue, newvalue) {
+			var new_cookie = {url: cookies[where].url, domain:cookies[where].domain};
+			new_cookie.name = name;
+			if (cookies[where].isJSON){
+				new_cookie.value = oldvalue ? oldvalue : "{}";
+				var valuejson = JSON.parse(new_cookie.value)
+				for (var key in newvalue)
+					valuejson[key] = newvalue[key];
+				new_cookie.value = JSON.stringify(valuejson);
+			}
+			else
+				new_cookie.value = newvalue;			
+			return new_cookie;
+		};
+
 		// depends somewhat one browser implementation. so we'll see how it works
 		var set_scheduled = false; 
 		
 		// @param where - cookies type: see above - cookies map
-		// @param whatjson - value json to add to the cookie
-		// (optional) @callback(cookieValue) - the value json it set
-		Foxtrick.cookieSet = function(where, whatjson, callback) {
-			var makeCookie = function (value) {
-				var new_cookie = cookies[where];
-				new_cookie.value = value ? value : "{}";
-				var valuejson = JSON.parse(new_cookie.value)
-				for (var key in whatjson)
-					valuejson[key] = whatjson[key];
-				new_cookie.value = JSON.stringify(valuejson);
-				return new_cookie;
-			};
+		// @param what - value to add to the cookie, if isJSON it's added to existing
+		// (optional) @callback(cookieValue) - the value (json) it set
+		Foxtrick.cookieSet = function(where, what, callback) {
+			if (cookies[where].addId)
+				var name =  cookies[where].name + "_" + Foxtrick.modules["Core"].getSelfTeamInfo().teamId;
+			else
+				var name =  cookies[where].name;
 			
 			if (Foxtrick.arch == "Gecko") {
 				Foxtrick.cookieGet(where, function(oldValue) {
-					var new_cookie = makeCookie(oldValue);							
+					var new_cookie = makeCookie(where, name, oldvalue, what);							
 					var cookieManager2 = Components.classes["@mozilla.org/cookiemanager;1"]
 												.getService(Components.interfaces.nsICookieManager2);	
 					var expire =  (new Date()).getTime() + 60*60*24*7;
 					cookieManager2.add(new_cookie.domain, "/", new_cookie.name, new_cookie.value, false, true, false, expire);
-					if (callback)
+					if (callback) {
 						callback(new_cookie.value);
+					}
 				});
 			} 
 			else if (Foxtrick.platform == "Chrome") {
 				if (Foxtrick.chromeContext() == "content") {
-					sandboxed.extension.sendRequest({ req:"cookieSet", where:where, whatjson: whatjson}, function(reponse) {
-						if (callback)
+					sandboxed.extension.sendRequest({ req:"cookieSet", where:where, name: name, what: what}, function(reponse) {
+						if (callback) {
 							callback(reponse);
+						}
 					}); 
-				}
-				else {
-					var _set = function(){
-						set_scheduled = true;
-						chrome.cookies.get({url:cookies[where].url, name:cookies[where].name}, function(cookie) {							
-							var oldValue = cookie? cookie.value : null;
-							var new_cookie = makeCookie(oldValue);
-							chrome.cookies.set(new_cookie, function(){
-								set_scheduled = false;
-								if (callback)
-									callback(new_cookie.value);
-							});	
-						});
-					};
-					if (set_scheduled) 
-						// if unfinshed set is called, queue behind
-						window.setTimeout(_set, 0);
-					else 
-						_set();
 				}
 			}
 			else 
 				if (callback)
 					callback(null)
 		};
+		
+		// chrome background
+		Foxtrick._cookieSet = function(where, name, what, callback) {
+			var _set = function(){
+				set_scheduled = true;
+				chrome.cookies.get({url:cookies[where].url, name: name}, function(cookie) {							
+					var oldValue = cookie ? cookie.value : null;
+					var new_cookie = makeCookie(where, name, oldValue, what);							
+					chrome.cookies.set(new_cookie, function(){
+						set_scheduled = false;
+						if (callback)
+							callback(new_cookie.value);
+					});	
+				});
+			};
+			if (set_scheduled) 
+				// if unfinshed set is called, queue behind
+				window.setTimeout(_set, 0);
+			else 
+				_set();
+		};
 		// @param where - cookies type: see above - cookies map
 		// @callback cookieValue - the retrieved value
 		Foxtrick.cookieGet = function(where, callback) {
+			if (cookies[where].addId)
+				var name =  cookies[where].name + "_" + Foxtrick.modules["Core"].getSelfTeamInfo().teamId;
+			else
+				var name =  cookies[where].name;
+
 			if (Foxtrick.arch == "Gecko") {
 				var cookieManager2 = Components.classes["@mozilla.org/cookiemanager;1"]
 												.getService(Components.interfaces.nsICookieManager2);	
@@ -1078,10 +1100,13 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 				while (iter.hasMoreElements()) {
 					var cookie = iter.getNext();
 					if (cookie instanceof Components.interfaces.nsICookie) {
-						if (cookie.name == cookies[where].name
+						if (cookie.name == name
 						&& cookie.host == cookies[where].domain)
 						{
-							callback(cookie.value);
+							if (cookies[where].isJSON) 
+								callback( JSON.parse(cookie.value) );
+							else 
+								callback( cookie.value );
 							return;
 						}
 						cookie_count++;
@@ -1091,28 +1116,34 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 				return;
 			} else if (Foxtrick.platform == "Chrome") {
 				if (Foxtrick.chromeContext() == "content") {
-					sandboxed.extension.sendRequest({ req:"cookieGet", where:where}, function(response){
-						callback(response);
-					}); 
-				}
-				else {					
-					var _get = function() {
-						chrome.cookies.get({url:cookies[where].url, name:cookies[where].name}, function(cookie) {
-							if (cookie)
-								callback(cookie.value);
+					sandboxed.extension.sendRequest({ req:"cookieGet", where:where, name:name}, function(response){
+							if (cookies[where].isJSON)
+								callback( JSON.parse(response) );
 							else 
-								callback(null)
-						});
-					};
-					if (set_scheduled) 
-						// if unfinshed set is called, queue behind
-						window.setTimeout(_get, 0);
-					else 
-						_get();
+								callback( response );
+							return;
+					}); 
 				}
 			}
 			else 
 				callback(null)
+		};
+
+		// chrome background
+		Foxtrick._cookieGet = function(where, name, callback) {
+			var _get = function() {
+				chrome.cookies.get({url:cookies[where].url, name:name}, function(cookie) {
+					if (cookie)
+						callback(cookie.value);
+					else 
+						callback(null)
+				});
+			};
+			if (set_scheduled) 
+				// if unfinshed set is called, queue behind
+				window.setTimeout(_get, 0);
+			else 
+				_get();
 		};
 })();
 

@@ -313,9 +313,9 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	// from misc.js
 	Foxtrick.loader.chrome.background.cookieSet = function(request, sender, sendResponse) {
 		// @param where - cookies type: see misc.js - cookies map
-		// @param whatjson - value json to add to the cookie
+		// @param what - value to add to the cookie
 		// @callback cookie - the new cookie it set
-		Foxtrick.cookieSet(request.where, request.whatjson, function(response){
+		Foxtrick._cookieSet(request.where, request.name, request.what, function(response){
 			if (sendResponse)
 				sendResponse(response);
 		});	
@@ -323,7 +323,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	Foxtrick.loader.chrome.background.cookieGet = function(request, sender, sendResponse) {
 		// @param where - cookies type: see misc.js - cookies map
 		// @callback cookie - the retrived cookie it set
-		Foxtrick.cookieGet(request.where, function(response){
+		Foxtrick._cookieGet(request.where, request.name, function(response){
 			sendResponse(response);
 		});	
 	};

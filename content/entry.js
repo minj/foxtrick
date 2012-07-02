@@ -186,13 +186,6 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 			return;
 		}
 
-		Foxtrick.cookieGet("for_hty", function(cookie){Foxtrick.log("get for_hty",cookie)});
-		Foxtrick.cookieGet("from_hty", function(cookie){Foxtrick.log("get from_hty",cookie)});
-		Foxtrick.cookieSet("for_hty", {"ht-server":  doc.location.hostname},function(cookie){Foxtrick.log('set for_hty', cookie)});
-		Foxtrick.cookieGet("for_hty", function(cookie){Foxtrick.log("get for_hty",cookie)});
-		Foxtrick.cookieSet("for_htev", {"ht-server":  doc.location.hostname});
-		
-
 		// set up direction and style attributes
 		var current_theme = Foxtrick.util.layout.isStandard(doc) ? "standard" : "simple";
 		var current_dir = Foxtrick.util.layout.isRtl(doc) ? "rtl" : "ltr";
