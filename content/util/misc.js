@@ -1092,7 +1092,6 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 		
 		// chrome background
 		Foxtrick._cookieSet = function(where, name, what, callback) {
-			Foxtrick.log("_cookieSet")
 			var _set = function(){
 				set_scheduled = true;
 				chrome.cookies.get({url:cookies[where].url, name: name}, function(cookie) {							
