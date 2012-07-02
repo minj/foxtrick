@@ -665,14 +665,25 @@ function getModule(module)
 
 				if (module.OPTION_EDITS_TEXTFILE_LOAD_BUTTONS && module.OPTION_EDITS_TEXTFILE_LOAD_BUTTONS[i]) {
 					var load = Foxtrick.filePickerForText(document, (function(textInput) {
-						return function(text) { textInput.value = text; textInput.input();};
+						return function(text) { 
+							textInput.value = text; textInput.input(); 
+							var evt = document.createEvent("HTMLEvents");
+						    evt.initEvent(event, true, true ); // event type,bubbling,cancelable
+						    console.log("dispatchEvent");
+						   	element.dispatchEvent(evt);
+						};
 					})(textInput));
 					textDiv.appendChild(load);
 				}
 				if (module.OPTION_EDITS_DATAURL_LOAD_BUTTONS && module.OPTION_EDITS_DATAURL_LOAD_BUTTONS[i]) {
 					var load = Foxtrick.filePickerForDataUrl(document, (function(textInput) {
 						return function(url) { 
-							textInput.value = url; 
+							textInput.value = url;
+							var evt = document.createEvent("HTMLEvents");
+						    evt.initEvent(event, true, true ); // event type,bubbling,cancelable
+						    console.log("dispatchEvent");
+						   	element.dispatchEvent(evt);
+
 							if (module.OPTION_EDITS_DATAURL_IS_SOUND && module.OPTION_EDITS_DATAURL_IS_SOUND[i])
 								Foxtrick.playSound(url, document);						
 						};
@@ -983,6 +994,8 @@ function initModules()
 }
 	
 function saveEvent(ev){
+
+	console.log("save");
 	if ($(event.target).attr("pref")) {
 		var pref = $(event.target).attr("pref");
 		if ($(event.target).is(":checkbox"))

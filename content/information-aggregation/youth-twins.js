@@ -40,12 +40,16 @@
  */
 
  Foxtrick.modules["YouthTwins"]={
+
+
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["YouthPlayers"],
 	OPTIONS : ["HideInfoLink"],
 	CSS : Foxtrick.InternalPath + "resources/css/youth-twins.css",
 	run : function(doc) {
 		var ignoreHours = 24;
+
+		Foxtrick.cookieGet("from_hty", function(cookie){ Foxtrick.log("from hy:", cookie )})
 
 		if (!Foxtrick.isPage('ownYouthPlayers', doc))
 			return;
