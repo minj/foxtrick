@@ -1059,8 +1059,9 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 					var new_cookie = makeCookie(where, name, oldValue, what);							
 					var cookieManager2 = Components.classes["@mozilla.org/cookiemanager;1"]
 												.getService(Components.interfaces.nsICookieManager2);	
+					//expire just to make the function happy, no effect when the param before is true (session only)
 					var expire =  (new Date()).getTime() + 60*60*24*7;
-					cookieManager2.add(new_cookie.domain, "/", new_cookie.name, new_cookie.value, false, true, false, expire);
+					cookieManager2.add(new_cookie.domain, "/", new_cookie.name, new_cookie.value, false, true, true, expire);
 					if (callback) {
 						if(cookies[where].isJSON && cookies[where].isBase64)
 							callback( JSON.parse( Foxtrick.decodeBase64( new_cookie.value ) ) );
