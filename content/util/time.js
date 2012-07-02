@@ -131,7 +131,7 @@ Foxtrick.util.time = {
 
 	getHtTimeStamp : function(doc){
 		try {
-			return Date.parse( Foxtrick.util.time.getHtDate(doc) ) / 1000;
+			return Date.parse( Foxtrick.util.time.getHtDate(doc) );
 		}
 		catch (e) {
 			return null;
