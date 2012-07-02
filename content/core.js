@@ -35,7 +35,7 @@ Foxtrick.modules["Core"]={
 			+ doc.location.hostname);
 		Foxtrick.setLastPage(doc.location.href);
 
-		Foxtrick.cookieSet("for_hty", {"server":  doc.location.hostname}, function(cookie){ Foxtrick.log("setting hy server cookie:", cookie)});
+		Foxtrick.cookieSet("for_hty", {"server":  doc.location.hostname, "c" : Foxtrick.util.time.getHtTimeStamp(doc) }, function(cookie){ Foxtrick.log("setting hy server cookie:", cookie)});
 		Foxtrick.cookieSet("for_htev", "ht-server:"+  doc.location.hostname, function(cookie){ Foxtrick.log("setting htev server cookie:", cookie)});
 	},
 

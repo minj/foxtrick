@@ -129,6 +129,15 @@ Foxtrick.util.time = {
 		return (text.match(re) != null);
 	},
 
+	getHtTimeStamp : function(doc){
+		try {
+			return Date.parse( Foxtrick.util.time.getHtDate(doc) ) / 1000;
+		}
+		catch (e) {
+			return null;
+		}
+	},
+
 	getHtDate : function(doc) {
 		try {
 			var time = doc.getElementById("time").textContent;
