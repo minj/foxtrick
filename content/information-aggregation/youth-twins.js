@@ -263,7 +263,9 @@
 					} catch(e) {
 						//something might be wrong with the saved result, force an update
 						Foxtrick.log("YouthTwins: corrupted saved JSON", e, saved);
-						getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
+						if(ignoreUntil == -1 || now > ignoreUntil)
+							getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
+						
 						return;
 					}
 
