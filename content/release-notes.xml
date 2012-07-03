@@ -25,6 +25,7 @@
 <item>● <module>TransferSearchResultFilters</module>: Opportunity added to filter by form and hide players without speciality. Now cooperates with <module>TransferSearchFilters</module>.</item>
 <item>● <module>FriendlyPool</module>: Opportunity added to expand the country selection box.</item>
 <item>● <module>MovePlayerStatement</module>: Opportunity added to remove the statement altogether.</item>
+<item>● <module>YouthTwins</module>: When marking/unmarking twins inside HY Foxtrick will now display the updated information instantly</item>
 <item>● Tabs: Added backend functionality to add custom tabs to most sites. (like the HT own tabs for upcoming matches).</item>
 <item><xhtml:b>Bugfixes.</xhtml:b></item>
 <item></item>
