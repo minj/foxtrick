@@ -26,6 +26,8 @@ Foxtrick.modules["Core"]={
 		this.showVersion(doc);
 		this.featureHighlight(doc);
 		this.showChangeLog(doc);
+
+			
 	},
 
 	updateLastHost : function(doc) {
@@ -35,6 +37,12 @@ Foxtrick.modules["Core"]={
 			+ doc.location.hostname);
 		Foxtrick.setLastPage(doc.location.href);
 
+		//cookies for partner websites
+		var logout = doc.getElementById("ctl00_ctl00_CPHeader_ucMenu_hypLogout");
+		Foxtrick.onClick(logout, function(ev){
+			Foxtrick.cookieSet("for_htev", "ht-server:"+  doc.location.hostname, function(cookie){ Foxtrick.log("setting htev server cookie:", cookie)});
+			Foxtrick.cookieSet("for_hty", {"server":  "www.hattrick.org", "c" : Foxtrick.util.time.getHtTimeStamp(doc) / 1000 }, function(cookie){ Foxtrick.log("setting hy server cookie:", cookie)});
+		});
 		Foxtrick.cookieSet("for_hty", {"server":  doc.location.hostname, "c" : Foxtrick.util.time.getHtTimeStamp(doc) / 1000 }, function(cookie){ Foxtrick.log("setting hy server cookie:", cookie)});
 		Foxtrick.cookieSet("for_htev", "ht-server:"+  doc.location.hostname, function(cookie){ Foxtrick.log("setting htev server cookie:", cookie)});
 	},
