@@ -232,6 +232,7 @@ ul.nav li a
 {
 	text-decoration: none;
 	color: #444;
+	display: block;
 }
 
 ul.nav li:hover
