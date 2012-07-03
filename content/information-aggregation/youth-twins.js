@@ -67,6 +67,12 @@
 			Foxtrick.util.api.retrieve(doc, args,{ cache_lifetime:'session'}, callback);
 		}
 
+		var getUtcFromTimestamp = function( ts ){
+			var date = new Date();
+			date.setTime(ts);
+			return date.toUTCString();
+		}
+
 		//icons resources for representation
 		var icon_green = Foxtrick.InternalPath + 'resources/img/twins/twin.png';
 		var icon_red = Foxtrick.InternalPath + 'resources/img/twins/twin_red.png'; 
@@ -125,17 +131,17 @@
 					Foxtrick.log("YouthTwins: Given data is invalid or incomplete", status, response);
 					return;
 				case 404:
-					var now = Foxrtick.util.time.getHtTimeStamp(doc);
+					var now = Foxtrick.util.time.getHtTimeStamp(doc) + 59000;
 					var ignoreUntil = now + ignoreHours*60*60*1000;
 					Foxtrick.localSet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".ignoreUntil", ignoreUntil);
 					Foxtrick.log("YouthTwins: HY is moving servers or is in huge trouble", status);
 					Foxtrick.log("YouthTwins: No requests for " + ignoreHours/24.0 + " day(s).");
 					return;
-				case 500: 
+				case 500:
 					Foxtrick.log("YouthTwins: HY is in trouble", status);
 					return; 
 				case 503:
-					var now = Foxrtick.util.time.getHtTimeStamp(doc);
+					var now = Foxrtick.util.time.getHtTimeStamp(doc) + 59000;
 					var ignoreUntil = now + ignoreHours*60*60*1000;
 					Foxtrick.localSet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".ignoreUntil", ignoreUntil);
 					Foxtrick.log("YouthTwins: HY temporarily disabled the feature", status, "");
@@ -237,7 +243,7 @@
 		//get last saved result from and possible ignoreTime
 		Foxtrick.localGet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".lastResponse", function (saved){
 			Foxtrick.localGet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".ignoreUntil", function (ignoreUntil){
-				var now = Foxtrick.util.time.getHtTimeStamp(doc);
+				var now = Foxtrick.util.time.getHtTimeStamp(doc) + 59000;
 				if(!now)
 					return;
 
@@ -258,6 +264,7 @@
 					} catch(e) {
 						//something might be wrong with the saved result, force an update
 						Foxtrick.log("YouthTwins: corrupted saved JSON", e, saved);
+						var json = {};
 						return;
 					}
 
@@ -278,38 +285,54 @@
 					//@ c - creating of the cookie
 					//@ last: last twin update
 					//@ next: recommendet next update, aka not before
+					Foxtrick.log("Youthtwins: CookieGet");
 					Foxtrick.cookieGet("from_hty", function(cookie){ 
 						if(!cookie){
 							Foxtrick.log("YouthTwins: No HY cookie. ");
+							cookieDone();
 							return;
+						} else {
+							Foxtrick.log("cookie", cookie);
 						}
-
-						Foxtrick.log(cookie)
 
 						var last = cookie["players/twins"]["last"]*1000;
 						var next = cookie["players/twins"]["next"]*1000;
 
 						if(fetchTime < last){
 							Foxtrick.log("YouthTwins: Cookies says: Something changed -> Update");
-							getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
-							return;
-						} else if(next > now ){
-							Foxtrick.log("YouthTwins: Cookies says: Update, time's up!");
-							getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
+							Foxtrick.log("fetchTime", getUtcFromTimestamp(fetchTime));
+							Foxtrick.log("last", getUtcFromTimestamp(last));
+							getTwinsFromHY(teamid, false, false, "auto", function(response, status){
+								handleHyResponse(response, status);
+								if(status == 200){
+									Foxtrick.log("YouthTwins: Updating json.lifetime and json.fetchtime");
+									var ttl = next - now;
+									json.fetchTime = now / 1000;
+									json.lifeTime = ttl / 1000;
+									Foxtrick.log("json.fetchtime", getUtcFromTimestamp(now));
+									Foxtrick.log("json.fetchtime + json.lifeTime", getUtcFromTimestamp(now + ttl));
+									Foxtrick.localSet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".lastResponse", JSON.stringify(json) );	
+								}
+							 });
 							return;
 						} else {
 							Foxtrick.log("YouthTwins: Updating json.lifeTime, adjusting fetchtime and lifeTime");
 							var ttl = next - now;
 							json.fetchTime = now / 1000;
 							json.lifeTime = ttl / 1000;
-
-							Foxtrick.localSet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".lastResponse", json );
+							Foxtrick.log("json.fetchtime", getUtcFromTimestamp(now));
+							Foxtrick.log("json.fetchtime + json.lifeTime", getUtcFromTimestamp(now + ttl));
+							Foxtrick.localSet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".lastResponse", JSON.stringify(json) );
 							
 							cookieDone();
 						}
 					});
 					
 					var cookieDone = function (){
+						var fetchTime = parseInt(json.fetchTime)*1000;
+						var lifeTime = parseInt(json.lifeTime)*1000;
+						var expireTime = fetchTime + lifeTime;
+
 						//when we need to force a request due to HY request or so
 						if(false){
 							Foxtrick.log("YouthTwins: Forcing request:", valid);
@@ -317,9 +340,9 @@
 							return;
 						}
 						//query HY or use cached stuff and alter the site
-						if(now > fetchTime && now <= expireTime){
+						if(now >= fetchTime && now <= expireTime){
 							//in valid lifespan, also saved response seems to be valid
-							Foxtrick.log("YouthTwins: Using cached response from", fetchTime,"expires", expireTime, "now", now);
+							Foxtrick.log("YouthTwins: Using cached response from", getUtcFromTimestamp(fetchTime) ,"expires", getUtcFromTimestamp(expireTime), "now", getUtcFromTimestamp(now));
 							handleHyResponse(saved, 200);
 						} else if(now > expireTime) {
 							if(ignoreUntil != -1 && now < ignoreUntil){
