@@ -302,6 +302,7 @@
 						var last = cookie["players/twins"]["last"]*1000;
 						var next = cookie["players/twins"]["next"]*1000;
 
+						//
 						if(fetchTime < last){
 							Foxtrick.log("YouthTwins: Cookies says: Something changed -> Update");
 							Foxtrick.log("fetchTime", getUtcFromTimestamp(fetchTime));
@@ -320,23 +321,12 @@
 							 });
 							return;
 						} else {
-							Foxtrick.log("YouthTwins: Updating json.lifeTime, adjusting fetchtime and lifeTime");
-							var ttl = next - now;
-							json.fetchTime = now / 1000;
-							json.lifeTime = ttl / 1000;
-							Foxtrick.log("json.fetchtime", getUtcFromTimestamp(now));
-							Foxtrick.log("json.fetchtime + json.lifeTime", getUtcFromTimestamp(now + ttl));
-							Foxtrick.localSet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".lastResponse", JSON.stringify(json) );
-							
 							cookieDone();
 						}
 					});
 					
 					var cookieDone = function (){
-						var fetchTime = parseInt(json.fetchTime)*1000;
-						var lifeTime = parseInt(json.lifeTime)*1000;
-						var expireTime = fetchTime + lifeTime;
-
+						Foxtrick.log("YouthTwins: Cookieless update");
 						//when we need to force a request due to HY request or so
 						if(false){
 							Foxtrick.log("YouthTwins: Forcing request:", valid);
