@@ -291,7 +291,11 @@
 							Foxtrick.log("YouthTwins: No HY cookie. ");
 							cookieDone();
 							return;
-						} else {
+						} else if(ignoreUntil != -1 && now < ignoreUntil){
+							Foxtrick.log("Youthtwins: Cookie -> Ignore -> Fallback");
+							cookieDone();
+						}
+						else {
 							Foxtrick.log("cookie", cookie);
 						}
 
