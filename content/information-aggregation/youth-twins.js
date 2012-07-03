@@ -84,7 +84,6 @@
 		//debug: Fakes a reponse where twins will be present
 		//callback: function to be called after HY was queried
 		var getTwinsFromHY = function (teamid, forceupdate, debug, userType, callback){
-			Foxtrick.log("Getting twins from HY");
 			getYouthPlayerList(teamid, function(playerlist) {
 				getYouthAvatars(function(avatars){
 					//urlencode xml files
@@ -264,7 +263,7 @@
 					} catch(e) {
 						//something might be wrong with the saved result, force an update
 						Foxtrick.log("YouthTwins: corrupted saved JSON", e, saved);
-						var json = {};
+						getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
 						return;
 					}
 
