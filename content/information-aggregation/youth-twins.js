@@ -294,6 +294,7 @@
 						} else if(ignoreUntil != -1 && now < ignoreUntil){
 							Foxtrick.log("Youthtwins: Cookie -> Ignore -> Fallback");
 							cookieDone();
+							return;
 						}
 						else {
 							Foxtrick.log("cookie", cookie);
