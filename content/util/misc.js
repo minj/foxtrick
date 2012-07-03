@@ -1178,12 +1178,16 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 		};
 
 		Foxtrick.encodeBase64 = function(str){
-			
    			 return window.btoa( unescape( encodeURIComponent( str ) ) );
 		};
 
 		Foxtrick.decodeBase64 = function(str) {
-			return decodeURIComponent( escape( window.atob( str ) ) );
+			try{
+				return decodeURIComponent( escape( window.atob( str ) ) );
+			} catch(e) {
+				Foxtrick.log("Error decoding base64 encoded string", str, e);
+				return null;
+			}
 		};
 })();
 
