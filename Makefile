@@ -29,7 +29,7 @@ endif
 ZIP = zip -q
 XAR = xar
 
-ROOT_FILES_FIREFOX = chrome.manifest install.rdf icon.png COPYING HACKING
+ROOT_FILES_FIREFOX = chrome.manifest install.rdf bootstrap.js icon.png COPYING HACKING
 ROOT_FILES_CHROME = manifest.json
 ROOT_FILES_OPERA = config.xml content/background.html content/preferences.html content/popup-opera.html
 ROOT_FILES_SAFARI = Info.plist Settings.plist skin/icon.png
@@ -68,9 +68,10 @@ CONTENT_FILES = add-class.js \
 	redirections.js \
 	ui.js \
 	xml-load.js 
-CONTENT_FILES_FIREFOX = $(CONTENT_FILES) overlay.xul \
-	overlay-fennec.xul \
+CONTENT_FILES_FIREFOX = $(CONTENT_FILES) overlay-fennec.xul \
 	preferences.html \
+	preferences_dev.html \
+	preferences_dev.js \
 	options-mobile.xul \
 	options-android.xul \
 	observer.js \

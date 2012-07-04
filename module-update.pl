@@ -45,11 +45,11 @@ my @targets = (
 			"suffix" => "\"></script>\n"
 	},
 	{
-			"file" => "content/overlay.xul",
+			"file" => "bootstrap.js",
 			"from" => "<!-- categorized modules -->",
 			"to" => "<!-- end categorized modules -->",
-			"prefix" => "<script type=\"application/x-javascript\" src=\"./",
-			"suffix" => "\"></script>\n"
+			"prefix" => "\tServices.scriptloader.loadSubScript(\"chrome://foxtrick/content/",
+			"suffix" => "\",this.owner, \"UTF-8\");\n"
 	},
 	{
 		"file" => "background.html",

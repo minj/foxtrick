@@ -30,28 +30,6 @@ if (Foxtrick.platform == "Firefox") {
 	// as the argument
 	// initializes items in menu bar and status bar
 	Foxtrick.modules.UI.onLoad = function(document) {
-		// to add FoxTrick button on the navigation bar by default
-		if (!FoxtrickPrefs.getBool("toolbarInited")) {
-			var buttonId = "foxtrick-toolbar-button"; // ID of FoxTrick button
-			var afterId = "search-container"; // insert after search box
-			var navBar = document.getElementById("nav-bar");
-			var curSet = navBar.currentSet.split(",");
-
-			if (curSet.indexOf(buttonId) == -1) {
-				var pos = curSet.indexOf(afterId) + 1 || curSet.length;
-				var set = curSet.slice(0, pos).concat(buttonId).concat(curSet.slice(pos));
-
-				navBar.setAttribute("currentset", set.join(","));
-				navBar.currentSet = set.join(",");
-				document.persist(navBar.id, "currentset");
-				try {
-					BrowserToolboxCustomizeDone(true);
-				}
-				catch (e) {}
-			}
-			FoxtrickPrefs.setBool("toolbarInited", true);
-		}
-
 		// toolbar menu - preferences
 		var toolbarPreferences = document.getElementById("foxtrick-toolbar-preferences");
 		if (!toolbarPreferences) return; // wrong place somehow

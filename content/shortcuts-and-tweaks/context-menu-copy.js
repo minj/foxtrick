@@ -39,6 +39,7 @@ if (Foxtrick.platform != 'Opera' && Foxtrick.platform != 'Mobile' && Foxtrick.pl
 					entry.item = document.getElementById(type);
 					entry.item.addEventListener("command", copy(entry), false);
 				}
+				document.getElementById("foxtrick-popup-copy").setAttribute("hidden", true);
 			};
 			// called from background script
 			var chromeInit = function() {
@@ -106,6 +107,7 @@ if (Foxtrick.platform != 'Opera' && Foxtrick.platform != 'Mobile' && Foxtrick.pl
 					if (entries[type])
 						entries[type].item.setAttribute("hidden", true);
 				}
+				document.getElementById("foxtrick-popup-copy").setAttribute("hidden", true);
 			}
 		},
 
@@ -134,15 +136,20 @@ if (Foxtrick.platform != 'Opera' && Foxtrick.platform != 'Mobile' && Foxtrick.pl
 			if (Foxtrick.platform == "Firefox") {
 				doc.addEventListener("contextmenu", function(ev) {
 					collectData(ev.target);
-					var type;
+					var type, showing = false;
 					for (type in entries) {
 						if (entries[type].copyText !== null) {
 							entries[type].item.setAttribute("hidden", false);
 							entries[type].item.setAttribute("label", entries[type].title);
+							showing = true;
 						}
 						else
 							entries[type].item.setAttribute("hidden", true);
 					}
+					if (showing)
+						document.getElementById("foxtrick-popup-copy").setAttribute("hidden", false);
+					else
+						document.getElementById("foxtrick-popup-copy").setAttribute("hidden", true);
 				}, false);
 			}
 			else if (Foxtrick.arch == "Sandboxed") {

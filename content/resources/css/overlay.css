@@ -11,3 +11,7 @@
 toolbar[iconsize="small"] #foxtrick-toolbar-button {
 	list-style-image: url("chrome://foxtrick/skin/icon-16.png");
 }
+
+#foxtrick-popup-copy {
+	list-style-image: url("chrome://foxtrick/skin/icon-16.png");
+}
