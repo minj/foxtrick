@@ -21,9 +21,11 @@
 		<item>● НОВЫЙ модуль <module>PlayerStatsTrainingWeek</module>: добавлена возможность группировки матчей в тренировочной неделе вместо календарной.</item>
 		<item>● Модуль <module>SkillTable</module>: добавлена возможность вторичной сортировки при использовании Ctrl + клик на заголовке другой колонки.</item>
 		<item>● Модуль <module>SkillTable</module>: теперь имена игроков для сокращения занатого ими мемта сокращаются до инициалов.</item>
+		<item>● Модуль <module>SkillColoring</module>: модуль полностью переписан, большое количество исправлений и дополнений. Изменены параметры модуля - необходимо настроить их заново.</item>
 		<item>● Модуль <module>TransferSearchResultFilters</module>: возможность фильтра по форме и скрытия игроков без специализаций; модуль теперь работает совместно с модулем <module>TransferSearchFilters</module>.</item>
 		<item>● Модуль <module>FriendlyPool</module>: возможность расширить поле выбора страны.</item>
 		<item>● Модуль <module>MovePlayerStatement</module>: возможность для удаления сообщения независимо ни от чего.</item>
+		<item>● Модуль <module>YouthTwins</module>: внесённые вручную в HY изменения теперь немедленно отображаются на страницах игроков молодёжной команды.</item>
 		<item>● Tabs: Added backend functionality to add custom tabs to most sites. (like the HT own tabs for upcoming matches).</item>
 		<item><xhtml:b>Исправления.</xhtml:b></item>
 		<item></item>
