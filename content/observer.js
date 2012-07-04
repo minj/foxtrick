@@ -1,5 +1,5 @@
 // options xul observer. should have worked for mobile as well i guess, but didn't. so option-mobile stays old style for now
-if (Foxtrick.platform == "Android") {
+Foxtrick.addObserver = function() {
 	var observer = {
 	  observe: function(aSubject, aTopic, aData) {
 		if (aTopic == "addon-options-displayed" 
@@ -24,4 +24,4 @@ if (Foxtrick.platform == "Android") {
 	Components.utils.import( "resource://gre/modules/Services.jsm" );
 
 	Services.obs.addObserver(observer, "addon-options-displayed", false);
-}
+};

@@ -4,6 +4,7 @@
  * FoxTrick loader for Gecko platform
  */
 
+
 if (!Foxtrick)
 	var Foxtrick = {};
 if (!Foxtrick.loader)
@@ -140,27 +141,45 @@ Foxtrick.loader.gecko.docUnload = function(ev) {
 	// do nothing
 };
 
+
 // fennec tab load. starts the content instances for fennec (one per tab. persistant)
 // this is the content side entry point for fennec
-if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android") {
-	Foxtrick.log('new tab load');
-	sandboxed.extension.sendRequest({ req : "tabLoad" },
-		function (data) {
-			try {
-				Foxtrick.entry.contentScriptInit(data);
+if (Foxtrick.platform == "Android") {
 
-				addEventListener("DOMContentLoaded", function(ev){
-					try {
-						Foxtrick.modules.UI.update(ev.originalTarget);
-						Foxtrick.entry.docLoad(ev.originalTarget);
-					} catch(e) {
-						Foxtrick.log(e);
-					}
-				}, false);
-			} catch(e) {
-				Foxtrick.log(e);
-			}
+	Foxtrick.loader.fennec = {};
+
+	Foxtrick.loader.fennec.DOMContentLoaded = function(ev) {
+		try {
+			Foxtrick.modules.UI.update(ev.originalTarget);
+			Foxtrick.entry.docLoad(ev.originalTarget);
+		} catch(e) {
+			Foxtrick.log(e);
 		}
-	);
+	};
+	
+	Foxtrick.loader.fennec.unload = function(ev) {
+		try {
+			Foxtrick.unload_module_css();
+			removeEventListener("DOMContentLoaded", Foxtrick.loader.fennec.DOMContentLoaded, false);
+		} catch(e) {
+			Foxtrick.log(e);
+		}
+	};
+	
+	Foxtrick.loader.fennec.load = function() {
+		sandboxed.extension.sendRequest({ req : "tabLoad" },
+			function (data) {
+				try {
+					Foxtrick.entry.contentScriptInit(data);
+					addEventListener("DOMContentLoaded", Foxtrick.loader.fennec.DOMContentLoaded, false);
+				} catch(e) {
+					Foxtrick.log(e);
+				}
+			}
+		);
+	};
+
+	Foxtrick.log('new tab load');
+	Foxtrick.loader.fennec.load();
 }
 

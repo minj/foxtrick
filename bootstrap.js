@@ -11,12 +11,17 @@ const Cu = Components.utils;
 
 Cu.import("resource://gre/modules/Services.jsm");
 
-var FoxtrickProto = function(window) {
+function isFennecNative() {
+  let appInfo = Cc["@mozilla.org/xre/app-info;1"].getService(Ci.nsIXULAppInfo);
+  return (appInfo.ID == "{aa3c5121-dab2-40e2-81ca-7ea25febc110}");
+};
+
+var FoxtrickFirefox = function(window) {
 	this.owner = window;
 };
-FoxtrickProto.prototype = {
+FoxtrickFirefox.prototype = {
 	loadScript: function() {
-		// loading Foxtrick into window.Foxtrick
+		// loading Foxtrick into window.Foxtrick		
 		
 		//<!-- essential stuffs -->
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/env.js",this.owner, "UTF-8");
@@ -24,7 +29,7 @@ FoxtrickProto.prototype = {
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/l10n.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/xml-load.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/pages.js",this.owner, "UTF-8");
-
+		
 		//<!-- utilities -->
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/api.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/array.js",this.owner, "UTF-8");
@@ -48,19 +53,19 @@ FoxtrickProto.prototype = {
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/string.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/tabs.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/time.js",this.owner, "UTF-8");
-
+		
 		//<!-- external libraries -->
 		//Services.scriptloader.loadSubScript("chrome://foxtrick/content/lib/jquery.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/lib/oauth.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/lib/sha1.js",this.owner, "UTF-8");
-
+		
 		//<!-- core modules -->
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/redirections.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/read-ht-prefs.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/forum-stage.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/core.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/add-class.js",this.owner, "UTF-8");
-
+		
 		//<!-- page utilities -->
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/pages/all.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/pages/country.js",this.owner, "UTF-8");
@@ -70,7 +75,7 @@ FoxtrickProto.prototype = {
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/pages/transfer-search-results.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/pages/match.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/pages/matches.js",this.owner, "UTF-8");
-
+		
 		//<!-- categorized modules -->
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/access/aria-landmarks.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/alert/live-alert.js",this.owner, "UTF-8");
@@ -212,15 +217,14 @@ FoxtrickProto.prototype = {
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/shortcuts-and-tweaks/transfer-search-result-filters.js",this.owner, "UTF-8");
 		//<!-- end categorized modules -->
 
+		//<!-- browser specific -->
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/ui.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/entry.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/loader-gecko.js",this.owner, "UTF-8");
 	},
-
 	init : function (){
 		// add ui
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/lib/ToolbarItem.js", this);
-
 		// toolbar
 		this.generalButton = this.ToolbarItem.create(
 			<>
@@ -247,8 +251,7 @@ FoxtrickProto.prototype = {
 				onDestroy : function() {
 				}
 			}
-		);
-		
+		);		
 		// contextmenu
 		let popup = this.owner.document.getElementById('contentAreaContextMenu');
 		this.contextLinkItem = this.ToolbarItem.toDOMDocumentFragment(<>
@@ -268,20 +271,88 @@ FoxtrickProto.prototype = {
 				</menu>
 			</>, popup).querySelector('*');
 		popup.insertBefore(this.contextLinkItem, this.owner.document.getElementById('context-paste').nextSibling);
-
 		//load foxtrick files
-		this.loadScript();	
-		
+		this.loadScript();		
 		//init and add listeners
 		this.loader.gecko.browserLoad();   
 	},
-
 	cleanup : function (){
 		// remove ui
 		this.generalButton.destroy();
 		let popup = this.owner.document.getElementById('contentAreaContextMenu');
-		popup.removeChild(this.contextLinkItem)
+		popup.removeChild(this.contextLinkItem)		
+		// remove listeners and css
+		this.loader.gecko.browserUnLoad()
+	}
+};
+
+var FoxtrickFennec = function(window) {
+	this.owner = window;
+};
+FoxtrickFennec.prototype = {
+	loadScript: function() {
+		// loading Foxtrick into window.Foxtrick
 		
+		//<!-- essential stuffs -->
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/env.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/prefs.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/l10n.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/xml-load.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/pages.js",this.owner, "UTF-8");
+		//<!-- utilities -->
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/api.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/array.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/copy-button.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/currency.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/dom.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/ht-ml.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/id.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/inject.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/layout.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/links-box.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/local-store.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/log.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/match-view.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/misc.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/module.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/note.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/notify.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/sanitize.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/session-store.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/string.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/tabs.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/time.js",this.owner, "UTF-8");
+		
+		//<!-- external libraries -->
+		//Services.scriptloader.loadSubScript("chrome://foxtrick/content/lib/jquery.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/lib/oauth.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/lib/sha1.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/lib/jgestures.js",this.owner, "UTF-8");
+		
+		//<!-- categorized modules with init functions -->
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/forum/staff-marker.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/presentation/header-fix.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/presentation/skill-coloring.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/presentation/skin-plugin.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/links/links.js",this.owner, "UTF-8");
+		
+		//<!-- browser specific -->
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/observer.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/ui.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/entry.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/scripts-fennec.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/background.js",this.owner, "UTF-8");
+	},
+	init : function (){
+		// add ui
+		this.addObserver();
+		//load foxtrick files
+		this.loadScript();			
+		//init and add listeners
+		this.loader.gecko.browserLoad();   
+	},
+	cleanup : function (){
+		// remove ui
 		// remove listeners and css
 		this.loader.gecko.browserUnLoad()
 	}
@@ -291,35 +362,47 @@ FoxtrickProto.prototype = {
 function loadIntoWindow(window) {
 	if (!window || !window.document ) return;
 
-	// styles also needed in eg customize-toolbox
-	var uri = "chrome://foxtrick/content/resources/css/overlay.css"
-	var style = window.document.createProcessingInstruction('xml-stylesheet',
-			'id="foxtrick-overlay-css" type="text/css" href="'+uri+'"'
-		);
-	window.document.insertBefore(style, window.document.documentElement);
+	if (isFennecNative()) {
+		//create
+		window.Foxtrick = new FoxtrickFennec(window);
+	}
+	else {
+		// styles also needed in eg customize-toolbox
+		var uri = "chrome://foxtrick/content/resources/css/overlay.css"
+		var style = window.document.createProcessingInstruction('xml-stylesheet',
+				'id="foxtrick-overlay-css" type="text/css" href="'+uri+'"'
+			);
+		window.document.insertBefore(style, window.document.documentElement);
 
-	// only in content windows (not menupopups etc)
-	if (!window.document.getElementById("appcontent")) return;
-	
-	// create and run
-	window.Foxtrick = new FoxtrickProto(window);
+		// only in content windows (not menupopups etc)
+		if (!window.document.getElementById("appcontent")) return;
+		
+		// create 
+		window.Foxtrick = new FoxtrickFirefox(window);
+	}
+	// run
 	window.Foxtrick.init();
 }
 
 
 function unloadFromWindow(window) {
-  if (!window || !window.document) return;
+	if (!window || !window.document) return;
 	
-  // styles also needed in eg customize-toolbox
-  var style = window.document.getElementById("foxtrick-overlay-css")
-  if (style)  window.document.removeChild(style);
-		
-  // only in content windows (not menupopups etc)
-  if (!window.document.getElementById("appcontent")) return;
-  
-  // stop and delete
-  window.Foxtrick.cleanup();
-  delete window.Foxtrick;
+	if (isFennecNative()) {
+		window.Foxtrick.unload_module_css();
+	}
+	else {
+	  // styles also needed in eg customize-toolbox
+	  var style = window.document.getElementById("foxtrick-overlay-css")
+	  if (style)  window.document.removeChild(style);
+			
+	  // only in content windows (not menupopups etc)
+	  if (!window.document.getElementById("appcontent")) return;
+	}  
+
+	// stop and delete
+	window.Foxtrick.cleanup();
+	delete window.Foxtrick;
 }
 
 // load prefs into default prefs branch
