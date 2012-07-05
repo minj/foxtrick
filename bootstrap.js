@@ -327,7 +327,7 @@ FoxtrickFennec.prototype = {
 		//Services.scriptloader.loadSubScript("chrome://foxtrick/content/lib/jquery.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/lib/oauth.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/lib/sha1.js",this.owner, "UTF-8");
-		Services.scriptloader.loadSubScript("chrome://foxtrick/content/lib/jgestures.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/lib/jester.js",this.owner, "UTF-8");
 		
 		//<!-- categorized modules with init functions -->
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/forum/staff-marker.js",this.owner, "UTF-8");
@@ -344,10 +344,10 @@ FoxtrickFennec.prototype = {
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/background.js",this.owner, "UTF-8");
 	},
 	init : function (){
-		// add ui
-		this.addObserver();
 		//load foxtrick files
 		this.loadScript();			
+		// add ui
+		this.addObserver();
 		//init and add listeners
 		this.loader.gecko.browserLoad();   
 	},
