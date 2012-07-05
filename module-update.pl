@@ -27,8 +27,8 @@ my @targets = (
 		"file" => "content/scripts-fennec.js",
 		"from" => "//<!-- categorized modules -->",
 		"to" => "//<!-- end categorized modules -->",
-		"prefix" => "\t\tmessageManager.loadFrameScript(\"chrome://foxtrick/content/",
-		"suffix" => "\", true);\n"
+		"prefix" => "\t\"chrome://foxtrick/content/",
+		"suffix" => "\",\n"
 	},
 	{
 		"file" => "content/preferences.html",
@@ -38,18 +38,25 @@ my @targets = (
 		"suffix" => "\"></script>\n"
 	},
 	{
-			"file" => "content/background.html",
-			"from" => "<!-- categorized modules -->",
-			"to" => "<!-- end categorized modules -->",
-			"prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
-			"suffix" => "\"></script>\n"
+		"file" => "content/background.html",
+		"from" => "<!-- categorized modules -->",
+		"to" => "<!-- end categorized modules -->",
+		"prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
+		"suffix" => "\"></script>\n"
 	},
 	{
-			"file" => "bootstrap.js",
-			"from" => "<!-- categorized modules -->",
-			"to" => "<!-- end categorized modules -->",
-			"prefix" => "\tServices.scriptloader.loadSubScript(\"chrome://foxtrick/content/",
-			"suffix" => "\",this.owner, \"UTF-8\");\n"
+		"file" => "bootstrap-firefox.js",
+		"from" => "<!-- categorized modules -->",
+		"to" => "<!-- end categorized modules -->",
+		"prefix" => "\tServices.scriptloader.loadSubScript(\"chrome://foxtrick/content/",
+		"suffix" => "\",this.owner, \"UTF-8\");\n"
+	},
+	{
+		"file" => "bootstrap-fennec.js",
+		"from" => "<!-- categorized modules -->",
+		"to" => "<!-- end categorized modules -->",
+		"prefix" => "\t\t\"chrome://foxtrick/content/",
+		"suffix" => "\",\n"
 	},
 	{
 		"file" => "background.html",
@@ -59,11 +66,11 @@ my @targets = (
 		"suffix" => "\"></script>\r\n"
 	},
 	{
-			"file" => "preferences.html",
-			"from" => "<!-- categorized modules -->",
-			"to" => "<!-- end categorized modules -->",
-			"prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
-			"suffix" => "\"></script>\r\n"
+		"file" => "preferences.html",
+		"from" => "<!-- categorized modules -->",
+		"to" => "<!-- end categorized modules -->",
+		"prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
+		"suffix" => "\"></script>\r\n"
 	}
  );
 
