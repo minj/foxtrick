@@ -68,7 +68,9 @@ CONTENT_FILES = add-class.js \
 	redirections.js \
 	ui.js \
 	xml-load.js 
-CONTENT_FILES_FIREFOX = $(CONTENT_FILES) preferences.html \
+CONTENT_FILES_FIREFOX = $(CONTENT_FILES) bootstrap-firefox.js \ 
+	bootstrap-fennec.js \
+	preferences.html \
 	preferences_dev.html \
 	preferences_dev.js \
 	options-fennec.xul \
