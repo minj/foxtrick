@@ -68,12 +68,10 @@ CONTENT_FILES = add-class.js \
 	redirections.js \
 	ui.js \
 	xml-load.js 
-CONTENT_FILES_FIREFOX = $(CONTENT_FILES) overlay-fennec.xul \
-	preferences.html \
+CONTENT_FILES_FIREFOX = $(CONTENT_FILES) preferences.html \
 	preferences_dev.html \
 	preferences_dev.js \
-	options-mobile.xul \
-	options-android.xul \
+	options-fennec.xul \
 	observer.js \
 	env-fennec.js \
 	scripts-fennec.js \
