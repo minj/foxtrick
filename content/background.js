@@ -10,6 +10,18 @@ if (!Foxtrick)
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
 Foxtrick.loader.chrome = {};
+
+// listener for request from content script
+Foxtrick.loader.chrome.requestListener = function(request, sender, sendResponse) {
+	try {
+		Foxtrick.loader.chrome.background[request.req](request, sender, sendResponse);
+	}
+	catch (e) {
+		Foxtrick.log('Foxtrick - background onRequest: ', e);
+		Foxtrick.log(request);
+		sendResponse({ error : 'Foxtrick - background onRequest: ' + e });
+	}
+};
 	
 // invoked after the browser chrome is loaded
 Foxtrick.loader.chrome.browserLoad = function() {
@@ -58,16 +70,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	// use with sandboxed.extension.sendRequest({req : "nameOfResponseFunction", parameters...}, callback)
 	// calls below response function by name 'request.req'
 	// callback will be called with a sole JSON as argument
-	sandboxed.extension.onRequest.addListener( function(request, sender, sendResponse) {
-		try {
-			Foxtrick.loader.chrome.background[request.req](request, sender, sendResponse);
-		}
-		catch (e) {
-			Foxtrick.log('Foxtrick - background onRequest: ', e);
-			Foxtrick.log(request);
-			sendResponse({ error : 'Foxtrick - background onRequest: ' + e });
-		}
-	});
+	sandboxed.extension.onRequest.addListener(Foxtrick.loader.chrome.requestListener);
 
 
 	// -- background functions --
@@ -369,7 +372,7 @@ if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android")
 	addEventListener("UIReady", Foxtrick.loader.gecko.fennecScriptInjection, false);
 
 
-// this is the background script entry point for sandboxed arch and fennec
-if (Foxtrick.chromeContext() == "background")
+// this is the background script entry point for sandboxed arch
+if (Foxtrick.arch == "Sandboxed")
 	Foxtrick.loader.chrome.browserLoad();
 
