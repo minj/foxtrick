@@ -45,6 +45,7 @@ function ft_swap_positions() {
 }
 
 function ft_fix_penalty_takers(){
+// based on matchorder_1_0_7.js:1691	
 	if (ht.field.kickersFixed) return;
 	ht.$.each(ht.field.positions, function(i, p){
 		p.handleKicker = function(player) {
@@ -52,8 +53,17 @@ function ft_fix_penalty_takers(){
 			if (player === null) {
 			    return ht.eventManager.updatePlayers();
 			}
-	
-			p = player.getKickerPosition();
+
+          playerHere = this.player;
+          draggedFrom = player.getKickerPosition();
+
+          if (draggedFrom !== null) {
+              draggedFrom.player = null;
+              draggedFrom.changePlayer(playerHere);
+          }
+			
+			// manual swap just in case
+/*			p = player.getKickerPosition();
 			if (p !== null) {
 			    p.player = null;
 			    p.getDomElement().empty();
@@ -61,7 +71,7 @@ function ft_fix_penalty_takers(){
 					 p.player = this.player;
 					 p.redraw();
 				}
-			}
+			}*/
 			
 			oldP = player.getPosition();
 			if (oldP !== null) {
