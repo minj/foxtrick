@@ -1,18 +1,30 @@
 @-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
 
-#ft_swap_positions {
+#ft_swap_positions, #ft_fill_penalty_takers {
 	background-color: #3f7137; 
-	float: left; 
-	margin-left: 20px; 
 	cursor: pointer; 
 	padding: 6px; 
-	clear: left;
-	position: relative;
-	top: 255px;
 	color: White; 
 	text-decoration: underline; 
 }
-
+#ft_swap_positions{
+	clear: left;
+	float: left;
+	margin-left: 20px; 
+	position: relative;
+	top: 255px;
+}
+#ft_fill_penalty_takers {
+	clear: both;
+}
+html[dir="ltr"] #ft_fill_penalty_takers {
+	float: right;
+	margin-right: 20px;
+}
+html[dir="rtl"] #ft_fill_penalty_takers {
+	float: left;
+	margin-left: 20px;
+}
 /****** changes to ht sytles ****/
 
 /* highlight levels in details */

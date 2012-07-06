@@ -44,6 +44,37 @@ function ft_swap_positions() {
 	}
 }
 
+function ft_fix_penalty_takers(){
+	if (ht.field.kickersFixed) return;
+	ht.$.each(ht.field.positions, function(i, p){
+		p.handleKicker = function(player) {
+			var p, oldP;
+			if (player === null) {
+			    return ht.eventManager.updatePlayers();
+			}
+	
+			p = player.getKickerPosition();
+			if (p !== null) {
+			    p.player = null;
+			    p.getDomElement().empty();
+				if (this.player !== null) {
+					 p.player = this.player;
+					 p.redraw();
+				}
+			}
+			
+			oldP = player.getPosition();
+			if (oldP !== null) {
+			    oldP.redraw();
+			}
+			this.player = player;
+			this.redraw();
+			ht.eventManager.updatePlayers();
+		};
+	});
+	ht.field.kickersFixed = true;
+}
+
 function ft_stay_on_page() { 
 	ht.orders.doneURL = document.location.href;
 }

@@ -8,7 +8,7 @@
 Foxtrick.modules["MatchOrderInterface"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['matchOrder', 'matchLineup'],
-	OPTIONS : ["GotTrainingOnField", "DisplayLastMatchInDetails", "Specialties", "ShowFaces", "SwapPositions","StayOnPage", ["CloneOrder", "AutoExpandCloned"]],
+	OPTIONS : ["GotTrainingOnField", "DisplayLastMatchInDetails", "Specialties", "ShowFaces", "SwapPositions","StayOnPage", ["CloneOrder", "AutoExpandCloned"], 'FixPenaltyTakers', 'FillPenaltyTakers'],
 	CSS : Foxtrick.InternalPath + "resources/css/match-order.css",
 	OPTIONS_CSS : [ "", Foxtrick.InternalPath + "resources/css/match-order-specialties.css", Foxtrick.InternalPath + "resources/css/match-order-faces.css", Foxtrick.InternalPath + "resources/css/match-order-clone.css"],
 	run : function(doc) {
@@ -468,12 +468,64 @@ Foxtrick.modules["MatchOrderInterface"]={
 					var formations = doc.getElementById('formations');
 					formations.parentNode.insertBefore(swapPositionsDiv, formations.nextSibling);
 				}
+
+
+				//fill penalty takers
+				if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'FillPenaltyTakers')
+					&& !doc.getElementById('ft_fill_penalty_takers')) {
+					var FillPenaltyTakersDiv =  Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchOrderInterface,'div');
+					FillPenaltyTakersDiv.id = "ft_fill_penalty_takers";
+					var FillPenaltyTakersLink =  doc.createElement('span');
+					FillPenaltyTakersLink.textContent = Foxtrickl10n.getString("matchOrder.fillPenaltyTakers");
+					Foxtrick.onClick(FillPenaltyTakersLink, function(){
+						// collect data about existing kickers first
+						var taken = [], placed = [];
+						for (var i = 20; i < 32; ++i){ // 20 is sp
+							taken[i] = doc.getElementById(i).firstChild;
+							if (taken[i] && i != 20)
+								placed[taken[i].id] = i;
+						}
+						var lastTaken = 20; // index to last filled position
+						var players = doc.querySelectorAll('#players > div');
+						for (var i = 0, player; (player = players[i]) && lastTaken < 31; ++i) {
+							// player exists and we have unchecked positions
+							
+							// skip already placed players and subs
+							if (Foxtrick.hasClass(player, 'bench') || placed[player.id])
+								continue;
+							while (lastTaken < 31){
+								// next position exists
+								if (taken[lastTaken+1]){
+									// next position is taken: check another one
+									++lastTaken;
+									continue;
+								}
+								// next position is free: placing player
+								player.click();
+								doc.getElementById(lastTaken+1).click();
+								++lastTaken;
+								// continue with next player
+								break;
+							}
+						}						
+					});
+					FillPenaltyTakersDiv.appendChild(FillPenaltyTakersLink);
+					var penalties = doc.getElementById('tab_penaltytakers');
+					penalties.appendChild(FillPenaltyTakersDiv);
+				}
+
+
 				
 				if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'StayOnPage') 
 					&&  doc.getElementById('send').getAttribute('onclick') == null) {
 					// use our injected script to changes the webpage's script after action url
 					doc.getElementById('send').setAttribute('onclick',"javascript:ft_stay_on_page()");
 				}
+				if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'FixPenaltyTakers')) {
+					var penaltiesLink = doc.querySelector('#li_tab_subs + li > a');
+					penaltiesLink.setAttribute('onclick',"javascript:ft_fix_penalty_takers();");
+				}
+				
 				// add playerid to details
 				Foxtrick.listen(doc.getElementById('players'), 'mouseover', function(ev) {
 					if (Foxtrick.hasClass(ev.target,'player')) {
