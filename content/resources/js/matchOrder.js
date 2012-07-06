@@ -46,43 +46,28 @@ function ft_swap_positions() {
 
 function ft_fix_penalty_takers(){
 // based on matchorder_1_0_7.js:1691	
-	if (ht.field.kickersFixed) return;
+	if (ht.field.ft_kickersFixed) return;
 	ht.$.each(ht.field.positions, function(i, p){
-		p.handleKicker = function(player) {
-			var p, oldP;
-			if (player === null) {
-			    return ht.eventManager.updatePlayers();
+		p.ft_handleKickerOld = p.handleKicker; // saving function
+		p.handleKicker = function() {
+			try{
+				// saving data
+				var player = arguments[0]; // DON'T REMOVE
+				var playerHere = this.player;
+				var draggedFrom = player.getKickerPosition();
+				var draggedFromPlayer = (draggedFrom && draggedFrom.player !== null);
 			}
-
-          playerHere = this.player;
-          draggedFrom = player.getKickerPosition();
-
-          if (draggedFrom !== null) {
-              draggedFrom.player = null;
-              draggedFrom.changePlayer(playerHere);
-          }
-			
-			// manual swap just in case
-/*			p = player.getKickerPosition();
-			if (p !== null) {
-			    p.player = null;
-			    p.getDomElement().empty();
-				if (this.player !== null) {
-					 p.player = this.player;
-					 p.redraw();
+			catch(e){}
+			p.ft_handleKickerOld.apply(this, arguments); // redirecting to saved
+			try{	
+				if (draggedFromPlayer && draggedFrom.player === null) { // HTs messed up: let's fix
+					if(playerHere) draggedFrom.changePlayer(playerHere);
 				}
-			}*/
-			
-			oldP = player.getPosition();
-			if (oldP !== null) {
-			    oldP.redraw();
 			}
-			this.player = player;
-			this.redraw();
-			ht.eventManager.updatePlayers();
+			catch(e){}
 		};
 	});
-	ht.field.kickersFixed = true;
+	ht.field.ft_kickersFixed = true;
 }
 
 function ft_stay_on_page() { 
