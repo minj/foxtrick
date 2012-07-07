@@ -145,6 +145,27 @@ Foxtrick.Pages.Players = {
 							player.form = Number(playerNode.getElementsByTagName("PlayerForm")[0].textContent);
 						if (playerNode.getElementsByTagName("StaminaSkill")[0])
 							player.stamina = Number(playerNode.getElementsByTagName("StaminaSkill")[0].textContent);
+						
+						if (playerNode.getElementsByTagName("KeeperSkill")[0])
+							player.keeperSkill = Number(playerNode.getElementsByTagName("KeeperSkill")[0].textContent);
+
+						if (playerNode.getElementsByTagName("PlaymakerSkill")[0])
+							player.playmakerSkill = Number(playerNode.getElementsByTagName("PlaymakerSkill")[0].textContent);
+							
+						if (playerNode.getElementsByTagName("ScorerSkill")[0])
+							player.scorerSkill = Number(playerNode.getElementsByTagName("ScorerSkill")[0].textContent);
+
+						if (playerNode.getElementsByTagName("PassingSkill")[0])
+							player.passingSkill = Number(playerNode.getElementsByTagName("PassingSkill")[0].textContent);
+
+						if (playerNode.getElementsByTagName("WingerSkill")[0])
+							player.wingerSkill = Number(playerNode.getElementsByTagName("WingerSkill")[0].textContent);
+
+						if (playerNode.getElementsByTagName("DefenderSkill")[0])
+							player.defenderSkill = Number(playerNode.getElementsByTagName("DefenderSkill")[0].textContent);
+
+						if (playerNode.getElementsByTagName("SetPiecesSkill")[0])
+							player.setPiecesSkill = Number(playerNode.getElementsByTagName("SetPiecesSkill")[0].textContent);
 
 						var specs={0:'' ,1:'Technical',2:'Quick',3:'Powerful',4:'Unpredictable',5:'Head',6:'Regainer'};
 						player.specialityNumber = Number(playerNode.getElementsByTagName("Specialty")[0].textContent);

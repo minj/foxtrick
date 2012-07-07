@@ -43,7 +43,13 @@ function ft_swap_positions() {
 		}
 	}
 }
-
+function ft_clear_penalty_takers(){
+	ht.$.each(ht.field.positions, function(i, item) {
+		if (i > 20)
+			item.reset();
+	});
+	ht.field.updateFormation();
+}
 function ft_fix_penalty_takers(){
 // based on matchorder_1_0_7.js:1691	
 	if (ht.field.ft_kickersFixed) return;
@@ -52,7 +58,7 @@ function ft_fix_penalty_takers(){
 		p.handleKicker = function() {
 			try{
 				// saving data
-				var player = arguments[0]; // DON'T REMOVE
+				var player = arguments[0];
 				var playerHere = this.player;
 				var draggedFrom = player.getKickerPosition();
 				var draggedFromPlayer = (draggedFrom && draggedFrom.player !== null);

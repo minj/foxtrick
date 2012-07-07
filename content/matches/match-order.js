@@ -8,7 +8,7 @@
 Foxtrick.modules["MatchOrderInterface"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['matchOrder', 'matchLineup'],
-	OPTIONS : ["GotTrainingOnField", "DisplayLastMatchInDetails", "Specialties", "ShowFaces", "SwapPositions","StayOnPage", ["CloneOrder", "AutoExpandCloned"], 'FixPenaltyTakers', 'FillPenaltyTakers'],
+	OPTIONS : ["GotTrainingOnField", "DisplayLastMatchInDetails", "Specialties", "ShowFaces", "SwapPositions","StayOnPage", ["CloneOrder", "AutoExpandCloned"], 'FixPenaltyTakers', ['AddPenaltyTakerButtons', 'DontSortPenaltyTakers', 'PrioritizeSP', 'ClearPenaltyTakersFirst']],
 	CSS : Foxtrick.InternalPath + "resources/css/match-order.css",
 	OPTIONS_CSS : [ "", Foxtrick.InternalPath + "resources/css/match-order-specialties.css", Foxtrick.InternalPath + "resources/css/match-order-faces.css", Foxtrick.InternalPath + "resources/css/match-order-clone.css"],
 	run : function(doc) {
@@ -121,7 +121,16 @@ Foxtrick.modules["MatchOrderInterface"]={
 					add_image(playerdivs[k]);
 			}
 		};
-
+		var savePenaltySkills = function(playerList) {
+			var players = {};
+			for (var i = 0, p, skill; p = playerList[i]; ++i) {
+				// formula by HO
+				skill = p.experience * 1.5 + p.setPiecesSkill * 0.7 + p.scorerSkill * 0.3;
+				skill = (p.specialityNumber == 1) ? skill * 1.1 : skill;
+				players[p.id] = skill;
+			}
+			Foxtrick.sessionSet("match-orders-penalty-skills", players);
+		}
 		var check_Specialties = function(doc, target, playerList, getID, targetClass) {		
 			if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'Specialties')) {
 				var cards_health = target.getElementsByClassName(targetClass);
@@ -132,6 +141,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 					
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, id);
 					if (player && player.specialityNumber != 0) {
+										
 						Foxtrick.addClass(cards_health[i], 'ft-specialty');
 						var title = Foxtrickl10n.getSpecialityFromNumber(player.specialityNumber);
 						var alt = Foxtrickl10n.getShortSpeciality(title);
@@ -172,7 +182,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 				check_Specialties(doc, doc.getElementsByClassName('field')[0], playerInfo, getID, 'box_lineup');	
 				check_Specialties(doc, doc.getElementsByClassName('field')[0], playerInfo, getID, 'box_substitute');
 				check_Specialties(doc, doc.getElementsByClassName('field')[0], playerInfo, getID, 'box_highlighted');	
-				check_Specialties(doc, doc.getElementsByClassName('field')[0], playerInfo, getID, 'box_replaced');	
+				check_Specialties(doc, doc.getElementsByClassName('field')[0], playerInfo, getID, 'box_replaced');
 			}, {teamid:teamid, current_squad:true, includeMatchInfo:true} );
 
 
@@ -420,6 +430,8 @@ Foxtrick.modules["MatchOrderInterface"]={
 				hasPlayerInfo = true;
 				playerList = playerInfo;
 				
+				savePenaltySkills(playerList);
+				
 				if (hasInterface)
 					showPlayerInfo(doc.getElementById('orders'));
 			}, {teamid:teamid, current_squad:true, includeMatchInfo:true} );
@@ -470,48 +482,103 @@ Foxtrick.modules["MatchOrderInterface"]={
 				}
 
 
-				//fill penalty takers
-				if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'FillPenaltyTakers')
+				//fill & clear penalty takers
+				if (FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'AddPenaltyTakerButtons')
 					&& !doc.getElementById('ft_fill_penalty_takers')) {
+
+					var customSort = !FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'DontSortPenaltyTakers');
+					var priority = FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PrioritizeSP');
+					var clearFirst = FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'ClearPenaltyTakersFirst');
+					
 					var FillPenaltyTakersDiv =  Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchOrderInterface,'div');
 					FillPenaltyTakersDiv.id = "ft_fill_penalty_takers";
 					var FillPenaltyTakersLink =  doc.createElement('span');
 					FillPenaltyTakersLink.textContent = Foxtrickl10n.getString("matchOrder.fillPenaltyTakers");
-					Foxtrick.onClick(FillPenaltyTakersLink, function(){
-						// collect data about existing kickers first
-						var taken = [], placed = [];
-						for (var i = 20; i < 32; ++i){ // 20 is sp
-							taken[i] = doc.getElementById(i).firstChild;
-							if (taken[i] && i != 20)
-								placed[taken[i].id] = i;
-						}
-						var lastTaken = 20; // index to last filled position
-						var players = doc.querySelectorAll('#players > div');
-						for (var i = 0, player; (player = players[i]) && lastTaken < 31; ++i) {
-							// player exists and we have unchecked positions
+					
+					Foxtrick.onClick(FillPenaltyTakersLink, function() {
+						
+						if (clearFirst)
+							doc.querySelector('#ft_clear_penalty_takers > span').click();
 							
-							// skip already placed players and subs
-							if (Foxtrick.hasClass(player, 'bench') || placed[player.id])
-								continue;
-							while (lastTaken < 31){
-								// next position exists
-								if (taken[lastTaken+1]){
-									// next position is taken: check another one
-									++lastTaken;
-									continue;
-								}
-								// next position is free: placing player
-								player.click();
-								doc.getElementById(lastTaken+1).click();
-								++lastTaken;
-								// continue with next player
-								break;
+						Foxtrick.sessionGet("match-orders-penalty-skills", function(ps) {
+							
+							// collect data about existing kickers first
+							var taken = [], placed = [], sp;
+							for (var i = 20; i < 32; ++i){ // 20 is sp
+								taken[i] = doc.getElementById(i).firstChild;
+								if (taken[i])
+									if (i == 20)
+										sp = taken[i].id;
+									else
+										placed[taken[i].id] = i;
 							}
-						}						
+							var lastTaken = 20; // index to last filled position
+
+							var players = doc.querySelectorAll('#players > div');
+							players = Foxtrick.map(function(n) { return n; }, players); 
+							// change live node list into array
+							
+							if (customSort && hasPlayerInfo && ps !== undefined) {
+								players.sort(function(a, b) { // sort descending
+									var aid = a.id.match(/\d+/)[0], bid = b.id.match(/\d+/)[0];
+									if (ps[aid] !== null && ps[bid] !== null) {
+										return (ps[bid] - ps[aid]);  
+									}
+									else return 0;
+								});
+							}
+
+							if (priority && sp) {
+								var idx;
+								for (var i = 0, player; player = players[i]; ++i) {
+									if (player.id == sp) {
+										idx = i;
+										break;
+									}
+								}
+								var taker = players.splice(idx, 1)[0];
+								players.unshift(taker);
+							}
+													
+							for (var i = 0, player; (player = players[i]) && lastTaken < 31; ++i) {
+								// player exists and we have unchecked positions
+								
+								// skip already placed players and subs
+								if (Foxtrick.hasClass(player, 'bench') || placed[player.id])
+									continue;
+								while (lastTaken < 31) {
+									// next position exists
+									if (taken[lastTaken+1]) {
+										// next position is taken: check another one
+										++lastTaken;
+										continue;
+									}
+									// next position is free: placing player
+									player.click();
+									doc.getElementById(lastTaken+1).click();
+									++lastTaken;
+									// continue with next player
+									break;
+								}
+							}
+						});
 					});
 					FillPenaltyTakersDiv.appendChild(FillPenaltyTakersLink);
+					
+
+					var clearPenaltyTakersDiv =  Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MatchOrderInterface,'div');
+					clearPenaltyTakersDiv.id = "ft_clear_penalty_takers";
+					var clearPenaltyTakersLink =  doc.createElement('span');
+					clearPenaltyTakersLink.textContent = Foxtrickl10n.getString("matchOrder.clearPenaltyTakers");
+					clearPenaltyTakersLink.setAttribute('onclick',"javascript:ft_clear_penalty_takers();");
+					clearPenaltyTakersDiv.appendChild(clearPenaltyTakersLink);
+					
+					var frag = doc.createDocumentFragment();
+					frag.appendChild(FillPenaltyTakersDiv);
+					frag.appendChild(clearPenaltyTakersDiv);
+					
 					var penalties = doc.getElementById('tab_penaltytakers');
-					penalties.appendChild(FillPenaltyTakersDiv);
+					penalties.appendChild(frag);
 				}
 
 
