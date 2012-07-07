@@ -418,6 +418,7 @@ pref("extensions.foxtrick.prefs.module.MatchOrderInterface.CloneOrder.enabled", 
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.AutoExpandCloned.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.FixPenaltyTakers.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.AddPenaltyTakerButtons.enabled", true);
+pref("extensions.foxtrick.prefs.module.MatchOrderInterface.UseSubsForPenalties.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.DontSortPenaltyTakers.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.PrioritizeSP.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.ClearPenaltyTakersFirst.enabled", true);

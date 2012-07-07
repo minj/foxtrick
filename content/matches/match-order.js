@@ -8,7 +8,7 @@
 Foxtrick.modules["MatchOrderInterface"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ['matchOrder', 'matchLineup'],
-	OPTIONS : ["GotTrainingOnField", "DisplayLastMatchInDetails", "Specialties", "ShowFaces", "SwapPositions","StayOnPage", ["CloneOrder", "AutoExpandCloned"], 'FixPenaltyTakers', ['AddPenaltyTakerButtons', 'DontSortPenaltyTakers', 'PrioritizeSP', 'ClearPenaltyTakersFirst']],
+	OPTIONS : ["GotTrainingOnField", "DisplayLastMatchInDetails", "Specialties", "ShowFaces", "SwapPositions","StayOnPage", ["CloneOrder", "AutoExpandCloned"], 'FixPenaltyTakers', ['AddPenaltyTakerButtons', 'UseSubsForPenalties', 'DontSortPenaltyTakers', 'PrioritizeSP', 'ClearPenaltyTakersFirst']],
 	CSS : Foxtrick.InternalPath + "resources/css/match-order.css",
 	OPTIONS_CSS : [ "", Foxtrick.InternalPath + "resources/css/match-order-specialties.css", Foxtrick.InternalPath + "resources/css/match-order-faces.css", Foxtrick.InternalPath + "resources/css/match-order-clone.css"],
 	run : function(doc) {
@@ -489,6 +489,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 				var injectPenalties = function(penalties){
 					if (!doc.getElementById('ft_fill_penalty_takers')) {
 	
+						var useSubs = FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'UseSubsForPenalties');
 						var customSort = !FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'DontSortPenaltyTakers');
 						var priority = FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'PrioritizeSP');
 						var clearFirst = FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'ClearPenaltyTakersFirst');
@@ -547,7 +548,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 									// player exists and we have unchecked positions
 									
 									// skip already placed players and subs
-									if (Foxtrick.hasClass(player, 'bench') || placed[player.id])
+									if (!useSubs && Foxtrick.hasClass(player, 'bench') || placed[player.id])
 										continue;
 									while (lastTaken < 31) {
 										// next position exists

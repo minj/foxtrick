@@ -19,6 +19,7 @@
 <note version="0.11.0">
 <item>● NEW: <module>ForumModeratorPopup</module>: Added a dropdown menu for forum moderators on top of threads to simplify moderation.</item> 
 <item>● NEW: <module>PlayerStatsTrainingWeek</module>: Added an opportunity to group matches according to training week instead of calendar week.</item>
+<item>● <module>MatchOrderInterface</module>: A fix for penalty takers list  provided. You can also add your squad to the list or clear it with one click.</item>
 <item>● <module>SkillTable</module>: Opportunity added to sub-sort an existing ordering using ctrl + leftclick another column header.</item>
 <item>● <module>SkillTable</module>: Player names are abbreviated from now on consuming less space.</item>
 <item>● <module>SkillColoring</module>: Full module rewrite, a lot of bug fixes and additions. Options changed. Please set them to your liking again.</item>
