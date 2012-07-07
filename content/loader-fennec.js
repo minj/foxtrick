@@ -40,7 +40,7 @@ if (Foxtrick.platform == "Android") {
 					addEventListener("DOMContentLoaded", Foxtrick.loader.fennec_content.DOMContentLoaded, false);
 				}
 			);
-		};
+		}
 	};
 	
 	// first content side entry point. gets executed after scripts are loaded

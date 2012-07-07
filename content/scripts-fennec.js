@@ -211,21 +211,22 @@ Foxtrick.loader.fennec_background = {
 		"chrome://foxtrick/content/env-fennec.js",
 		"chrome://foxtrick/content/ui.js",
 		"chrome://foxtrick/content/entry.js",
-		"chrome://foxtrick/content/loader-gecko.js"
+		"chrome://foxtrick/content/loader-fennec.js"
 	],
 
 	UIReady : function(event) {
 		// run only once
-		removeEventListener("UIReady", this.UIReady, false);
+//		removeEventListener("UIReady", this.UIReady, false);
 
-		// load content scripts into content pages. those start running in loader-gecko
+		// load content scripts into content pages. those start running in loader-fennec
 		for (var i=0; i<this.contentScripts.length; ++i) 
 			messageManager.loadFrameScript(this.contentScripts[i], true);
 	},
 
 	// listen to ui ready and only then load content scripts
 	init : function() {
-	  addEventListener("UIReady", this.UIReady, false);
+//	  	addEventListener("c", this.UIReady, false);
+		this.UIReady();
 	},
 
 	unload : function() {
