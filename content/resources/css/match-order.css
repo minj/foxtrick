@@ -14,8 +14,15 @@
 	position: relative;
 	top: 255px;
 }
-#ft_clear_penalty_takers {
+#ft_penalty_buttons {
 	clear: both;
+}
+#ft_penalty_buttons:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
 }
 html[dir="ltr"] #ft_fill_penalty_takers, html[dir="ltr"] #ft_clear_penalty_takers {
 	float: right;
