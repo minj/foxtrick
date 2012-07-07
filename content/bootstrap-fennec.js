@@ -59,44 +59,48 @@ FoxtrickFennec.prototype = {
 		"chrome://foxtrick/content/scripts-fennec.js",
 		"chrome://foxtrick/content/background.js"
 	],
+	
 	loadScript: function() {
 		// loading Foxtrick into window.Foxtrick
 		for (var i=0; i<this.scripts.length; ++i)
 			Services.scriptloader.loadSubScript(this.scripts[i], this.owner, "UTF-8");
 	},
+	
 	init : function (){
 		// load foxtrick backgound files and starts background script
 		// content script injection is called and starts automatically in loader-gecko.js
-		this.loadScript();			
+		this.loadScript();
 		// add ui
 		this.addObserver();
-		// fennec injects content scripts at 'runtime'
-		//addEventListener("UIReady", this.loader.gecko.fennecContentScriptLoad, false);
-		this.loader.gecko.fennecContentScriptLoad();
+		// fennec content script injection at 'runtime' when UI is ready
+		this.loader.fennec_background.init();
 		// run background
 		this.loader.chrome.browserLoad();
 	},
+	
 	cleanup : function (){
 		// remove ui
 		this.removeObserver();
-		// remove listner
-		//removeEventListener("UIReady", this.loader.gecko.fennecContentScriptLoad, false);
-		//sandboxed.extension.onRequest.removeListener(Foxtrick.loader.chrome.requestListener); //don't have it. needed?
-		// remove content scripts
-		Foxtrick.loader.gecko.fennecContentScriptUnload(); 			
+		// remove content scripts and listeners
+		this.loader.fennec_background.unload(); 
 		// remove styles
 		this.unload_module_css();
 	}
 };
 
+
+// called from main bootstrap.js for each browser window
 function loadIntoWindow(window) {
 	if (!window || !window.document ) return;
 
 	//create & run
-	window.Foxtrick = new FoxtrickFennec(window);
-	window.Foxtrick.init();
+	try {
+		window.Foxtrick = new FoxtrickFennec(window);
+		window.Foxtrick.init();
+	} catch(e) {
+		Components.utils.reportError("FoxTrick error: "+e);
+	}
 }
-
 
 function unloadFromWindow(window) {
 	if (!window || !window.document) return;
@@ -104,4 +108,5 @@ function unloadFromWindow(window) {
 	// stop and delete
 	window.Foxtrick.cleanup();
 	delete window.Foxtrick;
+	// we do have window.FoxtrickPrefs and window.Foxtrickl10n out there maybe
 }

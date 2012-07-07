@@ -1,7 +1,7 @@
 "use strict";
 /*
- * loader-gecko.js
- * FoxTrick loader for Gecko platform
+ * loader-firefox.js
+ * FoxTrick loader for Firefox/Seamonkey 
  */
 
 
@@ -9,13 +9,13 @@ if (!Foxtrick)
 	var Foxtrick = {};
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
-if (!Foxtrick.loader.gecko)
-	Foxtrick.loader.gecko = {};
+if (!Foxtrick.loader.firefox)
+	Foxtrick.loader.firefox = {};
 
 // invoked after the browser chrome is loaded
 // variable *document* is predeclared and used here but means the
 // browser chrome (XUL document)
-Foxtrick.loader.gecko.browserLoad = function() {
+Foxtrick.loader.firefox.browserLoad = function() { dump("sfsd");Foxtrick.log('#####################hhh')
 	try {
 		var appcontent = document.getElementById("appcontent");
 		if (appcontent) {
@@ -37,9 +37,9 @@ Foxtrick.loader.gecko.browserLoad = function() {
 			}
 
 			// listen to page loads
-			appcontent.addEventListener("DOMContentLoaded", Foxtrick.loader.gecko.DOMContentLoaded, true);
+			appcontent.addEventListener("DOMContentLoaded", Foxtrick.loader.firefox.DOMContentLoaded, true);
 			// listen to page unloads
-			appcontent.addEventListener("unload", Foxtrick.loader.gecko.docUnload, true);
+			appcontent.addEventListener("unload", Foxtrick.loader.firefox.docUnload, true);
 
 			// add listener to tab focus changes
 			var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
@@ -47,7 +47,7 @@ Foxtrick.loader.gecko.browserLoad = function() {
 			var browserEnumerator = wm.getEnumerator("navigator:browser");
 			var browserWin = browserEnumerator.getNext();
 			var tabbrowser = browserWin.getBrowser();
-			tabbrowser.tabContainer.addEventListener("select", Foxtrick.loader.gecko.tabFocus, true);
+			tabbrowser.tabContainer.addEventListener("select", Foxtrick.loader.firefox.tabFocus, true);
 			
 			// refresh ht pages
 			Foxtrick.reloadAll();
@@ -57,18 +57,18 @@ Foxtrick.loader.gecko.browserLoad = function() {
 	}
 };
 
-Foxtrick.loader.gecko.browserUnLoad = function() {
+Foxtrick.loader.firefox.browserUnLoad = function() {
 	var appcontent = document.getElementById("appcontent");
 	if (appcontent) {
 		// remove listeners
-		appcontent.removeEventListener("DOMContentLoaded", Foxtrick.loader.gecko.DOMContentLoaded, true);
-		appcontent.removeEventListener("unload", Foxtrick.loader.gecko.docUnload, true);
+		appcontent.removeEventListener("DOMContentLoaded", Foxtrick.loader.firefox.DOMContentLoaded, true);
+		appcontent.removeEventListener("unload", Foxtrick.loader.firefox.docUnload, true);
 		var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
 			.getService(Components.interfaces.nsIWindowMediator);
 		var browserEnumerator = wm.getEnumerator("navigator:browser");
 		var browserWin = browserEnumerator.getNext();
 		var tabbrowser = browserWin.getBrowser();
-		tabbrowser.tabContainer.removeEventListener("select", Foxtrick.loader.gecko.tabFocus, true);
+		tabbrowser.tabContainer.removeEventListener("select", Foxtrick.loader.firefox.tabFocus, true);
 		
 		Foxtrick.unload_module_css();
 		
@@ -78,7 +78,7 @@ Foxtrick.loader.gecko.browserUnLoad = function() {
 };
 
 // invoked when DOMContentLoaded
-Foxtrick.loader.gecko.DOMContentLoaded = function(ev) {
+Foxtrick.loader.firefox.DOMContentLoaded = function(ev) {
 	// don't run frames
 	var wn = ev.target.defaultView;
 	if (wn.self != wn.top)
@@ -90,7 +90,7 @@ Foxtrick.loader.gecko.DOMContentLoaded = function(ev) {
 };
 
 // invoked when a tab is focused
-Foxtrick.loader.gecko.tabFocus = function(ev) {
+Foxtrick.loader.firefox.tabFocus = function(ev) {
 	try {
 		// don't execute if disabled
 		if (FoxtrickPrefs.getBool("disableTemporary")) {
@@ -137,49 +137,6 @@ Foxtrick.loader.gecko.tabFocus = function(ev) {
 
 
 // invoked when an HTML document is unloaded
-Foxtrick.loader.gecko.docUnload = function(ev) {
+Foxtrick.loader.firefox.docUnload = function(ev) {
 	// do nothing
 };
-
-
-// fennec tab load. starts the content instances for fennec (one per tab. persistant)
-// this is the content side entry point for fennec
-if (Foxtrick.platform == "Android") {
-
-	Foxtrick.loader.fennec = {};
-
-	Foxtrick.loader.fennec.DOMContentLoaded = function(ev) {
-		try {
-			Foxtrick.modules.UI.update(ev.originalTarget);
-			Foxtrick.entry.docLoad(ev.originalTarget);
-		} catch(e) {
-			Foxtrick.log(e);
-		}
-	};
-	
-	Foxtrick.loader.fennec.unload = function(ev) {
-		try {
-			Foxtrick.unload_module_css();
-			removeEventListener("DOMContentLoaded", Foxtrick.loader.fennec.DOMContentLoaded, false);
-		} catch(e) {
-			Foxtrick.log(e);
-		}
-	};
-	
-	Foxtrick.loader.fennec.load = function() {
-		sandboxed.extension.sendRequest({ req : "tabLoad" },
-			function (data) {
-				try {
-					Foxtrick.entry.contentScriptInit(data);
-					addEventListener("DOMContentLoaded", Foxtrick.loader.fennec.DOMContentLoaded, false);
-				} catch(e) {
-					Foxtrick.log(e);
-				}
-			}
-		);
-	};
-
-	Foxtrick.log('new tab load');
-	Foxtrick.loader.fennec.load();
-}
-

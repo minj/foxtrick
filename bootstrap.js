@@ -70,6 +70,7 @@ function startup(aData, aReason) {
 	setDefaultPrefs(pathToDefault, branch);
 
 	_gLoader = {};
+	// load specific startup stripts
 	if (isFennecNative())
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/bootstrap-fennec.js", _gLoader, "UTF-8");
 	else

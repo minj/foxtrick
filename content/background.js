@@ -367,11 +367,6 @@ Foxtrick.loader.chrome.copyToClipBoard = function(content) {
 };
 
 
-// fennec injects content scripts at 'runtime'
-if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android") 
-	addEventListener("UIReady", Foxtrick.loader.gecko.fennecScriptInjection, false);
-
-
 // this is the background script entry point for sandboxed arch
 if (Foxtrick.arch == "Sandboxed")
 	Foxtrick.loader.chrome.browserLoad();

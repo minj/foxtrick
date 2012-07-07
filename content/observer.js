@@ -1,4 +1,7 @@
-// options xul observer. should have worked for mobile as well i guess, but didn't. so option-mobile stays old style for now
+// inline options.xul observer
+
+(function() {
+
 var observer = {
   observe: function(aSubject, aTopic, aData) {
 	if (aTopic == "addon-options-displayed" 
@@ -29,3 +32,6 @@ Foxtrick.addObserver = function() {
 Foxtrick.removeObserver = function() {
 	Services.obs.removeObserver(observer, "addon-options-displayed");
 };
+
+})();
+

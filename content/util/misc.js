@@ -935,25 +935,27 @@ Foxtrick.getCssTextCollection = function() {
 // only gecko
 Foxtrick.reloadAll = function() {
   // reload ht tabs
-  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-					 .getService(Components.interfaces.nsIWindowMediator);
-  var browserEnumerator = wm.getEnumerator("navigator:browser");
+  if (Foxtrick.platform == "Firefox") {
+	  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+						 .getService(Components.interfaces.nsIWindowMediator);
+	  var browserEnumerator = wm.getEnumerator("navigator:browser");
 
-  // Check each browser instance for our URL
-  while (browserEnumerator.hasMoreElements()) {
-	var browserWin = browserEnumerator.getNext();
-	var tabbrowser = browserWin.getBrowser();
+	  // Check each browser instance for our URL
+	  while (browserEnumerator.hasMoreElements()) {
+		var browserWin = browserEnumerator.getNext();
+		var tabbrowser = browserWin.getBrowser();
 
-	// Check each tab of this browser instance
-	var numTabs = tabbrowser.browsers.length;
-	for(var index=0; index<numTabs; index++) {
-	  var currentBrowser = tabbrowser.getBrowserAtIndex(index);
-	  if (Foxtrick.isHtUrl(currentBrowser.currentURI.spec))
-		{
-			currentBrowser.reload()
-			Foxtrick.log('reload: ',currentBrowser.currentURI.spec);
+		// Check each tab of this browser instance
+		var numTabs = tabbrowser.browsers.length;
+		for(var index=0; index<numTabs; index++) {
+		  var currentBrowser = tabbrowser.getBrowserAtIndex(index);
+		  if (Foxtrick.isHtUrl(currentBrowser.currentURI.spec))
+			{
+				currentBrowser.reload()
+				Foxtrick.log('reload: ',currentBrowser.currentURI.spec);
+			}
+		  }
 		}
-	  }
 	}
 };
 

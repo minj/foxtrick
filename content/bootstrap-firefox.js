@@ -207,10 +207,10 @@ FoxtrickFirefox.prototype = {
 		//<!-- browser specific -->
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/ui.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/entry.js",this.owner, "UTF-8");
-		Services.scriptloader.loadSubScript("chrome://foxtrick/content/loader-gecko.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/loader-firefox.js",this.owner, "UTF-8");
 	},
 
-	init : function (){
+	init : function (){ 
 		// add ui
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/lib/ToolbarItem.js", this);
 		// toolbar
@@ -262,7 +262,7 @@ FoxtrickFirefox.prototype = {
 		//load foxtrick files
 		this.loadScript();		
 		//init and add listeners
-		this.loader.gecko.browserLoad();   
+		this.loader.firefox.browserLoad();   
 	},
 
 	cleanup : function (){
@@ -271,11 +271,12 @@ FoxtrickFirefox.prototype = {
 		let popup = this.owner.document.getElementById('contentAreaContextMenu');
 		popup.removeChild(this.contextLinkItem)		
 		// remove listeners and css
-		this.loader.gecko.browserUnLoad()
+		this.loader.firefox.browserUnLoad()
 	},
 };
 
 
+// called from main bootstrap.js for each browser window
 function loadIntoWindow(window) {
 	if (!window || !window.document ) return;
 
@@ -290,8 +291,13 @@ function loadIntoWindow(window) {
 	if (!window.document.getElementById("appcontent")) return;
 	
 	// create & run
-	window.Foxtrick = new FoxtrickFirefox(window);
-	window.Foxtrick.init();
+	try {
+		window.Foxtrick = new FoxtrickFirefox(window);
+		window.Foxtrick.init();
+	} catch(e){
+		dump("FoxTrick error: "+e+"\n");
+		Components.utils.reportError("FoxTrick error: "+e);
+	}
 }
 
 
