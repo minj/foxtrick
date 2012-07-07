@@ -574,8 +574,8 @@ Foxtrick.modules["MatchOrderInterface"]={
 					clearPenaltyTakersDiv.appendChild(clearPenaltyTakersLink);
 					
 					var frag = doc.createDocumentFragment();
-					frag.appendChild(FillPenaltyTakersDiv);
 					frag.appendChild(clearPenaltyTakersDiv);
+					frag.appendChild(FillPenaltyTakersDiv);
 					
 					var penalties = doc.getElementById('tab_penaltytakers');
 					penalties.appendChild(frag);
