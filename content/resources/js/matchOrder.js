@@ -1,5 +1,18 @@
-/* function to swap players left to right including their orientation */
 
+/* fixing ht function to raise and custom event after init of interface */
+ht.orders.handleDataOrg = ht.orders.handleData;
+ht.orders.handleData = function(arg){
+	// all org
+	ht.orders.handleDataOrg.apply(this,arguments);
+	// raise event after
+	var evt = document.createEvent('Event');
+	evt.initEvent('interface_ready', true, true);
+	document.getElementsByTagName("body")[0].dispatchEvent(evt);
+	// restore old
+	ht.orders.handleData = ht.orders.handleDataOrg;
+}
+
+/* function to swap players left to right including their orientation */
 function ft_swap_positions() {
 
 	// position ids to swap

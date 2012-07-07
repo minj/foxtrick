@@ -407,8 +407,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 				return Number(node.parentNode.id.match(/list_playerID(\d+)/i)[1]);
 			};
 
-			Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath+"resources/js/matchOrder.js");
-					
+				
 			// add extra info
 			var hasPlayerInfo = false;
 			var hasAvatars = true;
@@ -711,9 +710,14 @@ Foxtrick.modules["MatchOrderInterface"]={
 				check_Specialties(doc, target, playerList, getIDParent, 'cards_health');				
 			};
 			
-			loading.addEventListener("DOMCharacterDataModified", waitForInterface, false);
+/*			loading.addEventListener("DOMCharacterDataModified", waitForInterface, false);
 			loading.addEventListener("DOMSubtreeModified", waitForInterface, false);
 			loading.addEventListener("DOMNodeInserted", waitForInterface, false);
+*/		
+			doc.addEventListener('interface_ready', function(e){
+				Foxtrick.log("interface ready: ",doc.getElementById("tab_penaltytakers").getElementsByTagName('div').length !== 0);
+				waitForInterface();
+			}, false);
 		};
 	
 		var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
@@ -721,5 +725,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 			runMatchOrder(doc);
 		else if (Foxtrick.isPage("matchLineup", doc))
 			runMatchLineup(doc);
+
+		Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath+"resources/js/matchOrder.js");		
 	}
 };
