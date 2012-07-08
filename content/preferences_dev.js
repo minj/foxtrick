@@ -838,7 +838,7 @@ function initChangesTab()
 				list.appendChild(document.createElement("li"))
 							.textContent = "\u00a0";
 				list.appendChild(document.createElement("li"))
-							.appendChild(document.createElement("u"))
+							.appendChild(document.createElement("h4"))
 							.textContent = Foxtrickl10n.getString("releaseNotes.version") + " " + version + sub + subsub;
 				
 				for (var i = 0, note; note = notes[i]; ++i) {
@@ -1085,13 +1085,13 @@ function addNote(note, to, links)
 		switch(tagName) {
 			case "em": return addNode('em', tagContent);
 			case "strong": return addNode('strong', tagContent);
-			case "header": return addNode('h2', tagContent); //TODO
+			case "header": return addNode('h5', tagContent); //TODO
 			case "module": return addNode('a', tagContent, {href : Foxtrick.InternalPath + "preferences_dev.html#module=" + tagContent});
 			default: return addLink(tagName, tagContent);
 		}
 	}
 
-	var noteTokens = note.match(/(<(\w+)>.*?<\/\2>|.+?(?=(<(\w+)>.*?<\/\4>|$)))/g);
+	var noteTokens = note.match(/<(\w+)>.*?<\/\1>|.+?(?=<(\w+)>.*?<\/\2>|$)/g);
 	// allow only word chars for tags, match only paired tags, tokenize into text + tags, no nesting!
 
 	var tagRegex = /^<(\w+)>(.*?)<\/\1>$/;

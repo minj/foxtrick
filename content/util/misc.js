@@ -471,16 +471,16 @@ Foxtrick.loadXmlSync = function(url) {
 Foxtrick.loadYmlSync = function(url) {
 	var text = Foxtrick.loadSync(url);
 	var escQuotes = /("[^\n\\]*)"(?!\s*?\n)/mg;
-//	try {
+	try {
 		while (text.match(escQuotes))
 			text = text.replace(escQuotes, '$1\\"');
 		var json = Foxtrick.YML.load(text);
-/*	}
+	}
 	catch (e) {
-		// invalid XML
-		Foxtrick.log("Cannot parse YML (", url,  ")\n", text);
+		// invalid YML
+		Foxtrick.log("Cannot parse YML (", url,  ")\nPlease check to see if the text has tabs instead of spaces, unescaped quotes or other weird shit\n", text);
 		json = null;
-	}*/
+	}
 	return json;
 };
 

@@ -15,7 +15,7 @@ versions:
             10: "Possibility to test alert sounds in the preferences"
             11: "Some internal changes related to data storage"
             12: "Some smaller changes and fixes we forgot about"
-            13: "<strong>Bugfixes</strong>"
+            13: "<header>Bugfixes</header>"
             14: "<module>ExtendedPlayerDetails</module>: Fixed wage per week and season beeing incorrect for korean and probably some other languages too"
             15: "<module>MatchOrderInterface</module>: Face will also show for replaced and highlighted players for past lineups"
             16: "<module>MatchPlayerColouring</module>: Now works properly for players that were put in and left the field before the game ended"
@@ -23,7 +23,7 @@ versions:
             18: "<module>PlayerStatsExperience</module>: Fixed NT/U-20 final and semi-final detection"
             19: "<module>TeamPopupLinks</module>: Fixed infinite creating of tabs on the guestbook"
             20: "Fixed RTL language issues with the median transfer price"
-            21: "<strong>For visually/hearing impaired users</strong>"
+            21: "<header>For visually/hearing impaired users</header>"
             22: "We added a new section to the settings page that will contain all modules that are related to accessibility."
             23: "NEW: <module>ARIALandmarks</module>: Adds ARIA landmarks to the website. This should help navigating the site using screenreaders. The two main navigation bars and the list of all subscribed forums got the role "navigation". The main content has the role "main". All the sidebars with additional information and links will be marked as "complementary". The links to global search and forum search have the role "search" of course."
             24: "If you have any further suggestions please don't hesitate to contact us. We are also browsing the Hattrick Access forums."
@@ -67,7 +67,7 @@ versions:
             19: "Median-transfer-prize fixed for some users"
             20: "MatchOrder: Highlight of players that played in the last match can now be shown on the playing field too"
             21: "Some more work on AMO compliance"
-            22: "<strong>For Google Chrome users</strong>"
+            22: "<header>For Google Chrome users</header>"
             23: "Seems that Chrome 18's optional permissions system is buggy. Feature which require those (HTY staffmarker and EmbedMedia) might not work currently."
 
     0.9.1: 
@@ -118,14 +118,14 @@ versions:
 
     0.9: 
         notes: 
-            0: "<strong>Localization:</strong>"
+            0: "<header>Localization:</header>"
             1: "Integration of the crowdsourcing translation service <linkCrowdin>http://www.crowdin.net</linkCrowdin>. (CatzHoek, Convincedd)"
             2: "Many translation updates. (Catzhoek and many translators. Amoung others: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, TheZayc, -Iuve-, Mcload, Polytropos, MrAli, ripaldo, Ryo567, Louzao, kirja, MartinsPF)"
             3: "Thanks all. Please continue to help translate FoxTrick at <linkCrowdin>http://crowdin.net/project/foxtrick</linkCrowdin>"
             4: "For some info about translations see [post=15466991.1] or [post=15466972.1]"
-            5: "<strong>Feature highlight</strong>"
+            5: "<header>Feature highlight</header>"
             6: "We included a feature highlight for easier detection of FoxTrick features and the responsible modules. You can turn this on/off by clicking on the FoxTrick version info down right on every page. After first reload it shows the responsible module in the hover tooltip."
-            7: "<strong>New features and changes</strong>"
+            7: "<header>New features and changes</header>"
             8: "<module>MatchReportFormat</module>: Completely reworked match report (ryanli, Catzhoek, ljushaff)"
             9: "<module>Ratings</module>: Option to hide Hattrick's average ratings (convinced)"
             10: "<module>Filter</module>: Adds filters to Top players page (convinced)"
@@ -141,7 +141,7 @@ versions:
             20: "Links to matches adapted to Hattrick changes (Catzhoek)"
             21: "LeagueChat and HeaderFixFlickerFix removed (convincedd)"
             22: "Many internal changes (ryanli, convincedd) and probably several other smaller fixes"
-            23: "<strong>For Google Chrome users</strong>"
+            23: "<header>For Google Chrome users</header>"
             24: "We implemented Chrome's optional permissions system. There are fewer mandatory permissions needed now when installing FoxTrick. Since you have not set any yet, you have to save the preference once and confirm whichever access you want to allow. Later, you will be asked to allow access to an external resource whenever you enable a module which requires it."
 
     0.8.2: 

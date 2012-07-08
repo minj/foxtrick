@@ -43,7 +43,7 @@ versions:
             19: "Median-transfer-prize fixed for some users"
             20: "MatchOrder: Highlight of players that played in the last match can now be shown on the playing field too"
             21: "Some more work on AMO compliance"
-            22: "<strong>For Google Chrome users</strong>"
+            22: "<header>For Google Chrome users</header>"
             23: "Seems that Chrome 18's optional permissions system is buggy. Feature which require those (HTY staffmarker and EmbedMedia) might not work currently."
 
     0.9.1: 
@@ -94,14 +94,14 @@ versions:
 
     0.9: 
         notes:
-            0: "<strong>Vertimai:</strong>"
+            0: "<header>Vertimai:</header>"
             1: "Integruotas viešųjų vertimų portalas <linkCrowdin>http://www.crowdin.net</linkCrowdin>. (CatzHoek, Convincedd)"
             2: "Daug vertimų atnaujinimų. (Catzhoek ir daug kitų vertėjų: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, TheZayc, -Iuve-, Mcload, Polytropos, MrAli, ripaldo, Ryo567, Louzao, kirja, MartinsPF)"
             3: "Dėkojame visiems prisidėjusiems. Maloniai prašome tęsti „FoxTrick“ vertimą: linkCrowdin>http://crowdin.net/project/foxtrick</linkCrowdin>"
             4: "Informacija vertėjams: [post=15466991.1] ir [post=15466972.1]"
-            5: "<strong>Funkcijų paryškinimas</strong>"
+            5: "<header>Funkcijų paryškinimas</header>"
             6: "Dabar galite lengvai aptikti „Foxtrick“ patobulinimus ir jų modulius. Tiesiog spustelėkite „Foxtrick“ versijos lauką bet kurio puslapio dešiniajame apatiniame kampe. Perkrovus puslapį visų funkcijų modulių pavadinimus rasite užvedę pelės žymeklį ant atitinkamos funkcijos."
-            7: "<strong>Naujienos</strong>"
+            7: "<header>Naujienos</header>"
             8: "<module>MatchReportFormat</module>: visiškai perdaryta rungtynių ataskaita (ryanli, Catzhoek, ljushaff)"
             9: "<module>Ratings</module>: galima paslėpti vidutinius „Hattrick“ reitingus (convinced)"
             10: "<module>Filter</module>: filtrai geriausiųjų žaidėjų puslapyje (convinced)"
@@ -117,7 +117,7 @@ versions:
             20: "Nuorodos į rungtynes pritaikytos prie „Hattrick“ atnaujinimų (Catzhoek)"
             21: "LeagueChat ir HeaderFixFlickerFix pašalinti (convincedd)"
             22: "Daug vidinių pokyčių (ryanli, convincedd) ir keletas smulkių pataisymų"
-            23: "<strong>„Google Chrome“ vartotojams</strong>"
+            23: "<header>„Google Chrome“ vartotojams</header>"
             24: "Pritaikėme „Chrome“ leidimų sistemą. Įdiegiant „Foxtrick“ prašysime mažiau teisių. Kadangi dar nieko nenustatėte. išsaugokite nustatymus ir pažymėkite, ką norite leisti. Jei vėliau įjungsite modulį, kuriam reikia išorinių resursų, reikės ir jam suteikti leidimą."
     
     0.8.2: 

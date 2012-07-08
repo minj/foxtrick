@@ -43,7 +43,7 @@ versions:
             19: "Median-transfer-prize fixed for some users"
             20: "MatchOrder: Highlight of players that played in the last match can now be shown on the playing field too"
             21: "Some more work on AMO compliance"
-            22: "<strong>For Google Chrome users</strong>"
+            22: "<header>For Google Chrome users</header>"
             23: "Seems that Chrome 18's optional permissions system is buggy. Feature which require those (HTY staffmarker and EmbedMedia) might not work currently."
 
     0.9.1: 
@@ -94,14 +94,14 @@ versions:
 
     0.9: 
         notes: 
-            0: "<strong>Übersetzungen:</strong>"
+            0: "<header>Übersetzungen:</header>"
             1: "Integration des Crowd-Sourcing Übersetzungdienstes <linkCrowdin>http://www.crowdin.net</linkCrowdin>. (CatzHoek, Convincedd)"
             2: "Viele Verbesserungen in den Übersetzungen. (Catzhoek und viele Andere. Unter anderem: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, Zayc, , Mcload)"
             3: "Vielen Dank dafür. Bitte helft uns weiterhin Foxtrick zu übersetzen. Dies könnt Ihr auf <linkCrowdin>http://crowdin.net/project/foxtrick</linkCrowdin> erledigen."
             4: "Für Informationen über den Übersetzungsprozess siehe: [post=15466991.1] or [post=15466972.1]"
-            5: "<strong>Feature highlight</strong>"
+            5: "<header>Feature highlight</header>"
             6: "Wir haben eine Option hinzugefügt mit der FoxTrick-Elemente leichter identifiziert werden können. Sie kann ein- bzw. ausschalten werden indem man in der rechten unteren Ecke jeder Seite auf die FoxTrick Versionsnummer klickt. Nach erstmaligen Neuladen wird im ToolTip das jeweilige Modul angezeigt."
-            7: "<strong>Neue Features und Änderungen</strong>"
+            7: "<header>Neue Features und Änderungen</header>"
             8: "<module>MatchReportFormat</module>: Die Art und Weise wie Spielberichte angezeigt werden wurde komplett überarbeitet (ryanli, Catzhoek, ljushaff)"
             9: "<module>Ratings</module>: Es gibt eine neue Option um Hattricks Durchschnittratings zu verstecken (convinced)"
             10: "<module>Filter</module>: Fügt oben auf der Spielerübersichtsseite Filteroptionen hinzu (convinced)"
@@ -117,7 +117,7 @@ versions:
             20: "Links zu Spielen und Spielberichten wurden an die neuste Änderungen von Seiten Hattricks angepasst. (Catzhoek)"
             21: "LeagueChat und HeaderFixFlickerFix wurden entfernt (convincedd)"
             22: "Viele interne Änderungen (ryanli, convincedd) und viele kleinere Verbesserungen"
-            23: "<strong>Für Benutzer von Google Chrome</strong>"
+            23: "<header>Für Benutzer von Google Chrome</header>"
             24: "Wir haben Chromes optionales Erlaubnissystem eingeführt. Es gibt nun weniger obligatorische Erlaubnisse für das Installieren von FoxTrick. Da Du bisher noch keine optionalen Erlaubnisse gesetzt hast, musst Du einmal in die Einstellungen gehen, speichern und in den folgended Dialogen Zugriff auf diejenigen Seiten zulassen für die Du dies willst. Später wirst Du immer dann nach einer Erlaubnis gefragt wenn Du eins der Module aktivierst welches Zugriff auf eine externe Seite benötigt."
 
     0.8.2: 
