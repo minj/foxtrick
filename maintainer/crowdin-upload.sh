@@ -15,14 +15,23 @@ re="$(curl -s \
   -F "files[foxtrick.properties]=@../content/foxtrick.properties" \
   "$CROWDIN_URL"/update-file?key="$CROWDIN_KEY"  | grep -c success)"
   if [ $re -ne 1 ]; then
-    echo "master failed"
+    echo "master foxtrick.properties failed"
   else
-    echo "master ok"
+    echo "master foxtrick.properties ok"
+  fi
+re="$(curl -s \
+  -F "files[release-notes.yml]=@../content/release-notes.yml" \
+  "$CROWDIN_URL"/update-file?key="$CROWDIN_KEY"  | grep -c success)"
+  if [ $re -ne 1 ]; then
+    echo "master release-notes.yml failed"
+  else
+    echo "master release-notes.yml ok"
   fi
 
 for LOC in $SVN_FILES
 do
   # take action on each file. $f store current file name
+  # foxtrick.properties
   re="$(curl -s \
     -F "files[foxtrick.properties]=@$LOC/foxtrick.properties" \
     -F "language=${LOC##*/}" \
@@ -33,7 +42,15 @@ do
   else
     echo "${LOC##*/} ok"
   fi
+  # release_notes.yaml
+  re="$(curl -s \
+    -F "files[release-notes.yml]=@$LOC/release-notes.yml" \
+    -F "language=${LOC##*/}" \
+    -F "import_eq_suggestions=1" \
+    "$CROWDIN_URL"/upload-translation?key="$CROWDIN_KEY" | grep -c success)"
+  if [ $re -ne 1 ]; then
+    echo "${LOC##*/} failed"
+  else
+    echo "${LOC##*/} ok"
+  fi
 done
-  
-
-
