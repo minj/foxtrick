@@ -474,7 +474,7 @@ Foxtrick.loadYmlSync = function(url) {
 	try {
 		while (text.match(escQuotes))
 			text = text.replace(escQuotes, '$1\\"');
-		var json = Foxtrick.YML.load(text);
+		var json = Foxtrick.YML.safeLoad(text);
 	}
 	catch (e) {
 		// invalid YML
