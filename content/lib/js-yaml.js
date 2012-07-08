@@ -73,7 +73,7 @@ if (!Object.getOwnPropertyNames) {
     return names;
   };
 }
-var Foxtrick.YML = (function () {
+Foxtrick.YML = (function () {
 var require = function (file, cwd) {
     var resolved = require.resolve(file, cwd || '/');
     var mod = require.modules[resolved];
