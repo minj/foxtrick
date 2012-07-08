@@ -1,0 +1,98 @@
+language: Chinese
+versions: 
+	nightly: 
+		notes: 
+			0: "请查阅 Google Code 上的<linkSVN>版本历史</linkSVN>."
+	
+	0.8: 
+		notes: 
+			0: "阿拉伯语语言. (GM-OmaniMilani)"
+			0: "使用新机制以根据页面查看模块, 因此移除了旧模块 OnPagePrefs. (convincedd, ryanli)"
+			0: "<FTlinkMainTab>选项</FTlinkMainTab> 以不从 Hattrick 加载 XML 数据. 同时提供了清理 XML 缓存的链接. (convincedd)"
+			0: "新模块 <module>LocalTime</module>, 以显示本地时区的时间. (ryanli)"
+			0: "新模块 <module>LinksYouthLeague</module>, 以在青年联赛页面显示外部链接. (Parminu)"
+			0: "新模块 <module>CopyYouth</module>, 合并了原有复制青年队信息的模块, 提供了到目的地的链接. 添加了复制青年队赛程的功能. (ryanli, Parminu)"
+			0: "新模块 <module>SupporterStatsEnhancements</module>, 提供了支持者统计信息页面的优化. (convincedd)"
+			0: "模块 <module>FixcssProblems</module> 中的新选项, 以隐藏左边栏底部的邀请框 (ryanli)"
+			0: "模块 <module>FixcssProblems</module> 中的新选项, 以缩减日历的高度. (ryanli)"
+			0: "模块 <module>ExtraShortcuts</module> 中到 CHPP 产品管理页面的链接. (ljushaff)"
+			0: "模块 <module>SkillTable</module> 中显示彩色的青年球员技能的选项. (asdfasdfasdf@mailinator.com)"
+			0: "模块 <module>LiveAlert</module> 中播放声音的选项. (ryanli)"
+			0: "模块 <module>MyMonitor</module> 中显示球队徽标的选项, 球队也能够排序了. (convincedd)"
+			0: "模块 <module>ForumYouthIcons</module> 中插入 FoxTrick 调试信息的按钮. (convincedd)"
+			0: "模块 <module>ShowFriendlyBooked</module> 默认只在用户需要时载入友谊赛安排信息. (convincedd)"
+			0: "模块 <module>SkillTable</module> 能够载入额外的球员信息. (convincedd)"
+			0: "Firefox 下 FoxTrick 图标被移动到地址栏并且可以拖拽. (ryanli)"
+			0: "Chrome 下 FoxTrick 图标被移动到地址栏内. 同时还有速度上的优化. (convincedd)"
+			0: "FoxTrick 现在兼容于 Fennec (Firefox 移动版) 了. (convincedd)"
+			0: "FoxTrick 现在有了 Opera 和 Safari 下的测试版本. (convincedd, ryanli)"
+			0: "其他一些细微的更改与改进. (convincedd, ryanli)"
+	
+	0.7.2: 
+		notes: 
+			0: "模块 <module>LinksTeam</module> 中使用 Alltid 比较球队的链接. (convincedd)"
+			0: "技能表在转会比较结果中的修复. (convincedd, ryanli)"
+	
+	0.7.1: 
+		notes: 
+			0: "模块 <module>LeagueNewsFilter</module> 被分为 <module>LeagueNewsFilter</module> 与 <module>ShowLineupSet</module>. (ryanli)"
+			0: "用于适应新转会搜索结果页面的一些修正. (ryanli, taised)"
+			0: "语言更新. (ryanli, CoRrRan, ljushaff, _KOHb_, slader, ElChiquitin)"
+			0: "其他一些细微的更改. (ryanli)"
+	
+	0.7: 
+		notes: 
+			0: "冰岛语语言. (LA-LordBastard)"
+			0: "佛莱芒语, 由荷兰语复制而来. (ryanli)"
+			0: "新的选项类别, <FTlinkAggregation>信息聚合</FTlinkAggregation>. (ryanli)"
+			0: "新模块 <module>MyMonitor</module>, 用于在我的 Hattrick 页面中围观朋友和敌人最近的比赛. (ryanli)"
+			0: "新模块 <module>MarkAllAsRead</module>, 一个将所有论坛中的主题标为已读的按钮. (ryanli)"
+			0: "新模块 <module>ShowFriendlyBooked</module>, 可以在联赛页面中显示一个球队是否安排了友谊赛. (ryanli)"
+			0: "重写了模块 <module>TickerAlert</module>, 集成了原来的 FoxtrickAlert, AlertCustomSound, AlertCustomOff 这些模块. (ryanli)"
+			0: "模块 <module>MatchPlayerColouring</module> 现在从 XML 中读取比赛布阵. (ryanli)"
+			0: "模块 FoxtrickLineupShortcut 被重命名为 <module>LineupShortcut</module>. (ryanli)"
+			0: "模块 htmsStatistics 被重命名为 <module>HTMSPrediction</module>. (ryanli)"
+			0: "模块 <module>FriendlyInterface</module> 中的新选项, 可以隐藏没有事情要报告的秘书. (ryanli)"
+			0: "模块 <module>StaffMarker</module> 现在使用 <linkJSON>JavaScript Object Notation</linkJSON> 作为自定义标记的格式. (ryanli)"
+			0: "模块 <module>ExtraShortcuts</module> 中新的收音机, Balkaradio and Downtime Radio. (ljushaff, ryanli)"
+			0: "模块 <module>LeagueAndMatchChat</module> 中在框架中打开 Yaplet 聊天的选项被移除. (ryanli)"
+			0: "其他一些细微的更改. (ryanli, Mod-spambot)"
+	
+	0.6.2: 
+		notes: 
+			0: "<module>SeriesFlags</module> 模块现在直接从 Hattrick 获取数据. (ryanli)"
+			0: "语言更新. (ljushaff, csajszi, Mod-spambot)"
+			0: "其他一些细微的修改. (ryanli)"
+	
+	0.6.1: 
+		notes: 
+			0: "<module>HTMSPoints</module> 模块现在在本地执行运算, 而无须连接到 HTMS. (taised)"
+			0: "<module>htmsStatistics</module> 模块现在能够正确地载入预测. (taised)"
+			0: "语言更新. (Mod-spambot, Mod-OmaniMilani, Baler0, ljushaff, _KOHb_, Slash-ss, MEO_Comandante)"
+			0: "与 Firefox 4.2 分支兼容. (ryanli)"
+			0: "其他一些细微的修改. (ryanli)"
+	
+	0.6: 
+		notes: 
+			0: "新的选项界面. (ryanli)"
+			0: "经由新的 Hattrick API 认证的 OAuth 认证界面. (ryanli)"
+			0: "<module>LiveAlert</module> 模块, 用于提醒 HT Live 中新的进球. (ryanli)"
+			0: "<module>OldStyleFace</module> 模块, 用于显示旧风格头像. (Aimo_Kanuuna)"
+			0: "<module>NtPeek</module> 模块, 用于在“我的 Hattrick”处显示最近的国家队比赛. (ryanli)"
+			0: "<module>SeriesFlags</module> 模块, 用于在球队/经理链接旁显示国家与联赛. 图像由 <linkHTMS>HTMS</linkHTMS> 提供. (taised, ryanli)"
+			0: "<module>HTMSPoints</module> 模块, 用于显示球员的 <linkHTMSPoints>HTMS 技能点</linkHTMSPoints>, 即数字化的能力与潜力. (taised)"
+			0: "<module>FriendlyInterface</module> 模块, 可以在比赛阵容页面显示球员的全名, 以及在国家队球员页面中显示到国家队的链接. (ryanli)"
+			0: "HighlightBotTeams 模块被重命名为 <module>HighlightOwnerless</module>. (ryanli)"
+			0: "移除了 YouthSkillNotes 和 ShortPA 模块. (ryanli)"
+			0: "<module>FixcssProblems</module> 中用于隐藏论坛快速浏览的新选项. (ljushaff)"
+			0: "<module>CopyPlayerAd</module> 中可以以文本方式 (没有表格) 复制广告的选项. (ryanli)"
+			0: "<module>Ratings</module>中可以分评级显示的 HatStats. (taised)"
+			0: "白俄罗斯语语言. (LA-Stolik)"
+			0: "在<FTlinkHelp>帮助标签</FTlinkHelp>下加入了一些常见的问题与解答. (ryanli)"
+			0: "新的灰色图标, 用于举报链接. (ljushaff)"
+			0: "<module>YouthPromotes</module> 现在显示能够提升球员的最早日期. (ryanli)"
+			0: "大部分功能在 Google Chrome 下可用. (ryanli)"
+			0: "一些为适应 Hattrick 更改的修正. (ryanli, taised, ljushaff)"
+			0: "<module>TeamSelectBox</module> 模块 默认被禁用. (ryanli)"
+			0: "<module>SmallerPages</module> 模块默认被禁用. (ljushaff)"
+			0: "<module>ExtraShortcuts</module> 中的收音机选项默认被关闭. (ryanli)"

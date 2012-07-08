@@ -1078,8 +1078,11 @@ function addNote(note, to, links)
 			return node;
 		}
 		var addLink = function(tagName, tagContent) {
-			if (links && links[tagName]) 
-				return addNode('a', tagContent, {href : links[tagName], target : '_blank'});
+			if (links && links[tagName])
+				 if (tagName.search('FTlink') == 0)
+				 	return addNode('a', tagContent, {href : links[tagName]});
+				 else
+					return addNode('a', tagContent, {href : links[tagName], target : '_blank'});
 			else return document.createTextNode(tagContent);
 		}
 		switch(tagName) {
@@ -1091,10 +1094,10 @@ function addNote(note, to, links)
 		}
 	}
 
-	var noteTokens = note.match(/(\[(\w+)\].*?\[\/\2\]|.+?(?=(\[(\w+)\].*?\[\/\4\]|$)))/g);
+	var noteTokens = note.match(/(<(\w+)>.*?<\/\2>|.+?(?=(<(\w+)>.*?<\/\4>|$)))/g);
 	// allow only word chars for tags, match only paired tags, tokenize into text + tags, no nesting!
 
-	var tagRegex = /^\[(\w+)\](.*?)\[\/\1\]$/;
+	var tagRegex = /^<(\w+)>(.*?)<\/\1>$/;
 	for (var i = 0, token; token = noteTokens[i]; ++i) {
 		if (tagRegex.test(token)) {
 			var tag = tagRegex.exec(token); // 0: whole token, 1: tagName, 2: tagContent

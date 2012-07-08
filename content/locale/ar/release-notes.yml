@@ -1,0 +1,31 @@
+language: Arabic
+versions: 
+	nightly: 
+		notes: 
+			0: "Please view <linkSVN>commit history</linkSVN> at Google Code for details."
+			0: "You could prevent FoxTrick from poping up this release note after each update by disabling "Show release notes after FoxTrick updates" in <FTlinkMainTab>main tab</FTlinkMainTab>."
+	
+	0.6: 
+		notes: 
+			0: "New preferences interface. (ryanli)"
+			0: "OAuth interface implemented for the new Hattrick CHPP API. (ryanli)"
+			0: "Module <module>LiveAlert</module> for alerting at HT Live goals. (ryanli)"
+			0: "Module <module>OldStyleFace</module> for showing faces in old Hattrick style. (Aimo_Kanuuna)"
+			0: "Module <module>NtPeek</module> for peeking NT/U20 matches at My Hattrick. (ryanli)"
+			0: "Module <module>SeriesFlags</module> for showing user country and series beside manager and team links. Images provided by <linkHTMS>HTMS</linkHTMS>. (taised, ryanli)"
+			0: "Module <module>HTMSPoints</module> for showing player's <linkHTMSPoints>HTMS Points</linkHTMSPoints>, i.e. numeralized ability and potential. (taised)"
+			0: "Module <module>FriendlyInterface</module> with options for showing player's full name in match line up page and showing national teams in links for NT players. (ryanli)"
+			0: "Module HighlightBotTeams renamed to <module>HighlightOwnerless</module>. (ryanli)"
+			0: "Module YouthSkillNotes and ShortPA removed. (ryanli)"
+			0: "Option to hide forum sneak-peek in <module>FixcssProblems</module>. (ljushaff)"
+			0: "Option to copy advertisement in non-table style in <module>CopyPlayerAd</module>. (ryanli)"
+			0: "Option to show HatStats per rating in <module>Ratings</module>. (taised)"
+			0: "Belarusian locale. (LA-Stolik)"
+			0: "Add some frequently asked questions at <FTlinkHelp>Help tab</FTlinkHelp>. (ryanli)"
+			0: "New grey icon for report links. (ljushaff)"
+			0: "<module>YouthPromotes</module> also shows the earliest date to promote a player. (ryanli)"
+			0: "Most features working under Google Chrome. (ryanli)"
+			0: "Some trivial fixes for latest Hattrick changes. (ryanli, taised, ljushaff)"
+			0: "Module <module>TeamSelectBox</module> disabled by default. (ryanli)"
+			0: "Module <module>SmallerPages</module> disabled by default. (ljushaff)"
+			0: "Radio options in <module>ExtraShortcuts</module> are disabled by default. (ryanli)"

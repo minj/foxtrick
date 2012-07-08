@@ -1,0 +1,141 @@
+language: Lithuanian
+versions: 
+	nightly: 
+		notes:
+			0: "Peržiūrėkite „Google Code“ <linkSVN>pakeitimų sąrašą</linkSVN>."
+	
+	0.9: 
+		notes:
+			0: "<strong>Vertimai:</strong>"
+			0: "Integruotas viešųjų vertimų portalas <linkCrowdin>http://www.crowdin.net</linkCrowdin>. (CatzHoek, Convincedd)"
+			0: "Daug vertimų atnaujinimų. (Catzhoek ir daug kitų vertėjų: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, TheZayc, -Iuve-, Mcload, Polytropos, MrAli, ripaldo, Ryo567, Louzao, kirja, MartinsPF)"
+			0: "Dėkojame visiems prisidėjusiems. Maloniai prašome tęsti „FoxTrick“ vertimą: linkCrowdin>http://crowdin.net/project/foxtrick</linkCrowdin>"
+			0: "Informacija vertėjams: [post=15466991.1] ir [post=15466972.1]"
+			0: ""
+			0: "<strong>Funkcijų paryškinimas</strong>"
+			0: "Dabar galite lengvai aptikti „Foxtrick“ patobulinimus ir jų modulius. Tiesiog spustelėkite „Foxtrick“ versijos lauką bet kurio puslapio dešiniajame apatiniame kampe. Perkrovus puslapį visų funkcijų modulių pavadinimus rasite užvedę pelės žymeklį ant atitinkamos funkcijos."
+			0: ""
+			0: "<strong>Naujienos</strong>"
+			0: "<module>MatchReportFormat</module>: visiškai perdaryta rungtynių ataskaita (ryanli, Catzhoek, ljushaff)"
+			0: "<module>Ratings</module>: galima paslėpti vidutinius „Hattrick“ reitingus (convinced)"
+			0: "<module>Filter</module>: filtrai geriausiųjų žaidėjų puslapyje (convinced)"
+			0: "<module>MatchOrder</module>: rungtynių nurodymų puslapyje pateikiama daugiau informacijos bei galima sukeisti kraštus (convinced)"
+			0: "<module>MatchSimulator</module>: spėjant reitingus galima atsižvelgti į ištvermės poveikį ir naudoti „<linkHTMS>HTMS</linkHTMS>“ rungtynių simuliatorių (convinced)"
+			0: "<module>RatingsDisplay</module>: „Hattrick“ reitingai skirtingu formatu (convinced)"
+			0: "<module>LoyaltyDisplay</module>: prideda lojalumo ir kilmės klubo premijas prie įgūdžių stulpelių (Catzhoek)"
+			0: "<module>EmbedMedia</module>: forumo žinutėse pateiktas įvairių rinkmenų nuorodas galima iškart peržiūrėti (Catzhoek)"
+			0: "<module>HeaderToggle</module>: visas „Hattrick“ puslapio dalis su antrojo lygmens atraštėmis galima pasirinktinai sutraukti (convincedd)"
+			0: "<module>Links</module> ir <module>StaffMarker</module> duomenys įkeliami iš <linkFT>foxtrick.org</linkFT>. Taigi, nuo šiol naujausias nuorodas matysite net ir neatnaujinę „FoxTrick“"
+			0: "<module>StaffMarker</module>: atnaujintas CHPP licensiją ir redaktoriaus statusą turinčių žmonių sąrašas (Catzhoek)"
+			0: "<module>StaffMarker</module>: užvedus pėlės žymeklį ant CHPP logotipo matysite atitinkamos programos pavadinimą (Catzhoek)"
+			0: "Nuorodos į rungtynes pritaikytos prie „Hattrick“ atnaujinimų (Catzhoek)"
+			0: "LeagueChat ir HeaderFixFlickerFix pašalinti (convincedd)"
+			0: "Daug vidinių pokyčių (ryanli, convincedd) ir keletas smulkių pataisymų"
+			0: ""
+			0: "<strong>„Google Chrome“ vartotojams</strong>"
+			0: "Pritaikėme „Chrome“ leidimų sistemą. Įdiegiant „Foxtrick“ prašysime mažiau teisių. Kadangi dar nieko nenustatėte. išsaugokite nustatymus ir pažymėkite, ką norite leisti. Jei vėliau įjungsite modulį, kuriam reikia išorinių resursų, reikės ir jam suteikti leidimą."
+	
+	0.8.2: 
+			0: "Korėjiečių kalba (SI-CH)"
+			0: "Lietuvių kalba (LA-MJ)"
+			0: "Bendras kalbų tekstų valymas (CatzHoek)"
+			0: "Pridėtos nuorodos į <linkHTEV>http://htev.org/</linkHTEV> statistikos tinklalapį. (convincedd, CatzHoek)"
+			0: "Kiti maži pataisymai. (convincedd, CatzHoek)"
+	
+	0.8.1: 
+			0: "<module>ElectionTable</module>: pritaikyta naujajam rinkimų puslapiui. (convincedd, ryanli)"
+			0: "<module>HTThreadMarker</module>: naujas stilius. (convincedd, ryanli)"
+			0: "<module>TableSort</module>: išvengta konfliktų su Hattrick rikiavimu. (convincedd)"
+			0: "<module>HTMSPrediction</module>, <module>CopyRatings</module>: pritaikyta naujai rungtynių ataskaitos versijai. (convincedd)"
+			0: "<module>LineupShortcut</module>: dabar rodoma ir ne rėmėjams. (ryanli)"
+			0: "<module>TransferSearchResultFilters</module>: pritaikyta atnaujinimams. (convincedd)"
+			0: "<module>SkillTable</module>: pridėtas lojalumas ir kilmės klubo premija. (convincedd)"
+	
+	0.8: 
+		notes:
+			0: "Arabų kalba. (GM-OmaniMilani)"
+			0: "Naujas modulių peržiūros mechanizmas, todėl panaikintas senasis OnPagePrefs modulis. (convincedd, ryanli)"
+			0: "Galima <FTlinkMainTab>išjungti</FTlinkMainTab> CHPP duomenų siuntimą iš Hattrick. Jau parsiųsti duomenys laikomi podėlyje, kurį galima išvalyti atitinkamuose puslapiuose (convincedd)"
+			0: "Naujas modulis: <module>LocalTime</module> rodo vietos laiką. (ryanli)"
+			0: "Naujas modulis: <module>LinksYouthLeague</module> jaunių lygos puslapio nuorodoms. (Parminu)"
+			0: "Naujas modulis: <module>CopyYouth</module> apjungia senuosius jaunių informacijos kopijavimo modulius ir parodo nuorodą. Nauja jaunių rungtynių tvarkaraščio kopijavimo funkcija. (ryanli, Parminu)"
+			0: "Naujas modulis: <module>SupporterStatsEnhancements</module> pagerina rėmėjo statistikos vaizdavimą. (convincedd)"
+			0: "Modulyje <module>FixcssProblems</module> atsirado galimybė paslėpti kairėje paraštėje esantį pakvietimų meniu. (ryanli)"
+			0: "Modulyje <module>FixcssProblems</module> atsirado galimybė sumažinti kalendoriaus aukštį. (ryanli)"
+			0: "Modulyje <module>ExtraShortcuts</module> pridėta nuoroda į CHPP produktų valdymo puslapį. (ljushaff)"
+			0: "Modulyje <module>SkillTable</module> atsirado galimybė rodyti spalvotus jaunių įgūdžius. (foulpelz)"
+			0: "Modulyje <module>LiveAlert</module> atsirado galimybė daryti garsinius pranešimus. (ryanli)"
+			0: "Modulyje <module>MyMonitor</module> atsirado galimybė rikiuoti komandas ir rodyti jų ikonas. (convincedd)"
+			0: "Modulyje <module>ForumYouthIcons</module> atsirado galimybė į forumo žinutes nukopijuoti Foxtrick veiklos žurnalus. (convincedd)"
+			0: "Modulyje <module>ShowFriendlyBooked</module> draugiškų rungtynių būsena įjungta pagal nutylėjimą. (convincedd)"
+			0: "Modulyje <module>SkillTable</module> pridėta papildomos žaidėjo informacijos nuoroda. (convincedd)"
+			0: "FoxTrick ikona Firefox naršyklėje perkelta į adresų juostą (galima nutempti kur patinka). (ryanli)"
+			0: "FoxTrick ikona Chrome naršyklėje perkelta į adresų juostą. Panaikintas mirgėjimas ir padidinta sparta. (convincedd)"
+			0: "FoxTrick dabar veikia ir Fennec (Firefox mobiliesiems) naršyklėje. (convincedd)"
+			0: "Atsirado FoxTrick beta versijos Opera ir Safari naršyklėms. (convincedd, ryanli)"
+			0: "Smulkūs pataisymai ir patobulinimai. (convincedd, ryanli)"
+	
+	0.7.2: 
+			0: "Links for comparing teams at Alltid in module <module>LinksTeam</module>. (convincedd)"
+			0: "Fixes for skill table at transfer search results. (convincedd, ryanli)"
+	
+	0.7.1: 
+			0: "Module <module>LeagueNewsFilter</module> split into <module>LeagueNewsFilter</module> and <module>ShowLineupSet</module>. (ryanli)"
+			0: "Modifications to adapt for new transfer search results page. (ryanli, taised)"
+			0: "Locale updates. (ryanli, CoRrRan, ljushaff, _KOHb_, slader, ElChiquitin)"
+			0: "Some other trivial fixes. (ryanli)"
+	
+	0.7: 
+		notes:
+			0: "Icelandic locale. (LA-LordBastard)"
+			0: "Vlaams locale copied from Dutch. (ryanli)"
+			0: "New module category, <FTlinkAggregation>Information Aggregation</FTlinkAggregation>. (ryanli)"
+			0: "New module <module>MyMonitor</module> for monitoring recent matches of selected teams at My Hattrirck. (ryanli)"
+			0: "New module <module>MarkAllAsRead</module>, a button to mark threads in all forums as read. (ryanli)"
+			0: "New module <module>ShowFriendlyBooked</module> for showing whether a team has booked a friendly on series page. (ryanli)"
+			0: "Rewrite of module <module>TickerAlert</module>, integrating former FoxtrickAlert, AlertCustomSound, AlertCustomOff modules. (ryanli)"
+			0: "Module <module>MatchPlayerColouring</module> loads match lineup from XML. (ryanli)"
+			0: "Module FoxtrickLineupShortcut renamed to <module>LineupShortcut</module>. (ryanli)"
+			0: "Module htmsStatistics renamed to <module>HTMSPrediction</module>. (ryanli)"
+			0: "New option in module <module>FriendlyInterface</module> to hide the secretary if he has nothing to report. (ryanli)"
+			0: "Module <module>StaffMarker</module> now uses <linkJSON>JavaScript Object Notation</linkJSON> for custom markers. (ryanli)"
+			0: "New radios in module <module>ExtraShortcuts</module>, Balkaradio and Downtime Radio. (ljushaff, ryanli)"
+			0: "Option of <module>LeagueAndMatchChat</module> to open Yaplet chat in a frame removed. (ryanli)"
+			0: "Various trivial fixes. (ryanli, Mod-spambot)"
+	
+	0.6.2: 
+			0: "Module <module>SeriesFlags</module> now fetches team data directly from Hattrick. (ryanli)"
+			0: "Locale updates. (ljushaff, csajszi, Mod-spambot)"
+			0: "Some other trivial fixes. (ryanli)"
+	
+	0.6.1: 
+			0: "Module <module>HTMSPoints</module> now calculates points locally without connecting to HTMS website. (taised)"
+			0: "Module <module>htmsStatistics</module> now loads prediction correctly. (taised)"
+			0: "Locale updates. (Mod-spambot, Mod-OmaniMilani, Baler0, ljushaff, _KOHb_, Slash-ss, MEO_Comandante)"
+			0: "Compatible with Firefox 4.2 branch. (ryanli)"
+			0: "Some other trivial fixes. (ryanli)"
+	
+	0.6: 
+		notes:
+			0: "New preferences interface. (ryanli)"
+			0: "OAuth interface implemented for the new Hattrick CHPP API. (ryanli)"
+			0: "Module <module>LiveAlert</module> for alerting at HT Live goals. (ryanli)"
+			0: "Module <module>OldStyleFace</module> for showing faces in old Hattrick style. (Aimo_Kanuuna)"
+			0: "Module <module>NtPeek</module> for peeking NT/U20 matches at My Hattrick. (ryanli)"
+			0: "Module <module>SeriesFlags</module> for showing user country and series beside manager and team links. Images provided by <linkHTMS>HTMS</linkHTMS>. (taised, ryanli)"
+			0: "Module <module>HTMSPoints</module> for showing player's <linkHTMSPoints>HTMS Points</linkHTMSPoints>, i.e. numeralized ability and potential. (taised)"
+			0: "Module <module>FriendlyInterface</module> with options for showing player's full name in match line up page and showing national teams in links for NT players. (ryanli)"
+			0: "Module HighlightBotTeams renamed to <module>HighlightOwnerless</module>. (ryanli)"
+			0: "Module YouthSkillNotes and ShortPA removed. (ryanli)"
+			0: "Option to hide forum sneak-peek in <module>FixcssProblems</module>. (ljushaff)"
+			0: "Option to copy advertisement in non-table style in <module>CopyPlayerAd</module>. (ryanli)"
+			0: "Option to show HatStats per rating in <module>Ratings</module>. (taised)"
+			0: "Belarusian locale. (LA-Stolik)"
+			0: "Add some frequently asked questions at <FTlinkHelp>Help tab</FTlinkHelp>. (ryanli)"
+			0: "New grey icon for report links. (ljushaff)"
+			0: "<module>YouthPromotes</module> also shows the earliest date to promote a player. (ryanli)"
+			0: "Most features working under Google Chrome. (ryanli)"
+			0: "Some trivial fixes for latest Hattrick changes. (ryanli, taised, ljushaff)"
+			0: "Module <module>TeamSelectBox</module> disabled by default. (ryanli)"
+			0: "Module <module>SmallerPages</module> disabled by default. (ljushaff)"
+			0: "Radio options in <module>ExtraShortcuts</module> are disabled by default. (ryanli)"

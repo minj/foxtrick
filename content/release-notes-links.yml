@@ -1,2 +1,12 @@
+#use FTlink_something for links that should open in the same tab
+FTlinkMainTab: '#tab=main'
+FTlinkAggregation: '#tab=information_aggregation'
+FTlinkHelp: '#tab=help'
 linkSVN: 'http://code.google.com/p/foxtrick/source/list'
 linkCrowdin: 'http://crowdin.net/project/foxtrick'
+linkHTMS: 'http://www.fantamondi.it/HTMS'
+linkFT: 'http://foxtrick.org'
+linkHTEV: 'http://www.htev.org/'
+linkJSON: 'http://www.json.org/'
+linkHY: 'http://www.hattrick-youthclub.org/'
+linkAMO: 'https://addons.mozilla.org'
