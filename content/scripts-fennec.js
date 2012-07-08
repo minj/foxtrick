@@ -48,7 +48,7 @@ Foxtrick.loader.fennec_background = {
 		"chrome://foxtrick/content/lib/sha1.js",
 		"chrome://foxtrick/content/lib/jquery.js",
 		"chrome://foxtrick/content/lib/jester.js",
-		"chrome://foxtrick/content/lib/js-yaml.min.js",
+		"chrome://foxtrick/content/lib/js-yaml.js",
 
 		//<!-- core modules -->
 		"chrome://foxtrick/content/redirections.js",
