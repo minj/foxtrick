@@ -47,10 +47,31 @@ do
     -F "files[release-notes.yml]=@$LOC/release-notes.yml" \
     -F "language=${LOC##*/}" \
     -F "import_eq_suggestions=1" \
-    "$CROWDIN_URL"/upload-translation?key="$CROWDIN_KEY" | grep -c success)"
+    -F "import_duplicates=1" \
+	"$CROWDIN_URL"/upload-translation?key="$CROWDIN_KEY" | grep -c success)"
   if [ $re -ne 1 ]; then
     echo "${LOC##*/} failed"
   else
     echo "${LOC##*/} ok"
   fi
 done
+
+# get module names from foxtrick.properties file
+cat ../content/foxtrick.properties | egrep -o "module\.(.+)\.desc" > module-names
+sed -i -r 's|module.||' module-names
+sed -i -r 's|.desc||' module-names
+sed -i -r 's|(.+)\.+||' module-names
+
+# make tbx glossary from module names
+perl crowdin-module-glossary-update.pl
+
+#upload glossary
+re="$curl \
+	-F "file=@crowdin-glossary.tbx" \
+	"$CROWDIN_URL"/upload-glossary?key="$CROWDIN_KEY" | grep -c success)"
+if [ $re -ne 1 ]; then
+  echo "crowdin-glossary failed"
+else
+  echo "crowdin-glossary ok"
+fi
+
