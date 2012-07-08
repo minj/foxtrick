@@ -1,0 +1,14 @@
+---
+language: English
+versions: 
+  nightly: 
+    notes: 
+      0: "This is the development build. Use at your own discretion. Please view [linkSVN]commit history[/linkSVN] at Google Code for details of the changes."
+  beta: 
+    notes: 
+      0: "This is the beta version of the next release. Please help translating this version at our super easy crowd-translation page [linkCrowdin]crowdin.net[/linkCrowdin]."
+  0.11.0: 
+    notes: 
+      0: "NEW: [module]ForumModeratorPopup[/module]: Added a dropdown menu for forum moderators on top of threads to simplify moderation."
+      1: "NEW: [module]PlayerStatsTrainingWeek[/module]: Added an opportunity to group matches according to training week instead of calendar week."
+      2: "[module]SkillTable[/module]: Opportunity added to sub-sort an existing ordering using ctrl + leftclick another column header."

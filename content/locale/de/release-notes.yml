@@ -1,0 +1,14 @@
+---
+language: Deutsch
+versions: 
+  nightly: 
+    notes: 
+      0: "Dies ist die Entwicklung Bauen. Verwenden Sie in Ihrem Eigenen Ermessen. Read Für Details Zu Den Änderungen an [linkSVN]Begehen Geschichte[/linkSVN] Bei Google Code."
+  beta: 
+    notes: 
+      0: "Dies ist sterben Beta-Version der Nächsten Version. Bitte Helfen Sie Diese Version Auf Unserer super Einfach Menge-Übersetzung Seite [linkCrowdin]corwdin.net[/linkCrowdin] Zu Übersetzen."
+  0.11.0: 
+    notes: 
+      0: "Neu: [module]ForumModeratorPopup[/module]: Hinzugefügt Eine Dropdown-Menü Für Die Moderatoren des Forums Auf Fäden, Mäßigung Zu Vereinfachen."
+      1: "Neu: [module]PlayerStatsTrainingWeek[/module]: Gelegenheit in Gruppenspielen Nach Trainingswoche Statt Kalenderwoche Aufgenommen."
+      2: "[module]SkillTable[/module]: Möglichkeit Hinzugefügt, um sub-sort Zu Einer Bestehenden Bestellung Mit Strg + Linksklick Einen Anderen Spaltenheader."
