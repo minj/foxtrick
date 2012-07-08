@@ -468,6 +468,23 @@ Foxtrick.loadXmlSync = function(url) {
 	return xml;
 };
 
+Foxtrick.loadYmlSync = function(url) {
+	var text = Foxtrick.loadSync(url);
+	var escQuotes = /("[^\n\\]*)"(?!\s*?\n)/mg;
+//	try {
+		while (text.match(escQuotes))
+			text = text.replace(escQuotes, '$1\\"');
+		var json = Foxtrick.YML.load(text);
+/*	}
+	catch (e) {
+		// invalid XML
+		Foxtrick.log("Cannot parse YML (", url,  ")\n", text);
+		json = null;
+	}*/
+	return json;
+};
+
+
 Foxtrick.XML_evaluate = function (xmlresponse, basenodestr, labelstr, valuestr, value2str, value3str) {
 	var result = new Array();
 	if (xmlresponse) {

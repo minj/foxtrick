@@ -1,5 +1,33 @@
-language: Arabic
+language: English
 versions: 
+	0.10.0: 
+		notes: 
+			0: "NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)"
+			1: "NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)"
+			2: "NEW: <module>HTEVPrediction</module>: Displays match odds for league games provided by <linkHTEV>HTEV</linkHTEV> (default on)"
+			3: "<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)"
+			4: "<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose."
+			5: "<module>YouthTwins</module>: Option added to hide the information link about twins (default off)"
+			6: "<module>StaffMarker</module>: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on"
+			7: "<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org"
+			8: "Support for the KeyPlayer page"
+			9: "Some improvements for Firefox on Android"
+			10: "Possibility to test alert sounds in the preferences"
+			11: "Some internal changes related to data storage"
+			12: "Some smaller changes and fixes we forgot about"
+			13: "<strong>Bugfixes</strong>"
+			14: "<module>ExtendedPlayerDetails</module>: Fixed wage per week and season beeing incorrect for korean and probably some other languages too"
+			15: "<module>MatchOrderInterface</module>: Face will also show for replaced and highlighted players for past lineups"
+			16: "<module>MatchPlayerColouring</module>: Now works properly for players that were put in and left the field before the game ended"
+			17: "<module>HideSignatures</module>: Did not work when HT setting was set to truncated signatures, fixed that"
+			18: "<module>PlayerStatsExperience</module>: Fixed NT/U-20 final and semi-final detection"
+			19: "<module>TeamPopupLinks</module>: Fixed infinite creating of tabs on the guestbook"
+			20: "Fixed RTL language issues with the median transfer price"
+			21: "<strong>For visually/hearing impaired users</strong>"
+			22: "We added a new section to the settings page that will contain all modules that are related to accessibility."
+			23: "NEW: <module>ARIALandmarks</module>: Adds ARIA landmarks to the website. This should help navigating the site using screenreaders. The two main navigation bars and the list of all subscribed forums got the role "navigation". The main content has the role "main". All the sidebars with additional information and links will be marked as "complementary". The links to global search and forum search have the role "search" of course."
+			24: "If you have any further suggestions please don't hesitate to contact us. We are also browsing the Hattrick Access forums."
+
 	0.9.3: 
 		notes: 
 			0: "A lot of language updates because Foxtrick users are awesome. Thank you so much. Keep contributing at <linkCrowdin>http://www.crowdin.net</linkCrowdin>"

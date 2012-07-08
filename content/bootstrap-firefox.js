@@ -45,6 +45,7 @@ FoxtrickFirefox.prototype = {
 		//Services.scriptloader.loadSubScript("chrome://foxtrick/content/lib/jquery.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/lib/oauth.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/lib/sha1.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/lib/js-yaml.min.js",this.owner, "UTF-8");
 		
 		//<!-- core modules -->
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/redirections.js",this.owner, "UTF-8");

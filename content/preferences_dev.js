@@ -749,16 +749,13 @@ function getModule(module)
 
 function initChangesTab()
 {
-	var releaseNotesLinksRaw = Foxtrick.loadSync(Foxtrick.InternalPath + "release-notes-links.yml");
-	var releaseNotesLinks = (releaseNotesLinksRaw) ? Foxtrick.YAML.load(releaseNotesLinksRaw) : null;
+	var releaseNotesLinks = Foxtrick.loadYmlSync(Foxtrick.InternalPath + "release-notes-links.yml");
 
-	var releaseNotesRaw = Foxtrick.loadSync(Foxtrick.InternalPath + "release-notes.yml");
-	var releaseNotes = (releaseNotesRaw) ? Foxtrick.YAML.load(releaseNotesRaw) : null;
+	var releaseNotes = Foxtrick.loadYmlSync(Foxtrick.InternalPath + "release-notes.yml");
 
 	var lang = FoxtrickPrefs.getString("htLanguage");
 
-	var releaseNotesLocalizedRaw = Foxtrick.loadSync(Foxtrick.InternalPath + "locale/" + lang + "/release-notes.yml");
-	var releaseNotesLocalized = (releaseNotesLocalizedRaw) ? Foxtrick.YAML.load(releaseNotesLocalizedRaw) : null;
+	var releaseNotesLocalized = Foxtrick.loadYmlSync(Foxtrick.InternalPath + "locale/" + lang + "/release-notes.yml");
 
 	var status = Foxtrick.loadXmlSync(Foxtrick.InternalPath + "locale/status.xml");
 

@@ -44,6 +44,7 @@ FoxtrickFennec.prototype = {
 		"chrome://foxtrick/content/lib/oauth.js",
 		"chrome://foxtrick/content/lib/sha1.js",
 		"chrome://foxtrick/content/lib/jester.js",
+		"chrome://foxtrick/content/lib/js-yaml.min.js",
 		
 		//<!-- categorized modules with init functions -->
 		"chrome://foxtrick/content/forum/staff-marker.js",
