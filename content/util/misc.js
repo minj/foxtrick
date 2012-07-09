@@ -623,80 +623,6 @@ Foxtrick.insertAtCursor = function(textarea, text) {
 		+ textarea.value.substring(textarea.selectionEnd, textarea.value.length);
 }
 
-Foxtrick.convertImageUrlToData = function(cssTextCollection, callback) {
-	var pending = 0;
-
-	// send back when all images are converted
-	var resolve = function() {
-		if (--pending <= 0) {
-			callback(cssTextCollection);
-		}
-	};
-	// convert an image
-	var replaceImage = function (url) {
-		var image = new Image;
-		image.onload = function() {
-			var canvas = document.createElement("canvas");
-			canvas.width = image.width;
-			canvas.height = image.height;
-			var context = canvas.getContext('2d');
-			context.drawImage(image, 0, 0);
-			var dataUrl = canvas.toDataURL()
-			Foxtrick.dataUrlStorage[url] = dataUrl;
-			cssTextCollection = cssTextCollection.replace(RegExp(url,'g'), dataUrl);
-			return resolve();
-		};
-		image.onerror = function() {
-			return resolve();
-		};
-		return image.src = url;
-	};
-
-	if (cssTextCollection) {
-		var fullUrlRegExp = new RegExp("\\(\'?\"?chrome://foxtrick/content/([^\\)]+)\'?\"?\\)", "gi");
-		var urls = cssTextCollection.match(fullUrlRegExp);
-		var InternalPathRegExp = RegExp("chrome://foxtrick/content/", "ig");
-		cssTextCollection = cssTextCollection.replace(InternalPathRegExp, Foxtrick.InternalPath);
-
-		if (urls) {
-			// first check dataurl cache
-			for (var i = 0; i<urls.length; ++i) {
-				urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g,'').replace(InternalPathRegExp, Foxtrick.InternalPath);
-				if (Foxtrick.dataUrlStorage[urls[i]]) {
-					cssTextCollection = cssTextCollection.replace(RegExp(urls[i],'g'), Foxtrick.dataUrlStorage[urls[i]]);
-				}
-			}
-			// convert missing images
-			for (var i = 0; i<urls.length; ++i) {
-				urls[i] = urls[i].replace(/\(\'?\"?|\'?\"?\)/g,'').replace(InternalPathRegExp, Foxtrick.InternalPath);
-				if (!Foxtrick.dataUrlStorage[urls[i]]) {
-					pending++;
-					replaceImage(urls[i]);
-				}
-			}
-			// resolve cached dataurls
-			pending++;
-			resolve();
-		}
-	}
-};
-
-Foxtrick.replaceExtensionDirectory = function(cssTextCollection, callback, id) {
-	var InternalPathRegExp = RegExp("chrome://foxtrick/content/", "ig");
-
-	if (Foxtrick.platform == "Opera") {
-		if (cssTextCollection.search(InternalPathRegExp)!=-1 )
-			sandboxed.extension.sendRequest({ req : "convertImages", cssText: cssTextCollection, type: id},
-				function (data) { callback(data.cssText);
-				});
-		else callback(cssTextCollection);
-	}
-	else if (Foxtrick.platform == "Chrome" || Foxtrick.platform == "Safari") {
-		callback( cssTextCollection.replace(InternalPathRegExp, Foxtrick.InternalPath) );
-	}
-	else callback(cssTextCollection);
-}
-
 Foxtrick.confirmDialog = function(msg) {
 	if (Foxtrick.arch === "Gecko") {
 		var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
@@ -723,12 +649,12 @@ Foxtrick.alert = function(msg) {
 // ------------------------  css loading ----------------------------
 
 // unload all css files, enabled or not
-Foxtrick.unload_module_css = function(doc) {
+Foxtrick.util.css.unload_module_css = function(doc) {
 	Foxtrick.log('unload permanents css');
 
 	if (Foxtrick.arch === "Gecko") {
 		if (Foxtrick.current_css) {
-			Foxtrick.unload_css_permanent(Foxtrick.current_css);
+			Foxtrick.util.css.unload_css_permanent(Foxtrick.current_css);
 		}
 	}
 	else {
@@ -739,7 +665,7 @@ Foxtrick.unload_module_css = function(doc) {
 }
 
 // unload single css file or array of css files
-Foxtrick.unload_css_permanent = function(cssList) {
+Foxtrick.util.css.unload_css_permanent = function(cssList) {
 	var unload_css_permanent_impl = function(css) {
 		try {
 			// convert text css to data url
@@ -784,7 +710,7 @@ Foxtrick.unload_css_permanent = function(cssList) {
 }
 
 // collect all enabled module css urls in Foxtrick.cssFiles array
-Foxtrick.collect_module_css = function() {
+Foxtrick.util.css.collect_module_css = function() {
 	Foxtrick.cssFiles = [];
 	var collect = function(module) {
 		if (FoxtrickPrefs.isModuleEnabled(module.MODULE_NAME)) {
@@ -837,7 +763,7 @@ Foxtrick.collect_module_css = function() {
 };
 
 // load single into browser or page
-Foxtrick.load_css_permanent = function(css) {
+Foxtrick.util.css.load_css_permanent = function(css) {
 	try {
 		// convert text css to data url
 		if ( css.search(/^[A-Za-z_-]+:\/\//) == -1 ) {
@@ -865,21 +791,21 @@ Foxtrick.load_css_permanent = function(css) {
 };
 
 // load all Foxtrick.cssFiles into browser or page
-Foxtrick.load_module_css = function(doc) {
-	Foxtrick.unload_module_css(doc);
+Foxtrick.util.css.load_module_css = function(doc) {
+	Foxtrick.util.css.unload_module_css(doc);
 
 	if (Foxtrick.platform === "Firefox") {
-		Foxtrick.current_css = Foxtrick.getCssTextCollection();
-		Foxtrick.load_css_permanent(Foxtrick.current_css);
+		Foxtrick.current_css = Foxtrick.util.css.getCssTextCollection();
+		Foxtrick.util.css.load_css_permanent(Foxtrick.current_css);
 	}
 	else {
-		Foxtrick.collect_module_css();
+		Foxtrick.util.css.collect_module_css();
 		sandboxed.extension.sendRequest(
 			{ req : "getCss", files :Foxtrick.cssFiles },
 			function (data) {
 				if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android") {
 					Foxtrick.current_css = data.cssText;
-					Foxtrick.load_css_permanent(Foxtrick.current_css);
+					Foxtrick.util.css.load_css_permanent(Foxtrick.current_css);
 				} else {
 					var style = Foxtrick.util.inject.css(doc, data.cssText);
 					style.id = "ft-module-css";
@@ -889,9 +815,9 @@ Foxtrick.load_module_css = function(doc) {
 	}
 };
 
-Foxtrick.reload_module_css = function(doc) {
+Foxtrick.util.css.reload_module_css = function(doc) {
 	try {
-		Foxtrick.load_module_css(doc);
+		Foxtrick.util.css.load_module_css(doc);
 	}
 	catch (e) {
 		Foxtrick.log(e);
@@ -900,7 +826,7 @@ Foxtrick.reload_module_css = function(doc) {
 
 
 // loads css file from local resource and return a string with the content for injection into page
-Foxtrick.getCssTextFromFile = function (cssUrl) {
+Foxtrick.util.css.getCssTextFromFile = function (cssUrl) {
 	// @callback_param cssText - string of CSS content
 	var css_text = "";
 	if (cssUrl && cssUrl.search(/{/) == -1) { // has no class
@@ -933,19 +859,19 @@ Foxtrick.getCssTextFromFile = function (cssUrl) {
 };
 
 // gets all css from modules.CSS settings
-Foxtrick.getCssFileArrayToString = function(cssUrls) {
+Foxtrick.util.css.getCssFileArrayToString = function(cssUrls) {
 	var cssTextCollection='';
 	for (var i = 0; i < cssUrls.length; ++i) {
-		cssTextCollection += Foxtrick.getCssTextFromFile(cssUrls[i]);
+		cssTextCollection += Foxtrick.util.css.getCssTextFromFile(cssUrls[i]);
 	}
 	return cssTextCollection;
 };
 
 	// gets all css from modules.CSS settings
-Foxtrick.getCssTextCollection = function() {
+Foxtrick.util.css.getCssTextCollection = function() {
 	Foxtrick.log('getCssTextCollection ',FoxtrickPrefs.getString('theme'),' - ',FoxtrickPrefs.getString('dir'));
-	Foxtrick.collect_module_css();
-	return 	Foxtrick.getCssFileArrayToString(Foxtrick.cssFiles);
+	Foxtrick.util.css.collect_module_css();
+	return 	Foxtrick.util.css.getCssFileArrayToString(Foxtrick.cssFiles);
 };
 
 

@@ -39,7 +39,7 @@ Foxtrick.util.inject.css = function(doc, css, id) {
 	var inject = function(css) {
 		style.appendChild(doc.createTextNode(css));
 	}
-	Foxtrick.replaceExtensionDirectory(css, inject, id);
+	Foxtrick.util.css.replaceExtensionDirectory(css, inject, id);
 
 	return style;
 };

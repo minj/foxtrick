@@ -24,6 +24,7 @@ Foxtrick.loader.background.contentScriptManager = {
 		"chrome://foxtrick/content/util/api.js",
 		"chrome://foxtrick/content/util/array.js",
 		"chrome://foxtrick/content/util/copy-button.js",
+		"chrome://foxtrick/content/util/css.js",
 		"chrome://foxtrick/content/util/currency.js",
 		"chrome://foxtrick/content/util/dom.js",
 		"chrome://foxtrick/content/util/ht-ml.js",

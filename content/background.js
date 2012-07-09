@@ -54,7 +54,7 @@ Foxtrick.loader.background.browserLoad = function() {
 		for (var i in Foxtrickl10n.htLanguagesXml) {
 			htLanguagesText[i] = serializer.serializeToString(Foxtrickl10n.htLanguagesXml[i]);
 		}
-		cssTextCollection = Foxtrick.getCssTextCollection();
+		cssTextCollection = Foxtrick.util.css.getCssTextCollection();
 
 		FoxtrickPrefs.deleteValue("preferences.updated");
 	};
@@ -167,12 +167,12 @@ Foxtrick.loader.background.browserLoad = function() {
 	// from misc.js. getting files, convert text
 	Foxtrick.loader.background.requests.getCss = function(request, sender, sendResponse) {
 		// @param files - an array of files to be loaded into string
-		sendResponse({ cssText : Foxtrick.getCssFileArrayToString(request.files) });
+		sendResponse({ cssText : Foxtrick.util.css.getCssFileArrayToString(request.files) });
 	};
 	Foxtrick.loader.background.requests.convertImages = function(request, sender, sendResponse) {
 		// @param files - a string for which image urls are converted to data urls
 		// updates cssTextCollection if "ft-module-css" conversion was done
-		Foxtrick.convertImageUrlToData(request.cssText,
+		Foxtrick.util.css.convertImageUrlToData(request.cssText,
 			function(cssText){
 				if (request.type=="ft-module-css")
 					cssTextCollection = cssText;

@@ -70,7 +70,7 @@ Foxtrick.loader.firefox.browserUnLoad = function() {
 		var tabbrowser = browserWin.getBrowser();
 		tabbrowser.tabContainer.removeEventListener("select", Foxtrick.loader.firefox.tabFocus, true);
 		
-		Foxtrick.unload_module_css();
+		Foxtrick.util.css.unload_module_css();
 		
 		// refresh ht pages
 		Foxtrick.reloadAll();
@@ -96,7 +96,7 @@ Foxtrick.loader.firefox.tabFocus = function(ev) {
 		if (FoxtrickPrefs.getBool("disableTemporary")) {
 			// potenial disable cleanup
 			if (Foxtrick.entry.cssLoaded) {
-				Foxtrick.unload_module_css();
+				Foxtrick.util.css.unload_module_css();
 				Foxtrick.entry.cssLoaded = false;
 			}
 			return;

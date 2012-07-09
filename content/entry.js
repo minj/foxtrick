@@ -28,7 +28,7 @@ Foxtrick.entry.docLoad = function(doc) {
 		Foxtrick.log('disabled')
 		// potenial disable cleanup
 		if (Foxtrick.entry.cssLoaded) {
-			Foxtrick.unload_module_css(doc);
+			Foxtrick.util.css.unload_module_css(doc);
 			Foxtrick.entry.cssLoaded = false;
 		}
 		return;
@@ -61,7 +61,7 @@ Foxtrick.entry.docLoad = function(doc) {
 	if ( Foxtrick.arch == "Sandboxed" && !Foxtrick.isHt(doc) )  {
 		// potential cleanup for injected css
 		if (Foxtrick.arch == "Sandboxed" && Foxtrick.entry.cssLoaded) {
-			Foxtrick.unload_module_css(doc);
+			Foxtrick.util.css.unload_module_css(doc);
 			Foxtrick.entry.cssLoaded = false;
 		}
 		return;
@@ -173,7 +173,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		if (Foxtrick.platform=='Firefox' && FoxtrickPrefs.getBool("preferences.updated")) {
 			Foxtrick.log('prefs updated');
 			Foxtrick.entry.init();
-			Foxtrick.reload_module_css(doc);
+			Foxtrick.util.css.reload_module_css(doc);
 			Foxtrick.entry.cssLoaded = true;
 			FoxtrickPrefs.setBool("preferences.updated", false);
 		}
@@ -181,7 +181,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		// don't execute if not enabled on the document
 		if (!FoxtrickPrefs.isEnabled(doc)) {
 			// potenial disable cleanup
-			Foxtrick.unload_module_css(doc);
+			Foxtrick.util.css.unload_module_css(doc);
 			Foxtrick.entry.cssLoaded = false;
 			return;
 		}
@@ -195,7 +195,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 			Foxtrick.log('layout change');
 			FoxtrickPrefs.setString('theme', current_theme);
 			FoxtrickPrefs.setString('dir', current_dir);
-			Foxtrick.reload_module_css(doc);
+			Foxtrick.util.css.reload_module_css(doc);
 			Foxtrick.entry.cssLoaded = true;
 		}
 		var html = doc.getElementsByTagName("html")[0];
@@ -211,7 +211,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		if (!Foxtrick.entry.cssLoaded) {
 			Foxtrick.log("CSS not loaded");
 			FoxtrickPrefs.setBool('isStage', Foxtrick.isStage(doc));
-			Foxtrick.reload_module_css(doc);
+			Foxtrick.util.css.reload_module_css(doc);
 			Foxtrick.entry.cssLoaded = true;
 		}
 

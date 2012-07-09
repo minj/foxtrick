@@ -14,6 +14,7 @@
 			"content/util/array.js",
 			"content/util/copy-button.js",
 			"content/util/currency.js",
+			"content/util/css.js",
 			"content/util/dom.js",
 			"content/util/ht-ml.js",
 			"content/util/id.js",
