@@ -57,8 +57,8 @@ FoxtrickFennec.prototype = {
 		"chrome://foxtrick/content/observer.js",
 		"chrome://foxtrick/content/ui.js",
 		"chrome://foxtrick/content/entry.js",
-		"chrome://foxtrick/content/scripts-fennec.js",
-		"chrome://foxtrick/content/background.js"
+		"chrome://foxtrick/content/background.js",
+		"chrome://foxtrick/content/scripts-fennec.js"
 	],
 	
 	loadScript: function() {
@@ -68,22 +68,23 @@ FoxtrickFennec.prototype = {
 	},
 	
 	init : function (){
-		// load foxtrick backgound files and starts background script
-		// content script injection is called and starts automatically in loader-gecko.js
+		// load foxtrick background files and starts background script
 		this.loadScript();
 		// add ui
 		this.addObserver();
-		// fennec content script injection at 'runtime' when UI is ready
-		this.loader.fennec_background.init();
 		// run background
-		this.loader.chrome.browserLoad();
+		this.loader.background.browserLoad();
+		// fennec content script injection at 'runtime' 
+		this.loader.background.contentScriptManager.load();
 	},
 	
 	cleanup : function (){
 		// remove ui
 		this.removeObserver();
+		//stop background
+		this.loader.background.browserUnload();
 		// remove content scripts and listeners
-		this.loader.fennec_background.unload(); 
+		this.loader.background.contentScriptManager.unload(); 
 		// remove styles
 		this.unload_module_css();
 	}

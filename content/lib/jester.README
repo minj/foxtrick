@@ -1,0 +1,258 @@
+////////////
+// Jester //
+////////////
+
+Simple Gesture Recognition in JavaScript
+
+
+<example>
+var element = document.getElementById("target");
+jester(element).tap(function() {
+    alert("You hit the target!");
+});
+</example>
+
+For the latest news and most up-to-date information, check the Jester GitHub Wiki! http://wiki.github.com/plainview/Jester/
+
+0.0 - Intro
+0.1 - The Gestures
+1.0 - Project Status
+1.1 - Project Aims
+1.2 - Project Todos
+2.0 - How To Use
+2.1 - Basic Syntax
+2.2 - Handlers
+2.3 - Options
+2.4 - TouchGroup Object
+2.5 - Touch Object
+3.0 - Bugs, Questions, Credit
+
+
+0.0 Intro
+---------
+
+A small JavaScript library for easily recognising gestures on DOM elements on the iPhone and iPad.
+
+
+0.1 The Gestures
+----------------
+
+Jester has the following gestures available for immediate use:
+
+jester(el).tap(handler);
+jester(el).doubletap(handler);
+jester(el).swipe(handler);
+jester(el).flick(handler);
+jester(el).pinch(handler);
+jester(el).pinchnarrow(handler);
+jester(el).pinchwiden(handler);
+jester(el).pinchend(handler);
+
+All gesture handlers get passed in the Jester touches object.  The touches object has all the good data in it, like how far a touch has moved, how long its been held down and so on.  Read more about that below.
+Some of the handlers are also passed in a direction as their second parameter.  This is a string that describes the direction the gesture travelled.  For examples of how this works, see the included index.html file's source.
+
+In addition, Jester also has three customisable methods which give you access to both the touches object and the raw event object:
+
+jester(el).start(handler);
+jester(el).during(handler);
+jester(el).end(handler);
+
+These handlers are called when the touch starts, when the touch moves and when the touch ends, respectively.  Again, see the index.html file accompanying this repo for their usage.
+
+
+1.0 Project Status
+------------------
+
+Jester works for Swipes, Flicks, Taps, Double Taps and Pinches.
+
+Examples of code can be seen at the bottom of this README in the "How to Use" section.
+
+
+1.1 Project Aims
+----------------
+
+- Super easy gesture recognition on DOM Elements.
+- Elegant syntax.
+- Library agnostic : must not rely on jQuery, Moo, Dojo etc.
+
+A basic example can be viewed in the index.html page.  Boot it up on an iPhone, iPad or Simulator and swipe, flick, tap and doubletap on the black square.
+
+This is very much a learning project.  Mistakes will be made and enjoyed whole-heartedly.
+
+
+1.2 Project Todos
+-----------------
+
+- Clear and thorough documentation.
+- Project website.
+- Provide "during" methods for all the events (except pinch, which is already available)
+- Provide the user a way to write their own custom gesture events
+
+
+2.0 How to Use
+--------------
+
+Jester makes recognising gestures on DOM elements really easy.  First you need to know how to get a DOM element, though.  To get an element by its ID, use:
+
+<example>
+// will assign the element with an ID of "wrapper" to the variable el
+var el = document.getElementById("wrapper");
+</example>
+
+If you're using jQuery or another library which wraps elements in a custom object/interface, you need to get to the DOM element directly.
+
+In jQuery:
+
+<example>
+// will assign the element with an ID of "wrapper" to the variable el
+var el = $("#wrapper")[0];
+</example>
+
+
+In Dojo:
+
+<example>
+// will assign the element with an ID of "wrapper" to the variable el
+var el = dojo.query("#wrapper")[0];
+</example>
+
+OK, on with the Jester information....
+
+
+2.1 Basic Syntax
+----------------
+jester(element)
+  .swipe(swipeHandler)  // attach a handler to the element's swipe event
+  .doubletap(dtHandler);  // attach a handler to the element's doubletap event
+
+
+
+2.2 Handlers
+------------
+
+<example>
+var handler = function(touchGroup, direction) {
+  // handler code
+}
+</example>
+
+Handlers are passed a TouchGroup object which contains information about the gesture including touch position(s), changes in position and speed.  For swipe and flick events, a direction is also passed as a string (i.e. "left" or "right").
+
+<example>
+// Log the direction in which a gesture occured
+var whichDirection = function(touches, direction) {
+    console.log("Swiped to the " + direction);
+};
+
+// Log how far one of the touches in a gesture travelled
+var howFar = function(touches, direction) {
+    var distanceTravelled = touches.touch(0).total.x();
+    console.log(distanceTravelled);
+};
+
+// Attach the new handlers to some events
+jester(document.getElementById("wrapper"))
+  .flick(whichDirection)
+  .swipe(howFar);
+</example>
+
+
+2.3 Options
+-----------
+You can also pass Jester options which affect the way gestures are recognised:
+
+jester(document.getElementById("wrapper"), { swipeDistance: 400, flickTime: 200 })
+  .swipe(handler1)
+  .flick(handler2);
+
+Currently supported Options are:
+
+capture        Boolean   Whether or not to receive events on the capture phase.
+
+tapDistance    Integer   Maximum distance a finger is allowed to travel for a tap to be registered.
+tapTime        Integer   Maximum time a finger is allowed to have contact with the screen for a tap to be registered.
+
+doubleTapTime  Integer   The maximum time between two taps to register as a double tap.
+
+swipeDistance  Integer   The minimum distance a gesture must travel before a swipe is registered.
+
+flickTime      Integer   The maximum length of time a gesture can last for it to be registered as a flick.
+flickDistance  Integer   The minimum distance a gesture must travel for it to be registered as a flick.
+
+
+2.4 TouchGroup Object
+---------------------
+
+Every touch handler is passed a TouchGroup object as well as any extra data such as direction info.
+
+The TouchGroup object contains all the computed information about a collection of touches such as
+change in scale and rotation.  It also provides access to all of the individual touches and their
+data.
+
+Methods of the TouchGroup object:
+
+TouchGroup.numTouches()     : Return the number of touches in the group
+
+TouchGroup.touch(n)         : Get Touch object number n
+
+TouchGroup.current.
+            scale()         : The current scale factor
+            midX()          : The mid x point between the touches (if there is only one touch, the mid point is the touch's position)
+            midY()          : The mid y point between the touches (if there is only one touch, the mid point is the touch's position)
+
+TouchGroup.delta.
+            scale()         : The change in the scale factor since the previous move
+
+
+2.5 Touch Object
+----------------
+
+Working with a TouchGroup invariably leads to working with the individual Touch objects as well.  As described
+above, these are accessed by calling the touch method on a TouchGroup and passing in a number representing which
+Touch you want to access.
+
+The Touch object contains all the computed information about a single touch, such as change in position,
+duration and speed.
+
+Methods of the Touch object:
+
+Touch.start.
+            x()         : the starting x position (pageX)
+            y()         : the starting y position (pageY)
+            time()      : the time the touch started
+            speedX()    : the initial x speed (always presumed to be 0)
+            speedY()    : the initial y speed (always presumed to be 0)
+
+Touch.current.
+            x()         : the currrent pageX position
+            y()         : the current pageY position
+            time()      : the current time
+            speedX()    : the current x speed
+            speedY()    : the current y speed
+
+Touch.prev.
+            x()         : the previous pageX position
+            y()         : the previous pageY position
+            time()      : the previous recorded time
+            speedX()    : the previous x speed
+            speedY()    : the previous y speed
+
+Touch.delta.
+            x()         : the change in x position since the last move
+            y()         : the change in y position since the last move
+            time()      : the change in time since the last move
+            speedX()    : the change in x speed since the last move
+            speedY()    : the change in y speed since the last move
+
+Touch.total.
+            x()         : the total x distance travelled
+            y()         : the total y distance travelled
+            time()      : the total time of this touch
+            
+
+3.0 Bugs, Questions, Credit
+---------------------------
+
+Got comments, questions or suggestions?  Get in touch via Github - http:/github.com/plainview/Jester
+
+Jester was started by me, Scott Seaward, with bugs succesfully spotted and swatted by Adam Silver.

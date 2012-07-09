@@ -489,6 +489,10 @@ else {
 				var x = typeof(addMessageListener)=='function' ? addMessageListener : messageManager.addMessageListener;
 				x(name, handler);
 			};
+			var removeListener = function(name, handler) {
+				var x = typeof(removeMessageListener)=='function' ? removeMessageListener : messageManager.removeMessageListener;
+				x(name, handler);
+			};
 		}
 		else // happens for fennec prefs. not needed thus ignored or it would mess up above
 			var addListener = function(name, handler) {}
@@ -516,7 +520,18 @@ else {
 			  };
 			  return theFunction;
 			})(),
+			__listener: function(messageEvent) {
+					var request = messageEvent.json.data;
+					var id = sandboxed.__getTabId(messageEvent.target);
 
+					var sender = { tab: { id: id, url: messageEvent.target.lastLocation, target:messageEvent.target } };
+					var sendResponse = function(dataToSend) {
+					  var responseMessage = { callbackToken: messageEvent.json.callbackToken, data: dataToSend };
+					  var x = typeof(sendAsyncMessage)=='function' ? sendAsyncMessage : messageManager.sendAsyncMessage;
+					  x("response", responseMessage);
+					}
+					handler(request, sender, sendResponse);
+			},
 			extension: {
 			  getURL: function(path) {
 				return 'chrome://foxtrick/' + path;
@@ -549,7 +564,7 @@ else {
 						if (callback) 
 							callback(messageEvent.json.data, messageEvent.target);
 						
-						removeEventListener("message", responseHandler, false);
+						removeListener("response", responseHandler, false);
 					} catch(e){
 						Foxtrick.log('callback error:',e);
 					}
@@ -562,8 +577,9 @@ else {
 			  })(),
 
 			  onRequest: {
-				addListener: function(handler) {
-				  addListener("request", function(messageEvent) {
+				// make wrapper for the handler so we can send cack to the requestion function
+				__makeHandlerWrapper: function(handler) {
+				  return function(messageEvent) {
 					var request = messageEvent.json.data;
 					var id = sandboxed.__getTabId(messageEvent.target);
 
@@ -574,49 +590,29 @@ else {
 					  x("response", responseMessage);
 					}
 					handler(request, sender, sendResponse);
-				  });
-				},
-			  },
-			  broadcastMessage : (function() {
-				// The function we'll return at the end of all this
-				function theFunction(data, callback) {
-				var callbackToken = "callback_all";
-
-				  // Listen for a response for our specific request token.
-				  addOneTimeResponseListener(callbackToken, callback);
-				  var x = typeof(sendAsyncMessage)=='function' ? sendAsyncMessage : messageManager.sendAsyncMessage;
-				  x("request", {
-					data: data,
-					callbackToken: callbackToken
-				  });
-				}
-
-				// Make a listener that, when it hears sendResponse for the given
-				// callbackToken, calls callback(resultData) and deregisters the
-				// listener.
-				function addOneTimeResponseListener(callbackToken, callback) {
-
-				  var responseHandler = function(messageEvent) {
-					try{
-						if (messageEvent.json.callbackToken != callbackToken)
-						  return;
-	
-						if (callback) 
-							callback(messageEvent.json.data, messageEvent.target);
-
-						removeEventListener("message", responseHandler, false);
-					} catch (e) {
-						Foxtrick.log('callback error:', e);
-					}
 				  };
+				},
+				// stores handler wrappers so we can unregister them again
+				__handlerWrappers: {},
+				
+				addListener: function(handler) {
+				  var handlerWrapper = this.__makeHandlerWrapper(handler);
+				  this.__handlerWrappers[handlerWrapper] = handlerWrapper;
+				  addListener("request", this.__handlerWrappers[handlerWrapper])
+				},
 
-				  addListener("response", responseHandler);
+				removeListener: function(handler) {
+				  var handlerWrapper = this.__makeHandlerWrapper(handler);
+				  removeListener("request", this.__handlerWrappers[handlerWrapper]);
 				}
-
-				return theFunction;
-			  })(),
-			// tabid of a content script
-			tabid : -1,
+			  },
+		
+			  broadcastMessage : function(message) {
+				  messageManager.sendAsyncMessage("request", { data: message });
+			  },
+			  
+			  // tabid of a content script
+			  tabid : -1,
 			},
 			tabs: {
 			  create: function(data) {
@@ -627,7 +623,7 @@ else {
 			  }
 			},
 		}
-		
+		/*
 		// register tab for broadcastMessage
 		if (Foxtrick.chromeContext() == "content") {
 			//  recieve tab id on register
@@ -643,7 +639,7 @@ else {
 					sendResponse({ tabid: sender.tab.id });
 				}
 			});
-		}
+		}*/
 	}
 }
 

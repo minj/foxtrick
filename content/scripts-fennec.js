@@ -8,12 +8,13 @@ if (!Foxtrick)
 	var Foxtrick = {};
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
+if (!Foxtrick.loader.background)
+	Foxtrick.loader.background = {};
 
-Foxtrick.loader.fennec_background = {
+Foxtrick.loader.background.contentScriptManager = {
 	contentScripts : [
 		//<!-- essential stuffs -->
 		"chrome://foxtrick/content/env.js",
-		"chrome://foxtrick/content/env-fennec.js",
 		"chrome://foxtrick/content/prefs.js",
 		"chrome://foxtrick/content/l10n.js",
 		"chrome://foxtrick/content/xml-load.js",
@@ -215,19 +216,10 @@ Foxtrick.loader.fennec_background = {
 		"chrome://foxtrick/content/loader-fennec.js"
 	],
 
-	UIReady : function(event) {
-		// run only once
-//		removeEventListener("UIReady", this.UIReady, false);
-
+	load : function() {
 		// load content scripts into content pages. those start running in loader-fennec
 		for (var i=0; i<this.contentScripts.length; ++i) 
 			messageManager.loadFrameScript(this.contentScripts[i], true);
-	},
-
-	// listen to ui ready and only then load content scripts
-	init : function() {
-//	  	addEventListener("c", this.UIReady, false);
-		this.UIReady();
 	},
 
 	unload : function() {

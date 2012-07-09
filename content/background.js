@@ -9,24 +9,34 @@ if (!Foxtrick)
 	var Foxtrick = {};
 if (!Foxtrick.loader)
 	Foxtrick.loader = {};
-Foxtrick.loader.chrome = {};
+if (!Foxtrick.loader.background)
+	Foxtrick.loader.background = {};
 
+	
 // listener for request from content script
-Foxtrick.loader.chrome.requestListener = function(request, sender, sendResponse) {
+Foxtrick.loader.background.contentRequestsListener= function(request, sender, sendResponse) {
 	try {
-		Foxtrick.loader.chrome.background[request.req](request, sender, sendResponse);
+		Foxtrick.loader.background.requests[request.req](request, sender, sendResponse);
 	}
 	catch (e) {
-		Foxtrick.log('Foxtrick - background onRequest: ', e);
-		Foxtrick.log(request);
+		Foxtrick.log('Foxtrick - background onRequest error: ',e);
+		Foxtrick.log(request.req);
 		sendResponse({ error : 'Foxtrick - background onRequest: ' + e });
 	}
 };
-	
-// invoked after the browser chrome is loaded
-Foxtrick.loader.chrome.browserLoad = function() {
+
+
+// background script unload function
+Foxtrick.loader.background.browserUnload = function() {
+	// remove contentRequestsListener on unload
+	sandboxed.extension.onRequest.removeListener(Foxtrick.loader.background.contentRequestsListener);
+};
+
+
+// background script starter load function
+Foxtrick.loader.background.browserLoad = function() {
   try {
-	Foxtrick.log('Foxtrick.loader.chrome.browserLoad');
+	Foxtrick.log('Foxtrick.loader.background.browserLoad');
 
 	var currency, about, worldDetails, htLanguagesText, cssTextCollection;
 	
@@ -67,22 +77,20 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		}
 	}
 
-	// use with sandboxed.extension.sendRequest({req : "nameOfResponseFunction", parameters...}, callback)
-	// calls below response function by name 'request.req'
+    sandboxed.extension.onRequest.addListener(Foxtrick.loader.background.contentRequestsListener);
+
+	// -- requests functions --
+	// here goes the handlers to content requests of requestName
+	// format: Foxtrick.loader.background.requests.requestName
 	// callback will be called with a sole JSON as argument
-	sandboxed.extension.onRequest.addListener(Foxtrick.loader.chrome.requestListener);
+	// sender not defined well for all browsers
+	Foxtrick.loader.background.requests = {};
 
-
-	// -- background functions --
-	Foxtrick.loader.chrome.background = {};
-
-	
 	// called to parse a copy of the settings and data to the content script
-	//   pageLoad : on HT pages for chrome/safari/opera
-	//   scriptLoad : once per tab for fennec
-	//   optionsPageLoad : on options page for opera 
-	//
-	Foxtrick.loader.chrome.background.pageLoad = function(request, sender, sendResponse) {
+	// pageLoad : on HT pages for chrome/safari/opera
+	// scriptLoad : once per tab for fennec
+	// optionsPageLoad : on options page for opera 
+	Foxtrick.loader.background.requests.pageLoad = function(request, sender, sendResponse) {
 		// access user setting directly here, since getBool uses a copy which needs updating just here
 		if ( (Foxtrick.arch == "Sandboxed" && localStorage.getItem("preferences.updated"))
 			|| ((Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android") && FoxtrickPrefs._prefs_gecko.getBoolPref("preferences.updated")) ) {
@@ -116,31 +124,31 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		sendResponse ( resource );
 	};
 	// fennecs tab child processes
-	Foxtrick.loader.chrome.background.tabLoad = Foxtrick.loader.chrome.background.pageLoad;
+	Foxtrick.loader.background.requests.tabLoad = Foxtrick.loader.background.requests.pageLoad;
 
 	// operas options page
-	Foxtrick.loader.chrome.background.optionsPageLoad = Foxtrick.loader.chrome.background.pageLoad;
+	Foxtrick.loader.background.requests.optionsPageLoad = Foxtrick.loader.background.requests.pageLoad;
 	// ----- end of init part. ------
 
 	
 	// from env.js. dummy for tab register
-	Foxtrick.loader.chrome.background.register = function(request, sender, sendResponse) {};
+	Foxtrick.loader.background.requests.register = function(request, sender, sendResponse) {};
 
 
 	// from prefs.js
-	Foxtrick.loader.chrome.background.setValue = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.setValue = function(request, sender, sendResponse) {
 		if (FoxtrickPrefs.get(request.key)==request.value) 
 			return;
 		FoxtrickPrefs.setValue(request.key, request.value, request.type);
 		if ( request.key == 'htLanguage' )
 			Foxtrickl10n.init();
 	};
-	Foxtrick.loader.chrome.background.deleteValue = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.deleteValue = function(request, sender, sendResponse) {
 		FoxtrickPrefs.deleteValue(request.key);
 		if ( request.key == 'htLanguage' )
 			Foxtrickl10n.init();
 	};
-	Foxtrick.loader.chrome.background.clearPrefs = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.clearPrefs = function(request, sender, sendResponse) {
 		try {
 			if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android") {
 				FoxtrickPrefs.cleanupBranch();
@@ -157,11 +165,11 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	};
 
 	// from misc.js. getting files, convert text
-	Foxtrick.loader.chrome.background.getCss = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.getCss = function(request, sender, sendResponse) {
 		// @param files - an array of files to be loaded into string
 		sendResponse({ cssText : Foxtrick.getCssFileArrayToString(request.files) });
 	};
-	Foxtrick.loader.chrome.background.convertImages = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.convertImages = function(request, sender, sendResponse) {
 		// @param files - a string for which image urls are converted to data urls
 		// updates cssTextCollection if "ft-module-css" conversion was done
 		Foxtrick.convertImageUrlToData(request.cssText,
@@ -171,7 +179,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 				sendResponse({cssText:cssText});
 		});
 	};
-	Foxtrick.loader.chrome.background.getXml = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.getXml = function(request, sender, sendResponse) {
 		// @param url - the URL of resource to load with window.XMLHttpRequest
 		// @param params - params != null makes it and used for a POST request
 		// @callback_param data - response text
@@ -182,7 +190,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		};
 		Foxtrick.load(request.url, callback, request.params);
 	};
-	Foxtrick.loader.chrome.background.getDataUrl = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.getDataUrl = function(request, sender, sendResponse) {
 		// @param branch - initial part of key(s) of session store to delete
 		var replaceImage = function (url) {
 			var image = new Image;
@@ -206,17 +214,17 @@ Foxtrick.loader.chrome.browserLoad = function() {
 		else 
 			sendResponse({ url: Foxtrick.dataUrlStorage[request.url] });
 	};
-	Foxtrick.loader.chrome.background.playSound = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.playSound = function(request, sender, sendResponse) {
 		// @param url - the URL of new tab to create
 		Foxtrick.playSound(request.url, document);
 	};
 
 	// from misc.js: tabs
-	Foxtrick.loader.chrome.background.newTab = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.newTab = function(request, sender, sendResponse) {
 		// @param url - the URL of new tab to create
 		sandboxed.tabs.create({url : request.url});
 	};
-	Foxtrick.loader.chrome.background.reuseTab = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.reuseTab = function(request, sender, sendResponse) {
 		// @param url - the URL of new tab to create
 		if (Foxtrick.platform == "Mobile") {
 			for (var i = 0; i<Browser.browsers.length; ++i) {
@@ -232,12 +240,12 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	};
 
 	// from misc.js
-	Foxtrick.loader.chrome.background.clipboard = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.clipboard = function(request, sender, sendResponse) {
 		// @param content - content to copy
 		// @callback_param status - success status
 		try {
 			if (Foxtrick.platform == "Chrome")
-				Foxtrick.loader.chrome.copyToClipBoard(request.content);
+				Foxtrick.loader.background.copyToClipBoard(request.content);
 			else
 				Foxtrick.copyStringToClipboard(request.content)
 			sendResponse({status : true});
@@ -248,7 +256,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	};
 
 	// from notify.js
-	Foxtrick.loader.chrome.background.notify = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.notify = function(request, sender, sendResponse) {
 		// @param msg - message to notify the user
 		if (window.webkitNotifications) {
 			var notification = webkitNotifications.createNotification(
@@ -278,43 +286,43 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	};
 
 	// from context-menu.js: dummy. request handled in there
-	Foxtrick.loader.chrome.background.updateContextMenu = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.updateContextMenu = function(request, sender, sendResponse) {
 	};
 
 	// from sessionStore.js
-	Foxtrick.loader.chrome.background.sessionSet = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.sessionSet = function(request, sender, sendResponse) {
 		// @param key - key of session store
 		// @param value - value to store
 		Foxtrick.sessionSet(request.key, request.value);
 	};
-	Foxtrick.loader.chrome.background.sessionGet = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.sessionGet = function(request, sender, sendResponse) {
 		// @param key - key of session store
 		sendResponse( {value: Foxtrick.sessionGet(request.key)} );
 	};
-	Foxtrick.loader.chrome.background.sessionDeleteBranch = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.sessionDeleteBranch = function(request, sender, sendResponse) {
 		// @param branch - initial part of key(s) of session store to delete
 		Foxtrick.sessionDeleteBranch(request.branch);
 	};
 
 	// from localStore.js
-	Foxtrick.loader.chrome.background.localSet = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.localSet = function(request, sender, sendResponse) {
 		// @param key - key of local store
 		// @param value - value to store
 		Foxtrick.localSet(request.key, request.value);
 	};
-	Foxtrick.loader.chrome.background.localGet = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.localGet = function(request, sender, sendResponse) {
 		// @param key - key of local store
 		Foxtrick.localGet(request.key, function (value) {
 			sendResponse( {value: value} );
 		});
 	};
-	Foxtrick.loader.chrome.background.localDeleteBranch = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.localDeleteBranch = function(request, sender, sendResponse) {
 		// @param branch - initial part of key(s) of local store to delete
 		Foxtrick.localDeleteBranch(request.branch);
 	};
 
 	// from misc.js
-	Foxtrick.loader.chrome.background.cookieSet = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.cookieSet = function(request, sender, sendResponse) {
 		// @param where - cookies type: see misc.js - cookies map
 		// @param what - value to add to the cookie
 		// @callback cookie - the new cookie it set
@@ -323,7 +331,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 				sendResponse(response);
 		});	
 	};
-	Foxtrick.loader.chrome.background.cookieGet = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.cookieGet = function(request, sender, sendResponse) {
 		// @param where - cookies type: see misc.js - cookies map
 		// @callback cookie - the retrived cookie it set
 		Foxtrick._cookieGet(request.where, request.name, function(response){
@@ -332,23 +340,23 @@ Foxtrick.loader.chrome.browserLoad = function() {
 	};
 
 	// from log.js
-	Foxtrick.loader.chrome.background.log = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.log = function(request, sender, sendResponse) {
 		// @param log - text to dump to console (fennec)
 		dump("FT: "+request.log);
 		Foxtrick.addToDebugLogStorage(request.log);
 	};
-	Foxtrick.loader.chrome.background.addDebugLog = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.addDebugLog = function(request, sender, sendResponse) {
 		// @param log - text to add to debug log storage
 		Foxtrick.addToDebugLogStorage(request.log);
 	};
-	Foxtrick.loader.chrome.background.getDebugLog = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.getDebugLog = function(request, sender, sendResponse) {
 		// @callback_param log - contains the debug log storage
 		sendResponse({ log : Foxtrick.debugLogStorage });
 		Foxtrick.debugLogStorage = '';
 	};
 
 	// from mobile-enhancements.js
-	Foxtrick.loader.chrome.background.updateViewportSize = function(request, sender, sendResponse) {
+	Foxtrick.loader.background.requests.updateViewportSize = function(request, sender, sendResponse) {
 		Browser.updateViewportSize();
 	};
 	
@@ -359,7 +367,7 @@ Foxtrick.loader.chrome.browserLoad = function() {
 
 
 // for clipboard
-Foxtrick.loader.chrome.copyToClipBoard = function(content) {
+Foxtrick.loader.background.copyToClipBoard = function(content) {
 	var clipboardStore = document.getElementById("clipboard-store");
 	clipboardStore.value = content;
 	clipboardStore.select();
@@ -369,5 +377,5 @@ Foxtrick.loader.chrome.copyToClipBoard = function(content) {
 
 // this is the background script entry point for sandboxed arch
 if (Foxtrick.arch == "Sandboxed")
-	Foxtrick.loader.chrome.browserLoad();
+	Foxtrick.loader.background.browserLoad();
 

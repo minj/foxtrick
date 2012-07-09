@@ -201,7 +201,7 @@ Foxtrick.copyStringToClipboard = function (string) {
 			sandboxed.extension.sendRequest({req : "clipboard", content : string});
 		else {
 			if (Foxtrick.platform == "Chrome")
-				Foxtrick.loader.chrome.copyToClipBoard(string);
+				Foxtrick.loader.background.copyToClipBoard(string);
 			else
 				Foxtrick.copyStringToClipboard(string);
 		}

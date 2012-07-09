@@ -15,7 +15,7 @@ if (!Foxtrick.loader.firefox)
 // invoked after the browser chrome is loaded
 // variable *document* is predeclared and used here but means the
 // browser chrome (XUL document)
-Foxtrick.loader.firefox.browserLoad = function() { dump("sfsd");Foxtrick.log('#####################hhh')
+Foxtrick.loader.firefox.browserLoad = function() {
 	try {
 		var appcontent = document.getElementById("appcontent");
 		if (appcontent) {
