@@ -75,7 +75,6 @@ CONTENT_FILES_FIREFOX = $(CONTENT_FILES) bootstrap-firefox.js \
 	preferences_dev.js \
 	options-fennec.xul \
 	observer.js \
-	env-fennec.js \
 	scripts-fennec.js \
 	background.js \
 	loader-firefox.js \
