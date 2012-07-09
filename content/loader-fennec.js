@@ -12,7 +12,11 @@ if (!Foxtrick.loader)
 
 if (Foxtrick.platform == "Android") {
 
-// fennec tab load. starts the content instances for fennec (one per tab. persistant)
+	// window in content fennec script is named 'content'
+	if (!window)
+		var window = content;
+
+	// fennec tab load. starts the content instances for fennec (one per tab. persistant)
 	Foxtrick.loader.fennec = {
 		DOMContentLoadedListener : function(ev) {
 			// DOM ready. run on DOM page
