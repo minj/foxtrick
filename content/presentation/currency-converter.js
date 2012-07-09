@@ -15,7 +15,7 @@ Foxtrick.modules["CurrencyConverter"]={
 		var currencySelect = doc.createElement("select");
 		currencySelect.setAttribute("pref", "module.CurrencyConverter.to");
 		var currencies = [];
-		var currencyXml = Foxtrick.loadXmlSync(Foxtrick.InternalPath + "data/htcurrency.xml");
+		var currencyXml = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + "data/htcurrency.xml");
 		var currencyNodes = currencyXml.getElementsByTagName("currency");
 		for (var i = 0; i < currencyNodes.length; ++i) {
 			var code = currencyNodes[i].getAttribute("code");

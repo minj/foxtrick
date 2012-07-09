@@ -66,7 +66,7 @@ Foxtrick.modules["StaffMarker"]={
 		var todo = uris.length;
 		Foxtrick.map(function(uri) {
 			// counter of URI remaining to fetch
-			Foxtrick.get(uri)("success", function(text) {
+			Foxtrick.util.load.get(uri)("success", function(text) {
 				Foxtrick.log('parse ', uri);
 				parseMarkers(text);
 				Foxtrick.localSet("Markers."+uri, text);							

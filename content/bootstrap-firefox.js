@@ -29,6 +29,7 @@ FoxtrickFirefox.prototype = {
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/inject.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/layout.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/links-box.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/load.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/local-store.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/log.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/match-view.js",this.owner, "UTF-8");

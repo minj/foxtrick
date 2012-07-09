@@ -288,7 +288,7 @@ Foxtrick.modules["EmbedMedia"]={
 				if( oembed_enabled ){
 					var oEmbedRequestURL = oembed_urls[key] + target.firstChild.href;
 					//load json from providers async
-					Foxtrick.get(oEmbedRequestURL)("success", function(response) {
+					Foxtrick.util.load.get(oEmbedRequestURL)("success", function(response) {
 						var json = JSON.parse( response );
 						do_oEmbed(target, json);
 						

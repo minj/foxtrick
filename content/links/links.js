@@ -72,7 +72,7 @@
 			feed = feed.replace(/\.json\.zip/i,'.json');
 			Foxtrick.log("do feeds: ", feed);
 			// load plain text
-			Foxtrick.get(feed)("success", function(text) {
+			Foxtrick.util.load.get(feed)("success", function(text) {
 				--todo;
 				if (text == null) 
 					text = FoxtrickPrefs.getString("LinksFeed."+feed);

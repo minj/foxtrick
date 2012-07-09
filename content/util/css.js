@@ -272,7 +272,7 @@ Foxtrick.util.css.getCssTextFromFile = function (cssUrl) {
 	if (cssUrl && cssUrl.search(/{/) == -1) { // has no class
 		try {
 			// a resource file, get css file content
-			css_text = Foxtrick.loadSync(cssUrl);
+			css_text = Foxtrick.util.load.sync(cssUrl);
 			if (css_text == null)
 				throw "Cannot load CSS: " + cssUrl;
 		}

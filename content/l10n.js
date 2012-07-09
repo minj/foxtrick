@@ -349,7 +349,7 @@ if (Foxtrick.arch === "Gecko") {
 				for (var i=0; i<Foxtrickl10n.locales.length; ++i) {
 					var locale = Foxtrickl10n.locales[i];
 					var url = Foxtrick.InternalPath + "locale/" + locale + "/htlang.xml";
-					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXmlSync(url);
+					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.util.load.xmlSync(url);
 				}
 			}
 
@@ -514,11 +514,11 @@ if (Foxtrick.arch === "Sandboxed") {
 			for (i in Foxtrickl10n.locales) {
 				locale = Foxtrickl10n.locales[i];
 				var url = Foxtrick.InternalPath + "locale/" + locale + "/htlang.xml";
-				this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.loadXmlSync(url);
+				this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.util.load.xmlSync(url);
 			}
 
-			this.properties_default = Foxtrick.loadSync(Foxtrick.InternalPath+"foxtrick.properties");
-			this.screenshots_default = Foxtrick.loadSync(Foxtrick.InternalPath+"foxtrick.screenshots");
+			this.properties_default = Foxtrick.util.load.sync(Foxtrick.InternalPath+"foxtrick.properties");
+			this.screenshots_default = Foxtrick.util.load.sync(Foxtrick.InternalPath+"foxtrick.screenshots");
 			try { 
 				this.plForm_default = Number(this._getString(this.properties_default, "pluralFormRuleID").match(/\d+/));
 			} catch (e) {}
@@ -526,7 +526,7 @@ if (Foxtrick.arch === "Sandboxed") {
 			locale = FoxtrickPrefs.getString("htLanguage");
 			
 			try {
-				this.properties = Foxtrick.loadSync(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.properties");
+				this.properties = Foxtrick.util.load.sync(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.properties");
 				if (this.properties == null) {
 					Foxtrick.log("Use default properties for locale ", locale);
 					this.properties = this.properties_default; 
@@ -540,7 +540,7 @@ if (Foxtrick.arch === "Sandboxed") {
 				this.plForm = Number(this._getString(this.properties, "pluralFormRuleID").match(/\d+/));
 			} catch (e) {}
 			try {
-				this.screenshots = Foxtrick.loadSync(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.screenshots");
+				this.screenshots = Foxtrick.util.load.sync(Foxtrick.InternalPath + "locale/" + locale + "/foxtrick.screenshots");
 				if (this.screenshots == null) {
 					Foxtrick.log("Use default screenshots for locale ", locale);
 					this.screenshots = this.screenshots_default;

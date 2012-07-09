@@ -13,7 +13,7 @@ Foxtrick.util.inject = {};
 
 Foxtrick.util.inject.cssLink = function(doc, url) {
 	if (Foxtrick.arch == "Sandboxed") {
-		Foxtrick.get(url)("success", function(text) {
+		Foxtrick.util.load.get(url)("success", function(text) {
 			Foxtrick.util.inject.css(doc, text);
 		});
 		return;
@@ -47,7 +47,7 @@ Foxtrick.util.inject.css = function(doc, css, id) {
 // attaches a JavaScript file to the page
 Foxtrick.util.inject.jsLink = function(doc, url) {
 	if (Foxtrick.arch == "Sandboxed") {
-		Foxtrick.get(url)("success", function(text) {
+		Foxtrick.util.load.get(url)("success", function(text) {
 			Foxtrick.util.inject.js(doc, text);
 		});
 		return;

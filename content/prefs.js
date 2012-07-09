@@ -528,7 +528,7 @@ if (Foxtrick.arch === "Sandboxed") {
 					FoxtrickPrefs._prefs_chrome_default = {};
 
 					var parsePrefsFile = function (url) {
-						var prefText = Foxtrick.loadSync(Foxtrick.InternalPath + url);
+						var prefText = Foxtrick.util.load.sync(Foxtrick.InternalPath + url);
 						var prefList = prefText.split(/[\n\r]+/);
 						var prefRe = /pref\("extensions\.foxtrick\.prefs\.(.+)",\s*(.+)\);/;
 						for (var i = 0; i < prefList.length; ++i) {

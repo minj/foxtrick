@@ -31,7 +31,7 @@ Foxtrick.modules["ExtraShortcuts"]={
 
 	run : function(doc) {
 		var checkRadio = function(url, radio) {
-			Foxtrick.loadXml(url, function(radio_xml) {
+			Foxtrick.util.load.xml(url, function(radio_xml) {
 				if (radio_xml != null && radio_xml.getElementsByTagName('radio').length!=0) {
 					if (radio_xml.getElementsByTagName('status').length!=0) {
 						var span = doc.getElementById(radio+'Span');

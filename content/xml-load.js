@@ -17,10 +17,10 @@ Foxtrick.XMLData = {
 	aboutXML : null,
 
 	init : function() {
-		this.htCurrencyXml = Foxtrick.loadXmlSync(Foxtrick.InternalPath + "data/htcurrency.xml");
-		this.aboutXML = Foxtrick.loadXmlSync(Foxtrick.InternalPath + "data/foxtrick_about.xml");
+		this.htCurrencyXml = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + "data/htcurrency.xml");
+		this.aboutXML = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + "data/foxtrick_about.xml");
 
-		this.worldDetailsXml = Foxtrick.loadXmlSync(Foxtrick.InternalPath + "data/worlddetails.xml");
+		this.worldDetailsXml = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + "data/worlddetails.xml");
 		var data = {};
 		var name = 'HattrickData';
 		Foxtrick.XMLData.getchilds(this.worldDetailsXml.documentElement, data, name);

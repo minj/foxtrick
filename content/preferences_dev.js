@@ -664,7 +664,7 @@ function getModule(module)
 				textDiv.appendChild(textInput);
 
 				if (module.OPTION_EDITS_TEXTFILE_LOAD_BUTTONS && module.OPTION_EDITS_TEXTFILE_LOAD_BUTTONS[i]) {
-					var load = Foxtrick.filePickerForText(document, (function(textInput) {
+					var load = Foxtrick.util.load.filePickerForText(document, (function(textInput) {
 						return function(text) { 
 							textInput.value = text; textInput.input(); 
 							var evt = document.createEvent("HTMLEvents");
@@ -676,7 +676,7 @@ function getModule(module)
 					textDiv.appendChild(load);
 				}
 				if (module.OPTION_EDITS_DATAURL_LOAD_BUTTONS && module.OPTION_EDITS_DATAURL_LOAD_BUTTONS[i]) {
-					var load = Foxtrick.filePickerForDataUrl(document, (function(textInput) {
+					var load = Foxtrick.util.load.filePickerForDataUrl(document, (function(textInput) {
 						return function(url) { 
 							textInput.value = url;
 							var evt = document.createEvent("HTMLEvents");
@@ -749,15 +749,15 @@ function getModule(module)
 
 function initChangesTab()
 {
-	var releaseNotesLinks = Foxtrick.loadYmlSync(Foxtrick.InternalPath + "release-notes-links.yml");
+	var releaseNotesLinks = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + "release-notes-links.yml");
 
-	var releaseNotes = Foxtrick.loadYmlSync(Foxtrick.InternalPath + "release-notes.yml");
+	var releaseNotes = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + "release-notes.yml");
 
 	var lang = FoxtrickPrefs.getString("htLanguage");
 
-	var releaseNotesLocalized = Foxtrick.loadYmlSync(Foxtrick.InternalPath + "locale/" + lang + "/release-notes.yml");
+	var releaseNotesLocalized = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + "locale/" + lang + "/release-notes.yml");
 
-	var status = Foxtrick.loadXmlSync(Foxtrick.InternalPath + "locale/status.xml");
+	var status = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + "locale/status.xml");
 
 	var path = "status/language[code='"+lang+"']/translated_progress";
 	
@@ -866,7 +866,7 @@ function initChangesTab()
 function initHelpTab()
 {
 	// external links
-	var aboutXml = Foxtrick.loadXmlSync(Foxtrick.InternalPath + "data/foxtrick_about.xml");
+	var aboutXml = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + "data/foxtrick_about.xml");
 	var links = Foxtrick.XML_evaluate(aboutXml, "about/links/link", "title", "value");
 	for (var i = 0; i < links.length; ++i) {
 		var item = document.createElement("li");
@@ -878,8 +878,8 @@ function initHelpTab()
 	}
 
 	// FAQ (faq.xml or localized locale/code/faq.xml
-	var faq = Foxtrick.loadXmlSync(Foxtrick.InternalPath + "faq.xml");
-	var faqLocal = Foxtrick.loadXmlSync(Foxtrick.InternalPath + "locale/"
+	var faq = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + "faq.xml");
+	var faqLocal = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + "locale/"
 		+ FoxtrickPrefs.getString("htLanguage") + "/faq.xml");
 	var items = {};
 	var itemsLocal = {};
@@ -928,7 +928,7 @@ function initHelpTab()
 
 function initAboutTab()
 {
-	var aboutXml = Foxtrick.loadXmlSync(Foxtrick.InternalPath + "data/foxtrick_about.xml");
+	var aboutXml = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + "data/foxtrick_about.xml");
 	$(".about-list").each(function() {
 		var iterator = aboutXml.evaluate($(this).attr("path"), aboutXml, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
 		var currentNode = iterator.iterateNext();

@@ -65,7 +65,7 @@
 				soundc.appendChild(sound);
 				var filec = doc.createElement("td");
 				row.appendChild(filec);
-				var input = Foxtrick.filePickerForDataUrl(doc, (function(sound) {
+				var input = Foxtrick.util.load.filePickerForDataUrl(doc, (function(sound) {
 						return function(url) { 
 							sound.value = url; 
 							Foxtrick.playSound(url, doc);

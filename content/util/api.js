@@ -74,7 +74,7 @@ Foxtrick.util.api = {
 			div.appendChild(linkPar);
 			linkPar.appendChild(Foxtrick.util.note.createLoading(doc, true));
 			Foxtrick.log("Requesting token at: ", Foxtrick.util.api.stripToken(requestTokenUrl) );
-			Foxtrick.load(requestTokenUrl, function(text, status) {
+			Foxtrick.util.load.async(requestTokenUrl, function(text, status) {
 				Foxtrick.stopListenToChange(doc);
 				linkPar.textContent = ""; // clear linkPar first
 				if (status != 200) {
@@ -121,7 +121,7 @@ Foxtrick.util.api = {
 					var query = Foxtrick.OAuth.formEncode(msg.parameters);
 					var accessTokenUrl = Foxtrick.util.api.accessTokenUrl + "?" + query;
 					Foxtrick.log("Requesting access token at: ",  Foxtrick.util.api.stripToken(accessTokenUrl));
-					Foxtrick.load(accessTokenUrl, function(text, status) {
+					Foxtrick.util.load.async(accessTokenUrl, function(text, status) {
 						if (status != 200) {
 							// failed to fetch link
 							showFinished( Foxtrick.util.api.getErrorText(text, status) );
@@ -136,7 +136,7 @@ Foxtrick.util.api = {
 				}); // after hitting "authorize" button
 				inputPar.appendChild(button);
 				Foxtrick.startListenToChange(doc);
-			}); // get authorize URL with Foxtrick.load()
+			}); // get authorize URL with Foxtrick.util.load.async()
 			Foxtrick.startListenToChange(doc);
 		}); // initial authorize link event listener
 		div.appendChild(link);
@@ -325,7 +325,7 @@ Foxtrick.util.api = {
 						Foxtrick.OAuth.SignatureMethod.sign(msg, accessor);
 						var url = Foxtrick.OAuth.addToURL(Foxtrick.util.api.resourceUrl, msg.parameters);
 						Foxtrick.log("Fetching XML data from ",  Foxtrick.util.api.stripToken(url));
-						Foxtrick.loadXml(url, function(x, status) {
+						Foxtrick.util.load.xml(url, function(x, status) {
 							if (status == 200) {
 								var serializer = new window.XMLSerializer();
 								Foxtrick.sessionSet('xml_cache.'+parameters_str,

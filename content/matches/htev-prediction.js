@@ -196,7 +196,7 @@ Foxtrick.modules["HTEVPrediction"]={
 						else {
 							var url = "http://htev.org/api/matchodds/" + matchid +"/"
 							Foxtrick.log("HTEV: request", url);
-							Foxtrick.load(url, handleHTEVResponse);	
+							Foxtrick.util.load.async(url, handleHTEVResponse);	
 						}
 					});
 				}

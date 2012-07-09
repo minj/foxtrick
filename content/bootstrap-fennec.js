@@ -27,6 +27,7 @@ FoxtrickFennec.prototype = {
 		"chrome://foxtrick/content/util/inject.js",
 		"chrome://foxtrick/content/util/layout.js",
 		"chrome://foxtrick/content/util/links-box.js",
+		"chrome://foxtrick/content/util/load.js",
 		"chrome://foxtrick/content/util/local-store.js",
 		"chrome://foxtrick/content/util/log.js",
 		"chrome://foxtrick/content/util/match-view.js",

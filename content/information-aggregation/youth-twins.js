@@ -113,7 +113,7 @@
 						//HY determines on its own
 					}
 					// load and callback
-					Foxtrick.load(url, callback, params);					
+					Foxtrick.util.load.async(url, callback, params);					
 				});	
 			});
 		}

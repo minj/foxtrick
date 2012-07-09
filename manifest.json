@@ -21,6 +21,7 @@
 			"content/util/inject.js",
 			"content/util/layout.js",
 			"content/util/links-box.js",
+			"content/util/load.js",
 			"content/util/local-store.js",
 			"content/util/log.js",
 			"content/util/match-view.js",
