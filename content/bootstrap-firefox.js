@@ -222,7 +222,7 @@ FoxtrickFirefox.prototype = {
 
 	init : function (){ 
 		// add ui
-		"lib/ToolbarItem.js", this);
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/lib/ToolbarItem.js", this);
 		// toolbar
 		this.generalButton = this.ToolbarItem.create(
 			<>
@@ -279,9 +279,9 @@ FoxtrickFirefox.prototype = {
 		// remove ui
 		this.generalButton.destroy();
 		let popup = this.owner.document.getElementById('contentAreaContextMenu');
-		popup.removeChild(this.contextLinkItem)		
+		popup.removeChild(this.contextLinkItem);	
 		// remove listeners and css
-		this.loader.firefox.browserUnLoad()
+		this.loader.firefox.browserUnLoad();
 	},
 };
 
