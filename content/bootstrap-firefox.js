@@ -47,7 +47,8 @@ FoxtrickFirefox.prototype = {
 		//<!-- external libraries -->
 		//"lib/jquery.js",
 		"lib/oauth.js",
-		"lib/sha1.js",r		"lib/js-yaml.js",
+		"lib/sha1.js",
+		"lib/js-yaml.js",
 		
 		//<!-- core modules -->
 		"redirections.js",
@@ -210,7 +211,7 @@ FoxtrickFirefox.prototype = {
 		//<!-- browser specific -->
 		"ui.js",
 		"entry.js",
-		"loader-firefox.js",
+		"loader-firefox.js"
 	],
 
 	loadScript: function() {
