@@ -327,9 +327,9 @@ Foxtrick.modules["SkillTable"]={
 					cell.setAttribute('class','align-left');
 					cell.setAttribute("index",joined_s);
 				};
-				var dateLink = function(cell, deadline) { 
+				var dateCell = function(cell, deadline) { 
+					deadline.setAttribute("index", Foxtrick.util.time.getDateFromText(deadline.textContent).getTime());
 					cell.parentNode.replaceChild(deadline, cell);
-					cell.setAttribute("index", Foxtrick.util.time.getDateFromText(deadline.textContent).getTime());
 				};
 				var formatNum = function(cell, num) {
 					cell.className = "formatted-num";
@@ -408,7 +408,7 @@ Foxtrick.modules["SkillTable"]={
 					{ name : "FriendliesGoals", property : "friendliesGoals" },
 					{ name : "CareerGoals", property : "careerGoals" },
 					{ name : "Hattricks", property : "hattricks" },
-					{ name : "Deadline", property : "deadline", method : dateLink },
+					{ name : "Deadline", property : "deadline", method : dateCell },
 					{ name : "Current_club", property : "currentClubLink", method : link, sortString : true },
 					{ name : "Current_league", property : "currentLeagueId", method: league, sortString : true },
 					{ name : "TransferCompare", property : "transferCompare", method : link},
