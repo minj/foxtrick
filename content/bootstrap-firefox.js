@@ -20,6 +20,7 @@ FoxtrickFirefox.prototype = {
 		//<!-- utilities -->
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/api.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/array.js",this.owner, "UTF-8");
+		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/cookies.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/copy-button.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/css.js",this.owner, "UTF-8");
 		Services.scriptloader.loadSubScript("chrome://foxtrick/content/util/currency.js",this.owner, "UTF-8");
