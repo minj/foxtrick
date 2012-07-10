@@ -10,64 +10,64 @@ var FoxtrickFennec = function(window) {
 FoxtrickFennec.prototype = {
 	scripts: [
 		//<!-- essential stuffs -->
-		"chrome://foxtrick/content/env.js",
-		"chrome://foxtrick/content/prefs.js",
-		"chrome://foxtrick/content/l10n.js",
-		"chrome://foxtrick/content/xml-load.js",
-		"chrome://foxtrick/content/pages.js",
+		"env.js",
+		"prefs.js",
+		"l10n.js",
+		"xml-load.js",
+		"pages.js",
 		//<!-- utilities -->
-		"chrome://foxtrick/content/util/api.js",
-		"chrome://foxtrick/content/util/array.js",
-		"chrome://foxtrick/content/util/cookies.js",
-		"chrome://foxtrick/content/util/copy-button.js",
-		"chrome://foxtrick/content/util/css.js",
-		"chrome://foxtrick/content/util/currency.js",
-		"chrome://foxtrick/content/util/dom.js",
-		"chrome://foxtrick/content/util/ht-ml.js",
-		"chrome://foxtrick/content/util/id.js",
-		"chrome://foxtrick/content/util/inject.js",
-		"chrome://foxtrick/content/util/layout.js",
-		"chrome://foxtrick/content/util/links-box.js",
-		"chrome://foxtrick/content/util/load.js",
-		"chrome://foxtrick/content/util/local-store.js",
-		"chrome://foxtrick/content/util/log.js",
-		"chrome://foxtrick/content/util/match-view.js",
-		"chrome://foxtrick/content/util/misc.js",
-		"chrome://foxtrick/content/util/module.js",
-		"chrome://foxtrick/content/util/note.js",
-		"chrome://foxtrick/content/util/notify.js",
-		"chrome://foxtrick/content/util/sanitize.js",
-		"chrome://foxtrick/content/util/session-store.js",
-		"chrome://foxtrick/content/util/string.js",
-		"chrome://foxtrick/content/util/tabs.js",
-		"chrome://foxtrick/content/util/time.js",
+		"util/api.js",
+		"util/array.js",
+		"util/cookies.js",
+		"util/copy-button.js",
+		"util/css.js",
+		"util/currency.js",
+		"util/dom.js",
+		"util/ht-ml.js",
+		"util/id.js",
+		"util/inject.js",
+		"util/layout.js",
+		"util/links-box.js",
+		"util/load.js",
+		"util/local-store.js",
+		"util/log.js",
+		"util/match-view.js",
+		"util/misc.js",
+		"util/module.js",
+		"util/note.js",
+		"util/notify.js",
+		"util/sanitize.js",
+		"util/session-store.js",
+		"util/string.js",
+		"util/tabs.js",
+		"util/time.js",
 		
 		//<!-- external libraries -->
-		//"chrome://foxtrick/content/lib/jquery.js",
-		"chrome://foxtrick/content/lib/oauth.js",
-		"chrome://foxtrick/content/lib/sha1.js",
-		"chrome://foxtrick/content/lib/jester.js",
-		"chrome://foxtrick/content/lib/js-yaml.js",
+		//"lib/jquery.js",
+		"lib/oauth.js",
+		"lib/sha1.js",
+		"lib/jester.js",
+		"lib/js-yaml.js",
 		
 		//<!-- categorized modules with init functions -->
-		"chrome://foxtrick/content/forum/staff-marker.js",
-		"chrome://foxtrick/content/presentation/header-fix.js",
-		"chrome://foxtrick/content/presentation/skill-coloring.js",
-		"chrome://foxtrick/content/presentation/skin-plugin.js",
-		"chrome://foxtrick/content/links/links.js",
+		"forum/staff-marker.js",
+		"presentation/header-fix.js",
+		"presentation/skill-coloring.js",
+		"presentation/skin-plugin.js",
+		"links/links.js",
 		
 		//<!-- browser specific -->
-		"chrome://foxtrick/content/observer.js",
-		"chrome://foxtrick/content/ui.js",
-		"chrome://foxtrick/content/entry.js",
-		"chrome://foxtrick/content/background.js",
-		"chrome://foxtrick/content/scripts-fennec.js"
+		"observer.js",
+		"ui.js",
+		"entry.js",
+		"background.js",
+		"scripts-fennec.js"
 	],
 	
 	loadScript: function() {
 		// loading Foxtrick into window.Foxtrick
 		for (var i=0; i<this.scripts.length; ++i)
-			Services.scriptloader.loadSubScript(this.scripts[i], this.owner, "UTF-8");
+			Services.scriptloader.loadSubScript("chrome://foxtrick/content/" + this.scripts[i], this.owner, "UTF-8");
 	},
 	
 	init : function (){
@@ -89,7 +89,7 @@ FoxtrickFennec.prototype = {
 		// remove content scripts and listeners
 		this.loader.background.contentScriptManager.unload(); 
 		// remove styles
-		this.unload_module_css();
+		this.util.css.unload_module_css();
 	}
 };
 

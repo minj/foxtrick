@@ -24,13 +24,6 @@ my @targets = (
 		"suffix" => "</string>\n"
 	},
 	{
-		"file" => "content/scripts-fennec.js",
-		"from" => "//<!-- categorized modules -->",
-		"to" => "//<!-- end categorized modules -->",
-		"prefix" => "\t\"chrome://foxtrick/content/",
-		"suffix" => "\",\n"
-	},
-	{
 		"file" => "content/preferences.html",
 		"from" => "<!-- categorized modules -->",
 		"to" => "<!-- end categorized modules -->",
@@ -45,19 +38,20 @@ my @targets = (
 		"suffix" => "\"></script>\n"
 	},
 	{
-		"file" => "bootstrap-firefox.js",
-		"from" => "<!-- categorized modules -->",
-		"to" => "<!-- end categorized modules -->",
-		"prefix" => "\tServices.scriptloader.loadSubScript(\"chrome://foxtrick/content/",
-		"suffix" => "\",this.owner, \"UTF-8\");\n"
-	},
-	{
-		"file" => "bootstrap-fennec.js",
-		"from" => "<!-- categorized modules -->",
-		"to" => "<!-- end categorized modules -->",
-		"prefix" => "\t\t\"chrome://foxtrick/content/",
+		"file" => "content/scripts-fennec.js",
+		"from" => "//<!-- categorized modules -->",
+		"to" => "//<!-- end categorized modules -->",
+		"prefix" => "\t\t\"",
 		"suffix" => "\",\n"
 	},
+	{
+		"file" => "content/bootstrap-firefox.js",
+		"from" => "<!-- categorized modules -->",
+		"to" => "<!-- end categorized modules -->",
+		"prefix" => "\t\t\"",
+		"suffix" => "\",\n"
+	},	
+	# different path for opera
 	{
 		"file" => "background.html",
 		"from" => "<!-- categorized modules -->",
