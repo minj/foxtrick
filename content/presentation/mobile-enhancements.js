@@ -79,6 +79,9 @@
 		mobile_header_center.classNme = 'mobile_header_center out';
 		Foxtrick.onClick(mobile_header_center, function(ev){
 			Foxtrick.toggleClass(mobile_header_center,"out");
+			Foxtrick.toggleClass(lb,"out");
+			Foxtrick.toggleClass(rb,"out");
+			Foxtrick.toggleClass(header,"out");
 		});
 		mobile_header.appendChild(mobile_header_center);
 		
@@ -95,54 +98,59 @@
 		try {
 			// attach a handler to the element's swipe event		
 			if (cb)
-			Foxtrick.jester(cb,{swipeDistance:40})
-					.swipe(function(touches,swipeDirection){
-				Foxtrick.log("swipe",{swipeDirection:swipeDirection});
-				if (swipeDirection.left) {
-					select("right");
-					touches.event.preventDefault();
-				}
-				else if (swipeDirection.right) {
-					select("left")
-					touches.event.preventDefault();
-				}
-			});
+				Foxtrick.jester(cb,{swipeDistance:80})
+						.swipe(function(touches,swipeDirection){
+					Foxtrick.log("swipe",{swipeDirection:swipeDirection});
+					if (swipeDirection.left) {
+						select("right");
+						touches.event.preventDefault();
+					}
+					else if (swipeDirection.right) {
+						select("left")
+						touches.event.preventDefault();
+					}
+				});
 			if (mobile_header)
-			Foxtrick.jester(mobile_header,{swipeDistance:5})
-					.swipe(function(touches,swipeDirection){
-				Foxtrick.log("swipe",{swipeDirection:swipeDirection});
-				if (swipeDirection.down) {
-					select("header")
-					touches.event.preventDefault();
-				}
-			});
+				Foxtrick.jester(mobile_header,{swipeDistance:5})
+						.swipe(function(touches,swipeDirection){
+					Foxtrick.log("swipe",{swipeDirection:swipeDirection});
+					if (swipeDirection.down) {
+						select("header")
+						touches.event.preventDefault();
+					}
+					Foxtrick.log("swipe",{swipeDirection:swipeDirection});
+					if (swipeDirection.up) {
+						select("center")
+						touches.event.preventDefault();
+					}
+				});
 			if (lb)
-			Foxtrick.jester(lb,{swipeDistance:10})
-					.swipe(function(touches,swipeDirection){
-				Foxtrick.log("swipe",{swipeDirection:swipeDirection});
-				if (swipeDirection.left) {
-					select("center")
-					touches.event.preventDefault();
-				}
-			});
+				Foxtrick.jester(lb,{swipeDistance:50})
+						.swipe(function(touches,swipeDirection){
+					Foxtrick.log("swipe",{swipeDirection:swipeDirection});
+					if (swipeDirection.left) {
+						select("center")
+						touches.event.preventDefault();
+					}
+				});
 			if (rb)
-			Foxtrick.jester(rb,{swipeDistance:10})
-					.swipe(function(touches,swipeDirection){
-				Foxtrick.log("swipe",{swipeDirection:swipeDirection});
-				if (swipeDirection.right) {
-					select("center")
-					touches.event.preventDefault();
-				}
-			});
+				Foxtrick.jester(rb,{swipeDistance:50})
+						.swipe(function(touches,swipeDirection){
+					Foxtrick.log("swipe",{swipeDirection:swipeDirection});
+					if (swipeDirection.right) {
+						select("center")
+						touches.event.preventDefault();
+					}
+				});
 			if (header)
-			Foxtrick.jester(header,{swipeDistance:10})
-					.swipe(function(touches,swipeDirection){
-				Foxtrick.log("swipe",{swipeDirection:swipeDirection});
-				if (swipeDirection.up) {
-					select("center")
-					touches.event.preventDefault();
-				}
-			});
+				Foxtrick.jester(header,{swipeDistance:20})
+						.swipe(function(touches,swipeDirection){
+					Foxtrick.log("swipe",{swipeDirection:swipeDirection});
+					if (swipeDirection.up) {
+						select("center")
+						touches.event.preventDefault();
+					}
+				});
 			/*Foxtrick.jester(header,{swipeDistance:10})
 					.swipe(function(touches,swipeDirection){
 				Foxtrick.log("swipe",{swipeDirection:swipeDirection});
@@ -175,7 +183,8 @@
 		if (!Foxtrick.isLoginPage(doc))
 			select("center");
 
-			Foxtrick.addClass(hattrick,"ft-mobile");
+		Foxtrick.addClass(hattrick,"ft-mobile");
+		
 		this.setMetaViewport(doc, viewport_size);
 	},
 

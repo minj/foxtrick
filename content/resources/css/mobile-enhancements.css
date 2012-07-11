@@ -31,7 +31,7 @@ div.scEditSC .txtb{width:300px;}
 .ft-mobile #ticker {position: relative !important; top: 0px !important; left: auto !important; width: auto !important; float: left;}
 .ft-mobile #shortcutsNoSupporter ~ a[target="_blank"][href^="http"] {display:none}
 .ft-mobile #shortcuts, .ft-mobile #shortcutsNoSupporter, .ft-mobile #shortcutsNoSupporter .scContainerNoSupporter, .ft-mobile #shortcuts .scContainer  {width: auto !important;}
-.ft-mobile #shortcuts, .ft-mobile #shortcutsNoSupporter {position: relative; float: right; margin-top: 10px; top: auto !important; right: auto !important}
+.ft-mobile #shortcuts, .ft-mobile #shortcutsNoSupporter {position: relative !important; float: right; margin-top: 10px; top: auto !important; right: auto !important}
 .ft-mobile #logo, .ft-mobile #stageLogo {position: relative; float: left; top: auto !important; left: auto !important;}
 .ft-mobile #teamLinks, .ft-mobile #time, .ft-mobile #online, .ft-mobile #ft-local-time, .ft-mobile #ft_rapidid { margin-top: 8px !important;}
 .ft-mobile #ft_rapidid_form  {bottom : 0px !important;}
@@ -105,24 +105,13 @@ div.scEditSC .txtb{width:300px;}
 }
 #mobile_header {height: 30px; position:relative;}
 
-
-/* transitions left, right, top */
 .ft-mobile #page, .ft-mobile #footer {
 	padding: 0px !important; 
 	position:relative; 
 	top:0px; 
- 	-moz-transition: .5s top ease;
-	-webkit-transition: .5s top ease;
-	transition: .5s top ease;
-}
-.ft-mobile #sidebar, .ft-mobile .subMenu, .ft-mobile .subMenuConf  {
-	position:absolute; 
-	background-color:white; 
-	border: 2px solid #849D84; 
-	padding: 2px; 
-	top:0px
 }
 
+/* transitions left, right, top */
 .ft-mobile #header {
 	z-index: 10030;
 	background-color:white;
@@ -135,27 +124,59 @@ div.scEditSC .txtb{width:300px;}
 	height: auto !important;
 	display: inline-block;
 }
+.ft-mobile #header.out {top: -300px; height: 0px !important; padding-bottom: 0px !important; margin-bottom: -2px;}
+
+.ft-mobile #sidebar, .ft-mobile .subMenu, .ft-mobile .subMenuConf  
+{
+	z-index: 10010;
+	position:absolute; 
+	background-color:white; 
+	border: 2px solid #849D84; 
+	padding: 2px;
+
+ 	-moz-perspective: 300;
+ 	-webkit-perspective: 300;
+ 	perspective: 300;
+ 	
+	-moz-transition:1s -moz-transform ease 0s, 1s opacity ease 0s;
+	-webkit-transition: 1s -webkit-transform ease 0s, 1s opacity ease 0s;
+	transition: 1s transform ease 0s, 1s opacity ease 0s;
+	
+	-moz-transform: rotateX(0deg);	
+	-webkit-transform: rotateX(0deg);	
+	transform: rotateX(0deg);	
+	
+	-moz-backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
 
 .ft-mobile #sidebar  {
-	z-index: 10010;
 	right: 0px;
-	-moz-transition: .5s right ease;
-	-webkit-transition: .5s right ease;
-	transition: .5s right ease;
+	top: 0px;
 }
 .ft-mobile .subMenu, .ft-mobile .subMenuConf  {
-	z-index: 10010;
 	left: 0px;
- 	-moz-transition: .5s left ease;
-	-webkit-transition: .5s left ease;
-	transition: .5s left ease;
+	top: 0px;
 }
-
-/* being out styles */
-.ft-mobile.ft-touch-available #header.out { display: none;}
-.ft-mobile.ft-touch-available .subMenu.out {left: -135px;}
-.ft-mobile.ft-touch-available .subMenuConf.out {left: -235px;}
-.ft-mobile.ft-touch-available #sidebar.out {right: -190px;	display: none; }
+.ft-mobile .subMenu.out { 
+	opacity: 0;
+	-moz-transform: rotateY(180deg);
+	-webkit-transform: rotateY(180deg);
+	transform: rotateY(180deg);
+}
+.ft-mobile .subMenuConf.out {
+ 	opacity: 0;
+	-moz-transform: rotateY(180deg);
+	-webkit-transform: rotateY(180deg);
+	transform: rotateY(180deg);
+}
+.ft-mobile #sidebar.out {
+	opacity: 0;
+	-moz-transform: rotateY(-180deg);
+	-webkit-transform: rotateY(-180deg);
+	transform: rotateY(-180deg);
+}
 
 .ft-mobile #mobile_header, .ft-mobile #content, .ft-mobile #bottom {
 	position: relative;
