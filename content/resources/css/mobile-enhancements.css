@@ -22,7 +22,7 @@ div[class^="ad_"] {display: none !important;}
 	line-height: inherit !important;	
 }
 /* kick stage link to have same menu size */
-.ft-mobile #menu a[href^="/Forum/Overview.aspx"], .ft-mobile  #ctl00_ctl00_ucOngoingEvents_pnlOngoingEvents { display:none;}
+.ft-mobile #menu a[href^="/Forum/Overview.aspx"], .ft-mobile  #ctl00_ctl00_ucOngoingEvents_pnlOngoingEvents { display:none !important;}
 
 #mobile_header_center {
 	background-color: #277F31;
@@ -141,4 +141,6 @@ div[class^="ad_"] {display: none !important;}
 	border-bottom: solid 1px #DDD;
 }
 .ft-mobile .fplLongThreadName {width:145px !important;}
+
+.ft-mobile #order_tabs {margin-left: -5px !important;}
 }
