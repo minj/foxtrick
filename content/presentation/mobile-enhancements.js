@@ -14,6 +14,11 @@
 
 
 	run : function(doc) { 
+		var viewport_size = "470";
+		if (Foxtrick.isPage("matchOrder", doc))	{
+			viewport_size = "765";
+		}
+		
 		var select = function(area) {
 			if (area=="left" && lb) {
 				if (lb)
@@ -164,7 +169,7 @@
 			select("center");
 
 		Foxtrick.addClass(hattrick,"ft-mobile");
-		this.setMetaViewport(doc, "470");
+		this.setMetaViewport(doc, viewport_size);
 	},
 
 	setMetaViewport : function (doc, width) {
