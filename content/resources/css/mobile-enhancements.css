@@ -140,7 +140,34 @@ div[class^="ad_"] {display: none !important;}
 	border-left: solid 1px #DDD;
 	border-bottom: solid 1px #DDD;
 }
-.ft-mobile .fplLongThreadName {width:145px !important;}
+/* forum read */
+.ft-mobile .cfHeader, .ft-mobile .cfHeader.doubleLine, .ft-mobile .cfHeader.singleLine {height: auto !important;}
+.ft-mobile .cfHeader .float_right {height: auto !important; float: none !important;}
+
+/* forum overview */
+.ft-mobile .frontPageList {width: 95% !important}
+.ft-mobile .frontPageList td {padding: 2px !important}
+.ft-mobile .fplLongThreadName, .ft-mobile .fplThreadInfo,
+.ft-mobile .fplLongFolderName, .ft-mobile.fplFolderName,
+.ft-mobile .fplMessageAuthor, .ft-mobile .fplThreadName {width: auto !important;}
+.ft-mobile .fplPreview, .ft-mobile .fplRead {display:none;}
+
+/* tables */ 
+.ft-mobile table, .ft-mobile table td, .ft-mobile table td div {white-space:normal !important; word-wrap:break-word;}
+
+
+/* lineup */
+.ft-mobile #list  {margin: 0px !important;}
+
+/* general */
+.ft-mobile .nowrap {white-space:normal !important; word-wrap:break-word;}
+
+/* league */
+html .ft-mobile  table.ft_league_matches {margin-right: 0px !important;}
+#ctl00_ctl00_CPContent_CPMain_repLeagueTable td {padding: 1px !important;}
+
+/* office */
+.ft-mobile .eventItem > .eventItemText, .ft-mobile .pmSpeechOuterContainer {width: auto !important;}
 
 .ft-mobile #order_tabs {margin-left: -5px !important;}
 }

@@ -11,10 +11,12 @@
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ["all"],
 	CSS : Foxtrick.InternalPath + "resources/css/mobile-enhancements.css",
-
+	OPTIONS : ['ViewPort'],
+	OPTION_EDITS : true,
+	
 
 	run : function(doc) { 
-		var viewport_size = "470";
+		var viewport_size = FoxtrickPrefs.getString("module.MobileEnhancements.ViewPort_text");
 		if (Foxtrick.isPage("matchOrder", doc))	{
 			viewport_size = "765";
 		}
