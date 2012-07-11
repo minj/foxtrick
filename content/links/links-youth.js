@@ -55,8 +55,8 @@ Foxtrick.modules["LinksYouthOverview"]={
 Foxtrick.modules["LinksYouthPlayerDetail"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('youthplayerdetail'),
-	OPTION_FUNC : function(doc) {
-		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksYouthPlayerDetail", "youthplayerdetaillink");
+	OPTION_FUNC : function(doc, callback) {
+		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksYouthPlayerDetail", "youthplayerdetaillink", callback);
 	},
 
 	run : function(doc) {
@@ -113,8 +113,8 @@ Foxtrick.modules["LinksYouthPlayerDetail"]={
 Foxtrick.modules["LinksYouthTraining"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('YouthTraining'),
-	OPTION_FUNC : function(doc) {
-		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksYouthTraining", "youthtraininglink");
+	OPTION_FUNC : function(doc, callback) {
+		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksYouthTraining", "youthtraininglink", callback);
 	},
 
 	run : function(doc) {
@@ -161,8 +161,8 @@ Foxtrick.modules["LinksYouthTraining"]={
 Foxtrick.modules["LinksYouthPlayerList"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('YouthPlayers'),
-	OPTION_FUNC : function(doc) {
-		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksYouthPlayerList", "youthplayerlistlink");
+	OPTION_FUNC : function(doc, callback) {
+		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksYouthPlayerList", "youthplayerlistlink", callback);
 	},
 
 	run : function(doc) {
@@ -210,8 +210,8 @@ Foxtrick.modules["LinksYouthPlayerList"]={
 Foxtrick.modules["LinksYouthMatchList"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('YouthMatchlist'),
-	OPTION_FUNC : function(doc) {
-		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksYouthMatchList", "youthmatchlistlink");
+	OPTION_FUNC : function(doc, callback) {
+		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksYouthMatchList", "youthmatchlistlink", callback);
 	},
 
 	run : function(doc) {
@@ -259,8 +259,8 @@ Foxtrick.modules["LinksYouthMatchList"]={
 Foxtrick.modules["LinksYouthLeague"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('youthSeries'),
-	OPTION_FUNC : function(doc) {
-		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksYouthLeague", "youthleaguelink");
+	OPTION_FUNC : function(doc, callback) {
+		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksYouthLeague", "youthleaguelink", callback);
 	},
 
 	run : function(doc) {
