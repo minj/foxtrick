@@ -30,6 +30,7 @@ function init()
 		getPageIds();
 		initTabs();
 		initSearch(); //important, run after module divs have been created (initTabs)
+		Foxtrick.log("listeners");
 		initListeners(); //important, run after module divs have been created (initTabs)
 		initTextAndValues();
 		locateFragment(window.location.toString()); // locate element by fragment
@@ -252,7 +253,7 @@ function initListeners()
 			$(this)[0].addEventListener("input", saveEvent, false);
 			$(this)[0].addEventListener("change", saveEvent, false);
 		} else {
-			console.log("unhandled");
+			Foxtrick.log("unhandled");
 		}
 	})
 	$("#pane textarea").each(function() {
@@ -641,7 +642,7 @@ function getModule(module)
 					}
 				}
 				appendOptionsArrayToList(module.OPTIONS[i], parentlist);
-				
+
 				continue;
 			} 
 			
@@ -665,24 +666,22 @@ function getModule(module)
 				if (module.OPTION_EDITS_TEXTFILE_LOAD_BUTTONS && module.OPTION_EDITS_TEXTFILE_LOAD_BUTTONS[i]) {
 					var load = Foxtrick.util.load.filePickerForText(document, (function(textInput) {
 						return function(text) { 
-							textInput.value = text; textInput.input(); 
-							var evt = document.createEvent("HTMLEvents");
-						    evt.initEvent(event, true, true ); // event type,bubbling,cancelable
-						    console.log("dispatchEvent");
-						   	element.dispatchEvent(evt);
+							textInput.value = text;
+							var ev = document.createEvent('HTMLEvents');
+						    ev.initEvent("change", true, false);
+						    textInput.dispatchEvent(ev);
 						};
 					})(textInput));
 					textDiv.appendChild(load);
 				}
 				if (module.OPTION_EDITS_DATAURL_LOAD_BUTTONS && module.OPTION_EDITS_DATAURL_LOAD_BUTTONS[i]) {
+					
 					var load = Foxtrick.util.load.filePickerForDataUrl(document, (function(textInput) {
-						return function(url) { 
+						return function(url) {
 							textInput.value = url;
-							var evt = document.createEvent("HTMLEvents");
-						    evt.initEvent(event, true, true ); // event type,bubbling,cancelable
-						    console.log("dispatchEvent");
-						   	element.dispatchEvent(evt);
-
+							var ev = document.createEvent('HTMLEvents');
+						    ev.initEvent("change", true, false);
+						    textInput.dispatchEvent(ev);
 							if (module.OPTION_EDITS_DATAURL_IS_SOUND && module.OPTION_EDITS_DATAURL_IS_SOUND[i])
 								Foxtrick.playSound(url, document);						
 						};
