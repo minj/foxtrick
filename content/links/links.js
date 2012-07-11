@@ -287,7 +287,7 @@
 			return links;
 		},
 
-		getOptionsHtml : function(doc, module, linkType) {
+		getOptionsHtml : function(doc, module, linkType, callback) {
 			try{
 			var list = doc.createElement("ul");
 			this.getCollection(function(collection) {
@@ -332,6 +332,8 @@
 					}
 				} catch(e) {Foxtrick.log(e)};
 				}, types);
+			if(callback)
+				callback();
 			} catch(e) {Foxtrick.log(e)};
 			});
 			return list;

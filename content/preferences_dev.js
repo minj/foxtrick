@@ -30,7 +30,6 @@ function init()
 		getPageIds();
 		initTabs();
 		initSearch(); //important, run after module divs have been created (initTabs)
-		Foxtrick.log("listeners");
 		initListeners(); //important, run after module divs have been created (initTabs)
 		initTextAndValues();
 		locateFragment(window.location.toString()); // locate element by fragment
@@ -241,10 +240,12 @@ function generateURI(tab, module, id)
 		return location + "#" + id;
 }
 
-function initListeners()
-{
+function initAutoSaveListeners(){
 	// save on click/input
 	$("#pane input").each(function() {
+		if($(this).attr("savelistener"))
+			return;
+		$(this).attr("savelistener", "true");
 		if ($(this).is(":checkbox")){
 			$(this).click(function() { saveEvent(); });	
 		} else if ($(this)[0].nodeName == "select"){
@@ -253,19 +254,29 @@ function initListeners()
 			$(this)[0].addEventListener("input", saveEvent, false);
 			$(this)[0].addEventListener("change", saveEvent, false);
 		} else {
-			Foxtrick.log("unhandled");
+			$(this).attr("savelistener", "false");
 		}
 	})
-	$("#pane textarea").each(function() {
-		$(this)[0].addEventListener("input", saveEvent, false);
+	$("#pane select").each(function() {
+		if($(this).attr("savelistener"))
+			return;
+		$(this).attr("savelistener", "true");
+		$(this).click(function() { saveEvent(); });
 	})
+	$("#pane textarea").each(function() {
+		if($(this).attr("savelistener"))
+			return;
+		$(this)[0].addEventListener("input", saveEvent, false);
+		$(this).attr("savelistener", "false");
+	})
+}
+
+function initListeners()
+{
+	initAutoSaveListeners();
 
 	$("#search-input")[0].addEventListener("input", searchEvent, false);
-	
-
 	$("#save").click(function() { save(); });
-	//$("#save-alt").click(function() { save(); });
-	//$("#note").click(function() { $(this).hide("slow"); });
 	$("body").click(function(ev) {
 		if ((ev.target.nodeName.toLowerCase() == "a"
 			|| ev.target.nodeName.toLowerCase() == "xhtml:a")) {
@@ -578,7 +589,7 @@ function getModule(module)
 	// or purely initializes them and returns null
 	var customCoptions = [];
 	if (typeof(module.OPTION_FUNC) == "function") {
-		var genOptions = module.OPTION_FUNC(document);
+		var genOptions = module.OPTION_FUNC(document, initListeners);
 		if (genOptions) {
 			if ($.isArray(genOptions)) {
 				for (var field=0; field<genOptions.length; ++field)

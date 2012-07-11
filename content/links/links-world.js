@@ -9,8 +9,8 @@ Foxtrick.modules["LinksWorld"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('world'),
 
-	OPTION_FUNC : function(doc) {
-		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksWorld", "worldlink");
+	OPTION_FUNC : function(doc, callback) {
+		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksWorld", "worldlink", callback);
 	},
 
 	run : function(doc) {

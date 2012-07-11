@@ -9,8 +9,8 @@ Foxtrick.modules["LinksAchievements"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('achievements'),
 
-	OPTION_FUNC : function(doc) {
-		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksAchievements", "achievementslink");
+	OPTION_FUNC : function(doc, callback) {
+		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksAchievements", "achievementslink", callback);
 	},
 
 	run : function(doc) {

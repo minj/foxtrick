@@ -8,8 +8,8 @@
 Foxtrick.modules["LinksEconomy"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('finances'),
-	OPTION_FUNC : function(doc) {
-		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksEconomy", "economylink");
+	OPTION_FUNC : function(doc, callback) {
+		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksEconomy", "economylink", callback);
 	},
 
 	run : function(doc) {

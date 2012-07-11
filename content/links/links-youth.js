@@ -8,8 +8,8 @@
 Foxtrick.modules["LinksYouthOverview"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('youthoverview'),
-	OPTION_FUNC : function(doc) {
-		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksYouthOverview", "youthlink");
+	OPTION_FUNC : function(doc, callback) {
+		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksYouthOverview", "youthlink", callback);
 	},
 
 	run : function(doc) {

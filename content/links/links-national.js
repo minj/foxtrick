@@ -8,8 +8,8 @@
 Foxtrick.modules["LinksNational"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
 	PAGES : new Array('national'),
-	OPTION_FUNC : function(doc) {
-		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksNational", "nationalteamlink");
+	OPTION_FUNC : function(doc, callback) {
+		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksNational", "nationalteamlink", callback);
 	},
 
 	run : function(doc) {
