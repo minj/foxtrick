@@ -328,8 +328,8 @@ Foxtrick.modules["SkillTable"]={
 					cell.setAttribute("index",joined_s);
 				};
 				var dateLink = function(cell, deadline) { 
+					deadline.setAttribute("index", Foxtrick.util.time.getDateFromText(deadline.textContent).getTime());
 					cell.parentNode.replaceChild(deadline, cell);
-					cell.setAttribute("index", Foxtrick.util.time.getDateFromText(deadline.textContent).getTime());
 				};
 				var formatNum = function(cell, num) {
 					cell.className = "formatted-num";
