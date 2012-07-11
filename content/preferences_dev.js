@@ -86,7 +86,6 @@ function initSearch(){
 			console.log("no search support", e)
 		}
 	});
-	console.log(_modules)
 	// for (var i in Foxtrick.modules){
 	// 	_modules[Foxtrick.modules[i].MODULE_NAME] = $("#pref-" + Foxtrick.modules[i].MODULE_NAME)[0];
 	// 	var option = document.createElement("option");
@@ -332,7 +331,7 @@ function initTextAndValues()
 	});
 	
 	// initialize modules
-	$("body [module]").each(function() {
+	$("#pane [module]").each(function() {
 		var module = $(this).attr("module");
 		if ($(this).attr("option")) {
 			var option = $(this).attr("option");
@@ -354,7 +353,7 @@ function initTextAndValues()
 			$(this).attr("checked", "checked");
 	});
 	// initialize inputs
-	$("body input[pref]").each(function() {
+	$("#pane input[pref]").each(function() {
 		if ($(this).is(":checkbox")) {
 			// checkbox
 			if (FoxtrickPrefs.getBool($(this).attr("pref")))
@@ -365,7 +364,7 @@ function initTextAndValues()
 			$(this).attr("value", FoxtrickPrefs.getString($(this).attr("pref")));
 		}
 	});
-	$("body textarea[pref]").each(function() {
+	$("#pane textarea[pref]").each(function() {
 		$(this).text(FoxtrickPrefs.getString($(this).attr("pref")));
 	});
 	// initialize elements with blockers, disable if blocker enabled
@@ -382,15 +381,15 @@ function initTextAndValues()
 		updateStatus();
 	});
 	// initialize elements with dependency, show only if dependency met
-	$("body [depends-on]").each(function() {
+	$("#pane [depends-on]").each(function() {
 		var depender = $(this);
 		var dependee = $("#" + depender.attr("depends-on"));
 		var updateStatus = function() {
 			if (dependee.is(":checked"))
-				depender.show();
-			else
-				depender.hide();
-		};
+				Foxtrick.removeClass(depender[0], "hidden");
+			else 
+				Foxtrick.addClass(depender[0], "hidden");
+		}
 		dependee.click(function() { updateStatus(); });
 		updateStatus();
 	});
