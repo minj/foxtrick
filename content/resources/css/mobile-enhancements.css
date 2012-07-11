@@ -2,7 +2,8 @@
 
 div[class^="ad_"] {display: none !important;}
 
-#ctl00_ctl00_pnlMobileLink, #top, #footer {display:none !important;}
+.ft-mobile #ctl00_ctl00_pnlMobileLink {display:none !important;}
+.ft-mobile #top, .ft-mobile #footer {width: auto !important;}
 
 .ft-mobile #menu {
 	right: -10px !important;
@@ -69,18 +70,33 @@ div[class^="ad_"] {display: none !important;}
 	transition: .5s top ease;
 }
 
-.ft-mobile .mainWrapperRegular, .ft-mobile .mainWrapperConf, .ft-mobile .mainWrapperFull {float:none !important; background-color:white}
+.ft-mobile .mainWrapperWide, .ft-mobile .mainWrapperRegular, .ft-mobile .mainWrapperConf, .ft-mobile .mainWrapperFull {float:none !important; background-color:white}
+
+.ft-mobile .mainRegular, .ft-mobile .mainWide, .ft-mobile .mainFull, .ft-mobile .mainConf, .ft-mobile .mainText2ColumnWrapper {width:auto !important;}
 
 #mobile_header {height: 30px; position:relative;}
 #mobile_header_left, #mobile_header_left_main {float: left;}
 #mobile_header_right, #mobile_header_right_header {float:right;}
 
+/*textarea.medium{width:400px;height:100px;}
+.forumScrollContent {position:relative;width:501px;}
+div.scEditSC .txtb{width:300px;}
+.main .liveMatchContainer{float:left; width:490px;
+.notebook,textarea.large{width:400px;
+.treeNavUp, .treeNavDown 
+*/
+.ft-mobile .quickFacts, .ft-mobile .insertBody,
+.ft-mobile .notebook, .ft-mobile textarea.large,
+.ft-mobile a.featuredShopItem, .ft-mobile div.featuredShopItemText,
+.ft-mobile #fbErrorBox, .ft-mobile .fbSendBox , .ft-mobile .sendBoxHeader 
+ {width:auto !important;}
 
 .hattrick.ft-mobile , .hattrickNoSupporter.ft-mobile , .ft-mobile #page,
 .ft-mobile .mainWrapperRegular, .ft-mobile .mainWrapperConf, .ft-mobile .main 
 {width:auto !important; float: none !important;}
+
 .hattrick.ft-mobile , .hattrickNoSupporter.ft-mobile  {position:relative;}
-.ft-mobile #page {
+.ft-mobile #page, .ft-mobile #footer {
 	padding: 0px !important; 
 	position:relative; 
 	top:0px; 
@@ -121,7 +137,7 @@ div[class^="ad_"] {display: none !important;}
 	right: -190px;
 	display: none;
 }
-.ft-touch-available.ft-mobile #page.out {top: -108px;}
+.ft-touch-available.ft-mobile #page.out, .ft-touch-available.ft-mobile #footer.out, {top: -108px;}
 .ft-mobile #mobile_header, .ft-mobile #content, .ft-mobile #bottom {
 	position: relative;
 	background-color:white;
@@ -167,7 +183,9 @@ html .ft-mobile  table.ft_league_matches {margin-right: 0px !important;}
 #ctl00_ctl00_CPContent_CPMain_repLeagueTable td {padding: 1px !important;}
 
 /* office */
-.ft-mobile .eventItem > .eventItemText, .ft-mobile .pmSpeechOuterContainer {width: auto !important;}
+.ft-mobile .eventItem > .eventItemText, .ft-mobile .pmSpeechOuterContainer
+.ft-mobile .pmNewSpeechOuterContainer
+ {width: auto !important;}
 
 .ft-mobile #order_tabs {margin-left: -5px !important;}
 }

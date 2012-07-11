@@ -27,28 +27,36 @@
 					Foxtrick.removeClass(lb,'out');
 				if (rb)
 					Foxtrick.addClass(rb,'out');
-				if (header)
+				if (header) {
 					Foxtrick.addClass(page,'out');
+					Foxtrick.addClass(footer,'out');
+				}
 			} 
 			else if (area=="right" && rb) {
 				if (rb)
 					Foxtrick.removeClass(rb,'out');
 				if (lb)
 					Foxtrick.addClass(lb,'out');
-				if (header)
+				if (header) {
 					Foxtrick.addClass(page,'out');
+					Foxtrick.addClass(footer,'out');
+				}
 			}
 			else if ((area=="center" || (area=="right" &&!rb)) && cb ) {
 				if (lb)
 					Foxtrick.addClass(lb,'out');
 				if (rb)
 					Foxtrick.addClass(rb,'out');
-				if (header)
+				if (header) {
 					Foxtrick.addClass(page,'out');
+					Foxtrick.addClass(footer,'out');
+				}
 			}
 			else if (area=="header") {
-				if (header)
+				if (header) {
 					Foxtrick.removeClass(page,'out');
+					Foxtrick.removeClass(footer,'out');
+				}
 				if (lb)
 					Foxtrick.addClass(lb,'out');
 				if (rb)
@@ -62,6 +70,7 @@
 		var rb = doc.getElementById("sidebar");
 		var header = doc.getElementById("header"); 
 		var page = doc.getElementById("page"); 
+		var footer = doc.getElementById("footer"); 
 		var hattrick = doc.getElementsByClassName("hattrick")[0] || doc.getElementsByClassName("hattrickNoSupporter")[0];
 		
 		var header = doc.getElementById("header");
@@ -161,8 +170,10 @@
 			Foxtrick.addClass(lb,'out');
 		if (rb)
 			Foxtrick.addClass(rb,'out');
-		if (header)
+		if (header) {
 			Foxtrick.addClass(page,'out');
+			Foxtrick.addClass(footer,'out');
+		}
 		Foxtrick.onClick(cb, function(ev){
 			select("center");
 		});
