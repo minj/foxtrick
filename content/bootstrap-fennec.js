@@ -77,6 +77,8 @@ FoxtrickFennec.prototype = {
 		this.addObserver();
 		// run background
 		this.loader.background.browserLoad();
+		// add styles
+		this.util.css.load_module_css();
 		// fennec content script injection at 'runtime' 
 		this.loader.background.contentScriptManager.load();
 	},

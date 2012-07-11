@@ -47,7 +47,7 @@
 				if (rb)
 					Foxtrick.addClass(rb,'out');
 			}
-			Foxtrick.modules["MobileEnhancements"].setMetaViewport(doc, "440");
+			//Foxtrick.modules["MobileEnhancements"].setMetaViewport(doc, "470");
 		};
 
 		var lb = doc.getElementsByClassName("subMenu")[0] || doc.getElementsByClassName("subMenuConf")[0];
@@ -164,7 +164,7 @@
 			select("center");
 
 		Foxtrick.addClass(hattrick,"ft-mobile");
-		this.setMetaViewport(doc, "440");
+		this.setMetaViewport(doc, "470");
 	},
 
 	setMetaViewport : function (doc, width) {
@@ -179,16 +179,5 @@
 		meta.setAttribute('name',"viewport" );
 		meta.setAttribute('content', "width = "+width );
 		html.insertBefore(meta, doc.getElementsByTagName('html')[0].firstChild);
-	},
-
-	setStyle : function(doc, id, css, size) {
-		for (var i in Foxtrick.modules["MobileEnhancements"].pageActions) {
-			Foxtrick.unload_css_permanent(Foxtrick.InternalPath + "resources/css/" + Foxtrick.modules["MobileEnhancements"].pageActions[i].css);
-			Foxtrick.log('unload: ',Foxtrick.InternalPath + "resources/css/" + Foxtrick.modules["MobileEnhancements"].pageActions[i].css);
-		}
-		Foxtrick.load_css_permanent(Foxtrick.InternalPath + "resources/css/" + css);
-		Foxtrick.log('load: ',Foxtrick.InternalPath + "resources/css/" + Foxtrick.modules["MobileEnhancements"].pageActions[i].css);
-		var size = Foxtrick.util.layout.isRtl(doc) ? size.standard : size.simple;
-		Foxtrick.modules["MobileEnhancements"].setMetaViewport(doc, size+'px');
 	},
 };

@@ -8,7 +8,6 @@ div[class^="ad_"] {display: none !important;}
 	right: -10px !important;
 	left: -10px !important;
 	height: auto !important;
-	position: absolute !important;
 	width: 90px !important;	
 	font-size: 1.1em !important;
 	bottom: 24px !important;
@@ -22,6 +21,8 @@ div[class^="ad_"] {display: none !important;}
 	height: auto !important;
 	line-height: inherit !important;	
 }
+/* kick stage link to have same menu size */
+.ft-mobile #menu a[href*="/Forum/Overview.aspx"], .ft-mobile  #ctl00_ctl00_ucOngoingEvents_pnlOngoingEvents { display:none;}
 
 #mobile_header_center {
 	background-color: #277F31;
@@ -68,7 +69,7 @@ div[class^="ad_"] {display: none !important;}
 	transition: .5s top ease;
 }
 
-.ft-mobile .mainWrapperRegular, .ft-mobile .mainWrapperConf, .ft-mobile .mainWrapperFull {float:none !important;}
+.ft-mobile .mainWrapperRegular, .ft-mobile .mainWrapperConf, .ft-mobile .mainWrapperFull {float:none !important; background-color:white}
 
 #mobile_header {height: 30px; position:relative;}
 #mobile_header_left, #mobile_header_left_main {float: left;}
@@ -77,7 +78,7 @@ div[class^="ad_"] {display: none !important;}
 
 .hattrick.ft-mobile , .hattrickNoSupporter.ft-mobile , .ft-mobile #page,
 .ft-mobile .mainWrapperRegular, .ft-mobile .mainWrapperConf, .ft-mobile .main 
-{width:440px !important;}
+{width:auto !important; float: none !important;}
 .hattrick.ft-mobile , .hattrickNoSupporter.ft-mobile  {position:relative;}
 .ft-mobile #page {
 	padding: 0px !important; 
@@ -88,10 +89,9 @@ div[class^="ad_"] {display: none !important;}
 	transition: .5s top ease;
 }
 .ft-mobile #sidebar, .ft-mobile .subMenu, .ft-mobile .subMenuConf  
-{position:absolute; background-color:white; border: 2px solid #849D84; padding: 2px;}
+{position:absolute; background-color:white; border: 2px solid #849D84; padding: 2px; top:0px}
 .ft-mobile #header {
 	z-index: 10030;
-	position:absolute !important;
 	background-color:white;
 	border-bottom: 2px solid #849D84;
 	padding-bottom: 5px;
@@ -119,10 +119,10 @@ div[class^="ad_"] {display: none !important;}
 .ft-mobile .subMenuConf.out {left: -235px;}
 .ft-mobile #sidebar.out {
 	right: -190px;
+	display: none;
 }
 .ft-touch-available.ft-mobile #page.out {top: -108px;}
 .ft-mobile #mobile_header, .ft-mobile #content, .ft-mobile #bottom {
-	top: 107px;
 	position: relative;
 	background-color:white;
 }
@@ -133,7 +133,7 @@ div[class^="ad_"] {display: none !important;}
 	border-left: solid 1px #DDD;
 }
 .ft-touch-available.ft-mobile #content {
-	overflow:hidden;
+/*	overflow:hidden;*/
 }
 .ft-mobile #bottom {
 	border-right: solid 1px #DDD;
