@@ -1,10 +1,43 @@
 @-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
 
 div[class^="ad_"] {display: none !important;}
-
 .ft-mobile #ctl00_ctl00_pnlMobileLink {display:none !important;}
-.ft-mobile #top, .ft-mobile #footer {width: auto !important;}
 
+
+/* width, float */  
+.hattrick.ft-mobile , .hattrickNoSupporter.ft-mobile  {position:relative;}
+.ft-mobile .mainWrapperWide, .ft-mobile .mainWrapperRegular, .ft-mobile .mainWrapperConf, .ft-mobile .mainWrapperFull {float:none !important; background-color:white}
+.ft-mobile .mainRegular, .ft-mobile .mainWide, .ft-mobile .mainFull, .ft-mobile .mainConf, .ft-mobile .mainText2ColumnWrapper {width:auto !important;}
+.ft-mobile #top, .ft-mobile #footer {width: auto !important;}
+.hattrick.ft-mobile , .hattrickNoSupporter.ft-mobile , .ft-mobile #page,
+.ft-mobile .mainWrapperRegular, .ft-mobile .mainWrapperConf, .ft-mobile .main 
+{width:auto !important; float: none !important;}
+
+/* some random width i found */
+.ft-mobile .quickFacts, .ft-mobile .insertBody,
+.ft-mobile .notebook, .ft-mobile textarea.large,
+.ft-mobile a.featuredShopItem, .ft-mobile div.featuredShopItemText,
+.ft-mobile #fbErrorBox, .ft-mobile .fbSendBox , .ft-mobile .sendBoxHeader 
+/*textarea.medium{width:400px;height:100px;}
+.forumScrollContent {position:relative;width:501px;}
+div.scEditSC .txtb{width:300px;}
+.main .liveMatchContainer{float:left; width:490px;
+.notebook,textarea.large{width:400px;
+.treeNavUp, .treeNavDown */
+ {width:auto !important;}
+
+
+/* header */
+.ft-mobile #ticker {position: relative !important; top: 0px !important; left: auto !important; width: auto !important; float: left;}
+.ft-mobile #shortcutsNoSupporter ~ a[target="_blank"][href^="http"] {display:none}
+.ft-mobile #shortcuts, .ft-mobile #shortcutsNoSupporter, .ft-mobile #shortcutsNoSupporter .scContainerNoSupporter, .ft-mobile #shortcuts .scContainer  {width: auto !important;}
+.ft-mobile #shortcuts, .ft-mobile #shortcutsNoSupporter {position: relative; float: right; margin-top: 10px; top: auto !important; right: auto !important}
+.ft-mobile #logo, .ft-mobile #stageLogo {position: relative; float: left; top: auto !important; left: auto !important;}
+.ft-mobile #teamLinks, .ft-mobile #time, .ft-mobile #online, .ft-mobile #ft-local-time, .ft-mobile #ft_rapidid { margin-top: 8px !important;}
+.ft-mobile #ft_rapidid_form  {bottom : 0px !important;}
+/*.ft-mobile  #ctl00_ctl00_ucOngoingEvents_pnlOngoingEvents {display:none}*/
+
+/* menu setup */
 .ft-mobile #menu {
 	right: -10px !important;
 	left: -10px !important;
@@ -23,8 +56,9 @@ div[class^="ad_"] {display: none !important;}
 	line-height: inherit !important;	
 }
 /* kick stage link to have same menu size */
-.ft-mobile #menu a[href^="/Forum/Overview.aspx"], .ft-mobile  #ctl00_ctl00_ucOngoingEvents_pnlOngoingEvents { display:none !important;}
+.ft-mobile #menu a[href^="/Forum/Overview.aspx"] { display:none !important;}
 
+/* menu drop down */
 #mobile_header_center {
 	background-color: #277F31;
 	position: relative;
@@ -64,38 +98,15 @@ div[class^="ad_"] {display: none !important;}
 	transition: .5s top ease;
 }
 #mobile_header_center  {
-	top: 0px;
+	top: -1px;
 	-moz-transition: .5s top ease;
 	-webkit-transition: .5s top ease;
 	transition: .5s top ease;
 }
-
-.ft-mobile .mainWrapperWide, .ft-mobile .mainWrapperRegular, .ft-mobile .mainWrapperConf, .ft-mobile .mainWrapperFull {float:none !important; background-color:white}
-
-.ft-mobile .mainRegular, .ft-mobile .mainWide, .ft-mobile .mainFull, .ft-mobile .mainConf, .ft-mobile .mainText2ColumnWrapper {width:auto !important;}
-
 #mobile_header {height: 30px; position:relative;}
-#mobile_header_left, #mobile_header_left_main {float: left;}
-#mobile_header_right, #mobile_header_right_header {float:right;}
 
-/*textarea.medium{width:400px;height:100px;}
-.forumScrollContent {position:relative;width:501px;}
-div.scEditSC .txtb{width:300px;}
-.main .liveMatchContainer{float:left; width:490px;
-.notebook,textarea.large{width:400px;
-.treeNavUp, .treeNavDown 
-*/
-.ft-mobile .quickFacts, .ft-mobile .insertBody,
-.ft-mobile .notebook, .ft-mobile textarea.large,
-.ft-mobile a.featuredShopItem, .ft-mobile div.featuredShopItemText,
-.ft-mobile #fbErrorBox, .ft-mobile .fbSendBox , .ft-mobile .sendBoxHeader 
- {width:auto !important;}
 
-.hattrick.ft-mobile , .hattrickNoSupporter.ft-mobile , .ft-mobile #page,
-.ft-mobile .mainWrapperRegular, .ft-mobile .mainWrapperConf, .ft-mobile .main 
-{width:auto !important; float: none !important;}
-
-.hattrick.ft-mobile , .hattrickNoSupporter.ft-mobile  {position:relative;}
+/* transitions left, right, top */
 .ft-mobile #page, .ft-mobile #footer {
 	padding: 0px !important; 
 	position:relative; 
@@ -104,8 +115,14 @@ div.scEditSC .txtb{width:300px;}
 	-webkit-transition: .5s top ease;
 	transition: .5s top ease;
 }
-.ft-mobile #sidebar, .ft-mobile .subMenu, .ft-mobile .subMenuConf  
-{position:absolute; background-color:white; border: 2px solid #849D84; padding: 2px; top:0px}
+.ft-mobile #sidebar, .ft-mobile .subMenu, .ft-mobile .subMenuConf  {
+	position:absolute; 
+	background-color:white; 
+	border: 2px solid #849D84; 
+	padding: 2px; 
+	top:0px
+}
+
 .ft-mobile #header {
 	z-index: 10030;
 	background-color:white;
@@ -114,9 +131,11 @@ div.scEditSC .txtb{width:300px;}
  	-moz-transition: .5s top ease;
 	-webkit-transition: .5s top ease;
 	transition: .5s top ease;
+	top: -1px;
+	height: auto !important;
+	display: inline-block;
 }
-.ft-mobile #logo, .ft-mobile #stageLogo 
-{left:0px !important;	top:0px !important;}
+
 .ft-mobile #sidebar  {
 	z-index: 10010;
 	right: 0px;
@@ -131,13 +150,13 @@ div.scEditSC .txtb{width:300px;}
 	-webkit-transition: .5s left ease;
 	transition: .5s left ease;
 }
-.ft-mobile .subMenu.out {left: -135px;}
-.ft-mobile .subMenuConf.out {left: -235px;}
-.ft-mobile #sidebar.out {
-	right: -190px;
-	display: none;
-}
-.ft-touch-available.ft-mobile #page.out, .ft-touch-available.ft-mobile #footer.out, {top: -108px;}
+
+/* being out styles */
+.ft-mobile.ft-touch-available #header.out { display: none;}
+.ft-mobile.ft-touch-available .subMenu.out {left: -135px;}
+.ft-mobile.ft-touch-available .subMenuConf.out {left: -235px;}
+.ft-mobile.ft-touch-available #sidebar.out {right: -190px;	display: none; }
+
 .ft-mobile #mobile_header, .ft-mobile #content, .ft-mobile #bottom {
 	position: relative;
 	background-color:white;
@@ -148,17 +167,21 @@ div.scEditSC .txtb{width:300px;}
 	border-right: solid 1px #DDD;
 	border-left: solid 1px #DDD;
 }
-.ft-touch-available.ft-mobile #content {
-/*	overflow:hidden;*/
-}
 .ft-mobile #bottom {
 	border-right: solid 1px #DDD;
 	border-left: solid 1px #DDD;
 	border-bottom: solid 1px #DDD;
 }
+
+/* general */
+.ft-mobile .nowrap {white-space:normal !important; word-wrap:break-word;}
+/* tables */ 
+.ft-mobile table, .ft-mobile table td, .ft-mobile table td div {white-space:normal !important; word-wrap:break-word;}
+
 /* forum read */
 .ft-mobile .cfHeader, .ft-mobile .cfHeader.doubleLine, .ft-mobile .cfHeader.singleLine {height: auto !important;}
 .ft-mobile .cfHeader .float_right {height: auto !important; float: none !important;}
+.ft-mobile .threadPaging {height: auto !important;}
 
 /* forum overview */
 .ft-mobile .frontPageList {width: 95% !important}
@@ -168,15 +191,9 @@ div.scEditSC .txtb{width:300px;}
 .ft-mobile .fplMessageAuthor, .ft-mobile .fplThreadName {width: auto !important;}
 .ft-mobile .fplPreview, .ft-mobile .fplRead {display:none;}
 
-/* tables */ 
-.ft-mobile table, .ft-mobile table td, .ft-mobile table td div {white-space:normal !important; word-wrap:break-word;}
-
-
 /* lineup */
 .ft-mobile #list  {margin: 0px !important;}
-
-/* general */
-.ft-mobile .nowrap {white-space:normal !important; word-wrap:break-word;}
+.ft-mobile #order_tabs {margin-left: -5px !important;}
 
 /* league */
 html .ft-mobile  table.ft_league_matches {margin-right: 0px !important;}
@@ -186,6 +203,5 @@ html .ft-mobile  table.ft_league_matches {margin-right: 0px !important;}
 .ft-mobile .eventItem > .eventItemText, .ft-mobile .pmSpeechOuterContainer
 .ft-mobile .pmNewSpeechOuterContainer
  {width: auto !important;}
-
-.ft-mobile #order_tabs {margin-left: -5px !important;}
+ 
 }

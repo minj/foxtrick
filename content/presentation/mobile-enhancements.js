@@ -20,6 +20,9 @@
 		if (Foxtrick.isPage("matchOrder", doc))	{
 			viewport_size = "765";
 		}
+		// smaller than 430 time cause flicker. don't ask me why, i tried like everything
+		if (Number(viewport_size) < 430)
+			Foxtrick.addClass(doc.getElementById("time"), "hidden");
 		
 		var select = function(area) {
 			if (area=="left" && lb) {
@@ -27,36 +30,28 @@
 					Foxtrick.removeClass(lb,'out');
 				if (rb)
 					Foxtrick.addClass(rb,'out');
-				if (header) {
-					Foxtrick.addClass(page,'out');
-					Foxtrick.addClass(footer,'out');
-				}
+				if (header)
+					Foxtrick.addClass(header,'out');
 			} 
 			else if (area=="right" && rb) {
 				if (rb)
 					Foxtrick.removeClass(rb,'out');
 				if (lb)
 					Foxtrick.addClass(lb,'out');
-				if (header) {
-					Foxtrick.addClass(page,'out');
-					Foxtrick.addClass(footer,'out');
-				}
+				if (header) 
+					Foxtrick.addClass(header,'out');
 			}
 			else if ((area=="center" || (area=="right" &&!rb)) && cb ) {
 				if (lb)
 					Foxtrick.addClass(lb,'out');
 				if (rb)
 					Foxtrick.addClass(rb,'out');
-				if (header) {
-					Foxtrick.addClass(page,'out');
-					Foxtrick.addClass(footer,'out');
-				}
+				if (header) 
+					Foxtrick.addClass(header,'out');
 			}
 			else if (area=="header") {
-				if (header) {
-					Foxtrick.removeClass(page,'out');
-					Foxtrick.removeClass(footer,'out');
-				}
+				if (header)
+					Foxtrick.removeClass(header,'out');
 				if (lb)
 					Foxtrick.addClass(lb,'out');
 				if (rb)
@@ -171,8 +166,7 @@
 		if (rb)
 			Foxtrick.addClass(rb,'out');
 		if (header) {
-			Foxtrick.addClass(page,'out');
-			Foxtrick.addClass(footer,'out');
+			Foxtrick.removeClass(header,'out');
 		}
 		Foxtrick.onClick(cb, function(ev){
 			select("center");
@@ -181,7 +175,7 @@
 		if (!Foxtrick.isLoginPage(doc))
 			select("center");
 
-		Foxtrick.addClass(hattrick,"ft-mobile");
+			Foxtrick.addClass(hattrick,"ft-mobile");
 		this.setMetaViewport(doc, viewport_size);
 	},
 
