@@ -52,7 +52,7 @@ Foxtrick.loader.background.contentScriptManager = {
 		"lib/sha1.js",
 		"lib/jquery.js",
 		"lib/jester.js",
-		"lib/js-yaml.js",
+		"lib/yaml.js",
 
 		//<!-- core modules -->
 		"redirections.js",

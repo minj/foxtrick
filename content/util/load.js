@@ -253,20 +253,23 @@ Foxtrick.util.load.xmlSync = function(url) {
 	return xml;
 };
 
+
 /*
  * @desc load and parse yaml synchronously. only to be used for internal repository
  */
 Foxtrick.util.load.ymlSync = function(url) {
-	var text = Foxtrick.util.load.sync(url);
-	var escQuotes = /("[^\n\\]*)"(?!\s*?\n)/mg;
+
 	try {
-		while (text.match(escQuotes))
-			text = text.replace(escQuotes, '$1\\"');
-		var json = Foxtrick.YML.safeLoad(text);
+		var text = Foxtrick.util.load.sync(url);
+		var json = Foxtrick.YAML.decode(text);
 	}
 	catch (e) {
 		// invalid YML
-		Foxtrick.log("Cannot parse YML (", url,  ")\nPlease check to see if the text has tabs instead of spaces, unescaped quotes or other weird shit\n", text);
+		var InputDump = function(text){
+			this.text = text;
+		}
+		var yError = "Please check to see if the text has tabs instead of spaces, unescaped quotes or other weird shit.\n";
+		Foxtrick.log("Cannot parse YML (", url, ")\n", yError, e, new InputDump(text));
 		json = null;
 	}
 	return json;

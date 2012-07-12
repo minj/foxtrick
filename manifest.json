@@ -42,7 +42,7 @@
 			"content/lib/oauth.js",
 			"content/lib/sha1.js",
 			"content/lib/PluralForm.js",
-			"content/lib/js-yaml.js",
+			"content/lib/yaml.js",
 			
 			//<!-- core modules -->
 			"content/redirections.js",

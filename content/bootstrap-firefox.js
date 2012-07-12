@@ -48,7 +48,7 @@ FoxtrickFirefox.prototype = {
 		//"lib/jquery.js",
 		"lib/oauth.js",
 		"lib/sha1.js",
-		"lib/js-yaml.js",
+		"lib/yaml.js",
 		
 		//<!-- core modules -->
 		"redirections.js",

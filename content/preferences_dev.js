@@ -760,11 +760,10 @@ function initChangesTab()
 {
 	var releaseNotesLinks = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + "release-notes-links.yml");
 
-	var releaseNotes = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + "release-notes.yml");
-
 	var lang = FoxtrickPrefs.getString("htLanguage");
 
 	var releaseNotesLocalized = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + "locale/" + lang + "/release-notes.yml");
+	var releaseNotes = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + "release-notes.yml");
 
 	var status = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + "locale/status.xml");
 
@@ -1100,7 +1099,7 @@ function addNote(note, to, links)
 		}
 	}
 
-	var noteTokens = note.match(/<(\w+)>.*?<\/\1>|.+?(?=<(\w+)>.*?<\/\2>|$)/g);
+	var noteTokens = note.match(/<(\w+)>.*?<\/\1>|.+?(?=<(\w+)>.*?<\/\2>|$)/mg);
 	// allow only word chars for tags, match only paired tags, tokenize into text + tags, no nesting!
 
 	var tagRegex = /^<(\w+)>(.*?)<\/\1>$/;

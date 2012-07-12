@@ -47,7 +47,7 @@ FoxtrickFennec.prototype = {
 		"lib/oauth.js",
 		"lib/sha1.js",
 		"lib/jester.js",
-		"lib/js-yaml.js",
+		"lib/yaml.js",
 		
 		//<!-- categorized modules with init functions -->
 		"forum/staff-marker.js",
