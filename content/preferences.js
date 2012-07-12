@@ -638,12 +638,15 @@ function getModule(module)
 
 function initChangesTab()
 {
-	var releaseNotes = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + "release-notes.xml");
-	var releaseNotesLocalized = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath
-		+ "locale/" + FoxtrickPrefs.getString("htLanguage") + "/release-notes.xml");
-	var status = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + "locale/status.xml");
+	var releaseNotesLinks = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + "release-notes-links.yml");
 
 	var lang = FoxtrickPrefs.getString("htLanguage");
+
+	var releaseNotesLocalized = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + "locale/" + lang + "/release-notes.yml");
+	var releaseNotes = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + "release-notes.yml");
+
+	var status = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + "locale/status.xml");
+
 	var path = "status/language[code='"+lang+"']/translated_progress";
 	
 	var statusText = "";
@@ -652,43 +655,47 @@ function initChangesTab()
 			var statusText = Foxtrickl10n.getString("releaseNotes.translationStatus").replace(/%s/,Foxtrick.xml_single_evaluate(status, path).textContent);
 	} catch(e) {}
 	
-	var notes = {};
-	var notesLocalized = {};
+	var versions = {};
+	var versionsLocalized = {};
 
-	var parseNotes = function(xml, dest) {
-		if (!xml) {
+	var parseNotes = function(json, dest) {
+		if (!json) {
 			dest = {};
 			return;
 		}
-		var noteElements = xml.getElementsByTagName("note");
-		for (var i = 0; i < noteElements.length; ++i) {			
-			var version = noteElements[i].getAttribute("version");//.replace(/(\d\.\d\.\d)\.\d/,"$1");
-			dest[version] = noteElements[i];
+		for (var v in json.versions) {
+			var prefixedNotes = json.versions[v], notes = [];
+			for (var n in prefixedNotes){
+				var idx = n.match(/\d+/);
+				notes[idx] = prefixedNotes[n];
+			}
+			dest[v] = notes;
 		}
 	}
-	parseNotes(releaseNotes, notes);
-	parseNotes(releaseNotesLocalized, notesLocalized);
+	parseNotes(releaseNotes, versions);
+	parseNotes(releaseNotesLocalized, versionsLocalized);
 
 	// add nightly and beta notes
-	for (var i in notes) {
-		var version = notes[i].getAttribute("version");
+	for (var i in versions) {
+		var version = i;
 		if (FoxtrickPrefs.getString('branch').indexOf(version) !== -1) {
-			var note = notesLocalized[version] || notes[version];
-			if (!note)
+			var notes = versions[version];
+			var notesLocalized = versionsLocalized[version];
+			if (!notes)
 				continue;
 			var list = $("#translator_note")[0];
-			var item = note.getElementsByTagName("item")[0];
-			importContent(item, list);
+			var note = notesLocalized[0] || notes[0];
+			addNote(note, list, releaseNotesLinks);
 			$("#translator_note").attr("style","display:block;");
-			if (version ==  "beta")
+			if (version == "beta")
 				$("#translator_note").append(statusText);
 		}
 	}
 
 	var select = $("#pref-version-release-notes")[0];
-	for (var i in notes) {
+	for (var i in versions) {
 		// unique version name
-		var version = notes[i].getAttribute("version");
+		var version = i;
 		// not beta / nightly notes
 		if (version.search(/^\d/) == -1)
 			continue;
@@ -700,11 +707,11 @@ function initChangesTab()
 		// 1. localized-version in localized release notes
 		// 2. localized-version in master release notes
 		// 3. version as fall-back
-		var localizedVersion = (notesLocalized[version] && notesLocalized[version].getAttribute("localized-version"))
-			|| (notes[version] && notes[version].getAttribute("localized-version"))
-			|| version;
+		/*var localizedVersion = (versionsLocalized[version] && versionsLocalized[version].getAttribute("localized-version"))
+			|| (versions[version] && versions[version].getAttribute("localized-version"))
+			|| version; */
 		var item = document.createElement("option");
-		item.textContent = localizedVersion;
+		item.textContent = version; //localizedVersion;
 		item.value = version;
 		select.appendChild(item);
 	}
@@ -719,21 +726,22 @@ function initChangesTab()
 				var subsub = (k!=-1)?("."+k):"";		
 				if (j == -1 && k > -1)
 					continue;
-				var note = notesLocalized[version+sub+subsub] || notes[version+sub+subsub];
-				if (!note)
+				var notes = versions[version+sub+subsub];
+				var notesLocalized = versionsLocalized[version+sub+subsub];
+				if (!notes)
 					continue;
 				list.appendChild(document.createElement("li"))
 							.textContent = "\u00a0";
 				list.appendChild(document.createElement("li"))
-							.appendChild(document.createElement("u"))
+							.appendChild(document.createElement("h4"))
 							.textContent = Foxtrickl10n.getString("releaseNotes.version") + " " + version + sub + subsub;
 				
-				var items = note.getElementsByTagName("item");
-				for (var i = 0; i < items.length; ++i) {
+				for (var i = 0, note; note = notes[i]; ++i) {
+					if (notesLocalized && notesLocalized[i] !== undefined) note = notesLocalized[i];
 					var item = document.createElement("li");
-					list.appendChild(item);
-					importContent(items[i], item);
+					addNote(note, item, releaseNotesLinks);
 					item.appendChild(document.createTextNode('\u00a0'));
+					list.appendChild(item);
 				}
 			 }
 		}
@@ -766,25 +774,27 @@ function initHelpTab()
 	}
 
 	// FAQ (faq.xml or localized locale/code/faq.xml
-	var faq = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + "faq.xml");
-	var faqLocal = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + "locale/"
-		+ FoxtrickPrefs.getString("htLanguage") + "/faq.xml");
+	var faqLinks = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + "faq-links.yml");
+	var faq = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + "faq.yml");
+	var faqLocal = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + "locale/"
+		+ FoxtrickPrefs.getString("htLanguage") + "/faq.yml");
 	var items = {};
 	var itemsLocal = {};
 	var parseFaq = function(src, dest) {
 		if (!src)
 			return;
-		var items = src.getElementsByTagName("item");
-		for (var i = 0; i < items.length; ++i) {
+		var items = src.faq;
+		for (var i in items) {
 			var item = items[i];
-			dest[item.getAttribute("id")] = item;
+			dest[i] = item;
 		}
 	};
 	parseFaq(faq, items);
 	parseFaq(faqLocal, itemsLocal);
 	for (var i in items) {
 		// we prefer localized ones
-		var item = itemsLocal[i] || items[i];
+		var itemLocal = (itemsLocal) ? itemsLocal[i] : null;
+		var item = items[i];
 		// container for question and answer
 		var block = document.createElement("div");
 		block.id = "faq-" + i;
@@ -793,8 +803,10 @@ function initHelpTab()
 		$("#pane").append($(block));
 		// question
 		var header = document.createElement("h3");
-		header.textContent = item.getElementsByTagName("question")[0].textContent;
+		var question = (itemLocal && itemLocal.question !== undefined) ? itemLocal.question : item.question;
+		addNote(question, header, faqLinks);
 		block.appendChild(header);
+
 		// link to question
 		var link = document.createElement("a");
 		link.textContent = "¶";
@@ -804,7 +816,9 @@ function initHelpTab()
 		// answer
 		var content = document.createElement("p");
 		// import child nodes one by one as we may use XHTML there
-		importContent(item.getElementsByTagName("answer")[0], content);
+		var answer = (itemLocal && itemLocal.answer !== undefined) ? itemLocal.answer : item.answer;
+		
+		addNote(answer, content, faqLinks);
 		block.appendChild(content);
 	}
 }
@@ -926,25 +940,58 @@ function notice(msg)
 	$("#note").show("slow");
 }
 
-function importContent(from, to)
+function addNote(note, to, links)
 {
-	for (var i = 0; i < from.childNodes.length; ++i) {
-		var node = from.childNodes[i];
-		if (node.nodeType == Foxtrick.NodeTypes.ELEMENT_NODE
-			&& node.nodeName.toLowerCase() == "module") {
-			var link = document.createElement("a");
-			link.textContent = node.textContent;
-			link.href = Foxtrick.InternalPath + "preferences.html#module=" + link.textContent;
-			to.appendChild(link);
+	var noteNode = document.createDocumentFragment();
+
+	var addTag = function(tagName, tagContent) {
+		var addNode = function(nodeName, textContent, options) {
+			var node = document.createElement(nodeName);
+			node.textContent = textContent;
+			if (options)
+				for (var opt in options)
+					node[opt] = options[opt];
+			return node;
 		}
-		else {
-			var importedNode = document.importNode(node, true);
-			to.appendChild(importedNode);
+		var addNested = function(name, tagContent) {
+			var el = document.createElement(name);
+			addNote(tagContent, el, links);
+			return el;
+		}
+		var addLink = function(tagName, tagContent) {
+			if (links && links[tagName])
+				 if (tagName.search('FTlink') == 0)
+				 	return addNode('a', tagContent, {href : links[tagName]});
+				 else
+					return addNode('a', tagContent, {href : links[tagName], target : '_blank'});
+			else return document.createTextNode(tagContent);
+		}
+		switch(tagName) {
+			case "em": return addNode('em', tagContent);
+			case "strong": return addNode('strong', tagContent);
+			case "header": return addNode('h5', tagContent); //TODO
+			case "module": return addNode('a', tagContent, {href : Foxtrick.InternalPath + "preferences_dev.html#module=" + tagContent});
+			case "ul": return addNested('ul', tagContent);
+			case "li": return addNested('li', tagContent);
+			case "p": return addNested('p', tagContent);
+			default: return addLink(tagName, tagContent);
 		}
 	}
+
+	var noteTokens = note.match(/<(\w+)>.*?<\/\1>|.+?(?=<(\w+)>.*?<\/\2>|$)/mg);
+	// allow only word chars for tags, match only paired tags, tokenize into text + tags, no nesting!
+
+	var tagRegex = /^<(\w+)>(.*?)<\/\1>$/;
+	for (var i = 0, token; token = noteTokens[i]; ++i) {
+		if (tagRegex.test(token)) {
+			var tag = tagRegex.exec(token); // 0: whole token, 1: tagName, 2: tagContent
+			noteNode.appendChild(addTag(tag[1], tag[2]));
+		}
+		else
+			noteNode.appendChild(document.createTextNode(token));
+	}
+	to.appendChild(noteNode);
 }
-
-
 
 // permissions management
 
@@ -1088,3 +1135,4 @@ function checkPermissions() {
 	}
 	return needsPermissions; // false prevents save notived be shown. will be shown delayed in getPermissions
 }
+
