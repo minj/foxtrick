@@ -894,25 +894,27 @@ function initHelpTab()
 	}
 
 	// FAQ (faq.xml or localized locale/code/faq.xml
-	var faq = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + "faq.xml");
-	var faqLocal = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + "locale/"
-		+ FoxtrickPrefs.getString("htLanguage") + "/faq.xml");
+	var faqLinks = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + "faq-links.yml");
+	var faq = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + "faq.yml");
+	var faqLocal = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + "locale/"
+		+ FoxtrickPrefs.getString("htLanguage") + "/faq.yml");
 	var items = {};
 	var itemsLocal = {};
 	var parseFaq = function(src, dest) {
 		if (!src)
 			return;
-		var items = src.getElementsByTagName("item");
-		for (var i = 0; i < items.length; ++i) {
+		var items = src.faq;
+		for (var i in items) {
 			var item = items[i];
-			dest[item.getAttribute("id")] = item;
+			dest[i] = item;
 		}
 	};
 	parseFaq(faq, items);
 	parseFaq(faqLocal, itemsLocal);
 	for (var i in items) {
 		// we prefer localized ones
-		var item = itemsLocal[i] || items[i];
+		var itemLocal = (itemsLocal) ? itemsLocal[i] : null;
+		var item = items[i];
 		// container for question and answer
 		var block = document.createElement("div");
 		block.id = "faq-" + i;
@@ -921,7 +923,8 @@ function initHelpTab()
 		$("#pane").append($(block));
 		// question
 		var header = document.createElement("h3");
-		header.textContent = item.getElementsByTagName("question")[0].textContent;
+		var question = (itemLocal && itemLocal.question !== undefined) ? itemLocal.question : item.question;
+		addNote(question, header, faqLinks);
 		block.appendChild(header);
 
 		var container = document.createElement("div");
@@ -936,7 +939,9 @@ function initHelpTab()
 		// answer
 		var content = document.createElement("p");
 		// import child nodes one by one as we may use XHTML there
-		importContent(item.getElementsByTagName("answer")[0], content);
+		var answer = (itemLocal && itemLocal.answer !== undefined) ? itemLocal.answer : item.answer;
+		
+		addNote(answer, content, faqLinks);
 		container.appendChild(content);
 		block.appendChild(container);
 	}
@@ -1060,23 +1065,6 @@ function notice(msg)
 	$("#note-content").text(msg);
 	$("#note").show("slow");
 }
-function importContent(from, to)
-{
-	for (var i = 0; i < from.childNodes.length; ++i) {
-		var node = from.childNodes[i];
-		if (node.nodeType == Foxtrick.NodeTypes.ELEMENT_NODE
-			&& node.nodeName.toLowerCase() == "module") {
-			var link = document.createElement("a");
-			link.textContent = node.textContent;
-			link.href = Foxtrick.InternalPath + "preferences.html#module=" + link.textContent;
-			to.appendChild(link);
-		}
-		else {
-			var importedNode = document.importNode(node, true);
-			to.appendChild(importedNode);
-		}
-	}
-}
 function addNote(note, to, links)
 {
 	var noteNode = document.createDocumentFragment();
@@ -1089,6 +1077,11 @@ function addNote(note, to, links)
 				for (var opt in options)
 					node[opt] = options[opt];
 			return node;
+		}
+		var addNested = function(name, tagContent) {
+			var el = document.createElement(name);
+			addNote(tagContent, el, links);
+			return el;
 		}
 		var addLink = function(tagName, tagContent) {
 			if (links && links[tagName])
@@ -1103,6 +1096,9 @@ function addNote(note, to, links)
 			case "strong": return addNode('strong', tagContent);
 			case "header": return addNode('h5', tagContent); //TODO
 			case "module": return addNode('a', tagContent, {href : Foxtrick.InternalPath + "preferences_dev.html#module=" + tagContent});
+			case "ul": return addNested('ul', tagContent);
+			case "li": return addNested('li', tagContent);
+			case "p": return addNested('p', tagContent);
 			default: return addLink(tagName, tagContent);
 		}
 	}

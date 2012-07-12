@@ -261,7 +261,7 @@ Foxtrick.util.load.ymlSync = function(url) {
 
 	try {
 		var text = Foxtrick.util.load.sync(url);
-		var json = Foxtrick.YAML.decode(text);
+		var json = (text !== null) ? Foxtrick.YAML.decode(text) : null;
 	}
 	catch (e) {
 		// invalid YML
