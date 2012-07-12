@@ -783,8 +783,13 @@ function initChangesTab()
 			dest = {};
 			return;
 		}
-		for (var v in json.versions) {			
-			dest[v] = json.versions[v].notes;
+		for (var v in json.versions) {
+			var prefixedNotes = json.versions[v], notes = [];
+			for (var n in prefixedNotes){
+				var idx = n.match(/\d+/);
+				notes[idx] = prefixedNotes[n];
+			}
+			dest[v] = notes;
 		}
 	}
 	parseNotes(releaseNotes, versions);
@@ -794,11 +799,12 @@ function initChangesTab()
 	for (var i in versions) {
 		var version = i;
 		if (FoxtrickPrefs.getString('branch').indexOf(version) !== -1) {
-			var notes = versionsLocalized[version] || versions[version];
+			var notes = versions[version];
+			var notesLocalized = versionsLocalized[version];
 			if (!notes)
 				continue;
 			var list = $("#translator_note")[0];
-			var note = notes[0];
+			var note = notesLocalized[0] || notes[0];
 			addNote(note, list, releaseNotesLinks);
 			$("#translator_note").attr("style","display:block;");
 			if (version == "beta")
@@ -840,7 +846,8 @@ function initChangesTab()
 				var subsub = (k!=-1)?("."+k):"";		
 				if (j == -1 && k > -1)
 					continue;
-				var notes = versionsLocalized[version+sub+subsub] || versions[version+sub+subsub];
+				var notes = versions[version+sub+subsub];
+				var notesLocalized = versionsLocalized[version+sub+subsub];
 				if (!notes)
 					continue;
 				list.appendChild(document.createElement("li"))
@@ -850,6 +857,7 @@ function initChangesTab()
 							.textContent = Foxtrickl10n.getString("releaseNotes.version") + " " + version + sub + subsub;
 				
 				for (var i = 0, note; note = notes[i]; ++i) {
+					if (notesLocalized && notesLocalized[i] !== undefined) note = notesLocalized[i];
 					var item = document.createElement("li");
 					addNote(note, item, releaseNotesLinks);
 					item.appendChild(document.createTextNode('\u00a0'));
