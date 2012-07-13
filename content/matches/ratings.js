@@ -10,7 +10,12 @@ Foxtrick.modules["Ratings"]={
 	PAGES : new Array('match'),
 	OPTIONS : ["HideAverages", "HatStats", "HatStatsDetailed", "LoddarStats", "PeasoStats", "VnukStats", "HTitaVal", "GardierStats"],
 	ratingDefs :  {}, // will be filled in initOptions
-
+	copy: function(div) {
+		if (div) {
+			return '\n' + Foxtrick.util.htMl.getMarkupFromNode(div);
+		}
+		return '';
+	},
 	run : function(doc) {
 
 		var isprematch = (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch")!=null);

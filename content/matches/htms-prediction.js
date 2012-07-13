@@ -17,7 +17,7 @@ Foxtrick.modules["HTMSPrediction"]={
 		if (htmstable) {
 			// remove empty row and fix some newlines
 			htmstable.deleteRow(htmstable.rows.length-2);
-			return '\n' + Foxtrick.util.htMl.getMarkupFromNode(HTMSClone).replace(/\n/g,'').replace(/\[link=/g,'\n[link=');
+			return '\n' + Foxtrick.util.htMl.getMarkupFromNode(HTMSClone).replace(/\[link=/g,'\n[link=');
 		}
 		return '';
 	},

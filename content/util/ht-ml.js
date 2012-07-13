@@ -117,8 +117,12 @@ Foxtrick.util.htMl.getLink = function(node) {
 	}
 	return {copyTitle : Foxtrickl10n.getString("copy.link"), markup : markup };
 };
-
 Foxtrick.util.htMl.getMarkupFromNode = function(node) {
+	var ret = Foxtrick.util.htMl.getMarkupFromNodeRec(node);
+	ret = ret.replace(/^[\s]+|[\s]+$/mg,'');
+	return ret;
+}
+Foxtrick.util.htMl.getMarkupFromNodeRec = function(node) {
 	if (node.nodeName === undefined) {
 		return "";
 	}
@@ -159,13 +163,10 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 		return '';
 	}
 
-	var ret = " ";
+	var ret = "";
 
 	var trim = function(string) {
-		return string.replace(RegExp("\\s*\n\\s*", "g"), "\n")
-			.replace(RegExp("^\\s+"), " ")
-			.replace(RegExp("\\s+$"), " ")
-			.replace(RegExp("\\s+", "g"), " ");
+		return string.replace(/\s+/gm, " ");
 	};
 	if (!node.hasChildNodes()) {
 		ret = trim(node.textContent);
@@ -174,7 +175,7 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 		var children = node.childNodes;
 		for (var i = 0; i < children.length; ++i) {
 			// recursively get the content of child nodes
-			var childMarkup = Foxtrick.util.htMl.getMarkupFromNode(children[i]);
+			var childMarkup = Foxtrick.util.htMl.getMarkupFromNodeRec(children[i]);
 			if (childMarkup != null)
 				ret += childMarkup;
 		}
@@ -186,7 +187,7 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 			var linkId = Foxtrick.util.htMl.getId(node);
 			if (linkMarkup !== null) {
 				if (linkId !== null && linkId.id !== undefined
-					&& ret.replace(/^\s+|\s+$/g,'') === "(" + linkId.id + ")") {
+					&& ret.replace(/^\s+|\s+$/mg,'') === "(" + linkId.id + ")") {
 					// if the link is simply a representation of ID,
 					// then only use the markup without extra text
 					ret = linkMarkup.markup;
@@ -201,7 +202,7 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 			}
 			return ret;
 		}
-		return ' ';
+		return ret;
 	}
 	else if (nodeName === "table" || nodeName === "tr") {
 		ret = "[" + nodeName + "]" + ret + "[/" + nodeName + "]\n";
@@ -233,7 +234,7 @@ Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 	else if (nodeName === "strong" || nodeName === "b" || nodeName === "h1" || nodeName === "h2"|| nodeName === "h3" || nodeName === "h4") {
 		ret = "[b]" + ret + "[/b]";
 	}
-	else if (nodeName === "emph" || nodeName === "i") {
+	else if (nodeName === "em" || nodeName === "i") {
 		ret = "[i]" + ret + "[/i]";
 	}
 	else if (nodeName === "u") {

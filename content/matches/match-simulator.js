@@ -463,6 +463,12 @@ Foxtrick.modules.MatchSimulator={
 				}
 				text += '[/table]';
 				
+				// copy ratings
+				var ratingsTable = doc.getElementById('ft_simulation_ratings_table');
+				if (ratingsTable) {
+					text += Foxtrick.modules["Ratings"].copy(ratingsTable.parentNode);
+				}
+				
 				// copy htms prediction. 
 				var overlayHTMS = doc.getElementById('overlayHTMSCurrent');
 				if (overlayHTMS) {
