@@ -44,7 +44,7 @@ if (Foxtrick.platform != 'Opera' && Foxtrick.platform != 'Mobile' && Foxtrick.pl
 			// called from background script
 			var chromeInit = function() {
 				// update menu in background on mousedown
-				chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+				chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
 					var documentUrlPatterns = [
 						"*://*.hattrick.org/*",
 						"*://*.hattrick.ws/*",
@@ -177,7 +177,7 @@ if (Foxtrick.platform != 'Opera' && Foxtrick.platform != 'Mobile' && Foxtrick.pl
 					doc.addEventListener('mousedown', function(ev) {
 						if (ev.button == 2) { // right mouse down
 							collectData(ev.target);
-							chrome.extension.sendRequest({ req : "updateContextMenu", entries: getEntries() });
+							chrome.extension.sendMessage({ req : "updateContextMenu", entries: getEntries() });
 						}
 					}, false);
 				}
