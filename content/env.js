@@ -363,13 +363,13 @@ else if (typeof(chrome) == "object") {
 		extension : {
 			sendRequest: function (data, callback) {
 				if (callback) 
-					chrome.extension.sendMessage(data, callback);
+					chrome.extension.sendRequest(data, callback);
 				else 
-					chrome.extension.sendMessage(data);
+					chrome.extension.sendRequest(data);
 			},
 			onRequest : {
 				addListener : function (listener) {
-					chrome.extension.onMessage.addListener(listener)
+					chrome.extension.onRequest.addListener(listener)
 				},
 			},
 			// send message to all registered tabs
@@ -378,7 +378,7 @@ else if (typeof(chrome) == "object") {
 				function theFunction(data, callback) {
 				  var i;
 				  for (i in sandboxed.tabs.tab) {
-					  chrome.tabs.sendMessage( Number(i), data, callback );
+					  chrome.tabs.sendRequest( Number(i), data, callback );
 				  }
 				}
 
@@ -424,7 +424,7 @@ else if (typeof(chrome) == "object") {
 				for (i in tabListCopy) {
 					// not the sender
 					if (i != senderid ) {
-						chrome.tabs.sendMessage( Number(i), { id: i, req: 'checkAlive' }, 
+						chrome.tabs.sendRequest( Number(i), { id: i, req: 'checkAlive' }, 
 						  function(response) { 
 							if (response)
 								sandboxed.tabs.tab[response.id] = true;
