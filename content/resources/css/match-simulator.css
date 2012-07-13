@@ -72,20 +72,25 @@ html[opera] .ftMatchTournament , html[safari] .ftMatchTournament , html[chrome] 
 html[opera] .ftUpcomingNationalIcon , html[safari] .ftUpcomingNationalIcon , html[chrome] .ftUpcomingNationalIcon  { background-color: #FFC880}
 
 
-/* htms box */
-#ft-overlayHTMS {
+/* bottom box */
+#ft-overlayBottom {
 	background-color: white;
 	border: 2px solid #79A777;
 	top: 520px;
 	position: absolute;
 	width: 597px;
 }
-html[data-theme="simple"] #ft-overlayHTMS {
-	min-height: 270px;
+html[data-theme="simple"] #ft-overlayBottom {
+	min-height: 530px;
 }
-html[data-theme="standard"] #ft-overlayHTMS {
-	min-height: 310px;
+html[data-theme="standard"] #ft-overlayBottom {
+	min-height: 560px;
 }
+
+#ft_simulation_ratings {
+	margin: 4px 40px;
+	padding: 10px 20px;
+}	
 #overlayHTMSCurrent {
 	margin: 4px 40px;
 	padding: 10px 20px;
@@ -153,7 +158,7 @@ html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
 #ft_matchsimulator_options div{
 	float:left;
 	padding-left: 20px;
-}		
+}	
 		
 /* field overlay display options */
 #fieldOverlay.displayBelow {

@@ -14,11 +14,12 @@ versions:
         note_4: "<module>SkillTable</module>: Player names are abbreviated from now on consuming less space."
         note_5: "<module>SkillColoring</module>: Full module rewrite, a lot of bug fixes and additions. Options changed. Please set them to your liking again."
         note_6: "<module>TransferSearchResultFilters</module>: Opportunity added to filter by form and hide players without speciality. Now cooperates with <module>TransferSearchFilters</module>."
-        note_7: "<module>FriendlyPool</module>: Opportunity added to expand the country selection box."
-        note_8: "<module>MovePlayerStatement</module>: Opportunity added to remove the statement altogether."
-        note_9: "<module>YouthTwins</module>: Manually triggered changes made on HY will now instantly reflect on the youthplayers page"
-        note_10: "Tabs: Added backend functionality to add custom tabs to most sites. (like HT's own tabs for upcoming matches)."
-        note_11: "<header>Bugfixes.</header>"
+        note_7: "<module>MatchSimulator</module>: Added integration with <module>Ratings</module>."
+        note_8: "<module>FriendlyPool</module>: Opportunity added to expand the country selection box."
+        note_9: "<module>MovePlayerStatement</module>: Opportunity added to remove the statement altogether."
+        note_10: "<module>YouthTwins</module>: Manually triggered changes made on HY will now instantly reflect on the youthplayers page"
+        note_11: "Tabs: Added backend functionality to add custom tabs to most sites. (like HT's own tabs for upcoming matches)."
+        note_12: "<header>Bugfixes</header>"
 
     0.10.0: 
         note_0: "NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)"
