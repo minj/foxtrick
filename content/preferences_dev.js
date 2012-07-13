@@ -1103,10 +1103,10 @@ function addNote(note, to, links)
 		}
 	}
 
-	var noteTokens = note.match(/<(\w+)>.*?<\/\1>|.+?(?=<(\w+)>.*?<\/\2>|$)/mg);
+	var noteTokens = note.match(/<(\w+)>[\s\S]*?<\/\1>|[\s\S]+?(?=<(\w+)>[\s\S]*?<\/\2>|$)/mg);
 	// allow only word chars for tags, match only paired tags, tokenize into text + tags, no nesting!
 
-	var tagRegex = /^<(\w+)>(.*?)<\/\1>$/;
+	var tagRegex = /^<(\w+)>([\s\S]*?)<\/\1>$/m;
 	for (var i = 0, token; token = noteTokens[i]; ++i) {
 		if (tagRegex.test(token)) {
 			var tag = tagRegex.exec(token); // 0: whole token, 1: tagName, 2: tagContent
