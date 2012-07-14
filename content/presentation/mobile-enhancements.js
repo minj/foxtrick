@@ -16,6 +16,7 @@
 	
 
 	run : function(doc) { 
+		// get viewport size
 		var viewport_size = FoxtrickPrefs.getString("module.MobileEnhancements.ViewPort_text");
 		if (Foxtrick.isPage("matchOrder", doc))	{
 			viewport_size = "765";
@@ -23,8 +24,12 @@
 		// smaller than 430 time cause flicker. don't ask me why, i tried like everything
 		if (Number(viewport_size) < 430)
 			Foxtrick.addClass(doc.getElementById("time"), "hidden");
-		
+
+		// functions to select left, right, center, header
 		var select = function(area) {
+			// retract menu
+			Foxtrick.removeClass(mobile_header_center,"out");
+			
 			if (area=="left" && lb) {
 				if (lb)
 					Foxtrick.removeClass(lb,'out');
@@ -57,9 +62,17 @@
 				if (rb)
 					Foxtrick.addClass(rb,'out');
 			}
-			//Foxtrick.modules["MobileEnhancements"].setMetaViewport(doc, "470");
+			else if (area=="header_toggle") {
+				if (header)
+					Foxtrick.toggleClass(header,'out');
+				if (lb)
+					Foxtrick.addClass(lb,'out');
+				if (rb)
+					Foxtrick.addClass(rb,'out');
+			}
 		};
 
+		// all relevant elements
 		var lb = doc.getElementsByClassName("subMenu")[0] || doc.getElementsByClassName("subMenuConf")[0];
 		var cb = doc.getElementsByClassName("main")[0];
 		var rb = doc.getElementById("sidebar");
@@ -67,26 +80,21 @@
 		var page = doc.getElementById("page"); 
 		var footer = doc.getElementById("footer"); 
 		var hattrick = doc.getElementsByClassName("hattrick")[0] || doc.getElementsByClassName("hattrickNoSupporter")[0];
-		
 		var header = doc.getElementById("header");
 		var menu = doc.getElementById("menu");
+		
+		// move menu bellow header
 		var mobile_header = doc.createElement('div');
 		mobile_header.id = 'mobile_header';
-		header.parentNode.insertBefore(mobile_header, header.nextSibling);
-		
+		header.parentNode.insertBefore(mobile_header, header.nextSibling);	
 		var mobile_header_center = doc.createElement('div');
 		mobile_header_center.id = 'mobile_header_center';
 		mobile_header_center.classNme = 'mobile_header_center out';
 		Foxtrick.onClick(mobile_header_center, function(ev){
 			Foxtrick.toggleClass(mobile_header_center,"out");
-			Foxtrick.toggleClass(lb,"out");
-			Foxtrick.toggleClass(rb,"out");
-			Foxtrick.toggleClass(header,"out");
 		});
 		mobile_header.appendChild(mobile_header_center);
-		
-		mobile_header_center.appendChild(menu);
-		
+		menu = mobile_header_center.appendChild(menu);
 		var mobile_header_center_tab = doc.createElement('div');
 		mobile_header_center_tab.id = 'mobile_header_center_tab';
 		var a = doc.createElement('a');
@@ -95,80 +103,57 @@
 		mobile_header_center_tab.appendChild(a);
 		mobile_header_center.appendChild(mobile_header_center_tab);
 
+		// add gestures and clicks/taps
 		try {
 			// attach a handler to the element's swipe event		
-			if (cb)
-				Foxtrick.jester(cb,{swipeDistance:80})
-						.swipe(function(touches,swipeDirection){
-					Foxtrick.log("swipe",{swipeDirection:swipeDirection});
-					if (swipeDirection.left) {
-						select("right");
-						touches.event.preventDefault();
-					}
-					else if (swipeDirection.right) {
-						select("left")
-						touches.event.preventDefault();
-					}
-				});
-			if (mobile_header)
-				Foxtrick.jester(mobile_header,{swipeDistance:5})
-						.swipe(function(touches,swipeDirection){
-					Foxtrick.log("swipe",{swipeDirection:swipeDirection});
-					if (swipeDirection.down) {
-						select("header")
-						touches.event.preventDefault();
-					}
-					Foxtrick.log("swipe",{swipeDirection:swipeDirection});
-					if (swipeDirection.up) {
-						select("center")
-						touches.event.preventDefault();
-					}
-				});
-			if (lb)
-				Foxtrick.jester(lb,{swipeDistance:50})
-						.swipe(function(touches,swipeDirection){
-					Foxtrick.log("swipe",{swipeDirection:swipeDirection});
-					if (swipeDirection.left) {
-						select("center")
-						touches.event.preventDefault();
-					}
-				});
-			if (rb)
-				Foxtrick.jester(rb,{swipeDistance:50})
-						.swipe(function(touches,swipeDirection){
-					Foxtrick.log("swipe",{swipeDirection:swipeDirection});
-					if (swipeDirection.right) {
-						select("center")
-						touches.event.preventDefault();
-					}
-				});
-			if (header)
-				Foxtrick.jester(header,{swipeDistance:20})
-						.swipe(function(touches,swipeDirection){
-					Foxtrick.log("swipe",{swipeDirection:swipeDirection});
-					if (swipeDirection.up) {
-						select("center")
-						touches.event.preventDefault();
-					}
-				});
-			/*Foxtrick.jester(header,{swipeDistance:10})
-					.swipe(function(touches,swipeDirection){
-				Foxtrick.log("swipe",{swipeDirection:swipeDirection});
-				if (swipeDirection.up) {
-					select("center")
-					touches.evt.preventDefault();
-				}
-			});*/
-			/*Foxtrick.jester(mobile_header)
-					.tab(function(touches){
-				Foxtrick.log("tab");
-				select("center")
-			});*/
+			var gestures = { 
+				swipes : [
+					{ el:cb, 			dist:40, 	dir:"left", 	select: "right" },
+					{ el:cb, 			dist:40, 	dir:"right", 	select: "left" },
+					{ el:mobile_header, dist:10, 	dir:"down", 	select: "header" },
+					{ el:mobile_header, dist:10, 	dir:"up",	 	select: "center" },
+					{ el:lb, 			dist:40, 	dir:"left", 	select: "center" },
+					{ el:rb, 			dist:40, 	dir:"right", 	select: "center" },
+					{ el:header,		dist:20, 	dir:"down", 	select: "center" },
+				]
+			};
+			for (var i=0; i< gestures.swipes.length; ++i) {
+				var addSwipe= function(swipe){
+					if (swipe.el)
+						Foxtrick.jester(swipe.el,{swipeDistance: swipe.dist})
+								.swipe(function(touches, swipeDirection){
+							if (swipeDirection[swipe.dir]) {
+								select(swipe.select);
+							}
+						});
+				};
+				addSwipe(gestures.swipes[i]);
+			}
+			// swipe log
+			Foxtrick.jester(page,{swipeDistance: swipe.dist})
+					.swipe(function(touches, swipeDirection){
+				Foxtrick.log("swipe", {swipeDirection:swipeDirection}) 
+			});
+			
+			// toggle header on mobile_header tap
+			Foxtrick.jester(mobile_header)
+					.tap(function(touches){
+				if (touches.event.originalTarget !==  mobile_header_center_tab &&
+					touches.event.originalTarget !==  menu  )
+					select("header_toggle");
+			});
+			
 			Foxtrick.addClass(hattrick,"ft-touch-available");
+		
 		} catch(e) {
 			Foxtrick.log("no touch events")
 		}
 		
+		// tap/click anywhere on cb to get back to center
+		Foxtrick.onClick(cb, function(ev){
+			select("center");
+		});
+
 		if (lb)
 			Foxtrick.addClass(lb,'out');
 		if (rb)
@@ -176,9 +161,6 @@
 		if (header) {
 			Foxtrick.removeClass(header,'out');
 		}
-		Foxtrick.onClick(cb, function(ev){
-			select("center");
-		});
 		
 		if (!Foxtrick.isLoginPage(doc))
 			select("center");
