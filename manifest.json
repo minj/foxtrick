@@ -1,5 +1,8 @@
 {
-	"background_page" : "content/background.html",
+	"manifest_version": 2,
+	"background" : {
+		"page" : "content/background.html"
+	},
 	"content_scripts" : [ {
 		"js" : [
 			//<!-- essential stuffs -->
