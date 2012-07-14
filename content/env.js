@@ -45,15 +45,14 @@ sandboxed.tabs.create(url)
 
 
 Foxtrick.DataPath = "http://foxtrick.googlecode.com/svn/trunk/res/";
+// used to cache dataUrl images
+Foxtrick.dataUrlStorage = {};
 
 if ( typeof(opera) == "object" ) {
 	Foxtrick.arch = "Sandboxed";
 	Foxtrick.platform = "Opera";
 	Foxtrick.InternalPath = "content/";
 	Foxtrick.ResourcePath = "http://foxtrick.googlecode.com/svn/trunk/content/";
-
-	// used to cache dataUrl images in opera
-	Foxtrick.dataUrlStorage = {};
 
 	// to tell which context the chrome script is running at
 	// either background page, or content script
