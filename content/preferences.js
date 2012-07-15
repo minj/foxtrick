@@ -1137,7 +1137,6 @@ function checkPermissions() {
 }
 
 
-// this is the preference script entry point for sandboxed arch
-if (Foxtrick.arch == "Sandboxed")
-	initLoader();
+// this is the preference script entry point
+initLoader();
 
