@@ -173,6 +173,9 @@
 		"playedmatchlink": {
 			"url": "http://www.fantamondi.it/HTMS/index.php?page=matchanalyze&matchid=[matchid]&lang=[lang]"
 		},
+    "playedyouthmatchlink": {
+      "url": "http://www.fantamondi.it/HTMS/index.php?page=matchanalyze&youth=on&matchid=[matchid]&lang=[lang]"
+    },
 		"title": "htms match analyzer",
 		"img": "resources/linkicons/htmsanalizer.png"
 	},
