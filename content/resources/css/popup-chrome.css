@@ -1,0 +1,30 @@
+body {
+  font-size: 75%;
+  font-family: Helvetica, Arial, sans-serif;
+  min-width: 170px;
+  background: #ffffff;
+  color: #000000;
+}
+
+a { text-decoration: none }
+a:hover { color: #aaaaff }
+
+.spacer {
+  height: 7px;
+  width: 5px;
+  display: block;
+}
+
+#bottomLinks {
+	font-family: 'Arial', arial, serif;
+	font-size:12px;
+	color:#000;
+	text-decoration:none;
+	text-align:center;
+	width:auto;
+	margin:0px auto;
+	padding:5px 5px 5px 5px;	
+}
+#bottomLinks a{
+	padding: 2px;
+}

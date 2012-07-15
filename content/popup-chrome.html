@@ -1,112 +1,28 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<style type="text/css" media="screen">
-body {
-  font-size: 75%;
-  font-family: Helvetica, Arial, sans-serif;
-  min-width: 170px;
-  background: #ffffff;
-  color: #000000;
-}
-
-a { text-decoration: none }
-a:hover { color: #aaaaff }
-
-
-.ui-button {
-    padding: 3px;
-}
-
-.spacer {
-  height: 7px;
-  width: 5px;
-  display: block;
-}
-
-#bottomLinks {
-	font-family: 'Arial', arial, serif;
-	font-size:12px;
-	color:#000;
-	text-decoration:none;
-	text-align:center;
-	width:auto;
-	margin:0px auto;
-	padding:5px 5px 5px 5px;	
-}
-</style>
-
-<script type="text/javascript" charset="utf-8">
-function init()
-{
-	var BackgroundPage = chrome.extension.getBackgroundPage();
-	document.getElementById("foxtrick-toolbar-deactivate").checked = BackgroundPage.FoxtrickPrefs.getBool("disableTemporary");
-	document.getElementById("foxtrick-toolbar-deactivate-label").textContent = BackgroundPage.Foxtrickl10n.getString("toolbar.disableTemporary");
-	document.getElementById("foxtrick-toolbar-highlight").checked = BackgroundPage.FoxtrickPrefs.getBool("featureHighlight");
-	document.getElementById("foxtrick-toolbar-highlight-label").textContent = BackgroundPage.Foxtrickl10n.getString("toolbar.featureHighlight");
-	document.getElementById("foxtrick-toolbar-translationKeys").checked = BackgroundPage.FoxtrickPrefs.getBool("translationKeys");
-	document.getElementById("foxtrick-toolbar-translationKeys-label").textContent = BackgroundPage.Foxtrickl10n.getString("toolbar.translationKeys");
-	document.getElementById("foxtrick-toolbar-options-label").textContent = BackgroundPage.Foxtrickl10n.getString("toolbar.preferences");
-	document.getElementById("foxtrick-toolbar-homepage-label").textContent = BackgroundPage.Foxtrickl10n.getString("link.homepage");
-	document.getElementById("foxtrick-toolbar-clearCache-label").textContent = BackgroundPage.Foxtrickl10n.getString("api.clearCache");
-	document.getElementById("foxtrick-toolbar-clearCache-label").title = BackgroundPage.Foxtrickl10n.getString("api.clearCache.title");
-}
-
-function toggleEnabled()
-{
-	var checked = document.getElementById("foxtrick-toolbar-deactivate").checked;
-	var BackgroundPage = chrome.extension.getBackgroundPage();
-	BackgroundPage.FoxtrickPrefs.setBool("disableTemporary",checked);
-	window.close();
-}
-
-function toggleHighlight()
-{
-	var checked = document.getElementById("foxtrick-toolbar-highlight").checked;
-	var BackgroundPage = chrome.extension.getBackgroundPage();
-	BackgroundPage.FoxtrickPrefs.setBool("featureHighlight",checked);
-	window.close();
-}
-
-function toggleTranslationKeys()
-{
-	var checked = document.getElementById("foxtrick-toolbar-translationKeys").checked;
-	var BackgroundPage = chrome.extension.getBackgroundPage();
-	BackgroundPage.FoxtrickPrefs.setBool("translationKeys",checked);
-	window.close();
-}
-
-function clearCache()
-{
-	var BackgroundPage = chrome.extension.getBackgroundPage();
-	BackgroundPage.Foxtrick.sessionDeleteBranch('');
-	BackgroundPage.Foxtrick.localDeleteBranch('');
-	//BackgroundPage.Foxtrick.util.api.clearCache();
-	window.close();
-}
-
-</script>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="./resources/css/popup-chrome.css" />
 </head>
-
-<body id="main" onload="init()">
-<div id="enabledCheckboxAndLabel" style="display: block; ">
-	<input id="foxtrick-toolbar-deactivate" type="checkbox" checked="" onclick="toggleEnabled()">
+<body id="main">
+<div id="enabledCheckboxAndLabel">
+	<input id="foxtrick-toolbar-deactivate" type="checkbox" checked="">
 	<label id="foxtrick-toolbar-deactivate-label" for="enabled">Temporarly deactivate</label>
 </div>
-<div id="highlightCheckboxAndLabel" style="display: block; ">
-	<input id="foxtrick-toolbar-highlight" type="checkbox" checked="" onclick="toggleHighlight()">
+<div id="highlightCheckboxAndLabel">
+	<input id="foxtrick-toolbar-highlight" type="checkbox" checked="">
 	<label id="foxtrick-toolbar-highlight-label" for="enabled">Highlight features</label>
 </div>
-<div id="translationKeysCheckboxAndLabel" style="display: block; ">
-	<input id="foxtrick-toolbar-translationKeys" type="checkbox" checked="" onclick="toggleTranslationKeys()">
+<div id="translationKeysCheckboxAndLabel">
+	<input id="foxtrick-toolbar-translationKeys" type="checkbox" checked="">
 	<label id="foxtrick-toolbar-translationKeys-label" for="enabled">Show translation keys</label>
 </div>
-<div id="wrapperSpacerBottom" class="wrapperSpacer" style="display: block; "><hr></div>
+<div id="wrapperSpacerBottom" class="wrapperSpacer"><hr /></div>
 <div id="bottomLinks">
-	<a id="foxtrick-toolbar-options-label" href="/content/preferences.html?width=600">Options</a>
-	<a id="foxtrick-toolbar-homepage-label" href="#" onclick="chrome.tabs.create({'url': 'http://code.google.com/p/foxtrick/'}); window.close();" style="padding-left:3px">Home</a>
-	<a id="foxtrick-toolbar-clearCache-label" href="#" onclick="clearCache()" style="padding-left:3px">Clear cache</a>
+	<a id="foxtrick-toolbar-options-label" href="#">Options</a>
+	<a id="foxtrick-toolbar-homepage-label" href="http://code.google.com/p/foxtrick/">Home</a>
+	<a id="foxtrick-toolbar-clearCache-label" href="#">Clear cache</a>
 </div>
+<script type="application/x-javascript" src="./popup-chrome.js"></script>
 </body>
 </html>
