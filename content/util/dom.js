@@ -323,8 +323,10 @@ Foxtrick.addImage = function (doc, elem, features, insertBefore) {
 		sandboxed.extension.sendRequest({ req : "getDataUrl", url:features.src},
 			function (data) {
 				var img = doc.createElement("img");
-				for (i in features) 
-					img.setAttribute(i, features[i]);
+				for (i in features) {
+					if (i != "src") // that one we set bellow. prevents csp warning
+						img.setAttribute(i, features[i]);
+				}
 				img.src = data.url;
 				if (insertBefore)
 					elem.insertBefore( img, insertBefore);
