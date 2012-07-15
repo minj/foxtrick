@@ -19,11 +19,14 @@
 <note version="0.11.0">
 <item>● NEW: <module>ForumModeratorPopup</module>: 토론장 중재자를 위하여 스레드 상단에 검토 작업을 간략화하는 드롭 다운 메뉴를 추가했습니다.</item>
 <item>● NEW: <module>PlayerStatsTrainingWeek</module>: 일정 주간 대신에 훈련 주간에 따른 경기를 그룹화하는 기능을 추가했습니다. </item>
+<item>● <module>MatchOrderInterface</module>: 수정한 페널티 전담 목록을 제공합니다. 한 번 클릭으로 여러분의 스쿼드를 목록에 추가하거나 지울 수 있습니다.</item>
 <item>● <module>SkillTable</module>: 기존 정렬에 다른 열의 상단을 ctrl + 왼쪽 클릭 으로 보조 정렬하는 것을 추가하였습니다.</item>
 <item>● <module>SkillTable</module>: 이제부터 선수 이름은 더 적은 칸에 들어가기 위해 생략합니다.</item>
+<item>● <module>SkillColoring</module>: 많은 버그를 수정하고 추가 사항을 넣기 위해 모듈을 전부 재작성하였습니다. 그리고 옵션이 변경되었습니다. 다시 기호에 맞춰서 옵션을 설정해주세요.</item>
 <item>● <module>TransferSearchResultFilters</module>: form 필터와 특수능력이 없는 선수를 숨기는 것을 추가하였습니다. 이제 <module>TransferSearchFilters</module>와 협력합니다.</item>
 <item>● <module>FriendlyPool</module>: 나라 선택 상자를 확장하는 것을 추가했습니다.</item>
 <item>● <module>MovePlayerStatement</module>: 모든 명세서를 제거하는 것을 추가했습니다.</item>
+<item>● <module>YouthTwins</module>: HY에서 만든 수동 트리거 변화는 이제 즉시 유소년 선수 페이지에 반영됩니다.</item>
 <item>● Tabs: 대부분의 사이트에 커스텀 탭을 추가하기 위해 backend 기능을 추가하였습니다. (HT의 다가오는 경기 탭과 유사함)</item>
 <item></item>
 <item><xhtml:b>버그 수정</xhtml:b></item>
