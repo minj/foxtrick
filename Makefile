@@ -54,7 +54,10 @@ RESOURCE_FOLDERS = data/ \
 	foxtrick.properties \
 	foxtrick.screenshots \
 	release-notes.xml \
-	faq.xml
+	faq.xml \
+	release-notes.yml \
+	release-notes-links.yml \
+	faq.yml
 CONTENT_FILES = add-class.js \
 	core.js \
 	entry.js \
@@ -201,6 +204,7 @@ opera:
 	# content/
 	mkdir $(BUILD_DIR)/includes
 	cd content/; \
+	rm lib/ToolbarItem.js; \
 	cp -r $(subst /,/.,$(SCRIPT_FOLDERS)) $(CONTENT_FILES_OPERA) \
 		../$(BUILD_DIR)/includes
 	# remove ignore modules from files

@@ -1,12 +1,3 @@
-var BackgroundPage, isOpera = false, isChrome = false;
-if (typeof window.opera == "object") { 
-	BackgroundPage = opera.extension.bgProcess;
-	isOpera = true;
-}
-else if (typeof window.chrome == "object") { 
-	BackgroundPage = chrome.extension.getBackgroundPage();
-	isChrome = true;
-}
 // custom function to bypass opera's stupidity
 function shutDown() {
 	if (isOpera) {
@@ -93,5 +84,14 @@ function visitHomePage()
 	}
 	shutDown();
 }
-
-init();
+var BackgroundPage, isOpera = false, isChrome = false;
+if (typeof window.opera == "object") { 
+		BackgroundPage = opera.extension.bgProcess;
+		isOpera = true;
+}
+else if (typeof window.chrome == "object") { 
+		BackgroundPage = chrome.extension.getBackgroundPage();
+		isChrome = true;
+}
+if (BackgroundPage)
+	init();

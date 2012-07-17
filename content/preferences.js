@@ -18,7 +18,8 @@ function initLoader() {
 			function (data) {
 				try {
 					Foxtrick.entry.contentScriptInit(data);
-					init();
+					if (sandboxed.extension.getBackgroundPage())
+						init();
 				} catch(e) {Foxtrick.log('initLoader: ',e);}
 		});
 };
@@ -675,6 +676,11 @@ function initChangesTab()
 	parseNotes(releaseNotes, versions);
 	parseNotes(releaseNotesLocalized, versionsLocalized);
 
+	if( ! versions.length) {
+		Foxtrick.log('NO RELEASE NOTES!!!'); 
+		return;
+	}
+
 	// add nightly and beta notes
 	for (var i in versions) {
 		var version = i;
@@ -717,6 +723,7 @@ function initChangesTab()
 	}
 
 	var updateNotepad = function() {
+		
 		var version = select.options[select.selectedIndex].value.replace(/(\d\.\d\.\d)\.\d/,"$1");
 		var list = $("#pref-notepad-list")[0];
 		list.textContent = ""; // clear list
@@ -791,6 +798,12 @@ function initHelpTab()
 	};
 	parseFaq(faq, items);
 	parseFaq(faqLocal, itemsLocal);
+
+	if( ! items.length) {
+		Foxtrick.log('NO FAQ!!!'); 
+		return;
+	}
+
 	for (var i in items) {
 		// we prefer localized ones
 		var itemLocal = (itemsLocal) ? itemsLocal[i] : null;
