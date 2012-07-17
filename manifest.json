@@ -260,7 +260,7 @@
 	"page_action": {
 		"default_icon": "skin/icon-24.png",
 		"default_title": "FoxTrick enabled",
-		"default_popup": "content/popup-chrome.html"
+		"default_popup": "content/popup.html"
 	},
 	"options_page" : "content/preferences.html",
 	"homepage_url": "http://www.foxtrick.org/",

@@ -1,9 +1,19 @@
-var BackgroundPage;
-if (typeof window.opera == "object") 
+var BackgroundPage, isOpera = false, isChrome = false;
+if (typeof window.opera == "object") { 
 	BackgroundPage = opera.extension.bgProcess;
-else if (typeof window.chrome == "object") 
+	isOpera = true;
+}
+else if (typeof window.chrome == "object") { 
 	BackgroundPage = chrome.extension.getBackgroundPage();
-
+	isChrome = true;
+}
+// custom function to bypass opera's stupidity
+function shutDown() {
+	if (isOpera) {
+		window.setTimeout(window.close, 100); // go to async mode for click event to complete
+	}
+	else window.close();
+}
 function init()
 {
 	var checkbox, label;
@@ -67,7 +77,7 @@ function clearCache()
 }
 function openPrefs()
 {
-	if (typeof window.opera == "object") { 
+	if (isOpera) { 
 		opera.extension.bgProcess.Foxtrick.modules.UI.button.popup.width=600;
 		opera.extension.bgProcess.Foxtrick.modules.UI.button.popup.height=800;
 		document.location.href = "options.html?width=600";
@@ -76,11 +86,12 @@ function openPrefs()
 }
 function visitHomePage()
 {
-	window.close();
-	if (typeof window.chrome == "object") {
+	if (isChrome) {
 		chrome.tabs.create({'url': 'http://code.google.com/p/foxtrick/'});
+		window.close();
 		return false;
-	} 
+	}
+	shutDown();
 }
 
 init();

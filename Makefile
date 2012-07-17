@@ -31,7 +31,7 @@ XAR = xar
 
 ROOT_FILES_FIREFOX = chrome.manifest install.rdf bootstrap.js icon.png COPYING HACKING
 ROOT_FILES_CHROME = manifest.json
-ROOT_FILES_OPERA = config.xml content/background.html content/preferences.html content/popup-opera.html
+ROOT_FILES_OPERA = config.xml content/background.html content/preferences.html content/popup.html
 ROOT_FILES_SAFARI = Info.plist Settings.plist skin/icon.png
 ROOT_FOLDERS_FIREFOX = defaults/
 ROOT_FOLDERS_CHROME = defaults/ skin/
@@ -82,11 +82,13 @@ CONTENT_FILES_FIREFOX = $(CONTENT_FILES) bootstrap-firefox.js \
 	../res/
 CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html \
 	preferences.html \
-	popup-chrome.html \
+	popup.html \
+	popup.js \
 	background.js \
 	loader-chrome.js
 CONTENT_FILES_OPERA = $(CONTENT_FILES) background.js \
-	loader-chrome.js
+	loader-chrome.js \
+	popup.js
 CONTENT_FILES_SAFARI = $(CONTENT_FILES) background.html \
 	preferences.html \
 	background.js \
@@ -213,9 +215,9 @@ opera:
 	mv $(BUILD_DIR)/includes/env.js $(BUILD_DIR)/includes/aa00_env.js
 	mv $(BUILD_DIR)/includes/module.js $(BUILD_DIR)/includes/aa10_module.js
 	mv $(BUILD_DIR)/includes/loader-chrome.js $(BUILD_DIR)/includes/zz99_loader-chrome.js
-	cd $(BUILD_DIR); sed -i -r 's|(href=\"\./)|href=\"./content/|' background.html options.html
-	cd $(BUILD_DIR); sed -i -r 's|(src=\"\./[a-zA-Z0-9_-]+/)|src=\"./|' background.html options.html
-	cd $(BUILD_DIR); sed -i -r 's|(src=\"\./)|src=\"./includes/|' background.html options.html
+	cd $(BUILD_DIR); sed -i -r 's|(href=\"\./)|href=\"./content/|' background.html options.html popup.html
+	cd $(BUILD_DIR); sed -i -r 's|(src=\"\./[a-zA-Z0-9_-]+/)|src=\"./|' background.html options.html popup.html
+	cd $(BUILD_DIR); sed -i -r 's|(src=\"\./)|src=\"./includes/|' background.html options.html popup.html
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/env.js)|/includes/aa00_env.js|' background.html options.html
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/module.js)|/includes/aa10_module.js|' background.html options.html
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/loader-chrome.js)|/includes/zz99_loader-chrome.js|' background.html options.html

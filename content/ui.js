@@ -122,13 +122,13 @@ if (Foxtrick.platform == "Opera") {
 		title: "FoxTrick",
 		icon: "skin/icon-16.png",
 		popup: {
-			href: 'popup-opera.html',
+			href: 'popup.html',
 			width: 200,
-			height: 100
+			height: 130
 		},
 		onclick: function(event) {
 			Foxtrick.modules.UI.button.popup.width=200;
-			Foxtrick.modules.UI.button.popup.height=100;
+			Foxtrick.modules.UI.button.popup.height=130;
 			//FoxtrickPrefs.disable(event.currentTarget);
 		}
 		
