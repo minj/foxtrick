@@ -42,6 +42,7 @@ Foxtrick.modules["MatchIncome"]={
 		];
 
 		var matchDate = Foxtrick.util.time.getDateFromText(doc.getElementsByClassName("date")[0].textContent);
+		Foxtrick.log("MatchDate", doc.getElementsByClassName("date")[0].textContent, matchDate.toUTCString());
 		//use last if we find nothing
 		var priceIdx = prices.length - 1;
 		for(var i = 0; i < prices.length; i++){
@@ -53,9 +54,12 @@ Foxtrick.modules["MatchIncome"]={
 				if(already >= 0 && upcoming >= 0){
 					priceIdx = i;
 					break;
+				} else {
+					Foxtrick.log("Ignore period:" , prices[i]);
 				}
 			}
 		}
+		Foxtrick.log("Using prices:" , prices[priceIdx]);
 		var isCup = doc.getElementById("mainBody").getElementsByClassName("matchCup").length > 0?true:false;
 		
 		var table = soldSeatBox.getElementsByTagName('table')[0];
