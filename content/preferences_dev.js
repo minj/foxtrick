@@ -796,7 +796,7 @@ function initChangesTab()
 	parseNotes(releaseNotes, versions);
 	parseNotes(releaseNotesLocalized, versionsLocalized);
 
-	if( ! versions.length) {
+	if( ! versions) {
 		Foxtrick.log('NO RELEASE NOTES!!!'); 
 		return;
 	}
@@ -918,7 +918,7 @@ function initHelpTab()
 	parseFaq(faq, items);
 	parseFaq(faqLocal, itemsLocal);
 
-	if( ! items.length) {
+	if( ! items) {
 		Foxtrick.log('NO FAQ!!!'); 
 		return;
 	}
