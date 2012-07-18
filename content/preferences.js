@@ -18,8 +18,7 @@ function initLoader() {
 			function (data) {
 				try {
 					Foxtrick.entry.contentScriptInit(data);
-					if (sandboxed.extension.getBackgroundPage())
-						init();
+					init();
 				} catch(e) {Foxtrick.log('initLoader: ',e);}
 		});
 };

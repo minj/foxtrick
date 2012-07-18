@@ -18,8 +18,7 @@ function initLoader() {
 			function (data) {
 				try {
 					Foxtrick.entry.contentScriptInit(data);
-					if (sandboxed.extension.getBackgroundPage())
-						init();
+					init();
 				} catch(e) {Foxtrick.log('initLoader: ',e);}
 		});
 };
@@ -810,7 +809,7 @@ function initChangesTab()
 			if (!notes)
 				continue;
 			var list = $("#translator_note")[0];
-			var note = notesLocalized[0] || notes[0];
+			var note = (notesLocalized && notesLocalized[0]) || notes[0];
 			addNote(note, list, releaseNotesLinks);
 			$("#translator_note").attr("style","display:block;");
 			if (version == "beta")

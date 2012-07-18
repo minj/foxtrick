@@ -36,7 +36,7 @@ Foxtrick.loader.background.browserUnload = function() {
 // background script starter load function
 Foxtrick.loader.background.browserLoad = function() {
   try {
-  	if ( ! Foxtrick.log) return;
+  	
 	Foxtrick.log('Foxtrick.loader.background.browserLoad');
 
 	var currency, about, worldDetails, htLanguagesText, cssTextCollection;
