@@ -29,10 +29,23 @@ endif
 ZIP = zip -q
 XAR = xar
 
-ROOT_FILES_FIREFOX = chrome.manifest install.rdf bootstrap.js icon.png COPYING HACKING
+ROOT_FILES_FIREFOX = chrome.manifest \
+	install.rdf \
+	bootstrap.js \
+	icon.png \
+	COPYING \
+	HACKING
 ROOT_FILES_CHROME = manifest.json
-ROOT_FILES_OPERA = config.xml content/background.html content/preferences.html content/popup.html
-ROOT_FILES_SAFARI = Info.plist Settings.plist skin/icon.png
+ROOT_FILES_OPERA = config.xml \
+	content/background.html \
+	content/background.js \
+	content/preferences.html \
+	content/preferences.js \
+	content/popup.html \
+	content/popup.js
+ROOT_FILES_SAFARI = Info.plist \
+	Settings.plist \
+	skin/icon.png
 ROOT_FOLDERS_FIREFOX = defaults/
 ROOT_FOLDERS_CHROME = defaults/ skin/
 ROOT_FOLDERS_OPERA = defaults/ skin/
@@ -65,7 +78,6 @@ CONTENT_FILES = add-class.js \
 	forum-stage.js \
 	l10n.js \
 	pages.js \
-	preferences.js \
 	prefs.js \
 	read-ht-prefs.js \
 	redirections.js \
@@ -74,6 +86,7 @@ CONTENT_FILES = add-class.js \
 CONTENT_FILES_FIREFOX = $(CONTENT_FILES) bootstrap-firefox.js \
 	bootstrap-fennec.js \
 	preferences.html \
+	preferences.js \
 	preferences_dev.html \
 	preferences_dev.js \
 	options-fennec.xul \
@@ -85,15 +98,15 @@ CONTENT_FILES_FIREFOX = $(CONTENT_FILES) bootstrap-firefox.js \
 	../res/
 CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html \
 	preferences.html \
+	preferences.js \
 	popup.html \
 	popup.js \
 	background.js \
 	loader-chrome.js
-CONTENT_FILES_OPERA = $(CONTENT_FILES) background.js \
-	loader-chrome.js \
-	popup.js
+CONTENT_FILES_OPERA = $(CONTENT_FILES) 	loader-chrome.js
 CONTENT_FILES_SAFARI = $(CONTENT_FILES) background.html \
 	preferences.html \
+	preferences.js \
 	background.js \
 	loader-chrome.js
 	
@@ -222,9 +235,12 @@ opera:
 	cd $(BUILD_DIR); sed -i -r 's|(href=\"\./)|href=\"./content/|' background.html options.html popup.html
 	cd $(BUILD_DIR); sed -i -r 's|(src=\"\./[a-zA-Z0-9_-]+/)|src=\"./|' background.html options.html popup.html
 	cd $(BUILD_DIR); sed -i -r 's|(src=\"\./)|src=\"./includes/|' background.html options.html popup.html
-	cd $(BUILD_DIR); sed -i -r 's|(/includes/env.js)|/includes/aa00_env.js|' background.html options.html
-	cd $(BUILD_DIR); sed -i -r 's|(/includes/module.js)|/includes/aa10_module.js|' background.html options.html
-	cd $(BUILD_DIR); sed -i -r 's|(/includes/loader-chrome.js)|/includes/zz99_loader-chrome.js|' background.html options.html
+	cd $(BUILD_DIR); sed -i -r 's|(/includes/env.js)|/includes/aa00_env.js|' background.html options.html popup.html
+	cd $(BUILD_DIR); sed -i -r 's|(/includes/module.js)|/includes/aa10_module.js|' background.html options.html popup.html
+	## change entry files folder back to root
+	cd $(BUILD_DIR); sed -i -r 's|(/includes/background.js)|/background.js|' background.html
+	cd $(BUILD_DIR); sed -i -r 's|(/includes/preferences.js)|/preferences.js|' options.html
+	cd $(BUILD_DIR); sed -i -r 's|(/includes/popup.js)|/popup.js|' popup.html
 	# set branch
 	cd $(BUILD_DIR); \
 	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH) opera\"|" defaults/preferences/foxtrick.js
