@@ -451,7 +451,7 @@ pref("extensions.foxtrick.prefs.module.PersonalityImages.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerBirthday.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerFilters.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerStatsExperience.enabled", true);
-pref("extensions.foxtrick.prefs.module.PlayerStatsExperience.AlwaysShowAll", true);
+pref("extensions.foxtrick.prefs.module.PlayerStatsExperience.AlwaysShowAll.enabled", true);
 pref("extensions.foxtrick.prefs.module.RapidId.enabled", true);
 pref("extensions.foxtrick.prefs.module.Ratings.enabled", true);
 pref("extensions.foxtrick.prefs.module.Ratings.HideAverages.enabled", false);
