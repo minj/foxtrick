@@ -45,8 +45,8 @@ Foxtrick.modules["MatchIncome"]={
 		//use last if we find nothing
 		var priceIdx = prices.length - 1;
 		for(var i = 0; i < prices.length; i++){
-			var from = Foxtrick.util.time.getDateFromText(prices[i].from);
-			var until = Foxtrick.util.time.getDateFromText(prices[i].until);
+			var from = Foxtrick.util.time.getDateFromText(prices[i].from, "dd-mm-yyyy");
+			var until = Foxtrick.util.time.getDateFromText(prices[i].until, "dd-mm-yyyy");
 			if(until != null){
 				var already = matchDate.getTime() - from.getTime();
 				var upcoming = until.getTime() - matchDate.getTime();
