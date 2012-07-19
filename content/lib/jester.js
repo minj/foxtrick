@@ -279,8 +279,7 @@
             var previousTapTime = 0;
 
             var touchStart = function(evt) {
-Foxtrick.log("touchstart")
-                touches = new Jester.TouchGroup(evt);
+				touches = new Jester.TouchGroup(evt);
 
                 eventSet.execute("start", touches, evt);
 
@@ -290,7 +289,7 @@ Foxtrick.log("touchstart")
 
             var touchMove = function(evt) {
                 touches.update(evt);
-Foxtrick.log("touchMove")
+
                 eventSet.execute("during", touches, evt);
 
                 if(opts.preventDefault) evt.preventDefault();
@@ -317,6 +316,9 @@ Foxtrick.log("touchMove")
                 if(opts.preventDefault) evt.preventDefault();
                 if(opts.stopPropagation) evt.stopPropagation();
 
+                //Foxtrick.log(touches.numTouches() ,touches.touch(0).total.x(),
+				// opts.tapDistance , touches.touch(0).total.y() , opts.tapDistance , touches.touch(0).total.time() , opts.tapTime)
+				 
                 if(touches.numTouches() == 1) {
                     // tap
                     if(touches.touch(0).total.x() <= opts.tapDistance && touches.touch(0).total.y() <= opts.tapDistance && touches.touch(0).total.time() < opts.tapTime) {
@@ -334,7 +336,7 @@ Foxtrick.log("touchMove")
 
 					var distX = touches.touch(0).total.x();
                     var distY = touches.touch(0).total.y();
-                    // swipe                     
+                    // swipe                                            
 					if(Math.abs(distX) >= opts.swipeDistance
                     || Math.abs(distY) >= opts.swipeDistance) {
                         var swipeDirection = {};

@@ -42,9 +42,11 @@ div.scEditSC .txtb{width:300px;}
 	right: -10px !important;
 	left: -10px !important;
 	height: auto !important;
-	width: 90px !important;	
+	width: 130px !important;	
 	font-size: 1.1em !important;
 	bottom: 24px !important;
+	overflow: hidden;
+	white-space:nowrap;
 }
 .ft-mobile #menu a {
 	border-bottom: 1px solid #176F21;
@@ -62,7 +64,7 @@ div.scEditSC .txtb{width:300px;}
 #mobile_header_center {
 	background-color: #277F31;
 	position: relative;
-	width: 70px;
+	width: 110px;
 	z-index: 10020;
 	margin-left: auto;
 	margin-right: auto;
@@ -76,7 +78,7 @@ div.scEditSC .txtb{width:300px;}
 }
 #mobile_header_center_tab{
 	width: 70px !important;
-	margin: 0;
+	margin: auto;
 	padding: 0;
 	border: 0;
 	font-size: 100%;
@@ -103,7 +105,9 @@ div.scEditSC .txtb{width:300px;}
 	-webkit-transition: .5s top ease;
 	transition: .5s top ease;
 }
-#mobile_header {height: 30px; position:relative;}
+#mobile_header {height: 30px; position:fixed; width:100%}
+.ft-mobile #header {margin-top:30px;}
+
 
 .ft-mobile #page, .ft-mobile #footer {
 	padding: 0px !important; 
@@ -178,7 +182,7 @@ div.scEditSC .txtb{width:300px;}
 	transform: rotateY(-180deg);
 }
 
-.ft-mobile #mobile_header, .ft-mobile #content, .ft-mobile #bottom {
+.ft-mobile #content, .ft-mobile #bottom {
 	position: relative;
 	background-color:white;
 }

@@ -86,7 +86,7 @@
 		// move menu bellow header
 		var mobile_header = doc.createElement('div');
 		mobile_header.id = 'mobile_header';
-		header.parentNode.insertBefore(mobile_header, header.nextSibling);	
+		header.parentNode.insertBefore(mobile_header, header);	
 		var mobile_header_center = doc.createElement('div');
 		mobile_header_center.id = 'mobile_header_center';
 		mobile_header_center.classNme = 'mobile_header_center out';
