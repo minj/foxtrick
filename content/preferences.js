@@ -1301,3 +1301,6 @@ function checkPermissions() {
 	}
 	return needsPermissions; // false prevents save notived be shown. will be shown delayed in getPermissions
 }
+
+// this is the preference script entry point for sandboxed arch
+initLoader();
