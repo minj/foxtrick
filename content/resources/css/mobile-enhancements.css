@@ -3,7 +3,6 @@
 div[class^="ad_"] {display: none !important;}
 .ft-mobile #ctl00_ctl00_pnlMobileLink {display:none !important;}
 
-
 /* width, float */  
 .hattrick.ft-mobile , .hattrickNoSupporter.ft-mobile  {position:relative;}
 .ft-mobile .mainWrapperWide, .ft-mobile .mainWrapperRegular, .ft-mobile .mainWrapperConf, .ft-mobile .mainWrapperFull {float:none !important; background-color:white}
@@ -197,6 +196,9 @@ div.scEditSC .txtb{width:300px;}
 	border-left: solid 1px #DDD;
 	border-bottom: solid 1px #DDD;
 }
+
+/* font */
+.ft-mobile a {font-size: 1.2em; padding: 3px;}
 
 /* general */
 .ft-mobile .nowrap {white-space:normal !important; word-wrap:break-word;}
