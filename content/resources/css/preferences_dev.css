@@ -1,7 +1,7 @@
 body
 {
 	max-height: 540px; 
-	font-size: 15px;
+	font-size: 1em;
 	margin: 0px;
 	padding: 8px;
 }
@@ -141,7 +141,7 @@ table.center td {
 {
 	color: #333;
 	text-decoration: none;
-	font-size: 75%;
+	font-size: 0.75em;
 	margin: 0 0 0 2em;
 }
 
@@ -177,13 +177,13 @@ html[dir="rtl"] .screenshot
 {
 	font-family: Georgia;
 	font-style: italic;
-	font-size: 50%;
+	font-size: 0.5em;
 	vertical-align: top;
 }
 
 #pagelist
 {
-	font-size: 50%;
+	font-size: 0.5em;
 }
 
 #view-by
@@ -209,7 +209,7 @@ ul.nav
 
 ul.nav li
 {
-	font-size: 85%;
+	font-size: 0.85em;
 	/*display: inline-block;*/
 	/*background-color: #eef;*/
 	background-color: #fff;
@@ -343,7 +343,7 @@ html[dir="rtl"] #save
 	z-index: 10;
 	top: 20px;
 	right: 20px;
-	font-size: 200%;
+	font-size: 2em;
 	font-weight: bold;
 	padding: 40px;
 	color: #b3b3b3;
@@ -351,7 +351,7 @@ html[dir="rtl"] #save
 }
 
 #dismiss-notice {
-	font-size: 50%;
+	font-size: 0.5em;
 	margin: 0 auto;
 	font-weight: normal;
 }
