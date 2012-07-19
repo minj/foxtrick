@@ -66,8 +66,6 @@ RESOURCE_FOLDERS = data/ \
 	resources/ \
 	foxtrick.properties \
 	foxtrick.screenshots \
-	release-notes.xml \
-	faq.xml \
 	release-notes.yml \
 	release-notes-links.yml \
 	faq.yml
@@ -97,17 +95,17 @@ CONTENT_FILES_FIREFOX = $(CONTENT_FILES) bootstrap-firefox.js \
 	loader-fennec.js \
 	../res/
 CONTENT_FILES_CHROME = $(CONTENT_FILES) background.html \
+	background.js \
 	preferences.html \
 	preferences.js \
 	popup.html \
 	popup.js \
-	background.js \
 	loader-chrome.js
 CONTENT_FILES_OPERA = $(CONTENT_FILES) 	loader-chrome.js
 CONTENT_FILES_SAFARI = $(CONTENT_FILES) background.html \
+	background.js \
 	preferences.html \
 	preferences.js \
-	background.js \
 	loader-chrome.js
 	
 all: firefox chrome opera safari
