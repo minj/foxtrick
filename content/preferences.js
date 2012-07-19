@@ -27,9 +27,10 @@ function init()
 {
 	try {
 		initCoreModules();
-		initListeners();
 		getPageIds();
 		initTabs();
+		initSearch(); //important, run after module divs have been created (initTabs)
+		initListeners(); //important, run after module divs have been created (initTabs)
 		initTextAndValues();
 		locateFragment(window.location.toString()); // locate element by fragment
 		testPermissions();
@@ -45,6 +46,102 @@ function init()
 	} catch (e) {
 		Foxtrick.log('init: ', e);
 	}
+}
+
+//used to cache the searchable module items to prevent the search functionality from traversing the dom all the time
+var _modules = {};
+//feed the search bar with options, no effect yet
+function initSearch(){
+
+	var search = document.getElementById("modulelist");
+	function addToModuleList( str ){
+		var option = document.createElement("option");
+		option.setAttribute("value", str);
+		search.appendChild(option);
+	}
+	
+	$(".module").each(function() {
+		try {
+			var name = $(this).attr("id");
+			if(name && name.match(/^pref-/)){
+				_modules[name.replace(/^pref-/,'')] = $("#" + name)[0];
+				addToModuleList(name.replace(/^pref-/,''));
+			}else if(name &&  name.match(/^faq-/)){
+				var h3 = $(this).children("h3:first");
+				_modules[h3.text().replace("¶","")] = $(this)[0];
+				addToModuleList(h3.text().replace("¶",""));
+			}
+			else {
+				var h3 = $(this).children("h3:first");
+				if(h3.attr("data-text")){
+					name = Foxtrickl10n.getString(h3.attr("data-text"));
+					_modules[name] = $(this)[0];
+					addToModuleList(name);
+				} else{
+					console.log("no search support, missing h3 and/or data-text");
+				}
+			}
+		}
+		catch(e){
+			console.log("no search support", e)
+		}
+	});
+	// for (var i in Foxtrick.modules){
+	// 	_modules[Foxtrick.modules[i].MODULE_NAME] = $("#pref-" + Foxtrick.modules[i].MODULE_NAME)[0];
+	// 	var option = document.createElement("option");
+	// 	option.setAttribute("value", Foxtrick.modules[i].MODULE_NAME);
+	// 	search.appendChild(option);
+	// }
+}
+
+//search
+function search(string, search){
+	if(string.length > 0){
+		$("#breadcrumb-2").show();
+		$("#breadcrumb-3").show();
+		if(search){
+			$("#breadcrumb-2").text("Search");
+			$("#breadcrumb-3").text(string);
+			$("#breadcrumb-sep-1").show();
+			$("#breadcrumb-sep-2").show();
+		} else {
+			$("#breadcrumb-2").text(string);
+			$("#breadcrumb-sep-1").show();
+			$("#breadcrumb-sep-2").hide();
+			$("#breadcrumb-3").hide();
+		}
+		
+		var regex = new RegExp(string, "i");
+
+		//iterate pre-cached modules, jquery is slow as hell here, directly using dom methods
+		for (var i in _modules){
+			try{
+	   			if (i.search(regex) > -1){
+					_modules[i].className = _modules[i].className.replace(/hidden/g,"");
+				} else {
+					_modules[i].className = _modules[i].className + " hidden";
+				} 
+			} catch(e){
+					continue;
+			}
+		}
+	} else {
+		$("#breadcrumb-2").hide();
+		$("#breadcrumb-3").hide();
+		$("#breadcrumb-sep-1").hide();
+		$("#breadcrumb-sep-2").hide();
+		for (var i in _modules){
+			try{
+				_modules[i].className = _modules[i].className.replace(/hidden/g,"");
+			} catch(e){
+			}
+		}
+	}
+
+}
+
+function searchEvent(ev){
+	search(ev.target.value, true);
 }
 
 function initCoreModules()
@@ -91,14 +188,18 @@ function parseFragment(fragment)
 
 function locateFragment(uri)
 {
+	console.log(uri);
 	// show functions
 	var showModule = function(module) {
 		var moduleObj = $("#pref-" + String(module));
 		var category = moduleObj.attr("x-category");
 		showTab(category);
+		search(module, false); //search
 		moduleObj[0].scrollIntoView(true);
 	};
 	var showTab = function(tab) {
+		$("#breadcrumb-1").text(Foxtrickl10n.getString("tab."+tab)); //search
+		search(""); //search reset
 		$("#pane > div").hide();
 		$("#tabs > li").removeClass("active");
 		$("#tab-" + tab).addClass("active");
@@ -121,6 +222,8 @@ function locateFragment(uri)
 		showFaq(param["faq"]);
 	else if (param["view-by"] == "page")
 		showTab("on_page");
+	//else if (param["view-by"] == "filter")
+	//	showTab("filter");
 	else
 		showTab("main"); // show the main tab by default
 
@@ -132,15 +235,15 @@ function locateFragment(uri)
 	};
 	// opposite of setClass
 	var unsetClass = function(obj, className) {
-		viewByPage ? obj.removeClass(className) : obj.addClass(className);
+		viewByPage ? obj.removeClass(className) : obj.addClass(className) ;
 	};
 	// set up tab classes
-	setClass($("#view-by-page"), "active");
-	unsetClass($("#view-by-category"), "active");
-	for (var i in Foxtrick.moduleCategories)
-		setClass($("#tab-" + Foxtrick.moduleCategories[i]), "hide");
-	unsetClass($("#tab-on_page"), "hide");
-	unsetClass($("#tab-universal"), "hide");
+	//setClass($("#view-by-page"), "active");
+	//unsetClass($("#view-by-category"), "active");
+	//for (var i in Foxtrick.moduleCategories)
+	//	setClass($("#tab-" + Foxtrick.moduleCategories[i]), "hide");
+	//unsetClass($("#tab-on_page"), "hide");
+	//unsetClass($("#tab-universal"), "hide");
 	$("#tabs li a").each(function() {
 		var uri = $(this).attr("href").replace(/&view-by=page/g, "")
 		if (viewByPage)
@@ -166,11 +269,43 @@ function generateURI(tab, module, id)
 		return location + "#" + id;
 }
 
+function initAutoSaveListeners(){
+	// save on click/input
+	$("#pane input").each(function() {
+		if($(this).attr("savelistener"))
+			return;
+		$(this).attr("savelistener", "true");
+		if ($(this).is(":checkbox")){
+			$(this).click(function() { saveEvent(); });	
+		} else if ($(this)[0].nodeName == "select"){
+			$(this)[0].addEventListener("change", saveEvent, false);
+		} else if ($(this).is(":input")){
+			$(this)[0].addEventListener("input", saveEvent, false);
+			$(this)[0].addEventListener("change", saveEvent, false);
+		} else {
+			$(this).attr("savelistener", "false");
+		}
+	})
+	$("#pane select").each(function() {
+		if($(this).attr("savelistener"))
+			return;
+		$(this).attr("savelistener", "true");
+		$(this).click(function() { saveEvent(); });
+	})
+	$("#pane textarea").each(function() {
+		if($(this).attr("savelistener"))
+			return;
+		$(this)[0].addEventListener("input", saveEvent, false);
+		$(this).attr("savelistener", "false");
+	})
+}
+
 function initListeners()
 {
+	initAutoSaveListeners();
+
+	$("#search-input")[0].addEventListener("input", searchEvent, false);
 	$("#save").click(function() { save(); });
-	$("#save-alt").click(function() { save(); });
-	$("#note").click(function() { $(this).hide("slow"); });
 	$("body").click(function(ev) {
 		if ((ev.target.nodeName.toLowerCase() == "a"
 			|| ev.target.nodeName.toLowerCase() == "xhtml:a")) {
@@ -237,7 +372,7 @@ function initTextAndValues()
 	});
 	
 	// initialize modules
-	$("body [module]").each(function() {
+	$("#pane [module]").each(function() {
 		var module = $(this).attr("module");
 		if ($(this).attr("option")) {
 			var option = $(this).attr("option");
@@ -259,7 +394,7 @@ function initTextAndValues()
 			$(this).attr("checked", "checked");
 	});
 	// initialize inputs
-	$("body input[pref]").each(function() {
+	$("#pane input[pref]").each(function() {
 		if ($(this).is(":checkbox")) {
 			// checkbox
 			if (FoxtrickPrefs.getBool($(this).attr("pref")))
@@ -270,7 +405,7 @@ function initTextAndValues()
 			$(this).attr("value", FoxtrickPrefs.getString($(this).attr("pref")));
 		}
 	});
-	$("body textarea[pref]").each(function() {
+	$("#pane textarea[pref]").each(function() {
 		$(this).text(FoxtrickPrefs.getString($(this).attr("pref")));
 	});
 	// initialize elements with blockers, disable if blocker enabled
@@ -287,15 +422,15 @@ function initTextAndValues()
 		updateStatus();
 	});
 	// initialize elements with dependency, show only if dependency met
-	$("body [depends-on]").each(function() {
+	$("#pane [depends-on]").each(function() {
 		var depender = $(this);
 		var dependee = $("#" + depender.attr("depends-on"));
 		var updateStatus = function() {
 			if (dependee.is(":checked"))
-				depender.show();
-			else
-				depender.hide();
-		};
+				Foxtrick.removeClass(depender[0], "hidden");
+			else 
+				Foxtrick.addClass(depender[0], "hidden");
+		}
 		dependee.click(function() { updateStatus(); });
 		updateStatus();
 	});
@@ -434,6 +569,9 @@ function getModule(module)
 	title.id = entry.id + "-title";
 	entry.appendChild(title);
 
+	var container = document.createElement("div");
+	container.className = "module-content";
+
 	var label = document.createElement("label");
 	var check = document.createElement("input");
 	check.id = entry.id + "-check";
@@ -467,20 +605,20 @@ function getModule(module)
 	var desc = document.createElement("p");
 	desc.id = entry.id + "-desc";
 	desc.textContent = FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
-	entry.appendChild(desc);
+	container.appendChild(desc);
 
 	// options container
 	var options = document.createElement("div");
 	options.id = entry.id + "-options";
 	options.setAttribute("depends-on", check.id);
-	entry.appendChild(options);
+	container.appendChild(options);
 
 	// module-provided function for generating options. will be appended
 	// OPTION_FUNC either returns an HTML object or an array of HTML objects
 	// or purely initializes them and returns null
 	var customCoptions = [];
 	if (typeof(module.OPTION_FUNC) == "function") {
-		var genOptions = module.OPTION_FUNC(document);
+		var genOptions = module.OPTION_FUNC(document, initAutoSaveListeners);
 		if (genOptions) {
 			if ($.isArray(genOptions)) {
 				for (var field=0; field<genOptions.length; ++field)
@@ -544,7 +682,7 @@ function getModule(module)
 					}
 				}
 				appendOptionsArrayToList(module.OPTIONS[i], parentlist);
-				
+
 				continue;
 			} 
 			
@@ -567,14 +705,23 @@ function getModule(module)
 
 				if (module.OPTION_EDITS_TEXTFILE_LOAD_BUTTONS && module.OPTION_EDITS_TEXTFILE_LOAD_BUTTONS[i]) {
 					var load = Foxtrick.util.load.filePickerForText(document, (function(textInput) {
-						return function(text) { textInput.value = text; };
+						return function(text) { 
+							textInput.value = text;
+							var ev = document.createEvent('HTMLEvents');
+						    ev.initEvent("change", true, false);
+						    textInput.dispatchEvent(ev);
+						};
 					})(textInput));
 					textDiv.appendChild(load);
 				}
 				if (module.OPTION_EDITS_DATAURL_LOAD_BUTTONS && module.OPTION_EDITS_DATAURL_LOAD_BUTTONS[i]) {
+					
 					var load = Foxtrick.util.load.filePickerForDataUrl(document, (function(textInput) {
-						return function(url) { 
-							textInput.value = url; 
+						return function(url) {
+							textInput.value = url;
+							var ev = document.createEvent('HTMLEvents');
+						    ev.initEvent("change", true, false);
+						    textInput.dispatchEvent(ev);
 							if (module.OPTION_EDITS_DATAURL_IS_SOUND && module.OPTION_EDITS_DATAURL_IS_SOUND[i])
 								Foxtrick.playSound(url, document);						
 						};
@@ -596,6 +743,7 @@ function getModule(module)
 				(!module.OPTION_TEXTS_DISABLED_LIST || !module.OPTION_TEXTS_DISABLED_LIST[i])) {
 				var textDiv = document.createElement("div");
 				textDiv.id = checkbox.id + "-text-div";
+
 				textDiv.setAttribute("depends-on", checkbox.id);
 				item.appendChild(textDiv);
 
@@ -633,6 +781,7 @@ function getModule(module)
 	for (var i=0; i<customCoptions.length; ++i) {
 		options.appendChild(customCoptions[i]);
 	}
+	entry.appendChild(container);
 	return entry;
 }
 
@@ -722,7 +871,6 @@ function initChangesTab()
 	}
 
 	var updateNotepad = function() {
-		
 		var version = select.options[select.selectedIndex].value.replace(/(\d\.\d\.\d)\.\d/,"$1");
 		var list = $("#pref-notepad-list")[0];
 		list.textContent = ""; // clear list
@@ -811,13 +959,16 @@ function initHelpTab()
 		var block = document.createElement("div");
 		block.id = "faq-" + i;
 		block.className = "module";
-		block.setAttribute("x-on", "help");
+		block.setAttribute("x-on", "help all");
 		$("#pane").append($(block));
 		// question
 		var header = document.createElement("h3");
 		var question = (itemLocal && itemLocal.question !== undefined) ? itemLocal.question : item.question;
 		addNote(question, header, faqLinks);
 		block.appendChild(header);
+
+		var container = document.createElement("div");
+		container.className = "module-content";
 
 		// link to question
 		var link = document.createElement("a");
@@ -831,7 +982,8 @@ function initHelpTab()
 		var answer = (itemLocal && itemLocal.answer !== undefined) ? itemLocal.answer : item.answer;
 		
 		addNote(answer, content, faqLinks);
-		block.appendChild(content);
+		container.appendChild(content);
+		block.appendChild(container);
 	}
 }
 
@@ -891,7 +1043,7 @@ function initModules()
 		var module = modules[i];
 		var obj = getModule(module);
 		// show on view-by-category tab
-		$(obj).attr("x-on", module.MODULE_CATEGORY);
+		$(obj).attr("x-on", module.MODULE_CATEGORY + " all");
 		// show on view-by-page tab
 		if (module.PAGES) {
 			if (Foxtrick.member("all", module.PAGES))
@@ -903,40 +1055,42 @@ function initModules()
 	}
 }
 	
+function saveEvent(ev){
+
+	console.log("save");
+	if ($(event.target).attr("pref")) {
+		var pref = $(event.target).attr("pref");
+		if ($(event.target).is(":checkbox"))
+			FoxtrickPrefs.setBool(pref, $(event.target).is(":checked"));
+		else if ($(event.target)[0].nodeName == "select")
+			FoxtrickPrefs.setString(pref, $$(event.target)[0].value); // calculated just-in-time, so .attr("value") would fail here
+		else if ($(event.target).is(":input"))
+			FoxtrickPrefs.setString(pref, $(event.target)[0].value);
+	} else {
+		var module = $(event.target).attr("module");
+		if ($(event.target).attr("option")) {
+			console.log("option of module");
+			// option of module
+			var option = $(event.target).attr("option");
+			if ($(event.target).is(":checkbox"))
+				FoxtrickPrefs.setModuleEnableState(module + "." + option, $(event.target).is(":checked"));
+			else if ($(event.target).is(":input"))
+				FoxtrickPrefs.setModuleOptionsText(module + "." + option, $(event.target)[0].value);
+		}
+		else if ($(event.target).is(":radio")) {
+			console.log("radio option of module");
+			if ($(event.target).is(":checked"))
+			 	FoxtrickPrefs.setModuleValue(module, $(event.target).attr("value"));
+		}
+		else {
+			FoxtrickPrefs.setModuleEnableState(module, $(event.target).is(":checked"));
+			console.log("setModuleEnableState");
+		}
+	}
+	FoxtrickPrefs.setBool("preferences.updated", true);
+}
 function save()
 {
-	// global preferences
-	$("body [pref]").each(function() {
-		if ($(this).attr("pref")) {
-			var pref = $(this).attr("pref");
-			if ($(this).is(":checkbox"))
-				FoxtrickPrefs.setBool(pref, $(this).is(":checked"));
-			else if ($(this)[0].nodeName == "select")
-				FoxtrickPrefs.setString(pref, $(this)[0].value); // calculated just-in-time, so .attr("value") would fail here
-			else if ($(this).is(":input"))
-				FoxtrickPrefs.setString(pref, $(this)[0].value);
-		}
-	});
-
-	// per-module preferences
-	$("body [module]").each(function() {
-		var module = $(this).attr("module");
-		if ($(this).attr("option")) {
-			// option of module
-			var option = $(this).attr("option");
-			if ($(this).is(":checkbox"))
-				FoxtrickPrefs.setModuleEnableState(module + "." + option, $(this).is(":checked"));
-			else if ($(this).is(":input"))
-				FoxtrickPrefs.setModuleOptionsText(module + "." + option, $(this)[0].value);
-		}
-		else if ($(this).is(":radio")) {
-			if ($(this).is(":checked"))
-			 	FoxtrickPrefs.setModuleValue(module, $(this).attr("value"));
-		}
-		else
-			FoxtrickPrefs.setModuleEnableState(module, $(this).is(":checked"));
-	});
-
 	var needsPermissions = checkPermissions();
 
 	if (!needsPermissions)
@@ -951,7 +1105,6 @@ function notice(msg)
 	$("#note-content").text(msg);
 	$("#note").show("slow");
 }
-
 function addNote(note, to, links)
 {
 	var noteNode = document.createDocumentFragment();
@@ -1005,6 +1158,7 @@ function addNote(note, to, links)
 	to.appendChild(noteNode);
 }
 
+
 // permissions management
 
 // check if permissions are granted in init and ask for permission if needed on saving
@@ -1055,11 +1209,11 @@ function testPermissions() {
 							else if ($(id).attr("checked") !== "checked") {
 								modulelist = Foxtrick.remove(modulelist, module);
 								if (modulelist.length > 0) {
-									$("#alert").text(Foxtrickl10n.getString('prefs.needPermissions')+" "+modulelist);
+									$("#alert-text").text(Foxtrickl10n.getString('prefs.needPermissions')+" "+modulelist);
 									$("#alert").attr("style","display:block;");
 								}
 								else {
-									$("#alert").text("");
+									$("#alert-text").text("");
 									$("#alert").attr("style","display:none;");
 								}
 							}
@@ -1070,8 +1224,8 @@ function testPermissions() {
 						
 						if (result==false && FoxtrickPrefs.getBool("module." + module + ".enabled")) {	
 							Foxtrick.concat_unique(modulelist, neededPermission.modules);
-							$("#alert").text(Foxtrickl10n.getString('prefs.needPermissions')+" "+modulelist);
-							$("#alert").attr("style","display:inline-block;");
+							$("#alert-text").text(Foxtrickl10n.getString('prefs.needPermissions')+" "+modulelist);
+							$("#alert").attr("style","display:block;");
 						}	
 					}
 				});
@@ -1147,8 +1301,3 @@ function checkPermissions() {
 	}
 	return needsPermissions; // false prevents save notived be shown. will be shown delayed in getPermissions
 }
-
-
-// this is the preference script entry point
-initLoader();
-
