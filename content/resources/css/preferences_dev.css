@@ -11,12 +11,12 @@ ul
 	list-style-type: none;
 	margin: 2px;
 	margin-top: 0;
-	padding: 2px;
+	padding: 0px;
 }
 
 ul.nav {
 	border: 1px solid black;
-	border-radius: 0 0 5px 5px;
+	/*border-radius: 0 0 5px 5px;*/
 	border-top: none;
 }
 
@@ -216,7 +216,7 @@ ul.nav li
 	/*border: 1px solid #ccc;*/
 	border-bottom: none;
 	padding: 3px;
-	margin: 0 1px;
+	/*margin: 0 1px;*/
 }
 
 ul.nav li.hide
@@ -238,6 +238,8 @@ ul.nav li a
 	text-decoration: none;
 	color: #444;
 	display: block;
+	padding-left: 3px;
+	padding-right: 3px;
 }
 
 ul.nav li:hover
@@ -425,8 +427,8 @@ html[dir="rtl"] #search {
 	padding-left: 15px;
 	padding-right: 15px;
 	background-color: #a7d3ed;
-	border-top-right-radius: 5px;
-	border-top-left-radius: 5px;
+	/*border-top-right-radius: 5px;
+	border-top-left-radius: 5px;*/
 	border: 1px solid black;
 	border-bottom: none;
 
@@ -448,7 +450,7 @@ html[dir="rtl"] #search {
 
 span.nav{
 	border: 1px solid black;
-	border-radius: 5px 5px 0 0;
+	/*border-radius: 5px 5px 0 0;*/
 	margin: 2px;
 	margin-bottom: 0;
 	padding: 2px;
@@ -463,7 +465,7 @@ span.nav{
 
 #breadcrumbs {
 	border: 1px solid black;
-	border-radius: 5px 5px 5px 5px;
+	/*border-radius: 5px 5px 5px 5px;*/
 	margin: 2px;
 	margin-bottom: 0;
 	margin-top: 0;
