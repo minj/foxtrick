@@ -19,13 +19,13 @@ Foxtrick.modules["TabsTest"]={
 
 		if (FoxtrickPrefs.isModuleOptionEnabled("TabsTest", "Tabify"))
 			Foxtrick.util.tabs.tabify(doc);
-		var ft_handle = Foxtrick.util.tabs.addHandle(doc, "Please test this!", null , "ft-tab-readme");
+		var ft_handle = Foxtrick.util.tabs.addHandle(doc, "New prefs page!", null , "ft-tab-readme");
 		if(ft_handle)
 			Foxtrick.addClass(ft_handle, "ft-tab-foxtrick");
 
 		var div = doc.createElement("div");
 		var header = doc.createElement("h2");
-		header.textContent = "Please test this!";
+		header.textContent = "New prefs page!";
 		var list = doc.createElement("ul");
 		var addEntry = function(list, text){
 			var entry = doc.createElement("li");
@@ -34,11 +34,17 @@ Foxtrick.modules["TabsTest"]={
 			list.appendChild(entry);
 		}
 
-		addEntry(list, "- Are your ticker/live/alert sounds working properly?");
-		addEntry(list, "- Is HideSignature working to hide/reveal signatures?");
-		addEntry(list, "- Any sites that act weird or have weird styling? (These tabs could cause it.)");
-		addEntry(list, "- Is everything else alright?");
-
+		addEntry(list, "We worked on the preference page:");
+		addEntry(list, "");
+		addEntry(list, "Some of the new features are:");
+		addEntry(list, "- Autosave, you will not have to manually save after applying changes");
+		addEntry(list, "- Added a search bar, you can now search/filter for a specific entry");
+		addEntry(list, "- Changed the design a bit, but that's just a placeholder, no idea how it will end up eventually");
+		addEntry(list, "");
+		addEntry(list, "Please report when you find something odd.");
+		addEntry(list, "");
+		addEntry(list, "Team Foxtrick");
+		
 		div.appendChild(header);
 		div.appendChild(list);
 		Foxtrick.addClass(div, "ft-tab-custom");
