@@ -89,12 +89,23 @@
 		header.parentNode.insertBefore(mobile_header, header);	
 		var mobile_header_center = doc.createElement('div');
 		mobile_header_center.id = 'mobile_header_center';
-		mobile_header_center.classNme = 'mobile_header_center out';
 		Foxtrick.onClick(mobile_header_center, function(ev){
-			Foxtrick.toggleClass(mobile_header_center,"out");
+			if (Foxtrick.hasClass(menu,"hidden")) {
+				// remove hidden and slide in
+				Foxtrick.removeClass(menu,'hidden');
+				Foxtrick.toggleClass(mobile_header_center,"out");
+			}
+			else {
+				// slide out and later add hidden
+				Foxtrick.toggleClass(mobile_header_center,"out");
+				window.setTimeout(function(){
+					Foxtrick.addClass(menu,'hidden');
+				}, 1000);
+			}
 		});
 		mobile_header.appendChild(mobile_header_center);
 		menu = mobile_header_center.appendChild(menu);
+		Foxtrick.addClass(menu,'hidden')
 		var mobile_header_center_tab = doc.createElement('div');
 		mobile_header_center_tab.id = 'mobile_header_center_tab';
 		var a = doc.createElement('a');

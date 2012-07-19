@@ -26,6 +26,12 @@ div.scEditSC .txtb{width:300px;}
  {width:auto !important;}
 
 
+ /* limit images */
+ .ft-mobile #content img { max-width: 250px;}
+ 
+ /* kicking */
+.ft-mobile #ctl00_ctl00_CPContent_CPMain_radWeeklyActivityChart {display:none;}
+ 
 /* header */
 .ft-mobile #ticker {position: relative !important; top: 0px !important; left: auto !important; width: auto !important; float: left;}
 .ft-mobile #shortcutsNoSupporter ~ a[target="_blank"][href^="http"] {display:none}
