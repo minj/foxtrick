@@ -95,9 +95,25 @@ function initSearch(){
 }
 
 //search
-function searchEvent(ev){
-	if(ev.target.value.length > 0){
-		var regex = new RegExp(ev.target.value, "i")
+function search(string, search){
+	if(string.length > 0){
+		$("#breadcrumb-2").show();
+		$("#breadcrumb-3").show();
+		if(search){
+			$("#breadcrumb-2").text("Search");
+			$("#breadcrumb-3").text(string);
+			$("#breadcrumb-sep-1").show();
+			$("#breadcrumb-sep-2").show();
+		} else {
+			$("#breadcrumb-2").text(string);
+			$("#breadcrumb-sep-1").show();
+			$("#breadcrumb-sep-2").hide();
+			$("#breadcrumb-3").hide();
+		}
+		
+		var regex = new RegExp(string, "i");
+
+		//iterate pre-cached modules, jquery is slow as hell here, directly using dom methods
 		for (var i in _modules){
 			try{
 	   			if (i.search(regex) > -1){
@@ -110,6 +126,10 @@ function searchEvent(ev){
 			}
 		}
 	} else {
+		$("#breadcrumb-2").hide();
+		$("#breadcrumb-3").hide();
+		$("#breadcrumb-sep-1").hide();
+		$("#breadcrumb-sep-2").hide();
 		for (var i in _modules){
 			try{
 				_modules[i].className = _modules[i].className.replace(/hidden/g,"");
@@ -117,7 +137,13 @@ function searchEvent(ev){
 			}
 		}
 	}
+
 }
+
+function searchEvent(ev){
+	search(ev.target.value, true);
+}
+
 function initCoreModules()
 {
 /*	if (Foxtrick.arch === "Gecko") {		
@@ -168,9 +194,12 @@ function locateFragment(uri)
 		var moduleObj = $("#pref-" + String(module));
 		var category = moduleObj.attr("x-category");
 		showTab(category);
+		search(module, false); //search
 		moduleObj[0].scrollIntoView(true);
 	};
 	var showTab = function(tab) {
+		$("#breadcrumb-1").text(Foxtrickl10n.getString("tab."+tab)); //search
+		search(""); //search reset
 		$("#pane > div").hide();
 		$("#tabs > li").removeClass("active");
 		$("#tab-" + tab).addClass("active");
@@ -589,7 +618,7 @@ function getModule(module)
 	// or purely initializes them and returns null
 	var customCoptions = [];
 	if (typeof(module.OPTION_FUNC) == "function") {
-		var genOptions = module.OPTION_FUNC(document, initListeners);
+		var genOptions = module.OPTION_FUNC(document, initAutoSaveListeners);
 		if (genOptions) {
 			if ($.isArray(genOptions)) {
 				for (var field=0; field<genOptions.length; ++field)
