@@ -69,6 +69,17 @@ function startup(aData, aReason) {
 	const branch = "extensions.foxtrick.prefs.";
 	setDefaultPrefs(pathToDefault, branch);
 
+	// won't run on 4-7. tell them to update. pre 4 it's not bootstrapped anyways
+	if (Services.vc.compare(Services.appinfo.platformVersion, "8.0") < 0) {
+		var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+                        .getService(Components.interfaces.nsIPromptService);
+		prompts.alert(null, "FoxTrick", "FoxTrick is incompatible with Firefox 4 - 7. Please update Firefox.");
+		return;
+	}
+		// add chrome.manifest for 8+9
+	if (Services.vc.compare(Services.appinfo.platformVersion, "10.0") < 0)
+		Components.manager.addBootstrappedManifestLocation(aData.installPath);
+	
 	_gLoader = {};
 	// load specific startup stripts
 	if (isFennecNative())
@@ -94,8 +105,15 @@ function shutdown(aData, aReason) {
 	if (aReason == APP_SHUTDOWN)
 		return;
 
-	let wm = Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator);
+	if (Services.vc.compare(Services.appinfo.platformVersion, "8.0") < 0)
+		return;
+		
+	// remove chrome.manifest for 8+9
+	if (Services.vc.compare(Services.appinfo.platformVersion, "10.0") < 0)
+		Components.manager.removeBootstrappedManifestLocation(aData.installPath);
 
+	let wm = Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator);
+	
 	// Stop listening for new windows
 	wm.removeListener(windowListener);
 
