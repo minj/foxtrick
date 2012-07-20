@@ -26,14 +26,17 @@ function initLoader() {
 function init()
 {
 	try {
-		initCoreModules();
-		getPageIds();
-		initTabs();
-		initSearch(); //important, run after module divs have been created (initTabs)
-		initListeners(); //important, run after module divs have been created (initTabs)
-		initTextAndValues();
-		locateFragment(window.location.toString()); // locate element by fragment
-		testPermissions();
+		$("body").hide();
+			initCoreModules();
+			getPageIds();
+			initTabs();
+			initSearch(); //important, run after module divs have been created (initTabs)
+			initListeners(); //important, run after module divs have been created (initTabs)
+			initTextAndValues();
+			locateFragment(window.location.toString()); // locate element by fragment
+			testPermissions();
+		$("body").show();
+		/* Run a test. */
 
 		if (window.location.href.search(/saved=true/)!==-1) {
 			notice(Foxtrickl10n.getString("prefs.feedback.saved"));
@@ -276,7 +279,7 @@ function initAutoSaveListeners(){
 			return;
 		$(this).attr("savelistener", "true");
 		if ($(this).is(":checkbox")){
-			$(this).click(function() { saveEvent(); });	
+			$(this).click(function(ev) { saveEvent(ev); });	
 		} else if ($(this)[0].nodeName == "select"){
 			$(this)[0].addEventListener("change", saveEvent, false);
 		} else if ($(this).is(":input")){
@@ -290,7 +293,7 @@ function initAutoSaveListeners(){
 		if($(this).attr("savelistener"))
 			return;
 		$(this).attr("savelistener", "true");
-		$(this).click(function() { saveEvent(); });
+		$(this).click(function(ev) { saveEvent(ev); });
 	})
 	$("#pane textarea").each(function() {
 		if($(this).attr("savelistener"))
@@ -1058,32 +1061,32 @@ function initModules()
 function saveEvent(ev){
 
 	Foxtrick.log("save", ev);
-	if ($(event.target).attr("pref")) {
-		var pref = $(event.target).attr("pref");
-		if ($(event.target).is(":checkbox"))
-			FoxtrickPrefs.setBool(pref, $(event.target).is(":checked"));
-		else if ($(event.target)[0].nodeName == "select")
-			FoxtrickPrefs.setString(pref, $$(event.target)[0].value); // calculated just-in-time, so .attr("value") would fail here
-		else if ($(event.target).is(":input"))
-			FoxtrickPrefs.setString(pref, $(event.target)[0].value);
+	if ($(ev.target).attr("pref")) {
+		var pref = $(ev.target).attr("pref");
+		if ($(ev.target).is(":checkbox"))
+			FoxtrickPrefs.setBool(pref, $(ev.target).is(":checked"));
+		else if ($(ev.target)[0].nodeName == "select")
+			FoxtrickPrefs.setString(pref, $$(ev.target)[0].value); // calculated just-in-time, so .attr("value") would fail here
+		else if ($(ev.target).is(":input"))
+			FoxtrickPrefs.setString(pref, $(ev.target)[0].value);
 	} else {
-		var module = $(event.target).attr("module");
-		if ($(event.target).attr("option")) {
+		var module = $(ev.target).attr("module");
+		if ($(ev.target).attr("option")) {
 			Foxtrick.log("option of module");
 			// option of module
-			var option = $(event.target).attr("option");
-			if ($(event.target).is(":checkbox"))
-				FoxtrickPrefs.setModuleEnableState(module + "." + option, $(event.target).is(":checked"));
-			else if ($(event.target).is(":input"))
-				FoxtrickPrefs.setModuleOptionsText(module + "." + option, $(event.target)[0].value);
+			var option = $(ev.target).attr("option");
+			if ($(ev.target).is(":checkbox"))
+				FoxtrickPrefs.setModuleEnableState(module + "." + option, $(ev.target).is(":checked"));
+			else if ($(ev.target).is(":input"))
+				FoxtrickPrefs.setModuleOptionsText(module + "." + option, $(ev.target)[0].value);
 		}
-		else if ($(event.target).is(":radio")) {
+		else if ($(ev.target).is(":radio")) {
 			Foxtrick.log("radio option of module");
-			if ($(event.target).is(":checked"))
-			 	FoxtrickPrefs.setModuleValue(module, $(event.target).attr("value"));
+			if ($(ev.target).is(":checked"))
+			 	FoxtrickPrefs.setModuleValue(module, $(ev.target).attr("value"));
 		}
 		else {
-			FoxtrickPrefs.setModuleEnableState(module, $(event.target).is(":checked"));
+			FoxtrickPrefs.setModuleEnableState(module, $(ev.target).is(":checked"));
 			Foxtrick.log("setModuleEnableState");
 		}
 	}
