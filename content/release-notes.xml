@@ -54,6 +54,8 @@
 <item>● <module>HideSignatures</module>: Did not work when HT setting was set to truncated signatures, fixed that</item>
 <item>● <module>PlayerStatsExperience</module>: Fixed NT/U-20 final and semi-final detection</item>
 <item>● <module>TeamPopupLinks</module>: Fixed infinite creating of tabs on the guestbook</item>
+<item>● <module>MatchIncome</module>: Fixed bug where old prices were used when the dateformat starts with year.</item>
+<item>● <module>MatchIncome</module>: Cup income is actually 67% vs. 33% and not 2/3 vs. 1/3. Fixed.</item>
 <item>● Fixed RTL language issues with the median transfer price</item>
 <item></item>
 <item><xhtml:b>For visually/hearing impaired users</xhtml:b></item>
