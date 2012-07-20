@@ -1138,7 +1138,7 @@ function addNote(note, to, links)
 			case "em": return addNode('em', tagContent);
 			case "strong": return addNode('strong', tagContent);
 			case "header": return addNode('h5', tagContent); //TODO
-			case "module": return addNode('a', tagContent, {href : Foxtrick.InternalPath + "preferences_dev.html#module=" + tagContent});
+			case "module": return addNode('a', tagContent, {href : Foxtrick.InternalPath + "preferences.html#module=" + tagContent});
 			case "ul": return addNested('ul', tagContent);
 			case "li": return addNested('li', tagContent);
 			case "p": return addNested('p', tagContent);

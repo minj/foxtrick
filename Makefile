@@ -86,8 +86,6 @@ CONTENT_FILES_FIREFOX = $(CONTENT_FILES) bootstrap-firefox.js \
 	overlay.xul \
 	preferences.html \
 	preferences.js \
-	preferences_dev.html \
-	preferences_dev.js \
 	options-fennec.xul \
 	observer.js \
 	scripts-fennec.js \
