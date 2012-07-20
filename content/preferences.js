@@ -78,12 +78,12 @@ function initSearch(){
 					_modules[name] = $(this)[0];
 					addToModuleList(name);
 				} else{
-					console.log("no search support, missing h3 and/or data-text");
+					Foxtrick.log("no search support, missing h3 and/or data-text");
 				}
 			}
 		}
 		catch(e){
-			console.log("no search support", e)
+			Foxtrick.log("no search support", e)
 		}
 	});
 	// for (var i in Foxtrick.modules){
@@ -188,7 +188,7 @@ function parseFragment(fragment)
 
 function locateFragment(uri)
 {
-	console.log(uri);
+	Foxtrick.log(uri);
 	// show functions
 	var showModule = function(module) {
 		var moduleObj = $("#pref-" + String(module));
@@ -1057,7 +1057,7 @@ function initModules()
 	
 function saveEvent(ev){
 
-	console.log("save");
+	Foxtrick.log("save", ev);
 	if ($(event.target).attr("pref")) {
 		var pref = $(event.target).attr("pref");
 		if ($(event.target).is(":checkbox"))
@@ -1069,7 +1069,7 @@ function saveEvent(ev){
 	} else {
 		var module = $(event.target).attr("module");
 		if ($(event.target).attr("option")) {
-			console.log("option of module");
+			Foxtrick.log("option of module");
 			// option of module
 			var option = $(event.target).attr("option");
 			if ($(event.target).is(":checkbox"))
@@ -1078,13 +1078,13 @@ function saveEvent(ev){
 				FoxtrickPrefs.setModuleOptionsText(module + "." + option, $(event.target)[0].value);
 		}
 		else if ($(event.target).is(":radio")) {
-			console.log("radio option of module");
+			Foxtrick.log("radio option of module");
 			if ($(event.target).is(":checked"))
 			 	FoxtrickPrefs.setModuleValue(module, $(event.target).attr("value"));
 		}
 		else {
 			FoxtrickPrefs.setModuleEnableState(module, $(event.target).is(":checked"));
-			console.log("setModuleEnableState");
+			Foxtrick.log("setModuleEnableState");
 		}
 	}
 	FoxtrickPrefs.setBool("preferences.updated", true);

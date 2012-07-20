@@ -38,6 +38,13 @@ my @targets = (
 		"suffix" => "\"></script>\n"
 	},
 	{
+			"file" => "content/overlay.xul",
+			"from" => "<!-- categorized modules -->",
+			"to" => "<!-- end categorized modules -->",
+			"prefix" => "<script type=\"application/x-javascript\" src=\"./",
+			"suffix" => "\"></script>\n"
+	},
+	{
 		"file" => "content/scripts-fennec.js",
 		"from" => "//<!-- categorized modules -->",
 		"to" => "//<!-- end categorized modules -->",

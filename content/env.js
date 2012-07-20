@@ -462,7 +462,10 @@ else {
 			Foxtrick.platform = "Firefox";  // includes SeaMonkey here
 	} catch(e) {
 		// above not working in mobile content. so it's that 
-		Foxtrick.platform = "Mobile";
+		if (typeof(addMessageListener)!=='undefined' || typeof(messageManager)!=='undefined')
+			Foxtrick.platform = "Mobile";
+		else	
+			Foxtrick.platform = "Firefox";  // includes SeaMonkey here
 	}
 
 	if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android") {

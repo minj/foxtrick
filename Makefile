@@ -83,6 +83,7 @@ CONTENT_FILES = add-class.js \
 	xml-load.js 
 CONTENT_FILES_FIREFOX = $(CONTENT_FILES) bootstrap-firefox.js \
 	bootstrap-fennec.js \
+	overlay.xul \
 	preferences.html \
 	preferences.js \
 	preferences_dev.html \

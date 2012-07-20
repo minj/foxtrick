@@ -1,0 +1,248 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay>
+<?xml-stylesheet href="./resources/css/overlay.css" type="text/css"?>
+
+<overlay id="foxtrick"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<!-- essential stuffs -->
+<script type="application/x-javascript" src="./env.js" />
+<script type="application/x-javascript" src="./loader-firefox.js" />
+<script type="application/x-javascript" src="./prefs.js" />
+<script type="application/x-javascript" src="./l10n.js" />
+<script type="application/x-javascript" src="./xml-load.js" />
+<script type="application/x-javascript" src="./pages.js" />
+
+<!-- utilities -->
+<script type="application/x-javascript" src="./util/api.js" />
+<script type="application/x-javascript" src="./util/array.js" />
+<script type="application/x-javascript" src="./util/cookies.js" />
+<script type="application/x-javascript" src="./util/copy-button.js" />
+<script type="application/x-javascript" src="./util/css.js" />
+<script type="application/x-javascript" src="./util/currency.js" />
+<script type="application/x-javascript" src="./util/dom.js" />
+<script type="application/x-javascript" src="./util/ht-ml.js" />
+<script type="application/x-javascript" src="./util/id.js" />
+<script type="application/x-javascript" src="./util/inject.js" />
+<script type="application/x-javascript" src="./util/layout.js" />
+<script type="application/x-javascript" src="./util/links-box.js" />
+<script type="application/x-javascript" src="./util/load.js" />
+<script type="application/x-javascript" src="./util/local-store.js" />
+<script type="application/x-javascript" src="./util/log.js" />
+<script type="application/x-javascript" src="./util/match-view.js" />
+<script type="application/x-javascript" src="./util/misc.js" />
+<script type="application/x-javascript" src="./util/module.js" />
+<script type="application/x-javascript" src="./util/note.js" />
+<script type="application/x-javascript" src="./util/notify.js" />
+<script type="application/x-javascript" src="./util/sanitize.js" />
+<script type="application/x-javascript" src="./util/session-store.js" />
+<script type="application/x-javascript" src="./util/string.js" />
+<script type="application/x-javascript" src="./util/tabs.js" />
+<script type="application/x-javascript" src="./util/time.js" />
+
+<!-- external libraries -->
+<script type="application/x-javascript" src="./lib/oauth.js" />
+<script type="application/x-javascript" src="./lib/sha1.js" />
+<script type="application/x-javascript" src="./lib/dragdealer.js" />
+
+<!-- page utilities -->
+<script type="application/x-javascript" src="./pages/all.js" />
+<script type="application/x-javascript" src="./pages/country.js" />
+<script type="application/x-javascript" src="./pages/players.js" />
+<script type="application/x-javascript" src="./pages/player.js" />
+<script type="application/x-javascript" src="./pages/youth-player.js" />
+<script type="application/x-javascript" src="./pages/transfer-search-results.js" />
+<script type="application/x-javascript" src="./pages/match.js" />
+<script type="application/x-javascript" src="./pages/matches.js" />
+
+<!-- core modules -->
+<script type="application/x-javascript" src="./redirections.js" />
+<script type="application/x-javascript" src="./read-ht-prefs.js" />
+<script type="application/x-javascript" src="./forum-stage.js" />
+<script type="application/x-javascript" src="./core.js" />
+<script type="application/x-javascript" src="./add-class.js" />
+<script type="application/x-javascript" src="./ui.js" />
+
+<!-- categorized modules -->
+<script type="application/x-javascript" src="./access/aria-landmarks.js"></script>
+<script type="application/x-javascript" src="./alert/live-alert.js"></script>
+<script type="application/x-javascript" src="./alert/new-mail.js"></script>
+<script type="application/x-javascript" src="./alert/ticker-alert.js"></script>
+<script type="application/x-javascript" src="./alert/ticker-coloring.js"></script>
+<script type="application/x-javascript" src="./forum/add-leave-conf-button.js"></script>
+<script type="application/x-javascript" src="./forum/embed-media.js"></script>
+<script type="application/x-javascript" src="./forum/forum-change-posts.js"></script>
+<script type="application/x-javascript" src="./forum/forum-change-posts-modules.js"></script>
+<script type="application/x-javascript" src="./forum/forum-direct-page-links.js"></script>
+<script type="application/x-javascript" src="./forum/forum-last-post.js"></script>
+<script type="application/x-javascript" src="./forum/forum-next-and-previous.js"></script>
+<script type="application/x-javascript" src="./forum/forum-mod-popup.js"></script>
+<script type="application/x-javascript" src="./forum/forum-presentation.js"></script>
+<script type="application/x-javascript" src="./forum/forum-preview.js"></script>
+<script type="application/x-javascript" src="./forum/forum-strip-hattrick-links.js"></script>
+<script type="application/x-javascript" src="./forum/forum-templates.js"></script>
+<script type="application/x-javascript" src="./forum/forum-thread-auto-ignore.js"></script>
+<script type="application/x-javascript" src="./forum/forum-youth-icons.js"></script>
+<script type="application/x-javascript" src="./forum/go-to-post-box.js"></script>
+<script type="application/x-javascript" src="./forum/hide-signatures.js"></script>
+<script type="application/x-javascript" src="./forum/ht-thread-marker.js"></script>
+<script type="application/x-javascript" src="./forum/mark-all-as-read.js"></script>
+<script type="application/x-javascript" src="./forum/mark-unread.js"></script>
+<script type="application/x-javascript" src="./forum/show-forum-pref-button.js"></script>
+<script type="application/x-javascript" src="./forum/staff-marker.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/cross-table.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/election-table.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/extended-player-details.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/extra-player-info.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/flag-collection-to-map.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/goal-difference-to-tables.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/history-stats.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/htms-points.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/last-login.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/median-transfer-price.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/my-monitor.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/nt-peek.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/player-birthday.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/player-stats-experience.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/season-stats.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/series-flags.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/show-friendly-booked.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/show-lineup-set.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/skill-table.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/supporterstats-enhancements.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/table-of-statistical-truth.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/team-stats.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/transfer-deadline.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/youth-promotes.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/youth-series-estimation.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/youth-twins.js"></script>
+<script type="application/x-javascript" src="./links/links-achievements.js"></script>
+<script type="application/x-javascript" src="./links/links-alliances.js"></script>
+<script type="application/x-javascript" src="./links/links-arena.js"></script>
+<script type="application/x-javascript" src="./links/links-challenges.js"></script>
+<script type="application/x-javascript" src="./links/links-club-transfers.js"></script>
+<script type="application/x-javascript" src="./links/links-coach.js"></script>
+<script type="application/x-javascript" src="./links/links-country.js"></script>
+<script type="application/x-javascript" src="./links/links-economy.js"></script>
+<script type="application/x-javascript" src="./links/links-fans.js"></script>
+<script type="application/x-javascript" src="./links/links.js"></script>
+<script type="application/x-javascript" src="./links/links-league.js"></script>
+<script type="application/x-javascript" src="./links/links-manager.js"></script>
+<script type="application/x-javascript" src="./links/links-match.js"></script>
+<script type="application/x-javascript" src="./links/links-national.js"></script>
+<script type="application/x-javascript" src="./links/links-player-detail.js"></script>
+<script type="application/x-javascript" src="./links/links-players.js"></script>
+<script type="application/x-javascript" src="./links/links-staff.js"></script>
+<script type="application/x-javascript" src="./links/links-team.js"></script>
+<script type="application/x-javascript" src="./links/links-tracker.js"></script>
+<script type="application/x-javascript" src="./links/links-training.js"></script>
+<script type="application/x-javascript" src="./links/links-youth.js"></script>
+<script type="application/x-javascript" src="./links/links-world.js"></script>
+<script type="application/x-javascript" src="./matches/att-vs-def.js"></script>
+<script type="application/x-javascript" src="./matches/live-match-report-format.js"></script>
+<script type="application/x-javascript" src="./matches/copy-ratings.js"></script>
+<script type="application/x-javascript" src="./matches/htev-prediction.js"></script>
+<script type="application/x-javascript" src="./matches/htms-prediction.js"></script>
+<script type="application/x-javascript" src="./matches/match-income.js"></script>
+<script type="application/x-javascript" src="./matches/match-order.js"></script>
+<script type="application/x-javascript" src="./matches/match-player-colouring.js"></script>
+<script type="application/x-javascript" src="./matches/match-report-format.js"></script>
+<script type="application/x-javascript" src="./matches/match-simulator.js"></script>
+<script type="application/x-javascript" src="./matches/ratings.js"></script>
+<script type="application/x-javascript" src="./matches/stars-counter.js"></script>
+<script type="application/x-javascript" src="./presentation/background-fixed.js"></script>
+<script type="application/x-javascript" src="./presentation/bookmark-adjust.js"></script>
+<script type="application/x-javascript" src="./presentation/country-list.js"></script>
+<script type="application/x-javascript" src="./presentation/currency-converter.js"></script>
+<script type="application/x-javascript" src="./presentation/custom-medals.js"></script>
+<script type="application/x-javascript" src="./presentation/fix-css-problems.js"></script>
+<script type="application/x-javascript" src="./presentation/friendly-interface.js"></script>
+<script type="application/x-javascript" src="./presentation/friendly-pool.js"></script>
+<script type="application/x-javascript" src="./presentation/header-fix.js"></script>
+<script type="application/x-javascript" src="./presentation/header-toggle.js"></script>
+<script type="application/x-javascript" src="./presentation/highlight-cup-wins.js"></script>
+<script type="application/x-javascript" src="./presentation/highlight-ownerless.js"></script>
+<script type="application/x-javascript" src="./presentation/ht-date-format.js"></script>
+<script type="application/x-javascript" src="./presentation/large-flags.js"></script>
+<script type="application/x-javascript" src="./presentation/league-news-filter.js"></script>
+<script type="application/x-javascript" src="./presentation/local-time.js"></script>
+<script type="application/x-javascript" src="./presentation/loyalty-display.js"></script>
+<script type="application/x-javascript" src="./presentation/match-tables.js"></script>
+<script type="application/x-javascript" src="./presentation/mobile-enhancements.js"></script>
+<script type="application/x-javascript" src="./presentation/move-manager-online.js"></script>
+<script type="application/x-javascript" src="./presentation/move-player-select-box.js"></script>
+<script type="application/x-javascript" src="./presentation/move-player-statement.js"></script>
+<script type="application/x-javascript" src="./presentation/old-style-face.js"></script>
+<script type="application/x-javascript" src="./presentation/original-face.js"></script>
+<script type="application/x-javascript" src="./presentation/personality-images.js"></script>
+<script type="application/x-javascript" src="./presentation/player-stats-training-week.js"></script>
+<script type="application/x-javascript" src="./presentation/ratings-display.js"></script>
+<script type="application/x-javascript" src="./presentation/safe-for-work.js"></script>
+<script type="application/x-javascript" src="./presentation/simple-presentation.js"></script>
+<script type="application/x-javascript" src="./presentation/skill-coloring.js"></script>
+<script type="application/x-javascript" src="./presentation/skill-translation.js"></script>
+<script type="application/x-javascript" src="./presentation/skin-plugin.js"></script>
+<script type="application/x-javascript" src="./presentation/smaller-pages.js"></script>
+<script type="application/x-javascript" src="./presentation/tabs-test.js"></script>
+<script type="application/x-javascript" src="./presentation/team-select-box.js"></script>
+<script type="application/x-javascript" src="./presentation/youth-skill-hide-unknown.js"></script>
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/confirm-actions.js"></script>
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/context-menu-copy.js"></script>
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/copy-match-id.js"></script>
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/copy-player-ad.js"></script>
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/copy-youth.js"></script>
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/extra-shortcuts.js"></script>
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/filter.js"></script>
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/lineup-shortcut.js"></script>
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/manager-buttons.js"></script>
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/player-filters.js"></script>
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/rapid-id.js"></script>
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/senior-team-shortcuts.js"></script>
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/table-sort.js"></script>
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/team-popup-links.js"></script>
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/transfer-history-filters.js"></script>
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/transfer-search-filters.js"></script>
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/transfer-search-result-filters.js"></script>
+<!-- end categorized modules -->
+
+<script type="application/x-javascript" src="./entry.js" />
+
+<!-- load listeners -->
+<script type="application/x-javascript">
+<![CDATA[
+	window.addEventListener("load",
+	function() {
+		Foxtrick.loader.firefox.browserLoad(document);
+	}, false);
+]]>
+</script>
+
+<!-- Firefox toolbar palette overlay -->
+<toolbarpalette id="BrowserToolbarPalette">
+	<toolbarbutton id="foxtrick-toolbar-button" />
+</toolbarpalette>
+
+<!-- toolbar button -->
+<toolbarbutton id="foxtrick-toolbar-button"
+	class="toolbarbutton-1 chromeclass-toolbar-additional"
+	type="menu"
+	label="FoxTrick"
+	tooltiptext="FoxTrick"
+	context="foxtrick-menu">
+	<menupopup id="foxtrick-menu">
+		<menuitem id="foxtrick-toolbar-preferences"/>
+		<menuitem id="foxtrick-toolbar-deactivate" type="checkbox" autocheck="true"/>
+		<menuitem id="foxtrick-toolbar-clearCache" />
+		<menuitem id="foxtrick-toolbar-highlight" type="checkbox" autocheck="true"/>
+		<menuitem id="foxtrick-toolbar-translationKeys" type="checkbox" autocheck="true"/>
+	</menupopup>
+</toolbarbutton>
+
+<!-- popup menu -->
+<popup id="contentAreaContextMenu">
+	<menuitem id="foxtrick-popup-copy-id" insertbefore="context-paste" hidden="true" label="Copy ID" />
+	<menuitem id="foxtrick-popup-copy-link" insertbefore="context-paste" hidden="true" label="Copy Link Location in HT-ML" />
+	<menuitem id="foxtrick-popup-copy-ht-ml" insertbefore="context-paste" hidden="true" label="Copy in HT-ML" />
+	<menuitem id="foxtrick-popup-copy-table" insertbefore="context-paste" hidden="true" label="Copy table in HT-ML" />
+</popup>
+</overlay>
