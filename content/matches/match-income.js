@@ -60,10 +60,10 @@ Foxtrick.modules["MatchIncome"]={
 		
 		var table = soldSeatBox.getElementsByTagName('table')[0];
 		var tbody = table.getElementsByTagName('tbody')[0];
-		var sum = Foxtrick.trimnum(table.rows[0].cells[1].textContent)	*	prices[priceIdx].terraces *(isCup?(2.0/3.0):1)
-			+ Foxtrick.trimnum(table.rows[1].cells[1].textContent)		*	prices[priceIdx].basicSeats *(isCup?(2.0/3.0):1)
-			+ Foxtrick.trimnum(table.rows[2].cells[1].textContent)		*	prices[priceIdx].seatsUnderRoof *(isCup?(2.0/3.0):1)
-			+ Foxtrick.trimnum(table.rows[3].cells[1].textContent)		*	prices[priceIdx].vip *(isCup?(2.0/3.0):1);
+		var sum = Foxtrick.trimnum(table.rows[0].cells[1].textContent)	*	prices[priceIdx].terraces *(isCup?(67.0/100.0):1)
+			+ Foxtrick.trimnum(table.rows[1].cells[1].textContent)		*	prices[priceIdx].basicSeats *(isCup?(67.0/100.0):1)
+			+ Foxtrick.trimnum(table.rows[2].cells[1].textContent)		*	prices[priceIdx].seatsUnderRoof *(isCup?(67.0/100.0):1)
+			+ Foxtrick.trimnum(table.rows[3].cells[1].textContent)		*	prices[priceIdx].vip *(isCup?(67.0/100.0):1);
 
 		// convert to local currency
 		sum /= Foxtrick.util.currency.getRate();
