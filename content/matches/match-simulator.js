@@ -242,6 +242,10 @@ Foxtrick.modules.MatchSimulator={
 				for (var i=0; i<selectedratings.length;++i) {
 					var htvalue = Number(teamNode.getElementsByTagName(selectedratings[i].type)[0].textContent);
 					if (selectedratings[i].type == 'TacticType') {
+						
+						// HTs have a strange way of counting tactics
+						htvalue = (htvalue > 6) ? htvalue - 2 : htvalue;
+						
 						selectedratings[i].value = htvalue;
 						selectedratings[i].text = Foxtrickl10n.getTacticById(htvalue);
 					}
