@@ -16,22 +16,6 @@
 <item>This is the beta version of the next release. Please help translating this version at our super easy crowd-translation page <xhtml:a href="http://crowdin.net/project/foxtrick">crowdin.net</xhtml:a>. </item>
 </note>
 
-<note version="0.11.0">
-<item>● NEW: <module>ForumModeratorPopup</module>: Added a dropdown menu for forum moderators on top of threads to simplify moderation.</item> 
-<item>● NEW: <module>PlayerStatsTrainingWeek</module>: Added an opportunity to group matches according to training week instead of calendar week.</item>
-<item>● <module>MatchOrderInterface</module>: A fix for penalty takers list  provided. You can also add your squad to the list or clear it with one click.</item>
-<item>● <module>SkillTable</module>: Opportunity added to sub-sort an existing ordering using ctrl + leftclick another column header.</item>
-<item>● <module>SkillTable</module>: Player names are abbreviated from now on consuming less space.</item>
-<item>● <module>SkillColoring</module>: Full module rewrite, a lot of bug fixes and additions. Options changed. Please set them to your liking again.</item>
-<item>● <module>TransferSearchResultFilters</module>: Opportunity added to filter by form and hide players without speciality. Now cooperates with <module>TransferSearchFilters</module>.</item>
-<item>● <module>FriendlyPool</module>: Opportunity added to expand the country selection box.</item>
-<item>● <module>MovePlayerStatement</module>: Opportunity added to remove the statement altogether.</item>
-<item>● <module>YouthTwins</module>: Manually triggered changes made on HY will now instantly reflect on the youthplayers page</item>
-<item>● Tabs: Added backend functionality to add custom tabs to most sites. (like HT's own tabs for upcoming matches).</item>
-<item><xhtml:b>Bugfixes.</xhtml:b></item>
-<item></item>
-</note>
-
 <note version="0.10.0">
 <item>● NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)</item>
 <item>● NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)</item>
