@@ -1,6 +1,283 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- options/preferences page for mozilla and chrome -->
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" type="image/png" href="./resources/img/icon-32.png" />
+	<link rel="stylesheet" type="text/css" media="screen" href="./resources/css/preferences.css" />
+
+	<title>FoxTrick Preferences</title>
+</head>
+<body>
+<div id="alert" class="alert"></div>
+<h1 id="title">
+	<span data-text="prefs.title"></span>
+	<span id="version"></span>
+</h1>
+
+<!-- whether to view by category or view by page -->
+<ul id="view-by" class="nav">
+	<li id="view-by-category"><a data-text="prefs.view.by.category"></a></li>
+	<li id="view-by-page"><a data-text="prefs.view.by.page"></a></li>
+</ul>
+
+<!-- tabs for each category -->
+<ul id="tabs" class="nav">
+<li id="tab-main"><a data-text="tab.main"></a></li><!--
+--><li id="tab-on_page"><a data-text="tab.on_page"></a></li><!--
+--><li id="tab-universal"><a data-text="tab.universal"></a></li><!--
+--><li id="tab-informationAggregation"><a data-text="tab.informationAggregation"></a></li><!--
+--><li id="tab-shortcutsAndTweaks"><a data-text="tab.shortcutsAndTweaks"></a></li><!--
+--><li id="tab-presentation"><a data-text="tab.presentation"></a></li><!--
+--><li id="tab-matches"><a data-text="tab.matches"></a></li><!--
+--><li id="tab-forum"><a data-text="tab.forum"></a></li><!--
+--><li id="tab-links"><a data-text="tab.links"></a></li><!--
+--><li id="tab-alert"><a data-text="tab.alert"></a></li><!--
+--><li id="tab-accessibility"><a data-text="tab.accessibility"></a></li><!--
+--><li id="tab-changes"><a data-text="tab.changes"></a></li><!--
+--><li id="tab-help"><a data-text="tab.help"></a></li><!--
+--><li id="tab-about"><a data-text="tab.about"></a></li>
+</ul>
+
+<!-- pane for showing modules, modules have attribute x-on which is a list
+ of under which tabs it should be shown -->
+<div id="pane">
+<!-- Set-up -->
+<div class="module" x-on="main">
+	<h3 id="pref-setup" data-text="prefs.setup"></h3>
+	<p id="pref-setup-desc"></p>
+	<table>
+		<tr>
+			<td><label id="pref-setup-locale-label" for="pref-setup-locale" data-text="prefs.setup.locale"></label></td>
+			<td><input id="pref-setup-locale" pref="htLanguage" disabled="disabled"></input></td>
+		</tr>
+		<tr>
+			<td><label id="pref-setup-country-label" for="pref-setup-country" data-text="prefs.setup.country"></label></td>
+			<td><input id="pref-setup-country" pref="htCountry" disabled="disabled"></input></td>
+		</tr>
+		<tr>
+			<td><label id="pref-setup-date-format-label" for="pref-setup-date-format" data-text="prefs.setup.dateFormat"></label></td>
+			<td><input id="pref-setup-date-format" pref="htDateFormat" disabled="disabled"></input></td>
+		</tr>
+	</table>
+</div>
+<!-- additional -->
+<div class="module" x-on="main">
+	<h3 id="pref-additional" data-text="prefs.additional.title"></h3>
+	<ul>
+		<li>
+			<input type="checkbox" id="pref-xml-load" pref="xmlLoad" />
+			<label id="pref-xml-load-label" for="pref-xml-load" data-text="prefs.additional.xmlLoad"></label>
+		</li>
+		<li>
+			<input type="checkbox" id="pref-header-icon" pref="smallcopyicons" />
+			<label id="pref-header-icon-label" for="pref-header-icon" data-text="prefs.additional.smallCopyIcons"></label>
+		</li>
+		<li>
+			<input type="checkbox" id="pref-anstoss2-icons" pref="anstoss2icons" />
+			<label id="pref-anstoss2-icons-label" for="pref-anstoss2-icons" data-text="prefs.additional.anstoss2Icons"></label>
+		</li>
+		<li>
+			<input type="checkbox" id="pref-feature-highlight" pref="featureHighlight" />
+			<label id="pref-feature-highlight-label" for="pref-feature-highlight" data-text="prefs.additional.featureHighlight"></label>
+		</li>
+		<li>
+			<input type="checkbox" id="pref-translation-keys" pref="translationKeys" />
+			<label id="pref-translation-keys-label" for="pref-translation-keys" data-text="prefs.additional.translationKeys"></label>
+		</li>
+		<li>
+			<input type="checkbox" id="pref-debug-info" pref="DisplayHTMLDebugOutput" />
+			<label id="pref-debug-info-label" for="pref-debug-info" data-text="prefs.additional.HTMLDebugLog"></label>
+		</li>
+	</ul>
+</div>
+<!-- disable -->
+<div class="module" x-on="main">
+	<h3 id="pref-disable-title" data-text="prefs.disable.title"></h3>
+	<ul>
+		<li>
+			<input type="checkbox" id="pref-disable-on-stage" pref="disableOnStage" />
+			<label id="pref-disable-on-stage-label" for="pref-disable-on-stage" data-text="prefs.disable.stage"></label>
+		</li>
+		<li>
+			<input type="checkbox" id="pref-disable-temporarily" pref="disableTemporary" />
+			<label id="pref-disable-temporarily-label" for="pref-disable-temporarily" data-text="prefs.disable.temporary"></label>
+		</li>
+	</ul>
+</div>
+<!-- StoredPrefs -->
+<div class="module" x-on="main">
+	<h3 id="pref-stored" data-text="prefs.storedData.title"></h3>
+	<table>
+		<tr>
+			<td colspan="2"><button id="pref-stored-restore" data-text="button.restoreDefault"></button></td>
+			<td><label id="pref-stored-restore-label" data-text="prefs.storedData.restoreDefault"></label></td>
+		</tr>
+		<tr>
+			<td><button id="pref-delete-token" data-text="button.deleteToken"></button></td>
+			<td><select id="select-delete-token-teamids"></select></td>
+			<td>
+				<label id="pref-delete-token-label" data-text="prefs.storedData.oauth.delete"></label>
+				<p id="pref-delete-token-desc" data-text="prefs.storedData.oauth.delete.desc"></p>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"><button id="pref-stored-disable" data-text="button.disableAll"></button></td>
+			<td><label id="pref-stored-disable-label" data-text="prefs.storedData.disableAll"></label></td>
+		</tr>
+		<tr>
+			<td colspan="2"><button id="pref-revoke-permissions" data-text="button.revokePermissions"></button></td>
+			<td><label id="pref-revoke-permissions-label" data-text="prefs.storedData.revokePermissions"></label></td>
+		</tr>
+		<tr>
+			<td colspan="2"><button id="pref-stored-clear-cache" data-text="api.clearCache"></button></td>
+			<td><label id="pref-stored-clear-cache-label" data-text="api.clearCache.title"></label></td>
+		</tr>
+	</table>
+</div>
+<!-- LoadSavePrefs -->
+<div class="module" x-on="main">
+	<h3 id="pref-load-save" data-text="prefs.loadSave.title"></h3>
+	<h4 id="pref-save" data-text="prefs.loadSave.export"></h4>
+	<div>
+		<ul>
+			<li>
+				<input type="checkbox" id="pref-save-pref" pref="SavePrefs_Prefs" />
+				<label id="pref-save-pref-label" for="pref-save-pref" data-text="prefs.loadSave.export.prefs"></label>
+			</li>
+			<li>
+				<input type="checkbox" id="pref-save-data" pref="SavePrefs_Notes" />
+				<label id="pref-save-data-label" for="pref-save-data" data-text="prefs.loadSave.export.notes"></label>
+			</li>
+			<li>
+				<input type="checkbox" id="pref-save-token" pref="SavePrefs_Token" />
+				<label id="pref-save-token-label" for="pref-save-token" data-text="prefs.loadSave.export.token"></label>
+			</li>
+		</ul>
+		<p><button id="pref-save-do" data-text="button.export"></button></p>
+		<p><textarea id="pref-save-text"></textarea></p>
+		<p data-text="prefs.loadSave.export.notice"></p>
+	</div>
+	<h4 id="pref-load" data-text="prefs.loadSave.import"></h4>
+	<div>
+		<p data-text="prefs.loadSave.import.notice"></p>
+		<p><textarea id="pref-load-text"></textarea></p>
+		<p><button id="pref-load-do" data-text="button.import"></button></p>
+	</div>
+</div>
+<!-- changes -->
+<div class="module" x-on="changes">
+	<div id="translator_note" class="alert"></div>
+	<div>
+		<input type="checkbox" id="pref-show-release-notes" pref="showReleaseNotes" />
+		<label id="pref-show-release-notes-label" for="pref-show-release-notes" data-text="releaseNotes.show"></label>
+	</div>
+	<div>
+		<label for="pref-version-release-notes" data-text="releaseNotes.showFor"></label>
+		<select id="pref-version-release-notes"></select>
+	</div>
+	<div id="pref-notepad">
+		<ul id="pref-notepad-list"></ul>
+	</div>
+</div>
+
+<!-- help -->
+<div class="module" x-on="help">
+	<h3 data-text="link.title"></h3>
+	<ul id="external-links-list"></ul>
+</div>
+
+<!-- about -->
+<div class="module" x-on="about">
+	<h3 data-text="about.copyright"></h3>
+	<h4>FoxTrick - a browser add-on for the Hattrick.org online football manager game</h4>
+	<ul>
+		<li>Copyright &copy; 2005&ndash;2008, Karel Kolman &lt;kolmis@gmail.com&gt;</li>
+		<li>Copyright &copy; 2008&ndash;2009, Mod-PaV</li>
+		<li>Copyright &copy; 2008&ndash;2009, Lars Wortel &lt;larsw84@hotmail.com&gt;</li>
+		<li>Copyright &copy; 2008&ndash;2011, Mod-spambot &lt;daBux@gmx.de&gt;</li>
+		<li>Copyright &copy; 2008&ndash;2012, convincedd &lt;convincedd@googlemail.com&gt;</li>
+		<li>Copyright &copy; 2008&ndash;2011, taised &lt;tiziano.m@gmail.com&gt;</li>
+		<li>Copyright &copy; 2008&ndash;2009, bummerland</li>
+		<li>Copyright &copy; 2008&ndash;2010, Jestar</li>
+		<li>Copyright &copy; 2008&ndash;2010, smates</li>
+		<li>Copyright &copy; 2008&ndash;2009, OBarros</li>
+		<li>Copyright &copy; 2008&ndash;2009, stephan57</li>
+		<li>Copyright &copy; 2009, baumanns</li>
+		<li>Copyright &copy; 2009&ndash;2012, ljushaff</li>
+		<li>Copyright &copy; 2009&ndash;2012, Ryan Li &lt;ryan@ryanium.com&gt;</li>
+		<li>Copyright &copy; 2010, Aimo_Kanuuna &lt;misa.kankare@live.fi&gt;</li>
+		<li>Copyright &copy; 2011&ndash;2012, CatzHoek &lt;greyhound_@gmx.de&gt;</li>
+		<li>Copyright &copy; 2012, LA-MJ &lt;minj4ever@inbox.lt&gt;</li>
+	</ul>
+	<br/>
+	<p>This program is free software: you can redistribute it and/or modify
+		it under the terms of the GNU General Public License as published by
+	    the Free Software Foundation, either version 3 of the License, or
+	    (at your option) any later version.</p>
+
+	<p>This program is distributed in the hope that it will be useful,
+		but WITHOUT ANY WARRANTY; without even the implied warranty of
+		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+		GNU General Public License for more details.</p>
+	<br/>
+	<p>We are also very greatful to the following projects which we
+		have used in both source code and distribution:</p>
+	<ul>
+		<li>● An OAuth library by Netflix, Inc., under Apache License,
+			version 2.0.</li>
+		<li>● A JavaScript implementation of the SHA-1 algorithm by
+			Paul Johnston, et al., under BSD License.</li>
+		<li>● Modified Chrome to Safari port by Michael Gundlach
+		under GPLv3 as part of adblockforchrome.googlecode.com</li>
+		<li>● yaml.js, a Javascript YAML library ported (from  Symfony PHP framework) by Jeremy Faivre and minj under MIT License.</li>
+		<li>● Some icons from <a href="http://www.fatcow.com/free-icons">fatcow</a> 
+			under Creative Commons Attribution 3.0 License</li>
+	</ul>
+	<br/>
+	<p>Read <a href="http://www.gnu.org/licenses/gpl.html">GNU General
+		Public License in full text</a>.
+		A copy of GNU General Public License is also available at the
+		root directory of source code under the name of
+		<code>COPYING</code></p>
+</div>
+<div class="module" x-on="about">
+	<h3 data-text="about.maintainers"></h3>
+	<ul id="about-maintainers" class="about-list" path="about/maintainers/maintainer"></ul>
+</div>
+<div class="module" x-on="about">
+	<h3 data-text="about.developers"></h3>
+	<ul id="about-developers" class="about-list" path="about/developers/developer"></ul>
+</div>
+<div class="module" x-on="about">
+	<h3 data-text="about.translators"></h3>
+	<ul id="about-translators" class="about-list" path="about/translations/translation/translator"></ul>
+</div>
+<div class="module" x-on="about">
+	<h3 data-text="about.designers"></h3>
+	<ul id="about-designers" class="about-list" path="about/graphics/designer"></ul>
+</div>
+
+</div>
+<!-- alternative save button -->
+<div class="module">
+	<button id="save-alt" data-text="button.save"></button>
+</div>
+
+
+<div id="fixed">
+	<div id="balloon">
+		<button id="save" data-text="button.save"></button>
+	</div>
+	<div id="note">
+		<p id="note-content"></p>
+		<p id="dismiss-notice" data-text="prefs.feedback.dismiss"></p>
+	</div>
+</div>
+
+<a href="./preferences_dev.html">Dev Prefs</a>
+</body>
 	<!-- essential stuffs -->
 	<script type="application/x-javascript" src="./env.js"></script>
 	<script type="application/x-javascript" src="./prefs.js"></script>
@@ -8,13 +285,6 @@
 	<script type="application/x-javascript" src="./xml-load.js"></script>
 	<script type="application/x-javascript" src="./pages.js"></script>
 
-	<!-- external libraries -->
-	<script type="application/x-javascript" src="./lib/jquery.js"></script>
-	<script type="application/x-javascript" src="./lib/oauth.js"></script>
-	<script type="application/x-javascript" src="./lib/sha1.js"></script>
-	<script type="application/x-javascript" src="./lib/PluralForm.js"></script>
-	<script type="application/x-javascript" src="./lib/yaml.js"></script>
-	
 	<!-- utilities -->
 	<script type="application/x-javascript" src="./util/api.js"></script>
 	<script type="application/x-javascript" src="./util/array.js"></script>
@@ -25,6 +295,8 @@
 	<script type="application/x-javascript" src="./util/dom.js"></script>
 	<script type="application/x-javascript" src="./util/ht-ml.js"></script>
 	<script type="application/x-javascript" src="./util/id.js"></script>
+	<script type="application/x-javascript" src="./util/inject.js"></script>
+	<script type="application/x-javascript" src="./util/layout.js"></script>
 	<script type="application/x-javascript" src="./util/links-box.js"></script>
 	<script type="application/x-javascript" src="./util/load.js"></script>
 	<script type="application/x-javascript" src="./util/local-store.js"></script>
@@ -39,6 +311,13 @@
 	<script type="application/x-javascript" src="./util/string.js"></script>
 	<script type="application/x-javascript" src="./util/tabs.js"></script>
 	<script type="application/x-javascript" src="./util/time.js"></script>
+	
+	<!-- external libraries -->
+	<script type="application/x-javascript" src="./lib/jquery.js"></script>
+	<script type="application/x-javascript" src="./lib/oauth.js"></script>
+	<script type="application/x-javascript" src="./lib/sha1.js"></script>
+	<script type="application/x-javascript" src="./lib/PluralForm.js"></script>
+	<script type="application/x-javascript" src="./lib/yaml.js"></script>
 
 	<!-- core modules -->
 	<script type="application/x-javascript" src="./redirections.js"></script>
@@ -46,7 +325,6 @@
 	<script type="application/x-javascript" src="./forum-stage.js"></script>
 	<script type="application/x-javascript" src="./core.js"></script>
 	<script type="application/x-javascript" src="./add-class.js"></script>
-	<script type="application/x-javascript" src="./ui.js"></script>
 
 	<!-- categorized modules -->
 	<script type="application/x-javascript" src="./access/aria-landmarks.js"></script>
@@ -191,9 +469,7 @@
 	<!-- end categorized modules -->
 	
 	<script type="application/x-javascript" src="./entry.js"></script>
-	<script type="application/x-javascript" src="./background.js"></script>
-</head>
-<body>
-<textarea id="clipboard-store">Used for copying in Google Chrome.</textarea>
-</body>
+
+	<script type="application/x-javascript" src="./preferences.js"></script>
+
 </html>
