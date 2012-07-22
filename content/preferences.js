@@ -42,10 +42,9 @@ function init()
 			$("#tabs").hide();
 			$("#content").addClass("ft-mobile");
 			Foxtrick.log(Foxtrick, "MobileEnhancements");
-			Foxtrick.jester($(".nav")[0],{swipeDistance: 40})
-					.tap(function(touches){
-							$("#tabs").toggle();
-							$("#main").toggle();
+			Foxtrick.onClick($(".nav")[0], function(){
+				$("#tabs").toggle();
+				$("#main").toggle();
 			});
 		}
 			
