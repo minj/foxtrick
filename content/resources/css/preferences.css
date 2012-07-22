@@ -186,37 +186,17 @@ html[dir="rtl"] .screenshot
 	font-size: 0.5em;
 }
 
-#view-by
-{
-	/*padding-right: 5em;
-	border-bottom: 1px solid #ccc;
-	margin-bottom: 0.5em;*/
-}
-
 #view-by li {
 	float: left;
 }
-#tabs li, #view-by li
-{
-	/*border-radius: 5px 5px 0 0;*/
-}
 
-ul.nav
-{
-	/*float: left;
-	clear: left;*/
-}
 
 ul.nav li
 {
 	font-size: 0.85em;
-	/*display: inline-block;*/
-	/*background-color: #eef;*/
 	background-color: #fff;
-	/*border: 1px solid #ccc;*/
 	border-bottom: none;
 	padding: 3px;
-	/*margin: 0 1px;*/
 }
 
 ul.nav li.hide
@@ -382,6 +362,22 @@ html[dir="rtl"] .alert > p
 #alert
 {
 }
+
+#content.ft-mobile {
+	-webkit-box-orient: vertical !important;
+	-moz-box-orient: vertical !important;
+	box-orient: vertical !important;
+}
+
+#content.ft-mobile #navigation  {
+	width: 100%;
+	position: relative;
+}
+#content.ft-mobile .nav,
+#content.ft-mobile #navigation li {
+	text-align: center;
+}
+
 
 #content {
 	display: -webkit-box;

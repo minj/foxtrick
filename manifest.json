@@ -43,6 +43,7 @@
 			"content/lib/sha1.js",
 			"content/lib/PluralForm.js",
 			"content/lib/yaml.js",
+			"content/lib/jester.js",
 			
 			//<!-- core modules -->
 			"content/redirections.js",

@@ -161,9 +161,13 @@
 		}
 		
 		// tap/click anywhere on cb to get back to center
-		Foxtrick.onClick(cb, function(ev){
-			select("center");
+		Foxtrick.jester(cb)
+					.tap(function(touches){
+				select("center");
 		});
+		// Foxtrick.onClick(cb, function(ev){
+		// 	select("center");
+		// });
 
 		if (lb)
 			Foxtrick.addClass(lb,'out');

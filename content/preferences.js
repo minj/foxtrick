@@ -36,6 +36,19 @@ function init()
 			locateFragment(window.location.toString()); // locate element by fragment
 			testPermissions();
 		$("body").show();
+
+		//mobile
+		if(FoxtrickPrefs.isModuleEnabled("MobileEnhancements")){
+			$("#tabs").hide();
+			$("#content").addClass("ft-mobile");
+			Foxtrick.log(Foxtrick, "MobileEnhancements");
+			Foxtrick.jester($(".nav")[0],{swipeDistance: 40})
+					.tap(function(touches){
+							$("#tabs").toggle();
+							$("#main").toggle();
+			});
+		}
+			
 		/* Run a test. */
 
 		if (window.location.href.search(/saved=true/)!==-1) {
@@ -201,6 +214,10 @@ function locateFragment(uri)
 		moduleObj[0].scrollIntoView(true);
 	};
 	var showTab = function(tab) {
+		//mobile start
+		if(FoxtrickPrefs.isModuleEnabled("MobileEnhancements"))
+			$("#navigation-header").text(Foxtrickl10n.getString("tab."+tab));
+		//mobile end
 		$("#breadcrumb-1").text(Foxtrickl10n.getString("tab."+tab)); //search
 		search(""); //search reset
 		$("#pane > div").hide();
@@ -254,6 +271,13 @@ function locateFragment(uri)
 		else
 			$(this).attr("href", uri);
 	});
+
+	//mobile start
+	if(FoxtrickPrefs.isModuleEnabled("MobileEnhancements")){
+		$("#tabs").hide();
+		$("#main").show();
+	}
+	//mobile end
 }
 
 function baseURI()
