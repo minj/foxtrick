@@ -25,10 +25,23 @@
 		if (Number(viewport_size) < 430)
 			Foxtrick.addClass(doc.getElementById("time"), "hidden");
 
+		var menu_show = function() {
+			// remove hidden and slide in
+			Foxtrick.removeClass(menu,'hidden');
+			Foxtrick.addClass(mobile_header_center,"out");
+		};
+		var menu_hide = function() {
+			// slide out and later add hidden
+			Foxtrick.removeClass(mobile_header_center,"out");
+			window.setTimeout(function(){
+				Foxtrick.addClass(menu,'hidden');
+			}, 1000);
+		};
+
 		// functions to select left, right, center, header
 		var select = function(area) {
 			// retract menu
-			Foxtrick.removeClass(mobile_header_center,"out");
+			menu_hide();
 			
 			if (area=="left" && lb) {
 				if (lb)
@@ -90,18 +103,10 @@
 		var mobile_header_center = doc.createElement('div');
 		mobile_header_center.id = 'mobile_header_center';
 		Foxtrick.onClick(mobile_header_center, function(ev){
-			if (Foxtrick.hasClass(menu,"hidden")) {
-				// remove hidden and slide in
-				Foxtrick.removeClass(menu,'hidden');
-				Foxtrick.toggleClass(mobile_header_center,"out");
-			}
-			else {
-				// slide out and later add hidden
-				Foxtrick.toggleClass(mobile_header_center,"out");
-				window.setTimeout(function(){
-					Foxtrick.addClass(menu,'hidden');
-				}, 1000);
-			}
+			if (Foxtrick.hasClass(menu,"hidden"))
+				menu_show();
+			else 
+				menu_hide();
 		});
 		mobile_header.appendChild(mobile_header_center);
 		menu = mobile_header_center.appendChild(menu);
