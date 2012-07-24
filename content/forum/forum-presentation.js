@@ -6,7 +6,7 @@
 
 Foxtrick.modules["ForumPresentation"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : ['forum', 'forumViewThread', 'forumOverView' , 'forumDefault', 'forumWritePost', 'forumModWritePost'],
+	PAGES : ['forum', 'forumViewThread', 'forumOverview' , 'forumDefault', 'forumWritePost', 'forumModWritePost'],
 
 	OPTIONS : [
 		"HideFlagsInForumHeader",

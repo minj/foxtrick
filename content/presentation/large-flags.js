@@ -7,7 +7,7 @@
 
 Foxtrick.modules["LargeFlags"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('playerdetail'),
+	PAGES : new Array('playerDetails'),
 
 	run : function(doc) {
 		var faceCard = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ucPlayerFace_pnlAvatar");

@@ -7,7 +7,7 @@
 
 Foxtrick.modules["YouthSkillHideUnknown"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : ["YouthPlayers"],
+	PAGES : ["youthPlayers"],
 	OPTIONS: ["HideUnknown", "HideMaximalKeyWord"],
 
 	run : function(doc) {

@@ -7,7 +7,7 @@
 
 Foxtrick.modules["ForumTemplates"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : ['forumWritePost','messageWritePost','htpress','forumModWritePost'],
+	PAGES : ['forumWritePost','messageWritePost','htPress','forumModWritePost'],
 	OPTIONS : ["DefaultShow"],
 
 	CSS : Foxtrick.InternalPath + "resources/css/forum-templates.css",
@@ -31,7 +31,7 @@ Foxtrick.modules["ForumTemplates"]={
 			var templatesDivId = "mail_templates";
 			var templatesPrefList = "mail_templates";
 		}
-		else if (Foxtrick.isPage("htpress", doc)) {
+		else if (Foxtrick.isPage("htPress", doc)) {
 			// For Staff! Users have another  MESSAGE_WINDOW ID !
 			var newMsgWindow = 'ctl00_ctl00_CPContent_CPMain_txtComment';
 			var templatesDivId = "htpress_templates";

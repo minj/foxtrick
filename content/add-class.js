@@ -7,11 +7,11 @@
 
 Foxtrick.modules.AddClass={
 	CORE_MODULE : true,
-	PAGES : ["playerdetail", "search", "bookmarks", "match", "transferCompare"],
+	PAGES : ["playerDetails", "search", "bookmarks", "match", "transferCompare"],
 	NICE : -20, // place before all date-related modules
 
 	run : function(doc) {
-		if (Foxtrick.isPage("playerdetail", doc))
+		if (Foxtrick.isPage("playerDetails", doc))
 			this.addDateForTl(doc);
 		else if (Foxtrick.isPage("search", doc))
 			this.addDateForTable(doc, doc.getElementById("ctl00_ctl00_CPContent_CPMain_grdYouthSeries_ctl00"));

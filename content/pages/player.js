@@ -10,11 +10,11 @@ Foxtrick.Pages.Player = {
 	},
 
 	isSeniorPlayerPage : function(doc) {
-		return Foxtrick.isPage("playerdetail", doc);
+		return Foxtrick.isPage("playerDetails", doc);
 	},
 
 	isYouthPlayerPage : function(doc) {
-		return Foxtrick.isPage("youthplayerdetail", doc);
+		return Foxtrick.isPage("youthPlayerDetails", doc);
 	},
 
 	getAge : function(doc) {

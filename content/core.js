@@ -20,7 +20,7 @@ Foxtrick.modules["Core"]={
 
 	run : function(doc) {
 		this.parseSelfTeamInfo(doc);
-		if (Foxtrick.isPage('players', doc) || Foxtrick.isPage('YouthPlayers', doc)) 
+		if (Foxtrick.isPage('players', doc) || Foxtrick.isPage('youthPlayers', doc)) 
 			this.parsePlayerList(doc);
 		this.updateLastHost(doc);
 		this.showVersion(doc);

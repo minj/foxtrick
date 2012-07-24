@@ -7,7 +7,7 @@
 
 Foxtrick.modules["MyMonitor"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ["myhattrick", "dashboard", "teamPage", "youthoverview", "national"],
+	PAGES : ["myHattrick", "dashboard", "teamPage", "youthOverview", "national"],
 	OPTIONS : ["TeamIcons"],
 	CSS : Foxtrick.InternalPath + "resources/css/my-monitor.css",
 	NICE : -1, // add it before links for consistent sidebar placement
@@ -53,7 +53,7 @@ Foxtrick.modules["MyMonitor"]={
 		var display = function() {
 			var mydiv = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MyMonitor, "div")
 			mydiv.id = "ft-monitor-div";
-			if (Foxtrick.isPage("myhattrick", doc)) {
+			if (Foxtrick.isPage("myHattrick", doc)) {
 				var h1 = doc.getElementsByTagName("h1")[0];
 				h1.parentNode.insertBefore(mydiv, h1);
 			}
@@ -290,7 +290,7 @@ Foxtrick.modules["MyMonitor"]={
 		var showSidebar = function() {
 			if (Foxtrick.isPage("teamPage", doc))
 				var type = "senior";
-			else if (Foxtrick.isPage("youthoverview", doc))
+			else if (Foxtrick.isPage("youthOverview", doc))
 				var type = "youth";
 			else if (Foxtrick.isPage("national", doc))
 				var type = "nt";
@@ -386,12 +386,12 @@ Foxtrick.modules["MyMonitor"]={
 		};
 
 		// call functions from here 
-		if (Foxtrick.isPage("myhattrick", doc)
+		if (Foxtrick.isPage("myHattrick", doc)
 			|| Foxtrick.isPage("dashboard", doc)) {
 			display(doc);
 		}
 		else if (Foxtrick.isPage("teamPage", doc)
-			|| Foxtrick.isPage("youthoverview", doc)
+			|| Foxtrick.isPage("youthOverview", doc)
 			|| Foxtrick.isPage("national", doc)) {
 			showSidebar(doc);
 		}
@@ -401,7 +401,7 @@ Foxtrick.modules["MyMonitor"]={
 		// challenging etc removes box. need to re-add it
 		if (doc.getElementById("ft-monitor-sidebar-box") == null
 			&& (Foxtrick.isPage("teamPage", doc)
-				|| Foxtrick.isPage("youthoverview", doc)
+				|| Foxtrick.isPage("youthOverview", doc)
 				|| Foxtrick.isPage("national", doc)))
 			this.run(doc);
 	}

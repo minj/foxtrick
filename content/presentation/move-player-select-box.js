@@ -7,7 +7,7 @@
 
 Foxtrick.modules["MovePlayerSelectbox"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('playerdetail'),
+	PAGES : new Array('playerDetails'),
 	NICE : -5, // before others on playerdetails page
 
 	run : function(doc) {

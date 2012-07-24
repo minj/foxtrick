@@ -7,7 +7,7 @@
 
 Foxtrick.modules["CopyMatchID"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
- 	PAGES : new Array('matches','matchesarchiv','matcheshistory',
+ 	PAGES : new Array('matches','matchesArchive','matchesHistory',
 					'matchesLatest','arena','matchLineup','match'),
 
 	run : function(doc) {
@@ -25,9 +25,9 @@ Foxtrick.modules["CopyMatchID"]={
 
 		var count = 0;
 
-		if (Foxtrick.isPage("matchesarchiv", doc)
+		if (Foxtrick.isPage("matchesArchive", doc)
 			|| Foxtrick.isPage("matches", doc)
-			|| Foxtrick.isPage("matcheshistory", doc)
+			|| Foxtrick.isPage("matchesHistory", doc)
 			|| Foxtrick.isPage("matchesLatest", doc)
 			|| Foxtrick.isPage("arena", doc)) {
 			var cells = doc.getElementById('mainBody').getElementsByTagName('td');

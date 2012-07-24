@@ -7,7 +7,7 @@
 
 Foxtrick.modules["LinksChallenges"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	PAGES : new Array('challenges','youthchallenges'),
+	PAGES : new Array('challenges','youthChallenges'),
 	LINK_TYPES : [ "challengeslink", "youthchallengeslink" ],
 	OPTION_FUNC : function(doc, callback) {
 		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksChallenges", this.LINK_TYPES, callback);

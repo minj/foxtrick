@@ -7,7 +7,7 @@
 
 Foxtrick.modules["TeamStats"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ["players", "YouthPlayers"],
+	PAGES : ["players", "youthPlayers"],
 	OPTIONS : ["General", "Attributes", "Skills", "Match", "Speciality", "Personality", "Status", "Current_league"],
 	NICE : -1, // before FoxtrickLinksPlayers
 
@@ -17,14 +17,14 @@ Foxtrick.modules["TeamStats"]={
 		var show = function(playerList) {
 		try{
 				var attributeOptions = [
-					{ category: "TeamStats.General",	name : "TSI.abbr", 		property : "tsi", 		method: "sum_avg",	pages: ["SeniorPlayers", "oldplayers", "NTPlayers"] },
-					//{ category: "TeamStats.General",	name : "Age", 			property : "ageYears", 	method: "age",		pages: ["players", "YouthPlayers"] },
+					{ category: "TeamStats.General",	name : "TSI.abbr", 		property : "tsi", 		method: "sum_avg",	pages: ["seniorPlayers", "oldPlayers", "ntPlayers"] },
+					//{ category: "TeamStats.General",	name : "Age", 			property : "ageYears", 	method: "age",		pages: ["players", "youthPlayers"] },
 					{ category: "TeamStats.General",	name : "Salary", 		property : "salary", 	method: "sum_avg",	pages: ["players"] },
-					{ category: "TeamStats.Attributes", name : "Form", 			property : "form", 		method: "skill",	pages: ["SeniorPlayers", "oldplayers", "NTPlayers"]},
-					{ category: "TeamStats.Attributes", name : "Stamina", 		property : "stamina", 	method: "skill",	pages: ["SeniorPlayers", "oldplayers", "NTPlayers"]},
-					{ category: "TeamStats.Attributes", name : "Experience", 	property : "experience", method: "skill",	pages: ["SeniorPlayers", "oldplayers", "NTPlayers"] },
-					{ category: "TeamStats.Attributes", name : "Loyalty", 		property : "loyalty", 	method: "skill",	pages: ["SeniorPlayers", "oldplayers"]},
-					{ category: "TeamStats.Attributes", name : "Leadership", 	property : "leadership", method: "skill",	pages: ["SeniorPlayers", "oldplayers", "NTPlayers"] },
+					{ category: "TeamStats.Attributes", name : "Form", 			property : "form", 		method: "skill",	pages: ["seniorPlayers", "oldPlayers", "ntPlayers"]},
+					{ category: "TeamStats.Attributes", name : "Stamina", 		property : "stamina", 	method: "skill",	pages: ["seniorPlayers", "oldPlayers", "ntPlayers"]},
+					{ category: "TeamStats.Attributes", name : "Experience", 	property : "experience", method: "skill",	pages: ["seniorPlayers", "oldPlayers", "ntPlayers"] },
+					{ category: "TeamStats.Attributes", name : "Loyalty", 		property : "loyalty", 	method: "skill",	pages: ["seniorPlayers", "oldPlayers"]},
+					{ category: "TeamStats.Attributes", name : "Leadership", 	property : "leadership", method: "skill",	pages: ["seniorPlayers", "oldPlayers", "ntPlayers"] },
 					{ category: "TeamStats.Skills", 	name : "Keeper", 		property : "keeper", 	method: "skill",	pages: ["ownPlayers"]},
 					{ category: "TeamStats.Skills", 	name : "Defending", 	property : "defending", method: "skill",	pages: ["ownPlayers"]},
 					{ category: "TeamStats.Skills", 	name : "Playmaking", 	property : "playmaking", method: "skill",	pages: ["ownPlayers"]},
@@ -32,14 +32,14 @@ Foxtrick.modules["TeamStats"]={
 					{ category: "TeamStats.Skills", 	name : "Passing", 		property : "passing", 	method: "skill",	pages: ["ownPlayers"]},
 					{ category: "TeamStats.Skills", 	name : "Scoring", 		property : "scoring", 	method: "skill",	pages: ["ownPlayers"]},
 					{ category: "TeamStats.Skills", 	name : "Set_pieces", 	property : "setPieces", method: "skill",	pages: ["ownPlayers"]},
-					/*{ category: "TeamStats.Skills", name : "HTMS_Ability", 		property : "htmsAbility", 	method: "average", pages: ["SeniorPlayers"] },
-					{ category: "TeamStats.Skills", 	name : "HTMS_Potential", 	property : "htmsPotential" , pages: ["SeniorPlayers"]},
-					{ category: "TeamStats.Attributes", name : "Agreeability", 		property : "agreeability", 	pages: ["SeniorPlayers"]},
-					{ category: "TeamStats.Attributes", name : "Aggressiveness", 	property : "aggressiveness", pages: ["SeniorPlayers"]},
-					{ category: "TeamStats.Attributes", name : "Honesty", 			property : "honesty", 		pages: ["SeniorPlayers"]},*/
-					{ category: "Match", 	name : "Last_stars", 			property : "lastRating", 			method: "sum_avg",	pages: ["SeniorPlayers", "YouthPlayers"]},
-					{ category: "Match", 	name : "Last_stars_EndOfGame", 	property : "lastRatingEndOfGame", 	method: "sum_avg",	pages: ["SeniorPlayers"]},
-					{ category: "Match", 	name : "Last_stars_decline", 	property : "lastRatingDecline", 	method: "sum_avg",	pages: ["SeniorPlayers"]}
+					/*{ category: "TeamStats.Skills", name : "HTMS_Ability", 		property : "htmsAbility", 	method: "average", pages: ["seniorPlayers"] },
+					{ category: "TeamStats.Skills", 	name : "HTMS_Potential", 	property : "htmsPotential" , pages: ["seniorPlayers"]},
+					{ category: "TeamStats.Attributes", name : "Agreeability", 		property : "agreeability", 	pages: ["seniorPlayers"]},
+					{ category: "TeamStats.Attributes", name : "Aggressiveness", 	property : "aggressiveness", pages: ["seniorPlayers"]},
+					{ category: "TeamStats.Attributes", name : "Honesty", 			property : "honesty", 		pages: ["seniorPlayers"]},*/
+					{ category: "Match", 	name : "Last_stars", 			property : "lastRating", 			method: "sum_avg",	pages: ["seniorPlayers", "youthPlayers"]},
+					{ category: "Match", 	name : "Last_stars_EndOfGame", 	property : "lastRatingEndOfGame", 	method: "sum_avg",	pages: ["seniorPlayers"]},
+					{ category: "Match", 	name : "Last_stars_decline", 	property : "lastRatingDecline", 	method: "sum_avg",	pages: ["seniorPlayers"]}
 				];
 				for (var i = 0; i < attributeOptions.length; ++i) {
 					attributeOptions[i].value = 0;

@@ -6,7 +6,7 @@
 
 Foxtrick.modules["MatchTables"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : ['matchesarchiv', 'matches','series','youthSeries'],
+	PAGES : ['matchesArchive', 'matches','series','youthSeries'],
 	OPTIONS : ["RemoveTime"],
 
 	// remove spaces on league page
@@ -36,7 +36,7 @@ Foxtrick.modules["MatchTables"]={
 		if (Foxtrick.isPage("series", doc)
 			|| Foxtrick.isPage("youthSeries", doc))
 			Foxtrick.util.inject.cssLink(doc,Foxtrick.InternalPath+"resources/css/FoxtrickMatchTables_league.css");
-		else if (Foxtrick.isPage("matchesarchiv", doc)
+		else if (Foxtrick.isPage("matchesArchive", doc)
 			|| Foxtrick.isPage("matches", doc))
 			Foxtrick.util.inject.cssLink(doc,Foxtrick.InternalPath+"resources/css/FoxtrickMatchTables_matches.css");
 	},

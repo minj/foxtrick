@@ -21,13 +21,13 @@
 	
 	Foxtrick.modules.MatchPlayerColouring = {
 		MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-		PAGES : ["match", "playerdetail"],
+		PAGES : ["match", "playerDetails"],
 		OPTIONS : ["SeparateOwnPlayerColors"],
 
 		CSS : Foxtrick.InternalPath + "resources/css/match-player-colouring.css",
 
 		run : function(doc) {
-			if (Foxtrick.isPage("playerdetail", doc)) {
+			if (Foxtrick.isPage("playerDetails", doc)) {
 				addHighlightParam(doc);
 			}
 			else {
@@ -36,7 +36,7 @@
 		},
 
 		change : function(doc) {
-			if (Foxtrick.isPage("playerdetail", doc))
+			if (Foxtrick.isPage("playerDetails", doc))
 				addHighlightParam(doc);
 		},
 

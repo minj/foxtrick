@@ -6,7 +6,7 @@
 
 Foxtrick.modules["SupporterStatsEnhancements"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ["StatsSquad"],
+	PAGES : ["statsSquad"],
 
 	run : function(doc) {
 		// get selected teamid

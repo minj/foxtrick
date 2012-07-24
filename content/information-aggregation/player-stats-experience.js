@@ -7,7 +7,7 @@
 
 Foxtrick.modules["PlayerStatsExperience"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ['playerStats', 'playerdetail'],
+	PAGES : ['playerStats', 'playerDetails'],
 	OPTIONS : ['AlwaysShowAll'],
 	CSS: Foxtrick.InternalPath + "resources/css/player-stats.css",
 	store : {},
@@ -141,7 +141,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		if(FoxtrickPrefs.isModuleOptionEnabled("PlayerStatsExperience", "AlwaysShowAll")){
 			convertLinksToShowAll();
 		}
-		if(Foxtrick.isPage('playerdetail', doc))
+		if(Foxtrick.isPage('playerDetails', doc))
 			return;
 
 		//both tables you can alter between atm

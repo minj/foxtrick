@@ -7,7 +7,7 @@
 
 Foxtrick.modules["ShowForumPrefButton"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array('forumViewThread','forumOverView','forumDefault'),
+	PAGES : new Array('forumViewThread','forumOverview','forumDefault'),
 
 	run : function(doc) {
 		var myForums = doc.getElementById("myForums");

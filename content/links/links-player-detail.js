@@ -7,7 +7,7 @@
 
 Foxtrick.modules["LinksPlayerDetail"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	PAGES : new Array('playerdetail'),
+	PAGES : new Array('playerDetails'),
 	OPTION_FUNC : function(doc, callback) {
 		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksPlayerDetail", ["playerhealinglink", "playerlink", "keeperlink", "transfercomparelink"], callback);
 	},

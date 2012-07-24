@@ -6,7 +6,7 @@
 
 Foxtrick.modules["TransferDeadline"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ["transferSearchResult", "playerdetail", "transfer", "bookmarks"],
+	PAGES : ["transferSearchResult", "playerDetails", "transfer", "bookmarks"],
 	CSS : Foxtrick.InternalPath + "resources/css/transfer-deadline.css",
 
 	run : function(doc) {
@@ -16,7 +16,7 @@ Foxtrick.modules["TransferDeadline"]={
 
 		if (Foxtrick.isPage("transferSearchResult", doc))
 			this.runTransferResult(doc);
-		else if (Foxtrick.isPage("playerdetail", doc))
+		else if (Foxtrick.isPage("playerDetails", doc))
 			this.runPlayerDetail(doc);
 		else if (Foxtrick.isPage("transfer", doc))
 			this.runPlayerList(doc);
@@ -25,7 +25,7 @@ Foxtrick.modules["TransferDeadline"]={
 	},
 
 	change : function(doc) {
-		if (Foxtrick.isPage("playerdetail", doc))
+		if (Foxtrick.isPage("playerDetails", doc))
 			this.runPlayerDetail(doc);
 	},
 

@@ -7,7 +7,7 @@
 
 Foxtrick.modules["GoalDifferenceToTables"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : new Array('promotion','oldseries','marathon'),
+	PAGES : new Array('promotion','oldSeries','marathon'),
 
 	CSS : Foxtrick.InternalPath + "resources/css/goal-diff.css",
 

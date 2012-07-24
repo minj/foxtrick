@@ -7,7 +7,7 @@
 
 Foxtrick.modules["ForumStripHattrickLinks"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','newsletter','mailnewsletter',"forumModWritePost","forumViewThread"),
+	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','newsLetter','mailNewsLetter',"forumModWritePost","forumViewThread"),
 	OPTIONS: new Array("NoConfirmStripping"),
 	NICE: -1, //  needs to be before forum preview for old submit button (order) detection
 

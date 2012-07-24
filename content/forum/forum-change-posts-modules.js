@@ -7,7 +7,7 @@
 
 Foxtrick.modules["FormatPostingText"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','newsletter','mailnewsletter',"forumModWritePost"),
+	PAGES : new Array('forumWritePost','messageWritePost','guestbook','announcements','newsLetter','mailNewsLetter',"forumModWritePost"),
 	OPTIONS : ['NestedQuotesAsSpoilers'],
 	OPTION_EDITS : true,
 

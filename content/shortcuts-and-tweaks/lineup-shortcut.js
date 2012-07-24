@@ -6,15 +6,15 @@
 
 Foxtrick.modules["LineupShortcut"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : ['playerdetail','statsBestgames','matchLineup', 'YouthPlayer'],
+	PAGES : ['playerDetails','statsBestGames','matchLineup', 'youthPlayer'],
  	OPTIONS : ["HighlightPlayer"],
 
 	run : function(doc) {
-		if (Foxtrick.isPage("playerdetail", doc))
+		if (Foxtrick.isPage("playerDetails", doc))
 			this._Analyze_Player_Page(doc);
-		else if (Foxtrick.isPage("YouthPlayer", doc))
+		else if (Foxtrick.isPage("youthPlayer", doc))
 			this._Analyze_Youth_Player_Page(doc);
-		else if (Foxtrick.isPage("statsBestgames", doc))
+		else if (Foxtrick.isPage("statsBestGames", doc))
 			this._Analyze_Stat_Page(doc);
 		else if (Foxtrick.isPage("matchLineup", doc))
 			this._Highlight_Player(doc);
@@ -23,7 +23,7 @@ Foxtrick.modules["LineupShortcut"]={
 	change : function(doc) {
 		if (doc.getElementsByClassName("ft-lineup-cell").length > 0)
 			return;
-		if (Foxtrick.isPage("statsBestgames", doc))
+		if (Foxtrick.isPage("statsBestGames", doc))
 			this._Analyze_Stat_Page(doc);
 	},
 

@@ -7,7 +7,7 @@
 
 Foxtrick.modules["HTMSPoints"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ["playerdetail", "transferSearchResult", "players"],
+	PAGES : ["playerDetails", "transferSearchResult", "players"],
 	OPTIONS : ["AddToPlayer", "AddToSearchResult", "AddToPlayerList"],
 
 	run : function(doc) {
@@ -25,7 +25,7 @@ Foxtrick.modules["HTMSPoints"]={
 		var AddToSearchResult = FoxtrickPrefs.isModuleOptionEnabled("HTMSPoints", "AddToSearchResult");
 		var AddToPlayerList = FoxtrickPrefs.isModuleOptionEnabled("HTMSPoints", "AddToPlayerList");
 
-		if (Foxtrick.isPage("playerdetail", doc) && AddToPlayer) {
+		if (Foxtrick.isPage("playerDetails", doc) && AddToPlayer) {
 			var age = Foxtrick.Pages.Player.getAge(doc);
 			var skills = Foxtrick.Pages.Player.getSkillsWithText(doc);
 			if (skills === null) {

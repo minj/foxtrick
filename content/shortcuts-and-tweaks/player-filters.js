@@ -7,7 +7,7 @@
 
 Foxtrick.modules["PlayerFilters"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array("players", "YouthPlayers"),
+	PAGES : new Array("players", "youthPlayers"),
 
 	FILTER_SELECT_ID : "foxtrick-filter-select",
 
@@ -220,13 +220,13 @@ Foxtrick.modules["PlayerFilters"]={
 
 				// adding attribute filters (senior pages)
 				var attributeOptions = [
-					{ name : "TSI", property : "tsi", pages: ["SeniorPlayers", "oldplayers", "NTPlayers"] },
-					{ name : "Age", property : "ageYears", pages: ["players", "YouthPlayers"] },
-					{ name : "Leadership", property : "leadership", pages: ["SeniorPlayers", "oldplayers", "NTPlayers"] },
-					{ name : "Experience", property : "experience", pages: ["SeniorPlayers", "oldplayers", "NTPlayers"] },
-					{ name : "Form", property : "form", pages: ["SeniorPlayers", "oldplayers", "NTPlayers"]},
-					{ name : "Stamina", property : "stamina", pages: ["SeniorPlayers", "oldplayers", "NTPlayers"]},
-					{ name : "Loyalty", property : "loyalty", pages: ["SeniorPlayers", "oldplayers"]},
+					{ name : "TSI", property : "tsi", pages: ["seniorPlayers", "oldPlayers", "ntPlayers"] },
+					{ name : "Age", property : "ageYears", pages: ["players", "youthPlayers"] },
+					{ name : "Leadership", property : "leadership", pages: ["seniorPlayers", "oldPlayers", "ntPlayers"] },
+					{ name : "Experience", property : "experience", pages: ["seniorPlayers", "oldPlayers", "ntPlayers"] },
+					{ name : "Form", property : "form", pages: ["seniorPlayers", "oldPlayers", "ntPlayers"]},
+					{ name : "Stamina", property : "stamina", pages: ["seniorPlayers", "oldPlayers", "ntPlayers"]},
+					{ name : "Loyalty", property : "loyalty", pages: ["seniorPlayers", "oldPlayers"]},
 					{ name : "Keeper", property : "keeper", pages: ["ownPlayers"]},
 					{ name : "Defending", property : "defending", pages: ["ownPlayers"]},
 					{ name : "Playmaking", property : "playmaking", pages: ["ownPlayers"]},
@@ -234,14 +234,14 @@ Foxtrick.modules["PlayerFilters"]={
 					{ name : "Passing", property : "passing", pages: ["ownPlayers"]},
 					{ name : "Scoring", property : "scoring", pages: ["ownPlayers"]},
 					{ name : "Set_pieces", property : "setPieces", pages: ["ownPlayers"]},
-					/*{ name : "HTMS_Ability", property : "htmsAbility", pages: ["SeniorPlayers"] },
-					{ name : "HTMS_Potential", property : "htmsPotential" , pages: ["SeniorPlayers"]},
-					{ name : "Agreeability", property : "agreeability", pages: ["SeniorPlayers"]},
-					{ name : "Aggressiveness", property : "aggressiveness", pages: ["SeniorPlayers"]},
-					{ name : "Honesty", property : "honesty", pages: ["SeniorPlayers"]},*/
-					{ name : "Last_stars", property : "lastRating", pages: ["SeniorPlayers", "YouthPlayers"]},
-					{ name : "Last_stars_EndOfGame", property : "lastRatingEndOfGame", pages: ["SeniorPlayers"]},
-					{ name : "Last_stars_decline", property : "lastRatingDecline", pages: ["SeniorPlayers"]}
+					/*{ name : "HTMS_Ability", property : "htmsAbility", pages: ["seniorPlayers"] },
+					{ name : "HTMS_Potential", property : "htmsPotential" , pages: ["seniorPlayers"]},
+					{ name : "Agreeability", property : "agreeability", pages: ["seniorPlayers"]},
+					{ name : "Aggressiveness", property : "aggressiveness", pages: ["seniorPlayers"]},
+					{ name : "Honesty", property : "honesty", pages: ["seniorPlayers"]},*/
+					{ name : "Last_stars", property : "lastRating", pages: ["seniorPlayers", "youthPlayers"]},
+					{ name : "Last_stars_EndOfGame", property : "lastRatingEndOfGame", pages: ["seniorPlayers"]},
+					{ name : "Last_stars_decline", property : "lastRatingDecline", pages: ["seniorPlayers"]}
 				];
 				var option = doc.createElement('option');
 				option.value = "attribute-all";

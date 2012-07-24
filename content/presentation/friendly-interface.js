@@ -7,7 +7,7 @@
 
 Foxtrick.modules["FriendlyInterface"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : ["matchLineup", "playerdetail", "guestbook", "dashboard"],
+	PAGES : ["matchLineup", "playerDetails", "guestbook", "dashboard"],
 
 	OPTIONS : [
 		"FullPlayerNameInLineUp",
@@ -59,7 +59,7 @@ Foxtrick.modules["FriendlyInterface"]={
 				}
 			}
 		}
-		else if (Foxtrick.isPage("playerdetail", doc)
+		else if (Foxtrick.isPage("playerDetails", doc)
 			&& FoxtrickPrefs.isModuleOptionEnabled("FriendlyInterface", "NtLinkForNtPlayer")) {
 			// show national team names as links in national players' page
 			var playerInfo = doc.getElementsByClassName("playerInfo")[0];

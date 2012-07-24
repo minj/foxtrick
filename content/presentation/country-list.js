@@ -52,7 +52,7 @@ Foxtrick.modules["CountryList"]={
 			else if (Foxtrick.isPage("statsArena", doc)) {
 				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues', 0);
 			}
-			else if (Foxtrick.isPage("help_contact", doc)) {
+			else if (Foxtrick.isPage("helpContact", doc)) {
 				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues', 3);
 			}
 		}
@@ -94,7 +94,7 @@ Foxtrick.modules["CountryList"]={
 			else if (Foxtrick.isPage("statsArena", doc)) {
 				this._activate(doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues');
 			}
-			else if (Foxtrick.isPage("help_contact", doc)) {
+			else if (Foxtrick.isPage("helpContact", doc)) {
 				this._activate(doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues');
 			}
 		}

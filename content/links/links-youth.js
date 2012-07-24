@@ -7,7 +7,7 @@
 
 Foxtrick.modules["LinksYouthOverview"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	PAGES : new Array('youthoverview'),
+	PAGES : new Array('youthOverview'),
 	OPTION_FUNC : function(doc, callback) {
 		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksYouthOverview", "youthlink", callback);
 	},
@@ -54,7 +54,7 @@ Foxtrick.modules["LinksYouthOverview"]={
 
 Foxtrick.modules["LinksYouthPlayerDetail"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	PAGES : new Array('youthplayerdetail'),
+	PAGES : new Array('youthPlayerDetails'),
 	OPTION_FUNC : function(doc, callback) {
 		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksYouthPlayerDetail", "youthplayerdetaillink", callback);
 	},
@@ -112,7 +112,7 @@ Foxtrick.modules["LinksYouthPlayerDetail"]={
 
 Foxtrick.modules["LinksYouthTraining"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	PAGES : new Array('YouthTraining'),
+	PAGES : new Array('youthTraining'),
 	OPTION_FUNC : function(doc, callback) {
 		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksYouthTraining", "youthtraininglink", callback);
 	},
@@ -160,7 +160,7 @@ Foxtrick.modules["LinksYouthTraining"]={
 
 Foxtrick.modules["LinksYouthPlayerList"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	PAGES : new Array('YouthPlayers'),
+	PAGES : new Array('youthPlayers'),
 	OPTION_FUNC : function(doc, callback) {
 		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksYouthPlayerList", "youthplayerlistlink", callback);
 	},
@@ -209,7 +209,7 @@ Foxtrick.modules["LinksYouthPlayerList"]={
 
 Foxtrick.modules["LinksYouthMatchList"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	PAGES : new Array('YouthMatchlist'),
+	PAGES : new Array('youthMatchList'),
 	OPTION_FUNC : function(doc, callback) {
 		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksYouthMatchList", "youthmatchlistlink", callback);
 	},

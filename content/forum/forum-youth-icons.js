@@ -8,7 +8,7 @@
 Foxtrick.modules["ForumYouthIcons"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
 	PAGES : ["forumWritePost", "messageWritePost", "guestbook",
-		"announcements", "forumSettings", "newsletter", "mailnewsletter",
+		"announcements", "forumSettings", "newsLetter", "mailNewsLetter",
 		"forumModWritePost", "ticket"],
 	OPTIONS : ["q", "user_id", "kit_id", "article_id", "line_br", "clock",
 		"spoiler", "pre", "table", "symbols", "youth_player", "youth_team",
@@ -37,9 +37,9 @@ Foxtrick.modules["ForumYouthIcons"]={
 			// mail
 			{ page:"messageWritePost", 	textarea : "ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtBody", 		counterfield : "ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtRemLen", 		length : 1000, 	add_quote:false },
 			// newsletter
-			{ page:"newsletter", 		textarea : "ctl00_ctl00_CPContent_CPMain_txtMessage", 					counterfield : "ctl00_ctl00_CPContent_CPMain_txtCharsLeft", 				length : 1000, 	add_quote:false },
+			{ page:"newsLetter", 		textarea : "ctl00_ctl00_CPContent_CPMain_txtMessage", 					counterfield : "ctl00_ctl00_CPContent_CPMain_txtCharsLeft", 				length : 1000, 	add_quote:false },
 			// newsletter
-			{ page:"mailnewsletter",	textarea : "ctl00_ctl00_CPContent_CPMain_tbNewsBody", 					counterfield : "ctl00_ctl00_CPContent_CPMain_txtCharsLeft", 				length : 1000, 	add_quote:false },
+			{ page:"mailNewsLetter",	textarea : "ctl00_ctl00_CPContent_CPMain_tbNewsBody", 					counterfield : "ctl00_ctl00_CPContent_CPMain_txtCharsLeft", 				length : 1000, 	add_quote:false },
 			// GB
 			{ page:"guestbook",			textarea : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody", 	counterfield : "ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtRemLen",	length : 300, 	add_quote:false },
 			// PA
@@ -144,17 +144,17 @@ Foxtrick.modules["ForumYouthIcons"]={
 		var textarea = doc.getElementsByTagName('textarea')[0]
 		if (textarea == null ) return;
 
-		if (Foxtrick.isPage("newsletter", doc)
-			|| Foxtrick.isPage("mailnewsletter", doc)) {
+		if (Foxtrick.isPage("newsLetter", doc)
+			|| Foxtrick.isPage("mailNewsLetter", doc)) {
 
-			if (Foxtrick.isPage("newsletter", doc))
+			if (Foxtrick.isPage("newsLetter", doc))
 				var textbox = 'ctl00_ctl00_CPContent_CPMain_txtMessage';
-			if (Foxtrick.isPage("mailnewsletter", doc))
+			if (Foxtrick.isPage("mailNewsLetter", doc))
 				var textbox = 'ctl00_ctl00_CPContent_CPMain_tbNewsBody';
 
 			var anchor = doc.getElementById(textbox);
 
-			if (Foxtrick.isPage("newsletter", doc)) {
+			if (Foxtrick.isPage("newsLetter", doc)) {
 				var count = "ctl00_ctl00_CPContent_CPMain_txtCharsLeft";
 				var chars = 1000;
 				if (enlarge) {
@@ -162,7 +162,7 @@ Foxtrick.modules["ForumYouthIcons"]={
 					anchor.setAttribute('cols','50');
 				}
 			}
-			if (Foxtrick.isPage("mailnewsletter", doc)) {
+			if (Foxtrick.isPage("mailNewsLetter", doc)) {
 				var counter = doc.getElementsByName('remlennews')[0];
 				counter.id = "ctl00_ctl00_CPContent_CPMain_txtCharsLeft";
 				var count = "ctl00_ctl00_CPContent_CPMain_txtCharsLeft";

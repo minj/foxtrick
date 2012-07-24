@@ -7,7 +7,7 @@
 
 Foxtrick.modules["SeriesFlags"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ["guestbook", "teamPage", "series", "youthSeries", "federation", "Tournaments", "TournamentsGroups" ,"TournamentsFixtures"],
+	PAGES : ["guestbook", "teamPage", "series", "youthSeries", "federation", "tournaments", "tournamentsGroups" ,"tournamentsFixtures"],
 	OPTIONS : ["Guestbook", "Supporters", "Visitors", "Tournaments", "CountryOnly"],
 	NICE: +1,  // some conflict with another module. setting NICE +1 solved it
 
@@ -165,10 +165,10 @@ Foxtrick.modules["SeriesFlags"]={
 					sideBarBoxes)
 			);
 		}
-		if ( FoxtrickPrefs.isModuleOptionEnabled("SeriesFlags", "Tournaments") 
-			&& ( Foxtrick.isPage("Tournaments", doc) 
-				||  Foxtrick.isPage("TournamentsGroups", doc) 
-				||  Foxtrick.isPage("TournamentsFixtures", doc))) {
+		if ( FoxtrickPrefs.isModuleOptionEnabled("SeriesFlags", "tournaments") 
+			&& ( Foxtrick.isPage("tournaments", doc) 
+				||  Foxtrick.isPage("tournamentsGroups", doc) 
+				||  Foxtrick.isPage("tournamentsFixtures", doc))) {
 			// add to tournaments table
 			var mainWrapper = doc.getElementsByClassName("main")[0];
 			var links = mainWrapper.getElementsByTagName("a");

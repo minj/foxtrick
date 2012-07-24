@@ -8,7 +8,7 @@
  ////////////////////////////////////////////////////////////////////////////////
 Foxtrick.modules["ManagerButtons"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : new Array("managerPage", "teamPage","youthoverview"),
+	PAGES : new Array("managerPage", "teamPage","youthOverview"),
 	OPTIONS : ["GuestBook"],
 	NICE : -1, // before FoxtrickAddDefaultFaceCard
 
@@ -29,7 +29,7 @@ Foxtrick.modules["ManagerButtons"]={
 			&& doc.getElementById(this.GUESTBOOK_LINK_ID) === null) {
 			if (!Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID)
 				&& Foxtrick.hasElement(doc, this.CHALLENGE_LINK_ID)
-				|| Foxtrick.isPage("youthoverview", doc)) {
+				|| Foxtrick.isPage("youthOverview", doc)) {
 				this.addGuestBookLink(doc);
 			}
 		}
@@ -72,7 +72,7 @@ Foxtrick.modules["ManagerButtons"]={
 				}
 			}
 		}
-		else if (Foxtrick.isPage("youthoverview", doc)) {
+		else if (Foxtrick.isPage("youthOverview", doc)) {
 			isSupporter = true; // status unknown there. just add it anyways?
 		}
 

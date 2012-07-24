@@ -7,7 +7,7 @@
 
 Foxtrick.modules["CopyYouth"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : ["YouthTraining", "youthplayerdetail", "youthoverview",
+	PAGES : ["youthTraining", "youthPlayerDetails", "youthOverview",
 		"youthFixtures"],
 	OPTIONS : ["TrainingReport", "ScoutComment", "RejectedToHTY", "FixturesSource"],
 
@@ -150,11 +150,11 @@ Foxtrick.modules["CopyYouth"]={
 		};
 
 		var has_report = false;
-		if (Foxtrick.isPage("youthoverview", doc)) {
+		if (Foxtrick.isPage("youthOverview", doc)) {
 			has_report = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butScoutPropYes')!=null;
 		}
 
-		if (Foxtrick.isPage("youthplayerdetail", doc) || has_report) {
+		if (Foxtrick.isPage("youthPlayerDetails", doc) || has_report) {
 			if (has_report) {
 				var alertdiv = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butScoutPropYes').parentNode;
 				
@@ -235,12 +235,12 @@ Foxtrick.modules["CopyYouth"]={
 
 	run : function(doc) {
 		if (FoxtrickPrefs.isModuleOptionEnabled("CopyYouth", "TrainingReport")
-			&& Foxtrick.isPage("YouthTraining", doc)) {
+			&& Foxtrick.isPage("youthTraining", doc)) {
 			this.addTrainingReport(doc);
 		}
 		if (FoxtrickPrefs.isModuleOptionEnabled("CopyYouth", "ScoutComment")
-			&& (Foxtrick.isPage("youthplayerdetail", doc)
-				|| Foxtrick.isPage("youthoverview", doc))) {
+			&& (Foxtrick.isPage("youthPlayerDetails", doc)
+				|| Foxtrick.isPage("youthOverview", doc))) {
 			this.addScoutComment(doc);
 		}
 		if (FoxtrickPrefs.isModuleOptionEnabled("CopyYouth", "FixturesSource")
@@ -251,7 +251,7 @@ Foxtrick.modules["CopyYouth"]={
 
 	change : function(doc) {
 		if (FoxtrickPrefs.isModuleOptionEnabled("CopyYouth", "ScoutComment")
-			&& Foxtrick.isPage("youthoverview", doc)) {
+			&& Foxtrick.isPage("youthOverview", doc)) {
 			this.addScoutComment(doc);
 		}
 	}

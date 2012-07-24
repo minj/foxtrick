@@ -7,7 +7,7 @@
 
 Foxtrick.modules["ExtendedPlayerDetails"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : new Array('playerdetail'),
+	PAGES : new Array('playerDetails'),
 	RADIO_OPTIONS : new Array( "SWD", "SW", "SD", "WD", "D" ),
 
 	run : function(doc) {
@@ -80,7 +80,7 @@ Foxtrick.modules["ExtendedPlayerDetails"]={
 
 Foxtrick.modules["ExtendedPlayerDetailsWage"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : new Array('playerdetail'),
+	PAGES : new Array('playerDetails'),
 	OPTIONS : new Array( "WageWithoutBonus", "SeasonWage"),
 
 	run : function(doc) {

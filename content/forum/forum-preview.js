@@ -7,7 +7,7 @@
 
 Foxtrick.modules["ForumPreview"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.FORUM,
-	PAGES : ['forumWritePost', 'messageWritePost', 'guestbook', 'announcements', 'newsletter', 'mailnewsletter', 'forumSettings', "forumModWritePost"],
+	PAGES : ['forumWritePost', 'messageWritePost', 'guestbook', 'announcements', 'newsLetter', 'mailNewsLetter', 'forumSettings', "forumModWritePost"],
 	CSS : Foxtrick.InternalPath + "resources/css/forum-preview.css",
 
 	_NEW_MESSAGE_WINDOW : 'ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody',
@@ -299,9 +299,9 @@ Foxtrick.modules["ForumPreview"]={
 		while (div=divs[i++])
 			if (div.className=='HTMLToolbar')
 				break;
-		if (Foxtrick.isPage("newsletter", doc))
+		if (Foxtrick.isPage("newsLetter", doc))
 			div = doc.getElementById('ctl00_ctl00_CPContent_CPMain_txtMessage');
-		if (Foxtrick.isPage('mailnewsletter', doc))
+		if (Foxtrick.isPage('mailNewsLetter', doc))
 			div = doc.getElementById('ctl00_ctl00_CPContent_CPMain_tbNewsBody');
 
 		div.parentNode.insertBefore( preview_div,div );

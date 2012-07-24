@@ -7,7 +7,7 @@
 
 Foxtrick.modules["SkillTable"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ["players", "oldcoaches", "YouthPlayers", "transferSearchResult"],
+	PAGES : ["players", "oldCoaches", "youthPlayers", "transferSearchResult"],
 	OPTIONS : ["OtherTeams", "ColouredYouth"],
 	CSS : Foxtrick.InternalPath + "resources/css/skilltable.css",
 

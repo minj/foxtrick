@@ -16,7 +16,7 @@ Foxtrick.Pages.Players = {
 		return Foxtrick.isPage("players", doc);
 	},
 	isYouthPlayersPage : function(doc) {
-		return Foxtrick.isPage("YouthPlayers", doc);
+		return Foxtrick.isPage("youthPlayers", doc);
 	},
 	isMatchOrderPage : function(doc) { 
 		return Foxtrick.isPage("matchOrder", doc) || Foxtrick.isPage("matchOrderSimple", doc);

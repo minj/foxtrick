@@ -7,7 +7,7 @@
 
 Foxtrick.modules["PlayerBirthday"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ['players','YouthPlayers'],
+	PAGES : ['players','youthPlayers'],
 
 	run : function(doc) {
 		// array of players

@@ -7,7 +7,7 @@
 
 Foxtrick.modules["TableOfStatisticalTruth"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ["oldseries"],
+	PAGES : ["oldSeries"],
 	CSS : Foxtrick.InternalPath + "resources/css/table-of-statistical-truth.css",
 
 	run : function(doc) {

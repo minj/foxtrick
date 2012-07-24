@@ -7,7 +7,7 @@
 
 Foxtrick.modules["CopyPlayerAd"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : ["playerdetail", "youthplayerdetail"],
+	PAGES : ["playerDetails", "youthPlayerDetails"],
 	OPTIONS : ["Sorted", "NonTableStyle"],
 
 	CSS : Foxtrick.InternalPath + "resources/css/copy-player-ad.css",

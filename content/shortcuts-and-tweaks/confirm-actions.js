@@ -7,7 +7,7 @@
 
 Foxtrick.modules["ConfirmActions"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : ["playerdetail", "staff"],
+	PAGES : ["playerDetails", "staff"],
 	OPTIONS : ["Bid", "TransferList", "NtChange", "StaffChange"],
 
 	run : function(doc) {
@@ -34,7 +34,7 @@ Foxtrick.modules["ConfirmActions"]={
 		};
 
 		// Bid, TransferList, NtChange, StaffChange
-		if (Foxtrick.isPage("playerdetail", doc)) {
+		if (Foxtrick.isPage("playerDetails", doc)) {
 			if (FoxtrickPrefs.isModuleOptionEnabled("ConfirmActions", "Bid")) {
 				var bidButton = doc.getElementById(ids.BID.BUTTON_ID);
 				if (bidButton) {

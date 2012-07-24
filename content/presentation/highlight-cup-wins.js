@@ -7,7 +7,7 @@
 
 Foxtrick.modules["HighlightCupwins"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('cupmatches'),
+	PAGES : new Array('cupMatches'),
 	OPTIONS : new Array("HighlightCupsets"),
 
 	run : function(doc) {
