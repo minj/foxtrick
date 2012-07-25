@@ -99,9 +99,12 @@ Foxtrick.modules["DirectPageLinks"]={
 			
 			//get current situation
 			//current post id
-			var currentPostId = Foxtrick.getParameterFromUrl( Foxtrick.getHref(doc), "n" );
+			var currentPostId = parseInt(Foxtrick.getParameterFromUrl( Foxtrick.getHref(doc), "n" ));
 			if(!currentPostId)
 				currentPostId = 1;
+			
+			var lastLinkId = (last && last[0]) ? parseInt(Foxtrick.getParameterFromUrl( last[0].parentNode.href, "n" )) : null;
+			
 			//post per page, current page, maximum page count
 			var postPerPage = getPostPerPage(next, prev, currentPostId);
 			if(postPerPage % 10 != 0)
@@ -113,6 +116,10 @@ Foxtrick.modules["DirectPageLinks"]={
 				currentPage += 1;
 
 			if(currentPage > maxpage)
+				maxpage += 1;
+				
+			if(lastLinkId && (lastLinkId - currentPostId) > 
+				(maxpage - currentPage) * postPerPage)
 				maxpage += 1;
 			
 
@@ -193,8 +200,9 @@ Foxtrick.modules["DirectPageLinks"]={
 				//always include lastpage
 				else if( (p == end) && currentPage != maxpage )
 				{
+					var lastPagePostId = (maxpage - currentPage) * postPerPage + currentPostId;
 					var href = Foxtrick.getHref(doc);
-					href =  href.replace(/n=\d+/i, ("n=" + (((maxpage-1)*postPerPage)+1)));
+					href =  href.replace(/n=\d+/i, "n=" + lastPagePostId);
 					a.appendChild(doc.createTextNode(maxpage));
 					a.href = href;
 				}
