@@ -6,6 +6,9 @@ versions:
     beta: 
         note_0: "This is the beta version of the next release. Please help translating this version at our super easy crowd-translation page <linkCrowdin>crowdin.net</linkCrowdin>. "
 
+    0.12.0:
+        note_0: "Tabs: Added backend functionality to add custom tabs to most sites. (like HT's own tabs for upcoming matches)."
+
     0.11.0: 
         note_0: "NEW: <module>DirectPageLinks</module>: links added to access specific pages in a forum thread"
         note_1: "NEW: <module>ForumModeratorPopup</module>: Added a dropdown menu for forum moderators on top of threads to simplify moderation."
