@@ -6,17 +6,6 @@ versions:
     beta: 
         note_0: "이것은 다음 배포의 beta 버전 입니다. 이 버전에서 저희 군중-번역 페이지를 통해 번역해주세요. <linkCrowdin>crowdin.net</linkCrowdin>"
 
-    0.11.0: 
-        note_0: "NEW: <module>ForumModeratorPopup</module>: 토론장 중재자를 위하여 스레드 상단에 검토 작업을 간략화하는 드롭 다운 메뉴를 추가했습니다."
-        note_1: "NEW: <module>PlayerStatsTrainingWeek</module>: 일정 주간 대신에 훈련 주간에 따른 경기를 그룹화하는 기능을 추가했습니다. "
-        note_2: "<module>SkillTable</module>: 기존 정렬에 다른 열의 상단을 ctrl + 왼쪽 클릭 으로 보조 정렬하는 것을 추가하였습니다."
-        note_3: "<module>SkillTable</module>: 이제부터 선수 이름은 더 적은 칸에 들어가기 위해 생략합니다."
-        note_4: "<module>TransferSearchResultFilters</module>: form 필터와 특수능력이 없는 선수를 숨기는 것을 추가하였습니다. 이제 <module>TransferSearchFilters</module>와 협력합니다."
-        note_5: "<module>FriendlyPool</module>: 나라 선택 상자를 확장하는 것을 추가했습니다."
-        note_6: "<module>MovePlayerStatement</module>: 모든 명세서를 제거하는 것을 추가했습니다."
-        note_7: "Tabs: 대부분의 사이트에 커스텀 탭을 추가하기 위해 backend 기능을 추가하였습니다. (HT의 다가오는 경기 탭과 유사함)"
-        note_8: "<header>버그 수정</header>"
-
     0.10.0: 
         note_0: "NEW: <module>TransferHistoryFilters</module>: 영입했거나 매도한 선수들의 이적들만 필터링하는 것을 추가합니다. 선수 기록이 아닌 클럽 기록만 가능합니다(기본 활성화)"
         note_1: "NEW: <module>FriendlyPool</module>: 친선 경기 풀 안의 방문한 나라를 색칠합니다. (서포터즈만, 기본 활성화)"
