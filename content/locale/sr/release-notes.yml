@@ -2,7 +2,25 @@ language: Serbian
 versions: 
     nightly: 
         note_0: "За детаље о променама погледајте  на <linkSVN>Google Code</linkSVN> сајту."
+		
+    0.12.0:
+        note_0: "<module>Tabs</module>: Додата опција за додавање персонализованих табова на већини страница. (по узору на HT табове у прегледу надолазећих мечева)."
 
+    0.11.0: 
+        note_0: "НОВО:  <module>DirectPageLinks</module>: додати линкови за директан приступ страницама унутар теме на форуму"
+        note_1: "НОВО:  <module>ForumModeratorPopup</module>: Додат мени за модераторе форума на врху тема на форуму ради лакшег модерирања."
+        note_2: "НОВО:  <module>PlayerStatsTrainingWeek</module>: Додата могућност груписања мечева у складу са тренинг недељом уместо календарске ХТ недеље."
+        note_3: "<module>MatchOrderInterface</module>: Исправка за листу извођача пенала. Сада можете убацити све играче из поставе за меч на листу или да обришете целу листу једним кликом."
+        note_4: "<module>SkillTable</module>: Додата могућност за додатно сортирање већ сортираних колона користећи ctrl + леви клик на заглављу неке друге несортиране колоне."
+        note_5: "<module>SkillTable</module>: Имена играча су скраћена ради уштеде простора."
+        note_6: "<module>SkillColoring</module>: Комплетно редизајниран модул, са много исправки и додатака. Опције су измењене, па вас молимо да их поново подесите у складу са вашим потребама."
+        note_7: "<module>TransferSearchResultFilters</module>: Додата могућност за филтрирање резултата на основу форме и за сакривање играча који немају специјалност. Овај модул сада ради у комбинацији са модулом <module>TransferSearchFilters</module>."
+        note_8: "<module>MatchSimulator</module>: Додата интеграција са модулом <module>Ratings</module>."
+        note_9: "<module>FriendlyPool</module>: Додата могућност за раширени приказ поља за селекцију државе."
+        note_10: "<module>MovePlayerStatement</module>: Додата опција за потпуно уклањање играчеве изјаве."
+        note_11: "<module>YouthTwins</module>: Ручно направљене измене на HY сајту се одмах виде и на страници омладинских играча."
+        note_12: "<header>Исправке багова</header>"
+		
     0.10.0: 
         note_0: "НОВО:  <module>TransferHistoryFilters</module>: Омогућава филтрирање купљених или продатих играча на страници клупске Историје трансфера"
         note_1: "<module>PlayerStatsExperience</module>: Нова верзија са више детаља. (Хвала SeanConnery (7751762) за тестирање комбинације боја за особе које не препознају основну нијансу црвене и зелене)"
@@ -18,7 +36,7 @@ versions:
 
     0.9.3: 
         note_0: "A lot of language updates because Foxtrick users are awesome. Thank you so much. Keep contributing at <linkCrowdin>http://www.crowdin.net</linkCrowdin>"
-        note_1: "NEW: <module>YouthTwins</module>: Shows the amount of possible/marked/non twins on the youth players overview page for supporters (in conjunction with hattrick youthclub)"
+        note_1: "НОВО:  <module>YouthTwins</module>: Shows the amount of possible/marked/non twins on the youth players overview page for supporters (in conjunction with hattrick youthclub)"
         note_2: "<module>MatchOrderInterface</module>: Option to show player faces instead of shirts for future and past line-ups (default on)"
         note_3: "<module>MatchOrderInterface</module>: Option to disable last match information and highlighting for tournament games added (default on)"
         note_4: "<module>MatchIncome</module>: Support for increased ticket prices in season 49. Income is now calculated by the ticket prices that were active when the match was played."

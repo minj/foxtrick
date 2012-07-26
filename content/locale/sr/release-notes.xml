@@ -12,15 +12,23 @@
 <item>За детаље о променама погледајте  на <xhtml:a href="http://code.google.com/p/foxtrick/source/list">Google Code</xhtml:a> сајту.</item>
 </note>
 
+<note version="0.12.0">
+<item>● <module>Tabs</module>: Додата опција за додавање персонализованих табова на већини страница. (по узору на HT табове у прегледу надолазећих мечева).</item>
+</note>
+
 <note version="0.11.0">
-<item>● НОВО: <module>ForumModeratorPopup</module>: Иконице замењењене менијем за модераторе форума на врху странице ради лакшег модерисања.</item> 
-<item>● НОВО: <module>PlayerStatsTrainingWeek</module>: Додата опција за груписање мечева у Историјату наступа по тренинг недељама уместо календарских ХТ недеља.</item>
-<item>● <module>SkillTable</module>: Могућност за додатно сортирање већ сортираних колона користећи ctrl + леви клик на неку другу несортирану колону.</item>
-<item>● <module>SkillTable</module>: Имена играча су од сада скраћена ради уштеде простора.</item>
-<item>● <module>TransferSearchResultFilters</module>: Додатне опције за филтрирање резултата претраге трансфера на основу форме као и приказивање само играча који имају специјалност.</item>
-<item>● <module>FriendlyPool</module>: Додата опција за аутоматско приказивање менија за одабир државе у раширеном облику.</item>
-<item>● <module>MovePlayerStatement</module>: Опција за потпуно уклањање играчеве изјаве.</item>
-<item>● Табови: Додата функција за додавање табова на свим страницама. (по угледу на ХТ страницу са табовима за надолазеће мечеве).</item>
+<item>● НОВО:  <module>DirectPageLinks</module>: додати линкови за директан приступ страницама унутар теме на форуму</item> 
+<item>● НОВО:  <module>ForumModeratorPopup</module>: Додат мени за модераторе форума на врху тема на форуму ради лакшег модерирања.</item>
+<item>● НОВО:  <module>PlayerStatsTrainingWeek</module>: Додата могућност груписања мечева у складу са тренинг недељом уместо календарске ХТ недеље.</item>
+<item>● <module>MatchOrderInterface</module>: Исправка за листу извођача пенала. Сада можете убацити све играче из поставе за меч на листу или да обришете целу листу једним кликом.</item>
+<item>● <module>SkillTable</module>: Додата могућност за додатно сортирање већ сортираних колона користећи ctrl + леви клик на заглављу неке друге несортиране колоне.</item>
+<item>● <module>SkillTable</module>: Имена играча су скраћена ради уштеде простора.</item>
+<item>● <module>SkillColoring</module>: Комплетно редизајниран модул, са много исправки и додатака. Опције су измењене, па вас молимо да их поново подесите у складу са вашим потребама.</item>
+<item>● <module>TransferSearchResultFilters</module>: Додата могућност за филтрирање резултата на основу форме и за сакривање играча који немају специјалност. Овај модул сада ради у комбинацији са модулом <module>TransferSearchFilters</module>.</item>
+<item>● <module>MatchSimulator</module>: Додата интеграција са модулом <module>Ratings</module>.</item>
+<item>● <module>FriendlyPool</module>: Додата могућност за раширени приказ поља за селекцију државе.</item>
+<item>● <module>MovePlayerStatement</module>: Додата опција за потпуно уклањање играчеве изјаве.</item>
+<item>● <module>YouthTwins</module>: Ручно направљене измене на HY сајту се одмах виде и на страници омладинских играча.</item>
 <item><xhtml:b>Разне исправке.</xhtml:b></item>
 <item></item>
 </note>
