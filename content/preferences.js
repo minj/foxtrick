@@ -42,7 +42,7 @@ function init()
 			$("#tabs").hide();
 			$("#content").addClass("ft-mobile");
 			Foxtrick.log(Foxtrick, "MobileEnhancements");
-			Foxtrick.onClick($(".nav")[0], function(){
+			Foxtrick.onClick($("#navigation-header")[0], function(){
 				$("#tabs").toggle();
 				$("#main").toggle();
 			});

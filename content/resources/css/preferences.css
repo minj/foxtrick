@@ -444,7 +444,7 @@ html[dir="rtl"] #search {
 	background-color: #fff;
 }
 
-span.nav{
+div.nav{
 	border: 1px solid black;
 	/*border-radius: 5px 5px 0 0;*/
 	margin: 2px;
