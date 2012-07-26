@@ -459,9 +459,9 @@ function getModule(module)
 	link.title=Foxtrickl10n.getString('module.link');
 	title.appendChild(link);
 
-	// screenshot
+	// screenshot (disabled until we get them hosted/prefarably redone again)
 	var screenshotLink = Foxtrickl10n.getScreenshot(module.MODULE_NAME);
-	if (screenshotLink)
+	if (false && screenshotLink)
 		title.appendChild(getScreenshot(screenshotLink));
 
 	var desc = document.createElement("p");
