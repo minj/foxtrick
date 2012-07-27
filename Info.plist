@@ -47,6 +47,8 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/lib/jquery.js</string>
 				<string>content/lib/PluralForm.js</string>
 				<string>content/lib/yaml.js</string>
+				<string>content/lib/BlobBuilder.min.js</string>
+				<string>content/lib/FileSaver.min.js</string>
 
 				<!-- utilities -->
 				<string>content/util/api.js</string>
@@ -120,6 +122,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/forum/show-forum-pref-button.js</string>
 				<string>content/forum/staff-marker.js</string>
 				<string>content/information-aggregation/cross-table.js</string>
+				<string>content/information-aggregation/dashboard-calendar.js</string>
 				<string>content/information-aggregation/election-table.js</string>
 				<string>content/information-aggregation/extended-player-details.js</string>
 				<string>content/information-aggregation/extra-player-info.js</string>

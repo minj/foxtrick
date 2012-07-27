@@ -180,6 +180,15 @@ Foxtrick.util.time = {
 		return ret;
 	},
 
+	fill : function(str, length) {
+		var s = String(str);
+		var i = 0;
+		if (s.length < length)
+			while (i++ < length - s.length)
+				s = "0" + s;
+		return s;
+	},
+
 	/* returns a string representing date given as argument
 	 * if date is not set, return current date
 	 * showTime specifies whether to show time
@@ -200,28 +209,34 @@ Foxtrick.util.time = {
 		else
 			var string = format;
 
-		var fill = function(str, length) {
-			var s = String(str);
-			var i = 0;
-			if (s.length < length)
-				while (i++ < length - s.length)
-					s = "0" + s;
-			return s;
-		};
-
 		string = string.replace(/YYYY/g, date.getFullYear());
-		string = string.replace(/mm/g, fill(date.getMonth() + 1, 2));
+		string = string.replace(/mm/g, this.fill(date.getMonth() + 1, 2));
 		string = string.replace(/m/g, date.getMonth() + 1);
-		string = string.replace(/dd/g, fill(date.getDate(), 2));
+		string = string.replace(/dd/g, this.fill(date.getDate(), 2));
 		string = string.replace(/d/g, date.getDate(), 2);
-		string = string.replace(/HH/g, fill(date.getHours(), 2));
+		string = string.replace(/HH/g, this.fill(date.getHours(), 2));
 		string = string.replace(/H/g, date.getHours(), 2);
-		string = string.replace(/MM/g, fill(date.getMinutes(), 2));
+		string = string.replace(/MM/g, this.fill(date.getMinutes(), 2));
 		string = string.replace(/M/g, date.getMinutes());
-		string = string.replace(/SS/g, fill(date.getSeconds(), 2));
+		string = string.replace(/SS/g, this.fill(date.getSeconds(), 2));
 		string = string.replace(/S/g, date.getSeconds());
 
 		return string;
+	},
+	
+	/*
+	 * e.g. 20120727T000900, not adjusted to UTC
+	 */
+	toBareISOString : function(date) {
+		var ret = '';
+		ret += 
+			date.getFullYear() +
+			this.fill((date.getMonth() + 1), 2) +
+			this.fill(date.getDate(), 2) + 'T' +
+			this.fill(date.getHours(), 2) +
+			this.fill(date.getMinutes(), 2) +
+			this.fill(date.getSeconds(), 2);
+		return ret;
 	},
 
 	timeDifferenceToElement : function(doc, time_sec, useShort, useFull) {

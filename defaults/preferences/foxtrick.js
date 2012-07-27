@@ -48,6 +48,7 @@ pref("extensions.foxtrick.prefs.module.CrossTable.enabled", true);
 pref("extensions.foxtrick.prefs.module.CurrencyConverter.enabled", false);
 pref("extensions.foxtrick.prefs.module.CurrencyConverter.to", "EUR");
 pref("extensions.foxtrick.prefs.module.CustomMedals.enabled", false);
+pref("extensions.foxtrick.prefs.module.DashboardCalendar.enabled", true);
 pref("extensions.foxtrick.prefs.module.DirectPageLinks.enabled", true);
 pref("extensions.foxtrick.prefs.module.ElectionTable.enabled", true);
 pref("extensions.foxtrick.prefs.module.EmbedMedia.enabled", true);
