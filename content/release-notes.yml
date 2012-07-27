@@ -8,6 +8,7 @@ versions:
 
     0.12.0:
         note_0: "Tabs: Added backend functionality to add custom tabs to most sites. (like HT's own tabs for upcoming matches)."
+        note_1: "<module>DashboardCalendar</module>Add a button to export Hattrick week in iCalendar file format (should be compatible with Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal etc)"
 
     0.11.0: 
         note_0: "NEW: <module>DirectPageLinks</module>: links added to access specific pages in a forum thread"
