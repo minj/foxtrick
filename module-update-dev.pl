@@ -22,8 +22,8 @@ my @targets = (
 		"file" => "content/scripts-fennec.js",
 		"from" => "//<!-- categorized modules -->",
 		"to" => "//<!-- end categorized modules -->",
-		"prefix" => "\t\tmessageManager.loadFrameScript(\"chrome://foxtrick/content/",
-		"suffix" => "\", true);\n"
+		"prefix" => "\t\t\"",
+		"suffix" => "\",\n"
 	},
 	{
 		"file" => "content/preferences.html",

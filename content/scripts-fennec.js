@@ -74,146 +74,146 @@ Foxtrick.loader.background.contentScriptManager = {
 		"pages/matches.js",
 
 		//<!-- categorized modules -->
-		messageManager.loadFrameScript("chrome://foxtrick/content/access/aria-landmarks.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/alert/live-alert.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/alert/new-mail.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/alert/ticker-alert.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/alert/ticker-coloring.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/add-leave-conf-button.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/embed-media.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/forum-change-posts.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/forum-change-posts-modules.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/forum-direct-page-links.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/forum-last-post.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/forum-next-and-previous.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/forum-mod-popup.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/forum-presentation.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/forum-preview.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/forum-strip-hattrick-links.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/forum-templates.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/forum-thread-auto-ignore.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/forum-youth-icons.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/go-to-post-box.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/hide-signatures.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/ht-thread-marker.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/mark-all-as-read.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/mark-unread.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/show-forum-pref-button.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/forum/staff-marker.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/cross-table.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/dashboard-calendar.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/election-table.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/extended-player-details.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/extra-player-info.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/flag-collection-to-map.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/goal-difference-to-tables.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/history-stats.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/htms-points.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/last-login.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/median-transfer-price.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/my-monitor.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/nt-peek.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/player-birthday.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/player-stats-experience.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/season-stats.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/series-flags.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/show-friendly-booked.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/show-lineup-set.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/skill-table.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/supporterstats-enhancements.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/table-of-statistical-truth.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/team-stats.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/transfer-deadline.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/youth-promotes.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/youth-series-estimation.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/information-aggregation/youth-twins.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-achievements.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-alliances.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-arena.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-challenges.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-club-transfers.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-coach.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-country.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-economy.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-fans.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-league.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-manager.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-match.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-national.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-player-detail.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-players.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-staff.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-team.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-tracker.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-training.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-youth.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/links/links-world.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/matches/att-vs-def.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/matches/live-match-report-format.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/matches/copy-ratings.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/matches/htev-prediction.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/matches/htms-prediction.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/matches/match-income.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/matches/match-order.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/matches/match-player-colouring.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/matches/match-report-format.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/matches/match-simulator.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/matches/ratings.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/matches/stars-counter.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/background-fixed.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/bookmark-adjust.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/country-list.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/currency-converter.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/custom-medals.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/fix-css-problems.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/friendly-interface.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/friendly-pool.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/header-fix.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/header-toggle.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/highlight-cup-wins.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/highlight-ownerless.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/ht-date-format.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/large-flags.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/league-news-filter.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/local-time.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/loyalty-display.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/match-tables.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/mobile-enhancements.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/move-manager-online.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/move-player-select-box.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/move-player-statement.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/old-style-face.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/original-face.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/personality-images.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/player-stats-training-week.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/ratings-display.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/safe-for-work.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/simple-presentation.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/skill-coloring.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/skill-translation.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/skin-plugin.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/smaller-pages.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/tabs-test.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/team-select-box.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/presentation/youth-skill-hide-unknown.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/confirm-actions.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/context-menu-copy.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/copy-match-id.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/copy-player-ad.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/copy-youth.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/extra-shortcuts.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/filter.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/lineup-shortcut.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/manager-buttons.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/player-filters.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/rapid-id.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/senior-team-shortcuts.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/table-sort.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/team-popup-links.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/transfer-history-filters.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/transfer-search-filters.js", true);
-		messageManager.loadFrameScript("chrome://foxtrick/content/shortcuts-and-tweaks/transfer-search-result-filters.js", true);
+		"access/aria-landmarks.js",
+		"alert/live-alert.js",
+		"alert/new-mail.js",
+		"alert/ticker-alert.js",
+		"alert/ticker-coloring.js",
+		"forum/add-leave-conf-button.js",
+		"forum/embed-media.js",
+		"forum/forum-change-posts.js",
+		"forum/forum-change-posts-modules.js",
+		"forum/forum-direct-page-links.js",
+		"forum/forum-last-post.js",
+		"forum/forum-next-and-previous.js",
+		"forum/forum-mod-popup.js",
+		"forum/forum-presentation.js",
+		"forum/forum-preview.js",
+		"forum/forum-strip-hattrick-links.js",
+		"forum/forum-templates.js",
+		"forum/forum-thread-auto-ignore.js",
+		"forum/forum-youth-icons.js",
+		"forum/go-to-post-box.js",
+		"forum/hide-signatures.js",
+		"forum/ht-thread-marker.js",
+		"forum/mark-all-as-read.js",
+		"forum/mark-unread.js",
+		"forum/show-forum-pref-button.js",
+		"forum/staff-marker.js",
+		"information-aggregation/cross-table.js",
+		"information-aggregation/dashboard-calendar.js",
+		"information-aggregation/election-table.js",
+		"information-aggregation/extended-player-details.js",
+		"information-aggregation/extra-player-info.js",
+		"information-aggregation/flag-collection-to-map.js",
+		"information-aggregation/goal-difference-to-tables.js",
+		"information-aggregation/history-stats.js",
+		"information-aggregation/htms-points.js",
+		"information-aggregation/last-login.js",
+		"information-aggregation/median-transfer-price.js",
+		"information-aggregation/my-monitor.js",
+		"information-aggregation/nt-peek.js",
+		"information-aggregation/player-birthday.js",
+		"information-aggregation/player-stats-experience.js",
+		"information-aggregation/season-stats.js",
+		"information-aggregation/series-flags.js",
+		"information-aggregation/show-friendly-booked.js",
+		"information-aggregation/show-lineup-set.js",
+		"information-aggregation/skill-table.js",
+		"information-aggregation/supporterstats-enhancements.js",
+		"information-aggregation/table-of-statistical-truth.js",
+		"information-aggregation/team-stats.js",
+		"information-aggregation/transfer-deadline.js",
+		"information-aggregation/youth-promotes.js",
+		"information-aggregation/youth-series-estimation.js",
+		"information-aggregation/youth-twins.js",
+		"links/links-achievements.js",
+		"links/links-alliances.js",
+		"links/links-arena.js",
+		"links/links-challenges.js",
+		"links/links-club-transfers.js",
+		"links/links-coach.js",
+		"links/links-country.js",
+		"links/links-economy.js",
+		"links/links-fans.js",
+		"links/links.js",
+		"links/links-league.js",
+		"links/links-manager.js",
+		"links/links-match.js",
+		"links/links-national.js",
+		"links/links-player-detail.js",
+		"links/links-players.js",
+		"links/links-staff.js",
+		"links/links-team.js",
+		"links/links-tracker.js",
+		"links/links-training.js",
+		"links/links-youth.js",
+		"links/links-world.js",
+		"matches/att-vs-def.js",
+		"matches/live-match-report-format.js",
+		"matches/copy-ratings.js",
+		"matches/htev-prediction.js",
+		"matches/htms-prediction.js",
+		"matches/match-income.js",
+		"matches/match-order.js",
+		"matches/match-player-colouring.js",
+		"matches/match-report-format.js",
+		"matches/match-simulator.js",
+		"matches/ratings.js",
+		"matches/stars-counter.js",
+		"presentation/background-fixed.js",
+		"presentation/bookmark-adjust.js",
+		"presentation/country-list.js",
+		"presentation/currency-converter.js",
+		"presentation/custom-medals.js",
+		"presentation/fix-css-problems.js",
+		"presentation/friendly-interface.js",
+		"presentation/friendly-pool.js",
+		"presentation/header-fix.js",
+		"presentation/header-toggle.js",
+		"presentation/highlight-cup-wins.js",
+		"presentation/highlight-ownerless.js",
+		"presentation/ht-date-format.js",
+		"presentation/large-flags.js",
+		"presentation/league-news-filter.js",
+		"presentation/local-time.js",
+		"presentation/loyalty-display.js",
+		"presentation/match-tables.js",
+		"presentation/mobile-enhancements.js",
+		"presentation/move-manager-online.js",
+		"presentation/move-player-select-box.js",
+		"presentation/move-player-statement.js",
+		"presentation/old-style-face.js",
+		"presentation/original-face.js",
+		"presentation/personality-images.js",
+		"presentation/player-stats-training-week.js",
+		"presentation/ratings-display.js",
+		"presentation/safe-for-work.js",
+		"presentation/simple-presentation.js",
+		"presentation/skill-coloring.js",
+		"presentation/skill-translation.js",
+		"presentation/skin-plugin.js",
+		"presentation/smaller-pages.js",
+		"presentation/tabs-test.js",
+		"presentation/team-select-box.js",
+		"presentation/youth-skill-hide-unknown.js",
+		"shortcuts-and-tweaks/confirm-actions.js",
+		"shortcuts-and-tweaks/context-menu-copy.js",
+		"shortcuts-and-tweaks/copy-match-id.js",
+		"shortcuts-and-tweaks/copy-player-ad.js",
+		"shortcuts-and-tweaks/copy-youth.js",
+		"shortcuts-and-tweaks/extra-shortcuts.js",
+		"shortcuts-and-tweaks/filter.js",
+		"shortcuts-and-tweaks/lineup-shortcut.js",
+		"shortcuts-and-tweaks/manager-buttons.js",
+		"shortcuts-and-tweaks/player-filters.js",
+		"shortcuts-and-tweaks/rapid-id.js",
+		"shortcuts-and-tweaks/senior-team-shortcuts.js",
+		"shortcuts-and-tweaks/table-sort.js",
+		"shortcuts-and-tweaks/team-popup-links.js",
+		"shortcuts-and-tweaks/transfer-history-filters.js",
+		"shortcuts-and-tweaks/transfer-search-filters.js",
+		"shortcuts-and-tweaks/transfer-search-result-filters.js",
 		//<!-- end categorized modules -->
 
 		"env-fennec.js",
