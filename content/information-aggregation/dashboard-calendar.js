@@ -180,7 +180,7 @@ END:VEVENT\r\n\
 		var parent = newLink.appendChild(doc.createElement("div"));
 		Foxtrick.addClass(parent, "float_right");
 		var title = Foxtrickl10n.getString("dashBoardCalendar.export");
-		Foxtrick.addImage(doc, parent, { src : Foxtrick.InternalPath+"resources/img/calendar.png", alt: title, title: title });
+		Foxtrick.addImage(doc, parent, { src : Foxtrick.InternalPath+"resources/img/calendar-day.png", alt: title, title: title });
 		Foxtrick.onClick(newLink, function(){
 			saveAs(cal.getBlob("text/calendar;charset=utf-8"), "ht-cal-"+todayString+".ics");
 		});
