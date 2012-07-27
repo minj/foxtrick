@@ -45,6 +45,13 @@ my @targets = (
 		"to" => "<!-- end categorized modules -->",
 		"prefix" => "<script type=\"application/x-javascript\" src=\"./",
 		"suffix" => "\"></script>\n"
+	},
+	{
+		"file" => "content/bootstrap-firefox.js",
+		"from" => "<!-- categorized modules -->",
+		"to" => "<!-- end categorized modules -->",
+		"prefix" => "\t\t\"",
+		"suffix" => "\",\n"
 	}
 );
 
