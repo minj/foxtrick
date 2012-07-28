@@ -49,7 +49,7 @@ if (Foxtrick.arch == "Gecko") {
 			  .getService(Components.interfaces.nsIDOMStorageManager);
 
 	var uri = ios.newURI(url, "", null);
-	var principal = ssm.getCodebasePrincipal(uri);
+	var principal = ssm.getCodebasePrincipal?ssm.getCodebasePrincipal(uri):ssm.getNoAppCodebasePrincipal(uri);
 	Foxtrick.localStore = dsm.getLocalStorageForPrincipal(principal, "");
 
 	Foxtrick.localSet = Foxtrick._localSet;
