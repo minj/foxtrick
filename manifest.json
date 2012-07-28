@@ -234,7 +234,7 @@
 		"*://*.foxtrick.org/*",
 		"https://foxtrick.c6.ixwebhosting.org/",
 		"http://foxtrick.symbiosis.org.gr/*",
-		"http://foxtrick.googlecode.com/svn/*",
+		"*://foxtrick.googlecode.com/svn/*",
 		"http://www.fantamondi.it/*"
 	],
 	"optional_permissions" : [
