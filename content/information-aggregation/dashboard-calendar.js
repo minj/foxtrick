@@ -13,20 +13,24 @@ Foxtrick.modules["DashboardCalendar"]={
 		var EVENTS = {
 			TRAINING: 'training',					//upcomingTrainingIcon
 			ECONOMY: 'economy',						//upcomingEconomyIcon
+			FRREMINDER: 'frReminder',				//matchFriendly
+			INTFRREMINDER: 'intFrReminder',		// fake event
 			LEAGUE: 'game',							//matchLeague
-			FRIENDLY: 'game',					//matchFriendly?
+			FRIENDLY: 'game',							//matchFriendly
 			CUP: 'cup',									//matchCup
-			QUALIFICATION: 'cup',		//matchQualification
-			MASTERS: 'cup',						//matchMasters
-			TOURNAMENT: 'gameHTO',				//matchTournament
-			PREPARATION: 'gameHTO',			//matchNewbie
+			QUALIFICATION: 'cup',					//matchQualification
+			MASTERS: 'cup',							//matchMasters
+			TOURNAMENT: 'gameHTO',					//matchTournament
+			PREPARATION: 'gameHTO',					//matchNewbie
 			NT: 'nt',									//upcomingNationalIcon
 			YOUTHCOACH: 'youthTraining',			//upcomingYouthTrainingIcon
 			YOUTHSCOUT: 'scoutCall',				//upcomingYouthCallScoutIcon
 			YOUTHGAME: 'youth',						//matchLeague
-			YOUTHFRIENDLY: 'youth',		//matchFriendly?
+			YOUTHFRIENDLY: 'youth',					//matchFriendly?
 			UNKNOWN: 'unknown',
 		};
+		
+		var hasMidWeekGame = false;
 		
 		var parseEvent = function(div){
 			var ret = {};
@@ -52,13 +56,19 @@ Foxtrick.modules["DashboardCalendar"]={
 							ret.type = EVENTS.LEAGUE; 
 					break;
 					case "matchFriendly":
+						if (!links.length) {
+							ret.type = EVENTS.FRREMINDER;
+							return ret;
+						}
 						var liveLink = links[links.length-1];
 						if (liveLink.href.match(/SourceSystem=Youth/i))
 							ret.type = EVENTS.YOUTHFRIENDLY; 
-						else						
+						else	{
+							hasMidWeekGame = true;					
 							ret.type = EVENTS.FRIENDLY;
+						}
 					break;
-					case "matchCup": ret.type = EVENTS.CUP; break;
+					case "matchCup": ret.type = EVENTS.CUP; hasMidWeekGame = true; break;
 					case "matchQualification": ret.type = EVENTS.QUALIFICATION; break;
 					case "matchMasters": ret.type = EVENTS.MASTERS; break;
 					case "matchTournament": ret.type = EVENTS.TOURNAMENT; break;
@@ -98,6 +108,18 @@ Foxtrick.modules["DashboardCalendar"]={
 		
 		for (var i = 0, day; i < 7; ++i) {
 			day = (currentWeekDay + i) % 7;
+			if (day == 2 && !hasMidWeekGame) {
+				var eventTime = Foxtrick.util.time.addDaysToDate(today, i);
+				eventTime.setHours(18);
+				eventTime = Foxtrick.util.time.toBareISOString(eventTime);
+				events.push({
+					time : eventTime,
+					type : EVENTS.INTFRREMINDER,
+					UID : EVENTS.INTFRREMINDER + '-' + eventTime+ '@foxtrick.org',
+					text: "18:00 » " + Foxtrickl10n.getString("dashBoardCalendar.events.intFrReminder.alarm"),
+					URL: 'http://www.hattrick.org/Club/Challenges/Default.aspx'
+				});
+			}
 			for (var j = 0, z = eventDays[day].length; j < z; j++) {
 				var event = eventDays[day][j];
 				if (event) {
