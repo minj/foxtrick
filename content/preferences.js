@@ -331,7 +331,7 @@ function initListeners()
 	initAutoSaveListeners();
 
 	$("#search-input")[0].addEventListener("input", searchEvent, false);
-	$("#save").click(function() { save(); });
+	$("#save").click(function() { save(); $("#alert").attr("style","display:none;");});
 	$("body").click(function(ev) {
 		if ((ev.target.nodeName.toLowerCase() == "a"
 			|| ev.target.nodeName.toLowerCase() == "xhtml:a")) {
