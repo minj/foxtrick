@@ -48,7 +48,6 @@ if (Foxtrick.arch == "Gecko") {
 	var dsm = Components.classes["@mozilla.org/dom/storagemanager;1"]
 			  .getService(Components.interfaces.nsIDOMStorageManager);
 
-	alert(ssm);
 	var uri = ios.newURI(url, "", null);
 	var principal = ssm.getCodebasePrincipal?ssm.getCodebasePrincipal(uri):ssm.getNoAppCodebasePrincipal(uri);
 	Foxtrick.localStore = dsm.getLocalStorageForPrincipal(principal, "");
