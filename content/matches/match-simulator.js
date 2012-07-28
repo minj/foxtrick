@@ -860,7 +860,7 @@ Foxtrick.modules.MatchSimulator={
 		// -- stamina discount --
 		function getStaminaFactor(stamina) {
 			// from unwritten manual [post=15172393.4]
-			return Math.pow( Math.min(stamina+(14-FoxtrickPrefs.getInt('staminaCutoff')), 14)/14, 0.6); 
+			return Math.pow( Math.min(stamina+(14-parseFloat(FoxtrickPrefs.getString('staminaCutoff'))), 14)/14, 0.6); 
 			//Foxtrick.log(stamina, (1-0.0072415286*Math.pow(9-stamina,1.9369819898)))
 			// from http://imageshack.us/photo/my-images/854/contributiontablestamin.png/
 			//return (1-0.0072415286*Math.pow(9-stamina,1.9369819898));
@@ -1024,7 +1024,7 @@ Foxtrick.modules.MatchSimulator={
 		attVsDefLabel.setAttribute('title', Foxtrickl10n.getString("matchOrder.attVsDef.title"));
 		optionsDivElm.appendChild(attVsDefLabel);
 
-		Foxtrick.log('staminaCutoff: ',FoxtrickPrefs.getInt("staminaCutoff"));
+		Foxtrick.log('staminaCutoff: ',parseFloat(FoxtrickPrefs.getString('staminaCutoff')));
 
 		Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath+"resources/js/matchSimulator.js");	
 		
