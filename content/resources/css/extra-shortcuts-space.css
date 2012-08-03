@@ -6,9 +6,15 @@
 div#shortcuts, 
 div#shortcuts div.scContainer
 {width: 324px !important;}
-div#shortcutsNoSupporter, 
-div#shortcutsNoSupporter div.scContainerNoSupporter 
+
+/* old ad placement above page */
+#header div#shortcutsNoSupporter:first-child,
+#header div#shortcutsNoSupporter:first-child div.scContainerNoSupporter 
 {width: 200px !important;}
+
+/* new ad placement within header */
+#header div+div#shortcutsNoSupporter div.scContainerNoSupporter 
+{width: auto !important;}
 
 html[data-theme="standard"] #ticker, html[data-theme="standard"] #ticker div {
 	width: 400px !important;
