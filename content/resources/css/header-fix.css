@@ -22,13 +22,13 @@ html[data-theme="simple"] #header {
 }
 
 
-html[data-theme="simple"][dir="ltr"] #header {
+html[dir="ltr"][data-theme="simple"] #header {
 	margin-left: -11px;
 	padding-right:10px;
 	padding-left: 11px;
 }
 
-html[data-theme="simple"][dir="rtl"] #header {
+html[dir="rtl"][data-theme="simple"] #header {
 	margin-right: -11px;
 	padding-left:10px;
 	padding-right: 11px;
