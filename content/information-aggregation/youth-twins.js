@@ -57,6 +57,7 @@
 			args.push(["file", "youthplayerlist"]);
 			args.push(["youthTeamID", teamId]);
 			args.push(["actionType", "details"]);
+			args.push(["showScoutCall", true]);
 			args.push(["version", "1.0"]);
 			Foxtrick.util.api.retrieve(doc, args,{ cache_lifetime:'session'}, callback);
 		}
