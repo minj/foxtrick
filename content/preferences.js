@@ -758,9 +758,11 @@ function getModule(module)
 						var playButton = document.createElement("button");
 						playButton.setAttribute("data-text","button.play");
 						playButton.id = checkbox.id + "-playButton";
-						playButton.addEventListener('click',function(ev){
-							Foxtrick.playSound(textInput.value, document);
-						}, false);
+						playButton.addEventListener('click',(function (textInput){ 
+							return function(ev){
+								Foxtrick.playSound(textInput.value, document);
+							}
+						})(textInput), false);
 						textDiv.appendChild(playButton);						
 					}
 				}
