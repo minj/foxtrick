@@ -9,6 +9,7 @@ versions:
     0.12.0:
         note_0: "Tabs: Added backend functionality to add custom tabs to most sites. (like HT's own tabs for upcoming matches)."
         note_1: "<module>DashboardCalendar</module>: Added a button to export Hattrick week in iCalendar file format (should be compatible with Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal etc)"
+        note_2: "<module>LiveAlert</module>: added different sounds for home/away/your team goals. Using sounds from <linkHTLS>HTLiveSight</linkHTLS> by default. Your team goals will not be recognized in Re-Live mode at first."
 
     0.11.0: 
         note_0: "NEW: <module>DirectPageLinks</module>: links added to access specific pages in a forum thread"

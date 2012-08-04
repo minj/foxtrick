@@ -218,6 +218,14 @@ Foxtrick.modules["Core"]={
 				leagueId : Foxtrick.util.id.findLeagueId(teamLinks),
 				teamName : Foxtrick.util.id.extractTeamName(teamLinks)
 			};
+			Foxtrick.localGet('shortTeamName.'+this.SELF_TEAM_INFO.teamId, function (name) {
+				if ( ! name) {
+					if ( ! doc.getElementById('ctl00_ctl00_ucOngoingEvents_lblOngoingEvents')) return;
+					name = Foxtrick.modules["Core"].SELF_TEAM_INFO.teamName;
+					Foxtrick.localSet('shortTeamName.'+Foxtrick.modules["Core"].SELF_TEAM_INFO.teamId, name);
+				}
+				Foxtrick.modules["Core"].SELF_TEAM_INFO.shortTeamName = name;
+			});
 			Foxtrick.ht_pages["ownPlayers"] = '/Club/Players/$|/Club/Players/default.aspx|/Club/Players/KeyPlayers.aspx$|/Club/Players/?TeamID=' + this.SELF_TEAM_INFO.teamId + '|/Club/Players/KeyPlayers.aspx?teamId=' + this.SELF_TEAM_INFO.teamId;
 			Foxtrick.ht_pages["ownKeyPlayers"] = '/Club/Players/KeyPlayers.aspx$|/Club/Players/KeyPlayers.aspx?teamId=' + this.SELF_TEAM_INFO.teamId;
 		}
