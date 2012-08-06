@@ -6,8 +6,14 @@
 html[data-theme="standard"] #stageLogo {
 	background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick.png') !important;
 }
+html[data-theme="standard"] #logo {
+	background-image: url('chrome://foxtrick/content/resources/img/logo_green_foxtrick.png') !important;
+}
 html[data-theme="simple"] #stageLogo {
 	background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick_simple.png') !important;
+}
+html[data-theme="simple"] #logo {
+	background-image: url('chrome://foxtrick/content/resources/img/logo_green_foxtrick_simple.png') !important;
 }
 
 /* faux-link */
