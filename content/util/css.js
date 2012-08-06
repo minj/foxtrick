@@ -74,14 +74,14 @@ Foxtrick.util.css.convertImageUrlToData = function(cssTextCollection, callback) 
 Foxtrick.util.css.replaceExtensionDirectory = function(cssTextCollection, callback, id) {
 	var InternalPathRegExp = RegExp("chrome://foxtrick/content/", "ig");
 
-	if (Foxtrick.platform == "Opera" || Foxtrick.platform == "Chrome") {
+	if (Foxtrick.platform == "Opera" ) {
 		if (cssTextCollection.search(InternalPathRegExp)!=-1 )
 			sandboxed.extension.sendRequest({ req : "convertImages", cssText: cssTextCollection, type: id},
 				function (data) { callback(data.cssText);
 				});
 		else callback(cssTextCollection);
 	}
-	else if (Foxtrick.platform == "Safari") {
+	else if (Foxtrick.platform == "Safari" || Foxtrick.platform == "Chrome") {
 		callback( cssTextCollection.replace(InternalPathRegExp, Foxtrick.InternalPath) );
 	}
 	else callback(cssTextCollection);
