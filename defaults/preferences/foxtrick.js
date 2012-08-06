@@ -481,6 +481,7 @@ pref("extensions.foxtrick.prefs.module.Ratings.VnukStats.enabled", false);
 pref("extensions.foxtrick.prefs.module.RatingsDisplay.enabled", true);
 pref("extensions.foxtrick.prefs.module.RatingsDisplay.value", 2);
 pref("extensions.foxtrick.prefs.module.ReadHtPrefs.enabled", true);
+pref("extensions.foxtrick.prefs.module.ReLiveLinks.enabled", true);
 pref("extensions.foxtrick.prefs.module.SafeForWork.enabled", false);
 pref("extensions.foxtrick.prefs.module.SafeForWork.icon", "https://www.google.com/favicon.ico");
 pref("extensions.foxtrick.prefs.module.SafeForWork.title", "What is the ultimate answer to the ultimate question of Life, The Universe, and Everything?");

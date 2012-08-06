@@ -204,6 +204,7 @@ FoxtrickFirefox.prototype = {
 		"shortcuts-and-tweaks/manager-buttons.js",
 		"shortcuts-and-tweaks/player-filters.js",
 		"shortcuts-and-tweaks/rapid-id.js",
+		"shortcuts-and-tweaks/relive-links.js",
 		"shortcuts-and-tweaks/senior-team-shortcuts.js",
 		"shortcuts-and-tweaks/table-sort.js",
 		"shortcuts-and-tweaks/team-popup-links.js",

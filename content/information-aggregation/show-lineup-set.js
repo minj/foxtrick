@@ -10,6 +10,7 @@ Foxtrick.modules["ShowLineupSet"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["series", "youthSeries", "tournaments"],
 	OPTIONS : ["LineupSet", "Ownerless", "Winning"],
+	NICE : -2, //before ReLiveLinks
 	CSS : Foxtrick.InternalPath + "resources/css/show-lineup-set.css",
 
 	run : function(doc) {

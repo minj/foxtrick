@@ -198,6 +198,7 @@
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/manager-buttons.js"></script>
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/player-filters.js"></script>
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/rapid-id.js"></script>
+<script type="application/x-javascript" src="./shortcuts-and-tweaks/relive-links.js"></script>
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/senior-team-shortcuts.js"></script>
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/table-sort.js"></script>
 <script type="application/x-javascript" src="./shortcuts-and-tweaks/team-popup-links.js"></script>
