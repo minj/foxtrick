@@ -51,14 +51,14 @@ Foxtrick.modules["ReLiveLinks"]={
 			img = doc.createDocumentFragment();
 			Foxtrick.addImage(doc, img, { src : Foxtrick.InternalPath+"resources/img/relive-small.png", alt: 'HT Re-Live', title: 'HT Re-Live' });
 
-/*			var addAll = doc.createElement('img');
+			var addAll = doc.createElement('img');
 			addAll.src = '/Img/Icons/transparent.gif';
 			addAll.className = 'matchHTReLive';
 			addAll.alt = addAll.title = 
-				doc.getElementById('ctl00_ctl00_CPContent_CPMain_imgAddRound').alt;*/
+				doc.getElementById('ctl00_ctl00_CPContent_CPMain_imgAddRound').alt;
 
-			var addAll = doc.createDocumentFragment();
-			Foxtrick.addImage(doc, addAll, { src : Foxtrick.InternalPath+"resources/img/relive-small.png", alt: doc.getElementById('ctl00_ctl00_CPContent_CPMain_imgAddRound').alt, title: doc.getElementById('ctl00_ctl00_CPContent_CPMain_imgAddRound').alt });
+/*			var addAll = doc.createDocumentFragment();
+			Foxtrick.addImage(doc, addAll, { src : Foxtrick.InternalPath+"resources/img/relive-small.png", alt: doc.getElementById('ctl00_ctl00_CPContent_CPMain_imgAddRound').alt, title: doc.getElementById('ctl00_ctl00_CPContent_CPMain_imgAddRound').alt });*/
 
 			var addAllLink = doc.createElement('a');
 			addAllLink.appendChild(addAll);
@@ -70,10 +70,8 @@ Foxtrick.modules["ReLiveLinks"]={
 
 			for (var i = 0, m = rows.length; i < m; ++i) {
 				row = rows[i];
-				if (i) { 
+				if (i) 
 					Foxtrick.insertFeaturedCell(row, this, -1);
-					row.cells[1].textContent = row.cells[1].textContent.replace(/\s/g, '');
-				}
 				else {
 					var header = Foxtrick.createFeaturedElement(doc, this, "th");
 					header.appendChild(addAllSpan);
