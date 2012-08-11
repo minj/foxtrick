@@ -10,7 +10,7 @@ Foxtrick.modules["MatchOrderInterface"]={
 	PAGES : ['matchOrder', 'matchLineup'],
 	OPTIONS : ["GotTrainingOnField", "DisplayLastMatchInDetails", "Specialties", "ShowFaces", "SwapPositions","StayOnPage", ["CloneOrder", "AutoExpandCloned"]],
 	CSS : Foxtrick.InternalPath + "resources/css/match-order.css",
-	OPTIONS_CSS : [ "", Foxtrick.InternalPath + "resources/css/match-order-specialties.css", Foxtrick.InternalPath + "resources/css/match-order-faces.css", Foxtrick.InternalPath + "resources/css/match-order-clone.css"],
+	OPTIONS_CSS : [ "", "", Foxtrick.InternalPath + "resources/css/match-order-specialties.css", Foxtrick.InternalPath + "resources/css/match-order-faces.css", "", "", [Foxtrick.InternalPath + "resources/css/match-order-clone.css"]],
 	run : function(doc) {
 		var check_images = function(doc, target, avatarsXml, getID, scale) {
 			if (!FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'ShowFaces'))

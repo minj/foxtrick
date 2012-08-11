@@ -787,13 +787,20 @@ Foxtrick.collect_module_css = function() {
 			}
 			// module options CSS
 			if (module.OPTIONS && module.OPTIONS_CSS) {
-				for (var i = 0;
-					i < Math.min(module.OPTIONS.length, module.OPTIONS_CSS.length);
-					++i) {
-					if (FoxtrickPrefs.isModuleOptionEnabled(module.MODULE_NAME, module.OPTIONS[i])
-						&& module.OPTIONS_CSS[i])
-						Foxtrick.cssFiles.push(module.OPTIONS_CSS[i]);
+				var pushCss = function(options, css){
+					for (var i = 0;	i < Math.min(css.length, options.length); i++){
+						if(css[i] instanceof Array && options[i] instanceof Array){
+							pushCss(options[i], css[i]);
+						} else if (typeof(css[i]) === "string" && typeof(options[i]) === "string"){
+							if (FoxtrickPrefs.isModuleOptionEnabled(module.MODULE_NAME, options[i]) && css[i]){
+								Foxtrick.cssFiles.push(css[i]);
+							}
+						} else {
+							alert("OPTIONS_CSS not matching OPTIONS structure")
+						}
+					}
 				}
+				pushCss(module.OPTIONS, module.OPTIONS_CSS);
 			}
 			// module options CSS
 			if (module.RADIO_OPTIONS 
