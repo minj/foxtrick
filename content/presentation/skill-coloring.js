@@ -21,7 +21,7 @@ Foxtrick.modules["SkillColoring"]={
 		Foxtrick.InternalPath+"resources/skillcolors/non-skill-color.css",
 		Foxtrick.InternalPath+"resources/skillcolors/no-colors.css",
 		Foxtrick.InternalPath+"resources/skillcolors/skill-number.css",
-		Foxtrick.InternalPath+"resources/skillcolors/skill-number.css",
+		[Foxtrick.InternalPath+"resources/skillcolors/skill-number.css",""],
 		Foxtrick.InternalPath+"resources/skillcolors/skill-number-selectoption.css",
 	],
 
