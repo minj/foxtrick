@@ -70,8 +70,10 @@ Foxtrick.modules["ReLiveLinks"]={
 
 			for (var i = 0, m = rows.length; i < m; ++i) {
 				row = rows[i];
-				if (i) 
+				if (i) { 
 					Foxtrick.insertFeaturedCell(row, this, -1);
+					row.cells[1].textContent = row.cells[1].textContent.replace(/\s/g, '');
+				}
 				else {
 					var header = Foxtrick.createFeaturedElement(doc, this, "th");
 					header.appendChild(addAllSpan);
