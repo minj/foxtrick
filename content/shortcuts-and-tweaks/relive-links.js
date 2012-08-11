@@ -7,24 +7,59 @@
 
 Foxtrick.modules["ReLiveLinks"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : ['matches', 'matchesArchive', 'cupMatches', 'fixtures', 'youthFixtures', 'series'],
+	PAGES : ['match', 'matches', 'matchesArchive', 'cupMatches', 'fixtures', 'youthFixtures', 'series'],
+	CSS : Foxtrick.InternalPath+"resources/css/relive-links.css",
 	NICE : -1, //before any modules that might change row count
 	run : function(doc) { 
-	
+
+		var img = doc.createElement('img');
+		img.src = '/Img/Icons/transparent.gif';
+		img.alt = img.title = 'HT Re-Live';
+		img.className = 'matchHTReLive';	
+
 		var rows, row, liveTdIdx = 4, cloneUrlIdx = 5, tdCount = 7, scoreIdx = 3;
 		
-		if (Foxtrick.isPage('series', doc)) {
+		if (Foxtrick.isPage('match', doc)) {
+			
+			if (Foxtrick.Pages.Match.isPrematch(doc)
+			|| Foxtrick.Pages.Match.inProgress(doc) )
+			return;
+			
+			var SourceSystem = "Hattrick";
+			var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+			var isHTOIntegrated = Foxtrick.Pages.Match.isHTOIntegrated(doc);
+			if (isYouth)
+				SourceSystem = "Youth";
+			if (isHTOIntegrated)
+				SourceSystem = "HTOIntegrated";
+			var matchId = Foxtrick.Pages.Match.getId(doc);
+			
+			var link = Foxtrick.createFeaturedElement(doc, this, 'a');
+			link.href = '/Club/Matches/Live.aspx?matchID=' + matchId + '&actionType=addMatch&SourceSystem=' + SourceSystem;
+			link.appendChild(img.cloneNode(true));
+			doc.getElementsByTagName('h1')[0].appendChild(link);
+			
+			return;
+		}
+		else if (Foxtrick.isPage('series', doc)) {
 			tdCount = 3;
 			cloneUrlIdx = 0;
 			liveTdIdx = 2;
 			scoreIdx = 1;
 			rows = doc.querySelectorAll('table.indent.left.thin > tbody > tr');
 
-			var addAll = doc.createElement('img');
+			img = doc.createDocumentFragment();
+			Foxtrick.addImage(doc, img, { src : Foxtrick.InternalPath+"resources/img/relive-small.png", alt: 'HT Re-Live', title: 'HT Re-Live' });
+
+/*			var addAll = doc.createElement('img');
 			addAll.src = '/Img/Icons/transparent.gif';
 			addAll.className = 'matchHTReLive';
 			addAll.alt = addAll.title = 
-				doc.getElementById('ctl00_ctl00_CPContent_CPMain_imgAddRound').alt;
+				doc.getElementById('ctl00_ctl00_CPContent_CPMain_imgAddRound').alt;*/
+
+			var addAll = doc.createDocumentFragment();
+			Foxtrick.addImage(doc, addAll, { src : Foxtrick.InternalPath+"resources/img/relive-small.png", alt: doc.getElementById('ctl00_ctl00_CPContent_CPMain_imgAddRound').alt, title: doc.getElementById('ctl00_ctl00_CPContent_CPMain_imgAddRound').alt });
+
 			var addAllLink = doc.createElement('a');
 			addAllLink.appendChild(addAll);
 			var addAllSpan = doc.createElement('span');
@@ -80,12 +115,8 @@ Foxtrick.modules["ReLiveLinks"]={
 		}
 		else rows = doc.querySelectorAll('table.naked > tbody > tr');
 		
-		var img, tds, liveTd, address, id, source, links, link;
-		img = doc.createElement('img');
-		img.src = '/Img/Icons/transparent.gif';
-		img.alt = img.title = 'HT Re-Live';
-		img.className = 'matchHTReLive';
-		
+		var tds, liveTd, address, id, source, links, link;
+			
 		for (var i = 0, m = rows.length; i < m; ++i) {
 			row = rows[i];
 			tds = row.getElementsByTagName('td');
@@ -101,7 +132,7 @@ Foxtrick.modules["ReLiveLinks"]={
 			address = '/Club/Matches/Live.aspx?matchID=' + id + '&actionType=addMatch&SourceSystem=' + source;
 			link = Foxtrick.createFeaturedElement(doc, this, 'a');
 			link.href = address;
-			link.appendChild(img.cloneNode());
+			link.appendChild(img.cloneNode(true));
 			liveTd.appendChild(link);
 			
 			if (matches) matches.push(id);
