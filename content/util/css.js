@@ -169,8 +169,6 @@ Foxtrick.util.css.collect_module_css = function() {
 				}
 			}
 			// module options CSS
-			//alert(module);
-			
 			if (module.OPTIONS && module.OPTIONS_CSS) {
 				var pushCss = function(options, css){
 					for (var i = 0;	i < Math.min(css.length, options.length); i++){
@@ -180,8 +178,10 @@ Foxtrick.util.css.collect_module_css = function() {
 							if (FoxtrickPrefs.isModuleOptionEnabled(module.MODULE_NAME, options[i]) && css[i]){
 								Foxtrick.cssFiles.push(css[i]);
 							}
+						} else if (css[i] == null){
+							//
 						} else {
-							alert("OPTIONS_CSS not matching OPTIONS structure")
+							alert("OPTIONS_CSS not matching OPTIONS structure: " + typeof(css[i]) + " " + module.MODULE_NAME + " " + options[i] + " " + css[i]);
 						}
 					}
 				}
