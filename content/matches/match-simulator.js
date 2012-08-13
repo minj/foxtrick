@@ -898,8 +898,10 @@ Foxtrick.modules.MatchSimulator={
 		
 		// -- stamina discount --
 		function getStaminaFactor(stamina) {
-			// from unwritten manual [post=15172393.4]
-			return Math.pow( Math.min(stamina+(14-parseFloat(FoxtrickPrefs.getString('staminaCutoff'))), 15.25)/14, 0.6)/1.05265;
+			//http://www.nrgjack.altervista.org/wordpress/2008/07/31/percentuale-resistenza/
+			return 0.2472*Math.log(stamina)+0.472;
+			// from unwritten manual [post=15172393.4] (HO)
+			//return Math.pow( Math.min(stamina+(14-parseFloat(FoxtrickPrefs.getString('staminaCutoff'))), 15.25)/14, 0.6)/1.05265;
 			//Foxtrick.log(stamina, (1-0.0072415286*Math.pow(9-stamina,1.9369819898)))
 			// from http://imageshack.us/photo/my-images/854/contributiontablestamin.png/
 			//return (1-0.0072415286*Math.pow(9-stamina,1.9369819898));
