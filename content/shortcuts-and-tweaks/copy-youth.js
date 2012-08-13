@@ -160,7 +160,7 @@ Foxtrick.modules["CopyYouth"]={
 				
 				if (FoxtrickPrefs.isModuleOptionEnabled("CopyYouth", "RejectedToHTY")) {
 					var rejectButton = alertdiv.getElementsByTagName('input')[1];
-					rejectButton.setAttribute('title', Foxtrickl10n.getString('foxtrick.CopyYouth.RejectedToHTY.desc'));
+					rejectButton.setAttribute('title', Foxtrickl10n.getString('module.CopyYouth.RejectedToHTY.desc'));
 					Foxtrick.onClick(rejectButton, function(){ copyReport(true) })
 				}
 				else if (alertdiv.parentNode.getElementsByTagName('a')[0]==null
