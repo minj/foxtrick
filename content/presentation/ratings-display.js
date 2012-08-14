@@ -9,6 +9,7 @@ Foxtrick.modules["RatingsDisplay"]={
 	PAGES : ["statsSeries", "match"],
 
 	RADIO_OPTIONS : ["DenominationsRange", "HatStats", "HTSums" ],
+	NICE: -1,	// before Ratings
 	
 	run : function(doc) {
 	
