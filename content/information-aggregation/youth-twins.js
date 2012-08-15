@@ -158,6 +158,8 @@
 			var json = JSON.parse( response );
 
 			var isHYuser = json.isHyUser;
+			Foxtrick.localSet("YouthClub." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".isUser", isHYuser);
+
 			Foxtrick.log("YouthTwins: isHyUser: ", isHYuser);
 
 			var playerInfos = doc.getElementsByClassName("playerInfo");

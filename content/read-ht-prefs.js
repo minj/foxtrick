@@ -20,20 +20,19 @@ Foxtrick.modules["ReadHtPrefs"]={
 		this.readDateFormat(doc);
 	},
 	
-	readLanguage : function(doc) {
-
-		var readLanguageFromMetaTag = function(){
-			var meta = doc.getElementsByTagName("meta");
-			var lang = null;
-			for(var i=0; i < meta.length;i++)
-			{
-				if(meta[i].getAttribute("http-equiv") == "Content-Language")
-					var lang = meta[i].getAttribute("content");
-			}
-			return lang;
+	readLanguageFromMetaTag : function(doc){
+		var meta = doc.getElementsByTagName("meta");
+		var lang = null;
+		for(var i=0; i < meta.length;i++)
+		{
+			if(meta[i].getAttribute("http-equiv") == "Content-Language")
+				var lang = meta[i].getAttribute("content");
 		}
+		return lang;
+	},
 
-		var readLang = readLanguageFromMetaTag();
+	readLanguage : function(doc) {
+		var readLang = this.readLanguageFromMetaTag(doc);
 		var newLang = Foxtrickl10n.htMapping[readLang];
 		var oldLang = FoxtrickPrefs.getString("htLanguage");
 		var languages = Foxtrickl10n.htLanguagesXml;
