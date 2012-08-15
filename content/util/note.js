@@ -38,13 +38,13 @@ Foxtrick.util.note = {
 	 * hasClose - whether to add a link labelled "Close" for closing the note
 	 */
 
-	add : function(doc, insertBefore, id, msg, buttons, hasClose, doJump, inline) {
+	add : function(doc, insertBefore, id, msg, buttons, hasClose, doJump, inline, timeout) {
 		// first we remove the old notes with same name
 		var old = doc.getElementById(id);
 		if (old) {
 			old.parentNode.removeChild(old);
 		}
-		var note = this.create(doc, msg, buttons, hasClose);
+		var note = this.create(doc, msg, buttons, hasClose, timeout);
 		note.id = id;
 		if (insertBefore && insertBefore.parentNode) {
 			insertBefore.parentNode.insertBefore(note, insertBefore);
@@ -75,7 +75,7 @@ Foxtrick.util.note = {
 		return note;
 	},
 
-	create : function(doc, msg, buttons, hasClose) {
+	create : function(doc, msg, buttons, hasClose, timeout) {
 		try {
 			var container = doc.createElement("div");
 			container.className = "ft-note";
@@ -122,6 +122,17 @@ Foxtrick.util.note = {
 					buttonContainer.appendChild(button);
 				}
 				container.appendChild(buttonContainer);
+			}
+
+			if(timeout){
+				window.setTimeout(function(){
+					try {
+							container.parentNode.removeChild(container);
+						}
+						catch (e) {
+							Foxtrick.log(e);
+						}	
+				},timeout); 
 			}
 
 			if (hasClose === true) {
