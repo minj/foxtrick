@@ -57,6 +57,10 @@
 			8: 1,
 			9: 6
 		}
+
+		var doSkillColoring = function(doc){
+			Foxtrick.modules["SkillColoring"].execute(doc);	
+		}
 		
 		/**
 		* current = current skill level
@@ -88,6 +92,7 @@
 			switch(status){
 				case 0:
 					Foxtrick.log("YouthSkills: Sending failed", status);
+					doSkillColoring(doc);
 					return; 
 				case 200: 
 					Foxtrick.log("YouthSkills: Success", status);
@@ -95,6 +100,7 @@
 					break;
 				case 400:
 					Foxtrick.log("YouthSkills: Given data is invalid or incomplete", status, response);
+					doSkillColoring(doc);
 					return;
 				case 404:
 					Foxtrick.log("YouthSkills: 404", status);
@@ -103,9 +109,11 @@
 					//Foxtrick.localSet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".ignoreUntil", ignoreUntil);
 					//Foxtrick.log("YouthTwins: HY is moving servers or is in huge trouble", status);
 					//Foxtrick.log("YouthTwins: No requests for " + ignoreHours/24.0 + " day(s).");
+					doSkillColoring(doc);
 					return;
 				case 500:
 					Foxtrick.log("YouthSkills: HY is in trouble", status);
+					doSkillColoring(doc);
 					return; 
 				case 503:
 					//var now = Foxrtick.util.time.getHtTimeStamp(doc) + 59000;
@@ -113,15 +121,15 @@
 					//Foxtrick.localSet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".ignoreUntil", ignoreUntil);
 					//Foxtrick.log("YouthTwins: HY temporarily disabled the feature", status, "");
 					//Foxtrick.log("YouthTwins: No requests for " + ignoreHours/24.0 + " day(s).");
+					doSkillColoring(doc);
 					return; 
 				default:
 					Foxtrick.log("YouthSkills: HY returned unhandled status", status, response);
+					doSkillColoring(doc);
 					return;
 			}
 			
 			var json = JSON.parse( response );
-
-			Foxtrick.log(response);
 			var playerMap = {};
 			var playerInfos = doc.getElementsByClassName("playerInfo");
 			for(var i = 0; i < playerInfos.length; i++){
@@ -249,9 +257,17 @@
 					setSkill(playerID, rowMap[sk]+1, min, max, maxed);
 				}
 			}
-			Foxtrick.modules["SkillColoring"].run(doc);
+			doSkillColoring(doc);
 			//last point in time
 		}
-		getSkillsFromHY(handleHyResponse);
+
+		//get skills from HY
+		Foxtrick.localGet("YouthClub." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".isUser", function (isHYUser){
+			if(isHYUser)
+				getSkillsFromHY(handleHyResponse);
+			else
+				doSkillColoring(doc);
+		});
+		
 	}
 };
