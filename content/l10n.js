@@ -153,6 +153,36 @@ var Foxtrickl10n = {
 		return level + sublevel;
 	},
 
+	getTextByLevel : function(value) {
+		var level;
+		var lang = FoxtrickPrefs.getString("htLanguage");
+		var xml = Foxtrickl10n.htLanguagesXml[lang];
+
+		var levels = xml.getElementsByTagName('level');
+		for (var i=0; i<levels.length; ++i) {
+			var levelvalue = levels[i].getAttribute('value');
+			if (RegExp('^'+levelvalue,'i').test(value)) {
+				level = levels[i].getAttribute('text');
+				break;
+			}
+		}
+		if (level !== null)
+			return level;
+
+		xml = Foxtrickl10n.htLanguagesXml[lang].en;
+
+		levels = xml.getElementsByTagName('level');
+		for (var i=0; i<levels.length; ++i) {
+			var levelvalue = levels[i].getAttribute('value');
+			if (RegExp('^'+levelvalue,'i').test(value)) {
+				level = levels[i].getAttribute('text');
+				break;
+			}
+		}
+		return level;
+	},
+
+
 	// this function returns level string of given level type and numeral value.
 	// type could be levels, for normal skills;
 	// agreeability, honesty, and aggressiveness, which are all obvious.
