@@ -67,7 +67,6 @@
 		*/
 
 		var getSkillsFromHY = function (callback){
-					
 					//api url
 					var url = "http://stage.hattrick-youthclub.org/_data_provider/foxtrick/playersYouthSkills";
 					
@@ -122,6 +121,7 @@
 			
 			var json = JSON.parse( response );
 
+			Foxtrick.log(response);
 			var playerMap = {};
 			var playerInfos = doc.getElementsByClassName("playerInfo");
 			for(var i = 0; i < playerInfos.length; i++){
@@ -177,9 +177,10 @@
 
 				//
 				var minLink = doc.createElement("a");
-				minLink.setAttribute("href", "/Help/Rules/AppDenominations.aspx?lt=skill&ll=" + value +"#skill");
+				minLink.setAttribute("href", "/Help/Rules/AppDenominations.aspx?lt=skill&ll=" + parseInt(value) +"#skill");
 				var minText = doc.createTextNode(Foxtrickl10n.getTextByLevel(value));
 				Foxtrick.addClass(minLink, "skill");
+				Foxtrick.addClass(minLink, "ft-youthskills-link"); //used to signal skillcoloring that we manually trigger coloring
 				minLink.appendChild(minText);
 				img.parentNode.appendChild(minLink);
 			}
@@ -206,8 +207,9 @@
 				img.parentNode.appendChild(gapText);
 
 				var minLink = doc.createElement("a");
-				minLink.setAttribute("href", "/Help/Rules/AppDenominations.aspx?lt=skill&ll=" + value +"#skill");
+				minLink.setAttribute("href", "/Help/Rules/AppDenominations.aspx?lt=skill&ll=" + parseInt(value) +"#skill");
 				Foxtrick.addClass(minLink, "skill");
+				Foxtrick.addClass(minLink, "ft-youthskills-link"); //used to signal skillcoloring that we manually trigger coloring
 				var minText = doc.createTextNode(Foxtrickl10n.getTextByLevel(value));
 				minLink.appendChild(minText);
 				img.parentNode.appendChild(minLink);
@@ -246,10 +248,10 @@
 					var max = cap?cap:cap_minimal?cap_minimal:0;
 					setSkill(playerID, rowMap[sk]+1, min, max, maxed);
 				}
-				
 			}
+			Foxtrick.modules["SkillColoring"].run(doc);
+			//last point in time
 		}
-
 		getSkillsFromHY(handleHyResponse);
 	}
 };
