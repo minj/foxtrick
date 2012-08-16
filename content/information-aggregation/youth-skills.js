@@ -141,12 +141,17 @@
 			var addBars = function(node){
 				while(node.childNodes.length){
 					node.removeChild(node.childNodes[0]);
-					//bars.appendChild(node.childNodes[0]);
 				}
+
+
 
 				if(!node.getElementsByClassName("youthSkillBar")[0])
 				{
-					var bars = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.YouthSkills, 'div'); 
+
+					var fragment = doc.createDocumentFragment();
+
+					var bars = fragment.appendChild(doc.createElement('div'));
+					//var bars = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.YouthSkills, 'div'); 
 					Foxtrick.addClass(bars, "youthSkillBar");
 
 					var bar1 = doc.createElement("img");
@@ -163,13 +168,12 @@
 					bar2.setAttribute("style", "width: 0px");
 					Foxtrick.addClass(bar2, "youthSkillBar_current");
 
-					bars.appendChild(bar1);
-					bars.appendChild(bar2);
-					while(node.childNodes.length){
-						node.removeChild(node.childNodes[0]);
-						//bars.appendChild(node.childNodes[0]);
-					}
-					node.appendChild(bars);
+					var barsFragment = doc.createDocumentFragment();
+					bars.appendChild( bar1 );
+					bars.appendChild( bar2 );
+
+					//bars.appendChild( barsFragment.cloneNode(true) );
+					node.appendChild(fragment);
 				} 
 			}
 
@@ -234,6 +238,8 @@
 				setMaxSkill(playerId, skill, max);
 			}
 
+			var start = (new Date).getTime();
+
 
 			var playerInfos = doc.getElementsByClassName("playerInfo");
 			for(var i = 0; i < playerInfos.length; i++){
@@ -254,9 +260,14 @@
 
 					var min = current?current:current_maximal?current_maximal:0;
 					var max = cap?cap:cap_minimal?cap_minimal:0;
-					setSkill(playerID, rowMap[sk]+1, min, max, maxed);
+
+					if(min || max)
+						setSkill(playerID, rowMap[sk]+1, min, max, maxed);
+					
 				}
 			}
+
+			Foxtrick.log((new Date).getTime() - start + "ms");
 			doSkillColoring(doc);
 			//last point in time
 		}
