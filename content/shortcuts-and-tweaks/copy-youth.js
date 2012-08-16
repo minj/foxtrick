@@ -123,7 +123,7 @@ Foxtrick.modules["CopyYouth"]={
 
 					var sendScoutCallToHY = function(){
 
-						// url: http://stage.hattrick-youthclub.org/_data_provider/foxtrick/playersYouthRejectCall
+						// url: http://www.hattrick-youthclub.org/_data_provider/foxtrick/playersYouthRejectCall
 						//
 						// params:
 						// teamid or managerid: teamid or managerid
@@ -146,7 +146,7 @@ Foxtrick.modules["CopyYouth"]={
 						// - unauthorized request
 
 						//api url
-						var url = "http://stage.hattrick-youthclub.org/_data_provider/foxtrick/playersYouthRejectCall";
+						var url = "http://www.hattrick-youthclub.org/_data_provider/foxtrick/playersYouthRejectCall";
 					
 						var teamId = Foxtrick.modules["Core"].getSelfTeamInfo().teamId;
 						//assemble param string
