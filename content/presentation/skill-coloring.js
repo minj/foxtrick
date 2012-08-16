@@ -215,8 +215,15 @@ Foxtrick.modules["SkillColoring"]={
 		t.appendChild(doc.createTextNode(')'));
 		el.appendChild(t);
 	},
-	
 	run : function (doc) {
+		if (Foxtrick.isPage('ownYouthPlayers', doc) &&
+			FoxtrickPrefs.isModuleEnabled("YouthSkills") &&
+			!doc.getElementsByClassName('ft-youthskills-link').length
+		)
+			return;
+		this.execute(doc);
+	},
+	execute : function (doc) {
 		
 		var skill_color = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "skill_color");
 		var non_skill_color = FoxtrickPrefs.isModuleOptionEnabled("SkillColoring", "non_skill_color");
