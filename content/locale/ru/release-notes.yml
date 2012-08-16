@@ -8,6 +8,8 @@ versions:
 
     0.12.0:
         note_0: "Вкладки: добавлена обратная совместимость для добавления собственных вкладок к большинству сайтов (как во вкладках HT к предстоящему матчу)."
+        note_1: "Модуль <module>DashboardCalendar</module>: добавлена кнопка для экспорта недели Hattrick в формате iCalendar (должно работать в Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal и т.п.)"
+        note_2: "Модуль <module>LiveAlert</module>: добавлены звуки для различения голов хозяев/гостей/вашей команды. По умолчанию использованы звуки из <linkHTLS>HTLiveSight</linkHTLS>. В режиме Re-Live голы вашей команды распознаны не будут."
 
     0.11.0: 
         note_0: "НОВЫЙ модуль <module>DirectPageLinks</module>: добавлены ссылки для доступа к подходящим страницам в теме форума."
