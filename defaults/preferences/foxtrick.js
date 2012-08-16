@@ -101,6 +101,7 @@ pref("extensions.foxtrick.prefs.module.FixcssProblems.HideInvitation.enabled", f
 pref("extensions.foxtrick.prefs.module.FixcssProblems.MatchReportRatingsFontFix.enabled", false);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.Page_Minimum_Height.enabled", false);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.RTL_Fixes.enabled", false);
+pref("extensions.foxtrick.prefs.module.FixcssProblems.SkillbarsAdjust.enabled", true);
 pref("extensions.foxtrick.prefs.module.FlagCollectionToMap.enabled", true);
 pref("extensions.foxtrick.prefs.module.FormatPostingText.enabled", true);
 pref("extensions.foxtrick.prefs.module.FormatPostingText.NestedQuotesAsSpoilers.enabled", true);

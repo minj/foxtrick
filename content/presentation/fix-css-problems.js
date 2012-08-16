@@ -17,7 +17,8 @@ Foxtrick.modules["FixcssProblems"]={
 		"MatchReportRatingsFontFix",
 		"RemoveForumSneakPeak",
 		"CalendarAutoMinHeight",
-		"HideInvitation"
+		"HideInvitation",
+		"SkillbarsAdjust"
 	],
 	OPTIONS_CSS : [
 		Foxtrick.InternalPath+"resources/css/fixes/Forum_FoxLink_Headers.css",
@@ -28,7 +29,8 @@ Foxtrick.modules["FixcssProblems"]={
 		Foxtrick.InternalPath+"resources/css/fixes/MatchReportRatingsFontFix.css",
 		Foxtrick.InternalPath+"resources/css/fixes/RemoveForumSneakPeak.css",
 		Foxtrick.InternalPath+"resources/css/fixes/calendar-auto-min-height.css",
-		Foxtrick.InternalPath+"resources/css/fixes/hide-invitation.css"
+		Foxtrick.InternalPath+"resources/css/fixes/hide-invitation.css",
+		Foxtrick.InternalPath+"resources/css/fixes/Skillbars.css",
 	],
 
 	run : function(doc) {
