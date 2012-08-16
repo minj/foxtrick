@@ -77,6 +77,7 @@ Foxtrick.modules["CopyYouth"]={
 
 	addScoutComment : function(doc) {
 		var copyReport = function(sendHTY) {
+			
 			try {
 				var mainBody = doc.getElementById('mainBody');
 
@@ -187,6 +188,8 @@ Foxtrick.modules["CopyYouth"]={
 						Foxtrick.util.note.add(doc, insertBefore, "ft-scout-report-copy-note", container, null, false, null, null, 1500);	
 					}
 
+
+
 					//only when clicking the reject btn
 					if(sendHTY && typeof(sendHTY) == "boolean") {
 						//var is set in youthtwins
@@ -248,6 +251,12 @@ Foxtrick.modules["CopyYouth"]={
 					var rejectButton = alertdiv.getElementsByTagName('input')[1];
 					rejectButton.setAttribute('title', Foxtrickl10n.getString('module.CopyYouth.AutoSendRejectedToHY.desc'));
 					Foxtrick.onClick(rejectButton, function(){ copyReport(true) });
+
+					if(alertdiv.getElementsByTagName('input').length == 2){
+						//setting cookie when player was pulled
+						var acceptButton = alertdiv.getElementsByTagName('input')[0];
+						Foxtrick.onClick(rejectButton, function(){ Foxtrick.cookieSet("for_hty", {"pull":true}) });
+					}
 				}
 				else if (alertdiv.parentNode.getElementsByTagName('a')[0]==null
 					&& doc.getElementById('ft-copy-scout-comment-link')==null) {

@@ -126,6 +126,7 @@ Foxtrick.loader.background.contentScriptManager = {
 		"information-aggregation/transfer-deadline.js",
 		"information-aggregation/youth-promotes.js",
 		"information-aggregation/youth-series-estimation.js",
+		"information-aggregation/youth-skills.js",
 		"information-aggregation/youth-twins.js",
 		"links/links-achievements.js",
 		"links/links-alliances.js",
