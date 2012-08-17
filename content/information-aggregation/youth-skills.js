@@ -10,9 +10,15 @@
  * 		teamId: teamId
  * 		app: foxtrick
  *		hash: base64 of "foxtrick_"  + teamId
- * @response
+ * @response (incomplete)
  *		JSON:	
- */
+ *
+ * current = current skill level
+ * current_maximal = maximal possible current skill level (the real level is equal or lower)
+ * cap = the cap of this skill
+ * cap_minimal = minimal possible cap for this skill (the real cap is equal or higher)
+ * maxed = weather the skill is fully maxed out or not
+*/
 
  Foxtrick.modules["YouthSkills"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
@@ -27,6 +33,7 @@
 		if (!Foxtrick.isPage('ownYouthPlayers', doc))
 			return;
 
+		//this maps HY skill-id to skill
 		var skillMap = {
 			3: 'playmaking',
 			4: 'winger',
@@ -38,6 +45,7 @@
 			10: 'experience'
 		}
 
+		//this maps HY skill-id to the row index in the table (when looking for n-th child, add 1 to the result)
 		var rowMap = {
 			3: 2,
 			4: 3,
@@ -48,42 +56,32 @@
 			9: 6
 		}
 
+		//skill-coliring has a special case where it will not run when this module is enabled
+		//so we need to call skill-coloring manually
 		var doSkillColoring = function(doc){
 			Foxtrick.modules["SkillColoring"].execute(doc);	
 		}
-		
-		/**
-		* current = current skill level
-		* current_maximal = maximal possible current skill level (the real level is equal or lower)
-		* cap = the cap of this skill
-		* cap_minimal = minimal possible cap for this skill (the real cap is equal or higher)
-		* maxed = weather the skill is fully maxed out or not
-		*/
 
+		//retrieve youth skills by teamid
 		var getSkillsFromHY = function (callback){
-					//api url
-					var url = "http://stage.hattrick-youthclub.org/_data_provider/foxtrick/playersYouthSkills";
-					
-					//assemble param string
-					var params = "teamId=" + Foxtrick.modules["Core"].getSelfTeamInfo().teamId;
+			//api url
+			var url = "http://stage.hattrick-youthclub.org/_data_provider/foxtrick/playersYouthSkills";
 
-					Foxtrick.log(Foxtrick.modules["Core"].getSelfTeamInfo().teamId);
-					
-					//forceUpdate to avoid getting the cached HY response, use carefully
-					params = params + "&app=foxtrick"
+			var teamId = Foxtrick.modules["Core"].getSelfTeamInfo().teamId;
+			
+			//assemble param string
+			var params = "teamId=" + teamId;
+			
+			//forceUpdate to avoid getting the cached HY response, use carefully
+			params = params + "&app=foxtrick"
 
-					//hash
-					params = params + "&hash="+ Foxtrick.encodeBase64( "foxtrick_" + Foxtrick.modules["Core"].getSelfTeamInfo().teamId );
+			//hash
+			params = params + "&hash="+ Foxtrick.encodeBase64( "foxtrick_" + teamId );
 
-					// load and callback
-					Foxtrick.util.load.async(url, callback, params);
+			// load and callback
+			Foxtrick.util.load.async(url, callback, params);
 		}
 
-		//find whatever HT displays when no information is given
-		//FIXME: should/could be a htlang.xml element
-		var getUnknownText = function(doc){
-
-		}
 		var handleHyResponse = function (response, status){
 			switch(status){
 				case 0:
@@ -135,6 +133,9 @@
 			}
 
 			var addBars = function(node){
+				if(!node)
+					return;
+
 				while(node.childNodes.length){
 					node.removeChild(node.childNodes[0]);
 				}
@@ -236,6 +237,10 @@
 			var setSkill = function(playerId, skill, current, max, maxed){
 				var table = playerMap[playerId].getElementsByTagName("tbody")[0];
 				var skillentry = table.querySelector("tr:nth-of-type(" + skill + ") > td:nth-of-type(2)");
+				
+				if(!skillentry)
+					return;
+
 				addBars(skillentry);
 				setCurrentSkill(playerId, skill, current, max, maxed);
 
