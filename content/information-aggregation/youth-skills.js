@@ -243,10 +243,6 @@
 
 				addBars(skillentry);
 				setCurrentSkill(playerId, skill, current, max, maxed);
-
-				if(maxed)
-					return;
-
 				setMaxSkill(playerId, skill, max);
 			}
 
@@ -272,6 +268,8 @@
 
 					var min = current?current:current_maximal?current_maximal:0;
 					var max = cap?cap:cap_minimal?cap_minimal:0;
+
+					Foxtrick.log(min, max, maxed);
 
 					if(min || max)
 						setSkill(playerID, rowMap[sk]+1, min, max, maxed);
