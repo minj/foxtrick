@@ -163,8 +163,6 @@
 				
 					bars.appendChild( bar1 );
 					bars.appendChild( bar2 );
-
-					//bars.appendChild( barsFragment.cloneNode(true) );
 					node.appendChild(fragment);
 				} 
 			}
@@ -179,6 +177,9 @@
 				maximg.setAttribute("alt", value + "/8");
 				maximg.setAttribute("title", value + "/8");
 				
+				var gapText = doc.createTextNode(" / ");
+				maximg.parentNode.appendChild(gapText);
+
 				if(value){
 					var maxLink = doc.createElement("a");
 					maxLink.setAttribute("href", "/Help/Rules/AppDenominations.aspx?lt=skill&ll=" + parseInt(value) +"#skill");
@@ -227,11 +228,6 @@
 					curimg.parentNode.appendChild(minText);
 				}
 
-				if(maxed)
-					return;
-
-				var gapText = doc.createTextNode(" / ");
-				curimg.parentNode.appendChild(gapText);
 			}
 
 			var setSkill = function(playerId, skill, current, max, maxed){
@@ -243,7 +239,9 @@
 
 				addBars(skillentry);
 				setCurrentSkill(playerId, skill, current, max, maxed);
-				setMaxSkill(playerId, skill, max);
+
+				if(!maxed)
+					setMaxSkill(playerId, skill, max);
 			}
 
 			var start = (new Date).getTime();
@@ -273,7 +271,6 @@
 
 					if(min || max)
 						setSkill(playerID, rowMap[sk]+1, min, max, maxed);
-					
 				}
 			}
 
