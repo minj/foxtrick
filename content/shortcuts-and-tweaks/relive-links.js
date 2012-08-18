@@ -10,7 +10,15 @@ Foxtrick.modules["ReLiveLinks"]={
 	PAGES : ['match', 'matches', 'matchesArchive', 'cupMatches', 'fixtures', 'youthFixtures', 'series'],
 	CSS : Foxtrick.InternalPath+"resources/css/relive-links.css",
 	NICE : -1, //before any modules that might change row count
-	run : function(doc) { 
+	run : function(doc) {
+		
+		//don't run on live table		
+		var liveSeriesLink = doc.getElementById('ctl00_ctl00_CPContent_CPMain_hlLive');
+		if(liveSeriesLink && liveSeriesLink.hasAttribute('disabled')) {
+			this.CSS = null;
+			Foxtrick.util.css.reload_module_css(doc);
+			return;
+		}
 
 		var img = doc.createElement('img');
 		img.src = '/Img/Icons/transparent.gif';
@@ -42,6 +50,7 @@ Foxtrick.modules["ReLiveLinks"]={
 			return;
 		}
 		else if (Foxtrick.isPage('series', doc)) {
+			
 			tdCount = 3;
 			cloneUrlIdx = 0;
 			liveTdIdx = 2;
