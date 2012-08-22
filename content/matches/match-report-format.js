@@ -554,7 +554,7 @@ var eventText = {
 						if(removeAfter.nextSibling.id == "tab")
 							removeAfter = removeAfter.nextSibling;
 						
-						while (!Foxtrick.hasClass(removeAfter.nextSibling, "mainBox"))
+						while (!Foxtrick.hasClass(removeAfter.nextSibling, "separator"))
 							parent.removeChild(removeAfter.nextSibling);
 						var before = removeAfter.nextSibling;
 						
