@@ -77,7 +77,6 @@ Foxtrick.modules["CopyYouth"]={
 
 	addScoutComment : function(doc) {
 		var copyReport = function(sendHTY) {
-			
 			try {
 				var mainBody = doc.getElementById('mainBody');
 
@@ -174,7 +173,7 @@ Foxtrick.modules["CopyYouth"]={
 									addNode(response);
 									break;
 							};
-							Foxtrick.log(status, response);
+							Foxtrick.log("Sent rejected player to HY", status, response);
 						}, params);
 					}
 
@@ -184,11 +183,8 @@ Foxtrick.modules["CopyYouth"]={
 						var p = doc.createElement("p");
 						p.appendChild(doc.createTextNode(text));
 						container.appendChild(p);
-;
 						Foxtrick.util.note.add(doc, insertBefore, "ft-scout-report-copy-note", container, null, false, null, null, 1500);	
 					}
-
-
 
 					//only when clicking the reject btn
 					if(sendHTY && typeof(sendHTY) == "boolean") {
@@ -196,8 +192,11 @@ Foxtrick.modules["CopyYouth"]={
 						Foxtrick.localGet("YouthClub." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".isUser", function (isHYUser){
 							if(isHYUser)
 								sendScoutCallToHY();
+							else
+								Foxtrick.log("No HY user, not sending rejected call to HY");
 						});
 					} else {
+						Foxtrick.log("Manual copy of scout call.");
 						addNode( Foxtrickl10n.getString("copy.scoutComment.copied") );
 					}
 
@@ -247,10 +246,18 @@ Foxtrick.modules["CopyYouth"]={
 			if (has_report) {
 				var alertdiv = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butScoutPropYes').parentNode;
 				
+
+				//auto send rejected players to HY, api see above
 				if (FoxtrickPrefs.isModuleOptionEnabled("CopyYouth", "AutoSendRejectedToHY")) {
 					var rejectButton = alertdiv.getElementsByTagName('input')[1];
 					rejectButton.setAttribute('title', Foxtrickl10n.getString('module.CopyYouth.AutoSendRejectedToHY.desc'));
 					Foxtrick.onClick(rejectButton, function(){ copyReport(true) });
+
+					// enable for debug: fake link, used to simulate sending shit to HY without actually rejecting the player
+					// var fakeReject = doc.createElement("a");
+					// fakeReject.textContent = "Fake No";
+					// rejectButton.parentNode.appendChild(fakeReject);
+					// Foxtrick.onClick(fakeReject, function(){ copyReport(true) });
 
 					if(alertdiv.getElementsByTagName('input').length == 2){
 						//setting cookie when player was pulled
