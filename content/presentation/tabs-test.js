@@ -44,6 +44,7 @@ Foxtrick.modules["TabsTest"]={
 		addEntry(list, "Please report when you find something odd.");
 		addEntry(list, "");
 		addEntry(list, "Team Foxtrick");
+		addEntry(list, "P.S. If you want to  turn OFF this feature you can do it by disabling TabsTest module in preferences. ");
 		
 		div.appendChild(header);
 		div.appendChild(list);
