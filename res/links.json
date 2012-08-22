@@ -1852,25 +1852,6 @@
 		"title": "HTEV Simulator",
 		"img": "http://htev.org/static/htevfavicon.gif"
 	},
-	"hattricksnapshot": {
-		"teamlink": {
-			"url": "http://www.hattricksnapshot.org/team/[teamid]/"
-		},
-		"leaguelink": {
-			"url": "http://www.hattricksnapshot.org/league/[leagueid]/"
-		},
-		"playedmatchlink": {
-			"url": "http://www.hattricksnapshot.org/match/[matchid]/"
-		},
-		"countrylink": {
-			"url": "http://www.hattricksnapshot.org/country/[countryid]/"
-		},
-		"worldlink": {
-			"url": "http://www.hattricksnapshot.org/world/"
-		},
-		"title": "Hattrick Snapshot",
-		"img": "http://www.hattricksnapshot.org/Styles/images/icon16.gif"
-	},
 	"hatstatsnet": {
 		"leaguelink": {
 			"url": "http://hatstats.net/oceania/standings.php?series=[leagueid]",
