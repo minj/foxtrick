@@ -7,7 +7,7 @@
 
 Foxtrick.modules["PlayerStatsExperience"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ['playerStats', 'playerdetail'],
+	PAGES : ['playerStats', 'playerDetails'],
 	OPTIONS : ['AlwaysShowAll'],
 	CSS: Foxtrick.InternalPath + "resources/css/player-stats.css",
 	store : {},
@@ -47,6 +47,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		this.store.matches.matchMasters = { minutes: 0, count: 0.0, xp: { min:0.0, max:0.0 } }
 		this.store.matches.matchNtLeague = { minutes: 0, count: 0.0, xp: { min:0.0, max:0.0 } }
 		this.store.matches.matchNtFinals = { minutes: 0, count: 0.0, xp: { min:0.0, max:0.0 } }
+		this.store.xp = { points: { min: 0.0, max: 0.0 }, xp: { min:0.0, max: 0.0 } };
 		this.store.currentSkill = 0;
 		this.store.skillup = false;
 
@@ -141,7 +142,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		if(FoxtrickPrefs.isModuleOptionEnabled("PlayerStatsExperience", "AlwaysShowAll")){
 			convertLinksToShowAll();
 		}
-		if(Foxtrick.isPage('playerdetail', doc))
+		if(Foxtrick.isPage('playerDetails', doc))
 			return;
 
 		//both tables you can alter between atm
@@ -221,8 +222,6 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			}
 
 			if(xp_now == xp_last){
-				xp_sub_min += dxp.min;
-				xp_sub_max += dxp.max;
 				this.store.matches[gameType].xp["min"] += dxp.min;
 				this.store.matches[gameType].xp["max"] += dxp.max;
 				this.store.matches[gameType]["minutes"] += minutes;
@@ -235,6 +234,10 @@ Foxtrick.modules["PlayerStatsExperience"]={
 				this.store.last.max = dxp.max;
 				this.store.last.minutes = minutes;
 				this.store.last.count =  (minutes/90.0);
+				this.store.xp.points.min += dxp.min;
+				this.store.xp.points.max += dxp.max;
+				this.store.xp.xp.min += dxp.min / this.pts_for_skillUp;
+				this.store.xp.xp.max += dxp.max / this.pts_for_skillUp;
 			} else {
 				this.store.skillup = true;
 			}
@@ -250,6 +253,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			}
 			if(!ntMatch && gameType == "matchFriendly" && minutes > 0)
 				ts_xp.textContent =  (xp_gain/2.0).toFixed(3) + "/" + xp_gain.toFixed(3);
+
 			entry.insertBefore(ts_xp, entry.cells[xp_column+1]);
 		}
 
@@ -257,11 +261,12 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		Foxtrick.addClass(this.store.last.node, "ft-xp-skillup");
 		Foxtrick.addClass(matches_entries[this.store.last.nodeIndex], "ft-xp-skillup");
 
-
 		//adjust minimum gained xp depending on the relevant skillup game
-		var lastGameType = this.store.last.gameType;
-		var lastMinAdded = this.store.last.min;
-		this.store.matches[lastGameType].xp["min"] -= lastMinAdded;
+		if(this.store.skillup){
+			this.store.matches[this.store.last.gameType].xp["min"] -= this.store.last.min;
+			this.store.xp.points.min -= this.store.last.min;
+			this.store.xp.xp.min -= this.store.last.min / this.pts_for_skillUp;
+		}
 
 		//find out if all games possible are actually showed
 		var showAllLink=null;
@@ -275,15 +280,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 
 		var div = Foxtrick.createFeaturedElement(doc, this, "div");
 
-		// var experienceText = Foxtrickl10n.getString("PlayerStatsExperience.ExperienceText")
-		// 				.replace(/%1/, (xp_sub_min.toFixed(3) % this.pts_for_skillUp).toFixed(3))
-		// 				.replace(/%2/, (xp_sub_max.toFixed(3) % this.pts_for_skillUp).toFixed(3))
-		// 				.replace(/%3/, (xp_last + (xp_sub_min/this.pts_for_skillUp)).toFixed(3))
-		// 				.replace(/%4/, (xp_last + (xp_sub_max/this.pts_for_skillUp)).toFixed(3));
-
 		var span =  doc.createElement("span");
-		//var textNode = doc.createTextNode(experienceText);
-		//span.appendChild(textNode);
 		div.appendChild(span);
 		div.appendChild(doc.createElement("br"));
 
@@ -344,61 +341,55 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		thead.appendChild(thead_tr);
 
 		var addRow = function (type, count, minutes, min, max, i){
-				var row = doc.createElement("tr");
+			var row = doc.createElement("tr");
 
-				if(i % 2)
-					Foxtrick.addClass(row, "darkereven");
-				else
-					Foxtrick.addClass(row, "odd")
-				
-				var cell = doc.createElement("td");
-				cell.setAttribute("id", "ft-xp-" + type + "-desc");
-				cell.textContent = Foxtrickl10n.getString("PlayerStatsExperience." + type);
-				row.appendChild(cell);
+			if(i % 2)
+				Foxtrick.addClass(row, "darkereven");
+			else
+				Foxtrick.addClass(row, "odd")
+			
+			var cell = doc.createElement("td");
+			cell.setAttribute("id", "ft-xp-" + type + "-desc");
+			cell.textContent = Foxtrickl10n.getString("PlayerStatsExperience." + type);
+			row.appendChild(cell);
 
-				var cell = doc.createElement("td");
-				cell.setAttribute("id", "ft-xp-" + type + "-count");
-				Foxtrick.addClass(cell, "ft-xp-data-value");
-				cell.textContent = (count > 0)?count:0;
-				row.appendChild(cell);
+			var cell = doc.createElement("td");
+			cell.setAttribute("id", "ft-xp-" + type + "-count");
+			Foxtrick.addClass(cell, "ft-xp-data-value");
+			cell.textContent = (count > 0)?count:0;
+			row.appendChild(cell);
 
-				var cell = doc.createElement("td");
-				cell.textContent = minutes;
-				cell.setAttribute("id", "ft-xp-" + type + "-minutes");
-				Foxtrick.addClass(cell, "ft-xp-data-value");
-				row.appendChild(cell);
-				
-				var cell = doc.createElement("td");
-				cell.setAttribute("id", "ft-xp-" + type + "-min");
-				Foxtrick.addClass(cell, "ft-xp-data-value");
-				cell.textContent = (min > 0)?min:0;
-				row.appendChild(cell);
+			var cell = doc.createElement("td");
+			cell.textContent = minutes;
+			cell.setAttribute("id", "ft-xp-" + type + "-minutes");
+			Foxtrick.addClass(cell, "ft-xp-data-value");
+			row.appendChild(cell);
+			
+			var cell = doc.createElement("td");
+			cell.setAttribute("id", "ft-xp-" + type + "-min");
+			Foxtrick.addClass(cell, "ft-xp-data-value");
+			cell.textContent = (min > 0)?min:0;
+			row.appendChild(cell);
 
-				var cell = doc.createElement("td");
-				cell.setAttribute("id", "ft-xp-" + type + "-max");
-				Foxtrick.addClass(cell, "ft-xp-data-value");
-				cell.textContent = (max > 0)?max:0;
-				row.appendChild(cell);
+			var cell = doc.createElement("td");
+			cell.setAttribute("id", "ft-xp-" + type + "-max");
+			Foxtrick.addClass(cell, "ft-xp-data-value");
+			cell.textContent = (max > 0)?max:0;
+			row.appendChild(cell);
 
-				table.appendChild(row);
-			}
+			table.appendChild(row);
+		}
 
 		for(var i=0; i < types.length; i++){
 			var count = this.store.matches[types[i]]["count"].toFixed(3);
-			var minutes =this.store.matches[types[i]]["minutes"];
+			var minutes = this.store.matches[types[i]]["minutes"];
 			var min = this.store.matches[types[i]].xp["min"].toFixed(3);
 			var max = this.store.matches[types[i]].xp["max"].toFixed(3);
 			var type = types[i];
 
 			addRow(type, count, minutes, min, max, i);
-
-			//a fake rows for international friendlies
-			if(type == "matchFriendly"){
-				addRow("matchNationalFriendly", 0, 0, 0, "-", i + 1);
-				addRow("matchInternationalFriendly", 0, 0, 0, "-", i + 2);
-			}
 		}
-		
+
 		//xp pts
 		var row = doc.createElement("tr");
 		var cell = doc.createElement("td");
@@ -412,13 +403,13 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		var cell = doc.createElement("td");
 		cell.setAttribute("id", "ft-xp-min-pts")
 		Foxtrick.addClass(cell, "ft-xp-data-value");
-		cell.textContent = xp_sub_min.toFixed(3);
+		cell.textContent = this.store.xp.points.min.toFixed(3);
 		row.appendChild(cell);
 		
 		var cell = doc.createElement("td");
 		cell.setAttribute("id", "ft-xp-max-pts")
 		Foxtrick.addClass(cell, "ft-xp-data-value");
-		cell.textContent = xp_sub_max.toFixed(3);
+		cell.textContent = this.store.xp.points.max.toFixed(3);
 		row.appendChild(cell);
 		table.appendChild(row);
 
@@ -437,13 +428,13 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		var cell = doc.createElement("td");
 		cell.setAttribute("id", "ft-xp-min")
 		Foxtrick.addClass(cell, "ft-xp-data-value");
-		cell.textContent = xp_sub_min.toFixed(3);
+		cell.textContent = (this.store.currentSkill + this.store.xp.xp.min).toFixed(3);
 		row.appendChild(cell);
 		
 		var cell = doc.createElement("td");
 		cell.setAttribute("id", "ft-xp-max")
 		Foxtrick.addClass(cell, "ft-xp-data-value");
-		cell.textContent = xp_sub_max.toFixed(3);
+		cell.textContent = (this.store.currentSkill + this.store.xp.xp.max).toFixed(3);
 		row.appendChild(cell);
 
 		table.appendChild(row);
@@ -455,44 +446,24 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		table.appendChild(tbody);
 		matchListTable.appendChild(table);
 		
-//slider & coloring
+		if(!Foxtrick.modules["PlayerStatsExperience"].store.skillup){
+			Foxtrick.addClass(doc.getElementById("ft-xp-min-pts"), "ft-xp-incomplete")
+			Foxtrick.addClass(doc.getElementById("ft-xp-max-pts"), "ft-xp-incomplete")
+			Foxtrick.addClass(doc.getElementById("ft-xp-min"), "ft-xp-incomplete")
+			Foxtrick.addClass(doc.getElementById("ft-xp-max"), "ft-xp-incomplete")
+		} else {
+			Foxtrick.addClass(doc.getElementById("ft-xp-min-pts"), "ft-xp-complete")
+			Foxtrick.addClass(doc.getElementById("ft-xp-max-pts"), "ft-xp-complete")
+			Foxtrick.addClass(doc.getElementById("ft-xp-min"), "ft-xp-complete")
+			Foxtrick.addClass(doc.getElementById("ft-xp-max"), "ft-xp-complete")
+		}
 
-		var container = doc.createElement("div");
-		Foxtrick.addClass(container,"ft-slider-option");
-		Foxtrick.addClass(container,"ft-ignore-changes");
-
-		var desc = doc.createElement("div");
-		Foxtrick.addClass(desc,"ft-desc");
-		Foxtrick.addClass(desc,"ft-table-cell");
-		var bold = doc.createElement("b");
-		bold.textContent  = Foxtrickl10n.getString("PlayerStatsExperience.InternationalPercentage");
-		desc.appendChild(bold);
-
-		var sliderContainer = doc.createElement("div");
-		Foxtrick.addClass(sliderContainer,"ft-slider-cell");
-
-		var slider = doc.createElement("div");
-		slider.setAttribute("id", "simple-slider");
-		Foxtrick.addClass(slider, "slider");
-
-		var slider2 = doc.createElement("div");
-		Foxtrick.addClass(slider2, "foxtrick-bar handle");
-		slider2.setAttribute("id", "ft-xp-slider-handle");
-		slider.appendChild(slider2);
-
-		sliderContainer.appendChild(slider);
-
-		var value = doc.createElement("div");
-		Foxtrick.addClass(value,"ft-table-cell");
-		value.setAttribute("id", "ft-xp-percentage-value");
-		value.textContent = "50.0 %"
-
-		container.appendChild(desc);
-		container.appendChild(sliderContainer);
-		container.appendChild(value);
-
-		div.appendChild(container);
-		//navigation.parentNode.insertBefore(container, navigation);
+		//marks the game that causes prediction error (first game after skillup)
+		if(this.store.skillup){
+			Foxtrick.addClass(doc.getElementById("ft-xp-" + this.store.last.gameType + "-min"),"ft-xp-skillup");
+			Foxtrick.addClass(doc.getElementById("ft-xp-" + this.store.last.gameType + "-max"),"ft-xp-skillup");
+		}
+		
 		navigation.parentNode.insertBefore(div, navigation);
 
 		if(this.store.matches.matchFriendly.minutes == 0)
@@ -510,68 +481,6 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		table_header.appendChild(table_header_title);
 		navigation.parentNode.insertBefore(table_header, navigation);
 
-		new Dragdealer(slider, {
-			steps: 1000,
-			snap: true,
-			slide: false,
-			x: 0.5,
-			animationCallback: function(x, y)
-			{
-				var min = 0;
-				var max = 0;
-				var store = Foxtrick.modules["PlayerStatsExperience"].store;
-				var xp_limit = Foxtrick.modules["PlayerStatsExperience"].pts_for_skillUp;
-				var friendlyVariance = store.matches.matchFriendly.xp.max -  store.matches.matchFriendly.xp.min;
-				
-				for(var i in store.matches){
-					min += store.matches[i].xp.min;
-					max += store.matches[i].xp.max;
-				}
-
-				doc.getElementById("ft-xp-percentage-value").textContent = (x*100).toFixed(2) +" %";
-				if(!Foxtrick.modules["PlayerStatsExperience"].store.skillup){
-					Foxtrick.addClass(doc.getElementById("ft-xp-min-pts"), "ft-xp-incomplete")
-					Foxtrick.addClass(doc.getElementById("ft-xp-max-pts"), "ft-xp-incomplete")
-					Foxtrick.addClass(doc.getElementById("ft-xp-min"), "ft-xp-incomplete")
-					Foxtrick.addClass(doc.getElementById("ft-xp-max"), "ft-xp-incomplete")
-				} else {
-					Foxtrick.addClass(doc.getElementById("ft-xp-min-pts"), "ft-xp-complete")
-					Foxtrick.addClass(doc.getElementById("ft-xp-max-pts"), "ft-xp-complete")
-					Foxtrick.addClass(doc.getElementById("ft-xp-min"), "ft-xp-complete")
-					Foxtrick.addClass(doc.getElementById("ft-xp-max"), "ft-xp-complete")
-				}
-				doc.getElementById("ft-xp-min-pts").textContent = (min + friendlyVariance*x).toFixed(3);
-				
-				var mmin = store.matches.matchFriendly.xp.min*(1-x)
-				var mmax = store.matches.matchFriendly.xp.max*x
-
-				doc.getElementById("ft-xp-matchNationalFriendly-min").textContent = mmin>0?mmin.toFixed(3):0;
-				doc.getElementById("ft-xp-matchInternationalFriendly-min").textContent = mmax>0?mmax.toFixed(3):0;
-				doc.getElementById("ft-xp-matchNationalFriendly-max").textContent = "";
-				doc.getElementById("ft-xp-matchInternationalFriendly-max").textContent = "";
-				doc.getElementById("ft-xp-matchNationalFriendly-minutes").textContent = Math.floor((store.matches.matchFriendly.minutes*(1-x)) + 0.5);
-				doc.getElementById("ft-xp-matchInternationalFriendly-minutes").textContent = Math.floor((store.matches.matchFriendly.minutes*x) + 0.5);
-				
-				//marks the game that causes prediction error (first game after skillup)
-				if(Foxtrick.modules["PlayerStatsExperience"].store.skillup){
-					Foxtrick.addClass(doc.getElementById("ft-xp-" + store.last.gameType + "-min"),"ft-xp-skillup");
-					Foxtrick.addClass(doc.getElementById("ft-xp-" + store.last.gameType + "-max"),"ft-xp-skillup");
-				}
-
-				//counts friendly / international friendlies and dislay
-				var ntc = store.matches.matchFriendly.count*(1-x);
-				var intc = store.matches.matchFriendly.count*x;
-
-				doc.getElementById("ft-xp-matchNationalFriendly-count").textContent = ntc>0?ntc.toFixed(3):0;
-				doc.getElementById("ft-xp-matchInternationalFriendly-count").textContent = intc>0?intc.toFixed(3):0;
-
-				//actual min/max values for xp
-				doc.getElementById("ft-xp-min").textContent = (store.currentSkill + ((min + friendlyVariance*x).toFixed(3)/xp_limit)).toFixed(3)
-				doc.getElementById("ft-xp-max").textContent = (store.currentSkill + (max/xp_limit)).toFixed(3)
-				
-				//ft-xp-incomplete
-
-			}
-		});
+		
 	}
 };
