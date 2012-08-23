@@ -840,8 +840,11 @@ function initChangesTab()
 			dest = {};
 			return;
 		}
-		for (var v in json.versions) {
-			var prefixedNotes = json.versions[v], notes = [];
+		for (var locale in json)
+			if (json.hasOwnProperty(locale))
+				var rawVersions = json[locale].versions;
+		for (var v in rawVersions) {
+			var prefixedNotes = rawVersions[v], notes = [];
 			for (var n in prefixedNotes){
 				var idx = n.match(/\d+/);
 				notes[idx] = prefixedNotes[n];
@@ -965,6 +968,9 @@ function initHelpTab()
 	var parseFaq = function(src, dest) {
 		if (!src)
 			return;
+		for (var locale in src)
+			if (src.hasOwnProperty(locale))
+				src = src[locale];
 		var items = src.faq;
 		for (var i in items) {
 			var item = items[i];
