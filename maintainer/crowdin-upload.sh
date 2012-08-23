@@ -84,7 +84,7 @@ sed -i -r 's|(.+)\.+||' module-names
 perl crowdin-module-glossary-update.pl
 
 #upload glossary
-re="$curl \
+re="$(curl \
 	-F "file=@crowdin-glossary.tbx" \
 	"$CROWDIN_URL"/upload-glossary?key="$CROWDIN_KEY" | grep -c success)"
 if [ $re -ne 1 ]; then
