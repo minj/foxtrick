@@ -7,7 +7,7 @@
 
 Foxtrick.modules["PlayerStatsExperience"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ['playerStats', 'playerDetails'],
+	PAGES : ['playerStats', 'playerdetail'],
 	OPTIONS : ['AlwaysShowAll'],
 	CSS: Foxtrick.InternalPath + "resources/css/player-stats.css",
 	store : {},
