@@ -75,10 +75,9 @@ do
 done
 
 # get module names from foxtrick.properties file
-cat ../content/foxtrick.properties | egrep -o "module\.(.+)\.desc" > module-names
+cat ../content/foxtrick.properties | egrep -o "^module\.[^\.]+\.desc" > module-names
 sed -i -r 's|module.||' module-names
 sed -i -r 's|.desc||' module-names
-sed -i -r 's|(.+)\.+||' module-names
 
 # make tbx glossary from module names
 perl crowdin-module-glossary-update.pl
