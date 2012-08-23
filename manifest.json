@@ -37,7 +37,6 @@
 			"content/util/time.js",
 			
 			//<!-- external libraries -->
-			"content/lib/dragdealer.js",
 			"content/lib/jquery.js",
 			"content/lib/oauth.js",
 			"content/lib/sha1.js",

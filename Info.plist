@@ -41,7 +41,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/pages.js</string>
 				
 				<!-- utilities -->
-				<string>content/lib/dragdealer.js</string>
 				<string>content/lib/oauth.js</string>
 				<string>content/lib/sha1.js</string>
 				<string>content/lib/jquery.js</string>
