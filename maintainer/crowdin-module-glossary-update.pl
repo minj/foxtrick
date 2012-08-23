@@ -6,7 +6,7 @@
 
 # get module file list from file *modules-names*
 my @modules;
-my $module_list = "modules-names";
+my $module_list = "module-names";
 open(MODULES, "<" . $module_list);
 while ($file = <MODULES>) {
 	chop($file);
