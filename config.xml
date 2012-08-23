@@ -21,6 +21,7 @@
 	<access origin="http://foxtrick.symbiosis.org.gr" subdomains="true"/>
 	<access origin="https://foxtrick.c6.ixwebhosting.org" subdomains="true"/>	 
 	<access origin="http://foxtrick.googlecode.com" subdomains="true"/>
+	<access origin="https://foxtrick.googlecode.com" subdomains="true"/>
 	<access origin="http://www.hattrick-youthclub.org" subdomains="true"/>
 	<access origin="http://www.fantamondi.it" subdomains="true"/>
 	<access origin="http://htev.org" subdomains="true"/>
