@@ -27,6 +27,14 @@ re="$(curl -s \
   else
     echo "master release-notes.yml ok"
   fi
+re="$(curl -s \
+  -F "files[faq.yml]=@../content/faq.yml" \
+  "$CROWDIN_URL"/update-file?key="$CROWDIN_KEY"  | grep -c success)"
+  if [ $re -ne 1 ]; then
+    echo "master faq.yml failed"
+  else
+    echo "master faq.yml ok"
+  fi
 
 for LOC in $SVN_FILES
 do
@@ -47,7 +55,17 @@ do
     -F "files[release-notes.yml]=@$LOC/release-notes.yml" \
     -F "language=${LOC##*/}" \
     -F "import_eq_suggestions=1" \
-    -F "import_duplicates=1" \
+	"$CROWDIN_URL"/upload-translation?key="$CROWDIN_KEY" | grep -c success)"
+  if [ $re -ne 1 ]; then
+    echo "${LOC##*/} failed"
+  else
+    echo "${LOC##*/} ok"
+  fi
+  # faq.yaml
+  re="$(curl -s \
+    -F "files[faq.yml]=@$LOC/faq.yml" \
+    -F "language=${LOC##*/}" \
+    -F "import_eq_suggestions=1" \
 	"$CROWDIN_URL"/upload-translation?key="$CROWDIN_KEY" | grep -c success)"
   if [ $re -ne 1 ]; then
     echo "${LOC##*/} failed"
