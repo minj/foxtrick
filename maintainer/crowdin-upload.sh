@@ -36,44 +36,47 @@ re="$(curl -s \
     echo "master faq.yml ok"
   fi
 
-for LOC in $SVN_FILES
-do
-  # take action on each file. $f store current file name
-  # foxtrick.properties
-  re="$(curl -s \
-    -F "files[foxtrick.properties]=@$LOC/foxtrick.properties" \
-    -F "language=${LOC##*/}" \
-    -F "import_eq_suggestions=1" \
-    "$CROWDIN_URL"/upload-translation?key="$CROWDIN_KEY" | grep -c success)"
-  if [ $re -ne 1 ]; then
-    echo "${LOC##*/} failed"
-  else
-    echo "${LOC##*/} ok"
-  fi
-  # release_notes.yaml
-  re="$(curl -s \
-    -F "files[release-notes.yml]=@$LOC/release-notes.yml" \
-    -F "language=${LOC##*/}" \
-    -F "import_eq_suggestions=1" \
-	"$CROWDIN_URL"/upload-translation?key="$CROWDIN_KEY" | grep -c success)"
-  if [ $re -ne 1 ]; then
-    echo "${LOC##*/} failed"
-  else
-    echo "${LOC##*/} ok"
-  fi
-  # faq.yaml
-  re="$(curl -s \
-    -F "files[faq.yml]=@$LOC/faq.yml" \
-    -F "language=${LOC##*/}" \
-    -F "import_eq_suggestions=1" \
-	"$CROWDIN_URL"/upload-translation?key="$CROWDIN_KEY" | grep -c success)"
-  if [ $re -ne 1 ]; then
-    echo "${LOC##*/} failed"
-  else
-    echo "${LOC##*/} ok"
-  fi
-done
-
+# will upload outdated files as it is. so don't  
+if [ false ]; then
+	for LOC in $SVN_FILES
+	do
+	  # take action on each file. $f store current file name
+	  # foxtrick.properties
+	  re="$(curl -s \
+		-F "files[foxtrick.properties]=@$LOC/foxtrick.properties" \
+		-F "language=${LOC##*/}" \
+		-F "import_eq_suggestions=1" \
+		"$CROWDIN_URL"/upload-translation?key="$CROWDIN_KEY" | grep -c success)"
+	  if [ $re -ne 1 ]; then
+		echo "${LOC##*/} failed"
+	  else
+		echo "${LOC##*/} ok"
+	  fi
+	  # release_notes.yaml
+	  re="$(curl -s \
+		-F "files[release-notes.yml]=@$LOC/release-notes.yml" \
+		-F "language=${LOC##*/}" \
+		-F "import_eq_suggestions=1" \
+		"$CROWDIN_URL"/upload-translation?key="$CROWDIN_KEY" | grep -c success)"
+	  if [ $re -ne 1 ]; then
+		echo "${LOC##*/} failed"
+	  else
+		echo "${LOC##*/} ok"
+	  fi
+	  # faq.yaml
+	  re="$(curl -s \
+		-F "files[faq.yml]=@$LOC/faq.yml" \
+		-F "language=${LOC##*/}" \
+		-F "import_eq_suggestions=1" \
+		"$CROWDIN_URL"/upload-translation?key="$CROWDIN_KEY" | grep -c success)"
+	  if [ $re -ne 1 ]; then
+		echo "${LOC##*/} failed"
+	  else
+		echo "${LOC##*/} ok"
+	  fi
+	done
+fi
+	
 # get module names from foxtrick.properties file
 cat ../content/foxtrick.properties | egrep -o "^module\.[^\.]+\.desc" > module-names
 sed -i -r 's|module.||' module-names
