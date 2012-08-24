@@ -2,6 +2,7 @@
 /**
  * player-stats-experience.js
  * show how much experience a player gained in invidual matches and shows current subskill
+ * this currently works on the assumption that 28 pts are the fixed border for a skillup, even if thats not really true
  * @author CatzHoek
  */
 
@@ -24,20 +25,23 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		// U20/NT official match	10
 		// U20/NT World Cup (semi)final	20
 
-		//don't randomly rename, parts of this are taken from hattrick
+		//don't randomly rename, parts of this are taken from hattrick by classnames
 		var xp = {};
-		xp.matchFriendly = 0.2;			//assume international friendly as default, considered in min-max, minimum uses 1/2 of this value
-		xp.matchLeague = 1.0; 
-		xp.matchCup = 2.0;
-		xp.matchNtFriendly = 2.0;		//fakename: we generate this type (iconsytle + gametype)
-		xp.matchQualification = 2.0;
-		xp.matchMasters = 5.0;
-		xp.matchNtLeague = 10.0;		//fakename: we generate this type (iconsytle + gametype)
- 		xp.matchNtFinals = 20.0;
+		xp.matchFriendly 		= 0.2;		//assume international friendly as default, considered in min-max, minimum uses 1/2 of this value
+		xp.matchLeague 			= 1.0; 
+		xp.matchCup 			= 2.0;
+		xp.matchQualification 	= 2.0;
+		xp.matchMasters 		= 5.0;
+		//nt
+		xp.matchNtFriendly 		= 2.0;		//fakename: we generate this type (iconsytle + gametype)
+		xp.matchNtLeague 		= 10.0;		//fakename: we generate this type (iconsytle + gametype + match date)
+ 		xp.matchNtFinals 		= 20.0;		//fakename: we generate this type (iconsytle + gametype + match date)
 
-		var xp_column = 6;
+ 		//setting for looking up values in the parsing process
+ 		var parserconfig = {};
+ 		parserconfig.xp = 6; //current xp is the <integer>-th column in the table
 
-		//var store = {};
+		//setup the "database"
 		this.store.matches = {}
 		this.store.matches.matchFriendly = { minutes: 0, count: 0.0, xp: { min:0.0, max:0.0 } }
 		this.store.matches.matchLeague = { minutes: 0, count: 0.0, xp: { min:0.0, max:0.0 } }
@@ -48,9 +52,10 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		this.store.matches.matchNtLeague = { minutes: 0, count: 0.0, xp: { min:0.0, max:0.0 } }
 		this.store.matches.matchNtFinals = { minutes: 0, count: 0.0, xp: { min:0.0, max:0.0 } }
 		this.store.xp = { points: { min: 0.0, max: 0.0 }, xp: { min:0.0, max: 0.0 } };
-		this.store.currentSkill = 0;
+		this.store.currentSkill = null;
 		this.store.skillup = false;
 
+		//makes sure all links pointing to other player stats will show all possible matches
 		var convertLinksToShowAll  = function(){
 			var allLinks = doc.getElementsByTagName("a");
 			for(var l = 0; l < allLinks.length; l++)
@@ -60,12 +65,16 @@ Foxtrick.modules["PlayerStatsExperience"]={
 						allLinks[l].href = allLinks[l].href + "&ShowAll=True"
 			}
 		}
+
+		//figure out if a match is a NT match, quite fragile i guess, only NT matches have styles atm
 		var isNTmatch = function(node){
-				var gametypeParent = node.getElementsByClassName("keyColumn")[0];
-				var gameTypeImage = gametypeParent.getElementsByClassName("iconMatchtype")[0].getElementsByTagName("img")[0];
-				var gameType = gameTypeImage.className;
-				return gameTypeImage.parentNode.getAttribute("style") != null;	
+			var gametypeParent = node.getElementsByClassName("keyColumn")[0];
+			var gameTypeImage = gametypeParent.getElementsByClassName("iconMatchtype")[0].getElementsByTagName("img")[0];
+			var gameType = gameTypeImage.className;
+			return gameTypeImage.parentNode.getAttribute("style") != null;	
 		}
+
+		//get minutes played, maximum 90 minutes tho
 		var getPlayedMinutes = function(node){
 			var playtimes = node.getElementsByClassName("endColumn1")[0];
 			//sum up the diff positions		
@@ -79,6 +88,8 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			//max 90'
 			return Math.min(90, minutes);
 		}
+
+		//did the player get stars? ... used to identify walkovers
 		var gotStars = function( node ){
 			var stars = node.getElementsByClassName("endColumn2")[0];
 
@@ -92,6 +103,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			}
 		}
 
+		//did the player a red card? ... used to identify walkovers
 		var gotRedCard = function( node ){
 			var cards = node.getElementsByTagName("td")[4].getElementsByTagName("img")[0];
 			
@@ -102,8 +114,10 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			return redcard;
 		}
 
+		//figure out the gametype, most important to figure out how many xp pts are gained
 		var getGameType = function(node, date, u20){
 
+			//most games can be identified by the classname directly, NT needs some tricks
 			var getBasicGameType = function(node){
 				var gametypeParent = node.getElementsByClassName("keyColumn")[0];
 				var gameTypeImage = gametypeParent.getElementsByClassName("iconMatchtype")[0].getElementsByTagName("img")[0];
@@ -134,6 +148,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 				return gameType; 
 		}
 
+		//get xp gain by gametype, see above
 		var getXpGain = function(minutes, gametype){
 			return (xp[gametype]/90.0)*minutes;	
 		}
@@ -169,13 +184,6 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		stats_head.insertBefore(ts_xp, stats_head.cells[7] );
 
 		//sum up xp stuff
-		var xp_last = null;
-		var xp_sub_min = 0.0;
-		var xp_sub_max = 0.0;
-		var xp_last_min_added = 0.0;
-
-		var walkover_str = Foxtrickl10n.getString("PlayerStatsExperience.Walkover");
-
 		for(var i = 1; i < stats_entries.length; i++ ){
 
 			var entry = stats_entries[i];
@@ -184,15 +192,12 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			var date = Foxtrick.util.time.getDateFromText(match_date.textContent);
 
 			//current skilllevel
-			var	xp_now = parseInt(entry.cells[xp_column].textContent);
+			var	xp_now = parseInt(entry.cells[parserconfig.xp].textContent);
 			
 			//remember current XP Level to detect skilldowns			
-			if(xp_last === null){
-				xp_last = parseInt(xp_now);		
-				this.store.currentSkill = xp_last;
-			} else {
+			if(this.store.currentSkill === null)	
+				this.store.currentSkill = parseInt(xp_now);
 
-			}
 			var u20 = matches_entries[i].getElementsByTagName("a")[0].textContent.search("U-20") > -1;
 			var ntMatch = isNTmatch( entry );
 			var minutes = getPlayedMinutes( entry );
@@ -203,30 +208,35 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			//check if he also got stars, a game where he got xpgain but has not even half a star must be a walkover
 			var got_stars = gotStars(entry);
 			var walkover = !got_stars && minutes == 90 && !redCard;
-			var pseudo_points = xp_gain;
+			var pseudo_points = xp_gain; //for visualisation
 			xp_gain = walkover?0:xp_gain;
 			
 			//adjust min and max values to take care of international vs. nationl friendlies
-			var dxp = {}
-			if(!ntMatch){
-				 if(gameType == "matchFriendly"){
-				 	dxp.min = xp_gain/2;
-				 	dxp.max = xp_gain;	
-				 } else {
-				 	dxp.min = xp_gain;
-				 	dxp.max = xp_gain;
-				 }
-			} else {
-				dxp.min = xp_gain;
-				dxp.max = xp_gain;
+			var getXPMinMaxDifference = function(ntMatch, xp_gain, gameType){
+				var dxp = {}
+				if(!ntMatch){
+					 if(gameType == "matchFriendly"){
+					 	dxp.min = xp_gain/2;
+					 	dxp.max = xp_gain;	
+					 } else {
+					 	dxp.min = xp_gain;
+					 	dxp.max = xp_gain;
+					 }
+				} else {
+					dxp.min = xp_gain;
+					dxp.max = xp_gain;
+				}
+				return dxp;
 			}
+			
+			var dxp = getXPMinMaxDifference(ntMatch, xp_gain, gameType);
 
-			if(xp_now == xp_last){
+			if(xp_now == this.store.currentSkill){
 				this.store.matches[gameType].xp["min"] += dxp.min;
 				this.store.matches[gameType].xp["max"] += dxp.max;
 				this.store.matches[gameType]["minutes"] += minutes;
 				this.store.matches[gameType]["count"] += (minutes/90.0);
-				this.store.last = {}
+				this.store.last = {};
 				this.store.last.node = stats_entries[i];
 				this.store.last.nodeIndex = i;
 				this.store.last.gameType = gameType;
@@ -247,14 +257,14 @@ Foxtrick.modules["PlayerStatsExperience"]={
 			if(walkover){
 				Foxtrick.addClass(ts_xp,"ft-playerStats-walkover");
 				ts_xp.textContent = pseudo_points.toFixed(3);
-				ts_xp.setAttribute("title", walkover_str);
+				ts_xp.setAttribute("title", Foxtrickl10n.getString("PlayerStatsExperience.Walkover") );
 			} else {
 				ts_xp.textContent = xp_gain.toFixed(3);
 			}
 			if(!ntMatch && gameType == "matchFriendly" && minutes > 0)
 				ts_xp.textContent =  (xp_gain/2.0).toFixed(3) + "/" + xp_gain.toFixed(3);
 
-			entry.insertBefore(ts_xp, entry.cells[xp_column+1]);
+			entry.insertBefore(ts_xp, entry.cells[parserconfig.xp+1]);
 		}
 
 		//highlight the relevant skillup game in the table
@@ -439,7 +449,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 
 		table.appendChild(row);
 
-//table & headers
+		s//table & headers
 		navigation.parentNode.insertBefore(xp_header, navigation);
 		navigation.parentNode.insertBefore(matchListTable, navigation);
 		table.appendChild(thead);
@@ -480,7 +490,5 @@ Foxtrick.modules["PlayerStatsExperience"]={
 		var table_header_title = doc.createTextNode( Foxtrickl10n.getString("PlayerStatsExperience.PerformanceHistory") );
 		table_header.appendChild(table_header_title);
 		navigation.parentNode.insertBefore(table_header, navigation);
-
-		
 	}
 };
