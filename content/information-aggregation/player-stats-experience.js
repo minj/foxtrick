@@ -449,7 +449,7 @@ Foxtrick.modules["PlayerStatsExperience"]={
 
 		table.appendChild(row);
 
-		s//table & headers
+		//table & headers
 		navigation.parentNode.insertBefore(xp_header, navigation);
 		navigation.parentNode.insertBefore(matchListTable, navigation);
 		table.appendChild(thead);
