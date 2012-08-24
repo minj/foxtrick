@@ -922,7 +922,8 @@ function initChangesTab()
 							.textContent = Foxtrickl10n.getString("releaseNotes.version") + " " + version + sub + subsub;
 				
 				for (var i = 0, note; note = notes[i]; ++i) {
-					if (notesLocalized && notesLocalized[i] !== undefined) note = notesLocalized[i];
+					if (notesLocalized && notesLocalized[i] != undefined && notesLocalized[i] != null)
+						note = notesLocalized[i];
 					var item = document.createElement("li");
 					addNote(note, item, releaseNotesLinks);
 					item.appendChild(document.createTextNode('\u00a0'));
@@ -997,7 +998,8 @@ function initHelpTab()
 		$("#pane").append($(block));
 		// question
 		var header = document.createElement("h3");
-		var question = (itemLocal && itemLocal.question !== undefined) ? itemLocal.question : item.question;
+		var question = (itemLocal && itemLocal.question !== undefined && itemLocal.question !== null)
+			? itemLocal.question : item.question;
 		addNote(question, header, faqLinks);
 		block.appendChild(header);
 
@@ -1013,7 +1015,8 @@ function initHelpTab()
 		// answer
 		var content = document.createElement("p");
 		// import child nodes one by one as we may use XHTML there
-		var answer = (itemLocal && itemLocal.answer !== undefined) ? itemLocal.answer : item.answer;
+		var answer = (itemLocal && itemLocal.answer !== undefined && itemLocal.answer !== null)
+			? itemLocal.answer : item.answer;
 		
 		addNote(answer, content, faqLinks);
 		container.appendChild(content);
