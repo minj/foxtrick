@@ -68,7 +68,8 @@ RESOURCE_FOLDERS = data/ \
 	foxtrick.screenshots \
 	release-notes.yml \
 	release-notes-links.yml \
-	faq.yml
+	faq.yml \
+	faq-links.yml
 CONTENT_FILES = add-class.js \
 	core.js \
 	entry.js \
