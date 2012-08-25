@@ -165,7 +165,7 @@ Foxtrick.modules["SeriesFlags"]={
 					sideBarBoxes)
 			);
 		}
-		if ( FoxtrickPrefs.isModuleOptionEnabled("SeriesFlags", "tournaments") 
+		if ( FoxtrickPrefs.isModuleOptionEnabled("SeriesFlags", "Tournaments") 
 			&& ( Foxtrick.isPage("tournaments", doc) 
 				||  Foxtrick.isPage("tournamentsGroups", doc) 
 				||  Foxtrick.isPage("tournamentsFixtures", doc))) {
