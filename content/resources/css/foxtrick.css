@@ -4,15 +4,28 @@
    so any own class HAS TO start with eg 'foxtrick_' to make it foxtrick specific */
 
 html[data-theme="standard"] #stageLogo {
-	background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick.png') !important;
+	background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick.png');
 }
 html[data-theme="standard"] #logo {
-	background-image: url('chrome://foxtrick/content/resources/img/logo_green_foxtrick.png') !important;
+	background-image: url('chrome://foxtrick/content/resources/img/logo_green_foxtrick.png');
 }
 html[data-theme="simple"] #stageLogo {
-	background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick_simple.png') !important;
+	background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick_simple.png');
 }
 html[data-theme="simple"] #logo {
+	background-image: url('chrome://foxtrick/content/resources/img/logo_green_foxtrick_simple.png');
+}
+
+html[data-theme="standard"][firefox] #stageLogo {
+	background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick.png') !important;
+}
+html[data-theme="standard"][firefox] #logo {
+	background-image: url('chrome://foxtrick/content/resources/img/logo_green_foxtrick.png') !important;
+}
+html[data-theme="simple"][firefox] #stageLogo {
+	background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick_simple.png') !important;
+}
+html[data-theme="simple"][firefox] #logo {
 	background-image: url('chrome://foxtrick/content/resources/img/logo_green_foxtrick_simple.png') !important;
 }
 
