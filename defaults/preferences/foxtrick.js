@@ -402,11 +402,11 @@ pref("extensions.foxtrick.prefs.module.LinksWorld.hattricksnapshot.enabled", tru
 pref("extensions.foxtrick.prefs.module.LiveAlert.enabled", true);
 pref("extensions.foxtrick.prefs.module.LiveAlert.Sound.enabled", true);
 pref("extensions.foxtrick.prefs.module.LiveAlert.home.enabled", true);
-pref("extensions.foxtrick.prefs.module.LiveAlert.home_text", "foxtrick://resources/sounds/goal.ogg");
+pref("extensions.foxtrick.prefs.module.LiveAlert.home_text", "foxtrick://resources/sounds/goal.wav");
 pref("extensions.foxtrick.prefs.module.LiveAlert.away.enabled", true);
-pref("extensions.foxtrick.prefs.module.LiveAlert.away_text", "foxtrick://resources/sounds/cheer1.ogg");
+pref("extensions.foxtrick.prefs.module.LiveAlert.away_text", "foxtrick://resources/sounds/cheer1.wav");
 pref("extensions.foxtrick.prefs.module.LiveAlert.own.enabled", true);
-pref("extensions.foxtrick.prefs.module.LiveAlert.own_text", "foxtrick://resources/sounds/cheer_8k.ogg");
+pref("extensions.foxtrick.prefs.module.LiveAlert.own_text", "foxtrick://resources/sounds/cheer_8k.wav");
 pref("extensions.foxtrick.prefs.module.LocalTime.enabled", true);
 pref("extensions.foxtrick.prefs.module.LocalTime.local", false);
 pref("extensions.foxtrick.prefs.module.LoyaltyDisplay.enabled", true);
