@@ -116,7 +116,7 @@ Foxtrick.log = function() {
 // environment info shown in log as header
 Foxtrick.log.header = function(doc) {
 	var headString = Foxtrickl10n.getString("log.env")
-				.replace(/%1/, Foxtrick.version() + " " + FoxtrickPrefs.getString("branch") )
+				.replace(/%1/, Foxtrick.version() + " " + Foxtrick.branch() )
 				.replace(/%2/, Foxtrick.arch + ' ' + Foxtrick.platform)
 				.replace(/%3/, FoxtrickPrefs.getString("htLanguage"))
 				.replace(/%4/, Foxtrick.util.layout.isStandard(doc) ? "standard" : "simple")
