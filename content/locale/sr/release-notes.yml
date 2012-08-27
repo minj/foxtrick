@@ -1,10 +1,16 @@
 en: 
     versions: 
         nightly: 
-            note_0: "За детаље о променама погледајте  на <linkSVN>Google Code</linkSVN> сајту."
+            note_0: "Ово је верзија за девелопере. Користите је на сопствену одговорност. За детаље о променама погледајте <linkSVN>commit history</linkSVN> на сајту Google Code."
+
+        beta: 
+            note_0: "Ово је бета верзија ннаредне званичне верзије. Уколико желите да помогнете у превођењу посетите нашу страницу за преводиоце на <linkCrowdin>crowdin.net</linkCrowdin>. "
 		
         0.12.0:
             note_0: "<module>Tabs</module>: Додата опција за додавање персонализованих табова на већини страница. (по узору на HT табове у прегледу надолазећих мечева)."
+            note_1: "<module>DashboardCalendar</module>: Додато дугме за извоз Хеттрик недеље у iCalendar фајл формату (требало би да буде компатибилно са апликацијама Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal итд.)"
+            note_2: "<module>LiveAlert</module>: Додати различити звуци за голове домаћин/гост/голови мог тима. Подразумевана колекција је преузета из  <linkHTLS>HTLiveSight</linkHTLS> апликације. У почетку голови вашег тима неће бити препознати ако користитите Re-Live."
+            note_3: "<module>CopyYouth</module>: Hattrick youthclub корисници сада могу дирекно послати извештај скаута за одбијене играче на HY сајт"
 
         0.11.0: 
             note_0: "НОВО:  <module>DirectPageLinks</module>: додати линкови за директан приступ страницама унутар теме на форуму"
