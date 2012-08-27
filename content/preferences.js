@@ -228,7 +228,7 @@ function initTextAndValues()
 		$("html").attr("dir", "rtl");
 
 	document.title = Foxtrickl10n.getString("prefs.title");
-	$("#version").text(Foxtrick.version() + " " + FoxtrickPrefs.getString("branch"));
+	$("#version").text(Foxtrick.version() + " " + Foxtrick.branch());
 
 	// initialize text
 	$("body [data-text]").each(function() {
@@ -674,7 +674,7 @@ function initChangesTab()
 	// add nightly and beta notes
 	for (var i in notes) {
 		var version = notes[i].getAttribute("version");
-		if (FoxtrickPrefs.getString('branch').indexOf(version) !== -1) {
+		if (Foxtrick.branch().indexOf(version) !== -1) {
 			var note = notesLocalized[version] || notes[version];
 			if (!note)
 				continue;

@@ -516,6 +516,12 @@ Foxtrick.version = function() {
 	return FoxtrickPrefs.getString("version");
 };
 
+Foxtrick.branch = function() {
+	// get rid of user-imported value
+	FoxtrickPrefs.deleteValue("branch");
+	return FoxtrickPrefs.getString("branch");
+};
+
 Foxtrick.isPageHref = function(page, href) {
 	var htpage_regexp = new RegExp(page.replace(/\./g,'\\.').replace(/\?/g,'\\?'), "i");
 	return href.replace(/#.+/,'').search(htpage_regexp) > -1;
