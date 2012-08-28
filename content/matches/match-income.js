@@ -7,7 +7,7 @@
 
 Foxtrick.modules["MatchIncome"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-	PAGES : ['match'],
+	PAGES : ['match', 'matchNew'],
 	run : function(doc) {
 
 		var hasNewRatings = Foxtrick.Pages.Match.hasNewRatings(doc);
