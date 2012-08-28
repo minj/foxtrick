@@ -2,23 +2,23 @@
 it: 
   versions: 
     nightly: 
-      note_0: 
+      note_0: 'Questa è la versione di sviluppo. Utilizzala a tua discrezione. per favore visita <linkSVN>commit history</linkSVN> su Google code per dettagli sui cambiamenti.'
     beta: 
-      note_0: 
+      note_0: 'Questa è la versione beta della prossima release. Per favore aiutaci a tradurre questa versione con la nostra super semplice pagina di traduzione di crowdin <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.11.0: 
-      note_0: 
+      note_0: 'Nuovo: <module>DirectPageLinks</module>: collegament aggiuntivi per accedere a pagine specifiche in un thread del forum'
       note_1: 
-      note_2: 
+      note_2: "Nuovo: <module>PlayerStatsTrainingWeek</module>: aggiunta l'opportunità di raggruppare le partite secondo l'allenamento e non secondo il calendario settimanale."
       note_3: 
       note_4: 
       note_5: 
       note_6: 
       note_7: 
-      note_8: 
+      note_8: "<module>MatchSimulator</module>: aggiunta l'integrazione con le <module>valutazioni</module>."
       note_9: 
       note_10: 
       note_11: 
-      note_12: 
+      note_12: '<header>Bug risolti</header>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'

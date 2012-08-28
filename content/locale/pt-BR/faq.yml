@@ -3,7 +3,10 @@ pt-BR:
   faq: 
     style: 
       question: Como posso estilizar meu Foxtrick ?
-      answer: 
+      answer: |
+        <p>FoxTrick fornece um conjunto de interfaces de apresentação para que os usuários possam customizar com seus próprios estilos. Estas interfaces são fornecidas por IDs HTML e classes e você pode usar CSS para definir seu estilo preferido.</p>
+        
+        <p>Um exemplo de arquivo de estilo de usuário pode ser encontrado  <linkCSSExample>Aqui</linkCSSExample> ou <linkCSSExampleGCode>aqui</linkCSSExampleGCode>, os quais você pode alterar para satisfazer suas necessidades. Após salvar o arquivo podes usar o módulo <module>SkinPlugin</module> para carregar o CSS que tenha os efeitos do seu estilo.</p>
     sound-format: 
       question: Quais formatos são permitidos para os sons de alerta ?
       answer: |
@@ -16,7 +19,12 @@ pt-BR:
         </ul>
     sound-location: 
       question: Qual o tamanho limite para os arquivos dos sons de alerta e onde posso colocá-los ?
-      answer: 
+      answer: |
+        <p>Todos os navegadores podem rodar informações de URLs. Aqueles são os sons salvos internamente quando você usa o botão de carregar que estã nas preferências. Quando eles são convertidos e salvos nas suas preferência , o tamanho limite é em torno de 160kb por som.</p>
+        
+        <p>Todos os navegadores podem tocar sons diretamente da internet (http urls). É só copiar o link para um som (p.ex. http://foxtrick.org/sound.wav) no campo de edição para os sons. Sem limite de tamanho.</p>
+        
+        <p>Os navegadores da Mozilla também podem tocar sons diretamente do seu HD (arquivos) sem limite de tamanho. A forma mais fácil de ter o formato correto: No navegador pressione ctrl+o, encontre o arquivo de som e o selecione. Na barra de endereço no topo da página agora está o link correto para o arquivo em seus computador (p. ex. file:///c:/sound.wav). Copie e cole isso no compo de edição de sons.</p>
     authorize: 
       question: Por que devo autorizar o FoxTrick para acessar os dados da meu time?
       answer: |

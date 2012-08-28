@@ -2,17 +2,17 @@
 pt-PT: 
   faq: 
     style: 
-      question: 
+      question: Como posso mudar o estilo do Foxtrick?
       answer: 
     sound-format: 
-      question: 
+      question: Que tipo de ficheiros são permitidos para som de alerta?
       answer: 
     sound-location: 
-      question: 
+      question: Qual é o tamanho limite e onde podem ser encontrados os ficheiros de som de alerta?
       answer: 
     authorize: 
-      question: 
+      question: Porque deveria eu autorizar o Foxtrick a aceder aos dados da minha equipa?
       answer: 
     privacy: 
-      question: 
+      question: Como vai o Foxtrick proteger a minha privacidade?
       answer: 
