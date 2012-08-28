@@ -17,13 +17,13 @@ Foxtrick.util.tabs.initialize = function(doc){
 		contentNode = byline.nextSibling;
 
 	//create tab bar or pull existing one out of subNodes
-	var tabs = doc.getElementById('tab');
+	var tabs = Foxtrick.util.tabs.getTabs(doc);
 	if(!tabs)
-		Foxtrick.util.tabs._create(doc);
-	else {
+		tabs = Foxtrick.util.tabs._create(doc);
+	else
 		header.parentNode.insertBefore(tabs, contentNode);
-	}
-	contentNode = doc.getElementById("tab").nextSibling;
+	
+	contentNode = tabs.nextSibling;
 
 	//mark everything that's already there as main tab content
 	while(contentNode){
@@ -53,12 +53,23 @@ Foxtrick.util.tabs.initialize = function(doc){
 		}
 		contentNode = contentNode.nextSibling;
 	}
-	if(!Foxtrick.hasClass(doc.getElementById("tab").nextSibling, "ft-clear-both")){
+	if( !Foxtrick.hasClass( Foxtrick.util.tabs.getTabs(doc).nextSibling, "ft-clear-both" ) ){
 		var clear = doc.createElement("div")
 		Foxtrick.addClass(clear, "ft-clear-both");
 		Foxtrick.addAttributeValue(clear, "tabs", "all-tabs");
-		header.parentNode.insertBefore(clear, doc.getElementById("tab").nextSibling);
+		header.parentNode.insertBefore(clear, Foxtrick.util.tabs.getTabs(doc).nextSibling );
 	}
+}
+
+Foxtrick.util.tabs.getTabs = function(doc){
+	//future match or custom created tabs
+	var tab = doc.getElementById("tab");
+	
+	//new match page
+	if(!tab){
+		tab = doc.getElementById("ctl00_ctl00_CPContent_CPMain_ucMatchTabs_ulTabs");
+	}
+	return tab;
 }
 
 //private, creates the tab bar and add it's after the h1 header or it's byline
@@ -76,6 +87,8 @@ Foxtrick.util.tabs._create = function(doc){
 	var list = doc.createElement("ul");
 	list.setAttribute("id", "tab");
 	header.parentNode.insertBefore(list, contentNode);
+
+	return list;
 }
 
 //support only for pages with a h1 header atm
@@ -93,7 +106,7 @@ Foxtrick.util.tabs.addHandle = function(doc, title, icon, shows){
 	if(!Foxtrick.util.tabs.hasTabSupport(doc))
 		return null;
 
-	var tabs = doc.getElementById("tab");
+	var tabs = Foxtrick.util.tabs.getTabs(doc);
 	var li = doc.createElement("li");
 	li.id = shows + "-handle";
 	var link = doc.createElement("a");
@@ -120,7 +133,7 @@ Foxtrick.util.tabs.addHandle = function(doc, title, icon, shows){
 }
 //shows last selected tab, if not present, shows "tab-main"
 Foxtrick.util.tabs.showLast = function(doc){
-	var tab = doc.getElementById("tab");
+	var tab = Foxtrick.util.tabs.getTabs(doc);
 	var active = tab.getElementsByClassName("active");
 	var shows = "tab-main";
 	if(active[0])
@@ -131,7 +144,7 @@ Foxtrick.util.tabs.showLast = function(doc){
 //shows tab by id
 Foxtrick.util.tabs.show = function(doc, id){
 	//select tab handle
-	var tabs = doc.getElementById("tab");
+	var tabs = Foxtrick.util.tabs.getTabs(doc);
 	var links = tabs.getElementsByTagName("a");
 	for(var i = 0; i < links.length; i++){
 		try {
