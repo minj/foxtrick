@@ -128,6 +128,9 @@ firefox:
 	cp -r skin $(BUILD_DIR)/chrome
 	# remove ignore modules from files
 	perl module-update.pl $(MODULES) $(IGNORED_MODULES) $(BUILD_DIR)/chrome/
+	#removes zips from res
+	rm -rf $(BUILD_DIR)/chrome/*/*.zip
+	rm -rf $(BUILD_DIR)/chrome/*/*/*.zip
 	# build jar
 	cd $(BUILD_DIR)/chrome; \
 	$(ZIP) -0 -r $(APP_NAME).jar `find . \( -path '*CVS*' -o -path \
