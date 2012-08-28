@@ -17,6 +17,10 @@ Foxtrick.Pages.Match = {
 	isHTOIntegrated : function(doc) {
 		return (doc.location.search.search(/SourceSystem=HTOIntegrated/i) > -1);
 	},
+	
+	hasNewRatings : function(doc) {
+		return (doc.getElementById('divReport') != null);
+	},
 
 	getId : function(doc) {
 		try {

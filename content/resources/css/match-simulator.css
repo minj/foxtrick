@@ -108,11 +108,11 @@ html[data-theme="standard"] #ft-overlayBottom {
 .visible {
 	visibility: visible !important;
 }
-.ratingInnerBox {
+#fieldOverlay .ratingInnerBox {
 	margin: 10px 3px 0px 3px !important;
 	padding: 0px !important;
 }
-.ratingInnerBox div[id$="Rating"], .overlayRatingsOther, .overlayRatingsDiscounted {
+#fieldOverlay .ratingInnerBox div[id$="Rating"], .overlayRatingsOther, .overlayRatingsDiscounted {
 	font-weight: normal !important;
 }
 #fieldOverlay.not_flipped .overlayRightDefense, #fieldOverlay.not_flipped .overlayMidDefense, #fieldOverlay.not_flipped .overlayLeftDefense {
@@ -139,10 +139,10 @@ html[dir="rtl"] .overlayMidDefense, .overlayMidAttack {
 html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
 	left: 202px !important;
 }
-.overlaySector {
+#fieldOverlay .overlaySector {
 	height: 150px !important;
 }
-.ratingInnerBox img{
+#fieldOverlay .ratingInnerBox img{
 	margin-top:7px !important;
 }
 .posLabel  {

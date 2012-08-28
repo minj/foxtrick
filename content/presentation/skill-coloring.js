@@ -16,6 +16,7 @@ Foxtrick.modules["SkillColoring"]={
 		["skill_translated", "skill_translated_title"],
 		"skill_select",
 	],
+	CSS : Foxtrick.InternalPath+"resources/skillcolors/common.css",
 	OPTIONS_CSS : [
 		Foxtrick.InternalPath+"resources/skillcolors/skill-color.css",
 		Foxtrick.InternalPath+"resources/skillcolors/non-skill-color.css",
