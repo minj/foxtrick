@@ -55,6 +55,13 @@
 		"title": "hattriX-Ray sunray",
 		"img": "resources/linkicons/xray_sunray.png"
 	},
+	"htlivesight": {
+		"matchlink": {
+			"url": "http://htlivesight.sourceforge.net/"
+		},
+		"title": "htlivesight match viewer (based on livefox)",
+		"img": "resources/img/staff/htls.png"
+	},	
 	"xray_live": {
 		"matchlink": {
 			"url": "http://www.databased.at/hattrick/x-ray/index.asp?starter=live&matchid=[matchid]"
