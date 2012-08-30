@@ -7,17 +7,17 @@ it:
       note_0: 'Questa è la versione beta della prossima release. Per favore aiutaci a tradurre questa versione con la nostra super semplice pagina di traduzione di crowdin <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.11.0: 
       note_0: 'Nuovo: <module>DirectPageLinks</module>: collegament aggiuntivi per accedere a pagine specifiche in un thread del forum'
-      note_1: 
+      note_1: 'NUOVO: <module>ForumModeratorPopup</module>: aggiunto un menu a discesa per Moderatori del forum in cima alle discussioni per semplificare la moderazione.'
       note_2: "Nuovo: <module>PlayerStatsTrainingWeek</module>: aggiunta l'opportunità di raggruppare le partite secondo l'allenamento e non secondo il calendario settimanale."
-      note_3: 
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
+      note_3: '<module>MatchOrderInterface</module>: Fornita una correzione per la lista dei rigoristi. Puoi anche aggiungere la tua squadra alla lista o cancellarla con un solo clic.'
+      note_4: "<module>SkillTable</module>: aggiunta l'opportunità per un sotto-ordinamento utilizzando ctrl + click sinistro su un'altra intestazione di colonna esistente."
+      note_5: '<module>SkillTable</module>: i nomi dei giocatori sono abbreviati da ora in poi occupando meno spazio.'
+      note_6: '<module>SkillColoring</module>: completa riscrittura del modulo, un sacco di aggiunte e correzioni di bug. Opzioni modificate. Per favore impostatele nuovamente a vostro piacimento.'
+      note_7: "<module>TransferSearchResultFilters</module>: aggiunta l'opportunità di filtrare secondo la forma e nascondere i giocatori senza specialità. Ora collabora con <module>TransferSearchFilters</module>."
       note_8: "<module>MatchSimulator</module>: aggiunta l'integrazione con le <module>valutazioni</module>."
-      note_9: 
-      note_10: 
-      note_11: 
+      note_9: "<module>FriendlyPool</module>: aggiunta l'opportunità per espandere la casella di selezione del paese."
+      note_10: "<module>MovePlayerStatement</module>: aggiunta l'opportunità di rimuovere completamente l'istruzione."
+      note_11: '<module>YouthTwins</module>: I cambi effettuati manualmente su HY si rifletteranno automaticamente sulla pagina dei giocatori delle giovanili'
       note_12: '<header>Bug risolti</header>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'

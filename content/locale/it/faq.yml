@@ -3,7 +3,9 @@ it:
   faq: 
     style: 
       question: Come posso dare uno stile a Foxtrick?
-      answer: 
+      answer: |
+        <p>Foxtrick fornisce un insieme di interfacce di presentazione per gli utenti per personalizzare con il proprio stile. Queste interfacce sono fornite attraverso HTML ID e classi e si possono utilizzare i CSS per definire il tuo stile preferito.<p>
+        <p>Un esempio di file di stile personalizzato può essere trovato<linkCSSExample>qui</linkCSSExample> o <linkCSSExampleGCode>qui</linkCSSExampleGCode>, modificabili sencondo le tue esigenze. Dopo aver salvato il file, puoi utilizzare il modulo <module>SkinPlugin</module> per caricare il file CSS per rendere il tuo stile effettivo.</p>
     sound-format: 
       question: Quali formati di file sono permessi come suoni di notifica?
       answer: |
@@ -21,7 +23,39 @@ it:
         <p>I browser di Mozilla possono anche riprodurre suoni direttamente dal tuo hard drive (files urls) senza problemi di dimensioni. Il modo più semplice per ottenere il formato corretto: nel browser premi Ctrl+o, naviga per trovare il file sonoro e selezionalo. Nella barra degli indirizzi in alto c'è il link giusto al file locale (es file:///c:/sound.wav). Copialo ed incollalo nel campo editabile per i suoni.</p>
     authorize: 
       question: Perchè dovrei autorizzare Foxtrick ad accedere ai dati della mia squadra?
-      answer: 
+      answer: |
+        <p>Sebbene la maggior parte dei dati necessari a Foxtrick possono essere ottenuti direttamente dalla pagina che stai vedendo, alcuni moduli richiedono dati da Hattrick per funzionare correttamente.</p>
+        
+        <p>Per scaricare dati da Hattrick, inclusi i dati della tua squadra, lega, e nazionali, devi autorizzare Foxtrick in anticipo.</p>
+        
+        <p>Autorizzi Foxtrick fornendo il tuo nome utente e password su chpp.hattrick.org per ottenere il codice di verifica, che fornirai a Foxtrick. Foxtrick non verrà a conoscenza del tuo nome utente e password durante il procedimento.</p>
+        
+        <p>Per avere maggiori informazioni sul processo di autorizzazione, puoi leggere <linkCHPPDesc>CHPP - Come funziona</linkCHPPDesc> su Hattrick.</p>
+        
+        <p>Alcuni moduli richiedono l'accesso ai dati per funzionare correttamente:</p>
+        
+        <ul>
+        <li><module>CrossTable</module></li>
+        <li><module>ExtraPlayerInfo</module></li>
+        <li><module>MatchPlayerColouring</module></li>
+        <li><module>MyMonitor</module></li>
+        <li><module>NtPeek</module></li>
+        <li><module>SeriesFlags</module></li>
+        </ul>
+        
+        <p>Alcuni moduli possono fornire informazioni aggiuntive se viene garantito loro l'accesso ai dati di Hattrick:</p>
+        
+        <ul>
+        <li><module>SkillTable</module></li>
+        <li><module>TeamStats</module></li>
+        </ul>
     privacy: 
       question: Come proteggerà FoxTrick la mia privacy?
-      answer: 
+      answer: |
+        <p>Foxtrick non invierà nessuno dei tuoi dati opreferenze ad un server di Foxtrick, nè dati personali, inclusi ,ma non ristretto ai soli, username, password e ID dei giocatori associati con skill, a terze parti.</p>
+        
+        <p>La maggior parte dei dati passati a terze parti, a meno che non sia espicitamente specificato sotto, sono inviati con il metodo HTTP GET, e verranno solamente mandati quando cliccherai su un link.</p>
+        
+        <p>Sarai in grado di vedere quale dati verranno inviati ispezionando l' URI (Uniform Resource Identifier) di un collegament esterno, e nessun dato verrà inviato senza il tuo consenso. Come detto sopra non sono coinvolti dati personali.</p>
+        
+        <p>Le eccezioni sono i moduli <module>HTMSPrediction</module> e <module>HTEVPrediction</module>, Dove le valutazioni delle partite vengono inviate e ricevute dai rispettivi siti con XMLHttpRequest.</p>
