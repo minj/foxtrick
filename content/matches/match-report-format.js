@@ -201,7 +201,7 @@
 		"599": "result"
 	};
 	var icons = {
-		"bruised":"/Img/Icons/bruised.gif",
+		"bruised":"/Club/Matches/images/bruise1.png",
 		"best player":"/Img/Matches/star_yellow.png",
 		"change of tactics":"/Img/Matches/behaviorchange.gif",
 		"formation":"/Img/Matches/formation.gif",
@@ -216,7 +216,7 @@
 		"miss_R": Foxtrick.InternalPath + 'resources/img/matches/red_ball_R.png',
 		"miss_L": Foxtrick.InternalPath + 'resources/img/matches/red_ball_L.png',
 		"pressing": Foxtrick.InternalPath + 'resources/img/matches/press.png',
-		"rain": Foxtrick.InternalPath + 'resources/img/matches/rain.gif',
+		"rain": '/Club/Matches/images/weather0.png',
 		"red card":"/Img/Icons/red_card.gif",
 		"se_head_specialist": Foxtrick.InternalPath + 'resources/img/matches/spec5.png',
 		"se_technical": Foxtrick.InternalPath + 'resources/img/matches/spec1.png',	
@@ -230,7 +230,7 @@
         "se_head_specialist_negative": Foxtrick.InternalPath + 'resources/img/matches/spec5_red.png',		
 		"substitution":"/Img/Matches/substitution.gif",
 		"sub_out":"/Img/Matches/sub_out.gif",
-		"sun": Foxtrick.InternalPath + 'resources/img/matches/sun.png',
+		"sun": '/Club/Matches/images/weather3.png',
 		"swap" : "/Img/Matches/player_swap.gif",
 		"tired" : Foxtrick.InternalPath + 'resources/img/matches/tired.png',
 		"whistle" : Foxtrick.InternalPath + 'resources/img/matches/whistle.png',
@@ -243,7 +243,7 @@
 		"indirect": Foxtrick.InternalPath + 'resources/img/matches/indirect.png',
 		"confusion": Foxtrick.InternalPath + 'resources/img/matches/confusion.png',
 		"penalty": Foxtrick.InternalPath + 'resources/img/matches/penalty.png',
-		"pullback": Foxtrick.InternalPath + 'resources/img/matches/pullback.png',
+		"pullback": '/Club/Matches/images/pullback.png',
 		"longshot": Foxtrick.InternalPath + 'resources/img/matches/longshot.png',
 		"corner": Foxtrick.InternalPath + 'resources/img/matches/corner.png',
 		"experience": Foxtrick.InternalPath + 'resources/img/matches/exp.png',
