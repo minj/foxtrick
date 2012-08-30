@@ -21,7 +21,7 @@
 	
 	Foxtrick.modules.MatchPlayerColouring = {
 		MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-		PAGES : ["match", "playerdetail"],
+		PAGES : ["match", "matchOld", "playerdetail"],
 		OPTIONS : ["SeparateOwnPlayerColors"],
 
 		CSS : Foxtrick.InternalPath + "resources/css/match-player-colouring.css",
@@ -84,14 +84,22 @@
 					|| (n.href.search(/Youth\/Default\.aspx\?YouthTeamID=\d+/) > -1)
 					|| (n.href.search(/NationalTeam\/NationalTeam\.aspx\?teamId=\d+/) > -1);
 			};
-			var sidebar = doc.getElementById("sidebar");
-			var teams = sidebar.getElementsByTagName("table")[0].getElementsByTagName("a");
+
+			if (Foxtrick.Pages.Match.hasNewRatings(doc))
+				var teams = doc.getElementsByTagName("h1")[0].getElementsByTagName("a");
+			else {
+				var sidebar = doc.getElementById("sidebar");
+				var teams = sidebar.getElementsByTagName("table")[0].getElementsByTagName("a");
+			}
+			
 			teams = Foxtrick.filter(isTeamLink, teams);
 			var homeTeam = teams[0];
 			var awayTeam = teams[1];
 
 			var homeTeamId = Foxtrick.util.id.getTeamIdFromUrl(homeTeam.href);
 			var awayTeamId = Foxtrick.util.id.getTeamIdFromUrl(awayTeam.href);
+
+
 			var homeClass = (myTeamId == homeTeamId) ? "ft-match-player-mine" : "ft-match-player-home";
 			var awayClass = (myTeamId == awayTeamId) ? "ft-match-player-mine" : "ft-match-player-away";
 
@@ -160,26 +168,28 @@
 						}
 					}, links);
 
-					// add class for sidebar event rows
-					var sidebarLinks =  Foxtrick.filter(function(n) {
-						return n.hasAttribute('href') ;
-					}, sidebar.getElementsByTagName("a"));
-					var homeLinks = Foxtrick.filter(function(n) {
-						return (getPlayerId(n) != null)
-							&& Foxtrick.hasClass(n, homeClass);
-					}, sidebarLinks);
-					var awayLinks = Foxtrick.filter(function(n) {
-						return (getPlayerId(n) != null)
-							&& Foxtrick.hasClass(n, awayClass);
-					}, sidebarLinks);
-					Foxtrick.map(function(n) {
-						Foxtrick.addClass(n.parentNode.parentNode,
-							"ft-match-event-home");
-					}, homeLinks);
-					Foxtrick.map(function(n) {
-						Foxtrick.addClass(n.parentNode.parentNode,
-							"ft-match-event-away");
-					}, awayLinks);
+					if (!Foxtrick.Pages.Match.hasNewRatings(doc)) {
+						// add class for sidebar event rows
+						var sidebarLinks =  Foxtrick.filter(function(n) {
+							return n.hasAttribute('href') ;
+						}, sidebar.getElementsByTagName("a"));
+						var homeLinks = Foxtrick.filter(function(n) {
+							return (getPlayerId(n) != null)
+								&& Foxtrick.hasClass(n, homeClass);
+						}, sidebarLinks);
+						var awayLinks = Foxtrick.filter(function(n) {
+							return (getPlayerId(n) != null)
+								&& Foxtrick.hasClass(n, awayClass);
+						}, sidebarLinks);
+						Foxtrick.map(function(n) {
+							Foxtrick.addClass(n.parentNode.parentNode,
+								"ft-match-event-home");
+						}, homeLinks);
+						Foxtrick.map(function(n) {
+							Foxtrick.addClass(n.parentNode.parentNode,
+								"ft-match-event-away");
+						}, awayLinks);
+					}
 				});
 			});
 		}

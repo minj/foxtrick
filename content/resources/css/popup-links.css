@@ -5,6 +5,11 @@
 	display:inline;
 }
 
+h1 > span.ft-popup-span {
+	font-weight: inherit !important;
+	font-size: inherit !important;
+}
+
 /* fix for vanishing links in rtl tables
 html[dir="rtl"] td .ft-popup-span {
 	display:block;

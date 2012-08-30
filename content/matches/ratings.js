@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 Foxtrick.modules["Ratings"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-	PAGES : new Array('match'),
+	PAGES : new Array('match', 'matchOld'),
 	OPTIONS : ["HideAverages", "HatStats", "HatStatsDetailed", "LoddarStats", "PeasoStats", "VnukStats", "HTitaVal", "GardierStats"],
 	ratingDefs :  {}, // will be filled in initOptions
 
@@ -27,7 +27,7 @@ Foxtrick.modules["Ratings"]={
 			return;
 		}
 
-		if (FoxtrickPrefs.isModuleOptionEnabled("Ratings", "HideAverages") 
+		if (!Foxtrick.Pages.Match.hasNewRatings(doc) && FoxtrickPrefs.isModuleOptionEnabled("Ratings", "HideAverages") 
 			&& !Foxtrick.Pages.Match.isYouth(doc)) {
 			for (var i=0; i<5; ++i) {
 				ratingstable.deleteRow(-1);

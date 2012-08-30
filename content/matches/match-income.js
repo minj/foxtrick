@@ -7,29 +7,48 @@
 
 Foxtrick.modules["MatchIncome"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-	PAGES : ['match'],
+	PAGES : ['match', 'matchOld'],
 	run : function(doc) {
 
-		var sidebar = doc.getElementById('sidebar');
-		var sidebarBoxes = sidebar.getElementsByClassName('sidebarBox');
-		var isSoldSeats = function(n) {
-			// returns whether a sidebarBox is sold seats box
-			var tables = n.getElementsByTagName('table');
-			if (tables.length != 1)
-				return false;
-			if (tables[0].rows.length != 4)
-				return false;
-			if (tables[0].rows[0].cells.length <2)
-				return false;
-			if (tables[0].rows[0].cells[0].textContent.search(/\d/)!=-1)
-				return false;
-			if (tables[0].rows[0].cells[1].textContent.search(/\d/)==-1)
-				return false;
-			return true;
-		};
-		var soldSeatBox = Foxtrick.filter(isSoldSeats, sidebarBoxes)[0];
-		if (!soldSeatBox) // cannot find sold seat boxes
-			return;
+		var hasNewRatings = Foxtrick.Pages.Match.hasNewRatings(doc);
+		
+		if (!hasNewRatings) {
+			var sidebar = doc.getElementById('sidebar');
+			var sidebarBoxes = sidebar.getElementsByClassName('sidebarBox');
+			var isSoldSeats = function(n) {
+				// returns whether a sidebarBox is sold seats box
+				var tables = n.getElementsByTagName('table');
+				if (tables.length != 1)
+					return false;
+				if (tables[0].rows.length != 4)
+					return false;
+				if (tables[0].rows[0].cells.length <2)
+					return false;
+				if (tables[0].rows[0].cells[0].textContent.search(/\d/)!=-1)
+					return false;
+				if (tables[0].rows[0].cells[1].textContent.search(/\d/)==-1)
+					return false;
+				return true;
+			};
+			var soldSeatBox = Foxtrick.filter(isSoldSeats, sidebarBoxes)[0];
+			if (!soldSeatBox) // cannot find sold seat boxes
+				return;
+		}
+		else{
+			var table = Foxtrick.filter(function (n){
+				if (n.rows.length != 4)
+					return false;
+				if (n.rows[0].cells.length <2)
+					return false;
+				if (n.rows[0].cells[0].textContent.search(/\d/)!=-1)
+					return false;
+				if (n.rows[0].cells[1].textContent.search(/\d/)==-1)
+					return false;
+				return true;			
+			}, doc.querySelectorAll('div.reportHighlights > table'))[0];
+		}
+		if (!hasNewRatings) var table = soldSeatBox.getElementsByTagName('table')[0];
+		if (!table) return;
 		
 		//find correct price for match
 		//based on research in post 15703189.1
@@ -58,7 +77,6 @@ Foxtrick.modules["MatchIncome"]={
 		}
 		var isCup = doc.getElementById("mainBody").getElementsByClassName("matchCup").length > 0?true:false;
 		
-		var table = soldSeatBox.getElementsByTagName('table')[0];
 		var tbody = table.getElementsByTagName('tbody')[0];
 		var sum = Foxtrick.trimnum(table.rows[0].cells[1].textContent)	*	prices[priceIdx].terraces *(isCup?(67.0/100.0):1)
 			+ Foxtrick.trimnum(table.rows[1].cells[1].textContent)		*	prices[priceIdx].basicSeats *(isCup?(67.0/100.0):1)
