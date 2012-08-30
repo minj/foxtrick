@@ -17,6 +17,10 @@ Foxtrick.Pages.Match = {
 	isHTOIntegrated : function(doc) {
 		return (doc.location.search.search(/SourceSystem=HTOIntegrated/i) > -1);
 	},
+	
+	hasNewRatings : function(doc) {
+		return (doc.getElementById('divReport') != null);
+	},
 
 	getId : function(doc) {
 		try {
@@ -136,5 +140,82 @@ Foxtrick.Pages.Match = {
 			Foxtrick.log('getTacticsFromCell', e, path);
 		}
 		return null;
+	},
+	/* modeled on Foxtrick.addBoxToSidebar
+	 * @desc add a box to the sidebar on the right
+	 * @param doc - HTML document the content is to be added on
+	 * @param title - the title of the box, will create one if inexists
+	 * @param content - HTML node of the content
+	 * @param prec - precedence of the box, smaller value will be placed higher
+	 * @return box to be added to
+	 */
+	addBoxToSidebar : function(doc, title, content, prec) {
+		// class of the box to add
+		var boxClass = "";
+		var sidebar;
+		(sidebar = doc.getElementsByClassName("reportHighlights")[0]) && (boxClass = "ft-matchSidebarBox");
+	
+		if (!sidebar)
+			return;
+	
+		// destination box
+		var dest;
+	
+		// existing sidebar boxes
+		var existings = sidebar.getElementsByClassName(boxClass+', .rightHandBoxHeader');
+		for (var i = 0; i < existings.length; ++i) {
+			var box = existings[i];
+			var hdr = box.getElementsByClassName("rightHandBoxHeader")[0].textContent;
+			if (hdr == title)
+				dest = box; // found destination box
+		}
+		// create new box if old one doesn't exist
+		if (!dest) {
+			var dest = doc.createElement("div");
+			dest.className = boxClass;
+			dest.setAttribute("x-precedence", prec);
+			// boxHead
+			var boxHead = doc.createElement("h4");
+			boxHead.className = "rightHandBoxHeader";
+			dest.appendChild(boxHead);
+			boxHead.textContent = title;
+			// boxBody
+			var boxBody = doc.createElement("div");
+			boxBody.className = "rightHandBoxBody";
+			dest.appendChild(boxBody);
+			// append content to boxBody
+			boxBody.appendChild(content);
+			// now we insert the newly created box
+			var inserted = false;
+			if (existings.length) {
+				for (var i = 0; i < existings.length; ++i) {
+					// precedence of current box, hattrick boxes are set to 0
+					var curPrec = existings[i].hasAttribute("x-precedence")
+						? Number(existings[i].getAttribute("x-precedence"))
+						: 0;
+					if (curPrec > prec) {
+						if (i == 0 && curPrec == 0)
+							// first to be added and placed before HT boxes. add it on top before possible updatepanel div (eg teampage challenge and mailto)
+							sidebar.insertBefore(dest, sidebar.firstChild);
+						else
+							existings[i].parentNode.insertBefore(dest, existings[i]);
+						inserted = true;
+						break;
+					}
+				}
+			}
+			else if (prec < 0) {
+				sidebar.insertBefore(dest, sidebar.firstChild);
+				inserted = true;
+			}
+			
+			if (!inserted)
+				sidebar.appendChild(dest);
+		}
+	
+		// finally we add the content
+		dest.getElementsByClassName("rightHandBoxBody")[0].appendChild(content);
+	
+		return dest;
 	}
 };
