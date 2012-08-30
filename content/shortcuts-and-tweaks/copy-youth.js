@@ -146,7 +146,7 @@ Foxtrick.modules["CopyYouth"]={
 						// - unauthorized request
 
 						//api url
-						var url = "http://stage.hattrick-youthclub.org/_data_provider/foxtrick/playersYouthRejectCall";
+						var url = "http://www.hattrick-youthclub.org/_data_provider/foxtrick/playersYouthRejectCall";
 					
 						var teamId = Foxtrick.modules["Core"].getSelfTeamInfo().teamId;
 						//assemble param string
@@ -159,8 +159,7 @@ Foxtrick.modules["CopyYouth"]={
 						params = params + "&lang=" + Foxtrick.modules["ReadHtPrefs"].readLanguageFromMetaTag(doc);
 						var hash = "foxtrick_" + teamId + "_" + identifier;
 						params = params + "&hash=" + Foxtrick.encodeBase64(hash);
-
-						Foxtrick.log(params);
+						
 						//load and callback
 						Foxtrick.util.load.async(url, function(response, status){
 							switch(status){
@@ -259,10 +258,10 @@ Foxtrick.modules["CopyYouth"]={
 					Foxtrick.onClick(rejectButton, function(){ copyReport(true) });
 
 					// enable for debug: fake link, used to simulate sending shit to HY without actually rejecting the player
-					var fakeReject = doc.createElement("a");
-					fakeReject.textContent = "Fake No";
-					rejectButton.parentNode.appendChild(fakeReject);
-					Foxtrick.onClick(fakeReject, function(){ copyReport(true) });
+					// var fakeReject = doc.createElement("a");
+					// fakeReject.textContent = "Fake No";
+					// rejectButton.parentNode.appendChild(fakeReject);
+					// Foxtrick.onClick(fakeReject, function(){ copyReport(true) });
 
 					if(alertdiv.getElementsByTagName('input').length == 2){
 						//setting cookie when player was pulled
