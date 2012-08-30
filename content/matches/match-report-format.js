@@ -475,7 +475,7 @@ var eventText = {
 	
 	Foxtrick.modules.MatchReportFormat = {
 		MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-		PAGES : ["match", "matchNew"],
+		PAGES : ["match", "matchOld"],
 		OPTIONS : ['ShowEventIcons'],
 		CSS : Foxtrick.InternalPath + "resources/css/match-report.css",
 

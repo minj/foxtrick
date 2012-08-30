@@ -7,7 +7,7 @@
 
 Foxtrick.modules.AddClass={
 	CORE_MODULE : true,
-	PAGES : ["playerDetails", "search", "bookmarks", "match", "matchNew", "transferCompare"],
+	PAGES : ["playerDetails", "search", "bookmarks", "match", "matchOld", "transferCompare"],
 	NICE : -20, // place before all date-related modules
 
 	run : function(doc) {
@@ -19,7 +19,7 @@ Foxtrick.modules.AddClass={
 			this.addDateForTable(doc, doc.getElementsByTagName("table")[0]);
 		else if (Foxtrick.isPage("bookmarks", doc))
 			this.addDateForBookmarks(doc);
-		else if (Foxtrick.isPage("match", doc) || Foxtrick.isPage("matchNew", doc))
+		else if (Foxtrick.isPage("match", doc) || Foxtrick.isPage("matchOld", doc))
 			this.addDateForMatch(doc);
 	},
 

@@ -7,7 +7,7 @@
 
 Foxtrick.modules["LinksMatch"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.LINKS,
-	PAGES : new Array('match', 'matchNew'),
+	PAGES : new Array('match', 'matchOld'),
 	CSS: Foxtrick.InternalPath+"resources/css/links-match.css",
 	OPTION_FUNC : function(doc, callback) {
 		return Foxtrick.modules["Links"].getOptionsHtml(doc, "LinksMatch",

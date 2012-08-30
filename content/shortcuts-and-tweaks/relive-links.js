@@ -7,7 +7,7 @@
 
 Foxtrick.modules["ReLiveLinks"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : ['match', 'matchNew', 'matches', 'matchesArchive', 'cupMatches', 'fixtures', 'youthFixtures', 'series'],
+	PAGES : ['match', 'matchOld', 'matches', 'matchesArchive', 'cupMatches', 'fixtures', 'youthFixtures', 'series'],
 	CSS : Foxtrick.InternalPath+"resources/css/relive-links.css",
 	NICE : -1, //before any modules that might change row count
 	run : function(doc) {
@@ -27,7 +27,7 @@ Foxtrick.modules["ReLiveLinks"]={
 
 		var rows, row, liveTdIdx = 4, cloneUrlIdx = 5, tdCount = 7, scoreIdx = 3;
 		
-		if (Foxtrick.isPage('match', doc) || Foxtrick.isPage('matchNew', doc)) {
+		if (Foxtrick.isPage('match', doc) || Foxtrick.isPage('matchOld', doc)) {
 			
 			if (Foxtrick.Pages.Match.isPrematch(doc)
 			|| Foxtrick.Pages.Match.inProgress(doc) )

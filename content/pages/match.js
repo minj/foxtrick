@@ -162,7 +162,7 @@ Foxtrick.Pages.Match = {
 		var dest;
 	
 		// existing sidebar boxes
-		var existings = sidebar.getElementsByClassName(boxClass);
+		var existings = sidebar.getElementsByClassName(boxClass+', .rightHandBoxHeader');
 		for (var i = 0; i < existings.length; ++i) {
 			var box = existings[i];
 			var hdr = box.getElementsByClassName("rightHandBoxHeader")[0].textContent;
@@ -175,7 +175,7 @@ Foxtrick.Pages.Match = {
 			dest.className = boxClass;
 			dest.setAttribute("x-precedence", prec);
 			// boxHead
-			var boxHead = doc.createElement("div");
+			var boxHead = doc.createElement("h4");
 			boxHead.className = "rightHandBoxHeader";
 			dest.appendChild(boxHead);
 			boxHead.textContent = title;
@@ -194,7 +194,7 @@ Foxtrick.Pages.Match = {
 						? Number(existings[i].getAttribute("x-precedence"))
 						: 0;
 					if (curPrec > prec) {
-						if (i == 0 && curPrec == 0 )
+						if (i == 0 && curPrec == 0)
 							// first to be added and placed before HT boxes. add it on top before possible updatepanel div (eg teampage challenge and mailto)
 							sidebar.insertBefore(dest, sidebar.firstChild);
 						else
@@ -208,6 +208,7 @@ Foxtrick.Pages.Match = {
 				sidebar.insertBefore(dest, sidebar.firstChild);
 				inserted = true;
 			}
+			
 			if (!inserted)
 				sidebar.appendChild(dest);
 		}

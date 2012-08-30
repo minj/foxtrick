@@ -7,7 +7,7 @@
 
 Foxtrick.modules["AttVsDef"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-	PAGES : new Array('match'),
+	PAGES : new Array('match', 'matchOld'),
 	NICE : -1, // before Ratings
 	RADIO_OPTIONS : new Array("newstyle", "oldstyle", "oldstyleifkseparated"),
 
@@ -35,7 +35,9 @@ Foxtrick.modules["AttVsDef"]={
 		} else {
 			bodydiv.textContent = Foxtrickl10n.getString("matches.wronglang");
 		}
-		Foxtrick.addBoxToSidebar(doc, header, bodydiv, 1);
+		if(!Foxtrick.Pages.Match.hasNewRatings(doc))
+			Foxtrick.addBoxToSidebar(doc, header, bodydiv, 1);
+		else Foxtrick.Pages.Match.addBoxToSidebar(doc, header, bodydiv, 1);
 
 		if (Foxtrick.util.layout.isStandard(doc) && FoxtrickPrefs.getInt("module." + this.MODULE_NAME + ".value") == 0) bodydiv.parentNode.style.padding='8px 6px 15px';
 	},
