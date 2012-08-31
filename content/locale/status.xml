@@ -352,7 +352,7 @@
     <approved_progress>0</approved_progress>
   </language>
   <language>
-    <name>Brazilian Portuguese</name>
+    <name>Portuguese, Brazilian</name>
     <code>pt-BR</code>
     <phrases>1327</phrases>
     <translated>1327</translated>
@@ -370,7 +370,7 @@
     <approved_progress>0</approved_progress>
   </language>
   <language>
-    <name>Argentina Spanish</name>
+    <name>Spanish, Argentina</name>
     <code>es-AR</code>
     <phrases>1327</phrases>
     <translated>1277</translated>
@@ -379,12 +379,12 @@
     <approved_progress>0</approved_progress>
   </language>
   <language>
-    <name>Costa Rica Spanish</name>
+    <name>Spanish, Costa Rica</name>
     <code>es-CR</code>
     <phrases>1327</phrases>
-    <translated>1277</translated>
+    <translated>1302</translated>
     <approved>0</approved>
-    <translated_progress>96</translated_progress>
+    <translated_progress>98</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>

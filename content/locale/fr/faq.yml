@@ -56,7 +56,7 @@ fr:
     privacy: 
       question: Comment FoxTrick protège ma vie privée ?
       answer: |
-        <p>FoxTrick ne récupère aucune de vos données ou préférences sur son serveur; Jamais Foxtrick ne transmettra vos données personnelles, cela inclu, et pas seulement limité à, votre nom d'utilisateur, mot de passe et l'ID de joueurs associée à leurs caractéristiques à des tierces-parties.</p>
+        <p>FoxTrick ne récupère aucune de vos données ou préférences sur son serveur; Jamais Foxtrick ne transmettra vos données personnelles à des tierces-parties, cela inclus (et ce n'est pas exhaustif) votre nom d'utilisateur, votre mot de passe et l'ID de vos joueurs associée à leurs caractéristiques </p>
         
         <p>La plupart des données transmises à des tiers, sauf ceux explicitement indiqué ci-dessous, sont envoyées avec la méthode HTTP GET, et ne sera envoyée que si vous cliquez sur un lien.</p>
         

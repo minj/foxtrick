@@ -115,7 +115,7 @@ es-CR:
       note_4: Several translation updates
     0.9.0.1: 
       note_0: Fixed (accidental) excessive permissions for Chrome
-      note_1: Fixed LiveAlert 
+      note_1: Arreglado LiveAlert 
       note_2: Fixed and some css issues (for Chrome, Opera, Safari)
     0.9: 
       note_0: '<header>Localization:</header>'
@@ -227,8 +227,8 @@ es-CR:
       note_10: 'Option to hide forum sneak-peek in <module>FixcssProblems</module>. (ljushaff)'
       note_11: 'Option to copy advertisement in non-table style in <module>CopyPlayerAd</module>. (ryanli)'
       note_12: 'Option to show HatStats per rating in <module>Ratings</module>. (taised)'
-      note_13: Belarusian locale. (LA-Stolik)
-      note_14: 'Add some frequently asked questions at <FTlinkHelp>Help tab</FTlinkHelp>. (ryanli)'
+      note_13: Belaruso (LA-Stolik)
+      note_14: 'Se ñadio sección de preguntas frecuentes en <FTlinkHelp>Pestaña de ayuda</FTlinkHelp>. (ryanli)'
       note_15: New grey icon for report links. (ljushaff)
       note_16: '<module>YouthPromotes</module> also shows the earliest date to promote a player. (ryanli)'
       note_17: Most features working under Google Chrome. (ryanli)
