@@ -1,250 +1,238 @@
-en: 
-    versions: 
-        nightly: 
-            note_0: "Ово је верзија за девелопере. Користите је на сопствену одговорност. За детаље о променама погледајте <linkSVN>commit history</linkSVN> на сајту Google Code."
-
-        beta: 
-            note_0: "Ово је бета верзија ннаредне званичне верзије. Уколико желите да помогнете у превођењу посетите нашу страницу за преводиоце на <linkCrowdin>crowdin.net</linkCrowdin>. "
-		
-        0.12.0:
-            note_0: "<module>Tabs</module>: Додата опција за додавање персонализованих табова на већини страница. (по узору на HT табове у прегледу надолазећих мечева)."
-            note_1: "<module>DashboardCalendar</module>: Додато дугме за извоз Хеттрик недеље у iCalendar фајл формату (требало би да буде компатибилно са апликацијама Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal итд.)"
-            note_2: "<module>LiveAlert</module>: Додати различити звуци за голове домаћин/гост/голови мог тима. Подразумевана колекција је преузета из  <linkHTLS>HTLiveSight</linkHTLS> апликације. У почетку голови вашег тима неће бити препознати ако користитите Re-Live."
-            note_3: "<module>CopyYouth</module>: Hattrick youthclub корисници сада могу дирекно послати извештај скаута за одбијене играче на HY сајт"
-
-        0.11.0: 
-            note_0: "НОВО:  <module>DirectPageLinks</module>: додати линкови за директан приступ страницама унутар теме на форуму"
-            note_1: "НОВО:  <module>ForumModeratorPopup</module>: Додат мени за модераторе форума на врху тема на форуму ради лакшег модерирања."
-            note_2: "НОВО:  <module>PlayerStatsTrainingWeek</module>: Додата могућност груписања мечева у складу са тренинг недељом уместо календарске ХТ недеље."
-            note_3: "<module>MatchOrderInterface</module>: Исправка за листу извођача пенала. Сада можете убацити све играче из поставе за меч на листу или да обришете целу листу једним кликом."
-            note_4: "<module>SkillTable</module>: Додата могућност за додатно сортирање већ сортираних колона користећи ctrl + леви клик на заглављу неке друге несортиране колоне."
-            note_5: "<module>SkillTable</module>: Имена играча су скраћена ради уштеде простора."
-            note_6: "<module>SkillColoring</module>: Комплетно редизајниран модул, са много исправки и додатака. Опције су измењене, па вас молимо да их поново подесите у складу са вашим потребама."
-            note_7: "<module>TransferSearchResultFilters</module>: Додата могућност за филтрирање резултата на основу форме и за сакривање играча који немају специјалност. Овај модул сада ради у комбинацији са модулом <module>TransferSearchFilters</module>."
-            note_8: "<module>MatchSimulator</module>: Додата интеграција са модулом <module>Ratings</module>."
-            note_9: "<module>FriendlyPool</module>: Додата могућност за раширени приказ поља за селекцију државе."
-            note_10: "<module>MovePlayerStatement</module>: Додата опција за потпуно уклањање играчеве изјаве."
-            note_11: "<module>YouthTwins</module>: Ручно направљене измене на HY сајту се одмах виде и на страници омладинских играча."
-            note_12: "<header>Исправке багова</header>"
-		
-        0.10.0: 
-            note_0: "НОВО:  <module>TransferHistoryFilters</module>: Омогућава филтрирање купљених или продатих играча на страници клупске Историје трансфера"
-            note_1: "<module>PlayerStatsExperience</module>: Нова верзија са више детаља. (Хвала SeanConnery (7751762) за тестирање комбинације боја за особе које не препознају основну нијансу црвене и зелене)"
-            note_2: "<module>MatchOrderInterface</module>: Могућност клонирања постојећих индивидуалних налога за играче. Играчи намерно неће бити убачени."
-            note_3: "Мање измене у изгледу"
-            note_4: "<module>YouthTwins</module>: Опција за скривање линка ка објашњењу појма 'близанац'"
-            note_5: "<module>StaffMarker</module>: Од сада користимо Google Code за листу Hattrick Youthclub особља како би смањили оптерећење њиховог сервера"
-            note_6: "<module>MatchPlayerColouring</module>: Сада ради правилно и за играче који су ушли и изашли из игре пре краја меча"
-            note_7: "<module>TeamPopupLinks</module>: Мање корекције изгледа ради усклађивања са општим изгледом Хеттрик сајта"
-            note_8: "<header>За слепе и особе са оштећеним слухом</header>"
-            note_9: "Додали смо нову секцију подешавањима која ће у себи сдржати све модуле који имају везе са лакшим приступом садржају Хеттрик сајта."
-            note_10: "НОВО: <module>ARIALandmarks</module>: Додаје ARIA маркере на Хеттерик вебсајт. Уз помоћ ових маркера је олаккшана навигација за особе које користе програме за ишчитавање страница."
-
-        0.9.3: 
-            note_0: "A lot of language updates because Foxtrick users are awesome. Thank you so much. Keep contributing at <linkCrowdin>http://www.crowdin.net</linkCrowdin>"
-            note_1: "НОВО:  <module>YouthTwins</module>: Shows the amount of possible/marked/non twins on the youth players overview page for supporters (in conjunction with hattrick youthclub)"
-            note_2: "<module>MatchOrderInterface</module>: Option to show player faces instead of shirts for future and past line-ups (default on)"
-            note_3: "<module>MatchOrderInterface</module>: Option to disable last match information and highlighting for tournament games added (default on)"
-            note_4: "<module>MatchIncome</module>: Support for increased ticket prices in season 49. Income is now calculated by the ticket prices that were active when the match was played."
-            note_5: "MatchOrderInterface: Fixed bug where the playedLastMatch indicator didn't show (or showed incorrectly) on Firefox"
-            note_6: "MatchOrderInterface: Removed last match highlighting because it's not approved anymore :( (But there's a native HT replacement for supporters now)"
-            note_7: "PlayerStatsExperience: Fixed bug where red cards caused games beeing detected as walkovers"
-            note_8: "PlayerStatsExperience: Fixed issue that caused this module not to work on Firefox 3.6"
-            note_9: "CustomMedals: Fixed disappearing tournament trophies"
-            note_10: "Ogg sounds for mozilla-based browsers enabled"
-            note_11: "Fennec loads staffmarker and link resources from internal sources again. So they aren't updated dynamically but also save bandwidth."
-
-        0.9.2: 
-            note_0: "Редизајнирано аутоматско препознавање језика. Више неће бити грешака при препознавању."
-            note_1: "Многобројна ажурирања превода. Хвала свим преводиоцима."
-            note_2: "НОВО: <module>PlayerStatsExperience</module>: на страници Историје наступа приказује колико искуства је играч добио у појединим мечевима и колики је његов тренутни подниво.(CatzHoek)"
-            note_3: "НОВО: <module>TeamPopupLinks</module>: Додати линкови за турнире и опција за означавање тренутног тима у табелама"
-            note_4: "НОВО: <module>RatingsDisplay</module>: просечне оцене и звездице у табели статистке за лигу"
-            note_5: "НОВО: <module>TeamStats</module>: додатни филтери и нове секције"
-            note_6: "<module>PlayerFilters</module> сада има још неколико додатних опција за филтрирање"
-            note_7: "<module>SkillТable</module> на страници резултата претраге трансфера: исправка грешке код повређених играча"
-            note_8: "<module>MatchReportFormat</module>: додате сиве иконице за негативне специјалне догађаје"
-            note_9: "Links: укључена опција за додавање динамичких линкова"
-            note_10: "Links и staffmarker: учитавање у зипованом формату ради мањег оптерећења серверa"
-            note_11: "Links: Поправка за брисање персонализованих линкова"
-            note_12: "<module>ForumAlterHeaderLine</module>: Поправљено означавање отварача теме и уклањање постИД за једноставно заглавље на Форуму"
-            note_13: "<module>ForumStripHattrickLinks</module>: поправљена опција за потврду"
-            note_14: "MatchSimulator: поправљено додавање мечева који нису са турнира"
-            note_15: "CopyYouth: уклоњена бескорисна опција за копирање изворног кода играча"
-            note_16: "CopyYouth: копирање извештаја са тренинга директно линковано са одговарајућом страницом на HT-Youthclub"
-            note_17: "ShowLineupSet: Поправка за ХТ промене и исправљена презентациона грешка за једноставну тему"
-            note_18: "Враћен недостајући ИД за маркиране играче"
-            note_19: "Медијан трансфер цена поправљена за кориснике код којих није радила"
-            note_20: "MatchOrder: Означавање играча који су играли последњи меч сада и у постави"
-            note_21: "Још нека унапређења ради усклађивања са <linkAMO>AMO</linkAMO> стандардима"
-            note_22: "<header>За оне који кристе Google Chrome</header>"
-            note_23: "Изгледа да систем опционих дозвола за Chrome 18 има одређених багова приликом уклањања и поновног давања дозвола. Модули за које су ове дозволе потребне (HTY <module>StaffMarker</module> и <module>EmbedMedia</module>) вероватно неће радити."
-
-        0.9.1: 
-            note_0: "HTMS: поново узима у обзир и тактику"
-            note_1: "Tablesort: сортирање 'пливајућих' бројева"
-
-        0.9.0.5: 
-            note_0: "<module>TeamPopupLinks</module>: Промењен формат за постављање персонализованих линкова"
-            note_1: "<module>MatchSimulator</module>: Поправка за копирање оцена делова терена и мечеве на турнирима"
-            note_2: "<module>NewMail</module>: враћена опција за звучно обавештење"
-            note_3: "<module>ForumYouthIcons</module>: додати линкови за турнире"
-            note_4: "Модул MatchTables уклоњен пошто га нико више не користи"
-            note_5: 'Поправљено линковање подешавања "foxtrick://"'
-            note_6: "<module>MatchSimulator</module> умањење због кондиције: приказује текстуалне оцене заокружене и бројчане без заокруживања"
-            note_7: "Колекција линкова <module>Links</module> пребачена на други сервер"
-            note_8: "Још неке поправке ради испуњавања стандарда за Фајерфокс екстензије - AMO"
-            note_9: "<module>Matchreport</module> сада приказује текстуални опис типа догађаја кад се мишем пређе преко иконица(само на Енглеском језику)"
-            note_10: "Додата опција за избор иконица за специјалност играча у табу за главна подешавања"
-            note_11: "Означавање Фокстрик додатака пребачено у главна подешавања и у Фокстрик мени"
-            note_12: "Нови модул <module>SafeForWork</module> за камуфлирање Хеттрик табова заменом текста и фавикона"
-            note_13: "Велики број превода захваљујући помоћи: aegeansailor, brauxx, Mod-Utku, ebitechv, Polytropos, gkon13, SOLARIS1973, Fieras, margaale, ipefix, stephan.cardot, OmaniMilani, LambdaB, SI-CH, Convincedd, margaale, ljushaff, serjhanti, playMaker, CoRrRan, Aristodemos, margaale, spider007, FeritAkarsu и вероватно смо неког заборавили, пошаљите нам поруку ако вам се нисмо захвалили, тешко је испратити толики број људи који се укључио у превођење. Свака вам част! Хвала вам свима!"
-
-        0.9.0.4: 
-            note_0: "Колекција линкова <module>Links</module> пребачена на други сервер"
-            note_1: "Додати текстуални описи за догађаје на мечу на енглеском језику у модулу <module>MatchReportFormat</module>"
-            note_2: "Активирани модули <module>MatchReportFormat</module> и <module>MatchPlayerColoring</module> за мечеве са турнира"
-
-        0.9.0.3: 
-            note_0: "Исправке за неколико модула после промена изгледа страница"
-
-        0.9.0.2: 
-            note_0: "Исправка за последњу верзију Chrome због које је модул <module>LoyaltyDisplay</module> блокирао"
-            note_1: "Поправљени линкови до поставе у мечу за омладинце у модулу <module>MatchReportFormat</module>"
-            note_2: "<module>MatchSimulator</module> побољшана формула за утицај кондиције"
-            note_3: "Нове иконице за специјалности играча"
-            note_4: "Неколико ажурираних превода"
-
-        0.9.0.1: 
-            note_0: "Поправљене (ненамерне) претеране дозволе за Chrome"
-            note_1: "Поправљен модул <module>LiveAlert</module> "
-            note_2: "Поправке за одређене 'css' проблеме (за Chrome, Opera, Safari)"
-
-        0.9: 
-            note_0: "<header>Означавање активних Фокстрик функција на страници</header>"
-            note_1: "Такође смо убацили и функцију за означавање активних Фокстрик функција како би их лакше препознали и пронашли одговарајуће модуле одговорне за њих. Да укључите или искључите означавање свих Фокстрик опција активних на одређеној страници, кликните на ознаку Фокстрик верзије која се налази у доњем десном углу сваке странице, поред ознаке Хеттрик сервера на којем сте улоговани. Након првог освежавања странице, пређите мишем изнад означених делова да би вам се приказало и име модула који је одговоран за ту функцију."
-            note_2: "<header>Локализација:</header>"
-            note_3: "Интеграција са <linkCrowdin>crowdsourcing</linkCrowdin> сервисом за превођење . (CatzHoek, Convincedd)"
-            note_4: "Велики број ажурираних превода. (Catzhoek и многи други преводиоци. Између осталих: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, TheZayc, -Iuve-, Mcload, Polytropos, MrAli, ripaldo, Ryo567, Louzao, kirja, MartinsPF)"
-            note_5: "Хвала свима. Молимо вас да наставите да преводите FoxTrick на <linkCrowdin>http://crowdin.net/project/foxtrick</linkCrowdin>"
-            note_6: "За више информација погледајте [post=15466991.1] или [post=15466972.1]"
-            note_7: "<header>Нове опције и измене</header>"
-            note_8: "<module>MatchReportFormat</module>: Комплетно промењен изглед меч извештаја (ryanli, Catzhoek, ljushaff)"
-            note_9: "<module>Ratings</module>: Опција за скривање Хеттрикових просечних оцена (convinced)"
-            note_10: "<module>Filter</module>: Додаје филтере на страницу 'Најбољи играчи' (convinced)"
-            note_11: "<module>MatchOrder</module>: Додатне информације за страницу меч налога и функција за промену страна играча у постави (convinced)"
-            note_12: "<module>MatchSimulator</module>: Додатна опција за умањење оцена у зависности од кондиције играча и меч симулатор уз помоћ <linkHTMS>HTMS</linkHTMS> алата. (convinced)"
-            note_13: "<module>RatingsDisplay</module>: Опционо приказивање Хеттрик рејтинга у другачијем формату (convinced)"
-            note_14: "<module>LoyaltyDisplay</module>: Означава увећање вештина играча у зависности од њихове оданости и бонуса за матични клуб уколико су вам вештине играча приказане као линије (Catzhoek)"
-            note_15: "<module>EmbedMedia</module>: Уграђује линковане медија клипове директно у постове на форуму (Catzhoek)"
-            note_16: "<module>HeaderToggle</module>: Омогућава отварање/затварање било којег садржаја на Хеттрик страницама које имају 'h2' заглавље (convincedd)"
-            note_17: "<module>Links</module> и <module>StaffMarker</module> се учитавају директно са <linkFT>foxtrick.org</linkFT> сајта. Захваљујући томе, сада можемо ажурирати линкове без ажурирања Фокстрика"
-            note_18: "Ажурирани подаци које користи <module>StaffMarker</module> за означавање власника CHPP лиценци и ХТ Прес уредника(Catzhoek)"
-            note_19: "<module>StaffMarker</module>: Када пређете мишем преко надимка власника CHPP лиценце приказују се и називи свих његових апликација (Catzhoek)"
-            note_20: "Линкови за мечеве адаптирани променама на Хеттрику (Catzhoek)"
-            note_21: "Уклоњене опције LeagueChat и HeaderFixFlickerFix (convincedd)"
-            note_22: "Многе мање интерне промене и неколико других мањих поправки(ryanli, convincedd)"
-            note_23: "<header>За оне који користе Google Chrome</header>"
-            note_24: "Имплементиран је систем опционих дозвола за Google Chrome. Сада има мање обавезних дозвола потребних за коришћење Фокстрика. Пошто вероватно још нисте подесили ниједну дозволу, потребно је да још једном сачувате своја подешавања и потврдите коју год дозволу за приступ желите да дате. Касније ће Google Chrome тражити од вас да дате дозволу за приступ екстерним ресурсима кад год активирате неки од модула за чије функционисање је то неопходно."
-
-        0.8.2: 
-            note_0: "Корејански језик (SI-CH)"
-            note_1: "Литвански језик (LA-MJ)"
-            note_2: "Генерално чишћење локализација (CatzHoek)"
-            note_3: "Додати линкови за <linkHTEV>http://htev.org/</linkHTEV> странице са статистиком. (convincedd, CatzHoek)"
-            note_4: "Још неке ситне поправке. (convincedd, CatzHoek)"
-
-        0.8.1: 
-            note_0: "<module>ElectionTable</module>: прилагођен новом изгледу странице за изборе. (convincedd, ryanli)"
-            note_1: "<module>HTThreadMarker</module>: нови стил за маркирање. (convincedd, ryanli)"
-            note_2: "<module>TableSort</module>: без конфликата са оригиналним Хеттрик сортирањем. (convincedd)"
-            note_3: "<module>HTMSPrediction</module>, <module>CopyRatings</module>: прилагођени новом изгледу странице са извештајем са мечева. (convincedd)"
-            note_4: "<module>LineupShortcut</module>: сада ради и за оне који немају супортер. (ryanli)"
-            note_5: "<module>TransferSearchResultFilters</module>: исправка после последњих промена. (convincedd)"
-            note_6: "<module>SkillTable</module>: сада укључује оданост и бонус за матични клуб. (convincedd)"
-
-        0.8: 
-            note_0: "Арапски језик. (GM-OmaniMilani)"
-            note_1: "Нови механизам приказивања опција активних на страници, стари модул OnPagePrefs је због тога уклоњен. (convincedd, ryanli)"
-            note_2: "<FTlinkMainTab>Опција</FTlinkMainTab> за спречавање учитавања XML фајлова са Хеттрика. (convincedd)"
-            note_3: "Нови модул <module>LocalTime</module> за приказивање локалног уместо ХТ времена. (ryanli)"
-            note_4: "Нови модул <module>LinksYouthLeague</module> за линкове на страници омладинске лиге. (Parminu)"
-            note_5: "Нови модул <module>CopyYouth</module> обједињује старе модуле за копирање података о омладинцима, и аутоматски отвара линкове ка алатима који користе ископиране информације. Нова функција за копирање распореда мечева омладинаца. (ryanli, Parminu)"
-            note_6: "Нови модул <module>SupporterStatsEnhancements</module> који побољшава приказ података у супортер статистици. (convincedd)"
-            note_7: "Опција за уклањање подменија за позивнице у левом менију у модулу <module>FixcssProblems</module>. (ryanli)"
-            note_8: "Опција за редуковање висине календара у модулу <module>FixcssProblems</module>. (ryanli)"
-            note_9: "Линк до странице за управљање CHPP производима које користите у модулу <module>ExtraShortcuts</module>. (ljushaff)"
-            note_10: "Опција за приказивање вештина омладинацу у боји у оквиру модула <module>SkillTable</module>. (asdfasdfasdf@mailinator.com)"
-            note_11: "Опција за звучно обавештење у модулу <module>LiveAlert</module>. (ryanli)"
-            note_12: "Опција за приказивање иконица за тимове у модулу <module>MyMonitor</module>, осим тога, тимови се сада могу и сортирати. (convincedd)"
-            note_13: "Опција за убацивање 'FoxTrick debug' лога у модулу <module>ForumYouthIcons</module>. (convincedd)"
-            note_14: "Опција за означавање тимова коју су заказали пријатељски меч на страници лиге у модулу <module>ShowFriendlyBooked</module>, укључена аутоматски. (convincedd)"
-            note_15: "Линк за приказивање додатних информација о играчима у модулу <module>SkillTable</module>. (convincedd)"
-            note_16: "У Фајерфоксу Фокстрик иконица је пребачена у горњи мени. (ryanli)"
-            note_17: "У верзији за 'Chrome' Фокстрик иконица је унутар адресне траке. Такође, треперење је уклоњено и брзина знатно унапређена. (convincedd)"
-            note_18: "Фокстрик верзија и за 'Fennec' (Фајерфокс за мобилне). (convincedd)"
-            note_19: "Бета верзија Фокстрика и за браузере 'Opera' и 'Safari'. (convincedd, ryanli)"
-            note_20: "Још неке ситне поправке и побољшања. (convincedd, ryanli)"
-
-        0.7.2: 
-            note_0: "Links for comparing teams at Alltid in module <module>LinksTeam</module>. (convincedd)"
-            note_1: "Fixes for skill table at transfer search results. (convincedd, ryanli)"
-
-        0.7.1: 
-            note_0: "Модул <module>LeagueNewsFilter</module> подељен у два: <module>LeagueNewsFilter</module> и модул <module>ShowLineupSet</module>. (ryanli)"
-            note_1: "Модификације због прилагођавања новој верзији странице са резултатима трансфера. (ryanli, taised)"
-            note_2: "Ажуриран превод. (ryanli, CoRrRan, ljushaff, _KOHb_, slader, ElChiquitin)"
-            note_3: "Још неке ситне поправке. (ryanli)"
-
-        0.7: 
-            note_0: "Исландски језик. (LA-LordBastard)"
-            note_1: "Фламански као копија Холандског. (ryanli)"
-            note_2: "Нова категорија за модуле, <FTlinkAggregation>Додатне информације</FTlinkAggregation>. (ryanli)"
-            note_3: "Нови модул <module>MyMonitor</module> за праћење последњих мечева изабраних тимова на страници Мој Хеттрик. (ryanli)"
-            note_4: "Нови модул <module>MarkAllAsRead</module>, дугменце за означавање свих тема на свим форумима као прочитаних. (ryanli)"
-            note_5: "Нови модул <module>ShowFriendlyBooked</module> који на страници лиге означава тимове који су заказали пријатељску утакмицу. (ryanli)"
-            note_6: "Поново написан модул <module>TickerAlert</module>, који сада интегрише раније модуле: FoxtrickAlert, AlertCustomSound и AlertCustomOff. (ryanli)"
-            note_7: "Модул <module>MatchPlayerColouring</module> учитава саставе тимова директно из XML фајла. (ryanli)"
-            note_8: "Модул FoxtrickLineupShortcut преименован у <module>LineupShortcut</module>. (ryanli)"
-            note_9: "Модул htmsStatistics преименован у <module>HTMSPrediction</module>. (ryanli)"
-            note_10: "Нова опција у модулу <module>FriendlyInterface</module> која сакрива секретарицу ако нема о чему да поднесе извештај. (ryanli)"
-            note_11: "Модул <module>StaffMarker</module> сада користи <linkJSON>JavaScript Object Notation</linkJSON> за персонализоване маркере. (ryanli)"
-            note_12: "Нове радио станице у модулу <module>ExtraShortcuts</module>, Balkaradio и Downtime Radio. (ljushaff, ryanli)"
-            note_13: "Уклоњена опција за отварање Yaplet чета у истом прозору у модулу <module>LeagueAndMatchChat</module>. (ryanli)"
-            note_14: "Још неке ситне поправке. (ryanli, Mod-spambot)"
-
-        0.6.2: 
-            note_0: "Модул <module>SeriesFlags</module> податке директно са Хеттрика. (ryanli)"
-            note_1: "Ажурирани превод. (ljushaff, csajszi, Mod-spambot)"
-            note_2: "Још неке ситне поправке. (ryanli)"
-
-        0.6.1: 
-            note_0: "Модул <module>HTMSPoints</module> од сада калкулише бодове без повеѕиванја на HTMS вебсајт. (taised)"
-            note_1: "Модул <module>htmsStatistics</module> правилно учитава предвиђање исхода меча. (taised)"
-            note_2: "Ажурирани превод. (Mod-spambot, Mod-OmaniMilani, Baler0, ljushaff, _KOHb_, Slash-ss, MEO_Comandante)"
-            note_3: "Компатибилан са граном Фајерфокс 4.2. (ryanli)"
-            note_4: "Још неке ситне поправке. (ryanli)"
-
-        0.6: 
-            note_0: "Нови интерфејс за подешавања. (ryanli)"
-            note_1: "OAuth интерфејс за нов систем ауторизације (Hattrick CHPP API). (ryanli)"
-            note_2: "Mодул <module>LiveAlert</module> за обавештења о головима на мечевима које пратите у HT Live. (ryanli)"
-            note_3: "<module>OldStyleFace</module> модул за приказивење слика играча и менаџера у старом ХТ стилу.(Aimo_Kanuuna)"
-            note_4: "<module>NtPeek</module> за преглед мечева репрезентација на страници 'Мој Хеттрик'.(ryanli)"
-            note_5: "<module>SeriesFlags</module> модул за приказивање заставице и лиге корисника уписаних у књигу гостију. Заставице обезбедио сајт <linkHTMS>HTMS</linkHTMS>. (taised, ryanli)"
-            note_6: "<module>HTMSPoints</module> модул за приказивање вештина и потенцијала за тренинг играча <linkHTMSPoints>HTMS Бодови</linkHTMSPoints>(taised)"
-            note_7: "<module>FriendlyInterface</module> модул са опцијама за приказивање пуног имена играча на страници поставе и приказивање линкова ка националном тиму код репрезентативаца. (ryanli)"
-            note_8: "Mодул HighlightBotTeams преименован у <module>HighlightOwnerless</module>. (ryanli)"
-            note_9: "Обрисани модули YouthSkillNotes и ShortPA. (ryanli)"
-            note_10: "Опција за не приказивање 'Провири на форум' на страници лиге и државе у модулу <module>FixcssProblems</module>. (ljushaff)"
-            note_11: "Опција за копирање играча у старом стилу (без табеле) у модулу <module>CopyPlayerAd</module>. (ryanli)"
-            note_12: "Опција која приказује HatStats за сваки део терена у <module>Ratings</module> модулу. (taised)"
-            note_13: "Белоруски језик. (LA-Stolik)"
-            note_14: "Add some frequently asked questions at <FTlinkHelp>Help tab</FTlinkHelp>. (ryanli)"
-            note_15: 'Нова иконица за линк "Пријави поруку модераторима". (ljushaff)'
-            note_16: "<module>YouthPromotes</module> модул сада приказује и најранији датум за промоцију играча. (ryanli)"
-            note_17: "Већина функција ради и у Google Chrome. (ryanli)"
-            note_18: "Мање исправке за најновије промене на Хеттрику. (ryanli, taised, ljushaff)"
-            note_19: "Опције за радио у модулу<module>ExtraShortcuts</module> су искључене у стандардним подешавањима. (ryanli)"
-            note_20: "Модул <module>SmallerPages</module> стандардно искључен. (ljushaff)"
-            note_21: "Модул <module>TeamSelectBox</module> стандардно искључен. (ryanli)"
+---
+sr: 
+  versions: 
+    nightly: 
+      note_0: 'Ово је верзија за девелопере. Користите је на сопствену одговорност. За детаље о променама погледајте <linkSVN>commit history</linkSVN> на сајту Google Code.'
+    beta: 
+      note_0: 'Ово је бета верзија ннаредне званичне верзије. Уколико желите да помогнете у превођењу посетите нашу страницу за преводиоце на <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.11.0: 
+      note_0: 'НОВО:  <module>DirectPageLinks</module>: додати линкови за директан приступ страницама унутар теме на форуму'
+      note_1: 'НОВО:  <module>ForumModeratorPopup</module>: Додат мени за модераторе форума на врху тема на форуму ради лакшег модерирања.'
+      note_2: 'НОВО:  <module>PlayerStatsTrainingWeek</module>: Додата могућност груписања мечева у складу са тренинг недељом уместо календарске ХТ недеље.'
+      note_3: '<module>MatchOrderInterface</module>: Исправка за листу извођача пенала. Сада можете убацити све играче из поставе за меч на листу или да обришете целу листу једним кликом.'
+      note_4: '<module>SkillTable</module>: Додата могућност за додатно сортирање већ сортираних колона користећи ctrl + леви клик на заглављу неке друге несортиране колоне.'
+      note_5: '<module>SkillTable</module>: Имена играча су скраћена ради уштеде простора.'
+      note_6: '<module>SkillColoring</module>: Комплетно редизајниран модул, са много исправки и додатака. Опције су измењене, па вас молимо да их поново подесите у складу са вашим потребама.'
+      note_7: '<module>TransferSearchResultFilters</module>: Додата могућност за филтрирање резултата на основу форме и за сакривање играча који немају специјалност. Овај модул сада ради у комбинацији са модулом <module>TransferSearchFilters</module>.'
+      note_8: '<module>MatchSimulator</module>: Додата интеграција са модулом <module>Ratings</module>.'
+      note_9: '<module>FriendlyPool</module>: Додата могућност за раширени приказ поља за селекцију државе.'
+      note_10: '<module>MovePlayerStatement</module>: Додата опција за потпуно уклањање играчеве изјаве.'
+      note_11: '<module>YouthTwins</module>: Ручно направљене измене на HY сајту се одмах виде и на страници омладинских играча.'
+      note_12: '<header>Исправке багова</header>'
+    0.10.0: 
+      note_0: 'НОВО:  <module>TransferHistoryFilters</module>: Омогућава филтрирање купљених или продатих играча на страници клупске Историје трансфера'
+      note_1: '<module>PlayerStatsExperience</module>: Нова верзија са више детаља. (Хвала SeanConnery (7751762) за тестирање комбинације боја за особе које не препознају основну нијансу црвене и зелене)'
+      note_2: '<module>MatchOrderInterface</module>: Могућност клонирања постојећих индивидуалних налога за играче. Играчи намерно неће бити убачени.'
+      note_3: Мање измене у изгледу
+      note_4: "<module>YouthTwins</module>: Опција за скривање линка ка објашњењу појма 'близанац'"
+      note_5: '<module>StaffMarker</module>: Од сада користимо Google Code за листу Hattrick Youthclub особља како би смањили оптерећење њиховог сервера'
+      note_6: '<module>MatchPlayerColouring</module>: Сада ради правилно и за играче који су ушли и изашли из игре пре краја меча'
+      note_7: '<module>TeamPopupLinks</module>: Мање корекције изгледа ради усклађивања са општим изгледом Хеттрик сајта'
+      note_8: '<header>За слепе и особе са оштећеним слухом</header>'
+      note_9: Додали смо нову секцију подешавањима која ће у себи сдржати све модуле који имају везе са лакшим приступом садржају Хеттрик сајта.
+      note_10: 'НОВО: <module>ARIALandmarks</module>: Додаје ARIA маркере на Хеттерик вебсајт. Уз помоћ ових маркера је олаккшана навигација за особе које користе програме за ишчитавање страница.'
+      note_11: Мање измене у вези са чувањем података
+      note_12: Мање измене и исправке
+      note_13: '<header>Исправке багова</header>'
+      note_14: '<module>ExtendedPlayerDetails</module>: Исправке за месечну и недељну плату играче за корејски и вероватно још неки од језика'
+      note_15: '<module>MatchOrderInterface</module>: Лице ће бити приказивана и за играче који су замењени у току меча'
+      note_16: '<module>MatchPlayerColouring</module>: Сада ради правилно и за играче који су ушли или изашли из игре пре краја утакмице'
+      note_17: '<module>HideSignatures</module>: Исправка за ХТ подешавања кад је укључена опција за скраћени приказ потписа на форуму'
+      note_18: '<module>PlayerStatsExperience</module>: Исправка грешке детекције финала и полуфинала Светског купа'
+      note_19: '<module>TeamPopupLinks</module>: Исправка за бесконачно креирање табова у књизи гостију'
+      note_20: Исправка медијан цене трансфера за језике који се пишу са десна на лево
+      note_21: '<header>За особе са оштећеним видом или слухом</header>'
+      note_22: Додата нова секција у подешавањима за модуле који имају везе са лакшом приступачношћу садржајима.
+      note_23: 'НОВО: <module>ARIALandmarks</module>: Додаје ARIA маркере на сајт. Ово би требало да омогући лакшу навигацију уз помоћ аутоматских читача страница. Две главне линије за навигацију и листа свих форума на које сте пријављени је добила назив "навигација". Главни садржај је добио назив "Главно". Све линије са стране са додатним информацијама ће бити означене као "додатно". Линкови за глобалну и претрагу форума су наравно добили назив "претрага".'
+      note_24: Ако имате још неке сугестије слободно нас контактирајте. Ми такође пратимо и Hattrick Access форуме.
+    0.9.3: 
+      note_0: 'A lot of language updates because Foxtrick users are awesome. Thank you so much. Keep contributing at <linkCrowdin>http://www.crowdin.net</linkCrowdin>'
+      note_1: 'НОВО:  <module>YouthTwins</module>: Shows the amount of possible/marked/non twins on the youth players overview page for supporters (in conjunction with hattrick youthclub)'
+      note_2: '<module>MatchOrderInterface</module>: Option to show player faces instead of shirts for future and past line-ups (default on)'
+      note_3: '<module>MatchOrderInterface</module>: Option to disable last match information and highlighting for tournament games added (default on)'
+      note_4: '<module>MatchIncome</module>: Support for increased ticket prices in season 49. Income is now calculated by the ticket prices that were active when the match was played.'
+      note_5: "MatchOrderInterface: Fixed bug where the playedLastMatch indicator didn't show (or showed incorrectly) on Firefox"
+      note_6: "MatchOrderInterface: Removed last match highlighting because it's not approved anymore :( (But there's a native HT replacement for supporters now)"
+      note_7: 'PlayerStatsExperience: Fixed bug where red cards caused games beeing detected as walkovers'
+      note_8: 'PlayerStatsExperience: Fixed issue that caused this module not to work on Firefox 3.6'
+      note_9: 'CustomMedals: Fixed disappearing tournament trophies'
+      note_10: Ogg sounds for mozilla-based browsers enabled
+      note_11: Fennec loads staffmarker and link resources from internal sources again. So they aren't updated dynamically but also save bandwidth.
+    0.9.2: 
+      note_0: Редизајнирано аутоматско препознавање језика. Више неће бити грешака при препознавању.
+      note_1: Многобројна ажурирања превода. Хвала свим преводиоцима.
+      note_2: 'НОВО: <module>PlayerStatsExperience</module>: на страници Историје наступа приказује колико искуства је играч добио у појединим мечевима и колики је његов тренутни подниво.(CatzHoek)'
+      note_3: 'НОВО: <module>TeamPopupLinks</module>: Додати линкови за турнире и опција за означавање тренутног тима у табелама'
+      note_4: 'НОВО: <module>RatingsDisplay</module>: просечне оцене и звездице у табели статистке за лигу'
+      note_5: 'НОВО: <module>TeamStats</module>: додатни филтери и нове секције'
+      note_6: '<module>PlayerFilters</module> сада има још неколико додатних опција за филтрирање'
+      note_7: '<module>SkillТable</module> на страници резултата претраге трансфера: исправка грешке код повређених играча'
+      note_8: '<module>MatchReportFormat</module>: додате сиве иконице за негативне специјалне догађаје'
+      note_9: 'Links: укључена опција за додавање динамичких линкова'
+      note_10: 'Links и staffmarker: учитавање у зипованом формату ради мањег оптерећења серверa'
+      note_11: 'Links: Поправка за брисање персонализованих линкова'
+      note_12: '<module>ForumAlterHeaderLine</module>: Поправљено означавање отварача теме и уклањање постИД за једноставно заглавље на Форуму'
+      note_13: '<module>ForumStripHattrickLinks</module>: поправљена опција за потврду'
+      note_14: 'MatchSimulator: поправљено додавање мечева који нису са турнира'
+      note_15: 'CopyYouth: уклоњена бескорисна опција за копирање изворног кода играча'
+      note_16: 'CopyYouth: копирање извештаја са тренинга директно линковано са одговарајућом страницом на HT-Youthclub'
+      note_17: 'ShowLineupSet: Поправка за ХТ промене и исправљена презентациона грешка за једноставну тему'
+      note_18: Враћен недостајући ИД за маркиране играче
+      note_19: Медијан трансфер цена поправљена за кориснике код којих није радила
+      note_20: 'MatchOrder: Означавање играча који су играли последњи меч сада и у постави'
+      note_21: 'Још нека унапређења ради усклађивања са <linkAMO>AMO</linkAMO> стандардима'
+      note_22: '<header>За оне који кристе Google Chrome</header>'
+      note_23: 'Изгледа да систем опционих дозвола за Chrome 18 има одређених багова приликом уклањања и поновног давања дозвола. Модули за које су ове дозволе потребне (HTY <module>StaffMarker</module> и <module>EmbedMedia</module>) вероватно неће радити.'
+    0.9.1: 
+      note_0: 'HTMS: поново узима у обзир и тактику'
+      note_1: "Tablesort: сортирање 'пливајућих' бројева"
+    0.9.0.5: 
+      note_0: '<module>TeamPopupLinks</module>: Промењен формат за постављање персонализованих линкова'
+      note_1: '<module>MatchSimulator</module>: Поправка за копирање оцена делова терена и мечеве на турнирима'
+      note_2: '<module>NewMail</module>: враћена опција за звучно обавештење'
+      note_3: '<module>ForumYouthIcons</module>: додати линкови за турнире'
+      note_4: Модул MatchTables уклоњен пошто га нико више не користи
+      note_5: Поправљено линковање подешавања "foxtrick://"
+      note_6: '<module>MatchSimulator</module> умањење због кондиције: приказује текстуалне оцене заокружене и бројчане без заокруживања'
+      note_7: 'Колекција линкова <module>Links</module> пребачена на други сервер'
+      note_8: 'Још неке поправке ради испуњавања стандарда за Фајерфокс екстензије - AMO'
+      note_9: '<module>Matchreport</module> сада приказује текстуални опис типа догађаја кад се мишем пређе преко иконица(само на Енглеском језику)'
+      note_10: Додата опција за избор иконица за специјалност играча у табу за главна подешавања
+      note_11: Означавање Фокстрик додатака пребачено у главна подешавања и у Фокстрик мени
+      note_12: 'Нови модул <module>SafeForWork</module> за камуфлирање Хеттрик табова заменом текста и фавикона'
+      note_13: 'Велики број превода захваљујући помоћи: aegeansailor, brauxx, Mod-Utku, ebitechv, Polytropos, gkon13, SOLARIS1973, Fieras, margaale, ipefix, stephan.cardot, OmaniMilani, LambdaB, SI-CH, Convincedd, margaale, ljushaff, serjhanti, playMaker, CoRrRan, Aristodemos, margaale, spider007, FeritAkarsu и вероватно смо неког заборавили, пошаљите нам поруку ако вам се нисмо захвалили, тешко је испратити толики број људи који се укључио у превођење. Свака вам част! Хвала вам свима!'
+    0.9.0.4: 
+      note_0: 'Колекција линкова <module>Links</module> пребачена на други сервер'
+      note_1: 'Додати текстуални описи за догађаје на мечу на енглеском језику у модулу <module>MatchReportFormat</module>'
+      note_2: 'Активирани модули <module>MatchReportFormat</module> и <module>MatchPlayerColoring</module> за мечеве са турнира'
+    0.9.0.3: 
+      note_0: Исправке за неколико модула после промена изгледа страница
+    0.9.0.2: 
+      note_0: 'Исправка за последњу верзију Chrome због које је модул <module>LoyaltyDisplay</module> блокирао'
+      note_1: 'Поправљени линкови до поставе у мечу за омладинце у модулу <module>MatchReportFormat</module>'
+      note_2: '<module>MatchSimulator</module> побољшана формула за утицај кондиције'
+      note_3: Нове иконице за специјалности играча
+      note_4: Неколико ажурираних превода
+    0.9.0.1: 
+      note_0: Поправљене (ненамерне) претеране дозволе за Chrome
+      note_1: 'Поправљен модул <module>LiveAlert</module> '
+      note_2: Поправке за одређене 'css' проблеме (за Chrome, Opera, Safari)
+    0.9: 
+      note_0: '<header>Означавање активних Фокстрик функција на страници</header>'
+      note_1: Такође смо убацили и функцију за означавање активних Фокстрик функција како би их лакше препознали и пронашли одговарајуће модуле одговорне за њих. Да укључите или искључите означавање свих Фокстрик опција активних на одређеној страници, кликните на ознаку Фокстрик верзије која се налази у доњем десном углу сваке странице, поред ознаке Хеттрик сервера на којем сте улоговани. Након првог освежавања странице, пређите мишем изнад означених делова да би вам се приказало и име модула који је одговоран за ту функцију.
+      note_2: '<header>Локализација:</header>'
+      note_3: 'Интеграција са <linkCrowdin>crowdsourcing</linkCrowdin> сервисом за превођење . (CatzHoek, Convincedd)'
+      note_4: 'Велики број ажурираних превода. (Catzhoek и многи други преводиоци. Између осталих: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, TheZayc, -Iuve-, Mcload, Polytropos, MrAli, ripaldo, Ryo567, Louzao, kirja, MartinsPF)'
+      note_5: 'Хвала свима. Молимо вас да наставите да преводите FoxTrick на <linkCrowdin>http://crowdin.net/project/foxtrick</linkCrowdin>'
+      note_6: 'За више информација погледајте [post=15466991.1] или [post=15466972.1]'
+      note_7: '<header>Нове опције и измене</header>'
+      note_8: '<module>MatchReportFormat</module>: Комплетно промењен изглед меч извештаја (ryanli, Catzhoek, ljushaff)'
+      note_9: '<module>Ratings</module>: Опција за скривање Хеттрикових просечних оцена (convinced)'
+      note_10: "<module>Filter</module>: Додаје филтере на страницу 'Најбољи играчи' (convinced)"
+      note_11: '<module>MatchOrder</module>: Додатне информације за страницу меч налога и функција за промену страна играча у постави (convinced)'
+      note_12: '<module>MatchSimulator</module>: Додатна опција за умањење оцена у зависности од кондиције играча и меч симулатор уз помоћ <linkHTMS>HTMS</linkHTMS> алата. (convinced)'
+      note_13: '<module>RatingsDisplay</module>: Опционо приказивање Хеттрик рејтинга у другачијем формату (convinced)'
+      note_14: '<module>LoyaltyDisplay</module>: Означава увећање вештина играча у зависности од њихове оданости и бонуса за матични клуб уколико су вам вештине играча приказане као линије (Catzhoek)'
+      note_15: '<module>EmbedMedia</module>: Уграђује линковане медија клипове директно у постове на форуму (Catzhoek)'
+      note_16: "<module>HeaderToggle</module>: Омогућава отварање/затварање било којег садржаја на Хеттрик страницама које имају 'h2' заглавље (convincedd)"
+      note_17: '<module>Links</module> и <module>StaffMarker</module> се учитавају директно са <linkFT>foxtrick.org</linkFT> сајта. Захваљујући томе, сада можемо ажурирати линкове без ажурирања Фокстрика'
+      note_18: 'Ажурирани подаци које користи <module>StaffMarker</module> за означавање власника CHPP лиценци и ХТ Прес уредника(Catzhoek)'
+      note_19: '<module>StaffMarker</module>: Када пређете мишем преко надимка власника CHPP лиценце приказују се и називи свих његових апликација (Catzhoek)'
+      note_20: Линкови за мечеве адаптирани променама на Хеттрику (Catzhoek)
+      note_21: Уклоњене опције LeagueChat и HeaderFixFlickerFix (convincedd)
+      note_22: Многе мање интерне промене и неколико других мањих поправки(ryanli, convincedd)
+      note_23: '<header>За оне који користе Google Chrome</header>'
+      note_24: Имплементиран је систем опционих дозвола за Google Chrome. Сада има мање обавезних дозвола потребних за коришћење Фокстрика. Пошто вероватно још нисте подесили ниједну дозволу, потребно је да још једном сачувате своја подешавања и потврдите коју год дозволу за приступ желите да дате. Касније ће Google Chrome тражити од вас да дате дозволу за приступ екстерним ресурсима кад год активирате неки од модула за чије функционисање је то неопходно.
+    0.8.2: 
+      note_0: Корејански језик (SI-CH)
+      note_1: Литвански језик (LA-MJ)
+      note_2: Генерално чишћење локализација (CatzHoek)
+      note_3: 'Додати линкови за <linkHTEV>http://htev.org/</linkHTEV> странице са статистиком. (convincedd, CatzHoek)'
+      note_4: Још неке ситне поправке. (convincedd, CatzHoek)
+    0.8.1: 
+      note_0: '<module>ElectionTable</module>: прилагођен новом изгледу странице за изборе. (convincedd, ryanli)'
+      note_1: '<module>HTThreadMarker</module>: нови стил за маркирање. (convincedd, ryanli)'
+      note_2: '<module>TableSort</module>: без конфликата са оригиналним Хеттрик сортирањем. (convincedd)'
+      note_3: '<module>HTMSPrediction</module>, <module>CopyRatings</module>: прилагођени новом изгледу странице са извештајем са мечева. (convincedd)'
+      note_4: '<module>LineupShortcut</module>: сада ради и за оне који немају супортер. (ryanli)'
+      note_5: '<module>TransferSearchResultFilters</module>: исправка после последњих промена. (convincedd)'
+      note_6: '<module>SkillTable</module>: сада укључује оданост и бонус за матични клуб. (convincedd)'
+    0.8: 
+      note_0: Арапски језик. (GM-OmaniMilani)
+      note_1: Нови механизам приказивања опција активних на страници, стари модул OnPagePrefs је због тога уклоњен. (convincedd, ryanli)
+      note_2: '<FTlinkMainTab>Опција</FTlinkMainTab> за спречавање учитавања XML фајлова са Хеттрика. (convincedd)'
+      note_3: 'Нови модул <module>LocalTime</module> за приказивање локалног уместо ХТ времена. (ryanli)'
+      note_4: 'Нови модул <module>LinksYouthLeague</module> за линкове на страници омладинске лиге. (Parminu)'
+      note_5: 'Нови модул <module>CopyYouth</module> обједињује старе модуле за копирање података о омладинцима, и аутоматски отвара линкове ка алатима који користе ископиране информације. Нова функција за копирање распореда мечева омладинаца. (ryanli, Parminu)'
+      note_6: 'Нови модул <module>SupporterStatsEnhancements</module> који побољшава приказ података у супортер статистици. (convincedd)'
+      note_7: 'Опција за уклањање подменија за позивнице у левом менију у модулу <module>FixcssProblems</module>. (ryanli)'
+      note_8: 'Опција за редуковање висине календара у модулу <module>FixcssProblems</module>. (ryanli)'
+      note_9: 'Линк до странице за управљање CHPP производима које користите у модулу <module>ExtraShortcuts</module>. (ljushaff)'
+      note_10: 'Опција за приказивање вештина омладинацу у боји у оквиру модула <module>SkillTable</module>. (asdfasdfasdf@mailinator.com)'
+      note_11: 'Опција за звучно обавештење у модулу <module>LiveAlert</module>. (ryanli)'
+      note_12: 'Опција за приказивање иконица за тимове у модулу <module>MyMonitor</module>, осим тога, тимови се сада могу и сортирати. (convincedd)'
+      note_13: "Опција за убацивање 'FoxTrick debug' лога у модулу <module>ForumYouthIcons</module>. (convincedd)"
+      note_14: 'Опција за означавање тимова коју су заказали пријатељски меч на страници лиге у модулу <module>ShowFriendlyBooked</module>, укључена аутоматски. (convincedd)'
+      note_15: 'Линк за приказивање додатних информација о играчима у модулу <module>SkillTable</module>. (convincedd)'
+      note_16: У Фајерфоксу Фокстрик иконица је пребачена у горњи мени. (ryanli)
+      note_17: У верзији за 'Chrome' Фокстрик иконица је унутар адресне траке. Такође, треперење је уклоњено и брзина знатно унапређена. (convincedd)
+      note_18: Фокстрик верзија и за 'Fennec' (Фајерфокс за мобилне). (convincedd)
+      note_19: Бета верзија Фокстрика и за браузере 'Opera' и 'Safari'. (convincedd, ryanli)
+      note_20: Још неке ситне поправке и побољшања. (convincedd, ryanli)
+    0.7.2: 
+      note_0: 'Links for comparing teams at Alltid in module <module>LinksTeam</module>. (convincedd)'
+      note_1: Fixes for skill table at transfer search results. (convincedd, ryanli)
+    0.7.1: 
+      note_0: 'Модул <module>LeagueNewsFilter</module> подељен у два: <module>LeagueNewsFilter</module> и модул <module>ShowLineupSet</module>. (ryanli)'
+      note_1: Модификације због прилагођавања новој верзији странице са резултатима трансфера. (ryanli, taised)
+      note_2: Ажуриран превод. (ryanli, CoRrRan, ljushaff, _KOHb_, slader, ElChiquitin)
+      note_3: Још неке ситне поправке. (ryanli)
+    0.7: 
+      note_0: Исландски језик. (LA-LordBastard)
+      note_1: Фламански као копија Холандског. (ryanli)
+      note_2: 'Нова категорија за модуле, <FTlinkAggregation>Додатне информације</FTlinkAggregation>. (ryanli)'
+      note_3: 'Нови модул <module>MyMonitor</module> за праћење последњих мечева изабраних тимова на страници Мој Хеттрик. (ryanli)'
+      note_4: 'Нови модул <module>MarkAllAsRead</module>, дугменце за означавање свих тема на свим форумима као прочитаних. (ryanli)'
+      note_5: 'Нови модул <module>ShowFriendlyBooked</module> који на страници лиге означава тимове који су заказали пријатељску утакмицу. (ryanli)'
+      note_6: 'Поново написан модул <module>TickerAlert</module>, који сада интегрише раније модуле: FoxtrickAlert, AlertCustomSound и AlertCustomOff. (ryanli)'
+      note_7: 'Модул <module>MatchPlayerColouring</module> учитава саставе тимова директно из XML фајла. (ryanli)'
+      note_8: 'Модул FoxtrickLineupShortcut преименован у <module>LineupShortcut</module>. (ryanli)'
+      note_9: 'Модул htmsStatistics преименован у <module>HTMSPrediction</module>. (ryanli)'
+      note_10: 'Нова опција у модулу <module>FriendlyInterface</module> која сакрива секретарицу ако нема о чему да поднесе извештај. (ryanli)'
+      note_11: 'Модул <module>StaffMarker</module> сада користи <linkJSON>JavaScript Object Notation</linkJSON> за персонализоване маркере. (ryanli)'
+      note_12: 'Нове радио станице у модулу <module>ExtraShortcuts</module>, Balkaradio и Downtime Radio. (ljushaff, ryanli)'
+      note_13: 'Уклоњена опција за отварање Yaplet чета у истом прозору у модулу <module>LeagueAndMatchChat</module>. (ryanli)'
+      note_14: Још неке ситне поправке. (ryanli, Mod-spambot)
+    0.6.2: 
+      note_0: 'Модул <module>SeriesFlags</module> податке директно са Хеттрика. (ryanli)'
+      note_1: Ажурирани превод. (ljushaff, csajszi, Mod-spambot)
+      note_2: Још неке ситне поправке. (ryanli)
+    0.6.1: 
+      note_0: 'Модул <module>HTMSPoints</module> од сада калкулише бодове без повеѕиванја на HTMS вебсајт. (taised)'
+      note_1: 'Модул <module>htmsStatistics</module> правилно учитава предвиђање исхода меча. (taised)'
+      note_2: Ажурирани превод. (Mod-spambot, Mod-OmaniMilani, Baler0, ljushaff, _KOHb_, Slash-ss, MEO_Comandante)
+      note_3: Компатибилан са граном Фајерфокс 4.2. (ryanli)
+      note_4: Још неке ситне поправке. (ryanli)
+    0.6: 
+      note_0: Нови интерфејс за подешавања. (ryanli)
+      note_1: OAuth интерфејс за нов систем ауторизације (Hattrick CHPP API). (ryanli)
+      note_2: 'Mодул <module>LiveAlert</module> за обавештења о головима на мечевима које пратите у HT Live. (ryanli)'
+      note_3: '<module>OldStyleFace</module> модул за приказивење слика играча и менаџера у старом ХТ стилу.(Aimo_Kanuuna)'
+      note_4: "<module>NtPeek</module> за преглед мечева репрезентација на страници 'Мој Хеттрик'.(ryanli)"
+      note_5: '<module>SeriesFlags</module> модул за приказивање заставице и лиге корисника уписаних у књигу гостију. Заставице обезбедио сајт <linkHTMS>HTMS</linkHTMS>. (taised, ryanli)'
+      note_6: '<module>HTMSPoints</module> модул за приказивање вештина и потенцијала за тренинг играча <linkHTMSPoints>HTMS Бодови</linkHTMSPoints>(taised)'
+      note_7: '<module>FriendlyInterface</module> модул са опцијама за приказивање пуног имена играча на страници поставе и приказивање линкова ка националном тиму код репрезентативаца. (ryanli)'
+      note_8: 'Mодул HighlightBotTeams преименован у <module>HighlightOwnerless</module>. (ryanli)'
+      note_9: Обрисани модули YouthSkillNotes и ShortPA. (ryanli)
+      note_10: "Опција за не приказивање 'Провири на форум' на страници лиге и државе у модулу <module>FixcssProblems</module>. (ljushaff)"
+      note_11: 'Опција за копирање играча у старом стилу (без табеле) у модулу <module>CopyPlayerAd</module>. (ryanli)'
+      note_12: 'Опција која приказује HatStats за сваки део терена у <module>Ratings</module> модулу. (taised)'
+      note_13: Белоруски језик. (LA-Stolik)
+      note_14: 'Add some frequently asked questions at <FTlinkHelp>Help tab</FTlinkHelp>. (ryanli)'
+      note_15: Нова иконица за линк "Пријави поруку модераторима". (ljushaff)
+      note_16: '<module>YouthPromotes</module> модул сада приказује и најранији датум за промоцију играча. (ryanli)'
+      note_17: Већина функција ради и у Google Chrome. (ryanli)
+      note_18: Мање исправке за најновије промене на Хеттрику. (ryanli, taised, ljushaff)
+      note_19: 'Опције за радио у модулу<module>ExtraShortcuts</module> су искључене у стандардним подешавањима. (ryanli)'
+      note_20: 'Модул <module>SmallerPages</module> стандардно искључен. (ljushaff)'
+      note_21: 'Модул <module>TeamSelectBox</module> стандардно искључен. (ryanli)'
