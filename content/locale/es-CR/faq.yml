@@ -5,14 +5,21 @@ es-CR:
       question: 
       answer: 
     sound-format: 
-      question: 
-      answer: 
+      question: ¿Cuales formatos de archivo que están permitidos para los sonidos de alerta?
+      answer: |
+        <p>Diferentes navegadores permiten diferentes formatos de archivo. Aquí está una lista (formatos no enumerados pueden funcionar si se instalan los plugins apropiados, por ejemplo Quicktime para reproducir mp3 en Firefox):</p>
+        
+        <ul>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (puede necesitar Quicktime): wav, mp3</li>
+        <li>cromo: ogg, mp3, wav</li> <li>Opera: wav, ogg</li>
+        </ul>
     sound-location: 
-      question: 
+      question: ¿Cuál es el límite de tamaño para sonidos de alerta y donde puede ser localizados?
       answer: 
     authorize: 
       question: 
       answer: 
     privacy: 
-      question: 
+      question: ¿Cómo protegerá mi privacidad FoxTrick?
       answer: 
