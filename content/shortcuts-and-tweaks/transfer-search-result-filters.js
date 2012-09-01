@@ -171,27 +171,44 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 						});
 					});
 				var buttonSearch = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butSearch');
-				Foxtrick.onClick(buttonSearch, function() {
-					getFilters(function(filters) {
-						for (var j = 0; j < filters.length; ++j) {
-							var filter = filters[j];
-							if (filter.type == "minmax") {
-								var el = doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".min");
-								if (el.value == "" || isNaN(el.value))
-									filters[j].min = null;
-								else filters[j].min = Number(el.value);
-								var el = doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".max");
-								if (el.value == "" || isNaN(el.value))
-									filters[j].max = null;
-								else filters[j].max = Number(el.value);
+				Foxtrick.onClick(buttonSearch, function(ev) {
+					// we can't get to localStore in async mode before the page
+					// navigates away in opera so we need some fake click logic;
+					// creating a modified event does not work
+					// because FF is too stupid to submit with it /facepalm
+					
+					if (!buttonSearch.getAttribute('x-updated')) {
+						// don't submit before we're done
+						ev.preventDefault();
+
+						getFilters(function(filters) {
+							for (var j = 0; j < filters.length; ++j) {
+								var filter = filters[j];
+								if (filter.type == "minmax") {
+									var el = doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".min");
+									if (el.value == "" || isNaN(el.value))
+										filters[j].min = null;
+									else filters[j].min = Number(el.value);
+									var el = doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".max");
+									if (el.value == "" || isNaN(el.value))
+										filters[j].max = null;
+									else filters[j].max = Number(el.value);
+								}
+								else if (filter.type == "check") {
+									var el = doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".check");
+									filters[j].checked = Boolean(el.checked);
+								}
 							}
-							else if (filter.type == "check") {
-								var el = doc.getElementById("FoxtrickTransferSearchResultFilters." + filter.key + ".check");
-								filters[j].checked = Boolean(el.checked);
-							}
-						}
-						setFilters(filters);
-					});
+							setFilters(filters);
+
+							// we are done: skip on fake							
+							buttonSearch.setAttribute('x-updated', '1');
+					
+							// fake click
+							buttonSearch.click();			
+							
+						});
+					}
 				});
 			});
 		};
