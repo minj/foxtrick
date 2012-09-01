@@ -715,11 +715,11 @@ Foxtrick.modules["MatchOrderInterface"]={
 		};
 	
 		var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
-		if (Foxtrick.isPage("matchOrder", doc))	
+		if (Foxtrick.isPage("matchOrder", doc)) {	
 			runMatchOrder(doc);
+			Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath+"resources/js/matchOrder.js");
+		}
 		else if (Foxtrick.isPage("matchLineup", doc))
 			runMatchLineup(doc);
-
-		Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath+"resources/js/matchOrder.js");		
 	}
 };
