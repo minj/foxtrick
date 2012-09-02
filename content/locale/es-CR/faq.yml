@@ -2,8 +2,8 @@
 es-CR: 
   faq: 
     style: 
-      question: 
-      answer: 
+      question: ¿Cómo pude cambiar el estilo mi FoxTrick?
+      answer: '<p>FoxTrick proporciona un conjunto de interfaces de presentación a los usuarios para personalizar sus propios estilos. Estas interfaces son provistas a través de HTML IDs y clases, y puede utilizar CSS para definir su estilo preferido.</p>  <p>Se puede encontrar un archivo de estilo de ejemplo <linkCSSExample>aquí</linkCSSExample> o <linkCSSExampleGCode>aquí</linkCSSExampleGCode>, que se puede modificar para satisfacer tus necesidades. Después de guardar el archivo, puede utilizar el módulo <module>SkinPlugin</module> para cargar el archivo CSS para tener un estilo de usuario en efecto.</p>'
     sound-format: 
       question: ¿Cuales formatos de archivo que están permitidos para los sonidos de alerta?
       answer: |
@@ -16,10 +16,10 @@ es-CR:
         </ul>
     sound-location: 
       question: ¿Cuál es el límite de tamaño para sonidos de alerta y donde puede ser localizados?
-      answer: 
+      answer: '<p>Todos los navegadores pueden reproducir URL de datos. Esos son los sonidos guardados internamente, cuando se utiliza el botón de cargar proporcionado en las preferencias. Ya que son convertidos y guardados en las preferencias, el tamaño está limitado a alrededor de 160 kB por sonido.</p>  <p>Todos los navegadores también pueden reproducir sonidos directamente de internet (URL de http). Solo copia un enlace a un sonido (p. ej. http://foxtrick.org/sound.wav) en el campo de edición de sonidos. Sin límite de tamaño.</p>  Los navegadores de Mozilla <p>también pueden reproducir sonidos directamente desde su disco duro (archivo URL) y sin límite de tamaño. La forma más fácil para obtener el formato adecuado: en el navegador teclear Ctrl + o, busque el archivo de sonido y selecciónelo. En la dirección de la barra en la parte superior, esta ahora el enlace correcto para el archivo local (p. ej. file:///c:/sound.wav). Copie y pegue esto en el campo de edición para los sonidos.</p>'
     authorize: 
-      question: 
-      answer: 
+      question: ¿Por qué debo autorizar a FoxTrick para acceder a los datos de mis equipo?
+      answer: '<p>Aunque la mayoría de los datos necesarios por FoxTrick pueden ser recuperada directamente desde la página que está viendo, algunos módulos requieren la descarga de datos desde Hattrick para funcionar adecuadamente.</p>  <p>Para descargar datos desde Hattrick, incluidos los datos de su equipo, ligas y selecciones nacionales, es necesario autorizar por adelantado FoxTrick.</p>  <p>Para autorizar a FoxTrick proporciona tu nombre de usuario y contraseña en chpp.hattrick.org a cambio de un código de verificación, que ingresarás en FoxTrick. FoxTrick no sabrátsu nombre de usuario o contraseña en todo el proceso.</p>  <p>Para aprender más sobre el proceso de autorizar, por favor lee <linkCHPPDesc>CHPP - como funciona</linkCHPPDesc> en Hattrick.</p>  <p>Algunos módulos que requieren acceso a los datos para que funcionen:</p>  <ul><li><module>CrossTable</module></li> <li><module>ExtraPlayerInfo</module></li> <li><module>MatchPlayerColouring</module></li> <li><module>MyMonitor</module></li> <li><module>NtPeek</module></li> <li><module>SeriesFlags</module></li></ul>  <p>Algunos módulos que podrían proporcionar información amplia si tienen acceso a datos de Hattrick:</p>  <ul><li><module>SkillTable</module></li> <li><module>TeamStats</module></li></ul>'
     privacy: 
       question: ¿Cómo protegerá mi privacidad FoxTrick?
-      answer: 
+      answer: '<p>FoxTrick no cargará cualquiera de sus datos o preferencias a un servidor de FoxTrick; tampoco FoxTrick enviará los datos privados, incluyendo pero sin limitarse a tu ID de usuario, contraseña y jugador asociado con habilidades a terceros.</p>  <p>La mayoría de los datos pasa a terceros, a menos que sea explícitamente indicado a continuación, se envían con el método HTTP GET y sólo será enviada si haces clic en un vínculo.</p>  <p>Es decir, podrás ver los datos que son inspeccionados en el URI (identificador uniforme de recursos) de un enlace externo, y datos no se enviarán sin tu consentimiento. Como se mencionó anteriormente, no está implicado ningún dato privado.</p>  <p>Las excepciones son los módulos <module>HTMSPrediction</module> y <module>HTEVPrediction</module>, donde las calificaciones del partido se pasan y se reciben de los sitios respectivos con XMLHttpRequest.</p>'

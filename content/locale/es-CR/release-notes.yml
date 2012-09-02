@@ -2,23 +2,23 @@
 es-CR: 
   versions: 
     nightly: 
-      note_0: 
+      note_0: 'Esta es la versión de desarrollo. Utilízala bajo tu riego. Por favor revisa el <linkSVN>historial de commit</linkSVN> en Google Code para detalles de los cambios.'
     beta: 
-      note_0: 
+      note_0: 'Esta es la beta de la próxima versión. Por favor ayuda a traducir esta versión en nuestra super fácil página de traducción <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.11.0: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
-      note_10: 
-      note_11: 
-      note_12: 
+      note_0: 'NUEVO: <module>DirectPageLinks</module>: enlaces añadidos para acceder a páginas específicas en un hilo del Foro'
+      note_1: 'NUEVO: <module>ForumModeratorPopup</module>: agregado un menú desplegable en el encabezado para simplificar la moderación del Foro. Solo para moderadores.'
+      note_2: 'NUEVO: <module>PlayerStatsTrainingWeek</module>: añade la posibilidad de agrupar los partidos de la semana según el entrenamiento, en lugar de la semana del calendario.'
+      note_3: '<module>MatchOrderInterface</module>: una solución para la lista de tiradores de penalties. También puedes agregar tu plantilla a la lista o borrarla con un solo clic.'
+      note_4: '<module>SkillTable</module>: posibilidad de agregar un segundo criterio de orden usando ctrl + clic derecho en el encabezado de una columna.'
+      note_5: '<module>SkillTable</module>: nombres de jugadores son abreviados para consumir menos espacio.'
+      note_6: '<module>SkillColoring</module>: completa reescritura del módulo, un montón de correcciones y adiciones. Cambiaron opciones. Por favor, ponlos a tu gusto de nuevo.'
+      note_7: '<module>TransferSearchResultFilters</module>: posibilidad de agregar un filtro de forma y ocultar jugadores sin especialidad. Ahora colabora con <module>TransferSearchFilters</module>.'
+      note_8: '<module>MatchSimulator</module>: Añade integración con el modulo de <module>Ratings</module>.'
+      note_9: '<module>FriendlyPool</module>: posibilidad para expandir el cuadro de selección de país.'
+      note_10: '<module>MovePlayerStatement</module>: opción de eliminar por completo la declaración.'
+      note_11: '<module>YouthTwins</module>: los cambios manualmente activados en HYC ahora se reflejarán inmediatamente en la página de juveniles'
+      note_12: '<header>Correcciones de errores</header>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
