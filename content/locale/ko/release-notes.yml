@@ -41,7 +41,7 @@ ko:
       note_18: '<module>PlayerStatsExperience</module>: NT/U-20 결승, 준결승 감지를 수정하였습니다.'
       note_19: '<module>TeamPopupLinks</module>: 방명록에 탭 무한 생성하는 것을 수정하였습니다.'
       note_20: 중간값에 관한 RTL 언어 문제를 수정하였습니다.
-      note_21: '<header>시각 또는 청각 장애우분들을 위해</header>'
+      note_21: '<header>시각/청각 장애인을 위하여</header>'
       note_22: 우리는 설정 페이지에 내게 필요한 옵션과 관련된 모든 모듈을 포함할 영역을 추가하였습니다.
       note_23: 'NEW: <module>ARIALandmarks</module>: 웹사이트에 ARIA landmarks를 추가하였습니다. 이것은 스크린 리더를 사용하여 사이트를 탐색하는데 도움이 됩니다. 두 가지 주요 탐색 바와 구독하는 모든 토론장은 "탐색"이 있습니다. 메인 콘텐츠는 "메인"역할을 가집니다. 모든 추가적인 정보와 링크를 포함하는 사이드 바는 "보충"으로 표시될 것입니다. 전체 검색과 포럼 검색을 "검색" 이 있습니다.'
       note_24: 더 좋은 제안이 있으시면 주저하지 말고 저희에게 연락 주시기 바랍니다. Hattrick Access 토론장에 남겨주셔도 됩니다.
