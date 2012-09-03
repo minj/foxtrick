@@ -95,7 +95,14 @@ Foxtrick.hasElement = function(doc, id) {
 	}
 	return false;
 }
-
+Foxtrick.isDescendantOf = function(descendant, ancestor) {
+	while (descendant.parentNode){
+		if (descendant.parentNode == ancestor)
+			return true;
+		descendant = descendant.parentNode;
+	}
+	return false;
+}
 Foxtrick.getChildIndex = function(element) {
 	var count = 0;
 	while (element.previousSibling) {
