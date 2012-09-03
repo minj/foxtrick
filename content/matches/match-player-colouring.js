@@ -159,6 +159,13 @@
 
 					// colour all player links
 					Foxtrick.map(function(n) {
+						if (
+							Foxtrick.isDescendantOf(n, doc.getElementById('playersField'))
+							||
+							Foxtrick.isDescendantOf(n, doc.getElementById('playersBench'))
+						)
+							return;
+
 						var id =  getPlayerId(n);
 						if (id) {
 							if (Foxtrick.member(id, homePlayers))
