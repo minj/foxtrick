@@ -18,7 +18,7 @@
 	 * Example: 
 	 * { "team": ["miss", "se_technical"], "other": ["se_head_specialist"] },
 	 */
-	var eventTypes = {
+		var eventTypes = {
 		"20" : "formation",
 		"21" : "formation",
 		"40" : "possession",
@@ -32,6 +32,7 @@
 		"59" : "miss",
 		"61" : "confusion",
 		"62" : "pullback",
+		"65" : "nerves",
 		"68" : "pressing",
 		"70" : "extraTime",
 		"71" : "penaltyShootOut",
@@ -194,6 +195,7 @@
 		"599": "result"
 	};
 	var icons = {
+		"nerves": "/Club/Matches/images/nerves.png",
 		"bruised":"/Club/Matches/images/bruise1.png",
 		"best player":"/Img/Matches/star_yellow.png",
 		"change of tactics":"/Img/Matches/behaviorchange.gif",
