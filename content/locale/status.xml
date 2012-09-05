@@ -22,9 +22,9 @@
     <name>Spanish</name>
     <code>es-ES</code>
     <phrases>1327</phrases>
-    <translated>1229</translated>
+    <translated>1263</translated>
     <approved>1</approved>
-    <translated_progress>92</translated_progress>
+    <translated_progress>95</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -157,7 +157,7 @@
     <name>Japanese</name>
     <code>ja</code>
     <phrases>1327</phrases>
-    <translated>1277</translated>
+    <translated>1283</translated>
     <approved>0</approved>
     <translated_progress>96</translated_progress>
     <approved_progress>0</approved_progress>
@@ -440,5 +440,32 @@
     <approved>0</approved>
     <translated_progress>41</translated_progress>
     <approved_progress>0</approved_progress>
+  </language>
+  <language>
+    <name>Flemish</name>
+    <code>vls</code>
+    <phrases>1327</phrases>
+    <translated>0</translated>
+    <approved>0</approved>
+    <translated_progress>0</translated_progress>
+    <approved_progress>0</approved_progress>
+  </language>
+  <language>
+    <name>Friulian</name>
+    <code>fur</code>
+    <phrases>1327</phrases>
+    <translated>0</translated>
+    <approved>0</approved>
+    <translated_progress>0</translated_progress>
+    <approved_progress>0</approved_progress>
+  </language>
+  <language>
+    <name>Bosnian</name>
+    <code>bs</code>
+    <phrases>1327</phrases>
+    <translated>629</translated>
+    <approved>629</approved>
+    <translated_progress>47</translated_progress>
+    <approved_progress>47</approved_progress>
   </language>
 </status>
