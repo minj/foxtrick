@@ -9,12 +9,11 @@
  *		//params send via http "POST"
  * 		teamId: teamId
  * 		app: foxtrick
- *		hash: base64 of "foxtrick_"  + teamId
+ *		hash: sha1/md5/base64 of "foxtrick_"  + teamId
  * @response (incomplete)
  *		JSON:	
  *
  * current = current skill level
- * current_maximal = maximal possible current skill level (the real level is equal or lower)
  * cap = the cap of this skill
  * cap_minimal = minimal possible cap for this skill (the real cap is equal or higher)
  * maxed = weather the skill is fully maxed out or not
@@ -23,11 +22,9 @@
  Foxtrick.modules["YouthSkills"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES : ["youthPlayers"],
-	//OPTIONS : ["HideInfoLink"],
 	CSS : Foxtrick.InternalPath + "resources/css/youth-twins.css",
 	NICE: -10, 
 	run : function(doc) {
-		//var ignoreHours = 24;
 		var UNKNOWNLEVELSYMBOL = "-";
 
 		if (!Foxtrick.isPage('ownYouthPlayers', doc))
@@ -125,7 +122,7 @@
 			
 			var json = JSON.parse( response );
 			var playerMap = {};
-			var playerInfos = doc.getElementsByClassName("playerInfo");
+			var playerInfos = doc.getElementsByClassName('playerInfo');
 			for(var i = 0; i < playerInfos.length; i++){
 				var playerInfo = playerInfos[i];
 				var playerId = parseInt(playerInfo.getElementsByTagName("a")[0].href.match(/YouthPlayerID=(\d+)/i)[1]);
@@ -261,13 +258,10 @@
 					var cap = json[playerID].skills[sk]["cap"];
 					var cap_minimal = json[playerID].skills[sk]["cap_minimal"];
 					var current = json[playerID].skills[sk]["current"];
-					var current_maximal = json[playerID].skills[sk]["cap_minimal"];
 					var maxed = json[playerID].skills[sk]["maxed"];
 
-					var min = current?current:current_maximal?current_maximal:0;
+					var min = current?current:0;
 					var max = cap?cap:cap_minimal?cap_minimal:0;
-
-					Foxtrick.log(min, max, maxed);
 
 					if(min || max)
 						setSkill(playerID, rowMap[sk]+1, min, max, maxed);
