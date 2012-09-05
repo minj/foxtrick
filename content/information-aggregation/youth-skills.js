@@ -251,10 +251,25 @@
 				//get playerid
 				var playerID = parseInt(playerInfo.getElementsByTagName("a")[0].href.match(/YouthPlayerID=(\d+)/i)[1]);
 
+				//add specialty
+				var specialty = json[playerID].speciality;
+				if(specialty){
+					var age = playerInfo.getElementsByTagName("p")[0];
+					var text = age.textContent;
+					if (!RegExp('\\[','g').test(text)){
+						var text = doc.createElement("span");
+						var title = Foxtrickl10n.getSpecialityFromNumber(specialty);
+						var alt = Foxtrickl10n.getShortSpeciality(title);
+						
+						text.textContent = '[' + title + ']';
+						age.appendChild(text);
+					}
+				}
+
 				for(var sk in json[playerID].skills){
 					if(sk == 10)
 						continue;
-
+					
 					var cap = json[playerID].skills[sk]["cap"];
 					var cap_minimal = json[playerID].skills[sk]["cap_minimal"];
 					var current = json[playerID].skills[sk]["current"];
