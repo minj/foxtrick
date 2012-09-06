@@ -85,7 +85,7 @@
     <name>German</name>
     <code>de</code>
     <phrases>1327</phrases>
-    <translated>1276</translated>
+    <translated>1279</translated>
     <approved>1</approved>
     <translated_progress>96</translated_progress>
     <approved_progress>0</approved_progress>
@@ -292,9 +292,9 @@
     <name>Turkish</name>
     <code>tr</code>
     <phrases>1327</phrases>
-    <translated>1243</translated>
+    <translated>1257</translated>
     <approved>0</approved>
-    <translated_progress>93</translated_progress>
+    <translated_progress>94</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -445,27 +445,27 @@
     <name>Flemish</name>
     <code>vls</code>
     <phrases>1327</phrases>
-    <translated>0</translated>
+    <translated>913</translated>
     <approved>0</approved>
-    <translated_progress>0</translated_progress>
+    <translated_progress>68</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>Friulian</name>
     <code>fur</code>
     <phrases>1327</phrases>
-    <translated>0</translated>
-    <approved>0</approved>
-    <translated_progress>0</translated_progress>
+    <translated>199</translated>
+    <approved>1</approved>
+    <translated_progress>14</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>Bosnian</name>
     <code>bs</code>
     <phrases>1327</phrases>
-    <translated>629</translated>
+    <translated>827</translated>
     <approved>629</approved>
-    <translated_progress>47</translated_progress>
+    <translated_progress>62</translated_progress>
     <approved_progress>47</approved_progress>
   </language>
 </status>
