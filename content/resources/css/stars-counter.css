@@ -23,4 +23,16 @@ html[dir="ltr"] .ft-stars-counter-sum-away {
 	left: 20px !important;
 	position: absolute !important;
 }
+
+html[dir="rtl"] .ft-stars-counter-diff {
+	top: 320px !important;
+	right: 70px !important;
+	position: absolute !important;
+}
+
+html[dir="ltr"] .ft-stars-counter-diff {
+	top: 320px !important;
+	left: 70px !important;
+	position: absolute !important;
+}
 }

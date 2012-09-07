@@ -149,15 +149,21 @@ Foxtrick.modules["StarsCounter"]={
 
 		var displayHome = doc.getElementsByClassName("playerRating")[0].cloneNode(true);
 		var displayAway = displayHome.cloneNode(true);
+		var displayDiff = displayHome.cloneNode(true);
 
 		displayHome.getElementsByTagName("span")[0].textContent = '\u2211 ' + starsHome;
 		displayAway.getElementsByTagName("span")[0].textContent = '\u2211 ' + starsAway;
-
-		doc.getElementById("playersField").appendChild(displayHome);
-		doc.getElementById("playersField").appendChild(displayAway);
+		displayDiff.getElementsByTagName("span")[0].textContent = '+ ' + Math.abs(starsHome - starsAway);
 
 		Foxtrick.addClass(displayHome, "ft-stars-counter-sum-home");
 		Foxtrick.addClass(displayAway, "ft-stars-counter-sum-away");
+		Foxtrick.addClass(displayDiff, "ft-stars-counter-diff");
+		
+		doc.getElementById("playersField").appendChild(displayHome);
+		doc.getElementById("playersField").appendChild(displayAway);
+		doc.getElementById("playersField").appendChild(displayDiff);
+
+		
 	},
 
 	change : function(doc){
