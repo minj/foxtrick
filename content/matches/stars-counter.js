@@ -132,7 +132,7 @@ Foxtrick.modules["StarsCounter"]={
 		star.src = "/Img/Matches/star_" + colour + ".png";
 		return star;
 	},
-	
+
 	runMatch : function(doc){
 
 		var getStars = function(doc, where){
@@ -162,6 +162,6 @@ Foxtrick.modules["StarsCounter"]={
 
 	change : function(doc){
 		if(Foxtrick.isPage("match", doc))
-			this.runMatch(doc);	
+			this.runMatch(doc);
 	}
 };
