@@ -7,9 +7,16 @@
 
 Foxtrick.modules["StarsCounter"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-	PAGES : new Array("matchLineup"),
-
+	PAGES : new Array("matchLineup" ,"match"),
+	CSS : Foxtrick.InternalPath +"resources/css/stars-counter.css",
 	run : function(doc) {
+		if(Foxtrick.isPage("matchLineup", doc))
+			this.runMatchLineup(doc);
+		else if(Foxtrick.isPage("match", doc))
+			this.runMatch(doc);
+	},
+
+	runMatchLineup : function(doc){
 		var yellow = 0;
 		var brown = 0;
 		var red = 0;
@@ -118,11 +125,47 @@ Foxtrick.modules["StarsCounter"]={
 		}
 	},
 
+	runMatch : function(doc){
+
+		var stars = {
+			home : { avr:0, max:0 },
+			away : { avr:0, max:0 },
+		}
+
+		var getStars = function(doc, where){
+			var stars = 0;
+			var ratings = doc.querySelectorAll('.playersField > .playerBox'+ where +' > .playerRating');  //
+			for(var i=0; i < ratings.length; i++){
+				var id = Foxtrick.Pages.Players.getPlayerId(ratings[i].parentNode);
+				stars += Number(ratings[i].textContent);
+			}
+			return stars;
+		}
+		var starsHome = getStars(doc, "Home");
+		var starsAway = getStars(doc, "Away");
+
+		var displayHome = doc.getElementsByClassName("playerRating")[0].cloneNode(true);
+		var displayAway = displayHome.cloneNode(true);
+
+		displayHome.getElementsByTagName("span")[0].textContent = '\u2211 ' + starsHome;
+		displayAway.getElementsByTagName("span")[0].textContent = '\u2211 ' + starsAway;
+
+		doc.getElementById("playersField").appendChild(displayHome);
+		doc.getElementById("playersField").appendChild(displayAway);
+
+		Foxtrick.addClass(displayHome, "ft-stars-counter-sum-home");
+		Foxtrick.addClass(displayAway, "ft-stars-counter-sum-away");
+	},
+
 	_getStar : function(doc, colour) {
 		var star = doc.createElement("img");
 		star.className = "starWhole";
 		star.alt = star.title = "*";
 		star.src = "/Img/Matches/star_" + colour + ".png";
 		return star;
+	},
+	change : function(doc){
+		if(Foxtrick.isPage("match", doc))
+			this.runMatch(doc);	
 	}
 };
