@@ -7,7 +7,7 @@ html[dir="rtl"] .ft-stars-counter-sum-home {
 }
 
 html[dir="rtl"] .ft-stars-counter-sum-away {
-	top: 333px !important;
+	top: 334px !important;
 	right: 20px !important;
 	position: absolute !important;
 }
@@ -19,7 +19,7 @@ html[dir="ltr"] .ft-stars-counter-sum-home {
 }
 
 html[dir="ltr"] .ft-stars-counter-sum-away {
-	top: 333px !important;
+	top: 334px !important;
 	left: 20px !important;
 	position: absolute !important;
 }
