@@ -125,12 +125,15 @@ Foxtrick.modules["StarsCounter"]={
 		}
 	},
 
+	_getStar : function(doc, colour) {
+		var star = doc.createElement("img");
+		star.className = "starWhole";
+		star.alt = star.title = "*";
+		star.src = "/Img/Matches/star_" + colour + ".png";
+		return star;
+	},
+	
 	runMatch : function(doc){
-
-		var stars = {
-			home : { avr:0, max:0 },
-			away : { avr:0, max:0 },
-		}
 
 		var getStars = function(doc, where){
 			var stars = 0;
@@ -157,13 +160,6 @@ Foxtrick.modules["StarsCounter"]={
 		Foxtrick.addClass(displayAway, "ft-stars-counter-sum-away");
 	},
 
-	_getStar : function(doc, colour) {
-		var star = doc.createElement("img");
-		star.className = "starWhole";
-		star.alt = star.title = "*";
-		star.src = "/Img/Matches/star_" + colour + ".png";
-		return star;
-	},
 	change : function(doc){
 		if(Foxtrick.isPage("match", doc))
 			this.runMatch(doc);	
