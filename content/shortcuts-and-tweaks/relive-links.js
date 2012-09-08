@@ -7,12 +7,11 @@
 
 Foxtrick.modules["ReLiveLinks"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES : ['match', 'matchOld', 'matches', 'matchesArchive', 'cupMatches', 'fixtures', 'youthFixtures', 'series'],
-	CSS : Foxtrick.InternalPath+"resources/css/relive-links.css",
+	PAGES : ['match', 'matchOld', 'matches', 'matchesArchive', 'cupMatches',
+			 'fixtures', 'youthFixtures', 'series'],
 	NICE : -1, //before any modules that might change row count
 	run : function(doc) {
-		
-		//don't run on live table		
+		//don't run on live table
 		var liveSeriesLink = doc.getElementById('ctl00_ctl00_CPContent_CPMain_hlLive');
 		if(liveSeriesLink && liveSeriesLink.hasAttribute('disabled')) {
 			this.CSS = null;
@@ -23,16 +22,16 @@ Foxtrick.modules["ReLiveLinks"]={
 		var img = doc.createElement('img');
 		img.src = '/Img/Icons/transparent.gif';
 		img.alt = img.title = 'HT Re-Live';
-		img.className = 'matchHTReLive';	
+		img.className = 'matchHTReLive';
 
 		var rows, row, liveTdIdx = 4, cloneUrlIdx = 5, tdCount = 7, scoreIdx = 3;
-		
+
 		if (Foxtrick.isPage('match', doc) || Foxtrick.isPage('matchOld', doc)) {
-			
+
 			if (Foxtrick.Pages.Match.isPrematch(doc)
 			|| Foxtrick.Pages.Match.inProgress(doc) )
 			return;
-			
+
 			var SourceSystem = "Hattrick";
 			var isYouth = Foxtrick.Pages.Match.isYouth(doc);
 			var isHTOIntegrated = Foxtrick.Pages.Match.isHTOIntegrated(doc);
@@ -41,7 +40,7 @@ Foxtrick.modules["ReLiveLinks"]={
 			if (isHTOIntegrated)
 				SourceSystem = "HTOIntegrated";
 			var matchId = Foxtrick.Pages.Match.getId(doc);
-			
+
 			var link = Foxtrick.createFeaturedElement(doc, this, 'a');
 			link.href = '/Club/Matches/Live.aspx?matchID=' + matchId + '&actionType=addMatch&SourceSystem=' + SourceSystem;
 			link.appendChild(img.cloneNode(true));
@@ -51,12 +50,12 @@ Foxtrick.modules["ReLiveLinks"]={
 				var byLine = doc.querySelector('div.byline');
 				byLine.insertBefore(link, byLine.firstChild);
 			}
-			
+
 			return;
 		}
 		else if (Foxtrick.isPage('series', doc)) {
-			
-			tdCount = 3;
+
+			tdCount = 2;//3;
 			cloneUrlIdx = 0;
 			liveTdIdx = 2;
 			scoreIdx = 1;
@@ -68,7 +67,7 @@ Foxtrick.modules["ReLiveLinks"]={
 			var addAll = doc.createElement('img');
 			addAll.src = '/Img/Icons/transparent.gif';
 			addAll.className = 'matchHTReLive';
-			addAll.alt = addAll.title = 
+			addAll.alt = addAll.title =
 				doc.getElementById('ctl00_ctl00_CPContent_CPMain_imgAddRound').alt;
 
 /*			var addAll = doc.createDocumentFragment();
@@ -76,20 +75,21 @@ Foxtrick.modules["ReLiveLinks"]={
 
 			var addAllLink = doc.createElement('a');
 			addAllLink.appendChild(addAll);
-			var addAllSpan = doc.createElement('span');
-			addAllSpan.className = 'float_right';
+			var addAllSpan = Foxtrick.createFeaturedElement(doc, this, "span");
+			Foxtrick.addClass(addAllSpan, 'float_right');
 			addAllSpan.appendChild(addAllLink);
-			
+
 			var matches = [];
 
 			for (var i = 0, m = rows.length; i < m; ++i) {
 				row = rows[i];
-				if (i) 
-					Foxtrick.insertFeaturedCell(row, this, -1);
+				if (i)
+					;//Foxtrick.insertFeaturedCell(row, this, -1);
 				else {
-					var header = Foxtrick.createFeaturedElement(doc, this, "th");
+/*					var header = Foxtrick.createFeaturedElement(doc, this, "th");
 					header.appendChild(addAllSpan);
-					row.appendChild(header);
+					row.appendChild(header);*/
+					row.cells[0].appendChild(addAllSpan);
 				}
 			}
 		}
@@ -112,13 +112,13 @@ Foxtrick.modules["ReLiveLinks"]={
 			rows = doc.querySelectorAll('table.indent > tbody > tr');
 			for (var i = 0, m = rows.length; i < m; ++i) {
 				row = rows[i];
-				if (i) 
+				if (i)
 					Foxtrick.insertFeaturedCell(row, this, liveTdIdx);
 				else {
 					var header = Foxtrick.createFeaturedElement(doc, this, "th");
 					row.appendChild(header);
 				}
-			}			
+			}
 		}
 		else if (Foxtrick.isPage('matchesArchive', doc)) {
 			rows = doc.querySelectorAll('table.indent > tbody > tr');
@@ -128,30 +128,33 @@ Foxtrick.modules["ReLiveLinks"]={
 			}
 		}
 		else rows = doc.querySelectorAll('table.naked > tbody > tr');
-		
+
 		var tds, liveTd, address, id, source, links, link;
-			
+
 		for (var i = 0, m = rows.length; i < m; ++i) {
 			row = rows[i];
 			tds = row.getElementsByTagName('td');
 			if (tds.length != tdCount) continue;
 			if ( ! Foxtrick.trim(tds[scoreIdx].textContent).match(/^\d/)) continue;
 			liveTd = tds[liveTdIdx];
-			if (liveTd.getElementsByTagName('a').length) continue;
+			if (liveTd && liveTd.getElementsByTagName('a').length) continue;
 			links = tds[cloneUrlIdx].getElementsByTagName('a');
 			if (!links.length) continue;
 			address = links[0].href;
 			id = Foxtrick.util.id.getMatchIdFromUrl(address);
 			source = Foxtrick.getParameterFromUrl(address, 'SourceSystem');
+			if (matches) {
+				matches.push(id);
+				continue;
+				//don't run on series
+			}
 			address = '/Club/Matches/Live.aspx?matchID=' + id + '&actionType=addMatch&SourceSystem=' + source;
 			link = Foxtrick.createFeaturedElement(doc, this, 'a');
 			link.href = address;
 			link.appendChild(img.cloneNode(true));
 			liveTd.appendChild(link);
-			
-			if (matches) matches.push(id);
 		}
 		if (addAllLink)
 			addAllLink.href = '/Club/Matches/Live.aspx?matchID=' + matches.join(',') + '&actionType=addMatch&SourceSystem=' + source;
-	}
+		}
 };
