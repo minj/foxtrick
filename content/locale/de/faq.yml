@@ -2,17 +2,24 @@
 de: 
   faq: 
     style: 
-      question: 
+      question: Wie kann ich das Erscheinungsbild von Foxtrick verändern?
       answer: 
     sound-format: 
-      question: 
-      answer: 
+      question: Welche Dateiformate sind bei Alarm-Geräuschen erlaubt?
+      answer: |
+        <p>Verschiedene Browser erlauben verschieden Dateiformate. Hier eine Liste der unterstützen Formate für die verschiedenen Browsers (nicht aufgeführte Formate können eventuell funktionieren wenn das entsprechende Plugin installiert ist wie z.B. Quicktime um mp3 im Firefox abzuspielen):</p>
+        
+        <ul>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (Benötigt eventuell Quicktime): wav, mp3</li>
+        <li>Chrome:  ogg, mp3, wav</li><li>Opera: wav, ogg</li>
+        </ul>
     sound-location: 
-      question: 
+      question: Wie ist das Limit bei der Dateigröße und wo befinden sich die Dateien?
       answer: 
     authorize: 
-      question: 
+      question: Warum sollte ich Foxtrick zugriff auf meine Mannschaftsdaten geben?
       answer: 
     privacy: 
-      question: 
+      question: Wie sieht es bezüglich des Datenschutzes aus?
       answer: 

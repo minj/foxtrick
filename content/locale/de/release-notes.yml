@@ -4,21 +4,21 @@ de:
     nightly: 
       note_0: 'Siehe <linkSVN> für die komplette Veränderungsgeschichte</linkSVN> auf Google Code.'
     beta: 
-      note_0: 
+      note_0: 'Dies ist die Beta-Version der nächsten Veröffentlichung. Hilf bitte mit diese auf unserer extrem einfachen Übersetzungsseite <linkCrowdin>crowdin.net</linkCrowdin> ins Deutsche zu übersetzen falls euch Schreibfehler oder fehlende Einträge auffallen.'
     0.11.0: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
-      note_10: 
-      note_11: 
-      note_12: 
+      note_0: 'NEU: <module>DirectPageLinks</module>: Links hinzugefügt um im Forum zu einer spezifischen Seite eines Threads zu springen'
+      note_1: 'Neu: <module>ForumModeratorPopup</module>: Ein Dropdown-Menu im Kopf von Threads hinzugefügt um die Arbeit für Moderatoren zu vereinfachen'
+      note_2: 'Neu: <module>PlayerStatsTrainingWeek</module>: Die Hintergrundfarbe der Spiele in der Leistungshistorie wird hierdurch auf Basis der Trainigswoche gruppiert.'
+      note_3: '<module>MatchOrderInterface</module>: Man kann die Elfmeterschützen nun mit einem Klick automatisch hinzufügen oder alle entfernen.'
+      note_4: '<module>SkillTable</module>: Durch STRG + Linksklick kann eine vorherige Sortierung zusätzlich nach einer zweiten Spalte sortiert werden ohne die Reihenfolge der ursprünglichen Sortierung zu ändern.'
+      note_5: '<module>SkillTable</module>: Spielernamen werden nun in abgekürzter Form dargestellt um Platz zu sparen.'
+      note_6: '<module>SkillColoring</module>: Das ganzen Modul wurde neu geschriebe, kleine Bugs gefixt und einige Verbesserungen. Die Optionen wurden verändert und müssen erneut nach belieben eingestellt werden.'
+      note_7: '<module>TransferSearchResultFilters</module>: Spieler ohne Spezialität können nun ausgeblendet werden und es kann nach Form gefiltert werden. Arbeitet jetzt mit dem Modul <module>TransferSearchFilters</module> zusammen.'
+      note_8: '<module>MatchSimulator</module>: <module>Ratings</module> werden jetzt auch in der Bewertungsprognose angezeigt.'
+      note_9: '<module>FriendlyPool</module>: Die Landesauswahl kann nun expandiert dargestellt werden.'
+      note_10: '<module>MovePlayerStatement</module>: Möglichkeit die Statements der Spieler zu entfernen.'
+      note_11: '<module>YouthTwins</module>: Manuelle Änderungen des Zwillingsstatuses im HY werden jetzt sofort auf der Jugendspielerübersicht übernommen'
+      note_12: '<header>Bugfixes</header>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
