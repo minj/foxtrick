@@ -176,6 +176,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/matches/htev-prediction.js</string>
 				<string>content/matches/htms-prediction.js</string>
 				<string>content/matches/match-income.js</string>
+				<string>content/matches/match-lineup-tweaks.js</string>
 				<string>content/matches/match-order.js</string>
 				<string>content/matches/match-player-colouring.js</string>
 				<string>content/matches/match-report-format.js</string>

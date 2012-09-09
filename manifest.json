@@ -147,6 +147,7 @@
 			"content/matches/htev-prediction.js",
 			"content/matches/htms-prediction.js",
 			"content/matches/match-income.js",
+			"content/matches/match-lineup-tweaks.js",
 			"content/matches/match-order.js",
 			"content/matches/match-player-colouring.js",
 			"content/matches/match-report-format.js",

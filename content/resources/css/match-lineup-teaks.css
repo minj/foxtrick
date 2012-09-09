@@ -1,0 +1,40 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+
+.ft-match-lineup-tweaks-teamname {
+	color: white;
+	font-size: 12px;
+	font-weight: bold;
+
+	border: solid 2px #79A777;
+	background: #3F7137;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	border-radius: 7px;
+	padding: 3px;
+}
+
+html[dir="rtl"] .ft-match-lineup-tweaks-teamname-home {
+	top: 15px !important;
+	left: 15px !important;
+	position: absolute !important;
+
+}
+
+html[dir="rtl"] .ft-match-lineup-tweaks-teamname-away {
+	bottom: 15px !important;
+	left: 15px !important;
+	position: absolute !important;
+}
+
+html[dir="ltr"] .ft-match-lineup-tweaks-teamname-home {
+	top: 15px !important;
+	left: 15px !important;
+	position: absolute !important;
+}
+
+html[dir="ltr"] .ft-match-lineup-tweaks-teamname-away {
+	bottom: 15px !important;
+	left: 15px !important;
+	position: absolute !important;
+}
+}
