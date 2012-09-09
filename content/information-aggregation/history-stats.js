@@ -73,7 +73,7 @@ Foxtrick.modules["HistoryStats"]={
 					if (table[i].parentNode.getElementsByClassName("date").length)
 						season = table[i].parentNode.getElementsByClassName("date")[0].textContent;
 					var date = Foxtrick.util.time.getDateFromText(season);
-					try { 
+					try {
 						season = Foxtrick.util.time.gregorianToHT(date).season;
 					} catch (e) {
 						// in case it's an empty entry. as of now that's for tournaments on productions
@@ -119,11 +119,11 @@ Foxtrick.modules["HistoryStats"]={
 					}
 					//league
 					if (league != -1) {
-						
+
 						if (winner_this)
 							// double entry for winning league skipped
 							continue;
-						
+
 						try {
 							while (table[i].getElementsByTagName('a')[0])
 								table[i].removeChild(table[i].getElementsByTagName('a')[0]);
@@ -161,7 +161,7 @@ Foxtrick.modules["HistoryStats"]={
 			for (var i = 0; i< this.Buffer.length; i++){
 				var dummy = this.Buffer[i].split('|');
 				dummy[0] = parseInt(dummy[0]) - this.Offset + '|';
-				var line = '<tr><td>%s'+dummy[0]+'</td><td>%c'+dummy[0]+'</td><td title="%l_t'+dummy[0]+'">%l'+dummy[0]+'</td><td>%p'+dummy[0]+'</td></tr>';
+				var line = '<tr><td>%s'+dummy[0]+'</td><td>%c'+dummy[0]+'</td><td>%l'+dummy[0]+'</td><td>%p'+dummy[0]+'</td></tr>';
 
 				if (last == -1 || last != dummy[0]) {
 					HistoryTable += line;
@@ -172,15 +172,7 @@ Foxtrick.modules["HistoryStats"]={
 
 				if (dummy[3]){
 					HistoryTable = HistoryTable.replace("%p"+dummy[0],dummy[2]);
-					if (dummy[3].length > 8)
-					{
-						HistoryTable = HistoryTable.replace("%l"+dummy[0],dummy[3].substr(0,5) + '…');
-					}
-					else
-					{
-						HistoryTable = HistoryTable.replace("%l"+dummy[0],dummy[3]);
-					}
-					HistoryTable = HistoryTable.replace("%l_t"+dummy[0],dummy[3]);
+					HistoryTable = HistoryTable.replace("%l"+dummy[0],dummy[3]);
 				} else{
 					HistoryTable = HistoryTable.replace("%c"+dummy[0],dummy[1]);
 				}
@@ -189,7 +181,7 @@ Foxtrick.modules["HistoryStats"]={
 			}
 			var	table = doc.createElement("table");
 			table.setAttribute( "class", 'smallText historystats' );
-			HistoryTable=HistoryTable.replace(/((\%c)|(\%p)|(\%l))\d{1,2}\|/gi,'-').replace(/\|/g,'');;
+			HistoryTable=HistoryTable.replace(/%[cpl]\d{1,2}/gi,'-').replace(/\|/g,'');
 			table.innerHTML = HistoryTable;
 
 			if (doc.getElementById('ft_HistoryStats')===null) {
