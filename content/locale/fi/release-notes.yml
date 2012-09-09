@@ -18,7 +18,7 @@ fi:
       note_9: 
       note_10: 
       note_11: 
-      note_12: 
+      note_12: '<header>Bugikorjaukset</header>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'

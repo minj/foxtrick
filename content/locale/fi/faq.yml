@@ -2,17 +2,24 @@
 fi: 
   faq: 
     style: 
-      question: 
+      question: Kuinka voin muotoilla FoxTrickiani?
       answer: 
     sound-format: 
-      question: 
-      answer: 
+      question: Mitkä tiedostomuodot kelpaavat hälytysääniin?
+      answer: |
+        <p>Eri selaimet hyväksyvät eri tiedostomuotoja. Seuraavassa on lista (listaamattomat muodot saattavat toimia, jos asiaankuuluvat lisäosat on asennettu, kuten Quicktime mp3:lle Firefoxiin):</p>
+        
+        <ul>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (saattaa tarvita Quicktimen): wav, mp3</li>
+        <li>Chrome: ogg, mp3, wav</li><li>Opera: wav, ogg</li>
+        </ul>
     sound-location: 
-      question: 
+      question: Mikä on kokorajoitus hälytysäänille ja minne ne voi asettaa?
       answer: 
     authorize: 
-      question: 
+      question: Miksi minun pitää valtuuttaa FoxTrick päästäkseni joukkueeni tietoihin?
       answer: 
     privacy: 
-      question: 
+      question: Miten FoxTrick suojaa yksityisyyttäni?
       answer: 
