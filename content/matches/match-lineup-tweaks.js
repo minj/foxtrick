@@ -20,8 +20,7 @@ Foxtrick.modules["MatchLineupTweaks"]={
 
 	//adds teamsnames to the field for less confusion
 	runTeamnNames : function(doc){
-		var teams = doc.getElementsByTagName("h1")[0].getElementsByTagName("a");
-
+		var teams = doc.querySelectorAll("h1 > a, h1 > span > a");
 		var homeTeamName = teams[0].getAttribute("title");
 		var awayTeamName = teams[1].getAttribute("title");
 
