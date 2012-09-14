@@ -8,7 +8,7 @@
 Foxtrick.modules["MatchLineupTweaks"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 	PAGES : ["match"],
-	OPTIONS : ["DisplayTeamNameOnField"],
+	OPTIONS : ["DisplayTeamNameOnField", "ShowSpecialties"],
 	CSS : Foxtrick.InternalPath +"resources/css/match-lineup-teaks.css",
 	run : function(doc) {
 		if(!Foxtrick.Pages.Match.hasNewRatings(doc))
@@ -16,6 +16,9 @@ Foxtrick.modules["MatchLineupTweaks"]={
 
 		if(FoxtrickPrefs.isModuleOptionEnabled("MatchLineupTweaks", "DisplayTeamNameOnField"))
 			this.runTeamnNames(doc);
+
+		if(FoxtrickPrefs.isModuleOptionEnabled("MatchLineupTweaks", "ShowSpecialties"))
+			this.runSpecialties(doc);
 	},
 
 	//adds teamsnames to the field for less confusion
@@ -38,6 +41,47 @@ Foxtrick.modules["MatchLineupTweaks"]={
 
 		doc.getElementById("playersField").appendChild(homeSpan);
 		doc.getElementById("playersField").appendChild(awaySpan);
+
+	},
+	//adds apecialty icons for all players, on field and on bench
+	runSpecialties : function(doc){
+		var teams = doc.querySelectorAll("h1 > a, h1 > span > a");
+		var homeTeamId = Foxtrick.util.id.getTeamIdFromUrl(teams[0].href);
+		var awayTeamId = Foxtrick.util.id.getTeamIdFromUrl(teams[1].href);
+
+		var homePlayerLinks = doc.querySelectorAll(".playersField > div.playerBoxHome > div > a, #playersBench > div#playersBenchHome > div.playerBoxHome > div > a");
+		var awayPlayerLinks = doc.querySelectorAll(".playersField > div.playerBoxAway > div > a, #playersBench > div#playersBenchAway > div.playerBoxAway > div > a");
+
+		var addSpecialty = function(node, player){
+			Foxtrick.stopListenToChange(doc); 
+			if (player && player.specialityNumber != 0) {
+				var title = Foxtrickl10n.getSpecialityFromNumber(player.specialityNumber);
+				var alt = Foxtrickl10n.getShortSpeciality(title);
+				var icon_suffix = "";
+				if (FoxtrickPrefs.getBool("anstoss2icons")) 
+					icon_suffix = "_alt";
+				Foxtrick.addImage(doc, node, { 
+					alt: alt, 
+					title: title, 
+					src: Foxtrick.InternalPath + 'resources/img/matches/spec'+player.specialityNumber+icon_suffix+'.png',
+					class: 'ft-specialty ft-match-lineup-tweaks-specialty-icon'
+				});
+			}
+			Foxtrick.startListenToChange(doc);		
+		}
+
+		var addSpecialtiesByTeamId = function(teamid, players){
+			Foxtrick.Pages.Players.getPlayerList(doc, function(playerInfo) {
+				for(var i = 0; i < homePlayerLinks.length; i++){
+					var id = Number(Foxtrick.getParameterFromUrl(players[i].href, "playerid"));
+					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerInfo, id);
+					addSpecialty(players[i].parentNode.parentNode, player);
+				}
+			}, {teamid:teamid, current_squad:true, includeMatchInfo:true} );
+		}
+
+		addSpecialtiesByTeamId(homeTeamId, homePlayerLinks);
+		addSpecialtiesByTeamId(awayTeamId, awayPlayerLinks);
 	},
 
 	change : function(doc){
