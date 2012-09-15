@@ -10,25 +10,25 @@ Foxtrick.modules["SafeForWork"]={
 	PAGES : ['all'],
 	NICE: -49,	//right after core, totally ridiculous to call it here but hey!
 	OPTION_FUNC : function(doc) {
-			var textDiv = doc.createElement("div");
+		var textDiv = doc.createElement("div");
 
-				var desc = doc.createElement("p");
-				desc.textContent = Foxtrickl10n.getString("SafeForWork.icon");
-				textDiv.appendChild(desc);
+		var desc = doc.createElement("p");
+		desc.textContent = Foxtrickl10n.getString("SafeForWork.icon");
+		textDiv.appendChild(desc);
 
-				var textInput = doc.createElement("input");
-				textInput.setAttribute("pref", "module.SafeForWork.icon");
-				textDiv.appendChild(textInput);
+		var textInput = doc.createElement("input");
+		textInput.setAttribute("pref", "module.SafeForWork.icon");
+		textDiv.appendChild(textInput);
 
-				var desc2 = doc.createElement("p");
-				desc2.textContent = Foxtrickl10n.getString("SafeForWork.title");
-				textDiv.appendChild(desc2);
+		var desc2 = doc.createElement("p");
+		desc2.textContent = Foxtrickl10n.getString("SafeForWork.title");
+		textDiv.appendChild(desc2);
 
-				var textInput2 = doc.createElement("input");
-				textInput2.setAttribute("pref", "module.SafeForWork.title");
-				textDiv.appendChild(textInput2);
+		var textInput2 = doc.createElement("input");
+		textInput2.setAttribute("pref", "module.SafeForWork.title");
+		textDiv.appendChild(textInput2);
 
-				return textDiv; 
+		return textDiv; 
 	},
 	run : function(doc) {
 
