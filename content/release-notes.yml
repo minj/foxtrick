@@ -7,10 +7,11 @@ en:
             note_0: "This is the beta version of the next release. Please help translating this version at our super easy crowd-translation page <linkCrowdin>crowdin.net</linkCrowdin>. "
 
         0.12.0:
-            note_0: "Tabs: Added backend functionality to add custom tabs to most sites. (like HT's own tabs for upcoming matches)."
+            note_0: "Tabs: Added backend functionality to add custom tabs to most sites. (like HT's own tabs for upcoming matches and the new match page)."
             note_1: "<module>DashboardCalendar</module>: Added a button to export Hattrick week in iCalendar file format (should be compatible with Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal etc)"
             note_2: "<module>LiveAlert</module>: Added different sounds for home/away/your team goals. Using sounds from <linkHTLS>HTLiveSight</linkHTLS> by default. Your team goals will not be recognized in Re-Live mode at first."
-            note_3: "<module>CopyYouth</module>: Hattrick youthclub users now send the scoutcall of rejected players to HY"
+            note_3: "<module>CopyYouth</module>: Hattrick youthclub users will now send the scoutcall of rejected players to HY automatically"
+            note_4: "<module>MatchLineupTweaks</module>: Hattrick youthclub users will now send the scoutcall of rejected players to HY automatically"
 
         0.11.0: 
             note_0: "NEW: <module>DirectPageLinks</module>: links added to access specific pages in a forum thread"
