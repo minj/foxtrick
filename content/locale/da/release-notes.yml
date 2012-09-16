@@ -4,19 +4,19 @@ da:
     nightly: 
       note_0: 
     beta: 
-      note_0: 
+      note_0: 'Dette er betaversionen af den næste udgave. Du kan hjælpe med at oversætte denne version via vores super nemt crowd-oversættelse side <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.11.0: 
-      note_0: 
-      note_1: 
+      note_0: 'NY: <module>DirectPageLinks</module>: links tilføjet for at få adgang til specifikke sider i en forum tråd'
+      note_1: 'NY: <module>ForumModeratorPopup</module>:En rullemenu er tilføjet  til forum moderatorer på toppen af ​​tråde for at forenkle moderering.'
       note_2: 'NEW: <module>PlayerStatsTrainingWeek</module>: Tilføjet en mulighed for at gruppere kampene  i henhold til trænings uge i stedet for kalenderuge.'
       note_3: '<module>MatchOrderInterface</module>: Der er opgivet en rettelse til straffesparkstager listen. Du kan også tilføje dit hold på listen eller slette det med et enkelt klik.'
       note_4: '<module>SkillTable</module>: Mulighed føjet til at sub-sortere en eksisterende rækkefølge ved hjælp af ctrl + venstre klik på en anden kolonneoverskrift.'
       note_5: '<module>SkillTable</module>: Fra nu af er spillernavne forkortet for at bruge mindre plads.'
       note_6: '<module>SkillColoring</module>: Fuld modul omskrivning, en masse fejlrettelser og tilføjelser. Indstillinger ændret. Du skal indstille dem efter din smag igen.'
-      note_7: 
-      note_8: 
-      note_9: 
-      note_10: 
+      note_7: '<module>TransferSearchResultFilters</module>: Mulighed tilføjet til at filtrere efter form og skjule spillere uden specialitet. Nu arbejder sammen med <module>TransferSearchFilters</module>.'
+      note_8: '<module>MatchSimulator</module>: Integreret med<module>Ratings</module>.'
+      note_9: '<module>FriendlyPool</module>:Mulighed tilføjet for at udvide listen over lande.'
+      note_10: '<module>MovePlayerStatement</module>: Mulighed tilføjet for at fjerne udtalelsen fuldstændigt.'
       note_11: 
       note_12: '<header>Fejlrettelser</header>'
     0.10.0: 
