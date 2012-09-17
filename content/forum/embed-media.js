@@ -185,7 +185,7 @@ Foxtrick.modules["EmbedMedia"]={
 								continue;
 								
 							//but convert to generic if the users already pasted an image link
-							if(key == "imageshack" && link.href.match("http:\/\/img(\\d+).imageshack.us") )
+							if(key == "imageshack" && link.href.match("img(\\d+)"))
 								key = "genericImage";
 
 							//Opera would need permision for that workarround, FF and Chrome don't seem to require it tho
