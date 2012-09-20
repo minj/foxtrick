@@ -2,22 +2,22 @@
 da: 
   versions: 
     nightly: 
-      note_0: 
+      note_0: 'Dette er udviklings versionen. Du bruger disse på eget ansvar. Se venligst <linkSVN>commit history</linkSVN> på Google Code for nærmere oplysninger om ændringerne.'
     beta: 
       note_0: 'Dette er betaversionen af den næste udgave. Du kan hjælpe med at oversætte denne version via vores super nemt crowd-oversættelse side <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.11.0: 
       note_0: 'NY: <module>DirectPageLinks</module>: links tilføjet for at få adgang til specifikke sider i en forum tråd'
       note_1: 'NY: <module>ForumModeratorPopup</module>:En rullemenu er tilføjet  til forum moderatorer på toppen af ​​tråde for at forenkle moderering.'
       note_2: 'NEW: <module>PlayerStatsTrainingWeek</module>: Tilføjet en mulighed for at gruppere kampene  i henhold til trænings uge i stedet for kalenderuge.'
-      note_3: '<module>MatchOrderInterface</module>: Der er opgivet en rettelse til straffesparkstager listen. Du kan også tilføje dit hold på listen eller slette det med et enkelt klik.'
-      note_4: '<module>SkillTable</module>: Mulighed føjet til at sub-sortere en eksisterende rækkefølge ved hjælp af ctrl + venstre klik på en anden kolonneoverskrift.'
+      note_3: '<module>MatchOrderInterface</module>:En rettelse til straffesparkstager listen er opgivet. Du kan også tilføje din trup på listen eller slette det med et enkelt klik.'
+      note_4: '<module>SkillTable</module>: Mulighed tilføjet til at sortere en eksisterende rækkefølge ved hjælp af ctrl + venstre klik på en anden kolonneoverskrift.'
       note_5: '<module>SkillTable</module>: Fra nu af er spillernavne forkortet for at bruge mindre plads.'
-      note_6: '<module>SkillColoring</module>: Fuld modul omskrivning, en masse fejlrettelser og tilføjelser. Indstillinger ændret. Du skal indstille dem efter din smag igen.'
+      note_6: '<module>SkillColoring</module>: Fuld modul omskrivning, en masse fejlrettelser og tilføjelser er lavet. Indstillinger ændret. Du kan indstille dem efter dit behov.'
       note_7: '<module>TransferSearchResultFilters</module>: Mulighed tilføjet til at filtrere efter form og skjule spillere uden specialitet. Nu arbejder sammen med <module>TransferSearchFilters</module>.'
-      note_8: '<module>MatchSimulator</module>: Integreret med<module>Ratings</module>.'
+      note_8: '<module>MatchSimulator</module>: Integreret med <module>Ratings</module>.'
       note_9: '<module>FriendlyPool</module>:Mulighed tilføjet for at udvide listen over lande.'
       note_10: '<module>MovePlayerStatement</module>: Mulighed tilføjet for at fjerne udtalelsen fuldstændigt.'
-      note_11: 
+      note_11: '<module>YouthTwins</module>: Manuelt udløst ændringer foretaget på HY vil nu øjeblikkeligt afspejles på ungdoms-spilleres side'
       note_12: '<header>Fejlrettelser</header>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
@@ -120,16 +120,16 @@ da:
     0.9: 
       note_0: '<header>Localization:</header>'
       note_1: 'Integration of the crowdsourcing translation service <linkCrowdin>http://www.crowdin.net</linkCrowdin>. (CatzHoek, Convincedd)'
-      note_2: 'Many translation updates. (Catzhoek and many translators. Amoung others: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, TheZayc, -Iuve-, Mcload, Polytropos, MrAli, ripaldo, Ryo567, Louzao, kirja, MartinsPF)'
+      note_2: 'Mange oversættelses opdateringer. (Catzhoek og mange andre oversættere. blandt andre: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, TheZayc, -Iuve-, Mcload, Polytropos, MrAli, ripaldo, Ryo567, Louzao, kirja, MartinsPF)'
       note_3: 'Thanks all. Please continue to help translate FoxTrick at <linkCrowdin>http://crowdin.net/project/foxtrick</linkCrowdin>'
-      note_4: 'For some info about translations see [post=15466991.1] or [post=15466972.1]'
-      note_5: '<header>Feature highlight</header>'
+      note_4: 'For info om oversættelser se[post=15466991.1] eller [post=15466972.1]'
+      note_5: '<header>Funktion fremhævning</header>'
       note_6: We included a feature highlight for easier detection of FoxTrick features and the responsible modules. You can turn this on/off by clicking on the FoxTrick version info down right on every page. After first reload it shows the responsible module in the hover tooltip.
       note_7: '<header>New features and changes</header>'
       note_8: '<module>MatchReportFormat</module>: Completely reworked match report (ryanli, Catzhoek, ljushaff)'
       note_9: "<module>Ratings</module>: Option to hide Hattrick's average ratings (convinced)"
       note_10: '<module>Filter</module>: Adds filters to Top players page (convinced)'
-      note_11: '<module>MatchOrder</module>: Adds more info to the macth order interface and a swap players function (convinced)'
+      note_11: '<module>Kampordre</module>: Tilføjer mere info til kamp ordre grænsefladen og en byt spillere funktion (convinced)'
       note_12: '<module>MatchSimulator</module>: Adds stamnia discount option and a match simulator using <linkHTMS>HTMS</linkHTMS> (convinced)'
       note_13: '<module>RatingsDisplay</module>: Optionally displays ratings by Hattrick in a different format (convinced)'
       note_14: '<module>LoyaltyDisplay</module>: Adds skill increases by loyalty and mother club bonus to the skillbar representation (Catzhoek)'
