@@ -30,8 +30,8 @@ Foxtrick.modules["MatchLineupTweaks"]={
 	//adds teamsnames to the field for less confusion
 	runTeamnNames : function(doc){
 		var teams = doc.querySelectorAll("h1 > a, h1 > span > a");
-		var homeTeamName = teams[0].getAttribute("title");
-		var awayTeamName = teams[1].getAttribute("title");
+		var homeTeamName = teams[0].textContent;
+		var awayTeamName = teams[1].textContent;
 
 		var homeSpan = doc.createElement("span");
 		var awaySpan = doc.createElement("span");
@@ -134,7 +134,7 @@ Foxtrick.modules["MatchLineupTweaks"]={
 
 			var getStaminaFromNode = function(doc, node){
 				var staminaTitle = node.firstChild.nextSibling.nextSibling.firstChild.title;
-				
+
 				var stamina = staminaTitle.match(RegExp("\\d+")); 
 				return Number(stamina);
 			}
