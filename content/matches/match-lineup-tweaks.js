@@ -133,12 +133,13 @@ Foxtrick.modules["MatchLineupTweaks"]={
 			var fieldPlayerCount = 0.0;
 
 			var getStaminaFromNode = function(doc, node){
-				var staminaTitle = node.firstChild.nextSibling.firstChild.title;
+				var staminaTitle = node.firstChild.nextSibling.nextSibling.firstChild.title;
+				
 				var stamina = staminaTitle.match(RegExp("\\d+")); 
 				return Number(stamina);
 			}
 
-			var items = doc.querySelectorAll('.playersField > .playerBox'+ where);
+			var items = doc.querySelectorAll('.playersField > .playerBox' + where);
 			fieldPlayerCount = items.length; //needed for determining the average later on
 
 			for(var i=0; i < items.length; i++){
@@ -146,6 +147,7 @@ Foxtrick.modules["MatchLineupTweaks"]={
 			}
 			return parseInt(stamina / fieldPlayerCount);
 		}
+
 		var staminaHome = getStaminaAverage(doc, "Home");
 		var staminaAway = getStaminaAverage(doc, "Away");
 
