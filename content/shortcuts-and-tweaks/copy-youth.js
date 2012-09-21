@@ -259,7 +259,7 @@ Foxtrick.modules["CopyYouth"]={
 
 					// enable for debug: fake link, used to simulate sending shit to HY without actually rejecting the player
 					// var fakeReject = doc.createElement("a");
-					// fakeReject.textContent = "Fake No";
+					// fakeReject.textContent = "Fake reject";
 					// rejectButton.parentNode.appendChild(fakeReject);
 					// Foxtrick.onClick(fakeReject, function(){ copyReport(true) });
 
@@ -267,6 +267,11 @@ Foxtrick.modules["CopyYouth"]={
 						//setting cookie when player was pulled
 						var acceptButton = alertdiv.getElementsByTagName('input')[0];
 						Foxtrick.onClick(rejectButton, function(){ Foxtrick.cookieSet("for_hty", {"pull":true}) });
+					
+						// var fakeAccept = doc.createElement("a");
+						// fakeAccept.textContent = "Fake accept";
+						// acceptButton.parentNode.appendChild(fakeAccept);
+						// Foxtrick.onClick(fakeAccept, function(){ Foxtrick.cookieSet("for_hty", {"pull":true}) });
 					}
 				}
 				else if (alertdiv.parentNode.getElementsByTagName('a')[0]==null
