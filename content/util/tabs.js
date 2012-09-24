@@ -18,12 +18,14 @@ Foxtrick.util.tabs.initialize = function(doc){
 
 	//create tab bar or pull existing one out of subNodes
 	var tabs = Foxtrick.util.tabs.getTabs(doc);
-	if(!tabs)
+	if(!tabs){
 		tabs = Foxtrick.util.tabs._create(doc);
-	else
-		header.parentNode.insertBefore(tabs, contentNode);
-	
+	} else {
+		if(!Foxtrick.isPage("match",doc))
+			header.parentNode.insertBefore(tabs, contentNode);
+	}
 	contentNode = tabs.nextSibling;
+
 
 	//mark everything that's already there as main tab content
 	while(contentNode){
@@ -53,12 +55,15 @@ Foxtrick.util.tabs.initialize = function(doc){
 		}
 		contentNode = contentNode.nextSibling;
 	}
-	if( !Foxtrick.hasClass( Foxtrick.util.tabs.getTabs(doc).nextSibling, "ft-clear-both" ) ){
+
+	
+	if(!Foxtrick.isPage("match",doc) && !Foxtrick.hasClass( Foxtrick.util.tabs.getTabs(doc).nextSibling, "ft-clear-both" ) ){
 		var clear = doc.createElement("div")
 		Foxtrick.addClass(clear, "ft-clear-both");
 		Foxtrick.addAttributeValue(clear, "tabs", "all-tabs");
 		header.parentNode.insertBefore(clear, Foxtrick.util.tabs.getTabs(doc).nextSibling );
 	}
+	Foxtrick.log("okay");
 }
 
 Foxtrick.util.tabs.getTabs = function(doc){
@@ -109,9 +114,11 @@ Foxtrick.util.tabs.addHandle = function(doc, title, icon, shows){
 	var tabs = Foxtrick.util.tabs.getTabs(doc);
 	var li = doc.createElement("li");
 	li.id = shows + "-handle";
+
 	var link = doc.createElement("a");
 	link.href = "javascript:void(0);";
 	link.setAttribute("disabled", "disabled");
+	Foxtrick.addClass(link, "tabItem");
 	var _shows = link.getAttribute("shows");
 	if(_shows)
 		shows = _shows + ',' + shows;
