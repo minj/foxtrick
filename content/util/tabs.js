@@ -176,7 +176,7 @@ Foxtrick.util.tabs.show = function(doc, id){
 	}
 }
 
-Foxtrick.util.tabs.addElementToTab = function(doc, elem, tab){
+Foxtrick.util.tabs.addElementToTab = function(doc, tab, elem){
 	Foxtrick.addClass(elem, "tab-content");
 	Foxtrick.addAttributeValue(elem, "tabs", tab);
 	var parent = doc.getElementsByTagName("h1")[0].parentNode;
@@ -184,119 +184,5 @@ Foxtrick.util.tabs.addElementToTab = function(doc, elem, tab){
 	while(elemParent != parent){
 		Foxtrick.addAttributeValue(elemParent, "tabs", tab);
 		elemParent = elemParent.parentNode;
-	}
-}
-
-Foxtrick.util.tabs.tabify = function(doc){
-	if(!Foxtrick.util.tabs.hasTabSupport(doc))
-		return;
-
-	var parent = doc.getElementsByTagName("h1")[0].parentNode;
-	var h2s = parent.getElementsByTagName("h2");
-	for(var i = 0; i < h2s.length; ++i){
-		if(Foxtrick.hasClass(h2s[i], "info"))
-			continue;
-
-		//label links the tab handle and all the elements
-		var hash = function(e){for(var r=0,i=0;i<e.length;i++)r=(r<<5)-r+e.charCodeAt(i),r&=r;return r};
-		var label = "tabified:" + hash(h2s[i].textContent);
-
-		//tab already present
-		if(doc.getElementById("tab-" + label + "-handle"))
-			continue;
-
-		//don't re-tabify custom headers
-		if(!Foxtrick.hasAttributeValue(h2s[i].parentNode, "tabs", "tab-main"))
-			continue;
-			
-		//add handle and convert h2 content to tab
-		Foxtrick.util.tabs.addHandle(doc, h2s[i].textContent, null, "tab-" + label);
-		Foxtrick.util.tabs._addH2ToTab(doc, h2s[i], "tab-" + label);
-		
-	}
-	Foxtrick.util.tabs.initialize(doc);
-	Foxtrick.util.tabs.showLast(doc);
-}
-
-Foxtrick.util.tabs._addH2ToTab = function(doc, h2, tab) {
-	var setupHeaderSiblings = function(el, tab) {
-		var parent = el.parentNode;
-		el = el.nextSibling;
-		var forumThreads = {}, numUnread = 0, idString='';
-		while ( el ) { 
-			// if text node, wrap in span on first encounter
-			if (el.nodeType ==  Foxtrick.NodeTypes.TEXT_NODE) {
-				if (Foxtrick.trim(el.nodeValue) != "") {
-					var target = el.nextSibling;
-					var span =  doc.createElement('span');
-					span.appendChild(el);
-					el = parent.insertBefore(span, target);
-				} else {
-					el = el.nextSibling;
-					continue;
-				}
-			}
-
-			// stop with next header or dedicated parentNode mainBox
-			if ( (el.className == 'mainBox' && el.getElementsByTagName('h2')[0] != undefined)
-				|| el.nodeName == 'H1'
-				|| (el.nodeName == 'H2' && !Foxtrick.hasClass(el, 'info'))
-				|| (el.getElementsByTagName('h2')[0] !== undefined && !Foxtrick.hasClass(el.getElementsByTagName('h2')[0],'info') )) {
-				break;
-			}
-
-			// // don't show which is hidden originally, eg ft-forum-preview-area 
-			// if (el.id == 'ft-forum-preview-area' && foxtrick.hasclass(el, 'hidden')) {
-			// 	el = el.nextsibling;
-			// 	continue;
-			// }
-			Foxtrick.addClass(el, "tab-content");
-			Foxtrick.addAttributeValue(el, "tabs", tab);
-
-			// count new forum postings
-			if ( Foxtrick.hasClass(el,'hidden') && el.getElementsByClassName('fplThreadInfo')[0] != undefined ) {
-				var rows = el.getElementsByClassName('fplThreadInfo');
-				Foxtrick.map(function(n) {
-					var unread = n.getElementsByClassName('highlight')[0];
-					if (unread !== undefined) {
-						var tid = unread.getAttribute('onclick').match(/'read\|(\d+)'/)[1];
-						if (!forumThreads[tid])
-							numUnread += Number(unread.textContent);
-						forumThreads[tid] = true;
-						if (idString)
-							idString += ',';
-						idString += tid;
-						
-						//idString += "__doPostBack('ctl00$ctl00$CPContent$CPMain$updLatestThreads','read|" + tid + "');\n"
-					}
-				}, rows);
-			}
-			el = el.nextSibling;
-		}
-		
-		// show new forum postings
-		if (numUnread && h2.getElementsByClassName('highlight')[0] == undefined) {
-			var page_num = 0;
-			var pages = h2.parentNode.getElementsByClassName('page');
-			for (var i=0; i<pages.length; ++i) {
-				if (pages[i].getAttribute('disabled')=='disabled') {
-					page_num = Number(pages[i].textContent)-1;
-				}
-			}
-			h2.appendChild(doc.createTextNode(' '));
-			var span = doc.createElement('span');
-			span.className = 'highlight ft-dummy';
-			span.textContent = '('+numUnread+')';
-			Foxtrick.makeFeaturedElement(span, Foxtrick.modules.HeaderToggle);
-			h2.appendChild(span);
-		}
-	};
-
-	Foxtrick.util.tabs.addElementToTab(doc, h2, tab);
-	Foxtrick.addClass(h2, "tab-content");
-	setupHeaderSiblings(h2, tab);
-	if (h2.parentNode.nodeName=='TD') {
-		// in tables we also toggle sibling rows
-		setupHeaderSiblings(h2.parentNode.parentNode, tab);
 	}
 }

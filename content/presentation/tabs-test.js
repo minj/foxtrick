@@ -1,7 +1,6 @@
 Foxtrick.modules["TabsTest"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
 	PAGES : ['all'],
-	OPTIONS: ['Tabify'],
 	NICE: 50,
 	CSS: [ Foxtrick.InternalPath + "resources/css/tabs.css" ],
 
@@ -16,9 +15,7 @@ Foxtrick.modules["TabsTest"]={
 		var main_handle = Foxtrick.util.tabs.addHandle(doc, h1, null, "tab-main");
 		if(main_handle)
 			Foxtrick.addClass(main_handle, "tab-hattrick");
-
-		if (FoxtrickPrefs.isModuleOptionEnabled("TabsTest", "Tabify"))
-			Foxtrick.util.tabs.tabify(doc);
+		
 		var ft_handle = Foxtrick.util.tabs.addHandle(doc, "New prefs page!", null , "ft-tab-readme");
 		if(ft_handle)
 			Foxtrick.addClass(ft_handle, "ft-tab-foxtrick");
@@ -54,12 +51,10 @@ Foxtrick.modules["TabsTest"]={
 		Foxtrick.util.tabs.addElementToTab(doc, div, "ft-tab-readme");
 
 		var container = doc.getElementsByTagName("h1")[0].parentNode;
-		Foxtrick.log("addMutationEventListener");
+		Foxtrick.log("Tabs-test: addMutationEventListener");
 		//match report
 		Foxtrick.addMutationEventListener(container, "DOMNodeInserted", function(){
 			Foxtrick.util.tabs.initialize(doc);
-			if (FoxtrickPrefs.isModuleOptionEnabled("TabsTest", "Tabify"))
-				Foxtrick.util.tabs.tabify(doc);
 		}, false);
 
 		Foxtrick.util.tabs.show(doc, "tab-main");
