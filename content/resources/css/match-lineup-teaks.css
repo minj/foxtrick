@@ -156,6 +156,7 @@ html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-sum-home {
 	padding-right: 3px;
 	width: 65px;
 	text-align: center;
+	padding-top: 10px;
 }
 
 html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-sum-away {
@@ -172,6 +173,7 @@ html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-sum-away {
 	padding-right: 3px;
 	width: 65px;
 	text-align: center;
+	padding-top: 10px;
 }
 
 html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-sum-home {
@@ -188,6 +190,7 @@ html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-sum-home {
 	padding-right: 3px;
 	width: 65px;
 	text-align: center;
+	padding-top: 10px;
 }
 
 html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-sum-away {
@@ -204,6 +207,7 @@ html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-sum-away {
 	padding-right: 3px;
 	width: 65px;
 	text-align: center;
+	padding-top: 10px;
 }
 
 html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-diff {
@@ -220,6 +224,7 @@ html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-diff {
 	padding-right: 3px;
 	width: 65px;
 	text-align: center;
+	padding-top: 10px;
 }
 
 html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-diff {
@@ -236,6 +241,7 @@ html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-diff {
 	padding-right: 3px;
 	width: 65px;
 	text-align: center;
+	padding-top: 10px;
 }
 
 }
