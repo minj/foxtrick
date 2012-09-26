@@ -125,11 +125,9 @@ Foxtrick.modules["CopyYouth"]={
 				switch(status){
 					case 200:
 						addNode( Foxtrickl10n.getString('module.CopyYouth.AutoSendTrainingReportToHY.success'), 2000 );
-						Foxtrick.log(status + ": "  + response);
 						break;
 					case 304:
-						addNode( Foxtrickl10n.getString('module.CopyYouth.AutoSendTrainingReportToHY.duplicate'), 2000 );
-						Foxtrick.log(status + ": "  + response);
+						addNode("Error " + status + ": "  + response);
 						break;
 					case 400:
 					case 401:
