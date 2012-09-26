@@ -74,7 +74,7 @@ Foxtrick.modules["CopyYouth"]={
 		};
 
 		var sendTrainingReportToHY = function(matchId, trainerNode, reportNode){
-			// url: "http://stage.hattrick-youthclub.org/_data_provider/foxtrick/playersYouthTrainingReport";
+			// url: "http://stage.hattrick-youthclub.org/_data_provider/foxtrick/matchesReport";
 			//
 			// params:
 			// teamid or managerid: teamid or managerid
@@ -89,14 +89,17 @@ Foxtrick.modules["CopyYouth"]={
 			// expected returns
 			// HTTP 200:
 			// - Ok
+			// HTTP: 304
+			// 1. At least one coach comment could not be imported on HY!
+			// 2. There is already a match report for this match on HY!
 			// HTTP 400:
 			// - not all data is given
+			// HTTP 401:
 			// - unauthorized request
 			// HTTP 409:
-			// - This language is not available on hattrick youthclub!
-			// - Given report is not valid!
+			// 1. The match must be inserted in HY before!
+			// 2. Match report is empty, too short or in wrong format!
 
-			//api url
 
 			//upcomming real adress, do NOT call yet, as of HY request: 
 			var url = "http://stage.hattrick-youthclub.org/_data_provider/foxtrick/matchesReport";
