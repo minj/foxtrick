@@ -11,20 +11,7 @@ Foxtrick.modules["MatchLineupTweaks"]={
 	OPTIONS : ["DisplayTeamNameOnField", "ShowSpecialties", "StarCounter", "StaminaCounter"],
 	CSS : Foxtrick.InternalPath +"resources/css/match-lineup-teaks.css",
 	run : function(doc) {
-		if(!Foxtrick.Pages.Match.hasNewRatings(doc))
-			return;
-
-		if(FoxtrickPrefs.isModuleOptionEnabled("MatchLineupTweaks", "DisplayTeamNameOnField"))
-			this.runTeamnNames(doc);
-
-		if(FoxtrickPrefs.isModuleOptionEnabled("MatchLineupTweaks", "ShowSpecialties"))
-			this.runSpecialties(doc);
-
-		if(FoxtrickPrefs.isModuleOptionEnabled("MatchLineupTweaks", "StarCounter"))
-			this.runStars(doc);
-
-		if(FoxtrickPrefs.isModuleOptionEnabled("MatchLineupTweaks", "StaminaCounter"))
-			this.runStamina(doc);
+		
 	},
 
 	//adds teamsnames to the field for less confusion
@@ -52,6 +39,7 @@ Foxtrick.modules["MatchLineupTweaks"]={
 	//adds apecialty icons for all players, on field and on bench
 	runSpecialties : function(doc){
 		var teams = doc.querySelectorAll("h1 > a, h1 > span > a");
+
 		var homeTeamId = Foxtrick.util.id.getTeamIdFromUrl(teams[0].href);
 		var awayTeamId = Foxtrick.util.id.getTeamIdFromUrl(teams[1].href);
 
@@ -171,10 +159,22 @@ Foxtrick.modules["MatchLineupTweaks"]={
 		doc.getElementById("playersField").appendChild(displayHome);
 		doc.getElementById("playersField").appendChild(displayDiff);
 		doc.getElementById("playersField").appendChild(displayAway);
-		
 	},
 
 	change : function(doc){
-		this.run(doc);
+		if(!Foxtrick.Pages.Match.hasNewRatings(doc))
+			return;
+
+		if(FoxtrickPrefs.isModuleOptionEnabled("MatchLineupTweaks", "DisplayTeamNameOnField"))
+			this.runTeamnNames(doc);
+
+		if(FoxtrickPrefs.isModuleOptionEnabled("MatchLineupTweaks", "ShowSpecialties"))
+			this.runSpecialties(doc);
+
+		if(FoxtrickPrefs.isModuleOptionEnabled("MatchLineupTweaks", "StarCounter"))
+			this.runStars(doc);
+
+		if(FoxtrickPrefs.isModuleOptionEnabled("MatchLineupTweaks", "StaminaCounter"))
+			this.runStamina(doc);
 	}
 };
