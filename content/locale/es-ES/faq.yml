@@ -2,17 +2,17 @@
 es-ES: 
   faq: 
     style: 
-      question: 
+      question: ¿Cómo puedo cambiar el estilo de mi FoxTrick?
       answer: 
     sound-format: 
-      question: 
+      question: ¿Qué formatos de ficheros están permitidos para las alertas de sonido?
       answer: 
     sound-location: 
-      question: 
+      question: ¿Cual es el limite de tamaño para alertas de sonido y donde pueden ser localizados?
       answer: 
     authorize: 
-      question: 
+      question: ¿Por qué debo autorizar a Foxtrick acceder a los datos de mi equipo?
       answer: 
     privacy: 
-      question: 
+      question: ¿Cómo protege mi privacidad FoxTrick?
       answer: 
