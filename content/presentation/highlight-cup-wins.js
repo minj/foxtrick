@@ -1,29 +1,30 @@
-"use strict";
+'use strict';
 /**
  * highlight-cup-wins.js
  * Highlight winners of cup matches and cupsets (optional)
  * @author convincedd, ryanli
  */
 
-Foxtrick.modules["HighlightCupwins"]={
-	MODULE_CATEGORY : Foxtrick.moduleCategories.PRESENTATION,
-	PAGES : new Array('cupMatches'),
-	OPTIONS : new Array("HighlightCupsets"),
+Foxtrick.modules['HighlightCupwins'] = {
+	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
+	PAGES: ['cupMatches'],
+	OPTIONS: ['HighlightCupsets'],
 
-	run : function(doc) {
+	run: function(doc) {
 		var rtl = Foxtrick.util.layout.isRtl(doc);
-		var highlightCupsets = FoxtrickPrefs.isModuleOptionEnabled("HighlightCupwins", "HighlightCupsets");
+		var highlightCupsets = FoxtrickPrefs.isModuleOptionEnabled('HighlightCupwins',
+		                                                           'HighlightCupsets');
 		// matches of Hattrick Masters aren't arranged by cup ranks
 		var isMasters = (doc.location.search.search(/\bCupId=183\b/i) !== -1);
 		var highlightHomeWin = !isMasters && highlightCupsets;
 
-		var mainBody=doc.getElementById('mainBody');
-		var table= mainBody.getElementsByTagName('table')[0];
+		var mainBody = doc.getElementById('mainBody');
+		var table = mainBody.getElementsByTagName('table')[0];
 
 		// add a column to show the № of matches
-		var header = table.getElementsByTagName("tr")[0];
-		var numHeader = Foxtrick.createFeaturedElement(doc, this, "th");
-		numHeader.appendChild(doc.createTextNode("#"));
+		var header = table.getElementsByTagName('tr')[0];
+		var numHeader = Foxtrick.createFeaturedElement(doc, this, 'th');
+		numHeader.appendChild(doc.createTextNode('#'));
 		header.insertBefore(numHeader, header.firstChild);
 
 		for (var i = 1; i < table.rows.length; ++i) {
@@ -35,8 +36,8 @@ Foxtrick.modules["HighlightCupwins"]={
 				// perhaps some results aren't shown
 				continue;
 			}
-			var goalsHome=parseInt(goals[0]);
-			var goalsAway=parseInt(goals[1]);
+			var goalsHome = parseInt(goals[0]);
+			var goalsAway = parseInt(goals[1]);
 
 			// win, draw, lose from the aspect of home team
 			var win = (goalsHome > goalsAway);
@@ -52,7 +53,8 @@ Foxtrick.modules["HighlightCupwins"]={
 					if (highlightHomeWin) {
 						var strong = doc.createElement('strong');
 						strong.textContent = table.rows[i].cells[4].textContent;
-						table.rows[i].cells[4].replaceChild(strong, table.rows[i].cells[4].firstChild);
+						table.rows[i].cells[4].replaceChild(strong,
+						                                    table.rows[i].cells[4].firstChild);
 					}
 					var strong = doc.createElement('strong');
 					strong.textContent = homeTeam;
@@ -61,7 +63,8 @@ Foxtrick.modules["HighlightCupwins"]={
 						matchlink.appendChild(doc.createTextNode(' - ' + awayTeam));
 					}
 					else {
-						matchlink.replaceChild(doc.createTextNode(awayTeam + ' - '), matchlink.firstChild);
+						matchlink.replaceChild(doc.createTextNode(awayTeam + ' - '),
+						                       matchlink.firstChild);
 						matchlink.appendChild(strong);
 					}
 				}
@@ -69,21 +72,22 @@ Foxtrick.modules["HighlightCupwins"]={
 					var strong = doc.createElement('strong');
 					strong.textContent = awayTeam;
 					if (!rtl) {
-						matchlink.replaceChild(doc.createTextNode(homeTeam + ' - '), matchlink.firstChild);
+						matchlink.replaceChild(doc.createTextNode(homeTeam + ' - '),
+						                       matchlink.firstChild);
 						matchlink.appendChild(strong);
 					}
-					else{
+					else {
 						matchlink.replaceChild(strong, matchlink.firstChild);
 						matchlink.appendChild(doc.createTextNode(' - ' + homeTeam));
 					}
 				}
 				var strongs = table.rows[i].getElementsByTagName('strong');
-				for (var j=0; j<strongs.length; ++j)
+				for (var j = 0; j < strongs.length; ++j)
 					Foxtrick.makeFeaturedElement(strongs[j], this);
 			}
 			catch (e) {
 				// cannot parse teams
-				Foxtrick.log("Cannot parse teams: " + matchlink.textContent + "");
+				Foxtrick.log('Cannot parse teams: ' + matchlink.textContent + '');
 			}
 		}
  	}
