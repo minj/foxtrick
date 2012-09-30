@@ -8,7 +8,7 @@
 Foxtrick.modules['SeniorTeamShortCuts'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['teamPageGeneral', 'series', 'youthSeries'],
-	RADIO_OPTIONS: new Array('OnlyOtherPages', 'AllPages'),
+	RADIO_OPTIONS: ['OnlyOtherPages', 'AllPages'],
 
 	run: function(doc) {
 		var ownteamid = Foxtrick.util.id.getOwnTeamId();

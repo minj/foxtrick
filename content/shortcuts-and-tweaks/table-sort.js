@@ -116,7 +116,7 @@ Foxtrick.modules['TableSort'] = {
 				//Foxtrick.log('sort end: ',sort_end);
 
 				// rows to be sorted
-				var rows = new Array();
+				var rows = [];
 				for (var i = sort_start + 1; i < sort_end; ++i) {
 					rows.push(table.rows[i].cloneNode(true));
 				}
