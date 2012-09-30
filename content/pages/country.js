@@ -1,22 +1,22 @@
-"use strict";
+'use strict';
 /* country.js
  * Utilities on country page
  * @author ryanli
  */
 
 Foxtrick.Pages.Country = {
-	getId : function(doc) {
+	getId: function(doc) {
 		try {
 			// should fetch from h2 header because changing country from
 			// select box would not change the URL
-			var mainWrapper = doc.getElementsByClassName("main")[0];
-			var h2 = mainWrapper.getElementsByTagName("h2")[0];
-			var countryLink = h2.getElementsByTagName("a")[0];
+			var mainWrapper = doc.getElementsByClassName('main')[0];
+			var h2 = mainWrapper.getElementsByTagName('h2')[0];
+			var countryLink = h2.getElementsByTagName('a')[0];
 			var matched = countryLink.href.match(/LeagueID=(\d+)/);
 			if (matched)
 				return Number(matched[1]);
 			else
-				throw "Cannot find ID from: " + countryLink.href;
+				throw 'Cannot find ID from: ' + countryLink.href;
 		}
 		catch (e) {
 			Foxtrick.log(e);

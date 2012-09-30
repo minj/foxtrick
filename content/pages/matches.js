@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /**
  * matches.js
  * utilities on matches page
@@ -7,10 +7,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 Foxtrick.Pages.Matches = {
-	isYouthMatchesPage : function(doc) {
+	isYouthMatchesPage: function(doc) {
 		return (doc.location.search.search(/YouthTeamId=/i) > -1);
 	},
-	isNtMatchesPage : function(doc) {
+	isNtMatchesPage: function(doc) {
 		var teamId = Foxtrick.Pages.All.getTeamId(doc);
 		return (teamId >= 3000 && teamId < 4000);
 	}

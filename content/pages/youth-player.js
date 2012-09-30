@@ -1,15 +1,15 @@
-"use strict";
+'use strict';
 /* youth-player.js
  * Utilities on youth player page
  * @author ryanli
  */
 
 Foxtrick.Pages.YouthPlayer = {
-	isYouthPlayerPage : function(doc) {
-		return Foxtrick.isPage("youthPlayerDetails", doc);
+	isYouthPlayerPage: function(doc) {
+		return Foxtrick.isPage('youthPlayerDetails', doc);
 	},
 
-	getJoinedDays : function(doc) {
+	getJoinedDays: function(doc) {
 		try {
 			// we presume the dates are in this format:
 			// d/M/y/ h:m
@@ -25,9 +25,9 @@ Foxtrick.Pages.YouthPlayer = {
 			// for the likes of `3 dage siden (16-01-2010 01.02)':
 			var joinedRe2 = /(\d+).+?\d+[\./\-]\d+[\./\-]\d+[\./\-]?\s+\d+[:\.]\d+/;
 			//               ^join   ^d ^sep   ^M ^sep   ^y ^sep       ^h ^sep ^m
-			var playerInfo = doc.getElementsByClassName("playerInfo")[0];
-			var playerTable = playerInfo.getElementsByTagName("table")[0];
-			var joinedCell = playerTable.getElementsByTagName("td")[5];
+			var playerInfo = doc.getElementsByClassName('playerInfo')[0];
+			var playerTable = playerInfo.getElementsByTagName('table')[0];
+			var joinedCell = playerTable.getElementsByTagName('td')[5];
 			// if not joinedRe1, then joinedRe2
 			var joinedMatch = joinedRe1.exec(joinedCell.textContent);
 			if (joinedMatch === null) {
@@ -41,7 +41,7 @@ Foxtrick.Pages.YouthPlayer = {
 		}
 	},
 
-	getDaysToPromote : function(doc) {
+	getDaysToPromote: function(doc) {
 		try {
 			var joinedDays = this.getJoinedDays(doc);
 			var age = Foxtrick.Pages.Player.getAge(doc);

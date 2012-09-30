@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /**
  * match.js
  * utilities on match page
@@ -6,23 +6,23 @@
  */
 ////////////////////////////////////////////////////////////////////////////////
 Foxtrick.Pages.Match = {
-	isPrematch : function(doc) {
-		return (doc.getElementById("ctl00_ctl00_CPContent_CPMain_pnlPreMatch") != null);
+	isPrematch: function(doc) {
+		return (doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlPreMatch') != null);
 	},
 
-	isYouth : function(doc) {
+	isYouth: function(doc) {
 		return (doc.location.search.search(/isYouth=true|SourceSystem=Youth/i) > -1);
 	},
 
-	isHTOIntegrated : function(doc) {
+	isHTOIntegrated: function(doc) {
 		return (doc.location.search.search(/SourceSystem=HTOIntegrated/i) > -1);
 	},
-	
-	hasNewRatings : function(doc) {
+
+	hasNewRatings: function(doc) {
 		return (doc.getElementById('divReport') != null);
 	},
 
-	getId : function(doc) {
+	getId: function(doc) {
 		try {
 			return (doc.location.search.match(/matchID=(\d+)/i)[1]);
 		}
@@ -31,16 +31,16 @@ Foxtrick.Pages.Match = {
 		}
 	},
 
-	inProgress : function(doc) {
-		var matchStatus = doc.getElementById("ctl00_ctl00_CPContent_CPMain_lblMatchStatus");
-		return (matchStatus != null) && (matchStatus.textContent != "");
+	inProgress: function(doc) {
+		var matchStatus = doc.getElementById('ctl00_ctl00_CPContent_CPMain_lblMatchStatus');
+		return (matchStatus != null) && (matchStatus.textContent != '');
 	},
 
 	getRatingsTable: function(doc) {
 		try {
-			return doc.getElementById("mainBody")
-				.getElementsByClassName("mainBox")[0]
-				.getElementsByTagName("table")[0];
+			return doc.getElementById('mainBody')
+				.getElementsByClassName('mainBox')[0]
+				.getElementsByTagName('table')[0];
 		}
 		catch (e) {
 			return null;
@@ -49,8 +49,8 @@ Foxtrick.Pages.Match = {
 
 	hasIndSetPieces: function(ratingstable) {
 		// either iSP level link in that cell or for old matches tactic=no link
-		return ratingstable.rows.length > 10	
-				&& ratingstable.rows[10].cells.length > 1 
+		return ratingstable.rows.length > 10
+				&& ratingstable.rows[10].cells.length > 1
 				&& ratingstable.rows[10].cells[1].getElementsByTagName('a').length > 0;
 	},
 
@@ -90,14 +90,15 @@ Foxtrick.Pages.Match = {
 
 	getStatFromCell: function(cell) {
 		var link = cell.firstChild;
-		var baseValue = parseInt(link.href.replace(/.+lt=skill/i, "").replace(/.+ll=/i, "").match(/^\d+/)) - 1;
+		var baseValue = parseInt(link.href.replace(/.+lt=skill/i, '').replace(/.+ll=/i, '')
+		                         .match(/^\d+/)) - 1;
 		if (baseValue == -1) {
 			return 0; // non-existant
 		}
 
-		var subLevelValue=0;
+		var subLevelValue = 0;
 
-		var lang = FoxtrickPrefs.getString("htLanguage");
+		var lang = FoxtrickPrefs.getString('htLanguage');
 
 		try {
 			// remove <a> (baseValue above) and <span> (could be added
@@ -105,35 +106,39 @@ Foxtrick.Pages.Match = {
 			var nodeCloned = cell.cloneNode(true);
 			var toRemove = Foxtrick.filter(function(n) {
 					var nn = n.nodeName.toLowerCase();
-					return nn == "a" || nn == "span";
+					return nn == 'a' || nn == 'span';
 				}, nodeCloned.childNodes);
 			Foxtrick.map(function(n) { nodeCloned.removeChild(n); }, toRemove);
 			var subLevel = Foxtrick.trim(nodeCloned.textContent);
-			var path = "language/ratingSubLevels/sublevel[@text='" + subLevel + "']";
-			subLevelValue = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "value");
-			if (!subLevelValue)	return -1;
+			var path = 'language/ratingSubLevels/sublevel[@text=\'' + subLevel + '\']';
+			subLevelValue = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path,
+			                                             'value');
+			if (!subLevelValue)
+				return -1;
 		}
 		catch (e) {
-			Foxtrick.log('getStatFromCell',e, path);
+			Foxtrick.log('getStatFromCell', e, path);
 		}
 
-		return baseValue+parseFloat(subLevelValue);
+		return baseValue + parseFloat(subLevelValue);
 	},
 
 	getTacticsLevelFromCell: function(cell) {
-		var basevalue=0;
-		if (cell.firstChild.nodeName=='A')
-			basevalue=parseInt(cell.firstChild.href.replace(/.+lt=skill/i, "").replace(/.+ll=/i, "").match(/^\d+/));
+		var basevalue = 0;
+		if (cell.firstChild.nodeName == 'A')
+			basevalue = parseInt(cell.firstChild.href.replace(/.+lt=skill/i, '')
+			                     .replace(/.+ll=/i, '').match(/^\d+/));
 		return basevalue;
 	},
 
 	getTacticsFromCell: function(cell) {
-		var tactics=Foxtrick.trim(cell.textContent);
-		var lang = FoxtrickPrefs.getString("htLanguage");
+		var tactics = Foxtrick.trim(cell.textContent);
+		var lang = FoxtrickPrefs.getString('htLanguage');
 
 		try {
-			var path = "language/tactics/tactic[@value=\"" + tactics + "\"]";
-			var subLevelValue = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, "type");
+			var path = 'language/tactics/tactic[@value=\'' + tactics + '\']';
+			var subLevelValue = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang],
+			                                                 path, 'type');
 			return subLevelValue || -1;
 		}
 		catch (e) {
@@ -149,39 +154,40 @@ Foxtrick.Pages.Match = {
 	 * @param prec - precedence of the box, smaller value will be placed higher
 	 * @return box to be added to
 	 */
-	addBoxToSidebar : function(doc, title, content, prec) {
+	addBoxToSidebar: function(doc, title, content, prec) {
 		// class of the box to add
-		var boxClass = "";
+		var boxClass = '';
 		var sidebar;
-		(sidebar = doc.getElementsByClassName("reportHighlights")[0]) && (boxClass = "ft-matchSidebarBox");
-	
+		(sidebar = doc.getElementsByClassName('reportHighlights')[0]) &&
+			(boxClass = 'ft-matchSidebarBox');
+
 		if (!sidebar)
 			return;
-	
+
 		// destination box
 		var dest;
-	
+
 		// existing sidebar boxes
-		var existings = sidebar.getElementsByClassName(boxClass+', .rightHandBoxHeader');
+		var existings = sidebar.getElementsByClassName(boxClass + ', .rightHandBoxHeader');
 		for (var i = 0; i < existings.length; ++i) {
 			var box = existings[i];
-			var hdr = box.getElementsByClassName("rightHandBoxHeader")[0].textContent;
+			var hdr = box.getElementsByClassName('rightHandBoxHeader')[0].textContent;
 			if (hdr == title)
 				dest = box; // found destination box
 		}
 		// create new box if old one doesn't exist
 		if (!dest) {
-			var dest = doc.createElement("div");
+			var dest = doc.createElement('div');
 			dest.className = boxClass;
-			dest.setAttribute("x-precedence", prec);
+			dest.setAttribute('x-precedence', prec);
 			// boxHead
-			var boxHead = doc.createElement("h4");
-			boxHead.className = "rightHandBoxHeader";
+			var boxHead = doc.createElement('h4');
+			boxHead.className = 'rightHandBoxHeader';
 			dest.appendChild(boxHead);
 			boxHead.textContent = title;
 			// boxBody
-			var boxBody = doc.createElement("div");
-			boxBody.className = "rightHandBoxBody";
+			var boxBody = doc.createElement('div');
+			boxBody.className = 'rightHandBoxBody';
 			dest.appendChild(boxBody);
 			// append content to boxBody
 			boxBody.appendChild(content);
@@ -190,12 +196,13 @@ Foxtrick.Pages.Match = {
 			if (existings.length) {
 				for (var i = 0; i < existings.length; ++i) {
 					// precedence of current box, hattrick boxes are set to 0
-					var curPrec = existings[i].hasAttribute("x-precedence")
-						? Number(existings[i].getAttribute("x-precedence"))
+					var curPrec = existings[i].hasAttribute('x-precedence')
+						? Number(existings[i].getAttribute('x-precedence'))
 						: 0;
 					if (curPrec > prec) {
 						if (i == 0 && curPrec == 0)
-							// first to be added and placed before HT boxes. add it on top before possible updatepanel div (eg teampage challenge and mailto)
+							// first to be added and placed before HT boxes. add it on top
+							// before possible updatepanel div (eg teampage challenge and mailto)
 							sidebar.insertBefore(dest, sidebar.firstChild);
 						else
 							existings[i].parentNode.insertBefore(dest, existings[i]);
@@ -208,14 +215,14 @@ Foxtrick.Pages.Match = {
 				sidebar.insertBefore(dest, sidebar.firstChild);
 				inserted = true;
 			}
-			
+
 			if (!inserted)
 				sidebar.appendChild(dest);
 		}
-	
+
 		// finally we add the content
-		dest.getElementsByClassName("rightHandBoxBody")[0].appendChild(content);
-	
+		dest.getElementsByClassName('rightHandBoxBody')[0].appendChild(content);
+
 		return dest;
 	}
 };

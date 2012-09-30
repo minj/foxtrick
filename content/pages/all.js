@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /* all.js
  * Utilities on all pages
  * @author ryanli
@@ -18,35 +18,35 @@ if (!Foxtrick) var Foxtrick = {};
 Foxtrick.Pages = {};
 
 Foxtrick.Pages.All = {
-	getId : function(doc) {
+	getId: function(doc) {
 		var parseId = function(link) {
 			var matched = link.href.match(/id=(\d+)/i);
 			if (matched)
 				return Number(matched[1]);
 			return null;
 		};
-		var idContainer =  doc.getElementsByClassName("main")[0].getElementsByTagName("a")[0];
+		var idContainer = doc.getElementsByClassName('main')[0].getElementsByTagName('a')[0];
 		if (idContainer)
-			return {'id':parseId(idContainer), 'name':idContainer.textContent};
+			return { 'id': parseId(idContainer), 'name': idContainer.textContent };
 	},
-	get : function(doc) {
+	get: function(doc) {
 		var parseId = function(span) {
 			var matched = span.textContent.match(/^\((\d+)\)$/);
 			if (matched)
 				return Number(matched[1]);
 			return null;
 		};
-		var header = doc.getElementsByTagName("h1")[0];
-		var spans = header.getElementsByTagName("span");
+		var header = doc.getElementsByTagName('h1')[0];
+		var spans = header.getElementsByTagName('span');
 		var idContainer = Foxtrick.filter(function(n) {
 			return parseId(n) !== null;
 		}, spans)[0];
 		if (idContainer)
 			return parseId(idContainer);
 	},
-	getOwnTeamId : function(doc) {
+	getOwnTeamId: function(doc) {
 		try {
-			var id =  Foxtrick.util.id.getOwnTeamId();
+			var id = Foxtrick.util.id.getOwnTeamId();
 			if (id) {
 				return id;
 			}
@@ -56,12 +56,12 @@ Foxtrick.Pages.All = {
 		}
 		return null;
 	},
-	getTeamId : function(doc) {
+	getTeamId: function(doc) {
 		try {
-			var subMenu = doc.getElementsByClassName("subMenu")[0];
+			var subMenu = doc.getElementsByClassName('subMenu')[0];
 			if (!subMenu)
 				return null;
-			var id = Foxtrick.util.id.findTeamId(subMenu.getElementsByTagName("div")[0]);
+			var id = Foxtrick.util.id.findTeamId(subMenu.getElementsByTagName('div')[0]);
 			if (id) {
 				return id;
 			}
@@ -71,11 +71,11 @@ Foxtrick.Pages.All = {
 		}
 		return null;
 	},
-	getTeamName : function(doc) {
+	getTeamName: function(doc) {
 		try {
-			var mainRegular = doc.getElementsByClassName("mainRegular")[0];
-			var header = mainRegular.getElementsByTagName("h2")[0];
-			var links = header.getElementsByTagName("a")[0];
+			var mainRegular = doc.getElementsByClassName('mainRegular')[0];
+			var header = mainRegular.getElementsByTagName('h2')[0];
+			var links = header.getElementsByTagName('a')[0];
 			for (var i = 0; i < links.length; ++i) {
 				if (links[i].search(/TeamID=\d+/) !== -1) {
 					return links[i].textContent;
@@ -87,8 +87,8 @@ Foxtrick.Pages.All = {
 		}
 		return null;
 	},
-	isLoggedIn : function(doc) {
-		var teamLinks = doc.getElementById("teamLinks");
-		return !!teamLinks && teamLinks.getElementsByTagName("a").length > 0;
+	isLoggedIn: function(doc) {
+		var teamLinks = doc.getElementById('teamLinks');
+		return !!teamLinks && teamLinks.getElementsByTagName('a').length > 0;
 	}
 };
