@@ -1,52 +1,52 @@
-"use strict";
+'use strict';
 /**
  * stars-counter.js
  * Count stars in match lineup page
  * @author larsw84, ryanli
  */
 
-Foxtrick.modules["StarsCounter"]={
-	MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
-	PAGES : new Array("matchLineup"),
-	run : function(doc) {
+Foxtrick.modules['StarsCounter'] = {
+	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
+	PAGES: ['matchLineup'],
+	run: function(doc) {
 		this.runMatchLineup(doc);
 	},
 
-	runMatchLineup : function(doc){
+	runMatchLineup: function(doc) {
 		var yellow = 0;
 		var brown = 0;
 		var red = 0;
 		var blue = 0;
 
 		var imgToStars = {
-			"star_big_yellow.png" : { yellow : 5 },
-			"star_yellow.png" : { yellow : 1 },
-			"star_brown.png" : { brown : 1 },
-			"star_red.png" : { red : 1 },
-			"star_yellow_to_brown.png" : { yellow : 0.5, brown : 0.5 },
-			"star_yellow_to_brown_rtl.png" : { yellow : 0.5, brown : 0.5 },
-			"star_yellow_to_red.png" : { yellow : 0.5, red : 0.5 },
-			"star_yellow_to_red_rtl.png" : { yellow : 0.5, red : 0.5 },
-			"star_half_yellow.png" : { yellow : 0.5 },
-			"star_half_yellow_rtl.png" : { yellow : 0.5 },
-			"star_half_brown.png" : { brown : 0.5 },
-			"star_half_brown_rtl.png" : { brown : 0.5 },
-			"star_half_red.png" : { red : 0.5 },
-			"star_half_red_rtl.png" : { red : 0.5 },
-			"star_big_blue.png" : { blue : 5 },
-			"star_blue.png" : { blue : 1 },
-			"star_half_blue.png" : { blue : 0.5 },
-			"star_half_blue_rtl.png" : { blue : 0.5 }
+			'star_big_yellow.png': { yellow: 5 },
+			'star_yellow.png': { yellow: 1 },
+			'star_brown.png': { brown: 1 },
+			'star_red.png': { red: 1 },
+			'star_yellow_to_brown.png': { yellow: 0.5, brown: 0.5 },
+			'star_yellow_to_brown_rtl.png': { yellow: 0.5, brown: 0.5 },
+			'star_yellow_to_red.png': { yellow: 0.5, red: 0.5 },
+			'star_yellow_to_red_rtl.png': { yellow: 0.5, red: 0.5 },
+			'star_half_yellow.png': { yellow: 0.5 },
+			'star_half_yellow_rtl.png': { yellow: 0.5 },
+			'star_half_brown.png': { brown: 0.5 },
+			'star_half_brown_rtl.png': { brown: 0.5 },
+			'star_half_red.png': { red: 0.5 },
+			'star_half_red_rtl.png': { red: 0.5 },
+			'star_big_blue.png': { blue: 5 },
+			'star_blue.png': { blue: 1 },
+			'star_half_blue.png': { blue: 0.5 },
+			'star_half_blue_rtl.png': { blue: 0.5 }
 		};
 
 		// get information from the page
-		var images = doc.getElementsByTagName("img");
+		var images = doc.getElementsByTagName('img');
 		for (var i = 0; i < images.length; ++i) {
 			var img = images[i];
 			// don't count substituted players
-			if (!Foxtrick.hasClass(img.parentNode.parentNode.parentNode, "substitute_holder")) {
+			if (!Foxtrick.hasClass(img.parentNode.parentNode.parentNode, 'substitute_holder')) {
 				for (var src in imgToStars) {
-					if (img.src.match(RegExp(src, "i"))) {
+					if (img.src.match(RegExp(src, 'i'))) {
 						if (imgToStars[src].yellow) {
 							yellow += imgToStars[src].yellow;
 						}
@@ -65,11 +65,12 @@ Foxtrick.modules["StarsCounter"]={
 		}
 
 		// add the information to the page
-		var mainBody = doc.getElementById("mainBody");
-		var container = Foxtrick.createFeaturedElement(doc, this, "p");
+		var mainBody = doc.getElementById('mainBody');
+		var container = Foxtrick.createFeaturedElement(doc, this, 'p');
 		mainBody.appendChild(container);
-		var title = doc.createElement("strong");
-		title.appendChild(doc.createTextNode(Foxtrickl10n.getString("matches.lineup.totalStars") + ": "));
+		var title = doc.createElement('strong');
+		title.appendChild(doc.createTextNode(Foxtrickl10n.getString('matches.lineup.totalStars') +
+		                  ': '));
 		container.appendChild(title);
 		if (blue) {
 			// meaning it's a youth team
@@ -77,55 +78,59 @@ Foxtrick.modules["StarsCounter"]={
 		}
 		else if (yellow || brown || red) {
 			container.appendChild(doc.createTextNode(yellow + brown + red));
-			var detailed = doc.createElement("span");
+			var detailed = doc.createElement('span');
 			container.appendChild(detailed);
-			detailed.appendChild(doc.createTextNode("("));
-			var count = doc.createElement("span");
-			var percentage = doc.createElement("span");
+			detailed.appendChild(doc.createTextNode('('));
+			var count = doc.createElement('span');
+			var percentage = doc.createElement('span');
 			detailed.appendChild(count);
-			detailed.appendChild(doc.createTextNode(" / "));
+			detailed.appendChild(doc.createTextNode(' / '));
 			detailed.appendChild(percentage);
-			detailed.appendChild(doc.createTextNode(")"));
-			var firstStar = true; // if it's not the first star, add " + "
+			detailed.appendChild(doc.createTextNode(')'));
+			var firstStar = true; // if it's not the first star, add ' + '
 			if (yellow) {
 				count.appendChild(doc.createTextNode(yellow));
-				count.appendChild(this._getStar(doc, "yellow"));
-				percentage.appendChild(doc.createTextNode(Math.round(100 * yellow / (yellow + brown + red)) + "%"));
-				percentage.appendChild(this._getStar(doc, "yellow"));
+				count.appendChild(this._getStar(doc, 'yellow'));
+				percentage.appendChild(doc.createTextNode(Math.round(100 * yellow / (yellow +
+				                       brown + red)) + '%'));
+				percentage.appendChild(this._getStar(doc, 'yellow'));
 				firstStar = false;
+
 			}
 			if (brown) {
 				if (!firstStar) {
-					count.appendChild(doc.createTextNode(" + "));
-					percentage.appendChild(doc.createTextNode(" + "));
+					count.appendChild(doc.createTextNode(' + '));
+					percentage.appendChild(doc.createTextNode(' + '));
 					firstStar = false;
 				}
 				count.appendChild(doc.createTextNode(brown));
-				count.appendChild(this._getStar(doc, "brown"));
-				percentage.appendChild(doc.createTextNode(Math.round(100 * brown / (yellow + brown + red)) + "%"));
-				percentage.appendChild(this._getStar(doc, "brown"));
+				count.appendChild(this._getStar(doc, 'brown'));
+				percentage.appendChild(doc.createTextNode(Math.round(100 * brown / (yellow +
+				                       brown + red)) + '%'));
+				percentage.appendChild(this._getStar(doc, 'brown'));
 			}
 			if (red) {
 				if (!firstStar) {
-					count.appendChild(doc.createTextNode(" + "));
+					count.appendChild(doc.createTextNode(' + '));
 				}
 				count.appendChild(doc.createTextNode(red));
-				count.appendChild(this._getStar(doc, "red"));
-				percentage.appendChild(doc.createTextNode(Math.round(100 * red / (yellow + brown + red)) + "%"));
-				percentage.appendChild(this._getStar(doc, "red"));
+				count.appendChild(this._getStar(doc, 'red'));
+				percentage.appendChild(doc.createTextNode(Math.round(100 * red / (yellow +
+				                       brown + red)) + '%'));
+				percentage.appendChild(this._getStar(doc, 'red'));
 			}
 		}
 		else {
 			// walk-overs have no stars
-			container.appendChild(doc.createTextNode("0"));
+			container.appendChild(doc.createTextNode('0'));
 		}
 	},
 
-	_getStar : function(doc, colour) {
-		var star = doc.createElement("img");
-		star.className = "starWhole";
-		star.alt = star.title = "*";
-		star.src = "/Img/Matches/star_" + colour + ".png";
+	_getStar: function(doc, colour) {
+		var star = doc.createElement('img');
+		star.className = 'starWhole';
+		star.alt = star.title = '*';
+		star.src = '/Img/Matches/star_' + colour + '.png';
 		return star;
 	}
 };
