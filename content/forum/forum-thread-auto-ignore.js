@@ -29,7 +29,7 @@ Foxtrick.modules.ForumThreadAutoIgnore = {
 				return;
 
 			// get tags. comma seperated in the prefs
-			tags = tags_string.split(', ');
+			tags = tags_string.split(',');
 			for (var i = 0; i < tags.length; ++i) {
 				tags[i] = tags[i].replace(/^\s+/, ''); // leading space removed
 				tags[i] = tags[i].replace(/\s+$/, ''); // trailing space removed
@@ -41,7 +41,7 @@ Foxtrick.modules.ForumThreadAutoIgnore = {
 				var whitelist_string =
 					FoxtrickPrefs.getString('module.ForumThreadAutoIgnore.Whitelist_ThreadIDs_text');
 				if (whitelist_string) {
-					whitelist = whitelist_string.split(', ');
+					whitelist = whitelist_string.split(',');
 					for (var i = 0; i < whitelist.length; ++i) {
 						whitelist[i] = whitelist[i].replace(/^\s+/, ''); // leading space removed
 						whitelist[i] = whitelist[i].replace(/\s+$/, ''); // trailing space removed

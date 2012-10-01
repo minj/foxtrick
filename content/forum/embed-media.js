@@ -311,7 +311,7 @@ Foxtrick.modules['EmbedMedia'] = {
 			//Sites where IFrame and OEmbed is the only way out
 			for (var key in oembed_urls)
 			{
-				if (!Foxtrick.hasClass(target, 'ft-media-site- ' + key))
+				if (!Foxtrick.hasClass(target, 'ft-media-site-' + key))
 					continue;
 
 				//oEmbed

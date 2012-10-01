@@ -365,8 +365,8 @@ Foxtrick.modules['SkillColoring'] = {
 		}
 
 		if (skill_select && Foxtrick.isPage('transferSearchForm', doc)) {
-			var skills = doc.querySelectorAll('#mainBody select[id*=\'Skill\'][id$=\'Min\']>option, ' +
-			                                  '#mainBody select[id*=\'Skill\'][id$=\'Max\']>option');
+			var skills = doc.querySelectorAll('#mainBody select[id*="Skill"][id$="Min"]>option, '
+											+ '#mainBody select[id*="Skill"][id$="Max"]>option');
 			for (var i = 0, skill; skill = skills[i]; ++i) {
 				if (skill.value != -1) {
 					var level = doc.createElement('span');

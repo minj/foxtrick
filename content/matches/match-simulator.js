@@ -24,7 +24,7 @@ Foxtrick.modules.MatchSimulator = {
 		'7': { className: 'ftMatchMasters', title: 'Hattrick Masters' },
 		'8': { className: 'ftMatchFriendly', title: 'International friendly (normal rules)' },
 		'9': { className: 'ftMatchFriendly', title: 'Internation friendly (cup rules)' },
-		'10': { className: 'ftUpcomingNationalIcon', title: ' National teams competition match ' +
+		'10': { className: 'ftUpcomingNationalIcon', title: 'National teams competition match ' +
 			'(normal rules)' },
 		'11': { className: 'ftUpcomingNationalIcon', title: 'National teams competition match ' +
 			'(cup rules)' },

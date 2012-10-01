@@ -297,9 +297,9 @@ Foxtrick.modules['ForumYouthIcons'] = {
 
 						if (seperator == 'TAB') seperator = '\\t';
 						if (seperator == '|') seperator = '\\|';
-						if (seperator == ' + ') seperator = '\\+ ';
+						if (seperator == '+') seperator = '\\+';
 						if (seperator == '.') seperator = '\\.';
-						if (seperator == ' ') seperator = ' + ';
+						if (seperator == ' ') seperator = ' +';
 
 						// deal with some nested tags
 						var myReg = new RegExp('\\[i\\](.+)(' + seperator + ')(.+)\\[\\/i\\]', 'g');
