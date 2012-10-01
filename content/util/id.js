@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /**
 * id.js
 * Utilities for dealing with ID
@@ -11,32 +11,32 @@ if (!Foxtrick.util)
 Foxtrick.util.id = {};
 
 Foxtrick.util.id.getOwnTeamId = function() {
-	return Foxtrick.modules["Core"].getSelfTeamInfo().teamId;
+	return Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
 };
 
 Foxtrick.util.id.getOwnYouthTeamId = function() {
-	return Foxtrick.modules["Core"].getSelfTeamInfo().youthTeamId;
+	return Foxtrick.modules['Core'].getSelfTeamInfo().youthTeamId;
 };
 
 Foxtrick.util.id.getOwnLeagueId = function() {
-	return Foxtrick.modules["Core"].getSelfTeamInfo().leagueId;
+	return Foxtrick.modules['Core'].getSelfTeamInfo().leagueId;
 };
 
 Foxtrick.util.id.isSeriesDetailUrl = function(href) {
-	return href.match(/Series\/Default\.aspx/i) ;
+	return href.match(/Series\/Default\.aspx/i);
 };
 
 Foxtrick.util.id.getLeagueLeveUnitIdFromUrl = function(url) {
-	return url.replace(/.+leagueLevelUnitID=/i, "").match(/^\d+/);
+	return url.replace(/.+leagueLevelUnitID=/i, '').match(/^\d+/);
 };
 
 Foxtrick.util.id.findLeagueId = function(element) {
 	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href') ;
-	}, element.getElementsByTagName("a"));
-	for (var i=0; i < links.length; i++) {
-		if ( links[i].href.match(/League\.aspx/i) ) {
-			return Number(links[i].href.replace(/.+leagueid=/i, "").match(/^\d+/)[0]);
+		return n.hasAttribute('href');
+	}, element.getElementsByTagName('a'));
+	for (var i = 0; i < links.length; i++) {
+		if (links[i].href.match(/League\.aspx/i)) {
+			return Number(links[i].href.replace(/.+leagueid=/i, '').match(/^\d+/)[0]);
 		}
 	}
 	return null;
@@ -44,11 +44,11 @@ Foxtrick.util.id.findLeagueId = function(element) {
 
 Foxtrick.util.id.findUserId = function(element) {
 	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href') ;
-	}, element.getElementsByTagName("a"));
-	for (var i=0; i < links.length; i++) {
-		if ( links[i].href.match(/userId/i) ) {
-			return Number(links[i].href.replace(/.+userId=/i, "").match(/^\d+/)[0]);
+		return n.hasAttribute('href');
+	}, element.getElementsByTagName('a'));
+	for (var i = 0; i < links.length; i++) {
+		if (links[i].href.match(/userId/i)) {
+			return Number(links[i].href.replace(/.+userId=/i, '').match(/^\d+/)[0]);
 		}
 	}
 	return null;
@@ -69,14 +69,14 @@ Foxtrick.util.id.getMatchIdFromUrl = function(url) {
 };
 
 Foxtrick.util.id.isTeamDetailUrl = function(href) {
-	return href.match(/.+TeamID=/i) ;
+	return href.match(/.+TeamID=/i);
 };
 
 Foxtrick.util.id.extractTeamName = function(element) {
 	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href') ;
-	}, element.getElementsByTagName("a"));
-	for (var i=0; i<links.length; i++) {
+		return n.hasAttribute('href');
+	}, element.getElementsByTagName('a'));
+	for (var i = 0; i < links.length; i++) {
 		if (Foxtrick.util.id.isTeamDetailUrl(links[i].href)) {
 			return Foxtrick.trim(links[i].textContent);
 		}
@@ -86,30 +86,30 @@ Foxtrick.util.id.extractTeamName = function(element) {
 
 Foxtrick.util.id.findMatchId = function(element) {
 	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href') ;
-	}, element.getElementsByTagName("a"));
-	for (var i=0; i < links.length; i++) {
-		if ( links[i].href.match(/Club\/Matches\/Match\.aspx/i) ) {
-			return Number(links[i].href.replace(/.+matchID=/i, "").match(/^\d+/)[0]);
+		return n.hasAttribute('href');
+	}, element.getElementsByTagName('a'));
+	for (var i = 0; i < links.length; i++) {
+		if (links[i].href.match(/Club\/Matches\/Match\.aspx/i)) {
+			return Number(links[i].href.replace(/.+matchID=/i, '').match(/^\d+/)[0]);
 		}
 	}
 	return null;
 };
 
 Foxtrick.util.id.findIsYouthMatch = function(href) {
-	if (href.match(/Club\/Matches\/Match\.aspx/i) ) {
-		return (href.search(/isYouth=true|SourceSystem=Youth/i)!=-1);
+	if (href.match(/Club\/Matches\/Match\.aspx/i)) {
+		return (href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
 	}
 	return false;
 };
 
 Foxtrick.util.id.findTeamId = function(element) {
 	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href') ;
-	}, element.getElementsByTagName("a"));
-	for (var i=0; i < links.length; i++) {
-		if ( links[i].href.match(/TeamID=/i) ) {
-			return Number(links[i].href.replace(/.+TeamID=/i, "").match(/^\d+/)[0]);
+		return n.hasAttribute('href');
+	}, element.getElementsByTagName('a'));
+	for (var i = 0; i < links.length; i++) {
+		if (links[i].href.match(/TeamID=/i)) {
+			return Number(links[i].href.replace(/.+TeamID=/i, '').match(/^\d+/)[0]);
 		}
 	}
 	return false;
@@ -117,12 +117,12 @@ Foxtrick.util.id.findTeamId = function(element) {
 
 Foxtrick.util.id.findYouthTeamId = function(element) {
 	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href') ;
-	}, element.getElementsByTagName("a"));
+		return n.hasAttribute('href');
+	}, element.getElementsByTagName('a'));
 
-	for (var i=0; i < links.length; i++) {
-		if ( links[i].href.match(/YouthTeamID=/i) ) {
-			return Number(links[i].href.replace(/.+YouthTeamID=/i, "").match(/^\d+/)[0]);
+	for (var i = 0; i < links.length; i++) {
+		if (links[i].href.match(/YouthTeamID=/i)) {
+			return Number(links[i].href.replace(/.+YouthTeamID=/i, '').match(/^\d+/)[0]);
 		}
 	}
 	return null;
@@ -130,25 +130,26 @@ Foxtrick.util.id.findYouthTeamId = function(element) {
 
 Foxtrick.util.id.findUserId = function(element) {
 	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href') ;
-	}, element.getElementsByTagName("a"));
-	for (var i=0; i < links.length; i++) {
-		if ( links[i].href.match(/UserID=/i) ) {
-			return Number(links[i].href.replace(/.+UserID=/i, "").match(/^\d+/));
+		return n.hasAttribute('href');
+	}, element.getElementsByTagName('a'));
+	for (var i = 0; i < links.length; i++) {
+		if (links[i].href.match(/UserID=/i)) {
+			return Number(links[i].href.replace(/.+UserID=/i, '').match(/^\d+/));
 		}
 	}
 	return false;
 };
 
 
-Foxtrick.util.id.findSecondTeamId = function(element,firstteamid) {
+Foxtrick.util.id.findSecondTeamId = function(element, firstteamid) {
 	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href') ;
-	}, element.getElementsByTagName("a"));
-	for (var i=0; i < links.length; i++) {
-		if ( links[i].href.match(/TeamID=/i) ) {
-			var id=links[i].href.replace(/.+TeamID=/i, "").match(/^\d+/)[0];
-			if (id!=firstteamid) return Number(id);
+		return n.hasAttribute('href');
+	}, element.getElementsByTagName('a'));
+	for (var i = 0; i < links.length; i++) {
+		if (links[i].href.match(/TeamID=/i)) {
+			var id = links[i].href.replace(/.+TeamID=/i, '').match(/^\d+/)[0];
+			if (id != firstteamid)
+				return Number(id);
 		}
 	}
 	return 0;
@@ -156,11 +157,11 @@ Foxtrick.util.id.findSecondTeamId = function(element,firstteamid) {
 
 Foxtrick.util.id.findPlayerId = function(element) {
 	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href') ;
-	}, element.getElementsByTagName("a"));
-	for (var i=0; i < links.length; i++) {
-		if ( links[i].href.match(/playerID=/i) ) {
-			return Number(links[i].href.replace(/.+playerID=/i, "").match(/^\d+/)[0]);
+		return n.hasAttribute('href');
+	}, element.getElementsByTagName('a'));
+	for (var i = 0; i < links.length; i++) {
+		if (links[i].href.match(/playerID=/i)) {
+			return Number(links[i].href.replace(/.+playerID=/i, '').match(/^\d+/)[0]);
 		}
 	}
 	return null;
@@ -168,26 +169,26 @@ Foxtrick.util.id.findPlayerId = function(element) {
 
 Foxtrick.util.id.findYouthPlayerId = function(element) {
 	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href') ;
-	}, element.getElementsByTagName("a"));
-	for (var i=0; i < links.length; i++) {
-		if ( links[i].href.match(/YouthPlayerID=/i) ) {
-			return Number(links[i].href.replace(/.+YouthPlayerID=/i, "").match(/^\d+/)[0]);
+		return n.hasAttribute('href');
+	}, element.getElementsByTagName('a'));
+	for (var i = 0; i < links.length; i++) {
+		if (links[i].href.match(/YouthPlayerID=/i)) {
+			return Number(links[i].href.replace(/.+YouthPlayerID=/i, '').match(/^\d+/)[0]);
 		}
 	}
 	return null;
 };
 
 Foxtrick.util.id.getSkillLevelFromLink = function(link) {
-	var value = link.href.replace(/.+(ll|labellevel)=/i, "").match(/^\d+/);
+	var value = link.href.replace(/.+(ll|labellevel)=/i, '').match(/^\d+/);
 	return value;
 };
 
 Foxtrick.util.id.extractLeagueName = function(element) {
 	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href') ;
-	}, element.getElementsByTagName("a"));
-	for (var i=0; i<links.length; i++) {
+		return n.hasAttribute('href');
+	}, element.getElementsByTagName('a'));
+	for (var i = 0; i < links.length; i++) {
 		if (Foxtrick.util.id.isSeriesDetailUrl(links[i].href)) {
 			return Foxtrick.trim(links[i].text);
 		}
@@ -197,7 +198,7 @@ Foxtrick.util.id.extractLeagueName = function(element) {
 
 Foxtrick.util.id.getSeriesNum = function(leaguename) {
 	if (!leaguename.match(/^[A-Z]+\.\d+/i)) {
-		return "1";
+		return '1';
 	} else {
 		return leaguename.match(/\d+/)[0];
 	}
@@ -207,20 +208,20 @@ Foxtrick.util.id.getLevelNum = function(leaguename, countryid) {
 	if (leaguename == null || countryid == null) return null;
 	if (!leaguename.match(/^[A-Z]+\.\d+/i)) {
 		// sweden
-		if (countryid == "1") {
+		if (countryid == '1') {
 			if (leaguename.match(/^II[a-z]+/)) {
-				return "3";
+				return '3';
 			}
 			if (leaguename.match(/^I[a-z]+/)) {
-				return "2";
+				return '2';
 			}
-			return "1";
+			return '1';
 		}
-		return "1";
+		return '1';
 	} else {
 		var temp = Foxtrick.util.id.romantodecimal(leaguename.match(/[A-Z]+/)[0]);
 		// sweden
-		if (countryid == "1") {
+		if (countryid == '1') {
 			return temp + 1;
 		} else {
 			return temp;
@@ -231,27 +232,27 @@ Foxtrick.util.id.getLevelNum = function(leaguename, countryid) {
 Foxtrick.util.id.romantodecimal = function(roman) {
 	// very very stupid ....
 	switch (roman) {
-		case ("I"): return 1;
-		case ("II"): return 2;
-		case ("III"): return 3;
-		case ("IV"): return 4;
-		case ("V"): return 5;
-		case ("VI"): return 6;
-		case ("VII"): return 7;
-		case ("VIII"): return 8;
-		case ("IX"): return 9;
-		case ("X"): return 10;
+		case ('I'): return 1;
+		case ('II'): return 2;
+		case ('III'): return 3;
+		case ('IV'): return 4;
+		case ('V'): return 5;
+		case ('VI'): return 6;
+		case ('VII'): return 7;
+		case ('VIII'): return 8;
+		case ('IX'): return 9;
+		case ('X'): return 10;
 		default: return null;
 	}
 };
 
 Foxtrick.util.id.findLeagueLeveUnitId = function(element) {
 	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href') ;
-	}, element.getElementsByTagName("a"));
-	for (var i=0; i < links.length; i++) {
-		if ( links[i].href.match(/Series\/Default\.aspx/i) ) {
-			return Number(links[i].href.replace(/.+leagueLevelUnitID=/i, "").match(/^\d+/)[0]);
+		return n.hasAttribute('href');
+	}, element.getElementsByTagName('a'));
+	for (var i = 0; i < links.length; i++) {
+		if (links[i].href.match(/Series\/Default\.aspx/i)) {
+			return Number(links[i].href.replace(/.+leagueLevelUnitID=/i, '').match(/^\d+/)[0]);
 		}
 	}
 	return null;
@@ -276,53 +277,55 @@ Foxtrick.util.id.countryNameLocalToEnglish = function(localName) {
 };
 
 Foxtrick.util.id.getLeagueDataFromId = function(id) {
-	var data=null;
+	var data = null;
 	try { data = Foxtrick.XMLData.League[id];}
-	catch(e){}
+	catch (e) {}
 
-	if (data==null)
-		Foxtrick.log('getLeagueDataFromId error. id: '+id+'\n');
+	if (data == null)
+		Foxtrick.log('getLeagueDataFromId error. id: ' + id + '\n');
 	return data;
 };
 
 Foxtrick.util.id.getCurrencyRateFromId = function(id) {
 	try {
-		Foxtrick.dump(Foxtrick.util.id.getLeagueDataFromId(id).Country.CurrencyRate.replace(',','.')+'\n');
-		return parseFloat(Foxtrick.util.id.getLeagueDataFromId(id).Country.CurrencyRate.replace(',','.'))/10;
+		Foxtrick.dump(Foxtrick.util.id.getLeagueDataFromId(id).Country.CurrencyRate
+		              .replace(',', '.') + '\n');
+		return parseFloat(Foxtrick.util.id.getLeagueDataFromId(id).Country.CurrencyRate
+		                  .replace(',', '.')) / 10;
 	}
-	catch(e){}
-	Foxtrick.dump('getCurrencyRate error. id: '+id+'\n');
+	catch (e) {}
+	Foxtrick.dump('getCurrencyRate error. id: ' + id + '\n');
 };
 
 Foxtrick.util.id.createFlagFromCountryId = function(doc, countryId, href, title) {
 	var leagueId = Foxtrick.XMLData.getLeagueIdByCountryId(countryId);
-	var leagueName = "New Moon";
+	var leagueName = 'New Moon';
 	if (leagueId) {
 		leagueName = Foxtrick.util.id.getLeagueDataFromId(leagueId).LeagueName;
 	}
-	var a = doc.createElement("a");
+	var a = doc.createElement('a');
 	if (href)
 		a.href = href;
-	else a.href = "/World/Leagues/League.aspx?LeagueID=" + leagueId;
-	a.className = "flag inner";
-	var img = doc.createElement("img");
-	img.className = "flag" + leagueId;
+	else a.href = '/World/Leagues/League.aspx?LeagueID=' + leagueId;
+	a.className = 'flag inner';
+	var img = doc.createElement('img');
+	img.className = 'flag' + leagueId;
 	if (title)
 		img.alt = img.title = title;
 	else img.alt = img.title = leagueName;
-	img.src = "/Img/Icons/transparent.gif";
+	img.src = '/Img/Icons/transparent.gif';
 	a.appendChild(img);
 	return a;
 };
 
 Foxtrick.util.id.findYouthLeagueId = function(element) {
 	var links = Foxtrick.filter(function(n) {
-		return n.hasAttribute('href') ;
-	}, element.getElementsByTagName("a"));
-	for (var i=0; i < links.length; i++) {
-		if ( links[i].href.match(/YouthLeagueId=/i) ) {
-			return Number(links[i].href.replace(/.+YouthLeagueId=/i, "").match(/^\d+/)[0]);
+		return n.hasAttribute('href');
+	}, element.getElementsByTagName('a'));
+	for (var i = 0; i < links.length; i++) {
+		if (links[i].href.match(/YouthLeagueId=/i)) {
+			return Number(links[i].href.replace(/.+YouthLeagueId=/i, '').match(/^\d+/)[0]);
 		}
 	}
 	return null;
-}
+};

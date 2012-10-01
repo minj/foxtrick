@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /*
  * string.js
  * Utilities for string processing
@@ -6,57 +6,57 @@
 
 if (!Foxtrick) var Foxtrick = {};
 
-/** Remove any occurences of tags ("<something>") from text */
+/** Remove any occurences of tags ('<something>') from text */
 Foxtrick.stripHTML = function(text) {
-	return text.replace(/(<([^>]+)>)/ig,"");
-}
+	return text.replace(/(<([^>]+)>)/ig, '');
+};
 
-Foxtrick.trim = function (text) {
-	return text.replace(/^\s+|\s+$|&nbsp;|\u00a0/g,"");
-}
+Foxtrick.trim = function(text) {
+	return text.replace(/^\s+|\s+$|&nbsp;|\u00a0/g, '');
+};
 
 Foxtrick.trimnum = function(text) {
 	text = String(text);
-	return text ? parseInt(text.replace(/\D+|\s|&nbsp;|\u00a0/g, "")) : 0;
-}
+	return text ? parseInt(text.replace(/\D+|\s|&nbsp;|\u00a0/g, '')) : 0;
+};
 
 Foxtrick.formatNumber = function(num, sep) {
 	var digits = String(num).match(/\..+/);  // seperate digits
 	if (digits == null) digits = '';
 	var num = Number(num);
-	num = Math.floor(num, 0)
+	num = Math.floor(num, 0);
 	var negative = (num < 0);
 	num = String(Math.abs(num));
 	var output = num;
 	if (sep === undefined) {
-		sep = " ";
+		sep = ' ';
 	}
 	if (num.length > 3) {
 		var mod = num.length % 3;
-		output = (num > 0 ? (num.substring(0, mod)) : "");
+		output = (num > 0 ? (num.substring(0, mod)) : '');
 		for (var i = 0; i < Math.floor(num.length / 3); ++i) {
 			if (mod == 0 && i == 0)
-				output += num.substring(mod+ 3 * i, mod + 3 * i + 3);
+				output += num.substring(mod + 3 * i, mod + 3 * i + 3);
 			else
 				output += sep + num.substring(mod + 3 * i, mod + 3 * i + 3);
 		}
 	}
 	if (negative)
-		output = "-" + output;
+		output = '-' + output;
 	return output + digits; // add digits again
-}
+};
 
-Foxtrick.substr_count = function (haystack, needle, offset, length) {
+Foxtrick.substr_count = function(haystack, needle, offset, length) {
 	// http://kevin.vanzonneveld.net/techblog/article/javascript_equivalent_for_phps_substr_count/
 	// Returns count of needle in a haystack.
 	var pos = 0, cnt = 0;
 	haystack += '';
 	needle += '';
-	if(isNaN(offset)) offset = 0;
-	if(isNaN(length)) length = 0;
+	if (isNaN(offset)) offset = 0;
+	if (isNaN(length)) length = 0;
 	offset--;
-	while ((offset = haystack.indexOf(needle, offset+1)) != -1) {
-		if (length > 0 && (offset+needle.length) > length) {
+	while ((offset = haystack.indexOf(needle, offset + 1)) != -1) {
+		if (length > 0 && (offset + needle.length) > length) {
 			return false;
 		}
 		else {
@@ -64,19 +64,19 @@ Foxtrick.substr_count = function (haystack, needle, offset, length) {
 		}
 	}
 	return cnt;
-}
+};
 
 Foxtrick.substr = function(f_string, f_start, f_length) {
 	f_string += '';
 
-	if(f_start < 0) {
+	if (f_start < 0) {
 		f_start += f_string.length;
 	}
 
-	if(f_length == undefined) {
+	if (f_length == undefined) {
 		f_length = f_string.length;
 	}
-	else if (f_length < 0){
+	else if (f_length < 0) {
 		f_length += f_string.length;
 	}
 	else {
@@ -88,14 +88,14 @@ Foxtrick.substr = function(f_string, f_start, f_length) {
 	}
 
 	return f_string.substring(f_start, f_length);
-}
+};
 
-Foxtrick.strrpos = function(haystack, needle, offset){
-	var i = (haystack+'').lastIndexOf(needle, offset); // returns -1
+Foxtrick.strrpos = function(haystack, needle, offset) {
+	var i = (haystack + '').lastIndexOf(needle, offset); // returns -1
 	return i >= 0 ? i : false;
-}
+};
 
-Foxtrick.linebreak = function (txt, where) {
+Foxtrick.linebreak = function(txt, where) {
 	try {
 		if (txt == null) return '';
 		txt = txt.replace(/\<br\>/gi, ' <br> ');
@@ -108,47 +108,47 @@ Foxtrick.linebreak = function (txt, where) {
 				//Foxtrick.dump(' LB [' + j + '] <= "'+ d[j] + '"\n');
 			}
 		}
-		return d.join(" ");
+		return d.join(' ');
 	}
 	catch (e) {
 		Foxtrick.dump('LINEBREAK: ' + e + '\n');
 	}
-}
+};
 
-Foxtrick.cut_word = function (txt, where) {
+Foxtrick.cut_word = function(txt, where) {
 	try {
 		if (txt == null) return '';
-		txt = txt.replace(/\<\//g, ' </')
-		var c, a=0, g=0, d = new Array();
+		txt = txt.replace(/\<\//g, ' </');
+		var c, a = 0, g = 0, d = [];
 		for (c = 0; c < txt.length; c++) {
 
 			d[c + g] = txt[c];
-			if (txt[c] != " ") a++;
-			else if (txt[c] == " ") a = 0;
+			if (txt[c] != ' ') a++;
+			else if (txt[c] == ' ') a = 0;
 			if (a == where) {
 				g++;
-				d[c+g] = " ";
+				d[c + g] = ' ';
 				a = 0;
 			}
 
 		}
-		return d.join("");
+		return d.join('');
 	}
 	catch (e) {
 		Foxtrick.dump('CUT WORD: ' + e + '\n');
 	}
-}
+};
 /*
  * Split a long line into multiple portions
- * E. g. :
+ * E. g.:
  * portions[0] + lineEnd + lineStart + portions[1] + lineEnd + ...
  * @param length integer maximum length of one block (lineStart+portion+lineEnd)
  * @param recursive boolean whether to nest proceding lines with multiple lineStarts
  */
-Foxtrick.foldLines = function (string, length, lineEnd, lineStart, recursive) {
+Foxtrick.foldLines = function(string, length, lineEnd, lineStart, recursive) {
 	var sLength = string.length;
 	var i = 0, prepend = '';
-	var ret = '', portion ='';
+	var ret = '', portion = '';
 	while (i < sLength) {
 		portion = string.substr(i, length - (prepend.length + lineEnd.length));
 		ret += prepend + portion + lineEnd;
@@ -156,7 +156,7 @@ Foxtrick.foldLines = function (string, length, lineEnd, lineStart, recursive) {
 		i += portion.length;
 	}
 	return ret;
-}
+};
 
 
 
@@ -168,78 +168,78 @@ Foxtrick.foldLines = function (string, length, lineEnd, lineStart, recursive) {
  * Distributed under the BSD License
  * See http://pajhome.org.uk/crypt/md5 for details.
  */
-Foxtrick.hash = function (s){
+Foxtrick.hash = function(s) {
 	/*
 	 * Configurable variables. You may need to tweak these to be compatible with
 	 * the server-side, but the defaults work in most cases.
 	 */
 	var hexcase = 0;  /* hex output format. 0 - lowercase; 1 - uppercase        */
-	
+
 	/*
 	 * Calculate the SHA1 of a raw string
 	 */
 	var rstr_sha1 = function(s)
 	{
 		return binb2rstr(binb_sha1(rstr2binb(s), s.length * 8));
-	}
-	
+	};
+
 	/*
 	 * Convert a raw string to a hex string
 	 */
 	var rstr2hex = function(input)
 	{
-		try { hexcase } catch(e) { hexcase=0; }
-		var hex_tab = hexcase ? "0123456789ABCDEF" : "0123456789abcdef";
-		var output = "";
+		try { hexcase } catch (e) { hexcase = 0; }
+		var hex_tab = hexcase ? '0123456789ABCDEF' : '0123456789abcdef';
+		var output = '';
 		var x;
-		for(var i = 0; i < input.length; i++)
+		for (var i = 0; i < input.length; i++)
 		{
 			x = input.charCodeAt(i);
 			output += hex_tab.charAt((x >>> 4) & 0x0F)
-						 +  hex_tab.charAt( x        & 0x0F);
+						 +  hex_tab.charAt(x        & 0x0F);
 		}
 		return output;
-	}
+	};
 	/*
 	 * Encode a string as utf-8.
 	 * For efficiency, this assumes the input is valid utf-16.
 	 */
 	var str2rstr_utf8 = function(input)
 	{
-		var output = "";
+		var output = '';
 		var i = -1;
 		var x, y;
-	
-		while(++i < input.length)
+
+		while (++i < input.length)
 		{
 			/* Decode utf-16 surrogate pairs */
 			x = input.charCodeAt(i);
 			y = i + 1 < input.length ? input.charCodeAt(i + 1) : 0;
-			if(0xD800 <= x && x <= 0xDBFF && 0xDC00 <= y && y <= 0xDFFF)
+			if (0xD800 <= x && x <= 0xDBFF && 0xDC00 <= y && y <= 0xDFFF)
 			{
 				x = 0x10000 + ((x & 0x03FF) << 10) + (y & 0x03FF);
 				i++;
 			}
-	
+
 			/* Encode output as utf-8 */
-			if(x <= 0x7F)
+			if (x <= 0x7F)
 				output += String.fromCharCode(x);
-			else if(x <= 0x7FF)
-				output += String.fromCharCode(0xC0 | ((x >>> 6 ) & 0x1F),
-																			0x80 | ( x         & 0x3F));
-			else if(x <= 0xFFFF)
+			else if (x <= 0x7FF)
+				output += String.fromCharCode(0xC0 | ((x >>> 6) & 0x1F),
+																			0x80 | (x         & 0x3F));
+			else if (x <= 0xFFFF)
 				output += String.fromCharCode(0xE0 | ((x >>> 12) & 0x0F),
-																			0x80 | ((x >>> 6 ) & 0x3F),
-																			0x80 | ( x         & 0x3F));
-			else if(x <= 0x1FFFFF)
+																			0x80 | ((x >>> 6) & 0x3F),
+																			0x80 | (x         & 0x3F));
+			else if (x <= 0x1FFFFF)
 				output += String.fromCharCode(0xF0 | ((x >>> 18) & 0x07),
 																			0x80 | ((x >>> 12) & 0x3F),
-																			0x80 | ((x >>> 6 ) & 0x3F),
-																			0x80 | ( x         & 0x3F));
+																			0x80 | ((x >>> 6) & 0x3F),
+																			0x80 | (x         & 0x3F));
 		}
 		return output;
-	}
-	
+	};
+
 	/*
 	 * Convert a raw string to an array of big-endian words
 	 * Characters >255 have their high-byte silently ignored.
@@ -247,24 +247,24 @@ Foxtrick.hash = function (s){
 	var rstr2binb = function(input)
 	{
 		var output = Array(input.length >> 2);
-		for(var i = 0; i < output.length; i++)
+		for (var i = 0; i < output.length; i++)
 			output[i] = 0;
-		for(var i = 0; i < input.length * 8; i += 8)
-			output[i>>5] |= (input.charCodeAt(i / 8) & 0xFF) << (24 - i % 32);
+		for (var i = 0; i < input.length * 8; i += 8)
+			output[i >> 5] |= (input.charCodeAt(i / 8) & 0xFF) << (24 - i % 32);
 		return output;
-	}
-	
+	};
+
 	/*
 	 * Convert an array of big-endian words to a string
 	 */
 	var binb2rstr = function(input)
 	{
-		var output = "";
-		for(var i = 0; i < input.length * 32; i += 8)
-			output += String.fromCharCode((input[i>>5] >>> (24 - i % 32)) & 0xFF);
+		var output = '';
+		for (var i = 0; i < input.length * 32; i += 8)
+			output += String.fromCharCode((input[i >> 5] >>> (24 - i % 32)) & 0xFF);
 		return output;
-	}
-	
+	};
+
 	/*
 	 * Calculate the SHA-1 of an array of big-endian words, and a bit length
 	 */
@@ -273,26 +273,26 @@ Foxtrick.hash = function (s){
 		/* append padding */
 		x[len >> 5] |= 0x80 << (24 - len % 32);
 		x[((len + 64 >> 9) << 4) + 15] = len;
-	
+
 		var w = Array(80);
 		var a =  1732584193;
 		var b = -271733879;
 		var c = -1732584194;
 		var d =  271733878;
 		var e = -1009589776;
-	
-		for(var i = 0; i < x.length; i += 16)
+
+		for (var i = 0; i < x.length; i += 16)
 		{
 			var olda = a;
 			var oldb = b;
 			var oldc = c;
 			var oldd = d;
 			var olde = e;
-	
-			for(var j = 0; j < 80; j++)
+
+			for (var j = 0; j < 80; j++)
 			{
-				if(j < 16) w[j] = x[i + j];
-				else w[j] = bit_rol(w[j-3] ^ w[j-8] ^ w[j-14] ^ w[j-16], 1);
+				if (j < 16) w[j] = x[i + j];
+				else w[j] = bit_rol(w[j - 3] ^ w[j - 8] ^ w[j - 14] ^ w[j - 16], 1);
 				var t = safe_add(safe_add(bit_rol(a, 5), sha1_ft(j, b, c, d)),
 												 safe_add(safe_add(e, w[j]), sha1_kt(j)));
 				e = d;
@@ -301,7 +301,7 @@ Foxtrick.hash = function (s){
 				b = a;
 				a = t;
 			}
-	
+
 			a = safe_add(a, olda);
 			b = safe_add(b, oldb);
 			c = safe_add(c, oldc);
@@ -309,30 +309,30 @@ Foxtrick.hash = function (s){
 			e = safe_add(e, olde);
 		}
 		return Array(a, b, c, d, e);
-	
-	}
-	
+
+	};
+
 	/*
 	 * Perform the appropriate triplet combination function for the current
 	 * iteration
 	 */
 	var sha1_ft = function(t, b, c, d)
 	{
-		if(t < 20) return (b & c) | ((~b) & d);
-		if(t < 40) return b ^ c ^ d;
-		if(t < 60) return (b & c) | (b & d) | (c & d);
+		if (t < 20) return (b & c) | ((~b) & d);
+		if (t < 40) return b ^ c ^ d;
+		if (t < 60) return (b & c) | (b & d) | (c & d);
 		return b ^ c ^ d;
-	}
-	
+	};
+
 	/*
 	 * Determine the appropriate additive constant for the current iteration
 	 */
 	var sha1_kt = function(t)
 	{
-		return (t < 20) ?  1518500249 : (t < 40) ?  1859775393 :
+		return (t < 20) ? 1518500249 : (t < 40) ? 1859775393 :
 					 (t < 60) ? -1894007588 : -899497514;
-	}
-	
+	};
+
 	/*
 	 * Add integers, wrapping at 2^32. This uses 16-bit operations internally
 	 * to work around bugs in some JS interpreters.
@@ -342,15 +342,15 @@ Foxtrick.hash = function (s){
 		var lsw = (x & 0xFFFF) + (y & 0xFFFF);
 		var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
 		return (msw << 16) | (lsw & 0xFFFF);
-	}
-	
+	};
+
 	/*
 	 * Bitwise rotate a 32-bit number to the left.
 	 */
 	var bit_rol = function(num, cnt)
 	{
 		return (num << cnt) | (num >>> (32 - cnt));
-	}
-	
+	};
+
 	return rstr2hex(rstr_sha1(str2rstr_utf8(s)));
-}
+};

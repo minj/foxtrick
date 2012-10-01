@@ -1,14 +1,14 @@
-"use strict";
+'use strict';
 /*
  * load.js
- * loading files 
+ * loading files
  */
 
-if (!Foxtrick) 
+if (!Foxtrick)
 	var Foxtrick = {};
-if (!Foxtrick.util) 
+if (!Foxtrick.util)
 	Foxtrick.util = {};
-if (!Foxtrick.util.load) 
+if (!Foxtrick.util.load)
 	Foxtrick.util.load = {};
 
 /**
@@ -16,9 +16,9 @@ if (!Foxtrick.util.load)
  * failure status can be registered.
  *
  * Usage:
-   Foxtrick.__load(url)("success", function(responseText) {
+   Foxtrick.__load(url)('success', function(responseText) {
        ...
-   })("failure", function(statusCode) {
+   })('failure', function(statusCode) {
        ...
    });
  *
@@ -28,17 +28,17 @@ Foxtrick.util.load.get = function(url, params) {
 	// Low-level implementation of XMLHttpRequest:
 	// @param params - params != null makes it and used for a POST request
 	// Arguments passed to cb is an Object, with following members:
-	// status: String, either "success" or "failure"
+	// status: String, either 'success' or 'failure'
 	// code: Integer, HTTP status code
 	// text: String, response text
-		
-	if (Foxtrick.chromeContext() == "content") {
+
+	if (Foxtrick.chromeContext() == 'content') {
 		var loadImpl = function(cb) {
-			sandboxed.extension.sendRequest({req : "getXml", url : url, params : params},
+			sandboxed.extension.sendRequest({req: 'getXml', url: url, params: params},
 				function(response) {
 					cb({
 						code: response.status,
-						status: (response.status < 400) ? "success" : "failure",
+						status: (response.status < 400) ? 'success' : 'failure',
 						text: response.data
 					});
 				}
@@ -48,18 +48,19 @@ Foxtrick.util.load.get = function(url, params) {
 	else {
 		var loadImpl = function(cb) {
 			var req = new window.XMLHttpRequest();
-			var type  = (params != null) ? "POST" : "GET"; 
+			var type = (params != null) ? 'POST' : 'GET';
 			req.open(type, url, true);
 
-			if (typeof req.overrideMimeType === "function")
-				req.overrideMimeType("text/plain");
+			if (typeof req.overrideMimeType === 'function')
+				req.overrideMimeType('text/plain');
 			//Send the proper header information along with the request
-			if (type == "POST" && typeof(req.setRequestHeader) == "function")
-				req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			if (type == 'POST' && typeof(req.setRequestHeader) == 'function')
+				req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
 			req.onreadystatechange = function(aEvt) {
 				if (req.readyState == 4) {
-					var status = (req.status < 400 && req.responseText != "") ? "success" : "failure";
+					var status = (req.status < 400 && req.responseText != '') ?
+						'success' : 'failure';
 					cb({
 						code: req.status,
 						status: status,
@@ -73,10 +74,10 @@ Foxtrick.util.load.get = function(url, params) {
 			}
 			catch (e) {
 				// catch cross-domain errors, we return 499 as status code
-				Foxtrick.log("Error fetching " + url + ": ", e);
+				Foxtrick.log('Error fetching ' + url + ': ', e);
 				cb({
 					code: 499,
-					status: "failure",
+					status: 'failure',
 					text: null
 				});
 			}
@@ -110,19 +111,19 @@ Foxtrick.util.load.get = function(url, params) {
 				handlerLst.shift().apply(null, argLst);
 			}
 			catch (e) {
-				Foxtrick.log("Uncaught callback error ", e);
+				Foxtrick.log('Uncaught callback error ', e);
 			}
 		}
 	};
 
 	loadImpl(function(response) {
-		if (response.status == "success") {
-			status = "success";
-			args["success"] = [response.text];
+		if (response.status == 'success') {
+			status = 'success';
+			args['success'] = [response.text];
 		}
-		else if (response.status == "failure") {
-			status = "failure";
-			args["failure"] = [response.code];
+		else if (response.status == 'failure') {
+			status = 'failure';
+			args['failure'] = [response.code];
 		}
 		trigger();
 	});
@@ -140,36 +141,36 @@ Foxtrick.util.load.get = function(url, params) {
  */
 
 Foxtrick.util.load.async = function(url, callback, params) {
-	if (Foxtrick.chromeContext() == "content") {
+	if (Foxtrick.chromeContext() == 'content') {
 		// background script for xml requests
-		sandboxed.extension.sendRequest({req : "getXml", url : url, params: params},
+		sandboxed.extension.sendRequest({req: 'getXml', url: url, params: params},
 			function(response) {
 				try {
 					callback(response.data, response.status);
 				}
 				catch (e) {
-					Foxtrick.log('Uncaught callback error: - url: ' , url , ' : ',e);
+					Foxtrick.log('Uncaught callback error: - url: ', url, ': ', e);
 				}
 			}
 		);
 	}
 	else {
 		var req = new window.XMLHttpRequest();
-		var type  = (params != null) ? "POST" : "GET"; 
+		var type = (params != null) ? 'POST' : 'GET';
 		req.open(type, url, true);
-		if (typeof(req.overrideMimeType) == "function")
-			req.overrideMimeType("text/plain");
+		if (typeof(req.overrideMimeType) == 'function')
+			req.overrideMimeType('text/plain');
 		//Send the proper header information along with the request
-		if (type == "POST" && typeof(req.setRequestHeader) == "function")
-			req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			
+		if (type == 'POST' && typeof(req.setRequestHeader) == 'function')
+			req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
 		req.onreadystatechange = function(aEvt) {
 			if (req.readyState == 4) {
 				try {
 					callback(req.responseText, req.status);
 				}
 				catch (e) {
-					Foxtrick.log('Uncaught callback error: - url: ' + url +' params: ' + params, e);
+					Foxtrick.log('Uncaught callback error: - url: ' + url + ' params: ' + params, e);
 				}
 			}
 		};
@@ -179,25 +180,27 @@ Foxtrick.util.load.async = function(url, callback, params) {
 		}
 		catch (e) {
 			// catch cross-domain errors
-			Foxtrick.log(url + " " + params, e);
+			Foxtrick.log(url + ' ' + params, e);
 			callback(null, 0);
 		}
 	}
 };
 
 /*
- * @desc load a resource synchronusly (Not to be used in content modules). only to be used for internal resources
+ * @desc load a resource synchronusly (Not to be used in content modules).
+ * only to be used for internal resources
  */
 Foxtrick.util.load.sync = function(url) {
-	if (url.replace(/^\s+/,'').indexOf(Foxtrick.InternalPath) != 0) {
-		Foxtrick.log("loadSync only for internal resources. ", url, "isn't , only ",Foxtrick.InternalPath," is");
+	if (url.replace(/^\s+/, '').indexOf(Foxtrick.InternalPath) != 0) {
+		Foxtrick.log('loadSync only for internal resources. ', url, "isn't , only ",
+		             Foxtrick.InternalPath, ' is');
 		return null;
 	}
 	// load
 	var req = new window.XMLHttpRequest();
-	req.open("GET", url, false); //sync load of a chrome resource
-	if (typeof(req.overrideMimeType) == "function")
-		req.overrideMimeType("text/plain");
+	req.open('GET', url, false); //sync load of a chrome resource
+	if (typeof(req.overrideMimeType) == 'function')
+		req.overrideMimeType('text/plain');
 
 	try {
 		req.send(null);
@@ -211,26 +214,27 @@ Foxtrick.util.load.sync = function(url) {
 };
 
 /*
- * @desc load and parse xml asynchronously. 
+ * @desc load and parse xml asynchronously.
  */
 Foxtrick.util.load.xml = function(url, callback) {
 	Foxtrick.util.load.async(url, function(text, status) {
-		if ( text.indexOf("!DOCTYPE html") !== -1 ) {
+		if (text.indexOf('!DOCTYPE html') !== -1) {
 			// eg login page was returned. aka cpp server not reachable
 			var errorCode = 503;
 			if (text.search(/<title>\d+/i) !== -1)
 				errorCode = text.match(/<title>(\d+)/i)[1];
-			Foxtrick.log( url + "returned an html page. Server could be down. Assumed errorCode: " + errorCode);
+			Foxtrick.log(url + 'returned an html page. Server could be down. Assumed errorCode: '
+			             + errorCode);
 			callback(null, errorCode);
 			return;
 		}
-		
+
 		try {
 			var xml = Foxtrick.parseXml(text);
 		}
 		catch (e) {
 			// invalid XML
-			Foxtrick.log("Cannot parse XML (", url, ")\n", text);
+			Foxtrick.log('Cannot parse XML (', url, ')\n', text);
 			xml = null;
 		}
 		callback(xml, status);
@@ -247,7 +251,7 @@ Foxtrick.util.load.xmlSync = function(url) {
 	}
 	catch (e) {
 		// invalid XML
-		Foxtrick.log("Cannot parse XML (", url,  ")\n", text);
+		Foxtrick.log('Cannot parse XML (', url, ')\n', text);
 		xml = null;
 	}
 	return xml;
@@ -265,11 +269,12 @@ Foxtrick.util.load.ymlSync = function(url) {
 	}
 	catch (e) {
 		// invalid YML
-		var InputDump = function(text){
+		var InputDump = function(text) {
 			this.text = text;
-		}
-		var yError = "Please check to see if the text has tabs instead of spaces, unescaped quotes or other weird shit.\n";
-		Foxtrick.log("Cannot parse YML (", url, ")\n", yError, e, new InputDump(text));
+		};
+		var yError = 'Please check to see if the text has tabs instead of spaces, ' +
+			'unescaped quotes or other weird shit.\n';
+		Foxtrick.log('Cannot parse YML (', url, ')\n', yError, e, new InputDump(text));
 		json = null;
 	}
 	return json;
@@ -281,7 +286,7 @@ Foxtrick.util.load.ymlSync = function(url) {
 Foxtrick.util.load.filePickerForDataUrl = function(doc, callback) {
 	var input = doc.createElement('input');
 	input.type = 'file';
-	input.addEventListener('change',function(ev) {
+	input.addEventListener('change', function(ev) {
 		var file = ev.target.files[0];
 		var reader = new window.FileReader();
 		reader.onerror = function(e) {
@@ -295,11 +300,11 @@ Foxtrick.util.load.filePickerForDataUrl = function(doc, callback) {
 				dataUrl = null;
 			}
 			callback(dataUrl);
-		}
+		};
 		reader.readAsDataURL(file);
 	}, false);
 	return input;
-}
+};
 
 /*
  * @desc html5 filepicker for text
@@ -307,7 +312,7 @@ Foxtrick.util.load.filePickerForDataUrl = function(doc, callback) {
 Foxtrick.util.load.filePickerForText = function(doc, callback) {
 	var input = doc.createElement('input');
 	input.type = 'file';
-	input.addEventListener('change',function(ev) {
+	input.addEventListener('change', function(ev) {
 		var file = ev.target.files[0];
 		var reader = new window.FileReader();
 		reader.onerror = function(e) {
@@ -321,9 +326,8 @@ Foxtrick.util.load.filePickerForText = function(doc, callback) {
 				text = null;
 			}
 			callback(text);
-		}
+		};
 		reader.readAsText(file);
 	}, false);
 	return input;
-}
-
+};

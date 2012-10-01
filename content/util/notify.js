@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /*
  * notify.js
  * Utilities for creating a notification
@@ -13,23 +13,23 @@ Foxtrick.util.notify = {};
 // @param url - URL of event if applicable
 Foxtrick.util.notify.create = function(msg, url) {
 	var createGecko = function() {
-		var img = Foxtrick.InternalPath + "resources/img/hattrick-logo.png";
-		var title = "Hattrick.org";
+		var img = Foxtrick.InternalPath + 'resources/img/hattrick-logo.png';
+		var title = 'Hattrick.org';
 		var clickable = true;
 		var listener = {
 			observe: function(subject, topic, data) {
 				try {
-					if (topic == "alertclickcallback") {
-						if (Foxtrick.platform == "Firefox")
+					if (topic == 'alertclickcallback') {
+						if (Foxtrick.platform == 'Firefox')
 							Foxtrick.openAndReuseOneTabPerURL(url, true);
 						else {
 							sandboxed.extension.sendRequest({
-								req : "reuseTab",
-								url : url
-							})
+								req: 'reuseTab',
+								url: url
+							});
 						}
 					}
-					if (topic == "alertfinished") {
+					if (topic == 'alertfinished') {
 						// empty
 					}
 				}
@@ -40,47 +40,48 @@ Foxtrick.util.notify.create = function(msg, url) {
 		};
 
 		try {
-			var alertWin = Components.classes["@mozilla.org/alerts-service;1"].getService(Components.interfaces.nsIAlertsService);
+			var alertWin = Components.classes['@mozilla.org/alerts-service;1']
+				.getService(Components.interfaces.nsIAlertsService);
 			alertWin.showAlertNotification(img, title, msg, clickable, url, listener);
 		}
 		catch (e) {
 			// fix for when alerts-service is not available (e.g. SUSE)
-			var alertWin = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
+			var alertWin = Components.classes['@mozilla.org/embedcomp/window-watcher;1']
 				.getService(Components.interfaces.nsIWindowWatcher)
-				.openWindow(null, "chrome://global/content/alerts/alert.xul",
-					"_blank", "chrome,titlebar=no,popup=yes", null);
-			alertWin.arguments = [img, "www.hattrick.org", msg, clickable, url, 0, listener];
+				.openWindow(null, 'chrome://global/content/alerts/alert.xul',
+					'_blank', 'chrome,titlebar=no,popup=yes', null);
+			alertWin.arguments = [img, 'www.hattrick.org', msg, clickable, url, 0, listener];
 		}
 	};
 	var createChrome = function() {
-		sandboxed.extension.sendRequest({req : "notify", msg : msg, url : url});
+		sandboxed.extension.sendRequest({req: 'notify', msg: msg, url: url});
 	};
 
 	var createSafariGrowl = function() {
-		showGrowlNotification = function (msg) {
+		showGrowlNotification = function(msg) {
 		  try {
-			if ( window.GrowlSafariBridge.notifyWithOptions !== undefined) {
+			if (window.GrowlSafariBridge.notifyWithOptions !== undefined) {
 				 window.GrowlSafariBridge.notifyWithOptions(msg.name, msg.status, {
 					isSticky: false,
 					priority: -1,
 					imageUrl: msg.img_url
 				});
 			}
-		  } catch(e) {Foxtrick.log(e);}
+		  } catch (e) {Foxtrick.log(e);}
 		};
 
-		var img = Foxtrick.InternalPath + "resources/img/hattrick-logo.png";
-		showGrowlNotification({ name: "www.hattrick.org", status: msg, img_url: img });
+		var img = Foxtrick.InternalPath + 'resources/img/hattrick-logo.png';
+		showGrowlNotification({ name: 'www.hattrick.org', status: msg, img_url: img });
 	};
 
 
-	if (Foxtrick.arch == "Gecko") {
+	if (Foxtrick.arch == 'Gecko') {
 		createGecko();
 	}
-	else if (Foxtrick.platform == "Chrome") {
+	else if (Foxtrick.platform == 'Chrome') {
 		createChrome();
 	}
-	else if (Foxtrick.platform == "Safari") {
+	else if (Foxtrick.platform == 'Safari') {
 		createSafariGrowl();
 	}
 };

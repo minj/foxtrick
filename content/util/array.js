@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /*
  * array.js
  * Array handler functions

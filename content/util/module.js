@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /*
  * module.js
  * Utilities for FoxTrick categorized module handling
