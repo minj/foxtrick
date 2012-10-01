@@ -117,13 +117,13 @@ Foxtrick.modules['StaffMarker'] = {
 						return alias.search(pair[0]) == 0;
 					}, markers);
 				if (first) {
-					Foxtrick.addClass(object, 'ft-staff- ' + first[1]);
+					Foxtrick.addClass(object, 'ft-staff-' + first[1]);
 				}
 
 				// data loaded from external files
 				for (var type in data) {
 					if (data[type][id] == true) {
-						Foxtrick.addClass(object, 'ft-staff- ' + type);
+						Foxtrick.addClass(object, 'ft-staff-' + type);
 						if (type == 'chpp-holder') {
 							var appNames = '';
 							Foxtrick.map(function(appName) {
@@ -153,7 +153,7 @@ Foxtrick.modules['StaffMarker'] = {
 							return;
 						var uname = Foxtrick.trim(a.title);
 						// Work-around for supporter star
-						if (uname.lastIndexOf(' * ') == uname.length - 1)
+						if (uname.lastIndexOf('*') == uname.length - 1)
 							uname = uname.substring(0, uname.length - 1);
 						var uid = a.href.replace(/.+userId=/i, '').match(/^\d+/);
 
