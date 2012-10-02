@@ -260,7 +260,7 @@ Foxtrick.modules['EmbedMedia'] = {
 			//adjust to correct media url used later
 			if (media_link['site'] == 'imageshack') {
 				if (media_link['params'].length == 3)
-					a.href = 'http://imageshack.us/shareable/?i =' + media_link['params'][0] + '.' +
+					a.href = 'http://imageshack.us/shareable/?i=' + media_link['params'][0] + '.' +
 						media_link['params'][2] + '&s=' + media_link['params'][1];
 			}
 			else if (media_link['site'] == 'imgur')
@@ -302,7 +302,7 @@ Foxtrick.modules['EmbedMedia'] = {
 
 			if (Foxtrick.hasClass(target, 'ft-media-site-imageshack')) {
 				oEmbedRequest(target.nextSibling.firstChild.href, function(response, status) {
-					target.nextSibling.firstChild.href = response.match(/\?\'(.*)\':/)[1];
+					target.nextSibling.firstChild.href = response.match(/\?\"(.*)\":/)[1];
 					doEmbedActualImageUrl(target);
 				});
 				return;
