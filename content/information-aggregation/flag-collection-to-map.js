@@ -252,7 +252,7 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 		for (var i = 0; i < mainbox.length; i++) {
 			var divElement = mainbox[i];
 
-			var countryIds = new Array();
+			var countryIds = [];
 			for (var j = 0; j < divElement.childNodes.length; j++) {
 				var currentNode = divElement.childNodes[j];
 				if (currentNode.nodeName == 'A' && currentNode.href.search(/LeagueID=/i) > -1) {
