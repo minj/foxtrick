@@ -124,9 +124,9 @@ da:
       note_3: 'Thanks all. Please continue to help translate FoxTrick at <linkCrowdin>http://crowdin.net/project/foxtrick</linkCrowdin>'
       note_4: 'For info om oversættelser se[post=15466991.1] eller [post=15466972.1]'
       note_5: '<header>Funktion fremhævning</header>'
-      note_6: We included a feature highlight for easier detection of FoxTrick features and the responsible modules. You can turn this on/off by clicking on the FoxTrick version info down right on every page. After first reload it shows the responsible module in the hover tooltip.
+      note_6: Vi har inkluderet en funktions fremhævning af Foxtrick funktioner, for at gør det lettere at finde de relevante Foxtrick moduler. Du kan slå denne funktion til eller fra ved at klikke på Foxtrick version info nederst i højre hjørne af enhver side. Efter første genindlæsning viser den det relevante modul i pege værktøjstippet.
       note_7: '<header>New features and changes</header>'
-      note_8: '<module>MatchReportFormat</module>: Completely reworked match report (ryanli, Catzhoek, ljushaff)'
+      note_8: '<module>MatchReportFormat</module>: Kamprapport er fuldstændig bearbejdet (ryanli, Catzhoek, ljushaff)'
       note_9: "<module>Ratings</module>: Option to hide Hattrick's average ratings (convinced)"
       note_10: '<module>Filter</module>: Adds filters to Top players page (convinced)'
       note_11: '<module>Kampordre</module>: Tilføjer mere info til kamp ordre grænsefladen og en byt spillere funktion (convinced)'
@@ -196,12 +196,12 @@ da:
       note_5: 'New module <module>ShowFriendlyBooked</module> for showing whether a team has booked a friendly on series page. (ryanli)'
       note_6: 'Rewrite of module <module>TickerAlert</module>, integrating former FoxtrickAlert, AlertCustomSound, AlertCustomOff modules. (ryanli)'
       note_7: 'Module <module>MatchPlayerColouring</module> loads match lineup from XML. (ryanli)'
-      note_8: 'Module FoxtrickLineupShortcut renamed to <module>LineupShortcut</module>. (ryanli)'
-      note_9: 'Module htmsStatistics renamed to <module>HTMSPrediction</module>. (ryanli)'
-      note_10: 'New option in module <module>FriendlyInterface</module> to hide the secretary if he has nothing to report. (ryanli)'
-      note_11: 'Module <module>StaffMarker</module> now uses <linkJSON>JavaScript Object Notation</linkJSON> for custom markers. (ryanli)'
-      note_12: 'New radios in module <module>ExtraShortcuts</module>, Balkaradio and Downtime Radio. (ljushaff, ryanli)'
-      note_13: 'Option of <module>LeagueAndMatchChat</module> to open Yaplet chat in a frame removed. (ryanli)'
+      note_8: 'Modul FoxtrickLineupShortcut omdøbt til <module>LineupShortcut</module>. (ryanli)'
+      note_9: 'Modul htmsStatistics omdøbt til <module>HTMSPrediction</module>. (ryanli)'
+      note_10: 'Ny valgmulighed i modul <module>FriendlyInterface</module> for at skjule sekretæren, hvis han ikke har noget at rapportere.(ryanli)'
+      note_11: 'Modul <module>StaffMarker</module> bruger nu <linkJSON>JavaScript Object Notation</linkJSON> for brugerdefinerede markører. (ryanli)'
+      note_12: 'Nye radioer i modul <module>ExtraShortcuts</module>, Balkaradio og Downtime Radio. (ljushaff, ryanli)'
+      note_13: 'Muligheden for <module>LeagueAndMatchChat</module> at åbne Yaplet chat i en  ramme er fjernet. (ryanli)'
       note_14: Various trivial fixes. (ryanli, Mod-spambot)
     0.6.2: 
       note_0: 'Module <module>SeriesFlags</module> now fetches team data directly from Hattrick. (ryanli)'
