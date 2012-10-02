@@ -1,27 +1,27 @@
-"use strict";
+'use strict';
 /**
  * LastLogin Modifies last login time with HT Dateformat
  * @author spambot
  */
 
-Foxtrick.modules["LastLogin"]={
-	MODULE_CATEGORY : Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES : ["managerPage"],
+Foxtrick.modules['LastLogin'] = {
+	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
+	PAGES: ['managerPage'],
 
-	change : function(doc) {
-		var div = doc.getElementById("pnlLogin");
-		if (!div || div.hasAttribute("processed")) {
+	change: function(doc) {
+		var div = doc.getElementById('pnlLogin');
+		if (!div || div.hasAttribute('processed')) {
 			// if the last login div isn't present or has been processed,
 			// return.
 			return;
 		}
-		var httime = doc.getElementById("time").textContent;
+		var httime = doc.getElementById('time').textContent;
 		var HT_date = Foxtrick.util.time.getDateFromText(httime);
 		if (!HT_date) return;
 
 		var login_elm = div.childNodes;
-		for (var i=0; i<login_elm.length; i++) {
-			if (login_elm[i].nodeType != Foxtrick.NodeTypes.TEXT_NODE )
+		for (var i = 0; i < login_elm.length; i++) {
+			if (login_elm[i].nodeType != Foxtrick.NodeTypes.TEXT_NODE)
 				continue;
 			var elm = login_elm[i].textContent;
 			if (elm.search(/\*\*\*\.\*\*\*/) != -1) {
@@ -30,11 +30,11 @@ Foxtrick.modules["LastLogin"]={
 
 				var _s = Math.floor((HT_date.getTime() - ST_date.getTime()) / 1000); //Sec
 				var DiffText = Foxtrick.util.time.timeDifferenceToElement(doc, _s).textContent;
-				if (DiffText.search("NaN") == -1) {
+				if (DiffText.search('NaN') == -1) {
 					last.textContent = '(' + DiffText + ')';
-					last.className = "date smallText ft-last-login-diff nowrap";
+					last.className = 'date smallText ft-last-login-diff nowrap';
 				}
-				else 
+				else
 					Foxtrick.log('Could not create timediff (NaN)');
 				if (i !== login_elm.length - 1) {
 					div.insertBefore(last, login_elm[i].nextSibling);
@@ -42,8 +42,8 @@ Foxtrick.modules["LastLogin"]={
 				else
 					div.appendChild(last);
 			}
-			
+
 		}
-		div.setAttribute("processed", "processed");
+		div.setAttribute('processed', 'processed');
 	}
 };
