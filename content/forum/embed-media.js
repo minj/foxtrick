@@ -251,7 +251,7 @@ Foxtrick.modules['EmbedMedia'] = {
 
 			div.appendChild(header_a);
 			Foxtrick.addClass(div, 'ft-media-expander-unexpanded ');
-			Foxtrick.addClass(div, 'ft-media-site- ' + media_link['site']);
+			Foxtrick.addClass(div, 'ft-media-site-' + media_link['site']);
 			media_link['link'].parentNode.insertBefore(div, media_link['link']);
 			var mediaContainer = doc.createElement('div');
 			Foxtrick.addClass(mediaContainer, 'hidden ft-media-container');
@@ -344,6 +344,7 @@ Foxtrick.modules['EmbedMedia'] = {
 		Foxtrick.map(function(message) {
 			var found_media_links = getSupportedMediaLinksWithDetails(message);
 			Foxtrick.map(function(media_link) {
+				Foxtrick.log(media_link);
 				if (siteEnabled[media_link.site]) {
 					prepareLinkForEmbedding(media_link);
 				}
