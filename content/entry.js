@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /*
  * entry.js
  * Entry point of FoxTrick modules
@@ -17,15 +17,15 @@ Foxtrick.entry.runMap = {};
 // invoked on DOMContentLoaded (all browsers)
 // @param doc - HTML document to run on
 Foxtrick.entry.docLoad = function(doc) {
-	if (doc.nodeName != "#document")
+	if (doc.nodeName != '#document')
 		return;
 
-	//init html debug (somehow needed for feenc atm)	
+	//init html debug (somehow needed for feenc atm)
 	Foxtrick.log.flush(doc);
-		
+
 	// don't execute if disabled
-	if (FoxtrickPrefs.getBool("disableTemporary")) {
-		Foxtrick.log('disabled')
+	if (FoxtrickPrefs.getBool('disableTemporary')) {
+		Foxtrick.log('disabled');
 		// potenial disable cleanup
 		if (Foxtrick.entry.cssLoaded) {
 			Foxtrick.util.css.unload_module_css(doc);
@@ -35,9 +35,10 @@ Foxtrick.entry.docLoad = function(doc) {
 	}
 
 	// clear ASP.NET_SessionId cookie on login (security leak)
-	/*if (Foxtrick.arch == "Gecko" && Foxtrick.isLoginPage(doc)) {
-	 	try { 
-			var cookieManager = Components.classes["@mozilla.org/cookiemanager;1"].getService(Components.interfaces.nsICookieManager);
+	/*if (Foxtrick.arch == 'Gecko' && Foxtrick.isLoginPage(doc)) {
+	 	try {
+			var cookieManager = Components.classes['@mozilla.org/cookiemanager;1']
+				.getService(Components.interfaces.nsICookieManager);
 
 			var iter = cookieManager.enumerator;
 			var cookie_count = 0;
@@ -45,30 +46,31 @@ Foxtrick.entry.docLoad = function(doc) {
 				var cookie = iter.getNext();
 				if (cookie instanceof Components.interfaces.nsICookie) {
 					//Foxtrick.log(cookie.host, cookie.name, cookie.path, cookie.blocked, cookie);
-					if (Foxtrick.isHtUrl('http://'+cookie.host) && cookie.name.search(/ASP.NET_SessionId/i) != -1) {
+					if (Foxtrick.isHtUrl('http://'+cookie.host) &&
+						cookie.name.search(/ASP.NET_SessionId/i) != -1) {
 						Foxtrick.log('delete cookie: ',cookie.name);
 						cookieManager.remove(cookie.host, cookie.name, cookie.path, cookie.blocked);
 					}
 					cookie_count++;
 				}
 			}
-		} catch(e) {
+		} catch (e) {
 			Foxtrick.log(e);
 		}
 	}*/
 
 	// we shall not run here
-	if ( Foxtrick.arch == "Sandboxed" && !Foxtrick.isHt(doc) )  {
+	if (Foxtrick.arch == 'Sandboxed' && !Foxtrick.isHt(doc)) {
 		// potential cleanup for injected css
-		if (Foxtrick.arch == "Sandboxed" && Foxtrick.entry.cssLoaded) {
+		if (Foxtrick.arch == 'Sandboxed' && Foxtrick.entry.cssLoaded) {
 			Foxtrick.util.css.unload_module_css(doc);
 			Foxtrick.entry.cssLoaded = false;
 		}
 		return;
 	}
-	
+
 	// ensure #content is available
-	var content = doc.getElementById("content");
+	var content = doc.getElementById('content');
 	if (!content)
 		return;
 
@@ -76,7 +78,7 @@ Foxtrick.entry.docLoad = function(doc) {
 	var begin = (new Date()).getTime();
 	Foxtrick.entry.run(doc);
 	var diff = (new Date()).getTime() - begin;
-	Foxtrick.log("run time: ", diff, " ms | ",
+	Foxtrick.log('run time: ', diff, ' ms | ',
 		doc.location.pathname, doc.location.search);
 
 	Foxtrick.log.flush(doc);
@@ -86,7 +88,7 @@ Foxtrick.entry.docLoad = function(doc) {
 };
 
 // invoved for each new instance of a content script
-// for chrome/safari/opera after each page load 
+// for chrome/safari/opera after each page load
 // for fennec on new tab opened
 // @param data - copy of the resources passed from the background script
 Foxtrick.entry.contentScriptInit = function(data) {
@@ -94,7 +96,7 @@ Foxtrick.entry.contentScriptInit = function(data) {
 	for (var i in Foxtrick.modules)
 		Foxtrick.modules[i].MODULE_NAME = i;
 
-	if (Foxtrick.platform != "Mobile" && Foxtrick.platform != "Android") {
+	if (Foxtrick.platform != 'Mobile' && Foxtrick.platform != 'Android') {
 			FoxtrickPrefs._prefs_chrome_user = data._prefs_chrome_user;
 			FoxtrickPrefs._prefs_chrome_default = data._prefs_chrome_default;
 
@@ -108,34 +110,34 @@ Foxtrick.entry.contentScriptInit = function(data) {
 		else {
 			// fennec can access them from context, but they still need to get initilized
 			var coreModules = [FoxtrickPrefs, Foxtrickl10n];
-			for (var i=0; i<coreModules.length; ++i) {
-				if (typeof(coreModules[i].init) == "function")
+			for (var i = 0; i < coreModules.length; ++i) {
+				if (typeof(coreModules[i].init) == 'function')
 					coreModules[i].init();
 			}
 		}
 		var parser = new window.DOMParser();
 		for (var i in data.htLang) {
-			Foxtrickl10n.htLanguagesXml[i] = parser.parseFromString(data.htLang[i], "text/xml");
+			Foxtrickl10n.htLanguagesXml[i] = parser.parseFromString(data.htLang[i], 'text/xml');
 		}
 
-		Foxtrick.XMLData.htCurrencyXml = parser.parseFromString(data.currency, "text/xml");
-		Foxtrick.XMLData.aboutXML = parser.parseFromString(data.about, "text/xml");
-		Foxtrick.XMLData.worldDetailsXml = parser.parseFromString(data.worldDetails, "text/xml");
+		Foxtrick.XMLData.htCurrencyXml = parser.parseFromString(data.currency, 'text/xml');
+		Foxtrick.XMLData.aboutXML = parser.parseFromString(data.about, 'text/xml');
+		Foxtrick.XMLData.worldDetailsXml = parser.parseFromString(data.worldDetails, 'text/xml');
 		Foxtrick.XMLData.League = data.league;
 		Foxtrick.XMLData.countryToLeague = data.countryToLeague;
 };
 
 // called on browser load and after preferences changes (background side for sandboxed, fennec)
 Foxtrick.entry.init = function() {
-	Foxtrick.log("Initializing FoxTrick...");
+	Foxtrick.log('Initializing FoxTrick...');
 
 	// add MODULE_NAME to modules
 	for (var i in Foxtrick.modules)
 		Foxtrick.modules[i].MODULE_NAME = i;
 
 	var coreModules = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
-	for (var i=0; i<coreModules.length; ++i) {
-		if (typeof(coreModules[i].init) == "function")
+	for (var i = 0; i < coreModules.length; ++i) {
+		if (typeof(coreModules[i].init) == 'function')
 			coreModules[i].init();
 	}
 
@@ -148,7 +150,7 @@ Foxtrick.entry.init = function() {
 	// initialize all enabled modules
 	var modules = [];
 	for (var i in Foxtrick.modules) {
-		var module = Foxtrick.modules[i];		
+		var module = Foxtrick.modules[i];
 		if (FoxtrickPrefs.isModuleEnabled(module.MODULE_NAME)) {
 			// push to array modules for executing init()
 			modules.push(module);
@@ -161,21 +163,21 @@ Foxtrick.entry.init = function() {
 		}
 	}
 	Foxtrick.entry.niceRun(modules, function(m) {
-		if (typeof(m.init) == "function")
+		if (typeof(m.init) == 'function')
 			return function() { m.init(); };
 	});
 
-	Foxtrick.log("FoxTrick initialization completed.");
+	Foxtrick.log('FoxTrick initialization completed.');
 };
 
 Foxtrick.entry.run = function(doc, is_only_css_check) {
 	try {
-		if (Foxtrick.platform=='Firefox' && FoxtrickPrefs.getBool("preferences.updated")) {
+		if (Foxtrick.platform == 'Firefox' && FoxtrickPrefs.getBool('preferences.updated')) {
 			Foxtrick.log('prefs updated');
 			Foxtrick.entry.init();
 			Foxtrick.util.css.reload_module_css(doc);
 			Foxtrick.entry.cssLoaded = true;
-			FoxtrickPrefs.setBool("preferences.updated", false);
+			FoxtrickPrefs.setBool('preferences.updated', false);
 		}
 
 		// don't execute if not enabled on the document
@@ -187,29 +189,29 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		}
 
 		// set up direction and style attributes
-		var current_theme = Foxtrick.util.layout.isStandard(doc) ? "standard" : "simple";
-		var current_dir = Foxtrick.util.layout.isRtl(doc) ? "rtl" : "ltr";
+		var current_theme = Foxtrick.util.layout.isStandard(doc) ? 'standard' : 'simple';
+		var current_dir = Foxtrick.util.layout.isRtl(doc) ? 'rtl' : 'ltr';
 		var oldtheme = FoxtrickPrefs.getString('theme');
 		var olddir = FoxtrickPrefs.getString('dir');
-		if ( current_theme!= oldtheme || current_dir != olddir) {
+		if (current_theme != oldtheme || current_dir != olddir) {
 			Foxtrick.log('layout change');
 			FoxtrickPrefs.setString('theme', current_theme);
 			FoxtrickPrefs.setString('dir', current_dir);
 			Foxtrick.util.css.reload_module_css(doc);
 			Foxtrick.entry.cssLoaded = true;
 		}
-		var html = doc.getElementsByTagName("html")[0];
+		var html = doc.getElementsByTagName('html')[0];
 		html.dir = current_dir;
-		html.setAttribute("data-theme", current_theme);
-		if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android") {
-			html.setAttribute("data-fennec-theme",
-				doc.location.href.search(/Forum/i) == -1 ? "default" : "forum");
+		html.setAttribute('data-theme', current_theme);
+		if (Foxtrick.platform == 'Mobile' || Foxtrick.platform == 'Android') {
+			html.setAttribute('data-fennec-theme',
+				doc.location.href.search(/Forum/i) == -1 ? 'default' : 'forum');
 		}
-		html.setAttribute(Foxtrick.platform,"");
-		
+		html.setAttribute(Foxtrick.platform, '');
+
 		// reload CSS if not loaded
 		if (!Foxtrick.entry.cssLoaded) {
-			Foxtrick.log("CSS not loaded");
+			Foxtrick.log('CSS not loaded');
 			FoxtrickPrefs.setBool('isStage', Foxtrick.isStage(doc));
 			Foxtrick.util.css.reload_module_css(doc);
 			Foxtrick.entry.cssLoaded = true;
@@ -218,11 +220,11 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		// if only a CSS check, return now.
 		if (is_only_css_check)
 			return;
-		if (Foxtrick.isExcluded(doc) 
-		|| 	(Foxtrick.isLoginPage(doc) && !FoxtrickPrefs.getBool("runLoggedOff")) )
-			return
+		if (Foxtrick.isExcluded(doc)
+		|| (Foxtrick.isLoginPage(doc) && !FoxtrickPrefs.getBool('runLoggedOff')))
+			return;
 
-	  // create arrays for each recognized page that contains modules
+		// create arrays for each recognized page that contains modules
 		// that run on it
 		for (var i in Foxtrick.ht_pages) {
 			Foxtrick.entry.runMap[i] = [];
@@ -245,21 +247,22 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		// modules running on current page
 		for (var page in Foxtrick.ht_pages) {
 			if (Foxtrick.isPage(page, doc) && Foxtrick.entry.runMap[page]) {
-				for (var i=0; i<Foxtrick.entry.runMap[page].length; ++i)
+				for (var i = 0; i < Foxtrick.entry.runMap[page].length; ++i)
 					modules.push(Foxtrick.entry.runMap[page][i]);
 			}
 		}
 
 		// invoke niceRun to run modules
 		Foxtrick.entry.niceRun(modules, function(m) {
-			if (typeof(m.run) == "function")
-				return function() { 
+			if (typeof(m.run) == 'function')
+				return function() {
 					var begin = new Date();
-					
-					m.run(doc); 
-					
+
+					m.run(doc);
+
 					var diff = (new Date()).getTime() - begin;
-					if( diff > 50 ) Foxtrick.log (m.MODULE_NAME, " run time: ", diff, " ms")
+					if (diff > 50)
+						Foxtrick.log(m.MODULE_NAME, ' run time: ', diff, ' ms');
 				};
 		});
 
@@ -276,12 +279,12 @@ Foxtrick.entry.change = function(ev) {
 		if (ev.target.nodeType !== Foxtrick.NodeTypes.ELEMENT_NODE &&
 			ev.target.nodeType !== Foxtrick.NodeTypes.TEXT_NODE)
 			return;
-			
+
 		// don't act to changes on the excluded pages
 		var excludes = [
-			new RegExp("/Club/Matches/MatchOrder/", "i"),
-			new RegExp("/Community/CHPP/ChppPrograms\.aspx", "i"),
-			new RegExp("/Club/Arena/ArenaUsage\.aspx", "i")
+			new RegExp('/Club/Matches/MatchOrder/', 'i'),
+			new RegExp('/Community/CHPP/ChppPrograms\.aspx', 'i'),
+			new RegExp('/Club/Arena/ArenaUsage\.aspx', 'i')
 		];
 		if (Foxtrick.any(function(ex) {
 				return doc.location.href.search(ex) > -1;
@@ -289,39 +292,39 @@ Foxtrick.entry.change = function(ev) {
 			return;
 		}
 
-		var content = doc.getElementById("content");
+		var content = doc.getElementById('content');
 		if (!content) {
-			Foxtrick.log("Cannot find #content at ", doc.location);
+			Foxtrick.log('Cannot find #content at ', doc.location);
 			return;
 		}
 
 		var node = ev.target;
-		while(node){
-			if(node && Foxtrick.hasClass(node, 'ft-ignore-changes'))
+		while (node) {
+			if (node && Foxtrick.hasClass(node, 'ft-ignore-changes'))
 				return;
-			node = node.parentNode
+			node = node.parentNode;
 		}
 		// ignore changes list
-		if (ev.originalTarget && 
+		if (ev.originalTarget &&
 				(Foxtrick.hasClass(ev.originalTarget, 'boxBody')
-				|| Foxtrick.hasClass(ev.originalTarget,'ft-popup-span')))
+				|| Foxtrick.hasClass(ev.originalTarget, 'ft-popup-span')))
 			return;
 
-		Foxtrick.log("call modules change functions");
+		Foxtrick.log('call modules change functions');
 
 		if (FoxtrickPrefs.isEnabled(doc)) {
 			var modules = [];
 			// modules running on current page
 			for (var page in Foxtrick.ht_pages) {
 				if (Foxtrick.isPage(page, doc) && Foxtrick.entry.runMap[page]) {
-					for (var i=0; i<Foxtrick.entry.runMap[page].length; ++i)
+					for (var i = 0; i < Foxtrick.entry.runMap[page].length; ++i)
 						modules.push(Foxtrick.entry.runMap[page][i]);
 				}
 			}
 
 			// invoke niceRun to run modules
 			Foxtrick.entry.niceRun(modules, function(m) {
-				if (typeof(m.change) == "function")
+				if (typeof(m.change) == 'function')
 					return function() { m.change(doc, ev); };
 			});
 
@@ -346,12 +349,12 @@ Foxtrick.entry.niceRun = function(modules, pick) {
 	});
 	Foxtrick.map(function(m) {
 		try {
-			if (typeof(pick(m)) == "function")
+			if (typeof(pick(m)) == 'function')
 				pick(m)();
 		}
 		catch (e) {
 			if (m.MODULE_NAME)
-				Foxtrick.log("Error in ", m.MODULE_NAME, ": ", e);
+				Foxtrick.log('Error in ', m.MODULE_NAME, ': ', e);
 			else
 				Foxtrick.log(e);
 		}

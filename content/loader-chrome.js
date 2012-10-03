@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /**
  * loader_chrome.js
  * Foxtrick loader
@@ -16,73 +16,73 @@ if (!Foxtrick.loader.chrome)
 // starts the content instances for chrome/opera/safari (one per tab/peg. not persistant)
 Foxtrick.loader.chrome.docLoadStart = function() {
 	try {
-		if ( !Foxtrick.isHtUrl(document.location.href) 
-			|| Foxtrick.isExcluded(document) )  
+		if (!Foxtrick.isHtUrl(document.location.href)
+			|| Foxtrick.isExcluded(document))
 			return;
 
 		var DOMContentLoaded = false;
 		var LocalResourcesLoaded = false;
-		
+
 		var beginRequest = new Date();
 
 		// request resources from background script
 		// calls/adds Foxtrick.loader.chrome.docLoadEnd
-		sandboxed.extension.sendRequest({ req : "pageLoad" },
-		function (data) {
-			try { 
+		sandboxed.extension.sendRequest({ req: 'pageLoad' },
+		function(data) {
+			try {
 				var beginInit = new Date();
 
-				if (data.error) 
+				if (data.error)
 					Foxtrick.log(data.error);
 
 				Foxtrick.entry.contentScriptInit(data);
 
-				if ( (FoxtrickPrefs.getBool("disableOnStage")
+				if ((FoxtrickPrefs.getBool('disableOnStage')
 						&& Foxtrick.isStage(document))
-					|| FoxtrickPrefs.getBool("disableTemporary")) {
+					|| FoxtrickPrefs.getBool('disableTemporary')) {
 					// not on Hattrick or disabled
 					Foxtrick.log(' Foxtrick disabled');
 					return;
 				}
 
-				var moduleCss = document.getElementById("ft-module-css");
+				var moduleCss = document.getElementById('ft-module-css');
 				// remove old CSS if exists
 				if (moduleCss)
 					moduleCss.parentNode.removeChild(moduleCss);
 				// inject CSS
-				Foxtrick.util.inject.css(document, data.cssText, "ft-module-css");
+				Foxtrick.util.inject.css(document, data.cssText, 'ft-module-css');
 
 				Foxtrick.entry.cssLoaded = true;
 
 				// safari context menu special paste listener
-				if ( Foxtrick.platform == "Safari" ) {
+				if (Foxtrick.platform == 'Safari') {
 					window.addEventListener('mouseup', Foxtrick.loader.chrome.clickListener, false);
 					Foxtrick.loader.chrome.initGrowl();
 				}
 
-				var nowTime = new Date(); 
+				var nowTime = new Date();
 				var requestTime = beginInit.getTime() - beginRequest.getTime();
 				var initTime = nowTime - beginInit.getTime();
-				Foxtrick.log("request time: ", requestTime ," - init time: " , initTime , " ms");
+				Foxtrick.log('request time: ', requestTime, ' - init time: ', initTime, ' ms');
 
 
 				if (DOMContentLoaded) {
-					Foxtrick.log('LocalResourcesLoad took too long. run now. ')
+					Foxtrick.log('LocalResourcesLoad took too long. run now. ');
 					Foxtrick.entry.docLoad(document);
 				}
 				LocalResourcesLoaded = true;
-				
-			} catch(e) {Foxtrick.log('loader init: ', e);}
+
+			} catch (e) {Foxtrick.log('loader init: ', e);}
 		});
-		
+
 		// that's our normal entry point unless init took too long.
-		window.addEventListener("DOMContentLoaded", function() {
+		window.addEventListener('DOMContentLoaded', function() {
 			DOMContentLoaded = true;
 			if (LocalResourcesLoaded)
 				Foxtrick.entry.docLoad(document);
 		}, false);
-		
-	} catch(e) {
+
+	} catch (e) {
 		Foxtrick.log(e);
 	}
 };
@@ -90,11 +90,11 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 
 Foxtrick.loader.chrome.clickListener = function(e) {
 	try {
-		if ( typeof(e.target.tagName) != "undefined" &&
-			(( e.target.tagName == 'INPUT' && e.target.type=='text') || // text imput
-			e.target.tagName=='TEXTAREA') &&	// or text area
+		if (typeof(e.target.tagName) != 'undefined' &&
+			((e.target.tagName == 'INPUT' && e.target.type == 'text') || // text imput
+			e.target.tagName == 'TEXTAREA') &&	// or text area
 			e.button == 0 && 		// left mouse button
-			e.shiftKey == true ) { 	// our special key we listen too
+			e.shiftKey == true) { 	// our special key we listen too
 
 			Foxtrick.sessionGet('clipboard', function(text) {
 				if (text) {
@@ -104,8 +104,7 @@ Foxtrick.loader.chrome.clickListener = function(e) {
 					// Opera, Mozilla
 					if (ta.selectionStart || ta.selectionStart == '0') {
 						var st = ta.scrollTop;
-						ta.value = s.textBeforeSelection+
-									text +
+						ta.value = s.textBeforeSelection + text +
 									s.textAfterSelection;
 						ta.scrollTop = st;
 					}
@@ -114,21 +113,21 @@ Foxtrick.loader.chrome.clickListener = function(e) {
 						ta.value += text;
 					}
 				}
-			});	
+			});
 		}
-	} catch(e) {Foxtrick.log(e)}
+	} catch (e) { Foxtrick.log(e) }
 };
 
-Foxtrick.loader.chrome.initGrowl = function () {
-  try {
-	var object = document.createElement('object');
-	object.setAttribute('type', "application/x-growl-safari-bridge");
-	object.width = '0';
-	object.height = '0';
-	object.id = "growl-safari-bridge";
-	document.getElementsByTagName('body')[0].appendChild(object);
-	window.GrowlSafariBridge = object;
-  } catch(e) {Foxtrick.log(e);}
+Foxtrick.loader.chrome.initGrowl = function() {
+	try {
+		var object = document.createElement('object');
+		object.setAttribute('type', 'application/x-growl-safari-bridge');
+		object.width = '0';
+		object.height = '0';
+		object.id = 'growl-safari-bridge';
+		document.getElementsByTagName('body')[0].appendChild(object);
+		window.GrowlSafariBridge = object;
+	} catch (e) { Foxtrick.log(e); }
 };
 
 // this is the content side entry point for chrome/opera/safari

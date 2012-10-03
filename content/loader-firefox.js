@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 /*
  * loader-firefox.js
- * FoxTrick loader for Firefox/Seamonkey 
+ * FoxTrick loader for Firefox/Seamonkey
  */
 
 
@@ -17,61 +17,65 @@ if (!Foxtrick.loader.firefox)
 // browser chrome (XUL document)
 Foxtrick.loader.firefox.browserLoad = function() {
 	try {
-		var appcontent = document.getElementById("appcontent");
+		var appcontent = document.getElementById('appcontent');
 		if (appcontent) {
 			Foxtrick.entry.init();
-			FoxtrickPrefs.setBool("featureHighlight", false);
-			FoxtrickPrefs.setBool("translationKeys", false);
+			FoxtrickPrefs.setBool('featureHighlight', false);
+			FoxtrickPrefs.setBool('translationKeys', false);
 
 			// calls module.onLoad() after the browser window is loaded
 			for (var i in Foxtrick.modules) {
 				var module = Foxtrick.modules[i];
-				if (typeof(module.onLoad) === "function") {
+				if (typeof(module.onLoad) === 'function') {
 					try {
 						module.onLoad(document);
 					}
 					catch (e) {
-						Foxtrick.log("Error caught in module ", module.MODULE_NAME, ":", e);
+						Foxtrick.log('Error caught in module ', module.MODULE_NAME, ':', e);
 					}
 				}
 			}
 
 			// listen to page loads
-			appcontent.addEventListener("DOMContentLoaded", Foxtrick.loader.firefox.DOMContentLoaded, true);
+			appcontent.addEventListener('DOMContentLoaded',
+			                            Foxtrick.loader.firefox.DOMContentLoaded, true);
 			// listen to page unloads
-			appcontent.addEventListener("unload", Foxtrick.loader.firefox.docUnload, true);
+			appcontent.addEventListener('unload', Foxtrick.loader.firefox.docUnload, true);
 
 			// add listener to tab focus changes
-			var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+			var wm = Components.classes['@mozilla.org/appshell/window-mediator;1']
 				.getService(Components.interfaces.nsIWindowMediator);
-			var browserEnumerator = wm.getEnumerator("navigator:browser");
+			var browserEnumerator = wm.getEnumerator('navigator:browser');
 			var browserWin = browserEnumerator.getNext();
 			var tabbrowser = browserWin.getBrowser();
-			tabbrowser.tabContainer.addEventListener("select", Foxtrick.loader.firefox.tabFocus, true);
-			
+			tabbrowser.tabContainer.addEventListener('select', Foxtrick.loader.firefox.tabFocus,
+			                                         true);
+
 			// refresh ht pages
 			Foxtrick.reloadAll();
 		}
-	} catch(e) {
+	} catch (e) {
 		Foxtrick.log(e);
 	}
 };
 
 Foxtrick.loader.firefox.browserUnLoad = function() {
-	var appcontent = document.getElementById("appcontent");
+	var appcontent = document.getElementById('appcontent');
 	if (appcontent) {
 		// remove listeners
-		appcontent.removeEventListener("DOMContentLoaded", Foxtrick.loader.firefox.DOMContentLoaded, true);
-		appcontent.removeEventListener("unload", Foxtrick.loader.firefox.docUnload, true);
-		var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+		appcontent.removeEventListener('DOMContentLoaded',
+		                               Foxtrick.loader.firefox.DOMContentLoaded, true);
+		appcontent.removeEventListener('unload', Foxtrick.loader.firefox.docUnload, true);
+		var wm = Components.classes['@mozilla.org/appshell/window-mediator;1']
 			.getService(Components.interfaces.nsIWindowMediator);
-		var browserEnumerator = wm.getEnumerator("navigator:browser");
+		var browserEnumerator = wm.getEnumerator('navigator:browser');
 		var browserWin = browserEnumerator.getNext();
 		var tabbrowser = browserWin.getBrowser();
-		tabbrowser.tabContainer.removeEventListener("select", Foxtrick.loader.firefox.tabFocus, true);
-		
+		tabbrowser.tabContainer.removeEventListener('select',
+		                                            Foxtrick.loader.firefox.tabFocus, true);
+
 		Foxtrick.util.css.unload_module_css();
-		
+
 		// refresh ht pages
 		Foxtrick.reloadAll();
 	}
@@ -83,7 +87,7 @@ Foxtrick.loader.firefox.DOMContentLoaded = function(ev) {
 	var wn = ev.target.defaultView;
 	if (wn.self != wn.top)
 		return;
-	
+
 	Foxtrick.modules.UI.update(ev.originalTarget);
 	if (Foxtrick.isHt(ev.originalTarget))
 		Foxtrick.entry.docLoad(ev.originalTarget);
@@ -93,7 +97,7 @@ Foxtrick.loader.firefox.DOMContentLoaded = function(ev) {
 Foxtrick.loader.firefox.tabFocus = function(ev) {
 	try {
 		// don't execute if disabled
-		if (FoxtrickPrefs.getBool("disableTemporary")) {
+		if (FoxtrickPrefs.getBool('disableTemporary')) {
 			// potenial disable cleanup
 			if (Foxtrick.entry.cssLoaded) {
 				Foxtrick.util.css.unload_module_css();
@@ -102,35 +106,36 @@ Foxtrick.loader.firefox.tabFocus = function(ev) {
 			return;
 		}
 
-		var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+		var wm = Components.classes['@mozilla.org/appshell/window-mediator;1']
 			.getService(Components.interfaces.nsIWindowMediator);
-		var browserEnumerator = wm.getEnumerator("navigator:browser");
+		var browserEnumerator = wm.getEnumerator('navigator:browser');
 		var browserWin = browserEnumerator.getNext();
 		var tabbrowser = browserWin.getBrowser();
 		var currentBrowser = tabbrowser.getBrowserAtIndex(ev.target.selectedIndex);
 		var doc = currentBrowser.contentDocument;
-		
-		Foxtrick.log('tab focus: '+ ev.target.selectedIndex);
-		// calls module.onTabChange() after the tab focus is changed. also on not-ht pages for eg context-menu
+
+		Foxtrick.log('tab focus: ' + ev.target.selectedIndex);
+		// calls module.onTabChange() after the tab focus is changed.
+		// also on not-ht pages for eg context-menu
 		for (var i in Foxtrick.modules) {
 			var module = Foxtrick.modules[i];
-			if (typeof(module.onTabChange) === "function") {
+			if (typeof(module.onTabChange) === 'function') {
 				try {
 					module.onTabChange(doc);
 				}
 				catch (e) {
-					Foxtrick.log("Error caught in module ", module.MODULE_NAME, ": ", e);
+					Foxtrick.log('Error caught in module ', module.MODULE_NAME, ': ', e);
 				}
 			}
 		}
 
 		if (!Foxtrick.isHt(doc))
 			return;
-			
+
 		Foxtrick.entry.run(doc, true); // recheck css
 
 		Foxtrick.log.flush(doc);
-	} catch(e) {
+	} catch (e) {
 		Foxtrick.log(e);
 	}
 };

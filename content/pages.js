@@ -1,12 +1,12 @@
-"use strict";
+'use strict';
 /**
  * pages.js
  * @author FoxTrick developers
  *
  * This is a list of Hattrick pages that modules can run on.
  * Those values are simply taken from the hattrick URL, so when the current
- * url contains e.g. "Forum/Read" AND we are on hattrick, all the modules
- * registered to listen to "forumViewThread" will have their run() functions
+ * url contains e.g. 'Forum/Read' AND we are on hattrick, all the modules
+ * registered to listen to 'forumViewThread' will have their run() functions
  * called.
  *
  * You can add new values here, but make sure your NEWLY added pages have names
@@ -16,7 +16,7 @@
  * '.' and '?' will be escaped automatically.
  */
 
-if (!Foxtrick) var Foxtrick={};
+if (!Foxtrick) var Foxtrick = {};
 
 Foxtrick.ht_pages = {
 	// following are mainly used for information gathering. keep on top
@@ -42,7 +42,7 @@ Foxtrick.ht_pages = {
 	'youthSeries'   			: '/World/Series/YouthSeries.aspx',
 	'nextSeries'				: '/World/Series/NextSeason.aspx',
 	'country'   				: '/World/Leagues/League.aspx',
-	'region'						: '/World/Regions/Region.aspx',
+	'region'					: '/World/Regions/Region.aspx',
 	'regionOverview'			: '/World/Regions/?LeagueID=',
 	'challenges'				: '/Club/Challenges/$',
 	'challengesPool'			: '/Club/Challenges/default\.aspx',
@@ -113,7 +113,7 @@ Foxtrick.ht_pages = {
 	'cupOverview'   			: '/World/Cup/?CupID=',
 	'election'  				: '/World/Elections/Default.aspx|World/Elections/$',
 	'denominations' 			: '/Help/Rules/AppDenominations.aspx',
-	'helpContact'  			: '/Help/Contact.aspx',
+	'helpContact'  				: '/Help/Contact.aspx',
 	'statsBestGames'			: '/World/Stats/StatsBestgames.aspx',
 	'statsTransfersBuyers'  	: '/World/Stats/StatsTransfersBuyers.aspx',
 	'statsTeams'				: '/World/Stats/StatsTeams.aspx',
@@ -139,10 +139,10 @@ Foxtrick.ht_pages = {
 };
 
 Foxtrick.pagesExcluded = {
-	"offline"   				: "down.aspx",
-	"oath"						: "chpp.hattrick.org/",
-	"error"						: "/Errors",
-	"logout"					: "Logout.aspx"
+	'offline'   				: 'down.aspx',
+	'oath'						: 'chpp.hattrick.org/',
+	'error'						: '/Errors',
+	'logout'					: 'Logout.aspx'
 };
 
 Foxtrick.isPage = function(page, doc) {
@@ -155,7 +155,7 @@ Foxtrick.isPage = function(page, doc) {
 };
 
 Foxtrick.isOneOfPages = function(pages, doc) {
-	if ( pages instanceof Array ) {
+	if (pages instanceof Array) {
 		for (var j = 0; j < pages.length; ++j) {
 			if (Foxtrick.isPage(pages[j], doc))
 				return true;
@@ -166,7 +166,7 @@ Foxtrick.isOneOfPages = function(pages, doc) {
 
 Foxtrick.isExcluded = function(doc) {
 	for (var i in Foxtrick.pagesExcluded) {
-		var excludeRe = new RegExp(Foxtrick.pagesExcluded[i], "i");
+		var excludeRe = new RegExp(Foxtrick.pagesExcluded[i], 'i');
 		// page excluded, return
 		if (doc.location.href.search(excludeRe) > -1)
 			return true;
