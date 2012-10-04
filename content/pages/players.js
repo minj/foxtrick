@@ -119,7 +119,7 @@ Foxtrick.Pages.Players = {
 							continue;
 							// not present in HTML. skip if not retrieving squad from other page
 						else {
-							playerList.push({id: id});
+							playerList.push({ id: id });
 							player = playerList[playerList.length - 1];
 
 							player.yellowCard = Number(playerNode.getElementsByTagName('Cards')[0]
@@ -453,7 +453,7 @@ Foxtrick.Pages.Players = {
 							.textContent;
 					}
 				}
-			} catch (e) {Foxtrick.log(e);}
+			} catch (e) { Foxtrick.log(e); }
 		};
 
 		var parseHtml = function() {
@@ -473,7 +473,7 @@ Foxtrick.Pages.Players = {
 				// see if player is already in playerList, add if not
 				var player = Foxtrick.filter(function(n) { return n.id == id; }, playerList)[0];
 				if (!player) {
-					playerList.push({id: id});
+					playerList.push( {id: id} );
 					player = playerList[playerList.length - 1];
 				}
 
@@ -490,8 +490,8 @@ Foxtrick.Pages.Players = {
 					var cat = name_b.textContent.match(/\((.+)\)/);
 					if (cat != null) {
 						// stored as catergoy id
-						var categories = {'GK': 1, 'WB': 2, 'CD': 3, 'W': 4, 'IM': 5, 'FW': 6,
-							'S': 7, 'R': 8, 'E1': 9, 'E2': 10};
+						var categories = { 'GK': 1, 'WB': 2, 'CD': 3, 'W': 4, 'IM': 5, 'FW': 6,
+							'S': 7, 'R': 8, 'E1': 9, 'E2': 10 };
 						player.category = Number(categories[cat[1]]);
 					}
 				}

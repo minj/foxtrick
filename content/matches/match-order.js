@@ -184,7 +184,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			};
 
 			// load ahead players and then wait for interface loaded
-			Foxtrick.Pages.Players.getPlayerList(doc, function(playerInfo) {
+			Foxtrick.Pages.Players.getPlayerList(doc,
+			  function(playerInfo) {
 				if (!playerInfo || playerInfo.length == 0) {
 					Foxtrick.log('unable to retrieve player list.');
 					return;
@@ -202,7 +203,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 			if (teamid == ownteamid) {
 				Foxtrick.util.api.retrieve(doc, [['file', (isYouth ? 'youth' : '') + 'avatars']],
-				                           {cache_lifetime: 'session'}, function(xml, errorText) {
+				                           { cache_lifetime: 'session' },
+				  function(xml, errorText) {
 					if (errorText) {
 						/*if (loadingOtherMatches && loadingOtherMatches.parentNode) {
 							loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
@@ -442,11 +444,12 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			var lastMatchDates = null;
 
 			// load ahead players and then wait for interface loaded
-			Foxtrick.Pages.Players.getPlayerList(doc, function(playerInfo) {
+			Foxtrick.Pages.Players.getPlayerList(doc,
+			  function(playerInfo) {
 				if (!playerInfo || playerInfo.length == 0) {
 					Foxtrick.log('unable to retrieve player list.');
 					return;
-				 }
+				}
 
 				Foxtrick.log('hasPlayerInfo');
 				hasPlayerInfo = true;
@@ -459,7 +462,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			}, { teamid: teamid, current_squad: true, includeMatchInfo: true });
 
 			Foxtrick.util.api.retrieve(doc, [['file', (isYouth ? 'youth' : '') + 'avatars']],
-			                           {cache_lifetime: 'session'}, function(xml, errorText) {
+			                           { cache_lifetime: 'session' },
+			  function(xml, errorText) {
 				if (errorText) {
 					/*if (loadingOtherMatches && loadingOtherMatches.parentNode) {
 						loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
@@ -535,7 +539,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 						if (clearFirst)
 							doc.querySelector('#ft_clear_penalty_takers > span').click();
 
-						Foxtrick.sessionGet('match-orders-penalty-skills', function(ps) {
+						Foxtrick.sessionGet('match-orders-penalty-skills',
+						  function(ps) {
 
 							// collect data about existing kickers first
 							var taken = [], placed = [], sp;
@@ -633,7 +638,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				}
 
 				// add playerid to details
-				Foxtrick.listen(doc.getElementById('players'), 'mouseover', function(ev) {
+				Foxtrick.listen(doc.getElementById('players'), 'mouseover',
+				  function(ev) {
 					if (Foxtrick.hasClass(ev.target, 'player')) {
 						var detailsTemplate = doc.getElementById('detailsTemplate');
 						var idSearch = ev.target.id.match(/list_playerID(\d+)/i);
@@ -644,7 +650,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 				// listen to all that has players (seperatelly to reduce excessive calling)
 				var details = doc.getElementById('details');
-				Foxtrick.addMutationEventListener(details, 'DOMNodeInserted', function(ev) {
+				Foxtrick.addMutationEventListener(details, 'DOMNodeInserted',
+				  function(ev) {
 					//Foxtrick.log('details change');
 					if (hasPlayerInfo) {
 						if (FoxtrickPrefs.isModuleOptionEnabled('MatchOrderInterface',
@@ -656,7 +663,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				}, false);
 
 				var list = doc.getElementById('list');
-				Foxtrick.addMutationEventListener(list, 'DOMNodeInserted', function(ev) {
+				Foxtrick.addMutationEventListener(list, 'DOMNodeInserted',
+				  function(ev) {
 					//Foxtrick.log('list change');
 					if (hasPlayerInfo)
 						showPlayerInfo(list);
@@ -665,7 +673,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				}, false);
 
 				var fieldplayers = doc.getElementById('fieldplayers');
-				Foxtrick.addMutationEventListener(fieldplayers, 'DOMNodeInserted', function(ev) {
+				Foxtrick.addMutationEventListener(fieldplayers, 'DOMNodeInserted',
+				  function(ev) {
 					//Foxtrick.log('fieldplayers change');
 					if (hasPlayerInfo)
 						showPlayerInfo(fieldplayers);
@@ -674,7 +683,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				}, false);
 
 				var tab_subs = doc.getElementById('tab_subs');
-				Foxtrick.addMutationEventListener(tab_subs, 'DOMNodeInserted', function(ev) {
+				Foxtrick.addMutationEventListener(tab_subs, 'DOMNodeInserted',
+				  function(ev) {
 					//Foxtrick.log('tab_subs change');
 					if (hasPlayerInfo)
 						showPlayerInfo(tab_subs);
@@ -686,7 +696,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 				var tab_penaltytakers = doc.getElementById('tab_penaltytakers');
 				Foxtrick.addMutationEventListener(tab_penaltytakers, 'DOMNodeInserted',
-					function(ev) {
+				  function(ev) {
 					//Foxtrick.log('tab_penaltytakers change');
 					if (hasPlayerInfo)
 						showPlayerInfo(tab_penaltytakers);

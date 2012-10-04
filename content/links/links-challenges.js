@@ -29,12 +29,12 @@ Foxtrick.modules['LinksChallenges'] = {
 		//addExternalLinksToChallengesDetail
 		var links;
 		if (Foxtrick.isPage('challenges', doc))
-			links = Foxtrick.modules['Links'].getLinks('challengeslink', {'teamid': teamid,
-			                                           'ownteamid': ownteamid}, doc, this);
+			links = Foxtrick.modules['Links'].getLinks('challengeslink', { 'teamid': teamid,
+			                                           'ownteamid': ownteamid }, doc, this);
 		else
 			links = Foxtrick.modules['Links']
-				.getLinks('youthchallengeslink', {'teamid': teamid, 'youthteamid': youthteamid,
-				          'ownteamid': ownteamid}, doc, this);
+				.getLinks('youthchallengeslink', { 'teamid': teamid, 'youthteamid': youthteamid,
+				          'ownteamid': ownteamid }, doc, this);
 		var ownBoxBody = null;
 
 		if (links.length > 0) {

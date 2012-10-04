@@ -41,7 +41,7 @@ Foxtrick.modules['AttVsDef'] = {
 
 		if (Foxtrick.util.layout.isStandard(doc) && FoxtrickPrefs.getInt('module.' +
 		    this.MODULE_NAME + '.value') == 0)
-		    bodydiv.parentNode.style.padding = '8px 6px 15px';
+			bodydiv.parentNode.style.padding = '8px 6px 15px';
 	},
 
 	_oldStyleBars: function(doc, ratingstable, bodydiv) {
@@ -50,7 +50,7 @@ Foxtrick.modules['AttVsDef'] = {
 		for (var i = 2; i <= 7; i++) { // normal ratings in rows 2 to 7
 			ratingsArray.push([
 				Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[i].cells[1]),
-			    Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[i].cells[2])
+				Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[i].cells[2])
 			]);
 			ratingsTextArray.push([ratingstable.rows[i].cells[1], ratingstable.rows[i].cells[2]]);
 		}
@@ -236,85 +236,85 @@ Foxtrick.modules['AttVsDef'] = {
 			var pt1 = Math.round(100 * val1 / (val1 + val2));
 			var pt2 = 100 - pt1;
 
-		 var cellwidth = 50;
+		var cellwidth = 50;
 
-		 var row = doc.createElement('div');
-		 row.className = 'foxtrick-graphs-row';
-		 div.appendChild(row);
+		var row = doc.createElement('div');
+		row.className = 'foxtrick-graphs-row';
+		div.appendChild(row);
 
-		 var cell = doc.createElement('div');
-		 cell.className = 'foxtrick-graphs-cell';
-		 cell.textContent = pt1 + '%';
-		 row.appendChild(cell);
+		var cell = doc.createElement('div');
+		cell.className = 'foxtrick-graphs-cell';
+		cell.textContent = pt1 + '%';
+		row.appendChild(cell);
 
-		 cell = doc.createElement('div');
-		 row.appendChild(cell);
-		 cell.className = 'foxtrick-graphs-left-bar';
+		cell = doc.createElement('div');
+		row.appendChild(cell);
+		cell.className = 'foxtrick-graphs-left-bar';
 
-		 var innercellA = doc.createElement('div');
-		 innercellA.className = 'foxtrick-graphs-bar-container';
-		 innercellA.style.backgroundColor = color1;
-		 cell.appendChild(innercellA);
+		var innercellA = doc.createElement('div');
+		innercellA.className = 'foxtrick-graphs-bar-container';
+		innercellA.style.backgroundColor = color1;
+		cell.appendChild(innercellA);
 
-		 var innercellB = doc.createElement('div');
-		 innercellB.className = 'foxtrick-graphs-bar-inner';
-		 innercellB.style.backgroundColor = color2;
-		 innercellA.appendChild(innercellB);
+		var innercellB = doc.createElement('div');
+		innercellB.className = 'foxtrick-graphs-bar-inner';
+		innercellB.style.backgroundColor = color2;
+		innercellA.appendChild(innercellB);
 
-		 var span = doc.createElement('span');
-		 span.textContent = '\u00a0';
-		 innercellA.appendChild(span);
+		var span = doc.createElement('span');
+		span.textContent = '\u00a0';
+		innercellA.appendChild(span);
 
-		 var innercellC = doc.createElement('div');
-		 innercellC.className = 'foxtrick-graphs-bar-values';
-		 innercellA.appendChild(innercellC);
-		 innercellC.textContent = text1 + ' ' + this._displayableRatingLevel(val1 + 1);
-		 innercellC.style.color = fgcolor1;
-		 innercellC.style.paddingLeft = '2px';
+		var innercellC = doc.createElement('div');
+		innercellC.className = 'foxtrick-graphs-bar-values';
+		innercellA.appendChild(innercellC);
+		innercellC.textContent = text1 + ' ' + this._displayableRatingLevel(val1 + 1);
+		innercellC.style.color = fgcolor1;
+		innercellC.style.paddingLeft = '2px';
 
-		 var val = Math.round((pt1 / 50) * cellwidth);
+		var val = Math.round((pt1 / 50) * cellwidth);
 
-		 innercellB.style.left = val + 'px';
-		 innercellB.style.width = ((50 - val > 0) ? 50 - val : 0) + 'px';
+		innercellB.style.left = val + 'px';
+		innercellB.style.width = ((50 - val > 0) ? 50 - val : 0) + 'px';
 
-		 cell.title = tooltip1.textContent;
+		cell.title = tooltip1.textContent;
 
-		 cell = doc.createElement('div');
-		 row.appendChild(cell);
-		 cell.className = 'foxtrick-graphs-right-bar';
-		 cell.style.backgroundColor = color2;
-		 val = Math.round((pt2 / 50) * cellwidth);
-		 val = (cellwidth - val);
+		cell = doc.createElement('div');
+		row.appendChild(cell);
+		cell.className = 'foxtrick-graphs-right-bar';
+		cell.style.backgroundColor = color2;
+		val = Math.round((pt2 / 50) * cellwidth);
+		val = (cellwidth - val);
 
-		 innercellA = doc.createElement('div');
-		 innercellA.className = 'foxtrick-graphs-bar-container';
-		 innercellA.style.backgroundColor = color2;
-		 cell.appendChild(innercellA);
+		innercellA = doc.createElement('div');
+		innercellA.className = 'foxtrick-graphs-bar-container';
+		innercellA.style.backgroundColor = color2;
+		cell.appendChild(innercellA);
 
-		 innercellB = doc.createElement('div');
-		 innercellB.className = 'foxtrick-graphs-bar-inner';
-		 innercellB.style.backgroundColor = color1;
-		 innercellB.style.width = (val > 0 ? val : 0) + 'px';
-		 innercellA.appendChild(innercellB);
+		innercellB = doc.createElement('div');
+		innercellB.className = 'foxtrick-graphs-bar-inner';
+		innercellB.style.backgroundColor = color1;
+		innercellB.style.width = (val > 0 ? val : 0) + 'px';
+		innercellA.appendChild(innercellB);
 
-		 span = doc.createElement('span');
-		 span.textContent = '\u00a0';
-		 innercellA.appendChild(span);
+		span = doc.createElement('span');
+		span.textContent = '\u00a0';
+		innercellA.appendChild(span);
 
-		 innercellC = doc.createElement('div');
-		 innercellC.className = 'foxtrick-graphs-bar-values';
-		 innercellA.appendChild(innercellC);
-		 innercellC.textContent = this._displayableRatingLevel(val2 + 1) + ' ' + text2;
-		 innercellC.style.textAlign = 'right';
-		 innercellC.style.color = fgcolor2;
-		 innercellC.style.paddingRight = '2px';
+		innercellC = doc.createElement('div');
+		innercellC.className = 'foxtrick-graphs-bar-values';
+		innercellA.appendChild(innercellC);
+		innercellC.textContent = this._displayableRatingLevel(val2 + 1) + ' ' + text2;
+		innercellC.style.textAlign = 'right';
+		innercellC.style.color = fgcolor2;
+		innercellC.style.paddingRight = '2px';
 
-		 cell.title = tooltip2.textContent;
+		cell.title = tooltip2.textContent;
 
-		 cell = doc.createElement('div');
-		 cell.className = 'foxtrick-graphs-cell';
-		 cell.textContent = pt2 + '%';
-		 row.appendChild(cell);
+		cell = doc.createElement('div');
+		cell.className = 'foxtrick-graphs-cell';
+		cell.textContent = pt2 + '%';
+		row.appendChild(cell);
 	},
 
 	_getPercentArray: function(doc, table) {

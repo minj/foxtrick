@@ -91,8 +91,8 @@ Foxtrick.modules['HeaderToggle'] = {
 								idString += tid;
 
 								/*idString += '__doPostBack(ctl00$ctl00$CPContent$CPMain$' +
-								                          'updLatestThreads\',\'read|' + tid +
-								                          '\');\n';*/
+								                          "updLatestThreads','read|" + tid +
+								                          "');\n";*/
 							}
 						}, rows);
 					}

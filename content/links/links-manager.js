@@ -28,7 +28,7 @@ Foxtrick.modules['LinksManager'] = {
 		var userid = Foxtrick.util.id.findUserId(mainBody);
 		var leaguename = Foxtrick.util.id.extractLeagueName(mainBody);
 		var leagueid = Foxtrick.util.id.findLeagueLeveUnitId(mainBody);
-   		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
+		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
 
 		var h1 = mainBody.getElementsByTagName('h1')[0];
 		var username = h1.textContent.replace(/^\s+/, '').replace(/\s+$/, '')

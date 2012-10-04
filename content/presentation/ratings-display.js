@@ -35,10 +35,10 @@ Foxtrick.modules['RatingsDisplay'] = {
 							table.rows[row].cells[3].textContent = (val / 4 + 0.75).toFixed(2);
 						}
 						else {
-							if (row == table.rows.length - 1) {// total average
+							if (row == table.rows.length - 1) { // total average
 								table.rows[row].cells[3].textContent = mean_home;
 							}
-							else if (row >= table.rows.length - 4) {// averages
+							else if (row >= table.rows.length - 4) { // averages
 								mean_home += val * 3;
 								table.rows[row].cells[3].textContent = val * 3;
 							}
@@ -55,7 +55,7 @@ Foxtrick.modules['RatingsDisplay'] = {
 							table.rows[row].cells[4].textContent = (val / 4 + 0.75).toFixed(2);
 						else if (FoxtrickPrefs.getInt('module.RatingsDisplay.value') == 1)
 						{
-							if (row == table.rows.length - 1) {// total average
+							if (row == table.rows.length - 1) { // total average
 								table.rows[row].cells[4].textContent = mean_away;
 							}
 							else if (row >= table.rows.length - 4) { // averages

@@ -310,7 +310,7 @@ Foxtrick.modules['LinksYouthLeague'] = {
 		var ownteamid = Foxtrick.util.id.getOwnTeamId();
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
 		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementsByClassName('main')[0]);
-        var youthleagueid = Foxtrick.util.id.findYouthLeagueId(doc.getElementsByClassName('main')[0]);
+		var youthleagueid = Foxtrick.util.id.findYouthLeagueId(doc.getElementsByClassName('main')[0]);
 
 		//addExternalLinksToYouthLeague
 		var ownBoxBody = null;

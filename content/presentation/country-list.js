@@ -177,7 +177,9 @@ Foxtrick.modules['CountryList'] = {
 				}
 			}
 			Foxtrick.makeFeaturedElement(selectbox, Foxtrick.modules.CountryList);
-		} catch (e) {Foxtrick.dump('countrylist: ' + e + '\n');}
+		} catch (e) {
+			Foxtrick.dump('countrylist: ' + e + '\n');
+		}
 
 
 		var opt_array = [];
@@ -189,7 +191,9 @@ Foxtrick.modules['CountryList'] = {
 		//		Foxtrick.dump(i+'  '+oldopt[0]+' '+oldopt[1]+'\n');
 				opt_array.push(oldopt);
 			}
-		} catch (epush) {Foxtrick.dump('countrylist: EPUSH ' + epush + '\n');}
+		} catch (epush) {
+			Foxtrick.dump('countrylist: EPUSH ' + epush + '\n');
+		}
 
 		function sortByOptionText(a, b) {
 			var x = a[1];

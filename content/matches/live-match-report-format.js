@@ -5,7 +5,7 @@
  * @author ryanli
  */
 (function() {
- /*
+	/*
 	 * Source: /Community/CHPP/ChppMatchEventTypes.aspx
 	 * Event Types and Icon mapping
 	 *
@@ -145,7 +145,7 @@
 		'239': { 'team': ['miss', 'se_technical'], 'other': ['se_head_specialist_negative'] },
 		'240': { 'team': ['miss', 'counter-attack', 'whistle'] },
 		'241': { 'team': ['miss_C', 'counter-attack'] },
-		'242': {'team': ['miss_L', 'counter-attack'] },
+		'242': { 'team': ['miss_L', 'counter-attack'] },
 		'243': { 'team': ['miss_R', 'counter-attack'] },
 		'250': { 'team': ['miss', 'whistle'] },
 		'251': { 'team': ['miss_C'] },
@@ -222,7 +222,7 @@
 		'se_powerful_negative': Foxtrick.InternalPath + 'resources/img/matches/spec3_red.png',
 		'se_quick_negative': Foxtrick.InternalPath + 'resources/img/matches/spec2_red.png',
 		'se_unpredictable_negative': Foxtrick.InternalPath + 'resources/img/matches/spec4_red.png',
-        'se_head_specialist_negative': Foxtrick.InternalPath + 'resources/img/matches/spec5_red.png',
+		'se_head_specialist_negative': Foxtrick.InternalPath + 'resources/img/matches/spec5_red.png',
 		'substitution': '/Img/Matches/substitution.gif',
 		'sub_out': '/Img/Matches/sub_out.gif',
 		'sun': '/Club/Matches/images/weather3.png',
@@ -570,14 +570,14 @@ Foxtrick.modules['LiveMatchReportFormat'] = {
 						before = !before;
 
 					if (before) {
-					 	event.parentNode.insertBefore(tr, event);
-					 	i++;
-					 }
-					 else {
+						event.parentNode.insertBefore(tr, event);
+						i++;
+					}
+					else {
 						event.parentNode.insertBefore(tr, event.nextSibling);
 						if (!topDown)
 							i++;
-					 }
+					}
 				}
 
 				//exact copy of the current match-report-format.js function
@@ -633,7 +633,8 @@ Foxtrick.modules['LiveMatchReportFormat'] = {
 		};
 		var livereportsContainer = doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanelMatch');
 		if (livereportsContainer)
-			Foxtrick.listen(livereportsContainer, 'DOMNodeInserted', function(event) {
+			Foxtrick.listen(livereportsContainer, 'DOMNodeInserted',
+			  function(event) {
 				if (event.target.className == 'liveReport') {
 					react(event.target);
 				}
@@ -641,7 +642,8 @@ Foxtrick.modules['LiveMatchReportFormat'] = {
 
 		var lContainer = doc.getElementsByClassName('liveMatchContainer')[0];
 		if (lContainer)
-			Foxtrick.listen(lContainer, 'DOMNodeInserted', function(event) {
+			Foxtrick.listen(lContainer, 'DOMNodeInserted',
+			  function(event) {
 				if (event.target.getAttribute && event.target.getAttribute('id') &&
 				    event.target.getAttribute('id') == 'ctl00_ctl00_CPContent_CPMain_repM') {
 				var livereports = event.target.getElementsByClassName('liveReport');

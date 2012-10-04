@@ -72,7 +72,8 @@
 			feed = feed.replace(/\.json\.zip/i, '.json');
 			Foxtrick.log('do feeds: ', feed);
 			// load plain text
-			Foxtrick.util.load.get(feed)('success', function(text) {
+			Foxtrick.util.load.get(feed)('success',
+			  function(text) {
 				--todo;
 				if (text == null)
 					text = FoxtrickPrefs.getString('LinksFeed.' + feed);
@@ -95,7 +96,8 @@
 
 		OPTION_FUNC: function(doc) {
 			// different background context for chrome. needs the links collection
-			Foxtrick.sessionGet('links-collection', function(col) {
+			Foxtrick.sessionGet('links-collection',
+			  function(col) {
 				if (col)
 					collection = col;
 				else
@@ -119,7 +121,8 @@
 		},
 
 		getCollection: function(callback) {
-			Foxtrick.sessionGet('links-collection', function(col) {
+			Foxtrick.sessionGet('links-collection',
+			  function(col) {
 				if (col) {
 					collection = col;
 					callback(collection);
@@ -295,7 +298,8 @@
 		getOptionsHtml: function(doc, module, linkType, callback) {
 			try {
 				var list = doc.createElement('ul');
-				this.getCollection(function(collection) {
+				this.getCollection(
+				  function(collection) {
 					try {
 						var hasOption = false;
 						var types = (linkType instanceof Array) ? linkType : [linkType];

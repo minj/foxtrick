@@ -5,12 +5,12 @@
  * @author CatzHoek
  */
 
- /*protocol
-  *
-  * request: var url = 'http://htev.org/api/matchodds/' + matchid +'/'
-  *
-  * response:
-  */
+/*protocol
+ *
+ * request: var url = 'http://htev.org/api/matchodds/' + matchid +'/'
+ *
+ * response:
+ */
 ////////////////////////////////////////////////////////////////////////////////
 Foxtrick.modules['HTEVPrediction'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
@@ -186,7 +186,8 @@ Foxtrick.modules['HTEVPrediction'] = {
 			var link = findLink(ev.target);
 			var matchid = Foxtrick.util.id.getMatchIdFromUrl(link.href);
 			//check local store if we have a record for this match already
-			Foxtrick.localGet('htev.prediction.past.' + matchid, function(lcache) {
+			Foxtrick.localGet('htev.prediction.past.' + matchid,
+			  function(lcache) {
 				//jupp, excellent
 				if (lcache) {
 					Foxtrick.log('HTEV: using local cached (past match)');
@@ -195,7 +196,8 @@ Foxtrick.modules['HTEVPrediction'] = {
 				//nah, ask HTEV
 				else {
 					//try local store
-					Foxtrick.sessionGet('htev.prediction.future.' + matchid, function(scache) {
+					Foxtrick.sessionGet('htev.prediction.future.' + matchid,
+					  function(scache) {
 						//jupp, excellent
 						if (scache) {
 							Foxtrick.log('HTEV: using session cached (future match)');

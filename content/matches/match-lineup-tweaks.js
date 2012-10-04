@@ -70,7 +70,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		};
 
 		var addSpecialtiesByTeamId = function(teamid, players) {
-			Foxtrick.Pages.Players.getPlayerList(doc, function(playerInfo) {
+			Foxtrick.Pages.Players.getPlayerList(doc,
+			  function(playerInfo) {
 				for (var i = 0; i < homePlayerLinks.length; i++) {
 					var id = Number(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerInfo, id);

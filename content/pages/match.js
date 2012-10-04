@@ -110,7 +110,7 @@ Foxtrick.Pages.Match = {
 				}, nodeCloned.childNodes);
 			Foxtrick.map(function(n) { nodeCloned.removeChild(n); }, toRemove);
 			var subLevel = Foxtrick.trim(nodeCloned.textContent);
-			var path = 'language/ratingSubLevels/sublevel[@text=\'' + subLevel + '\']';
+			var path = "language/ratingSubLevels/sublevel[@text='" + subLevel + "']";
 			subLevelValue = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path,
 			                                             'value');
 			if (!subLevelValue)
@@ -136,7 +136,7 @@ Foxtrick.Pages.Match = {
 		var lang = FoxtrickPrefs.getString('htLanguage');
 
 		try {
-			var path = 'language/tactics/tactic[@value=\'' + tactics + '\']';
+			var path = "language/tactics/tactic[@value='" + tactics + "']";
 			var subLevelValue = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang],
 			                                                 path, 'type');
 			return subLevelValue || -1;

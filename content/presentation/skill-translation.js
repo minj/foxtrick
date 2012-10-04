@@ -86,7 +86,7 @@ Foxtrick.modules['SkillTranslation'] = {
 	],
 	fan_match_expectations: [
 		'Fan match expectations',
-		'Let\'s humiliate them',
+		"Let's humiliate them",
 		'Piece of cake!',
 		'We will win',
 		'We are favourites',
@@ -174,7 +174,7 @@ Foxtrick.modules['SkillTranslation'] = {
 		// is english test
 		if (table.rows[1].cells[0].getElementsByTagName('b')[0].textContent ==
 		    this.player_abilities[0])
-		    return;
+			return;
 
 			this.translate_category(doc, table, 1, this.player_abilities, false);
 			this.translate_category(doc, table, 2, this.coach_skills, false);

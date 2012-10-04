@@ -30,7 +30,8 @@ Foxtrick.modules['LinksTeam'] = {
 	},
 
 	AddLinksRight: function(doc) {
-		if (!this.isTeamPage(doc)) {return;}
+		if (!this.isTeamPage(doc))
+			return;
 		var main = doc.getElementsByClassName('main')[0];
 		var ownBoxBody = null;
 		var teaminfo = this.gatherLinks(main, doc);
@@ -60,7 +61,7 @@ Foxtrick.modules['LinksTeam'] = {
 
 	gatherLinks: function(thisdiv, doc) {
 		var countryid = Foxtrick.util.id.findLeagueId(thisdiv);
-  		var teamid = Foxtrick.util.id.findTeamId(thisdiv);
+		var teamid = Foxtrick.util.id.findTeamId(thisdiv);
 		var teamname = Foxtrick.util.id.extractTeamName(thisdiv);
 		var leaguename = Foxtrick.util.id.extractLeagueName(thisdiv);
 		var levelnum = Foxtrick.util.id.getLevelNum(leaguename, countryid);
@@ -71,20 +72,20 @@ Foxtrick.modules['LinksTeam'] = {
 		}
 		var leaguepos = 0, fans = 0;
 		try {
-		  var teamInfo = doc.getElementById('mainBody').getElementsByTagName('h2')[0].parentNode;
-		  var ps = teamInfo.getElementsByTagName('p');
-		  try {leaguepos = ps[0].textContent.match(/(\d)/)[1];}
-		  catch (e) {} // running game, leaguepos not known
-		  var children = teamInfo.childNodes;
-		  var child, i = 0, infocount = 0;
-		  while (child = children[i++]) {
-			if (infocount == 2 && child.nodeName == 'P') {
-			  fans = children[i + 1].textContent.replace(/\u00a0/g, '').match(/(\d+)/)[1];
-			  break;
+			var teamInfo = doc.getElementById('mainBody').getElementsByTagName('h2')[0].parentNode;
+			var ps = teamInfo.getElementsByTagName('p');
+			try { leaguepos = ps[0].textContent.match(/(\d)/)[1]; }
+			catch (e) {} // running game, leaguepos not known
+			var children = teamInfo.childNodes;
+			var child, i = 0, infocount = 0;
+			while (child = children[i++]) {
+				if (infocount == 2 && child.nodeName == 'P') {
+					fans = children[i + 1].textContent.replace(/\u00a0/g, '').match(/(\d+)/)[1];
+					break;
+				}
+				if (child.className && child.className == 'info')
+					infocount++;
 			}
-			if (child.className && child.className == 'info')
-				infocount++;
-		  }
 		}
 		catch (e) {
 			Foxtrick.dump('leaguepos/fans: ' + e + '\n');

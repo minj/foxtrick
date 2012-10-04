@@ -23,7 +23,7 @@ Foxtrick.modules['LinksTraining'] = {
 	_run: function(doc) {
 		if (doc.location.href.search(/ChangeCoach/i) > -1 ||
 		    doc.location.href.search(/YouthTraining/i) > -1)
-		    return;
+			return;
 		//addExternalLinksToCoachPage
 
 		var main = doc.getElementsByClassName('main')[0];

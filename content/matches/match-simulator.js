@@ -284,15 +284,15 @@ Foxtrick.modules.MatchSimulator = {
 				}
 				// get ratings
 				var selectedratings = [
-					{type: 'RatingLeftAtt'},
-					{type: 'RatingMidAtt'},
-					{type: 'RatingRightAtt'},
-					{type: 'RatingMidfield'},
-					{type: 'RatingLeftDef'},
-					{type: 'RatingMidDef'},
-					{type: 'RatingRightDef'},
-					{type: 'TacticType'},
-					{type: 'TacticSkill'}
+					{ type: 'RatingLeftAtt' },
+					{ type: 'RatingMidAtt' },
+					{ type: 'RatingRightAtt' },
+					{ type: 'RatingMidfield' },
+					{ type: 'RatingLeftDef' },
+					{ type: 'RatingMidDef' },
+					{ type: 'RatingRightDef' },
+					{ type: 'TacticType' },
+					{ type: 'TacticSkill' }
 				];
 
 				// get ratings and ratings text
@@ -648,7 +648,7 @@ Foxtrick.modules.MatchSimulator = {
 				];
 
 				Foxtrick.util.api.retrieve(doc, orderMatchArgs, { cache_lifetime: 'session' },
-				                           function(orderMatchXml, errorText) {
+				  function(orderMatchXml, errorText) {
 					if (errorText) {
 						if (loadingOtherMatches && loadingOtherMatches.parentNode) {
 							loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
@@ -691,7 +691,7 @@ Foxtrick.modules.MatchSimulator = {
 						otherMatchesArgs.push(['SourceSystem', 'HTOIntegrated']);
 
 					Foxtrick.util.api.retrieve(doc, otherMatchesArgs, { cache_lifetime: 'session' },
-					                           function(otherMatchesXml, errorText) {
+					  function(otherMatchesXml, errorText) {
 						if (errorText) {
 							Foxtrick.log(errorText);
 							if (loadingOtherMatches)
@@ -702,8 +702,8 @@ Foxtrick.modules.MatchSimulator = {
 							loadingOtherMatches = null;
 						}
 
-						var getMatchDetails = function(selectedMatchid, SourceSystem, homeAway,
-						                               isNew) {
+						var getMatchDetails =
+						  function(selectedMatchid, SourceSystem, homeAway, isNew) {
 							if (loadingOtherMatches && loadingOtherMatches.parentNode) {
 								loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
 								loadingOtherMatches = null;
@@ -730,7 +730,7 @@ Foxtrick.modules.MatchSimulator = {
 							];
 							Foxtrick.util.api.retrieve(doc, selectedMatchArgs,
 							                           { cache_lifetime: 'session' },
-							                           function(selectedMatchXML, errorText) {
+							  function(selectedMatchXML, errorText) {
 								if (errorText) {
 									if (loadingMatch && loadingMatch.parentNode) {
 										loadingMatch.textContent = errorText;

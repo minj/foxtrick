@@ -43,7 +43,7 @@
  *				to disrespect and use forceUpdate. *
  */
 
- Foxtrick.modules['YouthTwins'] = {
+Foxtrick.modules['YouthTwins'] = {
 
 
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
@@ -250,8 +250,8 @@
 
 				link.setAttribute('target', '_blank');
 
-				if (possible > 0 && !FoxtrickPrefs.isModuleOptionEnabled('YouthTwins',
-				    													'HideInfoLink')) {
+				if (possible > 0 &&
+				    !FoxtrickPrefs.isModuleOptionEnabled('YouthTwins','HideInfoLink')) {
 					//and a neat info button
 					var infolink =
 						Foxtrick.createFeaturedElement(doc, Foxtrick.modules['YouthTwins'], 'a');
@@ -275,10 +275,10 @@
 		//get last saved result from and possible ignoreTime
 		Foxtrick.localGet('YouthTwins.' +
 		                  Foxtrick.modules['Core'].getSelfTeamInfo().teamId + '.lastResponse',
-		                  function(saved) {
+		  function(saved) {
 			Foxtrick.localGet('YouthTwins.' +
 			                  Foxtrick.modules['Core'].getSelfTeamInfo().teamId + '.ignoreUntil',
-			                  function(ignoreUntil) {
+			  function(ignoreUntil) {
 				var now = Foxtrick.util.time.getHtTimeStamp(doc) + 59000;
 				if (!now)
 					return;
@@ -325,7 +325,8 @@
 					//@ last: last twin update
 					//@ next: recommendet next update, aka not before
 					Foxtrick.log('Youthtwins: CookieGet');
-					Foxtrick.cookieGet('from_hty', function(cookie) {
+					Foxtrick.cookieGet('from_hty',
+					  function(cookie) {
 						if (!cookie) {
 							Foxtrick.log('YouthTwins: No HY cookie. ');
 							cookieDone();
@@ -347,7 +348,8 @@
 							Foxtrick.log('YouthTwins: Cookies says: Something changed -> Update');
 							Foxtrick.log('fetchTime', getUtcFromTimestamp(fetchTime));
 							Foxtrick.log('last', getUtcFromTimestamp(last));
-							getTwinsFromHY(teamid, false, false, 'auto', function(response, status) {
+							getTwinsFromHY(teamid, false, false, 'auto',
+							  function(response, status) {
 								handleHyResponse(response, status);
 								if (status == 200) {
 									Foxtrick.log('YouthTwins: Updating json.lifetime ' +

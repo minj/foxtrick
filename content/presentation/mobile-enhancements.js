@@ -7,7 +7,7 @@
 
 
 //if (Foxtrick.platform == 'Mobile' || Foxtrick.platform == 'Android')
-  Foxtrick.modules['MobileEnhancements'] = {
+Foxtrick.modules['MobileEnhancements'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
 	PAGES: ['all'],
 	CSS: Foxtrick.InternalPath + 'resources/css/mobile-enhancements.css',
@@ -126,20 +126,20 @@
 			// attach a handler to the element's swipe event
 			var gestures = {
 				swipes: [
-					{ el:cb, 			dist:40, 	dir:'left', 	select: 'right' },
-					{ el:cb, 			dist:40, 	dir:'right', 	select: 'left' },
-					{ el:mobile_header, dist:10, 	dir:'down', 	select: 'header' },
-					{ el:mobile_header, dist:10, 	dir:'up',	 	select: 'center' },
-					{ el:lb, 			dist:40, 	dir:'left', 	select: 'center' },
-					{ el:rb, 			dist:40, 	dir:'right', 	select: 'center' },
-					{ el:header,		dist:20, 	dir:'down', 	select: 'center' },
+					{ el:cb,			dist:40,	dir:'left', 	select: 'right' },
+					{ el:cb,			dist:40,	dir:'right',	select: 'left' },
+					{ el:mobile_header, dist:10,	dir:'down', 	select: 'header' },
+					{ el:mobile_header, dist:10,	dir:'up',		select: 'center' },
+					{ el:lb,			dist:40,	dir:'left', 	select: 'center' },
+					{ el:rb,			dist:40,	dir:'right',	select: 'center' },
+					{ el:header,		dist:20,	dir:'down', 	select: 'center' },
 				]
 			};
 			for (var i = 0; i < gestures.swipes.length; ++i) {
 				var addSwipe = function(swipe) {
 					if (swipe.el)
-						Foxtrick.jester(swipe.el, {swipeDistance: swipe.dist})
-								.swipe(function(touches, swipeDirection) {
+						Foxtrick.jester(swipe.el, { swipeDistance: swipe.dist }) .swipe(
+						  function(touches, swipeDirection) {
 							if (swipeDirection[swipe.dir]) {
 								select(swipe.select);
 							}
@@ -148,14 +148,14 @@
 				addSwipe(gestures.swipes[i]);
 			}
 			// swipe log
-			Foxtrick.jester(page, {swipeDistance: swipe.dist})
-					.swipe(function(touches, swipeDirection) {
-				Foxtrick.log('swipe', {swipeDirection: swipeDirection});
+			Foxtrick.jester(page, { swipeDistance: swipe.dist }).swipe(
+			  function(touches, swipeDirection) {
+				Foxtrick.log('swipe', { swipeDirection: swipeDirection });
 			});
 
 			// toggle header on mobile_header tap
-			Foxtrick.jester(mobile_header)
-					.tap(function(touches) {
+			Foxtrick.jester(mobile_header).tap(
+			  function(touches) {
 				if (touches.event.originalTarget !== mobile_header_center_tab &&
 					touches.event.originalTarget !== menu)
 					select('header_toggle');
@@ -168,9 +168,9 @@
 		}
 
 		// tap/click anywhere on cb to get back to center
-		Foxtrick.jester(cb)
-					.tap(function(touches) {
-				select('center');
+		Foxtrick.jester(cb).tap(
+		  function(touches) {
+			select('center');
 		});
 		// Foxtrick.onClick(cb, function(ev){
 		// 	select('center');

@@ -111,7 +111,7 @@ Foxtrick.modules['SkillColoring'] = {
 			'We are favourites',
 			'We will win',
 			'Piece of cake!',
-			'Let\'s humiliate them',
+			"Let's humiliate them",
 		],
 		FanSeason: [
 			'We are not worthy of this division',
@@ -197,7 +197,7 @@ Foxtrick.modules['SkillColoring'] = {
 
 		if (skill_number && (type == 'gentleness' || type == 'honesty' || type == 'aggressiveness')
 		    && FoxtrickPrefs.isModuleEnabled('PersonalityImages'))
-		    skill_number = false; //don't add number if we have PersonalityImages
+			skill_number = false; //don't add number if we have PersonalityImages
 
 		if (!(skill_number || skill_translated))
 			return; //nothing else to do here
@@ -207,7 +207,7 @@ Foxtrick.modules['SkillColoring'] = {
 		var t = doc.createElement('span');
 		Foxtrick.addClass(t, 'ft-skill');
 		if (isProblemPage && skill_translated &&
-		     (el.parentNode.nodeName == 'TD' || el.parentNode.parentNode.nodeName == 'TD'))
+		    (el.parentNode.nodeName == 'TD' || el.parentNode.parentNode.nodeName == 'TD'))
 			t.appendChild(doc.createElement('br')); //add a br to pages with small width
 		n.textContent = (skill_number && skill_translated) ? ' ' + level : level;
 

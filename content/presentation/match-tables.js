@@ -76,9 +76,8 @@ Foxtrick.modules['MatchTables'] = {
 				switch (DATEFORMAT) {
 					case 'ddmmyyyy':
 						if (content.search(/\(/) > -1)
-						    cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2, 4) +
-						    	'&nbsp;<span id=\'ft_HTDateFormat\'>(' + content.split('(')[1] +
-						    	'</span>';
+							cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2, 4) +
+							    "&nbsp;<span id='ft_HTDateFormat'>(" + content.split('(')[1] + '</span>';
 						else
 							cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2, 4);
 						if (ar.length > 7)
@@ -86,8 +85,8 @@ Foxtrick.modules['MatchTables'] = {
 						break;
 					case 'mmddyyyy':
 						if (content.search(/\(/) > -1)
-						    cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2, 4) +
-						    '&nbsp;<span id=\'ft_HTDateFormat\'>(' + content.split('(')[1] + '</span>';
+							cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2, 4) +
+							    "&nbsp;<span id='ft_HTDateFormat'>(" + content.split('(')[1] + '</span>';
 						else
 							cell.innerHTML = ar[1] + '.' + ar[3] + '.' + ar[5].substring(2, 4);
 						if (ar.length > 7)
@@ -95,8 +94,8 @@ Foxtrick.modules['MatchTables'] = {
 						break;
 					case 'yyyymmdd':
 						if (content.search(/\(/) > -1)
-						    cell.innerHTML = ar[1] + '-' + ar[3] + '-' + ar[5].substring(2, 4) +
-						    '&nbsp;<span id=\'ft_HTDateFormat\'>(' + content.split('(')[1] + '</span>';
+							cell.innerHTML = ar[1] + '-' + ar[3] + '-' + ar[5].substring(2, 4) +
+							    "&nbsp;<span id='ft_HTDateFormat'>(" + content.split('(')[1] + '</span>';
 						else
 							cell.innerHTML = ar[1] + '-' + ar[3] + '-' + ar[5].substring(2, 4);
 						if (ar.length > 7)

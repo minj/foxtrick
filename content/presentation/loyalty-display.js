@@ -87,7 +87,8 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 
 		if (Foxtrick.Pages.Players.isOwnPlayersPage(doc) && Foxtrick.isPage('players', doc)) {
 			var playersNode = doc.getElementsByClassName('playerInfo');
-			Foxtrick.Pages.Players.getPlayerList(doc, function(playerInfo) {
+			Foxtrick.Pages.Players.getPlayerList(doc,
+			  function(playerInfo) {
 				if (!playerInfo)
 					return;
 				for (var p = 0; p < playersNode.length; ++p) {
@@ -103,7 +104,8 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 			});
 
 		} else {
-			Foxtrick.Pages.Player.getPlayer(doc, Foxtrick.Pages.Player.getId(doc), function(player) {
+			Foxtrick.Pages.Player.getPlayer(doc, Foxtrick.Pages.Player.getId(doc),
+			  function(player) {
 				Foxtrick.modules['LoyaltyDisplay']
 					.replacePercentageImage(player, doc.getElementById('mainBody'));
 			});

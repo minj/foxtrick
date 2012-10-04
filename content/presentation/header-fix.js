@@ -42,7 +42,7 @@ Foxtrick.modules['HeaderFix'] = {
 		// check right page and is supporter
 		if (isMatch && (!ctl00_ctl00_CPContent_CPMain_pnl ||
 		    !ctl00_ctl00_CPContent_CPMain_pnlTeamInfo))
-		    return;
+			return;
 		if (isArena && !ctl00_ctl00_CPContent_CPMain_pnl)
 			return;
 		if (!ctl00_ctl00_CPContent_CPMain_pnlArenaFlash)

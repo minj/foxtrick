@@ -83,8 +83,8 @@ Foxtrick.modules['LinksMatch'] = {
 				          doc, this);
 			if (links.length + links2.length > 0)
 				add_links = true;
- 		}
- 		// add links box
+		}
+		// add links box
 		var ownBoxBody = null;
 		if (add_links) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');

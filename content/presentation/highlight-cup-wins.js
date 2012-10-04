@@ -90,5 +90,5 @@ Foxtrick.modules['HighlightCupwins'] = {
 				Foxtrick.log('Cannot parse teams: ' + matchlink.textContent + '');
 			}
 		}
- 	}
+	}
 };

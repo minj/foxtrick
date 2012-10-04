@@ -365,7 +365,8 @@ Foxtrick.Pages.Player = {
 		args.push(['file', 'playerdetails']);
 		args.push(['playerID', playerid]);
 		args.push(['version', '2.1']);
-		Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session'}, function(xml) {
+		Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session'},
+		  function(xml) {
 			if (!xml)
 				callback(null);
 
@@ -390,12 +391,13 @@ Foxtrick.Pages.Player = {
 			if (xml.getElementsByTagName('PlayerLanguageID')[0])
 				player.PlayerLanguageID =
 					Number(xml.getElementsByTagName('PlayerLanguageID')[0].textContent);
-//    <TrainerData />
-/*    <OwningTeam>
-      <TeamID>522356</TeamID>
-      <TeamName>FC Karbrüggen</TeamName>
-      <LeagueID>3</LeagueID>
-    </OwningTeam>*/
+/*
+	  <TrainerData />
+	  <OwningTeam>
+	  <TeamID>522356</TeamID>
+	  <TeamName>FC Karbrüggen</TeamName>
+	  <LeagueID>3</LeagueID>
+	</OwningTeam>*/
 			player.Salary = Number(xml.getElementsByTagName('Salary')[0].textContent);
 			player.IsAbroad = xml.getElementsByTagName('IsAbroad')[0].textContent;
 			player.Agreeability = Number(xml.getElementsByTagName('Agreeability')[0].textContent);
@@ -413,8 +415,8 @@ Foxtrick.Pages.Player = {
 			                               .textContent);
 			player.NativeLeagueName = xml.getElementsByTagName('NativeLeagueName')[0].textContent;
 			player.TSI = Number(xml.getElementsByTagName('TSI')[0].textContent);
- //  <PlayerSkills>
- 			player.StaminaSkill = Number(xml.getElementsByTagName('StaminaSkill')[0].textContent);
+//  <PlayerSkills>
+			player.StaminaSkill = Number(xml.getElementsByTagName('StaminaSkill')[0].textContent);
 			player.Caps = Number(xml.getElementsByTagName('Caps')[0].textContent);
 			player.CapsU20 = Number(xml.getElementsByTagName('CapsU20')[0].textContent);
 			player.CareerGoals = Number(xml.getElementsByTagName('CareerGoals')[0].textContent);

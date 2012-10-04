@@ -277,7 +277,7 @@ Foxtrick.modules['Ratings'] = {
 				return doc.createTextNode(rounded);
 			}
 
-		 };
+		};
 
 		ratingDefs['VnukStats'] = { base: 1.0,
 			label: function() { return Foxtrickl10n.getString('ratings.VnukStats'); },

@@ -152,7 +152,7 @@
 		'239': { 'team': ['miss', 'se_technical'], 'other': ['se_head_specialist_negative'] },
 		'240': { 'team': ['miss', 'counter-attack', 'whistle'] },
 		'241': { 'team': ['miss_C', 'counter-attack'] },
-		'242': {'team': ['miss_L', 'counter-attack'] },
+		'242': { 'team': ['miss_L', 'counter-attack'] },
 		'243': { 'team': ['miss_R', 'counter-attack'] },
 		'250': { 'team': ['miss', 'whistle'] },
 		'251': { 'team': ['miss_C'] },
@@ -229,7 +229,7 @@
 		'se_powerful_negative': Foxtrick.InternalPath + 'resources/img/matches/spec3_red.png',
 		'se_quick_negative': Foxtrick.InternalPath + 'resources/img/matches/spec2_red.png',
 		'se_unpredictable_negative': Foxtrick.InternalPath + 'resources/img/matches/spec4_red.png',
-        'se_head_specialist_negative': Foxtrick.InternalPath + 'resources/img/matches/spec5_red.png',
+		'se_head_specialist_negative': Foxtrick.InternalPath + 'resources/img/matches/spec5_red.png',
 		'substitution': '/Img/Matches/substitution.gif',
 		'sub_out': '/Img/Matches/sub_out.gif',
 		'sun': '/Club/Matches/images/weather3.png',
@@ -537,7 +537,8 @@ var eventText = {
 				return link;
 			};
 
-			Foxtrick.util.api.retrieve(doc, detailsArgs, {cache_lifetime: 'session'}, function(xml) {
+			Foxtrick.util.api.retrieve(doc, detailsArgs, { cache_lifetime: 'session' },
+			  function(xml) {
 				var homeId = xml.getElementsByTagName('HomeTeamID')[0].textContent;
 				var awayId = xml.getElementsByTagName('AwayTeamID')[0].textContent;
 				var homeName = xml.getElementsByTagName('HomeTeamName')[0].textContent;
@@ -558,9 +559,9 @@ var eventText = {
 					['version', '1.8']
 				];
 				Foxtrick.util.api.retrieve(doc, homeLineupArgs, { cache_lifetime: 'session' },
-				                           function(homeXml) {
+				  function(homeXml) {
 					Foxtrick.util.api.retrieve(doc, awayLineupArgs, { cache_lifetime: 'session' },
-					                           Foxtrick.preventChange(doc, function(awayXml) {
+					  Foxtrick.preventChange(doc, function(awayXml) {
 						if (Foxtrick.Pages.Match.hasNewRatings(doc)) {
 							var parent = doc.querySelector('#divReport>div');
 							while (!Foxtrick.hasClass(parent.firstChild, 'separator'))
@@ -683,7 +684,7 @@ var eventText = {
 								if (orderTypes[type] == 'substitution'
 									&& subId != objId && objId > 0) {
 									var subNode = doc.createElement('span');
-									subNode.appendChild(doc.createTextNode(minute + '\' '));
+									subNode.appendChild(doc.createTextNode(minute + "' "));
 
 									// Due to a bug in HT's matchlineup XML,
 									// substitutions carried off may not be shown
@@ -698,7 +699,7 @@ var eventText = {
 										//get the player name from playerdetails instead
 										Foxtrick.util.api.retrieve(doc, playerArgs,
 										                           {cache_lifetime: 'session'},
-										                           function(playerXml) {
+										  function(playerXml) {
 
 											var player = playerXml.getElementsByTagName('Player')[0];
 											var firstName = player.getElementsByTagName('FirstName')[0]
@@ -786,7 +787,7 @@ var eventText = {
 								var minute = doc.createElement('div');
 								item.appendChild(minute);
 								minute.className = 'ft-match-report-event-minute';
-								minute.textContent = evtMin + '\'';
+								minute.textContent = evtMin + "'";
 
 								//event type icon
 								var addEventIcons = function(parent, isEventTeam, evtType, title) {

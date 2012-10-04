@@ -19,7 +19,7 @@
  * maxed = weather the skill is fully maxed out or not
 */
 
- Foxtrick.modules['YouthSkills'] = {
+Foxtrick.modules['YouthSkills'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['youthPlayers'],
 	CSS: Foxtrick.InternalPath + 'resources/css/youth-twins.css',
@@ -313,7 +313,8 @@
 
 		//get skills from HY
 		Foxtrick.localGet('YouthClub.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId +
-		                  '.isUser', function(isHYUser) {
+		                  '.isUser',
+		  function(isHYUser) {
 			if (isHYUser)
 				getSkillsFromHY(handleHyResponse);
 			else

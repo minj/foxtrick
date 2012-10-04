@@ -163,14 +163,14 @@ Foxtrick.modules['CopyRatings'] = {
 							}
 						}
 						ad += '[/td]\n\n[/tr]\n';
-					} catch (e) {Foxtrick.log(e)}
+					} catch (e) { Foxtrick.log(e); }
 				}
 				ad = ad.replace(/\[td\]###\[\/td\]/gi, '');
 				ad += '\n[/table]\n';
 
 				// copy htms prediction.
 				if (team1 && team2) {
- 					var htmsMatchDivId = doc.getElementById('htmsMatchDivId');
+					var htmsMatchDivId = doc.getElementById('htmsMatchDivId');
 					if (htmsMatchDivId) {
 						ad += Foxtrick.modules['HTMSPrediction'].copy(htmsMatchDivId);
 					}
