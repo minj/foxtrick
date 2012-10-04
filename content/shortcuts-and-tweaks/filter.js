@@ -144,9 +144,13 @@ Foxtrick.modules["Filter"]={
 				td.appendChild(label);
 			}
 			else if (filter.filtertype == "category") {
-				var list = doc.getElementById('mainBody')
-					.getElementsByTagName(FILTER_VAL[page].toBeFiltered.nodeName)[ FILTER_VAL[page].toBeFiltered.index ]
-					.getElementsByTagName(FILTER_VAL[page].toBeFiltered.rowType); 
+				var target = doc.getElementById('mainBody')
+					.getElementsByTagName(FILTER_VAL[page].toBeFiltered.nodeName)[ FILTER_VAL[page].toBeFiltered.index ];
+
+				if (!target)
+					return;
+					
+				var list = target.getElementsByTagName(FILTER_VAL[page].toBeFiltered.rowType); 
 				if (!list)
 					return;
 					
@@ -224,6 +228,15 @@ Foxtrick.modules["Filter"]={
 				
 				var table = doc.createElement('table');
 				filterdiv.appendChild(table);
+				
+				var target = doc.getElementById('mainBody')
+					.getElementsByTagName(FILTER_VAL[page].toBeFiltered.nodeName)[ FILTER_VAL[page].toBeFiltered.index ];
+
+				if (!target) {
+					Foxtrick.addClass(filterdiv, 'hidden');
+					return;
+				}
+				
 				var tr = doc.createElement('tr');
 				table.appendChild(tr);
 				var td = doc.createElement('td');
