@@ -1,5 +1,21 @@
 {
-	"background_page" : "content/background.html",
+	"manifest_version": 2,
+	"web_accessible_resources": [
+		"content/resources/css/*.css",
+		"content/resources/img/*.gif",
+		"content/resources/img/*.png",
+		"content/resources/linkicons/*.gif",
+		"content/resources/linkicons/*.png",
+		"content/resources/notes/*.png",
+		"content/resources/personality/*.jpg",
+		"content/resources/skillcolors/*.css",
+		"content/resources/sounds/*.mp3",
+		"content/resources/sounds/*.ogg",
+		"content/resources/sounds/*.wav"
+	],
+	"background" : {
+		"page" : "content/background.html"
+	},
 	"content_scripts" : [ {
 		"js" : [
 			//<!-- essential stuffs -->
@@ -8,7 +24,7 @@
 			"content/l10n.js",
 			"content/xml-load.js",
 			"content/pages.js",
-			
+
 			//<!-- utilities -->
 			"content/util/api.js",
 			"content/util/array.js",
@@ -35,7 +51,7 @@
 			"content/util/string.js",
 			"content/util/tabs.js",
 			"content/util/time.js",
-			
+
 			//<!-- external libraries -->
 			"content/lib/jquery.js",
 			"content/lib/oauth.js",
@@ -45,7 +61,7 @@
 			"content/lib/jester.js",
 			"content/lib/BlobBuilder.min.js",
 			"content/lib/FileSaver.min.js",
-			
+
 			//<!-- core modules -->
 			"content/redirections.js",
 			"content/read-ht-prefs.js",
