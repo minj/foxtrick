@@ -178,7 +178,7 @@ Foxtrick.util.tabs.show = function(doc, id) {
 	}
 };
 
-Foxtrick.util.tabs.addElementToTab = function(doc, tab, elem) {
+Foxtrick.util.tabs.addElementToTab = function(doc, elem, tab) {
 	Foxtrick.addClass(elem, 'tab-content');
 	Foxtrick.addAttributeValue(elem, 'tabs', tab);
 	var parent = doc.getElementsByTagName('h1')[0].parentNode;
