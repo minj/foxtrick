@@ -57,16 +57,17 @@ Foxtrick.modules['StaffMarker'] = {
 			Foxtrick.DataPath + 'staff/editor.json'
 		];
 		if (FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'external')) {
-		 	uris.push(Foxtrick.DataPath + 'staff/hy.json');
-		 	uris.push(Foxtrick.DataPath + 'staff/htls.json');
-		 	++todo;
+			uris.push(Foxtrick.DataPath + 'staff/hy.json');
+			uris.push(Foxtrick.DataPath + 'staff/htls.json');
+			++todo;
 		}
 
 		// counter of URI remaining to fetch
 		var todo = uris.length;
 		Foxtrick.map(function(uri) {
 			// counter of URI remaining to fetch
-			Foxtrick.util.load.get(uri)('success', function(text) {
+			Foxtrick.util.load.get(uri)('success',
+			  function(text) {
 				Foxtrick.log('parse ', uri);
 				parseMarkers(text);
 				Foxtrick.localSet('Markers.' + uri, text);
@@ -114,8 +115,8 @@ Foxtrick.modules['StaffMarker'] = {
 					object.setAttribute('style', customMarker[id]);
 				// exclusive classes for official staffs
 				var first = Foxtrick.nth(0, function(pair) {
-						return alias.search(pair[0]) == 0;
-					}, markers);
+					return alias.search(pair[0]) == 0;
+				}, markers);
 				if (first) {
 					Foxtrick.addClass(object, 'ft-staff-' + first[1]);
 				}

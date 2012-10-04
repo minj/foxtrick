@@ -120,8 +120,8 @@ Foxtrick.modules['HistoryStats'] = {
 							}
 							cup = table[i].textContent.match(/\d{1,2}/);
 							if (!cup)
-								cup = '<span class=\'bold\' title=\'' +
-									Foxtrickl10n.getString('HistoryStats.cupwinner') + '\'>' +
+								cup = "<span class='bold' title='" +
+									Foxtrickl10n.getString('HistoryStats.cupwinner') + "'>" +
 									Foxtrickl10n.getString('HistoryStats.cupwinner.short') +
 									'</span>';
 						}
@@ -163,13 +163,13 @@ Foxtrick.modules['HistoryStats'] = {
 			return;
 		try {
 			var HistoryTable = '<tr>' +
-				'<th title=\'' + Foxtrickl10n.getString('HistoryStats.season') + '\'>' +
+				"<th title='" + Foxtrickl10n.getString('HistoryStats.season') + "'>" +
 				Foxtrickl10n.getString('HistoryStats.season.short') + '</th>' +
-				'<th title=\'' + Foxtrickl10n.getString('HistoryStats.cup') + '\'>' +
+				"<th title='" + Foxtrickl10n.getString('HistoryStats.cup') + "'>" +
 				Foxtrickl10n.getString('HistoryStats.cup.short') + '</th>' +
-				'<th title=\'' + Foxtrickl10n.getString('HistoryStats.league') + '\'>' +
+				"<th title='" + Foxtrickl10n.getString('HistoryStats.league') + "'>" +
 				Foxtrickl10n.getString('HistoryStats.league.short') + '</th>' +
-				'<th title=\'' + Foxtrickl10n.getString('HistoryStats.finalPosition') + '\'>' +
+				"<th title='" + Foxtrickl10n.getString('HistoryStats.finalPosition') + "'>" +
 				Foxtrickl10n.getString('HistoryStats.finalPosition.short') + '</th></tr>';
 
 			var last = -1;

@@ -25,7 +25,7 @@ Foxtrick.modules['MyMonitor'] = {
 				// return national teams if first run
 				var leagueId = Foxtrick.util.id.getOwnLeagueId();
 				var ntNode = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml,
-					'//League[LeagueID=\'' + leagueId + '\']');
+					"//League[LeagueID='" + leagueId + "']");
 				var ntName = ntNode.getElementsByTagName('LeagueName')[0].textContent;
 				var ntId = ntNode.getElementsByTagName('NationalTeamId')[0].textContent;
 				var u20Name = 'U-20 ' + ntName;
@@ -268,23 +268,22 @@ Foxtrick.modules['MyMonitor'] = {
 				var parameters_str = JSON.stringify(args);
 
 				Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'default' },
-					function(xml, errorText) {
-						if (xml !== null) {
-							team.name = xml.getElementsByTagName('TeamName')[0].textContent;
-							team.id = xml.getElementsByTagName('TeamID')[0].textContent;
-							buildLink(team, nameLink);
-						}
-						var nextmatchdate = Foxtrick.util.matchView
-							.fillMatches(matchesContainer, xml, errorText);
-						// change expire date of xml to after next match game
-						if (nextmatchdate) {
-							var expire = Foxtrick.util.time
-								.getDateFromText(nextmatchdate, 'yyyymmdd');
-							Foxtrick.util.api.setCacheLifetime(doc, parameters_str,
-							                                   expire.getTime() + 105 * 60 * 1000);
-						}
+				  function(xml, errorText) {
+					if (xml !== null) {
+						team.name = xml.getElementsByTagName('TeamName')[0].textContent;
+						team.id = xml.getElementsByTagName('TeamID')[0].textContent;
+						buildLink(team, nameLink);
 					}
-				);
+					var nextmatchdate = Foxtrick.util.matchView
+						.fillMatches(matchesContainer, xml, errorText);
+					// change expire date of xml to after next match game
+					if (nextmatchdate) {
+						var expire = Foxtrick.util.time
+							.getDateFromText(nextmatchdate, 'yyyymmdd');
+						Foxtrick.util.api.setCacheLifetime(doc, parameters_str,
+						                                   expire.getTime() + 105 * 60 * 1000);
+					}
+				});
 
 			};
 			Foxtrick.map(addTeam, teams);
@@ -359,12 +358,10 @@ Foxtrick.modules['MyMonitor'] = {
 			// select box containing teams in the monitor
 			var fillSelect = function() {
 				select.textContent = ''; // clear first
-				Foxtrick.listen(select, 'change',
-					function() {
-						if (select.value)
-							doc.location.href = select.value;
-					},
-					false);
+				Foxtrick.listen(select, 'change', function() {
+					if (select.value)
+						doc.location.href = select.value;
+				}, false);
 				// use an option as faux-header
 				var fauxHeader = doc.createElement('option');
 				fauxHeader.selected = 'selected';

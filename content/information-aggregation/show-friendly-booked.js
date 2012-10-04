@@ -39,34 +39,32 @@ Foxtrick.modules['ShowFriendlyBooked'] = {
 					['file', 'teamdetails'],
 					['teamID', teamId]
 				];
-				Foxtrick.util.api.retrieve(doc, parameters, {
-						cache_lifetime: 'default'
-					},
-					function(xml, errorText) {
-						if (xml == null) {
-							destCell.textContent = Foxtrickl10n.getString('status.error.abbr');
-							destCell.title = errorText;
-							return;
-						}
-						// reset textContent and title
-						destCell.textContent = '';
-						destCell.removeAttribute('title');
-						var friendly = xml.getElementsByTagName('FriendlyTeamID')[0];
-						if (friendly.getAttribute('Available') != 'True') {
-							destCell.textContent = Foxtrickl10n.getString('status.unknown.abbr');
-							destCell.title = Foxtrickl10n.getString('status.unknown');
-						}
-						else if (friendly.textContent != '0') {
-							// friendly booked
-							var img = doc.createElement('img');
-							img.src = '/Img/Icons/transparent.gif';
-							img.alt = img.title = Foxtrickl10n.getString('team.status.booked');
-							img.className = 'ft_friendly';
-							img = Foxtrick.makeFeaturedElement(img, Foxtrick.modules
-							                                   .ShowFriendlyBooked);
-							destCell.appendChild(img);
-						}
-					});
+				Foxtrick.util.api.retrieve(doc, parameters, { cache_lifetime: 'default' },
+				  function(xml, errorText) {
+					if (xml == null) {
+						destCell.textContent = Foxtrickl10n.getString('status.error.abbr');
+						destCell.title = errorText;
+						return;
+					}
+					// reset textContent and title
+					destCell.textContent = '';
+					destCell.removeAttribute('title');
+					var friendly = xml.getElementsByTagName('FriendlyTeamID')[0];
+					if (friendly.getAttribute('Available') != 'True') {
+						destCell.textContent = Foxtrickl10n.getString('status.unknown.abbr');
+						destCell.title = Foxtrickl10n.getString('status.unknown');
+					}
+					else if (friendly.textContent != '0') {
+						// friendly booked
+						var img = doc.createElement('img');
+						img.src = '/Img/Icons/transparent.gif';
+						img.alt = img.title = Foxtrickl10n.getString('team.status.booked');
+						img.className = 'ft_friendly';
+						img = Foxtrick.makeFeaturedElement(img, Foxtrick.modules
+						                                   .ShowFriendlyBooked);
+						destCell.appendChild(img);
+					}
+				});
 			}, rows);
 		};
 

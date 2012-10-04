@@ -258,7 +258,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 					 nextElement.id == 'ctl00_ctl00_CPContent_CPMain_ucEditorMain_pnlTags' ||
 					 nextElement.id.search('ctl00_ctl00_CPContent_CPMain_uc') != -1 ||
 					 nextElement.href != null
-				  ) {
+				) {
 						Foxtrick.addClass(nextElement, 'hidden');
 				}
 				nextElement = nextElement.nextSibling;
@@ -303,15 +303,15 @@ Foxtrick.modules['ForumYouthIcons'] = {
 
 						// deal with some nested tags
 						var myReg = new RegExp('\\[i\\](.+)(' + seperator + ')(.+)\\[\\/i\\]', 'g');
-			 			newText = newText.replace(myReg, '[i]$1[/i]$2[i]$3[/i]');
+						newText = newText.replace(myReg, '[i]$1[/i]$2[i]$3[/i]');
 						var myReg = new RegExp('\\[u\\](.+)(' + seperator + ')(.+)\\[\\/u\\]', 'g');
-			 			newText = newText.replace(myReg, '[u]$1[/u]$2[u]$3[/u]');
+						newText = newText.replace(myReg, '[u]$1[/u]$2[u]$3[/u]');
 						var myReg = new RegExp('\\[b\\](.+)(' + seperator + ')(.+)\\[\\/b\\]', 'g');
-			 			newText = newText.replace(myReg, '[b]$1[/b]$2[b]$3[/b]');
+						newText = newText.replace(myReg, '[b]$1[/b]$2[b]$3[/b]');
 
 						// make the table
 						var myReg = new RegExp(seperator, 'g');
-			 			newText = newText.replace(myReg, '[/td][td]');
+						newText = newText.replace(myReg, '[/td][td]');
 						newText = newText.replace(/\n/g, '[/td][/tr][tr][td]');
 
 						// add some colspan for too short rows
@@ -442,13 +442,11 @@ Foxtrick.modules['ForumYouthIcons'] = {
 					else if (openingTag == 'debug') {
 						if (Foxtrick.arch === 'Sandboxed' || Foxtrick.platform == 'Mobile' ||
 						    Foxtrick.platform == 'Android') {
-							sandboxed.extension.sendRequest(
-								{ req: 'getDebugLog' },
-								function(n) {
+							sandboxed.extension.sendRequest({ req: 'getDebugLog' },
+							  function(n) {
 									insertText(Foxtrick.log.header(doc) + '\n' + n.log);
 									textCounter(ta, fieldCounter, maxLength);
-								}
-							);
+							});
 							return;
 						}
 						else {

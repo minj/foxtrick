@@ -38,7 +38,7 @@ if (Foxtrick.platform == 'Firefox') {
 		// toolbar menu - disable
 		var toolbarDisable = document.getElementById('foxtrick-toolbar-deactivate');
 		toolbarDisable.setAttribute('label', Foxtrickl10n.getString('toolbar.disableTemporary'));
-		toolbarDisable.addEventListener('click', function() {FoxtrickPrefs.disable()}, false);
+		toolbarDisable.addEventListener('click', function() { FoxtrickPrefs.disable() }, false);
 		// toolbar menu - clearCache
 		var clearCache = document.getElementById('foxtrick-toolbar-clearCache');
 		clearCache.setAttribute('label', Foxtrickl10n.getString('api.clearCache'));
@@ -50,7 +50,7 @@ if (Foxtrick.platform == 'Firefox') {
 		// toolbar menu - highlight
 		var toolbarHighlight = document.getElementById('foxtrick-toolbar-highlight');
 		toolbarHighlight.setAttribute('label', Foxtrickl10n.getString('toolbar.featureHighlight'));
-		toolbarHighlight.addEventListener('click', function() {FoxtrickPrefs.highlight()}, false);
+		toolbarHighlight.addEventListener('click', function() { FoxtrickPrefs.highlight() }, false);
 		// toolbar menu - translationKeys
 		var toolbarTranslationKeys = document.getElementById('foxtrick-toolbar-translationKeys');
 		toolbarTranslationKeys.setAttribute('label', Foxtrickl10n
@@ -204,11 +204,11 @@ else if (Foxtrick.platform == 'Chrome') {
 else if (Foxtrick.platform == 'Safari') {
 
 	Foxtrick.modules.UI.onLoad = function() {
-	   // Open Options page upon settings checkbox click.
+		// Open Options page upon settings checkbox click.
 		safari.extension.settings.openFoxtrickOptions = false;
 		safari.extension.settings.addEventListener('change', function(e) {
-			 if (e.key == 'openFoxtrickOptions')
-				sandboxed.tabs.create({url: Foxtrick.InternalPath + 'preferences.html'});
+			if (e.key == 'openFoxtrickOptions')
+				sandboxed.tabs.create({ url: Foxtrick.InternalPath + 'preferences.html' });
 		}, false);
 	};
 }

@@ -15,11 +15,11 @@ function initLoader() {
 	// opera prefs runs in content context. add need resources first
 	else
 		sandboxed.extension.sendRequest({ req: 'optionsPageLoad' },
-			function(data) {
-				try {
-					Foxtrick.entry.contentScriptInit(data);
-					init();
-				} catch (e) { Foxtrick.log('initLoader: ', e); }
+		  function(data) {
+			try {
+				Foxtrick.entry.contentScriptInit(data);
+				init();
+			} catch (e) { Foxtrick.log('initLoader: ', e); }
 		});
 }
 
@@ -41,7 +41,8 @@ function init() {
 			$('#tabs').hide();
 			$('#content').addClass('ft-mobile');
 			Foxtrick.log(Foxtrick, 'MobileEnhancements');
-			Foxtrick.onClick($('#navigation-header')[0], function() {
+			Foxtrick.onClick($('#navigation-header')[0],
+			  function() {
 				$('#tabs').toggle();
 				$('#main').toggle();
 			});
@@ -134,7 +135,7 @@ function search(string, search) {
 		//iterate pre-cached modules, jquery is slow as hell here, directly using dom methods
 		for (var i in _modules) {
 			try {
-	   			if (i.search(regex) > -1) {
+				if (i.search(regex) > -1) {
 					_modules[i].className = _modules[i].className.replace(/hidden/g, '');
 				} else {
 					_modules[i].className = _modules[i].className + ' hidden';
@@ -410,7 +411,7 @@ function initTextAndValues()
 			var option = $(this).attr('option');
 			// module option
 			if ($(this).is(':checkbox')) {
-				 if (FoxtrickPrefs.isModuleOptionEnabled(module, option))
+				if (FoxtrickPrefs.isModuleOptionEnabled(module, option))
 					$(this).attr('checked', 'checked');
 			}
 			else if ($(this).is(':input')) // text input
@@ -475,8 +476,8 @@ function initTextAndValues()
 	var chpp_url = FoxtrickPrefs.getString('last-host') +
 		'/MyHattrick/Preferences/ExternalAccessGrants.aspx';
 	$('#pref-delete-token-desc').html($('#pref-delete-token-desc')
-	                                  .text().replace(/\{(.+)\}/, '<a href=\'' + chpp_url +
-	                                                  '\' target=\'_blank\'>$1</a>'));
+	                                  .text().replace(/\{(.+)\}/, "<a href='" + chpp_url +
+	                                                  "' target='_blank'>$1</a>"));
 	var oauth_keys = FoxtrickPrefs.getAllKeysOfBranch('oauth');
 	if (oauth_keys)	{
 		var teamids = Foxtrick.map(function(n) {
@@ -506,8 +507,8 @@ function initMainTab()
 {
 	// setup
 	$('#pref-setup-desc').html(Foxtrickl10n.getString('prefs.setup.desc')
-		.replace(/{(.+)}/, '<a href=\'http://code.google.com/p/foxtrick/issues/list\' ' +
-		         'target=\'_blank\'>$1</a>'));
+		.replace(/{(.+)}/, "<a href='http://code.google.com/p/foxtrick/issues/list' " +
+		         "target='_blank'>$1</a>"));
 
 	// add links to main tab prefs
 	$('#pane > div[x-on=main] h3').each(function() {
@@ -742,12 +743,13 @@ function getModule(module)
 
 				if (module.OPTION_EDITS_TEXTFILE_LOAD_BUTTONS &&
 				    module.OPTION_EDITS_TEXTFILE_LOAD_BUTTONS[i]) {
-					var load = Foxtrick.util.load.filePickerForText(document, (function(textInput) {
+					var load = Foxtrick.util.load.filePickerForText(document,
+					  (function(textInput) {
 						return function(text) {
 							textInput.value = text;
 							var ev = document.createEvent('HTMLEvents');
-						    ev.initEvent('change', true, false);
-						    textInput.dispatchEvent(ev);
+							ev.initEvent('change', true, false);
+							textInput.dispatchEvent(ev);
 						};
 					})(textInput));
 					textDiv.appendChild(load);
@@ -755,13 +757,13 @@ function getModule(module)
 				if (module.OPTION_EDITS_DATAURL_LOAD_BUTTONS &&
 				    module.OPTION_EDITS_DATAURL_LOAD_BUTTONS[i]) {
 
-					var load = Foxtrick.util.load
-						.filePickerForDataUrl(document, (function(textInput) {
+					var load = Foxtrick.util.load.filePickerForDataUrl(document,
+					  (function(textInput) {
 						return function(url) {
 							textInput.value = url;
 							var ev = document.createEvent('HTMLEvents');
-						    ev.initEvent('change', true, false);
-						    textInput.dispatchEvent(ev);
+							ev.initEvent('change', true, false);
+							textInput.dispatchEvent(ev);
 							if (module.OPTION_EDITS_DATAURL_IS_SOUND &&
 							    module.OPTION_EDITS_DATAURL_IS_SOUND[i])
 								Foxtrick.playSound(url, document);
@@ -774,7 +776,8 @@ function getModule(module)
 						var playButton = document.createElement('button');
 						playButton.setAttribute('data-text', 'button.play');
 						playButton.id = checkbox.id + '-playButton';
-						playButton.addEventListener('click', (function(textInput) {
+						playButton.addEventListener('click',
+						  (function(textInput) {
 							return function(ev) {
 								Foxtrick.playSound(textInput.value, document);
 							}
@@ -843,7 +846,7 @@ function initChangesTab()
 
 	var status = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + 'locale/status.xml');
 
-	var path = 'status/language[code=\'' + lang + '\']/translated_progress';
+	var path = "status/language[code='" + lang + "']/translated_progress";
 
 	var statusText = '';
 	try {
@@ -952,7 +955,7 @@ function initChangesTab()
 					item.appendChild(document.createTextNode('\u00a0'));
 					list.appendChild(item);
 				}
-			 }
+			}
 		}
 	};
 
@@ -1144,7 +1147,7 @@ function saveEvent(ev) {
 		else if ($(ev.target).is(':radio')) {
 			Foxtrick.log('radio option of module');
 			if ($(ev.target).is(':checked'))
-			 	FoxtrickPrefs.setModuleValue(module, $(ev.target).attr('value'));
+				FoxtrickPrefs.setModuleValue(module, $(ev.target).attr('value'));
 		}
 		else {
 			FoxtrickPrefs.setModuleEnableState(module, $(ev.target).is(':checked'));
@@ -1210,11 +1213,11 @@ function addNote(note, parent, links)
 		};
 		var createLink = function(linkName, linkText) {
 			if (typeof(links) === 'Object' && links.hasOwnProperty(linkName)) {
-				 if (linkName.search('FTlink') === 0)
-				 	// links starting with 'FTlink' are assumed to be internal
-				 	// and open in the same tab
-				 	return createNode('a', linkText, { href: links[linkName] });
-				 else
+				if (linkName.search('FTlink') === 0)
+					// links starting with 'FTlink' are assumed to be internal
+					// and open in the same tab
+					return createNode('a', linkText, { href: links[linkName] });
+				else
 					return createNode('a', linkText, { href: links[linkName], target: '_blank' });
 			}
 			else
@@ -1314,7 +1317,8 @@ function testPermissions() {
 		var modulelist = [];
 		for (var i = 0; i < neededPermissions.length; ++i) {
 			var testModulePermission = function(neededPermission) {
-				chrome.permissions.contains(neededPermission['types'], function(result) {
+				chrome.permissions.contains(neededPermission['types'],
+				  function(result) {
 					for (var m = 0; m < neededPermission.modules.length; ++m) {
 						var module = neededPermission.modules[m];
 						var id = permissionsMakeIdFromName(module);
@@ -1360,7 +1364,8 @@ function testPermissions() {
 function getPermission(neededPermission, showSaved) {
 	// Permissions must be requested from inside a user gesture, like a button's
 	// click handler.
-	chrome.permissions.request(neededPermission['types'], function(granted) {
+	chrome.permissions.request(neededPermission['types'],
+	  function(granted) {
 		// The callback argument will be true if the user granted the permissions.
 		for (var m = 0; m < neededPermission.modules.length; ++m) {
 			var id = permissionsMakeIdFromName(neededPermission.modules[m]);
@@ -1385,7 +1390,8 @@ function revokePermissions() {
 	if (Foxtrick.platform === 'Chrome') {
 		for (var i = 0; i < neededPermissions.length; ++i) {
 			var revokeModulePermission = function(neededPermission) {
-				chrome.permissions.remove(neededPermission['types'], function(result) {
+				chrome.permissions.remove(neededPermission['types'],
+				  function(result) {
 					for (var m = 0; m < neededPermission.modules.length; ++m) {
 						var id = permissionsMakeIdFromName(neededPermission.modules[m]);
 						$(id).attr('permission-granted', false);

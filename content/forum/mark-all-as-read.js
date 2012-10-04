@@ -32,7 +32,7 @@ Foxtrick.modules['MarkAllAsRead'] = {
 
 		// mark-all-as-read using ht's javascript link. need to use the webpage's
 		// injected script function
-		var addr = 'javascript:__doPostBack(\'ctl00$ctl00$CPContent$ucLeftMenu$ucNewPosts\', \'mrk|%s\')'.replace(/%s/, threadList);
+		var addr = "javascript:__doPostBack('ctl00$ctl00$CPContent$ucLeftMenu$ucNewPosts', 'mrk|%s')".replace(/%s/, threadList);
 		container.setAttribute('onclick', addr);
 		container = Foxtrick.makeFeaturedElement(container, this);
 

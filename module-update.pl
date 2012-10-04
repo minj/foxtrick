@@ -57,7 +57,7 @@ my @targets = (
 		"to" => "<!-- end categorized modules -->",
 		"prefix" => "\t\t\"",
 		"suffix" => "\",\n"
-	},	
+	},
 	# different path for opera
 	{
 		"file" => "background.html",
@@ -73,7 +73,7 @@ my @targets = (
 		"prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
 		"suffix" => "\"></script>\r\n"
 	}
- );
+);
 
 # get module file list from file *modules*
 my @modules;
@@ -102,7 +102,7 @@ foreach my $target (@targets) {
 	my $content = "";
 	open(TARGET, "<" . $path . $target->{"file"}) || next;
 	print "handle " . $path . $target->{"file"} . "\n";
-	
+
 	my $line;
 	while (my $line = <TARGET>) {
 		$content .= $line;
@@ -125,12 +125,12 @@ foreach my $target (@targets) {
 	while (my $line = <TARGET>) {
 		$content .= $line;
 	}
-	
+
 	close(TARGET);
-	
+
 	# remove entries from ignored_modules
 	my $cleaned_content = "";
-	
+
 	my @lines = split(/\n/, $content);
 	foreach my $line (@lines) {
 		my $ignore = 0;
@@ -143,7 +143,7 @@ foreach my $target (@targets) {
 			$cleaned_content .= $line . "\n";
 		}
 	}
-	
+
 	open(TARGET, ">" . $path . $target->{"file"});
 	print TARGET $cleaned_content;
 	close(TARGET);

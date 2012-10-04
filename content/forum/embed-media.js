@@ -140,8 +140,8 @@ Foxtrick.modules['EmbedMedia'] = {
 				target.firstChild.textContent = '(' + json.title + ')';
 
 			switch (json.type) {
-				 case 'file':
-				 case 'photo':
+				case 'file':
+				case 'photo':
 					var img = doc.createElement('img');
 					img.src = json.url;
 					img.alt = json.title;
@@ -149,11 +149,11 @@ Foxtrick.modules['EmbedMedia'] = {
 					img.title = json.provider_name + '\n' + json.title + '\nby ' + author;
 					target.nextSibling.replaceChild(img, target.nextSibling.firstChild);
 					break;
-				 case 'video':
+				case 'video':
 					target.nextSibling.innerHTML = json.html.match(/<iframe [^>]+><\/iframe>/i)[0];
 					//only iframes
 					break;
-				 default:
+				default:
 					target.nextSibling.innerHTML = json.html.match(/<iframe [^>]+><\/iframe>/i)[0];
 					//only iframes
 					break;
@@ -197,7 +197,7 @@ Foxtrick.modules['EmbedMedia'] = {
 
 			//iterate all links and see if any supported link is found
 			Foxtrick.map(function(link) {
-				var linkDict = {'site': null, 'link': link};
+				var linkDict = { 'site': null, 'link': link };
 
 				if (link.href.indexOf('format=json') == -1) {
 				//check very rare case, like when explaining what oembed does and posting example url
@@ -301,7 +301,8 @@ Foxtrick.modules['EmbedMedia'] = {
 			}
 
 			if (Foxtrick.hasClass(target, 'ft-media-site-imageshack')) {
-				oEmbedRequest(target.nextSibling.firstChild.href, function(response, status) {
+				oEmbedRequest(target.nextSibling.firstChild.href,
+				  function(response, status) {
 					target.nextSibling.firstChild.href = response.match(/\?\"(.*)\":/)[1];
 					doEmbedActualImageUrl(target);
 				});
@@ -318,10 +319,10 @@ Foxtrick.modules['EmbedMedia'] = {
 				if (oembed_enabled) {
 					var oEmbedRequestURL = oembed_urls[key] + target.firstChild.href;
 					//load json from providers async
-					Foxtrick.util.load.get(oEmbedRequestURL)('success', function(response) {
+					Foxtrick.util.load.get(oEmbedRequestURL)('success',
+					  function(response) {
 						var json = JSON.parse(response);
 						do_oEmbed(target, json);
-
 					})('failure', function(code) {
 						Foxtrick.log('Error loading embed code: ', oembed_urls[key] +
 						             target.firstChild.href);

@@ -13,7 +13,8 @@ Foxtrick.modules['ExtraPlayerInfo'] = {
 		// used for coloring NT players when AddFlags is enabled
 		var ntColor = '#ffcc00';
 
-		Foxtrick.Pages.Players.getPlayerList(doc, function(playerList) {
+		Foxtrick.Pages.Players.getPlayerList(doc,
+		  function(playerList) {
 			if (!playerList) {
 				Foxtrick.log('ExtraPlayerInfo: unable to retrieve player list.');
 			}
@@ -80,7 +81,8 @@ Foxtrick.modules['ExtraPlayerInfo'] = {
 				// experiment: add language
 				if (FoxtrickPrefs.isModuleOptionEnabled('ExtraPlayerInfo', 'Language')) {
 					var addPlayerLanguage = function(playerid, node) {
-						Foxtrick.Pages.Player.getPlayer(doc, playerid, function(player) {
+						Foxtrick.Pages.Player.getPlayer(doc, playerid,
+						  function(player) {
 							if (!player)
 								return;
 							if (player.PlayerLanguage) {

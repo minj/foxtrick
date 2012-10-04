@@ -110,7 +110,7 @@ Foxtrick.modules['TableOfStatisticalTruth'] = {
 						}
 						else {
 							var text = (Number(teams[j].getElementsByTagName('real_points')[0]
-							            	   .textContent) -
+										       .textContent) -
 										Number(teams[j].getElementsByTagName('predicted_points')[0]
 										       .textContent)).toFixed(2);
 							if (text > 0)

@@ -40,7 +40,7 @@ Foxtrick.modules['NtPeek'] = {
 		var leagueId = Foxtrick.Pages.Country.getId(doc);
 
 		var ntNode = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml,
-			'//League[LeagueID=\'' + leagueId + '\']');
+			"//League[LeagueID='" + leagueId + "']");
 		var ntName = ntNode.getElementsByTagName('LeagueName')[0].textContent;
 		var ntId = ntNode.getElementsByTagName('NationalTeamId')[0].textContent;
 		var u20Name = 'U-20 ' + ntName;
@@ -70,7 +70,7 @@ Foxtrick.modules['NtPeek'] = {
 		];
 		var parameters_nt_str = JSON.stringify(ntArgs);
 		Foxtrick.util.api.retrieve(doc, ntArgs, { cache_lifetime: 'default' },
-		function(xml, errorText) {
+		  function(xml, errorText) {
 			var nextmatchdate = Foxtrick.util.matchView.fillMatches(
 									ntContainer.getElementsByTagName('div')[0],
 									xml,
@@ -87,7 +87,7 @@ Foxtrick.modules['NtPeek'] = {
 		];
 		var parameters_u20_str = JSON.stringify(u20Args);
 		Foxtrick.util.api.retrieve(doc, u20Args, { cache_lifetime: 'default' },
-		function(xml, errorText) {
+		  function(xml, errorText) {
 			var nextmatchdate = Foxtrick.util.matchView.fillMatches(
 									u20Container.getElementsByTagName('div')[0],
 									xml,

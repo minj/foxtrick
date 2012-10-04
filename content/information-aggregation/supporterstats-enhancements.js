@@ -27,7 +27,7 @@ Foxtrick.modules['SupporterStatsEnhancements'] = {
 		args.push(['file', 'players']);
 
 		Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' },
-		function(xml, errorText) {
+		  function(xml, errorText) {
 			if (!xml)
 				return;
 			var playerNodes = xml.getElementsByTagName('Player');

@@ -72,7 +72,7 @@ if (typeof(opera) == 'object') {
 	};
 
 	var addListener = function(handler) {
-		 opera.extension.addEventListener('message', handler, false);
+		opera.extension.addEventListener('message', handler, false);
 	};
 
 	var sandboxed = {
@@ -120,9 +120,9 @@ if (typeof(opera) == 'object') {
 				function addOneTimeResponseListener(callbackToken, callback) {
 					var responseHandler = function(messageEvent) {
 						if (messageEvent.data.name != 'response')
-						  return;
+							return;
 						if (messageEvent.data.callbackToken != callbackToken)
-						  return;
+							return;
 
 						if (callback)
 							callback(messageEvent.data.data);
@@ -138,7 +138,7 @@ if (typeof(opera) == 'object') {
 			onRequest: {
 				addListener: function(handler) {
 					addListener(function(messageEvent) {
-					   // Only listen for 'sendRequest' messages
+						// Only listen for 'sendRequest' messages
 						if (messageEvent.data.name != 'request')
 							return;
 
@@ -157,7 +157,7 @@ if (typeof(opera) == 'object') {
 						handler(request, sender, sendResponse);
 					});
 				},
- 			},
+			},
 			// sending everywhere including options and popups
 			broadcastMessage: function(message) {
 				opera.extension.broadcastMessage(message);
@@ -402,7 +402,7 @@ else if (typeof(chrome) == 'object') {
 			create: function(url) {
 				chrome.tabs.create(url);
 			},
-			// activetabs {id: true/false,..}
+			// activetabs { id: true/false,.. }
 			tab: {},
 		},
 	};
@@ -410,7 +410,8 @@ else if (typeof(chrome) == 'object') {
 	// register tab for broadcastMessage
 	if (Foxtrick.chromeContext() == 'content') {
 		//  recieve tab id on register
-		sandboxed.extension.sendRequest({ req: 'register' }, function(response) {
+		sandboxed.extension.sendRequest({ req: 'register' },
+		  function(response) {
 			sandboxed.extension.tabid = response.tabid;
 		});
 		// answer to status check after every new page load
@@ -418,7 +419,7 @@ else if (typeof(chrome) == 'object') {
 		  function(request, sender, sendResponse) {
 			if (request.req == 'checkAlive') {
 				// send back who answered
-				sendResponse({id: request.id});
+				sendResponse({ id: request.id });
 			}
 		});
 	}
@@ -655,7 +656,8 @@ else {
 		// register tab for broadcastMessage
 		if (Foxtrick.chromeContext() == 'content') {
 			//  recieve tab id on register
-			sandboxed.extension.sendRequest({ req: 'register' }, function(response) {
+			sandboxed.extension.sendRequest({ req: 'register' },
+			  function(response) {
 				sandboxed.extension.tabid = response.tabid;
 			});
 		}

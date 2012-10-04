@@ -45,14 +45,14 @@ Foxtrick.modules['MarkUnread'] = {
 									nr = '' + ar[2] + '';
 								}
 								markunread[p].href = 'javascript: ' + 'try {'
-									+ 'document.getElementById(\''
-									+ 'ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_ddlAction\''
-									+ ').selectedIndex=\'1\';'
-									+ 'document.getElementById(\''
+									+ "document.getElementById('"
+									+ "ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_ddlAction'"
+									+ ").selectedIndex='1';"
+									+ "document.getElementById('"
 								+ 'ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_txtMessageNumber'
-									+ '\').value=\'' + nr + '\';'
-									+ 'document.getElementById(\''
-									+ 'ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_btnGo\''
+									+ "').value='" + nr + "';"
+									+ "document.getElementById('"
+									+ "ctl00_ctl00_CPContent_CPMain_ucThread_ucPagerTop_btnGo'"
 									+ ').click();'
 									+ '}'
 									+ 'catch (e) {}';
@@ -62,7 +62,9 @@ Foxtrick.modules['MarkUnread'] = {
 								divsInFooter[j].appendChild(markunread[p]);
 							}
 						}
-					} catch (e) {Foxtrick.dump('MarkUnread ERROR ' + e + '\n');}
+					} catch (e) {
+						Foxtrick.dump('MarkUnread ERROR ' + e + '\n');
+					}
 				}
 			}
 		}

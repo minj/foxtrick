@@ -49,7 +49,7 @@ Foxtrick.modules['ForumTemplates'] = {
 				Foxtrick.alert(Foxtrickl10n.getString('ForumTemplates.templateTitle.error'));
 			else if (FoxtrickPrefs.addPrefToList(templatesPrefList, '[title=' + title + ']' +
 			         text)) {
-		   		appendTemplate('[title=' + title + ']' + text);
+				appendTemplate('[title=' + title + ']' + text);
 			}
 			else
 				Foxtrick.alert(Foxtrickl10n.getString('ForumTemplates.make.error'));
@@ -58,8 +58,8 @@ Foxtrick.modules['ForumTemplates'] = {
 			inputTitleDiv.parentNode.removeChild(inputTitleDiv);
 		};
 
-		 var addNewTitle = function() {
-			 try {
+		var addNewTitle = function() {
+			try {
 				var msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
 				var text = Foxtrick.stripHTML(msg_window.value);
 				if (text == '') {
@@ -232,7 +232,7 @@ Foxtrick.modules['ForumTemplates'] = {
 			controls_div.appendChild(hide_button);
 		}
 
-	   	msg_window.parentNode.insertBefore(controls_div, msg_window);
+		msg_window.parentNode.insertBefore(controls_div, msg_window);
 	},
 
 	change: function(doc) {

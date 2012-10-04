@@ -210,7 +210,7 @@ Foxtrick.modules['ForumPreview'] = {
 			//mailnewsletter
 
 			if (msg_window == null) {
-			   msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
+				msg_window = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
 			}
 			if (msg_window == null)
 				return;

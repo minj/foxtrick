@@ -51,15 +51,15 @@ Foxtrick.modules['GoToPostBox'] = {
 
 		var selects = doc.getElementsByClassName('main')[0].getElementsByTagName('select');
 		for (var i = 0; i < selects.length; ++i) {
-		  if (selects[i].id.search(/filter/i) != -1) {
-			if (!selectBoxTop) {
-				selectBoxTop = selects[i];
+			if (selects[i].id.search(/filter/i) != -1) {
+				if (!selectBoxTop) {
+					selectBoxTop = selects[i];
+				}
+				else {
+					selectBoxBottom = selects[i];
+					break;
+				}
 			}
-			else {
-				selectBoxBottom = selects[i];
-				break;
-			}
-		  }
 		}
 
 
@@ -80,10 +80,10 @@ Foxtrick.modules['GoToPostBox'] = {
 			inputBoxTop.setAttribute('value', '(xxx.)yyy');
 			inputBoxTop.setAttribute('class', 'quickViewBox viewInactive ft_gotobox');
 			inputBoxTop.addEventListener('focus', function(ev) {
-					ev.target.className = 'quickViewBox viewActive ft_gotobox';
-					if (ev.target.value == '(xxx.)yyy') {
-						ev.target.value = '';
-					}
+				ev.target.className = 'quickViewBox viewActive ft_gotobox';
+				if (ev.target.value == '(xxx.)yyy') {
+					ev.target.value = '';
+				}
 			}, false);
 			inputBoxTop.addEventListener('blur', function(ev) {
 				if (ev.target.value.length === 0) {

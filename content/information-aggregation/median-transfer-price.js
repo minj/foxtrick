@@ -22,7 +22,7 @@ Foxtrick.modules['MedianTransferPrice'] = {
 			}
 		}
 
-		priceArray.sort(function(a, b) {return a - b;});
+		priceArray.sort(function(a, b) { return a - b; });
 		var median = 0;
 		var avg = 0;
 		var len = priceArray.length;

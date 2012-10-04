@@ -18,7 +18,10 @@ Foxtrick.modules['GoalDifferenceToTables'] = {
 
 		var goalcell = 2;
 		var div = doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlViewPromotion');
-		if (!div) {div = doc.getElementById('mainBody'); goalcell = 3;}
+		if (!div) {
+			div = doc.getElementById('mainBody');
+			goalcell = 3;
+		}
 
 		var tbl_promo = div.getElementsByTagName('TABLE')[0];
 		tbl_promo.id = 'tbl_promo';

@@ -28,7 +28,7 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 		// request resources from background script
 		// calls/adds Foxtrick.loader.chrome.docLoadEnd
 		sandboxed.extension.sendRequest({ req: 'pageLoad' },
-		function(data) {
+		  function(data) {
 			try {
 				var beginInit = new Date();
 
@@ -72,7 +72,7 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 				}
 				LocalResourcesLoaded = true;
 
-			} catch (e) {Foxtrick.log('loader init: ', e);}
+			} catch (e) { Foxtrick.log('loader init: ', e); }
 		});
 
 		// that's our normal entry point unless init took too long.

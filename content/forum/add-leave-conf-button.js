@@ -49,9 +49,9 @@ Foxtrick.modules['AddLeaveConfButton'] = {
 							for (var j = 0; j < inputs.length; j++) {
 								if (inputs[j].className == 'leave') {
 
-									var func = 'javascript:__doPostBack(\'';
+									var func = "javascript:__doPostBack('";
 									func += inputs[j].getAttribute('name');
-									func += '\', \'\')';
+									func += "', '')";
 									if (func) {
 										doc.location.href = func;
 									}

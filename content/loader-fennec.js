@@ -43,12 +43,11 @@ if (Foxtrick.platform == 'Android') {
 
 			// request needed data from background and start with DOMContentLoaded
 			sandboxed.extension.sendRequest({ req: 'tabLoad' },
-				function(data) {
-					Foxtrick.entry.contentScriptInit(data);
-					addEventListener('DOMContentLoaded',
-					                 Foxtrick.loader.fennec.DOMContentLoadedListener, false);
-				}
-			);
+			  function(data) {
+				Foxtrick.entry.contentScriptInit(data);
+				addEventListener('DOMContentLoaded',
+				                 Foxtrick.loader.fennec.DOMContentLoadedListener, false);
+			});
 		}
 	};
 

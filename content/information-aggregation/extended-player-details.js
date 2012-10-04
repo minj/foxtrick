@@ -16,7 +16,8 @@ Foxtrick.modules['ExtendedPlayerDetails'] = {
 		// experiment: add language
 		if (FoxtrickPrefs.isModuleOptionEnabled('ExtendedPlayerDetails', 'Language')) {
 			var addPlayerLanguage = function(playerid, node) {
-				Foxtrick.Pages.Player.getPlayer(doc, playerid, function(player) {
+				Foxtrick.Pages.Player.getPlayer(doc, playerid,
+				  function(player) {
 					if (!player)
 						return;
 					if (player.PlayerLanguage) {

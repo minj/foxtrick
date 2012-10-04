@@ -41,7 +41,8 @@ Foxtrick.modules['HideSignatures'] = {
 				}
 
 				//toogle
-				Foxtrick.listen(showSigLink, 'click', function(ev) {
+				Foxtrick.listen(showSigLink, 'click',
+				  function(ev) {
 					try {
 						var id = ev.target.getAttribute('id').replace('foxtrick-st-link- ', '');
 						try {

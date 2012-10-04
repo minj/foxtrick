@@ -48,7 +48,7 @@ try {
 
 	// the object we return in the end
 	function FoxtrickMutationObserver(aHandler) {
-	    // private variables and functions
+		// private variables and functions
 		var handler = aHandler;
 		var targets = [];
 		var options = [];

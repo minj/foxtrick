@@ -28,24 +28,24 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 
 		//don't randomly rename, parts of this are taken from hattrick by classnames
 		var xp = {};
-		xp.matchFriendly 		= 0.2;
+		xp.matchFriendly		= 0.2;
 		//assume international friendly as default, considered in min-max,
 		//minimum uses 1/2 of this value
-		xp.matchLeague 			= 1.0;
-		xp.matchCup 			= 2.0;
-		xp.matchQualification 	= 2.0;
-		xp.matchMasters 		= 5.0;
+		xp.matchLeague			= 1.0;
+		xp.matchCup			= 2.0;
+		xp.matchQualification	= 2.0;
+		xp.matchMasters		= 5.0;
 		//nt
-		xp.matchNtFriendly 		= 2.0;
+		xp.matchNtFriendly		= 2.0;
 		//fakename: we generate this type (iconsytle + gametype)
-		xp.matchNtLeague 		= 10.0;
+		xp.matchNtLeague		= 10.0;
 		//fakename: we generate this type (iconsytle + gametype + match date)
- 		xp.matchNtFinals 		= 20.0;
- 		//fakename: we generate this type (iconsytle + gametype + match date)
+		xp.matchNtFinals		= 20.0;
+		//fakename: we generate this type (iconsytle + gametype + match date)
 
- 		//setting for looking up values in the parsing process
- 		var parserconfig = {};
- 		parserconfig.xp = 6; //current xp is the <integer>-th column in the table
+		//setting for looking up values in the parsing process
+		var parserconfig = {};
+		parserconfig.xp = 6; //current xp is the <integer>-th column in the table
 
 		//setup the 'database'
 		this.store.matches = {};
@@ -229,13 +229,13 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			var getXPMinMaxDifference = function(ntMatch, xp_gain, gameType) {
 				var dxp = {};
 				if (!ntMatch) {
-					 if (gameType == 'matchFriendly') {
-					 	dxp.min = xp_gain / 2;
-					 	dxp.max = xp_gain;
-					 } else {
-					 	dxp.min = xp_gain;
-					 	dxp.max = xp_gain;
-					 }
+					if (gameType == 'matchFriendly') {
+						dxp.min = xp_gain / 2;
+						dxp.max = xp_gain;
+					} else {
+						dxp.min = xp_gain;
+						dxp.max = xp_gain;
+					}
 				} else {
 					dxp.min = xp_gain;
 					dxp.max = xp_gain;

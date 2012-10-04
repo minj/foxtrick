@@ -65,15 +65,16 @@
 				soundc.appendChild(sound);
 				var filec = doc.createElement('td');
 				row.appendChild(filec);
-				var input = Foxtrick.util.load.filePickerForDataUrl(doc, (function(sound) {
-						return function(url) {
-							sound.value = url;
-							var ev = document.createEvent('HTMLEvents');
-						    ev.initEvent('change', true, false);
-						    sound.dispatchEvent(ev);
-							Foxtrick.playSound(url, doc);
-						};
-					})(sound));
+				var input = Foxtrick.util.load.filePickerForDataUrl(doc,
+				  (function(sound) {
+					return function(url) {
+						sound.value = url;
+						var ev = document.createEvent('HTMLEvents');
+						ev.initEvent('change', true, false);
+						sound.dispatchEvent(ev);
+						Foxtrick.playSound(url, doc);
+					};
+				})(sound));
 				filec.appendChild(input);
 
 				var playc = doc.createElement('td');

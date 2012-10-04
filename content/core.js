@@ -50,7 +50,8 @@ Foxtrick.modules['Core'] = {
 			'server': doc.location.hostname, 'c': Foxtrick.util.time.getHtTimeStamp(doc) / 1000 },
 			function(cookie) { Foxtrick.log('setting hy server cookie:', cookie);
 		});
-		Foxtrick.cookieSet('for_htev', 'ht-server:' + doc.location.hostname, function(cookie) {
+		Foxtrick.cookieSet('for_htev', 'ht-server:' + doc.location.hostname,
+		  function(cookie) {
 			Foxtrick.log('setting htev server cookie:', cookie);
 		});
 	},
@@ -206,9 +207,9 @@ Foxtrick.modules['Core'] = {
 	featureHighlight: function(doc) {
 		if (!FoxtrickPrefs.getBool('featureHighlight'))
 			return;
-		var css = 	'[class^=\'ft\'], [id^=\'ft\'],' + // 'ft' at front
-					'[class*=\' ft\'], [id*=\' ft\'],' + // 'ft' at start word
-					'[class*=\'foxtrick\'], [id*=\'foxtrick\']' + // 'foxtrick' anywhere
+		var css =	"[class^='ft'], [id^='ft']," + // 'ft' at front
+					"[class*=' ft'], [id*=' ft']," + // 'ft' at start word
+					"[class*='foxtrick'], [id*='foxtrick']" + // 'foxtrick' anywhere
 					'{ background-color:#66ccff !important; color:black !important; ' +
 					'border: 1px solid #66ccff !important;}';
 		var featureCss = doc.getElementById('ft-feature-highlight-css');
@@ -233,7 +234,8 @@ Foxtrick.modules['Core'] = {
 				leagueId: Foxtrick.util.id.findLeagueId(teamLinks),
 				teamName: Foxtrick.util.id.extractTeamName(teamLinks)
 			};
-			Foxtrick.localGet('shortTeamName.' + this.SELF_TEAM_INFO.teamId, function(name) {
+			Foxtrick.localGet('shortTeamName.' + this.SELF_TEAM_INFO.teamId,
+			  function(name) {
 				if (! name) {
 					if (! doc.getElementById('ctl00_ctl00_ucOngoingEvents_lblOngoingEvents'))
 						return;

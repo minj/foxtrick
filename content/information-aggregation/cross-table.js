@@ -316,7 +316,7 @@ Foxtrick.modules['CrossTable'] = {
 		];
 
 		Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' },
-		function(xml, errorText) {
+		  function(xml, errorText) {
 			try {
 				if (xml) {
 					var matchNodes = xml.getElementsByTagName('Match');

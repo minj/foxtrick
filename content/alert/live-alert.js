@@ -41,7 +41,7 @@ Foxtrick.modules['LiveAlert'] = {
 			return null;
 		}
 		catch (e) {
-			Foxtrick.log('Cannot parse score \'', score, '\'');
+			Foxtrick.log("Cannot parse score '", score, "'");
 			return null;
 		}
 	},

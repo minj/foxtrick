@@ -9,7 +9,7 @@ Foxtrick.modules['FormatPostingText'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: [
 		'forumWritePost', 'messageWritePost', 'guestbook', 'announcements',
-	   'newsLetter', 'mailNewsLetter', 'forumModWritePost'
+		'newsLetter', 'mailNewsLetter', 'forumModWritePost'
 	],
 	OPTIONS: ['NestedQuotesAsSpoilers'],
 	OPTION_EDITS: true,
@@ -29,14 +29,16 @@ Foxtrick.modules['FormatPostingText'] = {
 				for (var i = 0; i < messages.length; i++) {
 					var count_pre = Foxtrick.substr_count(messages[i].textContent, '[pre');
 					var org = [/\[pre\](.*?)\[\/pre\]/gi , /·/gi];
-					var rep = ['<pre class=\'ft-dummy\'>$1</pre>', ''];
+					var rep = ["<pre class='ft-dummy'>$1</pre>", ''];
 					for (var j = 0; j <= count_pre; j++) {
 						for (var k = 0; k < org.length; k++) {
 							messages[i].innerHTML = messages[i].innerHTML.replace(org[k], rep[k]);
 						}
 					}
 				}
-			} catch (e_format) {Foxtrick.dump('FormatPostingText: FORMAT TEXT ' + e_format + '\n');}
+			} catch (e_format) {
+				Foxtrick.dump('FormatPostingText: FORMAT TEXT ' + e_format + '\n');
+			}
 		}
 		else { // reformat edit
 			var textarea = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
@@ -49,10 +51,10 @@ Foxtrick.modules['FormatPostingText'] = {
 		for (var i = 0; i < targets.length; ++i) {
 			if (targets[i].type == 'submit') {
 				Foxtrick.onClick(targets[i], function() {
-						var textarea = doc.getElementById('mainBody')
-							.getElementsByTagName('textarea')[0];
-						textarea.value = format(textarea.value);
-					});
+					var textarea = doc.getElementById('mainBody')
+						.getElementsByTagName('textarea')[0];
+					textarea.value = format(textarea.value);
+				});
 			}
 		}
 	},
@@ -121,18 +123,18 @@ Foxtrick.modules['ForumAlterHeaderLine'] = {
 	PAGES: ['forumViewThread'],
 	OPTIONS: [
 		'SingleHeaderLine', 'CheckDesign', 'TruncateLongNick', 'TruncateLeagueName', 'HideOldTime',
- 		'SmallHeaderFont', 'ShortPostId', 'ReplaceSupporterStar', 'BookmarkHeaderSmall',
- 		'HighlightThreadOpener'
- 	],
+		'SmallHeaderFont', 'ShortPostId', 'ReplaceSupporterStar', 'BookmarkHeaderSmall',
+		'HighlightThreadOpener'
+	],
 	OPTIONS_CSS: [
 		Foxtrick.InternalPath + 'resources/css/fixes/Forum_Header_Single.css',
- 		Foxtrick.InternalPath + 'resources/css/fixes/Forum_Header_CheckDesign.css',
- 		'', '', '',
- 		Foxtrick.InternalPath + 'resources/css/fixes/Forum_Header_Smallsize_Single.css',
- 		'',
- 		Foxtrick.InternalPath + 'resources/css/fixes/Forum_Header_RemoveSupporterStar.css',
- 		Foxtrick.InternalPath + 'resources/css/fixes/BookmarkHeaderSmall.css'
- 	],
+		Foxtrick.InternalPath + 'resources/css/fixes/Forum_Header_CheckDesign.css',
+		'', '', '',
+		Foxtrick.InternalPath + 'resources/css/fixes/Forum_Header_Smallsize_Single.css',
+		'',
+		Foxtrick.InternalPath + 'resources/css/fixes/Forum_Header_RemoveSupporterStar.css',
+		Foxtrick.InternalPath + 'resources/css/fixes/BookmarkHeaderSmall.css'
+	],
 
 	CSS: Foxtrick.InternalPath + 'resources/css/fixes/Forum_Header_Single_SimpleFix.css'
 };

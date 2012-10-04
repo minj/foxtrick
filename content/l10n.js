@@ -189,15 +189,15 @@ var Foxtrickl10n = {
 	// agreeability, honesty, and aggressiveness, which are all obvious.
 	getLevelByTypeAndValue: function(type, val) {
 		var lang = FoxtrickPrefs.getString('htLanguage');
-		var path = 'language/' + type + '/level[@value=\'' + val + '\']';
+		var path = 'language/' + type + "/level[@value='" + val + "']";
 		var text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, 'text');
 		if (text === null) {
 			Foxtrick.log('Requested level of type ' + type + ' and value ' + val +
-			             ' don\'t exist in locale ' + lang + ', try en instead.');
+			             " don't exist in locale " + lang + ', try en instead.');
 			text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml.en, path, 'text');
 			if (text === null) {
 				Foxtrick.log('Requested level of type ' + type + ' and value ' + val +
-				             ' don\'t exist, returning raw value.');
+				             " don't exist, returning raw value.");
 				text = val;
 			}
 		}
@@ -206,15 +206,15 @@ var Foxtrickl10n = {
 
 	getSublevelByValue: function(val) {
 		var lang = FoxtrickPrefs.getString('htLanguage');
-		var path = 'language/ratingSubLevels/sublevel[@value=\'' + val + '\']';
+		var path = "language/ratingSubLevels/sublevel[@value='" + val + "']";
 		var text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, 'text');
 		if (text === null) {
 			Foxtrick.log('Requested sublevel of value ' + val +
-			             ' doesn\'t exist in locale ' + lang + ', try en instead.');
+			             " doesn't exist in locale " + lang + ', try en instead.');
 			text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml.en, path, 'text');
 			if (text === null) {
 				Foxtrick.log('Requested sublevel of value ' + val +
-				             ' doesn\'t exist, returning raw value.');
+				             " doesn't exist, returning raw value.");
 				text = val;
 			}
 		}
@@ -253,15 +253,15 @@ var Foxtrickl10n = {
 		];
 
 		var lang = FoxtrickPrefs.getString('htLanguage');
-		var path = 'language/tactics/tactic[@type=\'' + tactics[id] + '\']';
+		var path = "language/tactics/tactic[@type='" + tactics[id] + "']";
 		var text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, 'value');
 		if (text === null) {
 			Foxtrick.log('Requested tactic of id ' + tactics[id] +
-			             ' doesn\'t exist in locale ' + lang + ', try en instead.');
+			             " doesn't exist in locale " + lang + ', try en instead.');
 			text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml.en, path, 'value');
 			if (text === null) {
 				Foxtrick.log('Requested tactic of id ' + tactics[id] +
-				             ' doesn\'t exist, returning raw value.');
+				             " doesn't exist, returning raw value.");
 				text = tactics[id];
 			}
 		}
@@ -281,7 +281,7 @@ var Foxtrickl10n = {
 		var shortPos = '';
 		try {
 			var lang = FoxtrickPrefs.getString('htLanguage');
-			var path = 'language/positions/position[@value=\'' + pos + '\']';
+			var path = "language/positions/position[@value='" + pos + "']";
 			shortPos = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang],
 			                                        path, 'short');
 		}
@@ -298,7 +298,7 @@ var Foxtrickl10n = {
 		var shortSpec = '';
 		try {
 			var lang = FoxtrickPrefs.getString('htLanguage');
-			var path = 'language/specialties/specialty[@value=\'' + spec + '\']';
+			var path = "language/specialties/specialty[@value='" + spec + "']";
 			shortSpec = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang],
 			                                         path, 'short');
 		}
@@ -315,7 +315,7 @@ var Foxtrickl10n = {
 		var shortSpec = '';
 		try {
 			var lang = FoxtrickPrefs.getString('htLanguage');
-			var path = 'language/specialties/specialty[@type=\'' + spec + '\']';
+			var path = "language/specialties/specialty[@type='" + spec + "']";
 			shortSpec = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang],
 			                                         path, 'short');
 		}
@@ -329,7 +329,7 @@ var Foxtrickl10n = {
 		var engSpec = spec;
 		try {
 			var lang = FoxtrickPrefs.getString('htLanguage');
-			var path = 'language/specialties/specialty[@value=\'' + spec + '\']';
+			var path = "language/specialties/specialty[@value='" + spec + "']";
 			engSpec = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, 'type');
 		}
 		catch (e) {
@@ -346,7 +346,7 @@ var Foxtrickl10n = {
 		var spec = specs[number];
 		try {
 			var lang = FoxtrickPrefs.getString('htLanguage');
-			var path = 'language/specialties/specialty[@type=\'' + spec + '\']';
+			var path = "language/specialties/specialty[@type='" + spec + "']";
 			spec = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, 'value');
 		}
 		catch (e) {
@@ -357,15 +357,15 @@ var Foxtrickl10n = {
 
 	getPositionByType: function(val) {
 		var lang = FoxtrickPrefs.getString('htLanguage');
-		var path = 'language/positions/position[@type=\'' + val + '\']';
+		var path = "language/positions/position[@type='" + val + "']";
 		var text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, 'value');
 		if (text === null) {
 			Foxtrick.log('Requested sublevel of value ' + val +
-			             ' doesn\'t exist in locale ' + lang + ', try en instead.');
+			             " doesn't exist in locale " + lang + ', try en instead.');
 			text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml.en, path, 'value');
 			if (text === null) {
 				Foxtrick.log('Requested sublevel of value ' + val +
-				             ' doesn\'t exist, returning raw value.');
+				             " doesn't exist, returning raw value.");
 				text = val;
 			}
 		}
@@ -482,7 +482,7 @@ if (Foxtrick.arch === 'Gecko') {
 					}
 				}
 				catch (ee) {
-					Foxtrick.log(Error('Error getString(\'' + str + ')\''));
+					Foxtrick.log(Error("Error getString('" + str + ")'"));
 					return str;
 				}
 			}
@@ -646,7 +646,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 				return value;
 			}
 			catch (e) {
-				Foxtrick.log(Error('Error getString(\'' + str + '\')'));
+				Foxtrick.log(Error("Error getString('" + str + "')"));
 				return str.substr(str.lastIndexOf('.') + 1);
 			}
 		},
@@ -672,7 +672,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 				return '';
 			}
 			catch (e) {
-				Foxtrick.log(Error('Error getScreenshot(\'' + str + '\')'));
+				Foxtrick.log(Error("Error getScreenshot('" + str + "')"));
 			}
 		},
 	};

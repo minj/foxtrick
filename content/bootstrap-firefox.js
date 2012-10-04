@@ -302,7 +302,7 @@ function loadIntoWindow(window) {
 	// styles also needed in eg customize-toolbox
 	var uri = 'chrome://foxtrick/content/resources/css/overlay.css';
 	var style = window.document.createProcessingInstruction('xml-stylesheet',
-			'id=\'foxtrick-overlay-css\' type=\'text/css\' href=\'' + uri + '\''
+			"id='foxtrick-overlay-css' type='text/css' href='" + uri + "'"
 		);
 	window.document.insertBefore(style, window.document.documentElement);
 

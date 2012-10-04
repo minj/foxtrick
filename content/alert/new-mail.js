@@ -18,7 +18,8 @@ Foxtrick.modules['NewMail'] = {
 	CSS: Foxtrick.InternalPath + 'resources/css/new-mail.css',
 
 	run: function(doc) {
-		Foxtrick.sessionGet({ 'mailCount': 0, 'forumCount': 0 }, function(oldCount) {
+		Foxtrick.sessionGet({ 'mailCount': 0, 'forumCount': 0 },
+		  function(oldCount) {
 			var oldMailCount = oldCount.mailCount || 0;
 			var oldForumCount = oldCount.forumCount || 0;
 
@@ -95,5 +96,5 @@ Foxtrick.modules['NewMail'] = {
 			//Foxtrick.log('oldCount', oldCount)
 			//Foxtrick.log('newCount', newForumCount, newMailCount)
 		});
- 	}
+	}
 };

@@ -15,7 +15,7 @@ Foxtrick.modules['ARIALandmarks'] = {
 		var addLandmarks = function(doc) {
 			//header/banner
 			try {
-			 	doc.getElementById('header').setAttribute('role', 'banner');
+				doc.getElementById('header').setAttribute('role', 'banner');
 			} catch (e) {}
 
 			//Foxtrick needs auth

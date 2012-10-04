@@ -36,7 +36,7 @@ Foxtrick.entry.docLoad = function(doc) {
 
 	// clear ASP.NET_SessionId cookie on login (security leak)
 	/*if (Foxtrick.arch == 'Gecko' && Foxtrick.isLoginPage(doc)) {
-	 	try {
+		try {
 			var cookieManager = Components.classes['@mozilla.org/cookiemanager;1']
 				.getService(Components.interfaces.nsICookieManager);
 

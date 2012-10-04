@@ -266,10 +266,10 @@ Foxtrick.modules['TeamStats'] = {
 				if (!Foxtrick.isOneOfPages(attributeOptions[j].pages, doc))
 					continue;
 				if (!FoxtrickPrefs.isModuleOptionEnabled('TeamStats',
-				    	attributeOptions[j].category.replace(/.+\./, '')))
+				    attributeOptions[j].category.replace(/.+\./, '')))
 					continue;
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList,
-				    	attributeOptions[j].property)) {
+				    attributeOptions[j].property)) {
 					var text = methods[attributeOptions[j].method](attributeOptions[j].value,
 					                                               numPlayers);
 					addRow(attributeOptions[j].category, Foxtrickl10n
@@ -432,7 +432,8 @@ Foxtrick.modules['TeamStats'] = {
 		else {
 			var boxBody = box.getElementsByTagName('div')[0];
 		}
-		Foxtrick.Pages.Players.getPlayerList(doc, function(list) {
+		Foxtrick.Pages.Players.getPlayerList(doc,
+		  function(list) {
 			try {
 				Foxtrick.preventChange(doc, show)(list);
 			}

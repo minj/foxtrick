@@ -17,6 +17,6 @@
 		<string>Click me to show FoxTrick's options.</string>
 		<key>Type</key>
 		<string>CheckBox</string>
-	  </dict>
- </array>
+	</dict>
+</array>
 </plist>

@@ -59,8 +59,9 @@ Foxtrick.modules['ForumChangePosts'] = {
 					var copy_style = 'ht-ml';
 					var header = ev.target.parentNode.parentNode.parentNode
 						.getElementsByTagName('div')[0];
-				   	if (header.className.search('cfHeader') == -1) header = header.nextSibling;
-				   	// official. detailed header is one down
+					if (header.className.search('cfHeader') == -1)
+						header = header.nextSibling;
+					// official. detailed header is one down
 					Foxtrick.log(header.className, '\n');
 				}
 				var insertBefore = header.parentNode;
@@ -307,7 +308,8 @@ Foxtrick.modules['ForumChangePosts'] = {
 
 		if (do_HighlightThreadOpener) try {
 			var Ftag = doc.getElementById('ctl00_ucGuestForum_ucGuestForum_updMain');
-			if (!Ftag) {Ftag = doc.getElementById('myForums');}
+			if (!Ftag)
+				Ftag = doc.getElementById('myForums');
 			if (Ftag) {
 				Ftag = Ftag.getElementsByTagName('strong')[0];
 				var TName = Ftag.textContent;
@@ -315,7 +317,9 @@ Foxtrick.modules['ForumChangePosts'] = {
 				TName_lng = TName_lng.replace(TName, '');
 				TName_lng = TName_lng.split(' ')[2];
 			} else var TName_lng = false;
-		} catch (e_tag) {Foxtrick.dump('HTO ' + e_tag + '\n'); var TName_lng = false;}
+		} catch (e_tag) {
+			Foxtrick.dump('HTO ' + e_tag + '\n'); var TName_lng = false;
+		}
 
 		if (do_format_text) {
 			try {
@@ -364,7 +368,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 				for (var i = 0; i < messages.length; ++i) {
 					var count_pre = Foxtrick.substr_count(messages[i].textContent, '[pre');
 					var org = [/\[pre\](.*?)\[\/pre\]/gi , /·/gi];
-					var rep = ['<pre class=\'ft-dummy\'>$1</pre>', ''];
+					var rep = ["<pre class='ft-dummy'>$1</pre>", ''];
 					for (var j = 0; j <= count_pre; ++j) {
 						for (var k = 0; k < org.length; ++k) {
 							messages[i].innerHTML = messages[i].innerHTML.replace(org[k], rep[k]);
@@ -716,7 +720,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 				var user_avatar = Foxtrick
 					.createFeaturedElement(doc, Foxtrick.modules.AddDefaultFaceCard, 'div');
 				user_avatar.className = 'faceCard';
-				user_avatar.style.backgroundImage = 'url(\'/Img/Avatar/silhouettes/sil1.png\')';
+				user_avatar.style.backgroundImage = "url('/Img/Avatar/silhouettes/sil1.png')";
 				user.insertBefore(user_avatar, user.firstChild);
 			}
 

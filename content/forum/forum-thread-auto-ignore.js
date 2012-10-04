@@ -45,7 +45,7 @@ Foxtrick.modules.ForumThreadAutoIgnore = {
 					for (var i = 0; i < whitelist.length; ++i) {
 						whitelist[i] = whitelist[i].replace(/^\s+/, ''); // leading space removed
 						whitelist[i] = whitelist[i].replace(/\s+$/, ''); // trailing space removed
-						 //Foxtrick.dump(whitelist[i]+ '\n');
+						//Foxtrick.dump(whitelist[i]+ '\n');
 					}
 				}
 			}
