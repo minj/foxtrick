@@ -5,7 +5,7 @@
  * @author larsw84, Stephan57, ryanli, convinedd
  */
 
- ////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 Foxtrick.modules['ManagerButtons'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['managerPage', 'teamPage', 'youthOverview'],

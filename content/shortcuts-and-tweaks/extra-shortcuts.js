@@ -25,7 +25,7 @@ Foxtrick.modules['ExtraShortcuts'] = {
 		'http://stream.ht-radio.nl/foxtrick/status.php',
 		'http://no9-online.de/_no9/no9status.php',
 		'http://www.latehome.de/foxtrick/status.php',
-    ],
+	],
 	CSS: Foxtrick.InternalPath + 'resources/css/extra-shortcuts.css',
 
 	OPTIONS_CSS: [

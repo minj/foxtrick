@@ -85,10 +85,8 @@ else {
 
 		Foxtrick.localGet = function(key, callback) {
 			// get from background
-			sandboxed.extension.sendRequest({
-				req: 'localGet',
-				key: key
-			}, function(response) {
+			sandboxed.extension.sendRequest({ req: 'localGet', key: key },
+			  function(response) {
 				callback(response.value);
 			});
 		};

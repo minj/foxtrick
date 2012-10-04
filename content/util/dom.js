@@ -127,17 +127,13 @@ Foxtrick.onClick = function(target, listener) {
 };
 
 Foxtrick.listen = function(target, type, listener, useCapture) {
-	target.addEventListener(
-		type,
-		function(ev) {
-			var doc = ev.target.ownerDocument;
-			Foxtrick.stopListenToChange(doc);
-			listener(ev);
-			Foxtrick.log.flush(doc);
-			Foxtrick.startListenToChange(doc);
-		},
-		useCapture
-	);
+	target.addEventListener(type, function(ev) {
+		var doc = ev.target.ownerDocument;
+		Foxtrick.stopListenToChange(doc);
+		listener(ev);
+		Foxtrick.log.flush(doc);
+		Foxtrick.startListenToChange(doc);
+	}, useCapture);
 };
 
 // opera doesn't have domtreemodified and webkit not domattrchanged. so we use those for all
@@ -347,17 +343,17 @@ Foxtrick.GetDataURIText = function(filetext) {
 Foxtrick.addImage = function(doc, elem, features, insertBefore) {
 	if ((Foxtrick.platform == 'Opera') && features.src.indexOf('resources') != -1) {
 		sandboxed.extension.sendRequest({ req: 'getDataUrl', url: features.src },
-			function(data) {
-				var img = doc.createElement('img');
-				for (i in features) {
-					if (i != 'src') // that one we set bellow. prevents csp warning
-						img.setAttribute(i, features[i]);
-				}
-				img.src = data.url;
-				if (insertBefore)
-					elem.insertBefore(img, insertBefore);
-				else
-					elem.appendChild(img);
+		  function(data) {
+			var img = doc.createElement('img');
+			for (i in features) {
+				if (i != 'src') // that one we set bellow. prevents csp warning
+					img.setAttribute(i, features[i]);
+			}
+			img.src = data.url;
+			if (insertBefore)
+				elem.insertBefore(img, insertBefore);
+			else
+				elem.appendChild(img);
 		});
 	}
 	else {
@@ -374,11 +370,11 @@ Foxtrick.addImage = function(doc, elem, features, insertBefore) {
 Foxtrick.getImageFeatures = function(features, callback) {
 	if (Foxtrick.platform == 'Opera')
 		sandboxed.extension.sendRequest({ req: 'getDataUrl', url: features.src },
-			function(data) {
-				var img = {};
-				for (i in features) img[i] = features[i];
-				img.src = data.url;
-				callback(img);
+		  function(data) {
+			var img = {};
+			for (i in features) img[i] = features[i];
+			img.src = data.url;
+			callback(img);
 		});
 	else {
 		var img = {};

@@ -1,6 +1,6 @@
 {
 	"type": "foxtrick",
-	"duties" : { 
+	"duties" : {
 		"default" : {
 			"url": "chrome://foxtrick/content/resources/img/staff/foxtrick.png",
 			"alt": "Foxtrick staff"
@@ -19,7 +19,7 @@
 		}
 	},
 	"list": [
-	 	{ "id": "3410980", "name": "Aimo_Kanuuna" },
+		{ "id": "3410980", "name": "Aimo_Kanuuna" },
 		{ "id": "335181", "name": "Baler0" },
 		{ "id": "637644", "name": "baumanns" },
 		{ "id": "8378622", "name": "bummerland" },
@@ -40,8 +40,8 @@
 		{ "id": "6680572", "name": "GM-Nanouk" },
 		{ "id": "9311330", "name": "GM-OmaniMilani" },
 		{ "id": "5055092", "name": "GTTWINS" },
-    { "id": "5547377", "name": "Guaipeca" }, 
-    { "id": "1132186", "name": "gucan" },
+		{ "id": "5547377", "name": "Guaipeca" },
+		{ "id": "1132186", "name": "gucan" },
 		{ "id": "6801903", "name": "Homzik" },
 		{ "id": "7873605", "name": "JAM3SoN" },
 		{ "id": "3542943", "name": "Jestar" },

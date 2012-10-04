@@ -560,8 +560,9 @@ Foxtrick.util.links = {
 	},
 
 	LoadDialog: function(doc, divED) {		// load image select
-		var form = Foxtrick.util.load.filePickerForDataUrl(doc, function(url) {
-			//if (url.length>5000) {Foxtrick.alert('Image too large.');return;}
+		var form = Foxtrick.util.load.filePickerForDataUrl(doc,
+		  function(url) {
+			//if (url.length>5000) { Foxtrick.alert('Image too large.'); return; }
 			var div = doc.getElementById('inputImgDivID');
 			div.imgref = url;
 			div.style.backgroundImage = "url('" + url + "')";

@@ -48,7 +48,8 @@ if (Foxtrick.platform != 'Opera' && Foxtrick.platform != 'Mobile' && Foxtrick.pl
 			// called from background script
 			var chromeInit = function() {
 				// update menu in background on mousedown
-				chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+				chrome.extension.onRequest.addListener(
+				  function(request, sender, sendResponse) {
 					var documentUrlPatterns = [
 						'*://*.hattrick.org/*',
 						'*://*.hattrick.ws/*',
@@ -81,7 +82,8 @@ if (Foxtrick.platform != 'Opera' && Foxtrick.platform != 'Mobile' && Foxtrick.pl
 			};
 			// called from background script
 			var safariInit = function() {
-				safari.application.addEventListener('contextmenu', function(event) {
+				safari.application.addEventListener('contextmenu',
+				  function(event) {
 					var paste_note = '. ' + Foxtrickl10n.getString('specialPaste.hint');
 					var type;
 					for (type in event.userInfo) {

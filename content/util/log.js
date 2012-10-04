@@ -107,7 +107,7 @@ Foxtrick.log = function() {
 	// add to stored log
 	if (Foxtrick.arch === 'Sandboxed') {
 		if (Foxtrick.chromeContext() == 'content')
-			sandboxed.extension.sendRequest({req: 'addDebugLog', log: concated + '\n'});
+			sandboxed.extension.sendRequest({ req: 'addDebugLog', log: concated + '\n' });
 		else {
 			Foxtrick.addToDebugLogStorage(concated + '\n');
 		}

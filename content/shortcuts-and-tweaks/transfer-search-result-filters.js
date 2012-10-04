@@ -65,7 +65,8 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 			{ key: 'hideBruised', type: 'check', checked: false },
 		];
 		var getFilters = function(callback) {
-			Foxtrick.sessionGet('transfer-search-result-filters', function(n) {
+			Foxtrick.sessionGet('transfer-search-result-filters',
+			  function(n) {
 				try {
 					if (n === undefined) {
 						// set default filters if not set
@@ -197,7 +198,8 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 			}
 		};
 		var addExtraFilters = function() {
-			getFilters(function(filters) {
+			getFilters(
+			  function(filters) {
 				var tableAdvanced = doc.getElementById('ctl00_ctl00_CPContent_CPMain_tblAdvanced');
 				if (tableAdvanced === null) {
 					return;  //only show if advanced filters is on
@@ -260,7 +262,8 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 						// don't submit before we're done
 						ev.preventDefault();
 
-						getFilters(function(filters) {
+						getFilters(
+						  function(filters) {
 							for (var j = 0; j < filters.length; ++j) {
 								var filter = filters[j];
 								if (filter.type == 'minmax') {
@@ -307,7 +310,8 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 			});
 		};
 		var filterResults = function() {
-			getFilters(function(filters) {
+			getFilters(
+			  function(filters) {
 				var playerList = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
 				var playerInfos = doc.getElementsByClassName('transferPlayerInfo');
 				// Transform a live NodeList to an array because we'll remove

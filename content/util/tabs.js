@@ -59,7 +59,7 @@ Foxtrick.util.tabs.initialize = function(doc) {
 
 
 	if (!Foxtrick.isPage('match', doc) && !Foxtrick.hasClass(Foxtrick.util.tabs
-	    	.getTabs(doc).nextSibling, 'ft-clear-both')) {
+	    .getTabs(doc).nextSibling, 'ft-clear-both')) {
 		var clear = doc.createElement('div');
 		Foxtrick.addClass(clear, 'ft-clear-both');
 		Foxtrick.addAttributeValue(clear, 'tabs', 'all-tabs');

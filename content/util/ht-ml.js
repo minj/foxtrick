@@ -118,7 +118,7 @@ Foxtrick.util.htMl.getLink = function(node) {
 				markup = '[link=' + link + ']';
 		}
 	}
-	return {copyTitle: Foxtrickl10n.getString('copy.link'), markup: markup };
+	return { copyTitle: Foxtrickl10n.getString('copy.link'), markup: markup };
 };
 Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 	var ret = Foxtrick.util.htMl.getMarkupFromNodeRec(node);

@@ -54,20 +54,20 @@ Foxtrick.util.notify.create = function(msg, url) {
 		}
 	};
 	var createChrome = function() {
-		sandboxed.extension.sendRequest({req: 'notify', msg: msg, url: url});
+		sandboxed.extension.sendRequest({ req: 'notify', msg: msg, url: url });
 	};
 
 	var createSafariGrowl = function() {
 		showGrowlNotification = function(msg) {
-		  try {
-			if (window.GrowlSafariBridge.notifyWithOptions !== undefined) {
-				 window.GrowlSafariBridge.notifyWithOptions(msg.name, msg.status, {
-					isSticky: false,
-					priority: -1,
-					imageUrl: msg.img_url
-				});
-			}
-		  } catch (e) {Foxtrick.log(e);}
+			try {
+				if (window.GrowlSafariBridge.notifyWithOptions !== undefined) {
+					window.GrowlSafariBridge.notifyWithOptions(msg.name, msg.status, {
+						isSticky: false,
+						priority: -1,
+						imageUrl: msg.img_url
+					});
+				}
+			} catch (e) { Foxtrick.log(e); }
 		};
 
 		var img = Foxtrick.InternalPath + 'resources/img/hattrick-logo.png';

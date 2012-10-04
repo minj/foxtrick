@@ -70,14 +70,14 @@ Foxtrick.nth = function(n, func, array) {
 Foxtrick.unique = function(array) {
 	var ret = [];
 	var n = array.length;
-    for (var i = 0; i < n; ++i) {
+	for (var i = 0; i < n; ++i) {
 		for (var j = i + 1; j < n; ++j) {
 			if (array[i] === array[j])
 				j = ++i;
 		}
 		ret.push(array[i]);
 	}
-    return ret;
+	return ret;
 };
 
 // returns whether n is a member of array

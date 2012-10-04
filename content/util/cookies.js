@@ -72,7 +72,8 @@ if (!Foxtrick) var Foxtrick = {};
 				var name = cookies[where].name;
 
 			if (Foxtrick.arch == 'Gecko') {
-				Foxtrick.cookieGet(where, function(oldValue) {
+				Foxtrick.cookieGet(where,
+				  function(oldValue) {
 					if (oldValue && cookies[where].isJSON) {
 						oldValue = JSON.stringify(oldValue);
 						if (cookies[where].isBase64)
@@ -101,17 +102,16 @@ if (!Foxtrick) var Foxtrick = {};
 				if (Foxtrick.chromeContext() == 'content') {
 					sandboxed.extension.sendRequest(
 						{ req: 'cookieSet', where: where, name: name, what: what },
-						function(reponse) {
-							if (callback) {
-								if (cookies[where].isJSON && cookies[where].isBase64)
-									callback(JSON.parse(Foxtrick.decodeBase64(reponse)));
-								else if (cookies[where].isJSON && !cookies[where].isBase64)
-									callback(JSON.parse(reponse));
-								else
-									callback(reponse);
-							}
+					  function(reponse) {
+						if (callback) {
+							if (cookies[where].isJSON && cookies[where].isBase64)
+								callback(JSON.parse(Foxtrick.decodeBase64(reponse)));
+							else if (cookies[where].isJSON && !cookies[where].isBase64)
+								callback(JSON.parse(reponse));
+							else
+								callback(reponse);
 						}
-					);
+					});
 				}
 			}
 			else if (callback)
@@ -122,7 +122,8 @@ if (!Foxtrick) var Foxtrick = {};
 		Foxtrick._cookieSet = function(where, name, what, callback) {
 			var _set = function() {
 				set_scheduled = true;
-				chrome.cookies.get({ url: cookies[where].url, name: name}, function(cookie) {
+				chrome.cookies.get({ url: cookies[where].url, name: name},
+				  function(cookie) {
 					var oldValue = cookie ? cookie.value : null;
 					var new_cookie = makeCookie(where, name, oldValue, what);
 					chrome.cookies.set(new_cookie, function() {
@@ -174,18 +175,18 @@ if (!Foxtrick) var Foxtrick = {};
 				return;
 			} else if (Foxtrick.platform == 'Chrome') {
 				if (Foxtrick.chromeContext() == 'content') {
-					sandboxed.extension.sendRequest(
-					    { req: 'cookieGet', where: where, name: name },
-					    function(response) {
-							if (response && cookies[where].isJSON && !cookies[where].isBase64)
-								callback(JSON.parse(response));
-							else if (response && cookies[where].isJSON && cookies[where].isBase64)
-								callback(JSON.parse(Foxtrick.decodeBase64(response)));
-							else
-								callback(response);
-							return;
-						}
-					);
+					sandboxed.extension.sendRequest({
+							req: 'cookieGet', where: where, name: name
+						},
+					  function(response) {
+						if (response && cookies[where].isJSON && !cookies[where].isBase64)
+							callback(JSON.parse(response));
+						else if (response && cookies[where].isJSON && cookies[where].isBase64)
+							callback(JSON.parse(Foxtrick.decodeBase64(response)));
+						else
+							callback(response);
+						return;
+					});
 				}
 			}
 			else
@@ -195,7 +196,8 @@ if (!Foxtrick) var Foxtrick = {};
 		// chrome background
 		Foxtrick._cookieGet = function(where, name, callback) {
 			var _get = function() {
-				chrome.cookies.get({ url: cookies[where].url, name: name }, function(cookie) {
+				chrome.cookies.get({ url: cookies[where].url, name: name },
+				  function(cookie) {
 					if (cookie)
 						callback(cookie.value);
 					else

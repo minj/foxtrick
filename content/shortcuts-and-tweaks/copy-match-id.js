@@ -7,7 +7,7 @@
 
 Foxtrick.modules['CopyMatchID'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
- 	PAGES: ['matches', 'matchesArchive', 'matchesHistory',
+	PAGES: ['matches', 'matchesArchive', 'matchesHistory',
 					'matchesLatest', 'arena', 'matchLineup', 'match'],
 
 	run: function(doc) {
@@ -43,7 +43,7 @@ Foxtrick.modules['CopyMatchID'] = {
 				for (var j = 0; j < images.length; j++) {
 					if (images[j].className.search(new RegExp('matchLeague|matchFriendly' +
 					    '|matchMasters|matchCup|matchQualification|matchTournament')) == -1)
-					    continue;
+						continue;
 
 					var href = '';
 					var links = cells[i + 1].getElementsByTagName('a');

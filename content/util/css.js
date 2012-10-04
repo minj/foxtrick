@@ -82,10 +82,10 @@ Foxtrick.util.css.replaceExtensionDirectory = function(cssTextCollection, callba
 		if (cssTextCollection.search(InternalPathRegExp) != -1)
 			sandboxed.extension.sendRequest({
 					req: 'convertImages', cssText: cssTextCollection,
-			        type: id
-			   	},
-				function(data) {
-					callback(data.cssText);
+					type: id
+				},
+			  function(data) {
+				callback(data.cssText);
 			});
 		else callback(cssTextCollection);
 	}
@@ -266,18 +266,16 @@ Foxtrick.util.css.load_module_css = function(doc) {
 	}
 	else {
 		Foxtrick.util.css.collect_module_css();
-		sandboxed.extension.sendRequest(
-			{ req: 'getCss', files: Foxtrick.cssFiles },
-			function(data) {
-				if (Foxtrick.platform == 'Mobile' || Foxtrick.platform == 'Android') {
-					Foxtrick.current_css = data.cssText;
-					Foxtrick.util.css.load_css_permanent(Foxtrick.current_css);
-				} else {
-					var style = Foxtrick.util.inject.css(doc, data.cssText);
-					style.id = 'ft-module-css';
-				}
+		sandboxed.extension.sendRequest({ req: 'getCss', files: Foxtrick.cssFiles },
+		  function(data) {
+			if (Foxtrick.platform == 'Mobile' || Foxtrick.platform == 'Android') {
+				Foxtrick.current_css = data.cssText;
+				Foxtrick.util.css.load_css_permanent(Foxtrick.current_css);
+			} else {
+				var style = Foxtrick.util.inject.css(doc, data.cssText);
+				style.id = 'ft-module-css';
 			}
-		);
+		});
 	}
 };
 

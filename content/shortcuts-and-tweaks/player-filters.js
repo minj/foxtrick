@@ -283,40 +283,40 @@ Foxtrick.modules['PlayerFilters'] = {
 
 			var batchArgs = [];
 			Foxtrick.map(function(n) {
-				var args = {'teamid': n.currentClubId, 'file': 'teamdetails'};
+				var args = { 'teamid': n.currentClubId, 'file': 'teamdetails' };
 				batchArgs.push(args);
 			}, list);
 
-			Foxtrick.util.api.batchRetrieve(doc, batchArgs, {cache_lifetime: 'session' },
-				function(xmls) {
-					if (xmls) {
-						for (i = 0; i < xmls.length; ++i) {
-							var xml = xmls[i];
-							var tid = Number(xml.getElementsByTagName('TeamID')[0].textContent);
-							var IsBot = xml.getElementsByTagName('IsBot')[0].textContent;
+			Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: 'session' },
+			  function(xmls) {
+				if (xmls) {
+					for (i = 0; i < xmls.length; ++i) {
+						var xml = xmls[i];
+						var tid = Number(xml.getElementsByTagName('TeamID')[0].textContent);
+						var IsBot = xml.getElementsByTagName('IsBot')[0].textContent;
 
-							// update playerInfo
+						// update playerInfo
+						Foxtrick.map(function(n) {
+							var currentClubId = Foxtrick.util.id.findTeamId(n);
+							if (tid == currentClubId)
+								n.setAttribute('active', (IsBot != 'True'));
+						}, doc.getElementsByClassName('playerInfo'));
+
+						// update skilltable
+						var skilltable = doc.getElementById('ft_skilltable');
+						if (skilltable) {
 							Foxtrick.map(function(n) {
 								var currentClubId = Foxtrick.util.id.findTeamId(n);
 								if (tid == currentClubId)
 									n.setAttribute('active', (IsBot != 'True'));
-							}, doc.getElementsByClassName('playerInfo'));
-
-							// update skilltable
-							var skilltable = doc.getElementById('ft_skilltable');
-							if (skilltable) {
-								Foxtrick.map(function(n) {
-									var currentClubId = Foxtrick.util.id.findTeamId(n);
-									if (tid == currentClubId)
-										n.setAttribute('active', (IsBot != 'True'));
-								}, skilltable.rows);
-							}
+							}, skilltable.rows);
 						}
 					}
-					hasBotsMarked = true;
-					if (loading)
-						loading.parentNode.removeChild(loading);
-					changeListener();
+				}
+				hasBotsMarked = true;
+				if (loading)
+					loading.parentNode.removeChild(loading);
+				changeListener();
 			});
 		};
 

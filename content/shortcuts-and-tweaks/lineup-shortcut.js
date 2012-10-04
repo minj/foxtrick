@@ -7,7 +7,7 @@
 Foxtrick.modules['LineupShortcut'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['playerDetails', 'statsBestGames', 'matchLineup', 'youthPlayer'],
- 	OPTIONS: ['HighlightPlayer'],
+	OPTIONS: ['HighlightPlayer'],
 
 	run: function(doc) {
 		if (Foxtrick.isPage('playerDetails', doc))
@@ -30,7 +30,7 @@ Foxtrick.modules['LineupShortcut'] = {
 	_Analyze_Player_Page: function(doc) {
 		// get leagueId for ntName and u20Name
 		var leagueId = Foxtrick.Pages.Player.getNationalityId(doc);
-		var path = '//League[LeagueID=\'' + leagueId + '\']';
+		var path = "//League[LeagueID='" + leagueId + "']";
 		var obj = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml, path);
 		if (obj) {
 			var ntName = obj.getElementsByTagName('LeagueName').item(0).firstChild.nodeValue;

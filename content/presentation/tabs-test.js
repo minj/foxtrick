@@ -37,7 +37,7 @@ Foxtrick.modules['TabsTest'] = {
 		addEntry(list, 'Some of the new features are:');
 		addEntry(list, '- Autosave, you will not have to manually save after applying changes');
 		addEntry(list, '- Added a search bar, you can now search/filter for a specific entry');
-		addEntry(list, '- Changed the design a bit, but that\'s just a placeholder, ' +
+		addEntry(list, "- Changed the design a bit, but that's just a placeholder, " +
 		         'no idea how it will end up eventually');
 		addEntry(list, '');
 		addEntry(list, 'Please report when you find something odd.');

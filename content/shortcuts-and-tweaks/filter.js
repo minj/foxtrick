@@ -33,8 +33,8 @@ Foxtrick.modules['Filter'] = {
 		var FILTER_VAL = {
 			'statsTopPlayers':
 			{
-				toBeFiltered: {nodeName: 'table', index: 2, rowType: 'tr', cellType: 'td',
-					rowStartIndex: 1},
+				toBeFiltered: { nodeName: 'table', index: 2, rowType: 'tr', cellType: 'td',
+					rowStartIndex: 1 },
 				insertFilterWhere: {id: 'ctl00_ctl00_CPContent_CPMain_btnSearch', insertAfter: true},
 				filters: [
 					{ key: 'name', 		filtertype: null},
@@ -44,13 +44,16 @@ Foxtrick.modules['Filter'] = {
 					{ key: 'Form', 		filtertype: 'minmax', min: null, max: null,	type: 'number'},
 					{ key: 'XP', 		filtertype: 'minmax', min: null, max: null,	type: 'number'},
 					{ key: 'specialty',	filtertype: 'category', category: null, 	type: 'text'},
-					{ key: 'stars', 	filtertype: 'minmax', min: null, max: null,	type: 'image',
-						incPerClass: {starWhole: 1, starBig: 5, starHalf: 0.5}	}
+					{
+						key: 'stars', 	filtertype: 'minmax', min: null, max: null,	type: 'image',
+						incPerClass: { starWhole: 1, starBig: 5, starHalf: 0.5 }
+					}
 				]
 			}
 		};
 		var getFilters = function(page, callback) {
-			Foxtrick.sessionGet('filters.' + page, function(n) {
+			Foxtrick.sessionGet('filters.' + page,
+			  function(n) {
 				try {
 					if (n === undefined) {
 						// set default filters if not set
@@ -275,7 +278,8 @@ Foxtrick.modules['Filter'] = {
 		};
 		var filterResults = function(ev) {
 			var page = ev.target.getAttribute('page');
-			getFilters(page, function(filters) {
+			getFilters(page,
+			  function(filters) {
 				try {
 					var list = null;
 					if (FILTER_VAL[page].toBeFiltered.nodeName) {

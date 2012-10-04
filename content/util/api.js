@@ -20,7 +20,7 @@ Foxtrick.util.api = {
 	accessTokenUrl: 'https://chpp.hattrick.org/oauth/access_token.ashx',
 	resourceUrl: 'http://chpp.hattrick.org/chppxml.ashx',
 
-	// map of requested and unprocessed urls {serialized url: true}
+	// map of requested and unprocessed urls { serialized url: true }
 	queue: {},
 
 	authorized: function() {
@@ -156,7 +156,7 @@ Foxtrick.util.api = {
 			var more = doc.createElement('a');
 			more.textContent = Foxtrickl10n.getString('oauth.why');
 			more.href = 'javascript:void(0);';
-			Foxtrick.onClick(more, function() {FoxtrickPrefs.show('#faq=authorize');});
+			Foxtrick.onClick(more, function() { FoxtrickPrefs.show('#faq=authorize'); });
 			div.appendChild(more);
 		};
 		var showFinished = function(text) {
@@ -171,7 +171,8 @@ Foxtrick.util.api = {
 
 	// used to change expire date of xml_cache eg for to my_monitors nextmachtdate
 	setCacheLifetime: function(doc, parameters_str, cache_lifetime) {
-		Foxtrick.sessionGet('xml_cache.' + parameters_str, function(xml_cache) {
+		Foxtrick.sessionGet('xml_cache.' + parameters_str,
+		  function(xml_cache) {
 			Foxtrick.sessionSet('xml_cache.' + parameters_str,
 							{ xml_string: xml_cache.xml_string, cache_lifetime: cache_lifetime });
 		});
@@ -198,10 +199,10 @@ Foxtrick.util.api = {
 			var doc = ev.target.ownerDocument;
 			Foxtrick.sessionDeleteBranch('xml_cache');
 			doc.location.reload();
-		} catch (e) {Foxtrick.log(e);}
+		} catch (e) { Foxtrick.log(e); }
 	},
 
-	// options: {cache:'session' or 'default' or timestamp}
+	// options: { cache:'session' or 'default' or timestamp }
 	// session: take xml from this session. xml doesn't expire
 	// default: currently 1 hour, see below
 	// timestamp: time in milliseconds since 1970 when a new xml will get retrieved
@@ -221,7 +222,8 @@ Foxtrick.util.api = {
 		}
 
 		// check global_cache_lifetime first, aka server down
-		Foxtrick.sessionGet('xml_cache.global_cache_lifetime', function(recheckDate) {
+		Foxtrick.sessionGet('xml_cache.global_cache_lifetime',
+		  function(recheckDate) {
 			if (recheckDate && (Number(recheckDate) > HT_date)) {
 				Foxtrick.log('global_cache_lifetime set. recheck later: ',
 									'  recheckDate: ', (new Date(recheckDate)).toString(),
@@ -232,12 +234,14 @@ Foxtrick.util.api = {
 			}
 
 			var parameters_str = JSON.stringify(parameters);
-			Foxtrick.sessionGet('xml_cache.' + parameters_str, function(xml_cache) {
-				if (xml_cache) Foxtrick.log('ApiProxy: options: ', options,
-										'  cache_lifetime: ', (options.cache_lifetime == 'session')
-										? 'session' : (new Date(xml_cache.cache_lifetime))
-										.toString(),
-										'  current timestamp: ', (new Date(HT_date)).toString());
+			Foxtrick.sessionGet('xml_cache.' + parameters_str,
+			  function(xml_cache) {
+				if (xml_cache)
+					Foxtrick.log('ApiProxy: options: ', options,
+								'  cache_lifetime: ', (options.cache_lifetime == 'session')
+								? 'session' : (new Date(xml_cache.cache_lifetime))
+								.toString(),
+								'  current timestamp: ', (new Date(HT_date)).toString());
 
 				// check file cache next
 				if (xml_cache && xml_cache.xml_string && options

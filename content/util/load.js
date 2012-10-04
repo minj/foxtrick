@@ -16,11 +16,11 @@ if (!Foxtrick.util.load)
  * failure status can be registered.
  *
  * Usage:
-   Foxtrick.__load(url)('success', function(responseText) {
-       ...
-   })('failure', function(statusCode) {
-       ...
-   });
+	Foxtrick.__load(url)('success', function(responseText) {
+		...
+	})('failure', function(statusCode) {
+		...
+	});
  *
  * @author ryanli
  */
@@ -34,15 +34,14 @@ Foxtrick.util.load.get = function(url, params) {
 
 	if (Foxtrick.chromeContext() == 'content') {
 		var loadImpl = function(cb) {
-			sandboxed.extension.sendRequest({req: 'getXml', url: url, params: params},
-				function(response) {
-					cb({
-						code: response.status,
-						status: (response.status < 400) ? 'success' : 'failure',
-						text: response.data
-					});
-				}
-			);
+			sandboxed.extension.sendRequest({ req: 'getXml', url: url, params: params },
+			  function(response) {
+				cb({
+					code: response.status,
+					status: (response.status < 400) ? 'success' : 'failure',
+					text: response.data
+				});
+			});
 		};
 	}
 	else {
@@ -143,16 +142,15 @@ Foxtrick.util.load.get = function(url, params) {
 Foxtrick.util.load.async = function(url, callback, params) {
 	if (Foxtrick.chromeContext() == 'content') {
 		// background script for xml requests
-		sandboxed.extension.sendRequest({req: 'getXml', url: url, params: params},
-			function(response) {
-				try {
-					callback(response.data, response.status);
-				}
-				catch (e) {
-					Foxtrick.log('Uncaught callback error: - url: ', url, ': ', e);
-				}
+		sandboxed.extension.sendRequest({ req: 'getXml', url: url, params: params },
+		  function(response) {
+			try {
+				callback(response.data, response.status);
 			}
-		);
+			catch (e) {
+				Foxtrick.log('Uncaught callback error: - url: ', url, ': ', e);
+			}
+		});
 	}
 	else {
 		var req = new window.XMLHttpRequest();

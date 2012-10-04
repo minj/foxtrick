@@ -182,12 +182,14 @@ Foxtrick.modules['CopyYouth'] = {
 			//Foxtrick.sessionSet('YouthClub.sendTrainingReport', true);
 
 			Foxtrick.localGet('YouthClub.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId +
-			                  '.isUser', function(isHYUser) {
+			                  '.isUser',
+			  function(isHYUser) {
 				if (isHYUser) {
 					//if reading first, send to HY
 					var mainBody = doc.getElementById('mainBody');
 					var matchid = Foxtrick.util.id.findMatchId(mainBody);
-					Foxtrick.sessionGet('YouthClub.sendTrainingReport', function(value) {
+					Foxtrick.sessionGet('YouthClub.sendTrainingReport',
+					  function(value) {
 						if (value) {
 							Foxtrick.log('Sending to HY, YouthClub.sendTrainingReport', value);
 							Foxtrick.sessionSet('YouthClub.sendTrainingReport', false);
@@ -322,9 +324,9 @@ Foxtrick.modules['CopyYouth'] = {
 					//only when clicking the reject btn
 					if (sendHTY && typeof(sendHTY) == 'boolean') {
 						//var is set in youthtwins
-						Foxtrick.localGet('YouthClub.' +
-						                  Foxtrick.modules['Core'].getSelfTeamInfo().teamId +
-						                  '.isUser', function(isHYUser) {
+						Foxtrick.localGet('YouthClub.' + Foxtrick.modules['Core']
+						                  .getSelfTeamInfo().teamId + '.isUser',
+						  function(isHYUser) {
 							if (isHYUser) {
 								Foxtrick.log('HY user, sending rejected call to HY');
 								sendScoutCallToHY();
@@ -372,13 +374,13 @@ Foxtrick.modules['CopyYouth'] = {
 						//setting cookie when player was pulled
 						var acceptButton = alertdiv.getElementsByTagName('input')[0];
 						Foxtrick.onClick(rejectButton, function() {
-							Foxtrick.cookieSet('for_hty', {'pull': true}) });
+							Foxtrick.cookieSet('for_hty', { 'pull': true }) });
 
 						// var fakeAccept = doc.createElement('a');
 						// fakeAccept.textContent = 'Fake accept';
 						// acceptButton.parentNode.appendChild(fakeAccept);
 						// Foxtrick.onClick(fakeAccept, function(){
-						//	Foxtrick.cookieSet('for_hty', {'pull':true}) });
+						//	Foxtrick.cookieSet('for_hty', { 'pull':true }) });
 					}
 				}
 				else if (alertdiv.parentNode.getElementsByTagName('a')[0] == null

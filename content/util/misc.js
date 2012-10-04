@@ -142,7 +142,7 @@ Foxtrick.playSound = function(url, doc) {
 Foxtrick.copyStringToClipboard = function(string) {
 	if (Foxtrick.arch === 'Gecko') {
 		if (Foxtrick.chromeContext() === 'content') {
-			sandboxed.extension.sendRequest({req: 'clipboard', content: string});
+			sandboxed.extension.sendRequest({ req: 'clipboard', content: string });
 		}
 		else {
 			var gClipboardHelper = Components
@@ -156,7 +156,7 @@ Foxtrick.copyStringToClipboard = function(string) {
 	}
 	else if (Foxtrick.arch === 'Sandboxed') {
 		if (Foxtrick.chromeContext() == 'content')
-			sandboxed.extension.sendRequest({req: 'clipboard', content: string});
+			sandboxed.extension.sendRequest({ req: 'clipboard', content: string });
 		else {
 			if (Foxtrick.platform == 'Chrome')
 				Foxtrick.loader.background.copyToClipBoard(string);
@@ -176,7 +176,7 @@ Foxtrick.newTab = function(url) {
 	else if (Foxtrick.platform == 'Firefox')
 		window.gBrowser.selectedTab = window.gBrowser.addTab(url);
 	else if (Foxtrick.platform == 'Mobile')
-		Browser.addTab(url, true, null, {'getAttention': true});
+		Browser.addTab(url, true, null, { 'getAttention': true });
 	else if (Foxtrick.platform == 'Android')
 		BrowserApp.addTab(url);
 };
@@ -437,11 +437,11 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 			}
 		}
 	}
-	catch (e) {Foxtrick.log(e);}
+	catch (e) { Foxtrick.log(e); }
 };
 
 Foxtrick.encodeBase64 = function(str) {
-	 return window.btoa(unescape(encodeURIComponent(str)));
+	return window.btoa(unescape(encodeURIComponent(str)));
 };
 
 Foxtrick.decodeBase64 = function(str) {
