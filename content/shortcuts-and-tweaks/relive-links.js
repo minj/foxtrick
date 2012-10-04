@@ -62,6 +62,9 @@ Foxtrick.modules['ReLiveLinks'] = {
 			scoreIdx = 1;
 			rows = doc.querySelectorAll('table.indent.left.thin > tbody > tr');
 
+			if (!rows)
+				return;
+
 			img = doc.createDocumentFragment();
 			Foxtrick.addImage(doc, img, { src: Foxtrick.InternalPath +
 				'resources/img/relive-small.png', alt: 'HT Re-Live', title: 'HT Re-Live' });
@@ -70,7 +73,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 			addAll.src = '/Img/Icons/transparent.gif';
 			addAll.className = 'matchHTReLive';
 			addAll.alt = addAll.title =
-				doc.getElementById('ctl00_ctl00_CPContent_CPMain_imgAddRound').alt;
+				Foxtrickl10n.getString('ReLiveLinks.addRound');
 
 /*			var addAll = doc.createDocumentFragment();
 			Foxtrick.addImage(doc, addAll, {
@@ -93,7 +96,9 @@ Foxtrick.modules['ReLiveLinks'] = {
 /*					var header = Foxtrick.createFeaturedElement(doc, this, 'th');
 					header.appendChild(addAllSpan);
 					row.appendChild(header);*/
-					row.cells[0].appendChild(addAllSpan);
+					if (/\d[^\d]+\d/.test(rows[1].cells[1].textContent))
+						// don't add before the first round of the season
+						row.cells[0].appendChild(addAllSpan);
 				}
 			}
 		}
