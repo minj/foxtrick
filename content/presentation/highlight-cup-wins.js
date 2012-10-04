@@ -19,6 +19,8 @@ Foxtrick.modules["HighlightCupwins"]={
 
 		var mainBody=doc.getElementById('mainBody');
 		var table= mainBody.getElementsByTagName('table')[0];
+		if (!table)
+			return;
 
 		// add a column to show the № of matches
 		var header = table.getElementsByTagName("tr")[0];
