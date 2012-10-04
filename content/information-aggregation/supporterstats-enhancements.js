@@ -33,9 +33,15 @@ Foxtrick.modules['SupporterStatsEnhancements'] = {
 			var playerNodes = xml.getElementsByTagName('Player');
 
 			var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
-			var th = doc.createElement('th');
-			th.textContent = Foxtrickl10n.getString('CurrentSquad');
-			Foxtrick.onClick(th, FoxtrickTableSort.clickListener);
+			var th = Foxtrick
+				.createFeaturedElement(doc, Foxtrick.modules['SupporterStatsEnhancements'], 'th');
+			Foxtrick.addClass(th, 'center');
+			Foxtrick.addImage(doc, th, {
+				src: Foxtrick.InternalPath + 'resources/img/formation.png',
+				alt: Foxtrickl10n.getString('CurrentSquad'),
+				title: Foxtrickl10n.getString('CurrentSquad')
+			});
+
 			table.getElementsByTagName('tr')[0].appendChild(th);
 
 			var as = doc.getElementById('mainBody').getElementsByTagName('a');
@@ -52,10 +58,11 @@ Foxtrick.modules['SupporterStatsEnhancements'] = {
 							break;
 						}
 					}
-					var td = doc.createElement('td');
+					var td = Foxtrick
+						.insertFeaturedCell(as[i].parentNode.parentNode,
+						                    Foxtrick.modules['SupporterStatsEnhancements'], -1);
 					td.className = 'center';
 					if (inSquad) td.textContent = 'x';
-					as[i].parentNode.parentNode.appendChild(td);
 				}
 			}
 		});
