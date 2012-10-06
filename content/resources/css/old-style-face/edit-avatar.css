@@ -1,3 +1,4 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
 a[id^="ctl00_ctl00_CPContent_CPMain_repHairColors"] img,
 a[id^="ctl00_ctl00_CPContent_CPMain_repFaceTones"] img
 {
@@ -91,4 +92,6 @@ img[src="/Img/Avatar/colors/hc_g.png"]
 img[src="/Img/Avatar/colors/hc_i.png"]
 {
 	background-image: url("chrome://foxtrick/content/resources/img/old-style-face/colors/hc_i.png");
+}
+
 }

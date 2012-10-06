@@ -1,3 +1,4 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
 ﻿/*****************************************HAIRS-1*******************************************/
 img[src="/Img/Avatar/hair/f4h1a.png"],
 img[src="/Img/Avatar/hair/f5h1a.png"],
@@ -4809,4 +4810,6 @@ img[src="/Img/Avatar/hair/y_f8h15k.png"]
 display: inline;
 width: 47px !important;
 background-image: url("chrome://foxtrick/content/resources/img/old-style-face/hair/f2h15f.png");
+}
+
 }
