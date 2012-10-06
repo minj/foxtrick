@@ -231,6 +231,7 @@
 		],
 		"matches" : [
 			"*://*.hattrick.org/*",
+			"*://*.hattrick.fm/*",
 			"*://*.hattrick.ws/*",
 			"*://*.hattrick.name/*",
 			"*://*.hat-trick.net/*",

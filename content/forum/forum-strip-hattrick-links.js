@@ -41,7 +41,7 @@ Foxtrick.modules['ForumStripHattrickLinks'] = {
 			// add submit listener
 			Foxtrick.onClick(target, function() {
 				var urls = [
-					{ reg: /\[link=.+(www|www\d+|stage)\.hattrick\.(org|ws|interia\.pl)(.*?)\]/gi,
+					{ reg: /\[link=.+(www|www\d+|stage)\.hattrick\.(org|fm|ws|interia\.pl)(.*?)\]/gi,
 						repl: '[link=$3]' },
 					{ reg: /\[link=safari-extension:\/\/www.ht-foxtrick.com-8J4UNYVFR5\/2f738eb7\/content\//g,
 						repl: '[link=foxtrick://' },

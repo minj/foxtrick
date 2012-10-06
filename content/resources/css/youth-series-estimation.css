@@ -1,11 +1,11 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
 
 #ctl00_ctl00_CPContent_CPMain_grdYouthSeries  td
 {
 	white-space:nowrap;
 }
 
-#ctl00_ctl00_CPContent_CPMain_grdYouthSeries  .date 
+#ctl00_ctl00_CPContent_CPMain_grdYouthSeries  .date
 {
 	display:block;
 }

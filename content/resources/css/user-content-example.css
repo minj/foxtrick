@@ -1,4 +1,4 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
 /* user-content-example.css
  *
  * This file is a list of CSS statements for styling FoxTrick that satisfies
@@ -311,9 +311,9 @@ div#ft-full-level3 span,
 div#ft-full-level4 span,
 div#ft-full-level5 span,
 div#ft-full-level6 span  {
-background: none repeat scroll 0 0 white !important; 
+background: none repeat scroll 0 0 white !important;
 font-weight: bold !important;
-}  
+}
 
 /* friendly pool colors */
 .ft-home {background-color:#FC0 !important;} /* played home */

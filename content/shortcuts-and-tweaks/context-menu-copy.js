@@ -52,6 +52,7 @@ if (Foxtrick.platform != 'Opera' && Foxtrick.platform != 'Mobile' && Foxtrick.pl
 				  function(request, sender, sendResponse) {
 					var documentUrlPatterns = [
 						'*://*.hattrick.org/*',
+						"*://*.hattrick.fm/*",
 						'*://*.hattrick.ws/*',
 						'*://*.hattrick.name/*',
 						'*://*.hat-trick.net/*',

@@ -9,6 +9,7 @@
 	<icon src="skin/icon-64.png" width="64" height="64"/>
 	<content src="background.html" type="text/html" encoding="utf-8"/>
 	<access origin="http://*.hattrick.org" subdomains="true"/>
+	<access origin="http://*.hattrick.fm" subdomains="true"/>
 	<access origin="https://chpp.hattrick.org" subdomains="true"/>
 	<access origin="http://chpp.hattrick.org" subdomains="true"/>
 	<access origin="http://*.hattrick.ws" subdomains="true"/>

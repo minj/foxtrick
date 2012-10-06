@@ -1,22 +1,22 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
 
 div[class^="ad_"] {display: none !important;}
 .ft-mobile #ctl00_ctl00_pnlMobileLink {display:none !important;}
 
-/* width, float */  
+/* width, float */
 .hattrick.ft-mobile , .hattrickNoSupporter.ft-mobile  {position:relative;}
 .ft-mobile .mainWrapperWide, .ft-mobile .mainWrapperRegular, .ft-mobile .mainWrapperConf, .ft-mobile .mainWrapperFull {float:none !important; background-color:white}
 .ft-mobile .mainRegular, .ft-mobile .mainWide, .ft-mobile .mainFull, .ft-mobile .mainConf, .ft-mobile .mainText2ColumnWrapper {width:auto !important;}
 .ft-mobile #top, .ft-mobile #footer {width: auto !important;}
 .hattrick.ft-mobile , .hattrickNoSupporter.ft-mobile , .ft-mobile #page,
-.ft-mobile .mainWrapperRegular, .ft-mobile .mainWrapperConf, .ft-mobile .main 
+.ft-mobile .mainWrapperRegular, .ft-mobile .mainWrapperConf, .ft-mobile .main
 {width:auto !important; float: none !important;}
 
 /* some random width i found */
 .ft-mobile .quickFacts, .ft-mobile .insertBody,
 .ft-mobile .notebook, .ft-mobile textarea.large,
 .ft-mobile a.featuredShopItem, .ft-mobile div.featuredShopItemText,
-.ft-mobile #fbErrorBox, .ft-mobile .fbSendBox , .ft-mobile .sendBoxHeader 
+.ft-mobile #fbErrorBox, .ft-mobile .fbSendBox , .ft-mobile .sendBoxHeader
 /*textarea.medium{width:400px;height:100px;}
 .forumScrollContent {position:relative;width:501px;}
 div.scEditSC .txtb{width:300px;}
@@ -28,10 +28,10 @@ div.scEditSC .txtb{width:300px;}
 
  /* limit images */
  .ft-mobile #content img { max-width: 250px;}
- 
+
  /* kicking */
 .ft-mobile #ctl00_ctl00_CPContent_CPMain_radWeeklyActivityChart {display:none;}
- 
+
 /* header */
 .ft-mobile #ticker {position: relative !important; top: 0px !important; left: auto !important; width: auto !important; float: left;}
 .ft-mobile #shortcutsNoSupporter ~ a[target="_blank"][href^="http"] {display:none}
@@ -47,7 +47,7 @@ div.scEditSC .txtb{width:300px;}
 	right: -10px !important;
 	left: -10px !important;
 	height: auto !important;
-	width: 130px !important;	
+	width: 130px !important;
 	font-size: 1.1em !important;
 	bottom: 24px !important;
 	overflow: hidden;
@@ -60,7 +60,7 @@ div.scEditSC .txtb{width:300px;}
 	padding: 5px !important;
 	float: none !important;
 	height: auto !important;
-	line-height: inherit !important;	
+	line-height: inherit !important;
 }
 /* kick stage link to have same menu size */
 .ft-mobile #menu a[href^="/Forum/Overview.aspx"] { display:none !important;}
@@ -76,7 +76,7 @@ div.scEditSC .txtb{width:300px;}
 	-webkit-border-radius: 0 0 6px 6px;
 	-moz-border-radius: 0 0 6px 6px;
 	border-radius: 0 0 6px 6px;
-	box-shadow: 0 -3px 
+	box-shadow: 0 -3px
 	rgba(0, 0, 0, .2) inset;
 	-moz-box-shadow: 0 -3px rgba(0,0,0,.2) inset;
 	-webkit-box-shadow: 0 -3px rgba(0, 0, 0, .2) inset;
@@ -115,9 +115,9 @@ div.scEditSC .txtb{width:300px;}
 
 
 .ft-mobile #page, .ft-mobile #footer {
-	padding: 0px !important; 
-	position:relative; 
-	top:0px; 
+	padding: 0px !important;
+	position:relative;
+	top:0px;
 }
 
 /* transitions left, right, top */
@@ -135,26 +135,26 @@ div.scEditSC .txtb{width:300px;}
 }
 .ft-mobile #header.out {top: -300px; height: 0px !important; padding-bottom: 0px !important; margin-bottom: -2px;}
 
-.ft-mobile #sidebar, .ft-mobile .subMenu, .ft-mobile .subMenuConf  
+.ft-mobile #sidebar, .ft-mobile .subMenu, .ft-mobile .subMenuConf
 {
 	z-index: 10010;
-	position:absolute; 
-	background-color:white; 
-	border: 2px solid #849D84; 
+	position:absolute;
+	background-color:white;
+	border: 2px solid #849D84;
 	padding: 2px;
 
  	-moz-perspective: 300;
  	-webkit-perspective: 300;
  	perspective: 300;
- 	
+
 	-moz-transition:1s -moz-transform ease 0s, 1s opacity ease 0s;
 	-webkit-transition: 1s -webkit-transform ease 0s, 1s opacity ease 0s;
 	transition: 1s transform ease 0s, 1s opacity ease 0s;
-	
-	-moz-transform: rotateX(0deg);	
-	-webkit-transform: rotateX(0deg);	
-	transform: rotateX(0deg);	
-	
+
+	-moz-transform: rotateX(0deg);
+	-webkit-transform: rotateX(0deg);
+	transform: rotateX(0deg);
+
 	-moz-backface-visibility: hidden;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
@@ -168,7 +168,7 @@ div.scEditSC .txtb{width:300px;}
 	left: 0px;
 	top: 0px;
 }
-.ft-mobile .subMenu.out { 
+.ft-mobile .subMenu.out {
 	opacity: 0;
 	-moz-transform: rotateY(180deg);
 	-webkit-transform: rotateY(180deg);
@@ -192,7 +192,7 @@ div.scEditSC .txtb{width:300px;}
 	background-color:white;
 }
 .ft-mobile #content {
-	margin-bottom:0px !important; 
+	margin-bottom:0px !important;
 	padding-top:0px !important;
 	border-right: solid 1px #DDD;
 	border-left: solid 1px #DDD;
@@ -208,7 +208,7 @@ div.scEditSC .txtb{width:300px;}
 
 /* general */
 .ft-mobile .nowrap {white-space:normal !important; word-wrap:break-word;}
-/* tables */ 
+/* tables */
 .ft-mobile table, .ft-mobile table td, .ft-mobile table td div {white-space:normal !important; word-wrap:break-word;}
 
 /* forum read */
@@ -236,5 +236,5 @@ html .ft-mobile  table.ft_league_matches {margin-right: 0px !important;}
 .ft-mobile .eventItem > .eventItemText, .ft-mobile .pmSpeechOuterContainer
 .ft-mobile .pmNewSpeechOuterContainer
  {width: auto !important;}
- 
+
 }

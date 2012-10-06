@@ -1,4 +1,4 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
 
 html[data-theme='simple'] .main, html[data-theme='simple'] #sidebar, html[data-theme='simple'] #header, html[data-theme='simple'] #bottom
 	{display:none !important}
@@ -12,6 +12,6 @@ html[data-fennec-theme='default'][data-theme='simple'] .hattrick,
 html[data-fennec-theme='default'][data-theme='simple'] .hattrickNoSupporter,
 html[data-fennec-theme='default'][data-theme='simple'] #page
 	{width:125px!important}
-	
+
 }
 

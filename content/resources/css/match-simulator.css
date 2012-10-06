@@ -1,4 +1,4 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
 
 /* our ratings as number */
 .overlayRatingsNum {
@@ -35,20 +35,20 @@
 
 /* other teams tactics level */
 #tacticLevelLabelOther {
-	position: absolute; 
+	position: absolute;
 	top: 470px;
-	background-color: #fff; 
-	padding: 3px; 
-	border-radius: 7px; 
+	background-color: #fff;
+	padding: 3px;
+	border-radius: 7px;
 	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px; 
+	-webkit-border-radius: 7px;
 	border: 2px solid #79A777;
 }
 html[dir="rtl"] #tacticLevelLabelOther {
-	right: 20px; 
+	right: 20px;
 }
 html[dir="ltr"] #tacticLevelLabelOther {
-	right: 20px; 
+	right: 20px;
 }
 
 /* match icons */
@@ -90,7 +90,7 @@ html[data-theme="standard"] #ft-overlayBottom {
 #ft_simulation_ratings {
 	margin: 4px 40px;
 	padding: 10px 20px;
-}	
+}
 #overlayHTMSCurrent {
 	margin: 4px 40px;
 	padding: 10px 20px;
@@ -98,7 +98,7 @@ html[data-theme="standard"] #ft-overlayBottom {
 #overlayHTMSPrevious {
 	margin: 4px 40px;
 	padding: 10px 20px;
-	background-color:#eee; 
+	background-color:#eee;
 }
 
 /* adjustings hts rating comparison display*/
@@ -158,8 +158,8 @@ html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
 #ft_matchsimulator_options div{
 	float:left;
 	padding-left: 20px;
-}	
-		
+}
+
 /* field overlay display options */
 #fieldOverlay.displayBelow {
 	height: 520px;
@@ -185,17 +185,17 @@ html[dir="ltr"] #fieldOverlay.displayRight {
 
 
 #ft-matchSelect {
-	float: left; 
-	position: absolute; 
-	bottom: 0px; 
+	float: left;
+	position: absolute;
+	bottom: 0px;
 	left: 80px;
 }
 
 #addMatchDiv {
-	float: left; 
+	float: left;
 	left: 80px;
-	position: absolute; 
-	bottom: 0px; 
+	position: absolute;
+	bottom: 0px;
 }
 
 #addMatchhomeAwayLabel, #addMatchisHTOIntegrated, #addMatchButton {

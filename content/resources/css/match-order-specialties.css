@@ -1,4 +1,4 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
 
 /* increase height of playerboxes for cards+specialties */
 #orders .position, #orders .position .player, .player.ui-draggable-dragging {
@@ -33,11 +33,11 @@ html[dir="ltr"] #orders #field .player .cards_health  img.specialty {
 	margin: 0 2px;
 }
 html[dir="rtl"] #field #list img.specialty {
-	float:left; 
+	float:left;
 	margin: 0 2px;
 }
 html[dir="ltr"] #field #list img.specialty {
-	float:right; 
+	float:right;
 	margin: 0 2px;
 }
 
@@ -72,12 +72,12 @@ html[dir="ltr"] #field #list img.specialty {
 .box_replaced  .ft-specialty, .box_highlighted  .ft-specialty, .box_lineup  .ft-specialty, .box_substitute  .ft-specialty {
 	top: 25px;
 	position: relative;
-	left: 28px;	
+	left: 28px;
 }
 .box_replaced  .smallFaceCardOuter+.ft-specialty, .box_highlighted  .smallFaceCardOuter+.ft-specialty, .box_lineup  .smallFaceCardOuter+.ft-specialty, .box_substitute  .smallFaceCardOuter+.ft-specialty {
 	top: -6px;
 	position: relative;
-	left: 28px;	
+	left: 28px;
 }
 
 .box_replaced.ft-specialty .name, .box_highlighted.ft-specialty .name, .box_lineup.ft-specialty .name, .box_substitute.ft-specialty .name{

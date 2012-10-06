@@ -1,4 +1,4 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
 
 .ft-popup-span {
 	position: relative;
@@ -24,7 +24,7 @@ html[data-theme="standard"] div.ft-htev-popup {
 	font: normal .8em/1.5em Ariel, Helvetica, sans-serif;
 	background-color: #EAEAEA;
 	color: #666;
-} 
+}
 html[data-theme="simple"] div.ft-htev-popup {
 	display: none;
 	position: absolute;
@@ -38,7 +38,7 @@ html[data-theme="simple"] div.ft-htev-popup {
 	padding: 2px;
 	font: normal .8em/1.5em Ariel, Helvetica, sans-serif;
 	background-color: #EAEAEA;
-	color: #666;	
+	color: #666;
 }
 html[data-theme="standard"] .ft-htev-nav {
 	margin: 0px;
@@ -46,7 +46,7 @@ html[data-theme="standard"] .ft-htev-nav {
 	border-radius: 4px;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
-    -khtml-border-radius: 4px;	
+    -khtml-border-radius: 4px;
 	-webkit-box-shadow: 0px 3px 3px #acacac;
 	-moz-box-shadow: 0px 3px 3px #acacac;
 	box-shadow: 0 3px 3px #acacac;
@@ -76,7 +76,7 @@ html[data-theme="standard"] .ft-htev-nav li:first-child {
 html[data-theme="simple"] .ft-htev-nav li:first-child {
     border-left:none;
 }
-.ft-htev-nav li:last-child {  
+.ft-htev-nav li:last-child {
     border-right:none;
 }
 html[data-theme="standard"] .ft-htev-nav ul {
@@ -98,12 +98,12 @@ html[data-theme="simple"] .ft-htev-nav ul {
 	position: relative;
 	font-size: 11px;
 	color: white;
-	border-right: 1px solid #5d5d5d; 
+	border-right: 1px solid #5d5d5d;
 	border-left: 1px solid #929292;
 	height: 26px;
 }
 .ft-htev-nav a {
-	color: white !important; 
+	color: white !important;
 	text-decoration: none;
 	display: block;
 	padding:  4px 30px;
