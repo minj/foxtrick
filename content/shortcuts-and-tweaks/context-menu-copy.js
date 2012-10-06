@@ -47,6 +47,7 @@ if (Foxtrick.platform != 'Opera' && Foxtrick.platform != 'Mobile' && Foxtrick.pl
 				chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 					var documentUrlPatterns = [
 						"*://*.hattrick.org/*",
+						"*://*.hattrick.fm/*",
 						"*://*.hattrick.ws/*",
 						"*://*.hattrick.name/*",
 						"*://*.hat-trick.net/*",

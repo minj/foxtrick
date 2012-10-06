@@ -277,6 +277,7 @@ Foxtrick.isHtUrl = function(url) {
 		new RegExp("^http://www\\d{2}\.hattrick\.ws(/|$)", "i"),
 		new RegExp("^http://www\\d{2}\.hat-trick\.net(/|$)", "i"),
 		new RegExp("^http://www\\d{2}\.hattrick\.name(/|$)", "i"),
+		new RegExp('^http://www\\d{2}\.hattrick\.fm(/|$)', 'i'),
 	];
 	return Foxtrick.any(function(re) { return url.match(re) != null; }, htMatches);
 }

@@ -1,11 +1,11 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
 
-#aspnetForm[action*="Read.aspx"] div.mainConf div.cfInnerWrapper, 
+#aspnetForm[action*="Read.aspx"] div.mainConf div.cfInnerWrapper,
 #aspnetForm[action*="Read.aspx"] div.mainConf div.cfInnerWrapperGreen,
-#aspnetForm[action*="Read.aspx"] div.mainConf div.cfInnerWrapperRed 
+#aspnetForm[action*="Read.aspx"] div.mainConf div.cfInnerWrapperRed
  {margin-top:20px;}
 #aspnetForm[action*="Read.aspx"].cfUser,
-#aspnetForm[action*="Read.aspx"] .cfMessage 
+#aspnetForm[action*="Read.aspx"] .cfMessage
 {margin-top:-20px !important;}
 
 

@@ -1,4 +1,4 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
 .ft-match-order-clone-button {
 	border: 2px solid black;
 	border-radius: 7px;
@@ -9,7 +9,7 @@
 	font-weight: 900;
 	font-size: 0.8em;
 	cursor: pointer;
-	padding: 3px 5px;	
+	padding: 3px 5px;
 	background: #48f;
 }
 html[dir="ltr"] .ft-match-order-clone-1 {

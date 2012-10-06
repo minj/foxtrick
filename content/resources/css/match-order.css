@@ -1,16 +1,16 @@
-@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
 
 #ft_swap_positions, #ft_fill_penalty_takers, #ft_clear_penalty_takers {
-	background-color: #3f7137; 
-	cursor: pointer; 
-	padding: 6px; 
-	color: White; 
-	text-decoration: underline; 
+	background-color: #3f7137;
+	cursor: pointer;
+	padding: 6px;
+	color: White;
+	text-decoration: underline;
 }
 #ft_swap_positions{
 	clear: left;
 	float: left;
-	margin-left: 20px; 
+	margin-left: 20px;
 	position: relative;
 	top: 255px;
 }

@@ -38,7 +38,7 @@ Foxtrick.modules["ForumStripHattrickLinks"]={
 			// add submit listener
 			Foxtrick.onClick(target, function() {
 				var urls = [
-					{reg:/\[link=.+(www|www\d+|stage)\.hattrick\.(org|ws|interia\.pl)(.*?)\]/gi, repl: "[link=$3]"},
+					{reg:/\[link=.+(www|www\d+|stage)\.hattrick\.(org|fm|ws|interia\.pl)(.*?)\]/gi, repl: "[link=$3]"},
 					{reg:/\[link=safari-extension:\/\/www.ht-foxtrick.com-8J4UNYVFR5\/2f738eb7\/content\//g, repl: '[link=foxtrick://'},	// safari nightly
 					{reg:/\[link=chrome-extension:\/\/hpmklgcdpljkcojiknpdnjigpidkdcan\/content\//g, repl: '[link=foxtrick://'},			// dev chrome
 					{reg:/\[link=chrome-extension:\/\/bpfbbngccefbbndginomofgpagkjckik\/content\//g, repl: '[link=foxtrick://'},			// official chrome
