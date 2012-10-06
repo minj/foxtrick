@@ -1,3 +1,4 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
 /* make space for long skills names */
 div.playerInfo table.thin  td {padding-right: 5px !important;}
 
@@ -21,4 +22,6 @@ a.ft-skill{
 a.ft-skill-dont-touch{
 	color: #fff !important;
 	background-color: inherit !important;
+}
+
 }

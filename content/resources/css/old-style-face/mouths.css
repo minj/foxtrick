@@ -1,3 +1,4 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
 /*****************************************MOUTHS(+goatees")********************************************/
 img[src="/Img/Avatar/mouths/m1a.png"],
 img[src="/Img/Avatar/mouths/m1ag.png"],
@@ -340,4 +341,6 @@ img[src="/Img/Avatar/mouths/y_m39c.png"]
 {
 display: inline;
 background-image: url("chrome://foxtrick/content/resources/img/old-style-face/mouths/m2c.png");
+}
+
 }

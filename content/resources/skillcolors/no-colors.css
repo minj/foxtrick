@@ -1,3 +1,4 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name) {
 /* CSS Document  by baumanns */
 
 a[href*="#skill"], a[href*="#FanMood"], a[href*="#FanMatch"], a[href*="#FanSeason"], a[href*="#SkillShort"], a[href*="#gentleness"], a[href*="#aggressiveness"], a[href*="#honesty"], a[href*="#teamskills"], a[href*="#sponsors"], a[href*="#morale"], a[href*="#confidence"]
@@ -5,3 +6,5 @@ a[href*="#skill"], a[href*="#FanMood"], a[href*="#FanMatch"], a[href*="#FanSeaso
 
 a:hover[href*="#skill"], a:hover[href*="#FanMood"], a:hover[href*="#FanMatch"], a:hover[href*="#FanSeason"], a:hover[href*="#SkillShort"], a:hover[href*="#gentleness"], a:hover[href*="#aggressiveness"], a:hover[href*="#honesty"], a:hover[href*="#teamskills"], a:hover[href*="#sponsors"], a:hover[href*="#morale"], a:hover[href*="#confidence"]
 {background: #fff !important; color: #000 !important; text-decoration: none !important;}
+
+}
