@@ -75,9 +75,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var addSpecialtiesByTeamId = function(teamid, players) {
 			Foxtrick.Pages.Players.getPlayerList(doc,
 			  function(playerInfo) {
-				for (var i = 0; i < homePlayerLinks.length; i++) {
-					if (typeof players[i] == 'undefined')
-						continue; // some weirdshit happening here
+				for (var i = 0; i < players.length; i++) {
 					var id = Number(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerInfo, id);
 					addSpecialty(players[i].parentNode.parentNode, player);
@@ -127,7 +125,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		doc.getElementById('playersField').appendChild(displayHome);
 		doc.getElementById('playersField').appendChild(displayDiff);
 		doc.getElementById('playersField').appendChild(displayAway);
-		Foxtrick.log('running');
 	},
 
 	//adds a stamina sumary to the page
