@@ -9,7 +9,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['match'],
 	OPTIONS: ['DisplayTeamNameOnField', 'ShowSpecialties', 'StarCounter', 'StaminaCounter'],
-	CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-teaks.css',
+	CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-tweaks.css',
 	run: function(doc) {
 
 	},

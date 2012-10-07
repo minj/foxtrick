@@ -39,8 +39,8 @@ html[dir="ltr"] .ft-match-lineup-tweaks-teamname-away {
 }
 
 .ft-match-lineup-tweaks-specialty-icon {
-	top: -5px !important;
-	left: 80px !important;
+	top: 15px !important;
+	right: 0px !important;
 	position: absolute !important;
 }
 
