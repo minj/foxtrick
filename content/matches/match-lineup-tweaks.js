@@ -17,8 +17,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	//adds teamsnames to the field for less confusion
 	runTeamnNames: function(doc) {
 		var teams = doc.querySelectorAll('h1 > a, h1 > span > a');
+
 		var homeIdx = Foxtrick.util.layout.isRtl(doc) ? 1 : 0;
 		var awayIdx = !homeIdx + 0;
+		
 		var homeTeamName = teams[homeIdx].textContent;
 		var awayTeamName = teams[awayIdx].textContent;
 
