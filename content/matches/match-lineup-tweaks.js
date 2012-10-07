@@ -114,9 +114,17 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		//U+2211 is sum symbol, U+0394 is mathematical delta
 		displayHome.getElementsByTagName('span')[0].textContent = '\u2211 ' + starsHome;
-		displayAway.getElementsByTagName('span')[0].textContent = '\u2211 ' + starsAway;
+		displayAway.getElementsByTagName('span')[0].textfContent = '\u2211 ' + starsAway;
 		displayDiff.getElementsByTagName('span')[0].textContent = '\u0394 ' +
 			Math.abs(starsHome - starsAway);
+
+		// adding image dimensions to prevent flicker...
+		displayHome.getElementsByTagName('img')[0].height = 22;
+		displayAway.getElementsByTagName('img')[0].height = 22;
+		displayDiff.getElementsByTagName('img')[0].height = 22;
+		displayHome.getElementsByTagName('img')[0].weight = 13;
+		displayAway.getElementsByTagName('img')[0].weight = 13;
+		displayDiff.getElementsByTagName('img')[0].weight = 13;
 
 		Foxtrick.addClass(displayHome, 'ft-match-lineup-tweaks-stars-counter-sum-home');
 		Foxtrick.addClass(displayDiff, 'ft-match-lineup-tweaks-stars-counter-diff');

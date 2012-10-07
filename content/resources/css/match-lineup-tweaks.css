@@ -17,231 +17,117 @@ html[dir="rtl"] .ft-match-lineup-tweaks-teamname-home {
 	top: 15px !important;
 	left: 15px !important;
 	position: absolute !important;
-
 }
-
 html[dir="rtl"] .ft-match-lineup-tweaks-teamname-away {
 	bottom: 15px !important;
 	left: 15px !important;
 	position: absolute !important;
 }
 
+
 html[dir="ltr"] .ft-match-lineup-tweaks-teamname-home {
 	top: 15px !important;
 	left: 15px !important;
 	position: absolute !important;
 }
-
 html[dir="ltr"] .ft-match-lineup-tweaks-teamname-away {
 	bottom: 15px !important;
 	left: 15px !important;
 	position: absolute !important;
 }
 
-.ft-match-lineup-tweaks-specialty-icon {
+
+html[dir="rtl"] .ft-match-lineup-tweaks-specialty-icon {
+	top: 15px !important;
+	left: 0px !important;
+	position: absolute !important;
+}
+html[dir="ltr"] .ft-match-lineup-tweaks-specialty-icon {
 	top: 15px !important;
 	right: 0px !important;
 	position: absolute !important;
 }
 
+.ft-match-lineup-tweaks-stars-counter-sum-home, .ft-match-lineup-tweaks-stars-counter-sum-away,
+.ft-match-lineup-tweaks-stars-counter-diff, .ft-match-lineup-tweaks-stamina-counter-sum-home,
+.ft-match-lineup-tweaks-stamina-counter-sum-away, .ft-match-lineup-tweaks-stamina-counter-diff
+{
+	position: absolute !important;
+	border: solid 2px #79A777;
+	background: #3F7137;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	border-radius: 7px;
+	padding: 0 3px;
+	width: 65px;
+	height: 24px;
+	text-align: center;
+}
+
+
 html[dir="rtl"] .ft-match-lineup-tweaks-stars-counter-sum-home {
 	top: 289px !important;
 	right: 15px !important;
-	position: absolute !important;
-
-	border: solid 2px #79A777;
-	background: #3F7137;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	border-radius: 7px;
-	padding-left: 3px;
-	padding-right: 3px;
-	width: 65px;
-	text-align: center;
 }
-
 html[dir="rtl"] .ft-match-lineup-tweaks-stars-counter-sum-away {
 	top: 349px !important;
 	right: 15px !important;
-	position: absolute !important;
-
-	border: solid 2px #79A777;
-	background: #3F7137;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	border-radius: 7px;
-	padding-left: 3px;
-	padding-right: 3px;
-	width: 65px;
-	text-align: center;
 }
+html[dir="rtl"] .ft-match-lineup-tweaks-stars-counter-diff {
+	top: 319px !important;
+	right: 15px !important;
+}
+
 
 html[dir="ltr"] .ft-match-lineup-tweaks-stars-counter-sum-home {
 	top: 289px !important;
 	left: 15px !important;
-	position: absolute !important;
-
-	border: solid 2px #79A777;
-	background: #3F7137;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	border-radius: 7px;
-	padding-left: 3px;
-	padding-right: 3px;
-	width: 65px;
-	text-align: center;
 }
-
 html[dir="ltr"] .ft-match-lineup-tweaks-stars-counter-sum-away {
 	top: 349px !important;
 	left: 15px !important;
-	position: absolute !important;
-
-	border: solid 2px #79A777;
-	background: #3F7137;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	border-radius: 7px;
-	padding-left: 3px;
-	padding-right: 3px;
-	width: 65px;
-	text-align: center;
 }
-
-html[dir="rtl"] .ft-match-lineup-tweaks-stars-counter-diff {
-	top: 319px !important;
-	right: 15px !important;
-	position: absolute !important;
-
-	border: solid 2px #79A777;
-	background: #3F7137;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	border-radius: 7px;
-	padding-left: 3px;
-	padding-right: 3px;
-	width: 65px;
-	text-align: center;
-}
-
 html[dir="ltr"] .ft-match-lineup-tweaks-stars-counter-diff {
 	top: 319px !important;
 	left: 15px !important;
-	position: absolute !important;
-
-	border: solid 2px #79A777;
-	background: #3F7137;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	border-radius: 7px;
-	padding-left: 3px;
-	padding-right: 3px;
-	width: 65px;
-	text-align: center;
 }
 
 /* stamina counter */
 
+.ft-match-lineup-tweaks-stamina-counter-sum-home, .ft-match-lineup-tweaks-stamina-counter-sum-away,
+.ft-match-lineup-tweaks-stamina-counter-diff {
+	padding-top: 10px;
+}
+
+
 html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-sum-home {
 	top: 289px !important;
-	right: 115px !important;
-	position: absolute !important;
-
-	border: solid 2px #79A777;
-	background: #3F7137;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	border-radius: 7px;
-	padding-left: 3px;
-	padding-right: 3px;
-	width: 65px;
-	text-align: center;
-	padding-top: 10px;
+	left: 15px !important;
+	right: inherit !important; /* have to cancel stupid HT values */
 }
-
 html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-sum-away {
 	top: 349px !important;
-	right: 115px !important;
-	position: absolute !important;
-
-	border: solid 2px #79A777;
-	background: #3F7137;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	border-radius: 7px;
-	padding-left: 3px;
-	padding-right: 3px;
-	width: 65px;
-	text-align: center;
-	padding-top: 10px;
+	left: 15px !important;
+	right: inherit !important;
 }
+html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-diff {
+	top: 319px !important;
+	left: 15px !important;
+	right: inherit !important;
+}
+
 
 html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-sum-home {
 	top: 289px !important;
 	right: 15px !important;
-	position: absolute !important;
-
-	border: solid 2px #79A777;
-	background: #3F7137;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	border-radius: 7px;
-	padding-left: 3px;
-	padding-right: 3px;
-	width: 65px;
-	text-align: center;
-	padding-top: 10px;
 }
-
 html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-sum-away {
 	top: 349px !important;
 	right: 15px !important;
-	position: absolute !important;
-
-	border: solid 2px #79A777;
-	background: #3F7137;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	border-radius: 7px;
-	padding-left: 3px;
-	padding-right: 3px;
-	width: 65px;
-	text-align: center;
-	padding-top: 10px;
 }
-
-html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-diff {
-	top: 319px !important;
-	right: 115px !important;
-	position: absolute !important;
-
-	border: solid 2px #79A777;
-	background: #3F7137;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	border-radius: 7px;
-	padding-left: 3px;
-	padding-right: 3px;
-	width: 65px;
-	text-align: center;
-	padding-top: 10px;
-}
-
 html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-diff {
 	top: 319px !important;
 	right: 15px !important;
-	position: absolute !important;
-
-	border: solid 2px #79A777;
-	background: #3F7137;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	border-radius: 7px;
-	padding-left: 3px;
-	padding-right: 3px;
-	width: 65px;
-	text-align: center;
-	padding-top: 10px;
 }
 
 }
