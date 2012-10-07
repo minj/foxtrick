@@ -89,7 +89,7 @@ html[dir="ltr"] .ft-match-lineup-tweaks-stars-counter-diff {
 
 .ft-match-lineup-tweaks-stamina-counter-sum-home, .ft-match-lineup-tweaks-stamina-counter-sum-away,
 .ft-match-lineup-tweaks-stamina-counter-diff {
-	padding-top: 10px;
+	padding-top: 10px !important;
 }
 
 
