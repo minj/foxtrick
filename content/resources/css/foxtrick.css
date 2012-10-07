@@ -249,9 +249,6 @@ html[data-theme="simple"] .transferPlayerSkills {
 html[data-theme="simple"] .transferPlayerInformation {
 	max-width: 30% !important;
 }
-html[data-theme="simple"] #ctl00_ctl00_CPContent_CPMain_UpdatePanelLiveLeagueTable {
-	white-space: nowrap;
-}
 /* smaller league table for eastern */
 html[data-theme="simple"] body[style*="font-size:0.79em;"] #ctl00_ctl00_CPContent_CPMain_UpdatePanelLiveLeagueTable {
 	font-size:0.9em;
