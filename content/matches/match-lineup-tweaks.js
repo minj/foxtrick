@@ -40,6 +40,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	runSpecialties: function(doc) {
 		var teams = doc.querySelectorAll('h1 > a, h1 > span > a');
 
+		if (!teams.length)
+			return; // we're not ready yet
+
 		var homeTeamId = Foxtrick.util.id.getTeamIdFromUrl(teams[0].href);
 		var awayTeamId = Foxtrick.util.id.getTeamIdFromUrl(teams[1].href);
 
@@ -73,6 +76,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			Foxtrick.Pages.Players.getPlayerList(doc,
 			  function(playerInfo) {
 				for (var i = 0; i < homePlayerLinks.length; i++) {
+					if (typeof players[i] == 'undefined')
+						continue; // some weirdshit happening here
 					var id = Number(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerInfo, id);
 					addSpecialty(players[i].parentNode.parentNode, player);
@@ -101,7 +106,11 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var starsHome = countStars(doc, 'Home');
 		var starsAway = countStars(doc, 'Away');
 
-		var displayHome = doc.getElementsByClassName('playerRating')[0].cloneNode(true);
+		var ratingTemplate = doc.getElementsByClassName('playerRating')[0];
+		if (!ratingTemplate)
+			return; // we're not ready yet
+
+		var displayHome = ratingTemplate.cloneNode(true);
 		var displayAway = displayHome.cloneNode(true);
 		var displayDiff = displayHome.cloneNode(true);
 
@@ -118,6 +127,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		doc.getElementById('playersField').appendChild(displayHome);
 		doc.getElementById('playersField').appendChild(displayDiff);
 		doc.getElementById('playersField').appendChild(displayAway);
+		Foxtrick.log('running');
 	},
 
 	//adds a stamina sumary to the page
@@ -143,6 +153,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			}
 			return parseInt(stamina / fieldPlayerCount);
 		};
+
+		if (!doc.querySelectorAll('.playersField > .playerBoxHome').length)
+			return; // we're not ready yet
 
 		var staminaHome = getStaminaAverage(doc, 'Home');
 		var staminaAway = getStaminaAverage(doc, 'Away');
