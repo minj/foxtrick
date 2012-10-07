@@ -17,8 +17,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	//adds teamsnames to the field for less confusion
 	runTeamnNames: function(doc) {
 		var teams = doc.querySelectorAll('h1 > a, h1 > span > a');
-		var homeTeamName = teams[0].textContent;
-		var awayTeamName = teams[1].textContent;
+		var homeIdx = Foxtrick.util.layout.isRtl(doc) ? 1 : 0;
+		var awayIdx = !homeIdx + 0;
+		var homeTeamName = teams[homeIdx].textContent;
+		var awayTeamName = teams[awayIdx].textContent;
 
 		var homeSpan = doc.createElement('span');
 		var awaySpan = doc.createElement('span');
@@ -43,8 +45,11 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (!teams.length)
 			return; // we're not ready yet
 
-		var homeTeamId = Foxtrick.util.id.getTeamIdFromUrl(teams[0].href);
-		var awayTeamId = Foxtrick.util.id.getTeamIdFromUrl(teams[1].href);
+		var homeIdx = Foxtrick.util.layout.isRtl(doc) ? 1 : 0;
+		var awayIdx = !homeIdx + 0;
+
+		var homeTeamId = Foxtrick.util.id.getTeamIdFromUrl(teams[homeIdx].href);
+		var awayTeamId = Foxtrick.util.id.getTeamIdFromUrl(teams[awayIdx].href);
 
 		var homePlayerLinks =
 			doc.querySelectorAll('.playersField > div.playerBoxHome > div > a, ' +
@@ -108,6 +113,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (!ratingTemplate)
 			return; // we're not ready yet
 
+		// adding image dimensions to prevent flicker...
+		ratingTemplate.getElementsByTagName('img')[0].height = 22;
+		ratingTemplate.getElementsByTagName('img')[0].weight = 13;
+
 		var displayHome = ratingTemplate.cloneNode(true);
 		var displayAway = displayHome.cloneNode(true);
 		var displayDiff = displayHome.cloneNode(true);
@@ -118,21 +127,17 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		displayDiff.getElementsByTagName('span')[0].textContent = '\u0394 ' +
 			Math.abs(starsHome - starsAway);
 
-		// adding image dimensions to prevent flicker...
-		displayHome.getElementsByTagName('img')[0].height = 22;
-		displayAway.getElementsByTagName('img')[0].height = 22;
-		displayDiff.getElementsByTagName('img')[0].height = 22;
-		displayHome.getElementsByTagName('img')[0].weight = 13;
-		displayAway.getElementsByTagName('img')[0].weight = 13;
-		displayDiff.getElementsByTagName('img')[0].weight = 13;
-
 		Foxtrick.addClass(displayHome, 'ft-match-lineup-tweaks-stars-counter-sum-home');
 		Foxtrick.addClass(displayDiff, 'ft-match-lineup-tweaks-stars-counter-diff');
 		Foxtrick.addClass(displayAway, 'ft-match-lineup-tweaks-stars-counter-sum-away');
 
-		doc.getElementById('playersField').appendChild(displayHome);
-		doc.getElementById('playersField').appendChild(displayDiff);
-		doc.getElementById('playersField').appendChild(displayAway);
+		var starsContainer = doc.createDocumentFragment();
+
+		starsContainer.appendChild(displayHome);
+		starsContainer.appendChild(displayDiff);
+		starsContainer.appendChild(displayAway);
+
+		doc.getElementById('playersField').appendChild(starsContainer);
 	},
 
 	//adds a stamina sumary to the page
@@ -183,9 +188,13 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		Foxtrick.addClass(displayDiff, 'ft-match-lineup-tweaks-stamina-counter-diff');
 		Foxtrick.addClass(displayAway, 'ft-match-lineup-tweaks-stamina-counter-sum-away');
 
-		doc.getElementById('playersField').appendChild(displayHome);
-		doc.getElementById('playersField').appendChild(displayDiff);
-		doc.getElementById('playersField').appendChild(displayAway);
+		var staminaContainer = doc.createDocumentFragment();
+
+		staminaContainer.appendChild(displayHome);
+		staminaContainer.appendChild(displayDiff);
+		staminaContainer.appendChild(displayAway);
+
+		doc.getElementById('playersField').appendChild(staminaContainer);
 	},
 
 	change: function(doc) {

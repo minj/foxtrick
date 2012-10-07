@@ -37,12 +37,7 @@ html[dir="ltr"] .ft-match-lineup-tweaks-teamname-away {
 }
 
 
-html[dir="rtl"] .ft-match-lineup-tweaks-specialty-icon {
-	top: 15px !important;
-	left: 0px !important;
-	position: absolute !important;
-}
-html[dir="ltr"] .ft-match-lineup-tweaks-specialty-icon {
+.ft-match-lineup-tweaks-specialty-icon {
 	top: 15px !important;
 	right: 0px !important;
 	position: absolute !important;
@@ -60,10 +55,8 @@ html[dir="ltr"] .ft-match-lineup-tweaks-specialty-icon {
 	border-radius: 7px;
 	padding: 0 3px;
 	width: 65px;
-	height: 24px;
 	text-align: center;
 }
-
 
 html[dir="rtl"] .ft-match-lineup-tweaks-stars-counter-sum-home {
 	top: 289px !important;
