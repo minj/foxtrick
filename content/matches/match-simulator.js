@@ -985,8 +985,30 @@ Foxtrick.modules.MatchSimulator = {
 
 		// -- stamina discount --
 		function getStaminaFactor(stamina) {
+			// formula by Senzascrupoli et al
+			// [post=15917246.1]
+
+			stamina += 0.5; // assuming average subskill for now
+
+			var checkpoint, currentEnergy, decay, initialEnergy, rest, totalEnergy, _i;
+			if (stamina >= 9) {
+				return 1;
+			}
+			totalEnergy = 0;
+			initialEnergy = 1 + (0.0292 * stamina + 0.05);
+			decay = Math.max(0.0325, -0.0039 * stamina + 0.0633);
+			rest = 0.1875;
+			for (checkpoint = _i = 1; _i <= 18; checkpoint = ++_i) {
+				currentEnergy = initialEnergy - checkpoint * decay;
+				if (checkpoint > 9) {
+					currentEnergy += rest;
+				}
+				currentEnergy = Math.min(1, currentEnergy);
+				totalEnergy += currentEnergy;
+			}
+			return totalEnergy / 18;
 			//http://www.nrgjack.altervista.org/wordpress/2008/07/31/percentuale-resistenza/
-			return 0.2472 * Math.log(stamina) + 0.472;
+			//return 0.2472 * Math.log(stamina) + 0.472;
 			// from unwritten manual [post=15172393.4] (HO)
 			//return Math.pow( Math.min(stamina+(14-parseFloat(FoxtrickPrefs.getString('staminaCutoff'))), 15.25)/14, 0.6)/1.05265;
 			//Foxtrick.log(stamina, (1-0.0072415286*Math.pow(9-stamina,1.9369819898)))
