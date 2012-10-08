@@ -82,10 +82,26 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var addSpecialtiesByTeamId = function(teamid, players) {
 			Foxtrick.Pages.Players.getPlayerList(doc,
 			  function(playerInfo) {
+				var missing = [];
 				for (var i = 0; i < players.length; i++) {
 					var id = Number(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerInfo, id);
-					addSpecialty(players[i].parentNode.parentNode, player);
+					if (player)
+						addSpecialty(players[i].parentNode.parentNode, player);
+					else
+						missing.push({ id: id, i: i });
+				}
+				if (missing.length) {
+					for (var j = 0; j < missing.length; ++j) {
+						Foxtrick.Pages.Player.getPlayer(doc, missing[j].id,
+						  (function(j) {
+							return function(p) {
+								addSpecialty(players[missing[j].i].parentNode.parentNode, p ? {
+									specialityNumber: p.Specialty
+								} : null);
+							}
+						})(j));
+					}
 				}
 			}, { teamid: teamid, current_squad: true, includeMatchInfo: true });
 		};
