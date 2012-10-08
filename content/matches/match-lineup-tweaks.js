@@ -8,7 +8,9 @@
 Foxtrick.modules['MatchLineupTweaks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['match'],
-	OPTIONS: ['DisplayTeamNameOnField', 'ShowSpecialties', 'StarCounter', 'StaminaCounter'],
+	OPTIONS: [
+		'DisplayTeamNameOnField', 'ShowSpecialties', 'ShowFaces', 'StarCounter', 'StaminaCounter'
+	],
 	CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-tweaks.css',
 	run: function(doc) {
 
@@ -20,7 +22,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		var homeIdx = Foxtrick.util.layout.isRtl(doc) ? 1 : 0;
 		var awayIdx = !homeIdx + 0;
-		
+
 		var homeTeamName = teams[homeIdx].textContent;
 		var awayTeamName = teams[awayIdx].textContent;
 
@@ -108,6 +110,150 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		addSpecialtiesByTeamId(homeTeamId, homePlayerLinks);
 		addSpecialtiesByTeamId(awayTeamId, awayPlayerLinks);
+	},
+	runFaces: function(doc) {
+		var teams = doc.querySelectorAll('h1 > a, h1 > span > a');
+
+		if (!teams.length)
+			return; // we're not ready yet
+
+		var homeIdx = Foxtrick.util.layout.isRtl(doc) ? 1 : 0;
+		var awayIdx = !homeIdx + 0;
+
+		var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
+		if (isYouth) {
+			// TODO youth?
+		}
+		else {
+			var homeTeamId = Foxtrick.util.id.getTeamIdFromUrl(teams[homeIdx].href);
+			var awayTeamId = Foxtrick.util.id.getTeamIdFromUrl(teams[awayIdx].href);
+			var ownteamid = Foxtrick.util.id.getOwnTeamId();
+		}
+
+
+		var homePlayerLinks =
+			doc.querySelectorAll('.playersField > div.playerBoxHome > div > a, ' +
+			                     '#playersBench > div#playersBenchHome > div.playerBoxHome > div > a');
+		var awayPlayerLinks =
+			doc.querySelectorAll('.playersField > div.playerBoxAway > div > a, #playersBench > ' +
+			                     'div#playersBenchAway > div.playerBoxAway > div > a');
+
+        var scale = 3;
+		var addFace = function(fieldplayer, id, avatarsXml) {
+			Foxtrick.stopListenToChange(doc);
+			if (avatarsXml) {
+				if (!id)
+					return;
+				var players = avatarsXml.getElementsByTagName((isYouth ? 'Youth' : '') + 'Player');
+				for (var i = 0; i < players.length; ++i) {
+					if (id == Number(players[i].getElementsByTagName((isYouth ? 'Youth' : '') +
+					    'PlayerID')[0].textContent))
+						break;
+				}
+				if (i == players.length)
+					return; // id not found
+
+				Foxtrick.addClass(fieldplayer, 'smallFaceCardBox');
+
+				var shirt = fieldplayer.getElementsByClassName('sectorShirt')[0];
+
+				if (shirt) {
+					var kiturl = shirt.getAttribute('kiturl');
+					if (!kiturl && !isYouth) {
+						var shirtstyle = shirt.getAttribute('style');
+						var kiturl = shirtstyle
+							.match(/http:\/\/res.hattrick.org\/kits\/\d+\/\d+\/\d+\/\d+\//)[0];
+						shirt.setAttribute('kiturl', kiturl);
+					}
+				} else {
+					// TODO: cleanup?
+					var outer = doc.createElement('div');
+					outer.className = 'ft-smallFaceCardOuter';
+					fieldplayer.appendChild(outer);
+					shirt = doc.createElement('div');
+					outer.appendChild(shirt);
+				}
+
+				if (Foxtrick.hasClass(shirt, 'ft-smallFaceCard'))
+					return;
+
+					Foxtrick.addClass(shirt, 'ft-smallFaceCard');
+					shirt.style.backgroundImage = null;
+				//var style =
+				//	'background-image:url('
+				//	// cleaning background//+players[i].getElementsByTagName('BackgroundImage')[0].textContent
+				//	+ ');'
+				//	+ 'top:-20px; width:' + Math.round(100 / scale) + 'px; height:' +
+				//	Math.round(123 / scale) + 'px';
+				//	shirt.setAttribute('style', style);
+				var sizes = {
+					backgrounds: [0, 0],// don't show
+					kits: [92, 123],
+					bodies: [92, 123],
+					faces: [92, 123],
+					eyes: [60, 60],
+					mouths: [50, 50],
+					goatees: [70, 70],
+					noses: [70, 70],
+					hair: [92, 123],
+					misc: [0, 0] // don't show (eg cards)
+				};
+				var layers = players[i].getElementsByTagName('Layer');
+				for (var j = 0; j < layers.length; ++j) {
+					var src = layers[j].getElementsByTagName('Image')[0].textContent;
+					for (var bodypart in sizes) {
+						if (src.search(bodypart) != -1)
+							break;
+					}
+					if (!bodypart)
+						continue;
+
+					if (bodypart == 'backgrounds')
+						src = '';
+
+					if (kiturl && bodypart == 'kits') {
+						var body = src.match(/([^\/]+)(\w+$)/)[0];
+						src = kiturl + body;
+					}
+					var x = Math.round(Number(layers[j].getAttribute('x')) / scale);
+					var y = Math.round(Number(layers[j].getAttribute('y')) / scale);
+
+					if (FoxtrickPrefs.isModuleOptionEnabled('OriginalFace', 'ColouredYouth'))
+						src = src.replace(/y_/, '');
+					Foxtrick.addImage(doc, shirt, {
+						src: src,
+						style: 'top:' + y + 'px;left:' + x + 'px;position:absolute;',
+						width: Math.round(sizes[bodypart][0] / scale),
+						height: Math.round(sizes[bodypart][1] / scale)
+					});
+				}
+			}
+			Foxtrick.startListenToChange(doc);
+		};
+
+		var addFacesByTeamId = function(teamid, players) {
+			if (teamid == ownteamid) {
+				Foxtrick.util.api.retrieve(doc, [['file', (isYouth ? 'youth' : '') + 'avatars']],
+				                           { cache_lifetime: 'session' },
+				  function(xml, errorText) {
+					if (errorText) {
+						/*if (loadingOtherMatches && loadingOtherMatches.parentNode) {
+							loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
+							loadingOtherMatches = null;
+						}*/
+						Foxtrick.log(errorText);
+						return;
+					}
+					for (var i = 0; i < players.length; i++) {
+						var id = Number(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
+						addFace(players[i].parentNode.parentNode, id, xml);
+					}
+				});
+			}
+		};
+
+		addFacesByTeamId(homeTeamId, homePlayerLinks);
+		addFacesByTeamId(awayTeamId, awayPlayerLinks);
 	},
 
 	//adds a star summary to the page
@@ -230,5 +376,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'StaminaCounter'))
 			this.runStamina(doc);
+
+		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'ShowFaces') &&
+			Foxtrick.util.layout.isSupporter(doc))
+			this.runFaces(doc);
 	}
 };

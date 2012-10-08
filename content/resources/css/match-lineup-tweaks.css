@@ -123,4 +123,16 @@ html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-diff {
 	right: 15px !important;
 }
 
+
+html[dir="rtl"] .sectorShirt.ft-smallFaceCard {
+	top: -18px !important;
+	right: -3px !important;
+}
+html[dir="ltr"] .sectorShirt.ft-smallFaceCard {
+	top: -18px !important;
+	left: -3px !important;
+}
+.sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
+	border-bottom: solid 2px #79A777 !important;
+}
 }
