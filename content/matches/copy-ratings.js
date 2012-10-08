@@ -66,6 +66,10 @@ Foxtrick.modules['CopyRatings'] = {
 				if (matchlink.href.search(/isYouth=true|SourceSystem=Youth/i) != -1)
 					youth = 'youth';
 
+				var HTO = '';
+				if (matchlink.href.search(/SourceSystem=HTOIntegrated/i) != -1)
+					HTO = 'tournament';
+
 				var toggleTabHolder = doc.getElementsByClassName('toggleTabHolder')[0];
 				var copyTextRating = Foxtrick.hasClass(doc.getElementById('sortByNumberIcon'),
 				                                       'disabled') ? false : true;
@@ -84,7 +88,7 @@ Foxtrick.modules['CopyRatings'] = {
 				// head row
 				ad += '[tr]\n\n[th]';
 				if ((table.rows[0].cells[0])) {
-					ad += '[' + youth + 'matchid=' + gameid + ']';
+					ad += '[' + youth + HTO + 'matchid=' + gameid + ']';
 				}
 				ad += '[/th]\n[th]';
 				if (team1 && table.rows[0].cells[1]) {
