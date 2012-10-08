@@ -996,6 +996,9 @@ Foxtrick.modules.MatchSimulator = {
 			}
 			totalEnergy = 0;
 			initialEnergy = 1 + (0.0292 * stamina + 0.05);
+			if (stamina > 8) {
+				initialEnergy += 0.15 * (stamina - 8);
+			}
 			decay = Math.max(0.0325, -0.0039 * stamina + 0.0633);
 			rest = 0.1875;
 			for (checkpoint = _i = 1; _i <= 18; checkpoint = ++_i) {
