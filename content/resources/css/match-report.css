@@ -81,10 +81,10 @@
 	border-left: 3px solid #fff;
 }
 .ft-match-report-event-home .ft-match-report-event-content {
-	border-color: #79A777;
+	border-color: darkBlue;
 }
 .ft-match-report-event-away .ft-match-report-event-content {
-	border-color: #A77977;
+	border-color: #FF9000;
 }
 
 }
