@@ -135,4 +135,13 @@ html[dir="ltr"] .sectorShirt.ft-smallFaceCard {
 .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
 	border-bottom: solid 2px #79A777 !important;
 }
+
+
+.ft-highlight-playerDiv {
+	border-color: red !important;
+}
+.ft-highlight-playerDiv-other {/* #3fd6fc */
+	border-color: #fc0 !important;
+}
+
 }

@@ -9,7 +9,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['match'],
 	OPTIONS: [
-		'DisplayTeamNameOnField', 'ShowSpecialties', 'ShowFaces', 'StarCounter', 'StaminaCounter'
+		'DisplayTeamNameOnField', 'ShowSpecialties', 'ShowFaces', 'StarCounter', 'StaminaCounter',
+		'HighlighEventPlayers'
 	],
 	CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-tweaks.css',
 	run: function(doc) {
@@ -362,6 +363,57 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		doc.getElementById('playersField').appendChild(staminaContainer);
 	},
 
+	runEventPlayers: function(doc) {
+		var timelineEventDetails = doc.getElementById('timelineEventDetails');
+		if (!timelineEventDetails || !timelineEventDetails.childNodes.length)
+			return;
+
+		var info = timelineEventDetails.getElementsByClassName('timelineEventDetailsInfo')[0];
+		var players = info.getElementsByTagName('a');
+		if (!players.length)
+			return;
+
+		var eventIcon = timelineEventDetails.getElementsByClassName('timelineEventDetailsIcon')[0]
+			.getElementsByTagName('img')[0];
+
+		var isHome = Foxtrick.hasClass(info, 'highlightHome');
+		var isSub = /substitution\.png$/i.test(eventIcon.src);
+
+		var playerLinks = doc.querySelectorAll('.playersField > div.playerBox' +
+										   (isHome ? 'Home' : 'Away') + ' > div > a, ' +
+										   '#playersBench > div#playersBench' +
+										   (isHome ? 'Home' : 'Away') +
+										   ' > div.playerBox' +
+										   (isHome ? 'Home' : 'Away') + ' > div > a');
+
+		var affectPlayer = function(playerId, func) {
+			var link = Foxtrick.filter(function(link) {
+				return new RegExp(playerId).test(link.href);
+			}, playerLinks)[0];
+			if (link)
+				func(link.parentNode.parentNode);
+		};
+
+		var addClassToPlayer = function(playerId, className) {
+			affectPlayer(playerId, function(node) {
+				Foxtrick.addClass(node, className);
+			});
+		};
+
+		if (players.length === 1) {
+			var playerId = Number(Foxtrick.getParameterFromUrl(players[0].href, 'playerid'));
+			addClassToPlayer(playerId, 'ft-highlight-playerDiv');
+		}
+		else if (players.length === 2) {
+			if (isSub) {
+				var playerIn = Number(Foxtrick.getParameterFromUrl(players[0].href, 'playerid'));
+				var playerOut = Number(Foxtrick.getParameterFromUrl(players[1].href, 'playerid'));
+				addClassToPlayer(playerIn, 'ft-highlight-playerDiv');
+				addClassToPlayer(playerOut, 'ft-highlight-playerDiv-other');
+			}
+		}
+	},
+
 	change: function(doc) {
 		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
 			return;
@@ -381,5 +433,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'ShowFaces') &&
 			Foxtrick.util.layout.isSupporter(doc))
 			this.runFaces(doc);
+
+		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'HighlighEventPlayers'))
+			this.runEventPlayers(doc);
 	}
 };
