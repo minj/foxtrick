@@ -236,7 +236,7 @@
 		'middle': Foxtrick.InternalPath + 'resources/img/matches/middle.png',
 		'counter-attack': Foxtrick.InternalPath + 'resources/img/matches/ca.png',
 		'indirect': Foxtrick.InternalPath + 'resources/img/matches/indirect.png',
-		'confusion': Foxtrick.InternalPath + 'resources/img/matches/confusion.png',
+		"confusion": '/Club/Matches/images/confusion.png',
 		'penalty': Foxtrick.InternalPath + 'resources/img/matches/penalty.png',
 		'pullback': '/Club/Matches/images/pullback.png',
 		'longshot': Foxtrick.InternalPath + 'resources/img/matches/longshot.png',
