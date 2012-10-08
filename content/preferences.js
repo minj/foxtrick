@@ -121,10 +121,12 @@ function search(string, search) {
 		if (search) {
 			$('#breadcrumb-2').text('Search');
 			$('#breadcrumb-3').text(string);
+			$('#breadcrumb-3').attr('href', generateURI(null, null, null, string) );
 			$('#breadcrumb-sep-1').show();
 			$('#breadcrumb-sep-2').show();
 		} else {
 			$('#breadcrumb-2').text(string);
+			$('#breadcrumb-2').attr('href', generateURI(null, string, null, null) );
 			$('#breadcrumb-sep-1').show();
 			$('#breadcrumb-sep-2').hide();
 			$('#breadcrumb-3').hide();
@@ -208,7 +210,6 @@ function parseFragment(fragment)
 
 function locateFragment(uri)
 {
-	Foxtrick.log(uri);
 	// show functions
 	var showModule = function(module) {
 		var moduleObj = $('#pref-' + String(module));
@@ -222,7 +223,8 @@ function locateFragment(uri)
 		if (FoxtrickPrefs.isModuleEnabled('MobileEnhancements'))
 			$('#navigation-header').text(Foxtrickl10n.getString('tab.' + tab));
 		//mobile end
-		$('#breadcrumb-1').text(Foxtrickl10n.getString('tab.' + tab)); //search
+		$('#breadcrumb-1').text(Foxtrickl10n.getString('tab.' + tab));
+		$('#breadcrumb-1').attr('href', generateURI(tab, null, null, null) );
 		search(''); //search reset
 		$('#pane > div').hide();
 		$('#tabs > li').removeClass('active');
@@ -242,12 +244,13 @@ function locateFragment(uri)
 		showModule(param['module']);
 	else if (param['tab'])
 		showTab(param['tab']);
-	else if (param['faq'])
+	else if (param['search']){
+		showTab('all');
+		search(param['search'], true);
+	} else if (param['faq'])
 		showFaq(param['faq']);
 	else if (param['view-by'] == 'page')
 		showTab('on_page');
-	//else if (param['view-by'] == 'filter')
-	//	showTab('filter');
 	else
 		showTab('main'); // show the main tab by default
 
@@ -289,7 +292,7 @@ function baseURI()
 	return window.location.toString().replace(/#.*$/, '');
 }
 
-function generateURI(tab, module, id)
+function generateURI(tab, module, id, search)
 {
 	var location = baseURI();
 	if (tab)
@@ -298,6 +301,8 @@ function generateURI(tab, module, id)
 		return location + '#module=' + module;
 	else if (id)
 		return location + '#' + id;
+	else if (search)
+		return location + '#search=' + search;
 }
 
 function initAutoSaveListeners() {
