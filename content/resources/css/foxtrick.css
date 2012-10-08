@@ -124,6 +124,9 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 	overflow: hidden;
 }
 
+#divReport > .ft-note {
+	margin-bottom: 20px;
+}
 .ft-note a.close {
 	cursor: pointer;
 	float: right;

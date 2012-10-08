@@ -88,7 +88,12 @@ Foxtrick.modules['CopyRatings'] = {
 				}
 				ad += '[/th]\n[th]';
 				if (team1 && table.rows[0].cells[1]) {
-					var teamlink = table.rows[0].cells[1].getElementsByTagName('a')[0];
+					if (!Foxtrick.Pages.Match.hasNewRatings(doc)) {
+						var teamlink = table.rows[0].cells[1].getElementsByTagName('a')[0];
+					}
+					else {
+						var teamlink = doc.querySelectorAll('h1 > a, h1 > span > a')[0];
+					}
 					if (teamlink)
 						ad += teamlink.textContent + ((team2) ? (' - ' + gameresult_h) : '') +
 							'[br][' + youth + 'teamid=' +
@@ -97,7 +102,12 @@ Foxtrick.modules['CopyRatings'] = {
 				if (team1 && team2)
 					ad += '[/th]\n[th]';
 				if (team2 && table.rows[0].cells[2]) {
-					var teamlink = table.rows[0].cells[2].getElementsByTagName('a')[0];
+					if (!Foxtrick.Pages.Match.hasNewRatings(doc)) {
+						var teamlink = table.rows[0].cells[2].getElementsByTagName('a')[0];
+					}
+					else {
+						var teamlink = doc.querySelectorAll('h1 > a, h1 > span > a')[1];
+					}
 					if (teamlink)
 						ad += teamlink.textContent + ((team1) ? (' - ' + gameresult_a) : '') +
 							'[br][' + youth + 'teamid=' +
