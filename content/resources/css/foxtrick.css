@@ -274,4 +274,9 @@ background-color: #eed;
 	clear:both;
 }
 
+/* why use this shit anyway?! */
+.main > .boxBody, .tournamentInvite {
+	overflow:inherit !important;
+}
+
 }
