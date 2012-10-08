@@ -43,7 +43,7 @@ Foxtrick.modules['CopyMatchID'] = {
 				var images = cells[i].getElementsByTagName('img');
 				for (var j = 0; j < images.length; j++) {
 					if (images[j].className.search(new RegExp('matchLeague|matchFriendly' +
-					    '|matchMasters|matchCup|matchQualification|matchTournament')) == -1)
+					    '|matchMasters|matchCup|matchQualification|matchTournament|matchSingleMatch')) == -1)
 						continue;
 
 					var href = '';
