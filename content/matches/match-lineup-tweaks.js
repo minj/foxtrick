@@ -313,7 +313,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			var fieldPlayerCount = 0.0;
 
 			var getStaminaFromNode = function(doc, node) {
-				var staminaTitle = node.childNodes[3].firstChild.title;
+				var staminaTitle = node.getElementsByClassName('sectorShirt')[0].nextSibling
+					.firstChild.title;
 
 				var stamina = staminaTitle.match(RegExp('\\d+'));
 				return Number(stamina);
