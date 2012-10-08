@@ -58,28 +58,28 @@
     border-bottom: 1px solid #fff;
 }
 
-#tab a.tab-hattrick {
+a.tab-hattrick {
     background-image: url("http://www.hattrick.org/favicon.ico") !important;
     background-repeat: no-repeat !important;
     background-position: 3px 2px !important;
     padding-left: 24px !important;
 }
 
-#tab a.ft-tab-hattrick.active {
+a.ft-tab-hattrick.active {
     background-image: url("chrome://foxtrick/content/resources/img/staff/foxtrick.png") !important;
     background-repeat: no-repeat !important;
     background-position: 3px 1px !important;
     padding-left: 24px !important;
 }
 
-#tab a.ft-tab-foxtrick {
+a.ft-tab-foxtrick {
     background-image: url("chrome://foxtrick/content/resources/img/staff/foxtrick.png") !important;
     background-repeat: no-repeat !important;
     background-position: 3px 1px !important;
     padding-left: 24px !important;
 }
 
-#tab a.ft-tab-foxtrick, #tab a.ft-tab-hattrick.active {
+a.ft-tab-foxtrick, #tab a.ft-tab-hattrick.active {
     background-image: url("chrome://foxtrick/content/resources/img/staff/foxtrick.png") !important;
     background-repeat: no-repeat !important;
     background-position: 3px 1px !important;

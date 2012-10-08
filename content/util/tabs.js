@@ -65,7 +65,6 @@ Foxtrick.util.tabs.initialize = function(doc) {
 		Foxtrick.addAttributeValue(clear, 'tabs', 'all-tabs');
 		header.parentNode.insertBefore(clear, Foxtrick.util.tabs.getTabs(doc).nextSibling);
 	}
-	Foxtrick.log('okay');
 };
 
 Foxtrick.util.tabs.getTabs = function(doc) {
@@ -73,9 +72,13 @@ Foxtrick.util.tabs.getTabs = function(doc) {
 	var tab = doc.getElementById('tab');
 
 	//new match page
-	if (!tab) {
+	if (!tab)
 		tab = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucMatchTabs_ulTabs');
-	}
+	
+	//new challenges page
+	//if(!tab)
+	//	tab = doc.getElementsByClassName('tabbedList')[0];
+
 	return tab;
 };
 

@@ -50,11 +50,12 @@ Foxtrick.modules['TabsTest'] = {
 		div.appendChild(list);
 		Foxtrick.addClass(div, 'ft-tab-custom');
 
-		doc.getElementsByTagName('h1')[0].parentNode.appendChild(div);
-		Foxtrick.util.tabs.addElementToTab(doc, div, 'ft-tab-readme');
+		var tabs = Foxtrick.util.tabs.getTabs(doc);
 
-		var container = doc.getElementsByTagName('h1')[0].parentNode;
-		Foxtrick.log('Tabs-test: addMutationEventListener');
+		var container = tabs.parentNode;
+		container.appendChild(div);
+		Foxtrick.util.tabs.addElementToTab(doc, div, 'ft-tab-readme');
+		
 		//match report
 		Foxtrick.addMutationEventListener(container, 'DOMNodeInserted', function() {
 			Foxtrick.util.tabs.initialize(doc);
