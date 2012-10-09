@@ -2,7 +2,7 @@
 /**
  * match-lineup-teaks.js
  * Tweaks for the new style match lineup
- * @author CatzHoek
+ * @author CatzHoek, LA-MJ
  */
 
 Foxtrick.modules['MatchLineupTweaks'] = {
@@ -15,74 +15,132 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-tweaks.css',
 	run: function(doc) {
 		// this is where we fix HTs shit
+		// we need to traverse the hidden input fields in the timeline
+		// that are used as data sources by HTs to assemble the field on each click.
+		// first, each minute/event has input.hidden[id$="_time"][value="min.sec"]
 		var timeline = Foxtrick.map(function(el) {
 			var time = el.value;
 			return { min: Number(time.match(/^\d+/)), sec: Number(time.match(/\d+$/)) };
 		}, doc.querySelectorAll('input[id$="_time"]'));
 
 		var fixRatings = function(home) {
+			// making a function so as not to repeat stuff twice
 			var playerRatings = document.querySelectorAll('input[id$="_playerRatings' +
 														  (home? 'Home' : 'Away') + '"]');
-			var playerRatingsData = Foxtrick.map(function(ratings) {
-				return { players: JSON.parse(ratings.value), el: ratings };
-			}, playerRatings);
 
+			// each minute has input.hidden[id$="_playerRatingsHome"][value="jsonArray"]
+			// where jsonArray is an array of Player objects
+			// Player = {
+			//	Cards: 0,
+			//	FromMin: -1,
+			//	InjuryLevel: 0,
+			//	IsCaptain: false,
+			//	IsKicker: false,
+			//	PlayerId: 360991810,
+			//	PositionBehaviour: 0,
+			//	PositionID: 100,
+			//	Stamina: 1,
+			//	Stars: 3,
+			//	ToMin: 90,
+			//};
+			var playerRatingsByMin = Foxtrick.map(function(ratings) {
+				return { players: JSON.parse(ratings.value), source: ratings };
+			}, playerRatings);
+			// keep playerRatingsByMin[i].source as a pointer to the input
+			// so that we know where to save
+
+			// more stuff in each event:
+			//document.querySelectorAll('input[id$="_matchEventTypeId"]')
+			//document.querySelectorAll('input[id$="_timelineEventType"]')
+
+
+			// filter players that have not played: { FromMin: 0, ToMin: 0 }
+			// these have
 			var played = [];
-			for (var i = 0; i < playerRatingsData[0].players.length; ++i) {
-				var player = playerRatingsData[0].players[i];
+			for (var i = 0; i < playerRatingsByMin[0].players.length; ++i) {
+				var player = playerRatingsByMin[0].players[i];
 				if (!(player.FromMin == 0 && player.ToMin == 0)) {
-					player.i = i;
+					player.ftIdx = i; // saving the index in the original array
 					played.push(player);
 				}
 			}
+			// WARNING: those are object references, not clones, modify with care!
+			// perhaps we should clone instead?
 
+			// let's make some player groups
+
+			// leaves field events: 91-97; not 94; 350-352; 512-514
+			// other player movement events: 360-262; 370-372;
+
+			// players who play till the end: { ToMin: LastMinuteInTheGame }
+			// these don't
 			var leavesField = Foxtrick.filter(function(player) {
 				return player.ToMin != timeline[timeline.length - 1].min;
 			}, played);
+			// players who start the game: { FromMin: -1}
+			// these don't
 			var entersField = Foxtrick.filter(function(player) {
 				return player.FromMin != -1;
 			}, played);
 
-			//var comesAndGoes = Foxtrick.intersect(leavesField, entersField);
-			//var leavesFieldOnly = Foxtrick.filter(function(player) {
-			//	return !Foxtrick.member(player, comesAndGoes);
-			//}, leavesField);
-			//var entersFieldOnly = Foxtrick.filter(function(player) {
-			//	return !Foxtrick.member(player, comesAndGoes);
-			//}, entersField);
+			// these players both entersField and leavesField later
+			var comesAndGoes = Foxtrick.intersect(leavesField, entersField);
 
-			for (var i = 0; i < leavesField.length; ++i) {
-				var subMin = leavesField[i].ToMin;
-				var k = leavesField[i].i;
-				for (var j = 0; j < timeline.length; ++j) {
-					if (timeline[j].min == subMin) {
-						// reached the sub minute
-						while (playerRatingsData[j].players[k].Stars != -1)
-							++j;
-						// reached the sub second because stars = -1
-						var starsLast = playerRatingsData[j - 1].players[k].Stars;
-						var subSec = timeline[j].sec;
-						// save stamina
-						leavesField[i].lastStamina = playerRatingsData[j].players[k].Stamina;
-						while (timeline[j]) {
-							// add stars for all events at the same second
-							playerRatingsData[j].players[k].Stars = starsLast;
-							++j;
+			// some exlusive groups
+			var leavesFieldOnly = Foxtrick.filter(function(player) {
+				return !Foxtrick.member(player, comesAndGoes);
+			}, leavesField);
+			var entersFieldOnly = Foxtrick.filter(function(player) {
+				return !Foxtrick.member(player, comesAndGoes);
+			}, entersField);
+
+			// add stars for players that leave the field
+			var addStarsToSubs = function() {
+				for (var i = 0; i < leavesField.length; ++i) {
+					var player = leavesField[i];
+					var subMin = player.ToMin;
+					var idx = player.ftIdx;
+					// index in the original players array
+
+					// there are multiple events per minute
+					// so we need to find the correct substitution event first
+					// players on the bench: { Stars: -1 }
+					for (var j = 0; j < timeline.length; ++j) {
+						if (timeline[j].min == subMin) {
+							// reached the sub minute
+							while (playerRatingsByMin[j].players[idx].Stars != -1)
+								++j;
+							// reached the sub second because stars = -1
+
+							var starsLast = playerRatingsByMin[j - 1].players[idx].Stars;
+							var subSec = timeline[j].sec;
+							// save stamina for later?
+							// player.ftLastStamina = ratings.players[idx].Stamina;
+
+							// add stars for all further events
+							while (timeline[j]) {
+								playerRatingsByMin[j].players[idx].Stars = starsLast;
+								++j;
+							}
+							// add stars for all events at the same second only
+							//while (timeline[j].min == subMin && timeline[j].sec == subSec) {
+							//	playerRatingsByMin[j].players[idx].Stars = starsLast;
+							//	++j;
+							//}
+
+
+							// timeline parsed let's have a break =)
+							break;
 						}
-						//while (timeline[j].min == subMin && timeline[j].sec == subSec) {
-						//	// add stars for all events at the same second
-						//	playerRatingsData[j].players[k].Stars = starsLast;
-						//	++j;
-						//}
-						// timeline parsed
-						break;
 					}
 				}
-			}
+			};
+
+			addStarsToSubs();
 
 			// save modifications
-			for (var i = 0; i < playerRatingsData.length; ++i) {
-				playerRatingsData[i].el.value = JSON.stringify(playerRatingsData[i].players);
+			for (var i = 0; i < playerRatingsByMin.length; ++i) {
+				playerRatingsByMin[i].source.value = JSON.stringify(playerRatingsByMin[i].players);
 			}
 
 		};
