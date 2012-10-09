@@ -14,7 +14,80 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	],
 	CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-tweaks.css',
 	run: function(doc) {
+		// this is where we fix HTs shit
+		var timeline = Foxtrick.map(function(el) {
+			var time = el.value;
+			return { min: Number(time.match(/^\d+/)), sec: Number(time.match(/\d+$/)) };
+		}, doc.querySelectorAll('input[id$="_time"]'));
 
+		var fixRatings = function(home) {
+			var playerRatings = document.querySelectorAll('input[id$="_playerRatings' +
+														  (home? 'Home' : 'Away') + '"]');
+			var playerRatingsData = Foxtrick.map(function(ratings) {
+				return { players: JSON.parse(ratings.value), el: ratings };
+			}, playerRatings);
+
+			var played = [];
+			for (var i = 0; i < playerRatingsData[0].players.length; ++i) {
+				var player = playerRatingsData[0].players[i];
+				if (!(player.FromMin == 0 && player.ToMin == 0)) {
+					player.i = i;
+					played.push(player);
+				}
+			}
+
+			var leavesField = Foxtrick.filter(function(player) {
+				return player.ToMin != timeline[timeline.length - 1].min;
+			}, played);
+			var entersField = Foxtrick.filter(function(player) {
+				return player.FromMin != -1;
+			}, played);
+
+			//var comesAndGoes = Foxtrick.intersect(leavesField, entersField);
+			//var leavesFieldOnly = Foxtrick.filter(function(player) {
+			//	return !Foxtrick.member(player, comesAndGoes);
+			//}, leavesField);
+			//var entersFieldOnly = Foxtrick.filter(function(player) {
+			//	return !Foxtrick.member(player, comesAndGoes);
+			//}, entersField);
+
+			for (var i = 0; i < leavesField.length; ++i) {
+				var subMin = leavesField[i].ToMin;
+				var k = leavesField[i].i;
+				for (var j = 0; j < timeline.length; ++j) {
+					if (timeline[j].min == subMin) {
+						// reached the sub minute
+						while (playerRatingsData[j].players[k].Stars != -1)
+							++j;
+						// reached the sub second because stars = -1
+						var starsLast = playerRatingsData[j - 1].players[k].Stars;
+						var subSec = timeline[j].sec;
+						// save stamina
+						leavesField[i].lastStamina = playerRatingsData[j].players[k].Stamina;
+						while (timeline[j]) {
+							// add stars for all events at the same second
+							playerRatingsData[j].players[k].Stars = starsLast;
+							++j;
+						}
+						//while (timeline[j].min == subMin && timeline[j].sec == subSec) {
+						//	// add stars for all events at the same second
+						//	playerRatingsData[j].players[k].Stars = starsLast;
+						//	++j;
+						//}
+						// timeline parsed
+						break;
+					}
+				}
+			}
+
+			// save modifications
+			for (var i = 0; i < playerRatingsData.length; ++i) {
+				playerRatingsData[i].el.value = JSON.stringify(playerRatingsData[i].players);
+			}
+
+		};
+		fixRatings(true);
+		fixRatings(false);
 	},
 
 	//adds teamsnames to the field for less confusion
