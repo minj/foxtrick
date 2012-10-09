@@ -51,7 +51,7 @@ html[data-theme="simple"][firefox] #logo {
 .foxtrickScreenshot:hover { background-image: url("chrome://foxtrick/content/resources/img/screenshot-hover.png"); width: 16px; }
 .foxtrickBrowse { background-image: url("chrome://foxtrick/content/resources/img/browse.png"); width: 16px; padding:2px; }
 
-/**
+/*
  * expanders
  * TODO - use attribute expanded to denote whether expanded
  */
@@ -287,5 +287,9 @@ background-color: #eed;
 	clear: both;
 	visibility: hidden;
 	height: 0;
+}
+.sectorShirt
+{
+	background: url() no-repeat;
 }
 }
