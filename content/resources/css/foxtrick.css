@@ -281,5 +281,11 @@ background-color: #eed;
 .main > .boxBody, .tournamentInvite {
 	overflow:inherit !important;
 }
-
+.tournamentInvite::after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	height: 0;
+}
 }
