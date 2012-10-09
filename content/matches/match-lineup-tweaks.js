@@ -1,6 +1,6 @@
 'use strict';
 /**
- * match-lineup-teaks.js
+ * match-lineup-tweaks.js
  * Tweaks for the new style match lineup
  * @author CatzHoek, LA-MJ
  */
@@ -23,42 +23,63 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			return { min: Number(time.match(/^\d+/)), sec: Number(time.match(/\d+$/)) };
 		}, doc.querySelectorAll('input[id$="_time"]'));
 
+		// more stuff in each event:
+		//doc.querySelectorAll('input[id$="_matchEventTypeId"]')
+		// leaves field events: 91-97; not 94; 350-352; 512-514
+		// other player movement events: 360-262; 370-372;
+
+		//doc.querySelectorAll('input[id$="_timelineEventType"]')
+		var TIMELINE_EVENT_TYPES = {
+			YELLOW_CARD: 6,
+			SECOND_YELLOW_CARD: 7, 	// TODO: unsure
+			RED_CARD: 8,
+			GOAL: 9,
+			SUB: 10, 				// also swap right now
+			NEW_BEHAVIOR: 11,
+			SWAP: 12, 				// TODO: bug?
+			MINUTE: 14,
+			PULLBACK: 15,
+			CONFUSION: 16,
+			INJURY: 18,
+			BRUISED: 19,
+			NERVES: 20,
+			RAIN: 21,
+			SUN: 22,
+		};
+
+		//doc.querySelectorAll('input[id$="_playerRatings'"]);
+		// each minute has input.hidden[id$="_playerRatingsHome"][value="jsonArray"]
+		// where jsonArray is an array of Player objects
+		// Player = {
+		//	Cards: 0,
+		//	FromMin: -1,
+		//	InjuryLevel: 0,
+		//	IsCaptain: false,
+		//	IsKicker: false,
+		//	PlayerId: 360991810,
+		//	PositionBehaviour: 0,
+		//	PositionID: 100,
+		//	Stamina: 1,
+		//	Stars: 3,
+		//	ToMin: 90,
+		//};
+
 		var fixRatings = function(home) {
 			// making a function so as not to repeat stuff twice
-			var playerRatings = document.querySelectorAll('input[id$="_playerRatings' +
-														  (home? 'Home' : 'Away') + '"]');
 
-			// each minute has input.hidden[id$="_playerRatingsHome"][value="jsonArray"]
-			// where jsonArray is an array of Player objects
-			// Player = {
-			//	Cards: 0,
-			//	FromMin: -1,
-			//	InjuryLevel: 0,
-			//	IsCaptain: false,
-			//	IsKicker: false,
-			//	PlayerId: 360991810,
-			//	PositionBehaviour: 0,
-			//	PositionID: 100,
-			//	Stamina: 1,
-			//	Stars: 3,
-			//	ToMin: 90,
-			//};
-			var playerRatingsByMin = Foxtrick.map(function(ratings) {
+			var playerRatings = doc.querySelectorAll('input[id$="_playerRatings' +
+													 (home? 'Home' : 'Away') + '"]');
+			var playerRatingsByEvent = Foxtrick.map(function(ratings) {
 				return { players: JSON.parse(ratings.value), source: ratings };
 			}, playerRatings);
-			// keep playerRatingsByMin[i].source as a pointer to the input
+			// keep playerRatingsByEvent[i].source as a pointer to the input
 			// so that we know where to save
-
-			// more stuff in each event:
-			//document.querySelectorAll('input[id$="_matchEventTypeId"]')
-			//document.querySelectorAll('input[id$="_timelineEventType"]')
-
 
 			// filter players that have not played: { FromMin: 0, ToMin: 0 }
 			// these have
 			var played = [];
-			for (var i = 0; i < playerRatingsByMin[0].players.length; ++i) {
-				var player = playerRatingsByMin[0].players[i];
+			for (var i = 0; i < playerRatingsByEvent[0].players.length; ++i) {
+				var player = playerRatingsByEvent[0].players[i];
 				if (!(player.FromMin == 0 && player.ToMin == 0)) {
 					player.ftIdx = i; // saving the index in the original array
 					played.push(player);
@@ -68,9 +89,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			// perhaps we should clone instead?
 
 			// let's make some player groups
-
-			// leaves field events: 91-97; not 94; 350-352; 512-514
-			// other player movement events: 360-262; 370-372;
 
 			// players who play till the end: { ToMin: LastMinuteInTheGame }
 			// these don't
@@ -108,28 +126,28 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					for (var j = 0; j < timeline.length; ++j) {
 						if (timeline[j].min == subMin) {
 							// reached the sub minute
-							while (playerRatingsByMin[j].players[idx].Stars != -1)
+							while (playerRatingsByEvent[j].players[idx].Stars != -1)
 								++j;
 							// reached the sub second because stars = -1
 
-							var starsLast = playerRatingsByMin[j - 1].players[idx].Stars;
+							var starsLast = playerRatingsByEvent[j - 1].players[idx].Stars;
 							var subSec = timeline[j].sec;
 							// save stamina for later?
 							// player.ftLastStamina = ratings.players[idx].Stamina;
 
 							// add stars for all further events
 							while (timeline[j]) {
-								playerRatingsByMin[j].players[idx].Stars = starsLast;
+								playerRatingsByEvent[j].players[idx].Stars = starsLast;
 								++j;
 							}
 							// add stars for all events at the same second only
 							//while (timeline[j].min == subMin && timeline[j].sec == subSec) {
-							//	playerRatingsByMin[j].players[idx].Stars = starsLast;
+							//	playerRatingsByEvent[j].players[idx].Stars = starsLast;
 							//	++j;
 							//}
 
 
-							// timeline parsed let's have a break =)
+							// timeline parsed: let's have a break =)
 							break;
 						}
 					}
@@ -139,13 +157,13 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			addStarsToSubs();
 
 			// save modifications
-			for (var i = 0; i < playerRatingsByMin.length; ++i) {
-				playerRatingsByMin[i].source.value = JSON.stringify(playerRatingsByMin[i].players);
+			for (var i = 0; i < playerRatingsByEvent.length; ++i) {
+				playerRatingsByEvent[i].source.value = JSON.stringify(playerRatingsByEvent[i].players);
 			}
 
 		};
-		fixRatings(true);
-		fixRatings(false);
+		fixRatings(true); //home
+		fixRatings(false); //away
 	},
 
 	//adds teamsnames to the field for less confusion
