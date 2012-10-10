@@ -31,12 +31,12 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		//doc.querySelectorAll('input[id$="_timelineEventType"]')
 		var TIMELINE_EVENT_TYPES = {
 			YELLOW_CARD: 6,
-			SECOND_YELLOW_CARD: 7, 	// TODO: unsure
-			RED_CARD: 8,
+			SECOND_YELLOW_CARD: 7, 	// TODO: bug? unused!
+			RED_CARD: 8,			// also second yellow now
 			GOAL: 9,
 			SUB: 10, 				// also swap right now
 			NEW_BEHAVIOR: 11,
-			SWAP: 12, 				// TODO: bug?
+			SWAP: 12, 				// bug? unused!
 			MINUTE: 14,
 			PULLBACK: 15,
 			CONFUSION: 16,
@@ -64,11 +64,17 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		//	ToMin: 90,
 		//};
 
-		var fixRatings = function(home) {
+		var fixRatings = function(isHome) {
 			// making a function so as not to repeat stuff twice
 
+			var timelineEvents = doc.querySelectorAll('input[id$="_timelineEventType"]');
+			var tEventTypeByEvent = [];
+			for (var i = 0; i < timelineEvents.length; i++) {
+				tEventTypeByEvent.push({ type: Number(timelineEvents[i].value), idx: i });
+			}
+
 			var playerRatings = doc.querySelectorAll('input[id$="_playerRatings' +
-													 (home ? 'Home' : 'Away') + '"]');
+													 (isHome ? 'Home' : 'Away') + '"]');
 			var playerRatingsByEvent = Foxtrick.map(function(ratings) {
 				return { players: JSON.parse(ratings.value), source: ratings };
 			}, playerRatings);
@@ -116,6 +122,140 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				return !Foxtrick.member(player, comesAndGoes);
 			}, entersField);
 
+			// when two events happen simultaneously (e. g., injury+substitution)
+			// HT shows the lineup after the second event for _both_ events
+			// let's try to fix that
+			var undoPrematureLineupChanges = function() {
+				var subEventTypes = [
+					TIMELINE_EVENT_TYPES.SUB,
+					TIMELINE_EVENT_TYPES.NEW_BEHAVIOR,
+					TIMELINE_EVENT_TYPES.SWAP // TODO: currently not in use!
+				];
+				var redCardEventTypes = [
+					TIMELINE_EVENT_TYPES.SECOND_YELLOW_CARD, // TODO: currently not in use!
+					TIMELINE_EVENT_TYPES.RED_CARD,
+				];
+				var lineupEventTypes = Foxtrick.concat(redCardEventTypes, subEventTypes);
+				var lineupEvents = Foxtrick.filter(function(event) {
+					return Foxtrick.member(event.type, lineupEventTypes);
+				}, tEventTypeByEvent);
+				if (!lineupEvents.length)
+					return;
+
+				var attributesToReset = [
+					'IsCaptain',
+					'IsKicker',
+					'PositionBehaviour',
+					'PositionID',
+					'Stars',
+					// stamina is not position dependent + it changes in time
+				];
+
+				var resetPlayers = function(eventIdx, correctPlayers) {
+					var players = playerRatingsByEvent[eventIdx].players;
+					for (var l = 0; l < players.length; l++) {
+						for (var m = 0, attr; attr = attributesToReset[m]; m++) {
+							players[l][attr] = correctPlayers[l][attr];
+						}
+					}
+				};
+
+
+				// let's start off by fixing events happening before lineup events
+				// this mainly works for injury- and result-based subs
+				var undoPreviousEvents = function() {
+
+					for (var i = 0; i < lineupEvents.length; i++) {
+						var idx = lineupEvents[i].idx;
+						var j = idx;
+						// trace back and search for events at the same time
+						var eventMin = timeline[j].min;
+						var eventSec = timeline[j].sec;
+						var found = false;
+						--j;
+						while (j > -1 && timeline[j].min == eventMin && timeline[j].sec == eventSec) {
+							if (Foxtrick.member(tEventTypeByEvent[j].type, lineupEventTypes))
+								// multiple lineup events happen at the same time
+								// will be fixed in fixMulipleSubs()
+								break;
+							found = true;
+							--j;
+						}
+						if (j < 0 || !found)
+							continue;
+
+						// j now points to an event before these events
+						// while idx is still our lineup event
+						// let's go forward and reset players one event at a time
+						var correctPlayers = playerRatingsByEvent[j].players;
+						for (var k = j + 1; k < idx ; k++) {
+							resetPlayers(k, correctPlayers);
+						}
+					}
+				};
+
+
+				// this will fix red carded players going for the bench straight away
+				// red card subs don't need fixing
+				var undoRedCards = function() {
+					var redCardEvents = Foxtrick.filter(function(event) {
+						return Foxtrick.member(event.type, redCardEventTypes);
+					}, tEventTypeByEvent);
+					if (!redCardEvents.length)
+						return;
+
+					for (var i = 0; i < redCardEvents.length; i++) {
+						var idx = redCardEvents[i].idx;
+						var j = idx - 1;
+						if (j < 0)
+							continue;
+
+						// j now points to an event before the red card
+						// while idx is still our red card event
+						// let's reset players
+						var correctPlayers = playerRatingsByEvent[j].players;
+						resetPlayers(idx, correctPlayers);
+					}
+				};
+
+				// unfortunately there is not enough info available
+				// to parse multiple subs that happen at the same time
+				// so we will have to use chpp
+				var fixMultipleSubs = function() {
+					var subEvents = Foxtrick.filter(function(event) {
+						return Foxtrick.member(event.type, subEventTypes);
+					}, tEventTypeByEvent);
+					if (!subEvents.length)
+						return;
+
+					var subTimes = [], multipleSubTimes = [];
+					for (var i = 0; i < subEvents.length; i++) {
+						var idx = subEvents[i].idx;
+						var eventMin = timeline[idx].min;
+						var eventSec = timeline[idx].sec;
+						var eventTime = timeline[idx];
+						if (Foxtrick.any(function(time) {
+							return (time.min == eventMin && time.sec == eventSec);
+						}, subTimes)) {
+							multipleSubTimes.push(eventTime);
+						}
+						subTimes.push(eventTime);
+					}
+					if (!multipleSubTimes.length)
+						return;
+
+					Foxtrick.log('showtime');
+				};
+
+
+				undoPreviousEvents();
+				undoRedCards();
+				fixMultipleSubs();
+				//we should be good now unless something weird happens
+				//e.g. red card that _follows_ a sub (same second, obviously)
+
+			};
+
 			// add stars for players that leave the field
 			var addStarsToSubs = function() {
 				for (var i = 0; i < leavesField.length; ++i) {
@@ -158,9 +298,12 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				}
 			};
 
+			undoPrematureLineupChanges();
 			addStarsToSubs();
 
 			// save modifications
+			// let's hope fixMultipleSubs finished by now or we're fucked
+			// consider doing addStarsToSubs first and save in fixMultipleSubs?
 			for (var i = 0; i < playerRatingsByEvent.length; ++i) {
 				playerRatingsByEvent[i].source.value = JSON.stringify(playerRatingsByEvent[i].players);
 			}
