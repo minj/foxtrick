@@ -44,6 +44,7 @@ background-color: #3E9C49;
 
 .ft-drop-down-submenu {
 	position: absolute;
+	z-index: 203;
 	top: 35px;
 	background-color: #277F31;
 }
@@ -67,5 +68,11 @@ background-color: #3E9C49;
 	border: 0;
 	padding: 0;
 }
+
+/* Some fixes for varios z shit, no idea*/
+#timeline {
+	z-index: 0;	
+} 
+
 
 }
