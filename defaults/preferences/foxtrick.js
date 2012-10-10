@@ -411,6 +411,8 @@ pref("extensions.foxtrick.prefs.module.LiveAlert.own_text", "foxtrick://resource
 pref("extensions.foxtrick.prefs.module.LocalTime.enabled", true);
 pref("extensions.foxtrick.prefs.module.LocalTime.local", false);
 pref("extensions.foxtrick.prefs.module.LoyaltyDisplay.enabled", true);
+pref("extensions.foxtrick.prefs.module.MainMenuDropDown.enabled", true);
+pref("extensions.foxtrick.prefs.module.MainMenuDropDown.OmnitFirstHeader.enabled", true);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.enabled", false);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.GuestBook.enabled", false);
 pref("extensions.foxtrick.prefs.module.MarkAllAsRead.enabled", true);
