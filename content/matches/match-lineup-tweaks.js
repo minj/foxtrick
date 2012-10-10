@@ -68,12 +68,15 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			// making a function so as not to repeat stuff twice
 
 			var playerRatings = doc.querySelectorAll('input[id$="_playerRatings' +
-													 (home? 'Home' : 'Away') + '"]');
+													 (home ? 'Home' : 'Away') + '"]');
 			var playerRatingsByEvent = Foxtrick.map(function(ratings) {
 				return { players: JSON.parse(ratings.value), source: ratings };
 			}, playerRatings);
 			// keep playerRatingsByEvent[i].source as a pointer to the input
 			// so that we know where to save
+
+			if (playerRatingsByEvent[0].players[0].hasOwnProperty('ftIdx'))
+				return; // FF is executing twice, wtf?
 
 			// filter players that have not played: { FromMin: 0, ToMin: 0 }
 			// these have
@@ -127,10 +130,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					for (var j = 0; j < timeline.length; ++j) {
 						if (timeline[j].min == subMin) {
 							// reached the sub minute
-							while (playerRatingsByEvent[j].players[idx].Stars != -1
-								  && j < timeline.length - 1)
-								// FF goes of the timeline for no apparent reason
-								// debugging owns in FF... NOT
+							while (playerRatingsByEvent[j].players[idx].Stars != -1)
 								++j;
 							// reached the sub second because stars = -1
 
