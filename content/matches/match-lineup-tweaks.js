@@ -95,6 +95,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			var leavesField = Foxtrick.filter(function(player) {
 				return player.ToMin != timeline[timeline.length - 1].min;
 			}, played);
+
 			// players who start the game: { FromMin: -1}
 			// these don't
 			var entersField = Foxtrick.filter(function(player) {
@@ -126,7 +127,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					for (var j = 0; j < timeline.length; ++j) {
 						if (timeline[j].min == subMin) {
 							// reached the sub minute
-							while (playerRatingsByEvent[j].players[idx].Stars != -1)
+							while (playerRatingsByEvent[j].players[idx].Stars != -1
+								  && j < timeline.length - 1)
+								// FF goes of the timeline for no apparent reason
+								// debugging owns in FF... NOT
 								++j;
 							// reached the sub second because stars = -1
 
@@ -337,7 +341,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				//	Math.round(123 / scale) + 'px';
 				//	shirt.setAttribute('style', style);
 				var sizes = {
-					backgrounds: [0, 0],// don't show
+					//backgrounds: [0, 0],// don't show
 					kits: [92, 123],
 					bodies: [92, 123],
 					faces: [92, 123],
@@ -518,6 +522,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			return;
 
 		var info = timelineEventDetails.getElementsByClassName('timelineEventDetailsInfo')[0];
+		if (!info)
+			return;
 		var players = info.getElementsByTagName('a');
 		if (!players.length)
 			return;
