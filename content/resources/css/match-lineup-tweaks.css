@@ -8,6 +8,7 @@ html[dir="rtl"] #timelineEventDetails {
 html[dir="ltr"] #timelineEventDetails {
 	top: 242px !important;
 	right: 166px !important;
+	left: auto !important;
 }
 
 .ft-match-lineup-tweaks-teamname {
