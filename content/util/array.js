@@ -94,7 +94,18 @@ Foxtrick.intersect = function(a, b) {
 	r = Foxtrick.unique(r);
 	return r;
 };
-
+// return the union of array a and array b
+// does not modify the original array
+Foxtrick.union = function(a, b) {
+	var r = [];
+	for (var i = 0; i < a.length; i++) {
+		r.push(a);
+	}
+	for (var i = 0; i < b.length; i++) {
+		r.push(b);
+	}
+	return r;
+};
 // returns the concat of array a and array b
 Foxtrick.concat = function(a, b) {
 	for (var i = 0; i < b.length; ++i)
