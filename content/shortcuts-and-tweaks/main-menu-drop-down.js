@@ -120,7 +120,7 @@ Foxtrick.modules['MainMenuDropDown']={
 				}
 
 				//update
-				if(Foxtrick.isPageHref(item.href.replace(/^.*\/\/[^\/]+/, ''), doc.location.href))
+				if(Foxtrick.isPageHref(item.href.replace(/^.*\/\/[^\/]+/, '') +'$', doc.location.href))
 					learnCurrentPage(menuStructure);
 
 			}, menuItems);
