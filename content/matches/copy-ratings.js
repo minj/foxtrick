@@ -43,7 +43,10 @@ Foxtrick.modules["CopyRatings"]={
 				var start = Foxtrick.strrpos(headder, '<span>(') +7;
 				var end = Foxtrick.strrpos(headder, ')</span>');
 
-				var matchlink=doc.getElementsByClassName("main")[0].getElementsByTagName('h2')[0].getElementsByTagName('a')[0];
+				var matchlink = doc.getElementsByClassName('main')[0]
+					.getElementsByTagName('h2')[0].getElementsByTagName('a')[
+						Foxtrick.util.layout.isStandard(doc) ? 0 : 2
+					];
 				var gameid = Foxtrick.util.id.getMatchIdFromUrl(matchlink.href);// headder.substr(start, end-start);
 
 				start = Foxtrick.strrpos(headder, ' - ');
@@ -67,7 +70,7 @@ Foxtrick.modules["CopyRatings"]={
 				var toggleTabHolder = doc.getElementsByClassName('toggleTabHolder')[0];
 				var copyTextRating = Foxtrick.hasClass(doc.getElementById('sortByNumberIcon'),'disabled') ? false : true;
 				var copyNumRating = Foxtrick.hasClass(doc.getElementById('sortByTextIcon'),'disabled') ? false : true;
-				
+
 				/* needs to be in mouseover or click
 				var copylinks = doc.getElementsByClassName('ft_copy_rating');
 				for (var j=0; j<copylinks.length; ++j) {
@@ -76,7 +79,7 @@ Foxtrick.modules["CopyRatings"]={
 					if (copyTextRating)
 						copylinks.title += ' '+Foxtrickl10n.getString('ratings.number');
 				}*/
-				
+
 				// head row
 				ad += '[tr]\n\n[th]';
 				if ((table.rows[0].cells[0])) {
@@ -113,19 +116,19 @@ Foxtrick.modules["CopyRatings"]={
 						if (table.rows[row].cells[0]) {
 							ad += table.rows[row].cells[0].textContent;
 						}
-						ad += '[/th]\n[td]'; 
+						ad += '[/th]\n[td]';
 
 						/*var copyTextRating = table.rows[row].cells[1] !== undefined
 										&& (table.rows[row].cells[1].getAttribute('style') == null
 											|| table.rows[row].cells[1].getAttribute('style').indexOf('display: none') == -1
 											|| table.rows[row].cells[5].getAttribute('style').indexOf('display: none') == -1);
-											
+
 						var copyNumRating = table.rows[row].cells[4] !== undefined
 										&& (table.rows[row].cells[4].getAttribute('style') == null
 											|| table.rows[row].cells[4].getAttribute('style').indexOf('display: none') == -1
 											|| table.rows[row].cells[6].getAttribute('style').indexOf('display: none') == -1);
-						*/											
-						if (team1) { 
+						*/
+						if (team1) {
 							if (Foxtrick.hasClass(table.rows[row],'ft_rating_table_row'))
 								ad += table.rows[row].cells[1].textContent.replace(_d, '[br]'+_d).replace(_m, '[br]'+_m).replace(_a, '[br]'+_a).replace(_t, '[br]'+_t);
 							else {
@@ -157,14 +160,14 @@ Foxtrick.modules["CopyRatings"]={
 				ad = ad.replace(/\[td\]###\[\/td\]/gi,'');
 				ad += '\n[/table]\n';
 
-				// copy htms prediction. 
+				// copy htms prediction.
 				if (team1 && team2) {
  					var htmsMatchDivId = doc.getElementById('htmsMatchDivId');
 					if (htmsMatchDivId) {
 						ad += Foxtrick.modules["HTMSPrediction"].copy(htmsMatchDivId);
 					}
 				}
-				
+
 				Foxtrick.copyStringToClipboard(ad);
 				var note = Foxtrick.util.note.add(doc, insertBefore, "ft-ratings-copy-note", Foxtrickl10n.getString("copy.ratings.copied"), null, true);
 			}
