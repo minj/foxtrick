@@ -15,12 +15,12 @@
 
 html[dir="rtl"] .ft-match-lineup-tweaks-teamname-home {
 	top: 15px !important;
-	left: 15px !important;
+	right: 15px !important;
 	position: absolute !important;
 }
 html[dir="rtl"] .ft-match-lineup-tweaks-teamname-away {
 	bottom: 15px !important;
-	left: 15px !important;
+	right: 15px !important;
 	position: absolute !important;
 }
 
