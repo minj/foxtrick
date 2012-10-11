@@ -1,0 +1,96 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
+
+#ft-drop-down-menu, #ft-drop-down-menu ul {
+    list-style-type:none;
+    padding: 0 10px 5px;
+    margin: 0 2px;
+    min-width: 110px;
+}
+
+html[dir="ltr"] #ft-drop-down-menu > li {
+    float:left;
+}
+
+html[dir="rtl"] #ft-drop-down-menu > li {
+    float:right;
+}
+
+#ft-drop-down-menu li ul {
+    display:none;
+}
+#ft-drop-down-menu li:hover ul {
+    display:block;
+}
+
+#ft-drop-down-menu > li > a {
+?  float: left;
+?  color: white !important;
+?  line-height: 35px;
+?  font-size: 1.2em;
+?  font-weight: 700;
+?  font-family: Tahoma;
+?  text-decoration: none;
+?  margin: 0 0 0 2px;
+?  padding: 0 15px;
+}
+
+#ft-drop-down-menu > li > a:hover {
+?  background-color: #3E9C49;
+}
+
+
+.ft-drop-down-submenu > li:hover {
+    background-color: #3E9C49;
+}
+
+.ft-drop-down-submenu {
+?  position: absolute;
+?  z-index: 203;
+?  top: 35px;
+?  background-color: #277F31;
+}
+
+.ft-drop-down-submenu a {
+?  color: white !important;
+?  line-height: 15px;
+?  font-family: Tahoma;
+?  text-decoration: none;
+?  margin: 0 0 0 2px;
+?  padding: 0 4px;
+?  white-space: nowrap;
+?  display: block;
+}
+
+.ft-drop-down-submenu h3 {
+?  margin-top: 8px;
+?  margin-bottom: 5px;
+?  font-size: 1em;
+?  color: white !important;
+?  width: auto;
+?  border: 0;
+?  padding: 0;
+}
+
+/* Some fixes for varios z shit, no idea*/
+#timeline {
+?  z-index: 0;?  
+}
+
+/* Remove left menu*/
+
+.mainWrapperRegular, .mainWide {
+	width:954px !important;
+}
+.mainWrapperWide {
+	width:954px !important;
+	float:none !important;
+}
+.mainRegular {
+	width:743px !important;
+}
+
+.subMenu {
+	display:none !important;
+}
+
+}
