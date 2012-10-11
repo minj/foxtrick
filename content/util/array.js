@@ -99,10 +99,10 @@ Foxtrick.intersect = function(a, b) {
 Foxtrick.union = function(a, b) {
 	var r = [];
 	for (var i = 0; i < a.length; i++) {
-		r.push(a);
+		r.push(a[i]);
 	}
 	for (var i = 0; i < b.length; i++) {
-		r.push(b);
+		r.push(b[i]);
 	}
 	return r;
 };
