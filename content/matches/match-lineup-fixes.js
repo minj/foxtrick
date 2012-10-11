@@ -365,20 +365,43 @@ Foxtrick.modules['MatchLineupFixes'] = {
 					multiple = true;
 
 				subTimes[eventTime].push({
-					matchEventIdx: matchEventIdx, idx: idx, isHome: isHomeEvent
+					idx: idx, isHome: isHomeEvent
 				});
 			}
 			if (!multiple)
 				return;
 
-			var multipleSubs = [];
+			var subGroups = [];
 			for (var time in subTimes) {
-				if (subTimes[time].length > 1) {
-					multipleSubs.push(subTimes[time]);
-				}
+				//if (subTimes[time].length > 1) {
+					subGroups.push(subTimes[time]);
+				//}
 			}
-			// OK, so at this point in multipleSubs
+			// OK, so at this point in subGroups
 			// we have groups of subs that happen at the same time
+
+			// in HTO matches playerRatingsHome[i].players[j].PlayerID etc
+			// is not the same as the real ID
+			// the conversion is handled in HT classes exclusively
+			// therefore we'll need some hack-work
+			var fetchHTOInfo = function() {
+				var scripts = doc.getElementsByTagName('script');
+				var regex = /ht\.matchAnalysis\.playerData\s*=\s*'([\s\S]+?)';/m;
+				var playerData;
+				for (var i = 0; i < scripts.length; i++) {
+					if (regex.test(scripts[i].textContent)) {
+						playerData =
+							JSON.parse(regex.exec(scripts[i].textContent)[1]);
+						break;
+					}
+				}
+				return playerData;
+			};
+			if (SourceSystem == 'HTOIntegrated') {
+				var HTOPlayers = fetchHTOInfo();
+				if (!HTOPlayers)
+					return;
+			}
 
 			Foxtrick.util.api.retrieve(doc, detailsArgs, { cache_lifetime: 'session' },
 			  function(xml) {
@@ -407,7 +430,90 @@ Foxtrick.modules['MatchLineupFixes'] = {
 					Foxtrick.util.api.retrieve(doc, awayArgs, { cache_lifetime: 'session' },
 					  function(awayXml) {
 						var events = xml.getElementsByTagName('Event');
-						Foxtrick.log('showtime');
+						var homeSubsXml = homeXml.getElementsByTagName('Substitution');
+						var awaySubsXml = awayXml.getElementsByTagName('Substitution');
+						var homeSubsCt = 0;
+						var awaySubsCt = 0;
+						var bindXmlToEvents = function(subEvents, xmlSubs, offset) {
+							for (var i = 0; i < subEvents.length; i++) {
+								subEvents[i].xml = xmlSubs[i + offset];
+							}
+						};
+						var addHTOIds = function(subGroup) {
+							var findPId = function(sourceId) {
+								for (var i = 0; i < HTOPlayers.length; i++) {
+									if (HTOPlayers[i].SourcePlayerId == sourceId)
+										return HTOPlayers[i].PlayerId;
+								}
+								return null;
+							};
+							for (var j = 0; j < subGroup.length; j++) {
+								var subXml = subGroup[j].xml;
+								var sbjIdEl = subXml.getElementsByTagName('SubjectPlayerID')[0];
+								var objIdEl = subXml.getElementsByTagName('ObjectPlayerID')[0];
+								var realSbjId = findPId(sbjIdEl.textContent);
+								var realObjId = findPId(objIdEl.textContent);
+								if (!realSbjId || !realObjId)
+									return false;
+								sbjIdEl.textContent = realSbjId;
+								objIdEl.textContent = realObjId;
+							}
+							return true;
+						};
+
+						for (var i = 0; i < subGroups.length; i++) {
+							var subGroup = subGroups[i];
+							var homeSubsInGroup = [];
+							var awaySubsInGroup = [];
+							for (var j = 0; j < subGroup.length; j++) {
+								var sub = subGroup[j];
+								if (sub.isHome)
+									homeSubsInGroup.push(sub);
+								else
+									awaySubsInGroup.push(sub);
+							}
+							bindXmlToEvents(homeSubsInGroup, homeSubsXml, homeSubsCt);
+							bindXmlToEvents(awaySubsInGroup, awaySubsXml, awaySubsCt);
+							homeSubsCt += homeSubsInGroup.length;
+							awaySubsCt += awaySubsInGroup.length;
+							if (subGroup.length == 1)
+								continue;
+							if (SourceSystem == 'HTOIntegrated' && !addHTOIds(subGroup)) {
+								return;
+							}
+
+							// OK, we assume everything's OK now.
+							// Let's go through subs one by one and fix each one except the last
+							for (var j = 0; j < subGroup.length - 1; j++) {
+								var sub = subGroup[j];
+								var goodIdx = sub.idx - 1;
+								var ratingsData = (sub.isHome) ? playerRatingsHome :
+									playerRatingsAway;
+								// rewind by one
+								resetPlayers(ratingsData, sub.idx, goodIdx);
+								var ratings = ratingsData[sub.idx];
+								var sbjId = sub.xml
+									.getElementsByTagName('SubjectPlayerID')[0].textContent;
+								var objId = sub.xml
+									.getElementsByTagName('ObjectPlayerID')[0].textContent;
+								var objPlayer = Foxtrick.filter(function(p) {
+									return p.PlayerId == objId;
+								}, ratings.players)[0];
+								var sbjPlayer = Foxtrick.filter(function(p) {
+									return p.PlayerId == sbjId;
+								}, ratings.players)[0];
+								sbjPlayer.PositionBehaviour = objPlayer.PositionBehaviour;
+								sbjPlayer.PositionID = objPlayer.PositionID;
+								objPlayer.PositionBehaviour = Number(sub.xml
+									.getElementsByTagName('NewPositionBehaviour')[0].textContent);
+								objPlayer.PositionID = Number(sub.xml
+									.getElementsByTagName('NewPositionId')[0].textContent);
+							}
+						}
+
+						// don't forget to save, dumbo!
+						saveRatings(playerRatingsHome);
+						saveRatings(playerRatingsAway);
 					});
 				});
 			});
