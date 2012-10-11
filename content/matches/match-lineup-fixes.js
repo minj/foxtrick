@@ -510,10 +510,29 @@ Foxtrick.modules['MatchLineupFixes'] = {
 									.getElementsByTagName('NewPositionId')[0].textContent);
 								// we really can't tell what the stars of these players are
 								// in the middle steps
-								if (sbjPlayer.PositionID != -1)
+								// but we can at least try
+								var finalIdx = subGroup[subGroup.length - 1].idx;
+								var finalRatings = ratingsData[finalIdx];
+								if (sbjPlayer.PositionID != -1) {
 									sbjPlayer.Stars = -1;
-								if (objPlayer.PositionID != -1)
+									var finalSbjPlayer = Foxtrick.filter(function(p) {
+										return p.PlayerId == sbjId;
+									}, finalRatings.players)[0];
+									if (sbjPlayer.PositionID == finalSbjPlayer.PositionID &&
+										sbjPlayer.PositionBehaviour ==
+											finalSbjPlayer.PositionBehaviour)
+										sbjPlayer.Stars = finalSbjPlayer.Stars;
+								}
+								if (objPlayer.PositionID != -1) {
 									objPlayer.Stars = -1;
+									var finalObjPlayer = Foxtrick.filter(function(p) {
+										return p.PlayerId == objId;
+									}, finalRatings.players)[0];
+									if (objPlayer.PositionID == finalObjPlayer.PositionID &&
+										objPlayer.PositionBehaviour ==
+											finalObjPlayer.PositionBehaviour)
+										objPlayer.Stars = finalObjPlayer.Stars;
+								}
 							}
 						}
 
