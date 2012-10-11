@@ -6,6 +6,10 @@ Foxtrick.modules['MainMenuDropDown']={
 
 	run : function(doc){
 
+		//missing css for simple skin atm
+		if(!Foxtrick.util.layout.isStandard(doc))
+			return;
+
 		var activeLanguage = FoxtrickPrefs.getString('htLanguage');
 
 		var learnCurrentPage = function(menuStructure){
