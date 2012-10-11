@@ -59,7 +59,7 @@ Foxtrick.ht_pages = {
 	'transferCompare'   		: '/Club/Transfers/TransferCompare',
 	'transfersTeam' 			: '/Club/Transfers/TransfersTeam.aspx',
 	'transfersPlayer'   		: '/Club/Transfers/TransfersPlayer.aspx',
-	'transferSearchForm'		: '/World/Transfers/$|/World/Transfers/default.aspx',
+	'transferSearchForm'		: '/World/Transfers/$|/World/Transfers/default.aspx|/World/Transfers/?fsPlayerId=\\d+',
 	'transferSearchResult'  	: '/World/Transfers/TransfersSearchResult.aspx',
 	'match' 					: '/Club/Matches/Match.aspx',
 	'matchOld' 					: '/Club/Matches/MatchOld.aspx',
