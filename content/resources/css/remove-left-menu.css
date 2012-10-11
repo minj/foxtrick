@@ -2,14 +2,24 @@
 
 /* Remove left menu*/
 
-html[data-theme="standard"] .mainWrapperRegular, .mainWide {
+html[data-theme="standard"][dir="ltr"] .mainWrapperRegular, .mainWide {
     width:954px !important;
 }
 
-html[data-theme="standard"] .mainWrapperWide {
+html[data-theme="standard"][dir="rtl"] .mainWrapperRegular, .mainWide {
+    width:979px !important;
+}
+
+html[data-theme="standard"][dir="ltr"] .mainWrapperWide {
 	width:954px !important;
 	float:none !important;
 }
+
+html[data-theme="standard"][dir="rtl"] .mainWrapperWide {
+    width:979px !important;
+    float:none !important;
+}
+
 html[data-theme="standard"] .mainRegular {
 	width:743px !important;
 }
