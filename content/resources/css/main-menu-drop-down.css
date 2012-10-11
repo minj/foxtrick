@@ -23,7 +23,6 @@ html[dir="rtl"] #ft-drop-down-menu > li {
 }
 
 html[data-theme="standard"] #ft-drop-down-menu > li > a {
-	float: left;
 	color: white !important;
 	line-height: 35px;
 	font-size: 1.2em;
@@ -32,6 +31,7 @@ html[data-theme="standard"] #ft-drop-down-menu > li > a {
 	text-decoration: none;
 	margin: 0 0 0 2px;
 	padding: 0 15px;
+	float: none;
 }
 
 html[data-theme="simple"] #ft-drop-down-menu > li > a {
@@ -41,9 +41,9 @@ html[data-theme="simple"] #ft-drop-down-menu > li > a {
 	height: 23px;
 	line-height: 23px;
 	text-align: center;
-	float: left;
 	margin: 0 6px 0 0;
 	padding: 0 6px;
+	float: none;
 }
 
 
@@ -80,6 +80,8 @@ html[data-theme="simple"] .ft-drop-down-submenu {
 	padding: 0 4px;
 	white-space: nowrap;
 	display: block;
+	float: none !important;
+	text-align: left !important;
 }
 
 .ft-drop-down-submenu h3 {
