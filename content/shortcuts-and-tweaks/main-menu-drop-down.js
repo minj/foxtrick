@@ -10,6 +10,31 @@ Foxtrick.modules['MainMenuDropDown']={
 		if(!Foxtrick.util.layout.isStandard(doc))
 			return;
 
+		var getCustomCss = function(doc){
+			var inlinestyleNodes = doc.getElementsByTagName('style');
+			var inlineStyle = '';
+			Foxtrick.map(function(styleNode){
+				if(styleNode.id != 'ft-module-css')
+					inlineStyle = inlineStyle + styleNode.textContent + '\n';
+			}, inlinestyleNodes);
+
+			Foxtrick.log(inlineStyle);
+			return inlineStyle;
+		};
+
+		// var css = getCustomCss(doc);
+		// var re = new RegExp(/(\w+)\s*{(\s*[^;]+;)/gi);
+		// var matches = re.exec(css);
+
+
+		var css = getCustomCss(doc);
+		var re = new RegExp(/#menu\s*{\s*background-color:([^;]+;)/gi);
+		var matches = re.exec(css);		
+		
+		var bgcolor = null;
+		if(matches && matches[1])
+			bgcolor = matches[1];
+
 		var activeLanguage = FoxtrickPrefs.getString('htLanguage');
 
 		var learnCurrentPage = function(menuStructure){
@@ -67,7 +92,7 @@ Foxtrick.modules['MainMenuDropDown']={
 
 			var menuItems = doc.querySelectorAll('#menu > a');
 
-			var nav = doc.createElement('ul');
+			var nav = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MainMenuDropDown, 'ul');
 			nav.id = 'ft-drop-down-menu';
 
 			//iterate all main menu items
@@ -82,6 +107,9 @@ Foxtrick.modules['MainMenuDropDown']={
 
 					var subMenuList = doc.createElement('ul');
 					Foxtrick.addClass(subMenuList, "ft-drop-down-submenu");
+					
+					if(bgcolor)
+						subMenuList.setAttribute('style', 'background-color: ' + bgcolor + '!important;');
 
 
 					var firstHeader = true;
