@@ -9,7 +9,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['match'],
 	OPTIONS: [
-
+		'FixWeatherSEs', 'AddStarsToSubs', 'FixMultipleEvents'
 	],
 	//CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-fixes.css',
 	run: function(doc) {
@@ -508,6 +508,12 @@ Foxtrick.modules['MatchLineupFixes'] = {
 									.getElementsByTagName('NewPositionBehaviour')[0].textContent);
 								objPlayer.PositionID = Number(sub.xml
 									.getElementsByTagName('NewPositionId')[0].textContent);
+								// we really can't tell what the stars of these players are
+								// in the middle steps
+								if (sbjPlayer.PositionID != -1)
+									sbjPlayer.Stars = -1;
+								if (objPlayer.PositionID != -1)
+									objPlayer.Stars = -1;
 							}
 						}
 
@@ -529,13 +535,16 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
 			return;
 
-		if (playerRatingsHome[0].players[0].hasOwnProperty('ftIdx'))
-			return; // FF is executing twice, wtf?
+		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupFixes', 'FixWeatherSEs'))
+			fixWeatherSEs();
 
-		fixWeatherSEs();
-		addStarsToSubs(playerRatingsHome);
-		addStarsToSubs(playerRatingsAway);
-		if (lineupEvents.length) {
+		if (!playerRatingsHome[0].players[0].hasOwnProperty('ftIdx') && // FF is executing twice, wtf?
+			FoxtrickPrefs.isModuleOptionEnabled('MatchLineupFixes', 'AddStarsToSubs')) {
+			addStarsToSubs(playerRatingsHome);
+			addStarsToSubs(playerRatingsAway);
+		}
+		if (lineupEvents.length &&
+			FoxtrickPrefs.isModuleOptionEnabled('MatchLineupFixes', 'FixMultipleEvents')) {
 			undoPreviousEvents();
 			undoRedCards();
 			fixMultipleSubs();
