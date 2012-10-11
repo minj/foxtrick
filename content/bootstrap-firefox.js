@@ -152,6 +152,7 @@ FoxtrickFirefox.prototype = {
 		"matches/htev-prediction.js",
 		"matches/htms-prediction.js",
 		"matches/match-income.js",
+		"matches/match-lineup-fixes.js",
 		"matches/match-lineup-tweaks.js",
 		"matches/match-order.js",
 		"matches/match-player-colouring.js",

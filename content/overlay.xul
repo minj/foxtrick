@@ -145,6 +145,7 @@
 <script type="application/x-javascript" src="./matches/htev-prediction.js"></script>
 <script type="application/x-javascript" src="./matches/htms-prediction.js"></script>
 <script type="application/x-javascript" src="./matches/match-income.js"></script>
+<script type="application/x-javascript" src="./matches/match-lineup-fixes.js"></script>
 <script type="application/x-javascript" src="./matches/match-lineup-tweaks.js"></script>
 <script type="application/x-javascript" src="./matches/match-order.js"></script>
 <script type="application/x-javascript" src="./matches/match-player-colouring.js"></script>

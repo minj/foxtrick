@@ -418,6 +418,7 @@ pref("extensions.foxtrick.prefs.module.ManagerButtons.GuestBook.enabled", false)
 pref("extensions.foxtrick.prefs.module.MarkAllAsRead.enabled", true);
 pref("extensions.foxtrick.prefs.module.MarkUnread.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchIncome.enabled", true);
+pref("extensions.foxtrick.prefs.module.MatchLineupFixes.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.DisplayTeamNameOnField.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.HighlighEventPlayers.enabled", true);
