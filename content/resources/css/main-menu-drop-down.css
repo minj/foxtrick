@@ -2,7 +2,7 @@
 
 #ft-drop-down-menu, #ft-drop-down-menu ul {
     list-style-type:none;
-    padding: 0 10px 5px;
+    padding: 0 10px 0px;
     margin: 0 2px;
     min-width: 110px;
 }
@@ -36,7 +36,7 @@ html[data-theme="standard"] #ft-drop-down-menu > li > a {
 
 html[data-theme="simple"] #ft-drop-down-menu > li > a {
 	color: white;
-	font-weight: 700;
+	font-weight: 700 !important;
 	text-decoration: none;
 	height: 23px;
 	line-height: 23px;
@@ -45,8 +45,6 @@ html[data-theme="simple"] #ft-drop-down-menu > li > a {
 	padding: 0 6px;
 	float: none;
 }
-
-
 
 #ft-drop-down-menu > li > a:hover {
 	background-color: #3E9C49;
@@ -73,13 +71,15 @@ html[data-theme="simple"] .ft-drop-down-submenu {
 
 .ft-drop-down-submenu a {
 	color: white !important;
-	line-height: 15px;
+	line-height: 15px !important;
+	font-weight: 200 !important;
 	font-family: Tahoma;
 	text-decoration: none;
 	margin: 0 0 0 2px;
 	padding: 0 4px;
 	white-space: nowrap;
 	display: block;
+	height: 15px !important;
 	float: none !important;
 	text-align: left !important;
 }
@@ -96,11 +96,21 @@ html[data-theme="simple"] .ft-drop-down-submenu {
 
 /* Some fixes for varios z shit, no idea*/
 #timeline {
-	z-index: 0;	
+	z-index: 0 !important;
+
 } 
 
+/*those icons in top right corner, settings thingy*/
 .backIcon, .statsIcon, .alltidIcon, .bookmark, .forumSettings, .forumSearch, .forumSearch2, .forumStats, .backIcon2, .helpIcon {
-	z-index: 0;
+	z-index: 0 !important;
+}
+
+/*match order page*/
+ul.ui-tabs-nav, #loading {
+	z-index: 2 !important;	
+} 
+#fieldOverlay {
+	z-index: 201 !important;	
 }
 
 }
