@@ -22,7 +22,7 @@ html[dir="rtl"] #ft-drop-down-menu > li {
     display:block;
 }
 
-#ft-drop-down-menu > li > a {
+html[data-theme="standard"] #ft-drop-down-menu > li > a {
 	float: left;
 	color: white !important;
 	line-height: 35px;
@@ -34,6 +34,20 @@ html[dir="rtl"] #ft-drop-down-menu > li {
 	padding: 0 15px;
 }
 
+html[data-theme="simple"] #ft-drop-down-menu > li > a {
+	color: white;
+	font-weight: 700;
+	text-decoration: none;
+	height: 23px;
+	line-height: 23px;
+	text-align: center;
+	float: left;
+	margin: 0 6px 0 0;
+	padding: 0 6px;
+}
+
+
+
 #ft-drop-down-menu > li > a:hover {
 	background-color: #3E9C49;
 }
@@ -43,10 +57,17 @@ html[dir="rtl"] #ft-drop-down-menu > li {
     background-color: #3E9C49;
 }
 
-.ft-drop-down-submenu {
+html[data-theme="standard"] .ft-drop-down-submenu {
 	position: absolute;
 	z-index: 203;
 	top: 35px;
+	background-color: #277F31;
+}
+
+html[data-theme="simple"] .ft-drop-down-submenu {
+	position: absolute;
+	z-index: 203;
+	top: 23px;
 	background-color: #277F31;
 }
 
