@@ -772,6 +772,26 @@ var eventText = {
 							var evtTeamId = evt.getElementsByTagName('SubjectTeamID')[0].textContent;
 							var evtType = evt.getElementsByTagName('EventTypeID')[0].textContent;
 
+							//timeline-hack
+							if (Foxtrick.Pages.Match.hasNewRatings(doc)) {
+								if (evtType > 300 & evtType < 310) {
+									//whether events
+									var temp = doc.createElement('div');
+									Foxtrick.util.sanitize.addHTML(doc, evtMarkup, temp);
+									//trusted source
+									var link = temp.getElementsByTagName('a')[0];
+									var table = doc.querySelector('table.tblHighlights');
+									var row = table.insertRow(-1);
+									Foxtrick.addClass(row, 'hidden');
+									var cell = row.insertCell(-1);
+									cell.id = 'matchEventIndex_' +
+										evt.attributes.getNamedItem('Index').textContent;
+									Foxtrick.addClass(cell, 'undefined');
+									cell.appendChild(link);
+								}
+							}
+							//timeline-hack
+
 							if (evtMarkup != '') {
 								//kickoff indicator
 
