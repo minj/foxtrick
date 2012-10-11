@@ -23,19 +23,19 @@ html[dir="rtl"] #ft-drop-down-menu > li {
 }
 
 #ft-drop-down-menu > li > a {
-float: left;
-color: white !important;
-line-height: 35px;
-font-size: 1.2em;
-font-weight: 700;
-font-family: Tahoma;
-text-decoration: none;
-margin: 0 0 0 2px;
-padding: 0 15px;
+	float: left;
+	color: white !important;
+	line-height: 35px;
+	font-size: 1.2em;
+	font-weight: 700;
+	font-family: Tahoma;
+	text-decoration: none;
+	margin: 0 0 0 2px;
+	padding: 0 15px;
 }
 
 #ft-drop-down-menu > li > a:hover {
-background-color: #3E9C49;
+	background-color: #3E9C49;
 }
 
 
@@ -58,6 +58,7 @@ background-color: #3E9C49;
 	margin: 0 0 0 2px;
 	padding: 0 4px;
 	white-space: nowrap;
+	display: block;
 }
 
 .ft-drop-down-submenu h3 {
@@ -74,6 +75,5 @@ background-color: #3E9C49;
 #timeline {
 	z-index: 0;	
 } 
-
 
 }
