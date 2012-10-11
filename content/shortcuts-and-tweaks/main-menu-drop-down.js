@@ -7,8 +7,8 @@ Foxtrick.modules['MainMenuDropDown']={
 	run : function(doc){
 
 		//missing css for simple skin atm
-		if(!Foxtrick.util.layout.isStandard(doc))
-			return;
+		//if(!Foxtrick.util.layout.isStandard(doc))
+		//	return;
 
 		var getCustomCss = function(doc){
 			var inlinestyleNodes = doc.getElementsByTagName('style');
@@ -17,15 +17,8 @@ Foxtrick.modules['MainMenuDropDown']={
 				if(styleNode.id != 'ft-module-css')
 					inlineStyle = inlineStyle + styleNode.textContent + '\n';
 			}, inlinestyleNodes);
-
-			Foxtrick.log(inlineStyle);
 			return inlineStyle;
 		};
-
-		// var css = getCustomCss(doc);
-		// var re = new RegExp(/(\w+)\s*{(\s*[^;]+;)/gi);
-		// var matches = re.exec(css);
-
 
 		var css = getCustomCss(doc);
 		var re = new RegExp(/#menu\s*{\s*background-color:([^;]+;)/gi);
@@ -40,6 +33,9 @@ Foxtrick.modules['MainMenuDropDown']={
 		var learnCurrentPage = function(menuStructure){
 			Foxtrick.log('MainMenuDropDown Updating: ' + doc.location.pathname)
 			var subMenuContent = doc.querySelectorAll('.subMenu > .subMenuBox > .boxBody')[0];
+			
+			if(!Foxtrick.util.layout.isStandard(doc))
+				var subMenuContent = doc.querySelectorAll('.subMenu > .subMenuBox')[0];
 			
 			//no navigation sidebar, like forums
 			if(subMenuContent === undefined)
@@ -70,6 +66,8 @@ Foxtrick.modules['MainMenuDropDown']={
 					}, links);
 				}
 			}, subMenuContent.childNodes);
+
+			Foxtrick.log(entries);
 
 			if(menuStructure[activeLanguage] === undefined)
 				menuStructure[activeLanguage] = {};
