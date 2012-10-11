@@ -76,4 +76,8 @@ html[dir="rtl"] #ft-drop-down-menu > li {
 	z-index: 0;	
 } 
 
+.backIcon, .statsIcon, .alltidIcon, .bookmark, .forumSettings, .forumSearch, .forumSearch2, .forumStats, .backIcon2, .helpIcon {
+	z-index: 0;
+}
+
 }

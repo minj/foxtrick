@@ -2,10 +2,8 @@ Foxtrick.modules['MainMenuDropDown']={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ['all'],
 	OPTIONS : ['OmnitFirstHeader', 'RemoveLeftMenu'],
-	OPTIONS_CSS:[ 
-	Foxtrick.InternalPath + 'resources/css/main-menu-drop-down.css',
-	Foxtrick.InternalPath + 'resources/css/remove-left-menu.css',
-	],
+	CSS : [Foxtrick.InternalPath + 'resources/css/main-menu-drop-down.css'],
+	OPTIONS_CSS:[null, Foxtrick.InternalPath + 'resources/css/remove-left-menu.css'],
 	run : function(doc){
 
 		//missing css for simple skin atm
