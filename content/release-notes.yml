@@ -8,11 +8,13 @@ en:
 
         0.12.0:
             note_0: "Tabs: Added backend functionality to add custom tabs to most sites. (like HT's own tabs for upcoming matches and the new match page)."
-            note_1: "<module>DashboardCalendar</module>: Added a button to export Hattrick week in iCalendar file format (should be compatible with Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal etc)"
-            note_2: "<module>LiveAlert</module>: Added different sounds for home/away/your team goals. Using sounds from <linkHTLS>HTLiveSight</linkHTLS> by default. Your team goals will not be recognized in Re-Live mode at first."
-            note_3: "<module>CopyYouth</module>: Hattrick youthclub users will now send the scoutcall of rejected players to HY automatically"
-            note_4: "<module>MatchLineupTweaks</module>: Hattrick youthclub users will now send the scoutcall of rejected players to HY automatically"
-
+            note_1: "NEW: <module>MatchLineupTweaks</module>: Adds counters for stars and stamina to the new lineup page. Shows specialties for all players and adds the name of the team on the field to limit confusion."
+            note_2: "NEW: <module>MainMenuDropDown</module>: Adds drop-down menus to the main navigation bar containing all links usually available in the sidebar of the target page."
+            note_3: "<module>DashboardCalendar</module>: Added a button to export Hattrick week in iCalendar file format (should be compatible with Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal etc)"
+            note_4: "<module>LiveAlert</module>: Added different sounds for home/away/your team goals. Using sounds from <linkHTLS>HTLiveSight</linkHTLS> by default. Your team goals will not be recognized in Re-Live mode at first."
+            note_5: "<module>CopyYouth</module>: Hattrick youthclub users will now send the scoutcall of rejected players to HY automatically (requires enabled YouthTwins Module)"
+            note_6: "<module>CopyYouth</module>: Hattrick youthclub users will now send the training report to HY automatically when they read it for the first time (requires enabled YouthTwins Module)"
+            
         0.11.0: 
             note_0: "NEW: <module>DirectPageLinks</module>: links added to access specific pages in a forum thread"
             note_1: "NEW: <module>ForumModeratorPopup</module>: Added a dropdown menu for forum moderators on top of threads to simplify moderation."
