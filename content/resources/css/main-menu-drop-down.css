@@ -4,6 +4,7 @@
     list-style-type:none;
     padding: 0 10px 5px;
     margin: 0 2px;
+    min-width: 110px;
 }
 
 html[dir="ltr"] #ft-drop-down-menu > li {
@@ -23,7 +24,7 @@ html[dir="rtl"] #ft-drop-down-menu > li {
 
 #ft-drop-down-menu > li > a {
 float: left;
-color: white;
+color: white !important;
 line-height: 35px;
 font-size: 1.2em;
 font-weight: 700;
@@ -50,7 +51,7 @@ background-color: #3E9C49;
 }
 
 .ft-drop-down-submenu a {
-	color: white;
+	color: white !important;
 	line-height: 15px;
 	font-family: Tahoma;
 	text-decoration: none;
@@ -63,7 +64,7 @@ background-color: #3E9C49;
 	margin-top: 8px;
 	margin-bottom: 5px;
 	font-size: 1em;
-	color: white;
+	color: white !important;
 	width: auto;
 	border: 0;
 	padding: 0;
