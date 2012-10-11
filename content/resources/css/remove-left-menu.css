@@ -2,19 +2,36 @@
 
 /* Remove left menu*/
 
-.mainWrapperRegular, .mainWide {
-	width:954px !important;
+html[data-theme="standard"] .mainWrapperRegular, .mainWide {
+    width:954px !important;
 }
-.mainWrapperWide {
+
+html[data-theme="standard"] .mainWrapperWide {
 	width:954px !important;
 	float:none !important;
 }
-.mainRegular {
+html[data-theme="standard"] .mainRegular {
 	width:743px !important;
 }
 
-.subMenu {
+html[data-theme="standard"] .subMenu {
 	display:none !important;
+}
+
+html[data-theme="simple"] .mainWrapperRegular, .mainWide {
+    width:765px !important;
+}
+
+html[data-theme="simple"] .mainWrapperWide {
+    width:765px !important;
+    float:none !important;
+}
+html[data-theme="simple"] .mainRegular {
+    width:575px !important;
+}
+
+html[data-theme="simple"] .subMenu {
+    display:none !important;
 }
 
 }
