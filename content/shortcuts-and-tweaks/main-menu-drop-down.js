@@ -1,14 +1,16 @@
+/**
+ * main-menu-drop-down.js
+ * Self sustaining drop down menu containing all links usually found in the main-sidebar
+ * @author CatzHoek
+ */
+
 Foxtrick.modules['MainMenuDropDown']={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ['all'],
-	OPTIONS : ['OmnitFirstHeader', 'RemoveLeftMenu'],
+	OPTIONS : ['DisregardFirstHeader', 'RemoveSidebarMenu'],
 	CSS : [Foxtrick.InternalPath + 'resources/css/main-menu-drop-down.css'],
-	OPTIONS_CSS:[null, Foxtrick.InternalPath + 'resources/css/remove-left-menu.css'],
+	OPTIONS_CSS:[null, Foxtrick.InternalPath + 'resources/css/remove-sidebar-menu.css'],
 	run : function(doc){
-
-		//missing css for simple skin atm
-		//if(!Foxtrick.util.layout.isStandard(doc))
-		//	return;
 
 		var getCustomCss = function(doc){
 			var inlinestyleNodes = doc.getElementsByTagName('style');
@@ -123,7 +125,7 @@ Foxtrick.modules['MainMenuDropDown']={
 						} else if(entry.tag == 'h3'){
 
 							//first header basicly repeats the name of the main navigation link
-							if(firstHeader &&FoxtrickPrefs.isModuleOptionEnabled('MainMenuDropDown', 'OmnitFirstHeader')){
+							if(firstHeader &&FoxtrickPrefs.isModuleOptionEnabled('MainMenuDropDown', 'DisregardFirstHeader')){
 								firstHeader = false;
 								return;
 							}

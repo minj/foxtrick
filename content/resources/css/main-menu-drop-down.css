@@ -2,7 +2,7 @@
 
 #ft-drop-down-menu, #ft-drop-down-menu ul {
     list-style-type:none;
-    padding: 0 10px 0px;
+    padding: 0 5px 5px;
     margin: 0 2px;
     min-width: 110px;
 }
