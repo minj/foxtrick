@@ -1,6 +1,7 @@
 /**
  * main-menu-drop-down.js
  * Self sustaining drop down menu containing all links usually found in the main-sidebar
+ * Updates the corresponding menu whenever the user browses to the original target page (room for improvement)
  * @author CatzHoek
  */
 
@@ -12,6 +13,7 @@ Foxtrick.modules['MainMenuDropDown']={
 	OPTIONS_CSS:[null, Foxtrick.InternalPath + 'resources/css/remove-sidebar-menu.css'],
 	run : function(doc){
 
+		//get's custom <style> contents, disregards foxtrick injected nodes
 		var getCustomCss = function(doc){
 			var inlinestyleNodes = doc.getElementsByTagName('style');
 			var inlineStyle = '';
@@ -22,13 +24,16 @@ Foxtrick.modules['MainMenuDropDown']={
 			return inlineStyle;
 		};
 
+		//read custom css (supporter feature on /club/ for correct drop down menu color)
 		var css = getCustomCss(doc);
-		var re = new RegExp(/#menu\s*{\s*background-color:([^;]+;)/gi);
+		var re = new RegExp(/#menu\s*{\s*background-color:([^;]+)/gi);
 		var matches = re.exec(css);		
 		
-		var bgcolor = null;
+		Foxtrick.log(Foxtrick.util.color.rgbToHsl(123,123,12), Foxtrick.util.color.rgbToHsv(123,123,12));
 		if(matches && matches[1])
-			bgcolor = matches[1];
+			Foxtrick.util.inject.css(doc, '.ft-drop-down-submenu, .ft-drop-down-submenu li { background-color: '+ matches[1]+' !important;} #ft-drop-down-menu > li > a:hover, .ft-drop-down-submenu li:hover { background-color: #ffccaa !important; }');
+
+
 
 		var activeLanguage = FoxtrickPrefs.getString('htLanguage');
 
@@ -69,8 +74,6 @@ Foxtrick.modules['MainMenuDropDown']={
 				}
 			}, subMenuContent.childNodes);
 
-			Foxtrick.log(entries);
-
 			if(menuStructure[activeLanguage] === undefined)
 				menuStructure[activeLanguage] = {};
 
@@ -78,6 +81,7 @@ Foxtrick.modules['MainMenuDropDown']={
 			Foxtrick.localSet('htMenuStructure.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId, menuStructure);
 		};
 
+		//gimme what we stored so far, should be good enought for now
 		var getLocalStoredStructure = function(callback){
 			Foxtrick.localGet('htMenuStructure.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId, function(menuStructure){
 				if(menuStructure === undefined || menuStructure === null)
@@ -91,7 +95,6 @@ Foxtrick.modules['MainMenuDropDown']={
 		getLocalStoredStructure(function(menuStructure){
 
 			var menuItems = doc.querySelectorAll('#menu > a');
-
 			var nav = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MainMenuDropDown, 'ul');
 			nav.id = 'ft-drop-down-menu';
 
@@ -108,13 +111,14 @@ Foxtrick.modules['MainMenuDropDown']={
 					var subMenuList = doc.createElement('ul');
 					Foxtrick.addClass(subMenuList, "ft-drop-down-submenu");
 					
-					if(bgcolor)
-						subMenuList.setAttribute('style', 'background-color: ' + bgcolor + '!important;');
-
-
+					// //for custom /club/ styles, set color read from inline <style> nodes, see above
+					// if(bgcolor)
+					// 	subMenuList.setAttribute('style', 'background-color: ' + bgcolor + '!important;');
+					
+					//iterate saved structure for current page and current language
+					//h3 and lists of links are assumed and supported
 					var firstHeader = true;
 					Foxtrick.map(function(entry){
-
 						if(entry.tag == 'a'){
 							var link_li = doc.createElement('li');
 							var link_link = doc.createElement('a');
@@ -123,8 +127,7 @@ Foxtrick.modules['MainMenuDropDown']={
 							link_li.appendChild(link_link);
 							subMenuList.appendChild(link_li);
 						} else if(entry.tag == 'h3'){
-
-							//first header basicly repeats the name of the main navigation link
+							//first header basicly repeats the name of the main navigation item, repeating it seems weird
 							if(firstHeader &&FoxtrickPrefs.isModuleOptionEnabled('MainMenuDropDown', 'DisregardFirstHeader')){
 								firstHeader = false;
 								return;
@@ -135,32 +138,32 @@ Foxtrick.modules['MainMenuDropDown']={
 							h3_li.appendChild(h3);
 							subMenuList.appendChild(h3_li);
 
-							var link_li = doc.createElement('li');
+							var hr_li = doc.createElement('li');
 							var hr = doc.createElement('hr');
-							link_li.appendChild(hr);
-							subMenuList.appendChild(link_li);
+							hr_li.appendChild(hr);
+							subMenuList.appendChild(hr_li);
 						} 
 					}, menuStructure[activeLanguage][item.href.replace(/^.*\/\/[^\/]+/, '')]);
 
-					li.appendChild(item);
-					li.appendChild(subMenuList);
-					nav.appendChild(li);
+					li.appendChild(item); 			//reposition original link from the #menu
+					li.appendChild(subMenuList); 	//the popup
+					nav.appendChild(li); 			//attach to #menu
 				} else {
+
+					//no records for this language and/or page are present, just attach as is, without popup
 					var li = doc.createElement('li');
 					li.appendChild(item);
 					nav.appendChild(li);
 				}
 
-				//update
+				//update, learn current page if it matches one of the links in #menu
 				if(Foxtrick.isPageHref(item.href.replace(/^.*\/\/[^\/]+/, '') +'$', doc.location.href))
 					learnCurrentPage(menuStructure);
 
 			}, menuItems);
 
-			//rebuild #menu
+			//attach rebuild navigation to the menu
 			doc.getElementById('menu').insertBefore(nav, doc.getElementById('ctl00_ctl00_CPHeader_ucMenu_hypLogout'));
 		});
-
-		
 	}
 }
