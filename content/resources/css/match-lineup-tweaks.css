@@ -210,7 +210,8 @@ html[dir="ltr"] .sectorShirt.ft-smallFaceCard {
 .ft-subDiv {
 	position: absolute;
 	top: 2px;
-	left: 45px;
+	left: 35px;
+	z-index: 98;
 }
 
 }
