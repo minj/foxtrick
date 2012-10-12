@@ -31,7 +31,7 @@ html[data-theme="standard"] #ft-drop-down-menu > li > a {
 	text-decoration: none;
 	margin: 0 0 0 2px;
 	padding: 0 15px;
-	float: none;
+	float: left;
 }
 
 html[data-theme="simple"] #ft-drop-down-menu > li > a {
@@ -43,7 +43,7 @@ html[data-theme="simple"] #ft-drop-down-menu > li > a {
 	text-align: center;
 	margin: 0 6px 0 0;
 	padding: 0 6px;
-	float: none;
+	float: left;
 }
 
 #ft-drop-down-menu > li > a:hover {
