@@ -73,7 +73,7 @@ Foxtrick.modules['MainMenuDropDown']={
 
 			rgb = Foxtrick.util.color.hsvToRgb(hsv[0],hsv[1],hsv[2]);
 
-			Foxtrick.util.inject.css(doc, '#ft-drop-down-menu > li > a:hover, .ft-drop-down-submenu li:hover { color: ' + hover_tc + ' !important; background-color: rgb(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ') !important; }');	
+			Foxtrick.util.inject.css(doc, '#menu > a:hover, #ft-drop-down-menu > li > a:hover, .ft-drop-down-submenu li:hover { color: ' + hover_tc + ' !important; background-color: rgb(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ') !important; }');	
 		}
 //end of css hacks
 
