@@ -299,6 +299,8 @@ Foxtrick.isLoginPage = function(doc) {
 		return true;
 	if (teamLinks.getElementsByTagName('a').length === 0)
 		return true;
+
+	return false;
 };
 
 Foxtrick.getPanel = function(doc) {
