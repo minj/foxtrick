@@ -41,9 +41,18 @@ Foxtrick.modules['MainMenuDropDown']={
 			var hover_bg = hover_matches[2];
 			var rgb = Foxtrick.util.color.hexToRgb(hover_bg);
 			var hsv = Foxtrick.util.color.rgbToHsv(rgb[0], rgb[1], rgb[2]);
-			hsv[1] = (hsv[1] - 0.2 >= 0)?hsv[1] - 0.2:0;
-			rgb = Foxtrick.util.color.hsvToRgb(hsv[0], hsv[1], hsv[2]);
-			Foxtrick.log(rgb);
+
+			Foxtrick.log(rgb, hsv);
+			if(1-hsv[2] > 0.20)
+				hsv[2] = hsv[2] + (1-hsv[2])/2;
+			else if(1-hsv[1] > 0.20)
+				hsv[1] = hsv[1] - 0.2 >= 0?hsv[1] - 0.2:hsv[1] + 0.2;
+			else {
+				hsv[1] = hsv[1]/2;	
+			}		
+
+			rgb = Foxtrick.util.color.hsvToRgb(hsv[0],hsv[1],hsv[2]);
+			Foxtrick.log(rgb, hsv);
 
 			if(hover_matches && hover_matches[1] && hover_matches[2])
 				Foxtrick.util.inject.css(doc, '#ft-drop-down-menu > li > a:hover, .ft-drop-down-submenu li:hover { color: ' + hover_matches[1] + ' !important; background-color: rgb(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ') !important; }');	
