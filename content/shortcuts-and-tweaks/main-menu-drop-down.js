@@ -33,9 +33,6 @@ Foxtrick.modules['MainMenuDropDown']={
 
 		var color_re = new RegExp(/#menu\s*>\s*a\s*{\s*color:\s*([^;]+);/gi);
 		var color_matches = color_re.exec(css);
-
-		Foxtrick.log("text" + color_matches[1]);
-		Foxtrick.log("bg color" + bg_matches[1]);
 		
 		if(bg_matches && bg_matches[1] && color_matches[1])
 			Foxtrick.util.inject.css(doc, '.ft-drop-down-submenu hr { border: 0; height: 1px; color: '+ color_matches[1] + ' !important; background-color: '+ color_matches[1] + ' !important;} .ft-drop-down-submenu h3, .ft-drop-down-submenu a, #ft-drop-down-menu > li > a { color: '+ color_matches[1] + ' !important;} .ft-drop-down-submenu, .ft-drop-down-submenu li { background-color: ' + bg_matches[1]+ ' !important;}');
