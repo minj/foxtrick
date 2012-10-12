@@ -204,5 +204,13 @@ html[dir="ltr"] .sectorShirt.ft-smallFaceCard {
 	100% { -moz-transform: translate(1px, -2px) rotate(-3deg); }
 }
 
+.ft-adjIndicatorDiv {
+	top: -10px !important;
+}
+.ft-subDiv {
+	position: absolute;
+	top: 2px;
+	left: 45px;
+}
 
 }

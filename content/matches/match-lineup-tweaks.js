@@ -10,10 +10,217 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	PAGES: ['match'],
 	OPTIONS: [
 		'DisplayTeamNameOnField', 'ShowSpecialties', 'ShowFaces', 'StarCounter', 'StaminaCounter',
-		'HighlighEventPlayers'
+		'HighlighEventPlayers', 'AddSubstiutionInfo'
 	],
 	CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-tweaks.css',
 	run: function(doc) {
+		if (Foxtrick.Pages.Match.isPrematch(doc)
+			|| Foxtrick.Pages.Match.inProgress(doc))
+			return;
+		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
+			return;
+
+		var SourceSystem = 'Hattrick';
+		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
+		var isHTOIntegrated = Foxtrick.Pages.Match.isHTOIntegrated(doc);
+		if (isYouth)
+			SourceSystem = 'Youth';
+		if (isHTOIntegrated)
+			SourceSystem = 'HTOIntegrated';
+
+		// collect substitution info for addSubInfo()
+		var collectSubInfo = function() {
+			var timeline = Foxtrick.map(function(el) {
+				var time = el.value;
+				return { min: Number(time.match(/^\d+/)), sec: Number(time.match(/\d+$/)) };
+			}, doc.querySelectorAll('input[id$="_time"]'));
+			var endOfGame = timeline[timeline.length - 1].min;
+			Foxtrick.modules['MatchLineupTweaks'].endOfGame = endOfGame;
+			var initTeamData = function(isHome) {
+				var playerRatings = doc.querySelectorAll('input[id$="_playerRatings' +
+														 (isHome ? 'Home' : 'Away') + '"]')[0];
+				var playerData = JSON.parse(playerRatings.value);
+				return playerData;
+			};
+			var playersHome = initTeamData(true);
+			var playersAway = initTeamData(false);
+			// in HTO matches playerRatingsHome[i].players[j].PlayerID etc
+			// is not the same as the real ID
+			// the conversion is handled in HT classes exclusively
+			// therefore we'll need some hack-work
+			var fetchHTOInfo = function() {
+				var scripts = doc.getElementsByTagName('script');
+				var regex = /ht\.matchAnalysis\.playerData\s*=\s*'([\s\S]+?)';/m;
+				var playerData;
+				for (var i = 0; i < scripts.length; i++) {
+					if (regex.test(scripts[i].textContent)) {
+						playerData =
+							JSON.parse(regex.exec(scripts[i].textContent)[1]);
+						break;
+					}
+				}
+				return playerData;
+			};
+
+			if (SourceSystem == 'HTOIntegrated') {
+				var HTOPlayers = fetchHTOInfo();
+				if (!HTOPlayers)
+					return;
+				var addRealIds = function(players) {
+					var findPId = function(HTOId) {
+						for (var i = 0; i < HTOPlayers.length; i++) {
+							if (HTOPlayers[i].PlayerId == HTOId)
+								return HTOPlayers[i].SourcePlayerId;
+						}
+						return null;
+					};
+					for (var j = 0; j < players.length; j++) {
+						var realId = findPId(players[j].PlayerId);
+						if (!realId)
+							return false;
+						players[j].PlayerId = realId;
+					}
+					return true;
+				};
+				if (!addRealIds(playersHome) || !addRealIds(playersAway))
+					return;
+			}
+			var saveSubInfo = function(players) {
+				// filter players that have not played: { FromMin: 0, ToMin: 0 }
+				// these have
+				var played = Foxtrick.filter(function(player) {
+					return !(player.FromMin == 0 && player.ToMin == 0);
+				}, players);
+				// players who play till the end: { ToMin: endOfGame }
+				// players who start the game: { FromMin: -1}
+				// these don't
+				var subPlayers = Foxtrick.filter(function(player) {
+					return (player.ToMin != endOfGame ||
+							player.FromMin != -1);
+				}, played);
+				for (var i = 0; i < subPlayers.length; i++) {
+					var p = subPlayers[i];
+					Foxtrick.modules['MatchLineupTweaks'].subs.push({
+						id: p.PlayerId, from: p.FromMin, to: p.ToMin
+					});
+				}
+			};
+			saveSubInfo(playersHome);
+			saveSubInfo(playersAway);
+		};
+
+
+
+		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'AddSubstiutionInfo'))
+			collectSubInfo();
+	},
+	// last minute in the game
+	// set in collectSubInfo
+	endOfGame: 90,
+	// used for storing sub data
+	subs: [],
+
+	// add substition icon for players on the field
+	// that are involved in substitutions
+	// with alt/title text for minute data
+	addSubInfo: function(doc) {
+		if (!this.subs.length)
+			return;
+
+		var playerLinks = doc.querySelectorAll('.playersField > div.playerBoxHome > div > a, ' +
+										   '#playersBench > div#playersBenchHome' +
+										   ' > div.playerBoxHome > div > a,' +
+										   '.playersField > div.playerBoxAway > div > a, ' +
+										   '#playersBench > div#playersBenchAway' +
+										   ' > div.playerBoxAway > div > a');
+
+		var affectPlayer = function(playerId, func) {
+			var link = Foxtrick.filter(function(link) {
+				return new RegExp(playerId).test(link.href);
+			}, playerLinks)[0];
+			if (link)
+				func(link.parentNode.parentNode);
+		};
+
+		var highlightSub = function(playerId, isIn, deactivate) {
+			var subImgs = doc.querySelectorAll('table.tblHighlights img[src$="sub_' +
+											   'out.gif"]');
+			// this should be valid subs only
+			var otherId = null;
+			for (var i = 0; i < subImgs.length; i++) {
+				var sub = subImgs[i].parentNode;
+				var links = sub.getElementsByTagName('a');
+				if (links.length != 2)
+					continue;
+
+				if (links[isIn + 0].href.match(playerId)) {
+					// found our basterd
+					var otherLink = links[!isIn + 0];
+					otherId = Foxtrick.getParameterFromUrl(otherLink.href, 'playerid');
+					break;
+				}
+			}
+			if (otherId === null)
+				return;
+			affectPlayer(otherId, function(node) {
+				var className = isIn ? 'ft-highlight-playerDiv' : 'ft-highlight-playerDiv-other';
+				if (deactivate)
+					Foxtrick.removeClass(node, className);
+				else
+					Foxtrick.addClass(node, className);
+			});
+		};
+
+		var addSubDiv = function(playerId, subText, isIn, isOut) {
+			affectPlayer(playerId, function(node) {
+				//HTs don't seem to appreciate class names here
+				//this is bound to break easily
+				var positionImage = node.querySelector('img[src$="transparent.gif"]');
+				var parent = positionImage.parentNode;
+				var prev = parent.previousSibling;
+				if (prev.getElementsByTagName('img').length != 0) {
+					// this should be indicator div (with captain, kicker, card, etc)
+					// we need to move it out of the way
+					// prev.style.top = '-10px';
+					Foxtrick.addClass(prev, 'ft-adjIndicatorDiv');
+				}
+				var subDiv = Foxtrick
+					.createFeaturedElement(doc, Foxtrick.modules['MatchLineupTweaks'], 'div');
+				Foxtrick.addClass(subDiv, 'ft-subDiv');
+				Foxtrick.addImage(doc, subDiv, {
+					src: 'images/substitution.png',
+					alt: subText,
+					title: subText
+				});
+				subDiv.setAttribute('ft-activated', '0');
+				Foxtrick.onClick(subDiv, function(ev) {
+					var div = ev.target;
+					var active = Number(div.getAttribute('ft-activated'));
+					if (isIn)
+						highlightSub(playerId, true, active);
+					if (isOut)
+						highlightSub(playerId, false, active);
+					div.setAttribute('ft-activated', '' + Number(!active + 0));
+				});
+				node.insertBefore(subDiv, parent);
+			});
+		};
+		for (var i = 0; i < this.subs.length; i++) {
+			var s = this.subs[i];
+			var text = '';
+			var isIn = false;
+			var isOut = false;
+			if (s.from != -1) {
+				text += Foxtrickl10n.getString('MatchLineupTweaks.in').replace(/%s/, s.from) + ' ';
+				isIn = true;
+			}
+			if (s.to != this.endOfGame) {
+				text += Foxtrickl10n.getString('MatchLineupTweaks.out').replace(/%s/, s.to);
+				isOut = true;
+			}
+			addSubDiv(s.id, text, isIn, isOut);
+		}
+
 	},
 
 	//adds teamsnames to the field for less confusion
@@ -440,5 +647,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'HighlighEventPlayers'))
 			this.runEventPlayers(doc);
+		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'AddSubstiutionInfo'))
+			this.addSubInfo(doc);
 	}
 };
