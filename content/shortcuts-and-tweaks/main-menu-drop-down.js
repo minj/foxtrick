@@ -13,8 +13,6 @@ Foxtrick.modules['MainMenuDropDown']={
 	OPTIONS_CSS:[null, Foxtrick.InternalPath + 'resources/css/remove-sidebar-menu.css'],
 	run : function(doc){
 
-		Foxtrick.log("Is loggin page:" + Foxtrick.isLoginPage(doc));
-
 		//get's custom <style> contents, disregards foxtrick injected nodes
 		var getCustomCss = function(doc){
 			var inlinestyleNodes = doc.getElementsByTagName('style');
@@ -28,43 +26,56 @@ Foxtrick.modules['MainMenuDropDown']={
 
 		//read custom css (supporter feature on /club/ for correct drop down menu color)
 		var css = getCustomCss(doc);
-		var bg_re = new RegExp(/#menu\s*{\s*background-color:([^;]+)/gi);
-		var bg_matches = bg_re.exec(css);
 
-		var color_re = new RegExp(/#menu\s*>\s*a\s*{\s*color:\s*([^;]+);/gi);
-		var color_matches = color_re.exec(css);
+		var getMenuBackgroundColor = function(css){
+			var re = new RegExp(/#menu\s*{\s*background-color:\s*([^;]+)/gi);
+			var matches = re.exec(css);
+
+			return matches?matches[1]:null;
+		}
+
+		var getMenuTextColor = function(css){
+			var re = new RegExp(/#menu\s*>\s*a\s*{\s*color:\s*([^;]+);/gi);
+			var matches = re.exec(css);	
+			return matches?matches[1]:null;
+		}
+
+		var getHoverColors = function(css){
+			var re = new RegExp(/#menu\s*>\s*a:hover\s*{\s*color:\s*([^;]+);\s*background-color:\s*([^;]+)/gi);
+			var matches = re.exec(css);	
+
+			return (matches && matches[1] && matches[2])?{color:matches[1], backgroundColor:matches[2]}:null;
+		}
+
+		var normal_bgc = getMenuBackgroundColor(css);
+		var normal_tc = getMenuTextColor(css);
+
+		var hoverColors = getHoverColors(css);
+		if(hoverColors){
+			var hover_bgc = hoverColors.backgroundColor;
+			var hover_tc = hoverColors.color;
+		}
 		
-		if(bg_matches && bg_matches[1] && color_matches[1])
-			Foxtrick.util.inject.css(doc, '.ft-drop-down-submenu hr { border: 0; height: 1px; color: '+ color_matches[1] + ' !important; background-color: '+ color_matches[1] + ' !important;} .ft-drop-down-submenu h3, .ft-drop-down-submenu a, #ft-drop-down-menu > li > a { color: '+ color_matches[1] + ' !important;} .ft-drop-down-submenu, .ft-drop-down-submenu li { background-color: ' + bg_matches[1]+ ' !important;}');
+		if(normal_bgc && normal_tc){
+			Foxtrick.util.inject.css(doc, '.ft-drop-down-submenu hr { border: 0; height: 1px; background-color: '+ normal_tc + ' !important;} .ft-drop-down-submenu h3, .ft-drop-down-submenu a, #ft-drop-down-menu > li > a { color: '+ normal_tc + ' !important;} .ft-drop-down-submenu, .ft-drop-down-submenu li { background-color: ' + normal_bgc + ' !important;}');
+		}
 
-		
-
-		var hover_re = new RegExp(/#menu\s*>\s*a:hover\s*{\s*color:\s*([^;]+);\s*background-color:\s*([^;]+)/gi);
-		var hover_matches = hover_re.exec(css);
-
-		if(hover_matches && hover_matches[1] && hover_matches[2]){
-			var hover_bg = hover_matches[2];
-			var rgb = Foxtrick.util.color.hexToRgb(hover_bg);
+		if(hoverColors){
+			var rgb = Foxtrick.util.color.hexToRgb(hover_bgc);
 			var hsv = Foxtrick.util.color.rgbToHsv(rgb[0], rgb[1], rgb[2]);
 
-			Foxtrick.log(rgb, hsv);
 			if(1-hsv[2] > 0.20)
 				hsv[2] = hsv[2] + (1-hsv[2])/2;
 			else if(1-hsv[1] > 0.20)
 				hsv[1] = hsv[1] - 0.2 >= 0?hsv[1] - 0.2:hsv[1] + 0.2;
-			else {
-				hsv[1] = hsv[1]/2;	
-			}		
+			else
+				hsv[1] = hsv[1]/2;
 
 			rgb = Foxtrick.util.color.hsvToRgb(hsv[0],hsv[1],hsv[2]);
-			Foxtrick.log(rgb, hsv);
 
-			if(hover_matches && hover_matches[1] && hover_matches[2])
-				Foxtrick.util.inject.css(doc, '#ft-drop-down-menu > li > a:hover, .ft-drop-down-submenu li:hover { color: ' + hover_matches[1] + ' !important; background-color: rgb(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ') !important; }');	
+			Foxtrick.util.inject.css(doc, '#ft-drop-down-menu > li > a:hover, .ft-drop-down-submenu li:hover { color: ' + hover_tc + ' !important; background-color: rgb(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ') !important; }');	
 		}
-
-
-
+//end of css hacks
 
 		var activeLanguage = FoxtrickPrefs.getString('htLanguage');
 
