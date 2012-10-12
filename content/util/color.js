@@ -161,3 +161,17 @@ Foxtrick.util.color.hexToRgb = function(hex) {
         parseInt(result[3], 16)
     ] : null;
 }
+
+/**
+ * Converts an rgb color into a 6 digit hex representation. 
+ * returns hex with leading #.
+ *
+ * @param   Number  r       The red color value
+ * @param   Number  g       The green color value
+ * @param   Number  b       The blue color value
+ * @return  String          The hex representation
+ */
+Foxtrick.util.color.rgbToHex = function(r, g, b) {
+    var rgb = b | (g << 8) | (r << 16);
+    return '#' + rgb.toString(16);
+}
