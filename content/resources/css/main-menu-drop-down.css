@@ -23,7 +23,7 @@ html[dir="rtl"] #ft-drop-down-menu > li {
 }
 
 html[data-theme="standard"] #ft-drop-down-menu > li > a {
-	color: white !important;
+	color: white;
 	line-height: 35px;
 	font-size: 1.2em;
 	font-weight: 700;
@@ -70,7 +70,7 @@ html[data-theme="simple"] .ft-drop-down-submenu {
 }
 
 .ft-drop-down-submenu a {
-	color: white !important;
+	color: white;
 	line-height: 15px !important;
 	font-weight: 200 !important;
 	font-family: Tahoma;
