@@ -16,6 +16,7 @@
 <!-- utilities -->
 <script type="application/x-javascript" src="./util/api.js" />
 <script type="application/x-javascript" src="./util/array.js" />
+<script type="application/x-javascript" src="./util/color.js" />
 <script type="application/x-javascript" src="./util/cookies.js" />
 <script type="application/x-javascript" src="./util/copy-button.js" />
 <script type="application/x-javascript" src="./util/css.js" />

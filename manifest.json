@@ -28,6 +28,7 @@
 			//<!-- utilities -->
 			"content/util/api.js",
 			"content/util/array.js",
+			"content/util/color.js",
 			"content/util/cookies.js",
 			"content/util/copy-button.js",
 			"content/util/currency.js",
