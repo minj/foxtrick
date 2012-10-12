@@ -13,6 +13,8 @@ Foxtrick.modules['MainMenuDropDown']={
 	OPTIONS_CSS:[null, Foxtrick.InternalPath + 'resources/css/remove-sidebar-menu.css'],
 	run : function(doc){
 
+		Foxtrick.log("Is loggin page:" + Foxtrick.isLoginPage(doc));
+
 		//get's custom <style> contents, disregards foxtrick injected nodes
 		var getCustomCss = function(doc){
 			var inlinestyleNodes = doc.getElementsByTagName('style');
@@ -26,12 +28,27 @@ Foxtrick.modules['MainMenuDropDown']={
 
 		//read custom css (supporter feature on /club/ for correct drop down menu color)
 		var css = getCustomCss(doc);
-		var re = new RegExp(/#menu\s*{\s*background-color:([^;]+)/gi);
-		var matches = re.exec(css);		
+		var bg_re = new RegExp(/#menu\s*{\s*background-color:([^;]+)/gi);
+		var bg_matches = bg_re.exec(css);
 		
-		Foxtrick.log(Foxtrick.util.color.rgbToHsl(123,123,12), Foxtrick.util.color.rgbToHsv(123,123,12));
-		if(matches && matches[1])
-			Foxtrick.util.inject.css(doc, '.ft-drop-down-submenu, .ft-drop-down-submenu li { background-color: '+ matches[1]+' !important;} #ft-drop-down-menu > li > a:hover, .ft-drop-down-submenu li:hover { background-color: #ffccaa !important; }');
+		if(bg_matches && bg_matches[1])
+			Foxtrick.util.inject.css(doc, '.ft-drop-down-submenu, .ft-drop-down-submenu li { background-color: ' + bg_matches[1]+ ' !important;}');
+
+		var hover_re = new RegExp(/#menu\s*>\s*a:hover\s*{\s*color:\s*([^;]+);\s*background-color:\s*([^;]+)/gi);
+		var hover_matches = hover_re.exec(css);
+
+		if(hover_matches && hover_matches[1] && hover_matches[2]){
+			var hover_bg = hover_matches[2];
+			var rgb = Foxtrick.util.color.hexToRgb(hover_bg);
+			var hsv = Foxtrick.util.color.rgbToHsv(rgb[0], rgb[1], rgb[2]);
+			hsv[1] = (hsv[1] - 0.2 >= 0)?hsv[1] - 0.2:0;
+			rgb = Foxtrick.util.color.hsvToRgb(hsv[0], hsv[1], hsv[2]);
+			Foxtrick.log(rgb);
+
+			if(hover_matches && hover_matches[1] && hover_matches[2])
+				Foxtrick.util.inject.css(doc, '#ft-drop-down-menu > li > a:hover, .ft-drop-down-submenu li:hover { color: ' + hover_matches[1] + ' !important; background-color: rgb(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ') !important; }');	
+		}
+
 
 
 

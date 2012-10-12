@@ -101,7 +101,7 @@ html[data-theme="simple"] .ft-drop-down-submenu {
 } 
 
 /*those icons in top right corner, settings thingy*/
-.backIcon, .statsIcon, .alltidIcon, .bookmark, .forumSettings, .forumSearch, .forumSearch2, .forumStats, .backIcon2, .helpIcon {
+.copyicon, .backIcon, .statsIcon, .alltidIcon, .bookmark, .forumSettings, .forumSearch, .forumSearch2, .forumStats, .backIcon2, .helpIcon {
 	z-index: 0 !important;
 }
 

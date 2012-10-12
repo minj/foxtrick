@@ -4,6 +4,7 @@
  * color transformation utilities
  * From Michael Jackson
  * http://mjijackson.com/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript
+ * Foxtrick conversion and additions by CatzHoek
  */
 
 if (!Foxtrick)
@@ -142,5 +143,21 @@ Foxtrick.util.color.hsvToRgb = function(h, s, v){
         case 5: r = v, g = p, b = q; break;
     }
 
-    return [r * 255, g * 255, b * 255];
+    return [parseInt(r * 255), parseInt(g * 255), parseInt(b * 255)];
 };
+
+/**
+ * Converts an color in 6 digit hex representation to RGB. 
+ * returns r, g, and b in the set [0, 255].
+ *
+ * @param   String  hex     The 6 digit hex representation, # is not required
+ * @return  Array           The RGB representation
+ */
+Foxtrick.util.color.hexToRgb = function(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? [
+        parseInt(result[1], 16),
+        parseInt(result[2], 16),
+        parseInt(result[3], 16)
+    ] : null;
+}
