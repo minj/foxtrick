@@ -235,9 +235,17 @@ div.sectorShirt + div > div > div {
 .ft-staminaText {
 	display: inline-block;
 	float: right;
+	background-color: hsl(112, 40%, 23%);
+	border-radius: 5px;
 }
 .statsPlayer {
 	top: -6px !important;
+}
+.goRight::after {
+	left: 94px !important;
+}
+.goDown::after {
+	top: 4px !important;
 }
 #playersBenchHome > div, #playersBenchAway > div {
 	margin-bottom: 24px !important;
