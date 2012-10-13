@@ -10,7 +10,7 @@
 
 #ft-drop-down-menu.ft-mmdd-default h3,
 #ft-drop-down-menu.ft-mmdd-default a {
-	color: white !important;
+	color: white;
 }
 
 #ft-drop-down-menu hr {
@@ -24,7 +24,7 @@
 
 #ft-drop-down-menu.ft-mmdd-default ul,
 #ft-drop-down-menu.ft-mmdd-default li {
-	background-color: #277F31 !important;
+	background-color: #277F31;
 }
 
 #ft-drop-down-menu > li > a {
