@@ -25,35 +25,28 @@ html[dir="ltr"] #timelineEventDetails {
 }
 
 html[dir="rtl"] .ft-match-lineup-tweaks-teamname-home {
-	top: 15px !important;
-	right: 15px !important;
-	position: absolute !important;
+	top: 15px;
+	right: 15px;
+	position: absolute;
 }
 html[dir="rtl"] .ft-match-lineup-tweaks-teamname-away {
-	bottom: 15px !important;
-	right: 15px !important;
-	position: absolute !important;
+	bottom: 15px;
+	right: 15px;
+	position: absolute;
 }
 
 
 html[dir="ltr"] .ft-match-lineup-tweaks-teamname-home {
-	top: 15px !important;
-	left: 15px !important;
-	position: absolute !important;
+	top: 15px;
+	left: 15px;
+	position: absolute;
 }
 html[dir="ltr"] .ft-match-lineup-tweaks-teamname-away {
-	bottom: 15px !important;
-	left: 15px !important;
-	position: absolute !important;
+	bottom: 15px;
+	left: 15px;
+	position: absolute;
 }
 
-
-.ft-match-lineup-tweaks-specialty-icon {
-/*	top: 15px !important;
-	right: 0px !important;
-	position: absolute !important;*/
-	float: left;
-}
 
 .ft-match-lineup-tweaks-stars-counter-sum-home, .ft-match-lineup-tweaks-stars-counter-sum-away,
 .ft-match-lineup-tweaks-stars-counter-diff, .ft-match-lineup-tweaks-stamina-counter-sum-home,
@@ -65,36 +58,36 @@ html[dir="ltr"] .ft-match-lineup-tweaks-teamname-away {
 	-moz-border-radius: 7px;
 	-webkit-border-radius: 7px;
 	border-radius: 7px;
-	padding: 0 3px;
+	padding: 0 3px !important;
 	width: 65px;
 	text-align: center;
 }
 
 html[dir="rtl"] .ft-match-lineup-tweaks-stars-counter-sum-home {
 	top: 289px !important;
-	right: 15px !important;
+	right: 15px;
 }
 html[dir="rtl"] .ft-match-lineup-tweaks-stars-counter-sum-away {
 	top: 349px !important;
-	right: 15px !important;
+	right: 15px;
 }
 html[dir="rtl"] .ft-match-lineup-tweaks-stars-counter-diff {
 	top: 319px !important;
-	right: 15px !important;
+	right: 15px;
 }
 
 
 html[dir="ltr"] .ft-match-lineup-tweaks-stars-counter-sum-home {
 	top: 289px !important;
-	left: 15px !important;
+	left: 15px;
 }
 html[dir="ltr"] .ft-match-lineup-tweaks-stars-counter-sum-away {
 	top: 349px !important;
-	left: 15px !important;
+	left: 15px;
 }
 html[dir="ltr"] .ft-match-lineup-tweaks-stars-counter-diff {
 	top: 319px !important;
-	left: 15px !important;
+	left: 15px;
 }
 
 /* stamina counter */
@@ -107,46 +100,34 @@ html[dir="ltr"] .ft-match-lineup-tweaks-stars-counter-diff {
 
 html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-sum-home {
 	top: 289px !important;
-	left: 15px !important;
+	left: 15px;
 	right: inherit !important; /* have to cancel stupid HT values */
 }
 html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-sum-away {
 	top: 349px !important;
-	left: 15px !important;
+	left: 15px;
 	right: inherit !important;
 }
 html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-diff {
 	top: 319px !important;
-	left: 15px !important;
+	left: 15px;
 	right: inherit !important;
 }
 
 
 html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-sum-home {
 	top: 289px !important;
-	right: 15px !important;
+	right: 15px;
 }
 html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-sum-away {
 	top: 349px !important;
-	right: 15px !important;
+	right: 15px;
 }
 html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-diff {
 	top: 319px !important;
-	right: 15px !important;
+	right: 15px;
 }
 
-
-html[dir="rtl"] .sectorShirt.ft-smallFaceCard {
-	top: -18px !important;
-	right: -3px !important;
-}
-html[dir="ltr"] .sectorShirt.ft-smallFaceCard {
-	top: -18px !important;
-	left: -3px !important;
-}
-.sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
-	border-bottom: solid 2px #79A777 !important;
-}
 
 .ft-highlight-playerDiv {
 	border-color: red !important;
@@ -205,21 +186,37 @@ html[dir="ltr"] .sectorShirt.ft-smallFaceCard {
 	100% { -moz-transform: translate(1px, -2px) rotate(-3deg); }
 }
 
-.ft-adjIndicatorDiv {
-	top: -10px !important;
+html[dir="rtl"] .sectorShirt.ft-smallFaceCard {
+	top: -18px !important;
+	right: -3px !important;
 }
+html[dir="ltr"] .sectorShirt.ft-smallFaceCard {
+	top: -18px !important;
+	left: -3px !important;
+}
+/* the 'wall' */
+.sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
+	border-bottom: solid 2px #79A777 !important;
+}
+.ft-match-lineup-tweaks-specialty-icon {
+	display: block;
+	position: absolute;
+	left: 0; /* for rtl */
+	top: -30px;
+	background-color: hsl(118, 21%, 56%);
+}
+
+/*.ft-adjIndicatorDiv {
+	top: -10px !important;
+}*/
 .ft-subDiv {
-/*	position: absolute;
-	top: 2px;
-	left: 35px;
-	z-index: 98;*/
 	display: inline-block;
-/*	position: absolute;
-	right: 25px;*/
 }
 .ft-indicatorDiv {
 	position: absolute;
 	width: 100px;
+	left: 0; /* for rtl */
+	line-height: 1.2em;
 }
 /* stamina */
 div.sectorShirt + div > div {
@@ -235,13 +232,15 @@ div.sectorShirt + div > div > div {
 .ft-staminaText {
 	display: inline-block;
 	float: right;
-	/*background-color: hsl(112, 40%, 23%);*/
 	border-radius: 7px;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
 	color: black;
 	border: 1px solid black;
 }
 .statsPlayer {
 	top: -6px !important;
+	margin-right: 3px !important;
 }
 .goRight::after {
 	left: 94px !important;
