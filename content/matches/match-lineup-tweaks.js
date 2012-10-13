@@ -176,6 +176,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		var addSubDiv = function(playerId, subText, isIn, isOut) {
 			affectPlayer(playerId, function(node) {
+				if (node.getElementsByClassName('ft-subDiv').length)
+					return;
 				//HTs don't seem to appreciate class names here
 				//this is bound to break easily
 				var positionImage = node.querySelector('img[src$="transparent.gif"]');
@@ -275,7 +277,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			                     'div#playersBenchAway > div.playerBoxAway > div > a');
 
 		var addSpecialty = function(node, player) {
-			Foxtrick.stopListenToChange(doc);
+			//Foxtrick.stopListenToChange(doc);
+			if (node.getElementsByClassName('ft-specialty').length)
+				return;
 			if (player && player.specialityNumber != 0) {
 				var title = Foxtrickl10n.getSpecialityFromNumber(player.specialityNumber);
 				var alt = Foxtrickl10n.getShortSpeciality(title);
@@ -290,13 +294,14 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					class: 'ft-specialty ft-match-lineup-tweaks-specialty-icon'
 				});
 			}
-			Foxtrick.startListenToChange(doc);
+			//Foxtrick.startListenToChange(doc);
 		};
 
 		var addSpecialtiesByTeamId = function(teamid, players) {
 			Foxtrick.Pages.Players.getPlayerList(doc,
 			  function(playerInfo) {
 				var missing = [];
+				Foxtrick.stopListenToChange(doc);
 				for (var i = 0; i < players.length; i++) {
 					var id = Number(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerInfo, id);
@@ -307,16 +312,19 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					else
 						missing.push({ id: id, i: i });
 				}
+				Foxtrick.startListenToChange(doc);
 				if (missing.length) {
 					for (var j = 0; j < missing.length; ++j) {
 						Foxtrick.Pages.Player.getPlayer(doc, missing[j].id,
 						  (function(j) {
 							return function(p) {
+								Foxtrick.stopListenToChange(doc);
 								var node = players[missing[j].i].parentNode.parentNode
 									.getElementsByClassName('ft-indicatorDiv')[0];
 								addSpecialty(node, p ? {
 									specialityNumber: p.Specialty
 								} : null);
+								Foxtrick.startListenToChange(doc);
 							}
 						})(j));
 					}
@@ -356,7 +364,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
         var scale = 3;
 		var addFace = function(fieldplayer, id, avatarsXml) {
-			Foxtrick.stopListenToChange(doc);
+			//Foxtrick.stopListenToChange(doc);
 			if (avatarsXml) {
 				if (!id)
 					return;
@@ -444,7 +452,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					});
 				}
 			}
-			Foxtrick.startListenToChange(doc);
+			//Foxtrick.startListenToChange(doc);
 		};
 
 		var addFacesByTeamId = function(teamid, players) {
@@ -460,10 +468,12 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 						Foxtrick.log(errorText);
 						return;
 					}
+					Foxtrick.stopListenToChange(doc);
 					for (var i = 0; i < players.length; i++) {
 						var id = Number(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
 						addFace(players[i].parentNode.parentNode, id, xml);
 					}
+					Foxtrick.startListenToChange(doc);
 				});
 			}
 		};
@@ -661,27 +671,30 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				ftdiv.appendChild(staminaSpan);
 			}
 		}
-		Foxtrick.startListenToChange(doc);
-
 		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'DisplayTeamNameOnField'))
 			this.runTeamnNames(doc);
 
-		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'ShowSpecialties'))
-			this.runSpecialties(doc);
-
 		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'StarCounter'))
 			this.runStars(doc);
-
-		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'StaminaCounter'))
-			this.runStamina(doc);
-
-		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'ShowFaces') &&
-			Foxtrick.util.layout.isSupporter(doc))
-			this.runFaces(doc);
 
 		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'HighlighEventPlayers'))
 			this.runEventPlayers(doc);
 		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'AddSubstiutionInfo'))
 			this.addSubInfo(doc);
+
+		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'StaminaCounter'))
+			this.runStamina(doc);
+
+		Foxtrick.startListenToChange(doc);
+
+		//add async shit last
+
+		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'ShowSpecialties'))
+			this.runSpecialties(doc);
+
+		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'ShowFaces') &&
+			Foxtrick.util.layout.isSupporter(doc))
+			this.runFaces(doc);
+
 	}
 };
