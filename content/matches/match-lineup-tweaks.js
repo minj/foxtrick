@@ -652,7 +652,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				staminaDiv.firstChild.style.height = fatigue + '%';
 				var staminaSpan = doc.createElement('span');
 				Foxtrick.addClass(staminaSpan, 'ft-staminaText');
-				staminaSpan.style.color = staminaDiv.style.backgroundColor;
+				staminaSpan.style.backgroundColor = staminaDiv.style.backgroundColor;
 				staminaSpan.textContent = stamina;
 				ftdiv.appendChild(staminaSpan);
 			}

@@ -235,8 +235,10 @@ div.sectorShirt + div > div > div {
 .ft-staminaText {
 	display: inline-block;
 	float: right;
-	background-color: hsl(112, 40%, 23%);
-	border-radius: 5px;
+	/*background-color: hsl(112, 40%, 23%);*/
+	border-radius: 7px;
+	color: black;
+	border: 1px solid black;
 }
 .statsPlayer {
 	top: -6px !important;
