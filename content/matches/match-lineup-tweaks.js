@@ -653,7 +653,11 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				var staminaSpan = doc.createElement('span');
 				Foxtrick.addClass(staminaSpan, 'ft-staminaText');
 				staminaSpan.style.backgroundColor = staminaDiv.style.backgroundColor;
-				staminaSpan.textContent = stamina;
+				// let's 'hide' 100
+				staminaSpan.textContent = (stamina != 100) ? stamina : '00';
+				if (stamina == 100)
+					staminaSpan.style.color = staminaSpan.style.backgroundColor;
+				staminaSpan.title = staminaDiv.title;
 				ftdiv.appendChild(staminaSpan);
 			}
 		}
