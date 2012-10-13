@@ -13,72 +13,94 @@ Foxtrick.modules['MainMenuDropDown']={
 	OPTIONS_CSS:[null, Foxtrick.InternalPath + 'resources/css/remove-sidebar-menu.css'],
 	run : function(doc){
 
-		//get's custom <style> contents, disregards foxtrick injected nodes
-		var getCustomCss = function(doc){
-			var inlinestyleNodes = doc.getElementsByTagName('style');
-			var inlineStyle = '';
-			Foxtrick.map(function(styleNode){
-				if(styleNode.id != 'ft-module-css')
-					inlineStyle = inlineStyle + styleNode.textContent + '\n';
-			}, inlinestyleNodes);
-			return inlineStyle;
-		};
+		var fixCss = function(){
+			//get's custom <style> contents, disregards foxtrick injected nodes
+			var getCustomCss = function(doc){
+				var inlinestyleNodes = doc.getElementsByTagName('style');
+				var inlineStyle = '';
+				Foxtrick.map(function(styleNode){
+					if(styleNode.id != 'ft-module-css')
+						inlineStyle = inlineStyle + styleNode.textContent + '\n';
+				}, inlinestyleNodes);
+				return inlineStyle;
+			};
 
-		//read custom css (supporter feature on /club/ for correct drop down menu color)
-		var css = getCustomCss(doc);
+			//read custom css (supporter feature on /club/ for correct drop down menu color)
+			var css = getCustomCss(doc);
 
-		var getMenuBackgroundColor = function(css){
-			var re = new RegExp(/#menu\s*{\s*background-color:\s*([^;]+)/gi);
-			var matches = re.exec(css);
+			var getMenuBackgroundColor = function(css){
+				var re = new RegExp(/#menu\s*{\s*background-color:\s*([^;]+)/gi);
+				var matches = re.exec(css);
 
-			return matches?matches[1]:null;
+				return matches?matches[1]:null;
+			}
+
+			var getMenuTextColor = function(css){
+				var re = new RegExp(/#menu\s*>\s*a\s*{\s*color:\s*([^;]+);/gi);
+				var matches = re.exec(css);	
+				return matches?matches[1]:null;
+			}
+
+			var getHoverColors = function(css){
+				var re = new RegExp(/#menu\s*>\s*a:hover\s*{\s*color:\s*([^;]+);\s*background-color:\s*([^;]+)/gi);
+				var matches = re.exec(css);	
+
+				return (matches && matches[1] && matches[2])?{color:matches[1], backgroundColor:matches[2]}:null;
+			}
+
+			//get css
+			var normal_bgc = getMenuBackgroundColor(css);
+			var normal_tc = getMenuTextColor(css);
+			var hoverColors = getHoverColors(css);
+
+			var custom_tc_css = '#ft-drop-down-menu.ft-mmdd-custom h3, #ft-drop-down-menu.ft-mmdd-custom a { color: %s1 !important; }\n';
+			custom_tc_css = custom_tc_css.replace('%s1', normal_tc);
+
+			var custom_hr_css = '#ft-drop-down-menu.ft-mmdd-custom hr { background-color: %s1; }\n';
+			custom_hr_css = custom_hr_css.replace('%s1', normal_tc);
+
+			var custom_ul_li_css = '#ft-drop-down-menu.ft-mmdd-custom ul, #ft-drop-down-menu.ft-mmdd-custom li { background-color: %s1; }\n';
+			custom_ul_li_css = custom_ul_li_css.replace('%s1', normal_bgc);
+
+			var custom_css = custom_tc_css + custom_hr_css + custom_ul_li_css;
+
+			//play arround with s and v in hsv color-space to find a suitable hover color
+			if(hoverColors){
+				var hover_bgc = hoverColors.backgroundColor;
+				var hover_tc = hoverColors.color;
+
+				var rgb = Foxtrick.util.color.hexToRgb(hover_bgc);
+				var hsv = Foxtrick.util.color.rgbToHsv(rgb[0], rgb[1], rgb[2]);
+
+				//this is not perfect yet. when s ([1]) and v ([2]) are both quite close to 80% and one of them is below 80% the computed hover color is barely noticable
+				if(1-hsv[2] > 0.20)
+					hsv[2] = hsv[2] + (1-hsv[2])/2;
+				else if(1-hsv[1] > 0.20)
+					hsv[1] = hsv[1] - 0.2 >= 0?hsv[1] - 0.2:hsv[1] + 0.2;
+				else
+					hsv[1] = hsv[1]/2;
+
+				rgb = Foxtrick.util.color.hsvToRgb(hsv[0],hsv[1],hsv[2]);
+					
+				var custom_hover_css = '#ft-drop-down-menu.ft-mmdd-custom li:hover{ color: %s1; background-color: rgb(%s2, %s3, %s4); }\n';
+				var hover_bgc = hoverColors.backgroundColor;
+				var hover_tc = hoverColors.color;
+				custom_hover_css = custom_hover_css.replace('%s1', hover_tc);
+				custom_hover_css = custom_hover_css.replace('%s2', rgb[0]);
+				custom_hover_css = custom_hover_css.replace('%s3', rgb[1]);
+				custom_hover_css = custom_hover_css.replace('%s4', rgb[2]);
+				custom_css = custom_css + custom_hover_css;
+			}
+
+			if(normal_bgc && normal_tc && hoverColors){
+				var menu = doc.getElementById('ft-drop-down-menu');
+				Foxtrick.removeClass(menu, 'ft-mmdd-default');
+				Foxtrick.addClass(menu, 'ft-mmdd-custom');
+				Foxtrick.util.inject.css(doc, custom_css);
+			}
 		}
-
-		var getMenuTextColor = function(css){
-			var re = new RegExp(/#menu\s*>\s*a\s*{\s*color:\s*([^;]+);/gi);
-			var matches = re.exec(css);	
-			return matches?matches[1]:null;
-		}
-
-		var getHoverColors = function(css){
-			var re = new RegExp(/#menu\s*>\s*a:hover\s*{\s*color:\s*([^;]+);\s*background-color:\s*([^;]+)/gi);
-			var matches = re.exec(css);	
-
-			return (matches && matches[1] && matches[2])?{color:matches[1], backgroundColor:matches[2]}:null;
-		}
-
-		//get css
-		var normal_bgc = getMenuBackgroundColor(css);
-		var normal_tc = getMenuTextColor(css);
-		var hoverColors = getHoverColors(css);
-
 		
-		if(normal_bgc && normal_tc){
-			Foxtrick.util.inject.css(doc, '.ft-drop-down-submenu hr { border: 0; height: 1px; background-color: '+ normal_tc + ' !important;} .ft-drop-down-submenu h3, .ft-drop-down-submenu a, #ft-drop-down-menu > li > a { color: '+ normal_tc + ' !important;} .ft-drop-down-submenu, .ft-drop-down-submenu li { background-color: ' + normal_bgc + ' !important;}');
-		}
-
-		//play arround with s and v in hsv color-space to find a suitable hover color
-		if(hoverColors){
-
-			var hover_bgc = hoverColors.backgroundColor;
-			var hover_tc = hoverColors.color;
-
-			var rgb = Foxtrick.util.color.hexToRgb(hover_bgc);
-			var hsv = Foxtrick.util.color.rgbToHsv(rgb[0], rgb[1], rgb[2]);
-
-			//this is not perfect yet. when s ([1]) and v ([2]) are both quite close to 80% and one of them is below 80% the computed hover color is barely noticable
-			if(1-hsv[2] > 0.20)
-				hsv[2] = hsv[2] + (1-hsv[2])/2;
-			else if(1-hsv[1] > 0.20)
-				hsv[1] = hsv[1] - 0.2 >= 0?hsv[1] - 0.2:hsv[1] + 0.2;
-			else
-				hsv[1] = hsv[1]/2;
-
-			rgb = Foxtrick.util.color.hsvToRgb(hsv[0],hsv[1],hsv[2]);
-
-			Foxtrick.util.inject.css(doc, '#menu > a:hover, #ft-drop-down-menu > li > a:hover, .ft-drop-down-submenu li:hover { color: ' + hover_tc + ' !important; background-color: rgb(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ') !important; }');	
-		}
-//end of css hacks to support custom styles (meaning ht supporter feature)
+		//end of css hacks to support custom styles (meaning ht supporter feature)
 
 		var activeLanguage = FoxtrickPrefs.getString('htLanguage');
 
@@ -147,6 +169,7 @@ Foxtrick.modules['MainMenuDropDown']={
 			var menuItems = doc.querySelectorAll('#menu > a');
 			var nav = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MainMenuDropDown, 'ul');
 			nav.id = 'ft-drop-down-menu';
+			Foxtrick.addClass(nav, 'ft-mmdd-default');
 
 			//iterate all main menu items
 			Foxtrick.map(function(item){
@@ -160,7 +183,8 @@ Foxtrick.modules['MainMenuDropDown']={
 					var li = doc.createElement('li');
 
 					var subMenuList = doc.createElement('ul');
-					Foxtrick.addClass(subMenuList, "ft-drop-down-submenu");
+					Foxtrick.addClass(subMenuList, 'ft-drop-down-submenu');
+					
 					
 					// //for custom /club/ styles, set color read from inline <style> nodes, see above
 					// if(bgcolor)
@@ -233,6 +257,8 @@ Foxtrick.modules['MainMenuDropDown']={
 
 			//attach rebuild navigation to the menu
 			doc.getElementById('menu').insertBefore(nav, doc.getElementById('ctl00_ctl00_CPHeader_ucMenu_hypLogout'));
+
+			fixCss(doc);
 		});
 	}
 }
