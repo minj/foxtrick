@@ -642,15 +642,20 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var playerDivs = doc.querySelectorAll('div.playerDiv');
 		for (var i = 0; i < playerDivs.length; i++) {
 			var player = playerDivs[i];
+			var ftdiv = Foxtrick.createFeaturedElement(doc, this, 'div');
+			Foxtrick.addClass(ftdiv, 'ft-indicatorDiv');
+			player.appendChild(ftdiv);
 			var staminaDiv = player.querySelector('div.sectorShirt + div > div');
 			if (staminaDiv) {
 				var stamina = staminaDiv.title.match(/\d+/)[0];
 				var fatigue = 100 - Number(stamina);
 				staminaDiv.firstChild.style.height = fatigue + '%';
+				var staminaSpan = doc.createElement('span');
+				Foxtrick.addClass(staminaSpan, 'ft-staminaText');
+				staminaSpan.style.color = staminaDiv.style.backgroundColor;
+				staminaSpan.textContent = stamina;
+				ftdiv.appendChild(staminaSpan);
 			}
-			var ftdiv = Foxtrick.createFeaturedElement(doc, this, 'div');
-			Foxtrick.addClass(ftdiv, 'ft-indicatorDiv');
-			player.appendChild(ftdiv);
 		}
 		Foxtrick.startListenToChange(doc);
 

@@ -213,20 +213,28 @@ html[dir="ltr"] .sectorShirt.ft-smallFaceCard {
 	left: 35px;
 	z-index: 98;*/
 	display: inline-block;
+	position: absolute;
+	right: 25px;
 }
 .ft-indicatorDiv {
-	position: absolute !important;
+	position: absolute;
+	width: 100px;
 }
 /* stamina */
 div.sectorShirt + div > div {
 	width: 4px !important;
-	height: 60px !important;
+	height: 50px !important;
 	left: auto !important;
 	right: -6px !important;
-	top: -14px !important;
+	top: -10px !important;
 }
 div.sectorShirt + div > div > div {
 	width: 100% !important;
+}
+.ft-staminaText {
+	display: inline-block;
+	position: absolute;
+	right: 0;
 }
 .statsPlayer {
 	top: -6px !important;
