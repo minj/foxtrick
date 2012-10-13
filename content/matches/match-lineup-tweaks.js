@@ -650,11 +650,12 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		Foxtrick.stopListenToChange(doc);
 		var playerDivs = doc.querySelectorAll('div.playerDiv');
+		if (playerDivs[0].getElementsByClassName('ft-indicatorDiv').length)
+			return;
 		for (var i = 0; i < playerDivs.length; i++) {
 			var player = playerDivs[i];
 			var ftdiv = Foxtrick.createFeaturedElement(doc, this, 'div');
 			Foxtrick.addClass(ftdiv, 'ft-indicatorDiv');
-			player.appendChild(ftdiv);
 			var staminaDiv = player.querySelector('div.sectorShirt + div > div');
 			if (staminaDiv) {
 				var stamina = staminaDiv.title.match(/\d+/)[0];
@@ -670,6 +671,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				staminaSpan.title = staminaDiv.title;
 				ftdiv.appendChild(staminaSpan);
 			}
+			player.appendChild(ftdiv);
 		}
 		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'DisplayTeamNameOnField'))
 			this.runTeamnNames(doc);
