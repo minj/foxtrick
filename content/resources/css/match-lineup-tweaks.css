@@ -52,6 +52,7 @@ html[dir="ltr"] .ft-match-lineup-tweaks-teamname-away {
 /*	top: 15px !important;
 	right: 0px !important;
 	position: absolute !important;*/
+	float: left;
 }
 
 .ft-match-lineup-tweaks-stars-counter-sum-home, .ft-match-lineup-tweaks-stars-counter-sum-away,
@@ -213,8 +214,8 @@ html[dir="ltr"] .sectorShirt.ft-smallFaceCard {
 	left: 35px;
 	z-index: 98;*/
 	display: inline-block;
-	position: absolute;
-	right: 25px;
+/*	position: absolute;
+	right: 25px;*/
 }
 .ft-indicatorDiv {
 	position: absolute;
@@ -233,8 +234,7 @@ div.sectorShirt + div > div > div {
 }
 .ft-staminaText {
 	display: inline-block;
-	position: absolute;
-	right: 0;
+	float: right;
 }
 .statsPlayer {
 	top: -6px !important;
