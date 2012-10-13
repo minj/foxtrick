@@ -49,9 +49,9 @@ html[dir="ltr"] .ft-match-lineup-tweaks-teamname-away {
 
 
 .ft-match-lineup-tweaks-specialty-icon {
-	top: 15px !important;
+/*	top: 15px !important;
 	right: 0px !important;
-	position: absolute !important;
+	position: absolute !important;*/
 }
 
 .ft-match-lineup-tweaks-stars-counter-sum-home, .ft-match-lineup-tweaks-stars-counter-sum-away,
@@ -208,10 +208,39 @@ html[dir="ltr"] .sectorShirt.ft-smallFaceCard {
 	top: -10px !important;
 }
 .ft-subDiv {
-	position: absolute;
+/*	position: absolute;
 	top: 2px;
 	left: 35px;
-	z-index: 98;
+	z-index: 98;*/
+	display: inline-block;
 }
-
+.ft-indicatorDiv {
+	position: absolute !important;
+}
+/* stamina */
+div.sectorShirt + div > div {
+	width: 4px !important;
+	height: 60px !important;
+	left: auto !important;
+	right: -6px !important;
+	top: -14px !important;
+}
+div.sectorShirt + div > div > div {
+	width: 100% !important;
+}
+.statsPlayer {
+	top: -6px !important;
+}
+#playersBenchHome > div, #playersBenchAway > div {
+	margin-bottom: 24px !important;
+}
+#playersBenchHome, #playersBenchAway {
+	padding: 0 !important;
+}
+#playersBenchHome {
+	margin-top: -30px !important;
+}
+#playersBenchAway {
+	margin-bottom: -30px !important;
+}
 }
