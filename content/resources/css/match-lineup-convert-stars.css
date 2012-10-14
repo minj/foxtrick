@@ -1,0 +1,11 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
+
+.sectorShirt {
+	margin-right: -12px !important;
+}
+.playerRating {
+	right: 0 !important;
+	float: left !important;
+}
+
+}
