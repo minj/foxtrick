@@ -723,7 +723,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var ratings = doc.querySelectorAll('div.playerRating > span');
 		for (var i = 0; i < ratings.length; i++) {
 			var count = Number(ratings[i].textContent);
-			ratings[i].setAttribute('ft-stamina', count);
+			ratings[i].setAttribute('ft-stars', count);
 		}
 
 
