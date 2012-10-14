@@ -8,9 +8,8 @@
 Foxtrick.modules['MainMenuDropDown']={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ['all'],
-	OPTIONS : ['DisregardFirstHeader', 'RemoveSidebarMenu'],
+	OPTIONS : ['DisregardFirstHeader'],
 	CSS : [Foxtrick.InternalPath + 'resources/css/main-menu-drop-down.css'],
-	OPTIONS_CSS:[null, Foxtrick.InternalPath + 'resources/css/remove-sidebar-menu.css'],
 	run : function(doc){
 
 		var fixCss = function(){
