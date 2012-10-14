@@ -664,24 +664,44 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			var newDiv = ratings[i].parentNode.cloneNode(false);
 			Foxtrick.makeFeaturedElement(newDiv, this);
 			newDiv.title = count + ' *';
+			//var starDiv = doc.createElement('div');
+			//Foxtrick.addClass(starDiv, 'ft-starDiv');
+			// this one will allow centering
+			var smallDiv = doc.createElement('div');
+			Foxtrick.addClass(smallDiv, 'ft-4starDiv');
+			// this one will fit small stars
 			var stars5 = Math.floor(count / 5);
 			count = count % 5;
 			var stars2 = Math.floor(count / 2);
 			count = count % 2;
 			for (var j = 0; j < stars5; j++) {
-				Foxtrick.addImage(doc, newDiv, {
+				var star5container = doc.createElement('div');
+				// this one's for async image purposes
+				Foxtrick.addImage(doc, star5container, {
 					src: Foxtrick.InternalPath + 'resources/img/matches/5stars.png'
 				});
+				newDiv.appendChild(star5container);
 			}
 			for (var j = 0; j < stars2; j++) {
-				Foxtrick.addImage(doc, newDiv, {
-					src: Foxtrick.InternalPath + 'resources/img/matches/2stars.png'
+				Foxtrick.addImage(doc, smallDiv, {
+					src: Foxtrick.InternalPath + 'resources/img/matches/2stars_h.png'
 				});
 			}
-			if (count)
-				Foxtrick.addImage(doc, newDiv, {
-					src: Foxtrick.InternalPath + 'resources/img/matches/' + count + 'stars.png'
+			newDiv.appendChild(smallDiv);
+			if (count) {
+				// 4.5 star is a pain in the ass
+				var target;
+				if (count == 0.5 && smallDiv.childNodes.length == 2) {
+					target = newDiv;
+				}
+				else
+					target = smallDiv;
+				Foxtrick.addImage(doc, target, {
+					src: Foxtrick.InternalPath + 'resources/img/matches/' + count + 'stars_h.png'
 				});
+			}
+
+			//starDiv.appendChild(smallDiv);
 			ratings[i].parentNode.parentNode.replaceChild(newDiv, ratings[i].parentNode);
 		}
 	},
