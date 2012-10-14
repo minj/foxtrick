@@ -718,6 +718,15 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			}
 			player.appendChild(ftdiv);
 		}
+
+		// add ft-stamina="N" to ratings spans for possible styling
+		var ratings = doc.querySelectorAll('div.playerRating > span');
+		for (var i = 0; i < ratings.length; i++) {
+			var count = Number(ratings[i].textContent);
+			ratings[i].setAttribute('ft-stamina', count);
+		}
+
+
 		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'DisplayTeamNameOnField'))
 			this.runTeamnNames(doc);
 
