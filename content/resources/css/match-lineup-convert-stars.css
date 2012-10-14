@@ -7,7 +7,7 @@
 	right: 0 !important;
 	float: left !important;
 	width: 60px;
-	text-align: center;
+	top: 8px !important;
 }
 .playerRating > * {
 	float: left;

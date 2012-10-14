@@ -663,7 +663,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			var count = Number(ratings[i].textContent);
 			var newDiv = ratings[i].parentNode.cloneNode(false);
 			Foxtrick.makeFeaturedElement(newDiv, this);
-			newDiv.title = count + ' *';
+			newDiv.title = count + '★';
 			//var starDiv = doc.createElement('div');
 			//Foxtrick.addClass(starDiv, 'ft-starDiv');
 			// this one will allow centering
