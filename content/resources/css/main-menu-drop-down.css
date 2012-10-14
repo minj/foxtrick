@@ -181,7 +181,7 @@ html[data-theme="simple"] .ft-drop-down-submenu {
 	padding: 0;
 }
 
-
+}*/
 #timeline {
 	z-index: 0 !important;
 
@@ -196,6 +196,6 @@ ul.ui-tabs-nav, #loading {
 } 
 #fieldOverlay {
 	z-index: 201 !important;	
-}*/
+
 
 }
