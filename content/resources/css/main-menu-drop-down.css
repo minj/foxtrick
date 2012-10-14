@@ -1,11 +1,17 @@
 @-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
 
+ ul#ft-drop-down-menu  {
+    margin: 0;
+    padding: 0;
+}
+
 #ft-drop-down-menu.ft-mmdd-default li:hover{
 	background-color: #3E9C49 !important;
 }
 
 #ft-drop-down-menu a {
 	text-decoration: none;
+	white-space: nowrap;
 }
 
 #ft-drop-down-menu.ft-mmdd-default h3,
@@ -27,14 +33,23 @@
 	background-color: #277F31;
 }
 
-#ft-drop-down-menu > li > a {
+html[data-theme="standard"] #ft-drop-down-menu > li > a {
 	line-height: 35px;
 	font-size: 1.2em;
 	font-weight: 700;
 	font-family: Tahoma;
-	text-decoration: none;
 	margin: 0 0 0 2px;
 	padding: 0 15px;
+	float: left;
+}
+
+html[data-theme="simple"] #ft-drop-down-menu > li > a {
+	line-height: 23px;
+	font-weight: 700;
+	height: 23px;
+	text-align: center;
+	margin: 0 6px 0 0;
+	padding: 0 6px;
 	float: left;
 }
 
@@ -42,10 +57,21 @@
     float:left;
 }
 
-ul.ft-drop-down-submenu {
+#ft-drop-down-menu li {
+	list-style-type: none !important;
+}
+
+html[data-theme="standard"] ul.ft-drop-down-submenu {
 	position: absolute;
 	z-index: 203;
 	top: 35px;
+	padding: 0 5px 5px !important;
+}
+
+html[data-theme="simple"] ul.ft-drop-down-submenu {
+	position: absolute;
+	z-index: 203;
+	top: 23px;
 	padding: 0 5px 5px !important;
 }
 
@@ -54,6 +80,10 @@ ul.ft-drop-down-submenu {
 }
 #ft-drop-down-menu li:hover ul {
     display:block;
+}
+
+.ft-drop-down-submenu a {
+	float: none !important;
 }
 
 /*#ft-drop-down-menu, #ft-drop-down-menu ul {
