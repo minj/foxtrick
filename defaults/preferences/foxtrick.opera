@@ -6,5 +6,3 @@ pref("extensions.foxtrick.prefs.module.BookmarkAdjust.enabled", false);
 pref("extensions.foxtrick.prefs.module.LineupShortcut.enabled", false);
 pref("extensions.foxtrick.prefs.module.LargeFlags.enabled", false);
 pref("extensions.foxtrick.prefs.module.CustomMedals.enabled", false);
-pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.ShowFaces.enabled", false);
-pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.ShowSpecialties.enabled", false);
