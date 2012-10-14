@@ -425,6 +425,7 @@ pref("extensions.foxtrick.prefs.module.MatchLineupFixes.FixMultipleEvents.enable
 pref("extensions.foxtrick.prefs.module.MatchLineupFixes.FixWeatherSEs.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.AddSubstiutionInfo.enabled", true);
+pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.ConvertStars.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.DisplayTeamNameOnField.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.HighlighEventPlayers.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.ShowFaces.enabled", true);

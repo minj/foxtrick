@@ -9,8 +9,11 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['match'],
 	OPTIONS: [
-		'DisplayTeamNameOnField', 'ShowSpecialties', 'ShowFaces', 'StarCounter', 'StaminaCounter',
-		'HighlighEventPlayers', 'AddSubstiutionInfo'
+		'DisplayTeamNameOnField', 'ShowSpecialties', 'ConvertStars', 'ShowFaces', 'StarCounter',
+		'StaminaCounter', 'HighlighEventPlayers', 'AddSubstiutionInfo'
+	],
+	OPTIONS_CSS: [
+		null, null, Foxtrick.InternalPath + 'resources/css/match-lineup-convert-stars.css'
 	],
 	CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-tweaks.css',
 	run: function(doc) {
@@ -496,26 +499,40 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			}
 			return stars;
 		};
-		var starsHome = countStars(doc, 'Home');
-		var starsAway = countStars(doc, 'Away');
-
 		var ratingTemplate = doc.getElementsByClassName('playerRating')[0];
 		if (!ratingTemplate)
 			return; // we're not ready yet
+		if (doc.getElementsByClassName('ft-match-lineup-tweaks-star-counter').length)
+			return;
+
+		var starsHome = countStars(doc, 'Home');
+		var starsAway = countStars(doc, 'Away');
 
 		// adding image dimensions to prevent flicker...
-		ratingTemplate.getElementsByTagName('img')[0].height = 22;
-		ratingTemplate.getElementsByTagName('img')[0].weight = 13;
+		//ratingTemplate.getElementsByTagName('img')[0].height = 22;
+		//ratingTemplate.getElementsByTagName('img')[0].weight = 13;
 
-		var displayHome = ratingTemplate.cloneNode(true);
+		var displayHome = Foxtrick.createFeaturedElement(doc, this, 'div');
+		Foxtrick.addClass(displayHome, 'ft-match-lineup-tweaks-star-counter');
+		displayHome.appendChild(doc.createElement('span'));
+		//var img = ratingTemplate.getElementsByTagName('img')[0].cloneNode(true);
+		//img.height = 22;
+		//img.width = 13;
+		//displayHome.appendChild(img);
+		//Foxtrick.addImage(doc, displayHome, {
+		//	src: Foxtrick.InternalPath + 'resources/img/matches/star-10.png',
+		//	class: 'playerStar',
+		//	width: 10,
+		//	height: 10
+		//});
 		var displayAway = displayHome.cloneNode(true);
 		var displayDiff = displayHome.cloneNode(true);
 
 		//U+2211 is sum symbol, U+0394 is mathematical delta
-		displayHome.getElementsByTagName('span')[0].textContent = '\u2211 ' + starsHome;
-		displayAway.getElementsByTagName('span')[0].textContent = '\u2211 ' + starsAway;
+		displayHome.getElementsByTagName('span')[0].textContent = '\u2211 ' + starsHome + '★';
+		displayAway.getElementsByTagName('span')[0].textContent = '\u2211 ' + starsAway + '★';
 		displayDiff.getElementsByTagName('span')[0].textContent = '\u0394 ' +
-			Math.abs(starsHome - starsAway);
+			Math.abs(starsHome - starsAway) + '★';
 
 		Foxtrick.addClass(displayHome, 'ft-match-lineup-tweaks-stars-counter-sum-home');
 		Foxtrick.addClass(displayDiff, 'ft-match-lineup-tweaks-stars-counter-diff');
@@ -561,7 +578,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var staminaHome = getStaminaAverage(doc, 'Home');
 		var staminaAway = getStaminaAverage(doc, 'Away');
 
-		var displayHome = doc.getElementsByClassName('playerRating')[0].cloneNode(true);
+		var displayHome = Foxtrick.createFeaturedElement(doc, this, 'div');
+		displayHome.appendChild(doc.createElement('span'));
+		Foxtrick.addClass(displayHome, 'ft-match-lineup-tweaks-stamina-counter');
+
 		var displayAway = displayHome.cloneNode(true);
 		var displayDiff = displayHome.cloneNode(true);
 
@@ -570,10 +590,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		displayAway.getElementsByTagName('span')[0].textContent = '\u00D8 ' + staminaAway + ' %';
 		displayDiff.getElementsByTagName('span')[0].textContent = '\u0394 ' +
 			parseInt(Math.abs(staminaHome - staminaAway)) + ' %';
-
-		displayHome.removeChild(displayHome.getElementsByTagName('img')[0]);
-		displayAway.removeChild(displayAway.getElementsByTagName('img')[0]);
-		displayDiff.removeChild(displayDiff.getElementsByTagName('img')[0]);
 
 		Foxtrick.addClass(displayHome, 'ft-match-lineup-tweaks-stamina-counter-sum-home');
 		Foxtrick.addClass(displayDiff, 'ft-match-lineup-tweaks-stamina-counter-diff');
@@ -640,6 +656,35 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			}
 		}
 	},
+	// change the number-star display into real stars
+	convertStars: function(doc) {
+		var ratings = doc.querySelectorAll('div.playerRating > span');
+		for (var i = 0; i < ratings.length; i++) {
+			var count = Number(ratings[i].textContent);
+			var newDiv = ratings[i].parentNode.cloneNode(false);
+			Foxtrick.makeFeaturedElement(newDiv, this);
+			newDiv.title = count + ' *';
+			var stars5 = Math.floor(count / 5);
+			count = count % 5;
+			var stars2 = Math.floor(count / 2);
+			count = count % 2;
+			for (var j = 0; j < stars5; j++) {
+				Foxtrick.addImage(doc, newDiv, {
+					src: Foxtrick.InternalPath + 'resources/img/matches/5stars.png'
+				});
+			}
+			for (var j = 0; j < stars2; j++) {
+				Foxtrick.addImage(doc, newDiv, {
+					src: Foxtrick.InternalPath + 'resources/img/matches/2stars.png'
+				});
+			}
+			if (count)
+				Foxtrick.addImage(doc, newDiv, {
+					src: Foxtrick.InternalPath + 'resources/img/matches/' + count + 'stars.png'
+				});
+			ratings[i].parentNode.parentNode.replaceChild(newDiv, ratings[i].parentNode);
+		}
+	},
 
 	change: function(doc) {
 		if (Foxtrick.Pages.Match.isPrematch(doc)
@@ -676,16 +721,19 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'DisplayTeamNameOnField'))
 			this.runTeamnNames(doc);
 
-		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'StarCounter'))
-			this.runStars(doc);
-
 		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'HighlighEventPlayers'))
 			this.runEventPlayers(doc);
 		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'AddSubstiutionInfo'))
 			this.addSubInfo(doc);
 
+		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'StarCounter'))
+			this.runStars(doc);
 		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'StaminaCounter'))
 			this.runStamina(doc);
+		// run this after the counters
+		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'ConvertStars'))
+			this.convertStars(doc);
+
 
 		Foxtrick.startListenToChange(doc);
 
