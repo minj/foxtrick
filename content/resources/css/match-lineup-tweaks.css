@@ -205,6 +205,8 @@ html[dir="ltr"] .sectorShirt.ft-smallFaceCard {
 	background-color: #295223;
 	border: 1px solid #79A777;
 	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
 }
 
 /*.ft-adjIndicatorDiv {
