@@ -68,6 +68,8 @@ Foxtrick.modules['MainMenuDropDown']={
 				var hover_bgc = hoverColors.backgroundColor;
 				var hover_tc = hoverColors.color;
 
+				Foxtrick.log('hover color: ', hover_tc, 'hover bg: ', hover_bgc);
+
 				var rgb = Foxtrick.util.color.hexToRgb(hover_bgc);
 				var hsv = Foxtrick.util.color.rgbToHsv(rgb[0], rgb[1], rgb[2]);
 
@@ -81,7 +83,7 @@ Foxtrick.modules['MainMenuDropDown']={
 
 				rgb = Foxtrick.util.color.hsvToRgb(hsv[0],hsv[1],hsv[2]);
 					
-				var custom_hover_css = '#ft-drop-down-menu.ft-mmdd-custom li:hover{ color: %s1; background-color: rgb(%s2, %s3, %s4); }\n';
+				var custom_hover_css = '#ft-drop-down-menu.ft-mmdd-custom li:hover{ color: %s1 !important; background-color: rgb(%s2, %s3, %s4); }\n';
 				var hover_bgc = hoverColors.backgroundColor;
 				var hover_tc = hoverColors.color;
 				custom_hover_css = custom_hover_css.replace('%s1', hover_tc);
