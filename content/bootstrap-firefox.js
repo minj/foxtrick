@@ -70,6 +70,9 @@ FoxtrickFirefox.prototype = {
 		'pages/match.js',
 		'pages/matches.js',
 
+		//<!-- api utilities -->
+		'api/hy/user-id.js',
+
 		//<!-- categorized modules -->
 		"access/aria-landmarks.js",
 		"alert/live-alert.js",

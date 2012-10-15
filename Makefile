@@ -52,6 +52,7 @@ ROOT_FOLDERS_OPERA = defaults/ skin/
 ROOT_FOLDERS_SAFARI = defaults/ skin/
 SCRIPT_FOLDERS = alert/ \
 	access/ \
+	api/ \
 	forum/ \
 	information-aggregation/ \
 	lib/ \
@@ -81,7 +82,7 @@ CONTENT_FILES = add-class.js \
 	read-ht-prefs.js \
 	redirections.js \
 	ui.js \
-	xml-load.js 
+	xml-load.js
 CONTENT_FILES_FIREFOX = $(CONTENT_FILES) bootstrap-firefox.js \
 	bootstrap-fennec.js \
 	overlay.xul \
@@ -107,7 +108,7 @@ CONTENT_FILES_SAFARI = $(CONTENT_FILES) background.html \
 	preferences.html \
 	preferences.js \
 	loader-chrome.js
-	
+
 all: firefox chrome opera safari
 
 firefox:

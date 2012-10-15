@@ -81,6 +81,9 @@
 			"content/pages/match.js",
 			"content/pages/matches.js",
 
+			//<!-- api utilities -->
+			"content/api/hy/user-id.js",
+
 			//<!-- categorized modules -->
 			"content/access/aria-landmarks.js",
 			"content/alert/live-alert.js",
