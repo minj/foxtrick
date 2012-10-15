@@ -4,7 +4,7 @@
  * @author CatzHoek, HY backend/API by MackShot
  *
  * @Interface:
- * 		Url: http://www.hattrick-youthclub.org/_admin/twins.php
+ * 		Url: http://www.hattrick-youthclub.org/_data_provider/foxtrick/playersTwinsCheck
  * @params:
  *		//params send via http 'POST'
  * 		forceUpdate (optional): !!!! NOT SUPPORTED FOR THE MOMENT, will be ignored on HY
