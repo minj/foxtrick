@@ -106,15 +106,19 @@ Foxtrick.modules['MainMenuDropDown']={
 		var activeLanguage = FoxtrickPrefs.getString('htLanguage');
 
 		var learnCurrentPage = function(menuStructure){
-			Foxtrick.log('MainMenuDropDown Updating: ' + doc.location.pathname);
 			var subMenuContent = doc.querySelectorAll('.subMenu > .subMenuBox > .boxBody')[0];
 			
-			if(!Foxtrick.util.layout.isStandard(doc))
+			//production does not have boxbody but it's on stage already, hence check for simple is not enought (for now)
+			if(!Foxtrick.util.layout.isStandard(doc) && subMenuContent === undefined)
 				var subMenuContent = doc.querySelectorAll('.subMenu > .subMenuBox')[0];
+
+			Foxtrick.log(subMenuContent);
 			
 			//no navigation sidebar, like forums
-			if(subMenuContent === undefined)
+			if(subMenuContent  === undefined)
 				return;
+
+			Foxtrick.log('MainMenuDropDown Updating: ' + doc.location.pathname);
 
 			var entries = [];
 
@@ -150,6 +154,8 @@ Foxtrick.modules['MainMenuDropDown']={
 				updated: (new Date()).getTime(),
 				content: entries
 			}
+			Foxtrick.log('MainMenuDropDown learned: ', doc.location.pathname, pageEntry);
+
 			menuStructure[activeLanguage][doc.location.pathname] = pageEntry;
 			Foxtrick.localSet('htMenuStructure.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId, menuStructure);
 		};
