@@ -278,7 +278,7 @@ background-color: #eed;
 }
 
 /* why use this shit anyway?! */
-.main > .boxBody, .tournamentInvite {
+.mainRegular > .boxBody, .tournamentInvite {
 	overflow:inherit !important;
 }
 .tournamentInvite::after {
