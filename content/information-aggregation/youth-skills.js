@@ -4,7 +4,7 @@
  * @author CatzHoek, HY backend/API by MackShot
  *
  * @Interface:
- * 		Url: http://stage.hattrick-youthclub.org/_data_provider/foxtrick/playersYouthSkills
+ * 		Url: http://www.hattrick-youthclub.org/_data_provider/foxtrick/playersYouthSkills
  * @params:
  *		//params send via http 'POST'
  * 		teamId: teamId
@@ -63,7 +63,7 @@ Foxtrick.modules['YouthSkills'] = {
 		//retrieve youth skills by teamid
 		var getSkillsFromHY = function(callback) {
 			//api url
-			var url = 'http://stage.hattrick-youthclub.org' +
+			var url = 'http://www.hattrick-youthclub.org' +
 				'/_data_provider/foxtrick/playersYouthSkills';
 
 			var teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;

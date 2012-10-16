@@ -31,7 +31,7 @@ if (!Foxtrick.api.hy.URL)
  */
 
 
-Foxtrick.api.hy.URL['user-id'] = 'http://stage.hattrick-youthclub.org' +
+Foxtrick.api.hy.URL['user-id'] = 'http://www.hattrick-youthclub.org' +
 	'/_data_provider/foxtrick/userId';
 /**
  * Check if the id could be userId

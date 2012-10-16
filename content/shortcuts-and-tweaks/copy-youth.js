@@ -81,7 +81,7 @@ Foxtrick.modules['CopyYouth'] = {
 		};
 
 		var sendTrainingReportToHY = function(matchId, trainerNode, reportNode) {
-			// url: 'http://stage.hattrick-youthclub.org/_data_provider/foxtrick/matchesReport';
+			// url: 'http://www.hattrick-youthclub.org/_data_provider/foxtrick/matchesReport';
 			//
 			// params:
 			// teamid or managerid: teamid or managerid
@@ -109,7 +109,7 @@ Foxtrick.modules['CopyYouth'] = {
 
 
 			//upcomming real adress, do NOT call yet, as of HY request:
-			var url = 'http://stage.hattrick-youthclub.org/_data_provider/foxtrick/matchesReport';
+			var url = 'http://www.hattrick-youthclub.org/_data_provider/foxtrick/matchesReport';
 
 			var teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
 			//assemble param string
