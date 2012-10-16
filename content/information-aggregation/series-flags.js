@@ -197,7 +197,9 @@ Foxtrick.modules['SeriesFlags'] = {
 			var teamLinks = Foxtrick.filter(function(n) {
 				return (n.href.search(/matchId=/i) == -1
 					&& n.href.search(/teamId=/i) >= 0
-					&& !Foxtrick.hasClass(n.parentNode.parentNode, 'ft-popup-list'));
+					&& !Foxtrick.hasClass(n.parentNode.parentNode, 'ft-popup-list')
+					// link in .boxHead
+					&& n.href.search(/Tournaments/i) == -1);
 			}, links);
 			modifyTeamLinks(teamLinks);
 		}
