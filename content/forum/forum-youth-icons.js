@@ -95,13 +95,13 @@ Foxtrick.modules['ForumYouthIcons'] = {
 		var mainicons = [
 			{ icon_class: 'f_quote2',		string: '[q]qqq[/q]', 		tags: '[q]qqq[/q]', replace_text: 'qqq',	alt: 'f_quote2' },
 			{ icon_class: 'f_bold',		string: '[b]qqq[/b]', 		tags: '[b]qqq[/b]', replace_text: 'qqq',	alt: 'f_bold' },
-			{ icon_class: 'f_italic',		string: '[i]qqq[/i]', 		tags: '[i]qqq[iq]', replace_text: 'qqq',	alt: 'f_italic' },
+			{ icon_class: 'f_italic',		string: '[i]qqq[/i]', 		tags: '[i]qqq[/i]', replace_text: 'qqq',	alt: 'f_italic' },
 			{ icon_class: 'f_ul',			string: '[u]qqq[/u]', 		tags: '[u]qqq[/u]', replace_text: 'qqq',	alt: 'f_ul' },
 			{ icon_class: 'f_hr', 			string: 'hr',				tags: '[hr]',	alt: 'f_hr' },
 			{ icon_class: 'f_player', 		string: '[playerID=xxx]', 	tags: '[playerID=xxx]',  		replace_text: 'xxx',	alt: 'f_player'	},
 			{ icon_class: 'f_team', 		string: '[teamID=xxx]', 	tags: '[teamID=xxx]',  		replace_text: 'xxx',	alt: 'f_team'	},
 			{ icon_class: 'f_match', 		string: '[matchID=xxx]', 	tags: '[matchID=xxx]',  		replace_text: 'xxx',	alt: 'f_match'	},
-			{ icon_class: 'f_fed', 		string: '[fedID=xxx]', 	tags: '[fedID=xxx]',  			replace_text: 'xxx',	alt: 'f_fed'	},
+			{ icon_class: 'f_fed', 		string: '[federationid=xxx]', 	tags: '[federationID=xxx]',  			replace_text: 'xxx',	alt: 'f_fed'	},
 			{ icon_class: 'f_message', 	string: '[post==xxx.yy]', 	tags: '[post=xxx.yy]',  		replace_text: 'xxx.yy',	alt: 'f_message'},
 			{ icon_class: 'f_series', 		string: '[leagueID=xxx]', 	tags: '[leagueID=xxx]',  		replace_text: 'xxx',	alt: 'f_series'	},
 			{ icon_class: 'f_www', 		string: '[link=xxx]', 		tags: '[link=xxx]',  			replace_text: 'xxx',	alt: 'f_www'	}
