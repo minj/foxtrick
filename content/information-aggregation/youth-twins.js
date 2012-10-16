@@ -28,8 +28,10 @@
  *
  * @response
  *		JSON:
- *			isHyUser (true / false)
+ *			isHyUser (true / false) (deprecated)
  *				the user is using HY already
+ *			userID
+ *				integer HY userID, -1 if not a user
  *			players: (dictionary)
  *				list of players
  *				non: number of possible twins marked as non-twin (not present if isHyUser = false)
@@ -122,7 +124,21 @@ Foxtrick.modules['YouthTwins'] = {
 						//HY determines on its own
 					}
 					// load and callback
-					Foxtrick.util.load.async(url, callback, params);
+					Foxtrick.util.load.async(url, function(response, status) {
+						// update the userId on _real_ successful request
+						// avoids stale cache in case user joins/leaves HY
+						if (status == 200) {
+							var userId = JSON.parse(response).userId;
+							if (typeof(userId) == 'number') {
+								Foxtrick.log('[HY_API][twins] received HY userId, updating cache:',
+											 userId);
+								var teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
+								Foxtrick.localSet('YouthClub.' + teamId + '.userId', userId);
+							}
+						}
+						// proceed as normally
+						callback(response, status);
+					}, params);
 				});
 			});
 		};

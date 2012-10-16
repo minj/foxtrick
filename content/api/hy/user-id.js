@@ -60,17 +60,19 @@ Foxtrick.api.hy._fetchUserId = function(callback, teamId) {
 	var hash = 'foxtrick_' + teamId + '_' + identifier;
 	params = params + '&hash=' + Foxtrick.encodeBase64(hash);
 
-	Foxtrick.log('HY_API: _fetchUserId', params);
+	Foxtrick.log('[HY_API][userId] _fetchUserId:', teamId);
 
 	//load and callback
 	Foxtrick.util.load.async(Foxtrick.api.hy.URL['user-id'],
 	  function(response, status) {
 		switch (status) {
 			case 200:
-				callback(parseInt(JSON.parse(response)));
+				var userId = parseInt(JSON.parse(response));
+				Foxtrick.log('[HY_API][userId] userId received:', userId);
+				callback(userId);
 				break;
 			default:
-				Foxtrick.log('[HY][UserId] Unhandeled Error ' + status + ': ' + response);
+				Foxtrick.log('[HY_API][userId] Unhandled Error ' + status + ': ' + response);
 				callback(null);
 				break;
 		}
