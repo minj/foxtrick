@@ -101,7 +101,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 			{ icon_class: 'f_player', 		string: '[playerID=xxx]', 	tags: '[playerID=xxx]',  		replace_text: 'xxx',	alt: 'f_player'	},
 			{ icon_class: 'f_team', 		string: '[teamID=xxx]', 	tags: '[teamID=xxx]',  		replace_text: 'xxx',	alt: 'f_team'	},
 			{ icon_class: 'f_match', 		string: '[matchID=xxx]', 	tags: '[matchID=xxx]',  		replace_text: 'xxx',	alt: 'f_match'	},
-			{ icon_class: 'f_fed', 		string: '[federationid=xxx]', 	tags: '[federationID=xxx]',  			replace_text: 'xxx',	alt: 'f_fed'	},
+			{ icon_class: 'f_fed', 		string: '[federationID=xxx]', 	tags: '[federationID=xxx]',  			replace_text: 'xxx',	alt: 'f_fed'	},
 			{ icon_class: 'f_message', 	string: '[post==xxx.yy]', 	tags: '[post=xxx.yy]',  		replace_text: 'xxx.yy',	alt: 'f_message'},
 			{ icon_class: 'f_series', 		string: '[leagueID=xxx]', 	tags: '[leagueID=xxx]',  		replace_text: 'xxx',	alt: 'f_series'	},
 			{ icon_class: 'f_www', 		string: '[link=xxx]', 		tags: '[link=xxx]',  			replace_text: 'xxx',	alt: 'f_www'	}
