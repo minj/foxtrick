@@ -181,32 +181,35 @@ Foxtrick.modules['CopyYouth'] = {
 			//Debug: Always send this report, can be used to test
 			//Foxtrick.sessionSet('YouthClub.sendTrainingReport', true);
 
-			Foxtrick.localGet('YouthClub.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId +
-			                  '.isUser',
-			  function(isHYUser) {
-				if (isHYUser) {
-					//if reading first, send to HY
-					var mainBody = doc.getElementById('mainBody');
-					var matchid = Foxtrick.util.id.findMatchId(mainBody);
-					Foxtrick.sessionGet('YouthClub.sendTrainingReport',
-					  function(value) {
-						if (value) {
-							Foxtrick.log('Sending to HY, YouthClub.sendTrainingReport', value);
-							Foxtrick.sessionSet('YouthClub.sendTrainingReport', false);
-							var reportNode = doc.getElementsByClassName('playerInfo')[0];
-							var trainerNode = doc.querySelectorAll('#mainBody > p.shy')[0];
-							sendTrainingReportToHY(matchid, trainerNode, reportNode);
-						} else {
-							Foxtrick.log('Not sending to HY, YouthClub.sendTrainingReport', value);
-						}
-					});
-				} else
-					Foxtrick.log('No HY user, not sending rejected call to HY');
+			Foxtrick.api.hy.runIfHYUser(function() {
+				var mainBody = doc.getElementById('mainBody');
+				var matchid = Foxtrick.util.id.findMatchId(mainBody);
+				Foxtrick.sessionGet('YouthClub.sendTrainingReport',
+				  function(value) {
+					if (value) {
+						Foxtrick.log('Sending to HY, YouthClub.sendTrainingReport', value);
+						Foxtrick.sessionSet('YouthClub.sendTrainingReport', false);
+						var reportNode = doc.getElementsByClassName('playerInfo')[0];
+						var trainerNode = doc.querySelectorAll('#mainBody > p.shy')[0];
+						sendTrainingReportToHY(matchid, trainerNode, reportNode);
+					} else {
+						Foxtrick.log('Not sending to HY, YouthClub.sendTrainingReport', value);
+					}
+				});
 			});
 		}
 	},
 
 	addScoutComment: function(doc) {
+		var addNode = function(text, timeout) {
+			var insertBefore = doc.getElementsByTagName('h1')[0];
+			var container = doc.createElement('div');
+			var p = doc.createElement('p');
+			p.appendChild(doc.createTextNode(text));
+			container.appendChild(p);
+			Foxtrick.util.note.add(doc, insertBefore, 'ft-training-report-copy-note', container,
+			                       null, true, null, false, timeout);
+		};
 		var copyReport = function(sendHTY) {
 			try {
 				var mainBody = doc.getElementById('mainBody');
@@ -249,9 +252,11 @@ Foxtrick.modules['CopyYouth'] = {
 					//auto send the rejected player to HY
 					var reportNode = subDivs[lastmainbox].cloneNode(true);
 					var img = reportNode.getElementsByTagName('img')[0];
+					if (img)
 						img.parentNode.removeChild(img);
 
 					var alert = reportNode.getElementsByClassName('alert')[0];
+					if (alert)
 						alert.parentNode.removeChild(alert);
 
 
@@ -270,6 +275,8 @@ Foxtrick.modules['CopyYouth'] = {
 						// possible returns
 						// HTTP 200:
 						// - Ok
+						// HTTP 304:
+						// - Comment already exists
 						// HTTP 409:
 						// - This language is not available on hattrick youthclub!
 						// - Given scout call is not valid!
@@ -281,8 +288,8 @@ Foxtrick.modules['CopyYouth'] = {
 						// - unauthorized request
 
 						//api url
-						var url = 'http://www.hattrick-youthclub.' +
-							'org/_data_provider/foxtrick/playersYouthRejectCall';
+						var url = 'http://www.hattrick-youthclub.org' +
+							'/_data_provider/foxtrick/playersYouthRejectCall';
 
 						var teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
 						//assemble param string
@@ -302,11 +309,11 @@ Foxtrick.modules['CopyYouth'] = {
 							switch (status) {
 								case 200:
 									addNode(Foxtrickl10n.getString(
-									        'module.CopyYouth.AutoSendRejectedToHY.success'), 2000);
+									        'module.CopyYouth.AutoSendRejectedToHY.success'), 3000);
 									break;
 								case 304:
-								addNode(Foxtrickl10n.getString(
-								        'module.CopyYouth.AutoSendRejectedToHY.duplicate'), 2000);
+									addNode(Foxtrickl10n.getString(
+								        'module.CopyYouth.AutoSendRejectedToHY.duplicate'), 3000);
 									break;
 								case 400:
 								case 401:
@@ -323,17 +330,10 @@ Foxtrick.modules['CopyYouth'] = {
 
 					//only when clicking the reject btn
 					if (sendHTY && typeof(sendHTY) == 'boolean') {
-						//var is set in youthtwins
-						Foxtrick.localGet('YouthClub.' + Foxtrick.modules['Core']
-						                  .getSelfTeamInfo().teamId + '.isUser',
-						  function(isHYUser) {
-							if (isHYUser) {
-								Foxtrick.log('HY user, sending rejected call to HY');
-								sendScoutCallToHY();
-							} else
-								Foxtrick.log('No HY user, not sending rejected call to HY');
-							}
-						);
+						Foxtrick.api.hy.runIfHYUser(function() {
+							Foxtrick.log('HY user, sending rejected call to HY');
+							sendScoutCallToHY();
+						});
 					} else {
 						Foxtrick.log('Manual copy of scout call.');
 						addNode(Foxtrickl10n.getString('copy.scoutComment.copied'));
@@ -365,23 +365,11 @@ Foxtrick.modules['CopyYouth'] = {
 
 					// enable for debug: fake link, used to simulate sending shit to HY
 					// without actually rejecting the player
-					// var fakeReject = doc.createElement('a');
-					// fakeReject.textContent = 'Fake reject';
-					// rejectButton.parentNode.appendChild(fakeReject);
-					// Foxtrick.onClick(fakeReject, function(){ copyReport(true) });
+					//var fakeReject = doc.createElement('a');
+					//fakeReject.textContent = 'Fake reject';
+					//rejectButton.parentNode.appendChild(fakeReject);
+					//Foxtrick.onClick(fakeReject, function(){ copyReport(true) });
 
-					if (alertdiv.getElementsByTagName('input').length == 2) {
-						//setting cookie when player was pulled
-						var acceptButton = alertdiv.getElementsByTagName('input')[0];
-						Foxtrick.onClick(rejectButton, function() {
-							Foxtrick.cookieSet('for_hty', { 'pull': true }) });
-
-						// var fakeAccept = doc.createElement('a');
-						// fakeAccept.textContent = 'Fake accept';
-						// acceptButton.parentNode.appendChild(fakeAccept);
-						// Foxtrick.onClick(fakeAccept, function(){
-						//	Foxtrick.cookieSet('for_hty', { 'pull':true }) });
-					}
 				}
 				else if (alertdiv.parentNode.getElementsByTagName('a')[0] == null
 					&& doc.getElementById('ft-copy-scout-comment-link') == null) {
@@ -394,6 +382,16 @@ Foxtrick.modules['CopyYouth'] = {
 					Foxtrick.onClick(a, copyReport(false));
 					alertdiv.parentNode.insertBefore(a, alertdiv);
 				}
+				// setting the cookie in case of pull
+				var acceptButton = alertdiv.getElementsByTagName('input')[0];
+				Foxtrick.onClick(acceptButton, function() {
+					Foxtrick.cookieSet('for_hty', { 'pull': true }) });
+
+				// var fakeAccept = doc.createElement('a');
+				// fakeAccept.textContent = 'Fake accept';
+				// acceptButton.parentNode.appendChild(fakeAccept);
+				// Foxtrick.onClick(fakeAccept, function(){
+				//	Foxtrick.cookieSet('for_hty', { 'pull':true }) });
 			}
 
 			// add button

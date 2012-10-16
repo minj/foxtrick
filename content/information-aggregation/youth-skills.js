@@ -312,10 +312,8 @@ Foxtrick.modules['YouthSkills'] = {
 		};
 
 		//get skills from HY
-		Foxtrick.localGet('YouthClub.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId +
-		                  '.isUser',
-		  function(isHYUser) {
-			if (isHYUser)
+		Foxtrick.api.hy.getUserId(function(userId) {
+			if (Foxtrick.api.hy.isUserId(userId))
 				getSkillsFromHY(handleHyResponse);
 			else
 				doSkillColoring(doc);

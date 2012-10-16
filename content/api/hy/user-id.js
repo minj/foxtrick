@@ -33,7 +33,14 @@ if (!Foxtrick.api.hy.URL)
 
 Foxtrick.api.hy.URL['user-id'] = 'http://stage.hattrick-youthclub.org' +
 	'/_data_provider/foxtrick/userId';
-
+/**
+ * Check if the id could be userId
+ * @param	{Integer}	userId	Id to check
+ * @returns	{Boolean}			True if possible
+ */
+Foxtrick.api.hy.isUserId = function(userId) {
+	return (userId !== null && userId != -1);
+};
 /**
  * Low-level function to access HY's API. Should not be used directly
  * Tries to fetch and save the user ID from HY and executes callback(userId);
@@ -110,7 +117,12 @@ Foxtrick.api.hy.getUserId = function(callback, teamId) {
  */
 Foxtrick.api.hy.runIfHYUser = function(callback, teamId) {
 	Foxtrick.api.hy.getUserId(function(userId) {
-		if (userId !== null & userId != -1)
-			callback(userId);
+		if (Foxtrick.api.hy.isUserId(userId))
+			try {
+				callback(userId);
+			}
+			catch (e) {
+				Foxtrick.log('Uncaught error in callback for HY_API:runIfHyUser', e);
+			}
 	}, teamId);
 };
