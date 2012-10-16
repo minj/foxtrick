@@ -1,8 +1,8 @@
 @-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
 
- ul#ft-drop-down-menu  {
-    margin: 0;
-    padding: 0;
+ul#ft-drop-down-menu {
+	margin: 0;
+	padding: 0;
 }
 
 #ft-drop-down-menu.ft-mmdd-default li:hover{
@@ -20,8 +20,8 @@
 }
 
 #ft-drop-down-menu hr {
-	border: 0; 
-	height: 1px; 	
+	border: 0;
+	height: 1px;
 }
 
 #ft-drop-down-menu.ft-mmdd-default hr {
@@ -54,7 +54,7 @@ html[data-theme="simple"] #ft-drop-down-menu > li > a {
 }
 
 #ft-drop-down-menu > li {
-    float:left;
+	float:left;
 }
 
 #ft-drop-down-menu li {
@@ -80,36 +80,37 @@ ul.ft-drop-down-submenu a {
 	font-size: 1em !important;
 	line-height: 1.3em  !important;
 	float: none !important;
+	display: block;
 }
 
 
 #ft-drop-down-menu li ul {
-    display:none;
+	display:none;
 }
 #ft-drop-down-menu li:hover ul {
-    display:block;
+	display:block;
 }
 
 /*#ft-drop-down-menu, #ft-drop-down-menu ul {
-    list-style-type:none;
-    padding: 0 5px 5px !important;
-    margin: 0 2px !important;
-    min-width: 110px;
+	list-style-type:none;
+	padding: 0 5px 5px !important;
+	margin: 0 2px !important;
+	min-width: 110px;
 }
 
 html[dir="ltr"] #ft-drop-down-menu > li {
-    float:left;
+	float:left;
 }
 
 html[dir="rtl"] #ft-drop-down-menu > li {
-    float:right;
+	float:right;
 }
 
 #ft-drop-down-menu li ul {
-    display:none;
+	display:none;
 }
 #ft-drop-down-menu li:hover ul {
-    display:block;
+	display:block;
 }
 
 
@@ -143,7 +144,7 @@ html[data-theme="simple"] #ft-drop-down-menu > li > a {
 
 
 .ft-drop-down-submenu > li:hover {
-    background-color: #3E9C49;
+	background-color: #3E9C49;
 }
 
 html[data-theme="standard"] .ft-drop-down-submenu {
@@ -189,17 +190,17 @@ html[data-theme="simple"] .ft-drop-down-submenu {
 #timeline {
 	z-index: 0 !important;
 
-} 
+}
 
 .copyicon, .backIcon, .statsIcon, .alltidIcon, .bookmark, .forumSettings, .forumSearch, .forumSearch2, .forumStats, .backIcon2, .helpIcon {
 	z-index: 0 !important;
 }
 
 ul.ui-tabs-nav, #loading {
-	z-index: 2 !important;	
-} 
+	z-index: 2 !important;
+}
 #fieldOverlay {
-	z-index: 201 !important;	
+	z-index: 201 !important;
 }
 
 }
