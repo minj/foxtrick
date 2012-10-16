@@ -26,7 +26,7 @@ if (!Foxtrick.api.hy.URL)
  * 			'foxtrick_' + teamId + '_' + identifier;
  *
  * @response
- *		integer
+ *		double-quoted integer
  *			HY user ID or -1 if not a HY user
  */
 
