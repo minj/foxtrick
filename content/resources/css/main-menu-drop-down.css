@@ -75,11 +75,11 @@ html[data-theme="simple"] ul.ft-drop-down-submenu {
 	padding: 0 5px 5px !important;
 }
 
-html[data-theme="simple"] ul.ft-drop-down-submenu > li > a {
-	/*font-family: Verdana, Tahoma;
-	font-size: 0.69em;*/
-	line-height: 1.3em !important;
-	font-weight: 200  !important;
+ul.ft-drop-down-submenu a {
+	font-weight: 200 !important;
+	font-size: 1em !important;
+	line-height: 1.3em  !important;
+	float: none !important;
 }
 
 
@@ -88,10 +88,6 @@ html[data-theme="simple"] ul.ft-drop-down-submenu > li > a {
 }
 #ft-drop-down-menu li:hover ul {
     display:block;
-}
-
-.ft-drop-down-submenu a {
-	float: none !important;
 }
 
 /*#ft-drop-down-menu, #ft-drop-down-menu ul {
