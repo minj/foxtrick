@@ -39,7 +39,7 @@ Foxtrick.api.hy.URL['user-id'] = 'http://stage.hattrick-youthclub.org' +
  * @returns	{Boolean}			True if possible
  */
 Foxtrick.api.hy.isUserId = function(userId) {
-	return (userId !== null && userId != -1);
+	return (userId !== null && userId != -1 && userId != NaN);
 };
 /**
  * Low-level function to access HY's API. Should not be used directly
