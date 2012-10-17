@@ -59,6 +59,12 @@ Foxtrick.modules['ForumStripHattrickLinks'] = {
 						repl: '[link=foxtrick://' }
 						// all gecko
 				];
+				// assume svn users post only FT links
+				if (Foxtrick.branch() == 'svn')
+					urls.push({
+						reg: /\[link=chrome-extension:\/\/\w+\/content\//g,
+						repl: '[link=foxtrick://'
+					});
 				var textarea = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
 				var has_url = false;
 				for (var i = 0; i < urls.length; ++i) {
