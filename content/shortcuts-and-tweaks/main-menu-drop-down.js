@@ -12,6 +12,10 @@ Foxtrick.modules['MainMenuDropDown']={
 	CSS : [Foxtrick.InternalPath + 'resources/css/main-menu-drop-down.css'],
 	run : function(doc){
 
+		if(!Foxtrick.isStage(doc))
+			return;
+		
+
 		var fixCss = function(){
 			//get's custom <style> contents, disregards foxtrick injected nodes
 			var getCustomCss = function(doc){
@@ -36,13 +40,13 @@ Foxtrick.modules['MainMenuDropDown']={
 			}
 
 			var getMenuTextColor = function(css){
-				var re = new RegExp(/#menu\s*>\s*a\s*{\s*color:\s*([^;]+);/gi);
+				var re = new RegExp(/#menu\s*a\s*{\s*color:\s*([^;]+);/gi);
 				var matches = re.exec(css);	
 				return matches?matches[1]:null;
 			}
 
 			var getHoverColors = function(css){
-				var re = new RegExp(/#menu\s*>\s*a:hover\s*{\s*color:\s*([^;]+);\s*background-color:\s*([^;]+)/gi);
+				var re = new RegExp(/#menu\s*a:hover\s*{\s*color:\s*([^;]+);\s*background-color:\s*([^;]+)/gi);
 				var matches = re.exec(css);	
 
 				return (matches && matches[1] && matches[2])?{color:matches[1], backgroundColor:matches[2]}:null;
@@ -51,15 +55,34 @@ Foxtrick.modules['MainMenuDropDown']={
 			
 			var newcss = css.replace(/#menu\s*{/gi, "#menu ul, #menu {");
 			newcss = newcss.replace(/#menu\s*a\s*:\s*hover\s*{/gi, "#menu li:hover, #menu a:hover {");
-			if(newcss != css)
-				doc.getElementsByTagName("style")[0].textContent = newcss;
 			
-			return;
 
 			//get css
 			var normal_bgc = getMenuBackgroundColor(css);
 			var normal_tc = getMenuTextColor(css);
 			var hoverColors = getHoverColors(css);
+
+			var computeHoverColor = function(backgroundColor){
+				var rgb = Foxtrick.util.color.hexToRgb(backgroundColor);
+				var hsv = Foxtrick.util.color.rgbToHsv(rgb[0], rgb[1], rgb[2]);
+				if(1-hsv[2] > 0.20)
+					hsv[2] = hsv[2] + (1-hsv[2])/2;
+				else if(1-hsv[1] > 0.20)
+					hsv[1] = hsv[1] - 0.2 >= 0?hsv[1] - 0.2:hsv[1] + 0.2;
+				else
+					hsv[1] = hsv[1]/2;
+
+				rgb = Foxtrick.util.color.hsvToRgb(hsv[0],hsv[1],hsv[2]);
+				return Foxtrick.util.color.rgbToHex(rgb[0], rgb[1], rgb[2]);
+			}
+			if(normal_bgc){
+				var hoverBg = computeHoverColor(normal_bgc);
+				Foxtrick.log("hover bg: " + hoverBg);
+			}
+
+			if(newcss != css)
+				doc.getElementsByTagName("style")[0].textContent = newcss;
+			return;
 
 			var custom_tc_css = '#ft-drop-down-menu.ft-mmdd-custom h3, #ft-drop-down-menu.ft-mmdd-custom a { color: %s1 !important; }\n';
 			custom_tc_css = custom_tc_css.replace('%s1', normal_tc);

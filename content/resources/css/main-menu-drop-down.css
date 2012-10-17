@@ -9,13 +9,6 @@ ul#ft-drop-down-menu {
 	background-color: #3E9C49 !important;
 }*/
 
-#ft-drop-down-menu a {
-	text-decoration: none;
-	white-space: nowrap;
-	text-align: left;
-	height: 12px;
-}
-
 #ft-drop-down-menu.ft-mmdd-default h3,
 #ft-drop-down-menu.ft-mmdd-default a {
 	color: white !important;
@@ -48,7 +41,7 @@ html[data-theme="standard"] #ft-drop-down-menu > li > a {
 html[data-theme="simple"] #ft-drop-down-menu > li > a {
 	line-height: 23px;
 	font-weight: 700;
-	height: 23px;
+	/*height: 23px;*/
 	text-align: center;
 	margin: 0 6px 0 0;
 	padding: 0 6px;
@@ -80,11 +73,15 @@ html[data-theme="simple"] ul.ft-drop-down-submenu {
 ul.ft-drop-down-submenu a {
 	font-weight: 200 !important;
 	font-size: 1em !important;
-	line-height: 1.3em  !important;
+	line-height: 1.3em !important;
 	float: none !important;
 	display: block;
+	text-decoration: none;
+	white-space: nowrap;
+	text-align: left !important;
+	height: 13px !important;
+	padding: 0 !important;
 }
-
 
 #ft-drop-down-menu li ul {
 	display:none;
