@@ -88,19 +88,20 @@ Foxtrick.modules['EmbedMedia'] = {
 		//correct, otherwise the regex has to grab all relevant data so we can build a correct
 		//link later
 		var filter_supported = {
-			'deviantart': '^(http:\/\/)(.*)?(fav)\.me\/',
-			'soundcloud': '^(http:\/\/)([a-zA-Z]{2,3}\.)?(soundcloud)\.com\/',
-			'youtube': '^(http:\/\/)([a-zA-Z]{2,3}\.)?(youtube\.[a-zA-Z]{2,3}|youtu\.be)\/' +
-				'.*(v[=\/]([a-zA-Z0-9-_]{11}\\b)|\/([a-zA-Z0-9-_]{11}\\b))',
-			'vimeo': '^(http:\/\/)([a-zA-Z]{2,3}\.)?(vimeo)\.com\/(\\d+)',
-			'flickr': '^(http:\/\/)([a-zA-Z]{2,3}\.)?(flickr)\.com\/',
-			'dailymotion': '^(http:\/\/)([a-zA-Z]{2,3}\.)?(dailymotion\.com)\/' +
-				'video\/([a-zA-Z0-9-]+)',
-			'genericImage': '^http(s)?:\/\/[a-zA-Z0-9.\\-%\\w_~\/]+' +
-				'(?:gif|jpg|jpeg|png|bmp|GIF|JPG|JPEG|PNG|BMP)$',
-			'imgur': '^http(s)?:\/\/imgur.com\/([a-zA-Z0-9]+)$',
-			'imageshack': '^http(s)?:\/\/[a-zA-Z0-9.\\-%\\w_~\/]+\/(\\d+)\/(\\w+)' +
-				'.(gif|jpg|jpeg|png|bmp|GIF|JPG|JPEG|PNG|BMP)'
+			'deviantart': '^(?:https?://)?([\\w.%~-]+\\.)?fav\\.me/',
+			'soundcloud': '^(?:https?://)?(?:\\w{2,3}\\.)?soundcloud\\.com/',
+			'youtube': '^(?:https?://)?(?:\\w{2,3}\\.)?' +
+				'(?:youtu\\.be/|youtube\\.\\w{2,3}(?:/embed/|/v/|/watch\\?(?:.+?&)?v=))' +
+				'([\\w\\d-]{11})(?:.*)$',
+			'vimeo': '^(?:https?://)?(?:\\w{2,3}\\.)?vimeo\\.com/(\\d+)',
+			'flickr': '^(?:https?://)?(?:\\w{2,3}\\.)?flickr\\.com/',
+			'dailymotion': '^(?:https?://)?(?:\\w{2,3}\\.)?dailymotion\\.com/' +
+				'video/([\\w\\d-]+)',
+			'genericImage': '^(?:https?://)?[\\w\\d.%~/-]+' +
+				'(?:gif|jpg|jpeg|png|bmp)$',
+			'imgur': '^(?:https?://)?imgur.com/([\\w\\d]+)$',
+			'imageshack': '^(?:https?://)?[\\w\\d.%~/-]+/(\\d+)/(\\w+)' +
+				'.(gif|jpg|jpeg|png|bmp)'
 		};
 
 		//oEmbed supported sites need entries at this point
@@ -111,7 +112,7 @@ Foxtrick.modules['EmbedMedia'] = {
 				'&maxwidth=400&url=',
 			'flickr': 'http://www.flickr.com/services/oembed/?format=json&url=',
 			'deviantart': 'http://backend.deviantart.com/oembed?format=json&url=',
-			'soundcloud': 'http://soundcloud.com/oembed?format=json&show_comments=false&url='
+			'soundcloud': 'https://soundcloud.com/oembed?format=json&show_comments=false&url='
 		};
 
 		// native and fallback support, base urls to be used when the video ID has been extracted.
@@ -169,22 +170,20 @@ Foxtrick.modules['EmbedMedia'] = {
 		};
 
 		var extractMediaIdFromUrl = function(url, site) {
-			var re = new RegExp(filter_supported[site]);
+			var re = new RegExp(filter_supported[site], 'i');
 			var matches = re.exec(url);
 			var videoid	= null;
-			if (site == 'youtube') {
-				var videoid = matches[5] ? matches[5] : (matches[6] ? matches[6] : null);
-				if (url.match('user\/' + videoid))
-					videoid	= null;
-			} else if (site == 'vimeo') {
-				videoid	= matches[4] ? matches[4] : null;
-			} else if (site == 'dailymotion') {
-				videoid	= matches[4] ? matches[4] : null;
-			} else if (site == 'imgur') {
-				videoid	= matches[2] ? matches[2] : null;
-			} else if (site == 'imageshack') {
-				videoid	= matches[3] ? matches[3] : null;
-				videoid = videoid + ', ' + matches[2] + ', ' + matches[4];
+			switch (site) {
+				case 'youtube':
+				case 'vimeo':
+				case 'dailymotion':
+				case 'imgur':
+					videoid = matches[1] || null;
+					break;
+				case 'imageshack':
+					videoid	= matches[2] ? matches[2] : null;
+					videoid = videoid + ', ' + matches[1] + ', ' + matches[3];
+					break;
 			}
 			return videoid;
 		};
@@ -303,7 +302,7 @@ Foxtrick.modules['EmbedMedia'] = {
 			if (Foxtrick.hasClass(target, 'ft-media-site-imageshack')) {
 				oEmbedRequest(target.nextSibling.firstChild.href,
 				  function(response, status) {
-					target.nextSibling.firstChild.href = response.match(/\?\"(.*)\":/)[1];
+					target.nextSibling.firstChild.href = response.match(/\?"(.*)":/)[1];
 					doEmbedActualImageUrl(target);
 				});
 				return;
@@ -345,7 +344,6 @@ Foxtrick.modules['EmbedMedia'] = {
 		Foxtrick.map(function(message) {
 			var found_media_links = getSupportedMediaLinksWithDetails(message);
 			Foxtrick.map(function(media_link) {
-				Foxtrick.log(media_link);
 				if (siteEnabled[media_link.site]) {
 					prepareLinkForEmbedding(media_link);
 				}
