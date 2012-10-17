@@ -715,7 +715,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		Foxtrick.stopListenToChange(doc);
 		var playerDivs = doc.querySelectorAll('div.playerDiv');
-		if (playerDivs[0].getElementsByClassName('ft-indicatorDiv').length)
+		if (playerDivs.length && playerDivs[0].getElementsByClassName('ft-indicatorDiv').length)
 			return;
 		for (var i = 0; i < playerDivs.length; i++) {
 			var player = playerDivs[i];
