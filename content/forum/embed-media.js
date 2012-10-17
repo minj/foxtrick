@@ -145,7 +145,7 @@ Foxtrick.modules['EmbedMedia'] = {
 					var img = doc.createElement('img');
 					img.src = json.url;
 					img.alt = json.title;
-					img.style.width = '100%';
+					img.style.width = '99.9%';
 					img.title = json.provider_name + '\n' + json.title + '\nby ' + author;
 					target.nextSibling.replaceChild(img, target.nextSibling.firstChild);
 					break;
@@ -165,7 +165,7 @@ Foxtrick.modules['EmbedMedia'] = {
 			target.nextSibling.firstChild.setAttribute('target', '_blank');
 			Foxtrick.addImage(doc, target.nextSibling.firstChild,
 			                  { src: target.nextSibling.firstChild.href, title: title, alt: title,
-			                  style: 'max-width:100%' });
+			                  style: 'max-width:99.9%' });
 		};
 
 		var extractMediaIdFromUrl = function(url, site) {
