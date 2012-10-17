@@ -26,6 +26,7 @@ Foxtrick.modules['MainMenuDropDown']={
 
 			//read custom css (supporter feature on /club/ for correct drop down menu color)
 			var css = getCustomCss(doc);
+			
 
 			var getMenuBackgroundColor = function(css){
 				var re = new RegExp(/#menu\s*{\s*background-color:\s*([^;]+)/gi);
@@ -46,6 +47,14 @@ Foxtrick.modules['MainMenuDropDown']={
 
 				return (matches && matches[1] && matches[2])?{color:matches[1], backgroundColor:matches[2]}:null;
 			}
+			
+			
+			var newcss = css.replace(/#menu\s*{/gi, "#menu ul, #menu {");
+			newcss = newcss.replace(/#menu\s*a\s*:\s*hover\s*{/gi, "#menu li:hover, #menu a:hover {");
+			if(newcss != css)
+				doc.getElementsByTagName("style")[0].textContent = newcss;
+			
+			return;
 
 			//get css
 			var normal_bgc = getMenuBackgroundColor(css);

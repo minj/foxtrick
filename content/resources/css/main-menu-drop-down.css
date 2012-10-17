@@ -5,13 +5,15 @@ ul#ft-drop-down-menu {
 	padding: 0;
 }
 
-#ft-drop-down-menu.ft-mmdd-default li:hover{
+/*#ft-drop-down-menu ul
 	background-color: #3E9C49 !important;
-}
+}*/
 
 #ft-drop-down-menu a {
 	text-decoration: none;
 	white-space: nowrap;
+	text-align: left;
+	height: 12px;
 }
 
 #ft-drop-down-menu.ft-mmdd-default h3,
@@ -28,8 +30,8 @@ ul#ft-drop-down-menu {
 	background-color: white;
 }
 
-#ft-drop-down-menu.ft-mmdd-default ul,
-#ft-drop-down-menu.ft-mmdd-default li {
+
+ul.ft-drop-down-submenu {
 	background-color: #277F31;
 }
 
