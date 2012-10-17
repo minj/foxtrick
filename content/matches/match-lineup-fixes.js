@@ -438,8 +438,10 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			};
 			if (SourceSystem == 'HTOIntegrated') {
 				var HTOPlayers = fetchHTOInfo();
-				if (!HTOPlayers)
+				if (!HTOPlayers) {
+					Foxtrick.log('MatchLineupFixes: failed to fetch HTO info from the script tag');
 					return;
+				}
 			}
 
 			Foxtrick.util.api.retrieve(doc, detailsArgs, { cache_lifetime: 'session' },
@@ -570,6 +572,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 								continue;
 							if (SourceSystem == 'HTOIntegrated' && !addHTOIds(subGroup)) {
 								// we can't do anything without HTOIds
+								Foxtrick.log('MatchLineupFixes: failed to add HTO IDs');
 								return;
 							}
 
@@ -587,7 +590,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 								var finalRatings = ratingsData[finalIdx];
 
 								// rewind to the event before this one
-								// since go through subs one by one
+								// since we go through subs one by one
 								// this will update the current iteration
 								// with previous changes (if any)
 								var goodIdx = sub.idx - 1;
@@ -643,7 +646,8 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
 			return;
 
-		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupFixes', 'FixWeatherSEs'))
+		if (weatherEvents.length &&
+			FoxtrickPrefs.isModuleOptionEnabled('MatchLineupFixes', 'FixWeatherSEs'))
 			fixWeatherSEs();
 
 		if (!playerRatingsHome[0].players[0].hasOwnProperty('ftIdx') && // FF is executing twice, wtf?
