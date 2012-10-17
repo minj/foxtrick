@@ -72,7 +72,7 @@ Foxtrick.modules["EmbedMedia"]={
 		//for oembed (only) supported sites it's sufficient to ensure the delivering network is correct,
 		//otherwise the regex has to grab all relevant data so we can build a correct link later
 		var filter_supported = {
-			'deviantart': '^(?:https?://)?([\\w.%~-]+\\.)?fav\\.me/',
+			'deviantart': '^(?:https?://)?(?:www\\.)?fav\\.me/',
 			'soundcloud': '^(?:https?://)?(?:\\w{2,3}\\.)?soundcloud\\.com/',
 			'youtube': '^(?:https?://)?(?:\\w{2,3}\\.)?' +
 				'(?:youtu\\.be/|youtube\\.\\w{2,3}(?:/embed/|/v/|/watch\\?(?:.+?&)?v=))' +
@@ -81,11 +81,11 @@ Foxtrick.modules["EmbedMedia"]={
 			'flickr': '^(?:https?://)?(?:\\w{2,3}\\.)?flickr\\.com/',
 			'dailymotion': '^(?:https?://)?(?:\\w{2,3}\\.)?dailymotion\\.com/' +
 				'video/([\\w\\d-]+)',
-			'genericImage': '^(?:https?://)?[\\w\\d.%~/-]+' +
-				'(?:gif|jpg|jpeg|png|bmp)$',
 			'imgur': '^(?:https?://)?imgur.com/([\\w\\d]+)$',
-			'imageshack': '^(?:https?://)?[\\w\\d.%~/-]+/(\\d+)/(\\w+)' +
-				'.(gif|jpg|jpeg|png|bmp)'
+			'imageshack': '^(?:https?://)?(?:www)?imageshack\\.us/[\\w\\d.%~/-]+/(\\d+)/(\\w+)' +
+				'.(gif|jpg|jpeg|png|bmp)(?:/|$)',
+			'genericImage': '^(?:https?://)?[\\w\\d.%~/-]+' +
+				'(?:gif|jpg|jpeg|png|bmp)$'
 		};
 
 		//oEmbed supported sites need entries at this point
@@ -183,13 +183,10 @@ Foxtrick.modules["EmbedMedia"]={
 						var matches = re.exec(link)
 						//link passed regex, add to supported links
 						if( matches ){
-							//ignore imageshack detected as generic
-							if(key == "genericImage" && link.href.match("imageshack.us"))
+							//ignore imageshack pseudo-links detected as generic
+							if (key == 'genericImage' &&
+								link.href.match('^(?:https?://)?(?:www)?imageshack\\.us/'))
 								continue;
-
-							//but convert to generic if the users already pasted an image link
-							if(key == "imageshack" && link.href.match("img(\\d+)"))
-								key = "genericImage";
 
 							//Opera would need permision for that workarround, FF and Chrome don't seem to require it tho
 							//dunno about safari
