@@ -202,8 +202,8 @@ html[dir="ltr"] .sectorShirt.ft-smallFaceCard {
 	position: absolute;
 	left: 0; /* for rtl */
 	top: -30px;
-	background-color: #295223;
-	border: 1px solid #79A777;
+	background-color: #295223 !important;
+	border: 1px solid #79A777 !important;
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
