@@ -77,35 +77,6 @@ Foxtrick.modules['MainMenuDropDown']={
 			return ret;
 		}
 
-		
-		// var menus = {};
-		// menus.primary = this.getPrimaryMenus(doc);
-		// menus.secondary = this.getSecondaryMenus(doc);
-
-		// var links = doc.querySelectorAll('#menu li');
-		// for(var l = 0; l < links.length; l++)
-		// 	this.addMenusToListItem(doc, links[l], Foxtrick.union(menus.primary, menus.secondary), true);
-
-		// Foxtrick.localGet("htMenuStructure.v2."  + Foxtrick.modules['Core'].getSelfTeamInfo().teamId, function(navigation){
-		// 	if(!navigation){
-		// 		Foxtrick.log("yay");
-		// 		navigation = {};
-		// 		navigation[FoxtrickPrefs.getString('htLanguage')] = {};
-		// 		navigation[FoxtrickPrefs.getString('htLanguage')].primaryMenus = [];
-		// 		navigation[FoxtrickPrefs.getString('htLanguage')].secondaryMenus = [];
-		// 	}
-
-		// 	Foxtrick.log(navigation);
-		// 	var isMember = Foxtrick.member(menus.primary[0], navigation[FoxtrickPrefs.getString('htLanguage')].primaryMenus);
-		// 	Foxtrick.log("Before", isMember);
-		// 	Foxtrick.concat(navigation[FoxtrickPrefs.getString('htLanguage')].primaryMenus, menus.primary);
-		// 	Foxtrick.concat(navigation[FoxtrickPrefs.getString('htLanguage')].secondaryMenus, menus.secondary); 
-
-		// 	var isMember = Foxtrick.member(menus.primary[0], navigation[FoxtrickPrefs.getString('htLanguage')].primaryMenus);
-		// 	Foxtrick.log("After", isMember);
-		// 	Foxtrick.localSet("htMenuStructure.v2."  + Foxtrick.modules['Core'].getSelfTeamInfo().teamId, navigation);
-		// });
-
 		var NavigationStructure = function(){
 			this.language = FoxtrickPrefs.getString('htLanguage');
 			this.menus = {
@@ -198,7 +169,7 @@ Foxtrick.modules['MainMenuDropDown']={
 							if(isEmptyTextNode(boxBody.childNodes[child]) || boxBody.childNodes[child].tagName == 'BR' ){
 								//that's okay
 							} else if(boxBody.childNodes[child].tagName != 'A'){
-
+								//hack out those anchor tags that are wrapped in paragraphs for some reason
 								if(boxBody.childNodes[child].tagName == 'P'){
 									var ok = true;
 									Foxtrick.map(function(node){
@@ -279,7 +250,6 @@ Foxtrick.modules['MainMenuDropDown']={
 
 			//build the menu
 			var links = doc.querySelectorAll('#menu > ul > li > a');
-			Foxtrick.log(links);
 			for(var l = 0; l < links.length; l++){
 				var primaries = navi.getPrimaryMenusForUrl( links[l].href );
 				var secondaries = navi.getSecondaryMenusForUrl( links[l].href );
@@ -291,13 +261,47 @@ Foxtrick.modules['MainMenuDropDown']={
 					if(sl == 0) //skip first entry, that's cover already
 						continue;
 					var secondaries = navi.getSecondaryMenusForUrl( secondaryLinks[sl].href );
-
 					Foxtrick.modules['MainMenuDropDown'].addMenusToListItem(doc, secondaryLinks[sl].parentNode, secondaries, "ft-drop-down-submenu ft-drop-down-submenu-2", false);
+					if(secondaries.length){
+						var ul = secondaryLinks[sl].parentNode.getElementsByTagName('ul')[0];
+						var span = doc.createElement('span');
+						span.textContent = '\u25b6';
+						secondaryLinks[sl].parentNode.insertBefore(span, ul);
+					}
 				}
 			}
+
+			//css adjustments for custom ht designs ()
+			var getCustomCss = function(doc){
+				var inlinestyleNodes = doc.getElementsByTagName('style');
+				var inlineStyle = '';
+				Foxtrick.map(function(styleNode){
+					if(styleNode.id != 'ft-module-css')
+						inlineStyle = inlineStyle + styleNode.textContent + '\n';
+				}, inlinestyleNodes);
+				return inlineStyle;
+			};
+
+			var css = getCustomCss(doc);
+			var newcss = css.replace(/#menu\s*{/gi, "#menu hr, #menu h3, #menu ul, #menu {");
+			newcss = newcss.replace(/#menu\s*a\s*:\s*hover\s*{/gi, "#menu li:hover, #menu a:hover {");
+			if(newcss != css)
+				doc.getElementsByTagName("style")[0].textContent = newcss;
 		});
 		
 		return;
+
+
+		var isSubPage = function(menu, url){
+				for(var i in menu[activeLanguage])
+					for(var k in menu[activeLanguage][i].content){
+						if(menu[activeLanguage][i].content[k].tag == 'a')
+							if( url === menu[activeLanguage][i].content[k].link)
+								return {'main':i, 'link':menu[activeLanguage][i].content[k]};
+					}
+					
+			}
+			Foxtrick.log(isSubPage(menuStructure, doc.location.href.replace(/^.*\/\/[^\/]+/, '')));
 
 		
 
@@ -319,16 +323,7 @@ Foxtrick.modules['MainMenuDropDown']={
 			Foxtrick.addClass(nav, 'ft-mmdd-default');
 
 
-			var isSubPage = function(menu, url){
-				for(var i in menu[activeLanguage])
-					for(var k in menu[activeLanguage][i].content){
-						if(menu[activeLanguage][i].content[k].tag == 'a')
-							if( url === menu[activeLanguage][i].content[k].link)
-								return {'main':i, 'link':menu[activeLanguage][i].content[k]};
-					}
-					
-			}
-			Foxtrick.log(isSubPage(menuStructure, doc.location.href.replace(/^.*\/\/[^\/]+/, '')));
+			
 
 			//iterate all main menu items
 			Foxtrick.map(function(item){

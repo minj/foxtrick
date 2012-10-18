@@ -21,11 +21,11 @@ ul#ft-drop-down-menu li {
 
 ul.ft-drop-down-submenu a {
 	overflow: hidden;
-	max-width: 179px;
+	max-width: 139px;
 }
 ul.ft-drop-down-submenu {
 	background-color: #277F31;
-	width: 195px;
+	width: 155px;
 }
 
 /*html[data-theme="standard"] #ft-drop-down-menu > li > a {
@@ -53,7 +53,7 @@ html[data-theme="simple"] .ft-drop-down-submenu a {
 }
 .ft-drop-down-submenu-2 {
 	top: 0px !important;
-	left: 196px;
+	left: 156px;
 }
 #ft-drop-down-menu li span {
 	position: absolute;
@@ -80,7 +80,7 @@ html[data-theme="standard"] ul.ft-drop-down-submenu {
 	padding: 0 5px 5px !important;
 }
 
-html[data-theme="simple"] ul.ft-drop-down-submenu-2,
+html[data-theme="simple"] ul.ft-drop-down-submenu-2
 html[data-theme="simple"] ul.ft-drop-down-submenu {
 	position: absolute;
 	z-index: 203;
