@@ -11,77 +11,6 @@ Foxtrick.modules['MainMenuDropDown']={
 	OPTIONS : ['DisregardFirstHeader'],
 	CSS : [Foxtrick.InternalPath + 'resources/css/main-menu-drop-down.css'],
 
-	//learn seconary menus for any page
-	getMainMenu : function(doc){
-		
-	},
-	getSecondaryMenus : function(doc){
-		var boxBodies = doc.querySelectorAll('#sidebar > .sidebarBox > .boxBody');
-		var menuslist = [];
-		Foxtrick.map(function(boxBody){
-			//only accept sidebar thingies that have the structure .boxbody > a
-			//but allow <br> and empty textnode
-			var linkOnlyBox = true;
-			for(var child = 0; child < boxBody.childNodes.length; child++){
-				//ignore stupid empty textnodes 
-				var nodeType = boxBody.childNodes[child].nodeType;
-				if((nodeType == Foxtrick.NodeTypes.TEXT_NODE 
-					&& boxBody.childNodes[child].textContent.replace(/\s*/gi, '') == '') || boxBody.childNodes[child].tagName == 'BR' ){
-					//that's okay
-				} else if(boxBody.childNodes[child].tagName != 'A')
-					linkOnlyBox = false;
-			}
-			//only contains links (and <br> and empty text nodes) -> build object
-			if(linkOnlyBox){
-				var header = boxBody.parentNode.querySelector('h2');
-				var links = boxBody.parentNode.querySelectorAll('a');
-
-				var menu = {}
-				menu.name = Foxtrick.trim(header.textContent);
-				menu.url = doc.location.href.replace(/^.*\/\/[^\/]+/, '');
-				menu.entries = [];
-				Foxtrick.map(function(link){
-					var entry = {}
-					entry.text = Foxtrick.trim(link.textContent);
-					entry.link = link.href.replace(/^.*\/\/[^\/]+/, '');
-					menu.entries.push(entry);
-				}, links);
-				menuslist.push(menu);
-			}	
-		}, boxBodies);
-		return menuslist;
-	},
-
-	//learn primary menu for any page, each section (h3-seperated) represented as individual menu
-	getPrimaryMenus : function(doc){
-		var subMenuContent = doc.querySelectorAll('.subMenu > .subMenuBox > .boxBody')[0];
-		
-		//no navigation sidebar, like forums
-		if(subMenuContent  === undefined)
-			return [];
-
-		var menulist = [];
-		Foxtrick.map(function(node){
-			if(node.tagName === 'H3'){
-				menu = {};
-				menu.name = Foxtrick.trim(node.textContent);
-				menu.entries = [];
-				menu.url = doc.location.href.replace(/^.*\/\/[^\/]+/, '');
-			}
-			if(node.tagName === 'UL'){
-				var links = node.getElementsByTagName('a');
-
-				Foxtrick.map(function(link){
-					var entry = {};
-					entry.text = Foxtrick.trim(link.textContent);
-					entry.link = link.href.replace(/^.*\/\/[^\/]+/, '');
-					menu.entries.push( entry );
-				}, links);
-				menulist.push(menu);
-			}
-		}, subMenuContent.childNodes);
-		return menulist;
-	},
 	buildMainMenu : function(doc){
 		var menuLinks = doc.querySelectorAll('#menu > a');
 			var list = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MainMenuDropDown, 'ul');
@@ -250,19 +179,40 @@ Foxtrick.modules['MainMenuDropDown']={
 				//learns secondary menus from current document
 				var getSecondaryMenus = function(doc){
 					var boxBodies = doc.querySelectorAll('#sidebar > .sidebarBox > .boxBody');
+
 					var menuslist = [];
 					Foxtrick.map(function(boxBody){
+						Foxtrick.log(boxBody);
 						//only accept sidebar thingies that have the structure .boxbody > a
 						//but allow <br> and empty textnode
+						//
+						var isEmptyTextNode = function(node){
+							var nodeType = node.nodeType;
+							if(Foxtrick.NodeTypes.TEXT_NODE == nodeType && node.textContent.replace(/\s*/gi, '') == '')
+								return true;
+
+							return false;
+						};
 						var linkOnlyBox = true;
 						for(var child = 0; child < boxBody.childNodes.length; child++){
-							//ignore stupid empty textnodes 
-							var nodeType = boxBody.childNodes[child].nodeType;
-							if((nodeType == Foxtrick.NodeTypes.TEXT_NODE 
-								&& boxBody.childNodes[child].textContent.replace(/\s*/gi, '') == '') || boxBody.childNodes[child].tagName == 'BR' ){
+							//ignore stupid empty textnodes or line break
+							if(isEmptyTextNode(boxBody.childNodes[child]) || boxBody.childNodes[child].tagName == 'BR' ){
 								//that's okay
-							} else if(boxBody.childNodes[child].tagName != 'A')
+							} else if(boxBody.childNodes[child].tagName != 'A'){
+
+								if(boxBody.childNodes[child].tagName == 'P'){
+									var ok = true;
+									Foxtrick.map(function(node){
+										if(!isEmptyTextNode(node) && node.tagName != 'A')
+											ok = false;
+									}, boxBody.childNodes[child].childNodes);
+									if(ok){
+										Foxtrick.log("Hacked arround unecessary <p> wrapping");
+										continue;
+									}
+								}
 								linkOnlyBox = false;
+							}
 						}
 						//only contains links (and <br> and empty text nodes) -> build object
 						if(linkOnlyBox){
@@ -281,6 +231,7 @@ Foxtrick.modules['MainMenuDropDown']={
 							}, links);
 							menuslist.push(menu);
 						}	
+						
 					}, boxBodies);
 					return menuslist;
 				}
