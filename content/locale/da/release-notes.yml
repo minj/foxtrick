@@ -2,7 +2,7 @@
 da: 
   versions: 
     nightly: 
-      note_0: 'Dette er udviklings versionen. Du bruger disse på eget ansvar. Se venligst <linkSVN>commit history</linkSVN> på Google Code for nærmere oplysninger om ændringerne.'
+      note_0: 'Dette er udviklingsversionen. Du bruger følgende på eget ansvar. Se venligst <linkSVN>commit history</linkSVN> på Google Code for nærmere oplysninger om ændringerne.'
     beta: 
       note_0: 'Dette er betaversionen af den næste udgave. Du kan hjælpe med at oversætte via vores super nemme crowd-oversættelse side <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.11.0: 
@@ -12,7 +12,7 @@ da:
       note_3: '<module>MatchOrderInterface</module>:En rettelse til straffesparkstager listen er udgivet. Du kan også tilføje eller slette din trup på listen med et enkelt klik.'
       note_4: '<module>SkillTable</module>: Mulighed tilføjet til at sortere en eksisterende rækkefølge ved hjælp af ctrl + venstre klik på en anden kolonne overskrift.'
       note_5: '<module>SkillTable</module>: Fra nu af er spillernavne forkortet for at bruge mindre plads.'
-      note_6: '<module>SkillColoring</module>: Fuld modul omskrivning, en masse fejlrettelser og tilføjelser er lavet. Indstillinger ændret. Du kan indstille dem efter dit behov.'
+      note_6: '<module>SkillColoring</module>: Fuldstændig omskrivning af modul. Der er lavet en del fejlrettelser og tilføjelser. Indstillinger er ændret. Du kan indstille dem efter dit behov.'
       note_7: '<module>TransferSearchResultFilters</module>: Mulighed tilføjet til at filtrere efter form og skjule spillere uden specialitet. Nu arbejder sammen med <module>TransferSearchFilters</module>.'
       note_8: '<module>MatchSimulator</module>: Integreret med <module>Ratings</module>.'
       note_9: '<module>FriendlyPool</module>:Mulighed tilføjet for at udvide listen over lande.'
@@ -20,22 +20,22 @@ da:
       note_11: '<module>YouthTwins</module>: Manuelt udført ændringer på HY vil nu øjeblikkeligt afspejles på ungdoms-spilleres side'
       note_12: '<header>Fejlrettelser</header>'
     0.10.0: 
-      note_0: 'NEW: <module>TransferHistoryFilters</module>: Lader dig filter handeler af spillere. Kun tilgængelig for hold historik, ikke spillere (Aktiveret som standard)'
+      note_0: 'NEW: <module>TransferHistoryFilters</module>: Lader dig filter handler af spillere. Kun tilgængelig for hold historik, ikke spillere (Aktiveret som standard)'
       note_1: 'NEW: <module>FriendlyPool</module>: Farvelægger besøgte lande i venskabs-puljen (kun for supportere, aktiveret som standard)'
       note_2: 'NEW: <module>HTEVPrediction</module>: Viser kamp odds for ligakampe leveret af <linkHTEV>HTEV</linkHTEV> (Aktiveret som standard)'
       note_3: '<module>PlayerStatsExperience</module>:En smart ny version med meget mere detaljer og farvede tilbagemeldinger, hvis dataene er pålidelige. (Tak til SeanConnery (7751762) for at teste for blinde brugere af rød-grønne farver)'
-      note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
-      note_5: '<module>YouthTwins</module>: Option added to hide the information link about twins (default off)'
-      note_6: '<module>StaffMarker</module>: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on'
-      note_7: '<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org'
-      note_8: Support for the KeyPlayer page
-      note_9: Some improvements for Firefox on Android
-      note_10: Possibility to test alert sounds in the preferences
-      note_11: Some internal changes related to data storage
-      note_12: Some smaller changes and fixes we forgot about
+      note_4: '<module>MatchOrderInterface</module>: Mulighed for at klone eller klone og konvertere en eksisterende ordre. Spillere vil ikke blive udfyldt på forhånd.'
+      note_5: '<module>YouthTwins</module>: Mulighed tilføjet for at skjule information link om tvillinger (Standard deaktiveret)'
+      note_6: '<module>StaffMarker</module>: Google Code bruges for Hattrick Youthclub personale information, for at mindske HY-servere travlhed'
+      note_7: '<module>TeamPopupLinks</module>:Nogle design ændringer for at integrere bedre med det overordnede udseende og brugeroplevelse af ​​hattrick.org'
+      note_8: Hjælp til nøglespillere side
+      note_9: Nogle forbedringer for Firefox på Android
+      note_10: Mulighed for at afprøve advarselslyde under indstillingerne
+      note_11: Nogle interne ændringer i forbindelse med datalagring
+      note_12: Nogle mindre ændringer og fejlrettelser vi glemte
       note_13: '<header>Bugfixes</header>'
-      note_14: '<module>ExtendedPlayerDetails</module>: Fixed wage per week and season beeing incorrect for korean and probably some other languages too'
-      note_15: '<module>MatchOrderInterface</module>: Face will also show for replaced and highlighted players for past lineups'
+      note_14: '<module>ExtendedPlayerDetails</module>: Rettede ukorrekt uge og sæson løn for Koreansk og sandsynligvis nogle andre sprog også'
+      note_15: '<module>MatchOrderInterface</module>:Ansigter vil ligeledes blive vist for udskiftede og fremhævede spillere ifm. tidligere holdopstillinger'
       note_16: '<module>MatchPlayerColouring</module>: Now works properly for players that were put in and left the field before the game ended'
       note_17: '<module>HideSignatures</module>: Did not work when HT setting was set to truncated signatures, fixed that'
       note_18: '<module>PlayerStatsExperience</module>: Fixed NT/U-20 final and semi-final detection'
