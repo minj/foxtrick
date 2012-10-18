@@ -24,25 +24,29 @@ Foxtrick.modules['MainMenuDropDown']={
 			}, menuLinks);
 			doc.getElementById('menu').insertBefore(list, doc.getElementById('ctl00_ctl00_CPHeader_ucMenu_hypLogout'));
 	},
+	addSeperator : function(doc, list, text){
+		var li = doc.createElement('li');
+		if(text){
+			var h3 = doc.createElement('h3');
+			h3.textContent = text;
+			li.appendChild(h3);
+			list.appendChild(li);
+		}
+		li = doc.createElement('li');
+		var hr = doc.createElement('hr');
+		li.appendChild(hr);
+		list.appendChild(li);
+
+	},
 	addMenusToListItem : function(doc, node, menus, className, recursive){
 		if(!menus.length)
 			return;
 
 		var list = doc.createElement('ul');
 		Foxtrick.addClass(list, className);
-		// if(!recursive)
-		// 	Foxtrick.addClass(list, 'ft-mmdd-sub-2');
 		Foxtrick.map(function(menu){
-			var li = doc.createElement('li');
-			var h3 = doc.createElement('h3');
-			h3.textContent = menu.name;
-			li.appendChild(h3);
-			list.appendChild(li);
-			li = doc.createElement('li');
-			var hr = doc.createElement('hr');
-			li.appendChild(hr);
-			list.appendChild(li);
-			
+
+			Foxtrick.modules['MainMenuDropDown'].addSeperator(doc, list, menu.name);
 			Foxtrick.map(function(entry){
 				var li = doc.createElement('li');
 				var anchor = doc.createElement('a');
@@ -50,15 +54,12 @@ Foxtrick.modules['MainMenuDropDown']={
 				anchor.href = entry.link;
 				li.appendChild(anchor);
 				list.appendChild(li);
-				// if(recursive){
-				// 	var span = doc.createElement('span');
-				// 	span.textContent = '\u25b6';
-				// 	li.appendChild(span);
-				// 	Foxtrick.modules['MainMenuDropDown'].addMenusToListItem(doc, li, menus, false);
-				// }
 			}, menu.entries);
 		}, menus);
 		node.appendChild(list);
+
+		//add hr for displaying info later
+		Foxtrick.modules['MainMenuDropDown'].addSeperator(doc, list);
 	},
 	run : function(doc){
 		//only stage for now until HTs release decent CSS
@@ -189,10 +190,12 @@ Foxtrick.modules['MainMenuDropDown']={
 							var header = boxBody.parentNode.querySelector('h2');
 							var links = boxBody.parentNode.querySelectorAll('a');
 
-							var menu = {}
+							var menu = {};
 							menu.name = Foxtrick.trim(header.textContent);
 							menu.url = doc.location.href.replace(/^.*\/\/[^\/]+/, '');
 							menu.entries = [];
+							menu.timestamp = (new Date()).getTime();
+
 							Foxtrick.map(function(link){
 								//no empty shit, lile
 								if(link.textContent.replace(/\s*/gi, '') == '')
@@ -223,6 +226,7 @@ Foxtrick.modules['MainMenuDropDown']={
 							menu = {};
 							menu.name = Foxtrick.trim(node.textContent);
 							menu.entries = [];
+							menu.timestamp = (new Date()).getTime();
 							menu.url = doc.location.href.replace(/^.*\/\/[^\/]+/, '');
 						}
 						if(node.tagName === 'UL'){
@@ -383,6 +387,7 @@ Foxtrick.modules['MainMenuDropDown']={
 					var now = (new Date()).getTime();
 					var diff = Number(now) - Number(menuStructure[activeLanguage][item.href.replace(/^.*\/\/[^\/]+/, '')].updated);
 					var days = diff/(1000*60*60*24);
+
 
 					var hr_li = doc.createElement('li');
 					var hr = doc.createElement('hr');
