@@ -209,11 +209,10 @@ html[dir="ltr"] .sectorShirt.ft-smallFaceCard {
 	-webkit-border-radius: 3px;
 }
 
-/*.ft-adjIndicatorDiv {
-	top: -10px !important;
-}*/
 .ft-subDiv {
 	display: inline-block;
+	background-color: #ffcc00;
+	border: 1px solid #79A777;
 }
 .ft-indicatorDiv {
 	position: absolute;
