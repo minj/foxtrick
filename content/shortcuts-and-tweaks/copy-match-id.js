@@ -49,6 +49,8 @@ Foxtrick.modules["CopyMatchID"]={
 							break;
 						}
 					}
+					if (href == '')
+						continue;
 					var matchid = href.replace(/.+matchID=/i, "").match(/^\d+/)[0];
 
 					images[j].setAttribute('title',images[j].title+ ' : '+Foxtrickl10n.getString( 'copy.matchid'));
