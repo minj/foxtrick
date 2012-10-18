@@ -194,6 +194,10 @@ Foxtrick.modules['MainMenuDropDown']={
 							menu.url = doc.location.href.replace(/^.*\/\/[^\/]+/, '');
 							menu.entries = [];
 							Foxtrick.map(function(link){
+								//no empty shit, lile
+								if(link.textContent.replace(/\s*/gi, '') == '')
+									return;
+
 								var entry = {}
 								entry.text = Foxtrick.trim(link.textContent);
 								entry.link = link.href.replace(/^.*\/\/[^\/]+/, '');
