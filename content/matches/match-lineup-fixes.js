@@ -206,7 +206,6 @@ Foxtrick.modules['MatchLineupFixes'] = {
 						 * getEventTypeHighlightClass returns undefined for weather SEs
 						 * so we need to fake this cell accordingly to be picked up by HTs ;)
 						 */
-						eventControl = ht.$(eventControlSelector);
 						cell.id = 'matchEventIndex_' +
 							evt.attributes.getNamedItem('Index').textContent;
 						Foxtrick.addClass(cell, 'undefined');
