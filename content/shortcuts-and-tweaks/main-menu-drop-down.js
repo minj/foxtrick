@@ -182,7 +182,6 @@ Foxtrick.modules['MainMenuDropDown']={
 
 					var menuslist = [];
 					Foxtrick.map(function(boxBody){
-						Foxtrick.log(boxBody);
 						//only accept sidebar thingies that have the structure .boxbody > a
 						//but allow <br> and empty textnode
 						//
