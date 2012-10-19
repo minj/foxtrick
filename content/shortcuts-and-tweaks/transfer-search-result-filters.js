@@ -94,6 +94,7 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 					Foxtrick.modules.TransferSearchResultFilters, 'tr');
 				var td = doc.createElement('td');
 				td.textContent = HTProfileSelect.title;
+				td.colSpan = '3';
 				tr.appendChild(td);
 				HTProfileRow.parentNode.insertBefore(tr, HTProfileRow.nextSibling);
 			}
