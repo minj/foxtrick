@@ -2,17 +2,64 @@
 ro: 
   faq: 
     style: 
-      question: 
-      answer: 
+      question: Cum aș putea modifica stilul Foxtrick-ului meu?
+      answer: |
+        <p>FoxTrick oferă un set de interfețe de prezentare pentru ca utilizatorii să își personalizeze propriile stiluri. Aceste interfețe sunt furnizate prin intermediul ID-urilor și claselor HTML și puteți folosi CSS pentru a defini stilul dumneavoastra preferat.</p>
+        
+        <p>Un exemplu de stil poate fi găsit<linkCSSExample>aici</linkCSSExample> sau <linkCSSExampleGCode>aici</linkCSSExampleGCode>, pe care îl puteți modifica pentru a vă satisface nevoile.După ce salvați fișierul, puteți folosi modulul <module>SkinPlugin</module>, modul pentru încărcarea fișierului CSS, pentru a avea stilul dorit în utilizare.</p>
     sound-format: 
-      question: 
-      answer: 
+      question: Care formate de fișiere sunt permise pentru alertele sunet?
+      answer: |
+        <p>Diferite brosere permit diferite formate. Aici este o listă (formatele nelistate pot funcționa dacă plugin-urile necesare sunt instalate, de ex. Quicktime pentru a reda mp3 în Firefox):</p>
+        
+        <ul>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (Quicktime poate fi necesar): wav, mp3</li>
+        <li>Chrome:  ogg, mp3, wav</li><li>Opera: wav, ogg</li>
+        </ul>
     sound-location: 
-      question: 
-      answer: 
+      question: Care este limita de dimensiune a fișierelor pentru sunetele de avertizare și unde pot fi acestea amplasate?
+      answer: |
+        <p>Toate browserele poate reda date url-uri. Acestea sunt sunetele salvate intern atunci când utilizați butonul de încărcare prevăzut în preferințe. Din moment ce acestea sunt convertite și salvate în preferințele dumneavoastră, dimensiunea este limitată la aproximativ 160kB pe sunet.</p>
+        
+        <p>Toate browserele, de asemenea, pot reda sunete direct de pe internet (http, url-uri). Doar copiați linkul unui sunet (de exemplu: http://foxtrick.org/sound.wav) în câmpul de editare pentru sunete. Fără limită de dimensiune.</p>
+        
+        <p>Browser-ele Mozilla, de asemenea, pot reda sunete direct din HDD (URL-uri fișier), cu nici o limită de mărime. Cel mai simplu mod de a obține formatul corect: în browser apăsați Ctrl + O, răsfoiți la fișierul de sunet și selectați-l. În bara de adresă este acum link-ul către fișierul local (de exemplu, file:///C:/sound.wav). Copiați și inserați acest lucru în câmpul de editare pentru sunete. </p>
     authorize: 
-      question: 
-      answer: 
+      question: De ce ar trebui să autorizez Foxtrick să acceseze datele echipei mele?
+      answer: |
+        <p>Deși cele mai multe dintre datele necesare FoxTrick pot fi preluate direct de la pagina pe care o vizualizați, unele module necesită descărcarea datelor din Hattrick ca să funcționeze corect.</p>
+        
+        <p>Pentru a descărca date din Hattrick, inclusiv datele echipei tale, ligilor și echipelor naționale, trebuie să autorizați FoxTrick în avans.</p>
+        
+        <p>Autorizezi FoxTrick prin furnizarea numelui de utilizator și parolei pe chpp.hattrick.org în schimbul unui cod de verificare, pe care îl furnizați FoxTrick-ului. FoxTrick nu va ști numele de utilizator sau parola dvs. în întregul proces.</p>
+        
+        <p>Pentru a învăța mai multe despre procesul de autorizare, vă rugăm citiți <linkCHPPDesc>CHPP - Cum funcționează</linkCHPPDesc> în Hattrick.</p>
+        
+        <p>Unele module necesită acces la date pentru a funcționa corect:</p>
+        
+        <ul>
+        <li><module>CrossTable</module></li>
+        <li><module>ExtraPlayerInfo</module></li>
+        <li><module>MatchPlayerColouring</module></li>
+        <li><module>MyMonitor</module></li>
+        <li><module>NtPeek</module></li>
+        <li><module>SeriesFlags</module></li>
+        </ul>
+        
+        <p>Unele module ar putea oferi mai multe informații dacă ar putea accesa date din Hattrick:</p>
+        
+        <ul>
+        <li><module>SkillTable</module></li>
+        <li><module>TeamStats</module></li>
+        </ul>
     privacy: 
-      question: 
-      answer: 
+      question: Cum va păstra Foxtrick confidențialitatea?
+      answer: |
+        <p>FoxTrick nu va încărca orice date sau preferințele pe un server FoxTrick; nici nu va trimite FoxTrick oricare dintre datele dvs. personale, inclusiv, dar nu limitat la numele de utilizator, parola și ID-ul de jucător asociate cu calitățile.</p>
+        
+        <p>Majoritatea datelor transmise unor terțe părți, cu excepția cazului în mod explicit de mai jos, sunt trimise cu metoda HTTP GET, și vor fi trimise numai de către tine făcând clic pe un link.</p>
+        
+        <p>Asta este, vei fi capabil să vezi ce date sunt transmise prin inspectarea URI (Uniform Resource Identifier) al unui link extern, iar datele nu vor fi trimise fără acordul dumneavoastră. Așa cum s-a menționat mai sus, nu există date private implicate.</p>
+        
+        <p>Modulele excepție sunt <module>HTMSPrediction</module> și <module>HTEVPrediction</module>, unde ratings sunt transmise și primite de la site-uri cu XMLHttpRequest.</p>

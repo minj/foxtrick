@@ -36,26 +36,26 @@ da:
       note_13: '<header>Bugfixes</header>'
       note_14: '<module>ExtendedPlayerDetails</module>: Rettede ukorrekt uge og sæson løn for Koreansk og sandsynligvis nogle andre sprog også'
       note_15: '<module>MatchOrderInterface</module>:Ansigter vil ligeledes blive vist for udskiftede og fremhævede spillere ifm. tidligere holdopstillinger'
-      note_16: '<module>MatchPlayerColouring</module>: Now works properly for players that were put in and left the field before the game ended'
-      note_17: '<module>HideSignatures</module>: Did not work when HT setting was set to truncated signatures, fixed that'
-      note_18: '<module>PlayerStatsExperience</module>: Fixed NT/U-20 final and semi-final detection'
-      note_19: '<module>TeamPopupLinks</module>: Fixed infinite creating of tabs on the guestbook'
-      note_20: Fixed RTL language issues with the median transfer price
+      note_16: '<module>MatchPlayerColouring</module>: Fungerer nu korrekt for spillere, der kom ind og forlod banen før kampen sluttede'
+      note_17: '<module>HideSignatures</module>: Virkede ikke, da HT var indstillet til afkortede signaturer, er nu rettet'
+      note_18: '<module>PlayerStatsExperience</module>: Rettede NT/U-20 finale og semi-finale påvisning'
+      note_19: '<module>TeamPopupLinks</module>:Ubegrænset oprettelse af faner i gæstebogen er nu rettet'
+      note_20: Højre til venstre sprogproblemer med median transfer priser er rettet
       note_21: '<header>For visually/hearing impaired users</header>'
-      note_22: We added a new section to the settings page that will contain all modules that are related to accessibility.
-      note_23: 'NEW: <module>ARIALandmarks</module>: Adds ARIA landmarks to the website. This should help navigating the site using screenreaders. The two main navigation bars and the list of all subscribed forums got the role "navigation". The main content has the role "main". All the sidebars with additional information and links will be marked as "complementary". The links to global search and forum search have the role "search" of course.'
-      note_24: If you have any further suggestions please don't hesitate to contact us. We are also browsing the Hattrick Access forums.
+      note_22: Vi har tilføjet en ny sektion til siden Indstillinger, der skal indeholde alle moduler, der er relateret til tilgængelighed.
+      note_23: 'NEW: <module>ARIALandmarks</module>: Tilføjer ARIA tegn til hjemmesiden. Dette bør hjælpe navigering af webstedet ved hjælp af skærmlæsere. De to vigtigste navigations linjer og listen over alle tilmeldte fora hedder nu "navigation". Hovedindholdet hedder nu "Hovedindhold". Alle side-bjælker med yderligere oplysninger og links vil blive markeret som "komplementære". Linkene til global og forum søgning hedder selvfølgelig "søg".'
+      note_24: Hvis du har yderligere forslag så tøv ikke med at kontakte os. Vi gennemser også Hattrick Access fora.
     0.9.3: 
-      note_0: 'A lot of language updates because Foxtrick users are awesome. Thank you so much. Keep contributing at <linkCrowdin>http://www.crowdin.net</linkCrowdin>'
-      note_1: 'NEW: <module>YouthTwins</module>: Shows the amount of possible/marked/non twins on the youth players overview page for supporters (in conjunction with hattrick youthclub)'
-      note_2: '<module>MatchOrderInterface</module>: Option to show player faces instead of shirts for future and past line-ups (default on)'
-      note_3: '<module>MatchOrderInterface</module>: Option to disable last match information and highlighting for tournament games added (default on)'
-      note_4: '<module>MatchIncome</module>: Support for increased ticket prices in season 49. Income is now calculated by the ticket prices that were active when the match was played.'
-      note_5: "MatchOrderInterface: Fixed bug where the playedLastMatch indicator didn't show (or showed incorrectly) on Firefox"
-      note_6: "MatchOrderInterface: Removed last match highlighting because it's not approved anymore :( (But there's a native HT replacement for supporters now)"
-      note_7: 'PlayerStatsExperience: Fixed bug where red cards caused games beeing detected as walkovers'
-      note_8: 'PlayerStatsExperience: Fixed issue that caused this module not to work on Firefox 3.6'
-      note_9: 'CustomMedals: Fixed disappearing tournament trophies'
+      note_0: 'En masse sproglige opdateringer, fordi Foxtrick brugere er fantastiske. Mange tak. Vi håber du bliver ved med at give din bidrag via <linkCrowdin>http://www.crowdin.net</linkCrowdin>'
+      note_1: 'NEW: <module>YouthTwins</module>: Viser mængden af ​​mulige / markerede / ikke tvillinger på ungdomsspillere oversigtssiden for supportere (i forbindelse med Hattrick Youthclub)'
+      note_2: '<module>MatchOrderInterface</module>: Mulighed for at vise spillere ansigter i sted for dragter for kommende og tidligere holdopstillinger  (aktiveret som standard)'
+      note_3: '<module>MatchOrderInterface</module>: Mulighed for at deaktivere sidste kamp information og fremhævning af tilføjet turnerings kampe (aktiveret som standard)'
+      note_4: '<module>MatchIncome</module>: Støtte til øgede billetpriser i sæsonen 49. Indkomst beregnes nu af billetpriserne, der var aktive, da kampen blev spillet.'
+      note_5: MatchOrderInterface:Rettet fejl hvor playedLastMatch indikatoren ikke viste (eller vist forkert) i Firefox
+      note_6: 'MatchOrderInterface: Fjernet sidste kamp fremhævning, fordi det ikke længere er godkendt:( (Men der er en HT erstatning for supportere nu på eget sprog)'
+      note_7: 'PlayerStatsExperience: Rettet fejl hvor røde kort forårsagede kampene i at blive registreret som walkovers'
+      note_8: 'PlayerStatsExperience: Rettede problem, der forårsagede at dette modul ikke fungerede med Firefox 3.6'
+      note_9: 'CustomMedals: Forsvundne turnering trofæer er rettet'
       note_10: Ogg sounds for mozilla-based browsers enabled
       note_11: Fennec loads staffmarker and link resources from internal sources again. So they aren't updated dynamically but also save bandwidth.
     0.9.2: 

@@ -2,23 +2,23 @@
 ro: 
   versions: 
     nightly: 
-      note_0: 
+      note_0: 'Această versiune este în dezvoltare continuă. Utilizați-o după cum doriți. Vă rugăm să vizualizați <linkSVN>istoricul</linkSVN> de la Google Code pentru detalii cu privire la modificări.'
     beta: 
-      note_0: 
+      note_0: 'Aceasta este o versiune beta a următoarei versiuni care va fi lansată. Vă rugăm ajutați traducând această versiune utilizând pagina de traducere <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.11.0: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
-      note_10: 
-      note_11: 
-      note_12: 
+      note_0: 'NOU: <module>DirectPageLinks</module>: links adăugate pentru a accesa pagini specifice in subiectele de pe forum'
+      note_1: 'NOU: <module>ForumModeratorPopup</module>: Adăugat un meniu rulant pentru moderatorii de forum deasupra subiectelor pentru a simplifica moderarea.'
+      note_2: 'NOU: <module>PlayerStatsTrainingWeek</module>: Adăugată oportunitatea pentru a grupa meciurile conform săptămânii de antrenament în dauna săptămânii de calendar.'
+      note_3: '<module>MatchOrderInterface</module>: Corectare adusă listei executanților de penalty pusă la dispoziție. Puteți adăuga echipa dumneavoastră listei sau puteți elibera lista cu un singur click.'
+      note_4: '<module>SkillTable</module>: Oportunitate adăugată pentru a sub-sorta o ordine existentă folosind CTRL + click stânga antetului altei coloane.'
+      note_5: '<module>SkillTable</module>: Numele jucătorilor sunt prescurtate consumând mai puțin spațiu.'
+      note_6: '<module>SkillColoring</module>: Întreg modulul a fost rescris, o mulţime de bug-uri corectate şi completări au fost aduse modulului. Setări schimbate, vă rugăm setați-le pe placul dumneavoastră din nou.'
+      note_7: '<module>TransferSearchResultFilters</module>: Oportunitate adăugată pentru a filtra jucătorii după formă și pentru a ascunde jucătorii fără specialitate. Acum colaborează cu <module>TransferSearchFilters</module>.'
+      note_8: '<module>MatchSimulator</module>: Adăugată integrarea cu <module>Ratings</module>.'
+      note_9: '<module>FriendlyPool</module>: Oportunitate adăugată pentru a extinde căsuța de selecție a țării.'
+      note_10: '<module>MovePlayerStatement</module>: Oportunitate adăugată pentru a elimina definitv declarațiile.'
+      note_11: '<module>YouthTwins</module>: Schimbările manuale făcute la HY vor fi reflectate instant și pe pagina juniorilor'
+      note_12: '<header>Bugfixes</header>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
