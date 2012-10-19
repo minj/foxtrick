@@ -47,7 +47,7 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 				if (typeof(max) == "number" && player.form > max)
 					return true;
 				return false;
-			},			
+			},
 			"hideOrdinary" : function(player, checked) {
 				if (player.speciality == null)
 					return true;
@@ -90,6 +90,7 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 				var tr = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.TransferSearchResultFilters, 'tr');
 				var td = doc.createElement('td');
 				td.textContent = HTProfileSelect.title;
+				td.colSpan = '3';
 				tr.appendChild(td)
 				HTProfileRow.parentNode.insertBefore(tr, HTProfileRow.nextSibling)
 			}
@@ -150,7 +151,7 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 					var option = doc.createElement('option');
 					option.textContent = steal.options[i+1].textContent;
 					option.value = i;
-					select.add(option, null);					
+					select.add(option, null);
 				}
 				select.value = filter.min;
 				td.appendChild(select);
@@ -168,7 +169,7 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 					var option = doc.createElement('option');
 					option.textContent = steal.options[i+1].textContent;
 					option.value = i;
-					select.add(option, null);					
+					select.add(option, null);
 				}
 				select.value = filter.max;
 				td.appendChild(select);
@@ -211,7 +212,7 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 				}
 				tableAdvanced.parentNode.insertBefore(table, tableAdvanced.nextSibling);
 
-				var buttonClear = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butClear');				
+				var buttonClear = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butClear');
 				Foxtrick.onClick(buttonClear, function() {
 					getFilters(function(filters) {
 						for (var j = 0; j < filters.length; ++j) {
@@ -242,7 +243,7 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 					// navigates away in opera so we need some fake click logic;
 					// creating a modified event does not work
 					// because FF is too stupid to submit with it /facepalm
-					
+
 					if (!buttonSearch.getAttribute('x-updated')) {
 						// don't submit before we're done
 						ev.preventDefault();
@@ -277,12 +278,12 @@ Foxtrick.modules["TransferSearchResultFilters"]={
 							}
 							setFilters(filters);
 
-							// we are done: skip on fake							
+							// we are done: skip on fake
 							buttonSearch.setAttribute('x-updated', '1');
-					
+
 							// fake click
-							buttonSearch.click();			
-							
+							buttonSearch.click();
+
 						});
 					}
 				});
