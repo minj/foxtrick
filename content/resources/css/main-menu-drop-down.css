@@ -1,5 +1,8 @@
 @-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
 
+.ft-mmdd-annoy {
+	color: #ffa !important;
+};
 ul#ft-drop-down-menu {
 	margin: 0;
 	padding: 0;
@@ -53,7 +56,7 @@ html[data-theme="simple"] .ft-drop-down-submenu a {
 }
 .ft-drop-down-submenu-2 {
 	top: 0px !important;
-	left: 156px;
+	left: 155px;
 }
 #ft-drop-down-menu li span {
 	position: absolute;

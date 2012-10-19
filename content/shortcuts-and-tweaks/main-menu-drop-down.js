@@ -60,6 +60,12 @@ Foxtrick.modules['MainMenuDropDown']={
 
 		//add hr for displaying info later
 		Foxtrick.modules['MainMenuDropDown'].addSeperator(doc, list);
+
+		var li = doc.createElement('li');
+		Foxtrick.addClass(li,"ft-mmdd-annoy");
+		li.textContent = "Work in progress stuff, the menu learns as you go!";
+		list.appendChild(li);
+
 	},
 	run : function(doc){
 		//only stage for now until HTs release decent CSS
@@ -225,6 +231,7 @@ Foxtrick.modules['MainMenuDropDown']={
 						if(node.tagName === 'H3'){
 							menu = {};
 							menu.name = Foxtrick.trim(node.textContent);
+
 							menu.entries = [];
 							menu.timestamp = (new Date()).getTime();
 							menu.url = doc.location.href.replace(/^.*\/\/[^\/]+/, '');
