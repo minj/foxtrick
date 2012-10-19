@@ -91,10 +91,10 @@ Foxtrick.modules['MainMenuDropDown']={
 				secondary : []
 			}
 			this.save = function(){
-				Foxtrick.localSet("Menu" + Foxtrick.modules['Core'].getSelfTeamInfo().teamId, this);
+				Foxtrick.localSet("Menu.v1." + Foxtrick.modules['Core'].getSelfTeamInfo().teamId, this);
 			}
 			this.load = function(func){
-				Foxtrick.localGet("Menu"  + Foxtrick.modules['Core'].getSelfTeamInfo().teamId, function(menu){
+				Foxtrick.localGet("Menu.v1."  + Foxtrick.modules['Core'].getSelfTeamInfo().teamId, function(menu){
 					if(!menu){
 						func(new NavigationStructure());
 					} else {
