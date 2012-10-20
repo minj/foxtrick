@@ -2,19 +2,18 @@
 
 .ft-mmdd-annoy {
 	color: #ffa !important;
-};
-ul#ft-drop-down-menu {
-	margin: 0;
-	padding: 0;
 }
 
 ul#ft-drop-down-menu li {
 	position: relative;
 }
 
-/*#ft-drop-down-menu ul
-	background-color: #3E9C49 !important;
-}*/
+
+ul#ft-drop-down-menu {
+	margin: 0;
+	padding: 0;
+}
+
 
 #ft-drop-down-menu hr {
 	border: 0;
@@ -83,7 +82,7 @@ html[data-theme="standard"] ul.ft-drop-down-submenu {
 	padding: 0 5px 5px !important;
 }
 
-html[data-theme="simple"] ul.ft-drop-down-submenu-2
+html[data-theme="simple"] ul.ft-drop-down-submenu-2,
 html[data-theme="simple"] ul.ft-drop-down-submenu {
 	position: absolute;
 	z-index: 203;
