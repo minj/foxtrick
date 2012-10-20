@@ -18,7 +18,7 @@
 			a.href += "&HighlightPlayerID=" + playerId;
 		}, links);
 	};
-	
+
 	Foxtrick.modules.MatchPlayerColouring = {
 		MODULE_CATEGORY : Foxtrick.moduleCategories.MATCHES,
 		PAGES : ["match", "matchOld", "playerDetails"],
@@ -50,7 +50,7 @@
 				var playerId = doc.location.search.match(/&HighlightPlayerID=(\d+)/)[1];
 				var links = doc.getElementsByClassName("main")[0].getElementsByTagName("a");
 				links = Foxtrick.filter(function(a) {
-					return aLink.hasAttribute('href') && a.href.indexOf(playerId) > -1;
+					return a.hasAttribute('href') && a.href.indexOf(playerId) > -1;
 				}, links);
 				// add an arbitrarily home class
 				Foxtrick.map(function(a) {
@@ -91,7 +91,7 @@
 				var sidebar = doc.getElementById("sidebar");
 				var teams = sidebar.getElementsByTagName("table")[0].getElementsByTagName("a");
 			}
-			
+
 			teams = Foxtrick.filter(isTeamLink, teams);
 			var homeTeam = teams[0];
 			var awayTeam = teams[1];
@@ -110,7 +110,7 @@
 			var links = Foxtrick.filter(function(n) {
 				return n.hasAttribute('href') ;
 			}, mainWrapper.getElementsByTagName("a"));
-			
+
 			// arguments for retrieving XML
 			var homeArgs = [
 				["file", "matchlineup"],
@@ -132,8 +132,8 @@
 				var subs_in = Array.prototype.slice.call(xml.getElementsByTagName("SubjectPlayerID"));
 				var players = field_start_end.concat(subs_in);
 
-				return Foxtrick.map(function(n) { 
-						return Number(n.textContent); 
+				return Foxtrick.map(function(n) {
+						return Number(n.textContent);
 					}, players);
 			};
 			var getPlayerId =  function(a) {
