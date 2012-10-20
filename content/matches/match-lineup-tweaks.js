@@ -291,6 +291,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		//get player list sucks for nt matches
 		var isNT = Foxtrick.Pages.Match.isNT(doc);
+		var NT = isNT ? { action: 'view', all: 'false' } : null;
 
 		var homePlayerLinks =
 			doc.querySelectorAll('.playersField > div.playerBoxHome > div > a, ' +
@@ -327,7 +328,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					}
 				}
 				Foxtrick.startListenToChange(doc);
-			}, { teamid: teamid, current_squad: true, includeMatchInfo: true, isNT: isNT});
+			}, { teamid: teamid, current_squad: true, includeMatchInfo: true, NT: NT});
 		};
 
 		addMissingByTeamId(homeTeamId, homePlayerLinks);

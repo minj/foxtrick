@@ -66,10 +66,15 @@ Foxtrick.Pages.Players = {
 				args.push(['file', 'youthplayerlist']);
 				args.push(['actionType', 'details']);
 			}
-			else if (Foxtrick.Pages.Players.isNtPlayersPage(doc) || options.isNT) {
+			else if (Foxtrick.Pages.Players.isNtPlayersPage(doc) || options.NT) {
+				var action = 'supporterstats', all = 'true';
+				if (options.NT && typeof(options.NT.action) != 'undefined')
+					action = options.NT.action;
+				if (options.NT && typeof(options.NT.all) != 'undefined')
+					all = options.NT.all;
 				args.push(['file', 'nationalplayers']);
-				args.push(['ShowAll', 'true']);
-				args.push(['actionType', 'supporterstats']);
+				args.push(['ShowAll', all]);
+				args.push(['actionType', action]);
 			}
 			else {
 				args.push(['file', 'players']);
