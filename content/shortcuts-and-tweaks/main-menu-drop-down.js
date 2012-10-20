@@ -171,7 +171,7 @@ Foxtrick.modules['MainMenuDropDown']={
 										continue;
 									}
 								} else if(boxBody.childNodes[child].tagName == 'DIV'){
-									if(boxBody.childNodes[child].getAttribute('style').match(/clear:both;/)){
+									if(boxBody.childNodes[child].getAttribute('style') && boxBody.childNodes[child].getAttribute('style').match(/clear:both;/)){
 										Foxtrick.log("Hacked arround clear both div");
 										continue;
 										}
