@@ -268,7 +268,10 @@ Foxtrick.modules['MainMenuDropDown']={
 					if(secondaries.length){
 						var ul = secondaryLinks[sl].parentNode.getElementsByTagName('ul')[0];
 						var span = doc.createElement('span');
-						span.textContent = '\u25b6';
+						if (!Foxtrick.util.layout.isRtl(doc))
+							span.textContent = '\u25b6';
+						else
+							span.textContent = '\u25c0';
 						secondaryLinks[sl].parentNode.insertBefore(span, ul);
 					}
 				}
