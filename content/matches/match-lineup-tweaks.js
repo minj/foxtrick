@@ -53,7 +53,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		// will be used to regex on image.src
 		var SUBSTITUTION_TYPES = {
-			SUB: 'substitution',
+			SUB: 'substitution|formation',
 			BEHAVIOR: 'behavior',
 			SWAP: 'swap'
 		};
