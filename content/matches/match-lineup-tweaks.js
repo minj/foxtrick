@@ -616,7 +616,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			.getElementsByTagName('img')[0];
 
 		var isHome = Foxtrick.hasClass(info, 'highlightHome');
-		var isSub = /substitution\.png$/i.test(eventIcon.src);
 
 		var playerLinks = doc.querySelectorAll('.playersField > div.playerBox' +
 										   (isHome ? 'Home' : 'Away') + ' > div > a, ' +
@@ -633,24 +632,20 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				func(link.parentNode.parentNode);
 		};
 
-		var addClassToPlayer = function(playerId, className) {
+		var highlightPlayer = function(playerId) {
 			affectPlayer(playerId, function(node) {
-				Foxtrick.addClass(node, className);
+				if (node.parentNode.id == 'playersField')
+					Foxtrick.addClass(node, 'ft-highlight-playerDiv-other');
+				else
+					Foxtrick.addClass(node, 'ft-highlight-playerDiv');
 			});
 		};
 
-		if (players.length === 1) {
-			var playerId = Number(Foxtrick.getParameterFromUrl(players[0].href, 'playerid'));
-			addClassToPlayer(playerId, 'ft-highlight-playerDiv');
+		for (var i = 0; i < players.length; i++) {
+			var player = Number(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
+			highlightPlayer(player);
 		}
-		else if (players.length === 2) {
-			if (isSub) {
-				var playerIn = Number(Foxtrick.getParameterFromUrl(players[0].href, 'playerid'));
-				var playerOut = Number(Foxtrick.getParameterFromUrl(players[1].href, 'playerid'));
-				addClassToPlayer(playerIn, 'ft-highlight-playerDiv');
-				addClassToPlayer(playerOut, 'ft-highlight-playerDiv-other');
-			}
-		}
+
 	},
 	// change the number-star display into real stars
 	convertStars: function(doc) {
