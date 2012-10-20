@@ -24,29 +24,30 @@ Foxtrick.modules['MainMenuDropDown']={
 			}, menuLinks);
 			doc.getElementById('menu').insertBefore(list, doc.getElementById('ctl00_ctl00_CPHeader_ucMenu_hypLogout'));
 	},
-	addSeperator : function(doc, list, text){
-		var li = doc.createElement('li');
-		if(text){
-			var h3 = doc.createElement('h3');
-			h3.textContent = text;
-			li.appendChild(h3);
-			list.appendChild(li);
-		}
-		li = doc.createElement('li');
-		var hr = doc.createElement('hr');
-		li.appendChild(hr);
-		list.appendChild(li);
-
-	},
+	
 	addMenusToListItem : function(doc, node, menus, className, recursive){
 		if(!menus.length)
 			return;
+
+		var addSeperator = function(list, text){
+			var li = doc.createElement('li');
+			if(text){
+				var h3 = doc.createElement('h3');
+				h3.textContent = text;
+				li.appendChild(h3);
+				list.appendChild(li);
+			}
+			li = doc.createElement('li');
+			var hr = doc.createElement('hr');
+			li.appendChild(hr);
+			list.appendChild(li);
+		}
 
 		var list = doc.createElement('ul');
 		Foxtrick.addClass(list, className);
 		Foxtrick.map(function(menu){
 
-			Foxtrick.modules['MainMenuDropDown'].addSeperator(doc, list, menu.name);
+			addSeperator(list, menu.name);
 			Foxtrick.map(function(entry){
 				var li = doc.createElement('li');
 				var anchor = doc.createElement('a');
@@ -59,7 +60,7 @@ Foxtrick.modules['MainMenuDropDown']={
 		node.appendChild(list);
 
 		//add hr for displaying info later
-		Foxtrick.modules['MainMenuDropDown'].addSeperator(doc, list);
+		addSeperator(list);
 
 		var li = doc.createElement('li');
 		Foxtrick.addClass(li,"ft-mmdd-annoy");
@@ -72,8 +73,10 @@ Foxtrick.modules['MainMenuDropDown']={
 		if(!Foxtrick.isStage(doc))
 			return;
 	
+		//put #menu > a in #menu > ul > lis
 		this.buildMainMenu(doc);
 
+		//current page
 		var isOnMainMenuPage = function(){
 			var menuLinks = doc.querySelectorAll('#menu a');
 			var ret = false;
@@ -105,42 +108,23 @@ Foxtrick.modules['MainMenuDropDown']={
 					}
 				});
 			}
-			this.getPrimaryMenusForUrl = function(url){
+			this.getMenusForUrl = function(url, source){
 				var primaries = Foxtrick.filter(function(entry){
 					if(entry.url == url.replace(/^.*\/\/[^\/]+/, ''))
 						return true;
 					else
 						return false;
-				}, this.menus.primary);
-				return primaries;
+				}, source);
+				return primaries;	
+			}
+			this.getPrimaryMenusForUrl = function(url){
+				return this.getMenusForUrl(url, navi.menus.primary);
 			}
 			this.getSecondaryMenusForUrl = function(url){
-				var secondaries = Foxtrick.filter(function(entry){
-					if(entry.url == url.replace(/^.*\/\/[^\/]+/, ''))
-						return true;
-					else
-						return false;
-				}, navi.menus.secondary);
-				return secondaries;
+				return this.getMenusForUrl(url, navi.menus.secondary);
 			}
-			this.concatPrimary = function(addMenus){
-				Foxtrick.log("Addmenus", addMenus);
-				var primary = this.menus.primary;
-				Foxtrick.map(function(newMenu){
-					var exists = Foxtrick.any(function(menu){
-						if(menu.url === newMenu.url && menu.name === newMenu.name)
-							return true;
-
-						return false;
-					}, primary);
-					if(!exists)
-						primary.push(newMenu);
-
-				}, addMenus);
-				this.menus.primary = primary;
-			}
-			this.concatSecondary = function(addMenus){
-				var secondary = this.menus.secondary;
+			this.concat = function(menus, target){
+				var secondary = target;
 				Foxtrick.map(function(newMenu){
 					var exists = Foxtrick.any(function(menu){
 						if(menu.url === newMenu.url && menu.name === newMenu.name)
@@ -150,8 +134,8 @@ Foxtrick.modules['MainMenuDropDown']={
 					}, secondary);
 					if(!exists)
 						secondary.push(newMenu);
-				}, addMenus);
-				this.menus.secondary = secondary;
+				}, menus);
+				target = secondary;	
 			}
 			this.learn = function(doc){
 				//learns secondary menus from current document
@@ -162,7 +146,6 @@ Foxtrick.modules['MainMenuDropDown']={
 					Foxtrick.map(function(boxBody){
 						//only accept sidebar thingies that have the structure .boxbody > a
 						//but allow <br> and empty textnode
-						//
 						var isEmptyTextNode = function(node){
 							var nodeType = node.nodeType;
 							if(Foxtrick.NodeTypes.TEXT_NODE == nodeType && node.textContent.replace(/\s*/gi, '') == '')
@@ -187,6 +170,11 @@ Foxtrick.modules['MainMenuDropDown']={
 										Foxtrick.log("Hacked arround unecessary <p> wrapping");
 										continue;
 									}
+								} else if(boxBody.childNodes[child].tagName == 'DIV'){
+									if(boxBody.childNodes[child].getAttribute('style').match(/clear:both;/)){
+										Foxtrick.log("Hacked arround clear both div");
+										continue;
+										}
 								}
 								linkOnlyBox = false;
 							}
@@ -251,8 +239,8 @@ Foxtrick.modules['MainMenuDropDown']={
 					return menulist;
 				}
 
-				this.concatPrimary( getPrimaryMenus(doc) );
-				this.concatSecondary( getSecondaryMenus(doc) );
+				this.concat( getPrimaryMenus(doc), this.menus.primary );
+				this.concat( getSecondaryMenus(doc),  this.menus.secondary );
 			}
 		}
 
@@ -298,11 +286,65 @@ Foxtrick.modules['MainMenuDropDown']={
 			};
 
 			var css = getCustomCss(doc);
-			var newcss = css.replace(/#menu\s*{/gi, "#menu hr, #menu h3, #menu ul, #menu {");
+			var newcss = css.replace(/#menu\s*{/gi, "#menu h3, #menu ul, #menu {");
+			var newcss = newcss.replace(/#menu\s*a\s*{/gi, "#menu h3, #menu a {");
 			newcss = newcss.replace(/#menu\s*a\s*:\s*hover\s*{/gi, "#menu li:hover, #menu a:hover {");
 			if(newcss != css)
 				doc.getElementsByTagName("style")[0].textContent = newcss;
 		});
+
+		function hoverBgColor(text){
+			var re = new RegExp('#menu\\s*a\\s*:\\s*hover\\s*{.*background-color:([^;]+);', 'i');
+			var matches = text.match(re);
+			if(matches)
+				return matches[1];
+			return null;
+		}
+		function hoverColor(text){
+			var re = new RegExp('#menu\\s*a\\s*:\\s*hover\\s*{.*\\s*color:([^;]+);', 'i');
+			var matches = text.match(re);
+			if(matches)
+				return matches[1];
+			return null;
+		}
+		function bgColor(text){
+			var re = new RegExp('#menu\\s*a\\s*{.*background-color:([^;]+);', 'i');
+			var matches = text.match(re);
+			if(matches)
+				return matches[1];
+			return null;
+		}
+		function color(text){
+			var re = new RegExp('#menu\\s*a\\s*{.*\\s*color:([^;]+);', 'i');
+			var matches = text.match(re);
+			if(matches)
+				return matches[1];
+			return null;
+		}
+
+
+		var tcolor;
+		function getMenuTextColor(){
+			Foxtrick.map(function(styleSheet){
+				if(styleSheet.cssRules)
+					Foxtrick.map(function(rule){
+						var hbc = hoverBgColor(rule.cssText);
+						var hc = hoverColor(rule.cssText);
+						var bc = bgColor(rule.cssText);
+						var c = color(rule.cssText);
+						
+						if(hbc) Foxtrick.log("hover bg color",hbc);
+						if(bc) Foxtrick.log("text bg c",bc);
+						if(hc) Foxtrick.log("text hover",hc);
+						if(c) tcolor = c;
+
+					}, styleSheet.cssRules);
+			}, doc.styleSheets);		
+		}
+		getMenuTextColor();
+	
+		var hrstyle = '#menu hr { background-color:' + tcolor + ';}';
+		Foxtrick.util.inject.css(doc, hrstyle); 
 		
 		return;
 

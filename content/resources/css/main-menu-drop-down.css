@@ -58,7 +58,7 @@ html[data-theme="simple"] .ft-drop-down-submenu a {
 	top: 0px !important;
 	left: 155px;
 }
-#ft-drop-down-menu li span {
+.ft-drop-down-submenu li span {
 	position: absolute;
 	top: 0px;
 	right: 6px;
@@ -107,6 +107,7 @@ ul.ft-drop-down-submenu a {
 ul#ft-drop-down-menu ul.ft-drop-down-submenu {
 	display:none;
 }
+
 ul#ft-drop-down-menu li:hover ul.ft-drop-down-submenu {
 	display:block;
 }
@@ -207,18 +208,14 @@ html[data-theme="simple"] .ft-drop-down-submenu {
 	float: none !important;
 	text-align: left !important;
 }
+*/
 
-.ft-drop-down-submenu h3 {
-	margin-top: 8px;
-	margin-bottom: 5px;
-	font-size: 1em;
-	color: white !important;
-	width: auto;
-	border: 0;
-	padding: 0;
+#menu h3 {
+	margin-top: 2px;
+	margin-bottom: 1px;
+	color: white;
 }
 
-}*/
 #timeline {
 	z-index: 0 !important;
 
