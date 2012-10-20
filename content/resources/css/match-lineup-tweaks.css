@@ -128,22 +128,16 @@ html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-diff {
 }
 
 
-.ft-highlight-playerDiv {
+.ft-highlight-playerDiv-bench {
 	border-color: red !important;
-	-webkit-animation-name: ft-highlight-shake;
-	-webkit-animation-duration: 0.8s;
-	-webkit-transform-origin:50% 50%;
-	-webkit-animation-iteration-count: 2;
-	-webkit-animation-timing-function: linear;
-
-	-moz-animation-name: ft-highlight-shake;
-	-moz-animation-duration: 0.8s;
-	-moz-transform-origin:50% 50%;
-	-moz-animation-iteration-count: 2;
-	-moz-animation-timing-function: linear;
 }
-.ft-highlight-playerDiv-other {/* #3fd6fc */
+.ft-highlight-playerDiv-field {
 	border-color: #fc0 !important;
+}
+.ft-highlight-playerDiv-url {
+	border-color: #3fd6fc !important;
+}
+.ft-highlight-playerDiv-bench, .ft-highlight-playerDiv-field, .ft-highlight-playerDiv-url {
 	-webkit-animation-name: ft-highlight-shake;
 	-webkit-animation-duration: 0.8s;
 	-webkit-transform-origin:50% 50%;

@@ -75,7 +75,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			affectPlayer(otherId, function(node) {
 				// yellow on fielf, red on bench
 				var className = node.parentNode.id == 'playersField' ?
-					'ft-highlight-playerDiv-other' : 'ft-highlight-playerDiv';
+					'ft-highlight-playerDiv-field' : 'ft-highlight-playerDiv-bench';
 				if (deactivate)
 					Foxtrick.removeClass(node, className);
 				else
@@ -635,9 +635,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var highlightPlayer = function(playerId) {
 			affectPlayer(playerId, function(node) {
 				if (node.parentNode.id == 'playersField')
-					Foxtrick.addClass(node, 'ft-highlight-playerDiv-other');
+					Foxtrick.addClass(node, 'ft-highlight-playerDiv-field');
 				else
-					Foxtrick.addClass(node, 'ft-highlight-playerDiv');
+					Foxtrick.addClass(node, 'ft-highlight-playerDiv-bench');
 			});
 		};
 
@@ -705,6 +705,25 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			return;
 
 		Foxtrick.stopListenToChange(doc);
+
+		var hId = doc.location.search.match(/HighlightPlayerID=(\d+)/i);
+		if (hId) {
+			var playerLinks = doc.querySelectorAll('.playersField > div.playerBoxHome > div > a, ' +
+											   '#playersBench > div#playersBenchHome' +
+											   ' > div.playerBoxHome > div > a,' +
+											   '.playersField > div.playerBoxAway > div > a, ' +
+											   '#playersBench > div#playersBenchAway' +
+											   ' > div.playerBoxAway > div > a');
+			var highlightPlayer = function(playerId) {
+				var link = Foxtrick.filter(function(link) {
+					return new RegExp(playerId).test(link.href);
+				}, playerLinks)[0];
+				if (link)
+					Foxtrick.addClass(link.parentNode.parentNode, 'ft-highlight-playerDiv-url');
+			};
+			highlightPlayer(hId[1]);
+		}
+
 		var playerDivs = doc.querySelectorAll('div.playerDiv');
 		if (playerDivs.length && playerDivs[0].getElementsByClassName('ft-indicatorDiv').length)
 			return;
