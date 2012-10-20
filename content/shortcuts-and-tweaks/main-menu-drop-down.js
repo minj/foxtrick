@@ -343,7 +343,7 @@ Foxtrick.modules['MainMenuDropDown']={
 		}
 		getMenuTextColor();
 	
-		var hrstyle = '#menu hr { background-color:' + tcolor + ';}';
+		var hrstyle = '#menu hr { background-color:' + tcolor + ';} .ft-drop-down-submenu li span, #menu h3 {color:' + tcolor + ' !important;}';
 		Foxtrick.util.inject.css(doc, hrstyle); 
 		
 		return;
