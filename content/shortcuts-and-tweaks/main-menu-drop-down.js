@@ -75,10 +75,7 @@ Foxtrick.modules['MainMenuDropDown']={
 
 	},
 	run : function(doc){
-		//only stage for now until HTs release decent CSS
-		if(!Foxtrick.isStage(doc))
-			return;
-	
+		
 		//put #menu > a in #menu > ul > lis
 		this.buildMainMenu(doc);
 
@@ -330,10 +327,9 @@ Foxtrick.modules['MainMenuDropDown']={
 				return matches[1];
 			return null;
 		}
-
-
-		var tcolor;
+		
 		function getMenuTextColor(){
+			var tcolor;
 			Foxtrick.map(function(styleSheet){
 				if(styleSheet.cssRules)
 					Foxtrick.map(function(rule){
@@ -348,11 +344,12 @@ Foxtrick.modules['MainMenuDropDown']={
 						if(c) tcolor = c;
 
 					}, styleSheet.cssRules);
-			}, doc.styleSheets);		
+			}, doc.styleSheets);	
+			return tcolor;	
 		}
-		getMenuTextColor();
+		var tc = getMenuTextColor();
 	
-		var hrstyle = '#menu hr { background-color:' + tcolor + ';} .ft-drop-down-submenu li span, #menu h3 {color:' + tcolor + ' !important;}';
+		var hrstyle = '#menu hr { background-color:' + tc + ';} .ft-drop-down-submenu li span, #menu h3 {color:' + tc + ' !important;}';
 		Foxtrick.util.inject.css(doc, hrstyle); 
 	}
 }
