@@ -209,16 +209,16 @@ html[dir="ltr"] .sectorShirt.ft-smallFaceCard {
 	-webkit-border-radius: 3px;
 }
 
-.ft-subDiv {
+.ft-indicatorDiv {
+	position: absolute;
+	width: 106px;
+	left: -6px; /* 0 for rtl */
+	line-height: 1.2em;
+}
+.ft-indicatorDiv > div {
 	display: inline-block;
 	background-color: #ffcc00;
 	border: 1px solid #79A777;
-}
-.ft-indicatorDiv {
-	position: absolute;
-	width: 100px;
-	left: 0; /* for rtl */
-	line-height: 1.2em;
 }
 /* stamina */
 div.sectorShirt + div > div {
