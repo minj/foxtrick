@@ -524,9 +524,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var displayAway = displayHome.cloneNode(true);
 		var displayDiff = displayHome.cloneNode(true);
 
-		//U+2211 is sum symbol, U+0394 is mathematical delta
-		displayHome.getElementsByTagName('span')[0].textContent = '\u2211 ' + starsHome + '★';
-		displayAway.getElementsByTagName('span')[0].textContent = '\u2211 ' + starsAway + '★';
+		//U+2211 is sum symbol, U+0394 is mathematical delta, U+2605 is star
+		displayHome.getElementsByTagName('span')[0].textContent = '\u2211 ' + starsHome + '\u2605';
+		displayAway.getElementsByTagName('span')[0].textContent = '\u2211 ' + starsAway + '\u2605';
 		displayDiff.getElementsByTagName('span')[0].textContent = '\u0394 ' +
 			Math.abs(starsHome - starsAway) + '\u2605';
 
