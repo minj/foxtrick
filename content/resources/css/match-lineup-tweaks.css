@@ -27,11 +27,13 @@ html[dir="ltr"] #timelineEventDetails {
 html[dir="rtl"] .ft-match-lineup-tweaks-teamname-home {
 	top: 15px;
 	right: 15px;
+	left: initial;
 	position: absolute;
 }
 html[dir="rtl"] .ft-match-lineup-tweaks-teamname-away {
 	bottom: 15px;
 	right: 15px;
+	left: initial;
 	position: absolute;
 }
 
