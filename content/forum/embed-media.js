@@ -64,12 +64,12 @@ Foxtrick.modules['EmbedMedia'] = {
 
 			req.onreadystatechange = function(aEvt) {
 				if (req.readyState == 4) {
-					try {
+					//try {
 						callback(req.responseText, req.status);
-					}
-					catch (e) {
-						Foxtrick.log('Uncaught callback error: - url: ', url, ': ', e);
-					}
+					//}
+					//catch (e) {
+					//	Foxtrick.log('Uncaught callback error: - url: ', url, ': ', e);
+					//}
 				}
 			};
 
@@ -209,6 +209,10 @@ Foxtrick.modules['EmbedMedia'] = {
 							if (key == 'genericImage' &&
 								link.href.match('^(?:https?://)?(?:www)?imageshack\\.us/'))
 								continue;
+
+							//but convert to generic if the users already pasted an image link
+							if(key == "imageshack" && link.href.match(/img\d+/))
+								key = "genericImage";
 
 							//Opera would need permision for that workarround, FF and Chrome
 							//don't seem to require it tho
