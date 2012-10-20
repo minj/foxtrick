@@ -528,7 +528,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		displayHome.getElementsByTagName('span')[0].textContent = '\u2211 ' + starsHome + '★';
 		displayAway.getElementsByTagName('span')[0].textContent = '\u2211 ' + starsAway + '★';
 		displayDiff.getElementsByTagName('span')[0].textContent = '\u0394 ' +
-			Math.abs(starsHome - starsAway) + '★';
+			Math.abs(starsHome - starsAway) + '\u2605';
 
 		Foxtrick.addClass(displayHome, 'ft-match-lineup-tweaks-stars-counter-sum-home');
 		Foxtrick.addClass(displayDiff, 'ft-match-lineup-tweaks-stars-counter-diff');
@@ -654,7 +654,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			var count = Number(ratings[i].textContent);
 			var newDiv = ratings[i].parentNode.cloneNode(false);
 			Foxtrick.makeFeaturedElement(newDiv, this);
-			newDiv.title = count + '★';
+			// weirdest bug ever: title too short
+			newDiv.title = count + '\u2605    ';
 			//var starDiv = doc.createElement('div');
 			//Foxtrick.addClass(starDiv, 'ft-starDiv');
 			// this one will allow centering
