@@ -292,6 +292,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var homeTeamId = Foxtrick.util.id.getTeamIdFromUrl(teams[homeIdx].href);
 		var awayTeamId = Foxtrick.util.id.getTeamIdFromUrl(teams[awayIdx].href);
 
+		//get player list sucks for nt matches
+		var isNT = homeTeamId < 10000 && awayTeamId < 10000;
+
 		var homePlayerLinks =
 			doc.querySelectorAll('.playersField > div.playerBoxHome > div > a, ' +
 			                     '#playersBench > div#playersBenchHome > div.playerBoxHome > div > a');
@@ -327,7 +330,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					}
 				}
 				Foxtrick.startListenToChange(doc);
-			}, { teamid: teamid, current_squad: true, includeMatchInfo: true });
+			}, { teamid: teamid, current_squad: true, includeMatchInfo: true, isNT: isNT});
 		};
 
 		addMissingByTeamId(homeTeamId, homePlayerLinks);

@@ -66,7 +66,7 @@ Foxtrick.Pages.Players = {
 				args.push(['file', 'youthplayerlist']);
 				args.push(['actionType', 'details']);
 			}
-			else if (Foxtrick.Pages.Players.isNtPlayersPage(doc)) {
+			else if (Foxtrick.Pages.Players.isNtPlayersPage(doc) || options.isNT) {
 				args.push(['file', 'nationalplayers']);
 				args.push(['ShowAll', 'true']);
 				args.push(['actionType', 'supporterstats']);
@@ -122,13 +122,15 @@ Foxtrick.Pages.Players = {
 							playerList.push({ id: id });
 							player = playerList[playerList.length - 1];
 
-							player.yellowCard = Number(playerNode.getElementsByTagName('Cards')[0]
-							                           .textContent);
-							if (player.yellowCard == 3) {
-								player.yellowCard = 0;
-								player.redCard = 1;
+							if (playerNode.getElementsByTagName('Cards')[0]) {
+								player.yellowCard = Number(playerNode.getElementsByTagName('Cards')[0]
+														   .textContent);
+								if (player.yellowCard == 3) {
+									player.yellowCard = 0;
+									player.redCard = 1;
+								}
+								else player.redCard = 0;
 							}
-							else player.redCard = 0;
 
 							if (playerNode.getElementsByTagName('InjuryLevel')[0])
 								player.injuredWeeks =
@@ -196,43 +198,47 @@ Foxtrick.Pages.Players = {
 									Number(playerNode.getElementsByTagName('SetPiecesSkill')[0]
 									       .textContent);
 
-							var specs = { 0: '', 1: 'Technical', 2: 'Quick', 3: 'Powerful',
-								4: 'Unpredictable', 5: 'Head', 6: 'Regainer' };
-							player.specialityNumber =
-									Number(playerNode.getElementsByTagName('Specialty')[0]
-									       .textContent);
-							var spec = specs[player.specialityNumber];
-							player.speciality = (spec == '') ? '' :
-								Foxtrickl10n.getShortSpecialityFromEnglish(spec);
+							if (playerNode.getElementsByTagName('Specialty')[0]) {
+								var specs = { 0: '', 1: 'Technical', 2: 'Quick', 3: 'Powerful',
+									4: 'Unpredictable', 5: 'Head', 6: 'Regainer' };
+								player.specialityNumber =
+										Number(playerNode.getElementsByTagName('Specialty')[0]
+											   .textContent);
+								var spec = specs[player.specialityNumber];
+								player.speciality = (spec == '') ? '' :
+									Foxtrickl10n.getShortSpecialityFromEnglish(spec);
+							}
 							player.currentSquad = true;
 							player.active = true;
 
-							var LastMatch = playerNode.getElementsByTagName('LastMatch')[0];
-							if (LastMatch && LastMatch.getElementsByTagName('Date')[0]) {
-								if (LastMatch.getElementsByTagName('Rating')[0]) {
-									player.lastRating =
-										Number(LastMatch.getElementsByTagName('Rating')[0].
-										       textContent);
-									if (LastMatch.getElementsByTagName('RatingEndOfGame')[0]) {
-										player.lastRatingEndOfGame =
-											Number(LastMatch
-											       .getElementsByTagName('RatingEndOfGame')[0]
-											       .textContent);
-										player.lastRatingDecline = player.lastRating -
-											player.lastRatingEndOfGame;
+							if (playerNode.getElementsByTagName('LastMatch')[0]) {
+								var LastMatch = playerNode.getElementsByTagName('LastMatch')[0];
+								if (LastMatch && LastMatch.getElementsByTagName('Date')[0]) {
+									if (LastMatch.getElementsByTagName('Rating')[0]) {
+										player.lastRating =
+											Number(LastMatch.getElementsByTagName('Rating')[0].
+												   textContent);
+										if (LastMatch.getElementsByTagName('RatingEndOfGame')[0]) {
+											player.lastRatingEndOfGame =
+												Number(LastMatch
+													   .getElementsByTagName('RatingEndOfGame')[0]
+													   .textContent);
+											player.lastRatingDecline = player.lastRating -
+												player.lastRatingEndOfGame;
+										}
 									}
+									if (LastMatch.getElementsByTagName('MatchId')[0])
+										player.lastMatchId =
+											Number(LastMatch.getElementsByTagName('MatchId')[0]
+												   .textContent);
+									else if (LastMatch.getElementsByTagName('YouthMatchId')[0])
+										player.lastMatchId =
+											Number(LastMatch.getElementsByTagName('YouthMatchId')[0]
+												   .textContent);
+									if (LastMatch.getElementsByTagName('Date')[0])
+										player.lastMatchDate = LastMatch.getElementsByTagName('Date')[0]
+											.textContent;
 								}
-								if (LastMatch.getElementsByTagName('MatchId')[0])
-									player.lastMatchId =
-										Number(LastMatch.getElementsByTagName('MatchId')[0]
-										       .textContent);
-								else if (LastMatch.getElementsByTagName('YouthMatchId')[0])
-									player.lastMatchId =
-										Number(LastMatch.getElementsByTagName('YouthMatchId')[0]
-										       .textContent);
-								if (LastMatch.getElementsByTagName('Date')[0])
-									player.lastMatchDate = LastMatch.getElementsByTagName('Date')[0]
-										.textContent;
 							}
 							if (playerNode.getElementsByTagName('Loyalty').length)
 								player.loyalty =
