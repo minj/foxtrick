@@ -64,12 +64,12 @@ Foxtrick.modules['EmbedMedia'] = {
 
 			req.onreadystatechange = function(aEvt) {
 				if (req.readyState == 4) {
-					//try {
+					try {
 						callback(req.responseText, req.status);
-					//}
-					//catch (e) {
-					//	Foxtrick.log('Uncaught callback error: - url: ', url, ': ', e);
-					//}
+					}
+					catch (e) {
+						Foxtrick.log('Uncaught callback error: - url: ', url, ': ', e);
+					}
 				}
 			};
 
