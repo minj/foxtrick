@@ -43,11 +43,18 @@ Foxtrick.modules['MainMenuDropDown']={
 			list.appendChild(li);
 		}
 
+		var firstHeader = true;
+
 		var list = doc.createElement('ul');
 		Foxtrick.addClass(list, className);
 		Foxtrick.map(function(menu){
-
-			addSeperator(list, menu.name);
+			if(firstHeader){
+				if(!FoxtrickPrefs.isModuleOptionEnabled('MainMenuDropDown', 'DisregardFirstHeader'))
+					addSeperator(list, menu.name);
+				firstHeader = false;
+			} else {
+				addSeperator(list, menu.name);	
+			}
 			Foxtrick.map(function(entry){
 				var li = doc.createElement('li');
 				var anchor = doc.createElement('a');
