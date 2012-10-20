@@ -66,7 +66,7 @@ Foxtrick.Pages.Players = {
 				args.push(['file', 'youthplayerlist']);
 				args.push(['actionType', 'details']);
 			}
-			else if (Foxtrick.Pages.Players.isNtPlayersPage(doc) || options.NT) {
+			else if (Foxtrick.Pages.Players.isNtPlayersPage(doc) || (options && options.NT)) {
 				var action = 'supporterstats', all = 'true';
 				if (options.NT && typeof(options.NT.action) != 'undefined')
 					action = options.NT.action;
