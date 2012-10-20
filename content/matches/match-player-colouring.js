@@ -50,7 +50,8 @@
 				var playerId = doc.location.search.match(/&HighlightPlayerID=(\d+)/)[1];
 				var links = doc.getElementsByClassName('main')[0].getElementsByTagName('a');
 				links = Foxtrick.filter(function(a) {
-					return a.hasAttribute('href') && a.href.indexOf(playerId) > -1;
+					return a.hasAttribute('href') && a.getAttribute('href').indexOf(playerId) > -1;
+					//must use getAttribute because #anchor links (tabs) include the original url
 				}, links);
 				// add an arbitrarily home class
 				Foxtrick.map(function(a) {
