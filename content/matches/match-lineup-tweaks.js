@@ -286,14 +286,11 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (doc.getElementsByClassName('ft-playerMissing').length)
 			return;
 
-		var homeIdx = Foxtrick.util.layout.isRtl(doc) ? 1 : 0;
-		var awayIdx = !homeIdx + 0;
-
-		var homeTeamId = Foxtrick.util.id.getTeamIdFromUrl(teams[homeIdx].href);
-		var awayTeamId = Foxtrick.util.id.getTeamIdFromUrl(teams[awayIdx].href);
+		var homeTeamId = Foxtrick.Pages.Match.getHomeTeamId(doc);
+		var awayTeamId = Foxtrick.Pages.Match.getAwayTeamId(doc);
 
 		//get player list sucks for nt matches
-		var isNT = homeTeamId < 10000 && awayTeamId < 10000;
+		var isNT = Foxtrick.Pages.Match.isNT(doc);
 
 		var homePlayerLinks =
 			doc.querySelectorAll('.playersField > div.playerBoxHome > div > a, ' +
