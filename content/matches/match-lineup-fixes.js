@@ -9,7 +9,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['match'],
 	OPTIONS: [
-		'FixWeatherSEs', 'AddStarsToSubs', 'FixMultipleEvents'
+		'FixWeatherSEs', 'AddStarsToSubs', 'FixMultipleEvents', 'AddLinksInOrders'
 	],
 	//CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-fixes.css',
 	run: function(doc) {
@@ -634,6 +634,38 @@ Foxtrick.modules['MatchLineupFixes'] = {
 				});
 			});
 		};
+		var addLinksInOrders = function() {
+			var ordersTable = doc.querySelector('#ListPlayerOrders table');
+			if (!ordersTable)
+				return;
+
+			var scripts = doc.getElementsByTagName('script');
+			var regex = /ht\.matchAnalysis\.playerData\s*=\s*'([\s\S]+?)';/m;
+			var playerData;
+			for (var i = 0; i < scripts.length; i++) {
+				if (regex.test(scripts[i].textContent)) {
+					playerData =
+						JSON.parse(regex.exec(scripts[i].textContent)[1]);
+					break;
+				}
+			}
+
+			if (!playerData.length) {
+				Foxtrick.log('addLinksInOrders: failed to parse playerData');
+				return;
+			}
+
+			var html = ordersTable.innerHTML;
+			for (var i = 0; i < playerData.length; i++) {
+				var p = playerData[i];
+				var fullName = p.FirstName + (p.NickName ? " '" + p.NickName + "' " : ' ') +
+					p.LastName;
+				var link = '<a id="playerLink" href="/Club/Players/Player.aspx?PlayerId=' +
+					p.SourcePlayerId + '">' + fullName + '</a>';
+				html = html.replace(new RegExp(fullName, 'g'), link);
+			}
+			ordersTable.innerHTML = html;
+		};
 
 
 
@@ -644,6 +676,9 @@ Foxtrick.modules['MatchLineupFixes'] = {
 
 		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
 			return;
+
+		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupFixes', 'AddLinksInOrders'))
+			addLinksInOrders();
 
 		if (weatherEvents.length &&
 			FoxtrickPrefs.isModuleOptionEnabled('MatchLineupFixes', 'FixWeatherSEs'))
