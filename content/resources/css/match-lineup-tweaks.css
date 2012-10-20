@@ -185,16 +185,16 @@ html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-diff {
 	100% { -moz-transform: translate(1px, -2px) rotate(-3deg); }
 }
 
-html[dir="rtl"] .sectorShirt.ft-smallFaceCard {
+html[dir="rtl"] div.playerDiv .sectorShirt.ft-smallFaceCard {
 	top: -18px !important;
 	right: -3px !important;
 }
-html[dir="ltr"] .sectorShirt.ft-smallFaceCard {
+html[dir="ltr"] div.playerDiv .sectorShirt.ft-smallFaceCard {
 	top: -18px !important;
 	left: -3px !important;
 }
 /* the 'wall' */
-.sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
+div.playerDiv .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
 	border-bottom: solid 2px #79A777 !important;
 }
 .ft-match-lineup-tweaks-specialty-icon {
@@ -221,14 +221,14 @@ html[dir="ltr"] .sectorShirt.ft-smallFaceCard {
 	border: 1px solid #79A777;
 }
 /* stamina */
-div.sectorShirt + div > div {
+div.playerDiv div.sectorShirt + div > div {
 	width: 4px !important;
 	height: 50px !important;
 	left: auto !important;
 	right: -5px !important;
 	top: -10px !important;
 }
-div.sectorShirt + div > div > div {
+div.playerDiv div.sectorShirt + div > div > div {
 	width: 100% !important;
 }
 .ft-staminaText {
