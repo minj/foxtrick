@@ -108,7 +108,7 @@ Foxtrick.modules['LineupShortcut'] = {
 		//Now getting playerid from top of the page:
 		var element = doc.getElementsByClassName('main')[0];
 		var playerid = Foxtrick.util.id.findPlayerId(element);
-		var lineuplabe = Foxtrickl10n.getString('LineupShortcut.lineup');
+		var lineuplabel = Foxtrickl10n.getString('LineupShortcut.lineup');
 		var matchtable = doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanel1')
 			.getElementsByTagName('table').item(0);
 		// matchtable is `not present if the player hasn't played for a team
