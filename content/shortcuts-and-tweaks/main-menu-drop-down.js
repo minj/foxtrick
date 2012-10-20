@@ -13,19 +13,19 @@ Foxtrick.modules['MainMenuDropDown']={
 
 	buildMainMenu : function(doc){
 		var menuLinks = doc.querySelectorAll('#menu > a');
-			var list = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MainMenuDropDown, 'ul');
-			list.id = 'ft-drop-down-menu';
-			Foxtrick.map(function(link){
-				if(link.id == 'ctl00_ctl00_CPHeader_ucMenu_hypLogout')
-					return;
-				var listItem = doc.createElement('li');
-				listItem.appendChild(link);
-				list.appendChild(listItem);
-			}, menuLinks);
-			doc.getElementById('menu').insertBefore(list, doc.getElementById('ctl00_ctl00_CPHeader_ucMenu_hypLogout'));
+		var list = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MainMenuDropDown, 'ul');
+		list.id = 'ft-drop-down-menu';
+		Foxtrick.map(function(link){
+			if(link.id == 'ctl00_ctl00_CPHeader_ucMenu_hypLogout')
+				return;
+			var listItem = doc.createElement('li');
+			listItem.appendChild(link);
+			list.appendChild(listItem);
+		}, menuLinks);
+		doc.getElementById('menu').insertBefore(list, doc.getElementById('ctl00_ctl00_CPHeader_ucMenu_hypLogout'));
 	},
 	
-	addMenusToListItem : function(doc, node, menus, className, recursive){
+	addMenusToListItem : function(doc, node, menus, className){
 		if(!menus.length)
 			return;
 
@@ -44,7 +44,6 @@ Foxtrick.modules['MainMenuDropDown']={
 		}
 
 		var firstHeader = true;
-
 		var list = doc.createElement('ul');
 		Foxtrick.addClass(list, className);
 		Foxtrick.map(function(menu){
@@ -95,21 +94,21 @@ Foxtrick.modules['MainMenuDropDown']={
 		}
 
 		var NavigationStructure = function(){
-			this.language = FoxtrickPrefs.getString('htLanguage');
+			//this.language = ;
 			this.menus = {
 				primary : [],
 				secondary : []
 			}
 			this.save = function(){
-				Foxtrick.localSet("Menu.v1." + Foxtrick.modules['Core'].getSelfTeamInfo().teamId, this);
+				Foxtrick.localSet('Menu.v1.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId + '.' + FoxtrickPrefs.getString('htLanguage'), this);
 			}
 			this.load = function(func){
-				Foxtrick.localGet("Menu.v1."  + Foxtrick.modules['Core'].getSelfTeamInfo().teamId, function(menu){
+				Foxtrick.localGet('Menu.v1.'  + Foxtrick.modules['Core'].getSelfTeamInfo().teamId + '.' + FoxtrickPrefs.getString('htLanguage'), function(menu){
 					if(!menu){
 						func(new NavigationStructure());
 					} else {
 						var nav = new NavigationStructure();
-						nav.language = menu.language;
+						//nav.language = menu.language;
 						nav.menus = menu.menus;
 						func(nav);
 					}
@@ -263,7 +262,7 @@ Foxtrick.modules['MainMenuDropDown']={
 			for(var l = 0; l < links.length; l++){
 				var primaries = navi.getPrimaryMenusForUrl( links[l].href );
 				var secondaries = navi.getSecondaryMenusForUrl( links[l].href );
-				Foxtrick.modules['MainMenuDropDown'].addMenusToListItem(doc, links[l].parentNode, Foxtrick.union(primaries, secondaries), "ft-drop-down-submenu", false);
+				Foxtrick.modules['MainMenuDropDown'].addMenusToListItem(doc, links[l].parentNode, Foxtrick.union(primaries, secondaries), "ft-drop-down-submenu");
 				
 				//secondary links
 				var secondaryLinks = links[l].parentNode.querySelectorAll('a');
@@ -271,7 +270,7 @@ Foxtrick.modules['MainMenuDropDown']={
 					if(sl == 0) //skip first entry, that's cover already
 						continue;
 					var secondaries = navi.getSecondaryMenusForUrl( secondaryLinks[sl].href );
-					Foxtrick.modules['MainMenuDropDown'].addMenusToListItem(doc, secondaryLinks[sl].parentNode, secondaries, "ft-drop-down-submenu ft-drop-down-submenu-2", false);
+					Foxtrick.modules['MainMenuDropDown'].addMenusToListItem(doc, secondaryLinks[sl].parentNode, secondaries, "ft-drop-down-submenu ft-drop-down-submenu-2");
 					if(secondaries.length){
 						var ul = secondaryLinks[sl].parentNode.getElementsByTagName('ul')[0];
 						var span = doc.createElement('span');
@@ -338,14 +337,14 @@ Foxtrick.modules['MainMenuDropDown']={
 			Foxtrick.map(function(styleSheet){
 				if(styleSheet.cssRules)
 					Foxtrick.map(function(rule){
-						var hbc = hoverBgColor(rule.cssText);
-						var hc = hoverColor(rule.cssText);
-						var bc = bgColor(rule.cssText);
+						// var hbc = hoverBgColor(rule.cssText);
+						// var hc = hoverColor(rule.cssText);
+						// var bc = bgColor(rule.cssText);
 						var c = color(rule.cssText);
 						
-						if(hbc) Foxtrick.log("hover bg color",hbc);
-						if(bc) Foxtrick.log("text bg c",bc);
-						if(hc) Foxtrick.log("text hover",hc);
+						// if(hbc) Foxtrick.log("hover bg color",hbc);
+						// if(bc) Foxtrick.log("text bg c",bc);
+						// if(hc) Foxtrick.log("text hover",hc);
 						if(c) tcolor = c;
 
 					}, styleSheet.cssRules);
@@ -355,132 +354,5 @@ Foxtrick.modules['MainMenuDropDown']={
 	
 		var hrstyle = '#menu hr { background-color:' + tcolor + ';} .ft-drop-down-submenu li span, #menu h3 {color:' + tcolor + ' !important;}';
 		Foxtrick.util.inject.css(doc, hrstyle); 
-		
-		return;
-
-
-		var isSubPage = function(menu, url){
-				for(var i in menu[activeLanguage])
-					for(var k in menu[activeLanguage][i].content){
-						if(menu[activeLanguage][i].content[k].tag == 'a')
-							if( url === menu[activeLanguage][i].content[k].link)
-								return {'main':i, 'link':menu[activeLanguage][i].content[k]};
-					}
-					
-			}
-			Foxtrick.log(isSubPage(menuStructure, doc.location.href.replace(/^.*\/\/[^\/]+/, '')));
-
-		
-
-		//gimme what we stored so far, should be good enought for now
-		var getLocalStoredStructure = function(callback){
-			Foxtrick.localGet('htMenuStructure.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId, function(menuStructure){
-				if(menuStructure === undefined || menuStructure === null)
-					callback({});
-				else	
-					callback(menuStructure);	
-			});	
-		}
-		
-		//get saved structure and do the stuff async
-		getLocalStoredStructure(function(menuStructure){
-			var menuItems = doc.querySelectorAll('#menu > a');
-			var nav = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MainMenuDropDown, 'ul');
-			nav.id = 'ft-drop-down-menu';
-			Foxtrick.addClass(nav, 'ft-mmdd-default');
-
-
-			
-
-			//iterate all main menu items
-			Foxtrick.map(function(item){
-				if(item.id == 'ctl00_ctl00_CPHeader_ucMenu_hypLogout')
-					return;
-
-				if(menuStructure[activeLanguage] !== undefined 
-					&& menuStructure[activeLanguage][item.href.replace(/^.*\/\/[^\/]+/, '')] !== undefined					 
-					&& menuStructure[activeLanguage][item.href.replace(/^.*\/\/[^\/]+/, '')].content !== undefined){
-
-					var li = doc.createElement('li');
-
-					var subMenuList = doc.createElement('ul');
-					Foxtrick.addClass(subMenuList, 'ft-drop-down-submenu');
-					
-					
-					// //for custom /club/ styles, set color read from inline <style> nodes, see above
-					// if(bgcolor)
-					// 	subMenuList.setAttribute('style', 'background-color: ' + bgcolor + '!important;');
-					
-					//iterate saved structure for current page and current language
-					//h3 and lists of links are assumed and supported
-					var firstHeader = true;
-					Foxtrick.map(function(entry){
-						if(entry.tag == 'a'){
-							var link_li = doc.createElement('li');
-							var link_link = doc.createElement('a');
-							link_link.textContent = Foxtrick.trim(entry.text);
-							//link_link.setAttribute('title',  Foxtrick.trim(entry.text));
-							link_link.href = entry.link;
-							link_li.appendChild(link_link);
-							subMenuList.appendChild(link_li);
-						} else if(entry.tag == 'h3'){
-							//first header basicly repeats the name of the main navigation item, repeating it seems weird
-							if(firstHeader &&FoxtrickPrefs.isModuleOptionEnabled('MainMenuDropDown', 'DisregardFirstHeader')){
-								firstHeader = false;
-								return;
-							}
-							var h3_li = doc.createElement('li');
-							var h3 = doc.createElement('h3');
-							h3.textContent = entry.text;
-							h3_li.appendChild(h3);
-							subMenuList.appendChild(h3_li);
-
-							var hr_li = doc.createElement('li');
-							var hr = doc.createElement('hr');
-							hr_li.appendChild(hr);
-							subMenuList.appendChild(hr_li);
-						} 
-					}, menuStructure[activeLanguage][item.href.replace(/^.*\/\/[^\/]+/, '')].content);
-
-					//append last updated time
-					var now = (new Date()).getTime();
-					var diff = Number(now) - Number(menuStructure[activeLanguage][item.href.replace(/^.*\/\/[^\/]+/, '')].updated);
-					var days = diff/(1000*60*60*24);
-
-
-					var hr_li = doc.createElement('li');
-					var hr = doc.createElement('hr');
-					hr_li.appendChild(hr);
-					subMenuList.appendChild(hr_li);
-
-					var update_li = doc.createElement('li');
-					var update_link = item.cloneNode(true);
-					update_link.textContent = 'Updated ' + days.toFixed(2) + ' days ago';
-					update_link.setAttribute('title',  'This might eventually serve as place where a warning could be placed when a menu gets old because the landing page is never used (room for improvement here) and an update is required or something');
-					update_li.appendChild(update_link);
-					subMenuList.appendChild(update_li);
-
-					li.appendChild(item); 			//reposition original link from the #menu
-					li.appendChild(subMenuList); 	//the popup
-					nav.appendChild(li); 			//attach to #menu
-				} else {
-					Foxtrick.log("No records found");
-					//no records for this language and/or page are present, just attach as is, without popup
-					var li = doc.createElement('li');
-					li.appendChild(item);
-					nav.appendChild(li);
-				}
-
-				//update, learn current page if it matches one of the links in #menu
-				if(Foxtrick.isPageHref(item.href.replace(/^.*\/\/[^\/]+/, '') +'$', doc.location.href))
-					learnCurrentPage(menuStructure);
-
-			}, menuItems);
-
-			//attach rebuild navigation to the menu
-			doc.getElementById('menu').insertBefore(nav, doc.getElementById('ctl00_ctl00_CPHeader_ucMenu_hypLogout'));
-
-			fixCss(doc);
-		});
 	}
 }
