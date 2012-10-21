@@ -37,8 +37,8 @@ Foxtrick.modules['AutoPostSpecs'] = {
 				return;
 
 			var textarea = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody');
-			var txt = textarea.getAttribute('value');
-			txt = txt?txt:'' + '\n[hr][spoiler]' + 'FoxTrick ' + Foxtrick.version() + ' ' + Foxtrick.branch() + ' - Stage: ' + Foxtrick.isStage(doc) + ' - Skin: ' + (Foxtrick.util.layout.isStandard(doc)?'normal':'simple') + ' - ' + FoxtrickPrefs.getString('htLanguage') + ' - '  + window.screen.availWidth + ' x ' + window.screen.availHeight + ' - ' + navigator.userAgent + ' - ' + navigator.platform + '[/spoiler]';
+			var txt = textarea.value;
+			txt = txt + '\n[hr][spoiler]' + 'FoxTrick ' + Foxtrick.version() + ' ' + Foxtrick.branch() + ' - Stage: ' + Foxtrick.isStage(doc) + ' - Skin: ' + (Foxtrick.util.layout.isStandard(doc)?'normal':'simple') + ' - ' + FoxtrickPrefs.getString('htLanguage') + ' - '  + window.screen.availWidth + ' x ' + window.screen.availHeight + ' - ' + navigator.userAgent + ' - ' + navigator.platform + '[/spoiler]';
 			textarea.value = txt;
 			setCaretPosition(textarea, 0);
 		}
