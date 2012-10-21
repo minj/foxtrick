@@ -8,10 +8,12 @@ ru:
 
         0.12.0:
             note_0: "Вкладки: добавлена обратная совместимость для добавления дополнительных вкладок к большинству сайтов (как собственные вкладки HT на страницах предстоящего и завершившегося матчей)."
-            note_1: "Модуль <module>DashboardCalendar</module>: добавлена кнопка для экспорта недели Hattrick в формате iCalendar (должно работать в Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal и т.п.)"
-            note_2: "Модуль <module>LiveAlert</module>: добавлены звуки для различения голов хозяев/гостей/вашей команды. По умолчанию использованы звуки из <linkHTLS>HTLiveSight</linkHTLS>. В режиме Re-Live голы вашей команды распознаны не будут."
-            note_3: "Модуль <module>CopyYouth</module>: пользователи Hattrick youthclub теперь автоматически отсылают комментарии скаута на отвергнутого игрока на сервер HY"
-            note_4: "Модуль <module>MatchLineupTweaks</module>: пользователи Hattrick youthclub теперь автоматически отсылают отчёт о тренировке на сервер HY"
+            note_1: "НОВЫЙ модуль <module>MatchLineupTweaks</module>: добавляет подсчёт звёзд и средней выносливости на новую страницу расстановки матча. Показывает специализации всех игроков и добавляет название команды на поле во избежание недоразумений."
+            note_2: "НОВЫЙ модуль <module>MainMenuDropDown</module>: добавляет выпадающие подменю в главную полосу навигации, содержащие все ссылки из левого меню, открывающегося при выборе соответствующего пункта."
+            note_3: "Модуль <module>DashboardCalendar</module>: добавлена кнопка для экспорта недели Hattrick в формате iCalendar (должно работать в Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal и т.п.)"
+            note_4: "Модуль <module>LiveAlert</module>: добавлены звуки для различения голов хозяев/гостей/вашей команды. По умолчанию использованы звуки из <linkHTLS>HTLiveSight</linkHTLS>. В режиме Re-Live голы вашей команды распознаны не будут."
+            note_5: "Модуль <module>CopyYouth</module>: пользователи Hattrick youthclub теперь автоматически отсылают комментарии скаута на отвергнутого игрока на сервер HY (требует включения модуля YouthTwins)"
+            note_6: "Модуль <module>CopyYouth</module>: пользователи Hattrick youthclub теперь автоматически отсылают отчёт о тренировке на сервер HY, когда впервые читают его (требует включения модуля YouthTwins)"
 
         0.11.0: 
             note_0: "НОВЫЙ модуль <module>DirectPageLinks</module>: добавлены ссылки для доступа к подходящим страницам в теме форума."
