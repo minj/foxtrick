@@ -424,6 +424,7 @@ pref("extensions.foxtrick.prefs.module.MatchLineupFixes.AddLinksInOrders.enabled
 pref("extensions.foxtrick.prefs.module.MatchLineupFixes.AddStarsToSubs.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupFixes.FixMultipleEvents.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupFixes.FixWeatherSEs.enabled", true);
+pref("extensions.foxtrick.prefs.module.MatchLineupFixes.SyncTimeline.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.AddSubstiutionInfo.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.ConvertStars.enabled", true);
