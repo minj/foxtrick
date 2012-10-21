@@ -103,6 +103,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/alert/new-mail.js</string>
 				<string>content/alert/ticker-alert.js</string>
 				<string>content/alert/ticker-coloring.js</string>
+				<string>content/forum/auto-post-specs.js</string>
 				<string>content/forum/add-leave-conf-button.js</string>
 				<string>content/forum/embed-media.js</string>
 				<string>content/forum/forum-change-posts.js</string>
