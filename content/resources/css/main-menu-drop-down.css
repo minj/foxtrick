@@ -8,12 +8,10 @@ ul#ft-drop-down-menu li {
 	position: relative;
 }
 
-
 ul#ft-drop-down-menu {
 	margin: 0;
 	padding: 0;
 }
-
 
 #ft-drop-down-menu hr {
 	border: 0;
@@ -122,11 +120,13 @@ ul#ft-drop-down-menu ul.ft-drop-down-submenu li:hover .ft-drop-down-submenu-2 {
 	color: white;
 }
 
+
+/*z fixes to ensure menu is overlay, 
+i have no idea what i am doing, but just setting those ridiculously high values to 0 or 2 does not cause any trouble at all */
 #timeline {
 	z-index: 0 !important;
 
 }
-
 .copyicon, .backIcon, .statsIcon, .alltidIcon, .bookmark, .forumSettings, .forumSearch, .forumSearch2, .forumStats, .backIcon2, .helpIcon {
 	z-index: 0 !important;
 }
@@ -137,5 +137,8 @@ ul.ui-tabs-nav, #loading {
 #fieldOverlay {
 	z-index: 201 !important;
 }
-
+#orders .position .player,
+.shirt {
+	z-index: 0;
+}
 }
