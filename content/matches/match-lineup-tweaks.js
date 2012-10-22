@@ -53,7 +53,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		// will be used to regex on image.src
 		var SUBSTITUTION_TYPES = {
-			SUB: 'substitution|formation',
+			SUB: 'substitution',
+			FORMATION: 'formation', // formation change: might be sub or behavior
 			BEHAVIOR: 'behavior',
 			SWAP: 'swap'
 		};
@@ -85,6 +86,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		var addSubDiv = function(sub) {
 			var type = sub.type;
+			if (type == SUBSTITUTION_TYPES.FORMATION) {
+				// special case
+				type = sub.otherId ? SUBSTITUTION_TYPES.SUB : SUBSTITUTION_TYPES.BEHAVIOR;
+			}
 			var rawText;
 			// different texts for sbjPlayer & objPlayer, i. e. sub
 			if (SUB_TEXTS[type] instanceof Array) {
