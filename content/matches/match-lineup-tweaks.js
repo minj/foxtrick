@@ -66,52 +66,40 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			'resources/img/matches/swap.png';
 
 		var SUB_TEXTS = {};
-		SUB_TEXTS[SUBSTITUTION_TYPES.SUB] = [];
-		SUB_TEXTS[SUBSTITUTION_TYPES.SUB][0] = Foxtrickl10n.getString('MatchLineupTweaks.out');
-		SUB_TEXTS[SUBSTITUTION_TYPES.SUB][1] = Foxtrickl10n.getString('MatchLineupTweaks.in');
+		SUB_TEXTS[SUBSTITUTION_TYPES.SUB] = [
+			Foxtrickl10n.getString('MatchLineupTweaks.out'),
+			Foxtrickl10n.getString('MatchLineupTweaks.in')
+		];
 		SUB_TEXTS[SUBSTITUTION_TYPES.BEHAVIOR] = Foxtrickl10n.getString('MatchLineupTweaks.behavior');
 		SUB_TEXTS[SUBSTITUTION_TYPES.SWAP] = Foxtrickl10n.getString('MatchLineupTweaks.swap');
 
-		var highlightSub = function(otherId, deactivate) {
+		var highlightSub = function(otherId) {
 			affectPlayer(otherId, function(node) {
-				// yellow on fielf, red on bench
+				// yellow on field, red on bench
 				var className = node.parentNode.id == 'playersField' ?
 					'ft-highlight-playerDiv-field' : 'ft-highlight-playerDiv-bench';
-				if (deactivate)
-					Foxtrick.removeClass(node, className);
-				else
-					Foxtrick.addClass(node, className);
+				Foxtrick.toggleClass(node, className);
 			});
 		};
 
-		var addSubDiv = function(sub) {
-			var type = sub.type;
+		var addSubDiv = function(id, min, type, isOut, otherId) {
 			if (type == SUBSTITUTION_TYPES.FORMATION) {
 				// special case
-				type = sub.otherId ? SUBSTITUTION_TYPES.SUB : SUBSTITUTION_TYPES.BEHAVIOR;
+				type = otherId ? SUBSTITUTION_TYPES.SUB : SUBSTITUTION_TYPES.BEHAVIOR;
 			}
 			var rawText;
 			// different texts for sbjPlayer & objPlayer, i. e. sub
 			if (SUB_TEXTS[type] instanceof Array) {
-				rawText = SUB_TEXTS[type][!sub.isOut + 0];
+				rawText = SUB_TEXTS[type][!isOut + 0];
 			}
 			else
 				rawText = SUB_TEXTS[type];
-			var subText = rawText.replace(/%s/, sub.min);
+			var subText = rawText.replace(/%s/, min);
 			var iconSrc = SUB_IMAGES[type];
 
-			affectPlayer(sub.id, function(node) {
+			affectPlayer(id, function(node) {
 				//HTs don't seem to appreciate class names here
 				//this is bound to break easily
-				//var positionImage = node.querySelector('img[src$="transparent.gif"]');
-				//var parent = positionImage.parentNode;
-				//var prev = parent.previousSibling;
-				//if (prev.getElementsByTagName('img').length != 0) {
-					// this should be indicator div (with captain, kicker, card, etc)
-					// we need to move it out of the way
-					// prev.style.top = '-10px';
-					//Foxtrick.addClass(prev, 'ft-adjIndicatorDiv');
-				//}
 				var subDiv = Foxtrick
 					.createFeaturedElement(doc, Foxtrick.modules['MatchLineupTweaks'], 'div');
 				Foxtrick.addClass(subDiv, 'ft-subDiv');
@@ -120,17 +108,12 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					alt: subText,
 					title: subText,
 				});
-				if (sub.otherId) {
+				if (otherId) {
 					// highlight other player on click
-					subDiv.setAttribute('ft-activated', '0');
 					Foxtrick.onClick(subDiv, function(ev) {
-						var div = ev.target;
-						var active = Number(div.getAttribute('ft-activated'));
-						highlightSub(sub.otherId, active);
-						div.setAttribute('ft-activated', '' + Number(!active + 0));
+						highlightSub(otherId);
 					});
 				}
-				//node.insertBefore(subDiv, parent);
 				var target = node.getElementsByClassName('ft-indicatorDiv')[0];
 				target.appendChild(subDiv);
 			});
@@ -155,7 +138,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				}
 			}
 			if (!type) {
-				Foxtrick.log('AddSubInfo: sub type unsupported!');
+				Foxtrick.log('AddSubInfo: sub type unsupported!', typeImage.src);
 				continue;
 			}
 			var subLinks = playerCell.getElementsByTagName('a');
@@ -163,15 +146,11 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				return Foxtrick.getParameterFromUrl(link, 'playerid');
 			}, subLinks);
 			var isSubject = true, sbjPid = pIds[0], objPid = pIds[1] || 0;
-			addSubDiv({
-				id: sbjPid, min: time, type: type, isOut: isSubject, otherId: objPid
-			});
+			addSubDiv(sbjPid, time, type, isSubject, objPid);
 
 			isSubject = false;
 			if (objPid) {
-				addSubDiv({
-					id: objPid, min: time, type: type, isOut: isSubject, otherId: sbjPid
-				});
+				addSubDiv(objPid, time, type, isSubject, sbjPid);
 			}
 		}
 
@@ -179,13 +158,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 	//adds teamsnames to the field for less confusion
 	runTeamnNames: function(doc) {
-		var teams = doc.querySelectorAll('h1 > a, h1 > span > a');
-
-		var homeIdx = Foxtrick.util.layout.isRtl(doc) ? 1 : 0;
-		var awayIdx = !homeIdx + 0;
-
-		var homeTeamName = teams[homeIdx].textContent;
-		var awayTeamName = teams[awayIdx].textContent;
+		var homeTeamName = Foxtrick.Pages.Match.getHomeTeamName(doc);
+		var awayTeamName = Foxtrick.Pages.Match.getAwayTeamName(doc);
 
 		var homeSpan = doc.createElement('span');
 		var awaySpan = doc.createElement('span');
@@ -210,11 +184,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (!teams.length)
 			return; // we're not ready yet
 
-		var homeIdx = Foxtrick.util.layout.isRtl(doc) ? 1 : 0;
-		var awayIdx = !homeIdx + 0;
-
-		var homeTeamId = Foxtrick.util.id.getTeamIdFromUrl(teams[homeIdx].href);
-		var awayTeamId = Foxtrick.util.id.getTeamIdFromUrl(teams[awayIdx].href);
+		var homeTeamId = Foxtrick.Pages.Match.getHomeTeamId(doc);
+		var awayTeamId = Foxtrick.Pages.Match.getAwayTeamId(doc);
 
 		var homePlayerLinks =
 			doc.querySelectorAll('.playersField > div.playerBoxHome > div > a, ' +
@@ -224,7 +195,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			                     'div#playersBenchAway > div.playerBoxAway > div > a');
 
 		var addSpecialty = function(node, player) {
-			//Foxtrick.stopListenToChange(doc);
 			if (node.getElementsByClassName('ft-specialty').length)
 				return;
 			if (player && player.specialityNumber != 0) {
@@ -241,14 +211,13 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					class: 'ft-specialty ft-match-lineup-tweaks-specialty-icon'
 				});
 			}
-			//Foxtrick.startListenToChange(doc);
 		};
 
 		var addSpecialtiesByTeamId = function(teamid, players) {
 			Foxtrick.Pages.Players.getPlayerList(doc,
 			  function(playerInfo) {
-				var missing = [];
 				Foxtrick.stopListenToChange(doc);
+				var missing = [];
 				for (var i = 0; i < players.length; i++) {
 					var id = Number(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerInfo, id);
@@ -345,16 +314,13 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (!teams.length)
 			return; // we're not ready yet
 
-		var homeIdx = Foxtrick.util.layout.isRtl(doc) ? 1 : 0;
-		var awayIdx = !homeIdx + 0;
-
 		var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
 		if (isYouth) {
 			// TODO youth?
 		}
 		else {
-			var homeTeamId = Foxtrick.util.id.getTeamIdFromUrl(teams[homeIdx].href);
-			var awayTeamId = Foxtrick.util.id.getTeamIdFromUrl(teams[awayIdx].href);
+			var homeTeamId = Foxtrick.Pages.Match.getHomeTeamId(doc);
+			var awayTeamId = Foxtrick.Pages.Match.getAwayTeamId(doc);
 			var ownteamid = Foxtrick.util.id.getOwnTeamId();
 		}
 
@@ -368,7 +334,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
         var scale = 3;
 		var addFace = function(fieldplayer, id, avatarsXml) {
-			//Foxtrick.stopListenToChange(doc);
 			if (avatarsXml) {
 				if (!id)
 					return;
@@ -385,35 +350,20 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 				var shirt = fieldplayer.getElementsByClassName('sectorShirt')[0];
 
-				if (shirt) {
-					var kiturl = shirt.getAttribute('kiturl');
-					if (!kiturl && !isYouth) {
-						var shirtstyle = shirt.getAttribute('style');
-						var kiturl = shirtstyle
-							.match(/http:\/\/res.hattrick.org\/kits\/\d+\/\d+\/\d+\/\d+\//)[0];
-						shirt.setAttribute('kiturl', kiturl);
-					}
-				} else {
-					// TODO: cleanup?
-					var outer = doc.createElement('div');
-					outer.className = 'ft-smallFaceCardOuter';
-					fieldplayer.appendChild(outer);
-					shirt = doc.createElement('div');
-					outer.appendChild(shirt);
+				var kiturl = shirt.getAttribute('kiturl');
+				if (!kiturl && !isYouth) {
+					var shirtstyle = shirt.getAttribute('style');
+					var kiturl = shirtstyle
+						.match(/http:\/\/res.hattrick.org\/kits\/\d+\/\d+\/\d+\/\d+\//)[0];
+					shirt.setAttribute('kiturl', kiturl);
 				}
 
 				if (Foxtrick.hasClass(shirt, 'ft-smallFaceCard'))
 					return;
 
-					Foxtrick.addClass(shirt, 'ft-smallFaceCard');
-					shirt.style.backgroundImage = null;
-				//var style =
-				//	'background-image:url('
-				//	// cleaning background//+players[i].getElementsByTagName('BackgroundImage')[0].textContent
-				//	+ ');'
-				//	+ 'top:-20px; width:' + Math.round(100 / scale) + 'px; height:' +
-				//	Math.round(123 / scale) + 'px';
-				//	shirt.setAttribute('style', style);
+				Foxtrick.addClass(shirt, 'ft-smallFaceCard');
+				shirt.style.backgroundImage = null;
+
 				var sizes = {
 					//backgrounds: [0, 0],// don't show
 					kits: [92, 123],
@@ -424,20 +374,20 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					goatees: [70, 70],
 					noses: [70, 70],
 					hair: [92, 123],
-					misc: [0, 0] // don't show (eg cards)
+					//misc: [0, 0] // don't show (eg cards)
 				};
 				var layers = players[i].getElementsByTagName('Layer');
 				for (var j = 0; j < layers.length; ++j) {
 					var src = layers[j].getElementsByTagName('Image')[0].textContent;
+					var show = false;
 					for (var bodypart in sizes) {
-						if (src.search(bodypart) != -1)
+						if (src.search(bodypart) != -1) {
+							show = true;
 							break;
+						}
 					}
-					if (!bodypart)
+					if (!bodypart || !show)
 						continue;
-
-					if (bodypart == 'backgrounds')
-						src = '';
 
 					if (kiturl && bodypart == 'kits') {
 						var body = src.match(/([^\/]+)(\w+$)/)[0];
@@ -456,7 +406,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					});
 				}
 			}
-			//Foxtrick.startListenToChange(doc);
 		};
 
 		var addFacesByTeamId = function(teamid, players) {
@@ -465,10 +414,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				                           { cache_lifetime: 'session' },
 				  function(xml, errorText) {
 					if (errorText) {
-						/*if (loadingOtherMatches && loadingOtherMatches.parentNode) {
-							loadingOtherMatches.parentNode.removeChild(loadingOtherMatches);
-							loadingOtherMatches = null;
-						}*/
 						Foxtrick.log(errorText);
 						return;
 					}
@@ -509,23 +454,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var starsHome = countStars(doc, 'Home');
 		var starsAway = countStars(doc, 'Away');
 
-		// adding image dimensions to prevent flicker...
-		//ratingTemplate.getElementsByTagName('img')[0].height = 22;
-		//ratingTemplate.getElementsByTagName('img')[0].weight = 13;
-
 		var displayHome = Foxtrick.createFeaturedElement(doc, this, 'div');
 		Foxtrick.addClass(displayHome, 'ft-match-lineup-tweaks-star-counter');
 		displayHome.appendChild(doc.createElement('span'));
-		//var img = ratingTemplate.getElementsByTagName('img')[0].cloneNode(true);
-		//img.height = 22;
-		//img.width = 13;
-		//displayHome.appendChild(img);
-		//Foxtrick.addImage(doc, displayHome, {
-		//	src: Foxtrick.InternalPath + 'resources/img/matches/star-10.png',
-		//	class: 'playerStar',
-		//	width: 10,
-		//	height: 10
-		//});
+
 		var displayAway = displayHome.cloneNode(true);
 		var displayDiff = displayHome.cloneNode(true);
 
@@ -560,7 +492,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				var staminaTitle = node.getElementsByClassName('sectorShirt')[0].nextSibling
 					.firstChild.title;
 
-				var stamina = staminaTitle.match(RegExp('\\d+'));
+				var stamina = staminaTitle.match(/\d+/);
 				return Number(stamina);
 			};
 
@@ -580,8 +512,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var staminaAway = getStaminaAverage(doc, 'Away');
 
 		var displayHome = Foxtrick.createFeaturedElement(doc, this, 'div');
-		displayHome.appendChild(doc.createElement('span'));
 		Foxtrick.addClass(displayHome, 'ft-match-lineup-tweaks-stamina-counter');
+		displayHome.appendChild(doc.createElement('span'));
 
 		var displayAway = displayHome.cloneNode(true);
 		var displayDiff = displayHome.cloneNode(true);
@@ -656,14 +588,12 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	convertStars: function(doc) {
 		var ratings = doc.querySelectorAll('div.playerRating > span');
 		for (var i = 0; i < ratings.length; i++) {
+			var ratingsDiv = ratings[i].parentNode;
 			var count = Number(ratings[i].textContent);
-			var newDiv = ratings[i].parentNode.cloneNode(false);
+			var newDiv = ratingsDiv.cloneNode(false);
 			Foxtrick.makeFeaturedElement(newDiv, this);
 			// weirdest bug ever: title too short
 			newDiv.title = count + '\u2605    ';
-			//var starDiv = doc.createElement('div');
-			//Foxtrick.addClass(starDiv, 'ft-starDiv');
-			// this one will allow centering
 			var smallDiv = doc.createElement('div');
 			Foxtrick.addClass(smallDiv, 'ft-4starDiv');
 			// this one will fit small stars
@@ -686,9 +616,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			}
 			newDiv.appendChild(smallDiv);
 			if (count) {
-				// 4.5 star is a pain in the ass
+				// 4.5 stars is a pain in the ass
 				var target;
 				if (count == 0.5 && smallDiv.childNodes.length == 2) {
+					// 4.5
 					target = newDiv;
 				}
 				else
@@ -698,8 +629,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				});
 			}
 
-			//starDiv.appendChild(smallDiv);
-			ratings[i].parentNode.parentNode.replaceChild(newDiv, ratings[i].parentNode);
+			ratingsDiv.parentNode.replaceChild(newDiv, ratingsDiv);
 		}
 	},
 
@@ -732,7 +662,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		var playerDivs = doc.querySelectorAll('div.playerDiv');
 		if (playerDivs.length && playerDivs[0].getElementsByClassName('ft-indicatorDiv').length)
+			// been here before
 			return;
+
 		for (var i = 0; i < playerDivs.length; i++) {
 			var player = playerDivs[i];
 			var ftdiv = Foxtrick.createFeaturedElement(doc, this, 'div');
@@ -755,7 +687,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			player.appendChild(ftdiv);
 		}
 
-		// add ft-stamina="N" to ratings spans for possible styling
+		// add ft-stars="N" to ratings spans for possible styling
 		var ratings = doc.querySelectorAll('div.playerRating > span');
 		for (var i = 0; i < ratings.length; i++) {
 			var count = Number(ratings[i].textContent);

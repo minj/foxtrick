@@ -30,6 +30,22 @@ Foxtrick.Pages.Match = {
 		}
 		return Foxtrick.util.id.getTeamIdFromUrl(link.href);
 	},
+	getHomeTeamName: function(doc) {
+		var id = this.getHomeTeamId(doc);
+		var links = doc.querySelectorAll('#mainBody a');
+		var team = Foxtrick.filter(function(a) {
+			return a.href.match(new RegExp('/Club/\\?TeamID=' + id));
+		}, links);
+		return team[0].textContent;
+	},
+	getAwayTeamName: function(doc) {
+		var id = this.getAwayTeamId(doc);
+		var links = doc.querySelectorAll('#mainBody a');
+		var team = Foxtrick.filter(function(a) {
+			return a.href.match(new RegExp('/Club/\\?TeamID=' + id));
+		}, links);
+		return team[0].textContent;
+	},
 	isNT: function(doc) {
 		return this.getHomeTeamId(doc) < 10000 && this.getAwayTeamId(doc) < 10000;
 	},
