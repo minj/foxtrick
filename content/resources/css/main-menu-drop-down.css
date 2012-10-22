@@ -40,6 +40,7 @@ html[dir='rtl'] .ft-drop-down-submenu-2 {
 .ft-drop-down-submenu-2 {
 	top: 0px !important;
 	left: 155px;
+	margin-top: -5px;
 }
 html[dir="rtl"] .ft-drop-down-submenu li span{
 	left: 6px !important;
@@ -68,7 +69,6 @@ html[data-theme="standard"] ul.ft-drop-down-submenu {
 	z-index: 203;
 	top: 35px;
 	padding: 5px 5px 5px !important;
-	margin-top: -5px;
 }
 
 html[data-theme="simple"] ul.ft-drop-down-submenu-2,
@@ -77,7 +77,6 @@ html[data-theme="simple"] ul.ft-drop-down-submenu {
 	z-index: 203;
 	top: 23px;
 	padding: 5px 5px 5px !important;
-	margin-top: -5px;
 }
 
 html[dir="rtl"] ul.ft-drop-down-submenu a {
