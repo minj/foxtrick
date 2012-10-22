@@ -149,13 +149,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		}, tEventTypeByEvent);
 
 		// info for CHPP
-		var SourceSystem = 'Hattrick';
-		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
-		var isHTOIntegrated = Foxtrick.Pages.Match.isHTOIntegrated(doc);
-		if (isYouth)
-			SourceSystem = 'Youth';
-		if (isHTOIntegrated)
-			SourceSystem = 'HTOIntegrated';
+		var SourceSystem = Foxtrick.Pages.Match.getSourceSystem(doc);
 		var matchId = Foxtrick.Pages.Match.getId(doc);
 		// add locale as argument to prevent using old cache after
 		// language changed
@@ -423,21 +417,8 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			// is not the same as the real ID
 			// the conversion is handled in HT classes exclusively
 			// therefore we'll need some hack-work
-			var fetchHTOInfo = function() {
-				var scripts = doc.getElementsByTagName('script');
-				var regex = /ht\.matchAnalysis\.playerData\s*=\s*'([\s\S]+?)';/m;
-				var playerData;
-				for (var i = 0; i < scripts.length; i++) {
-					if (regex.test(scripts[i].textContent)) {
-						playerData =
-							JSON.parse(regex.exec(scripts[i].textContent)[1]);
-						break;
-					}
-				}
-				return playerData;
-			};
 			if (SourceSystem == 'HTOIntegrated') {
-				var HTOPlayers = fetchHTOInfo();
+				var HTOPlayers = Foxtrick.Pages.Match.parsePlayerScript(doc);
 				if (!HTOPlayers) {
 					Foxtrick.log('MatchLineupFixes: failed to fetch HTO info from the script tag');
 					return;
@@ -448,8 +429,6 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			  function(xml) {
 				var homeId = xml.getElementsByTagName('HomeTeamID')[0].textContent;
 				var awayId = xml.getElementsByTagName('AwayTeamID')[0].textContent;
-				var homeName = xml.getElementsByTagName('HomeTeamName')[0].textContent;
-				var awayName = xml.getElementsByTagName('AwayTeamName')[0].textContent;
 
 				var homeArgs = [
 					['file', 'matchlineup'],
@@ -635,21 +614,14 @@ Foxtrick.modules['MatchLineupFixes'] = {
 				});
 			});
 		};
+		// there's only plaintext in orders tab
+		// let's add links
 		var addLinksInOrders = function() {
 			var ordersTable = doc.querySelector('#ListPlayerOrders table');
 			if (!ordersTable)
 				return;
 
-			var scripts = doc.getElementsByTagName('script');
-			var regex = /ht\.matchAnalysis\.playerData\s*=\s*'([\s\S]+?)';/m;
-			var playerData;
-			for (var i = 0; i < scripts.length; i++) {
-				if (regex.test(scripts[i].textContent)) {
-					playerData =
-						JSON.parse(regex.exec(scripts[i].textContent)[1]);
-					break;
-				}
-			}
+			var playerData = Foxtrick.Pages.Match.parsePlayerScript(doc);
 
 			if (!playerData.length) {
 				Foxtrick.log('addLinksInOrders: failed to parse playerData');
@@ -663,7 +635,8 @@ Foxtrick.modules['MatchLineupFixes'] = {
 					p.LastName;
 				var link = '<a id="playerLink" href="/Club/Players/Player.aspx?PlayerId=' +
 					p.SourcePlayerId + '">' + fullName + '</a>';
-				html = html.replace(new RegExp(fullName, 'g'), link);
+				// use negative lookahead in case HTs actually shape up
+				html = html.replace(new RegExp(fullName + '(?!</a>)', 'g'), link);
 			}
 			ordersTable.innerHTML = html;
 		};

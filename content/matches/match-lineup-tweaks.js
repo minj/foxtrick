@@ -43,14 +43,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 										   '#playersBench > div#playersBenchAway' +
 										   ' > div.playerBoxAway > div > a');
 
-		var affectPlayer = function(playerId, func) {
-			var link = Foxtrick.filter(function(link) {
-				return new RegExp(playerId).test(link.href);
-			}, playerLinks)[0];
-			if (link)
-				func(link.parentNode.parentNode);
-		};
-
 		// will be used to regex on image.src
 		var SUBSTITUTION_TYPES = {
 			SUB: 'substitution',
@@ -74,12 +66,12 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		SUB_TEXTS[SUBSTITUTION_TYPES.SWAP] = Foxtrickl10n.getString('MatchLineupTweaks.swap');
 
 		var highlightSub = function(otherId) {
-			affectPlayer(otherId, function(node) {
+			Foxtrick.Pages.Match.modPlayerDiv(otherId, function(node) {
 				// yellow on field, red on bench
 				var className = node.parentNode.id == 'playersField' ?
 					'ft-highlight-playerDiv-field' : 'ft-highlight-playerDiv-bench';
 				Foxtrick.toggleClass(node, className);
-			});
+			}, playerLinks);
 		};
 
 		var addSubDiv = function(id, min, type, isOut, otherId) {
@@ -97,7 +89,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			var subText = rawText.replace(/%s/, min);
 			var iconSrc = SUB_IMAGES[type];
 
-			affectPlayer(id, function(node) {
+			Foxtrick.Pages.Match.modPlayerDiv(id, function(node) {
 				//HTs don't seem to appreciate class names here
 				//this is bound to break easily
 				var subDiv = Foxtrick
@@ -116,7 +108,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				}
 				var target = node.getElementsByClassName('ft-indicatorDiv')[0];
 				target.appendChild(subDiv);
-			});
+			}, playerLinks);
 		};
 
 		for (var i = 0; i < subCells.length; i++) {
@@ -314,7 +306,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (!teams.length)
 			return; // we're not ready yet
 
-		var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
+		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
 		if (isYouth) {
 			// TODO youth?
 		}
@@ -561,21 +553,13 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 										   ' > div.playerBox' +
 										   (isHome ? 'Home' : 'Away') + ' > div > a');
 
-		var affectPlayer = function(playerId, func) {
-			var link = Foxtrick.filter(function(link) {
-				return new RegExp(playerId).test(link.href);
-			}, playerLinks)[0];
-			if (link)
-				func(link.parentNode.parentNode);
-		};
-
 		var highlightPlayer = function(playerId) {
-			affectPlayer(playerId, function(node) {
+			Foxtrick.Pages.Match.modPlayerDiv(playerId, function(node) {
 				if (node.parentNode.id == 'playersField')
 					Foxtrick.addClass(node, 'ft-highlight-playerDiv-field');
 				else
 					Foxtrick.addClass(node, 'ft-highlight-playerDiv-bench');
-			});
+			}, playerLinks);
 		};
 
 		for (var i = 0; i < players.length; i++) {

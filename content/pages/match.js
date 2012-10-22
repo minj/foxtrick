@@ -46,21 +46,28 @@ Foxtrick.Pages.Match = {
 		}, links);
 		return team[0].textContent;
 	},
-	isNT: function(doc) {
-		return this.getHomeTeamId(doc) < 10000 && this.getAwayTeamId(doc) < 10000;
-	},
 	isPrematch: function(doc) {
 		return (doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlPreMatch') != null);
 	},
-
+	getSourceSystem: function(doc) {
+		var SourceSystem = 'Hattrick';
+		var isYouth = this.isYouth(doc);
+		var isHTOIntegrated = this.isHTOIntegrated(doc);
+		if (isYouth)
+			SourceSystem = 'Youth';
+		if (isHTOIntegrated)
+			SourceSystem = 'HTOIntegrated';
+		return SourceSystem;
+	},
 	isYouth: function(doc) {
 		return (doc.location.search.search(/isYouth=true|SourceSystem=Youth/i) > -1);
 	},
-
 	isHTOIntegrated: function(doc) {
 		return (doc.location.search.search(/SourceSystem=HTOIntegrated/i) > -1);
 	},
-
+	isNT: function(doc) {
+		return this.getHomeTeamId(doc) < 10000 && this.getAwayTeamId(doc) < 10000;
+	},
 	hasNewRatings: function(doc) {
 		return (doc.getElementById('divReport') != null);
 	},
@@ -267,5 +274,25 @@ Foxtrick.Pages.Match = {
 		dest.getElementsByClassName('rightHandBoxBody')[0].appendChild(content);
 
 		return dest;
+	},
+	modPlayerDiv: function(playerId, func, links) {
+		var link = Foxtrick.filter(function(link) {
+			return new RegExp(playerId).test(link.href);
+		}, links)[0];
+		if (link && typeof(func) == 'function')
+			func(link.parentNode.parentNode);
+	},
+	parsePlayerScript: function(doc) {
+		var scripts = doc.getElementsByTagName('script');
+		var regex = /ht\.matchAnalysis\.playerData\s*=\s*'([\s\S]+?)';/m;
+		var playerData;
+		for (var i = 0; i < scripts.length; i++) {
+			if (regex.test(scripts[i].textContent)) {
+				playerData =
+					JSON.parse(regex.exec(scripts[i].textContent)[1]);
+				break;
+			}
+		}
+		return playerData;
 	}
 };
