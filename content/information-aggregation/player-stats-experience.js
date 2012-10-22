@@ -269,7 +269,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			Foxtrick.addClass(ts_xp, 'stats');
 			Foxtrick.addClass(ts_xp, 'ft-dummy');
 			if (walkover) {
-				Foxtrick.addClass(ts_xp, 'ft-playerStats-walkover');
+				Foxtrick.addClass(ts_xp, 'ft-xp-walkover');
 				ts_xp.textContent = pseudo_points.toFixed(3);
 				ts_xp.setAttribute('title', Foxtrickl10n
 				                   .getString('PlayerStatsExperience.Walkover'));
