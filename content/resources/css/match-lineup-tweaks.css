@@ -196,7 +196,7 @@ div.playerDiv .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
 .ft-match-lineup-tweaks-specialty-icon {
 	display: block;
 	position: absolute;
-	left: 0; /* for rtl */
+	left: -8px; /* for rtl */
 	top: -30px;
 	background-color: #295223 !important;
 	border: 1px solid #79A777 !important;
