@@ -105,7 +105,6 @@ Foxtrick.modules['MainMenuDropDown']={
 						func(new NavigationStructure());
 					} else {
 						var nav = new NavigationStructure();
-						//nav.language = menu.language;
 						nav.menus = menu.menus;
 						func(nav);
 					}
