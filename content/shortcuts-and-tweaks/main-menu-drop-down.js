@@ -97,10 +97,10 @@ Foxtrick.modules['MainMenuDropDown']={
 				secondary : []
 			}
 			this.save = function(){
-				Foxtrick.localSet('Menu.v1.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId + '.' + FoxtrickPrefs.getString('htLanguage'), this);
+				Foxtrick.localSet('Menu.v2.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId + '.' + FoxtrickPrefs.getString('htLanguage'), this);
 			}
 			this.load = function(func){
-				Foxtrick.localGet('Menu.v1.'  + Foxtrick.modules['Core'].getSelfTeamInfo().teamId + '.' + FoxtrickPrefs.getString('htLanguage'), function(menu){
+				Foxtrick.localGet('Menu.v2.'  + Foxtrick.modules['Core'].getSelfTeamInfo().teamId + '.' + FoxtrickPrefs.getString('htLanguage'), function(menu){
 					if(!menu){
 						func(new NavigationStructure());
 					} else {
@@ -129,8 +129,10 @@ Foxtrick.modules['MainMenuDropDown']={
 				var secondary = target;
 				Foxtrick.map(function(newMenu){
 					var exists = Foxtrick.any(function(menu){
-						if(menu.url === newMenu.url && menu.name === newMenu.name)
+						if(menu.url === newMenu.url && menu.name === newMenu.name){
+							existing_menu = menu;
 							return true;
+						}
 
 						return false;
 					}, secondary);
@@ -197,12 +199,17 @@ Foxtrick.modules['MainMenuDropDown']={
 								if(link.textContent.replace(/\s*/gi, '') == '')
 									return;
 
+								if(link.href.match(/javascript\:/))
+									return;
+
 								var entry = {}
 								entry.text = Foxtrick.trim(link.textContent);
 								entry.link = link.href.replace(/^.*\/\/[^\/]+/, '');
 								menu.entries.push(entry);
 							}, links);
-							menuslist.push(menu);
+							
+							if(menu.entries.length)
+								menuslist.push(menu);
 						}	
 						
 					}, boxBodies);
