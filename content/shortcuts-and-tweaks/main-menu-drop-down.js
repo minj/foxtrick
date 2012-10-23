@@ -207,8 +207,8 @@ Foxtrick.modules['MainMenuDropDown']={
 								entry.link = link.href.replace(/^.*\/\/[^\/]+/, '');
 								menu.entries.push(entry);
 							}, links);
-							
-							if(menu.entries.length)
+
+							if(menu.entries.length > 0)
 								menuslist.push(menu);
 						}	
 						
