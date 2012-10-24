@@ -633,11 +633,13 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	showAway: false,
 	// split lineup into two for home/away
 	splitLineup: function(doc) {
+		this.hideOtherTeam(doc);
+		// that one started: stop again
+		//Foxtrick.stopListenToChange(doc);
 		var awayDivs = doc.querySelectorAll('div.playerBoxAway');
 		for (var i = 0; i < awayDivs.length; i++) {
 			awayDivs[i].style.top = (Number(awayDivs[i].style.top.match(/\d+/)) - 240) + 'px';
 		}
-		this.hideOtherTeam(doc);
 		var f = doc.getElementById('playersField');
 		var div = doc.createElement('div');
 		div.setAttribute('role', 'button');
