@@ -9,11 +9,16 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['match'],
 	OPTIONS: [
-		'DisplayTeamNameOnField', 'ShowSpecialties', 'ConvertStars', 'ShowFaces', 'StarCounter',
-		'StaminaCounter', 'HighlighEventPlayers', 'AddSubstiutionInfo', 'HighlightMissing'
+		'DisplayTeamNameOnField', 'ShowSpecialties',
+		'ConvertStars',
+		'SplitLineup',
+		'ShowFaces', 'StarCounter', 'StaminaCounter', 'HighlighEventPlayers', 'AddSubstiutionInfo',
+		'HighlightMissing'
 	],
 	OPTIONS_CSS: [
-		null, null, Foxtrick.InternalPath + 'resources/css/match-lineup-convert-stars.css'
+		null, null,
+		Foxtrick.InternalPath + 'resources/css/match-lineup-convert-stars.css',
+		Foxtrick.InternalPath + 'resources/css/match-lineup-split-lineup.css',
 	],
 	CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-tweaks.css',
 	run: function(doc) {
@@ -22,6 +27,13 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			return;
 		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
 			return;
+
+		var teamId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
+		if (teamId) {
+			var awayId = Foxtrick.Pages.Match.getAwayTeamId(doc);
+			if (awayId == teamId)
+				this.showAway = true;
+		}
 
 	},
 	// add substition icon for players on the field
@@ -94,6 +106,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				//this is bound to break easily
 				var subDiv = Foxtrick
 					.createFeaturedElement(doc, Foxtrick.modules['MatchLineupTweaks'], 'div');
+				subDiv.setAttribute('role', 'button');
 				Foxtrick.addClass(subDiv, 'ft-subDiv');
 				Foxtrick.addImage(doc, subDiv, {
 					src: iconSrc,
@@ -616,6 +629,50 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			ratingsDiv.parentNode.replaceChild(newDiv, ratingsDiv);
 		}
 	},
+	// which team to show in split
+	showAway: false,
+	// split lineup into two for home/away
+	splitLineup: function(doc) {
+		var awayDivs = doc.querySelectorAll('div.playerBoxAway');
+		for (var i = 0; i < awayDivs.length; i++) {
+			awayDivs[i].style.top = (Number(awayDivs[i].style.top.match(/\d+/)) - 240) + 'px';
+		}
+		this.hideOtherTeam(doc);
+		var f = doc.getElementById('playersField');
+		var div = doc.createElement('div');
+		div.setAttribute('role', 'button');
+		var alt = Foxtrickl10n.getString('MatchLineupTweaks.showOther');
+		Foxtrick.addImage(doc, div, {
+			src: '/Img/Icons/transparent.gif',
+			id: 'ft-split-arrow',
+			title: alt,
+			alt: alt,
+		});
+		Foxtrick.onClick(div, (function(module) {
+			return function(e) {
+				Foxtrick.stopListenToChange(doc);
+				module.showAway = !module.showAway;
+				module.hideOtherTeam(doc);
+				Foxtrick.startListenToChange(doc);
+			};
+		})(this));
+		f.appendChild(div);
+	},
+	hideOtherTeam: function(doc) {
+		var hideDivs = doc.querySelectorAll('div.playerBox' + (this.showAway ? 'Home' : 'Away'));
+		for (var i = 0; i < hideDivs.length; i++) {
+			hideDivs[i].style.display = 'none';
+		}
+		var showDivs = doc.querySelectorAll('div.playerBox' + (this.showAway ? 'Away' : 'Home'));
+		for (var i = 0; i < showDivs.length; i++) {
+			showDivs[i].style.display = 'block';
+		}
+		var f = doc.getElementById('playersField');
+		if (this.showAway)
+			Foxtrick.addClass(f, 'ft-field-away');
+		else
+			Foxtrick.removeClass(f, 'ft-field-away');
+	},
 
 	change: function(doc) {
 		if (Foxtrick.Pages.Match.isPrematch(doc)
@@ -626,28 +683,13 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		Foxtrick.stopListenToChange(doc);
 
-		var hId = doc.location.search.match(/HighlightPlayerID=(\d+)/i);
-		if (hId) {
-			var playerLinks = doc.querySelectorAll('.playersField > div.playerBoxHome > div > a, ' +
-											   '#playersBench > div#playersBenchHome' +
-											   ' > div.playerBoxHome > div > a,' +
-											   '.playersField > div.playerBoxAway > div > a, ' +
-											   '#playersBench > div#playersBenchAway' +
-											   ' > div.playerBoxAway > div > a');
-			var highlightPlayer = function(playerId) {
-				var link = Foxtrick.filter(function(link) {
-					return new RegExp(playerId).test(link.href);
-				}, playerLinks)[0];
-				if (link)
-					Foxtrick.addClass(link.parentNode.parentNode, 'ft-highlight-playerDiv-url');
-			};
-			highlightPlayer(hId[1]);
-		}
-
 		var playerDivs = doc.querySelectorAll('div.playerDiv');
 		if (playerDivs.length && playerDivs[0].getElementsByClassName('ft-indicatorDiv').length)
 			// been here before
 			return;
+
+		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'SplitLineup'))
+			this.splitLineup(doc);
 
 		for (var i = 0; i < playerDivs.length; i++) {
 			var player = playerDivs[i];
@@ -678,6 +720,24 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			ratings[i].setAttribute('ft-stars', count);
 		}
 
+
+		var hId = doc.location.search.match(/HighlightPlayerID=(\d+)/i);
+		if (hId) {
+			var playerLinks = doc.querySelectorAll('.playersField > div.playerBoxHome > div > a, ' +
+											   '#playersBench > div#playersBenchHome' +
+											   ' > div.playerBoxHome > div > a,' +
+											   '.playersField > div.playerBoxAway > div > a, ' +
+											   '#playersBench > div#playersBenchAway' +
+											   ' > div.playerBoxAway > div > a');
+			var highlightPlayer = function(playerId) {
+				var link = Foxtrick.filter(function(link) {
+					return new RegExp(playerId).test(link.href);
+				}, playerLinks)[0];
+				if (link)
+					Foxtrick.addClass(link.parentNode.parentNode, 'ft-highlight-playerDiv-url');
+			};
+			highlightPlayer(hId[1]);
+		}
 
 		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'DisplayTeamNameOnField'))
 			this.runTeamnNames(doc);

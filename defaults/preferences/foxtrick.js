@@ -433,6 +433,7 @@ pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.HighlighEventPlayers.en
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.HighlightMissing.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.ShowFaces.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.ShowSpecialties.enabled", true);
+pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.SplitLineup.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.StaminaCounter.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.StarCounter.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchOrderInterface.enabled", true);

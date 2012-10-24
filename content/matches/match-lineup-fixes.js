@@ -7,13 +7,26 @@
 
 Foxtrick.modules['MatchLineupFixes'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
-	PAGES: ['match'],
+	PAGES: ['match', 'matches', 'matchesArchive'],
 	OPTIONS: [
 		'FixWeatherSEs', 'AddStarsToSubs', 'FixMultipleEvents', 'AddLinksInOrders',
 		'SyncTimeline'
 	],
 	//CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-fixes.css',
 	run: function(doc) {
+		if (!Foxtrick.isPage('match', doc)) {
+			var lineupImgs = doc.querySelectorAll('#mainBody table img.matchOrder');
+			var id = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
+			for (var i = 0; i < lineupImgs.length; i++) {
+				var link = lineupImgs[i].parentNode;
+				var matches = link.href.match(/(.*?)(#.*)/);
+				if (matches.length)
+					link.href = matches[1] + '&TeamId=' + id + matches[2];
+			}
+			return;
+		}
+
+
 		// START PREPARATION STAGE
 
 		// this is where we fix HTs shit

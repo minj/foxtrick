@@ -1,0 +1,38 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
+
+#playersField {
+	min-height: 430px !important;
+}
+.ft-field-away {
+	background-position: bottom !important;
+}
+
+.ft-field-away .ft-match-lineup-tweaks-stamina-counter-sum-home,
+.ft-field-away .ft-match-lineup-tweaks-stars-counter-sum-home {
+	top: 56px !important;
+}
+.ft-field-away .ft-match-lineup-tweaks-stamina-counter-sum-away,
+.ft-field-away .ft-match-lineup-tweaks-stars-counter-sum-away {
+	top: 116px !important;
+}
+.ft-field-away .ft-match-lineup-tweaks-stamina-counter-diff,
+.ft-field-away .ft-match-lineup-tweaks-stars-counter-diff {
+	top: 86px !important;
+}
+#ft-split-arrow {
+	position: absolute;
+	cursor: pointer;
+	display: block;
+	left: 268px;
+	bottom: 20px;
+	height: 64px;
+	background: url(chrome://foxtrick/content/resources/img/arrows.png) no-repeat left bottom;
+	width: 64px;
+}
+.ft-field-away #ft-split-arrow {
+	background-position: top;
+	bottom: initial;
+	top: 20px;
+}
+
+}
