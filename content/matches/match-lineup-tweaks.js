@@ -41,7 +41,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	// with alt/title text for minute data
 	addSubInfo: function(doc) {
 
-		var subCells = doc.getElementsByClassName('highlightMovements');
+		var subCells = doc.querySelectorAll('.highlightMovements, .highlightCards');
 		if (!subCells.length)
 			return;
 
@@ -60,10 +60,13 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			SUB: 'substitution',
 			FORMATION: 'formation', // formation change: might be sub or behavior
 			BEHAVIOR: 'behavior',
-			SWAP: 'swap'
+			SWAP: 'swap',
+			RED: 'red',
+			YELLOW: 'yellow'
 		};
 		var SUB_IMAGES = {};
-		SUB_IMAGES[SUBSTITUTION_TYPES.SUB] = 'images/substitution.png';
+		SUB_IMAGES[SUBSTITUTION_TYPES.RED] = SUB_IMAGES[SUBSTITUTION_TYPES.SUB] =
+			'images/substitution.png';
 		SUB_IMAGES[SUBSTITUTION_TYPES.BEHAVIOR] = Foxtrick.InternalPath +
 			'resources/img/matches/behavior.png'
 		SUB_IMAGES[SUBSTITUTION_TYPES.SWAP] = Foxtrick.InternalPath +
@@ -74,6 +77,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			Foxtrickl10n.getString('MatchLineupTweaks.out'),
 			Foxtrickl10n.getString('MatchLineupTweaks.in')
 		];
+		SUB_TEXTS[SUBSTITUTION_TYPES.RED] = Foxtrickl10n.getString('MatchLineupTweaks.out');
 		SUB_TEXTS[SUBSTITUTION_TYPES.BEHAVIOR] = Foxtrickl10n.getString('MatchLineupTweaks.behavior');
 		SUB_TEXTS[SUBSTITUTION_TYPES.SWAP] = Foxtrickl10n.getString('MatchLineupTweaks.swap');
 
@@ -87,6 +91,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		};
 
 		var addSubDiv = function(id, min, type, isOut, otherId) {
+			if (type == SUBSTITUTION_TYPES.YELLOW)
+				return;
 			if (type == SUBSTITUTION_TYPES.FORMATION) {
 				// special case
 				type = otherId ? SUBSTITUTION_TYPES.SUB : SUBSTITUTION_TYPES.BEHAVIOR;
