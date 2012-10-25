@@ -93,8 +93,11 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var addSubDiv = function(id, min, type, isOut, otherId) {
 			if (type == SUBSTITUTION_TYPES.YELLOW)
 				return;
+			if (type == SUBSTITUTION_TYPES.BEHAVIOR && otherId)
+				// sub with behavior change only
+				type = SUBSTITUTION_TYPES.SUB;
 			if (type == SUBSTITUTION_TYPES.FORMATION) {
-				// special case
+				// special case: formation change
 				type = otherId ? SUBSTITUTION_TYPES.SUB : SUBSTITUTION_TYPES.BEHAVIOR;
 			}
 			var rawText;
