@@ -26,6 +26,18 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			return;
 		}
 
+		var browseLinks = doc.querySelectorAll('.speedBrowser a');
+		for (var i = 0; i < browseLinks.length; i++) {
+			var link = browseLinks[i];
+			Foxtrick.onClick(link, (function(link) {
+				return function(e) {
+					var l = doc.location.href.match(/(#.*)/);
+					var a = link.href.match(/(#.*)/);
+					if (l && !a)
+						link.href = link.href + l[1];
+			}})(link));
+		}
+
 
 		// START PREPARATION STAGE
 
