@@ -20,7 +20,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			for (var i = 0; i < lineupImgs.length; i++) {
 				var link = lineupImgs[i].parentNode;
 				var matches = link.href.match(/(.*?)(#.*)/);
-				if (matches.length)
+				if (matches && matches.length)
 					link.href = matches[1] + '&TeamId=' + id + matches[2];
 			}
 			return;
