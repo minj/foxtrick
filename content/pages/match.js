@@ -35,7 +35,8 @@ Foxtrick.Pages.Match = {
 		var links = doc.querySelectorAll('#mainBody a');
 		var team = Foxtrick.filter(function(a) {
 			var url = a.href + '';
-			return url.match(new RegExp('/Club/\\?TeamID=' + id));
+			var r = new RegExp('/Club/(?:NationalTeam/NationalTeam.aspx)?\\?TeamID=' + id, 'i');
+			return url.match(r);
 		}, links);
 		return team[0].textContent;
 	},
@@ -44,7 +45,8 @@ Foxtrick.Pages.Match = {
 		var links = doc.querySelectorAll('#mainBody a');
 		var team = Foxtrick.filter(function(a) {
 			var url = a.href + '';
-			return url.match(new RegExp('/Club/\\?TeamID=' + id));
+			var r = new RegExp('/Club/(?:NationalTeam/NationalTeam.aspx)?\\?TeamID=' + id, 'i');
+			return url.match(r);
 		}, links);
 		return team[0].textContent;
 	},
