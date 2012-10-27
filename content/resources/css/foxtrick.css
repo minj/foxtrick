@@ -288,4 +288,7 @@ background-color: #eed;
 	visibility: hidden;
 	height: 0;
 }
+.findSimilarPlayers {
+	width: 106% !important;
+}
 }
