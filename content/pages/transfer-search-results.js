@@ -105,15 +105,19 @@ Foxtrick.Pages.TransferSearchResults = {
 				var speciality = Foxtrick.trim(infoTable.rows[3].cells[1].textContent);
 				player.speciality = (speciality == "-") ? "" : speciality;
 				player.deadline = infoTable.rows[4].cells[1].cloneNode(true);
-				
+
 				player.transferCompare = doc.createElement('a');
 				player.transferCompare.textContent = Foxtrickl10n.getString('TransferCompare.abbr');
 				player.transferCompare.title = Foxtrickl10n.getString('TransferCompare');
 				player.transferCompare.href = player.nameLink.href.replace("/Club/Players/Player.aspx" ,"/Club/Transfers/TransferCompare.aspx");
-				
+
 				// right skill table - skills
 				var skillTable = playerInfo.getElementsByClassName("transferPlayerSkills")[0].getElementsByTagName("table")[0];
-				var skills = skillTable.getElementsByTagName("a");
+				var skills = Foxtrick.map(function(e) {
+					return e;
+				}, skillTable.getElementsByTagName('a'));
+				if (skillTable.getElementsByClassName('findSimilarPlayers').length)
+					skills.shift();
 				var skillOrder = ["stamina", "keeper", "playmaking", "passing", "winger", "defending", "scoring", "setPieces"];
 				for (var i = 0; i < skillOrder.length; ++i)
 					player[skillOrder[i]] = Number(skills[i].href.match(/ll=(\d+)/)[1]);
