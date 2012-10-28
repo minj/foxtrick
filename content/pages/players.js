@@ -68,9 +68,9 @@ Foxtrick.Pages.Players = {
 			}
 			else if (Foxtrick.Pages.Players.isNtPlayersPage(doc) || (options && options.NT)) {
 				var action = 'supporterstats', all = 'true';
-				if (options.NT && typeof(options.NT.action) != 'undefined')
+				if (options && options.NT && typeof(options.NT.action) != 'undefined')
 					action = options.NT.action;
-				if (options.NT && typeof(options.NT.all) != 'undefined')
+				if (options && options.NT && typeof(options.NT.all) != 'undefined')
 					all = options.NT.all;
 				args.push(['file', 'nationalplayers']);
 				args.push(['ShowAll', all]);
