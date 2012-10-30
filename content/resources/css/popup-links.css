@@ -55,11 +55,6 @@ html[dir="rtl"] ul.ft-popup-list {
 	left: -moz-initial;
 }
 
-/* just not in messages*/
-.message ul.ft-popup-list {
-	visibility:hidden;
-}
-
 ul.ft-popup-list-up {
 	bottom:12px; /* = text height */
 }
@@ -104,10 +99,17 @@ ul.ft-popup-list > li:hover {
 	display: none;
 }
 
-div.cfMessage, div.edited, div.cfHeader, div.feedItem, div.cfUserInfo, div.signature, div.playerInfo, .alert {
+div.cfMessage, div.edited, div.cfHeader, div.feedItem, div.cfUserInfo, div.signature, div.playerInfo,
+.alert, .tournamentInvite, .frontPageList, .fplMessageAuthor {
 	overflow: visible !important;
 }
-
+.tournamentInvite::after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	height: 0;
+}
 .HTMLToolbar  .alert {
 	overflow: hidden !important;
 }
