@@ -57,16 +57,14 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		// will be used to regex on image.src
 		var SUBSTITUTION_TYPES = {
-			SUB: 'substitution',
+			SUB: 'substitution|red', // treat red card as sub
 			FORMATION: 'formation', // formation change: might be sub or behavior
-			BEHAVIOR: 'behavior',
+			BEHAVIOR: 'behavior', // might be sub as well
 			SWAP: 'swap',
-			RED: 'red',
-			YELLOW: 'yellow'
+			YELLOW: 'yellow' // skipped
 		};
 		var SUB_IMAGES = {};
-		SUB_IMAGES[SUBSTITUTION_TYPES.RED] = SUB_IMAGES[SUBSTITUTION_TYPES.SUB] =
-			'images/substitution.png';
+		SUB_IMAGES[SUBSTITUTION_TYPES.SUB] = 'images/substitution.png';
 		SUB_IMAGES[SUBSTITUTION_TYPES.BEHAVIOR] = Foxtrick.InternalPath +
 			'resources/img/matches/behavior.png'
 		SUB_IMAGES[SUBSTITUTION_TYPES.SWAP] = Foxtrick.InternalPath +
@@ -77,7 +75,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			Foxtrickl10n.getString('MatchLineupTweaks.out'),
 			Foxtrickl10n.getString('MatchLineupTweaks.in')
 		];
-		SUB_TEXTS[SUBSTITUTION_TYPES.RED] = Foxtrickl10n.getString('MatchLineupTweaks.out');
 		SUB_TEXTS[SUBSTITUTION_TYPES.BEHAVIOR] = Foxtrickl10n.getString('MatchLineupTweaks.behavior');
 		SUB_TEXTS[SUBSTITUTION_TYPES.SWAP] = Foxtrickl10n.getString('MatchLineupTweaks.swap');
 
