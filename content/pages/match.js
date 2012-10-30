@@ -292,8 +292,9 @@ Foxtrick.Pages.Match = {
 		var playerData;
 		for (var i = 0; i < scripts.length; i++) {
 			if (regex.test(scripts[i].textContent)) {
-				playerData =
-					JSON.parse(regex.exec(scripts[i].textContent)[1]);
+				var json = regex.exec(scripts[i].textContent)[1];
+				json = json.replace(/\\"(.*?)\\"(?=[:,}])/g, '"$1"');
+				playerData = JSON.parse(json);
 				break;
 			}
 		}
