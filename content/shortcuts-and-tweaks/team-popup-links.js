@@ -406,6 +406,8 @@ Foxtrick.modules['TeamPopupLinks'] = {
 			if (!aLink.hasAttribute('href') || aLink.getElementsByTagName('img')[0] != null ||
 			    aLink.parentNode.className == 'liveTabText')
 				continue; // don't add to buttons, and htlive tabs
+			if (Foxtrick.hasClass(aLink.parentNode, 'message'))
+				continue; // skip forum messages
 			addSpan(aLink);
 		}
 

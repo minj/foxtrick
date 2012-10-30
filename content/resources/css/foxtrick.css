@@ -278,19 +278,10 @@ background-color: #eed;
 }
 
 /* why use this shit anyway?! */
-.mainRegular > .boxBody, .tournamentInvite {
-	overflow:inherit !important;
+.mainRegular > .boxBody {
+	overflow: visible !important;
 }
-.tournamentInvite::after {
-	content: ".";
-	display: block;
-	clear: both;
-	visibility: hidden;
-	height: 0;
-}
-.findSimilarPlayers {
-	width: 106% !important;
-}
+
 .sectorShirt
 {
 	background: url() no-repeat;
