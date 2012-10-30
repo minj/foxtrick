@@ -95,6 +95,7 @@ Foxtrick.modules['FriendlyInterface'] = {
 		}
 		else if (Foxtrick.isPage('guestbook', doc)
 			&& FoxtrickPrefs.isModuleOptionEnabled('FriendlyInterface', 'HideAnswerTo')) {
+			var links = doc.getElementById('mainBody').getElementsByTagName('a');
 			var answerToLinks = Foxtrick.filter(function(n) {
 				return (n.href.search(/Guestbook\.aspx/i) >= 0);
 			}, links);
