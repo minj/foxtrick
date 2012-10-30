@@ -619,11 +619,20 @@ Foxtrick.modules['MatchLineupFixes'] = {
 									sbjPlayer.PositionID = -1;
 								}
 								else {
-									sbjPlayer.PositionBehaviour = objPlayer.PositionBehaviour;
-									sbjPlayer.PositionID = objPlayer.PositionID;
-									objPlayer.PositionBehaviour = Number(sub.xml
+									var orderType = Number(sub.xml
+										.getElementsByTagName('OrderType')[0].textContent);
+									var targetPlayer = objPlayer, sourcePlayer = sbjPlayer;
+									if (orderType == 3) {
+										// for some weird reason NewPositionId
+										// is applied to sbjPlayer in swaps
+										targetPlayer = sbjPlayer;
+										sourcePlayer = objPlayer;
+									}
+									sourcePlayer.PositionBehaviour = targetPlayer.PositionBehaviour;
+									sourcePlayer.PositionID = targetPlayer.PositionID;
+									targetPlayer.PositionBehaviour = Number(sub.xml
 										.getElementsByTagName('NewPositionBehaviour')[0].textContent);
-									objPlayer.PositionID = Number(sub.xml
+									targetPlayer.PositionID = Number(sub.xml
 										.getElementsByTagName('NewPositionId')[0].textContent);
 
 									setStarsIfKnown(sbjPlayer, finalRatings);
