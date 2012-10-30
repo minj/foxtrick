@@ -294,7 +294,13 @@ Foxtrick.Pages.Match = {
 			if (regex.test(scripts[i].textContent)) {
 				var json = regex.exec(scripts[i].textContent)[1];
 				json = json.replace(/\\"(.*?)\\"(?=[:,}])/g, '"$1"');
-				playerData = JSON.parse(json);
+				try {
+					playerData = JSON.parse(json);
+				}
+				catch (e) {
+					Foxtrick.log('FAILED to parse player JSON', e);
+					return null;
+				}
 				break;
 			}
 		}
