@@ -9,15 +9,15 @@
 
 .ft-field-away .ft-match-lineup-tweaks-stamina-counter-sum-home,
 .ft-field-away .ft-match-lineup-tweaks-stars-counter-sum-home {
-	top: 56px !important;
+	top: 56px;
 }
 .ft-field-away .ft-match-lineup-tweaks-stamina-counter-sum-away,
 .ft-field-away .ft-match-lineup-tweaks-stars-counter-sum-away {
-	top: 116px !important;
+	top: 116px;
 }
 .ft-field-away .ft-match-lineup-tweaks-stamina-counter-diff,
 .ft-field-away .ft-match-lineup-tweaks-stars-counter-diff {
-	top: 86px !important;
+	top: 86px;
 }
 #ft-split-arrow {
 	position: absolute;

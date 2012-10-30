@@ -22,31 +22,30 @@ html[dir="ltr"] #timelineEventDetails {
 	-webkit-border-radius: 7px;
 	border-radius: 7px;
 	padding: 3px;
+	position: absolute;
 }
 
 html[dir="rtl"] .ft-match-lineup-tweaks-teamname-home {
 	top: 15px;
 	right: 15px;
 	left: initial;
-	position: absolute;
 }
 html[dir="rtl"] .ft-match-lineup-tweaks-teamname-away {
 	bottom: 15px;
 	right: 15px;
 	left: initial;
-	position: absolute;
 }
 
 
 html[dir="ltr"] .ft-match-lineup-tweaks-teamname-home {
 	top: 15px;
 	left: 15px;
-	position: absolute;
+	right: initial;
 }
 html[dir="ltr"] .ft-match-lineup-tweaks-teamname-away {
 	bottom: 15px;
 	left: 15px;
-	position: absolute;
+	right: initial;
 }
 
 
@@ -69,66 +68,36 @@ html[dir="ltr"] .ft-match-lineup-tweaks-teamname-away {
 	text-align: center;
 }
 
+.ft-match-lineup-tweaks-stars-counter-sum-home, .ft-match-lineup-tweaks-stamina-counter-sum-home {
+	top: 289px;
+}
+.ft-match-lineup-tweaks-stars-counter-sum-away, .ft-match-lineup-tweaks-stamina-counter-sum-away {
+	top: 349px;
+}
+.ft-match-lineup-tweaks-stars-counter-diff, .ft-match-lineup-tweaks-stamina-counter-diff {
+	top: 319px;
+}
 
-html[dir="rtl"] .ft-match-lineup-tweaks-stars-counter-sum-home {
-	top: 289px !important;
+html[dir="rtl"] .ft-match-lineup-tweaks-stars-counter-sum-home,
+html[dir="rtl"] .ft-match-lineup-tweaks-stars-counter-sum-away,
+html[dir="rtl"] .ft-match-lineup-tweaks-stars-counter-diff,
+html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-sum-home,
+html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-sum-away,
+html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-diff
+{
 	right: 15px;
+	left: initial;
 }
-html[dir="rtl"] .ft-match-lineup-tweaks-stars-counter-sum-away {
-	top: 349px !important;
-	right: 15px;
-}
-html[dir="rtl"] .ft-match-lineup-tweaks-stars-counter-diff {
-	top: 319px !important;
-	right: 15px;
-}
-
-
-html[dir="ltr"] .ft-match-lineup-tweaks-stars-counter-sum-home {
-	top: 289px !important;
+html[dir="ltr"] .ft-match-lineup-tweaks-stars-counter-sum-home,
+html[dir="ltr"] .ft-match-lineup-tweaks-stars-counter-sum-away,
+html[dir="ltr"] .ft-match-lineup-tweaks-stars-counter-diff,
+html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-sum-home,
+html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-sum-away,
+html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-diff
+{
 	left: 15px;
+	right: initial;
 }
-html[dir="ltr"] .ft-match-lineup-tweaks-stars-counter-sum-away {
-	top: 349px !important;
-	left: 15px;
-}
-html[dir="ltr"] .ft-match-lineup-tweaks-stars-counter-diff {
-	top: 319px !important;
-	left: 15px;
-}
-
-/* stamina counter */
-
-html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-sum-home {
-	top: 289px !important;
-	left: 15px;
-	right: inherit !important; /* have to cancel stupid HT values */
-}
-html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-sum-away {
-	top: 349px !important;
-	left: 15px;
-	right: inherit !important;
-}
-html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-diff {
-	top: 319px !important;
-	left: 15px;
-	right: inherit !important;
-}
-
-
-html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-sum-home {
-	top: 289px !important;
-	right: 15px;
-}
-html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-sum-away {
-	top: 349px !important;
-	right: 15px;
-}
-html[dir="ltr"] .ft-match-lineup-tweaks-stamina-counter-diff {
-	top: 319px !important;
-	right: 15px;
-}
-
 
 .ft-highlight-playerDiv-bench {
 	border-color: red !important;
@@ -210,6 +179,7 @@ div.playerDiv .sectorShirt.ft-smallFaceCard img[src^="/Img/Avatar/hair/"] {
 	width: 98px;
 	left: 2px; /* 0 for rtl */
 	line-height: 1.2em;
+	direction: ltr;
 }
 .ft-indicatorDiv > div {
 	display: inline-block;
@@ -257,4 +227,5 @@ div.playerDiv div.sectorShirt + div > div > div {
 #playersBenchAway {
 	margin-bottom: -30px !important;
 }
+
 }
