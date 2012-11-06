@@ -11,7 +11,7 @@ Foxtrick.modules['MainMenuDropDown']={
 	OPTIONS : ['DisregardFirstHeader'],
 	CSS : [Foxtrick.InternalPath + 'resources/css/main-menu-drop-down.css'],
 
-	buildMainMenu : function(doc){
+	convertMainMenuToUnorderedList : function(doc){
 		var menuLinks = doc.querySelectorAll('#menu > a');
 		var list = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MainMenuDropDown, 'ul');
 		list.id = 'ft-drop-down-menu';
@@ -31,6 +31,11 @@ Foxtrick.modules['MainMenuDropDown']={
 
 		var addSeperator = function(list, text){
 			var li = doc.createElement('li');
+			var hr = doc.createElement('hr');
+			li.appendChild(hr);
+			list.appendChild(li);
+
+			li = doc.createElement('li');
 			if(text){
 				var h3 = doc.createElement('h3');
 				h3.textContent = text;
@@ -63,35 +68,28 @@ Foxtrick.modules['MainMenuDropDown']={
 				list.appendChild(li);
 			}, menu.entries);
 		}, menus);
+
+
 		node.appendChild(list);
-
-		//add hr for displaying info later
-		addSeperator(list);
-
-		var li = doc.createElement('li');
-		Foxtrick.addClass(li,"ft-mmdd-annoy");
-		li.textContent = "Work in progress stuff, the menu learns as you go!";
-		list.appendChild(li);
-
 	},
 	run : function(doc){
 		
-		//put #menu > a in #menu > ul > lis
-		this.buildMainMenu(doc);
+		//put #menu > a in #menu > ul > li', logout is left as is
+		this.convertMainMenuToUnorderedList(doc);
 
 		//current page
-		var isOnMainMenuPage = function(){
-			var menuLinks = doc.querySelectorAll('#menu a');
-			var ret = false;
-			Foxtrick.map(function(menuLink){
-				if(Foxtrick.isPageHref(menuLink.href.replace(/^.*\/\/[^\/]+/, '') +'$', doc.location.href))
-					ret = true;
-			}, menuLinks);	
-			return ret;
-		}
+		// var isOnMainMenuPage = function(){
+		// 	var menuLinks = doc.querySelectorAll('#menu a');
+		// 	var ret = false;
+		// 	Foxtrick.map(function(menuLink){
+		// 		if(Foxtrick.isPageHref(menuLink.href.replace(/^.*\/\/[^\/]+/, '') +'$', doc.location.href))
+		// 			ret = true;
+		// 	}, menuLinks);	
+		// 	return ret;
+		// }
+
 
 		var NavigationStructure = function(){
-			//this.language = ;
 			this.menus = {
 				primary : [],
 				secondary : []
@@ -125,19 +123,23 @@ Foxtrick.modules['MainMenuDropDown']={
 			this.getSecondaryMenusForUrl = function(url){
 				return this.getMenusForUrl(url, navi.menus.secondary);
 			}
+			this.update = function(menu, target){
+				for(var existingMenu in target){
+					Foxtrick.log(target[existingMenu].name, target[existingMenu].name);
+				}
+			}
 			this.concat = function(menus, target){
 				var secondary = target;
 				Foxtrick.map(function(newMenu){
 					var exists = Foxtrick.any(function(menu){
-						if(menu.url === newMenu.url && menu.name === newMenu.name){
-							existing_menu = menu;
+						if(menu.url === newMenu.url && menu.name === newMenu.name)
 							return true;
-						}
-
+						
 						return false;
 					}, secondary);
 					if(!exists)
 						secondary.push(newMenu);
+					
 				}, menus);
 				target = secondary;	
 			}

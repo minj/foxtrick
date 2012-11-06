@@ -18,6 +18,8 @@ ul#ft-drop-down-menu {
 	height: 1px;
 	color: white; /* to be removed later */
 	border-style: none !important;
+	margin-top: 1px;
+	margin-bottom: 1px;
 }
 
 ul.ft-drop-down-submenu a {
