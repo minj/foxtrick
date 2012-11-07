@@ -95,10 +95,10 @@ Foxtrick.modules['MainMenuDropDown']={
 				secondary : []
 			}
 			this.save = function(){
-				Foxtrick.localSet('Menu.v2.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId + '.' + FoxtrickPrefs.getString('htLanguage'), this);
+				Foxtrick.localSet('Menu.v3.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId + '.' + FoxtrickPrefs.getString('htLanguage'), this);
 			}
 			this.load = function(func){
-				Foxtrick.localGet('Menu.v2.'  + Foxtrick.modules['Core'].getSelfTeamInfo().teamId + '.' + FoxtrickPrefs.getString('htLanguage'), function(menu){
+				Foxtrick.localGet('Menu.v3.'  + Foxtrick.modules['Core'].getSelfTeamInfo().teamId + '.' + FoxtrickPrefs.getString('htLanguage'), function(menu){
 					if(!menu){
 						func(new NavigationStructure());
 					} else {
