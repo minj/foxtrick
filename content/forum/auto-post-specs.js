@@ -38,6 +38,11 @@ Foxtrick.modules['AutoPostSpecs'] = {
 
 			var textarea = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody');
 			var txt = textarea.value;
+
+			var matched = txt.match('FoxTrick ' + Foxtrick.version());
+			if(matched === null)
+				return;
+			
 			txt = txt + '\n[hr][spoiler]' + 'FoxTrick ' + Foxtrick.version() + ' ' + Foxtrick.branch() + ' - Stage: ' + Foxtrick.isStage(doc) + ' - Skin: ' + (Foxtrick.util.layout.isStandard(doc)?'normal':'simple') + ' - ' + FoxtrickPrefs.getString('htLanguage') + ' - '  + window.screen.availWidth + ' x ' + window.screen.availHeight + ' - ' + navigator.userAgent + ' - ' + navigator.platform + '[/spoiler]';
 			textarea.value = txt;
 			setCaretPosition(textarea, 0);
