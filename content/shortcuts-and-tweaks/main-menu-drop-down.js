@@ -166,14 +166,14 @@ Foxtrick.modules['MainMenuDropDown']={
 								//that's okay
 							} else if(boxBody.childNodes[child].tagName != 'A'){
 								//hack out those anchor tags that are wrapped in paragraphs for some reason
-								if(boxBody.childNodes[child].tagName == 'P'){
+								if(boxBody.childNodes[child].tagName == 'P' || boxBody.childNodes[child].tagName == 'SPAN'){
 									var ok = true;
 									Foxtrick.map(function(node){
 										if(!isEmptyTextNode(node) && node.tagName != 'A')
 											ok = false;
 									}, boxBody.childNodes[child].childNodes);
 									if(ok){
-										Foxtrick.log("Hacked arround unecessary <p> wrapping");
+										Foxtrick.log("Hacked arround unecessary <p>/</span> wrapping");
 										continue;
 									}
 								} else if(boxBody.childNodes[child].tagName == 'DIV'){
@@ -259,8 +259,8 @@ Foxtrick.modules['MainMenuDropDown']={
 		var navi = new NavigationStructure();
 		navi.load(function(loaded){
 			navi = loaded;
-			navi.learn(doc);
-			navi.save();
+			navi.learn(doc); //learn current page
+			navi.save();	 //save to localstore
 
 			//build the menu
 			var links = doc.querySelectorAll('#menu > ul > li > a');
@@ -328,7 +328,7 @@ Foxtrick.modules['MainMenuDropDown']={
 				return matches[1];
 			return null;
 		}
-		function color(text){
+		function textColor(text){
 			var re = new RegExp('#menu\\s*a\\s*{.*\\s*color:([^;]+);', 'i');
 			var matches = text.match(re);
 			if(matches)
@@ -344,7 +344,7 @@ Foxtrick.modules['MainMenuDropDown']={
 						// var hbc = hoverBgColor(rule.cssText);
 						// var hc = hoverColor(rule.cssText);
 						// var bc = bgColor(rule.cssText);
-						var c = color(rule.cssText);
+						var c = textColor(rule.cssText);
 						
 						// if(hbc) Foxtrick.log("hover bg color",hbc);
 						// if(bc) Foxtrick.log("text bg c",bc);
