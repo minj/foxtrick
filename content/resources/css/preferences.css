@@ -338,14 +338,9 @@ html[dir="rtl"] #note
 	right: auto;
 	left: 20px;
 }
-
-html[dir="rtl"] .alert > p
-{
-	padding-left: 100px;
-}
 .alert > p 
 {
-	padding-right: 100px;	
+	padding: 4px;	
 }
 .alert
 {
