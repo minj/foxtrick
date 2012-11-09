@@ -24,7 +24,6 @@ ul#ft-drop-down-menu {
 
 ul.ft-drop-down-submenu a {
 	overflow: hidden;
-	max-width: 139px;
 }
 ul.ft-drop-down-submenu {
 	background-color: #277F31;
@@ -71,6 +70,8 @@ html[data-theme="standard"] ul.ft-drop-down-submenu {
 	z-index: 203;
 	top: 35px;
 	padding: 5px 5px 5px !important;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
 }
 
 html[data-theme="simple"] ul.ft-drop-down-submenu-2,
@@ -79,6 +80,8 @@ html[data-theme="simple"] ul.ft-drop-down-submenu {
 	z-index: 203;
 	top: 23px;
 	padding: 5px 5px 5px !important;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
 }
 
 html[dir="rtl"] ul.ft-drop-down-submenu a {
