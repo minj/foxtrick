@@ -17,7 +17,39 @@ da:
         <p>Mozilla-browsere også kan afspille lyde direkte fra din harddisk (fil urls) uden størrelse grænse. Nemmeste måde at få det rigtige format: I browser skriv Ctrl + o, browse til den lydfil, og vælg den. I adresselinjen på toppen er nu det rigtige link til den lokale fil (e file:///c:/sound.wav). Kopiér og indsæt dette i redigeringsfeltet for lydene. </p>
     authorize: 
       question: Hvorfor bør jeg tillade FoxTrick at få adgang til mit hold data?
-      answer: 
+      answer: |
+        <p>Selv om de fleste nødvendige data FoxTrick skal bruge, kan hentes direkte fra den side, du kigger på,kræver visse moduler stadig download af data fra Hattrick for at fungere korrekt.</p>
+        
+        <p>Hvis du vil hente data fra Hattrick, herunder data af dit hold, ligaer, og landshold, skal du godkende FoxTrick på forhånd</p>
+        
+        <p>Du godkender FoxTrick ved at oplyse dit brugernavn og adgangskode på chpp.hattrick.org til gengæld for ​​en bekræftelseskode, som du giver til FoxTrick. FoxTrick vil ikke vide dit brugernavn eller adgangskode i hele processen.</p>
+        
+        <p>Hvis du vil vide mere om godkendelses processen, kan du læse <linkCHPPDesc> CHPP - Sådan fungerer det </ linkCHPPDesc> på Hattrick.</p>
+        
+        <p>Nogle moduler kræver dataadgang til at fungere korrekt:</p>
+        
+        <ul>
+        <li><module>CrossTable</module></li>
+        <li><module>ExtraPlayerInfo</module></li>
+        <li><module>MatchPlayerColouring</module></li>
+        <li><module>MyMonitor</module></li>
+        <li><module>NtPeek</module></li>
+        <li><module>SeriesFlags</module></li>
+        </ul>
+        
+        <p>Nogle moduler vil kunne yde omfattende info, hvis de kan få adgang til data fra Hattrick:</p>
+        
+        <ul>
+        <li><module>SkillTable</module></li>
+        <li><module>TeamStats</module></li>
+        </ul>
     privacy: 
       question: Hvordan vil FoxTrick beskytte mine personlige oplysninger?
-      answer: 
+      answer: |
+        <p>FoxTrick vil ikke uploade nogen af ​​dine data eller præferencer til en server på FoxTrick, ej heller vil FoxTrick sende nogen af ​​dine private data, herunder, dit brugernavn, adgangskode og spiller ID forbundet med spiller evner til tredjepart</p>
+        
+        <p>De fleste data videregivet til tredjemand, medmindre det udtrykkeligt er angivet nedenfor, sendes med HTTP GET-metoden, og vil kun blive sendt ved at klikke på et link.</p>
+        
+        <p>Dvs. at du vil være i stand til at se, hvilke data der videregives ved at gennemgå URI (Uniform Resource Identifier) af et eksternt link, og ingen data vil blive sendt uden dit samtykke. Som allerede nævnt, ingen private data er involveret.</p>
+        
+        <p>Undtagelserne er moduler <module>HTMSPrediction</module> og <module>HTEVPrediction</module>, , hvor kamp ratings videregives til og modtages fra de respektive sites med XMLHttpRequest.</p>
