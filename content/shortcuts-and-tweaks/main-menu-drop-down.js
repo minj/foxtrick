@@ -146,7 +146,7 @@ Foxtrick.modules['MainMenuDropDown']={
 			this.learn = function(doc){
 				//learns secondary menus from current document
 				var getSecondaryMenus = function(doc){
-					var boxBodies = doc.querySelectorAll('#sidebar > .sidebarBox > .boxBody');
+					var boxBodies = doc.querySelectorAll('.sidebarBox > .boxBody');
 
 					var menuslist = [];
 					Foxtrick.map(function(boxBody){
@@ -212,8 +212,7 @@ Foxtrick.modules['MainMenuDropDown']={
 
 							if(menu.entries.length > 0)
 								menuslist.push(menu);
-						}	
-						
+						} 
 					}, boxBodies);
 					return menuslist;
 				}
