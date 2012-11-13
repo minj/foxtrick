@@ -31,24 +31,28 @@ Foxtrick.Pages.Match = {
 		return Foxtrick.util.id.getTeamIdFromUrl(link.href);
 	},
 	getHomeTeamName: function(doc) {
-		var id = this.getHomeTeamId(doc);
-		var links = doc.querySelectorAll('#mainBody a');
-		var team = Foxtrick.filter(function(a) {
-			var url = a.href + '';
-			var r = new RegExp('/Club/(?:NationalTeam/NationalTeam.aspx)?\\?TeamID=' + id, 'i');
-			return url.match(r);
-		}, links);
-		return team[0].textContent;
+		if (this.hasNewRatings(doc)) {
+			var teams = doc.querySelectorAll('h1 > a, h1 > span > a');
+			var homeIdx = Foxtrick.util.layout.isRtl(doc) ? 1 : 0;
+			var link = teams[homeIdx];
+		}
+		else {
+			var table = this.getRatingsTable(doc);
+			var link = table.rows[0].cells[1].getElementsByTagName('a')[0];
+		}
+		return link.textContent;
 	},
 	getAwayTeamName: function(doc) {
-		var id = this.getAwayTeamId(doc);
-		var links = doc.querySelectorAll('#mainBody a');
-		var team = Foxtrick.filter(function(a) {
-			var url = a.href + '';
-			var r = new RegExp('/Club/(?:NationalTeam/NationalTeam.aspx)?\\?TeamID=' + id, 'i');
-			return url.match(r);
-		}, links);
-		return team[0].textContent;
+		if (this.hasNewRatings(doc)) {
+			var teams = doc.querySelectorAll('h1 > a, h1 > span > a');
+			var awayIdx = Foxtrick.util.layout.isRtl(doc) ? 0 : 1;
+			var link = teams[awayIdx];
+		}
+		else {
+			var table = this.getRatingsTable(doc);
+			var link = table.rows[0].cells[2].getElementsByTagName('a')[0];
+		}
+		return link.textContent;
 	},
 	isPrematch: function(doc) {
 		return (doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlPreMatch') != null);
