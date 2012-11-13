@@ -36,6 +36,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 			var ret = {};
 			var desc = div.getElementsByClassName('eventItemText')[0];
 			ret.text = desc.textContent;
+			ret.text = ret.text.replace(/^\s\s*/, '');
 			ret.time = ret.text.match(/^\d{2}:\d{2}/) + '';
 			var URL = desc.getElementsByTagName('a')[0];
 			ret.URL = (URL) ? URL.href : null;
