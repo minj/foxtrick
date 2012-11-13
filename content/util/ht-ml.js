@@ -23,8 +23,8 @@ Foxtrick.util.htMl.getId = function(node) {
 		{ type : "Youth Player", re : /YouthPlayerID=(\d+)/i, tag : "youthplayerid" },
 		{ type : "Team", re : /\/Club\/\?TeamID=(\d+)/i, tag : "teamid" },
 		{ type : "Youth Team", re : /\?YouthTeamID=(\d+)/i, tag : "youthteamid" },
-		{ type : "Youth Match", re : /\?matchID=(\d+).+?&SourceSystem=Youth/i, tag : "youthmatchid" },
-		{ type : "Tournament Match", re : /\?matchID=(\d+).+?SourceSystem=HTOIntegrated/i, tag : "tournamentmatchid"  },
+		{ type : "Youth Match", re : /\?matchID=(\d+).*?&SourceSystem=Youth/i, tag : "youthmatchid" },
+		{ type : "Tournament Match", re : /\?matchID=(\d+).*?SourceSystem=HTOIntegrated/i, tag : "tournamentmatchid"  },
 		{ type : "Match", re : /\?matchID=(\d+)/i, tag : "matchid" }, // behind youth and tournament, so they get detected first
 		{ type : "Federation", re : /\?AllianceID=(\d+)/i, tag : "federationid" },
 		{ type : "Series", re : /\?LeagueLevelUnitID=(\d+)/i, tag : "leagueid" },
@@ -241,7 +241,7 @@ Foxtrick.util.htMl.getMarkupFromNodeRec = function(node) {
 		ret = "[u]" + ret + "[/u]";
 	}
 
-	if (computedStyle && computedStyle.getPropertyValue("display") === "block" 
+	if (computedStyle && computedStyle.getPropertyValue("display") === "block"
 		 || nodeName === "h1" || nodeName === "h2" || nodeName === "h3" || nodeName === "h4") {
 		ret = '\n' + ret + '\n';
 	}
@@ -274,7 +274,7 @@ Foxtrick.util.htMl.getHtMl = function(node) {
 	}
 	return null;
 };
-	
+
 Foxtrick.util.htMl.getTable = function(node) {
 	var table = null;
 	var currentObj = node;
