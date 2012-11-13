@@ -23,8 +23,8 @@ Foxtrick.util.htMl.getId = function(node) {
 		{ type: 'Youth Player', re: /YouthPlayerID=(\d+)/i, tag: 'youthplayerid' },
 		{ type: 'Team', re: /\/Club\/\?TeamID=(\d+)/i, tag: 'teamid' },
 		{ type: 'Youth Team', re: /\?YouthTeamID=(\d+)/i, tag: 'youthteamid' },
-		{ type: 'Youth Match', re: /\?matchID=(\d+).+?&SourceSystem=Youth/i, tag: 'youthmatchid' },
-		{ type: 'Tournament Match', re: /\?matchID=(\d+).+?SourceSystem=HTOIntegrated/i,
+		{ type: 'Youth Match', re: /\?matchID=(\d+).*?&SourceSystem=Youth/i, tag: 'youthmatchid' },
+		{ type: 'Tournament Match', re: /\?matchID=(\d+).*?SourceSystem=HTOIntegrated/i,
 			tag: 'tournamentmatchid' },
 		{ type: 'Match', re: /\?matchID=(\d+)/i, tag: 'matchid' },
 		// behind youth and tournament, so they get detected first
