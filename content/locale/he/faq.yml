@@ -2,17 +2,17 @@
 he: 
   faq: 
     style: 
-      question: 
+      question: כיצד אוכל לעצב את הפוקסטריק שלי?
       answer: 
     sound-format: 
-      question: 
+      question: אילו סוגי קבצים מותרים עבור צלילי התראה?
       answer: 
     sound-location: 
-      question: 
+      question: מהי מגבלת הגודל עבור צלילי התראה, והיכן ניתן למקמם?
       answer: 
     authorize: 
-      question: 
+      question: למה לי לאשר לפוקסטריק לגשת למידע על קבוצתי?
       answer: 
     privacy: 
-      question: 
+      question: כיצד פוקסטריק יגן על פרטיותי?
       answer: 
