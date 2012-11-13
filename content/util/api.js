@@ -31,7 +31,7 @@ Foxtrick.util.api = {
 	authorizationQueued : false,
 	authorize : function(doc) {
 		if (Foxtrick.util.api.authorizationQueued)
-			return;			
+			return;
 		else {
 			Foxtrick.util.api.authorizationQueued = true;
 			window.setTimeout(function(){
@@ -40,7 +40,7 @@ Foxtrick.util.api = {
 			},0);
 		}
 	},
-	
+
 	_authorize : function(doc) {
 		Foxtrick.stopListenToChange(doc);
 
@@ -135,7 +135,8 @@ Foxtrick.util.api = {
 					}); // save token and secret
 				}); // after hitting "authorize" button
 				inputPar.appendChild(button);
-				Foxtrick.startListenToChange(doc);
+				//disabled to prevent auth-reset on dynamic pages
+				//Foxtrick.startListenToChange(doc);
 			}); // get authorize URL with Foxtrick.util.load.async()
 			Foxtrick.startListenToChange(doc);
 		}); // initial authorize link event listener
@@ -172,7 +173,7 @@ Foxtrick.util.api = {
 		Foxtrick.sessionGet('xml_cache.'+parameters_str, function(xml_cache) {
 			Foxtrick.sessionSet('xml_cache.'+parameters_str,
 							{ xml_string:xml_cache.xml_string, cache_lifetime : cache_lifetime });
-		});	
+		});
 	},
 
 	addClearCacheLink : function(doc) {
@@ -228,7 +229,7 @@ Foxtrick.util.api = {
 				callback(null, Foxtrickl10n.getString("api.serverUnavailable"));
 				return;
 			}
-			
+
 			var parameters_str = JSON.stringify(parameters);
 			Foxtrick.sessionGet('xml_cache.'+parameters_str, function(xml_cache) {
 				if (xml_cache) Foxtrick.log("ApiProxy: options: ",options,
@@ -248,7 +249,7 @@ Foxtrick.util.api = {
 						callback(null, Foxtrickl10n.getString("api.serverUnavailable"));
 						return;
 					}
-					
+
 					var parser = new window.DOMParser();
 					try {
 						callback (parser.parseFromString( JSON.parse(xml_cache.xml_string), "text/xml"));
@@ -270,17 +271,17 @@ Foxtrick.util.api = {
 					// process queued requested
 					var process_queued = function(x, status) {
 						var errorText = null;
-						if (x == null) 
+						if (x == null)
 							errorText = Foxtrickl10n.getString("api.failure");
 						else {
-							var ErrorNode = x.getElementsByTagName('Error')[0]; 
+							var ErrorNode = x.getElementsByTagName('Error')[0];
 							if (typeof(ErrorNode) !== 'undefined') {
 								// chpp api return error xml
 								errorText = ErrorNode.textContent;
 								x = null;
 							}
 						}
-						if (status == 503) 
+						if (status == 503)
 							errorText = Foxtrickl10n.getString("api.serverUnavailable");
 						for (var i=0; i< Foxtrick.util.api.queue[parameters_str].length; ++i)
 							Foxtrick.util.api.queue[parameters_str][i](x, errorText);
@@ -383,10 +384,10 @@ Foxtrick.util.api = {
 		var index = 0, responses = [];
 		var processSingle = function(last_response, errorText){
 			// collect responses
-			if (index != 0) 
+			if (index != 0)
 				responses.push( last_response );
 			// return if finished
-			if (index == batchParameters.length) 
+			if (index == batchParameters.length)
 				callback(responses, errorText);
 			else
 				// load next file
@@ -394,7 +395,7 @@ Foxtrick.util.api = {
 		};
 		processSingle();
 	},
-	
+
 	invalidateAccessToken : function() {
 		var teamId = Foxtrick.util.id.getOwnTeamId();
 		var array = FoxtrickPrefs.getAllKeysOfBranch('oauth.'+teamId);
