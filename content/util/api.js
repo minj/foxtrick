@@ -137,7 +137,8 @@ Foxtrick.util.api = {
 					}); // save token and secret
 				}); // after hitting 'authorize' button
 				inputPar.appendChild(button);
-				Foxtrick.startListenToChange(doc);
+				//disabled to prevent auth-reset on dynamic pages
+				//Foxtrick.startListenToChange(doc);
 			}); // get authorize URL with Foxtrick.util.load.async()
 			Foxtrick.startListenToChange(doc);
 		}); // initial authorize link event listener
