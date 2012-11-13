@@ -685,6 +685,9 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
 			return;
 
+		if (Foxtrick.Pages.Match.isWalkOver(doc.querySelector('div.mainBox table')))
+			return;
+
 		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupFixes', 'SyncTimeline'))
 			Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath +
 										'resources/js/match-timeline-sync.js');
