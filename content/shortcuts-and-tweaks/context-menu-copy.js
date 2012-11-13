@@ -92,11 +92,11 @@ if (Foxtrick.platform != 'Opera' && Foxtrick.platform != 'Mobile' && Foxtrick.pl
 				}, true);
 			};
 
-			if (Foxtrick.platform == "Firefox") 
+			if (Foxtrick.platform == "Firefox")
 				firefoxInit();
-			else if (Foxtrick.platform == "Chrome") 
+			else if (Foxtrick.platform == "Chrome")
 				chromeInit();
-			else if (Foxtrick.platform == "Safari") 
+			else if (Foxtrick.platform == "Safari")
 				safariInit();
 		},
 
@@ -167,7 +167,7 @@ if (Foxtrick.platform != 'Opera' && Foxtrick.platform != 'Mobile' && Foxtrick.pl
 					}
 					return active_entries;
 				};
-		
+
 				if (Foxtrick.platform == "Safari") {
 					doc.addEventListener("contextmenu", function(ev) {
 						collectData(ev.target);
@@ -175,11 +175,11 @@ if (Foxtrick.platform != 'Opera' && Foxtrick.platform != 'Mobile' && Foxtrick.pl
 					}, false);
 				}
 				else if (Foxtrick.platform == "Chrome") {
-					doc.addEventListener('mousedown', function(ev) {
-						if (ev.button == 2) { // right mouse down
+					doc.addEventListener('contextmenu', function(ev) {
+						//if (ev.button == 2) { // right mouse down
 							collectData(ev.target);
 							chrome.extension.sendRequest({ req : "updateContextMenu", entries: getEntries() });
-						}
+						//}
 					}, false);
 				}
 			}
