@@ -66,6 +66,12 @@ ul.ft-popup-list-down {
 .ft-popup-span:hover ul.ft-popup-list {
 	display: block !important;
 }
+
+/* just not in messages*/
+.message:hover ul.ft-popup-list {
+	display: none !important;
+}
+
 ul.ft-popup-list > li {
 	white-space: nowrap;
 	height: 20px;

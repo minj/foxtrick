@@ -132,7 +132,7 @@ Foxtrick.modules["TeamPopupLinks"]={
 			moreCheck.type = "checkbox";
 			moreCheck.setAttribute("pref", "module.TeamPopupLinks." + i + ".more");
 			moreCell.appendChild(moreCheck);
-			
+
 			var newTab = doc.createElement("td");
 			row.appendChild(newTab);
 			var newTabCheck = doc.createElement("input");
@@ -144,7 +144,7 @@ Foxtrick.modules["TeamPopupLinks"]={
 		return table;
 	},
 
-	run : function(doc) { 
+	run : function(doc) {
 		var sUrl = Foxtrick.getHref(doc);
 		// show last 5 logins
 		if (sUrl.search(/ShowOldConnections=true/i) != -1) {
@@ -183,12 +183,12 @@ Foxtrick.modules["TeamPopupLinks"]={
 						Foxtrick.addClass(aLink.parentNode.parentNode,"ftTeamHighlight");
 					else if (aLink.parentNode.parentNode.nodeName == "TD")
 						Foxtrick.addClass(aLink.parentNode.parentNode.parentNode,"ftTeamHighlight");
-				}	
-				
-				if (  !Foxtrick.isPage("forumViewThread", doc) 
-					&& !Foxtrick.isPage("forumWritePost", doc) 
-					&& !Foxtrick.isPage("forumModWritePost", doc)  
-					&& !Foxtrick.isPage("region", doc)  
+				}
+
+				if (  !Foxtrick.isPage("forumViewThread", doc)
+					&& !Foxtrick.isPage("forumWritePost", doc)
+					&& !Foxtrick.isPage("forumModWritePost", doc)
+					&& !Foxtrick.isPage("region", doc)
 					&& (Foxtrick.util.layout.isStandard(doc) || aLink.parentNode.nodeName!='TD') )
 					//Foxtrick.addClass(aLink, "ft-nowrap");
 					Foxtrick.addClass(aLink, "ft-dummy");
@@ -196,8 +196,8 @@ Foxtrick.modules["TeamPopupLinks"]={
 					Foxtrick.addClass(aLink, "ft-dummy");
 				}
 				par.insertBefore(span, aLink);
-				
-				
+
+
 				// to show a pop-up!
 				var showPopup = function(ev) {
 					var findLink = function(node) {
@@ -235,7 +235,7 @@ Foxtrick.modules["TeamPopupLinks"]={
 						var item = doc.createElement("li");
 						var link = doc.createElement("a");
 						if (userName && userId && userId == userName.match(/\d+/))
-							userName = "";	
+							userName = "";
 						if (isOwnTeam && ownLink)
 							link.href = ownLink;
 						else if (teamId && linkByTeam)
@@ -246,14 +246,14 @@ Foxtrick.modules["TeamPopupLinks"]={
 							link.href = linkByUser.replace(/\[userid\]/i, userId);
 						else
 							return;
-							
+
 						var openInNewTab = function(option ) {
 							return FoxtrickPrefs.getBool("module.TeamPopupLinks." + option + "." + "newTab" );
 						};
-						
+
 						if( openInNewTab( key ) )
 							link.target = "_blank";
-						
+
 						link.textContent = Foxtrickl10n.getString(key);
 						item.appendChild(link);
 						list.appendChild(item);
@@ -299,18 +299,18 @@ Foxtrick.modules["TeamPopupLinks"]={
 								try {
 									var redir_to_custom = false;
 									var json = JSON.parse( ownlink );
-									
+
 									if (show_more != json.more){
 										show_less_more = true;
 										continue;
 									}
-									
+
 									var item = doc.createElement("li");
 									var a6 = doc.createElement("a");
 									a6.href = Foxtrick.util.sanitize.parseUrl(json.link);
-									a6.title = json.title;								
+									a6.title = json.title;
 									a6.textContent = json.title;
-									
+
 									if (a6.href.search(/\[teamid\]/) != -1) {
 										if (teamid) a6.href = a6.href.replace(/\[teamid\]/i, teamid);
 										else redir_to_custom = true;
@@ -326,7 +326,7 @@ Foxtrick.modules["TeamPopupLinks"]={
 									}
 									if (json.newTab)
 										a6.target = "_blank";
-									
+
 									item.appendChild(a6);
 									list.appendChild(item);
 								} catch(e){
@@ -350,7 +350,7 @@ Foxtrick.modules["TeamPopupLinks"]={
 							item.appendChild(link);
 							list.appendChild(item);
 						}
-						
+
 					}
 
 					var mainBody = doc.getElementById('mainBody');
@@ -369,7 +369,7 @@ Foxtrick.modules["TeamPopupLinks"]={
 
 					if (org_link.parentNode.getElementsByClassName("ft-popup-list")[0])
 						org_link.parentNode.removeChild(org_link.parentNode.getElementsByClassName("ft-popup-list")[0]);
-					
+
 					org_link.parentNode.insertBefore(list, org_link);
 				};
 				Foxtrick.listen(aLink, "mouseover", showPopup, false);
@@ -390,8 +390,6 @@ Foxtrick.modules["TeamPopupLinks"]={
 		while (aLink = aLinks[i++]) {
 			if (!aLink.hasAttribute('href') || aLink.getElementsByTagName('img')[0] != null || aLink.parentNode.className=='liveTabText')
 				continue; // don't add to buttons, and htlive tabs
-			if (Foxtrick.hasClass(aLink.parentNode, 'message'))
-				continue; // skip forum messages
 			addSpan(aLink);
 		}
 
@@ -406,7 +404,7 @@ Foxtrick.modules["TeamPopupLinks"]={
 			}
 		}
 	},
-	
+
 	change : function(doc) {
 		this.add_popup_links(doc);
 	}
