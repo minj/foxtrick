@@ -147,9 +147,9 @@ Foxtrick.modules['MainMenuDropDown']={
 				//learns secondary menus from current document
 				var getSecondaryMenus = function(doc){
 					var boxBodies = doc.querySelectorAll('.sidebarBox > .boxBody');
-
 					var menuslist = [];
 					Foxtrick.map(function(boxBody){
+						Foxtrick.log(boxBody);
 						//only accept sidebar thingies that have the structure .boxbody > a
 						//but allow <br> and empty textnode
 						var isEmptyTextNode = function(node){
@@ -180,7 +180,11 @@ Foxtrick.modules['MainMenuDropDown']={
 									if(boxBody.childNodes[child].getAttribute('style') && boxBody.childNodes[child].getAttribute('style').match(/clear:both;/)){
 										Foxtrick.log("Hacked arround clear both div");
 										continue;
-										}
+									}
+									if(Foxtrick.hasClass(boxBody.childNodes[child], 'supHlRepSpecial')){
+										Foxtrick.log("Ignored supporter scarf");
+										continue;
+									}
 								}
 								linkOnlyBox = false;
 							}
