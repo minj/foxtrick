@@ -28,7 +28,10 @@ Foxtrick.modules['FormatPostingText'] = {
 					var messages = doc.getElementsByClassName('feedItem');
 				for (var i = 0; i < messages.length; i++) {
 					var count_pre = Foxtrick.substr_count(messages[i].textContent, '[pre');
-					var org = [/\[pre\](.*?)\[\/pre\]/gi , /·/gi];
+					var org = [
+						/\[pre\](.*?)\[\/pre\]/gi ,
+						new RegExp(String.fromCharCode(8288), 'gi')
+					];
 					var rep = ["<pre class='ft-dummy'>$1</pre>", ''];
 					for (var j = 0; j <= count_pre; j++) {
 						for (var k = 0; k < org.length; k++) {
@@ -60,7 +63,11 @@ Foxtrick.modules['FormatPostingText'] = {
 	},
 	// FIXME - also used by other modules, should extract to util/
 	reformat: function(string) {
-		var org = [/\[pre\](.*?)\[\/pre\]/gi , /·/gi];
+		// using u2060 'word joiner' zero-width space
+		var org = [
+			/\[pre\](.*?)\[\/pre\]/gi ,
+			new RegExp(String.fromCharCode(8288), 'gi')
+		];
 		var rep = ['[pre]$1[/pre]', ''];
 		var count_pre = Foxtrick.substr_count(string, '[pre');
 		for (var j = 0; j <= count_pre; j++) {
@@ -72,8 +79,8 @@ Foxtrick.modules['FormatPostingText'] = {
 	},
 	// FIXME - also used by other modules, should extract to util/
 	format: function(string) {
-		string = string.replace(/·/gi, '')
-			.replace(/(\<)(\S)/gi, '<·$2');
+		string = string.replace(new RegExp(String.fromCharCode(8288), 'gi'), '')
+			.replace(/(\<)(\S)/gi, '<' + String.fromCharCode(8288) + '$2');
 
 			var vstring = string.split('[pre]');
 			var r_string = vstring[0];
@@ -84,7 +91,7 @@ Foxtrick.modules['FormatPostingText'] = {
 				var num_do = Math.min(ivstring.length - 1, remain + 1);
 				remain -= (num_do - 1);
 				for (var i = 0; i < num_do; ++i)
-					r_string += ivstring[i].replace(/\[/g, '[·') + '[/pre]';
+					r_string += ivstring[i].replace(/\[/g, '[' + String.fromCharCode(8288)) + '[/pre]';
 				for (var k = num_do; k < ivstring.length; k++) {
 					r_string += ivstring[k];
 				}

@@ -367,7 +367,11 @@ Foxtrick.modules['ForumChangePosts'] = {
 				var messages = doc.getElementsByClassName('message');
 				for (var i = 0; i < messages.length; ++i) {
 					var count_pre = Foxtrick.substr_count(messages[i].textContent, '[pre');
-					var org = [/\[pre\](.*?)\[\/pre\]/gi , /·/gi];
+					// using u2060 'word joiner' zero-width space
+					var org = [
+						/\[pre\](.*?)\[\/pre\]/gi ,
+						new RegExp(String.fromCharCode(8288), 'gi')
+					];
 					var rep = ["<pre class='ft-dummy'>$1</pre>", ''];
 					for (var j = 0; j <= count_pre; ++j) {
 						for (var k = 0; k < org.length; ++k) {
