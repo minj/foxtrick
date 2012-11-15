@@ -127,25 +127,23 @@ ul#ft-drop-down-menu ul.ft-drop-down-submenu li:hover .ft-drop-down-submenu-2 {
 
 /*z fixes to ensure menu is overlay,
 i have no idea what i am doing, but just setting those ridiculously high values to 0 or 2 does not cause any trouble at all */
-#timeline {
-	z-index: 0 !important;
-
-}
-.copyicon, .backIcon, .statsIcon, .alltidIcon, .bookmark, .forumSettings, .forumSearch, .forumSearch2, .forumStats, .backIcon2, .helpIcon {
+#timeline, .copyicon, .backIcon, .statsIcon, .alltidIcon, .bookmark, .forumSettings, .forumSearch,
+.forumSearch2, .forumStats, .backIcon2, .helpIcon, .ratingInnerBox .sectorShirt, div.sectorResult,
+#divPlayers .playerRating, .goUp::after, .goRight::after, .goLeft::after, .goDown::after {
 	z-index: 0 !important;
 }
 
 ul.ui-tabs-nav, #loading {
 	z-index: 2 !important;
 }
-#fieldOverlay {
-	z-index: 201 !important;
-}
 #orders .position .player, #orders #field .player .shirt {
-	z-index: 1;
+	z-index: 1 !important;
 }
 #orders .position .player.ui-draggable-dragging {
-	z-index: 2;
+	z-index: 2 !important;
+}
+#tabs_lineups, #fieldOverlay {
+	z-index: 3 !important;
 }
 
 }
