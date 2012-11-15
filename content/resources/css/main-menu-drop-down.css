@@ -125,7 +125,7 @@ ul#ft-drop-down-menu ul.ft-drop-down-submenu li:hover .ft-drop-down-submenu-2 {
 }
 
 
-/*z fixes to ensure menu is overlay, 
+/*z fixes to ensure menu is overlay,
 i have no idea what i am doing, but just setting those ridiculously high values to 0 or 2 does not cause any trouble at all */
 #timeline {
 	z-index: 0 !important;
@@ -141,8 +141,11 @@ ul.ui-tabs-nav, #loading {
 #fieldOverlay {
 	z-index: 201 !important;
 }
-#orders .position .player,
-.shirt {
-	z-index: 0;
+#orders .position .player, #orders #field .player .shirt {
+	z-index: 1;
 }
+#orders .position .player.ui-draggable-dragging {
+	z-index: 2;
+}
+
 }
