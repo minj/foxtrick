@@ -115,11 +115,14 @@
 					}
 					// load and callback
 
+					params += '&app=foxtrick';
+					var teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
+					params += '&teamId=' + teamId;
 					var d = new Date();
 					var identifier = teamId + '_' + d.getTime();
-					params = params + '&identifier=' + identifier;
+					params += '&identifier=' + identifier;
 					var hash = 'foxtrick_' + teamId + '_' + identifier;
-					params = params + '&hash=' + Foxtrick.encodeBase64(hash);
+					params += '&hash=' + Foxtrick.encodeBase64(hash);
 
 					Foxtrick.util.load.async(url, callback, params);
 				});
