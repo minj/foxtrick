@@ -74,8 +74,7 @@ Foxtrick.modules['CopyMatchID'] = {
 				}
 			}
 		}
-		else if (Foxtrick.isPage('matchLineup', doc)
-			|| Foxtrick.isPage('match', doc)) {
+		else if (Foxtrick.isPage('matchLineup', doc)) {
 			var images = doc.getElementById('mainBody').getElementsByTagName('img');
 			for (var i = 0; i < images.length; i++) {
 				if (images[i].className.search(
