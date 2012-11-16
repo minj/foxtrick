@@ -8,7 +8,7 @@
 Foxtrick.modules["CopyMatchID"]={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
  	PAGES : new Array('matches','matchesArchive','matchesHistory',
-					'matchesLatest','arena','matchLineup','match'),
+					'matchesLatest','arena','matchLineup'),
 
 	run : function(doc) {
 		var copyId = function(ev) {
