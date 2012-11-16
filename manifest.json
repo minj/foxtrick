@@ -82,7 +82,10 @@
 			"content/pages/matches.js",
 
 			//<!-- api utilities -->
+			"content/api/hy/common.js",
 			"content/api/hy/user-id.js",
+			"content/api/hy/players-youth-skills.js",
+			"content/api/hy/players-twins-check.js",
 
 			//<!-- categorized modules -->
 			"content/access/aria-landmarks.js",

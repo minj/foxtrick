@@ -87,7 +87,10 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/pages/matches.js</string>
 
 				<!-- api utilities -->
+				<string>content/api/hy/common.js</string>
 				<string>content/api/hy/user-id.js</string>
+				<string>content/api/hy/players-youth-skills.js</string>
+				<string>content/api/hy/players-twins-check.js</string>
 
 				<!-- core modules -->
 				<string>content/redirections.js</string>

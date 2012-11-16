@@ -17,6 +17,7 @@ Foxtrick.modules['Core'] = {
 
 	SELF_TEAM_INFO: {},
 	PLAYER_LIST: {},
+	HT_TIME: 0,
 
 	run: function(doc) {
 		this.parseSelfTeamInfo(doc);
@@ -26,6 +27,7 @@ Foxtrick.modules['Core'] = {
 		this.showVersion(doc);
 		this.featureHighlight(doc);
 		this.showChangeLog(doc);
+		this.HT_TIME = Foxtrick.util.time.getHtTimeStamp(doc);
 	},
 
 	updateLastHost: function(doc) {

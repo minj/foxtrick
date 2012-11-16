@@ -31,7 +31,7 @@ if (!Foxtrick.api.hy.URL)
  */
 
 
-Foxtrick.api.hy.URL['user-id'] = 'http://www.hattrick-youthclub.org' +
+Foxtrick.api.hy.URL['userId'] = 'http://www.hattrick-youthclub.org' +
 	'/_data_provider/foxtrick/userId';
 /**
  * Check if the id could be userId
@@ -43,88 +43,73 @@ Foxtrick.api.hy.isUserId = function(userId) {
 };
 /**
  * Low-level function to access HY's API. Should not be used directly
- * Tries to fetch and save the user ID from HY and executes callback(userId);
- * userId is null if request fails; -1 if not a HY user
- * @param	{function}	callback	function to execute
- * @param	{[integer]}	teamId		senior team ID to fetch data for (optional)
+ * Tries to fetch the user ID from HY and executes callback(userId);
+ * userId is -1 if not a HY user
+ * and null if request fails and failure is not a function
+ * failure() is called if the request fails
+ * finalize() is always called
+ * @param	{function}		callback	function to execute
+ * @param	{[Function]}	failure		function to execute (optional)
+ * @param	{[Function]}	finalize	function to execute (optional)
+ * @param	{[integer]}		teamId		senior team ID to fetch data for (optional)
  */
-Foxtrick.api.hy._fetchUserId = function(callback, teamId) {
-	if (typeof(teamId) == 'undefined')
+Foxtrick.api.hy._fetchUserId = function(callback, failure, finalize, teamId) {
+	if (typeof(teamId) == 'undefined' || teamId === null)
 		teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
-	//assemble param string
-	var params = 'teamId=' + teamId;
-	params = params + '&app=foxtrick';
-	var d = new Date();
-	var identifier = teamId + '_' + d.getTime();
-	params = params + '&identifier=' + identifier;
-	var hash = 'foxtrick_' + teamId + '_' + identifier;
-	params = params + '&hash=' + Foxtrick.encodeBase64(hash);
 
 	Foxtrick.log('[HY_API][userId] _fetchUserId:', teamId);
 
-	//load and callback
-	Foxtrick.util.load.async(Foxtrick.api.hy.URL['user-id'],
+	Foxtrick.api.hy._fetchOrIgnore('userId', Foxtrick.api.hy.URL['userId'], null,
+	  function(response) {
+		var userId = parseInt(JSON.parse(response));
+		Foxtrick.log('[HY_API][userId] userId received:', userId);
+		callback(userId);
+	  },
 	  function(response, status) {
-		switch (status) {
-			case 200:
-				var userId = parseInt(JSON.parse(response));
-				Foxtrick.log('[HY_API][userId] userId received:', userId);
-				callback(userId);
-				break;
-			default:
-				Foxtrick.log('[HY_API][userId] Unhandled Error ' + status + ': ' + response);
-				callback(null);
-				break;
-		}
-	}, params);
+		if (typeof(failure) == 'function')
+			failure(response, status);
+		else
+			callback(null);
+	}, finalize, teamId);
 };
 /**
  * A localStore wrapper for _fetchUserId
  * Gets HY user ID and executes callback(userId);
- * userId is null if request fails; -1 if not a HY user
- * @param	{function}	callback	function to execute
- * @param	{[integer]}	teamId		senior team ID to fetch data for (optional)
+ * userId is -1 if not a HY user
+ * and null if request fails and failure is not a function
+ * failure() is called if the request fails
+ * finalize() is always called
+ * @param	{function}		callback	function to execute
+ * @param	{[Function]}	failure		function to execute (optional)
+ * @param	{[Function]}	finalize	function to execute (optional)
+ * @param	{[integer]}		teamId		senior team ID to fetch data for (optional)
  */
-Foxtrick.api.hy.getUserId = function(callback, teamId) {
-	if (typeof(teamId) == 'undefined')
-		teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
-
-	Foxtrick.localGet('YouthClub.' + teamId + '.userId',
-	  function(userId) {
-		if (userId !== null)
-			try {
-				callback(parseInt(userId));
-			}
-			catch (e) {
-				Foxtrick.log('Uncaught error in callback for HY_API:getUserId', e);
-			}
-		else
-			Foxtrick.api.hy._fetchUserId(function(userId) {
-				if (userId !== null)
-					Foxtrick.localSet('YouthClub.' + teamId + '.userId', userId);
-
-				try {
-					callback(userId);
-				}
-				catch (e) {
-					Foxtrick.log('Uncaught error in callback for HY_API:getUserId', e);
-				}
-			}, teamId);
-	});
+Foxtrick.api.hy.getUserId = function(callback, failure, finalize, teamId) {
+	Foxtrick.api.hy._fetchViaCache(14, 'userId', this._fetchUserId,
+								   callback, failure, finalize, teamId);
 };
 /**
  * Executes callback(userId) if the team's manager is HY user
- * @param	{function}	callback	function to execute
- * @param	{[integer]}	teamId		senior team ID to check (optional)
+ * failure() is called if not or the request fails
+ * finalize() is called in both cases
+ * @param	{function}		callback	function to execute
+ * @param	{[Function]}	failure		function to execute (optional)
+ * @param	{[Function]}	finalize	function to execute (optional)
+ * @param	{[integer]}		teamId		senior team ID to check (optional)
  */
-Foxtrick.api.hy.runIfHYUser = function(callback, teamId) {
+Foxtrick.api.hy.runIfHYUser = function(callback, failure, finalize, teamId) {
 	Foxtrick.api.hy.getUserId(function(userId) {
-		if (Foxtrick.api.hy.isUserId(userId))
+		if (Foxtrick.api.hy.isUserId(userId)) {
 			try {
 				callback(userId);
 			}
 			catch (e) {
 				Foxtrick.log('Uncaught error in callback for HY_API:runIfHyUser', e);
 			}
-	}, teamId);
+		}
+		else {
+			if (typeof(failure) == 'function')
+				failure();
+		}
+	}, failure, finalize, teamId);
 };

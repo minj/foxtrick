@@ -75,7 +75,10 @@ Foxtrick.loader.background.contentScriptManager = {
 		'pages/matches.js',
 
 		//<!-- api utilities -->
+		'api/hy/common.js',
 		'api/hy/user-id.js',
+		'api/hy/players-youth-skills.js',
+		'api/hy/players-twins-check.js',
 
 		//<!-- categorized modules -->
 		"access/aria-landmarks.js",

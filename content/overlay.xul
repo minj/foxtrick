@@ -56,7 +56,10 @@
 <script type="application/x-javascript" src="./pages/matches.js" />
 
 <!-- api utilities -->
+<script type="application/x-javascript" src="./api/hy/common.js" />
 <script type="application/x-javascript" src="./api/hy/user-id.js" />
+<script type="application/x-javascript" src="./api/hy/players-youth-skills.js" />
+<script type="application/x-javascript" src="./api/hy/players-twins-check.js" />
 
 <!-- core modules -->
 <script type="application/x-javascript" src="./redirections.js" />
