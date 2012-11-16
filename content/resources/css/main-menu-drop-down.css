@@ -145,5 +145,10 @@ ul.ui-tabs-nav, #loading {
 #tabs_lineups, #fieldOverlay {
 	z-index: 3 !important;
 }
-
+.dimPattern{
+	z-index: 3 !important;	
+}
+#supporterHighlightBox {
+	z-index: 4 !important;	
+}
 }
