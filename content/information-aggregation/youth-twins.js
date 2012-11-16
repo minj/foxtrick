@@ -33,7 +33,7 @@
  *				non: number of possible twins marked as non-twin (not present if isHyUser = false)
  *				marked: number of possible twins marked as twin (not present if isHyUser = false)
  *				possible: total number of possible twins
- *			fetchTime: 
+ *			fetchTime:
  *				Unix timestamp of the feteched information in seconds
  *			lifeTime:
  *				LifeTime of the information in seconds, avoid further requests until fetchTime+lifeTime is met, new pulls to the youth team are a valid reason to disrespect and use forceUpdate. *
@@ -76,8 +76,8 @@
 
 		//icons resources for representation
 		var icon_green = Foxtrick.InternalPath + 'resources/img/twins/twin.png';
-		var icon_red = Foxtrick.InternalPath + 'resources/img/twins/twin_red.png'; 
-		var icon_yellow = Foxtrick.InternalPath + 'resources/img/twins/twin_yellow.png'; 
+		var icon_red = Foxtrick.InternalPath + 'resources/img/twins/twin_red.png';
+		var icon_yellow = Foxtrick.InternalPath + 'resources/img/twins/twin_yellow.png';
 
 		//params
 		//teamid : Current Foxtrick user
@@ -90,13 +90,13 @@
 					//urlencode xml files
 					var pl = encodeURIComponent((new  window.XMLSerializer()).serializeToString(playerlist));
 					var av = encodeURIComponent((new  window.XMLSerializer()).serializeToString(avatars));
-					
+
 					//api url
 					var url = "http://www.hattrick-youthclub.org/_data_provider/foxtrick/playersTwinsCheck";
-					
+
 					//assemble param string
 					var params = "players=" + pl + "&avatars=" + av;
-					
+
 					//forceUpdate to avoid getting the cached HY response, use carefully
 					if(forceupdate)
 						params = params + "&forceUpdate=1"
@@ -109,21 +109,28 @@
 					if(userType == "user")
 						params = params + "&isHyUser=1"
 					else if(userType == "foreigner")
-						params = params + "&isHyUser=0"	
+						params = params + "&isHyUser=0"
 					else {
 						//HY determines on its own
 					}
 					// load and callback
-					Foxtrick.util.load.async(url, callback, params);					
-				});	
+
+					var d = new Date();
+					var identifier = teamId + '_' + d.getTime();
+					params = params + '&identifier=' + identifier;
+					var hash = 'foxtrick_' + teamId + '_' + identifier;
+					params = params + '&hash=' + Foxtrick.encodeBase64(hash);
+
+					Foxtrick.util.load.async(url, callback, params);
+				});
 			});
 		}
 		var handleHyResponse = function (response, status){
 			switch(status){
 				case 0:
 					Foxtrick.log("YouthTwins: Sending failed", status);
-					return; 
-				case 200: 
+					return;
+				case 200:
 					Foxtrick.log("YouthTwins: Success", status);
 					Foxtrick.localSet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".ignoreUntil", -1);
 					break;
@@ -139,19 +146,19 @@
 					return;
 				case 500:
 					Foxtrick.log("YouthTwins: HY is in trouble", status);
-					return; 
+					return;
 				case 503:
 					var now = Foxrtick.util.time.getHtTimeStamp(doc) + 59000;
 					var ignoreUntil = now + ignoreHours*60*60*1000;
 					Foxtrick.localSet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".ignoreUntil", ignoreUntil);
 					Foxtrick.log("YouthTwins: HY temporarily disabled the feature", status, "");
 					Foxtrick.log("YouthTwins: No requests for " + ignoreHours/24.0 + " day(s).");
-					return; 
+					return;
 				default:
 					Foxtrick.log("YouthTwins: HY returned unhandled status", status, response);
 					return;
 			}
-			
+
 			//save response as pref
 			Foxtrick.localSet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".lastResponse", response);
 
@@ -166,10 +173,10 @@
 
 				//find spot to place the images
 				var target = playerInfo.getElementsByTagName("b")[0];
-				
+
 				//get playerid
 				var playerID = playerInfo.getElementsByTagName("a")[0].href.match(/YouthPlayerID=(\d+)/i)[1];
-				
+
 				//new player pulled, needs a forceUpdate
 				if(json.players[playerID] === undefined){
 					Foxtrick.log("New player pulled", playerID);
@@ -181,7 +188,7 @@
 				var marked = isHYuser?parseInt(json.players[playerID].marked):0;
 				var non = isHYuser?parseInt(json.players[playerID].non):0;
 				var missing = possible - marked - non;
-				
+
 				//l10n strings
 				var l10n_possible_twins =Foxtrickl10n.getString("YouthTwins.possibleTwins", possible).replace("%1", possible);
 				var l10n_marked_twins = Foxtrickl10n.getString("YouthTwins.markedTwins").replace("%1", marked);
@@ -194,7 +201,7 @@
 					var title = " " + l10n_possible_twins + "\n " + l10n_marked_twins + "\n " + l10n_non_twins + "\n " + l10n_undecided_twins;
 				else
 					var title = " " + l10n_possible_twins + "\n " + l10n_non_hy_user;
-				
+
 				//repeat twin icon in representative color according to amount of twin category
 				var link = Foxtrick.createFeaturedElement(doc,  Foxtrick.modules["YouthTwins"], "a");
 				var container = Foxtrick.createFeaturedElement(doc,  Foxtrick.modules["YouthTwins"], "span");
@@ -205,7 +212,7 @@
 				//add icons according to amount of occurance
 				var addIcons = function (parent, limit, alt, className, src){
 					for(var k = 0; k < limit; k++){
-						Foxtrick.addImage(doc, parent, { alt: alt, class: className, src: src}); 
+						Foxtrick.addImage(doc, parent, { alt: alt, class: className, src: src});
 					}
 				}
 				addIcons(container, marked, l10n_marked_twins, "ft-youth-twins-icon", icon_green);
@@ -231,7 +238,7 @@
 					var infotext = Foxtrickl10n.getString("YouthTwins.infoText");
 					target.parentNode.insertBefore(infolink, target.nextSibling);
 					Foxtrick.addImage(doc, infolink, { alt: infotext, title: infotext, src: "/Img/Icons/info.png"});
-				}	
+				}
 				//add the whole stuff to the site
 				target.parentNode.insertBefore(link,target.nextSibling);
 			}
@@ -254,7 +261,7 @@
 				if(saved === null && (ignoreUntil == -1 || now > ignoreUntil)){
 					Foxtrick.log("YouthTwins: lastResponse is null  ... Updating from HY");
 					getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
-				}		
+				}
 				else {
 					try {
 						var json = JSON.parse( saved );
@@ -266,7 +273,7 @@
 						Foxtrick.log("YouthTwins: corrupted saved JSON", e, saved);
 						if(ignoreUntil == -1 || now > ignoreUntil)
 							getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
-						
+
 						return;
 					}
 
@@ -281,14 +288,14 @@
 					}
 
 					//get cookie from HY and see if we are allowed to update unscheduled
-					//cookie format (relevant part) 
+					//cookie format (relevant part)
 					//Caution: timestamp are in s, javascript timestamps are in ms
 					//{ "c": timestamp, "players/twins" : { "last": timestamp, "next": timestamp }}
 					//@ c - creating of the cookie
 					//@ last: last twin update
 					//@ next: recommendet next update, aka not before
 					Foxtrick.log("Youthtwins: CookieGet");
-					Foxtrick.cookieGet("from_hty", function(cookie){ 
+					Foxtrick.cookieGet("from_hty", function(cookie){
 						if(!cookie){
 							Foxtrick.log("YouthTwins: No HY cookie. ");
 							cookieDone();
@@ -319,7 +326,7 @@
 									json.lifeTime = ttl / 1000;
 									Foxtrick.log("json.fetchtime", getUtcFromTimestamp(now));
 									Foxtrick.log("json.fetchtime + json.lifeTime", getUtcFromTimestamp(now + ttl));
-									Foxtrick.localSet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".lastResponse", JSON.stringify(json) );	
+									Foxtrick.localSet("YouthTwins." + Foxtrick.modules["Core"].getSelfTeamInfo().teamId +".lastResponse", JSON.stringify(json) );
 								}
 							 });
 							return;
@@ -327,7 +334,7 @@
 							cookieDone();
 						}
 					});
-					
+
 					var cookieDone = function (){
 						Foxtrick.log("YouthTwins: Cookieless update");
 						//when we need to force a request due to HY request or so
@@ -353,12 +360,12 @@
 							//teamid, forceUpdate, debug, usertype, response
 							getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
 						} else {
-							Foxtrick.log("Dear time traveler, we welcome you!");	
+							Foxtrick.log("Dear time traveler, we welcome you!");
 						}
 					}
 				}
 			});
 		});
-		
+
 	}
 };
