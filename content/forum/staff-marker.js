@@ -165,7 +165,7 @@ Foxtrick.modules['StaffMarker'] = {
 			// mark staffs in select box
 			var markSelect = function() {
 				var selects = doc.getElementsByClassName('main')[0]
-					.getElementsByClassName('threadPagingFilter');
+					.querySelectorAll('select.threadPagingFilter, select[id$="_ddlRecipient"]');
 				Foxtrick.map(function(select) {
 					if (select.id.search(/filter/i) == -1
 						&& select.id.search(/recipient/i) == -1)
