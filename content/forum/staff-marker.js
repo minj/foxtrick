@@ -39,7 +39,7 @@ Foxtrick.modules["StaffMarker"]={
 					obj[key][user.id] = true;
 					if (key == "chpp-holder")
 						obj[key]["apps"][user.id] = user.appNames
-					
+
 				}, list);
 			}
 			// all your data are belong to us
@@ -69,7 +69,7 @@ Foxtrick.modules["StaffMarker"]={
 			Foxtrick.util.load.get(uri)("success", function(text) {
 				Foxtrick.log('parse ', uri);
 				parseMarkers(text);
-				Foxtrick.localSet("Markers."+uri, text);							
+				Foxtrick.localSet("Markers."+uri, text);
 			})("failure", function(code) {
 				Foxtrick.log("Failure loading file: " + uri, ". Using cached markers.");
 				Foxtrick.localGet("Markers."+uri, parseMarkers);
@@ -159,7 +159,8 @@ Foxtrick.modules["StaffMarker"]={
 			};
 			// mark staffs in select box
 			var markSelect = function() {
-				var selects =  doc.getElementsByClassName("main")[0].getElementsByClassName("threadPagingFilter");
+				var selects = doc.getElementsByClassName('main')[0]
+					.querySelectorAll('select.threadPagingFilter, select[id$="_ddlRecipient"]');
 				Foxtrick.map(function(select) {
 					if (select.id.search(/filter/i) == -1
 						&& select.id.search(/recipient/i) == -1)
@@ -202,6 +203,6 @@ Foxtrick.modules["StaffMarker"]={
 					markThread(doc, modifier);
 				}
 			}
-		});		
+		});
 	}
 };
