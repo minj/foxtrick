@@ -16,10 +16,8 @@ Foxtrick.modules['HTThreadMarker'] = {
 
 		Foxtrick.map( function(threadLink){
 			var title = threadLink.getAttribute('title');
-			if(title.match(/ HT-\S+/))	{
-				Foxtrick.log('Matched', title);
+			if(title.match(/ HT-\S+/))
 				Foxtrick.addClass(threadLink.parentNode, 'ft-ht-thread');
-			}
 		},threadLinks);
 	},
 
