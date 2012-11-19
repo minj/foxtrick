@@ -149,7 +149,7 @@ Foxtrick.modules['MainMenuDropDown']={
 					var boxBodies = doc.querySelectorAll('.sidebarBox > .boxBody');
 					var menuslist = [];
 					Foxtrick.map(function(boxBody){
-						Foxtrick.log(boxBody);
+						//Foxtrick.log(boxBody);
 						//only accept sidebar thingies that have the structure .boxbody > a
 						//but allow <br> and empty textnode
 						var isEmptyTextNode = function(node){
@@ -203,6 +203,9 @@ Foxtrick.modules['MainMenuDropDown']={
 							Foxtrick.map(function(link){
 								//no empty shit, lile
 								if(link.textContent.replace(/\s*/gi, '') == '')
+									return;
+								
+								if(Foxtrick.getHref(doc) + '#' == link.href)
 									return;
 
 								if(link.href.match(/javascript\:/))
