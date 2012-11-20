@@ -129,14 +129,14 @@ ul#ft-drop-down-menu ul.ft-drop-down-submenu li:hover .ft-drop-down-submenu-2 {
 i have no idea what i am doing, but just setting those ridiculously high values to 0 or 2 does not cause any trouble at all */
 #timeline, .copyicon, .backIcon, .statsIcon, .alltidIcon, .bookmark, .forumSettings, .forumSearch,
 .forumSearch2, .forumStats, .backIcon2, .helpIcon, .ratingInnerBox .sectorShirt, div.sectorResult,
-#divPlayers .playerRating, .goUp::after, .goRight::after, .goLeft::after, .goDown::after {
+#divPlayers .playerRating, .goUp::after, .goRight::after, .goLeft::after, .goDown::after, .hfBubble {
 	z-index: 0 !important;
 }
 
 ul.ui-tabs-nav, #loading {
 	z-index: 2 !important;
 }
-#orders .position .player, #orders #field .player .shirt {
+#orders .position .player, #orders #field .player .shirt, .hf .arrow {
 	z-index: 1 !important;
 }
 #orders .position .player.ui-draggable-dragging {
@@ -146,9 +146,9 @@ ul.ui-tabs-nav, #loading {
 	z-index: 3 !important;
 }
 .dimPattern{
-	z-index: 3 !important;	
+	z-index: 3 !important;
 }
 #supporterHighlightBox {
-	z-index: 4 !important;	
+	z-index: 4 !important;
 }
 }
