@@ -202,6 +202,7 @@ Foxtrick.modules['StaffMarker'] = {
 				markSelect(doc, modifier);
 			}
 			else if (Foxtrick.isPage(doc, 'forumWritePost')) {
+				markThread(doc, modifier);
 				markSelect(doc, modifier);
 			}
 			else if (Foxtrick.isPage(doc, 'teamPage')) {
