@@ -10,7 +10,7 @@ Foxtrick.modules['AddLeaveConfButton'] = {
 	PAGES: ['forum', 'forumSettings'],
 
 	run: function(doc) {
-		if (Foxtrick.isPage('forum', doc)) {
+		if (Foxtrick.isPage(doc, 'forum')) {
 			var vValue = this.getVValue(doc);
 
 			if (vValue != '2') {
@@ -32,7 +32,7 @@ Foxtrick.modules['AddLeaveConfButton'] = {
 				}
 			}
 		}
-		else if (Foxtrick.isPage('forumSettings', doc)) {
+		else if (Foxtrick.isPage(doc, 'forumSettings')) {
 			var sUrl = Foxtrick.getHref(doc);
 			var confPos = sUrl.search(/LeaveConf=/i);
 			if (confPos > -1) {
@@ -65,7 +65,7 @@ Foxtrick.modules['AddLeaveConfButton'] = {
 	},
 
 	change: function(doc) {
-		if (Foxtrick.isPage('forum', doc))
+		if (Foxtrick.isPage(doc, 'forum'))
 			this.run(doc);
 	},
 

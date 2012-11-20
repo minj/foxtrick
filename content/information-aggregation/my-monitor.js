@@ -53,11 +53,11 @@ Foxtrick.modules['MyMonitor'] = {
 		var display = function() {
 			var mydiv = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MyMonitor, 'div');
 			mydiv.id = 'ft-monitor-div';
-			if (Foxtrick.isPage('myHattrick', doc)) {
+			if (Foxtrick.isPage(doc, 'myHattrick')) {
 				var h1 = doc.getElementsByTagName('h1')[0];
 				h1.parentNode.insertBefore(mydiv, h1);
 			}
-			else if (Foxtrick.isPage('dashboard', doc))
+			else if (Foxtrick.isPage(doc, 'dashboard'))
 				doc.getElementById('mainBody').appendChild(mydiv);
 			else
 				return;
@@ -290,11 +290,11 @@ Foxtrick.modules['MyMonitor'] = {
 		};
 		// show my monitor shortcuts in sidebar
 		var showSidebar = function() {
-			if (Foxtrick.isPage('teamPage', doc))
+			if (Foxtrick.isPage(doc, 'teamPage'))
 				var type = 'senior';
-			else if (Foxtrick.isPage('youthOverview', doc))
+			else if (Foxtrick.isPage(doc, 'youthOverview'))
 				var type = 'youth';
-			else if (Foxtrick.isPage('national', doc))
+			else if (Foxtrick.isPage(doc, 'national'))
 				var type = 'nt';
 
 			var teams = getSavedTeams(doc);
@@ -393,13 +393,13 @@ Foxtrick.modules['MyMonitor'] = {
 		};
 
 		// call functions from here
-		if (Foxtrick.isPage('myHattrick', doc)
-			|| Foxtrick.isPage('dashboard', doc)) {
+		if (Foxtrick.isPage(doc, 'myHattrick')
+			|| Foxtrick.isPage(doc, 'dashboard')) {
 			display(doc);
 		}
-		else if (Foxtrick.isPage('teamPage', doc)
-			|| Foxtrick.isPage('youthOverview', doc)
-			|| Foxtrick.isPage('national', doc)) {
+		else if (Foxtrick.isPage(doc, 'teamPage')
+			|| Foxtrick.isPage(doc, 'youthOverview')
+			|| Foxtrick.isPage(doc, 'national')) {
 			showSidebar(doc);
 		}
 	},
@@ -407,9 +407,9 @@ Foxtrick.modules['MyMonitor'] = {
 	change: function(doc) {
 		// challenging etc removes box. need to re-add it
 		if (doc.getElementById('ft-monitor-sidebar-box') == null
-			&& (Foxtrick.isPage('teamPage', doc)
-				|| Foxtrick.isPage('youthOverview', doc)
-				|| Foxtrick.isPage('national', doc)))
+			&& (Foxtrick.isPage(doc, 'teamPage')
+				|| Foxtrick.isPage(doc, 'youthOverview')
+				|| Foxtrick.isPage(doc, 'national')))
 			this.run(doc);
 	}
 };

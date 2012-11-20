@@ -28,11 +28,11 @@ Foxtrick.modules['CopyMatchID'] = {
 
 		var count = 0;
 
-		if (Foxtrick.isPage('matchesArchive', doc)
-			|| Foxtrick.isPage('matches', doc)
-			|| Foxtrick.isPage('matchesHistory', doc)
-			|| Foxtrick.isPage('matchesLatest', doc)
-			|| Foxtrick.isPage('arena', doc)) {
+		if (Foxtrick.isPage(doc, 'matchesArchive')
+			|| Foxtrick.isPage(doc, 'matches')
+			|| Foxtrick.isPage(doc, 'matchesHistory')
+			|| Foxtrick.isPage(doc, 'matchesLatest')
+			|| Foxtrick.isPage(doc, 'arena')) {
 			var cells = doc.getElementById('mainBody').getElementsByTagName('td');
 			for (var i = 0; i < cells.length; i++) {
 				// nested table check
@@ -74,7 +74,7 @@ Foxtrick.modules['CopyMatchID'] = {
 				}
 			}
 		}
-		else if (Foxtrick.isPage('matchLineup', doc)) {
+		else if (Foxtrick.isPage(doc, 'matchLineup')) {
 			var images = doc.getElementById('mainBody').getElementsByTagName('img');
 			for (var i = 0; i < images.length; i++) {
 				if (images[i].className.search(

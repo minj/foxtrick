@@ -14,18 +14,18 @@ Foxtrick.modules['TransferDeadline'] = {
 		if (doc.getElementsByClassName('ft-deadline').length > 0)
 			return;
 
-		if (Foxtrick.isPage('transferSearchResult', doc))
+		if (Foxtrick.isPage(doc, 'transferSearchResult'))
 			this.runTransferResult(doc);
-		else if (Foxtrick.isPage('playerDetails', doc))
+		else if (Foxtrick.isPage(doc, 'playerDetails'))
 			this.runPlayerDetail(doc);
-		else if (Foxtrick.isPage('transfer', doc))
+		else if (Foxtrick.isPage(doc, 'transfer'))
 			this.runPlayerList(doc);
-		else if (Foxtrick.isPage('bookmarks', doc))
+		else if (Foxtrick.isPage(doc, 'bookmarks'))
 			this.runTransferResult(doc);
 	},
 
 	change: function(doc) {
-		if (Foxtrick.isPage('playerDetails', doc))
+		if (Foxtrick.isPage(doc, 'playerDetails'))
 			this.runPlayerDetail(doc);
 	},
 

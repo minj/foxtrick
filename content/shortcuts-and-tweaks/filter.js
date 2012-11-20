@@ -364,7 +364,7 @@ Foxtrick.modules['Filter'] = {
 		};
 
 		for (var i = 0; i < this.PAGES.length; ++i) {
-			if (Foxtrick.isPage(this.PAGES[i], doc)) {
+			if (Foxtrick.isPage(doc, this.PAGES[i])) {
 				addExtraFilters(this.PAGES[i]);
 			}
 		}

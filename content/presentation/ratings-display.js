@@ -197,9 +197,9 @@ Foxtrick.modules['RatingsDisplay'] = {
 			}
 		};
 
-		if (Foxtrick.isPage('match', doc))
+		if (Foxtrick.isPage(doc, 'match'))
 			do_matchreport();
-		else if (Foxtrick.isPage('statsSeries', doc))
+		else if (Foxtrick.isPage(doc, 'statsSeries'))
 			do_seriesstats();
 	}
 };

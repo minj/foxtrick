@@ -28,14 +28,14 @@ Foxtrick.modules['ForumStripHattrickLinks'] = {
 	run: function(doc) {
 		Foxtrick.listen(doc.getElementById('mainBody'), 'mousedown', this.changeLinks, true);
 
-		if (Foxtrick.isPage('forumViewThread', doc))
+		if (Foxtrick.isPage(doc, 'forumViewThread'))
 			return;
 
 		var targets = doc.getElementById('mainBody').getElementsByTagName('input');  // Forum
 		var target = targets[targets.length - 1];
-		if (Foxtrick.isPage('forumWritePost', doc))
+		if (Foxtrick.isPage(doc, 'forumWritePost'))
 			target = targets[targets.length - 2];
-		if (Foxtrick.isPage('guestbook', doc))
+		if (Foxtrick.isPage(doc, 'guestbook'))
 			target = targets[1];
 		if (target) {
 			// add submit listener

@@ -18,7 +18,7 @@ Foxtrick.modules['MobileEnhancements'] = {
 	run: function(doc) {
 		// get viewport size
 		var viewport_size = FoxtrickPrefs.getString('module.MobileEnhancements.ViewPort_text');
-		if (Foxtrick.isPage('matchOrder', doc))	{
+		if (Foxtrick.isPage(doc, 'matchOrder'))	{
 			viewport_size = '765';
 		}
 		// smaller than 430 time cause flicker. don't ask me why, i tried like everything

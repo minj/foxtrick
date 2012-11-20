@@ -34,7 +34,7 @@ Foxtrick.modules['ConfirmActions'] = {
 		};
 
 		// Bid, TransferList, NtChange, StaffChange
-		if (Foxtrick.isPage('playerDetails', doc)) {
+		if (Foxtrick.isPage(doc, 'playerDetails')) {
 			if (FoxtrickPrefs.isModuleOptionEnabled('ConfirmActions', 'Bid')) {
 				var bidButton = doc.getElementById(ids.BID.BUTTON_ID);
 				if (bidButton) {
@@ -157,7 +157,7 @@ Foxtrick.modules['ConfirmActions'] = {
 				}
 			}
 		}
-		else if (Foxtrick.isPage('staff', doc)) {
+		else if (Foxtrick.isPage(doc, 'staff')) {
 			if (FoxtrickPrefs.isModuleOptionEnabled('ConfirmActions', 'StaffChange')) {
 				var submitButton = doc.getElementById(ids.STAFF.SUBMIT_BUTTON_ID);
 				if (submitButton) {

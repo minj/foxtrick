@@ -168,7 +168,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		if (FoxtrickPrefs.isModuleOptionEnabled('PlayerStatsExperience', 'AlwaysShowAll')) {
 			convertLinksToShowAll();
 		}
-		if (Foxtrick.isPage('playerDetails', doc))
+		if (Foxtrick.isPage(doc, 'playerDetails'))
 			return;
 
 		//both tables you can alter between atm

@@ -29,7 +29,7 @@ Foxtrick.modules['ManagerButtons'] = {
 			&& doc.getElementById(this.GUESTBOOK_LINK_ID) === null) {
 			if (!Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID)
 				&& Foxtrick.hasElement(doc, this.CHALLENGE_LINK_ID)
-				|| Foxtrick.isPage('youthOverview', doc)) {
+				|| Foxtrick.isPage(doc, 'youthOverview')) {
 				this.addGuestBookLink(doc);
 			}
 		}
@@ -45,7 +45,7 @@ Foxtrick.modules['ManagerButtons'] = {
 		var isSupporter = false;
 
 		// first we check if the manager is a supporter
-		if (Foxtrick.isPage('managerPage', doc)) {
+		if (Foxtrick.isPage(doc, 'managerPage')) {
 			var sidebar = doc.getElementById('sidebar');
 			var sidebarlinks = sidebar.getElementsByTagName('a');
 			for (var i = 0; i < sidebarlinks.length; ++i) {
@@ -64,7 +64,7 @@ Foxtrick.modules['ManagerButtons'] = {
 				}
 			}
 		}
-		else if (Foxtrick.isPage('teamPage', doc)) {
+		else if (Foxtrick.isPage(doc, 'teamPage')) {
 			var sidebarlinks = doc.getElementById('sidebar').getElementsByTagName('a');
 			for (var i = 0; i < sidebarlinks.length; ++i) {
 				if (sidebarlinks[i].href.search(/Club\/HallOfFame/i) != -1) {
@@ -73,7 +73,7 @@ Foxtrick.modules['ManagerButtons'] = {
 				}
 			}
 		}
-		else if (Foxtrick.isPage('youthOverview', doc)) {
+		else if (Foxtrick.isPage(doc, 'youthOverview')) {
 			isSupporter = true; // status unknown there. just add it anyways?
 		}
 

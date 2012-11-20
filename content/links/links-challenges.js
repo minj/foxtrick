@@ -28,7 +28,7 @@ Foxtrick.modules['LinksChallenges'] = {
 
 		//addExternalLinksToChallengesDetail
 		var links;
-		if (Foxtrick.isPage('challenges', doc))
+		if (Foxtrick.isPage(doc, 'challenges'))
 			links = Foxtrick.modules['Links'].getLinks('challengeslink', { 'teamid': teamid,
 			                                           'ownteamid': ownteamid }, doc, this);
 		else

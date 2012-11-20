@@ -246,7 +246,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		var modules = [];
 		// modules running on current page
 		for (var page in Foxtrick.ht_pages) {
-			if (Foxtrick.isPage(page, doc) && Foxtrick.entry.runMap[page]) {
+			if (Foxtrick.isPage(doc, page) && Foxtrick.entry.runMap[page]) {
 				for (var i = 0; i < Foxtrick.entry.runMap[page].length; ++i)
 					modules.push(Foxtrick.entry.runMap[page][i]);
 			}
@@ -316,7 +316,7 @@ Foxtrick.entry.change = function(ev) {
 			var modules = [];
 			// modules running on current page
 			for (var page in Foxtrick.ht_pages) {
-				if (Foxtrick.isPage(page, doc) && Foxtrick.entry.runMap[page]) {
+				if (Foxtrick.isPage(doc, page) && Foxtrick.entry.runMap[page]) {
 					for (var i = 0; i < Foxtrick.entry.runMap[page].length; ++i)
 						modules.push(Foxtrick.entry.runMap[page][i]);
 				}

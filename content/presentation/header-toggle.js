@@ -140,7 +140,7 @@ Foxtrick.modules['HeaderToggle'] = {
 			.replace(/\s+/g, '');
 		if (FoxtrickPrefs.getBool(key))
 			toggle(header);
-		else if (Foxtrick.isPage('forumDefault', doc)) {
+		else if (Foxtrick.isPage(doc, 'forumDefault')) {
 			toggle(header);
 			toggle(header);
 		}

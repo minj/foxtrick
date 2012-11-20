@@ -15,7 +15,7 @@ Foxtrick.modules['YouthTwins'] = {
 	run: function(doc) {
 		var ignoreHours = 24;
 
-		if (!Foxtrick.isPage('ownYouthPlayers', doc))
+		if (!Foxtrick.isPage(doc, 'ownYouthPlayers'))
 			return;
 
 		var getYouthPlayerList = function(teamId, callback) {

@@ -197,14 +197,14 @@ Foxtrick.modules['StaffMarker'] = {
 				}, selects);
 			};
 
-			if (Foxtrick.isPage('forumViewThread', doc)) {
+			if (Foxtrick.isPage(doc, 'forumViewThread')) {
 				markThread(doc, modifier);
 				markSelect(doc, modifier);
 			}
-			else if (Foxtrick.isPage('forumWritePost', doc)) {
+			else if (Foxtrick.isPage(doc, 'forumWritePost')) {
 				markSelect(doc, modifier);
 			}
-			else if (Foxtrick.isPage('teamPage', doc)) {
+			else if (Foxtrick.isPage(doc, 'teamPage')) {
 				if (FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'manager')) {
 					markThread(doc, modifier);
 				}

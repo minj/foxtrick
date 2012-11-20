@@ -14,7 +14,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 	],
 	//CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-fixes.css',
 	run: function(doc) {
-		if (!Foxtrick.isPage('match', doc)) {
+		if (!Foxtrick.isPage(doc, 'match')) {
 			var lineupImgs = doc.querySelectorAll('#mainBody table img.matchOrder');
 			var id = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
 			for (var i = 0; i < lineupImgs.length; i++) {

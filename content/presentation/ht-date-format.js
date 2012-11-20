@@ -21,7 +21,7 @@ Foxtrick.modules['HTDateFormat'] = {
 			'statsMatchesHeadToHead', 'seriesHistory', 'playerStats'];
 		// don't show on where not needed and cluttering
 		if (!Foxtrick.any(function(page) {
-				return Foxtrick.isPage(page, doc);
+				return Foxtrick.isPage(doc, page);
 			}, pages)) {
 			return;
 		}
@@ -34,8 +34,8 @@ Foxtrick.modules['HTDateFormat'] = {
 		                                         '.FirstDayOfWeekOffset_text');
 		// set up function for separating date and week/season,
 		// with concerns of some table fixing for simple skin
-		if ((!Foxtrick.util.layout.isStandard(doc) && Foxtrick.isPage('matches', doc))
-			|| Foxtrick.isPage('seriesHistory', doc)) {
+		if ((!Foxtrick.util.layout.isStandard(doc) && Foxtrick.isPage(doc, 'matches'))
+			|| Foxtrick.isPage(doc, 'seriesHistory')) {
 			var separate = function(node) {
 				node.appendChild(doc.createElement('br'));
 			};
@@ -48,7 +48,7 @@ Foxtrick.modules['HTDateFormat'] = {
 
 		var modifyDate = function(node) {
 			if (Foxtrick.hasClass(node, 'ft-date') || (Foxtrick.hasClass(node, 'matchdate')
-			    && !Foxtrick.isPage('playerStats', doc)))
+			    && !Foxtrick.isPage(doc, 'playerStats')))
 				return;
 			if (node.hasAttribute('x-ht-date')) {
 				// attribute x-ht-date set by LocalTime, while inner

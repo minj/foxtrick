@@ -268,7 +268,7 @@ Foxtrick.modules['HTEVPrediction'] = {
 			if (links[i].href.search(/match.aspx/i) == -1)
 				continue;
 
-			if (Foxtrick.isPage('series', doc) || getMatchType(links[i]) == 'matchLeague')
+			if (Foxtrick.isPage(doc, 'series') || getMatchType(links[i]) == 'matchLeague')
 				addPopup(links[i]);
 		}
 	}

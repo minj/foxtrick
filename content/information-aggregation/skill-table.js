@@ -1327,7 +1327,7 @@ Foxtrick.modules['SkillTable'] = {
 		if (doc.getElementById('ft_skilltablediv'))
 			return;
 
-		if (Foxtrick.isPage('transferSearchResult', doc)
+		if (Foxtrick.isPage(doc, 'transferSearchResult')
 			|| getFullType().subtype != 'others'
 			|| FoxtrickPrefs.isModuleOptionEnabled('SkillTable', 'OtherTeams')) {
 

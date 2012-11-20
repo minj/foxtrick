@@ -211,7 +211,7 @@ Foxtrick.modules['TableSort'] = {
 			}
 		};
 
-		if (Foxtrick.isPage('forumViewThread', doc)) {
+		if (Foxtrick.isPage(doc, 'forumViewThread')) {
 			var tables = doc.getElementsByClassName('htMlTable');
 		}
 		else {

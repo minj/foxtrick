@@ -145,7 +145,7 @@ Foxtrick.pagesExcluded = {
 	'logout'					: 'Logout.aspx'
 };
 
-Foxtrick.isPage = function(page, doc) {
+Foxtrick.isPage = function(doc, page) {
 	if (typeof Foxtrick.ht_pages[page] !== 'undefined')
 		return Foxtrick.isPageHref(Foxtrick.ht_pages[page], doc.location.href);
 	else {
@@ -157,7 +157,7 @@ Foxtrick.isPage = function(page, doc) {
 Foxtrick.isOneOfPages = function(pages, doc) {
 	if (pages instanceof Array) {
 		for (var j = 0; j < pages.length; ++j) {
-			if (Foxtrick.isPage(pages[j], doc))
+			if (Foxtrick.isPage(doc, pages[j]))
 				return true;
 		}
 	}

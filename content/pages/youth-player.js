@@ -6,7 +6,7 @@
 
 Foxtrick.Pages.YouthPlayer = {
 	isYouthPlayerPage: function(doc) {
-		return Foxtrick.isPage('youthPlayerDetails', doc);
+		return Foxtrick.isPage(doc, 'youthPlayerDetails');
 	},
 
 	getJoinedDays: function(doc) {

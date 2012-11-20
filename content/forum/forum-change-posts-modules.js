@@ -18,11 +18,11 @@ Foxtrick.modules['FormatPostingText'] = {
 		var format = this.format;
 		var reformat = this.reformat;
 		//format view
-		if (Foxtrick.isPage('messageWritePost', doc)
-			|| Foxtrick.isPage('guestbook', doc)
-			|| Foxtrick.isPage('forumWritePost', doc)) {
+		if (Foxtrick.isPage(doc, 'messageWritePost')
+			|| Foxtrick.isPage(doc, 'guestbook')
+			|| Foxtrick.isPage(doc, 'forumWritePost')) {
 			try {
-				if (Foxtrick.isPage('forumWritePost', doc))
+				if (Foxtrick.isPage(doc, 'forumWritePost'))
 					var messages = doc.getElementsByClassName('message');
 				else
 					var messages = doc.getElementsByClassName('feedItem');

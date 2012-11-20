@@ -21,7 +21,7 @@ Foxtrick.util.tabs.initialize = function(doc) {
 	if (!tabs) {
 		tabs = Foxtrick.util.tabs._create(doc);
 	} else {
-		if (!Foxtrick.isPage('match', doc))
+		if (!Foxtrick.isPage(doc, 'match'))
 			header.parentNode.insertBefore(tabs, contentNode);
 	}
 	contentNode = tabs.nextSibling;
@@ -58,7 +58,7 @@ Foxtrick.util.tabs.initialize = function(doc) {
 	}
 
 
-	if (!Foxtrick.isPage('match', doc) && !Foxtrick.hasClass(Foxtrick.util.tabs
+	if (!Foxtrick.isPage(doc, 'match') && !Foxtrick.hasClass(Foxtrick.util.tabs
 	    .getTabs(doc).nextSibling, 'ft-clear-both')) {
 		var clear = doc.createElement('div');
 		Foxtrick.addClass(clear, 'ft-clear-both');

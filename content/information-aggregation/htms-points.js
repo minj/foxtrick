@@ -27,7 +27,7 @@ Foxtrick.modules['HTMSPoints'] = {
 		                                                            'AddToSearchResult');
 		var AddToPlayerList = FoxtrickPrefs.isModuleOptionEnabled('HTMSPoints', 'AddToPlayerList');
 
-		if (Foxtrick.isPage('playerDetails', doc) && AddToPlayer) {
+		if (Foxtrick.isPage(doc, 'playerDetails') && AddToPlayer) {
 			var age = Foxtrick.Pages.Player.getAge(doc);
 			var skills = Foxtrick.Pages.Player.getSkillsWithText(doc);
 			if (skills === null) {
@@ -93,7 +93,7 @@ Foxtrick.modules['HTMSPoints'] = {
 						.replace(/%2/, calcResult[1]);
 			}
 		}
-		else if (Foxtrick.isPage('transferSearchResult', doc) && AddToSearchResult) {
+		else if (Foxtrick.isPage(doc, 'transferSearchResult') && AddToSearchResult) {
 			var skillOrder = [
 				'keeper', 'playmaking', 'passing', 'winger', 'defending', 'scoring', 'setPieces'
 			];
@@ -138,7 +138,7 @@ Foxtrick.modules['HTMSPoints'] = {
 				//Foxtrick.dump('\n');
 			}
 		}
-		else if (Foxtrick.isPage('players', doc) && AddToPlayerList) {
+		else if (Foxtrick.isPage(doc, 'players') && AddToPlayerList) {
 			var playersHtml = doc.getElementsByClassName('playerInfo');
 			var players = Foxtrick.modules.Core.getPlayerList();
 

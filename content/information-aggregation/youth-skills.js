@@ -8,7 +8,7 @@ Foxtrick.modules['YouthSkills'] = {
 	run: function(doc) {
 		var UNKNOWNLEVELSYMBOL = '-';
 
-		if (!Foxtrick.isPage('ownYouthPlayers', doc))
+		if (!Foxtrick.isPage(doc, 'ownYouthPlayers'))
 			return;
 
 		//this maps HY skill-id to the row index in the table

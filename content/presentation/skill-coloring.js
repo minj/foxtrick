@@ -220,7 +220,7 @@ Foxtrick.modules['SkillColoring'] = {
 		el.appendChild(t);
 	},
 	run: function(doc) {
-		if (Foxtrick.isPage('ownYouthPlayers', doc) &&
+		if (Foxtrick.isPage(doc, 'ownYouthPlayers') &&
 			FoxtrickPrefs.isModuleEnabled('YouthSkills') &&
 			!doc.getElementsByClassName('ft-youthskills-link').length)
 			return;
@@ -359,12 +359,12 @@ Foxtrick.modules['SkillColoring'] = {
 		// add skill link colors (and or) numbers to the dynamically filled player details div
 		// on the lineup page
 		if ((skill_color || non_skill_color || skill_number || skill_translated) &&
-		    Foxtrick.isPage('matchOrder', doc)) {
+		    Foxtrick.isPage(doc, 'matchOrder')) {
 			Foxtrick.addMutationEventListener(doc.getElementById('details'), 'DOMNodeInserted',
 			                                  playerDetailsChange, false);
 		}
 
-		if (skill_select && Foxtrick.isPage('transferSearchForm', doc)) {
+		if (skill_select && Foxtrick.isPage(doc, 'transferSearchForm')) {
 			var skills = doc.querySelectorAll('#mainBody select[id*="Skill"][id$="Min"]>option, '
 											+ '#mainBody select[id*="Skill"][id$="Max"]>option');
 			for (var i = 0, skill; skill = skills[i]; ++i) {
@@ -378,8 +378,8 @@ Foxtrick.modules['SkillColoring'] = {
 		}
 
 		if (skill_number || skill_translated) {
-			var isProblemPage = (Foxtrick.isPage('players', doc) ||
-			                     Foxtrick.isPage('transferSearchResult', doc));
+			var isProblemPage = (Foxtrick.isPage(doc, 'players') ||
+			                     Foxtrick.isPage(doc, 'transferSearchResult'));
 			// too little space on these pages
 			var links = doc.getElementsByTagName('a');
 			for (var i = 0, link; link = links[i]; ++i) {

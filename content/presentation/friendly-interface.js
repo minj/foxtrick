@@ -17,7 +17,7 @@ Foxtrick.modules['FriendlyInterface'] = {
 	],
 
 	run: function(doc) {
-		if (Foxtrick.isPage('matchLineup', doc)
+		if (Foxtrick.isPage(doc, 'matchLineup')
 			&& FoxtrickPrefs.isModuleOptionEnabled('FriendlyInterface', 'FullPlayerNameInLineUp')) {
 			// show full player names while hiding overflew characters
 			var field = doc.getElementsByClassName('field')[0];
@@ -61,7 +61,7 @@ Foxtrick.modules['FriendlyInterface'] = {
 				}
 			}
 		}
-		else if (Foxtrick.isPage('playerDetails', doc)
+		else if (Foxtrick.isPage(doc, 'playerDetails')
 			&& FoxtrickPrefs.isModuleOptionEnabled('FriendlyInterface', 'NtLinkForNtPlayer')) {
 			// show national team names as links in national players' page
 			var playerInfo = doc.getElementsByClassName('playerInfo')[0];
@@ -93,7 +93,7 @@ Foxtrick.modules['FriendlyInterface'] = {
 					replace(ntName, ntId);
 			}
 		}
-		else if (Foxtrick.isPage('guestbook', doc)
+		else if (Foxtrick.isPage(doc, 'guestbook')
 			&& FoxtrickPrefs.isModuleOptionEnabled('FriendlyInterface', 'HideAnswerTo')) {
 			var links = doc.getElementById('mainBody').getElementsByTagName('a');
 			var answerToLinks = Foxtrick.filter(function(n) {
@@ -107,7 +107,7 @@ Foxtrick.modules['FriendlyInterface'] = {
 				n.parentNode.style.backgroundColor = 'white';
 			}, answerToLinks);
 		}
-		else if (Foxtrick.isPage('dashboard', doc)
+		else if (Foxtrick.isPage(doc, 'dashboard')
 			&& FoxtrickPrefs.isModuleOptionEnabled('FriendlyInterface',
 			                                       'HideSpeechlessSecretary')) {
 			if (doc.getElementsByClassName('pmNextMessageCounter').length)

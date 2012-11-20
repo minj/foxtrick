@@ -109,12 +109,12 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				}
 			};
 
-			if (Foxtrick.isPage('matchOrder', doc))	{
+			if (Foxtrick.isPage(doc, 'matchOrder'))	{
 				var playerdivs = target.getElementsByClassName('player');
 				for (var k = 0; k < playerdivs.length; ++k)
 					add_image(playerdivs[k]);
 			}
-			else if (Foxtrick.isPage('matchLineup', doc)) {
+			else if (Foxtrick.isPage(doc, 'matchLineup')) {
 				var playerdivs = target.getElementsByClassName('box_lineup');
 				for (var k = 0; k < playerdivs.length; ++k)
 					add_image(playerdivs[k]);
@@ -772,11 +772,11 @@ Foxtrick.modules['MatchOrderInterface'] = {
 		};
 
 		var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
-		if (Foxtrick.isPage('matchOrder', doc)) {
+		if (Foxtrick.isPage(doc, 'matchOrder')) {
 			runMatchOrder(doc);
 			Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath + 'resources/js/matchOrder.js');
 		}
-		else if (Foxtrick.isPage('matchLineup', doc))
+		else if (Foxtrick.isPage(doc, 'matchLineup'))
 			runMatchLineup(doc);
 	}
 };

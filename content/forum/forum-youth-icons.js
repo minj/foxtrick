@@ -129,7 +129,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 				}
 				for (var i = 0; i < fields.length; ++i) {
 					var page = fields[i].page;
-					if (Foxtrick.isPage(page, doc)) {
+					if (Foxtrick.isPage(doc, page)) {
 						clickHandler(fields[i].textarea, ev.target.getAttribute('tags'),
 						             ev.target.getAttribute('replace_Text'), fields[i].counterfield,
 						             fields[i].length);
@@ -160,17 +160,17 @@ Foxtrick.modules['ForumYouthIcons'] = {
 		var textarea = doc.getElementsByTagName('textarea')[0];
 		if (textarea == null) return;
 
-		if (Foxtrick.isPage('newsLetter', doc)
-			|| Foxtrick.isPage('mailNewsLetter', doc)) {
+		if (Foxtrick.isPage(doc, 'newsLetter')
+			|| Foxtrick.isPage(doc, 'mailNewsLetter')) {
 
-			if (Foxtrick.isPage('newsLetter', doc))
+			if (Foxtrick.isPage(doc, 'newsLetter'))
 				var textbox = 'ctl00_ctl00_CPContent_CPMain_txtMessage';
-			if (Foxtrick.isPage('mailNewsLetter', doc))
+			if (Foxtrick.isPage(doc, 'mailNewsLetter'))
 				var textbox = 'ctl00_ctl00_CPContent_CPMain_tbNewsBody';
 
 			var anchor = doc.getElementById(textbox);
 
-			if (Foxtrick.isPage('newsLetter', doc)) {
+			if (Foxtrick.isPage(doc, 'newsLetter')) {
 				var count = 'ctl00_ctl00_CPContent_CPMain_txtCharsLeft';
 				var chars = 1000;
 				if (enlarge) {
@@ -178,7 +178,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 					anchor.setAttribute('cols', '50');
 				}
 			}
-			if (Foxtrick.isPage('mailNewsLetter', doc)) {
+			if (Foxtrick.isPage(doc, 'mailNewsLetter')) {
 				var counter = doc.getElementsByName('remlennews')[0];
 				counter.id = 'ctl00_ctl00_CPContent_CPMain_txtCharsLeft';
 				var count = 'ctl00_ctl00_CPContent_CPMain_txtCharsLeft';
@@ -207,21 +207,21 @@ Foxtrick.modules['ForumYouthIcons'] = {
 			anchor.parentNode.insertBefore(div, anchor);
 		}
 
-		if (Foxtrick.isPage('forumWritePost', doc) && enlarge) {
+		if (Foxtrick.isPage(doc, 'forumWritePost') && enlarge) {
 				//var anchor = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor'
 				//                                 + '_txtBody');
 				var anchor = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
 				anchor.style.height = '300px';
 		}
 
-		if (Foxtrick.isPage('forumModWritePost', doc) && enlarge) {
+		if (Foxtrick.isPage(doc, 'forumModWritePost') && enlarge) {
 				//var anchor = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor'
 				//+ '_txtBody');
 				var anchor = doc.getElementById('mainBody').getElementsByTagName('textarea')[0];
 				anchor.style.height = '300px';
 		}
 
-		if (Foxtrick.isPage('announcements', doc) && enlarge) {
+		if (Foxtrick.isPage(doc, 'announcements') && enlarge) {
 				var anchor = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor' +
 				                                '_txtBody');
 				anchor.style.height = '300px';
@@ -238,7 +238,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 
 		toolbar.setAttribute('style', 'float:left; margin-right:3px;');
 
-		if (Foxtrick.isPage('guestbook', doc))
+		if (Foxtrick.isPage(doc, 'guestbook'))
 			try {
 				var textbox = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor' +
 				                                 '_txtBody');
@@ -516,7 +516,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 		if (FoxtrickPrefs.isModuleOptionEnabled('ForumYouthIcons', icons[0].type)) {
 			for (var j = 0; j < fields.length; j++) {
 				var page = fields[j].page;
-				if (Foxtrick.isPage(page, doc) && fields[j].add_quote == true) {
+				if (Foxtrick.isPage(doc, page) && fields[j].add_quote == true) {
 					var newimage = doc.createElement('img');
 					newimage.src = '/Img/Icons/transparent.gif';
 					Foxtrick.onClick(newimage, addClick);

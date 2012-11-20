@@ -26,7 +26,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 
 		var rows, row, liveTdIdx = 4, cloneUrlIdx = 5, tdCount = 7, scoreIdx = 3;
 
-		if (Foxtrick.isPage('match', doc) || Foxtrick.isPage('matchOld', doc)) {
+		if (Foxtrick.isPage(doc, 'match') || Foxtrick.isPage(doc, 'matchOld')) {
 
 			if (Foxtrick.Pages.Match.isPrematch(doc)
 			|| Foxtrick.Pages.Match.inProgress(doc))
@@ -54,7 +54,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 
 			return;
 		}
-		else if (Foxtrick.isPage('series', doc)) {
+		else if (Foxtrick.isPage(doc, 'series')) {
 
 			tdCount = 2;//3;
 			cloneUrlIdx = 0;
@@ -102,21 +102,21 @@ Foxtrick.modules['ReLiveLinks'] = {
 				}
 			}
 		}
-		else if (Foxtrick.isPage('fixtures', doc) || Foxtrick.isPage('youthFixtures', doc)) {
+		else if (Foxtrick.isPage(doc, 'fixtures') || Foxtrick.isPage(doc, 'youthFixtures')) {
 			tdCount = 4;
 			cloneUrlIdx = 1;
 			liveTdIdx = 3;
 			scoreIdx = 2;
 			rows = doc.querySelectorAll('#ctl00_ctl00_CPContent_CPMain_repFixtures > table ' +
 			                            '> tbody > tr');
-			if (Foxtrick.isPage('youthFixtures', doc)) {
+			if (Foxtrick.isPage(doc, 'youthFixtures')) {
 				for (var i = 0, m = rows.length; i < m; ++i) {
 					row = rows[i];
 					Foxtrick.insertFeaturedCell(row, this, liveTdIdx);
 				}
 			}
 		}
-		else if (Foxtrick.isPage('cupMatches', doc)) {
+		else if (Foxtrick.isPage(doc, 'cupMatches')) {
 			tdCount = 6;
 			cloneUrlIdx = 2;
 			rows = doc.querySelectorAll('table.indent > tbody > tr');
@@ -130,7 +130,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 				}
 			}
 		}
-		else if (Foxtrick.isPage('matchesArchive', doc)) {
+		else if (Foxtrick.isPage(doc, 'matchesArchive')) {
 			rows = doc.querySelectorAll('table.indent > tbody > tr');
 			for (var i = 0, m = rows.length; i < m; ++i) {
 				row = rows[i];

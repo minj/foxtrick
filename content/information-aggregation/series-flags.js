@@ -123,7 +123,7 @@ Foxtrick.modules['SeriesFlags'] = {
 			}, links);
 		};
 		if (FoxtrickPrefs.isModuleOptionEnabled('SeriesFlags', 'Guestbook')
-			&& Foxtrick.isPage('guestbook', doc)) {
+			&& Foxtrick.isPage(doc, 'guestbook')) {
 			// add to guest managers
 			var mainWrapper = doc.getElementsByClassName('main')[0];
 			var links = mainWrapper.getElementsByTagName('a');
@@ -135,7 +135,7 @@ Foxtrick.modules['SeriesFlags'] = {
 		}
 		//We add also flag to the guestbook entry in teamPage, but we have to skip the own user link
 		if (FoxtrickPrefs.isModuleOptionEnabled('SeriesFlags', 'Guestbook')
-			&& Foxtrick.isPage('teamPage', doc)) {
+			&& Foxtrick.isPage(doc, 'teamPage')) {
 			var mainBoxes = doc.getElementsByClassName('main')[0].getElementsByClassName('mainBox');
 			Foxtrick.map(function(b) {
 				var links = b.getElementsByTagName('a');
@@ -147,7 +147,7 @@ Foxtrick.modules['SeriesFlags'] = {
 			}, mainBoxes);
 		}
 		if (FoxtrickPrefs.isModuleOptionEnabled('SeriesFlags', 'Supporters')
-			&& Foxtrick.isPage('teamPage', doc)) {
+			&& Foxtrick.isPage(doc, 'teamPage')) {
 			// add to supporters
 			var sideBar = doc.getElementById('sidebar');
 			var sideBarBoxes = sideBar.getElementsByClassName('sidebarBox');
@@ -166,7 +166,7 @@ Foxtrick.modules['SeriesFlags'] = {
 		}
 		if (FoxtrickPrefs.isModuleOptionEnabled('SeriesFlags', 'Visitors')
 			&& Foxtrick.any(function(n) {
-				return Foxtrick.isPage(n, doc);
+				return Foxtrick.isPage(doc, n);
 			}, ['teamPage', 'series', 'youthSeries', 'federation'])) {
 			// add to visitors
 			var sideBar = doc.getElementById('sidebar');
@@ -186,9 +186,9 @@ Foxtrick.modules['SeriesFlags'] = {
 		}
 
 		if (FoxtrickPrefs.isModuleOptionEnabled('SeriesFlags', 'Tournaments')
-			&& (Foxtrick.isPage('tournaments', doc)
-				|| Foxtrick.isPage('tournamentsGroups', doc)
-				|| Foxtrick.isPage('tournamentsFixtures', doc))) {
+			&& (Foxtrick.isPage(doc, 'tournaments')
+				|| Foxtrick.isPage(doc, 'tournamentsGroups')
+				|| Foxtrick.isPage(doc, 'tournamentsFixtures'))) {
 
 
 			// add to tournaments table

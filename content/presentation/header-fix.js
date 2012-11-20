@@ -19,8 +19,8 @@ Foxtrick.modules['HeaderFix'] = {
 	},
 
 	run: function(doc) {
-		var isArena = Foxtrick.isPage('arena', doc);
-		var isMatch = Foxtrick.isPage('match', doc);
+		var isArena = Foxtrick.isPage(doc, 'arena');
+		var isMatch = Foxtrick.isPage(doc, 'match');
 
 		// nothing to fix other than these two pages
 		if (!isArena && !isMatch)

@@ -190,10 +190,10 @@ Foxtrick.modules['TeamPopupLinks'] = {
 						                  'ftTeamHighlight');
 				}
 
-				if (!Foxtrick.isPage('forumViewThread', doc)
-					&& !Foxtrick.isPage('forumWritePost', doc)
-					&& !Foxtrick.isPage('forumModWritePost', doc)
-					&& !Foxtrick.isPage('region', doc)
+				if (!Foxtrick.isPage(doc, 'forumViewThread')
+					&& !Foxtrick.isPage(doc, 'forumWritePost')
+					&& !Foxtrick.isPage(doc, 'forumModWritePost')
+					&& !Foxtrick.isPage(doc, 'region')
 					&& (Foxtrick.util.layout.isStandard(doc) || aLink.parentNode.nodeName != 'TD'))
 					//Foxtrick.addClass(aLink, 'ft-nowrap');
 					Foxtrick.addClass(aLink, 'ft-dummy');

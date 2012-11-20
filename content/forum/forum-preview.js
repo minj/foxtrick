@@ -228,9 +228,9 @@ Foxtrick.modules['ForumPreview'] = {
 		var targets = doc.getElementById('mainBody').getElementsByTagName('input');  // Forum
 		var target = targets[targets.length - 1];
 
-		if (Foxtrick.isPage('forumWritePost', doc))
+		if (Foxtrick.isPage(doc, 'forumWritePost'))
 			button_ok = targets[targets.length - 2];
-		if (Foxtrick.isPage('guestbook', doc))
+		if (Foxtrick.isPage(doc, 'guestbook'))
 			target = null;
 
 
@@ -349,9 +349,9 @@ Foxtrick.modules['ForumPreview'] = {
 		while (div = divs[i++])
 			if (div.className == 'HTMLToolbar')
 				break;
-		if (Foxtrick.isPage('newsLetter', doc))
+		if (Foxtrick.isPage(doc, 'newsLetter'))
 			div = doc.getElementById('ctl00_ctl00_CPContent_CPMain_txtMessage');
-		if (Foxtrick.isPage('mailNewsLetter', doc))
+		if (Foxtrick.isPage(doc, 'mailNewsLetter'))
 			div = doc.getElementById('ctl00_ctl00_CPContent_CPMain_tbNewsBody');
 
 		div.parentNode.insertBefore(preview_div, div);

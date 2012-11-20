@@ -16,22 +16,22 @@ Foxtrick.modules['ForumTemplates'] = {
 		var templatesDivId = 'post_templates';
 		var templatesPrefList = 'post_templates';
 		var newMsgWindow = 'ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody';
-		if (Foxtrick.isPage('forumWritePost', doc)) {
+		if (Foxtrick.isPage(doc, 'forumWritePost')) {
 			var templatesDivId = 'post_templates';
 			var templatesPrefList = 'post_templates';
 			var newMsgWindow = 'ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody';
 		}
-		else if (Foxtrick.isPage('forumModWritePost', doc)) {
+		else if (Foxtrick.isPage(doc, 'forumModWritePost')) {
 			var templatesDivId = 'post_mod_templates';
 			var templatesPrefList = 'post_mod_templates';
 			var newMsgWindow = 'ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody';
 		}
-		else if (Foxtrick.isPage('messageWritePost', doc)) {
+		else if (Foxtrick.isPage(doc, 'messageWritePost')) {
 			var newMsgWindow = 'ctl00_ctl00_CPContent_CPMain_ucEditorMain_txtBody';
 			var templatesDivId = 'mail_templates';
 			var templatesPrefList = 'mail_templates';
 		}
-		else if (Foxtrick.isPage('htPress', doc)) {
+		else if (Foxtrick.isPage(doc, 'htPress')) {
 			// For Staff! Users have another  MESSAGE_WINDOW ID !
 			var newMsgWindow = 'ctl00_ctl00_CPContent_CPMain_txtComment';
 			var templatesDivId = 'htpress_templates';

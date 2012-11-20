@@ -346,11 +346,11 @@ Foxtrick.modules['CopyYouth'] = {
 		};
 
 		var has_report = false;
-		if (Foxtrick.isPage('youthOverview', doc)) {
+		if (Foxtrick.isPage(doc, 'youthOverview')) {
 			has_report = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butScoutPropYes') != null;
 		}
 
-		if (Foxtrick.isPage('youthPlayerDetails', doc) || has_report) {
+		if (Foxtrick.isPage(doc, 'youthPlayerDetails') || has_report) {
 			if (has_report) {
 				var alertdiv =
 					doc.getElementById('ctl00_ctl00_CPContent_CPMain_butScoutPropYes').parentNode;
@@ -456,23 +456,23 @@ Foxtrick.modules['CopyYouth'] = {
 
 	run: function(doc) {
 		if (FoxtrickPrefs.isModuleOptionEnabled('CopyYouth', 'TrainingReport')
-			&& Foxtrick.isPage('youthTraining', doc)) {
+			&& Foxtrick.isPage(doc, 'youthTraining')) {
 			this.addTrainingReport(doc);
 		}
 		if (FoxtrickPrefs.isModuleOptionEnabled('CopyYouth', 'ScoutComment')
-			&& (Foxtrick.isPage('youthPlayerDetails', doc)
-				|| Foxtrick.isPage('youthOverview', doc))) {
+			&& (Foxtrick.isPage(doc, 'youthPlayerDetails')
+				|| Foxtrick.isPage(doc, 'youthOverview'))) {
 			this.addScoutComment(doc);
 		}
 		if (FoxtrickPrefs.isModuleOptionEnabled('CopyYouth', 'FixturesSource')
-			&& Foxtrick.isPage('youthFixtures', doc)) {
+			&& Foxtrick.isPage(doc, 'youthFixtures')) {
 			this.addFixturesSource(doc);
 		}
 	},
 
 	change: function(doc) {
 		if (FoxtrickPrefs.isModuleOptionEnabled('CopyYouth', 'ScoutComment')
-			&& Foxtrick.isPage('youthOverview', doc)) {
+			&& Foxtrick.isPage(doc, 'youthOverview')) {
 			this.addScoutComment(doc);
 		}
 	}

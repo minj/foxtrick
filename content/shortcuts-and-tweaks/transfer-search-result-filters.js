@@ -346,11 +346,11 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 				}
 			});
 		};
-		if (Foxtrick.isPage('transferSearchForm', doc)) {
+		if (Foxtrick.isPage(doc, 'transferSearchForm')) {
 			addExtraFilters();
 			showHTSearchProfileComment();
 		}
-		else if (Foxtrick.isPage('transferSearchResult', doc))
+		else if (Foxtrick.isPage(doc, 'transferSearchResult'))
 			filterResults();
 	}
 };

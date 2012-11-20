@@ -13,20 +13,20 @@ Foxtrick.Pages.Players = {
 		return this.isSeniorPlayersPage(doc) || this.isYouthPlayersPage(doc);
 	},
 	isSeniorPlayersPage: function(doc) {
-		return Foxtrick.isPage('players', doc);
+		return Foxtrick.isPage(doc, 'players');
 	},
 	isYouthPlayersPage: function(doc) {
-		return Foxtrick.isPage('youthPlayers', doc);
+		return Foxtrick.isPage(doc, 'youthPlayers');
 	},
 	isMatchOrderPage: function(doc) {
-		return Foxtrick.isPage('matchOrder', doc) || Foxtrick.isPage('matchOrderSimple', doc);
+		return Foxtrick.isPage(doc, 'matchOrder') || Foxtrick.isPage(doc, 'matchOrderSimple');
 	},
 	isYouthMatchOrderPage: function(doc) {
 		return this.isMatchOrderPage(doc) &&
 			doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1;
 	},
 	isSimpleMatchOrderPage: function(doc) {
-		return Foxtrick.isPage('matchOrderSimple', doc);
+		return Foxtrick.isPage(doc, 'matchOrderSimple');
 	},
 	isOwnPlayersPage: function(doc) {
 		var ownTeamId = Foxtrick.Pages.All.getOwnTeamId(doc);

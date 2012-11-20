@@ -18,8 +18,8 @@ Foxtrick.modules['OriginalFace'] = {
 
 	run: function(doc) {
 		if (FoxtrickPrefs.isModuleOptionEnabled('OriginalFace', 'ColouredYouth')) {
-			if (Foxtrick.isPage('youthPlayer', doc)
-				|| Foxtrick.isPage('youthPlayers', doc)) {
+			if (Foxtrick.isPage(doc, 'youthPlayer')
+				|| Foxtrick.isPage(doc, 'youthPlayers')) {
 				var imgs = doc.getElementsByTagName('img');
 				var avatarImages = Foxtrick.filter(function(n) {
 					return (n.src.search(/\/Img\/Avatar/i) >= 0); }, imgs);

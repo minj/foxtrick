@@ -11,16 +11,16 @@ Foxtrick.modules.AddClass = {
 	NICE: -20, // place before all date-related modules
 
 	run: function(doc) {
-		if (Foxtrick.isPage('playerDetails', doc))
+		if (Foxtrick.isPage(doc, 'playerDetails'))
 			this.addDateForTl(doc);
-		else if (Foxtrick.isPage('search', doc))
+		else if (Foxtrick.isPage(doc, 'search'))
 			this.addDateForTable(doc, doc.getElementById('ctl00_ctl00_CPContent_CPMain' +
 			                     '_grdYouthSeries_ctl00'));
-		else if (Foxtrick.isPage('transferCompare', doc))
+		else if (Foxtrick.isPage(doc, 'transferCompare'))
 			this.addDateForTable(doc, doc.getElementsByTagName('table')[0]);
-		else if (Foxtrick.isPage('bookmarks', doc))
+		else if (Foxtrick.isPage(doc, 'bookmarks'))
 			this.addDateForBookmarks(doc);
-		else if (Foxtrick.isPage('match', doc) || Foxtrick.isPage('matchOld', doc))
+		else if (Foxtrick.isPage(doc, 'match') || Foxtrick.isPage(doc, 'matchOld'))
 			this.addDateForMatch(doc);
 	},
 

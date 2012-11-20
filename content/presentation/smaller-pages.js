@@ -40,7 +40,7 @@ Foxtrick.modules['SmallerPages'] = {
 				}
 			}
 		}
-		if (Foxtrick.isPage('playerDetails', doc)) {
+		if (Foxtrick.isPage(doc, 'playerDetails')) {
 			if (!doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucPlayerFace_pnlAvatar')) {
 				doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlplayerInfo').style.width
 					= 'auto';
@@ -55,7 +55,7 @@ Foxtrick.modules['SmallerPages'] = {
 				this._adjust_bid(doc);
 			}
 		}
-		else if (Foxtrick.isPage('youthOverview', doc)) {
+		else if (Foxtrick.isPage(doc, 'youthOverview')) {
 			if (!doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucScoutProposalFace_pnlAvatar')) {
 				doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanel1')
 					.getElementsByTagName('div')[0].style.width = 'auto';
