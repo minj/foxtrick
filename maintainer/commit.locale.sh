@@ -3,7 +3,7 @@
 SVN_FILES=../content
 EXTERNAL_LOCALE_FOLDER=crowdin/locale
 #space seperated blacklist of locales which only use svn 
-IGNORELIST="sr ru es-MX cy th"
+IGNORELIST="sr ru"
 
 # load configuration, probably overwriting defaults above
 . ./upload.conf.sh
