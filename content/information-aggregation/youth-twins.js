@@ -280,6 +280,35 @@
 						return;
 					}
 
+					var cookieDone = function (){
+						Foxtrick.log("YouthTwins: Cookieless update");
+						//when we need to force a request due to HY request or so
+						if(false){
+							Foxtrick.log("YouthTwins: Forcing request:", valid);
+							getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
+							return;
+						}
+						//query HY or use cached stuff and alter the site
+						if(now >= fetchTime && now <= expireTime){
+							//in valid lifespan, also saved response seems to be valid
+							Foxtrick.log("YouthTwins: Using cached response from", getUtcFromTimestamp(fetchTime) ,"expires", getUtcFromTimestamp(expireTime), "now", getUtcFromTimestamp(now));
+							handleHyResponse(saved, 200);
+						} else if(now > expireTime) {
+							if(ignoreUntil != -1 && now < ignoreUntil){
+								var until = new Date();
+								until.setTime(ignoreUntil);
+								Foxtrick.log("YouthTwins: Ignoring due to HY request until", until);
+								return;
+							}
+							//saved data is valid, plain request should suffice
+							Foxtrick.log("YouthTwins: Lifetime expired, updating from HY");
+							//teamid, forceUpdate, debug, usertype, response
+							getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
+						} else {
+							Foxtrick.log("Dear time traveler, we welcome you!");
+						}
+					}
+
 					//see if the saved information is still valid
 					var playerInfos = doc.getElementsByClassName("playerInfo");
 					var valid = true;
@@ -337,35 +366,6 @@
 							cookieDone();
 						}
 					});
-
-					var cookieDone = function (){
-						Foxtrick.log("YouthTwins: Cookieless update");
-						//when we need to force a request due to HY request or so
-						if(false){
-							Foxtrick.log("YouthTwins: Forcing request:", valid);
-							getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
-							return;
-						}
-						//query HY or use cached stuff and alter the site
-						if(now >= fetchTime && now <= expireTime){
-							//in valid lifespan, also saved response seems to be valid
-							Foxtrick.log("YouthTwins: Using cached response from", getUtcFromTimestamp(fetchTime) ,"expires", getUtcFromTimestamp(expireTime), "now", getUtcFromTimestamp(now));
-							handleHyResponse(saved, 200);
-						} else if(now > expireTime) {
-							if(ignoreUntil != -1 && now < ignoreUntil){
-								var until = new Date();
-								until.setTime(ignoreUntil);
-								Foxtrick.log("YouthTwins: Ignoring due to HY request until", until);
-								return;
-							}
-							//saved data is valid, plain request should suffice
-							Foxtrick.log("YouthTwins: Lifetime expired, updating from HY");
-							//teamid, forceUpdate, debug, usertype, response
-							getTwinsFromHY(teamid, false, false, "auto", handleHyResponse);
-						} else {
-							Foxtrick.log("Dear time traveler, we welcome you!");
-						}
-					}
 				}
 			});
 		});
