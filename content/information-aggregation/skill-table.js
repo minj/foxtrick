@@ -273,13 +273,18 @@ Foxtrick.modules["SkillTable"]={
 				};
 				var speciality = function(cell, spec) {
 					var specIdx = Foxtrickl10n.getNumberFromSpeciality(spec);
-					if (specIdx)
+					if (specIdx) {
+						var icon_suffix = '';
+						if (FoxtrickPrefs.getBool('anstoss2icons'))
+							icon_suffix = '_alt';
 						Foxtrick.addImage(doc, cell, {
 							alt: spec,
 							title: spec,
 							src: Foxtrick.InternalPath +
-								'resources/img/matches/spec' + specIdx + '.png'
+								'resources/img/matches/spec' + specIdx +
+								icon_suffix + '.png'
 						});
+					}
 					cell.setAttribute('index', spec);
 				};
 				var lastMatch = function(cell, last) {
