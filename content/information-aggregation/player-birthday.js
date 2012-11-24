@@ -59,7 +59,7 @@ Foxtrick.modules['PlayerBirthday'] = {
 			for (var i = 0; i < players.length; ++i) {
 				var item = doc.createElement('li');
 				var player = players[i].nameLink.cloneNode(true);
-				var age = doc.createTextNode(players[i].ageText);
+				var age = doc.createTextNode(' ' + players[i].ageText);
 				list.appendChild(item);
 				item.appendChild(player);
 				item.appendChild(age);
