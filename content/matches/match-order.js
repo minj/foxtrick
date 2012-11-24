@@ -435,7 +435,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 			// add extra info
 			var hasPlayerInfo = false;
-			var hasAvatars = true;
+			var hasAvatars = false;
 			var hasInterface = false;
 			var playerList = null;
 			var avatarsXml = null;
