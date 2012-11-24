@@ -133,16 +133,19 @@ Foxtrick.modules["SkillTable"]={
 				};
 				var playerName = function(cell, player) {
 					cell.appendChild(player.nameLink.cloneNode(true));
+					var extras = "";
 					if (player.nationalTeamId) {
-						cell.appendChild(doc.createTextNode(' (NT)'));
+						extras = " (NT";
+						if (player.trainerData) {
+							extras += ", " + Foxtrickl10n.getString("Coach");
+						}
+						extras += ")";
 					}
-					if (player.trainerData) {
-						var coach = Foxtrickl10n.getString('Coach');
-						Foxtrick.addImage(doc, cell, {
-							alt: coach,
-							title: coach,
-							src: Foxtrick.InternalPath + 'resources/img/cap.png'
-						});
+					else if (player.trainerData) {
+						extras = " (" + Foxtrickl10n.getString("Coach") + ")";
+					}
+					if (extras !== "") {
+						cell.appendChild(doc.createTextNode(extras));
 					}
 				};
 				var age = function(cell, age) {
@@ -272,20 +275,12 @@ Foxtrick.modules["SkillTable"]={
 					}
 				};
 				var speciality = function(cell, spec) {
-					var specIdx = Foxtrickl10n.getNumberFromSpeciality(spec);
-					if (specIdx) {
-						var icon_suffix = '';
-						if (FoxtrickPrefs.getBool('anstoss2icons'))
-							icon_suffix = '_alt';
-						Foxtrick.addImage(doc, cell, {
-							alt: spec,
-							title: spec,
-							src: Foxtrick.InternalPath +
-								'resources/img/matches/spec' + specIdx +
-								icon_suffix + '.png'
-						});
-					}
-					cell.setAttribute('index', spec);
+					var shortSpec = Foxtrickl10n.getShortSpeciality(spec);
+					var abbr = doc.createElement("abbr");
+					abbr.appendChild(doc.createTextNode(shortSpec));
+					abbr.title = spec;
+					cell.appendChild(abbr);
+					cell.setAttribute("index", spec);
 				};
 				var lastMatch = function(cell, last) {
 					if (last) {
