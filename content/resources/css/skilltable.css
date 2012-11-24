@@ -31,5 +31,5 @@ html[dir="rtl"] .ft_skilltable_container td.status img:nth-child(1) { margin-rig
 html[dir="ltr"] .ft_skilltable_container td.status img { margin-left: 0.5em; }
 html[dir="rtl"] .ft_skilltable_container td.status img { margin-left: 0.5em; }
 html[dir="rtl"] .ft_skilltable_container td.formatted-num { direction: ltr; }
-
+#ft_skilltable img { vertical-align: middle; }
 }

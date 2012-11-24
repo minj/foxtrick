@@ -311,6 +311,24 @@ var Foxtrickl10n = {
 		}
 		return spec;
 	},
+
+	getNumberFromSpeciality: function(speciality) {
+		var engSpec = this.getEnglishSpeciality(speciality);
+		var specs = {
+			0: '', 1: 'Technical', 2: 'Quick', 3: 'Powerful', 4: 'Unpredictable',
+			5: 'Head', 6: 'Regainer'
+		};
+		var number = 0;
+		for (var n in specs) {
+			if (specs.hasOwnProperty(n)) {
+				if (specs[n] == engSpec) {
+					number = n;
+					break;
+				}
+			}
+		}
+		return number;
+	},
 	
 	getPositionByType : function(val) {
 		var lang = FoxtrickPrefs.getString("htLanguage");
