@@ -144,19 +144,16 @@ Foxtrick.modules['SkillTable'] = {
 				};
 				var playerName = function(cell, player) {
 					cell.appendChild(player.nameLink.cloneNode(true));
-					var extras = '';
 					if (player.nationalTeamId) {
-						extras = ' (NT';
-						if (player.trainerData) {
-							extras += ', ' + Foxtrickl10n.getString('Coach');
-						}
-						extras += ')';
+						cell.appendChild(doc.createTextNode(' (NT)'));
 					}
-					else if (player.trainerData) {
-						extras = ' (' + Foxtrickl10n.getString('Coach') + ')';
-					}
-					if (extras !== '') {
-						cell.appendChild(doc.createTextNode(extras));
+					if (player.trainerData) {
+						var coach = Foxtrickl10n.getString('Coach');
+						Foxtrick.addImage(doc, cell, {
+							alt: coach,
+							title: coach,
+							src: Foxtrick.InternalPath + 'resources/img/cap.png'
+						});
 					}
 				};
 				var age = function(cell, age) {
@@ -293,11 +290,14 @@ Foxtrick.modules['SkillTable'] = {
 					}
 				};
 				var speciality = function(cell, spec) {
-					var shortSpec = Foxtrickl10n.getShortSpeciality(spec);
-					var abbr = doc.createElement('abbr');
-					abbr.appendChild(doc.createTextNode(shortSpec));
-					abbr.title = spec;
-					cell.appendChild(abbr);
+					var specIdx = Foxtrickl10n.getNumberFromSpeciality(spec);
+					if (specIdx)
+						Foxtrick.addImage(doc, cell, {
+							alt: spec,
+							title: spec,
+							src: Foxtrick.InternalPath +
+								'resources/img/matches/spec' + specIdx + '.png'
+						});
 					cell.setAttribute('index', spec);
 				};
 				var lastMatch = function(cell, last) {
