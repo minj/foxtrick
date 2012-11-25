@@ -25,7 +25,7 @@ Foxtrick.modules['CopyBBAd'] = {
 		var button =
 			Foxtrick.util.copyButton.add(doc, Foxtrickl10n.getString('CopyTableAd.copy'));
 		if (button) {
-			Foxtrick.addClass(button, 'ft-copy-player-ad');
+			Foxtrick.addClass(button, 'ft-copy-bb-ad');
 			Foxtrick.onClick(button, this.CopyTableAd);
 		}
 	},
@@ -190,7 +190,7 @@ Foxtrick.modules['CopyBBAd'] = {
 		var button =
 			Foxtrick.util.copyButton.add(doc, Foxtrickl10n.getString('CopyLeagueStatsAd.copy'));
 		if (button) {
-			Foxtrick.addClass(button, 'ft-copy-player-ad ft-pop-up-container');
+			Foxtrick.addClass(button, 'ft-copy-bb-ad ft-pop-up-container');
 
 			var versions = ['all','max','avg'];
 			var list = doc.createElement('ul');
@@ -215,7 +215,7 @@ Foxtrick.modules['CopyBBAd'] = {
 		var button = Foxtrick.util.copyButton.add(doc,
 				Foxtrickl10n.getString('CopyFinancesAd.copy'));
 		if (button) {
-			Foxtrick.addClass(button, 'ft-copy-player-ad');
+			Foxtrick.addClass(button, 'ft-copy-bb-ad');
 			Foxtrick.onClick(button, this.CopyFinancesAd);
 		}
 	},
