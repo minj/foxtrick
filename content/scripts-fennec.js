@@ -210,6 +210,7 @@ Foxtrick.loader.background.contentScriptManager = {
 		"presentation/youth-skill-hide-unknown.js",
 		"shortcuts-and-tweaks/confirm-actions.js",
 		"shortcuts-and-tweaks/context-menu-copy.js",
+		"shortcuts-and-tweaks/copy-bb-ad.js",
 		"shortcuts-and-tweaks/copy-match-id.js",
 		"shortcuts-and-tweaks/copy-player-ad.js",
 		"shortcuts-and-tweaks/copy-youth.js",

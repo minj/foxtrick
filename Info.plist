@@ -230,6 +230,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/presentation/youth-skill-hide-unknown.js</string>
 				<string>content/shortcuts-and-tweaks/confirm-actions.js</string>
 				<string>content/shortcuts-and-tweaks/context-menu-copy.js</string>
+				<string>content/shortcuts-and-tweaks/copy-bb-ad.js</string>
 				<string>content/shortcuts-and-tweaks/copy-match-id.js</string>
 				<string>content/shortcuts-and-tweaks/copy-player-ad.js</string>
 				<string>content/shortcuts-and-tweaks/copy-youth.js</string>
