@@ -59,6 +59,12 @@
 		"matchlink": {
 			"url": "http://htlivesight.sourceforge.net/"
 		},
+		"playedmatchlink": {
+			"url": "http://htlivesight.sourceforge.net/"
+		},
+		"playedyouthmatchlink": {
+			"url": "http://htlivesight.sourceforge.net/"
+		},
 		"title": "htlivesight match viewer (based on livefox)",
 		"img": "http://htlivesight.sourceforge.net/images/48.png"
 	},	
