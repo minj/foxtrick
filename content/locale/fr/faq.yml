@@ -1,42 +1,42 @@
 ---
-en:
+fr: 
   faq: 
     style: 
-      question: How could I style my FoxTrick?
+      question: Comment puis je personnaliser mon FoxTrick ?
       answer: |
-        <p>FoxTrick provides a set of presentation interfaces for users to customise their own styles. These interfaces are provided through HTML IDs and classes, and you can use CSS to define your preferred style.</p>
+        <p>FoxTrick fournit un ensemble d'interfaces de présentation aux utilisateurs de personnaliser leur propre style. Ces interfaces sont fournies par "HTML IDs et classes", et vous pouvez utiliser les CSS pour définir votre style préféré.</p>
         
-        <p>An example user style file can be found <linkCSSExample>here</linkCSSExample> or <linkCSSExampleGCode>here</linkCSSExampleGCode>, which you can modify to satisfy your need. After saving the file, you can use the <module>SkinPlugin</module> module for loading the CSS file to have the user style in effect.</p>
+        <p>Un exemple de personnalisation peut être vu <linkCSSExample>ici</linkCSSExample> or <linkCSSExampleGCode>ici</linkCSSExampleGCode>, que vous pouvez modifier pour satisfaire votre besoin. Après avoir enregistré le fichier, vous pouvez utiliser le <module>SkinPlugin</module> module pour télécharger le fichier CSS et l'utiliser.</p>
     sound-format: 
-      question: Which file formats are allowed for alert sounds?
+      question: Quels formats de fichiers sont autorisés pour les alertes sonores ?
       answer: |
-        <p>Different browsers allow different file formats. Here's a list (non-listed formats may work if the appropriate plugins are installed, eg Quicktime to play mp3 in Firefox):</p>
+        <p>Les navigateurs autorisent différents formats de fichier. Voici une liste (Les formats non listés peuvent fonctionner si le plugin approprié est installé, par ex. Quicktime pour les mp3 dans Firefox):</p>
         
         <ul>
         <li>Mozilla: wav, ogg</li>
-        <li>Safari (may need Quicktime): wav, mp3</li>
+        <li>Safari (peut-être besoin de Quicktime): wav, mp3</li>
         <li>Chrome:  ogg, mp3, wav</li><li>Opera: wav, ogg</li>
         </ul>
     sound-location: 
-      question: What is the size limit for alert sounds and where can they be located?
+      question: Quelle est la limite de taille pour les fichiers des alertes sonores et où peuvent ils être situés ?
       answer: |
-        <p>All browsers can play data urls. Those are the internally saved sounds when you use the load button provided in the preferences. Since they are converted and saved in your preferences, the size is limited to around 160kB per sound.</p>
+        <p>Tous les navigateurs peuvent jouer des données "urls". Ce sont vos alertes sonores enregistrées via le bouton "parcourir" fourni dans les préférences. Comme elles sont converties et enregistrées dans vos préférences, la taille est limitée à environ 160kB par son.</p>
         
-        <p>All browsers also can play sounds directly from the internet (http urls). Just copy a link to a sound (eg http://foxtrick.org/sound.wav) into the edit field for sounds. No size limit.</p>
+        <p>Tous les navigateurs peuvent également jouer des sons directement depuis Internet (http urls). Il suffit de copier un lien vers un son (par ex. http://foxtrick.org/sound.wav) dans le champ d'édition de sons. Aucune limite de taille.</p>
         
-        <p>Mozilla browsers also can play sounds directly from your harddrive (file urls) with no size limit. Easiest way to get the right format: In the browser type Ctrl+o, browse to the sound file and select it. In the adress bar on top is now the right link to the local file (eg file:///c:/sound.wav). Copy and paste this into the edit field for the sounds.</p>
+        <p>Les navigateurs de Mozilla peut également lire des sons directement depuis votre disque dur (file urls) sans limite de taille. Meilleure façon d'obtenir le bon format: Dans le navigateur, faites Ctrl+o, recherchez le fichier audio et sélectionnez le. Dans la barre d'adresse, en haut, est inscrit maintenant le bon lien vers le fichier local (par ex. file:///c:/sound.wav). Copiez et collez-le dans le champ d'édition des sons.</p>
     authorize: 
-      question: Why should I authorize FoxTrick to access my team data?
+      question: Pourquoi devrais-je autoriser FoxTrick à accéder aux données de mon équipe ?
       answer: |
-        <p>Although most of the data needed by FoxTrick can be fetched directly from the page you are viewing, some modules do require downloading data from Hattrick to work properly.</p>
+        <p>Bien que la plupart des données nécessaires pour FoxTrick peuvent être récupérés directement à partir de la page que vous consultez, certains modules nécessitent le téléchargement de données à partir de Hattrick pour fonctionner correctement.</p>
         
-        <p>To download data from Hattrick, including data of your team, leagues, and national teams, you need to authorize FoxTrick in advance.</p>
+        <p>Pour télécharger les données de Hattrick, y compris les données de votre équipe, des ligues et équipes nationales, vous devez autoriser FoxTrick au préalable.</p>
         
-        <p>You authorize FoxTrick by providing your username and password on chpp.hattrick.org in exchange of a verification code, which you provide to FoxTrick. FoxTrick will not know your username or your password in the whole process.</p>
+        <p>Vous autorisez FoxTrick en fournissant votre identifiant et votre mot de passe sur chpp.hattrick.org en échange d'un code de d'autorisation, que vous fournirez à FoxTrick. FoxTrick ne connaitra pas votre nom d'utilisateur ou votre mot de passe lors de ce processus.</p>
         
-        <p>To learn more about the authorize process, please read <linkCHPPDesc>CHPP - How it works</linkCHPPDesc> on Hattrick.</p>
+        <p>Pour en savoir plus sur le processus d'autorisation, s'il vous plaît lisez <linkCHPPDesc>CHPP - Fonctionnement</linkCHPPDesc> sur Hattrick.</p>
         
-        <p>Some modules require data access to work properly:</p>
+        <p>Certains modules requièrent l'accès aux données pour fonctionner correctement:</p>
         
         <ul>
         <li><module>CrossTable</module></li>
@@ -47,19 +47,19 @@ en:
         <li><module>SeriesFlags</module></li>
         </ul>
         
-        <p>Some modules could provide extensive info if they can access data from Hattrick:</p>
+        <p>Certains modules peuvent fournir des informations complémentaires s'ils peuvent accéder aux données de Hattrick:</p>
         
         <ul>
         <li><module>SkillTable</module></li>
         <li><module>TeamStats</module></li>
         </ul>
     privacy: 
-      question: How will FoxTrick protect my privacy?
+      question: Comment FoxTrick protège ma vie privée ?
       answer: |
-        <p>FoxTrick will not upload any of your data or preferences to a server of FoxTrick; neither will FoxTrick send any of your private data, including but not restricted to your username, password, and player ID associated with skills to third parties.</p>
+        <p>FoxTrick ne récupère aucune de vos données ou préférences sur son serveur; Jamais Foxtrick ne transmettra vos données personnelles à des tierces-parties, cela inclus (et ce n'est pas exhaustif) votre nom d'utilisateur, votre mot de passe et l'ID de vos joueurs associée à leurs caractéristiques </p>
         
-        <p>Most data passed to third parties, unless explicitly stated below, are sent with HTTP GET method, and will only be sent upon you clicking a link.</p>
+        <p>La plupart des données transmises à des tiers, sauf ceux explicitement indiqué ci-dessous, sont envoyées avec la méthode HTTP GET, et ne sera envoyée que si vous cliquez sur un lien.</p>
         
-        <p>That is, you will be able to see what data are passed by inspecting the URI (Uniform Resource Identifier) of an external link, and no data will be sent without your consent. As stated above, no private data is involved.</p>
+        <p>Autrement dit, vous serez en mesure de voir quelles données sont transmises en inspectant l'URI (Uniform Resource Identifier) ​​d'un lien externe, et aucune donnée ne sera transmise sans votre consentement. Comme indiqué ci-dessus, aucune de vos données personnelles ne sont impliquées.</p>
         
-        <p>The exceptions are modules <module>HTMSPrediction</module> and <module>HTEVPrediction</module>, where match ratings are passed to and recieved from the respective sites with XMLHttpRequest.</p>
+        <p>Les exceptions sont les modules <module>HTMSPrediction</module> et <module>HTEVPrediction</module>, où les notes de match sont transmises et récupérées via leurs sites respectifs avec XMLHttpRequest.</p>
