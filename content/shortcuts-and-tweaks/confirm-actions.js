@@ -15,7 +15,8 @@ Foxtrick.modules['ConfirmActions'] = {
 			BID: {
 				ALERT_ID: 'ctl00_ctl00_CPContent_CPMain_updBid',
 				BUTTON_ID: 'ctl00_ctl00_CPContent_CPMain_btnBid',
-				TEXT_ID: 'ctl00_ctl00_CPContent_CPMain_txtBid',
+				TEXT_ID: ['ctl00_ctl00_CPContent_CPMain_txtBid',
+						  'ctl00_ctl00_CPContent_CPMain_txtMaxBid'],
 				CONFIRM_ID: 'ft-bid-confirm'
 			},
 			SELL: {
@@ -43,11 +44,14 @@ Foxtrick.modules['ConfirmActions'] = {
 						var doc = ev.target.ownerDocument;
 						var bidAlert = doc.getElementById(ids.BID.ALERT_ID);
 						var bidButton = doc.getElementById(ids.BID.BUTTON_ID);
-						var bidText = doc.getElementById(ids.BID.TEXT_ID);
+						var bidText = [doc.getElementById(ids.BID.TEXT_ID[0]),
+									   doc.getElementById(ids.BID.TEXT_ID[1])];
 						var confirm = doc.getElementById(ids.BID.CONFIRM_ID);
-						if (bidAlert && bidText && !confirm) {
+						if (bidAlert && (bidText[0] || bidText[1]) && !confirm) {
 							var msgTemplate = Foxtrickl10n.getString('ConfirmActions.bid');
-							var price = bidText.value
+							var value = bidText[0] && bidText[0].value ||
+								bidText[1] && bidText[1].value;
+							var price = value
 								.split('').reverse().join('')
 								.replace(new RegExp('(.{3})(?!$)', 'g'), '$1 ')
 								.split('').reverse().join('');
@@ -58,8 +62,10 @@ Foxtrick.modules['ConfirmActions'] = {
 										type: Foxtrick.util.note.BUTTON_OK,
 										listener: function(ev) {
 											var doc = ev.target.ownerDocument;
-											var bidText = doc.getElementById(ids.BID.TEXT_ID);
-											bidText.removeAttribute('disabled');
+											var bidText = [doc.getElementById(ids.BID.TEXT_ID[0]),
+														   doc.getElementById(ids.BID.TEXT_ID[1])];
+											bidText[0] && bidText[0].removeAttribute('disabled');
+											bidText[1] && bidText[1].removeAttribute('disabled');
 											var bidButton = doc.getElementById(ids.BID.BUTTON_ID);
 											bidButton.click();
 										}
@@ -70,8 +76,10 @@ Foxtrick.modules['ConfirmActions'] = {
 											var doc = ev.target.ownerDocument;
 											var bidButton = doc.getElementById(ids.BID.BUTTON_ID);
 											Foxtrick.removeClass(bidButton, 'hidden');
-											var bidText = doc.getElementById(ids.BID.TEXT_ID);
-											bidText.removeAttribute('disabled');
+											var bidText = [doc.getElementById(ids.BID.TEXT_ID[0]),
+														   doc.getElementById(ids.BID.TEXT_ID[1])];
+											bidText[0] && bidText[0].removeAttribute('disabled');
+											bidText[1] && bidText[1].removeAttribute('disabled');
 											var confirm = doc.getElementById(ids.BID.CONFIRM_ID);
 											confirm.parentNode.removeChild(confirm);
 										}
@@ -80,7 +88,8 @@ Foxtrick.modules['ConfirmActions'] = {
 							confirm.id = ids.BID.CONFIRM_ID;
 							bidAlert.getElementsByTagName('div')[0].appendChild(confirm);
 							Foxtrick.addClass(bidButton, 'hidden');
-							bidText.disabled = 'disabled';
+							bidText[0].disabled = 'disabled';
+							bidText[1].disabled = 'disabled';
 							ev.preventDefault();
 						}
 					});
