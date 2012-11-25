@@ -107,6 +107,8 @@ CONTENT_FILES_SAFARI = $(CONTENT_FILES) background.html \
 	preferences.html \
 	preferences.js \
 	loader-chrome.js
+BACKGROUND_LIBS = \
+       jquery.js
 	
 all: firefox chrome opera safari
 
@@ -233,6 +235,10 @@ opera:
 	mv $(BUILD_DIR)/includes/env.js $(BUILD_DIR)/includes/aa00_env.js
 	mv $(BUILD_DIR)/includes/module.js $(BUILD_DIR)/includes/aa10_module.js
 	mv $(BUILD_DIR)/includes/loader-chrome.js $(BUILD_DIR)/includes/zz99_loader-chrome.js
+	# background-libs
+	mkdir $(BUILD_DIR)/lib
+	cd $(BUILD_DIR)/includes; \
+		mv $(BACKGROUND_LIBS) ../lib
 	cd $(BUILD_DIR); sed -i -r 's|(href=\"\./)|href=\"./content/|' background.html options.html popup.html
 	cd $(BUILD_DIR); sed -i -r 's|(src=\"\./[a-zA-Z0-9_-]+/)|src=\"./|' background.html options.html popup.html
 	cd $(BUILD_DIR); sed -i -r 's|(src=\"\./)|src=\"./includes/|' background.html options.html popup.html
@@ -242,6 +248,11 @@ opera:
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/background.js)|/background.js|' background.html
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/preferences.js)|/preferences.js|' options.html
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/popup.js)|/popup.js|' popup.html
+	## change background libs folder
+	cd $(BUILD_DIR); \
+	for lib in $(BACKGROUND_LIBS); do \
+		sed -i -r "s|(/includes/$$lib)|/lib/$$lib|" background.html options.html popup.html; \
+	done
 	# set branch
 	cd $(BUILD_DIR); \
 	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH) opera\"|" defaults/preferences/foxtrick.js
