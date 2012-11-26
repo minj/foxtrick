@@ -373,7 +373,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					return;
 
 				Foxtrick.addClass(shirt, 'ft-smallFaceCard');
-				shirt.style.backgroundImage = null;
 
 				var sizes = {
 					//backgrounds: [0, 0],// don't show
@@ -669,11 +668,11 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	hideOtherTeam: function(doc) {
 		var hideDivs = doc.querySelectorAll('div.playerBox' + (this.showAway ? 'Home' : 'Away'));
 		for (var i = 0; i < hideDivs.length; i++) {
-			hideDivs[i].style.display = 'none';
+			Foxtrick.addClass(hideDivs[i], 'hidden');
 		}
 		var showDivs = doc.querySelectorAll('div.playerBox' + (this.showAway ? 'Away' : 'Home'));
 		for (var i = 0; i < showDivs.length; i++) {
-			showDivs[i].style.display = 'block';
+			Foxtrick.removeClass(showDivs[i], 'hidden');
 		}
 		var f = doc.getElementById('playersField');
 		if (this.showAway)

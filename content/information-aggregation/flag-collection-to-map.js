@@ -354,8 +354,7 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 
 		var mapDiv = document.createElement('div');
 		mapDiv.id = 'foxtrick-map' + mapId;
-		mapDiv.style.padding = '5 0 5 0';
-		mapDiv.style.display = 'none';
+		Foxtrick.addClass(mapDiv, 'hidden');
 
 		var openMapA = document.createElement('A');
 
@@ -365,21 +364,22 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 		openMapA.name = 'flags' + mapId;
 		openMapA.href = '#' + 'foxtrick-top-map-' + mapId;
 		openMapA.id = 'flagsA' + mapId;
-		openMapA.style.display = 'block';
 		Foxtrick.onClick(openMapA, function(ev) {
-			if (document.getElementById('foxtrick-map' + mapId).style.display == 'none') {
-				document.getElementById('foxtrick-map' + mapId).style.display = '';
+			if (Foxtrick.hasClass(document.getElementById('foxtrick-map' + mapId), 'hidden')) {
+				Foxtrick.removeClass(document.getElementById('foxtrick-map' + mapId), 'hidden');
 				document.getElementById('flagsA' + mapId).textContent = HideMap;
 			}
 			else {
-				document.getElementById('foxtrick-map' + mapId).style.display = 'none';
+				Foxtrick.addClass(document.getElementById('foxtrick-map' + mapId), 'hidden');
 				document.getElementById('flagsA' + mapId).textContent = ShowMap;
 			}
 			return false;
 		});
+		var openMapDiv = Foxtrick.createFeaturedElement(document, this, 'div');
+		openMapDiv.appendChild(openMapA);
 
 		this.insertBeforeOrAppend(parent, mapDiv, insertBefore);
-		this.insertBeforeOrAppend(parent, openMapA, insertBefore);
+		this.insertBeforeOrAppend(parent, openMapDiv, insertBefore);
 
 		this.addMap(document, document.getElementById('foxtrick-map' + mapId), urlAfrica,
 		            urlAsia, urlEurope, urlMEast, urlSAmerica, urlWorld, mapId);

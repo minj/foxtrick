@@ -30,5 +30,9 @@ html[data-theme="standard"] .copyicon.ft-copy-fixtures-source {
 html[data-theme="simple"] .copyicon.ft-copy-fixtures-source {
 	background-image: url("chrome://foxtrick/content/resources/img/copy/copyNormal_s.png");
 }
+#ft-copy-scout-comment-link {
+	float: right;
+	margin-bottom: 5px;
+}
 
 }

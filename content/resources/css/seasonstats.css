@@ -11,4 +11,12 @@
 	border-bottom: 2px solid #849D84 !important;
 }
 
+#ft_season_selectboxID {
+	float: right;
+	margin-top: 20px;
+}
+html[data-theme="simple"] #ft_season_selectboxID {
+	margin-top: 4px;
+}
+
 }

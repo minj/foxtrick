@@ -149,7 +149,9 @@ html[dir="rtl"] .ft-match-lineup-tweaks-stamina-counter-diff
 	90% { -moz-transform: translate(2px, 2px) rotate(0deg); }
 	100% { -moz-transform: translate(1px, -2px) rotate(-3deg); }
 }
-
+div.playerDiv .sectorShirt.ft-smallFaceCard {
+	background-image: url() !important;
+}
 html[dir="rtl"] div.playerDiv .sectorShirt.ft-smallFaceCard {
 	top: -18px !important;
 	right: -3px !important;

@@ -139,5 +139,11 @@ html[dir="rtl"] div.ft-media-site-imgur.ft-media-expander-unexpanded,
 html[dir="rtl"] div.ft-media-site-imageshack.ft-media-expander-unexpanded {
 	background-image: url("chrome://foxtrick/content/resources/img/icons/generic_down_rtl.png");
 }
+.ft-embeded-image {
+	max-width: 99.9%;
+}
+.ft-oembed-image {
+	width: 99.9%
+}
 
 }

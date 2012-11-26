@@ -33,10 +33,6 @@ Foxtrick.modules['SeasonStats'] = {
 		// add season select box
 		var selectbox = Foxtrick.createFeaturedElement(doc, this, 'select');
 		selectbox.setAttribute('id', 'ft_season_selectboxID');
-		if (Foxtrick.util.layout.isStandard(doc))
-			selectbox.setAttribute('style', 'float:right; margin-top:20px;');
-		else
-			selectbox.setAttribute('style', 'float:right;margin-top:4px;');
 
 		Foxtrick.listen(selectbox, 'change',
 		  function(ev) {

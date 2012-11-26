@@ -212,7 +212,7 @@ Foxtrick.modules.MatchSimulator = {
 						percentImage[i].style.backgroundPosition = barPos + 'px';
 						percentImage[i].title = title;
 						percentImage[i].alt = title;
-						percentImage[i].style.display = 'inline';
+						Foxtrick.removeClass(percentImage[i], 'hidden');
 						if (percentImage[i].nextSibling.className != 'percentNumber') {
 							var div = doc.createElement('div');
 							div.textContent = title;
@@ -245,7 +245,7 @@ Foxtrick.modules.MatchSimulator = {
 							var div = percentImage[i].nextSibling;
 							div.parentNode.removeChild(div);
 						}
-						percentImage[i].style.display = 'none';
+						Foxtrick.addClass(percentImage[i], 'hidden');
 					}
 				}
 			};

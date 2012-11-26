@@ -8,7 +8,7 @@
 Foxtrick.modules['FriendlyInterface'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
 	PAGES: ['matchLineup', 'playerDetails', 'guestbook', 'dashboard'],
-
+	CSS: Foxtrick.InternalPath + 'resources/css/friendly-interface.css',
 	OPTIONS: [
 		'FullPlayerNameInLineUp',
 		'NtLinkForNtPlayer',
@@ -24,9 +24,7 @@ Foxtrick.modules['FriendlyInterface'] = {
 			var names = field.getElementsByClassName('name');
 			for (var i = 0; i < names.length; ++i) {
 				var name = names[i];
-				name.style.overflow = 'hidden';
-				name.style.whiteSpace = 'nowrap';
-				name.style.maxWidth = '73px';
+				Foxtrick.addClass(name, 'ft-fullPlayerName');
 				var link = name.getElementsByTagName('a')[0];
 				// link may not be present for youth matches
 				// (when a team walks over)
@@ -100,11 +98,8 @@ Foxtrick.modules['FriendlyInterface'] = {
 				return (n.href.search(/Guestbook\.aspx/i) >= 0);
 			}, links);
 			Foxtrick.map(function(n) {
-				n.style.display = 'none';
-				n.parentNode.style.marginBottom = '2px';
-				n.parentNode.style.marginTop = '-15px';
-				n.parentNode.style.cssFloat = 'right';
-				n.parentNode.style.backgroundColor = 'white';
+				Foxtrick.addClass(n, 'hidden');
+				Foxtrick.addClass(n.parentNode, 'ft-hiddenGBLinkContainer');
 			}, answerToLinks);
 		}
 		else if (Foxtrick.isPage(doc, 'dashboard')

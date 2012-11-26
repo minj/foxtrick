@@ -1,0 +1,15 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
+
+.ft-fullPlayerName {
+	overflow: hidden;
+	white-space: nowrap;
+	max-width: 73px;
+}
+.ft-hiddenGBLinkContainer {
+	margin-bottom: 2px;
+	margin-top: -15px;
+	float: right;
+	background-color: white !important;
+}
+
+}

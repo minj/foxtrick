@@ -375,8 +375,6 @@ Foxtrick.modules['CopyYouth'] = {
 					&& doc.getElementById('ft-copy-scout-comment-link') == null) {
 					var a = doc.createElement('a');
 					a.textContent = Foxtrickl10n.getString('copy.scoutComment');
-					a.style.cssFloat = 'right';
-					a.style.marginBottom = '5px';
 					a.href = '#mainBody';
 					a.id = 'ft-copy-scout-comment-link';
 					Foxtrick.onClick(a, copyReport(false));
