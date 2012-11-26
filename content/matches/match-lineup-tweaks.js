@@ -113,6 +113,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				var subDiv = Foxtrick
 					.createFeaturedElement(doc, Foxtrick.modules['MatchLineupTweaks'], 'div');
 				subDiv.setAttribute('role', 'button');
+				subDiv.setAttribute('tabindex', '0');
 				Foxtrick.addClass(subDiv, 'ft-subDiv');
 				Foxtrick.addImage(doc, subDiv, {
 					src: iconSrc,
@@ -648,6 +649,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var f = doc.getElementById('playersField');
 		var div = doc.createElement('div');
 		div.setAttribute('role', 'button');
+		div.setAttribute('tabindex', '0');
 		var alt = Foxtrickl10n.getString('MatchLineupTweaks.showOther');
 		Foxtrick.addImage(doc, div, {
 			src: '/Img/Icons/transparent.gif',
