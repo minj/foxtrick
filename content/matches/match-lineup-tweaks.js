@@ -410,6 +410,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					if (FoxtrickPrefs.isModuleOptionEnabled('OriginalFace', 'ColouredYouth'))
 						src = src.replace(/y_/, '');
 					Foxtrick.addImage(doc, shirt, {
+						alt: '',
 						src: src,
 						style: 'top:' + y + 'px;left:' + x + 'px;position:absolute;',
 						width: Math.round(sizes[bodypart][0] / scale),
@@ -608,13 +609,15 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				var star5container = doc.createElement('div');
 				// this one's for async image purposes
 				Foxtrick.addImage(doc, star5container, {
-					src: Foxtrick.InternalPath + 'resources/img/matches/5stars.png'
+					src: Foxtrick.InternalPath + 'resources/img/matches/5stars.png',
+					alt: '5*'
 				});
 				newDiv.appendChild(star5container);
 			}
 			for (var j = 0; j < stars2; j++) {
 				Foxtrick.addImage(doc, smallDiv, {
-					src: Foxtrick.InternalPath + 'resources/img/matches/2stars_h.png'
+					src: Foxtrick.InternalPath + 'resources/img/matches/2stars_h.png',
+					alt: '2*'
 				});
 			}
 			newDiv.appendChild(smallDiv);
@@ -628,7 +631,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				else
 					target = smallDiv;
 				Foxtrick.addImage(doc, target, {
-					src: Foxtrick.InternalPath + 'resources/img/matches/' + count + 'stars_h.png'
+					src: Foxtrick.InternalPath + 'resources/img/matches/' + count + 'stars_h.png',
+					alt: count + '*'
 				});
 			}
 
