@@ -321,7 +321,7 @@ Foxtrick.modules["SkillTable"]={
 					var dateObj = Foxtrick.util.time.getDateFromText(deadline, "yyyymmdd");
 					var htDate = Foxtrick.util.time.getHtDate(doc);
 					var joined_s = Math.floor((htDate.getTime() - dateObj.getTime()) / 1000); //Sec
-					var JoinedSpan = Foxtrick.util.time.timeDifferenceToElement (doc, joined_s , true, true);
+					var JoinedSpan = Foxtrick.util.time.timeDifferenceToElement (doc, joined_s , true, false);
 					cell.appendChild(JoinedSpan);
 					cell.title = deadline;
 					cell.setAttribute('class','align-left');
@@ -862,7 +862,7 @@ Foxtrick.modules["SkillTable"]={
 						}
 					}, list);
 				return was_pulled || is_external_coach;
-			}
+			};
 
 			// first get teams activation date. we'll need it later
 			var TeamId = Foxtrick.Pages.All.getTeamId(doc);
