@@ -809,59 +809,111 @@ Foxtrick.modules["SkillTable"]={
 			doc.getElementsByClassName("ft_skilltable_wrapper")[0].appendChild(loading);
 
 			var setHomeGrownAndJoinedSinceFromTransfers = function(xml, list) {
-				var player_id = xml.getElementsByTagName("PlayerID")[0].textContent;
-				var TeamId = xml.getElementsByTagName("TeamId")[0].textContent;
-				var Transfers = xml.getElementsByTagName("Transfer");
+				var player_id = xml.getElementsByTagName('PlayerID')[0].textContent;
+				var TeamId = xml.getElementsByTagName('TeamId')[0].textContent;
+				var Transfers = xml.getElementsByTagName('Transfer');
 				if (Transfers.length > 0) {
-					var Transfer = Transfers[Transfers.length-1]; // oldest and first transfer
-					var seller = Number(Transfer.getElementsByTagName("SellerTeamID")[0].textContent);
-					if (seller==TeamId) {
+					var Transfer = Transfers[Transfers.length - 1]; // oldest and first transfer
+					var seller =
+						Number(Transfer.getElementsByTagName('SellerTeamID')[0].textContent);
+					if (seller == TeamId) {
 						Foxtrick.map(function(n) {
-							if (n.id==player_id) {
+							if (n.id == player_id) {
 								n.motherClubBonus = doc.createElement('span');
 								n.motherClubBonus.textContent = '*';
-								n.motherClubBonus.title = Foxtrickl10n.getString("skilltable.rebought_youthplayer");
+								n.motherClubBonus.title = Foxtrickl10n
+									.getString('skilltable.rebought_youthplayer');
 							}
 						}, list);
 					}
-					var Transfer = Transfers[0]; //last transfer to this team
-					var Deadline = Transfer.getElementsByTagName("Deadline")[0].textContent;
-					Foxtrick.map(function(n) {if (n.id==player_id) n.joinedSince = Deadline;}, list);
-					return true;
+
+
+					var Transfer = Transfers[0]; //last transfer
+					var buyerId = Number(Transfer.getElementsByTagName('BuyerTeamID')[0]
+										 .textContent);
+					if (TeamId == buyerId) {
+						// legitimate transfer
+						var Deadline = Transfer.getElementsByTagName('Deadline')[0].textContent;
+						Foxtrick.map(function(n) {
+							if (n.id == player_id) n.joinedSince = Deadline;
+						}, list);
+						return true;
+					}
+					else {
+						// prolly external coach
+						// let setJoinedSinceFromPullDate handle it
+						return false;
+					}
 				}
-				else return false;
+				else
+					return false;
 			};
+			// return false if from own starting squad
 			var setJoinedSinceFromPullDate = function(xml, list) {
 				// check PlayerEventTypeID==20 -> pulled from YA, 13->pulled from SN, 12->coach
-				var was_pulled = false;
-				var is_external_coach = false;
-				var pid = xml.getElementsByTagName("PlayerID")[0].textContent;
-				var PlayerEvents = xml.getElementsByTagName("PlayerEvent");
+				// posibilities:
+				// 1) external coach pulled elsewhere
+				// 2) player pulled here (never sold)
+				// 3) internal coach pulled here
+				// 4) external coach pulled here (is that even possible? let's hope not)*
+				// 5) player from starting squad (return false)
+				// 6) internal coach from starting squad (return false)
+				// 7) external coach from starting squad (is that even possible? let's hope not)*
+				// 8) external coach from someone else's starting squad
+				// * not taken care off
+				var pulled_here = false;
+				var pulled_elsewhere = false;
+				var is_coach = false;
+				var pid = xml.getElementsByTagName('PlayerID')[0].textContent;
+				var PlayerEvents = xml.getElementsByTagName('PlayerEvent');
 				for (i = 0; i < PlayerEvents.length; ++i) {
 					var PlayerEvent = PlayerEvents[i];
-					var PlayerEventTypeID = Number(PlayerEvent.getElementsByTagName("PlayerEventTypeID")[0].textContent);
-					if (PlayerEventTypeID==20 || PlayerEventTypeID==13) {
-						was_pulled = true;
-						var PullDate = PlayerEvent.getElementsByTagName("EventDate")[0].textContent;
-						Foxtrick.map(function(n) {if (n.id==pid) n.joinedSince = PullDate;}, list);
+					var PlayerEventTypeID = Number(PlayerEvent
+					                               .getElementsByTagName('PlayerEventTypeID')[0]
+					                               .textContent);
+					if (PlayerEventTypeID == 12 && !is_coach) {
+						// consider only the last coach contract
+						// is a coach
+						is_coach = true;
+						var coachDate =
+							PlayerEvent.getElementsByTagName('EventDate')[0].textContent;
+						Foxtrick.map(function(n) {
+							if (n.id == pid) n.joinedSince = coachDate;
+						}, list);
 					}
-					if (PlayerEventTypeID==12) {
-						// is external coach (most likely. internal coaches form starting squad will use the wrong date
-						is_external_coach = true;
-						var coachDate = PlayerEvent.getElementsByTagName("EventDate")[0].textContent;
-						Foxtrick.map(function(n) {if (n.id==pid) n.joinedSince = coachDate;}, list);
+					if (PlayerEventTypeID == 20 || PlayerEventTypeID == 13) {
+						// check to see if pulled from this team
+						if (PlayerEvent.getElementsByTagName('EventText')[0]
+							.textContent.match(Foxtrick.util.id
+											   .getTeamIdFromUrl(doc.location.href))) {
+							// cases 2) & 3) -> pullDate
+							pulled_here = true;
+							var PullDate = PlayerEvent.getElementsByTagName('EventDate')[0]
+								.textContent;
+							Foxtrick.map(function(n) {
+								if (n.id == pid) {
+									n.joinedSince = PullDate;
+								}
+							}, list);
+							// pull is a last-ish and most important event
+							// we can safely return
+							return true;
+						}
+						else
+							pulled_elsewhere = true;
 					}
 				}
-				// set homegrown
-				if (!is_external_coach)
-					Foxtrick.map(function(n) {
-						if (n.id==pid) {
-							n.motherClubBonus = doc.createElement('span');
-							n.motherClubBonus.textContent = 'X';
-							n.motherClubBonus.title = Foxtrickl10n.getString("skilltable.youthplayer");
-						}
-					}, list);
-				return was_pulled || is_external_coach;
+				// pulled_here already dealt with above
+				// it's either pulled elsewhere which is 1): should have event 12 -> coachDate
+				// or starting in other team 8): motherClubBonus is undefined -> also coachDate
+				// or starting in own team  5) & 6): return false -> activationDate
+				var hasMCBonus = true;
+				Foxtrick.map(function(n) {
+					if (n.id == pid && typeof(n.motherClubBonus) == 'undefined') {
+						hasMCBonus = false;
+					}
+				}, list);
+				return pulled_elsewhere || !hasMCBonus;
 			};
 
 			// first get teams activation date. we'll need it later
