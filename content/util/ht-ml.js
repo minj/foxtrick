@@ -122,7 +122,7 @@ Foxtrick.util.htMl.getLink = function(node) {
 };
 Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 	var ret = Foxtrick.util.htMl.getMarkupFromNodeRec(node);
-	ret = ret.replace(/^[\s]+|[\s]+$/mg, '');
+	ret = ret.replace(/^[\s]+|[\s]+$/g, '');
 	return ret;
 };
 Foxtrick.util.htMl.getMarkupFromNodeRec = function(node) {
