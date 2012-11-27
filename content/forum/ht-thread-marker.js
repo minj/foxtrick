@@ -12,8 +12,7 @@ Foxtrick.modules['HTThreadMarker'] = {
 
 	run: function(doc) {
 		var threadLinks = doc.querySelectorAll('.threadItem > td:nth-child(2) > .url > a' 
-			+ ', .folderitem > td:nth-child(2) > .fplLongThreadName > a',
-			+ ', #ctl00_ctl00_CPContent_CPMain_updHotThreads a');
+			+ ', .folderitem > td:nth-child(2) > .fplLongThreadName > a');
 
 		Foxtrick.map( function(threadLink){
 			var title = threadLink.getAttribute('title');
