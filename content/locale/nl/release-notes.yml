@@ -2,11 +2,11 @@
 nl: 
   versions: 
     nightly: 
-      note_0: 
+      note_0: 'Dit is een beta versie. Gebruik is voor eigen risico. Kijk alstublieft op <linkSVN>commit history</linkSVN> bij Google Code for details van de veranderingen.'
     beta: 
-      note_0: 
+      note_0: 'Dit is een beta versie van de volgende release. Help alstublieft met vertalen van deze versie op de zeer gebruiks vriendelijke crowd-vertaal pagina <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.11.0: 
-      note_0: 
+      note_0: 'Nieuw: <module>DirectPageLinks</module>: links toegevoegd om specifieke bladzijdes te benaderen in een forum topic'
       note_1: 
       note_2: 
       note_3: 
@@ -18,7 +18,7 @@ nl:
       note_9: 
       note_10: 
       note_11: 
-      note_12: 
+      note_12: '<header>Bugfixes</header>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'

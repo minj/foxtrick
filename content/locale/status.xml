@@ -22,7 +22,7 @@
     <name>Spanish</name>
     <code>es-ES</code>
     <phrases>1327</phrases>
-    <translated>1322</translated>
+    <translated>1326</translated>
     <approved>1</approved>
     <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
@@ -130,7 +130,7 @@
     <name>Hebrew</name>
     <code>he</code>
     <phrases>1327</phrases>
-    <translated>1307</translated>
+    <translated>1309</translated>
     <approved>0</approved>
     <translated_progress>98</translated_progress>
     <approved_progress>0</approved_progress>
@@ -185,7 +185,7 @@
     <code>lt</code>
     <phrases>1327</phrases>
     <translated>1327</translated>
-    <approved>8</approved>
+    <approved>7</approved>
     <translated_progress>100</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
@@ -202,7 +202,7 @@
     <name>Dutch</name>
     <code>nl</code>
     <phrases>1327</phrases>
-    <translated>1302</translated>
+    <translated>1309</translated>
     <approved>0</approved>
     <translated_progress>98</translated_progress>
     <approved_progress>0</approved_progress>
@@ -397,7 +397,7 @@
     <approved_progress>0</approved_progress>
   </language>
   <language>
-    <name>Nynorsk</name>
+    <name>Norwegian Nynorsk</name>
     <code>nn-NO</code>
     <phrases>1327</phrases>
     <translated>796</translated>

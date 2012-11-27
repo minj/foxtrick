@@ -5,14 +5,14 @@ nl:
       question: 
       answer: 
     sound-format: 
-      question: 
+      question: Welke bestandstypen zijn toegestaan voor een notificatie geluid?
       answer: 
     sound-location: 
       question: 
       answer: 
     authorize: 
-      question: 
+      question: Waarom moet ik FoxTrick toestemming geven om mijn teamdata te benaderen?
       answer: 
     privacy: 
-      question: 
+      question: Hoe beschermt Foxtrick mijn privacy?
       answer: 
