@@ -104,7 +104,7 @@ Foxtrick.util.htMl.getLink = function(node) {
 			if (link.indexOf(ignore[i]) > -1)
 				return null;
 
-		var relRe = new RegExp("http://[^/]+(/.+)", "i");
+		var relRe = new RegExp("https?://[^/]+(/.+)", "i");
 		if (link.match(relRe) !== null) {
 			var matched = link.match(relRe);
 			var relLink = matched[1];
