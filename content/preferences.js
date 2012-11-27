@@ -5,7 +5,7 @@ var pageIds = [];
 function initLoader() {
 	if (document.location.href.search("width=600") != -1)
 		document.getElementsByTagName('body')[0].setAttribute('style','width:600px;');
-	
+
 	// fennec runs init() from injected entry.js (injected)
 	// called directly, it'll run and save actually for some reason
 
@@ -47,7 +47,7 @@ function init()
 				$("#main").toggle();
 			});
 		}
-			
+
 		/* Run a test. */
 
 		if (window.location.href.search(/saved=true/)!==-1) {
@@ -74,7 +74,7 @@ function initSearch(){
 		option.setAttribute("value", str);
 		search.appendChild(option);
 	}
-	
+
 	$(".module").each(function() {
 		try {
 			var name = $(this).attr("id");
@@ -125,7 +125,7 @@ function search(string, search){
 			$("#breadcrumb-sep-2").hide();
 			$("#breadcrumb-3").hide();
 		}
-		
+
 		var regex = new RegExp(string, "i");
 
 		//iterate pre-cached modules, jquery is slow as hell here, directly using dom methods
@@ -135,7 +135,7 @@ function search(string, search){
 					_modules[i].className = _modules[i].className.replace(/hidden/g,"");
 				} else {
 					_modules[i].className = _modules[i].className + " hidden";
-				} 
+				}
 			} catch(e){
 					continue;
 			}
@@ -176,7 +176,7 @@ function initCoreModules()
 		else if (appInfoID=="{a23983c0-fd0e-11dc-95ff-0800200c9a66}")
 			Foxtrick.platform = "Mobile";
 	}*/
-	
+
 	// add MODULE_NAME to modules
 	for (var i in Foxtrick.modules)
 		Foxtrick.modules[i].MODULE_NAME = i;
@@ -384,7 +384,7 @@ function initTabs()
 function initTextAndValues()
 {
 	var locale = FoxtrickPrefs.getString("htLanguage");
-	
+
 	if (Foxtrickl10n.getString("direction") == "rtl") 
 		$("html").attr("dir", "rtl");
 
@@ -396,7 +396,7 @@ function initTextAndValues()
 		if ($(this).attr("data-text"))
 			$(this).prepend(document.createTextNode(Foxtrickl10n.getString($(this).attr("data-text"))));
 	});
-	
+
 	// initialize modules
 	$("#pane [module]").each(function() {
 		var module = $(this).attr("module");
@@ -663,7 +663,7 @@ function getModule(module)
 
 		for (var i=0; i<module.OPTIONS.length; ++i) {		
 			var item, label, checkbox = null;
-			
+
 			var appendOptionToList = function (key, list){
 				item = document.createElement("li");
 				list.appendChild(item);
@@ -673,17 +673,17 @@ function getModule(module)
 				checkbox.type = "checkbox";
 				checkbox.setAttribute("module", module.MODULE_NAME);
 				label.appendChild(checkbox);
-				
+
 				var desc = FoxtrickPrefs.getModuleElementDescription(module.MODULE_NAME, key);
 				checkbox.id = entry.id + "-" + key;
 				checkbox.setAttribute("option", key);
 				label.appendChild(document.createTextNode(desc));
 
 				// screenshot
-				if (screenshotLink = Foxtrickl10n.getScreenshot(module.MODULE_NAME + "." + key))
+				if (false && screenshotLink = Foxtrickl10n.getScreenshot(module.MODULE_NAME + "." + key))
 					label.appendChild(getScreenshot(screenshotLink));
 			}
-			
+
 			//supereasy way to create subgroups for options, just supply an array
 			//first element will toggle visibility for entries 1->n
 			//supports nested subgroups
@@ -700,7 +700,7 @@ function getModule(module)
 							item.appendChild(parentlist);
 							parentlist.id = module.MODULE_NAME + '-' + optionsarray[0] + "-checkboxes";
 						} 
-						
+
 						if(optionsarray[k] instanceof Array)
 							appendOptionsArrayToList(optionsarray[k], parentlist);
 						else
@@ -710,12 +710,12 @@ function getModule(module)
 				appendOptionsArrayToList(module.OPTIONS[i], parentlist);
 
 				continue;
-			} 
-			
+			}
+
 			var key = module.OPTIONS[i];
 			appendOptionToList(key, checkboxes);
-			
-					
+
+
 			if (module.OPTION_EDITS &&
 				(!module.OPTION_EDITS_DISABLED_LIST || !module.OPTION_EDITS_DISABLED_LIST[i])) {
 				var textDiv = document.createElement("div");
@@ -741,7 +741,7 @@ function getModule(module)
 					textDiv.appendChild(load);
 				}
 				if (module.OPTION_EDITS_DATAURL_LOAD_BUTTONS && module.OPTION_EDITS_DATAURL_LOAD_BUTTONS[i]) {
-					
+
 					var load = Foxtrick.util.load.filePickerForDataUrl(document, (function(textInput) {
 						return function(url) {
 							textInput.value = url;
@@ -753,7 +753,7 @@ function getModule(module)
 						};
 					})(textInput));
 					textDiv.appendChild(load);
-					
+
 					if (module.OPTION_EDITS_DATAURL_IS_SOUND && module.OPTION_EDITS_DATAURL_IS_SOUND[i]) {
 						var playButton = document.createElement("button");
 						playButton.setAttribute("data-text","button.play");
@@ -825,13 +825,13 @@ function initChangesTab()
 	var status = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + "locale/status.xml");
 
 	var path = "status/language[code='"+lang+"']/translated_progress";
-	
+
 	var statusText = "";
 	try {
 		if (lang != "en")
 			var statusText = Foxtrickl10n.getString("releaseNotes.translationStatus").replace(/%s/,Foxtrick.xml_single_evaluate(status, path).textContent);
 	} catch(e) {}
-	
+
 	var versions = {};
 	var versionsLocalized = {};
 
@@ -920,7 +920,7 @@ function initChangesTab()
 				list.appendChild(document.createElement("li"))
 							.appendChild(document.createElement("h4"))
 							.textContent = Foxtrickl10n.getString("releaseNotes.version") + " " + version + sub + subsub;
-				
+
 				for (var i = 0, note; note = notes[i]; ++i) {
 					if (notesLocalized && notesLocalized[i] != undefined && notesLocalized[i] != null)
 						note = notesLocalized[i];
@@ -1017,7 +1017,7 @@ function initHelpTab()
 		// import child nodes one by one as we may use XHTML there
 		var answer = (itemLocal && itemLocal.answer !== undefined && itemLocal.answer !== null)
 			? itemLocal.answer : item.answer;
-		
+
 		addNote(answer, content, faqLinks);
 		container.appendChild(content);
 		block.appendChild(container);
@@ -1091,7 +1091,7 @@ function initModules()
 		$("#pane").append(obj);
 	}
 }
-	
+
 function saveEvent(ev){
 
 	Foxtrick.log("save", ev);
@@ -1133,7 +1133,7 @@ function save()
 	if (!needsPermissions)
 		notice(Foxtrickl10n.getString("prefs.feedback.saved"));
 	// else it is shown in permission request callback
-	
+
 	FoxtrickPrefs.setBool("preferences.updated", true);
 }
 
@@ -1227,7 +1227,7 @@ function permissionsMakeIdFromName(module) {
 		id = id.replace(/\./g,"-"); // suboption check
 	return id;
 }
-						
+
 function testPermissions() {
 	// initialize elements which need permissions, ask for permission if needed
 	if (Foxtrick.platform === "Chrome") {
@@ -1258,7 +1258,7 @@ function testPermissions() {
 						$(id).click(function() { 
 							checkPermission(); 
 						});
-						
+
 						if (result==false && FoxtrickPrefs.getBool("module." + module + ".enabled")) {	
 							Foxtrick.concat_unique(modulelist, neededPermission.modules);
 							$("#alert-text").text(Foxtrickl10n.getString('prefs.needPermissions')+" "+modulelist);
@@ -1333,7 +1333,7 @@ function checkPermissions() {
 				}
 			}
 		}, neededPermissions);
-		
+
 		getPermission(combined_permissions, true);		
 	}
 	return needsPermissions; // false prevents save notived be shown. will be shown delayed in getPermissions
