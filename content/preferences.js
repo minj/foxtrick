@@ -697,7 +697,7 @@ function getModule(module)
 				label.appendChild(document.createTextNode(desc));
 
 				// screenshot
-				if (screenshotLink = Foxtrickl10n.getScreenshot(module.MODULE_NAME + '.' + key))
+				if (false && screenshotLink = Foxtrickl10n.getScreenshot(module.MODULE_NAME + '.' + key))
 					label.appendChild(getScreenshot(screenshotLink));
 			};
 
