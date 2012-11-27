@@ -12,13 +12,24 @@ Foxtrick.modules['HTThreadMarker'] = {
 
 	run: function(doc) {
 		var threadLinks = doc.querySelectorAll('.threadItem > td:nth-child(2) > .url > a' 
-			+ ', .folderitem > td:nth-child(2) > .fplLongThreadName > a');
+			+ ', .folderitem > td:nth-child(2) > .fplLongThreadName > a',
+			+ ', #ctl00_ctl00_CPContent_CPMain_updHotThreads a');
 
 		Foxtrick.map( function(threadLink){
 			var title = threadLink.getAttribute('title');
 			if(title.match(/ HT-\S+/))
 				Foxtrick.addClass(threadLink.parentNode, 'ft-ht-thread');
-		},threadLinks);
+		}, threadLinks);
+
+		//hotlinks
+		threadLinks = doc.querySelectorAll('#ctl00_ctl00_CPContent_CPMain_updHotThreads a');
+
+		Foxtrick.map( function(threadLink){
+			var title = threadLink.getAttribute('title');
+			if(title.match(/ HT-\S+/))
+				Foxtrick.addClass(threadLink.parentNode, 'ft-ht-thread');
+		}, threadLinks);
+
 	},
 
 	change: function(doc) {
