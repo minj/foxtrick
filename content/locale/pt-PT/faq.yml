@@ -3,10 +3,17 @@ pt-PT:
   faq: 
     style: 
       question: Como posso mudar o estilo do Foxtrick?
-      answer: 
+      answer: '<p>O FoxTrick fornece um conjunto de interfaces de apresentação para os utilizadores, que podem personalizar seus próprios estilos. Essas interfaces são fornecidas através de classes e IDs HTML, e você pode usar CSS para definir o seu estilo preferido.</p>  <p>Podemos ver um exemplo desses estilos <linkCSSExample>aqui</linkCSSExample> ou <linkCSSExampleGCode>aqui</linkCSSExampleGCode>, podem ser modificados para satisfazer as necessidades específicas de cada um. Depois de gravar o ficheiro, pode utilizar o módulo <module>SkinPlugin</module> para carregar o mesmo para que se possa colocar o estilo próprio em utilização.</p>'
     sound-format: 
       question: Que tipo de ficheiros são permitidos para som de alerta?
-      answer: 
+      answer: |
+        <p>Diferentes browsers permitem diferentes formatos de ficheiros. Aqui está uma lista( formatos não referidos podem funcionar se os plugins necessários estiverem instalados, como por exemplo, o Quicktime para reproduzir ficheiros mp3 no Firefox):</p>
+        
+        <ul>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (may need Quicktime): wav, mp3</li>
+        <li>Chrome:  ogg, mp3, wav</li><li>Opera: wav, ogg</li>
+        </ul>
     sound-location: 
       question: Qual é o tamanho limite e onde podem ser encontrados os ficheiros de som de alerta?
       answer: 
@@ -15,4 +22,4 @@ pt-PT:
       answer: 
     privacy: 
       question: Como vai o Foxtrick proteger a minha privacidade?
-      answer: 
+      answer: '<p>FoxTrick não vou carregar os seus dados ou preferências para um servidor de FoxTrick, nem FoxTrick enviar qualquer um dos seus dados confidenciais, incluindo mas não limitada a sua ID de nome de usuário, senha e jogador associado com competências a terceiros.</p>  <p>Maioria dos dados passados a terceiros, a menos que explicitamente indicado abaixo, são enviadas com o método HTTP GET e só será enviado após você clicar em um link.</p>  <p>Ou seja, você será capaz de ver o que os dados são passados inspecionando o URI (Uniform Resource Identifier) de um link externo, e nenhum dado será enviado sem o seu consentimento. Como dito acima, nenhum dado privado está envolvido.</p>  <p>As excepções são os módulos <module>HTMSPrediction</module> e <module>HTEVPrediction</module>, onde as classificações de jogo são passadas e recebidas nos respectivos sites com XMLHttpRequest.</p>'

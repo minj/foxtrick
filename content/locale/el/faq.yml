@@ -2,17 +2,25 @@
 el: 
   faq: 
     style: 
-      question: 
+      question: Πως μπορώ να διαμορφώσω το FoxTrick μου;
       answer: 
     sound-format: 
-      question: 
-      answer: 
+      question: Ποιες μορφές αρχείων επιτρέπονται για ήχους ειδοποίησης;
+      answer: |
+        <p>Κάθε πρόγραμμα περιήγησης επιτρέπει διαφορετικές μορφές αρχείων. Εδώ είναι μια λίστα (μορφές που δεν είναι στην λίστα μπορεί να λειτουργήσουν εάν το κατάλληλο πρόσθετο είναι εγκατεστημένο, π.χ. το Quicktime για αναπαραγωγή mp3 στον firefox):</p>
+        
+        
+        <ul>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (μπορεί να χρειάζεται το Quicktime): wav, mp3</li>
+        <li>Chrome: ogg, mp3, wav</li><li>Opera: wav, ogg</li>
+        </ul>
     sound-location: 
-      question: 
+      question: Ποιο είναι το όριο μεγέθους για ήχους ειδοποίησης και όπου μπορεί να εντοπιστούν αυτοί;
       answer: 
     authorize: 
-      question: 
+      question: Γιατί πρέπει να εξουσιοδοτήσω το FoxTrick να έχει πρόσβαση στα δεδομένα της ομάδα μου;
       answer: 
     privacy: 
-      question: 
+      question: Πως μπορεί το FoxTrick να προστατεύσει την ιδιωτικότητα μου;
       answer: 

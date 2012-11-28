@@ -2,17 +2,24 @@
 tr: 
   faq: 
     style: 
-      question: 
+      question: FoxTrick'i nasıl biçimlendirebilirim?
       answer: 
     sound-format: 
-      question: 
-      answer: 
+      question: Uyarı sesleri için hangi dosya biçimlerine izin verilmeli?
+      answer: |
+        <p>Farklı tarayıcılar farklı dosya biçimlerine erişir. İşte liste (uygun eklentiler yüklenmiş ise listelenmemiş biçimler de çalışabilir, örneğin Firefox'ta mp3 çalarken Quicktime kullanmak gibi):</p>
+        
+        <ul>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (Quicktime'a ihtiyacınız olabilir): wav, mp3</li>
+        <li>Chrome: ogg, mp3, wav</li><li>Opera: wav, ogg</li>
+        </ul>
     sound-location: 
-      question: 
+      question: Uyarı sesleri için boyut sınırları nedir ve onları nerede bulabilirim?
       answer: 
     authorize: 
-      question: 
+      question: Takım bilgilerime girişte neden Foxtrick'e izin vermeliyim?
       answer: 
     privacy: 
-      question: 
+      question: FoxTrick gizliliğimi nasıl koruyacak?
       answer: 

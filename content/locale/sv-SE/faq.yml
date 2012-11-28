@@ -2,17 +2,17 @@
 sv-SE: 
   faq: 
     style: 
-      question: 
-      answer: 
+      question: Hur kan jag modifiera mitt FoxTrick?
+      answer: '<p>FoxTrick tillhandahåller en uppsättning presentations gränssnitt för användare med möjlighet att anpassa sina egna stilar. Dessa gränssnitt tillhandahålls via HTML-ID och klasser, och med hjälp av CSS kan du definiera din önskade stil.</p>  <p>Ett exempel på en användare stilfil kan hittas <linkCSSExample>här</linkCSSExample> eller <linkCSSExampleGCode>här</linkCSSExampleGCode>, dessa kan ändras för att tillfredsställa dina behov. När du har sparat filen, kan du använda modulen <module>SkinPlugin</module> för inläsning av CSS-filen och för användning av din egen stil.</p>'
     sound-format: 
-      question: 
-      answer: 
+      question: Vilka filformat är tillåtna för varningsljud?
+      answer: '<p>Olika webbläsare tillåter olika filformat. Här är en lista (icke-listade format kan fungera om lämplig plugin installeras, t.ex Quicktime för att spela mp3 i Firefox):</p> <ul><li>Mozilla: wav, ogg</li> <li>Safari (kan behöva Quicktime): wav, mp3</li> <li>Chrome: ogg, mp3, wav</li> <li>Opera: wav, ogg</li></ul>'
     sound-location: 
-      question: 
+      question: Vad är storleksgränsen för varningsljud och var kan man hitta dem?
       answer: 
     authorize: 
       question: 
       answer: 
     privacy: 
-      question: 
+      question: Hur kommer FoxTrick att skydda min integritet?
       answer: 

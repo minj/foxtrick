@@ -2,11 +2,11 @@
 tr: 
   versions: 
     nightly: 
-      note_0: 
+      note_0: 'Bu bir geliştirme yapılandırmasıdır. Sağduyunuzu kullanın. Değişikliklerin ayrıntıları için lütfen Google Kodunda <linkSVN>işlem geçmişi</linkSVN> göz atın.'
     beta: 
-      note_0: 
+      note_0: 'Bu, bir sonraki güncellemenin beta versiyonudur. Lütfen bu versiyonun çevirisine bizim çok basit kalabalık-çeviri sayfamızdan <linkCrowdin>crowdin.net</linkCrowdin> yardım edin. '
     0.11.0: 
-      note_0: 
+      note_0: 'YENİ:<module>DirectPageLinks</module>:Forum çerçevesi içinde özel sayfalara erişimde link ekleyiniz'
       note_1: 
       note_2: 
       note_3: 
