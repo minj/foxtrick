@@ -490,14 +490,14 @@
 			]
 		],
 		"title": "Primary Skill drop Calculator",
-		"img": "http://ht4u.altervista.org/favicon.ico"
+		"img": "resources/linkicons/Ht4u.png"
 	},
 	"Ht4uTS": {
 		"traininglink": {
 			"url": "http://ht4u.altervista.org/TSpredictor/team_spirit_predictor.php"
 		},
 		"title": "Team Spirit Calculator",
-		"img": "http://ht4u.altervista.org/favicon.ico"
+		"img": "resources/linkicons/Ht4u.png"
 	},
 	"confidence": {
 		"traininglink": {
@@ -626,7 +626,7 @@
 			"url": "http://www.goanoei.nl/goht/gonat/?server=[server]&ntteamid=[ntteamid]"
 		},
 		"title": "GO Internationals",
-		"img": "http://trainingspeed.freehostia.com/favicon.png"
+		"img": "http://www.goanoei.nl/goht/favicon.ico"
 	},
 	"englandyadb": {
 		"youthlink": {
