@@ -14,15 +14,16 @@ Foxtrick.modules['DashboardCalendar'] = {
 			TRAINING: 'training',					//upcomingTrainingIcon
 			ECONOMY: 'economy',						//upcomingEconomyIcon
 			FRREMINDER: 'frReminder',				//matchFriendly
-			INTFRREMINDER: 'intFrReminder',		// fake event
+			INTFRREMINDER: 'intFrReminder',			//fake event
 			LEAGUE: 'game',							//matchLeague
-			FRIENDLY: 'game',							//matchFriendly
-			CUP: 'cup',									//matchCup
+			FRIENDLY: 'game',						//matchFriendly
+			CUP: 'cup',								//matchCup
 			QUALIFICATION: 'cup',					//matchQualification
 			MASTERS: 'cup',							//matchMasters
 			TOURNAMENT: 'gameHTO',					//matchTournament
+			SINGLEMATCH: 'gameHTO',					//matchSingleMatch
 			PREPARATION: 'gameHTO',					//matchNewbie
-			NT: 'nt',									//upcomingNationalIcon
+			NT: 'nt',								//upcomingNationalIcon
 			YOUTHCOACH: 'youthTraining',			//upcomingYouthTrainingIcon
 			YOUTHSCOUT: 'scoutCall',				//upcomingYouthCallScoutIcon
 			YOUTHGAME: 'youth',						//matchLeague
@@ -73,6 +74,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 					case 'matchQualification': ret.type = EVENTS.QUALIFICATION; break;
 					case 'matchMasters': ret.type = EVENTS.MASTERS; break;
 					case 'matchTournament': ret.type = EVENTS.TOURNAMENT; break;
+					case 'matchSingleMatch': ret.type = EVENTS.SINGLEMATCH; break;
 					case 'matchNewbie': ret.type = EVENTS.PREPARATION; break;
 					case 'upcomingNationalIcon': ret.type = EVENTS.NT; break;
 					case 'upcomingYouthTrainingIcon': ret.type = EVENTS.YOUTHCOACH; break;
@@ -141,6 +143,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 								.toBareISOString(new Date(eventTime.valueOf() + 105 * 60 * 1000));
 						break;
 						case EVENTS.CUP:
+						case EVENTS.SINGLEMATCH:
 							event.end = Foxtrick.util.time
 								.toBareISOString(new Date(eventTime.valueOf() + 180 * 60 * 1000));
 						break;
