@@ -56,40 +56,39 @@ Foxtrick.modules['ConfirmActions'] = {
 								.replace(new RegExp('(.{3})(?!$)', 'g'), '$1 ')
 								.split('').reverse().join('');
 							var msg = msgTemplate.replace(/\%s/, price);
-							var confirm = Foxtrick.util.note.create(doc, msg,
-								[
-									{
-										type: Foxtrick.util.note.BUTTON_OK,
-										listener: function(ev) {
-											var doc = ev.target.ownerDocument;
-											var bidText = [doc.getElementById(ids.BID.TEXT_ID[0]),
-														   doc.getElementById(ids.BID.TEXT_ID[1])];
-											bidText[0] && bidText[0].removeAttribute('disabled');
-											bidText[1] && bidText[1].removeAttribute('disabled');
-											var bidButton = doc.getElementById(ids.BID.BUTTON_ID);
-											bidButton.click();
-										}
-									},
-									{
-										type: Foxtrick.util.note.BUTTON_CANCEL,
-										listener: function(ev) {
-											var doc = ev.target.ownerDocument;
-											var bidButton = doc.getElementById(ids.BID.BUTTON_ID);
-											Foxtrick.removeClass(bidButton, 'hidden');
-											var bidText = [doc.getElementById(ids.BID.TEXT_ID[0]),
-														   doc.getElementById(ids.BID.TEXT_ID[1])];
-											bidText[0] && bidText[0].removeAttribute('disabled');
-											bidText[1] && bidText[1].removeAttribute('disabled');
-											var confirm = doc.getElementById(ids.BID.CONFIRM_ID);
-											confirm.parentNode.removeChild(confirm);
-										}
+							var confirm = Foxtrick.util.note.create(doc, msg, [
+								{
+									type: Foxtrick.util.note.BUTTON_OK,
+									listener: function(ev) {
+										var doc = ev.target.ownerDocument;
+										var bidText = [doc.getElementById(ids.BID.TEXT_ID[0]),
+													   doc.getElementById(ids.BID.TEXT_ID[1])];
+										bidText[0] && bidText[0].removeAttribute('disabled');
+										bidText[1] && bidText[1].removeAttribute('disabled');
+										var bidButton = doc.getElementById(ids.BID.BUTTON_ID);
+										bidButton.click();
 									}
-								]);
+								},
+								{
+									type: Foxtrick.util.note.BUTTON_CANCEL,
+									listener: function(ev) {
+										var doc = ev.target.ownerDocument;
+										var bidButton = doc.getElementById(ids.BID.BUTTON_ID);
+										Foxtrick.removeClass(bidButton, 'hidden');
+										var bidText = [doc.getElementById(ids.BID.TEXT_ID[0]),
+													   doc.getElementById(ids.BID.TEXT_ID[1])];
+										bidText[0] && bidText[0].removeAttribute('disabled');
+										bidText[1] && bidText[1].removeAttribute('disabled');
+										var confirm = doc.getElementById(ids.BID.CONFIRM_ID);
+										confirm.parentNode.removeChild(confirm);
+									}
+								}
+							]);
 							confirm.id = ids.BID.CONFIRM_ID;
 							bidAlert.getElementsByTagName('div')[0].appendChild(confirm);
 							Foxtrick.addClass(bidButton, 'hidden');
-							bidText[0].disabled = 'disabled';
-							bidText[1].disabled = 'disabled';
+							bidText[0] && bidText[0].setAttribute('disabled', 'disabled');
+							bidText[1] && bidText[1].setAttribute('disabled', 'disabled');
 							ev.preventDefault();
 						}
 					});
