@@ -53,7 +53,7 @@ if (typeof(opera) == 'object') {
 	Foxtrick.arch = 'Sandboxed';
 	Foxtrick.platform = 'Opera';
 	Foxtrick.InternalPath = 'content/';
-	Foxtrick.ResourcePath = 'http://foxtrick.googlecode.com/svn/trunk/content/';
+	Foxtrick.ResourcePath = 'https://foxtrick.googlecode.com/svn/trunk/content/';
 
 	// to tell which context the chrome script is running at
 	// either background page, or content script
