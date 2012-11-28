@@ -89,8 +89,12 @@ Foxtrick.modules["ForumPreview"]={
 				text = text.replace(/< /g, "&lt; ");
 
 				// strip links. replace <· with &lt;
-				text = text.replace(/<Â·/g,'&lt;'); // who know why that Â is needed there. i think that happens at times with uft8 vs ansi
-				text = text.replace(/<·/g,'&lt;'); // i don't, so just lets do both
+				// using u2060 'word joiner' zero-width space instead!
+				//text = text.replace(/<Â·/g, '&lt;');
+				// who know why that Â is needed there. i think that happens at times
+				// with uft8 vs ansi
+				// i don't, so just lets do both
+				text = text.replace(new RegExp('<' + String.fromCharCode(8288), 'g'), '&lt;');
 				text = Foxtrick.stripHTML( text);
 
 				text = text.replace(/\n/g, " <br />");
