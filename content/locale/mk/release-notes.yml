@@ -4,7 +4,7 @@ mk:
     nightly: 
       note_0: 
     beta: 
-      note_0: 
+      note_0: 'Ова е бета верзијата од следното издание. Ве молиме помогнете во преводот на оваа верзија на нашата едноставна crowd-веб страничка за преведување <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.11.0: 
       note_0: 
       note_1: 
@@ -14,11 +14,11 @@ mk:
       note_5: 
       note_6: 
       note_7: 
-      note_8: 
+      note_8: '<module>Симулатор на натпревари</module>: Додадена интеграција со модулот <module>Рејтинзи</module>.'
       note_9: 
       note_10: 
       note_11: 
-      note_12: 
+      note_12: '<header>Исправки на багови</header>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
@@ -29,11 +29,11 @@ mk:
       note_6: '<module>StaffMarker</module>: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on'
       note_7: '<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org'
       note_8: Support for the KeyPlayer page
-      note_9: Some improvements for Firefox on Android
-      note_10: Possibility to test alert sounds in the preferences
-      note_11: Some internal changes related to data storage
-      note_12: Some smaller changes and fixes we forgot about
-      note_13: '<header>Bugfixes</header>'
+      note_9: Неколку подобрувања за Фаерфокс на андроид
+      note_10: Можност за тестирање на звуци за известувања во поставките
+      note_11: Неколку интерни измени поврзани со зачувување на податоци
+      note_12: Неколку помали измени и поправки коишто ги имаме заборавено
+      note_13: '<header>Поправка на багови</header>'
       note_14: '<module>ExtendedPlayerDetails</module>: Fixed wage per week and season beeing incorrect for korean and probably some other languages too'
       note_15: '<module>MatchOrderInterface</module>: Face will also show for replaced and highlighted players for past lineups'
       note_16: '<module>MatchPlayerColouring</module>: Now works properly for players that were put in and left the field before the game ended'

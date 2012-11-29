@@ -2,17 +2,25 @@
 vi: 
   faq: 
     style: 
-      question: 
+      question: Tôi có thể làm thế nào trang trí FoxTrick của tôi?
       answer: 
     sound-format: 
-      question: 
-      answer: 
+      question: Âm thanh báo động có định dạng là gì?
+      answer: |
+        <p>Những trình duyệt khác nhau cho phép những định dạng khác nhau. Chẳng hạn như:</p>
+        <ul>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (có thể cần Quicktime): wav, mp3</li>
+        <li>Chrome: ogg, mp3, wav</li>
+        <li>Opera: wav, ogg</li>
+        </ul>
+        <p>Những định dạng không được liệt kê có thể dùng được với những plugin phù hợp(ví dụ như Quicktime dùng để chơi mp3 trên Firefox).</p>
     sound-location: 
-      question: 
+      question: Dung lượng giới hạn của tập tin âm thanh báo động là bao nhiêu và chúng có thể được đặt ở đâu?
       answer: 
     authorize: 
-      question: 
+      question: Tại sao tôi phải cho phép FoxTrick truy cập vào dữ liệu đội của tôi?
       answer: 
     privacy: 
-      question: 
+      question: Foxtrick sẽ làm thế nào để bảo vệ quyền riêng tư của tôi?
       answer: 

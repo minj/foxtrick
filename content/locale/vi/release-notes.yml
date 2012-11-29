@@ -4,7 +4,7 @@ vi:
     nightly: 
       note_0: 
     beta: 
-      note_0: 
+      note_0: 'Đây là phiên bản beta của bản phát hành tới. Xin vui lòng dịch phiên bản này tại trang dịch vô cùng dễ dàng <linkCrowdin>crowdin.net</linkCrowdin> của chúng tôi. '
     0.11.0: 
       note_0: 
       note_1: 
@@ -18,7 +18,7 @@ vi:
       note_9: 
       note_10: 
       note_11: 
-      note_12: 
+      note_12: '<header>Lỗi đã sửa</header>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
@@ -28,8 +28,8 @@ vi:
       note_5: '<module>YouthTwins</module>: Option added to hide the information link about twins (default off)'
       note_6: '<module>StaffMarker</module>: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on'
       note_7: '<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org'
-      note_8: Support for the KeyPlayer page
-      note_9: Some improvements for Firefox on Android
+      note_8: Hỗ trợ cho các trang Cầu thủ chủ chốt
+      note_9: Một số cải tiến cho Firefox trên Android
       note_10: Possibility to test alert sounds in the preferences
       note_11: Some internal changes related to data storage
       note_12: Some smaller changes and fixes we forgot about

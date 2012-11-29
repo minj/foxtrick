@@ -2,17 +2,24 @@
 mk: 
   faq: 
     style: 
-      question: 
+      question: Како можам да го нагодам стилот на мојот Фокстрик?
       answer: 
     sound-format: 
-      question: 
-      answer: 
+      question: Кои датотечни формати се дозволени за звучни известувања?
+      answer: |
+        <p>Различни прегледувачи дозволуваат различни формати. Подолу се наоѓа листа на прегледувачи и соодветни формати  (форматите кои не се во листата можеби ќе работат, но само, доколку е инсталиран и соодветниот плагин, на пример Quicktime за mp3 датотеки во Фаерфокс):</p>
+        
+        <ul>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (можеби е потребен и Quicktime): wav, mp3</li>
+        <li>Chrome:  ogg, mp3, wav</li><li>Opera: wav, ogg</li>
+        </ul>
     sound-location: 
-      question: 
+      question: Кој е лимитот за големина на звучните известувања и каде може да се сместат истите?
       answer: 
     authorize: 
-      question: 
+      question: Зашто треба да  му дозволам на Фокстрик пристап до податоците за мојот тим?
       answer: 
     privacy: 
-      question: 
+      question: Како Фокстрик ќе ја заштити мојата приватност?
       answer: 

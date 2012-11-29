@@ -2,17 +2,27 @@
 sl: 
   faq: 
     style: 
-      question: 
-      answer: 
+      question: Kako lahko spreminjam izgled mojega FoxTricka?
+      answer: |
+        <p>FoxTrick zagotavlja nabor predstavitvenih vmesnikov za uporabnike, ki želijo nastavljati svoje izglede. Ti vmesniki so pridobljeni v obliki HTML ID-jev in razredov. Uporabite lahko tudi CSS, če želite opredeliti vaš želen izgled</p>
+        
+        <p>Primera takšnih datotek lahko vidite <linkCSSExample>tukaj</linkCSSExample> ali <linkCSSExampleGCode>tukaj</linkCSSExampleGCode>. Ti datoteki lahko spreminajte po lastni želji. Ko shranite datoteko, uporabite <module>SkinPlugin</module> modul za nalaganje CSS datoteke, če želite videti učinek vaših sprememb.</p>
     sound-format: 
-      question: 
-      answer: 
+      question: Katere vrste datotek so dovoljene za zvočna opozorila?
+      answer: |
+        <p>Različni brskalniki dovoljujejo različne datoteke. Tukaj je seznam:</p>
+        
+        <ul>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (lahko potrebuje Quicktime): wav, mp3</li>
+        <li>Chrome:  ogg, mp3, wav</li><li>Opera: wav, ogg</li>
+        </ul>
     sound-location: 
-      question: 
+      question: Kakšna je omejitev velikosti zvočni opozoril in kje je mogoče ta najti?
       answer: 
     authorize: 
-      question: 
+      question: Zakaj naj dovolim FoxTricku dostop do podatkov o moji ekipi?
       answer: 
     privacy: 
-      question: 
+      question: Kako bo FoxTrick varoval mojo zasebnost?
       answer: 
