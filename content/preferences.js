@@ -71,13 +71,6 @@ var _modules = {};
 //feed the search bar with options, no effect yet
 function initSearch() {
 
-	var search = document.getElementById('modulelist');
-	function addToModuleList(str) {
-		var option = document.createElement('option');
-		option.setAttribute('value', str);
-		search.appendChild(option);
-	}
-
 	$('.module').each(function() {
 		try {
 			var name = $(this).attr('id');
@@ -87,14 +80,12 @@ function initSearch() {
 			}else if (name && name.match(/^faq-/)) {
 				var h3 = $(this).children('h3:first');
 				_modules[h3.text().replace('¶', '')] = $(this)[0];
-				addToModuleList(h3.text().replace('¶', ''));
 			}
 			else {
 				var h3 = $(this).children('h3:first');
 				if (h3.attr('data-text')) {
 					name = Foxtrickl10n.getString(h3.attr('data-text'));
 					_modules[name] = $(this)[0];
-					addToModuleList(name);
 				} else {
 					Foxtrick.log('no search support, missing h3 and/or data-text');
 				}
