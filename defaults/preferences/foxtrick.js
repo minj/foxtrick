@@ -13,7 +13,6 @@ pref("extensions.foxtrick.prefs.module.AddDefaultFaceCard.enabled", false);
 pref("extensions.foxtrick.prefs.module.AddLeaveConfButton.enabled", false);
 pref("extensions.foxtrick.prefs.module.AttVsDef.enabled", true);
 pref("extensions.foxtrick.prefs.module.AttVsDef.value", 0);
-pref("extensions.foxtrick.prefs.module.BackgroundFixed.enabled", false);
 pref("extensions.foxtrick.prefs.module.BookmarkAdjust.enabled", true);
 pref("extensions.foxtrick.prefs.module.ConfirmActions.Bid.enabled", true);
 pref("extensions.foxtrick.prefs.module.ConfirmActions.enabled", true);
