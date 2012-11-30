@@ -694,21 +694,21 @@
 			"url": "http://nrgjack.altervista.org/eco.php?t=[terraces]&b=[basic]&r=[roof]&v=[vip]"
 		},
 		"title": "NRG ECO",
-		"img": "http://nrgjack.altervista.org/img/favicon.ico"
+		"img": "resources/linkicons/eco.png"
 	},
 	"nrg_fc": {
 		"coachlink": {
 			"url": "http://nrgjack.altervista.org/fc.php"
 		},
 		"title": "NRG FC",
-		"img": "http://nrgjack.altervista.org/img/favicon.ico"
+		"img": "resources/linkicons/nrg_fc.png"
 	},
 	"nrg_pop": {
 		"playerlink": {
 			"url": "http://nrgjack.altervista.org/pop.php?tsi=[tsi]&fo=[form]&st=[stamina]&pm=[playmaking]&pa=[passing]&wi=[winger]&df=[defending]&sc=[scoring]"
 		},
 		"title": "NRG Pop",
-		"img": "http://nrgjack.altervista.org/img/favicon.ico"
+		"img": "resources/linkicons/nrg_pop.png"
 	},
 	"argenstat": {
 		"leaguelink": {
