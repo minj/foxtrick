@@ -341,20 +341,41 @@ Foxtrick.GetDataURIText = function(filetext) {
 };
 
 Foxtrick.addImage = function(doc, elem, features, insertBefore) {
-	if ((Foxtrick.platform == 'Opera') && features.src.indexOf('resources') != -1) {
-		sandboxed.extension.sendRequest({ req: 'getDataUrl', url: features.src },
-		  function(data) {
-			var img = doc.createElement('img');
-			for (i in features) {
-				if (i != 'src') // that one we set bellow. prevents csp warning
-					img.setAttribute(i, features[i]);
-			}
-			img.src = data.url;
-			if (insertBefore)
-				elem.insertBefore(img, insertBefore);
-			else
-				elem.appendChild(img);
-		});
+	if ((Foxtrick.platform == 'Opera') && features.src.indexOf('content/resources') == 0) {
+		// Get the image resource
+		var imgFile = opera.extension.getFile('/' + features.src);
+
+		if (imgFile) {
+		// Read out the File object as a Data URI
+			var fr = new FileReader();
+			fr.onload = function() {
+				var img = doc.createElement('img');
+				img.src = fr.result;
+				for (var i in features) {
+					if (features.hasOwnProperty(i) && i != 'src') {
+						img.setAttribute(i, features[i]);
+					}
+				}
+				if (insertBefore)
+					elem.insertBefore(img, insertBefore);
+				else
+					elem.appendChild(img);
+			};
+			fr.readAsDataURL(imgFile);
+		}
+		//sandboxed.extension.sendRequest({ req: 'getDataUrl', url: features.src },
+		//  function(data) {
+		//	var img = doc.createElement('img');
+		//	for (i in features) {
+		//		if (i != 'src') // that one we set bellow. prevents csp warning
+		//			img.setAttribute(i, features[i]);
+		//	}
+		//	img.src = data.url;
+		//	if (insertBefore)
+		//		elem.insertBefore(img, insertBefore);
+		//	else
+		//		elem.appendChild(img);
+		//});
 	}
 	else {
 		var img = doc.createElement('img');
