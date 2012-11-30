@@ -64,7 +64,7 @@ mk:
       note_2: 'NEW: <module>PlayerStatsExperience</module>: shows how much experience a player gained in invidual matches and shows current subskill'
       note_3: 'NEW: <module>TeamPopupLinks</module>: added Tournaments. Optionally highlights current team in tables (default on)'
       note_4: 'NEW: <module>RatingsDisplay</module>: additonally addes average stars and ratings to series stats table'
-      note_5: 'NEW: <module>TeamStats</module>: updates with filters and more sections'
+      note_5: 'НОВО: <module>TeamStats</module>: апдејти со филтери и повеќе секции'
       note_6: PlayerFilters has more filter options now
       note_7: 'Skilltable for transferlist search: injured fixed'
       note_8: 'MatchReportFormat: negative SE icons added'

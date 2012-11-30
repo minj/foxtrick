@@ -2,17 +2,24 @@
 bs: 
   faq: 
     style: 
-      question: 
+      question: Kako mogu stilizovati svoj FoxTrick?
       answer: 
     sound-format: 
-      question: 
-      answer: 
+      question: Koji formati datoteke su dozvoljeni kao zvukovi upozorenja?
+      answer: |
+        <p>Različiti internet preglednici dozvoljavaju različite formate datoteka. U nastavku se nalazi lista internet preglednika i njihovih odgovarajućih formata (formati koji nisu na listi mogu raditi ukoliko je instaliran odgovarajući dodatak-plugin, npr. Quicktime za .mp3 datoteke u Firefoxu i sl.):</p>
+        
+        <ul>
+        <li>FireFox: wav, ogg</li>
+        <li>Safari (može biti potreban Quicktime): wav, mp3</li>
+        <li>Chrome:  ogg, mp3, wav</li><li>Opera: wav, ogg</li>
+        </ul>
     sound-location: 
-      question: 
+      question: Koja je maksimalna veličina zvukova upozorenja i gdje se mogu smjestiti?
       answer: 
     authorize: 
-      question: 
+      question: Zašto trebam dozvoliti Foxtriku da pristupi podacima moga tima?
       answer: 
     privacy: 
-      question: 
+      question: Kako će Foxtrick zaštititi moju privatnost?
       answer: 

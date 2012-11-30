@@ -5,9 +5,9 @@ tr:
       question: FoxTrick'i nasıl biçimlendirebilirim?
       answer: 
     sound-format: 
-      question: Uyarı sesleri için hangi dosya biçimlerine izin verilmeli?
+      question: Uyarı sesleri için hangi dosya türleri kullanılabilir ?
       answer: |
-        <p>Farklı tarayıcılar farklı dosya biçimlerine erişir. İşte liste (uygun eklentiler yüklenmiş ise listelenmemiş biçimler de çalışabilir, örneğin Firefox'ta mp3 çalarken Quicktime kullanmak gibi):</p>
+        <p>Farklı tarayıcılar farklı dosya biçimlerine izin vermektedir. İşte liste (uygun eklentiler yüklenmiş ise listelenmemiş biçimler de çalışabilir, örneğin Firefox'ta mp3 oynatmak için Quicktime):</p>
         
         <ul>
         <li>Mozilla: wav, ogg</li>
@@ -18,8 +18,15 @@ tr:
       question: Uyarı sesleri için boyut sınırları nedir ve onları nerede bulabilirim?
       answer: 
     authorize: 
-      question: Takım bilgilerime girişte neden Foxtrick'e izin vermeliyim?
+      question: Takım bilgilerime erişmesi için neden Foxtrick'e izin vermeliyim?
       answer: 
     privacy: 
       question: FoxTrick gizliliğimi nasıl koruyacak?
-      answer: 
+      answer: |
+        <p>Foxtrick ne bilgilerinizi ya da ayarlarınızı kendi server'ına yükleyecek ne de kullanıcı adınız, şifreniz, oyuncu ID'leri ve oyuncularınızın yeteneklerini içeren özel bilgilerinizi 3.şahıslarla paylaşmayacaktır.</p>
+        
+        <p>3.şahıslara aktarılmış bilgiler, açıkça aşağıda belirtildiği gibi HTTP GET methodu kullanılarak gönderilmiş olup bu olay sadece sizin bir link'e tıklamanızla gerçekleşmektedir.</p>
+        
+        <p>Bunu, harici bir link olan URI(Uniform Resource Identifier) ile inceleyerek hangi bilgilerin aktarıldığını görebilecek ve hiçbir bilgi sizin izniniz olmadan gönderilmeyecektir. Yukarıda belirtildiği gibi, hiçbir gizli bilginizi içermemektedir.</p>
+        
+        <p><module>HTMSPrediction</module> ve <module>HTEVPrediction</module> modülleri kullanılarak XMLHttpRequest sahipli sitelere gerçekleşen maç reytingleri veri aktarımı bunun dışındadır.</p>

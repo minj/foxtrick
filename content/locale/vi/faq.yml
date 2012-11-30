@@ -3,7 +3,10 @@ vi:
   faq: 
     style: 
       question: Tôi có thể làm thế nào trang trí FoxTrick của tôi?
-      answer: 
+      answer: |
+        <p>FoxTrick cung cấp nhiều giao diện trình bày khác nhau cho người sử dụng tùy chỉnh theo ý thích. Các giao diện này được cung cấp qua các HTML IDs và classes, và người chơi có thể dùng CSS để thiết lập giao diện cho mình.</p>
+        
+        <p>Một mẫu ví dụ cho người chơi có thể được tìm thấy <linkCSSExample>tại đây</linkCSSExample> hoặc <linkCSSExampleGCode>tại đây</linkCSSExampleGCode>, và bạn có thể điều chỉnh thêm theo ý thích. Sau khi lưu, bạn có thể sử dụng thêm <module>Skin Plugin</module> để tải lại dữ liệu CSS để có thể sử dụng các tùy chỉnh cá nhân.</p>
     sound-format: 
       question: Âm thanh báo động có định dạng là gì?
       answer: |
@@ -17,7 +20,12 @@ vi:
         <p>Những định dạng không được liệt kê có thể dùng được với những plugin phù hợp(ví dụ như Quicktime dùng để chơi mp3 trên Firefox).</p>
     sound-location: 
       question: Dung lượng giới hạn của tập tin âm thanh báo động là bao nhiêu và chúng có thể được đặt ở đâu?
-      answer: 
+      answer: |
+        <p>Tất cả các trình duyệt đều chạy được urls. Đó là các âm thanh đã được lưu nội bộ khi bạn sử dụng chức năng tải lại trong phần tùy chỉnh. Một khi chúng đã được chuyển đổi và lưu lại trong phần tùy chỉnh của bạn, dung lượng của mỗi âm thanh sẽ bị giới hạn vào khoảng 160kb.</p>
+        
+        <p>Tất cả các trình duyệt cũng đều có thể chạy âm thanh trực tiếp từ internet (http urls). Chỉ cần sao chép đường link (ví dụ http://foxtrick.org/sound.wav) vào phần chỉnh sửa âm thanh. Không giới hạn dung lượng.</p>
+        
+        <p>Người sử dụng Mozilla cũng có thể chạy âm thanh trực tiếp từ ổ cứng của mình (file urls) mà không bị giới hạn dung lượng. Cách đơn giản nhất để lấy được file với đúng định dạng: Vào cửa sổ trình duyệt, gõ Ctrl+o, tìm nơi chứa file âm thanh và chọn nó. Trong thanh địa chỉ phía trên sẽ hiện ra đường dẫn đến file (ví dụ file:///c:/sound.wav). Sau đó sao chép và dán đường dẫn này vào phần chỉnh sửa âm thanh.</p>
     authorize: 
       question: Tại sao tôi phải cho phép FoxTrick truy cập vào dữ liệu đội của tôi?
       answer: 

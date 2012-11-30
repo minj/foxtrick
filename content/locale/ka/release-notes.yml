@@ -4,7 +4,7 @@ ka:
     nightly: 
       note_0: 
     beta: 
-      note_0: 
+      note_0: 'ეს არის ახალი ვერსიის საცდელი ვარიანტი. გთხოვთ დაგვეხმარეთ თარგმნაში ჩვენი უადვილესი სათარგმნი საიტის გამოყენებით <linkCrowdin>crowdin.net</linkCrowdin>.'
     0.11.0: 
       note_0: 
       note_1: 
