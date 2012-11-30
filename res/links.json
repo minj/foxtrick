@@ -1251,14 +1251,14 @@
 			]
 		],
 		"title": "Wage Reduction Calculator",
-		"img": "http://nrgjack.altervista.org/img/favicon.ico"
+		"img": "resources/linkicons/wagereduction.png"
 	},
 	"nrg_deffor": {
 		"playerlink": {
 			"url": "http://nrgjack.altervista.org/trequartista.php?pm=[playmaking]&pa=[passing]&wi=[winger]&df=[defending]&sc=[scoring]&gk=[goalkeeping]"
 		},
 		"title": "NRG The Perfect Defensive Forward",
-		"img": "http://nrgjack.altervista.org/img/favicon.ico",
+		"img": "resources/linkicons/nrg_deffor.gif",
 		"SUM": {
 			"sum_deffor_skills": [
 				"passing",
