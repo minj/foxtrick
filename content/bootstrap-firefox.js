@@ -168,7 +168,6 @@ FoxtrickFirefox.prototype = {
 		"matches/match-simulator.js",
 		"matches/ratings.js",
 		"matches/stars-counter.js",
-		"presentation/background-fixed.js",
 		"presentation/bookmark-adjust.js",
 		"presentation/country-list.js",
 		"presentation/currency-converter.js",
