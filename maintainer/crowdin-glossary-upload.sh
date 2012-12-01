@@ -9,8 +9,8 @@ CROWDIN_FOLDER=crowdin/locale
 . ./upload.conf.sh
 
 # get module names from foxtrick.properties file
-cat ../content/foxtrick.properties | grep -oP "(?<=^module\.)[^\.]+(?=\.desc)" > module-names
-sed -ir '/^[A-Z][a-z]\+$/d' module-names # remove single-word modules
+grep -oP "(?<=^module\.)[^\.]+(?=\.desc)" ../content/foxtrick.properties > module-names
+sed -i '/^[A-Z][a-z]\+$/d' module-names # remove single-word modules
 
 # make tbx glossary from module names
 perl crowdin-module-glossary-update.pl
