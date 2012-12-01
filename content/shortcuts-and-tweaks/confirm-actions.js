@@ -49,8 +49,8 @@ Foxtrick.modules["ConfirmActions"]={
 						var confirm = doc.getElementById(ids.BID.CONFIRM_ID);
 						if (bidAlert && (bidText[0] || bidText[1]) && !confirm) {
 							var msgTemplate = Foxtrickl10n.getString("ConfirmActions.bid");
-							var value = bidText[0] && bidText[0].value ||
-								bidText[1] && bidText[1].value;
+							var value = bidText[1] && bidText[1].value ||
+								bidText[0] && bidText[0].value;
 							var price = value
 								.split("").reverse().join("")
 								.replace(new RegExp("(.{3})(?!$)", "g"), "$1 ")
