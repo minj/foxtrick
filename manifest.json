@@ -94,7 +94,7 @@
 			"content/alert/ticker-alert.js",
 			"content/alert/ticker-coloring.js",
 			"content/forum/auto-post-specs.js",
-			"content/forum/add-leave-conf-button.js",
+			"content/forum/forumLeaveButton.js",
 			"content/forum/embed-media.js",
 			"content/forum/forum-change-posts.js",
 			"content/forum/forum-change-posts-modules.js",

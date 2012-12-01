@@ -83,7 +83,7 @@ FoxtrickFirefox.prototype = {
 		"alert/ticker-alert.js",
 		"alert/ticker-coloring.js",
 		"forum/auto-post-specs.js",
-		"forum/add-leave-conf-button.js",
+		"forum/forumLeaveButton.js",
 		"forum/embed-media.js",
 		"forum/forum-change-posts.js",
 		"forum/forum-change-posts-modules.js",
