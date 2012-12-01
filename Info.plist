@@ -107,12 +107,12 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/alert/ticker-alert.js</string>
 				<string>content/alert/ticker-coloring.js</string>
 				<string>content/forum/auto-post-specs.js</string>
-				<string>content/forum/forumLeaveButton.js</string>
 				<string>content/forum/embed-media.js</string>
 				<string>content/forum/forum-change-posts.js</string>
 				<string>content/forum/forum-change-posts-modules.js</string>
 				<string>content/forum/forum-direct-page-links.js</string>
 				<string>content/forum/forum-last-post.js</string>
+				<string>content/forum/forum-leave-button.js</string>
 				<string>content/forum/forum-next-and-previous.js</string>
 				<string>content/forum/forum-mod-popup.js</string>
 				<string>content/forum/forum-presentation.js</string>

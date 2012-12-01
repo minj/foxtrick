@@ -76,12 +76,12 @@
 <script type="application/x-javascript" src="./alert/ticker-alert.js"></script>
 <script type="application/x-javascript" src="./alert/ticker-coloring.js"></script>
 <script type="application/x-javascript" src="./forum/auto-post-specs.js"></script>
-<script type="application/x-javascript" src="./forum/forumLeaveButton.js"></script>
 <script type="application/x-javascript" src="./forum/embed-media.js"></script>
 <script type="application/x-javascript" src="./forum/forum-change-posts.js"></script>
 <script type="application/x-javascript" src="./forum/forum-change-posts-modules.js"></script>
 <script type="application/x-javascript" src="./forum/forum-direct-page-links.js"></script>
 <script type="application/x-javascript" src="./forum/forum-last-post.js"></script>
+<script type="application/x-javascript" src="./forum/forum-leave-button.js"></script>
 <script type="application/x-javascript" src="./forum/forum-next-and-previous.js"></script>
 <script type="application/x-javascript" src="./forum/forum-mod-popup.js"></script>
 <script type="application/x-javascript" src="./forum/forum-presentation.js"></script>

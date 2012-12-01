@@ -4,12 +4,12 @@ alert/new-mail.js
 alert/ticker-alert.js
 alert/ticker-coloring.js
 forum/auto-post-specs.js
-forum/forumLeaveButton.js
 forum/embed-media.js
 forum/forum-change-posts.js
 forum/forum-change-posts-modules.js
 forum/forum-direct-page-links.js
 forum/forum-last-post.js
+forum/forum-leave-button.js
 forum/forum-next-and-previous.js
 forum/forum-mod-popup.js
 forum/forum-presentation.js
