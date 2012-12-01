@@ -1,10 +1,7 @@
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.FoxTrickPrefs.enabled", false);
-pref("extensions.foxtrick.prefs.module.TeamPopupLinks.enabled", false);
 pref("extensions.foxtrick.prefs.module.ContextMenuCopy.enabled", false);
 pref("extensions.foxtrick.prefs.module.FlagCollectionToMap.enabled", false);
 pref("extensions.foxtrick.prefs.module.BookmarkAdjust.enabled", false);
 pref("extensions.foxtrick.prefs.module.LineupShortcut.enabled", false);
 pref("extensions.foxtrick.prefs.module.LargeFlags.enabled", false);
 pref("extensions.foxtrick.prefs.module.CustomMedals.enabled", false);
-
-
