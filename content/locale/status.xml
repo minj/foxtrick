@@ -94,7 +94,7 @@
     <name>Greek</name>
     <code>el</code>
     <phrases>1327</phrases>
-    <translated>1132</translated>
+    <translated>1136</translated>
     <approved>0</approved>
     <translated_progress>85</translated_progress>
     <approved_progress>0</approved_progress>
@@ -166,9 +166,9 @@
     <name>Georgian</name>
     <code>ka</code>
     <phrases>1327</phrases>
-    <translated>928</translated>
+    <translated>958</translated>
     <approved>0</approved>
-    <translated_progress>69</translated_progress>
+    <translated_progress>72</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -193,9 +193,9 @@
     <name>Macedonian</name>
     <code>mk</code>
     <phrases>1327</phrases>
-    <translated>990</translated>
+    <translated>1098</translated>
     <approved>0</approved>
-    <translated_progress>74</translated_progress>
+    <translated_progress>82</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -229,7 +229,7 @@
     <name>Portuguese</name>
     <code>pt-PT</code>
     <phrases>1327</phrases>
-    <translated>1314</translated>
+    <translated>1315</translated>
     <approved>0</approved>
     <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
@@ -301,18 +301,18 @@
     <name>Ukrainian</name>
     <code>uk</code>
     <phrases>1327</phrases>
-    <translated>1166</translated>
+    <translated>1303</translated>
     <approved>0</approved>
-    <translated_progress>87</translated_progress>
+    <translated_progress>98</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>Chinese Simplified</name>
     <code>zh-CN</code>
     <phrases>1327</phrases>
-    <translated>1005</translated>
+    <translated>1041</translated>
     <approved>0</approved>
-    <translated_progress>75</translated_progress>
+    <translated_progress>78</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -328,9 +328,9 @@
     <name>Vietnamese</name>
     <code>vi</code>
     <phrases>1327</phrases>
-    <translated>1042</translated>
+    <translated>1112</translated>
     <approved>0</approved>
-    <translated_progress>78</translated_progress>
+    <translated_progress>83</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -364,7 +364,7 @@
     <name>Persian</name>
     <code>fa</code>
     <phrases>1327</phrases>
-    <translated>1187</translated>
+    <translated>1193</translated>
     <approved>0</approved>
     <translated_progress>89</translated_progress>
     <approved_progress>0</approved_progress>
@@ -409,9 +409,9 @@
     <name>Estonian</name>
     <code>et</code>
     <phrases>1327</phrases>
-    <translated>251</translated>
+    <translated>406</translated>
     <approved>0</approved>
-    <translated_progress>18</translated_progress>
+    <translated_progress>30</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
