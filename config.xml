@@ -27,4 +27,5 @@
 	<access origin="http://www.fantamondi.it" subdomains="true"/>
 	<access origin="http://htev.org" subdomains="true"/>
 	<update-description href="https://www.foxtrick.org/nightly/opera/update.xml"/>
+	<feature name="opera:contextmenus"/>
 </widget>

@@ -236,6 +236,7 @@ opera:
 	mv $(BUILD_DIR)/includes/env.js $(BUILD_DIR)/includes/aa00_env.js
 	mv $(BUILD_DIR)/includes/module.js $(BUILD_DIR)/includes/aa10_module.js
 	mv $(BUILD_DIR)/includes/loader-chrome.js $(BUILD_DIR)/includes/zz99_loader-chrome.js
+	mv $(BUILD_DIR)/includes/context-menu-copy.js $(BUILD_DIR)/includes/zz98_context-menu-copy.js
 	# background-libs
 	mkdir $(BUILD_DIR)/lib
 	cd $(BUILD_DIR)/includes; \
@@ -245,6 +246,8 @@ opera:
 	cd $(BUILD_DIR); sed -i -r 's|(src=\"\./)|src=\"./includes/|' background.html options.html popup.html
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/env.js)|/includes/aa00_env.js|' background.html options.html popup.html
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/module.js)|/includes/aa10_module.js|' background.html options.html popup.html
+	cd $(BUILD_DIR); sed -i -r 's|(context-menu-copy.js)|zz98_context-menu-copy.js|' \
+		background.html options.html popup.html
 	## change entry files folder back to root
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/background.js)|/background.js|' background.html
 	cd $(BUILD_DIR); sed -i -r 's|(/includes/preferences.js)|/preferences.js|' options.html

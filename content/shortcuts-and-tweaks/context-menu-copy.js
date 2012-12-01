@@ -6,7 +6,7 @@
  */
 
 
-if (Foxtrick.platform != 'Opera' && Foxtrick.platform != 'Mobile' && Foxtrick.platform != 'Android')
+if (/*Foxtrick.platform != 'Opera' &&*/ Foxtrick.platform != 'Mobile' && Foxtrick.platform != 'Android')
 (function() {
 	// option: corresponding to OPTIONS
 	// func: function to be called for getting text
@@ -82,6 +82,67 @@ if (Foxtrick.platform != 'Opera' && Foxtrick.platform != 'Mobile' && Foxtrick.pl
 				});
 			};
 			// called from background script
+			var operaInit = function() {
+				// update menu in background on mousedown
+				opera.extension.addEventListener('message',
+				  function(messageEvent) {
+					var documentUrlPatterns = [
+						'*://*.hattrick.org/*',
+						'*://*.hattrick.fm/*',
+						'*://*.hattrick.ws/*',
+						'*://*.hattrick.name/*',
+						'*://*.hat-trick.net/*',
+						'*://*.hattrick.interia.pl/*',
+						'*://*.hattrick.uol.com.br/*'
+					];
+					if (messageEvent.data.name === 'updateContextMenu') {
+						var menu = opera.contexts.menu;
+						var root = menu.item(0);
+						if (root) {
+							// remove old entries
+							for (var type in entries) {
+								if (entries[type].item !== null) {
+									// TODO item must be int
+									root.removeItem(entries[type].item);
+									entries[type].item = null;
+								}
+							}
+							menu.removeItem(0); // remove root
+						}
+						// create and add root
+						root = menu.createItem({
+							title: 'Foxtrick',
+							contexts: ['all'],
+							documentURLPatterns: documentUrlPatterns,
+							type: 'folder',
+							icon: 'skin/icon-16.png'
+						});
+						menu.addItem(root);
+						// add new entries
+						for (type in messageEvent.data.entries) {
+							entries[type].copyText = messageEvent.data.entries[type].copyText;
+							var item = menu.createItem({
+								title: messageEvent.data.entries[type].title,
+								contexts: ['all'],
+								onclick: (function(entry, type) {
+									return function() {
+										Foxtrick.copyStringToClipboard(entry.copyText);
+										messageEvent.source.postMessage({
+											name: 'contextMenuCopied',
+											type: type
+										});
+									}
+								})(entries[type], type),
+								documentURLPatterns: documentUrlPatterns
+							});
+							// Add the menu item to the context menu
+							entries[type].item = root.length;
+							root.addItem(item);
+						}
+					}
+				}, false);
+			};
+			// called from background script
 			var safariInit = function() {
 				safari.application.addEventListener('contextmenu',
 				  function(event) {
@@ -103,6 +164,8 @@ if (Foxtrick.platform != 'Opera' && Foxtrick.platform != 'Mobile' && Foxtrick.pl
 				firefoxInit();
 			else if (Foxtrick.platform == 'Chrome')
 				chromeInit();
+			else if (Foxtrick.platform == 'Opera')
+				operaInit();
 			else if (Foxtrick.platform == 'Safari')
 				safariInit();
 		},
@@ -188,6 +251,30 @@ if (Foxtrick.platform != 'Opera' && Foxtrick.platform != 'Mobile' && Foxtrick.pl
 							chrome.extension.sendRequest({ req: 'updateContextMenu',
 							                             entries: getEntries() });
 						//}
+					}, false);
+				}
+				else if (Foxtrick.platform == 'Opera') {
+					doc.addEventListener('mousedown', function(ev) {
+						if (ev.button == 2) { // right mouse down
+							opera.postError(ev.target);
+							collectData(ev.target);
+							opera.postError(getEntries());
+							opera.extension.postMessage({
+								name: 'updateContextMenu',
+								entries: getEntries()
+							});
+						}
+					}, false);
+					var insertBefore = doc.getElementById('testingNewHeader') ||
+						doc.getElementsByTagName('h1')[0];
+					opera.extension.addEventListener('message',
+					  function(messageEvent) {
+						var data = messageEvent.data;
+						if (data.name == 'contextMenuCopied') {
+							Foxtrick.util.note.add(doc, insertBefore,
+									'ft-context-menu-' + data.type + '-copy-note',
+									'', null, true, true);
+						}
 					}, false);
 				}
 			}
