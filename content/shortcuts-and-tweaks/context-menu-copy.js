@@ -256,9 +256,7 @@ if (/*Foxtrick.platform != 'Opera' &&*/ Foxtrick.platform != 'Mobile' && Foxtric
 				else if (Foxtrick.platform == 'Opera') {
 					doc.addEventListener('mousedown', function(ev) {
 						if (ev.button == 2) { // right mouse down
-							opera.postError(ev.target);
 							collectData(ev.target);
-							opera.postError(getEntries());
 							opera.extension.postMessage({
 								name: 'updateContextMenu',
 								entries: getEntries()
