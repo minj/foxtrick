@@ -184,9 +184,10 @@ Foxtrick.modules['Ratings'] = {
 			label: function() { return Foxtrickl10n.getString('ratings.HatStats'); },
 			title: function() { return Foxtrickl10n.getString('ratings.HatStats'); },
 			total: function(midfieldLevel, attackLevel, defenceLevel) {
-				return ratingDefs['HatStatsDetailed'].midfield(midfieldLevel)
+				var hs = ratingDefs['HatStatsDetailed'].midfield(midfieldLevel)
 					+ ratingDefs['HatStatsDetailed'].attack(attackLevel)
 					+ ratingDefs['HatStatsDetailed'].defence(defenceLevel);
+				return hs > 0 ? hs : 0;
 			}
 		};
 
@@ -196,13 +197,16 @@ Foxtrick.modules['Ratings'] = {
 			title: function() { return Foxtrickl10n.getString('ratings.HatStats'); },
 
 			attack: function(attackLevel) {
-				return (3.0 * this.base + this.weight * attackLevel);
+				var a = (3.0 * this.base + this.weight * attackLevel);
+				return a > 0 ? a : 0;
 			},
 			defence: function(defenceLevel) {
-				return (3.0 * this.base + this.weight * defenceLevel);
+				var a = (3.0 * this.base + this.weight * defenceLevel);
+				return a > 0 ? a : 0;
 			},
 			midfield: function(midfieldLevel) {
-				return 3.0 * (this.base + this.weight * midfieldLevel);
+				var a = 3.0 * (this.base + this.weight * midfieldLevel);
+				return a > 0 ? a : 0;
 			}
 		};
 
@@ -325,6 +329,7 @@ Foxtrick.modules['Ratings'] = {
 					0.22 * (0.3 * (ldefence + rdefence) + 0.4 * cdefence);
 
 				var rounded = Math.round(value * 100) / 100;
+				rounded = rounded > 0 ? rounded : 0;
 				return doc.createTextNode(rounded);
 
 			}
@@ -352,6 +357,7 @@ Foxtrick.modules['Ratings'] = {
 				0.64 * (ldefence + rdefence) + 1.12 * cdefence;
 
 				var rounded = Math.round(value * 10) / 10;
+				rounded = rounded > 0 ? rounded : 0;
 				return doc.createTextNode(rounded);
 
 			}
@@ -398,6 +404,7 @@ Foxtrick.modules['Ratings'] = {
 
 				var value = tempReal + tempTactica;
 				var rounded = Math.round(value);
+				rounded = rounded > 0 ? rounded : 0;
 				if (tactics == 'longshots') {
 					var font = doc.createElement('font');
 					font.setAttribute('color','#808080');
