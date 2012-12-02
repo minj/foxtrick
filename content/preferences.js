@@ -154,6 +154,12 @@ function search(string, search) {
 }
 
 function searchEvent(ev) {
+	var here = window.location.toString();
+	var there = generateURI('all');
+	if (here != there) {
+		window.location.href = there;
+		locateFragment(window.location.toString());
+	}
 	search(ev.target.value, true);
 }
 
