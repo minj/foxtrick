@@ -513,7 +513,7 @@ function initMainTab()
 		         "target='_blank'>$1</a>"));
 
 	// add links to main tab prefs
-	$('#pane > div[x-on=main] h3').each(function() {
+	$('#pane > div[x-on*="main"] h3').each(function() {
 		if ($(this).attr('id')) {
 			var link = document.createElement('a');
 			link.className = 'module-link';
@@ -838,6 +838,13 @@ function getModule(module)
 
 function initChangesTab()
 {
+	var changesLink = document.createElement('a');
+	changesLink.href = '#tab=changes';
+	changesLink.className = 'module-link';
+	changesLink.textContent = '¶';
+	changesLink.title = Foxtrickl10n.getString('module.link');
+	$('div[x-on*="changes"] > h3')[0].appendChild(changesLink);
+
 	var releaseNotesLinks = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath +
 	                                                   'release-notes-links.yml');
 
