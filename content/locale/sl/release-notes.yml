@@ -4,7 +4,7 @@ sl:
     nightly: 
       note_0: 'To je razvojna različica. Uporabljajte na lastno odgovornost. Prosimo, oglejte si <linkSVN>razvojno zgodovino</linkSVN> na Google Code za informacije o spremembah.'
     beta: 
-      note_0: 'To je beta verzija naslednjega izvoda. Prosimo za pomoč pri prevajanju te verzije na naši super-enostavni množično-prevajalni strani <linkCrowdin>crodwin.net</linkCrowdin>. '
+      note_0: 'To je beta verzija naslednjega izvoda. Prosimo za pomoč pri prevajanju te verzije na naši super-enostavni množično-prevajalni strani <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.11.0: 
       note_0: 'NOVO: <module>DirectPageLinks</module>: dodane povezave na specifične strani v forumskih nitkah '
       note_1: 'NOVO: <module>ForumModeratorPopup</module>: Dodan drsni meni za lažje delo moderatorjev.'

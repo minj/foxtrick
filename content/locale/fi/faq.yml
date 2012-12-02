@@ -19,7 +19,32 @@ fi:
       answer: 
     authorize: 
       question: Miksi minun pitää valtuuttaa FoxTrick päästäkseni joukkueeni tietoihin?
-      answer: 
+      answer: |
+        <p>Vaikka FoxTrick pystyykin noutamaan suurimman osan tiedoista suoraan avoinna olevalta sivulta, vaativat jotkut moduulit tietojen lataamista Hattrickistä toimiakseen kunnolla.</p>
+        
+        <p>Ladataksesi tietoja Hattrickistä esimerkiksi omasta joukkueestasi, liigastasi tai maajoukkueestasi täytyy sinun valtuuttaa FoxTrick etukäteen.</p>
+        
+        <p>Valtuutat FoxTrickin antamalla käyttäjätunnuksesi ja salasanasi chpp.hattrick.org sivulla, josta saaman vahvistuskoodia käytät FoxTrickillä. FoxTrick ei tule tietämään käyttäjätunnustasi tai salasanaasi prosessin aikana.</p>
+        
+        <p>Lisätietoja valtuuttamisprosessista saa lukemalla <linkCHPPDesc>CHPP - How it works</linkCHPPDesc> Hattrickissä.</p>
+        
+        <p>Joidenkin moduulien on päästävä käsiksi tietoihin toimiakseen kunnolla.</p>
+        
+        <ul>
+        <li><module>CrossTable</module></li>
+        <li><module>ExtraPlayerInfo</module></li>
+        <li><module>MatchPlayerColouring</module></li>
+        <li><module>MyMonitor</module></li>
+        <li><module>NtPeek</module></li>
+        <li><module>SeriesFlags</module></li>
+        </ul>
+        
+        <p>Jotkut moduulit voivat tuottaa laajaa informaatiota jos ne pääsevät käsiksi Hattrickin tietoihin:</p>
+        
+        <ul>
+        <li><module>SkillTable</module></li>
+        <li><module>TeamStats</module></li>
+        </ul>
     privacy: 
       question: Miten FoxTrick suojaa yksityisyyttäni?
       answer: |

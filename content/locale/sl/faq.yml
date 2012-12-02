@@ -25,4 +25,8 @@ sl:
       answer: 
     privacy: 
       question: Kako bo FoxTrick varoval mojo zasebnost?
-      answer: 
+      answer: |
+        <p>FoxTrick ne bo nalagal vaših podatkov ali nastavitev na svoje strežnike, prav tako ne bo pošiljal vaših zasebnih podatkov, ki vključujejo vašo uporabniško ime, geslo, in ID igralca, ki je povezan z drugimi stranmi.</p>
+        <p>Večina podatkov, ki so posredovana drugim stranem, je poslanih s HTTP GET metodo, razen če je drugače navedeno, in bodo poslani le, ko kliknete na povezavo.</p>
+        <p>To pomeni, da boste lahko s pregledom URI-ja (Uniform Resource Indentifier) ali zunanje povezave, lahko videli, kateri podatki so podani. Nobeni podatki ne bodo poslani brez vašega dovoljenja, prav tako ne bodo uporabljeni nobeni zasebni podatki, kot je navedeno zgoraj.</p>
+        <p>Izjeme sta modula <module>HTMSPrediction</module> in <module>HTEVPrediction</module>, ki uporabljata XMLHttpRequest za pošiljanje in sprejemanje podatkov.</p>

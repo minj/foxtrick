@@ -121,9 +121,9 @@
     <name>Finnish</name>
     <code>fi</code>
     <phrases>1327</phrases>
-    <translated>1273</translated>
+    <translated>1274</translated>
     <approved>0</approved>
-    <translated_progress>95</translated_progress>
+    <translated_progress>96</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -256,9 +256,9 @@
     <name>Slovenian</name>
     <code>sl</code>
     <phrases>1327</phrases>
-    <translated>936</translated>
+    <translated>960</translated>
     <approved>0</approved>
-    <translated_progress>70</translated_progress>
+    <translated_progress>72</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -301,7 +301,7 @@
     <name>Ukrainian</name>
     <code>uk</code>
     <phrases>1327</phrases>
-    <translated>1303</translated>
+    <translated>1311</translated>
     <approved>0</approved>
     <translated_progress>98</translated_progress>
     <approved_progress>0</approved_progress>
@@ -310,9 +310,9 @@
     <name>Chinese Simplified</name>
     <code>zh-CN</code>
     <phrases>1327</phrases>
-    <translated>1041</translated>
+    <translated>1066</translated>
     <approved>0</approved>
-    <translated_progress>78</translated_progress>
+    <translated_progress>80</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -328,9 +328,9 @@
     <name>Vietnamese</name>
     <code>vi</code>
     <phrases>1327</phrases>
-    <translated>1112</translated>
+    <translated>1139</translated>
     <approved>0</approved>
-    <translated_progress>83</translated_progress>
+    <translated_progress>85</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
