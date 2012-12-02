@@ -39,7 +39,9 @@ if (Foxtrick.platform != 'Opera' && Foxtrick.platform != 'Mobile' && Foxtrick.pl
 					entry.item = document.getElementById(type);
 					entry.item.addEventListener("command", copy(entry), false);
 				}
-				document.getElementById("foxtrick-popup-copy").setAttribute("hidden", true);
+				var menu = document.getElementById("foxtrick-popup-copy");
+				if (menu)
+					menu.setAttribute("hidden", true);
 			};
 			// called from background script
 			var chromeInit = function() {
