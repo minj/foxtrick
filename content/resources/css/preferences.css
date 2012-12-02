@@ -251,6 +251,9 @@ div#pane
 	-webkit-box-orient: vertical;
 	-moz-box-orient: vertical;
 	box-orient: vertical;
+
+	height: 500px;
+	overflow-y: scroll;
 }
 
 div#main
