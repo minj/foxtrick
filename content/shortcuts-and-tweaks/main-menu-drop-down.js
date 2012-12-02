@@ -95,7 +95,7 @@ Foxtrick.modules['MainMenuDropDown']={
 				secondary : []
 			}
 			this.save = function(){
-				Foxtrick.localSet('Menu.v3.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId + '.' + FoxtrickPrefs.getString('htLanguage'), this);
+				Foxtrick.localSet('Menu.v3.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId + '.' + FoxtrickPrefs.getString('htLanguage'), { menus : this.menus });
 			}
 			this.load = function(func){
 				Foxtrick.localGet('Menu.v3.'  + Foxtrick.modules['Core'].getSelfTeamInfo().teamId + '.' + FoxtrickPrefs.getString('htLanguage'), function(menu){
