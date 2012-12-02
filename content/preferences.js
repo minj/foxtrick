@@ -3,8 +3,9 @@
 var pageIds = [];
 
 function initLoader() {
-	if (document.location.href.search('width=600') != -1)
-		document.getElementsByTagName('body')[0].setAttribute('style', 'width:600px;');
+	var w;
+	if (w = document.location.href.match(/width=(\d+)/))
+		document.getElementsByTagName('body')[0].setAttribute('style', 'width:' + w[1] + 'px;');
 
 	// fennec runs init() from injected entry.js (injected)
 	// called directly, it'll run and save actually for some reason
