@@ -76,7 +76,7 @@ function initSearch() {
 			var name = $(this).attr('id');
 			if (name && name.match(/^pref-/)) {
 				_modules[name.replace(/^pref-/, '')] = $('#' + name)[0];
-				addToModuleList(name.replace(/^pref-/, ''));
+				//addToModuleList(name.replace(/^pref-/, ''));
 			}else if (name && name.match(/^faq-/)) {
 				var h3 = $(this).children('h3:first');
 				_modules[h3.text().replace('¶', '')] = $(this)[0];
