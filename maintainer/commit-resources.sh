@@ -6,10 +6,10 @@ RES_FOLDER="../res/*.json ../res/staff/*.json"
 . ./upload.conf.sh
 
 #zip resources
-for File in $RES_FOLDER; do
-	zip -fv $File.zip $File
-done
+#for File in $RES_FOLDER; do
+#	zip -fv $File.zip $File
+#done
 
 #commit res zips to svn
-git commit -a -m "*automated* resource zip update"
-git svn dcommit 
+#git commit -a -m "*automated* resource zip update"
+#git svn dcommit 
