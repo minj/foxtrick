@@ -43,7 +43,9 @@ if (/*Foxtrick.platform != 'Opera' &&*/ Foxtrick.platform != 'Mobile' && Foxtric
 					entry.item = document.getElementById(type);
 					entry.item.addEventListener('command', copy(entry), false);
 				}
-				document.getElementById('foxtrick-popup-copy').setAttribute('hidden', true);
+				var menu = document.getElementById('foxtrick-popup-copy');
+				if (menu)
+					menu.setAttribute('hidden', true);
 			};
 			// called from background script
 			var chromeInit = function() {
@@ -102,22 +104,22 @@ if (/*Foxtrick.platform != 'Opera' &&*/ Foxtrick.platform != 'Mobile' && Foxtric
 							// remove old entries
 							for (var type in entries) {
 								if (entries[type].item !== null) {
-									// TODO item must be int
+									// integer
 									root.removeItem(entries[type].item);
 									entries[type].item = null;
 								}
 							}
-							menu.removeItem(0); // remove root
 						}
-						// create and add root
-						root = menu.createItem({
-							title: 'Foxtrick',
-							contexts: ['all'],
-							documentURLPatterns: documentUrlPatterns,
-							type: 'folder',
-							icon: 'skin/icon-16.png'
-						});
-						menu.addItem(root);
+						else {// create and add root
+							root = menu.createItem({
+								title: 'Foxtrick',
+								contexts: ['all'],
+								documentURLPatterns: documentUrlPatterns,
+								type: 'folder',
+								icon: 'skin/icon-16.png'
+							});
+							menu.addItem(root);
+						}
 						// add new entries
 						for (type in messageEvent.data.entries) {
 							entries[type].copyText = messageEvent.data.entries[type].copyText;
@@ -136,7 +138,7 @@ if (/*Foxtrick.platform != 'Opera' &&*/ Foxtrick.platform != 'Mobile' && Foxtric
 								documentURLPatterns: documentUrlPatterns
 							});
 							// Add the menu item to the context menu
-							entries[type].item = root.length;
+							entries[type].item = root.length; //integer
 							root.addItem(item);
 						}
 					}
@@ -254,15 +256,6 @@ if (/*Foxtrick.platform != 'Opera' &&*/ Foxtrick.platform != 'Mobile' && Foxtric
 					}, false);
 				}
 				else if (Foxtrick.platform == 'Opera') {
-					doc.addEventListener('mousedown', function(ev) {
-						if (ev.button == 2) { // right mouse down
-							collectData(ev.target);
-							opera.extension.postMessage({
-								name: 'updateContextMenu',
-								entries: getEntries()
-							});
-						}
-					}, false);
 					var insertBefore = doc.getElementById('testingNewHeader') ||
 						doc.getElementsByTagName('h1')[0];
 					opera.extension.addEventListener('message',
@@ -272,6 +265,16 @@ if (/*Foxtrick.platform != 'Opera' &&*/ Foxtrick.platform != 'Mobile' && Foxtric
 							Foxtrick.util.note.add(doc, insertBefore,
 									'ft-context-menu-' + data.type + '-copy-note',
 									'', null, true, true);
+						}
+					}, false);
+					doc.addEventListener('mousedown', function(ev) {
+						// opera supports contextmenu but it's too slow
+						if (ev.button == 2) { // right mouse down
+							collectData(ev.target);
+							opera.extension.postMessage({
+								name: 'updateContextMenu',
+								entries: getEntries()
+							});
 						}
 					}, false);
 				}
