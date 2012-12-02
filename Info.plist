@@ -178,7 +178,6 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/matches/match-simulator.js</string>
 				<string>content/matches/ratings.js</string>
 				<string>content/matches/stars-counter.js</string>
-				<string>content/presentation/background-fixed.js</string>
 				<string>content/presentation/bookmark-adjust.js</string>
 				<string>content/presentation/country-list.js</string>
 				<string>content/presentation/currency-converter.js</string>
