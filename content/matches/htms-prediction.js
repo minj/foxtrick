@@ -123,6 +123,16 @@ Foxtrick.modules["HTMSPrediction"]={
 
 			var pred1 = xml.getElementsByTagName('T1').item(0).firstChild.nodeValue;
 			var pred2 = xml.getElementsByTagName('T2').item(0).firstChild.nodeValue;
+			var winprob = xml.getElementsByTagName('S1P').item(0).firstChild.nodeValue;
+			var drawprob = xml.getElementsByTagName('SXP').item(0).firstChild.nodeValue;
+			var lossprob = xml.getElementsByTagName('S2P').item(0).firstChild.nodeValue;
+			if (pred1 == 'NAN') {
+				pred1 = 5;
+				pred2 = 0;
+				winprob = 100;
+				drawprob = 0;
+				lossprob = 0;
+			}
 			var b = doc.createElement('b');
 			b.appendChild(doc.createTextNode(pred1));
 			cell = row.insertCell(1); cell.appendChild(b); cell.className = "left";
@@ -130,10 +140,6 @@ Foxtrick.modules["HTMSPrediction"]={
 			var b = doc.createElement('b');
 			b.appendChild(doc.createTextNode(pred2));
 			cell = row.insertCell(3); cell.appendChild(b); cell.className = "right";
-
-			var winprob = xml.getElementsByTagName('S1P').item(0).firstChild.nodeValue;
-			var drawprob = xml.getElementsByTagName('SXP').item(0).firstChild.nodeValue;;
-			var lossprob = xml.getElementsByTagName('S2P').item(0).firstChild.nodeValue;
 
 			var row = htmstable.insertRow(htmstable.rows.length);
 			cell = row.insertCell(0);
