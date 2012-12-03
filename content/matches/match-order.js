@@ -15,8 +15,6 @@ Foxtrick.modules["MatchOrderInterface"]={
 		var check_images = function(doc, target, avatarsXml, getID, scale) {
 			if (!FoxtrickPrefs.isModuleOptionEnabled("MatchOrderInterface",'ShowFaces'))
 				return;
-			if (!Foxtrick.util.layout.isSupporter(doc))
-				return;
 			var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
 			var add_image = function(fieldplayer) {
 				var id = getID(fieldplayer);
