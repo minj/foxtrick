@@ -776,8 +776,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'ShowSpecialties'))
 			this.runSpecialties(doc);
 
-		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'ShowFaces') &&
-			Foxtrick.util.layout.isSupporter(doc))
+		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'ShowFaces'))
 			this.runFaces(doc);
 
 		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'HighlightMissing'))
