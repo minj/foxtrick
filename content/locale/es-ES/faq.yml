@@ -27,7 +27,27 @@ es-ES:
         <p>El Mozilla también puede reproducir sonidos directamente desde tu disco duro sin límite de tamaño. La forma más fácil de obtener el formato apropiado: pulsa Ctrl+O en el navegador, busca el archivo de sonido y selecciónalo. En la barra de dirección de arriba aparecerá entonces el directorio en el que se encuentra el archivo local (por ejemplo: file:///c:/sound.wav). Copia y pega esto en el campo de edición para el sonido.</p>
     authorize: 
       question: ¿Por qué debo autorizar a Foxtrick acceder a los datos de mi equipo?
-      answer: 
+      answer: |
+        <p>Aunque la mayoría de los datos necesarios por FoxTrick se puede obtener directamente de la página que estás viendo, algunos módulos requieren la descarga de datos de Hattrick para funcionar correctamente.</p>
+        
+        <p>Para descargar datos de Hattrick, incluidos los datos de tu equipo, ligas y selecciones nacionales, necesitas autorizar a FoxTrick previamente.</p>
+        
+        <p>Autorizas a FoxTrick proporcionando Tu nombre de usuario y contraseña en chpp.hattrick.org. Así consigues un código de verificación que se proporciona a FoxTrick. FoxTrick no sabrá tu nombre de usuario o tu contraseña en todo el proceso.</p>
+        
+        <p>Para conocer más sobre el proceso de autorizar, por favor lee <linkCHPPDesc>CHPP - cómo funciona</linkCHPPDesc> en Hattrick.</p>
+        
+        <p>Algunos módulos requieren acceso a los datos para funcionar correctamente:</p>
+        <ul>
+        <li><module>CrossTable</module></li>
+        <li><module>ExtraPlayerInfo</module></li>
+        <li><module>MatchPlayerColouring</module></li>
+        <li><module>MyMonitor</module></li>
+        <li><module>NtPeek</module></li>
+        <li><module>SeriesFlags</module></li></ul>
+        <p>Algunos módulos pueden proporcionar información más amplia, si pueden acceder a datos de Hattrick:</p>  <ul>
+        <li><module>SkillTable</module></li>
+        <li><module>TeamStats</module></li>
+        </ul>
     privacy: 
       question: ¿Cómo protege mi privacidad FoxTrick?
       answer: |

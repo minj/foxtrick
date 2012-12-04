@@ -22,9 +22,9 @@
     <name>Spanish</name>
     <code>es-ES</code>
     <phrases>1327</phrases>
-    <translated>1326</translated>
+    <translated>1327</translated>
     <approved>1</approved>
-    <translated_progress>99</translated_progress>
+    <translated_progress>100</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -166,9 +166,9 @@
     <name>Georgian</name>
     <code>ka</code>
     <phrases>1327</phrases>
-    <translated>958</translated>
+    <translated>983</translated>
     <approved>0</approved>
-    <translated_progress>72</translated_progress>
+    <translated_progress>74</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -229,7 +229,7 @@
     <name>Portuguese</name>
     <code>pt-PT</code>
     <phrases>1327</phrases>
-    <translated>1315</translated>
+    <translated>1316</translated>
     <approved>0</approved>
     <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
@@ -328,9 +328,9 @@
     <name>Vietnamese</name>
     <code>vi</code>
     <phrases>1327</phrases>
-    <translated>1139</translated>
+    <translated>1159</translated>
     <approved>0</approved>
-    <translated_progress>85</translated_progress>
+    <translated_progress>87</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
