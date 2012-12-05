@@ -486,14 +486,17 @@ else {
 	if (Foxtrick.platform == "Mobile" || Foxtrick.platform == "Android") {
 		Foxtrick.DataPath = "chrome://foxtrick/content/res/";
 
-		if (typeof(addMessageListener)!=='undefined' || typeof(messageManager)!=='undefined') {			
-			var addListener = function(name, handler) {
-				var x = typeof(addMessageListener)=='function' ? addMessageListener : messageManager.addMessageListener;
-				x(name, handler);
+		if (typeof(addMessageListener)!=='undefined' || typeof(messageManager)!=='undefined') {	var addListener = function(name, handler) {
+				if (typeof(addMessageListener) == 'function')
+					addMessageListener(name, handler);
+				else
+					messageManager.addMessageListener(name, handler);
 			};
 			var removeListener = function(name, handler) {
-				var x = typeof(removeMessageListener)=='function' ? removeMessageListener : messageManager.removeMessageListener;
-				x(name, handler);
+				if (typeof(removeMessageListener) == 'function')
+					removeMessageListener(name, handler);
+				else
+					messageManager.removeMessageListener(name, handler);
 			};
 		}
 		else // happens for fennec prefs. not needed thus ignored or it would mess up above
@@ -529,8 +532,10 @@ else {
 					var sender = { tab: { id: id, url: messageEvent.target.lastLocation, target:messageEvent.target } };
 					var sendResponse = function(dataToSend) {
 					  var responseMessage = { callbackToken: messageEvent.json.callbackToken, data: dataToSend };
-					  var x = typeof(sendAsyncMessage)=='function' ? sendAsyncMessage : messageManager.sendAsyncMessage;
-					  x("response", responseMessage);
+						if (typeof(sendAsyncMessage) == 'function')
+							sendAsyncMessage('response', responseMessage);
+						else
+							messageManager.broadcastAsyncMessage('response', responseMessage);
 					}
 					handler(request, sender, sendResponse);
 			},
@@ -546,11 +551,16 @@ else {
 
 				  // Listen for a response for our specific request token.
 				  addOneTimeResponseListener(callbackToken, callback);
-				  var x = typeof(sendAsyncMessage)=='function' ? sendAsyncMessage : messageManager.sendAsyncMessage;
-				  x("request", {
-					data: data,
-					callbackToken: callbackToken
-				  });
+					if (typeof(sendAsyncMessage) == 'function')
+						sendAsyncMessage('request', {
+						data: data,
+						callbackToken: callbackToken
+					});
+					else
+						messageManager.broadcastAsyncMessage('request', {
+						data: data,
+						callbackToken: callbackToken
+					});
 				}
 
 				// Make a listener that, when it hears sendResponse for the given
@@ -588,8 +598,19 @@ else {
 					var sender = { tab: { id: id, url: messageEvent.target.lastLocation, target:messageEvent.target } };
 					var sendResponse = function(dataToSend) {
 					  var responseMessage = { callbackToken: messageEvent.json.callbackToken, data: dataToSend };
-					  var x = typeof(sendAsyncMessage)=='function' ? sendAsyncMessage : messageManager.sendAsyncMessage;
-					  x("response", responseMessage);
+						if (typeof(sendAsyncMessage) == 'function')
+							sendAsyncMessage('response', responseMessage);
+						else if (typeof(messageManager) !== 'undefined') {
+							try {
+								var childMM = Foxtrick.getFennecMM(messageEvent);
+								childMM.sendAsyncMessage('response', responseMessage);
+							}
+							catch (e) {
+								Foxtrick.log('No MessageSender');
+								messageManager.broadcastAsyncMessage('response',
+																	 responseMessage);
+							}
+						}
 					}
 					handler(request, sender, sendResponse);
 				  };
@@ -610,7 +631,7 @@ else {
 			  },
 		
 			  broadcastMessage : function(message) {
-				  messageManager.sendAsyncMessage("request", { data: message });
+				messageManager.broadcastAsyncMessage('request', { data: message });
 			  },
 			  
 			  // tabid of a content script

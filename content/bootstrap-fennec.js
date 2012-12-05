@@ -63,7 +63,10 @@ FoxtrickFennec.prototype = {
 		"background.js",
 		"scripts-fennec.js"
 	],
-	
+	getFennecMM: function(aMessage) {
+		let mm = aMessage.target.QueryInterface(Components.interfaces.nsIMessageSender);
+		return mm;
+	},
 	loadScript: function() {
 		// loading Foxtrick into window.Foxtrick
 		for (var i=0; i<this.scripts.length; ++i)
