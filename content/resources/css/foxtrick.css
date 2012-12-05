@@ -16,16 +16,16 @@ html[data-theme="simple"] #logo {
 	background-image: url('chrome://foxtrick/content/resources/img/logo_green_foxtrick_simple.png');
 }
 
-html[data-theme="standard"][firefox] #stageLogo {
+html[data-theme="standard"][firefox] #stageLogo, html[data-theme="standard"][android] #stageLogo {
 	background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick.png') !important;
 }
-html[data-theme="standard"][firefox] #logo {
+html[data-theme="standard"][firefox] #logo, html[data-theme="standard"][android] #logo {
 	background-image: url('chrome://foxtrick/content/resources/img/logo_green_foxtrick.png') !important;
 }
-html[data-theme="simple"][firefox] #stageLogo {
+html[data-theme="simple"][firefox] #stageLogo, html[data-theme="simple"][android] #stageLogo {
 	background-image: url('chrome://foxtrick/content/resources/img/logo_green_stage_foxtrick_simple.png') !important;
 }
-html[data-theme="simple"][firefox] #logo {
+html[data-theme="simple"][firefox] #logo, html[data-theme="simple"][android] #logo {
 	background-image: url('chrome://foxtrick/content/resources/img/logo_green_foxtrick_simple.png') !important;
 }
 
