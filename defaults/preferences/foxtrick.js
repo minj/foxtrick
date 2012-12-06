@@ -533,6 +533,7 @@ pref("extensions.foxtrick.prefs.module.SimplePresentation.HideAchievementsIcons.
 pref("extensions.foxtrick.prefs.module.SimplePresentation.Highlight_Staff_On_All_Pages.enabled", false);
 pref("extensions.foxtrick.prefs.module.SimplePresentation.League_Table.enabled", false);
 pref("extensions.foxtrick.prefs.module.SimplePresentation.liveHighlightRed.enabled", false);
+pref("extensions.foxtrick.prefs.module.SimplePresentation.NoLogo.enabled", false);
 pref("extensions.foxtrick.prefs.module.SimplePresentation.NoDefaultLogo.enabled", false);
 pref("extensions.foxtrick.prefs.module.SkillColoring.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkillColoring.no_colors.enabled", false);
