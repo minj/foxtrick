@@ -2,13 +2,13 @@
 nl: 
   faq: 
     style: 
-      question: 
+      question: Hoe pas ik de stijl van mijn FoxTrick aan?
       answer: 
     sound-format: 
       question: Welke bestandstypen zijn toegestaan voor een notificatie geluid?
       answer: 
     sound-location: 
-      question: 
+      question: Wat is de maximum bestandsgrootte voor waarschuwings-geluiden en waar kunnen deze geplaatst worden?
       answer: 
     authorize: 
       question: Waarom moet ik FoxTrick toestemming geven om mijn teamdata te benaderen?

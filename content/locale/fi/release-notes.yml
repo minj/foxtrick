@@ -4,15 +4,15 @@ fi:
     nightly: 
       note_0: 
     beta: 
-      note_0: 
+      note_0: 'Tämä on uuden versiomme beta-versio. Olisitko ystävällinen, ja auttaisit meitä kääntämään versiota todella helpossa palvelussamme <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.11.0: 
       note_0: 
-      note_1: 
-      note_2: 
+      note_1: 'UUTTA: <module>ForumModeratorPopup</module>: Moderaattoreille lisätty pudotusvalikko puun alkuun helpottamaan moderointia.'
+      note_2: 'UUTTA:<module>PlayerStatsTrainingWeek</module>: Lisätty mahdollisuus järjestää ottelut harjoitusviikon mukaisesti kalenteriviikon sijaan.'
       note_3: 
       note_4: 
-      note_5: 
-      note_6: 
+      note_5: '<module>SkillTable</module>: Pelaajien nimet ovat lyhennetty tilan säästämiseksi.'
+      note_6: '<module>SkillColoring</module>: Koko moduuli on täysin uudistettu, paljon vikoja on korjattu sekä lisätty ominaisuuksia. Asetukset ovat vaihtuneet, aseta ne uudestaan mieltymystesi mukaisiksi.'
       note_7: 
       note_8: 
       note_9: 

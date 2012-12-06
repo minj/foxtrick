@@ -3,7 +3,10 @@ bs:
   faq: 
     style: 
       question: Kako mogu stilizovati svoj FoxTrick?
-      answer: 
+      answer: |
+        <p>FoxTrick nudi više interfejsa koje možete koristiti kako biste FoxTrick podesili onako kako vama to odgovara. Ovi interfejsi su na raspolaganju kroz HTML ID-ove i klase, i možete koristiti CSS da definišete vaš preferirajući stil.</p>
+        
+        <p>Primjer korisničke stil-datoteke može se naći <linkCSSExample>ovdje</linkCSSExample> ili <linkCSSExampleGCode>ovdje</linkCSSExampleGCode>, ovu datoteku možete mjenjati kako biste postigli željeni izgled. Nakon što spasite promjene u datoteci, možete koristiti <module>SkinPlugin</module> modul za ubacivanje CSS datoteke kako bi vaš željeni stil bio primjenjen.</p>
     sound-format: 
       question: Koji formati datoteke su dozvoljeni kao zvukovi upozorenja?
       answer: |
@@ -18,7 +21,7 @@ bs:
       question: Koja je maksimalna veličina zvukova upozorenja i gdje se mogu smjestiti?
       answer: 
     authorize: 
-      question: Zašto trebam dozvoliti Foxtriku da pristupi podacima moga tima?
+      question: Zašto trebam dozvoliti FoxTrick-u da pristupi podacima moga tima?
       answer: 
     privacy: 
       question: Kako će Foxtrick zaštititi moju privatnost?

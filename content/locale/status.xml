@@ -94,9 +94,9 @@
     <name>Greek</name>
     <code>el</code>
     <phrases>1327</phrases>
-    <translated>1136</translated>
+    <translated>1187</translated>
     <approved>0</approved>
-    <translated_progress>85</translated_progress>
+    <translated_progress>89</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -121,9 +121,9 @@
     <name>Finnish</name>
     <code>fi</code>
     <phrases>1327</phrases>
-    <translated>1274</translated>
+    <translated>1289</translated>
     <approved>0</approved>
-    <translated_progress>96</translated_progress>
+    <translated_progress>97</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -166,7 +166,7 @@
     <name>Georgian</name>
     <code>ka</code>
     <phrases>1327</phrases>
-    <translated>983</translated>
+    <translated>986</translated>
     <approved>0</approved>
     <translated_progress>74</translated_progress>
     <approved_progress>0</approved_progress>
@@ -193,16 +193,16 @@
     <name>Macedonian</name>
     <code>mk</code>
     <phrases>1327</phrases>
-    <translated>1098</translated>
+    <translated>1211</translated>
     <approved>0</approved>
-    <translated_progress>82</translated_progress>
+    <translated_progress>91</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>Dutch</name>
     <code>nl</code>
     <phrases>1327</phrases>
-    <translated>1320</translated>
+    <translated>1322</translated>
     <approved>0</approved>
     <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
@@ -229,7 +229,7 @@
     <name>Portuguese</name>
     <code>pt-PT</code>
     <phrases>1327</phrases>
-    <translated>1316</translated>
+    <translated>1317</translated>
     <approved>0</approved>
     <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
@@ -463,9 +463,9 @@
     <name>Bosnian</name>
     <code>bs</code>
     <phrases>1327</phrases>
-    <translated>884</translated>
+    <translated>1049</translated>
     <approved>629</approved>
-    <translated_progress>66</translated_progress>
+    <translated_progress>79</translated_progress>
     <approved_progress>47</approved_progress>
   </language>
 </status>
