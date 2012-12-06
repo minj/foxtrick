@@ -28,7 +28,7 @@ endif
 # sudo apt-get install gcc libssl-dev libxml2-dev make openssl lftp
 # git clone git://github.com/mackyle/xar
 # cd xar/xar
-# ./autogen.sh --no-configure
+# ./autogen.sh --noconfigure
 # ./configure
 # make
 # sudo make install
