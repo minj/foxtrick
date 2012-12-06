@@ -14,7 +14,8 @@ Foxtrick.modules['SimplePresentation'] = {
 		'liveHighlightRed',
 		'Highlight_Staff_On_All_Pages',
 		'HideAchievementsIcons',
-		'NoLogo'
+		'NoLogo',
+		'NoDefaultLogo'
 	],
 	OPTIONS_CSS: [
 		Foxtrick.InternalPath + 'resources/css/fixes/League_Table.css',
@@ -22,6 +23,7 @@ Foxtrick.modules['SimplePresentation'] = {
 		Foxtrick.InternalPath + 'resources/css/fixes/liveHighlightRed.css',
 		Foxtrick.InternalPath + 'resources/css/fixes/staffmarker.css',
 		Foxtrick.InternalPath + 'resources/css/fixes/achievement_hideicons.css',
-		Foxtrick.InternalPath + 'resources/css/fixes/NoLogo.css'
+		Foxtrick.InternalPath + 'resources/css/fixes/NoLogo.css',
+		Foxtrick.InternalPath + 'resources/css/fixes/NoDefaultLogo.css'
 	]
 };
