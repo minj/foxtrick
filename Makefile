@@ -220,7 +220,6 @@ opera:
 	# content/
 	mkdir $(BUILD_DIR)/includes
 	cd content/; \
-	rm lib/ToolbarItem.js; \
 	cp -r $(subst /,/.,$(SCRIPT_FOLDERS)) $(CONTENT_FILES_OPERA) \
 		../$(BUILD_DIR)/includes
 	# remove ignore modules from files
@@ -228,6 +227,8 @@ opera:
 	cd content/; \
 	cp -r $(RESOURCE_FOLDERS) \
 		../$(BUILD_DIR)/content
+	# remove bad lib
+	rm $(BUILD_DIR)/content/lib/ToolbarItem.js
 	# remove ignore modules from files
 	perl module-update.pl $(MODULES) $(IGNORED_MODULES) $(BUILD_DIR)/
 	## change files to opera naming
