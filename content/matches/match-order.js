@@ -42,7 +42,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					var kiturl = shirt.getAttribute('kiturl');
 					if (!kiturl && !isYouth) {
 						var shirtstyle = shirt.getAttribute('style');
-						if(style){
+						if(shirtstyle){
 							var kiturl = shirtstyle
 								.match(/http:\/\/res.hattrick.org\/kits\/\d+\/\d+\/\d+\/\d+\//)[0];
 							shirt.setAttribute('kiturl', kiturl);
