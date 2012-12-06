@@ -25,6 +25,13 @@ IGNORED_MODULES=ignored-modules-release
 endif
 
 # cf safari: xar needs to have sign capabilities ie xar --help shows --sign as option.
+# sudo apt-get install gcc libssl-dev libxml2-dev make openssl lftp
+# git clone git://github.com/mackyle/xar
+# cd xar/xar
+# ./autogen.sh --no-configure
+# ./configure
+# make
+# sudo make install
 # see http://code.google.com/p/xar/issues/detail?id=76 for an howto
 ZIP = zip -q
 XAR = xar
