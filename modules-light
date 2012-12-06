@@ -2,6 +2,7 @@ access/aria-landmarks.js
 alert/live-alert.js
 alert/new-mail.js
 alert/ticker-alert.js
+forum/auto-post-specs.js
 forum/forum-strip-hattrick-links.js
 forum/forum-templates.js
 forum/forum-thread-auto-ignore.js
@@ -18,6 +19,7 @@ information-aggregation/median-transfer-price.js
 information-aggregation/my-monitor.js
 information-aggregation/nt-peek.js
 information-aggregation/player-birthday.js
+information-aggregation/player-stats-experience.js
 information-aggregation/season-stats.js
 information-aggregation/show-friendly-booked.js
 information-aggregation/team-stats.js
@@ -59,6 +61,7 @@ presentation/safe-for-work.js
 presentation/youth-skill-hide-unknown.js
 shortcuts-and-tweaks/confirm-actions.js
 shortcuts-and-tweaks/context-menu-copy.js
+shortcuts-and-tweaks/copy-bb-ad.js
 shortcuts-and-tweaks/copy-match-id.js
 shortcuts-and-tweaks/copy-player-ad.js
 shortcuts-and-tweaks/copy-youth.js
