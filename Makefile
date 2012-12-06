@@ -228,7 +228,7 @@ opera:
 	cp -r $(RESOURCE_FOLDERS) \
 		../$(BUILD_DIR)/content
 	# remove bad lib
-	rm $(BUILD_DIR)/content/lib/ToolbarItem.js
+	rm $(BUILD_DIR)/includes/ToolbarItem.js
 	# remove ignore modules from files
 	perl module-update.pl $(MODULES) $(IGNORED_MODULES) $(BUILD_DIR)/
 	## change files to opera naming
