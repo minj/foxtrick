@@ -68,102 +68,103 @@ Foxtrick.modules["Core"]={
 							label.textContent = 'FoxTrick '+Foxtrick.version() + " " +  + " " + Foxtrick.branch();;
 							div.appendChild(label);
 							var label = doc.createElement('p');
-							label.textContent = Foxtrickl10n.getString('releaseNotes.showFor');
+							label.textContent = 'New version released. See the changelog on the preferences page';
+							//label.textContent = Foxtrickl10n.getString('releaseNotes.showFor');
 							div.appendChild(label);
-							var select = doc.createElement('select');
-							select.id = 'pref-version-release-notes';
-							div.appendChild(select);
-							var div = doc.createElement('div');
-							div.id = 'pref-notepad';
-							changes.appendChild(div);
-							var ul = doc.createElement('ul');
-							ul.id = 'pref-notepad-list';
-							div.appendChild(ul);
+							//var select = doc.createElement('select');
+							//select.id = 'pref-version-release-notes';
+							//div.appendChild(select);
+							//var div = doc.createElement('div');
+							//div.id = 'pref-notepad';
+							//changes.appendChild(div);
+							//var ul = doc.createElement('ul');
+							//ul.id = 'pref-notepad-list';
+							//div.appendChild(ul);
 
 							var note = Foxtrick.util.note.create(doc,changes, false,true)
 							doc.getElementById('mainBody').insertBefore(note, doc.getElementById('mainBody').firstChild);
 
-							function importContent(from, to)
-							{
-								for (var i = 0; i < from.childNodes.length; ++i) {
-									var node = from.childNodes[i];
-									if (node.nodeType == Foxtrick.NodeTypes.ELEMENT_NODE
-										&& node.nodeName.toLowerCase() == "module") {
-										var link = document.createElement("a");
-										link.textContent = node.textContent;
-										link.href = Foxtrick.InternalPath + "preferences.html#module=" + link.textContent;
-										to.appendChild(link);
-									}
-									else {
-										var importedNode = document.importNode(node, true);
-										to.appendChild(importedNode);
-									}
-								}
-							}
-
-							var notes = {};
-
-							var parseNotes = function(xml, dest) {
-								if (!xml) {
-									dest = {};
-									return;
-								}
-								var noteElements = xml.getElementsByTagName("note");
-								for (var i = 0; i < noteElements.length; ++i) {
-									var version = noteElements[i].getAttribute("version");
-									dest[version] = noteElements[i];
-								}
-							}
-							parseNotes(releaseNotes, notes);
-
-							var select = doc.getElementById("pref-version-release-notes");
-							for (var i in notes) {
-								// unique version name
-								var version = notes[i].getAttribute("version");
-								if (version.search(/^\d/) == -1)
-									continue;
-								// don't add subversions
-								if (version.search(/\d\.\d\.\d\.\d/) != -1)
-									continue;
-								// localized version name
-								// search by:
-								// 1. localized-version in localized release notes
-								// 2. localized-version in master release notes
-								// 3. version as fall-back
-								var localizedVersion = (notes[version] && notes[version].getAttribute("localized-version"))
-									|| version;
-								var item = document.createElement("option");
-								item.textContent = localizedVersion;
-								item.value = version;
-								select.appendChild(item);
-							}
-
-							var updateNotepad = function() {
-								var version = select.options[select.selectedIndex].value;
-								var list = document.getElementById("pref-notepad-list");
-								list.textContent = ""; // clear list
-								var note = notes[version];
-								if (!note)
-									return;
-								var items = note.getElementsByTagName("item");
-								for (var i = 0; i < items.length; ++i) {
-									var item = document.createElement("li");
-									list.appendChild(item);
-									importContent(items[i], item);
-									item.appendChild(document.createTextNode('\u00a0'));
-								}
-							}
-
-							var version = Foxtrick.version();
-							for (var i = 0; i < select.options.length; ++i) {
-								if (select.options[i].value == version) {
-									select.selectedIndex = i;
-									break;
-								}
-							}
-
-							updateNotepad();
-							Foxtrick.listen(select, 'change', updateNotepad, false);
+							//function importContent(from, to)
+							//{
+							//	for (var i = 0; i < from.childNodes.length; ++i) {
+							//		var node = from.childNodes[i];
+							//		if (node.nodeType == Foxtrick.NodeTypes.ELEMENT_NODE
+							//			&& node.nodeName.toLowerCase() == "module") {
+							//			var link = document.createElement("a");
+							//			link.textContent = node.textContent;
+							//			link.href = Foxtrick.InternalPath + "preferences.html#module=" + link.textContent;
+							//			to.appendChild(link);
+							//		}
+							//		else {
+							//			var importedNode = document.importNode(node, true);
+							//			to.appendChild(importedNode);
+							//		}
+							//	}
+							//}
+							//
+							//var notes = {};
+							//
+							//var parseNotes = function(xml, dest) {
+							//	if (!xml) {
+							//		dest = {};
+							//		return;
+							//	}
+							//	var noteElements = xml.getElementsByTagName("note");
+							//	for (var i = 0; i < noteElements.length; ++i) {
+							//		var version = noteElements[i].getAttribute("version");
+							//		dest[version] = noteElements[i];
+							//	}
+							//}
+							//parseNotes(releaseNotes, notes);
+							//
+							//var select = doc.getElementById("pref-version-release-notes");
+							//for (var i in notes) {
+							//	// unique version name
+							//	var version = notes[i].getAttribute("version");
+							//	if (version.search(/^\d/) == -1)
+							//		continue;
+							//	// don't add subversions
+							//	if (version.search(/\d\.\d\.\d\.\d/) != -1)
+							//		continue;
+							//	// localized version name
+							//	// search by:
+							//	// 1. localized-version in localized release notes
+							//	// 2. localized-version in master release notes
+							//	// 3. version as fall-back
+							//	var localizedVersion = (notes[version] && notes[version].getAttribute("localized-version"))
+							//		|| version;
+							//	var item = document.createElement("option");
+							//	item.textContent = localizedVersion;
+							//	item.value = version;
+							//	select.appendChild(item);
+							//}
+							//
+							//var updateNotepad = function() {
+							//	var version = select.options[select.selectedIndex].value;
+							//	var list = document.getElementById("pref-notepad-list");
+							//	list.textContent = ""; // clear list
+							//	var note = notes[version];
+							//	if (!note)
+							//		return;
+							//	var items = note.getElementsByTagName("item");
+							//	for (var i = 0; i < items.length; ++i) {
+							//		var item = document.createElement("li");
+							//		list.appendChild(item);
+							//		importContent(items[i], item);
+							//		item.appendChild(document.createTextNode('\u00a0'));
+							//	}
+							//}
+							//
+							//var version = Foxtrick.version();
+							//for (var i = 0; i < select.options.length; ++i) {
+							//	if (select.options[i].value == version) {
+							//		select.selectedIndex = i;
+							//		break;
+							//	}
+							//}
+							//
+							//updateNotepad();
+							//Foxtrick.listen(select, 'change', updateNotepad, false);
 						}
 						Foxtrick.util.load.xml(Foxtrick.InternalPath + "release-notes.xml", show);
 					}
