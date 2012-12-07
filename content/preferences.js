@@ -1246,8 +1246,6 @@ function addNote(note, parent, links)
 			case 'strong':
 				return createNode(tagName, tagContent);
 			// custom simple tags
-			case 'header':
-				return createNode('h5', tagContent); //TODO change header if needed
 			case 'module':
 				return createNode('a', tagContent, {
 					href: Foxtrick.InternalPath + 'preferences.html#module=' + tagContent
@@ -1257,6 +1255,8 @@ function addNote(note, parent, links)
 			case 'li':
 			case 'p':
 				return createNestedNode(tagName, tagContent);
+			case 'header':
+				return createNestedNode('h5', tagContent); //TODO change header if needed
 			default:
 			// defaults to links with predefined URLs, e. g. <linkHome>
 				return createLink(tagName, tagContent);
