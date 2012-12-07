@@ -14,11 +14,14 @@ Foxtrick.modules['HTDateFormat'] = {
 	OPTION_EDITS_DISABLED_LIST: [true, false],
 
 	run: function(doc) {
-		var pages = ['transfersTeam', 'transfersPlayer', 'transfer',
+		var pages = [
+			'transfersTeam', 'transfersPlayer', 'transfer',
 			'transferCompare', 'match', 'matches', 'matchesArchive',
 			'teamPageGeneral', 'achievements', 'playerEvents',
 			'teamEvents', 'history', 'arena', 'country', 'hallOfFame',
-			'statsMatchesHeadToHead', 'seriesHistory', 'playerStats'];
+			'statsMatchesHeadToHead', 'seriesHistory', 'playerStats',
+			'tournamentsGeneral',
+		];
 		// don't show on where not needed and cluttering
 		if (!Foxtrick.any(function(page) {
 				return Foxtrick.isPage(doc, page);
