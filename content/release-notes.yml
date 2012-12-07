@@ -8,7 +8,7 @@ en:
       note_0: 'This is the beta version of the next release. Please help translating this version at our super easy crowd-translation page <linkCrowdin>crowdin.net</linkCrowdin>. '
 
     0.12.0:
-      note_0: ''
+      note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
       note_1: 'NEW: <module>MatchLineupTweaks</module>: Adds counters for stars and stamina to the new lineup page. Shows specialties for all players and adds the name of the team on the field to limit confusion.'
       note_2: 'NEW: <module>MainMenuDropDown</module>: Adds drop-down menus to the main navigation bar containing all links usually available in the sidebar of the target page.'
       note_3: '<module>DashboardCalendar</module>: Added a button to export Hattrick week in iCalendar file format (should be compatible with Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal etc)'
@@ -55,7 +55,7 @@ en:
       note_35: 'Firefox 12 is now the minimum version to run Foxtrick.'
       note_36: 'Google Chrome 22 is now the minimum version to run Foxtrick.'
       note_37: 'Opera: fixed a bug that caused FT to interfere with other pages (like Hattrick Youthclub). Images should now load a lot faster. Some modules that were specifically disabled on Opera are now enabled.'
-      note_38: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>.</header>'
+      note_38: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
       note_39: '<header>The preferences page was reworked.</header>'
       note_40: '<strong>And much much more</strong>'
     0.10.0: 
