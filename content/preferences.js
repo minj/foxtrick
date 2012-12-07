@@ -956,10 +956,9 @@ function initChangesTab()
 				var notesLocalized = versionsLocalized[version + sub + subsub];
 				if (!notes)
 					continue;
-				list.appendChild(document.createElement('li'))
-							.appendChild(document.createElement('h4'))
-							.textContent = Foxtrickl10n.getString('releaseNotes.version') + ' '
-							+ version + sub + subsub;
+				$('#pref-notepad-title')[0].textContent =
+					Foxtrickl10n.getString('releaseNotes.version') + ' '
+					+ version + sub + subsub;
 
 				for (var i = 0, note; i < notes.length; ++i) {
 					note = notes[i];
