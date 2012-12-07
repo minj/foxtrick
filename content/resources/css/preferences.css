@@ -499,3 +499,7 @@ div.nav{
 #breadcrumbs span {
 	color: #fff;
 }
+#pref-notepad-list {
+	list-style: disc;
+	padding: 0 20px;
+}

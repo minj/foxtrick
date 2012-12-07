@@ -957,8 +957,6 @@ function initChangesTab()
 				if (!notes)
 					continue;
 				list.appendChild(document.createElement('li'))
-							.textContent = '\u00a0';
-				list.appendChild(document.createElement('li'))
 							.appendChild(document.createElement('h4'))
 							.textContent = Foxtrickl10n.getString('releaseNotes.version') + ' '
 							+ version + sub + subsub;
@@ -971,7 +969,6 @@ function initChangesTab()
 					if (note) {
 						var item = document.createElement('li');
 						addNote(note, item, releaseNotesLinks);
-						item.appendChild(document.createTextNode('\u00a0'));
 						list.appendChild(item);
 					}
 				}
@@ -1219,7 +1216,7 @@ function addNote(note, parent, links)
 			var node = document.createElement(nodeName);
 			if (textContent !== null)
 				node.textContent = textContent;
-			if (options !== undefined && typeof(options) === 'Object')
+			if (options !== undefined && typeof(options) === 'object')
 				for (var opt in options)
 					if (options.hasOwnProperty(opt))
 						node[opt] = options[opt];
@@ -1232,7 +1229,7 @@ function addNote(note, parent, links)
 			return el;
 		};
 		var createLink = function(linkName, linkText) {
-			if (typeof(links) === 'Object' && links.hasOwnProperty(linkName)) {
+			if (typeof(links) === 'object' && links.hasOwnProperty(linkName)) {
 				if (linkName.search('FTlink') === 0)
 					// links starting with 'FTlink' are assumed to be internal
 					// and open in the same tab
