@@ -7,7 +7,7 @@
 
 Foxtrick.modules['SeniorTeamShortCuts'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
-	PAGES: ['teamPageGeneral', 'series', 'youthSeries'],
+	PAGES: ['teamPageGeneral', 'series', 'youthSeries', 'tournaments_all'],
 	RADIO_OPTIONS: ['OnlyOtherPages', 'AllPages'],
 
 	run: function(doc) {
