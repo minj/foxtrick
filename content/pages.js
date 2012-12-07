@@ -132,6 +132,8 @@ Foxtrick.ht_pages = {
 	'search'					: '/Search/|/Search/Default.aspx',
 	'playerStats'				: '/Club/Players/PlayerStats.aspx',
 	'tournaments'				: '/Community/Tournaments/Tournament.aspx',
+	'tournamentsGeneral'		: '/Community/Tournaments/',
+	'tournamentsOverview'		: '/Community/Tournaments/Default.aspx',
 	'tournamentsGroups'			: '/Community/Tournaments/Groups.aspx',
 	'tournamentsFixtures'		: '/Community/Tournaments/Fixtures.aspx',
 	'tournamentsPlayerStatuses'	: '/Community/Tournaments/PlayerStatuses.aspx',
