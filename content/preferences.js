@@ -846,14 +846,20 @@ function initChangesTab()
 	changesLink.title = Foxtrickl10n.getString('module.link');
 	$('div[x-on*="changes"] > h3')[0].appendChild(changesLink);
 
+	var lang = FoxtrickPrefs.getString('htLanguage');
+
 	var releaseNotesLinks = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath +
 	                                                   'release-notes-links.yml');
-
-	var lang = FoxtrickPrefs.getString('htLanguage');
 
 	var releaseNotesLocalized = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'locale/'
 	                                                       + lang + '/release-notes.yml');
 	var releaseNotes = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'release-notes.yml');
+
+	if (releaseNotesLinks === null || releaseNotesLocalized === null ||
+		releaseNotes === null) {
+		Foxtrick.log('Release notes failed');
+		return;
+	}
 
 	var status = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + 'locale/status.xml');
 
@@ -957,14 +963,17 @@ function initChangesTab()
 							.textContent = Foxtrickl10n.getString('releaseNotes.version') + ' '
 							+ version + sub + subsub;
 
-				for (var i = 0, note; note = notes[i]; ++i) {
-					if (notesLocalized && notesLocalized[i] != undefined &&
-					    notesLocalized[i] != null)
+				for (var i = 0, note; i < notes.length; ++i) {
+					note = notes[i];
+					if (notesLocalized && notesLocalized[i] !== undefined &&
+					    notesLocalized[i] !== null)
 						note = notesLocalized[i];
-					var item = document.createElement('li');
-					addNote(note, item, releaseNotesLinks);
-					item.appendChild(document.createTextNode('\u00a0'));
-					list.appendChild(item);
+					if (note) {
+						var item = document.createElement('li');
+						addNote(note, item, releaseNotesLinks);
+						item.appendChild(document.createTextNode('\u00a0'));
+						list.appendChild(item);
+					}
 				}
 			}
 		}
