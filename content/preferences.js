@@ -1248,7 +1248,7 @@ function addNote(note, parent, links)
 			// custom simple tags
 			case 'module':
 				return createNode('a', tagContent, {
-					href: Foxtrick.InternalPath + 'preferences.html#module=' + tagContent
+					href: '#module=' + tagContent
 				});
 			// white-listed tags allowed to have other tags in them
 			case 'ul':
