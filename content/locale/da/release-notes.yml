@@ -20,7 +20,7 @@ da:
       note_11: '<module>YouthTwins</module>: Manuelt udført ændringer på HY vil nu øjeblikkeligt afspejles på ungdoms-spilleres side'
       note_12: '<header>Fejlrettelser</header>'
     0.10.0: 
-      note_0: 'NEW: <module>TransferHistoryFilters</module>: Lader dig filter handler af spillere. Kun tilgængelig for hold historik, ikke spillere (Aktiveret som standard)'
+      note_0: 'NEW: <module>TransferHistoryFilters</module>: Lader dig filter handeler af spillere. Kun tilgængelig for hold historik, ikke spillere (Aktiveret som standard)'
       note_1: 'NEW: <module>FriendlyPool</module>: Farvelægger besøgte lande i venskabs-puljen (kun for supportere, aktiveret som standard)'
       note_2: 'NEW: <module>HTEVPrediction</module>: Viser kamp odds for ligakampe leveret af <linkHTEV>HTEV</linkHTEV> (Aktiveret som standard)'
       note_3: '<module>PlayerStatsExperience</module>:En smart ny version med meget mere detaljer og farvede tilbagemeldinger, hvis dataene er pålidelige. (Tak til SeanConnery (7751762) for at teste for blinde brugere af rød-grønne farver)'

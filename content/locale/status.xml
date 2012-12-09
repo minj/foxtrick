@@ -77,9 +77,9 @@
     <code>da</code>
     <phrases>1327</phrases>
     <translated>1327</translated>
-    <approved>71</approved>
+    <approved>1180</approved>
     <translated_progress>100</translated_progress>
-    <approved_progress>5</approved_progress>
+    <approved_progress>88</approved_progress>
   </language>
   <language>
     <name>German</name>
@@ -211,9 +211,9 @@
     <name>Norwegian</name>
     <code>no</code>
     <phrases>1327</phrases>
-    <translated>905</translated>
+    <translated>916</translated>
     <approved>0</approved>
-    <translated_progress>68</translated_progress>
+    <translated_progress>69</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -328,9 +328,9 @@
     <name>Vietnamese</name>
     <code>vi</code>
     <phrases>1327</phrases>
-    <translated>1159</translated>
+    <translated>1192</translated>
     <approved>0</approved>
-    <translated_progress>87</translated_progress>
+    <translated_progress>89</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
