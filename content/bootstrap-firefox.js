@@ -345,6 +345,12 @@ function unloadFromWindow(window) {
 
 	// stop and delete
 	window.Foxtrick.cleanup();
+	var button = window.document.getElementById('foxtrick-toolbar-button');
+	if (button) {
+		//try again
+		button.parentNode.removeChild(button);
+		window.Foxtrick.cleanup();
+	}
 	window.FoxtrickPrefs = undefined;
 	window.Foxtrickl10n = undefined;
 	delete window.FoxtrickPrefs;
