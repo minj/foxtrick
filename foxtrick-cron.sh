@@ -7,8 +7,8 @@
 # cd trunk
 # git svn init https://foxtrick.googlecode.com/svn/trunk
 # git svn fetch -rHEAD
-## follow same steps for other branches
-## copy critical files to $build-root and $branch/maintainer
+## follow same steps for other branches and build
+## copy critical files to $branch/maintainer
 
 ## run:
 # ./foxtrick-cron.sh >verbatim 2>>error
