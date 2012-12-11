@@ -339,7 +339,8 @@ function unloadFromWindow(window) {
 		window.document.removeChild(style);
 
 	// only in content windows (not menupopups etc)
-	if (!window.document.getElementById('appcontent')) return;
+	if (!window.document.getElementById('appcontent'))
+		return;
 
 	// stop and delete
 	window.Foxtrick.cleanup();
