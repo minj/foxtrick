@@ -66,7 +66,6 @@ var windowListener = {
 };
 
 function startup(aData, aReason) {
-Cu.reportError(new Error('Starting up: \nData: ' + aData + '\nReason: ' + aReason));
 	var pathToDefault = aData.resourceURI.spec + 'defaults/preferences/foxtrick.js';
 	const branch = 'extensions.foxtrick.prefs.';
 	setDefaultPrefs(pathToDefault, branch);
@@ -105,7 +104,6 @@ Cu.reportError(new Error('Starting up: \nData: ' + aData + '\nReason: ' + aReaso
 }
 
 function shutdown(aData, aReason) {
-Cu.reportError(new Error('Shutting down: \nData: ' + aData + '\nReason: ' + aReason));
 	// When the application is shutting down we normally don't have to clean
 	// up any UI changes made
 	if (aReason == APP_SHUTDOWN)
@@ -138,9 +136,7 @@ Cu.reportError(new Error('Shutting down: \nData: ' + aData + '\nReason: ' + aRea
 }
 
 function install(aData, aReason) {
-Cu.reportError(new Error('Installing: \nData: ' + aData + '\nReason: ' + aReason));
 }
 
 function uninstall(aData, aReason) {
-Cu.reportError(new Error('Uninstalling: \nData: ' + aData + '\nReason: ' + aReason));
 }
