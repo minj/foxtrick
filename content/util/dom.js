@@ -379,7 +379,7 @@ Foxtrick.addImage = function(doc, elem, features, insertBefore) {
 	}
 	else {
 		var img = doc.createElement('img');
-		for (i in features)
+		for (var i in features)
 			img.setAttribute(i, features[i]);
 		if (insertBefore)
 			elem.insertBefore(img, insertBefore);
@@ -393,13 +393,13 @@ Foxtrick.getImageFeatures = function(features, callback) {
 		sandboxed.extension.sendRequest({ req: 'getDataUrl', url: features.src },
 		  function(data) {
 			var img = {};
-			for (i in features) img[i] = features[i];
+			for (var i in features) img[i] = features[i];
 			img.src = data.url;
 			callback(img);
 		});
 	else {
 		var img = {};
-		for (i in features) img[i] = features[i];
+		for (var i in features) img[i] = features[i];
 		callback(img);
 	}
 };
