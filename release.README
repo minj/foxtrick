@@ -1,0 +1,14 @@
+(if applicable) update cron-config.sh
+update version number in foxtrick.release.sh
+run foxtrick-release.sh
+
+*uploads to foxtrick.org/release, foxtrick.symbiosis.org.gr/release/ and googlecode/downloads
+*AMO and google hosted versions are uploaded to foxtrick.symbiosis.org.gr/hosting/
+
+chrome store:
+https://chrome.google.com/webstore/developer/edit/bpfbbngccefbbndginomofgpagkjckik
+-> update file
+
+amo:
+https://addons.mozilla.org/de/developers/addon/foxtrick/edit
+->manage version and status

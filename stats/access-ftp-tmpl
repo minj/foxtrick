@@ -1,0 +1,5 @@
+open {HOST} -e 'set ftp:ssl-allow false; set ftp:ssl-protect-data false; set ftp:ssl-protect-list false;'
+user {USER} {PSWD}
+cd {DIR}
+get -c {FILE}
+exit

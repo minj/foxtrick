@@ -1,0 +1,20 @@
+install new apple dev cert:
+
+*get it form apple dev center
+*install as instucted
+
+----- 
+*cert1,2 stay
+*der from apple
+*pem made as above
+---------
+
+*certmgr.msc
+
+*export private key
+http://nl.globalsign.com/en/support/ssl+certificates/microsoft/all+windows+servers/export+private+key+or+certificate/
+
+*copy and paste to fit old format
+
+
+
