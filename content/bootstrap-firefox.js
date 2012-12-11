@@ -296,9 +296,10 @@ FoxtrickFirefox.prototype = {
 
 	cleanup: function() {
 		// remove ui
-		this.generalButton.destroy();
+		this.shutdown();
 		let popup = this.owner.document.getElementById('contentAreaContextMenu');
-		popup.removeChild(this.contextLinkItem);
+		if (popup && this.contextLinkItem)
+			popup.removeChild(this.contextLinkItem);
 		// remove listeners and css
 		this.loader.firefox.browserUnLoad();
 	},
