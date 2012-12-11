@@ -66,10 +66,6 @@ var windowListener = {
 };
 
 function startup(aData, aReason) {
-	var pathToDefault = aData.resourceURI.spec + 'defaults/preferences/foxtrick.js';
-	const branch = 'extensions.foxtrick.prefs.';
-	setDefaultPrefs(pathToDefault, branch);
-
 	// won't run on 4-7. tell them to update. pre 4 it's not bootstrapped anyways
 	if (Services.vc.compare(Services.appinfo.platformVersion, '8.0') < 0) {
 		var prompts = Components.classes['@mozilla.org/embedcomp/prompt-service;1']
@@ -81,6 +77,10 @@ function startup(aData, aReason) {
 		// add chrome.manifest for 8+9
 	if (Services.vc.compare(Services.appinfo.platformVersion, '10.0') < 0)
 		Components.manager.addBootstrappedManifestLocation(aData.installPath);
+
+	var pathToDefault = aData.resourceURI.spec + 'defaults/preferences/foxtrick.js';
+	const branch = 'extensions.foxtrick.prefs.';
+	setDefaultPrefs(pathToDefault, branch);
 
 	_gLoader = {};
 	// load specific startup stripts
