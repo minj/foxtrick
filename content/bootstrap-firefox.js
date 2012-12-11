@@ -349,7 +349,10 @@ function unloadFromWindow(window) {
 	if (button) {
 		//try again
 		button.parentNode.removeChild(button);
-		window.Foxtrick.cleanup();
+		try {
+			window.Foxtrick.cleanup();
+		}
+		catch (e) {}
 	}
 	window.FoxtrickPrefs = undefined;
 	window.Foxtrickl10n = undefined;
