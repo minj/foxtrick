@@ -9,7 +9,7 @@ USER=''
 PASSWORD=''
 HOST=''
 echo $DIR
-. "$DIR/../trunk/maintainer/upload.conf.sh"
+. "$DIR/../../trunk/maintainer/upload.conf.sh"
 
 # get the json logs if they inexist
 for log in stats-archive-update stats-archive-foxtrick
