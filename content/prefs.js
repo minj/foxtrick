@@ -308,6 +308,8 @@ var FoxtrickPrefs = {
 	}	
 };
 
+// wrap browser-specific configuration to prevenr global scope pollution
+(function() {
 
 // ----------------------  Gecko specific get/set preferences --------------------------
 if (Foxtrick.arch === "Gecko") {
@@ -411,9 +413,10 @@ if (Foxtrick.arch === "Gecko") {
 		},
 	}
 
-var i;
-for (i in FoxtrickPrefsGecko)
-	FoxtrickPrefs[i] = FoxtrickPrefsGecko[i];
+	var i;
+	for (i in FoxtrickPrefsGecko)
+		FoxtrickPrefs[i] = FoxtrickPrefsGecko[i];
+
 }
 
 
@@ -620,3 +623,5 @@ if (Foxtrick.arch === "Sandboxed") {
 	for (i in FoxtrickPrefsChrome)
 		FoxtrickPrefs[i] = FoxtrickPrefsChrome[i];
 }
+
+})();

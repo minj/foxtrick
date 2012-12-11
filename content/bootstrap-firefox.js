@@ -322,5 +322,9 @@ function unloadFromWindow(window) {
 
 	// stop and delete
 	window.Foxtrick.cleanup();
+	window.FoxtrickPrefs = undefined;
+	window.Foxtrickl10n = undefined;
+	delete window.FoxtrickPrefs;
+	delete window.Foxtrickl10n;
 	delete window.Foxtrick;
 }

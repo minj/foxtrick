@@ -123,6 +123,11 @@ function shutdown(aData, aReason) {
 		let domWindow = windows.getNext().QueryInterface(Ci.nsIDOMWindow);
 		_gLoader.unloadFromWindow(domWindow);
 	}
+
+	// Flush string bundle cache
+	Cc['@mozilla.org/intl/stringbundle;1']
+		.getService(Components.interfaces.nsIStringBundleService).flushBundles();
+
 	_gLoader = undefined;
 }
 
