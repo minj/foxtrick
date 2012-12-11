@@ -66,6 +66,7 @@ var windowListener = {
 };
 
 function startup(aData, aReason) {
+Cu.reportError(new Error('Starting up: \nData: ' + aData + '\nReason: ' + aReason));
 	var pathToDefault = aData.resourceURI.spec + 'defaults/preferences/foxtrick.js';
 	const branch = 'extensions.foxtrick.prefs.';
 	setDefaultPrefs(pathToDefault, branch);
@@ -104,6 +105,7 @@ function startup(aData, aReason) {
 }
 
 function shutdown(aData, aReason) {
+Cu.reportError(new Error('Shutting down: \nData: ' + aData + '\nReason: ' + aReason));
 	// When the application is shutting down we normally don't have to clean
 	// up any UI changes made
 	if (aReason == APP_SHUTDOWN)
@@ -127,11 +129,18 @@ function shutdown(aData, aReason) {
 		let domWindow = windows.getNext().QueryInterface(Ci.nsIDOMWindow);
 		_gLoader.unloadFromWindow(domWindow);
 	}
+
+	// Flush string bundle cache
+	Cc['@mozilla.org/intl/stringbundle;1']
+		.getService(Components.interfaces.nsIStringBundleService).flushBundles();
+
 	_gLoader = undefined;
 }
 
 function install(aData, aReason) {
+Cu.reportError(new Error('Installing: \nData: ' + aData + '\nReason: ' + aReason));
 }
 
 function uninstall(aData, aReason) {
+Cu.reportError(new Error('Uninstalling: \nData: ' + aData + '\nReason: ' + aReason));
 }
