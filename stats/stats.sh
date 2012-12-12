@@ -26,7 +26,6 @@ do
 		rm access-ftp-down
 	fi
 done
-exit
 
 # get yesterday info and add it to stats archive
 ACCESS_LOG=foxtrick.org-access.log
