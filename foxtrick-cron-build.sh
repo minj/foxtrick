@@ -13,6 +13,7 @@ function log {
 }
 
 . ~/.bashrc
+cd "$DIR"
 
 git stash
 git svn rebase || log "Cannot git-svn rebase"

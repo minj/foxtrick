@@ -16,6 +16,7 @@ LANG=en_US.utf-8
 LC_ALL=en_US.utf-8
 
 . ~/.bashrc
+cd "$DIR"
 . cron-config.sh
 
 cd $BETA || log "Cannot cd to $BETA"

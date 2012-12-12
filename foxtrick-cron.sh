@@ -36,6 +36,7 @@ LANG=en_US.utf-8
 LC_ALL=en_US.utf-8
 
 . ~/.bashrc
+cd "$DIR"
 . cron-config.sh
 
 cd $NIGHTLY || log "Cannot cd to $NIGHTLY"
