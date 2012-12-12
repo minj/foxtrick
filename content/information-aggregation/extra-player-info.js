@@ -7,7 +7,7 @@
 Foxtrick.modules['ExtraPlayerInfo'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['players'],
-	OPTIONS: ['CoachInfo', 'Flag'],
+	OPTIONS: ['CoachInfo', 'Flag', 'Language'],
 
 	run: function(doc) {
 		// used for coloring NT players when AddFlags is enabled

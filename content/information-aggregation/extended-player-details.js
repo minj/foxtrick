@@ -9,6 +9,7 @@ Foxtrick.modules['ExtendedPlayerDetails'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['playerDetails'],
 	RADIO_OPTIONS: ['SWD', 'SW', 'SD', 'WD', 'D'],
+	OPTIONS: ['Language'],
 
 	run: function(doc) {
 		this._Player_Joined(doc);
