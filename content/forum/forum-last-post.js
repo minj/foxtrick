@@ -25,7 +25,7 @@ Foxtrick.modules['ForumLastPost'] = {
 			if (perpage == null) perpage = 20;
 			var lastpage = (FoxtrickPrefs.isModuleOptionEnabled('ForumLastPost', 'lastpage'));
 			var divs = doc.getElementsByClassName('threadInfo');
-			for (i = 0; i < divs.length; i++) {
+			for (var i = 0; i < divs.length; i++) {
 				var id = divs[i].textContent;
 				if (id.search(/\//) > -1)
 					continue;
@@ -40,7 +40,7 @@ Foxtrick.modules['ForumLastPost'] = {
 			var pager = doc.getElementById('ctl00_ctl00_CPContent_CPMain_updLatestThreads');
 			if (pager == null) return;
 			var divs = doc.getElementsByClassName('fplThreadInfo');
-			for (i = 0; i < divs.length; i++) {
+			for (var i = 0; i < divs.length; i++) {
 				var id = Foxtrick.trim(divs[i].textContent);
 				if (id.search(/\//) > -1)
 					continue;
