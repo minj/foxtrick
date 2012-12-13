@@ -1,3 +1,3 @@
-RELEASE=../0.11.0
-BETA=../0.11.0
-NIGHTLY=../trunk
+RELEASE=0.11.0
+BETA=0.11.0
+NIGHTLY=trunk

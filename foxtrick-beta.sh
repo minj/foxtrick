@@ -13,12 +13,13 @@ function log {
 	exit 1
 }
 
+. ~/.bashrc
 LANG=en_US.utf-8
 LC_ALL=en_US.utf-8
 
-. ~/.bashrc
 cd "$DIR"
 . cron-config.sh
+cd ..
 
 cd $BETA || log "Cannot cd to $BETA"
 git stash
