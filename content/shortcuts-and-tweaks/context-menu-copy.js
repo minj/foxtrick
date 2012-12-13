@@ -177,11 +177,11 @@ if (Foxtrick.platform != 'Opera' && Foxtrick.platform != 'Mobile' && Foxtrick.pl
 					}, false);
 				}
 				else if (Foxtrick.platform == "Chrome") {
-					doc.addEventListener('contextmenu', function(ev) {
-						//if (ev.button == 2) { // right mouse down
+					doc.addEventListener('mousedown', function(ev) {
+						if (ev.button == 2) { // right mouse down
 							collectData(ev.target);
 							chrome.extension.sendRequest({ req : "updateContextMenu", entries: getEntries() });
-						//}
+						}
 					}, false);
 				}
 			}
