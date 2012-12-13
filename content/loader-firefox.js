@@ -50,9 +50,6 @@ Foxtrick.loader.firefox.browserLoad = function() {
 			var tabbrowser = browserWin.getBrowser();
 			tabbrowser.tabContainer.addEventListener('select', Foxtrick.loader.firefox.tabFocus,
 			                                         true);
-
-			// refresh ht pages
-			Foxtrick.reloadAll();
 		}
 	} catch (e) {
 		Foxtrick.log(e);

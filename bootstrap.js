@@ -58,7 +58,7 @@ var windowListener = {
 			.getInterface(Ci.nsIDOMWindowInternal || Ci.nsIDOMWindow);
 		domWindow.addEventListener('load', function() {
 				domWindow.removeEventListener('load', arguments.callee, false);
-				_gLoader.loadIntoWindow(domWindow);
+				_gLoader.loadIntoWindow(domWindow, false);
 			}, false);
 	},
 	onCloseWindow: function(aWindow) { },
@@ -96,7 +96,7 @@ function startup(aData, aReason) {
 	let enumerator = wm.getEnumerator('navigator:browser');
 	while (enumerator.hasMoreElements()) {
 		let win = enumerator.getNext().QueryInterface(Ci.nsIDOMWindow);
-		_gLoader.loadIntoWindow(win);
+		_gLoader.loadIntoWindow(win, true); //reload
 	}
 
 	// Load into any new windows

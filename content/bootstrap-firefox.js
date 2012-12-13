@@ -307,7 +307,7 @@ FoxtrickFirefox.prototype = {
 
 
 // called from main bootstrap.js for each browser window
-function loadIntoWindow(window) {
+function loadIntoWindow(window, reloadTabs) {
 	if (!window || !window.document) return;
 
 	// styles also needed in eg customize-toolbox
@@ -324,6 +324,8 @@ function loadIntoWindow(window) {
 	try {
 		window.Foxtrick = new FoxtrickFirefox(window);
 		window.Foxtrick.init();
+		if (reloadTabs)
+			window.Foxtrick.reloadAll();
 	} catch (e) {
 		dump('FoxTrick error: ' + e + '\n');
 		Components.utils.reportError('FoxTrick error: ' + e);
