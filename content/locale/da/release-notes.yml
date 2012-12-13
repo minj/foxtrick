@@ -60,23 +60,23 @@ da:
       note_11: Fennec indlæser staffmarker og link ressourcer fra interne kilder igen. Så de opdateres ikke dynamisk, men også sparer båndbredde.
     0.9.2: 
       note_0: Endnu en massiv sprog opdatering. Tak igen til alle disse oversættere.
-      note_1: Omskrevet sprogregistrering. Bør aldrig bryde igen
+      note_1: Omskrevet sprogregistrering. Bør aldrig fejle igen
       note_2: 'NEW: <module>PlayerStatsExperience</module>: viser, hvor meget erfaring en spiller har opnået i de enkelte kampe, og viser aktuelle underniveauer'
-      note_3: 'NEW: <module>HoldPopupLinks</module>: tilføjede Turneringer. Eventuelt fremhæver nuværende hold i tabeller (standard aktiveret)'
-      note_4: 'NEW: <module>RatingsViser</module>:desuden tilføjet Gennemsnitlig stjerner og ratings til serie statistik tabel'
-      note_5: 'NEW: <module>TeamStats</module>: updates with filters and more sections'
-      note_6: PlayerFilters has more filter options now
-      note_7: 'Skilltable for transferlist search: injured fixed'
-      note_8: 'MatchReportFormat: negative SE icons added'
-      note_9: 'Links: make dynamic added links default on'
-      note_10: 'Links and staffmarker: load zipped to save bandwidth'
-      note_11: 'Links: Fixed removing custom links not working'
-      note_12: 'ForumAlterHeaderLine: Highlight thread opener and remove postid for simple header fixed'
-      note_13: 'ForumStripHattrickLinks: confirm option fixed'
-      note_14: 'MatchSimulator: adding non-tournament matches fixed'
-      note_15: 'CopyYouth: obsolete copy-player-source removed'
-      note_16: 'CopyYouth: copy-training report linked to corresponding HT-Youthclub page'
-      note_17: 'ShowLineupSet: Fixed after some HT change and simple skin broken layout fixed'
+      note_3: 'NEW: <module>TeamPopupLinks</module>:  tilføjede Turneringer. Eventuelt fremhæver nuværende hold i tabeller (standard aktiveret)'
+      note_4: 'NEW: <module>RatingsDisplay</module>:desuden tilføjet Gennemsnitlig stjerner og ratings til serie statistik tabel'
+      note_5: 'NEW: <module>TeamStats</module>: opdateringer med filtre og flere sektioner'
+      note_6: PlayerFilters har nu flere filterindstillinger
+      note_7: 'Skilltable for transferlist søgning: skadet rettet'
+      note_8: 'MatchReportFormat: negativ SE ikoner tilføjet'
+      note_9: 'Links: aktivere dynamisk tilføjet links som standard'
+      note_10: 'Links og staffmarker: indlæs komprimerede for at spare båndbredde'
+      note_11: 'Links: rettede fjernelse af brugerdefinerede links som ikke virkede'
+      note_12: 'ForumAlterHeaderLine: Fremhæv tråd starter og fjernelse af indlægs-id for simple overskrift er rettet'
+      note_13: 'ForumStripHattrickLinks: bekræfte indstillingen er rettet'
+      note_14: 'MatchSimulator: tilføje ikke-turneringens kampe er rettet'
+      note_15: 'CopyYouth: forældede kopi-spiller-kilde fjernet'
+      note_16: 'CopyYouth: kopiere-trænings rapport og link til tilsvarende HT-Youthclub side'
+      note_17: 'ShowLineupSet: Er rettet efter nogen HT ændringer og enkel skin brudt layout er rettet'
       note_18: Missing playerid for bookmarked players back
       note_19: Median-transfer-prize fixed for some users
       note_20: 'MatchOrder: Highlight of players that played in the last match can now be shown on the playing field too'
