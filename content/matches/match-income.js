@@ -81,17 +81,23 @@ Foxtrick.modules['MatchIncome'] = {
 				}
 			}
 		}
-		var isCup = (doc.getElementById('mainBody').getElementsByClassName('matchCup').length > 0);
+		var isCup = (doc.getElementById('mainBody').getElementsByClassName('matchCup')
+					 .length > 0);
+		var isFriendly = (doc.getElementById('mainBody')
+						  .getElementsByClassName('matchFriendly').length > 0);
+		var priceQ = isCup ? 0.67 : (isFriendly ? 0.5 : 1);
 
 		var tbody = table.getElementsByTagName('tbody')[0];
 		var sum = Foxtrick.trimnum(table.rows[0].cells[1].textContent) *
-			prices[priceIdx].terraces * (isCup ? (67.0 / 100.0) : 1)
-			+ Foxtrick.trimnum(table.rows[1].cells[1].textContent) *
-			prices[priceIdx].basicSeats * (isCup ? (67.0 / 100.0) : 1)
-			+ Foxtrick.trimnum(table.rows[2].cells[1].textContent) *
-			prices[priceIdx].seatsUnderRoof * (isCup ? (67.0 / 100.0) : 1)
-			+ Foxtrick.trimnum(table.rows[3].cells[1].textContent) *
-			prices[priceIdx].vip * (isCup ? (67.0 / 100.0) : 1);
+			prices[priceIdx].terraces +
+			Foxtrick.trimnum(table.rows[1].cells[1].textContent) *
+			prices[priceIdx].basicSeats +
+			Foxtrick.trimnum(table.rows[2].cells[1].textContent) *
+			prices[priceIdx].seatsUnderRoof +
+			Foxtrick.trimnum(table.rows[3].cells[1].textContent) *
+			prices[priceIdx].vip;
+
+		sum *= priceQ;
 
 		// convert to local currency
 		sum /= Foxtrick.util.currency.getRate();
