@@ -11,25 +11,31 @@ HOST=''
 echo $DIR
 . "$DIR/../../trunk/maintainer/upload.conf.sh"
 
-# get the json logs if they inexist
+LOGDATE=$(date --date="1 day ago" -u +%d/%b/%Y)
+JSONDATE=$(date --date="1 day ago" -u +%Y%m%d)
+
+echo "do $JSONDATE"
+echo "updating JSON"
+# update the json logs from ftp
 for log in stats-archive-update stats-archive-foxtrick
 do
-	if [ ! -f $log ]
-	then
-		cp access-ftp-tmpl access-ftp-down
-		sed -i "s|{HOST}|${HOST}|" access-ftp-down
-		sed -i "s|{USER}|${USER}|" access-ftp-down
-		sed -i "s|{PSWD}|${PASSWORD}|" access-ftp-down
-		sed -i "s|{DIR}|htdocs|" access-ftp-down
-		sed -i "s|{FILE}|${log}|" access-ftp-down
-		lftp -f access-ftp-down || exit 3
-		rm access-ftp-down
-	fi
+	cp access-ftp-tmpl access-ftp-down
+	sed -i "s|{HOST}|${HOST}|" access-ftp-down
+	sed -i "s|{USER}|${USER}|" access-ftp-down
+	sed -i "s|{PSWD}|${PASSWORD}|" access-ftp-down
+	sed -i "s|{DIR}|htdocs|" access-ftp-down
+	sed -i "s|{FILE}|${log}|" access-ftp-down
+	lftp -f access-ftp-down || exit 3
+	rm access-ftp-down
+	# exit if date already exists
+	grep -c $JSONDATE $log && echo "$JSONDATE already exists" && exit 1
 done
 
 # get yesterday info and add it to stats archive
 ACCESS_LOG=foxtrick.org-access.log
 ACCESS_LOG_CLEANED=foxtrick.org-access.log-cleaned
+
+echo "Fetching log"
 
 # setup templates
 cp access-ftp-tmpl access-ftp-down
@@ -44,18 +50,12 @@ sed -i "s|{FILE}|${ACCESS_LOG}|" access-ftp-down
 lftp -f access-ftp-down || exit 3
 rm access-ftp-down
 
-
 # kick invalid bots, android, iphone, ipad. fennec count uses original
 echo "cleanup"
 grep -ive "android\|iphone\|ipad\|bot\|spider\|Mediapartners-Google" "$ACCESS_LOG"> "$ACCESS_LOG_CLEANED"
 
 BROWSERS="firefox chrome opera safari"
 VERSIONS="release nightly beta"
-
-
-LOGDATE=$(date --date="1 day ago" -u +%d/%b/%Y)
-JSONDATE=$(date --date="1 day ago" -u +%Y%m%d)
-echo "do $JSONDATE"
 
 for file in update foxtrick
 do
