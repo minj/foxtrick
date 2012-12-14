@@ -866,7 +866,7 @@ Foxtrick.modules["SkillTable"]={
 				var is_coach = false;
 				var pid = xml.getElementsByTagName('PlayerID')[0].textContent;
 				var PlayerEvents = xml.getElementsByTagName('PlayerEvent');
-				for (i = 0; i < PlayerEvents.length; ++i) {
+				for (var i = 0; i < PlayerEvents.length; ++i) {
 					var PlayerEvent = PlayerEvents[i];
 					var PlayerEventTypeID = Number(PlayerEvent
 					                               .getElementsByTagName('PlayerEventTypeID')[0]

@@ -43,6 +43,7 @@ Foxtrick.util.links = {
 						else
 							continue;
 					}
+					var key;
 					for (key in keys) {
 						var href=FoxtrickPrefs.getString(basepref+'.'+key+'.href');
 						var imgref=FoxtrickPrefs.getString(basepref+'.'+key+'.img');
@@ -132,6 +133,7 @@ Foxtrick.util.links = {
 				else
 					continue;
 			}
+			var key;
 			for (key in keys)  {
 				var href=FoxtrickPrefs.getString(basepref+'.'+key+'.href');
 				var imgref=FoxtrickPrefs.getString(basepref+'.'+key+'.img');
@@ -215,6 +217,7 @@ Foxtrick.util.links = {
 				if (key.search(/\./)!=-1) {key=key.replace(/\..+/,"");keys[key]=key;}
 				else continue;
 			}
+			var key;
 			for (key in keys)  {
 				var href=FoxtrickPrefs.getString(basepref+'.'+key+'.href');
 				var imgref=FoxtrickPrefs.getString(basepref+'.'+key+'.img');
