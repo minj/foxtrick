@@ -24,7 +24,8 @@ Foxtrick.loader.firefox.browserLoad = function() {
 			FoxtrickPrefs.setBool('translationKeys', false);
 
 			// calls module.onLoad() after the browser window is loaded
-			for (var i in Foxtrick.modules) {
+			var i;
+			for (i in Foxtrick.modules) {
 				var module = Foxtrick.modules[i];
 				if (typeof(module.onLoad) === 'function') {
 					try {
@@ -114,7 +115,8 @@ Foxtrick.loader.firefox.tabFocus = function(ev) {
 		Foxtrick.log('tab focus: ' + ev.target.selectedIndex);
 		// calls module.onTabChange() after the tab focus is changed.
 		// also on not-ht pages for eg context-menu
-		for (var i in Foxtrick.modules) {
+		var i;
+		for (i in Foxtrick.modules) {
 			var module = Foxtrick.modules[i];
 			if (typeof(module.onTabChange) === 'function') {
 				try {

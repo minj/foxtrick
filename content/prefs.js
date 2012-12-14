@@ -493,14 +493,14 @@ if (Foxtrick.arch === 'Sandboxed') {
 		 */
 		getAllKeysOfBranch: function(branch) {
 			var prefix = (branch == '') ? '' : encodeURI(branch + '.');
-			var array = [];
-			for (var i in FoxtrickPrefs._prefs_chrome_user) {
+			var array = [], i;
+			for (i in FoxtrickPrefs._prefs_chrome_user) {
 				if (i.indexOf(prefix) == 0)
 					if (!FoxtrickPrefs._prefs_chrome_default[i])
 						// only if not default to eliminate duplicacy
 						array.push(i);
 			}
-			for (var i in FoxtrickPrefs._prefs_chrome_default) {
+			for (i in FoxtrickPrefs._prefs_chrome_default) {
 				if (i.indexOf(prefix) == 0)
 					array.push(i);
 			}
@@ -595,6 +595,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 			},
 		};
 
+		var i;
 		for (i in FoxtrickPrefsChromeBackground)
 			FoxtrickPrefsChrome[i] = FoxtrickPrefsChromeBackground[i];
 	}

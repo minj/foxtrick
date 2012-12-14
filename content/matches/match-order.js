@@ -82,7 +82,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				var layers = players[i].getElementsByTagName('Layer');
 				for (var j = 0; j < layers.length; ++j) {
 					var src = layers[j].getElementsByTagName('Image')[0].textContent;
-					for (var bodypart in sizes) {
+					var bodypart;
+					for (bodypart in sizes) {
 						if (src.search(bodypart) != -1)
 							break;
 					}

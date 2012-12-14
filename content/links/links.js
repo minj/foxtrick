@@ -310,7 +310,7 @@
 								if (collection[type]) {
 									var links = collection[type];
 									var key;
-									for (var key in links) {
+									for (key in links) {
 										//Foxtrick.log(type, ' ', key);
 										var link = links[key];
 										var item = doc.createElement('li');

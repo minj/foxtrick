@@ -46,7 +46,8 @@ Foxtrick.log = function() {
 				item = JSON.stringify(content);
 				if (item == '{}' && typeof(content) == 'object') {
 					// stringify didn't work as intented
-					for (var j in content)
+					var j;
+					for (j in content)
 						item += j + ':' + content[j] + '\n';
 				}
 			}

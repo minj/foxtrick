@@ -259,7 +259,8 @@ Foxtrick.util.id.findLeagueLeveUnitId = function(element) {
 };
 
 Foxtrick.util.id.countryNameEnglishToLocal = function(engName) {
-	for (var i in Foxtrick.XMLData.League) {
+	var i;
+	for (i in Foxtrick.XMLData.League) {
 		if (Foxtrick.XMLData.League[i].EnglishName === engName) {
 			return Foxtrick.XMLData.League[i].LeagueName;
 		}
@@ -268,7 +269,8 @@ Foxtrick.util.id.countryNameEnglishToLocal = function(engName) {
 };
 
 Foxtrick.util.id.countryNameLocalToEnglish = function(localName) {
-	for (var i in Foxtrick.XMLData.League) {
+	var i;
+	for (i in Foxtrick.XMLData.League) {
 		if (Foxtrick.XMLData.League[i].LeagueName === localName) {
 			return Foxtrick.XMLData.League[i].EnglishName;
 		}

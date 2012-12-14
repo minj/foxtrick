@@ -167,7 +167,8 @@ Foxtrick.modules['YouthSkills'] = {
 					}
 				}
 
-				for (var sk in json[playerID].skills) {
+				var sk;
+				for (sk in json[playerID].skills) {
 					if (json[playerID].skills.hasOwnProperty(sk)) {
 						if (sk == 10)
 							continue;

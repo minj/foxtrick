@@ -122,7 +122,8 @@ Foxtrick.modules['StaffMarker'] = {
 				}
 
 				// data loaded from external files
-				for (var type in data) {
+				var type;
+				for (type in data) {
 					if (data[type][id] == true) {
 						Foxtrick.addClass(object, 'ft-staff-' + type);
 						if (type == 'chpp-holder') {

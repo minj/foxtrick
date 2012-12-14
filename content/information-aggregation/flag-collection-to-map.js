@@ -300,8 +300,8 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 		}
 
 		// no flag
-		var noflags = '';
-		for (var countryId in this.HT_countries) {
+		var noflags = '', countryId;
+		for (countryId in this.HT_countries) {
 			var countryCodes = this.HT_countries[countryId];
 			if (!Foxtrick.any(function(n) {
 				return n == countryId;

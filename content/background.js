@@ -52,7 +52,8 @@ Foxtrick.loader.background.browserLoad = function() {
 			about = serializer.serializeToString(Foxtrick.XMLData.aboutXML);
 			worldDetails = serializer.serializeToString(Foxtrick.XMLData.worldDetailsXml);
 			htLanguagesText = {};
-			for (var i in Foxtrickl10n.htLanguagesXml) {
+			var i;
+			for (i in Foxtrickl10n.htLanguagesXml) {
 				htLanguagesText[i] = serializer.serializeToString(Foxtrickl10n.htLanguagesXml[i]);
 			}
 			cssTextCollection = Foxtrick.util.css.getCssTextCollection();
@@ -159,7 +160,8 @@ Foxtrick.loader.background.browserLoad = function() {
 					FoxtrickPrefs.cleanupBranch();
 				}
 				else {
-					for (var i in localStorage) {
+					var i;
+					for (i in localStorage) {
 						if (i.indexOf('module.') === 0 && FoxtrickPrefs.isPrefSetting(i)) {
 							localStorage.removeItem(i);
 						}
@@ -388,4 +390,3 @@ Foxtrick.loader.background.copyToClipBoard = function(content) {
 // this is the background script entry point for sandboxed arch
 if (Foxtrick.arch == 'Sandboxed')
 	Foxtrick.loader.background.browserLoad();
-

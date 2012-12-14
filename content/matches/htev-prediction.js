@@ -243,7 +243,8 @@ Foxtrick.modules['HTEVPrediction'] = {
 			//dont leave parent table if appreciable
 			while (parentNode && parentNode.tagName != 'TABLE') {
 				if (parentNode.tagName == 'TR') {
-					for (var t in types) {
+					var t;
+					for (t in types) {
 						var search = parentNode.getElementsByClassName(types[t]);
 						if (search.length)
 							return types[t];
@@ -273,4 +274,3 @@ Foxtrick.modules['HTEVPrediction'] = {
 		}
 	}
 };
-

@@ -48,8 +48,8 @@ Foxtrick.modules['HTMSPoints'] = {
 					'keeper', 'defending', 'playmaking', 'winger', 'passing', 'scoring', 'setPieces'
 				];
 				var htmsValues = ['parate', 'difesa', 'regia', 'cross', 'passaggi', 'attacco', 'cp'];
-				var j = 0;
-				for (var i in skills.names) {
+				var j = 0, i;
+				for (i in skills.names) {
 					//Foxtrick.dump('text: '+skills.texts[i]+' name: '+skills.names[i]+'\n');
 					skillList += '&' + htmsValues[j] + '=' + skills.values[i];
 					skillArray[skillOrder[j]] = skills.values[i];
@@ -64,8 +64,8 @@ Foxtrick.modules['HTMSPoints'] = {
 				];
 				var htmsValues = ['parate', 'regia', 'passaggi', 'cross', 'difesa', 'attacco', 'cp'];
 				var skipStamina = true;
-				var j = 0;
-				for (var i in skills.names) {
+				var j = 0, i;
+				for (i in skills.names) {
 					if (skipStamina) {
 						skipStamina = false;
 					}

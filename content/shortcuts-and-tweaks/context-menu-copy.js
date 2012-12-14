@@ -102,7 +102,8 @@ if (/*Foxtrick.platform != 'Opera' &&*/ Foxtrick.platform != 'Mobile' && Foxtric
 						var root = menu.item(0);
 						if (root) {
 							// remove old entries
-							for (var type in entries) {
+							var type;
+							for (type in entries) {
 								if (entries[type].item !== null) {
 									// integer
 									root.removeItem(entries[type].item);

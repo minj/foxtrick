@@ -63,7 +63,8 @@ Foxtrick.modules['TransferSearchFilters'] = {
 				if (filtername == '') return;
 
 				var formString = '<root>';
-				for (var i in backwardCompatibleCodes) {
+				var i;
+				for (i in backwardCompatibleCodes) {
 					var el = findFormElement(i);
 					if (el == null) {
 						var subst = backwardCompatibleCodes[i];

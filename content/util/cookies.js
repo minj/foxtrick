@@ -45,7 +45,8 @@ if (!Foxtrick) var Foxtrick = {};
 				else
 					var valuejson = JSON.parse(Foxtrick.decodeBase64(new_cookie.value));
 
-				for (var key in newvalue)
+				var key;
+				for (key in newvalue)
 					valuejson[key] = newvalue[key];
 
 				if (cookies[where].isBase64)
@@ -211,4 +212,3 @@ if (!Foxtrick) var Foxtrick = {};
 				_get();
 		};
 })();
-

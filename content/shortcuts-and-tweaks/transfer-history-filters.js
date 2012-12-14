@@ -26,7 +26,8 @@ Foxtrick.modules['TransferHistoryFilters'] = {
 		select.setAttribute('id', 'ft-transfer-history-filter');
 		select.setAttribute('name', 'select');
 		select.id = 'ft-transfer-history-filter';
-		for (var o in options) {
+		var o;
+		for (o in options) {
 			var option = doc.createElement('option');
 			option.textContent = Foxtrickl10n.getString('TransferHistoryFilters.' + options[o]);
 			option.setAttribute('value', options[o]);

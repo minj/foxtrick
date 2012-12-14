@@ -127,7 +127,8 @@ function search(string, search) {
 		var regex = new RegExp(string, 'i');
 
 		//iterate pre-cached modules, jquery is slow as hell here, directly using dom methods
-		for (var i in _modules) {
+		var i;
+		for (i in _modules) {
 			try {
 				if (i.search(regex) > -1) {
 					_modules[i].className = _modules[i].className.replace(/hidden/g, '');
@@ -143,7 +144,8 @@ function search(string, search) {
 		$('#breadcrumb-3').hide();
 		$('#breadcrumb-sep-1').hide();
 		$('#breadcrumb-sep-2').hide();
-		for (var i in _modules) {
+		var i;
+		for (i in _modules) {
 			try {
 				_modules[i].className = _modules[i].className.replace(/hidden/g, '');
 			} catch (e) {
@@ -183,7 +185,8 @@ function initCoreModules()
 	}*/
 
 	// add MODULE_NAME to modules
-	for (var i in Foxtrick.modules)
+	var i;
+	for (i in Foxtrick.modules)
 		Foxtrick.modules[i].MODULE_NAME = i;
 
 	// core functions needed for preferences, localization, etc.
@@ -363,7 +366,8 @@ function initListeners()
 function getPageIds()
 {
 	var lastPage = Foxtrick.getLastPage();
-	for (var i in Foxtrick.ht_pages) {
+	var i;
+	for (i in Foxtrick.ht_pages) {
 		// ignore PAGE all, it's shown in universal tab
 		if (i == 'all')
 			continue;
@@ -880,13 +884,14 @@ function initChangesTab()
 			dest = {};
 			return;
 		}
-		for (var locale in json)
+		var locale, v, n, idx, rawVersions, prefixedNotes;
+		for (locale in json)
 			if (json.hasOwnProperty(locale))
-				var rawVersions = json[locale].versions;
-		for (var v in rawVersions) {
-			var prefixedNotes = rawVersions[v], notes = [];
-			for (var n in prefixedNotes) {
-				var idx = n.match(/\d+/);
+				rawVersions = json[locale].versions;
+		for (v in rawVersions) {
+			prefixedNotes = rawVersions[v], notes = [];
+			for (n in prefixedNotes) {
+				idx = n.match(/\d+/);
 				notes[idx] = prefixedNotes[n];
 			}
 			dest[v] = notes;
@@ -901,8 +906,9 @@ function initChangesTab()
 	}
 
 	// add nightly and beta notes
-	for (var i in versions) {
-		var version = i;
+	var i, version;
+	for (i in versions) {
+		version = i;
 		if (Foxtrick.branch().indexOf(version) !== -1) {
 			var notes = versions[version];
 			var notesLocalized = versionsLocalized[version];
@@ -918,9 +924,9 @@ function initChangesTab()
 	}
 
 	var select = $('#pref-version-release-notes')[0];
-	for (var i in versions) {
+	for (i in versions) {
 		// unique version name
-		var version = i;
+		version = i;
 		// not beta / nightly notes
 		if (version.search(/^\d/) == -1)
 			continue;
@@ -1011,12 +1017,13 @@ function initHelpTab()
 	var parseFaq = function(src, dest) {
 		if (!src)
 			return;
-		for (var locale in src)
+		var i, item, locale;
+		for (locale in src)
 			if (src.hasOwnProperty(locale))
 				src = src[locale];
 		var items = src.faq;
-		for (var i in items) {
-			var item = items[i];
+		for (i in items) {
+			item = items[i];
 			dest[i] = item;
 		}
 	};
@@ -1028,10 +1035,11 @@ function initHelpTab()
 		return;
 	}
 
-	for (var i in items) {
+	var i, item;
+	for (i in items) {
 		// we prefer localized ones
 		var itemLocal = (itemsLocal) ? itemsLocal[i] : null;
-		var item = items[i];
+		item = items[i];
 		// container for question and answer
 		var block = document.createElement('div');
 		block.id = 'faq-' + i;
@@ -1102,8 +1110,8 @@ function initAboutTab()
 
 function initModules()
 {
-	var modules = [];
-	for (var i in Foxtrick.modules)
+	var modules = [], i;
+	for (i in Foxtrick.modules)
 		modules.push(Foxtrick.modules[i]);
 	// remove modules without categories
 	modules = Foxtrick.filter(function(m) { return m.MODULE_CATEGORY != undefined; }, modules);
@@ -1212,11 +1220,12 @@ function addNote(note, parent, links)
 		 * @return {DOMElement}	Element created.
 		 */
 		var createNode = function(nodeName, textContent, options) {
+			var opt;
 			var node = document.createElement(nodeName);
 			if (textContent !== null)
 				node.textContent = textContent;
 			if (options !== undefined && typeof(options) === 'object')
-				for (var opt in options)
+				for (opt in options)
 					if (options.hasOwnProperty(opt))
 						node[opt] = options[opt];
 			return node;

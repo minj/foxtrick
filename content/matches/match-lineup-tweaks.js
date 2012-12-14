@@ -140,8 +140,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			var time = timeCell.textContent.match(/\d+/)[0];
 
 			var typeImage = typeCell.getElementsByTagName('img')[0];
-			var type = '';
-			for (var t in SUBSTITUTION_TYPES) {
+			var type = '', t;
+			for (t in SUBSTITUTION_TYPES) {
 				if (SUBSTITUTION_TYPES.hasOwnProperty(t)) {
 					if (new RegExp(SUBSTITUTION_TYPES[t], 'i').test(typeImage.src)) {
 						type = SUBSTITUTION_TYPES[t];
@@ -390,8 +390,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				var layers = players[i].getElementsByTagName('Layer');
 				for (var j = 0; j < layers.length; ++j) {
 					var src = layers[j].getElementsByTagName('Image')[0].textContent;
-					var show = false;
-					for (var bodypart in sizes) {
+					var show = false, bodypart;
+					for (bodypart in sizes) {
 						if (src.search(bodypart) != -1) {
 							show = true;
 							break;

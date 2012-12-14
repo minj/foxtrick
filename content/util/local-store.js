@@ -18,8 +18,8 @@ Foxtrick._localGet = function(keymap) {
 	if (typeof(keymap) === 'string')
 		return JSON.parse(Foxtrick.localStore.getItem('localStore.' + keymap));
 	else if (typeof(keymap) === 'object') {
-		var answermap = {};
-		for (var key in keymap) {
+		var answermap = {}, key;
+		for (key in keymap) {
 			if (Foxtrick.localStore.getItem('localStore.' + key) !== null)
 				answermap[key] = Foxtrick.localStore.getItem('localStore.' + key);
 			else
@@ -32,7 +32,8 @@ Foxtrick._localGet = function(keymap) {
 Foxtrick._localDeleteBranch = function(branch) {
 	if (!branch) branch = '';
 	if (branch != '') branch += '.';
-	for (var key in Foxtrick.localStore) {
+	var key;
+	for (key in Foxtrick.localStore) {
 		if (key.indexOf('localStore.' + branch) === 0)
 			Foxtrick.localStore.removeItem(key); // <- key already contains localStore.
 	}

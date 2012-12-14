@@ -431,8 +431,8 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			// each group has subs happening at the same sec
 			// we still keep single subs because they are later used
 			// to bind correct xml to multiple subs
-			var subGroups = [];
-			for (var time in subTimes) {
+			var subGroups = [], time;
+			for (time in subTimes) {
 				subGroups.push(subTimes[time]);
 			}
 			// OK, so at this point in subGroups

@@ -188,7 +188,8 @@ Foxtrick.modules['Filter'] = {
 				option.value = 'Filters.noFilter';
 				select.appendChild(option);
 
-				for (var i in categories) {
+				var i;
+				for (i in categories) {
 					var option = doc.createElement('option');
 					option.textContent = i;
 					if (i == Foxtrickl10n.getString('Filters.none'))
@@ -324,7 +325,8 @@ Foxtrick.modules['Filter'] = {
 								var imgs = cell[j].getElementsByTagName('img');
 								val = 0;
 								for (var k = 0; k < imgs.length; ++k) {
-									for (var searchStr in filter.incPerClass) {
+									var searchStr;
+									for (searchStr in filter.incPerClass) {
 										/*Foxtrick.log(imgs[k].className, searchStr,
 										            imgs[k].src.search(RegExp(searchStr)),
 													filter.incPerClass[searchStr], val );*/

@@ -44,6 +44,7 @@ Foxtrick.util.links = {
 						else
 							continue;
 					}
+					var key;
 					for (key in keys) {
 						var href = FoxtrickPrefs.getString(basepref + '.' + key + '.href');
 						var imgref = FoxtrickPrefs.getString(basepref + '.' + key + '.img');
@@ -133,6 +134,7 @@ Foxtrick.util.links = {
 				else
 					continue;
 			}
+			var key;
 			for (key in keys) {
 				var href = FoxtrickPrefs.getString(basepref + '.' + key + '.href');
 				var imgref = FoxtrickPrefs.getString(basepref + '.' + key + '.img');
@@ -150,8 +152,8 @@ Foxtrick.util.links = {
 						if (Foxtrick.util.links._info[mykey])
 							href = href.replace(mykeytag[i], Foxtrick.util.links._info[mykey]);
 						else {
-							var ownteam = {};
-							for (var key in Foxtrick.modules['Core'].getSelfTeamInfo())
+							var ownteam = {}, key;
+							for (key in Foxtrick.modules['Core'].getSelfTeamInfo())
 								ownteam['own' + key] =
 									Foxtrick.modules['Core'].getSelfTeamInfo()[key];
 							href = href.replace(mykeytag[i], ownteam[mykey]);
@@ -221,6 +223,7 @@ Foxtrick.util.links = {
 				else
 					continue;
 			}
+			var key;
 			for (key in keys) {
 				var href = FoxtrickPrefs.getString(basepref + '.' + key + '.href');
 				var imgref = FoxtrickPrefs.getString(basepref + '.' + key + '.img');
@@ -343,7 +346,8 @@ Foxtrick.util.links = {
 			option.textContent = Foxtrickl10n.getString('links.custom.tags');
 			selectbox.appendChild(option);
 
-			for (var key in Foxtrick.util.links._info) {
+			var key;
+			for (key in Foxtrick.util.links._info) {
 				var option = doc.createElement('option');
 				option.setAttribute('value', key);
 				option.textContent = '[' + key + ']';
@@ -351,10 +355,10 @@ Foxtrick.util.links = {
 				selectbox.appendChild(option);
 			}
 			try {
-				var ownteam = {};
-				for (var key in Foxtrick.modules['Core'].getSelfTeamInfo())
+				var ownteam = {}, key;
+				for (key in Foxtrick.modules['Core'].getSelfTeamInfo())
 					ownteam['own' + key] = Foxtrick.modules['Core'].getSelfTeamInfo()[key];
-				for (var key in ownteam) {
+				for (key in ownteam) {
 					var option = doc.createElement('option');
 					option.setAttribute('value', key);
 					option.textContent = '[' + key + ']';

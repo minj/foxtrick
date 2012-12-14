@@ -111,7 +111,8 @@ Foxtrick.modules['TeamPopupLinks'] = {
 		enableNewTab.setAttribute('data-text', 'TeamPopupLinks.OpenNewTab');
 		headerRow.appendChild(enableNewTab);
 
-		for (var i in this.LINKS) {
+		var i;
+		for (i in this.LINKS) {
 			var row = doc.createElement('tr');
 			table.appendChild(row);
 
@@ -289,7 +290,8 @@ Foxtrick.modules['TeamPopupLinks'] = {
 						}
 					}
 					else {
-						for (var link in links) {
+						var link;
+						for (link in links) {
 							if (isEnabledWithinContext(link, show_more)) {
 								addItem(link, teamid == ownTeamId, teamid,
 									userid, username, links[link].ownLink,

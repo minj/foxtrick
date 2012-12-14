@@ -279,13 +279,13 @@ Foxtrick.modules['TeamStats'] = {
 
 			if (FoxtrickPrefs.isModuleOptionEnabled('TeamStats', 'Speciality')) {
 				if (hasSpecialities) {
-					var specSummary = [];
-					for (var speciality in specialities) {
+					var specSummary = [], speciality, i;
+					for (speciality in specialities) {
 						specSummary.push({ type: speciality, count: specialities[speciality] });
 						specSummary.sort(function(a, b) { return a.type.localeCompare(b.type) });
 						specSummary.sort(function(a, b) { return b.count - a.count });
 					}
-					for (var i in specSummary) {
+					for (i in specSummary) {
 						addRow('Speciality', specSummary[i].type, specSummary[i].count,
 						       'speciality-' + Foxtrickl10n
 						       .getEnglishSpeciality(specSummary[i].type), specSummary[i].type);
@@ -388,8 +388,8 @@ Foxtrick.modules['TeamStats'] = {
 						isLeague = true;
 						category = 'Current_league';
 					}
-					var leagueSummary = [];
-					for (var i in leagues) {
+					var leagueSummary = [], i;
+					for (i in leagues) {
 						if (isLeague)
 							var name = Foxtrick.XMLData.League[i].LeagueName;
 						else

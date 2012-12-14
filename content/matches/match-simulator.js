@@ -1101,8 +1101,8 @@ Foxtrick.modules.MatchSimulator = {
 						player.stamina = Number(playerdivs[position].getAttribute('stamina'));
 						if (!player.stamina)
 							continue;
-						var tactic = 'normal';
-						for (var t in tactics) {
+						var tactic = 'normal', t;
+						for (t in tactics) {
 							if (Foxtrick.hasClass(playerdivs[position], t)) {
 								tactic = t;
 							}

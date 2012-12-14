@@ -186,7 +186,8 @@ Foxtrick.modules['PlayerFilters'] = {
 				}
 
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'speciality')) {
-					for (var speciality in specialities) {
+					var speciality;
+					for (speciality in specialities) {
 						var option = doc.createElement('option');
 						option.value = 'speciality-' + Foxtrickl10n.getEnglishSpeciality(speciality);
 						option.textContent = speciality;
@@ -290,7 +291,7 @@ Foxtrick.modules['PlayerFilters'] = {
 			Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: 'session' },
 			  function(xmls) {
 				if (xmls) {
-					for (i = 0; i < xmls.length; ++i) {
+					for (var i = 0; i < xmls.length; ++i) {
 						var xml = xmls[i];
 						var tid = Number(xml.getElementsByTagName('TeamID')[0].textContent);
 						var IsBot = xml.getElementsByTagName('IsBot')[0].textContent;

@@ -80,7 +80,8 @@ Foxtrick.modules['TableOfStatisticalTruth'] = {
 
 				var headRow = doc.createElement('tr');
 				table.appendChild(headRow);
-				for (var i in colTypes) {
+				var i;
+				for (i in colTypes) {
 					var th = doc.createElement('th');
 					th.className = colTypes[i];
 					th.textContent = Foxtrickl10n.getString('truthTable.' + i);
@@ -91,7 +92,8 @@ Foxtrick.modules['TableOfStatisticalTruth'] = {
 					var row = doc.createElement('tr');
 					table.appendChild(row);
 
-					for (var i in colTypes) {
+					var i;
+					for (i in colTypes) {
 						var cell = doc.createElement('td');
 						cell.className = colTypes[i];
 

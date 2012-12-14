@@ -45,7 +45,8 @@
 			playh.className = 'col_play';
 			header.appendChild(playh);
 
-			for (var type in types) {
+			var type;
+			for (type in types) {
 				var row = doc.createElement('tr');
 				table.appendChild(row);
 				var rhead = doc.createElement('th');
@@ -96,7 +97,8 @@
 			// type of change to listen to. opera doesn't support DOMSubtreeModified
 
 			var getType = function(url) {
-				for (var type in types) {
+				var type;
+				for (type in types) {
 					var regexp = types[type];
 
 					if (url.match(regexp))

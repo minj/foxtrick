@@ -351,7 +351,8 @@ Foxtrick.addImage = function(doc, elem, features, insertBefore) {
 			fr.onload = function() {
 				var img = doc.createElement('img');
 				img.src = fr.result;
-				for (var i in features) {
+				var i;
+				for (i in features) {
 					if (features.hasOwnProperty(i) && i != 'src') {
 						img.setAttribute(i, features[i]);
 					}
@@ -379,7 +380,8 @@ Foxtrick.addImage = function(doc, elem, features, insertBefore) {
 	}
 	else {
 		var img = doc.createElement('img');
-		for (var i in features)
+		var i;
+		for (i in features)
 			img.setAttribute(i, features[i]);
 		if (insertBefore)
 			elem.insertBefore(img, insertBefore);
@@ -392,14 +394,16 @@ Foxtrick.getImageFeatures = function(features, callback) {
 	if (Foxtrick.platform == 'Opera')
 		sandboxed.extension.sendRequest({ req: 'getDataUrl', url: features.src },
 		  function(data) {
-			var img = {};
-			for (var i in features) img[i] = features[i];
+			var img = {}, i;
+			for (i in features)
+				img[i] = features[i];
 			img.src = data.url;
 			callback(img);
 		});
 	else {
-		var img = {};
-		for (var i in features) img[i] = features[i];
+		var img = {}, i;
+		for (i in features)
+			img[i] = features[i];
 		callback(img);
 	}
 };

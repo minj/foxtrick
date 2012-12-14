@@ -93,7 +93,8 @@ Foxtrick.entry.docLoad = function(doc) {
 // @param data - copy of the resources passed from the background script
 Foxtrick.entry.contentScriptInit = function(data) {
 	// add MODULE_NAME to modules
-	for (var i in Foxtrick.modules)
+	var i;
+	for (i in Foxtrick.modules)
 		Foxtrick.modules[i].MODULE_NAME = i;
 
 	if (Foxtrick.platform != 'Mobile' && Foxtrick.platform != 'Android') {
@@ -116,7 +117,7 @@ Foxtrick.entry.contentScriptInit = function(data) {
 			}
 		}
 		var parser = new window.DOMParser();
-		for (var i in data.htLang) {
+		for (i in data.htLang) {
 			Foxtrickl10n.htLanguagesXml[i] = parser.parseFromString(data.htLang[i], 'text/xml');
 		}
 
@@ -132,7 +133,8 @@ Foxtrick.entry.init = function() {
 	Foxtrick.log('Initializing FoxTrick...');
 
 	// add MODULE_NAME to modules
-	for (var i in Foxtrick.modules)
+	var i;
+	for (i in Foxtrick.modules)
 		Foxtrick.modules[i].MODULE_NAME = i;
 
 	var coreModules = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
@@ -143,13 +145,14 @@ Foxtrick.entry.init = function() {
 
 	// create arrays for each recognized page that contains modules
 	// that run on it
-	for (var i in Foxtrick.ht_pages) {
+	var i;
+	for (i in Foxtrick.ht_pages) {
 		Foxtrick.entry.runMap[i] = [];
 	}
 
 	// initialize all enabled modules
 	var modules = [];
-	for (var i in Foxtrick.modules) {
+	for (i in Foxtrick.modules) {
 		var module = Foxtrick.modules[i];
 		if (FoxtrickPrefs.isModuleEnabled(module.MODULE_NAME)) {
 			// push to array modules for executing init()
@@ -226,10 +229,11 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 
 		// create arrays for each recognized page that contains modules
 		// that run on it
-		for (var i in Foxtrick.ht_pages) {
+		var i;
+		for (i in Foxtrick.ht_pages) {
 			Foxtrick.entry.runMap[i] = [];
 		}
-		for (var i in Foxtrick.modules) {
+		for (i in Foxtrick.modules) {
 			var module = Foxtrick.modules[i];
 			if (FoxtrickPrefs.isModuleEnabled(module.MODULE_NAME)) {
 				// register modules on the pages they are operating on according
@@ -245,7 +249,8 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		// if their page is loaded
 		var modules = [];
 		// modules running on current page
-		for (var page in Foxtrick.ht_pages) {
+		var page;
+		for (page in Foxtrick.ht_pages) {
 			if (Foxtrick.isPage(doc, page) && Foxtrick.entry.runMap[page]) {
 				for (var i = 0; i < Foxtrick.entry.runMap[page].length; ++i)
 					modules.push(Foxtrick.entry.runMap[page][i]);
@@ -315,7 +320,8 @@ Foxtrick.entry.change = function(ev) {
 		if (FoxtrickPrefs.isEnabled(doc)) {
 			var modules = [];
 			// modules running on current page
-			for (var page in Foxtrick.ht_pages) {
+			var page;
+			for (page in Foxtrick.ht_pages) {
 				if (Foxtrick.isPage(doc, page) && Foxtrick.entry.runMap[page]) {
 					for (var i = 0; i < Foxtrick.entry.runMap[page].length; ++i)
 						modules.push(Foxtrick.entry.runMap[page][i]);

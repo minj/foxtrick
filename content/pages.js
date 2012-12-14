@@ -167,7 +167,8 @@ Foxtrick.isOneOfPages = function(pages, doc) {
 };
 
 Foxtrick.isExcluded = function(doc) {
-	for (var i in Foxtrick.pagesExcluded) {
+	var i;
+	for (i in Foxtrick.pagesExcluded) {
 		var excludeRe = new RegExp(Foxtrick.pagesExcluded[i], 'i');
 		// page excluded, return
 		if (doc.location.href.search(excludeRe) > -1)

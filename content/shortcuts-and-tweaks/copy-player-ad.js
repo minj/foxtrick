@@ -136,10 +136,11 @@ Foxtrick.modules['CopyPlayerAd'] = {
 
 			// skills
 			var skills = Foxtrick.Pages.Player.getSkillsWithText(doc);
+			var i;
 			if (skills !== null) {
 				if (isSenior) {
 					var skillArray = [];
-					for (var i in skills.names) {
+					for (i in skills.names) {
 						skillArray.push(
 							{
 								name: skills.names[i],
@@ -220,7 +221,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 					// for youth players, always in a table with one cell
 					// in each row
 					var skillArray = [];
-					for (var i in skills.names) {
+					for (i in skills.names) {
 						skillArray.push(
 							{
 								name: skills.names[i],

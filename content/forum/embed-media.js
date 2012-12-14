@@ -200,7 +200,8 @@ Foxtrick.modules['EmbedMedia'] = {
 
 				if (link.href.indexOf('format=json') == -1) {
 				//check very rare case, like when explaining what oembed does and posting example url
-					for (var key in filter_supported) {
+					var key;
+					for (key in filter_supported) {
 						var re = new RegExp(filter_supported[key]);
 						var matches = re.exec(link);
 						//link passed regex, add to supported links
@@ -310,7 +311,8 @@ Foxtrick.modules['EmbedMedia'] = {
 			}
 
 			//Sites where IFrame and OEmbed is the only way out
-			for (var key in oembed_urls)
+			var key;
+			for (key in oembed_urls)
 			{
 				if (!Foxtrick.hasClass(target, 'ft-media-site-' + key))
 					continue;

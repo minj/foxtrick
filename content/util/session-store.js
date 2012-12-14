@@ -19,8 +19,8 @@ Foxtrick._sessionGet = function(keymap, callback) {
 	if (typeof(keymap) === 'string')
 		answermap = Foxtrick.sessionStore[keymap];
 	else if (typeof(keymap) === 'object') {
-		var answermap = {};
-		for (var key in keymap) {
+		var answermap = {}, key;
+		for (key in keymap) {
 			if (Foxtrick.sessionStore[key] !== null)
 				answermap[key] = Foxtrick.sessionStore[key];
 			else
@@ -36,7 +36,8 @@ Foxtrick._sessionGet = function(keymap, callback) {
 Foxtrick._sessionDeleteBranch = function(branch) {
 	if (!branch) branch = '';
 	if (branch != '') branch += '.';
-	for (var key in Foxtrick.sessionStore) {
+	var key;
+	for (key in Foxtrick.sessionStore) {
 		if (key.indexOf(branch) === 0)
 			Foxtrick.sessionStore[key] = null;
 	}

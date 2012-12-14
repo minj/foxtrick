@@ -362,7 +362,8 @@ var Foxtrickl10n = {
 			5: 'Head', 6: 'Regainer'
 		};
 		var number = 0;
-		for (var n in specs) {
+		var n;
+		for (n in specs) {
 			if (specs.hasOwnProperty(n)) {
 				if (specs[n] == engSpec) {
 					number = n;

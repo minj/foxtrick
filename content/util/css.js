@@ -212,8 +212,8 @@ Foxtrick.util.css.collect_module_css = function() {
 	};
 	// sort modules, place SkinPlugin at last
 	// FIXME - implement a more general method
-	var modules = [];
-	for (var i in Foxtrick.modules)
+	var modules = [], i;
+	for (i in Foxtrick.modules)
 		modules.push(Foxtrick.modules[i]);
 	modules.sort(function(a, b) {
 		if (a.MODULE_NAME == b.MODULE_NAME)

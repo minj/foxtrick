@@ -128,45 +128,20 @@ Foxtrick.modules['ExtraShortcuts'] = {
 		}
 		targetNode = scCont;
 		if (targetNode) {
-				for (var j in this.LINKS) {
-					if (FoxtrickPrefs.isModuleOptionEnabled('ExtraShortcuts', j)) {
-						var link = doc.createElement('a');
-						link.className = 'ft_extra-shortcuts';
-						link.href = this.LINKS[j].link;
-
-						var img1 = doc.createElement('img');
-						img1.setAttribute('class', this.LINKS[j].imgClass);
-						img1.src = '/Img/Icons/transparent.gif';
-						img1.title = Foxtrickl10n.getString('ExtraShortcuts.' +
-						                                    this.LINKS[j].property);
-						img1.alt = Foxtrickl10n.getString('ExtraShortcuts.' +
-						                                  this.LINKS[j].property);
-						img1 = Foxtrick.makeFeaturedElement(img1, this);
-
-						link.appendChild(img1);
-						if (FoxtrickPrefs.isModuleOptionEnabled('ExtraShortcuts', 'AddLeft'))
-							targetNode.insertBefore(link, targetNode.firstChild);
-						else {
-							if (targetNode.lastChild.nodeName == 'BR') {
-								targetNode.insertBefore(link, targetNode.lastChild);
-							}
-							else {
-								targetNode.appendChild(link);
-							}
-						}
-					}
-				}
-				if (FoxtrickPrefs.isModuleOptionEnabled('ExtraShortcuts', 'FoxTrickPrefs')) {
+			var j;
+			for (j in this.LINKS) {
+				if (FoxtrickPrefs.isModuleOptionEnabled('ExtraShortcuts', j)) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
-					link.href = 'javascript:void(0);';
-					Foxtrick.onClick(link, function() {
-						FoxtrickPrefs.show('#tab=on_page&view-by=page');});
+					link.href = this.LINKS[j].link;
+
 					var img1 = doc.createElement('img');
-					img1.setAttribute('class', 'ftSCFtPrefs');
+					img1.setAttribute('class', this.LINKS[j].imgClass);
 					img1.src = '/Img/Icons/transparent.gif';
-					img1.title = Foxtrickl10n.getString('ExtraShortcuts.ftprefs');
-					img1.alt = Foxtrickl10n.getString('ExtraShortcuts.ftprefs');
+					img1.title = Foxtrickl10n.getString('ExtraShortcuts.' +
+														this.LINKS[j].property);
+					img1.alt = Foxtrickl10n.getString('ExtraShortcuts.' +
+													  this.LINKS[j].property);
 					img1 = Foxtrick.makeFeaturedElement(img1, this);
 
 					link.appendChild(img1);
@@ -181,6 +156,32 @@ Foxtrick.modules['ExtraShortcuts'] = {
 						}
 					}
 				}
+			}
+			if (FoxtrickPrefs.isModuleOptionEnabled('ExtraShortcuts', 'FoxTrickPrefs')) {
+				var link = doc.createElement('a');
+				link.className = 'ft_extra-shortcuts';
+				link.href = 'javascript:void(0);';
+				Foxtrick.onClick(link, function() {
+					FoxtrickPrefs.show('#tab=on_page&view-by=page');});
+				var img1 = doc.createElement('img');
+				img1.setAttribute('class', 'ftSCFtPrefs');
+				img1.src = '/Img/Icons/transparent.gif';
+				img1.title = Foxtrickl10n.getString('ExtraShortcuts.ftprefs');
+				img1.alt = Foxtrickl10n.getString('ExtraShortcuts.ftprefs');
+				img1 = Foxtrick.makeFeaturedElement(img1, this);
+
+				link.appendChild(img1);
+				if (FoxtrickPrefs.isModuleOptionEnabled('ExtraShortcuts', 'AddLeft'))
+					targetNode.insertBefore(link, targetNode.firstChild);
+				else {
+					if (targetNode.lastChild.nodeName == 'BR') {
+						targetNode.insertBefore(link, targetNode.lastChild);
+					}
+					else {
+						targetNode.appendChild(link);
+					}
+				}
+			}
 
 			for (i = 0; i < this.RADIOS.length; ++i) {
 				var radio = this.RADIOS[i];
