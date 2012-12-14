@@ -45,7 +45,8 @@ Foxtrick.modules['StarsCounter'] = {
 			var img = images[i];
 			// don't count substituted players
 			if (!Foxtrick.hasClass(img.parentNode.parentNode.parentNode, 'substitute_holder')) {
-				for (var src in imgToStars) {
+				var src;
+				for (src in imgToStars) {
 					if (img.src.match(RegExp(src, 'i'))) {
 						if (imgToStars[src].yellow) {
 							yellow += imgToStars[src].yellow;
