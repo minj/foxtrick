@@ -810,7 +810,8 @@ Foxtrick.Pages.Players = {
 									leagueText += currentPara.childNodes[j].textContent;
 								}
 							}
-							for (var j in Foxtrick.XMLData.League) {
+							var j;
+							for (j in Foxtrick.XMLData.League) {
 								if (leagueText.indexOf(Foxtrick.XMLData.League[j].LeagueName)
 								    !== -1) {
 									player.currentLeagueId = j;
