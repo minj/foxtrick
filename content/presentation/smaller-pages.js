@@ -103,11 +103,11 @@ Foxtrick.modules["SmallerPages"]={
 			try {
 				//Now reducing the bid div cutting strings
 				var toremove=biddiv.getElementsByTagName('strong');
-				for (var i=0;toremove.length;i++) {
+				for (var i=0;i < toremove.length;i++) {
 					toremove.item(i).parentNode.removeChild(toremove.item(i));
 				}
 				toremove=biddiv.getElementsByTagName('b');
-				for (var i=0;toremove.length;i++) {
+				for (var i=0;i < toremove.length;i++) {
 					toremove.item(i).parentNode.removeChild(toremove.item(i));
 				}
 			}
