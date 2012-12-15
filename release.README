@@ -1,6 +1,10 @@
 (if applicable) update cron-config.sh
-update version number in foxtrick.release.sh
+update version number in foxtrick.release.sh and foxtrick.release-light.sh
+commit changes:
+git commit -am 'release x.x.x.x'
+git svn dcommit
 run foxtrick-release.sh
+run foxtrick.release-light.sh
 
 *uploads to foxtrick.org/release, foxtrick.symbiosis.org.gr/release/ and googlecode/downloads
 *AMO and google hosted versions are uploaded to foxtrick.symbiosis.org.gr/hosting/
@@ -10,5 +14,5 @@ https://chrome.google.com/webstore/developer/edit/bpfbbngccefbbndginomofgpagkjck
 -> update file
 
 amo:
-https://addons.mozilla.org/de/developers/addon/foxtrick/edit
+https://addons.mozilla.org/en-US/developers/addon/foxtrick/edit
 ->manage version and status

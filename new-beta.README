@@ -1,26 +1,30 @@
 make new svn branch with the new beta 0.x.x (eg @home)
+svn copy https://foxtrick.googlecode.com/svn/trunk https://foxtrick.googlecode.com/svn/branches/x.x.x
 clone new branch here as follows: 
 ---
-mkdir 0.x.x
-cd 0.x.x
-git svn init https://foxtrick.googlecode.com/svn/branches/0.x.x
+mkdir x.x.x
+cd x.x.x
+git svn init https://foxtrick.googlecode.com/svn/branches/x.x.x
 git svn fetch -rHEAD
 ---
-copy upload.* files into 0.x.x/maintainer
-copy keys (*.pem, *.der) into 0.x.x/maintainer
+copy upload.* files into x.x.x/maintainer
+copy keys (*.pem, *.der) into x.x.x/maintainer
 
 update cron-config.sh
+commit changes:
+git commit -am 'new beta x.x.x'
+git svn dcommit
 
-upload master lang with 0.x.x/maintainer/crowdin-upload.sh
+upload master lang with x.x.x/maintainer/crowdin-upload.sh
 (don't upload localized files. they are from old nightly here and thus outdated)
 (if needed) run foxtrick-beta.sh (will do so anyways next day)
 
-run version.sh 0.x.x in trunk to version bump
+run version.sh x.x.x in trunk to version bump
 commit version bump with 
 ----
 cd trunk
 (git stash)
-./version.sh 0.x.x
-git commit -a -m "trunk version bump to 0.x.x."
+./version.sh x.x.x
+git commit -a -m "trunk version bump to x.x.x."
 git svn dcommit
 ----
