@@ -291,5 +291,5 @@
 	"options_page" : "content/preferences.html",
 	"homepage_url": "http://www.foxtrick.org/",
 	"update_url" : "https://www.foxtrick.org/nightly/chrome/update.xml",
-	"version" : "0.12.0"
+	"version" : "0.13.0"
 }
