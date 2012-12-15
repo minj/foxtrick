@@ -28,7 +28,7 @@ do
 	lftp -f access-ftp-down || exit 3
 	rm access-ftp-down
 	# exit if date already exists
-	grep -c $JSONDATE $log && echo "$JSONDATE already exists" && exit 1
+	grep -c $JSONDATE $log && echo "$JSONDATE already exists" && exit
 done
 
 # get yesterday info and add it to stats archive
@@ -107,4 +107,4 @@ done
 
 rm stats-upload-ftp-temp
 
-exit 1
+exit
