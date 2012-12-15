@@ -11,7 +11,7 @@ lv:
       question: 
       answer: 
     authorize: 
-      question: 
+      question: Kāpēc būtu jāatļauj FoxTrick piekļūt manas komandas datiem?
       answer: 
     privacy: 
       question: Kā FoxTrick aizsargā manu konfidencialitāti?

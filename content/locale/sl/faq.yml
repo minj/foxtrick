@@ -2,17 +2,31 @@
 sl: 
   faq: 
     style: 
-      question: 
-      answer: 
+      question: Kako lahko spreminjam izgled mojega FoxTricka?
+      answer: |
+        <p>FoxTrick zagotavlja nabor predstavitvenih vmesnikov za uporabnike, ki želijo nastavljati svoje izglede. Ti vmesniki so pridobljeni v obliki HTML ID-jev in razredov. Uporabite lahko tudi CSS, če želite opredeliti vaš želen izgled</p>
+        
+        <p>Primera takšnih datotek lahko vidite <linkCSSExample>tukaj</linkCSSExample> ali <linkCSSExampleGCode>tukaj</linkCSSExampleGCode>. Ti datoteki lahko spreminajte po lastni želji. Ko shranite datoteko, uporabite <module>SkinPlugin</module> modul za nalaganje CSS datoteke, če želite videti učinek vaših sprememb.</p>
     sound-format: 
-      question: 
-      answer: 
+      question: Katere vrste datotek so dovoljene za zvočna opozorila?
+      answer: |
+        <p>Različni brskalniki dovoljujejo različne datoteke. Tukaj je seznam:</p>
+        
+        <ul>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (lahko potrebuje Quicktime): wav, mp3</li>
+        <li>Chrome:  ogg, mp3, wav</li><li>Opera: wav, ogg</li>
+        </ul>
     sound-location: 
-      question: 
+      question: Kakšna je omejitev velikosti zvočni opozoril in kje je mogoče ta najti?
       answer: 
     authorize: 
-      question: 
+      question: Zakaj naj dovolim FoxTricku dostop do podatkov o moji ekipi?
       answer: 
     privacy: 
-      question: 
-      answer: 
+      question: Kako bo FoxTrick varoval mojo zasebnost?
+      answer: |
+        <p>FoxTrick ne bo nalagal vaših podatkov ali nastavitev na svoje strežnike, prav tako ne bo pošiljal vaših zasebnih podatkov, ki vključujejo vašo uporabniško ime, geslo, in ID igralca, ki je povezan z drugimi stranmi.</p>
+        <p>Večina podatkov, ki so posredovana drugim stranem, je poslanih s HTTP GET metodo, razen če je drugače navedeno, in bodo poslani le, ko kliknete na povezavo.</p>
+        <p>To pomeni, da boste lahko s pregledom URI-ja (Uniform Resource Indentifier) ali zunanje povezave, lahko videli, kateri podatki so podani. Nobeni podatki ne bodo poslani brez vašega dovoljenja, prav tako ne bodo uporabljeni nobeni zasebni podatki, kot je navedeno zgoraj.</p>
+        <p>Izjeme sta modula <module>HTMSPrediction</module> in <module>HTEVPrediction</module>, ki uporabljata XMLHttpRequest za pošiljanje in sprejemanje podatkov.</p>

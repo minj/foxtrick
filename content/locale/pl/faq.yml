@@ -2,17 +2,17 @@
 pl: 
   faq: 
     style: 
-      question: 
+      question: Jak mogę zmienić styl mojego FoxTricka?
       answer: 
     sound-format: 
-      question: 
+      question: Jakie formaty plików są dozwolone na dźwięki powiadomień?
       answer: 
     sound-location: 
-      question: 
+      question: Jaki jest limit rozmiaru dla dźwięków powiadomień i gdzie mogą być one ulokowane?
       answer: 
     authorize: 
-      question: 
+      question: Dlaczego powinienem autoryzować FoxTricka, by mieć dostęp do danych mojej drużyny?
       answer: 
     privacy: 
-      question: 
+      question: Jak FoxTrick będzie chronił moją prywatność?
       answer: 

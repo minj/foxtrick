@@ -2,11 +2,11 @@
 nl: 
   versions: 
     nightly: 
-      note_0: 
+      note_0: 'Dit is een beta versie. Gebruik is voor eigen risico. Kijk alstublieft op <linkSVN>commit history</linkSVN> bij Google Code for details van de veranderingen.'
     beta: 
-      note_0: 
-    0.11.0: 
-      note_0: 
+      note_0: 'Dit is een beta versie van de volgende release. Help alstublieft met vertalen van deze versie op de zeer gebruiks vriendelijke crowd-vertaal pagina <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.12.0: 
+      note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
       note_1: 
       note_2: 
       note_3: 
@@ -18,7 +18,55 @@ nl:
       note_9: 
       note_10: 
       note_11: 
-      note_12: 
+      note_12: 'AddLeaveConfButton is hernoemd naar <module>ForumLeaveButton</module>'
+      note_13: Vanaf nu, zal je browser en je Hattrick lay out automatisch zijn bijgesloten in berichten die je post op het Foxtrick forum. Dit zal ons helpen om problemen eerder op te lossen. Delete deze informatie alstublieft niet als je een posting maakt.
+      note_14: 
+    0.11.0.1: 
+      note_0: 
+      note_1: 
+      note_2: 
+    0.11.0: 
+      note_0: 'Nieuw: <module>DirectPageLinks</module>: links toegevoegd om specifieke bladzijdes te benaderen in een forum topic'
+      note_1: '<module>ForumModeratorPopup</module>: een dropdown menu is toegevoegd voor moderatoren aan de start van een discussie om moderatie te vereenvoudigen.'
+      note_2: '<module>PlayerStatsTrainingWeek</module>: Mogelijkheid toegevoegd om wedstrijden te groeperen per trainingsweek in plaats van kalender week.'
+      note_3: '<module>MatchOrderInterface</module>: Een oplossing gebracht voor de lijst met penalty nemers. Het is nu mogelijk om je team aan de lijst toe te voegen of te verwijderen met één muisklik.'
+      note_4: '<module>SkillTable</module>: Mogelijkheid toegevoegd om een tweede sorterings-criteria toe te voegen via CTRL+linkermuisklik op een andere kolomkop.'
+      note_5: '<module>SkillTable</module>: Spelernamen zullen vanaf nu afgekort worden zodat ze minder ruimte innemen.'
+      note_6: '<module>SkillColoring</module>: Gehele module herschreven, en een flink aantal bugs opgelost en toevoegingen gemaakt. Opties zijn veranderd, je zult ze opnieuw moeten instellen naar je eigen voorkeur.'
+      note_7: '<module>TransferSearchResultFilters</module>: Mogelijkheid toegevoegd om te filteren op vorm en om spelers zonder specialiteit te verbergen. Werkt nu samen met <module>TransferSearchFilters</module>.'
+      note_8: '<module>MatchSimulator</module>: Integratie met <module>Ratings</module>-module toegevoegd.'
+      note_9: '<module>FriendlyPool</module>: Mogelijkheid toegevoegd om het land-selectie box te vergroten.'
+      note_10: "<module>MovePlayerStatement</module>: Mogelijkheid toegevoegd om de gehele spelers' status te verwijderen."
+      note_11: '<module>YouthTwins</module>: Handmatig geactiveerde wijzigingen op de HYC-website worden nu automatisch doorgegeven op de jeugdspelers pagina.'
+      note_12: '<header>Bugfixes</header>'
+      note_13: 
+      note_14: 
+      note_15: 
+      note_16: 
+      note_17: 
+      note_18: 
+      note_19: 
+      note_20: 
+      note_21: 
+      note_22: 
+      note_23: 
+      note_24: 
+      note_25: 
+      note_26: 
+      note_27: 
+      note_28: 
+      note_29: 
+      note_30: 
+      note_31: 
+      note_32: 
+      note_33: 
+      note_34: 
+      note_35: 
+      note_36: 
+      note_37: 
+      note_38: 
+      note_39: 
+      note_40: 
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'

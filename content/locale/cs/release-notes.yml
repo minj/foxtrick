@@ -2,10 +2,10 @@
 cs: 
   versions: 
     nightly: 
-      note_0: 
+      note_0: 'Toto je vývojový build. Používejte po pečlivém zvážení. Podívejte se na <linkSVN>historii commitů</linkSVN> na Google Code pro zobrazení detailů změn.'
     beta: 
-      note_0: 
-    0.11.0: 
+      note_0: 'Toto je beta verze dalšího vydání. Prosím pomožte s překladem této verze na naší superjednoduché překladatelské stránce <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.12.0: 
       note_0: 
       note_1: 
       note_2: 
@@ -19,6 +19,54 @@ cs:
       note_10: 
       note_11: 
       note_12: 
+      note_13: 
+      note_14: 
+    0.11.0.1: 
+      note_0: 
+      note_1: 
+      note_2: 
+    0.11.0: 
+      note_0: 'NOVÉ: <module>DirectPageLinks</module>: přidané odkazy pro přístup na specifické stránky z konferenčního tématu'
+      note_1: 'NOVÉ: <module>ForumModeratorPopup</module>: Přidáno menu pro moderátory konferencí nad samotné téma pro zjednodušení moderování.'
+      note_2: 'NOVÉ: <module>PlayerStatsTrainingWeek</module>: Přidána možnost agregovat zápasy na základě tréninkového týdne místo kalendářního.'
+      note_3: '<module>MatchOrderInterface</module>: Nasazena oprava pro seznam exekutorů penalt. Nyní je možné i přidat na seznam soupisku nebo ji smazat na jeden klik.'
+      note_4: '<module>SkillTable</module>: Přidána možnost nastavení druhé priority řazení stisknutím ctrl a levého tlačítka myši na hlavičku sloupce.'
+      note_5: '<module>SkillTable</module>: Jména hráčů jsou nyní zkrácena pro úsporu místa.'
+      note_6: '<module>SkillColoring</module>: Kompletní přepsání modulu, několiv oprav bugů a doplnění. Možnosti upraveny. Můžete si je nastavit dle vašich preferencí.'
+      note_7: '<module>TransferSearchResultFilters</module>: Přidána možnost filtrovat podle formy a skrýt hráče bez speciality. Nyní spolupracuje s <module>TransferSearchFilters</module>.'
+      note_8: '<module>MatchSimulator</module>: Přidána integrace s <module>Ratings</module>.'
+      note_9: '<module>FriendlyPool</module>: Přidána možnost rozbalit seznam států.'
+      note_10: '<module>MovePlayerStatement</module>: Přidána možnost úplně odstranit prohlášení.'
+      note_11: '<module>YouthTwins</module>: Manuálně provedené změny v HY budou nyní okamžitě promítnuty na stránce s mládežníckými hráči'
+      note_12: '<header>Opravy bugů</header>'
+      note_13: 
+      note_14: 
+      note_15: 
+      note_16: 
+      note_17: 
+      note_18: 
+      note_19: 
+      note_20: 
+      note_21: 
+      note_22: 
+      note_23: 
+      note_24: 
+      note_25: 
+      note_26: 
+      note_27: 
+      note_28: 
+      note_29: 
+      note_30: 
+      note_31: 
+      note_32: 
+      note_33: 
+      note_34: 
+      note_35: 
+      note_36: 
+      note_37: 
+      note_38: 
+      note_39: 
+      note_40: 
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
