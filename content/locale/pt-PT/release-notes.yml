@@ -2,10 +2,10 @@
 pt-PT: 
   versions: 
     nightly: 
-      note_0: 
+      note_0: 'Esta é a versão desenvolvida. Use consoante a sua vontade. Por favor veja o <linkSVN>Histórico de confirmação</linkSVN> no Google Code para mais detalhe sobre as alterações.'
     beta: 
-      note_0: 
-    0.11.0: 
+      note_0: 'Esta é a versão beta do nosso próximo lançamento. Agradecíamos que ajudassem a traduzir esta versão na nossa página de tradução <linkCrowdin>crowdin.net</linkCrowdin>'
+    0.12.0: 
       note_0: 
       note_1: 
       note_2: 
@@ -19,43 +19,93 @@ pt-PT:
       note_10: 
       note_11: 
       note_12: 
+      note_13: 
+      note_14: 
+    0.11.0.1: 
+      note_0: 
+      note_1: 
+      note_2: 
+    0.11.0: 
+      note_0: 'Novo: <module>DirectPageLinks</module> Links adicionados para aceder a páginas especificas num tópico'
+      note_1: 'Novo: <module>ForumModeratorPopup</module>: Adicionámos um novo menu, no topo dos tópicos, para os moderadores dos fóruns terem a sua tarefa simplificada.'
+      note_2: 'Nova: <module>PlayerStatsTrainningWeek</module>: Foi adicionada a oportunidade para agrupar jogos, de acordo com a semana de treinos em vez da semana do calendário.'
+      note_3: '<module>MatchOrderInterface</module> Uma correcção para a lista dos batedores de bolas paradas foi fornecida. Pode-se ainda adicionar a equipa à lista ou limpá-la com apenas um clique.'
+      note_4: "<module>SkillTable</module>: Oportunidade adicionada para sub dividir um ordem existente usando ''ctrl + lado esquerdo do rato'' noutro cabeçalho de coluna."
+      note_5: '<module>SkillTable</module>: Os nomes dos jogadores serão abreviados a partir de agora ocupando menos espaço.'
+      note_6: |
+        <module>SkillColoring</module>: O módulo foi todo reescrito, bugs foram corrigidos, houve adições e opções alteradas. Define-as ao teu gosto novamente.
+        Full module rewrite, a lot of bug fixes and additions. Options changed. Please set them to your liking again.
+      note_7: '<module>TransferSearchResultFilters</module>: Foi acrescentado um novo filtro para listar os jogadores pela forma ou esconder os que não têm especialidade. Agora coopera com <module>TransferSearchFilters</module>.'
+      note_8: '<module>MatchSimulator</module>: Acrescentada a integração com <module>Ratings</module>.'
+      note_9: '<module>FriendlyPool</module>: Foi adicionada a oportunidade de expandir a caixa de selecção de países.'
+      note_10: '<module>MovePlayerStatement</module>: Acrescentou-se a oportunidade de remover as declarações nas páginas dos jogadores.'
+      note_11: '<module>YouthTwins</module>: Alterações feitas manualmente no Hattrick Youthclub serão agora reflectidas instantaneamente nas páginas dos jogadores.'
+      note_12: '<header>Bugs Corrigidos</header>'
+      note_13: 
+      note_14: 
+      note_15: 
+      note_16: 
+      note_17: 
+      note_18: 
+      note_19: 
+      note_20: 
+      note_21: 
+      note_22: 
+      note_23: 
+      note_24: 
+      note_25: 
+      note_26: 
+      note_27: 
+      note_28: 
+      note_29: 
+      note_30: 
+      note_31: 
+      note_32: 
+      note_33: 
+      note_34: 
+      note_35: 
+      note_36: 
+      note_37: 
+      note_38: 
+      note_39: 
+      note_40: 
     0.10.0: 
-      note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
-      note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
-      note_2: 'NEW: <module>HTEVPrediction</module>: Displays match odds for league games provided by <linkHTEV>HTEV</linkHTEV> (default on)'
-      note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'
-      note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
-      note_5: '<module>YouthTwins</module>: Option added to hide the information link about twins (default off)'
+      note_0: 'Novo: <module>TransferHistoryFilters</module>: Permite filtrar as transferências por venda ou compra apenas. Só disponível para o histórico da equipa, não de jogadores (activado por defeito)'
+      note_1: 'Novo: <module>FriendlyPool</module>: Dá uma cor especifica aos países onde já disputou amigáveis internacionais (só para os sócios, activado por defeito)'
+      note_2: 'Novo: <module>HTEVPrediction</module>: Exibe as percentagens para os jogos do campeonato fornecidas pelo <linkHTEV>HTEV</linkHTEV> (activado por defeito)'
+      note_3: '<module>PlayerStatsExperience</module>: Uma versão nova e cuidada com mais detalhes e feedbacks coloridos se a informação for fiável. (Obrigado ao SeanConnery (7751762) por testar as cores para utilizadores daltónicos)'
+      note_4: '<module>MatchOrderInterface</module>: Possibilidade para clonar ou converter uma ordem existente. Os jogadores não serão colocados na nova ordem propositadamente.'
+      note_5: '<module>YouthTwins</module>: Opção adicionada para esconder o link de informação sobre gémeos(desactivado por defeito)'
       note_6: '<module>StaffMarker</module>: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on'
-      note_7: '<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org'
-      note_8: Support for the KeyPlayer page
-      note_9: Some improvements for Firefox on Android
-      note_10: Possibility to test alert sounds in the preferences
-      note_11: Some internal changes related to data storage
-      note_12: Some smaller changes and fixes we forgot about
-      note_13: '<header>Bugfixes</header>'
-      note_14: '<module>ExtendedPlayerDetails</module>: Fixed wage per week and season beeing incorrect for korean and probably some other languages too'
-      note_15: '<module>MatchOrderInterface</module>: Face will also show for replaced and highlighted players for past lineups'
-      note_16: '<module>MatchPlayerColouring</module>: Now works properly for players that were put in and left the field before the game ended'
-      note_17: '<module>HideSignatures</module>: Did not work when HT setting was set to truncated signatures, fixed that'
-      note_18: '<module>PlayerStatsExperience</module>: Fixed NT/U-20 final and semi-final detection'
-      note_19: '<module>TeamPopupLinks</module>: Fixed infinite creating of tabs on the guestbook'
-      note_20: Fixed RTL language issues with the median transfer price
-      note_21: '<header>For visually/hearing impaired users</header>'
-      note_22: We added a new section to the settings page that will contain all modules that are related to accessibility.
+      note_7: '<module>TeamPopupLinks</module>: Algum estilos foram redesenhados para integrar melhor com a aparência geral do hattrick.org'
+      note_8: Suporte para a página dos jogadores chave
+      note_9: Algumas melhorias para o Firefox no Android
+      note_10: Possibilidade de testar os sons de alerta nas preferências
+      note_11: Algumas mudanças internas relacionadas com o armazenamento de dados
+      note_12: Algumas mudanças pequenas e correcções que foram esquecidas
+      note_13: '<header>Bugs Corrigidos</header>'
+      note_14: '<module>ExtendedPlayerDetails</module>: Corrigiram-se os salários semanais e a época errada para os jogadores Coreanos e provavelmente outras línguas'
+      note_15: '<module>MatchOrderInterface</module>: A cara será também mostrada em jogadores substituidos e realçados em formações passadas'
+      note_16: '<module>MatchPlayerColouring</module>: Agora funciona correctamente para jogadores que foram colocados na formação mas que saíram antes do jogo terminar'
+      note_17: '<module>HideSignatures</module>: Não funcionava quando as preferência do HT estavam definidas para truncar as assinaturas, no fórum, situação corrigida'
+      note_18: '<module>PlayerStatsExperience</module>: Corrigiu-se a detecção das semi-finais e finais dos Sub-20/ AA'
+      note_19: '<module>TeamPopupLinks</module>: Corrigida a infinita criação de separadores no livro de visitas'
+      note_20: Problemas de linguagem RTL corrigidos com o preço médio de transferência
+      note_21: '<header>Para utilizadores com problemas de audição/ visão</header>'
+      note_22: Nós adicionamos uma nova secção para a página de configurações que conterá todos os módulos que estão relacionados com a acessibilidade.
       note_23: 'NEW: <module>ARIALandmarks</module>: Adds ARIA landmarks to the website. This should help navigating the site using screenreaders. The two main navigation bars and the list of all subscribed forums got the role "navigation". The main content has the role "main". All the sidebars with additional information and links will be marked as "complementary". The links to global search and forum search have the role "search" of course.'
-      note_24: If you have any further suggestions please don't hesitate to contact us. We are also browsing the Hattrick Access forums.
+      note_24: Se tiver mais sugestões por favor não hesite em contactar-nos. Nós também estamos à procura nos fóruns de acesso do Hattrick.
     0.9.3: 
-      note_0: 'A lot of language updates because Foxtrick users are awesome. Thank you so much. Keep contributing at <linkCrowdin>http://www.crowdin.net</linkCrowdin>'
-      note_1: 'NEW: <module>YouthTwins</module>: Shows the amount of possible/marked/non twins on the youth players overview page for supporters (in conjunction with hattrick youthclub)'
-      note_2: '<module>MatchOrderInterface</module>: Option to show player faces instead of shirts for future and past line-ups (default on)'
-      note_3: '<module>MatchOrderInterface</module>: Option to disable last match information and highlighting for tournament games added (default on)'
-      note_4: '<module>MatchIncome</module>: Support for increased ticket prices in season 49. Income is now calculated by the ticket prices that were active when the match was played.'
-      note_5: "MatchOrderInterface: Fixed bug where the playedLastMatch indicator didn't show (or showed incorrectly) on Firefox"
-      note_6: "MatchOrderInterface: Removed last match highlighting because it's not approved anymore :( (But there's a native HT replacement for supporters now)"
-      note_7: 'PlayerStatsExperience: Fixed bug where red cards caused games beeing detected as walkovers'
-      note_8: 'PlayerStatsExperience: Fixed issue that caused this module not to work on Firefox 3.6'
-      note_9: 'CustomMedals: Fixed disappearing tournament trophies'
+      note_0: 'Muitos dos updates linguísticos são devidos a utilizadores fantásticos do FoxTrick. Muito obrigado e continuem a contribuir através do <linkCrowdin>http://www.crowdin.net</linkCrowdin>'
+      note_1: 'Nova: <module>YouthTwins</module>: mostra a quantidade de gêmeos possíveis/marcados/não gémeos na página de visão geral de jogadores para sócios (em conjunto com o hattrick youthclub)'
+      note_2: '<module>MatchOrderInterface</module>: Opção para mostrar a cara dos jogadores em vez de T-shirts para formações futuras ou passadas (activado por defeito)'
+      note_3: '<module>MatchOrderInterface</module>: Opção para desactivar a informação do último jogo e realçar para os jogos de torneios adicionada (activado por defeito)'
+      note_4: '<module>CoincidirReceita</module>: suporte para o aumento do preço dos bilhetes na época 49. O rendimento é agora calculado consoante os preços de bilhetes que estavam em vigor quando o jogo foi disputado.'
+      note_5: 'MatchOrderInterface: Corrigido o erro onde o indicador do último jogo disputado não era mostrado (ou mostrou incorretamente) no Firefox'
+      note_6: 'MatchOrderInterface: Removido o realce para o último jogo disputado porque não está mais aprovado :( (Existe porém um versão primária da ferramenta no HT para sócios)'
+      note_7: 'PlayerStatsExperience: Corrigido o bug que levava a que cartões vermelhos fossem detectados com jogos não dispuatados'
+      note_8: 'PlayerStatsExperience: Corrigido o problema que causou que este módulo não funcionasse no Firefox 3.6'
+      note_9: 'CustomMedals: Erro que levava ao desaparecimento de troféus de torneios corrigido'
       note_10: Ogg sounds for mozilla-based browsers enabled
       note_11: Fennec loads staffmarker and link resources from internal sources again. So they aren't updated dynamically but also save bandwidth.
     0.9.2: 

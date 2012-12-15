@@ -2,10 +2,10 @@
 sk: 
   versions: 
     nightly: 
-      note_0: 
+      note_0: 'Toto je vývojárska verzia. Použitie na vlastné riziko. Prosím zobraziť <linkSVN>commit history</linkSVN> na Google Code pre Podrobnosti o zmenách.'
     beta: 
-      note_0: 
-    0.11.0: 
+      note_0: 'Toto je beta verzia ďalšieho releasu. Prosím pomôžte nám s prekladom tejto verzie na stránke nášho jednoduchého prekladača <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.12.0: 
       note_0: 
       note_1: 
       note_2: 
@@ -19,6 +19,54 @@ sk:
       note_10: 
       note_11: 
       note_12: 
+      note_13: 
+      note_14: 
+    0.11.0.1: 
+      note_0: 
+      note_1: 
+      note_2: 
+    0.11.0: 
+      note_0: 'Novinka: <module>DirectPageLinks</module>: links pridané na prístup konkrétnych stránok vo vlákne fóra'
+      note_1: 
+      note_2: 
+      note_3: 
+      note_4: 
+      note_5: 
+      note_6: 
+      note_7: 
+      note_8: 
+      note_9: 
+      note_10: 
+      note_11: 
+      note_12: 
+      note_13: 
+      note_14: 
+      note_15: 
+      note_16: 
+      note_17: 
+      note_18: 
+      note_19: 
+      note_20: 
+      note_21: 
+      note_22: 
+      note_23: 
+      note_24: 
+      note_25: 
+      note_26: 
+      note_27: 
+      note_28: 
+      note_29: 
+      note_30: 
+      note_31: 
+      note_32: 
+      note_33: 
+      note_34: 
+      note_35: 
+      note_36: 
+      note_37: 
+      note_38: 
+      note_39: 
+      note_40: 
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
@@ -29,7 +77,7 @@ sk:
       note_6: '<module>StaffMarker</module>: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on'
       note_7: '<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org'
       note_8: Support for the KeyPlayer page
-      note_9: Some improvements for Firefox on Android
+      note_9: Pár vylepšení pre Firefox na Androide
       note_10: Possibility to test alert sounds in the preferences
       note_11: Some internal changes related to data storage
       note_12: Some smaller changes and fixes we forgot about

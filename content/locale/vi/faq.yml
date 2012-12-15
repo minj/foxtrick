@@ -2,17 +2,65 @@
 vi: 
   faq: 
     style: 
-      question: 
-      answer: 
+      question: Làm thế nào để trang trí FoxTrick của tôi?
+      answer: |
+        <p>FoxTrick cung cấp nhiều giao diện trình bày khác nhau cho người sử dụng tùy chỉnh theo ý thích. Các giao diện này được cung cấp qua các HTML IDs và classes, và người chơi có thể dùng CSS để thiết lập giao diện cho mình.</p>
+        
+        <p>Một mẫu ví dụ cho người chơi có thể được tìm thấy <linkCSSExample>tại đây</linkCSSExample> hoặc <linkCSSExampleGCode>tại đây</linkCSSExampleGCode>, và bạn có thể điều chỉnh thêm theo ý thích. Sau khi lưu, bạn có thể sử dụng thêm <module>Skin Plugin</module> để tải lại dữ liệu CSS để có thể sử dụng các tùy chỉnh cá nhân.</p>
     sound-format: 
-      question: 
-      answer: 
+      question: Các âm thanh báo động có thể có những định dạng nào?
+      answer: |
+        <p>Những trình duyệt khác nhau cho phép những định dạng khác nhau. Dưới đây là danh sách (những định dạng không được liệt kê dưới đây có thể hoạt động nếu các plugins cần thiết được cài đặt, ví dụ như Quicktime để chơi mp3 trong Firefox)</p>
+        
+        <ul>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (có thể cần Quicktime): wav, mp3</li>
+        <li>Chrome: ogg, mp3, wav</li>
+        <li>Opera: wav, ogg</li>
+        </ul>
     sound-location: 
-      question: 
-      answer: 
+      question: Dung lượng giới hạn của tập tin âm thanh báo động là bao nhiêu và chúng có thể được đặt ở đâu?
+      answer: |
+        <p>Tất cả các trình duyệt đều chạy được urls. Đó là các âm thanh đã được lưu nội bộ khi bạn sử dụng chức năng tải lại trong phần tùy chỉnh. Một khi chúng đã được chuyển đổi và lưu lại trong phần tùy chỉnh của bạn, dung lượng của mỗi âm thanh sẽ bị giới hạn vào khoảng 160kb.</p>
+        
+        <p>Tất cả các trình duyệt cũng đều có thể chạy âm thanh trực tiếp từ internet (http urls). Chỉ cần sao chép đường link (ví dụ http://foxtrick.org/sound.wav) vào phần chỉnh sửa âm thanh. Không giới hạn dung lượng.</p>
+        
+        <p>Người sử dụng Mozilla cũng có thể chạy âm thanh trực tiếp từ ổ cứng của mình (file urls) mà không bị giới hạn dung lượng. Cách đơn giản nhất để lấy được file với đúng định dạng: Vào cửa sổ trình duyệt, gõ Ctrl+o, tìm nơi chứa file âm thanh và chọn nó. Trong thanh địa chỉ phía trên sẽ hiện ra đường dẫn đến file (ví dụ file:///c:/sound.wav). Sau đó sao chép và dán đường dẫn này vào phần chỉnh sửa âm thanh.</p>
     authorize: 
-      question: 
-      answer: 
+      question: Tại sao tôi phải cho phép FoxTrick truy cập vào dữ liệu đội của tôi?
+      answer: |
+        <p>Mặc dù đa số các dữ liệu FoxTrick yêu cầu có thể được tải về trực tiếp từ trang bạn đang xem, một số module còn có thể yêu cầu tải xuống dữ liệu từ Hattrick mới có thể hoạt động được.</p>
+        
+        <p>Để tải dữ liệu từ Hattrick, bao gồm dữ liệu về đội bóng, bảng đấu của bạn, và đội tuyển quốc gia, trước tiên bạn phải ủy quyền cho FoxTrick.</p>
+        
+        <p>Bạn có thể ủy quyền cho FoxTrick bằng cách cung cấp tên sử dụng và mật khẩu của mình trên trang chpp.hattrick.org để lấy mã xác thực, mã này sẽ được bạn cung cấp cho FoxTrick. FoxTrick sẽ không lưu lại tên sử dụng và mật khẩu của bạn trong toàn bộ quá trình.</p>
+        
+        <p>Để biết thêm thông tin về quá trình ủy quyền, hãy đọc <linkCHPPDesc>CHPP - Cách sử dụng</linkCHPPDesc> trên Hattrick.</p>
+        
+        <p>Một số module còn yêu cầu truy cập dữ liệu mới có thể hoạt động.</p>
+        
+        <ul>
+        <li><module>CrossTable</module></li>
+        <li><module>ExtraPlayerInfo</module></li>
+        <li><module>MatchPlayerColouring</module></li>
+        <li><module>MyMonitor</module></li>
+        <li><module>NtPeek</module></li>
+        <li><module>SeriesFlags</module></li>
+        </ul>
+        
+        <p>Một số module có thể cung cấp thêm thông tin nếu như được truy cập dữ liệu từ Hattrick.</p>
+        
+        <ul>
+        <li><module>SkillTable</module></li>
+        <li><module>TeamStats</module></li>
+        </ul>
     privacy: 
-      question: 
-      answer: 
+      question: Foxtrick sẽ làm thế nào để bảo vệ quyền riêng tư của tôi?
+      answer: |
+        <p>FoxTrick sẽ không tải lên bất cứ dữ liệu hay tùy chỉnh nào của người chơi lên máy chủ; cùng với đó sẽ không gửi bất cứ dữ liệu riêng tư nào, bao gồm tên sử dụng, mật khẩu, và ID của cầu thủ cũng như các kĩ năng của cầu thủ đó đến bên thứ ba.</p>
+        
+        <p>Phần lớn các dữ liệu chuyển sang bên thứ ba, trừ khi được nêu rõ ràng dưới đây, được gửi với phương thức HTTP GET, và sẽ chỉ được gửi khi bạn bấm vào đường dẫn.</p>
+        
+        <p>Điều này có nghĩa là bạn sẽ có thể xem được những dữ liệu nào được chuyển bằng cách kiểm tra URI (định danh tài nguyên đồng dạng) của một đường dẫn bên ngoài, và không có dữ liệu nào sẽ được gửi đi mà không có sự đồng ý của bạn. Như đã nói, điều này không bao gồm dữ liệu cá nhân.</p>
+        
+        <p>Các ngoại lệ là module <module>HTMSPrediction</module> và <module>HTEVPrediction</module>, nơi mà thông số trận đấu được chuyển tới và được nhận bởi trang web tương ứng với XMLHttpRequest.</p>

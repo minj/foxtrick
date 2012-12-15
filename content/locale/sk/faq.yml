@@ -2,17 +2,17 @@
 sk: 
   faq: 
     style: 
-      question: 
+      question: Ako môžem zmeniť štýl môjho FoxTricku?
       answer: 
     sound-format: 
-      question: 
+      question: Aké formáty súborov sú povolené pre upozorňovacie zvuky?
       answer: 
     sound-location: 
-      question: 
+      question: Aký je veľkostný limit pre upozorňovacie zvuky a kde môžu byť uložené?
       answer: 
     authorize: 
-      question: 
+      question: Prečo mám autorizovať FoxTrick, aby mal prístup k dátam môjho tímu?
       answer: 
     privacy: 
-      question: 
+      question: Ako ochráni FoxTrick moje súkromné údaje?
       answer: 

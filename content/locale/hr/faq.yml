@@ -2,17 +2,17 @@
 hr: 
   faq: 
     style: 
-      question: 
+      question: Kako mogu stilizirati svoj Foxtrick?
       answer: 
     sound-format: 
-      question: 
+      question: Koji formati datoteke su dozvoljeni za zvuk upozorenja?
       answer: 
     sound-location: 
-      question: 
+      question: Kolika je granica veličine za zvukove upozorenja i gdje zvukovi mogu bit pronađeni?
       answer: 
     authorize: 
-      question: 
+      question: Zašto trebam dati autorizaciju Foxtricku da pristupi podacima moje momčadi?
       answer: 
     privacy: 
-      question: 
+      question: Kako će Foxtrick zaštititi moju privatnost?
       answer: 

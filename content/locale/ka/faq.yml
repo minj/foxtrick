@@ -2,17 +2,17 @@
 ka: 
   faq: 
     style: 
-      question: 
+      question: როგორ შემიძლია შევუცვალო სტილი ჩემს FoxTrick-ს ? 
       answer: 
     sound-format: 
-      question: 
+      question: რა ფორმატის ფაილებია დაშვებული გამაფრთხილებელი სიგნალზე დასაყენებლად ? 
       answer: 
     sound-location: 
-      question: 
+      question: რა მაქსიმალური ზომა შეიძლება ქონდეს გამაფრთხილებელ ზარს და სად შეიძლება მათი ნახვა?
       answer: 
     authorize: 
       question: 
       answer: 
     privacy: 
-      question: 
+      question: როგორ დაიცავს FoxTrick-ი ჩემს პირად მონაცემებს ? 
       answer: 

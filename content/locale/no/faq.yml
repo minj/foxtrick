@@ -5,14 +5,60 @@ no:
       question: 
       answer: 
     sound-format: 
-      question: 
-      answer: 
+      question: Hvilke filformater tillates for varsellyder?
+      answer: |
+        <p>Forskjellige nettlesere tillater forskjellige filformater. Her er en liste (ikke-listede formater kan fungere hvis de riktige plugins er installert, f.eks. Quicktime for å spille mp3 i Firefox):</p>
+        
+        <ul>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (behøver kanskje Quicktime): wav, mp3</li>
+        <li>Chrome: ogg, mp3, wav</li>
+        <li>Opera: wav, ogg</li>
+        </ul>
     sound-location: 
-      question: 
-      answer: 
+      question: Hva er grensen for filstørrelse på varsellyder, og hvor kan de plasseres?
+      answer: |
+        <p> Alle nettlesere kan spille data url'er. Det er de lydene som er lagret internt når du bruker "last inn" knappen i innstillinger. Siden de er konvertert og lagret i dine instillinger, er filstørrelsen begrenset til rundt 160kB per lyd. </p>
+        
+        <p> Alle nettlesere kan også spille lyder direkte fra internett (http url'er). Bare kopier en link til en lyd (f.eks. http://foxtrik.org/sound.wav) inn i feltet for lyder. Det er ingen begrensning på filstørrelse.</p>
+        
+        <p> Mozilla nettlesere kan også spille lyd direkte fra din harddisk (fil url'er) uten begrensning på filstørrelse. Den enkleste måten å få det riktige formatet på: I nettleseren, klikk Ctrl+o, lett etter lydfilen og velg den. I adressefeltet på toppen er nå riktig link til den lokale filen (f.eks. file:///c:/sound.wav). Kopier og lim denne inn i redigeringsfeltet for lydfiler i dine instillinger. </p>
     authorize: 
-      question: 
-      answer: 
+      question: Hvorfor bør jeg godkjenne at FoxTrick får tilgang til mitt lags data?
+      answer: |
+        <p>Selv om det meste av dataen FoxTrick trenger kan hentes direkte fra siden du ser på, krever noen moduler nedlasting av data fra Hattrick for å fungere skikkelig.</p>
+        
+        <p> For å laste ned data fra Hattrick, inkludert data fra ditt lag, din serie, og landslag, må du godkjenne FoxTrick på forhånd.</p>
+        
+        <p>Du godkjenner FoxTrick ved å fylle inn ditt brukernavn og passord på chpp.hattrick.org i bytte for en verifiseringskode, som du bruker til å autorisere FoxTrick. FoxTrick vil ikke få tilgang til ditt passord eller brukernavn.</p>
+        
+        <p>For å lære mer om autoriseringsprosessen, vennligst les <linkCHPPDesc>CHPP - Hvordan det fungerer</linkCHPPDesc> på Hattrick.</p>
+        
+        <p>Noen moduler krever datatilgang for å fungere skikkelig:</p>
+        
+        <ul>
+        <li><module>CrossTable</module></li>
+        <li><module>ExtraPlayerInfo</module></li>
+        <li><module>MatchPlayerColouring</module></li>
+        <li><module>MyMonitor</module></li>
+        <li><module>NtPeek</module></li>
+        <li><module>SeriesFlags</module></li>
+        </ul>
+        
+        <p>Noen moduler kan gi deg omfattende informasjon om de får tilgang til data fra Hattrick:</p>
+        
+        
+        <ul>
+        <li><module>SkillTable</module></li>
+        <li><module>TeamStats</module></li>
+        </ul>
     privacy: 
-      question: 
-      answer: 
+      question: Hvordan vil FoxTrick beskytte personvernet mitt?
+      answer: |
+        <p> FoxTrick vil ikke laste opp noe av din data eller instillinger til en FoxTrick server; FoxTrick vil heller ikke sende noe av din private data, inkludert, men ikke begrenset til ditt brukernavn, passord, og spiller ID forbundet med ferdigheter til noen tredje parter.</p>
+        
+        <p>Det meste av dataen som blir sent til tredjeparter, om det ikke er eksplisitt nevnt nedenfor, er sent med HTTP GET metoden, og vil bare bli sent dersom du klikker på en designert link.</p>
+        
+        <p>Det vil være mulig for deg å se hvilke data som blir sendt videre ved å inspisere URI'en (Uniform Resource Identifier) til en ekstern link, og ingen data vil bli sent uten din tillatelse. Som beskrevet over, ingen privat data vil bli sendt.</p>
+        
+        <p>Unntaket er modulene <module>HTMSPrediction</module> og <module>HTEVPrediction</module>, hvor kampratinger er sendt og motatt fra de respektive sidene med XMLHttprequest.</p>

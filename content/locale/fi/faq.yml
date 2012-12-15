@@ -19,7 +19,39 @@ fi:
       answer: 
     authorize: 
       question: Miksi minun pitää valtuuttaa FoxTrick päästäkseni joukkueeni tietoihin?
-      answer: 
+      answer: |
+        <p>Vaikka FoxTrick pystyykin noutamaan suurimman osan tiedoista suoraan avoinna olevalta sivulta, vaativat jotkut moduulit tietojen lataamista Hattrickistä toimiakseen kunnolla.</p>
+        
+        <p>Ladataksesi tietoja Hattrickistä esimerkiksi omasta joukkueestasi, liigastasi tai maajoukkueestasi täytyy sinun valtuuttaa FoxTrick etukäteen.</p>
+        
+        <p>Valtuutat FoxTrickin antamalla käyttäjätunnuksesi ja salasanasi chpp.hattrick.org sivulla, josta saaman vahvistuskoodia käytät FoxTrickillä. FoxTrick ei tule tietämään käyttäjätunnustasi tai salasanaasi prosessin aikana.</p>
+        
+        <p>Lisätietoja valtuuttamisprosessista saa lukemalla <linkCHPPDesc>CHPP - How it works</linkCHPPDesc> Hattrickissä.</p>
+        
+        <p>Joidenkin moduulien on päästävä käsiksi tietoihin toimiakseen kunnolla.</p>
+        
+        <ul>
+        <li><module>CrossTable</module></li>
+        <li><module>ExtraPlayerInfo</module></li>
+        <li><module>MatchPlayerColouring</module></li>
+        <li><module>MyMonitor</module></li>
+        <li><module>NtPeek</module></li>
+        <li><module>SeriesFlags</module></li>
+        </ul>
+        
+        <p>Jotkut moduulit voivat tuottaa laajaa informaatiota jos ne pääsevät käsiksi Hattrickin tietoihin:</p>
+        
+        <ul>
+        <li><module>SkillTable</module></li>
+        <li><module>TeamStats</module></li>
+        </ul>
     privacy: 
       question: Miten FoxTrick suojaa yksityisyyttäni?
-      answer: 
+      answer: |
+        <p>FoxTrick ei lataa mitään tietoja tai asetuksia serverilleen, kuten ei myöskään lähetä mitään henkilökohtaisia tietojasi kolmansille osapuolille; mukaanlukien (mutta ei pelkästään) käyttäjätunnuksesi, salasanasi tai pelaaja-ID yhdistettynä taitoihin.</p>
+        
+        <p>Kolmansille osapuolille lähetetty data, ellei alla toisin mainita, lähetetään HTTP GET metodilla. Tämä tapahtuu vain klikatessasi linkkiä.</p>
+        
+        <p>Voit nähdä lähetetyn datan tarkastamalla URI (Uniform Resource Identifier) -osoitteen, eikä mitään tietoja lähetetä ilman suostumustasi. Ja kuten yllä todetaan, henkilökohtaisia tietoja ei lähetetä missään tapauksessa.</p>
+        
+        <p>Poikkeuksia ovat seuraavat moduulit: <module>HTMSPrediction</module> sekä <module>HTEVPrediction</module>, joiden avulla otteluarvostelut lähetetään ja vastaanotetaan XMLHttpRequest menetelmää käyttäen.</p>

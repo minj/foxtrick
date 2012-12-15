@@ -2,17 +2,28 @@
 nl: 
   faq: 
     style: 
-      question: 
-      answer: 
+      question: Hoe pas ik de stijl van mijn FoxTrick aan?
+      answer: |
+        <p>Foxtrick levert mogelijkheden voor gebruikers om stijlen aan te passen naar eigen voorkeur. Deze mogelijkheden worden aangeleverd via HTML IDs en classes. Met behulp van deze elementen, kun je in CSS je eigen stijl-voorkeuren aangeven.</p>
+        
+        <p>Een voorbeeld van een gebruiker's stijl kan <linkCSSExample>hier</linkCSSExample> of <linkCSSExampleGCode>hier</linkCSSExampleGCode> gevonden worden, welke je naar hartenlust kunt aanpassen. Nadat je het bestand opgeslagen hebt, kun je de <module>SkinPlugin</module> module gebruiken om het CSS bestand in te laden om je eigen gecreëerde stijlen op de Hattrick site te kunnen zien.</p>
     sound-format: 
-      question: 
-      answer: 
+      question: Welke bestandstypen zijn toegestaan voor een notificatie geluid?
+      answer: |
+        <p>Verschillende browsers accepteren verschillende bestandsformaten. Hier is een lijst (bestandsformaten die niet in de lijst staan, kunnen ook werken als de juiste plug-ins geïnstalleerd zijn, bijv. Quicktime om mp3 bestanden af te spelen in Firefox):</p>
+        
+        <ul>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (Quicktime is mogelijk nodig): wav, mp3</li>
+        <li>Chrome: ogg, mp3, wav</li>
+        <li>Opera: wav, ogg</li>
+        </ul>
     sound-location: 
-      question: 
+      question: Wat is de maximum bestandsgrootte voor waarschuwings-geluiden en waar kunnen deze geplaatst worden?
       answer: 
     authorize: 
-      question: 
+      question: Waarom moet ik FoxTrick toestemming geven om mijn teamdata te benaderen?
       answer: 
     privacy: 
-      question: 
+      question: Hoe beschermt Foxtrick mijn privacy?
       answer: 

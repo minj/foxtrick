@@ -3,10 +3,26 @@ he:
   faq: 
     style: 
       question: כיצד אוכל לעצב את הפוקסטריק שלי?
-      answer: 
+      answer: |
+        <p>באפשרותך לערוך את קבצי הסגנונות של פוקסטריק, קבצי ה-CSS, ולהתאימם אישית כרצונך.</p>
+        <p>קובץ ה-CSS מכיל את הפורמט לעיצוב פוקסטריק (סוג הכתב, גודל הכתב, צבעים של טבלאות ועוד). גם ללא ידע תיכנותי תוכל להתאים את המראה של פוקסטריק כרצונך. הקובץ פשוט ובכל קטע מוסבר לאין הוא שייך.</p>
+        <p>סגנונת לדוגמא: <linkCSSExample>דוגמא1</linkCSSExample>, <linkCSSExampleGCode>דוגמא2</linkCSSExampleGCode>.</p>
+        
+        <p>לאחר יצירת סגנון אישי, טעינתו תתבצע על ידי סימון <module>SkinPlugin</module> בהעדפות.</p>
+        <br />
+        <p>לקריאה נוספת בנושא ה CSS: <a href="http://he.wikipedia.org/wiki/%D7%92%D7%99%D7%9C%D7%99%D7%95%D7%A0%D7%95%D7%AA_%D7%A1%D7%92%D7%A0%D7%95%D7%9F_%D7%9E%D7%93%D7%95%D7%A8%D7%92%D7%99%D7%9D">wiki</a>, <a href="http://www.w3schools.com/css/css_intro.asp">w3schools</a></p>
     sound-format: 
       question: אילו סוגי קבצים מותרים עבור צלילי התראה?
-      answer: 
+      answer: |
+        <p>תלוי בסוג הדפדפן שלך. לכל דפדפן יש הגדרות שונות משלו (ישנם תוספים שמאפשרים השמעת סוגי קבצים שלא קיימים בדפדפן. לדוגמא: Quicktime, מאפשר השמעת קבצי mp3 בפיירפוקס).</p>
+        <br />
+        <u>להלן, רשימה של סוגי קבצים שפועלים עבור הדפדפנים הבאים:</u>
+        <ul>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (may need Quicktime): wav, mp3</li>
+        <li>Chrome: ogg, mp3, wav</li>
+        <li>Opera: wav, ogg</li>
+        </ul>
     sound-location: 
       question: מהי מגבלת הגודל עבור צלילי התראה, והיכן ניתן למקמם?
       answer: 

@@ -5,6 +5,26 @@ pt-BR:
       note_0: 'Esta é a versão de desenvolvimento. Use a seu próprio critério. Veja <linkSVN>história de alterações</linkSVN> no Google Code para detalhes das mudanças.'
     beta: 
       note_0: 'Esta é a versão beta do próximo lançamento. Por favor ajude a traduzir essa versão em nossa página de tradução comunitária super fácil <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.12.0: 
+      note_0: 
+      note_1: 
+      note_2: 
+      note_3: 
+      note_4: 
+      note_5: 
+      note_6: 
+      note_7: 
+      note_8: 
+      note_9: 
+      note_10: 
+      note_11: 
+      note_12: 
+      note_13: 
+      note_14: 
+    0.11.0.1: 
+      note_0: 
+      note_1: 
+      note_2: 
     0.11.0: 
       note_0: 'NOVO: <module>DirectPageLinks</module>: Links adicionados para acessar páginas específicas em tópicos do fórum'
       note_1: 'NOVO: <module>ForumModeratorPopup</module>: Adicionado um menu dropdown para moderadores dos fóruns sobre os tópicos para simplificar a moderação.'
@@ -19,6 +39,34 @@ pt-BR:
       note_10: '<module>MovePlayerStatement</module>: Possibilidade de remover completamente as declarações dos jogadores (que as tiverem).'
       note_11: '<module>YouthTwins</module>: Modificações manuais feitas no HY agora refletirão imediatamente na página dos jogadores juniores'
       note_12: '<header>Correções de erros</header>'
+      note_13: 
+      note_14: 
+      note_15: 
+      note_16: 
+      note_17: 
+      note_18: 
+      note_19: 
+      note_20: 
+      note_21: 
+      note_22: 
+      note_23: 
+      note_24: 
+      note_25: 
+      note_26: 
+      note_27: 
+      note_28: 
+      note_29: 
+      note_30: 
+      note_31: 
+      note_32: 
+      note_33: 
+      note_34: 
+      note_35: 
+      note_36: 
+      note_37: 
+      note_38: 
+      note_39: 
+      note_40: 
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'

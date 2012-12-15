@@ -5,6 +5,26 @@ en:
       note_0: 'This is the development build. Use at your own discretion. Please view <linkSVN>commit history</linkSVN> at Google Code for details of the changes.'
     beta: 
       note_0: 'This is the beta version of the next release. Please help translating this version at our super easy crowd-translation page <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.12.0: 
+      note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
+      note_1: 'NEW: <module>MatchLineupTweaks</module>: Changes the star counts to old-style-like stars. Adds counters for stars and stamina to the new lineup page. Shows specialties for all players and adds the name of the team on the field to limit confusion. Shows player avatars for your team. Highlight players relevant to an event in a match.'
+      note_2: 'NEW: <module>MainMenuDropDown</module>: Adds drop-down menus to the main navigation bar containing all links usually available in the sidebar of the target page.'
+      note_3: 'NEW: <module>MatchLineupFixes</module>: Synchronise timeline across player and sectors tabs. Show player names for weather SEs. Add links for players in your own orders tab. Add last star count to players on the bench. Fixes multiple events happening at the same time: players change their positions step by step instead of all at once.'
+      note_4: 'NEW: <module>ReLiveLinks</module>: Add links to HT Re-Live for finished games.'
+      note_5: 'NEW: <module>CopyBBAd</module>: Copy various ads in BB code (by merfis).'
+      note_6: 'NEW: <module>DashboardCalendar</module>: Added a button to export Hattrick week in iCalendar file format (should be compatible with Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal etc)'
+      note_7: '<module>LiveAlert</module>: Added different sounds for home/away/your team goals. Using sounds from <linkHTLS>HTLiveSight</linkHTLS> by default. Your team goals will not be recognized in Re-Live mode at first.'
+      note_8: '<module>CopyYouth</module>: Hattrick youthclub users will now send the scout call of rejected players to HY automatically'
+      note_9: '<module>CopyYouth</module>: Hattrick youthclub users will now send the training report to HY automatically when they read it for the first time'
+      note_10: '<module>LineupShortcut</module> now links to the new lineup page.'
+      note_11: '<module>SkillTable</module> now uses icons for specialities and coaches.'
+      note_12: 'AddLeaveConfButton is renamed to <module>ForumLeaveButton</module>'
+      note_13: From now on, your browser and Hattrick layout settings will be automatically included in messages posted to FoxTrick forum. This will help us fix problems faster. Please do not delete that information when posting.
+      note_14: The add-on code was cleaned up for better readability and maintainability.
+    0.11.0.1: 
+      note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
+      note_1: 'Fix minor issues in <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> and <module>HTThreadMarker</module>.'
+      note_2: Prevent Firefox from reloading all Hattrick tabs when a new browser window is opened.
     0.11.0: 
       note_0: 'NEW: <module>DirectPageLinks</module>: links added to access specific pages in a forum thread'
       note_1: 'NEW: <module>ForumModeratorPopup</module>: Added a dropdown menu for forum moderators on top of threads to simplify moderation.'
@@ -19,6 +39,34 @@ en:
       note_10: '<module>MovePlayerStatement</module>: Opportunity added to remove the statement altogether.'
       note_11: '<module>YouthTwins</module>: Manually triggered changes made on HY will now instantly reflect on the youthplayers page'
       note_12: '<header>Bugfixes</header>'
+      note_13: 'Fixed <module>Filter</module>, <module>SupporterStatsEnhancements</module> and <module>YouthTwins</module>.'
+      note_14: '<module>StaffMarker</module> and <module>HTThreadMarker</module> work in more spots now.'
+      note_15: '<module>ConfirmActions</module>: added support for autobid.'
+      note_16: '<module>EmbedMedia</module>: increased security and better link detection.'
+      note_17: '<module>SkillTable</module> should now report the correct time in the team for external coaches.'
+      note_18: BackgroundFixed module was removed.
+      note_19: '<header>Copying modules</header>'
+      note_20: '<module>CopyRatings</module>: Tournament match id support.'
+      note_21: '<module>CopyMatchID</module>: added single match support and disabled on match pages to make room for the new HT direct link feature'
+      note_22: '<module>CopyPlayerAd</module>: fixed interference with HT skillbars'
+      note_23: General HT-ML copying fixes.
+      note_24: '<header>Other tweaks</header>'
+      note_25: '<module>MatchOrderInterface</module>: avatars for non-supporters. Increased stability.'
+      note_26: '<module>MatchSimulator</module> now uses the new stamina formula (by Senzascrupoli [post=15917246.1]) in stamina discount.'
+      note_27: '<module>MatchReportFormat</module> uses the new HT icons.'
+      note_28: '<module>PlayerStatsExperience</module>: experience points per level increased to 28.62 (see 15766691.423 for discussion). Walkovers are indicated now since they do not give experience.'
+      note_29: "Forum modules now use a spacial space character to escape text instead of '·': this should help the Catalan language."
+      note_30: Prevent the HT layout from interfering with Foxtrick.
+      note_31: Added support for www.hattrick.fm
+      note_32: 'Removed dead external links in <module>Links</module>. Use external icons where possible.'
+      note_33: '<header>Browser support</header>'
+      note_34: Fixed Firefox for Android 17+ support.
+      note_35: Firefox 12 is now the minimum version to run Foxtrick.
+      note_36: Google Chrome 22 is now the minimum version to run Foxtrick.
+      note_37: 'Opera: fixed a bug that caused FT to interfere with other pages (like Hattrick Youthclub). Images should now load a lot faster. Some modules that were specifically disabled on Opera are now enabled.'
+      note_38: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
+      note_39: '<header>The preferences page was reworked.</header>'
+      note_40: '<strong>And much much more</strong>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'

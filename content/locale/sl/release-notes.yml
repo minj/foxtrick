@@ -2,10 +2,10 @@
 sl: 
   versions: 
     nightly: 
-      note_0: 
+      note_0: 'To je razvojna različica. Uporabljajte na lastno odgovornost. Prosimo, oglejte si <linkSVN>razvojno zgodovino</linkSVN> na Google Code za informacije o spremembah.'
     beta: 
-      note_0: 
-    0.11.0: 
+      note_0: 'To je beta verzija naslednjega izvoda. Prosimo za pomoč pri prevajanju te verzije na naši super-enostavni množično-prevajalni strani <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.12.0: 
       note_0: 
       note_1: 
       note_2: 
@@ -19,6 +19,54 @@ sl:
       note_10: 
       note_11: 
       note_12: 
+      note_13: 
+      note_14: 
+    0.11.0.1: 
+      note_0: 
+      note_1: 
+      note_2: 
+    0.11.0: 
+      note_0: 'NOVO: <module>DirectPageLinks</module>: dodane povezave na specifične strani v forumskih nitkah '
+      note_1: 'NOVO: <module>ForumModeratorPopup</module>: Dodan drsni meni za lažje delo moderatorjev.'
+      note_2: 'NOVO: <module>PlayerStatsTrainingWeek</module>: Dodana priložnost k skupini tekem glede na teden treninga, namesto koledarskega tedna.'
+      note_3: '<module>MatchOrderInterface</module>: Popravek za seznam izvajalcev kazenskih strelov. Prav tako lahko dodate ali odstranite vašo postavitev z enim klikom.'
+      note_4: '<module>SkillTable</module>: Možnost dodana za bolj podrobno razvrščanje obstoječih ukazov s ctrl + levi gumb.'
+      note_5: '<module>SkillTable</module>: Imena igralcev so sedaj okrajšana, da zasedejo manj prostora.'
+      note_6: '<module>SkillColoring</module>: Popolnoma na novo narejeno, veliko popravkov in dodatkov. Možnosti spremenjene. Prosimo, da jih ponovno nastavite.'
+      note_7: '<module>TransferSearchResultFilters</module>: Dodana nova možnost za filtriranje igralcev brez posebnosti. Sedaj sodeluje tudi z <module>TransferSearchFilters</module>.'
+      note_8: '<module>MatchSimulator</module>: Dodana integracija z <module>Ratings</module>.'
+      note_9: '<module>FriendlyPool</module>: Dodana možnost za razširjanje polja za izbiro države.'
+      note_10: '<module>MovePlayerStatement</module>: Dodana možnost za brisanje celotnih izjav.'
+      note_11: '<module>YouthTwins</module>: Spremembe, ki so ročno sprožene na HY-u, se bodo sedaj takoj prikazovale na strani z mladinci'
+      note_12: '<header>Popravki hroščev</header>'
+      note_13: 
+      note_14: 
+      note_15: 
+      note_16: 
+      note_17: 
+      note_18: 
+      note_19: 
+      note_20: 
+      note_21: 
+      note_22: 
+      note_23: 
+      note_24: 
+      note_25: 
+      note_26: 
+      note_27: 
+      note_28: 
+      note_29: 
+      note_30: 
+      note_31: 
+      note_32: 
+      note_33: 
+      note_34: 
+      note_35: 
+      note_36: 
+      note_37: 
+      note_38: 
+      note_39: 
+      note_40: 
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
