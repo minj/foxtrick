@@ -9,12 +9,20 @@ en:
 
     0.12.0:
       note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
-      note_1: 'NEW: <module>MatchLineupTweaks</module>: Adds counters for stars and stamina to the new lineup page. Shows specialties for all players and adds the name of the team on the field to limit confusion.'
+      note_1: 'NEW: <module>MatchLineupTweaks</module>: Changes the star counts to old-style-like stars. Adds counters for stars and stamina to the new lineup page. Shows specialties for all players and adds the name of the team on the field to limit confusion. Shows player avatars for your team. Highlight players relevant to an event in a match.'
       note_2: 'NEW: <module>MainMenuDropDown</module>: Adds drop-down menus to the main navigation bar containing all links usually available in the sidebar of the target page.'
-      note_3: '<module>DashboardCalendar</module>: Added a button to export Hattrick week in iCalendar file format (should be compatible with Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal etc)'
-      note_4: '<module>LiveAlert</module>: Added different sounds for home/away/your team goals. Using sounds from <linkHTLS>HTLiveSight</linkHTLS> by default. Your team goals will not be recognized in Re-Live mode at first.'
-      note_5: '<module>CopyYouth</module>: Hattrick youthclub users will now send the scoutcall of rejected players to HY automatically (requires enabled YouthTwins Module)'
-      note_6: '<module>CopyYouth</module>: Hattrick youthclub users will now send the training report to HY automatically when they read it for the first time (requires enabled YouthTwins Module)'
+      note_3: 'NEW: <module>MatchLineupFixes</module>: Synchronise timeline across player and sectors tabs. Show player names for weather SEs. Add links for players in your own orders tab. Add last star count to players on the bench. Fixes multiple events happening at the same time: players change their positions step by step instead of all at once.'
+      note_4: 'NEW: <module>ReLiveLinks</module>: Add links to HT Re-Live for finished games.'
+      note_5: 'NEW: <module>CopyBBAd</module>: Copy various ads in BB code (by merfis).'
+      note_6: 'NEW: <module>DashboardCalendar</module>: Added a button to export Hattrick week in iCalendar file format (should be compatible with Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal etc)'
+      note_7: '<module>LiveAlert</module>: Added different sounds for home/away/your team goals. Using sounds from <linkHTLS>HTLiveSight</linkHTLS> by default. Your team goals will not be recognized in Re-Live mode at first.'
+      note_8: '<module>CopyYouth</module>: Hattrick youthclub users will now send the scout call of rejected players to HY automatically'
+      note_9: '<module>CopyYouth</module>: Hattrick youthclub users will now send the training report to HY automatically when they read it for the first time'
+      note_10: '<module>LineupShortcut</module> now links to the new lineup page.'
+      note_11: '<module>SkillTable</module> now uses icons for specialities and coaches.'
+      note_12: 'AddLeaveConfButton is renamed to <module>ForumLeaveButton</module>'
+      note_13: 'From now on, your browser and Hattrick layout settings will be automatically included in messages posted to FoxTrick forum. This will help us fix problems faster. Please do not delete that information when posting.'
+      note_14: 'The whole add-on code-based was cleaned up for better readability and maintainability.'
 
     0.11.0.1:
       note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
