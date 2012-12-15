@@ -77,8 +77,14 @@ Foxtrick.util.css.replaceExtensionDirectory = function(cssTextCollection, callba
 	if (Foxtrick.platform == "Opera" ) {
 		if (cssTextCollection.search(InternalPathRegExp)!=-1 )
 			sandboxed.extension.sendRequest({ req : "convertImages", cssText: cssTextCollection, type: id},
-				function (data) { callback(data.cssText);
-				});
+				function (data) {
+					try {
+						callback(data.cssText);
+					}
+					catch (e) {
+						Foxtrick.log('Error in callback for convertImages', data, e);
+					}
+			});
 		else callback(cssTextCollection);
 	}
 	else if (Foxtrick.platform == "Safari" || Foxtrick.platform == "Chrome") {

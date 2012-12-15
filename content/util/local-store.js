@@ -88,7 +88,12 @@ else {
 				req : "localGet",
 				key : key
 			}, function(response){
-				callback(response.value);
+				try {
+					callback(response.value);
+				}
+				catch (e) {
+					Foxtrick.log('Error in callback for localGet', response, e);
+				}
 			});
 		};
 

@@ -77,7 +77,12 @@ else {
 				req : "sessionGet",
 				key : key
 			}, function(response){
-				callback(response.value);
+				try {
+					callback(response.value);
+				}
+				catch (e) {
+					Foxtrick.log('Error in callback for sessionGet', response, e);
+				}
 			});
 		};
 

@@ -36,11 +36,16 @@ Foxtrick.util.load.get = function(url, params) {
 		var loadImpl = function(cb) {
 			sandboxed.extension.sendRequest({req : "getXml", url : url, params : params},
 				function(response) {
-					cb({
-						code: response.status,
-						status: (response.status < 400) ? "success" : "failure",
-						text: response.data
-					});
+					try {
+						cb({
+							code: response.status,
+							status: (response.status < 400) ? 'success' : 'failure',
+							text: response.data
+						});
+					}
+					catch (e) {
+						Foxtrick.log('Error in callback for getXml', response, e);
+					}
 				}
 			);
 		};
@@ -326,4 +331,3 @@ Foxtrick.util.load.filePickerForText = function(doc, callback) {
 	}, false);
 	return input;
 }
-
