@@ -85,7 +85,12 @@ Foxtrick.util.css.replaceExtensionDirectory = function(cssTextCollection, callba
 					type: id
 				},
 			  function(data) {
-				callback(data.cssText);
+				try {
+					callback(data.cssText);
+				}
+				catch (e) {
+					Foxtrick.log('Error in callback for convertImages', data, e);
+				}
 			});
 		else callback(cssTextCollection);
 	}

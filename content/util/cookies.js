@@ -102,15 +102,21 @@ if (!Foxtrick) var Foxtrick = {};
 			else if (Foxtrick.platform == 'Chrome') {
 				if (Foxtrick.chromeContext() == 'content') {
 					sandboxed.extension.sendRequest(
-						{ req: 'cookieSet', where: where, name: name, what: what },
+					  { req: 'cookieSet', where: where, name: name, what: what },
 					  function(reponse) {
 						if (callback) {
-							if (cookies[where].isJSON && cookies[where].isBase64)
-								callback(JSON.parse(Foxtrick.decodeBase64(reponse)));
-							else if (cookies[where].isJSON && !cookies[where].isBase64)
-								callback(JSON.parse(reponse));
-							else
-								callback(reponse);
+							try {
+								if (cookies[where].isJSON && cookies[where].isBase64)
+									callback(JSON.parse(Foxtrick.decodeBase64(reponse)));
+								else if (cookies[where].isJSON && !cookies[where].isBase64)
+									callback(JSON.parse(reponse));
+								else
+									callback(reponse);
+							}
+							catch (e) {
+								Foxtrick.log('Error in callback for cookieSet',
+											 response, e);
+							}
 						}
 					});
 				}
@@ -178,15 +184,21 @@ if (!Foxtrick) var Foxtrick = {};
 				if (Foxtrick.chromeContext() == 'content') {
 					sandboxed.extension.sendRequest({
 							req: 'cookieGet', where: where, name: name
-						},
+					  },
 					  function(response) {
-						if (response && cookies[where].isJSON && !cookies[where].isBase64)
-							callback(JSON.parse(response));
-						else if (response && cookies[where].isJSON && cookies[where].isBase64)
-							callback(JSON.parse(Foxtrick.decodeBase64(response)));
-						else
-							callback(response);
-						return;
+						try {
+							if (response && cookies[where].isJSON && !cookies[where].isBase64)
+								callback(JSON.parse(response));
+							else if (response && cookies[where].isJSON &&
+									 cookies[where].isBase64)
+								callback(JSON.parse(Foxtrick.decodeBase64(response)));
+							else
+								callback(response);
+							return;						}
+						catch (e) {
+							Foxtrick.log('Error in callback for cookieGet',
+										 response, e);
+						}
 					});
 				}
 			}

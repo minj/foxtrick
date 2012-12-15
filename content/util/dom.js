@@ -398,7 +398,12 @@ Foxtrick.getImageFeatures = function(features, callback) {
 			for (i in features)
 				img[i] = features[i];
 			img.src = data.url;
-			callback(img);
+			try {
+				callback(img);
+			}
+			catch (e) {
+				Foxtrick.log('Error in callback for getImageFeatures', features, img, e);
+			}
 		});
 	else {
 		var img = {}, i;
