@@ -36,6 +36,8 @@ Foxtrick.log = function() {
 			}
 			else if (Foxtrick.arch == 'Sandboxed') {
 				item = content.message;
+				if (typeof (content.stack) != 'undefined')
+					item += '\n' + content.stack;
 				if (args[i].arguments) {
 					args[i] = args[i].arguments.concat(args[i]);
 				}
@@ -83,8 +85,18 @@ Foxtrick.log = function() {
 		// (support multiple arguments)
 		// for firefox it's in the webconsole (only injected, thus preferences.html only)
 		console.log.apply(console, args);
-		if (hasError && typeof(console.trace) == 'function')
-			console.trace();
+		if (hasError) {
+			var stackDumped = false;
+			for (i = 0; i < arguments.length; ++i) {
+				var content = arguments[i];
+				if (content instanceof Error && typeof (content.stack) != 'undefined') {
+					console.log(content.stack);
+					stackDumped = true;
+				}
+			}
+			if (!stackDumped && typeof(console.trace) == 'function')
+				console.trace();
+		}
 	}
 	if (Foxtrick.arch == 'Gecko') {
 		// goes to the error console ctrl+shift+j
