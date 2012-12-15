@@ -77,9 +77,9 @@
     <code>da</code>
     <phrases>1327</phrases>
     <translated>1327</translated>
-    <approved>1180</approved>
+    <approved>1327</approved>
     <translated_progress>100</translated_progress>
-    <approved_progress>88</approved_progress>
+    <approved_progress>100</approved_progress>
   </language>
   <language>
     <name>German</name>
@@ -94,7 +94,7 @@
     <name>Greek</name>
     <code>el</code>
     <phrases>1327</phrases>
-    <translated>1187</translated>
+    <translated>1192</translated>
     <approved>0</approved>
     <translated_progress>89</translated_progress>
     <approved_progress>0</approved_progress>
@@ -211,7 +211,7 @@
     <name>Norwegian</name>
     <code>no</code>
     <phrases>1327</phrases>
-    <translated>916</translated>
+    <translated>922</translated>
     <approved>0</approved>
     <translated_progress>69</translated_progress>
     <approved_progress>0</approved_progress>
@@ -229,7 +229,7 @@
     <name>Portuguese</name>
     <code>pt-PT</code>
     <phrases>1327</phrases>
-    <translated>1317</translated>
+    <translated>1319</translated>
     <approved>0</approved>
     <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
@@ -337,9 +337,9 @@
     <name>Galician</name>
     <code>gl</code>
     <phrases>1327</phrases>
-    <translated>930</translated>
+    <translated>1191</translated>
     <approved>0</approved>
-    <translated_progress>70</translated_progress>
+    <translated_progress>89</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
