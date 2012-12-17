@@ -10,6 +10,7 @@ const Cr = Components.results;
 const Cu = Components.utils;
 
 var _gLoader;
+let scope;
 
 Cu.import('resource://gre/modules/Services.jsm');
 
@@ -23,13 +24,14 @@ function isFennecNative() {
 function setDefaultPrefs(pathToDefault, branch) {
 	// Load default preferences and set up properties for them
 	let defaultBranch = Services.prefs.getDefaultBranch(branch);
-	let scope =
+	scope =
 	{
 		pref: function(key, val)
 		{
 			if (key.substr(0, branch.length) != branch)
 			{
-				Cu.reportError(new Error('Ignoring default preference ' + key + ', wrong branch.'));
+				Cu.reportError(new Error('Ignoring default preference ' + key +
+										 ', wrong branch.'));
 				return;
 			}
 			key = key.substr(branch.length);
@@ -74,22 +76,28 @@ function startup(aData, aReason) {
 		              'Please update Firefox.');
 		return;
 	}
-		// add chrome.manifest for 8+9
+	// add chrome.manifest for 8+9
 	if (Services.vc.compare(Services.appinfo.platformVersion, '10.0') < 0)
 		Components.manager.addBootstrappedManifestLocation(aData.installPath);
 
-	var pathToDefault = aData.resourceURI.spec + 'defaults/preferences/foxtrick.js';
+	// prefs branch
 	const branch = 'extensions.foxtrick.prefs.';
-	setDefaultPrefs(pathToDefault, branch);
 
 	_gLoader = {};
 	// load specific startup stripts
-	if (isFennecNative())
+	if (isFennecNative()) {
+		// old FF loads anything that ends with .js
+		// so we can't name this one foxtrick-android.js
+		var pathToDefault = aData.resourceURI.spec + 'defaults/preferences/foxtrick-android';
+		setDefaultPrefs(pathToDefault, branch);
 		Services.scriptloader.loadSubScript('chrome://foxtrick/content/bootstrap-fennec.js',
 		                                    _gLoader, 'UTF-8');
-	else
+	} else {
+		var pathToDefault = aData.resourceURI.spec + 'defaults/preferences/foxtrick.js';
+		setDefaultPrefs(pathToDefault, branch);
 		Services.scriptloader.loadSubScript('chrome://foxtrick/content/bootstrap-firefox.js',
 		                                    _gLoader, 'UTF-8');
+	}
 
 	let wm = Cc['@mozilla.org/appshell/window-mediator;1'].getService(Ci.nsIWindowMediator);
 	// Load into any existing windows
@@ -112,10 +120,6 @@ function shutdown(aData, aReason) {
 	if (Services.vc.compare(Services.appinfo.platformVersion, '8.0') < 0)
 		return;
 
-	// remove chrome.manifest for 8+9
-	if (Services.vc.compare(Services.appinfo.platformVersion, '10.0') < 0)
-		Components.manager.removeBootstrappedManifestLocation(aData.installPath);
-
 	let wm = Cc['@mozilla.org/appshell/window-mediator;1'].getService(Ci.nsIWindowMediator);
 
 	// Stop listening for new windows
@@ -132,7 +136,13 @@ function shutdown(aData, aReason) {
 	Cc['@mozilla.org/intl/stringbundle;1']
 		.getService(Components.interfaces.nsIStringBundleService).flushBundles();
 
+	// remove manifest
+	// should destroy chrome://foxtrick and fix cache issues (fingers crossed)
+	Components.manager.removeBootstrappedManifestLocation(aData.installPath);
+
+	// destroy scopes
 	_gLoader = undefined;
+	scope = undefined;
 }
 
 function install(aData, aReason) {
