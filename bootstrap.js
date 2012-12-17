@@ -20,6 +20,7 @@ function isFennecNative() {
 }
 
 
+// load prefs into default prefs branch
 function setDefaultPrefs(pathToDefault, branch) {
 	// Load default preferences and set up properties for them
 	let defaultBranch = Services.prefs.getDefaultBranch(branch);
@@ -29,7 +30,8 @@ function setDefaultPrefs(pathToDefault, branch) {
 		{
 			if (key.substr(0, branch.length) != branch)
 			{
-				Cu.reportError(new Error('Ignoring default preference ' + key + ', wrong branch.'));
+				Cu.reportError(new Error('Ignoring default preference ' + key +
+										 ', wrong branch.'));
 				return;
 			}
 			key = key.substr(branch.length);
@@ -67,44 +69,42 @@ var windowListener = {
 
 function startup(aData, aReason) {
 	// won't run on 4-7. tell them to update. pre 4 it's not bootstrapped anyways
-	if (Services.vc.compare(Services.appinfo.platformVersion, "8.0") < 0) {
-		var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+	if (Services.vc.compare(Services.appinfo.platformVersion, '8.0') < 0) {
+		var prompts = Components.classes['@mozilla.org/embedcomp/prompt-service;1']
                         .getService(Components.interfaces.nsIPromptService);
-		prompts.alert(null, "FoxTrick", "FoxTrick is incompatible with Firefox 4 - 7. Please update Firefox.");
+		prompts.alert(null, 'FoxTrick', 'FoxTrick is incompatible with Firefox 4 - 7. ' +
+		              'Please update Firefox.');
 		return;
 	}
 	// add chrome.manifest for 8+9
-	if (Services.vc.compare(Services.appinfo.platformVersion, "10.0") < 0)
+	if (Services.vc.compare(Services.appinfo.platformVersion, '10.0') < 0)
 		Components.manager.addBootstrappedManifestLocation(aData.installPath);
 
-	// pref branch
-	const branch = "extensions.foxtrick.prefs.";
+	// prefs branch
+	const branch = 'extensions.foxtrick.prefs.';
 
 	_gLoader = {};
 	// load specific startup stripts
 	if (isFennecNative()) {
 		// old FF loads anything that ends with .js
 		// so we can't name this one foxtrick-android.js
-		var pathToDefault = aData.resourceURI.spec +
-			"defaults/preferences/foxtrick-android"
+		var pathToDefault = aData.resourceURI.spec + 'defaults/preferences/foxtrick-android';
 		setDefaultPrefs(pathToDefault, branch);
-		Services.scriptloader.loadSubScript("chrome://foxtrick/content/bootstrap-fennec.js",
-											_gLoader, "UTF-8");
-	}
-	else {
-		var pathToDefault = aData.resourceURI.spec +
-			"defaults/preferences/foxtrick.js"
+		Services.scriptloader.loadSubScript('chrome://foxtrick/content/bootstrap-fennec.js',
+		                                    _gLoader, 'UTF-8');
+	} else {
+		var pathToDefault = aData.resourceURI.spec + 'defaults/preferences/foxtrick.js';
 		setDefaultPrefs(pathToDefault, branch);
-		Services.scriptloader.loadSubScript("chrome://foxtrick/content/bootstrap-firefox.js",
-											_gLoader, "UTF-8");
+		Services.scriptloader.loadSubScript('chrome://foxtrick/content/bootstrap-firefox.js',
+		                                    _gLoader, 'UTF-8');
 	}
 
-	let wm = Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator);
+	let wm = Cc['@mozilla.org/appshell/window-mediator;1'].getService(Ci.nsIWindowMediator);
 	// Load into any existing windows
-	let enumerator = wm.getEnumerator("navigator:browser");
+	let enumerator = wm.getEnumerator('navigator:browser');
 	while (enumerator.hasMoreElements()) {
 		let win = enumerator.getNext().QueryInterface(Ci.nsIDOMWindow);
-		_gLoader.loadIntoWindow(win, true); // reload
+		_gLoader.loadIntoWindow(win, true); //reload
 	}
 
 	// Load into any new windows
@@ -117,16 +117,16 @@ function shutdown(aData, aReason) {
 	if (aReason == APP_SHUTDOWN)
 		return;
 
-	if (Services.vc.compare(Services.appinfo.platformVersion, "8.0") < 0)
+	if (Services.vc.compare(Services.appinfo.platformVersion, '8.0') < 0)
 		return;
 
-	let wm = Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator);
+	let wm = Cc['@mozilla.org/appshell/window-mediator;1'].getService(Ci.nsIWindowMediator);
 
 	// Stop listening for new windows
 	wm.removeListener(windowListener);
 
 	// Unload from any existing windows
-	let windows = wm.getEnumerator("navigator:browser");
+	let windows = wm.getEnumerator('navigator:browser');
 	while (windows.hasMoreElements()) {
 		let domWindow = windows.getNext().QueryInterface(Ci.nsIDOMWindow);
 		_gLoader.unloadFromWindow(domWindow);
