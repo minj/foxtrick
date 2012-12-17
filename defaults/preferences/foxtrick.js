@@ -702,6 +702,7 @@ pref("extensions.foxtrick.prefs.module.StaffMarker.manager.enabled", true);
 pref("extensions.foxtrick.prefs.module.StaffMarker.own.enabled", false);
 pref("extensions.foxtrick.prefs.module.StaffMarker.own_text", "{\"1001\" : \"color: red;\", \"1002\" : \"background-color: yellow;\"}");
 pref("extensions.foxtrick.prefs.module.StarsCounter.enabled", true);
+pref("extensions.foxtrick.prefs.module.SupportershipExpirationDate.enabled", true);
 pref("extensions.foxtrick.prefs.module.TableSort.enabled", true);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.Achievements.default", false);
 pref("extensions.foxtrick.prefs.module.TeamPopupLinks.Achievements.more", true);

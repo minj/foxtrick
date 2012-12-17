@@ -222,6 +222,7 @@ Foxtrick.loader.background.contentScriptManager = {
 		"shortcuts-and-tweaks/rapid-id.js",
 		"shortcuts-and-tweaks/relive-links.js",
 		"shortcuts-and-tweaks/senior-team-shortcuts.js",
+		"shortcuts-and-tweaks/supportership-expiration-date.js",
 		"shortcuts-and-tweaks/table-sort.js",
 		"shortcuts-and-tweaks/team-popup-links.js",
 		"shortcuts-and-tweaks/transfer-history-filters.js",
