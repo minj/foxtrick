@@ -6,23 +6,23 @@ fr:
     beta: 
       note_0: "Il s'agit de la version bêta de la prochaine version. Veuillez nous aider à traduire cette version via un site ultra simple à utiliser <linkCrowdin>crowdin.net</linkCrowdin>. "
     0.12.0: 
-      note_0: 
-      note_1: 
-      note_2: 
+      note_0: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'
+      note_1: "NOUVEAU: <module>MatchLineupTweaks</module>: Retrouver vos étoiles dans l'ancien style. Ajout de compteurs pour les étoiles et l'endurance sur la nouvelle présentation de la composition. Afficher les spécialités des joueurs et ajouter le nom de l'équipe sur le terrain pour limiter la confusion. Afficher le visages de vos joueurs. Mise en évidence des joueurs concernés par un événement dans un match."
+      note_2: "NOUVEAU: <module>MainMenuDropDown</module>: Ajout d'un menu déroulant dans la barre de navigation principale incluant tous les liens présents dans la barre latérale de la page concernée."
       note_3: 
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
-      note_10: 
-      note_11: 
-      note_12: 
-      note_13: 
-      note_14: 
+      note_4: "NOUVEAU: <module>ReLiveLinks</module>: Ajout d'un lien Re-Live pour les matchs terminés."
+      note_5: 'NOUVEAU: <module>CopyBBAd</module>: Copier différents renseignements en BB code (par merfis).'
+      note_6: "NOUVEAU: <module>DashboardCalendar</module>: Ajout d'un bouton pour exporter la semaine hattrick au format de fichier iCalendar (devrait être compatible avec Google Calendar, Thunderbird + Lightning, MS Outlook, KOrganizer, évolution, Apple iCal etc.)"
+      note_7: '<module>LiveAlert</module>: Ajout de différents sons pour domicile/extérieur/vos buts. Utilisation des sons de<linkHTLS>HTLiveSight</linkHTLS> par défaut. Vos propres buts ne seront pas reconnu en mode Re-Live dans un premier temps.'
+      note_8: '<module>CopyYouth</module>: les utilisateurs de Hattrick youthclub peuvent maintenant envoyer automatiquement le commentaire des joueurs rejetés à HY'
+      note_9: "<module>CopyYouth</module>: Les utilisateurs de Hattrick youthclub peuvent maintenant automatiquement envoyé le rapport d'entrainement à HY lors de la première lecture"
+      note_10: '<module>LineupShortcut</module> nouveaux liens vers la page de composition.'
+      note_11: "<module>SkillTable</module> Utilisation d'icônes pour les spécialités et l'entraineur."
+      note_12: 'AddLeaveConfButton est renommé en <module>ForumLeaveButton</module>'
+      note_13: A partir de maintenant, votre navigateur et les paramètres concernant Hattrick figureront automatiquement dans vos messages postés sur le forum de FoxTrick. Cela nous aidera à résoudre les problèmes plus rapidement. S'il vous plaît ne supprimer pas cette information.
+      note_14: Le code du module complémentaire a été nettoyé pour une meilleure lisibilité et facilité de maintenance.
     0.11.0.1: 
-      note_0: 
+      note_0: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'
       note_1: 
       note_2: 
     0.11.0: 

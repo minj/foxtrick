@@ -2,11 +2,11 @@
 gl: 
   versions: 
     nightly: 
-      note_0: 
+      note_0: 'Esta é a versión de desenvolvemento. Usaa ó teu risco. Por favor olla o <linkSVN>Historial de cambios</linkSVN> no Google Code para detalles dos mesmos.'
     beta: 
-      note_0: 
+      note_0: 'Esta é a beta do próximo lanzamento. Por favor axuda a traducir na nosa super páxina de traduccón simultánea <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.12.0: 
-      note_0: 
+      note_0: '<header>Moitas actualizacións das traduccións de nosos incríbles usuarios, por medio da <linkCrowdin>ferramenta de traducción</linkCrowdin>. Ti podes axudar se queres!</header>'
       note_1: 
       note_2: 
       note_3: 

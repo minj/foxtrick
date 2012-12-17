@@ -3,7 +3,10 @@ gl:
   faq: 
     style: 
       question: Como podería trocar o estilo do meu FoxTrick?
-      answer: 
+      answer: |
+        <p> O Foxtrick dache unha serie de melloras no interface para persoalizala ó teu propio xeito. Estas modificacións fanse por medio de IDs HTML e clases, e ti podes usar CSS para definir o teu estilo preferido.</p>
+        
+        <p>Un exemplo de arquivo de configuración dun usuario o podes atopar <linkCSSExample>aquí</linkCSSExample> ou <linkCSSExampleGCode>aquí</linkCSSExampleGCode>, o cal podes modificar como che pete. Despois de gardar o arquivo, podes usar o módulo <module>SkinPlugin</module> para cargar o arquivo CSS que ten o estilo de usuario activo.</p>
     sound-format: 
       question: Que formatos de arquivos están permitidos para sons de alerta?
       answer: '<p> Diferentes navegadores permiten diferentes formatos de ficheiro. Aquí está a lista (outros formatos poden funcionar se os plugins apropiados están instalados, por exemplo, o QuickTime para reproducir mp3 en Firefox): </p><ul><li> Mozilla: WAV, OGG </li><li> Safari (pode necesitar Quicktime): WAV, MP3 </li><li> Chrome: Ogg, MP3, WAV </li><li> Opera: WAV, OGG </li></ul>'
