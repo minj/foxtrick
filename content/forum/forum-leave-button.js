@@ -1,11 +1,11 @@
 'use strict';
 /**
- * foxtrickleaveconfbutton.js
+ * forum-leave-button.js
  * Foxtrick Leave Conference module
  * @author larsw84
  */
 
-Foxtrick.modules['AddLeaveConfButton'] = {
+Foxtrick.modules['ForumLeaveButton'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: ['forum', 'forumSettings'],
 
