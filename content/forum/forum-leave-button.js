@@ -5,7 +5,7 @@
  * @author larsw84
  */
 
-Foxtrick.modules['AddLeaveConfButton'] = {
+Foxtrick.modules['ForumLeaveButton'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: ['forum', 'forumSettings'],
 
