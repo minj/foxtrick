@@ -24,6 +24,12 @@ ifeq ($(BRANCH),beta)
 IGNORED_MODULES=ignored-modules-release
 endif
 
+ifeq ($(DIST_TYPE),nightly)
+	VERSION = $(REV_VERSION)
+else
+	VERSION = $(MAJOR_VERSION)
+endif
+
 # cf safari: xar needs to have sign capabilities ie xar --help shows --sign as option.
 # see http://code.google.com/p/xar/issues/detail?id=76 for an howto
 ZIP = zip -q
@@ -140,20 +146,16 @@ firefox:
 	rm -rf $(BUILD_DIR)/chrome/*/*/*.zip
 	# build jar
 	cd $(BUILD_DIR)/chrome; \
-	$(ZIP) -0 -r $(APP_NAME).jar `find . \( -path '*CVS*' -o -path \
+	$(ZIP) -0 -r $(APP_NAME)-$(VERSION).jar `find . \( -path '*CVS*' -o -path \
 		'*.svn*' \) -prune -o -type f -print | grep -v \~ `; \
 	rm -rf content skin
-	# ditch the jar
-	cd $(BUILD_DIR); \
-	unzip -o chrome/$(APP_NAME).jar; \
-	rm -rf chrome
 	# process manifest
-	#cd $(BUILD_DIR); \
-	#if test -f chrome.manifest; \
-	#	then \
-	#	sed -i -r 's|^(content\s+\S*\s+)(\S*/)(.*)$$|\1jar:chrome/'$(APP_NAME)'.jar!/\2\3|' chrome.manifest; \
-	#	sed -i -r 's|^(skin\|locale)(\s+\S*\s+\S*\s+)(.*/)$$|\1\2jar:chrome/'$(APP_NAME)'.jar!/\3|' chrome.manifest; \
-	#fi
+	cd $(BUILD_DIR); \
+	if test -f chrome.manifest; \
+		then \
+		sed -i -r 's|^(content\s+\S*\s+)(\S*/)(.*)$$|\1jar:chrome/'$(APP_NAME)-$(VERSION)'.jar!/\2\3|' chrome.manifest; \
+		sed -i -r 's|^(skin\|locale)(\s+\S*\s+\S*\s+)(.*/)$$|\1\2jar:chrome/'$(APP_NAME)-$(VERSION)'.jar!/\3|' chrome.manifest; \
+	fi
 	# set branch
 	cd $(BUILD_DIR); \
 	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH) mozilla\"|" defaults/preferences/foxtrick.js
