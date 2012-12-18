@@ -6,11 +6,13 @@ de:
     beta: 
       note_0: 'Dies ist die Beta-Version der nächsten Veröffentlichung. Hilf bitte mit diese auf unserer extrem einfachen Übersetzungsseite <linkCrowdin>crowdin.net</linkCrowdin> ins Deutsche zu übersetzen falls euch Schreibfehler oder fehlende Einträge auffallen.'
     0.12.0: 
-      note_0: 
-      note_1: 
-      note_2: 
+      note_0: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin> Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
+      note_1: |
+        NEU: <module>MatchLineupTweaks</module>: Ersetzt die numerisch Dargestellten Stern durch eine, der ursprünglichen Ansicht ähnliche.
+        Fügt Zähler für Kondition und Sterne hinzu. Zeigt Spezialfähigkeiten für alle Spieler und fügt den Teamnamen zum Aufstellungfeld hinzu. Spielergesichter können wieder angezeigt werden und für jeden Event werden die beteiligten Spieler hervorgehoben.
+      note_2: 'NEU: <module>MainMenuDropDown</module>: Dem Hauptmenu wurde ein Dropdown-Menu hinzugefügt welches alle sekundären und tertiären Links der Zielseite direkt beinhaltet.'
       note_3: 
-      note_4: 
+      note_4: 'NEU: <module>ReLiveLinks</module>: Re-Live Links an vielen Stellen hinzugefügt.'
       note_5: 
       note_6: 
       note_7: 
@@ -65,8 +67,8 @@ de:
       note_36: 
       note_37: 
       note_38: 
-      note_39: 
-      note_40: 
+      note_39: '<header>Die Einstellungsseite wurde komplett überarbeitet.</header>'
+      note_40: '<strong>Und vieles mehr</strong>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'

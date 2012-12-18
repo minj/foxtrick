@@ -44,7 +44,7 @@ fr:
       note_15: 
       note_16: 
       note_17: 
-      note_18: 
+      note_18: Le module de BackgroundFixed a été supprimé.
       note_19: 
       note_20: 
       note_21: 
@@ -61,9 +61,9 @@ fr:
       note_32: 
       note_33: 
       note_34: 
-      note_35: 
-      note_36: 
-      note_37: 
+      note_35: Firefox 12 est maintenant la version minimale pour utiliser Foxtrick.
+      note_36: Google Chrome 22 est maintenant la version minimale pour utiliser Foxtrick.
+      note_37: "Opéra : correction d'un bug que causait Foxtrick en interférant avec d'autres pages (comme Hattrick Youthclub). Les images doivent maintenant être chargées plus rapidement. Certains modules qui avait été désactivés spécifiquement sur Opéra sont maintenant activés."
       note_38: 
       note_39: 
       note_40: 

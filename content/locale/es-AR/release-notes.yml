@@ -6,7 +6,7 @@ es-AR:
     beta: 
       note_0: 'Esta es la versión beta de la próxima versión. Por favor ayude a traducir esta versión en nuestra super-fácil página <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.12.0: 
-      note_0: 
+      note_0: '<header>Muchas actualizaciones de la traducción de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
       note_1: 
       note_2: 
       note_3: 
@@ -18,11 +18,11 @@ es-AR:
       note_9: 
       note_10: 
       note_11: 
-      note_12: 
+      note_12: 'AddLeaveConfButton cambia de nombre a <module>ForumLeaveButton</module>'
       note_13: 
       note_14: 
     0.11.0.1: 
-      note_0: 
+      note_0: '<header>Muchas actualizaciones de la traducción de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
       note_1: 
       note_2: 
     0.11.0: 
@@ -62,11 +62,11 @@ es-AR:
       note_33: 
       note_34: 
       note_35: 
-      note_36: 
+      note_36: Google Chrome 22 es la versión mínima para ejecutar Foxtrick.
       note_37: 
-      note_38: 
-      note_39: 
-      note_40: 
+      note_38: '<header>Muchas actualizaciones de la traducción de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
+      note_39: '<header>La página de preferencias fue rehecha.</header>'
+      note_40: '<strong>Y mucho más</strong>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
