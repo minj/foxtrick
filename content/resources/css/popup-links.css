@@ -89,7 +89,7 @@ ul.ft-popup-list > li > a, ul.ft-popup-list > li > span {
 	padding: 0 !important;
 }
 
-span.ft-popup-span > a {
+.sidebarBox span.ft-popup-span > a {
     white-space: nowrap;
 }
 
