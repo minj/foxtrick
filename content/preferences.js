@@ -111,7 +111,7 @@ function search(string, search) {
 		$('#breadcrumb-2').show();
 		$('#breadcrumb-3').show();
 		if (search) {
-			$('#breadcrumb-2').text('Search');
+			$('#breadcrumb-2').text(Foxtrickl10n.getString('prefs.search'));
 			$('#breadcrumb-3').text(string);
 			$('#breadcrumb-3').attr('href', generateURI(null, null, null, string) );
 			$('#breadcrumb-sep-1').show();
