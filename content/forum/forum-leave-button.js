@@ -1,6 +1,6 @@
 'use strict';
 /**
- * foxtrickleaveconfbutton.js
+ * forum-leave-button.js
  * Foxtrick Leave Conference module
  * @author larsw84
  */
