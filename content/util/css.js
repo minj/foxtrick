@@ -252,7 +252,7 @@ Foxtrick.util.css.load_css_permanent = function(css) {
 		}
 		// load
 		if (!sss.sheetRegistered(uri, sss.USER_SHEET)) {
-			sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
+			sss.loadAndRegisterSheet(uri, sss.USER_SHEET); // unregistered in unload_css_permanent
 		}
 	}
 	catch (e) {

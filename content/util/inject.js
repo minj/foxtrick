@@ -53,7 +53,7 @@ Foxtrick.util.inject.jsLink = function(doc, url) {
 		return;
 	}
 	var head = doc.getElementsByTagName('head')[0];
-	var script = doc.createElement('script');
+	var script = doc.createElement('script'); // dynamically injected from chrome only
 	script.setAttribute('type', 'application/javascript');
 	script.setAttribute('src', url);
 	head.appendChild(script);
@@ -63,7 +63,7 @@ Foxtrick.util.inject.jsLink = function(doc, url) {
 // attaches a JavaScript snippet to the page
 Foxtrick.util.inject.js = function(doc, js) {
 	var head = doc.getElementsByTagName('head')[0];
-	var script = doc.createElement('script');
+	var script = doc.createElement('script'); // dynamically injected from chrome only
 	script.setAttribute('type', 'text/javascript');
 	script.textContent = js;
 	head.appendChild(script);
