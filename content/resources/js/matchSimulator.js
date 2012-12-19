@@ -33,7 +33,7 @@ var ft_queueChange = function(ev) {
 	var fieldOverlay = document.getElementById('fieldplayers');
 	fieldOverlay.removeEventListener( "DOMNodeInserted", ft_queueChange, false);
 	++ft_queued;
-	window.setTimeout(ft_checkStamina, 0);
+	window.setTimeout(function() { ft_checkStamina(); }, 0);
 };
 
 // listen to field player changes
