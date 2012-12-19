@@ -16,9 +16,20 @@ if (!Foxtrick.util.sanitize)
 Foxtrick.util.sanitize.addHTML = function(doc, html, target) {
 	if (Foxtrick.arch == 'Gecko') {
 		target.textConent = '';
-		return target.appendChild(Components.classes['@mozilla.org/feed-unescapehtml;1']
-		             .getService(Components.interfaces.nsIScriptableUnescapeHTML)
-		             .parseFragment(html, false, null, doc.documentElement));
+		var fragment;
+		try {
+			// FF13+
+			fragment = Components.classes['@mozilla.org/parserutils;1']
+				.getService(Components.interfaces.nsIParserUtils)
+				.parseFragment(html, 0, false, null, doc.documentElement);
+		}
+		catch (e) {
+			// older FF
+			fragment = Components.classes['@mozilla.org/feed-unescapehtml;1']
+				.getService(Components.interfaces.nsIScriptableUnescapeHTML)
+				.parseFragment(html, false, null, doc.documentElement);
+		}
+		return target.appendChild(fragment);
 	}
 	else {
 		target.innerHTML = Foxtrick.util.sanitize.parseHtml(html);
