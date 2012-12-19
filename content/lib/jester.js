@@ -26,6 +26,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+if(!Foxtrick)
+    Foxtrick = {};
+
 (function(container, undefined) {
     var Jester = container.Jester = {
         cache : {},
@@ -588,4 +592,4 @@
         return new Jester.Watcher(el, opts);
     };
 
-}(window));
+}(Foxtrick));
