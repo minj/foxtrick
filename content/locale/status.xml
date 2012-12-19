@@ -13,9 +13,9 @@
     <name>French</name>
     <code>fr</code>
     <phrases>1459</phrases>
-    <translated>1431</translated>
+    <translated>1459</translated>
     <approved>0</approved>
-    <translated_progress>98</translated_progress>
+    <translated_progress>100</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -166,7 +166,7 @@
     <name>Georgian</name>
     <code>ka</code>
     <phrases>1459</phrases>
-    <translated>1025</translated>
+    <translated>1028</translated>
     <approved>0</approved>
     <translated_progress>70</translated_progress>
     <approved_progress>0</approved_progress>
@@ -202,9 +202,9 @@
     <name>Dutch</name>
     <code>nl</code>
     <phrases>1459</phrases>
-    <translated>1352</translated>
+    <translated>1376</translated>
     <approved>0</approved>
-    <translated_progress>92</translated_progress>
+    <translated_progress>94</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -229,9 +229,9 @@
     <name>Portuguese</name>
     <code>pt-PT</code>
     <phrases>1459</phrases>
-    <translated>1313</translated>
+    <translated>1327</translated>
     <approved>0</approved>
-    <translated_progress>89</translated_progress>
+    <translated_progress>90</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -373,9 +373,9 @@
     <name>Spanish, Argentina</name>
     <code>es-AR</code>
     <phrases>1459</phrases>
-    <translated>1328</translated>
+    <translated>1376</translated>
     <approved>0</approved>
-    <translated_progress>91</translated_progress>
+    <translated_progress>94</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>

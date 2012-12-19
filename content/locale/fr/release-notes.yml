@@ -9,7 +9,8 @@ fr:
       note_0: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'
       note_1: "NOUVEAU: <module>MatchLineupTweaks</module>: Retrouver vos étoiles dans l'ancien style. Ajout de compteurs pour les étoiles et l'endurance sur la nouvelle présentation de la composition. Afficher les spécialités des joueurs et ajouter le nom de l'équipe sur le terrain pour limiter la confusion. Afficher le visages de vos joueurs. Mise en évidence des joueurs concernés par un événement dans un match."
       note_2: "NOUVEAU: <module>MainMenuDropDown</module>: Ajout d'un menu déroulant dans la barre de navigation principale incluant tous les liens présents dans la barre latérale de la page concernée."
-      note_3: 
+      note_3: |
+        NOUVEAU : <module>MatchLineupFixes</module> : Synchronisation de la chronologie entre les onglets "Notes détaillées" et "Composition". Affiche les noms des joueur ayant un SE météo. Ajoute des liens pour les joueurs dans l'onglet "Ordres des joueurs". Ajoute le dernier décompte d'étoiles aux joueurs du banc. Corrige plusieurs événements qui se déroulent en même temps : joueurs changent leurs positions étape par étape, au lieu de tout à la fois.
       note_4: "NOUVEAU: <module>ReLiveLinks</module>: Ajout d'un lien Re-Live pour les matchs terminés."
       note_5: 'NOUVEAU: <module>CopyBBAd</module>: Copier différents renseignements en BB code (par merfis).'
       note_6: "NOUVEAU: <module>DashboardCalendar</module>: Ajout d'un bouton pour exporter la semaine hattrick au format de fichier iCalendar (devrait être compatible avec Google Calendar, Thunderbird + Lightning, MS Outlook, KOrganizer, évolution, Apple iCal etc.)"
@@ -23,8 +24,8 @@ fr:
       note_14: Le code du module complémentaire a été nettoyé pour une meilleure lisibilité et facilité de maintenance.
     0.11.0.1: 
       note_0: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'
-      note_1: 
-      note_2: 
+      note_1: 'Correction de problèmes mineurs dans <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> et <module>HTThreadMarker</module>.'
+      note_2: Empêcher Firefox de recharger tous les onglets de Hattrick lorsqu'une nouvelle fenêtre du navigateur s'ouvre.
     0.11.0: 
       note_0: 'NOUVEAU: <module>DirectPageLinks</module> : lien ajouté pour accéder à une page bien précise dans un sujet du forum'
       note_1: "NOUVEAU: <module>ForumModeratorPopup</module>: Ajout d'un menu pour les modérateurs de forum en haut des sujets de discussions pour simplifier la modération."
@@ -39,37 +40,38 @@ fr:
       note_10: "<module>MovePlayerStatement</module> : Ajout d'un moyen de supprimer complètement la déclaration."
       note_11: '<module>YouthTwins</module>: Les modifications effectuées manuellement sur HY sont désormais instantanément répercutées sur la page de vos jeunes'
       note_12: '<header>Correctifs</header>'
-      note_13: 
-      note_14: 
-      note_15: 
-      note_16: 
-      note_17: 
+      note_13: 'Correctif pour les modules <module>Filter</module>, <module>SupporterStatsEnhancements</module> et <module>YouthTwins</module>.'
+      note_14: '<module>StaffMarker</module> et <module>HTThreadMarker</module> sont maintenant actifs dans de nouvelles pages.'
+      note_15: '<module>ConfirmActions</module> : ajout du support pour les enchères automatiques.'
+      note_16: '<module>EmbedMedia</module> : Sécurité améliorée et meilleure détection des liens.'
+      note_17: "<module>SkillTable</module> indique maintenant la date correcte d'arrivée dans le club d'un entraineur externe."
       note_18: Le module de BackgroundFixed a été supprimé.
-      note_19: 
-      note_20: 
-      note_21: 
-      note_22: 
-      note_23: 
-      note_24: 
-      note_25: 
-      note_26: 
-      note_27: 
-      note_28: 
-      note_29: 
-      note_30: 
-      note_31: 
-      note_32: 
-      note_33: 
-      note_34: 
+      note_19: '<header>Module de copies</header>'
+      note_20: "<module>CopyRatings</module> : L'id du match de tournoi est supporté."
+      note_21: '<module>CopyMatchID</module> : Ajout du support des duels et désactivation sur les pages de match pour faire place à la nouvelle fonctionnalité de lien direct HT'
+      note_22: "<module>CopyPlayerAd</module> : Correction de l'interférence avec la barre des caractéristiques de HT"
+      note_23: Correctif pour le système de copie en HT−ML.
+      note_24: '<header>Autres réglages</header>'
+      note_25: '<module>MatchOrderInterface</module> : avatars pour les non-supporter. Une plus grande stabilité.'
+      note_26: "<module>MatchSimulator</module> Utilisation de la nouvelle formule d'endurance (de Senzascrupoli [post=15917246.1]) dans la réduction de l'endurance."
+      note_27: '<module>MatchReportFormat</module> utilise les nouvelles icônes de HT.'
+      note_28: "<module>PlayerStatsExperience</module> : Points d'expérience nécessaire par niveau augmentés à 28,62 (voir la discussion ici [Post=15766691.423]). Les forfaits sont maintenant indiqués puisqu'ils ne donnent pas d'expérience."
+      note_29: |
+        Les modules de Forum utilisent maintenant un caractère d'espace spécifique pour éviter l'utilisation de texte au lieu des "·" : cela devrait aider la langue catalane.
+      note_30: Empêche la mise en page HT d’interférer avec Foxtrick.
+      note_31: Ajout du support pour www.hattrick.fm
+      note_32: "Suppression des liens morts dans <module>Links</module>. Utilisation d'icônes externes quand c'est possible."
+      note_33: '<header>Navigateur supporté</header>'
+      note_34: Correction pour Firefox sur Android 17++.
       note_35: Firefox 12 est maintenant la version minimale pour utiliser Foxtrick.
       note_36: Google Chrome 22 est maintenant la version minimale pour utiliser Foxtrick.
       note_37: "Opéra : correction d'un bug que causait Foxtrick en interférant avec d'autres pages (comme Hattrick Youthclub). Les images doivent maintenant être chargées plus rapidement. Certains modules qui avait été désactivés spécifiquement sur Opéra sont maintenant activés."
-      note_38: 
-      note_39: 
-      note_40: 
+      note_38: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez nous donner un sacré coup de main!</header>'
+      note_39: '<header>La page des préférences a été retravaillée.</header>'
+      note_40: '<strong>Et beaucoup plus encore </strong>'
     0.10.0: 
-      note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
-      note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
+      note_0: "NEW : <module>TransferHistoryFilters</module> : permet de filtrer uniquement les transferts des joueurs achetés ou vendus. Disponible sur l'historique des transferts du club, pas de sur les joueurs (par défaut)"
+      note_1: 'NEW : <module>FriendlyPool</module> : Colorise le pays visité dans la zone ami (supporters uniquement, par défaut positionné)'
       note_2: 'NEW: <module>HTEVPrediction</module>: Displays match odds for league games provided by <linkHTEV>HTEV</linkHTEV> (default on)'
       note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'
       note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
