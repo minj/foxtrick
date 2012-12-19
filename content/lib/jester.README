@@ -12,7 +12,7 @@ jester(element).tap(function() {
 });
 </example>
 
-For the latest news and most up-to-date information, check the Jester GitHub Wiki! http://wiki.github.com/plainview/Jester/
+For further documentation check the Jester GitHub Wiki: http://wiki.github.com/plainview/Jester/
 
 0.0 - Intro
 0.1 - The Gestures

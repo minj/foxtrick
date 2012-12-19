@@ -1,13 +1,13 @@
-/* 
+/*
  * Jester JavaScript Library v0.2
  * http://github.com/plainview/Jester
  *
  * Easy JavaScript gesture recognition.
- * 
+ *
  * Released under MIT License
  *
  * Copyright (C) 2011 by Scott Seaward
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -26,12 +26,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
- if(!Foxtrick)
-	var Foxtrick={};
- 
 (function(container, undefined) {
-	var Jester;
-	container["Jester"] = {
+    var Jester = container.Jester = {
         cache : {},
         cacheId : "Jester" + (new Date()).getTime(),
         guid : 0,
@@ -64,7 +60,7 @@
             var elementCache = Jester.cache[elementId];
 
             if(!("options" in elementCache)) {
-                elementCache["options"] = {};
+                elementCache.options = {};
             }
 
             options = options || elementCache.options || {};
@@ -73,7 +69,7 @@
             // exist for this element, replace those that have been
             // specified
             if(elementCache.options !== options) {
-                for(prop in options) {
+                for(var prop in options) {
                     if(elementCache.options[prop]) {
                         if(elementCache.options[prop] !== options[prop]) {
                             elementCache.options[prop] = options[prop];
@@ -85,13 +81,12 @@
                 }
             }
 
-            // 
-            if(!("eventSet" in elementCache) || !(elementCache["eventSet"] instanceof Jester.EventSet)) {
-                elementCache["eventSet"] = new Jester.EventSet(element);
+            if(!("eventSet" in elementCache) || !(elementCache.eventSet instanceof Jester.EventSet)) {
+                elementCache.eventSet = new Jester.EventSet(element);
             }
 
-            if(!elementCache["touchMonitor"]) {
-                elementCache["touchMonitor"] = new Jester.TouchMonitor(element);
+            if(!elementCache.touchMonitor) {
+                elementCache.touchMonitor = new Jester.TouchMonitor(element);
             }
 
             var events = elementCache.eventSet;
@@ -100,7 +95,7 @@
             this.id = element[cacheId];
 
             this.bind = function(evt, fn) {
-                if(evt && typeof evt === "string" && fn && fn.constructor === Function) {
+                if(evt && typeof evt === "string" && typeof fn === "function") {
                     events.register(evt, fn);
                 }
                 return this;
@@ -129,14 +124,14 @@
             this.pinch = function(fns) {
                 if(typeof fns !== "undefined") {
                     // if its just a function it gets assigned to pinchend
-                    if(fns.constructor && fns.constructor === Function) {
+                    if(typeof fns === "function") {
                         that.pinchend(fns);
                     }
                     else if(typeof fns === "object") {
                         var method;
                         "narrow widen end".split(" ").forEach(function(eventExt) {
                             method = "pinch" + eventExt;
-                            if(fns[eventExt] && fns[eventExt].constructor && fns[eventExt].constructor === Function) {
+                            if(typeof fns[eventExt] === "function") {
                                 that[method](fns[eventExt]);
                             }
                         });
@@ -147,16 +142,11 @@
             this.halt = function() {
                 touches.stopListening();
                 events.clear();
-                delete elementCache["eventSet"];
-                delete elementCache["touchMonitor"];
+                delete elementCache.eventSet;
+                delete elementCache.touchMonitor;
             };
         },
         EventSet : function(element) {
-            var cacheId = Jester.cacheId,
-                elementId = element[cacheId],
-                cache = Jester.cache,
-                elementCache = cache[elementId];
-
             // all event names and their associated functions in an array i.e. "swipe" : [fn1, fn2, fn2]
             var eventsTable = {};
             this.eventsTable = eventsTable;
@@ -181,7 +171,7 @@
 
                 // if a handler hasn't been specified, remove all handlers
                 if(typeof fn === "undefined") {
-                    for(handlers in eventsTable.eventName) {
+                    for(var handlers in eventsTable.eventName) {
                         delete eventsTable.eventName[handlers];
                     }
                 }
@@ -194,7 +184,7 @@
                 }
 
                 // if the event has no more handlers registered to it, get rid of the event completely
-                if(eventsTable[eventName] && eventsTable[eventName].length == 0) {
+                if(eventsTable[eventName] && eventsTable[eventName].length === 0) {
                     delete eventsTable[eventName];
                 }
             };
@@ -234,9 +224,9 @@
                     var args = Array.prototype.slice.call(arguments, 1);
 
                     // iterate throuh all the handlers
-                    for(i = 0; i < eventsTable[eventName].length; i++) {
+                    for(var i = 0; i < eventsTable[eventName].length; i++) {
                         // check current handler is a function
-                        if(eventsTable[eventName][i].constructor == Function) {
+                        if(typeof eventsTable[eventName][i] === "function") {
                             // execute handler with the provided arguments
                             eventsTable[eventName][i].apply(element, args);
                         }
@@ -245,7 +235,7 @@
             };
         },
 
-        TouchMonitor : function(element, events)
+        TouchMonitor : function(element)
         {
             var cacheId = Jester.cacheId,
                 elementId = element[cacheId],
@@ -279,7 +269,7 @@
             var previousTapTime = 0;
 
             var touchStart = function(evt) {
-				touches = new Jester.TouchGroup(evt);
+                touches = new Jester.TouchGroup(evt);
 
                 eventSet.execute("start", touches, evt);
 
@@ -309,16 +299,12 @@
             };
 
             var touchEnd = function(evt) {
-				touches.event = evt;
-				
+
                 eventSet.execute("end", touches, evt);
 
                 if(opts.preventDefault) evt.preventDefault();
                 if(opts.stopPropagation) evt.stopPropagation();
 
-                //Foxtrick.log(touches.numTouches() ,touches.touch(0).total.x(),
-				// opts.tapDistance , touches.touch(0).total.y() , opts.tapDistance , touches.touch(0).total.time() , opts.tapTime)
-				 
                 if(touches.numTouches() == 1) {
                     // tap
                     if(touches.touch(0).total.x() <= opts.tapDistance && touches.touch(0).total.y() <= opts.tapDistance && touches.touch(0).total.time() < opts.tapTime) {
@@ -334,39 +320,15 @@
                         previousTapTime = now;
                     }
 
-					var distX = touches.touch(0).total.x();
-                    var distY = touches.touch(0).total.y();
-                    // swipe                                            
-					if(Math.abs(distX) >= opts.swipeDistance
-                    || Math.abs(distY) >= opts.swipeDistance) {
-                        var swipeDirection = {};
-						if (Math.abs(distX) >= opts.swipeDistance)
-							if (distX < 0) 
-								swipeDirection.left=true 
-							else swipeDirection.right=true;
-                        if (Math.abs(distY) >= opts.swipeDistance)
-							if (distY < 0) 
-								swipeDirection.up=true 
-							else swipeDirection.down=true;
-						swipeDirection.distanceX = distX;
-                        swipeDirection.distanceY = distY;
+                    // swipe
+                    if(Math.abs(touches.touch(0).total.x()) >= opts.swipeDistance) {
+                        var swipeDirection = touches.touch(0).total.x() < 0 ? "left" : "right";
                         eventSet.execute("swipe", touches, swipeDirection);
                     }
 
                     // flick
-                    if((Math.abs(distX) >= opts.flickDistance || Math.abs(distY) >= opts.flickDistance)
-						&& touches.touch(0).total.time() <= opts.flickTime) {
-                        var flickDirection = {};
-						if (Math.abs(distX) >= opts.flickDistance)
-							if (distX < 0) 
-								flickDirection.left=true 
-							else flickDirection.right=true;
-                        if (Math.abs(distY) >= opts.flickDistance)
-							if (distY < 0) 
-								flickDirection.up=true 
-							else flickDirection.down=true;
-						flickDirection.distanceX = distX;
-                        flickDirection.distanceY = distY;
+                    if(Math.abs(touches.touch(0).total.x()) >= opts.flickDistance && touches.touch(0).total.time() <= opts.flickTime) {
+                        var flickDirection = touches.touch(0).total.x() < 0 ? "left" : "right";
                         eventSet.execute("flick", touches, flickDirection);
                     }
                 }
@@ -429,9 +391,6 @@
             function getScale() {
                 return scale;
             }
-            function getPrevScale() {
-                return prevScale;
-            }
             function getDeltaScale() {
                 return deltaScale;
             }
@@ -439,7 +398,7 @@
             function updateTouches(event) {
                 var mpX = 0;
                 var mpY = 0;
-    
+
                 for(var i = 0; i < event.touches.length; i++) {
                     if(i < numTouches) {
                         that["touch" + i].update(event.touches[i].pageX, event.touches[i].pageY);
@@ -471,8 +430,6 @@
         },
 
         Touch : function(_startX, _startY) {
-            var that = this;
-
             var startX = _startX,
                 startY = _startY,
                 startTime = now(),
@@ -621,15 +578,14 @@
                     currentSpeedX = deltaX / (deltaTime/1000);
                     currentSpeedY = deltaY / (deltaTime/1000);
                     deltaSpeedX = currentSpeedX - prevSpeedX;
-                    deltaSpeedY = currentSpeedY - prevSpeedY;    
+                    deltaSpeedY = currentSpeedY - prevSpeedY;
                 }
-            }
+            };
         }
     };
-	Jester = container["Jester"];
-	
-    container["jester"] = function(el, opts) {
+
+    container.jester = function(el, opts) {
         return new Jester.Watcher(el, opts);
     };
 
-}(Foxtrick));
+}(window));
