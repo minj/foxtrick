@@ -128,8 +128,8 @@ function shutdown(aData, aReason) {
 	// Unload from any existing windows
 	let windows = wm.getEnumerator('navigator:browser');
 	while (windows.hasMoreElements()) {
-		let domWindow = windows.getNext().QueryInterface(Ci.nsIDOMWindow);
-		_gLoader.unloadFromWindow(domWindow);
+		let win = windows.getNext().QueryInterface(Ci.nsIDOMWindow);
+		_gLoader.unloadFromWindow(win);
 	}
 
 	// Flush string bundle cache

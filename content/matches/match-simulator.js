@@ -1218,7 +1218,7 @@ Foxtrick.modules.MatchSimulator = {
 		};
 		Foxtrick.onClick(doc.getElementById('flip_lineup'), function(ev) {
 			// ff is too fast. so we cue to ensure css add been added by page already
-			window.setTimeout(checkFlipped, 0);
+			window.setTimeout(function () { checkFlipped(); }, 0);
 		});
 		checkFlipped();
 	}

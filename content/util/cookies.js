@@ -142,7 +142,7 @@ if (!Foxtrick) var Foxtrick = {};
 			};
 			if (set_scheduled)
 				// if unfinshed set is called, queue behind
-				window.setTimeout(_set, 0);
+				window.setTimeout(function () { _set(); }, 0);
 			else
 				_set();
 		};
@@ -219,7 +219,7 @@ if (!Foxtrick) var Foxtrick = {};
 			};
 			if (set_scheduled)
 				// if unfinshed set is called, queue behind
-				window.setTimeout(_get, 0);
+				window.setTimeout(function () { _get(); }, 0);
 			else
 				_get();
 		};
