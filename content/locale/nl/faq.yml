@@ -20,7 +20,12 @@ nl:
         </ul>
     sound-location: 
       question: Wat is de maximum bestandsgrootte voor waarschuwings-geluiden en waar kunnen deze geplaatst worden?
-      answer: 
+      answer: |
+        <p>Alle browsers kunnen data urls afspelen. Dit zijn de intern opgeslagen geluiden die opgeslagen worden met behulp van de laad knop in de instellingen. Omdat ze geconverteerd en opgeslagen worden in je instellingen, is de maximale grote ongeveer 160KB per geluid.</p>
+        
+        <p>All browsers kunnen ook geluiden direct afspelen van het internet (http-urls). Kopieer eenvoudig een link (bijv. http://foxtrick.org/sound.wav) in het locatie tekst invoer veld voor geluiden. Geen limiet aan de grote van het geluid.</p>
+        
+        <p>Mozilla browsers kunnen ook geluiden direct afspelen van uw harde schijf (file urls) zonder bestandsgrootte limiet. Eenvoudigste manier om de locatie van een geluidsbestand te krijgen is door in de browser CTRL+O in te typen, waarna u het geluidsbestand opzoekt. In de adresbalk zal daarna de link naar het bestand staan (bijv. file:///c:/sound.wav). Kopieer en plak deze in het tekst-invoer veld voor geluiden.</p>
     authorize: 
       question: Waarom moet ik FoxTrick toestemming geven om mijn teamdata te benaderen?
       answer: |
