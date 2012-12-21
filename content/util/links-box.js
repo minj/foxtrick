@@ -300,9 +300,10 @@ Foxtrick.util.links = {
 			var inputTitle = doc.createElement('input');
 			inputTitle.setAttribute('name', 'inputTitle');
 			inputTitle.setAttribute('id', 'inputTitleID');
-			inputTitle.setAttribute('value', 'Title');
+			var inputTitleText = Foxtrickl10n.getString('links.custom.title');
+			inputTitle.setAttribute('value', inputTitleText);
 			Foxtrick.listen(inputTitle, 'focus', function(ev) {
-				if (ev.target.value == 'Title')
+				if (ev.target.value == inputTitleText)
 					ev.target.value = '';
 			});
 			inputTitle.setAttribute('type', 'text');
@@ -321,9 +322,10 @@ Foxtrick.util.links = {
 			var inputHref = doc.createElement('input');
 			inputHref.setAttribute('name', 'inputHref');
 			inputHref.setAttribute('id', 'inputHrefID');
-			inputHref.setAttribute('value', 'http://example.org');
+			var inputHrefUrl = Foxtrickl10n.getString('links.custom.exampleUrl');
+			inputHref.setAttribute('value', inputHrefUrl);
 			Foxtrick.listen(inputHref, 'focus', function(ev) {
-				if (ev.target.value == 'http://example.org')
+				if (ev.target.value == inputHrefUrl)
 					ev.target.value = 'http://';
 			});
 			inputHref.setAttribute('type', 'text');
