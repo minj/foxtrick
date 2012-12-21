@@ -292,7 +292,10 @@ Foxtrick.util.links = {
 			inputTitle.setAttribute("name", "inputTitle");
 			inputTitle.setAttribute("id", "inputTitleID");
 			inputTitle.setAttribute("value", "Title");
-			inputTitle.setAttribute('onfocus', 'if(Foxtrick.util.links.value==\'Title\')Foxtrick.util.links.value=\'\'');
+			Foxtrick.listen(inputTitle, 'focus', function(ev) {
+				if (ev.target.value == 'Title')
+					ev.target.value = '';
+			});
 			inputTitle.setAttribute("type", "text");
 			inputTitle.setAttribute("maxlength", "100");
 			inputTitle.setAttribute("style","width:100%;");
