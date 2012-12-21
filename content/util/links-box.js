@@ -402,8 +402,7 @@ Foxtrick.util.links = {
 			helplink.title = Foxtrickl10n.getString('links.custom.help');
 			helplink.href = 'javascript: void(0);';
 			Foxtrick.onClick(helplink, function(ev) {
-				alert(Foxtrickl10n.getString('links.custom.helptext') + ' \n'
-						+ Foxtrickl10n.getString('links.custom.helptext2'));
+				alert(Foxtrickl10n.getString('links.custom.helptext'));
 			});
 
 			var tdn5b = doc.createElement('td');
