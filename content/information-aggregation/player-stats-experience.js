@@ -2,8 +2,8 @@
 /**
  * player-stats-experience.js
  * show how much experience a player gained in invidual matches and shows current subskill
- * this currently works on the assumption that 28 pts are the fixed border for a skillup,
- * even if thats not really true
+ * this currently works on the assumption that 28.622 pts are the fixed border for a skillup,
+ * even if that might not be 100% true for all levels
  * @author CatzHoek
  */
 
@@ -15,7 +15,6 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 	store: {},
 	pts_for_skillUp: 2576.0 / 90, //=28.622; see 15766691.423 and beyond
 	run: function(doc) {
-
 		// National friendly match	0.1
 		// International friendly match	0.2
 		// League match	1
@@ -26,15 +25,16 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		// U20/NT official match	10
 		// U20/NT World Cup (semi)final	20
 
-		//don't randomly rename, parts of this are taken from hattrick by classnames
+		//don't randomly rename, parts of this are taken from hattrick using image classnames
 		var xp = {};
-		xp.matchFriendly		= 0.2;
 		//assume international friendly as default, considered in min-max,
 		//minimum uses 1/2 of this value
-		xp.matchLeague			= 1.0;
-		xp.matchCup			= 2.0;
+		xp.matchFriendly		= 0.2;
+		//
+ 		xp.matchLeague			= 1.0;
+		xp.matchCup				= 2.0;
 		xp.matchQualification	= 2.0;
-		xp.matchMasters		= 5.0;
+		xp.matchMasters			= 5.0;
 		//nt
 		xp.matchNtFriendly		= 2.0;
 		//fakename: we generate this type (iconsytle + gametype)
