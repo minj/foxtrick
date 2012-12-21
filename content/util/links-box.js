@@ -313,7 +313,10 @@ Foxtrick.util.links = {
 			inputHref.setAttribute("name", "inputHref");
 			inputHref.setAttribute("id", "inputHrefID");
 			inputHref.setAttribute("value", "http://example.org");
-			inputHref.setAttribute('onfocus', 'if(Foxtrick.util.links.value==\'http://example.org\')Foxtrick.util.links.value=\'http://\'');
+			Foxtrick.listen(inputHref, 'focus', function(ev) {
+				if (ev.target.value == 'http://example.org')
+					ev.target.value = 'http://';
+			});
 			inputHref.setAttribute("type", "text");
 			inputHref.setAttribute("maxlength", "5000");
 			inputHref.setAttribute("style","width:100%;");
