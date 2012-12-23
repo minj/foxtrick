@@ -1,3 +1,2 @@
 pref("extensions.foxtrick.prefs.module.MainMenuDropDown.enabled", false);
-pref("extensions.foxtrick.prefs.module.MobileEnhancements.enabled", true);
 pref("extensions.foxtrick.prefs.module.DashboardCalendar.enabled", false);
