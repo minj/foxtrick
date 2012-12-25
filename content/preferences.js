@@ -50,7 +50,6 @@ function init() {
 		}
 
 		/* Run a test. */
-
 		if (window.location.href.search(/saved=true/) !== -1) {
 			notice(Foxtrickl10n.getString('prefs.feedback.saved'));
 			window.location.href = window.location.href
@@ -314,7 +313,7 @@ function initAutoSaveListeners() {
 		$(this).attr('savelistener', 'true');
 		if ($(this).is(':checkbox')) {
 			$(this).click(function(ev) { saveEvent(ev); });
-		} else if ($(this)[0].nodeName == 'select') {
+		} else if ($(this)[0].nodeName.toLowerCase() == 'select') {
 			$(this)[0].addEventListener('change', saveEvent, false);
 		} else if ($(this).is(':input')) {
 			$(this)[0].addEventListener('input', saveEvent, false);
@@ -1145,17 +1144,21 @@ function initModules()
 }
 
 function saveEvent(ev) {
-
 	Foxtrick.log('save', ev);
 	if ($(ev.target).attr('pref')) {
 		var pref = $(ev.target).attr('pref');
+		
 		if ($(ev.target).is(':checkbox'))
 			FoxtrickPrefs.setBool(pref, $(ev.target).is(':checked'));
-		else if ($(ev.target)[0].nodeName == 'select')
-			FoxtrickPrefs.setString(pref, $$(ev.target)[0].value);
+		else if ($(ev.target)[0].nodeName.toLowerCase() == 'select')
+			FoxtrickPrefs.setString(pref, $(ev.target)[0].value);
 			// calculated just-in-time, so .attr('value') would fail here
 		else if ($(ev.target).is(':input'))
 			FoxtrickPrefs.setString(pref, $(ev.target)[0].value);
+	} else if ($(ev.target)[0].nodeName.toLowerCase() == 'option'){
+		var pref = $($(ev.target)[0]).parent().attr('pref');
+		var value = $(ev.target)[0].value;
+		FoxtrickPrefs.setString(pref, $(ev.target)[0].value);
 	} else {
 		var module = $(ev.target).attr('module');
 		if ($(ev.target).attr('option')) {
@@ -1169,7 +1172,6 @@ function saveEvent(ev) {
 				FoxtrickPrefs.setModuleOptionsText(module + '.' + option, $(ev.target)[0].value);
 		}
 		else if ($(ev.target).is(':radio')) {
-			Foxtrick.log('radio option of module');
 			if ($(ev.target).is(':checked'))
 				FoxtrickPrefs.setModuleValue(module, $(ev.target).attr('value'));
 		}
