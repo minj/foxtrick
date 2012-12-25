@@ -76,10 +76,10 @@
     <name>Danish</name>
     <code>da</code>
     <phrases>1458</phrases>
-    <translated>1377</translated>
-    <approved>1320</approved>
-    <translated_progress>94</translated_progress>
-    <approved_progress>90</approved_progress>
+    <translated>1412</translated>
+    <approved>1412</approved>
+    <translated_progress>96</translated_progress>
+    <approved_progress>96</approved_progress>
   </language>
   <language>
     <name>German</name>
@@ -166,9 +166,9 @@
     <name>Georgian</name>
     <code>ka</code>
     <phrases>1458</phrases>
-    <translated>1032</translated>
+    <translated>1051</translated>
     <approved>0</approved>
-    <translated_progress>70</translated_progress>
+    <translated_progress>72</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -229,7 +229,7 @@
     <name>Portuguese</name>
     <code>pt-PT</code>
     <phrases>1458</phrases>
-    <translated>1378</translated>
+    <translated>1379</translated>
     <approved>0</approved>
     <translated_progress>94</translated_progress>
     <approved_progress>0</approved_progress>
