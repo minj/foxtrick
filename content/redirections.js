@@ -149,22 +149,18 @@ Foxtrick.modules['Redirections'] = {
 					|| doc.location.href.search(/redir_to_addnextmatch=true/i) != -1)) {
 				var table = doc.getElementsByClassName('main')[0].getElementsByTagName('table')[0];
 				var headercount = 0;
-				for (var i = 0; i < table.rows.length; ++i) {
-					if (table.rows[i].getElementsByTagName('h2')[0]) {
-						headercount++;
-						if (headercount == 1)
-							continue;
 
-						var matchid = table.rows[i + 1].cells[2].getElementsByTagName['a'][0]
-							.href.match(/matchid=(\d+)/i)[1];
+				var upcoming = table.getElementsByClassName('matchHTLive');
+				if(upcoming.length){
+					var matchId = Foxtrick.util.id.getMatchIdFromUrl(upcoming[0].parentNode.href);
+					var sourceSystem = Foxtrick.getParameterFromUrl(upcoming[0].parentNode.href, 'SourceSystem');
 
-						if (doc.location.href.search(/redir_to_nextmatch=true/i) != -1)
-							tar = serv + '/Club/Matches/Match.aspx?matchID=' + matchid;
+					if (doc.location.href.search(/redir_to_nextmatch=true/i) != -1)
+							tar = serv + '/Club/Matches/Match.aspx?matchID=' + matchId + 
+								'&SourceSystem=' + sourceSystem;
 						else if (doc.location.href.search(/redir_to_addnextmatch=true/i) != -1)
 							tar = serv + '/Club/Matches/Live.aspx?actionType=addMatch&matchID=' +
-								matchid;
-						break;
-					}
+								matchId + '&SourceSystem=' + sourceSystem;
 				}
 			}
 		}
