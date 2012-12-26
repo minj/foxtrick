@@ -406,18 +406,18 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 			map.appendChild(a);
 			return a;
 		};
-		var top = addNavLink(urlAfrica, 'Africa');
+		var top = addNavLink(urlAfrica, Africa);
 		top.id = 'foxtrick-top-map-' + anchorId;
 		map.appendChild(doc.createTextNode(' '));
-		addNavLink(urlAsia, 'Asia');
+		addNavLink(urlAsia, Asia);
 		map.appendChild(doc.createTextNode(' '));
-		addNavLink(urlEurope, 'Europe');
+		addNavLink(urlEurope, Europe);
 		map.appendChild(doc.createTextNode(' '));
-		addNavLink(urlMEast, 'MEast');
+		addNavLink(urlMEast, MEast);
 		map.appendChild(doc.createTextNode(' '));
-		addNavLink(urlSAmerica, 'SAmerica');
+		addNavLink(urlSAmerica, SAmerica);
 		map.appendChild(doc.createTextNode(' '));
-		addNavLink(urlWorld, 'World');
+		addNavLink(urlWorld, World);
 		map.appendChild(doc.createTextNode(' '));
 
 		var img = doc.createElement('img');
