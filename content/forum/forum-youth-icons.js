@@ -63,7 +63,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 			{ type: 'clock', 	icon_class: 'ft_clock', image: 'format_clock.png', 	string: 'clock', 	tags: 'time',  				},
 			{ type: 'spoiler', 	icon_class: 'ft_spoiler',image: 'format_spoiler.png',	string: 'spoiler',	tags: '[spoiler]yyy[/spoiler]',replace_text: 'yyy'		},
 			{ type: 'pre', 		icon_class: 'ft_pre', 	image: 'format_pre.png', 		string: 'pre', 	tags: '[pre]zzz[/pre]', 		replace_text: 'zzz'		},
-			{ type: 'table', 	icon_class: 'ft_table', image: 'format_table.png', 	string: 'table', 	tags: '[table][tr][td]ttt[/td][/tr][/table]', 	replace_text: 'ttt',  	versions:[' ', 'TAB', 'custom'],	versions_string: 'tableSeparator'},
+			{ type: 'table', 	icon_class: 'ft_table', image: 'format_table.png', 	string: 'table', 	tags: '[table][tr][td]ttt[/td][/tr][/table]', 	replace_text: 'ttt',  	versions:[' ', Foxtrickl10n.getString('ForumSpecialBBCode.tableSeparator.tab'), Foxtrickl10n.getString('ForumSpecialBBCode.tableSeparator.custom')],	versions_string: 'tableSeparator'},
 			{ type: 'symbols', 	icon_class: 'ft_symbol', image: 'format_symbol.png', 	string: 'symbols',	tags: 'symbol', 				versions:[], 	versions_string: 'forumSymbol' },
 		];
 		//insert SymbolArray, forward slash to escape, escaping uses 'replace' backwards to tempararily get rid of the semi-colon
@@ -113,7 +113,8 @@ Foxtrick.modules['ForumYouthIcons'] = {
 				var version = ev.target.getAttribute('version');
 				if (version) {
 					Foxtrick.log(ev.target.getAttribute('version_string'), ' ', version);
-					if (version == 'custom') {
+					if (version == Foxtrickl10n
+							.getString('ForumSpecialBBCode.tableSeparator.custom')) {
 						var version = prompt(Foxtrickl10n
 						                     .getString('ForumSpecialBBCode.enterSeparator'));
 						Foxtrick.log('custom_seperator: ', version);
@@ -295,7 +296,9 @@ Foxtrick.modules['ForumYouthIcons'] = {
 						var seperator = FoxtrickPrefs.getString('tableSeparator');
 						Foxtrick.log('seperator', seperator);
 
-						if (seperator == 'TAB') seperator = '\\t';
+						if (seperator == Foxtrickl10n
+							.getString('ForumSpecialBBCode.tableSeparator.tab'))
+							seperator = '\\t';
 						if (seperator == '|') seperator = '\\|';
 						if (seperator == '+') seperator = '\\+';
 						if (seperator == '.') seperator = '\\.';
