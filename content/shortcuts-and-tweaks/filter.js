@@ -219,7 +219,8 @@ Foxtrick.modules["Filter"]={
 				if (!insertBefore)
 					return;
 				
-				var filterdiv  = doc.createElement('div');
+				var filterdiv = Foxtrick.createFeaturedElement(doc, Foxtrick.modules['Filter'],
+															   'div');
 				insertBefore.parentNode.insertBefore(filterdiv, insertBefore);
 				
 				var h2 = doc.createElement('h2');
