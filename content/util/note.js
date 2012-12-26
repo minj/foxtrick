@@ -30,8 +30,6 @@ Foxtrick.util.note = {
 	 *         {
 	 *             type: Foxtrick.util.note.BUTTON_XXX,
 	 *             listener: function() { ... },
-	 *             // if listener is not specified, we will use onclick instead
-	 *             onClick: '...'
 	 *         },
 	 *         ...
 	 *     ]
@@ -100,9 +98,6 @@ Foxtrick.util.note = {
 					button.value = Foxtrickl10n.getString(buttons[i].type.name);
 					if (buttons[i].listener) {
 						Foxtrick.onClick(button, buttons[i].listener);
-					}
-					else if (buttons[i].onClick) {
-						button.setAttribute('onclick', buttons[i].onClick);
 					}
 					else if (buttons[i].type == this.BUTTON_CANCEL) {
 						button.setAttribute('container', id);
