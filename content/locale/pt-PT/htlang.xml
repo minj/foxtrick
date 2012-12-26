@@ -21,21 +21,21 @@
 
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
-		<position type="Keeper" value="Guarda-Redes" short="Ke" />
-		<position type="Central defender" value="Defesa Central" short="Cd" />
-		<position type="Wing back" value="Defesa Lateral" short="Wb" />
-		<position type="Inner midfielder" value="Médio Centro" short="Im" />
-		<position type="Winger" value="Ala" short="Wi" />
-		<position type="Forward" value="Avançado" short="Fo" />
+		<position type="Keeper" value="Guarda-Redes" short="GR" />
+		<position type="Central defender" value="Defesa Central" short="DC" />
+		<position type="Wing back" value="Defesa Lateral" short="DL" />
+		<position type="Inner midfielder" value="Médio Centro" short="MC" />
+		<position type="Winger" value="Ala" short="AL" />
+		<position type="Forward" value="Avançado" short="AV" />
 	</positions>
 
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
-		<specialty type="Unpredictable" value="Imprevisível" short="Un" />
-		<specialty type="Powerful" value="Força" short="Po" />
-		<specialty type="Quick" value="Velocidade" short="Qu" />
-		<specialty type="Technical" value="Técnica" short="Te" />
-		<specialty type="Head" value="Jogo aéreo" short="He" />
+		<specialty type="Unpredictable" value="Imprevisível" short="Im" />
+		<specialty type="Powerful" value="Força" short="Fo" />
+		<specialty type="Quick" value="Velocidade" short="Ve" />
+		<specialty type="Technical" value="Técnica" short="Té" />
+		<specialty type="Head" value="Jogo aéreo" short="JA" />
 		<specialty type="Regainer" value="Reabilitação" short="Re" />
 	</specialties>
 
