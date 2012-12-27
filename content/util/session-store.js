@@ -24,7 +24,7 @@ Foxtrick._sessionGet = function(keymap, callback) {
 			if (Foxtrick.sessionStore[key] !== null)
 				answermap[key] = Foxtrick.sessionStore[key];
 			else
-				answermap[key] = keymap[i];
+				answermap[key] = keymap[key];
 		}
 	}
 
