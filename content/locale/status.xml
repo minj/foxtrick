@@ -94,9 +94,9 @@
     <name>Greek</name>
     <code>el</code>
     <phrases>1458</phrases>
-    <translated>1238</translated>
+    <translated>1263</translated>
     <approved>0</approved>
-    <translated_progress>84</translated_progress>
+    <translated_progress>86</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -148,9 +148,9 @@
     <name>Italian</name>
     <code>it</code>
     <phrases>1458</phrases>
-    <translated>1389</translated>
+    <translated>1458</translated>
     <approved>0</approved>
-    <translated_progress>95</translated_progress>
+    <translated_progress>100</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -211,9 +211,9 @@
     <name>Norwegian</name>
     <code>no</code>
     <phrases>1458</phrases>
-    <translated>918</translated>
+    <translated>923</translated>
     <approved>0</approved>
-    <translated_progress>62</translated_progress>
+    <translated_progress>63</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -382,9 +382,9 @@
     <name>Spanish, Costa Rica</name>
     <code>es-CR</code>
     <phrases>1458</phrases>
-    <translated>1320</translated>
+    <translated>1365</translated>
     <approved>0</approved>
-    <translated_progress>90</translated_progress>
+    <translated_progress>93</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
