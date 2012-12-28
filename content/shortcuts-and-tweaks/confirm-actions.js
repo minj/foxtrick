@@ -179,9 +179,9 @@ Foxtrick.modules['ConfirmActions'] = {
 						var confirm = doc.getElementById(ids.STAFF.CONFIRM_ID);
 						var confirmAdded = true;
 						if (actionSelect && amountText && roleSelect && !confirm) {
-							var actionIndex = parseInt(actionSelect.selectedIndex);
+							var actionIndex = parseInt(actionSelect.selectedIndex, 10);
 							var amount = amountText.value;
-							var roleIndex = parseInt(roleSelect.selectedIndex);
+							var roleIndex = parseInt(roleSelect.selectedIndex, 10);
 							var roleStr = roleSelect.options[roleIndex].textContent;
 							if (!isNaN(amount) && roleIndex !== 0) {
 								var msgTemplate;

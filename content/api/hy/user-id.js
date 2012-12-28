@@ -61,7 +61,7 @@ Foxtrick.api.hy._fetchUserId = function(callback, failure, finalize, teamId) {
 
 	Foxtrick.api.hy._fetchOrIgnore('userId', Foxtrick.api.hy.URL['userId'], null,
 	  function(response) {
-		var userId = parseInt(JSON.parse(response));
+		var userId = parseInt(JSON.parse(response), 10);
 		Foxtrick.log('[HY_API][userId] userId received:', userId);
 		callback(userId);
 	  },

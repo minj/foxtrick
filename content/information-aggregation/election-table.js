@@ -17,14 +17,14 @@ Foxtrick.modules['ElectionTable'] = {
 			// count up the sum first
 			for (var i = 0; i < table.rows.length; ++i) {
 				if (table.rows[i].cells[2]) {
-					sum += parseInt(Foxtrick.trim(table.rows[i].cells[2].textContent));
+					sum += parseInt(Foxtrick.trim(table.rows[i].cells[2].textContent), 10);
 				}
 			}
 
 			// add percentage for each candidate
 			for (var i = 0; i < table.rows.length; i++) {
 				if (table.rows[i].cells[2]) {
-					var content = parseInt(Foxtrick.trim(table.rows[i].cells[2].textContent));
+					var content = parseInt(Foxtrick.trim(table.rows[i].cells[2].textContent), 10);
 					var result = '(' + Math.floor(content / sum * 1000) / 10 + '%)';
 					table.rows[i].cells[3].textContent += result;
 					// keep consistent padding with the cell on the left

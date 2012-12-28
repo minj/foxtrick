@@ -31,7 +31,7 @@ Foxtrick.modules['HistoryStats'] = {
 			try {
 				var pager = doc.getElementById('ctl00_ctl00_CPContent_CPMain_' +
 				                               'ucOtherEvents_ucPagerBottom_divWrapper');
-				var page = parseInt(pager.getElementsByTagName('strong')[0].textContent);
+				var page = parseInt(pager.getElementsByTagName('strong')[0].textContent, 10);
 			}
 			catch (e) {
 				var page = 1;
@@ -53,7 +53,7 @@ Foxtrick.modules['HistoryStats'] = {
 									.getElementsByClassName('date')[0].textContent;
 								var date = Foxtrick.util.time.getDateFromText(season);
 								season = Foxtrick.util.time.gregorianToHT(date).season;
-								this.Offset = parseInt(season) - parseInt(check_season);
+								this.Offset = parseInt(season, 10) - parseInt(check_season, 10);
 								break;
 							}
 						}
@@ -175,7 +175,7 @@ Foxtrick.modules['HistoryStats'] = {
 			var last = -1;
 			for (var i = 0; i < this.Buffer.length; i++) {
 				var dummy = this.Buffer[i].split('|');
-				dummy[0] = parseInt(dummy[0]) - this.Offset + '|';
+				dummy[0] = parseInt(dummy[0], 10) - this.Offset + '|';
 				var line = '<tr><td>%s' + dummy[0] + '</td><td>%c' + dummy[0] + '</td><td>%l' +
 					dummy[0] + '</td><td>%p' + dummy[0] + '</td></tr>';
 

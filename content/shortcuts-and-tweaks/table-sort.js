@@ -36,7 +36,7 @@ Foxtrick.modules['TableSort'] = {
 						// adjust for colspan in header
 						var colspan = 1;
 						if (table.rows[i].cells[j].getAttribute('colspan') != null)
-							colspan = parseInt(table.rows[i].cells[j].getAttribute('colspan'));
+							colspan = parseInt(table.rows[i].cells[j].getAttribute('colspan'), 10);
 						index += colspan;
 					}
 					if (found) break;
@@ -88,7 +88,7 @@ Foxtrick.modules['TableSort'] = {
 					for (var j = 0; j < index - 1; ++j) {
 						if (table.rows[i].cells[j].getAttribute('colspan') != null) {
 							tdindex = tdindex - parseInt(table.rows[i].cells[j]
-							                             .getAttribute('colspan')) + 1;
+							                             .getAttribute('colspan'), 10) + 1;
 						}
 					}
 
@@ -160,21 +160,21 @@ Foxtrick.modules['TableSort'] = {
 					}
 					else if (is_age) {
 						aContent = aContent.match(/^(\d+)\.(\d+)$/);
-						aContent = parseInt(aContent[1]) * 1000 + parseInt(aContent[2]);
+						aContent = parseInt(aContent[1], 10) * 1000 + parseInt(aContent[2], 10);
 						bContent = bContent.match(/^(\d+)\.(\d+)$/);
-						bContent = parseInt(bContent[1]) * 1000 + parseInt(bContent[2]);
+						bContent = parseInt(bContent[1], 10) * 1000 + parseInt(bContent[2], 10);
 						return direction * (aContent - bContent);
 					}
 					else if (is_age_parentheses) {
 						aContent = aContent.match(/^(\d+)\W\((\d+)\)$/);
-						aContent = parseInt(aContent[1]) * 1000 + parseInt(aContent[2]);
+						aContent = parseInt(aContent[1], 10) * 1000 + parseInt(aContent[2], 10);
 						bContent = bContent.match(/^(\d+)\W\((\d+)\)$/);
-						bContent = parseInt(bContent[1]) * 1000 + parseInt(bContent[2]);
+						bContent = parseInt(bContent[1], 10) * 1000 + parseInt(bContent[2], 10);
 						return direction * (aContent - bContent);
 					}
 					else if (is_ordinal) {
-						aContent = parseInt(aContent.match(/^(\d+)\./)[1]);
-						bContent = parseInt(bContent.match(/^(\d+)\./)[1]);
+						aContent = parseInt(aContent.match(/^(\d+)\./)[1], 10);
+						bContent = parseInt(bContent.match(/^(\d+)\./)[1], 10);
 						return direction * (aContent - bContent);
 					}
 					else if (is_num) {

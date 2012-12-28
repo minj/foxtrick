@@ -54,7 +54,7 @@ Foxtrick.modules['ForumLastPost'] = {
 			var select = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlMessagesPerPage');
 			if (select == null) return;
 			var id = select.options[select.selectedIndex].text;
-			id = parseInt(id);
+			id = parseInt(id, 10);
 			FoxtrickPrefs.setInt('perpage', id);
 		}
 	}

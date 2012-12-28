@@ -32,7 +32,7 @@ Foxtrick.modules['YouthSeriesEstimation'] = {
 
 			var sizeCell = cells[2];
 			var size = sizeCell.textContent;
-			if (parseInt(size.split('/')[0]) === parseInt(size.split('/')[1])) {
+			if (parseInt(size.split('/')[0], 10) === parseInt(size.split('/')[1], 10)) {
 				// league is full, check next
 				continue;
 			}

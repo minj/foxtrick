@@ -92,7 +92,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			if (playMinutes != null)
 				for (var i = 0; i < playMinutes.length; i++)
 					if (!isNaN(playMinutes[i]))
-						minutes += parseInt(playMinutes[i]);
+						minutes += parseInt(playMinutes[i], 10);
 			//max 90'
 			return Math.min(90, minutes);
 		};
@@ -204,11 +204,11 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			var date = Foxtrick.util.time.getDateFromText(match_date.textContent);
 
 			//current skilllevel
-			var	xp_now = parseInt(entry.cells[parserconfig.xp].textContent);
+			var	xp_now = parseInt(entry.cells[parserconfig.xp].textContent, 10);
 
 			//remember current XP Level to detect skilldowns
 			if (this.store.currentSkill === null)
-				this.store.currentSkill = parseInt(xp_now);
+				this.store.currentSkill = parseInt(xp_now, 10);
 
 			var u20 = matches_entries[i].getElementsByTagName('a')[0]
 				.textContent.search('U-20') > -1;

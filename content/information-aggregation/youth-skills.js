@@ -74,7 +74,7 @@ Foxtrick.modules['YouthSkills'] = {
 				if (value) {
 					var maxLink = doc.createElement('a');
 					maxLink.setAttribute('href', '/Help/Rules/AppDenominations.aspx?lt=skill&ll=' +
-					                     parseInt(value) + '#skill');
+					                     parseInt(value, 10) + '#skill');
 					var maxText = doc.createTextNode(value ? Foxtrickl10n.getTextByLevel(value) :
 					                                 UNKNOWNLEVELSYMBOL);
 					Foxtrick.addClass(maxLink, 'skill ft-youthskills-link');
@@ -109,7 +109,7 @@ Foxtrick.modules['YouthSkills'] = {
 				if (value) {
 					var minLink = doc.createElement('a');
 					minLink.setAttribute('href', '/Help/Rules/AppDenominations.aspx?lt=skill&ll=' +
-					                     parseInt(value) + '#skill');
+					                     parseInt(value, 10) + '#skill');
 					Foxtrick.addClass(minLink, 'skill ft-youthskills-link');
 					//used to signal skillcoloring that we manually trigger coloring
 					var minText = doc.createTextNode(value ?
@@ -148,7 +148,7 @@ Foxtrick.modules['YouthSkills'] = {
 
 				//get playerid
 				var playerID = parseInt(playerInfo.getElementsByTagName('a')[0].href
-				                        .match(/YouthPlayerID=(\d+)/i)[1]);
+				                        .match(/YouthPlayerID=(\d+)/i)[1], 10);
 
 				//add specialty
 				if (json[playerID] === undefined)

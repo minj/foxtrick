@@ -39,7 +39,7 @@ Foxtrick.util.time = {
 	gregorianToHT: function(date, weekdayOffset, useLocal) {
 		// 22th Aug 1997 should be the first day of first season by calculation
 		var origin = new Date(1997, 8, 22);
-		weekdayOffset = parseInt(weekdayOffset) || 0;
+		weekdayOffset = parseInt(weekdayOffset, 10) || 0;
 		var msDiff = date.getTime() - origin.getTime();
 		var dayDiff = msDiff / 1000 / 60 / 60 / 24 - weekdayOffset;
 		var season = Math.floor(dayDiff / (16 * 7)) + 1;

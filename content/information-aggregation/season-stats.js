@@ -28,7 +28,7 @@ Foxtrick.modules['SeasonStats'] = {
 
 		var selected_local_season = doc.getElementById('mainBody').getElementsByTagName('h2')[0]
 			.textContent.match(/\d+/i);
-		var local_season = parseInt(selected_local_season) + season_diff;
+		var local_season = parseInt(selected_local_season, 10) + season_diff;
 
 		// add season select box
 		var selectbox = Foxtrick.createFeaturedElement(doc, this, 'select');
@@ -101,8 +101,8 @@ Foxtrick.modules['SeasonStats'] = {
 				.getElementsByTagName('span')[0].className == 'draw';
 			var goals = matchestable.rows[i].cells[3]
 				.getElementsByTagName('strong')[0].textContent.match(/\d+/g);
-			var goals0 = parseInt(goals[0]);
-			var goals1 = parseInt(goals[1]);
+			var goals0 = parseInt(goals[0], 10);
+			var goals1 = parseInt(goals[1], 10);
 			if (!draw) {
 				if ((goals0 > goals1) && islost ||
 					(goals0 < goals1) && iswon) { // away. own goals second
@@ -140,12 +140,12 @@ Foxtrick.modules['SeasonStats'] = {
 				.getElementsByTagName('span')[0].className == 'draw';
 			var goals = matchestable.rows[i].cells[3]
 				.getElementsByTagName('strong')[0].textContent.match(/\d+/g);
-			var goals0 = parseInt(goals[0]);
-			var goals1 = parseInt(goals[1]);
+			var goals0 = parseInt(goals[0], 10);
+			var goals1 = parseInt(goals[1], 10);
 			var ishome = 1;
 			if (goals0 > goals1 && islost || goals0 < goals1 && iswon) { // away. own goals second
-				goals0 = parseInt(goals[1]);
-				goals1 = parseInt(goals[0]);
+				goals0 = parseInt(goals[1], 10);
+				goals1 = parseInt(goals[0], 10);
 				ishome = 2;
 			}
 			// get home/away for draws

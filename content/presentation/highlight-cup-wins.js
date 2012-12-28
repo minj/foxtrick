@@ -38,8 +38,8 @@ Foxtrick.modules['HighlightCupwins'] = {
 				// perhaps some results aren't shown
 				continue;
 			}
-			var goalsHome = parseInt(goals[0]);
-			var goalsAway = parseInt(goals[1]);
+			var goalsHome = parseInt(goals[0], 10);
+			var goalsAway = parseInt(goals[1], 10);
 
 			// win, draw, lose from the aspect of home team
 			var win = (goalsHome > goalsAway);

@@ -547,7 +547,7 @@ Foxtrick.Pages.Players = {
 					var tsi;
 					if (tsiMatch) {
 						tsi = tsiMatch[1];
-						tsi = parseInt(tsi);
+						tsi = parseInt(tsi, 10);
 						player.tsi = tsi;
 					}
 				}
@@ -592,7 +592,7 @@ Foxtrick.Pages.Players = {
 						if (player[basicSkillNames[j]] === undefined
 							&& links[basicSkillNames[j]] !== undefined) {
 							player[basicSkillNames[j]] = parseInt(links[basicSkillNames[j]].href
-							                                      .match(/ll=(\d+)/)[1]);
+							                                      .match(/ll=(\d+)/)[1], 10);
 						}
 					}
 				}
@@ -616,7 +616,7 @@ Foxtrick.Pages.Players = {
 									var skillCell = rows[j].getElementsByTagName('td')[1];
 									var skillImg = skillCell.getElementsByTagName('img')[0];
 									var skillLevel = skillImg.title.match(/-?\d+/);
-									player[skillOrder[j]] = parseInt(skillLevel);
+									player[skillOrder[j]] = parseInt(skillLevel, 10);
 								}
 							}
 							else {
@@ -626,7 +626,7 @@ Foxtrick.Pages.Players = {
 								for (var j = 0; j < skillOrder.length; ++j) {
 									var level = cells[2 * j + 3].getElementsByTagName('a')[0].href
 										.match(/ll=(\d+)/)[1];
-									player[skillOrder[j]] = parseInt(level);
+									player[skillOrder[j]] = parseInt(level, 10);
 								}
 							}
 						}
@@ -651,8 +651,8 @@ Foxtrick.Pages.Players = {
 									player[skillOrder[j]].maxed = true;
 								}
 								// if current and/or max is unknown, mark it as 0
-								player[skillOrder[j]].current = parseInt(unknown ? 0 : current);
-								player[skillOrder[j]].max = parseInt(max ? max : 0);
+								player[skillOrder[j]].current = parseInt(unknown ? 0 : current, 10);
+								player[skillOrder[j]].max = parseInt(max ? max : 0, 10);
 							}
 							else {
 								// no image is present, meaning nothing about
