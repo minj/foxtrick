@@ -20,13 +20,13 @@ de:
       note_9: 
       note_10: 
       note_11: 
-      note_12: 
-      note_13: 
-      note_14: 
+      note_12: 'Das Module AddLeaveConfButton wurde in <module>ForumLeaveButton</module> umbenannt'
+      note_13: Von nun an wird bei allen Beiträgen im Foxtrick-Forum automatisch ein Satz von Informationen über verwendete Versionen, Spracheinstellungen etc. hinzugefügt um den Nutzern und den Entwicklern bei der Fehlersuche ein wenig Zeit zu sparen. Bitte löscht diesen Block nicht wenn ihr einen Fehler meldet.
+      note_14: 'Les- und Wartbarkeit des Code verbessert.'
     0.11.0.1: 
       note_0: 
-      note_1: 
-      note_2: 
+      note_1: 'Kleinere Probleme in folgenden Modulen behoben: <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module>,<module>HTThreadMarker</module>.'
+      note_2: Firefox davon abgehalten permanent alle Hattrick Tabs neu zu laden sobald ein neues Browserfenster geöffnet wird.
     0.11.0: 
       note_0: 'NEU: <module>DirectPageLinks</module>: Links hinzugefügt um im Forum zu einer spezifischen Seite eines Threads zu springen'
       note_1: 'Neu: <module>ForumModeratorPopup</module>: Ein Dropdown-Menu im Kopf von Threads hinzugefügt um die Arbeit für Moderatoren zu vereinfachen'
@@ -41,31 +41,31 @@ de:
       note_10: '<module>MovePlayerStatement</module>: Möglichkeit die Statements der Spieler zu entfernen.'
       note_11: '<module>YouthTwins</module>: Manuelle Änderungen des Zwillingsstatuses im HY werden jetzt sofort auf der Jugendspielerübersicht übernommen'
       note_12: '<header>Bugfixes</header>'
-      note_13: 
+      note_13: 'Fixed <module>Filter</module>, <module>SupporterStatsEnhancements</module> and <module>YouthTwins</module>.'
       note_14: 
-      note_15: 
-      note_16: 
-      note_17: 
-      note_18: 
+      note_15: '<module>ConfirmActions</module>: Unterstützung des automatischen Bietassistenten.'
+      note_16: '<module>EmbedMedia</module>: Sicherheit und Qualität der Linkerkennung verbessert. '
+      note_17: '<module>SkillTable</module> sollte für externe Trainer nun die korrekte Zeit seit deren Verpflichtung anzeigen.'
+      note_18: Das Modul BackgroundFixed wurde entfernt.
       note_19: 
       note_20: 
       note_21: 
       note_22: 
-      note_23: 
-      note_24: 
-      note_25: 
-      note_26: 
-      note_27: 
-      note_28: 
+      note_23: Verbesserungen beim Kopieren in HT-ML.
+      note_24: '<header>Sonstige Verbesserungen</header>'
+      note_25: '<module>MatchOrderInterface</module>: Spielergesichter nun auch für Manager ohne Supporter-Status. Sollte nun auch stabiler laufen.'
+      note_26: '<module>MatchSimulator</module> verwendet nun eine neue Formel bezüglich des Konditionsverlustes. (Diskussion siehe 15917246.1)'
+      note_27: '<module>MatchReportFormat</module> nutzt nun die neuen Hattrick Symbole.'
+      note_28: '<module>PlayerStatsExperience</module>: Erfahrungspunkte pro Skilllevel auf 28.62 erhöht (Diskussion siehe 15766691.423). Walkovers werden nun deutlich hervorgehoben.'
       note_29: 
-      note_30: 
-      note_31: 
-      note_32: 
-      note_33: 
-      note_34: 
-      note_35: 
-      note_36: 
-      note_37: 
+      note_30: Layout interferenzen zwischen Hattrick und Foxtrick bereinigt
+      note_31: Ünterstützung der offiziellen Hattrick Domain www.hattrick.fm
+      note_32: 'Ausgestorbene externe Links entfernt aus dem Modul <module>Links</module> entfernt. Wenn möglich werden nun externe Icons verwendet.'
+      note_33: '<header>Browserunterstützung</header>'
+      note_34: Firefox Anpassungen für Android für Versionen 17+
+      note_35: Foxtrick benötigt von nun an Firefox 12 oder eine Neuere Version
+      note_36: Foxtrick benötigt von nun an Google Chrome 22 oder eine Neuere Version
+      note_37: 'Opera: Bug gefixt der Foxtrick dazu veranlasste auf anderen Seiten Probleme zu verursachen (z.B. hattrick youthclub). Bilder sollten jetzt schneller laden. Einige für Opera deaktivierte Module sind nun standardmäßig aktiviert.'
       note_38: 
       note_39: '<header>Die Einstellungsseite wurde komplett überarbeitet.</header>'
       note_40: '<strong>Und vieles mehr</strong>'
