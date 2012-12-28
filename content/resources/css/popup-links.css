@@ -62,6 +62,9 @@ ul.ft-popup-list-up {
 ul.ft-popup-list-down {
 	top:12px; /* = line height */
 }
+h1 ul.ft-popup-list-down {
+	top: 27px;
+}
 
 .ft-popup-span:hover ul.ft-popup-list {
 	display: block !important;
