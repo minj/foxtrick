@@ -33,7 +33,7 @@ Foxtrick.Pages.YouthPlayer = {
 			if (joinedMatch === null) {
 				joinedMatch = joinedRe2.exec(joinedCell.textContent);
 			}
-			var joinedDays = parseInt(joinedMatch[1]);
+			var joinedDays = parseInt(joinedMatch[1], 10);
 			return joinedDays;
 		}
 		catch (e) {

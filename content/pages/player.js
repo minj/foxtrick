@@ -33,8 +33,8 @@ Foxtrick.Pages.Player = {
 			var birthdayMatch = birthdayRe.exec(birthdayCell.textContent);
 
 			var age = {
-				years: parseInt(birthdayMatch[1]),
-				days: parseInt(birthdayMatch[2])
+				years: parseInt(birthdayMatch[1], 10),
+				days: parseInt(birthdayMatch[2], 10)
 			};
 			return age;
 		}
@@ -90,7 +90,7 @@ Foxtrick.Pages.Player = {
 			var playerInfo = doc.getElementsByClassName('playerInfo')[0];
 			var infoTable = playerInfo.getElementsByTagName('table')[0];
 			var tsiString = infoTable.rows[1].cells[1].textContent.replace(/\D/g, '');
-			return parseInt(tsiString);
+			return parseInt(tsiString, 10);
 		}
 		catch (e) {
 			Foxtrick.log(e);
@@ -152,7 +152,7 @@ Foxtrick.Pages.Player = {
 		var injuryImages = injuryCell.getElementsByTagName('img');
 		if (injuryImages.length > 0) {
 			if (injuryImages[0].src.search(/injured.gif/i) !== -1) {
-				return parseInt(injuryImages[0].nextSibling.textContent.match(/\d+/)[0]);
+				return parseInt(injuryImages[0].nextSibling.textContent.match(/\d+/)[0], 10);
 			}
 		}
 		return 0;
@@ -193,7 +193,7 @@ Foxtrick.Pages.Player = {
 				var wageText = infoTable.rows[1].cells[1].textContent;
 			var hasBonus = (wageText.indexOf('%') > -1);
 			wageText = wageText.replace(/\s*(\d+)\s+/g, '$1');
-			var wage = parseInt(wageText);
+			var wage = parseInt(wageText, 10);
 			if (hasBonus)
 				return { base: wage / 1.2, bonus: wage / 6, total: wage };
 			else
@@ -255,7 +255,7 @@ Foxtrick.Pages.Player = {
 							if (skillLink.href.match(/ll=(\d+)/) === null) {
 								break; //skills are not visible
 							}
-							var skillValue = parseInt(skillLink.href.match(/ll=(\d+)/)[1]);
+							var skillValue = parseInt(skillLink.href.match(/ll=(\d+)/)[1], 10);
 							var skillText = Foxtrick.trim(skillLink.textContent);
 							var skillName = Foxtrick.trim(rows[i].getElementsByTagName('td')[0]
 							                              .textContent).replace(':', '');
@@ -273,7 +273,7 @@ Foxtrick.Pages.Player = {
 							if (skillLink.href.match(/ll=(\d+)/) === null) {
 								break; //skills are not visible
 							}
-							var skillValue = parseInt(skillLink.href.match(/ll=(\d+)/)[1]);
+							var skillValue = parseInt(skillLink.href.match(/ll=(\d+)/)[1], 10);
 							var skillText = Foxtrick.trim(skillLink.textContent);
 							var skillName = Foxtrick.trim(cells[2 * i].textContent).replace(':', '');
 							skills[skillOrder[i]] = skillValue;
@@ -300,8 +300,8 @@ Foxtrick.Pages.Player = {
 								skills[skillOrder[i]].maxed = true;
 							}
 							// if current and/or max is unknown, mark it as 0
-							skills[skillOrder[i]].current = parseInt(unknown ? 0 : current);
-							skills[skillOrder[i]].max = parseInt(max ? max : 0);
+							skills[skillOrder[i]].current = parseInt(unknown ? 0 : current, 10);
+							skills[skillOrder[i]].max = parseInt(max ? max : 0, 10);
 						}
 						else {
 							// no image is present, meaning nothing about

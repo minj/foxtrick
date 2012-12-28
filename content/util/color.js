@@ -143,7 +143,7 @@ Foxtrick.util.color.hsvToRgb = function(h, s, v){
         case 5: r = v, g = p, b = q; break;
     }
 
-    return [parseInt(r * 255), parseInt(g * 255), parseInt(b * 255)];
+    return [parseInt(r * 255, 10), parseInt(g * 255, 10), parseInt(b * 255, 10)];
 };
 
 /**

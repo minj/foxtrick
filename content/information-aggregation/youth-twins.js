@@ -125,9 +125,9 @@ Foxtrick.modules['YouthTwins'] = {
 
 				//amounts of twins by category, for non hattrick youthclub users
 				//marked and non are not present by api definition
-				var possible = parseInt(json.players[playerID].possible);
-				var marked = isHYuser ? parseInt(json.players[playerID].marked) : 0;
-				var non = isHYuser ? parseInt(json.players[playerID].non) : 0;
+				var possible = parseInt(json.players[playerID].possible, 10);
+				var marked = isHYuser ? parseInt(json.players[playerID].marked, 10) : 0;
+				var non = isHYuser ? parseInt(json.players[playerID].non, 10) : 0;
 				var missing = possible - marked - non;
 
 				//l10n strings

@@ -234,7 +234,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				};
 				var getIdFromNode = function(node) {
 					try {
-						return parseInt(node.id.match(/\d+/)[0]);
+						return parseInt(node.id.match(/\d+/)[0], 10);
 					}
 					catch (e) {
 						return 0;

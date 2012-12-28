@@ -491,7 +491,7 @@ function initTextAndValues()
 		}, oauth_keys);
 		teamids = Foxtrick.unique(teamids);
 		for (var i = 0; i < teamids.length; ++i) {
-			var id = parseInt(teamids[i]);
+			var id = parseInt(teamids[i], 10);
 			if (!isNaN(id)) {
 				var item = document.createElement('option');
 				item.value = id;

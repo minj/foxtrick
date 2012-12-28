@@ -115,7 +115,7 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 		var part2 = wageText.substr(splitPos);
 
 		var wage = parseInt(part1.replace(/\d+%/, '').replace(currency, '')
-		                    .replace(/\s/g, '').match(/\d+/)[0]);
+		                    .replace(/\s/g, '').match(/\d+/)[0], 10);
 		if (isNaN(wage))
 			return;
 

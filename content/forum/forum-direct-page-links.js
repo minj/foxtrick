@@ -20,12 +20,17 @@ Foxtrick.modules['DirectPageLinks'] = {
 			var step = 0;
 
 			if (nextNodes.length && nextNodes[0])
-				var steptonext = Math.abs(currentPostId - parseInt(Foxtrick
-				                          .getParameterFromUrl(nextNodes[0].parentNode.href, 'n')));
+				var steptonext = Math.abs(currentPostId -
+										  parseInt(Foxtrick.getParameterFromUrl(nextNodes[0]
+																				.parentNode.href,
+																				'n'),
+												   10));
 
 			if (prevNodes.length && prevNodes[0])
-				var steptolast = Math.abs(currentPostId - parseInt(Foxtrick
-				                          .getParameterFromUrl(prevNodes[0].parentNode.href, 'n')));
+				var steptolast = Math.abs(currentPostId -
+										  parseInt(Foxtrick.getParameterFromUrl(prevNodes[0]
+																				.parentNode.href, 'n'),
+												   10));
 
 			step = Math.max(steptonext, steptolast);
 
@@ -42,12 +47,12 @@ Foxtrick.modules['DirectPageLinks'] = {
 			var pages = 1;
 			if (lastNodes.length) {
 				var lastpagestart = parseInt(Foxtrick.getParameterFromUrl(lastNodes[0].parentNode
-				                             .href, 'n'));
+				                             .href, 'n'), 10);
 				var max = lastpagestart + postPerPage - 1;
 				pages = Math.ceil(max / postPerPage);
 			} else if (!lastNodes.length && prevNodes.length) {
 				var secondlastpagestart = parseInt(Foxtrick.getParameterFromUrl(prevNodes[0]
-				                                   .parentNode.href, 'n'));
+				                                   .parentNode.href, 'n'), 10);
 				var max = secondlastpagestart + postPerPage;
 				pages = Math.ceil(max / postPerPage);
 			}
@@ -103,12 +108,13 @@ Foxtrick.modules['DirectPageLinks'] = {
 
 			//get current situation
 			//current post id
-			var currentPostId = parseInt(Foxtrick.getParameterFromUrl(Foxtrick.getHref(doc), 'n'));
+			var currentPostId = parseInt(Foxtrick.getParameterFromUrl(Foxtrick.getHref(doc),
+																	  'n'), 10);
 			if (!currentPostId)
 				currentPostId = 1;
 
 			var lastLinkId = (last && last[0]) ?
-				parseInt(Foxtrick.getParameterFromUrl(last[0].parentNode.href, 'n')) : null;
+				parseInt(Foxtrick.getParameterFromUrl(last[0].parentNode.href, 'n'), 10) : null;
 
 			//post per page, current page, maximum page count
 			var postPerPage = getPostPerPage(next, prev, currentPostId);

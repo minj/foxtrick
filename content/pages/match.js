@@ -149,7 +149,7 @@ Foxtrick.Pages.Match = {
 	getStatFromCell: function(cell) {
 		var link = cell.firstChild;
 		var baseValue = parseInt(link.href.replace(/.+lt=skill/i, '').replace(/.+ll=/i, '')
-		                         .match(/^\d+/)) - 1;
+		                         .match(/^\d+/), 10) - 1;
 		if (baseValue == -1) {
 			return 0; // non-existant
 		}
@@ -185,7 +185,7 @@ Foxtrick.Pages.Match = {
 		var basevalue = 0;
 		if (cell.firstChild.nodeName == 'A')
 			basevalue = parseInt(cell.firstChild.href.replace(/.+lt=skill/i, '')
-			                     .replace(/.+ll=/i, '').match(/^\d+/));
+			                     .replace(/.+ll=/i, '').match(/^\d+/), 10);
 		return basevalue;
 	},
 

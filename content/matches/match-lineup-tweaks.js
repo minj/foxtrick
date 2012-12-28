@@ -514,7 +514,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			for (var i = 0; i < items.length; i++) {
 				stamina += getStaminaFromNode(doc, items[i]);
 			}
-			return parseInt(stamina / fieldPlayerCount);
+			return parseInt(stamina / fieldPlayerCount, 10);
 		};
 
 		if (!doc.querySelectorAll('.playersField > .playerBoxHome').length)
@@ -534,7 +534,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		displayHome.getElementsByTagName('span')[0].textContent = '\u00D8 ' + staminaHome + ' %';
 		displayAway.getElementsByTagName('span')[0].textContent = '\u00D8 ' + staminaAway + ' %';
 		displayDiff.getElementsByTagName('span')[0].textContent = '\u0394 ' +
-			parseInt(Math.abs(staminaHome - staminaAway)) + ' %';
+			parseInt(Math.abs(staminaHome - staminaAway), 10) + ' %';
 
 		Foxtrick.addClass(displayHome, 'ft-match-lineup-tweaks-stamina-counter-sum-home');
 		Foxtrick.addClass(displayDiff, 'ft-match-lineup-tweaks-stamina-counter-diff');

@@ -473,7 +473,7 @@ Foxtrick.modules['LiveMatchReportFormat'] = {
 				var koPending = true;
 				var topDown = true;
 				var firstEventType = parseInt(events[0].getAttribute('data-eventtype')
-				                              .match(/\d+/)[0]);
+				                              .match(/\d+/)[0], 10);
 				if (firstEventType < 30 || firstEventType > 33)
 					topDown = false;
 			}
@@ -486,12 +486,12 @@ Foxtrick.modules['LiveMatchReportFormat'] = {
 				var is_event = event.getAttribute('data-eventtype');
 				if (!is_event) {
 					if (event.firstChild.className == 'shy') {
-						var newspan = parseInt(event.firstChild.getAttribute('colspan')) + 2;
+						var newspan = parseInt(event.firstChild.getAttribute('colspan'), 10) + 2;
 						event.firstChild.setAttribute('colspan', newspan);
 					}
 					continue;
 				}
-				var evtType = parseInt(event.getAttribute('data-eventtype').match(/\d+/)[0]);
+				var evtType = parseInt(event.getAttribute('data-eventtype').match(/\d+/)[0], 10);
 				var evtMin = parseInt(event.firstChild.textContent.match(/\d+/)[0], 10);
 				var is_HomeEvent = Foxtrick.hasClass(event, 'liveHomeEvent');
 				var is_awayEvent = Foxtrick.hasClass(event, 'liveAwayEvent');

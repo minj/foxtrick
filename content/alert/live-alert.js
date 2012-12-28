@@ -34,9 +34,9 @@ Foxtrick.modules['LiveAlert'] = {
 				var scoreRe = new RegExp('(\\d+)\\s*-\\s*(\\d+)');
 				var scoreMatch = score.match(scoreRe);
 				if (!Foxtrick.util.layout.isRtl(doc))
-					return [parseInt(scoreMatch[1]), parseInt(scoreMatch[2])];
+					return [parseInt(scoreMatch[1], 10), parseInt(scoreMatch[2], 10)];
 				else
-					return [parseInt(scoreMatch[2]), parseInt(scoreMatch[1])];
+					return [parseInt(scoreMatch[2], 10), parseInt(scoreMatch[1], 10)];
 			}
 			return null;
 		}

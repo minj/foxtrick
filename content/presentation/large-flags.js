@@ -22,7 +22,7 @@ Foxtrick.modules['LargeFlags'] = {
 		var newStyle = 'transparent url(' + Foxtrick.ResourcePath + 'resources/img/largeflags.png)'
 			+ ' no-repeat scroll';
 		var pos = oldStyle.match(/(\d+)px/)[1];
-		var newPos = -parseInt(pos) / 20 * 105;
+		var newPos = -parseInt(pos, 10) / 20 * 105;
 		newStyle = newStyle + ' ' + newPos + 'px 0pt';
 		img.style.background = newStyle;
 		img.style.width = '105px';
