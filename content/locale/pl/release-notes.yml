@@ -2,71 +2,71 @@
 pl: 
   versions: 
     nightly: 
-      note_0: 
+      note_0: 'To jest wersja rozwojowa. Korzystaj według własnego uznania. Proszę sprawdź szczegóły zmian <linkSVN>historia zmian</linkSVN> w witrynie Google Code.'
     beta: 
-      note_0: 
+      note_0: 'To jest wersja beta następnego wydania. Proszę pomóż w tłumaczeniu tej wersji na naszej super łatwej stronie tłumaczeń <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.12.0: 
-      note_0: 
+      note_0: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
       note_1: 
-      note_2: 
+      note_2: 'Nowość: <module>MainMenuDropDown</module>: dodaje do głównego paska nawigacji rozwijane menu zawierające wszystkie linki zwykle dostępne w pasku bocznym strony docelowej.'
       note_3: 
-      note_4: 
-      note_5: 
+      note_4: 'Nowość: <module>ReLiveLinks</module>: dodaje linki do HT Re-Live, by ponownie obejrzeć zakończone mecze.'
+      note_5: 'Nowość: <module>CopyBBAd</module>: kopiuje różne reklamy w kodzie BB (wykonane przez merfis).'
       note_6: 
       note_7: 
-      note_8: 
-      note_9: 
-      note_10: 
-      note_11: 
-      note_12: 
+      note_8: '<module>CopyYouth</module>: Użytkownicy Hattrick youthclub będą teraz wysyłać komentarze skauta dla graczy odrzuconych do HY automatycznie'
+      note_9: '<module>CopyYouth</module>: Użytkownicy Hattrick youthclub będą teraz wysłać raport z treningu do HY automatycznie, gdy przeczytają go po raz pierwszy'
+      note_10: '<module>LineupShortcut</module> od teraz odsyła do nowej strony ustawiania składu.'
+      note_11: '<module>SkillTable</module> używa teraz ikon dla specjalności i trenerów.'
+      note_12: 'AddLeaveConfButton nazywa się teraz <module>ForumLeaveButton</module>'
       note_13: 
-      note_14: 
+      note_14: Kod dodatku został oczyszczony dla lepszej czytelności i łatwości konserwacji.
     0.11.0.1: 
-      note_0: 
-      note_1: 
-      note_2: 
+      note_0: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
+      note_1: 'Naprawić drobne problemy w <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>"DobierzPrzychód"</module> i <module>HTThreadMarker</module>.'
+      note_2: Zapobiec przeładowaniu wszystkich kart Hattricka, po otwarciu nowego okna przeglądarki Firefox.
     0.11.0: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
-      note_10: 
-      note_11: 
-      note_12: 
-      note_13: 
-      note_14: 
-      note_15: 
-      note_16: 
-      note_17: 
-      note_18: 
-      note_19: 
-      note_20: 
-      note_21: 
-      note_22: 
-      note_23: 
-      note_24: 
-      note_25: 
-      note_26: 
-      note_27: 
-      note_28: 
-      note_29: 
-      note_30: 
-      note_31: 
-      note_32: 
-      note_33: 
-      note_34: 
-      note_35: 
-      note_36: 
+      note_0: 'Nowość: <module>DirectPageLinks</module>: dodane linki, by mieć dostęp do określonych stron w wątku na forum'
+      note_1: 'Nowość: <module>ForumModeratorPopup</module>: dodaje menu rozwijane u góry wątku dla moderatorów forum by uprościć moderację.'
+      note_2: 'Nowość: <module>PlayerStatsTrainingWeek</module>: Dodano możliwość, aby grupować mecze według tygodnia treningu zamiast tygodnia kalendarzowego.'
+      note_3: '<module>MatchOrderInterface</module>: Dodano poprawkę dla listy wykonawców stałych fragmentów. Można również dodać skład do listy lub usunąć go za pomocą jednego kliknięcia.'
+      note_4: '<module>SkillTable</module>: Dodano możliwość dodatkowego sortowania wydanych poleceń przez ctrl + lewy przycisk myszy na innym nagłówku kolumny.'
+      note_5: '<module>SkillTable</module>: Nazwiska graczy są obecnie skracane by zajmować mniej miejsca.'
+      note_6: '<module>SkillColoring</module>: Moduł poprawiony w całości; wiele poprawek i uzupełnień. Opcje zmienione. Proszę je ustawić ponownie według własnego gustu.'
+      note_7: '<module>TransferSearchResultFilters</module>: Dodano możliwość filtrowania według formy i ukrywania graczy bez specjalności. Obecnie współpracuje z <module>TransferSearchFilters</module>.'
+      note_8: '<module>MatchSimulator</module>: Dodano integrację z <module>Ratings</module>.'
+      note_9: '<module>FriendlyPool</module>: Dodano możliwość rozwijania pola wyboru kraju.'
+      note_10: '<module>MovePlayerStatement</module>: Dodano możliwość całkowitego usunięcia powiadomienia.'
+      note_11: '<module>YouthTwins</module>: Zmiany wprowadzone ręcznie na HY od teraz będą natychmiast widoczne na stronie juniorów'
+      note_12: '<header>Poprawki błędów</header>'
+      note_13: 'Poprawiono <module>Filter</module>, <module>SupporterStatsEnhancements</module> i <module>YouthTwins</module>.'
+      note_14: '<module>StaffMarker</module> i <module>HTThreadMarker</module> działają teraz w wielu miejscach.'
+      note_15: '<module>ConfirmActions</module>: Dodano wsparcie dla autobid.'
+      note_16: '<module>EmbedMedia</module>: zwiększenie bezpieczeństwa i lepsze wykrywanie linków.'
+      note_17: '<module>SkillTable</module> powinien teraz zgłaszać właściwy czas w zespole dla trenerów z naboru.'
+      note_18: Moduł BackgroundFixed został usunięty.
+      note_19: '<header>Kopiowanie modułów</header>'
+      note_20: '<module>CopyRatings</module>: wsparcie identyfikatora meczu turniejowgo.'
+      note_21: '<module>CopyMatchID</module>: dodano wsparcie dla pojedynczego meczu a usunięto ze stron meczu, aby zrobić miejsce dla nowej funkcji bezpośredniego linku HT'
+      note_22: '<module>CopyPlayerAd</module>: naprawiono konflikt z paskami umiejętności HT'
+      note_23: Ogólne poprawki kopiowania HT-ML.
+      note_24: '<header>Inne ulepszenia</header>'
+      note_25: '<module>MatchOrderInterface</module>: avatary dla nie-supporterów. Zwiększona stabilność.'
+      note_26: '<module>MatchSimulator</module> korzysta teraz z nowego wzoru wytrzymałości (opracowanej przez Senzascrupoliego [post = 15917246.1]) w obniżaniu wytrzymałości.'
+      note_27: '<module>MatchReportFormat</module> wykorzystuje nowe ikony HT.'
+      note_28: '<module>PlayerStatsExperience</module>: punkty doświadczenia na poziom zwiększone do 28.62 (zobacz dyskusję 15766691.423). Walkowery są teraz podawane, ponieważ nie dają doświadczenia.'
+      note_29: Moduły forum teraz wykorzystują znak spacji zamiast "·", by uniknąć tekstu; to powinno pomóc w przypadku języka katalońskiego.
+      note_30: Zapobiec ingerencji układu widoku HT w Foxtricka.
+      note_31: Dodano wsparcie dla www.hattrick.fm
+      note_32: 'Usunięto martwe linki w <module>Links</module>. Korzystaj z ikon zewnętrznych w miarę możliwości.'
+      note_33: '<header>Wsparcie przeglądarki</header>'
+      note_34: Poprawiono wsparcie Firefoxa dla Androida 17 +.
+      note_35: Firefox 12 to teraz minimalna wersja do uruchomienia Foxtrick.
+      note_36: Google Chrome 22 to teraz minimalna wersja do uruchomienia Foxtrick.
       note_37: 
-      note_38: 
-      note_39: 
-      note_40: 
+      note_38: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
+      note_39: '<header>Strona preferencji została przerobiona.</header>'
+      note_40: '<strong>I wiele, wiele więcej</strong>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
