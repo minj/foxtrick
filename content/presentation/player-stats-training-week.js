@@ -10,7 +10,33 @@ Foxtrick.modules['PlayerStatsTrainingWeek'] = {
 	PAGES: ['playerStats'],
 
 	run: function(doc) {
-		var matches = doc.querySelectorAll('img.matchFriendly,img.matchCup,img.matchMasters');
+
+		var leagueId = Foxtrick.util.id.getOwnLeagueId();
+		var ntNode = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml,
+			"//League[LeagueID='" + leagueId + "']");
+
+		var trainingDate = ntNode.getElementsByTagName('TrainingDate')[0].textContent;
+		var cupMatchDate = ntNode.getElementsByTagName('CupMatchDate')[0].textContent; 
+		var seriesMatchDate = ntNode.getElementsByTagName('SeriesMatchDate')[0].textContent; 
+
+		var training = Foxtrick.util.time.getDateFromText(trainingDate, 'yyyy-mm-dd hh:mm:ss');
+		var cup = Foxtrick.util.time.getDateFromText(cupMatchDate, 'yyyy-mm-dd hh:mm:ss');
+		var series = Foxtrick.util.time.getDateFromText(seriesMatchDate, 'yyyy-mm-dd hh:mm:ss');
+
+		var monday = series;
+		while(monday.getDay() != 1)
+			monday.setTime(monday.getTime() - (24*60*60*1000));
+
+		monday.setHours(0);
+		monday.setMinutes(0);
+		monday.setMinutes(0);
+		monday.setMilliseconds(0);
+
+		if(monday.getTime() < series.getTime() && series.getTime() < training.getTime()){
+			//is that the case we need to fix?
+		}
+
+		var matches = doc.querySelectorAll('img.matchFriendly, img.matchCup, img.matchMasters');
 		//a slight problem with Masters on Thursday as it happens between training updates
 		//in different countries while this code fixes it in a 'before training' position
 
