@@ -170,7 +170,7 @@
 		'285': { 'team': ['miss', 'indirect'] },
 		'286': { 'team': ['miss', 'counter-attack', 'indirect'] },
 		'287': { 'team': ['miss', 'longshot'] },
-		'288': { 'team': ['miss', 'longshot'] },
+		'288': { 'team': ['miss', 'longshot'], 'other': ['pressing'] },
 		'289': { 'team': ['se_quick_negative'], 'other': ['se_quick'] },
 		'301': { 'team': ['se_technical_negative', 'rain'] },
 		'302': { 'team': ['se_powerful', 'rain'] },
