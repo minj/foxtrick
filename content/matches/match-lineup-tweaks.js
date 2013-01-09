@@ -421,9 +421,12 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		};
 
 		var addFacesByTeamId = function(teamid, players) {
-			if (teamid == ownteamid) {
-				Foxtrick.util.api.retrieve(doc, [['file', (isYouth ? 'youth' : '') + 'avatars']],
-				                           { cache_lifetime: 'session' },
+				var avartarArgs = [
+					['file', (isYouth ? 'youth' : '') + 'avatars'],
+					['teamId', teamid],
+					['version', '1.1']
+				];
+				Foxtrick.util.api.retrieve(doc, avartarArgs, { cache_lifetime: 'session' },
 				  function(xml, errorText) {
 					if (errorText) {
 						Foxtrick.log(errorText);
@@ -436,7 +439,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					}
 					Foxtrick.startListenToChange(doc);
 				});
-			}
 		};
 
 		addFacesByTeamId(homeTeamId, homePlayerLinks);
