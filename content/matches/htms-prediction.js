@@ -64,6 +64,9 @@ Foxtrick.modules['HTMSPrediction'] = {
 		if (tactics[0] == 'ca') {
 			params += '&TATAC=CA&TATACLEV=' + tacticsLevel[0];
 		}
+		if (tactics[0] == 'longshots') {
+			params += '&TATAC=LS&TATACLEV=' + tacticsLevel[0];
+		}
 		if (tactics[1] == 'aow') {
 			params += '&TBTAC=AOW&TBTACLEV=' + tacticsLevel[1];
 		}
@@ -75,6 +78,9 @@ Foxtrick.modules['HTMSPrediction'] = {
 		}
 		if (tactics[1] == 'ca') {
 			params += '&TBTAC=CA&TBTACLEV=' + tacticsLevel[1];
+		}
+		if (tactics[1] == 'longshots') {
+			params += '&TBTAC=LS&TBTACLEV=' + tacticsLevel[1];
 		}
 
 		//Inserting the table
