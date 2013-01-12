@@ -11,76 +11,34 @@ Foxtrick.modules['PlayerStatsTrainingWeek'] = {
 
 	run: function(doc) {
 
-		var leagueId = Foxtrick.util.id.getOwnLeagueId();
-		var ntNode = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml,
-			"//League[LeagueID='" + leagueId + "']");
+		// basically what we need is to inverse the row class for friendlies, cup games, hm games
+		// this 'shifts them' to the previous week
+		// also league games in a few countries happen on monday and need to be shifted
+		// so do Monday nt games
+		// BUT nt friendlies (on Friday) should not be shifted!
 
-		var trainingDate = ntNode.getElementsByTagName('TrainingDate')[0].textContent;
-		var cupMatchDate = ntNode.getElementsByTagName('CupMatchDate')[0].textContent; 
-		var seriesMatchDate = ntNode.getElementsByTagName('SeriesMatchDate')[0].textContent; 
+		// a slight problem with Masters on Thursday as it happens between training updates
+		// in different countries while this code fixes it in a 'before training' position
+		// doesn't really matter as those games have no training anyway
 
-		var training = Foxtrick.util.time.getDateFromText(trainingDate, 'yyyy-mm-dd hh:mm:ss');
-		var cup = Foxtrick.util.time.getDateFromText(cupMatchDate, 'yyyy-mm-dd hh:mm:ss');
-		var series = Foxtrick.util.time.getDateFromText(seriesMatchDate, 'yyyy-mm-dd hh:mm:ss');
-
-		var monday = series;
-		while(monday.getDay() != 1)
-			monday.setTime(monday.getTime() - (24*60*60*1000));
-
-		monday.setHours(0);
-		monday.setMinutes(0);
-		monday.setMinutes(0);
-		monday.setMilliseconds(0);
-
-		if(monday.getTime() < series.getTime() && series.getTime() < training.getTime()){
-			//is that the case we need to fix?
-		}
-
-		var matches = doc.querySelectorAll('img.matchFriendly, img.matchCup, img.matchMasters');
-		//a slight problem with Masters on Thursday as it happens between training updates
-		//in different countries while this code fixes it in a 'before training' position
-
-		for (var i = 0, badmatch, badrow; badmatch = matches[i]; ++i) {
-			if (badmatch.parentNode.style.backgroundColor)
-				continue; //NT friendlies should be skipped
-			badrow = badmatch.parentNode.parentNode.parentNode;
-			if (Foxtrick.hasClass(badrow, 'odd')) {
-				Foxtrick.removeClass(badrow, 'odd');
-				Foxtrick.addClass(badrow, 'darkereven');
-			}
-			else if (Foxtrick.hasClass(badrow, 'darkereven')) {
-				Foxtrick.removeClass(badrow, 'darkereven');
-				Foxtrick.addClass(badrow, 'odd');
-			}
-		}
-
-
-		//NT matches on Monday require a more sophisticated fix for both tables
-
-		var rows = doc.querySelectorAll('#matches > tbody > tr');
-		//tbody is a must when thead is used. Otherwise, first row from tbody is lost
-		//(querySelector bug?)
+		var rows = doc.getElementById('matches').rows;
+		var statsrows = doc.getElementById('stats').rows;
 
 		for (var i = 0, row; row = rows[i]; ++i) {
-			if (row.querySelector('span[style] > img.matchLeague')) { //this is NT match!
-				var matchDay = row.querySelector('td:nth-child(2)').firstChild.nodeValue;
-				if (Foxtrick.util.time.getDateFromText(matchDay).getDay() == 1) { //on Monday
-					var statsrow = doc.querySelector('#stats > tbody > ' +
-					                                 'tr:nth-child(' + (i + 1) + ')');
-					//nth-child starts @ 1
-					if (Foxtrick.hasClass(row, 'odd')) {
-						Foxtrick.removeClass(row, 'odd');
-						Foxtrick.addClass(row, 'darkereven');
-						Foxtrick.removeClass(statsrow, 'odd');
-						Foxtrick.addClass(statsrow, 'darkereven');
-					}
-					else if (Foxtrick.hasClass(row, 'darkereven')) {
-						Foxtrick.removeClass(row, 'darkereven');
-						Foxtrick.addClass(row, 'odd');
-						Foxtrick.removeClass(statsrow, 'darkereven');
-						Foxtrick.addClass(statsrow, 'odd');
-					}
-				}
+			var statsrow = statsrows[i];
+			var leagueMonday = false, regularFriendly = false;
+			if (row.querySelector('img.matchLeague')) {
+				var matchDay = row.cells[1].firstChild.nodeValue;
+				if (Foxtrick.util.time.getDateFromText(matchDay).getDay() == 1)
+					leagueMonday = true;
+			}
+			else if (row.querySelector('img.matchFriendly') && !row.querySelector('span[style]'))
+				regularFriendly = true;
+			if (leagueMonday || regularFriendly || row.querySelector('img.matchCup, img.matchMasters')) {
+				Foxtrick.toggleClass(row, 'odd');
+				Foxtrick.toggleClass(row, 'darkereven');
+				Foxtrick.toggleClass(statsrow, 'odd');
+				Foxtrick.toggleClass(statsrow, 'darkereven');
 			}
 		}
 	}
