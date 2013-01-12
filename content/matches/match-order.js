@@ -729,6 +729,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					if (playerid) {
 						var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList,
 						                                                          playerid);
+						if (!player)
+							return;
 						var span = doc.createElement('span');
 						span.className = 'ft-extraInfo';
 						span.appendChild(doc.createElement('br'));
