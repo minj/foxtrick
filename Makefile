@@ -32,7 +32,7 @@ endif
 
 
 # cf safari: xar needs to have sign capabilities ie xar --help shows --sign as option.
-# sudo apt-get install gcc libssl-dev libxml2-dev make openssl lftp
+# sudo apt-get install gcc libssl-dev libxml2-dev make openssl lftp autoconf build-essential
 # git clone git://github.com/mackyle/xar
 # cd xar/xar
 # ./autogen.sh --noconfigure
