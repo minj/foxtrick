@@ -2,8 +2,8 @@
 no: 
   faq: 
     style: 
-      question: 
-      answer: 
+      question: Hvordan kan jeg forandre utseendet på FoxTrick?
+      answer: '<p>FoxTrick gir et sett med presentasjonsgrensesnitt som brukerne kan tilpasse til sine egne stiler. Disse grensesnittene gis gjennom HTML-IDer og klasser, og du kan bruke CSS til å definere din foretrukne stil.</p>  <p>Fileksempler, som du kan endre for å tilfredsstille dine behov, finnes <linkCSSExample>her</linkCSSExample> eller <linkCSSExampleGCode>her</linkCSSExampleGCode>. Når du lagrer filen, kan du bruke modulen <module>SkinPlugin</module> for lasting av CSS-filen for å bruke stilsettet du har valgt.</p>'
     sound-format: 
       question: Hvilke filformater tillates for varsellyder?
       answer: |
@@ -18,17 +18,17 @@ no:
     sound-location: 
       question: Hva er grensen for filstørrelse på varsellyder, og hvor kan de plasseres?
       answer: |
-        <p> Alle nettlesere kan spille data url'er. Det er de lydene som er lagret internt når du bruker "last inn" knappen i innstillinger. Siden de er konvertert og lagret i dine instillinger, er filstørrelsen begrenset til rundt 160kB per lyd. </p>
+        <p> Alle nettlesere kan spille data-url'er. Det er de lydene som er lagret internt når du bruker "last inn"-knappen i innstillinger. Siden de er konvertert og lagret i dine instillinger, er filstørrelsen begrenset til rundt 160kB per lyd. </p>
         
-        <p> Alle nettlesere kan også spille lyder direkte fra internett (http url'er). Bare kopier en link til en lyd (f.eks. http://foxtrik.org/sound.wav) inn i feltet for lyder. Det er ingen begrensning på filstørrelse.</p>
+        <p> Alle nettlesere kan også spille lyder direkte fra internett (http-url'er). Bare kopier en link til en lyd (f.eks. http://foxtrick.org/sound.wav) inn i feltet for lyder. Det er ingen begrensning på filstørrelse på denne måten.</p>
         
-        <p> Mozilla nettlesere kan også spille lyd direkte fra din harddisk (fil url'er) uten begrensning på filstørrelse. Den enkleste måten å få det riktige formatet på: I nettleseren, klikk Ctrl+o, lett etter lydfilen og velg den. I adressefeltet på toppen er nå riktig link til den lokale filen (f.eks. file:///c:/sound.wav). Kopier og lim denne inn i redigeringsfeltet for lydfiler i dine instillinger. </p>
+        <p> Mozilla nettlesere kan også spille lyd direkte fra din harddisk (fil-url'er) uten begrensning på filstørrelse. Den enkleste måten å få det riktige formatet på: I nettleseren, klikk Ctrl+o, lett etter lydfilen og velg den. I adressefeltet på toppen er nå riktig link til den lokale filen (f.eks. file:///c:/sound.wav). Kopier og lim denne inn i redigeringsfeltet for lydfiler i dine innstillinger. </p>
     authorize: 
       question: Hvorfor bør jeg godkjenne at FoxTrick får tilgang til mitt lags data?
       answer: |
         <p>Selv om det meste av dataen FoxTrick trenger kan hentes direkte fra siden du ser på, krever noen moduler nedlasting av data fra Hattrick for å fungere skikkelig.</p>
         
-        <p> For å laste ned data fra Hattrick, inkludert data fra ditt lag, din serie, og landslag, må du godkjenne FoxTrick på forhånd.</p>
+        <p> For å laste ned data fra Hattrick, inkludert data fra ditt lag, din serie og landslag, må du godkjenne FoxTrick på forhånd.</p>
         
         <p>Du godkjenner FoxTrick ved å fylle inn ditt brukernavn og passord på chpp.hattrick.org i bytte for en verifiseringskode, som du bruker til å autorisere FoxTrick. FoxTrick vil ikke få tilgang til ditt passord eller brukernavn.</p>
         
@@ -55,10 +55,10 @@ no:
     privacy: 
       question: Hvordan vil FoxTrick beskytte personvernet mitt?
       answer: |
-        <p> FoxTrick vil ikke laste opp noe av din data eller instillinger til en FoxTrick server; FoxTrick vil heller ikke sende noe av din private data, inkludert, men ikke begrenset til ditt brukernavn, passord, og spiller ID forbundet med ferdigheter til noen tredje parter.</p>
+        <p> FoxTrick vil ikke laste opp noe av din data eller innstillinger til en FoxTrick server; FoxTrick vil heller ikke sende noe av din private data, inkludert, men ikke begrenset til, ditt brukernavn, passord, og spiller ID forbundet med ferdigheter til noen tredjeparter.</p>
         
-        <p>Det meste av dataen som blir sent til tredjeparter, om det ikke er eksplisitt nevnt nedenfor, er sent med HTTP GET metoden, og vil bare bli sent dersom du klikker på en designert link.</p>
+        <p>Det meste av dataen som blir sendt til tredjeparter, om det ikke er eksplisitt nevnt nedenfor, er sent med HTTP GET-metoden, og vil bare bli sendt dersom du klikker på en designert link.</p>
         
-        <p>Det vil være mulig for deg å se hvilke data som blir sendt videre ved å inspisere URI'en (Uniform Resource Identifier) til en ekstern link, og ingen data vil bli sent uten din tillatelse. Som beskrevet over, ingen privat data vil bli sendt.</p>
+        <p>Du vil, med andre ord, kunne se hvilke data som blir sendt videre ved å inspisere URI'en (Uniform Resource Identifier) til en ekstern link, og ingen data vil bli sendt uten din tillatelse. Som beskrevet over, ingen unødvendig informasjon vil bli sendt.</p>
         
-        <p>Unntaket er modulene <module>HTMSPrediction</module> og <module>HTEVPrediction</module>, hvor kampratinger er sendt og motatt fra de respektive sidene med XMLHttprequest.</p>
+        <p>Unntaket er modulene <module>HTMSPrediction</module> og <module>HTEVPrediction</module>, hvor kampratinger blir sendt og mottatt fra de respektive sidene med XMLHttprequest.</p>

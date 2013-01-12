@@ -121,9 +121,9 @@
     <name>Finnish</name>
     <code>fi</code>
     <phrases>1458</phrases>
-    <translated>1284</translated>
+    <translated>1340</translated>
     <approved>0</approved>
-    <translated_progress>88</translated_progress>
+    <translated_progress>91</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -139,9 +139,9 @@
     <name>Hungarian</name>
     <code>hu</code>
     <phrases>1458</phrases>
-    <translated>1301</translated>
+    <translated>1325</translated>
     <approved>193</approved>
-    <translated_progress>89</translated_progress>
+    <translated_progress>90</translated_progress>
     <approved_progress>13</approved_progress>
   </language>
   <language>
@@ -211,7 +211,7 @@
     <name>Norwegian</name>
     <code>no</code>
     <phrases>1458</phrases>
-    <translated>923</translated>
+    <translated>929</translated>
     <approved>0</approved>
     <translated_progress>63</translated_progress>
     <approved_progress>0</approved_progress>
@@ -220,9 +220,9 @@
     <name>Polish</name>
     <code>pl</code>
     <phrases>1458</phrases>
-    <translated>1238</translated>
+    <translated>1248</translated>
     <approved>0</approved>
-    <translated_progress>84</translated_progress>
+    <translated_progress>85</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -274,10 +274,10 @@
     <name>Serbian</name>
     <code>sr</code>
     <phrases>1458</phrases>
-    <translated>1320</translated>
-    <approved>1322</approved>
-    <translated_progress>90</translated_progress>
-    <approved_progress>90</approved_progress>
+    <translated>1409</translated>
+    <approved>1411</approved>
+    <translated_progress>96</translated_progress>
+    <approved_progress>96</approved_progress>
   </language>
   <language>
     <name>Swedish</name>
@@ -364,7 +364,7 @@
     <name>Persian</name>
     <code>fa</code>
     <phrases>1458</phrases>
-    <translated>1186</translated>
+    <translated>1192</translated>
     <approved>0</approved>
     <translated_progress>81</translated_progress>
     <approved_progress>0</approved_progress>

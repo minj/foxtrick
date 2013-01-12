@@ -4,7 +4,7 @@ it:
     nightly: 
       note_0: 'Questa è la versione di sviluppo. Utilizzala a tua discrezione. per favore visita <linkSVN>commit history</linkSVN> su Google code per dettagli sui cambiamenti.'
     beta: 
-      note_0: 'Questa è la versione beta della prossima release. Per favore aiutaci a tradurre questa versione con la nostra super semplice pagina di traduzione di crowdin <linkCrowdin>crowdin.net</linkCrowdin>. '
+      note_0: 'Questa è la versione beta della prossima release. Per favore aiutaci a tradurre questa versione con la nostra semplicissima pagina di traduzione di Crowdin <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.12.0: 
       note_0: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
       note_1: "NOVITA': <module>MatchLineupTweaks</module>: Cambia le nuove stelle nello stile precedente. Aggiunge contatori per stelle e resistenza nella nuova pagina della formazione. Mostra le specialità di tutti i giocatori e aggiunge il nome delle squadre sullo sfondo per limitare la confusione. Mostra le facce dei giocatori della tua squadra. Evidenzia i giocatori relativi all' evento della partita selezionato."

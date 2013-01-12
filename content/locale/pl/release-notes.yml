@@ -7,19 +7,19 @@ pl:
       note_0: 'To jest wersja beta następnego wydania. Proszę pomóż w tłumaczeniu tej wersji na naszej super łatwej stronie tłumaczeń <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.12.0: 
       note_0: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
-      note_1: 
+      note_1: 'NOWOŚĆ: <moduł> MatchLineupTweaks </ module>: Zmiany liczy gwiazdy do starego stylu, jak gwiazdy. Dodaje liczniki dla gwiazd i wytrzymałość, aby na nowej stronie spisu. Pokazuje specjały dla wszystkich podmiotów i dodaje nazwę zespołu na boisku, aby ograniczyć dezorientację. Wyświetla awatary Player dla swojej drużyny. Wyróżnij graczy odpowiednich do zdarzenia w meczu.'
       note_2: 'Nowość: <module>MainMenuDropDown</module>: dodaje do głównego paska nawigacji rozwijane menu zawierające wszystkie linki zwykle dostępne w pasku bocznym strony docelowej.'
-      note_3: 
+      note_3: 'NOWOŚĆ: <moduł> MatchLineupFixes </ module>: Timeline Synchronizuj przez gracza i sektory zakładkach. Pokaż nazwy Player pogody SEs. Dodaj linki dla graczy w swoim własnym karcie zleceń. Dodaj ostatniego liczenia gwiazd na graczy na ławce. Rozwiązuje wiele zdarzeń dzieje się w tym samym czasie: gracze zmieniają pozycje krok po kroku, a nie wszystkie na raz.'
       note_4: 'Nowość: <module>ReLiveLinks</module>: dodaje linki do HT Re-Live, by ponownie obejrzeć zakończone mecze.'
       note_5: 'Nowość: <module>CopyBBAd</module>: kopiuje różne reklamy w kodzie BB (wykonane przez merfis).'
-      note_6: 
-      note_7: 
+      note_6: 'NOWOŚĆ: <moduł> DashboardCalendar </ module>: Dodano przycisk eksportowania tydzień Hattrick w formacie iCalendar (powinny być zgodne z Google Calendar, Thunderbird + Lightning, MS Outlook, KOrganizer, Evolution, etc iCal Apple)'
+      note_7: '<moduł> LiveAlert </ module>: Dodano różne dźwięki dla domu / away / twoje cele zespołu. Korzystanie z dźwięków z HTLiveSight <linkHTLS> </ linkHTLS> domyślnie. Twoje cele zespołu nie będą rozpoznawane w trybie Re-Live w pierwszym.'
       note_8: '<module>CopyYouth</module>: Użytkownicy Hattrick youthclub będą teraz wysyłać komentarze skauta dla graczy odrzuconych do HY automatycznie'
       note_9: '<module>CopyYouth</module>: Użytkownicy Hattrick youthclub będą teraz wysłać raport z treningu do HY automatycznie, gdy przeczytają go po raz pierwszy'
       note_10: '<module>LineupShortcut</module> od teraz odsyła do nowej strony ustawiania składu.'
       note_11: '<module>SkillTable</module> używa teraz ikon dla specjalności i trenerów.'
       note_12: 'AddLeaveConfButton nazywa się teraz <module>ForumLeaveButton</module>'
-      note_13: 
+      note_13: Od teraz, twoja przeglądarka i ustawienia Hattricka układ będzie automatycznie dołączane do wysłanych wiadomości na forum FoxTrick. To pomoże nam rozwiązać problemy szybciej. Proszę nie usuwać tej informacji podczas wysyłania.
       note_14: Kod dodatku został oczyszczony dla lepszej czytelności i łatwości konserwacji.
     0.11.0.1: 
       note_0: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
@@ -63,7 +63,7 @@ pl:
       note_34: Poprawiono wsparcie Firefoxa dla Androida 17 +.
       note_35: Firefox 12 to teraz minimalna wersja do uruchomienia Foxtrick.
       note_36: Google Chrome 22 to teraz minimalna wersja do uruchomienia Foxtrick.
-      note_37: 
+      note_37: 'Opera: naprawiono błąd, który powodował, że FT mógł kolidować z innymi stronami (np. Hattrick Youthclub). Obrazy powinny teraz ładować dużo szybciej. Niektóre moduły, które zostały specjalnie wyłączone w Operze są teraz włączone.'
       note_38: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
       note_39: '<header>Strona preferencji została przerobiona.</header>'
       note_40: '<strong>I wiele, wiele więcej</strong>'
