@@ -12,6 +12,10 @@ Foxtrick.modules['SupportershipExpirationDate'] = {
 	run: function(doc) {
 		//get the content, translate days to date
 		var container = doc.getElementById('ctl00_ctl00_CPContent_CPSidebar_pnlSupporterDays');
+
+		//feature highlight
+		Foxtrick.makeFeaturedElement(container, this);
+
 		var days = container.textContent.match(/\d+/);
 		var now = new Date();
 		var endDate = Foxtrick.util.time.addDaysToDate(now, days);
