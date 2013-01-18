@@ -88,7 +88,7 @@ fr:
       note_15: '<module>MatchOrderInterface</module>: Face will also show for replaced and highlighted players for past lineups'
       note_16: '<module>MatchPlayerColouring</module>: Now works properly for players that were put in and left the field before the game ended'
       note_17: '<module>HideSignatures</module>: Did not work when HT setting was set to truncated signatures, fixed that'
-      note_18: '<module>PlayerStatsExperience</module>: Fixed NT/U-20 final and semi-final detection'
+      note_18: '<module>PlayerStatsExperience</module>: Correctif pour la détection des finals et demi-finales NT/U-20'
       note_19: '<module>TeamPopupLinks</module>: Fixed infinite creating of tabs on the guestbook'
       note_20: Fixed RTL language issues with the median transfer price
       note_21: '<header>For visually/hearing impaired users</header>'
@@ -110,7 +110,7 @@ fr:
       note_11: Fennec loads staffmarker and link resources from internal sources again. So they aren't updated dynamically but also save bandwidth.
     0.9.2: 
       note_0: Another massive language update. Thanks again to all those translators.
-      note_1: Rewrote language detection. Should never break again
+      note_1: Révision de la détection de la langue. Tout doit être parfait maintenant
       note_2: 'NEW: <module>PlayerStatsExperience</module>: shows how much experience a player gained in invidual matches and shows current subskill'
       note_3: 'NEW: <module>TeamPopupLinks</module>: added Tournaments. Optionally highlights current team in tables (default on)'
       note_4: 'NEW: <module>RatingsDisplay</module>: additonally addes average stars and ratings to series stats table'
