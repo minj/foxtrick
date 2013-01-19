@@ -4,7 +4,7 @@ pt-PT:
     nightly: 
       note_0: 'Esta é a versão desenvolvida. Use consoante a sua vontade. Por favor veja o <linkSVN>Histórico de confirmação</linkSVN> no Google Code para mais detalhe sobre as alterações.'
     beta: 
-      note_0: 'Esta é a versão beta do nosso próximo lançamento. Agradecíamos que ajudassem a traduzir esta versão na nossa página de tradução <linkCrowdin>crowdin.net</linkCrowdin>'
+      note_0: 'O FoxTrick instalado é uma versão Beta do próximo lançamento. Contribuir para a tradução deste extra em <linkCrowdin>Crowdin.net</linkCrowdin> é muito fácil.'
     0.12.0: 
       note_0: 
       note_1: 
