@@ -8,11 +8,8 @@
 Foxtrick.modules['SmallerPages'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
 	PAGES: ['all'],
-	OPTIONS: ['ReduceBid'],
 	NICE: 5,
 	// after FoxtrickTransferDeadline and probably also after all other player detail adjustment
-
-	TABLE_ID: 'foxtrick-smaller-pages-table',
 
 	run: function(doc) {
 		if (!Foxtrick.util.layout.isSupporter(doc)) {
@@ -45,15 +42,6 @@ Foxtrick.modules['SmallerPages'] = {
 				doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlplayerInfo').style.width
 					= 'auto';
 			}
-
-			if (FoxtrickPrefs.isModuleOptionEnabled('SmallerPages', 'ReduceBid')) {
-				//we move the bid div
-				if (doc.getElementById(this.TABLE_ID)) {
-					this._move_bid(doc);
-				}
-				//then adjust it
-				this._adjust_bid(doc);
-			}
 		}
 		else if (Foxtrick.isPage(doc, 'youthOverview')) {
 			if (!doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucScoutProposalFace_pnlAvatar')) {
@@ -66,57 +54,4 @@ Foxtrick.modules['SmallerPages'] = {
 	change: function(doc) {
 		this.run(doc);
 	},
-
-	_move_bid: function(doc) {
-		var biddiv = doc.getElementById('ctl00_ctl00_CPContent_CPMain_updBid');
-		if (biddiv) {
-			try {
-				//We move the bid div, i get the skill div
-				var skilldiv = biddiv.nextSibling.nextSibling;
-				//I get the skilltable and create a new table where to put skilltable and biddiv
-				var skilltable = skilldiv.getElementsByTagName('table').item(0);
-				var newtable = Foxtrick.createFeaturedElement(doc, this, 'table');
-				newtable.id = 'foxtrick-smaller-pages-table';
-				skilldiv.appendChild(newtable);
-				newtable.insertRow(0);
-				newtable.rows[0].insertCell(0);
-				newtable.rows[0].insertCell(1);
-				newtable.rows[0].cells[0].appendChild(skilltable);
-				newtable.rows[0].cells[1].appendChild(biddiv);
-
-				//Now reducing the bid div cutting strings
-				var toremove = biddiv.getElementsByTagName('strong');
-				for (var i = 0; toremove.length; i++) {
-					toremove.item(i).parentNode.removeChild(toremove.item(i));
-				}
-				toremove = biddiv.getElementsByTagName('b');
-				for (var i = 0; toremove.length; i++) {
-					toremove.item(i).parentNode.removeChild(toremove.item(i));
-				}
-			}
-			catch (e) {
-				Foxtrick.log(e);
-			}
-		}
-	},
-
-	_adjust_bid: function(doc) {
-		var biddiv = doc.getElementById('ctl00_ctl00_CPContent_CPMain_updBid');
-		if (biddiv) {
-			try {
-				//Now reducing the bid div cutting strings
-				var toremove = biddiv.getElementsByTagName('strong');
-				for (var i = 0; i < toremove.length; i++) {
-					toremove.item(i).parentNode.removeChild(toremove.item(i));
-				}
-				toremove = biddiv.getElementsByTagName('b');
-				for (var i = 0; i < toremove.length; i++) {
-					toremove.item(i).parentNode.removeChild(toremove.item(i));
-				}
-			}
-			catch (e) {
-				Foxtrick.log(e);
-			}
-		}
-	}
 };
