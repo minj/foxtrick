@@ -696,7 +696,6 @@ pref("extensions.foxtrick.prefs.module.SkillTranslation.enabled", true);
 pref("extensions.foxtrick.prefs.module.SkinPlugin.enabled", false);
 pref("extensions.foxtrick.prefs.module.SkinPlugin.skin", "");
 pref("extensions.foxtrick.prefs.module.SmallerPages.enabled", false);
-pref("extensions.foxtrick.prefs.module.SmallerPages.ReduceBid.enabled", false);
 pref("extensions.foxtrick.prefs.module.StaffMarker.enabled", true);
 pref("extensions.foxtrick.prefs.module.StaffMarker.external.enabled", true);
 pref("extensions.foxtrick.prefs.module.StaffMarker.manager.enabled", true);
