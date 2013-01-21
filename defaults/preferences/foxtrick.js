@@ -164,7 +164,7 @@ pref("extensions.foxtrick.prefs.module.ForumYouthIcons.youth_team.enabled", true
 pref("extensions.foxtrick.prefs.module.ForumYouthIcons.debug.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumYouthIcons.settings.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumYouthIcons.symbols.enabled", true);
-pref("extensions.foxtrick.prefs.module.ForumYouthIcons.symbols_text","★;☆;►;●;:þ");
+pref("extensions.foxtrick.prefs.module.ForumYouthIcons.symbols_text","★;☆;►;▼;▲;●;:þ");
 pref("extensions.foxtrick.prefs.module.ForumYouthIcons.tournament.enabled", true);
 pref("extensions.foxtrick.prefs.module.ForumYouthIcons.tournament_match.enabled", true);
 pref("extensions.foxtrick.prefs.module.FriendlyInterface.enabled", true);
