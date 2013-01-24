@@ -7,12 +7,14 @@
 
 Foxtrick.modules.AddClass = {
 	CORE_MODULE: true,
-	PAGES: ['playerDetails', 'search', 'bookmarks', 'match', 'matchOld', 'transferCompare'],
+	PAGES: ['playerDetails', 'search', 'bookmarks', 'match', 'matchOld', 'transferCompare', 'playerHistory'],
 	NICE: -20, // place before all date-related modules
 
 	run: function(doc) {
 		if (Foxtrick.isPage(doc, 'playerDetails'))
 			this.addDateForTl(doc);
+		else if (Foxtrick.isPage(doc, 'playerHistory'))
+			this.addDateForFeed(doc);
 		else if (Foxtrick.isPage(doc, 'search'))
 			this.addDateForTable(doc, doc.getElementById('ctl00_ctl00_CPContent_CPMain' +
 			                     '_grdYouthSeries_ctl00'));
@@ -60,7 +62,12 @@ Foxtrick.modules.AddClass = {
 		var parent = mainBody.getElementsByClassName('byline')[0];
 		this.replaceInNode(doc, parent, timeRe);
 	},
-
+	addDateForFeed: function(doc) {
+		var feeds = doc.getElementsByClassName('feed');
+		for (var i = 0, feed; i < feeds.length && (feed = feeds[i]); i++) {
+			Foxtrick.addClass(feed, 'date');
+		}
+	},
 	// add date class for bookmark
 	addDateForBookmarks: function(doc) {
 		var mainBody = doc.getElementById('mainBody');
