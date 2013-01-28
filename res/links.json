@@ -1194,6 +1194,35 @@
 			]
 		]
 	},
+	"hungarytracker" : {
+		"img": "http://ht-tracker.rakoczif.hu/pics/favicon.ico",
+		"title": "Hungary National Tracker",
+		"trackernationalteamlink": {
+			"url": "http://ht-tracker.rakoczif.hu/",
+			"filters": [
+				"countryid"
+			]
+		},
+		"trackerplayerlink": {
+			"url": "http://ht-tracker.rakoczif.hu/",
+			"filters": [
+				"nationality"
+			]
+		},
+		"countryidranges": [
+			[
+				51,
+				51
+			]
+		],
+		"nationalityranges": [
+			[
+				51,
+				51
+			]
+		]
+
+	},
 	"russiatracker": {
 		"img": "resources/linkicons/tracker.png",
 		"title": "Russia + Kyrgyzstan NT/U-20 DB",
