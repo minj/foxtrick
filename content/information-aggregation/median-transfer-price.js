@@ -10,7 +10,7 @@ Foxtrick.modules['MedianTransferPrice'] = {
 	PAGES: ['transferCompare'],
 
 	run: function(doc) {
-		var table = doc.getElementsByTagName('table')[0];
+		var table = doc.querySelectorAll('#mainBody > table')[0];
 		if (!table) return;
 		if (table.rows[0].cells.length < 5) return;
 		var count = table.rows.length;
