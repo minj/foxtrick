@@ -1406,27 +1406,55 @@
 	},
 	"hatstatsnet": {
 		"leaguelink": {
-			"url": "http://hatstats.net/oceania/standings.php?series=[leagueid]",
+			"url": "http://hatstats.net/[countryid]/standings.php?series=[leagueid]",
 			"filters": [
 				"countryid"
 			]
 		},
 		"teamlink": {
-			"url": "http://hatstats.net/oceania/team.php?teamID=[teamid]",
+			"url": "http://hatstats.net/[countryid]/team.php?teamID=[teamid]",
 			"filters": [
 				"countryid"
 			]
 		},
 		"countrylink": {
-			"url": "http://hatstats.net/oceania/",
+			"url": "http://hatstats.net/[countryid]/",
 			"filters": [
 				"countryid"
 			]
 		},
 		"countryidranges": [
 			[
+				2,
+				2
+			],
+			[
+				8,
+				8
+			],
+			[
 				15,
 				15
+			],
+			[
+				17,
+				17
+			],
+			[
+				21,
+				22
+			],
+			[
+				26,
+				27
+			],
+			[
+				47,
+				47
+			],
+			[
+				54,
+				54
 			]
 		],
 		"title": "Hatstats",
