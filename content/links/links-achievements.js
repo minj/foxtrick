@@ -27,7 +27,7 @@ Foxtrick.modules['LinksAchievements'] = {
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
 
 		var ownBoxBody = null;
-		var mainBody = doc.getElementsByClassName('main')[0];
+		var mainBody = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 
 		var teamid = Foxtrick.util.id.findTeamId(mainBody);
 		var teamname = Foxtrick.util.id.extractTeamName(mainBody);
