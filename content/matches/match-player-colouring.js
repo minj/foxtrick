@@ -24,7 +24,7 @@ Foxtrick.modules.MatchPlayerColouring = {
 		if (doc.location.search.search(/&HighlightPlayerID=(\d+)/) != -1) {
 			// highlight single player
 			var playerId = doc.location.search.match(/&HighlightPlayerID=(\d+)/)[1];
-			var links = doc.getElementsByClassName('main')[0].getElementsByTagName('a');
+			var links = doc.getElementsById('ctl00_ctl00_CPContent_divStartMain').getElementsByTagName('a');
 			links = Foxtrick.filter(function(a) {
 				return a.hasAttribute('href') && a.getAttribute('href').indexOf(playerId) > -1;
 				//must use getAttribute because #anchor links (tabs) include the original url
@@ -88,7 +88,7 @@ Foxtrick.modules.MatchPlayerColouring = {
 		Foxtrick.addClass(homeTeam, homeClass);
 		Foxtrick.addClass(awayTeam, awayClass);
 
-		var mainWrapper = doc.getElementsByClassName('main')[0].parentNode;
+		var mainWrapper = doc.getElementsById('ctl00_ctl00_CPContent_divStartMain').parentNode;
 		var links = Foxtrick.filter(function(n) {
 			return n.hasAttribute('href');
 		}, mainWrapper.getElementsByTagName('a'));

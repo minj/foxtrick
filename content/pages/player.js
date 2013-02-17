@@ -44,7 +44,7 @@ Foxtrick.Pages.Player = {
 	},
 
 	getName: function(doc) {
-		var mainWrapper = doc.getElementsByClassName('main')[0];
+		var mainWrapper = doc.getElementsById('ctl00_ctl00_CPContent_divStartMain');
 		var h2 = mainWrapper.getElementsByTagName('h2')[0];
 		var links = h2.getElementsByTagName('a');
 		for (var i = 0; i < links.length; ++i) {
@@ -160,7 +160,7 @@ Foxtrick.Pages.Player = {
 
 	getOwnerClub: function(doc) {
 		try {
-			var head = doc.getElementsByClassName('main')[0].getElementsByTagName('h2')[0];
+			var head = doc.getElementsById('ctl00_ctl00_CPContent_divStartMain').getElementsByTagName('h2')[0];
 			var links = head.getElementsByTagName('a');
 			if (links.length < 2)
 				return null; // free agent

@@ -22,7 +22,7 @@ Foxtrick.modules['HTEVPrediction'] = {
 		var handleHTEVResponse = function(response, status) {
 			var fillPopups = function(matchid, json) {
 				//league id
-				var main = doc.getElementsByClassName('main')[0];
+				var main = doc.getElementsById('ctl00_ctl00_CPContent_divStartMain');
 				var thisdiv = main.getElementsByTagName('div')[0];
 				var leagueId = Foxtrick.util.id.findLeagueLeveUnitId(thisdiv);
 				var teamId = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);

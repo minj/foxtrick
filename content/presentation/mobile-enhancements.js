@@ -88,7 +88,7 @@ Foxtrick.modules['MobileEnhancements'] = {
 		// all relevant elements
 		var lb = doc.getElementsByClassName('subMenu')[0] ||
 			doc.getElementsByClassName('subMenuConf')[0];
-		var cb = doc.getElementsByClassName('main')[0];
+		var cb = doc.getElementsById('ctl00_ctl00_CPContent_divStartMain');
 		var rb = doc.getElementById('sidebar');
 		var header = doc.getElementById('header');
 		var page = doc.getElementById('page');

@@ -164,7 +164,7 @@ Foxtrick.modules['TeamStats'] = {
 						filterSelect.dispatchEvent(evt2);
 
 						window.scroll(0, 0);
-						window.scrollBy(0, doc.getElementsByClassName('main')[0].offsetTop);
+						window.scrollBy(0, doc.getElementsById('ctl00_ctl00_CPContent_divStartMain').offsetTop);
 					});
 				};
 

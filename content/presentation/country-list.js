@@ -122,7 +122,7 @@ Foxtrick.modules['CountryList'] = {
 	_placeCountry: function(doc) {
 		var cntr = doc.getElementById('ft_cntr_fix');
 		if (cntr == null) {
-			var league = doc.getElementsByClassName('main')[0].getElementsByClassName('flag')[0];
+			var league = doc.getElementsById('ctl00_ctl00_CPContent_divStartMain').getElementsByClassName('flag')[0];
 			if (!league) return;
 			if (FoxtrickPrefs.isModuleOptionEnabled('CountryList', 'HideFlagOntop')) {
 				league.setAttribute('style', 'display:none');
