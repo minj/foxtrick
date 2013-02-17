@@ -9,7 +9,7 @@ Foxtrick.Pages.Country = {
 		try {
 			// should fetch from h2 header because changing country from
 			// select box would not change the URL
-			var mainWrapper = doc.getElementsById('ctl00_ctl00_CPContent_divStartMain');
+			var mainWrapper = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 			var h2 = mainWrapper.getElementsByTagName('h2')[0];
 			var countryLink = h2.getElementsByTagName('a')[0];
 			var matched = countryLink.href.match(/LeagueID=(\d+)/);

@@ -25,7 +25,7 @@ Foxtrick.modules['Redirections'] = {
 		var tar = '';
 		// redirect from manager
 		if (doc.location.href.search(/\/Club\/Manager/i) != -1) {
-			var userid = doc.getElementsById('ctl00_ctl00_CPContent_divStartMain')
+			var userid = doc.getElementById('ctl00_ctl00_CPContent_divStartMain')
 				.getElementsByTagName('a')[1].href.replace(/.+userid=/i, '');
 
 			var target = '_self';
@@ -147,7 +147,7 @@ Foxtrick.modules['Redirections'] = {
 			else if (doc.location.href.search(/\/Club\/Matches\/\?TeamID=/i) != -1
 				&& (doc.location.href.search(/redir_to_nextmatch=true/i) != -1
 					|| doc.location.href.search(/redir_to_addnextmatch=true/i) != -1)) {
-				var table = doc.getElementsById('ctl00_ctl00_CPContent_divStartMain').getElementsByTagName('table')[0];
+				var table = doc.getElementById('ctl00_ctl00_CPContent_divStartMain').getElementsByTagName('table')[0];
 				var headercount = 0;
 
 				var upcoming = table.getElementsByClassName('matchHTLive');

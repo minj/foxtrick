@@ -440,7 +440,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			var hasInterface = false;
 			var playerList = null;
 			var avatarsXml = null;
-			var teamid = Foxtrick.util.id.findTeamId(doc.getElementsById('ctl00_ctl00_CPContent_divStartMain'));
+			var teamid = Foxtrick.util.id.findTeamId(doc.getElementById('ctl00_ctl00_CPContent_divStartMain'));
 			//store most accurate list on first load
 			var lastMatchDates = null;
 

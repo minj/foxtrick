@@ -83,7 +83,7 @@ Foxtrick.modules['CopyMatchID'] = {
 					continue;
 
 				var href = '';
-				var links = doc.getElementsById('ctl00_ctl00_CPContent_divStartMain').getElementsByTagName('a');
+				var links = doc.getElementById('ctl00_ctl00_CPContent_divStartMain').getElementsByTagName('a');
 				for (var j = 0; j < links.length; j++) {
 					if (links[j].href.match(/Club\/Matches\/Match\.aspx/i)) {
 						href = links[j].href;
