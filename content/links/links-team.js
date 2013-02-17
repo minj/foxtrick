@@ -32,7 +32,7 @@ Foxtrick.modules['LinksTeam'] = {
 	AddLinksRight: function(doc) {
 		if (!this.isTeamPage(doc))
 			return;
-		var main = doc.getElementsByClassName('main')[0];
+		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var ownBoxBody = null;
 		var teaminfo = this.gatherLinks(main, doc);
 

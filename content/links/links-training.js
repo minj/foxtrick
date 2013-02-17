@@ -26,7 +26,7 @@ Foxtrick.modules['LinksTraining'] = {
 			return;
 		//addExternalLinksToCoachPage
 
-		var main = doc.getElementsByClassName('main')[0];
+		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var ownBoxBody = null;
 		var Coach, TI, STA, TrainingType, owncountryid;
 		var alllinks = main.getElementsByTagName('a');
