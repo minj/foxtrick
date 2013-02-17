@@ -14,7 +14,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 
 	run: function(doc) {
 		try {
-			var main = doc.getElementsById('ctl00_ctl00_CPContent_divStartMain');
+			var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 			var links = main.getElementsByTagName('a');
 			var empty = true;
 			for (var i = 0; i < links.length; i++) {

@@ -53,7 +53,7 @@ Foxtrick.modules['LineupShortcut'] = {
 			return;
 
 		// get player ID from top of the page:
-		var mainWrapper = doc.getElementsById('ctl00_ctl00_CPContent_divStartMain');
+		var mainWrapper = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var playerId = Foxtrick.util.id.findPlayerId(mainWrapper);
 		var teamName = Foxtrick.util.id.extractTeamName(mainWrapper);
 
@@ -106,7 +106,7 @@ Foxtrick.modules['LineupShortcut'] = {
 	_Analyze_Stat_Page: function(doc) {
 		var teamid = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlPreviousClubs').value;
 		//Now getting playerid from top of the page:
-		var element = doc.getElementsById('ctl00_ctl00_CPContent_divStartMain');
+		var element = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var playerid = Foxtrick.util.id.findPlayerId(element);
 		var lineuplabel = Foxtrickl10n.getString('LineupShortcut.lineup');
 		var matchtable = doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanel1')
@@ -169,7 +169,7 @@ Foxtrick.modules['LineupShortcut'] = {
 
 	//***************** YOUTH TEAM ********************
 	_Analyze_Youth_Player_Page: function(doc) {
-		var mainWrapper = doc.getElementsById('ctl00_ctl00_CPContent_divStartMain');
+		var mainWrapper = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var mainBody = doc.getElementById('mainBody');
 
 		var matchLink = Foxtrick.nth(0, function(n) {

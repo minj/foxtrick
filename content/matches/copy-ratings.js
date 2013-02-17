@@ -44,7 +44,7 @@ Foxtrick.modules['CopyRatings'] = {
 				var start = Foxtrick.strrpos(headder, '<span>(') + 7;
 				var end = Foxtrick.strrpos(headder, ')</span>');
 
-				var matchlink = doc.getElementsById('ctl00_ctl00_CPContent_divStartMain')
+				var matchlink = doc.getElementById('ctl00_ctl00_CPContent_divStartMain')
 					.getElementsByTagName('h2')[0].getElementsByTagName('a')[
 						Foxtrick.util.layout.isStandard(doc) ? 0 : 2
 					];

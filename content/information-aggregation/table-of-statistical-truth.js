@@ -13,7 +13,7 @@ Foxtrick.modules['TableOfStatisticalTruth'] = {
 	run: function(doc) {
 
 		var season = doc.getElementById('mainBody').getElementsByTagName('select')[0].value;
-		var serie = Foxtrick.util.id.getLeagueLeveUnitIdFromUrl(doc.getElementsById('ctl00_ctl00_CPContent_divStartMain')
+		var serie = Foxtrick.util.id.getLeagueLeveUnitIdFromUrl(doc.getElementById('ctl00_ctl00_CPContent_divStartMain')
 		                                                        .getElementsByTagName('h2')[0]
 		                                                        .getElementsByTagName('a')[1].href);
 		var lang = FoxtrickPrefs.getString('htLanguage');
