@@ -29,7 +29,7 @@ Foxtrick.modules['LinksEconomy'] = {
 
 		//addExternalLinksToEconomyDetail
 		var Cash = 0, newCash = 1;
-		var main = doc.getElementsByClassName('main')[0];
+		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var ownBoxBody = null;
 		var thisdiv = main.getElementsByTagName('div')[0];
 		var CashTable = main.getElementsByTagName('table')[0];

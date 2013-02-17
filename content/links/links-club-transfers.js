@@ -21,7 +21,7 @@ Foxtrick.modules['LinksClubTransfers'] = {
 	},
 
 	_run: function(doc) {
-		var main = doc.getElementsByClassName('main')[0];
+		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var ownBoxBody = null;
 		var thisdiv = main.getElementsByTagName('div')[0];
 

@@ -25,7 +25,7 @@ Foxtrick.modules['LinksNational'] = {
 		var ntteamid;
 		var LeagueOfficeTypeID = doc.location.href.replace(/.+LeagueOfficeTypeID=/i, '')
 			.match(/^\d+/);
-		var main = doc.getElementsByClassName('main')[0];
+		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var ownBoxBody = null;
 		var thisdiv = main.getElementsByTagName('div')[0];
 		countryid = Foxtrick.util.id.findLeagueId(thisdiv);

@@ -21,7 +21,7 @@ Foxtrick.modules['LinksFans'] = {
 
 	_run: function(doc) {
 		var ownBoxBody = null;
-		var mainWrapper = doc.getElementsByClassName('main')[0];
+		var mainWrapper = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 
 		var teamid = Foxtrick.util.id.findTeamId(mainWrapper);
 		var teamname = Foxtrick.util.id.extractTeamName(mainWrapper);
