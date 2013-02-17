@@ -31,7 +31,7 @@ Foxtrick.modules['GoToPostBox'] = {
 		var HTGotoInput2 = null;
 		var HTGotoButton2 = null;
 
-		var inputs = doc.getElementById('ctl00_ctl00_CPContent_divStartMain').getElementsByTagName('input');
+		var inputs = doc.getElementById('mainBody').parentNode.getElementsByTagName('input');
 		for (var i = 0; i < inputs.length; ++i) {
 			if (inputs[i].type == 'submit') {
 				if (!HTGotoButton) {
@@ -49,7 +49,7 @@ Foxtrick.modules['GoToPostBox'] = {
 		var selectBoxTop = null;
 		var selectBoxBottom = null;
 
-		var selects = doc.getElementById('ctl00_ctl00_CPContent_divStartMain').getElementsByTagName('select');
+		var selects = doc.getElementById('mainBody').parentNode.getElementsByTagName('select');
 		for (var i = 0; i < selects.length; ++i) {
 			if (selects[i].id.search(/filter/i) != -1) {
 				if (!selectBoxTop) {

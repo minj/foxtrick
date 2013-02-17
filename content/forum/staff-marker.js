@@ -144,7 +144,7 @@ Foxtrick.modules['StaffMarker'] = {
 
 			// mark staffs in thread
 			var markThread = function() {
-				var userDivs = doc.getElementById('ctl00_ctl00_CPContent_divStartMain')
+				var userDivs = doc.getElementById('mainBody').parentNode
 					.getElementsByClassName('float_left');
 				Foxtrick.map(function(user) {
 					var links = user.getElementsByTagName('a');
@@ -165,7 +165,7 @@ Foxtrick.modules['StaffMarker'] = {
 			};
 			// mark staffs in select box
 			var markSelect = function() {
-				var selects = doc.getElementById('ctl00_ctl00_CPContent_divStartMain')
+				var selects = doc.getElementById('mainBody').parentNode
 					.querySelectorAll('select.threadPagingFilter, select[id$="_ddlRecipient"]');
 				Foxtrick.map(function(select) {
 					if (select.id.search(/filter/i) == -1
