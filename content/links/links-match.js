@@ -35,7 +35,7 @@ Foxtrick.modules['LinksMatch'] = {
 
 		var ownteamid = Foxtrick.util.id.getOwnTeamId();
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
-		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementsByClassName('main')[0]);
+		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementsById('ctl00_ctl00_CPContent_divStartMain'));
 		var server = FoxtrickPrefs.getBool('hty-stage') ? 'stage' : 'www';
 		var ownyouthteamid = Foxtrick.util.id.getOwnYouthTeamId();
 

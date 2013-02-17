@@ -53,7 +53,7 @@ Foxtrick.modules['LineupShortcut'] = {
 			return;
 
 		// get player ID from top of the page:
-		var mainWrapper = doc.getElementsByClassName('main')[0];
+		var mainWrapper = doc.getElementsById('ctl00_ctl00_CPContent_divStartMain');
 		var playerId = Foxtrick.util.id.findPlayerId(mainWrapper);
 		var teamName = Foxtrick.util.id.extractTeamName(mainWrapper);
 

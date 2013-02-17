@@ -342,6 +342,7 @@ pref("extensions.foxtrick.prefs.module.LinksTracker.ghanatracker.enabled", true)
 pref("extensions.foxtrick.prefs.module.LinksTracker.guatemelatracker.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksTracker.hellastracker.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksTracker.htworld.enabled", true);
+pref("extensions.foxtrick.prefs.module.LinksTracker.hungarytracker.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksTracker.indiatracker.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksTracker.indonesiatracker.enabled", true);
 pref("extensions.foxtrick.prefs.module.LinksTracker.irantracker.enabled", true);

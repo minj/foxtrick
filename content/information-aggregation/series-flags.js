@@ -125,7 +125,7 @@ Foxtrick.modules['SeriesFlags'] = {
 		if (FoxtrickPrefs.isModuleOptionEnabled('SeriesFlags', 'Guestbook')
 			&& Foxtrick.isPage(doc, 'guestbook')) {
 			// add to guest managers
-			var mainWrapper = doc.getElementsByClassName('main')[0];
+			var mainWrapper = doc.getElementsById('ctl00_ctl00_CPContent_divStartMain');
 			var links = mainWrapper.getElementsByTagName('a');
 			var userLinks = Foxtrick.filter(function(n) {
 				return (n.href.search(/userId=/i) >= 0 &&
