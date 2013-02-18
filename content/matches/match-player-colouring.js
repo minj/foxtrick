@@ -66,7 +66,7 @@ Foxtrick.modules.MatchPlayerColouring = {
 		};
 
 		if (Foxtrick.Pages.Match.hasNewRatings(doc))
-			var teams = doc.getElementsByTagName('h1')[0].getElementsByTagName('a');
+			var teams = doc.getElementById('testingNewHeader').getElementsByTagName('h1')[0].getElementsByTagName('a');
 		else {
 			var sidebar = doc.getElementById('sidebar');
 			var teams = sidebar.getElementsByTagName('table')[0].getElementsByTagName('a');
