@@ -10,6 +10,10 @@
 ## follow same steps for other branches and build
 ## copy critical files to $branch/maintainer
 
+## config git
+# git config --global user.email foxtrickdev@gmail.com
+# git config --global user.name foxtrickdev
+
 ## run:
 # ./foxtrick-cron.sh >verbatim 2>>error
 ## verbatim is whole output
