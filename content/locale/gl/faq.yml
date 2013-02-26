@@ -4,18 +4,55 @@ gl:
     style: 
       question: Como podería trocar o estilo do meu FoxTrick?
       answer: |
-        <p> O Foxtrick dache unha serie de melloras no interface para persoalizala ó teu propio xeito. Estas modificacións fanse por medio de IDs HTML e clases, e ti podes usar CSS para definir o teu estilo preferido.</p>
+        <p>FoxTrick ofréceche unha serie de melloras na interface para personalizala ó teu gusto. Estas modificacións fanse por medio de ID de HTML e clases, e podes usar CSS para definir o estilo que prefiras.</p>
         
-        <p>Un exemplo de arquivo de configuración dun usuario o podes atopar <linkCSSExample>aquí</linkCSSExample> ou <linkCSSExampleGCode>aquí</linkCSSExampleGCode>, o cal podes modificar como che pete. Despois de gardar o arquivo, podes usar o módulo <module>SkinPlugin</module> para cargar o arquivo CSS que ten o estilo de usuario activo.</p>
+        <p>Podes consultar un exemplo de arquivo de configuración dun usuario <linkCSSExample>aquí</linkCSSExample> ou <linkCSSExampleGCode>aquí</linkCSSExampleGCode>, e podes modificalo como che pete. Despois de gardar o arquivo, podes usar o módulo <module>SkinPlugin</module> para cargar o arquivo CSS que ten o estilo de usuario activo.</p>
     sound-format: 
       question: Que formatos de arquivos están permitidos para sons de alerta?
-      answer: '<p> Diferentes navegadores permiten diferentes formatos de ficheiro. Aquí está a lista (outros formatos poden funcionar se os plugins apropiados están instalados, por exemplo, o QuickTime para reproducir mp3 en Firefox): </p><ul><li> Mozilla: WAV, OGG </li><li> Safari (pode necesitar Quicktime): WAV, MP3 </li><li> Chrome: Ogg, MP3, WAV </li><li> Opera: WAV, OGG </li></ul>'
+      answer: '<p>Diferentes navegadores permiten diferentes formatos de ficheiro. Aquí está a lista (outros formatos poden funcionar se os plugins apropiados están instalados, por exemplo, QuickTime para reproducir mp3 en Firefox): </p><ul><li> Mozilla: WAV, OGG </li><li> Safari (pode necesitar Quicktime): WAV, MP3 </li><li> Chrome: Ogg, MP3, WAV </li><li> Opera: WAV, OGG </li></ul>'
     sound-location: 
       question: Cal é o límite de tamaño para os sons de alerta e onde poden ser copiados?
-      answer: 
+      answer: |
+        <p>Todos os navegadores poden reproducir URL de datos, como os sons que se almacenan localmente ó premer o botón para cargalos dispoñible nas preferencias. Dado que se converten e se gardan nas preferencias, o tamaño máximo para cada son é 160 kB aproximadamente.</p>
+        
+        <p>Ademais, todos os navegadores poden reproducir sons directamente desde Internet (URL HTTP). Para iso, só hai que copiar unha ligazón a un son (por exemplo, http://foxtrick.org/sound.wav) no campo de edición de sons. Neste caso, non hai límite de tamaño.</p>
+        
+        <p>Os navegadores Mozilla tamén poden reproducir sons directamente desde o disco duro (URL de ficheiros) sen límite de tamaño. O xeito máis fácil de obter o formato adecuado é o seguinte: no navegador, preme Ctrl + O, busca o ficheiro de son e selecciónao. Ó facelo, verás a ligazón do ficheiro na barra de enderezos da parte superior (por exemplo, file:///c:/sound.wav). Cópiaa e pégaa no campo de edición dos sons.</p>
     authorize: 
       question: Por que debería permitir que FoxTrick acceda aos datos do meu equipo?
-      answer: 
+      answer: |
+        <p>Aínda que a maior parte dos datos que precisa FoxTrick poden extraerse directamente da páxina que se amosa en cada momento, algúns módulos precisan descargar datos de Hattrick para funcionar correctamente.</p>
+        
+        <p>Para descargar datos de Hattrick, como os datos do teu equipo, das ligas e das seleccións nacionais, primeiro debes autorizar a Foxtrick.</p>
+        
+        <p>Para autorizar a FoxTrick, debes introducir o teu nome de usuario e o teu contrasinal en chpp.hattrick.org para obter o código de verificación que debes introducir en FoxTrick. Durante este proceso, FoxTrick non poderá acceder ó teu nome de usuario nin ó teu contrasinal.</p>
+        
+        <p>Para obter máis información sobre o proceso de autorización, consulta <linkCHPPDesc>CHPP: cómo funciona</linkCHPPDesc> en Hattrick.</p>
+        
+        <p>Os módulos que precisan acceder ós datos para funcionar correctamente son:</p>
+        
+        <ul>
+        <li><module>CrossTable</module></li>
+        <li><module>ExtraPlayerInfo</module></li>
+        <li><module>MatchPlayerColouring</module></li>
+        <li><module>MyMonitor</module></li>
+        <li><module>NtPeek</module></li>
+        <li><module>SeriesFlags</module></li>
+        </ul>
+        
+        <p>Os módulos que ofrecen unha información máis completa se poden acceder ós datos de Hattrick son:</p>
+        
+        <ul>
+        <li><module>SkillTable</module></li>
+        <li><module>TeamStats</module></li>
+        </ul>
     privacy: 
       question: Como protexe FoxTrick a miña privacidade?
-      answer: 
+      answer: |
+        <p>FoxTrick non subirá ningún dos teus datos nin as túas preferencias a un servidor de FoxTrick. Tampouco enviará a terceiros os teus datos privados, que inclúen, sen limitarse a elo, o nome de usuario, o contrasinal e o ID de xogador asociado con habilidades.</p>
+        
+        <p>A maior parte dos datos que se ceden a terceiros, agás nos casos que se mencionan explicitamente a continuación, transmítense mediante o método HTTP GET e só se enviarán cando fagas clic nunha ligazón.</p>
+        
+        <p>Iso significa que podes ver que datos se envían ollando o URI (Uniform Resource Identifier, Identificador Uniforme de Recursos) das ligazóns externas, e non se enviarán datos sen o teu permiso. Como indicamos anteriormente, os datos privados non se ceden.</p>
+        
+        <p>Os módulos <module>HTMSPrediction</module> e <module>HTEVPrediction</module> son as excepcións, xa que se comunican cos seus respectivos sitios web para enviar e recibir as cualificacións dos encontros mediante XMLHttpRequest.</p>

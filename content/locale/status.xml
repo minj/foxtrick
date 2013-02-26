@@ -130,7 +130,7 @@
     <name>Hebrew</name>
     <code>he</code>
     <phrases>1458</phrases>
-    <translated>1319</translated>
+    <translated>1322</translated>
     <approved>0</approved>
     <translated_progress>90</translated_progress>
     <approved_progress>0</approved_progress>
@@ -139,9 +139,9 @@
     <name>Hungarian</name>
     <code>hu</code>
     <phrases>1458</phrases>
-    <translated>1325</translated>
+    <translated>1331</translated>
     <approved>193</approved>
-    <translated_progress>90</translated_progress>
+    <translated_progress>91</translated_progress>
     <approved_progress>13</approved_progress>
   </language>
   <language>
@@ -193,9 +193,9 @@
     <name>Macedonian</name>
     <code>mk</code>
     <phrases>1458</phrases>
-    <translated>1257</translated>
+    <translated>1335</translated>
     <approved>0</approved>
-    <translated_progress>86</translated_progress>
+    <translated_progress>91</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -274,8 +274,8 @@
     <name>Serbian</name>
     <code>sr</code>
     <phrases>1458</phrases>
-    <translated>1409</translated>
-    <approved>1411</approved>
+    <translated>1411</translated>
+    <approved>1413</approved>
     <translated_progress>96</translated_progress>
     <approved_progress>96</approved_progress>
   </language>
@@ -337,9 +337,9 @@
     <name>Galician</name>
     <code>gl</code>
     <phrases>1458</phrases>
-    <translated>1399</translated>
+    <translated>1458</translated>
     <approved>0</approved>
-    <translated_progress>95</translated_progress>
+    <translated_progress>100</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -355,9 +355,9 @@
     <name>Portuguese, Brazilian</name>
     <code>pt-BR</code>
     <phrases>1458</phrases>
-    <translated>1352</translated>
+    <translated>1358</translated>
     <approved>0</approved>
-    <translated_progress>92</translated_progress>
+    <translated_progress>93</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -382,9 +382,9 @@
     <name>Spanish, Costa Rica</name>
     <code>es-CR</code>
     <phrases>1458</phrases>
-    <translated>1365</translated>
+    <translated>1413</translated>
     <approved>0</approved>
-    <translated_progress>93</translated_progress>
+    <translated_progress>96</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -409,7 +409,7 @@
     <name>Estonian</name>
     <code>et</code>
     <phrases>1458</phrases>
-    <translated>425</translated>
+    <translated>430</translated>
     <approved>0</approved>
     <translated_progress>29</translated_progress>
     <approved_progress>0</approved_progress>
