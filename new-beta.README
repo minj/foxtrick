@@ -27,4 +27,3 @@ cd trunk
 ./version.sh x.x.x
 git commit -a -m "trunk version bump to x.x.x."
 git svn dcommit
-----
