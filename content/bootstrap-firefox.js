@@ -244,23 +244,21 @@ FoxtrickFirefox.prototype = {
 		Services.scriptloader.loadSubScript('chrome://foxtrick/content/lib/ToolbarItem.js', this);
 		// toolbar
 		this.generalButton = this.ToolbarItem.create(
-			<>
-				<toolbarbutton id='foxtrick-toolbar-button'
-					type='menu'
-					label={'FoxTrick'}
-					tooltiptext={'FoxTrick'}
-					context='foxtrick-menu'
-					class={this.ToolbarItem.BASIC_ITEM_CLASS + ' ' + this.TOOLBAR_ITEM}
-					>
-					<menupopup id='foxtrick-menu'>
-						<menuitem id='foxtrick-toolbar-preferences'/>
-						<menuitem id='foxtrick-toolbar-deactivate' type='checkbox' autocheck='true'/>
-						<menuitem id='foxtrick-toolbar-clearCache' />
-						<menuitem id='foxtrick-toolbar-highlight' type='checkbox' autocheck='true'/>
-						<menuitem id='foxtrick-toolbar-translationKeys' type='checkbox' autocheck='true'/>
-					</menupopup>
-				</toolbarbutton>
-			</>,
+			"<toolbarbutton id='foxtrick-toolbar-button' " +
+				"type='menu' " +
+				"label='FoxTrick' " +
+				"tooltiptext='FoxTrick' " +
+				"context='foxtrick-menu' " +
+				"class='" + this.ToolbarItem.BASIC_ITEM_CLASS + ' ' + this.TOOLBAR_ITEM + "'>" +
+				"<menupopup id='foxtrick-menu'>" +
+					"<menuitem id='foxtrick-toolbar-preferences'/>" +
+					"<menuitem id='foxtrick-toolbar-deactivate' type='checkbox' autocheck='true'/>" +
+					"<menuitem id='foxtrick-toolbar-clearCache' />" +
+					"<menuitem id='foxtrick-toolbar-highlight' type='checkbox' autocheck='true'/>" +
+					"<menuitem id='foxtrick-toolbar-translationKeys' type='checkbox' " +
+					"autocheck='true'/>" +
+				"</menupopup>" +
+			"</toolbarbutton>",
 			this.owner.document.getElementById('nav-bar'),
 			{
 				onInit: function() {
@@ -271,22 +269,22 @@ FoxtrickFirefox.prototype = {
 		);
 		// contextmenu
 		let popup = this.owner.document.getElementById('contentAreaContextMenu');
-		this.contextLinkItem = this.ToolbarItem.toDOMDocumentFragment(<>
-				<menu id='foxtrick-popup-copy'
-					class={'menu-iconic '+this.owner.MENU_ITEM}
-					label={'FoxTrick'}>
-					<menupopup>
-						<menuitem id='foxtrick-popup-copy-id'
-							label={'Copy ID'}/>
-						<menuitem id='foxtrick-popup-copy-link'
-							label={'Copy Link Location in HT-ML'}/>
-						<menuitem id='foxtrick-popup-copy-ht-ml'
-							label={'Copy in HT-ML'}/>
-						<menuitem id='foxtrick-popup-copy-table'
-							label={'Copy table in HT-ML'}/>
-					</menupopup>
-				</menu>
-			</>, popup).querySelector('*');
+		this.contextLinkItem = this.ToolbarItem.toDOMDocumentFragment(
+			"<menu id='foxtrick-popup-copy' " +
+				"class='menu-iconic " + this.owner.MENU_ITEM + "' " +
+				"label='FoxTrick'>" +
+				"<menupopup>" +
+					"<menuitem id='foxtrick-popup-copy-id' " +
+						"label='Copy ID'/>" +
+					"<menuitem id='foxtrick-popup-copy-link' " +
+						"label='Copy Link Location in HT-ML'/>" +
+					"<menuitem id='foxtrick-popup-copy-ht-ml' " +
+						"label='Copy in HT-ML'/>" +
+					"<menuitem id='foxtrick-popup-copy-table' " +
+						"label='Copy table in HT-ML'/>" +
+				"</menupopup>" +
+			"</menu>"
+			, popup).querySelector('*');
 		popup.insertBefore(this.contextLinkItem,
 		                   this.owner.document.getElementById('context-paste').nextSibling);
 		//load foxtrick files

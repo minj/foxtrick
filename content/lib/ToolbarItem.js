@@ -7,6 +7,8 @@
  *   The MIT License, Copyright (c) 2011 SHIMODA "Piro" Hiroshi.
  *   https://github.com/piroor/restartless/blob/master/license.txt
  * @url http://github.com/piroor/restartless
+ *
+ * @modified to use XML strings instead of E4X by minj (c) 2013
  */
 
 const EXPORTED_SYMBOLS = ['ToolbarItem'];
@@ -339,18 +341,18 @@ ToolbarItem.BASIC_ITEM_CLASS = 'toolbarbutton-1 chromeclass-toolbar-additional';
 ToolbarItem.XULNS = 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul';
 
 /**
- * @param {XML} aXML
- *   A source of a XUL element for a toolbar item as an E4X object (XML object).
+ * @param {String} aXMLString
+ *   A source of a XUL element for a toolbar item as a String.
  * @param {nsIDOMNode} aOwner
  *   A owner document or a toolbar element which becomes to the parent of the created item.
  * @param {Object} aOptions
  *   A options for the ToolbarItem constructor.
  */
-ToolbarItem.create = function(aXML, aOwner, aOptions) {
+ToolbarItem.create = function(aXMLString, aOwner, aOptions) {
 	aOptions = aOptions || {};
-	var item = aXML;
-	if (!(aXML instanceof Ci.nsIDOMElement)) {
-		let fragment = this.toDOMDocumentFragment(aXML, aOwner);
+	var item = aXMLString;
+	if (!(aXMLString instanceof Ci.nsIDOMElement)) {
+		let fragment = this.toDOMDocumentFragment(aXMLString, aOwner);
 		item = fragment.querySelector('*');
 	}
 	aOptions.node = item.parentNode.removeChild(item);
@@ -360,26 +362,26 @@ ToolbarItem.create = function(aXML, aOwner, aOptions) {
 };
 
 /**
- * @param {XML} aXML
- *   A source of a XUL document fragment as an E4X object (XML object).
+ * @param {String} aXMLString
+ *   A source of a XUL document fragment as a string.
  * @param {nsIDOMNode} aOwner
  *   A owner document or a XUL element which becomes to the parent of the created document fragment.
  */
-ToolbarItem.toDOMDocumentFragment = function(aXML, aOwner) {
+ToolbarItem.toDOMDocumentFragment = function(aXMLString, aOwner) {
 try{
 	var doc = aOwner.ownerDocument || aOwner;
 	var range = doc.createRange();
 	// createContextualFragment failes when the range is in an anonymous content.
 	range.selectNodeContents(doc.getBindingParent(aOwner) || aOwner);
 
-	var originalSettings = XML.settings();
-	XML.ignoreWhitespace = true;
-	XML.prettyPrinting = false;
-	var fragment = range.createContextualFragment(aXML.toXMLString());
-	XML.setSettings(originalSettings);
+	//var originalSettings = XML.settings();
+	//XML.ignoreWhitespace = true;
+	//XML.prettyPrinting = false;
+	var fragment = range.createContextualFragment(aXMLString);
+	//XML.setSettings(originalSettings);
 
 	range.detach();
-}catch(e){dump(e+'\n\n'+aXML.toXMLString()+'\n');}
+}catch(e){dump(e+'\n\n'+aXMLString+'\n');}
 	return fragment;
 };
 
