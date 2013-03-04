@@ -6,21 +6,21 @@ lt:
     beta: 
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
     0.12.0: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
-      note_10: 
-      note_11: 
-      note_12: 
-      note_13: 
-      note_14: 
+      note_0: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
+      note_1: 'NAUJIENA: <module>MatchLineupTweaks</module>: pakeičia skaitmeninį žvaigždučių vaizdavimą į grafinį (pan. į senovinį). Naujajame sudėties puslapyje pateikia žvaigždučių ir ištvermės statistiką. Rodo žaidėjų specialybes, veidus bei komandų pavadinimus aikštės diagramoje (kad būtų aiškiau). Paryškina su tam tikrais įvykiais susijusius žaidėjus.'
+      note_2: 'NAUJIENA: <module>MainMenuDropDown</module>: pagrindinį meniu paverčia į iššokančius sąrašus su tiesioginėmis nuorodomis, esančiomis kairiajame meniu.'
+      note_3: 'NAUJIENA: <module>MatchLineupFixes</module>: Sinchronizuoja laiko skalę tarp kortelių „Sudėtis“ ir „Detalūs reitingai“. Skalėje rodo orų įvykių žaidėjų pavardes. Prideda nuorodas kortelėje „Nurodymai žaidėjams“. Rodo paskutinį žvaigždučių reitingą ant suolelio atsisėdusiems žaidėjams. Sutvarko kelių vienu metu vykusių įvykių vaizdavimą: žaidėjai keičiasi pozicijomis paeiliui, o ne visi iš karto.'
+      note_4: 'NAUJIENA: <module>ReLiveLinks</module>: pridėti trūkstamas nuorodas į HT „Re-Live“.'
+      note_5: 'NAUJIENA: <module>CopyBBAd</module>: Nukopijuoti įvairią informaciją BB kodu (sukūrė merfis).'
+      note_6: 'NAUJIENA: <module>DashboardCalendar</module>: Prideda mygtuką Hattrick savaitei eksportuoti „iCalendar“ formatu (turėtų veikti su „Google Calendar“, „Thunderbird“ su „Lightning“ priedėliu, „MS Outlook“, „KOrganizer“, „Evolution“, „Apple iCal“ ir t. t.)'
+      note_7: '<module>LiveAlert</module>: Skirtingi garsai namų, svečių bei Jūsų komandų įvarčiams. Standartiniai garsai pasiskolinti iš <linkHTLS>HTLiveSight</linkHTLS>. Jūsų komandos įvarčiai gali būti neatpažinti, jei iš pradžių testuosite „Re-Live“ režimu.'
+      note_8: '<module>CopyYouth</module>: „Hattrick youthclub“ vartotojų atmestų žaidėjų skauto pranešimai nuo šiol siunčiami į HY automatiškai'
+      note_9: '<module>CopyYouth</module>: „Hattrick youthclub“ vartotojų jaunių treniruočių ataskaitos nuo šiol siunčiamos į HY automatiškai, kai skaitote jas pirmą kartą'
+      note_10: '<module>LineupShortcut</module> nuo šiol veda į naująjį sudėties puslapį.'
+      note_11: '<module>SkillTable</module> nuo šiol naudoja simbolius žaidėjų specialybėms bei treneriams pažymėti.'
+      note_12: 'AddLeaveConfButton pervadintas į <module>ForumLeaveButton</module>'
+      note_13: Nuo šiol Jūsų naršyklės ir Hattrick tinklalapio išvaizdos nustatymai automatiškai įterpiami į žinutes Foxtrick forume. Tai mums pagelbės greičiau susitvarkyti su Jūsų patiriamais sunkumais naudojantis Foxtrick. Prašome neištrinti šios informacijos, kai rašote žinutę.
+      note_14: Aptvarkytas Foxtrick įvesties kodas, kad ateityje būtų lengviau jį skaityti bei tobulinti.
     0.11.0.1: 
       note_0: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
       note_1: 'Ištaisyti smulkias klaidas <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> ir <module>HTThreadMarker</module> moduliuose.'
