@@ -192,12 +192,18 @@ Foxtrick.modules['YouthSkills'] = {
 		};
 
 		//get skills from HY
-		Foxtrick.api.hy.runIfHYUser(function() {
-			Foxtrick.api.hy.getYouthSkills(addSkills);
-		  }, null,
-		  function() {
-			Foxtrick.modules['SkillColoring'].execute(doc);
+		Foxtrick.containsPermission({origins:["http://*.hattrick-youthclub.org/*"]}, function(permission){
+			if(permission){
+				Foxtrick.api.hy.runIfHYUser(function() {
+					Foxtrick.api.hy.getYouthSkills(addSkills);
+				  }, null,
+				  function() {
+					Foxtrick.modules['SkillColoring'].execute(doc);
+				});
+			} else {
+				Foxtrick.log("Sorry fucker, needs permission!");
+			}
 		});
-
+		
 	}
 };
