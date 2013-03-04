@@ -64,6 +64,7 @@ Foxtrick.loader.background.contentScriptManager = {
 		'forum-stage.js',
 		'core.js',
 		'add-class.js',
+		'fix-links.js',
 
 		//<!-- page utilities -->
 		'pages/all.js',

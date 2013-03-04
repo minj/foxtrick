@@ -70,6 +70,7 @@
 			"content/forum-stage.js",
 			"content/core.js",
 			"content/add-class.js",
+			"content/fix-links.js",
 			"content/ui.js",
 
 			//<!-- page utilities -->

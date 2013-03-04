@@ -68,6 +68,7 @@
 <script type="application/x-javascript" src="./forum-stage.js" />
 <script type="application/x-javascript" src="./core.js" />
 <script type="application/x-javascript" src="./add-class.js" />
+<script type="application/x-javascript" src="./fix-links.js" />
 <script type="application/x-javascript" src="./ui.js" />
 
 <!-- categorized modules -->

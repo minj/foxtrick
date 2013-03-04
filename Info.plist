@@ -99,6 +99,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/forum-stage.js</string>
 				<string>content/core.js</string>
 				<string>content/add-class.js</string>
+				<string>content/fix-links.js</string>
 				<string>content/ui.js</string>
 
 				<!-- categorized modules -->

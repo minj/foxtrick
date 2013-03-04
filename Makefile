@@ -89,6 +89,7 @@ CONTENT_FILES = add-class.js \
 	core.js \
 	entry.js \
 	env.js \
+	fix-links.js \
 	forum-stage.js \
 	l10n.js \
 	pages.js \
