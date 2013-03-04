@@ -2,6 +2,8 @@
 /*
  * permissions.js
  * chrome permissions management
+ * http://developer.chrome.com/extensions/permissions.html
+ * https://groups.google.com/a/chromium.org/forum/?fromgroups=#!topic/chromium-extensions/8L0kORbNg8U
  */
 
 if (!Foxtrick) var Foxtrick = {};
