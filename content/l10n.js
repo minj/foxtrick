@@ -25,7 +25,7 @@ var Foxtrickl10n = {
 		'fa',	// فارسی, farsi, iranian	75
 		'fi',	// Suomi, finnish	9
 		'fr',	// french	5
-		'fur',	// Furlan, northitaly	113
+		'fur-IT',	// Furlan, northitaly	113
 		'fy-NL',	// Frysk, east-netherland/north germany	109
 		'gl',	// Galego, galician	74
 		'he',	// עברית, hebrew	40
@@ -57,7 +57,7 @@ var Foxtrickl10n = {
 		'tr',	// Türkçe	19
 		'uk',	// Українська, ukranian	57
 		'vi',	// Tiếng Việt, vietnamese	55
-		'vls',	// Vlaams, netherland	65
+		'vls-BE',	// Vlaams, netherland	65
 		'zh-CN'	// 中文（简体）, chinese	15
 				// Kyrgyz	86
 	],
@@ -80,7 +80,7 @@ var Foxtrickl10n = {
 		'fa': 'fa',	// فارسی, farsi, iranian	75
 		'fi': 'fi',	// Suomi, finnish	9
 		'fr': 'fr',	// french	5
-		'fu': 'fur',	// Furlan, northitaly	113
+		'fu': 'fur-IT',	// Furlan, northitaly	113
 		'fy': 'fy-NL',	// Frysk, east-netherland/north germany	109
 		'gl': 'gl',	// Galego, galician	74
 		'he': 'he',	// עברית, hebrew	40
@@ -112,7 +112,7 @@ var Foxtrickl10n = {
 		'tr': 'tr',	// Türkçe	19
 		'uk': 'uk',	// Українська, ukranian	57
 		'vi': 'vi',	// Tiếng Việt, vietnamese	55
-		'vl': 'vls',	// Vlaams, netherland	65
+		'vl': 'vls-BE',	// Vlaams, netherland	65
 		'zh': 'zh-CN'	// 中文（简体）, chinese	15
 				// Kyrgyz	86
 	},
