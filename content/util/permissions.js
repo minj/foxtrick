@@ -48,7 +48,7 @@ if (!Foxtrick) var Foxtrick = {};
 				Foxtrick._requestPermission(types, callback);
 		}
 		else
-			{ callback(true); } //not chrome, access has to be granted otherwise or is not required
+			{ callback(true); } //not chrome, access has to be granted otherwise or is not required, assume permissions were granted
 	}
 	// chrome background
 	Foxtrick._requestPermission = function(types, callback){
