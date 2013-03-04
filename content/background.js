@@ -350,6 +350,35 @@ Foxtrick.loader.background.browserLoad = function() {
 			});
 		};
 
+		//from permissions.js
+		Foxtrick.loader.background.requests.containsPermission = function(request, sender, sendResponse) {
+			// @param origin - permission origin to check
+			// @callback boolean wether permission is set or not
+			Foxtrick._containsPermission(request.types,
+			  function(response) {
+				sendResponse(response);
+			});
+		};
+		/**
+		 * Those 2 don't work when invoked content scripts
+		 */
+		// Foxtrick.loader.background.requests.removePermission = function(request, sender, sendResponse) {
+		// 	// @param origin - permission origin to check
+		// 	// @callback ???
+		// 	Foxtrick._removePermission(request.types,
+		// 	  function(response) {
+		// 		sendResponse(response);
+		// 	});
+		// };
+		// Foxtrick.loader.background.requests.requestPermission = function(request, sender, sendResponse) {
+		// 	// @param origin - permission origin to check
+		// 	// @callback boolean wether permission was granted
+		// 	Foxtrick._requestPermission(request.types,
+		// 	  function(response) {
+		// 		sendResponse(response);
+		// 	});
+		// };
+
 		// from log.js
 		Foxtrick.loader.background.requests.log = function(request, sender, sendResponse) {
 			// @param log - text to dump to console (fennec)

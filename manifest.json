@@ -47,6 +47,7 @@
 			"content/util/module.js",
 			"content/util/note.js",
 			"content/util/notify.js",
+			"content/util/permissions.js",
 			"content/util/sanitize.js",
 			"content/util/session-store.js",
 			"content/util/string.js",

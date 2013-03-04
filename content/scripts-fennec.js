@@ -42,6 +42,7 @@ Foxtrick.loader.background.contentScriptManager = {
 		'util/module.js',
 		'util/note.js',
 		'util/notify.js',
+		'util/permissions.js',
 		'util/sanitize.js',
 		'util/session-store.js',
 		'util/string.js',

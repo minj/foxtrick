@@ -71,6 +71,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/util/module.js</string>
 				<string>content/util/note.js</string>
 				<string>content/util/notify.js</string>
+				<string>content/util/permissions.js</string>
 				<string>content/util/sanitize.js</string>
 				<string>content/util/session-store.js</string>
 				<string>content/util/string.js</string>
