@@ -22,7 +22,7 @@ if (!Foxtrick) var Foxtrick = {};
 				Foxtrick._containsPermission(types, callback);
 		}
 		else
-			{} //callback(null); //not chrome, do nothing
+			{ callback(true); } //not chrome, access has to be granted otherwise or is not required, assume permissions
 	}
 
 	// chrome background
@@ -48,7 +48,7 @@ if (!Foxtrick) var Foxtrick = {};
 				Foxtrick._requestPermission(types, callback);
 		}
 		else
-			{} //callback(null); //not chrome, do nothing
+			{ callback(true); } //not chrome, access has to be granted otherwise or is not required
 	}
 	// chrome background
 	Foxtrick._requestPermission = function(types, callback){
@@ -73,7 +73,7 @@ if (!Foxtrick) var Foxtrick = {};
 				Foxtrick._removePermission(types, callback);
 		}
 		else
-			{} //callback(null); //not chrome, do nothing
+			{ callback(false); } //not chrome, remove should not be possible, fake failed revoke
 	}
 	// chrome background
 	Foxtrick._removePermission = function(types, callback){
