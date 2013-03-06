@@ -7,37 +7,13 @@
 
 Foxtrick.modules['MatchLineupFixes'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
-	PAGES: ['match', 'matches', 'matchesArchive'],
+	PAGES: ['match'],
 	OPTIONS: [
 		'FixWeatherSEs', 'AddStarsToSubs', 'FixMultipleEvents', 'AddLinksInOrders',
 		'SyncTimeline'
 	],
 	//CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-fixes.css',
 	run: function(doc) {
-		if (!Foxtrick.isPage(doc, 'match')) {
-			var lineupImgs = doc.querySelectorAll('#mainBody table img.matchOrder');
-			var id = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
-			for (var i = 0; i < lineupImgs.length; i++) {
-				var link = lineupImgs[i].parentNode;
-				var matches = link.href.match(/(.*?)(#.*)/);
-				if (matches && matches.length)
-					link.href = matches[1] + '&TeamId=' + id + matches[2];
-			}
-			return;
-		}
-
-		var browseLinks = doc.querySelectorAll('.speedBrowser a');
-		for (var i = 0; i < browseLinks.length; i++) {
-			var link = browseLinks[i];
-			Foxtrick.onClick(link, (function(link) {
-				return function(e) {
-					var l = doc.location.href.match(/(#.*)/);
-					var a = link.href.match(/(#.*)/);
-					if (l && !a)
-						link.href = link.href + l[1];
-			}})(link));
-		}
-
 
 		// START PREPARATION STAGE
 
