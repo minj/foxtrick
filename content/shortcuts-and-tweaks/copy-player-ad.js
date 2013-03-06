@@ -295,7 +295,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 				}
 			}
 
-			var insertBefore = doc.getElementsByTagName('h1')[0];
+			var insertBefore = doc.getElementsByTagName('h1')[1];
 			Foxtrick.copyStringToClipboard(ad);
 			var note = Foxtrick.util.note.add(doc, insertBefore, 'ft-playerad-copy-note',
 			                                  Foxtrickl10n.getString('copy.playerad.copied'),
