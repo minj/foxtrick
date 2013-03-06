@@ -89,4 +89,9 @@ html[dir="rtl"][data-theme="standard"] #menu .logout {
 	z-index:9999 !important;
 }
 
+/* fix for popup shop*/
+.ui-widget {
+	z-index:10002 !important;
+}
+
 }
