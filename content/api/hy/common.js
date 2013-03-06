@@ -34,6 +34,8 @@ Foxtrick.api.hy._buildParams = function(callback, params, teamId) {
 
 /** @type {Number}	The number of hours to back of if HY is in trouble */
 Foxtrick.api.hy.ignoreHours = 24;
+Foxtrick.api.hy.ignoreMessage = 'Hattrick YouthClub service is down today';
+// TODO internationalise
 
 /**
  * Low-level function to fetch the data and process the response status.
@@ -86,9 +88,9 @@ Foxtrick.api.hy._fetchOrIgnore = function(api, url, params,
 		else {
 			Foxtrick.log('[HY_API][' + api + '] Request aborted: HY is in ignore mode.');
 			if (typeof(failure) == 'function')
-				failure(null, 503);
+				failure(Foxtrick.api.hy.ignoreMessage, 503);
 			if (typeof(finalize) == 'function')
-				finalize(null, 503);
+				finalize(Foxtrick.api.hy.ignoreMessage, 503);
 		}
 	});
 };
@@ -179,5 +181,66 @@ Foxtrick.api.hy._fetchViaCache = function(cacheDays, api, fetch,
 		}
 		else
 			do_fetch();
+	});
+};
+
+/**
+ * Low-level function to post the data to HY and process the response status.
+ * Leaves HY alone if trouble is detected. Should be used with all poster apis.
+ * @param	{String}		api			api name for logging purposes
+ * @param	{String}		url			api URL
+ * @param	{[String]}		params		specific api params (optional)
+ * @param	{[Function]}	success		success(response) is called if status = 200 (optional)
+ * @param	{[Function]}	failure		failure(response, status) called otherwise (optional)
+ * @param	{[Function]}	finalize	finalize(response, status) called in any case (optional)
+ * @param	{[Integer]}		teamId		team id (optional)
+ */
+Foxtrick.api.hy._postOrIgnore = function(api, url, params,
+										  success, failure, finalize, teamId) {
+	if (typeof(teamId) == 'undefined' || teamId === null)
+		teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
+
+	var ignoreHours = this.ignoreHours;
+	var buildParams = this._buildParams;
+	Foxtrick.localGet('YouthClub.ignoreUntil', function(ignored) {
+		var now = Foxtrick.modules['Core'].HT_TIME + 59000;
+		if (now > ignored) {
+			buildParams(function(params) {
+				Foxtrick.util.load.async(url,
+				  function(response, status) {
+					switch (status) {
+						case 0:
+							Foxtrick.log('[HY_API][' + api + '] Sending failed', status);
+							break;
+						case 200:
+							Foxtrick.log('[HY_API][' + api + '] Success', status);
+							break;
+						case 503:
+							var ignoreUntil = now + ignoreHours * 60 * 60 * 1000;
+							Foxtrick.localSet('YouthClub.ignoreUntil', ignoreUntil);
+							Foxtrick.log('[HY_API][' + api + '] Failure', status, response);
+							Foxtrick.log('[HY_API] No requests for ' +
+										 (ignoreHours / 24.0) + ' day(s).');
+							break;
+						default:
+							Foxtrick.log('[HY_API][' + api + '] Failure', status, response);
+							break;
+					}
+					if (status == 200 && typeof(success) == 'function')
+						success(response);
+					else if (typeof(failure) == 'function')
+						failure(response, status);
+					if (typeof(finalize) == 'function')
+						finalize(response, status);
+				}, params);
+			}, params, teamId);
+		}
+		else {
+			Foxtrick.log('[HY_API][' + api + '] Request aborted: HY is in ignore mode.');
+			if (typeof(failure) == 'function')
+				failure(Foxtrick.api.hy.ignoreMessage, 503);
+			if (typeof(finalize) == 'function')
+				finalize(Foxtrick.api.hy.ignoreMessage, 503);
+		}
 	});
 };

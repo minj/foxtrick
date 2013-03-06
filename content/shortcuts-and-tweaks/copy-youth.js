@@ -81,73 +81,20 @@ Foxtrick.modules['CopyYouth'] = {
 		};
 
 		var sendTrainingReportToHY = function(matchId, trainerNode, reportNode) {
-			// url: 'http://www.hattrick-youthclub.org/_data_provider/foxtrick/matchesReport';
-			//
-			// params:
-			// teamid or managerid: teamid or managerid
-			// app: 'foxtrick'
-			// report: urlencoded report (.playerInfo)
-			// trainer: urlencoded trainer introduction (p.shy above)
-			// matchId: matchId
-			// identifier: unique string each request
-			// lang: language from hattricks meta tag
-			// hash: 'foxtrick_' + teamId + '_' + identifier;
-			//
-			// expected returns
-			// HTTP 200:
-			// - Ok
-			// HTTP: 304
-			// 1. At least one coach comment could not be imported on HY!
-			// 2. There is already a match report for this match on HY!
-			// HTTP 400:
-			// - not all data is given
-			// HTTP 401:
-			// - unauthorized request
-			// HTTP 409:
-			// 1. The match must be inserted in HY before!
-			// 2. Match report is empty, too short or in wrong format!
-
-
-			//upcomming real adress, do NOT call yet, as of HY request:
-			var url = 'http://www.hattrick-youthclub.org/_data_provider/foxtrick/matchesReport';
-
-			var teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
 			//assemble param string
-			var params = 'teamId=' + teamId;
-			params = params + '&app=foxtrick';
-			params = params + '&report=' + encodeURIComponent(reportNode.innerHTML);
+			var params = 'report=' + encodeURIComponent(reportNode.innerHTML);
 			params = params + '&matchId=' + matchId;
 			params = params + '&trainer=' + encodeURIComponent(trainerNode.innerHTML);
-			var d = new Date();
-			var identifier = teamId + '_' + d.getTime();
-			params = params + '&identifier=' + identifier;
 			params = params + '&lang=' +
 				Foxtrick.modules['ReadHtPrefs'].readLanguageFromMetaTag(doc);
-			var hash = 'foxtrick_' + teamId + '_' + identifier;
-			params = params + '&hash=' + Foxtrick.encodeBase64(hash);
 
-			Foxtrick.log('send: ', params);
-
-			//load and callback
-			Foxtrick.util.load.async(url, function(response, status) {
-				switch (status) {
-					case 200:
-						addNode(Foxtrickl10n.getString(
-						        'module.CopyYouth.AutoSendTrainingReportToHY.success'), 2000);
-						break;
-					case 304:
-						addNode('Error ' + status + ': ' + response);
-						break;
-					case 400:
-					case 401:
-					case 409:
-						addNode('Handled Error ' + status + ': ' + response);
-						break;
-					default:
-						addNode('Unhandeled Error ' + status + ': ' + response);
-						break;
-				}
-			}, params);
+			Foxtrick.api.hy.postMatchReport(params,
+			  function() {
+				addNode(Foxtrickl10n
+							.getString('module.CopyYouth.AutoSendTrainingReportToHY.success'), 3000);
+			  }, function(response, status) {
+				addNode('Error ' + status + ': ' + response);
+			});
 		};
 
 
@@ -261,71 +208,19 @@ Foxtrick.modules['CopyYouth'] = {
 
 
 					var sendScoutCallToHY = function() {
-
-						// url: http://www.hattrick-youthclub.org/_data_provider/foxtrick/playersYouthRejectCall
-						//
-						// params:
-						// teamid or managerid: teamid or managerid
-						// app: 'foxtrick'
-						// scoutcall: urlencoded scoutcall
-						// identifier: unique string each request
-						// lang: language from hattricks meta tag
-						// hash: 'foxtrick_' + teamId + '_' + identifier;
-						//
-						// possible returns
-						// HTTP 200:
-						// - Ok
-						// HTTP 304:
-						// - Comment already exists
-						// HTTP 409:
-						// - This language is not available on hattrick youthclub!
-						// - Given scout call is not valid!
-						// - Scout does not exist on hattrick youthclub!
-						// - No scoutcomments found in scout call!
-						// HTTP 400:
-						// - not all data is given
-						// HTTP 401:
-						// - unauthorized request
-
-						//api url
-						var url = 'http://www.hattrick-youthclub.org' +
-							'/_data_provider/foxtrick/playersYouthRejectCall';
-
-						var teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
 						//assemble param string
-						var params = 'teamId=' + teamId;
-						params = params + '&app=foxtrick';
-						params = params + '&scoutcall=' + encodeURIComponent(reportNode.innerHTML);
-						var d = new Date();
-						var identifier = teamId + '_' + d.getTime();
-						params = params + '&identifier=' + identifier;
+						var params = 'scoutcall=' + encodeURIComponent(reportNode.innerHTML);
 						params = params + '&lang=' +
 							Foxtrick.modules['ReadHtPrefs'].readLanguageFromMetaTag(doc);
-						var hash = 'foxtrick_' + teamId + '_' + identifier;
-						params = params + '&hash=' + Foxtrick.encodeBase64(hash);
 
-						//load and callback
-						Foxtrick.util.load.async(url, function(response, status) {
-							switch (status) {
-								case 200:
-									addNode(Foxtrickl10n.getString(
-									        'module.CopyYouth.AutoSendRejectedToHY.success'), 3000);
-									break;
-								case 304:
-									addNode(Foxtrickl10n.getString(
-								        'module.CopyYouth.AutoSendRejectedToHY.duplicate'), 3000);
-									break;
-								case 400:
-								case 401:
-								case 409:
-									addNode('Handled Error ' + status + ': ' + response);
-									break;
-								default:
-									addNode('Unhandeled Error ' + status + ': ' + response);
-									break;
-							}
-							Foxtrick.log('Sent rejected player to HY', status, response);
-						}, params);
+						Foxtrick.api.hy.postScoutCall(params,
+						  function() {
+							addNode(Foxtrickl10n
+										.getString('module.CopyYouth.AutoSendRejectedToHY.success'),
+										3000);
+						  }, function(response, status) {
+							addNode('Error ' + status + ': ' + response);
+						});
 					};
 
 					//only when clicking the reject btn
@@ -365,7 +260,7 @@ Foxtrick.modules['CopyYouth'] = {
 
 					// enable for debug: fake link, used to simulate sending shit to HY
 					// without actually rejecting the player
-					//var fakeReject = doc.createElement('a');
+					var fakeReject = doc.createElement('a');
 					//fakeReject.textContent = 'Fake reject';
 					//rejectButton.parentNode.appendChild(fakeReject);
 					//Foxtrick.onClick(fakeReject, function(){ copyReport(true) });

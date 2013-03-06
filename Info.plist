@@ -92,6 +92,8 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/api/hy/user-id.js</string>
 				<string>content/api/hy/players-youth-skills.js</string>
 				<string>content/api/hy/players-twins-check.js</string>
+				<string>content/api/hy/players-youth-reject-call.js</string>
+				<string>content/api/hy/matches-report.js</string>
 
 				<!-- core modules -->
 				<string>content/redirections.js</string>

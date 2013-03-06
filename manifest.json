@@ -88,6 +88,8 @@
 			"content/api/hy/user-id.js",
 			"content/api/hy/players-youth-skills.js",
 			"content/api/hy/players-twins-check.js",
+			"content/api/hy/players-youth-reject-call.js",
+			"content/api/hy/matches-report.js",
 
 			//<!-- categorized modules -->
 			"content/access/aria-landmarks.js",
