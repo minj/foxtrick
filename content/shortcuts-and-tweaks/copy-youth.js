@@ -40,7 +40,7 @@ Foxtrick.modules['CopyYouth'] = {
 				Foxtrick.copyStringToClipboard(plain);
 
 				// display note
-				var insertBefore = doc.getElementsByTagName('h1')[0];
+				var insertBefore = doc.getElementsByTagName('h1')[1];
 				var server = FoxtrickPrefs.getBool('hty-stage') ? 'stage' : 'www';
 				var url = 'http://' + server +
 					'.hattrick-youthclub.org/site/coachcomments_add/htmatch/' + matchid;
@@ -71,7 +71,7 @@ Foxtrick.modules['CopyYouth'] = {
 		};
 
 		var addNode = function(text, timeout) {
-			var insertBefore = doc.getElementsByTagName('h1')[0];
+			var insertBefore = doc.getElementsByTagName('h1')[1];
 			var container = doc.createElement('div');
 			var p = doc.createElement('p');
 			p.appendChild(doc.createTextNode(text));
@@ -202,7 +202,7 @@ Foxtrick.modules['CopyYouth'] = {
 
 	addScoutComment: function(doc) {
 		var addNode = function(text, timeout) {
-			var insertBefore = doc.getElementsByTagName('h1')[0];
+			var insertBefore = doc.getElementsByTagName('h1')[1];
 			var container = doc.createElement('div');
 			var p = doc.createElement('p');
 			p.appendChild(doc.createTextNode(text));
@@ -416,7 +416,7 @@ Foxtrick.modules['CopyYouth'] = {
 				Foxtrick.copyStringToClipboard(html);
 
 				// display note
-				var insertBefore = doc.getElementsByTagName('h1')[0];
+				var insertBefore = doc.getElementsByTagName('h1')[1];
 				var url = 'http://www.ht-ys.org/read_fixtures';
 				var container = doc.createElement('div');
 				var p = doc.createElement('p');
