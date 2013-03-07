@@ -191,7 +191,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 	},
 	//adds apecialty icons for all players, on field and on bench
 	runSpecialties: function(doc) {
-		var teams = doc.querySelectorAll('h1 > a, h1 > span > a');
+		var body = doc.getElementById('mainBody');
+		var teams = body.querySelectorAll('h1 > a, h1 > span > a');
 
 		if (!teams.length)
 			return; // we're not ready yet
@@ -264,7 +265,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		addSpecialtiesByTeamId(awayTeamId, awayPlayerLinks);
 	},
 	runMissing: function(doc) {
-		var teams = doc.querySelectorAll('h1 > a, h1 > span > a');
+		var body = doc.getElementById('mainBody');
+		var teams = body.querySelectorAll('h1 > a, h1 > span > a');
 
 		if (!teams.length)
 			return; // we're not ready yet
@@ -321,7 +323,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		addMissingByTeamId(awayTeamId, awayPlayerLinks);
 	},
 	runFaces: function(doc) {
-		var teams = doc.querySelectorAll('h1 > a, h1 > span > a');
+		var body = doc.getElementById('mainBody');
+		var teams = body.querySelectorAll('h1 > a, h1 > span > a');
 
 		if (!teams.length)
 			return; // we're not ready yet

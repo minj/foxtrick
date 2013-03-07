@@ -41,7 +41,7 @@ Foxtrick.modules['LinksMatch'] = {
 
 		if (isarchivedmatch) {
 			if (hasNewRatings) {
-				var teamH1 = doc.getElementsByTagName('h1')[0];
+				var teamH1 = doc.getElementsByTagName('h1')[1];
 				teamid = Foxtrick.util.id.findTeamId(teamH1);
 				teamid2 = Foxtrick.util.id.findSecondTeamId(teamH1, teamid);
 			}

@@ -46,7 +46,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 				'&actionType=addMatch&SourceSystem=' + SourceSystem;
 			link.appendChild(img.cloneNode(true));
 			if (!Foxtrick.Pages.Match.hasNewRatings(doc))
-				doc.getElementsByTagName('h1')[0].appendChild(link);
+				doc.getElementsByTagName('h1')[1].appendChild(link);
 			else {
 				var byLine = doc.querySelector('div.byline');
 				byLine.insertBefore(link, byLine.firstChild);

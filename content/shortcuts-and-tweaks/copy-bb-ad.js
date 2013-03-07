@@ -93,7 +93,7 @@ Foxtrick.modules['CopyBBAd'] = {
 				ad += '[/table]\n';
 
 				Foxtrick.copyStringToClipboard(ad);
-				var insertBefore = doc.getElementsByTagName('h1')[0];
+				var insertBefore = doc.getElementsByTagName('h1')[1];
 				var note = Foxtrick.util.note.add(doc, insertBefore, 'ft-tableAd-copy-note',
 												  Foxtrickl10n
 												  .getString('CopyTableAd.copied'),
@@ -175,7 +175,7 @@ Foxtrick.modules['CopyBBAd'] = {
 					ad += '[/table]\n\n';
 				}
 				Foxtrick.copyStringToClipboard(ad);
-				var insertBefore = doc.getElementsByTagName('h1')[0];
+				var insertBefore = doc.getElementsByTagName('h1')[1];
 				var note = Foxtrick.util.note.add(doc, insertBefore, 'ft-tableAd-copy-note',
 												  Foxtrickl10n
 												  .getString('CopyLeagueStatsAd.copied'),
@@ -252,7 +252,7 @@ Foxtrick.modules['CopyBBAd'] = {
 			ad = ad.replace(/\s+/g, ' ');
 
 			Foxtrick.copyStringToClipboard(ad);
-			var insertBefore = doc.getElementsByTagName('h1')[0];
+			var insertBefore = doc.getElementsByTagName('h1')[1];
 			var note = Foxtrick.util.note.add(doc, insertBefore, 'ft-tableAd-copy-note',
 											  Foxtrickl10n.getString('CopyFinancesAd.copied'),
 											  null, true);
