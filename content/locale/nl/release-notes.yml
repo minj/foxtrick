@@ -7,8 +7,8 @@ nl:
       note_0: 'Dit is een beta versie van de volgende release. Help alstublieft met vertalen van deze versie op de zeer gebruiks vriendelijke crowd-vertaal pagina <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.12.0: 
       note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
-      note_1: 
-      note_2: 
+      note_1: 'Nieuw: <module>MatchLineupTweaks</module>: Verandert de sterrenwaardering naar de oude sterren. Sterren en conditie zijn zichtbaar in de opstellingspagana. Vertoont specialiteiten voor alle spelers en toont de teamnamen om verwarring te voorkomen. Avatars van je speler zijn zichtbaar. Spelers die invloed kunnen hebben op een bepaald Special Event in een wedstrijd kunnen worden gemarkeerd. '
+      note_2: "Nieuw: <module>MainMenuDropDown</module>: In het de hoofdmenubalk zijn de links van Mijn hattrick en Mijn Club nu via dropdownmenu's direct toegankelijk."
       note_3: 
       note_4: 
       note_5: 
