@@ -258,7 +258,7 @@ if (/*Foxtrick.platform != 'Opera' &&*/ Foxtrick.platform != 'Mobile' && Foxtric
 				}
 				else if (Foxtrick.platform == 'Opera') {
 					var insertBefore = doc.getElementById('testingNewHeader') ||
-						doc.getElementsByTagName('h1')[0];
+						doc.getElementsByTagName('h1')[1];
 					opera.extension.addEventListener('message',
 					  function(messageEvent) {
 						var data = messageEvent.data;

@@ -54,7 +54,7 @@ Foxtrick.modules['MyMonitor'] = {
 			var mydiv = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MyMonitor, 'div');
 			mydiv.id = 'ft-monitor-div';
 			if (Foxtrick.isPage(doc, 'myHattrick')) {
-				var h1 = doc.getElementsByTagName('h1')[0];
+				var h1 = doc.getElementsByTagName('h1')[1];
 				h1.parentNode.insertBefore(mydiv, h1);
 			}
 			else if (Foxtrick.isPage(doc, 'dashboard'))

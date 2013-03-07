@@ -29,7 +29,7 @@ Foxtrick.modules['CopyRatings'] = {
 				else if (place == 'box')
 					var insertBefore = doc.getElementById('foxtrick_addactionsbox_parentDiv');
 				else {
-					var insertBefore = doc.getElementsByTagName('h1')[0];
+					var insertBefore = doc.getElementsByTagName('h1')[1];
 				}
 				var team1 = (teams == 'both') || (teams == 'home');
 				var team2 = (teams == 'both') || (teams == 'away');
@@ -39,7 +39,7 @@ Foxtrick.modules['CopyRatings'] = {
 				var _a = Foxtrickl10n.getString('match.ratings.attack') + ':';
 				var _t = Foxtrickl10n.getString('match.ratings.total') + ':';
 
-				var headder = doc.getElementsByTagName('h1')[0].textContent;
+				var headder = doc.getElementsByTagName('h1')[1].textContent;
 				headder = Foxtrick.trim(headder);
 				var start = Foxtrick.strrpos(headder, '<span>(') + 7;
 				var end = Foxtrick.strrpos(headder, ')</span>');
@@ -98,7 +98,8 @@ Foxtrick.modules['CopyRatings'] = {
 						var teamlink = table.rows[0].cells[1].getElementsByTagName('a')[0];
 					}
 					else {
-						var teamlink = doc.querySelectorAll('h1 > a, h1 > span > a')[0];
+						var body = doc.getElementById('mainBody');
+						var teamlink = body.querySelectorAll('h1 > a, h1 > span > a')[0];
 					}
 					if (teamlink)
 						ad += teamlink.textContent + ((team2) ? (' - ' + gameresult_h) : '') +
@@ -112,7 +113,8 @@ Foxtrick.modules['CopyRatings'] = {
 						var teamlink = table.rows[0].cells[2].getElementsByTagName('a')[0];
 					}
 					else {
-						var teamlink = doc.querySelectorAll('h1 > a, h1 > span > a')[1];
+						var body = doc.getElementById('mainBody');
+						var teamlink = body.querySelectorAll('h1 > a, h1 > span > a')[1];
 					}
 					if (teamlink)
 						ad += teamlink.textContent + ((team1) ? (' - ' + gameresult_a) : '') +

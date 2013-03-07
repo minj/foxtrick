@@ -32,7 +32,7 @@ Foxtrick.modules['Redirections'] = {
 			if (doc.location.href.search(/redir_to_team=true/i) != -1)
 						tar = serv + '/Club/?TeamID=' + teamid;
 			else if (doc.location.href.search(/redir_to_mail=true/i) != -1) {
-				var username = Foxtrick.trim(doc.getElementsByTagName('h1')[0]
+				var username = Foxtrick.trim(doc.getElementsByTagName('h1')[1]
 				                             .getElementsByClassName('speedBrowser')[0]
 				                             .nextSibling.textContent);
 				tar = serv + '/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto=' + username;
