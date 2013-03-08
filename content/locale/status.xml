@@ -85,7 +85,7 @@
     <name>German</name>
     <code>de</code>
     <phrases>1458</phrases>
-    <translated>1415</translated>
+    <translated>1426</translated>
     <approved>2</approved>
     <translated_progress>97</translated_progress>
     <approved_progress>0</approved_progress>
@@ -220,7 +220,7 @@
     <name>Polish</name>
     <code>pl</code>
     <phrases>1458</phrases>
-    <translated>1248</translated>
+    <translated>1250</translated>
     <approved>0</approved>
     <translated_progress>85</translated_progress>
     <approved_progress>0</approved_progress>
@@ -382,18 +382,18 @@
     <name>Spanish, Costa Rica</name>
     <code>es-CR</code>
     <phrases>1458</phrases>
-    <translated>1413</translated>
+    <translated>1426</translated>
     <approved>0</approved>
-    <translated_progress>96</translated_progress>
+    <translated_progress>97</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>Croatian</name>
     <code>hr</code>
     <phrases>1458</phrases>
-    <translated>1296</translated>
+    <translated>1355</translated>
     <approved>0</approved>
-    <translated_progress>88</translated_progress>
+    <translated_progress>92</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
