@@ -383,7 +383,8 @@ Foxtrick.modules.MatchSimulator = {
 					}
 					overlayRatingOther.textContent = selectedratings[j].text;
 
-					currentRatingsOther[i] = fullLevel; // store in regular order (aka use i not j)
+					currentRatingsOther[j] = fullLevel;
+					// index must match to selectedratings: i. e. attack first ALWAYS
 				}
 
 				// add tactics
