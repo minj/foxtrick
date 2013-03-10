@@ -1,6 +1,8 @@
 install new apple dev cert:
 
 *get it form apple dev center
+https://developer.apple.com/certificates/index.action
+ID: email PASS: look in inbox
 *install as instucted
 
 ----- 
@@ -8,6 +10,22 @@ install new apple dev cert:
 *der from apple
 *pem made as above
 ---------
+linux:
+-----
+#no idea how to generate csr properly on linux
+#apple gives error
+#this _might_ work if exported from mac...
+mv dowloaded-from-apple.cer safari.der
+openssl x509  -inform der -in safari.der -text -out cert.pem
+openssl pkcs12  -nocerts -in exported-from-mac.p12 -out mykey.pem
+openssl rsa -in mykey.pem >> MYKEY-NOCRYPT.key
+# assemble safari.pem from cert.pem and MYKEY-NOCRYPT.key
+
+#cf http://shib.kuleuven.be/docs/ssl_commands.shtml 
+# http://help.adobe.com/en_US/as3/iphone/WS144092a96ffef7cc-371badff126abc17b1f-7fff.html
+
+win:
+----
 
 *certmgr.msc
 
