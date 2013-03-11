@@ -19,7 +19,7 @@ Foxtrick.modules.AddClass = {
 			this.addDateForTable(doc, doc.getElementById('ctl00_ctl00_CPContent_CPMain' +
 			                     '_grdYouthSeries_ctl00'));
 		else if (Foxtrick.isPage(doc, 'transferCompare'))
-			this.addDateForTable(doc, doc.getElementsByTagName('table')[0]);
+			this.addDateForTable(doc, doc.querySelector('#mainBody table'));
 		else if (Foxtrick.isPage(doc, 'bookmarks'))
 			this.addDateForBookmarks(doc);
 		else if (Foxtrick.isPage(doc, 'match') || Foxtrick.isPage(doc, 'matchOld'))
