@@ -238,9 +238,9 @@
     <name>Russian</name>
     <code>ru</code>
     <phrases>1458</phrases>
-    <translated>1272</translated>
+    <translated>1286</translated>
     <approved>1073</approved>
-    <translated_progress>87</translated_progress>
+    <translated_progress>88</translated_progress>
     <approved_progress>73</approved_progress>
   </language>
   <language>
@@ -271,7 +271,7 @@
     <approved_progress>0</approved_progress>
   </language>
   <language>
-    <name>Serbian</name>
+    <name>Serbian (Cyrillic)</name>
     <code>sr</code>
     <phrases>1458</phrases>
     <translated>1411</translated>
