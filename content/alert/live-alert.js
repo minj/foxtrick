@@ -95,8 +95,10 @@ Foxtrick.modules['LiveAlert'] = {
 						if (FoxtrickPrefs.isModuleOptionEnabled('LiveAlert', 'Sound')) {
 							var sound = null;
 
-							if (ownScored && FoxtrickPrefs.isModuleOptionEnabled('LiveAlert', 'own'))
-								sound = FoxtrickPrefs.getString('module.LiveAlert.own_text');
+							if (ownScored) {
+								if (FoxtrickPrefs.isModuleOptionEnabled('LiveAlert', 'own'))
+									sound = FoxtrickPrefs.getString('module.LiveAlert.own_text');
+							}
 							else if (homeScored &&
 							         FoxtrickPrefs.isModuleOptionEnabled('LiveAlert', 'home'))
 								sound = FoxtrickPrefs.getString('module.LiveAlert.home_text');
