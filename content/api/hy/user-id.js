@@ -49,16 +49,17 @@ Foxtrick.api.hy.isUserId = function(userId) {
  * failure() is called if the request fails
  * finalize() is always called
  * @param	{function}		callback	function to execute
+ * @param	{String}		params		specific params for the api = null
  * @param	{[Function]}	failure		function to execute (optional)
  * @param	{[Function]}	finalize	function to execute (optional)
  * @param	{[integer]}		teamId		senior team ID to fetch data for (optional)
  */
-Foxtrick.api.hy._fetchUserId = function(callback, failure, finalize, teamId) {
+Foxtrick.api.hy._fetchUserId = function(callback, params, failure, finalize, teamId) {
 	Foxtrick.api.hy._fetchGeneric('userId',
 	  function(response) {
 		var userId = parseInt(JSON.parse(response), 10);
 		callback(userId);
-	}, null,
+	}, params,
 	  function(response, status) {
 		if (typeof(failure) == 'function')
 			failure(response, status);
