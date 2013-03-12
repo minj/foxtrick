@@ -8,7 +8,7 @@ ko:
     0.12.0: 
       note_0: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
       note_1: 'NEW: <module>MatchLineupTweaks</module>: 별 표시를 과거 스타일로 변경합니다. 새로운 라인업 페이지에 별 카운터와 체력을 추가합니다. 모든 선수의 특수능력을 표시하고 혼란을 줄이기 위해서 필드에 클럽 이름을 추가합니다. 여러분의 선수 얼굴을 표시합니다. 경기에 있었던 이벤트에 일치하는 선수를 강조합니다.'
-      note_2: 'NEW: <module>MainMenuDropDown</module>: 메인 탐색 바에 일반적으로 사용가능한 모든 링크를 포함하는 드롭 다운 메뉴를 추가합니다.'
+      note_2: 
       note_3: 'NEW: <module>MatchLineupFixes</module>: 선수 및 분야에 걸쳐서 타임 라인을 동기화합니다. 날씨 SE에 해당하는 선수를 표시합니다. 지시사항 탭에 선수 링크를 추가합니다. 벤치에 있는 선수의 마지막 별점을 헤아리는 것을 추가합니다. 동시에 발생하는 여러 이벤트를 수정합니다: 선수 포지션 변경은 한번에 일어나지 않고 단계적으로 변경합니다.'
       note_4: 'NEW: <module>ReLiveLinks</module>: 종료한 경기들을 HT Re-Live으로 보는 링크를 추가합니다.'
       note_5: 'NEW: <module>CopyBBAd</module>: 다양한 광고를 BB 코드로 복사합니다. (by merfis)'
@@ -21,6 +21,9 @@ ko:
       note_12: 'AddLeaveConfButton 은 <module>ForumLeaveButton</module>으로 이름을 바꿉니다'
       note_13: 이제부터 폭스트릭 토론장에 포스팅하는 메세지에 당신의 브라우저와 해트트릭 레이아웃 설정을 자동적으로 포함될 것입니다. 이것을 문제를 더욱 빠르게 수정하는데 저희에게 도움이 될 것입니다. 포스팅할 때 그 정보를 지우지 마세요.
       note_14: 더 좋은 가독성과 보수성을 위하여 추가 기능 코드를 청소하였습니다.
+      note_15: 
+      note_16: 
+      note_17: 
     0.11.0.1: 
       note_0: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
       note_1: '<module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module>, <module>HTThreadMarker</module>에 있던 사소한 문제를 수정하였습니다.'

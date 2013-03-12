@@ -8,7 +8,7 @@ uk:
     0.12.0: 
       note_0: '<header>Багато оновлень перекладів від наших користувачів, які користуються <linkCrowdin>crowdin</linkCrowdin>. Ви також можете нам допомогти!</header>'
       note_1: 'НОВЕ:<module>MatchLineupTweaks</module>: Змінює зірки на старий стиль. Додає лічильник зірок та витривалості на нову сторінку розстановки. Показує спеціальності для всіх гравців та додає назву команди на полі. Показує аватари гравців Вашої команди. Виділяє гравців, що були в подях матчу.'
-      note_2: 'НОВЕ: <module>MainMenuDropDown</module>: Додає випадаюче меню до основної навігації, що містить всі посилання,  що є збоку цієї сторінки.'
+      note_2: 
       note_3: "НОВЕ: <module>MatchLineupFixes</module>: Синхронізація шкали часу на вкладках гравця та секторів. Відображає ім'я гравця для погодних SE. Додає посилання для гравців у вкладці наказів. Додає зірки гравців, які на лавці запасних, до лічильника зірок. Виправлено кілька подій, що відбуваються одночасно: гравці змінюють свої позиції поступово, а не всі разом."
       note_4: 'НОВЕ: <module>ReLiveLinks</module>: Додає посилання до HT Re-Live для матчів, що завершено.'
       note_5: 'НОВЕ: <module>CopyBBAd</module>: Копіювання в BB code (by merfis).'
@@ -21,6 +21,9 @@ uk:
       note_12: 'Змінено назву AddLeaveConfButton на  <module>ForumLeaveButton</module>'
       note_13: Відтепер налаштування вашого браузера та Hattrick включатимуться до повідомлень на форумі FoxTrick. Це допоможе нам швидше вирішувати проблеми. Будь ласка, не видаляйте цю інформацію, коли відправляєте повідомлення.
       note_14: 
+      note_15: 
+      note_16: 
+      note_17: 
     0.11.0.1: 
       note_0: '<header>Багато оновлень перекладів від наших користувачів, які користуються <linkCrowdin>crowdin</linkCrowdin>. Ви також можете нам допомогти!</header>'
       note_1: 'Незначні виправлення в наступних модулях: <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> and <module>HTThreadMarker</module>.'

@@ -8,7 +8,7 @@ nl:
     0.12.0: 
       note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
       note_1: 'Nieuw: <module>MatchLineupTweaks</module>: Verandert de sterrenwaardering naar de oude sterren. Sterren en conditie zijn zichtbaar in de opstellingspagana. Vertoont specialiteiten voor alle spelers en toont de teamnamen om verwarring te voorkomen. Avatars van je speler zijn zichtbaar. Spelers die invloed kunnen hebben op een bepaald Special Event in een wedstrijd kunnen worden gemarkeerd. '
-      note_2: "Nieuw: <module>MainMenuDropDown</module>: In het de hoofdmenubalk zijn de links van Mijn hattrick en Mijn Club nu via dropdownmenu's direct toegankelijk."
+      note_2: 
       note_3: 
       note_4: 
       note_5: 
@@ -21,6 +21,9 @@ nl:
       note_12: 'AddLeaveConfButton is hernoemd naar <module>ForumLeaveButton</module>'
       note_13: Vanaf nu, zal je browser en je Hattrick lay out automatisch zijn bijgesloten in berichten die je post op het Foxtrick forum. Dit zal ons helpen om problemen eerder op te lossen. Delete deze informatie alstublieft niet als je een posting maakt.
       note_14: 
+      note_15: 
+      note_16: 
+      note_17: 
     0.11.0.1: 
       note_0: 
       note_1: 

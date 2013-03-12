@@ -8,7 +8,7 @@ cs:
     0.12.0: 
       note_0: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
       note_1: 'NOVÉ: <module>MatchLineupTweaks</module>: Mění zobrazení počtu hvězdiček na původní (hvězdičky místo počtů). Přidává počítání hvězdiček a kondice na nové stránce s rozestavením. Zobrazí speciality u všech hráčů i název týmu na hřišti, aby nedocházelo ke zmatení. Zobrazí obličeje hráčů tvého týmu. Umožňuje zobrazit relevantní hráče pro zvolenou událost v zápase.'
-      note_2: 'NOVÉ: <module>MainMenuDropDown</module>: Přidá vyskakovací menu do hlavního navigačního panelu - obsahuje všechny odkazy obvykle dostupné z levého menu.'
+      note_2: 
       note_3: 'NOVÉ: <module>MatchLineupFixes</module>: Sesynchronizuj časovou osu mezi záložkami hráčů a hodnocení. Zobraz si jména hráčů u speciálních událostí spjatých s počasím. Přidej si odkazy na hráče při nastavování pokynů. Přidej si poslední počty hvězdiček u hráčů na lavičce. Opravuje události odehrávající se ve stejném okamžiku: hráči si vymění pozice krok po kroku, nikoliv zaráz.'
       note_4: 'NOVÉ: <module>ReLiveLinks</module>: Přidá odkazy na HT Re-Live pro ukončené zápasy.'
       note_5: 'NOVÉ: <module>CopyBBAd</module>: Kopíruje různé reklamy v BB kódu (vytvořil merfis).'
@@ -21,6 +21,9 @@ cs:
       note_12: 'AddLeaveConfButton je přejmenován na <module>ForumLeaveButton</module>'
       note_13: Nyní budou informace o tvém prohlížeči a Hattrick layoutu automaticky přidávány k tvým příspěvkům do FoxTrick konferencí. To by mělo umožnit řešit problémy rychleji. Prosím nemažte tyto informace ze zprávy při jejím odesílání.
       note_14: Přídavný kód byl vyčištěn pro lepší čitelnost a udržitelnost.
+      note_15: 
+      note_16: 
+      note_17: 
     0.11.0.1: 
       note_0: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
       note_1: 'Opraveny drobné chyby v <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> a <module>HTThreadMarker</module>.'

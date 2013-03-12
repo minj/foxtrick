@@ -3,25 +3,25 @@
   <language>
     <name>Romanian</name>
     <code>ro</code>
-    <phrases>1458</phrases>
-    <translated>1458</translated>
+    <phrases>1461</phrases>
+    <translated>1457</translated>
     <approved>0</approved>
-    <translated_progress>100</translated_progress>
+    <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>French</name>
     <code>fr</code>
-    <phrases>1458</phrases>
-    <translated>1458</translated>
+    <phrases>1461</phrases>
+    <translated>1457</translated>
     <approved>0</approved>
-    <translated_progress>100</translated_progress>
+    <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>Spanish</name>
     <code>es-ES</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1321</translated>
     <approved>1</approved>
     <translated_progress>90</translated_progress>
@@ -30,7 +30,7 @@
   <language>
     <name>Arabic</name>
     <code>ar</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1244</translated>
     <approved>0</approved>
     <translated_progress>85</translated_progress>
@@ -39,7 +39,7 @@
   <language>
     <name>Belarusian</name>
     <code>be</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>586</translated>
     <approved>0</approved>
     <translated_progress>40</translated_progress>
@@ -48,7 +48,7 @@
   <language>
     <name>Bulgarian</name>
     <code>bg</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>364</translated>
     <approved>0</approved>
     <translated_progress>24</translated_progress>
@@ -57,7 +57,7 @@
   <language>
     <name>Catalan</name>
     <code>ca</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>795</translated>
     <approved>0</approved>
     <translated_progress>54</translated_progress>
@@ -66,16 +66,16 @@
   <language>
     <name>Czech</name>
     <code>cs</code>
-    <phrases>1458</phrases>
-    <translated>1458</translated>
+    <phrases>1461</phrases>
+    <translated>1457</translated>
     <approved>1216</approved>
-    <translated_progress>100</translated_progress>
+    <translated_progress>99</translated_progress>
     <approved_progress>83</approved_progress>
   </language>
   <language>
     <name>Danish</name>
     <code>da</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1412</translated>
     <approved>1412</approved>
     <translated_progress>96</translated_progress>
@@ -84,8 +84,8 @@
   <language>
     <name>German</name>
     <code>de</code>
-    <phrases>1458</phrases>
-    <translated>1426</translated>
+    <phrases>1461</phrases>
+    <translated>1425</translated>
     <approved>2</approved>
     <translated_progress>97</translated_progress>
     <approved_progress>0</approved_progress>
@@ -93,7 +93,7 @@
   <language>
     <name>Greek</name>
     <code>el</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1263</translated>
     <approved>0</approved>
     <translated_progress>86</translated_progress>
@@ -102,7 +102,7 @@
   <language>
     <name>Frisian</name>
     <code>fy-NL</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>432</translated>
     <approved>0</approved>
     <translated_progress>29</translated_progress>
@@ -111,7 +111,7 @@
   <language>
     <name>Basque</name>
     <code>eu</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>199</translated>
     <approved>0</approved>
     <translated_progress>13</translated_progress>
@@ -120,7 +120,7 @@
   <language>
     <name>Finnish</name>
     <code>fi</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1348</translated>
     <approved>0</approved>
     <translated_progress>92</translated_progress>
@@ -129,7 +129,7 @@
   <language>
     <name>Hebrew</name>
     <code>he</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1322</translated>
     <approved>0</approved>
     <translated_progress>90</translated_progress>
@@ -138,7 +138,7 @@
   <language>
     <name>Hungarian</name>
     <code>hu</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1331</translated>
     <approved>193</approved>
     <translated_progress>91</translated_progress>
@@ -147,16 +147,16 @@
   <language>
     <name>Italian</name>
     <code>it</code>
-    <phrases>1458</phrases>
-    <translated>1458</translated>
+    <phrases>1461</phrases>
+    <translated>1457</translated>
     <approved>0</approved>
-    <translated_progress>100</translated_progress>
+    <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>Japanese</name>
     <code>ja</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1291</translated>
     <approved>0</approved>
     <translated_progress>88</translated_progress>
@@ -165,34 +165,34 @@
   <language>
     <name>Georgian</name>
     <code>ka</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1051</translated>
     <approved>0</approved>
-    <translated_progress>72</translated_progress>
+    <translated_progress>71</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>Korean</name>
     <code>ko</code>
-    <phrases>1458</phrases>
-    <translated>1458</translated>
+    <phrases>1461</phrases>
+    <translated>1457</translated>
     <approved>0</approved>
-    <translated_progress>100</translated_progress>
+    <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>Lithuanian</name>
     <code>lt</code>
-    <phrases>1458</phrases>
-    <translated>1458</translated>
+    <phrases>1461</phrases>
+    <translated>1457</translated>
     <approved>7</approved>
-    <translated_progress>100</translated_progress>
+    <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>Macedonian</name>
     <code>mk</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1335</translated>
     <approved>0</approved>
     <translated_progress>91</translated_progress>
@@ -201,8 +201,8 @@
   <language>
     <name>Dutch</name>
     <code>nl</code>
-    <phrases>1458</phrases>
-    <translated>1421</translated>
+    <phrases>1461</phrases>
+    <translated>1420</translated>
     <approved>0</approved>
     <translated_progress>97</translated_progress>
     <approved_progress>0</approved_progress>
@@ -210,7 +210,7 @@
   <language>
     <name>Norwegian</name>
     <code>no</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>929</translated>
     <approved>0</approved>
     <translated_progress>63</translated_progress>
@@ -219,8 +219,8 @@
   <language>
     <name>Polish</name>
     <code>pl</code>
-    <phrases>1458</phrases>
-    <translated>1250</translated>
+    <phrases>1461</phrases>
+    <translated>1249</translated>
     <approved>0</approved>
     <translated_progress>85</translated_progress>
     <approved_progress>0</approved_progress>
@@ -228,16 +228,16 @@
   <language>
     <name>Portuguese</name>
     <code>pt-PT</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1401</translated>
     <approved>0</approved>
-    <translated_progress>96</translated_progress>
+    <translated_progress>95</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>Russian</name>
     <code>ru</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1286</translated>
     <approved>1073</approved>
     <translated_progress>88</translated_progress>
@@ -246,7 +246,7 @@
   <language>
     <name>Slovak</name>
     <code>sk</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>970</translated>
     <approved>0</approved>
     <translated_progress>66</translated_progress>
@@ -255,7 +255,7 @@
   <language>
     <name>Slovenian</name>
     <code>sl</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>957</translated>
     <approved>0</approved>
     <translated_progress>65</translated_progress>
@@ -264,16 +264,16 @@
   <language>
     <name>Albanian</name>
     <code>sq</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>555</translated>
     <approved>0</approved>
-    <translated_progress>38</translated_progress>
+    <translated_progress>37</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>Serbian (Cyrillic)</name>
     <code>sr</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1411</translated>
     <approved>1413</approved>
     <translated_progress>96</translated_progress>
@@ -282,7 +282,7 @@
   <language>
     <name>Swedish</name>
     <code>sv-SE</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1218</translated>
     <approved>3</approved>
     <translated_progress>83</translated_progress>
@@ -291,25 +291,25 @@
   <language>
     <name>Turkish</name>
     <code>tr</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1285</translated>
     <approved>0</approved>
-    <translated_progress>88</translated_progress>
+    <translated_progress>87</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>Ukrainian</name>
     <code>uk</code>
-    <phrases>1458</phrases>
-    <translated>1431</translated>
+    <phrases>1461</phrases>
+    <translated>1430</translated>
     <approved>0</approved>
-    <translated_progress>98</translated_progress>
+    <translated_progress>97</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>Chinese Simplified</name>
     <code>zh-CN</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1084</translated>
     <approved>0</approved>
     <translated_progress>74</translated_progress>
@@ -318,8 +318,8 @@
   <language>
     <name>English</name>
     <code>en</code>
-    <phrases>1458</phrases>
-    <translated>1169</translated>
+    <phrases>1461</phrases>
+    <translated>1172</translated>
     <approved>1</approved>
     <translated_progress>80</translated_progress>
     <approved_progress>0</approved_progress>
@@ -327,7 +327,7 @@
   <language>
     <name>Vietnamese</name>
     <code>vi</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1193</translated>
     <approved>0</approved>
     <translated_progress>81</translated_progress>
@@ -336,16 +336,16 @@
   <language>
     <name>Galician</name>
     <code>gl</code>
-    <phrases>1458</phrases>
-    <translated>1458</translated>
+    <phrases>1461</phrases>
+    <translated>1457</translated>
     <approved>0</approved>
-    <translated_progress>100</translated_progress>
+    <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>Icelandic</name>
     <code>is</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>929</translated>
     <approved>0</approved>
     <translated_progress>63</translated_progress>
@@ -354,16 +354,16 @@
   <language>
     <name>Portuguese, Brazilian</name>
     <code>pt-BR</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1358</translated>
     <approved>0</approved>
-    <translated_progress>93</translated_progress>
+    <translated_progress>92</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>Persian</name>
     <code>fa</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1192</translated>
     <approved>0</approved>
     <translated_progress>81</translated_progress>
@@ -372,7 +372,7 @@
   <language>
     <name>Spanish, Argentina</name>
     <code>es-AR</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1376</translated>
     <approved>0</approved>
     <translated_progress>94</translated_progress>
@@ -381,7 +381,7 @@
   <language>
     <name>Spanish, Costa Rica</name>
     <code>es-CR</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1426</translated>
     <approved>0</approved>
     <translated_progress>97</translated_progress>
@@ -390,7 +390,7 @@
   <language>
     <name>Croatian</name>
     <code>hr</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1355</translated>
     <approved>0</approved>
     <translated_progress>92</translated_progress>
@@ -399,7 +399,7 @@
   <language>
     <name>Norwegian Nynorsk</name>
     <code>nn-NO</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>790</translated>
     <approved>0</approved>
     <translated_progress>54</translated_progress>
@@ -408,8 +408,8 @@
   <language>
     <name>Estonian</name>
     <code>et</code>
-    <phrases>1458</phrases>
-    <translated>430</translated>
+    <phrases>1461</phrases>
+    <translated>431</translated>
     <approved>0</approved>
     <translated_progress>29</translated_progress>
     <approved_progress>0</approved_progress>
@@ -417,7 +417,7 @@
   <language>
     <name>Latvian</name>
     <code>lv</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>833</translated>
     <approved>0</approved>
     <translated_progress>57</translated_progress>
@@ -426,16 +426,16 @@
   <language>
     <name>Maltese</name>
     <code>mt</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>686</translated>
     <approved>0</approved>
-    <translated_progress>47</translated_progress>
+    <translated_progress>46</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>Luxembourgish</name>
     <code>lb</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>549</translated>
     <approved>0</approved>
     <translated_progress>37</translated_progress>
@@ -444,7 +444,7 @@
   <language>
     <name>Flemish</name>
     <code>vls-BE</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>932</translated>
     <approved>0</approved>
     <translated_progress>63</translated_progress>
@@ -453,7 +453,7 @@
   <language>
     <name>Friulian</name>
     <code>fur-IT</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>199</translated>
     <approved>1</approved>
     <translated_progress>13</translated_progress>
@@ -462,7 +462,7 @@
   <language>
     <name>Bosnian</name>
     <code>bs</code>
-    <phrases>1458</phrases>
+    <phrases>1461</phrases>
     <translated>1043</translated>
     <approved>623</approved>
     <translated_progress>71</translated_progress>

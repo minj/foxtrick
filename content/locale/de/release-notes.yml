@@ -10,7 +10,7 @@ de:
       note_1: |
         NEU: <module>MatchLineupTweaks</module>: Ersetzt die numerisch Dargestellten Stern durch eine, der ursprünglichen Ansicht ähnliche.
         Fügt Zähler für Kondition und Sterne hinzu. Zeigt Spezialfähigkeiten für alle Spieler und fügt den Teamnamen zum Aufstellungfeld hinzu. Spielergesichter können wieder angezeigt werden und für jeden Event werden die beteiligten Spieler hervorgehoben.
-      note_2: 'NEU: <module>MainMenuDropDown</module>: Dem Hauptmenu wurde ein Dropdown-Menu hinzugefügt welches alle sekundären und tertiären Links der Zielseite direkt beinhaltet.'
+      note_2: 
       note_3: 
       note_4: 'NEU: <module>ReLiveLinks</module>: Re-Live Links an vielen Stellen hinzugefügt.'
       note_5: 
@@ -23,6 +23,9 @@ de:
       note_12: 'Das Module AddLeaveConfButton wurde in <module>ForumLeaveButton</module> umbenannt'
       note_13: Von nun an wird bei allen Beiträgen im Foxtrick-Forum automatisch ein Satz von Informationen über verwendete Versionen, Spracheinstellungen etc. hinzugefügt um den Nutzern und den Entwicklern bei der Fehlersuche ein wenig Zeit zu sparen. Bitte löscht diesen Block nicht wenn ihr einen Fehler meldet.
       note_14: 'Les- und Wartbarkeit des Code verbessert.'
+      note_15: 
+      note_16: 
+      note_17: 
     0.11.0.1: 
       note_0: 
       note_1: 'Kleinere Probleme in folgenden Modulen behoben: <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module>,<module>HTThreadMarker</module>.'

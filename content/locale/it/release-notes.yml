@@ -8,7 +8,7 @@ it:
     0.12.0: 
       note_0: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
       note_1: "NOVITA': <module>MatchLineupTweaks</module>: Cambia le nuove stelle nello stile precedente. Aggiunge contatori per stelle e resistenza nella nuova pagina della formazione. Mostra le specialità di tutti i giocatori e aggiunge il nome delle squadre sullo sfondo per limitare la confusione. Mostra le facce dei giocatori della tua squadra. Evidenzia i giocatori relativi all' evento della partita selezionato."
-      note_2: "NOVITA': <module>MainMenuDropDown</module>: Aggiunge menù a tendina alla barra di navigazione principale contenente tutti i link solitamente accessibili nella barra laterale della pagina di destinazione."
+      note_2: 
       note_3: "Nuovo: <module>MatchLineupFixes</module>: Sincronizzazione temporale tra giocatore e settori di schede. Visualizza il nome del giocatore per SE meteo. Aggiungere collegamenti ai giocatori nella scheda dei tuoi ordini. Aggiunge le stelle dell'ultima partita giocata ai giocatori in panchina. Risolto il probema di eventi multipli che accadono allo stesso momento: i giocatori cambiano le loro posizioni passo dopo passo invece che contemporaneamente."
       note_4: "NOVITA': <module>ReLiveLinks</module>: Aggiunge un collegamento a HT Re-Live alle partite concluse."
       note_5: "NOVITA': <module>CopyBBAd</module>: Copia diversi annunci in BB code (by merfis)."
@@ -21,6 +21,9 @@ it:
       note_12: 'AddLeaveConfButton è stato rinominato in <module>ForumLeaveButton</module>'
       note_13: Da ora in poi, le impostazioni del layout del tuo browser e di Hattrick verranno automaticamente incluse nei messaggi postati sul forum di FoxTrick. Ciò ci aiuterà a risolvere i vostri problemi più velocemente. Cortesemente non cancellate queste informazioni dai vostri messaggi sul forum.
       note_14: Il codice del componente aggiuntivo è stato ripulito per una migliore leggibilità e manutenibilità.
+      note_15: 
+      note_16: 
+      note_17: 
     0.11.0.1: 
       note_0: "<header>Ci sono un sacco di aggiornamenti sulle traduzione dai nostri fantastici utenti utilizzando <linkCrowdin>Crowdin</linkCrowdin>. Anche tu puoi essere d'aiuto!</header>"
       note_1: 'Risolti problemi minori su <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>RedditoCorrispondente</module> e <module>HTThreadMarker</module>.'

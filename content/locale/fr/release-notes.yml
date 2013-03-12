@@ -8,7 +8,7 @@ fr:
     0.12.0: 
       note_0: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'
       note_1: "NOUVEAU: <module>MatchLineupTweaks</module>: Retrouver vos étoiles dans l'ancien style. Ajout de compteurs pour les étoiles et l'endurance sur la nouvelle présentation de la composition. Afficher les spécialités des joueurs et ajouter le nom de l'équipe sur le terrain pour limiter la confusion. Afficher le visages de vos joueurs. Mise en évidence des joueurs concernés par un événement dans un match."
-      note_2: "NOUVEAU: <module>MainMenuDropDown</module>: Ajout d'un menu déroulant dans la barre de navigation principale incluant tous les liens présents dans la barre latérale de la page concernée."
+      note_2: 
       note_3: |
         NOUVEAU : <module>MatchLineupFixes</module> : Synchronisation de la chronologie entre les onglets "Notes détaillées" et "Composition". Affiche les noms des joueur ayant un SE météo. Ajoute des liens pour les joueurs dans l'onglet "Ordres des joueurs". Ajoute le dernier décompte d'étoiles aux joueurs du banc. Corrige plusieurs événements qui se déroulent en même temps : joueurs changent leurs positions étape par étape, au lieu de tout à la fois.
       note_4: "NOUVEAU: <module>ReLiveLinks</module>: Ajout d'un lien Re-Live pour les matchs terminés."
@@ -22,6 +22,9 @@ fr:
       note_12: 'AddLeaveConfButton est renommé en <module>ForumLeaveButton</module>'
       note_13: A partir de maintenant, votre navigateur et les paramètres concernant Hattrick figureront automatiquement dans vos messages postés sur le forum de FoxTrick. Cela nous aidera à résoudre les problèmes plus rapidement. S'il vous plaît ne supprimer pas cette information.
       note_14: Le code du module complémentaire a été nettoyé pour une meilleure lisibilité et facilité de maintenance.
+      note_15: 
+      note_16: 
+      note_17: 
     0.11.0.1: 
       note_0: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'
       note_1: 'Correction de problèmes mineurs dans <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> et <module>HTThreadMarker</module>.'
