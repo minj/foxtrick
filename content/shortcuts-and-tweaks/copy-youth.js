@@ -126,7 +126,7 @@ Foxtrick.modules['CopyYouth'] = {
 				return;
 
 			//Debug: Always send this report, can be used to test
-			Foxtrick.sessionSet('YouthClub.sendTrainingReport', true);
+			//Foxtrick.sessionSet('YouthClub.sendTrainingReport', true);
 
 			Foxtrick.api.hy.runIfHYUser(function() {
 				var mainBody = doc.getElementById('mainBody');
