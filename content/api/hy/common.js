@@ -12,8 +12,8 @@ if (!Foxtrick.api.hy)
  * @author LA-MJ, HY backend/API by MackShot
  *
  * There are two types of APIs:
- * a) data-fetchers that get info from HT
- * b) data-miners that send info to HT
+ * a) data-fetchers that get info from HY
+ * b) data-miners that send info to HY
  *
  * Data fetchers use a multi-tiered caching mechanism via _fetchViaCache:
  * Obviously if there is nothing cached we access HY.
