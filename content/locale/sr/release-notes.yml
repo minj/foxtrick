@@ -6,14 +6,13 @@ sr:
     beta: 
       note_0: 'Ово је бета верзија наредне званичне верзије. Уколико желите да помогнете у превођењу посетите нашу страницу за преводиоце на <linkCrowdin>crowdin.net</linkCrowdin>. '
     
-    0.12.0:
+    0.12.0: 
       note_0: '<header>Многобројна ажурирања превода захваљујући свесрдној помоћи корисника који користе  <linkCrowdin>crowdin</linkCrowdin> алат за превођење. И ви, такође, можете помоћи ако желите!</header>'
       note_1: 'НОВО: <module>MatchLineupTweaks</module>: Додаје бројач звездица и проценат опадања кондиције на страници поставе у меч извештајима. Додаје иконице за специјалности играча и убацује имена тимова ради избегавања конфузије.'
-      note_2: 'НОВО: <module>MainMenuDropDown</module>: Додаје падајуће меније главном хоризонталном навигационом менију са линковима и подменијима који се налазе на левој и десној страни одговарајуће странице.'
-      note_3: '<module>DashboardCalendar</module>: Додато је је дугме за експортовање Хеттрик недеље у iCalendar фајл формату (ова функција би требало да буде компатибилна са апликацијама: Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal итд.)'
-      note_4: '<module>LiveAlert</module>: Додаје различита звучна обавештења за голове вашег и тимова домаћина/гостију. Подразумевано је коришћење колекције звукова из <linkHTLS>HTLiveSight</linkHTLS> апликације. Имајте на уму да приликом првог укључивања голови вашег тима неће бити препознати ако утакмицу пратите у Re-Live моду.'
-      note_5: '<module>CopyYouth</module>: Hattrick youthclub корисници ће уколико укључе модул <module>YouthTwins</module> аутоматски слати на HY сајт коментар ловца на таленте за одбијене играче'
-      note_6: '<module>CopyYouth</module>: Hattrick youthclub корисници ће уколико укључе модул <module>YouthTwins</module> аутоматски слати на HY сајт извештај са тренинга чим га први пут прочитају'
+      note_6: '<module>DashboardCalendar</module>: Додато је је дугме за експортовање Хеттрик недеље у iCalendar фајл формату (ова функција би требало да буде компатибилна са апликацијама: Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal итд.)'
+      note_7: '<module>LiveAlert</module>: Додаје различита звучна обавештења за голове вашег и тимова домаћина/гостију. Подразумевано је коришћење колекције звукова из <linkHTLS>HTLiveSight</linkHTLS> апликације. Имајте на уму да приликом првог укључивања голови вашег тима неће бити препознати ако утакмицу пратите у Re-Live моду.'
+      note_8: '<module>CopyYouth</module>: Hattrick youthclub корисници ће уколико укључе модул <module>YouthTwins</module> аутоматски слати на HY сајт коментар ловца на таленте за одбијене играче'
+      note_9: '<module>CopyYouth</module>: Hattrick youthclub корисници ће уколико укључе модул <module>YouthTwins</module> аутоматски слати на HY сајт извештај са тренинга чим га први пут прочитају'
 
     0.11.0: 
       note_0: 'НОВО:  <module>DirectPageLinks</module>: додати линкови за директан приступ страницама унутар теме на форуму'
