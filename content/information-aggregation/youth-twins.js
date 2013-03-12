@@ -86,16 +86,22 @@ Foxtrick.modules['YouthTwins'] = {
 					// load and callback
 					Foxtrick.api.hy.getYouthTwins(function(json) {
 						// update the userId on _real_ successful request
+						// therefore need to use the request time, not current time
 						// avoids stale cache in case user joins/leaves HY
 						var userId = json.userId;
 						if (typeof(userId) == 'number') {
-							Foxtrick.log('[HY_API][playersTwinsCheck] received HY userId, ' +
-										 'updating cache:', userId);
+							var then = json.fetchTime * 1000; // JS vs PHP
 							var teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
-							var now = Foxtrick.modules['Core'].HT_TIME;
-							Foxtrick.localSet('YouthClub.' + teamId + '.userId',
-											  JSON.stringify(userId));
-							Foxtrick.localSet('YouthClub.' + teamId + '.userId.fetchTime', now);
+							Foxtrick.localGet('YouthClub.' + teamId + '.userId.fetchTime',
+							  function (saved) {
+								if (saved >= then)
+									return;
+								Foxtrick.log('[HY_API][playersTwinsCheck] updating userId cache:',
+											 userId, then);
+								Foxtrick.localSet('YouthClub.' + teamId + '.userId',
+												  JSON.stringify(userId));
+								Foxtrick.localSet('YouthClub.' + teamId + '.userId.fetchTime', then);
+							});
 						}
 						// proceed as normally
 						callback(json);
