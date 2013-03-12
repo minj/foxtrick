@@ -65,24 +65,13 @@ Foxtrick.api.hy.URL['playersTwinsCheck'] = 'http://www.hattrick-youthclub.org' +
  * failure() is called if the request fails
  * finalize() is always called
  * @param	{function}		callback	function to execute
+ * @param	{String}		params		specific params for the api
  * @param	{[Function]}	failure		function to execute (optional)
  * @param	{[Function]}	finalize	function to execute (optional)
  * @param	{[integer]}		teamId		senior team ID to fetch data for (optional)
-  * @param	{[String]}		params		specific params for the api (optional)
  */
-Foxtrick.api.hy._fetchYouthTwins = function(callback, failure, finalize, teamId, params) {
-	if (typeof(teamId) == 'undefined' || teamId === null)
-		teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
-
-	Foxtrick.log('[HY_API][playersTwinsCheck] _fetchYouthTwins:', teamId);
-	var url = Foxtrick.api.hy.URL['playersTwinsCheck'];
-
-	Foxtrick.api.hy._fetchOrIgnore('playersTwinsCheck', url, params,
-	  function(response) {
-		var json = JSON.parse(response);
-		Foxtrick.log('[HY_API][playersTwinsCheck] json received:', json);
-		callback(json);
-	}, failure, finalize, teamId);
+Foxtrick.api.hy._fetchYouthTwins = function(callback, params, failure, finalize, teamId) {
+	Foxtrick.api.hy._fetchGeneric('playersTwinsCheck', callback, params, failure, finalize, teamId);
 };
 /**
  * A localStore wrapper for _fetchYouthTwins
@@ -90,12 +79,12 @@ Foxtrick.api.hy._fetchYouthTwins = function(callback, failure, finalize, teamId,
  * failure() is called if the request fails
  * finalize() is always called
  * @param	{function}		callback	function to execute
- * @param	{[String]}		params		specific params for the api (optional)
+ * @param	{String}		params		specific params for the api
  * @param	{[Function]}	failure		function to execute (optional)
  * @param	{[Function]}	finalize	function to execute (optional)
  * @param	{[integer]}		teamId		senior team ID to fetch data for (optional)
  */
 Foxtrick.api.hy.getYouthTwins = function(callback, params, failure, finalize, teamId) {
-	Foxtrick.api.hy._fetchViaCache(7, 'playersTwinsCheck', this._fetchYouthTwins,
-								   callback, failure, finalize, teamId, params);
+	Foxtrick.api.hy._fetchViaCache(7, 'playersTwinsCheck', params, this._fetchYouthTwins,
+								   callback, failure, finalize, teamId);
 };

@@ -64,24 +64,13 @@ Foxtrick.api.hy.skillMap = {
  * failure() is called if the request fails
  * finalize() is always called
  * @param	{function}		callback	function to execute
+ * @param	{String}		params		specific params for the api = null
  * @param	{[Function]}	failure		function to execute (optional)
  * @param	{[Function]}	finalize	function to execute (optional)
  * @param	{[integer]}		teamId		senior team ID to fetch data for (optional)
- * @param	{[String]}		params		specific params for the api (optional)
  */
-Foxtrick.api.hy._fetchYouthSkills = function(callback, failure, finalize, teamId, params) {
-	if (typeof(teamId) == 'undefined' || teamId === null)
-		teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
-
-	Foxtrick.log('[HY_API][playersYouthSkills] _fetchYouthSkills:', teamId);
-	var url = Foxtrick.api.hy.URL['playersYouthSkills'];
-
-	Foxtrick.api.hy._fetchOrIgnore('playersYouthSkills', url, params,
-	  function(response) {
-		var players = JSON.parse(response);
-		Foxtrick.log('[HY_API][playersYouthSkills] players received:', players);
-		callback(players);
-	}, failure, finalize, teamId);
+Foxtrick.api.hy._fetchYouthSkills = function(callback, params, failure, finalize, teamId) {
+	Foxtrick.api.hy._fetchGeneric('playersYouthSkills', callback, params, failure, finalize, teamId);
 };
 /**
  * A localStore wrapper for _fetchYouthSkills
@@ -89,12 +78,11 @@ Foxtrick.api.hy._fetchYouthSkills = function(callback, failure, finalize, teamId
  * failure() is called if the request fails
  * finalize() is always called
  * @param	{function}		callback	function to execute
- * @param	{[String]}		params		specific params for the api (optional)
  * @param	{[Function]}	failure		function to execute (optional)
  * @param	{[Function]}	finalize	function to execute (optional)
  * @param	{[integer]}		teamId		senior team ID to fetch data for (optional)
  */
-Foxtrick.api.hy.getYouthSkills = function(callback, params, failure, finalize, teamId) {
-	Foxtrick.api.hy._fetchViaCache(7, 'playersYouthSkills', this._fetchYouthSkills,
-								   callback, failure, finalize, teamId, params);
+Foxtrick.api.hy.getYouthSkills = function(callback, failure, finalize, teamId) {
+	Foxtrick.api.hy._fetchViaCache(7, 'playersYouthSkills', null, this._fetchYouthSkills,
+								   callback, failure, finalize, teamId);
 };

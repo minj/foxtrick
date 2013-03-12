@@ -43,26 +43,12 @@ Foxtrick.api.hy.URL['playersYouthRejectCall'] = 'http://www.hattrick-youthclub.o
  * failure() is called if the request fails
  * finalize() is always called
  * @param	{function}		callback	function to execute
+ * @param	{[String]}		params		specific params for the api
  * @param	{[Function]}	failure		function to execute (optional)
  * @param	{[Function]}	finalize	function to execute (optional)
  * @param	{[integer]}		teamId		senior team ID to fetch data for (optional)
  */
-Foxtrick.api.hy.postScoutCall = function(data, callback, failure, finalize, teamId) {
-	if (typeof(teamId) == 'undefined' || teamId === null)
-		teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
-
-	Foxtrick.log('[HY_API][playersYouthRejectCall] postScoutCall:', data, teamId);
-
-	Foxtrick.api.hy._postOrIgnore('playersYouthRejectCall',
-								  Foxtrick.api.hy.URL['playersYouthRejectCall'], data,
-	  function(response) {
-		Foxtrick.log('[HY_API][playersYouthRejectCall] scout call posted');
-		callback(response);
-	  },
-	  function(response, status) {
-		if (typeof(failure) == 'function')
-			failure(response, status);
-		else
-			callback(response, status);
-	}, finalize, teamId);
+Foxtrick.api.hy.postScoutCall = function(callback, params, failure, finalize, teamId) {
+	Foxtrick.api.hy._fetchGeneric('playersYouthRejectCall', callback, params,
+								  failure, finalize, teamId);
 };

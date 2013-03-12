@@ -54,17 +54,11 @@ Foxtrick.api.hy.isUserId = function(userId) {
  * @param	{[integer]}		teamId		senior team ID to fetch data for (optional)
  */
 Foxtrick.api.hy._fetchUserId = function(callback, failure, finalize, teamId) {
-	if (typeof(teamId) == 'undefined' || teamId === null)
-		teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
-
-	Foxtrick.log('[HY_API][userId] _fetchUserId:', teamId);
-
-	Foxtrick.api.hy._fetchOrIgnore('userId', Foxtrick.api.hy.URL['userId'], null,
+	Foxtrick.api.hy._fetchGeneric('userId',
 	  function(response) {
 		var userId = parseInt(JSON.parse(response), 10);
-		Foxtrick.log('[HY_API][userId] userId received:', userId);
 		callback(userId);
-	  },
+	}, null,
 	  function(response, status) {
 		if (typeof(failure) == 'function')
 			failure(response, status);
@@ -85,7 +79,7 @@ Foxtrick.api.hy._fetchUserId = function(callback, failure, finalize, teamId) {
  * @param	{[integer]}		teamId		senior team ID to fetch data for (optional)
  */
 Foxtrick.api.hy.getUserId = function(callback, failure, finalize, teamId) {
-	Foxtrick.api.hy._fetchViaCache(14, 'userId', this._fetchUserId,
+	Foxtrick.api.hy._fetchViaCache(14, 'userId', null, this._fetchUserId,
 								   callback, failure, finalize, teamId);
 };
 /**

@@ -88,11 +88,11 @@ Foxtrick.modules['CopyYouth'] = {
 			params = params + '&lang=' +
 				Foxtrick.modules['ReadHtPrefs'].readLanguageFromMetaTag(doc);
 
-			Foxtrick.api.hy.postMatchReport(params,
-			  function() {
+			Foxtrick.api.hy.postMatchReport(function() {
 				addNode(Foxtrickl10n
 							.getString('module.CopyYouth.AutoSendTrainingReportToHY.success'), 3000);
-			  }, function(response, status) {
+			  }, params,
+			  function(response, status) {
 				addNode('Error ' + status + ': ' + response);
 			});
 		};
@@ -126,7 +126,7 @@ Foxtrick.modules['CopyYouth'] = {
 				return;
 
 			//Debug: Always send this report, can be used to test
-			//Foxtrick.sessionSet('YouthClub.sendTrainingReport', true);
+			Foxtrick.sessionSet('YouthClub.sendTrainingReport', true);
 
 			Foxtrick.api.hy.runIfHYUser(function() {
 				var mainBody = doc.getElementById('mainBody');
@@ -213,12 +213,12 @@ Foxtrick.modules['CopyYouth'] = {
 						params = params + '&lang=' +
 							Foxtrick.modules['ReadHtPrefs'].readLanguageFromMetaTag(doc);
 
-						Foxtrick.api.hy.postScoutCall(params,
-						  function() {
+						Foxtrick.api.hy.postScoutCall(function() {
 							addNode(Foxtrickl10n
 										.getString('module.CopyYouth.AutoSendRejectedToHY.success'),
 										3000);
-						  }, function(response, status) {
+						  }, params,
+						  function(response, status) {
 							addNode('Error ' + status + ': ' + response);
 						});
 					};
