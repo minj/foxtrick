@@ -18,7 +18,7 @@ if (!Foxtrick.api.hy)
  * Data fetchers use a multi-tiered caching mechanism via _fetchViaCache:
  * Obviously if there is nothing cached we access HY.
  * Next, HY cookies provide highest level control:
- * if the timestamp is newever than last api.fetchTime data is accessed @HY.
+ * if the timestamp is newer than last api.fetchTime then data is accessed @HY.
  * Otherwise localStore cache is checked: the data is used or refetched if it is stale
  * Stale cache is used if the fecthing fails
  *
@@ -72,11 +72,11 @@ Foxtrick.api.hy.ignoreMessage = 'Hattrick YouthClub service is down today';
 
 /**
  * A generic low-level localStore cache wrapper with Cookie support
- * Calls callback(data) with localStore data for api unless:
+ * Calls callback(data) with localStore data for an api unless:
  * a) no data is saved
  * b) data is older than cacheDays
  * c) from_hy cookie[api][timestamp] is newer than data fetchTime
- * In any of these cases fetch(callback, failure, finalize, teamId, params) is called instead
+ * In any of these cases fetch(callback, params, failure, finalize, teamId) is called instead
  * @param	{Integer}	cacheDays
  * @param	{String}	api			api name
  * @param	{String}	params		specific params for the api
@@ -165,8 +165,8 @@ Foxtrick.api.hy._fetchViaCache = function(cacheDays, api, params, fetch,
 };
 
 /**
- * Low-level function to access the data to HY and process the response status.
- * Leaves HY alone if trouble is detected. Should be used with all poster apis.
+ * Low-level function to generate requests to HY and process the response.
+ * Leaves HY alone if trouble is detected. Should be used with all apis.
  * @param	{String}		api			api name for logging purposes
  * @param	{String}		url			api URL
  * @param	{[String]}		params		specific api params (optional)
@@ -226,8 +226,9 @@ Foxtrick.api.hy._fetchOrIgnore = function(api, url, params,
 };
 
 /**
- * Generic low-level function to access HY's API. Should not be used directly
- * Tries to access the data from HY and executes callback(json);
+ * Generic low-level function to access HY's API and log the interaction.
+ * Should not be used directly.
+ * Calls _fetchOrIgnore and executes callback(json);
  * failure() is called if the request fails
  * finalize() is always called
  * @param	{String}		api			api name
