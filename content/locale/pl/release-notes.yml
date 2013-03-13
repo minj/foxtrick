@@ -8,7 +8,7 @@ pl:
     0.12.0: 
       note_0: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
       note_1: 'NOWOŚĆ: <moduł> MatchLineupTweaks </ module>: Zmiany liczy gwiazdy do starego stylu, jak gwiazdy. Dodaje liczniki dla gwiazd i wytrzymałość, aby na nowej stronie spisu. Pokazuje specjały dla wszystkich podmiotów i dodaje nazwę zespołu na boisku, aby ograniczyć dezorientację. Wyświetla awatary Player dla swojej drużyny. Wyróżnij graczy odpowiednich do zdarzenia w meczu.'
-      note_2: 
+      note_2: Wiele poprawek do różnych modułów, które były zepsute po tym gdy nowy Shop Hattrick został wprowadzony.
       note_3: 'NOWOŚĆ: <moduł> MatchLineupFixes </ module>: Timeline Synchronizuj przez gracza i sektory zakładkach. Pokaż nazwy Player pogody SEs. Dodaj linki dla graczy w swoim własnym karcie zleceń. Dodaj ostatniego liczenia gwiazd na graczy na ławce. Rozwiązuje wiele zdarzeń dzieje się w tym samym czasie: gracze zmieniają pozycje krok po kroku, a nie wszystkie na raz.'
       note_4: 'Nowość: <module>ReLiveLinks</module>: dodaje linki do HT Re-Live, by ponownie obejrzeć zakończone mecze.'
       note_5: 'Nowość: <module>CopyBBAd</module>: kopiuje różne reklamy w kodzie BB (wykonane przez merfis).'
@@ -21,9 +21,9 @@ pl:
       note_12: 'AddLeaveConfButton nazywa się teraz <module>ForumLeaveButton</module>'
       note_13: Od teraz, twoja przeglądarka i ustawienia Hattricka układ będzie automatycznie dołączane do wysłanych wiadomości na forum FoxTrick. To pomoże nam rozwiązać problemy szybciej. Proszę nie usuwać tej informacji podczas wysyłania.
       note_14: Kod dodatku został oczyszczony dla lepszej czytelności i łatwości konserwacji.
-      note_15: 
-      note_16: 
-      note_17: 
+      note_15: 'Naprawiono niektóre problemy z detekcją tygodni w <module>StatystykiTygodnioweTrainingiGracza</ module>.'
+      note_16: 'Naprawiono błąd w <module>MatchSimulator</module> który spowodował błędne oceny i przewidywania, gdy atak kontra obrona opcja jest wyłączona.'
+      note_17: Aktualizacje Safari wydaje się być uszkodzona. Użytkownicy powinni usunąć poprzednią wersję Foxtrick i zainstalować nową.
     0.11.0.1: 
       note_0: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
       note_1: 'Naprawić drobne problemy w <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>"DobierzPrzychód"</module> i <module>HTThreadMarker</module>.'

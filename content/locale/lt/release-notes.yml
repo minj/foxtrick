@@ -8,7 +8,7 @@ lt:
     0.12.0: 
       note_0: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
       note_1: 'NAUJIENA: <module>MatchLineupTweaks</module>: pakeičia skaitmeninį žvaigždučių vaizdavimą į grafinį (pan. į senovinį). Naujajame sudėties puslapyje pateikia žvaigždučių ir ištvermės statistiką. Rodo žaidėjų specialybes, veidus bei komandų pavadinimus aikštės diagramoje (kad būtų aiškiau). Paryškina su tam tikrais įvykiais susijusius žaidėjus.'
-      note_2: 
+      note_2: Daugybė pataisymų įvairiems moduliams, kurie nustojo veikti atsiradus naujajai Hattrick parduotuvės versijai.
       note_3: 'NAUJIENA: <module>MatchLineupFixes</module>: Sinchronizuoja laiko skalę tarp kortelių „Sudėtis“ ir „Detalūs reitingai“. Skalėje rodo orų įvykių žaidėjų pavardes. Prideda nuorodas kortelėje „Nurodymai žaidėjams“. Rodo paskutinį žvaigždučių reitingą ant suolelio atsisėdusiems žaidėjams. Sutvarko kelių vienu metu vykusių įvykių vaizdavimą: žaidėjai keičiasi pozicijomis paeiliui, o ne visi iš karto.'
       note_4: 'NAUJIENA: <module>ReLiveLinks</module>: pridėti trūkstamas nuorodas į HT „Re-Live“.'
       note_5: 'NAUJIENA: <module>CopyBBAd</module>: Nukopijuoti įvairią informaciją BB kodu (sukūrė merfis).'
@@ -21,9 +21,9 @@ lt:
       note_12: 'AddLeaveConfButton pervadintas į <module>ForumLeaveButton</module>'
       note_13: Nuo šiol Jūsų naršyklės ir Hattrick tinklalapio išvaizdos nustatymai automatiškai įterpiami į žinutes Foxtrick forume. Tai mums pagelbės greičiau susitvarkyti su Jūsų patiriamais sunkumais naudojantis Foxtrick. Prašome neištrinti šios informacijos, kai rašote žinutę.
       note_14: Aptvarkytas Foxtrick įvesties kodas, kad ateityje būtų lengviau jį skaityti bei tobulinti.
-      note_15: 
-      note_16: 
-      note_17: 
+      note_15: 'Sutaisytos keletas problemų nustatant rungtynių savaitę <module>PlayerStatsTrainingWeek</module> modulyje.'
+      note_16: 'Pataisyta klaida <module>MatchSimulator</module> modulyje, dėl kurios buvo prognozuojami neteisingi reitingai ir rungtynių rezultatas, jei nustatymas „Ataka prieš gynybą“ išjungtas.'
+      note_17: „Safari“ naršyklei skirto Foxtrick atnaujinimai sutriko. Vartotojai turėtų patys išdiegti senąją Foxtrick versiją ir įdiegti naująją.
     0.11.0.1: 
       note_0: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
       note_1: 'Ištaisyti smulkias klaidas <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> ir <module>HTThreadMarker</module> moduliuose.'

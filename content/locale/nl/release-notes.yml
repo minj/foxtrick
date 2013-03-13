@@ -64,8 +64,8 @@ nl:
       note_32: 
       note_33: 
       note_34: 
-      note_35: Firefox 12 is nu de mimimaal vereiste versie om Foxtrick te gebruiken.
-      note_36: 
+      note_35: Firefox 12 is nu de minimaal vereiste versie om Foxtrick te kunnen gebruiken.
+      note_36: Google Chrome 22 is nu de minimaal vereiste versie om Foxtrick te kunnen gebruiken.
       note_37: "Opera: een bug opgelost die er voor zorgde dat Foxtrick problemen veroorzaakte bij andere pagina's (zoals Hattrick Youthclub). Afbeeldingen moeten nu een stuk sneller worden geladen. Sommige modules die specifiek waren uitgeschakeld, zijn nu alsnog ingeschakeld."
       note_38: 
       note_39: '<header>De voorkeurenpagina is verbeterd.</header>'
