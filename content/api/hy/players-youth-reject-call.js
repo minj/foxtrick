@@ -23,9 +23,8 @@ if (!Foxtrick.api.hy.URL)
  * possible returns
  * HTTP 200:
  * - Ok
- * HTTP 304:
- * - Comment already exists
  * HTTP 409:
+ * - Comment already exists
  * - This language is not available on hattrick youthclub!
  * - Given scout call is not valid!
  * - Scout does not exist on hattrick youthclub!

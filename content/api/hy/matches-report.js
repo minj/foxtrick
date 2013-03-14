@@ -25,9 +25,6 @@ if (!Foxtrick.api.hy.URL)
  * expected returns
  * HTTP 200:
  * - Ok
- * HTTP: 304
- * 1. At least one coach comment could not be imported on HY!
- * 2. There is already a match report for this match on HY!
  * HTTP 400:
  * - not all data is given
  * HTTP 401:
@@ -35,6 +32,8 @@ if (!Foxtrick.api.hy.URL)
  * HTTP 409:
  * 1. The match must be inserted in HY before!
  * 2. Match report is empty, too short or in wrong format!
+ * 3. At least one coach comment could not be imported on HY!
+ * 4. There is already a match report for this match on HY!
  */
 
 

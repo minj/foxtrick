@@ -93,7 +93,7 @@ Foxtrick.modules['CopyYouth'] = {
 							.getString('module.CopyYouth.AutoSendTrainingReportToHY.success'), 3000);
 			  }, params,
 			  function(response, status) {
-				addNode('Error ' + status + ': ' + response);
+				addNode('Error ' + status + ': ' + JSON.parse(response).error);
 			});
 		};
 
@@ -219,7 +219,7 @@ Foxtrick.modules['CopyYouth'] = {
 										3000);
 						  }, params,
 						  function(response, status) {
-							addNode('Error ' + status + ': ' + response);
+							addNode('Error ' + status + ': ' + JSON.parse(response).error);
 						});
 					};
 
@@ -260,7 +260,7 @@ Foxtrick.modules['CopyYouth'] = {
 
 					// enable for debug: fake link, used to simulate sending shit to HY
 					// without actually rejecting the player
-					var fakeReject = doc.createElement('a');
+					//var fakeReject = doc.createElement('a');
 					//fakeReject.textContent = 'Fake reject';
 					//rejectButton.parentNode.appendChild(fakeReject);
 					//Foxtrick.onClick(fakeReject, function(){ copyReport(true) });
