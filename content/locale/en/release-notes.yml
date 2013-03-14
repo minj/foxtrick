@@ -5,10 +5,17 @@ en:
       note_0: 'This is the development build. Use at your own discretion. Please view <linkSVN>commit history</linkSVN> at Google Code for details of the changes.'
     beta: 
       note_0: 'This is the beta version of the next release. Please help translating this version at our super easy crowd-translation page <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.13.0: 
+      note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
+    0.12.1: 
+      note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
+      note_1: 'NEW: <module>SupportershipExpirationDate</module>: Clicking on remaining supporter days on the dashboard will now show the expiration date'
+      note_2: '<module>MatchIncome</module>: Added option to display seat utilization in percentages next to the number of visitors on match pages'
+      note_3: 'NEW: <module>MainMenuDropDown</module>: Adds drop-down menus to the main navigation bar containing all links usually available in the sidebar of the target page.'
     0.12.0: 
       note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
       note_1: 'NEW: <module>MatchLineupTweaks</module>: Changes the star counts to old-style-like stars. Adds counters for stars and stamina to the new lineup page. Shows specialties for all players and adds the name of the team on the field to limit confusion. Shows player avatars for your team. Highlight players relevant to an event in a match.'
-      note_2: 'NEW: <module>MainMenuDropDown</module>: Adds drop-down menus to the main navigation bar containing all links usually available in the sidebar of the target page.'
+      note_2: A lot of fixes to various modules that were broken after the new Hattrick Shop was introduced.
       note_3: 'NEW: <module>MatchLineupFixes</module>: Synchronise timeline across player and sectors tabs. Show player names for weather SEs. Add links for players in your own orders tab. Add last star count to players on the bench. Fixes multiple events happening at the same time: players change their positions step by step instead of all at once.'
       note_4: 'NEW: <module>ReLiveLinks</module>: Add links to HT Re-Live for finished games.'
       note_5: 'NEW: <module>CopyBBAd</module>: Copy various ads in BB code (by merfis).'
@@ -21,6 +28,9 @@ en:
       note_12: 'AddLeaveConfButton is renamed to <module>ForumLeaveButton</module>'
       note_13: From now on, your browser and Hattrick layout settings will be automatically included in messages posted to FoxTrick forum. This will help us fix problems faster. Please do not delete that information when posting.
       note_14: The add-on code was cleaned up for better readability and maintainability.
+      note_15: 'Fixed some issues with week detection in <module>PlayerStatsTrainingWeek</module>.'
+      note_16: 'Fixed a bug in <module>MatchSimulator</module> that caused wrong ratings and prediction to appear when attack vs defence option is off.'
+      note_17: Safari updates seem to be broken. Users should remove the previous Foxtrick version and install a new one.
     0.11.0.1: 
       note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
       note_1: 'Fix minor issues in <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> and <module>HTThreadMarker</module>.'

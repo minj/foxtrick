@@ -19,7 +19,39 @@ de:
       answer: 
     authorize: 
       question: Warum sollte ich Foxtrick zugriff auf meine Mannschaftsdaten geben?
-      answer: 
+      answer: |
+        <p>Obwohl die meisten Daten, die Foxtrick benötigt direkt von der Seite geladen werden könne, die Du in dem Moment vor Dir siehst, ist es für manche Module erforderlich, dass Daten von Hattrick heruntergeladen werden damit sie ordentlich funktionieren</p>
+        
+        <p>Um Daten zu Deinem Team, den Ligen oder den Nationalmannschaften von Hattrick herunterzuladen, muss FoxTrick im Vorhinein dafür autorisiert werden.</p>
+        
+        <p>Du autorisierst FoxTrick, indem Du auf chpp.hattrick.org mit Hilfe Deines Usernamens und Passwortes einen Verifikationsschlüssel anforderst, den Du dann an FoxTrick weitergibst. FoxTrick selbst wird Deinen Usernamen und Dein Passwort während dieses ganzen Prozesses zu keinem Zeitpunkt erhalten.</p>
+        
+        <p> Um mehr über den Autorisierungsprozess zu erfahren lese bitte  <linkCHPPDesc>CHPP - How it works</linkCHPPDesc> auf den Hattrick-Seiten.</p>
+        
+        <p>Einige Module benötigen Daten von Hattrick, um ordentlich zu funktionieren:</p>
+        
+        <ul>
+        <li><module>CrossTable</module></li>
+        <li><module>ExtraPlayerInfo</module></li>
+        <li><module>MatchPlayerColouring</module></li>
+        <li><module>MyMonitor</module></li>
+        <li><module>NtPeek</module></li>
+        <li><module>SeriesFlags</module></li>
+        </ul>
+        
+        <p>Einige Module können umfangreiche Informationen liefern, wenn sie auf Daten von Hattrick zugreifen können:</p>
+        
+        <ul>
+        <li><module>SkillTable</module></li>
+        <li><module>TeamStats</module></li>
+        </ul>
     privacy: 
       question: Wie sieht es bezüglich des Datenschutzes aus?
-      answer: 
+      answer: |
+        <p>FoxTrick lädt keine Deiner Daten oder Einstellungen auf einen Foxtrick-Server; FoxTrick versendet auch keinerlei private Daten inklusive Benutzernamen, Passwort und Spieler ID mit den Fähigkeiten etc. an Dritte.</p>
+        
+        <p>Die meisten Daten, soweit unten nicht explizit anders vermerkt, werden mit der HTTP GET Methode gesendet und sie werden auschließlich gesendet, wenn Du auf einen entsprechenden Link klickst.</p>
+        
+        <p>Das heißt, dass Du sehen kannst welche Daten weitergeleitet werden, indem Du den URI (Uniform resource Identifier) des externen Link betrachtest. Keine Daten werden ohne Deine Einwilligung versendet. Wie oben dargestellt betrifft das keinerlei privaten Daten.</p>
+        
+        <p>Eine Ausnahme stellen die Module <module>HTMSPrediction</module> und <module>HTEVPrediction</module> dar, bei denen Match-Ratings mittels XMLHttpRequest zu den betreffenden Seiten gesendet bzw. von diesen empfangen werden.</p>

@@ -5,6 +5,13 @@ tr:
       note_0: 'Bu bir geliştirme yapılandırmasıdır. Sağduyunuzu kullanın. Değişikliklerin ayrıntıları için lütfen Google Kodunda <linkSVN>işlem geçmişi</linkSVN> göz atın.'
     beta: 
       note_0: 'Bu, bir sonraki güncellemenin beta versiyonudur. Lütfen bu versiyonun çevirisine bizim çok basit kalabalık-çeviri sayfamızdan <linkCrowdin>crowdin.net</linkCrowdin> yardım edin. '
+    0.13.0: 
+      note_0: 
+    0.12.1: 
+      note_0: 
+      note_1: 
+      note_2: 
+      note_3: 
     0.12.0: 
       note_0: 
       note_1: 
@@ -21,6 +28,9 @@ tr:
       note_12: 
       note_13: 
       note_14: 
+      note_15: 
+      note_16: 
+      note_17: 
     0.11.0.1: 
       note_0: 
       note_1: 

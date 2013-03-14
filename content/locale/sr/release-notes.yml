@@ -2,21 +2,39 @@
 sr: 
   versions: 
     nightly: 
-      note_0: 'Ово је верзија за програмере. Користите је на сопствену одговорност. За детаље о променама погледајте <linkSVN>commit history</linkSVN> на сајту Google Code.'
+      note_0: 'За детаље о променама погледајте  на <linkSVN>Google Code</linkSVN> сајту.'
     beta: 
       note_0: 'Ово је бета верзија наредне званичне верзије. Уколико желите да помогнете у превођењу посетите нашу страницу за преводиоце на <linkCrowdin>crowdin.net</linkCrowdin>. '
-
+    0.13.0: 
+      note_0: 
     0.12.1: 
-      note_3: 'НОВО: <module>MainMenuDropDown</module>: Додаје падајуће меније главном хоризонталном навигационом менију са линковима и подменијима који се налазе на левој и десној страни одговарајуће странице.'
-
+      note_0: 
+      note_1: 
+      note_2: 
+      note_3: 
     0.12.0: 
-      note_0: '<header>Многобројна ажурирања превода захваљујући свесрдној помоћи корисника који користе  <linkCrowdin>crowdin</linkCrowdin> алат за превођење. И ви, такође, можете помоћи ако желите!</header>'
-      note_1: 'НОВО: <module>MatchLineupTweaks</module>: Додаје бројач звездица и проценат опадања кондиције на страници поставе у меч извештајима. Додаје иконице за специјалности играча и убацује имена тимова ради избегавања конфузије.'
-      note_6: '<module>DashboardCalendar</module>: Додато је је дугме за експортовање Хеттрик недеље у iCalendar фајл формату (ова функција би требало да буде компатибилна са апликацијама: Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal итд.)'
-      note_7: '<module>LiveAlert</module>: Додаје различита звучна обавештења за голове вашег и тимова домаћина/гостију. Подразумевано је коришћење колекције звукова из <linkHTLS>HTLiveSight</linkHTLS> апликације. Имајте на уму да приликом првог укључивања голови вашег тима неће бити препознати ако утакмицу пратите у Re-Live моду.'
-      note_8: '<module>CopyYouth</module>: Hattrick youthclub корисници ће уколико укључе модул <module>YouthTwins</module> аутоматски слати на HY сајт коментар ловца на таленте за одбијене играче'
-      note_9: '<module>CopyYouth</module>: Hattrick youthclub корисници ће уколико укључе модул <module>YouthTwins</module> аутоматски слати на HY сајт извештај са тренинга чим га први пут прочитају'
-
+      note_0: '<header>Ажурирани преводи на многобројне језике уз помоћ <linkCrowdin>crowdin алата</linkCrowdin>. Ако и Ви хоћете да помогнете, само изволите!</header>'
+      note_1: 'НОВО: <module>MatchLineupTweaks</module>: Приказује звездице у стилу сличном старом. Додаје укупан број звездица и проценат губитка вештина због кондиције. Приказује специјалност играча и додаје име клуба ради смањења конфузије. Приказује и слике играча у постави. Такође означава и играче у складу са догађајима на мечу.'
+      note_2: Исправке за модуле који нису радили након појављивања нове Хеттрик продавнице.
+      note_3: 'НОВО: <module>MatchLineupFixes</module>: Синхронизује временски ток за играче и секторе. Приказује име играча код метеоролошких специјаних догађаја. Додаје линкове до играча у постави. Додаје и зведице за замењене играче. Исправка за истовремене догађаје: играчи сада мењају позиције један по један уместо сви одједном.'
+      note_4: 'НОВО: <module>ReLiveLinks</module>: Додаје линкове за Re-Live за завршене мечеве.'
+      note_5: 'НОВО: <module>CopyBBAd</module>: Копира разне огласе у BB коду (направио: merfis).'
+      note_6: 'НОВО: <module>DashboardCalendar</module>: Додато дугме за експортовањеХеттрик недеље у формату за iCalendar (требало би да буде компатибилно са апликацијама: Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal итд.)'
+      note_7: '<module>LiveAlert</module>: Додати разноразни звуци за постигнуте голове. Коришћени су звуци из <linkHTLS>HTLiveSight</linkHTLS> апликације. У почетку ваши голови неће бити препознати у Re-Live прегледу мечева.'
+      note_8: '<module>CopyYouth</module>: Hattrick youthclub корисници ће сада моћи аутоматски да шаљу извештаје скаута за одбијене играче на HY сајт'
+      note_9: '<module>CopyYouth</module>: Hattrick youthclub корисници ће сада моћи аутоматски да шаљу тренинг извештаје на HY сајт чим први пут прочитају извештај'
+      note_10: '<module>LineupShortcut</module> сада линкови воде до нове странице са поставом.'
+      note_11: '<module>SkillTable</module> сада приказује иконице за тренере и специјалности играча.'
+      note_12: 'AddLeaveConfButton је применован у <module>ForumLeaveButton</module>'
+      note_13: Од сада, основни подаци о вашем интернет прегледнику, оперативном систему, стилу који користите на Хттерику и верзији Фокстрика ће бити аутоматски убачени у поруке на Фокстрик Форуму. Ово ће нам помоћи да ваше проблеме лакше и брже решимо. Моломо вас да ове информације не бришете када постујете поруке.
+      note_14: Код Фокстрика је очишћен ради боље прегледности и лакшег одржавања.
+      note_15: 'Исправке неких ствари у вези са детекцијом недеље у модулу <module>PlayerStatsTrainingWeek</module>.'
+      note_16: 'Исправљена грешка у модулу <module>MatchSimulator</module> која је узроковала погрешно предвиђање оцена када је искључена опција приказа напад наспрам одбране.'
+      note_17: Ажурирање Фокстрика за Safari не ради. Потребно је да ручно деинсталирате стару верзију и инстарирате нову.
+    0.11.0.1: 
+      note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
+      note_1: 'Fix minor issues in <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> and <module>HTThreadMarker</module>.'
+      note_2: Prevent Firefox from reloading all Hattrick tabs when a new browser window is opened.
     0.11.0: 
       note_0: 'НОВО:  <module>DirectPageLinks</module>: додати линкови за директан приступ страницама унутар теме на форуму'
       note_1: 'НОВО:  <module>ForumModeratorPopup</module>: Додат мени за модераторе форума на врху тема на форуму ради лакшег модерирања.'
@@ -31,6 +49,34 @@ sr:
       note_10: '<module>MovePlayerStatement</module>: Додата опција за потпуно уклањање играчеве изјаве.'
       note_11: '<module>YouthTwins</module>: Ручно направљене измене на HY сајту се одмах виде и на страници омладинских играча.'
       note_12: '<header>Исправке багова</header>'
+      note_13: 'Fixed <module>Filter</module>, <module>SupporterStatsEnhancements</module> and <module>YouthTwins</module>.'
+      note_14: '<module>StaffMarker</module> and <module>HTThreadMarker</module> work in more spots now.'
+      note_15: '<module>ConfirmActions</module>: added support for autobid.'
+      note_16: '<module>EmbedMedia</module>: increased security and better link detection.'
+      note_17: '<module>SkillTable</module> should now report the correct time in the team for external coaches.'
+      note_18: BackgroundFixed module was removed.
+      note_19: '<header>Copying modules</header>'
+      note_20: '<module>CopyRatings</module>: Tournament match id support.'
+      note_21: '<module>CopyMatchID</module>: added single match support and disabled on match pages to make room for the new HT direct link feature'
+      note_22: '<module>CopyPlayerAd</module>: fixed interference with HT skillbars'
+      note_23: General HT-ML copying fixes.
+      note_24: '<header>Other tweaks</header>'
+      note_25: '<module>MatchOrderInterface</module>: avatars for non-supporters. Increased stability.'
+      note_26: '<module>MatchSimulator</module> now uses the new stamina formula (by Senzascrupoli [post=15917246.1]) in stamina discount.'
+      note_27: '<module>MatchReportFormat</module> uses the new HT icons.'
+      note_28: '<module>PlayerStatsExperience</module>: experience points per level increased to 28.62 (see 15766691.423 for discussion). Walkovers are indicated now since they do not give experience.'
+      note_29: "Forum modules now use a spacial space character to escape text instead of '·': this should help the Catalan language."
+      note_30: Prevent the HT layout from interfering with Foxtrick.
+      note_31: Added support for www.hattrick.fm
+      note_32: 'Removed dead external links in <module>Links</module>. Use external icons where possible.'
+      note_33: '<header>Подршка за интернет прегледнике</header>'
+      note_34: Fixed Firefox for Android 17+ support.
+      note_35: Firefox 12 је сада минимална верзија на којој ради Фокстрик.
+      note_36: Google Chrome 22 је сада минимална верзија на којој ради Фокстрик.
+      note_37: 'Opera: fixed a bug that caused FT to interfere with other pages (like Hattrick Youthclub). Images should now load a lot faster. Some modules that were specifically disabled on Opera are now enabled.'
+      note_38: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
+      note_39: '<header>The preferences page was reworked.</header>'
+      note_40: '<strong>And much much more</strong>'
     0.10.0: 
       note_0: 'НОВО:  <module>TransferHistoryFilters</module>: Омогућава филтрирање купљених или продатих играча на страници клупске Историје трансфера'
       note_1: '<module>PlayerStatsExperience</module>: Нова верзија са више детаља. (Хвала SeanConnery (7751762) за тестирање комбинације боја за особе које не препознају основну нијансу црвене и зелене)'

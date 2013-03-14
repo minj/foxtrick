@@ -52,7 +52,7 @@ it:
     privacy: 
       question: Come proteggerà FoxTrick la mia privacy?
       answer: |
-        <p>Foxtrick non invierà nessuno dei tuoi dati opreferenze ad un server di Foxtrick, nè dati personali, inclusi ,ma non ristretto ai soli, username, password e ID dei giocatori associati con skill, a terze parti.</p>
+        <p>Foxtrick non invierà nessuno dei tuoi dati o preferenze ad un server di Foxtrick, nè dati personali, inclusi ,ma non ristretto ai soli, username, password e ID dei giocatori associati con skill, a terze parti.</p>
         
         <p>La maggior parte dei dati passati a terze parti, a meno che non sia espicitamente specificato sotto, sono inviati con il metodo HTTP GET, e verranno solamente mandati quando cliccherai su un link.</p>
         
