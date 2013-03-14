@@ -67,7 +67,7 @@ Foxtrick.api.hy._buildParams = function(callback, params, teamId) {
 
 /** @type {Number}	The number of hours to back of if HY is in trouble */
 Foxtrick.api.hy.ignoreHours = 24;
-Foxtrick.api.hy.ignoreMessage = 'Hattrick YouthClub service is down today';
+Foxtrick.api.hy.ignoreMessage = Foxtrickl10n.getString('youthclub.api.down');
 // TODO internationalise
 
 /**
