@@ -15,7 +15,8 @@ commit changes:
 git commit -am 'new beta x.x.x'
 git svn dcommit
 
-upload master lang with x.x.x/maintainer/crowdin-upload.sh
+upload master lang files via web
+or x.x.x/maintainer/crowdin-upload.sh (but causes '\' to fail for now)
 (don't upload localized files. they are from old nightly here and thus outdated)
 (if needed) run foxtrick-beta.sh (will do so anyways next day)
 
