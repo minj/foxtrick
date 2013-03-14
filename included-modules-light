@@ -9,6 +9,7 @@ forum/forum-thread-auto-ignore.js
 forum/forum-youth-icons.js
 forum/mark-all-as-read.js
 forum/mark-unread.js
+information-aggregation/dashboard-calendar.js
 information-aggregation/extended-player-details.js
 information-aggregation/extra-player-info.js
 information-aggregation/goal-difference-to-tables.js
@@ -71,6 +72,7 @@ shortcuts-and-tweaks/lineup-shortcut.js
 shortcuts-and-tweaks/manager-buttons.js
 shortcuts-and-tweaks/player-filters.js
 shortcuts-and-tweaks/rapid-id.js
+shortcuts-and-tweaks/relive-links.js
 shortcuts-and-tweaks/senior-team-shortcuts.js
 shortcuts-and-tweaks/table-sort.js
 shortcuts-and-tweaks/team-popup-links.js
