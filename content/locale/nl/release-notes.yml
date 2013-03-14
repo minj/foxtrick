@@ -2,12 +2,19 @@
 nl: 
   versions: 
     nightly: 
-      note_0: 'Dit is een beta versie. Gebruik is voor eigen risico. Kijk alstublieft op <linkSVN>commit history</linkSVN> bij Google Code for details van de veranderingen.'
+      note_0: 'Dit is een beta versie. Gebruik is voor eigen risico. Kijk alstublieft op <linkSVN>commit history</linkSVN> bij Google Code voor details over de veranderingen.'
     beta: 
       note_0: 'Dit is een beta versie van de volgende release. Help alstublieft met vertalen van deze versie op de zeer gebruiks vriendelijke crowd-vertaal pagina <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.13.0: 
+      note_0: 
+    0.12.1: 
+      note_0: 
+      note_1: 
+      note_2: 
+      note_3: 
     0.12.0: 
       note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
-      note_1: 
+      note_1: 'Nieuw: <module>MatchLineupTweaks</module>: Verandert de sterrenwaardering naar de oude sterren. Sterren en conditie zijn zichtbaar in de opstellingspagana. Vertoont specialiteiten voor alle spelers en toont de teamnamen om verwarring te voorkomen. Avatars van je speler zijn zichtbaar. Spelers die invloed kunnen hebben op een bepaald Special Event in een wedstrijd kunnen worden gemarkeerd. '
       note_2: 
       note_3: 
       note_4: 
@@ -21,6 +28,9 @@ nl:
       note_12: 'AddLeaveConfButton is hernoemd naar <module>ForumLeaveButton</module>'
       note_13: Vanaf nu, zal je browser en je Hattrick lay out automatisch zijn bijgesloten in berichten die je post op het Foxtrick forum. Dit zal ons helpen om problemen eerder op te lossen. Delete deze informatie alstublieft niet als je een posting maakt.
       note_14: 
+      note_15: 
+      note_16: 
+      note_17: 
     0.11.0.1: 
       note_0: 
       note_1: 
@@ -61,12 +71,12 @@ nl:
       note_32: 
       note_33: 
       note_34: 
-      note_35: 
-      note_36: 
-      note_37: 
+      note_35: Firefox 12 is nu de minimaal vereiste versie om Foxtrick te kunnen gebruiken.
+      note_36: Google Chrome 22 is nu de minimaal vereiste versie om Foxtrick te kunnen gebruiken.
+      note_37: "Opera: een bug opgelost die er voor zorgde dat Foxtrick problemen veroorzaakte bij andere pagina's (zoals Hattrick Youthclub). Afbeeldingen moeten nu een stuk sneller worden geladen. Sommige modules die specifiek waren uitgeschakeld, zijn nu alsnog ingeschakeld."
       note_38: 
-      note_39: 
-      note_40: 
+      note_39: '<header>De voorkeurenpagina is verbeterd.</header>'
+      note_40: '<strong>En nog veel meer</strong>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'

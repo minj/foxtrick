@@ -5,25 +5,35 @@ uk:
       note_0: 'Це development build. Використовуйте його на свій розсуд. Будь ласка, подивіться <linkSVN>commit history</linkSVN> з Google Code, шоб дізнатися про зміни.'
     beta: 
       note_0: 'Це beta версія наступного релізу. Будь ласка, допоможіть перекласти цю версію з дуже простим інструментом перекладу  <linkCrowdin>crowdin.net</linkCrowdin>. '
-    0.12.0: 
+    0.13.0: 
+      note_0: 
+    0.12.1: 
       note_0: 
       note_1: 
       note_2: 
       note_3: 
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
-      note_10: 
-      note_11: 
-      note_12: 
-      note_13: 
+    0.12.0: 
+      note_0: '<header>Багато оновлень перекладів від наших користувачів, які користуються <linkCrowdin>crowdin</linkCrowdin>. Ви також можете нам допомогти!</header>'
+      note_1: 'НОВЕ:<module>MatchLineupTweaks</module>: Змінює зірки на старий стиль. Додає лічильник зірок та витривалості на нову сторінку розстановки. Показує спеціальності для всіх гравців та додає назву команди на полі. Показує аватари гравців Вашої команди. Виділяє гравців, що були в подях матчу.'
+      note_2: 
+      note_3: "НОВЕ: <module>MatchLineupFixes</module>: Синхронізація шкали часу на вкладках гравця та секторів. Відображає ім'я гравця для погодних SE. Додає посилання для гравців у вкладці наказів. Додає зірки гравців, які на лавці запасних, до лічильника зірок. Виправлено кілька подій, що відбуваються одночасно: гравці змінюють свої позиції поступово, а не всі разом."
+      note_4: 'НОВЕ: <module>ReLiveLinks</module>: Додає посилання до HT Re-Live для матчів, що завершено.'
+      note_5: 'НОВЕ: <module>CopyBBAd</module>: Копіювання в BB code (by merfis).'
+      note_6: 'НОВЕ: <module>DashboardCalendar</module>: Додано кнопку, щоб експортувати тиждень Hattrick у форматі iCalendar (має бути сумісним з Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal тощо)'
+      note_7: '<module>LiveAlert</module>: Додано різні звуки для домашніх/виїзних/ваших голів. Використовуються звуки з <linkHTLS>HTLiveSight</linkHTLS>  за замовчуванням.'
+      note_8: '<module>CopyYouth</module>: Користувачі Hattrick youthclub тепер зможуть відсилати відмови від гравців автоматично'
+      note_9: '<module>CopyYouth</module>: Користувачі Hattrick youthclub тепер зможуть відсилати звіт про тренування автоматично, коли читатимуть його вперше'
+      note_10: '<module>LineupShortcut</module> тепер є посилання на нову сторінку наказів.'
+      note_11: '<module>SkillTable</module> тепер використовує значки для спеціальностей та тренерів.'
+      note_12: 'Змінено назву AddLeaveConfButton на  <module>ForumLeaveButton</module>'
+      note_13: Відтепер налаштування вашого браузера та Hattrick включатимуться до повідомлень на форумі FoxTrick. Це допоможе нам швидше вирішувати проблеми. Будь ласка, не видаляйте цю інформацію, коли відправляєте повідомлення.
       note_14: 
+      note_15: 
+      note_16: 
+      note_17: 
     0.11.0.1: 
-      note_0: 
-      note_1: 
+      note_0: '<header>Багато оновлень перекладів від наших користувачів, які користуються <linkCrowdin>crowdin</linkCrowdin>. Ви також можете нам допомогти!</header>'
+      note_1: 'Незначні виправлення в наступних модулях: <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> and <module>HTThreadMarker</module>.'
       note_2: 
     0.11.0: 
       note_0: 'Нове: <module>DirectPageLinks</module>: додані посилання для доступу до деяких сторінок у темах форуму'
@@ -45,7 +55,7 @@ uk:
       note_16: 
       note_17: 
       note_18: 
-      note_19: 
+      note_19: '<header>Копіювання модулів</header>'
       note_20: 
       note_21: 
       note_22: 
@@ -60,11 +70,11 @@ uk:
       note_31: 
       note_32: 
       note_33: 
-      note_34: 
+      note_34: Виправлена підтримка Firefox для Android 17+.
       note_35: 
       note_36: 
       note_37: 
-      note_38: 
+      note_38: '<header>Багато оновлень перекладів від наших користувачів, які користуються <linkCrowdin>crowdin</linkCrowdin>. Ви також можете нам допомогти!</header>'
       note_39: 
       note_40: 
     0.10.0: 

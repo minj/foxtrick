@@ -5,6 +5,13 @@ bg:
       note_0: 'Това е работната версия на Фокстрик. Използвайте по ваша преценка. Моля вижте <linkSVN>commit history</linkSVN> в Google Code за подробности за промени.'
     beta: 
       note_0: 'Това е бета версията на Фокстрик. Моля помогнете с превода на тази версия на нашия суперлесна страница за групов превод <linkCrowdin>crowdin.net</linkCrowdin>. '
+    0.13.0: 
+      note_0: 
+    0.12.1: 
+      note_0: 
+      note_1: 
+      note_2: 
+      note_3: 
     0.12.0: 
       note_0: 
       note_1: 
@@ -21,6 +28,9 @@ bg:
       note_12: 
       note_13: 
       note_14: 
+      note_15: 
+      note_16: 
+      note_17: 
     0.11.0.1: 
       note_0: 
       note_1: 

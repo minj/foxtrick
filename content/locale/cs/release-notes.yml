@@ -5,26 +5,36 @@ cs:
       note_0: 'Toto je vývojový build. Používejte po pečlivém zvážení. Podívejte se na <linkSVN>historii commitů</linkSVN> na Google Code pro zobrazení detailů změn.'
     beta: 
       note_0: 'Toto je beta verze dalšího vydání. Prosím pomožte s překladem této verze na naší superjednoduché překladatelské stránce <linkCrowdin>crowdin.net</linkCrowdin>. '
-    0.12.0: 
+    0.13.0: 
+      note_0: 
+    0.12.1: 
       note_0: 
       note_1: 
       note_2: 
       note_3: 
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
-      note_10: 
-      note_11: 
-      note_12: 
-      note_13: 
-      note_14: 
-    0.11.0.1: 
-      note_0: 
-      note_1: 
+    0.12.0: 
+      note_0: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
+      note_1: 'NOVÉ: <module>MatchLineupTweaks</module>: Mění zobrazení počtu hvězdiček na původní (hvězdičky místo počtů). Přidává počítání hvězdiček a kondice na nové stránce s rozestavením. Zobrazí speciality u všech hráčů i název týmu na hřišti, aby nedocházelo ke zmatení. Zobrazí obličeje hráčů tvého týmu. Umožňuje zobrazit relevantní hráče pro zvolenou událost v zápase.'
       note_2: 
+      note_3: 'NOVÉ: <module>MatchLineupFixes</module>: Sesynchronizuj časovou osu mezi záložkami hráčů a hodnocení. Zobraz si jména hráčů u speciálních událostí spjatých s počasím. Přidej si odkazy na hráče při nastavování pokynů. Přidej si poslední počty hvězdiček u hráčů na lavičce. Opravuje události odehrávající se ve stejném okamžiku: hráči si vymění pozice krok po kroku, nikoliv zaráz.'
+      note_4: 'NOVÉ: <module>ReLiveLinks</module>: Přidá odkazy na HT Re-Live pro ukončené zápasy.'
+      note_5: 'NOVÉ: <module>CopyBBAd</module>: Kopíruje různé reklamy v BB kódu (vytvořil merfis).'
+      note_6: 'NOVÉ: <module>DashboardCalendar</module>: Přidá tlačítko pro export Hattrick týdne v iCalendar formátu (mělo by být kompatibilní s Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal apod.)'
+      note_7: '<module>LiveAlert</module>: Přidány různé zvuky pro góly domácích/hostí/tvého týmu. Používá implicitně zvuky z <linkHTLS>HTLiveSight</linkHTLS>. Góly tvého týmu nebudou na začátku rozeznány v Re-Live módu.'
+      note_8: '<module>CopyYouth</module>: Uživatelé hattrick youthclub budou nyní odesílat zprávy od skauta o zamítnutých hráčích do HY automaticky'
+      note_9: '<module>CopyYouth</module>: Uživatelé hattrick youthclub budou nyní odesílat tréninkové zápisky do HY automaticky, když si je poprvé zobrazí'
+      note_10: '<module>LineupShortcut</module> nyní odkazuje na novou stránku s rozestavením.'
+      note_11: '<module>SkillTable</module> nyní používá ikony pro speciality a trenéry.'
+      note_12: 'AddLeaveConfButton je přejmenován na <module>ForumLeaveButton</module>'
+      note_13: Nyní budou informace o tvém prohlížeči a Hattrick layoutu automaticky přidávány k tvým příspěvkům do FoxTrick konferencí. To by mělo umožnit řešit problémy rychleji. Prosím nemažte tyto informace ze zprávy při jejím odesílání.
+      note_14: Přídavný kód byl vyčištěn pro lepší čitelnost a udržitelnost.
+      note_15: 
+      note_16: 
+      note_17: 
+    0.11.0.1: 
+      note_0: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
+      note_1: 'Opraveny drobné chyby v <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> a <module>HTThreadMarker</module>.'
+      note_2: Zamezit Firefoxu v znovunačtení všech Hattrick záložek, když je otevřeno nové okno.
     0.11.0: 
       note_0: 'NOVÉ: <module>DirectPageLinks</module>: přidané odkazy pro přístup na specifické stránky z konferenčního tématu'
       note_1: 'NOVÉ: <module>ForumModeratorPopup</module>: Přidáno menu pro moderátory konferencí nad samotné téma pro zjednodušení moderování.'
@@ -39,34 +49,34 @@ cs:
       note_10: '<module>MovePlayerStatement</module>: Přidána možnost úplně odstranit prohlášení.'
       note_11: '<module>YouthTwins</module>: Manuálně provedené změny v HY budou nyní okamžitě promítnuty na stránce s mládežníckými hráči'
       note_12: '<header>Opravy bugů</header>'
-      note_13: 
-      note_14: 
-      note_15: 
-      note_16: 
-      note_17: 
-      note_18: 
-      note_19: 
-      note_20: 
-      note_21: 
-      note_22: 
-      note_23: 
-      note_24: 
-      note_25: 
-      note_26: 
-      note_27: 
-      note_28: 
-      note_29: 
-      note_30: 
-      note_31: 
-      note_32: 
-      note_33: 
-      note_34: 
-      note_35: 
-      note_36: 
-      note_37: 
-      note_38: 
-      note_39: 
-      note_40: 
+      note_13: 'Opraven <module>Filter</module>, <module>SupporterStatsEnhancements</module> a <module>YouthTwins</module>.'
+      note_14: '<module>StaffMarker</module> a <module>HTThreadMarker</module> nyní fungují na více místech.'
+      note_15: '<module>ConfirmActions</module>: přidána podpora pro automatické přihazování.'
+      note_16: '<module>EmbedMedia</module>: zvýšená bezpečnost a lepší detekce odkazů.'
+      note_17: '<module>SkillTable</module> by nyní měl zobrazovat správnou dobu v týmu pro externí trenéry.'
+      note_18: BackgroundFixed modul byl odstraněn.
+      note_19: '<header>Kopírovací moduly</header>'
+      note_20: '<module>CopyRatings</module>: Podpora pro ID turnajových zápasů.'
+      note_21: '<module>CopyMatchID</module>: přidána podpora pro duely a odebrána ze samotných stránek zápasů, aby vzniklo místo pro novou funkci přímého odkazu na HT'
+      note_22: '<module>CopyPlayerAd</module>: opravena kolize s HT skillbars'
+      note_23: Opravy kopírování základního HT-ML.
+      note_24: '<header>Ostatní úpravy</header>'
+      note_25: '<module>MatchOrderInterface</module>: tváře hráčů pro nefanoušky. Zvýšena stabilita.'
+      note_26: '<module>MatchSimulator</module> nyní používá nový vzoreček pro kondici (vytvořil Senzascrupoli [post=15917246.1]) pro úbytek kondice.'
+      note_27: '<module>MatchReportFormat</module> používá nové HT ikony.'
+      note_28: '<module>PlayerStatsExperience</module>: Počet zkušenostních bodů na stupeň zvýšen na 28.62 (viz 15766691.423 pro diskuzi). Kontumace jsou nyní vyznačeny, jelikož z nich není žádná zkušenost.'
+      note_29: "Konferenční moduly nyní využívají zvláštní znak pro mezeru pro escapovaní textu namísto '·': to by mělo pomocí katalánskému jazyku."
+      note_30: Zamezeno HT layoutu, aby kolidoval s Foxtrickem.
+      note_31: Přidána podpora pro www.hattrick.fm
+      note_32: 'Odebrány mrtvé externí odkazy v <module>Links</module>. Používá externí ikony tam, kde je to možné.'
+      note_33: '<header>Podpora prohlížečů</header>'
+      note_34: Opravena podpora Firefoxu pro Android 17+.
+      note_35: Firefox 12 je nyní nejnižší podporovanou verzí pro Foxtrick.
+      note_36: Google Chrome 22 je nyní nejnižší podporovanou verzí pro Foxtrick.
+      note_37: 'Opera: opraven bug způsobující kolizi Foxtricku s jinými stránkami (jako Hattrick Youthclub). Obrázky by se nyní měly načítat podstatně rychleji. Některé moduly, které byly zakázány specificky v Opeře, jsou nyní povoleny.'
+      note_38: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
+      note_39: '<header>Stránka s nastaveními byla upravena.</header>'
+      note_40: '<strong>A spoustu dalšího</strong>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'

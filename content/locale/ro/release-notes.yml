@@ -5,26 +5,36 @@ ro:
       note_0: 'Această versiune este în dezvoltare continuă. Utilizați-o după cum doriți. Vă rugăm să vizualizați <linkSVN>istoricul</linkSVN> de la Google Code pentru detalii cu privire la modificări.'
     beta: 
       note_0: 'Aceasta este o versiune beta a următoarei versiuni care va fi lansată. Vă rugăm ajutați traducând această versiune utilizând pagina de traducere <linkCrowdin>crowdin.net</linkCrowdin>. '
-    0.12.0: 
+    0.13.0: 
+      note_0: 
+    0.12.1: 
       note_0: 
       note_1: 
       note_2: 
       note_3: 
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
-      note_10: 
-      note_11: 
-      note_12: 
-      note_13: 
-      note_14: 
-    0.11.0.1: 
-      note_0: 
-      note_1: 
+    0.12.0: 
+      note_0: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
+      note_1: 'NOU: <module>MatchLineupTweaks</module>: Modifică numărătorul de stele pe modelul vechi. Adaugă numărători pentru stele și rezistență pe noua pagină de ordine. Afișează specilitățile jucătorilor și adaugă numele echipei pe teren pentru a limita confuzia. Afișează chipurile jucătorilor pentru echipa ta. Evidențiază jucătorii cu șanse la event într-un meci.'
       note_2: 
+      note_3: 'NEW: <module>MatchLineupFixes</module>: Afișează numele jucătorilor pentru evenimentele speciale de vreme. Adaugă link-uri pentru jucători în ordinele proprii. Adaugă numărătoare pentru ultima stea a jucătorilor de pe bancă. Remediază multiple evenimente ce au loc în același timp: jucătorii schimbă pozițiile rând pe rând în loc să le schimbe în același timp.'
+      note_4: 'NOU: <module>ReLiveLinks</module>: Adaugă link-uri pentru HT Re-Live pentru meciurile încheiate.'
+      note_5: 'NOU: <module>CopyBBAd</module>: Copiază anunțuri diverse în codul BB (de merfis).'
+      note_6: 'NOU: <module>DashboardCalendar</module>: Adăugat un buton pentru a exporta săptămâna Hattrick în formatul iCalendar (ar trebui să fie compatibil cu Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal etc)'
+      note_7: '<module>LiveAlert</module>: Adăugate diferite sunete pentru golurile echipelor gazdă/oaspete/proprii. Folosește sunete de la <linkHTLS>HTLiveSight</linkHTLS>. Golurile echipei proprii nu vor fi recunoscute în modul Re-Live la început.'
+      note_8: '<module>CopyYouth</module>: Userii Hattrick Youthclub vor trimite automat apelul refuzat al căutătorilor de talente la HY'
+      note_9: '<module>CopyYouth</module>: Userii Hattrick Youthclub vor trimite automat raportul de antrenament către HY când îl vor pentru prima dată'
+      note_10: '<module>LineupShortcut</module> se leagă acum cu pagina nouă a echipei de start.'
+      note_11: '<module>SkillTable</module> utilizează acum pictograme pentru specialități și antrenori.'
+      note_12: 'AddLeaveConfButton este redenumit în  <module>ForumLeaveButton</module>'
+      note_13: De acum înainte, browser-ul și setările de aspect ale Hattrick vor fi automat incluse în mesajele postate pe forumul FoxTrick. Acest lucru ne va ajuta să rezolvăm rapid problemele. Vă rugăm nu ștergeți aceste informații în momentul scrierii mesajelor.
+      note_14: Codul suplimentului a fost curățat pentru o mai bună lizibilitate și întreținere.
+      note_15: 
+      note_16: 
+      note_17: 
+    0.11.0.1: 
+      note_0: '<header>O mulțime de actualizări ale traducerilor de la useri care folosesc <linkCrowdin>instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
+      note_1: 'Remediază probleme minore în <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> și <module>HTThreadMarker</module>.'
+      note_2: Împiedică Firefox să reîncarce paginile Hattrick când o nouă fereastră a browser-ului este deschisă.
     0.11.0: 
       note_0: 'NOU: <module>DirectPageLinks</module>: links adăugate pentru a accesa pagini specifice in subiectele de pe forum'
       note_1: 'NOU: <module>ForumModeratorPopup</module>: Adăugat un meniu rulant pentru moderatorii de forum deasupra subiectelor pentru a simplifica moderarea.'
@@ -39,34 +49,34 @@ ro:
       note_10: '<module>MovePlayerStatement</module>: Oportunitate adăugată pentru a elimina definitv declarațiile.'
       note_11: '<module>YouthTwins</module>: Schimbările manuale făcute la HY vor fi reflectate instant și pe pagina juniorilor'
       note_12: '<header>Bugfixes</header>'
-      note_13: 
-      note_14: 
-      note_15: 
-      note_16: 
-      note_17: 
-      note_18: 
-      note_19: 
-      note_20: 
-      note_21: 
-      note_22: 
-      note_23: 
-      note_24: 
-      note_25: 
-      note_26: 
-      note_27: 
-      note_28: 
-      note_29: 
-      note_30: 
-      note_31: 
-      note_32: 
-      note_33: 
-      note_34: 
-      note_35: 
-      note_36: 
-      note_37: 
-      note_38: 
-      note_39: 
-      note_40: 
+      note_13: 'Reparat <module>Filtrul</module>, <module>SupporterStatsEnhancements</module> și <module>YouthTwins</module>.'
+      note_14: '<module>StaffMarker</module> și <module>HTThreadMarker</module> funcționează în mai multe locuri acum.'
+      note_15: '<module>ConfirmActions</module>: adăugat suport pentru autobid.'
+      note_16: '<module>EmbedMedia</module>: securitate crescută și detecție mai bună a link-urilor.'
+      note_17: '<module>SkillTable</module> ar trebui să raporteze corect timpul în echipă pentru antrenorii de afară.'
+      note_18: Modulul BackgroundFixed a fost înlăturat.
+      note_19: '<header>Copiere module</header>'
+      note_20: '<module>CopyRatings</module>: Suport id meciuri de turnee.'
+      note_21: '<module>CopyMatchID</module>: adăugat suport pentru un singur meci și dezactivat pe paginile meciurilor pentru a face loc pentru noul link direct'
+      note_22: '<module>CopyPlayerAd</module>: reparate interferențele cu barele de nivel'
+      note_23: Remedieri generale ale copierii HT-ML.
+      note_24: '<header>Alte trucuri</header>'
+      note_25: '<module>MatchOrderInterface</module>: avatare pentru non-suporteri. Stabilitatea crescută.'
+      note_26: '<module>MatchSimulator</module> folosește acum noua formulă de rezistență (de Senzascrupoli [post=15917246.1]).'
+      note_27: '<module>MatchReportFormat</module> utilizează noile pictograme HT.'
+      note_28: '<module>PlayerStatsExperience</module>: punctele de experiență pe nivel crescute la to 28.62 (vezi 15766691.423 pentru discuții). Neprezentările sunt indicate din moment ce nu oferă experiență.'
+      note_29: 'Modulele forumului utilizează acum un caracter spațial pentru a scăpa textele în loc de "-": asta ar trebui să ajute limba Catalană.'
+      note_30: Împiedică interferența aspectului HT cu FoxTrick.
+      note_31: Adăugat suport pentru www.hattrick.fm
+      note_32: 'Eliminate link-urile externe moarte în  <module>Links</module>. Utilizează pictograme externe unde este posibil.'
+      note_33: '<header>Suport browser</header>'
+      note_34: Remediat Firefox pentru Android 17+.
+      note_35: Firefox 12 este acum versiunea minimă pentru a rula Foxtrick.
+      note_36: Google Chrome 22 este acum versiunea minimă pentru a rula FoxTrick.
+      note_37: 'Opera: remediată o eroare care cauza interferența Foxtrick-ului cu alte pagini (cum ar fi Hattrick YouthClub). Imaginile ar trebui să fie încarcate mai rapid acum. Unele module care era dezactivate special pe Opera sunt acum activate.'
+      note_38: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
+      note_39: '<header>Pagina de preferințe a fost refăcută.</header>'
+      note_40: '<strong>Și mult mai multe</strong>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
