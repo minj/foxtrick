@@ -37,7 +37,7 @@ re="$(curl -s \
   fi
 
 # will upload outdated files as it is. so don't  
-if [ false ]; then
+if [ 0 -eq 1 ]; then
 	for LOC in $SVN_FILES
 	do
 	  # take action on each file. $f store current file name
@@ -78,4 +78,3 @@ if [ false ]; then
 fi
 	
 ./crowdin-glossary-upload.sh
-
