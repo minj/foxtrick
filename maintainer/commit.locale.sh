@@ -11,6 +11,7 @@ IGNORELIST=""
 #remove blacklisted from crowdin folder
 for LOC in $IGNORELIST
 do
+   echo "Skipping ignorelist"
    #echo "rm -rf $EXTERNAL_LOCALE_FOLDER/$LOC"
    #rm -rfv "$EXTERNAL_LOCALE_FOLDER/$LOC"
 done
