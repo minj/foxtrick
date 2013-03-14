@@ -238,10 +238,10 @@
     <name>Russian</name>
     <code>ru</code>
     <phrases>1461</phrases>
-    <translated>1324</translated>
-    <approved>1073</approved>
-    <translated_progress>90</translated_progress>
-    <approved_progress>73</approved_progress>
+    <translated>1458</translated>
+    <approved>1459</approved>
+    <translated_progress>99</translated_progress>
+    <approved_progress>99</approved_progress>
   </language>
   <language>
     <name>Slovak</name>
@@ -274,10 +274,10 @@
     <name>Serbian (Cyrillic)</name>
     <code>sr</code>
     <phrases>1461</phrases>
-    <translated>1412</translated>
-    <approved>1414</approved>
-    <translated_progress>96</translated_progress>
-    <approved_progress>96</approved_progress>
+    <translated>1461</translated>
+    <approved>1463</approved>
+    <translated_progress>97</translated_progress>
+    <approved_progress>100</approved_progress>
   </language>
   <language>
     <name>Swedish</name>
@@ -373,18 +373,18 @@
     <name>Spanish, Argentina</name>
     <code>es-AR</code>
     <phrases>1461</phrases>
-    <translated>1376</translated>
+    <translated>1461</translated>
     <approved>0</approved>
-    <translated_progress>94</translated_progress>
+    <translated_progress>100</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>Spanish, Costa Rica</name>
     <code>es-CR</code>
     <phrases>1461</phrases>
-    <translated>1426</translated>
+    <translated>1461</translated>
     <approved>0</approved>
-    <translated_progress>97</translated_progress>
+    <translated_progress>100</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
