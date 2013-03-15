@@ -103,7 +103,11 @@ Foxtrick.modules['DashboardCalendar'] = {
 
 		var now = Foxtrick.util.time.getHtDate(doc);
 		var currentWeekDay = now.getDay(); // sometimes dashboard calendar lags
-		var todayString = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
+		var month = now.getMonth() + 1;
+		month = month > 9 ? month : '0' + new String(month);
+		var day = now.getDate();
+		day = day > 9 ? day : '0' + new String(day);
+		var todayString = now.getFullYear() + '-' + month + '-' + day;
 		var today = new Date(todayString);
 		now = Foxtrick.util.time.toBareISOString(now);
 
