@@ -58,6 +58,7 @@ Foxtrick.api.hy._buildParams = function(callback, params, teamId) {
 	params = params ? params + '&' : '';
 	params += 'teamId=' + teamId;
 	params += '&app=foxtrick';
+	params += '&version=' + Foxtrick.version();
 	var identifier = teamId + '_' + new Date().getTime();
 	params += '&identifier=' + identifier;
 	params += '&hash=' + Foxtrick.encodeBase64('foxtrick_' + teamId + '_' + identifier);
@@ -67,8 +68,6 @@ Foxtrick.api.hy._buildParams = function(callback, params, teamId) {
 
 /** @type {Number}	The number of hours to back of if HY is in trouble */
 Foxtrick.api.hy.ignoreHours = 24;
-Foxtrick.api.hy.ignoreMessage = Foxtrickl10n.getString('youthclub.api.down');
-// TODO internationalise
 
 /**
  * A generic low-level localStore cache wrapper with Cookie support
@@ -218,9 +217,9 @@ Foxtrick.api.hy._fetchOrIgnore = function(api, url, params,
 		else {
 			Foxtrick.log('[HY_API][' + api + '] Request aborted: HY is in ignore mode.');
 			if (typeof(failure) == 'function')
-				failure(Foxtrick.api.hy.ignoreMessage, 503);
+				failure(Foxtrickl10n.getString('youthclub.api.down'), 503);
 			if (typeof(finalize) == 'function')
-				finalize(Foxtrick.api.hy.ignoreMessage, 503);
+				finalize(Foxtrickl10n.getString('youthclub.api.down'), 503);
 		}
 	});
 };
