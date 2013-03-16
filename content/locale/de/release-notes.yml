@@ -10,7 +10,7 @@ de:
     0.12.1: 
       note_0: 
       note_1: 
-      note_2: 
+      note_2: '<module>MatchIncome</module>: Option zum Anzeigen der Sitz-Auslastung in Prozent neben der Zahl der Besucher auf den Spiel-Seiten hinzugefügt'
       note_3: 
     0.12.0: 
       note_0: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin> Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'

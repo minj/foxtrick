@@ -6,12 +6,12 @@ es-CR:
     beta: 
       note_0: 'Esta es la beta de la próxima versión. Por favor ayuda a traducir esta versión en nuestra super fácil página de traducción <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
-      note_0: 
+      note_0: '<header>Muchas actualizaciones de la traducción de parte de nuestros impresionantes usuarios utilizando la <linkCrowdin>herramienta crowdin</linkCrowdin>. ¡Tu también puedes ayudar!</header>'
     0.12.1: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
+      note_0: '<header>Muchas actualizaciones de la traducción de parte de nuestros impresionantes usuarios utilizando la <linkCrowdin>herramienta crowdin</linkCrowdin>. ¡Tu también puedes ayudar!</header>'
+      note_1: 'NUEVO: <module>SupportershipExpirationDate</module>: Al hacer clic en los días restantes de tu membresía de supporter en Mi Oficina, se mostrará la fecha de vencimiento'
+      note_2: '<module>CoincidirIngresos</module>: Añadida la opción para mostrar la ocupación de asientos en porcentajes, junto al número de visitantes en las página del partido'
+      note_3: 'NUEVO: <module>MainMenuDropDown</module>: agrega menús desplegables a la barra de navegación principal, que generalmente contiene todos los enlaces disponibles de la barra lateral de la página de destino.'
     0.12.0: 
       note_0: '<header>Muchas actualizaciones de la traducción, de nuestros impresionantes usuarios, se hace utilizando la <linkCrowdin>herramienta crowdin</linkCrowdin>. ¡Tu puedes ayudar también!</header>'
       note_1: 'NUEVO: <module>MatchLineupTweaks</module>: Se cmbia el recuento de estrellas al viejo estilo. Añade contadores para estrellas y condición a la nueva página de alineación. Muestra de especialidades para todos los jugadores y agrega el nombre del equipo en el campo para limitar la confusión. Muestra la cara del jugador de tu equipo. Destacan los jugadores relevantes para un evento en un partido.'

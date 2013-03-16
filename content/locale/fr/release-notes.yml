@@ -6,12 +6,12 @@ fr:
     beta: 
       note_0: "Il s'agit de la version bêta de la prochaine version. Veuillez nous aider à traduire cette version via un site ultra simple à utiliser <linkCrowdin>crowdin.net</linkCrowdin>. "
     0.13.0: 
-      note_0: 
+      note_0: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'
     0.12.1: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
+      note_0: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'
+      note_1: "NOUVEAU: <module>SupportershipExpirationDate</module>: Cliquer sur les jours restants de votre pack supporter vous montrera sa date d'expiration"
+      note_2: "<module>MatchIncome</module> : Ajout d'une option pour afficher la répartition des places en pourcentages à cotés du nombre de spectateurs sur les rapport de match"
+      note_3: "NOUVEAU: <module>MainMenuDropDown</module>: Ajout d'un menu déroulant dans la barre de navigation principale incluant tous les liens présents dans la barre latérale de la page concernée."
     0.12.0: 
       note_0: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'
       note_1: "NOUVEAU: <module>MatchLineupTweaks</module>: Retrouver vos étoiles dans l'ancien style. Ajout de compteurs pour les étoiles et l'endurance sur la nouvelle présentation de la composition. Afficher les spécialités des joueurs et ajouter le nom de l'équipe sur le terrain pour limiter la confusion. Afficher le visages de vos joueurs. Mise en évidence des joueurs concernés par un événement dans un match."
