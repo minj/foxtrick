@@ -2,18 +2,18 @@
 he: 
   versions: 
     nightly: 
-      note_0: 
+      note_0: 'זהו עדכון בפיתוח. השימוש בו לשיקולכם בלבד. לפרטים בנוגע לשינויים נא ראו <linkSVN>היסטוריה</linkSVN> בגוגל קוד.'
     beta: 
-      note_0: 
+      note_0: 'זוהי גירסת הבתא של המהדורה הבאה. נודה על עזרה בתרגום גירסה זו באתר התרגום המאוד נוח שלנו <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
-      note_0: 
+      note_0: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
     0.12.1: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
+      note_0: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
+      note_1: 'חדש: <module>SupportershipExpirationDate</module>: הקלקה על הימים הנותרים של התומך ברובריקה "החשבון שלי", תציג את תאריך סיום התומך'
+      note_2: '<module>MatchIncome</module>: אפשרות חדשה להצגת אחוזי ניצול המושבים באצטדיון באחוזים ליד מספר הכרטיסים שנמכרו בדף דו"ח המשחק'
+      note_3: 'חדש: <module>MainMenuDropDown</module>: מוסיף תפריטים נפתחים לתפריט העל הראשי, המכילים את כל הקישורים הזמינים בדרך כלל בתפריט הצדדי של דף היעד הרלבנטי.'
     0.12.0: 
-      note_0: 
+      note_0: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
       note_1: 
       note_2: 
       note_3: 
