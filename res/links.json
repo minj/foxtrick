@@ -955,69 +955,6 @@
 			]
 		]
 	},
-	"srbijatracker": {
-		"img": "resources/linkicons/tracker.png",
-		"title": "Serbian U-20/NT DB",
-		"trackernationalteamlink": {
-			"url": "http://srbijadb.symbiosis.org.gr/homelist.php",
-			"filters": [
-				"countryid"
-			]
-		},
-		"trackerplayerlink": {
-			"url": "http://srbijadb.symbiosis.org.gr/Prijaveadd2.php?playerID=[playerid]&name=[playername]&years=[age]&days=[age_days]&team=[teamname]&teamID=[teamid]&exp=[exp]&sta=[stamina]&ply=[playmaking]&win=[winger]&sco=[scoring]&keep=[goalkeeping]&pass=[passing]&def=[defending]&sp=[setpieces]",
-			"filters": [
-				"nationality"
-			]
-		},
-		"countryidranges": [
-			[
-				57,
-				57
-			]
-		],
-		"nationalityranges": [
-			[
-				57,
-				57
-			]
-		]
-	},
-	"srbijassttracker": {
-		"title": "SST Srbija WC tracker",
-		"img": "resources/linkicons/tracker.png",
-		"trackerplayerlink": {
-			"url": "http://spydb.symbiosis.org.gr/Prijaveadd2.php?playerID=[playerid]&name=[playername]&LeagueID=[nationality]&years=[age]&days=[age_days]&team=[teamname]&teamID=[teamid]&exp=[exp]&sta=[stamina]&ply=[playmaking]&win=[winger]&sco=[scoring]&keep=[goalkeeping]&pass=[passing]&def=[defending]&sp=[setpieces]"
-		}
-	},
-	"montenegrotracker": {
-		"img": "resources/linkicons/tracker.png",
-		"title": "Montenegro U-20/NT DB",
-		"trackernationalteamlink": {
-			"url": "http://cgdb.symbiosis.org.gr/homelist.php",
-			"filters": [
-				"countryid"
-			]
-		},
-		"trackerplayerlink": {
-			"url": "http://cgdb.symbiosis.org.gr/Prijaveadd2.php?playerID=[playerid]&name=[playername]&years=[age]&days=[age_days]&team=[teamname]&teamID=[teamid]&exp=[exp]&sta=[stamina]&ply=[playmaking]&win=[winger]&sco=[scoring]&keep=[goalkeeping]&pass=[passing]&def=[defending]&sp=[setpieces]",
-			"filters": [
-				"nationality"
-			]
-		},
-		"countryidranges": [
-			[
-				131,
-				131
-			]
-		],
-		"nationalityranges": [
-			[
-				131,
-				131
-			]
-		]
-	},
 	"sverigetracker": {
 		"img": "http://www.htsweden.se/Content/Images/htsv-favicon.ico",
 		"title": "Sweden U20/NT Tracker",
