@@ -139,7 +139,7 @@
     <name>Hungarian</name>
     <code>hu</code>
     <phrases>1474</phrases>
-    <translated>1331</translated>
+    <translated>1339</translated>
     <approved>193</approved>
     <translated_progress>90</translated_progress>
     <approved_progress>13</approved_progress>
@@ -301,9 +301,9 @@
     <name>Ukrainian</name>
     <code>uk</code>
     <phrases>1474</phrases>
-    <translated>1429</translated>
+    <translated>1437</translated>
     <approved>0</approved>
-    <translated_progress>96</translated_progress>
+    <translated_progress>97</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -418,9 +418,9 @@
     <name>Latvian</name>
     <code>lv</code>
     <phrases>1474</phrases>
-    <translated>833</translated>
+    <translated>880</translated>
     <approved>0</approved>
-    <translated_progress>56</translated_progress>
+    <translated_progress>59</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
