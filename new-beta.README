@@ -18,6 +18,7 @@ git svn dcommit
 upload master lang files via web
 or x.x.x/maintainer/crowdin-upload.sh (but causes '\' to fail for now)
 (don't upload localized files. they are from old nightly here and thus outdated)
+don't forget to crowdin-glossary-upload.sh otherwise
 (if needed) run foxtrick-beta.sh (will do so anyways next day)
 
 run version.sh x.x.x in trunk to version bump
