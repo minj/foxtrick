@@ -6,9 +6,9 @@ uk:
     beta: 
       note_0: 'Це beta версія наступного релізу. Будь ласка, допоможіть перекласти цю версію з дуже простим інструментом перекладу  <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
-      note_0: 
+      note_0: '<header>Багато оновлень перекладів від наших користувачів, які користуються <linkCrowdin>crowdin</linkCrowdin>. Ви також можете нам допомогти!</header>'
     0.12.1: 
-      note_0: 
+      note_0: '<header>Багато оновлень перекладів від наших користувачів, які користуються <linkCrowdin>crowdin</linkCrowdin>. Ви також можете нам допомогти!</header>'
       note_1: 
       note_2: 
       note_3: 

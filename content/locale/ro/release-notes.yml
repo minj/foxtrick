@@ -6,9 +6,9 @@ ro:
     beta: 
       note_0: 'Aceasta este o versiune beta a următoarei versiuni care va fi lansată. Vă rugăm ajutați traducând această versiune utilizând pagina de traducere <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
-      note_0: 
+      note_0: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
     0.12.1: 
-      note_0: 
+      note_0: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
       note_1: 
       note_2: 
       note_3: 

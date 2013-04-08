@@ -2,23 +2,23 @@
 hr: 
   versions: 
     nightly: 
-      note_0: 
+      note_0: 'Ovo je razvojna inačica. Koristiti na svoju odgovornost. Za detalje o promjenama pogledajte na <linkSVN>Google Code</linkSVN> stranici.'
     beta: 
-      note_0: 
+      note_0: 'Ovo je beta inačica buduće nove verzije. Pomozite na prevoditi ovu verziju sa super lakim prevođenjem na <linkCrowdin>crowdin.net</linkCrowdin>.'
     0.13.0: 
-      note_0: 
+      note_0: '<header>Mnogobrojna ažuriranja prijevoda zahvaljujući svesrdnoj pomoći korisnika koji koriste <linkCrowdin>crowdin</linkCrowdin> alat za prevođenje. I vi, također, možete pomoći ako želite!</header>'
     0.12.1: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
+      note_0: '<header>Mnogobrojna ažuriranja prijevoda zahvaljujući svesrdnoj pomoći korisnika koji koriste <linkCrowdin>crowdin</linkCrowdin> alat za prevođenje. I vi, također, možete pomoći ako želite!</header>'
+      note_1: 'NOVO: <module>SupportershipExpirationDate</module>: Klikom na polje koje prikazuje preostale dane trajanja vašeg suportera, prikazat će vam se i datum isteka suportera'
+      note_2: '<module>MatchIncome</module>: Dodana je opcija koja prikazuje postotak iskorištenosti sjedala pored broja gledatelja na stranici izvještaja utakmice'
+      note_3: 'NOVO: <module>MainMenuDropDown</module>: Dodaje padajuće izbornike glavnom horizontalnom izborniku sa linkovima koji su inače dostupni u lijevom i desnom podizborniku odgovarajuće stranice.'
     0.12.0: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
-      note_4: 
-      note_5: 
+      note_0: '<header>Ažurirani prijevodi na mnogobrojne jezike uz pomoć <linkCrowdin>crowdin alata</ linkCrowdin>. Ako i Vi hoćete pomoći, samo izvolite!</header>'
+      note_1: 'NOVO: <module>MatchLineupTweaks</module>: Prikazuje zvjezdice u stilu sličnom starom. Dodaje ukupan broj zvjezdica i postotak gubitka vještina zbog izdržljivosti. Prikazuje specijalnost igrača i dodaje ime kluba radi smanjenja konfuzije. Prikazuje i slike igrača u postavi. Također označava i igrače u skladu s događajima na utakmici.'
+      note_2: Ažurira module koji nisu radili nakon pojavljivanja nove Hattrick prodavnice.
+      note_3: 'NOVO: <module>MatchLineupFixes</module>: Sinkronizira vremenski tijek za igrače i sektore. Prikazuje ime igrača kod vremenskih spedijalnih događaja. Dodaje linkove do igrača u postavi. Dodaje i zvjezdice za zamijenjene igrače. Popravlja i istovremene događaje: igrači sada mijenjaju pozicije jedan po jedan umjesto svi odjednom.'
+      note_4: 'NOVO: <module>ReLiveLinks</module>: Dodaje linkove za Re-Live za završene utakmice.'
+      note_5: 'NOVO: <module>CopyBBAd</module>: Kopira razne oglase u BB kodu (napravio: merfis).'
       note_6: 
       note_7: 
       note_8: 
@@ -32,7 +32,7 @@ hr:
       note_16: 
       note_17: 
     0.11.0.1: 
-      note_0: 
+      note_0: '<header>Ažurirani prijevodi na mnogobrojne jezike uz pomoć <linkCrowdin>crowdin alata</ linkCrowdin>. Ako i Vi hoćete pomoći, samo izvolite!</header>'
       note_1: 
       note_2: 
     0.11.0: 
@@ -74,7 +74,7 @@ hr:
       note_35: 
       note_36: 
       note_37: 
-      note_38: 
+      note_38: '<header>Ažurirani prijevodi na mnogobrojne jezike uz pomoć <linkCrowdin>crowdin alata</ linkCrowdin>. Ako i Vi hoćete pomoći, samo izvolite!</header>'
       note_39: 
       note_40: 
     0.10.0: 

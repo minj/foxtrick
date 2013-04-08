@@ -6,9 +6,9 @@ gl:
     beta: 
       note_0: 'Esta é a versión beta do próximo lanzamento. Podes axudar a traducila na nosa marabillosa páxina de tradución en equipo <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
-      note_0: 
+      note_0: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
     0.12.1: 
-      note_0: 
+      note_0: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
       note_1: 
       note_2: 
       note_3: 

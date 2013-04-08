@@ -6,9 +6,9 @@ pt-BR:
     beta: 
       note_0: 'Esta é a versão beta do próximo lançamento. Por favor ajude a traduzir essa versão em nossa página de tradução comunitária super fácil <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
-      note_0: 
+      note_0: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
     0.12.1: 
-      note_0: 
+      note_0: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
       note_1: 
       note_2: 
       note_3: 
@@ -32,7 +32,7 @@ pt-BR:
       note_16: 
       note_17: 
     0.11.0.1: 
-      note_0: 
+      note_0: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
       note_1: 'Correção de pequenos problemas em <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>CoincidirReceita</module> e <module>HTThreadMarker</module>.'
       note_2: Impedir o Firefox de recarregar todas as abas/guias do Hattrick quando é aberta uma nova janela do navegador.
     0.11.0: 

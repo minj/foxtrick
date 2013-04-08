@@ -6,12 +6,12 @@ lt:
     beta: 
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
     0.13.0: 
-      note_0: 
+      note_0: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
     0.12.1: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
+      note_0: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
+      note_1: 'NAUJIENA: <module>SupportershipExpirationDate</module>: spragtelėjus ant HT-Rėmėjo skaitiklio „Mano biure“ pamatysite prenumeratos galiojimo datą'
+      note_2: '<module>MatchIncome</module>: rungtynių ataskaitos puslapyje matysite stadiono sektorių užpildymą procentais'
+      note_3: 'NAUJIENA: <module>MainMenuDropDown</module>: pagrindinį meniu papildo iškrentančiais meniu su nuorodomis, kurias matote šoniniuose atitinkamo puslapio meniu.'
     0.12.0: 
       note_0: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
       note_1: 'NAUJIENA: <module>MatchLineupTweaks</module>: pakeičia skaitmeninį žvaigždučių vaizdavimą į grafinį (pan. į senovinį). Naujajame sudėties puslapyje pateikia žvaigždučių ir ištvermės statistiką. Rodo žaidėjų specialybes, veidus bei komandų pavadinimus aikštės diagramoje (kad būtų aiškiau). Paryškina su tam tikrais įvykiais susijusius žaidėjus.'

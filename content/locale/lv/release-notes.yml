@@ -67,16 +67,16 @@ lv:
       note_28: 
       note_29: 
       note_30: 
-      note_31: 
-      note_32: 
-      note_33: 
-      note_34: 
-      note_35: 
-      note_36: 
+      note_31: Pievienots atbalsts www.hattrick.fm
+      note_32: 'No <module>Links</module> moduļa zzvāktas neeksistējošās ārējās saites. Ja iespējams, tiks izmantotas ārējās ikonas.'
+      note_33: '<header>Pārlūku atbalsts</header>'
+      note_34: Firefox atbalsts priekš Android 17+.
+      note_35: Firefox 12 šobrīd ir minimālā versija, lai lietotu Foxtrick.
+      note_36: Google Chrome 22 šobrīd ir minimālā versija, lai lietotu Foxtrick.
       note_37: 
-      note_38: 
-      note_39: 
-      note_40: 
+      note_38: '<header>Daudzu tulkojumu atjauninājumi pateicoties mūsu lieliskajiem lietotājiem, kas izmanto <linkCrowdin>crowdin rīku</linkCrowdin>. Arī tu vari mums palīdzēt!</header>'
+      note_39: '<header>Pārveidota iestatījumu sadaļa.</header>'
+      note_40: '<strong>Un daudz daudz, vairāk</strong>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
@@ -203,13 +203,13 @@ lv:
       note_24: We implemented Chrome's optional permissions system. There are fewer mandatory permissions needed now when installing FoxTrick. Since you have not set any yet, you have to save the preference once and confirm whichever access you want to allow. Later, you will be asked to allow access to an external resource whenever you enable a module which requires it.
     0.8.2: 
       note_0: Korean locale (SI-CH)
-      note_1: Lithuanian locale (LA-MJ)
-      note_2: General locale cleaning (CatzHoek)
-      note_3: 'Added links to <linkHTEV>http://htev.org/</linkHTEV> statistics page. (convincedd, CatzHoek)'
-      note_4: Other trivial fixes. (convincedd, CatzHoek)
+      note_1: Lietuviešu lokalizācija (LA-MJ)
+      note_2: Vispārējā lokalizācijas tīrīšana (CatzHoek)
+      note_3: 'Pievienotas saites uz <linkHTEV>http://htev.org/</linkHTEV> statistikas lapu. (convincedd, CatzHoek)'
+      note_4: Citi nenozīmīgi labojumi. (convincedd, CatzHoek)
     0.8.1: 
-      note_0: '<module>ElectionTable</module>: adapted to new election page layout. (convincedd, ryanli)'
-      note_1: '<module>HTThreadMarker</module>: new style. (convincedd, ryanli)'
+      note_0: '<module>ElectionTable</module>: pielāgots jaunajam vēlēšanu lapas izkārtojumam. (convincedd, ryanli)'
+      note_1: '<module>HTThreadMarker</module>: jauns dizains. (convincedd, ryanli)'
       note_2: "<module>TableSort</module>: prevent conflicting with Hattrick's sorting. (convincedd)"
       note_3: '<module>HTMSPrediction</module>, <module>CopyRatings</module>: adapted to new match report layout. (convincedd)'
       note_4: '<module>LineupShortcut</module>: also show for non-supporters now. (ryanli)'
@@ -285,12 +285,12 @@ lv:
       note_10: 'Option to hide forum sneak-peek in <module>FixcssProblems</module>. (ljushaff)'
       note_11: 'Option to copy advertisement in non-table style in <module>CopyPlayerAd</module>. (ryanli)'
       note_12: 'Option to show HatStats per rating in <module>Ratings</module>. (taised)'
-      note_13: Belarusian locale. (LA-Stolik)
-      note_14: 'Add some frequently asked questions at <FTlinkHelp>Help tab</FTlinkHelp>. (ryanli)'
-      note_15: New grey icon for report links. (ljushaff)
+      note_13: Baltkrievu lokalizācija. (LA-Stolik)
+      note_14: 'Pievienoti biežāk uzdotie jautājumi zem <FTlinkHelp>Help tab</FTlinkHelp>. (ryanli)'
+      note_15: Jauna pelēka ikona spēles ziņojumu saitēm. (ljushaff)
       note_16: '<module>YouthPromotes</module> also shows the earliest date to promote a player. (ryanli)'
-      note_17: Most features working under Google Chrome. (ryanli)
-      note_18: Some trivial fixes for latest Hattrick changes. (ryanli, taised, ljushaff)
-      note_19: 'Module <module>TeamSelectBox</module> disabled by default. (ryanli)'
-      note_20: 'Module <module>SmallerPages</module> disabled by default. (ljushaff)'
+      note_17: Lielākā daļa funkcionalitātes strādā arī Google Chrome. (ryanli)
+      note_18: Daži nelieli labojumi sakarā ar pēdējām izmaiņām Hattrick. (ryanli, taised, ljushaff)
+      note_19: 'Pēc noklusējuma <module>TeamSelectBox</module> modulis ir izslēgts. (ryanli)'
+      note_20: 'Pēc noklusējuma <module>SmallerPages</module> modulis ir izslēgts. (ljushaff)'
       note_21: 'Radio options in <module>ExtraShortcuts</module> are disabled by default. (ryanli)'
