@@ -417,7 +417,7 @@ pref("extensions.foxtrick.prefs.module.LocalTime.local", false);
 pref("extensions.foxtrick.prefs.module.LoyaltyDisplay.enabled", true);
 pref("extensions.foxtrick.prefs.module.MainMenuDropDown.enabled", true);
 pref("extensions.foxtrick.prefs.module.MainMenuDropDown.DisregardFirstHeader.enabled", true);
-pref("extensions.foxtrick.prefs.module.MainMenuDropDown.DelayPopupDisplay.enabled", false);
+pref("extensions.foxtrick.prefs.module.MainMenuDropDown.DelayPopupDisplay.enabled", true);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.enabled", false);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.GuestBook.enabled", false);
 pref("extensions.foxtrick.prefs.module.MarkAllAsRead.enabled", true);
