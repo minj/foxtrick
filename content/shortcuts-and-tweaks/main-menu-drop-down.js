@@ -8,26 +8,19 @@
 Foxtrick.modules['MainMenuDropDown']={
 	MODULE_CATEGORY : Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES : ['all'],
-	OPTIONS : ['DisregardFirstHeader', 'DelayPopupDisplay'],
+	OPTIONS : ['DisregardFirstHeader'],
 	CSS : [Foxtrick.InternalPath + 'resources/css/main-menu-drop-down.css'],
 
 	convertMainMenuToUnorderedList : function(doc){
 		var menuLinks = doc.querySelectorAll('#menu > a');
 		var list = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.MainMenuDropDown, 'ul');
 		list.id = 'ft-drop-down-menu';
-		var addPopupDelay = FoxtrickPrefs.isModuleOptionEnabled('MainMenuDropDown', 'DelayPopupDisplay');
-
 		Foxtrick.map(function(link){
 			if(link.id == 'ctl00_ctl00_CPHeader_ucMenu_hypLogout')
 				return;
 			var listItem = doc.createElement('li');
 			listItem.appendChild(link);
 			list.appendChild(listItem);
-			
-			
-			if(addPopupDelay)
-				Foxtrick.addClass(listItem, 'ft-delayed-popup');
-		
 		}, menuLinks);
 		doc.getElementById('menu').insertBefore(list, doc.getElementById('ctl00_ctl00_CPHeader_ucMenu_hypLogout'));
 	},
