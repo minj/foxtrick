@@ -15,8 +15,8 @@ hr:
     0.12.0: 
       note_0: '<header>Ažurirani prijevodi na mnogobrojne jezike uz pomoć <linkCrowdin>crowdin alata</linkCrowdin>. Ako i Vi hoćete pomoći, samo izvolite!</header>'
       note_1: 'NOVO: <module>MatchLineupTweaks</module>: Prikazuje zvjezdice u stilu sličnom starom. Dodaje ukupan broj zvjezdica i postotak gubitka vještina zbog izdržljivosti. Prikazuje specijalnost igrača i dodaje ime kluba radi smanjenja konfuzije. Prikazuje i slike igrača u postavi. Također označava i igrače u skladu s događajima na utakmici.'
-      note_2: Ažurira module koji nisu radili nakon pojavljivanja nove Hattrick prodavnice.
-      note_3: 'NOVO: <module>MatchLineupFixes</module>: Sinkronizira vremenski tijek za igrače i sektore. Prikazuje ime igrača kod vremenskih spedijalnih događaja. Dodaje linkove do igrača u postavi. Dodaje i zvjezdice za zamijenjene igrače. Popravlja i istovremene događaje: igrači sada mijenjaju pozicije jedan po jedan umjesto svi odjednom.'
+      note_2: Ažurira module koji nisu radili nakon pojavljivanja nove Hattrick trgovine.
+      note_3: 'NOVO: <module>MatchLineupFixes</module>: Sinkronizira vremenski tijek za igrače i sektore. Prikazuje ime igrača kod vremenskih specijalnih događaja. Dodaje linkove do igrača u postavi. Dodaje i zvjezdice za zamijenjene igrače. Popravlja i istovremene događaje: igrači sada mijenjaju pozicije jedan po jedan umjesto svi odjednom.'
       note_4: 'NOVO: <module>ReLiveLinks</module>: Dodaje linkove za Re-Live za završene utakmice.'
       note_5: 'NOVO: <module>CopyBBAd</module>: Kopira razne oglase u BB kodu (napravio: merfis).'
       note_6: 
