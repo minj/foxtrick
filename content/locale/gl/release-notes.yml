@@ -9,13 +9,13 @@ gl:
       note_0: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
     0.12.1: 
       note_0: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
-      note_1: 
-      note_2: 
-      note_3: 
+      note_1: 'NOVO: <module>SupportershipExpirationDate</module>: agora, ao facer clic nos días de supporter restantes que aparecen en "O meu Despacho", amósase a data na que remata o período de supporter.'
+      note_2: '<module>MatchIncome</module>: engadiuse unha opción que permite amosar as porcentaxes de asentos ocupados xunto ao número de visitantes na páxina de partido.'
+      note_3: 'NOVO: <module>MainMenuDropDown</module>: engade menús despregábeis á barra de navegación principal que conteñen todas as ligazóns que normalmente están dispoñíbeis na barra lateral da páxina obxectivo.'
     0.12.0: 
       note_0: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
       note_1: 'NOVO: <module>MatchLineupTweaks</module>: cambia o reconto de estrelas e móstraas igual que antes. Engade contadores de estrelas e resistencia á nova páxina de aliñación. Amosa as especialidades de todos os xogadores e engade o nome de equipo no campo para que se vexa máis claro. Amosa os avatares dos xogadores do teu equipo. Destaca os xogadores que protagonistas dos evento do partido.'
-      note_2: 
+      note_2: Unha morea de corrección en varios módulos que deixaran de funcionar correctamente tras a implementación da nova Tenda de Hattrick.
       note_3: 'NOVO: <module>MatchLineupFixes</module>: sincroniza a liña de tempo entre as pestanas dos xogadores e dos sectores. Amosa os nomes dos xogadores nos eventos especiais relacionados co clima. Engade ligazóns ós xogadores na pestana das túas ordes de equipo. Engade o último reconto de estrelas dos xogadores do banco de suplentes. Melloras no xeito de amosar varios eventos que ocorren ó mesmo tempo: amósanse os cambios de posición dos xogadores paso a paso no canto de amosar todos os cambios á vez.'
       note_4: 'NOVO: <module>ReLiveLinks</module>: engade ligazóns a HT Re-Live para os encontros rematados.'
       note_5: 'NOVO: <module>CopyBBAd</module>: copia varios anuncios en código BB (por merfis).'
@@ -28,9 +28,9 @@ gl:
       note_12: 'Cambiouse o nome de AddLeaveConfButton por <module>ForumLeaveButton</module>.'
       note_13: A partir de agora, a configuración do teu navegador e do aspecto de Hattrick incluiranse automaticamente nas mensaxes que publiques na conferencia de FoxTrick, o que nos axudará a resolver problemas máis rápido. Por favor, non elimines esa información cando publiques unha mensaxe.
       note_14: Limpouse o código do complemento para que sexa máis fácil de ler e de manter.
-      note_15: 
-      note_16: 
-      note_17: 
+      note_15: 'Solucionáronse varios problemas relacionados coa detección da semana do módulo <module>PlayerStatsTrainingWeek</module>.'
+      note_16: 'Solucionouse un erro de <module>MatchSimulator</module> que provocaba a aparición de cualificacións e predicións erróneas se a opción ataque vs. defensa estaba desactivada.'
+      note_17: Parece que as actualizacións para Safari non funcionan correctamente. Os usuarios deben eliminar a versión anterior de FoxTrick e instalar a versión nova.
     0.11.0.1: 
       note_0: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
       note_1: 'Solucionáronse problemas de pouca importancia en <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> e <module>HTThreadMarker</module>.'
