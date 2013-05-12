@@ -1196,6 +1196,34 @@
 			]
 		]
 	},
+	"norwaytracker": {
+		"img": "resources/linkicons/tracker.png",
+		"title": "Norway NT/U-20 DB",
+		"trackernationalteamlink": {
+			"url": "http://htnorway.com/tracker/",
+			"filters": [
+				"countryid"
+			]
+		},
+		"trackerplayerlink": {
+			"url": "http://htnorway.com/tracker/",
+			"filters": [
+				"nationality"
+			]
+		},
+		"countryidranges": [
+			[
+				9,
+				9
+			]
+		],
+		"nationalityranges": [
+			[
+				9,
+				9
+			]
+		]
+	},
 	"ht-ys": {
 		"youthleaguelink": {
 			"url": "http://www.ht-ys.org/?league_id=[youthleagueid]"
