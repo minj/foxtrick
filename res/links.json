@@ -124,19 +124,6 @@
 		"title": "hattriX-Ray arenasizer",
 		"img": "resources/linkicons/xray_arenasizer.png"
 	},
-	"hattrickchallenge": {
-		"teamlink": {
-			"url": "http://www.hattrickchallenge.com/Tools/Entry.php?tool=myteam&teamid=[teamid]"
-		},
-		"countrylink": {
-			"url": "http://www.hattrickchallenge.com/Tools/Entry.php?tool=challenge&countryid=[countryid]"
-		},
-		"leaguelink": {
-			"url": "http://www.hattrickchallenge.com/Tools/Entry.php?tool=forecast&leagueid=[leagueid]"
-		},
-		"title": "HattrickChallenge",
-		"img": "http://www.hattrickchallenge.com/images/favicon.ico"
-	},
 	"HTPE": {
 		"transfercomparelink": {
 			"url": "http://www.databased.at/hattrick/htpe/?pid=[playerid]&tid=[teamid]&tsi=[tsi]&age=[age]&form=[form]&exp=[exp]&st=[stamina]&gk=[goalkeeping]&pm=[playmaking]&pa=[passing]&wi=[winger]&de=[defending]&sc=[scoring]&sp=[setpieces]"
