@@ -10,9 +10,9 @@ sv-SE:
     sound-location: 
       question: Vad är storleksgränsen för varningsljud och var kan man hitta dem?
       answer: |
-        <p>Alla webbläsare kan spela upp data-adresser. Dessa är de internt sparade ljuden när du använder play-knappen som anges i inställningarna. Eftersom de konverterats och sparats i dina inställningar är storleken begränsad till ca 160 kB per ljud.</p>
+        <p>Alla webbläsare kan spela upp data-adresser. Dessa är de internt sparade ljuden när du använder lyssna-knappen som finns i inställningarna. Eftersom de konverterats och sparats i dina inställningar är storleken begränsad till ca 160 kB per ljud.</p>
         
-        <p>Alla webbläsare kan också spela ljud direkt från internet (http -URL: er). Kopiera bara en länk till ett ljud (t.ex http://foxtrick.org/sound.wav) i redigeringsfältet för ljud. Ingen storleksgräns.</p>
+        <p>Alla webbläsare kan också spela ljud direkt från internet (http -URL: er). Kopiera bara länken till ett ljud (t.ex http://foxtrick.org/sound.wav) i redigeringsfältet för ljud. Ingen storleksgräns.</p>
         
         <p>Mozilla webbläsare kan också spela upp ljud direkt från din hårddisk (file URL) utan storleksgräns. Enklaste sättet att få rätt format, använd: Ctrl+O, bläddra till den filen du vill använda och markera den. I adressfältet i din webbläsare visas nu korrekt länk till den lokala filen (t.ex file:///c:/sound.wav). Kopiera och klistra in det i redigeringsfältet för ljud.</p>
     authorize: 

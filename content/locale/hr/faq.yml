@@ -4,19 +4,19 @@ hr:
     style: 
       question: Kako mogu stilizirati svoj Foxtrick?
       answer: |
-        <p> Foxtrick omogućuje da možete sami mijenjati izgled uz pomoć vaših osobnih 'CSS' stilova. Mijenjanje izgleda vam je omogućeno putem Foxtrick-ovih 'HTML id' tagova i klasa uz pomoć kojih možete definirati vlastiti izgled Foxtricka, korištenjem 'CSS' stilova. </p>
+        <p>Foxtrick omogućuje da možete sami mijenjati izgled uz pomoć vaših osobnih 'CSS' stilova. Mijenjanje izgleda vam je omogućeno putem Foxtrick-ovih 'HTML id' tagova i klasa uz pomoć kojih možete definirati vlastiti izgled Foxtricka, korištenjem 'CSS' stilova.</p>
         
-        <p> Datoteka koji je primjer za prilagođeni stil možete naći <linkCSSExample>ovdje</ linkCSSExample> ili <linkCSSExampleGCode>ovdje</ linkCSSExampleGCode>, i možete ga modificirati kako bi ga prilagodili vašim željama i potrebama. Nakon mjenjanja i spremanja vaše  'CSS' datoteke, možete iskoristiti Foxtrickov <module>SkinPlugin</module> modul da ga učitate i stavite u funkciju. </p>
+        <p>Datoteka koji je primjer za prilagođeni stil možete naći <linkCSSExample>ovdje</linkCSSExample> ili <linkCSSExampleGCode>ovdje</linkCSSExampleGCode>, i možete ga modificirati kako bi ga prilagodili vašim željama i potrebama. Nakon mjenjanja i spremanja vaše  'CSS' datoteke, možete iskoristiti Foxtrickov <module>SkinPlugin</module> modul da ga učitate i stavite u funkciju.</p>
     sound-format: 
       question: Koji formati datoteke su dozvoljeni za zvuk upozorenja?
       answer: |
-        <p> Različiti preglednici dopuštaju različite formate. Slijedi lista preglednika i odgovarajućih formata (formati koji nisu na popisu možda mogu raditi ali samo ako je instaliran i odgovarajući plugin, primjerice Quicktime za mp3 datoteke u Firefox-u): </ p>
+        <p>Različiti preglednici dopuštaju različite formate. Slijedi lista preglednika i odgovarajućih formata (formati koji nisu na popisu možda mogu raditi ali samo ako je instaliran i odgovarajući plugin, primjerice Quicktime za mp3 datoteke u Firefox-u):</p>
         
         <ul>
-        <li> Mozilla: wav, ogg </ li>
-        <li> Safari (može biti potreban i Quicktime): wav, mp3 </ li>
-        <li> Chrome: ogg, mp3, wav </ li> <li> Opera: wav, ogg </ li>
-        </ ul>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (može biti potreban i Quicktime): wav, mp3</li>
+        <li>Chrome: ogg, mp3, wav</li><li>Opera: wav, ogg</li>
+        </ul>
     sound-location: 
       question: Kolika je granica veličine za zvukove upozorenja i gdje zvukovi mogu bit pronađeni?
       answer: |
@@ -34,9 +34,9 @@ hr:
         
         <p>Foxtrick-u dajete dozvolu tako što ubacite verifikacijski kod koji dobivate kad upišete svoju šifru i lozinku na Hattrick stranici za verifikaciju chpp.hattrick.org. Foxtrick tijekom čitavog ovog procesa neće imati uvid u vašu lozinku i korisničko ime.</p>
         
-        <p>Da bi ste saznali više o procesu autorizacije, pročitajte tekst <linkCHPPDesc>CHPP - Kako ovo radi</ linkCHPPDesc> na Hattrick-u.</p>
+        <p>Da bi ste saznali više o procesu autorizacije, pročitajte tekst <linkCHPPDesc>CHPP - Kako ovo radi</linkCHPPDesc> na Hattrick-u.</p>
         
-        <p>Neki od modula zahtijevaju pristup podacima da bi radili pravilno: </ p>
+        <p>Neki od modula zahtijevaju pristup podacima da bi radili pravilno: </p>
         
         <ul>
         <li><module>Crosstab</module></li>
@@ -56,10 +56,10 @@ hr:
     privacy: 
       question: Kako će Foxtrick zaštititi moju privatnost?
       answer: |
-        <p>Foxtrick neće prikupljati ni bilo gdje prenositi vaše osobne podatke ni postavke; niti će na druge stranice automatski prosljeđivati ​​bilo koji od vaših osobnih podataka, uključujući i ime za logiranje, lozinku, ID-ove igrača ili njihove osobine i vještine. </ p>
+        <p>Foxtrick neće prikupljati ni bilo gdje prenositi vaše osobne podatke ni postavke; niti će na druge stranice automatski prosljeđivati ​​bilo koji od vaših osobnih podataka, uključujući i ime za logiranje, lozinku, ID-ove igrača ili njihove osobine i vještine.</p>
         
         <p>Podaci koji se prosljeđuju drugim stranicama, osim ako je to izričito navedeno ispod, šalju se 'HTTP GET' metodom, i to samo ako vi kliknete na link ka tom alatu ili stranici.</p>
         
         <p>Uz to, možete i vidjeti sve podatke koji se prosljeđuju jer će biti naznačeni u 'URI' (Uniform Resource Identifier) eksternom linku, i nijedan podatak neće biti poslan bez vaše dozvole. I kao što smo gore već napomenuli, nijedan vaš privatni podatak neće biti kompromitiran.</p>
         
-        <p>Jedini izuzetak predstavljaju moduli <module>HTMSPrediction</ module> i <module>HTEVPrediction</ module>, kod kojih se ocjene utakmice, 'XMLHttpRequest' metodom, šalju na odgovarajuće stranice.</p>
+        <p>Jedini izuzetak predstavljaju moduli <module>HTMSPrediction</module> i <module>HTEVPrediction</module>, kod kojih se ocjene utakmice, 'XMLHttpRequest' metodom, šalju na odgovarajuće stranice.</p>
