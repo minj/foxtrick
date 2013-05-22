@@ -33,6 +33,8 @@ Foxtrick.modules['SupporterStatsEnhancements'] = {
 			var playerNodes = xml.getElementsByTagName('Player');
 
 			var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];
+			if (!table)
+				return;
 			var th = Foxtrick
 				.createFeaturedElement(doc, Foxtrick.modules['SupporterStatsEnhancements'], 'th');
 			Foxtrick.addClass(th, 'center');
