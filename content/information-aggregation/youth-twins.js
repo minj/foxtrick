@@ -27,10 +27,11 @@ Foxtrick.modules['YouthTwins'] = {
 			args.push(['version', '1.0']);
 			Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' }, callback);
 		};
-		var getYouthAvatars = function(callback) {
+		var getYouthAvatars = function(teamId, callback) {
 			var args = [];
 			args.push(['file', 'youthavatars']);
-			args.push(['version', '1.0']);
+			args.push(['version', '1.1']);
+			args.push(['youthTeamID', teamId]);
 			Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session'}, callback);
 		};
 
@@ -52,7 +53,7 @@ Foxtrick.modules['YouthTwins'] = {
 		//callback: function to be called after HY was queried
 		var getTwinsFromHY = function(teamid, forceupdate, debug, userType, callback) {
 			getYouthPlayerList(teamid, function(playerlist) {
-				getYouthAvatars(function(avatars) {
+				getYouthAvatars(teamid, function(avatars) {
 					//urlencode xml files
 					var pl = encodeURIComponent((new window.XMLSerializer())
 					                            .serializeToString(playerlist));
