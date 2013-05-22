@@ -22,6 +22,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 			MASTERS: 'cup',							//matchMasters
 			TOURNAMENT: 'gameHTO',					//matchTournament
 			SINGLEMATCH: 'gameHTO',					//matchSingleMatch
+			LADDER: 'gameHTO',						//matchTournamentLadder
 			PREPARATION: 'gameHTO',					//matchNewbie
 			NT: 'nt',								//upcomingNationalIcon
 			YOUTHCOACH: 'youthTraining',			//upcomingYouthTrainingIcon
@@ -75,6 +76,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 					case 'matchMasters': ret.type = EVENTS.MASTERS; break;
 					case 'matchTournament': ret.type = EVENTS.TOURNAMENT; break;
 					case 'matchSingleMatch': ret.type = EVENTS.SINGLEMATCH; break;
+					case 'matchTournamentLadder': ret.type = EVENTS.LADDER; break;
 					case 'matchNewbie': ret.type = EVENTS.PREPARATION; break;
 					case 'upcomingNationalIcon': ret.type = EVENTS.NT; break;
 					case 'upcomingYouthTrainingIcon': ret.type = EVENTS.YOUTHCOACH; break;
@@ -148,6 +150,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 						break;
 						case EVENTS.CUP:
 						case EVENTS.SINGLEMATCH:
+						case EVENTS.LADDER:
 							event.end = Foxtrick.util.time
 								.toBareISOString(new Date(eventTime.valueOf() + 180 * 60 * 1000));
 						break;

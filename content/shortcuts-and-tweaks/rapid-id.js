@@ -33,6 +33,8 @@ Foxtrick.modules['RapidId'] = {
 			{ value: 'series-tournament', text: 'RapidId.tournament',
 				url: 'Community/Tournaments/Tournament.aspx?tournamentId=%n' },
 			{ value: 'match-single', text: 'RapidId.SingleMatch',
+				url: 'Club/Matches/Match.aspx?matchID=%n&SourceSystem=HTOIntegrated' },
+			{ value: 'match-ladder', text: 'RapidId.LadderMatch',
 				url: 'Club/Matches/Match.aspx?matchID=%n&SourceSystem=HTOIntegrated' }
 		];
 		var setSelected = function(val) {
