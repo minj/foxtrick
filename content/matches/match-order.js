@@ -42,9 +42,10 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					var kiturl = shirt.getAttribute('kiturl');
 					if (!kiturl && !isYouth) {
 						var shirtstyle = shirt.getAttribute('style');
-						if(shirtstyle){
-							var kiturl = shirtstyle
-								.match(/http:\/\/res.hattrick.org\/kits\/\d+\/\d+\/\d+\/\d+\//)[0];
+						if(shirtstyle) {
+							var regexp = /http:\/\/res.hattrick.org\/kits\/\d+\/\d+\/\d+\/\d+\//;
+							var kiturl = shirtstyle.search(regexp) != -1 ?
+								shirtstyle.match(regexp)[0] : '';
 							shirt.setAttribute('kiturl', kiturl);
 						}
 					}
@@ -203,8 +204,12 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 
 			if (teamid == ownteamid) {
-				Foxtrick.util.api.retrieve(doc, [['file', (isYouth ? 'youth' : '') + 'avatars']],
-				                           { cache_lifetime: 'session' },
+				Foxtrick.util.api.retrieve(doc, [
+					['file', (isYouth ? 'youth' : '') + 'avatars'],
+					['version', '1.1'],
+					[(isYouth ? 'youthT' : 't') + 'eamId', teamid]
+				  ],
+				  { cache_lifetime: 'session' },
 				  function(xml, errorText) {
 					if (errorText) {
 						/*if (loadingOtherMatches && loadingOtherMatches.parentNode) {
@@ -462,8 +467,12 @@ Foxtrick.modules['MatchOrderInterface'] = {
 					showPlayerInfo(doc.getElementById('orders'));
 			}, { teamid: teamid, current_squad: true, includeMatchInfo: true });
 
-			Foxtrick.util.api.retrieve(doc, [['file', (isYouth ? 'youth' : '') + 'avatars']],
-			                           { cache_lifetime: 'session' },
+			Foxtrick.util.api.retrieve(doc, [
+				['file', (isYouth ? 'youth' : '') + 'avatars'],
+				['version', '1.1'],
+				[(isYouth ? 'youthT' : 't') + 'eamId', teamid]
+			  ],
+			  { cache_lifetime: 'session' },
 			  function(xml, errorText) {
 				if (errorText) {
 					/*if (loadingOtherMatches && loadingOtherMatches.parentNode) {

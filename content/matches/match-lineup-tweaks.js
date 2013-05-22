@@ -426,7 +426,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var addFacesByTeamId = function(teamid, players) {
 				var avartarArgs = [
 					['file', (isYouth ? 'youth' : '') + 'avatars'],
-					['teamId', teamid],
+					[(isYouth ? 'youthT' : 't') + 'eamId', teamid],
 					['version', '1.1']
 				];
 				Foxtrick.util.api.retrieve(doc, avartarArgs, { cache_lifetime: 'session' },
