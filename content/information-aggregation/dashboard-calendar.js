@@ -170,15 +170,15 @@ Foxtrick.modules['DashboardCalendar'] = {
 			}
 		}
 
-		var cal = new BlobBuilder();
-		cal.append(
+		var cal = [];
+		cal.push(
 			'BEGIN:VCALENDAR\r\n' +
 			'VERSION:2.0\r\n' +
 			'PRODID:-//foxtrick//v' + Foxtrick.version() + '//EN\r\n'
 		);
 
 		for (var i = 0, z = events.length; i < z; ++i)
-			cal.append(
+			cal.push(
 				'BEGIN:VEVENT\r\n' +
 				'ORGANIZER;CN="Foxtrick":http://www.foxtrick.org\r\n' +
 				'DTSTAMP:' + now + '\r\n' +
@@ -210,7 +210,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 				'END:VALARM\r\n' +
 				'END:VEVENT\r\n'
 			);
-		cal.append('END:VCALENDAR\r\n');
+		cal.push('END:VCALENDAR\r\n');
 
 		var newLink = Foxtrick.createFeaturedElement(doc, this, 'a');
 		Foxtrick.addClass(newLink, 'pmArchiveLink float_right');
@@ -226,7 +226,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 		                  { src: Foxtrick.InternalPath + 'resources/img/calendar-day.png',
 		                  alt: title, title: title });
 		Foxtrick.onClick(newLink, function() {
-			saveAs(cal.getBlob('text/calendar;charset=utf-8'), 'ht-cal-' + todayString + '.ics');
+			saveAs(new Blob(cal, {type: 'text/calendar;charset=utf-8'}), 'ht-cal-' + todayString + '.ics');
 		});
 		var br = doc.querySelector('#ctl00_ctl00_CPContent_CPMain_lnkArchive + br');
 		br.parentNode.insertBefore(newLink,	br);
