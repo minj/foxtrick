@@ -41,7 +41,7 @@
 	<translation language="Albanian">
 		<translator id="2090503" name="GM-Eagle" />
 	</translation>
-	<translation language="العربية">
+	<translation language="العربية (Arabic)">
 		<translator id="9311330" name="GM-OmaniMilani" />
 	</translation>
 	<translation language="Български">
@@ -67,17 +67,22 @@
 		<translator id="2336766" name="spambot" />
 		<translator id="7776339" name="convincedd" />
 		<translator id="11335334" name="CatzHoek" />
+    <translator name="LeSchmuh" />
 	</translation>
 	<translation language="English">
 		<translator name="VikingButtch" />
 	</translation>
-	<translation language="Ελληνικά">
+	<translation language="Ελληνικά (Greek)">
 		<translator id="5055092" name="GTTWINS" />
 		<translator id="11749601" name="t54g05" />
+    <translator name="GreenHattrick" />
+    <translator name="GeorgeDoukas" />
+    <translator name="gkon13" />
 	</translation>
 	<translation language="Español">
 		<translator id="6345528" name="franory" />
 		<translator id="1957756" name="llramone_nonumber" />
+    <translator name="PBotika" />
 	</translation>
 	<translation language="Español, Centroamericano">
 		<translator id="335181" name="Baler0" />
@@ -94,13 +99,15 @@
 		<translator id="7409095" name="stephan57" />
 		<translator id="9100817" name="davidatorus" />
 		<translator id="8553822" name="armball" />
+    <translator id="8553822" name="ipefix" />
 	</translation>
 	<translation language="Frysk">
 		<translator id="440454" name="Foppe-" />
 	</translation>
-	<translation language="فارسی">
+	<translation language="فارسی (Persian)">
 		<translator id="9630939" name="Slash-ss" />
 		<translator id="10038631" name="Mohammad-SE" />
+    <translator name="dritte333" />
 	</translation>
 	<translation language="Galego">
 		<translator id="524111" name="Piper_101" />
@@ -108,7 +115,11 @@
 		<translator id="11101114" name="aaa-aaa" />
 		<translator id="2915990" name="GZ-grobas" />
 	</translation>
-	<translation language="עברית">
+  <translation language="Georgian">
+     <translator name="parjikia" />
+    <translator name="serjhanti" />
+ 	</translation>
+  <translation language="עברית (Hebrew)">
 		<translator id="716201" name="Mod-Transy" />
 		<translator id="1425439" name="playMaker-" />
 	</translation>
@@ -117,6 +128,7 @@
 		<translator id="7230071" name="TheZayc" />
 		<translator id="11758667" name="Alan_Smithee" />
 		<translator id="3613658" name="-Iuve-" />
+    <translator name="PBotika" />FTorrez 
 	</translation>
 	<translation language="Hungarian">
 		<translator id="2172516" name="csajszi" />
@@ -132,7 +144,10 @@
 		<translator id="11869364" name="LucaXVI" />
 		<translator name="marcocara1" />
 	</translation>
-	<translation language="한국어">
+	<translation language="日本語 (Japanese)">
+		<translator name="Skevevich_Onnaski" />
+	</translation>
+	<translation language="한국어 (Korean)">
 		<translator id="9845514" name="SI-CH" />
 	</translation>
 	<translation language="Latviešu">
@@ -161,6 +176,8 @@
 	<translation language="Norwegian, bokmål">
 		<translator id="6350285" name="Skoglund" />
 		<translator id="1966508" name="SLV-Ferovejecs" />
+    <translator name="skurkenmagnus" />
+    <translator name="shop" />
 	</translation>
 	<translation language="Norwegian, nynorsk">
 		<translator id="4387847" name="Krasher" />
@@ -169,6 +186,9 @@
 		<translator id="6801903" name="Homzik" />
 		<translator id="10167326" name="SilesiaVratislavia" />
 		<translator id="1641271" name="jaymz" />
+    <translator name="wyrzo1" />
+    <translator name="BigFish" />
+    <translator name="Diglize" />
 	</translation>
 	<translation language="Português">
 		<translator id="3961483" name="_recluso_" />
@@ -176,13 +196,16 @@
 		<translator id="7135171" name="McTripas" />
 		<translator id="9469076" name="MEO_Comandante" />
 		<translator id="11703834" name="Estupor" />
-	</translation>
+	  <translator name="Zeca_" />
+  </translation>
 	<translation language="Português, Brasil">
 		<translator id="8277378" name="MarceloFBrandao" />
 		<translator id="5547377" name="Mod-Guaipeca" />
+    <translator name="MartinsPF" />
 	</translation>
 	<translation language="Romanian">
 		<translator id="552640" name="slader" />
+    <translator name="aqualung01" />
 	</translation>
 	<translation language="Russian">
 		<translator id="621456" name="_KOHb_" />
@@ -190,6 +213,7 @@
 	<translation language="Slovak">
 		<translator id="7873605" name="JAM3SoN" />
 		<translator id="10942797" name="mrksik" />
+    <translator name="apatka.21" />
 	</translation>
 	<translation language="Srpski">
 		<translator id="4342858" name="ljushaff" />
@@ -198,18 +222,32 @@
 		<translator id="2689296" name="Pyntsa" />
 		<translator id="6927256" name="ElChiquitin" />
 		<translator id="7249130" name="Mod-kirjakas" />
+    <translator name="tumbe" />
+    <translator name="ripaldo" />
 	</translation>
 	<translation language="Svenska">
 		<translator id="12166" name="GM-murko" />
 		<translator id="6680572" name="GM-Nanouk" />
+    <translator name="TheBigM" />
 	</translation>
 	<translation language="Tiếng Việt">
 		<translator id="9372637" name="Murtagsh" />
+    <translator name="thaitrunghieu" />
+    <translator name="phatls" />
+    <translator name="jarxhaushinka" />
 	</translation>
-	<translation language="Ukrainian">
+	<translation language="Turkish">
+		<translator name="brauxx" />
+    <translator name="FeritAkarsu" />
+    <translator name="facha" />
+    <translator name="ebitech" />
+	</translation>
+  <translation language="Ukrainian">
 		<translator id="4727906" name="Grif_07" />
+    <translator name="vital.kpi" />
+    <translator name="RNH" />
 	</translation>
-	<translation language="中文（简体）">
+	<translation language="中文（简体） Chinese (Simplified)">
 		<translator id="8342420" name="ryanli" />
 		<translator id="12378459" name="zs_bool" />
 	</translation>
