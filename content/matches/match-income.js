@@ -48,8 +48,10 @@ Foxtrick.modules['MatchIncome'] = {
 				return true;
 			}, doc.querySelectorAll('div.reportHighlights > table'))[0];
 		}
-		if (!hasNewRatings) var table = soldSeatBox.getElementsByTagName('table')[0];
-		if (!table) return;
+		if (!hasNewRatings)
+			var table = soldSeatBox.getElementsByTagName('table')[0];
+		if (!table)
+			return;
 
 		//find correct price for match
 		//based on research in post 15703189.1
@@ -140,9 +142,9 @@ Foxtrick.modules['MatchIncome'] = {
 				var availBasicSeats = parseInt(xml.getElementsByTagName('Basic')[0].textContent, 10);
 
 				var addPercentage = function(idx, avail, usage){
-					var td = doc.createElement('td');
-					td.textContent = (100*usage/avail).toFixed(1) + '%';
-					table.rows[idx].appendChild(td);		
+					var row = table.rows[idx];
+					var td = Foxtrick.insertFeaturedCell(row, Foxtrick.modules['MatchIncome'], -1);
+					td.textContent = avail ? (100*usage/avail).toFixed(1) + '%' : '-';
 				}
 				addPercentage(0, availTerraces, visitorsTerraces);
 				addPercentage(1, availBasicSeats, visitorsBasicSeats);
