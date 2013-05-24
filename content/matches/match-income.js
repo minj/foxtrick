@@ -144,7 +144,7 @@ Foxtrick.modules['MatchIncome'] = {
 				var addPercentage = function(idx, avail, usage){
 					var row = table.rows[idx];
 					var td = Foxtrick.insertFeaturedCell(row, Foxtrick.modules['MatchIncome'], -1);
-					td.textContent = avail ? (100*usage/avail).toFixed(1) + '%' : '-';
+					td.textContent = avail ? (100 * usage / avail).toFixed(1) + '%' : '-';
 				}
 				addPercentage(0, availTerraces, visitorsTerraces);
 				addPercentage(1, availBasicSeats, visitorsBasicSeats);
