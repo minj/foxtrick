@@ -10,6 +10,9 @@ Foxtrick.modules['ConfirmActions'] = {
 	PAGES: ['playerDetails', 'staff'],
 	OPTIONS: ['Bid', 'TransferList', 'NtChange', 'StaffChange'],
 
+	/**
+	 * @param	{document}	doc
+	 */
 	run: function(doc) {
 		var ids = {
 			BID: {
@@ -56,6 +59,8 @@ Foxtrick.modules['ConfirmActions'] = {
 								.replace(new RegExp('(.{3})(?!$)', 'g'), '$1 ')
 								.split('').reverse().join('');
 							var msg = msgTemplate.replace(/\%s/, price);
+							if (Foxtrick.util.layout.hasMultipleTeams(doc))
+								msg = Foxtrick.modules['Core'].getSelfTeamInfo().teamName + ': ' + msg;
 							var confirm = Foxtrick.util.note.create(doc, msg, [
 								{
 									type: Foxtrick.util.note.BUTTON_OK,
@@ -111,6 +116,8 @@ Foxtrick.modules['ConfirmActions'] = {
 								.replace(new RegExp('(.{3})(?!$)', 'g'), '$1 ')
 								.split('').reverse().join('');
 							var msg = msgTemplate.replace(/\%s/, price);
+							if (Foxtrick.util.layout.hasMultipleTeams(doc))
+								msg = Foxtrick.modules['Core'].getSelfTeamInfo().teamName + ': ' + msg;
 							var confirm = Foxtrick.util.note.create(doc, msg,
 								[
 									{
@@ -192,6 +199,8 @@ Foxtrick.modules['ConfirmActions'] = {
 									msgTemplate = Foxtrickl10n.getString('ConfirmActions.sackstaff');
 								}
 								var msg = msgTemplate.replace(/\%num/, amount).replace(/\%kind/, roleStr);
+								if (Foxtrick.util.layout.hasMultipleTeams(doc))
+									msg = Foxtrick.modules['Core'].getSelfTeamInfo().teamName + ': ' + msg;
 								var confirm = Foxtrick.util.note.create(doc, msg,
 									[
 										{
