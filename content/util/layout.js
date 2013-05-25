@@ -104,3 +104,12 @@ Foxtrick.util.layout.mainBodyHasScroll = function(doc) {
 			return true;
 	return false;
 };
+
+/**
+ * tests whether user has multiple teams
+ * @param	{document}	doc
+ * @returns	{Boolean}
+ */
+Foxtrick.util.layout.hasMultipleTeams = function(doc) {
+	return (doc.getElementById('ctl00_ctl00_ucClubSwitcher_btnSwitchClub') !== null);
+};
