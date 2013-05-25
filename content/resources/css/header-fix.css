@@ -2,18 +2,10 @@
 @-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
 
 /* Fix the header on screen */
-#header, #ctl00_ctl00_ucClubSwitcher_btnSwitchClub {
-	position: fixed !important;
-	z-index: 10001;
-}
 #header {
-	top: 20px;
-}
-#ctl00_ctl00_ucClubSwitcher_btnSwitchClub {
+	position: fixed !important;
 	top: 0px;
-}
-.switchClubWrapper {
-	margin-top: 0px !important;
+	z-index: 10001;
 }
 
 html[data-theme="standard"] #header {
@@ -84,7 +76,7 @@ html[dir="rtl"][data-theme="standard"] #menu .logout {
 
 /* compensate for fixed header */
 #content {
-	padding-top: 125px !important;
+	padding-top: 105px !important;
 }
 
 /* fix for forumbookmark z-index 99999 */
