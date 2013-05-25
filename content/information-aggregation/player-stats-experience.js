@@ -13,7 +13,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 	OPTIONS: ['AlwaysShowAll'],
 	CSS: Foxtrick.InternalPath + 'resources/css/player-stats.css',
 	store: {},
-	pts_for_skillUp: 2576.0 / 90, //=28.622; see 15766691.423 and beyond
+	pts_for_skillUp: 200.0 / 7, //=28.571; see 15766691.780
 	run: function(doc) {
 		// National friendly match	0.1
 		// International friendly match	0.2
@@ -306,6 +306,15 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		var div = Foxtrick.createFeaturedElement(doc, this, 'div');
 
 		var span = doc.createElement('span');
+		div.appendChild(span);
+		div.appendChild(doc.createElement('br'));
+
+		var span = doc.createElement('span');
+		var textNode =
+			doc.createTextNode(Foxtrickl10n
+							   .getString('PlayerStatsExperience.PtsPerLevel')
+							   .replace(/%1/, this.pts_for_skillUp.toFixed(2)));
+		span.appendChild(textNode);
 		div.appendChild(span);
 		div.appendChild(doc.createElement('br'));
 
