@@ -310,20 +310,7 @@ Foxtrick.modules['MainMenuDropDown']={
 			var newcss = newcss.replace(/#menu\s*a\s*{/gi, "#menu h3, #menu a {");
 			newcss = newcss.replace(/#menu\s*a\s*:\s*hover\s*{/gi, "#menu li:hover, #menu a:hover {");
 			if(newcss != css) {
-				var found_first = false;
-				Foxtrick.map(function(styleNode){
-					if(styleNode.id != 'ft-module-css' && styleNode.id != 'dynamic-mmmd-style') {
-						// leave ft-
-						if (!found_first) {
-							styleNode.textContent = newcss;
-							found_first = true;
-						}
-						else {
-							// css collected, processed and reinject: we don't need these anymore
-							styleNode.parentNode.removeChild(styleNode);
-						}
-					}
-				}, doc.getElementsByTagName('style'));
+				Foxtrick.util.inject.css(doc, newcss, 'modified-ht-style');
 			}
 		});
 
