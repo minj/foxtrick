@@ -299,7 +299,7 @@ Foxtrick.modules['MainMenuDropDown']={
 				var inlinestyleNodes = doc.getElementsByTagName('style');
 				var inlineStyle = '';
 				Foxtrick.map(function(styleNode){
-					if(styleNode.id != 'ft-module-css')
+					if(styleNode.id != 'ft-module-css' && styleNode.id != 'dynamic-mmmd-style')
 						inlineStyle = inlineStyle + styleNode.textContent + '\n';
 				}, inlinestyleNodes);
 				return inlineStyle;
@@ -309,8 +309,22 @@ Foxtrick.modules['MainMenuDropDown']={
 			var newcss = css.replace(/#menu\s*{/gi, "#menu h3, #menu ul, #menu {");
 			var newcss = newcss.replace(/#menu\s*a\s*{/gi, "#menu h3, #menu a {");
 			newcss = newcss.replace(/#menu\s*a\s*:\s*hover\s*{/gi, "#menu li:hover, #menu a:hover {");
-			if(newcss != css)
-				doc.getElementsByTagName("style")[0].textContent = newcss;
+			if(newcss != css) {
+				var found_first = false;
+				Foxtrick.map(function(styleNode){
+					if(styleNode.id != 'ft-module-css' && styleNode.id != 'dynamic-mmmd-style') {
+						// leave ft-
+						if (!found_first) {
+							styleNode.textContent = newcss;
+							found_first = true;
+						}
+						else {
+							// css collected, processed and reinject: we don't need these anymore
+							styleNode.parentNode.removeChild(styleNode);
+						}
+					}
+				}, doc.getElementsByTagName('style'));
+			}
 		});
 
 		function hoverBgColor(text){
@@ -364,6 +378,6 @@ Foxtrick.modules['MainMenuDropDown']={
 		var tc = getMenuTextColor();
 	
 		var hrstyle = '#menu hr { background-color:' + tc + ' !important;} .ft-drop-down-submenu li span, #menu h3 {color:' + tc + ' !important;}';
-		Foxtrick.util.inject.css(doc, hrstyle); 
+		Foxtrick.util.inject.css(doc, hrstyle, 'dynamic-mmmd-style');
 	}
 }
