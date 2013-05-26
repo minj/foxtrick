@@ -44,6 +44,8 @@ Foxtrick.modules['TransferSearchFilters'] = {
 	//		'_30': 'ctl00_ctl00_CPContent_CPMain_txtBidMax_ClientState',
 			'_31': 'ctl00_ctl00_CPContent_CPMain_ddlGlobalSkillMax',
 			'_32': 'ctl00_ctl00_CPContent_CPMain_chkUseGlobalMax',
+			'_33': 'ctl00_ctl00_CPContent_CPMain_ddlAgeDaysMin',
+			'_34': 'ctl00_ctl00_CPContent_CPMain_ddlAgeDaysMax',
 
 			'_51': 'FoxtrickTransferSearchResultFilters.hideBruised.check',
 			'_52': 'FoxtrickTransferSearchResultFilters.hideInjured.check',
