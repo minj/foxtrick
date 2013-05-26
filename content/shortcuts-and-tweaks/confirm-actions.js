@@ -56,12 +56,17 @@ Foxtrick.modules['ConfirmActions'] = {
 								bidText[0] && bidText[0].value;
 							var price = value
 								.split('').reverse().join('')
-								.replace(new RegExp('(.{3})(?!$)', 'g'), '$1 ')
+								.replace(new RegExp('(.{3})(?!$)', 'g'), '$1' + String.fromCharCode(160))
 								.split('').reverse().join('');
 							var msg = msgTemplate.replace(/\%s/, price);
-							if (Foxtrick.util.layout.hasMultipleTeams(doc))
-								msg = Foxtrick.modules['Core'].getSelfTeamInfo().teamName + ': ' + msg;
-							var confirm = Foxtrick.util.note.create(doc, msg, [
+							var msgPara = doc.createElement('p');
+							if (Foxtrick.util.layout.hasMultipleTeams(doc)) {
+								var cont = doc.createElement('strong');
+								cont.textContent = Foxtrick.modules['Core'].getSelfTeamInfo().teamName + ': ';
+								msgPara.appendChild(cont);
+							}
+							msgPara.appendChild(doc.createTextNode(msg));
+							var confirm = Foxtrick.util.note.create(doc, msgPara, [
 								{
 									type: Foxtrick.util.note.BUTTON_OK,
 									listener: function(ev) {
@@ -113,12 +118,17 @@ Foxtrick.modules['ConfirmActions'] = {
 							var msgTemplate = Foxtrickl10n.getString('ConfirmActions.transferlist');
 							var price = sellText.value
 								.split('').reverse().join('')
-								.replace(new RegExp('(.{3})(?!$)', 'g'), '$1 ')
+								.replace(new RegExp('(.{3})(?!$)', 'g'), '$1' + String.fromCharCode(160))
 								.split('').reverse().join('');
 							var msg = msgTemplate.replace(/\%s/, price);
-							if (Foxtrick.util.layout.hasMultipleTeams(doc))
-								msg = Foxtrick.modules['Core'].getSelfTeamInfo().teamName + ': ' + msg;
-							var confirm = Foxtrick.util.note.create(doc, msg,
+							var msgPara = doc.createElement('p');
+							if (Foxtrick.util.layout.hasMultipleTeams(doc)) {
+								var cont = doc.createElement('strong');
+								cont.textContent = Foxtrick.modules['Core'].getSelfTeamInfo().teamName + ': ';
+								msgPara.appendChild(cont);
+							}
+							msgPara.appendChild(doc.createTextNode(msg));
+							var confirm = Foxtrick.util.note.create(doc, msgPara,
 								[
 									{
 										type: Foxtrick.util.note.BUTTON_OK,
@@ -199,9 +209,15 @@ Foxtrick.modules['ConfirmActions'] = {
 									msgTemplate = Foxtrickl10n.getString('ConfirmActions.sackstaff');
 								}
 								var msg = msgTemplate.replace(/\%num/, amount).replace(/\%kind/, roleStr);
-								if (Foxtrick.util.layout.hasMultipleTeams(doc))
-									msg = Foxtrick.modules['Core'].getSelfTeamInfo().teamName + ': ' + msg;
-								var confirm = Foxtrick.util.note.create(doc, msg,
+								var msgPara = doc.createElement('p');
+								if (Foxtrick.util.layout.hasMultipleTeams(doc)) {
+									var cont = doc.createElement('strong');
+									cont.textContent =
+										Foxtrick.modules['Core'].getSelfTeamInfo().teamName + ': ';
+									msgPara.appendChild(cont);
+								}
+								msgPara.appendChild(doc.createTextNode(msg));
+								var confirm = Foxtrick.util.note.create(doc, msgPara,
 									[
 										{
 											type: Foxtrick.util.note.BUTTON_OK,
