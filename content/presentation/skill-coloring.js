@@ -383,7 +383,7 @@ Foxtrick.modules['SkillColoring'] = {
 			// too little space on these pages
 			var links = doc.getElementsByTagName('a');
 			for (var i = 0, link; link = links[i]; ++i) {
-				var e = new RegExp(/\/Help\/Rules\/AppDenominations\.aspx\?lt=\w+&ll=(\d+)#(\w+)/);
+				var e = new RegExp(/\/Help\/Rules\/AppDenominations\.aspx\?.*&(?:ll|labellevel)=(\d+)#(\w+)/);
 				if (e.test(link.href)) {
 					var r = link.href.match(e), type = r[2], htIndex = r[1];
 
