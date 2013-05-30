@@ -22,7 +22,7 @@
     <name>Spanish</name>
     <code>es-ES</code>
     <phrases>1474</phrases>
-    <translated>1336</translated>
+    <translated>1337</translated>
     <approved>1</approved>
     <translated_progress>90</translated_progress>
     <approved_progress>0</approved_progress>
@@ -283,10 +283,10 @@
     <name>Swedish</name>
     <code>sv-SE</code>
     <phrases>1474</phrases>
-    <translated>1279</translated>
-    <approved>31</approved>
-    <translated_progress>87</translated_progress>
-    <approved_progress>1</approved_progress>
+    <translated>1295</translated>
+    <approved>57</approved>
+    <translated_progress>88</translated_progress>
+    <approved_progress>3</approved_progress>
   </language>
   <language>
     <name>Turkish</name>
