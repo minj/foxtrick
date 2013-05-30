@@ -18,7 +18,7 @@ en:
       note_4: Fix time recognition in Firefox when exporting <module>DashboardCalendar</module>
       note_5: '<module>MatchOrderInterface</module>: now shows avatars for multiple teams'.
       note_6: '<module>DashboardCalendar</module>: removed multiple download prompts in Firefox.'
-      note_7: '<module>HeaderFixed</module>: now displays the previously hidden team switching bar.'
+      note_7: '<module>HeaderFix</module>: now displays the previously hidden team switching bar.'
       note_8: '<module>ConfirmActions</module>: users with multiple teams will now see the name of the team they are bidding for.'
       note_9: '<module>TransferSearchFilters</module>: filters will now save player age in days as well.'
 
