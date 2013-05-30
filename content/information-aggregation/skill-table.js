@@ -987,11 +987,17 @@ Foxtrick.modules['SkillTable'] = {
 
 			// first get teams activation date. we'll need it later
 			var TeamId = Foxtrick.Pages.All.getTeamId(doc);
-			var args = [['TeamId', TeamId], ['file', 'teamdetails']];
+			var args = [['TeamId', TeamId], ['file', 'teamdetails'], ['version', '2.9']];
 			Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' },
 			  function(xml, errorText) {
 				if (xml) {
-					var activationDate = xml.getElementsByTagName('ActivationDate')[0].textContent;
+					var teams = xml.getElementsByTagName('TeamID');
+					var teamIdx = 0;
+					for (; teamIdx < teams.length; ++teamIdx) {
+						if (teams[teamIdx].textContent == TeamId)
+							break;
+					}
+					var activationDate = xml.getElementsByTagName('FoundedDate')[teamIdx].textContent;
 					Foxtrick.Pages.Players.getPlayerList(doc,
 					  function(list) {
 						// first we check transfers
