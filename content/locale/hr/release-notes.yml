@@ -12,6 +12,13 @@ hr:
       note_1: 'NOVO: <module>SupportershipExpirationDate</module>: Klikom na polje koje prikazuje preostale dane trajanja vašeg suportera, prikazat će vam se i datum isteka suportera'
       note_2: '<module>MatchIncome</module>: Dodana je opcija koja prikazuje postotak iskorištenosti sjedala pored broja gledatelja na stranici izvještaja utakmice'
       note_3: 'NOVO: <module>MainMenuDropDown</module>: Dodaje padajuće izbornike glavnom horizontalnom izborniku sa linkovima koji su inače dostupni u lijevom i desnom podizborniku odgovarajuće stranice.'
+      note_4: 'Ispravljeno prepoznavanje vremena kod izvoza <module>DashboardCalendar</module>'
+      note_5: 
+        '<module>MatchOrderInterface</module>: sada prikazuje avatare za više timova.
+      note_6: '<module>DashboardCalendar</module>: obrisana višestruka skidanja u Firefox-u.'
+      note_7: '<module>HeaderFix</module>: sada prikazuje prethodno skriven prostor za promjenu tima.'
+      note_8: '<module>ConfirmActions</module>: korisnici s više timovima će sada vidjeti ime tima za kojeg su stavili ponudu.'
+      note_9: '<module>TransferSearchFilters</module>: filter će sada spremati starost igrača i u danima.'
     0.12.0: 
       note_0: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
       note_1: 'NOVO: <module>MatchLineupTweaks</module>: Prikazuje zvjezdice u stilu sličnom starom. Dodaje ukupan broj zvjezdica i postotak gubitka vještina zbog izdržljivosti. Prikazuje specijalnost igrača i dodaje ime kluba radi smanjenja konfuzije. Prikazuje i slike igrača u postavi. Također označava i igrače u skladu s događajima na utakmici.'

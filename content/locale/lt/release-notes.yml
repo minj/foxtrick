@@ -12,6 +12,13 @@ lt:
       note_1: 'NAUJIENA: <module>SupportershipExpirationDate</module>: spragtelėjus ant HT-Rėmėjo skaitiklio „Mano biure“ pamatysite prenumeratos galiojimo datą'
       note_2: '<module>MatchIncome</module>: rungtynių ataskaitos puslapyje matysite stadiono sektorių užpildymą procentais'
       note_3: 'NAUJIENA: <module>MainMenuDropDown</module>: pagrindinį meniu papildo iškrentančiais meniu su nuorodomis, kurias matote šoniniuose atitinkamo puslapio meniu.'
+      note_4: 'Sutvarkytas laiko atpažinimas Firefox naršylėje naudojantis moduliu <module>DashboardCalendar</module>.'
+      note_5: 
+        '<module>MatchOrderInterface</module>: '<module>MatchOrderInterface</module> nuo šiol rodys žaidėjų veidus abiejų komandų nurodymų puslapiuose.'
+      note_6: '<module>DashboardCalendar</module>: Firefox naršyklė nebesiūlys parsisiųsti tvarkaraščio kelis kartus.'
+      note_7: '<module>HeaderFix</module> nuo šiol nebepaslėps juostelės komandoms keisti.'
+      note_8: '<module>ConfirmActions</module>: kelias komandas turintys vartotojai nuo šiol matys komandos, kurios vardu perka žaidėją, pavadinimą.'
+      note_9: '<module>TransferSearchFilters</module>: nuo šiol filtrai išsaugos ir dienų skaičių.'
     0.12.0: 
       note_0: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
       note_1: 'NAUJIENA: <module>MatchLineupTweaks</module>: pakeičia skaitmeninį žvaigždučių vaizdavimą į grafinį (pan. į senovinį). Naujajame sudėties puslapyje pateikia žvaigždučių ir ištvermės statistiką. Rodo žaidėjų specialybes, veidus bei komandų pavadinimus aikštės diagramoje (kad būtų aiškiau). Paryškina su tam tikrais įvykiais susijusius žaidėjus.'

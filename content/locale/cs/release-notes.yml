@@ -12,6 +12,13 @@ cs:
       note_1: 'NOVÝ: <module>SupportershipExpirationDate</module>: Kliknutí na zbývající počet dní Fanouška na hlavní stránce zobrazí datum vypršení'
       note_2: '<module>MatchIncome</module>: Přidána možnost zobrazit utilizaci sedaček v procentech vedle počtu návštěvníku na stránce zápasu'
       note_3: 'NOVÝ: <module>MainMenuDropDown</module>: Přidá vyskakovací menu k hlavní navigaci, které bude obsahovat všechny odkazy běžně umístěné v levém pruhu na dané stránce.'
+      note_4: 
+      note_5: 
+        '<module>MatchOrderInterface</module>: 
+      note_6: 
+      note_7: 
+      note_8: 
+      note_9: 
     0.12.0: 
       note_0: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
       note_1: 'NOVÉ: <module>MatchLineupTweaks</module>: Mění zobrazení počtu hvězdiček na původní (hvězdičky místo počtů). Přidává počítání hvězdiček a kondice na nové stránce s rozestavením. Zobrazí speciality u všech hráčů i název týmu na hřišti, aby nedocházelo ke zmatení. Zobrazí obličeje hráčů tvého týmu. Umožňuje zobrazit relevantní hráče pro zvolenou událost v zápase.'

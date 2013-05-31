@@ -12,6 +12,13 @@ nl:
       note_1: 'Nieuw: <module>SupportershipExpirationDate</module>: Klik op de resterende dagen in je overzicht, zal er voor zorgen dat je de vervaldatum van je supporterlidmaatschap kan zien'
       note_2: '<module>MatchIncome</module>: Er is een optie toegevoegd om de bezetting van het stadion in percentages weer te geven'
       note_3: 
+      note_4: 
+      note_5: 
+        '<module>MatchOrderInterface</module>: 
+      note_6: 
+      note_7: 
+      note_8: 
+      note_9: 
     0.12.0: 
       note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
       note_1: 'Nieuw: <module>MatchLineupTweaks</module>: Verandert de sterrenwaardering naar de oude sterren. Sterren en conditie zijn zichtbaar in de opstellingspagana. Vertoont specialiteiten voor alle spelers en toont de teamnamen om verwarring te voorkomen. Avatars van je speler zijn zichtbaar. Spelers die invloed kunnen hebben op een bepaald Special Event in een wedstrijd kunnen worden gemarkeerd. '

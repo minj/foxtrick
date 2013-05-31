@@ -12,6 +12,13 @@ sv-SE:
       note_1: 
       note_2: 
       note_3: 
+      note_4: 
+      note_5: 
+        '<module>MatchOrderInterface</module>: 
+      note_6: 
+      note_7: 
+      note_8: 
+      note_9: 
     0.12.0: 
       note_0: 
       note_1: 
@@ -78,8 +85,8 @@ sv-SE:
       note_39: 
       note_40: 
     0.10.0: 
-      note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
-      note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
+      note_0: 
+      note_1: 
       note_2: 'NEW: <module>HTEVPrediction</module>: Displays match odds for league games provided by <linkHTEV>HTEV</linkHTEV> (default on)'
       note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'
       note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'

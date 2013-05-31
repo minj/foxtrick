@@ -12,6 +12,13 @@ pl:
       note_1: 'Nowość: <module>SupportershipExpirationDate</module>: kliknięcie na dni pozostałe w pakiecie supportera na stronie głównej [?] wyświetli datę wygaśnięcia pakietu'
       note_2: '<module>MatchIncome</module>: obok liczby użytkowników na stronach meczu dodano opcję wyświetlania wykorzystania miejsc w procentach '
       note_3: 'Nowość: <module>MainMenuDropDown</module>: dodaje do głównego paska nawigacji rozwijane menu zawierające wszystkie linki zwykle dostępne w pasku bocznym strony docelowej.'
+      note_4: 
+      note_5: 
+        '<module>MatchOrderInterface</module>: 
+      note_6: 
+      note_7: 
+      note_8: 
+      note_9: 
     0.12.0: 
       note_0: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
       note_1: 'NOWOŚĆ: <moduł> MatchLineupTweaks </ module>: Zmiany liczy gwiazdy do starego stylu, jak gwiazdy. Dodaje liczniki dla gwiazd i wytrzymałość, aby na nowej stronie spisu. Pokazuje specjały dla wszystkich podmiotów i dodaje nazwę zespołu na boisku, aby ograniczyć dezorientację. Wyświetla awatary Player dla swojej drużyny. Wyróżnij graczy odpowiednich do zdarzenia w meczu.'

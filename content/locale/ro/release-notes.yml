@@ -12,6 +12,13 @@ ro:
       note_1: 
       note_2: 
       note_3: 
+      note_4: 
+      note_5: 
+        '<module>MatchOrderInterface</module>: 
+      note_6: 
+      note_7: 
+      note_8: 
+      note_9: 
     0.12.0: 
       note_0: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
       note_1: 'NOU: <module>MatchLineupTweaks</module>: Modifică numărătorul de stele pe modelul vechi. Adaugă numărători pentru stele și rezistență pe noua pagină de ordine. Afișează specilitățile jucătorilor și adaugă numele echipei pe teren pentru a limita confuzia. Afișează chipurile jucătorilor pentru echipa ta. Evidențiază jucătorii cu șanse la event într-un meci.'

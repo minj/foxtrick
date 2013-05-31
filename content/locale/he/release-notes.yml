@@ -12,6 +12,13 @@ he:
       note_1: 'חדש: <module>SupportershipExpirationDate</module>: הקלקה על הימים הנותרים של התומך ברובריקה "החשבון שלי", תציג את תאריך סיום התומך'
       note_2: '<module>MatchIncome</module>: אפשרות חדשה להצגת אחוזי ניצול המושבים באצטדיון באחוזים ליד מספר הכרטיסים שנמכרו בדף דו"ח המשחק'
       note_3: 'חדש: <module>MainMenuDropDown</module>: מוסיף תפריטים נפתחים לתפריט העל הראשי, המכילים את כל הקישורים הזמינים בדרך כלל בתפריט הצדדי של דף היעד הרלבנטי.'
+      note_4: 
+      note_5: 
+        '<module>MatchOrderInterface</module>: 
+      note_6: 
+      note_7: 
+      note_8: 
+      note_9: 
     0.12.0: 
       note_0: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
       note_1: 

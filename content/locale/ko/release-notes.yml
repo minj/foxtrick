@@ -12,6 +12,13 @@ ko:
       note_1: 'NEW: <module>SupportershipExpirationDate</module>: 대시보드에 있는 남은 Supporter 날짜를 클릭하면 만료 날짜를 표시합니다.'
       note_2: '<module>MatchIncome</module>: 경기 페이지에 관중 수 옆에 좌석 사용률을 백분율로 표시하는 옵션을 추가하였습니다.'
       note_3: 'NEW: <module>MainMenuDropDown</module>: 메인 탐색 바에 일반적으로 사용가능한 모든 링크를 포함하는 드롭 다운 메뉴를 추가합니다.'
+      note_4: 'Firefox에서 <module>DashboardCalendar</module> 내보낼 때 시간 인식 해결'
+      note_5: 
+        '<module>MatchOrderInterface</module>: '<module>MatchOrderInterface</module>은 이제 여러 팀들의 아바타를 보여 줍니다.'
+      note_6: '<module>DashboardCalendar</module>: Firefox에서 여러 개의 다운로드 확인 메시지를 제거 합니다.'
+      note_7: '<module>HeaderFix</module>: 이제 예전에 숨겨진  팀 스위칭 바를 표시합니다.'
+      note_8: '<module>ConfirmActions</module>: 여러 팀을 보유한 사용자들은 이제 입찰한 팀의 이름을 볼 것입니다.'
+      note_9: '<module>TransferSearchFilters</module>: 이제 필터에는 선수의 나이와 일수를 함께 저장합니다.'
     0.12.0: 
       note_0: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
       note_1: 'NEW: <module>MatchLineupTweaks</module>: 별 표시를 과거 스타일로 변경합니다. 새로운 라인업 페이지에 별 카운터와 체력을 추가합니다. 모든 선수의 특수능력을 표시하고 혼란을 줄이기 위해서 필드에 클럽 이름을 추가합니다. 여러분의 선수 얼굴을 표시합니다. 경기에 있었던 이벤트에 일치하는 선수를 강조합니다.'
