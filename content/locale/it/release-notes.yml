@@ -13,13 +13,13 @@ it:
         NOVITA': <module>SupportershipExpirationDate</module>: Cliccando su "giorni rimanenti del supporter" nella dashboard verrà mostrata la data di scadenza
       note_2: "<module>MatchIncome</module>: Aggiunta l'opzione per visualizzare l'utilizzo dei settori in percentuale accanto al numero di visitatori nelle pagine delle partite"
       note_3: "NOVITA': <module>MainMenuDropDown</module>: Aggiunge menù a tendina alla barra di navigazione principale contenente tutti i link solitamente accessibili nella barra laterale della pagina di destinazione."
-      note_4: 
+      note_4: 'Risolve il problema del riconoscimento del tempo in Firefox quando si esporta <module>DashboardCalendar</module>'
       note_5: 
-        '<module>MatchOrderInterface</module>: 
-      note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
+        '<module>MatchOrderInterface</module>: '<module>MatchOrderInterface</module> ora mostra avatar per più squadre.'
+      note_6: '<module>DashboardCalendar</module>: rimosse richieste multiple di download di Firefox.'
+      note_7: '<module>HeaderFix</module>: ora viene visualizzata la barra di cambio squadra precedentemente nascosta.'
+      note_8: "<module>ConfirmActions</module>: gli utenti con più squadre vedranno il nome della squadra per la quale fanno l'offerta."
+      note_9: '<module>TransferSearchFilters</module>: Ora i filtri salveranno anche i giorni del giocatore.'
     0.12.0: 
       note_0: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
       note_1: "NOVITA': <module>MatchLineupTweaks</module>: Cambia le nuove stelle nello stile precedente. Aggiunge contatori per stelle e resistenza nella nuova pagina della formazione. Mostra le specialità di tutti i giocatori e aggiunge il nome delle squadre sullo sfondo per limitare la confusione. Mostra le facce dei giocatori della tua squadra. Evidenzia i giocatori relativi all' evento della partita selezionato."

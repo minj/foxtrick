@@ -12,13 +12,13 @@ es-CR:
       note_1: 'NUEVO: <module>SupportershipExpirationDate</module>: Al hacer clic en los días restantes de tu membresía de supporter en Mi Oficina, se mostrará la fecha de vencimiento'
       note_2: '<module>CoincidirIngresos</module>: Añadida la opción para mostrar la ocupación de asientos en porcentajes, junto al número de visitantes en las página del partido'
       note_3: 'NUEVO: <module>MainMenuDropDown</module>: agrega menús desplegables a la barra de navegación principal, que generalmente contiene todos los enlaces disponibles de la barra lateral de la página de destino.'
-      note_4: 
+      note_4: 'Se arreglo el reconocimiento del tiempo en Firefox al exportar <module>DashboardCalendar</module>'
       note_5: 
-        '<module>MatchOrderInterface</module>: 
-      note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
+        '<module>MatchOrderInterface</module>: '<module>MatchOrderInterface</module> ahora muestra los avatares para varios equipos.'
+      note_6: '<module>DashboardCalendar</module>: se quitaron varios avisos de descarga en Firefox.'
+      note_7: '<module>HeaderFix</module>: ahora se muestra la barra de cambio de equipo previamente oculta.'
+      note_8: '<module>ConfirmActions</module>: los usuarios con múltiples equipos ahora podrán ver el nombre del equipo con el que están haciendo una oferta.'
+      note_9: '<module>TransferSearchFilters</module>: los filtros ahora guardaran la edad del jugador en días también.'
     0.12.0: 
       note_0: '<header>Muchas actualizaciones de la traducción, de nuestros impresionantes usuarios, se hace utilizando la <linkCrowdin>herramienta crowdin</linkCrowdin>. ¡Tu puedes ayudar también!</header>'
       note_1: 'NUEVO: <module>MatchLineupTweaks</module>: Se cmbia el recuento de estrellas al viejo estilo. Añade contadores para estrellas y condición a la nueva página de alineación. Muestra de especialidades para todos los jugadores y agrega el nombre del equipo en el campo para limitar la confusión. Muestra la cara del jugador de tu equipo. Destacan los jugadores relevantes para un evento en un partido.'
