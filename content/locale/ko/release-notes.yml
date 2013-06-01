@@ -13,8 +13,7 @@ ko:
       note_2: '<module>MatchIncome</module>: 경기 페이지에 관중 수 옆에 좌석 사용률을 백분율로 표시하는 옵션을 추가하였습니다.'
       note_3: 'NEW: <module>MainMenuDropDown</module>: 메인 탐색 바에 일반적으로 사용가능한 모든 링크를 포함하는 드롭 다운 메뉴를 추가합니다.'
       note_4: 'Firefox에서 <module>DashboardCalendar</module> 내보낼 때 시간 인식 해결'
-      note_5: 
-        '<module>MatchOrderInterface</module>: '<module>MatchOrderInterface</module>은 이제 여러 팀들의 아바타를 보여 줍니다.'
+      note_5: '<module>MatchOrderInterface</module>은 이제 여러 팀들의 아바타를 보여 줍니다.'
       note_6: '<module>DashboardCalendar</module>: Firefox에서 여러 개의 다운로드 확인 메시지를 제거 합니다.'
       note_7: '<module>HeaderFix</module>: 이제 예전에 숨겨진  팀 스위칭 바를 표시합니다.'
       note_8: '<module>ConfirmActions</module>: 여러 팀을 보유한 사용자들은 이제 입찰한 팀의 이름을 볼 것입니다.'

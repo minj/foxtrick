@@ -14,8 +14,7 @@ it:
       note_2: "<module>MatchIncome</module>: Aggiunta l'opzione per visualizzare l'utilizzo dei settori in percentuale accanto al numero di visitatori nelle pagine delle partite"
       note_3: "NOVITA': <module>MainMenuDropDown</module>: Aggiunge menù a tendina alla barra di navigazione principale contenente tutti i link solitamente accessibili nella barra laterale della pagina di destinazione."
       note_4: 'Risolve il problema del riconoscimento del tempo in Firefox quando si esporta <module>DashboardCalendar</module>'
-      note_5: 
-        '<module>MatchOrderInterface</module>: '<module>MatchOrderInterface</module> ora mostra avatar per più squadre.'
+      note_5: '<module>MatchOrderInterface</module> ora mostra avatar per più squadre.'
       note_6: '<module>DashboardCalendar</module>: rimosse richieste multiple di download di Firefox.'
       note_7: '<module>HeaderFix</module>: ora viene visualizzata la barra di cambio squadra precedentemente nascosta.'
       note_8: "<module>ConfirmActions</module>: gli utenti con più squadre vedranno il nome della squadra per la quale fanno l'offerta."

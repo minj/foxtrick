@@ -13,8 +13,7 @@ es-CR:
       note_2: '<module>CoincidirIngresos</module>: Añadida la opción para mostrar la ocupación de asientos en porcentajes, junto al número de visitantes en las página del partido'
       note_3: 'NUEVO: <module>MainMenuDropDown</module>: agrega menús desplegables a la barra de navegación principal, que generalmente contiene todos los enlaces disponibles de la barra lateral de la página de destino.'
       note_4: 'Se arreglo el reconocimiento del tiempo en Firefox al exportar <module>DashboardCalendar</module>'
-      note_5: 
-        '<module>MatchOrderInterface</module>: '<module>MatchOrderInterface</module> ahora muestra los avatares para varios equipos.'
+      note_5: '<module>MatchOrderInterface</module> ahora muestra los avatares para varios equipos.'
       note_6: '<module>DashboardCalendar</module>: se quitaron varios avisos de descarga en Firefox.'
       note_7: '<module>HeaderFix</module>: ahora se muestra la barra de cambio de equipo previamente oculta.'
       note_8: '<module>ConfirmActions</module>: los usuarios con múltiples equipos ahora podrán ver el nombre del equipo con el que están haciendo una oferta.'

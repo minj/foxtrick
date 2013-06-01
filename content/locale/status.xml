@@ -15,7 +15,7 @@
     <phrases>1480</phrases>
     <translated>1480</translated>
     <approved>0</approved>
-    <translated_progress>100</translated_progress>
+    <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -150,7 +150,7 @@
     <phrases>1480</phrases>
     <translated>1481</translated>
     <approved>0</approved>
-    <translated_progress>100</translated_progress>
+    <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -177,7 +177,7 @@
     <phrases>1480</phrases>
     <translated>1481</translated>
     <approved>0</approved>
-    <translated_progress>100</translated_progress>
+    <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -220,9 +220,9 @@
     <name>Polish</name>
     <code>pl</code>
     <phrases>1480</phrases>
-    <translated>1346</translated>
+    <translated>1361</translated>
     <approved>0</approved>
-    <translated_progress>91</translated_progress>
+    <translated_progress>92</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -375,7 +375,7 @@
     <phrases>1480</phrases>
     <translated>1480</translated>
     <approved>0</approved>
-    <translated_progress>100</translated_progress>
+    <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -384,7 +384,7 @@
     <phrases>1480</phrases>
     <translated>1481</translated>
     <approved>0</approved>
-    <translated_progress>100</translated_progress>
+    <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -392,9 +392,9 @@
     <code>hr</code>
     <phrases>1480</phrases>
     <translated>1480</translated>
-    <approved>1480</approved>
-    <translated_progress>100</translated_progress>
-    <approved_progress>100</approved_progress>
+    <approved>1479</approved>
+    <translated_progress>99</translated_progress>
+    <approved_progress>99</approved_progress>
   </language>
   <language>
     <name>Norwegian Nynorsk</name>
