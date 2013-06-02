@@ -129,19 +129,18 @@ Foxtrick.modules['MainMenuDropDown']={
 				}
 			}
 			this.concat = function(menus, target){
-				var secondary = target;
+				var secondary = this.menus[target];
 				Foxtrick.map(function(newMenu){
-					var exists = Foxtrick.any(function(menu){
-						if(menu.url === newMenu.url && menu.name === newMenu.name)
-							return true;
-						
+					Foxtrick.any(function(menu){
+						if(menu.url === newMenu.url && menu.name === newMenu.name) {
+							secondary = Foxtrick.remove(secondary, menu);
+							return true; // stops on first match
+						}
 						return false;
 					}, secondary);
-					if(!exists)
-						secondary.push(newMenu);
-					
+					secondary.push(newMenu);
 				}, menus);
-				target = secondary;	
+				this.menus[target] = secondary;
 			}
 			this.learn = function(doc){
 				//learns secondary menus from current document
@@ -258,8 +257,8 @@ Foxtrick.modules['MainMenuDropDown']={
 					return menulist;
 				}
 
-				this.concat( getPrimaryMenus(doc), this.menus.primary );
-				this.concat( getSecondaryMenus(doc),  this.menus.secondary );
+				this.concat(getPrimaryMenus(doc), 'primary');
+				this.concat(getSecondaryMenus(doc), 'secondary');
 			}
 		}
 
