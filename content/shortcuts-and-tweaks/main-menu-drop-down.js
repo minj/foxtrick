@@ -159,29 +159,36 @@ Foxtrick.modules['MainMenuDropDown']={
 							return false;
 						};
 						var linkOnlyBox = true;
-						for(var child = 0; child < boxBody.childNodes.length; child++){
+						for(var c = 0; c < boxBody.childNodes.length; c++) {
+							var child = boxBody.childNodes[c];
 							//ignore stupid empty textnodes or line break
-							if(isEmptyTextNode(boxBody.childNodes[child]) || boxBody.childNodes[child].tagName == 'BR' ){
+							if (isEmptyTextNode(child) || child.tagName == 'BR' ) {
 								//that's okay
-							} else if(boxBody.childNodes[child].tagName != 'A'){
+							}
+							else if(child.tagName != 'A') {
 								//hack out those anchor tags that are wrapped in paragraphs for some reason
-								if(boxBody.childNodes[child].tagName == 'P' || boxBody.childNodes[child].tagName == 'SPAN'){
+								if (child.tagName == 'P' || child.tagName == 'SPAN') {
 									var ok = true;
-									Foxtrick.map(function(node){
-										if(!isEmptyTextNode(node) && node.tagName != 'A')
+									Foxtrick.map(function(node) {
+										if (!isEmptyTextNode(node) && node.tagName != 'A')
 											ok = false;
-									}, boxBody.childNodes[child].childNodes);
-									if(ok){
-										Foxtrick.log("Hacked arround unecessary <p>/</span> wrapping");
+									}, child.childNodes);
+									// allow supporter player category
+									if (child.tagName == 'SPAN' &&
+										child.id.match(/PlayersMenu_rep\d+_ctl\d+_lbCategory/))
+										ok = true;
+									if (ok) {
+										Foxtrick.log('Hacked arround unecessary <p>/</span> wrapping');
 										continue;
 									}
-								} else if(boxBody.childNodes[child].tagName == 'DIV'){
-									if(boxBody.childNodes[child].getAttribute('style') && boxBody.childNodes[child].getAttribute('style').match(/clear:both;/)){
-										Foxtrick.log("Hacked arround clear both div");
+								}
+								else if (child.tagName == 'DIV') {
+									if (child.getAttribute('style') && child.getAttribute('style').match(/clear:both;/)){
+										Foxtrick.log('Hacked arround clear both div');
 										continue;
 									}
-									if(Foxtrick.hasClass(boxBody.childNodes[child], 'supHlRepSpecial')){
-										Foxtrick.log("Ignored supporter scarf");
+									if (Foxtrick.hasClass(child, 'supHlRepSpecial')) {
+										Foxtrick.log('Ignored supporter scarf');
 										continue;
 									}
 								}
