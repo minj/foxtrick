@@ -211,9 +211,10 @@ Foxtrick.modules['MainMenuDropDown']={
 								if(link.href.match(/javascript\:/))
 									return;
 
-								var entry = {}
+								var entry = {};
 								entry.text = Foxtrick.trim(link.textContent);
-								entry.link = link.href.replace(/^.*\/\/[^\/]+/, '');
+								entry.link = !Foxtrick.isHtUrl(link.href) ? link.href :
+									link.href.replace(/^.*\/\/[^\/]+/, '');
 								menu.entries.push(entry);
 							}, links);
 
@@ -247,7 +248,8 @@ Foxtrick.modules['MainMenuDropDown']={
 							Foxtrick.map(function(link){
 								var entry = {};
 								entry.text = Foxtrick.trim(link.textContent);
-								entry.link = link.href.replace(/^.*\/\/[^\/]+/, '');
+								entry.link = !Foxtrick.isHtUrl(link.href) ? link.href :
+									link.href.replace(/^.*\/\/[^\/]+/, '');
 								menu.entries.push( entry );
 							}, links);
 							menulist.push(menu);
