@@ -65,8 +65,10 @@ Foxtrick.modules.MatchPlayerColouring = {
 				|| (n.href.search(/NationalTeam\/NationalTeam\.aspx\?teamId=\d+/) > -1);
 		};
 
-		if (Foxtrick.Pages.Match.hasNewRatings(doc))
+		if (Foxtrick.Pages.Match.hasNewRatings(doc)) {
 			var teams = doc.getElementById('testingNewHeader').getElementsByTagName('h1')[0].getElementsByTagName('a');
+			var sidebar = doc.getElementsByClassName('tblHighlights')[0];
+		}
 		else {
 			var sidebar = doc.getElementById('sidebar');
 			var teams = sidebar.getElementsByTagName('table')[0].getElementsByTagName('a');
@@ -159,28 +161,26 @@ Foxtrick.modules.MatchPlayerColouring = {
 					}
 				}, links);
 
-				if (!Foxtrick.Pages.Match.hasNewRatings(doc)) {
-					// add class for sidebar event rows
-					var sidebarLinks = Foxtrick.filter(function(n) {
-						return n.hasAttribute('href');
-					}, sidebar.getElementsByTagName('a'));
-					var homeLinks = Foxtrick.filter(function(n) {
-						return (getPlayerId(n) != null)
-							&& Foxtrick.hasClass(n, homeClass);
-					}, sidebarLinks);
-					var awayLinks = Foxtrick.filter(function(n) {
-						return (getPlayerId(n) != null)
-							&& Foxtrick.hasClass(n, awayClass);
-					}, sidebarLinks);
-					Foxtrick.map(function(n) {
-						Foxtrick.addClass(n.parentNode.parentNode,
-							'ft-match-event-home');
-					}, homeLinks);
-					Foxtrick.map(function(n) {
-						Foxtrick.addClass(n.parentNode.parentNode,
-							'ft-match-event-away');
-					}, awayLinks);
-				}
+				// add class for sidebar event rows (aligns cards etc according to team)
+				var sidebarLinks = Foxtrick.filter(function(n) {
+					return n.hasAttribute('href');
+				}, sidebar.getElementsByTagName('a'));
+				var homeLinks = Foxtrick.filter(function(n) {
+					return (getPlayerId(n) != null)
+						&& Foxtrick.hasClass(n, homeClass);
+				}, sidebarLinks);
+				var awayLinks = Foxtrick.filter(function(n) {
+					return (getPlayerId(n) != null)
+						&& Foxtrick.hasClass(n, awayClass);
+				}, sidebarLinks);
+				Foxtrick.map(function(n) {
+					Foxtrick.addClass(n.parentNode.parentNode,
+						'ft-match-event-home');
+				}, homeLinks);
+				Foxtrick.map(function(n) {
+					Foxtrick.addClass(n.parentNode.parentNode,
+						'ft-match-event-away');
+				}, awayLinks);
 			});
 		});
 	}
