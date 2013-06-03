@@ -259,7 +259,7 @@ var FoxtrickPrefs = {
 	},
 
 	LoadPrefs: function(string) {
-		var format = /user_pref\("extensions\.foxtrick\.prefs\.(.+)",(.+)\);/;
+		var format = /user_pref\("extensions\.foxtrick\.prefs\.(.+?)",(.+)\);/;
 		var lines = string.split('\n');
 		for (var i = 0; i < lines.length; ++i) {
 			try {
