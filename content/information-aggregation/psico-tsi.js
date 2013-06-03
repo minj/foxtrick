@@ -33,6 +33,6 @@ Foxtrick.modules['PsicoTSI'] = {
 	 * @param	{document}	doc
 	 */
 	run: function(doc) {
-		Foxtrick.log('OH HI');
+		Foxtrick.log('OH  HI');
 	},
 };
