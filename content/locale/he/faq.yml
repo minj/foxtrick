@@ -24,7 +24,7 @@ he:
         <li>Opera: wav, ogg</li>
         </ul>
     sound-location: 
-      question: מהי מגבלת הגודל עבור צלילי התראה, והיכן ניתן למקמם?
+      question: מהי מגבלת הגודל עבור קבצי צלילי ההתראה, והיכן ניתן למקמם?
       answer: 
     authorize: 
       question: למה לי לאשר לפוקסטריק לגשת למידע על קבוצתי?

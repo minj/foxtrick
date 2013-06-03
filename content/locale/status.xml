@@ -76,9 +76,9 @@
     <name>Danish</name>
     <code>da</code>
     <phrases>1480</phrases>
-    <translated>1420</translated>
+    <translated>1426</translated>
     <approved>1420</approved>
-    <translated_progress>95</translated_progress>
+    <translated_progress>96</translated_progress>
     <approved_progress>95</approved_progress>
   </language>
   <language>
@@ -130,16 +130,16 @@
     <name>Hebrew</name>
     <code>he</code>
     <phrases>1480</phrases>
-    <translated>1369</translated>
+    <translated>1377</translated>
     <approved>0</approved>
-    <translated_progress>92</translated_progress>
+    <translated_progress>93</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>Hungarian</name>
     <code>hu</code>
     <phrases>1480</phrases>
-    <translated>1366</translated>
+    <translated>1373</translated>
     <approved>193</approved>
     <translated_progress>92</translated_progress>
     <approved_progress>15</approved_progress>
@@ -283,10 +283,10 @@
     <name>Swedish</name>
     <code>sv-SE</code>
     <phrases>1480</phrases>
-    <translated>1300</translated>
-    <approved>297</approved>
+    <translated>1303</translated>
+    <approved>313</approved>
     <translated_progress>88</translated_progress>
-    <approved_progress>20</approved_progress>
+    <approved_progress>21</approved_progress>
   </language>
   <language>
     <name>Turkish</name>
