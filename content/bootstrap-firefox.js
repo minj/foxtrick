@@ -53,6 +53,7 @@ FoxtrickFirefox.prototype = {
 		'lib/yaml.js',
 		'lib/BlobBuilder.min.js',
 		'lib/FileSaver.min.js',
+		'lib/psico.js',
 
 		//<!-- core modules -->
 		'redirections.js',
@@ -123,6 +124,7 @@ FoxtrickFirefox.prototype = {
 		"information-aggregation/nt-peek.js",
 		"information-aggregation/player-birthday.js",
 		"information-aggregation/player-stats-experience.js",
+		"information-aggregation/psico-tsi.js",
 		"information-aggregation/season-stats.js",
 		"information-aggregation/series-flags.js",
 		"information-aggregation/show-friendly-booked.js",

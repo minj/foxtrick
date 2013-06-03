@@ -48,6 +48,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/lib/yaml.js</string>
 				<string>content/lib/BlobBuilder.min.js</string>
 				<string>content/lib/FileSaver.min.js</string>
+				<string>content/lib/psico.js</string>
 
 				<!-- utilities -->
 				<string>content/util/api.js</string>
@@ -147,6 +148,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/information-aggregation/nt-peek.js</string>
 				<string>content/information-aggregation/player-birthday.js</string>
 				<string>content/information-aggregation/player-stats-experience.js</string>
+				<string>content/information-aggregation/psico-tsi.js</string>
 				<string>content/information-aggregation/season-stats.js</string>
 				<string>content/information-aggregation/series-flags.js</string>
 				<string>content/information-aggregation/show-friendly-booked.js</string>

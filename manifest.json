@@ -63,6 +63,7 @@
 			"content/lib/jester.js",
 			"content/lib/BlobBuilder.min.js",
 			"content/lib/FileSaver.min.js",
+			"content/lib/psico.js",
 
 			//<!-- core modules -->
 			"content/redirections.js",
@@ -134,6 +135,7 @@
 			"content/information-aggregation/nt-peek.js",
 			"content/information-aggregation/player-birthday.js",
 			"content/information-aggregation/player-stats-experience.js",
+			"content/information-aggregation/psico-tsi.js",
 			"content/information-aggregation/season-stats.js",
 			"content/information-aggregation/series-flags.js",
 			"content/information-aggregation/show-friendly-booked.js",
