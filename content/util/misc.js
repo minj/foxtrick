@@ -455,3 +455,13 @@ Foxtrick.decodeBase64 = function(str) {
 		return null;
 	}
 };
+
+/**
+ * Hyperbolic tangent (overflows ~700)
+ * Returns [-1; 1]
+ * @param	{Number}	x
+ * @returns	{Number}
+ */
+Foxtrick.tanh = function(x) {
+	return (Math.exp(x) - Math.exp(-x)) / (Math.exp(x) + Math.exp(-x));
+};
