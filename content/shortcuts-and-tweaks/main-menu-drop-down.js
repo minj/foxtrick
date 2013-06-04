@@ -95,10 +95,10 @@ Foxtrick.modules['MainMenuDropDown']={
 				secondary : []
 			}
 			this.save = function(){
-				Foxtrick.localSet('Menu.v3.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId + '.' + FoxtrickPrefs.getString('htLanguage'), { menus : this.menus });
+				Foxtrick.localSet('Menu.v4.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId + '.' + FoxtrickPrefs.getString('htLanguage'), { menus : this.menus });
 			}
 			this.load = function(func){
-				Foxtrick.localGet('Menu.v3.'  + Foxtrick.modules['Core'].getSelfTeamInfo().teamId + '.' + FoxtrickPrefs.getString('htLanguage'), function(menu){
+				Foxtrick.localGet('Menu.v4.'  + Foxtrick.modules['Core'].getSelfTeamInfo().teamId + '.' + FoxtrickPrefs.getString('htLanguage'), function(menu){
 					if(!menu){
 						func(new NavigationStructure());
 					} else {
@@ -109,8 +109,9 @@ Foxtrick.modules['MainMenuDropDown']={
 				});
 			}
 			this.getMenusForUrl = function(url, source){
+				var properUrl = url.replace(/^.*\/\/[^\/]+/, '').replace(/Default\.aspx/i, '');
 				var primaries = Foxtrick.filter(function(entry){
-					if(entry.url == url.replace(/^.*\/\/[^\/]+/, ''))
+					if(entry.url.toLowerCase() == properUrl.toLowerCase())
 						return true;
 					else
 						return false;
@@ -132,7 +133,8 @@ Foxtrick.modules['MainMenuDropDown']={
 				var secondary = this.menus[target];
 				Foxtrick.map(function(newMenu){
 					Foxtrick.any(function(menu){
-						if(menu.url === newMenu.url && menu.name === newMenu.name) {
+						if(menu.url.toLowerCase() === newMenu.url.toLowerCase() &&
+						   menu.name === newMenu.name) {
 							secondary = Foxtrick.remove(secondary, menu);
 							return true; // stops on first match
 						}
@@ -202,7 +204,8 @@ Foxtrick.modules['MainMenuDropDown']={
 
 							var menu = {};
 							menu.name = Foxtrick.trim(header.textContent);
-							menu.url = doc.location.href.replace(/^.*\/\/[^\/]+/, '');
+							menu.url = doc.location.href.replace(/^.*\/\/[^\/]+/, '')
+								.replace(/Default\.aspx/i, '');
 							menu.entries = [];
 							menu.timestamp = (new Date()).getTime();
 
@@ -220,7 +223,7 @@ Foxtrick.modules['MainMenuDropDown']={
 								var entry = {};
 								entry.text = Foxtrick.trim(link.textContent);
 								entry.link = !Foxtrick.isHtUrl(link.href) ? link.href :
-									link.href.replace(/^.*\/\/[^\/]+/, '');
+									link.href.replace(/^.*\/\/[^\/]+/, '').replace(/Default\.aspx/i, '');
 								menu.entries.push(entry);
 							}, links);
 
@@ -246,7 +249,8 @@ Foxtrick.modules['MainMenuDropDown']={
 
 							menu.entries = [];
 							menu.timestamp = (new Date()).getTime();
-							menu.url = doc.location.href.replace(/^.*\/\/[^\/]+/, '');
+							menu.url = doc.location.href.replace(/^.*\/\/[^\/]+/, '')
+								.replace(/Default\.aspx/i, '');
 						}
 						if(node.tagName === 'UL'){
 							var links = node.getElementsByTagName('a');
@@ -255,7 +259,7 @@ Foxtrick.modules['MainMenuDropDown']={
 								var entry = {};
 								entry.text = Foxtrick.trim(link.textContent);
 								entry.link = !Foxtrick.isHtUrl(link.href) ? link.href :
-									link.href.replace(/^.*\/\/[^\/]+/, '');
+									link.href.replace(/^.*\/\/[^\/]+/, '').replace(/Default\.aspx/i, '');
 								menu.entries.push( entry );
 							}, links);
 							menulist.push(menu);
