@@ -20,10 +20,6 @@ Foxtrick.modules['HeaderFix'] = {
 
 	run: function(doc) {
 
-		if (Foxtrick.util.layout.hasMultipleTeams(doc))
-			Foxtrick.util.inject.cssLink(doc, Foxtrick.InternalPath +
-										 'resources/css/header-fix-multiple.css');
-
 		var isArena = Foxtrick.isPage(doc, 'arena');
 		var isMatch = Foxtrick.isPage(doc, 'match');
 

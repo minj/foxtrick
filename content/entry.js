@@ -211,6 +211,8 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 				doc.location.href.search(/Forum/i) == -1 ? 'default' : 'forum');
 		}
 		html.setAttribute(Foxtrick.platform, '');
+		if (Foxtrick.util.layout.hasMultipleTeams(doc))
+			html.setAttribute('data-multiple', '');
 
 		// reload CSS if not loaded
 		if (!Foxtrick.entry.cssLoaded) {
