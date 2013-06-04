@@ -7,6 +7,18 @@
 	top: 0px;
 	z-index: 10001;
 }
+html[data-multiple] #header {
+	top: 20px !important;
+}
+
+#ctl00_ctl00_ucClubSwitcher_btnSwitchClub {
+	position: fixed !important;
+	top: 0px;
+	z-index: 10001;
+}
+#ctl00_ctl00_ucClubSwitcher_pnlSwitchClub {
+	margin-top: 0px !important;
+}
 
 html[data-theme="standard"] #header {
 	width: 949px;
@@ -77,6 +89,9 @@ html[dir="rtl"][data-theme="standard"] #menu .logout {
 /* compensate for fixed header */
 #content {
 	padding-top: 105px !important;
+}
+html[data-multiple] #content {
+	padding-top: 125px !important;
 }
 
 /* fix for forumbookmark z-index 99999 */
