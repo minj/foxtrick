@@ -7,7 +7,7 @@
 
 Foxtrick.modules['PersonalityImages'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
-	PAGES: ['playerDetails', 'training'],
+	PAGES: ['playerDetails', 'training', 'matchStatus', 'matchReferees'],
 
 	run: function(doc) {
 		var skills = doc.getElementsByClassName('skill');

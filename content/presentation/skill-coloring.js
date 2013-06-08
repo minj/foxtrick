@@ -184,6 +184,8 @@ Foxtrick.modules['SkillColoring'] = {
 	addSkill: function(doc, el, type, htIndex, skill_number, skill_translated,
 	                   skill_translated_title, isProblemPage) {
 
+		var text = el.textContent;
+
 		var skill = this.NAMES[type][htIndex];
 		var level;
 		if (!(this.NAMES[type] instanceof Array))
@@ -381,9 +383,13 @@ Foxtrick.modules['SkillColoring'] = {
 			var isProblemPage = (Foxtrick.isPage(doc, 'players') ||
 			                     Foxtrick.isPage(doc, 'transferSearchResult'));
 			// too little space on these pages
-			var links = doc.getElementsByTagName('a');
+			var l = doc.getElementsByTagName('a');
+			// turn this into an array
+			var links = Foxtrick.map(function(link) {
+				return link;
+			}, l);
+			var e = /\/Help\/Rules\/AppDenominations\.aspx\?.*&(?:ll|labellevel)=(\d+)#(\w+)/;
 			for (var i = 0, link; link = links[i]; ++i) {
-				var e = new RegExp(/\/Help\/Rules\/AppDenominations\.aspx\?.*&(?:ll|labellevel)=(\d+)#(\w+)/);
 				if (e.test(link.href)) {
 					var r = link.href.match(e), type = r[2], htIndex = r[1];
 
