@@ -284,9 +284,9 @@
     <code>sv-SE</code>
     <phrases>1480</phrases>
     <translated>1315</translated>
-    <approved>339</approved>
+    <approved>349</approved>
     <translated_progress>89</translated_progress>
-    <approved_progress>22</approved_progress>
+    <approved_progress>23</approved_progress>
   </language>
   <language>
     <name>Turkish</name>
@@ -421,6 +421,15 @@
     <translated>942</translated>
     <approved>0</approved>
     <translated_progress>64</translated_progress>
+    <approved_progress>0</approved_progress>
+  </language>
+  <language>
+    <name>Azerbaijani</name>
+    <code>az</code>
+    <phrases>1480</phrases>
+    <translated>58</translated>
+    <approved>0</approved>
+    <translated_progress>3</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
