@@ -239,8 +239,8 @@ Foxtrick.modules['Core'] = {
 			};
 			Foxtrick.localGet('shortTeamName.' + this.SELF_TEAM_INFO.teamId,
 			  function(name) {
-				if (! name) {
-					if (! doc.getElementById('ctl00_ctl00_ucOngoingEvents_lblOngoingEvents'))
+				if (!name) {
+					if (!doc.getElementsByClassName('ongoingEvents'))
 						return;
 					name = Foxtrick.modules['Core'].SELF_TEAM_INFO.teamName;
 					Foxtrick.localSet('shortTeamName.' +
