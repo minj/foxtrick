@@ -2,7 +2,7 @@
 
 	<!-- rating sublevels appearing in match detail page. copy "text" -->
 	<ratingSubLevels>
-		<sublevel text="(heel laag)" value="0.0" />
+		<sublevel text="(zeer laag)" value="0.0" />
 		<sublevel text="(laag)" value="0.25" />
 		<sublevel text="(hoog)" value="0.50" />
 		<sublevel text="(zeer hoog)" value="0.75" />
