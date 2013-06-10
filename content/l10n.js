@@ -8,6 +8,7 @@ var Foxtrickl10n = {
 	locales: [
 		// english names and ids are also in chpps worldlanguages.xml
 		'ar',	// العربية, arabic	22
+		'az',	// Azərbaycanca, azerbaijani 100
 		'be',	// Беларуская, belorus	84
 		'bg',	// Български, bulgarian	43
 		'bs',	// Bosanski	58
@@ -63,6 +64,7 @@ var Foxtrickl10n = {
 	],
 	htMapping: {
 		'ar': 'ar',	// العربية, arabic	22
+		'az': 'az', // Azərbaycanca, azerbaijani
 		'be': 'be',	// Беларуская, belorus	84
 		'bg': 'bg',	// Български, bulgarian	43
 		'bs': 'bs',	// Bosanski	58
