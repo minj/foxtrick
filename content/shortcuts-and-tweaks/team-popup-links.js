@@ -43,7 +43,7 @@ Foxtrick.modules['TeamPopupLinks'] = {
 		'SendMessage': {
 			linkByTeam: '/Club/?TeamID=[teamid]&redir_to_mail=true',
 			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_mail=true',
-			linkByUserName: '/MyHattrick/Inbox/Default.aspx?actionType=newMail&mailto=[username]'
+			linkByUserName: '/MyHattrick/Inbox/Default.aspx?actionType=newMail&alias=[username]'
 		},
 		'Challenge': {
 			linkByTeam: '/Club/Challenges/?TeamID=[teamid]&challenge=true',
