@@ -417,7 +417,6 @@ pref("extensions.foxtrick.prefs.module.LocalTime.local", false);
 pref("extensions.foxtrick.prefs.module.LoyaltyDisplay.enabled", true);
 pref("extensions.foxtrick.prefs.module.MainMenuDropDown.enabled", true);
 pref("extensions.foxtrick.prefs.module.MainMenuDropDown.DisregardFirstHeader.enabled", true);
-pref("extensions.foxtrick.prefs.module.MainMenuDropDown.RemoveSidebarMenu.enabled", false);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.enabled", false);
 pref("extensions.foxtrick.prefs.module.ManagerButtons.GuestBook.enabled", false);
 pref("extensions.foxtrick.prefs.module.MarkAllAsRead.enabled", true);
@@ -429,7 +428,6 @@ pref("extensions.foxtrick.prefs.module.MatchLineupFixes.AddLinksInOrders.enabled
 pref("extensions.foxtrick.prefs.module.MatchLineupFixes.AddStarsToSubs.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupFixes.FixMultipleEvents.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupFixes.FixWeatherSEs.enabled", true);
-pref("extensions.foxtrick.prefs.module.MatchLineupFixes.SyncTimeline.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.AddSubstiutionInfo.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchLineupTweaks.ConvertStars.enabled", true);
