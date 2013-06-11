@@ -11,7 +11,7 @@ nl:
       note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
       note_1: 'Nieuw: <module>SupportershipExpirationDate</module>: Klik op de resterende dagen in je overzicht, zal er voor zorgen dat je de vervaldatum van je supporterlidmaatschap kan zien'
       note_2: '<module>MatchIncome</module>: Er is een optie toegevoegd om de bezetting van het stadion in percentages weer te geven'
-      note_3: 
+      note_3: "Nieuw: <module>MainMenuDropDown</module>: In de hoofdmenubalk zijn de links van Mijn hattrick en Mijn Club nu via dropdownmenu's direct toegankelijk."
       note_4: 
       note_5: 
       note_6: 
