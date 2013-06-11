@@ -9,8 +9,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['match'],
 	OPTIONS: [
-		'FixWeatherSEs', 'AddStarsToSubs', 'FixMultipleEvents', 'AddLinksInOrders',
-		'SyncTimeline'
+		'FixWeatherSEs', 'AddStarsToSubs', 'FixMultipleEvents', 'AddLinksInOrders'
 	],
 	//CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-fixes.css',
 	run: function(doc) {
@@ -663,10 +662,6 @@ Foxtrick.modules['MatchLineupFixes'] = {
 
 		if (Foxtrick.Pages.Match.isWalkOver(doc.querySelector('div.mainBox table')))
 			return;
-
-		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupFixes', 'SyncTimeline'))
-			Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath +
-										'resources/js/match-timeline-sync.js');
 
 		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupFixes', 'AddLinksInOrders'))
 			addLinksInOrders();
