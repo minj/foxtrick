@@ -49,6 +49,8 @@ Foxtrick.modules['Redirections'] = {
 				tar = serv + '/Club/Transfers/transfersTeam.aspx?teamId=' + teamid;
 			else if (doc.location.href.search(/redir_to_teamhistory=true/i) != -1)
 				tar = serv + '/Club/History/?teamId=' + teamid;
+			else if (doc.location.href.search(/redir_to_flags=true/i) != -1)
+				tar = serv + '/Club/Flags/?teamId=' + teamid;
 			else if (doc.location.href.search(/redir_to_coach=true/i) != -1) {
 				if (teamid === ownteamid)
 					tar = serv + '/Club/Training/?redir_to_coach=true';
