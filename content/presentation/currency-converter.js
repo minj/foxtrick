@@ -36,100 +36,102 @@ Foxtrick.modules['CurrencyConverter'] = {
 	},
 
 	run: function(doc) {
-		// don't run on forum pages
-		if (doc.location.href.search(/Forum/i) != -1)
-			return;
+		Foxtrick.util.currency.establish(doc, function() {
+			// don't run on forum pages
+			if (doc.location.href.search(/Forum/i) != -1)
+				return;
 
-		// old stuffs
-		var oldSymbol = Foxtrick.util.currency.getSymbol();
-		var oldLength = oldSymbol.length;
-		var oldRate = Foxtrick.util.currency.getRate();
+			// old stuffs
+			var oldSymbol = Foxtrick.util.currency.getSymbol(doc);
+			var oldLength = oldSymbol.length;
+			var oldRate = Foxtrick.util.currency.getRate(doc);
 
-		// new stuffs
-		var code = FoxtrickPrefs.getString('module.CurrencyConverter.to');
-		var symbol = Foxtrick.util.currency.getSymbolByCode(code);
-		var rate = Foxtrick.util.currency.getRateByCode(code);
+			// new stuffs
+			var code = FoxtrickPrefs.getString('module.CurrencyConverter.to');
+			var symbol = Foxtrick.util.currency.getSymbolByCode(code);
+			var rate = Foxtrick.util.currency.getRateByCode(code);
 
-		// don't convert if both symbol and rate are the same
-		if ((oldSymbol == symbol) && (oldRate == rate))
-			return;
+			// don't convert if both symbol and rate are the same
+			if ((oldSymbol == symbol) && (oldRate == rate))
+				return;
 
-		// only convert in div#page
-		var page = doc.getElementById('page');
-		// only convert most inner td and p tags
-		var nodes = Foxtrick.filter(function(node) {
-				var tagName = node.tagName.toLowerCase();
-				return Foxtrick.member(tagName, ['td', 'p']) &&
-					!Foxtrick.any(function(child) {
-						return node.getElementsByTagName(child).length > 0;
-					}, ['td', 'p']);
-			}, page.getElementsByTagName('*'));
+			// only convert in div#page
+			var page = doc.getElementById('page');
+			// only convert most inner td and p tags
+			var nodes = Foxtrick.filter(function(node) {
+					var tagName = node.tagName.toLowerCase();
+					return Foxtrick.member(tagName, ['td', 'p']) &&
+						!Foxtrick.any(function(child) {
+							return node.getElementsByTagName(child).length > 0;
+						}, ['td', 'p']);
+				}, page.getElementsByTagName('*'));
 
-		// regular expressions for getting out money
-		var re = new RegExp('(-?[\\d][\\d\\.\\s]+)'
-			+ oldSymbol.replace(/\$/g, '\\$')
-			, 'g');
+			// regular expressions for getting out money
+			var re = new RegExp('(-?[\\d][\\d\\.\\s]+)'
+				+ oldSymbol.replace(/\$/g, '\\$')
+				, 'g');
 
-		// filter out nodes without currency symbols
-		var nodes = Foxtrick.filter(function(node) {
-				return node.textContent.search(re) > -1;
-			}, nodes);
+			// filter out nodes without currency symbols
+			var nodes = Foxtrick.filter(function(node) {
+					return node.textContent.search(re) > -1;
+				}, nodes);
 
-		var parseLeaf = function(node) {
-			var formatMoney = function(amt) {
-				return '(' + Foxtrick.formatNumber(newAmount, '\u00a0') + '\u00a0' + symbol + ')';
-			};
-			var matched;
-			// pairs of insert position and money denoted in new currency
-			var pairs = [];
-			// whether the money is the sole content of the node
-			var sole = false;
-			// we may have numerous entries within one node, so we loop to
-			// find out all of them
-			while ((matched = re.exec(node.textContent)) != null) {
-				var oldAmount = matched[1].replace(/\s/g, '');
-				var newAmountProjected = oldAmount * oldRate / rate;
+			var parseLeaf = function(node) {
+				var formatMoney = function(amt) {
+					return '(' + Foxtrick.formatNumber(newAmount, '\u00a0') + '\u00a0' + symbol + ')';
+				};
+				var matched;
+				// pairs of insert position and money denoted in new currency
+				var pairs = [];
+				// whether the money is the sole content of the node
+				var sole = false;
+				// we may have numerous entries within one node, so we loop to
+				// find out all of them
+				while ((matched = re.exec(node.textContent)) != null) {
+					var oldAmount = matched[1].replace(/\s/g, '');
+					var newAmountProjected = oldAmount * oldRate / rate;
 
-				//show 1 decimal for quite low values
-				if (newAmountProjected > 100 || newAmountProjected == 0)
-					var newAmount = Math.floor(newAmountProjected);
-				else
-					var newAmount = newAmountProjected.toFixed(1);
+					//show 1 decimal for quite low values
+					if (newAmountProjected > 100 || newAmountProjected == 0)
+						var newAmount = Math.floor(newAmountProjected);
+					else
+						var newAmount = newAmountProjected.toFixed(1);
 
-				var begin = re.lastIndex - matched[0].length;
-				var end = re.lastIndex;
-				sole = Foxtrick.trim(node.textContent.substr(0, begin)) == ''
-					&& Foxtrick.trim(node.textContent.substr(end)) == ''
-					&& node.parentNode.childNodes.length == 1;
+					var begin = re.lastIndex - matched[0].length;
+					var end = re.lastIndex;
+					sole = Foxtrick.trim(node.textContent.substr(0, begin)) == ''
+						&& Foxtrick.trim(node.textContent.substr(end)) == ''
+						&& node.parentNode.childNodes.length == 1;
 
-				pairs.push([end, formatMoney(newAmount)]);
-			}
-			// now we insert the money denoted in new currency
-			if (sole) {
-				var div = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.CurrencyConverter,
-				                                         'div');
-				div.textContent = pairs[0][1];
-				node.parentNode.appendChild(div);
-			}
-			else {
-				while (pairs.length) {
-					// reduce the array from the end - otherwise the indices
-					// in upcoming pairs will be wrong
-					var pair = pairs.pop();
-					var pos = pair[0];
-					var ins = pair[1];
-					node.textContent = node.textContent.substr(0, pos) + ' '
-						+ ins + node.textContent.substr(pos);
+					pairs.push([end, formatMoney(newAmount)]);
 				}
-				Foxtrick.makeFeaturedElement(node.parentNode, Foxtrick.modules.CurrencyConverter);
-			}
-		};
-		var traverse = function(node) {
-			if (node.childNodes.length == 0)
-				parseLeaf(node);
-			else
-				Foxtrick.map(traverse, node.childNodes);
-		};
-		Foxtrick.map(traverse, nodes);
+				// now we insert the money denoted in new currency
+				if (sole) {
+					var div = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.CurrencyConverter,
+															 'div');
+					div.textContent = pairs[0][1];
+					node.parentNode.appendChild(div);
+				}
+				else {
+					while (pairs.length) {
+						// reduce the array from the end - otherwise the indices
+						// in upcoming pairs will be wrong
+						var pair = pairs.pop();
+						var pos = pair[0];
+						var ins = pair[1];
+						node.textContent = node.textContent.substr(0, pos) + ' '
+							+ ins + node.textContent.substr(pos);
+					}
+					Foxtrick.makeFeaturedElement(node.parentNode, Foxtrick.modules.CurrencyConverter);
+				}
+			};
+			var traverse = function(node) {
+				if (node.childNodes.length == 0)
+					parseLeaf(node);
+				else
+					Foxtrick.map(traverse, node.childNodes);
+			};
+			Foxtrick.map(traverse, nodes);
+		});
 	}
 };
