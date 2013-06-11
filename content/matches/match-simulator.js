@@ -563,8 +563,14 @@ Foxtrick.modules.MatchSimulator = {
 			var teamtactics_select = doc.getElementById('teamtactics');
 			currentRatings[7] = teamtactics_select.selectedIndex;
 			if (teamtactics_select.value != 0 && teamtactics_select.value != 7) {
-				currentRatings[8] = tacticLevelLabel.getElementsByTagName('a')[0].href
-					.match(/\d+/)[0];
+				try {
+					currentRatings[8] = tacticLevelLabel.getElementsByTagName('a')[0].href
+						.match(/\d+/)[0];
+				}
+				catch (e) {
+					var tacticLevelText = Foxtrick.trim(tacticLevelLabel.textContent.split(':')[1]);
+					currentRatings[8] = Foxtrickl10n.getLevelFromText(tacticLevelText);
+				}
 			}
 
 			// remove other changes for clearity
