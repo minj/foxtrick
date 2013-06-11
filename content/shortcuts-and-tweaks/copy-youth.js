@@ -80,13 +80,15 @@ Foxtrick.modules['CopyYouth'] = {
 			                       null, true, null, false, timeout);
 		};
 
-		var sendTrainingReportToHY = function(matchId, trainerNode, reportNode) {
+		var sendTrainingReportToHY = function(matchId, trainerNode, reportNode, training) {
 			//assemble param string
 			var params = 'report=' + encodeURIComponent(reportNode.innerHTML);
 			params = params + '&matchId=' + matchId;
 			params = params + '&trainer=' + encodeURIComponent(trainerNode.innerHTML);
 			params = params + '&lang=' +
 				Foxtrick.modules['ReadHtPrefs'].readLanguageFromMetaTag(doc);
+			params = params + '&primaryTraining=' + training[0].value;
+			params = params + '&secondaryTraining=' + training[1].value;
 
 			Foxtrick.api.hy.postMatchReport(function() {
 				addNode(Foxtrickl10n
@@ -138,7 +140,8 @@ Foxtrick.modules['CopyYouth'] = {
 						Foxtrick.sessionSet('YouthClub.sendTrainingReport', false);
 						var reportNode = doc.getElementsByClassName('playerInfo')[0];
 						var trainerNode = doc.querySelectorAll('#mainBody > p.shy')[0];
-						sendTrainingReportToHY(matchid, trainerNode, reportNode);
+						var training = doc.querySelectorAll('#mainBody table.form select');
+						sendTrainingReportToHY(matchid, trainerNode, reportNode, training);
 					} else {
 						Foxtrick.log('Not sending to HY, YouthClub.sendTrainingReport', value);
 					}
