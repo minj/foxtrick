@@ -106,8 +106,7 @@ Foxtrick.Pages.Players = {
 					var playerNodes = xml.getElementsByTagName('Player');
 				else
 					var playerNodes = xml.getElementsByTagName('YouthPlayer');
-				var currencyRate = FoxtrickPrefs.get('CurrencyRate.' +
-													 Foxtrick.Pages.All.getOwnTeamId(doc));
+				var currencyRate = Foxtrick.util.currency.getRate(doc);
 				for (var i = 0; i < playerNodes.length; ++i) {
 					var playerNode = playerNodes[i];
 					if (!isYouth)

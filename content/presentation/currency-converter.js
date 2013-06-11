@@ -36,10 +36,10 @@ Foxtrick.modules['CurrencyConverter'] = {
 	},
 
 	run: function(doc) {
+		// don't run on forum pages
+		if (doc.location.href.search(/Forum/i) != -1)
+			return;
 		Foxtrick.util.currency.establish(doc, function() {
-			// don't run on forum pages
-			if (doc.location.href.search(/Forum/i) != -1)
-				return;
 
 			// old stuffs
 			var oldSymbol = Foxtrick.util.currency.getSymbol(doc);
