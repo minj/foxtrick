@@ -10,6 +10,7 @@ Foxtrick.modules['MatchIncome'] = {
 	PAGES: ['match', 'matchOld'],
 	OPTIONS: ['UtilizationPercentages'],
 	run: function(doc) {
+		var module = this;
 		Foxtrick.util.currency.establish(doc, function() {
 			var hasNewRatings = Foxtrick.Pages.Match.hasNewRatings(doc);
 
@@ -108,7 +109,7 @@ Foxtrick.modules['MatchIncome'] = {
 			// get rid of possible fraction
 			sum = Math.floor(sum);
 
-			var tr2 = Foxtrick.createFeaturedElement(doc, this, 'tr');
+			var tr2 = Foxtrick.createFeaturedElement(doc, module, 'tr');
 			var td2a = doc.createElement('td');
 			var td2b = doc.createElement('td');
 			tbody.appendChild(tr2);
