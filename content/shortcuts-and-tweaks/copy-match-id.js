@@ -9,11 +9,12 @@ Foxtrick.modules['CopyMatchID'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['matches', 'matchesArchive', 'matchesHistory',
 					'matchesLatest', 'arena', 'matchLineup'],
+	CSS: Foxtrick.InternalPath + 'resources/css/copy-match-id.css',
 
 	run: function(doc) {
 		var copyId = function(ev) {
 			try {
-				var matchid = ev.target.parentNode.getAttribute('matchid');
+				var matchid = ev.target.getAttribute('matchid');
 				var insertBefore = doc.getElementById('testingNewHeader') ||
 					doc.getElementsByTagName('h1')[1];
 				Foxtrick.copyStringToClipboard(matchid);
@@ -62,14 +63,9 @@ Foxtrick.modules['CopyMatchID'] = {
 					images[j].setAttribute('title', images[j].title + ': ' +
 					                       Foxtrickl10n.getString('copy.matchid'));
 					images[j] = Foxtrick.makeFeaturedElement(images[j], this);
-					var link = doc.createElement('a');
-					link.appendChild(images[j].cloneNode(true));
-					link.href = 'javascript:void(0);';
-					link.setAttribute('matchid', matchid);
-					link.setAttribute('id', '_' + this.MODULE_NAME + count);
-					Foxtrick.onClick(link, copyId);
-					var div = images[j].parentNode;
-					div.replaceChild(link, images[j]);
+					images[j].setAttribute('matchid', matchid);
+					images[j].setAttribute('id', '_' + this.MODULE_NAME + count);
+					Foxtrick.onClick(images[j], copyId);
 
 					count++;
 				}
@@ -95,14 +91,9 @@ Foxtrick.modules['CopyMatchID'] = {
 				images[i].setAttribute('title', images[i].title + ': ' +
 				                       Foxtrickl10n.getString('copy.matchid'));
 				images[i] = Foxtrick.makeFeaturedElement(images[i], this);
-				var link = doc.createElement('a');
-				link.appendChild(images[i].cloneNode(true));
-				link.href = 'javascript:void(0);';
-				link.setAttribute('matchid', matchid);
-				link.setAttribute('id', '_' + this.MODULE_NAME + count);
-				Foxtrick.onClick(link, copyId);
-				var div = images[i].parentNode;
-				div.replaceChild(link, images[i]);
+				images[i].setAttribute('matchid', matchid);
+				images[i].setAttribute('id', '_' + this.MODULE_NAME + count);
+				Foxtrick.onClick(images[i], copyId);
 
 				count++;
 				break;
