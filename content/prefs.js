@@ -22,6 +22,12 @@ var FoxtrickPrefs = {
 		return null;
 	},
 
+	/**
+	 * set a value in prefs
+	 * must pass floats as strings!
+	 * @param	{String}	key
+	 * @param	{mixed}	value
+	 */
 	set: function(key, value) {
 		var map = {
 			'string': FoxtrickPrefs.setString,
