@@ -17,22 +17,18 @@ Foxtrick.util.currency = {
 		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
 		var rate = FoxtrickPrefs.get('CurrencyRate.' + ownTeamId);
 		if (!rate) {
-			Foxtrick.log('rate nil');
 			var teamargs = [['file', 'teamdetails'], ['version', '2.9'], ['TeamId', ownTeamId]];
 			Foxtrick.util.api.retrieve(doc, teamargs, { cache_lifetime: 'session'},
 			  function(teamXml, errorText) {
 				if (teamXml) {
 					// set the correct currency
-					Foxtrick.log('got xml');
 					var teams = teamXml.getElementsByTagName('IsPrimaryClub');
 					var primaryTeamIdx = 0;
 					for (; primaryTeamIdx < teams.length; ++primaryTeamIdx) {
 						if (teams[primaryTeamIdx].textContent == 'True')
 							break;
 					}
-					Foxtrick.log('primary', primaryTeamIdx);
 					var leagueId = teamXml.getElementsByTagName('LeagueID')[primaryTeamIdx].textContent;
-					Foxtrick.log('league', leagueId, Foxtrick.util.currency.findRate(leagueId));
 					FoxtrickPrefs.set('CurrencyRate.' + ownTeamId,
 									  Foxtrick.util.currency.findRate(leagueId).toString());
 					FoxtrickPrefs.set('CurrencySymbol.' + ownTeamId,
