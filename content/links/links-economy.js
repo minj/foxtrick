@@ -37,7 +37,8 @@ Foxtrick.modules['LinksEconomy'] = {
 		Cash = nums[0];
 		newCash = nums[1];
 
-		var currencySymbol = Foxtrick.util.currency.getSymbol();
+		// symbol maybe undefined here, #care
+		var currencySymbol = Foxtrick.util.currency.getSymbol(doc);
 		var links = Foxtrick.modules['Links']
 			.getLinks('economylink', { 'Cash': Cash, 'newCash': newCash, 'Currency': currencySymbol,
 			          'owncountryid': owncountryid}, doc, this);

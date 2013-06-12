@@ -91,7 +91,9 @@ Foxtrick.Pages.Players = {
 				args.push(['includeMatchInfo', 'true']);  // senior
 				args.push(['showLastMatch', 'true']);	 // youth
 			}
-			Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session'}, callback);
+			Foxtrick.util.currency.establish(doc, function() {
+				Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session'}, callback);
+			});
 		};
 
 		var parseXml = function(xml) {
@@ -104,6 +106,7 @@ Foxtrick.Pages.Players = {
 					var playerNodes = xml.getElementsByTagName('Player');
 				else
 					var playerNodes = xml.getElementsByTagName('YouthPlayer');
+				var currencyRate = Foxtrick.util.currency.getRate(doc);
 				for (var i = 0; i < playerNodes.length; ++i) {
 					var playerNode = playerNodes[i];
 					if (!isYouth)
@@ -352,7 +355,6 @@ Foxtrick.Pages.Players = {
 							Number(playerNode.getElementsByTagName('NationalTeamID')[0].textContent);
 					}
 					if (playerNode.getElementsByTagName('Salary').length) {
-						var currencyRate = Foxtrick.util.currency.getRate();
 						// from krone to € to user-defined
 						player.salary = Math.floor(Number(playerNode.getElementsByTagName('Salary')[0]
 						                           .textContent) / (10 * currencyRate));
