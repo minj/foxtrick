@@ -437,14 +437,15 @@ Foxtrick.Pages.Players = {
 							Number(LastMatch.getElementsByTagName('PlayedMinutes')[0].textContent);
 						player.lastPositionCode =
 							Number(LastMatch.getElementsByTagName('PositionCode')[0].textContent);
-						var position =
-							Foxtrickl10n.getPositionByType(MatchRoleIDToPosition[player
-							                               .lastPositionCode]);
-						player.lastMatchText =
-							Foxtrickl10n.getString('Last_match_played_as_at',
-							                       player.lastPlayedMinutes)
-							.replace('%1', player.lastPlayedMinutes).replace('%2', position)
-							.replace('%3', dateText);
+						var pos = MatchRoleIDToPosition[player.lastPositionCode]
+						if (pos) {
+							var position = Foxtrickl10n.getPositionByType(pos);
+							player.lastMatchText =
+								Foxtrickl10n.getString('Last_match_played_as_at',
+													   player.lastPlayedMinutes)
+								.replace('%1', player.lastPlayedMinutes).replace('%2', position)
+								.replace('%3', dateText);
+						}
 					}
 					else
 						player.lastMatchText = Foxtrickl10n.getString('Last_match_didnot_play');
