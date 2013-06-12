@@ -30,7 +30,7 @@ Foxtrick.util.currency = {
 					}
 					var leagueId = teamXml.getElementsByTagName('LeagueID')[primaryTeamIdx].textContent;
 					FoxtrickPrefs.set('CurrencyRate.' + ownTeamId,
-									  Foxtrick.util.currency.findRate(leagueId));
+									  Foxtrick.util.currency.findRate(leagueId).toString());
 					FoxtrickPrefs.set('CurrencySymbol.' + ownTeamId,
 									  Foxtrick.util.currency.findSymbol(leagueId));
 					callback();
