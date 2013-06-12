@@ -381,11 +381,11 @@ var Foxtrickl10n = {
 		var path = "language/positions/position[@type='" + val + "']";
 		var text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, 'value');
 		if (text === null) {
-			Foxtrick.log('Requested sublevel of value ' + val +
+			Foxtrick.log('Requested position type of value ' + val +
 			             " doesn't exist in locale " + lang + ', try en instead.');
 			text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml.en, path, 'value');
 			if (text === null) {
-				Foxtrick.log('Requested sublevel of value ' + val +
+				Foxtrick.log('Requested position type of value ' + val +
 				             " doesn't exist, returning raw value.");
 				text = val;
 			}
