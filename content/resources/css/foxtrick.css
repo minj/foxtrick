@@ -209,7 +209,7 @@ ul.ft-pop {
 	display: none;
 	position: absolute;
 	list-style-type: none;
-	z-index: 100;
+	z-index: 101;
 	padding: 0px;
 	margin: 0px;
 }
