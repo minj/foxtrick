@@ -45,6 +45,7 @@ Codes[84]='be';		#belarus
 Codes[85]='sq';		#Albanian
 Codes[87]='mt';		#Maltese, Malta
 Codes[90]='ka';		#georgian
+Codes[100]='az';	#Azerbaijani 
 Codes[103]='es-CR';	#spanish, central america, using sub-language es-MX for crowdin support
 Codes[109]='fy-NL';	#Frisian, east-netherland/north germany
 Codes[110]='eu';	#Euskara, basque

@@ -28,13 +28,13 @@ def createDenominationsXML(doc, languageNode, lang, result):
 			cat = doc.createElement(category)
 			
 		languageNode.appendChild(cat)
-		index = len(result[lang]["denominations"][category]["names"])-1
-		for entry in result[lang]["denominations"][category]["names"]:
+		length = len(result[lang]["denominations"][category])
+		for idx, entry in enumerate( result[lang]["denominations"][category] ):
+			#print category, , entry
 			e = doc.createElement("level")
 			e.setAttribute("text", entry)
-			e.setAttribute("value", str(index))
+			e.setAttribute("value", str(length - idx - 1))
 			cat.appendChild(e)
-			index -= 1
 
 def createTacticsXML(doc, languageNode, lang, result):
 	#tactics
@@ -306,6 +306,11 @@ def crawl(ht, language_id_list = Language.Codes, outfile = 'crawled.xml'):
 			
 			lang = Language.getLanguageById(key)
 			languageStuff["denominations"] = denominationsParser.get();
+
+			file = open( "denominations.json", "w")
+			file.write( str(languageStuff["denominations"]) )
+			file.close()
+
 			
 			print "Specialties"
 			try:
