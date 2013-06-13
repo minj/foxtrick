@@ -58,7 +58,7 @@
 		'106': { 'team': ['goal', 'se_unpredictable'] },
 		'107': { 'team': ['goal', 'longshot'] },
 		'108': { 'team': ['goal', 'se_unpredictable'] },
-		'109': { 'team': ['goal', 'se_unpredictable_negative'] },
+		'109': { 'team': ['goal'], 'other': ['se_unpredictable_negative'] },
 		'110': { 'team': ['goal', 'whistle'] },
 		'111': { 'team': ['goal_C'] },
 		'112': { 'team': ['goal_L'] },
