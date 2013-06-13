@@ -12,26 +12,26 @@
 	<tactics>
 		<tactic type="normal" value="Normaal" />
 		<tactic type="pressing" value="Druk sette" />
-		<tactic type="ca" value="Tsjin-oanfallen" />
-		<tactic type="aow" value="Oanfalle oer de wjukken" />
-		<tactic type="aim" value="Oanfalle yn it midden" />
-		<tactic type="creatively" value="Kreatyf spylje" />
+		<tactic type="ca" value="Tsjinoanfallen" />
+		<tactic type="aow" value="Wjukoanfallen" />
+		<tactic type="aim" value="Sintrumoanfallen" />
+		<tactic type="creatively" value="Kreatyf spul" />
 		<tactic type="longshots" value="Ofstânsskoaten" />
 	</tactics>
 
 	<!-- positions appearing on players page. copy "value". translate "short" -->
 	<positions>
 		<position type="Keeper" value="Doelferdigener" short="Ke" />
-		<position type="Central defender" value="Sintrale Ferdigener" short="Cd" />
+		<position type="Central defender" value="Sintrale ferdigener" short="Cd" />
 		<position type="Wing back" value="Wjukferdigener" short="Wb" />
-		<position type="Inner midfielder" value="Sintrale Middenfjilder" short="Im" />
+		<position type="Inner midfielder" value="Sintrale middenfjilder" short="Im" />
 		<position type="Winger" value="Wjukspiler" short="Wi" />
 		<position type="Forward" value="Oanfaller" short="Fo" />
 	</positions>
 
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
-		<specialty type="Unpredictable" value="Ûnfoarspelber" short="Un" />
+		<specialty type="Unpredictable" value="Unfoarspelber" short="Un" />
 		<specialty type="Powerful" value="Krêftich" short="Po" />
 		<specialty type="Quick" value="Fluch" short="Qu" />
 		<specialty type="Technical" value="Technysk" short="Te" />
@@ -72,8 +72,8 @@
 		<level text="populêre spiler" value="4"/>
 		<level text="sympatyke spiler" value="3"/>
 		<level text="oangename spiler" value="2"/>
-		<level text="tsjinstridich spiler" value="1"/>
-		<level text="ferfelend figuer" value="0"/>
+		<level text="tsjinstridige spiler" value="1"/>
+		<level text="ferfelende spiler" value="0"/>
 	</agreeability>
 	
 	<!-- Honesty levels in denominations page.

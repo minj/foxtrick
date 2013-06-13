@@ -11,7 +11,7 @@
 	<!-- tactics appearing in match detail page. copy "value" -->
 	<tactics>
 		<tactic type="normal" value="Normal" />
-		<tactic type="pressing" value="Pressing" />
+		<tactic type="pressing" value="Presing" />
 		<tactic type="ca" value="Contraatac" />
 		<tactic type="aow" value="Atac pe Flancuri" />
 		<tactic type="aim" value="Atac pe Centru" />

@@ -73,7 +73,7 @@
 		<level text="eng sympathesch Persoun" value="3"/>
 		<level text="eng beléift Persoun" value="2"/>
 		<level text="eng kontrovers Persoun" value="1"/>
-		<level text="en Ekel" value="0"/>
+		<level text="eng ekleg Persoun" value="0"/>
 	</agreeability>
 	
 	<!-- Honesty levels in denominations page.

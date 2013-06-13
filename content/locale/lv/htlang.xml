@@ -68,12 +68,12 @@
 	     Translate attribute "text" by copying from there in verbatim,
 	     keep attribute "value" unchanged. -->
 	<agreeability>
-		<level text="Komandas mīlulis" value="5"/>
-		<level text="Komandas dvēsele" value="4"/>
-		<level text="Simpātiska persona" value="3"/>
-		<level text="Patīkams cilvēks" value="2"/>
-		<level text="Strīdīgs puisis" value="1"/>
-		<level text="Nešpetns tips" value="0"/>
+		<level text="komandas mīlulis" value="5"/>
+		<level text="komandas dvēsele" value="4"/>
+		<level text="simpātiska persona" value="3"/>
+		<level text="patīkams cilvēks" value="2"/>
+		<level text="strīdīgs puisis" value="1"/>
+		<level text="nešpetns tips" value="0"/>
 	</agreeability>
 	
 	<!-- Honesty levels in denominations page.
