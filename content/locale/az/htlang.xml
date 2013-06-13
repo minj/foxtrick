@@ -1,114 +1,174 @@
-<language name="en" desc="Azərbaycanca">
-
-	<!-- Rating sublevels in match report page.
-	     Translate attribute "text" by copying from there in verbatim,
-	     keep attribute "value" unchanged. -->
-	<ratingSubLevels>
-		<sublevel text="(very low)" value="0.0" />
-		<sublevel text="(low)" value="0.25" />
-		<sublevel text="(high)" value="0.50" />
-		<sublevel text="(very high)" value="0.75" />
-	</ratingSubLevels>
-
-	<!-- Tactics in match report page.
-	     Keep attribute "type" unchanged,
-	     translate attribute "value" by copying from there in verbatim. -->
-	<tactics>
-		<tactic type="normal" value="Normal" />
-		<tactic type="pressing" value="Pressing" />
-		<tactic type="ca" value="Counter-attacks" />
-		<tactic type="aow" value="Attack on wings" />
-		<tactic type="aim" value="Attack in the Middle" />
-		<tactic type="creatively" value="Play creatively" />
-		<tactic type="longshots" value="Long shots" />
-	</tactics>
-
-	<!-- Positions in players page.
-	     Keep attribute "type" unchanged,
-	     translate attribute "value" by copying from there in verbatim,
-	     translate attribute "short" according to your own will. -->
-	<positions>
-		<position type="Keeper" value="Keeper" short="GK" />
-		<position type="Central defender" value="Central defender" short="CD" />
-		<position type="Wing back" value="Wing back" short="WB" />
-		<position type="Inner midfielder" value="Inner midfielder" short="IM" />
-		<position type="Winger" value="Winger" short="WI" />
-		<position type="Forward" value="Forward" short="FW" />
-	</positions>
-
-	<!-- Specialities in player page.
-	     Keep attribute "type" unchanged,
-	     translate attribute "value" by copying from there in verbatim,
-	     translate attribute "short" according to your own will. -->
-	<specialties>
-		<specialty type="Unpredictable" value="Unpredictable" short="Un" />
-		<specialty type="Powerful" value="Powerful" short="Po" />
-		<specialty type="Quick" value="Quick" short="Qu" />
-		<specialty type="Technical" value="Technical" short="Te" />
-		<specialty type="Head" value="Head" short="He" />
-		<specialty type="Regainer" value="Regainer" short="Re" />
-	</specialties>
-
-	<!-- Skill levels in denominations page.
-	     Translate attribute "text" by copying from there in verbatim,
-	     keep attribute "value" unchanged. -->
-	<levels>
-		<level text="divine" value="20" />
-		<level text="utopian" value="19" />
-		<level text="magical" value="18" />
-		<level text="mythical" value="17" />
-		<level text="extra-terrestrial" value="16" />
-		<level text="titanic" value="15" />
-		<level text="supernatural" value="14" />
-		<level text="world class" value="13" />
-		<level text="magnificent" value="12" />
-		<level text="brilliant" value="11" />
-		<level text="outstanding" value="10" />
-		<level text="formidable" value="9" />
-		<level text="excellent" value="8" />
-		<level text="solid" value="7" />
-		<level text="passable" value="6" />
-		<level text="inadequate" value="5" />
-		<level text="weak" value="4" />
-		<level text="poor" value="3" />
-		<level text="wretched" value="2" />
-		<level text="disastrous" value="1" />
-		<level text="non-existent" value="0" />
-	</levels>
-
-	<!-- Agreeability levels in denominations page.
-	     Translate attribute "text" by copying from there in verbatim,
-	     keep attribute "value" unchanged. -->
-	<agreeability>
-		<level text="beloved team member" value="5" />
-		<level text="popular guy" value="4" />
-		<level text="sympathetic guy" value="3" />
-		<level text="pleasant guy" value="2" />
-		<level text="controversial person" value="1" />
-		<level text="nasty fellow" value="0" />
-	</agreeability>
-
-	<!-- Honesty levels in denominations page.
-	     Translate attribute "text" by copying from there in verbatim,
-	     keep attribute "value" unchanged. -->
-	<honesty>
-		<level text="saintly" value="5" />
-		<level text="righteous" value="4" />
-		<level text="upright" value="3" />
-		<level text="honest" value="2" />
-		<level text="dishonest" value="1" />
-		<level text="infamous" value="0" />
-	</honesty>
-
-	<!-- Aggressiveness levels in denominations page.
-	     Translate attribute "text" by copying from there in verbatim,
-	     keep attribute "value" unchanged. -->
-	<aggressiveness>
-		<level text="unstable" value="5" />
-		<level text="fiery" value="4" />
-		<level text="temperamental" value="3" />
-		<level text="balanced" value="2" />
-		<level text="calm" value="1" />
-		<level text="tranquil" value="0" />
-	</aggressiveness>
+<language name="az" desc="Azərbaycanca">
+		<positions>
+			<position short="MM" type="Central defender" value="Mərkəz Müdafiəçisi"/>
+			<position short="H" type="Forward" value="Hücumçu"/>
+			<position short="DY" type="Inner midfielder" value="Dayaq Yarımmüdafiəçi"/>
+			<position short="QA" type="Keeper" value="Qapıçı"/>
+			<position short="" type="Wing back" value="Cinah Müdafiəçisi"/>
+			<position short="" type="Winger" value="Cinah Yarımmüdafiəçisi"/>
+		</positions>
+		<ratingSubLevels>
+			<sublevel text="(Yüksək)" value="0.50"/>
+			<sublevel text="(Çox yüksək)" value="0.75"/>
+			<sublevel text="(Aşağı)" value="0.25"/>
+			<sublevel text="(Çox aşağı)" value="0.0"/>
+		</ratingSubLevels>
+		<specialties>
+			<specialty short="" type="Head" value="Başla oynayan"/>
+			<specialty short="" type="Powerful" value="Güclü"/>
+			<specialty short="" type="Quick" value="Cəld"/>
+			<specialty short="" type="Technical" value="Texnikalı"/>
+			<specialty short="" type="Unpredictable" value="Gözlənilməz"/>
+		</specialties>
+		<tactics>
+			<tactic type="aim" value="Ortadan hücum"/>
+			<tactic type="aow" value="Cinahlardan hücum"/>
+			<tactic type="ca" value="Əks hücumlar"/>
+			<tactic type="creatively" value="Kreativ oyna"/>
+			<tactic type="longshots" value="Uzaqdan zərbələr"/>
+			<tactic type="normal" value="Normal"/>
+			<tactic type="pressing" value="Pressinq"/>
+		</tactics>
+		<FanMatch>
+			<level text="Rəqibi darmadağın edəcəyik" value="10"/>
+			<level text="Su içmək kimi asan bir oyundur" value="9"/>
+			<level text="Biz qalib gələcəyik" value="8"/>
+			<level text="Favorit bizik" value="7"/>
+			<level text="Biz üstünük" value="6"/>
+			<level text="Qələbə asan olacaq" value="5"/>
+			<level text="Onlar üstündür" value="4"/>
+			<level text="Onlar oyunun favoritidirlər" value="3"/>
+			<level text="Biz məğlub olacağıq" value="2"/>
+			<level text="Rəqib çox üstündür" value="1"/>
+			<level text="Oyuna çıxmasaq yaxşıdır" value="0"/>
+		</FanMatch>
+		<FanMood>
+			<level text="Sizə sevgi hekayələri göndərirlər" value="11"/>
+			<level text="küçələrdə rəqs edirlər" value="10"/>
+			<level text="həyatdan razıdırlar" value="9"/>
+			<level text="xoşbəxt" value="8"/>
+			<level text="razı" value="7"/>
+			<level text="məmnun" value="6"/>
+			<level text="mülayim" value="5"/>
+			<level text="ümidsiz" value="4"/>
+			<level text="qəzəbli" value="3"/>
+			<level text="hirsli" value="2"/>
+			<level text="hiddətli" value="1"/>
+			<level text="məhvedici" value="0"/>
+		</FanMood>
+		<FanSeason>
+			<level text="Bu divizion üçün səviyyəmiz həddindən artıqdır!" value="7"/>
+			<level text="Bu mövsüm qalib olmalıyıq" value="6"/>
+			<level text="Məqsədimiz yüksək yer tutmaqdır!" value="5"/>
+			<level text="İlk dördlüyə daxilik" value="4"/>
+			<level text="Orta sıralarda yer qazansaq pis olmaz" value="3"/>
+			<level text="Burada qalmaq üçün mübarizə aparmalıyıq" value="2"/>
+			<level text="Bu divizionda hər gün bir mükafata bərabərdir" value="1"/>
+			<level text="Biz bu divizionda oynamağa layiq deyilik" value="0"/>
+		</FanSeason>
+		<aggressiveness>
+			<level text="dəyişkən" value="5"/>
+			<level text="təmkinsiz" value="4"/>
+			<level text="qızğın" value="3"/>
+			<level text="təmkinli" value="2"/>
+			<level text="mülayim" value="1"/>
+			<level text="sakit" value="0"/>
+		</aggressiveness>
+		<confidence>
+			<level text="tamamilə şişmiş" value="9"/>
+			<level text="şişmiş" value="8"/>
+			<level text="bir qədər şişmiş" value="7"/>
+			<level text="üstün" value="6"/>
+			<level text="güclü" value="5"/>
+			<level text="yaxşı" value="4"/>
+			<level text="pis" value="3"/>
+			<level text="bərbad" value="2"/>
+			<level text="fəlakətli" value="1"/>
+			<level text="mövcud deyil" value="0"/>
+		</confidence>
+		<agreeability>
+			<level text="komandanın sevimlisidir" value="5"/>
+			<level text="məşhur oğlandır" value="4"/>
+			<level text="sevimli oğlandır" value="3"/>
+			<level text="xoş xasiyyətli oğlandır" value="2"/>
+			<level text="davakar insandır" value="1"/>
+			<level text="murdar oğlandır" value="0"/>
+		</agreeability>
+		<honesty>
+			<level text="müqəddəs kimi" value="5"/>
+			<level text="ədalətli" value="4"/>
+			<level text="vicdanlı" value="3"/>
+			<level text="səmimi" value="2"/>
+			<level text="sədaqətsiz" value="1"/>
+			<level text="şərəfsiz" value="0"/>
+		</honesty>
+		<morale>
+			<level text="Yerdə Cənnət!" value="10"/>
+			<level text="buludlarda gəzirlər" value="9"/>
+			<level text="sevincli" value="8"/>
+			<level text="məmnun" value="7"/>
+			<level text="razı" value="6"/>
+			<level text="mülayim" value="5"/>
+			<level text="biganə" value="4"/>
+			<level text="əsəbi" value="3"/>
+			<level text="hiddətli" value="2"/>
+			<level text="öldürücü" value="1"/>
+			<level text="Soyuq Müharibə kimi" value="0"/>
+		</morale>
+		<levels>
+			<level text="ilahi" value="20"/>
+			<level text="əfsanəvi" value="19"/>
+			<level text="möcüzəvi" value="18"/>
+			<level text="sehirli" value="17"/>
+			<level text="hədsiz" value="16"/>
+			<level text="fövqəladə" value="15"/>
+			<level text="inanılmaz" value="14"/>
+			<level text="dünya səviyyəli" value="13"/>
+			<level text="möhtəşəm" value="12"/>
+			<level text="parlaq" value="11"/>
+			<level text="mükəmməl" value="10"/>
+			<level text="üstün" value="9"/>
+			<level text="əla" value="8"/>
+			<level text="yaxşı" value="7"/>
+			<level text="yetərli" value="6"/>
+			<level text="yetərsiz" value="5"/>
+			<level text="zəif" value="4"/>
+			<level text="pis" value="3"/>
+			<level text="bərbad" value="2"/>
+			<level text="fəlakətli" value="1"/>
+			<level text="mövcud deyil" value="0"/>
+		</levels>
+		<skillshort>
+			<level text="əla" value="8"/>
+			<level text="yaxşı" value="7"/>
+			<level text="yetərli" value="6"/>
+			<level text="yetərsiz" value="5"/>
+			<level text="zəif" value="4"/>
+			<level text="pis" value="3"/>
+			<level text="bərbad" value="2"/>
+			<level text="fəlakətli" value="1"/>
+			<level text="mövcud deyil" value="0"/>
+		</skillshort>
+		<sponsors>
+			<level text="Sizə sevgi hekayələri göndərirlər" value="9"/>
+			<level text="küçələrdə rəqs edirlər" value="8"/>
+			<level text="həyatdan razıdırlar" value="7"/>
+			<level text="xoşbəxt" value="6"/>
+			<level text="razı" value="5"/>
+			<level text="məmnun" value="4"/>
+			<level text="mülayim" value="3"/>
+			<level text="qəzəbli" value="2"/>
+			<level text="hiddətli" value="1"/>
+			<level text="məhvedici" value="0"/>
+		</sponsors>
+		<teamskills>
+			<level text="mükəmməl" value="7"/>
+			<level text="üstün" value="6"/>
+			<level text="əla" value="5"/>
+			<level text="yaxşı" value="4"/>
+			<level text="yetərli" value="3"/>
+			<level text="yetərsiz" value="2"/>
+			<level text="zəif" value="1"/>
+			<level text="pis" value="0"/>
+		</teamskills>
 </language>

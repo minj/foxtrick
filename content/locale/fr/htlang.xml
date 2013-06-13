@@ -69,10 +69,10 @@
 	     keep attribute "value" unchanged. -->
 	<agreeability>
 		<level text="type adulé par ses coéquipiers" value="5"/>
-		<level text="type populaire" value="4"/>
-		<level text="type sympathique" value="3"/>
-		<level text="type aimable" value="2"/>
-		<level text="type controversé" value="1"/>
+		<level text="gars populaire" value="4"/>
+		<level text="gars sympathique" value="3"/>
+		<level text="gars aimable" value="2"/>
+		<level text="personnage controversé" value="1"/>
 		<level text="type désagréable" value="0"/>
 	</agreeability>
 	
