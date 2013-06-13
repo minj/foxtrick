@@ -13,7 +13,7 @@ mk:
       note_2: 
       note_3: 
       note_4: 
-      note_5: 
+      note_5: '<module>MatchOrderInterface</module>: сега прикажува аватари за повеќе тимови.'
       note_6: 
       note_7: 
       note_8: 
@@ -61,28 +61,28 @@ mk:
       note_16: 
       note_17: 
       note_18: 
-      note_19: 
+      note_19: '<header>Модули поврзани со копирање</header>'
       note_20: 
       note_21: 
       note_22: 
-      note_23: 
-      note_24: 
+      note_23: Општи поправки за копирање на HT-ML.
+      note_24: '<header>Други подобрувања</header>'
       note_25: 
       note_26: 
       note_27: 
       note_28: 
-      note_29: 
-      note_30: 
-      note_31: 
+      note_29: "Форумските модли сега користат посебен знак за означување празен простор наместо '·': ова ќе помогне за Каталонскиот јазик."
+      note_30: Спречи го мешањето на ХТ приказите со Фокстрик.
+      note_31: Додадена поддршка за www.hattrick.fm
       note_32: 
-      note_33: 
+      note_33: '<header>Поддршка за прелистувачи</header>'
       note_34: 
       note_35: 
       note_36: 
       note_37: 
-      note_38: 
-      note_39: 
-      note_40: 
+      note_38: '<header>Поголемиот дел од преводите доаѓаат од нашите фантастични корисници користејќи ја <linkCrowdin>алатката crowdin</linkCrowdin>. И вие можете да помогнете!</header>'
+      note_39: '<header>Страницата за поставки и преработена.</header>'
+      note_40: '<strong>И многу многу повеќе</strong>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
