@@ -12,12 +12,12 @@ gl:
       note_1: 'NOVO: <module>SupportershipExpirationDate</module>: agora, ao facer clic nos días de supporter restantes que aparecen en "O meu Despacho", amósase a data na que remata o período de supporter.'
       note_2: '<module>MatchIncome</module>: engadiuse unha opción que permite amosar as porcentaxes de asentos ocupados xunto ao número de visitantes na páxina de partido.'
       note_3: 'NOVO: <module>MainMenuDropDown</module>: engade menús despregábeis á barra de navegación principal que conteñen todas as ligazóns que normalmente están dispoñíbeis na barra lateral da páxina obxectivo.'
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
+      note_4: 'Mellorousea detección da hora en Firefox ó exportar <module>DashboardCalendar</module>'
+      note_5: '<module>MatchOrderInterface</module>: agora amosa avatares para varios equipos.'
+      note_6: '<module>DashboardCalendar</module>: elimináronse avisos de descarga múltiples en Firefox.'
+      note_7: '<module>HeaderFix</module>: agora amosa a barra de cambio de equipo que se ocultara anteriormente.'
+      note_8: '<module>ConfirmActions</module>: agora, os usuarios con varios equipos verán o nome do equipo ó que representan cando poxan.'
+      note_9: '<module>TransferSearchFilters</module>: agora, os filtros tamén gardarán a idade dos xogadores en días.'
     0.12.0: 
       note_0: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
       note_1: 'NOVO: <module>MatchLineupTweaks</module>: cambia o reconto de estrelas e móstraas igual que antes. Engade contadores de estrelas e resistencia á nova páxina de aliñación. Amosa as especialidades de todos os xogadores e engade o nome de equipo no campo para que se vexa máis claro. Amosa os avatares dos xogadores do teu equipo. Destaca os xogadores que protagonistas dos evento do partido.'
