@@ -306,11 +306,6 @@ def crawl(ht, language_id_list = Language.Codes, outfile = 'crawled.xml'):
 			
 			lang = Language.getLanguageById(key)
 			languageStuff["denominations"] = denominationsParser.get();
-
-			file = open( "denominations.json", "w")
-			file.write( str(languageStuff["denominations"]) )
-			file.close()
-
 			
 			print "Specialties"
 			try:
