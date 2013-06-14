@@ -39,5 +39,4 @@ if __name__ == "__main__":
 	file.write('\t\t' + ',\n\t\t'.join(map(lambda a: '{ "id": %d, "name": "%s" }' % (a["id"], a["name"].encode('utf-8')), sorted_users)))
 	file.write('\n\t]\n}')
 	file.close()
-	file.close()
 	print outfile, 'written'
