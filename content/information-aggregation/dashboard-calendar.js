@@ -128,7 +128,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 					text: '18:00 » ' +
 						Foxtrickl10n.getString('dashBoardCalendar.events.' + EVENTS.INTFRREMINDER +
 						                       '.alarm'),
-					URL: 'http://www.hattrick.org/Club/Challenges/Default.aspx'
+					URL: 'http://www.hattrick.org/Club/Challenges/'
 				});
 			}
 			for (var j = 0, z = eventDays[day].length; j < z; j++) {

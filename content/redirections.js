@@ -35,7 +35,7 @@ Foxtrick.modules['Redirections'] = {
 				var username = Foxtrick.trim(doc.getElementsByTagName('h1')[1]
 				                             .getElementsByClassName('speedBrowser')[0]
 				                             .nextSibling.textContent);
-				tar = serv + '/MyHattrick/Inbox/Default.aspx?actionType=newMail&alias=' + username;
+				tar = serv + '/MyHattrick/Inbox/?actionType=newMail&alias=' + username;
 			}
 			else if (doc.location.href.search(/redir_to_lastlineup=true/i) != -1)
 				tar = serv + '/Club/Matches/MatchLineup.aspx?MatchID=&TeamID=' + teamid +
@@ -70,9 +70,9 @@ Foxtrick.modules['Redirections'] = {
 			else if (doc.location.href.search(/redir_to_matches=true/i) != -1)
 				tar = serv + '/Club/Matches/?TeamID=' + teamid;
 			else if (doc.location.href.search(/redir_to_league=true/i) != -1)
-				tar = serv + '/World/Series/Default.aspx?LeagueLevelUnitID=' + leagueid;
+				tar = serv + '/World/Series/?LeagueLevelUnitID=' + leagueid;
 			else if (doc.location.href.search(/redir_to_tournaments=true/i) != -1)
-				tar = serv + '/Community/Tournaments/Default.aspx?teamId=' + teamid;
+				tar = serv + '/Community/Tournaments/?teamId=' + teamid;
 			else if (doc.location.href.search(/redir_to_custom=true\&/i) != -1) {
 				tar = doc.location.href.replace(/.+redir_to_custom=true\&/, '');
 				tar = tar.replace(/%5Bteamid%5D|\[teamid\]/i, teamid);
@@ -102,7 +102,7 @@ Foxtrick.modules['Redirections'] = {
 					}
 				}
 				if (username !== '') {
-					tar = serv + '/MyHattrick/Inbox/Default.aspx?actionType=newMail&alias=' +
+					tar = serv + '/MyHattrick/Inbox/?actionType=newMail&alias=' +
 						username;
 				}
 			}

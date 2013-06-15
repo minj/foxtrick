@@ -48,7 +48,7 @@ Foxtrick.modules['ForumPreview'] = {
 				[/\[post\=(\d+)\.(\d+)\]/gi,
 					"<a href='/Forum/Read.aspx?t=$1&n=$2' target='_blank'>($1.$2)</a>"],
 				[/\[leagueid=(\d+)\]/gi,
-					"<a href='/World/Series/Default.aspx?LeagueLevelUnitID=$1' " +
+					"<a href='/World/Series/?LeagueLevelUnitID=$1' " +
 						"target='_blank'>($1)</a>"],
 				[/\[youthleagueid=(\d+)\]/gi,
 					"<a href='/World/Series/YouthSeries.aspx?YouthLeagueId=$1' " +
