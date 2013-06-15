@@ -23,7 +23,7 @@ Foxtrick.util.id.getOwnLeagueId = function() {
 };
 
 Foxtrick.util.id.isSeriesDetailUrl = function(href) {
-	return href.match(/Series\/\?LeagueLevelUnitID=/i);
+	return href.match(/Series\/(Default\.aspx)?\?LeagueLevelUnitID=/i);
 };
 
 Foxtrick.util.id.getLeagueLeveUnitIdFromUrl = function(url) {
@@ -251,7 +251,7 @@ Foxtrick.util.id.findLeagueLeveUnitId = function(element) {
 		return n.hasAttribute('href');
 	}, element.getElementsByTagName('a'));
 	for (var i = 0; i < links.length; i++) {
-		if (links[i].href.match(/Series\/\?LeagueLevelUnitID=/i)) {
+		if (links[i].href.match(/Series\/(Default\.aspx)?\?LeagueLevelUnitID=/i)) {
 			return Number(links[i].href.replace(/.+leagueLevelUnitID=/i, '').match(/^\d+/)[0]);
 		}
 	}
