@@ -43,7 +43,7 @@ Foxtrick.modules['TeamPopupLinks'] = {
 		'SendMessage': {
 			linkByTeam: '/Club/?TeamID=[teamid]&redir_to_mail=true',
 			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_mail=true',
-			linkByUserName: '/MyHattrick/Inbox/Default.aspx?actionType=newMail&alias=[username]'
+			linkByUserName: '/MyHattrick/Inbox/?actionType=newMail&alias=[username]'
 		},
 		'Challenge': {
 			linkByTeam: '/Club/Challenges/?TeamID=[teamid]&challenge=true',
@@ -83,7 +83,7 @@ Foxtrick.modules['TeamPopupLinks'] = {
 			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_youthmatches=true'
 		},
 		'Tournaments': {
-			linkByTeam: '/Community/Tournaments/Default.aspx?teamId=[teamid]',
+			linkByTeam: '/Community/Tournaments/?teamId=[teamid]',
 			linkByUser: '/Club/Manager/?userId=[userid]&redir_to_tournaments=true'
 		}
 	},

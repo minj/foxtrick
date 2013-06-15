@@ -36,7 +36,7 @@ Foxtrick.modules['SeriesFlags'] = {
 							var series = doc.createElement('a');
 							series.className = 'inner smallText';
 							series.textContent = data['seriesName'];
-							series.href = '/World/Series/Default.aspx?LeagueLevelUnitID=' +
+							series.href = '/World/Series/?LeagueLevelUnitID=' +
 								data['seriesId'];
 							flag.appendChild(series);
 						}

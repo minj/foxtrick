@@ -40,7 +40,7 @@ Foxtrick.modules['NewMail'] = {
 				&& newMailCount > oldMailCount) {
 				Foxtrick.util.notify.create(Foxtrickl10n.getString('notify.newMail', newMailCount)
 				                            .replace(/%s/, newMailCount), 'http://' +
-				                            doc.location.host + '/MyHattrick/Inbox/Default.aspx');
+				                            doc.location.host + '/MyHattrick/Inbox/');
 				// play sound if enabled
 				if (FoxtrickPrefs.isModuleOptionEnabled('NewMail', 'NotifyMailSound')) {
 					var sound = FoxtrickPrefs.getString('module.NewMail.NotifyMailSound_text');
@@ -86,7 +86,7 @@ Foxtrick.modules['NewMail'] = {
 				Foxtrick.util.notify.create(Foxtrickl10n.getString('notify.newForumMessage',
 				                            newForumCount).replace(/%s/, newForumCount),
 											'http://' + doc.location.host +
-											'/Forum/Default.aspx?actionType=refresh');
+											'/Forum/?actionType=refresh');
 				// play sound if enabled
 				if (FoxtrickPrefs.isModuleOptionEnabled('NewMail', 'NotifyForumSound')) {
 					var sound = FoxtrickPrefs.getString('module.NewMail.NotifyForumSound_text');

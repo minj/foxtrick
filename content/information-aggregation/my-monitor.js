@@ -45,7 +45,7 @@ Foxtrick.modules['MyMonitor'] = {
 			if (team.type == 'nt')
 				return '/Club/NationalTeam/NationalTeam.aspx?teamId=' + team.id;
 			else if (team.type == 'youth')
-				return '/Club/Youth/Default.aspx?YouthTeamID=' + team.id;
+				return '/Club/Youth/?YouthTeamID=' + team.id;
 			else // default as senior
 				return '/Club/?TeamID=' + team.id;
 		};
