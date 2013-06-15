@@ -98,7 +98,7 @@ Foxtrick.util.currency = {
 	 * @returns	{Number}	rate
 	 */
 	getRate: function(doc) {
-		return FoxtrickPrefs.get('Currency.Rate.' + Foxtrick.Pages.All.getOwnTeamId(doc));
+		return new Number(FoxtrickPrefs.get('Currency.Rate.' + Foxtrick.Pages.All.getOwnTeamId(doc)));
 	},
 	/**
 	 * find currency rate by leagueid
