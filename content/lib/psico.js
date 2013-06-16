@@ -52,6 +52,37 @@ Foxtrick.psico = {
 		return pmax;
 	},
 	/**
+	 * test whether two top skills are the same
+	 * from [frm, sta, pm, w, sco, gk, ps, df, sp]
+	 * @param	{Array}		vector	array of integers
+	 * @returns	{Boolean}
+	 */
+	undefinedMainSkill: function(vector) {
+		var vmax = 0;
+		var pmax = 0;
+		for (var i = 2; i < vector.length - 1; i++) {
+			if (vector[i] - vmax > 0) {
+				vmax = vector[i];
+				pmax = i;
+			};
+		}
+		for (var i = 2; i < vector.length - 1; i++) {
+			if (vector[i] - vector[pmax] == 0 && i != pmax) {
+				return true;
+			}
+		}
+		return false;
+	},
+	//
+	/**
+	 * checks if player is a goalkeeper by the index of highest skill
+	 * @param	{Integer}	maxSkill	index in the skill array
+	 * @returns	{Boolean}
+	 */
+	isGoalkeeper: function(maxSkill) {
+		return (maxSkill == 5);
+	},
+	/**
 	 * calculate maximum GK level using TSI
 	 * & form with sub {Low Avg High}
 	 * @param	{Integer}	TSI
@@ -92,7 +123,7 @@ Foxtrick.psico = {
 				break;
 		}
 
-		return level;
+		return level.toFixed(2);
 	},
 	/**
 	 * calculate maximum skill level
@@ -185,7 +216,7 @@ Foxtrick.psico = {
 			sublevel = 1 + (sublevel - 1) / 8;
 		}
 		// Output
-		return level + sublevel;
+		return (level + sublevel).toFixed(2);
 	},
 	/**
 	 * Neural Network simulation
@@ -399,7 +430,7 @@ Foxtrick.psico = {
 		}
 
 		if (!detectable) {
-			return null;
+			return 'N/A';
 		}
 
 		debug += 'MAIN SKILL: ' + magicNumbers[mainSkill] + '\n';
@@ -434,6 +465,8 @@ Foxtrick.psico = {
 			debug += 'WAGE_SECONDARY_COMPONENT (' + magicNumbers[loop] + '): ' +
 				parseInt(wage_sub_component, 10) + ' (' + subskill + ')\n';
 			wage -= wage_sub_component;
+			if (wage < 0)
+				return 'N/A';
 			simwage += wage_sub_component;
 		}
 
@@ -467,9 +500,9 @@ Foxtrick.psico = {
 
 		debug += 'SIM_MAIN_SKILL: ' + (simskill + 1).toFixed(2) + '\n';
 		if (debugEnabled) {
-			console.log(debug);
+			Foxtrick.log(debug);
 		}
-		return simskill + 1;
+		return (simskill + 1).toFixed(2);
 	},
 
 	// seems rather useless, leaving for now

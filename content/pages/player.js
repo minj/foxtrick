@@ -3,6 +3,10 @@
  * Utilities on player page
  * @author ryanli
  */
+if (!Foxtrick)
+	var Foxtrick = {};
+if (!Foxtrick.Pages)
+	Foxtrick.Pages = {};
 
 Foxtrick.Pages.Player = {
 	isPlayerPage: function(doc) {
