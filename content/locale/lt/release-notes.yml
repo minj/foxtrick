@@ -18,6 +18,8 @@ lt:
       note_7: '<module>HeaderFix</module> nuo šiol nebepaslėps juostelės komandoms keisti.'
       note_8: '<module>ConfirmActions</module>: kelias komandas turintys vartotojai nuo šiol matys komandos, kurios vardu perka žaidėją, pavadinimą.'
       note_9: '<module>TransferSearchFilters</module>: nuo šiol filtrai išsaugos ir dienų skaičių.'
+      note_10: Azerbaidžaniečių kalbos palaikymas.
+      note_11: Šimtas kitų pataisymų problemoms, kilusioms dėl Hattrick pokyčių.
     0.12.0: 
       note_0: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
       note_1: 'NAUJIENA: <module>MatchLineupTweaks</module>: pakeičia skaitmeninį žvaigždučių vaizdavimą į grafinį (pan. į senovinį). Naujajame sudėties puslapyje pateikia žvaigždučių ir ištvermės statistiką. Rodo žaidėjų specialybes, veidus bei komandų pavadinimus aikštės diagramoje (kad būtų aiškiau). Paryškina su tam tikrais įvykiais susijusius žaidėjus.'

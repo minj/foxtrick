@@ -19,6 +19,8 @@ it:
       note_7: '<module>HeaderFix</module>: ora viene visualizzata la barra di cambio squadra precedentemente nascosta.'
       note_8: "<module>ConfirmActions</module>: gli utenti con più squadre vedranno il nome della squadra per la quale fanno l'offerta."
       note_9: '<module>TransferSearchFilters</module>: Ora i filtri salveranno anche i giorni del giocatore.'
+      note_10: Aggiunto il supporto della lingua azera.
+      note_11: Un centinaio di altre correzioni per dei problemi causati da delle modifiche di Hattrick.
     0.12.0: 
       note_0: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
       note_1: "NOVITA': <module>MatchLineupTweaks</module>: Cambia le nuove stelle nello stile precedente. Aggiunge contatori per stelle e resistenza nella nuova pagina della formazione. Mostra le specialità di tutti i giocatori e aggiunge il nome delle squadre sullo sfondo per limitare la confusione. Mostra le facce dei giocatori della tua squadra. Evidenzia i giocatori relativi all' evento della partita selezionato."

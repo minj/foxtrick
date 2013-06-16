@@ -13,11 +13,13 @@ sv-SE:
       note_2: 
       note_3: 
       note_4: 
-      note_5: 
+      note_5: '<module>MatchOrderInterface</module>: visar nu avatarer även för sekundärlagen.'
       note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
+      note_7: "<module>HeaderFix</module>: visar nu den tidigare dolda 'lagbytarlänken' längst upp på sidan."
+      note_8: '<module>ConfirmActions</module>: Användare med två lag (platinumsupporters) kan nu se vid budgivning vilket lag man bjuder med.'
+      note_9: '<module>TransferSearchFilters</module>: filtret kommer nu att spara spelarens ålder även i dagar.'
+      note_10: Support för det azeriska språket.
+      note_11: Ett antal andra 'fixar' för problem som tillkommit pga ändringar HT gjort.
     0.12.0: 
       note_0: 
       note_1: 

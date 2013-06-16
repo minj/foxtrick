@@ -18,6 +18,8 @@ hr:
       note_7: '<module>HeaderFix</module>: sada prikazuje prethodno skriven prostor za promjenu tima.'
       note_8: '<module>ConfirmActions</module>: korisnici s više timova će sada vidjeti ime tima za kojeg su stavili ponudu.'
       note_9: '<module>TransferSearchFilters</module>: filter će sada spremati starost igrača i u danima.'
+      note_10: Dodana je podrška za azerbajđanski jezik.
+      note_11: Stotina ostalih ispravaka  prouzročenih promjenama Hattricka.
     0.12.0: 
       note_0: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
       note_1: 'NOVO: <module>MatchLineupTweaks</module>: Prikazuje zvjezdice u stilu sličnom starom. Dodaje ukupan broj zvjezdica i postotak gubitka vještina zbog izdržljivosti. Prikazuje specijalnost igrača i dodaje ime kluba radi smanjenja konfuzije. Prikazuje i slike igrača u postavi. Također označava i igrače u skladu s događajima na utakmici.'

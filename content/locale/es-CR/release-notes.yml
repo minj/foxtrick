@@ -18,6 +18,8 @@ es-CR:
       note_7: '<module>HeaderFix</module>: ahora se muestra la barra de cambio de equipo previamente oculta.'
       note_8: '<module>ConfirmActions</module>: los usuarios con múltiples equipos ahora podrán ver el nombre del equipo con el que están haciendo una oferta.'
       note_9: '<module>TransferSearchFilters</module>: los filtros ahora guardaran la edad del jugador en días también.'
+      note_10: 
+      note_11: 
     0.12.0: 
       note_0: '<header>Muchas actualizaciones de la traducción, de nuestros impresionantes usuarios, se hace utilizando la <linkCrowdin>herramienta crowdin</linkCrowdin>. ¡Tu puedes ayudar también!</header>'
       note_1: 'NUEVO: <module>MatchLineupTweaks</module>: Se cmbia el recuento de estrellas al viejo estilo. Añade contadores para estrellas y condición a la nueva página de alineación. Muestra de especialidades para todos los jugadores y agrega el nombre del equipo en el campo para limitar la confusión. Muestra la cara del jugador de tu equipo. Destacan los jugadores relevantes para un evento en un partido.'

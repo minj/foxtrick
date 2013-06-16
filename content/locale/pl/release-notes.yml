@@ -18,6 +18,8 @@ pl:
       note_7: 
       note_8: 
       note_9: 
+      note_10: 
+      note_11: 
     0.12.0: 
       note_0: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
       note_1: 'NOWOŚĆ: <moduł> MatchLineupTweaks </ module>: Zmiany liczy gwiazdy do starego stylu, jak gwiazdy. Dodaje liczniki dla gwiazd i wytrzymałość, aby na nowej stronie spisu. Pokazuje specjały dla wszystkich podmiotów i dodaje nazwę zespołu na boisku, aby ograniczyć dezorientację. Wyświetla awatary Player dla swojej drużyny. Wyróżnij graczy odpowiednich do zdarzenia w meczu.'

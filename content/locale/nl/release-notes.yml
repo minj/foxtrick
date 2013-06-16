@@ -18,6 +18,8 @@ nl:
       note_7: 
       note_8: 
       note_9: 
+      note_10: 
+      note_11: 
     0.12.0: 
       note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
       note_1: 'Nieuw: <module>MatchLineupTweaks</module>: Verandert de sterrenwaardering naar de oude sterren. Sterren en conditie zijn zichtbaar in de opstellingspagana. Vertoont specialiteiten voor alle spelers en toont de teamnamen om verwarring te voorkomen. Avatars van je speler zijn zichtbaar. Spelers die invloed kunnen hebben op een bepaald Special Event in een wedstrijd kunnen worden gemarkeerd. '

@@ -18,6 +18,8 @@ fr:
       note_7: "<module>HeaderFix</module> : affichage correct de la barre de commutation d'équipe."
       note_8: '<module>ConfirmActions</module>: les "platinums" peuvent voir avec quelle équipe ils enchérissent.'
       note_9: "<module>TransferSearchFilters</module>: les filtres sauvegarderont aussi l'âge des joueurs en jours."
+      note_10: Ajout de la langue azérie (azerbaïdjanais).
+      note_11: Une centaine d'autres correctifs pour les problèmes causés par les changements de Hattrick.
     0.12.0: 
       note_0: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'
       note_1: "NOUVEAU: <module>MatchLineupTweaks</module>: Retrouver vos étoiles dans l'ancien style. Ajout de compteurs pour les étoiles et l'endurance sur la nouvelle présentation de la composition. Afficher les spécialités des joueurs et ajouter le nom de l'équipe sur le terrain pour limiter la confusion. Afficher le visages de vos joueurs. Mise en évidence des joueurs concernés par un événement dans un match."

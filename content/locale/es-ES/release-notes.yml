@@ -18,6 +18,8 @@ es-ES:
       note_7: 
       note_8: 
       note_9: 
+      note_10: 
+      note_11: 
     0.12.0: 
       note_0: 
       note_1: 
@@ -61,24 +63,24 @@ es-ES:
       note_16: 
       note_17: 
       note_18: 
-      note_19: 
+      note_19: '<header>Copiando módulos</header>'
       note_20: 
       note_21: 
       note_22: 
       note_23: 
-      note_24: 
+      note_24: '<header>Otros ajustes</header>'
       note_25: 
       note_26: 
       note_27: 
       note_28: 
       note_29: 
       note_30: 
-      note_31: 
+      note_31: Añadido soporte para www.hattrick.fm
       note_32: 
-      note_33: 
-      note_34: 
-      note_35: 
-      note_36: 
+      note_33: '<header>Soporte del navegador</header>'
+      note_34: Arreglado el soporte de Firefox para Android 17+.
+      note_35: Firefox 12 es ahora la versión mínima para ejecutar Foxtrick.
+      note_36: Google Chrome 22 es ahora la versión mínima para ejecutar Foxtrick.
       note_37: 
       note_38: 
       note_39: 
