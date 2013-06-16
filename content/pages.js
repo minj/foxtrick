@@ -22,7 +22,7 @@ Foxtrick.ht_pages = {
 	// following are mainly used for information gathering. keep on top
 	'myHattrick'				: '/MyHattrick/$',  // that's the news page
 	'myHattrickAll' 			: '/MyHattrick/|org/$|pl/$|ws/$',
-	'teamPageAny'   			: '/Club/|/World/Series/Default.aspx',
+	'teamPageAny'   			: '/Club/|/World/Series/Default.aspx|/World/Series/?',
 
 	'all'   					: '.*',
 	'dashboard' 				: '/MyHattrick/Dashboard.aspx',

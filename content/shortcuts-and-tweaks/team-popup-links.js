@@ -402,7 +402,7 @@ Foxtrick.modules['TeamPopupLinks'] = {
 			addSpan(aLink);
 
 		// all in mainWrapper (ie. not left boxes)
-		if (sUrl.search(/Forum\/Default/i) != -1)
+		if (sUrl.search(/Forum\/(Default\.aspx)?\?/i) != -1)
 			return; // not in forum overview
 		var aLinks = doc.getElementById('mainBody').getElementsByTagName('a');
 		var i = 0, aLink;

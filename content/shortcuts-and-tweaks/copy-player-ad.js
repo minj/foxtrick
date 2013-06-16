@@ -19,7 +19,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			var empty = true;
 			for (var i = 0; i < links.length; i++) {
 				if (links[i].href.match(/Club\/\?TeamID/i)
-					|| links[i].href.match(/Youth\/Default\.aspx\?YouthTeamID=/i)) {
+					|| links[i].href.match(/Youth\/(Default\.aspx)?\?YouthTeamID=/i)) {
 					empty = false;
 					break;
 				}

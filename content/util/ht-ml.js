@@ -36,7 +36,7 @@ Foxtrick.util.htMl.getId = function(node) {
 		{ type: 'Article', re: /\?ArticleID=(\d+)/i, tag: 'articleid' },
 		{ type: 'Post', re: /\/Forum\/Read\.aspx\?t=(\d+).*&n=(\d+)/i, tag: 'post' },
 		{ type: 'Tournament', re: /\?tournamentId=(\d+)/i, tag: 'tournamentid' },
-		{ type: 'Arena', re: /\/Club\/Arena\/Default\.aspx\?ArenaID=(\d+)/i },
+		{ type: 'Arena', re: /\/Club\/Arena\/(Default\.aspx)?\?ArenaID=(\d+)/i },
 		{ type: 'League', re: /\/World\/Leagues\/League\.aspx\?LeagueID=(\d+)/i },
 		{ type: 'Cup', re: /\/World\/Cup\/\?CupID=(\d+)/i },
 		{ type: 'Region', re: /\/World\/Regions\/Region\.aspx\?RegionID=(\d+)/i },
