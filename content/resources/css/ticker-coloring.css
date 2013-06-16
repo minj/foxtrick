@@ -40,7 +40,8 @@
 	background-color: #dffffd;
 }
 /* mail - full url: /MyHattrick/Inbox/Default.aspx?actionType=readMail&messageID=... */
-#ticker a[href^="/MyHattrick/Inbox/Default.aspx"], #ticker a[href^="/Myhattrick/Inbox/Default.aspx"] {
+#ticker a[href^="/MyHattrick/Inbox/Default.aspx"], #ticker a[href^="/Myhattrick/Inbox/Default.aspx"],
+#ticker a[href^="/MyHattrick/Inbox/?actionType=readMail"], #ticker a[href^="/Myhattrick/Inbox/?actionType=readMail"]{
 	background-color: #eedfff;
 }
 

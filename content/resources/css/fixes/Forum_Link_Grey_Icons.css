@@ -28,7 +28,8 @@
   background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_del.png");
 }
 
-.cfFooter a[href*="/MyHattrick/Bookmarks/Default.aspx?actionType=add&BookmarkTypeID=4&ObjectID="]{
+.cfFooter a[href*="/MyHattrick/Bookmarks/Default.aspx?actionType=add&BookmarkTypeID=4&ObjectID="],
+.cfFooter a[href*="/MyHattrick/Bookmarks/?actionType=add&BookmarkTypeID=4&ObjectID="]{
   background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_fav.png");
 }
 
@@ -57,6 +58,7 @@
 .cfFooter a[href*="/Forum/Functions.aspx?actionTypeFunctions=delete&t="],
 .cfFooter a[href*="/Forum/Functions.aspx?actionType=delete&t="],
 .cfFooter a[href*="/MyHattrick/Bookmarks/Default.aspx?actionType=add&BookmarkTypeID=4&ObjectID="],
+.cfFooter a[href*="/MyHattrick/Bookmarks/?actionType=add&BookmarkTypeID=4&ObjectID="],
 .cfFooter a[href*="/Forum/Functions.aspx?actionTypeFunctions=ignore&t="],
 .cfFooter a[href*="/Forum/Functions.aspx?actionType=ignore&t="],
 .cfFooter .foxtrick-signaturetoggle,
