@@ -13,9 +13,9 @@ da:
       note_2: '<module>MatchIncome</module>: Du har nu mulighed for at få vist plads udnyttelse i from af procentsatser udfor antal solgte pladser på kamp siden'
       note_3: 'NYT: <module>MainMenuDropDown</module>: Tilføjer drop-down menuer til hovednavigation linjen, indeholdende alle links der normalt er tilgængelige i indholds-oversigten på den pågældende side.'
       note_4: 'Retter tids-indregning i Firefox, når du eksporterer <module>DashboardCalendar</module>'
-      note_5: 
-      note_6: 
-      note_7: 
+      note_5: '<module>MatchOrderInterface</module>: viser nu avatarer for flere hold.'
+      note_6: '<module>DashboardCalendar</module>: fjernet flere download beskeder i Firefox.'
+      note_7: '<module>HeaderFix</module>: viser nu holdskifte linje som tidligere var skjult.'
       note_8: 
       note_9: 
       note_10: 

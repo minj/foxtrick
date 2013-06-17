@@ -10,13 +10,13 @@ lt:
     sound-format: 
       question: Kuriuos garso rinkmenų formatus galima naudoti pranešimams?
       answer: |
-        <p>Skirtingos naršyklės leidžia naudoti skirtingus reikmenų formatus. Pateikiame sąrašą (kiti formatai taip pat gali veikti, jei įdiegti atitinkami naršyklės įskiepiai, pvz. „Quicktime“ groja „mp3“ rinkmenas „Firefox“ naršyklėje):</p>
+        <p>Skirtingos naršyklės leidžia naudoti skirtingus rinkmenų formatus. Pateikiame sąrašą (kiti formatai taip pat gali veikti, jei įdiegti atitinkami naršyklės įskiepiai, pvz. „Quicktime“ groja „mp3“ rinkmenas „Firefox“ naršyklėje):</p>
         
         <ul>
-        <li>„Mozilla“: „wav“, „ogg“</li>
-        <li>„Safari“ (gali prireikti „Quicktime“): „wav“, „mp3“</li>
-        <li>„Chrome“: „ogg“, „mp3“, „wav“</li>
-        <li>„Opera“: „wav“, „ogg“</li>
+        <li>Mozilla: wav, ogg</li>
+        <li>Safari (gali prireikti „Quicktime“): wav, mp3</li>
+        <li>Chrome: ogg, mp3, wav</li>
+        <li>Opera: wav, ogg</li>
         </ul>
     sound-location: 
       question: Koks garso rinkmenų dydžio limitas ir kur jas rasti?
@@ -33,7 +33,7 @@ lt:
         
         <p>Norinti CHPP sąsaja siųsti duomenis apie Jūsų komandą, grupę, nacionalines rinktines ir pan. pirma reikia autorizuoti FoxTrick.</p>
         
-        <p>FoxTrick autorizuojamas įvedus savo prisijungimo duomenis „chpp.hattrick.org“ tinklalapyje ir nukopijavimus suteiktą patvirtinimo kodą į FoxTrick. Viso proceso metu FoxTrick nežinos Jūsų prisijungimo duomenų.</p>
+        <p>FoxTrick autorizuojamas įvedus savo prisijungimo duomenis „chpp.hattrick.org“ tinklalapyje ir nukopijavus suteiktą patvirtinimo kodą į FoxTrick. Viso proceso metu FoxTrick nežinos Jūsų prisijungimo duomenų.</p>
         
         <p>Jei norite sužinoti daugiau apie šį procesą, perskaitykite Hattrick puslapį „<linkCHPPDesc>CHPP - Kaip tai veikia</linkCHPPDesc>“.</p>
         
@@ -61,6 +61,6 @@ lt:
         
         <p>Dauguma į kitus serverius siunčiamų duomenų,  išskyrus paminėtus žemiau, siunčiami „HTTP GET“ metodu ir tik tada, kai paspaudžiate nuorodą.</p>
         
-        <p>Tai reiškia, kad galėsite matyti siunčiamus duomenis peržiūrėję nuorodos adresą; jokie duomenis nebus siunčiami be Jūsų sutikimo. Kaip ir minėta anksčiau, privatūs duomenys niekada nėra siunčiami.</p>
+        <p>Tai reiškia, kad galėsite matyti siunčiamus duomenis peržiūrėję nuorodos adresą: jokie duomenys nebus siunčiami be Jūsų sutikimo. Kaip ir minėta anksčiau, privatūs duomenys niekada nėra siunčiami.</p>
         
         <p>Išimtys: <module>HTMSPrediction</module> ir <module>HTEVPrediction</module> moduliai, kurie siunčia ir gauna rungtynių reitingus iš atitinkamų portalų naudodami XMLHttpRequest technologiją.</p>

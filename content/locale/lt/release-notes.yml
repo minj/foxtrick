@@ -2,7 +2,7 @@
 lt: 
   versions: 
     nightly: 
-      note_0: 'Peržiūrėkite „Google Code“ <linkSVN>pakeitimų sąrašą</linkSVN>.'
+      note_0: 'Įdiegėte nestabilią versiją. Naudokite savo rizika. Peržiūrėkite „Google Code“ <linkSVN>pakeitimų sąrašą</linkSVN>.'
     beta: 
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
     0.13.0: 
@@ -11,7 +11,7 @@ lt:
       note_0: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
       note_1: 'NAUJIENA: <module>SupportershipExpirationDate</module>: spragtelėjus ant HT-Rėmėjo skaitiklio „Mano biure“ pamatysite prenumeratos galiojimo datą'
       note_2: '<module>MatchIncome</module>: rungtynių ataskaitos puslapyje matysite stadiono sektorių užpildymą procentais'
-      note_3: 'NAUJIENA: <module>MainMenuDropDown</module>: pagrindinį meniu papildo iškrentančiais meniu su nuorodomis, kurias matote šoniniuose atitinkamo puslapio meniu.'
+      note_3: 'NAUJIENA: <module>MainMenuDropDown</module>: pagrindinį meniu papildo iškrentančiais meniu su nuorodomis, kurias įprastai matote tik šoniniuose atitinkamo puslapio meniu.'
       note_4: 'Sutvarkytas laiko atpažinimas Firefox naršylėje naudojantis moduliu <module>DashboardCalendar</module>.'
       note_5: '<module>MatchOrderInterface</module> nuo šiol rodys žaidėjų veidus abiejų komandų nurodymų puslapiuose.'
       note_6: '<module>DashboardCalendar</module>: Firefox naršyklė nebesiūlys parsisiųsti tvarkaraščio kelis kartus.'
@@ -24,27 +24,27 @@ lt:
       note_0: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
       note_1: 'NAUJIENA: <module>MatchLineupTweaks</module>: pakeičia skaitmeninį žvaigždučių vaizdavimą į grafinį (pan. į senovinį). Naujajame sudėties puslapyje pateikia žvaigždučių ir ištvermės statistiką. Rodo žaidėjų specialybes, veidus bei komandų pavadinimus aikštės diagramoje (kad būtų aiškiau). Paryškina su tam tikrais įvykiais susijusius žaidėjus.'
       note_2: Daugybė pataisymų įvairiems moduliams, kurie nustojo veikti atsiradus naujajai Hattrick parduotuvės versijai.
-      note_3: 'NAUJIENA: <module>MatchLineupFixes</module>: Sinchronizuoja laiko skalę tarp kortelių „Sudėtis“ ir „Detalūs reitingai“. Skalėje rodo orų įvykių žaidėjų pavardes. Prideda nuorodas kortelėje „Nurodymai žaidėjams“. Rodo paskutinį žvaigždučių reitingą ant suolelio atsisėdusiems žaidėjams. Sutvarko kelių vienu metu vykusių įvykių vaizdavimą: žaidėjai keičiasi pozicijomis paeiliui, o ne visi iš karto.'
-      note_4: 'NAUJIENA: <module>ReLiveLinks</module>: pridėti trūkstamas nuorodas į HT „Re-Live“.'
-      note_5: 'NAUJIENA: <module>CopyBBAd</module>: Nukopijuoti įvairią informaciją BB kodu (sukūrė merfis).'
+      note_3: 'NAUJIENA: <module>MatchLineupFixes</module>: Laiko skalėje rodo orų įvykių žaidėjų pavardes. Prideda nuorodas kortelėje „Nurodymai žaidėjams“. Rodo paskutinį žvaigždučių reitingą ant suolelio atsisėdusiems žaidėjams. Sutvarko kelių vienu metu vykusių įvykių vaizdavimą: žaidėjai keičiasi pozicijomis paeiliui, o ne visi iš karto.'
+      note_4: 'NAUJIENA: <module>ReLiveLinks</module>: prideda trūkstamas nuorodas į HT „Re-Live“.'
+      note_5: 'NAUJIENA: <module>CopyBBAd</module>: Nukopijuoja įvairią informaciją BB kodu (netinka HT forumams, sukūrė merfis).'
       note_6: 'NAUJIENA: <module>DashboardCalendar</module>: Prideda mygtuką Hattrick savaitei eksportuoti „iCalendar“ formatu (turėtų veikti su „Google Calendar“, „Thunderbird“ su „Lightning“ priedėliu, „MS Outlook“, „KOrganizer“, „Evolution“, „Apple iCal“ ir t. t.)'
       note_7: '<module>LiveAlert</module>: Skirtingi garsai namų, svečių bei Jūsų komandų įvarčiams. Standartiniai garsai pasiskolinti iš <linkHTLS>HTLiveSight</linkHTLS>. Jūsų komandos įvarčiai gali būti neatpažinti, jei iš pradžių testuosite „Re-Live“ režimu.'
       note_8: '<module>CopyYouth</module>: „Hattrick youthclub“ vartotojų atmestų žaidėjų skauto pranešimai nuo šiol siunčiami į HY automatiškai'
       note_9: '<module>CopyYouth</module>: „Hattrick youthclub“ vartotojų jaunių treniruočių ataskaitos nuo šiol siunčiamos į HY automatiškai, kai skaitote jas pirmą kartą'
       note_10: '<module>LineupShortcut</module> nuo šiol veda į naująjį sudėties puslapį.'
-      note_11: '<module>SkillTable</module> nuo šiol naudoja simbolius žaidėjų specialybėms bei treneriams pažymėti.'
+      note_11: '<module>SkillTable</module> nuo šiol naudoja paveikslėlius žaidėjų specialybėms bei treneriams pažymėti.'
       note_12: 'AddLeaveConfButton pervadintas į <module>ForumLeaveButton</module>'
       note_13: Nuo šiol Jūsų naršyklės ir Hattrick tinklalapio išvaizdos nustatymai automatiškai įterpiami į žinutes Foxtrick forume. Tai mums pagelbės greičiau susitvarkyti su Jūsų patiriamais sunkumais naudojantis Foxtrick. Prašome neištrinti šios informacijos, kai rašote žinutę.
       note_14: Aptvarkytas Foxtrick įvesties kodas, kad ateityje būtų lengviau jį skaityti bei tobulinti.
-      note_15: 'Sutaisytos keletas problemų nustatant rungtynių savaitę <module>PlayerStatsTrainingWeek</module> modulyje.'
+      note_15: 'Sutaisyta keletas problemų nustatant rungtynių savaitę <module>PlayerStatsTrainingWeek</module> modulyje.'
       note_16: 'Pataisyta klaida <module>MatchSimulator</module> modulyje, dėl kurios buvo prognozuojami neteisingi reitingai ir rungtynių rezultatas, jei nustatymas „Ataka prieš gynybą“ išjungtas.'
       note_17: „Safari“ naršyklei skirto Foxtrick atnaujinimai sutriko. Vartotojai turėtų patys išdiegti senąją Foxtrick versiją ir įdiegti naująją.
     0.11.0.1: 
       note_0: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
-      note_1: 'Ištaisyti smulkias klaidas <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> ir <module>HTThreadMarker</module> moduliuose.'
-      note_2: Neleisti „Firefox“ per naujo įkelti visas Hattrick korteles kiekvieną sykį atidarant naują naršyklės langą.
+      note_1: 'Ištaisytos smulkios klaidos <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> ir <module>HTThreadMarker</module> moduliuose.'
+      note_2: Neleisti „Firefox“ per naujo įkelti visų naršyklės kortelių (su Hattrick) kiekvieną sykį atidarius naują naršyklės langą.
     0.11.0: 
-      note_0: 'Naujiena: <module>DirectPageLinks</module>: nuorodos tam tikriems forumo temos puslapiams atverti'
+      note_0: 'Naujiena: <module>DirectPageLinks</module>: nuorodos norimiems forumo temos puslapiams atverti'
       note_1: 'Naujiena: <module>ForumModeratorPopup</module>: iššokantis meniu, palengvinantis temų moderavimą forumo moderatoriams.'
       note_2: 'Naujiena: <module>PlayerStatsTrainingWeek</module>: atsirado galimybė pasirodymų istorijos puslapyje grupuoti rungtynes pagal treniruočių savaitę vietoje kalendorinės savaitės.'
       note_3: '<module>MatchOrderInterface</module>: nuo šiol baudinių mušėjų kortelėje žaidėjus galima sukeisti vietomis. Taip pat pridėti mygtukai sąrašui užpildyti ir išvalyti.'
@@ -65,7 +65,7 @@ lt:
       note_18: Pašalintas BackgroundFixed modulis.
       note_19: '<header>Kopijavimo moduliai</header>'
       note_20: '<module>CopyRatings</module>: turnyro rungtynių id palaikymas.'
-      note_21: '<module>CopyMatchID</module>: dvikovos rungtynių palaikymas; išjungtas rungtynių ataskaitos puslapyje, kad nesidubliuotų su nauja HT tiesioginės nuorodos funkcija,'
+      note_21: '<module>CopyMatchID</module>: dvikovos rungtynių palaikymas; išjungtas rungtynių ataskaitos puslapyje, kad nesidubliuotų su nauja HT tiesioginės nuorodos funkcija.'
       note_22: '<module>CopyPlayerAd</module>: sutaisyta sąveika su įgūdžių stulpeliais'
       note_23: Kitos HT-ML kopijavimo pataisos.
       note_24: '<header>Kiti patobulinimai</header>'
@@ -74,14 +74,14 @@ lt:
       note_27: '<module>MatchReportFormat</module> naudoja naująsias HT piktogramas.'
       note_28: '<module>PlayerStatsExperience</module>: patirties taškų viename lygyje skaičius padidintas iki 28,62 (žr. diskusiją 15766691.423). Išskirti techniniai pralaimėjimai, nes už juos patirties negaunama.'
       note_29: 'Forumo moduliai nuo šiol naudos ypatingą nematomo tarpo simbolį (vietoj „·“) kitiems simboliams, turintiems specialą reikšmę internete, išskirti: turėtų pagelbėti katalonų kalbai.'
-      note_30: Neleisti HT stiliaus nustatymams darkyti puslapių su Foxtrick priedais.
+      note_30: Neleis HT stiliaus nustatymams darkyti puslapių su Foxtrick priedais.
       note_31: Nuo šiol veiks www.hattrick.fm domene
       note_32: 'Pašalintos išorinės nuorodos į nebeveikiančius puslapius modulyje <module>Links</module>. Nuo šiol (kur įmanoma) naudojamos išorinės piktogramos.'
       note_33: '<header>Naršyklių palaikymas</header>'
       note_34: Sutaisyta „Firefox Android“ 17+.
       note_35: „Firefox“ 12 nuo šiol mažiausia oficialiai palaikoma versija.
-      note_36: „Google Chrome“ 22 nuo šiol mažiausiai versija, su kuria Foxtrick veikia.
-      note_37: '„Opera“: ištaisyta klaida, dėl kurios FT trikdė kitų puslapių (pvz., „Hattrick Youthclub“) darbą. Paveikslėlių užkrovimas nuo šiol turėtų būti žymiai greitesnis. Įjungti kai kurie anksčiau pagal nutylėjimą Operoje išjungti moduliai.'
+      note_36: „Google Chrome“ 22 nuo šiol mažiausia versija, su kuria Foxtrick veikia.
+      note_37: '„Opera“: ištaisyta klaida, dėl kurios Foxtrick trikdė kitų puslapių (pvz., „Hattrick Youthclub“) darbą. Paveikslėlių užkrovimas nuo šiol turėtų būti žymiai greitesnis. Įjungti kai kurie anksčiau pagal nutylėjimą Opera naršyklėje buvę išjungti moduliai.'
       note_38: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
       note_39: '<header>Perdarytas nustatymų puslapis.</header>'
       note_40: '<strong>Ir daugybė kitų smulkmenų</strong>'

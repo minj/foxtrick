@@ -18,9 +18,9 @@ fr:
         <li>Chrome:  ogg, mp3, wav</li><li>Opera: wav, ogg</li>
         </ul>
     sound-location: 
-      question: Quelle est la limite de taille pour les alertes sonores et où peut-on les situer ?
+      question: Quelle est la limite de taille pour les fichiers des alertes sonores et où peuvent ils être situés ?
       answer: |
-        <p>Tous les navigateurs peuvent jouer des données "urls". Ce sont vos alertes sonores enregistrées via le bouton "parcourir" fourni dans les préférences. Comme elles sont converties et enregistrées dans vos préférences, la taille est limitée à environ 160ko par son.</p>
+        <p>Tous les navigateurs peuvent jouer des données "urls". Ce sont vos alertes sonores enregistrées via le bouton "parcourir" fourni dans les préférences. Comme elles sont converties et enregistrées dans vos préférences, la taille est limitée à environ 160kB par son.</p>
         
         <p>Tous les navigateurs peuvent également jouer des sons directement depuis Internet (http urls). Il suffit de copier un lien vers un son (par ex. http://foxtrick.org/sound.wav) dans le champ d'édition de sons. Aucune limite de taille.</p>
         
@@ -28,15 +28,15 @@ fr:
     authorize: 
       question: Pourquoi devrais-je autoriser FoxTrick à accéder aux données de mon équipe ?
       answer: |
-        <p>Bien que la plupart des données nécessaires à FoxTrick puissent être récupérées directement à partir de la page consultée, certains modules nécessitent le téléchargement de données depuis Hattrick pour bien fonctionner.</p>
+        <p>Bien que la plupart des données nécessaires pour FoxTrick peuvent être récupérés directement à partir de la page que vous consultez, certains modules nécessitent le téléchargement de données à partir de Hattrick pour fonctionner correctement.</p>
         
-        <p>Pour télécharger les données de Hattrick, y compris les données de votre équipe, des ligues et équipes nationales, vous devez autoriser FoxTrick à l'avance.</p>
+        <p>Pour télécharger les données de Hattrick, y compris les données de votre équipe, des ligues et équipes nationales, vous devez autoriser FoxTrick au préalable.</p>
         
-        <p>Vous autorisez FoxTrick en fournissant vos nom d'utilisateur et mot de passe sur chpp.hattrick.org en échange d'un code de d'autorisation, que vous fournirez à FoxTrick. FoxTrick ne connaîtra ni votre nom d'utilisateur ni votre mot de passe au cours du processus.</p>
+        <p>Vous autorisez FoxTrick en fournissant votre identifiant et votre mot de passe sur chpp.hattrick.org en échange d'un code de d'autorisation, que vous fournirez à FoxTrick. FoxTrick ne connaitra pas votre nom d'utilisateur ou votre mot de passe lors de ce processus.</p>
         
-        <p>Pour en savoir plus sur le processus d'autorisation, veuillez lire <linkCHPPDesc>CHPP - Fonctionnement</linkCHPPDesc> sur Hattrick.</p>
+        <p>Pour en savoir plus sur le processus d'autorisation, s'il vous plaît lisez <linkCHPPDesc>CHPP - Fonctionnement</linkCHPPDesc> sur Hattrick.</p>
         
-        <p>Certains modules requièrent l'accès aux données pour bien fonctionner:</p>
+        <p>Certains modules requièrent l'accès aux données pour fonctionner correctement:</p>
         
         <ul>
         <li><module>CrossTable</module></li>
@@ -54,12 +54,12 @@ fr:
         <li><module>TeamStats</module></li>
         </ul>
     privacy: 
-      question: Comment FoxTrick protège-t-il ma vie privée ?
+      question: Comment FoxTrick protège ma vie privée ?
       answer: |
-        <p>FoxTrick ne téléchargera pas jamais vos données ou préférences vers son serveur; Jamais Foxtrick ne transmettra vos données personnelles à des tierces-parties, y compris (et ce n'est pas exhaustif) votre nom d'utilisateur, votre mot de passe et l'ID de vos joueurs associée à leurs caractéristiques </p>
+        <p>FoxTrick ne récupère aucune de vos données ou préférences sur son serveur; Jamais Foxtrick ne transmettra vos données personnelles à des tierces-parties, cela inclus (et ce n'est pas exhaustif) votre nom d'utilisateur, votre mot de passe et l'ID de vos joueurs associée à leurs caractéristiques </p>
         
-        <p>La plupart de données transmises à des tiers, sauf celles explicitement indiquées ci-dessous, sont envoyées avec la méthode HTTP GET, et ne sera envoyée que si vous cliquez sur un lien.</p>
+        <p>La plupart des données transmises à des tiers, sauf ceux explicitement indiqué ci-dessous, sont envoyées avec la méthode HTTP GET, et ne sera envoyée que si vous cliquez sur un lien.</p>
         
-        <p>Autrement dit, vous serez en mesure de voir quelles données sont transmises en examinant l'URI (Uniform Resource Identifier) ​​d'un lien externe, et aucune donnée ne sera transmise sans votre accord. Comme indiqué ci-dessus, aucune de vos données personnelles ne sont impliquées.</p>
+        <p>Autrement dit, vous serez en mesure de voir quelles données sont transmises en inspectant l'URI (Uniform Resource Identifier) ​​d'un lien externe, et aucune donnée ne sera transmise sans votre consentement. Comme indiqué ci-dessus, aucune de vos données personnelles ne sont impliquées.</p>
         
-        <p>Les exceptions sont les modules <module>HTMSPrediction</module> et <module>HTEVPrediction</module>, où les notes de jeu sont transmises et récupérées depuis leurs sites respectifs avec XMLHttpRequest.</p>
+        <p>Les exceptions sont les modules <module>HTMSPrediction</module> et <module>HTEVPrediction</module>, où les notes de match sont transmises et récupérées via leurs sites respectifs avec XMLHttpRequest.</p>
