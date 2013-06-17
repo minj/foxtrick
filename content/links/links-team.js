@@ -30,8 +30,6 @@ Foxtrick.modules['LinksTeam'] = {
 	},
 
 	AddLinksRight: function(doc) {
-		if (!this.isTeamPage(doc))
-			return;
 		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var ownBoxBody = null;
 		var teaminfo = this.gatherLinks(main, doc);
@@ -51,12 +49,6 @@ Foxtrick.modules['LinksTeam'] = {
 			box.id = 'ft-links-box';
 		}
 		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, teaminfo);
-	},
-
-	isTeamPage: function(doc) {
-		var site = doc.location.href;
-		var remain = site.substr(site.search(/Club\//i) + 5);
-		return (remain == '' || remain.search(/TeamID=/i) == 1 || remain.search(/TeamID=/i) == 13);
 	},
 
 	gatherLinks: function(thisdiv, doc) {
