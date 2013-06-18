@@ -1,6 +1,8 @@
 from Hattrick.Web import HattrickWeb
 from Hattrick.Parsers import CHPPHolderParser
+import getpass
 import json
+
 def login(username, password):
 	#use stage for now
 	ht = HattrickWeb(username, password, stage=True)
@@ -19,7 +21,7 @@ if __name__ == "__main__":
 	success = False
 	while not success:
 		user = raw_input("Login:");
-		pw = raw_input("Password:");
+		pw = getpass.getpass("Password:");
 		success, ht = login( user, pw )
 
 	outfile = raw_input("Outfile (ext json): ");

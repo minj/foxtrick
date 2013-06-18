@@ -6,7 +6,7 @@ from Hattrick.Parsers import PlayerDetailParser
 from Hattrick.Parsers import PlayerPageParser
 from Hattrick.Parsers import MatchLineUpParser
 from Hattrick import Language
-
+import getpass
 from xml.dom.minidom import Document
 
 def createDenominationsXML(doc, languageNode, lang, result):
@@ -398,7 +398,7 @@ if __name__ == "__main__":
 	import sys
 	
 	user = raw_input("Login: ");
-	pw = raw_input("Password: ");
+	pw = getpass.getpass("Password:");
 	outfile = raw_input("Outfile (*.xml): ");
 	print "Locale code (\"all\" for all)"
 	locales = raw_input("Seperate by whitespace to specify multiple languages: ").split()
