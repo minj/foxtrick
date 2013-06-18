@@ -46,8 +46,9 @@ if (Foxtrick.arch == 'Gecko') {
 			  .getService(Components.interfaces.nsIIOService);
 	var ssm = Components.classes['@mozilla.org/scriptsecuritymanager;1']
 			  .getService(Components.interfaces.nsIScriptSecurityManager);
-	var dsm = Components.classes['@mozilla.org/dom/storagemanager;1']
-			  .getService(Components.interfaces.nsIDOMStorageManager);
+	var smc = Components.classes['@mozilla.org/dom/storagemanager;1'] ||
+		Components.classes['@mozilla.org/dom/localStorage-manager;1'];
+	var dsm = smc.getService(Components.interfaces.nsIDOMStorageManager);
 
 	var uri = ios.newURI(url, '', null);
 	var principal = ssm.getCodebasePrincipal ? ssm.getCodebasePrincipal(uri) :
