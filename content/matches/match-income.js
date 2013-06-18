@@ -123,28 +123,35 @@ Foxtrick.modules['MatchIncome'] = {
 
 			//display utilization percentage for games that happened after last arena change
 			if(FoxtrickPrefs.isModuleOptionEnabled('MatchIncome', 'UtilizationPercentages')){
-				var args = [['file', 'arenadetails']];
+				var teamId = Foxtrick.util.id.getOwnTeamId();
+				var args = [['file', 'arenadetails'], ['teamId', teamId]];
 				Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' },
 				function(xml, errorText) {
 					if(!xml)
 						return;
 
 					//wether the arena has been changed or not
-					var rebuildDate = Foxtrick.util.time.getDateFromText(xml.getElementsByTagName('RebuiltDate')[0].textContent, 'yyyy-mm-dd hh:mm:ss');
-					var playDate = Foxtrick.util.time.getDateFromText(doc.getElementsByClassName('date')[0].textContent);
+					var arenaDate = xml.getElementsByTagName('RebuiltDate')[0].textContent;
+					var rebuildDate = Foxtrick.util.time.getDateFromText(arenaDate,
+																		 'yyyy-mm-dd hh:mm:ss');
+					var now = doc.getElementsByClassName('date')[0].textContent;
+					var playDate = Foxtrick.util.time.getDateFromText(now);
 					var hasChanged = (playDate.getTime() - rebuildDate.getTime()) < 0;
 
 					if(hasChanged)
 						return;
 
-					var availTerraces = parseInt(xml.getElementsByTagName('Terraces')[0].textContent, 10);
+					var availTerraces = parseInt(xml.getElementsByTagName('Terraces')[0].textContent,
+												 10);
 					var availRoof = parseInt(xml.getElementsByTagName('Roof')[0].textContent, 10);
 					var availVip = parseInt(xml.getElementsByTagName('VIP')[0].textContent, 10);
-					var availBasicSeats = parseInt(xml.getElementsByTagName('Basic')[0].textContent, 10);
+					var availBasicSeats = parseInt(xml.getElementsByTagName('Basic')[0].textContent,
+												   10);
 
 					var addPercentage = function(idx, avail, usage){
 						var row = table.rows[idx];
-						var td = Foxtrick.insertFeaturedCell(row, Foxtrick.modules['MatchIncome'], -1);
+						var td = Foxtrick.insertFeaturedCell(row, Foxtrick.modules['MatchIncome'],
+															 -1);
 						td.textContent = avail ? (100 * usage / avail).toFixed(1) + '%' : '-';
 					}
 					addPercentage(0, availTerraces, visitorsTerraces);
