@@ -126,7 +126,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 						}
 						else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1) {
 							poster_link1 = header_left_link;
-							poster_id1 = poster_link1.href.match(/\d+$/);
+							poster_id1 = poster_link1.href.match(/\?userId=(\d+)/i)[1];
 							if (header_left_links[k]
 								&& header_left_links[k].href.search(/Supporter/i) != -1) {
 									supporter_link1 = header_left_links[k];
