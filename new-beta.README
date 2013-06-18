@@ -15,10 +15,13 @@ commit changes:
 git commit -am 'new beta x.x.x'
 git svn dcommit
 
-upload master lang files via web
-or x.x.x/maintainer/crowdin-upload.sh (but causes '\' to fail for now)
-(don't upload localized files. they are from old nightly here and thus outdated)
-don't forget to crowdin-glossary-upload.sh otherwise
+upload master lang files via x.x.x/maintainer/crowdin-upload.sh or web
+be aware that sometimes '\' fails to import
+(don't upload localized files, the script skips them for now.
+They are from old nightly here and thus outdated)
+
+don't forget to crowdin-glossary-upload.sh if this was done via webb
+
 (if needed) run foxtrick-beta.sh (will do so anyways next day)
 
 run version.sh x.x.x in trunk to version bump
