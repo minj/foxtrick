@@ -53,7 +53,15 @@ Foxtrick.modules['YouthTwins'] = {
 		//callback: function to be called after HY was queried
 		var getTwinsFromHY = function(teamid, forceupdate, debug, userType, callback) {
 			getYouthPlayerList(teamid, function(playerlist) {
+				if (!playerlist || !playerlist.getElementsByTagName('YouthPlayer')) {
+					Foxtrick.log('[ERROR] YouthTwins: no playerlist');
+					return;
+				}
 				getYouthAvatars(teamid, function(avatars) {
+					if (!avatars || !avatars.getElementsByTagName('YouthPlayer')) {
+						Foxtrick.log('[ERROR] YouthTwins: no avatars');
+						return;
+					}
 					//urlencode xml files
 					var pl = encodeURIComponent((new window.XMLSerializer())
 					                            .serializeToString(playerlist));
