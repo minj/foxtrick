@@ -4,8 +4,8 @@
 			<position short="H" type="Forward" value="Hücumçu"/>
 			<position short="DY" type="Inner midfielder" value="Dayaq Yarımmüdafiəçi"/>
 			<position short="QA" type="Keeper" value="Qapıçı"/>
-			<position short="" type="Wing back" value="Cinah Müdafiəçisi"/>
-			<position short="" type="Winger" value="Cinah Yarımmüdafiəçisi"/>
+			<position short="CM" type="Wing back" value="Cinah Müdafiəçisi"/>
+			<position short="CY" type="Winger" value="Cinah Yarımmüdafiəçisi"/>
 		</positions>
 		<ratingSubLevels>
 			<sublevel text="(Yüksək)" value="0.50"/>
@@ -29,43 +29,6 @@
 			<tactic type="normal" value="Normal"/>
 			<tactic type="pressing" value="Pressinq"/>
 		</tactics>
-		<FanMatch>
-			<level text="Rəqibi darmadağın edəcəyik" value="10"/>
-			<level text="Su içmək kimi asan bir oyundur" value="9"/>
-			<level text="Biz qalib gələcəyik" value="8"/>
-			<level text="Favorit bizik" value="7"/>
-			<level text="Biz üstünük" value="6"/>
-			<level text="Qələbə asan olacaq" value="5"/>
-			<level text="Onlar üstündür" value="4"/>
-			<level text="Onlar oyunun favoritidirlər" value="3"/>
-			<level text="Biz məğlub olacağıq" value="2"/>
-			<level text="Rəqib çox üstündür" value="1"/>
-			<level text="Oyuna çıxmasaq yaxşıdır" value="0"/>
-		</FanMatch>
-		<FanMood>
-			<level text="Sizə sevgi hekayələri göndərirlər" value="11"/>
-			<level text="küçələrdə rəqs edirlər" value="10"/>
-			<level text="həyatdan razıdırlar" value="9"/>
-			<level text="xoşbəxt" value="8"/>
-			<level text="razı" value="7"/>
-			<level text="məmnun" value="6"/>
-			<level text="mülayim" value="5"/>
-			<level text="ümidsiz" value="4"/>
-			<level text="qəzəbli" value="3"/>
-			<level text="hirsli" value="2"/>
-			<level text="hiddətli" value="1"/>
-			<level text="məhvedici" value="0"/>
-		</FanMood>
-		<FanSeason>
-			<level text="Bu divizion üçün səviyyəmiz həddindən artıqdır!" value="7"/>
-			<level text="Bu mövsüm qalib olmalıyıq" value="6"/>
-			<level text="Məqsədimiz yüksək yer tutmaqdır!" value="5"/>
-			<level text="İlk dördlüyə daxilik" value="4"/>
-			<level text="Orta sıralarda yer qazansaq pis olmaz" value="3"/>
-			<level text="Burada qalmaq üçün mübarizə aparmalıyıq" value="2"/>
-			<level text="Bu divizionda hər gün bir mükafata bərabərdir" value="1"/>
-			<level text="Biz bu divizionda oynamağa layiq deyilik" value="0"/>
-		</FanSeason>
 		<aggressiveness>
 			<level text="dəyişkən" value="5"/>
 			<level text="təmkinsiz" value="4"/>
@@ -74,18 +37,6 @@
 			<level text="mülayim" value="1"/>
 			<level text="sakit" value="0"/>
 		</aggressiveness>
-		<confidence>
-			<level text="tamamilə şişmiş" value="9"/>
-			<level text="şişmiş" value="8"/>
-			<level text="bir qədər şişmiş" value="7"/>
-			<level text="üstün" value="6"/>
-			<level text="güclü" value="5"/>
-			<level text="yaxşı" value="4"/>
-			<level text="pis" value="3"/>
-			<level text="bərbad" value="2"/>
-			<level text="fəlakətli" value="1"/>
-			<level text="mövcud deyil" value="0"/>
-		</confidence>
 		<agreeability>
 			<level text="komandanın sevimlisidir" value="5"/>
 			<level text="məşhur oğlandır" value="4"/>
@@ -102,19 +53,6 @@
 			<level text="sədaqətsiz" value="1"/>
 			<level text="şərəfsiz" value="0"/>
 		</honesty>
-		<morale>
-			<level text="Yerdə Cənnət!" value="10"/>
-			<level text="buludlarda gəzirlər" value="9"/>
-			<level text="sevincli" value="8"/>
-			<level text="məmnun" value="7"/>
-			<level text="razı" value="6"/>
-			<level text="mülayim" value="5"/>
-			<level text="biganə" value="4"/>
-			<level text="əsəbi" value="3"/>
-			<level text="hiddətli" value="2"/>
-			<level text="öldürücü" value="1"/>
-			<level text="Soyuq Müharibə kimi" value="0"/>
-		</morale>
 		<levels>
 			<level text="ilahi" value="20"/>
 			<level text="əfsanəvi" value="19"/>
@@ -138,37 +76,4 @@
 			<level text="fəlakətli" value="1"/>
 			<level text="mövcud deyil" value="0"/>
 		</levels>
-		<skillshort>
-			<level text="əla" value="8"/>
-			<level text="yaxşı" value="7"/>
-			<level text="yetərli" value="6"/>
-			<level text="yetərsiz" value="5"/>
-			<level text="zəif" value="4"/>
-			<level text="pis" value="3"/>
-			<level text="bərbad" value="2"/>
-			<level text="fəlakətli" value="1"/>
-			<level text="mövcud deyil" value="0"/>
-		</skillshort>
-		<sponsors>
-			<level text="Sizə sevgi hekayələri göndərirlər" value="9"/>
-			<level text="küçələrdə rəqs edirlər" value="8"/>
-			<level text="həyatdan razıdırlar" value="7"/>
-			<level text="xoşbəxt" value="6"/>
-			<level text="razı" value="5"/>
-			<level text="məmnun" value="4"/>
-			<level text="mülayim" value="3"/>
-			<level text="qəzəbli" value="2"/>
-			<level text="hiddətli" value="1"/>
-			<level text="məhvedici" value="0"/>
-		</sponsors>
-		<teamskills>
-			<level text="mükəmməl" value="7"/>
-			<level text="üstün" value="6"/>
-			<level text="əla" value="5"/>
-			<level text="yaxşı" value="4"/>
-			<level text="yetərli" value="3"/>
-			<level text="yetərsiz" value="2"/>
-			<level text="zəif" value="1"/>
-			<level text="pis" value="0"/>
-		</teamskills>
 </language>
