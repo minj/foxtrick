@@ -238,10 +238,10 @@
     <name>Russian</name>
     <code>ru</code>
     <phrases>1482</phrases>
-    <translated>1480</translated>
-    <approved>1480</approved>
-    <translated_progress>99</translated_progress>
-    <approved_progress>99</approved_progress>
+    <translated>1482</translated>
+    <approved>1482</approved>
+    <translated_progress>100</translated_progress>
+    <approved_progress>100</approved_progress>
   </language>
   <language>
     <name>Slovak</name>
@@ -283,8 +283,8 @@
     <name>Swedish</name>
     <code>sv-SE</code>
     <phrases>1482</phrases>
-    <translated>1349</translated>
-    <approved>353</approved>
+    <translated>1351</translated>
+    <approved>354</approved>
     <translated_progress>91</translated_progress>
     <approved_progress>23</approved_progress>
   </language>
@@ -392,9 +392,9 @@
     <code>hr</code>
     <phrases>1482</phrases>
     <translated>1482</translated>
-    <approved>1481</approved>
+    <approved>1482</approved>
     <translated_progress>100</translated_progress>
-    <approved_progress>99</approved_progress>
+    <approved_progress>100</approved_progress>
   </language>
   <language>
     <name>Norwegian Nynorsk</name>
