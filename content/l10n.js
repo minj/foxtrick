@@ -147,7 +147,8 @@ var Foxtrickl10n = {
 		for (var i = 0; i < ratingSubLevels.length; ++i) {
 			var subleveltext = ratingSubLevels[i].getAttribute('text')
 				.replace('(', '\\(').replace(')', '\\)');
-			if (RegExp(subleveltext + '$', 'i').test(text)) {
+			if (RegExp(subleveltext + '\\)?$', 'i').test(text)) {
+				//using \)? in case LAs remove ) from subleveltext
 				sublevel = Number(ratingSubLevels[i].getAttribute('value'));
 				break;
 			}
