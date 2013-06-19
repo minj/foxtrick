@@ -340,7 +340,16 @@ Foxtrick.GetDataURIText = function(filetext) {
 	return 'data:text/plain;charset=utf-8,' + encodeURIComponent(filetext);
 };
 
-Foxtrick.addImage = function(doc, elem, features, insertBefore) {
+/*
+	Proper way to add an image, 
+	for some crazy reason opera has this weird async step.
+	@param doc The document
+	@parem elem The desired parent element
+	@param features Attributes to be added to the new img element in dictionary form
+	@param insertBefore If appendChild is not what you want to do, use this
+	@param callback When further steps are required, handle in this callback function expecting callback(imgElem)
+ */
+Foxtrick.addImage = function(doc, elem, features, insertBefore, callback) {
 	if ((Foxtrick.platform == 'Opera') && features.src.indexOf('content/resources') == 0) {
 		// Get the image resource
 		var imgFile = opera.extension.getFile('/' + features.src);
@@ -361,6 +370,8 @@ Foxtrick.addImage = function(doc, elem, features, insertBefore) {
 					elem.insertBefore(img, insertBefore);
 				else
 					elem.appendChild(img);
+
+				callback(img);
 			};
 			fr.readAsDataURL(imgFile);
 		}
@@ -387,6 +398,8 @@ Foxtrick.addImage = function(doc, elem, features, insertBefore) {
 			elem.insertBefore(img, insertBefore);
 		else
 			elem.appendChild(img);
+
+		callback(img);
 	}
 };
 
