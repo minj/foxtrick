@@ -371,7 +371,8 @@ Foxtrick.addImage = function(doc, elem, features, insertBefore, callback) {
 				else
 					elem.appendChild(img);
 
-				callback(img);
+				if(callback)
+					callback(img);
 			};
 			fr.readAsDataURL(imgFile);
 		}
@@ -399,7 +400,8 @@ Foxtrick.addImage = function(doc, elem, features, insertBefore, callback) {
 		else
 			elem.appendChild(img);
 
-		callback(img);
+		if(callback)
+			callback(img);
 	}
 };
 
