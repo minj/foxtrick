@@ -44,10 +44,15 @@ Foxtrick.modules['AutoPostSpecs'] = {
 				return;
 
 			var navInfo = '';
-			if (window.navigator)
-				navInfo = window.navigator.userAgent + ' - ' + window.navigator.platform;
-			else
+			try {
+				if (window.navigator)
+					navInfo = window.navigator.userAgent + ' - ' + window.navigator.platform;
+				else
+					navInfo = 'Fennec';
+				}
+			catch (e) {
 				navInfo = 'Fennec';
+			}
 
 			txt = txt + '\n[hr][spoiler]' + 'FoxTrick ' + Foxtrick.version() + ' ' + Foxtrick.branch() + ' - Stage: ' + Foxtrick.isStage(doc) + ' - Skin: ' + (Foxtrick.util.layout.isStandard(doc)?'normal':'simple') + ' - ' + FoxtrickPrefs.getString('htLanguage') + ' - '  + window.screen.availWidth + ' x ' + window.screen.availHeight + ' - ' + navInfo + '[/spoiler]';
 			textarea.value = txt;
