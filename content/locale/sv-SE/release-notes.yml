@@ -4,12 +4,12 @@ sv-SE:
     nightly: 
       note_0: 
     beta: 
-      note_0: 
+      note_0: 'Detta är BETA -versionen av nästa utgåva. Hjälp gärna till att översätta denna version via vårt superlätta översättningsverktyg på <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
-      note_0: 
+      note_0: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
     0.12.1: 
-      note_0: 
-      note_1: 
+      note_0: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
+      note_1: 'NY: <module>SupportershipExpirationDate</module>: Gör det möjligt att se utgångsdatum på supporterperiod genom att klicka på antal kvarvarande dagar till höger på Mitt Hattrick'
       note_2: 
       note_3: 
       note_4: 
@@ -21,7 +21,7 @@ sv-SE:
       note_10: Support för det azeriska språket.
       note_11: Ett antal andra 'fixar' för problem som tillkommit pga ändringar HT gjort.
     0.12.0: 
-      note_0: 
+      note_0: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
       note_1: 
       note_2: 
       note_3: 
@@ -34,13 +34,13 @@ sv-SE:
       note_10: 
       note_11: 
       note_12: 
-      note_13: 
+      note_13: Från och med nu kommer din webbläsares och Hattricks layoutinställningar automatiskt att läggas till i meddelanden du postar på Foxtricks forum. Dessa kommer att läggas i en s.k. spoler-tag. Detta kommer hjälpa oss att fixa ev. problem snabbare. Vänligen radera eller editera ej denna information när du postar ett inlägg.
       note_14: 
       note_15: 
       note_16: 
       note_17: 
     0.11.0.1: 
-      note_0: 
+      note_0: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
       note_1: 
       note_2: 
     0.11.0: 
@@ -50,7 +50,7 @@ sv-SE:
       note_3: 
       note_4: 
       note_5: 
-      note_6: 
+      note_6: '<module>SkillColoring</module>: Modulen mer eller mindre helt ombyggd. En massa bugfixar och tillägg. Alternativ ändrade så vänligen anpassa dem igen efter eget tycke och smak.'
       note_7: 
       note_8: 
       note_9: 
@@ -82,7 +82,7 @@ sv-SE:
       note_35: 
       note_36: 
       note_37: 
-      note_38: 
+      note_38: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
       note_39: '<header>Sidan för inställningar gjordes om.</header>'
       note_40: '<strong>..och mycket mycket mer</strong>'
     0.10.0: 
@@ -112,7 +112,7 @@ sv-SE:
       note_23: 'NEW: <module>ARIALandmarks</module>: Adds ARIA landmarks to the website. This should help navigating the site using screenreaders. The two main navigation bars and the list of all subscribed forums got the role "navigation". The main content has the role "main". All the sidebars with additional information and links will be marked as "complementary". The links to global search and forum search have the role "search" of course.'
       note_24: If you have any further suggestions please don't hesitate to contact us. We are also browsing the Hattrick Access forums.
     0.9.3: 
-      note_0: 'A lot of language updates because Foxtrick users are awesome. Thank you so much. Keep contributing at <linkCrowdin>http://www.crowdin.net</linkCrowdin>'
+      note_0: 'En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!'
       note_1: 'NEW: <module>YouthTwins</module>: Shows the amount of possible/marked/non twins on the youth players overview page for supporters (in conjunction with hattrick youthclub)'
       note_2: '<module>MatchOrderInterface</module>: Option to show player faces instead of shirts for future and past line-ups (default on)'
       note_3: '<module>MatchOrderInterface</module>: Option to disable last match information and highlighting for tournament games added (default on)'
