@@ -442,7 +442,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 			// add extra info
 			var hasPlayerInfo = false;
 			var hasAvatars = false;
-			var hasInterface = (Foxtrick.platform == 'Opera' || false);
+			var hasInterface = false;
 			var playerList = null;
 			var avatarsXml = null;
 			var teamid = Foxtrick.util.id.findTeamId(doc.getElementById('ctl00_ctl00_CPContent_divStartMain'));
@@ -795,6 +795,8 @@ Foxtrick.modules['MatchOrderInterface'] = {
 				             .getElementsByTagName('div').length !== 0);
 				waitForInterface();
 			}, false);
+			if (Foxtrick.platform == 'Opera')
+				waitForInterface();
 		};
 
 		var isYouth = (doc.location.href.search(/isYouth=true|SourceSystem=Youth/i) != -1);
