@@ -43,7 +43,7 @@ Foxtrick.modules['AutoPostSpecs'] = {
 			if(matched !== null)
 				return;
 
-			txt = txt + '\n[hr][spoiler]' + 'FoxTrick ' + Foxtrick.version() + ' ' + Foxtrick.branch() + ' - Stage: ' + Foxtrick.isStage(doc) + ' - Skin: ' + (Foxtrick.util.layout.isStandard(doc)?'normal':'simple') + ' - ' + FoxtrickPrefs.getString('htLanguage') + ' - '  + window.screen.availWidth + ' x ' + window.screen.availHeight + ' - ' + navigator.userAgent + ' - ' + navigator.platform + '[/spoiler]';
+			txt = txt + '\n[hr][spoiler]' + 'FoxTrick ' + Foxtrick.version() + ' ' + Foxtrick.branch() + ' - Stage: ' + Foxtrick.isStage(doc) + ' - Skin: ' + (Foxtrick.util.layout.isStandard(doc)?'normal':'simple') + ' - ' + FoxtrickPrefs.getString('htLanguage') + ' - '  + window.screen.availWidth + ' x ' + window.screen.availHeight + ' - ' + window.navigator.userAgent + ' - ' + window.navigator.platform + '[/spoiler]';
 			textarea.value = txt;
 			setCaretPosition(textarea, 0);
 		}
