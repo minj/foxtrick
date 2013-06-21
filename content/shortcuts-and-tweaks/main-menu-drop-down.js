@@ -241,6 +241,13 @@ Foxtrick.modules['MainMenuDropDown']={
 					if(subMenuContent  === undefined)
 						return [];
 
+					// map all teamPages to /Club/ primary
+					// takes own only, discards others
+					// other primaries will still spam but this one is key
+					var primaryUrl = Foxtrick.isPage(doc, 'teamPageAny') ? '/Club/' :
+						doc.location.href.replace(/^.*\/\/[^\/]+/, '')
+							.replace(/Default\.aspx/i, '');
+
 					var menulist = [];
 					Foxtrick.map(function(node){
 						if(node.tagName === 'H3'){
@@ -250,13 +257,7 @@ Foxtrick.modules['MainMenuDropDown']={
 							menu.entries = [];
 							menu.timestamp = (new Date()).getTime();
 
-							// map /Club/?TeamID=myTeamId to /Club/
-							// prevents them from going out of sync
-							var myTeamId = Foxtrick.util.id.getOwnTeamId();
-							var myTeamRe = new RegExp('/Club/\\?TeamID=' + myTeamId + '$', 'i');
-
-							menu.url = doc.location.href.replace(/^.*\/\/[^\/]+/, '')
-								.replace(/Default\.aspx/i, '').replace(myTeamRe, '/Club/');
+							menu.url = primaryUrl;
 						}
 						if(node.tagName === 'UL'){
 							var links = node.getElementsByTagName('a');
@@ -272,6 +273,15 @@ Foxtrick.modules['MainMenuDropDown']={
 						}
 					}, subMenuContent.childNodes);
 					return menulist;
+				}
+
+
+				if (Foxtrick.isPage(doc, 'teamPageAny')) {
+					// take own only, discard others
+					var myTeamId = Foxtrick.util.id.getOwnTeamId();
+					var currentTeamId = Foxtrick.Pages.All.getTeamId(doc);
+					if (currentTeamId != myTeamId)
+						return;
 				}
 
 				this.concat(getPrimaryMenus(doc), 'primary');
