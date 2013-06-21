@@ -22,7 +22,7 @@ Foxtrick.ht_pages = {
 	// following are mainly used for information gathering. keep on top
 	'myHattrick'				: '/MyHattrick/$',  // that's the news page
 	'myHattrickAll' 			: '/MyHattrick/|org/$|pl/$|ws/$',
-	'teamPageAny'   			: '/Club/|/World/Series/Default.aspx|/World/Series/?',
+	'teamPageAny'   			: '/Club/|/World/Series/|/Community/Tournaments/',
 
 	'all'   					: '.*',
 	'dashboard' 				: '/MyHattrick/Dashboard.aspx',
@@ -139,6 +139,8 @@ Foxtrick.ht_pages = {
 	'tournamentsGroups'			: '/Community/Tournaments/Groups.aspx',
 	'tournamentsFixtures'		: '/Community/Tournaments/Fixtures.aspx',
 	'tournamentsPlayerStatuses'	: '/Community/Tournaments/PlayerStatuses.aspx',
+	'tournamentsCreate'			: '/Community/Tournaments/CreateTournament.aspx',
+	'tournamentsHistory'		: '/Community/Tournaments/TournamentHistory.aspx', //perhaps not identical to 'tournaments'
 	'world'						: '/World/$'
 };
 
