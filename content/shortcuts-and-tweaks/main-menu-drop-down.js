@@ -249,8 +249,14 @@ Foxtrick.modules['MainMenuDropDown']={
 
 							menu.entries = [];
 							menu.timestamp = (new Date()).getTime();
+
+							// map /Club/?TeamID=myTeamId to /Club/
+							// prevents them from going out of sync
+							var myTeamId = Foxtrick.util.id.getOwnTeamId();
+							var myTeamRe = new RegExp('/Club/\\?TeamID=' + myTeamId + '$', 'i');
+
 							menu.url = doc.location.href.replace(/^.*\/\/[^\/]+/, '')
-								.replace(/Default\.aspx/i, '');
+								.replace(/Default\.aspx/i, '').replace(myTeamRe, '/Club/');
 						}
 						if(node.tagName === 'UL'){
 							var links = node.getElementsByTagName('a');
@@ -283,8 +289,9 @@ Foxtrick.modules['MainMenuDropDown']={
 			//build the menu
 			var links = doc.querySelectorAll('#menu > ul > li > a');
 			for(var l = 0; l < links.length; l++){
-				var primaries = navi.getPrimaryMenusForUrl( links[l].href );
-				var secondaries = navi.getSecondaryMenusForUrl( links[l].href );
+				var primaryUrl = links[l].href;
+				var primaries = navi.getPrimaryMenusForUrl(primaryUrl);
+				var secondaries = navi.getSecondaryMenusForUrl(primaryUrl);
 				Foxtrick.modules['MainMenuDropDown'].addMenusToListItem(doc, links[l].parentNode, Foxtrick.union(primaries, secondaries), "ft-drop-down-submenu");
 				
 				//secondary links
@@ -292,7 +299,8 @@ Foxtrick.modules['MainMenuDropDown']={
 				for(var sl = 0; sl < secondaryLinks.length; sl++){
 					if(sl == 0) //skip first entry, that's cover already
 						continue;
-					var secondaries = navi.getSecondaryMenusForUrl( secondaryLinks[sl].href );
+					var secondaryUrl = secondaryLinks[sl].href;
+					var secondaries = navi.getSecondaryMenusForUrl(secondaryUrl);
 					Foxtrick.modules['MainMenuDropDown'].addMenusToListItem(doc, secondaryLinks[sl].parentNode, secondaries, "ft-drop-down-submenu ft-drop-down-submenu-2");
 					if(secondaries.length){
 						var ul = secondaryLinks[sl].parentNode.getElementsByTagName('ul')[0];
