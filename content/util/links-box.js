@@ -68,21 +68,22 @@ Foxtrick.util.links = {
 				}
 			};
 
-			var alldivs = doc.getElementsByTagName('div');
+			var alldivs = doc.querySelectorAll('div.sidebarBox');
 			for (var j = 0; j < alldivs.length; j++) {
-				if (alldivs[j].className == 'sidebarBox') {
-					var header = alldivs[j].getElementsByTagName('h2')[0];
-					if (header.textContent == Foxtrickl10n.getString('links.boxheader')) {
-						var pn = header.parentNode;
-						var hh = pn.removeChild(header);
-						var div = doc.createElement('div');
-						div.appendChild(hh);
-						div.title = Foxtrickl10n.getString('links.custom.addpersonallink');
-						Foxtrick.onClick(div, headerClick);
-						ownBoxBody.setAttribute('basepref', basepref);
-						pn.insertBefore(div, pn.firstChild);
-						break;
-					}
+				var header = alldivs[j].getElementsByTagName('h2')[0];
+				if (header.textContent == Foxtrickl10n.getString('links.boxheader')) {
+					var hh = header.cloneNode(true);
+					var div = doc.createElement('div');
+					div.appendChild(hh);
+					div.title = Foxtrickl10n.getString('links.custom.addpersonallink');
+					Foxtrick.onClick(div, headerClick);
+
+					Foxtrick.stopListenToChange(doc);
+					ownBoxBody.setAttribute('basepref', basepref);
+					var pn = header.parentNode;
+					pn.replaceChild(div, header);
+					Foxtrick.startListenToChange(doc);
+					break;
 				}
 			}
 
