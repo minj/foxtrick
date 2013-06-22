@@ -19,7 +19,7 @@ gl:
       note_8: '<module>ConfirmActions</module>: agora, os usuarios con varios equipos verán o nome do equipo ó que representan cando poxan.'
       note_9: '<module>TransferSearchFilters</module>: agora, os filtros tamén gardarán a idade dos xogadores en días.'
       note_10: 'Engadimos unha nova língua: o acerbaixano.'
-      note_11: 
+      note_11: Un cento de solucións a outros problemas provocados por cambios en Hattrick.
     0.12.0: 
       note_0: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
       note_1: 'NOVO: <module>MatchLineupTweaks</module>: cambia o reconto de estrelas e móstraas igual que antes. Engade contadores de estrelas e resistencia á nova páxina de aliñación. Amosa as especialidades de todos os xogadores e engade o nome de equipo no campo para que se vexa máis claro. Amosa os avatares dos xogadores do teu equipo. Destaca os xogadores que protagonistas dos evento do partido.'
