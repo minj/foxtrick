@@ -239,14 +239,14 @@ Foxtrick.modules['Core'] = {
 			};
 			Foxtrick.localGet('shortTeamName.' + this.SELF_TEAM_INFO.teamId,
 			  function(name) {
-				if (!name) {
-					if (!doc.getElementsByClassName('ongoingEvents'))
-						return;
+				if (doc.querySelector('.ongoingEvents a[href*="/Club/Matches/Live.aspx"]')) {
 					name = Foxtrick.modules['Core'].SELF_TEAM_INFO.teamName;
 					Foxtrick.localSet('shortTeamName.' +
-					                  Foxtrick.modules['Core'].SELF_TEAM_INFO.teamId, name);
+									  Foxtrick.modules['Core'].SELF_TEAM_INFO.teamId, name);
+					Foxtrick.log('Short team name found!', name);
 				}
-				Foxtrick.modules['Core'].SELF_TEAM_INFO.shortTeamName = name;
+				if (name)
+					Foxtrick.modules['Core'].SELF_TEAM_INFO.shortTeamName = name;
 			});
 			Foxtrick.ht_pages['ownPlayers'] = '/Club/Players/$|/Club/Players/default.aspx|' +
 				'/Club/Players/KeyPlayers.aspx$|/Club/Players/?TeamID=' +
