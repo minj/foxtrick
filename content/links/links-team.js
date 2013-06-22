@@ -11,9 +11,11 @@ Foxtrick.modules['LinksTeam'] = {
 	OPTION_FUNC: function(doc, callback) {
 		return Foxtrick.modules['Links'].getOptionsHtml(doc, 'LinksTeam', 'teamlink', callback);
 	},
+	running: false,
 
 	run: function(doc) {
 		var module = this;
+		module.running = true;
 		Foxtrick.modules.Links.getCollection(function(collection) {
 			module._run(doc);
 		});
@@ -21,11 +23,12 @@ Foxtrick.modules['LinksTeam'] = {
 
 	_run: function(doc) {
 		this.AddLinksRight(doc);
+		this.running = false;
 	},
 
 	change: function(doc) {
 		// challenging etc removes box. need to re-add it
-		if (doc.getElementById('ft-links-box') === null)
+		if (doc.getElementById('ft-links-box') === null && !this.running)
 			this.run(doc);
 	},
 
