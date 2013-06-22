@@ -44,6 +44,10 @@
 	<translation language="العربية (Arabic)">
 		<translator id="9311330" name="GM-OmaniMilani" />
 	</translation>
+	<translation language="Azərbaycanca">
+		<translator id="7564618" name="LA-Shamil" />
+		<translator id="4417979" name="Aze-Maestro" />
+	</translation>
 	<translation language="Български">
 		<translator id="1048018" name="Mod-ivo_stoyanov" />
 	</translation>
@@ -109,6 +113,9 @@
 		<translator id="10038631" name="Mohammad-SE" />
 		<translator name="dritte333" />
 	</translation>
+	<translation language="Furlan">
+		<translator id="12593452" name="superbloomss" />
+	</translation>
 	<translation language="Galego">
 		<translator id="524111" name="Piper_101" />
 		<translator id="2363296" name="OReiDasSachadas" />
@@ -128,7 +135,8 @@
 		<translator id="7230071" name="TheZayc" />
 		<translator id="11758667" name="Alan_Smithee" />
 		<translator id="3613658" name="-Iuve-" />
-		<translator name="PBotika" />FTorrez 
+		<translator name="PBotika" />
+		<translator name="FTorrez" />
 	</translation>
 	<translation language="Hungarian">
 		<translator id="2172516" name="csajszi" />
