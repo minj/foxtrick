@@ -376,19 +376,23 @@ Foxtrick.modules['MainMenuDropDown']={
 		function getMenuTextColor(){
 			var tcolor;
 			Foxtrick.map(function(styleSheet){
-				if(styleSheet.cssRules)
-					Foxtrick.map(function(rule){
-						// var hbc = hoverBgColor(rule.cssText);
-						// var hc = hoverColor(rule.cssText);
-						// var bc = bgColor(rule.cssText);
-						var c = textColor(rule.cssText);
-						
-						// if(hbc) Foxtrick.log("hover bg color",hbc);
-						// if(bc) Foxtrick.log("text bg c",bc);
-						// if(hc) Foxtrick.log("text hover",hc);
-						if(c) tcolor = c;
+				try {
+					// opera throws security exception when accessing CSS from different domain
+					if(styleSheet.cssRules)
+						Foxtrick.map(function(rule){
+							// var hbc = hoverBgColor(rule.cssText);
+							// var hc = hoverColor(rule.cssText);
+							// var bc = bgColor(rule.cssText);
+							var c = textColor(rule.cssText);
 
-					}, styleSheet.cssRules);
+							// if(hbc) Foxtrick.log("hover bg color",hbc);
+							// if(bc) Foxtrick.log("text bg c",bc);
+							// if(hc) Foxtrick.log("text hover",hc);
+							if(c) tcolor = c;
+
+						}, styleSheet.cssRules);
+				}
+				catch (e) {};
 			}, doc.styleSheets);	
 			return tcolor;	
 		}
