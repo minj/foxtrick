@@ -496,6 +496,8 @@ Foxtrick.Pages.Players = {
 					player = playerList[playerList.length - 1];
 				}
 
+				player.playerNode = playerNode;
+
 				var nameLink = Foxtrick.filter(function(n) {
 					return !Foxtrick.hasClass(n, 'flag.+');
 				}, playerNode.getElementsByTagName('a'))[0];
