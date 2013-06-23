@@ -37,6 +37,7 @@ Foxtrick.modules['PsicoTSI'] = {
 		HIGH_SUBLEVELS: Foxtrick.InternalPath + 'resources/img/psicotsi/high_sublevels.png',
 		LOW_SUBLEVELS: Foxtrick.InternalPath + 'resources/img/psicotsi/low_sublevels.png',
 	},
+	title: 'PsicoTSI Foxtrick Edition',
 	/**
 	 * @param	{document}	doc
 	 */
@@ -62,11 +63,8 @@ Foxtrick.modules['PsicoTSI'] = {
 		var basicSkills = Foxtrick.Pages.Player.getBasicSkills(doc);
 		var frm = parseInt(basicSkills.form[0], 10);
 		var sta = parseInt(basicSkills.stamina[0], 10);
-		var exp = parseInt(basicSkills.experience[0], 10);
-		var lea = parseInt(basicSkills.leadership[0], 10);
 		var playerAge = Foxtrick.Pages.Player.getAge(doc);
 		var age = playerAge.years;
-		var days = playerAge.days;
 		var currTSI = Foxtrick.Pages.Player.getTsi(doc);
 		var currWAGE = parseInt(Foxtrick.Pages.Player.getWage(doc).base *
 								Foxtrick.util.currency.getRate(doc), 10);
@@ -136,7 +134,57 @@ Foxtrick.modules['PsicoTSI'] = {
 	 * @param	{document}	doc
 	 */
 	runPlayers: function(doc) {
-		Foxtrick.log('HI from players');
+		var module = this;
+
+		Foxtrick.Pages.Players.getPlayerList(doc, function(playerList) {
+			for (var i = 0, p; i < playerList.length && (p = playerList[i]); ++i) {
+
+				if (typeof(p.playmaking) == 'undefined') {
+					continue;
+				}
+
+				var age = p.ageYears;
+				var currTSI = p.tsi;
+				var injured = (p.injuredWeeks && true);
+
+				var frm = p.form;
+				var sta = p.stamina;
+
+				var pla = p.playmaking, win = p.winger, sco = p.scoring, goa = p.keeper,
+					pas = p.passing, def = p.defending, sp = p.setPieces;
+				var playerskills = [frm, sta, pla, win, sco, goa, pas, def, sp];
+
+				var maxSkill = Foxtrick.psico.getMaxSkill(playerskills);
+				//halt if player is a Divine or Non - existent
+				if (playerskills[maxSkill] == 20 || playerskills[maxSkill] == 0) {
+					return;
+				}
+				var valMaxSkillAvg = 0;
+				var valMaxSkillLow = 0;
+				var valMaxSkillHigh = 0;
+
+				var undef = Foxtrick.psico.undefinedMainSkill(playerskills);
+				var limit = 'Medium';
+				var isGK = Foxtrick.psico.isGoalkeeper(maxSkill);
+				if (!isGK) {
+					valMaxSkillAvg = Foxtrick.psico.calcMaxSkill(playerskills, currTSI, 'Avg');
+					valMaxSkillLow = Foxtrick.psico.calcMaxSkill(playerskills, currTSI, 'Low');
+					valMaxSkillHigh = Foxtrick.psico.calcMaxSkill(playerskills, currTSI, 'High');
+				} else {
+					valMaxSkillAvg = Foxtrick.psico.calcMaxSkillGK(currTSI, frm, 'Avg');
+					valMaxSkillLow = Foxtrick.psico.calcMaxSkillGK(currTSI, frm, 'Low');
+					valMaxSkillHigh = Foxtrick.psico.calcMaxSkillGK(currTSI, frm, 'High');
+				}
+				if ((valMaxSkillLow - playerskills[maxSkill] <= 0.1)) {
+					limit = 'Low';
+				}
+				if (valMaxSkillHigh - playerskills[maxSkill] >= 0.8) {
+					limit = 'High';
+				}
+				module.drawInPlayersPage(doc, i, p.playerNode, undef, injured, age > 27, maxSkill, valMaxSkillHigh, valMaxSkillAvg, valMaxSkillLow, limit);
+			}
+		}, { teamid: Foxtrick.Pages.All.getTeamId(doc) });
+
 	},
 	/**
 	 * @param	{document}	doc
@@ -273,7 +321,7 @@ Foxtrick.modules['PsicoTSI'] = {
 		}
 
 		var title = doc.createElement('h2');
-		title.appendChild(doc.createTextNode('PsicoTSI Foxtrick Edition'));
+		title.appendChild(doc.createTextNode(this.title));
 		var divobj = Foxtrick.createFeaturedElement(doc, this, 'div');
 		Foxtrick.addClass(divobj, 'ft-psico-mainBox');
 
@@ -283,5 +331,150 @@ Foxtrick.modules['PsicoTSI'] = {
 
 		entryPoint.parentNode.insertBefore(divobj, entryPoint.nextSibling);
 
+	},
+	drawInPlayersPage: function(doc, id, entryPoint, isUndefinedMainskill, isInjured, isOld, maxSkill,
+								valMaxSkillHigh, valMaxSkillAvg, valMaxSkillLow, limit) {
+
+		var players_img = function (src, txt, style) {
+			this.src = src;
+			if (txt)
+				this.alt = this.title = txt;
+			if (style)
+				this.style = style;
+		};
+		players_img.prototype = {
+			alt: '',
+			title: '',
+			border: '0',
+			width: '16',
+			height: '16',
+			style: 'padding-right: 3px;',
+			src: ''
+		};
+		var logo = new players_img(this.IMAGES.LOGO, this.title,
+								   'vertical-align: middle; padding-right: 5px;');
+
+		var al_div = doc.createElement('div');
+		var brElement = doc.createElement('br');
+		al_div.appendChild(brElement.cloneNode(true));
+
+		var psicotsi_info = doc.createElement('div');
+		Foxtrick.addClass(psicotsi_info, 'hidden');
+		psicotsi_info.setAttribute('id', 'ft_psico_info_div_' + id);
+
+		var psicotsi_hide_div = doc.createElement('div');
+		var imgWrap = doc.createElement('span');
+		psicotsi_hide_div.appendChild(imgWrap);
+		Foxtrick.addImage(doc, imgWrap, logo);
+
+		var psicotsi_hide_link = doc.createElement('a');
+		psicotsi_hide_link.textContent = this.title;
+		Foxtrick.addClass(psicotsi_hide_link, 'ft-link');
+		psicotsi_hide_link.setAttribute('show', 'ft_psico_show_div_' + id);
+		psicotsi_hide_link.setAttribute('hide', 'ft_psico_info_div_' + id);
+		Foxtrick.onClick(psicotsi_hide_link, function(ev) {
+			var document = ev.target.ownerDocument;
+			Foxtrick.toggleClass(document.getElementById(ev.target.getAttribute('hide')),
+								 'hidden');
+			Foxtrick.toggleClass(document.getElementById(ev.target.getAttribute('show')),
+								 'hidden');
+		});
+		psicotsi_hide_div.appendChild(psicotsi_hide_link);
+		psicotsi_info.appendChild(psicotsi_hide_div);
+
+		var mainSkillText = '';
+		switch (maxSkill) {
+			case 2:
+				mainSkillText = Foxtrickl10n.getString('Playmaking');
+				break;
+			case 3:
+				mainSkillText = Foxtrickl10n.getString('Winger');
+				break;
+			case 4:
+				mainSkillText = Foxtrickl10n.getString('Scoring');
+				break;
+			case 5:
+				mainSkillText = Foxtrickl10n.getString('Keeper');
+				break;
+			case 6:
+				mainSkillText = Foxtrickl10n.getString('Passing');
+				break;
+			case 7:
+				mainSkillText = Foxtrickl10n.getString('Defending');
+				break;
+		}
+
+		var paragraph = doc.createElement('p');
+		var pre = mainSkillText + ' [' + Foxtrickl10n.getString('PsicoTSI.FORM') + '=';
+		paragraph.textContent = pre + Foxtrickl10n.getString('PsicoTSI.F_HIGH') + ']=' + valMaxSkillHigh;
+		psicotsi_info.appendChild(paragraph);
+
+		paragraph = doc.createElement('p');
+		paragraph.textContent = pre + Foxtrickl10n.getString('PsicoTSI.F_AVG') + ']=' + valMaxSkillAvg;
+		psicotsi_info.appendChild(paragraph);
+
+		paragraph = doc.createElement('p');
+		paragraph.textContent = pre + Foxtrickl10n.getString('PsicoTSI.F_LOW') + ']=' + valMaxSkillAvg;
+		psicotsi_info.appendChild(paragraph);
+
+		var psicotsi_show_div = doc.createElement('div');
+		psicotsi_show_div.setAttribute('id','ft_psico_show_div_' + id);
+		var imgWrap = doc.createElement('span');
+		psicotsi_show_div.appendChild(imgWrap);
+		Foxtrick.addImage(doc, imgWrap, logo);
+
+		var psicotsi_show_link = doc.createElement('a');
+		psicotsi_show_link.textContent = mainSkillText + ' [' + Foxtrickl10n.getString('PsicoTSI.FORM') +
+			'=' + Foxtrickl10n.getString('PsicoTSI.F_AVG') + ']=' + valMaxSkillAvg;
+		Foxtrick.addClass(psicotsi_show_link, 'ft-link');
+		psicotsi_show_link.setAttribute('show', 'ft_psico_info_div_' + id);
+		psicotsi_show_link.setAttribute('hide', 'ft_psico_show_div_' + id);
+		Foxtrick.onClick(psicotsi_show_link, function(ev) {
+			var document = ev.target.ownerDocument;
+			Foxtrick.toggleClass(document.getElementById(ev.target.getAttribute('hide')),
+								 'hidden');
+			Foxtrick.toggleClass(document.getElementById(ev.target.getAttribute('show')),
+								 'hidden');
+		});
+		psicotsi_show_div.appendChild(psicotsi_show_link);
+		var spacer = doc.createElement('span');
+		spacer.textContent = String.fromCharCode(160);
+		psicotsi_show_div.appendChild(spacer);
+
+		var img = new players_img();
+		if (limit == 'Low') {
+			img = new players_img(this.IMAGES.LOW_SUBLEVELS,
+								  Foxtrickl10n.getString('PsicoTSI.L_LOW'));
+			Foxtrick.addImage(doc, psicotsi_info, img);
+			Foxtrick.addImage(doc, psicotsi_show_div, img);
+		}
+		else if (limit == 'High') {
+			img = new players_img(this.IMAGES.HIGH_SUBLEVELS,
+								 Foxtrickl10n.getString('PsicoTSI.L_HIGH'));
+			Foxtrick.addImage(doc, psicotsi_info, img);
+			Foxtrick.addImage(doc, psicotsi_show_div, img);
+		}
+		if (isUndefinedMainskill) {
+			img = new players_img(this.IMAGES.UNDEF_MAINSKILL,
+								  Foxtrickl10n.getString('PsicoTSI.UNDEF_MAINSKILL'));
+			Foxtrick.addImage(doc, psicotsi_info, img);
+			Foxtrick.addImage(doc, psicotsi_show_div, img);
+		}
+		if (isInjured) {
+			img = new players_img(this.IMAGES.INJURED,
+								  Foxtrickl10n.getString('PsicoTSI.INJURED'));
+			Foxtrick.addImage(doc, psicotsi_info, img);
+			Foxtrick.addImage(doc, psicotsi_show_div, img);
+		}
+		if (isOld) {
+			img = new players_img(this.IMAGES.OLD,
+								  Foxtrickl10n.getString('PsicoTSI.OLD'));
+			Foxtrick.addImage(doc, psicotsi_info, img);
+			Foxtrick.addImage(doc, psicotsi_show_div, img);
+		}
+
+		al_div.appendChild(psicotsi_show_div);
+		al_div.appendChild(psicotsi_info);
+		entryPoint.appendChild(al_div);
 	}
 };
