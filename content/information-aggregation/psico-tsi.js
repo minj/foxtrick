@@ -62,11 +62,8 @@ Foxtrick.modules['PsicoTSI'] = {
 		var basicSkills = Foxtrick.Pages.Player.getBasicSkills(doc);
 		var frm = parseInt(basicSkills.form[0], 10);
 		var sta = parseInt(basicSkills.stamina[0], 10);
-		var exp = parseInt(basicSkills.experience[0], 10);
-		var lea = parseInt(basicSkills.leadership[0], 10);
 		var playerAge = Foxtrick.Pages.Player.getAge(doc);
 		var age = playerAge.years;
-		var days = playerAge.days;
 		var currTSI = Foxtrick.Pages.Player.getTsi(doc);
 		var currWAGE = parseInt(Foxtrick.Pages.Player.getWage(doc).base *
 								Foxtrick.util.currency.getRate(doc), 10);
@@ -136,7 +133,56 @@ Foxtrick.modules['PsicoTSI'] = {
 	 * @param	{document}	doc
 	 */
 	runPlayers: function(doc) {
-		Foxtrick.log('HI from players');
+
+		Foxtrick.Pages.Players.getPlayerList(doc, function(playerList) {
+			for (var i = 0, p; i < playerList.length && (p = playerList[i]); ++i) {
+
+				var age = p.ageYears;
+				var currTSI = p.tsi;
+				var injured = (p.injuredWeeks && true);
+
+				var frm = p.form;
+				var sta = p.stamina;
+
+				if (typeof(p.playmaking) == 'undefined') {
+					continue;
+				}
+
+				var pla = p.playmaking, win = p.winger, sco = p.scoring, goa = p.keeper,
+					pas = p.passing, def = p.defending, sp = p.setPieces;
+				var playerskills = [frm, sta, pla, win, sco, goa, pas, def, sp];
+
+				var maxSkill = Foxtrick.psico.getMaxSkill(playerskills);
+				//halt if player is a Divine or Non - existent
+				if (playerskills[maxSkill] == 20 || playerskills[maxSkill] == 0) {
+					return;
+				}
+				var valMaxSkillAvg = 0;
+				var valMaxSkillLow = 0;
+				var valMaxSkillHigh = 0;
+
+				var undef = Foxtrick.psico.undefinedMainSkill(playerskills);
+				var limit = 'Medium';
+				var isGK = Foxtrick.psico.isGoalkeeper(maxSkill);
+				if (!isGK) {
+					valMaxSkillAvg = Foxtrick.psico.calcMaxSkill(playerskills, currTSI, 'Avg');
+					valMaxSkillLow = Foxtrick.psico.calcMaxSkill(playerskills, currTSI, 'Low');
+					valMaxSkillHigh = Foxtrick.psico.calcMaxSkill(playerskills, currTSI, 'High');
+				} else {
+					valMaxSkillAvg = Foxtrick.psico.calcMaxSkillGK(currTSI, frm, 'Avg');
+					valMaxSkillLow = Foxtrick.psico.calcMaxSkillGK(currTSI, frm, 'Low');
+					valMaxSkillHigh = Foxtrick.psico.calcMaxSkillGK(currTSI, frm, 'High');
+				}
+				if ((valMaxSkillLow - playerskills[maxSkill] <= 0.1)) {
+					limit = 'Low';
+				}
+				if (valMaxSkillHigh - playerskills[maxSkill] >= 0.8) {
+					limit = 'High';
+				}
+				//drawMessageInPlayersPage(doc, i, contextNode, isGK, undef, injured, age > 27, maxSkill, valMaxSkillHigh, valMaxSkillAvg, valMaxSkillLow, valMaxSkillWage, limit);
+			}
+		}, { teamid: Foxtrick.Pages.All.getTeamId(doc) });
+
 	},
 	/**
 	 * @param	{document}	doc
