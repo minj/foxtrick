@@ -4,6 +4,11 @@
  * @author convincedd, ryanli
  */
 
+if (!Foxtrick)
+	var Foxtrick = {};
+if (!Foxtrick.Pages)
+	Foxtrick.Pages = {};
+
 Foxtrick.Pages.Players = {
 	CORE_MODULE: true,
 	PAGES: ['players'],
@@ -542,14 +547,14 @@ Foxtrick.Pages.Players = {
 					player.ageYears = player.age.years;
 				}
 
-				if (Foxtrick.Pages.Players.isSeniorPlayersPage(doc)
-					&& !player.tsi) {
+				if ((Foxtrick.Pages.Players.isSeniorPlayersPage(doc) ||
+					 Foxtrick.Pages.Players.isNtPlayersPage(doc)) && !player.tsi) {
 					// youth players don't have TSI, and we can fetch directly
 					// from XML if it's there
-					var tsiMatch = basicHtml.replace(/\s+/g, '').match(RegExp('[=:](\\d+)'));
+					var tsiMatch = basicHtml.replace(/\s+/g, '').match(/\d+/g);
 					var tsi;
 					if (tsiMatch) {
-						tsi = tsiMatch[1];
+						tsi = tsiMatch[2];
 						tsi = parseInt(tsi, 10);
 						player.tsi = tsi;
 					}
