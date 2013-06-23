@@ -9,7 +9,7 @@ Foxtrick.modules['CopyMatchID'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['matches', 'matchesArchive', 'matchesHistory',
 					'matchesLatest', 'arena', 'matchLineup'],
-	CSS: Foxtrick.InternalPath + 'resources/css/copy-match-id.css',
+	//CSS: Foxtrick.InternalPath + 'resources/css/copy-match-id.css',
 
 	run: function(doc) {
 		var copyId = function(ev) {
@@ -66,6 +66,7 @@ Foxtrick.modules['CopyMatchID'] = {
 					images[j].setAttribute('matchid', matchid);
 					images[j].setAttribute('id', '_' + this.MODULE_NAME + count);
 					Foxtrick.onClick(images[j], copyId);
+					Foxtrick.addClass(images[j], 'ft-link');
 
 					count++;
 				}
