@@ -4,7 +4,7 @@ nl:
     nightly: 
       note_0: 'Dit is een beta versie. Gebruik is voor eigen risico. Kijk alstublieft op <linkSVN>commit history</linkSVN> bij Google Code voor details over de veranderingen.'
     beta: 
-      note_0: 'Dit is een beta versie van de volgende release. Help alstublieft met vertalen van deze versie op de zeer gebruiks vriendelijke crowd-vertaal pagina <linkCrowdin>crowdin.net</linkCrowdin>. '
+      note_0: 'Dit is een beta versie van de volgende release. Help alsjeblieft met vertalen van deze versie op de zeer gebruiksvriendelijke crowd-vertaal pagina <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
       note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
     0.12.1: 
@@ -12,18 +12,18 @@ nl:
       note_1: 'Nieuw: <module>SupportershipExpirationDate</module>: Klik op de resterende dagen in je overzicht, zal er voor zorgen dat je de vervaldatum van je supporterlidmaatschap kan zien'
       note_2: '<module>MatchIncome</module>: Er is een optie toegevoegd om de bezetting van het stadion in percentages weer te geven'
       note_3: "Nieuw: <module>MainMenuDropDown</module>: In de hoofdmenubalk zijn de links van Mijn hattrick en Mijn Club nu via dropdownmenu's direct toegankelijk."
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
-      note_10: 
-      note_11: 
+      note_4: 'Tijdherkenning aangepast in Firefox bij het exporteren van <module>DashboardCalendar</module>'
+      note_5: '<module>MatchOrderInterface</module>: toont nu avatars voor meerdere teams.'
+      note_6: '<module>DashboardCalendar</module>: verscheidene download prompts verwijderd in Firefox.'
+      note_7: '<module>HeaderFix</module>: toont nu de wissel team balk die eerst verborgen was.'
+      note_8: '<module>ConfirmActions</module>: gebruikers met meerdere teams krijgen nu de naam van het team te zien waarmee ze een bod uitbrengen.'
+      note_9: '<module>TransferSearchFilters</module>: filters slaan nu tevens de leeftijd van een speler in dagen op.'
+      note_10: Ondersteuning voor de Azerbeidzjaanse taal is toegevoegd.
+      note_11: Honderd andere aanpassingen voor problemen veroorzaakt door wijzigingen in Hattrick.
     0.12.0: 
       note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
       note_1: 'Nieuw: <module>MatchLineupTweaks</module>: Verandert de sterrenwaardering naar de oude sterren. Sterren en conditie zijn zichtbaar in de opstellingspagana. Vertoont specialiteiten voor alle spelers en toont de teamnamen om verwarring te voorkomen. Avatars van je speler zijn zichtbaar. Spelers die invloed kunnen hebben op een bepaald Special Event in een wedstrijd kunnen worden gemarkeerd. '
-      note_2: 
+      note_2: Veel aanpassingen voor verschillende modules die niet goed meer werkten na de invoering van de nieuwe Hattrick Shop.
       note_3: 
       note_4: 
       note_5: 
