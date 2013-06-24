@@ -125,9 +125,9 @@ Foxtrick.modules['StaffMarker'] = {
 				var type;
 				for (type in data) {
 					if (data[type][id] == true) {
-						if(type=='foxtrick') Foxtrick.addClass(object, 'ft-staff-' + type);
-						if (type == 'chpp-holder' && FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'external')) {
-							if(type!='foxtrick') Foxtrick.addClass(object, 'ft-staff-' + type);
+						if (type == 'foxtrick' || enableExternal)
+							Foxtrick.addClass(object, 'ft-staff-' + type);
+						if (type == 'chpp-holder' && enableExternal) {
 							var appNames = '';
 							Foxtrick.map(function(appName) {
 								appNames = appNames + ' \n● ' + appName;
@@ -199,6 +199,7 @@ Foxtrick.modules['StaffMarker'] = {
 				}, selects);
 			};
 
+			var enableExternal = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'external');
 			if (Foxtrick.isPage(doc, 'forumViewThread')) {
 				markThread(doc, modifier);
 				markSelect(doc, modifier);
