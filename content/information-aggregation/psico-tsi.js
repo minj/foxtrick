@@ -145,6 +145,8 @@ Foxtrick.modules['PsicoTSI'] = {
 
 				var age = p.ageYears;
 				var currTSI = p.tsi;
+				var currWAGE = parseInt(p.salary / (p.isAbroad ? 1.2 : 1) *
+										Foxtrick.util.currency.getRate(doc), 10);
 				var injured = (p.injuredWeeks && true);
 
 				var frm = p.form;
@@ -162,6 +164,7 @@ Foxtrick.modules['PsicoTSI'] = {
 				var valMaxSkillAvg = 0;
 				var valMaxSkillLow = 0;
 				var valMaxSkillHigh = 0;
+				var valMaxSkillWageLow = 0;
 
 				var undef = Foxtrick.psico.undefinedMainSkill(playerskills);
 				var limit = 'Medium';
@@ -175,13 +178,16 @@ Foxtrick.modules['PsicoTSI'] = {
 					valMaxSkillLow = Foxtrick.psico.calcMaxSkillGK(currTSI, frm, 'Low');
 					valMaxSkillHigh = Foxtrick.psico.calcMaxSkillGK(currTSI, frm, 'High');
 				}
+				if (currWAGE >= 270 && !isGK) {
+					valMaxSkillWageLow = Foxtrick.psico.simWage(playerskills, currWAGE, age, 'Low');
+				}
 				if ((valMaxSkillLow - playerskills[maxSkill] <= 0.1)) {
 					limit = 'Low';
 				}
 				if (valMaxSkillHigh - playerskills[maxSkill] >= 0.8) {
 					limit = 'High';
 				}
-				module.drawInPlayersPage(doc, i, p.playerNode, undef, injured, age > 27, maxSkill, valMaxSkillHigh, valMaxSkillAvg, valMaxSkillLow, limit);
+				module.drawInPlayersPage(doc, i, p.playerNode, undef, injured, age > 27, maxSkill, valMaxSkillHigh, valMaxSkillAvg, valMaxSkillLow, valMaxSkillWageLow, limit);
 			}
 		}, { teamid: Foxtrick.Pages.All.getTeamId(doc) });
 
@@ -332,8 +338,9 @@ Foxtrick.modules['PsicoTSI'] = {
 		entryPoint.parentNode.insertBefore(divobj, entryPoint.nextSibling);
 
 	},
-	drawInPlayersPage: function(doc, id, entryPoint, isUndefinedMainskill, isInjured, isOld, maxSkill,
-								valMaxSkillHigh, valMaxSkillAvg, valMaxSkillLow, limit) {
+	drawInPlayersPage: function(doc, id, entryPoint, isUndefinedMainskill, isInjured, isOld,
+								maxSkill, valMaxSkillHigh, valMaxSkillAvg, valMaxSkillLow,
+								valMaxSkillWageLow, limit) {
 
 		var players_img = function (src, txt, style) {
 			this.src = src;
@@ -416,6 +423,15 @@ Foxtrick.modules['PsicoTSI'] = {
 		paragraph = doc.createElement('p');
 		paragraph.textContent = pre + Foxtrickl10n.getString('PsicoTSI.F_LOW') + ']=' + valMaxSkillAvg;
 		psicotsi_info.appendChild(paragraph);
+
+		if (valMaxSkillWageLow && valMaxSkillWageLow != 'N/A') {
+			paragraph = doc.createElement('p');
+			pre = pre.replace(Foxtrickl10n.getString('PsicoTSI.FORM'),
+							  Foxtrickl10n.getString('PsicoTSI.WAGE'));
+			paragraph.textContent = pre + Foxtrickl10n.getString('PsicoTSI.DECIMALS_LOW') + ']=' +
+				valMaxSkillWageLow;
+			psicotsi_info.appendChild(paragraph);
+		}
 
 		var psicotsi_show_div = doc.createElement('div');
 		psicotsi_show_div.setAttribute('id','ft_psico_show_div_' + id);
