@@ -530,6 +530,7 @@ pref("extensions.foxtrick.prefs.module.ShowFriendlyBooked.OnDemand.enabled", tru
 pref("extensions.foxtrick.prefs.module.ShowLineupSet.enabled", true);
 pref("extensions.foxtrick.prefs.module.ShowLineupSet.LineupSet.enabled", true);
 pref("extensions.foxtrick.prefs.module.ShowLineupSet.Ownerless.enabled", true);
+pref("extensions.foxtrick.prefs.module.ShowLineupSet.Standing.enabled", true);
 pref("extensions.foxtrick.prefs.module.ShowLineupSet.Winning.enabled", true);
 pref("extensions.foxtrick.prefs.module.SimplePresentation.enabled", false);
 pref("extensions.foxtrick.prefs.module.SimplePresentation.Guestbook.enabled", false);

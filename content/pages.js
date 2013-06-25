@@ -133,6 +133,7 @@ Foxtrick.ht_pages = {
 	'hallOfFame'				: '/Club/HallOfFame/',
 	'search'					: '/Search/|/Search/Default.aspx',
 	'playerStats'				: '/Club/Players/PlayerStats.aspx',
+	'topScorers'			:	'/World/Series/TopScorers.aspx',
 	'tournaments'				: '/Community/Tournaments/Tournament.aspx',
 	'tournamentsGeneral'		: '/Community/Tournaments/',
 	'tournamentsOverview'		: '/Community/Tournaments/Default.aspx|/Community/Tournaments/?',
@@ -141,6 +142,7 @@ Foxtrick.ht_pages = {
 	'tournamentsPlayerStatuses'	: '/Community/Tournaments/PlayerStatuses.aspx',
 	'tournamentsCreate'			: '/Community/Tournaments/CreateTournament.aspx',
 	'tournamentsHistory'		: '/Community/Tournaments/TournamentHistory.aspx', //perhaps not identical to 'tournaments'
+	'ladders'					: '/World/Ladders/Ladder.aspx',
 	'world'						: '/World/$'
 };
 

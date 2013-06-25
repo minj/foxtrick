@@ -8,8 +8,8 @@
 
 Foxtrick.modules['ShowLineupSet'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
-	PAGES: ['series', 'youthSeries', 'tournaments'],
-	OPTIONS: ['LineupSet', 'Ownerless', 'Winning'],
+	PAGES: ['series', 'youthSeries', 'tournaments', 'tournamentsHistory', 'ladders', 'oldSeries', 'marathon', 'topScorers'],
+	OPTIONS: ['LineupSet', 'Ownerless', 'Standing', 'Winning'],
 	NICE: -2, //before ReLiveLinks
 	CSS: Foxtrick.InternalPath + 'resources/css/show-lineup-set.css',
 
@@ -140,6 +140,36 @@ Foxtrick.modules['ShowLineupSet'] = {
 					markBots(link, teams);
 				}
 			}
+		}
+
+		if (FoxtrickPrefs.isModuleOptionEnabled('ShowLineupSet', 'Standing')) {
+				if(Foxtrick.isPage(doc, 'youthSeries')) {
+					var correctTeam = "TeamID="+Foxtrick.util.id.getOwnYouthTeamId();
+				} else {
+					var correctTeam = "TeamID="+Foxtrick.util.id.getOwnTeamId();
+				}
+				
+				var tables = doc.getElementById('mainBody').getElementsByTagName('table');
+				// only deal with fixture/result tables
+				tables = Foxtrick.filter(function(n) {
+					return !isFixtureTable(n) && !isResultTable(n) && n.getAttribute('class')=='indent';
+				}, tables);
+				for (var k = 0; k < tables.length; ++k) {
+					var table = tables[k];
+					for (var i = 1; i < table.rows.length; ++i) {
+						var row = table.rows[i];
+						for (var c = 0; c < row.cells.length; ++c) {
+							if(row.cells[c].getElementsByTagName('a').length) {
+								var link = row.cells[c].getElementsByTagName('a')[0];
+								if(link.getAttribute('href').match(correctTeam)) {
+									for (var s = 0; s < row.cells.length; ++s) {
+										row.cells[s].style.fontWeight = 'bold';
+									}
+								}
+							}
+						}
+					}
+				}				
 		}
 	}
 };
