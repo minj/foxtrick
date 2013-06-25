@@ -30,11 +30,14 @@ Foxtrick.modules['StaffMarker'] = {
 			}
 			if (parsed) {
 				var key = parsed['type'];
+				var isInternal = parsed['internal'];
 				var list = parsed['list'];
 				// add them!
 				obj[key] = {};
 				if (key == 'chpp-holder')
 					obj[key]['apps'] = {};
+				if (isInternal)
+					obj[key]['internal'] = true;
 				Foxtrick.map(function(user) {
 					obj[key][user.id] = true;
 					if (key == 'chpp-holder')
@@ -125,9 +128,9 @@ Foxtrick.modules['StaffMarker'] = {
 				var type;
 				for (type in data) {
 					if (data[type][id] == true) {
-						if (type == 'foxtrick' || enableExternal)
+						if (data[type]['internal'] || enableExternal)
 							Foxtrick.addClass(object, 'ft-staff-' + type);
-						if (type == 'chpp-holder' && enableExternal) {
+						if (type == 'chpp-holder') {
 							var appNames = '';
 							Foxtrick.map(function(appName) {
 								appNames = appNames + ' \n● ' + appName;

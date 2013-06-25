@@ -33,6 +33,7 @@ if __name__ == "__main__":
 	file = open( outfile, "w")
 	file.write('{\n')
 	file.write('\t"type": "%s",\n' % "chpp-holder")
+	file.write('\t"internal": "true",\n')
 	file.write('\t"list": [\n')
 	file.write('\t\t' + ',\n\t\t'.join(map(lambda a: ('{ "id": %d, "name": "%s", "appNames": [ ' + ', '.join(map(lambda app: '"%s"' % app.encode('utf-8') ,a["appNames"])) + ' ] }') % (a["id"], a["name"].encode('utf-8')), sorted_users)))
 	file.write('\n\t]\n}')

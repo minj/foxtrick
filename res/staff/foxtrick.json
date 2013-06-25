@@ -1,5 +1,6 @@
 {
 	"type": "foxtrick",
+	"internal": "true",
 	"duties" : {
 		"default" : {
 			"url": "chrome://foxtrick/content/resources/img/staff/foxtrick.png",
