@@ -364,6 +364,9 @@ Foxtrick.Pages.Players = {
 						player.salary = Math.floor(Number(playerNode.getElementsByTagName('Salary')[0]
 						                           .textContent) / (10 * currencyRate));
 					}
+					if (playerNode.getElementsByTagName('IsAbroad').length) {
+						player.isAbroad = playerNode.getElementsByTagName('IsAbroad')[0].textContent;
+					}
 					if (playerNode.getElementsByTagName('TSI').length) {
 						player.tsi = Number(playerNode.getElementsByTagName('TSI')[0].textContent);
 					}
