@@ -156,18 +156,20 @@ Foxtrick.modules['MainMenuDropDown'] = {
 				var getSecondaryMenus = function(doc) {
 					var boxBodies = doc.querySelectorAll('.sidebarBox > .boxBody');
 					var menuslist = [];
+
+					var isEmptyTextNode = function(node) {
+						var nodeType = node.nodeType;
+						if (Foxtrick.NodeTypes.TEXT_NODE == nodeType &&
+						   node.textContent.replace(/\s*/gi, '') == '')
+							return true;
+
+						return false;
+					};
+
 					Foxtrick.map(function(boxBody) {
 						// Foxtrick.log(boxBody);
 						// only accept sidebar thingies that have the structure .boxbody > a
 						// but allow <br> and empty textnode
-						var isEmptyTextNode = function(node) {
-							var nodeType = node.nodeType;
-							if (Foxtrick.NodeTypes.TEXT_NODE == nodeType &&
-							   node.textContent.replace(/\s*/gi, '') == '')
-								return true;
-
-							return false;
-						};
 						var linkOnlyBox = true;
 						for (var c = 0; c < boxBody.childNodes.length; c++) {
 							var child = boxBody.childNodes[c];
@@ -358,33 +360,33 @@ Foxtrick.modules['MainMenuDropDown'] = {
 		});
 
 		function hoverBgColor(text) {
-			var re = new RegExp('#menu\\s*a\\s*:\\s*hover\\s*{.*background-color:([^;]+);', 'i');
-			var matches = text.match(re);
+			var matches = text.match(this.re);
 			if (matches)
 				return matches[1];
 			return null;
 		}
+		hoverBgColor.prototype.re = /#menu\s*a\s*:\s*hover\s*{.*background-color:([^;]+);/i;
 		function hoverColor(text) {
-			var re = new RegExp('#menu\\s*a\\s*:\\s*hover\\s*{.*\\s*color:([^;]+);', 'i');
-			var matches = text.match(re);
+			var matches = text.match(this.re);
 			if (matches)
 				return matches[1];
 			return null;
 		}
+		hoverColor.prototype.re = /#menu\s*a\s*:\s*hover\s*{.*\s*color:([^;]+);/i;
 		function bgColor(text) {
-			var re = new RegExp('#menu\\s*a\\s*{.*background-color:([^;]+);', 'i');
-			var matches = text.match(re);
+			var matches = text.match(this.re);
 			if (matches)
 				return matches[1];
 			return null;
 		}
+		bgColor.prototype.re = /#menu\s*a\s*{.*background-color:([^;]+);/i;
 		function textColor(text) {
-			var re = new RegExp('#menu\\s*a\\s*{.*\\s*color:([^;]+);', 'i');
-			var matches = text.match(re);
+			var matches = text.match(this.re);
 			if (matches)
 				return matches[1];
 			return null;
 		}
+		textColor.prototype.re = /#menu\s*a\s*{.*\s*color:([^;]+);/i;
 		
 		function getMenuTextColor() {
 			var tcolor;
@@ -392,7 +394,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 				try {
 					// opera throws security exception when accessing CSS from different domain
 					if (styleSheet.cssRules) {
-						Foxtrick.map(function(rule) {
+						Foxtrick.any(function(rule) {
 							//var hbc = hoverBgColor(rule.cssText);
 							//var hc = hoverColor(rule.cssText);
 							//var bc = bgColor(rule.cssText);
@@ -404,8 +406,12 @@ Foxtrick.modules['MainMenuDropDown'] = {
 							//	Foxtrick.log('text bg c',bc);
 							//if (hc)
 							//	Foxtrick.log('text hover',hc);
-							if (c)
+							if (c) {
 								tcolor = c;
+								return true;
+							}
+							else
+								return false;
 
 						}, styleSheet.cssRules);
 					}
