@@ -16,9 +16,9 @@ da:
       note_5: '<module>MatchOrderInterface</module>: viser nu avatarer for flere hold.'
       note_6: '<module>DashboardCalendar</module>: fjernet flere download beskeder i Firefox.'
       note_7: '<module>HeaderFix</module>: viser nu holdskifte linje som tidligere var skjult.'
-      note_8: 
-      note_9: 
-      note_10: 
+      note_8: '<module>ConfirmActions</module>: brugere med flere hold vil nu se navnet på holdet de byder med på.'
+      note_9: '<module>TransferSearchFilters</module>: filtre gemmer nu også spillere alder i dage.'
+      note_10: Support for den Aserbajdsjanske sprog blev tilføjet.
       note_11: 
     0.12.0: 
       note_0: 

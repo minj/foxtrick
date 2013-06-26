@@ -13,7 +13,7 @@ fr:
       note_2: "<module>MatchIncome</module> : Ajout d'une option pour afficher la répartition des places en pourcentages à cotés du nombre de spectateurs sur les rapport de match"
       note_3: "NOUVEAU: <module>MainMenuDropDown</module>: Ajout d'un menu déroulant dans la barre de navigation principale incluant tous les liens présents dans la barre latérale de la page concernée."
       note_4: "Correctif de la reconnaissance de la date dans Firefox lors de l'exportation <module>DashboardCalendar</module>"
-      note_5: '<module>MatchOrderInterface</module> Affichage des avatars des équipes des "platinums".'
+      note_5: '<module>MatchOrderInterface</module> Affichage des avatars de la 2ème équipe des "platinums".'
       note_6: '<module>DashboardCalendar</module>: Suppression des multiples invites de téléchargements dans Firefox.'
       note_7: "<module>HeaderFix</module> : affichage correct de la barre de commutation d'équipe."
       note_8: '<module>ConfirmActions</module>: les "platinums" peuvent voir avec quelle équipe ils enchérissent.'
