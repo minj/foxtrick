@@ -104,8 +104,13 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 			});
 
 		} else {
-			Foxtrick.Pages.Player.getPlayer(doc, Foxtrick.Pages.Player.getId(doc),
-			  function(player) {
+			var div = doc.getElementsByClassName('playerInfo')[0];
+			if (!div)
+				return;
+			var id = Foxtrick.Pages.Player.getId(doc);
+			Foxtrick.Pages.Player.getPlayer(doc, id, function(player) {
+				if (!player)
+					return;
 				Foxtrick.modules['LoyaltyDisplay']
 					.replacePercentageImage(player, doc.getElementById('mainBody'));
 			});

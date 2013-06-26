@@ -59,6 +59,9 @@ Foxtrick.modules['PsicoTSI'] = {
 	 */
 	runPlayer: function(doc) {
 
+		if (!doc.getElementsByClassName('playerInfo').length)
+			return;
+
 		var entryPoint;
 		var basicSkills = Foxtrick.Pages.Player.getBasicSkills(doc);
 		var frm = parseInt(basicSkills.form[0], 10);

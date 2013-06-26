@@ -48,6 +48,8 @@ Foxtrick.modules['LineupShortcut'] = {
 			return n.id != 'trainingDetails';
 		}, boxes);
 		var matchHistory = boxes[boxes.length - 1];
+		if (!matchHistory)
+			return;
 		var matchTable = matchHistory.getElementsByTagName('table')[0];
 		if (!matchTable)
 			return;

@@ -28,6 +28,8 @@ Foxtrick.modules['HTMSPoints'] = {
 		var AddToPlayerList = FoxtrickPrefs.isModuleOptionEnabled('HTMSPoints', 'AddToPlayerList');
 
 		if (Foxtrick.isPage(doc, 'playerDetails') && AddToPlayer) {
+			if (!doc.getElementsByClassName('playerInfo').length)
+				return;
 			var age = Foxtrick.Pages.Player.getAge(doc);
 			var skills = Foxtrick.Pages.Player.getSkillsWithText(doc);
 			if (skills === null) {

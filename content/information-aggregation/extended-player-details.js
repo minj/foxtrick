@@ -12,6 +12,10 @@ Foxtrick.modules['ExtendedPlayerDetails'] = {
 	OPTIONS: ['Language'],
 
 	run: function(doc) {
+		var div = doc.getElementsByClassName('playerInfo')[0];
+		if (!div)
+			return;
+
 		this._Player_Joined(doc);
 
 		// experiment: add language
