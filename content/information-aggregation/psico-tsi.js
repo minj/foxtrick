@@ -190,7 +190,7 @@ Foxtrick.modules['PsicoTSI'] = {
 				if (valMaxSkillHigh - playerskills[maxSkill] >= 0.8) {
 					limit = 'High';
 				}
-				module.drawInPlayersPage(doc, i, p.playerNode, undef, injured, age > 27, maxSkill, valMaxSkillHigh, valMaxSkillAvg, valMaxSkillLow, valMaxSkillWageLow, limit);
+				module.drawInPlayerInfo(doc, i, p.playerNode, undef, injured, age > 27, maxSkill, valMaxSkillHigh, valMaxSkillAvg, valMaxSkillLow, valMaxSkillWageLow, limit);
 			}
 		}, { teamid: Foxtrick.Pages.All.getTeamId(doc) });
 
@@ -199,7 +199,57 @@ Foxtrick.modules['PsicoTSI'] = {
 	 * @param	{document}	doc
 	 */
 	runTL: function(doc) {
-		Foxtrick.log('HI from TL');
+		var useLinks = FoxtrickPrefs.isModuleOptionEnabled('PsicoTSI', 'displayAsLink');
+		var players = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
+		var playerContainers = doc.getElementById('mainBody')
+			.getElementsByClassName('transferPlayerInfo');
+		var cellId = 0;
+		for (var i = 0, p; i < players.length && (p = players[i]); ++i) {
+			// if the following container does not exist
+			// the player is sold and skills aren't visible
+			if (!playerContainers[i].getElementsByClassName('transferPlayerCharacteristics').length)
+				continue;
+
+			var age = p.age.years;
+			var currTSI = p.tsi;
+			var injured = p.injured;
+
+			var frm = p.form;
+			var sta = p.stamina;
+
+			var pla = p.playmaking, win = p.winger, sco = p.scoring, goa = p.keeper,
+				pas = p.passing, def = p.defending, sp = p.setPieces;
+			var playerskills = [frm, sta, pla, win, sco, goa, pas, def, sp];
+
+			var maxSkill = Foxtrick.psico.getMaxSkill(playerskills);
+			//halt if player is a Divine or Non - existent
+			if (playerskills[maxSkill] == 20 || playerskills[maxSkill] == 0) {
+				return;
+			}
+			var valMaxSkillAvg = 0;
+			var valMaxSkillLow = 0;
+			var valMaxSkillHigh = 0;
+
+			var undef = Foxtrick.psico.undefinedMainSkill(playerskills);
+			var limit = 'Medium';
+			var isGK = Foxtrick.psico.isGoalkeeper(maxSkill);
+			if (!isGK) {
+				valMaxSkillAvg = Foxtrick.psico.calcMaxSkill(playerskills, currTSI, 'Avg');
+				valMaxSkillLow = Foxtrick.psico.calcMaxSkill(playerskills, currTSI, 'Low');
+				valMaxSkillHigh = Foxtrick.psico.calcMaxSkill(playerskills, currTSI, 'High');
+			} else {
+				valMaxSkillAvg = Foxtrick.psico.calcMaxSkillGK(currTSI, frm, 'Avg');
+				valMaxSkillLow = Foxtrick.psico.calcMaxSkillGK(currTSI, frm, 'Low');
+				valMaxSkillHigh = Foxtrick.psico.calcMaxSkillGK(currTSI, frm, 'High');
+			}
+			if ((valMaxSkillLow - playerskills[maxSkill] <= 0.1)) {
+				limit = 'Low';
+			}
+			if (valMaxSkillHigh - playerskills[maxSkill] >= 0.8) {
+				limit = 'High';
+			}
+			this.drawInPlayerInfo(doc, i, playerContainers[i], undef, injured, age > 27, maxSkill, valMaxSkillHigh, valMaxSkillAvg, valMaxSkillLow, 'N/A', limit, useLinks);
+		}
 	},
 	drawMessage: function(doc, entryPoint, isGK, isUndefinedMainskill, isInjured, isOld, maxSkill,
 						  valMaxSkillHigh, valMaxSkillAvg, valMaxSkillLow,
@@ -341,9 +391,11 @@ Foxtrick.modules['PsicoTSI'] = {
 		entryPoint.parentNode.insertBefore(divobj, entryPoint.nextSibling);
 
 	},
-	drawInPlayersPage: function(doc, id, entryPoint, isUndefinedMainskill, isInjured, isOld,
+	drawInPlayerInfo: function(doc, id, entryPoint, isUndefinedMainskill, isInjured, isOld,
 								maxSkill, valMaxSkillHigh, valMaxSkillAvg, valMaxSkillLow,
-								valMaxSkillWageLow, limit) {
+								valMaxSkillWageLow, limit, displayAsLink) {
+
+		var useLinks = typeof (displayAsLink) == 'undefined' || displayAsLink;
 
 		var players_img = function (src, txt, style) {
 			this.src = src;
@@ -367,26 +419,32 @@ Foxtrick.modules['PsicoTSI'] = {
 		var al_div = doc.createElement('div');
 
 		var psicotsi_info = doc.createElement('div');
-		Foxtrick.addClass(psicotsi_info, 'hidden');
 		psicotsi_info.setAttribute('id', 'ft_psico_info_div_' + id);
+		if (useLinks)
+			Foxtrick.addClass(psicotsi_info, 'hidden');
 
 		var psicotsi_hide_div = doc.createElement('div');
 		var imgWrap = doc.createElement('span');
 		psicotsi_hide_div.appendChild(imgWrap);
 		Foxtrick.addImage(doc, imgWrap, logo);
 
-		var psicotsi_hide_link = doc.createElement('a');
+		var psicotsi_hide_link;
+		if (useLinks) {
+			psicotsi_hide_link = doc.createElement('a');
+			Foxtrick.addClass(psicotsi_hide_link, 'ft-link');
+			psicotsi_hide_link.setAttribute('show', 'ft_psico_show_div_' + id);
+			psicotsi_hide_link.setAttribute('hide', 'ft_psico_info_div_' + id);
+			Foxtrick.onClick(psicotsi_hide_link, function(ev) {
+				var document = ev.target.ownerDocument;
+				Foxtrick.toggleClass(document.getElementById(ev.target.getAttribute('hide')),
+									 'hidden');
+				Foxtrick.toggleClass(document.getElementById(ev.target.getAttribute('show')),
+									 'hidden');
+			});
+		}
+		else
+			psicotsi_hide_link = doc.createElement('strong');
 		psicotsi_hide_link.textContent = this.title;
-		Foxtrick.addClass(psicotsi_hide_link, 'ft-link');
-		psicotsi_hide_link.setAttribute('show', 'ft_psico_show_div_' + id);
-		psicotsi_hide_link.setAttribute('hide', 'ft_psico_info_div_' + id);
-		Foxtrick.onClick(psicotsi_hide_link, function(ev) {
-			var document = ev.target.ownerDocument;
-			Foxtrick.toggleClass(document.getElementById(ev.target.getAttribute('hide')),
-								 'hidden');
-			Foxtrick.toggleClass(document.getElementById(ev.target.getAttribute('show')),
-								 'hidden');
-		});
 		psicotsi_hide_div.appendChild(psicotsi_hide_link);
 		psicotsi_info.appendChild(psicotsi_hide_div);
 
@@ -434,63 +492,72 @@ Foxtrick.modules['PsicoTSI'] = {
 			psicotsi_info.appendChild(paragraph);
 		}
 
-		var psicotsi_show_div = doc.createElement('div');
-		psicotsi_show_div.setAttribute('id','ft_psico_show_div_' + id);
-		var imgWrap = doc.createElement('span');
-		psicotsi_show_div.appendChild(imgWrap);
-		Foxtrick.addImage(doc, imgWrap, logo);
+		if (useLinks) {
+			var psicotsi_show_div = doc.createElement('div');
+			psicotsi_show_div.setAttribute('id','ft_psico_show_div_' + id);
+			var imgWrap = doc.createElement('span');
+			psicotsi_show_div.appendChild(imgWrap);
+			Foxtrick.addImage(doc, imgWrap, logo);
 
-		var psicotsi_show_link = doc.createElement('a');
-		psicotsi_show_link.textContent = mainSkillText + ' [' + Foxtrickl10n.getString('PsicoTSI.FORM') +
-			'=' + Foxtrickl10n.getString('PsicoTSI.F_AVG') + ']=' + valMaxSkillAvg;
-		Foxtrick.addClass(psicotsi_show_link, 'ft-link');
-		psicotsi_show_link.setAttribute('show', 'ft_psico_info_div_' + id);
-		psicotsi_show_link.setAttribute('hide', 'ft_psico_show_div_' + id);
-		Foxtrick.onClick(psicotsi_show_link, function(ev) {
-			var document = ev.target.ownerDocument;
-			Foxtrick.toggleClass(document.getElementById(ev.target.getAttribute('hide')),
-								 'hidden');
-			Foxtrick.toggleClass(document.getElementById(ev.target.getAttribute('show')),
-								 'hidden');
-		});
-		psicotsi_show_div.appendChild(psicotsi_show_link);
-		var spacer = doc.createElement('span');
-		spacer.textContent = String.fromCharCode(160);
-		psicotsi_show_div.appendChild(spacer);
+			var psicotsi_show_link = doc.createElement('a');
+			psicotsi_show_link.textContent = mainSkillText + ' [' + Foxtrickl10n.getString('PsicoTSI.FORM') +
+				'=' + Foxtrickl10n.getString('PsicoTSI.F_AVG') + ']=' + valMaxSkillAvg;
+			Foxtrick.addClass(psicotsi_show_link, 'ft-link');
+			psicotsi_show_link.setAttribute('show', 'ft_psico_info_div_' + id);
+			psicotsi_show_link.setAttribute('hide', 'ft_psico_show_div_' + id);
+			Foxtrick.onClick(psicotsi_show_link, function(ev) {
+				var document = ev.target.ownerDocument;
+				Foxtrick.toggleClass(document.getElementById(ev.target.getAttribute('hide')),
+									 'hidden');
+				Foxtrick.toggleClass(document.getElementById(ev.target.getAttribute('show')),
+									 'hidden');
+			});
+			psicotsi_show_div.appendChild(psicotsi_show_link);
+			var spacer = doc.createElement('span');
+			spacer.textContent = String.fromCharCode(160);
+			psicotsi_show_div.appendChild(spacer);
+		}
 
 		var img = new players_img();
 		if (limit == 'Low') {
 			img = new players_img(this.IMAGES.LOW_SUBLEVELS,
 								  Foxtrickl10n.getString('PsicoTSI.L_LOW'));
 			Foxtrick.addImage(doc, psicotsi_info, img);
-			Foxtrick.addImage(doc, psicotsi_show_div, img);
+			if (useLinks)
+				Foxtrick.addImage(doc, psicotsi_show_div, img);
 		}
 		else if (limit == 'High') {
 			img = new players_img(this.IMAGES.HIGH_SUBLEVELS,
 								 Foxtrickl10n.getString('PsicoTSI.L_HIGH'));
 			Foxtrick.addImage(doc, psicotsi_info, img);
-			Foxtrick.addImage(doc, psicotsi_show_div, img);
+			if (useLinks)
+				Foxtrick.addImage(doc, psicotsi_show_div, img);
 		}
 		if (isUndefinedMainskill) {
 			img = new players_img(this.IMAGES.UNDEF_MAINSKILL,
 								  Foxtrickl10n.getString('PsicoTSI.UNDEF_MAINSKILL'));
 			Foxtrick.addImage(doc, psicotsi_info, img);
-			Foxtrick.addImage(doc, psicotsi_show_div, img);
+			if (useLinks)
+				Foxtrick.addImage(doc, psicotsi_show_div, img);
 		}
 		if (isInjured) {
 			img = new players_img(this.IMAGES.INJURED,
 								  Foxtrickl10n.getString('PsicoTSI.INJURED'));
 			Foxtrick.addImage(doc, psicotsi_info, img);
-			Foxtrick.addImage(doc, psicotsi_show_div, img);
+			if (useLinks)
+				Foxtrick.addImage(doc, psicotsi_show_div, img);
 		}
 		if (isOld) {
 			img = new players_img(this.IMAGES.OLD,
 								  Foxtrickl10n.getString('PsicoTSI.OLD'));
 			Foxtrick.addImage(doc, psicotsi_info, img);
-			Foxtrick.addImage(doc, psicotsi_show_div, img);
+			if (useLinks)
+				Foxtrick.addImage(doc, psicotsi_show_div, img);
 		}
 
-		al_div.appendChild(psicotsi_show_div);
+		if (useLinks)
+			al_div.appendChild(psicotsi_show_div);
+
 		al_div.appendChild(psicotsi_info);
 		entryPoint.appendChild(al_div);
 	}
