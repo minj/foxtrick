@@ -53,9 +53,5 @@ Foxtrick.modules['AutoPostSpecs'] = {
 			textarea.value = txt;
 			setCaretPosition(textarea, 0);
 		}
-	},
-
-	change: function(doc) {
-		
 	}
 };
