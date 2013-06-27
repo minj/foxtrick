@@ -365,8 +365,6 @@ Foxtrick.modules['PsicoTSI'] = {
 								   'vertical-align: middle; padding-right: 5px;');
 
 		var al_div = doc.createElement('div');
-		var brElement = doc.createElement('br');
-		al_div.appendChild(brElement.cloneNode(true));
 
 		var psicotsi_info = doc.createElement('div');
 		Foxtrick.addClass(psicotsi_info, 'hidden');
@@ -424,7 +422,7 @@ Foxtrick.modules['PsicoTSI'] = {
 		psicotsi_info.appendChild(paragraph);
 
 		paragraph = doc.createElement('p');
-		paragraph.textContent = pre + Foxtrickl10n.getString('PsicoTSI.F_LOW') + ']=' + valMaxSkillAvg;
+		paragraph.textContent = pre + Foxtrickl10n.getString('PsicoTSI.F_LOW') + ']=' + valMaxSkillLow;
 		psicotsi_info.appendChild(paragraph);
 
 		if (valMaxSkillWageLow && valMaxSkillWageLow != 'N/A') {
