@@ -39,7 +39,8 @@ Foxtrick.modules['AutoPostSpecs'] = {
 			var textarea = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucHattrickMLEditor_txtBody');
 			var txt = textarea.value;
 
-			//super simple check if the spoiler is already present, buit seems sufficient
+			//super simple check if the spoiler is already present, but seems sufficient
+			//applies when editing forum msgs
 			var matched = txt.match('FoxTrick ' + Foxtrick.version());
 			if(matched !== null)
 				return;
