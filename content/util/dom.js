@@ -121,9 +121,15 @@ Foxtrick.getChildIndex = function(element) {
 	}
 	return count;
 };
-
+/**
+ * Adds event listener, tabindex=0 and role=button
+ * @param	{element}	target
+ * @param	{Function}	listener
+ */
 Foxtrick.onClick = function(target, listener) {
 	Foxtrick.listen(target, 'click', listener, false);
+	target.setAttribute('tabindex', '0');
+	target.setAttribute('role', 'button');
 };
 
 Foxtrick.listen = function(target, type, listener, useCapture) {

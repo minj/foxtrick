@@ -35,7 +35,7 @@
 
 .ft-monitor-frame > h3 > div.ft_sort {
 	float:right;
-	display:none;
+	/*display:none; hiding controls is against accessibility*/
 }
 
 .ft-monitor-remove {
