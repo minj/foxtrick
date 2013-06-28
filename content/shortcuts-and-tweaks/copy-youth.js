@@ -93,10 +93,10 @@ Foxtrick.modules['CopyYouth'] = {
 			var ok = Foxtrickl10n.getString('module.CopyYouth.AutoSendTrainingReportToHY.success');
 
 			Foxtrick.api.hy.postMatchReport(function() {
-				module.addNode(ok, 3000);
+				module.addNode(doc, ok, 3000);
 			  }, params,
 			  function(response, status) {
-				module.addNode('Error ' + status + ': ' + JSON.parse(response).error);
+				module.addNode(doc, 'Error ' + status + ': ' + JSON.parse(response).error);
 			});
 		};
 
@@ -213,10 +213,10 @@ Foxtrick.modules['CopyYouth'] = {
 
 
 						Foxtrick.api.hy.postScoutCall(function() {
-							module.addNode(ok, 3000);
+							module.addNode(doc, ok, 3000);
 						  }, params,
 						  function(response, status) {
-							module.addNode('Error ' + status + ': ' + JSON.parse(response).error);
+							module.addNode(doc, 'Error ' + status + ': ' + JSON.parse(response).error);
 						});
 					};
 
@@ -228,7 +228,7 @@ Foxtrick.modules['CopyYouth'] = {
 						});
 					} else {
 						Foxtrick.log('Manual copy of scout call.');
-						module.addNode(Foxtrickl10n.getString('copy.scoutComment.copied'));
+						module.addNode(doc, Foxtrickl10n.getString('copy.scoutComment.copied'));
 					}
 				}
 			}
