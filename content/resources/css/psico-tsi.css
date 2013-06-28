@@ -10,7 +10,7 @@
 	font-weight: bold;
 }
 div.ft-psico p {
-	padding: 0;
+	padding: 0 !important;
 	margin: 0 !important;
 }
 .ft-psico-indicator {
