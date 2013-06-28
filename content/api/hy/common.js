@@ -246,8 +246,14 @@ Foxtrick.api.hy._fetchGeneric = function(api, callback, params, failure, finaliz
 
 	Foxtrick.api.hy._fetchOrIgnore(api, url, params,
 	  function(response) {
-		var json = JSON.parse(response);
-		Foxtrick.log('[HY_API][' + api + '] json received:', json);
+		try {
+			var json = JSON.parse(response);
+			Foxtrick.log('[HY_API][' + api + '] json received:', json);
+		}
+		catch (e) {
+			Foxtrick.log('[HY_API][' + api + '] json parsing failed:', response);
+			json = null;
+		}
 		callback(json);
 	}, failure, finalize, teamId);
 };
