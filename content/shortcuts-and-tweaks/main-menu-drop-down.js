@@ -359,34 +359,15 @@ Foxtrick.modules['MainMenuDropDown'] = {
 			}
 		});
 
-		function hoverBgColor(text) {
-			var matches = text.match(this.re);
-			if (matches)
-				return matches[1];
-			return null;
-		}
-		hoverBgColor.prototype.re = /#menu\s*a\s*:\s*hover\s*{.*background-color:([^;]+);/i;
-		function hoverColor(text) {
-			var matches = text.match(this.re);
-			if (matches)
-				return matches[1];
-			return null;
-		}
-		hoverColor.prototype.re = /#menu\s*a\s*:\s*hover\s*{.*\s*color:([^;]+);/i;
-		function bgColor(text) {
-			var matches = text.match(this.re);
-			if (matches)
-				return matches[1];
-			return null;
-		}
-		bgColor.prototype.re = /#menu\s*a\s*{.*background-color:([^;]+);/i;
+		var textColorRe = /#menu\s*a\s*{.*\s*color:([^;]+);/i;
 		function textColor(text) {
-			var matches = text.match(this.re);
-			if (matches)
+			var matches = text.match(textColorRe);
+			if (matches) {
+				Foxtrick.log(matches);
 				return matches[1];
+			}
 			return null;
 		}
-		textColor.prototype.re = /#menu\s*a\s*{.*\s*color:([^;]+);/i;
 		
 		function getMenuTextColor() {
 			var tcolor;
@@ -395,18 +376,10 @@ Foxtrick.modules['MainMenuDropDown'] = {
 					// opera throws security exception when accessing CSS from different domain
 					if (styleSheet.cssRules) {
 						Foxtrick.any(function(rule) {
-							//var hbc = hoverBgColor(rule.cssText);
-							//var hc = hoverColor(rule.cssText);
-							//var bc = bgColor(rule.cssText);
 							var c = textColor(rule.cssText);
 
-							//if (hbc)
-							//	Foxtrick.log('hover bg color',hbc);
-							//if (bc)
-							//	Foxtrick.log('text bg c',bc);
-							//if (hc)
-							//	Foxtrick.log('text hover',hc);
 							if (c) {
+								Foxtrick.log(c);
 								tcolor = c;
 								return true;
 							}
