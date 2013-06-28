@@ -44,6 +44,7 @@ Foxtrick.modules['PsicoTSI'] = {
 	 * @param	{document}	doc
 	 */
 	run: function(doc) {
+		this.title = Foxtrickl10n.getString('PsicoTSI.title');
 		this.skills = [
 			Foxtrickl10n.getString('Form'),
 			Foxtrickl10n.getString('Stamina'),
