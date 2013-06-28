@@ -39,7 +39,6 @@ Foxtrick.modules['ForumStage'] = {
 			var check = doc.createElement('input');
 			check.id = 'ft-stage-forum-post';
 			check.setAttribute('type', 'checkbox');
-			check.setAttribute('tabindex', '10');
 			checkdiv.appendChild(check);
 			var desc = doc.createElement('label');
 			desc.appendChild(doc.createTextNode('I know'));
@@ -54,6 +53,7 @@ Foxtrick.modules['ForumStage'] = {
 				if (checked) button_ok.removeAttribute('disabled');
 				else button_ok.setAttribute('disabled', true);
 			});
+			check.setAttribute('tabindex', '10');
 		}
 	}
 };

@@ -317,10 +317,10 @@ Foxtrick.modules['ForumPreview'] = {
 			new_button.setAttribute('id', 'ft-forum-preview-button');
 			new_button.setAttribute('type', 'button');
 			new_button = Foxtrick.makeFeaturedElement(new_button, this);
-			new_button.setAttribute('tabindex', index);
 			//if (msg_type != -1)
 			//new_button.setAttribute('style',  'float:right;');
 			Foxtrick.onClick(new_button, toggleListener);
+			new_button.setAttribute('tabindex', index);
 			//button_ok.parentNode.insertBefore(new_button,button_ok);
 			target.parentNode.insertBefore(new_button, target.nextSibling);
 		}

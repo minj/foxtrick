@@ -73,8 +73,8 @@ Foxtrick.modules['PlayerFilters'] = {
 				button_ok.setAttribute('value', Foxtrickl10n.getString('button.ok'));
 				button_ok.setAttribute('id', 'filterSelectOptionsOk');
 				button_ok.setAttribute('type', 'button');
-				button_ok.setAttribute('tabindex', '5');
 				Foxtrick.onClick(button_ok, changeListener);
+				button_ok.setAttribute('tabindex', '5');
 				filterSelectOptionsDiv.appendChild(button_ok);
 
 				// rename filter to all

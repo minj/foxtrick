@@ -92,16 +92,16 @@ Foxtrick.modules['ForumTemplates'] = {
 					button_ok.setAttribute('value', Foxtrickl10n.getString('button.ok'));
 					button_ok.setAttribute('id', 'ForumTemplatesOKId');
 					button_ok.setAttribute('type', 'button');
-					button_ok.setAttribute('tabindex', '5');
 					Foxtrick.onClick(button_ok, addNewTemplate);
+					button_ok.setAttribute('tabindex', '5');
 					inputTitleDiv.appendChild(button_ok);
 
 					var button_cancel = doc.createElement('input');
 					button_cancel.setAttribute('value', Foxtrickl10n.getString('button.cancel'));
 					button_cancel.setAttribute('id', 'ForumTemplatesCancelId');
 					button_cancel.setAttribute('type', 'button');
-					//button_cancel.setAttribute('tabindex', '');
 					Foxtrick.onClick(button_cancel, CancelTitle);
+					//button_cancel.setAttribute('tabindex', '');
 					inputTitleDiv.appendChild(button_cancel);
 
 					msg_window.parentNode.insertBefore(inputTitleDiv, msg_window);
