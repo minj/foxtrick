@@ -163,8 +163,9 @@ Foxtrick.modules['ShowLineupSet'] = {
 								var link = row.cells[c].getElementsByTagName('a')[0];
 								if(link.getAttribute('href').match(correctTeam)) {
 									for (var s = 0; s < row.cells.length; ++s) {
-										row.cells[s].style.fontWeight = 'bold';
+										Foxtrick.addClass(row.cells[s], 'bold');
 									}
+									Foxtrick.makeFeaturedElement(row, Foxtrick.modules.ShowLineupSet);
 								}
 							}
 						}
