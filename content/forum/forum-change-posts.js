@@ -124,7 +124,8 @@ Foxtrick.modules['ForumChangePosts'] = {
 							post_id1 = header_left_link.title;
 							post_link1 = header_left_link;
 						}
-						else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1) {
+						else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1
+								 && header_left_link.parentNode.tagName != 'LI') { //skip popup-links
 							poster_link1 = header_left_link;
 							poster_id1 = poster_link1.href.match(/\?userId=(\d+)/i)[1];
 							if (header_left_links[k]
@@ -147,7 +148,8 @@ Foxtrick.modules['ForumChangePosts'] = {
 							post_link2 = header_left_link;
 						}
 						else if (post_link2 && header_left_link.href
-						         .search(/Club\/Manager\/\?userId=/i) != -1) {
+						         .search(/Club\/Manager\/\?userId=/i) != -1
+								 && header_left_link.parentNode.tagName != 'LI') { //skip popup-links
 							poster_link2 = header_left_link;
 							poster_id2 = poster_link2.href.match(/\d+$/);
 							if (header_left_links[k]
@@ -446,7 +448,8 @@ Foxtrick.modules['ForumChangePosts'] = {
 				if (!poster_link1) {
 					if (header_left_link.href.search(/showMInd|Forum\/Read\.aspx/) != -1)
 						post_link1 = header_left_link;
-					else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1) {
+					else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1
+							 && header_left_link.parentNode.tagName != 'LI') { //skip popup-links
 						poster_link1 = header_left_link;
 
 						poster_id1 = poster_link1.href.replace(/\&browseIds.+/, '').match(/\d+$/);
@@ -460,7 +463,8 @@ Foxtrick.modules['ForumChangePosts'] = {
 				else if (!poster_link2 || !post_link2) {
 					if (header_left_link.href.search(/showMInd|Forum\/Read\.aspx/) != -1)
 						post_link2 = header_left_link;
-					else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1) {
+					else if (header_left_link.href.search(/Club\/Manager\/\?userId=/i) != -1
+							 && header_left_link.parentNode.tagName != 'LI') { //skip popup-links
 						poster_link2 = header_left_link;
 						poster_id2 = poster_link2.href.replace(/\&browseIds.+/, '').match(/\d+$/);
 						if (header_left_links[k]
