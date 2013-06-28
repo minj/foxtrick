@@ -9,8 +9,10 @@ Foxtrick.modules['CopyYouth'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.SHORTCUTS_AND_TWEAKS,
 	PAGES: ['youthTraining', 'youthPlayerDetails', 'youthOverview',
 		'youthFixtures'],
-	OPTIONS: ['TrainingReport', 'AutoSendTrainingReportToHY', 'ScoutComment',
-		'AutoSendRejectedToHY', 'FixturesSource'],
+	OPTIONS: [
+		'TrainingReport', 'AutoSendTrainingReportToHY', 'ScoutComment',
+		'AutoSendRejectedToHY', 'AutoSendTrainingChangesToHY', 'FixturesSource'
+	],
 
 	CSS: Foxtrick.InternalPath + 'resources/css/copy-youth.css',
 
@@ -297,6 +299,45 @@ Foxtrick.modules['CopyYouth'] = {
 		}
 	},
 
+	/**
+	 * monitor training changes and send them to HY
+	 * @param	{document}	doc
+	 */
+	monitorTraining: function(doc) {
+		var module = this;
+		var sendTrainingChangeToHY = function() {
+			// assemble param string
+			var params = 'primaryTraining=' + training[0].value;
+			params = params + '&secondaryTraining=' + training[1].value;
+			var ok = Foxtrickl10n.getString('module.CopyYouth.AutoSendTrainingChangesToHY.success');
+
+			Foxtrick.api.hy.postTrainingChange(function() {
+				module.addNode(doc, ok, 3000);
+			  }, params,
+			  function(response, status) {
+				module.addNode(doc, 'Error ' + status + ': ' + JSON.parse(response).error);
+			});
+		};
+
+		var changeBtn = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butChangeTraining');
+		var training = doc.querySelectorAll('#mainBody table.form select');
+		if (!changeBtn || training.length != 2)
+			return;
+
+		Foxtrick.api.hy.runIfHYUser(function() {
+			Foxtrick.sessionGet('YouthClub.sendTrainingChange', function(send) {
+				if (!send)
+					return;
+
+				Foxtrick.sessionSet('YouthClub.sendTrainingChange', false);
+				sendTrainingChangeToHY();
+			});
+
+			Foxtrick.onClick(changeBtn, function(ev) {
+				Foxtrick.sessionSet('YouthClub.sendTrainingChange', true);
+			});
+		});
+	},
 	addFixturesSource: function(doc) {
 		var copySource = function() {
 			var fixBr = function(text) {
@@ -348,6 +389,10 @@ Foxtrick.modules['CopyYouth'] = {
 		if (FoxtrickPrefs.isModuleOptionEnabled('CopyYouth', 'TrainingReport')
 			&& Foxtrick.isPage(doc, 'youthTraining')) {
 			this.addTrainingReport(doc);
+		}
+		if (FoxtrickPrefs.isModuleOptionEnabled('CopyYouth', 'AutoSendTrainingChangesToHY')
+			&& Foxtrick.isPage(doc, 'youthTraining')) {
+			this.monitorTraining(doc);
 		}
 		if (FoxtrickPrefs.isModuleOptionEnabled('CopyYouth', 'ScoutComment')
 			&& (Foxtrick.isPage(doc, 'youthPlayerDetails')

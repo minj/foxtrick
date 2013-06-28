@@ -91,6 +91,7 @@
 			"content/api/hy/players-twins-check.js",
 			"content/api/hy/players-youth-reject-call.js",
 			"content/api/hy/matches-report.js",
+			"content/api/hy/matches-training.js",
 
 			//<!-- categorized modules -->
 			"content/access/aria-landmarks.js",

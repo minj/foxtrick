@@ -40,6 +40,7 @@ pref("extensions.foxtrick.prefs.module.CopyPosting.value", 2);
 pref("extensions.foxtrick.prefs.module.CopyRatings.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyYouth.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyYouth.TrainingReport.enabled", true);
+pref("extensions.foxtrick.prefs.module.CopyYouth.AutoSendTrainingChangesToHY.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyYouth.AutoSendTrainingReportToHY.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyYouth.ScoutComment.enabled", true);
 pref("extensions.foxtrick.prefs.module.CopyYouth.AutoSendRejectedToHY.enabled", true);
