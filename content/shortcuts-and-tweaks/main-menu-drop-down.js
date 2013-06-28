@@ -363,7 +363,6 @@ Foxtrick.modules['MainMenuDropDown'] = {
 		function textColor(text) {
 			var matches = text.match(textColorRe);
 			if (matches) {
-				Foxtrick.log(matches);
 				return matches[1];
 			}
 			return null;
@@ -379,7 +378,6 @@ Foxtrick.modules['MainMenuDropDown'] = {
 							var c = textColor(rule.cssText);
 
 							if (c) {
-								Foxtrick.log(c);
 								tcolor = c;
 								return true;
 							}
