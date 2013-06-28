@@ -63,6 +63,7 @@
 <script type="application/x-javascript" src="./api/hy/players-twins-check.js" />
 <script type="application/x-javascript" src="./api/hy/players-youth-reject-call.js" />
 <script type="application/x-javascript" src="./api/hy/matches-report.js" />
+<script type="application/x-javascript" src="./api/hy/matches-training.js" />
 
 <!-- core modules -->
 <script type="application/x-javascript" src="./redirections.js" />
