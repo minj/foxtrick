@@ -27,9 +27,9 @@ Foxtrick.modules['PsicoTSI'] = {
 	PAGES: ['playerDetails', 'players', 'ntPlayers', 'transferSearchResult'],
 	OPTIONS: ['enablePlayersPage', ['enableTLPage', 'displayAsLink']],
 
-	//CSS: Foxtrick.InternalPath + 'resources/css/psico-tsi.css',
+	CSS: Foxtrick.InternalPath + 'resources/css/psico-tsi.css',
 	IMAGES: {
-		UNKNOWN: Foxtrick.InternalPath + 'resources/img/psicotsi/unknown.png',
+		SKILL_NOT_AVAIL: Foxtrick.InternalPath + 'resources/img/psicotsi/unknown.png',
 		OLD: Foxtrick.InternalPath + 'resources/img/psicotsi/old.png',
 		LOGO: Foxtrick.InternalPath + 'resources/img/psicotsi/logo.png',
 		INJURED: Foxtrick.InternalPath + 'resources/img/psicotsi/injured.png',
@@ -38,10 +38,22 @@ Foxtrick.modules['PsicoTSI'] = {
 		LOW_SUBLEVELS: Foxtrick.InternalPath + 'resources/img/psicotsi/low_sublevels.png',
 	},
 	title: 'PsicoTSI Foxtrick Edition',
+	skills: [],
 	/**
 	 * @param	{document}	doc
 	 */
 	run: function(doc) {
+		this.skills = [
+			Foxtrickl10n.getString('Form'),
+			Foxtrickl10n.getString('Stamina'),
+			Foxtrickl10n.getString('Playmaking'),
+			Foxtrickl10n.getString('Winger'),
+			Foxtrickl10n.getString('Scoring'),
+			Foxtrickl10n.getString('Keeper'),
+			Foxtrickl10n.getString('Passing'),
+			Foxtrickl10n.getString('Defending'),
+			Foxtrickl10n.getString('Set_pieces'),
+		];
 		var module = this;
 		Foxtrick.util.currency.establish(doc, function() {
 			if (Foxtrick.isPage(doc, 'playerDetails'))
@@ -74,9 +86,9 @@ Foxtrick.modules['PsicoTSI'] = {
 		var injured = (Foxtrick.Pages.Player.getInjuryWeeks(doc) && true);
 
 		var skills = Foxtrick.Pages.Player.getSkills(doc);
-		if (typeof(skills.playmaking) == 'undefined') {
+		if (typeof (skills.playmaking) == 'undefined') {
 			entryPoint = doc.getElementById('ctl00_ctl00_CPContent_CPMain_updBestLatest');
-			this.drawMessage(doc, entryPoint)
+			this.drawMessage(doc, entryPoint);
 			return;
 		}
 
@@ -92,46 +104,14 @@ Foxtrick.modules['PsicoTSI'] = {
 		var pla = skills.playmaking, win = skills.winger, sco = skills.scoring, goa = skills.keeper,
 			pas = skills.passing, def = skills.defending, sp = skills.setPieces;
 		var playerskills = [frm, sta, pla, win, sco, goa, pas, def, sp];
-		var maxSkill = Foxtrick.psico.getMaxSkill(playerskills);
-		//halt if player is a Divine or Non - existent
-		if (playerskills[maxSkill] == 20 || playerskills[maxSkill] == 0) {
+
+		var pr = Foxtrick.psico.getPrediction(playerskills, currTSI, currWAGE, age);
+		if (!pr)
 			return;
-		}
-		var valMaxSkillAvg = 0;
-		var valMaxSkillLow = 0;
-		var valMaxSkillHigh = 0;
 
-		var valMaxSkillWageLow = 'N/A';
-		var valMaxSkillWageAvg = 'N/A';
-		var valMaxSkillWageHigh = 'N/A';
-
-		var undef = Foxtrick.psico.undefinedMainSkill(playerskills);
-		var limit = 'Medium';
-		var isGK = Foxtrick.psico.isGoalkeeper(maxSkill);
-		if (!isGK) {
-			valMaxSkillAvg = Foxtrick.psico.calcMaxSkill(playerskills, currTSI, 'Avg');
-			valMaxSkillLow = Foxtrick.psico.calcMaxSkill(playerskills, currTSI, 'Low');
-			valMaxSkillHigh = Foxtrick.psico.calcMaxSkill(playerskills, currTSI, 'High');
-		} else {
-			valMaxSkillAvg = Foxtrick.psico.calcMaxSkillGK(currTSI, frm, 'Avg');
-			valMaxSkillLow = Foxtrick.psico.calcMaxSkillGK(currTSI, frm, 'Low');
-			valMaxSkillHigh = Foxtrick.psico.calcMaxSkillGK(currTSI, frm, 'High');
-		}
-		if (currWAGE >= 270 && !isGK) {
-			valMaxSkillWageLow = Foxtrick.psico.simWage(playerskills, currWAGE, age, 'Low');
-			valMaxSkillWageAvg = Foxtrick.psico.simWage(playerskills, currWAGE, age, 'Avg');
-			valMaxSkillWageHigh = Foxtrick.psico.simWage(playerskills, currWAGE, age, 'High');
-		}
-		if ((valMaxSkillLow - playerskills[maxSkill] <= 0.1)) {
-			limit = 'Low';
-		}
-		if (valMaxSkillHigh - playerskills[maxSkill] >= 0.8 ||
-			valMaxSkillWageHigh - playerskills[maxSkill] >= 0.8) {
-			limit = 'High';
-		}
-		this.drawMessage(doc, entryPoint, isGK, undef, injured, age > 27, maxSkill,
-						   valMaxSkillHigh, valMaxSkillAvg, valMaxSkillLow,
-						   valMaxSkillWageLow, valMaxSkillWageAvg, valMaxSkillWageHigh, limit);
+		this.drawMessage(doc, entryPoint, pr.isGK, pr.undef, injured, age > 27, pr.maxSkill,
+						 pr.formHigh, pr.formAvg, pr.formLow,
+						 pr.wageHigh, pr.wageAvg, pr.wageLow, pr.limit);
 	},
 	/**
 	 * @param	{document}	doc
@@ -159,38 +139,13 @@ Foxtrick.modules['PsicoTSI'] = {
 					pas = p.passing, def = p.defending, sp = p.setPieces;
 				var playerskills = [frm, sta, pla, win, sco, goa, pas, def, sp];
 
-				var maxSkill = Foxtrick.psico.getMaxSkill(playerskills);
-				//halt if player is a Divine or Non - existent
-				if (playerskills[maxSkill] == 20 || playerskills[maxSkill] == 0) {
-					return;
-				}
-				var valMaxSkillAvg = 0;
-				var valMaxSkillLow = 0;
-				var valMaxSkillHigh = 0;
-				var valMaxSkillWageLow = 0;
+				var pr = Foxtrick.psico.getPrediction(playerskills, currTSI, currWAGE, age);
+				if (!pr)
+					continue;
 
-				var undef = Foxtrick.psico.undefinedMainSkill(playerskills);
-				var limit = 'Medium';
-				var isGK = Foxtrick.psico.isGoalkeeper(maxSkill);
-				if (!isGK) {
-					valMaxSkillAvg = Foxtrick.psico.calcMaxSkill(playerskills, currTSI, 'Avg');
-					valMaxSkillLow = Foxtrick.psico.calcMaxSkill(playerskills, currTSI, 'Low');
-					valMaxSkillHigh = Foxtrick.psico.calcMaxSkill(playerskills, currTSI, 'High');
-				} else {
-					valMaxSkillAvg = Foxtrick.psico.calcMaxSkillGK(currTSI, frm, 'Avg');
-					valMaxSkillLow = Foxtrick.psico.calcMaxSkillGK(currTSI, frm, 'Low');
-					valMaxSkillHigh = Foxtrick.psico.calcMaxSkillGK(currTSI, frm, 'High');
-				}
-				if (currWAGE >= 270 && !isGK) {
-					valMaxSkillWageLow = Foxtrick.psico.simWage(playerskills, currWAGE, age, 'Low');
-				}
-				if ((valMaxSkillLow - playerskills[maxSkill] <= 0.1)) {
-					limit = 'Low';
-				}
-				if (valMaxSkillHigh - playerskills[maxSkill] >= 0.8) {
-					limit = 'High';
-				}
-				module.drawInPlayerInfo(doc, i, p.playerNode, undef, injured, age > 27, maxSkill, valMaxSkillHigh, valMaxSkillAvg, valMaxSkillLow, valMaxSkillWageLow, limit);
+				module.drawInPlayerInfo(doc, i, p.playerNode, pr.undef, injured, age > 27,
+										pr.maxSkill, pr.formHigh, pr.formAvg, pr.formLow,
+										pr.wageLow, pr.limit);
 			}
 		}, { teamid: Foxtrick.Pages.All.getTeamId(doc) });
 
@@ -221,162 +176,117 @@ Foxtrick.modules['PsicoTSI'] = {
 				pas = p.passing, def = p.defending, sp = p.setPieces;
 			var playerskills = [frm, sta, pla, win, sco, goa, pas, def, sp];
 
-			var maxSkill = Foxtrick.psico.getMaxSkill(playerskills);
-			//halt if player is a Divine or Non - existent
-			if (playerskills[maxSkill] == 20 || playerskills[maxSkill] == 0) {
-				return;
-			}
-			var valMaxSkillAvg = 0;
-			var valMaxSkillLow = 0;
-			var valMaxSkillHigh = 0;
+			var pr = Foxtrick.psico.getPrediction(playerskills, currTSI, 0, age);
+			if (!pr)
+				continue;
 
-			var undef = Foxtrick.psico.undefinedMainSkill(playerskills);
-			var limit = 'Medium';
-			var isGK = Foxtrick.psico.isGoalkeeper(maxSkill);
-			if (!isGK) {
-				valMaxSkillAvg = Foxtrick.psico.calcMaxSkill(playerskills, currTSI, 'Avg');
-				valMaxSkillLow = Foxtrick.psico.calcMaxSkill(playerskills, currTSI, 'Low');
-				valMaxSkillHigh = Foxtrick.psico.calcMaxSkill(playerskills, currTSI, 'High');
-			} else {
-				valMaxSkillAvg = Foxtrick.psico.calcMaxSkillGK(currTSI, frm, 'Avg');
-				valMaxSkillLow = Foxtrick.psico.calcMaxSkillGK(currTSI, frm, 'Low');
-				valMaxSkillHigh = Foxtrick.psico.calcMaxSkillGK(currTSI, frm, 'High');
-			}
-			if ((valMaxSkillLow - playerskills[maxSkill] <= 0.1)) {
-				limit = 'Low';
-			}
-			if (valMaxSkillHigh - playerskills[maxSkill] >= 0.8) {
-				limit = 'High';
-			}
-			this.drawInPlayerInfo(doc, i, playerContainers[i], undef, injured, age > 27, maxSkill, valMaxSkillHigh, valMaxSkillAvg, valMaxSkillLow, 'N/A', limit, useLinks);
+			this.drawInPlayerInfo(doc, i, playerContainers[i], pr.undef, injured, age > 27,
+								  pr.maxSkill, pr.formHigh, pr.formAvg, pr.formLow, 'N/A',
+								  pr.limit, useLinks);
 		}
 	},
+	/**
+	 * Draw PsicoTSI prediction table (player page)
+	 * @param	{documen}	doc
+	 * @param	{element}	entryPoint
+	 * @param	{Boolean}	isGK
+	 * @param	{Boolean}	isUndefinedMainskill
+	 * @param	{Boolean}	isInjured
+	 * @param	{Boolean}	isOld
+	 * @param	{Integer}	maxSkill
+	 * @param	{Number}	formHigh				skill level when form sub is high
+	 * @param	{Number}	formAvg					average
+	 * @param	{Number}	formLow					low
+	 * @param	{Number}	wageHigh				skill level when secondary subs are high
+	 * @param	{Number}	wageAvg					average or 'N/A'
+	 * @param	{Number}	wageLow					low or 'N/A'
+	 * @param	{String}	limit					'High', 'Medium' or 'Low'
+	 */
 	drawMessage: function(doc, entryPoint, isGK, isUndefinedMainskill, isInjured, isOld, maxSkill,
-						  valMaxSkillHigh, valMaxSkillAvg, valMaxSkillLow,
-						  valMaxSkillWageLow, valMaxSkillWageAvg, valMaxSkillWageHigh, limit) {
+						  formHigh, formAvg, formLow, wageHigh, wageAvg, wageLow, limit) {
+
+		var module = this;
 
 		var table = doc.createElement('table');
 		var messagesDiv = doc.createElement('div');
 
-		if (typeof(maxSkill) == 'undefined') {
-			// Skills not available
+		var imgattr = {
+			alt: '',
+			width: '16',
+			height: '16',
+			class: 'ft-psico-indicator-left'
+		};
+		var addImage = function(type) {
 			var messageP = doc.createElement('p');
-			var imgattr = {
-				src: this.IMAGES.UNKNOWN,
-				alt: '',
-				width: '16',
-				height: '16',
-				style: 'text-align: center; vertical-align: middle; padding-right: 3px;'
-			};
-			Foxtrick.addImage(doc, messageP, imgattr);
-			messageP.appendChild(doc.createTextNode(Foxtrickl10n.getString('PsicoTSI.SKILL_NOT_AVAIL')));
+			messageP.textContent = Foxtrickl10n.getString('PsicoTSI.' + type);
+			imgattr.src = module.IMAGES[type];
+			var imgWrap = doc.createElement('span');
+			Foxtrick.addImage(doc, imgWrap, imgattr);
+			messageP.insertBefore(imgWrap, messageP.firstChild);
 			messagesDiv.appendChild(messageP);
+		};
+
+		if (typeof (maxSkill) == 'undefined') {
+			// Skills not available
+			addImage('SKILL_NOT_AVAIL');
 		}
 		else {
-			var mainSkillText = '';
-			switch (maxSkill) {
-				case 2:
-					mainSkillText = Foxtrickl10n.getString('Playmaking');
-					break;
-				case 3:
-					mainSkillText = Foxtrickl10n.getString('Winger');
-					break;
-				case 4:
-					mainSkillText = Foxtrickl10n.getString('Scoring');
-					break;
-				case 5:
-					mainSkillText = Foxtrickl10n.getString('Keeper');
-					break;
-				case 6:
-					mainSkillText = Foxtrickl10n.getString('Passing');
-					break;
-				case 7:
-					mainSkillText = Foxtrickl10n.getString('Defending');
-					break;
-			}
+			var mainSkillText = this.skills[maxSkill];
 
-			var isWagePredictionAvailable = !(valMaxSkillWageLow == 'N/A');
+			var isWagePredictionAvailable = (wageLow != 'N/A');
 
 			if (Foxtrick.util.layout.isStandard(doc)) {
-				Foxtrick.addClass(table,'nowrap alltidMatches');
+				Foxtrick.addClass(table, 'nowrap alltidMatches');
 			}
 			else {
-				Foxtrick.addClass(table,'alltidMatches');
+				Foxtrick.addClass(table, 'alltidMatches');
 			}
 
-
-			var imgattr = {
-				alt: '',
-				width: '16',
-				height: '16',
-				style: 'text-align: center; vertical-align: middle; padding-right: 3px;'
-			};
 			if (isUndefinedMainskill) {
-				var messageP = doc.createElement('p');
-				imgattr.src = this.IMAGES.UNDEF_MAINSKILL;
-				Foxtrick.addImage(doc, messageP, imgattr);
-				messageP.appendChild(doc.createTextNode(Foxtrickl10n.getString('PsicoTSI.UNDEF_MAINSKILL')));
-				messagesDiv.appendChild(messageP);
+				addImage('UNDEF_MAINSKILL');
 			}
 			if (isInjured) {
-				var messageP = doc.createElement('p');
-				imgattr.src = this.IMAGES.INJURED;
-				Foxtrick.addImage(doc, messageP, imgattr);
-				messageP.appendChild(doc.createTextNode(Foxtrickl10n.getString('PsicoTSI.INJURED')));
-				messagesDiv.appendChild(messageP);
+				addImage('INJURED');
 			}
 			if (isOld) {
-				var messageP = doc.createElement('p');
-				imgattr.src = this.IMAGES.OLD;
-				Foxtrick.addImage(doc, messageP, imgattr);
-				messageP.appendChild(doc.createTextNode(Foxtrickl10n.getString('PsicoTSI.OLD')));
-				messagesDiv.appendChild(messageP);
+				addImage('OLD');
 			}
 			if (!isWagePredictionAvailable) {
-				var messageP = doc.createElement('p');
-				imgattr.src = this.IMAGES.UNDEF_MAINSKILL;
-				Foxtrick.addImage(doc, messageP, imgattr);
-				messageP.appendChild(doc.createTextNode(Foxtrickl10n.getString('PsicoTSI.WAGE_PREDICTION_NA')));
-				messagesDiv.appendChild(messageP);
+				addImage('WAGE_PREDICTION_NA');
 			}
 
 			if (limit == 'Low') {
-				var messageP = doc.createElement('p');
-				imgattr.src = this.IMAGES.LOW_SUBLEVELS;
-				Foxtrick.addImage(doc, messageP, imgattr);
-				messageP.appendChild(doc.createTextNode(Foxtrickl10n.getString('PsicoTSI.L_LOW')));
-				messagesDiv.appendChild(messageP);
+				addImage('LOW_SUBLEVELS');
 			}
 
 			if (limit == 'High') {
-				var messageP = doc.createElement('p');
-				imgattr.src = this.IMAGES.HIGH_SUBLEVELS,
-				Foxtrick.addImage(doc, messageP, imgattr);
-				messageP.appendChild(doc.createTextNode(Foxtrickl10n.getString('PsicoTSI.L_HIGH')));
-				messagesDiv.appendChild(messageP);
+				addImage('HIGH_SUBLEVELS');
 			}
 
 			table.innerHTML= '<tr><th colspan="4" class="center"><b>' +
 				mainSkillText.toUpperCase() + '</tr>' +
-				'<tr><th colspan="2" class="center"><b>' + Foxtrickl10n.getString('PsicoTSI.TSI_PREDICTION') + '</b></th>' +
+				'<tr><th colspan="2" class="center"><b>' +
+				Foxtrickl10n.getString('PsicoTSI.TSI_PREDICTION') + '</b></th>' +
 				'<th colspan="2" class="center endColumn1"><b>' +
-				Foxtrickl10n.getString('PsicoTSI.WAGE_PREDICTION') + ' (' + Foxtrick.util.currency.getSymbol(doc) + ')</b></th></tr>' +
-				'<tr><td><b>' + Foxtrickl10n.getString('PsicoTSI.FORM_SUBLEVELS') + '</b></td><td><b>' + Foxtrickl10n.getString('PsicoTSI.PREDICTION') +
-				'</td>' +
-				'<td class="endColumn1"><b>' + Foxtrickl10n.getString('PsicoTSI.SECONDARIES_SUBLEVELS') +
-				 '</b></td><td><b>' + Foxtrickl10n.getString('PsicoTSI.PREDICTION') + '</td></tr>' +
-				'<tr><td>' + Foxtrickl10n.getString('PsicoTSI.DECIMALS_HIGH') + '</td><td>' + valMaxSkillHigh + '</td>' +
-				'<td class="endColumn1">' + Foxtrickl10n.getString('PsicoTSI.DECIMALS_HIGH') + '</td><td' +
-				(!isWagePredictionAvailable ? " class=shy" : "") + '>' + valMaxSkillWageHigh +
-				'</td></tr>' +
-				'<tr><td>' + Foxtrickl10n.getString('PsicoTSI.DECIMALS_AVG') + '</td><td>' + valMaxSkillAvg + '</td>' +
-				'<td class="endColumn1">' + Foxtrickl10n.getString('PsicoTSI.DECIMALS_AVG') + '</td><td' +
-				(!isWagePredictionAvailable? " class=shy" : "") + '>' + valMaxSkillWageAvg +
-				'</td></tr>' +
-				'<tr><td>' + Foxtrickl10n.getString('PsicoTSI.DECIMALS_LOW') + '</td><td>' + valMaxSkillLow + '</td>' +
-				'<td class="endColumn1">' + Foxtrickl10n.getString('PsicoTSI.DECIMALS_LOW') + '</td><td' +
-				(!isWagePredictionAvailable ? " class=shy" : "") + '>' + valMaxSkillWageLow +
-				'</td></tr>';
+				Foxtrickl10n.getString('PsicoTSI.WAGE_PREDICTION') + ' (' +
+				Foxtrick.util.currency.getSymbol(doc) + ')</b></th></tr>' +
+				'<tr><td><b>' + Foxtrickl10n.getString('PsicoTSI.FORM_SUBLEVELS') +
+				'</b></td><td><b>' + Foxtrickl10n.getString('PsicoTSI.PREDICTION') + '</td>' +
+				'<td class="endColumn1"><b>' +
+				Foxtrickl10n.getString('PsicoTSI.SECONDARIES_SUBLEVELS') +
+				'</b></td><td><b>' + Foxtrickl10n.getString('PsicoTSI.PREDICTION') + '</td></tr>' +
+				'<tr><td>' + Foxtrickl10n.getString('PsicoTSI.DECIMALS_HIGH') + '</td><td>' +
+				formHigh + '</td>' + '<td class="endColumn1">' +
+				Foxtrickl10n.getString('PsicoTSI.DECIMALS_HIGH') + '</td><td' +
+				(!isWagePredictionAvailable ? ' class="shy"' : '') + '>' + wageHigh + '</td></tr>' +
+				'<tr><td>' + Foxtrickl10n.getString('PsicoTSI.DECIMALS_AVG') + '</td><td>' +
+				formAvg + '</td>' + '<td class="endColumn1">' +
+				Foxtrickl10n.getString('PsicoTSI.DECIMALS_AVG') + '</td><td' +
+				(!isWagePredictionAvailable? ' class="shy"' : '') + '>' + wageAvg + '</td></tr>' +
+				'<tr><td>' + Foxtrickl10n.getString('PsicoTSI.DECIMALS_LOW') + '</td><td>' +
+				formLow + '</td>' + '<td class="endColumn1">' +
+				Foxtrickl10n.getString('PsicoTSI.DECIMALS_LOW') + '</td><td' +
+				(!isWagePredictionAvailable ? ' class="shy"' : '') + '>' + wageLow + '</td></tr>';
 		}
 
 		var title = doc.createElement('h2');
@@ -391,18 +301,35 @@ Foxtrick.modules['PsicoTSI'] = {
 		entryPoint.parentNode.insertBefore(divobj, entryPoint.nextSibling);
 
 	},
+	/**
+	 * Draw PsicoTSI prediction div in player container (players page, TL results)
+	 * @param	{documen}	doc
+	 * @param	{String}	id						index to use for conainer IDs
+	 * @param	{element}	entryPoint
+	 * @param	{Boolean}	isUndefinedMainskill
+	 * @param	{Boolean}	isInjured
+	 * @param	{Boolean}	isOld
+	 * @param	{Integer}	maxSkill
+	 * @param	{Number}	formHigh				skill level when form sub is high
+	 * @param	{Number}	formAvg					average
+	 * @param	{Number}	formLow					low
+	 * @param	{Number}	wageLow					skill level when secondary subs are low or 'N/A'
+	 * @param	{String}	limit					'High', 'Medium' or 'Low'
+	 * @param	{Boolean}	displayAsLink
+	 */
 	drawInPlayerInfo: function(doc, id, entryPoint, isUndefinedMainskill, isInjured, isOld,
-								maxSkill, valMaxSkillHigh, valMaxSkillAvg, valMaxSkillLow,
-								valMaxSkillWageLow, limit, displayAsLink) {
+								maxSkill, formHigh, formAvg, formLow, wageLow, limit, displayAsLink) {
+		var module = this;
 
-		var useLinks = typeof (displayAsLink) == 'undefined' || displayAsLink;
+		var useLinks = (typeof (displayAsLink) == 'undefined' || displayAsLink);
 
-		var players_img = function (src, txt, style) {
-			this.src = src;
-			if (txt)
-				this.alt = this.title = txt;
-			if (style)
-				this.style = style;
+		var players_img = function(type, title, cls) {
+			this.src = module.IMAGES[type];
+			if (typeof (title) == 'undefined')
+				title = Foxtrickl10n.getString('PsicoTSI.' + type);
+			this.alt = this.title = title;
+			if (cls)
+				this.class = cls;
 		};
 		players_img.prototype = {
 			alt: '',
@@ -410,20 +337,20 @@ Foxtrick.modules['PsicoTSI'] = {
 			border: '0',
 			width: '16',
 			height: '16',
-			style: 'padding-right: 3px;',
+			class: 'ft-psico-indicator',
 			src: ''
 		};
-		var logo = new players_img(this.IMAGES.LOGO, this.title,
-								   'vertical-align: middle; padding-right: 5px;');
+		var logo = new players_img('LOGO', this.title, 'ft-psico-indicator-left');
 
-		var al_div = doc.createElement('div');
-
+		var al_div = Foxtrick.createFeaturedElement(doc, this, 'div');
+		Foxtrick.addClass(al_div, 'ft-psico');
 		var psicotsi_info = doc.createElement('div');
 		psicotsi_info.setAttribute('id', 'ft_psico_info_div_' + id);
 		if (useLinks)
 			Foxtrick.addClass(psicotsi_info, 'hidden');
 
 		var psicotsi_hide_div = doc.createElement('div');
+		Foxtrick.addClass(psicotsi_hide_div, 'ft-psico-hide');
 		var imgWrap = doc.createElement('span');
 		psicotsi_hide_div.appendChild(imgWrap);
 		Foxtrick.addImage(doc, imgWrap, logo);
@@ -446,62 +373,47 @@ Foxtrick.modules['PsicoTSI'] = {
 			psicotsi_hide_link = doc.createElement('strong');
 		psicotsi_hide_link.textContent = this.title;
 		psicotsi_hide_div.appendChild(psicotsi_hide_link);
+		var spacer = doc.createElement('span');
+		spacer.textContent = String.fromCharCode(160);
+		psicotsi_hide_div.appendChild(spacer);
 		psicotsi_info.appendChild(psicotsi_hide_div);
 
-		var mainSkillText = '';
-		switch (maxSkill) {
-			case 2:
-				mainSkillText = Foxtrickl10n.getString('Playmaking');
-				break;
-			case 3:
-				mainSkillText = Foxtrickl10n.getString('Winger');
-				break;
-			case 4:
-				mainSkillText = Foxtrickl10n.getString('Scoring');
-				break;
-			case 5:
-				mainSkillText = Foxtrickl10n.getString('Keeper');
-				break;
-			case 6:
-				mainSkillText = Foxtrickl10n.getString('Passing');
-				break;
-			case 7:
-				mainSkillText = Foxtrickl10n.getString('Defending');
-				break;
-		}
+		var mainSkillText = this.skills[maxSkill];
 
 		var paragraph = doc.createElement('p');
 		var pre = mainSkillText + ' [' + Foxtrickl10n.getString('PsicoTSI.FORM') + '=';
-		paragraph.textContent = pre + Foxtrickl10n.getString('PsicoTSI.F_HIGH') + ']=' + valMaxSkillHigh;
+		paragraph.textContent = pre + Foxtrickl10n.getString('PsicoTSI.FORM_HIGH') + ']=' + formHigh;
 		psicotsi_info.appendChild(paragraph);
 
 		paragraph = doc.createElement('p');
-		paragraph.textContent = pre + Foxtrickl10n.getString('PsicoTSI.F_AVG') + ']=' + valMaxSkillAvg;
+		paragraph.textContent = pre + Foxtrickl10n.getString('PsicoTSI.FORM_AVG') + ']=' + formAvg;
 		psicotsi_info.appendChild(paragraph);
 
 		paragraph = doc.createElement('p');
-		paragraph.textContent = pre + Foxtrickl10n.getString('PsicoTSI.F_LOW') + ']=' + valMaxSkillLow;
+		paragraph.textContent = pre + Foxtrickl10n.getString('PsicoTSI.FORM_LOW') + ']=' + formLow;
 		psicotsi_info.appendChild(paragraph);
 
-		if (valMaxSkillWageLow && valMaxSkillWageLow != 'N/A') {
+		if (wageLow && wageLow != 'N/A') {
 			paragraph = doc.createElement('p');
 			pre = pre.replace(Foxtrickl10n.getString('PsicoTSI.FORM'),
 							  Foxtrickl10n.getString('PsicoTSI.WAGE'));
 			paragraph.textContent = pre + Foxtrickl10n.getString('PsicoTSI.DECIMALS_LOW') + ']=' +
-				valMaxSkillWageLow;
+				wageLow;
 			psicotsi_info.appendChild(paragraph);
 		}
 
 		if (useLinks) {
 			var psicotsi_show_div = doc.createElement('div');
-			psicotsi_show_div.setAttribute('id','ft_psico_show_div_' + id);
+			psicotsi_show_div.setAttribute('id', 'ft_psico_show_div_' + id);
+			Foxtrick.addClass(psicotsi_show_div, 'ft-psico-show');
 			var imgWrap = doc.createElement('span');
 			psicotsi_show_div.appendChild(imgWrap);
 			Foxtrick.addImage(doc, imgWrap, logo);
 
 			var psicotsi_show_link = doc.createElement('a');
-			psicotsi_show_link.textContent = mainSkillText + ' [' + Foxtrickl10n.getString('PsicoTSI.FORM') +
-				'=' + Foxtrickl10n.getString('PsicoTSI.F_AVG') + ']=' + valMaxSkillAvg;
+			psicotsi_show_link.textContent = mainSkillText + ' [' +
+				Foxtrickl10n.getString('PsicoTSI.FORM') + '=' +
+				Foxtrickl10n.getString('PsicoTSI.FORM_AVG') + ']=' + formAvg;
 			Foxtrick.addClass(psicotsi_show_link, 'ft-link');
 			psicotsi_show_link.setAttribute('show', 'ft_psico_info_div_' + id);
 			psicotsi_show_link.setAttribute('hide', 'ft_psico_show_div_' + id);
@@ -513,50 +425,41 @@ Foxtrick.modules['PsicoTSI'] = {
 									 'hidden');
 			});
 			psicotsi_show_div.appendChild(psicotsi_show_link);
-			var spacer = doc.createElement('span');
-			spacer.textContent = String.fromCharCode(160);
-			psicotsi_show_div.appendChild(spacer);
+			psicotsi_show_div.appendChild(spacer.cloneNode(true));
+			al_div.appendChild(psicotsi_show_div);
 		}
 
-		var img = new players_img();
+		var img = logo;
 		if (limit == 'Low') {
-			img = new players_img(this.IMAGES.LOW_SUBLEVELS,
-								  Foxtrickl10n.getString('PsicoTSI.L_LOW'));
-			Foxtrick.addImage(doc, psicotsi_info, img);
+			img = new players_img('LOW_SUBLEVELS');
+			Foxtrick.addImage(doc, psicotsi_hide_div, img);
 			if (useLinks)
 				Foxtrick.addImage(doc, psicotsi_show_div, img);
 		}
 		else if (limit == 'High') {
-			img = new players_img(this.IMAGES.HIGH_SUBLEVELS,
-								 Foxtrickl10n.getString('PsicoTSI.L_HIGH'));
-			Foxtrick.addImage(doc, psicotsi_info, img);
+			img = new players_img('HIGH_SUBLEVELS');
+			Foxtrick.addImage(doc, psicotsi_hide_div, img);
 			if (useLinks)
 				Foxtrick.addImage(doc, psicotsi_show_div, img);
 		}
 		if (isUndefinedMainskill) {
-			img = new players_img(this.IMAGES.UNDEF_MAINSKILL,
-								  Foxtrickl10n.getString('PsicoTSI.UNDEF_MAINSKILL'));
-			Foxtrick.addImage(doc, psicotsi_info, img);
+			img = new players_img('UNDEF_MAINSKILL');
+			Foxtrick.addImage(doc, psicotsi_hide_div, img);
 			if (useLinks)
 				Foxtrick.addImage(doc, psicotsi_show_div, img);
 		}
 		if (isInjured) {
-			img = new players_img(this.IMAGES.INJURED,
-								  Foxtrickl10n.getString('PsicoTSI.INJURED'));
-			Foxtrick.addImage(doc, psicotsi_info, img);
+			img = new players_img('INJURED');
+			Foxtrick.addImage(doc, psicotsi_hide_div, img);
 			if (useLinks)
 				Foxtrick.addImage(doc, psicotsi_show_div, img);
 		}
 		if (isOld) {
-			img = new players_img(this.IMAGES.OLD,
-								  Foxtrickl10n.getString('PsicoTSI.OLD'));
-			Foxtrick.addImage(doc, psicotsi_info, img);
+			img = new players_img('OLD');
+			Foxtrick.addImage(doc, psicotsi_hide_div, img);
 			if (useLinks)
 				Foxtrick.addImage(doc, psicotsi_show_div, img);
 		}
-
-		if (useLinks)
-			al_div.appendChild(psicotsi_show_div);
 
 		al_div.appendChild(psicotsi_info);
 		entryPoint.appendChild(al_div);

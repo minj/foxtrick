@@ -526,5 +526,63 @@ Foxtrick.psico = {
 		];
 		return 0;
 	},
-};
+	/**
+	 * Get PsicoTSI prediction data from playerskills
+	 * [frm, sta, pm, w, sco, gk, ps, df, sp]
+	 * Returns prediction object:
+	 * { maxSkill, isGK, undef, limit, formLow, formAvg, formHigh, wageLow, wageAvg, wageHigh }
+	 * @param	{Object}	playerskills
+	 * @param	{Number}	currTSI
+	 * @param	{Number}	currWAGE
+	 * @param	{Number}	age
+	 * @returns	{Object}
+	 */
+	getPrediction: function(playerskills, currTSI, currWAGE, age) {
+		var frm = playerskills[0];
+		var maxSkill = this.getMaxSkill(playerskills);
+		// halt if player is a Divine or Non - existent
+		if (playerskills[maxSkill] == 20 || playerskills[maxSkill] == 0) {
+			return null;
+		}
+		var formAvg = 0;
+		var formLow = 0;
+		var formHigh = 0;
 
+		var wageLow = 'N/A';
+		var wageAvg = 'N/A';
+		var wageHigh = 'N/A';
+
+		var undef = this.undefinedMainSkill(playerskills);
+		var limit = 'Medium';
+		var isGK = this.isGoalkeeper(maxSkill);
+		if (!isGK) {
+			formAvg = this.calcMaxSkill(playerskills, currTSI, 'Avg');
+			formLow = this.calcMaxSkill(playerskills, currTSI, 'Low');
+			formHigh = this.calcMaxSkill(playerskills, currTSI, 'High');
+		} else {
+			formAvg = this.calcMaxSkillGK(currTSI, frm, 'Avg');
+			formLow = this.calcMaxSkillGK(currTSI, frm, 'Low');
+			formHigh = this.calcMaxSkillGK(currTSI, frm, 'High');
+		}
+		if (currWAGE >= 270 && !isGK) {
+			wageLow = this.simWage(playerskills, currWAGE, age, 'Low');
+			wageAvg = this.simWage(playerskills, currWAGE, age, 'Avg');
+			wageHigh = this.simWage(playerskills, currWAGE, age, 'High');
+		}
+		if (formLow - playerskills[maxSkill] <= 0.1) {
+			limit = 'Low';
+		}
+		if (formHigh - playerskills[maxSkill] >= 0.8 ||
+			wageHigh - playerskills[maxSkill] >= 0.8) {
+			limit = 'High';
+		}
+
+		var pr = {
+			maxSkill: maxSkill, isGK: isGK, undef: undef, limit: limit,
+			formLow: formLow, formAvg: formAvg, formHigh: formHigh,
+			wageLow: wageLow, wageAvg: wageAvg, wageHigh: wageHigh
+		};
+
+		return pr;
+	}
+};

@@ -1,0 +1,24 @@
+@-moz-document domain(hattrick.org), domain(hattrick.uol.com.br), domain(hattrick.interia.pl), domain(hattrick.ws), domain(hat-trick.net), domain(hattrick.name), domain(hattrick.fm) {
+
+.ft-psico {
+	margin: 10px 0;
+}
+.ft-psico-hide, .ft-psico-show {
+	margin: 6px;
+}
+.ft-psico-hide a, .ft-psico-show a {
+	font-weight: bold;
+}
+div.ft-psico p {
+	padding: 0;
+	margin: 0 !important;
+}
+.ft-psico-indicator {
+	padding-right: 3px;
+}
+.ft-psico-indicator-left {
+	vertical-align: middle;
+	padding-right: 5px;
+}
+
+}
