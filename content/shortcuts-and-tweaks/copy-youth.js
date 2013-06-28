@@ -14,7 +14,18 @@ Foxtrick.modules['CopyYouth'] = {
 
 	CSS: Foxtrick.InternalPath + 'resources/css/copy-youth.css',
 
+	addNode: function(doc, text, timeout) {
+		var insertBefore = doc.getElementsByTagName('h1')[1];
+		var container = doc.createElement('div');
+		var p = doc.createElement('p');
+		p.appendChild(doc.createTextNode(text));
+		container.appendChild(p);
+		Foxtrick.util.note.add(doc, insertBefore, 'ft-training-report-copy-note', container,
+							   null, true, null, false, timeout);
+	},
+
 	addTrainingReport: function(doc) {
+		var module = this;
 		// copy function
 		var copyReport = function() {
 			try {
@@ -70,16 +81,6 @@ Foxtrick.modules['CopyYouth'] = {
 			}
 		};
 
-		var addNode = function(text, timeout) {
-			var insertBefore = doc.getElementsByTagName('h1')[1];
-			var container = doc.createElement('div');
-			var p = doc.createElement('p');
-			p.appendChild(doc.createTextNode(text));
-			container.appendChild(p);
-			Foxtrick.util.note.add(doc, insertBefore, 'ft-training-report-copy-note', container,
-			                       null, true, null, false, timeout);
-		};
-
 		var sendTrainingReportToHY = function(matchId, trainerNode, reportNode, training) {
 			//assemble param string
 			var params = 'report=' + encodeURIComponent(reportNode.innerHTML);
@@ -89,13 +90,13 @@ Foxtrick.modules['CopyYouth'] = {
 				Foxtrick.modules['ReadHtPrefs'].readLanguageFromMetaTag(doc);
 			params = params + '&primaryTraining=' + training[0].value;
 			params = params + '&secondaryTraining=' + training[1].value;
+			var ok = Foxtrickl10n.getString('module.CopyYouth.AutoSendTrainingReportToHY.success');
 
 			Foxtrick.api.hy.postMatchReport(function() {
-				addNode(Foxtrickl10n
-							.getString('module.CopyYouth.AutoSendTrainingReportToHY.success'), 3000);
+				module.addNode(ok, 3000);
 			  }, params,
 			  function(response, status) {
-				addNode('Error ' + status + ': ' + JSON.parse(response).error);
+				module.addNode('Error ' + status + ': ' + JSON.parse(response).error);
 			});
 		};
 
@@ -151,15 +152,7 @@ Foxtrick.modules['CopyYouth'] = {
 	},
 
 	addScoutComment: function(doc) {
-		var addNode = function(text, timeout) {
-			var insertBefore = doc.getElementsByTagName('h1')[1];
-			var container = doc.createElement('div');
-			var p = doc.createElement('p');
-			p.appendChild(doc.createTextNode(text));
-			container.appendChild(p);
-			Foxtrick.util.note.add(doc, insertBefore, 'ft-training-report-copy-note', container,
-			                       null, true, null, false, timeout);
-		};
+		var module = this;
 		var copyReport = function(sendHTY) {
 			try {
 				var mainBody = doc.getElementById('mainBody');
@@ -215,14 +208,15 @@ Foxtrick.modules['CopyYouth'] = {
 						var params = 'scoutcall=' + encodeURIComponent(reportNode.innerHTML);
 						params = params + '&lang=' +
 							Foxtrick.modules['ReadHtPrefs'].readLanguageFromMetaTag(doc);
+						var ok = Foxtrickl10n
+							.getString('module.CopyYouth.AutoSendRejectedToHY.success');
+
 
 						Foxtrick.api.hy.postScoutCall(function() {
-							addNode(Foxtrickl10n
-										.getString('module.CopyYouth.AutoSendRejectedToHY.success'),
-										3000);
+							module.addNode(ok, 3000);
 						  }, params,
 						  function(response, status) {
-							addNode('Error ' + status + ': ' + JSON.parse(response).error);
+							module.addNode('Error ' + status + ': ' + JSON.parse(response).error);
 						});
 					};
 
@@ -234,7 +228,7 @@ Foxtrick.modules['CopyYouth'] = {
 						});
 					} else {
 						Foxtrick.log('Manual copy of scout call.');
-						addNode(Foxtrickl10n.getString('copy.scoutComment.copied'));
+						module.addNode(Foxtrickl10n.getString('copy.scoutComment.copied'));
 					}
 				}
 			}
