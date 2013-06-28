@@ -34,6 +34,7 @@ Foxtrick.modules['PsicoTSI'] = {
 		LOGO: Foxtrick.InternalPath + 'resources/img/psicotsi/logo.png',
 		INJURED: Foxtrick.InternalPath + 'resources/img/psicotsi/injured.png',
 		UNDEF_MAINSKILL: Foxtrick.InternalPath + 'resources/img/psicotsi/undef_mainskill.png',
+		WAGE_PREDICTION_NA: Foxtrick.InternalPath + 'resources/img/psicotsi/undef_mainskill.png',
 		HIGH_SUBLEVELS: Foxtrick.InternalPath + 'resources/img/psicotsi/high_sublevels.png',
 		LOW_SUBLEVELS: Foxtrick.InternalPath + 'resources/img/psicotsi/low_sublevels.png',
 	},
