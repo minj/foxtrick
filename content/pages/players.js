@@ -365,7 +365,8 @@ Foxtrick.Pages.Players = {
 						                           .textContent) / (10 * currencyRate));
 					}
 					if (playerNode.getElementsByTagName('IsAbroad').length) {
-						player.isAbroad = playerNode.getElementsByTagName('IsAbroad')[0].textContent;
+						player.isAbroad = parseInt(playerNode.getElementsByTagName('IsAbroad')[0]
+												   .textContent, 10);
 					}
 					if (playerNode.getElementsByTagName('TSI').length) {
 						player.tsi = Number(playerNode.getElementsByTagName('TSI')[0].textContent);
