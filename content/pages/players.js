@@ -836,13 +836,11 @@ Foxtrick.Pages.Players = {
 					}
 				}
 				var psicoLink = null;
-				if (doc.getElementById('psicotsi_show_div_' + i) !== null) 	 // ff
-					psicoLink = doc.getElementById('psicotsi_show_div_' + i)
-						.getElementsByTagName('a')[0];
-				else if (doc.getElementById('psico_show_div_' + i) !== null) 	 // chrome
-					psicoLink = doc.getElementById('psico_show_div_' + i)
-						.getElementsByTagName('a')[0];
-				if (psicoLink) {
+				var showDiv = doc.getElementById('psicotsi_show_div_' + i) ||
+					doc.getElementById('psico_show_div_' + i) ||
+					doc.getElementById('ft_psico_show_div_' + i);
+				if (showDiv !== null) {
+					psicoLink = showDiv.getElementsByTagName('a')[0];
 					player.psicoTSI = psicoLink.textContent.match(/\d+\.\d+/)[0];
 					player.psicoTitle = psicoLink.textContent.match(/(.+)\s\[/)[1];
 				}

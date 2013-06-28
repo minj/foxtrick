@@ -119,28 +119,15 @@ Foxtrick.modules['PsicoTSI'] = {
 	 */
 	runPlayers: function(doc) {
 		var module = this;
+		var currRate = Foxtrick.util.currency.getRate(doc);
 
 		Foxtrick.Pages.Players.getPlayerList(doc, function(playerList) {
 			for (var i = 0, p; i < playerList.length && (p = playerList[i]); ++i) {
 
-				if (typeof(p.playmaking) == 'undefined') {
-					continue;
-				}
-
-				var age = p.ageYears;
-				var currTSI = p.tsi;
-				var currWAGE = parseInt(p.salary / (p.isAbroad ? 1.2 : 1) *
-										Foxtrick.util.currency.getRate(doc), 10);
 				var injured = (p.injuredWeeks && true);
+				var age = p.ageYears;
 
-				var frm = p.form;
-				var sta = p.stamina;
-
-				var pla = p.playmaking, win = p.winger, sco = p.scoring, goa = p.keeper,
-					pas = p.passing, def = p.defending, sp = p.setPieces;
-				var playerskills = [frm, sta, pla, win, sco, goa, pas, def, sp];
-
-				var pr = Foxtrick.psico.getPrediction(playerskills, currTSI, currWAGE, age);
+				var pr = p.psico || module.getPrediction(p, currRate);
 				if (!pr)
 					continue;
 
@@ -167,17 +154,9 @@ Foxtrick.modules['PsicoTSI'] = {
 				continue;
 
 			var age = p.age.years;
-			var currTSI = p.tsi;
 			var injured = p.injured;
 
-			var frm = p.form;
-			var sta = p.stamina;
-
-			var pla = p.playmaking, win = p.winger, sco = p.scoring, goa = p.keeper,
-				pas = p.passing, def = p.defending, sp = p.setPieces;
-			var playerskills = [frm, sta, pla, win, sco, goa, pas, def, sp];
-
-			var pr = Foxtrick.psico.getPrediction(playerskills, currTSI, 0, age);
+			var pr = p.psico || this.getPrediction(p, 0);
 			if (!pr)
 				continue;
 
@@ -185,6 +164,57 @@ Foxtrick.modules['PsicoTSI'] = {
 								  pr.maxSkill, pr.formHigh, pr.formAvg, pr.formLow, 'N/A',
 								  pr.limit, useLinks);
 		}
+	},
+	/**
+	 * Loops through playerlist and adds psico, psicoTSI, psicoTitle properties
+	 * currRate is needed for wage prediction, use 0 otherwise
+	 * may be called from other scripts!
+	 * @param	{Array}	playerList
+	 * @param	{Number}	currRate
+	 */
+	loopPlayerList: function(playerList, currRate) {
+		for (var i = 0, p; i < playerList.length && (p = playerList[i]); ++i) {
+			if (typeof(p.playmaking) == 'undefined') {
+				continue;
+			}
+
+			var pr = this.getPrediction(p, currRate);
+			if (!pr)
+				continue;
+
+			p.psicoTSI = pr.formAvg;
+			p.psicoTitle = this.skills[pr.maxSkill];
+			p.psico = pr;
+		}
+	},
+	/**
+	 * Get prediction for player object
+	 * Wage prediction needs currRate, use 0 otherwise
+	 * returns prediction object
+	 * { maxSkill, isGK, undef, limit, formLow, formAvg, formHigh, wageLow, wageAvg, wageHigh }
+	 * may be called from other scripts!
+	 * @param	{Object}	p
+	 * @param	{Number}	currRate
+	 * @returns	{Object}
+	 */
+	getPrediction: function(p, currRate) {
+		if (typeof(p.playmaking) == 'undefined') {
+			return null;
+		}
+
+		var age = p.ageYears || p.age.years;
+		var currTSI = p.tsi;
+		var currWAGE = (currRate) ? parseInt(p.salary / (p.isAbroad ? 1.2 : 1) * currRate, 10) : 0;
+
+		var frm = p.form;
+		var sta = p.stamina;
+
+		var pla = p.playmaking, win = p.winger, sco = p.scoring, goa = p.keeper,
+			pas = p.passing, def = p.defending, sp = p.setPieces;
+		var playerskills = [frm, sta, pla, win, sco, goa, pas, def, sp];
+
+		var pr = Foxtrick.psico.getPrediction(playerskills, currTSI, currWAGE, age);
+		return pr;
 	},
 	/**
 	 * Draw PsicoTSI prediction table (player page)
