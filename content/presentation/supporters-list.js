@@ -19,17 +19,6 @@ Foxtrick.modules['SupportersList'] = {
         if (!supporterBack && !supportedBack)
 			return;
 
-        if(!Array.indexOf){
-            Array.prototype.indexOf = function(obj){
-                for(var i=0; i<this.length; i++){
-                    if(this[i]==obj){
-                        return i;
-                    }
-                }
-                return -1;
-            }
-        }
-
         Foxtrick.util.api.retrieve(doc, [
             ['file', 'teamdetails'],
             ['version', '2.9'],
@@ -71,7 +60,7 @@ Foxtrick.modules['SupportersList'] = {
             for(var l=0; l<links.length; l++) {
                 var href = links[l].getAttribute('href');
                 var matches = re.exec(href);
-                if(matches[1] && ids.indexOf(matches[1])!=-1) {
+                if(matches[1] && Foxtrick.indexOf(ids, matches[1])!=-1) {
                     var node = my ? links[l].parentNode.parentNode.previousElementSibling : links[l].parentNode;
                     Foxtrick.addImage(doc, node, {
                         'src': '/Img/Icons/transparent.gif',

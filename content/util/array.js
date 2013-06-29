@@ -129,3 +129,13 @@ Foxtrick.remove = function(a, b) {
 			r.push(a[i]);
 	return r;
 };
+
+// test if b is in array a, returns -1 if not
+Foxtrick.indexOf = function(a, b){
+		for(var i=0; i<a.length; i++){
+				if(a[i]==b){
+						return i;
+				}
+		}
+		return -1;
+};
