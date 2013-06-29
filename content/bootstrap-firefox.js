@@ -207,6 +207,7 @@ FoxtrickFirefox.prototype = {
 		"presentation/skill-translation.js",
 		"presentation/skin-plugin.js",
 		"presentation/smaller-pages.js",
+		"presentation/supporters-list.js",
 		"presentation/tabs-test.js",
 		"presentation/team-select-box.js",
 		"presentation/youth-skill-hide-unknown.js",

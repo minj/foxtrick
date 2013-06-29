@@ -129,6 +129,7 @@ Foxtrick.ht_pages = {
 	'statsMatchesHeadToHead'	: '/World/Stats/StatsMatchesHeadToHead.aspx',
 	'statsSeries'   			: '/World/Series/Stats.aspx',
 	'statsTopPlayers'   		: '/World/Players/TopPlayers.aspx',
+    'supporters'                : '/Club/Supporters/',
 	'press' 					: '/Community/Press/',
 	'hallOfFame'				: '/Club/HallOfFame/',
 	'search'					: '/Search/|/Search/Default.aspx',
