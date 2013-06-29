@@ -220,7 +220,7 @@
     <name>Polish</name>
     <code>pl</code>
     <phrases>1482</phrases>
-    <translated>1362</translated>
+    <translated>1365</translated>
     <approved>0</approved>
     <translated_progress>92</translated_progress>
     <approved_progress>0</approved_progress>
@@ -284,9 +284,9 @@
     <code>sv-SE</code>
     <phrases>1482</phrases>
     <translated>1370</translated>
-    <approved>393</approved>
+    <approved>543</approved>
     <translated_progress>93</translated_progress>
-    <approved_progress>26</approved_progress>
+    <approved_progress>36</approved_progress>
   </language>
   <language>
     <name>Turkish</name>
