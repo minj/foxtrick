@@ -13,7 +13,7 @@ if (!Foxtrick)
 Foxtrick.map = function(func, array) {
 	var ret = [];
 	for (var i = 0; i < array.length; ++i)
-		ret.push(func(array[i]));
+		ret.push(func(array[i], i));
 	return ret;
 };
 
