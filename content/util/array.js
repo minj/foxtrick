@@ -22,7 +22,7 @@ Foxtrick.map = function(func, array) {
 Foxtrick.filter = function(func, array) {
 	var ret = [];
 	for (var i = 0; i < array.length; ++i) {
-		if (func(array[i]))
+		if (func(array[i], i))
 			ret.push(array[i]);
 	}
 	return ret;
@@ -31,7 +31,7 @@ Foxtrick.filter = function(func, array) {
 // returns whether at least a member in given array satisfy func
 Foxtrick.any = function(func, array) {
 	for (var i = 0; i < array.length; ++i)
-		if (func(array[i]))
+		if (func(array[i], i))
 			return true;
 	return false;
 };
@@ -39,7 +39,7 @@ Foxtrick.any = function(func, array) {
 // returns whether all members in given array satisfy func
 Foxtrick.all = function(func, array) {
 	for (var i = 0; i < array.length; ++i)
-		if (!func(array[i]))
+		if (!func(array[i], i))
 			return false;
 	return true;
 };
@@ -48,7 +48,7 @@ Foxtrick.all = function(func, array) {
 Foxtrick.count = function(func, array) {
 	var ret = 0;
 	for (var i = 0; i < array.length; ++i) {
-		if (func(array[i]))
+		if (func(array[i], i))
 			++ret;
 	}
 	return ret;
@@ -60,7 +60,7 @@ Foxtrick.count = function(func, array) {
 Foxtrick.nth = function(n, func, array) {
 	var count = 0;
 	for (var i = 0; i < array.length; ++i)
-		if (func(array[i]))
+		if (func(array[i], i))
 			if (count++ == n)
 				return array[i];
 	return null;

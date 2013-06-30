@@ -473,5 +473,5 @@ Foxtrick.Math.tanh = function(x) {
  * @returns	{Integer}
  */
 Foxtrick.Math.div = function(a, b) {
-	return (a - a % b) / b
+	return (a - a % b) / b;
 };
