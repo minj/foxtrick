@@ -20,12 +20,8 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		// we need to traverse the hidden input fields in the timeline
 		// that are used as data sources by HTs to assemble the field on each click.
 		// first, each minute/event has input.hidden[id$="_time"][value="min.sec"]
-		var timeline = Foxtrick.map(function(el) {
-			var time = el.value;
-			return { min: Number(time.match(/^\d+/)), sec: Number(time.match(/\d+$/)) };
-		}, doc.querySelectorAll('input[id$="_time"]'));
-
-		//doc.querySelectorAll('input[id$="_playerRatings'"]);
+		var timeline = Foxtrick.Pages.Match.getTimeline(doc);
+		//doc.querySelectorAll('input[id$="_playerRatings"]');
 		// each minute has input.hidden[id$="_playerRatingsHome"][value="jsonArray"]
 		// where jsonArray is an array of Player objects
 		// Player = {
@@ -41,19 +37,8 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		//	Stars: 3,
 		//	ToMin: 90,
 		//};
-
-		var initTeamRatings = function(isHome) {
-			var playerRatings = doc.querySelectorAll('input[id$="_playerRatings' +
-													 (isHome ? 'Home' : 'Away') + '"]');
-			var playerRatingsByEvent = Foxtrick.map(function(ratings) {
-				return { players: JSON.parse(ratings.value), source: ratings };
-			}, playerRatings);
-			// keep playerRatingsByEvent[i].source as a pointer to the input
-			// so that we know where to save
-			return playerRatingsByEvent;
-		};
-		var playerRatingsHome = initTeamRatings(true);
-		var playerRatingsAway = initTeamRatings(false);
+		var playerRatingsHome = Foxtrick.Pages.Match.getTeamRatingsByEvent(doc, true);
+		var playerRatingsAway = Foxtrick.Pages.Match.getTeamRatingsByEvent(doc, false);
 
 		var saveRatings = function(playerRatingsByEvent) {
 			// save modifications
@@ -94,11 +79,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		// other player movement events: 360-262; 370-372;
 
 		//doc.querySelectorAll('input[id$="_eventIndex"]') points to the report tab!
-		var eventIndices = doc.querySelectorAll('input[id$="_eventIndex"]');
-		var eventIndexByEvent = [];
-		for (var i = 0; i < eventIndices.length; i++) {
-			eventIndexByEvent.push({ eventIdx: Number(eventIndices[i].value), idx: i });
-		}
+		var eventIndexByEvent = Foxtrick.Pages.Match.getEventIndicesByEvent(doc);
 
 		//doc.querySelectorAll('input[id$="_timelineEventType"]')
 		var TIMELINE_EVENT_TYPES = {

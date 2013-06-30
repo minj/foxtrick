@@ -2,9 +2,14 @@
 /**
  * match.js
  * utilities on match page
- * @author taised, Jestar
+ * @author taised, Jestar, LA-MJ
  */
 ////////////////////////////////////////////////////////////////////////////////
+if (!Foxtrick)
+	var Foxtrick = {};
+if (!Foxtrick.Pages)
+	Foxtrick.Pages = {};
+
 Foxtrick.Pages.Match = {
 	getHomeTeamId: function(doc) {
 		if (this.hasNewRatings(doc)) {
@@ -208,6 +213,9 @@ Foxtrick.Pages.Match = {
 		}
 		return null;
 	},
+
+	// START NEW RATINGS UTILS
+
 	/* modeled on Foxtrick.addBoxToSidebar
 	 * @desc add a box to the sidebar on the right
 	 * @param doc - HTML document the content is to be added on
@@ -313,5 +321,59 @@ Foxtrick.Pages.Match = {
 			}
 		}
 		return playerData;
+	},
+	/**
+	 * get timeline data as array of {min, sec}
+	 * each minute/event has input.hidden[id$="_time"][value="min.sec"]
+	 * @param	{document}	doc
+	 * @returns	{Array}		[{min: Integer, sec: Integer},..]
+	 */
+	getTimeline: function(doc) {
+		var timeline = Foxtrick.map(function(el) {
+			var time = el.value;
+			return { min: parseInt(time.match(/^\d+/), 10), sec: parseInt(time.match(/\d+$/), 10) };
+		}, doc.querySelectorAll('input[id$="_time"]'));
+		return timeline;
+	},
+	/**
+	 * Get team ratings event by event
+	 * each minute has input.hidden[id$="_playerRatingsHome"][value="jsonArray"]
+	 * Returns an array of {players, source}
+	 * Where source is the input element
+	 * and players is an array of Player objects
+	 * { Cards: 0,	FromMin: -1, InjuryLevel: 0, IsCaptain: false,
+	 * 	IsKicker: false, PlayerId: 360991810, PositionBehaviour: 0,
+	 * 	PositionID: 100, Stamina: 1, Stars: 3, ToMin: 90 }
+	 * @param	{document}	doc
+	 * @param	{Boolean}	isHome
+	 * @returns	{Array}			[{players: Array, source: HTMLInputElement}]
+	 */
+	getTeamRatingsByEvent: function(doc, isHome) {
+		var playerRatings = doc.querySelectorAll('input[id$="_playerRatings' +
+												 (isHome ? 'Home' : 'Away') + '"]');
+		var playerRatingsByEvent = Foxtrick.map(function(ratings) {
+			return { players: JSON.parse(ratings.value), source: ratings };
+		}, playerRatings);
+		// keep playerRatingsByEvent[i].source as a pointer to the input
+		// so that we know where to save
+		return playerRatingsByEvent;
+	},
+	/**
+	 * Get event indices event by event
+	 * doc.querySelectorAll('input[id$="_eventIndex"]') points to the report tab
+	 * Returns an array of {eventIdx, idx}
+	 * Where eventIdx is the event index in the report (xml),
+	 * used ot match highlights (#matchEventIndex_ + eventIdx)
+	 * 5 minute updates have index=0, no event
+	 * While idx is the timeline index (starts at 0, includes 5 minute updates)
+	 * @param	{document}	doc
+	 * @returns	{Array}		[{eventIdx: Integer, idx: Integer},..]
+	 */
+	getEventIndicesByEvent: function(doc) {
+		var eventIndices = doc.querySelectorAll('input[id$="_eventIndex"]');
+		var eventIndexByEvent = Foxtrick.map(function(index, i) {
+			return { eventIdx: index.value, idx: i };
+		}, eventIndices);
+		return eventIndexByEvent;
 	}
 };
