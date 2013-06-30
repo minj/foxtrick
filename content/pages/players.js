@@ -476,6 +476,23 @@ Foxtrick.Pages.Players = {
 							.textContent;
 					}
 				}
+
+				// add stamina data
+				var ownId = Foxtrick.util.id.getOwnTeamId();
+				var teamid = xml.getElementsByTagName('TeamID')[0];
+				var data = {}, dataText = FoxtrickPrefs.get('StaminaData.' + ownId);
+				if (dataText && teamid && teamid.textContent == ownId) {
+					data = JSON.parse(dataText);
+					Foxtrick.map(function(player) {
+						if (data.hasOwnProperty(player.id)) {
+							player.staminaPrediction = {
+								value: data[player.id][1], date: data[player.id][0]
+							};
+						}
+						else
+							player.staminaPrediction = null;
+					}, playerList);
+				}
 			} catch (e) { Foxtrick.log(e); }
 		};
 

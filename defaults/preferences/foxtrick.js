@@ -644,6 +644,7 @@ pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Set_pieces", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.PsicoTSI", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Speciality", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Stamina", true);
+pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.StaminaPrediction", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.Status", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.TransferCompare", true);
 pref("extensions.foxtrick.prefs.module.SkillTable.senior.own.TSI", true);

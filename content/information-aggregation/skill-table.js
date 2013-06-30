@@ -289,6 +289,18 @@ Foxtrick.modules['SkillTable'] = {
 							.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, 'text');
 					}
 				};
+				var staminaPrediction = function(cell, pred) {
+					if (pred) {
+						cell.textContent = pred.value;
+						cell.title = Foxtrick.util.time.buildDate(new Date(pred.date), true, false);
+						cell.setAttribute('index', parseFloat(pred.value));
+					}
+					else {
+						cell.textContent = '–';
+						cell.title = Foxtrickl10n.getString('StaminaPrediction.na');
+						cell.setAttribute('index', '0');
+					}
+				};
 				var speciality = function(cell, spec) {
 					var specIdx = Foxtrickl10n.getNumberFromSpeciality(spec);
 					if (specIdx) {
@@ -417,6 +429,8 @@ Foxtrick.modules['SkillTable'] = {
 					{ name: 'Experience', property: 'experience', method: skill },
 					{ name: 'Form', property: 'form', method: skill },
 					{ name: 'Stamina', property: 'stamina', method: skill },
+					{ name: 'StaminaPrediction', property: 'staminaPrediction',
+						method: staminaPrediction },
 					{ name: 'Loyalty', property: 'loyalty', method: skill },
 					{ name: 'MotherClubBonus', property: 'motherClubBonus',
 						method: object, sortString: true },
