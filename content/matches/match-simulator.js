@@ -992,13 +992,13 @@ Foxtrick.modules.MatchSimulator = {
 
 		// -- stamina discount --
 		function getStaminaFactor(stamina) {
-			// formula by Senzascrupoli et al
+			// formula by lizardopoli/Senzascrupoli/Pappagallopoli et al
 			// [post=15917246.1]
 
 			stamina += 0.5; // assuming average subskill for now
 
 			var checkpoint, currentEnergy, decay, initialEnergy, rest, totalEnergy, _i;
-			if (stamina >= 9) {
+			if (stamina >= 8.63) {
 				return 1;
 			}
 			totalEnergy = 0;
@@ -1006,7 +1006,7 @@ Foxtrick.modules.MatchSimulator = {
 			if (stamina > 8) {
 				initialEnergy += 0.15 * (stamina - 8);
 			}
-			decay = Math.max(0.0325, -0.0039 * stamina + 0.0633);
+			decay = Math.max(0.0325, -0.0039 * stamina + 0.0634);
 			rest = 0.1875;
 			for (checkpoint = _i = 1; _i <= 18; checkpoint = ++_i) {
 				currentEnergy = initialEnergy - checkpoint * decay;
