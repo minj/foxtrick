@@ -456,12 +456,22 @@ Foxtrick.decodeBase64 = function(str) {
 	}
 };
 
+Foxtrick.Math = {};
 /**
  * Hyperbolic tangent (overflows ~700)
  * Returns [-1; 1]
  * @param	{Number}	x
  * @returns	{Number}
  */
-Foxtrick.tanh = function(x) {
+Foxtrick.Math.tanh = function(x) {
 	return (Math.exp(x) - Math.exp(-x)) / (Math.exp(x) + Math.exp(-x));
+};
+/**
+ * find the quotent for integer division a / b
+ * @param	{Integer}	a
+ * @param	{Integer}	b
+ * @returns	{Integer}
+ */
+Foxtrick.Math.div = function(a, b) {
+	return (a - a % b) / b
 };
