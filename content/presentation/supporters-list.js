@@ -14,8 +14,6 @@ Foxtrick.modules['SupportersList'] = {
 		//var rtl = Foxtrick.util.layout.isRtl(doc);
 		var supporterBack = FoxtrickPrefs.isModuleOptionEnabled('SupportersList', 'SupporterBack');
 		var supportedBack = FoxtrickPrefs.isModuleOptionEnabled('SupportersList', 'SupportedBack');
-        Foxtrick.log(supporterBack);
-        Foxtrick.log(supportedBack);
         if (!supporterBack && !supportedBack)
 			return;
 
@@ -33,10 +31,12 @@ Foxtrick.modules['SupportersList'] = {
             }
             var teams = xml.getElementsByTagName('TeamID');
             var team = null;
-            if(teams[0].textContent == Foxtrick.util.id.getOwnTeamId())
-                team = teams[0].parentNode;
-            else if(teams.length>1 && teams[1].textContent == Foxtrick.util.id.getOwnTeamId())
-                team = teams[1].parentNode;
+            for(var t=0; t<teams.length; t++) {
+                if(teams[t].textContent == Foxtrick.util.id.getOwnTeamId()) {
+                    team = teams[t].parentNode;
+                    break;
+                }
+            }
             if(team == null)
                 return;
 
@@ -65,7 +65,8 @@ Foxtrick.modules['SupportersList'] = {
                     Foxtrick.addImage(doc, node, {
                         'src': '/Img/Icons/transparent.gif',
                         'class': 'scFans',
-                        'style': 'width:22px;height:22px',
+                        'width' : '22px',
+                        'height' : '22px',
                         'title': (my ? Foxtrickl10n.getString('supporters.youSupportOther') : Foxtrickl10n.getString('supporters.otherSupportYou')),
                         'alt': (my ? Foxtrickl10n.getString('supporters.youSupportOther') : Foxtrickl10n.getString('supporters.otherSupportYou'))
                     }, node.firstChild, function(img){
