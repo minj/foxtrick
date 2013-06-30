@@ -13,7 +13,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		'ConvertStars',
 		'SplitLineup',
 		'ShowFaces', 'StarCounter', 'StaminaCounter', 'HighlighEventPlayers', 'AddSubstiutionInfo',
-		'HighlightMissing'
+		'HighlightMissing',
+		'GatherStaminaData',
 	],
 	OPTIONS_CSS: [
 		null, null,
@@ -34,6 +35,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			if (awayId == teamId)
 				this.showAway = true;
 		}
+
+		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'GatherStaminaData'))
+			this.gatherStaminaData(doc);
 
 	},
 	// add substition icon for players on the field
@@ -686,6 +690,176 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			Foxtrick.addClass(f, 'ft-field-away');
 		else
 			Foxtrick.removeClass(f, 'ft-field-away');
+	},
+	/**
+	 * Gather stamina data to be used for match-simulator and player table
+	 * @param	{document}	doc
+	 */
+	gatherStaminaData: function(doc) {
+		// only gather data for own team
+		var homeId = Foxtrick.Pages.Match.getHomeTeamId(doc);
+		var awayId = Foxtrick.Pages.Match.getAwayTeamId(doc);
+		var ownId = Foxtrick.util.id.getOwnTeamId();
+		var isHome = false;
+		if (homeId == ownId)
+			isHome = true;
+		else if (awayId != ownId)
+			return;
+
+		var getStamina = function(lastEnergy, checkpoints, isRested) {
+			// these formulas are derrived from the formula used in match-simulator
+			// currently they seem to have low accuracy :(
+			var getLowStamina = function(lastEnergy, checkpoints, rest) {
+				return (lastEnergy - 1.05 - rest + checkpoints * 0.0634) /
+					(0.0292 + checkpoints * 0.0039);
+			};
+			var getWeirdStamina = function(lastEnergy, checkpoints, rest) {
+				return (lastEnergy - 1.05 - rest + checkpoints * 0.0325) / 0.0292;
+			};
+			var getHighStamina = function(lastEnergy, checkpoints, rest) {
+				return (lastEnergy + 0.15 - rest + checkpoints * 0.0325) / 0.1792;
+			};
+			var rest = isRested ? 0.1875 : 0;
+			var stamina = getHighStamina(lastEnergy, checkpoints, rest);
+			if (stamina < 8) {
+				stamina = getLowStamina(lastEnergy, checkpoints, rest);
+				if (stamina >= 7.923)
+					stamina = getWeirdStamina(lastEnergy, checkpoints, rest);
+			}
+			return stamina;
+		};
+		var getCheckpointCount = function(from, to) {
+			var ct = Foxtrick.Math.div(to - 1, 5) - Foxtrick.Math.div(from - 1, 5) +
+				(from > 0 ? 0 : 1) - (to > 0 ? 0 : 1);
+			return ct;
+		};
+		var hasRest = function(from, to) {
+			return from < 45 && to > 45;
+		};
+		var findEvent = function(minute) {
+			for (var i = 0, event; i < timeline.length && (event = timeline[i]); ++i) {
+				if (event.min == minute)
+					return i;
+			}
+			return null;
+		};
+
+		var getStaminaByPappagallopoli = function(lastEnergy) {
+			return lastEnergy <= 0.887 ? lastEnergy * 10.1341 - 0.9899 :
+				8 + (lastEnergy - 0.887) / 0.1792;
+		};
+
+		var timeline = Foxtrick.Pages.Match.getTimeline(doc);
+		var playerRatings = Foxtrick.Pages.Match.getTeamRatingsByEvent(doc, isHome);
+		// info for CHPP
+		var SourceSystem = Foxtrick.Pages.Match.getSourceSystem(doc);
+		var matchId = Foxtrick.Pages.Match.getId(doc);
+		// add locale as argument to prevent using old cache after
+		// language changed
+		var locale = FoxtrickPrefs.getString('htLanguage');
+		var detailsArgs = [
+			['file', 'matchdetails'],
+			['matchEvents', 'true'],
+			['matchID', matchId],
+			['SourceSystem', SourceSystem],
+			['version', '2.3'],
+			['lang', locale]
+		];
+		if (SourceSystem == 'HTOIntegrated') {
+			// need to parse player data and change PlayerIds to HT Ids
+			var HTOPlayers = Foxtrick.Pages.Match.parsePlayerScript(doc);
+
+			if (!HTOPlayers) {
+				Foxtrick.log('gatherStaminaData: failed to parse playerData');
+				return;
+			}
+		}
+		var data = {}, dataText = FoxtrickPrefs.get('StaminaData.' + ownId);
+		if (dataText)
+			data = JSON.parse(dataText);
+
+		Foxtrick.log('Existing StaminaData', data);
+
+		Foxtrick.util.api.retrieve(doc, detailsArgs, { cache_lifetime: 'session' },
+		  function(xml) {
+			if (!xml)
+				return;
+
+			var team = xml.getElementsByTagName((isHome ? 'Home' : 'Away') + 'Team')[0];
+			var tactics = team.getElementsByTagName('TacticType')[0].textContent;
+			// don't parse pressing: affects stamina
+			if (tactics == '1')
+				return;
+
+			var matchDate = new Date(xml.getElementsByTagName('MatchDate')[0].textContent);
+
+			var affectedPlayerID = '0';
+			var events = xml.getElementsByTagName('Event');
+			// should not be more than one SE with same type
+			Foxtrick.any(function(evt) {
+				var evtType = evt.getElementsByTagName('EventTypeID')[0].textContent;
+				// powerfull suffers in sun (loses stamina)
+				if (evtType == 304) {
+					affectedPlayerID = evt.getElementsByTagName('SubjectPlayerID')[0].textContent;
+					return true;
+				}
+				return false;
+			}, events);
+
+			var players = Foxtrick.filter(function(player, i) {
+				// need to parse player data and change PlayerIds to HT Ids
+				if (typeof (HTOPlayers) != 'undefined') {
+					for (var j = 0; j < HTOPlayers.length; j++) {
+						if (HTOPlayers[j].PlayerId == player.PlayerId) {
+							player.PlayerId = HTOPlayers[j].SourcePlayerId;
+							break;
+						}
+					}
+				}
+
+				// disregard extra time data
+				if (player.ToMin > 90)
+					player.ToMin = 90;
+
+				player.ftIdx = i;
+				// skip those who didn't play or had negative powerful SE
+				return player.ToMin > 0 && player.PlayerId != affectedPlayerID;
+			}, playerRatings[0].players);
+
+			Foxtrick.map(function(player) {
+				player.checkpoints = getCheckpointCount(player.FromMin, player.ToMin);
+				player.lastEvent = findEvent(player.ToMin);
+				player.lastEnergy = playerRatings[player.lastEvent].players[player.ftIdx].Stamina;
+
+				//player.isRested = hasRest(player.FromMin, player.ToMin);
+				//if (player.checkpoints && player.lastEnergy != 1)
+				//	player.staminaSkill = getStamina(player.lastEnergy, player.checkpoints,
+				//									 player.isRested);
+				//else if (player.checkpoints == 18)
+				//	player.staminaSkill = 8.7;
+
+				if (player.checkpoints == 18) {
+					if (player.lastEnergy != 1)
+						player.staminaByPappa =
+							getStaminaByPappagallopoli(player.lastEnergy).toFixed(2);
+					else
+						player.staminaByPappa = '8.63+';
+
+					if (!data.hasOwnProperty(player.PlayerId))
+						data[player.PlayerId] = [];
+
+					if (data[player.PlayerId].length &&
+						data[player.PlayerId][0] >= matchDate.valueOf())
+						// we have more recent data
+						return;
+
+					data[player.PlayerId][0] = matchDate.valueOf();
+					data[player.PlayerId][1] = player.staminaByPappa;
+				}
+			}, players);
+			Foxtrick.log('StaminaData:', matchDate, players, data);
+			FoxtrickPrefs.setString('StaminaData.' + ownId, JSON.stringify(data));
+		});
 	},
 
 	change: function(doc) {
