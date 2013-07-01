@@ -1009,6 +1009,8 @@ Foxtrick.modules.MatchSimulator = {
 		function getStaminaFactor(stamina, staminaPrediction) {
 			// formula by lizardopoli/Senzascrupoli/Pappagallopoli et al
 			// [post=15917246.1]
+			// latest data:
+			// https://docs.google.com/file/d/0Bzy0IjRlxhtxaGp0VXlmNjljaTA/edit?usp=sharing
 
 			if (staminaPrediction !== null) {
 				if (parseInt(staminaPrediction, 10) == stamina)
