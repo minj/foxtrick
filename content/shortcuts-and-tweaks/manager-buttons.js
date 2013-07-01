@@ -28,7 +28,7 @@ Foxtrick.modules['ManagerButtons'] = {
 		if (FoxtrickPrefs.isModuleOptionEnabled('ManagerButtons', 'GuestBook')
 			&& doc.getElementById(this.GUESTBOOK_LINK_ID) === null) {
 			if (!Foxtrick.hasElement(doc, this.GUESTBOOK_LINK_ID)
-				&& Foxtrick.hasElement(doc, this.CHALLENGE_LINK_ID)
+				&& Foxtrick.hasElement(doc, this.MAIL_LINK_ID)
 				|| Foxtrick.isPage(doc, 'youthOverview')) {
 				this.addGuestBookLink(doc);
 			}
@@ -77,7 +77,7 @@ Foxtrick.modules['ManagerButtons'] = {
 			isSupporter = true; // status unknown there. just add it anyways?
 		}
 
-		var parentDiv = doc.getElementById(this.CHALLENGE_LINK_ID);
+		var parentDiv = doc.getElementById(this.MAIL_LINK_ID);
 		var insertBefore = null;
 		if (parentDiv === null) {
 			parentDiv = doc.getElementById('foxtrick_addactionsbox_parentDiv');
