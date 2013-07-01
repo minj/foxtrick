@@ -775,8 +775,14 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			}
 		}
 		var data = {}, dataText = FoxtrickPrefs.get('StaminaData.' + ownId);
-		if (dataText)
-			data = JSON.parse(dataText);
+		if (dataText) {
+			try {
+				data = JSON.parse(dataText);
+			}
+			catch (e) {
+				Foxtrick.log('Error parsing StaminaData, data will be reset', e);
+			}
+		}
 
 		Foxtrick.log('Existing StaminaData', data);
 
