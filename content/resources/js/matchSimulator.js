@@ -11,9 +11,11 @@ var ft_updatePlayers = function() {
 
 		if (player != null) {
 			playerdivs[position].setAttribute('stamina', player.stamina);
+			playerdivs[position].setAttribute('playerId', player.id);
 		}
 		else {
 			playerdivs[position].removeAttribute('stamina');
+			playerdivs[position].removeAttribute('playerId');
 		}
 	}
 };

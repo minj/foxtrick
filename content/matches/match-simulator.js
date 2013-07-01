@@ -9,7 +9,7 @@ Foxtrick.modules.MatchSimulator = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['matchOrder'],
 	RADIO_OPTIONS: ['RatingsOnTop', 'RatingsBelow', 'RatingsRight'],
-	OPTIONS: ['HTMSPrediction', 'UseRatingsModule'],
+	OPTIONS: ['HTMSPrediction', 'UseRatingsModule', 'StaminaPrediction'],
 	CSS: Foxtrick.InternalPath + 'resources/css/match-simulator.css',
 
 	MatchTypes: {
@@ -48,6 +48,7 @@ Foxtrick.modules.MatchSimulator = {
 		var useRatings = FoxtrickPrefs.isModuleEnabled('Ratings') &&
 			FoxtrickPrefs.isModuleOptionEnabled('MatchSimulator', 'UseRatingsModule');
 		var useHTMS = FoxtrickPrefs.isModuleOptionEnabled('MatchSimulator', 'HTMSPrediction');
+		var useStaminaPred = FoxtrickPrefs.isModuleOptionEnabled('MatchSimulator', 'StaminaPrediction');
 
 		var displayOption = FoxtrickPrefs.getInt('module.MatchSimulator.value');
 		var fieldOverlay = doc.getElementById('fieldOverlay');
@@ -65,6 +66,20 @@ Foxtrick.modules.MatchSimulator = {
 		var normalizeRatings = function(level) {
 			return Math.floor((level + 0.125) * 4) / 4;
 		};
+
+		if (useStaminaPred) {
+			var ownId = Foxtrick.util.id.getOwnTeamId();
+			var staminaData = {}, dataText = FoxtrickPrefs.get('StaminaData.' + ownId);
+			if (dataText) {
+				try {
+					staminaData = JSON.parse(dataText);
+				}
+				catch(e) {
+					Foxtrick.log('Error parsing staminaData:', e);
+				}
+			}
+		}
+
 		// updating or adding htms prediction based on rating prediction and seleted match of
 		// another team
 		var updateHTMSPrediction = function() {
@@ -991,11 +1006,23 @@ Foxtrick.modules.MatchSimulator = {
 		});
 
 		// -- stamina discount --
-		function getStaminaFactor(stamina) {
+		function getStaminaFactor(stamina, staminaPrediction) {
 			// formula by lizardopoli/Senzascrupoli/Pappagallopoli et al
 			// [post=15917246.1]
 
-			stamina += 0.5; // assuming average subskill for now
+			if (staminaPrediction !== null) {
+				if (parseInt(staminaPrediction, 10) == stamina)
+					stamina = staminaPrediction;
+				else {
+					// our prediction data is inaccurate
+					// assume high subskill if stamina is lower
+					// assume low subskill otherwise
+					if (stamina < staminaPrediction)
+						stamina += 0.99;
+				}
+			}
+			else
+				stamina += 0.5; // assuming average subskill by default
 
 			var checkpoint, currentEnergy, decay, initialEnergy, rest, totalEnergy, _i;
 			if (stamina >= 8.63) {
@@ -1108,6 +1135,14 @@ Foxtrick.modules.MatchSimulator = {
 						player.stamina = Number(playerdivs[position].getAttribute('stamina'));
 						if (!player.stamina)
 							continue;
+						player.id = Number(playerdivs[position].getAttribute('playerId'));
+						if (typeof (staminaData) == 'object' &&
+							staminaData.hasOwnProperty(player.id)) {
+							player.staminaPrediction = parseFloat(staminaData[player.id][1]);
+						}
+						else
+							player.staminaPrediction = null;
+
 						var tactic = 'normal', t;
 						for (t in tactics) {
 							if (Foxtrick.hasClass(playerdivs[position], t)) {
@@ -1121,7 +1156,8 @@ Foxtrick.modules.MatchSimulator = {
 								for (var j = 0; j < contributions[i].c.length; ++j) {
 									if (contributions[i].c[j].s == sector) {
 										var sq_c_ij = contributions[i].c[j].v * contributions[i].c[j].v;
-										sum_sq_c_ij_times_func_of_s_i += sq_c_ij * getStaminaFactor(player.stamina);
+										sum_sq_c_ij_times_func_of_s_i += sq_c_ij *
+											getStaminaFactor(player.stamina, player.staminaPrediction);
 										sum_sq_c_ij += sq_c_ij;
 									}
 								}
