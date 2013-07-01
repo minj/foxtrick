@@ -12,7 +12,7 @@ en:
 
     0.12.1.1:
       note_0: 'Translation updates.'
-      note_1: 'Increaded the performance of <module>MainMenuDropDown</module>.'
+      note_1: 'Increased the performance of <module>MainMenuDropDown</module>.'
       note_2: 'Minor accessibility improvements.'
       note_3: 'Fixes for <module>CopyPosting</module> and <module>StaffMarker</module>.'
       
