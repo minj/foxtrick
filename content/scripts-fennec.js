@@ -183,6 +183,7 @@ Foxtrick.loader.background.contentScriptManager = {
 		"presentation/country-list.js",
 		"presentation/currency-converter.js",
 		"presentation/custom-medals.js",
+		"presentation/fans.js",
 		"presentation/fix-css-problems.js",
 		"presentation/friendly-interface.js",
 		"presentation/friendly-pool.js",

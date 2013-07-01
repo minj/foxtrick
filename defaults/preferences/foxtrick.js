@@ -94,6 +94,10 @@ pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Supporterstats.enabled", f
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Supporterstats.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.Transfers.enabled", false);
 pref("extensions.foxtrick.prefs.module.ExtraShortcuts.ManageCHPP.enabled", true);
+pref("extensions.foxtrick.prefs.module.Fans.enabled", true);
+pref("extensions.foxtrick.prefs.module.Fans.ShowMoodLevel.enabled", true);
+pref("extensions.foxtrick.prefs.module.Fans.AddLiveLink.enabled", true);
+pref("extensions.foxtrick.prefs.module.Fans.ShowSumFans.enabled", true);
 pref("extensions.foxtrick.prefs.module.Filter.enabled", true);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.CalendarAutoMinHeight.enabled", true);
 pref("extensions.foxtrick.prefs.module.FixcssProblems.BrasilToolbarFix.enabled", false);

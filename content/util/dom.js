@@ -6,6 +6,12 @@
 
 if (!Foxtrick) var Foxtrick = {};
 
+/**
+ * Create a foxtrick feature dom node
+ * @param doc Document
+ * @param module Object
+ * @param type String
+ */
 Foxtrick.createFeaturedElement = function(doc, module, type) {
 	if (module && module.MODULE_NAME && module.MODULE_CATEGORY) {
 		var node = doc.createElement(type);
@@ -22,6 +28,12 @@ Foxtrick.createFeaturedElement = function(doc, module, type) {
 	}
 };
 
+/**
+ * Insert a new row in table for foxtrick highlight feature
+ * @param table Node
+ * @param module Object
+ * @param index Integer
+ */
 Foxtrick.insertFeaturedRow = function(table, module, index) {
 	var row = table.insertRow(index);
 	row.className = 'ft-dummy';
@@ -32,7 +44,12 @@ Foxtrick.insertFeaturedRow = function(table, module, index) {
 	return row;
 };
 
-
+/**
+ * Insert a new cell in a row for foxtrick highlight feature
+ * @param row Node
+ * @param module Object
+ * @param index Integer
+ */
 Foxtrick.insertFeaturedCell = function(row, module, index) {
 	var cell = row.insertCell(index);
 	cell.className = 'ft-dummy';
@@ -349,7 +366,7 @@ Foxtrick.GetDataURIText = function(filetext) {
 };
 
 /*
-	Proper way to add an image, 
+	Proper way to add an image,
 	for some crazy reason opera has this weird async step.
 	@param doc The document
 	@parem elem The desired parent element
