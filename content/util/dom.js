@@ -128,8 +128,10 @@ Foxtrick.getChildIndex = function(element) {
  */
 Foxtrick.onClick = function(target, listener) {
 	Foxtrick.listen(target, 'click', listener, false);
-	target.setAttribute('tabindex', '0');
-	target.setAttribute('role', 'button');
+	if (!target.hasAttribute('tabindex'))
+		target.setAttribute('tabindex', '0');
+	if (!target.hasAttribute('role'))
+		target.setAttribute('role', 'button');
 };
 
 Foxtrick.listen = function(target, type, listener, useCapture) {
