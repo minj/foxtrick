@@ -9,24 +9,11 @@ Foxtrick.modules['Fans'] = {
 	PAGES: ['fans'],
 
 	OPTIONS: [
-		'ShowMoodLevel',
 		'AddLiveLink',
 		'ShowSumFans'
 	],
 
     run: function(doc) {
-
-        if (FoxtrickPrefs.isModuleOptionEnabled('Fans', 'ShowMoodLevel')) {
-            var re = new RegExp('ll=([0-9]*)', 'i');
-            var links = doc.querySelectorAll('#mainBody a[href*="lt=FanMood"], #mainBody a[href*="lt=FanMatch"]');
-            for(var i=0; i<links.length; i++) {
-                var m = re.exec(links[i].getAttribute('href'));
-                var n = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.Fans, 'span');
-                n.textContent = '('+m[1]+')';
-                links[i].textContent += ' ';
-                links[i].appendChild(n);
-            }
-        }
 
         if (FoxtrickPrefs.isModuleOptionEnabled('Fans', 'AddLiveLink')) {
             var reM = new RegExp('matchID=([0-9]*)', 'i');
@@ -37,10 +24,7 @@ Foxtrick.modules['Fans'] = {
                 var mS = reS.exec(links[i].getAttribute('href'));
                 var node = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.Fans, 'a');
                 node.setAttribute('href', '/Club/Matches/Live.aspx?matchID='+mM[1]+'&actionType=addMatch&SourceSystem='+mS[1]);
-                var img = doc.createElement('img');
-                img.setAttribute('src', '/Img/icons/transparent.gif');
-                img.setAttribute('class', 'matchHTLive');
-                node.appendChild(img);
+                Foxtrick.addImage(doc, node, {alt:Foxtrickl10n.getString('MyMonitor.htLive'), title:Foxtrickl10n.getString('MyMonitor.htLive'), src:'/Img/icons/transparent.gif', class:'matchHTLive'});
                 links[i].parentNode.parentNode.previousElementSibling.appendChild(node);
             }
         }
