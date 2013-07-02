@@ -7,6 +7,11 @@ es-AR:
       note_0: 'Esta es la versión beta de la próxima versión. Por favor ayude a traducir esta versión en nuestra super-fácil página <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
       note_0: '<header>Muchas actualizaciones en las traducciones de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
+    0.12.1.1: 
+      note_0: Actualización de traducciones.
+      note_1: 'Mejorado el rendimiento del <module>MainMenuDropDown</module>.'
+      note_2: Mejoras menores de accesibilidad.
+      note_3: 'Arreglos para <module>CopyPosting</module> y <module>StaffMarker</module>.'
     0.12.1: 
       note_0: '<header>Muchas actualizaciones en las traducciones de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
       note_1: 'NUEVO: <module>SupportershipExpirationDate</module>: Haciendo click en días restantes de supporter ahora mostrará la fecha de vencimiento'
@@ -18,8 +23,8 @@ es-AR:
       note_7: '<module>HeaderFix</module>: ahora se muestra la barra de cambio de equipo que previamente estaba oculto.'
       note_8: '<module>ConfirmActions</module>: los usuarios con múltiples equipos ahora podrán ver el nombre del equipo que con el que están haciendo una oferta.'
       note_9: '<module>TransferSearchFilters</module>: Los fitros guardaran la edad del jugador en días también.'
-      note_10: 
-      note_11: 
+      note_10: Se agregó el soporte para el lenguaje Azerí.
+      note_11: Cientos de otros arreglos para problemas causados por los cambios de  Hattrick.
     0.12.0: 
       note_0: '<header>Muchas actualizaciones en las traducciones de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
       note_1: 'NUEVO: <module>MatchLineupTweaks</module>: cambia la cuenta de estrellas al estilo antiguo estrellas. Añade contadores para estrellas y resistencia a la nueva página de alineación. Muestra de especialidades para todos los jugadores y agrega el nombre del equipo en el campo para limitar la confusión. Muestra los avatares del jugador para su equipo. Destacan los jugadores relevantes para un evento en un partido.'

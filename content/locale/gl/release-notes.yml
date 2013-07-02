@@ -7,6 +7,11 @@ gl:
       note_0: 'Esta é a versión beta do próximo lanzamento. Podes axudar a traducila na nosa marabillosa páxina de tradución en equipo <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
       note_0: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
+    0.12.1.1: 
+      note_0: Actualizacións da traducción.
+      note_1: 'Mellorouse o rendemento de <module>MainMenuDropDown</module>.'
+      note_2: Pequenas melloras de accesibilidade.
+      note_3: 'Arranxos para <module>CopyPosting</module> e tamén <module>StaffMarker</module>.'
     0.12.1: 
       note_0: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
       note_1: 'NOVO: <module>SupportershipExpirationDate</module>: agora, ao facer clic nos días de supporter restantes que aparecen en "O meu Despacho", amósase a data na que remata o período de supporter.'

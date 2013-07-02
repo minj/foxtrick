@@ -7,6 +7,11 @@ tr:
       note_0: 'Bu, bir sonraki güncellemenin beta versiyonudur. Lütfen bu versiyonun çevirisine bizim çok basit kalabalık-çeviri sayfamızdan <linkCrowdin>crowdin.net</linkCrowdin> yardım edin. '
     0.13.0: 
       note_0: 
+    0.12.1.1: 
+      note_0: 
+      note_1: 
+      note_2: 
+      note_3: 
     0.12.1: 
       note_0: 
       note_1: 

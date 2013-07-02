@@ -7,6 +7,11 @@ sv-SE:
       note_0: 'Detta är BETA -versionen av nästa utgåva. Hjälp gärna till att översätta denna version via vårt superlätta översättningsverktyg på <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
       note_0: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
+    0.12.1.1: 
+      note_0: 
+      note_1: 
+      note_2: 
+      note_3: 
     0.12.1: 
       note_0: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
       note_1: 'NY: <module>SupportershipExpirationDate</module>: Gör det möjligt att se utgångsdatum på supporterperiod genom att klicka på antal kvarvarande dagar till höger på Mitt Hattrick'

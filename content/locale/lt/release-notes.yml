@@ -7,6 +7,11 @@ lt:
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
     0.13.0: 
       note_0: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
+    0.12.1.1: 
+      note_0: Vertimo atnaujinimai.
+      note_1: '<module>MainMenuDropDown</module> turėtų veikti sparčiau.'
+      note_2: Smulkūs patobulinimai neįgaliesiems.
+      note_3: 'Sutaisyti <module>CopyPosting</module> ir <module>StaffMarker</module> moduliai.'
     0.12.1: 
       note_0: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
       note_1: 'NAUJIENA: <module>SupportershipExpirationDate</module>: spragtelėjus ant HT-Rėmėjo skaitiklio „Mano biure“ pamatysite prenumeratos galiojimo datą'

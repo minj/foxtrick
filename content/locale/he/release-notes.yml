@@ -7,6 +7,11 @@ he:
       note_0: 'זוהי גירסת הבתא של המהדורה הבאה. נודה על עזרה בתרגום גירסה זו באתר התרגום המאוד נוח שלנו <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
       note_0: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
+    0.12.1.1: 
+      note_0: 
+      note_1: 
+      note_2: 
+      note_3: 
     0.12.1: 
       note_0: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
       note_1: 'חדש: <module>SupportershipExpirationDate</module>: הקלקה על הימים הנותרים של התומך ברובריקה "החשבון שלי", תציג את תאריך סיום התומך'

@@ -7,6 +7,11 @@ en:
       note_0: 'This is the beta version of the next release. Please help translating this version at our super easy crowd-translation page <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
       note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
+    0.12.1.1: 
+      note_0: Translation updates.
+      note_1: 'Increaded the performance of <module>MainMenuDropDown</module>.'
+      note_2: Minor accessibility improvements.
+      note_3: 'Fixes for <module>CopyPosting</module> and <module>StaffMarker</module>.'
     0.12.1: 
       note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
       note_1: 'NEW: <module>SupportershipExpirationDate</module>: Clicking on remaining supporter days on the dashboard will now show the expiration date'

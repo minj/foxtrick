@@ -7,6 +7,11 @@ pt-BR:
       note_0: 'Esta é a versão beta do próximo lançamento. Por favor ajude a traduzir essa versão em nossa página de tradução comunitária super fácil <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
       note_0: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
+    0.12.1.1: 
+      note_0: 
+      note_1: 
+      note_2: 
+      note_3: 
     0.12.1: 
       note_0: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
       note_1: 'Nova: <module>SupportershipExpirationDate</module>: Clicando nos  dias restantes de Sócio HT no Meu Escritório aparecerá o prazo de duração'

@@ -7,6 +7,11 @@ da:
       note_0: 'Dette er betaversionen af den næste udgave. Du kan hjælpe med at oversætte via vores super nemme crowd-oversættelse side <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
       note_0: '<header>En hel del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>'
+    0.12.1.1: 
+      note_0: 
+      note_1: 
+      note_2: 
+      note_3: 
     0.12.1: 
       note_0: '<header>En hel del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>'
       note_1: 'NYT: <module>SupportershipExpirationDate</module>: Du kan skifte visning mellem resterende dage eller Slut-dato for dit Supporter medlemskab, hvis du klikker på resterende Supporter dage ved Mit Hattrick - Mit Kontor - Min Konto (ned til højre)'

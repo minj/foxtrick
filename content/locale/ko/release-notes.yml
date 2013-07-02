@@ -7,6 +7,11 @@ ko:
       note_0: '이것은 다음 배포의 beta 버전 입니다. 이 버전에서 저희 군중-번역 페이지를 통해 번역해주세요. <linkCrowdin>crowdin.net</linkCrowdin>'
     0.13.0: 
       note_0: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
+    0.12.1.1: 
+      note_0: 번역 업데이트.
+      note_1: '<module>MainMenuDropDown</module>의 성능을 향상시켰습니다.'
+      note_2: 접근성에 대해서 사소한 부분을 개선하였습니다.
+      note_3: '<module>CopyPosting</module> 와 <module>StaffMarker</module>를 수정하였습니다.'
     0.12.1: 
       note_0: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
       note_1: 'NEW: <module>SupportershipExpirationDate</module>: 대시보드에 있는 남은 Supporter 날짜를 클릭하면 만료 날짜를 표시합니다.'

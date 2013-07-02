@@ -6,12 +6,17 @@ es-ES:
     beta: 
       note_0: 'Esta es la versión beta de la próxima release. Por favor, ayuda a traducir esta versión accediendo a nuestra super fácil de usar web de traducción <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
-      note_0: 
+      note_0: '<header>AMuchas actualizaciones de la traducción de nuestros asombrosos usuarios, mediante la <linkCrowdin>herramienta CrowdIn</linkCrowdin>. ¡Tu puedes contribuir también si quieres!</header>'
+    0.12.1.1: 
+      note_0: Actualizaciones de la traducción.
+      note_1: 'Se ha aumentado el rendimiento de <module>MainMenuDropDown</module>.'
+      note_2: Mejoras de menor importancia de la accesibilidad.
+      note_3: 'Se ha arreglado: <module>CopyPosting</module> y <module>StaffMarker</module>.'
     0.12.1: 
-      note_0: 
-      note_1: 
+      note_0: '<header>AMuchas actualizaciones de la traducción de nuestros asombrosos usuarios, mediante la <linkCrowdin>herramienta CrowdIn</linkCrowdin>. ¡Tu puedes contribuir también si quieres!</header>'
+      note_1: 'NUEVO: <module>SupportershipExpirationDate</module>: al hacer clic sobre los días restantes de haber apoyado al desarrollo que aparecen en el tablero, se mostrará la fecha de caducidad'
       note_2: 
-      note_3: 
+      note_3: 'NUEVO: <module>MainMenuDropDown</module>: Añade menús desplegables a la barra de navegación con todos los enlaces de la barra lateral de la página de destino.'
       note_4: 
       note_5: 
       note_6: 
@@ -21,7 +26,7 @@ es-ES:
       note_10: 
       note_11: 
     0.12.0: 
-      note_0: 
+      note_0: '<header>AMuchas actualizaciones de la traducción de nuestros asombrosos usuarios, mediante la <linkCrowdin>herramienta CrowdIn</linkCrowdin>. ¡Tu puedes contribuir también si quieres!</header>'
       note_1: 
       note_2: 
       note_3: 
@@ -40,7 +45,7 @@ es-ES:
       note_16: 
       note_17: 
     0.11.0.1: 
-      note_0: 
+      note_0: '<header>AMuchas actualizaciones de la traducción de nuestros asombrosos usuarios, mediante la <linkCrowdin>herramienta CrowdIn</linkCrowdin>. ¡Tu puedes contribuir también si quieres!</header>'
       note_1: 
       note_2: 
     0.11.0: 
@@ -57,7 +62,7 @@ es-ES:
       note_10: '<module>MovePlayerStatement</module>: Opción añadida para borrar por completo la declaración.'
       note_11: '<module>YouthTwins</module>: Cambios lanzados manualmente en HY se mostrarán instantáneamente en la página de juveniles'
       note_12: '<header>Bugfixes</header>'
-      note_13: 
+      note_13: 'Se ha arreglado: <module>Filter</module>, <module>SupporterStatsEnhancements</module> y <module>YouthTwins</module>.'
       note_14: 
       note_15: 
       note_16: 
@@ -69,7 +74,7 @@ es-ES:
       note_22: 
       note_23: 
       note_24: '<header>Otros ajustes</header>'
-      note_25: 
+      note_25: '<module>MatchOrderInterface</module>: avatares para los que no apoyan al desarrollo. Se ha incrementado la estabilidad.'
       note_26: 
       note_27: 
       note_28: 
@@ -82,12 +87,12 @@ es-ES:
       note_35: Firefox 12 es ahora la versión mínima para ejecutar Foxtrick.
       note_36: Google Chrome 22 es ahora la versión mínima para ejecutar Foxtrick.
       note_37: 
-      note_38: 
+      note_38: '<header>AMuchas actualizaciones de la traducción de nuestros asombrosos usuarios, mediante la <linkCrowdin>herramienta CrowdIn</linkCrowdin>. ¡Tu puedes contribuir también si quieres!</header>'
       note_39: 
       note_40: 
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
-      note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
+      note_1: 'NUEVO: <module>FriendlyPool</module>: pone a color los países visitados (sólo para los que haya apoyado al desarrollo)'
       note_2: 'NEW: <module>HTEVPrediction</module>: Displays match odds for league games provided by <linkHTEV>HTEV</linkHTEV> (default on)'
       note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'
       note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
@@ -113,12 +118,12 @@ es-ES:
       note_24: If you have any further suggestions please don't hesitate to contact us. We are also browsing the Hattrick Access forums.
     0.9.3: 
       note_0: 'A lot of language updates because Foxtrick users are awesome. Thank you so much. Keep contributing at <linkCrowdin>http://www.crowdin.net</linkCrowdin>'
-      note_1: 'NEW: <module>YouthTwins</module>: Shows the amount of possible/marked/non twins on the youth players overview page for supporters (in conjunction with hattrick youthclub)'
+      note_1: 'NUEVO: <module>YouthTwins</module>: muestra la cantidad de gemelos posibles/marcados/no marcados en la página de resmen de jugadores jóvenes para los que apoyan al desarrollo (en colaboración del youthclub de hattrick)'
       note_2: '<module>MatchOrderInterface</module>: Option to show player faces instead of shirts for future and past line-ups (default on)'
       note_3: '<module>MatchOrderInterface</module>: Option to disable last match information and highlighting for tournament games added (default on)'
       note_4: '<module>MatchIncome</module>: Support for increased ticket prices in season 49. Income is now calculated by the ticket prices that were active when the match was played.'
       note_5: "MatchOrderInterface: Fixed bug where the playedLastMatch indicator didn't show (or showed incorrectly) on Firefox"
-      note_6: "MatchOrderInterface: Removed last match highlighting because it's not approved anymore :( (But there's a native HT replacement for supporters now)"
+      note_6: 'MatchOrderInterface: se ha eliminado porque ya no está aprobado :( (pero ahora hay un reemplazo HT nativo para los que apoyan al desarrollo)'
       note_7: 'PlayerStatsExperience: Fixed bug where red cards caused games beeing detected as walkovers'
       note_8: 'PlayerStatsExperience: Fixed issue that caused this module not to work on Firefox 3.6'
       note_9: 'CustomMedals: Fixed disappearing tournament trophies'
@@ -220,7 +225,7 @@ es-ES:
       note_1: '<module>HTThreadMarker</module>: new style. (convincedd, ryanli)'
       note_2: "<module>TableSort</module>: prevent conflicting with Hattrick's sorting. (convincedd)"
       note_3: '<module>HTMSPrediction</module>, <module>CopyRatings</module>: adapted to new match report layout. (convincedd)'
-      note_4: '<module>LineupShortcut</module>: also show for non-supporters now. (ryanli)'
+      note_4: '<module>LineupShortcut</module>: ahora también para los que no apoyen al desarrollo. (ryanli)'
       note_5: '<module>TransferSearchResultFilters</module>: fix after latest changes. (convincedd)'
       note_6: '<module>SkillTable</module>: include loyalty and mother club bonus. (convincedd)'
     0.8: 
@@ -230,7 +235,7 @@ es-ES:
       note_3: 'New module <module>LocalTime</module> for showing time in local timezone. (ryanli)'
       note_4: 'New module <module>LinksYouthLeague</module> for links at youth league page. (Parminu)'
       note_5: 'New module <module>CopyYouth</module> merges old youth copy modules, and provide link to destinations. New function for copying youth fixtures. (ryanli, Parminu)'
-      note_6: 'New module <module>SupporterStatsEnhancements</module> which enhances display in supporter statistics. (convincedd)'
+      note_6: 'Nuevo módulo (<module>SupporterStatsEnhancements</module>) que mejora la visualización de las estadísticas para los que apoyan al desarrollo.'
       note_7: 'Option to hide the invitation box visible on left sidebar in module <module>FixcssProblems</module>. (ryanli)'
       note_8: 'Option to reduce the height of my calendar in module <module>FixcssProblems</module>. (ryanli)'
       note_9: 'Link to CHPP management page in module <module>ExtraShortcuts</module>. (ljushaff)'

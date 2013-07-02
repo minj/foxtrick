@@ -7,6 +7,11 @@ es-CR:
       note_0: 'Esta es la beta de la próxima versión. Por favor ayuda a traducir esta versión en nuestra super fácil página de traducción <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
       note_0: '<header>Muchas actualizaciones de la traducción de parte de nuestros impresionantes usuarios utilizando la <linkCrowdin>herramienta crowdin</linkCrowdin>. ¡Tu también puedes ayudar!</header>'
+    0.12.1.1: 
+      note_0: Actualizaciones de traducciones.
+      note_1: 'Aumentó el rendimiento del modulo: <module>MainMenuDropDown</module>.'
+      note_2: Mejoras menores de accesibilidad.
+      note_3: 'Mejoras para los módulos <module>CopyPosting</module> y <module>StaffMarker</module>.'
     0.12.1: 
       note_0: '<header>Muchas actualizaciones de la traducción de parte de nuestros impresionantes usuarios utilizando la <linkCrowdin>herramienta crowdin</linkCrowdin>. ¡Tu también puedes ayudar!</header>'
       note_1: 'NUEVO: <module>SupportershipExpirationDate</module>: Al hacer clic en los días restantes de tu membresía de supporter en Mi Oficina, se mostrará la fecha de vencimiento'

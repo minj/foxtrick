@@ -7,6 +7,11 @@ hr:
       note_0: 'Ovo je beta inačica buduće nove verzije. Pomozite na prevoditi ovu verziju sa super lakim prevođenjem na <linkCrowdin>crowdin.net</linkCrowdin>.'
     0.13.0: 
       note_0: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
+    0.12.1.1: 
+      note_0: Ažurirani prijevodi.
+      note_1: 'Povećane performanse rada <module>MainMenuDropDown</module>.'
+      note_2: Poboljšanja u pristupačnosti.
+      note_3: 'Ispravci za <module>CopyPosting</module> i <module>StaffMarker</module>.'
     0.12.1: 
       note_0: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
       note_1: 'NOVO: <module>SupportershipExpirationDate</module>: Klikom na polje koje prikazuje preostale dane trajanja vašeg suportera, prikazat će vam se i datum isteka suportera'
