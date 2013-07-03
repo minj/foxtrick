@@ -64,7 +64,7 @@ Foxtrick.modules['SupportersList'] = {
                     var node = my ? links[l].parentNode.parentNode.previousElementSibling : links[l].parentNode;
                     Foxtrick.addImage(doc, node, {
                         'src': '/Img/Icons/transparent.gif',
-                        'class': 'scFans',
+                        'class': (my ? 'scMySupporters' : 'scFans'),
                         'width' : '22px',
                         'height' : '22px',
                         'title': (my ? Foxtrickl10n.getString('supporters.youSupportOther') : Foxtrickl10n.getString('supporters.otherSupportYou')),
