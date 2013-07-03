@@ -1,0 +1,64 @@
+# Developing Foxtrick with gi svn
+
+# Firstly init the repo:
+git svn init https://foxtrick.googlecode.com/svn/ -s .
+# -s creates a standard trunk/branches/tags structure
+# best to edit it in .git/config (we don't want old branches: fetch will take the whole day):
+[svn-remote "svn"]
+        url = https://foxtrick.googlecode.com/svn
+        fetch = trunk:refs/remotes/trunk
+        branches = branches/{0.12.1,0.12.2}:refs/remotes/*
+        tags = tags/*:refs/remotes/tags/*
+# start fetching the repo; go grab something to eat or read a book ;)
+git svn fetch
+# start tracking remote branches
+git checkout -b stable remotes/0.12.1
+git checkout -b beta remotes/0.12.2
+# start hacking on trunk:
+git checkout master
+# create a topic branch
+git checkout -b awesome
+# hack
+nano HACKING
+git commit -a -m 'make awesome changes'
+# damn, this is lovely, let's test it on master
+git checkout master
+git stash save -u 'cleanup before merging awesome'
+git merge awesome
+# you need linear history: NO MERGING (only fast-forward), rebase instead;
+# the problem with rebase is that original commits are lost by default
+# if you want to copy git branch onto svn branch without losing commits in trunk:
+# first create a temp branch pointer that points to awesome branch
+git checkout -b rebase_branch awesome
+# at this point remotes/trunk still has nothing awesome
+# rebase rebase_branch (from upstream, i. e. remotes/trunk in our case
+# or master if not yet merged) on svn branch
+# svn branch better be clean!
+git checkout beta
+git stash save -u 'beta: cleanup before merging awesome'
+git rebase --onto beta remotes/trunk rebase_branch # choose correct upstream!
+# prepend @branch to commit messages:
+git filter-branch -f --msg-filter "xargs -0 echo '@12.2'" beta..rebase_branch # don't mess this up
+# fast-forward beta:
+git checkout beta
+git merge rebase_branch
+# remove temp branch:
+git branch -d rebase_branch
+# update svn, restore stash and commit:
+git svn rebase
+git stash pop
+git svn dcommit
+# alternatively you could keep the rebase_branch (as awesome_beta or w/e)
+# in the case you want to diverge from beta branch
+# in any case take notice that awesome was copied onto beta
+# take care not to do it again (choose correct upstream)
+# don't forget to commit to trunk as well:
+git checkout master
+git merge awesome
+git branch -d awesome
+git svn rebase
+git svn dcommit
+# this will obviously produce identical diffs with different hashes
+# in beta (0.12.2) and master (trunk) branches but that's OK since they will never be merged
+# now you can do something more awesome:
+git checkout -b even_better master
