@@ -1,4 +1,4 @@
-# Developing Foxtrick with gi svn
+# Developing Foxtrick with git svn
 
 # Firstly init the repo:
 git svn init https://foxtrick.googlecode.com/svn/ -s .
@@ -11,6 +11,8 @@ git svn init https://foxtrick.googlecode.com/svn/ -s .
         tags = tags/*:refs/remotes/tags/*
 # start fetching the repo; go grab something to eat or read a book ;)
 git svn fetch
+# add ignored files
+git svn show-ignore >> .git/info/exclude
 # start tracking remote branches
 git checkout -b stable remotes/0.12.1
 git checkout -b beta remotes/0.12.2
@@ -44,10 +46,10 @@ git checkout beta
 git merge rebase_branch
 # remove temp branch:
 git branch -d rebase_branch
-# update svn, restore stash and commit:
+# update svn, commit and restore stash:
 git svn rebase
-git stash pop
 git svn dcommit
+git stash pop
 # alternatively you could keep the rebase_branch (as awesome_beta or w/e)
 # in the case you want to diverge from beta branch
 # in any case take notice that awesome was copied onto beta
