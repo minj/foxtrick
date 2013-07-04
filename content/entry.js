@@ -110,7 +110,7 @@ Foxtrick.entry.contentScriptInit = function(data) {
 		}
 		else {
 			// fennec can access them from context, but they still need to get initilized
-			var coreModules = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
+			var coreModules = [FoxtrickPrefs, Foxtrickl10n];
 			for (var i = 0; i < coreModules.length; ++i) {
 				if (typeof(coreModules[i].init) == 'function')
 					coreModules[i].init();
