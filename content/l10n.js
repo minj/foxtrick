@@ -400,7 +400,14 @@ var Foxtrickl10n = {
 if (Foxtrick.arch === 'Gecko') {
 	(function() {
 
-	Components.utils.import('resource://gre/modules/PluralForm.jsm');
+	// for some reason fennec sometimes fails to import this
+	try {
+		Components.utils.import('resource://gre/modules/PluralForm.jsm');
+	}
+	catch (e) {
+		dump('FoxTrick error: PluralForm import ' + e + '\n');
+		Components.utils.reportError('FoxTrick error: PluralForm import ' + e);
+	}
 
 	var Foxtrickl10nGecko = {
 
