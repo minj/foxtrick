@@ -400,7 +400,13 @@ var Foxtrickl10n = {
 if (Foxtrick.arch === 'Gecko') {
 	(function() {
 
-	Components.utils.import('resource://gre/modules/PluralForm.jsm');
+	// import PluralForm into it's own scope
+	// otherwise fennec fails during first install/update:
+	// Could not set symbol 'PluralForm' on target object
+	// probably because 'this' is undefined
+
+	var plScope = {};
+	Components.utils.import('resource://gre/modules/PluralForm.jsm', plScope);
 
 	var Foxtrickl10nGecko = {
 
@@ -476,7 +482,7 @@ if (Foxtrick.arch === 'Gecko') {
 
 				if (num !== undefined) {
 					//Foxtrick.log('getString plural: ', str, ' ',num);
-					var get = PluralForm.makeGetter(this.plForm)[0];
+					var get = plScope.PluralForm.makeGetter(this.plForm)[0];
 					try {
 						return get(num, this._strings_bundle.GetStringFromName(str));
 					} catch (e) {
@@ -491,7 +497,7 @@ if (Foxtrick.arch === 'Gecko') {
 					if (this._strings_bundle_default) {
 						if (num !== undefined) {
 							//Foxtrick.log('getString plural default: ', str, ' ',num);
-							var get = PluralForm.makeGetter(this.plForm_default)[0];
+							var get = plScope.PluralForm.makeGetter(this.plForm_default)[0];
 							try {
 								return get(num, this._strings_bundle_default.GetStringFromName(str));
 							} catch (e) {
@@ -563,6 +569,7 @@ if (Foxtrick.arch === 'Gecko') {
 	var i;
 	for (i in Foxtrickl10nGecko)
 		Foxtrickl10n[i] = Foxtrickl10nGecko[i];
+
 	}());
 }
 
