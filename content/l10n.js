@@ -400,15 +400,13 @@ var Foxtrickl10n = {
 if (Foxtrick.arch === 'Gecko') {
 	(function() {
 
-	// for some reason fennec sometimes fails to import this
-	try {
-		var plScope = {};
-		Components.utils.import('resource://gre/modules/PluralForm.jsm', plScope);
-	}
-	catch (e) {
-		dump('FoxTrick error: PluralForm import ' + e + '\n');
-		Components.utils.reportError('FoxTrick error: PluralForm import ' + e);
-	}
+	// import PluralForm into it's own scope
+	// otherwise fennec fails during first install/update:
+	// Could not set symbol 'PluralForm' on target object
+	// probably because 'this' is undefined
+
+	var plScope = {};
+	Components.utils.import('resource://gre/modules/PluralForm.jsm', plScope);
 
 	var Foxtrickl10nGecko = {
 
