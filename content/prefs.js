@@ -315,6 +315,29 @@ var FoxtrickPrefs = {
 // wrap browser-specific configuration to prevenr global scope pollution
 (function() {
 
+var unescape = function(escaped) {
+	switch (escaped.charAt(1)) {
+		case 't':
+		case '\t':
+			return '\t';
+		case 'n':
+			return '\n';
+		case 'r':
+			return String.fromCharCode(13);
+		case ' ':
+			return ' ';
+		case '"':
+			return '"';
+		case '/':
+			return '/';
+		case '\\':
+			return '\\';
+		default:
+			return escaped;
+	}
+};
+
+
 // ----------------------  Gecko specific get/set preferences --------------------------
 if (Foxtrick.arch === 'Gecko') {
 
@@ -338,6 +361,7 @@ if (Foxtrick.arch === 'Gecko') {
 		},
 
 		setString: function(key, value) {
+			value = value.replace(/\\./g, unescape);
 			if (Foxtrick.chromeContext() === 'content')
 				sandboxed.extension.sendRequest({ req: 'setValue', type: 'string',
 				                                key: key, value: value });
@@ -443,6 +467,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 		},
 
 		setString: function(key, value) {
+			value = value.replace(/\\./g, unescape);
 			FoxtrickPrefs.setValue(key, String(value));
 		},
 
@@ -542,7 +567,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 					var parsePrefsFile = function(url) {
 						var prefText = Foxtrick.util.load.sync(Foxtrick.InternalPath + url);
 						var prefList = prefText.split(/[\n\r]+/);
-						var prefRe = /pref\("extensions\.foxtrick\.prefs\.(.+)",\s*(.+)\);/;
+						var prefRe = /pref\("extensions\.foxtrick\.prefs\.(.+?)",\s*(.+)\);/;
 						for (var i = 0; i < prefList.length; ++i) {
 							var pref = prefList[i];
 							var matches = pref.match(prefRe);
@@ -557,7 +582,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 									FoxtrickPrefs._prefs_chrome_default[key] = Number(value);
 								else if (value.match(/^"(.*)"$/))
 									FoxtrickPrefs._prefs_chrome_default[key] =
-										String(value.match(/^"(.*)"$/)[1]);
+										String(value.match(/^"(.*)"$/)[1].replace(/\\./g, unescape));
 							}
 						}
 					};
@@ -578,6 +603,8 @@ if (Foxtrick.arch === 'Sandboxed') {
 
 			// set and delete for background script side
 			setValue: function(key, value) {
+				if (typeof (value) == 'string')
+					value = value.replace(/\\./g, unescape);
 				try {
 					if (FoxtrickPrefs._prefs_chrome_default[key] === value)
 						FoxtrickPrefs.deleteValue(key);
@@ -606,24 +633,26 @@ if (Foxtrick.arch === 'Sandboxed') {
 		var FoxtrickPrefsChromeContent = {
 
 		setValue: function(key, value) {
-				try {
-					if (FoxtrickPrefs._prefs_chrome_default[key] === value)
-						// is default. deleteing user pref, will set it to default
-						FoxtrickPrefs.deleteValue(key);
-					else {
-						// not default, set it
-						FoxtrickPrefs._prefs_chrome_user[key] = value;
-						sandboxed.extension.sendRequest({ req: 'setValue', key: key, value: value });
-					}
+			if (typeof (value) == 'string')
+				value = value.replace(/\\./g, unescape);
+			try {
+				if (FoxtrickPrefs._prefs_chrome_default[key] === value)
+					// is default. deleteing user pref, will set it to default
+					FoxtrickPrefs.deleteValue(key);
+				else {
+					// not default, set it
+					FoxtrickPrefs._prefs_chrome_user[key] = value;
+					sandboxed.extension.sendRequest({ req: 'setValue', key: key, value: value });
 				}
-				catch (e) {}
-			},
+			}
+			catch (e) {}
+		},
 
-			deleteValue: function(key) {
-				delete(FoxtrickPrefs._prefs_chrome_user[key]);
-				sandboxed.extension.sendRequest({ req: 'deleteValue', key: key });
-			},
-		};
+		deleteValue: function(key) {
+			delete(FoxtrickPrefs._prefs_chrome_user[key]);
+			sandboxed.extension.sendRequest({ req: 'deleteValue', key: key });
+		},
+	};
 
 		var i;
 		for (i in FoxtrickPrefsChromeContent)
