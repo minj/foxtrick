@@ -8,10 +8,10 @@ it:
     0.13.0: 
       note_0: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
     0.12.1.1: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
+      note_0: Aggiornamenti di traduzione.
+      note_1: 'Aumentate le prestazioni di <module>MainMenuDropDown</module>.'
+      note_2: Piccoli miglioramenti per l'accessibilità.
+      note_3: 'Correzioni per <module>CopyPosting</module> e <module>StaffMarker</module>.'
     0.12.1: 
       note_0: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
       note_1: |

@@ -57,19 +57,19 @@ sv-SE:
       note_5: '<module>SkillTable</module>: Spelarnamn förkortas hädanefter för att ta mindre plats.'
       note_6: '<module>SkillColoring</module>: Modulen mer eller mindre helt ombyggd. En massa bugfixar och tillägg. Alternativ ändrade så vänligen anpassa dem igen efter eget tycke och smak.'
       note_7: '<module>TransferSearchResultFilters</module>: Lagt till möjligheten att filtrera på form samt dölja spelare utan specialitet. Fungerar nu ihop med <module>TransferSearchFilters</module>.'
-      note_8: 
-      note_9: 
-      note_10: 
-      note_11: 
+      note_8: '<module>MatchSimulator</module>: Ökad integration med <module>Ratings</module>.'
+      note_9: '<module>FriendlyPool</module>: Expanderar valrutan för land.'
+      note_10: '<module>MovePlayerStatement</module>: Lagt till möjligheten att ta bort meddelandet helt och hållet.'
+      note_11: '<module>YouthTwins</module>: Manuellt gjorda ändringar på HY återspeglas nu direkt på juniorspelarens sida'
       note_12: '<header>Bugfixar</header>'
-      note_13: 
-      note_14: 
-      note_15: 
-      note_16: 
-      note_17: 
-      note_18: 
-      note_19: 
-      note_20: 
+      note_13: 'Fixat <module>Filter</module>, <module>SupporterStatsEnhancements</module> och <module>YouthTwins</module>.'
+      note_14: '<module>StaffMarker</module> och <module>HTThreadMarker</module> fungerar på fler ställen nu.'
+      note_15: '<module>ConfirmActions</module>: Lagt till stöd för autobud.'
+      note_16: '<module>EmbedMedia</module>: ökad säkerhet och bättre länkupptäckt.'
+      note_17: '<module>SkillTable</module> bör nu visa korrekt tid i laget även för externt rekryterade tränare.'
+      note_18: BackgroundFixed ; modulen har tagits bort.
+      note_19: '<header>Kopierande moduler</header>'
+      note_20: '<module>CopyRatings</module>: Har nu stöd för turneringsmatch -ID.'
       note_21: 
       note_22: 
       note_23: 
