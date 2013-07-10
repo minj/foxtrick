@@ -80,12 +80,12 @@
 	     Translate attribute "text" by copying from there in verbatim,
 	     keep attribute "value" unchanged. -->
 	<honesty>
-		<level text="saintly" value="5"/>
-		<level text="righteous" value="4"/>
-		<level text="upright" value="3"/>
-		<level text="honest" value="2"/>
-		<level text="dishonest" value="1"/>
-		<level text="infamous" value="0"/>
+		<level text="hillich" value="5"/>
+		<level text="rjochtfeardich" value="4"/>
+		<level text="oprjocht" value="3"/>
+		<level text="earlik" value="2"/>
+		<level text="ûnearlik" value="1"/>
+		<level text="net te fertrouwen" value="0"/>
 	</honesty>
 	
 	<!-- Aggressiveness levels in denominations page.
