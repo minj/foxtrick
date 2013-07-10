@@ -68,12 +68,12 @@
 	     Translate attribute "text" by copying from there in verbatim,
 	     keep attribute "value" unchanged. -->
 	<agreeability>
-		<level text="beloved team member" value="5"/>
-		<level text="popular guy" value="4"/>
-		<level text="sympathetic guy" value="3"/>
-		<level text="pleasant guy" value="2"/>
-		<level text="controversial person" value="1"/>
-		<level text="nasty fellow" value="0"/>
+		<level text="spiler wêr't elts fan hâldt" value="5"/>
+		<level text="populêre spiler" value="4"/>
+		<level text="sympatyke spiler" value="3"/>
+		<level text="oangename spiler" value="2"/>
+		<level text="tsjinstridige spiler" value="1"/>
+		<level text="ferfelende spiler" value="0"/>
 	</agreeability>
 	
 	<!-- Honesty levels in denominations page.
