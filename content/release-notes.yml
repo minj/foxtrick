@@ -22,6 +22,11 @@ en:
       note_1: 'Increased the performance of <module>MainMenuDropDown</module>.'
       note_2: 'Minor accessibility improvements.'
       note_3: 'Fixes for <module>CopyPosting</module> and <module>StaffMarker</module>.'
+      note_4: 'Fixed some sound-related issues.'
+      note_5: 'Fixed an Android issue causing Foxtrick not to start in some cases.'
+      note_6: 'Line breaks in forum and mail templates should now be recognized correctly when importing preferences.'
+      note_7: 'Fixed ratings recognition issue for Frysk locale.'
+      note_8: 'Fixed some issues in <module>ForumAlterHeaderLine</module> and <module>HideSignatures</module>.'
 
     0.12.1:
       note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
