@@ -33,9 +33,11 @@ Foxtrick.modules['HideSignatures'] = {
 
 				try {
 					// append the show sig link to the right footer
-					var cfWrapper = elems[i].parentNode.parentNode.parentNode;
-					var cfFooter = cfWrapper.getElementsByClassName('cfFooter')[0];
-					var floatRight = cfFooter.getElementsByClassName('float_right')[0];
+					var cfWrapper = elems[i];
+					while (!Foxtrick.hasClass(cfWrapper, 'cfWrapper'))
+						cfWrapper = cfWrapper.parentNode;
+
+					var floatRight = cfWrapper.querySelector('.cfFooter .float_right');
 					floatRight.appendChild(showSigLink);
 				} catch (e) {
 					Foxtrick.dump('HideSignatures: Unexpected DOM Structure', e);
