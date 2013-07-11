@@ -15,7 +15,8 @@ Foxtrick.modules['HideSignatures'] = {
 				Foxtrick.addClass(elems[i], 'hidden');
 				var sigId = elems[i].id;
 				if (!sigId) {
-					elems[i].setAttribute('id', 'foxtrick-signature- ' + i);
+					// truncated signatures have ids
+					elems[i].setAttribute('id', 'foxtrick-signature-' + i);
 					sigId = i;
 				}
 				//the button
@@ -25,7 +26,7 @@ Foxtrick.modules['HideSignatures'] = {
 				showSigLink.setAttribute('style', 'cursor: pointer;');
 				showSigLink.setAttribute('title',
 				                         Foxtrickl10n.getString('HideSignatures.signaturetoggle'));
-				showSigLink.setAttribute('id', 'foxtrick-st-link- ' + sigId);
+				showSigLink.setAttribute('id', 'foxtrick-st-link-' + sigId);
 				var text = doc.createTextNode(Foxtrickl10n
 				                              .getString('HideSignatures.signaturetoggle'));
 				showSigLink.appendChild(text);
@@ -44,9 +45,10 @@ Foxtrick.modules['HideSignatures'] = {
 				Foxtrick.listen(showSigLink, 'click',
 				  function(ev) {
 					try {
-						var id = ev.target.getAttribute('id').replace('foxtrick-st-link- ', '');
+						var id = ev.target.getAttribute('id').replace('foxtrick-st-link-', '');
 						try {
-							var sig = doc.getElementById('foxtrick-signature- ' + id);
+							var sig = doc.getElementById('foxtrick-signature-' + id) ||
+								doc.getElementById(id); // truncated
 							Foxtrick.toggleClass(sig, 'hidden');
 						} catch (e) {
 							Foxtrick.toggleClass(sig, 'hidden');
