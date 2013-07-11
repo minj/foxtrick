@@ -17,6 +17,13 @@ Foxtrick.util.currency = {
 		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
 		var rate = FoxtrickPrefs.get('Currency.Rate.' + ownTeamId);
 		if (!rate) {
+			if (!Foxtrick.util.layout.hasMultipleTeams(doc)) {
+				FoxtrickPrefs.set('Currency.Rate.' + ownTeamId, this.findRate().toString());
+				FoxtrickPrefs.set('Currency.Symbol.' + ownTeamId, this.findSymbol());
+				callback();
+				return;
+			}
+
 			var teamargs = [['file', 'teamdetails'], ['version', '2.9'], ['TeamId', ownTeamId]];
 			Foxtrick.util.api.retrieve(doc, teamargs, { cache_lifetime: 'session'},
 			  function(teamXml, errorText) {
