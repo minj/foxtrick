@@ -582,12 +582,15 @@ Foxtrick.modules['ForumChangePosts'] = {
 				var placenode;
 				if (supporter_link1) placenode = supporter_link1.nextSibling;
 				else placenode = poster_link1.nextSibling;
-				var space = doc.createTextNode(' ');
-				header_left.insertBefore(space, placenode);
-				header_left.insertBefore(leagueLinkUserInfo, space);
-				header_left.insertBefore(countryLink, leagueLinkUserInfo);
-				var space = doc.createTextNode(' ');
-				header_left.insertBefore(space, countryLink);
+				if (header_left === placenode.parentNode) {
+					// false: 'Show detailed post header' is activated; don't run
+					var space = doc.createTextNode(' ');
+					header_left.insertBefore(space, placenode);
+					header_left.insertBefore(leagueLinkUserInfo, space);
+					header_left.insertBefore(countryLink, leagueLinkUserInfo);
+					var space = doc.createTextNode(' ');
+					header_left.insertBefore(space, countryLink);
+				}
 
 			}
 
