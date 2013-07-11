@@ -29,7 +29,7 @@ sv-SE:
       note_0: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
       note_1: 'NY: <module>MatchLineupTweaks</module>: Ändrar visning av stjärnor till tidigare utseende av stjärnpresentation. Lägger till räknare för stjärnor och kondition på den nya matchuppställningssidan. Visar specialiteter för alla spelare samt lägger till namnet på laget på planen för att minska ev. förvirring. Visar avatarer för ditt lag. Markerar spelare relevant till en händelse i en match.'
       note_2: En massa småfixar på ett antal moduler som gått sönder efter det att Hattrick introducerat sin nya shop.
-      note_3: 
+      note_3: 'NEW: <module>MatchLineupFixes</module>: Synchronise timeline across player and sectors tabs. Show player names for weather SEs. Add links for players in your own orders tab. Add last star count to players on the bench. Fixes multiple events happening at the same time: players change their positions step by step instead of all at once.'
       note_4: 'NY: <module>ReLiveLinks</module>: Lägger till länkar till HT Re-Live för färdigspelade matcher.'
       note_5: 'NY: <module>CopyBBAd</module>: Blandade kopieringsfunktioner i BB code (av merfis).'
       note_6: 'NY: <module>DashboardCalendar</module>: Lagt till en knapp för att exportera en Hattrickvecka i .ics-format (ska vara kompatibelt med Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal o.s.v.)'
@@ -70,23 +70,23 @@ sv-SE:
       note_18: BackgroundFixed ; modulen har tagits bort.
       note_19: '<header>Kopierande moduler</header>'
       note_20: '<module>CopyRatings</module>: Har nu stöd för turneringsmatch -ID.'
-      note_21: 
-      note_22: 
-      note_23: 
-      note_24: 
-      note_25: 
-      note_26: 
-      note_27: 
-      note_28: 
-      note_29: 
-      note_30: 
-      note_31: 
-      note_32: 
-      note_33: 
-      note_34: 
-      note_35: 
-      note_36: 
-      note_37: 
+      note_21: '<module>CopyMatchID</module>: Ökat stöd för enskild match och inaktiverat på matchsidor för att göra plats för Hattricks nya direktlänksfunktion'
+      note_22: '<module>CopyPlayerAd</module>: Fixat störningar med Hattricks förmågestaplar'
+      note_23: Lite allmänt fix gällande kopiering i HT-ML.
+      note_24: '<header>Andra justeringar</header>'
+      note_25: '<module>MatchOrderInterface</module>: Avatarer för icke-supporters. Ökad stabilitet.'
+      note_26: '<module>MatchSimulator</module> använder nu den nya konditionsformeln (av Senzascrupoli [post=15917246.1]) för att beräkna konditionstapp.'
+      note_27: '<module>MatchReportFormat</module> använder Hattricks nya ikoner.'
+      note_28: '<module>PlayerStatsExperience</module>: rutinpoäng per nivå utökat till 28.62 (se 15766691.423 ang. diskussionen). W.O markeras nu eftersom de inte ger någon rutin.'
+      note_29: "Forum modules now use a spacial space character to escape text instead of '·': this should help the Catalan language."
+      note_30: Förhindra Hattricks layout från att störa Foxtrick.
+      note_31: Lagt till stöd för www.hattrick.fm
+      note_32: 'Tagit bort externa döda länkar i <module>Links</module>. Använd externa ikoner där så är möjligt.'
+      note_33: '<header>Webbläsarstöd</header>'
+      note_34: Stöd för Firefox för Android 17+.
+      note_35: Firefox 12 är nu den lägsta versionen för att kunna använda Foxtrick.
+      note_36: Google Chrome 22 är nu den lägsta versionen för att kunna använda Foxtrick.
+      note_37: 'Opera: Fixat en bug som fick FoxTrick att störa andra sidor (som t.e.x. Hattrick Youthclub). Bilder bör nu laddas mycket snabbare. Vissa moduler som inaktiverat specifikt på Opera har nu åter aktiverats.'
       note_38: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
       note_39: '<header>Sidan för inställningar gjordes om.</header>'
       note_40: '<strong>..och mycket mycket mer</strong>'

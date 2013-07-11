@@ -5,14 +5,51 @@ sv-SE:
       question: Hur kan jag modifiera mitt FoxTrick?
       answer: '<p>FoxTrick tillhandahåller en uppsättning presentations gränssnitt för användare med möjlighet att anpassa sina egna stilar. Dessa gränssnitt tillhandahålls via HTML-ID och klasser, och med hjälp av CSS kan du definiera din önskade stil.</p>  <p>Ett exempel på en användare stilfil kan hittas <linkCSSExample>här</linkCSSExample> eller <linkCSSExampleGCode>här</linkCSSExampleGCode>, dessa kan ändras för att tillfredsställa dina behov. När du har sparat filen, kan du använda modulen <module>SkinPlugin</module> för inläsning av CSS-filen och för användning av din egen stil.</p>'
     sound-format: 
-      question: Vilka filformat är tillåtna för varningsljud?
-      answer: '<p>Olika webbläsare tillåter olika filformat. Här är en lista (icke-listade format kan fungera om lämplig plugin installeras, t.ex Quicktime för att spela mp3 i Firefox):</p> <ul><li>Mozilla: wav, ogg</li> <li>Safari (kan behöva Quicktime): wav, mp3</li> <li>Chrome: ogg, mp3, wav</li> <li>Opera: wav, ogg</li></ul>'
+      question: Vilka filformat är tillåtna för varnings / -notifieringsljud?
+      answer: '<p>Olika webbläsare tillåter olika filformat. Här är en lista (icke-listade format kan fungera om lämpligt plugin installeras, t.ex Quicktime för att spela mp3 i Firefox):</p> <ul><li>Mozilla: wav, ogg</li> <li>Safari (kan behöva Quicktime): wav, mp3</li> <li>Chrome: ogg, mp3, wav</li> <li>Opera: wav, ogg</li></ul>'
     sound-location: 
-      question: Vad är storleksgränsen för varningsljud och var kan man hitta dem?
-      answer: 
+      question: Vad är storleksgränsen för varnings / -notifieringsljud och var kan man hitta dem?
+      answer: |
+        <p>All browsers can play data urls. Those are the internally saved sounds when you use the load button provided in the preferences. Since they are converted and saved in your preferences, the size is limited to around 160kB per sound.</p>
+        
+        <p>All browsers also can play sounds directly from the internet (http urls). Just copy a link to a sound (eg http://foxtrick.org/sound.wav) into the edit field for sounds. No size limit.</p>
+        
+        <p>Mozilla browsers also can play sounds directly from your harddrive (file urls) with no size limit. Easiest way to get the right format: In the browser type Ctrl+o, browse to the sound file and select it. In the adress bar on top is now the right link to the local file (eg file:///c:/sound.wav). Copy and paste this into the edit field for the sounds.</p>
     authorize: 
       question: Varför bör jag tillåta FoxTrick att få tillgång till mitt lags data?
-      answer: 
+      answer: |
+        <p>Although most of the data needed by FoxTrick can be fetched directly from the page you are viewing, some modules do require downloading data from Hattrick to work properly.</p>
+        
+        <p>To download data from Hattrick, including data of your team, leagues, and national teams, you need to authorize FoxTrick in advance.</p>
+        
+        <p>You authorize FoxTrick by providing your username and password on chpp.hattrick.org in exchange of a verification code, which you provide to FoxTrick. FoxTrick will not know your username or your password in the whole process.</p>
+        
+        <p>To learn more about the authorize process, please read <linkCHPPDesc>CHPP - How it works</linkCHPPDesc> on Hattrick.</p>
+        
+        <p>Some modules require data access to work properly:</p>
+        
+        <ul>
+        <li><module>CrossTable</module></li>
+        <li><module>ExtraPlayerInfo</module></li>
+        <li><module>MatchPlayerColouring</module></li>
+        <li><module>MyMonitor</module></li>
+        <li><module>NtPeek</module></li>
+        <li><module>SeriesFlags</module></li>
+        </ul>
+        
+        <p>Some modules could provide extensive info if they can access data from Hattrick:</p>
+        
+        <ul>
+        <li><module>SkillTable</module></li>
+        <li><module>TeamStats</module></li>
+        </ul>
     privacy: 
       question: Hur kommer FoxTrick att skydda min integritet?
-      answer: 
+      answer: |
+        <p>FoxTrick will not upload any of your data or preferences to a server of FoxTrick; neither will FoxTrick send any of your private data, including but not restricted to your username, password, and player ID associated with skills to third parties.</p>
+        
+        <p>Most data passed to third parties, unless explicitly stated below, are sent with HTTP GET method, and will only be sent upon you clicking a link.</p>
+        
+        <p>That is, you will be able to see what data are passed by inspecting the URI (Uniform Resource Identifier) of an external link, and no data will be sent without your consent. As stated above, no private data is involved.</p>
+        
+        <p>The exceptions are modules <module>HTMSPrediction</module> and <module>HTEVPrediction</module>, where match ratings are passed to and recieved from the respective sites with XMLHttpRequest.</p>
