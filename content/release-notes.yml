@@ -26,7 +26,7 @@ en:
       note_5: 'Fixed an Android issue causing Foxtrick not to start in some cases.'
       note_6: 'Line breaks in forum and mail templates should now be recognized correctly when importing preferences.'
       note_7: 'Fixed ratings recognition issue for Frysk locale.'
-      note_8: 'Fixed some issues in <module>ForumAlterHeaderLine</module> and <module>HideSignatures</module>.'
+      note_8: 'Fixed some issues in <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> and <module>HideSignatures</module>.'
       note_9: '<module>SkillTable</module> will now again work without Foxtrick authorization for users with a single team.'
 
     0.12.1:
