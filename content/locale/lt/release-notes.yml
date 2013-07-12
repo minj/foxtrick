@@ -7,6 +7,15 @@ lt:
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
     0.13.0: 
       note_0: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
+    0.12.2: 
+      note_0: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
+      note_1: 
+      note_2: 
+      note_3: 
+      note_4: 
+      note_5: 
+      note_6: 
+      note_7: 
     0.12.1.1: 
       note_0: Vertimo atnaujinimai.
       note_1: '<module>MainMenuDropDown</module> turėtų veikti sparčiau.'

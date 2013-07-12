@@ -7,6 +7,15 @@ pl:
       note_0: 'To jest wersja beta następnego wydania. Proszę pomóż w tłumaczeniu tej wersji na naszej super łatwej stronie tłumaczeń <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
       note_0: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
+    0.12.2: 
+      note_0: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
+      note_1: 
+      note_2: 
+      note_3: 
+      note_4: 
+      note_5: 
+      note_6: 
+      note_7: 
     0.12.1.1: 
       note_0: 
       note_1: 

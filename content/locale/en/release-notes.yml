@@ -7,6 +7,15 @@ en:
       note_0: 'This is the beta version of the next release. Please help translating this version at our super easy crowd-translation page <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
       note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
+    0.12.2: 
+      note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
+      note_1: '<module>PlayerStatsExperience</module>: the experience calculation now assumes there are 28.57 points per level (see 15766691.780).'
+      note_2: 'NEW: the <module>PsicoTSI</module> tool was imported into Foxtrick.'
+      note_3: '<module>ShowLineupSet</module>: Added option to highlight own team in standings tables.'
+      note_4: '<module>CopyYouth</module>: now youth training changes will be sent to Hattrick Youthclub automatically (only for HY users).'
+      note_5: 'NEW: <module>SupportersList</module>: Show who supports your team in your supported teams list and vice versa'
+      note_6: '<module>MatchLineupTweaks</module>: an option to gather your player stamina data every time you visit your match page was added. The data will be used for better ratings prediction in <module>MatchSimulator</module> module and can be viewed in <module>SkillTable</module>. A player must play the whole 90 minutes. Matches with pressing or negative weather SEs (for powerful players) are excluded. Prediction formula was created by Pappagallopoli.'
+      note_7: 'NEW: <module>Fans</module>: Add live link next to future match links. Add total of fans evolution in the sidebar.'
     0.12.1.1: 
       note_0: Translation updates.
       note_1: 'Increased the performance of <module>MainMenuDropDown</module>.'

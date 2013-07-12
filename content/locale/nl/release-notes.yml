@@ -7,6 +7,15 @@ nl:
       note_0: 'Dit is een beta versie van de volgende release. Help alsjeblieft met vertalen van deze versie op de zeer gebruiksvriendelijke crowd-vertaal pagina <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
       note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
+    0.12.2: 
+      note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
+      note_1: 
+      note_2: 
+      note_3: 
+      note_4: 
+      note_5: 
+      note_6: 
+      note_7: 
     0.12.1.1: 
       note_0: Vertalingsupdates.
       note_1: 'Snelheid van <module>MainMenuDropDown</module> verbeterd.'

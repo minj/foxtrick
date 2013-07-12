@@ -7,6 +7,15 @@ de:
       note_0: 'Dies ist die Beta-Version der nächsten Veröffentlichung. Hilf bitte mit diese auf unserer extrem einfachen Übersetzungsseite <linkCrowdin>crowdin.net</linkCrowdin> ins Deutsche zu übersetzen falls euch Schreibfehler oder fehlende Einträge auffallen.'
     0.13.0: 
       note_0: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin>-Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
+    0.12.2: 
+      note_0: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin> Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
+      note_1: 
+      note_2: 
+      note_3: 
+      note_4: 
+      note_5: 
+      note_6: 
+      note_7: 
     0.12.1.1: 
       note_0: Übersetzungsaktualisierungen.
       note_1: 'Leistung von <module>MainMenuDropDown</module> gesteigert.'

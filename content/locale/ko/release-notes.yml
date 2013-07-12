@@ -7,6 +7,15 @@ ko:
       note_0: '이것은 다음 배포의 beta 버전 입니다. 이 버전에서 저희 군중-번역 페이지를 통해 번역해주세요. <linkCrowdin>crowdin.net</linkCrowdin>'
     0.13.0: 
       note_0: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
+    0.12.2: 
+      note_0: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
+      note_1: 
+      note_2: 
+      note_3: 
+      note_4: 
+      note_5: 
+      note_6: 
+      note_7: 
     0.12.1.1: 
       note_0: 번역 업데이트.
       note_1: '<module>MainMenuDropDown</module>의 성능을 향상시켰습니다.'

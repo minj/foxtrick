@@ -7,6 +7,15 @@ es-AR:
       note_0: 'Esta es la versión beta de la próxima versión. Por favor ayude a traducir esta versión en nuestra super-fácil página <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
       note_0: '<header>Muchas actualizaciones en las traducciones de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
+    0.12.2: 
+      note_0: '<header>Muchas actualizaciones en las traducciones de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
+      note_1: 
+      note_2: 
+      note_3: 
+      note_4: 
+      note_5: 
+      note_6: 
+      note_7: 
     0.12.1.1: 
       note_0: Actualización de traducciones.
       note_1: 'Mejorado el rendimiento del <module>MainMenuDropDown</module>.'

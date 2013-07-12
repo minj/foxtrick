@@ -7,6 +7,15 @@ hr:
       note_0: 'Ovo je beta inačica buduće nove verzije. Pomozite na prevoditi ovu verziju sa super lakim prevođenjem na <linkCrowdin>crowdin.net</linkCrowdin>.'
     0.13.0: 
       note_0: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
+    0.12.2: 
+      note_0: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
+      note_1: 
+      note_2: 
+      note_3: 
+      note_4: 
+      note_5: 
+      note_6: 
+      note_7: 
     0.12.1.1: 
       note_0: Ažurirani prijevodi.
       note_1: 'Povećane performanse rada <module>MainMenuDropDown</module>.'
