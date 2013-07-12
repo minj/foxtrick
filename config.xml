@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets"
 		id="http://www.foxtrick.org/"
-		version="0.13.0" network="public private">
+		version="0.12.2" network="public private">
 	<name>FoxTrick</name>
 	<description>A set of presentation enhancements for hattrick.org</description>
 	<author href="http://www.foxtrick.org/">FoxTrick team</author>

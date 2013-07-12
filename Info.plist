@@ -17,9 +17,9 @@ a good reason to. They are for version bumps in Makefile.
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleVersion</key>
-	<string>0.13.0</string><!--version-->
+	<string>0.12.2</string><!--version-->
 	<key>CFBundleShortVersionString</key>
-	<string>0.13.0</string><!--version-->
+	<string>0.12.2</string><!--version-->
 	<key>Chrome</key>
 	<dict>
 		<key>Database Quota</key>
