@@ -1,5 +1,7 @@
 make new svn branch with the new beta 0.x.x (eg @home)
+---
 svn copy https://foxtrick.googlecode.com/svn/trunk https://foxtrick.googlecode.com/svn/branches/x.x.x
+---
 clone new branch here as follows: 
 ---
 mkdir x.x.x
@@ -9,23 +11,43 @@ git svn fetch -rHEAD
 ---
 copy upload.* files into x.x.x/maintainer
 copy keys (*.pem, *.der) into x.x.x/maintainer
-
+---
+cp ~/trunk/maintainer/upload.* maintainer
+cp ~/trunk/maintainer/*.{pem,der} maintainer
+---
 update cron-config.sh
 commit changes:
+---
 git commit -am 'new beta x.x.x'
 git svn dcommit
+---
 
-upload master lang files via x.x.x/maintainer/crowdin-upload.sh or web
+do foxtrick-cron-crowdin.sh to fetch latest translations and merge them back to trunk
+easiest to do from a local svn copy:
+---
+svn update
+svn merge -c <revN> branches/x.x.x trunk
+svn commit -m "merge translations to trunk" 
+---
+
+upload master lang files via x.x.x/maintainer/crowdin-upload.sh or web:
+---
+cd ~/x.x.x/maintainer
+./crowdin-upload.sh
+---
+prints 'failed' but works (needs investigation)
 be aware that sometimes '\' fails to import
+
 (don't upload localized files, the script skips them for now.
 They are from old nightly here and thus outdated)
 
 don't forget to crowdin-glossary-upload.sh if this was done via webb
 
+run foxtrick-cron-crowdin.sh again
+
 (if needed) run foxtrick-beta.sh (will do so anyways next day)
 
 run version.sh x.x.x in trunk to version bump
-commit version bump with 
 ----
 cd trunk
 (git stash)
