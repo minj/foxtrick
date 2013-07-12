@@ -6,35 +6,54 @@ de:
     beta: 
       note_0: 'Dies ist die Beta-Version der nächsten Veröffentlichung. Hilf bitte mit diese auf unserer extrem einfachen Übersetzungsseite <linkCrowdin>crowdin.net</linkCrowdin> ins Deutsche zu übersetzen falls euch Schreibfehler oder fehlende Einträge auffallen.'
     0.13.0: 
-      note_0: 
-    0.12.1: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
-    0.12.0: 
-      note_0: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin> Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
-      note_1: |
-        NEU: <module>MatchLineupTweaks</module>: Ersetzt die numerisch Dargestellten Stern durch eine, der ursprünglichen Ansicht ähnliche.
-        Fügt Zähler für Kondition und Sterne hinzu. Zeigt Spezialfähigkeiten für alle Spieler und fügt den Teamnamen zum Aufstellungfeld hinzu. Spielergesichter können wieder angezeigt werden und für jeden Event werden die beteiligten Spieler hervorgehoben.
-      note_2: 
-      note_3: 
-      note_4: 'NEU: <module>ReLiveLinks</module>: Re-Live Links an vielen Stellen hinzugefügt.'
+      note_0: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin>-Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
+    0.12.1.1: 
+      note_0: Übersetzungsaktualisierungen.
+      note_1: 'Leistung von <module>MainMenuDropDown</module> gesteigert.'
+      note_2: Kleinere Zugriffsverbesserungen.
+      note_3: 'Bugfix für <module>CopyPosting</module> und <module>StaffMarker</module>.'
+      note_4: 
       note_5: 
       note_6: 
       note_7: 
       note_8: 
       note_9: 
-      note_10: 
-      note_11: 
+    0.12.1: 
+      note_0: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin>-Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
+      note_1: 'NEU: <module>SupportershipExpirationDate</module>: Ein Klick auf die verbleibenden Supporter-Tage bewirkt dass das tatsächliche Datum  angezeigt wird'
+      note_2: '<module>MatchIncome</module>: Option zum Anzeigen der Sitz-Auslastung in Prozent neben der Zahl der Besucher auf den Spiel-Seiten hinzugefügt'
+      note_3: 'NEU: <module>MainMenuDropDown</module>: Das Hattrick-Hauptmenu hat ein aufklappbares Untermenu bekommen dass alle LInks enthält die sich in den seitlichen Menus befinden. So kann man beispielsweise ohne Umweg vom Forum zu seinen Spielern gelangen.'
+      note_4: 
+      note_5: '<module>MatchOrderInterface</module>: Zeigt jetzt Avatare für mehrere Teams.'
+      note_6: '<module>DashboardCalendar</module>: Mehrmaliges erscheinen des Download-Dialog  unter Firefox behoben.'
+      note_7: '<module>HeaderFix</module>: Zeigt nun die Leiste zum Wechseln zwischen deinen Teams korrekt an.'
+      note_8: 
+      note_9: '<module>TransferSearchFilters</module>: Filter speichern nun auch die Tagesangabe.'
+      note_10: Unterstützung für die aserbaidschanische Sprache hinzugefügt.
+      note_11: Hunderte andere Bugfixes für durch Hattrickänderungen verursachte Probleme.
+    0.12.0: 
+      note_0: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin> Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
+      note_1: |
+        NEU: <module>MatchLineupTweaks</module>: Ersetzt die numerisch Dargestellten Stern durch eine, der ursprünglichen Ansicht ähnliche.
+        Fügt Zähler für Kondition und Sterne hinzu. Zeigt Spezialfähigkeiten für alle Spieler und fügt den Teamnamen zum Aufstellungfeld hinzu. Spielergesichter können wieder angezeigt werden und für jeden Event werden die beteiligten Spieler hervorgehoben.
+      note_2: Viele Bugfixes für unterschiedliche Module, die nicht mehr funktionierten nachdem der neue Hattrick-Shop eingeführt wurde.
+      note_3: 
+      note_4: 'NEU: <module>ReLiveLinks</module>: Re-Live Links an vielen Stellen hinzugefügt.'
+      note_5: 
+      note_6: 'NEU: <module>DashboardCalendar</module>: Hiermit kann per Knopfdruck die Hattrick-Woche im iCalendar-Format exportiert werden. (Sollte mit Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal etc, funktionieren)'
+      note_7: '<module>LiveAlert</module>: Unterschiedliche Töne für heim-/auswärts- bzw. deine Mannschaft. Benutzt die Töne von <linkHTLS>HTLiveSight</linkHTLS>.'
+      note_8: '<module>CopyYouth</module>: Nutzer von Hattrick youthclub senden jetzt den Scout-Kommentar abgelehnter Spieler automatisch an HY'
+      note_9: '<module>CopyYouth</module>: Nutzer von Hattrick youthclub senden jetzt den Trainingsbericht automatisch an HY wenn sie ihn zum ersten Mal lesen'
+      note_10: '<module>LineupShortcut</module> ist jetzt mit der neuen Aufstellungsseite verlinkt.'
+      note_11: '<module>SkillTable</module> verwendet jetzt Symbole für Spezialitäten und Trainer.'
       note_12: 'Das Module AddLeaveConfButton wurde in <module>ForumLeaveButton</module> umbenannt'
       note_13: Von nun an wird bei allen Beiträgen im Foxtrick-Forum automatisch ein Satz von Informationen über verwendete Versionen, Spracheinstellungen etc. hinzugefügt um den Nutzern und den Entwicklern bei der Fehlersuche ein wenig Zeit zu sparen. Bitte löscht diesen Block nicht wenn ihr einen Fehler meldet.
       note_14: 'Les- und Wartbarkeit des Code verbessert.'
-      note_15: 
-      note_16: 
-      note_17: 
+      note_15: 'Einige Probleme mit der Wochenerkennung in <module>PlayerStatsTrainingWeek</module> behoben.'
+      note_16: 'Bug behoben in <module>MatchSimulator</module> der falsche Bewertungen und Vorhersagen verursachte wenn die Angriff vs. Verteidigungseinstellung ausgeschaltet war.'
+      note_17: Safari-Aktualisierungen scheinen nicht mehr zu funktionieren. Benutzer sollten frühere Foxtrickversionen deinstallieren und die neue Version installieren.
     0.11.0.1: 
-      note_0: 
+      note_0: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin>-Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
       note_1: 'Kleinere Probleme in folgenden Modulen behoben: <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module>,<module>HTThreadMarker</module>.'
       note_2: Firefox davon abgehalten permanent alle Hattrick Tabs neu zu laden sobald ein neues Browserfenster geöffnet wird.
     0.11.0: 
@@ -52,13 +71,13 @@ de:
       note_11: '<module>YouthTwins</module>: Manuelle Änderungen des Zwillingsstatuses im HY werden jetzt sofort auf der Jugendspielerübersicht übernommen'
       note_12: '<header>Bugfixes</header>'
       note_13: 'Fixed <module>Filter</module>, <module>SupporterStatsEnhancements</module> and <module>YouthTwins</module>.'
-      note_14: 
+      note_14: '<module>StaffMarker</module> und <module>HTThreadMarker</module> funktionieren jetzt an weiteren Stellen.'
       note_15: '<module>ConfirmActions</module>: Unterstützung des automatischen Bietassistenten.'
       note_16: '<module>EmbedMedia</module>: Sicherheit und Qualität der Linkerkennung verbessert. '
       note_17: '<module>SkillTable</module> sollte für externe Trainer nun die korrekte Zeit seit deren Verpflichtung anzeigen.'
       note_18: Das Modul BackgroundFixed wurde entfernt.
-      note_19: 
-      note_20: 
+      note_19: '<header>Copying modules</header>'
+      note_20: '<module>CopyRatings</module>:Turnierspiel-ID-Unterstützung.'
       note_21: 
       note_22: 
       note_23: Verbesserungen beim Kopieren in HT-ML.
@@ -76,7 +95,7 @@ de:
       note_35: Foxtrick benötigt von nun an Firefox 12 oder eine Neuere Version
       note_36: Foxtrick benötigt von nun an Google Chrome 22 oder eine Neuere Version
       note_37: 'Opera: Bug gefixt der Foxtrick dazu veranlasste auf anderen Seiten Probleme zu verursachen (z.B. hattrick youthclub). Bilder sollten jetzt schneller laden. Einige für Opera deaktivierte Module sind nun standardmäßig aktiviert.'
-      note_38: 
+      note_38: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin>-Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
       note_39: '<header>Die Einstellungsseite wurde komplett überarbeitet.</header>'
       note_40: '<strong>Und vieles mehr</strong>'
     0.10.0: 
