@@ -6,12 +6,31 @@ ko:
     beta: 
       note_0: '이것은 다음 배포의 beta 버전 입니다. 이 버전에서 저희 군중-번역 페이지를 통해 번역해주세요. <linkCrowdin>crowdin.net</linkCrowdin>'
     0.13.0: 
-      note_0: 
+      note_0: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
+    0.12.1.1: 
+      note_0: 번역 업데이트.
+      note_1: '<module>MainMenuDropDown</module>의 성능을 향상시켰습니다.'
+      note_2: 접근성에 대해서 사소한 부분을 개선하였습니다.
+      note_3: '<module>CopyPosting</module> 와 <module>StaffMarker</module>를 수정하였습니다.'
+      note_4: 일부 사운드 관련 문제가 해결 되었습니다.
+      note_5: 경우에 따라 Foxtrick가 동작하지 않는 Android 문제가 해결되었습니다.
+      note_6: 이제 환경설정을 가져오는 중에 토론장에서 줄 바꿈 및 메일 템플릿들을 올바르게 인식합니다.
+      note_7: 프리지아어를 사용하는 경우에 발생했던 레이팅 인식 문제가 해결되었습니다.
+      note_8: '<module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> 및 <module>HideSignatures</module>에 있었던 몇 가지 문제가 해결되었습니다.'
+      note_9: '<module>SkillTable</module>은 이제 단일 팀 사용자인 경우 다시 Foxtrick 권환 부여가 없더라도 동작합니다.'
     0.12.1: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
+      note_0: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
+      note_1: 'NEW: <module>SupportershipExpirationDate</module>: 대시보드에 있는 남은 Supporter 날짜를 클릭하면 만료 날짜를 표시합니다.'
+      note_2: '<module>MatchIncome</module>: 경기 페이지에 관중 수 옆에 좌석 사용률을 백분율로 표시하는 옵션을 추가하였습니다.'
+      note_3: 'NEW: <module>MainMenuDropDown</module>: 메인 탐색 바에 일반적으로 사용가능한 모든 링크를 포함하는 드롭 다운 메뉴를 추가합니다.'
+      note_4: 'Firefox에서 <module>DashboardCalendar</module> 내보낼 때 시간 인식 해결'
+      note_5: '<module>MatchOrderInterface</module>은 이제 여러 팀들의 아바타를 보여 줍니다.'
+      note_6: '<module>DashboardCalendar</module>: Firefox에서 여러 개의 다운로드 확인 메시지를 제거 합니다.'
+      note_7: '<module>HeaderFix</module>: 이제 예전에 숨겨진  팀 스위칭 바를 표시합니다.'
+      note_8: '<module>ConfirmActions</module>: 여러 팀을 보유한 사용자들은 이제 입찰한 팀의 이름을 볼 것입니다.'
+      note_9: '<module>TransferSearchFilters</module>: 이제 필터에는 선수의 나이와 일수를 함께 저장합니다.'
+      note_10: 새롭게 추가된 아제르바이잔어를 지원합니다.
+      note_11: Hattrick 변화로 인해 발생한 수백 개의 문제점을 해결하였습니다.
     0.12.0: 
       note_0: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
       note_1: 'NEW: <module>MatchLineupTweaks</module>: 별 표시를 과거 스타일로 변경합니다. 새로운 라인업 페이지에 별 카운터와 체력을 추가합니다. 모든 선수의 특수능력을 표시하고 혼란을 줄이기 위해서 필드에 클럽 이름을 추가합니다. 여러분의 선수 얼굴을 표시합니다. 경기에 있었던 이벤트에 일치하는 선수를 강조합니다.'

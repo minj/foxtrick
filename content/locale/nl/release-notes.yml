@@ -4,24 +4,43 @@ nl:
     nightly: 
       note_0: 'Dit is een beta versie. Gebruik is voor eigen risico. Kijk alstublieft op <linkSVN>commit history</linkSVN> bij Google Code voor details over de veranderingen.'
     beta: 
-      note_0: 'Dit is een beta versie van de volgende release. Help alstublieft met vertalen van deze versie op de zeer gebruiks vriendelijke crowd-vertaal pagina <linkCrowdin>crowdin.net</linkCrowdin>. '
+      note_0: 'Dit is een beta versie van de volgende release. Help alsjeblieft met vertalen van deze versie op de zeer gebruiksvriendelijke crowd-vertaal pagina <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
-      note_0: 
-    0.12.1: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
-    0.12.0: 
       note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
-      note_1: 'Nieuw: <module>MatchLineupTweaks</module>: Verandert de sterrenwaardering naar de oude sterren. Sterren en conditie zijn zichtbaar in de opstellingspagana. Vertoont specialiteiten voor alle spelers en toont de teamnamen om verwarring te voorkomen. Avatars van je speler zijn zichtbaar. Spelers die invloed kunnen hebben op een bepaald Special Event in een wedstrijd kunnen worden gemarkeerd. '
-      note_2: 
-      note_3: 
+    0.12.1.1: 
+      note_0: Vertalingsupdates.
+      note_1: 'Snelheid van <module>MainMenuDropDown</module> verbeterd.'
+      note_2: Kleine verbeteringen in toegankelijkheid.
+      note_3: 'Verbeteringen voor <module>CopyPosting</module> en <module>StaffMarker</module>.'
       note_4: 
       note_5: 
       note_6: 
       note_7: 
       note_8: 
+      note_9: 
+    0.12.1: 
+      note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
+      note_1: 'Nieuw: <module>SupportershipExpirationDate</module>: Klik op de resterende dagen in je overzicht, zal er voor zorgen dat je de vervaldatum van je supporterlidmaatschap kan zien'
+      note_2: '<module>MatchIncome</module>: Er is een optie toegevoegd om de bezetting van het stadion in percentages weer te geven'
+      note_3: "Nieuw: <module>MainMenuDropDown</module>: In de hoofdmenubalk zijn de links van Mijn hattrick en Mijn Club nu via dropdownmenu's direct toegankelijk."
+      note_4: 'Tijdherkenning aangepast in Firefox bij het exporteren van <module>DashboardCalendar</module>.'
+      note_5: '<module>MatchOrderInterface</module>: toont nu avatars voor meerdere teams.'
+      note_6: '<module>DashboardCalendar</module>: verscheidene download prompts verwijderd in Firefox.'
+      note_7: '<module>HeaderFix</module>: toont nu de wissel team balk die eerst verborgen was.'
+      note_8: '<module>ConfirmActions</module>: gebruikers met meerdere teams krijgen nu de naam van het team te zien waarmee ze een bod uitbrengen.'
+      note_9: '<module>TransferSearchFilters</module>: filters slaan nu tevens de leeftijd van een speler in dagen op.'
+      note_10: Ondersteuning voor de Azerbeidzjaanse taal is toegevoegd.
+      note_11: Honderd andere aanpassingen voor problemen veroorzaakt door wijzigingen in Hattrick.
+    0.12.0: 
+      note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
+      note_1: 'Nieuw: <module>MatchLineupTweaks</module>: Verandert de sterrenwaardering naar de oude sterren. Sterren en conditie zijn zichtbaar in de opstellingspagana. Vertoont specialiteiten voor alle spelers en toont de teamnamen om verwarring te voorkomen. Avatars van je speler zijn zichtbaar. Spelers die invloed kunnen hebben op een bepaald Special Event in een wedstrijd kunnen worden gemarkeerd. '
+      note_2: Veel aanpassingen voor verschillende modules die niet goed meer werkten na de invoering van de nieuwe Hattrick Shop.
+      note_3: 
+      note_4: 'Nieuw: <module>ReLiveLinks</module>: links toegevoegd naar HT Re-Live voor afgelopen wedstrijden.'
+      note_5: 'Nieuw: <module>CopyBBAd</module>: kopieer verschillende advertenties in BB code (door merfis).'
+      note_6: 'Nieuw: <module>DashboardCalender</module>: knop toegevoegd om een Hattrick week te exporteren naar iCalender formaat (zou compatibel moeten zijn met Google Calender, Thunderbird+Lightning, MS Outlook, KOriganizer, Evolution, Apple iCal, etc).'
+      note_7: '<module>LiveAlert</module>: verschillende geluiden toegevoegd voor thuis/uit/eigen team goals.  Gebruikt standaard geluiden van <linkHTLS>HTLiveSight</linkHTLS>. Goals van je eigen team zullen niet direct herkend worden in Re-Live.'
+      note_8: "<module>CopyYouth</module>: Hattrick YouthClub gebruikers zullen nu de afgewezen speler's informatie uit het telefoontje naar de scout automatisch laten doorsturen naar HTYC."
       note_9: 
       note_10: 
       note_11: 
@@ -32,7 +51,7 @@ nl:
       note_16: 
       note_17: 
     0.11.0.1: 
-      note_0: 
+      note_0: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
       note_1: 
       note_2: 
     0.11.0: 
@@ -55,11 +74,11 @@ nl:
       note_16: 
       note_17: 
       note_18: 
-      note_19: 
-      note_20: 
+      note_19: '<header>Kopieer modules</header>'
+      note_20: '<module>CopyRatings</module>:Toernooiwedstrijd ID ondersteuning.'
       note_21: 
       note_22: 
-      note_23: 
+      note_23: Algemene HTML copy/paste foutjes opgelost.
       note_24: 
       note_25: 
       note_26: 
@@ -67,14 +86,14 @@ nl:
       note_28: 
       note_29: 
       note_30: 
-      note_31: 
+      note_31: Ondersteuning toegevoegd voor www.hattrick.fm
       note_32: 
       note_33: 
-      note_34: 
+      note_34: Aangepast voor Firefox voor Android 17+ ondersteuning.
       note_35: Firefox 12 is nu de minimaal vereiste versie om Foxtrick te kunnen gebruiken.
       note_36: Google Chrome 22 is nu de minimaal vereiste versie om Foxtrick te kunnen gebruiken.
       note_37: "Opera: een bug opgelost die er voor zorgde dat Foxtrick problemen veroorzaakte bij andere pagina's (zoals Hattrick Youthclub). Afbeeldingen moeten nu een stuk sneller worden geladen. Sommige modules die specifiek waren uitgeschakeld, zijn nu alsnog ingeschakeld."
-      note_38: 
+      note_38: '<header>Heel veel vertalingsupdates van onze geweldige gebruikers zijn gemaakt met behulp van de <linkCrowdin>crowdin tool</linkCrowdin>. Jij kan ons ook helpen!</header>'
       note_39: '<header>De voorkeurenpagina is verbeterd.</header>'
       note_40: '<strong>En nog veel meer</strong>'
     0.10.0: 
@@ -211,7 +230,7 @@ nl:
       note_0: '<module>ElectionTable</module>: adapted to new election page layout. (convincedd, ryanli)'
       note_1: '<module>HTThreadMarker</module>: new style. (convincedd, ryanli)'
       note_2: "<module>TableSort</module>: prevent conflicting with Hattrick's sorting. (convincedd)"
-      note_3: '<module>HTMSPrediction</module>, <module>CopyRatings</module>: adapted to new match report layout. (convincedd)'
+      note_3: '<module>HTMSPrediction</module>, <module>CopyRatings</module>: aangepast aan nieuwe opmaak voor wedstrijdverslag. (convincedd)'
       note_4: '<module>LineupShortcut</module>: also show for non-supporters now. (ryanli)'
       note_5: '<module>TransferSearchResultFilters</module>: fix after latest changes. (convincedd)'
       note_6: '<module>SkillTable</module>: include loyalty and mother club bonus. (convincedd)'

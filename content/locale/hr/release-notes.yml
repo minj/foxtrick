@@ -2,81 +2,100 @@
 hr: 
   versions: 
     nightly: 
-      note_0: 
+      note_0: 'Ovo je razvojna inačica. Koristiti na svoju odgovornost. Za detalje o promjenama pogledajte na <linkSVN>Google Code</linkSVN> stranici.'
     beta: 
-      note_0: 
+      note_0: 'Ovo je beta inačica buduće nove verzije. Pomozite na prevoditi ovu verziju sa super lakim prevođenjem na <linkCrowdin>crowdin.net</linkCrowdin>.'
     0.13.0: 
-      note_0: 
+      note_0: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
+    0.12.1.1: 
+      note_0: Ažurirani prijevodi.
+      note_1: 'Povećane performanse rada <module>MainMenuDropDown</module>.'
+      note_2: Poboljšanja u pristupačnosti.
+      note_3: 'Ispravci za <module>CopyPosting</module> i <module>StaffMarker</module>.'
+      note_4: Ispravljeni problemi vezani uz zvukove.
+      note_5: Ispravljen problem na Androidu koji prouzročuje ne pokretanje u nekim slučajevima.
+      note_6: Prijelom linija u forumu i porukama trebao bi biti prepoznat ispravn kod uvoza postavki.
+      note_7: Ispravljeno prepoznavanje ocjena za Frysk lokalni jezik.
+      note_8: 'Ispravljeni problemi u <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> i <module>HideSignatures</module>.'
+      note_9: '<module>SkillTable</module> će sada raditi bez autorizacije za korisnike sa jednim timom.'
     0.12.1: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
+      note_0: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
+      note_1: 'NOVO: <module>SupportershipExpirationDate</module>: Klikom na polje koje prikazuje preostale dane trajanja vašeg suportera, prikazat će vam se i datum isteka suportera'
+      note_2: '<module>MatchIncome</module>: Dodana je opcija koja prikazuje postotak iskorištenosti sjedala pored broja gledatelja na stranici izvještaja utakmice'
+      note_3: 'NOVO: <module>MainMenuDropDown</module>: Dodaje padajuće izbornike glavnom horizontalnom izborniku sa linkovima koji su inače dostupni u lijevom i desnom podizborniku odgovarajuće stranice.'
+      note_4: 'Ispravljeno prepoznavanje vremena kod izvoza <module>DashboardCalendar</module>.'
+      note_5: '<module>MatchOrderInterface</module> sada prikazuje avatare za više timova.'
+      note_6: '<module>DashboardCalendar</module>: obrisana višestruka skidanja u Firefox-u.'
+      note_7: '<module>HeaderFix</module>: sada prikazuje prethodno skriven prostor za promjenu tima.'
+      note_8: '<module>ConfirmActions</module>: korisnici s više timova će sada vidjeti ime tima za kojeg su stavili ponudu.'
+      note_9: '<module>TransferSearchFilters</module>: filter će sada spremati starost igrača i u danima.'
+      note_10: Dodana je podrška za azerbajđanski jezik.
+      note_11: Stotina ostalih ispravaka  prouzročenih promjenama Hattricka.
     0.12.0: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
-      note_10: 
-      note_11: 
-      note_12: 
-      note_13: 
-      note_14: 
-      note_15: 
-      note_16: 
-      note_17: 
+      note_0: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
+      note_1: 'NOVO: <module>MatchLineupTweaks</module>: Prikazuje zvjezdice u stilu sličnom starom. Dodaje ukupan broj zvjezdica i postotak gubitka vještina zbog izdržljivosti. Prikazuje specijalnost igrača i dodaje ime kluba radi smanjenja konfuzije. Prikazuje i slike igrača u postavi. Također označava i igrače u skladu s događajima na utakmici.'
+      note_2: Ažurira module koji nisu radili nakon pojavljivanja nove Hattrick trgovine.
+      note_3: 'NOVO: <module>MatchLineupFixes</module>: Sinkronizira vremenski tijek za igrače i sektore. Prikazuje ime igrača kod vremenskih specijalnih događaja. Dodaje linkove do igrača u postavi. Dodaje i zvjezdice za zamijenjene igrače. Popravlja i istovremene događaje: igrači sada mijenjaju pozicije jedan po jedan umjesto svi odjednom.'
+      note_4: 'NOVO: <module>ReLiveLinks</module>: Dodaje linkove za Re-Live za završene utakmice.'
+      note_5: 'NOVO: <module>CopyBBAd</module>: Kopira razne oglase u BB kodu (napravio: merfis).'
+      note_6: 'NOVO: <module>DashboardCalendar</module>: Dodano gumb za izvoz Hattrick tjedna u formatu za iCalendar (trebalo bi biti kompatibilno sa aplikacijama: Google Calendar, Thunderbird + Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal itd..)'
+      note_7: '<module>LiveAlert</module>: Dodati raznorazni zvukovi za postignute golove. Korišteni su zvuci iz <linkHTLS>HTLiveSight</linkHTLS> aplikacije. U početku vaši golovi neće biti prepoznati u Re-Live pregledu utakmica.'
+      note_8: '<module>CopyYouth</module>: Hattrick youthclub korisnici će sada moći automatski slati izvještaje skauta za odbijene igrače na HY stranice'
+      note_9: '<module>CopyYouth</module>: Hattrick youthclub korisnici će sada moći automatski slati trening izvještaje na HY stranice čim prvi put pročitaju izvješće'
+      note_10: '<module>LineupShortcut</module> sada linkovi vode do nove stranice s postavom.'
+      note_11: '<module>SkillTable</module> sada prikazuje ikone za trenere i specijalnosti igrača.'
+      note_12: 'AddLeaveConfButton је preimenovan u <module>ForumLeaveButton</module>'
+      note_13: Od sada, osnovni podaci o vašem internet pregledniku, sustavu, stilu koji koristite na Hattricku i verziji Foxtricka će biti automatski ubačeni u poruke na Foxtrick forumu. Ovo će nam pomoći da vaše probleme lakše i brže riješimo. Molimo vas da ove informacije ne obrišete kada napišete post.
+      note_14: Kod Foxtrick-a je očišćen radi bolje preglednosti i lakšeg održavanja.
+      note_15: 'Popravljeni problemi u vezi s detekcijom tjedna u modulu <module>PlayerStatsTrainingWeek</module>.'
+      note_16: 'Ispravljena greška u modulu <module>MatchSimulator</module> koja je uzrokovala pogrešno predviđanje ocijena kada je isključena opcija prikaza napad protiv obrane.'
+      note_17: Ažuriranje Foxtrick-a za Safari ne radi. Potrebno je ručno deinstalirati staru verziju i instalirati novu.
     0.11.0.1: 
-      note_0: 
-      note_1: 
-      note_2: 
+      note_0: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
+      note_1: 'Popravak manjih problema u  <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> i <module>HTThreadMarker</module>.'
+      note_2: Onemogući Firefox od ponovnog učitavanja svih otvorenih Hattrickovih tabova kada je otvoren novi prozor preglednika.
     0.11.0: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
-      note_10: 
-      note_11: 
-      note_12: 
-      note_13: 
-      note_14: 
-      note_15: 
-      note_16: 
-      note_17: 
-      note_18: 
-      note_19: 
-      note_20: 
-      note_21: 
-      note_22: 
-      note_23: 
-      note_24: 
-      note_25: 
-      note_26: 
-      note_27: 
-      note_28: 
-      note_29: 
-      note_30: 
-      note_31: 
-      note_32: 
-      note_33: 
-      note_34: 
-      note_35: 
-      note_36: 
-      note_37: 
-      note_38: 
-      note_39: 
-      note_40: 
+      note_0: 'NOVO: <module>DirectPageLinks</module>: dodani linkovi za izravan pristup stranicama unutar teme na forumu'
+      note_1: 'NOVO: <module>ForumModeratorPopup</module>: Dodani izbornik za moderatore foruma na vrhu tema na forumu radi lakšeg moderiranja.'
+      note_2: 'NOVO: <module>PlayerStatsTrainingWeek</module>: Dodana mogućnost grupiranja utakmica sukladno tjednim treningom umjesto kalendarskim HT tjednom.'
+      note_3: '<module>MatchOrderInterface</module>: Ispravak problema za popis izvođača kaznenih udaraca. Sada možete ubaciti sve igrače iz postave za utakmicu na listu ili izbrisati cijelu listu jednim klikom.'
+      note_4: '<module>SkillTable</module>: Dodana mogućnost za dodatno sortiranje već sortiranih stupaca koristeći ctrl + lijevi klik na zaglavlju nekog drugog nesortiranog stupca.'
+      note_5: '<module>SkillTable</module>: Imena igrača su skraćena radi uštede prostora.'
+      note_6: '<module>SkillColoring</module>: Kompletno rekodiran modul, s mnogo ažuriranja i dodataka. Opcije su izmijenjene, pa vas molimo da ih ponovno postavite u skladu s vašim potrebama.'
+      note_7: '<module>TransferSearchResultFilters</module>: Dodana mogućnost za filtriranje rezultata na temelju forme i za skrivanje igrača koji nemaju specijalnost. Ovaj modul sada radi u kombinaciji s modulom <module>TransferSearchFilters</module>.'
+      note_8: '<module>MatchSimulator</module>: Dodana integracija s modulom <module>Ratings</module>.'
+      note_9: '<module>FriendlyPool</module>: Dodana mogućnost za rašireni prikaz polja za selekciju države.'
+      note_10: '<module>MovePlayerStatement</module>: Dodana opcija za potpuno uklanjanje igračeve izjave.'
+      note_11: '<module>YouthTwins</module>: Ručno napravljene izmjene na HY stranici se odmah vide i na stranici omladinskih igrača'
+      note_12: '<header>Ispravljeni problemi</header>'
+      note_13: 'Ispravljeni <module>Filter</module>, <module>SupporterStatsEnhancements</module> i <module>YouthTwins</module>.'
+      note_14: '<module>StaffMarker</module> i <module>HTThreadMarker</module> sada rade na više mjesta.'
+      note_15: '<module>ConfirmActions</module>: dodana podrška za autobid.'
+      note_16: '<module>EmbedMedia</module>: povećana sigurnost i bolja detekcija linkova.'
+      note_17: '<module>SkillTable</module> može sada prijaviti pravilno vrijeme u klubu za vanjske trenere.'
+      note_18: BackgroundFixed mod je obrisan.
+      note_19: '<header>Moduli vezani uz kopiranje</header>'
+      note_20: '<module>CopyRatings</module>: Podrška oznake utakmica turnira.'
+      note_21: '<module>CopyMatchID</module>: dodani podrška za dvoboje i onemogučen na stranici utakmica za stvaranje mjesta za nove Hattrickove direktne linkove'
+      note_22: '<module>CopyPlayerAd</module>: ispravljeno mješanje sa HT crtom vještina'
+      note_23: Općeniti ispravci HT-ML kopiranja.
+      note_24: '<header>Ostala poboljšanja</header>'
+      note_25: '<module>MatchOrderInterface</module>: avatari za ne-suportere. Poboljšana stabilnost.'
+      note_26: '<module>MatchSimulator</module> sada koristi novu formulu za izdržljivost (od Senzascrupoli [post=15917246.1]) u popuštanju izdržljivosti.'
+      note_27: '<module>MatchReportFormat</module> koristi nove HT ikone.'
+      note_28: '<module>PlayerStatsExperience</module>: bodovi iskustva po razini povećani na 28.62 (pogledati 15766691.423 za diskusiju). Utakmice presuđene sa 5:0 za neku momčad su sada označene pošto nedaju iskustvo.'
+      note_29: "Forum moduli sada koriste znak prostornog razmaka umjesto '·': ovo će pomoći Katalonskom jeziku."
+      note_30: Onemogući mješanje Hattrick prikaza sa Foxtrickom.
+      note_31: Dodana podrška za www.hattrick.fm
+      note_32: 'Obrisani mrtvi vanjski linkovi u <module>Links</module>. Koristi vanjske ikone gdje je moguće.'
+      note_33: '<header>Podrška preglednika</header>'
+      note_34: Ispravljena podrška za Firefox za Android 17+.
+      note_35: Firefox 12 je sada minimalna verzija za pokretanje Foxtrick-a.
+      note_36: Google Chrome 22 je sada minimalna verzija za pokretanje Foxtrick-a.
+      note_37: 'Opera: ispravljen problem koji je omogućio mješanje Foxtrick-a sa ostalim stranicama (poput Hattrick Youthclub). Slike bi se sada trebale učitavati mnogo brže. Neki moduli označeni kao onemogućeni u Operi su sada omogućeni.'
+      note_38: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
+      note_39: '<header>Stranica postavki je prerađena.</header>'
+      note_40: '<strong>I mnogo mnogo više</strong>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'

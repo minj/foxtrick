@@ -6,16 +6,36 @@ it:
     beta: 
       note_0: 'Questa è la versione beta della prossima release. Per favore aiutaci a tradurre questa versione con la nostra semplicissima pagina di traduzione di Crowdin <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
-      note_0: 
+      note_0: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
+    0.12.1.1: 
+      note_0: Aggiornamenti di traduzione.
+      note_1: 'Aumentate le prestazioni di <module>MainMenuDropDown</module>.'
+      note_2: Piccoli miglioramenti per l'accessibilità.
+      note_3: 'Correzioni per <module>CopyPosting</module> e <module>StaffMarker</module>.'
+      note_4: Risolti alcuni problemi relativi all'audio.
+      note_5: Risolto un problema  su Android che impediva a Foxtrick di avviarsi in alcuni casi.
+      note_6: Interruzioni di riga nel forum e modelli di posta ora dovrebbero essere riconosciute correttamente durante l'importazione delle preferenze.
+      note_7: Risolto problema di riconoscimento delle le valutazioni per la lingua Frisona.
+      note_8: 'Risolti alcuni problemi in <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> e <module>HideSignatures</module>.'
+      note_9: '<module>SkillTable</module> funzionerà di nuovo senza autorizzazione per Foxtrick per gli utenti con una sola squadra.'
     0.12.1: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
+      note_0: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
+      note_1: |
+        NOVITA': <module>SupportershipExpirationDate</module>: Cliccando su "giorni rimanenti del supporter" nella dashboard verrà mostrata la data di scadenza
+      note_2: "<module>MatchIncome</module>: Aggiunta l'opzione per visualizzare l'utilizzo dei settori in percentuale accanto al numero di visitatori nelle pagine delle partite"
+      note_3: "NOVITA': <module>MainMenuDropDown</module>: Aggiunge menù a tendina alla barra di navigazione principale contenente tutti i link solitamente accessibili nella barra laterale della pagina di destinazione."
+      note_4: 'Risolve il problema del riconoscimento del tempo in Firefox quando si esporta <module>DashboardCalendar</module>.'
+      note_5: '<module>MatchOrderInterface</module> ora mostra avatar per più squadre.'
+      note_6: '<module>DashboardCalendar</module>: rimosse richieste multiple di download di Firefox.'
+      note_7: '<module>HeaderFix</module>: ora viene visualizzata la barra di cambio squadra precedentemente nascosta.'
+      note_8: "<module>ConfirmActions</module>: gli utenti con più squadre vedranno il nome della squadra per la quale fanno l'offerta."
+      note_9: '<module>TransferSearchFilters</module>: Ora i filtri salveranno anche i giorni del giocatore.'
+      note_10: Aggiunto il supporto della lingua azera.
+      note_11: Un centinaio di altre correzioni per dei problemi causati da delle modifiche di Hattrick.
     0.12.0: 
       note_0: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
       note_1: "NOVITA': <module>MatchLineupTweaks</module>: Cambia le nuove stelle nello stile precedente. Aggiunge contatori per stelle e resistenza nella nuova pagina della formazione. Mostra le specialità di tutti i giocatori e aggiunge il nome delle squadre sullo sfondo per limitare la confusione. Mostra le facce dei giocatori della tua squadra. Evidenzia i giocatori relativi all' evento della partita selezionato."
-      note_2: 
+      note_2: Un sacco di correzioni ai vari moduli che sono stati interrotti dopo che è stato introdotto il nuovo negozio di Hattrick.
       note_3: "Nuovo: <module>MatchLineupFixes</module>: Sincronizzazione temporale tra giocatore e settori di schede. Visualizza il nome del giocatore per SE meteo. Aggiungere collegamenti ai giocatori nella scheda dei tuoi ordini. Aggiunge le stelle dell'ultima partita giocata ai giocatori in panchina. Risolto il probema di eventi multipli che accadono allo stesso momento: i giocatori cambiano le loro posizioni passo dopo passo invece che contemporaneamente."
       note_4: "NOVITA': <module>ReLiveLinks</module>: Aggiunge un collegamento a HT Re-Live alle partite concluse."
       note_5: "NOVITA': <module>CopyBBAd</module>: Copia diversi annunci in BB code (by merfis)."
@@ -28,9 +48,9 @@ it:
       note_12: 'AddLeaveConfButton è stato rinominato in <module>ForumLeaveButton</module>'
       note_13: Da ora in poi, le impostazioni del layout del tuo browser e di Hattrick verranno automaticamente incluse nei messaggi postati sul forum di FoxTrick. Ciò ci aiuterà a risolvere i vostri problemi più velocemente. Cortesemente non cancellate queste informazioni dai vostri messaggi sul forum.
       note_14: Il codice del componente aggiuntivo è stato ripulito per una migliore leggibilità e manutenibilità.
-      note_15: 
-      note_16: 
-      note_17: 
+      note_15: 'Risolti alcuni problemi con il rilevamento di settimana in <module>PlayerStatsTrainingWeek</module>.'
+      note_16: "Corretto un bug in <module>MatchSimulator</module> che mostrava valutazioni e previsioni sbagliate quando l'opzione attacco contro difesa è disattivata."
+      note_17: Gli aggiornamenti di Safari sembrano non funzionare. Gli utenti dovrebbero rimuovere la precedente versione di Foxtrick e installarne una nuova.
     0.11.0.1: 
       note_0: "<header>Ci sono un sacco di aggiornamenti sulle traduzione dai nostri fantastici utenti utilizzando <linkCrowdin>Crowdin</linkCrowdin>. Anche tu puoi essere d'aiuto!</header>"
       note_1: 'Risolti problemi minori su <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>RedditoCorrispondente</module> e <module>HTThreadMarker</module>.'

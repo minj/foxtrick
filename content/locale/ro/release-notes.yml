@@ -6,12 +6,31 @@ ro:
     beta: 
       note_0: 'Aceasta este o versiune beta a următoarei versiuni care va fi lansată. Vă rugăm ajutați traducând această versiune utilizând pagina de traducere <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0: 
-      note_0: 
-    0.12.1: 
+      note_0: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
+    0.12.1.1: 
       note_0: 
       note_1: 
       note_2: 
       note_3: 
+      note_4: 
+      note_5: 
+      note_6: 
+      note_7: 
+      note_8: 
+      note_9: 
+    0.12.1: 
+      note_0: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
+      note_1: 
+      note_2: 
+      note_3: 
+      note_4: 
+      note_5: 
+      note_6: 
+      note_7: 
+      note_8: 
+      note_9: 
+      note_10: 
+      note_11: 
     0.12.0: 
       note_0: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
       note_1: 'NOU: <module>MatchLineupTweaks</module>: Modifică numărătorul de stele pe modelul vechi. Adaugă numărători pentru stele și rezistență pe noua pagină de ordine. Afișează specilitățile jucătorilor și adaugă numele echipei pe teren pentru a limita confuzia. Afișează chipurile jucătorilor pentru echipa ta. Evidențiază jucătorii cu șanse la event într-un meci.'
