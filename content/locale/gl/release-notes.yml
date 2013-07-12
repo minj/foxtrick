@@ -12,12 +12,18 @@ gl:
       note_1: 'Mellorouse o rendemento de <module>MainMenuDropDown</module>.'
       note_2: Pequenas melloras de accesibilidade.
       note_3: 'Arranxos para <module>CopyPosting</module> e tamén <module>StaffMarker</module>.'
+      note_4: Arranxados algúns problemiñas relativos ó son.
+      note_5: Arranxado o problema co Android que facía que o Foxtrick non se abrise nalgúns casos.
+      note_6: Os saltos de liña no foro e nos padróns de correo deberíanse recoñecer agora ó importar as preferencias.
+      note_7: Arranxado o problema no recoñecemento das cualificacións en frisón.
+      note_8: 'Arranxados algúns problemiñas en <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> e <module>HideSignatures</module>.'
+      note_9: 
     0.12.1: 
       note_0: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
       note_1: 'NOVO: <module>SupportershipExpirationDate</module>: agora, ao facer clic nos días de supporter restantes que aparecen en "O meu Despacho", amósase a data na que remata o período de supporter.'
       note_2: '<module>MatchIncome</module>: engadiuse unha opción que permite amosar as porcentaxes de asentos ocupados xunto ao número de visitantes na páxina de partido.'
       note_3: 'NOVO: <module>MainMenuDropDown</module>: engade menús despregábeis á barra de navegación principal que conteñen todas as ligazóns que normalmente están dispoñíbeis na barra lateral da páxina obxectivo.'
-      note_4: 'Mellorousea detección da hora en Firefox ó exportar <module>DashboardCalendar</module>'
+      note_4: 'Mellorousea detección da hora en Firefox ó exportar <module>DashboardCalendar</module>.'
       note_5: '<module>MatchOrderInterface</module>: agora amosa avatares para varios equipos.'
       note_6: '<module>DashboardCalendar</module>: elimináronse avisos de descarga múltiples en Firefox.'
       note_7: '<module>HeaderFix</module>: agora amosa a barra de cambio de equipo que se ocultara anteriormente.'

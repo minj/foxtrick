@@ -12,6 +12,12 @@ de:
       note_1: 'Leistung von <module>MainMenuDropDown</module> gesteigert.'
       note_2: Kleinere Zugriffsverbesserungen.
       note_3: 'Bugfix für <module>CopyPosting</module> und <module>StaffMarker</module>.'
+      note_4: 
+      note_5: 
+      note_6: 
+      note_7: 
+      note_8: 
+      note_9: 
     0.12.1: 
       note_0: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin>-Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
       note_1: 'NEU: <module>SupportershipExpirationDate</module>: Ein Klick auf die verbleibenden Supporter-Tage bewirkt dass das tatsächliche Datum  angezeigt wird'

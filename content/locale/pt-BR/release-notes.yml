@@ -12,12 +12,18 @@ pt-BR:
       note_1: 
       note_2: 
       note_3: 
+      note_4: 
+      note_5: 
+      note_6: 
+      note_7: 
+      note_8: 
+      note_9: 
     0.12.1: 
       note_0: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
       note_1: 'Nova: <module>SupportershipExpirationDate</module>: Clicando nos  dias restantes de Sócio HT no Meu Escritório aparecerá o prazo de duração'
       note_2: '<module>CoincidirReceita</module>: adicionada opção para exibir a utilização dos assentos em percentagem ao lado do número de torcedores em páginas de partida'
       note_3: 'Nova: <module>MainMenuDropDown</module>: Adiciona menus drop-down para a navegação principal na barra contendo todos os links geralmente disponíveis na barra lateral da página de destino.'
-      note_4: 'Corrige o reconhecimento do tempo no Firefox ao exportar <module>DashboardCalendar</module>'
+      note_4: 'Corrige o reconhecimento do tempo no Firefox ao exportar <module>DashboardCalendar</module>.'
       note_5: '<module>MatchOrderInterface</module>: agora mostra avatares para várias equipes.'
       note_6: '<module>DashboardCalendar</module>: removido vários prompts de download no Firefox.'
       note_7: '<module>HeaderFix</module>: Agora exibe a barra de troca de equipe anteriormente oculta.'

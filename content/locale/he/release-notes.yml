@@ -12,12 +12,18 @@ he:
       note_1: 'שיפור הפעולה של <module>MainMenuDropDown</module>.'
       note_2: שיפורי נגישות קלים.
       note_3: 'תיקונים עבור <module>CopyPosting</module> ו-<module>StaffMarker</module>.'
+      note_4: 
+      note_5: 
+      note_6: 
+      note_7: 
+      note_8: 
+      note_9: 
     0.12.1: 
       note_0: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
       note_1: 'חדש: <module>SupportershipExpirationDate</module>: הקלקה על הימים הנותרים של התומך ברובריקה "החשבון שלי", תציג את תאריך סיום התומך'
       note_2: '<module>MatchIncome</module>: אפשרות חדשה להצגת אחוזי ניצול המושבים באצטדיון באחוזים ליד מספר הכרטיסים שנמכרו בדף דו"ח המשחק'
       note_3: 'חדש: <module>MainMenuDropDown</module>: מוסיף תפריטים נפתחים לתפריט העל הראשי, המכילים את כל הקישורים הזמינים בדרך כלל בתפריט הצדדי של דף היעד הרלבנטי.'
-      note_4: 'תיקון זיהוי הזמן בפיירפוקס בעת ייבוא <module>DashboardCalendar</module>'
+      note_4: 'תיקון זיהוי הזמן בפיירפוקס בעת ייבוא <module>DashboardCalendar</module>.'
       note_5: '<module>MatchOrderInterface</module>: כעת מציג דמויות משתמש עבור מספר קבוצות.'
       note_6: '<module>DashboardCalendar</module>: הוסרו ההודעות הרבות בדבר הורדה בפיירפוקס.'
       note_7: '<module>HeaderFix</module>: מציג כעת את פס המעבר בין הקבוצות שקודם היה חבוי.'

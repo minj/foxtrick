@@ -12,6 +12,12 @@ pl:
       note_1: 
       note_2: 
       note_3: 
+      note_4: 
+      note_5: 
+      note_6: 
+      note_7: 
+      note_8: 
+      note_9: 
     0.12.1: 
       note_0: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
       note_1: 'Nowość: <module>SupportershipExpirationDate</module>: kliknięcie na dni pozostałe w pakiecie supportera na stronie głównej [?] wyświetli datę wygaśnięcia pakietu'

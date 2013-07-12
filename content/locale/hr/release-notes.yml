@@ -12,12 +12,18 @@ hr:
       note_1: 'Povećane performanse rada <module>MainMenuDropDown</module>.'
       note_2: Poboljšanja u pristupačnosti.
       note_3: 'Ispravci za <module>CopyPosting</module> i <module>StaffMarker</module>.'
+      note_4: Ispravljeni problemi vezani uz zvukove.
+      note_5: Ispravljen problem na Androidu koji prouzročuje ne pokretanje u nekim slučajevima.
+      note_6: Prijelom linija u forumu i porukama trebao bi biti prepoznat ispravn kod uvoza postavki.
+      note_7: Ispravljeno prepoznavanje ocjena za Frysk lokalni jezik.
+      note_8: 'Ispravljeni problemi u <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> i <module>HideSignatures</module>.'
+      note_9: '<module>SkillTable</module> će sada raditi bez autorizacije za korisnike sa jednim timom.'
     0.12.1: 
       note_0: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
       note_1: 'NOVO: <module>SupportershipExpirationDate</module>: Klikom na polje koje prikazuje preostale dane trajanja vašeg suportera, prikazat će vam se i datum isteka suportera'
       note_2: '<module>MatchIncome</module>: Dodana je opcija koja prikazuje postotak iskorištenosti sjedala pored broja gledatelja na stranici izvještaja utakmice'
       note_3: 'NOVO: <module>MainMenuDropDown</module>: Dodaje padajuće izbornike glavnom horizontalnom izborniku sa linkovima koji su inače dostupni u lijevom i desnom podizborniku odgovarajuće stranice.'
-      note_4: 'Ispravljeno prepoznavanje vremena kod izvoza <module>DashboardCalendar</module>'
+      note_4: 'Ispravljeno prepoznavanje vremena kod izvoza <module>DashboardCalendar</module>.'
       note_5: '<module>MatchOrderInterface</module> sada prikazuje avatare za više timova.'
       note_6: '<module>DashboardCalendar</module>: obrisana višestruka skidanja u Firefox-u.'
       note_7: '<module>HeaderFix</module>: sada prikazuje prethodno skriven prostor za promjenu tima.'

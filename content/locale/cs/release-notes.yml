@@ -12,6 +12,12 @@ cs:
       note_1: 
       note_2: 
       note_3: 
+      note_4: 
+      note_5: 
+      note_6: 
+      note_7: 
+      note_8: 
+      note_9: 
     0.12.1: 
       note_0: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
       note_1: 'NOVÝ: <module>SupportershipExpirationDate</module>: Kliknutí na zbývající počet dní Fanouška na hlavní stránce zobrazí datum vypršení'

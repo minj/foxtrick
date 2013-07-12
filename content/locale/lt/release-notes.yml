@@ -12,6 +12,12 @@ lt:
       note_1: '<module>MainMenuDropDown</module> turėtų veikti sparčiau.'
       note_2: Smulkūs patobulinimai neįgaliesiems.
       note_3: 'Sutaisyti <module>CopyPosting</module> ir <module>StaffMarker</module> moduliai.'
+      note_4: Sutvarkyta keletas problemų, susijusių su garsiniais pranešimais.
+      note_5: Sutaisyta klaida, dėl kurios Foxtrick kai kuriais atvejais neveikė su Android prietaisais.
+      note_6: Nuo šiol tekstas iš naujos eilutės bus teisingai atpažintas nustatymų puslapyje importuojant forumo ir pašto šablonus.
+      note_7: Sutaisytas fryzų kalbos reitingų atpažinimas.
+      note_8: 'Sutaisytos klaidos <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> ir <module>HideSignatures</module> moduliuose.'
+      note_9: 'Vieną komandą turintys vartotojai vėl galės naudotis <module>SkillTable</module> moduliu net ir neautorizavę Foxtrick.'
     0.12.1: 
       note_0: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
       note_1: 'NAUJIENA: <module>SupportershipExpirationDate</module>: spragtelėjus ant HT-Rėmėjo skaitiklio „Mano biure“ pamatysite prenumeratos galiojimo datą'

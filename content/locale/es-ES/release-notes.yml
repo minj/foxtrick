@@ -12,6 +12,12 @@ es-ES:
       note_1: 'Se ha aumentado el rendimiento de <module>MainMenuDropDown</module>.'
       note_2: Mejoras de menor importancia de la accesibilidad.
       note_3: 'Se ha arreglado: <module>CopyPosting</module> y <module>StaffMarker</module>.'
+      note_4: Se han arreglado algunos problemas relacionados con el sonido.
+      note_5: Se ha arreglado un problema de Android por el cual Foxtrick no funcionaba en algunos casos.
+      note_6: 
+      note_7: 
+      note_8: 
+      note_9: 
     0.12.1: 
       note_0: '<header>AMuchas actualizaciones de la traducción de nuestros asombrosos usuarios, mediante la <linkCrowdin>herramienta CrowdIn</linkCrowdin>. ¡Tu puedes contribuir también si quieres!</header>'
       note_1: 'NUEVO: <module>SupportershipExpirationDate</module>: al hacer clic sobre los días restantes de haber apoyado al desarrollo que aparecen en el tablero, se mostrará la fecha de caducidad'
@@ -67,7 +73,7 @@ es-ES:
       note_15: 
       note_16: 
       note_17: 
-      note_18: 
+      note_18: Se ha eliminado el módulo BackgroundFixed.
       note_19: '<header>Copiando módulos</header>'
       note_20: 
       note_21: 

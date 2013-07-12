@@ -12,12 +12,18 @@ sv-SE:
       note_1: 'Ökad prestanda för <module>MainMenuDropDown</module>.'
       note_2: Mindre tillgänglighetsförbättringar.
       note_3: 'Fixar för <module>CopyPosting</module> och <module>StaffMarker</module>.'
+      note_4: Fixat några ljudrelaterade problem.
+      note_5: Fixat ett Androidrelaterat problem som gjort att Foxtrick inte startat i vissa fall.
+      note_6: Radbryt i forum och e-postmallar bör nu identifieras korrekt vid import av inställningar.
+      note_7: Fixat en bugg med betygsvisning för det Frisiska språket (Frysk).
+      note_8: 'Fixat en del småbuggar i modulerna <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> och <module>HideSignatures</module>.'
+      note_9: '<module>SkillTable</module> ska nu fungera igen utan att behöva ge Foxtrick tillstånd (OAuth) för användare med endast ett lag.'
     0.12.1: 
       note_0: '<header>En hel massa översättningsuppdateringar av användare via översättningsverktyget på <linkCrowdin>crowdin.net</linkCrowdin>. Du kan också hjälpa till!</header>'
       note_1: 'NY: <module>SupportershipExpirationDate</module>: Gör det möjligt att se utgångsdatum på supporterperiod genom att klicka på antal kvarvarande dagar till höger på Mitt Hattrick'
       note_2: '<module>MatchIncome</module>: Lagt till möjligheten att visa platsernas utnyttjande i procent jämte antalet åskådare på matchsidan'
       note_3: 'NY: <module>MainMenuDropDown</module>: Lägger till rullgardinslistor till huvudnavigeringen som innehåller alla länkar vanligtvis tillgängliga i sidofältet på själva målsidan.'
-      note_4: 'Fixar igenkänning av tiden i Firefox vid export av <module>DashboardCalendar</module>'
+      note_4: 'Fixar igenkänning av tiden i Firefox vid export av <module>DashboardCalendar</module>.'
       note_5: '<module>MatchOrderInterface</module>: visar nu avatarer även för sekundärlagen.'
       note_6: '<module>DashboardCalendar</module>: Tagit bort multipla meddelanden om nedladdningar i Firefox.'
       note_7: "<module>HeaderFix</module>: visar nu den tidigare dolda 'lagbytarlänken' längst upp på sidan."

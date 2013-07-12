@@ -2,17 +2,59 @@
 zh-CN: 
   faq: 
     style: 
-      question: 
-      answer: 
+      question: 我应该如何个性化我的FoxTrick？
+      answer: |
+        <p>FoxTrick为用户提供一套界面表现的接口，便于用户定制自己的风格。这些接口通过HTML中的元素ID和类来提供，因此你可以使用CSS来定义自己喜欢的样式。</p>
+        
+        <p>用户样式文件的例子可以在<linkCSSExample>这里</linkCSSExample>或者 <linkCSSExampleGCode>这里</linkCSSExampleGCode>找到，你可以对他们修改，以满足自己的需要。保存文件后，你可以使用 <module>SkinPlugin</module>这个模块加载CSS文件，以使用户样式生效。</p>
     sound-format: 
-      question: 
-      answer: 
+      question: 可以使用什么文件格式的报警音？
+      answer: |
+        <p>不同的浏览器允许使用不同的文件格式。列表如下（如果安装了合适的插件，未列出的语音文件格式也可以使用，例如安装Quicktime后，可在火狐中播放mp3）：</p>
+        
+        <ul>
+        <li>火狐：wav, ogg</li>
+        <li>Safari （可能需要Quicktime的支持）： wav, mp3</li>
+        <li>Chrome： ogg, mp3, wav</li><li>Opera：wav, ogg</li>
+        </ul>
     sound-location: 
-      question: 
+      question: 警报音的大小限制是多少，它们可以放在哪？
       answer: 
     authorize: 
-      question: 
-      answer: 
+      question: 为什么我要授权 FoxTrick 来访问我的球队的数据？
+      answer: |
+        <p>尽管FoxTrick可以直接从你所浏览的页面获取绝大部分所需的数据，部分模块为了正常工作，仍然需要从Hattrick下载数据。</p>
+        
+        <p>为了从Hattrick下载相关数据，包括球队数据、联赛数据以及国家队数据，你需要提前授权FoxTrick。</p>
+        
+        <p>你可以通过以下方式授权FoxTrick，在chpp.hatrick.org中提供你的用户名和密码，获得一个验证码，然后将这个验证码提供给FoxTrick。FoxTrick在整个过程中不会得知你的用户名和密码信息。</p>
+        
+        <p>要了解更多关于授权过程的信息，请阅读Hattrick上的说明 <linkCHPPDesc>CHPP -它如何工作</linkCHPPDesc> 。</p>
+        
+        <p>一些模块需要数据访问来正常工作：</p>
+        
+        <ul>
+        <li><module>CrossTable</module></li>
+        <li><module>ExtraPlayerInfo</module></li>
+        <li><module>MatchPlayerColouring</module></li>
+        <li><module>MyMonitor</module></li>
+        <li><module>NtPeek</module></li>
+        <li><module>SeriesFlags</module></li>
+        </ul>
+        
+        <p>一些模块可以提供额外的信息，如果他们可以访问Hattrick上的数据：</p>
+        
+        <ul>
+        <li><module>SkillTable</module></li>
+        <li><module>TeamStats</module></li>
+        </ul>
     privacy: 
-      question: 
-      answer: 
+      question: FoxTrick 将会如何保护我的隐私？
+      answer: |
+        <p>FoxTrick不会把任何你的数据或者设置上传到FoxTrick的服务器，也不会将你的隐私数据，包括但不限于你的用户名、密码，与技能关联的球员ID，发送给第三方。</p>
+        
+        <p>大部分传递给第三方的数据，除非在下面特别指明，将会使用HTTP GET方法来发送，而且仅在你点击一个连接时才发送这些数据。</p>
+        
+        <p>这就是说，通过分析一个外部链接的URI（统一资源定位符），你可以知道什么数据会被发送。未经允许，任何数据都不会被发送。就像上面提到的，这里面不会包括任何隐私数据。</p>
+        
+        <p>例外包括 <module>HTMSPrediction</module> 和 <module>HTEVPrediction</module>模块，在这两个模块中，比赛评级数据通过XMLHttpRequest的形式与相关网站进行交换。</p>

@@ -12,6 +12,12 @@ ko:
       note_1: '<module>MainMenuDropDown</module>의 성능을 향상시켰습니다.'
       note_2: 접근성에 대해서 사소한 부분을 개선하였습니다.
       note_3: '<module>CopyPosting</module> 와 <module>StaffMarker</module>를 수정하였습니다.'
+      note_4: 일부 사운드 관련 문제가 해결 되었습니다.
+      note_5: 경우에 따라 Foxtrick가 동작하지 않는 Android 문제가 해결되었습니다.
+      note_6: 이제 환경설정을 가져오는 중에 토론장에서 줄 바꿈 및 메일 템플릿들을 올바르게 인식합니다.
+      note_7: 프리지아어를 사용하는 경우에 발생했던 레이팅 인식 문제가 해결되었습니다.
+      note_8: '<module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> 및 <module>HideSignatures</module>에 있었던 몇 가지 문제가 해결되었습니다.'
+      note_9: '<module>SkillTable</module>은 이제 단일 팀 사용자인 경우 다시 Foxtrick 권환 부여가 없더라도 동작합니다.'
     0.12.1: 
       note_0: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
       note_1: 'NEW: <module>SupportershipExpirationDate</module>: 대시보드에 있는 남은 Supporter 날짜를 클릭하면 만료 날짜를 표시합니다.'

@@ -12,12 +12,18 @@ es-AR:
       note_1: 'Mejorado el rendimiento del <module>MainMenuDropDown</module>.'
       note_2: Mejoras menores de accesibilidad.
       note_3: 'Arreglos para <module>CopyPosting</module> y <module>StaffMarker</module>.'
+      note_4: Solucionado unos problemas relacionados con los sonidos.
+      note_5: Solucionado un problema en Android donde Foxtrick no se iniciaba en algunos casos.
+      note_6: Saltos de línea en el foro y plantillas de correo ahora se deberían reconocer correctamente al importar preferencias.
+      note_7: Solucionado problema de reconocimiento de calificaciones en Frysk .
+      note_8: 'Se solucionaron algunos problemas en <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> y <module>HideSignatures</module>.'
+      note_9: '<module>SkillTable</module> vuelve a trabajar sin autorizar Foxtrick para usuarios con un solo equipo.'
     0.12.1: 
       note_0: '<header>Muchas actualizaciones en las traducciones de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
       note_1: 'NUEVO: <module>SupportershipExpirationDate</module>: Haciendo click en días restantes de supporter ahora mostrará la fecha de vencimiento'
       note_2: '<module>MatchIncome</module>: Añadida opción para mostrar el porcentaje de ocupacion del estadio junto al número de visitantes en las páginas del partido'
       note_3: 'NUEVO: <module>MainMenuDropDown</module>: agregados menús desplegables a la barra de navegación principal. Contiene todos los enlaces disponibles generalmente en la barra lateral de la página.'
-      note_4: 'Arregla el reconocimiento del tiempo en Firefox cuando se exporta <module>DashboardCalendar</module>'
+      note_4: 'Arregla el reconocimiento del tiempo en Firefox cuando se exporta <module>DashboardCalendar</module>.'
       note_5: '<module>MatchOrderInterface</module> ahora muestra los avatares para los multiples equipos.'
       note_6: '<module>DashboardCalendar</module>: quitar varios avisos de descarga en Firefox.'
       note_7: '<module>HeaderFix</module>: ahora se muestra la barra de cambio de equipo que previamente estaba oculto.'

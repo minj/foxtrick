@@ -12,6 +12,12 @@ ru:
       note_1: 'Улучшена производительность модуля <module>MainMenuDropDown</module>.'
       note_2: Небольшие улучшения навигации.
       note_3: 'Исправления в модулях <module>CopyPosting</module> и <module>StaffMarker</module>.'
+      note_4: Исправления некоторых проблем с проигрыванием звуков.
+      note_5: Исправлена ошибка, из-за которой Foxtrick иногда не запускался на платформе Android.
+      note_6: Теперь должно правильно работать распознавание перевода строки в шаблонах сообщений при импорте настроек.
+      note_7: Исправлено распознавание рейтингов для фризского языка.
+      note_8: 'Некоторые исправления в модулях <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> и <module>HideSignatures</module>.'
+      note_9: 'Модуль <module>SkillTable</module> для пользователей с одной командой будет работать и без авторизации Foxtrick.'
     0.12.1: 
       note_0: '<header>Большое количество обновлений переводов от наших потрясающих пользователей, использующих <linkCrowdin>систему crowdin</linkCrowdin>. Вы можете в любой момент помочь нам!</header>'
       note_1: 'НОВЫЙ модуль <module>SupportershipExpirationDate</module>: нажатие на количестве оставшихся до окончания подписки дней показывает дату окончания подписки.'

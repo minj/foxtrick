@@ -12,12 +12,18 @@ fr:
       note_1: 'Amélioration de <module>MainMenuDropDown</module>.'
       note_2: Petites améliorations diverses.
       note_3: 'Correctifs pour <module>CopyPosting</module> et <module>StaffMarker</module>.'
+      note_4: Correction de quelques problèmes liés aux alertes sonores.
+      note_5: Correctif pour Android, Foxtrick ne fonctionnait pas dans certains cas.
+      note_6: Les sauts de ligne et les modèles dans le forum  de courrier devraient maintenant être reconnus correctement lors de l'importation des préférences.
+      note_7: Correctif concernant la reconnaissance des notes en langage frison.
+      note_8: 'Correction de quelques problèmes dans <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> et <module>HideSignatures</module>.'
+      note_9: "<module>SkillTable</module> fonctionne de nouveau sans nécessiter l'autorisation d'hattrick pour les managers ne gérant qu'une équipe."
     0.12.1: 
       note_0: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'
       note_1: "NOUVEAU: <module>SupportershipExpirationDate</module>: Cliquer sur les jours restants de votre pack supporter vous montrera sa date d'expiration"
       note_2: "<module>MatchIncome</module> : Ajout d'une option pour afficher la répartition des places en pourcentages à cotés du nombre de spectateurs sur les rapport de match"
       note_3: "NOUVEAU: <module>MainMenuDropDown</module>: Ajout d'un menu déroulant dans la barre de navigation principale incluant tous les liens présents dans la barre latérale de la page concernée."
-      note_4: "Correctif de la reconnaissance de la date dans Firefox lors de l'exportation <module>DashboardCalendar</module>"
+      note_4: "Correctif de la reconnaissance de la date dans Firefox lors de l'exportation de <module>DashboardCalendar</module>."
       note_5: '<module>MatchOrderInterface</module> Affichage des avatars de la 2ème équipe des "platinums".'
       note_6: '<module>DashboardCalendar</module>: Suppression des multiples invites de téléchargements dans Firefox.'
       note_7: "<module>HeaderFix</module> : affichage correct de la barre de commutation d'équipe."
