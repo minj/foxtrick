@@ -9,24 +9,24 @@ es-CR:
       note_0: '<header>Muchas actualizaciones de la traducción de parte de nuestros impresionantes usuarios utilizando la <linkCrowdin>herramienta crowdin</linkCrowdin>. ¡Tu también puedes ayudar!</header>'
     0.12.2: 
       note_0: '<header>Muchas actualizaciones de la traducción, de nuestros impresionantes usuarios, se hace utilizando la <linkCrowdin>herramienta crowdin</linkCrowdin>. ¡Tu puedes ayudar también!</header>'
-      note_1: 
-      note_2: 
-      note_3: 
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
+      note_1: '<module>PlayerStatsExperience</module>: el cálculo de la experiencia ahora asume que hay 28,57 puntos por nivel (véase 15766691.780).'
+      note_2: 'NUEVO: la herramienta <module>PsicoTSI</module> se integro en Foxtrick.'
+      note_3: '<module>ShowLineupSet</module>: añade la opción para resaltar el propio equipo en tablas de clasificación.'
+      note_4: '<module>CopyYouth</module>: ahora los cambios de entrenamiento de los juveniles se enviarán a Hattrick Youthclub automáticamente (sólo para usuarios HY).'
+      note_5: 'NUEVO: <module>SupportersList</module>: muestra uan lista de quien es tu supporter, de quien eres supporter y viceversa'
+      note_6: '<module>MatchLineupTweaks</module>: se agregó una opción para reunir los datos de condición de jugador cada vez que visite la página de su partido. Los datos se utilizarán para mejora la predicción de calificaciones en el módulo de <module>MatchSimulator</module> y pueden verse en la <module>SkillTable</module>. Un jugador debe jugar 90 minutos. Partidos con presión o evento climatico negativo (para juugadores potentes) se excluyen. Fórmula de predicción creada por Pappagallopoli.'
+      note_7: 'NUEVO: <module>los fanáticos</module>: Añade enlace a HT Live para partidos futuros. Añade la evolución del total de aficionados a la barra lateral.'
     0.12.1.1: 
       note_0: Actualizaciones de traducciones.
       note_1: 'Aumentó el rendimiento del modulo: <module>MainMenuDropDown</module>.'
       note_2: Mejoras menores de accesibilidad.
       note_3: 'Mejoras para los módulos <module>CopyPosting</module> y <module>StaffMarker</module>.'
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
+      note_4: Arreglados algunos problemas relacionados con el sonido.
+      note_5: Solucionado un problema de Android causando que Foxtrick no iniciara en algunos casos.
+      note_6: Saltos de línea en el foro y plantillas de correo ahora se deberían reconocer correctamente al importar preferencias.
+      note_7: Solucionado problema de reconocimiento para el idioma Frysk.
+      note_8: 'Se solucionaron algunos problemas en <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> y <module>HideSignatures</module>.'
+      note_9: '<module>SkillTable</module> ahora funcionará de nuevo sin la autorización de Foxtrick para usuarios con un solo equipo.'
     0.12.1: 
       note_0: '<header>Muchas actualizaciones de la traducción de parte de nuestros impresionantes usuarios utilizando la <linkCrowdin>herramienta crowdin</linkCrowdin>. ¡Tu también puedes ayudar!</header>'
       note_1: 'NUEVO: <module>SupportershipExpirationDate</module>: Al hacer clic en los días restantes de tu membresía de supporter en Mi Oficina, se mostrará la fecha de vencimiento'

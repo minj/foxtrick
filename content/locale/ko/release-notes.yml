@@ -9,13 +9,13 @@ ko:
       note_0: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
     0.12.2: 
       note_0: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
-      note_1: 
-      note_2: 
-      note_3: 
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
+      note_1: '<module>PlayerStatsExperience</module>: 이제 경험을 계산할 때 한 레벨을 올리는데 28.57 포인트가 필요가하고 가정합니다 (참조 15766691.780).'
+      note_2: 'NEW: <module>PsicoTSI</module> 도구가 Foxtrick에 내장되었습니다.'
+      note_3: '<module>ShowLineupSet</module>: 순위 테이블에서 팀 강조 옵션 추가하였습니다.'
+      note_4: '<module>CopyYouth</module>: 이제 훈련 변경 정보를 Hattrick Youthclub으로 자동으로 보냅니다(HY 유저만 해당).'
+      note_5: 'NEW: <module>SupportersList</module>: 지원 받는 팀들에서 당신의 팀을 지원하는 팀을 표시하고 지원하는 팀들에서 당신이 지원하는 팀을 표시합니다.'
+      note_6: '<module>MatchLineupTweaks</module>: 경기 페이지를 방문할 때마다 선수 체력 자료를 수집하는 옵션을 추가하였습니다. 이 자료는 <module>MatchSimulator</module> 모듈에서 더 나은 레이팅 예측을 위해 사용되며 <module>SkillTable</module>에서 볼 수 있습니다. 선수들은 90분 전체 출전해야 합니다. 압박 전술을 사용하거나 부정적인 날씨 SE (힘 있음 이벤트)가 있었던 경기들은 배제됩니다. 예측 공식은  Pappagallopoli에 의해 만들어 졌습니다.'
+      note_7: 'NEW: <module>Fans</module>: 다음 경기 링크 옆에 라이브 링크를 추가하고 사이드 바에 팬 클럽 총원 발전 지표를 추가하였습니다.'
     0.12.1.1: 
       note_0: 번역 업데이트.
       note_1: '<module>MainMenuDropDown</module>의 성능을 향상시켰습니다.'
