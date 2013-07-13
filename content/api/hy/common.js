@@ -146,6 +146,10 @@ Foxtrick.api.hy._fetchViaCache = function(cacheDays, api, params, fetch,
 							catch (e) {
 								Foxtrick.log('Uncaught error in callback for HY_API:get_' + api, e);
 							}
+							finally {
+								if (typeof (finalize) == 'function')
+									finalize();
+							}
 						}
 						else
 							// cookie orders to refetch
