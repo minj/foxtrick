@@ -2,6 +2,17 @@
 
 /* Order by ascending priority since an element may have more than one class
    so that the last declared one wins. */
+.ft-staff-supported{
+	background-image: url("chrome://foxtrick/content/resources/img/staff/supported.png");
+	background-repeat: no-repeat;
+	padding: 1px 1px 1px 18px !important;
+}
+
+.ft-staff-supporter{
+	background-image: url("chrome://foxtrick/content/resources/img/staff/supporter.png");
+	background-repeat: no-repeat;
+	padding: 1px 1px 1px 18px !important;
+}
 
 .ft-staff-htls {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/htls.png");
