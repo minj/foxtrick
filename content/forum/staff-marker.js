@@ -76,7 +76,8 @@ Foxtrick.modules['StaffMarker'] = {
 			uris.push(Foxtrick.DataPath + 'staff/hy.json');
 			uris.push(Foxtrick.DataPath + 'staff/htls.json');
 		}
-        if (FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'supporters')) {
+        if (FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'supporters') 
+        	&& Foxtrick.util.layout.isSupporter(doc)) {
 			uris.push('supporter');
 			uris.push('supported');
 		}
