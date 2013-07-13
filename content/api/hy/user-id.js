@@ -87,6 +87,7 @@ Foxtrick.api.hy.getUserId = function(callback, failure, finalize, teamId) {
  * Executes callback(userId) if the team's manager is HY user
  * failure() is called if not or the request fails
  * finalize() is called in both cases
+ * NOTE: finalize is specific to getUserId call, not forwarded to callback
  * @param	{function}		callback	function to execute
  * @param	{[Function]}	failure		function to execute (optional)
  * @param	{[Function]}	finalize	function to execute (optional)

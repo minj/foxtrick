@@ -191,15 +191,17 @@ Foxtrick.modules['YouthSkills'] = {
 			//last point in time
 		};
 
+		// run this once we finish
+		var finalize = function() {
+			Foxtrick.modules['SkillColoring'].execute(doc);
+		};
+
 		//get skills from HY
 		Foxtrick.containsPermission({origins:["http://*.hattrick-youthclub.org/*"]}, function(permission){
 			if(permission){
 				Foxtrick.api.hy.runIfHYUser(function() {
-					Foxtrick.api.hy.getYouthSkills(addSkills);
-				  }, null,
-				  function() {
-					Foxtrick.modules['SkillColoring'].execute(doc);
-				});
+					Foxtrick.api.hy.getYouthSkills(addSkills, null, finalize);
+				}, finalize); // finalize if not user
 			} else {
 				Foxtrick.log("Sorry fucker, needs permission!");
 			}
