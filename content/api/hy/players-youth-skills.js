@@ -29,7 +29,8 @@ if (!Foxtrick.api.hy.URL)
  *						$skill_id: {
  *							cap: @float,
  *							current: @float,
- *							maxed: @boolean
+ *							maxed: @boolean,
+ *							cap_minimum: @float
  *						},
  *						...
  *					}
@@ -40,6 +41,7 @@ if (!Foxtrick.api.hy.URL)
  * $skill_id: @integer, c.f. Foxtrick.api.hy.skillMap
  * current = current skill level
  * cap = the cap of this skill
+ * cap_minimum = minimum cap
  * maxed = weather the skill is fully maxed out or not
 */
 

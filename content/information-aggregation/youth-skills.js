@@ -3,7 +3,7 @@
 Foxtrick.modules['YouthSkills'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['youthPlayers'],
-	CSS: Foxtrick.InternalPath + 'resources/css/youth-twins.css',
+	CSS: Foxtrick.InternalPath + 'resources/css/youth-skills.css',
 	NICE: -10,
 	run: function(doc) {
 		var UNKNOWNLEVELSYMBOL = '-';
@@ -29,6 +29,20 @@ Foxtrick.modules['YouthSkills'] = {
 				if (!node)
 					return;
 
+				var htPot, htCur, maxed;
+				var el = node.getElementsByClassName('youthSkillBar_max')[0];
+				if (el) {
+					htPot = (parseInt(el.style.backgroundPositionX, 10) + 126) / 8;
+				}
+				el = node.getElementsByClassName('youthSkillBar_current')[0];
+				if (el) {
+					htCur = parseInt((parseInt(el.style.width, 10) + 1) / 8, 10);
+				}
+				el = node.getElementsByClassName('youthSkillBar_full')[0];
+				if (el) {
+					maxed = parseInt((parseInt(el.style.width, 10) + 1) / 8, 10);
+				}
+
 				while (node.childNodes.length) {
 					node.removeChild(node.childNodes[0]);
 				}
@@ -39,34 +53,72 @@ Foxtrick.modules['YouthSkills'] = {
 
 					var bars = fragment.appendChild(doc.createElement('div'));
 					Foxtrick.addClass(bars, 'youthSkillBar');
+					var div = bars.appendChild(doc.createElement('div'));
+					div.title = '?/?';
+					div.className = 'ft-youthSkillBars';
 
-					var bar1 = doc.createElement('img');
-					bar1.setAttribute('src', '/App_Themes/Standard/youthSkillBar/back.png');
-					bar1.setAttribute('alt', 'x/y');
-					bar1.setAttribute('title', 'x/y');
-					bar1.setAttribute('style', 'background-position: -126px 0px');
-					Foxtrick.addClass(bar1, 'youthSkillBar_max');
+					var skillbars = [
+						'ft-skillbar-bg',
+						'ft-skillbar-hy-pot', 'ft-skillbar-ht-pot',
+						'ft-skillbar-hy-cur', 'ft-skillbar-ht-cur',
+						'ft-skillbar-maxed'
+					];
 
-					var bar2 = doc.createElement('img');
-					bar2.setAttribute('src', '/Img/icons/transparent.gif');
-					bar2.setAttribute('alt', 'x/y');
-					bar2.setAttribute('title', 'x/y');
-					bar2.setAttribute('style', 'width: 0px');
-					Foxtrick.addClass(bar2, 'youthSkillBar_current');
+					Foxtrick.map(function(className) {
+						Foxtrick.addImage(doc, div, {
+							src: '/Img/icons/transparent.gif',
+							class: className
+						  }, null,
+						  function (image) {
+							if (image.className == 'ft-skillbar-ht-pot' && htPot) {
+								image.style.width = (1 + 11 * htPot) + 'px';
+							}
+							else if (image.className == 'ft-skillbar-ht-cur' && htCur) {
+								image.style.width = (1 + 11 * htCur) + 'px';
+							}
+							else if (image.className == 'ft-skillbar-maxed' && maxed) {
+								image.style.width = (1 + 11 * maxed) + 'px';
+							}
+						});
+					}, skillbars);
 
-					bars.appendChild(bar1);
-					bars.appendChild(bar2);
+					//var bar1 = doc.createElement('img');
+					//bar1.setAttribute('src', '/App_Themes/Standard/youthSkillBar/back.png');
+					//bar1.setAttribute('alt', 'x/y');
+					//bar1.setAttribute('title', 'x/y');
+					//bar1.setAttribute('style', 'background-position: -126px 0px');
+					//Foxtrick.addClass(bar1, 'youthSkillBar_max');
+					//
+					//var bar2 = doc.createElement('img');
+					//bar2.setAttribute('src', '/Img/icons/transparent.gif');
+					//bar2.setAttribute('alt', 'x/y');
+					//bar2.setAttribute('title', 'x/y');
+					//bar2.setAttribute('style', 'width: 0px');
+					//Foxtrick.addClass(bar2, 'youthSkillBar_current');
+					//
+					//bars.appendChild(bar1);
+					//bars.appendChild(bar2);
+
 					node.appendChild(fragment);
 				}
 			};
 
-			var setMaxSkill = function(skillentry, value) {
-				var maximg = skillentry.querySelector('img:nth-of-type(1)');
-				var offset = 62 + (8 - value) * 8;
-				var style = 'background-position: -' + offset + 'px 0px';
-				maximg.setAttribute('style', style);
-				maximg.setAttribute('alt', value + '/8');
-				maximg.setAttribute('title', value + '/8');
+			var setMaxSkill = function(skillentry, value, maxed) {
+				//var maximg = skillentry.querySelector('img:nth-of-type(1)');
+				//var offset = 62 + (8 - value) * 8;
+				//var style = 'background-position: -' + offset + 'px 0px';
+				//maximg.setAttribute('style', style);
+				//maximg.setAttribute('alt', value + '/8');
+				//maximg.setAttribute('title', value + '/8');
+				var titleDiv = skillentry.getElementsByClassName('ft-youthSkillBars')[0];
+				if (titleDiv && value)
+					titleDiv.title = titleDiv.title.replace('/?', '/' + value);
+				if (maxed)
+					return;
+
+				var maximg = skillentry.getElementsByClassName('ft-skillbar-hy-pot')[0];
+				if (maximg && value)
+					maximg.style.width = (1 + parseInt(value, 10) + 10 * value) + 'px';
 
 				var gapText = doc.createTextNode(' / ');
 				maximg.parentNode.appendChild(gapText);
@@ -87,26 +139,33 @@ Foxtrick.modules['YouthSkills'] = {
 				}
 			};
 			var setCurrentSkill = function(skillentry, value, max, maxed) {
-				var curimg = skillentry.querySelector('img:nth-of-type(2)');
-				if (Foxtrick.hasClass(curimg, 'youthSkillBar_current') && maxed) {
-					Foxtrick.removeClass(curimg, 'youthSkillBar_current');
-					Foxtrick.addClass(curimg, 'youthSkillBar_full');
-				} else if (Foxtrick.hasClass(curimg, 'youthSkillBar_full') && !maxed) {
-					Foxtrick.removeClass(curimg, 'youthSkillBar_full');
-					Foxtrick.addClass(curimg, 'youthSkillBar_current');
-				}
-				var width = value ? -1 + value * 8 : 0;
+				//var curimg = skillentry.querySelector('img:nth-of-type(2)');
+				//if (Foxtrick.hasClass(curimg, 'youthSkillBar_current') && maxed) {
+				//	Foxtrick.removeClass(curimg, 'youthSkillBar_current');
+				//	Foxtrick.addClass(curimg, 'youthSkillBar_full');
+				//} else if (Foxtrick.hasClass(curimg, 'youthSkillBar_full') && !maxed) {
+				//	Foxtrick.removeClass(curimg, 'youthSkillBar_full');
+				//	Foxtrick.addClass(curimg, 'youthSkillBar_current');
+				//}
+				//var width = value ? -1 + value * 8 : 0;
 
-				var style = 'width:' + width + 'px';
-				curimg.setAttribute('style', style);
-				curimg.setAttribute('alt', value + '/' + max);
-				curimg.setAttribute('title', value + '/' + max);
+				//var style = 'width:' + width + 'px';
+				//curimg.setAttribute('style', style);
+				//curimg.setAttribute('alt', value + '/' + max);
+				//curimg.setAttribute('title', value + '/' + max);
 
 				//generate
+				var curImg = skillentry.getElementsByClassName('ft-skillbar-hy-cur')[0];
+				if (curImg && value)
+					curImg.style.width = (1 + parseInt(value, 10) + 10 * value) + 'px';
+
 				var gapText = doc.createTextNode(' ');
-				curimg.parentNode.appendChild(gapText);
+				curImg.parentNode.appendChild(gapText);
 
 				if (value) {
+					var titleDiv = skillentry.getElementsByClassName('ft-youthSkillBars')[0];
+					if (titleDiv)
+						titleDiv.title = titleDiv.title.replace('?', value);
 					var minLink = doc.createElement('a');
 					minLink.setAttribute('href', '/Help/Rules/AppDenominations.aspx?lt=skill&ll=' +
 					                     parseInt(value, 10) + '#skill');
@@ -116,10 +175,10 @@ Foxtrick.modules['YouthSkills'] = {
 					                                 Foxtrickl10n.getTextByLevel(value) :
 					                                 UNKNOWNLEVELSYMBOL);
 					minLink.appendChild(minText);
-					curimg.parentNode.appendChild(minLink);
+					curImg.parentNode.appendChild(minLink);
 				} else {
 					var minText = doc.createTextNode(UNKNOWNLEVELSYMBOL);
-					curimg.parentNode.appendChild(minText);
+					curImg.parentNode.appendChild(minText);
 				}
 
 			};
@@ -132,11 +191,12 @@ Foxtrick.modules['YouthSkills'] = {
 				if (!skillentry)
 					return;
 
+				Foxtrick.removeClass(skillentry.parentNode, 'hidden');
+
 				addBars(skillentry);
 				setCurrentSkill(skillentry, current, max, maxed);
 
-				if (!maxed)
-					setMaxSkill(skillentry, max);
+				setMaxSkill(skillentry, max, maxed);
 			};
 
 			var start = new Date().getTime();
@@ -174,12 +234,13 @@ Foxtrick.modules['YouthSkills'] = {
 							continue;
 						var skill = json[playerID].skills[sk];
 
-						var cap = skill['cap'];
-						var current = skill['current'];
+						var cap = skill['cap'] || 0;
+						var cap_minimal = skill['cap_minimal'] || 0;
+						var current = skill['current'] || 0;
 						var maxed = skill['maxed'];
 
-						var min = current ? current : 0;
-						var max = cap ? cap : 0;
+						var min = current;
+						var max = Math.max(cap_minimal, cap);
 
 						if (min || max)
 							setSkill(playerInfo, rowMap[sk] + 1, min, max, maxed);
