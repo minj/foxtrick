@@ -16,10 +16,6 @@ Foxtrick.modules['StaffMarker'] = {
 
     hasLoadedOnce: false,
 
-	init: function() {
-		this.load();
-	},
-
 	// get staffs
 	load: function(doc) {
 		var parseMarkers = function(text) {
@@ -76,7 +72,7 @@ Foxtrick.modules['StaffMarker'] = {
 			uris.push(Foxtrick.DataPath + 'staff/hy.json');
 			uris.push(Foxtrick.DataPath + 'staff/htls.json');
 		}
-        if (FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'supporters') 
+        if (FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'supporters')
         	&& Foxtrick.util.layout.isSupporter(doc)) {
 			uris.push('supporter');
 			uris.push('supported');
@@ -99,30 +95,27 @@ Foxtrick.modules['StaffMarker'] = {
                         Foxtrick.log(errorText);
                         return;
                     }
-                    var teams = xml.getElementsByTagName('TeamID');
-                    var team = null;
+                    var idsS = {type:'supported', list: []}, idsM = {type:'supporter', list: []};
+                    var teams = xml.getElementsByTagName('Team');
                     for(var t=0; t<teams.length; t++) {
-                        if(teams[t].textContent == Foxtrick.util.id.getOwnTeamId()) {
-                            team = teams[t].parentNode;
-                            break;
+                        var team = teams[t];
+                        var sups = team.getElementsByTagName('SupportedTeams');
+                        for(var s=0; s<sups.length; s++) {
+                            var sup = sups[s];
+                            var all = sup.getElementsByTagName('UserId');
+                            for(var i=0; i<all.length; i++)
+                             idsS.list.push({id: all[i].textContent});
+                        }
+                        sups = team.getElementsByTagName('MySupporters');
+                        for(s=0; s<sups.length; s++) {
+                            sup = sups[s];
+                            all = sup.getElementsByTagName('UserId');
+                            for(i=0; i<all.length; i++)
+                            idsM.list.push({id: all[i].textContent});
                         }
                     }
-                    if(team == null) {
-                        todo--; // no supporter for this team
-                    } else {
-                       var ids = {type:'supported', list: []};
-                       var sup = team.getElementsByTagName('SupportedTeams')[0];
-                       var all = sup.getElementsByTagName('UserId');
-                       for(var i=0; i<all.length; i++)
-                           ids.list.push({id: all[i].textContent});
-                       parseMarkers(JSON.stringify(ids));
-                       var ids2 = {type:'supporter', list: []};
-                       var sup2 = team.getElementsByTagName('MySupporters')[0];
-                       var all2 = sup2.getElementsByTagName('UserId');
-                       for(var i=0; i<all2.length; i++)
-                           ids2.list.push({id: all2[i].textContent});
-                       parseMarkers(JSON.stringify(ids2));
-                    }
+                    parseMarkers(JSON.stringify(idsS));
+                    parseMarkers(JSON.stringify(idsM));
                 });
             } else {
                 // counter of URI remaining to fetch
@@ -166,7 +159,7 @@ Foxtrick.modules['StaffMarker'] = {
 				if (customMarker[id] !== undefined)
 					object.setAttribute('style', customMarker[id]);
 				// exclusive classes for official staffs
-                if(enableOfficials) {
+                if(enable['officials']) {
                     // alias in select boxes might have a Left-to-Right
                     // Overwrite (LRO, U+202D) in front
                     var markers = [
@@ -186,25 +179,20 @@ Foxtrick.modules['StaffMarker'] = {
 				// data loaded from external files
 				var type;
 				for (type in data) {
-					if (data[type][id] == true) {
-                        if((enableFoxtrick  && type == 'foxtrick')
-                        || (enableEditors   && type == 'editor')
-                        || (enableChppCont  && (type == 'htls' || type == 'hty'))
-                        || (enableChppHold   && type == 'chpp-holder')
-                        || (enableSupporter && (type == 'supporter' || type == 'supported')) )
-							Foxtrick.addClass(object, 'ft-staff-' + type);
-						if (type == 'chpp-holder' && enableChppHold) {
-							var appNames = '';
-							Foxtrick.map(function(appName) {
-								appNames = appNames + ' \n● ' + appName;
-							}, data[type]['apps'][id]);
-							if (object.getAttribute('title'))
-								object.setAttribute('title', object.getAttribute('title') +
-								                    appNames);
-							else
-								object.setAttribute('title', object.textContent.match(/\S+/)[0] +
-								                    appNames);
-						}
+					if (data[type][id] == true && enable[type] == true) {
+                        Foxtrick.addClass(object, 'ft-staff-' + type);
+                        if (type == 'chpp-holder') {
+                            var appNames = '';
+                            Foxtrick.map(function(appName) {
+                                appNames = appNames + ' \n● ' + appName;
+                            }, data[type]['apps'][id]);
+                            if (object.getAttribute('title'))
+                                object.setAttribute('title', object.getAttribute('title') +
+                                                    appNames);
+                            else
+                                object.setAttribute('title', object.textContent.match(/\S+/)[0] +
+                                                    appNames);
+                        }
 					}
 				}
 			};
@@ -221,9 +209,6 @@ Foxtrick.modules['StaffMarker'] = {
 							|| a.getAttribute('href').search(/redir_to_league=true/i) != -1)
 							return;
 						var uname = Foxtrick.trim(a.title);
-						// Work-around for supporter star
-						if (uname.lastIndexOf('*') == uname.length - 1)
-							uname = uname.substring(0, uname.length - 1);
 						var uid = a.href.replace(/.+userId=/i, '').match(/^\d+/);
 						modifier(uid, uname, a);
 					}, links);
@@ -234,6 +219,7 @@ Foxtrick.modules['StaffMarker'] = {
 				var selects = doc.getElementById('mainBody').parentNode
 					.querySelectorAll('select.threadPagingFilter, select[id$="_ddlRecipient"]');
 				Foxtrick.map(function(select) {
+                    // to avoid select box which don't contains users
 					if (select.id.search(/filter/i) == -1
 						&& select.id.search(/recipient/i) == -1)
 						return;
@@ -244,9 +230,6 @@ Foxtrick.modules['StaffMarker'] = {
 					var option;
 					while (option = select.options[i++]) {
 						var uname = Foxtrick.trim(option.textContent);
-						uname = uname.substring(0, uname.indexOf(' '));
-						if (uname == '')
-							uname = Foxtrick.trim(option.textContent);
 						if (uname == '')
 							break;
 						var uid = option.value.replace(/by_|to_/gi, '');
@@ -254,7 +237,8 @@ Foxtrick.modules['StaffMarker'] = {
 						modifier(uid, uname, option);
 						// no background image in chrome for select. background-colors only
 
-						if (option.value == -3) {
+                        // special colors for options which are not users in filter select box
+                        if (option.value == -3) {
 							Foxtrick.addClass(option, 'ft-staff-seperator');
 						}
 						else if (option.value == 'by_-1') {
@@ -264,25 +248,21 @@ Foxtrick.modules['StaffMarker'] = {
 				}, selects);
 			};
 
-			var enableOfficials = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'officials');
-			var enableEditors = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'editors');
-			var enableFoxtrick = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'foxtrick');
-			var enableChppCont = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'chpp.contributors');
-			var enableChppHold = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'chpp.holders');
-			var enableSupporter = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'supporters');
-			if (Foxtrick.isPage(doc, 'forumViewThread')) {
+            var enable = [];
+			enable['officials'] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'officials');
+			enable['editors'] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'editors');
+			enable['foxtrick'] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'foxtrick');
+			enable['htls'] = enable['hy'] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'chpp.contributors');
+			enable['chpp-holder'] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'chpp.holders');
+			enable['supporter'] = enable['supported'] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'supporters');
+
+            if (Foxtrick.isPage(doc, 'forumViewThread') || Foxtrick.isPage(doc, 'forumWritePost')) {
 				markThread(doc, modifier);
 				markSelect(doc, modifier);
 			}
-			else if (Foxtrick.isPage(doc, 'forumWritePost')) {
-				markThread(doc, modifier);
-				markSelect(doc, modifier);
-			}
-			else if (Foxtrick.isPage(doc, 'teamPage')) {
-				if (FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'manager')) {
-					markThread(doc, modifier);
-				}
-			}
+			else if (Foxtrick.isPage(doc, 'teamPage') && FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'manager')) {
+                markThread(doc, modifier);
+            }
 		});
 	}
 };
