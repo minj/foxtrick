@@ -31,6 +31,7 @@ if (!Foxtrick.api.hy.URL)
  *							current: @float,
  *							maxed: @boolean,
  *							cap_minimum: @float
+ *							current_estimation: @float
  *						},
  *						...
  *					}
@@ -40,13 +41,14 @@ if (!Foxtrick.api.hy.URL)
  * $playerId: @integer
  * $skill_id: @integer, c.f. Foxtrick.api.hy.skillMap
  * current = current skill level
+ * current_estimation = predicted current skill level when current not available
  * cap = the cap of this skill
  * cap_minimum = minimum cap
  * maxed = weather the skill is fully maxed out or not
 */
 
 
-Foxtrick.api.hy.URL['playersYouthSkills'] = 'http://stage.hattrick-youthclub.org' +
+Foxtrick.api.hy.URL['playersYouthSkills'] = 'http://www.hattrick-youthclub.org' +
 	'/_data_provider/foxtrick/playersYouthSkills';
 
 //this maps HY skill-id to skill
