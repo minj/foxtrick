@@ -9,20 +9,20 @@ he:
       note_0: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
     0.12.2: 
       note_0: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
-      note_1: 
-      note_2: 
-      note_3: 
-      note_4: 
-      note_5: 
+      note_1: '<module>PlayerStatsExperience</module>: חישוב הניסיון מניח כעת, שדרושות 28.57 נקודות לכל רמה (ראו 15766691.780).'
+      note_2: 'חדש: כלי ה-<module>PsicoTSI</module> יובא לפוקסטריק.'
+      note_3: '<module>ShowLineupSet</module>: נוספה האפשרות להדגיש את הקבוצה שלך בטבלת הליגה.'
+      note_4: "<module>CopyYouth</module>: כעת שינויים כתוצאה מהאימון באקדמיה יישלחו אוטומטית לאתר האטריק יות'קלאב (רק למי שרשום לאתר הזה)."
+      note_5: 'NEW: <module>SupportersList</module>: הראה מי תומך בקבוצתך ברשימת הקבוצות הנתמכות על ידך, ולהיפך.'
       note_6: 
-      note_7: 
+      note_7: 'חדש: <module>אוהדים</module>: הוספה של קישור לצפייה בשידור חי של משחקים עתידיים. הוספה של תצוגת שינויי כמות האוהדים בתיבה הצדדית.'
     0.12.1.1: 
       note_0: עדכוני תרגום.
       note_1: 'שיפור הפעולה של <module>MainMenuDropDown</module>.'
       note_2: שיפורי נגישות קלים.
       note_3: 'תיקונים עבור <module>CopyPosting</module> ו-<module>StaffMarker</module>.'
-      note_4: 
-      note_5: 
+      note_4: תוקנו מספר עניינים הקשורים לצלילים.
+      note_5: תוקנה בעייה בקשר לאנדרואיד, שמנעה מפוקסטריק לפעול במקרים מסוימים.
       note_6: 
       note_7: 
       note_8: 
@@ -37,16 +37,16 @@ he:
       note_6: '<module>DashboardCalendar</module>: הוסרו ההודעות הרבות בדבר הורדה בפיירפוקס.'
       note_7: '<module>HeaderFix</module>: מציג כעת את פס המעבר בין הקבוצות שקודם היה חבוי.'
       note_8: 
-      note_9: 
-      note_10: 
-      note_11: 
+      note_9: '<module>TransferSearchFilters</module>: כעת הפילטרים ישמרו גם גילאי שחקנים על פי ימים.'
+      note_10: נוספה תמיכה בשפה האזרית.
+      note_11: מאה תיקונים אחרים שנגרמו בשל שינויים שבוצעו בהאטריק.
     0.12.0: 
       note_0: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
       note_1: 
-      note_2: 
+      note_2: תיקונים רבים למודולים שונים שהתקלקלו לאחר שהוצגה חנות האטריק החדשה.
       note_3: 
-      note_4: 
-      note_5: 
+      note_4: 'חדש: <module>ReLiveLinks</module>: מוסיף קישורים לצפייה בשידורים החוזרים של משחקים שכבר הסתיימו.'
+      note_5: 'חדש: <module>CopyBBAd</module>: העתקה של מודעות שונות בקוד BB (ע"י merfis).'
       note_6: 
       note_7: 
       note_8: 
@@ -75,7 +75,7 @@ he:
       note_8: 
       note_9: 
       note_10: 
-      note_11: 
+      note_11: "<module>YouthTwins</module>: שינויים ידניים שבוצעו בהאטריק יות'קלאב יופיעו מייד בדף שחקני הנוער שלך."
       note_12: '<header>תיקוני באגים</header>'
       note_13: 
       note_14: 
@@ -87,24 +87,24 @@ he:
       note_20: 
       note_21: 
       note_22: 
-      note_23: 
-      note_24: 
-      note_25: 
-      note_26: 
-      note_27: 
-      note_28: 
-      note_29: 
-      note_30: 
-      note_31: 
-      note_32: 
-      note_33: 
-      note_34: 
-      note_35: 
-      note_36: 
-      note_37: 
+      note_23: תיקוני העתקת HT-ML כלליים.
+      note_24: '<header>שינויים אחרים</header>'
+      note_25: '<module>MatchOrderInterface</module>: דמויות עבור לא-תומכים. שופרה היציבות.'
+      note_26: '<module>MatchSimulator</module> משתמש כעת בנוסחת כושר גופני חדשה (של Senzascrupoli [post=15917246.1]) בהתחשבות בכושר הגופני.'
+      note_27: '<module>MatchReportFormat</module> משתמש בסמלוני האטריק החדשים.'
+      note_28: '<module>PlayerStatsExperience</module>: מספר נקודות הניסיון לכל רמה הוגדלו ל-28.62 (ראו 15766691.423 לצורך הדיון). ניצחונות והפסדים טכניים מוצגים עכשיו, מאחר שאינם מעניקים ניסיון.'
+      note_29: "מודולים שחלים בפורום משתמשים כעת בתו מיוחד לעשיית רווח, במקום '·': זה אמור לעזור לשפה הקטאלונית."
+      note_30: מנע מעיצוב האטריק להפריע לפוקסטריק.
+      note_31: נוספה תמיכה עבור www.hattrick.fm
+      note_32: 'הוסרו קקישורים חיצוניים מתים ב-<module>Links</module>. משתמש בסמלונים חיצוניים, כשאפשר.'
+      note_33: '<header>תמיכה בדפדפנים</header>'
+      note_34: תוקן פיירפוקס עבור תמיכת אנדרואיד 17+.
+      note_35: פיירפוקס 12 הוא כעת גרסת המינימום להפעלת פוקסטריק.
+      note_36: גוגל כרום 22 הוא כעת גרסת המינימום להפעלת פוקסטריק.
+      note_37: "אופרה: תוקן באג, שגרם לפוקסטריק להפריע לדפים אחרים (כגון האטריק יות'קלאב). תמונות אמורות לעלות עכשיו הרבה יותר מהר. מספר מודולים, שהושבתו בעבר באופרה, כעת הופעלו."
       note_38: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
-      note_39: 
-      note_40: 
+      note_39: '<header>דף ההעדפות עבר שיפוץ.</header>'
+      note_40: '<strong>והרבה הרבה יותר</strong>'
     0.10.0: 
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
