@@ -45,7 +45,7 @@ Foxtrick.modules['Fans'] = {
             td1.setAttribute('class', 'date bold');
             td1.textContent = Foxtrickl10n.getString('TeamStats.Total');
             var td2 = doc.createElement('td');
-            td2.setAttribute('class', (table>0?'inc':'dec'));
+            td2.setAttribute('class', (total>0?'inc':'dec'));
             td2.textContent = (total>0?'+'+total:total);
             row.appendChild(td1);
             row.appendChild(td2);
