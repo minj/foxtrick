@@ -13,9 +13,9 @@
     <name>French</name>
     <code>fr</code>
     <phrases>1534</phrases>
-    <translated>1514</translated>
+    <translated>1523</translated>
     <approved>221</approved>
-    <translated_progress>98</translated_progress>
+    <translated_progress>99</translated_progress>
     <approved_progress>14</approved_progress>
   </language>
   <language>
@@ -85,9 +85,9 @@
     <name>German</name>
     <code>de</code>
     <phrases>1534</phrases>
-    <translated>1463</translated>
+    <translated>1482</translated>
     <approved>2</approved>
-    <translated_progress>95</translated_progress>
+    <translated_progress>96</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -139,7 +139,7 @@
     <name>Hungarian</name>
     <code>hu</code>
     <phrases>1534</phrases>
-    <translated>1370</translated>
+    <translated>1372</translated>
     <approved>227</approved>
     <translated_progress>89</translated_progress>
     <approved_progress>14</approved_progress>
