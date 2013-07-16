@@ -32,7 +32,7 @@ Foxtrick.modules['YouthSkills'] = {
 				var htPot, htCur, maxed;
 				var el = node.getElementsByClassName('youthSkillBar_max')[0];
 				if (el) {
-					htPot = (parseInt(el.style.backgroundPositionX, 10) + 126) / 8;
+					htPot = (parseInt(el.style.backgroundPosition, 10) + 126) / 8;
 				}
 				el = node.getElementsByClassName('youthSkillBar_current')[0];
 				if (el) {
