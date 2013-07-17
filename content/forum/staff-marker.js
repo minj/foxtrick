@@ -248,7 +248,7 @@ Foxtrick.modules['StaffMarker'] = {
 				}, selects);
 			};
 
-            var enable = [];
+            var enable = {};
 			enable['officials'] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'officials');
 			enable['editors'] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'editors');
 			enable['foxtrick'] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'foxtrick');
