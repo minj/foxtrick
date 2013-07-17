@@ -14,9 +14,9 @@
     <code>fr</code>
     <phrases>1534</phrases>
     <translated>1523</translated>
-    <approved>221</approved>
+    <approved>239</approved>
     <translated_progress>99</translated_progress>
-    <approved_progress>14</approved_progress>
+    <approved_progress>15</approved_progress>
   </language>
   <language>
     <name>Spanish</name>
@@ -283,10 +283,10 @@
     <name>Swedish</name>
     <code>sv-SE</code>
     <phrases>1534</phrases>
-    <translated>1490</translated>
-    <approved>1483</approved>
-    <translated_progress>98</translated_progress>
-    <approved_progress>96</approved_progress>
+    <translated>1516</translated>
+    <approved>1534</approved>
+    <translated_progress>100</translated_progress>
+    <approved_progress>100</approved_progress>
   </language>
   <language>
     <name>Turkish</name>
@@ -418,9 +418,9 @@
     <name>Latvian</name>
     <code>lv</code>
     <phrases>1534</phrases>
-    <translated>956</translated>
+    <translated>970</translated>
     <approved>0</approved>
-    <translated_progress>62</translated_progress>
+    <translated_progress>63</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
