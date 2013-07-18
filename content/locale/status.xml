@@ -4,9 +4,9 @@
     <name>Romanian</name>
     <code>ro</code>
     <phrases>1534</phrases>
-    <translated>1459</translated>
+    <translated>1465</translated>
     <approved>0</approved>
-    <translated_progress>95</translated_progress>
+    <translated_progress>96</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -76,10 +76,10 @@
     <name>Danish</name>
     <code>da</code>
     <phrases>1534</phrases>
-    <translated>1427</translated>
-    <approved>1410</approved>
-    <translated_progress>93</translated_progress>
-    <approved_progress>91</approved_progress>
+    <translated>1461</translated>
+    <approved>1454</approved>
+    <translated_progress>95</translated_progress>
+    <approved_progress>94</approved_progress>
   </language>
   <language>
     <name>German</name>
@@ -220,9 +220,9 @@
     <name>Polish</name>
     <code>pl</code>
     <phrases>1534</phrases>
-    <translated>1402</translated>
+    <translated>1408</translated>
     <approved>0</approved>
-    <translated_progress>91</translated_progress>
+    <translated_progress>92</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
