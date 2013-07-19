@@ -14,7 +14,7 @@
     <code>fr</code>
     <phrases>1534</phrases>
     <translated>1523</translated>
-    <approved>239</approved>
+    <approved>243</approved>
     <translated_progress>99</translated_progress>
     <approved_progress>15</approved_progress>
   </language>
@@ -238,10 +238,10 @@
     <name>Russian</name>
     <code>ru</code>
     <phrases>1534</phrases>
-    <translated>1505</translated>
-    <approved>1483</approved>
-    <translated_progress>98</translated_progress>
-    <approved_progress>96</approved_progress>
+    <translated>1534</translated>
+    <approved>1534</approved>
+    <translated_progress>100</translated_progress>
+    <approved_progress>100</approved_progress>
   </language>
   <language>
     <name>Slovak</name>
@@ -337,9 +337,9 @@
     <name>Galician</name>
     <code>gl</code>
     <phrases>1534</phrases>
-    <translated>1475</translated>
+    <translated>1498</translated>
     <approved>0</approved>
-    <translated_progress>96</translated_progress>
+    <translated_progress>98</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
