@@ -746,6 +746,34 @@
 		"img": "http://hattrickunited.org/wp-content/themes/arras/images/favicon.ico",
 		"title": "Hattrick United"
 	},
+	"frenchtracker":  {
+		"img": "http://www.ht-fff.org/favicon.ico",
+		"title": "French U20/NT Tracker",
+		"trackernationalteamlink": {
+			"url": "http://www.ht-fff.org/?server=[server]",
+			"filters": [
+				"countryid"
+			]
+		},
+		"trackerplayerlink": {
+			"url": "http://www.ht-fff.org/?server=[server]",
+			"filters": [
+				"nationality"
+			]
+		},
+		"countryidranges": [
+			[
+				5,
+				5
+			]
+		],
+		"nationalityranges": [
+			[
+				5,
+				5
+			]
+		]
+	},
 	"canadatracker": {
 		"img": "http://canada.htravenia.com/favicon.png",
 		"title": "Canada U20/NT Tracker",
