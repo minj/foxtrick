@@ -240,13 +240,18 @@ Foxtrick.modules['YouthSkills'] = {
 					var age = playerInfo.getElementsByTagName('p')[0];
 					var text = age.textContent;
 					// skip if specialty known on HT
-					if (!/\[/g.test(text)) {
-						var text = doc.createElement('b');
-						var title = Foxtrickl10n.getSpecialityFromNumber(specialty);
-						var alt = Foxtrickl10n.getShortSpeciality(title);
+					if (!/\[/.test(text)) {
+						var span = Foxtrick.createFeaturedElement(doc, module, 'span');
+						var text = doc.createElement('strong');
+						Foxtrick.addClass(text, 'ft-hy-spec');
+						text.title = Foxtrickl10n.getString('YouthSkills.newSpeciality');
+						// use aria label for a11y
+						text.setAttribute('aria-label', text.title);
 
-						text.textContent = '[' + title + ']';
-						age.appendChild(text);
+						var spec = Foxtrickl10n.getSpecialityFromNumber(specialty);
+						text.textContent = '[' + spec + ']';
+						span.appendChild(text);
+						age.appendChild(span);
 					}
 				}
 
