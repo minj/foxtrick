@@ -283,12 +283,39 @@ Foxtrick.modules['YouthSkills'] = {
 		};
 
 		// run this once we finish
-		var finalize = function() {
+		var finalize = function(response, status, reason) {
 			if (loading) {
 				loading.parentNode.removeChild(loading);
 				loading = null;
 			}
+			if (response === null)
+				showError(Foxtrickl10n.getString('youthclub.api.nopermission'), 401);
+
+			if (reason === 'user')
+				showError(Foxtrickl10n.getString('youthclub.api.notuser').replace(/%s/, 'YouthSkills'), 401);
+
 			Foxtrick.modules['SkillColoring'].execute(doc);
+		};
+
+		var showError = function(response, status) {
+			if (!entry)
+				return;
+
+			var insertBefore = entry.firstChild;
+			var container = doc.createElement('div');
+			var p = doc.createElement('p');
+			var text;
+			try {
+				text = JSON.parse(response).error;
+			}
+			catch (e) {
+				text = response;
+			}
+
+			p.textContent = 'Hattrick Youthclub Error ' + status + ': ' + text;
+			container.appendChild(p);
+			Foxtrick.util.note.add(doc, insertBefore, 'ft-youth-skills-error', container,
+								   null, true, null, false);
 		};
 
 		var loading;
@@ -349,10 +376,17 @@ Foxtrick.modules['YouthSkills'] = {
 						loading = Foxtrick.util.note.createLoading(doc);
 						entry.insertBefore(loading, entry.firstChild);
 					}
-					Foxtrick.api.hy.getYouthSkills(addSkills, null, finalize);
-				}, finalize); // finalize if not user
+					Foxtrick.api.hy.getYouthSkills(addSkills, showError, finalize);
+				}, function (response, status) {
+					// finalize if not user
+					if (typeof(response) == 'undefined')
+						finalize(0, 0, 'user');
+					else
+						finalize(response, status);
+				});
 			} else {
 				Foxtrick.log('Sorry fucker, needs permission!');
+				finalize(null);
 			}
 		});
 		
