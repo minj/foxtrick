@@ -241,7 +241,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 
 							if (menu.entries.length > 0)
 								menuslist.push(menu);
-						} 
+						}
 					}, boxBodies);
 					return menuslist;
 				}

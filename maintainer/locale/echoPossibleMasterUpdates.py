@@ -1,5 +1,5 @@
 import localetools.l10n
-	
+
 path_to_content_input = "./../../"
 
 #read master and locales
