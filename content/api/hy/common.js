@@ -87,7 +87,7 @@ Foxtrick.api.hy.ignoreHours = 24;
  */
 Foxtrick.api.hy._fetchViaCache = function(cacheDays, api, params, fetch,
 										  callback, failure, finalize, teamId) {
-	var now = new Date();
+	var now = new Date().valueOf();
 	// this produces a valid UNIX timestamp that can be compared to HY
 	if (typeof(teamId) == 'undefined' || teamId === null)
 		teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
