@@ -64,14 +64,14 @@ my @targets = (
 		"from" => "<!-- categorized modules -->",
 		"to" => "<!-- end categorized modules -->",
 		"prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
-		"suffix" => "\"></script>\r\n"
+		"suffix" => "\"></script>\n"
 	},
 	{
 		"file" => "preferences.html",
 		"from" => "<!-- categorized modules -->",
 		"to" => "<!-- end categorized modules -->",
 		"prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
-		"suffix" => "\"></script>\r\n"
+		"suffix" => "\"></script>\n"
 	}
 );
 

@@ -74,7 +74,7 @@ Foxtrick.util.tabs.getTabs = function(doc) {
 	//new match page
 	if (!tab)
 		tab = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ucMatchTabs_ulTabs');
-	
+
 	//new challenges page
 	//if(!tab)
 	//	tab = doc.getElementsByClassName('tabbedList')[0];

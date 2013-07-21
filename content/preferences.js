@@ -1147,7 +1147,7 @@ function saveEvent(ev) {
 	Foxtrick.log('save', ev);
 	if ($(ev.target).attr('pref')) {
 		var pref = $(ev.target).attr('pref');
-		
+
 		if ($(ev.target).is(':checkbox'))
 			FoxtrickPrefs.setBool(pref, $(ev.target).is(':checked'));
 		else if ($(ev.target)[0].nodeName.toLowerCase() == 'select')
