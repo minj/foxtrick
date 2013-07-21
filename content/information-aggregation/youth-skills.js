@@ -284,14 +284,71 @@ Foxtrick.modules['YouthSkills'] = {
 
 		// run this once we finish
 		var finalize = function() {
+			if (loading) {
+				loading.parentNode.removeChild(loading);
+				loading = null;
+			}
 			Foxtrick.modules['SkillColoring'].execute(doc);
 		};
+
+		var loading;
+
+		var entry = doc.getElementsByClassName('playerList')[0];
+		if (entry) {
+			var hyInfoDiv = Foxtrick.createFeaturedElement(doc, module, 'div');
+			hyInfoDiv.id = 'ft-hy-skills-info';
+
+			var heading = doc.createElement('h2');
+			heading.textContent = Foxtrickl10n.getString('YouthSkills.header');
+			hyInfoDiv.appendChild(heading);
+
+			var info = doc.createElement('span');
+			info.textContent = Foxtrickl10n.getString('YouthSkills.info');
+			hyInfoDiv.appendChild(info);
+
+			var legend = doc.createElement('ul');
+			var curLegend = doc.createElement('li');
+			curLegend.textContent = Foxtrickl10n.getString('YouthSkills.currentSkill');
+			Foxtrick.addImage(doc, curLegend, {
+				src: '/Img/icons/transparent.gif',
+				class: 'ft-skillbar-hy-cur ft-skillbar-singlet'
+			}, curLegend.firstChild);
+			legend.appendChild(curLegend);
+
+			var predLegend = doc.createElement('li');
+			predLegend.textContent = Foxtrickl10n.getString('YouthSkills.skillEstimation');
+			Foxtrick.addImage(doc, predLegend, {
+				src: '/Img/icons/transparent.gif',
+				class: 'ft-skillbar-hy-pred ft-skillbar-singlet'
+			}, predLegend.firstChild);
+			legend.appendChild(predLegend);
+
+			var potLegend = doc.createElement('li');
+			potLegend.textContent = Foxtrickl10n.getString('YouthSkills.skillPotential');
+			Foxtrick.addImage(doc, potLegend, {
+				src: '/Img/icons/transparent.gif',
+				class: 'ft-skillbar-hy-pot ft-skillbar-singlet'
+			}, potLegend.firstChild);
+			legend.appendChild(potLegend);
+			hyInfoDiv.appendChild(legend);
+
+			var info2 = doc.createElement('span');
+			info2.textContent = Foxtrickl10n.getString('YouthSkills.info2');
+			hyInfoDiv.appendChild(info2);
+
+			entry.parentNode.insertBefore(hyInfoDiv, entry);
+
+		}
 
 		// get skills from HY
 		Foxtrick.containsPermission({ origins: ['http://*.hattrick-youthclub.org/*'] },
 		  function(permission) {
 			if (permission) {
 				Foxtrick.api.hy.runIfHYUser(function() {
+					if (entry) {
+						loading = Foxtrick.util.note.createLoading(doc);
+						entry.insertBefore(loading, entry.firstChild);
+					}
 					Foxtrick.api.hy.getYouthSkills(addSkills, null, finalize);
 				}, finalize); // finalize if not user
 			} else {
