@@ -6,7 +6,7 @@
 	height: 14px;
 }
 .ft-skillbar-ht-pot, .ft-skillbar-hy-pot, .ft-skillbar-ht-cur, .ft-skillbar-hy-cur,
-.ft-skillbar-maxed {
+.ft-skillbar-maxed, .ft-skillbar-hy-pred {
 	position: absolute;
 	left: 1px;
 	top: 1px;
@@ -14,19 +14,22 @@
 	height: 12px;
 }
 .ft-skillbar-hy-pot {
-    background: #eee url(chrome://foxtrick/content/resources/img/skillbars/hy-pot.png) top left no-repeat;
+    background: url(chrome://foxtrick/content/resources/img/skillbars/hy-pot.png) top left no-repeat;
 }
 .ft-skillbar-ht-pot {
-    background: #eee url(chrome://foxtrick/content/resources/img/skillbars/ht-pot.png) top left no-repeat;
+    background: url(chrome://foxtrick/content/resources/img/skillbars/ht-pot.png) top left no-repeat;
+}
+.ft-skillbar-hy-pred {
+    background: url(chrome://foxtrick/content/resources/img/skillbars/hy-pred.png) top left no-repeat;
 }
 .ft-skillbar-hy-cur {
-    background: #eee url(chrome://foxtrick/content/resources/img/skillbars/hy-cur.png) top left no-repeat;
+    background: url(chrome://foxtrick/content/resources/img/skillbars/hy-cur.png) top left no-repeat;
 }
 .ft-skillbar-ht-cur {
-    background: #eee url(chrome://foxtrick/content/resources/img/skillbars/ht-cur.png) top left no-repeat;
+    background: url(chrome://foxtrick/content/resources/img/skillbars/ht-cur.png) top left no-repeat;
 }
 .ft-skillbar-maxed {
-    background: #eee url(chrome://foxtrick/content/resources/img/skillbars/maxed.png) top left no-repeat;
+    background: url(chrome://foxtrick/content/resources/img/skillbars/maxed.png) top left no-repeat;
 }
 
 }
