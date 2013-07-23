@@ -231,6 +231,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var addSpecialtiesByTeamId = function(teamid, players) {
 			Foxtrick.Pages.Players.getPlayerList(doc,
 			  function(playerInfo) {
+				if (!playerInfo)
+					return;
+
 				Foxtrick.stopListenToChange(doc);
 				var missing = [];
 				for (var i = 0; i < players.length; i++) {
@@ -249,6 +252,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 						Foxtrick.Pages.Player.getPlayer(doc, missing[j].id,
 						  (function(j) {
 							return function(p) {
+								if (!p)
+									return;
+
 								Foxtrick.stopListenToChange(doc);
 								var node = players[missing[j].i].parentNode.parentNode
 									.getElementsByClassName('ft-indicatorDiv')[0];
@@ -295,6 +301,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var addMissingByTeamId = function(teamid, players) {
 			Foxtrick.Pages.Players.getPlayerList(doc,
 			  function(playerInfo) {
+				if (!playerInfo)
+					return;
+
 				Foxtrick.stopListenToChange(doc);
 				var missing = [];
 				for (var i = 0; i < players.length; i++) {
