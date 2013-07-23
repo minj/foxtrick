@@ -9,13 +9,13 @@ fr:
       note_0: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'
     0.12.2: 
       note_0: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'
-      note_1: 
-      note_2: 
-      note_3: 
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
+      note_1: "<module>PlayerStatsExperience</module>: le calcul de l'expérience suppose maintenant 28.57 points par niveau (cf 15766691.780)."
+      note_2: "NOUVEAU: L'outil <module>PsicoTSI</module> a été importé dans Foxtrick."
+      note_3: "<module>ShowLineupSet</module>: Ajout d'une option pour mettre en évidence votre équipe dans les tableaux de classement."
+      note_4: "<module>CopyYouth</module>: maintenant les modifications d'entraînement des jeunes sont envoyés automatiquement à Hattrick Youthclub  (seulement pour les utilisateurs de HYC)."
+      note_5: "NOUVEAU: <module>SupportersList</module>: Affiche qui supporte votre équipe dans votre liste d'équipes supportées et vice versa"
+      note_6: "<module>MatchLineupTweaks</module>: une option pour recueillir les données d'endurance de vos joueurs chaque fois que vous visitez votre page du match a été ajoutée. Les données seront utilisées pour une meilleure prédiction des notes dans <module>MatchSimulator</module> module et pourront être consultées dans <module>SkillTable</module>. Le joueur doit avoir joué les 90 minutes. Les matchs en pressing ou ayant des SE météo négatives (pour les joueurs costauds) sont exclus. La formule de prédiction a été créée par Pappagallopoli."
+      note_7: "NOUVEAU: <module>Fans</module>: Ajout d'un lien vers le ht-live pour les prochains de match. Ajout du total de l'évolution de vos supporters dans la barre latérale."
     0.12.1.1: 
       note_0: Mises à jour des traductions.
       note_1: 'Amélioration de <module>MainMenuDropDown</module>.'
