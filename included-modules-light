@@ -26,6 +26,7 @@ information-aggregation/season-stats.js
 information-aggregation/show-friendly-booked.js
 information-aggregation/team-stats.js
 information-aggregation/transfer-deadline.js
+information-aggregation/youth-skills.js
 information-aggregation/youth-promotes.js
 information-aggregation/youth-series-estimation.js
 links/links-achievements.js
