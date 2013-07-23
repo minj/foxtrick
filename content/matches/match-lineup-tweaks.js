@@ -39,6 +39,10 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'GatherStaminaData'))
 			this.gatherStaminaData(doc);
 
+		// run change now as sometimes we are too slow to init the listener
+		// causing display to be broken on first load
+		this.change(doc);
+
 	},
 	// add substition icon for players on the field
 	// that are involved in substitutions
