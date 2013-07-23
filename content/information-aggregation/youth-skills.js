@@ -294,7 +294,11 @@ Foxtrick.modules['YouthSkills'] = {
 			if (reason === 'user')
 				showError(Foxtrickl10n.getString('youthclub.api.notuser').replace(/%s/, 'YouthSkills'), 401);
 
-			Foxtrick.modules['SkillColoring'].execute(doc);
+			if (FoxtrickPrefs.isModuleEnabled('SkillColoring'))
+				Foxtrick.modules['SkillColoring'].execute(doc);
+
+			if (FoxtrickPrefs.isModuleEnabled('TeamStats'))
+				Foxtrick.modules['TeamStats'].execute(doc);
 		};
 
 		var showError = function(response, status) {

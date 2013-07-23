@@ -670,25 +670,36 @@ Foxtrick.Pages.Players = {
 						for (var j = 0; j < skillOrder.length; ++j) {
 							player[skillOrder[j]] = {};
 							var skillCell = rows[j].getElementsByTagName('td')[1];
-							var skillImgs = skillCell.getElementsByTagName('img');
-							if (skillImgs.length > 0) {
-								var max = skillImgs[0].getAttribute('title').match(/\d/);
-								var current = skillImgs[1].title.match(/-?\d/);
-								var unknown = skillImgs[1].title.match(/-1/);
-								var maxed = !current;
-								player[skillOrder[j]].maxed = false;
-								if (maxed) {
-									current = max;
-									player[skillOrder[j]].maxed = true;
-								}
-								// if current and/or max is unknown, mark it as 0
-								player[skillOrder[j]].current = parseInt(unknown ? 0 : current, 10);
-								player[skillOrder[j]].max = parseInt(max ? max : 0, 10);
+							var HYSkills = skillCell.getElementsByClassName('ft-youthSkillBars')[0];
+							if (HYSkills) {
+								var info = HYSkills.title.split('/');
+								var cur = parseFloat(info[0]) || 0;
+								var max = parseFloat(info[1]) || 0;
+								var maxed = HYSkills.getElementsByClassName('ft-skillbar-maxed')[0]
+													.hasAttribute('style');
+								player[skillOrder[j]] = { current: cur, max: max, maxed: maxed };
 							}
 							else {
-								// no image is present, meaning nothing about
-								// that skill has been revealed
-								player[skillOrder[j]] = { current: 0, max: 0, maxed: false };
+								var skillImgs = skillCell.getElementsByTagName('img');
+								if (skillImgs.length > 0) {
+									var max = skillImgs[0].getAttribute('title').match(/\d/);
+									var current = skillImgs[1].title.match(/-?\d/);
+									var unknown = skillImgs[1].title.match(/-1/);
+									var maxed = !current;
+									player[skillOrder[j]].maxed = false;
+									if (maxed) {
+										current = max;
+										player[skillOrder[j]].maxed = true;
+									}
+									// if current and/or max is unknown, mark it as 0
+									player[skillOrder[j]].current = parseInt(unknown ? 0 : current, 10);
+									player[skillOrder[j]].max = parseInt(max ? max : 0, 10);
+								}
+								else {
+									// no image is present, meaning nothing about
+									// that skill has been revealed
+									player[skillOrder[j]] = { current: 0, max: 0, maxed: false };
+								}
 							}
 						}
 					}

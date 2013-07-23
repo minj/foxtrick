@@ -16,7 +16,18 @@ Foxtrick.modules['TeamStats'] = {
 
 	CSS: Foxtrick.InternalPath + 'resources/css/team-stats.css',
 
+	/**
+	 * @param	{document}	doc
+	 */
 	run: function(doc) {
+		// delay execution after YouthSkills
+		if (Foxtrick.isPage(doc, 'ownYouthPlayers') && FoxtrickPrefs.isModuleEnabled('YouthSkills'))
+			return;
+
+		this.execute(doc);
+	},
+
+	execute: function(doc) {
 		var show = function(playerList) {
 		try {
 				var attributeOptions = [
