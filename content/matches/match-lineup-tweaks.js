@@ -157,7 +157,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			}
 			var subLinks = playerCell.getElementsByTagName('a');
 			var pIds = Foxtrick.map(function(link) {
-				return Foxtrick.getParameterFromUrl(link, 'playerid');
+				return Math.abs(Foxtrick.getParameterFromUrl(link, 'playerid'));
 			}, subLinks);
 			var isSubject = true, sbjPid = pIds[0], objPid = pIds[1] || 0;
 			addSubDiv(sbjPid, time, type, isSubject, objPid);
@@ -234,7 +234,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				Foxtrick.stopListenToChange(doc);
 				var missing = [];
 				for (var i = 0; i < players.length; i++) {
-					var id = Number(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
+					var id = Math.abs(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerInfo, id);
 					var node = players[i].parentNode.parentNode
 						.getElementsByClassName('ft-indicatorDiv')[0];
@@ -298,7 +298,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				Foxtrick.stopListenToChange(doc);
 				var missing = [];
 				for (var i = 0; i < players.length; i++) {
-					var id = Number(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
+					var id = Math.abs(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
 					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerInfo, id);
 					if (!player)
 						missing.push(i);
@@ -439,7 +439,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					}
 					Foxtrick.stopListenToChange(doc);
 					for (var i = 0; i < players.length; i++) {
-						var id = Number(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
+						var id = Math.abs(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
 						addFace(players[i].parentNode.parentNode, id, xml);
 					}
 					Foxtrick.startListenToChange(doc);
@@ -590,7 +590,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		};
 
 		for (var i = 0; i < players.length; i++) {
-			var player = Number(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
+			var player = Math.abs(Foxtrick.getParameterFromUrl(players[i].href, 'playerid'));
 			highlightPlayer(player);
 		}
 
