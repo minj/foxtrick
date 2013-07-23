@@ -908,7 +908,7 @@ Foxtrick.Pages.Players = {
 	getPlayerId: function(playerInfo) {
 		var nameLink = Foxtrick.filter(function(n) { return !Foxtrick.hasClass(n, 'flag.+'); },
 			playerInfo.getElementsByTagName('a'))[0];
-		var id = Number(nameLink.href.match(/playerID=(\d+)/i)[1]);
+		var id = Number(nameLink.href.match(/playerID=-?(\d+)/i)[1]);
 		return id;
 	},
 
