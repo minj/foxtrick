@@ -15,11 +15,12 @@ Foxtrick.util.currency = {
 	 */
 	establish: function(doc, callback) {
 		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
-		var rate = FoxtrickPrefs.get('Currency.Rate.' + ownTeamId);
-		if (!rate) {
+		var rate = this.getRate(doc);
+		var symbol = this.getSymbol(doc);
+		if (!rate || !symbol || symbol.length > 10) {
 			if (!Foxtrick.util.layout.hasMultipleTeams(doc)) {
-				FoxtrickPrefs.set('Currency.Rate.' + ownTeamId, this.findRate().toString());
-				FoxtrickPrefs.set('Currency.Symbol.' + ownTeamId, this.findSymbol());
+				FoxtrickPrefs.setString('Currency.Rate.' + ownTeamId, this.findRate().toString());
+				FoxtrickPrefs.setString('Currency.Symbol.' + ownTeamId, this.findSymbol());
 				callback();
 				return;
 			}
@@ -36,10 +37,10 @@ Foxtrick.util.currency = {
 							break;
 					}
 					var leagueId = teamXml.getElementsByTagName('LeagueID')[primaryTeamIdx].textContent;
-					FoxtrickPrefs.set('Currency.Rate.' + ownTeamId,
-									  Foxtrick.util.currency.findRate(leagueId).toString());
-					FoxtrickPrefs.set('Currency.Symbol.' + ownTeamId,
-									  Foxtrick.util.currency.findSymbol(leagueId));
+					FoxtrickPrefs.setString('Currency.Rate.' + ownTeamId,
+											Foxtrick.util.currency.findRate(leagueId).toString());
+					FoxtrickPrefs.setString('Currency.Symbol.' + ownTeamId,
+											Foxtrick.util.currency.findSymbol(leagueId));
 					callback();
 				}
 			});
@@ -84,9 +85,10 @@ Foxtrick.util.currency = {
 	 * get saved currency symbol
 	 * use with Foxtrick.util.currency.establish!
 	 * @param	{document}	doc
+	 * @returns	{String}		Symbol
 	 */
 	getSymbol: function(doc) {
-		return FoxtrickPrefs.get('Currency.Symbol.' + Foxtrick.Pages.All.getOwnTeamId(doc));
+		return FoxtrickPrefs.getString('Currency.Symbol.' + Foxtrick.Pages.All.getOwnTeamId(doc));
 	},
 	/**
 	 * find currency symbol by leagueid
@@ -105,7 +107,8 @@ Foxtrick.util.currency = {
 	 * @returns	{Number}	rate
 	 */
 	getRate: function(doc) {
-		return new Number(FoxtrickPrefs.get('Currency.Rate.' + Foxtrick.Pages.All.getOwnTeamId(doc)));
+		return parseFloat(FoxtrickPrefs.getString('Currency.Rate.' +
+												  Foxtrick.Pages.All.getOwnTeamId(doc)));
 	},
 	/**
 	 * find currency rate by leagueid
@@ -119,6 +122,6 @@ Foxtrick.util.currency = {
 		var rate = Foxtrick.util.id.getLeagueDataFromId(leagueId).Country.CurrencyRate
 			.replace(',', '.');
 		var mag = (name.indexOf('000 ') > -1) ? 0.001 : 1;
-		return Number(rate) * mag / 10;
+		return parseFloat(rate) * mag / 10;
 	}
 };
