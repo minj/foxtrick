@@ -12,31 +12,41 @@
 	width: 93px;
 	height: 14px;
 }
-.ft-skillbar-ht-pot, .ft-skillbar-hy-pot, .ft-skillbar-ht-cur, .ft-skillbar-hy-cur,
-.ft-skillbar-maxed, .ft-skillbar-hy-pred {
+.ft-skillbar {
 	position: absolute;
-	left: 1px;
 	top: 1px;
-    width: 0;
+	width: 0;
 	height: 12px;
 }
-.ft-skillbar-hy-pot {
-    background: url(chrome://foxtrick/content/resources/img/skillbars/hy-pot.png) top left no-repeat;
+html[dir="ltr"] .ft-skillbar {
+	left: 1px;
+}
+html[dir="rtl"] .ft-skillbar {
+	right: 1px;
+}
+html[dir="ltr"] .ft-skillbar-hy {
+	background-position: -2px 0;
+}
+html[dir="rtl"] .ft-skillbar-hy {
+	background-position: 2px 0;
+}
+html .ft-skillbar-hy-pot {
+	background-image: url(chrome://foxtrick/content/resources/img/skillbars/hy-pot.png);
+}
+html .ft-skillbar-hy-pred {
+	background-image: url(chrome://foxtrick/content/resources/img/skillbars/hy-pred.png);
+}
+html .ft-skillbar-hy-cur {
+	background-image: url(chrome://foxtrick/content/resources/img/skillbars/hy-cur.png);
 }
 .ft-skillbar-ht-pot {
-    background: url(chrome://foxtrick/content/resources/img/skillbars/ht-pot.png) top left no-repeat;
-}
-.ft-skillbar-hy-pred {
-    background: url(chrome://foxtrick/content/resources/img/skillbars/hy-pred.png) top left no-repeat;
-}
-.ft-skillbar-hy-cur {
-    background: url(chrome://foxtrick/content/resources/img/skillbars/hy-cur.png) top left no-repeat;
+	background-image: url(chrome://foxtrick/content/resources/img/skillbars/ht-pot.png);
 }
 .ft-skillbar-ht-cur {
-    background: url(chrome://foxtrick/content/resources/img/skillbars/ht-cur.png) top left no-repeat;
+	background-image: url(chrome://foxtrick/content/resources/img/skillbars/ht-cur.png);
 }
 .ft-skillbar-maxed {
-    background: url(chrome://foxtrick/content/resources/img/skillbars/maxed.png) top left no-repeat;
+	background-image: url(chrome://foxtrick/content/resources/img/skillbars/maxed.png);
 }
 .ft-skillbar-singlet {
 	width: 12px;
@@ -45,6 +55,7 @@
 	position: -moz-initial;
 	margin: 0 5px;
 	vertical-align: text-top;
+	background-position: -2px 0;
 }
 
 }

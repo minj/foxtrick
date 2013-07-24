@@ -9,11 +9,12 @@ Foxtrick.modules['YouthSkills'] = {
 	 * @param	{document}	doc
 	 */
 	run: function(doc) {
-		var module = this;
-		var UNKNOWNLEVELSYMBOL = '-';
-
 		if (!Foxtrick.isPage(doc, 'ownYouthPlayers'))
 			return;
+
+		var module = this;
+		var UNKNOWNLEVELSYMBOL = '-';
+		var isRtl = Foxtrick.util.layout.isRtl(doc);
 
 		// string to use when current skill is estimated
 		var approx = Foxtrickl10n.getString('YouthSkills.estimated');
@@ -44,7 +45,8 @@ Foxtrick.modules['YouthSkills'] = {
 				var htPot, htCur, maxed;
 				var el = node.getElementsByClassName('youthSkillBar_max')[0];
 				if (el) {
-					htPot = (parseInt(el.style.backgroundPosition, 10) + 126) / 8;
+					htPot = isRtl ? (2 - parseInt(el.style.backgroundPosition, 10)) / 8
+						: (parseInt(el.style.backgroundPosition, 10) + 126) / 8;
 				}
 				el = node.getElementsByClassName('youthSkillBar_current')[0];
 				if (el) {
@@ -69,10 +71,10 @@ Foxtrick.modules['YouthSkills'] = {
 
 				var skillbars = [
 					'ft-skillbar-bg',
-					'ft-skillbar-hy-pot', 'ft-skillbar-ht-pot',
-					'ft-skillbar-hy-pred',
-					'ft-skillbar-hy-cur', 'ft-skillbar-ht-cur',
-					'ft-skillbar-maxed'
+					'ft-skillbar-hy-pot ft-skillbar-hy', 'ft-skillbar-ht-pot ft-skillbar-ht',
+					'ft-skillbar-hy-pred ft-skillbar-hy',
+					'ft-skillbar-hy-cur ft-skillbar-hy', 'ft-skillbar-ht-cur ft-skillbar-ht',
+					'ft-skillbar-maxed ft-skillbar-ht',
 				];
 
 				Foxtrick.map(function(className) {
@@ -81,18 +83,20 @@ Foxtrick.modules['YouthSkills'] = {
 						class: className
 					  }, null,
 					  function (image) {
-						if (image.className == 'ft-skillbar-ht-pot' && htPot) {
+						if (image.className.split(' ')[0] == 'ft-skillbar-ht-pot' && htPot) {
 							image.style.width = (1 + 11 * htPot) + 'px';
 							div.setAttribute('ht-pot', htPot);
 						}
-						else if (image.className == 'ft-skillbar-ht-cur' && htCur) {
+						else if (image.className.split(' ')[0] == 'ft-skillbar-ht-cur' && htCur) {
 							image.style.width = (1 + 11 * htCur) + 'px';
 							div.setAttribute('ht-cur', htCur);
 						}
-						else if (image.className == 'ft-skillbar-maxed' && maxed) {
+						else if (image.className.split(' ')[0] == 'ft-skillbar-maxed' && maxed) {
 							image.style.width = (1 + 11 * maxed) + 'px';
 							div.setAttribute('ht-maxed', maxed);
 						}
+						if (image.className != 'ft-skillbar-bg')
+							Foxtrick.addClass(image, 'ft-skillbar');
 					});
 				}, skillbars);
 
@@ -109,8 +113,12 @@ Foxtrick.modules['YouthSkills'] = {
 				titleDiv.setAttribute(name, value);
 
 				var img = titleDiv.getElementsByClassName('ft-skillbar-' + name)[0];
-				if (img)
-					img.style.width = (1 + parseInt(value, 10) + 10 * value) + 'px';
+				if (img) {
+					var width = 1 + parseInt(value, 10) + 10 * value;
+					img.style.width = width + 'px';
+					if (isRtl)
+						img.style.backgroundPosition = (width - 91) + 'px 0';
+				}
 			};
 			/**
 			 * add skill link (if possible) to the node based on the skill level (integer)
