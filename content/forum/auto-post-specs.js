@@ -51,7 +51,7 @@ Foxtrick.modules['AutoPostSpecs'] = {
 			else
 				navInfo = 'Fennec';
 
-			txt = txt + '\n[hr][spoiler]' + 'FoxTrick ' + Foxtrick.version() + ' ' + Foxtrick.branch() + ' - Stage: ' + Foxtrick.isStage(doc) + ' - Skin: ' + (Foxtrick.util.layout.isStandard(doc)?'normal':'simple') + ' - ' + FoxtrickPrefs.getString('htLanguage') + ' - '  + window.screen.availWidth + ' x ' + window.screen.availHeight + ' - ' + navInfo + '[/spoiler]';
+			txt = txt + '\n[hr][spoiler]' + 'FoxTrick ' + Foxtrick.version() + ' ' + Foxtrick.branch() + ' - Stage: ' + Foxtrick.isStage(doc) + ' - Skin: ' + (Foxtrick.util.layout.isStandard(doc)?'normal':'simple') + ' - ' + FoxtrickPrefs.getString('htLanguage') + ' - ' + (Foxtrick.util.layout.isRtl(doc)?"rtl":"ltr") + ' - ' + window.screen.availWidth + ' x ' + window.screen.availHeight + ' - ' + navInfo + '[/spoiler]';
 			textarea.value = txt;
 			setCaretPosition(textarea, 0);
 		}
