@@ -223,8 +223,7 @@ Foxtrick.modules['SkillColoring'] = {
 	},
 	run: function(doc) {
 		if (Foxtrick.isPage(doc, 'ownYouthPlayers') &&
-			FoxtrickPrefs.isModuleEnabled('YouthSkills') &&
-			!doc.getElementsByClassName('ft-youthskills-link').length)
+			FoxtrickPrefs.isModuleEnabled('YouthSkills'))
 			return;
 		this.execute(doc);
 	},
