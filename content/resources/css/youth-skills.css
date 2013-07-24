@@ -30,13 +30,13 @@ html[dir="ltr"] .ft-skillbar-hy {
 html[dir="rtl"] .ft-skillbar-hy {
 	background-position: 2px 0;
 }
-html .ft-skillbar-hy-pot {
+.ft-skillbar-hy-pot {
 	background-image: url(chrome://foxtrick/content/resources/img/skillbars/hy-pot.png);
 }
-html .ft-skillbar-hy-pred {
+.ft-skillbar-hy-pred {
 	background-image: url(chrome://foxtrick/content/resources/img/skillbars/hy-pred.png);
 }
-html .ft-skillbar-hy-cur {
+.ft-skillbar-hy-cur {
 	background-image: url(chrome://foxtrick/content/resources/img/skillbars/hy-cur.png);
 }
 .ft-skillbar-ht-pot {
