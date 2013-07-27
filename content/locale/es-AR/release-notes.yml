@@ -9,13 +9,13 @@ es-AR:
       note_0: '<header>Muchas actualizaciones en las traducciones de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
     0.12.2: 
       note_0: '<header>Muchas actualizaciones en las traducciones de nuestros colaboradores mediante <linkCrowdin> crowdin</linkCrowdin>. Usted también puede ayudarnos!</header>'
-      note_1: 
-      note_2: 
-      note_3: 
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
+      note_1: '<module>PlayerStatsExperience</module>: el cálculo de experiencia ahora asume 28,57 puntos por cada nivel (ver 15766691.780).'
+      note_2: 'NUEVO: la herramienta <module>PsicoTSI</module> fue integrada a Foxtrick.'
+      note_3: '<module>ShowLineupSet</module>: añade una opción para resaltar el equipo propio en las tablas de clasificación.'
+      note_4: '<module>CopyYouth</module>: ahora los cambios de entrenamiento de los juveniles será enviada a Hattrick Youthclub automáticamente (sólo para usuarios HY).'
+      note_5: 'NUEVO: <module>SupportersList</module>: Mostrar quién es club amigo de tu equipo en tu lista de equipos amigos y viceversa'
+      note_6: '<module>MatchLineupTweaks</module>: se agregó una opción para recopilar los datos de resistencia del jugador cada vez que visite la página del partido. Los datos se utilizarán para la mejor predicción de calificaciones en el módulo <module>MatchSimulator</module> y pueden verse en <module>SkillTable</module>. Un jugador debe jugar todo en 90 minutos. Partidos con la tactica presionar o  con eventos especiales negativos del clima  (para jugadores potentes) quedan excluidos. La fórmula de predicción fue creado por Pappagallopoli.'
+      note_7: 'NUEVO: <module>Fans</module>: Añade el enlace partido en vivo junto a los de partido futuro. Añade el total de la evolución de la hinchada debajo de la barra lateral de Entrada/Salida de hinchas.'
     0.12.1.1: 
       note_0: Actualización de traducciones.
       note_1: 'Mejorado el rendimiento del <module>MainMenuDropDown</module>.'
