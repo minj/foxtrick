@@ -252,8 +252,9 @@ Foxtrick.modules['Core'] = {
 				'/Club/Players/KeyPlayers.aspx$|/Club/Players/?TeamID=' +
 				this.SELF_TEAM_INFO.teamId +
 				'|/Club/Players/KeyPlayers.aspx?teamId=' + this.SELF_TEAM_INFO.teamId;
-				Foxtrick.ht_pages['ownKeyPlayers'] = '/Club/Players/KeyPlayers.aspx$|' +
+			Foxtrick.ht_pages['ownKeyPlayers'] = '/Club/Players/KeyPlayers.aspx$|' +
 				'/Club/Players/KeyPlayers.aspx?teamId=' + this.SELF_TEAM_INFO.teamId;
+			Foxtrick.addClass(doc.body, 'ft-teamID-' + this.SELF_TEAM_INFO.teamId);
 		}
 		var subMenu = doc.getElementsByClassName('subMenu')[0];
 		if (subMenu) {
