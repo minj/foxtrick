@@ -9,13 +9,13 @@ de:
       note_0: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin>-Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
     0.12.2: 
       note_0: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin> Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
-      note_1: 
-      note_2: 
+      note_1: '<module>PlayerStatsExperience</module>: Die Berechnung geht davon aus dass für einen Anstieg der Erfahrung 28.57 Erfahrungspunkte benötigt werden. (Siehe  15766691.780).'
+      note_2: 'NEW: <module>PsicoTSI</module> wurde in FoxTrick integriert.'
       note_3: 
       note_4: 
       note_5: 
       note_6: 
-      note_7: 
+      note_7: 'NEW: <module>Fans</module>: Auf der Fan-Seite gibt es nun Live-Links und die Summe der Fanentwicklung wird angezeigt.'
     0.12.1.1: 
       note_0: Übersetzungsaktualisierungen.
       note_1: 'Leistung von <module>MainMenuDropDown</module> gesteigert.'
