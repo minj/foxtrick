@@ -11,7 +11,7 @@ Foxtrick.modules['Redirections'] = {
 	NICE: -40,  // after Core, before anything else
 
 	run: function(doc) {
-		if (doc.location.href.search(/challenge|redir_to_.+\=true/i) == -1)
+		if (doc.location.href.search(/make_challenge=\d+|redir_to_.+?\=true/i) == -1)
 			return;
 
 		var serv = 'http://' + doc.location.hostname;
@@ -58,7 +58,7 @@ Foxtrick.modules['Redirections'] = {
 					tar = serv + '/Club/Players/?TeamID=' + teamid + '&redir_to_coach=true';
 			}
 			else if (doc.location.href.search(/redir_to_challenge=true/i) != -1)
-				tar = serv + '/Club/Challenges/?TeamID=' + teamid + '&challenge=true';
+				tar = serv + '/Club/Challenges/?make_challenge=' + teamid;
 			else if (doc.location.href.search(/redir_to_mail=true/i) != -1)
 				tar = serv + '/Club/?TeamID=' + teamid + '&SendMessage=true';
 			else if (doc.location.href.search(/redir_to_guestbook=true/i) != -1)
@@ -86,10 +86,11 @@ Foxtrick.modules['Redirections'] = {
 		}
 		else {
 			// set challenge team
-			if (doc.location.href.search(/challenge=true/i) != -1) {
+			var challengeId;
+			if (challengeId = doc.location.href.match(/make_challenge=(\d+)/i)) {
 				var teamid_input =
 					doc.getElementById('ctl00_ctl00_CPContent_CPSidebar_tbNewChallangeTeamId');
-				teamid_input.value = Foxtrick.util.id.getTeamIdFromUrl(doc.location.href);
+				teamid_input.value = challengeId[1];
 			}
 			//redirect to mail
 			else if (doc.location.href.search(/redir_to_mail=true/i) != -1) {
