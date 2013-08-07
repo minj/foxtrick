@@ -1317,7 +1317,7 @@
 	},
 	"hattrick-youthclub": {
 		"youthlink": {
-			"url": "http://www.hattrick-youthclub.org/"
+			"url": "http://www.hattrick-youthclub.org/redirect/type/team/ht_id/[ownteamid]"
 		},
 		"youthplayerlistlink": {
 			"url": "http://www.hattrick-youthclub.org/redirect/type/team_sync/ht_id/[ownteamid]"
