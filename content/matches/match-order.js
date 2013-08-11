@@ -557,13 +557,15 @@ Foxtrick.modules['MatchOrderInterface'] = {
 
 							// collect data about existing kickers first
 							var taken = [], placed = [], sp;
-							for (var i = 20; i < 32; ++i) { // 20 is sp
+							// let's find the sp player (position #20)
+							var spPlayer = doc.getElementById(20).firstChild;
+							if (spPlayer)
+								sp = spPlayer.id;
+
+							for (var i = 21; i < 32; ++i) { // position #21 is first kicker
 								taken[i] = doc.getElementById(i).firstChild;
 								if (taken[i])
-									if (i == 20)
-										sp = taken[i].id;
-									else
-										placed[taken[i].id] = i;
+									placed[taken[i].id] = i;
 							}
 							var lastTaken = 20; // index to last filled position
 
@@ -589,6 +591,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 										break;
 									}
 								}
+								// remove sp taker from the middle and add to the front
 								var taker = players.splice(idx, 1)[0];
 								players.unshift(taker);
 							}
@@ -596,10 +599,12 @@ Foxtrick.modules['MatchOrderInterface'] = {
 							for (var i = 0, player; (player = players[i]) && lastTaken < 31; ++i) {
 								// player exists and we have unchecked positions
 
-								// skip already placed players and subs
+								// skip unused players, already placed players and subs
 								if (!useSubs && Foxtrick.hasClass(player, 'bench') ||
+									!Foxtrick.hasClass(player, 'used') ||
 								    placed[player.id])
 									continue;
+
 								while (lastTaken < 31) {
 									// next position exists
 									if (taken[lastTaken + 1]) {
