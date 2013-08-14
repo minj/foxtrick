@@ -21,22 +21,22 @@ de:
       note_1: 'Leistung von <module>MainMenuDropDown</module> gesteigert.'
       note_2: Kleinere Zugriffsverbesserungen.
       note_3: 'Bugfix für <module>CopyPosting</module> und <module>StaffMarker</module>.'
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
+      note_4: Probleme beim Abspielen von Tönen behoben.
+      note_5: Android Problem dass Foxtrick davon abhielte korrekt zu starten wurde behoben.
+      note_6: 'Beim importieren von Foxtrick Einstellungen sollten Zeilenumbrüche in Foren- und Mailvorlagen nun korrekt funktionieren.'
+      note_7: Fix für die Ratings in der Friesische Sprache.
+      note_8: 'Einige Dinge in <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> und <module>HideSignatures</module> behoben.'
+      note_9: '<module>SkillTable</module> benötigt nun keine CHPP-Authentifikation mehr wenn der Nutzer nur über ein Team verfügt.'
     0.12.1: 
       note_0: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin>-Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
       note_1: 'NEU: <module>SupportershipExpirationDate</module>: Ein Klick auf die verbleibenden Supporter-Tage bewirkt dass das tatsächliche Datum  angezeigt wird'
       note_2: '<module>MatchIncome</module>: Option zum Anzeigen der Sitz-Auslastung in Prozent neben der Zahl der Besucher auf den Spiel-Seiten hinzugefügt'
       note_3: 'NEU: <module>MainMenuDropDown</module>: Das Hattrick-Hauptmenu hat ein aufklappbares Untermenu bekommen dass alle LInks enthält die sich in den seitlichen Menus befinden. So kann man beispielsweise ohne Umweg vom Forum zu seinen Spielern gelangen.'
-      note_4: 
+      note_4: '<module>DashboardCalendar</module> Zeit-Erkennung beim export gefixt. (Firefox)'
       note_5: '<module>MatchOrderInterface</module>: Zeigt jetzt Avatare für mehrere Teams.'
       note_6: '<module>DashboardCalendar</module>: Mehrmaliges erscheinen des Download-Dialog  unter Firefox behoben.'
       note_7: '<module>HeaderFix</module>: Zeigt nun die Leiste zum Wechseln zwischen deinen Teams korrekt an.'
-      note_8: 
+      note_8: '<module>ConfirmActions</module>: Nutzer mit mehreren Mannschaften sehen nun für welches Team sie auf einen Spieler bieten.'
       note_9: '<module>TransferSearchFilters</module>: Filter speichern nun auch die Tagesangabe.'
       note_10: Unterstützung für die aserbaidschanische Sprache hinzugefügt.
       note_11: Hunderte andere Bugfixes für durch Hattrickänderungen verursachte Probleme.
