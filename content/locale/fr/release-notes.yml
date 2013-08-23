@@ -1,5 +1,5 @@
 ---
-fr: 
+- 
   versions: 
     nightly: 
       note_0: "Il s'agit d'une version de développement. Utilisez la à votre propre discrétion. S'il vous plaît consultez <linkSVN>commit history</linkSVN> sur Google Code pour plus de détails sur les modifications."
