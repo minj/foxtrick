@@ -1,5 +1,5 @@
 ---
-it: 
+- 
   versions: 
     nightly: 
       note_0: 'Questa è la versione di sviluppo. Utilizzala a tua discrezione. per favore visita <linkSVN>commit history</linkSVN> su Google code per dettagli sui cambiamenti.'
@@ -9,10 +9,10 @@ it:
       note_0: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
     0.12.2: 
       note_0: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
-      note_1: 
-      note_2: 
-      note_3: 
-      note_4: 
+      note_1: "<module>PlayerStatsExperience</module>: il calcolo dell' esperienza ora presume che ogni livello corrisponda a 28,57 punti (vedere 15766691.780)."
+      note_2: 'NUOVO: il tool <module>PsicoTSI</module> è stato importato in Foxtrick.'
+      note_3: '<module>ShowLineupSet</module>: Aggiunta opzione per evidenziare la propria squadra nella tabella della classifica.'
+      note_4: '<module>CopyYouth</module>: ora i cambiamenti di allenamento delle squadra giovanile saranno inviati ad Hattrick Youthclub automaticamente (solo per gli utenti  di HY).'
       note_5: 
       note_6: 
       note_7: 
