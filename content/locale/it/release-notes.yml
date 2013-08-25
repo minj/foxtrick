@@ -13,9 +13,9 @@
       note_2: 'NUOVO: il tool <module>PsicoTSI</module> è stato importato in Foxtrick.'
       note_3: '<module>ShowLineupSet</module>: Aggiunta opzione per evidenziare la propria squadra nella tabella della classifica.'
       note_4: '<module>CopyYouth</module>: ora i cambiamenti di allenamento delle squadra giovanile saranno inviati ad Hattrick Youthclub automaticamente (solo per gli utenti  di HY).'
-      note_5: 
-      note_6: 
-      note_7: 
+      note_5: 'NUOVO: <module>SupportersList</module>: mostra chi supporta la tua squadra nella lista delle squadre da te supportate e viceversa'
+      note_6: "<module>MatchLineupTweaks</module>: è stata aggiunta un'opzione per raccogliere i dati della resistenza del tuo giocatore ogni volta che si visita la pagina della tua partita. I dati saranno utilizzati per migliore la previsione delle valutazioni nel modulo <module>MatchSimulator</module> e possono essere visualizzati in <module>SkillTable</module>. Un giocatore deve giocare il tutto in 90 minuti. Partite con tattica pressing o Special events meteo negativi (per giocatori potenti) sono esclusi. La formula è stata creata da Pappagallopoli."
+      note_7: "NUOVO: <module>Fans</module>: Aggiunge un collegamento di fianco ai collegamenti per le prossime partite. Aggiunge l'andamento dei tifosi totali nella barra laterale."
     0.12.1.1: 
       note_0: Aggiornamenti di traduzione.
       note_1: 'Aumentate le prestazioni di <module>MainMenuDropDown</module>.'
