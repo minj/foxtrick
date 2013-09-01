@@ -1,5 +1,5 @@
 ---
-hr: 
+- 
   versions: 
     nightly: 
       note_0: 'Ovo je razvojna inačica. Koristiti na svoju odgovornost. Za detalje o promjenama pogledajte na <linkSVN>Google Code</linkSVN> stranici.'
@@ -9,13 +9,13 @@ hr:
       note_0: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
     0.12.2: 
       note_0: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
-      note_1: 
-      note_2: 
-      note_3: 
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
+      note_1: '<module>PlayerStatsExperience</module>: računanje iskustva sada predviđa kako je potrebno 28.57 bodova za jednu razinu (see 15766691.780).'
+      note_2: 'NOVO: the <module>PsicoTSI</module> je implementiran u Foxtrick.'
+      note_3: '<module>ShowLineupSet</module>: Dodana opcija za isticanje vlastite momčadi u tablici.'
+      note_4: '<module>CopyYouth</module>: promjene juniorskih treninga će biti automatski poslane u Hattrick Youthclub (samo za korisnike HTY).'
+      note_5: 'NOVO: <module>SupportersList</module>: Pokazuje tko podržava vašu momčad od momčadi koje vi podržavate i obrnuto'
+      note_6: '<module>MatchLineupTweaks</module>: Skupite podatke o izdržljivosti vaših igrača svaki put kad posjetite stranicu postave formacije. Ovo će se koristiti za bolju procjenu ocjene u  <module>MatchSimulator</module> i može se pregledati u <module>SkillTable</module>. Igrač mora odigrati čitavih 90 minuta. Utakmice s presing taktikom ili negativnim SE-ovima (za snažne igrače) nisu uključene. Pappagallopoli je zaslužan za formulu procjene ocjena.'
+      note_7: 'NOVO: <module>Fans</module>: Dodaj HT live link uz linkove na buduće utakmice. Prikaži razvoj broja navijača u dodatnoj traci.'
     0.12.1.1: 
       note_0: Ažurirani prijevodi.
       note_1: 'Povećane performanse rada <module>MainMenuDropDown</module>.'

@@ -14,9 +14,9 @@
     <code>fr</code>
     <phrases>1534</phrases>
     <translated>1530</translated>
-    <approved>459</approved>
+    <approved>531</approved>
     <translated_progress>100</translated_progress>
-    <approved_progress>28</approved_progress>
+    <approved_progress>33</approved_progress>
   </language>
   <language>
     <name>Spanish</name>
@@ -76,7 +76,7 @@
     <name>Danish</name>
     <code>da</code>
     <phrases>1534</phrases>
-    <translated>1468</translated>
+    <translated>1475</translated>
     <approved>1466</approved>
     <translated_progress>96</translated_progress>
     <approved_progress>95</approved_progress>
@@ -121,9 +121,9 @@
     <name>Finnish</name>
     <code>fi</code>
     <phrases>1534</phrases>
-    <translated>1355</translated>
+    <translated>1412</translated>
     <approved>0</approved>
-    <translated_progress>88</translated_progress>
+    <translated_progress>92</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -337,9 +337,9 @@
     <name>Galician</name>
     <code>gl</code>
     <phrases>1534</phrases>
-    <translated>1510</translated>
+    <translated>1519</translated>
     <approved>0</approved>
-    <translated_progress>98</translated_progress>
+    <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -391,9 +391,9 @@
     <name>Croatian</name>
     <code>hr</code>
     <phrases>1534</phrases>
-    <translated>1523</translated>
+    <translated>1530</translated>
     <approved>1481</approved>
-    <translated_progress>99</translated_progress>
+    <translated_progress>100</translated_progress>
     <approved_progress>96</approved_progress>
   </language>
   <language>

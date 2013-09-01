@@ -1,5 +1,5 @@
 ---
-da: 
+- 
   versions: 
     nightly: 
       note_0: 'Dette er udviklingsversionen. Du bruger følgende på eget ansvar. Se venligst <linkSVN>commit history</linkSVN> på Google Code for nærmere oplysninger om ændringerne.'
@@ -15,14 +15,14 @@ da:
       note_4: '<module>CopyYouth</module>: Ændring af træning for ungdomsholdet bliver automatisk sendt til Hattrick Youthclub (kun for HYC brugere).'
       note_5: 'NYT: <module>SupportersList</module>: Viser hvem supportere dit hold under Supportede hold liste og omvendt'
       note_6: '<module>MatchLineupTweaks</module>: Det er nu muligt at indsamle data over dine spilleres kondi, hvergang du er på kampsiden. Data vil blive brugt for bedre ratings beregning i <module>MatchSimulator</module> modullen og kan ses under <module>SkillTable</module>. En spillere skal have spillet 90 min. Kampe som har benyttet presspil eller kampe med negativ vejr begivenhed (for spillere med kraftfuld specialitet) er undladt. beregnings formularen er lavet af Pappagallopoli.'
-      note_7: 
+      note_7: 'NEW: <module>Fans</module>: Tilføj live link ved siden af kommende kamp links. Tilføj udviklingen af antal fans under Fan-opdatering.'
     0.12.1.1: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
-      note_4: 
-      note_5: 
+      note_0: Opdatering af oversættelser.
+      note_1: 'Øget ydeevne af <module>MainMenuDropDown</module>.'
+      note_2: Mindre forbedringer af tilgængeligheden.
+      note_3: 'Rettelser til <module>CopyPosting</module> og <module>StaffMarker</module>.'
+      note_4: Rettet lyd relateret problemer.
+      note_5: Rettet et Android problem som i nogle tilfælde forårsagede Foxtrick til ikke at start.
       note_6: 
       note_7: 
       note_8: 
