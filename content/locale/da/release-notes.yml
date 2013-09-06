@@ -23,10 +23,10 @@
       note_3: 'Rettelser til <module>CopyPosting</module> og <module>StaffMarker</module>.'
       note_4: Rettet lyd relateret problemer.
       note_5: Rettet et Android problem som i nogle tilfælde forårsagede Foxtrick til ikke at start.
-      note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
+      note_6: Linjeskift i forum og mail-skabeloner bliver nu genkendt korrekt ved import af indstillinger.
+      note_7: Rettet problem vedr. ratings udregning for Frysk sprog.
+      note_8: 'Rettet nogle problemer i <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> og <module>HideSignatures</module>.'
+      note_9: '<module>SkillTable</module> fungere igen uden Foxtrick tilladelse til brugere med et enkelt hold.'
     0.12.1: 
       note_0: '<header>En del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>'
       note_1: 'NYT: <module>SupportershipExpirationDate</module>: Du kan skifte visning mellem resterende dage eller Slut-dato for dit Supporter medlemskab, hvis du klikker på resterende Supporter dage ved Mit Hattrick - Mit Kontor - Min Konto (ned til højre)'
@@ -39,9 +39,9 @@
       note_8: '<module>ConfirmActions</module>: brugere med flere hold vil nu se navnet på holdet de byder med.'
       note_9: '<module>TransferSearchFilters</module>: filtre gemmer nu også spillere alder i dage.'
       note_10: Support for den Aserbajdsjanske sprog blev tilføjet.
-      note_11: 
+      note_11: En masse rettelse omkring emner forårsaget af Hattrick.
     0.12.0: 
-      note_0: 
+      note_0: '<header>En del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>'
       note_1: 
       note_2: 
       note_3: 
@@ -60,7 +60,7 @@
       note_16: 
       note_17: 
     0.11.0.1: 
-      note_0: 
+      note_0: '<header>En del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>'
       note_1: 
       note_2: 
     0.11.0: 
@@ -102,7 +102,7 @@
       note_35: 
       note_36: 
       note_37: 
-      note_38: 
+      note_38: '<header>En del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>'
       note_39: 
       note_40: 
     0.10.0: 
