@@ -21,6 +21,7 @@ en:
       note_5: 'NEW: <module>SupportersList</module>: Show who supports your team in your supported teams list and vice versa'
       note_6: "<module>MatchLineupTweaks</module>: an option to gather your player stamina data every time you visit your match page was added. The data will be used for better ratings prediction in <module>MatchSimulator</module> module and can be viewed in <module>SkillTable</module>. A player must play the whole 90 minutes. Matches with pressing or negative weather SEs (for powerful players) are excluded. Prediction formula was created by Pappagallopoli."
       note_7: "NEW: <module>Fans</module>: Add live link next to future match links. Add total of fans evolution in the sidebar."
+      note_8: "Fixed TSI NaN error on players pages for national teams or when xml downloading is disabled (<module>Skilltable</module>, <module>TeamStats</module> etc.)"
 
     0.12.1.1:
       note_0: 'Translation updates.'
