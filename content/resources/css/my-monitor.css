@@ -63,5 +63,7 @@
 .ft-monitor-frame > h3 > a.flag + img {
 	margin-top:-2px;
 }
-
+#eventList {
+	min-height: 0px !important;
+}
 }
