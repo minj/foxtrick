@@ -544,9 +544,12 @@ Foxtrick.Pages.Players = {
 				var basicInformation = paragraphs[0];
 
 				// The bit of text that contains age, tsi
-				var basicHtml = basicInformation.firstChild.textContent 
-								+ basicInformation.firstChild.nextSibling.textContent
-								+ basicInformation.firstChild.nextSibling.nextSibling.textContent;
+				var basicHtml = basicInformation.firstChild.textContent
+				if(basicInformation.firstChild.nextSibling !== null){
+				    basicHtml = basicHtml + basicInformation.firstChild.nextSibling.textContent;
+				    if(basicInformation.firstChild.nextSibling.nextSibling  !== null)
+				    	basicHtml = basicHtml + basicInformation.firstChild.nextSibling.nextSibling.textContent;
+				}
 
 				var ageText = basicHtml;
 				// First we dump TSI out of the string, and then
