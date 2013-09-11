@@ -331,7 +331,7 @@ Foxtrick.modules['MyMonitor'] = {
 			addLink.textContent = Foxtrickl10n.getString('MyMonitor.add');
 			Foxtrick.onClick(addLink, function() {
 				teams.push({
-					id: teamIdContainer.id, type: type, name: teamIdContainer.name,
+					id: teamIdContainer.id, type: type, name: escape(teamIdContainer.name),
 					logo: teamIdContainer.logo, country: teamIdContainer.country
 				});
 				setSavedTeams(teams);
@@ -371,7 +371,7 @@ Foxtrick.modules['MyMonitor'] = {
 				// now add the teams
 				Foxtrick.map(function(n) {
 					var option = doc.createElement('option');
-					option.textContent = n.name;
+					option.textContent = unescape(n.name);
 					option.value = getLink(n);
 					select.appendChild(option);
 				}, teams);
