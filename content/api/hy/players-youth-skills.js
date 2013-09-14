@@ -30,8 +30,9 @@ if (!Foxtrick.api.hy.URL)
  *							cap: @float,
  *							current: @float,
  *							maxed: @boolean,
- *							cap_minimum: @float
- *							current_estimation: @float
+ *							cap_minimum: @float,
+ *							current_estimation: @float,
+ *							top3: @boolean
  *						},
  *						...
  *					}
@@ -44,8 +45,9 @@ if (!Foxtrick.api.hy.URL)
  * current_estimation = predicted current skill level when current not available
  * cap = the cap of this skill
  * cap_minimum = minimum cap
- * maxed = weather the skill is fully maxed out or not
-*/
+ * maxed = whether the skill is fully maxed out or not
+ * top3 = whether skill is among the 3 with highest potential (mentioned in scout report)
+ */
 
 
 Foxtrick.api.hy.URL['playersYouthSkills'] = 'http://www.hattrick-youthclub.org' +

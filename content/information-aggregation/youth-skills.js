@@ -18,6 +18,8 @@ Foxtrick.modules['YouthSkills'] = {
 
 		// string to use when current skill is estimated
 		var approx = Foxtrickl10n.getString('YouthSkills.estimated');
+		// string to use for top3 skill title
+		var top3 = Foxtrickl10n.getString('YouthSkills.top3');
 
 		// this maps HY skill-id to the row index in the table
 		// cf Foxtrick.api.hy.skillMap
@@ -225,6 +227,25 @@ Foxtrick.modules['YouthSkills'] = {
 
 				setTitleAndLinks(ftBars);
 			};
+			/**
+			 * mark top3 skill (1-based row index)
+			 * @param	{element}	playerInfo
+			 * @param	{Integer}	skill		row index (1-based)
+			 */
+			var markTopSkill = function(playerInfo, skill) {
+				var table = playerInfo.getElementsByTagName('tbody')[0];
+				var skillName = table.querySelector('tr:nth-of-type(' + skill + ') ' +
+				                                     '> td:nth-of-type(1)');
+
+				if (!skillName)
+					return;
+
+				var b = Foxtrick.createFeaturedElement(doc, module, 'strong');
+				b.textContent = skillName.textContent;
+				b.title = top3;
+				skillName.textContent = '';
+				skillName.appendChild(b);
+			};
 
 			// get a timer for some profiling as this module runs in async mode
 			var start = new Date().getTime();
@@ -274,14 +295,17 @@ Foxtrick.modules['YouthSkills'] = {
 						var cap = skill['cap'] || 0;
 						var cap_minimal = skill['cap_minimal'] || 0;
 						var current = skill['current'] || 0;
-						var maxed = skill['maxed'];
 						var pred = skill['current_estimation'] || 0;
+						var maxed = skill['maxed'] || false;
+						var top = skill['top3'] || false;
 
 						var min = current;
 						var max = Math.max(cap_minimal, cap);
 
 						if (pred || min || max)
 							setSkill(playerInfo, rowMap[sk] + 1, pred, min, max, maxed);
+						if (top)
+							markTopSkill(playerInfo, rowMap[sk] + 1);
 					}
 				}
 			}
