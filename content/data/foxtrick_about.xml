@@ -73,6 +73,7 @@
 		<translator id="7776339" name="convincedd" />
 		<translator id="11335334" name="CatzHoek" />
 		<translator name="LeSchmuh" />
+		<translator name="ThomasR" />
 	</translation>
 	<translation language="English">
 		<translator name="VikingButtch" />
@@ -122,6 +123,7 @@
 		<translator id="2363296" name="OReiDasSachadas" />
 		<translator id="11101114" name="aaa-aaa" />
 		<translator id="2915990" name="GZ-grobas" />
+		<translator id="2915990" name="Joe82" />
 	</translation>
 	<translation language="Georgian">
 		<translator name="parjikia" />
@@ -138,9 +140,12 @@
 		<translator id="3613658" name="-Iuve-" />
 		<translator name="PBotika" />
 		<translator name="FTorrez" />
+		<translator name="Fieras" />
+		<translator name="lynkss" />
 	</translation>
 	<translation language="Hungarian">
 		<translator id="2172516" name="csajszi" />
+		<translator id="2172516" name="dzsoo" />
 	</translation>
 	<translation language="Íslenska">
 		<translator id="9930684" name="LA-LordBastard" />
@@ -152,6 +157,7 @@
 		<translator id="10246801" name="silkevicious" />
 		<translator id="11869364" name="LucaXVI" />
 		<translator name="marcocara1" />
+		<translator id="7967145" name="bigpapy" />
 	</translation>
 	<translation language="日本語 (Japanese)">
 		<translator name="Skevevich_Onnaski" />
@@ -176,6 +182,7 @@
 	</translation>
 	<translation language="Malti">
 		<translator id="4149232" name="LA-saviour26" />
+		<translator name="steve007121" />
 	</translation>
 	<translation language="Nederlands">
 		<translator id="5577946" name="eekels" />
@@ -253,7 +260,7 @@
 	</translation>
 	<translation language="Ukrainian">
 		<translator id="4727906" name="Grif_07" />
-		<translator name="vital.kpi" />
+		<translator id="8988135" name="vital.kpi" />
 		<translator name="RNH" />
 	</translation>
 	<translation language="中文（简体） Chinese (Simplified)">
