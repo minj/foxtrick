@@ -1,13 +1,13 @@
 ---
 - 
-  versions: 
-    nightly: 
+  versions:
+    nightly:
       note_0: 'Dette er udviklingsversionen. Du bruger følgende på eget ansvar. Se venligst <linkSVN>commit history</linkSVN> på Google Code for nærmere oplysninger om ændringerne.'
-    beta: 
+    beta:
       note_0: 'Dette er betaversionen af den næste udgave. Du kan hjælpe med at oversætte via vores super nemme crowd-oversættelse side <linkCrowdin>crowdin.net</linkCrowdin>. '
-    0.13.0: 
+    0.13.0:
       note_0: '<header>En del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>'
-    0.12.2: 
+    0.12.2:
       note_0: '<header>En del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>'
       note_1: '<module>PlayerStatsExperience</module>: rutine beregningen antager nu at der er 28.57 point pr niveau (Se 15766691.780).'
       note_2: 'NYT:  <module>PsicoTSI</module> blev importeret til Foxtrick.'
@@ -16,7 +16,7 @@
       note_5: 'NYT: <module>SupportersList</module>: Viser hvem supportere dit hold under Supportede hold liste og omvendt'
       note_6: '<module>MatchLineupTweaks</module>: Det er nu muligt at indsamle data over dine spilleres kondi, hvergang du er på kampsiden. Data vil blive brugt for bedre ratings beregning i <module>MatchSimulator</module> modullen og kan ses under <module>SkillTable</module>. En spillere skal have spillet 90 min. Kampe som har benyttet presspil eller kampe med negativ vejr begivenhed (for spillere med kraftfuld specialitet) er undladt. beregnings formularen er lavet af Pappagallopoli.'
       note_7: 'NEW: <module>Fans</module>: Tilføj live link ved siden af kommende kamp links. Tilføj udviklingen af antal fans under Fan-opdatering.'
-    0.12.1.1: 
+    0.12.1.1:
       note_0: Opdatering af oversættelser.
       note_1: 'Øget ydeevne af <module>MainMenuDropDown</module>.'
       note_2: Mindre forbedringer af tilgængeligheden.
@@ -27,7 +27,7 @@
       note_7: Rettet problem vedr. ratings udregning for Frysk sprog.
       note_8: 'Rettet nogle problemer i <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> og <module>HideSignatures</module>.'
       note_9: '<module>SkillTable</module> fungere igen uden Foxtrick tilladelse til brugere med et enkelt hold.'
-    0.12.1: 
+    0.12.1:
       note_0: '<header>En del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>'
       note_1: 'NYT: <module>SupportershipExpirationDate</module>: Du kan skifte visning mellem resterende dage eller Slut-dato for dit Supporter medlemskab, hvis du klikker på resterende Supporter dage ved Mit Hattrick - Mit Kontor - Min Konto (ned til højre)'
       note_2: '<module>MatchIncome</module>: Du har nu mulighed for at se plads udnyttelse i from af procent satser, udfor antal solgte pladser på kamp siden'
@@ -40,30 +40,30 @@
       note_9: '<module>TransferSearchFilters</module>: filtre gemmer nu også spillere alder i dage.'
       note_10: Support for den Aserbajdsjanske sprog blev tilføjet.
       note_11: En masse rettelse omkring emner forårsaget af Hattrick.
-    0.12.0: 
+    0.12.0:
       note_0: '<header>En del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>'
-      note_1: 
-      note_2: 
-      note_3: 
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
-      note_10: 
-      note_11: 
-      note_12: 
-      note_13: 
-      note_14: 
-      note_15: 
-      note_16: 
-      note_17: 
-    0.11.0.1: 
+      note_1: ""
+      note_2: ""
+      note_3: ""
+      note_4: ""
+      note_5: ""
+      note_6: ""
+      note_7: ""
+      note_8: ""
+      note_9: ""
+      note_10: ""
+      note_11: ""
+      note_12: ""
+      note_13: ""
+      note_14: ""
+      note_15: ""
+      note_16: ""
+      note_17: ""
+    0.11.0.1:
       note_0: '<header>En del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>'
-      note_1: 
-      note_2: 
-    0.11.0: 
+      note_1: ""
+      note_2: ""
+    0.11.0:
       note_0: 'NY: <module>DirectPageLinks</module>: links er tilføjet for at få adgang til specifikke sider i en forum tråd'
       note_1: 'NY: <module>ForumModeratorPopup</module>:En rullemenu er tilføjet  til forum moderatorer på toppen af ​​tråde for at forenkle moderation.'
       note_2: 'NEW: <module>PlayerStatsTrainingWeek</module>: Mulighed tilføjet for at gruppere kampene  i henhold til trænings uge i stedet for kalenderuge.'
@@ -77,35 +77,35 @@
       note_10: '<module>MovePlayerStatement</module>: Mulighed tilføjet for at fjerne udtalelsen fuldstændigt.'
       note_11: '<module>YouthTwins</module>: Manuelt udført ændringer på HY vil nu øjeblikkeligt afspejles på ungdoms-spilleres side'
       note_12: '<header>Bugfixes</header>'
-      note_13: 
-      note_14: 
-      note_15: 
-      note_16: 
-      note_17: 
-      note_18: 
-      note_19: 
-      note_20: 
-      note_21: 
-      note_22: 
-      note_23: 
-      note_24: 
-      note_25: 
-      note_26: 
-      note_27: 
-      note_28: 
-      note_29: 
-      note_30: 
-      note_31: 
-      note_32: 
-      note_33: 
-      note_34: 
-      note_35: 
-      note_36: 
-      note_37: 
+      note_13: ""
+      note_14: ""
+      note_15: ""
+      note_16: ""
+      note_17: ""
+      note_18: ""
+      note_19: ""
+      note_20: ""
+      note_21: ""
+      note_22: ""
+      note_23: ""
+      note_24: ""
+      note_25: ""
+      note_26: ""
+      note_27: ""
+      note_28: ""
+      note_29: ""
+      note_30: ""
+      note_31: ""
+      note_32: ""
+      note_33: ""
+      note_34: ""
+      note_35: ""
+      note_36: ""
+      note_37: ""
       note_38: '<header>En del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>'
-      note_39: 
-      note_40: 
-    0.10.0: 
+      note_39: ""
+      note_40: ""
+    0.10.0:
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Lader dig filter handler af spillere. Kun tilgængelig for hold historik, ikke spillere (Aktiveret som standard)'
       note_1: 'NEW: <module>FriendlyPool</module>: Farvelægger besøgte lande i venskabs-puljen (kun for supportere, aktiveret som standard)'
       note_2: 'NEW: <module>HTEVPrediction</module>: Viser kamp odds for ligakampe leveret af <linkHTEV>HTEV</linkHTEV> (Aktiveret som standard)'
@@ -131,7 +131,7 @@
       note_22: Vi har tilføjet en ny sektion til siden Indstillinger, der skal indeholde alle moduler, der er relateret til tilgængelighed.
       note_23: 'NEW: <module>ARIALandmarks</module>: Tilføjer ARIA tegn til hjemmesiden. Dette bør hjælpe navigering af webstedet ved hjælp af skærmlæsere. De to vigtigste navigations linjer og listen over alle tilmeldte fora hedder nu "navigation". Hovedindholdet hedder nu "Hovedindhold". Alle side-bjælker med yderligere oplysninger og links vil blive markeret som "komplementære". Linkene til global og forum søgning hedder selvfølgelig "søg".'
       note_24: Hvis du har yderligere forslag så tøv ikke med at kontakte os. Vi gennemser også Hattrick Access fora.
-    0.9.3: 
+    0.9.3:
       note_0: 'En masse sproglige opdateringer, fordi Foxtrick brugere er fantastiske. Mange tak. Vi håber du bliver ved med at give din bidrag via <linkCrowdin>http://www.crowdin.net</linkCrowdin>'
       note_1: 'NEW: <module>YouthTwins</module>: Viser mængden af ​​mulige / markerede / ikke tvillinger på ungdomsspillere oversigtssiden for supportere (i forbindelse med Hattrick Youthclub)'
       note_2: '<module>MatchOrderInterface</module>: Mulighed for at vise spillere ansigter i sted for dragter for kommende og tidligere holdopstillinger  (aktiveret som standard)'
@@ -144,7 +144,7 @@
       note_9: 'CustomMedals: Forsvundne turnering trofæer er rettet'
       note_10: Ogg lydfiler til Mozilla-baserede browsere aktiveret
       note_11: Fennec indlæser staffmarker og link ressourcer fra interne kilder igen. Så de opdateres ikke dynamisk, men også sparer båndbredde.
-    0.9.2: 
+    0.9.2:
       note_0: Endnu en massiv sprog opdatering. Tak igen til alle disse oversættere.
       note_1: Omskrevet sprogregistrering. Bør aldrig fejle igen
       note_2: 'NEW: <module>PlayerStatsExperience</module>: viser, hvor meget erfaring en spiller har opnået i de enkelte kampe, og viser aktuelle underniveauer'
@@ -169,10 +169,10 @@
       note_21: Noget mere arbejde på AMO overholdelse
       note_22: '<header>For Google Chrome users</header>'
       note_23: Ser ud til, at Chrome 18 valgfri system tilladelser er fejlbehæftet. Funktionen som kræver disse (HTY staffmarker og EmbedMedia) fungerer muligvis ikke i øjeblikket.
-    0.9.1: 
+    0.9.1:
       note_0: 'HTMS: taktik brugt igen'
       note_1: 'Tablesort: sortere flydende tal'
-    0.9.0.5: 
+    0.9.0.5:
       note_0: 'Nyt modul <module>SafeForWork</module> til at kamuflere Hattrick faner ved at ændre ikon og beskrivelse'
       note_1: '<module>ForumYouthIcons</module>:tilføjet genveje til Turneringer'
       note_2: '<module>NewMail</module>: lyd indstilling tilbage'
@@ -187,23 +187,23 @@
       note_11: Link midler flyttes til endnu en server
       note_12: Nogle interne ændringer for at forbedre AMO overholdelse
       note_13: 'En stor mængde opdatering af oversættelser af: aegeansailor, brauxx, Mod-Utku, ebitechv, Polytropos, gkon13, SOLARIS1973, Fieras, margaale, ipefix, stephan.cardot, OmaniMilani, LambdaB, SI-CH, Convincedd, margaale, ljushaff, serjhanti, playMaker, CoRrRan, Aristodemos, margaale, spider007, FeritAkarsu og sandsynligvis nogle mennesker jeg glemte, så send os en besked hvis du føler dig forbigået, det er lidt svært at holde styr på alle jer. Dette er fantastisk! Tak til jer alle!'
-    0.9.0.4: 
+    0.9.0.4:
       note_0: Link midler flyttes til en anden server
       note_1: Der er tilføjet simple engelsk hændelses tekst, til ikon titler under MatchReportFormat
       note_2: MatchReportFormat og farvelægning af spiller i Turneringskampe, er aktiveret
-    0.9.0.3: 
+    0.9.0.3:
       note_0: Rettet flere moduler efter en ændring i HTs side layout
-    0.9.0.2: 
+    0.9.0.2:
       note_0: Rettet nyeste Chrome opdatering der forårsager Loyalitet visning til at gå ned
       note_1: Korrigeret opstillings links for ungdom-spillere i MatchReportFormat
       note_2: MatchSimulator kondition effekt justeret
       note_3: Nye symboler for specialiteter
       note_4: Flere oversættelse opdateringer
-    0.9.0.1: 
+    0.9.0.1:
       note_0: Rettet (utilsigtet) overdreven tilladelser for Chrome
-      note_1: Rettet LiveAlert 
+      note_1: 'Rettet LiveAlert '
       note_2: Rette nogle css-problemer (til Chrome, Opera, Safari)
-    0.9: 
+    0.9:
       note_0: '<header>Localization:</header>'
       note_1: 'Integration af crowdsourcing oversættelse service <linkCrowdin>http://www.crowdin.net</linkCrowdin>. (CatzHoek, Convincedd)'
       note_2: 'Mange oversættelses opdateringer. (Catzhoek og mange andre oversættere. blandt andre: GM-murko, LambdaB, Paulo Francisco Martins, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, edzus, silkevicious, Max_Schreck, TheZayc, -Iuve-, Mcload, Polytropos, MrAli, ripaldo, Ryo567, Louzao, kirja, MartinsPF)'
@@ -229,13 +229,13 @@
       note_22: Mange interne ændringer (ryanli, convincedd) og sikkert flere andre mindre rettelser
       note_23: '<header>For Google Chrome users</header>'
       note_24: Vi implementerede Chromes valgfri tilladelses system. Der er færre obligatoriske tilladelser, der er nødvendige nu, når du installerer FoxTrick. Du er nødt til at gemme indstillingerne én gang, da du ikke har indstillet nogen endnu, og bekræft alt efter hvilken adgang du vil tillade. Senere vil du blive bedt om at give adgang til en ekstern kilde, når du aktiverer et modul, der kræver det.
-    0.8.2: 
+    0.8.2:
       note_0: Koreanske landestandard (SI-CH)
       note_1: Litauisk landestandard (LA-MJ)
       note_2: Generelle landestandard rensning (CatzHoek)
       note_3: 'Tilføjet links til <linkHTEV>http://htev.org/</linkHTEV> statistiske side. (convincedd, CatzHoek)'
       note_4: Andre trivielle rettelser. (convincedd, CatzHoek)
-    0.8.1: 
+    0.8.1:
       note_0: '<module>ElectionTable</module>: tilpasses nye valg sidelayout. (convincedd, ryanli)'
       note_1: '<module>HTThreadMarker</module>: ny typografi. (convincedd, ryanli)'
       note_2: '<module>TableSort</module>: forhindre konflikt med Hattricks sortering. (convincedd)'
@@ -243,7 +243,7 @@
       note_4: '<module>LineupShortcut</module>: vis også for ikke-supporter.(ryanli)'
       note_5: '<module>TransferSearchResultFilters</module>: rettelse efter seneste ændringer. (convincedd)'
       note_6: '<module>SkillTable</module>: omfatter loyalitet og moderklub bonus. (convincedd)'
-    0.8: 
+    0.8:
       note_0: Arabisk landestandard. (GM-OmaniMilani)
       note_1: Ny mekanisme for modul visning ved side, gamle modul OnPagePrefs derved fjernet. (convincedd, ryanli)
       note_2: '<FTlinkMainTab>Option</FTlinkMainTab> for ikke at indlæse XML-data fra Hattrick. Også XMLs er nu cachelagret og en mulighed for at rydde cachen er blevet føjet til de relevante sider (convincedd)'
@@ -265,15 +265,15 @@
       note_18: FoxTrick aktiveret for Fennec/Firefox til mobil. (convincedd)
       note_19: Betaversioner af FoxTrick fås nu til Opera og Safari. (convincedd, ryanli)
       note_20: Andre trivielle programrettelser og forbedringer. (convincedd, ryanli)
-    0.7.2: 
+    0.7.2:
       note_0: 'Links til sammenligning af hold i Alltid i modul <module>LinksTeam</module>. (convincedd)'
       note_1: Rettelser til evne tabel på transfer søgeresultater. (convincedd, ryanli)
-    0.7.1: 
+    0.7.1:
       note_0: 'Modul <module>LeagueNewsFilter</module> opdelt i <module>LeagueNewsFilter</module> og <module>ShowLineupSet</module>. (ryanli)'
       note_1: Ændringer for at tilpasse til ny transfer søgning resultatside. (ryanli, taised)
       note_2: Landestandard opdateringer. (ryanli, CoRrRan, ljushaff, _KOHb_, slader, ElChiquitin)
       note_3: Nogle andre trivielle rettelser. (ryanli)
-    0.7: 
+    0.7:
       note_0: Islandsk landestandard. (LA-LordBastard)
       note_1: Vlaams landestandard kopieres fra hollandsk. (ryanli)
       note_2: 'Ny modul kategori, <FTlinkAggregation>Information Aggregation</FTlinkAggregation>. (ryanli)'
@@ -289,17 +289,17 @@
       note_12: 'Nye radioer i modul <module>ExtraShortcuts</module>, Balkaradio og Downtime Radio. (ljushaff, ryanli)'
       note_13: 'Muligheden for <module>LeagueAndMatchChat</module> at åbne Yaplet chat i en  ramme er fjernet. (ryanli)'
       note_14: Forskellige trivielle rettelser. (ryanli, Mod-spambot)
-    0.6.2: 
+    0.6.2:
       note_0: 'Modul <module>SeriesFlags</module> henter nu team data direkte fra Hattrick. (ryanli)'
       note_1: Landestandard opdateringer. (ljushaff, csajszi, Mod-spambot)
       note_2: Nogle andre trivielle rettelser. (ryanli)
-    0.6.1: 
+    0.6.1:
       note_0: 'Modulet <module>HTMSPoints</module> beregner nu points lokalt uden tilslutning til HTMS hjemmeside. (taised)'
       note_1: 'Modul <module>htmsStatistics</module> indlæser nu korrekt forudsigelse. (taised)'
       note_2: Landestandard opdateringer. (Mod-spambot, Mod-OmaniMilani, Baler0, ljushaff, _KOHb_, Slash-ss, MEO_Comandante)
       note_3: Kompatibel med Firefox 4.2 (ryanli)
       note_4: Nogle andre trivielle rettelser. (ryanli)
-    0.6: 
+    0.6:
       note_0: Nye præferencer interface. (ryanli)
       note_1: OAuth interface implementeres for nye Hattrick CHPP API. (ryanli)
       note_2: 'Modul <module>LiveAlert</module> til at advare HT Live mål. (ryanli)'

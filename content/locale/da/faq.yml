@@ -1,13 +1,13 @@
 ---
 - 
-  faq: 
-    style: 
+  faq:
+    style:
       question: Hvordan kan jeg style FoxTrick?
       answer: "<p>FoxTrick tilbyder et sæt præsentation værktøjer for at man kan tilpasse sine egne design. Disse værktøjer leveres via HTML-ID'er og kategorier, og du kan bruge CSS til at definere din foretrukne designs.</p>  <p>Eksempler på bruger design kan findes <linkCSSExample>her</linkCSSExample> eller <linkCSSExampleGCode>her</linkCSSExampleGCode>, som du kan redigere efter eget ønske. Når du har gemt filen, kan du bruge modulet <module>SkinPlugin</module>, til indlæsning af CSS fil, for at bruger designet er i brug.</p>"
-    sound-format: 
-      question: Hvilke filformater er tilladt for lydmeddelelse? 
+    sound-format:
+      question: 'Hvilke filformater er tilladt for lydmeddelelse? '
       answer: '<p>Forskellige browsere tillader forskellige filformater. Her er en liste (formater der ikke er på listen kan fungere, hvis de relevante plugins er installeret, eg Quicktime til at afspille mp3 i Firefox):</p> <ul><li>Mozilla: wav, ogg</li> <li>Safari (muligvis med Quicktime): wav, mp3</li> <li>Chrome: ogg, mp3, wav</li> <li>Opera: wav, ogg</li></ul>'
-    sound-location: 
+    sound-location:
       question: Hvad er grænsen for størrelsen af ​​lydmeddelelse og hvor kan de findes?
       answer: |
         <p>Alle browsere kan afspille data urls. Det er de internt gemte lyde, når du bruger load knappen via indstillingerne. Da de er konverteret og gemt i dine indstillinger, er størrelsen begrænset til omkring 160KB per lyd.</p>
@@ -15,7 +15,7 @@
         <p>Alle browsere kan også afspille lyde direkte fra internettet (http urls). Bare kopiere et link til en lyd (f.eks http://foxtrick.org/sound.wav) i redigeringsfeltet for lyde. Ingen størrelse grænse.</p>
         
         <p>Mozilla-browsere også kan afspille lyde direkte fra din harddisk (fil urls) uden størrelse grænse. Nemmeste måde at få det rigtige format: I browser skriv Ctrl + o, browse til den lydfil, og vælg den. I adresselinjen på toppen er nu det rigtige link til den lokale fil (e file:///c:/sound.wav). Kopiér og indsæt dette i redigeringsfeltet for lydene. </p>
-    authorize: 
+    authorize:
       question: Hvorfor bør jeg tillade FoxTrick at få adgang til mit hold data?
       answer: |
         <p>Selv om de fleste nødvendige data FoxTrick skal bruge, kan hentes direkte fra den side, du kigger på,kræver visse moduler stadig download af data fra Hattrick for at fungere korrekt.</p>
@@ -43,7 +43,7 @@
         <li><module>SkillTable</module></li>
         <li><module>TeamStats</module></li>
         </ul>
-    privacy: 
+    privacy:
       question: Hvordan vil FoxTrick beskytte mine personlige oplysninger?
       answer: |
         <p>FoxTrick vil ikke uploade nogen af ​​dine data eller præferencer til en server på FoxTrick, ej heller vil FoxTrick sende nogen af ​​dine private data, herunder, dit brugernavn, adgangskode og spiller ID forbundet med spiller evner til tredjepart.</p>
