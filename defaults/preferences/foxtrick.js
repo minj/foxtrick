@@ -502,6 +502,8 @@ pref("extensions.foxtrick.prefs.module.PlayerStatsExperience.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerStatsExperience.AlwaysShowAll.enabled", true);
 pref("extensions.foxtrick.prefs.module.PlayerStatsTrainingWeek.enabled", true);
 pref("extensions.foxtrick.prefs.module.PsicoTSI.enabled", true);
+pref("extensions.foxtrick.prefs.module.PsicoTSI.showOnLeft.enabled", false);
+pref("extensions.foxtrick.prefs.module.PsicoTSI.hideUnderSkills.enabled", true);
 pref("extensions.foxtrick.prefs.module.PsicoTSI.enablePlayersPage.enabled", true);
 pref("extensions.foxtrick.prefs.module.PsicoTSI.enableTLPage.enabled", false);
 pref("extensions.foxtrick.prefs.module.PsicoTSI.displayAsLink.enabled", true);

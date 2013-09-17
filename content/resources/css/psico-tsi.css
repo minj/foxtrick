@@ -9,7 +9,7 @@
 .ft-psico-hide a, .ft-psico-show a {
 	font-weight: bold;
 }
-div.ft-psico p {
+div.ft-psico p, .ft-psico-sideBar p {
 	padding: 0 !important;
 	margin: 0 !important;
 }

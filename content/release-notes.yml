@@ -11,6 +11,7 @@ en:
       note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
       note_1: 'NEW: <module>YouthSkills</module>: Enhances youth players page with information from hattrick youthclub. For HY users only.'
       note_2: '<module>StaffMarker</module> has been restructured. Please set the preferences to your liking.'
+      note_3: 'An option to display <module>PsicoTSI</module> prediction on the left sidebar was reimplemented.'
 
     0.12.2:
       note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'

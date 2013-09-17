@@ -25,7 +25,11 @@ THE SOFTWARE.
 Foxtrick.modules['PsicoTSI'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['playerDetails', 'players', 'ntPlayers', 'transferSearchResult'],
-	OPTIONS: ['enablePlayersPage', ['enableTLPage', 'displayAsLink']],
+	OPTIONS: [
+		['showOnLeft', 'hideUnderSkills'],
+		'enablePlayersPage',
+		['enableTLPage', 'displayAsLink'],
+	],
 
 	CSS: Foxtrick.InternalPath + 'resources/css/psico-tsi.css',
 	IMAGES: {
@@ -105,6 +109,7 @@ Foxtrick.modules['PsicoTSI'] = {
 		this.drawMessage(doc, entryPoint, pr.isGK, pr.undef, injured, age > 27, pr.maxSkill,
 						 pr.formHigh, pr.formAvg, pr.formLow,
 						 pr.wageHigh, pr.wageAvg, pr.wageLow, pr.limit);
+
 	},
 	/**
 	 * @param	{document}	doc
@@ -232,6 +237,7 @@ Foxtrick.modules['PsicoTSI'] = {
 
 		var table = doc.createElement('table');
 		var messagesDiv = doc.createElement('div');
+		var imgsOnly = doc.createElement('div');
 
 		var imgattr = {
 			alt: '',
@@ -241,10 +247,12 @@ Foxtrick.modules['PsicoTSI'] = {
 		};
 		var addImage = function(type) {
 			var messageP = doc.createElement('p');
-			messageP.textContent = Foxtrickl10n.getString('PsicoTSI.' + type);
+			imgattr.title = imgattr['aria-label'] = messageP.textContent =
+				Foxtrickl10n.getString('PsicoTSI.' + type);
 			imgattr.src = module.IMAGES[type];
 			var imgWrap = doc.createElement('span');
 			Foxtrick.addImage(doc, imgWrap, imgattr);
+			Foxtrick.addImage(doc, imgsOnly, imgattr);
 			messageP.insertBefore(imgWrap, messageP.firstChild);
 			messagesDiv.appendChild(messageP);
 		};
@@ -286,7 +294,7 @@ Foxtrick.modules['PsicoTSI'] = {
 				addImage('HIGH_SUBLEVELS');
 			}
 
-			table.innerHTML= '<tr><th colspan="4" class="center"><b>' +
+			table.innerHTML = '<tr><th colspan="4" class="center"><b>' +
 				mainSkillText.toUpperCase() + '</tr>' +
 				'<tr><th colspan="2" class="center"><b>' +
 				Foxtrickl10n.getString('PsicoTSI.TSI_PREDICTION') + '</b></th>' +
@@ -312,17 +320,41 @@ Foxtrick.modules['PsicoTSI'] = {
 				(!isWagePredictionAvailable ? ' class="shy"' : '') + '>' + wageLow + '</td></tr>';
 		}
 
-		var title = doc.createElement('h2');
-		title.appendChild(doc.createTextNode(this.title));
-		var divobj = Foxtrick.createFeaturedElement(doc, this, 'div');
-		Foxtrick.addClass(divobj, 'ft-psico-mainBox mainBox');
+		var onLeft = FoxtrickPrefs.isModuleOptionEnabled('PsicoTSI', 'showOnLeft');
+		var hide = FoxtrickPrefs.isModuleOptionEnabled('PsicoTSI', 'hideUnderSkills');
+		if (!onLeft || !hide) {
+			var title = doc.createElement('h2');
+			title.appendChild(doc.createTextNode(this.title));
+			var divobj = Foxtrick.createFeaturedElement(doc, this, 'div');
+			Foxtrick.addClass(divobj, 'ft-psico-mainBox mainBox');
 
-		divobj.appendChild(title);
-		divobj.appendChild(table);
-		divobj.appendChild(messagesDiv);
+			divobj.appendChild(title);
+			divobj.appendChild(table);
+			divobj.appendChild(messagesDiv);
 
-		entryPoint.parentNode.insertBefore(divobj, entryPoint.nextSibling);
+			entryPoint.parentNode.insertBefore(divobj, entryPoint.nextSibling);
+		}
 
+		if (onLeft) {
+			var sidebar = Foxtrick.createFeaturedElement(doc, module, 'div');
+			Foxtrick.addClass(sidebar, 'ft-psico-sideBar');
+
+			var STR_FORM = Foxtrickl10n.getString('PsicoTSI.FORM');
+			var CurrencyName = Foxtrick.util.currency.getSymbol(doc);
+
+			var formH = '<p>[' + STR_FORM + '+]=' + formHigh + '</p>';
+			var formA = '<p>[' + STR_FORM + '~]=' + formAvg + '</p>';
+			var formL = '<p>[' + STR_FORM + '-]=' + formLow + '</p>';
+			var wageH = '<p>[' + CurrencyName + '+]=' + wageHigh + '</p>';
+			var wageA = '<p>[' + CurrencyName + '~]=' + wageAvg + '</p>';
+			var wageL = '<p>[' + CurrencyName + '-]=' + wageLow + '</p>';
+			sidebar.innerHTML = '<p><b>' + mainSkillText + ':</b></p>' + formH + formA + formL +
+				wageH + wageA + wageL;
+
+			sidebar.appendChild(imgsOnly);
+
+			Foxtrick.addBoxToSidebar(doc, module.title, sidebar, 0, true);
+		}
 	},
 	/**
 	 * Draw PsicoTSI prediction div in player container (players page, TL results)
