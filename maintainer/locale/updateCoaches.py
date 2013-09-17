@@ -15,14 +15,6 @@ if __name__ == '__main__':
 
 	chpp = Client.ChppClient(CONSUMER_KEY, CONSUMER_SECRET)
 	chpp.setAccessToken((AccessToken.KEY, AccessToken.SECRET))
-
-	# in case no access token is present
-	#auth_url = chpp.getAuthorizeUrl()
-	#print auth_url
-	#verifier = raw_input('Verifier:')
-	#accessToken = chpp.getAccessToken(verifier)
-	#print accessToken
-
 	session = chpp.getSession()
 
 	def getCoaches(id):
@@ -62,6 +54,9 @@ if __name__ == '__main__':
 
 	u20 = getCoaches(4);
 	nt = getCoaches(2);
+
+	u20 = sorted(u20, key=lambda x: x["LeagueId"])
+	nt = sorted(nt, key=lambda x: x["LeagueId"])
 
 	saveCoaches(u20, '/home/foxtrick/trunk/res/staff/u20coaches.json')
 	saveCoaches(nt, '/home/foxtrick/trunk/res/staff/ntcoaches.json')
