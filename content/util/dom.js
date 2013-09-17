@@ -238,13 +238,14 @@ Foxtrick.removeMutationEventListener = function(target, type, listener, useCaptu
  * @param title - the title of the box, will create one if inexists
  * @param content - HTML node of the content
  * @param prec - precedence of the box, smaller value will be placed higher
+ * @param forceLeft - force the box to be desplayed on the left
  * @return box to be added to
  */
-Foxtrick.addBoxToSidebar = function(doc, title, content, prec) {
+Foxtrick.addBoxToSidebar = function(doc, title, content, prec, forceLeft) {
 	// class of the box to add
 	var boxClass = '';
 	var sidebar;
-	((sidebar = doc.getElementById('sidebar')) && (boxClass = 'sidebarBox'))
+	((sidebar = doc.getElementById('sidebar')) && (boxClass = 'sidebarBox') && !forceLeft)
 		|| ((sidebar = doc.getElementsByClassName('subMenu')[0]) && (boxClass = 'subMenuBox'))
 		|| ((sidebar = doc.getElementsByClassName('subMenuConf')[0]) && (boxClass = 'subMenuBox'));
 
