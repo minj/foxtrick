@@ -76,40 +76,31 @@ Foxtrick.modules['PsicoTSI'] = {
 		if (!doc.getElementsByClassName('playerInfo').length)
 			return;
 
-		var entryPoint;
-		var basicSkills = Foxtrick.Pages.Player.getBasicSkills(doc);
-		var frm = parseInt(basicSkills.form[0], 10);
-		var sta = parseInt(basicSkills.stamina[0], 10);
-		var playerAge = Foxtrick.Pages.Player.getAge(doc);
-		var age = playerAge.years;
-		var currTSI = Foxtrick.Pages.Player.getTsi(doc);
-		var currWAGE = parseInt(Foxtrick.Pages.Player.getWage(doc).base *
-								Foxtrick.util.currency.getRate(doc), 10);
-		var injured = (Foxtrick.Pages.Player.getInjuryWeeks(doc) && true);
+		var p = Foxtrick.Pages.Player.getSkills(doc);
 
-		var skills = Foxtrick.Pages.Player.getSkills(doc);
-		if (typeof (skills.playmaking) == 'undefined') {
-			entryPoint = doc.getElementById('ctl00_ctl00_CPContent_CPMain_updBestLatest');
-			this.drawMessage(doc, entryPoint);
+		if (typeof (p.playmaking) == 'undefined') {
+			this.drawMessage(doc, doc.getElementById('ctl00_ctl00_CPContent_CPMain_updBestLatest'));
 			return;
 		}
 
-		var boxes = doc.querySelectorAll('#mainBody > .mainBox');
-		var idx;
-		for (idx = boxes.length - 1; idx > -1; --idx)
-			if (boxes[idx].id != 'trainingDetails')
-				break;
-		if (idx < 1)
-			return;
-		entryPoint = boxes[idx - 1];
+		p.age = Foxtrick.Pages.Player.getAge(doc);
+		p.tsi = Foxtrick.Pages.Player.getTsi(doc);
+		p.salary = Foxtrick.Pages.Player.getWage(doc).base;
+		p.isAbroad = false;
 
-		var pla = skills.playmaking, win = skills.winger, sco = skills.scoring, goa = skills.keeper,
-			pas = skills.passing, def = skills.defending, sp = skills.setPieces;
-		var playerskills = [frm, sta, pla, win, sco, goa, pas, def, sp];
+		var basicSkills = Foxtrick.Pages.Player.getBasicSkills(doc);
+		p.form = parseInt(basicSkills.form[0], 10);
+		p.stamina = parseInt(basicSkills.stamina[0], 10);
 
-		var pr = Foxtrick.psico.getPrediction(playerskills, currTSI, currWAGE, age);
+		var age = p.age.years;
+		var injured = Foxtrick.Pages.Player.getInjuryWeeks(doc) && true;
+
+		var pr = this.getPrediction(p, Foxtrick.util.currency.getRate(doc));
 		if (!pr)
 			return;
+
+		// assuming player skills is the first mainBox
+		var entryPoint = doc.querySelector('#mainBody > .mainBox');
 
 		this.drawMessage(doc, entryPoint, pr.isGK, pr.undef, injured, age > 27, pr.maxSkill,
 						 pr.formHigh, pr.formAvg, pr.formLow,
@@ -220,7 +211,7 @@ Foxtrick.modules['PsicoTSI'] = {
 	/**
 	 * Draw PsicoTSI prediction table (player page)
 	 * @param	{documen}	doc
-	 * @param	{element}	entryPoint
+	 * @param	{element}	entryPoint				the result is added as nextSibling to this
 	 * @param	{Boolean}	isGK
 	 * @param	{Boolean}	isUndefinedMainskill
 	 * @param	{Boolean}	isInjured
@@ -324,7 +315,7 @@ Foxtrick.modules['PsicoTSI'] = {
 		var title = doc.createElement('h2');
 		title.appendChild(doc.createTextNode(this.title));
 		var divobj = Foxtrick.createFeaturedElement(doc, this, 'div');
-		Foxtrick.addClass(divobj, 'ft-psico-mainBox');
+		Foxtrick.addClass(divobj, 'ft-psico-mainBox mainBox');
 
 		divobj.appendChild(title);
 		divobj.appendChild(table);
