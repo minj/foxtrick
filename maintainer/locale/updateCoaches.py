@@ -35,6 +35,7 @@ if __name__ == '__main__':
 		for iTeam in iTeams:
 			team = {}
 			team['TeamId'] = int(iTeam.find('NationalTeamID').text)
+			team['LeagueId'] = int(iTeam.find('LeagueId').text)
 			team['TeamName'] = iTeam.find('NationalTeamName').text
 			teams.append(team)
 
@@ -52,9 +53,9 @@ if __name__ == '__main__':
 		file = open( filename, "w")
 		file.write('{\n')
 		file.write('\t"type": "%s",\n' % "coach")
-		file.write('\t"internal": "false",\n')
+		file.write('\t"internal": "true",\n')
 		file.write('\t"list": [\n')
-		file.write('\t\t' + ',\n\t\t'.join(map(lambda a: '{ "TeamId": %d, "TeamName": "%s", "CoachId": %d, "CoachName": "%s" }' % (a["TeamId"], a["TeamName"].encode('utf-8'), a["CoachId"], a["CoachName"].encode('utf-8')), coaches)))
+		file.write('\t\t' + ',\n\t\t'.join(map(lambda a: '{ "LeagueId": %d, "TeamId": %d, "TeamName": "%s", "CoachId": %d, "CoachName": "%s" }' % (a["LeagueId"], a["TeamId"], a["TeamName"].encode('utf-8'), a["CoachId"], a["CoachName"].encode('utf-8')), coaches)))
 		file.write('\n\t]\n}')
 		file.close()
 		print filename, 'written'
