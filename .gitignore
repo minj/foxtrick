@@ -8,4 +8,6 @@ maintainer/upload.conf.*
 maintainer/locale/crowdinKey.py
 maintainer/*.pem
 maintainer/*.der
+maintainer/locale/Hattrick/CHPP/Credentials.py
+maintainer/locale/Hattrick/CHPP/AccessToken.py
 build/
