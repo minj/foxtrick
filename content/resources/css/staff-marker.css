@@ -2,66 +2,50 @@
 
 /* Order by ascending priority since an element may have more than one class
    so that the last declared one wins. */
+.ft-staff-icon {
+	width: 18px;
+	height: 16px;
+	background-position: 50% 50%;
+	vertical-align: text-bottom !important;
+}
+.ft-staff-style {
+	display: inline-block;
+	min-height: 16px;
+}
 .ft-staff-supported{
 	background-image: url("chrome://foxtrick/content/resources/img/staff/supported.png");
 	background-repeat: no-repeat;
-	padding: 1px 1px 1px 18px !important;
 }
 
 .ft-staff-supporter{
 	background-image: url("chrome://foxtrick/content/resources/img/staff/supporter.png");
 	background-repeat: no-repeat;
-	padding: 1px 1px 1px 18px !important;
 }
 
 .ft-staff-htls {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/htls.png");
 	background-repeat: no-repeat;
-	padding: 1px 1px 1px 18px !important;
 }
 
 .ft-staff-hty {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/hyouthclub.png");
 	background-repeat: no-repeat;
-	padding: 1px 1px 1px 18px !important;
 }
 
 .ft-staff-foxtrick{
 	background-image: url("chrome://foxtrick/content/resources/img/staff/foxtrick.png");
 	background-repeat: no-repeat;
-	padding: 1px 1px 1px 18px !important;
 }
 
 .ft-staff-chpp-holder {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/chpp.png");
 	background-repeat: no-repeat;
-	padding: 1px 1px 1px 24px !important;
-}
-
-.ft-staff-hty.ft-staff-foxtrick {
-	background-image: url("chrome://foxtrick/content/resources/img/staff/foxtrick.png"), url("chrome://foxtrick/content/resources/img/staff/hyouthclub.png");
-	background-repeat: no-repeat, no-repeat;
-	background-position: 0px 0px, 18px 0px;
-	padding: 1px 1px 1px 36px !important;
-}
-
-.ft-staff-foxtrick.ft-staff-chpp-holder {
-	background-image: url("chrome://foxtrick/content/resources/img/staff/chpp.png"), url("chrome://foxtrick/content/resources/img/staff/foxtrick.png");
-	background-repeat: no-repeat, no-repeat;
-	background-position: 0px 0px, 25px 0px;
-	padding: 1px 1px 1px 44px !important;
-}
-
-.ft-staff-hty.ft-staff-chpp-holder {
-	background-image: url("chrome://foxtrick/content/resources/img/staff/chpp.png"), url("chrome://foxtrick/content/resources/img/staff/hyouthclub.png");
-	background-repeat: no-repeat, no-repeat;
-	background-position: 0px 0px, 25px 0px;
-	padding: 1px 1px 1px 44px !important;
+	width: 24px;
 }
 
 .ft-staff-editor {
-	background-color: #7BB300;
-	color: white !important;
+	background-image: url("chrome://foxtrick/content/resources/img/staff/editor.png");
+	background-repeat: no-repeat;
 }
 
 .ft-staff-chpp {

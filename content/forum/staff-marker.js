@@ -194,14 +194,19 @@ Foxtrick.modules['StaffMarker'] = {
 						return alias.search(pair[0]) == 0;
 					}, markers);
 					if (first) {
-						Foxtrick.addClass(object, 'ft-staff-' + first[1]);
+						Foxtrick.addClass(object, 'ft-staff-style ft-staff-' + first[1]);
 					}
 				}
 				// data loaded from external files
+				var img = doc.createElement('img');
+				img.src = '/Img/Icons/transparent.gif';
 				var type;
 				for (type in data) {
 					if (data[type][id] == true && enable[type] == true) {
-						Foxtrick.addClass(object, 'ft-staff-' + type);
+						var icon = img.cloneNode();
+						Foxtrick.addClass(icon, 'ft-staff-icon ft-staff-' + type);
+						if (type !== 'coach')
+							object.insertBefore(icon, object.firstChild);
 						if (type == 'chpp-holder') {
 							var appNames = '';
 							Foxtrick.map(function(appName) {
