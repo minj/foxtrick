@@ -39,7 +39,7 @@ Foxtrick.modules['StaffMarker'] = {
 				obj[key] = {};
 				if (key == 'chpp-holder')
 					obj[key]['apps'] = {};
-				else if (key == 'coach')
+				else if (key == 'coach' && typeof obj[key]['nts'] === 'undefined')
 					obj[key]['nts'] = {};
 				Foxtrick.map(function(user) {
 					obj[key][user.id] = true;
