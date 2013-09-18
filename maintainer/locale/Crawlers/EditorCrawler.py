@@ -27,7 +27,7 @@ def getList(username, password):
 		return []
 
 def saveJson(list, filename):	
-	file = open( outfile, "w")
+	file = open( filename, "w")
 	file.write('{\n')
 	file.write('\t"type": "%s",\n' % "editor")
 	file.write('\t"internal": "true",\n')
