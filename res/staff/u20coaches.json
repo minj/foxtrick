@@ -2,7 +2,6 @@
 	"type": "coach",
 	"internal": "true",
 	"list": [
-	
 		{ "id": 7123188, "name": "Matt-", "LeagueId": 1, "TeamId": 3041, "TeamName": "U-20 Sverige" },
 		{ "id": 807178, "name": "Mod-AndersAnderinho", "LeagueId": 2, "TeamId": 3042, "TeamName": "U-20 England" },
 		{ "id": 1761372, "name": "JabbaPapa", "LeagueId": 3, "TeamId": 3043, "TeamName": "U-20 Deutschland" },
