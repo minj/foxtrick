@@ -8,9 +8,14 @@
 Foxtrick.modules['StaffMarker'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: ['forumViewThread', 'forumWritePost', 'teamPage'],
-	OPTIONS: ['officials', 'editors', 'foxtrick', 'chpp.contributors', 'chpp.holders', 'supporters', 'manager', 'own'],
+	OPTIONS: [
+		'officials', 'editors', 'foxtrick',
+		'chpp.contributors', 'chpp.holders',
+		'supporters', 'nationalCoaches',
+		'manager', 'own'
+	],
 	OPTION_EDITS: true,
-	OPTION_EDITS_DISABLED_LIST: [true, true, true, true, true, true, true, false],
+	OPTION_EDITS_DISABLED_LIST: [true, true, true, true, true, true, true, true, false],
 
 	CSS: Foxtrick.InternalPath + 'resources/css/staff-marker.css',
 
@@ -33,11 +38,15 @@ Foxtrick.modules['StaffMarker'] = {
 				obj[key] = {};
 				if (key == 'chpp-holder')
 					obj[key]['apps'] = {};
+				else if (key == 'coach')
+					obj[key]['nts'] = {};
 				Foxtrick.map(function(user) {
 					obj[key][user.id] = true;
 					if (key == 'chpp-holder')
 						obj[key]['apps'][user.id] = user.appNames;
-
+					else if (key == 'coach') {
+						obj[key]['nts'][user.id] = { leagueId: user.LeagueId, name: user.TeamName };
+					}
 				}, list);
 			}
 			// all your data are belong to us
@@ -76,6 +85,10 @@ Foxtrick.modules['StaffMarker'] = {
 			&& Foxtrick.util.layout.isSupporter(doc)) {
 			uris.push('supporter');
 			uris.push('supported');
+		}
+		if (FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'nationalCoaches')) {
+			uris.push(Foxtrick.DataPath + 'staff/ntcoaches.json');
+			uris.push(Foxtrick.DataPath + 'staff/u20coaches.json');
 		}
 
 		// counter of URI remaining to fetch
@@ -141,6 +154,9 @@ Foxtrick.modules['StaffMarker'] = {
 				Foxtrick.modules.StaffMarker.load(doc);
 				return;
 			}
+
+			var coachTitle = Foxtrickl10n.getString('StaffMarker.coachTitle');
+
 			// getting user-defined IDs and colors
 			var customMarker = {};
 			if (FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'own')) {
@@ -192,6 +208,13 @@ Foxtrick.modules['StaffMarker'] = {
 							else
 								object.setAttribute('title', object.textContent.match(/\S+/)[0] +
 													appNames);
+						}
+						else if (type == 'coach') {
+							var nt = data[type]['nts'][id];
+							var title = coachTitle.replace(/%s/, nt.name);
+							var flagImg = Foxtrick.util.id
+								.createFlagFromLeagueId(doc, nt.leagueId, null, title, true);
+							object.insertBefore(flagImg, object.firstChild);
 						}
 					}
 				}
@@ -255,6 +278,7 @@ Foxtrick.modules['StaffMarker'] = {
 			enable['htls'] = enable['hty'] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'chpp.contributors');
 			enable['chpp-holder'] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'chpp.holders');
 			enable['supporter'] = enable['supported'] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'supporters');
+			enable['coach'] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'supporters');
 
 			if (Foxtrick.isPage(doc, 'forumViewThread') || Foxtrick.isPage(doc, 'forumWritePost')) {
 				markThread(doc, modifier);
