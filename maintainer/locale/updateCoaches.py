@@ -47,7 +47,7 @@ if __name__ == '__main__':
 		file.write('\t"type": "%s",\n' % "coach")
 		file.write('\t"internal": "true",\n')
 		file.write('\t"list": [\n')
-		file.write('\t\t' + ',\n\t\t'.join(map(lambda a: '{ "LeagueId": %d, "TeamId": %d, "TeamName": "%s", "CoachId": %d, "CoachName": "%s" }' % (a["LeagueId"], a["TeamId"], a["TeamName"].encode('utf-8'), a["CoachId"], a["CoachName"].encode('utf-8')), coaches)))
+		file.write('\t\t' + ',\n\t\t'.join(map(lambda a: '{ "id": %d, "name": "%s", "LeagueId": %d, "TeamId": %d, "TeamName": "%s" }' % (a["CoachId"], a["CoachName"].encode('utf-8'), a["LeagueId"], a["TeamId"], a["TeamName"].encode('utf-8')), coaches)))
 		file.write('\n\t]\n}')
 		file.close()
 		print filename, 'written'
