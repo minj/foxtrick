@@ -115,6 +115,15 @@ td.ft-lineup-cell { vertical-align: middle !important; }
 .ft-select-container > select { display: block; margin: 0 !important; clear: right; }
 #foxtrick-filter-select option[value="attribute-all"] {background-color:#ccc;}
 
+/* same style as HT's a.flag img */
+span.flag img {
+	width: 20px;
+	height: 12px;
+	border: #ddc 1px solid;
+	vertical-align: middle;
+	margin: 0 2px 2px 0;
+}
+
 /* FoxTrick note */
 .ft-note {
 	background-color: #efefff;

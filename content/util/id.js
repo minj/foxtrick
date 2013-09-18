@@ -306,11 +306,12 @@ Foxtrick.util.id.getCurrencyRateFromId = function(id) {
  * @param	{Integer}	countryId
  * @param	{String}	href		optional
  * @param	{String}	title		optional
- * @returns	{HTMLLinkElement}		flag link
+ * @param	{Boolean}	imgOnly		return image only
+ * @returns	{element}		flag
  */
-Foxtrick.util.id.createFlagFromCountryId = function(doc, countryId, href, title) {
+Foxtrick.util.id.createFlagFromCountryId = function(doc, countryId, href, title, imgOnly) {
 	var leagueId = Foxtrick.XMLData.getLeagueIdByCountryId(countryId);
-	return Foxtrick.util.id.createFlagFromLeagueId(doc, leagueId, href, title);
+	return Foxtrick.util.id.createFlagFromLeagueId(doc, leagueId, href, title, imgOnly);
 }
 /**
  * Returns a flag as a link element
@@ -320,9 +321,10 @@ Foxtrick.util.id.createFlagFromCountryId = function(doc, countryId, href, title)
  * @param	{Integer}	leagueId
  * @param	{String}	href		optional
  * @param	{String}	title		optional
- * @returns	{HTMLLinkElement}		flag link
+ * @param	{Boolean}	imgOnly		return image only
+ * @returns	{element}		flag
  */
-Foxtrick.util.id.createFlagFromLeagueId = function(doc, leagueId, href, title) {
+Foxtrick.util.id.createFlagFromLeagueId = function(doc, leagueId, href, title, imgOnly) {
 	var leagueName = 'New Moon';
 	if (leagueId) {
 		leagueName = Foxtrick.util.id.getLeagueDataFromId(leagueId).LeagueName;
@@ -331,6 +333,9 @@ Foxtrick.util.id.createFlagFromLeagueId = function(doc, leagueId, href, title) {
 	if (href)
 		a.href = href;
 	else a.href = '/World/Leagues/League.aspx?LeagueID=' + leagueId;
+
+	if (imgOnly)
+		a = doc.createElement('span');
 	a.className = 'flag inner';
 	var img = doc.createElement('img');
 	img.className = 'flag' + leagueId;
