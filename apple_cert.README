@@ -1,7 +1,7 @@
 install new apple dev cert:
 
 *get it form apple dev center
-https://developer.apple.com/certificates/index.action
+https://developer.apple.com/account/safari/certificate/certificateList.action
 ID: email PASS: look in inbox
 *install as instucted
 
@@ -12,16 +12,17 @@ ID: email PASS: look in inbox
 ---------
 linux:
 -----
-#no idea how to generate csr properly on linux
-#apple gives error
-#this _might_ work if exported from mac...
-mv dowloaded-from-apple.cer safari.der
-openssl x509  -inform der -in safari.der -text -out cert.pem
-openssl pkcs12  -nocerts -in exported-from-mac.p12 -out mykey.pem
-openssl rsa -in mykey.pem >> MYKEY-NOCRYPT.key
-# assemble safari.pem from cert.pem and MYKEY-NOCRYPT.key
+openssl req -subj "/CN=foctrick dev/O=User" -nodes -newkey rsa:2048 -keyout private.key -out request.csr
+#LOL at the typo in apple dev account
+#upload request.csr to https://developer.apple.com/account/safari/certificate/certificateList.action
+#download safari_extension.cer
+mv safari_extension.cer safari.der
+openssl x509  -inform der -in safari.der -out cert.pem
+cat private.key cert.pem > safari.pem
+# upload safari.der and safari.pem to build machine
 
-#cf http://shib.kuleuven.be/docs/ssl_commands.shtml 
+# cf http://legacy-docs.trigger.io/en/v1.4/tools/ios-linux.html
+# http://shib.kuleuven.be/docs/ssl_commands.shtml
 # http://help.adobe.com/en_US/as3/iphone/WS144092a96ffef7cc-371badff126abc17b1f-7fff.html
 
 win:
@@ -33,6 +34,3 @@ win:
 http://nl.globalsign.com/en/support/ssl+certificates/microsoft/all+windows+servers/export+private+key+or+certificate/
 
 *copy and paste to fit old format
-
-
-
