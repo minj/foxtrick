@@ -212,7 +212,8 @@ Foxtrick.modules['TeamPopupLinks'] = {
 				// to show a pop-up!
 				var showPopup = function(ev) {
 					var findLink = function(node) {
-						if (node.nodeName.toLowerCase() == 'a')
+						if (node.nodeName.toLowerCase() == 'a' &&
+							!Foxtrick.hasClass(node, 'ft-no-popup'))
 							return node;
 						if (!node.parentNode)
 							return null;
@@ -413,7 +414,8 @@ Foxtrick.modules['TeamPopupLinks'] = {
 		var i = 0, aLink;
 		while (aLink = aLinks[i++]) {
 			if (!aLink.hasAttribute('href') || aLink.getElementsByTagName('img')[0] != null ||
-			    aLink.parentNode.className == 'liveTabText')
+			    aLink.parentNode.className == 'liveTabText' ||
+				Foxtrick.hasClass(aLink, 'ft-no-popup'))
 				continue; // don't add to buttons, and htlive tabs
 			addSpan(aLink);
 		}

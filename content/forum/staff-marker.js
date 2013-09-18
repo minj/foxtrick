@@ -46,7 +46,11 @@ Foxtrick.modules['StaffMarker'] = {
 					if (key == 'chpp-holder')
 						obj[key]['apps'][user.id] = user.appNames;
 					else if (key == 'coach') {
-						obj[key]['nts'][user.id] = { leagueId: user.LeagueId, name: user.TeamName };
+						obj[key]['nts'][user.id] = {
+							leagueId: user.LeagueId,
+							name: user.TeamName,
+							teamId: user.TeamId
+						};
 					}
 				}, list);
 			}
@@ -213,8 +217,10 @@ Foxtrick.modules['StaffMarker'] = {
 						else if (type == 'coach') {
 							var nt = data[type]['nts'][id];
 							var title = coachTitle.replace(/%s/, nt.name);
+							var url = '/Club/NationalTeam/NationalTeam.aspx?teamId=' + nt.teamId;
 							var flagImg = Foxtrick.util.id
-								.createFlagFromLeagueId(doc, nt.leagueId, null, title, true);
+								.createFlagFromLeagueId(doc, nt.leagueId, url, title, false);
+							Foxtrick.addClass(flagImg, 'ft-no-popup');
 							object.insertBefore(flagImg, object.firstChild);
 						}
 					}
