@@ -298,9 +298,31 @@ Foxtrick.util.id.getCurrencyRateFromId = function(id) {
 	catch (e) {}
 	Foxtrick.dump('getCurrencyRate error. id: ' + id + '\n');
 };
-
+/**
+ * Returns a flag as a link element
+ * link href and img title may optionally override defaults:
+ * league link and league name respectively
+ * @param	{document}	doc
+ * @param	{Integer}	countryId
+ * @param	{String}	href		optional
+ * @param	{String}	title		optional
+ * @returns	{HTMLLinkElement}		flag link
+ */
 Foxtrick.util.id.createFlagFromCountryId = function(doc, countryId, href, title) {
 	var leagueId = Foxtrick.XMLData.getLeagueIdByCountryId(countryId);
+	return Foxtrick.util.id.createFlagFromLeagueId(doc, leagueId, href, title);
+}
+/**
+ * Returns a flag as a link element
+ * link href and img title may optionally override defaults:
+ * league link and league name respectively
+ * @param	{document}	doc
+ * @param	{Integer}	leagueId
+ * @param	{String}	href		optional
+ * @param	{String}	title		optional
+ * @returns	{HTMLLinkElement}		flag link
+ */
+Foxtrick.util.id.createFlagFromLeagueId = function(doc, leagueId, href, title) {
 	var leagueName = 'New Moon';
 	if (leagueId) {
 		leagueName = Foxtrick.util.id.getLeagueDataFromId(leagueId).LeagueName;
