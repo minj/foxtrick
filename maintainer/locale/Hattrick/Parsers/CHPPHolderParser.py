@@ -75,7 +75,7 @@ class CHPPHolderParser(HTMLParser.HTMLParser):
 					self.currentUser["appNames"].append(self.currentAppname)
 					self.users.append(self.currentUser)
 				else:
-					print "already in there"
+					#print "already in there"
 					for u in self.users:
 						if u['id'] == self.currentUser['id']:
 							u['appNames'].append(self.currentAppname)

@@ -77,8 +77,6 @@ class HattrickWeb:
 		
 		if self.isLoginRequired():
 			raise Exception('login_failed')
-		else:
-			print 'Logged in!'
 
 	def setFormValue(self, form, value):
 		self.browser.select_form(name="aspnetForm")
