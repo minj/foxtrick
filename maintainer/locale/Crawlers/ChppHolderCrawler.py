@@ -39,7 +39,7 @@ def run(username, password):
 	editors = getList(username, password);
 	editors = sorted(editors, key=lambda x: x["name"])
 	if len(editors):
-		saveJson(editors, '/foxtrick/trunk/res/stuff/editor.json')
+		saveJson(editors, '/home/foxtrick/trunk/res/stuff/editor.json')
 
 if __name__ == "__main__":
 	user = raw_input("Login:");
