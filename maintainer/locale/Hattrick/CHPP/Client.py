@@ -26,13 +26,13 @@ class ChppOAuth1Service(OAuth1Service):
                           key_token='oauth_token',
                           key_token_secret='oauth_token_secret',
                           **kwargs):
-       
+
         r = super(ChppOAuth1Service, self).get_raw_request_token(method=method, **kwargs)
-        
+
         if r.status_code == 401:
             raise ChppNotAuthorized('NotAuthorized: Invalid consumer credentials')
         else:
-             r.raise_for_status() 
+             r.raise_for_status()
 
         request_token, request_token_secret = process_token_request(r, decoder, key_token, key_token_secret)
         return request_token, request_token_secret
@@ -48,7 +48,7 @@ class ChppOAuth1Service(OAuth1Service):
                          key_token='oauth_token',
                          key_token_secret='oauth_token_secret',
                          **kwargs):
-        
+
         r = super(ChppOAuth1Service, self).get_raw_access_token(request_token,
                                       request_token_secret,
                                       method=method,
@@ -106,7 +106,7 @@ class ChppClient():
                 params['file'] = file
             else:
                 raise ChppNoFileSpecified('No file specified')
-        
+
         r = self.chppSession.get('', params=params)
 
         if r.status_code == 401:
