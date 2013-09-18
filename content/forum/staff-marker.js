@@ -36,7 +36,8 @@ Foxtrick.modules['StaffMarker'] = {
 				var key = parsed['type'];
 				var list = parsed['list'];
 				// add them!
-				obj[key] = {};
+				if (typeof obj[key] === 'undefined')
+					obj[key] = {};
 				if (key == 'chpp-holder')
 					obj[key]['apps'] = {};
 				else if (key == 'coach' && typeof obj[key]['nts'] === 'undefined')
