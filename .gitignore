@@ -1,10 +1,11 @@
 .*
+*.pyc
 *.log
 *.xpi
 *.crx
 *.oex
 *.safariextz
-maintainer/upload.conf.*
+maintainer/upload.*conf.sh
 maintainer/locale/crowdinKey.py
 maintainer/*.pem
 maintainer/*.der
