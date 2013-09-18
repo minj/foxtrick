@@ -8,6 +8,7 @@
 Foxtrick.modules['StaffMarker'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.FORUM,
 	PAGES: ['forumViewThread', 'forumWritePost', 'teamPage'],
+	NICE: 11, // after team-popup-links
 	OPTIONS: [
 		'officials', 'editors', 'foxtrick',
 		'chpp.contributors', 'chpp.holders',
