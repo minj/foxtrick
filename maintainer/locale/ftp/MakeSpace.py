@@ -54,7 +54,7 @@ def deleteFiles(keep=5):
 		for idx, value in enumerate(files[dir]):
 			if idx < len(files[dir]) - keep:
 				files[dir][idx]['status'] = 'deleted';
-				res = ftp.delete(value['name']
+				res = ftp.delete(value['name'])
 				files[dir][idx]['srvmsg'] = res;
 			else:
 				files[dir][idx]['status'] = 'kept';
