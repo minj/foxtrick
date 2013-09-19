@@ -48,18 +48,17 @@ def deleteFiles(keep=5):
 	ftp.login(Credentials.USER,Credentials.PW)
 	files = getFiles(ftp)
 	
-	log = []
 	#show them
 	for dir in files:
 		ftp.cwd("/htdocs/%s" % dir)
 		for idx, value in enumerate(files[dir]):
 			if idx < len(files[dir]) - keep:
-				log.append('Deleting ' + str(value))
-				res = ftp.delete(value['name'])
-				log.append(res)
+				files[dir][idx]['status'] = 'deleted';
+				res = ftp.delete(value['name']
+				files[dir][idx]['srvmsg'] = res;
 			else:
-				log.append('Keeping ' + str(value))
+				files[dir][idx]['status'] = 'kept';
 
 	ftp.quit()
 
-	return log
+	return files
