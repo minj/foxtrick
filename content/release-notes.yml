@@ -25,6 +25,7 @@ en:
       note_11: "Unused players will no longer be included when using the 'Fill penalty takers' feature in <module>MatchOrderInterface</module>."
       note_12: "A work-around for negative player IDs in neighborhood team matches (prevent walkovers in friendlies) was provided."
       note_13: "The challenge link in <module>TeamPopupLinks</module> was fixed."
+      note_14: "<module>HeaderToggle</module> has been made more robust against influences by other modules or Hattrick itself."
 
     0.12.1.1:
       note_0: 'Translation updates.'
