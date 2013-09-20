@@ -19,4 +19,8 @@ h2.tblBox.ft-expander-expanded
 	background-image: none;
 }
 
+.ft-headertoggle-hidden {
+	display: none;
+}
+
 }

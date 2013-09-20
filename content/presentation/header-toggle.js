@@ -43,7 +43,7 @@ Foxtrick.modules['HeaderToggle'] = {
 			var toggleSiblings = function(el) {
 				var parent = el.parentNode;
 				el = el.nextSibling;
-				var forumThreads = {}, numUnread = 0, idString = '';
+				var forumThreads = {}, numUnread = 0;
 				while (el) {
 					// if text node, wrap in span on first encounter
 					if (el.nodeType == Foxtrick.NodeTypes.TEXT_NODE) {
@@ -67,16 +67,11 @@ Foxtrick.modules['HeaderToggle'] = {
 						break;
 					}
 
-					// don't show which is hidden originally, eg ft-forum-preview-area
-					if (el.id == 'ft-forum-preview-area' && Foxtrick.hasClass(el, 'hidden')) {
-						el = el.nextSibling;
-						continue;
-					}
-
-					Foxtrick.toggleClass(el, 'hidden');
-
+					//use our own hidden class so we overrule ht but won't show stuff that is hidden for another reason
+					Foxtrick.toggleClass(el, 'ft-headertoggle-hidden');
+					
 					// count new forum postings
-					if (Foxtrick.hasClass(el, 'hidden') &&
+					if (Foxtrick.hasClass(el, 'ft-headertoggle-hidden') &&
 					    el.getElementsByClassName('fplThreadInfo')[0] != undefined) {
 						var rows = el.getElementsByClassName('fplThreadInfo');
 						Foxtrick.map(function(n) {
@@ -86,13 +81,6 @@ Foxtrick.modules['HeaderToggle'] = {
 								if (!forumThreads[tid])
 									numUnread += Number(unread.textContent);
 								forumThreads[tid] = true;
-								if (idString)
-									idString += ',';
-								idString += tid;
-
-								/*idString += '__doPostBack(ctl00$ctl00$CPContent$CPMain$' +
-								                          "updLatestThreads','read|" + tid +
-								                          "');\n";*/
 							}
 						}, rows);
 					}
