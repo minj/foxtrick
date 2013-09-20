@@ -1047,8 +1047,7 @@ function initHelpTab()
 		$('#pane').append($(block));
 		// question
 		var header = document.createElement('h3');
-		var question = (itemLocal && itemLocal.question !== undefined &&
-		                itemLocal.question !== null)
+		var question = (typeof itemLocal === 'object' && itemLocal.question)
 			? itemLocal.question : item.question;
 		addNote(question, header, faqLinks);
 		block.appendChild(header);
@@ -1065,7 +1064,7 @@ function initHelpTab()
 		// answer
 		var content = document.createElement('p');
 		// import child nodes one by one as we may use XHTML there
-		var answer = (itemLocal && itemLocal.answer !== undefined && itemLocal.answer !== null)
+		var answer = (typeof itemLocal === 'object' && itemLocal.answer)
 			? itemLocal.answer : item.answer;
 
 		addNote(answer, content, faqLinks);
@@ -1200,7 +1199,7 @@ function notice(msg)
 }
 /**
  * Parse and add a note containing whitelisted HTML
- * markup and custom, predefined linkTags
+ * markup and custom, predefined linkTags.
  * @param {String} note  Raw note to be parsed.
  * @param {DOMElement} parent    Element to add the note to.
  * @param {Object} links A map containing custom linkTags and their corresponding URLs.
@@ -1273,6 +1272,9 @@ function addNote(note, parent, links)
 				return createLink(tagName, tagContent);
 		}
 	};
+
+	if (note === '')
+		return;
 
 	var noteContainer = document.createDocumentFragment();
 	// create a container to add all nodes before appending them to DOM in one go
