@@ -1,5 +1,5 @@
 ---
-- 
+da:
   versions:
     nightly:
       note_0: 'Dette er udviklingsversionen. Du bruger følgende på eget ansvar. Se venligst <linkSVN>commit history</linkSVN> på Google Code for nærmere oplysninger om ændringerne.'

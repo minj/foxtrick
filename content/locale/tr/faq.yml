@@ -1,10 +1,10 @@
 ---
-tr: 
-  faq: 
-    style: 
-      question: FoxTrick'i nasıl biçimlendirebilirim?
-      answer: 
-    sound-format: 
+tr:
+  faq:
+    style:
+      question: "FoxTrick'i nasıl biçimlendirebilirim?"
+      answer: ""
+    sound-format:
       question: Uyarı sesleri için hangi dosya türleri kullanılabilir ?
       answer: |
         <p>Farklı tarayıcılar farklı dosya biçimlerine izin vermektedir. İşte liste (uygun eklentiler yüklenmiş ise listelenmemiş biçimler de çalışabilir, örneğin Firefox'ta mp3 oynatmak için Quicktime):</p>
@@ -14,13 +14,13 @@ tr:
         <li>Safari (Quicktime'a ihtiyacınız olabilir): wav, mp3</li>
         <li>Chrome: ogg, mp3, wav</li><li>Opera: wav, ogg</li>
         </ul>
-    sound-location: 
+    sound-location:
       question: Uyarı sesleri için boyut sınırları nedir ve onları nerede bulabilirim?
-      answer: 
-    authorize: 
-      question: Takım bilgilerime erişmesi için neden Foxtrick'e izin vermeliyim?
-      answer: 
-    privacy: 
+      answer: ""
+    authorize:
+      question: "Takım bilgilerime erişmesi için neden Foxtrick'e izin vermeliyim?"
+      answer: ""
+    privacy:
       question: FoxTrick gizliliğimi nasıl koruyacak?
       answer: |
         <p>Foxtrick ne bilgilerinizi ya da ayarlarınızı kendi server'ına yükleyecek ne de kullanıcı adınız, şifreniz, oyuncu ID'leri ve oyuncularınızın yeteneklerini içeren özel bilgilerinizi 3.şahıslarla paylaşmayacaktır.</p>

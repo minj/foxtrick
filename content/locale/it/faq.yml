@@ -1,12 +1,12 @@
 ---
-- 
-  faq: 
-    style: 
+it:
+  faq:
+    style:
       question: Come posso dare uno stile a Foxtrick?
       answer: |
         <p>Foxtrick fornisce un insieme di interfacce di presentazione per gli utenti per personalizzare con il proprio stile. Queste interfacce sono fornite attraverso HTML ID e classi e si possono utilizzare i CSS per definire il tuo stile preferito.<p>
         <p>Un esempio di file di stile personalizzato può essere trovato<linkCSSExample>qui</linkCSSExample> o <linkCSSExampleGCode>qui</linkCSSExampleGCode>, modificabili sencondo le tue esigenze. Dopo aver salvato il file, puoi utilizzare il modulo <module>SkinPlugin</module> per caricare il file CSS per rendere il tuo stile effettivo.</p>
-    sound-format: 
+    sound-format:
       question: Quali formati di file sono permessi come suoni di notifica?
       answer: |
         <p>I formati dipendono dal browser.Ecco una lista(i formati non presenti nella lista potrebbero funzionare se i plugin appropriati sono installati, per esempio Quicktime per riprodurre i file mp3 su Firefox):</p>
@@ -15,13 +15,13 @@
         <li>Safari (may need Quicktime): wav, mp3</li>
         <li>Chrome: ogg, mp3, wav</li><li>Opera: wav, ogg</li>
         </ul>
-    sound-location: 
+    sound-location:
       question: Qual è la dimensione massima per i suoni di notifica e dove possono essere posizionati?
       answer: |
         <p>Tutti i browser possono riprodurre data urls. Questi venfono salvati internamente quando utilizzi il pulsante di caricamento presente nelle preferenze. Quando vengono convertiti e salvati nelle preferenze, la dimensione massima è di 160KB per suono.</p>
         <p>Tutti i browser possono anche riprodurre suoni direttamente da internet(http urls). Basta copiare un link a un suono (es. http://foxtrick.org/sound.wav) nel campo editabile dei suoni. Non ci sono limiti di dimensioni.</p>
         <p>I browser di Mozilla possono anche riprodurre suoni direttamente dal tuo hard drive (files urls) senza problemi di dimensioni. Il modo più semplice per ottenere il formato corretto: nel browser premi Ctrl+o, naviga per trovare il file sonoro e selezionalo. Nella barra degli indirizzi in alto c'è il link giusto al file locale (es file:///c:/sound.wav). Copialo ed incollalo nel campo editabile per i suoni.</p>
-    authorize: 
+    authorize:
       question: Perchè dovrei autorizzare Foxtrick ad accedere ai dati della mia squadra?
       answer: |
         <p>Sebbene la maggior parte dei dati necessari a Foxtrick possono essere ottenuti direttamente dalla pagina che stai vedendo, alcuni moduli richiedono dati da Hattrick per funzionare correttamente.</p>
@@ -49,7 +49,7 @@
         <li><module>SkillTable</module></li>
         <li><module>TeamStats</module></li>
         </ul>
-    privacy: 
+    privacy:
       question: Come proteggerà FoxTrick la mia privacy?
       answer: |
         <p>Foxtrick non invierà nessuno dei tuoi dati o preferenze ad un server di Foxtrick, nè dati personali, inclusi ,ma non ristretto ai soli, username, password e ID dei giocatori associati con skill, a terze parti.</p>

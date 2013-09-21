@@ -1,33 +1,33 @@
 ---
-pt-BR: 
-  versions: 
-    nightly: 
+pt-BR:
+  versions:
+    nightly:
       note_0: 'Esta é a versão de desenvolvimento. Use a seu próprio critério. Veja <linkSVN>história de alterações</linkSVN> no Google Code para detalhes das mudanças.'
-    beta: 
+    beta:
       note_0: 'Esta é a versão beta do próximo lançamento. Por favor ajude a traduzir essa versão em nossa página de tradução comunitária super fácil <linkCrowdin>crowdin.net</linkCrowdin>. '
-    0.13.0: 
+    0.13.0:
       note_0: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
-    0.12.2: 
+    0.12.2:
       note_0: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
-      note_1: 
-      note_2: 
-      note_3: 
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
-    0.12.1.1: 
-      note_0: 
-      note_1: 
-      note_2: 
-      note_3: 
-      note_4: 
-      note_5: 
-      note_6: 
-      note_7: 
-      note_8: 
-      note_9: 
-    0.12.1: 
+      note_1: ""
+      note_2: ""
+      note_3: ""
+      note_4: ""
+      note_5: ""
+      note_6: ""
+      note_7: ""
+    0.12.1.1:
+      note_0: ""
+      note_1: ""
+      note_2: ""
+      note_3: ""
+      note_4: ""
+      note_5: ""
+      note_6: ""
+      note_7: ""
+      note_8: ""
+      note_9: ""
+    0.12.1:
       note_0: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
       note_1: 'Nova: <module>SupportershipExpirationDate</module>: Clicando nos  dias restantes de Sócio HT no Meu Escritório aparecerá o prazo de duração'
       note_2: '<module>CoincidirReceita</module>: adicionada opção para exibir a utilização dos assentos em percentagem ao lado do número de torcedores em páginas de partida'
@@ -40,30 +40,30 @@ pt-BR:
       note_9: '<module>TransferSearchFilters</module>: filtros agora vão salvar a idade do jogador em dias também.'
       note_10: Foi adicionado suporte para a língua azerbaijã.
       note_11: Uma centena de outras correções para problemas causados por alterações do Hattrick.
-    0.12.0: 
+    0.12.0:
       note_0: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
-      note_1: 
+      note_1: ""
       note_2: Um monte de correções para vários módulos que foram quebrados depois que foi introduzida a nova loja Hattrick.
-      note_3: 
+      note_3: ""
       note_4: 'Nova: <module>ReLiveLinks</module>: Adicionar links HT Re-live para jogos finalizados.'
       note_5: 'Nova: <module>CopyBBAd</module>: copiar vários anúncios no código BB (merfis).'
-      note_6: 
+      note_6: ""
       note_7: '<module>LiveAlert</module>: adicionadoa sons diferentes para os gols em casa/fora/seu time. Usando sons de <linkHTLS>HTLiveSight</linkHTLS> por padrão. Os gols do seu time não serão reconhecidos no modo Re-live.'
       note_8: '<module>CopyYouth</module>:  Usuários do Hattrick youthclub agora enviarão a chamada para o olheiro com jogadores rejeitados para HY automaticamente'
       note_9: '<module>CopyYouth</module>: Usuários do Hattrick youthclub  agora enviarão o relatório de treinamento para HY automaticamente quando for lido pela primeira vez'
-      note_10: 
+      note_10: ""
       note_11: '<module>SkillTable</module> agora usa ícones para especialidades e treinadores.'
       note_12: 'AddLeaveConfButton é renomeado para <module>ForumLeaveButton</module>'
       note_13: A partid de agora, seu navegador e configurações de layout do Hattrick serão automaticamente incluídas em mensagens publicadas no fórum do FoxTrick . Isso nos ajudará a corrigir problemas mais rápidos. Por favor, não apague essa informação ao postar.
       note_14: O código do aplicativo foi limpo para melhor leitura e facilidade de manutenção.
       note_15: 'Corrigido alguns problemas com detecção de semana em <module>PlayerStatsTrainingWeek</module>.'
-      note_16: 
+      note_16: ""
       note_17: Atualizações do Safari parecem estar quebradas. Os usuários devem remover a versão anterior do Foxtrick e instalar a nova.
-    0.11.0.1: 
+    0.11.0.1:
       note_0: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
       note_1: 'Correção de pequenos problemas em <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>CoincidirReceita</module> e <module>HTThreadMarker</module>.'
       note_2: Impedir o Firefox de recarregar todas as abas/guias do Hattrick quando é aberta uma nova janela do navegador.
-    0.11.0: 
+    0.11.0:
       note_0: 'NOVO: <module>DirectPageLinks</module>: Links adicionados para acessar páginas específicas em tópicos do fórum'
       note_1: 'NOVO: <module>ForumModeratorPopup</module>: Adicionado um menu dropdown para moderadores dos fóruns sobre os tópicos para simplificar a moderação.'
       note_2: 'NOVO: <module>PlayerStatsTrainingWeek</module>: Adicionado a possibilidade agrupar partidas de acordo com as semanas de treino em vez da semana do calendário.'
@@ -77,35 +77,35 @@ pt-BR:
       note_10: '<module>MovePlayerStatement</module>: Possibilidade de remover completamente as declarações dos jogadores (que as tiverem).'
       note_11: '<module>YouthTwins</module>: Modificações manuais feitas no HY agora refletirão imediatamente na página dos jogadores juniores'
       note_12: '<header>Correções de erros</header>'
-      note_13: 
-      note_14: 
-      note_15: 
+      note_13: ""
+      note_14: ""
+      note_15: ""
       note_16: '<module>EmbedMedia</module>: maior segurança e melhor detecção de link.'
-      note_17: 
+      note_17: ""
       note_18: Módulo de BackgroundFixed foi removido.
       note_19: '<header>Copiar módulos</header>'
-      note_20: 
-      note_21: 
-      note_22: 
-      note_23: 
+      note_20: ""
+      note_21: ""
+      note_22: ""
+      note_23: ""
       note_24: '<header>Outros ajustes</header>'
       note_25: '<module>MatchOrderInterface</module>: avatares para os não-sócios. Estabilidade aumentada.'
       note_26: '<module>MatchSimulator</module> agora usa a nova fórmula de resistência (por Senzascrupoli [post = 15917246.1]) no desconto de resistência.'
       note_27: '<module>MatchReportFormat</module> usa os novos ícones do HT.'
-      note_28: 
-      note_29: 
+      note_28: ""
+      note_29: ""
       note_30: Impedir que o layout do HT interfera no Foxtrick.
       note_31: Adicionado suporte para www.hattrick.fm
       note_32: 'Removidos links externos mortos em <module>Links</module>. Sempre que possível, use os ícones externos.'
       note_33: '<header>Suporte a navegador</header>'
-      note_34: 
-      note_35: 
-      note_36: 
-      note_37: 
+      note_34: ""
+      note_35: ""
+      note_36: ""
+      note_37: ""
       note_38: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
-      note_39: 
+      note_39: ""
       note_40: '<strong>E muito, muito mais</strong>'
-    0.10.0: 
+    0.10.0:
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
       note_2: 'NEW: <module>HTEVPrediction</module>: Displays match odds for league games provided by <linkHTEV>HTEV</linkHTEV> (default on)'
@@ -130,8 +130,8 @@ pt-BR:
       note_21: '<header>For visually/hearing impaired users</header>'
       note_22: We added a new section to the settings page that will contain all modules that are related to accessibility.
       note_23: 'NEW: <module>ARIALandmarks</module>: Adds ARIA landmarks to the website. This should help navigating the site using screenreaders. The two main navigation bars and the list of all subscribed forums got the role "navigation". The main content has the role "main". All the sidebars with additional information and links will be marked as "complementary". The links to global search and forum search have the role "search" of course.'
-      note_24: If you have any further suggestions please don't hesitate to contact us. We are also browsing the Hattrick Access forums.
-    0.9.3: 
+      note_24: "If you have any further suggestions please don't hesitate to contact us. We are also browsing the Hattrick Access forums."
+    0.9.3:
       note_0: 'A lot of language updates because Foxtrick users are awesome. Thank you so much. Keep contributing at <linkCrowdin>http://www.crowdin.net</linkCrowdin>'
       note_1: 'NEW: <module>YouthTwins</module>: Shows the amount of possible/marked/non twins on the youth players overview page for supporters (in conjunction with hattrick youthclub)'
       note_2: '<module>MatchOrderInterface</module>: Option to show player faces instead of shirts for future and past line-ups (default on)'
@@ -143,8 +143,8 @@ pt-BR:
       note_8: 'PlayerStatsExperience: Fixed issue that caused this module not to work on Firefox 3.6'
       note_9: 'CustomMedals: Fixed disappearing tournament trophies'
       note_10: Ogg sounds for mozilla-based browsers enabled
-      note_11: Fennec loads staffmarker and link resources from internal sources again. So they aren't updated dynamically but also save bandwidth.
-    0.9.2: 
+      note_11: "Fennec loads staffmarker and link resources from internal sources again. So they aren't updated dynamically but also save bandwidth."
+    0.9.2:
       note_0: Another massive language update. Thanks again to all those translators.
       note_1: Rewrote language detection. Should never break again
       note_2: 'NEW: <module>PlayerStatsExperience</module>: shows how much experience a player gained in invidual matches and shows current subskill'
@@ -168,11 +168,11 @@ pt-BR:
       note_20: 'MatchOrder: Highlight of players that played in the last match can now be shown on the playing field too'
       note_21: Some more work on AMO compliance
       note_22: '<header>For Google Chrome users</header>'
-      note_23: Seems that Chrome 18's optional permissions system is buggy. Feature which require those (HTY staffmarker and EmbedMedia) might not work currently.
-    0.9.1: 
+      note_23: "Seems that Chrome 18's optional permissions system is buggy. Feature which require those (HTY staffmarker and EmbedMedia) might not work currently."
+    0.9.1:
       note_0: 'HTMS: tactics used again'
       note_1: 'Tablesort: sort floating numbers'
-    0.9.0.5: 
+    0.9.0.5:
       note_0: 'New module <module>SafeForWork</module> to camouflage Hattrick tabs by changing icon and description'
       note_1: '<module>ForumYouthIcons</module>: added shortcuts for Tournaments'
       note_2: '<module>NewMail</module>: sound option back'
@@ -187,23 +187,23 @@ pt-BR:
       note_11: Links resources moved to yet another server
       note_12: Some internal changes to improve AMO compliance
       note_13: 'Uma grande quantidade de novas traduções por: aegeansailor, brauxx, Mod-Utku, ebitechv, Polytropos, gkon13, SOLARIS1973, Fieras, margaale, ipefix, stephan.cardot, OmaniMilani, LambdaB, SI-CH, Convincedd, margaale, ljushaff, serjhanti, playMaker, CoRrRan, Aristodemos, margaale, spider007, FeritAkarsu a mais algumas pessoal que provavelmente esqueci. Por favor nos mande uma mensagem se você se sentiu desrespeitado. É bem difícil achar todos vocês e isto é fantástico, obrigado a todos!'
-    0.9.0.4: 
+    0.9.0.4:
       note_0: Links resources moved to another server
-      note_1: Added basic english event texts to the icons' titles in MatchReportFormat
+      note_1: "Added basic english event texts to the icons' titles in MatchReportFormat"
       note_2: Enabled MatchReportFormat and MatchPlayerColoring for tournament matches
-    0.9.0.3: 
+    0.9.0.3:
       note_0: Fixed several modules after a change in HTs page layout
-    0.9.0.2: 
+    0.9.0.2:
       note_0: Fixed latest Chrome update causing LoyaltyDisplay to crash
       note_1: Corrected lineup links for youth-players in MatchReportFormat
       note_2: MatchSimulator stamina effect tweaked
       note_3: New symbols for specialties
       note_4: Inúmeras atualizações das traduções
-    0.9.0.1: 
+    0.9.0.1:
       note_0: Corrigidas permissões excessivas (acidentais) para o Chrome
-      note_1: Corrigido o LiveAlert 
+      note_1: 'Corrigido o LiveAlert '
       note_2: Fixed and some css issues (for Chrome, Opera, Safari)
-    0.9: 
+    0.9:
       note_0: '<header>Localization:</header>'
       note_1: 'Integration of the crowdsourcing translation service <linkCrowdin>http://www.crowdin.net</linkCrowdin>. (CatzHoek, Convincedd)'
       note_2: 'Várias atualizações das traduções. (Catzhoek e muitos tradutores. Amoung outros: GM-murko, LambdaB, MEO_Comandante, Jānis Pamiljans, GZ-grobas, SI-CH, bigpapy, Ilza, silkevicious, Max_Schreck, TheZayc, - Iuve-, Mcload, Polytropos, MrAli, ripaldo, Ryo567, Louzao, kirja, MartinsPF, MarceloFBrandao, Guaipeca)'
@@ -228,14 +228,14 @@ pt-BR:
       note_21: LeagueChat and HeaderFixFlickerFix removed (convincedd)
       note_22: Many internal changes (ryanli, convincedd) and probably several other smaller fixes
       note_23: '<header>For Google Chrome users</header>'
-      note_24: We implemented Chrome's optional permissions system. There are fewer mandatory permissions needed now when installing FoxTrick. Since you have not set any yet, you have to save the preference once and confirm whichever access you want to allow. Later, you will be asked to allow access to an external resource whenever you enable a module which requires it.
-    0.8.2: 
+      note_24: "We implemented Chrome's optional permissions system. There are fewer mandatory permissions needed now when installing FoxTrick. Since you have not set any yet, you have to save the preference once and confirm whichever access you want to allow. Later, you will be asked to allow access to an external resource whenever you enable a module which requires it."
+    0.8.2:
       note_0: Idioma Coreano (SI-CH)
       note_1: Idioma Lituano (LA-MJ)
       note_2: General locale cleaning (CatzHoek)
       note_3: 'Added links to <linkHTEV>http://htev.org/</linkHTEV> statistics page. (convincedd, CatzHoek)'
       note_4: Outras correções triviais. (convincedd, CatzHoek)
-    0.8.1: 
+    0.8.1:
       note_0: '<module>ElectionTable</module>: adapted to new election page layout. (convincedd, ryanli)'
       note_1: '<module>HTThreadMarker</module>: new style. (convincedd, ryanli)'
       note_2: "<module>TableSort</module>: prevent conflicting with Hattrick's sorting. (convincedd)"
@@ -243,7 +243,7 @@ pt-BR:
       note_4: '<module>LineupShortcut</module>: also show for non-supporters now. (ryanli)'
       note_5: '<module>TransferSearchResultFilters</module>: fix after latest changes. (convincedd)'
       note_6: '<module>SkillTable</module>: include loyalty and mother club bonus. (convincedd)'
-    0.8: 
+    0.8:
       note_0: Arabic locale. (GM-OmaniMilani)
       note_1: New mechanism for viewing modules by page, old module OnPagePrefs thereby removed. (convincedd, ryanli)
       note_2: '<FTlinkMainTab>Option</FTlinkMainTab> not to load XML data from Hattrick. Also XMLs are now cached and an option to clear the cache has been added to the approriate pages (convincedd)'
@@ -265,15 +265,15 @@ pt-BR:
       note_18: FoxTrick enabled for Fennec/Firefox for mobile. (convincedd)
       note_19: Versões beta do FoxTrick agora disponíveis para Opera e Safari. (convincedd, ryanli)
       note_20: Outras correções e melhorias menores. (convincedd, ryanli)
-    0.7.2: 
+    0.7.2:
       note_0: 'Links para comparação de times no Alltid no módulo <module>LinksTeam</module>. (convincedd)'
       note_1: Fixes for skill table at transfer search results. (convincedd, ryanli)
-    0.7.1: 
+    0.7.1:
       note_0: 'Module <module>LeagueNewsFilter</module> split into <module>LeagueNewsFilter</module> and <module>ShowLineupSet</module>. (ryanli)'
       note_1: Modifications to adapt for new transfer search results page. (ryanli, taised)
       note_2: Locale updates. (ryanli, CoRrRan, ljushaff, _KOHb_, slader, ElChiquitin)
       note_3: Algumas outras correções triviais. (ryanli)
-    0.7: 
+    0.7:
       note_0: Idioma Islandês. (LA-LordBastard)
       note_1: Idioma Vlaams copiado do Holandês. (ryanli)
       note_2: 'New module category, <FTlinkAggregation>Information Aggregation</FTlinkAggregation>. (ryanli)'
@@ -289,17 +289,17 @@ pt-BR:
       note_12: 'Novas rádios no módulo <module>ExtraShortcuts</module>, Balkaradio e Downtime Radio. (ljushaff, ryanli)'
       note_13: 'Option of <module>LeagueAndMatchChat</module> to open Yaplet chat in a frame removed. (ryanli)'
       note_14: Várias correções menores (ryanli, Mod-spambot)
-    0.6.2: 
+    0.6.2:
       note_0: 'Module <module>SeriesFlags</module> now fetches team data directly from Hattrick. (ryanli)'
       note_1: Locale updates. (ljushaff, csajszi, Mod-spambot)
       note_2: Some other trivial fixes. (ryanli)
-    0.6.1: 
+    0.6.1:
       note_0: 'Module <module>HTMSPoints</module> now calculates points locally without connecting to HTMS website. (taised)'
       note_1: 'Module <module>htmsStatistics</module> now loads prediction correctly. (taised)'
       note_2: Locale updates. (Mod-spambot, Mod-OmaniMilani, Baler0, ljushaff, _KOHb_, Slash-ss, MEO_Comandante)
       note_3: Compatible with Firefox 4.2 branch. (ryanli)
       note_4: Algumas outras correções menores. (ryanli)
-    0.6: 
+    0.6:
       note_0: Nova página de preferências. (ryanli)
       note_1: OAuth interface implemented for the new Hattrick CHPP API. (ryanli)
       note_2: 'Module <module>LiveAlert</module> for alerting at HT Live goals. (ryanli)'

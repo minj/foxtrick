@@ -1,13 +1,13 @@
 ---
-bs: 
-  faq: 
-    style: 
+bs:
+  faq:
+    style:
       question: Kako mogu stilizovati svoj FoxTrick?
       answer: |
         <p>FoxTrick nudi više interfejsa koje možete koristiti kako biste FoxTrick podesili onako kako vama to odgovara. Ovi interfejsi su na raspolaganju kroz HTML ID-ove i klase, i možete koristiti CSS da definišete vaš preferirajući stil.</p>
         
         <p>Primjer korisničke stil-datoteke može se naći <linkCSSExample>ovdje</linkCSSExample> ili <linkCSSExampleGCode>ovdje</linkCSSExampleGCode>, ovu datoteku možete mjenjati kako biste postigli željeni izgled. Nakon što spasite promjene u datoteci, možete koristiti <module>SkinPlugin</module> modul za ubacivanje CSS datoteke kako bi vaš željeni stil bio primjenjen.</p>
-    sound-format: 
+    sound-format:
       question: Koji formati datoteke su dozvoljeni kao zvukovi upozorenja?
       answer: |
         <p>Različiti internet preglednici dozvoljavaju različite formate datoteka. U nastavku se nalazi lista internet preglednika i njihovih odgovarajućih formata (formati koji nisu na listi mogu raditi ukoliko je instaliran odgovarajući dodatak-plugin, npr. Quicktime za .mp3 datoteke u Firefoxu i sl.):</p>
@@ -17,12 +17,12 @@ bs:
         <li>Safari (može biti potreban Quicktime): wav, mp3</li>
         <li>Chrome:  ogg, mp3, wav</li><li>Opera: wav, ogg</li>
         </ul>
-    sound-location: 
+    sound-location:
       question: Koja je maksimalna veličina zvukova upozorenja i gdje se mogu smjestiti?
-      answer: 
-    authorize: 
+      answer: ""
+    authorize:
       question: Zašto trebam dozvoliti FoxTrick-u da pristupi podacima moga tima?
-      answer: 
-    privacy: 
+      answer: ""
+    privacy:
       question: Kako će Foxtrick zaštititi moju privatnost?
-      answer: 
+      answer: ""
