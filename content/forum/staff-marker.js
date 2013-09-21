@@ -205,6 +205,7 @@ Foxtrick.modules['StaffMarker'] = {
 				for (type in data) {
 					if (data[type][id] == true && enable[type] == true) {
 						var icon = img.cloneNode();
+						Foxtrick.addClass(object, 'ft-staff-' + type);
 						Foxtrick.addClass(icon, 'ft-staff-icon ft-staff-' + type);
 						if (type !== 'coach')
 							object.insertBefore(icon, object.firstChild);
