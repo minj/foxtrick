@@ -2,7 +2,6 @@ from ftplib import FTP
 import Credentials
 import re
 def getFiles(ftp):
-
 	#callback for each file, directory
 	def display(line):
 		file = {}
@@ -60,5 +59,10 @@ def deleteFiles(keep=5):
 				files[dir][idx]['status'] = 'kept';
 
 	ftp.quit()
-
 	return files
+
+def getQuota():
+	ftp = FTP(Credentials.IP)
+	ftp.login(Credentials.USER,Credentials.PW)
+	res = ftp.sendcmd("site quota");
+	return res.split('\n');
