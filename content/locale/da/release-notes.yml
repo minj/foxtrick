@@ -42,27 +42,29 @@ da:
       note_11: En masse rettelse omkring emner forårsaget af Hattrick.
     0.12.0:
       note_0: '<header>En del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>'
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
-      note_10: ""
-      note_11: ""
-      note_12: ""
-      note_13: ""
-      note_14: ""
-      note_15: ""
-      note_16: ""
-      note_17: ""
+      note_1: 'NYT: <module>MatchLineupTweaks</module>: Ændrer antal stjerner til gammeldags-lignende stjerner. Tilføjer tællere for stjerner og kondition til den nye opstillings side. Viser specialiteter for alle spillere, og tilføjer hold navne på banen for at begrænse forvirring. Viser spiller avatar til dit hold. Fremhæver relevante spillere for en begivenhed i en kamp.'
+      note_2: En masse af programrettelser til forskellige moduler, der ikke virket, efter den nye Hattrick butik blev introduceret.
+      note_3: 'NYT: <module>MatchLineupFixes</module>: Synkroniser tidslinje på tværs af spillere og sektorer faner. Viser spillernavne til vejr relaterede special-begivenheder (SE). Tilføjer links til spillere i din egen ordrer fane. Tilføjer sidste antal stjerner opnået til spillere på bænken. Retter flere begivenheder som sker på samme tid: spillerne ændre deres positioner trinvis i stedet for alle på én gang.'
+      note_4: 'NYT: <module>ReLiveLinks</module>: Tilføjer links til HT re-live til færdigspillede kampe.'
+      note_5: |
+        NYT: <module>CopyBBAd</module>: Kopiere forskellige annonceringer i BB-kode (ved merfis).
+        PS! Denne modul er beregnet for eksterne fora. BB-kode virker ikke i Hattrick Fora.
+      note_6: 'NYT: <module>DashboardCalendar</module>: Tilføjet en knap til at eksportere Hattrick uge i iCalendar-fil format (bør være forenelige med Google Kalender, Thunderbird + Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal osv.)'
+      note_7: '<module>LiveAlert</module>: Tilføjet forskellige lyde for hjemme/Ude/dit holds mål. Ved hjælp af lyde fra <linkHTLS>HTLiveSight</linkHTLS> som standard. Dit eget hold mål, bliver ikke genkendt i re-live tilstand i første omgang.'
+      note_8: '<module>CopyYouth</module>: Hattrick youthclub brugere vil nu automatisk, sende spejder kommentarer af afviste spillere til HY'
+      note_9: '<module>CopyYouth</module>: Hattrick youthclub brugere vil nu sende træningsrapporten til HY automatisk, når de læser det for første gang'
+      note_10: '<module>LineupShortcut</module> Omdirigerer nu til den nye opstillings side.'
+      note_11: '<module>SkillTable</module> bruger nu ikoner for specialiteter og trænere.'
+      note_12: 'AddLeaveConfButton er omdøbt til <module>ForumLeaveButton</module>'
+      note_13: Fra nu af vil din browser og Hattrick layoutindstillinger automatisk indgå i beskeder sendt til FoxTrick forum. Dette vil hjælpe os med at løse problemer hurtigere. Slet ikke disse oplysninger når du skriver i Foxtrick forum.
+      note_14: Tilføjelses koden blev redigeret for bedre læsbarhed og vedligeholdelse.
+      note_15: 'Rettet nogle problemer med uge registrering i <module>PlayerStatsTrainingWeek</module>.'
+      note_16: 'Rettet en fejl i <module>MatchSimulator</module>, der har forårsaget visning af forkert ratings og forudsigelser, når angreb vs forsvar indstilling er slået fra.'
+      note_17: Safari opdateringer synes ikke at virke. Brugere skal fjerne den tidligere Foxtrick version og installere en ny.
     0.11.0.1:
       note_0: '<header>En del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>'
-      note_1: ""
-      note_2: ""
+      note_1: 'Rettet mindre problemer i <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> og <module>HTThreadMarker</module>.'
+      note_2: Forhindre genindlæsning alle Hattrick faner i Firefox, når et nyt browser-vindue åbnes.
     0.11.0:
       note_0: 'NY: <module>DirectPageLinks</module>: links er tilføjet for at få adgang til specifikke sider i en forum tråd'
       note_1: 'NY: <module>ForumModeratorPopup</module>:En rullemenu er tilføjet  til forum moderatorer på toppen af ​​tråde for at forenkle moderation.'
@@ -77,9 +79,9 @@ da:
       note_10: '<module>MovePlayerStatement</module>: Mulighed tilføjet for at fjerne udtalelsen fuldstændigt.'
       note_11: '<module>YouthTwins</module>: Manuelt udført ændringer på HY vil nu øjeblikkeligt afspejles på ungdoms-spilleres side'
       note_12: '<header>Bugfixes</header>'
-      note_13: ""
-      note_14: ""
-      note_15: ""
+      note_13: 'Rettet <module>Filter</module>, <module>SupporterStatsEnhancements</module> og <module>YouthTwins</module>.'
+      note_14: '<module>StaffMarker</module> og <module>HTThreadMarker</module> virker nu i flere steder.'
+      note_15: '<module>ConfirmActions</module>: tilføjet understøttelse for autobud.'
       note_16: ""
       note_17: ""
       note_18: ""
