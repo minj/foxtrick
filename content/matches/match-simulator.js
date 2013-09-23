@@ -196,7 +196,7 @@ Foxtrick.modules.MatchSimulator = {
 			var teamtacticsDiv = doc.getElementById('tactics').cloneNode(true);
 			teamtacticsDiv.removeChild(teamtacticsDiv.getElementsByClassName('speechLevel')[0]);
 			teamtacticsDiv.removeChild(teamtacticsDiv.getElementsByTagName('select')[0]);
-			var teamtacticsTitle = teamtacticsDiv.textContent.replace(/\s\s+/g, ' ');
+			var teamtacticsTitle = Foxtrick.trim(teamtacticsDiv.textContent);
 
 			var attVsDefCheck = doc.getElementById('ft_attVsDef_check');
 			if (attVsDefCheck.checked)
@@ -454,6 +454,9 @@ Foxtrick.modules.MatchSimulator = {
 				text += speechLevelTitle;
 				text += '[u]' + speechLevel + '[/u]\n';
 
+				// coach type
+				text += doc.getElementById('trainerTypeLabel').textContent + '\n'
+
 				// tactics
 				var teamtactics_select = doc.getElementById('teamtactics');
 				var tactics = teamtactics_select.options[teamtactics_select.selectedIndex]
@@ -477,7 +480,7 @@ Foxtrick.modules.MatchSimulator = {
 				// ratings
 				text += '[table][tr][th colspan=3 align=center]' +
 					doc.getElementById('calcRatings').value + '[/th][/tr]\n';
-				for (var i = 0, count = 0; i < overlayRatings.length - 1; ++i) {
+				for (var i = 0, count = 0; i < 14; ++i) {
 
 					if (i == 0 || i == 6 || i == 8) {
 						// new rows for defence, mid, attack
