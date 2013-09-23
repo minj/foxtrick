@@ -185,9 +185,9 @@ Foxtrick.modules['SeriesTransfers'] = {
 																
 								//injurytd
 								var injuryTD = doc.createElement('td');
-								var injuryFunc = function(cell, ingury){
-									if(ingury > -1){
-										if (ingury == 0) { //bruised
+								var injuryFunc = function(cell, injury){
+									if(injury > -1){
+										if (injury == 0) { //bruised
 											var img = doc.createElement('img');
 											img.src = '/Img/Icons/bruised.gif';
 											img.alt = Foxtrickl10n.getString('Bruised.abbr');
@@ -201,8 +201,8 @@ Foxtrick.modules['SeriesTransfers'] = {
 											cell.appendChild(img);
 											// player.injured is number from players page,
 											// or boolean from transfer result page.
-											if (typeof(ingury) == 'number' && ingury > 1) {
-												cell.appendChild(doc.createTextNode(ingury));
+											if (typeof(injury) == 'number' && injury > 1) {
+												cell.appendChild(doc.createTextNode(injury));
 											}
 										}
 									}
