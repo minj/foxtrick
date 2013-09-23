@@ -43,7 +43,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 		Foxtrick.addClass(mainBox, 'mainBox');
 
 		var h2 = doc.createElement('h2');
-		h2.textContent = 'Players for sale';
+		h2.textContent = Foxtrickl10n.getString("SeriesTransfers.header");
 
 		mainBox.appendChild(h2);
 		div.appendChild(mainBox);
