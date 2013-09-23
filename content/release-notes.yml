@@ -20,12 +20,12 @@ en:
       note_6: "<module>MatchLineupTweaks</module>: an option to gather your player stamina data every time you visit your match page was added. The data will be used for better ratings prediction in <module>MatchSimulator</module> module and can be viewed in <module>SkillTable</module>. A player must play the whole 90 minutes. Matches with pressing or negative weather SEs (for powerful players) are excluded. Prediction formula was created by Pappagallopoli."
       note_7: "NEW: <module>Fans</module>: Add live link next to future match links. Add total of fans evolution in the sidebar."
       note_8: "Users with multiple teams can now style Hattrick differently using 'body.ft-teamID-0000000' selectors in <module>SkinPlugin</module>."
-      note_9: "<header>Bugfixes</header>"
-      note_10: "Fixed TSI NaN error on players pages for national teams or when xml downloading is disabled (<module>Skilltable</module>, <module>TeamStats</module> etc.)"
-      note_11: "Unused players will no longer be included when using the 'Fill penalty takers' feature in <module>MatchOrderInterface</module>."
-      note_12: "A work-around for negative player IDs in neighborhood team matches (prevent walkovers in friendlies) was provided."
-      note_13: "The challenge link in <module>TeamPopupLinks</module> was fixed."
-      note_14: "<module>HeaderToggle</module> has been made more robust against influences by other modules or Hattrick itself."
+      note_9: "<module>HeaderToggle</module> has been made more robust against influences by other modules or Hattrick itself."
+      note_10: "<header>Bugfixes</header>"
+      note_11: "Fixed TSI NaN error on players pages for national teams or when xml downloading is disabled (<module>Skilltable</module>, <module>TeamStats</module> etc.)"
+      note_12: "Unused players will no longer be included when using the 'Fill penalty takers' feature in <module>MatchOrderInterface</module>."
+      note_13: "A work-around for negative player IDs in neighborhood team matches (prevent walkovers in friendlies) was provided."
+      note_14: "The challenge link in <module>TeamPopupLinks</module> was fixed."
 
     0.12.1.1:
       note_0: 'Translation updates.'
