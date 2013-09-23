@@ -147,6 +147,10 @@ Foxtrick.api.hy._fetchViaCache = function(cacheDays, api, params, fetch,
 							catch (e) {
 								Foxtrick.log('Uncaught error in callback for HY_API:get_' + api, e);
 							}
+							finally {
+								if (typeof (finalize) == 'function')
+									finalize();
+							}
 						}
 						else
 							// cookie orders to refetch
@@ -191,6 +195,8 @@ Foxtrick.api.hy._fetchOrIgnore = function(api, url, params,
 					switch (status) {
 						case 0:
 							Foxtrick.log('[HY_API][' + api + '] Sending failed', status);
+							response = '{ "error": "' +
+								Foxtrickl10n.getString('youthclub.api.failed') + '" }';
 							break;
 						case 200:
 							Foxtrick.log('[HY_API][' + api + '] Success', status);
