@@ -151,7 +151,13 @@ html[dir="ltr"] .overlayMidDefense, .overlayMidAttack {
 #tacticLevelLabel {
 	top: 470px !important;
 }
+#trainerTypeLabel {
+	top: 448px !important;
+	left: 20px;
+	right: moz-initial !important;
+	right: initial !important;
 
+}
 #ft_matchsimulator_options {
 	left: 395px !important;
 }
