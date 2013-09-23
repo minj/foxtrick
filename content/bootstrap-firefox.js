@@ -128,6 +128,7 @@ FoxtrickFirefox.prototype = {
 		"information-aggregation/psico-tsi.js",
 		"information-aggregation/season-stats.js",
 		"information-aggregation/series-flags.js",
+		"information-aggregation/series-transfers.js",
 		"information-aggregation/show-friendly-booked.js",
 		"information-aggregation/show-lineup-set.js",
 		"information-aggregation/skill-table.js",

@@ -533,6 +533,7 @@ pref("extensions.foxtrick.prefs.module.SeriesFlags.Supporters.enabled", true);
 pref("extensions.foxtrick.prefs.module.SeriesFlags.Visitors.enabled", false);
 pref("extensions.foxtrick.prefs.module.SeriesFlags.Tournaments.enabled", true);
 pref("extensions.foxtrick.prefs.module.SeriesFlags.CountryOnly.enabled", false);
+pref("extensions.foxtrick.prefs.module.SeriesTransfers.enabled", true);
 pref("extensions.foxtrick.prefs.module.ShowForumPrefButton.enabled", true);
 pref("extensions.foxtrick.prefs.module.ShowFriendlyBooked.enabled", true);
 pref("extensions.foxtrick.prefs.module.ShowFriendlyBooked.OnDemand.enabled", true);

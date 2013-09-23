@@ -139,6 +139,7 @@
 			"content/information-aggregation/psico-tsi.js",
 			"content/information-aggregation/season-stats.js",
 			"content/information-aggregation/series-flags.js",
+			"content/information-aggregation/series-transfers.js",
 			"content/information-aggregation/show-friendly-booked.js",
 			"content/information-aggregation/show-lineup-set.js",
 			"content/information-aggregation/skill-table.js",

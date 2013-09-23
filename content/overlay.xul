@@ -119,6 +119,7 @@
 <script type="application/x-javascript" src="./information-aggregation/psico-tsi.js"></script>
 <script type="application/x-javascript" src="./information-aggregation/season-stats.js"></script>
 <script type="application/x-javascript" src="./information-aggregation/series-flags.js"></script>
+<script type="application/x-javascript" src="./information-aggregation/series-transfers.js"></script>
 <script type="application/x-javascript" src="./information-aggregation/show-friendly-booked.js"></script>
 <script type="application/x-javascript" src="./information-aggregation/show-lineup-set.js"></script>
 <script type="application/x-javascript" src="./information-aggregation/skill-table.js"></script>
