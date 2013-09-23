@@ -82,31 +82,31 @@ da:
       note_13: 'Rettet <module>Filter</module>, <module>SupporterStatsEnhancements</module> og <module>YouthTwins</module>.'
       note_14: '<module>StaffMarker</module> og <module>HTThreadMarker</module> virker nu i flere steder.'
       note_15: '<module>ConfirmActions</module>: tilføjet understøttelse for autobud.'
-      note_16: ""
-      note_17: ""
-      note_18: ""
-      note_19: ""
-      note_20: ""
-      note_21: ""
-      note_22: ""
-      note_23: ""
-      note_24: ""
-      note_25: ""
-      note_26: ""
-      note_27: ""
-      note_28: ""
-      note_29: ""
-      note_30: ""
-      note_31: ""
-      note_32: ""
-      note_33: ""
-      note_34: ""
-      note_35: ""
-      note_36: ""
-      note_37: ""
+      note_16: '<module>EmbedMedia</module>: øget sikkerhed og bedre link registrering.'
+      note_17: '<module>SkillTable</module> bør nu rapporterer den korrekte tid den eksterne trænere har været på holdet.'
+      note_18: BackgroundFixed modul blev fjernet.
+      note_19: '<header>Copying modules</header>'
+      note_20: '<module>CopyRatings</module>: Support til turnerings Kamp-ID.'
+      note_21: '<module>CopyMatchID</module>: tilføjet understøttelse for enkelte kampe og deaktiveret på kamp siden, for at gøre plads til den nye HT link funktion'
+      note_22: '<module>CopyPlayerAd</module>: rettet interferens med HT evne bjælker'
+      note_23: General HT-ML kopiering rettelser.
+      note_24: '<header>Andre justeringer</header>'
+      note_25: '<module>MatchOrderInterface</module>: Avatarer til ikke-supportere. Øget stabilitet.'
+      note_26: '<module>MatchSimulator</module> bruger nu den nye kondi formel (af Senzascrupoli [post = 15917246.1]) i kondi discount.'
+      note_27: '<module>MatchReportFormat</module> bruger de nye HT ikoner.'
+      note_28: '<module>PlayerStatsExperience</module>: rutine point pr niveau ændret til 28.62 (Se 15766691.423 for diskussion). Walkovers angives nu, da de ikke giver rutine.'
+      note_29: "Forum moduler bruger nu et særligt mellemrums tegn, for at undslippe tekst i stedet for '·': dette skulle hjælpe det catalansk sprog."
+      note_30: Forhindre HT layout i at forstyrre Foxtrick.
+      note_31: Tilføjet support af www.hattrick.fm
+      note_32: 'Fjernet døde eksterne links i <module>Links</module>. Bruger eksterne ikoner, hvor det er muligt.'
+      note_33: '<header>Browser support</header>'
+      note_34: Rettet Firefox til Android 17 + support.
+      note_35: Firefox 12 er nu den seneste version til at køre Foxtrick.
+      note_36: Google Chrome 22 er nu den seneste version til at køre Foxtrick.
+      note_37: 'Opera: rettet en fejl, der forårsagede FT i at påvirke andre sider (som Hattrick Youthclub). Billeder bør nu indlæses meget hurtigere. Nogle moduler, der specifikt var deaktiveret på Opera er nu aktiveret.'
       note_38: '<header>En del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>'
-      note_39: ""
-      note_40: ""
+      note_39: '<header>Indstillings-siden blev omarbejdet.</header>'
+      note_40: '<strong>Og meget, meget mere</strong>'
     0.10.0:
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Lader dig filter handler af spillere. Kun tilgængelig for hold historik, ikke spillere (Aktiveret som standard)'
       note_1: 'NEW: <module>FriendlyPool</module>: Farvelægger besøgte lande i venskabs-puljen (kun for supportere, aktiveret som standard)'
