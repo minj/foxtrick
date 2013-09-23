@@ -195,6 +195,8 @@ Foxtrick.api.hy._fetchOrIgnore = function(api, url, params,
 					switch (status) {
 						case 0:
 							Foxtrick.log('[HY_API][' + api + '] Sending failed', status);
+							response = '{ "error": "' +
+								Foxtrickl10n.getString('youthclub.api.failed') + '" }';
 							break;
 						case 200:
 							Foxtrick.log('[HY_API][' + api + '] Success', status);
