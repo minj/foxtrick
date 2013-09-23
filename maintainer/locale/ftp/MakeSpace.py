@@ -42,7 +42,7 @@ def getFiles(ftp):
 
 	return files
 
-def deleteFiles(keep=5):
+def deleteFiles(keep=12):
 	ftp = FTP(Credentials.IP)
 	ftp.login(Credentials.USER,Credentials.PW)
 	files = getFiles(ftp)
