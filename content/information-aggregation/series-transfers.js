@@ -26,6 +26,8 @@ Foxtrick.modules['SeriesTransfers'] = {
 			teamIds.push( teamId );
 		}
 
+		var currencyRate = Foxtrick.util.currency.getRate(doc);
+
 		//build batchArgs
 		var batchArgs = []
 		Foxtrick.map(function(n) {
@@ -91,7 +93,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 
 		//loading note
 		var loading = Foxtrick.util.note.createLoading(doc);
-		mainBox.appendChild(loading);		
+		mainBox.appendChild(loading);
 
 		//batch retrieve
 		Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: 'session' },
@@ -119,7 +121,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 								var age 			= Number( player.getElementsByTagName('Age')[0].textContent );
 								var ageDays 		= Number( player.getElementsByTagName('AgeDays')[0].textContent );
 								var form 			= Number( player.getElementsByTagName('PlayerForm')[0].textContent );
-								var salary 			= Number( player.getElementsByTagName('Salary')[0].textContent );
+								var salary 			= Math.floor(Number( player.getElementsByTagName('Salary')[0].textContent ) / (10 * currencyRate));
 								var agreeability 	= Number( player.getElementsByTagName('Agreeability')[0].textContent );
 								var aggressivness 	= Number( player.getElementsByTagName('Aggressiveness')[0].textContent );
 								var honesty 		= Number( player.getElementsByTagName('Honesty')[0].textContent );
