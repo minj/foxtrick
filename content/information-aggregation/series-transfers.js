@@ -219,7 +219,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 					if(!hasListedPlayers){
 						table.parentNode.removeChild(table);
 						var span = doc.createElement('span');
-						span.textContent = "No team in this series has any players on the transfer market right now."
+						span.textContent = Foxtrickl10n.getString("SeriesTransfers.notransfers");
 						mainBox.appendChild(span);
 					} 
 				} else {
