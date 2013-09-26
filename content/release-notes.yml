@@ -21,11 +21,12 @@ en:
       note_7: "NEW: <module>Fans</module>: Add live link next to future match links. Add total of fans evolution in the sidebar."
       note_8: "Users with multiple teams can now style Hattrick differently using 'body.ft-teamID-0000000' selectors in <module>SkinPlugin</module>."
       note_9: "<module>HeaderToggle</module> has been made more robust against influences by other modules or Hattrick itself."
-      note_10: "<header>Bugfixes</header>"
-      note_11: "Fixed TSI NaN error on players pages for national teams or when xml downloading is disabled (<module>Skilltable</module>, <module>TeamStats</module> etc.)"
-      note_12: "Unused players will no longer be included when using the 'Fill penalty takers' feature in <module>MatchOrderInterface</module>."
-      note_13: "A work-around for negative player IDs in neighborhood team matches (prevent walkovers in friendlies) was provided."
-      note_14: "The challenge link in <module>TeamPopupLinks</module> was fixed."
+      note_10: "<module>MatchSimulator</module> was adapted to include the new coach type information when copying ratings."
+      note_11: "<header>Bugfixes</header>"
+      note_12: "Fixed TSI NaN error on players pages for national teams or when xml downloading is disabled (<module>Skilltable</module>, <module>TeamStats</module> etc.)"
+      note_13: "Unused players will no longer be included when using the 'Fill penalty takers' feature in <module>MatchOrderInterface</module>."
+      note_14: "A work-around for negative player IDs in neighborhood team matches (prevent walkovers in friendlies) was provided."
+      note_15: "The challenge link in <module>TeamPopupLinks</module> was fixed."
 
     0.12.1.1:
       note_0: 'Translation updates.'
