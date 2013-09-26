@@ -56,7 +56,7 @@ Foxtrick.modules['StaffMarker'] = {
 		// JSON files to be downloaded
 		var uris = [
 			Foxtrick.DataPath + 'staff/foxtrick.json',
-			Foxtrick.DataPath + 'staff/chpp.json',
+			Foxtrick.DataPath + 'staff/chpp-holder.json',
 			Foxtrick.DataPath + 'staff/editor.json'
 		];
 		if (FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'external')) {
