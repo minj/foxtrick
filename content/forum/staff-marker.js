@@ -2,7 +2,7 @@
 /**
  * staff-marker.js
  * Foxtrick forum staff (HT, GM, Mod, CHPP, LA) marker
- * @author bummerland, ryanli
+ * @author bummerland, ryanli, LA-MJ, CHPP-teles, CatzHoek
  */
 
 Foxtrick.modules['StaffMarker'] = {
@@ -10,20 +10,145 @@ Foxtrick.modules['StaffMarker'] = {
 	PAGES: ['forumViewThread', 'forumWritePost', 'teamPage'],
 	NICE: 11, // after team-popup-links
 	OPTIONS: [
-		'officials', 'editors', 'foxtrick',
-		'chpp.contributors', 'chpp.holders',
-		'supporters', 'nationalCoaches',
-		'manager', 'own'
+		'officials',
+		'editor',
+		'foxtrick',
+		'chpp-contributors',
+		'chpp-holder',
+		'supporters',
+		'coach',
+
+		'manager',
+		'own'
 	],
 	OPTION_EDITS: true,
-	OPTION_EDITS_DISABLED_LIST: [true, true, true, true, true, true, true, true, false],
+	OPTION_EDITS_DISABLED_LIST: [
+		true,
+		true,
+		true,
+		true,
+		true,
+		true,
+		true,
+
+		true,
+		false
+	],
 
 	CSS: Foxtrick.InternalPath + 'resources/css/staff-marker.css',
 
+	// [type1, type2,.. typeN, option]
+	// or type when type=option
+	// where type is type in json
+	type_map: [
+		'officials',
+		'editor',
+		'foxtrick',
+		['htls', 'hy', 'chpp-contributors'],
+		'chpp-holder',
+		['supporter', 'supported', 'supporters'],
+		'coach',
+	],
+
+	// placeholder for StaffMarker.type strings
+	title_map: {},
+
+	// [file1, file2,.. fileN, type]
+	// or file when file=type
+	file_map: [
+		// no file for officials
+		'editor',
+		'foxtrick',
+		'htls', 'hy',
+		'chpp-holder',
+		// supporters use custom scheme
+		['nt', 'u20', 'coach'],
+	],
+
+	// functions called for each type
+	type_callback_map: {
+		'chpp-holder': function(obj) {
+			obj['chpp-holder']['apps'] = {};
+		},
+		'coach': function(obj) {
+			if (typeof obj['coach']['nts'] === 'undefined')
+				obj['coach']['nts'] = {};
+		},
+	},
+
+	// functions called for each user by type
+	user_callback_map: {
+		'chpp-holder': function(obj, user) {
+			obj['chpp-holder']['apps'][user.id] = user.appNames;
+		},
+		'coach': function(obj, user) {
+			obj['coach']['nts'][user.id] = {
+				leagueId: user.LeagueId,
+				name: user.TeamName,
+				teamId: user.TeamId
+			};
+		},
+	},
+
+	// functions called for the marked object by type
+	// if an element is returned it will be appended instead of default icon
+	object_callback_map: {
+		'chpp-holder': function(data, id, object, icon) {
+			var appNames = '';
+			Foxtrick.map(function(appName) {
+				appNames = appNames + ' \n● ' + appName;
+			}, data['chpp-holder']['apps'][id]);
+			if (object.getAttribute('title'))
+				object.setAttribute('title', object.getAttribute('title') + appNames);
+			else
+				object.setAttribute('title', object.textContent.match(/\S+/)[0] + appNames);
+		},
+		'coach': function(data, id, object, icon) {
+			var nt = data['coach']['nts'][id];
+			var title = icon.title.replace(/%s/, nt.name);
+			var url = '/Club/NationalTeam/NationalTeam.aspx?teamId=' + nt.teamId;
+			var flagImg = Foxtrick.util.id
+				.createFlagFromLeagueId(object.ownerDocument, nt.leagueId, url, title);
+			Foxtrick.addClass(flagImg, 'ft-no-popup');
+			return flagImg;
+		},
+	},
+
+	getTitle: function(type) {
+		var str = 'StaffMarker.' + type;
+		return Foxtrickl10n.isStringAvailable(str) ? Foxtrickl10n.getString(str) : '';
+	},
+
+	// parse enable map
+	getEnabledTypes: function() {
+		var enable = {}, m = this.type_map;
+		for (var i = 0, t; i < m.length && (t = m[i]); i++) {
+			if (typeof t === 'string') {
+				enable[t] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', t);
+				this.title_map[t] = this.getTitle(t);
+			}
+			else {
+				var superTypeEnabled = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', t.pop());
+				for (var j = 0, e; j < t.length && (e = t[j]); ++j) {
+					enable[e] = superTypeEnabled;
+					this.title_map[e] = this.getTitle(e);
+				}
+			}
+		}
+		return enable;
+	},
+
 	hasLoadedOnce: false,
+
+	// uncomment to enable debug in bg context (until exception occurs):
+
+	//init: function() {
+	//	this.load();
+	//},
 
 	// get staffs
 	load: function(doc) {
+		var module = this;
 		var parseMarkers = function(text) {
 			try {
 				var parsed = JSON.parse(text);
@@ -38,21 +163,17 @@ Foxtrick.modules['StaffMarker'] = {
 				// add them!
 				if (typeof obj[key] === 'undefined')
 					obj[key] = {};
-				if (key == 'chpp-holder')
-					obj[key]['apps'] = {};
-				else if (key == 'coach' && typeof obj[key]['nts'] === 'undefined')
-					obj[key]['nts'] = {};
+
+				var type_func = module.type_callback_map[key];
+				if (typeof type_func === 'function')
+					type_func(obj);
+
+				var user_func = module.user_callback_map[key];
+
 				Foxtrick.map(function(user) {
 					obj[key][user.id] = true;
-					if (key == 'chpp-holder')
-						obj[key]['apps'][user.id] = user.appNames;
-					else if (key == 'coach') {
-						obj[key]['nts'][user.id] = {
-							leagueId: user.LeagueId,
-							name: user.TeamName,
-							teamId: user.TeamId
-						};
-					}
+					if (typeof user_func === 'function')
+						user_func(obj, user);
 				}, list);
 			}
 			// all your data are belong to us
@@ -65,7 +186,7 @@ Foxtrick.modules['StaffMarker'] = {
 				// we try a new run() just after
 				// but only once in order to avoid too many loop
 				// if things get weird, it will be displayed next page load
-				if(Foxtrick.modules.StaffMarker.hasLoadedOnce == false) {
+				if (Foxtrick.modules.StaffMarker.hasLoadedOnce == false) {
 					Foxtrick.modules.StaffMarker.hasLoadedOnce = true;
 					Foxtrick.modules.StaffMarker.run(doc);
 				}
@@ -74,34 +195,33 @@ Foxtrick.modules['StaffMarker'] = {
 
 		var obj = {}, uris = [];
 		// JSON files to be downloaded
-		if (FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'foxtrick')) {
-			uris.push(Foxtrick.DataPath + 'staff/foxtrick.json');
+		var enable = this.getEnabledTypes();
+		var files = this.file_map;
+		for (var i = 0, f; i < files.length && (f = files[i]); ++i) {
+			if (typeof f === 'string') {
+				if (enable[f])
+					uris.push(Foxtrick.DataPath + 'staff/' + f + '.json');
+			}
+			else if (enable[f.pop()]) {
+				for (var j = 0, e; j < f.length && (e = f[j]); ++j) {
+					uris.push(Foxtrick.DataPath + 'staff/' + e + '.json');
+				}
+			}
 		}
-		if (FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'chpp.holders')) {
-			uris.push(Foxtrick.DataPath + 'staff/chpp.json');
-		}
-		if (FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'editors')) {
-			uris.push(Foxtrick.DataPath + 'staff/editor.json');
-		}
-		if (FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'chpp.contributors')) {
-			uris.push(Foxtrick.DataPath + 'staff/hy.json');
-			uris.push(Foxtrick.DataPath + 'staff/htls.json');
-		}
-		if (FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'supporters')
-			&& Foxtrick.util.layout.isSupporter(doc)) {
+		// custom URLs
+		if (enable['supporter']	&& Foxtrick.util.layout.isSupporter(doc)) {
 			uris.push('supporter');
 			uris.push('supported');
-		}
-		if (FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'nationalCoaches')) {
-			uris.push(Foxtrick.DataPath + 'staff/ntcoaches.json');
-			uris.push(Foxtrick.DataPath + 'staff/u20coaches.json');
 		}
 
 		// counter of URI remaining to fetch
 		var todo = uris.length;
 		Foxtrick.map(function(uri) {
-			if(uri == 'supporter' || uri == 'supported') {
-				if(uri == 'supported') return; // no need to parse the file twice, but we need 2 uri :)
+			if (uri == 'supporter' || uri == 'supported') {
+				if (uri == 'supported')
+					return;
+				// no need to parse the file twice, but we need 2 uris :)
+
 				Foxtrick.util.api.retrieve(doc, [
 					['file', 'teamdetails'],
 					['version', '2.9'],
@@ -114,30 +234,30 @@ Foxtrick.modules['StaffMarker'] = {
 						Foxtrick.log(errorText);
 						return;
 					}
-					var idsS = {type:'supported', list: []}, idsM = {type:'supporter', list: []};
+					var idsS = { type: 'supported', list: [] };
+					var idsM = { type: 'supporter', list: [] };
 					var teams = xml.getElementsByTagName('Team');
-					for(var t=0; t<teams.length; t++) {
+					for (var t = 0; t < teams.length; t++) {
 						var team = teams[t];
 						var sups = team.getElementsByTagName('SupportedTeams');
-						for(var s=0; s<sups.length; s++) {
+						for (var s = 0; s < sups.length; s++) {
 							var sup = sups[s];
 							var all = sup.getElementsByTagName('UserId');
-							for(var i=0; i<all.length; i++)
-							 idsS.list.push({id: all[i].textContent});
+							for (var i = 0; i < all.length; i++)
+								idsS.list.push({ id: all[i].textContent });
 						}
 						sups = team.getElementsByTagName('MySupporters');
-						for(s=0; s<sups.length; s++) {
+						for (s = 0; s < sups.length; s++) {
 							sup = sups[s];
 							all = sup.getElementsByTagName('UserId');
-							for(i=0; i<all.length; i++)
-							idsM.list.push({id: all[i].textContent});
+							for (i = 0; i < all.length; i++)
+								idsM.list.push({ id: all[i].textContent });
 						}
 					}
 					parseMarkers(JSON.stringify(idsS));
 					parseMarkers(JSON.stringify(idsM));
 				});
 			} else {
-				// counter of URI remaining to fetch
 				Foxtrick.util.load.get(uri)('success',
 				  function(text) {
 					Foxtrick.log('parse ', uri);
@@ -153,6 +273,7 @@ Foxtrick.modules['StaffMarker'] = {
 	},
 
 	run: function(doc) {
+		var module = this;
 		Foxtrick.sessionGet('staff-marker-data', function(data) {
 			if (!data) {
 				// get staffmarker and display on next load. didn't auto call run here to prevent
@@ -160,8 +281,6 @@ Foxtrick.modules['StaffMarker'] = {
 				Foxtrick.modules.StaffMarker.load(doc);
 				return;
 			}
-
-			var coachTitle = Foxtrickl10n.getString('StaffMarker.coachTitle');
 
 			// getting user-defined IDs and colors
 			var customMarker = {};
@@ -181,7 +300,7 @@ Foxtrick.modules['StaffMarker'] = {
 				if (customMarker[id] !== undefined)
 					object.setAttribute('style', customMarker[id]);
 				// exclusive classes for official staffs
-				if(enable['officials']) {
+				if (enable['officials']) {
 					// alias in select boxes might have a Left-to-Right
 					// Overwrite (LRO, U+202D) in front
 					var markers = [
@@ -202,34 +321,20 @@ Foxtrick.modules['StaffMarker'] = {
 				var img = doc.createElement('img');
 				img.src = '/Img/Icons/transparent.gif';
 				var type;
+
 				for (type in data) {
 					if (data[type][id] == true && enable[type] == true) {
 						var icon = img.cloneNode();
 						Foxtrick.addClass(object, 'ft-staff-' + type);
 						Foxtrick.addClass(icon, 'ft-staff-icon ft-staff-' + type);
-						if (type !== 'coach')
-							object.insertBefore(icon, object.firstChild);
-						if (type == 'chpp-holder') {
-							var appNames = '';
-							Foxtrick.map(function(appName) {
-								appNames = appNames + ' \n● ' + appName;
-							}, data[type]['apps'][id]);
-							if (object.getAttribute('title'))
-								object.setAttribute('title', object.getAttribute('title') +
-													appNames);
-							else
-								object.setAttribute('title', object.textContent.match(/\S+/)[0] +
-													appNames);
+						icon.title = icon.alt = module.title_map[type];
+						var obj_func = module.object_callback_map[type];
+						if (typeof obj_func === 'function') {
+							var newIcon = obj_func(data, id, object, icon);
+							if (typeof newIcon !== 'undefined')
+								icon = newIcon;
 						}
-						else if (type == 'coach') {
-							var nt = data[type]['nts'][id];
-							var title = coachTitle.replace(/%s/, nt.name);
-							var url = '/Club/NationalTeam/NationalTeam.aspx?teamId=' + nt.teamId;
-							var flagImg = Foxtrick.util.id
-								.createFlagFromLeagueId(doc, nt.leagueId, url, title, false);
-							Foxtrick.addClass(flagImg, 'ft-no-popup');
-							object.insertBefore(flagImg, object.firstChild);
-						}
+						object.insertBefore(icon, object.firstChild);
 					}
 				}
 			};
@@ -285,14 +390,7 @@ Foxtrick.modules['StaffMarker'] = {
 				}, selects);
 			};
 
-			var enable = {};
-			enable['officials'] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'officials');
-			enable['editor'] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'editors');
-			enable['foxtrick'] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'foxtrick');
-			enable['htls'] = enable['hty'] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'chpp.contributors');
-			enable['chpp-holder'] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'chpp.holders');
-			enable['supporter'] = enable['supported'] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'supporters');
-			enable['coach'] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'supporters');
+			var enable = module.getEnabledTypes();
 
 			if (Foxtrick.isPage(doc, 'forumViewThread') || Foxtrick.isPage(doc, 'forumWritePost')) {
 				markThread(doc, modifier);

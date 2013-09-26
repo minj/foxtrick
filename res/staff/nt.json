@@ -1,6 +1,5 @@
 {
 	"type": "coach",
-	"internal": "true",
 	"list": [
 		{ "id": 36489, "name": "Scox_", "LeagueId": 1, "TeamId": 3000, "TeamName": "Sverige" },
 		{ "id": 7908379, "name": "malk77", "LeagueId": 2, "TeamId": 3001, "TeamName": "England" },

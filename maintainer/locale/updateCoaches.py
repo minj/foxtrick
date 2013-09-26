@@ -45,7 +45,6 @@ def saveCoaches(coaches, filename):
 	file = open( filename, "w")
 	file.write('{\n')
 	file.write('\t"type": "%s",\n' % "coach")
-	file.write('\t"internal": "true",\n')
 	file.write('\t"list": [\n')
 	file.write('\t\t' + ',\n\t\t'.join(map(lambda a: '{ "id": %d, "name": "%s", "LeagueId": %d, "TeamId": %d, "TeamName": "%s" }' % (a["CoachId"], a["CoachName"].encode('utf-8'), a["LeagueId"], a["TeamId"], a["TeamName"].encode('utf-8')), coaches)))
 	file.write('\n\t]\n}')
@@ -59,8 +58,8 @@ def run():
 	u20 = sorted(u20, key=lambda x: x["LeagueId"])
 	nt = sorted(nt, key=lambda x: x["LeagueId"])
 
-	saveCoaches(u20, '/home/foxtrick/trunk/res/staff/u20coaches.json')
-	saveCoaches(nt, '/home/foxtrick/trunk/res/staff/ntcoaches.json')
+	saveCoaches(u20, '/home/foxtrick/trunk/res/staff/u20.json')
+	saveCoaches(nt, '/home/foxtrick/trunk/res/staff/nt.json')
 
 if __name__ == '__main__':
 	run();
