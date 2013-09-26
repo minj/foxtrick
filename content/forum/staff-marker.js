@@ -98,10 +98,7 @@ Foxtrick.modules['StaffMarker'] = {
 			Foxtrick.map(function(appName) {
 				appNames = appNames + ' \n● ' + appName;
 			}, data['chpp-holder']['apps'][id]);
-			if (object.getAttribute('title'))
-				object.setAttribute('title', object.getAttribute('title') + appNames);
-			else
-				object.setAttribute('title', object.textContent.match(/\S+/)[0] + appNames);
+			icon.title = icon.title + appNames;
 		},
 		'coach': function(data, id, object, icon) {
 			var nt = data['coach']['nts'][id];
