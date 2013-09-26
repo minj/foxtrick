@@ -162,6 +162,10 @@ Foxtrick.modules['StaffMarker'] = {
 				if (typeof obj[key] === 'undefined')
 					obj[key] = {};
 
+				if (parsed['url']) {
+					obj[key]['url'] = parsed['url'];
+				}
+
 				if (typeof parsed['duties'] !== 'undefined') {
 					obj[key]['hasDuties'] = true;
 					obj[key]['duties'] = parsed['duties'];
