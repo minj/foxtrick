@@ -189,7 +189,8 @@ Foxtrick.modules['StaffMarker'] = {
 			}
 			// all your data are belong to us
 			if (--todo == 0) {
-				Foxtrick.sessionSet('staff-marker-data', obj);
+				Foxtrick.sessionSet('staff-marker-data.' +
+									Foxtrick.modules['Core'].getSelfTeamInfo().teamId, obj);
 				Foxtrick.log('Staff marker data loaded.');
 
 				// at start run() is performed without data
@@ -285,7 +286,8 @@ Foxtrick.modules['StaffMarker'] = {
 
 	run: function(doc) {
 		var module = this;
-		Foxtrick.sessionGet('staff-marker-data', function(data) {
+		Foxtrick.sessionGet('staff-marker-data.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId,
+		  function(data) {
 			Foxtrick.sessionGet('staff-marker-reset', function(reset) {
 				if (!data || reset) {
 					// get staffmarker and display on next load. didn't auto call run here to prevent
