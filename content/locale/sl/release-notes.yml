@@ -10,7 +10,7 @@ sl:
     0.12.2:
       note_0: ""
       note_1: ""
-      note_2: ""
+      note_2: 'NOVO: <module>PsicoTSI</module> je bil vstavljen v Foxtrick.'
       note_3: ""
       note_4: ""
       note_5: ""
@@ -104,7 +104,7 @@ sl:
       note_37: ""
       note_38: ""
       note_39: ""
-      note_40: ""
+      note_40: '<strong>In veliko, veliko več</strong>'
     0.10.0:
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'

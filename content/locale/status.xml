@@ -85,7 +85,7 @@
     <name>German</name>
     <code>de</code>
     <phrases>1534</phrases>
-    <translated>1496</translated>
+    <translated>1497</translated>
     <approved>2</approved>
     <translated_progress>97</translated_progress>
     <approved_progress>0</approved_progress>
@@ -256,9 +256,9 @@
     <name>Slovenian</name>
     <code>sl</code>
     <phrases>1534</phrases>
-    <translated>956</translated>
+    <translated>964</translated>
     <approved>0</approved>
-    <translated_progress>63</translated_progress>
+    <translated_progress>64</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -337,9 +337,9 @@
     <name>Galician</name>
     <code>gl</code>
     <phrases>1534</phrases>
-    <translated>1519</translated>
+    <translated>1527</translated>
     <approved>0</approved>
-    <translated_progress>99</translated_progress>
+    <translated_progress>100</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>

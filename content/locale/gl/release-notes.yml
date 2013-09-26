@@ -9,13 +9,13 @@ gl:
       note_0: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
     0.12.2:
       note_0: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
+      note_1: '<module>PlayerStatsExperience</module>: para calcular a experiencia, agora asúmese que hai 28,57 puntos por nivel (ver 15766691.780).'
+      note_2: 'NOVO: importouse a ferramenta <module>PsicoTSI</module> a FoxTrick.'
+      note_3: '<module>ShowLineupSet</module>: engadiuse unha opción para resaltar o teu equipo na clasificación.'
+      note_4: '<module>CopyYouth</module>: agora, os cambios de adestramento da academia enviaranse a hattrick youthclub automaticamente (só para usuarios de HY).'
+      note_5: 'NOVO: <module>SupportersList</module>: permite amosar os seguidores do teu equipo na lista dos equipos que segues e viceversa.'
+      note_6: '<module>MatchLineupTweaks</module>: engadiuse unha opción para recoller datos da resistencia dos teus xogadores cada vez que visites a páxina do partido. Isto usarase para mellorar as prediccións do módulo <module>MatchSimulator</module> e amósase en <module>SkillTable</module>. Os xogadores deberán xogar os 90 minutos. Os encontros xogados coa táctica presión ou nos que aparezan eventos climáticos negativos (no caso dos xogadores potentes) non serán tidos en conta. A fórmula da predición foi feita por Pappagallopoli.'
+      note_7: 'NOVO: <module>Fans</module>: permite engadir unha ligazón para o HT Live a carón das ligazóns dos vindeiros encontros. Permite engadir a evolución do número total de seareiros na barra lateral.'
     0.12.1.1:
       note_0: Actualizacións da traducción.
       note_1: 'Mellorouse o rendemento de <module>MainMenuDropDown</module>.'
@@ -26,7 +26,7 @@ gl:
       note_6: Os saltos de liña no foro e nos padróns de correo deberíanse recoñecer agora ó importar as preferencias.
       note_7: Arranxado o problema no recoñecemento das cualificacións en frisón.
       note_8: 'Arranxados algúns problemiñas en <module>ForumAlterHeaderLine</module>, <module>ManagerButtons</module> e <module>HideSignatures</module>.'
-      note_9: ""
+      note_9: '<module>SkillTable</module> volve funcionar sen autorización de FoxTrick para usuarios cun só equipo.'
     0.12.1:
       note_0: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
       note_1: 'NOVO: <module>SupportershipExpirationDate</module>: agora, ao facer clic nos días de supporter restantes que aparecen en "O meu Despacho", amósase a data na que remata o período de supporter.'
