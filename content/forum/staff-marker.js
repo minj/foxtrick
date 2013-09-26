@@ -114,9 +114,9 @@ Foxtrick.modules['StaffMarker'] = {
 		},
 	},
 
-	getTitle: function(type) {
-		var str = 'StaffMarker.' + type;
-		return Foxtrickl10n.isStringAvailable(str) ? Foxtrickl10n.getString(str) : '';
+	getTitle: function(type, duty) {
+		var str = 'StaffMarker.' + type + (duty ? '.' + duty : '');
+		return Foxtrickl10n.isStringAvailable(str) ? Foxtrickl10n.getString(str) : null;
 	},
 
 	// parse enable map
@@ -164,6 +164,13 @@ Foxtrick.modules['StaffMarker'] = {
 				if (typeof obj[key] === 'undefined')
 					obj[key] = {};
 
+				if (typeof parsed['duties'] !== 'undefined') {
+					obj[key]['hasDuties'] = true;
+					obj[key]['duties'] = parsed['duties'];
+					if (typeof obj[key]['duty'] === 'undefined')
+						obj[key]['duty'] = {};
+				}
+
 				var type_func = module.type_callback_map[key];
 				if (typeof type_func === 'function')
 					type_func(obj);
@@ -172,6 +179,9 @@ Foxtrick.modules['StaffMarker'] = {
 
 				Foxtrick.map(function(user) {
 					obj[key][user.id] = true;
+					if (obj[key]['hasDuties'] && user.duty !== 'undefined') {
+						obj[key]['duty'][user.id] = user.duty;
+					}
 					if (typeof user_func === 'function')
 						user_func(obj, user);
 				}, list);
@@ -328,6 +338,18 @@ Foxtrick.modules['StaffMarker'] = {
 						Foxtrick.addClass(object, 'ft-staff-' + type);
 						Foxtrick.addClass(icon, 'ft-staff-icon ft-staff-' + type);
 						icon.title = icon.alt = module.title_map[type];
+						var duty, dutyDesc;
+						if (data[type]['hasDuties'] && (duty = data[type]['duty'][id]) &&
+							(dutyDesc = data[type]['duties'][duty])) {
+							icon.title = icon.alt = module.getTitle(type, duty) || dutyDesc.alt || '';
+							if (dutyDesc.url) {
+								icon.setAttribute('style', 'background-image: url("' +
+												  dutyDesc.url.replace(/chrome:\/\/foxtrick\/content\//,
+																	   Foxtrick.ResourcePath) +
+												  '");');
+							}
+
+						}
 						var obj_func = module.object_callback_map[type];
 						if (typeof obj_func === 'function') {
 							var newIcon = obj_func(data, id, object, icon);
