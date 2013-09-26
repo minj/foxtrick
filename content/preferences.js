@@ -70,22 +70,35 @@ function init() {
 var _modules = {};
 //feed the search bar with options, no effect yet
 function initSearch() {
-
+	var searchadd = function(searchstr, item){
+		if(_modules[searchstr] instanceof Array)
+			_modules[searchstr].push(item);
+		else if(_modules[searchstr] instanceof Object){
+			var tmp = _modules[searchstr];
+			_modules[searchstr] = []
+			_modules[searchstr].push(tmp);
+			_modules[searchstr].push(item);
+		}
+		else
+			_modules[searchstr] = item;	
+	}
 	$('.module').each(function() {
 		try {
 			var name = $(this).attr('id');
 			if (name && name.match(/^pref-/)) {
-				_modules[name.replace(/^pref-/, '')] = $('#' + name)[0];
+				var savename = name.replace(/^pref-/, '');
+				searchadd(savename, $('#' + name)[0])
 				//addToModuleList(name.replace(/^pref-/, ''));
 			}else if (name && name.match(/^faq-/)) {
 				var h3 = $(this).children('h3:first');
-				_modules[h3.text().replace('¶', '')] = $(this)[0];
+				var savename = h3.text().replace('¶', '');
+				searchadd(savename, $(this)[0]);
 			}
 			else {
 				var h3 = $(this).children('h3:first');
 				if (h3.attr('data-text')) {
 					name = Foxtrickl10n.getString(h3.attr('data-text'));
-					_modules[name] = $(this)[0];
+					searchadd(name, $(this)[0]);
 				} else {
 					Foxtrick.log('no search support, missing h3 and/or data-text');
 				}
@@ -95,13 +108,6 @@ function initSearch() {
 			Foxtrick.log('no search support', e);
 		}
 	});
-	// for (var i in Foxtrick.modules) {
-	// 	_modules[Foxtrick.modules[i].MODULE_NAME] =
-	//	$('#pref-' + Foxtrick.modules[i].MODULE_NAME)[0];
-	// 	var option = document.createElement('option');
-	// 	option.setAttribute('value', Foxtrick.modules[i].MODULE_NAME);
-	// 	search.appendChild(option);
-	// }
 }
 
 //search
@@ -130,9 +136,17 @@ function search(string, search) {
 		for (i in _modules) {
 			try {
 				if (i.search(regex) > -1) {
-					_modules[i].className = _modules[i].className.replace(/hidden/g, '');
+					if(_modules[i] instanceof Array){
+						for(var k = 0; k < _modules[i].length; k++)
+							_modules[i][k].className = _modules[i][k].className.replace(/hidden/g, '');
+					} else
+						_modules[i].className = _modules[i].className.replace(/hidden/g, '');
 				} else {
-					_modules[i].className = _modules[i].className + ' hidden';
+					if(_modules[i] instanceof Array){
+						for(var k = 0; k < _modules[i].length; k++)
+							_modules[i][k].className = _modules[i][k].className + ' hidden';
+					} else
+						_modules[i].className = _modules[i].className + ' hidden';
 				}
 			} catch (e) {
 					continue;
@@ -146,7 +160,11 @@ function search(string, search) {
 		var i;
 		for (i in _modules) {
 			try {
-				_modules[i].className = _modules[i].className.replace(/hidden/g, '');
+				if(_modules[i] instanceof Array){
+						for(var k = 0; k < _modules[i].length; k++)
+							_modules[i][k].className = _modules[i][k].className.replace(/hidden/g, '');
+				} else
+					_modules[i].className = _modules[i].className.replace(/hidden/g, '');
 			} catch (e) {
 
 			}
