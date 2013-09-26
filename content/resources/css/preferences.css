@@ -19,6 +19,7 @@ ul.nav {
 	/*border: 1px solid black;*/
 	/*border-radius: 0 0 5px 5px;*/
 	border-top: none;
+	margin-bottom: 5px;
 }
 
 ul li ul
@@ -199,6 +200,10 @@ ul.nav li
 	background-color: #fff;
 	border-bottom: none;
 	padding: 3px;
+}
+
+ul.nav li:last-child {
+	border-radius: 0 0 4px 4px;	
 }
 
 ul.nav li.hide
@@ -437,7 +442,7 @@ h3 {
 	padding-left: 15px;
 	padding-right: 15px;
 	background-color: #a7d3ed;
-	border-radius: 4px;
+	border-radius: 4px 4px 0px 0px;
 	/*border-top-left-radius: 5px;*/
 	/*border: 1px solid black;*/
 	border-bottom: none;
@@ -461,10 +466,10 @@ h3 {
 
 div.nav{
 	/*border: 1px solid black;*/
-	border-radius: 4px 4px 4px 4px;
+	border-radius: 4px 4px 0px 0px;
 	margin: 2px;
-	/*margin-bottom: 0;*/
-	padding: 2px;
+	margin-bottom: 0;
+	padding: 4px;
 
 	display:block;
 	background: -moz-linear-gradient(top, #7abcff 0%, #60abf8 44%, #4096ee 100%); /* FF3.6+ */
