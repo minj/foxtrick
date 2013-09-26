@@ -9,7 +9,7 @@
 	padding: 1px 1px 1px 18px !important;
 }
 
-.ft-staff-hty {
+.ft-staff-ht {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/hyouthclub.png");
 	background-repeat: no-repeat;
 	padding: 1px 1px 1px 18px !important;
@@ -27,7 +27,7 @@
 	padding: 1px 1px 1px 24px !important;
 }
 
-.ft-staff-hty.ft-staff-foxtrick {
+.ft-staff-hy.ft-staff-foxtrick {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/foxtrick.png"), url("chrome://foxtrick/content/resources/img/staff/hyouthclub.png");
 	background-repeat: no-repeat, no-repeat;
 	background-position: 0px 0px, 18px 0px;
@@ -41,7 +41,7 @@
 	padding: 1px 1px 1px 44px !important;
 }
 
-.ft-staff-hty.ft-staff-chpp-holder {
+.ft-staff-hy.ft-staff-chpp-holder {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/chpp.png"), url("chrome://foxtrick/content/resources/img/staff/hyouthclub.png");
 	background-repeat: no-repeat, no-repeat;
 	background-position: 0px 0px, 25px 0px;
