@@ -93,7 +93,7 @@ Foxtrick.modules['StaffMarker'] = {
 	// functions called for the marked object by type
 	// if an element is returned it will be appended instead of default icon
 	object_callback_map: {
-		'chpp-holder': function(data, id, object, icon) {
+		'chpp-holder': function(data, id, object, icon, link) {
 			var appNames = '';
 			Foxtrick.map(function(appName) {
 				appNames = appNames + ' \n● ' + appName;
@@ -101,7 +101,7 @@ Foxtrick.modules['StaffMarker'] = {
 			icon.title = icon.title + appNames;
 			icon.alt = icon.alt + appNames;
 		},
-		'coach': function(data, id, object, icon) {
+		'coach': function(data, id, object, icon, link) {
 			var nt = data['coach']['nts'][id];
 			var title = icon.title.replace(/%s/, nt.name);
 			var url = '/Club/NationalTeam/NationalTeam.aspx?teamId=' + nt.teamId;
@@ -332,7 +332,7 @@ Foxtrick.modules['StaffMarker'] = {
 
 				for (type in data) {
 					if (data[type][id] == true && enable[type] == true) {
-						var icon = img.cloneNode();
+						var icon = img.cloneNode(), link, element;
 						Foxtrick.addClass(object, 'ft-staff-' + type);
 						Foxtrick.addClass(icon, 'ft-staff-icon ft-staff-' + type);
 						icon.title = icon.alt = module.title_map[type];
@@ -348,13 +348,26 @@ Foxtrick.modules['StaffMarker'] = {
 							}
 
 						}
+						var url;
+						if (url = data[type]['url']) {
+							link = doc.createElement('a');
+							url = url.replace(/\[id\]/, id);
+							link.target = '_blank';
+							link.href = url;
+							Foxtrick.addClass(link, 'ft-no-popup');
+							link.appendChild(icon);
+							element = link;
+						}
+						else
+							element = icon;
+
 						var obj_func = module.object_callback_map[type];
 						if (typeof obj_func === 'function') {
-							var newIcon = obj_func(data, id, object, icon);
-							if (typeof newIcon !== 'undefined')
-								icon = newIcon;
+							var newElement = obj_func(data, id, object, icon, link);
+							if (typeof newElement !== 'undefined')
+								element = newElement;
 						}
-						object.insertBefore(icon, object.firstChild);
+						object.insertBefore(element, object.firstChild);
 					}
 				}
 			};
