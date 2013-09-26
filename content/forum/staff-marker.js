@@ -99,6 +99,7 @@ Foxtrick.modules['StaffMarker'] = {
 				appNames = appNames + ' \n● ' + appName;
 			}, data['chpp-holder']['apps'][id]);
 			icon.title = icon.title + appNames;
+			icon.alt = icon.alt + appNames;
 		},
 		'coach': function(data, id, object, icon) {
 			var nt = data['coach']['nts'][id];
