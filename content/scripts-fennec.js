@@ -124,6 +124,7 @@ Foxtrick.loader.background.contentScriptManager = {
 		"information-aggregation/history-stats.js",
 		"information-aggregation/htms-points.js",
 		"information-aggregation/last-login.js",
+		"information-aggregation/match-weather.js",
 		"information-aggregation/median-transfer-price.js",
 		"information-aggregation/my-monitor.js",
 		"information-aggregation/nt-peek.js",
