@@ -258,8 +258,7 @@
 			"*://*.hattrick.name/*",
 			"*://*.hat-trick.net/*",
 			"*://*.hattrick.interia.pl/*",
-			"*://*.hattrick.uol.com.br/*",
-			"*://api.openweathermap.org/*"
+			"*://*.hattrick.uol.com.br/*"
 		],
 		"run_at" : "document_start"
 	} ],

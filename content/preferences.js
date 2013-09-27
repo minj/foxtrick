@@ -1346,7 +1346,8 @@ var neededPermissions = [
 	{ modules: ['EmbedMedia.EmbedSoundCloud'], types: { origins: ['http://soundcloud.com/*']}},
 	{ modules: ['EmbedMedia.EmbedImageshack'], types: { origins: ['http://imageshack.us/*']}},
 	{ modules: ['YouthTwins'], types: { origins: ['http://*.hattrick-youthclub.org/*']}},
-	{ modules: ['HTEVPrediction'], types: { origins: ['http://htev.org/api/*']}}
+	{ modules: ['HTEVPrediction'], types: { origins: ['http://htev.org/api/*']}},
+	{ modules: ['MatchWeather'], types: { origins: ['http://api.openweathermap.org/*']}}
 ];
 
 function permissionsMakeIdFromName(module) {
