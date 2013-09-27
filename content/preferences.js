@@ -1346,7 +1346,10 @@ var neededPermissions = [
 	{ modules: ['EmbedMedia.EmbedSoundCloud'], types: { origins: ['http://soundcloud.com/*']}},
 	{ modules: ['EmbedMedia.EmbedImageshack'], types: { origins: ['http://imageshack.us/*']}},
 	{ modules: ['YouthTwins'], types: { origins: ['http://*.hattrick-youthclub.org/*']}},
-	{ modules: ['HTEVPrediction'], types: { origins: ['http://htev.org/api/*']}}
+	{ modules: ['CopyYouth.AutoSendTrainingReportToHY'], types: { origins: ['http://*.hattrick-youthclub.org/*']}},
+	{ modules: ['CopyYouth.AutoSendRejectedToHY'], types: { origins: ['http://*.hattrick-youthclub.org/*']}},
+	{ modules: ['CopyYouth.AutoSendTrainingChangesToHY'], types: { origins: ['http://*.hattrick-youthclub.org/*']}},
+	{ modules: ['HTEVPrediction'], types: { origins: ['http://htev.org/api/*']}},
 ];
 
 function permissionsMakeIdFromName(module) {
