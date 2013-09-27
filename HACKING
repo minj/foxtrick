@@ -89,7 +89,7 @@ specifications:
 Generally speaking, all properties except the MODULE_NAME could be omitted.
 
 After creating that JavaScript file and placing it under the appropriate
-directory, you should add a line to content/overlay.xul,
+directory, you should add a line to content/overlay.xul, content/bootstrap-firefox.js
 content/preferences.html and content/background.html respectively to inform the browser to load
 your script:
 <script type="application/x-javascript" src="chrome://foxtrick/content/category/module.js" />
@@ -98,7 +98,7 @@ There also need to be an entry in manifest.json in order for Chrome to
 include the file.
 
 You also need to tell FoxTrick that you have created that module by placing the
-name of your object in content/modules.js.
+name of your object in file 'modules'.
 
 To show the user the function of your module, you need to add a line to
 content/foxtrick.properties, with a description of your module, like:
@@ -175,3 +175,4 @@ Ryan Li <ryan@ryanium.com>
 Revised 11 June 2011
 Revised 17 July 2011
 Revised 25 November 2011 (CatzHoek)
+Revised 26 September 2013 (teles)

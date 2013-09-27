@@ -472,6 +472,8 @@ pref("extensions.foxtrick.prefs.module.MatchReportFormat.ShowEventIcons.enabled"
 pref("extensions.foxtrick.prefs.module.LiveMatchReportFormat.enabled", true);
 pref("extensions.foxtrick.prefs.module.MatchTables.enabled", false);
 pref("extensions.foxtrick.prefs.module.MatchTables.RemoveTime.enabled", false);
+pref("extensions.foxtrick.prefs.module.MatchWeather.enabled", true);
+pref("extensions.foxtrick.prefs.module.MatchWeather.Irl.enabled", true);
 pref("extensions.foxtrick.prefs.module.MedianTransferPrice.enabled", true);
 pref("extensions.foxtrick.prefs.module.MoveLinks.enabled", false);
 pref("extensions.foxtrick.prefs.module.MoveManagerOnline.enabled", false);

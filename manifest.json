@@ -131,6 +131,7 @@
 			"content/information-aggregation/history-stats.js",
 			"content/information-aggregation/htms-points.js",
 			"content/information-aggregation/last-login.js",
+			"content/information-aggregation/match-weather.js",
 			"content/information-aggregation/median-transfer-price.js",
 			"content/information-aggregation/my-monitor.js",
 			"content/information-aggregation/nt-peek.js",
@@ -257,7 +258,8 @@
 			"*://*.hattrick.name/*",
 			"*://*.hat-trick.net/*",
 			"*://*.hattrick.interia.pl/*",
-			"*://*.hattrick.uol.com.br/*"
+			"*://*.hattrick.uol.com.br/*",
+			"*://api.openweathermap.org/*"
 		],
 		"run_at" : "document_start"
 	} ],
@@ -292,7 +294,8 @@
 		"http://backend.deviantart.com/*",
 		"http://soundcloud.com/*",
 		"http://imageshack.us/*",
-		"http://htev.org/api/*"
+		"http://htev.org/api/*",
+		"http://api.openweathermap.org/*"
 	],
 	"page_action": {
 		"default_icon": "skin/icon-24.png",
