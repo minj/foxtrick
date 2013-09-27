@@ -16,6 +16,15 @@ da:
       note_5: 'NYT: <module>SupportersList</module>: Viser hvem supportere dit hold under Supportede hold liste og omvendt'
       note_6: '<module>MatchLineupTweaks</module>: Det er nu muligt at indsamle data over dine spilleres kondi, hvergang du er på kampsiden. Data vil blive brugt for bedre ratings beregning i <module>MatchSimulator</module> modullen og kan ses under <module>SkillTable</module>. En spillere skal have spillet 90 min. Kampe som har benyttet presspil eller kampe med negativ vejr begivenhed (for spillere med kraftfuld specialitet) er undladt. beregnings formularen er lavet af Pappagallopoli.'
       note_7: 'NEW: <module>Fans</module>: Tilføj live link ved siden af kommende kamp links. Tilføj udviklingen af antal fans under Fan-opdatering.'
+      note_8: ""
+      note_9: ""
+      note_10: ""
+      note_11: '<header>Bugfixes</header>'
+      note_12: ""
+      note_13: ""
+      note_14: ""
+      note_15: ""
+      note_16: ""
     0.12.1.1:
       note_0: Opdatering af oversættelser.
       note_1: 'Øget ydeevne af <module>MainMenuDropDown</module>.'

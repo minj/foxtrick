@@ -12,10 +12,19 @@ de:
       note_1: '<module>PlayerStatsExperience</module>: Die Berechnung geht davon aus dass für einen Anstieg der Erfahrung 28.57 Erfahrungspunkte benötigt werden. (Siehe  15766691.780).'
       note_2: 'NEW: <module>PsicoTSI</module> wurde in FoxTrick integriert.'
       note_3: ""
-      note_4: ""
+      note_4: '<module>CopyYouth</module>: Trainingserkenntnisse im Jugendinternat werden nun automatisch an HY übertragen (Nur für HY Nutzer).'
       note_5: ""
       note_6: ""
       note_7: 'NEW: <module>Fans</module>: Auf der Fan-Seite gibt es nun Live-Links und die Summe der Fanentwicklung wird angezeigt.'
+      note_8: "Nutzer mit mehreren Teams können nun den Selektor 'body.ft-teamID-0000000' nutzen um Hattrick anhand des aktiven Teams z.B. mit <module>SkinPlugin</module> o.ä. zu stylen."
+      note_9: '<module>HeaderToggle</module> wurde gegen Einflüsse seitens Hattrick oder anderer Module besser geschützt.'
+      note_10: '<module>MatchSimulator</module> berücksichtigt nun den Trainertyp wenn die Ratings kopiert werden. '
+      note_11: '<header>Bugfixes</header>'
+      note_12: 'Fehler behoben der auf Spielerübersichtsseiten dazu führte dass der TSI als NaN anzeigt wurde. (<module>Skilltable</module>, <module>TeamStats</module> etc.)'
+      note_13: "Nicht aufgestellte Spieler werden nun nicht mehr berücksichtigt wenn man die Option 'Elfmeterschützen eintragen' des Moduls <module>MatchOrderInterface</module> verwendet."
+      note_14: Die negativen Spieler-IDs von Spielern aus der Nachbarschaft (diese werden aufgestellt um ein Walkover zu umgehen) verursachen nun keine Probleme mehr.
+      note_15: "Der 'Fordern'-Link im Modul <module>TeamPopupLinks</module> funktioniert nun wieder."
+      note_16: Bug in der Suchfunktion in den Einstellungen behoben.
     0.12.1.1:
       note_0: Übersetzungsaktualisierungen.
       note_1: 'Leistung von <module>MainMenuDropDown</module> gesteigert.'

@@ -16,6 +16,15 @@ fr:
       note_5: "NOUVEAU: <module>SupportersList</module>: Affiche qui supporte votre équipe dans votre liste d'équipes supportées et vice versa"
       note_6: "<module>MatchLineupTweaks</module>: une option pour recueillir les données d'endurance de vos joueurs chaque fois que vous visitez vos rapports de match a été ajoutée. Les données seront utilisées pour une meilleure prédiction des notes dans <module>MatchSimulator</module> module et pourront être consultées dans <module>SkillTable</module>. Le joueur doit avoir joué les 90 minutes. Les matchs en pressing ou ayant des SE météo négatives (pour les joueurs costauds) sont exclus. La formule de prédiction a été créée par Pappagallopoli."
       note_7: "NOUVEAU: <module>Fans</module>: Ajout d'un lien vers le ht-live pour les prochains de match. Ajout du total de l'évolution de vos supporters dans la barre latérale."
+      note_8: "Les utilisateurs platinums peuvent désormais styliser chacune de leurs équipes d'Hattrick différemment en utilisant le sélecteur 'body.ft-teamID-0000000' dans <module>SkinPlugin</module>."
+      note_9: "<module>HeaderToggle</module> a été rendu plus robuste contre les influences des autres modules ou d'Hattrick lui-même."
+      note_10: "<module>MatchSimulator</module> a été adapté pour inclure la nouvelle information du type d'entraîneur lors de la copie des notes."
+      note_11: '<header>Correctifs</header>'
+      note_12: "Correctif de l'erreur de TSI NaN sur les pages des joueurs des équipes nationales ou lorsque le chargement du XML est désactivé (<module>Skilltable</module>, <module>TeamStats</module> etc.)"
+      note_13: "Les joueurs non utilisés ne seront plus inclus lors de l'utilisation de la fonction 'Remplir liste tireurs'  dans <module>MatchOrderInterface</module>."
+      note_14: Solution de contournement pour les ID négatif des joueurs dans les matchs contre une équipe du quartier (pour éviter les forfaits dans les matchs amicaux).
+      note_15: 'Correction du lien des défis dans <module>TeamPopupLinks</module>.'
+      note_16: "Correction d'un bug dans la recherche des préférences."
     0.12.1.1:
       note_0: Mises à jour des traductions.
       note_1: 'Amélioration de <module>MainMenuDropDown</module>.'

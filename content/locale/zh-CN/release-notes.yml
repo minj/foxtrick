@@ -4,7 +4,7 @@ zh-CN:
     nightly:
       note_0: '请查阅 Google Code 上的<linkSVN>版本历史</linkSVN>.'
     beta:
-      note_0: ""
+      note_0: '这是下一个版本的beta测试版。请在我们超级容易的大众翻译页面 <linkCrowdin>crowdin.net</linkCrowdin>帮助翻译此版本。'
     0.13.0:
       note_0: ""
     0.12.2:
@@ -16,6 +16,15 @@ zh-CN:
       note_5: ""
       note_6: ""
       note_7: ""
+      note_8: ""
+      note_9: ""
+      note_10: ""
+      note_11: ""
+      note_12: ""
+      note_13: ""
+      note_14: ""
+      note_15: ""
+      note_16: ""
     0.12.1.1:
       note_0: ""
       note_1: ""
@@ -43,7 +52,7 @@ zh-CN:
     0.12.0:
       note_0: ""
       note_1: ""
-      note_2: ""
+      note_2: 对许多模块的大量修正，以适应新的Hattrick商店推出。
       note_3: ""
       note_4: ""
       note_5: ""

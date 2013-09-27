@@ -16,6 +16,15 @@ he:
       note_5: 'NEW: <module>SupportersList</module>: הראה מי תומך בקבוצתך ברשימת הקבוצות הנתמכות על ידך, ולהיפך.'
       note_6: ""
       note_7: 'חדש: <module>אוהדים</module>: הוספה של קישור לצפייה בשידור חי של משחקים עתידיים. הוספה של תצוגת שינויי כמות האוהדים בתיבה הצדדית.'
+      note_8: ""
+      note_9: ""
+      note_10: ""
+      note_11: '<header>תיקוני באגים</header>'
+      note_12: ""
+      note_13: ""
+      note_14: ""
+      note_15: ""
+      note_16: ""
     0.12.1.1:
       note_0: עדכוני תרגום.
       note_1: 'שיפור הפעולה של <module>MainMenuDropDown</module>.'

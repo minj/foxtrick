@@ -16,6 +16,15 @@ it:
       note_5: 'NUOVO: <module>SupportersList</module>: mostra chi supporta la tua squadra nella lista delle squadre da te supportate e viceversa'
       note_6: "<module>MatchLineupTweaks</module>: è stata aggiunta un'opzione per raccogliere i dati della resistenza del tuo giocatore ogni volta che si visita la pagina della tua partita. I dati saranno utilizzati per migliore la previsione delle valutazioni nel modulo <module>MatchSimulator</module> e possono essere visualizzati in <module>SkillTable</module>. Un giocatore deve giocare il tutto in 90 minuti. Partite con tattica pressing o Special events meteo negativi (per giocatori potenti) sono esclusi. La formula è stata creata da Pappagallopoli."
       note_7: "NUOVO: <module>Fans</module>: Aggiunge un collegamento di fianco ai collegamenti per le prossime partite. Aggiunge l'andamento dei tifosi totali nella barra laterale."
+      note_8: "Gli utenti con più squadre possono personalizzare Hattrick in maniera differente utilizzando i selettori 'body.ft-teamID-0000000'  in <module>SkinPlugin</module>."
+      note_9: '<module>HeaderToggle</module>  è stato reso più robusto contro le influenze di altri moduli o Hattrick stesso.'
+      note_10: '<module>MatchSimulator</module> è stato adattato per includere le nuove informazioni sul tipo di allenatore quando si copiano le valutazioni.'
+      note_11: '<header>Bug risolti</header>'
+      note_12: "Corretto l'errore di TSI NaN sulle pagine dei giocatori delle squadre nazionali o quando è disabilitato il download di xml (<module>Skilltable</module>, <module>TeamStats</module> ecc.)"
+      note_13: "I giocatori non utilizzati non saranno più inclusi quando si utilizza la funzionalità di 'Riempire la lista dei tiratori dei calci di rigore' in <module>MatchOrderInterface</module>."
+      note_14: "E' stata fornita una soluzione per il problema di giocatori con ID negativo nelle partite contro squadre di giocatori del vicinato (per evitare il walk-over nelle amichevoli)."
+      note_15: 'Il collegamento per sfidare <module>TeamPopupLinks</module> è stato ripristinato.'
+      note_16: Risolto un problema tecnico nella funzionalità di ricerca delle preferenze.
     0.12.1.1:
       note_0: Aggiornamenti di traduzione.
       note_1: 'Aumentate le prestazioni di <module>MainMenuDropDown</module>.'

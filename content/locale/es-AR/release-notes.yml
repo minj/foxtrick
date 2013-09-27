@@ -16,6 +16,15 @@ es-AR:
       note_5: 'NUEVO: <module>SupportersList</module>: Mostrar quién es club amigo de tu equipo en tu lista de equipos amigos y viceversa'
       note_6: '<module>MatchLineupTweaks</module>: se agregó una opción para recopilar los datos de resistencia del jugador cada vez que visite la página del partido. Los datos se utilizarán para la mejor predicción de calificaciones en el módulo <module>MatchSimulator</module> y pueden verse en <module>SkillTable</module>. Un jugador debe jugar todo en 90 minutos. Partidos con la tactica presionar o  con eventos especiales negativos del clima  (para jugadores potentes) quedan excluidos. La fórmula de predicción fue creado por Pappagallopoli.'
       note_7: 'NUEVO: <module>Fans</module>: Añade el enlace partido en vivo junto a los de partido futuro. Añade el total de la evolución de la hinchada debajo de la barra lateral de Entrada/Salida de hinchas.'
+      note_8: ""
+      note_9: ""
+      note_10: ""
+      note_11: '<header>Correcciones de errores</header>'
+      note_12: ""
+      note_13: ""
+      note_14: ""
+      note_15: ""
+      note_16: ""
     0.12.1.1:
       note_0: Actualización de traducciones.
       note_1: 'Mejorado el rendimiento del <module>MainMenuDropDown</module>.'

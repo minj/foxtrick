@@ -16,6 +16,15 @@ es-CR:
       note_5: 'NUEVO: <module>SupportersList</module>: muestra uan lista de quien es tu supporter, de quien eres supporter y viceversa'
       note_6: '<module>MatchLineupTweaks</module>: se agregó una opción para reunir los datos de condición de jugador cada vez que visite la página de su partido. Los datos se utilizarán para mejora la predicción de calificaciones en el módulo de <module>MatchSimulator</module> y pueden verse en la <module>SkillTable</module>. Un jugador debe jugar 90 minutos. Partidos con presión o evento climatico negativo (para juugadores potentes) se excluyen. Fórmula de predicción creada por Pappagallopoli.'
       note_7: 'NUEVO: <module>los fanáticos</module>: Añade enlace a HT Live para partidos futuros. Añade la evolución del total de aficionados a la barra lateral.'
+      note_8: ""
+      note_9: ""
+      note_10: ""
+      note_11: '<header>Correcciones de errores</header>'
+      note_12: ""
+      note_13: ""
+      note_14: ""
+      note_15: ""
+      note_16: ""
     0.12.1.1:
       note_0: Actualizaciones de traducciones.
       note_1: 'Aumentó el rendimiento del modulo: <module>MainMenuDropDown</module>.'

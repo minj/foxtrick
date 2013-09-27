@@ -16,6 +16,15 @@ hr:
       note_5: 'NOVO: <module>SupportersList</module>: Pokazuje tko podržava vašu momčad od momčadi koje vi podržavate i obrnuto'
       note_6: '<module>MatchLineupTweaks</module>: Skupite podatke o izdržljivosti vaših igrača svaki put kad posjetite stranicu postave formacije. Ovo će se koristiti za bolju procjenu ocjene u  <module>MatchSimulator</module> i može se pregledati u <module>SkillTable</module>. Igrač mora odigrati čitavih 90 minuta. Utakmice s presing taktikom ili negativnim SE-ovima (za snažne igrače) nisu uključene. Pappagallopoli je zaslužan za formulu procjene ocjena.'
       note_7: 'NOVO: <module>Fans</module>: Dodaj HT live link uz linkove na buduće utakmice. Prikaži razvoj broja navijača u dodatnoj traci.'
+      note_8: "Korisnici s dodatnim klubom mogu sada odabrati različite teme koristeći 'body.ft-teamID-0000000' u <module>SkinPlugin</module>."
+      note_9: '<module>HeaderToggle</module> je sada otporan na utjecaje ostalih modula ili samog Hattricka.'
+      note_10: '<module>MatchSimulator</module> je usvojen kako bi se uključile informacije o novom treneru prilikom kopiranja ocjena.'
+      note_11: '<header>Ispravljeni problemi</header>'
+      note_12: 'Popravljena greška kod prikaza TSI-ja kod igrača nacionalnih momčadi ili kada je onemogućeno xml skidanje (<module>Skilltable</module>, <module>TeamStats</module> etc.)'
+      note_13: 'Igrači koji nisu u postavi više neće biti uključeni prilikom popunjavanja izvođača jedanaesteraca u <module>MatchOrderInterface</module>.'
+      note_14: Osigurana je zaobilaznica za negativni ID igrača za ekipu iz susjedstva (sprječava utakmicu bez borbe).
+      note_15: 'Popravljen je link za <module>TeamPopupLinks</module>.'
+      note_16: Popravljena je greška u tražilici postavki.
     0.12.1.1:
       note_0: Ažurirani prijevodi.
       note_1: 'Povećane performanse rada <module>MainMenuDropDown</module>.'
