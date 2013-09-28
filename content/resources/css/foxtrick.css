@@ -290,6 +290,14 @@ background-color: #eed;
 	clear:both;
 }
 
+/* rating differences highlighting */
+.ft-colorLower {
+	color: orange;
+}
+.ft-colorHigher {
+	color: #00A9E0;
+}
+
 /* why use this shit anyway?! */
 .mainRegular > .boxBody {
 	overflow: visible !important;

@@ -243,11 +243,11 @@ Foxtrick.modules.MatchSimulator = {
 								var span = doc.createElement('span');
 								span.textContent = ' (' + diff + '%)';
 								if (diff < 0) {
-									span.className = 'colorLower percentChange';
+									span.className = 'ft-colorLower ft-percentChange';
 									div.appendChild(span);
 								}
 								else if (diff > 0) {
-									span.className = 'colorHigher percentChange';
+									span.className = 'ft-colorHigher ft-percentChange';
 									div.appendChild(span);
 								}
 							}
@@ -359,11 +359,11 @@ Foxtrick.modules.MatchSimulator = {
 							var span = doc.createElement('span');
 							span.textContent = ' (' + diff.toFixed(2) + ')';
 							if (diff < 0) {
-								span.className = 'colorLower otherChange';
+								span.className = 'ft-colorLower ft-otherChange';
 								div.appendChild(span);
 							}
 							else if (diff > 0) {
-								span.className = 'colorHigher otherChange';
+								span.className = 'ft-colorHigher ft-otherChange';
 								div.appendChild(span);
 							}
 						}
@@ -424,7 +424,7 @@ Foxtrick.modules.MatchSimulator = {
 												+ ' (' + selectedratings[8].value + ')';
 
 				// remove my rating changes for clearity
-				var ratingChange = fieldOverlay.getElementsByClassName('ratingChange');
+				var ratingChange = fieldOverlay.getElementsByClassName('ft-ratingChange');
 				for (var j = 0; j < ratingChange.length; ++j) {
 					ratingChange[j].textContent = '';
 				}
@@ -592,7 +592,7 @@ Foxtrick.modules.MatchSimulator = {
 			}
 
 			// remove other changes for clearity
-			var otherChange = fieldOverlay.getElementsByClassName('otherChange');
+			var otherChange = fieldOverlay.getElementsByClassName('ft-otherChange');
 			for (var j = 0; j < otherChange.length; ++j) {
 				otherChange[j].textContent = '';
 			}
@@ -615,11 +615,11 @@ Foxtrick.modules.MatchSimulator = {
 					var span = doc.createElement('span');
 					span.textContent = ' (' + diff.toFixed(2) + ')';
 					if (diff < 0) {
-						span.className = 'colorLower ratingChange';
+						span.className = 'ft-colorLower ft-ratingChange';
 						div.appendChild(span);
 					}
 					else if (diff > 0) {
-						span.className = 'colorHigher ratingChange';
+						span.className = 'ft-colorHigher ft-ratingChange';
 						div.appendChild(span);
 					}
 				}
