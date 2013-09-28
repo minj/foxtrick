@@ -13,6 +13,7 @@ en:
       note_2: 'NEW: <module>SeriesTransfers</module>: Shows a list of players currently for sale on series pages.'
       note_2: '<module>StaffMarker</module> has been restructured. New options for supporters, supported teams and national coaches have been added. Please set the preferences to your liking.'
       note_3: 'An option to display <module>PsicoTSI</module> prediction on the left sidebar was reimplemented.'
+      note_4: 'NEW: <module>MatchRatingsTweaks</module>: tweaks ratings on the match report page. Displays numeric ratings and follows their changes when browsing the timeline just like in <module>MatchSimulator</module>. Displays real scoring/defending/possession probabilities according to formulas establish in the unwritten manual: 15766691.221, 15766691.242'
 
     0.12.2:
       note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'

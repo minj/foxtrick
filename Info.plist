@@ -195,8 +195,10 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/matches/match-income.js</string>
 				<string>content/matches/match-lineup-fixes.js</string>
 				<string>content/matches/match-lineup-tweaks.js</string>
+				<string>content/matches/match-lineup-tweaks.js</string>
 				<string>content/matches/match-order.js</string>
 				<string>content/matches/match-player-colouring.js</string>
+				<string>content/matches/match-ratings-tweaks.js</string>
 				<string>content/matches/match-report-format.js</string>
 				<string>content/matches/match-simulator.js</string>
 				<string>content/matches/ratings.js</string>
