@@ -16,15 +16,15 @@ es-CR:
       note_5: 'NUEVO: <module>SupportersList</module>: muestra uan lista de quien es tu supporter, de quien eres supporter y viceversa'
       note_6: '<module>MatchLineupTweaks</module>: se agregó una opción para reunir los datos de condición de jugador cada vez que visite la página de su partido. Los datos se utilizarán para mejora la predicción de calificaciones en el módulo de <module>MatchSimulator</module> y pueden verse en la <module>SkillTable</module>. Un jugador debe jugar 90 minutos. Partidos con presión o evento climatico negativo (para juugadores potentes) se excluyen. Fórmula de predicción creada por Pappagallopoli.'
       note_7: 'NUEVO: <module>los fanáticos</module>: Añade enlace a HT Live para partidos futuros. Añade la evolución del total de aficionados a la barra lateral.'
-      note_8: ""
-      note_9: ""
-      note_10: ""
+      note_8: "Usuarios con múltiples equipos ahora pueden escoger un estilo diferente de Hattrick usando los selectores ' body.ft-teamID-0000000'  en el modulo <module>SkinPlugin</module>."
+      note_9: '<module>HeaderToggle</module> se ha hecho más sólida contra influencias por otros módulos o de Hattrick mismo.'
+      note_10: '<module>MatchSimulator</module> fue adaptado para incluir la nueva información de tipo de entrenador al momento de copiar las calificaciones.'
       note_11: '<header>Correcciones de errores</header>'
-      note_12: ""
-      note_13: ""
-      note_14: ""
-      note_15: ""
-      note_16: ""
+      note_12: 'Corregido error de TSI NaN en las páginas de jugadores de selecciones nacionales o cuando está descargar el xml esta deshabilitado (<module>Skilltable</module>, <module>TeamStats</module> etc.)'
+      note_13: "Los jugadores sin usar ya no se incluirán al utilizar la función 'Llenar cobradores de penales' en el modulo <module>MatchOrderInterface</module>."
+      note_14: Se encontró una solución para partidos con IDs negativos de jugadores del vecindario (medida para prevenir walkovers en los amistosos).
+      note_15: 'Se corrigió el enlace desafío en <module>TeamPopupLinks</module>.'
+      note_16: Corregido un fallo en la funcionalidad de búsqueda de las preferencias.
     0.12.1.1:
       note_0: Actualizaciones de traducciones.
       note_1: 'Aumentó el rendimiento del modulo: <module>MainMenuDropDown</module>.'

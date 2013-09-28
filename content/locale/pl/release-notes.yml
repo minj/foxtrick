@@ -16,15 +16,15 @@ pl:
       note_5: ""
       note_6: ""
       note_7: ""
-      note_8: ""
-      note_9: ""
-      note_10: ""
+      note_8: "Użytkownicy posiadający wiele zespołów mogą teraz zmieniać styl Hattrick'a za pomocą selektorów 'body.ft-teamID-0000000' w <module>SkinPlugin</module>."
+      note_9: 'Usprawniono <module>HeaderToggle</module> tak by był bardziej odporny na wpływy ze strony innych modułów lub samego Hattricka.'
+      note_10: '<module>MatchSimulator</module> został dostosowany w celu włączenia nowych informacji o typie trenera podczas kopiowania ocen.'
       note_11: '<header>Poprawki błędów</header>'
-      note_12: ""
-      note_13: ""
-      note_14: ""
-      note_15: ""
-      note_16: ""
+      note_12: 'Poprawiono błąd TSI NaN na stronach graczy w drużynach narodowych lub gdy pobieranie xml jest wyłączone (<module>Skilltable</module>, <module>TeamStats</module> itp.)'
+      note_13: 'Nieużywani gracze nie będą uwzględniani podczas korzystania z funkcji "Uzupełnij wykonawców karnych" w <module>MatchOrderInterface</module>.'
+      note_14: Stworzono obejście w przypadku ujemnych identyfikatorów graczy w meczach po sąsiedzku (by zapobiec walkowerom w meczach towarzyskich).
+      note_15: 'Link wyzwania w <module>TeamPopupLinks</module> został naprawiony.'
+      note_16: Naprawiono usterkę w funkcjonalności preferencji wyszukiwania.
     0.12.1.1:
       note_0: ""
       note_1: ""

@@ -17,12 +17,12 @@ ko:
       note_6: '<module>MatchLineupTweaks</module>: 경기 페이지를 방문할 때마다 선수 체력 자료를 수집하는 옵션을 추가하였습니다. 이 자료는 <module>MatchSimulator</module> 모듈에서 더 나은 레이팅 예측을 위해 사용되며 <module>SkillTable</module>에서 볼 수 있습니다. 선수들은 90분 전체 출전해야 합니다. 압박 전술을 사용하거나 부정적인 날씨 SE (힘 있음 이벤트)가 있었던 경기들은 배제됩니다. 예측 공식은  Pappagallopoli에 의해 만들어 졌습니다.'
       note_7: 'NEW: <module>Fans</module>: 다음 경기 링크 옆에 라이브 링크를 추가하고 사이드 바에 팬 클럽 총원 발전 지표를 추가하였습니다.'
       note_8: "여러 개의 팀을 가진 사용자들은 이제 <module>SkinPlugin</module>의 'body.ft-teamID-0000000'구분자를 사용하여 Hattrick을 다르게 스타일링 할 수 있습니다."
-      note_9: ""
+      note_9: '<module>HeaderToggle</module>은 다른 모듈 및 Hattrick에 의한 영향을 대비하여 더욱 견고하게 만들어졌습니다.'
       note_10: '레이팅을 복사할 때 트레이너 유형을 포함하도록 <module>MatchSimulator</module>을 조정했습니다.'
       note_11: '<header>버그 수정</header>'
-      note_12: ""
-      note_13: ""
-      note_14: ""
+      note_12: '국가 대표 팀 선수 페이지 및 xml 다운로딩이 불가능할 때 발생했던 TSI NaN 오류를 수정하였습니다.(<module>Skilltable</module>, <module>TeamStats</module> 및 기타)'
+      note_13: "<module>MatchOrderInterface</module>에 있는 '페널티 킥 순서 채우기'기능을 사용할 때 출전하지 않는 선수들이 포함되지 않도록 수정하였습니다."
+      note_14: (친선 경기에서 부전승을 방지하기 위해) 이웃 팀 경기들 중에 나쁜 플레이어 ID 목록을 차선책으로 제공합니다.
       note_15: '<module>TeamPopupLinks</module>의 도전 링크를 수정하였습니다.'
       note_16: 환경 설정의 검색 기능에 있는 작은 결함을 수정하였습니다.
     0.12.1.1:

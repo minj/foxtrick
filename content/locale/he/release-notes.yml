@@ -16,12 +16,13 @@ he:
       note_5: 'NEW: <module>SupportersList</module>: הראה מי תומך בקבוצתך ברשימת הקבוצות הנתמכות על ידך, ולהיפך.'
       note_6: ""
       note_7: 'חדש: <module>אוהדים</module>: הוספה של קישור לצפייה בשידור חי של משחקים עתידיים. הוספה של תצוגת שינויי כמות האוהדים בתיבה הצדדית.'
-      note_8: ""
-      note_9: ""
-      note_10: ""
+      note_8: "משתמשים בעלי מספר קבוצות יכולים כעת לעצב את דפי האטריק באופן שונה באמצעות שימוש ב-'body.ft-teamID-0000000' במסגרת המודול <module>SkinPlugin</module>."
+      note_9: '<module>HeaderToggle</module> נעשה עמיד יותר נגד השפעות של מודולים אחרים או של האטריק עצמו.'
+      note_10: '<module>MatchSimulator</module> הותאם כדי לכלול מידע אודות העדפת המאמן החדשה בעת העתקת ציונים.'
       note_11: '<header>תיקוני באגים</header>'
-      note_12: ""
-      note_13: ""
+      note_12: 'תוקנה תקלת TSI NaN בדפי שחקנים של נבחרות לאומיות או כאשר בוטלה הורדת xml  (במודולים <module>Skilltable</module>, <module>TeamStats</module> ועוד)'
+      note_13: |
+        שחקנים שאינם בסגל המשחק לא ישובצו עוד במסגרת הפיצ'ר "מלא רשימת בועטים" במסגרת המודול <module>MatchOrderInterface</module>.
       note_14: ""
       note_15: ""
       note_16: ""
@@ -67,7 +68,7 @@ he:
       note_14: ""
       note_15: ""
       note_16: ""
-      note_17: ""
+      note_17: נראה שעדכוני הדפדפן ספארי אינם עובדים. המשתמשים מוזמנים להסיר את גרסת פוקסטריק הקודמת ולהתקין חדשה.
     0.11.0.1:
       note_0: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
       note_1: ""
@@ -92,10 +93,10 @@ he:
       note_16: ""
       note_17: ""
       note_18: המודול BackgroundFixed הוסר.
-      note_19: ""
+      note_19: '<header>מודולים של העתקה</header>'
       note_20: ""
-      note_21: ""
-      note_22: ""
+      note_21: "<module>CopyMatchID</module>: נוספה תמיכה גם במשחקים בודדים והמודול בוטל בדפי משחק כדי לאפשר מקום ללינק לפיצ'ר השידור החדש של האטריק."
+      note_22: '<module>CopyPlayerAd</module>: תוקנה ההפרעה לתצוגה הגרפית של היכולות בהאטריק.'
       note_23: תיקוני העתקת HT-ML כלליים.
       note_24: '<header>שינויים אחרים</header>'
       note_25: '<module>MatchOrderInterface</module>: דמויות עבור לא-תומכים. שופרה היציבות.'

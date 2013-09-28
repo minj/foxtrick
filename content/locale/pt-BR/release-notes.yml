@@ -9,15 +9,15 @@ pt-BR:
       note_0: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
     0.12.2:
       note_0: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
+      note_1: '<module>PlayerStatsExperience</module>: O Cálculo da experiência agora considera que são 28.57 pontos por nível (veja 15766691.780).'
+      note_2: 'NOVO: O <module>PsicoTSI</module> foi importado para o Foxtrick.'
+      note_3: '<module>ShowLineupSet</module>: Adicionada a opção de destacar o próprio time na tabela de classificação.'
+      note_4: '<module>CopyYouth</module>: agora as mudanças nos treinos dos juniores serão enviado para o hattrick youthclub  automaticamente (apenas para usuários do HY).'
+      note_5: 'Nova: <module>SupportersList</module>: mostra é parceiro de sua equipe em sua lista de equipes parceiras e vice-versa.'
       note_6: ""
-      note_7: ""
+      note_7: 'NOVO: <module>fãs</module>: adiciona um link para o HTLive ao lado do link para o jogo futuro. Adiciona a evolução total de torcedores na barra lateral.'
       note_8: ""
-      note_9: ""
+      note_9: '<module>HeaderToggle</module> foi tornada mais robusta contra influências por outros módulos ou Hattrick em si.'
       note_10: ""
       note_11: '<header>Correções de erros</header>'
       note_12: ""
@@ -26,11 +26,11 @@ pt-BR:
       note_15: ""
       note_16: ""
     0.12.1.1:
-      note_0: ""
+      note_0: Atualizações de tradução.
       note_1: ""
-      note_2: ""
+      note_2: Melhorias de acessibilidade menores.
       note_3: ""
-      note_4: ""
+      note_4: Corrigidos alguns problemas relacionados com sons.
       note_5: ""
       note_6: ""
       note_7: ""
@@ -86,33 +86,33 @@ pt-BR:
       note_10: '<module>MovePlayerStatement</module>: Possibilidade de remover completamente as declarações dos jogadores (que as tiverem).'
       note_11: '<module>YouthTwins</module>: Modificações manuais feitas no HY agora refletirão imediatamente na página dos jogadores juniores'
       note_12: '<header>Correções de erros</header>'
-      note_13: ""
-      note_14: ""
-      note_15: ""
+      note_13: 'Corrigido <module>filtro</module>, <module>SupporterStatsEnhancements</module> e <module>YouthTwins</module>.'
+      note_14: '<module>StaffMarker</module> e <module>HTThreadMarker</module> trabalham em mais lugares agora.'
+      note_15: '<module>ConfirmActions</module>: adicionado suporte para o lance automático.'
       note_16: '<module>EmbedMedia</module>: maior segurança e melhor detecção de link.'
-      note_17: ""
+      note_17: '<module>SkillTable</module> agora deve relatar o tempo correto na equipe para treinadores externos.'
       note_18: Módulo de BackgroundFixed foi removido.
       note_19: '<header>Copiar módulos</header>'
-      note_20: ""
-      note_21: ""
-      note_22: ""
-      note_23: ""
+      note_20: '<module>CopyRatings</module>: Suporte para ID de partidas nos torneios.'
+      note_21: '<module>CopyMatchID</module>: adicionado suporte para partida única e desativado em páginas das partidas para dar espaço para o novo recurso de  link direto do HT.'
+      note_22: '<module>CopyPlayerAd</module>: Corrigida interferência nas barras de habilidades do HT'
+      note_23: Correções gerais ao copiar HT-ML
       note_24: '<header>Outros ajustes</header>'
       note_25: '<module>MatchOrderInterface</module>: avatares para os não-sócios. Estabilidade aumentada.'
       note_26: '<module>MatchSimulator</module> agora usa a nova fórmula de resistência (por Senzascrupoli [post = 15917246.1]) no desconto de resistência.'
       note_27: '<module>MatchReportFormat</module> usa os novos ícones do HT.'
-      note_28: ""
-      note_29: ""
+      note_28: '<module>PlayerStatsExperience</module>: pontos de experiência por nível aumentado para 28.62 (consulte 15766691.423 para discussão). Walkovers são indicados agora considerando que eles não dão experiência.'
+      note_29: "Módulos do Fórum agora usam um caractere de espaço espacial para escapar o texto em vez de '·': isto deve ajudar a língua catalã."
       note_30: Impedir que o layout do HT interfera no Foxtrick.
       note_31: Adicionado suporte para www.hattrick.fm
       note_32: 'Removidos links externos mortos em <module>Links</module>. Sempre que possível, use os ícones externos.'
       note_33: '<header>Suporte a navegador</header>'
-      note_34: ""
-      note_35: ""
-      note_36: ""
-      note_37: ""
+      note_34: Corrigido o suporte de Firefox para Android 17+
+      note_35: O Firefox 12 agora é a versão mínima para executar o Foxtrick.
+      note_36: Google Chrome 22 agora é a versão mínima para executar o Foxtrick.
+      note_37: 'Ópera: Corrigido um bug que fazia o FT interferir em outras páginas (como hattrick youthclub). Imagens agora devem carregar muito mais rápido. Alguns módulos que foram especificamente desabilitados no Opera agora estão habilitados.'
       note_38: '<header>Várias atualizações de traduções de nossos fantásticos usuários que usam o <linkCrowdin>crowdin tool</linkCrowdin>. Você também pode ajudar!</header>'
-      note_39: ""
+      note_39: '<header>a página de preferências foi retrabalhada.</header>'
       note_40: '<strong>E muito, muito mais</strong>'
     0.10.0:
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'

@@ -85,7 +85,7 @@
     <name>German</name>
     <code>de</code>
     <phrases>1544</phrases>
-    <translated>1512</translated>
+    <translated>1519</translated>
     <approved>2</approved>
     <translated_progress>98</translated_progress>
     <approved_progress>0</approved_progress>
@@ -130,9 +130,9 @@
     <name>Hebrew</name>
     <code>he</code>
     <phrases>1544</phrases>
-    <translated>1486</translated>
+    <translated>1495</translated>
     <approved>0</approved>
-    <translated_progress>96</translated_progress>
+    <translated_progress>97</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -175,9 +175,9 @@
     <name>Korean</name>
     <code>ko</code>
     <phrases>1544</phrases>
-    <translated>1534</translated>
+    <translated>1538</translated>
     <approved>0</approved>
-    <translated_progress>99</translated_progress>
+    <translated_progress>100</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -220,9 +220,9 @@
     <name>Polish</name>
     <code>pl</code>
     <phrases>1544</phrases>
-    <translated>1407</translated>
+    <translated>1417</translated>
     <approved>0</approved>
-    <translated_progress>91</translated_progress>
+    <translated_progress>92</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -355,9 +355,9 @@
     <name>Portuguese, Brazilian</name>
     <code>pt-BR</code>
     <phrases>1544</phrases>
-    <translated>1432</translated>
+    <translated>1457</translated>
     <approved>0</approved>
-    <translated_progress>93</translated_progress>
+    <translated_progress>95</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -382,9 +382,9 @@
     <name>Spanish, Costa Rica</name>
     <code>es-CR</code>
     <phrases>1544</phrases>
-    <translated>1529</translated>
+    <translated>1539</translated>
     <approved>0</approved>
-    <translated_progress>99</translated_progress>
+    <translated_progress>100</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -409,9 +409,9 @@
     <name>Estonian</name>
     <code>et</code>
     <phrases>1544</phrases>
-    <translated>451</translated>
+    <translated>472</translated>
     <approved>0</approved>
-    <translated_progress>30</translated_progress>
+    <translated_progress>32</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
