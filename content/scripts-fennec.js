@@ -175,7 +175,6 @@ Foxtrick.loader.background.contentScriptManager = {
 		"matches/match-income.js",
 		"matches/match-lineup-fixes.js",
 		"matches/match-lineup-tweaks.js",
-		"matches/match-lineup-tweaks.js",
 		"matches/match-order.js",
 		"matches/match-player-colouring.js",
 		"matches/match-ratings-tweaks.js",
