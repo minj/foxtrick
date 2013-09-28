@@ -51,7 +51,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 		}
 		var l10n = [ 'change.title', 'probability.title', ];
 		for (var i = 0, s; i < l10n.length && (s = l10n[i]); ++i) {
-			this.l10n[i] = Foxtrickl10n.getString('MatchRatingsTweaks.' + s);
+			this.l10n[s] = Foxtrickl10n.getString('MatchRatingsTweaks.' + s);
 		}
 	},
 	/**
