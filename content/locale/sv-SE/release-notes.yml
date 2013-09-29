@@ -16,15 +16,15 @@ sv-SE:
       note_5: 'NY: <module>SupportersList</module>: På sidan för de lag som du supportar kan du nu se direkt vilka av de lagen som supportar dig tillbaks och vice versa på sidan för lag som supportar dig.'
       note_6: "<module>MatchLineupTweaks</module>: ett alternativ för att samla in data gällande dina spelares kondition varje gång du besök din matchsida har lagts till. Datan kommer att användas för bättre betygsprognoser i <module>MatchSimulator</module> och kan även ses i <module>SkillTable</module>. En spelare måste spela hela matchen (90 minuter) för att datan skall räknas med. Matcher med 'press' eller matcher som innehåller negativa väder -SE (för kraftfulla spelare) exkluderas. Prognosformeln är skapad av Pappagallopoli."
       note_7: 'NY: <module>Fans</module>: Lägg till länk till HT-Live vid kommande matcher. Lägger till den totala fanutvecklingen i högerkolumnen.'
-      note_8: ""
-      note_9: ""
-      note_10: ""
+      note_8: "Användare med sekundärlag kan nu ändra utseende på Hattrick med CSS beroende på vilket av lagen man är inne på genom att använda 'body.ft-teamID-0000000' i t. ex. <module>SkinPlugin</module>."
+      note_9: '<module>HeaderToggle</module> har gjorts mer robust mot påverkan av andra moduler eller Hattrick själv.'
+      note_10: '<module>MatchSimulator</module> anpassades till att inkludera den nya tränartypsinformationen när du kopierar betyg.'
       note_11: '<header>Bugfixar</header>'
-      note_12: ""
-      note_13: ""
-      note_14: ""
-      note_15: ""
-      note_16: ""
+      note_12: 'Fixat felet med TSI NaN på spelarsidor för landslag eller när nedladdning av XML är inaktiverat (<module>Skilltable</module>, <module>TeamStats</module> etc.)'
+      note_13: "Ej använda spelare kommer inte längre att inkuderas när du använder 'Fyll i listan' -funktionen av straffskyttar i <module>MatchOrderInterface</module>."
+      note_14: A work-around for negative player IDs in neighborhood team matches (prevent walkovers in friendlies) was provided.
+      note_15: 'Utmaningslänken i <module>TeamPopupLinks</module> fixades.'
+      note_16: Fixat ett litet fel i sökfunktionens funktionalitet i inställningar.
     0.12.1.1:
       note_0: Översättningsuppdateringar.
       note_1: 'Ökad prestanda för <module>MainMenuDropDown</module>.'
