@@ -54,16 +54,11 @@ html[dir="rtl"] .ft-drop-down-submenu li span{
 	color: white; /* to be removed later */
 }
 
-html[dir='ltr'] #ft-drop-down-menu > li {
-	float:left;
-}
-html[dir='rtl'] #ft-drop-down-menu > li {
-	float:right;
-}
-
-#ft-drop-down-menu li {
+#ft-drop-down-menu > li {
+	display: inline-block;
 	list-style-type: none !important;
 }
+
 html[data-theme="standard"] ul.ft-drop-down-submenu-2,
 html[data-theme="standard"] ul.ft-drop-down-submenu {
 	position: absolute;
@@ -151,4 +146,21 @@ ul.ui-tabs-nav, #loading {
 #supporterHighlightBox {
 	z-index: 4 !important;
 }
+
+ul#ft-drop-down-menu > li > a {
+	padding-right: 20px;
+	padding-left: 15px;
+}
+
+ul#ft-drop-down-menu > li.ft-hasSubMenu::after {
+    position: absolute;
+    top: 17px;
+    right: 6px;
+    display: inline-block;
+    border-right: 4px solid transparent;
+    border-top: 4px solid white;
+    border-left: 4px solid transparent;
+    content: '';
+  }
+
 }
