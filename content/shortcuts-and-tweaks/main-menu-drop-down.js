@@ -70,7 +70,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 			}, menu.entries);
 		}, menus);
 
-
+		Foxtrick.addClass(node, 'ft-hasSubMenu');
 		node.appendChild(list);
 	},
 	run: function(doc) {
