@@ -85,7 +85,7 @@
     <name>German</name>
     <code>de</code>
     <phrases>1544</phrases>
-    <translated>1538</translated>
+    <translated>1541</translated>
     <approved>2</approved>
     <translated_progress>99</translated_progress>
     <approved_progress>0</approved_progress>
@@ -130,9 +130,9 @@
     <name>Hebrew</name>
     <code>he</code>
     <phrases>1544</phrases>
-    <translated>1495</translated>
+    <translated>1536</translated>
     <approved>0</approved>
-    <translated_progress>97</translated_progress>
+    <translated_progress>100</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -301,7 +301,7 @@
     <name>Ukrainian</name>
     <code>uk</code>
     <phrases>1544</phrases>
-    <translated>1477</translated>
+    <translated>1478</translated>
     <approved>0</approved>
     <translated_progress>96</translated_progress>
     <approved_progress>0</approved_progress>

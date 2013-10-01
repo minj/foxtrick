@@ -14,7 +14,7 @@ de:
       note_3: '<module>ShowLineupSet</module>: Option zur Hervorhebung des eigenen Teams in der Ligatabelle hinzugefügt.'
       note_4: '<module>CopyYouth</module>: Trainingserkenntnisse im Jugendinternat werden nun automatisch an HY übertragen (Nur für HY Nutzer).'
       note_5: 'NEU: <module>SupportersList</module>: In der Liste, der von Dir unterstützten Teams, die Teams anzeigen, die Dich unterstützen und umgekehrt'
-      note_6: ""
+      note_6: '<module>MatchLineupTweaks</module>: Ausdauerdaten deiner Spieler sammeln wann immer ein beendetes Spiel betrachtet. Diese Daten dienen dazu die Bewertungsprognose des <module>MatchSimulator</module> zu verbessern und können im <module>SkillTable</module> betrachtet werden. Es werden nur Spieler berücksichtigt die durchgespielt haben. Spieltest du Pressing oder traten negative Spezialereignisse ein wird ein Spiel nicht berücksichtigt. Die Formel zur Prognose wurde von Pappagallopoli entwickelt.'
       note_7: 'NEW: <module>Fans</module>: Auf der Fan-Seite gibt es nun Live-Links und die Summe der Fanentwicklung wird angezeigt.'
       note_8: "Nutzer mit mehreren Teams können nun den Selektor 'body.ft-teamID-0000000' nutzen um Hattrick anhand des aktiven Teams z.B. mit <module>SkinPlugin</module> o.ä. zu stylen."
       note_9: '<module>HeaderToggle</module> wurde gegen Einflüsse seitens Hattrick oder anderer Module besser geschützt.'
@@ -55,7 +55,7 @@ de:
         NEU: <module>MatchLineupTweaks</module>: Ersetzt die numerisch Dargestellten Stern durch eine, der ursprünglichen Ansicht ähnliche.
          Fügt Zähler für Kondition und Sterne hinzu. Zeigt Spezialfähigkeiten für alle Spieler und fügt den Teamnamen zum Aufstellungfeld hinzu. Spielergesichter können wieder angezeigt werden und für jeden Event werden die beteiligten Spieler hervorgehoben.
       note_2: Viele Bugfixes für unterschiedliche Module, die nicht mehr funktionierten nachdem der neue Hattrick-Shop eingeführt wurde.
-      note_3: ""
+      note_3: 'NEW: <module>MatchLineupFixes</module>: Zeigt bei Wetter-Spezialereignissen den namen des betroffenen Spielers. Bei den Anweisungen Links zu den Spielern anzeigen. Ausgewechselte Spieler zeigen die Sterne zum Zeitpunkt der Auswechslung an. Zeitgleiche Events werden in der korrekten Reihenfolge dargestellt.'
       note_4: 'NEU: <module>ReLiveLinks</module>: Re-Live Links an vielen Stellen hinzugefügt.'
       note_5: 'NEU: <module>CopyBBAd</module>: Verschiedene Anzeigen in BB-Code kopieren (von merfis).'
       note_6: 'NEU: <module>DashboardCalendar</module>: Hiermit kann per Knopfdruck die Hattrick-Woche im iCalendar-Format exportiert werden. (Sollte mit Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal etc, funktionieren)'
