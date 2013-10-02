@@ -161,6 +161,12 @@ Foxtrick.modules.MatchPlayerColouring = {
 					}
 				}, links);
 
+				if (!sidebar) {
+					// layout error
+					// probably WO, stop
+					return;
+				}
+
 				// add class for sidebar event rows (aligns cards etc according to team)
 				var sidebarLinks = Foxtrick.filter(function(n) {
 					return n.hasAttribute('href');
