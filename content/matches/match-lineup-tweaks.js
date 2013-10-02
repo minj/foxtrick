@@ -764,6 +764,12 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		var timeline = Foxtrick.Pages.Match.getTimeline(doc);
 		var playerRatings = Foxtrick.Pages.Match.getTeamRatingsByEvent(doc, isHome);
+
+		if (!playerRatings.length) {
+			// most likely WO
+			// abort
+			return;
+		}
 		// info for CHPP
 		var SourceSystem = Foxtrick.Pages.Match.getSourceSystem(doc);
 		var matchId = Foxtrick.Pages.Match.getId(doc);
