@@ -16,15 +16,15 @@ da:
       note_5: 'NYT: <module>SupportersList</module>: Viser hvem supportere dit hold under Supportede hold liste og omvendt'
       note_6: '<module>MatchLineupTweaks</module>: Det er nu muligt at indsamle data over dine spilleres kondi, hvergang du er på kampsiden. Data vil blive brugt for bedre ratings beregning i <module>MatchSimulator</module> modullen og kan ses under <module>SkillTable</module>. En spillere skal have spillet 90 min. Kampe som har benyttet presspil eller kampe med negativ vejr begivenhed (for spillere med kraftfuld specialitet) er undladt. beregnings formularen er lavet af Pappagallopoli.'
       note_7: 'NEW: <module>Fans</module>: Tilføj live link ved siden af kommende kamp links. Tilføj udviklingen af antal fans under Fan-opdatering.'
-      note_8: ""
-      note_9: ""
-      note_10: ""
+      note_8: "Brugere med flere hold kan nu style Hattrick forskelligt ved hjælp af ' body.ft-teamID-0000000' vælgere i <module>SkinPlugin</module>."
+      note_9: '<module>HeaderToggle</module> er gjort mere robust mod påvirkninger af andre moduler eller Hattrick.'
+      note_10: '<module>MatchSimulator</module> blev tilpasset til at omfatte oplysningerne om træner, når du kopierer ratings.'
       note_11: '<header>Bugfixes</header>'
-      note_12: ""
-      note_13: ""
-      note_14: ""
-      note_15: ""
-      note_16: ""
+      note_12: 'Rettet TSI NaN fejl på spillere sider for landshold eller når XML-download er deaktiveret (<module>Skilltable</module>, <module>TeamStats</module> osv.)'
+      note_13: "Spillere som ikke er i aktion vil ikke længere være inkluderet, når du bruger funktionen 'Fyld straffesparks skytter' i <module>MatchOrderInterface</module>."
+      note_14: "En omdirigering for negative spiller id'er i derby holdkampe (forhindre walkovers i venskabskampe) er implementeret."
+      note_15: 'Linket udfordringer i <module>TeamPopupLinks</module> er rettet.'
+      note_16: Rettet en fejl i søgefunktionalitet under indstillinger.
     0.12.1.1:
       note_0: Opdatering af oversættelser.
       note_1: 'Øget ydeevne af <module>MainMenuDropDown</module>.'
