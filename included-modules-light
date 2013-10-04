@@ -56,11 +56,13 @@ matches/htms-prediction.js
 matches/match-income.js
 matches/ratings.js
 presentation/currency-converter.js
+presentation/fans.js
 presentation/ht-date-format.js
 presentation/league-news-filter.js
 presentation/local-time.js
 presentation/ratings-display.js
 presentation/safe-for-work.js
+presentation/supporters-list.js
 presentation/youth-skill-hide-unknown.js
 shortcuts-and-tweaks/confirm-actions.js
 shortcuts-and-tweaks/context-menu-copy.js
