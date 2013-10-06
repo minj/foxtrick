@@ -1,9 +1,9 @@
 if (!Foxtrick)
-    var Foxtrick = {};
+	var Foxtrick = {};
 if (!Foxtrick.api)
-    Foxtrick.api = {};
+	Foxtrick.api = {};
 if (!Foxtrick.api.pastebin)
-    Foxtrick.api.pastebin = {};
+	Foxtrick.api.pastebin = {};
 
 /**
  * Login to pastebin to receive a <api_user_key>
@@ -20,8 +20,8 @@ if (!Foxtrick.api.pastebin)
  */
 Foxtrick.api.pastebin.login = function(callback, user, password, failure, finalize) {
 	var params = {}
-    params['api_user_name'] 		= user;
-    params['api_user_password'] 	= password;
-    
+	params['api_user_name']		= user;
+	params['api_user_password']	= password;
+	
 	Foxtrick.api.pastebin._generic('login', Foxtrick.api.pastebin.api_login_url, callback, params, failure, finalize);
 };

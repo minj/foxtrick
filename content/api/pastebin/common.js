@@ -1,21 +1,21 @@
 if (!Foxtrick)
-    var Foxtrick = {};
+	var Foxtrick = {};
 if (!Foxtrick.api)
-    Foxtrick.api = {};
+	Foxtrick.api = {};
 if (!Foxtrick.api.pastebin)
-    Foxtrick.api.pastebin = {};
+	Foxtrick.api.pastebin = {};
 
 /**
  * Global api settings
  * http://pastebin.com/api
  */
-Foxtrick.api.pastebin.api_url 				= "http://pastebin.com/api/api_post.php";
-Foxtrick.api.pastebin.api_login_url 		= "http://pastebin.com/api/api_login.php";
-Foxtrick.api.pastebin.api_dev_key 			= '4c9908e8d8f0cb90d7f7328b499f457c';
-Foxtrick.api.pastebin.api_user_key 			= 'cd224a63147fba48dcd092d4988f2e15';
-Foxtrick.api.pastebin.api_paste_private 	= '1'; // 0=public 1=unlisted 2=private
-Foxtrick.api.pastebin.api_paste_expire_date = 'N'; //N=never
-Foxtrick.api.pastebin.api_paste_format 		= 'text';
+Foxtrick.api.pastebin.api_url				= "http://pastebin.com/api/api_post.php";
+Foxtrick.api.pastebin.api_login_url			= "http://pastebin.com/api/api_login.php";
+Foxtrick.api.pastebin.api_dev_key			= '4c9908e8d8f0cb90d7f7328b499f457c';
+Foxtrick.api.pastebin.api_user_key			= 'cd224a63147fba48dcd092d4988f2e15';
+Foxtrick.api.pastebin.api_paste_private		= '1'; // 0=public 1=unlisted 2=private
+Foxtrick.api.pastebin.api_paste_expire_date	= 'N'; //N=never
+Foxtrick.api.pastebin.api_paste_format		= 'text';
 
 /**
  * Constructs post parameter String from params dictictionary
@@ -24,11 +24,11 @@ Foxtrick.api.pastebin.api_paste_format 		= 'text';
  */
 Foxtrick.api.pastebin._buildParams = function(params){
 	var post = '';
-    for(var p in params){
-    	post = post ? post + '&' : '';
-    	post = post + p + '=' + params[p];
-    }
-    return post;
+	for(var p in params){
+		post = post ? post + '&' : '';
+		post = post + p + '=' + params[p];
+	}
+	return post;
 }
 
 /**
