@@ -92,6 +92,9 @@
 			"content/api/hy/players-youth-reject-call.js",
 			"content/api/hy/matches-report.js",
 			"content/api/hy/matches-training.js",
+			"content/api/pastebin/common.js",
+			"content/api/pastebin/login.js",
+			"content/api/pastebin/paste.js",
 
 			//<!-- categorized modules -->
 			"content/access/aria-landmarks.js",
@@ -295,7 +298,8 @@
 		"http://soundcloud.com/*",
 		"http://imageshack.us/*",
 		"http://htev.org/api/*",
-		"http://api.openweathermap.org/*"
+		"http://api.openweathermap.org/*",
+		"http://pastebin.com/api/*"
 	],
 	"page_action": {
 		"default_icon": "skin/icon-24.png",
