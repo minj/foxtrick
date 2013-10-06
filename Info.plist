@@ -99,6 +99,7 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/api/pastebin/common.js</string>
 				<string>content/api/pastebin/login.js</string>
 				<string>content/api/pastebin/paste.js</string>
+				<string>content/api/pastebin/get.js</string>
 
 				<!-- core modules -->
 				<string>content/redirections.js</string>

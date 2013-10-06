@@ -9,8 +9,8 @@ if (!Foxtrick.api.pastebin)
  * Pastebin paste api access
  * Calls _generic and executes callback(response);
  * In case of success response is a URL to the pasted code. 
- * failure() is called if the request fails
- * finalize() is always called
+ * failure(response, status) is called if the request fails
+ * finalize(response, status) is always called
  * @param	{function}		callback	function to execute
  * @param	{String}		name		Name of the paste
  * @param	{String}		text		Text to be pasted
@@ -21,6 +21,7 @@ Foxtrick.api.pastebin.paste = function(callback, name, text, failure, finalize) 
 	var params = {}
 	params['api_option']			= 'paste';
 	//params['api_user_key']			= Foxtrick.api.pastebin.api_user_key;
+	params['api_dev_key']			=	Foxtrick.api.pastebin.api_dev_key;
 	params['api_paste_private']		= Foxtrick.api.pastebin.api_paste_private;
 	params['api_paste_expire_date']	= Foxtrick.api.pastebin.api_paste_expire_date;
 	params['api_paste_format']		= Foxtrick.api.pastebin.api_paste_format;

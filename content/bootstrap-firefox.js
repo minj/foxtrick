@@ -84,6 +84,7 @@ FoxtrickFirefox.prototype = {
 		'api/pastebin/common.js',
 		'api/pastebin/login.js',
 		'api/pastebin/paste.js',
+		'api/pastebin/get.js',
 
 		//<!-- categorized modules -->
 		"access/aria-landmarks.js",

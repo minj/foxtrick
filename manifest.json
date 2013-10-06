@@ -95,6 +95,7 @@
 			"content/api/pastebin/common.js",
 			"content/api/pastebin/login.js",
 			"content/api/pastebin/paste.js",
+			"content/api/pastebin/get.js",
 
 			//<!-- categorized modules -->
 			"content/access/aria-landmarks.js",

@@ -35,19 +35,17 @@ Foxtrick.api.pastebin._buildParams = function(callback, params){
  * Generic low-level function to access Pastebin API
  * Should not be used directly.
  * Executes callback(response);
- * failure() is called if the request fails
- * finalize() is always called
+ * failure(response, status) is called if the request fails
+ * finalize(response, status) is always called
  * @param	{String}		api			api name
  * @param	{String}		url			url to call
  * @param	{function}		callback	function to execute
- * @param	{[Object]}		params		specific params for the api (optional)
+ * @param	{Object}		params		specific params for the api (optional)
  * @param	{[Function]}	failure		function to execute (optional)
  * @param	{[Function]}	finalize	function to execute (optional)
- * @param	{[integer]}		teamId		senior team ID to fetch data for (optional)
  */
 Foxtrick.api.pastebin._generic = function(api, url, success, params, failure, finalize) {
 	params = params || {};
-	params['api_dev_key'] = params['api_dev_key'] || Foxtrick.api.pastebin.api_dev_key;
 	Foxtrick.api.pastebin._buildParams( function(params){
 		Foxtrick.util.load.async(url,
 			function(response, status) {
