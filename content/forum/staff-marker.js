@@ -126,7 +126,7 @@ Foxtrick.modules['StaffMarker'] = {
 				this.title_map[t] = this.getTitle(t);
 			}
 			else {
-				var superTypeEnabled = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', t.pop());
+				var superTypeEnabled = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', t[t.length-1]);
 				for (var j = 0, e; j < t.length && (e = t[j]); ++j) {
 					enable[e] = superTypeEnabled;
 					this.title_map[e] = this.getTitle(e);
