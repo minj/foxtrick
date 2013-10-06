@@ -12,6 +12,7 @@ if (!Foxtrick.api.pastebin)
 Foxtrick.api.pastebin.api_url				= "http://pastebin.com/api/api_post.php";
 Foxtrick.api.pastebin.api_login_url			= "http://pastebin.com/api/api_login.php";
 Foxtrick.api.pastebin.api_dev_key			= '4c9908e8d8f0cb90d7f7328b499f457c';
+Foxtrick.api.pastebin.api_user_key			= 'cd224a63147fba48dcd092d4988f2e15';
 Foxtrick.api.pastebin.api_paste_private		= '0'; // 0=public 1=unlisted 2=private
 Foxtrick.api.pastebin.api_paste_expire_date	= 'N'; //N=never
 Foxtrick.api.pastebin.api_paste_format		= 'text';
@@ -50,22 +51,12 @@ Foxtrick.api.pastebin._generic = function(api, url, success, params, failure, fi
 	Foxtrick.api.pastebin._buildParams( function(params){
 		Foxtrick.util.load.async(url,
 			function(response, status) {
-				if(status == 200)
-					if(!response.match(/http/))
-						status = 429; //429 Too Many Requests
-
 				switch (status) {
 					case 0:
 						Foxtrick.log('[PASTEBIN_API][' + api + '] Error', status, response);
 						break;
 					case 200:
 						Foxtrick.log('[PASTEBIN_API][' + api + '] Success', status, response);
-						break;
-					case 429:
-						Foxtrick.log('[PASTEBIN_API][' + api + '] Failure', status, response);
-						break;
-					case 503:
-						Foxtrick.log('[PASTEBIN_API][' + api + '] Service Unavailable', status, response);
 						break;
 					default:
 						Foxtrick.log('[PASTEBIN_API][' + api + '] Failure', status, response);
@@ -80,3 +71,4 @@ Foxtrick.api.pastebin._generic = function(api, url, success, params, failure, fi
 			}, params);
 		}, params);
 };
+
