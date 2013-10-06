@@ -283,7 +283,8 @@
 		"https://foxtrick.c6.ixwebhosting.org/",
 		"http://foxtrick.symbiosis.org.gr/*",
 		"*://foxtrick.googlecode.com/svn/*",
-		"http://www.fantamondi.it/*"
+		"http://www.fantamondi.it/*",
+		"http://pastebin.com/api/*"
 	],
 	"optional_permissions" : [
 		"http://*.hattrick-youthclub.org/*",
@@ -298,8 +299,7 @@
 		"http://soundcloud.com/*",
 		"http://imageshack.us/*",
 		"http://htev.org/api/*",
-		"http://api.openweathermap.org/*",
-		"http://pastebin.com/api/*"
+		"http://api.openweathermap.org/*"
 	],
 	"page_action": {
 		"default_icon": "skin/icon-24.png",
