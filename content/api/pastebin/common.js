@@ -18,17 +18,17 @@ Foxtrick.api.pastebin.api_paste_expire_date	= 'N'; //N=never
 Foxtrick.api.pastebin.api_paste_format		= 'text';
 
 /**
- * Constructs post parameter String from params dictictionary
- * @param	{{String}}		params		specific params for the api (optional)
- * @returns	{String} 
+ * Constructs post parameter String from params object and calls callback function
+ * @param	{function}		callback	function to call
+ * @param	{Object}		params		specific params for the api (optional)
  */
-Foxtrick.api.pastebin._buildParams = function(params){
+Foxtrick.api.pastebin._buildParams = function(callback, params){
 	var post = '';
 	for(var p in params){
 		post = post ? post + '&' : '';
 		post = post + p + '=' + params[p];
 	}
-	return post;
+	callback(post);
 }
 
 /**
@@ -48,29 +48,29 @@ Foxtrick.api.pastebin._buildParams = function(params){
 Foxtrick.api.pastebin._generic = function(api, url, success, params, failure, finalize) {
 	params = params || {};
 	params['api_dev_key'] = params['api_dev_key'] || Foxtrick.api.pastebin.api_dev_key;
-	params = Foxtrick.api.pastebin._buildParams(params);
-
-	Foxtrick.util.load.async(url,
-	  function(response, status) {
-		switch (status) {
-			case 0:
-				Foxtrick.log('[PASTEBIN_API][' + api + '] Error', status, response);
-				break;
-			case 200:
-				Foxtrick.log('[PASTEBIN_API][' + api + '] Success', status, response);
-				break;
-			case 503:
-				Foxtrick.log('[PASTEBIN_API][' + api + '] Service Unavailable', status, response);
-				break;
-			default:
-				Foxtrick.log('[PASTEBIN_API][' + api + '] Failure', status, response);
-				break;
-		}
-		if (status == 200 && typeof(success) == 'function')
-			success(response);
-		else if (typeof(failure) == 'function')
-			failure(response, status);
-		if (typeof(finalize) == 'function')
-			finalize(response, status);
-	}, params);
+	Foxtrick.api.pastebin._buildParams( function(params){
+		Foxtrick.util.load.async(url,
+			function(response, status) {
+				switch (status) {
+					case 0:
+						Foxtrick.log('[PASTEBIN_API][' + api + '] Error', status, response);
+						break;
+					case 200:
+						Foxtrick.log('[PASTEBIN_API][' + api + '] Success', status, response);
+						break;
+					case 503:
+						Foxtrick.log('[PASTEBIN_API][' + api + '] Service Unavailable', status, response);
+						break;
+					default:
+						Foxtrick.log('[PASTEBIN_API][' + api + '] Failure', status, response);
+						break;
+				}
+				if (status == 200 && typeof(success) == 'function')
+					success(response);
+				else if (typeof(failure) == 'function')
+					failure(response, status);
+				if (typeof(finalize) == 'function')
+					finalize(response, status);
+			}, params);
+		}, params);
 };
