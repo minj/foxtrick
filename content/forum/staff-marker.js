@@ -37,23 +37,23 @@ Foxtrick.modules['StaffMarker'] = {
 
 	CSS: Foxtrick.InternalPath + 'resources/css/staff-marker.css',
 
-	// [type1, type2,.. typeN, option]
+	// [option, type1, type2,.. typeN]
 	// or type when type=option
 	// where type is type in json
 	type_map: [
 		'officials',
 		'editor',
 		'foxtrick',
-		['htls', 'hy', 'chpp-contributors'],
+		['chpp-contributors', 'htls', 'hy'],
 		'chpp-holder',
-		['supporter', 'supported', 'supporters'],
+		['supporters', 'supporter', 'supported'],
 		'coach',
 	],
 
 	// placeholder for StaffMarker.type strings
 	title_map: {},
 
-	// [file1, file2,.. fileN, type]
+	// [type, file1, file2,.. fileN]
 	// or file when file=type
 	file_map: [
 		// no file for officials
@@ -62,7 +62,7 @@ Foxtrick.modules['StaffMarker'] = {
 		'htls', 'hy',
 		'chpp-holder',
 		// supporters use custom scheme
-		['nt', 'u20', 'coach'],
+		['coach', 'nt', 'u20'],
 	],
 
 	// functions called for each type
@@ -126,8 +126,8 @@ Foxtrick.modules['StaffMarker'] = {
 				this.title_map[t] = this.getTitle(t);
 			}
 			else {
-				var superTypeEnabled = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', t[t.length-1]);
-				for (var j = 0, e; j < t.length && (e = t[j]); ++j) {
+				var superTypeEnabled = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', t[0]);
+				for (var j = 1, e; j < t.length && (e = t[j]); ++j) {
 					enable[e] = superTypeEnabled;
 					this.title_map[e] = this.getTitle(e);
 				}
@@ -214,8 +214,8 @@ Foxtrick.modules['StaffMarker'] = {
 				if (enable[f])
 					uris.push(Foxtrick.DataPath + 'staff/' + f + '.json');
 			}
-			else if (enable[f.pop()]) {
-				for (var j = 0, e; j < f.length && (e = f[j]); ++j) {
+			else if (enable[f[0]]) {
+				for (var j = 1, e; j < f.length && (e = f[j]); ++j) {
 					uris.push(Foxtrick.DataPath + 'staff/' + e + '.json');
 				}
 			}
