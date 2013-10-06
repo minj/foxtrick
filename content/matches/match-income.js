@@ -130,17 +130,20 @@ Foxtrick.modules['MatchIncome'] = {
 					if(!xml)
 						return;
 
-					//wether the arena has been changed or not
-					var arenaDate = xml.getElementsByTagName('RebuiltDate')[0].textContent;
-					var rebuildDate = Foxtrick.util.time.getDateFromText(arenaDate,
-																		 'yyyy-mm-dd hh:mm:ss');
-					var now = doc.getElementsByClassName('date')[0].textContent;
-					var playDate = Foxtrick.util.time.getDateFromText(now);
-					var hasChanged = (playDate.getTime() - rebuildDate.getTime()) < 0;
+					//has the arena been altered?
+					var rebuildDateAvailable = xml.getElementsByTagName('RebuiltDate')[0].getAttribute('Available') == 'True';
+					if(rebuildDateAvailable){
+						//wether the arena has been rebuild after the match or not
+						var arenaDate = xml.getElementsByTagName('RebuiltDate')[0].textContent;
+						var rebuildDate = Foxtrick.util.time.getDateFromText(arenaDate,
+																			 'yyyy-mm-dd hh:mm:ss');
+						var now = doc.getElementsByClassName('date')[0].textContent;
+						var playDate = Foxtrick.util.time.getDateFromText(now);
+						var hasChanged = (playDate.getTime() - rebuildDate.getTime()) < 0;
 
-					if(hasChanged)
-						return;
-
+						if(hasChanged)
+							return;
+					}
 					var availTerraces = parseInt(xml.getElementsByTagName('Terraces')[0].textContent,
 												 10);
 					var availRoof = parseInt(xml.getElementsByTagName('Roof')[0].textContent, 10);
