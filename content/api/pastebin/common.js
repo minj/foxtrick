@@ -50,12 +50,19 @@ Foxtrick.api.pastebin._generic = function(api, url, success, params, failure, fi
 	Foxtrick.api.pastebin._buildParams( function(params){
 		Foxtrick.util.load.async(url,
 			function(response, status) {
+				if(status == 200)
+					if(!response.match(/http/))
+						status = 429; //429 Too Many Requests
+
 				switch (status) {
 					case 0:
 						Foxtrick.log('[PASTEBIN_API][' + api + '] Error', status, response);
 						break;
 					case 200:
 						Foxtrick.log('[PASTEBIN_API][' + api + '] Success', status, response);
+						break;
+					case 429:
+						Foxtrick.log('[PASTEBIN_API][' + api + '] Failure', status, response);
 						break;
 					case 503:
 						Foxtrick.log('[PASTEBIN_API][' + api + '] Service Unavailable', status, response);
