@@ -60,7 +60,7 @@ Foxtrick.api.pastebin._generic = function(api, url, success, params, failure, fi
 				Foxtrick.log('[PASTEBIN_API][' + api + '] Success', status, response);
 				break;
 			case 503:
-				Foxtrick.log('[PASTEBIN_API][' + api + '] Access Denied', status, response);
+				Foxtrick.log('[PASTEBIN_API][' + api + '] Service Unavailable', status, response);
 				break;
 			default:
 				Foxtrick.log('[PASTEBIN_API][' + api + '] Failure', status, response);
