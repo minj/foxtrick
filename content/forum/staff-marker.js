@@ -198,9 +198,9 @@ Foxtrick.modules['StaffMarker'] = {
 				// we try a new run() just after
 				// but only once in order to avoid too many loop
 				// if things get weird, it will be displayed next page load
-				if (Foxtrick.modules.StaffMarker.hasLoadedOnce == false) {
-					Foxtrick.modules.StaffMarker.hasLoadedOnce = true;
-					Foxtrick.modules.StaffMarker.run(doc);
+				if (module.hasLoadedOnce == false) {
+					module.hasLoadedOnce = true;
+					module.run(doc);
 				}
 			}
 		};
@@ -294,9 +294,11 @@ Foxtrick.modules['StaffMarker'] = {
 					// endless loop
 					Foxtrick.sessionSet('staff-marker-reset', false);
 					Foxtrick.log('Resetting staff-marker...');
-					Foxtrick.modules.StaffMarker.load(doc);
+					module.load(doc);
 					return;
 				}
+
+				module.hasLoadedOnce = false;
 
 				// getting user-defined IDs and colors
 				var customMarker = {};
