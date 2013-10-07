@@ -1,13 +1,16 @@
 {
 	"type": "htls",
-	"icon": {
-		"developer" : "chrome://foxtrick/content/resources/img/staff/htls.png"
+	"url": "http://htlivesight.sourceforge.net/",
+	"duties" : {
+		"developer" : {
+			"alt": "HTLiveSight developer"
+		}
 	},
 	"list": [
-		{ "id": "10246801", "name": "silkevicious", "status": "developer"},
-		{ "id": "7967145", "name": "bigpapy", "status": "developer"},
-		{ "id": "9100817", "name": "davidatorus", "status": "developer"},
-		{ "id": "11288067", "name": "pietrisque", "status": "developer"},
-		{ "id": "11176924", "name": "dame_sans_merci", "status": "developer"}
+		{ "id": "10246801", "name": "silkevicious", "duty": "developer"},
+		{ "id": "7967145", "name": "bigpapy", "duty": "developer"},
+		{ "id": "9100817", "name": "davidatorus", "duty": "developer"},
+		{ "id": "11288067", "name": "pietrisque", "duty": "developer"},
+		{ "id": "11176924", "name": "dame_sans_merci", "duty": "developer"}
 	]
 }
