@@ -12,7 +12,6 @@ if (!Foxtrick.api.pastebin)
  * In case of success response is a the raw text of the paste
  * failure(response, status) is called if the request fails
  * finalize(response, status) is always called
- * @param	{String}		api			api name
  * @param	{function}		callback	function to execute
  * @param	{String}		paste_key	the pastebin paste_key
  * @param	{[Function]}	failure		function to execute (optional)
