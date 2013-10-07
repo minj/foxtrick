@@ -6,7 +6,6 @@
 *.oex
 *.safariextz
 maintainer/upload.*conf.sh
-maintainer/locale/crowdinKey.py
 maintainer/*.pem
 maintainer/*.der
 maintainer/locale/crowdinKey.py
