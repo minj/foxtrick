@@ -1,3 +1,4 @@
+update language xmls!
 (if applicable) update cron-config.sh
 update version number in foxtrick.release.sh and foxtrick.release-light.sh
 commit changes:
