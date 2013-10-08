@@ -26,6 +26,8 @@ Foxtrick.modules['PlayerFilters'] = {
 		var filterSelect = Foxtrick.createFeaturedElement(doc, this, 'select');
 		filterSelect.id = this.FILTER_SELECT_ID;
 
+		var playerList = Foxtrick.Pages.Players.getPlayerList(doc);
+
 		var selectClick = function() {
 			try {
 				if (filterSelect.getAttribute('scanned') === 'true') {
@@ -83,8 +85,6 @@ Foxtrick.modules['PlayerFilters'] = {
 
 				// remove 'addFilterOptions'
 				filterSelect.removeChild(filterSelect.getElementsByTagName('option')[1]);
-
-				var playerList = Foxtrick.modules.Core.getPlayerList();
 
 				var lastMatch = 0;
 				for (var i = 0; i < playerList.length; ++i) {
@@ -280,13 +280,11 @@ Foxtrick.modules['PlayerFilters'] = {
 			var loading = Foxtrick.util.note.createLoading(doc);
 			doc.getElementsByTagName('p')[0].appendChild(loading);
 
-			var list = Foxtrick.modules.Core.getPlayerList();
-
 			var batchArgs = [];
 			Foxtrick.map(function(n) {
 				var args = { 'teamid': n.currentClubId, 'file': 'teamdetails' };
 				batchArgs.push(args);
-			}, list);
+			}, playerList);
 
 			Foxtrick.util.api.batchRetrieve(doc, batchArgs, { cache_lifetime: 'session' },
 			  function(xmls) {
@@ -359,14 +357,14 @@ Foxtrick.modules['PlayerFilters'] = {
 				}
 			};
 
-			var parsedPlayerList = Foxtrick.modules.Core.getPlayerList();
+			//var parsedPlayerList = playerList;
 
 			var lastMatch = 0;
 			var body = doc.getElementById('mainBody');
 			var allElems;
 			if (doc.getElementsByClassName('playerList').length) {
-				var playerList = doc.getElementsByClassName('playerList')[0];
-				allElems = playerList.childNodes;
+				var playerNodeList = doc.getElementsByClassName('playerList')[0];
+				allElems = playerNodeList.childNodes;
 			}
 			else {
 				allElems = body.childNodes;
@@ -441,7 +439,7 @@ Foxtrick.modules['PlayerFilters'] = {
 					else if (Foxtrick.hasClass(elem, 'playerInfo')) {
 						var pid = Foxtrick.util.id.findPlayerId(elem);
 						var player = Foxtrick.Pages.Players
-							.getPlayerFromListById(parsedPlayerList, pid);
+							.getPlayerFromListById(playerList, pid);
 						if (elem.getAttribute(filter) === 'true'
 							 || elem.getAttribute('speciality') === filter
 							 || (attributeFilter != null && attributeFilter[1] == 'all')
@@ -501,7 +499,7 @@ Foxtrick.modules['PlayerFilters'] = {
 			if (skilltable) {
 				for (var i = 1; i < skilltable.rows.length; ++i) {
 					var pid = Number(skilltable.rows[i].getAttribute('playerid'));
-					var player = Foxtrick.Pages.Players.getPlayerFromListById(parsedPlayerList, pid);
+					var player = Foxtrick.Pages.Players.getPlayerFromListById(playerList, pid);
 					if (filter == 'all' || skilltable.rows[i].getAttribute(filter)
 						|| skilltable.rows[i].getAttribute('speciality-' + filter)
 						|| (attributeFilter != null && attributeFilter[1] == 'all')

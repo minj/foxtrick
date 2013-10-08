@@ -277,6 +277,13 @@ Foxtrick.modules['Core'] = {
 		this.PLAYER_LIST = Foxtrick.Pages.Players.getPlayerList(doc);
 	},
 
+	/**
+	 * get playerlist in sync only once
+	 * don't use in async context because
+	 * data is overwritten by subsequent reloads
+	 * team might change in FF!
+	 * @returns	{Array}		playerList
+	 */
 	getPlayerList: function() {
 		return this.PLAYER_LIST;
 	},
