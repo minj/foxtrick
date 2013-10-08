@@ -14,6 +14,10 @@
 		'guestbook': /\/Club\/Manager\/Guestbook\.aspx\?teamid=/i,
 		'mail': /\/Inbox/i,
 		'myht': /\/Myhattrick\/Dashboard\.aspx\?actionType=/i,
+		'match': /\/Matches/i,
+		'team': /\/Club\/(Default\.aspx)?\?/i,
+		'pa': /\/Announcements/i,
+		'sysinfo': /\/SystemStatus/i,
 		'others': /.*/
 	};
 	Foxtrick.modules.TickerAlert = {
