@@ -26,7 +26,7 @@ Foxtrick.modules['PlayerFilters'] = {
 		var filterSelect = Foxtrick.createFeaturedElement(doc, this, 'select');
 		filterSelect.id = this.FILTER_SELECT_ID;
 
-		var playerList = Foxtrick.Pages.Players.getPlayerList(doc);
+		var playerList = Foxtrick.modules.Core.getPlayerList(doc);
 
 		var selectClick = function() {
 			try {
