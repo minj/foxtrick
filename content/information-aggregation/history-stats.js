@@ -9,13 +9,15 @@ Foxtrick.modules['HistoryStats'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.INFORMATION_AGGREGATION,
 	PAGES: ['history'],
 	NICE: -1,  // before FoxtrickCopyMatchID
-	Buffer: [],
-	Pages: [],
-	Offset: 0,
+	Buffer: {},
+	Pages: {},
+	Offset: {},
 
 	run: function(doc) {
-		this.Buffer = [];
-		this.Pages = [];
+		var teamId = Foxtrick.Pages.All.getTeamId(doc);
+		this.Buffer[teamId] = [];
+		this.Pages[teamId] = [];
+		this.Offset[teamId] = 0;
 		this._fetch(doc);
 		this._paste(doc);
 	},
@@ -27,6 +29,7 @@ Foxtrick.modules['HistoryStats'] = {
 
 	_fetch: function(doc) {
 		try {
+			var teamId = Foxtrick.Pages.All.getTeamId(doc);
 			// try to get current page number
 			try {
 				var pager = doc.getElementById('ctl00_ctl00_CPContent_CPMain_' +
@@ -36,8 +39,8 @@ Foxtrick.modules['HistoryStats'] = {
 			catch (e) {
 				var page = 1;
 			}
-			if (!Foxtrick.member(page, this.Pages)) {
-				this.Pages.push(page);
+			if (!Foxtrick.member(page, this.Pages[teamId])) {
+				this.Pages[teamId].push(page);
 
 				// get season offset
 				try {
@@ -53,7 +56,7 @@ Foxtrick.modules['HistoryStats'] = {
 									.getElementsByClassName('date')[0].textContent;
 								var date = Foxtrick.util.time.getDateFromText(season);
 								season = Foxtrick.util.time.gregorianToHT(date).season;
-								this.Offset = parseInt(season, 10) - parseInt(check_season, 10);
+								this.Offset[teamId] = parseInt(season, 10) - parseInt(check_season, 10);
 								break;
 							}
 						}
@@ -139,16 +142,16 @@ Foxtrick.modules['HistoryStats'] = {
 						}
 						catch (e_rem) {}
 						table[i].innerHTML = Foxtrick.trim(table[i].innerHTML
-						                                   .replace(season - this.Offset, ''));
+						                                   .replace(season - this.Offset[teamId], ''));
 						var pos = table[i].textContent.match(/\d{1}/);
 						buff = season + '|' + league + '|' + pos + '|' + leagueN;
-						if (!Foxtrick.member(buff, this.Buffer))
-							this.Buffer.push(buff);
+						if (!Foxtrick.member(buff, this.Buffer[teamId]))
+							this.Buffer[teamId].push(buff);
 					}
 					else if (cup != -1) {
 						buff = season + '|' + cup;
-						if (!Foxtrick.member(buff, this.Buffer))
-							this.Buffer.push(buff);
+						if (!Foxtrick.member(buff, this.Buffer[teamId]))
+							this.Buffer[teamId].push(buff);
 					}
 				}
 			}
@@ -159,7 +162,8 @@ Foxtrick.modules['HistoryStats'] = {
 	},
 
 	_paste: function(doc) {
-		if (this.Buffer.length == 0)
+		var teamId = Foxtrick.Pages.All.getTeamId(doc);
+		if (this.Buffer[teamId].length == 0)
 			return;
 		try {
 			var HistoryTable = '<tr>' +
@@ -173,9 +177,9 @@ Foxtrick.modules['HistoryStats'] = {
 				Foxtrickl10n.getString('HistoryStats.finalPosition.short') + '</th></tr>';
 
 			var last = -1;
-			for (var i = 0; i < this.Buffer.length; i++) {
-				var dummy = this.Buffer[i].split('|');
-				dummy[0] = parseInt(dummy[0], 10) - this.Offset + '|';
+			for (var i = 0; i < this.Buffer[teamId].length; i++) {
+				var dummy = this.Buffer[teamId][i].split('|');
+				dummy[0] = parseInt(dummy[0], 10) - this.Offset[teamId] + '|';
 				var line = '<tr><td>%s' + dummy[0] + '</td><td>%c' + dummy[0] + '</td><td>%l' +
 					dummy[0] + '</td><td>%p' + dummy[0] + '</td></tr>';
 
