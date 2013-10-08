@@ -36,7 +36,7 @@
 	background-color: #ffdfe0;
 }
 /* guestbook */
-#ticker a[href^="/Club/Manager/Guestbook.aspx?teamId="], #ticker a[href^="/Club/Manager/Guestbook.aspx?TeamID="] {
+#ticker a[href^="/Club/Manager/Guestbook.aspx"] {
 	background-color: #dffffd;
 }
 /* mail - full url: /MyHattrick/Inbox/Default.aspx?actionType=readMail&messageID=... */
