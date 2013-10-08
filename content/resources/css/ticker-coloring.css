@@ -27,7 +27,7 @@
 #ticker a[href^="/Forum/"] {
 	background-color: #dfeeff;
 }
-/* transfer */
+/* transfer and training pop */
 #ticker a[href^="/Club/Players/"] {
 	background-color: #fffbcf;
 }
@@ -44,5 +44,30 @@
 #ticker a[href^="/MyHattrick/Inbox/?actionType=readMail"], #ticker a[href^="/Myhattrick/Inbox/?actionType=readMail"]{
 	background-color: #eedfff;
 }
-
+/* match info: single match accepted, match statement */
+#ticker a[href^="/Club/Matches/Match.aspx"] {
+	background-color: #fff799;
+}
+/* team info: single match declined, PA */
+#ticker a[href^="/Club/?"], #ticker a[href^="/Club/Default.aspx"] {
+	background-color: #9999ff;
+}
+/* PA comments */
+#ticker a[href^="/Club/Announcements"] {
+	background-color: #ff99cc;
+}
+/* sys info */
+#ticker a[href^="/Help/SystemStatus"] {
+	background-color: #d1d1ff;
+}
+/*
+possible colors:
+#e5e6b3
+#ccff99
+#f0ffe0
+#d1ffd1
+#ffe0ff
+#99ffcc
+#ff99ff
+*/
 }
