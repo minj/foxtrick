@@ -436,7 +436,11 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 			else {
 				Foxtrick.log('open new window: ', url);
 				// No browser windows are open, so open a new one.
-				window.open(url);
+				// HT disabled window.open in favour of window.htOpen to try to compete bad ad vendors
+				if(window.htOpen)
+					window.htOpen(url);
+				else
+					window.open(url);
 			}
 		}
 	}
