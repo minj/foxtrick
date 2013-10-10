@@ -9,8 +9,7 @@ const Ci = Components.interfaces;
 const Cr = Components.results;
 const Cu = Components.utils;
 
-var _gLoader;
-let scope;
+let _gLoader;
 
 Cu.import('resource://gre/modules/Services.jsm');
 
@@ -24,27 +23,23 @@ function isFennecNative() {
 function setDefaultPrefs(pathToDefault, branch) {
 	// Load default preferences and set up properties for them
 	let defaultBranch = Services.prefs.getDefaultBranch(branch);
-	scope =
-	{
-		pref: function(key, val)
-		{
-			if (key.substr(0, branch.length) != branch)
-			{
-				Cu.reportError(new Error('Ignoring default preference ' + key +
-										 ', wrong branch.'));
+	let scope =	{
+		pref: function(key, val) {
+			if (key.substr(0, branch.length) != branch)	{
+				Cu.reportError(new Error('Ignoring default preference ' + key + ', wrong branch.'));
 				return;
 			}
 			key = key.substr(branch.length);
 			switch (typeof val) {
 				case 'boolean':
 					defaultBranch.setBoolPref(key, val);
-					break;
+				break;
 				case 'number':
 					defaultBranch.setIntPref(key, val);
-					break;
+				break;
 				case 'string':
 					defaultBranch.setCharPref(key, val);
-					break;
+				break;
 			}
 		}
 	};
@@ -53,15 +48,15 @@ function setDefaultPrefs(pathToDefault, branch) {
 
 
 // bootstrap.js API
-var windowListener = {
+let windowListener = {
 	onOpenWindow: function(aWindow) {
 		// Wait for the window to finish loading
 		let domWindow = aWindow.QueryInterface(Ci.nsIInterfaceRequestor)
 			.getInterface(Ci.nsIDOMWindowInternal || Ci.nsIDOMWindow);
 		domWindow.addEventListener('load', function() {
-				domWindow.removeEventListener('load', arguments.callee, false);
-				_gLoader.loadIntoWindow(domWindow);
-			}, false);
+			domWindow.removeEventListener('load', arguments.callee, false);
+			_gLoader.loadIntoWindow(domWindow);
+		}, false);
 	},
 	onCloseWindow: function(aWindow) { },
 	onWindowTitleChange: function(aWindow, aTitle) { }
@@ -70,8 +65,8 @@ var windowListener = {
 function startup(aData, aReason) {
 	// won't run on 4-7. tell them to update. pre 4 it's not bootstrapped anyways
 	if (Services.vc.compare(Services.appinfo.platformVersion, '8.0') < 0) {
-		var prompts = Components.classes['@mozilla.org/embedcomp/prompt-service;1']
-                        .getService(Components.interfaces.nsIPromptService);
+		let prompts = Components.classes['@mozilla.org/embedcomp/prompt-service;1']
+			.getService(Components.interfaces.nsIPromptService);
 		prompts.alert(null, 'FoxTrick', 'FoxTrick is incompatible with Firefox 4 - 7. ' +
 		              'Please update Firefox.');
 		return;
@@ -84,16 +79,18 @@ function startup(aData, aReason) {
 	const branch = 'extensions.foxtrick.prefs.';
 
 	_gLoader = {};
+
+	let pathToDefault;
 	// load specific startup stripts
 	if (isFennecNative()) {
 		// old FF loads anything that ends with .js
 		// so we can't name this one foxtrick-android.js
-		var pathToDefault = aData.resourceURI.spec + 'defaults/preferences/foxtrick-android';
+		pathToDefault = aData.resourceURI.spec + 'defaults/preferences/foxtrick-android';
 		setDefaultPrefs(pathToDefault, branch);
 		Services.scriptloader.loadSubScript('chrome://foxtrick/content/bootstrap-fennec.js',
 		                                    _gLoader, 'UTF-8');
 	} else {
-		var pathToDefault = aData.resourceURI.spec + 'defaults/preferences/foxtrick.js';
+		pathToDefault = aData.resourceURI.spec + 'defaults/preferences/foxtrick.js';
 		setDefaultPrefs(pathToDefault, branch);
 		Services.scriptloader.loadSubScript('chrome://foxtrick/content/bootstrap-firefox.js',
 		                                    _gLoader, 'UTF-8');
@@ -148,9 +145,8 @@ function shutdown(aData, aReason) {
 	// should destroy chrome://foxtrick and fix cache issues (fingers crossed)
 	Components.manager.removeBootstrappedManifestLocation(aData.installPath);
 
-	// destroy scopes
+	// destroy scope
 	_gLoader = undefined;
-	scope = undefined;
 }
 
 function install(aData, aReason) {
