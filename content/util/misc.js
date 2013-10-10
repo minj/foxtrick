@@ -379,10 +379,13 @@ Foxtrick.reloadAll = function() {
 			var numTabs = tabbrowser.browsers.length;
 			for (var index = 0; index < numTabs; index++) {
 				var currentBrowser = tabbrowser.getBrowserAtIndex(index);
-				if (Foxtrick.isHtUrl(currentBrowser.currentURI.spec)) {
+				var url = currentBrowser.currentURI.spec;
+				if (Foxtrick.isHtUrl(url)) {
 					currentBrowser.reload();
 					Foxtrick.log('reload: ', currentBrowser.currentURI.spec);
 				}
+				else if (/^chrome:\/\/foxtrick/.test(url))
+					currentBrowser.contentWindow.close();
 			}
 		}
 	}
