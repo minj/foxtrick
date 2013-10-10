@@ -60,7 +60,7 @@ var windowListener = {
 			.getInterface(Ci.nsIDOMWindowInternal || Ci.nsIDOMWindow);
 		domWindow.addEventListener('load', function() {
 				domWindow.removeEventListener('load', arguments.callee, false);
-				_gLoader.loadIntoWindow(domWindow, false);
+				_gLoader.loadIntoWindow(domWindow);
 			}, false);
 	},
 	onCloseWindow: function(aWindow) { },
@@ -102,9 +102,17 @@ function startup(aData, aReason) {
 	let wm = Cc['@mozilla.org/appshell/window-mediator;1'].getService(Ci.nsIWindowMediator);
 	// Load into any existing windows
 	let enumerator = wm.getEnumerator('navigator:browser');
+
+	let win;
 	while (enumerator.hasMoreElements()) {
-		let win = enumerator.getNext().QueryInterface(Ci.nsIDOMWindow);
-		_gLoader.loadIntoWindow(win, true); //reload
+		win = enumerator.getNext().QueryInterface(Ci.nsIDOMWindow);
+		_gLoader.loadIntoWindow(win);
+	}
+	if (typeof win !== 'undefined') {
+		// during FF startup bootstrap runs before any windows are created, hence win is undefined
+		// this is not the case if FT is re-enabled from add-ons menu, though
+		// probably same thing with upgrades
+		win.Foxtrick.reloadAll();
 	}
 
 	// Load into any new windows
