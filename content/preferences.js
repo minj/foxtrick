@@ -984,13 +984,14 @@ function initChangesTab()
 					Foxtrickl10n.getString('releaseNotes.version') + ' '
 					+ version + sub + subsub;
 
-				for (var i = 0, note; i < notes.length; ++i) {
+				for (var i in notes) {
 					note = notes[i];
-					if (notesLocalized && notesLocalized[i] !== undefined &&
+					if (notesLocalized && typeof notesLocalized[i] !== 'undefined' &&
 					    notesLocalized[i] !== null)
 						note = notesLocalized[i];
 					if (note) {
 						var item = document.createElement('li');
+						item.id = 'pref-note-' + version + sub + subsub + '-' + i;
 						addNote(note, item, releaseNotesLinks);
 						list.appendChild(item);
 					}
