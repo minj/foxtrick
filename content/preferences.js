@@ -908,8 +908,8 @@ function initChangesTab()
 		for (v in rawVersions) {
 			prefixedNotes = rawVersions[v], notes = [];
 			for (n in prefixedNotes) {
-				idx = n.match(/\d+/);
-				notes[idx] = prefixedNotes[n];
+				//idx = n.match(/\d+/);
+				notes[n] = prefixedNotes[n];
 			}
 			dest[v] = notes;
 		}
@@ -932,7 +932,8 @@ function initChangesTab()
 			if (!notes)
 				continue;
 			var list = $('#translator_note')[0];
-			var note = (notesLocalized && notesLocalized[0]) || notes[0];
+			// IMPORTANT!!! branch note must always be 'note_0'
+			var note = (notesLocalized && notesLocalized['note_0']) || notes['note_0'];
 			addNote(note, list, releaseNotesLinks);
 			$('#translator_note').attr('style', 'display:block;');
 			if (version == 'beta')
