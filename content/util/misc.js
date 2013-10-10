@@ -382,7 +382,7 @@ Foxtrick.reloadAll = function() {
 				var url = currentBrowser.currentURI.spec;
 				if (Foxtrick.isHtUrl(url)) {
 					currentBrowser.reload();
-					Foxtrick.log('reload: ', currentBrowser.currentURI.spec);
+					Foxtrick.log('reload: ', url);
 				}
 				else if (/^chrome:\/\/foxtrick/.test(url))
 					currentBrowser.contentWindow.close();
