@@ -105,10 +105,11 @@ Foxtrick.modules['StaffMarker'] = {
 			var nt = data['coach']['nts'][id];
 			var title = icon.title.replace(/%s/, nt.name);
 			var url = '/Club/NationalTeam/NationalTeam.aspx?teamId=' + nt.teamId;
-			var flagImg = Foxtrick.util.id
+			var flagLink = Foxtrick.util.id
 				.createFlagFromLeagueId(object.ownerDocument, nt.leagueId, url, title);
-			Foxtrick.addClass(flagImg, 'ft-no-popup');
-			return flagImg;
+			Foxtrick.addClass(flagLink, 'ft-no-popup');
+			flagLink.target = '_blank';
+			return flagLink;
 		},
 	},
 
