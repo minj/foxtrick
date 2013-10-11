@@ -61,7 +61,7 @@ FoxtrickFennec.prototype = {
 		'links/links.js',
 
 		//<!-- browser specific -->
-		'observer.js',
+		'observer.js', /* obsolete? */
 		'ui.js',
 		'entry.js',
 		'background.js',

@@ -246,7 +246,7 @@ Foxtrick.loader.background.contentScriptManager = {
 		"shortcuts-and-tweaks/transfer-search-result-filters.js",
 		//<!-- end categorized modules -->
 
-		'env-fennec.js',
+		'env-fennec.js', /* non-existent */
 		'ui.js',
 		'entry.js',
 		'loader-fennec.js'
