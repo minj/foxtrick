@@ -388,6 +388,22 @@
 		"title": "Akickku",
 		"img": "resources/linkicons/akickku.png"
 	},
+	"HT-Srbija.in.rs": {
+		"countrylink": {
+			"url": "http://ht-srbija.in.rs/",
+			"filters": [
+				"countryid"
+			]
+		},
+		"countryidranges": [
+			[
+				57,
+				57
+			]
+		],
+		"title": "HT-Srbija.in.rs",
+		"img": "http://foxtrick.symbiosis.org.gr/ht-srbija/favicon.ico"
+	},
 	"maptrick_coolness": {
 		"teamlink": {
 			"url": "http://www.maptrick.org/coolness.php?team=[teamid]#results"
