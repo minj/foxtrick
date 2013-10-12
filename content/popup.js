@@ -72,8 +72,8 @@ function clearCache()
 function openPrefs()
 {
 	if (isOpera) {
-		opera.extension.bgProcess.Foxtrick.modules.UI.button.popup.width = 600;
-		opera.extension.bgProcess.Foxtrick.modules.UI.button.popup.height = 800;
+		BackgroundPage.Foxtrick.modules.UI.button.popup.width = 600;
+		BackgroundPage.Foxtrick.modules.UI.button.popup.height = 800;
 		document.location.href = 'options.html?width=600';
 	}
 	else document.location.href = 'preferences.html?width=600';
