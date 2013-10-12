@@ -300,6 +300,7 @@ var FoxtrickPrefs = {
 		Foxtrick.modules.UI.update(sender);
 		if (Foxtrick.arch === 'Gecko') {
 			Foxtrick.entry.init();
+			Foxtrick.reloadAll();
 		}
 	},
 	highlight: function(sender) {
