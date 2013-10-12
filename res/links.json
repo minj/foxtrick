@@ -1315,6 +1315,7 @@
 	},
 	"hattrickportal": {
 		"title": "Hattrick Portal NT/U20 tracker",
+		"img": "http://hattrickportal.pro/favicon.ico",
 		"trackernationalteamlink": {
 			"url": "http://hattrickportal.pro/Data/U20/NationalTeam.aspx"
 		},
