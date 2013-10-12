@@ -95,6 +95,21 @@ if (Foxtrick.platform == 'Firefox') {
 
 	Foxtrick.modules.UI.updateIcon = function(doc) {
 
+		if (!doc) {
+			// browserLoad
+			var disableItem = document.getElementById('foxtrick-toolbar-deactivate');
+			if (disableItem)
+				disableItem.setAttribute('checked', FoxtrickPrefs.getBool('disableTemporary'));
+
+			var highlightItem = document.getElementById('foxtrick-toolbar-highlight');
+			if (highlightItem)
+				highlightItem.setAttribute('checked', FoxtrickPrefs.getBool('featureHighlight'));
+
+			var translationKeysItem = document.getElementById('foxtrick-toolbar-translationKeys');
+			if (translationKeysItem)
+				translationKeysItem.setAttribute('checked', FoxtrickPrefs.getBool('translationKeys'));
+		}
+
 		var button = document.getElementById('foxtrick-toolbar-button');
 
 		if (!button || !doc)
