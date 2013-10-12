@@ -1313,6 +1313,15 @@
 			"url": "http://www.ht-world.org/global/scouting.php?language=2"
 		}
 	},
+	"hattrickportal": {
+		"title": "Hattrick Portal NT/U20 tracker",
+		"trackernationalteamlink": {
+			"url": "http://hattrickportal.pro/Data/U20/NationalTeam.aspx"
+		},
+		"trackerplayerlink": {
+			"url": "http://hattrickportal.pro/Player.aspx?playerID=[playerid]"
+		}
+	},
 	"hattrickchallenge_friendly": {
 		"challengeslink": {
 			"url": "http://www.hattrickchallenge.com/Tools/Entry.php?tool=friendly&teamid=[teamid]"
