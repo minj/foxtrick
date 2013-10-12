@@ -2,7 +2,12 @@
 	list-style-image: url("chrome://foxtrick/skin/icon-24.png");
 	-moz-box-orient: horizontal;
 }
-
+#foxtrick-toolbar-button[status="disabled"] {
+	list-style-image: url("chrome://foxtrick/skin/disabled-24.png");
+}
+#foxtrick-toolbar-button[status="enabled"] {
+	list-style-image: url("chrome://foxtrick/skin/enabled-24.png");
+}
 .ft-pageaction {
 	background: url("chrome://foxtrick/content/resources/img/hattrick-logo.png")  no-repeat scroll 3px center transparent;
 	padding-left: 15px;
@@ -10,6 +15,12 @@
 
 toolbar[iconsize="small"] #foxtrick-toolbar-button {
 	list-style-image: url("chrome://foxtrick/skin/icon-16.png");
+}
+toolbar[iconsize="small"] #foxtrick-toolbar-button[status="disabled"] {
+	list-style-image: url("chrome://foxtrick/skin/disabled.png");
+}
+toolbar[iconsize="small"] #foxtrick-toolbar-button[status="enabled"] {
+	list-style-image: url("chrome://foxtrick/skin/enabled.png");
 }
 
 #foxtrick-popup-copy {

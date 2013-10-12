@@ -33,15 +33,15 @@ if (Foxtrick.platform == 'Firefox') {
 		// toolbar menu - preferences
 		var toolbarPreferences = document.getElementById('foxtrick-toolbar-preferences');
 		if (!toolbarPreferences) return; // wrong place somehow
-		toolbarPreferences.setAttribute('label', Foxtrickl10n.getString('toolbar.preferences'));
 		toolbarPreferences.addEventListener('click', function() { FoxtrickPrefs.show() }, false);
 		// toolbar menu - disable
 		var toolbarDisable = document.getElementById('foxtrick-toolbar-deactivate');
-		toolbarDisable.setAttribute('label', Foxtrickl10n.getString('toolbar.disableTemporary'));
-		toolbarDisable.addEventListener('click', function() { FoxtrickPrefs.disable() }, false);
+		toolbarDisable.addEventListener('click', function(ev) {
+			var doc = ev.view.gBrowser.contentWindow.wrappedJSObject.document;
+			FoxtrickPrefs.disable(doc);
+		}, false);
 		// toolbar menu - clearCache
 		var clearCache = document.getElementById('foxtrick-toolbar-clearCache');
-		clearCache.setAttribute('label', Foxtrickl10n.getString('api.clearCache'));
 		clearCache.addEventListener('click', function() {
 			Foxtrick.sessionDeleteBranch('');
 			Foxtrick.localDeleteBranch('');
@@ -49,17 +49,40 @@ if (Foxtrick.platform == 'Firefox') {
 		}, false);
 		// toolbar menu - highlight
 		var toolbarHighlight = document.getElementById('foxtrick-toolbar-highlight');
+		toolbarHighlight.addEventListener('click', function(ev) {
+			var doc = ev.view.gBrowser.contentWindow.wrappedJSObject.document;
+			FoxtrickPrefs.highlight(doc);
+		}, false);
+		// toolbar menu - translationKeys
+		var toolbarTranslationKeys = document.getElementById('foxtrick-toolbar-translationKeys');
+		toolbarTranslationKeys.addEventListener('click', function(ev) {
+			var doc = ev.view.gBrowser.contentWindow.wrappedJSObject.document;
+			FoxtrickPrefs.translationKeys(doc); // sets the pref and calls update()
+			Foxtrick.modules.UI.updateMenu(ev.view.document);
+		}, false);
+		// update status icon
+		Foxtrick.modules.UI.update();
+		Foxtrick.modules.UI.updateMenu(document);
+	};
+
+	Foxtrick.modules.UI.updateMenu = function(document) {
+		// toolbar menu - preferences
+		var toolbarPreferences = document.getElementById('foxtrick-toolbar-preferences');
+		if (!toolbarPreferences) return; // wrong place somehow
+		toolbarPreferences.setAttribute('label', Foxtrickl10n.getString('toolbar.preferences'));
+		// toolbar menu - disable
+		var toolbarDisable = document.getElementById('foxtrick-toolbar-deactivate');
+		toolbarDisable.setAttribute('label', Foxtrickl10n.getString('toolbar.disableTemporary'));
+		// toolbar menu - clearCache
+		var clearCache = document.getElementById('foxtrick-toolbar-clearCache');
+		clearCache.setAttribute('label', Foxtrickl10n.getString('api.clearCache'));
+		// toolbar menu - highlight
+		var toolbarHighlight = document.getElementById('foxtrick-toolbar-highlight');
 		toolbarHighlight.setAttribute('label', Foxtrickl10n.getString('toolbar.featureHighlight'));
-		toolbarHighlight.addEventListener('click', function() { FoxtrickPrefs.highlight() }, false);
 		// toolbar menu - translationKeys
 		var toolbarTranslationKeys = document.getElementById('foxtrick-toolbar-translationKeys');
 		toolbarTranslationKeys.setAttribute('label', Foxtrickl10n
 		                                    .getString('toolbar.translationKeys'));
-		toolbarTranslationKeys.addEventListener('click', function() {
-			FoxtrickPrefs.translationKeys();
-		}, false);
-		// update status icon
-		Foxtrick.modules.UI.update();
 	};
 
 	Foxtrick.modules.UI.onTabChange = function(document) {
@@ -71,18 +94,6 @@ if (Foxtrick.platform == 'Firefox') {
 	};
 
 	Foxtrick.modules.UI.updateIcon = function(doc) {
-
-		var disableItem = document.getElementById('foxtrick-toolbar-deactivate');
-		if (disableItem)
-			disableItem.setAttribute('checked', FoxtrickPrefs.getBool('disableTemporary'));
-
-		var highlightItem = document.getElementById('foxtrick-toolbar-highlight');
-		if (highlightItem)
-			highlightItem.setAttribute('checked', FoxtrickPrefs.getBool('featureHighlight'));
-
-		var translationKeysItem = document.getElementById('foxtrick-toolbar-translationKeys');
-		if (translationKeysItem)
-			translationKeysItem.setAttribute('checked', FoxtrickPrefs.getBool('translationKeys'));
 
 		var button = document.getElementById('foxtrick-toolbar-button');
 
