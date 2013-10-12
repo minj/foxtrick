@@ -474,7 +474,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 		},
 
 		setString: function(key, value) {
-			var newVal = new String(value);
+			var newVal = String(value);
 			newVal = newVal.replace(/\\./g, unescape);
 			FoxtrickPrefs.setValue(key, newVal);
 		},
@@ -487,7 +487,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 		},
 
 		setInt: function(key, value) {
-			FoxtrickPrefs.setValue(key, new Number(value));
+			FoxtrickPrefs.setValue(key, Number(value));
 		},
 
 		getBool: function(key) {
@@ -498,7 +498,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 		},
 
 		setBool: function(key, value) {
-			FoxtrickPrefs.setValue(key, new Boolean(value));
+			FoxtrickPrefs.setValue(key, Boolean(value));
 		},
 
 		getValue: function(key) {
