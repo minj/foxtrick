@@ -68,11 +68,10 @@ Foxtrick.modules['ForumYouthIcons'] = {
 		];
 		//insert SymbolArray, forward slash to escape, escaping uses 'replace' backwards to tempararily get rid of the semi-colon
 		var symbolsText = FoxtrickPrefs.getString('module.ForumYouthIcons.symbols_text');
-		var replaced = symbolsText.replace(/\/;/g, 'ecalper');
-		var split = replaced.split(';');
+		var split = symbolsText.split(/(?!\\);/);
 		for (var i = 0; i < split.length; ++i)
 		{
-			var fixed = split[i].replace(/ecalper/g, ';');
+			var fixed = split[i].replace(/\\;/g, ';');
 			icons[9].versions.push(fixed);
 		}
 
