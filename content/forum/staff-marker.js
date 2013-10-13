@@ -59,7 +59,7 @@ Foxtrick.modules['StaffMarker'] = {
 		// no file for officials
 		'editor',
 		'foxtrick',
-		'htls', 'hy',
+		'htls', 'hy', 'ho',
 		'chpp-holder',
 		// supporters use custom scheme
 		['coach', 'nt', 'u20'],
