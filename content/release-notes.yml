@@ -10,6 +10,12 @@ en:
     0.13.0:
       note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
 
+    0.12.2.1:
+      note_0: 'Links will no longer disappear after clearing Foxtrick cache in Firefox.'
+      note_1: 'Creating custom links with no icon should be possible again.'
+      note_2: 'Changes in Farsi and other languages that may have caused Foxtrick to break are now accounted for.'
+      note_3: '<module>MatchIncome</module> should work correctly for arenas under construction as soon as CHPP is fixed.'
+
     0.12.2:
       note_0: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
       note_1: '<module>PlayerStatsExperience</module>: the experience calculation now assumes there are 28.57 points per level (see 15766691.780).'
