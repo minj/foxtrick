@@ -17,8 +17,30 @@ Foxtrick.modules['CountryList'] = {
 			return;
 		if (FoxtrickPrefs.isModuleOptionEnabled('CountryList', 'SelectBoxes')) {
 			if (Foxtrick.isPage(doc, 'transferSearchForm')) {
+				// TL search needs this ugly hack to restore the correct country on back navigation
+				var teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
+				Foxtrick.onClick(doc.getElementById('ctl00_ctl00_CPContent_CPMain_butSearch'),
+				  function(ev) {
+					var doc = ev.target.ownerDocument;
+					var zone = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlZone')
+						.selectedIndex;
+					var bornIn = doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlBornIn')
+						.selectedIndex;
+					Foxtrick.sessionSet('TransferSearchCountry.' + teamId, {
+						zone: zone,
+						bornIn: bornIn
+					});
+				});
 				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ddlZone', 10);
 				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ddlBornIn', 1);
+				Foxtrick.sessionGet('TransferSearchCountry.' + teamId, function(data) {
+					if (data) {
+						doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlZone').selectedIndex =
+							data.zone;
+						doc.getElementById('ctl00_ctl00_CPContent_CPMain_ddlBornIn').selectedIndex =
+							data.bornIn;
+					}
+				});
 			}
 			else if (Foxtrick.isPage(doc, 'country')) {
 				this._changelist(doc, 'ctl00_ctl00_CPContent_CPMain_ucLeaguesDropdown_ddlLeagues',
@@ -210,7 +232,8 @@ Foxtrick.modules['CountryList'] = {
 		opt_array.sort(sortByOptionText);
 		for (var i = 0; i < options.length; i++) {
 			if (i >= start) {
-				if (opt_array[i - start][0] == id_sel)
+				// don't restore bad selectedIndex when using 'back' in transferSearchForm
+				if (opt_array[i - start][0] == id_sel && !Foxtrick.isPage(doc, 'transferSearchForm'))
 					selectbox.selectedIndex = i;
 				options[i].value = opt_array[i - start][0];
 				options[i].text = opt_array[i - start][1];
