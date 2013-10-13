@@ -62,8 +62,8 @@ Foxtrick.modules['Core'] = {
 		try {
 			// show change log if anything but forth number changes
 			if (FoxtrickPrefs.getString('oldVersion') === null ||
-			    FoxtrickPrefs.getString('oldVersion').match(/\d+\.\d+(\.\d+?)?/)[0] !==
-			    Foxtrick.version().match(/\d+\.\d+(\.\d+?)?/)[0]) {
+			    FoxtrickPrefs.getString('oldVersion').match(/\d+\.\d+(\.\d+)?/)[0] !==
+			    Foxtrick.version().match(/\d+\.\d+(\.\d+)?/)[0]) {
 				// set showReleaseNotes true for this version to get the new  beta changes shown
 				FoxtrickPrefs.setBool('showReleaseNotes', true);
 
