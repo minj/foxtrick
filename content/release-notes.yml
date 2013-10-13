@@ -9,11 +9,14 @@ en:
 
     0.13.0:
       crowdin: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
-      hy_skills: 'NEW: <module>YouthSkills</module>: Enhances youth players page with information from hattrick youthclub. For HY users only.'
-      series_transfers: 'NEW: <module>SeriesTransfers</module>: Shows a list of players currently for sale on series pages.'
+      new: '<header>New modules</header>'
+      hy_skills: '<module>YouthSkills</module>: Enhances youth players page with information from hattrick youthclub. For HY users only.'
+      series_transfers: '<module>SeriesTransfers</module>: Shows a list of players currently for sale on series pages.'
+      ratings_tweaks: '<module>MatchRatingsTweaks</module>: tweaks ratings on the match report page. Displays numeric ratings and follows their changes when browsing the timeline just like in <module>MatchSimulator</module>. Displays real scoring/defending/possession probabilities according to formulas establish in the unwritten manual: 15766691.221, 15766691.242'
+      other: '<header>Other changes</header>'
       staff_marker: '<module>StaffMarker</module> has been restructured. New options for supporters, supported teams and national coaches have been added. Please set the preferences to your liking.'
       psico_update: 'An option to display <module>PsicoTSI</module> prediction on the left sidebar was reimplemented.'
-      ratings_tweaks: 'NEW: <module>MatchRatingsTweaks</module>: tweaks ratings on the match report page. Displays numeric ratings and follows their changes when browsing the timeline just like in <module>MatchSimulator</module>. Displays real scoring/defending/possession probabilities according to formulas establish in the unwritten manual: 15766691.221, 15766691.242'
+      bugs: '<header>Bug fixes</header>'
 
     0.12.2.1:
       note_0: 'Links will no longer disappear after clearing Foxtrick cache in Firefox.'
