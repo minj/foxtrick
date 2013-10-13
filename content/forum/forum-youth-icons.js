@@ -268,7 +268,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 
 		//simple test if new icons are set up by HTs
 		var target = toolbar.lastChild;
-		var tooldivs = doc.getElementsByTagName('img');
+		var tooldivs = toolbar.getElementsByTagName('img');
 		for (var i = 0; i < tooldivs.length; i++) {
 			if (tooldivs[i].className == 'f_ul') {
 				target = tooldivs[i];
