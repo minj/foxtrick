@@ -307,15 +307,15 @@ Foxtrick.modules['PsicoTSI'] = {
 				'<td class="endColumn1"><b>' +
 				Foxtrickl10n.getString('PsicoTSI.SECONDARIES_SUBLEVELS') +
 				'</b></td><td><b>' + Foxtrickl10n.getString('PsicoTSI.PREDICTION') + '</td></tr>' +
-				'<tr><td>' + Foxtrickl10n.getString('PsicoTSI.DECIMALS_HIGH') + '</td><td>' +
+				'<tr><td>' + Foxtrickl10n.getString('PsicoTSI.FORM_HIGH') + '</td><td>' +
 				formHigh + '</td>' + '<td class="endColumn1">' +
 				Foxtrickl10n.getString('PsicoTSI.DECIMALS_HIGH') + '</td><td' +
 				(!isWagePredictionAvailable ? ' class="shy"' : '') + '>' + wageHigh + '</td></tr>' +
-				'<tr><td>' + Foxtrickl10n.getString('PsicoTSI.DECIMALS_AVG') + '</td><td>' +
+				'<tr><td>' + Foxtrickl10n.getString('PsicoTSI.FORM_AVG') + '</td><td>' +
 				formAvg + '</td>' + '<td class="endColumn1">' +
 				Foxtrickl10n.getString('PsicoTSI.DECIMALS_AVG') + '</td><td' +
 				(!isWagePredictionAvailable? ' class="shy"' : '') + '>' + wageAvg + '</td></tr>' +
-				'<tr><td>' + Foxtrickl10n.getString('PsicoTSI.DECIMALS_LOW') + '</td><td>' +
+				'<tr><td>' + Foxtrickl10n.getString('PsicoTSI.FORM_LOW') + '</td><td>' +
 				formLow + '</td>' + '<td class="endColumn1">' +
 				Foxtrickl10n.getString('PsicoTSI.DECIMALS_LOW') + '</td><td' +
 				(!isWagePredictionAvailable ? ' class="shy"' : '') + '>' + wageLow + '</td></tr>';
