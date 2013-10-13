@@ -7,6 +7,7 @@
 	height: 16px;
 	background-position: 50% 50%;
 	vertical-align: text-bottom !important;
+	background-repeat: no-repeat;
 }
 a.ft-staff-style {
 	display: inline-block;
@@ -14,38 +15,33 @@ a.ft-staff-style {
 }
 .ft-staff-icon.ft-staff-supported {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/supported.png");
-	background-repeat: no-repeat;
 }
 
 .ft-staff-icon.ft-staff-supporter {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/supporter.png");
-	background-repeat: no-repeat;
 }
 
 .ft-staff-icon.ft-staff-htls {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/htls.png");
-	background-repeat: no-repeat;
 }
-
+.ft-staff-icon.ft-staff-ho {
+	background-image: url("chrome://foxtrick/content/resources/img/staff/ho.png");
+}
 .ft-staff-icon.ft-staff-hy {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/hyouthclub.png");
-	background-repeat: no-repeat;
 }
 
 .ft-staff-icon.ft-staff-foxtrick{
 	background-image: url("chrome://foxtrick/content/resources/img/staff/foxtrick.png");
-	background-repeat: no-repeat;
 }
 
 .ft-staff-icon.ft-staff-chpp-holder {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/chpp.png");
-	background-repeat: no-repeat;
 	width: 24px;
 }
 
 .ft-staff-icon.ft-staff-editor {
 	background-image: url("chrome://foxtrick/content/resources/img/staff/editor.png");
-	background-repeat: no-repeat;
 }
 
 .ft-staff-chpp {

@@ -44,7 +44,7 @@ Foxtrick.modules['StaffMarker'] = {
 		'officials',
 		'editor',
 		'foxtrick',
-		['chpp-contributors', 'htls', 'hy'],
+		['chpp-contributors', 'htls', 'hy', 'ho'],
 		'chpp-holder',
 		['supporters', 'supporter', 'supported'],
 		'coach',
