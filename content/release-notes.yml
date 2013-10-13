@@ -16,7 +16,13 @@ en:
       other: '<header>Other changes</header>'
       staff_marker: '<module>StaffMarker</module> has been restructured. New options for supporters, supported teams and national coaches have been added. Please set the preferences to your liking.'
       psico_update: 'An option to display <module>PsicoTSI</module> prediction on the left sidebar was reimplemented.'
+      ticker_update: '<module>TickerColoring</module> and <module>TickerAlert</module> were updated with new supporter news ticker types added over the past couple of years.'
+      ff_button: 'Firefox toolbar button will now be more responsive and will better reflect Foxtrick state.'
+      ff_disable: 'Disabling Foxtrick in Firefox will now close Foxtrick preferences (if open) and reload all Hattrick tabs to remove any modifications made by Foxtrick.'
       bugs: '<header>Bug fixes</header>'
+      native_names: 'Selected countries will no longer change when navigating back to the transfer search form with native country names enabled in <module>CountryList</module>.'
+      player_filters: 'It is now possible to use <module>PlayerFilters</module> in multiple tabs at the same time in Firefox.'
+      history_stats: '<module>HistoryStats</module> is now usable with multiple teams at the same time in Firefox.'
 
     0.12.2.1:
       note_0: 'Links will no longer disappear after clearing Foxtrick cache in Firefox.'
