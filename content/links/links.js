@@ -13,8 +13,13 @@
 		callbackStack.push(callback);
 		if (callbackStack.length != 1)
 			return;
-		if (collection)
+		if (collection && typeof callback === 'undefined') {
+			// callback is defined => sessionstore is null
+			// probably cache was cleared
+			// hence we shuld not return here
+			callbackStack = [];
 			return;
+		}
 		collection = {};
 		// load links from external feeds
 		var feeds = FoxtrickPrefs.getString('module.Links.feeds') || '';
