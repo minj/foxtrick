@@ -24,8 +24,8 @@
 		<position type="Keeper" value="Portero" short="Po" />
 		<position type="Central defender" value="Defensor central" short="Dc" />
 		<position type="Wing back" value="Defensor lateral" short="Dl" />
-		<position type="Inner midfielder" value="Medio central" short="Mc" />
-		<position type="Winger" value="Medio lateral" short="Ml" />
+		<position type="Inner midfielder" value="Mediocampista" short="Mc" />
+		<position type="Winger" value="Lateral" short="Ml" />
 		<position type="Forward" value="Delantero" short="De" />
 	</positions>
 

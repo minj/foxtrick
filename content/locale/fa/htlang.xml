@@ -2,20 +2,20 @@
 
 	<!-- rating sublevels appearing in match detail page -->
 	<ratingSubLevels>
-		<sublevel text="(خيلي کم)" value="0.0" />
+		<sublevel text="(خیلی کم)" value="0.0" />
 		<sublevel text="(کم)" value="0.25" />
-		<sublevel text="(زياد)" value="0.50" />
-		<sublevel text="(خيلي زياد)" value="0.75" />
+		<sublevel text="(زیاد)" value="0.50" />
+		<sublevel text="(خیلی زیاد)" value="0.75" />
 	</ratingSubLevels>
 
 	<!-- tactics appearing in match detail page -->
 	<tactics>
 		<tactic type="normal" value="عادی" />
-		<tactic type="pressing" value="پرسينگ" />
+		<tactic type="pressing" value="پرسینگ" />
 		<tactic type="ca" value="ضد حمله" />
-		<tactic type="aow" value="حمله از جناحين" />
+		<tactic type="aow" value="حمله از جناحین" />
 		<tactic type="aim" value="حمله از عمق" />
-		<tactic type="creatively" value="بازي خلاقانه" />
+		<tactic type="creatively" value="بازی خلاقانه" />
 		<tactic type="longshots" value="شوت از راه دور" />
 	</tactics>
 
@@ -31,34 +31,34 @@
 
 	<!-- specialties appearing on players page. copy "value". translate "short" -->
 	<specialties>
-		<specialty type="Unpredictable" value="غيرقابل پيش‌بيني" short="Un" />
-		<specialty type="Powerful" value="قدرتي" short="Po" />
-		<specialty type="Quick" value="سرعتي" short="Qu" />
-		<specialty type="Technical" value="تکنيکي" short="Te" />
+		<specialty type="Unpredictable" value="غیرقابل پیش‌بینی" short="Un" />
+		<specialty type="Powerful" value="قدرتی" short="Po" />
+		<specialty type="Quick" value="سرعتی" short="Qu" />
+		<specialty type="Technical" value="تکنیکی" short="Te" />
 		<specialty type="Head" value="سرزن" short="He" />
 		<specialty type="Regainer" value="تندرست" short="Re" />
 	</specialties>
 
 	<!-- levels word connections appearing denominations page. copy "text" -->
 	<levels>
-		<level text="کهکشاني" value="20" />
-		<level text="آرماني" value="19" />
-		<level text="جادويي" value="18" />
-		<level text="افسانه‌اي" value="17" />
+		<level text="کهکشانی" value="20" />
+		<level text="آرمانی" value="19" />
+		<level text="جادویی" value="18" />
+		<level text="افسانه‌ای" value="17" />
 		<level text="خارق‌العاده" value="16" />
-		<level text="استثنايي" value="15" />
+		<level text="استثنایی" value="15" />
 		<level text="فوق‌العاده" value="14" />
-		<level text="بين‌المللي" value="13" />
+		<level text="بین‌المللی" value="13" />
 		<level text="باشکوه" value="12" />
 		<level text="درخشان" value="11" />
 		<level text="برجسته" value="10" />
 		<level text="توانمند" value="9" />
-		<level text="عالي" value="8" />
+		<level text="عالی" value="8" />
 		<level text="خوب" value="7" />
 		<level text="قابل قبول" value="6" />
 		<level text="ناکافى" value="5" />
-		<level text="ضعيف" value="4" />
-		<level text="ناچيز" value="3" />
+		<level text="ضعیف" value="4" />
+		<level text="ناچیز" value="3" />
 		<level text="اسفبار" value="2" />
 		<level text="افتضاح" value="1" />
 		<level text="بدون مهارت" value="0" />
