@@ -36,6 +36,16 @@ h3
 	border-bottom: 1px solid black;
 }
 
+h4 {
+    font-size: 1.4em;
+    margin: 0.5em 0;
+}
+
+h5 {
+    font-size: 1.2em;
+    margin: 0.7em 0;
+}
+
 p
 {
 	margin: 2px 0;
