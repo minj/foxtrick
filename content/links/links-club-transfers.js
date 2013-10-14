@@ -9,8 +9,8 @@ Foxtrick.modules['LinksClubTransfers'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['transfer'],
 	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, 'LinksClubTransfers',
-		                                                'clubtransferslink', callback);
+		return Foxtrick.modules['Links']
+			.getOptionsHtml(doc, 'LinksClubTransfers', 'clubtransferslink', callback);
 	},
 
 	run: function(doc) {

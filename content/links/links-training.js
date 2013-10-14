@@ -9,8 +9,8 @@ Foxtrick.modules['LinksTraining'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['training'],
 	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, 'LinksTraining', 'traininglink',
-		                                                callback);
+		return Foxtrick.modules['Links']
+			.getOptionsHtml(doc, 'LinksTraining', 'traininglink', callback);
 	},
 
 	run: function(doc) {
@@ -42,10 +42,13 @@ Foxtrick.modules['LinksTraining'] = {
 		owncountryid = Foxtrick.util.id.getOwnLeagueId();
 
 
-		var links = Foxtrick.modules['Links'].getLinks('traininglink',
-		                                               { 'Coach': Coach, 'TI': TI, 'STA': STA,
-		                                               'TrainingType': TrainingType,
-		                                               'owncountryid': owncountryid }, doc, this);
+		var links = Foxtrick.modules['Links'].getLinks('traininglink', {
+			'Coach': Coach,
+			'TI': TI,
+			'STA': STA,
+			'TrainingType': TrainingType,
+			'owncountryid': owncountryid
+		}, doc, this);
 
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
@@ -61,8 +64,11 @@ Foxtrick.modules['LinksTraining'] = {
 			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
 			box.id = 'ft-links-box';
 		}
-		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME,
-		                        { 'Coach': Coach, 'TrainigIntensity': TI, 'StaminaShare': STA,
-		                        'TrainingType': TrainingType });
+		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, {
+			'Coach': Coach,
+			'TrainigIntensity': TI,
+			'StaminaShare': STA,
+			'TrainingType': TrainingType
+		});
 	}
 };

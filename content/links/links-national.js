@@ -9,8 +9,8 @@ Foxtrick.modules['LinksNational'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['national'],
 	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, 'LinksNational', 'nationalteamlink',
-		                                                callback);
+		return Foxtrick.modules['Links']
+			.getOptionsHtml(doc, 'LinksNational', 'nationalteamlink', callback);
 	},
 
 	run: function(doc) {
@@ -31,10 +31,11 @@ Foxtrick.modules['LinksNational'] = {
 		countryid = Foxtrick.util.id.findLeagueId(thisdiv);
 		ntteamid = Foxtrick.util.id.findTeamId(thisdiv);
 
-		var links =
-			Foxtrick.modules['Links'].getLinks('nationalteamlink',
-			                                   { 'countryid': countryid, 'ntteamid': ntteamid,
-			                                   'LeagueOfficeTypeID': LeagueOfficeTypeID }, doc, this);
+		var links = Foxtrick.modules['Links'].getLinks('nationalteamlink', {
+			'countryid': countryid,
+			'ntteamid': ntteamid,
+			'LeagueOfficeTypeID': LeagueOfficeTypeID
+		}, doc, this);
 
 		var added = 0;
 		ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
@@ -49,11 +50,11 @@ Foxtrick.modules['LinksNational'] = {
 		}
 
 		if (FoxtrickPrefs.isModuleEnabled('LinksTracker')) {
-			var links2 =
-				Foxtrick.modules['Links'].getLinks('trackernationalteamlink',
-				                                   { 'countryid': countryid, 'ntteamid': ntteamid,
-				                                   'LeagueOfficeTypeID': LeagueOfficeTypeID },
-				                                   doc, Foxtrick.modules['LinksTracker']);
+			var links2 = Foxtrick.modules['Links'].getLinks('trackernationalteamlink', {
+				'countryid': countryid,
+				'ntteamid': ntteamid,
+				'LeagueOfficeTypeID': LeagueOfficeTypeID
+			}, doc, Foxtrick.modules['LinksTracker']);
 			for (var k = 0; k < links2.length; k++) {
 				links2[k].link.className = 'flag inner';
 				var img = links2[k].link.getElementsByTagName('img')[0];
@@ -72,8 +73,10 @@ Foxtrick.modules['LinksNational'] = {
 			box.id = 'ft-links-box';
 		}
 
-		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME,
-		                        { 'countryid': countryid, 'ntteamid': ntteamid,
-		                        'LeagueOfficeTypeID': LeagueOfficeTypeID });
+		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, {
+			'countryid': countryid,
+			'ntteamid': ntteamid,
+			'LeagueOfficeTypeID': LeagueOfficeTypeID
+		});
 	}
 };

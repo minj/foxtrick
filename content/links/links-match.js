@@ -10,8 +10,12 @@ Foxtrick.modules['LinksMatch'] = {
 	PAGES: ['match', 'matchOld'],
 	//CSS: Foxtrick.InternalPath + 'resources/css/links-match.css',
 	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, 'LinksMatch',
-			['playedmatchlink', 'playedyouthmatchlink', 'nextmatchlink', 'matchlink'], callback);
+		return Foxtrick.modules['Links'].getOptionsHtml(doc, 'LinksMatch', [
+			'playedmatchlink',
+			'playedyouthmatchlink',
+			'nextmatchlink',
+			'matchlink'
+		], callback);
 	},
 
 	run: function(doc) {
@@ -35,7 +39,8 @@ Foxtrick.modules['LinksMatch'] = {
 
 		var ownteamid = Foxtrick.util.id.getOwnTeamId();
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
-		var youthteamid = Foxtrick.util.id.findYouthTeamId(doc.getElementById('ctl00_ctl00_CPContent_divStartMain'));
+		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
+		var youthteamid = Foxtrick.util.id.findYouthTeamId(main);
 		var server = FoxtrickPrefs.getBool('hty-stage') ? 'stage' : 'www';
 		var ownyouthteamid = Foxtrick.util.id.getOwnYouthTeamId();
 
@@ -54,25 +59,35 @@ Foxtrick.modules['LinksMatch'] = {
 		//addExternalLinksToPlayedMatch
 		if (isarchivedmatch) {
 			if (youthmatch) {
-				links = Foxtrick.modules['Links']
-					.getLinks('playedyouthmatchlink',
-					          { 'ownyouthteamid': ownyouthteamid, 'matchid': matchid,
-					          'teamid': teamid, 'teamid2': teamid2, 'server': server}, doc, this); }
+				links = Foxtrick.modules['Links'].getLinks('playedyouthmatchlink', {
+					'ownyouthteamid': ownyouthteamid,
+					'matchid': matchid,
+					'teamid': teamid,
+					'teamid2': teamid2,
+					'server': server
+				}, doc, this); }
 			else {
-				links = Foxtrick.modules['Links']
-					.getLinks('playedmatchlink', { 'matchid': matchid, 'teamid': teamid,
-					          'teamid2': teamid2 }, doc, this); }
+				links = Foxtrick.modules['Links'].getLinks('playedmatchlink', {
+					'matchid': matchid,
+					'teamid': teamid,
+					'teamid2': teamid2
+				}, doc, this);
+			}
 			if (links.length > 0)
 				add_links = true;
 		}
 		//addExternalLinksToCommingMatch
 		if (!isarchivedmatch && !youthmatch) {
-			links = Foxtrick.modules['Links']
-				.getLinks('nextmatchlink', { 'matchid': matchid, 'teamid': teamid,
-				          'teamid2': teamid2 }, doc, this);
-			links2 = Foxtrick.modules['Links']
-				.getLinks('matchlink', { 'matchid': matchid, 'teamid': teamid, 'teamid2': teamid2 },
-				          doc, this);
+			links = Foxtrick.modules['Links'].getLinks('nextmatchlink', {
+				'matchid': matchid,
+				'teamid': teamid,
+				'teamid2': teamid2
+			}, doc, this);
+			links2 = Foxtrick.modules['Links'].getLinks('matchlink', {
+				'matchid': matchid,
+				'teamid': teamid,
+				'teamid2': teamid2
+			}, doc, this);
 			if (links.length + links2.length > 0)
 				add_links = true;
 		}
@@ -107,12 +122,18 @@ Foxtrick.modules['LinksMatch'] = {
 			if (youthmatch)
 				prefset = this.MODULE_NAME + '.youth.played';
 
-			Foxtrick.util.links.add(doc, ownBoxBody, prefset, { 'matchid': matchid,
-			                        'teamid': teamid, 'teamid2': teamid2 }, hasNewRatings);
+			Foxtrick.util.links.add(doc, ownBoxBody, prefset, {
+				'matchid': matchid,
+				'teamid': teamid,
+				'teamid2': teamid2
+			}, hasNewRatings);
 		}
 		if (!isarchivedmatch && !youthmatch) {
-			Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME + '.coming',
-			                        { 'matchid': matchid, 'teamid': teamid, 'teamid2': teamid2 });
+			Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME + '.coming', {
+				'matchid': matchid,
+				'teamid': teamid,
+				'teamid2': teamid2
+			});
 		}
 	}
 };

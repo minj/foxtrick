@@ -9,8 +9,8 @@ Foxtrick.modules['LinksPlayers'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['players'],
 	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, 'LinksPlayers', 'playerslink',
-		                                                callback);
+		return Foxtrick.modules['Links']
+			.getOptionsHtml(doc, 'LinksPlayers', 'playerslink', callback);
 	},
 
 	run: function(doc) {
@@ -22,12 +22,12 @@ Foxtrick.modules['LinksPlayers'] = {
 
 	_run: function(doc) {
 		var ownBoxBody = null;
-		var mainWrapper = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
+		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 
-		var teamid = Foxtrick.util.id.findTeamId(mainWrapper);
-		var teamname = Foxtrick.util.id.extractTeamName(mainWrapper);
+		var teamid = Foxtrick.util.id.findTeamId(main);
+		var teamname = Foxtrick.util.id.extractTeamName(main);
 		var playerids = '';
-		var players = mainWrapper.getElementsByTagName('a');
+		var players = main.getElementsByTagName('a');
 		var i = 0, player;
 		while (player = players[i++]) {
 			if (player.href.search(/BrowseIds/i) != -1) {
@@ -36,9 +36,11 @@ Foxtrick.modules['LinksPlayers'] = {
 			}
 		}
 
-		var links = Foxtrick.modules['Links'].getLinks('playerslink',
-		                                               { 'teamid': teamid, 'teamname': teamname,
-		                                               'playerids': playerids }, doc, this);
+		var links = Foxtrick.modules['Links'].getLinks('playerslink', {
+			'teamid': teamid,
+			'teamname': teamname,
+			'playerids': playerids
+		}, doc, this);
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
 			var header = Foxtrickl10n.getString('links.boxheader');
@@ -53,7 +55,10 @@ Foxtrick.modules['LinksPlayers'] = {
 			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
 			box.id = 'ft-links-box';
 		}
-		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, { 'teamid': teamid,
-		                        'teamname': teamname, 'playerids': playerids });
+		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, {
+			'teamid': teamid,
+			'teamname': teamname,
+			'playerids': playerids
+		});
 	}
 };

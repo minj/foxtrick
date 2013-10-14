@@ -8,7 +8,7 @@
 Foxtrick.modules['LinksTracker'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, 'LinksTracker', 'trackerplayerlink',
-		                                                callback);
+		return Foxtrick.modules['Links']
+			.getOptionsHtml(doc, 'LinksTracker', 'trackerplayerlink', callback);
 	}
 };

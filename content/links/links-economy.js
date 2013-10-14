@@ -9,7 +9,8 @@ Foxtrick.modules['LinksEconomy'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['finances'],
 	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, 'LinksEconomy', 'economylink', callback);
+		return Foxtrick.modules['Links']
+			.getOptionsHtml(doc, 'LinksEconomy', 'economylink', callback);
 	},
 
 	run: function(doc) {
@@ -39,9 +40,12 @@ Foxtrick.modules['LinksEconomy'] = {
 
 		// symbol maybe undefined here, #care
 		var currencySymbol = Foxtrick.util.currency.getSymbol(doc);
-		var links = Foxtrick.modules['Links']
-			.getLinks('economylink', { 'Cash': Cash, 'newCash': newCash, 'Currency': currencySymbol,
-			          'owncountryid': owncountryid}, doc, this);
+		var links = Foxtrick.modules['Links'].getLinks('economylink', {
+			'Cash': Cash,
+			'newCash': newCash,
+			'Currency': currencySymbol,
+			'owncountryid': owncountryid
+		}, doc, this);
 		var ownBoxBody = null;
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
@@ -57,7 +61,10 @@ Foxtrick.modules['LinksEconomy'] = {
 			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
 			box.id = 'ft-links-box';
 		}
-		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, { 'Cash': Cash,
-		                        'Currency': currencySymbol, 'newCash': newCash });
+		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, {
+			'Cash': Cash,
+			'Currency': currencySymbol,
+			'newCash': newCash
+		});
 	}
 };

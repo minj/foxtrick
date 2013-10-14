@@ -22,7 +22,7 @@ Foxtrick.modules['LinksWorld'] = {
 
 	_run: function(doc) {
 		var ownBoxBody = null;
-		var mainBody = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
+		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 
 		var links = Foxtrick.modules['Links'].getLinks('worldlink', {}, doc, this);
 		if (links.length > 0) {

@@ -37,13 +37,17 @@ Foxtrick.modules['LinksLeague'] = {
 		if (!leaguename.match(/^[A-Z]+\.\d+/i)) {
 			leaguename2 = 'I';
 			leaguename3 = '1';
-			}
+		}
 
-		var links = Foxtrick.modules['Links'].getLinks('leaguelink', { 'countryid': countryid,
-			'leagueid': leagueid, 'levelnum': levelnum,
-			'seriesnum': seriesnum,	'leaguename': leaguename,
-			'leaguename2': leaguename2, 'leaguename3': leaguename3 },
-			doc, this);
+		var links = Foxtrick.modules['Links'].getLinks('leaguelink', {
+			'countryid': countryid,
+			'leagueid': leagueid,
+			'levelnum': levelnum,
+			'seriesnum': seriesnum,
+			'leaguename': leaguename,
+			'leaguename2': leaguename2,
+			'leaguename3': leaguename3
+		}, doc, this);
 
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
@@ -59,8 +63,12 @@ Foxtrick.modules['LinksLeague'] = {
 			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
 			box.id = 'ft-links-box';
 		}
-		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME,
-		                        { 'countryid': countryid, 'leagueid': leagueid, 'levelnum': levelnum,
-		                        'seriesnum': seriesnum,	'leaguename': leaguename });
+		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, {
+			'countryid': countryid,
+			'leagueid': leagueid,
+			'levelnum': levelnum,
+			'seriesnum': seriesnum,
+			'leaguename': leaguename
+		});
 	}
 };

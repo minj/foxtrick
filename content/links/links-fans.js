@@ -21,14 +21,14 @@ Foxtrick.modules['LinksFans'] = {
 
 	_run: function(doc) {
 		var ownBoxBody = null;
-		var mainWrapper = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
+		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 
-		var teamid = Foxtrick.util.id.findTeamId(mainWrapper);
-		var teamname = Foxtrick.util.id.extractTeamName(mainWrapper);
+		var teamid = Foxtrick.util.id.findTeamId(main);
+		var teamname = Foxtrick.util.id.extractTeamName(main);
 		var fanmood = '';
-		var fans = mainWrapper.getElementsByTagName('td')[1].textContent.match(/\d+/);
+		var fans = main.getElementsByTagName('td')[1].textContent.match(/\d+/);
 
-		var links = mainWrapper.getElementsByTagName('a');
+		var links = main.getElementsByTagName('a');
 		var i = 0, link;
 		while (link = links[i++]) {
 			if (link.href.search(/FanMood/i) != -1) {
@@ -37,9 +37,11 @@ Foxtrick.modules['LinksFans'] = {
 			}
 		}
 
-		var links = Foxtrick.modules['Links'].getLinks('fanlink',
-		                                               { 'teamid': teamid, 'teamname': teamname,
-		                                               'fanmood': fanmood }, doc, this);
+		var links = Foxtrick.modules['Links'].getLinks('fanlink', {
+			'teamid': teamid,
+			'teamname': teamname,
+			'fanmood': fanmood
+		}, doc, this);
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
 			var header = Foxtrickl10n.getString('links.boxheader');
@@ -54,8 +56,11 @@ Foxtrick.modules['LinksFans'] = {
 			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
 			box.id = 'ft-links-box';
 		}
-		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME,
-		                        { 'teamid': teamid, 'teamname': teamname, 'fans': fans,
-		                        'fanmood': fanmood });
+		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, {
+			'teamid': teamid,
+			'teamname': teamname,
+			'fans': fans,
+			'fanmood': fanmood
+		});
 	}
 };

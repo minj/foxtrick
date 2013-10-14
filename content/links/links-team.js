@@ -85,8 +85,10 @@ Foxtrick.modules['LinksTeam'] = {
 		catch (e) {
 			Foxtrick.dump('leaguepos/fans: ' + e + '\n');
 		}
-		return { 'teamid': teamid, 'teamname': teamname, 'countryid': countryid,
-				'levelnum': levelnum, 'leagueid': leagueid, 'userid': userid,
-				'fans': fans, 'leaguepos': leaguepos };
+		return {
+			'teamid': teamid, 'teamname': teamname, 'countryid': countryid,
+			'levelnum': levelnum, 'leagueid': leagueid, 'userid': userid,
+			'fans': fans, 'leaguepos': leaguepos
+		};
 	}
 };

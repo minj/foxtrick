@@ -10,8 +10,8 @@ Foxtrick.modules['LinksAchievements'] = {
 	PAGES: ['achievements'],
 
 	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, 'LinksAchievements',
-		                                                'achievementslink', callback);
+		return Foxtrick.modules['Links']
+			.getOptionsHtml(doc, 'LinksAchievements', 'achievementslink', callback);
 	},
 
 	run: function(doc) {
@@ -27,15 +27,18 @@ Foxtrick.modules['LinksAchievements'] = {
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
 
 		var ownBoxBody = null;
-		var mainBody = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
+		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 
-		var teamid = Foxtrick.util.id.findTeamId(mainBody);
-		var teamname = Foxtrick.util.id.extractTeamName(mainBody);
-		var userid = Foxtrick.util.id.findUserId(mainBody);
+		var teamid = Foxtrick.util.id.findTeamId(main);
+		var teamname = Foxtrick.util.id.extractTeamName(main);
+		var userid = Foxtrick.util.id.findUserId(main);
 
-		var links = Foxtrick.modules['Links'].getLinks('achievementslink', { 'teamid': teamid,
-		                                               'teamname': teamname, 'userid': userid,
-		                                               'owncountryid': owncountryid }, doc, this);
+		var links = Foxtrick.modules['Links'].getLinks('achievementslink', {
+			'teamid': teamid,
+			'teamname': teamname,
+			'userid': userid,
+			'owncountryid': owncountryid
+		}, doc, this);
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
 			var header = Foxtrickl10n.getString('links.boxheader');
@@ -50,7 +53,10 @@ Foxtrick.modules['LinksAchievements'] = {
 			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
 			box.id = 'ft-links-box';
 		}
-		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, { 'teamid': teamid,
-		                        'teamname': teamname, 'userid': userid });
+		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, {
+			'teamid': teamid,
+			'teamname': teamname,
+			'userid': userid
+		});
 	}
 };

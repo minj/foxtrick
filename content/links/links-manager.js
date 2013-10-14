@@ -9,7 +9,8 @@ Foxtrick.modules['LinksManager'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['managerPage'],
 	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links'].getOptionsHtml(doc, 'LinksManager', 'managerlink', callback);
+		return Foxtrick.modules['Links']
+			.getOptionsHtml(doc, 'LinksManager', 'managerlink', callback);
 	},
 
 	run: function(doc) {
@@ -34,11 +35,14 @@ Foxtrick.modules['LinksManager'] = {
 		var username = h1.textContent.replace(/^\s+/, '').replace(/\s+$/, '')
 			.replace(/\(.+/, '').replace(/\s+$/g, '');
 
-		var links = Foxtrick.modules['Links'].getLinks('managerlink',
-		                                               { 'teamid': teamid, 'teamname': teamname,
-		                                               'userid': userid, 'username': username,
-		                                               'leagueid': leagueid,
-		                                               'owncountryid': owncountryid }, doc, this);
+		var links = Foxtrick.modules['Links'].getLinks('managerlink', {
+			'teamid': teamid,
+			'teamname': teamname,
+			'userid': userid,
+			'username': username,
+			'leagueid': leagueid,
+			'owncountryid': owncountryid
+		}, doc, this);
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
 			var header = Foxtrickl10n.getString('links.boxheader');
@@ -53,8 +57,13 @@ Foxtrick.modules['LinksManager'] = {
 			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
 			box.id = 'ft-links-box';
 		}
-		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, { 'teamid': teamid,
-		                        'teamname': teamname, 'userid': userid, 'username': username,
-		                        'leagueid': leagueid, 'owncountryid': owncountryid });
+		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, {
+			'teamid': teamid,
+			'teamname': teamname,
+			'userid': userid,
+			'username': username,
+			'leagueid': leagueid,
+			'owncountryid': owncountryid
+		});
 	}
 };

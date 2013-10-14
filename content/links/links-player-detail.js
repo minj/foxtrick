@@ -9,9 +9,12 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 	PAGES: ['playerDetails'],
 	OPTION_FUNC: function(doc, callback) {
-		return Foxtrick.modules['Links']
-			.getOptionsHtml(doc, 'LinksPlayerDetail', ['playerhealinglink', 'playerlink',
-			                'keeperlink', 'transfercomparelink'], callback);
+		return Foxtrick.modules['Links'].getOptionsHtml(doc, 'LinksPlayerDetail', [
+			'playerhealinglink',
+			'playerlink',
+			'keeperlink',
+			'transfercomparelink'
+		], callback);
 	},
 
 	run: function(doc) {
@@ -68,9 +71,13 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 
 			var injuredweeks = Foxtrick.Pages.Player.getInjuryWeeks(doc);
 			if (injuredweeks > 0) {
-				var ilinks = Foxtrick.modules['Links']
-					.getLinks('playerhealinglink', { 'playerid': playerid, 'form': form, 'age': years,
-							  'injuredweeks': injuredweeks, 'tsi': tsi }, doc, module);
+				var ilinks = Foxtrick.modules['Links'].getLinks('playerhealinglink', {
+					'playerid': playerid,
+					'form': form,
+					'age': years,
+					'injuredweeks': injuredweeks,
+					'tsi': tsi
+				}, doc, module);
 				for (var i = 0; i < ilinks.length; ++i) {
 					ilinks[i].link.className = 'ft-link-injury';
 					infoTable.rows[4].cells[1].appendChild(ilinks[i].link);
@@ -104,7 +111,8 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 					'lang': FoxtrickPrefs.getString('htLanguage')
 				};
 				links[0] = Foxtrick.modules['Links'].getLinks('playerlink', params, doc, module);
-				links[1] = Foxtrick.modules['Links'].getLinks('transfercomparelink', params, doc, module);
+				links[1] = Foxtrick.modules['Links'].getLinks('transfercomparelink', params,
+															  doc, module);
 				if (goalkeeping > 3 && skillTable) {
 					var newtable = (skillTable.rows.length === 7);
 					var goalkeeperskillnode = newtable ? skillTable.rows[0].cells[1] :
@@ -112,10 +120,14 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 					goalkeeperskillnode = goalkeeperskillnode.getElementsByTagName('a')[0];
 
 					// keeper links
-					var klinks = Foxtrick.modules['Links']
-						.getLinks('keeperlink', { 'playerid': playerid, 'tsi': tsi,
-								  'form': form, 'goalkeeping': goalkeeping, 'age': years,
-								  'owncountryid': owncountryid }, doc, module);
+					var klinks = Foxtrick.modules['Links'].getLinks('keeperlink', {
+						'playerid': playerid,
+						'tsi': tsi,
+						'form': form,
+						'goalkeeping': goalkeeping,
+						'age': years,
+						'owncountryid': owncountryid
+					}, doc, module);
 					for (var i = 0; i < klinks.length; ++i) {
 						klinks[i].link.className = 'ft-link-keeper';
 						if (goalkeeperskillnode) {
@@ -143,7 +155,6 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 			var ownBoxBodyId = 'foxtrick_links_content';
 			ownBoxBody.id = ownBoxBodyId;
 			if (num_links > 0) {
-
 				for (var i = 0; i < links.length; ++i) {
 					if (links[i] != null) {
 						for (var j = 0; j < links[i].length; ++j) {

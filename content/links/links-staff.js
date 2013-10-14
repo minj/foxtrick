@@ -21,13 +21,15 @@ Foxtrick.modules['LinksStaff'] = {
 
 	_run: function(doc) {
 		var ownBoxBody = null;
-		var mainBody = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
+		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 
-		var teamid = Foxtrick.util.id.findTeamId(mainBody);
-		var teamname = Foxtrick.util.id.extractTeamName(mainBody);
+		var teamid = Foxtrick.util.id.findTeamId(main);
+		var teamname = Foxtrick.util.id.extractTeamName(main);
 
-		var links = Foxtrick.modules['Links'].getLinks('stafflink', { 'teamid': teamid,
-		                                               'teamname': teamname}, doc, this);
+		var links = Foxtrick.modules['Links'].getLinks('stafflink', {
+			'teamid': teamid,
+			'teamname': teamname
+		}, doc, this);
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
 			var header = Foxtrickl10n.getString('links.boxheader');
@@ -42,7 +44,9 @@ Foxtrick.modules['LinksStaff'] = {
 			var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
 			box.id = 'ft-links-box';
 		}
-		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, { 'teamid': teamid,
-		                        'teamname': teamname });
+		Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME, {
+			'teamid': teamid,
+			'teamname': teamname
+		});
 	}
 };
