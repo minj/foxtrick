@@ -139,7 +139,7 @@
     <name>Hungarian</name>
     <code>hu</code>
     <phrases>1544</phrases>
-    <translated>1399</translated>
+    <translated>1400</translated>
     <approved>227</approved>
     <translated_progress>91</translated_progress>
     <approved_progress>12</approved_progress>
@@ -364,9 +364,9 @@
     <name>Persian</name>
     <code>fa</code>
     <phrases>1544</phrases>
-    <translated>1345</translated>
+    <translated>1362</translated>
     <approved>0</approved>
-    <translated_progress>88</translated_progress>
+    <translated_progress>89</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
