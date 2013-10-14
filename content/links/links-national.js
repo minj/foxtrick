@@ -23,13 +23,12 @@ Foxtrick.modules['LinksNational'] = {
 	_run: function(doc) {
 		var countryid;
 		var ntteamid;
-		var LeagueOfficeTypeID = doc.location.href.replace(/.+LeagueOfficeTypeID=/i, '')
-			.match(/^\d+/);
 		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
+		var LeagueOfficeTypeID =
+			main.getElementsByTagName('h1')[0].textContent.match('U-20') ? 4 : 2;
 		var ownBoxBody = null;
-		var thisdiv = main.getElementsByTagName('div')[0];
-		countryid = Foxtrick.util.id.findLeagueId(thisdiv);
-		ntteamid = Foxtrick.util.id.findTeamId(thisdiv);
+		countryid = Foxtrick.util.id.findLeagueId(main);
+		ntteamid = Foxtrick.util.id.findTeamId(main);
 
 		var links = Foxtrick.modules['Links'].getLinks('nationalteamlink', {
 			'countryid': countryid,
