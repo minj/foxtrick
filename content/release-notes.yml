@@ -21,6 +21,7 @@ en:
       ff_disable: 'Disabling Foxtrick in Firefox will now close Foxtrick preferences (if open) and reload all Hattrick tabs to remove any modifications made by Foxtrick.'
       bugs: '<header>Bug fixes</header>'
       native_names: 'Selected countries will no longer change when navigating back to the transfer search form with native country names enabled in <module>CountryList</module>.'
+      custom_links: 'External links functionality has been reviewed and all known issues fixed. You can now add custom links on the match report page as well.'
       player_filters: 'It is now possible to use <module>PlayerFilters</module> in multiple tabs at the same time in Firefox.'
       history_stats: '<module>HistoryStats</module> is now usable with multiple teams at the same time in Firefox.'
 
