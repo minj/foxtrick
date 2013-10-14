@@ -471,7 +471,7 @@ Foxtrick.util.links = {
 
 			var href = doc.getElementById('inputHrefID').value;
 			var title = doc.getElementById('inputTitleID').value;
-			var imgref = doc.getElementById('inputImgDivID').imgref;
+			var imgref = String(doc.getElementById('inputImgDivID').imgref);
 
 			FoxtrickPrefs.setString(baseprefnl + '.href', href);
 			FoxtrickPrefs.setString(baseprefnl + '.title', title);
