@@ -68,10 +68,11 @@ Foxtrick.modules['ForumYouthIcons'] = {
 		];
 		//insert SymbolArray, forward slash to escape, escaping uses 'replace' backwards to tempararily get rid of the semi-colon
 		var symbolsText = FoxtrickPrefs.getString('module.ForumYouthIcons.symbols_text');
-		var split = symbolsText.split(/(?!\\);/);
+		// sim lookbehind: stupid JS why u no support it?!
+		var split = symbolsText.split('').reverse().join('').split(/;(?!\\)/).reverse();
 		for (var i = 0; i < split.length; ++i)
 		{
-			var fixed = split[i].replace(/\\;/g, ';');
+			var fixed = split[i].split('').reverse().join('').replace(/\\;/g, ';');
 			icons[9].versions.push(fixed);
 		}
 
