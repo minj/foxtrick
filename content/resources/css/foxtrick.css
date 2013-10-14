@@ -175,6 +175,10 @@ span.flag img {
 	padding-right: 5px !important;
 }
 
+.ft-link-span {
+	display: inline-block;
+}
+
 .ft-links-custom-icon-edit {
 	display: inline-block;
 	width: 16px;
