@@ -9,7 +9,7 @@ if (!Foxtrick) var Foxtrick = {};
 if (!Foxtrick.util) Foxtrick.util = {};
 
 Foxtrick.util.links = {
-	add: function(doc, ownBoxBody, pagemodule, info) {
+	add: function(doc, ownBoxBody, pagemodule, info, isNewSidebar) {
 		try {
 			Foxtrick.util.links._info = info;
 			var ownTeam = Foxtrick.modules['Core'].getSelfTeamInfo(), ownInfo = {}, key;
@@ -76,9 +76,10 @@ Foxtrick.util.links = {
 			};
 
 			Foxtrick.stopListenToChange(doc);
-			var alldivs = doc.querySelectorAll('div.sidebarBox');
+			var alldivs = doc.querySelectorAll(isNewSidebar ? 'div.ft-newSidebarBox' :
+											   'div.sidebarBox');
 			for (var j = 0; j < alldivs.length; j++) {
-				var header = alldivs[j].getElementsByTagName('h2')[0];
+				var header = alldivs[j].getElementsByTagName(isNewSidebar ? 'h4' : 'h2')[0];
 				if (header.textContent == Foxtrickl10n.getString('links.boxheader')) {
 					var hh = header.cloneNode(true);
 					var div = doc.createElement('div');
@@ -128,7 +129,9 @@ Foxtrick.util.links = {
 		try {
 			var ownBoxId = 'ft-links-box';
 			var div = doc.getElementById(ownBoxId).firstChild;
-			div.className = 'boxHead ft-expander-unexpanded';
+			Foxtrick.removeClass(div, 'ft-expander-unexpanded');
+			Foxtrick.addClass(div, 'ft-expander-expanded');
+
 
 			var foxtrickRemove = ownBoxBody.getElementsByClassName('foxtrickRemove');
 			for (var i = 0; i < foxtrickRemove.length; ++i) {
@@ -201,7 +204,8 @@ Foxtrick.util.links = {
 			// box
 			var ownBoxId = 'ft-links-box';
 			var div = doc.getElementById(ownBoxId).firstChild;
-			div.className = 'boxHead ft-expander-expanded';
+			Foxtrick.removeClass(div, 'ft-expander-expanded');
+			Foxtrick.addClass(div, 'ft-expander-unexpanded');
 
 			var foxtrickRemove = ownBoxBody.getElementsByClassName('foxtrickRemove');
 			for (var i = 0; i < foxtrickRemove.length; ++i) {

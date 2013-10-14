@@ -40,16 +40,8 @@ Foxtrick.modules['LinksMatch'] = {
 		var ownyouthteamid = Foxtrick.util.id.getOwnYouthTeamId();
 
 		if (isarchivedmatch) {
-			if (hasNewRatings) {
-				var teamH1 = doc.getElementsByTagName('h1')[1];
-				teamid = Foxtrick.util.id.findTeamId(teamH1);
-				teamid2 = Foxtrick.util.id.findSecondTeamId(teamH1, teamid);
-			}
-			else {
-				var sidediv = doc.getElementById('sidebar');
-				teamid = Foxtrick.util.id.findTeamId(sidediv);
-				teamid2 = Foxtrick.util.id.findSecondTeamId(sidediv, teamid);
-			}
+			teamid = Foxtrick.Pages.Match.getHomeTeamId(doc);
+			teamid2 = Foxtrick.Pages.Match.getAwayTeamId(doc);
 		}
 		else {
 			var sidediv = doc.getElementById('ctl00_ctl00_CPContent_CPMain_pnlTeamInfo');
@@ -114,10 +106,9 @@ Foxtrick.modules['LinksMatch'] = {
 			var prefset = this.MODULE_NAME + '.played';
 			if (youthmatch)
 				prefset = this.MODULE_NAME + '.youth.played';
-			//disable for now
-			if (!hasNewRatings)
-				Foxtrick.util.links.add(doc, ownBoxBody, prefset, { 'matchid': matchid,
-				                        'teamid': teamid, 'teamid2': teamid2 }, hasNewRatings);
+
+			Foxtrick.util.links.add(doc, ownBoxBody, prefset, { 'matchid': matchid,
+			                        'teamid': teamid, 'teamid2': teamid2 }, hasNewRatings);
 		}
 		if (!isarchivedmatch && !youthmatch) {
 			Foxtrick.util.links.add(doc, ownBoxBody, this.MODULE_NAME + '.coming',

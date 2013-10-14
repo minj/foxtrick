@@ -58,25 +58,31 @@ html[data-theme="simple"][firefox] #logo, html[data-theme="simple"][android] #lo
  */
 
 h2.ft-expander-unexpanded, h2.ft-expander-expanded,
-div.ft-expander-unexpanded h2, div.ft-expander-expanded h2 {
+div.ft-expander-unexpanded h2, div.ft-expander-expanded h2,
+h4.ft-expander-unexpanded, h4.ft-expander-expanded,
+div.ft-expander-unexpanded h4, div.ft-expander-expanded h4 {
 	cursor: pointer;
-	background-repeat: no-repeat;
+	background-repeat: no-repeat !important;
 }
 html[dir="ltr"] h2.ft-expander-unexpanded, html[dir="ltr"] h2.ft-expander-expanded,
-html[dir="ltr"] div.ft-expander-unexpanded h2, html[dir="ltr"] div.ft-expander-expanded h2 {
-	background-position: right;
+html[dir="ltr"] div.ft-expander-unexpanded h2, html[dir="ltr"] div.ft-expander-expanded h2,
+html[dir="ltr"] h4.ft-expander-unexpanded, html[dir="ltr"] h4.ft-expander-expanded,
+html[dir="ltr"] div.ft-expander-unexpanded h4, html[dir="ltr"] div.ft-expander-expanded h4 {
+	background-position: right !important;
 }
 html[dir="rtl"] h2.ft-expander-unexpanded, html[dir="rtl"] h2.ft-expander-expanded,
-html[dir="rtl"] div.ft-expander-unexpanded h2, html[dir="rtl"] div.ft-expander-expanded h2 {
-	background-position: left;
+html[dir="rtl"] div.ft-expander-unexpanded h2, html[dir="rtl"] div.ft-expander-expanded h2,
+html[dir="rtl"] h4.ft-expander-unexpanded, html[dir="rtl"] h4.ft-expander-expanded,
+html[dir="rtl"] div.ft-expander-unexpanded h4, html[dir="rtl"] div.ft-expander-expanded h4 {
+	background-position: left !important;
 }
 
 /* div expanders */
-div.ft-expander-unexpanded h2 {
-	background-image: url("chrome://foxtrick/content/resources/img/link-down.png");
+div.ft-expander-unexpanded h2, div.ft-expander-unexpanded h4 {
+	background-image: url("chrome://foxtrick/content/resources/img/link-down.png") !important;
 }
-div.ft-expander-expanded h2 {
-	background-image: url("chrome://foxtrick/content/resources/img/link-up.png");
+div.ft-expander-expanded h2, div.ft-expander-expanded h4 {
+	background-image: url("chrome://foxtrick/content/resources/img/link-up.png") !important;
 }
 
 /* h2/h3 expanders */

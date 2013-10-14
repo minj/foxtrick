@@ -229,7 +229,7 @@ Foxtrick.Pages.Match = {
 		var boxClass = '';
 		var sidebar;
 		(sidebar = doc.getElementsByClassName('reportHighlights')[0]) &&
-			(boxClass = 'ft-matchSidebarBox');
+			(boxClass = 'ft-newSidebarBox');
 
 		if (!sidebar)
 			return;
@@ -251,10 +251,13 @@ Foxtrick.Pages.Match = {
 			dest.className = boxClass;
 			dest.setAttribute('x-precedence', prec);
 			// boxHead
-			var boxHead = doc.createElement('h4');
-			boxHead.className = 'rightHandBoxHeader';
+			var boxHead = doc.createElement('div');
 			dest.appendChild(boxHead);
-			boxHead.textContent = title;
+			// header
+			var header = doc.createElement('h4');
+			header.className = 'rightHandBoxHeader';
+			header.textContent = title;
+			boxHead.appendChild(header);
 			// boxBody
 			var boxBody = doc.createElement('div');
 			boxBody.className = 'rightHandBoxBody';
