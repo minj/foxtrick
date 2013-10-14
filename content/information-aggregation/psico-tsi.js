@@ -145,9 +145,12 @@ Foxtrick.modules['PsicoTSI'] = {
 			.getElementsByClassName('transferPlayerInfo');
 		var cellId = 0;
 		for (var i = 0, p; i < players.length && (p = players[i]); ++i) {
+
+			var entry = playerContainers[i];
+
 			// if the following container does not exist
 			// the player is sold and skills aren't visible
-			if (!playerContainers[i].getElementsByClassName('transferPlayerCharacteristics').length)
+			if (!entry.getElementsByClassName('transferPlayerCharacteristics').length)
 				continue;
 
 			var age = p.age.years;
@@ -157,9 +160,19 @@ Foxtrick.modules['PsicoTSI'] = {
 			if (!pr)
 				continue;
 
-			this.drawInPlayerInfo(doc, i, playerContainers[i], pr.undef, injured, age > 27,
+			// clear floats
+			var div = doc.createElement('div');
+			Foxtrick.addClass(div, 'ft-clear-both');
+			entry.appendChild(div);
+
+			this.drawInPlayerInfo(doc, i, entry, pr.undef, injured, age > 27,
 								  pr.maxSkill, pr.formHigh, pr.formAvg, pr.formLow, 'N/A',
 								  pr.limit, useLinks);
+
+			// move the ruler below psico
+			var hr = playerContainers[i].getElementsByClassName('borderSeparator')[0];
+			if (hr)
+				playerContainers[i].appendChild(hr);
 		}
 	},
 	/**
