@@ -374,7 +374,6 @@ Foxtrick.util.links = {
 			// save link
 			var saveLink = doc.createElement('a');
 			Foxtrick.addClass(saveLink, 'ft-link')
-			//saveLink.setAttribute('href', 'javascript: void(0);');
 			saveLink.setAttribute('name', 'savelinkname');
 			saveLink.setAttribute('basepref', basepref);
 			Foxtrick.onClick(saveLink, Foxtrick.util.links.saveMyLink);
@@ -387,7 +386,6 @@ Foxtrick.util.links = {
 			helplink.className = 'ft_actionicon foxtrickHelp float_right';
 			helplink.title = Foxtrickl10n.getString('links.custom.help');
 			Foxtrick.addClass(helplink, 'ft-link')
-			//helplink.href = 'javascript: void(0);';
 			Foxtrick.onClick(helplink, function(ev) {
 				alert(Foxtrickl10n.getString('links.custom.helptext'));
 			});
