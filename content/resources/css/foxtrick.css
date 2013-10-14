@@ -52,6 +52,9 @@ html[data-theme="simple"][firefox] #logo, html[data-theme="simple"][android] #lo
 .foxtrickScreenshot:hover { background-image: url("chrome://foxtrick/content/resources/img/screenshot-hover.png"); width: 16px; }
 .foxtrickBrowse { background-image: url("chrome://foxtrick/content/resources/img/browse.png"); width: 16px; padding:2px; }
 
+div.rightHandBoxBody > div {
+	margin: 10px 0;
+}
 /*
  * expanders
  * TODO - use attribute expanded to denote whether expanded
