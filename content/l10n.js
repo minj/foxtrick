@@ -246,13 +246,15 @@ var Foxtrickl10n = {
 
 	getTacticById: function(id) {
 		var tactics = [
-			'normal',	//:	0,
-			'pressing',	//:	1,
-			'ca',		//:	2,
-			'aim',		//:	3,
-			'aow',		//:	4,
-			'creatively',//:5,
-			'longshots'//:6
+			'normal',		//:	0,
+			'pressing',		//:	1,
+			'ca',			//:	2,
+			'aim',			//:	3,
+			'aow',			//:	4,
+			'',				//: 5, (N/A)
+			'',				//: 6, (N/A)
+			'creatively',	//: 7,
+			'longshots'		//: 8
 		];
 
 		var lang = FoxtrickPrefs.getString('htLanguage');
@@ -292,23 +294,6 @@ var Foxtrickl10n = {
 			Foxtrick.log(e);
 		}
 		return shortPos || direct();
-	},
-
-	getShortSpeciality: function(spec) {
-		var direct = function() {
-			return spec.substr(0, 2);
-		};
-		var shortSpec = '';
-		try {
-			var lang = FoxtrickPrefs.getString('htLanguage');
-			var path = "language/specialties/specialty[@value='" + spec + "']";
-			shortSpec = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang],
-			                                         path, 'short');
-		}
-		catch (e) {
-			Foxtrick.log(e);
-		}
-		return shortSpec || direct();
 	},
 
 	getShortSpecialityFromEnglish: function(spec) {

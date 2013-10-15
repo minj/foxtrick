@@ -218,12 +218,11 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				return;
 			if (player && player.specialityNumber != 0) {
 				var title = Foxtrickl10n.getSpecialityFromNumber(player.specialityNumber);
-				var alt = Foxtrickl10n.getShortSpeciality(title);
 				var icon_suffix = '';
 				if (FoxtrickPrefs.getBool('anstoss2icons'))
 					icon_suffix = '_alt';
 				Foxtrick.addImage(doc, node, {
-					alt: alt,
+					alt: title,
 					title: title,
 					src: Foxtrick.InternalPath + 'resources/img/matches/spec' +
 						player.specialityNumber + icon_suffix + '.png',
