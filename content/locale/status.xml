@@ -193,9 +193,9 @@
     <name>Macedonian</name>
     <code>mk</code>
     <phrases>1544</phrases>
-    <translated>1398</translated>
+    <translated>1416</translated>
     <approved>0</approved>
-    <translated_progress>91</translated_progress>
+    <translated_progress>92</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -472,9 +472,9 @@
     <name>Bosnian</name>
     <code>bs</code>
     <phrases>1544</phrases>
-    <translated>1044</translated>
+    <translated>1535</translated>
     <approved>650</approved>
-    <translated_progress>69</translated_progress>
-    <approved_progress>41</approved_progress>
+    <translated_progress>100</translated_progress>
+    <approved_progress>40</approved_progress>
   </language>
 </status>
