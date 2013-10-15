@@ -161,9 +161,11 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 						// doing defence
 						prob = 1 - (Foxtrick.Math.tanh(6.9 * (1 - ratio - 0.51)) * 0.455 + 0.46);
 				}
+				var orig = result.textContent;
 				result.textContent = Math.round(prob * 100) + '%';
 				Foxtrick.makeFeaturedElement(result, this);
-				result.setAttribute('aria-label', result.title = this.l10n['probability.title']);
+				result.setAttribute('aria-label', result.title =
+									this.l10n['probability.title'].replace(/%s/, orig));
 			}
 
 			if (doChanges) {
