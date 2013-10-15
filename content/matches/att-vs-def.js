@@ -317,19 +317,19 @@ Foxtrick.modules['AttVsDef'] = {
 		var values = [];
 
 		for (var j = 2; j < 8; j++) {
-			var val1 = Foxtrick.hsToFloat(ratingstable.rows[j].cells[3].textContent);
-			var val2 = Foxtrick.hsToFloat(ratingstable.rows[9 - j].cells[4].textContent);
+			var val1 = Foxtrick.hsToFloat(table.rows[j].cells[3].textContent);
+			var val2 = Foxtrick.hsToFloat(table.rows[9 - j].cells[4].textContent);
 			var percentage = (val1 / (val1 + val2)) * 100;
 			values.push(Math.round(percentage));
 		}
 		if (Foxtrick.Pages.Match.hasIndSetPieces(table)) {
 			// if there are ratings for indirect free kicks, they are in rows 10 and 11
-			val1 = Foxtrick.hsToFloat(ratingstable.rows[10].cells[3].textContent);
-			val2 = Foxtrick.hsToFloat(ratingstable.rows[11].cells[4].textContent);
+			val1 = Foxtrick.hsToFloat(table.rows[10].cells[3].textContent);
+			val2 = Foxtrick.hsToFloat(table.rows[11].cells[4].textContent);
 			percentage = (val1 / (val1 + val2)) * 100;
 			values.push(Math.round(percentage));
-			val1 = Foxtrick.hsToFloat(ratingstable.rows[11].cells[3].textContent);
-			val2 = Foxtrick.hsToFloat(ratingstable.rows[10].cells[4].textContent);
+			val1 = Foxtrick.hsToFloat(table.rows[11].cells[3].textContent);
+			val2 = Foxtrick.hsToFloat(table.rows[10].cells[4].textContent);
 			percentage = (val1 / (val1 + val2)) * 100;
 			values.push(Math.round(percentage));
 		}
