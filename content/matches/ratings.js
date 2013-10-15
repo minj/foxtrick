@@ -27,13 +27,6 @@ Foxtrick.modules['Ratings'] = {
 		if (ratingstable == null) return;
 		if (Foxtrick.Pages.Match.isWalkOver(ratingstable))
 			return;
-		if (!Foxtrick.Pages.Match.isCorrectLanguage(ratingstable)) { // incorrect language
-			var row = Foxtrick.insertFeaturedRow(ratingstable, this, -1);
-			var cell = row.insertCell(0);
-			cell.setAttribute('colspan', 3);
-			cell.textContent = Foxtrickl10n.getString('matches.wronglang');
-			return;
-		}
 
 		if (!Foxtrick.Pages.Match.hasNewRatings(doc) &&
 		    FoxtrickPrefs.isModuleOptionEnabled('Ratings', 'HideAverages')
@@ -43,20 +36,34 @@ Foxtrick.modules['Ratings'] = {
 			}
 		}
 
-		var midfieldLevel = [Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[1].cells[1]),
-			Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[1].cells[2])];
-		var rdefence = [Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[2].cells[1]),
-			Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[2].cells[2])];
-		var cdefence = [Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[3].cells[1]),
-			Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[3].cells[2])];
-		var ldefence = [Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[4].cells[1]),
-			Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[4].cells[2])];
-		var rattack = [Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[5].cells[1]),
-			Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[5].cells[2])];
-		var cattack = [Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[6].cells[1]),
-			Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[6].cells[2])];
-		var lattack = [Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[7].cells[1]),
-			Foxtrick.Pages.Match.getStatFromCell(ratingstable.rows[7].cells[2])];
+		var midfieldLevel = [
+			Foxtrick.hsToFloat(ratingstable.rows[1].cells[3].textContent),
+			Foxtrick.hsToFloat(ratingstable.rows[1].cells[4].textContent)
+		];
+		var rdefence = [
+			Foxtrick.hsToFloat(ratingstable.rows[2].cells[3].textContent),
+			Foxtrick.hsToFloat(ratingstable.rows[2].cells[4].textContent)
+		];
+		var cdefence = [
+			Foxtrick.hsToFloat(ratingstable.rows[3].cells[3].textContent),
+			Foxtrick.hsToFloat(ratingstable.rows[3].cells[4].textContent)
+		];
+		var ldefence = [
+			Foxtrick.hsToFloat(ratingstable.rows[4].cells[3].textContent),
+			Foxtrick.hsToFloat(ratingstable.rows[4].cells[4].textContent)
+		];
+		var rattack = [
+			Foxtrick.hsToFloat(ratingstable.rows[5].cells[3].textContent),
+			Foxtrick.hsToFloat(ratingstable.rows[5].cells[4].textContent)
+		];
+		var cattack = [
+			Foxtrick.hsToFloat(ratingstable.rows[6].cells[3].textContent),
+			Foxtrick.hsToFloat(ratingstable.rows[6].cells[4].textContent)
+		];
+		var lattack = [
+			Foxtrick.hsToFloat(ratingstable.rows[7].cells[3].textContent),
+			Foxtrick.hsToFloat(ratingstable.rows[7].cells[4].textContent)
+		];
 
 		var tactics;
 		var tacticsLevel;
@@ -66,8 +73,8 @@ Foxtrick.modules['Ratings'] = {
 				Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[14].cells[2])
 			];
 			tacticsLevel = [
-				Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[15].cells[1]),
-				Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[15].cells[2])
+				parseInt(ratingstable.rows[15].cells[3].textContent, 15) || 0,
+				parseInt(ratingstable.rows[15].cells[4].textContent, 15) || 0
 			];
 		}
 		else  {
@@ -76,8 +83,8 @@ Foxtrick.modules['Ratings'] = {
 				Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[10].cells[2])
 			];
 			tacticsLevel = [
-				Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[11].cells[1]),
-				Foxtrick.Pages.Match.getTacticsLevelFromCell(ratingstable.rows[11].cells[2])
+				parseInt(ratingstable.rows[11].cells[3].textContent, 11) || 0,
+				parseInt(ratingstable.rows[11].cells[4].textContent, 11) || 0
 			];
 		}
 		//Foxtrick.log('Tactics:[', tactics , '], TacticsLevel:[' ,tacticsLevel ,']');

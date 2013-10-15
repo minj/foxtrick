@@ -446,7 +446,16 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 	}
 	catch (e) { Foxtrick.log(e); }
 };
-
+/**
+ * Convert HatStats to 0-based float level
+ * solid (very low) = 6.0; non-existent = disastrous (very low) = 0.0
+ * @param	{Integer}	hs	HatStats
+ * @returns	{Number}		floating point level
+ */
+Foxtrick.hsToFloat = function(hs) {
+	var ret = parseInt(hs, 10);
+	return ret ? (ret - 1) / 4 : 0.0;
+};
 Foxtrick.encodeBase64 = function(str) {
 	return window.btoa(unescape(encodeURIComponent(str)));
 };

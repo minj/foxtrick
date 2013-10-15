@@ -316,9 +316,6 @@ Foxtrick.modules.MatchSimulator = {
 					                     .textContent);
 					if (selectedratings[i].type == 'TacticType') {
 
-						// HTs have a strange way of counting tactics
-						htvalue = (htvalue > 6) ? htvalue - 2 : htvalue;
-
 						selectedratings[i].value = htvalue;
 						selectedratings[i].text = Foxtrickl10n.getTacticById(htvalue);
 					}

@@ -124,8 +124,8 @@ Foxtrick.Pages.Match = {
 	isWalkOver: function(ratingstable) {
 		try {
 			for (var i = 1; i <= 7; i++) {
-				for (var j = 1; j <= 2; j++) {
-					var value = this.getStatFromCell(ratingstable.rows[i].cells[j]);
+				for (var j = 3; j <= 4; j++) {
+					var value = parseInt(ratingstable.rows[i].cells[j].textContent, 10);
 					if (value > 0) { // no Walk-over
 						return false;
 					}
@@ -136,58 +136,6 @@ Foxtrick.Pages.Match = {
 			Foxtrick.log(e);
 		}
 		return true;
-	},
-
-	isCorrectLanguage: function(ratingstable) {
-		try {
-			for (var i = 1; i <= 7; i++) {
-				for (var j = 1; j <= 2; j++) {
-					var value = this.getStatFromCell(ratingstable.rows[i].cells[j]);
-					if (value < 0) { // wrong language
-						return false;
-					}
-				}
-			}
-		}
-		catch (e) {
-			Foxtrick.log(e);
-		}
-		return true;
-	},
-
-	getStatFromCell: function(cell) {
-		var link = cell.firstChild;
-		var baseValue = parseInt(link.href.replace(/.+lt=skill/i, '').replace(/.+ll=/i, '')
-		                         .match(/^\d+/), 10) - 1;
-		if (baseValue == -1) {
-			return 0; // non-existant
-		}
-
-		var subLevelValue = 0;
-
-		var lang = FoxtrickPrefs.getString('htLanguage');
-
-		try {
-			// remove <a> (baseValue above) and <span> (could be added
-			// by HatStatsSeparated in module Ratings
-			var nodeCloned = cell.cloneNode(true);
-			var toRemove = Foxtrick.filter(function(n) {
-					var nn = n.nodeName.toLowerCase();
-					return nn == 'a' || nn == 'span';
-				}, nodeCloned.childNodes);
-			Foxtrick.map(function(n) { nodeCloned.removeChild(n); }, toRemove);
-			var subLevel = Foxtrick.trim(nodeCloned.textContent);
-			var path = "language/ratingSubLevels/sublevel[@text='" + subLevel + "']";
-			subLevelValue = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path,
-			                                             'value');
-			if (!subLevelValue)
-				return -1;
-		}
-		catch (e) {
-			Foxtrick.log('getStatFromCell', e, path);
-		}
-
-		return baseValue + parseFloat(subLevelValue);
 	},
 
 	getTacticsLevelFromCell: function(cell) {
