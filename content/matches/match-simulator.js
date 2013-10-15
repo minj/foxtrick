@@ -556,9 +556,10 @@ Foxtrick.modules.MatchSimulator = {
 				var overlayRating = ratingInnerBoxs[i].getElementsByClassName('overlayRatings')[1];
 				Foxtrick.removeClass(overlayRating, 'hidden');
 
-				var text = overlayRating.textContent;
-				var fullLevel = Foxtrickl10n.getLevelFromText(text);
+				var fullLevel = (parseInt(overlayRating.getAttribute('data-rating'), 10) + 3) / 4;
 				if (fullLevel) {
+					if (fullLevel < 1)
+						fullLevel = 0;
 					var levelText = '[' + fullLevel.toFixed(2) + ']';
 					var id = 'ft-full-level' + i;
 					if (currentRatings[i] !== undefined) {
@@ -581,14 +582,8 @@ Foxtrick.modules.MatchSimulator = {
 			var teamtactics_select = doc.getElementById('teamtactics');
 			currentRatings[7] = teamtactics_select.selectedIndex;
 			if (teamtactics_select.value != 0 && teamtactics_select.value != 7) {
-				try {
-					currentRatings[8] = tacticLevelLabel.getElementsByTagName('a')[0].href
-						.match(/\d+/)[0];
-				}
-				catch (e) {
-					var tacticLevelText = Foxtrick.trim(tacticLevelLabel.textContent.split(':')[1]);
-					currentRatings[8] = Foxtrickl10n.getLevelFromText(tacticLevelText);
-				}
+				var tacticsSpan = tacticLevelLabel.querySelector('span[data-tacticlevel]');
+				currentRatings[8] = tacticsSpan.getAttribute('data-tacticlevel');
 			}
 
 			// remove other changes for clearity
