@@ -216,8 +216,11 @@ Foxtrick.modules.MatchSimulator = {
 				var percentImage = fieldOverlay.getElementsByClassName('percentImage');
 				for (var i = 0; i < percentImage.length; ++i) {
 					if (currentRatingsOther[i] != undefined) {
-						var percent = currentRatings[i] / (currentRatings[i] +
-						                                   currentRatingsOther[i]);
+						// change to zero-based ratings
+						var curr = currentRatings[i] ? currentRatings[i] - 1 : 0;
+						var other = currentRatingsOther[i] ? currentRatingsOther[i] - 1 : 0;
+						var percent = curr / (curr + other);
+
 						var title = Math.floor(percent * 100) + '%';
 						var barPos;
 						if (Foxtrick.util.layout.isStandard(doc))
