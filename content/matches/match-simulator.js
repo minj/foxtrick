@@ -553,27 +553,23 @@ Foxtrick.modules.MatchSimulator = {
 				var overlayRating = ratingInnerBoxs[i].getElementsByClassName('overlayRatings')[1];
 				Foxtrick.removeClass(overlayRating, 'hidden');
 
-				var fullLevel = (parseInt(overlayRating.getAttribute('data-rating'), 10) + 3) / 4;
-				if (fullLevel) {
-					if (fullLevel < 1)
-						fullLevel = 0;
-					var levelText = '[' + fullLevel.toFixed(2) + ']';
-					var id = 'ft-full-level' + i;
-					if (currentRatings[i] !== undefined) {
-						var div = doc.getElementById(id);
-						div.textContent = levelText;
-					}
-					else {
-						var div = doc.createElement('div');
-						div.id = id;
-						div.className = 'overlayRatingsNum';
-						div.textContent = levelText;
-					}
-					ratingInnerBoxs[i].insertBefore(div, overlayRating.nextSibling);
-					oldRatings[i] = currentRatings[i];
-					currentRatings[i] = fullLevel;
-					orgRatings[i] = fullLevel;
+				var fullLevel = Foxtrick.hsToFloat(overlayRating.getAttribute('data-rating'), true);
+				var levelText = '[' + fullLevel.toFixed(2) + ']';
+				var id = 'ft-full-level' + i;
+				if (currentRatings[i] !== undefined) {
+					var div = doc.getElementById(id);
+					div.textContent = levelText;
 				}
+				else {
+					var div = doc.createElement('div');
+					div.id = id;
+					div.className = 'overlayRatingsNum';
+					div.textContent = levelText;
+				}
+				ratingInnerBoxs[i].insertBefore(div, overlayRating.nextSibling);
+				oldRatings[i] = currentRatings[i];
+				currentRatings[i] = fullLevel;
+				orgRatings[i] = fullLevel;
 			}
 			// store tactics for htms
 			var teamtactics_select = doc.getElementById('teamtactics');

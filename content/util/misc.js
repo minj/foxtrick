@@ -450,14 +450,16 @@ Foxtrick.openAndReuseOneTabPerURL = function(url, reload) {
 	catch (e) { Foxtrick.log(e); }
 };
 /**
- * Convert HatStats to 0-based float level
+ * Convert HatStats to 0-based (default) or 1-based float level
  * solid (very low) = 6.0; non-existent = disastrous (very low) = 0.0
- * @param	{Integer}	hs	HatStats
- * @returns	{Number}		floating point level
+ * or solid (very low) = 7.0; non-existent = 0; disastrous (very low) = 1.0
+ * @param	{Integer}	hs			HatStats
+ * @param	{Boolean}	oneBased	return based on solid=7
+ * @returns	{Number}				floating point level
  */
-Foxtrick.hsToFloat = function(hs) {
+Foxtrick.hsToFloat = function(hs, oneBased) {
 	var ret = parseInt(hs, 10);
-	return ret ? (ret - 1) / 4 : 0.0;
+	return ret ? (ret - 1) / 4 + (oneBased ? 1.0 : 0.0) : 0.0;
 };
 Foxtrick.encodeBase64 = function(str) {
 	return window.btoa(unescape(encodeURIComponent(str)));
