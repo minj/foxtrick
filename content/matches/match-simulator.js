@@ -1218,8 +1218,6 @@ Foxtrick.modules.MatchSimulator = {
 		attVsDefLabel.setAttribute('title', Foxtrickl10n.getString('matchOrder.attVsDef.title'));
 		optionsDivElm.appendChild(attVsDefLabel);
 
-		Foxtrick.log('staminaCutoff: ', parseFloat(FoxtrickPrefs.getString('staminaCutoff')));
-
 		Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath + 'resources/js/matchSimulator.js');
 
 		if (useRatings || useHTMS) {
