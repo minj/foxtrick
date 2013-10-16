@@ -178,10 +178,13 @@ Foxtrick.modules.MatchSimulator = {
 			// only listen to rating prediction changes
 			if (!Foxtrick.hasClass(ev.target.parentNode, 'posLabel')
 				&& ev.target.id != 'ft_stamina_discount_check'
-				&& ev.target.id != 'ft_attVsDef_check')
+				&& ev.target.id != 'ft_attVsDef_check'
+				&& ev.target.id != 'ft_realProbabilities_check')
 				return;
-			var updateHTMS = (ev.target.id != 'ft_attVsDef_check');
+			var updateHTMS = (ev.target.id != 'ft_attVsDef_check'
+							  && ev.target.id != 'ft_realProbabilities_check');
 			var updateOther = !updateHTMS;
+			var updatePctgDiff = (ev.target.id != 'ft_attVsDef_check');
 
 			//Foxtrick.log('showLevelNumbers')
 			var overlayRatings = fieldOverlay.getElementsByClassName('overlayRatings');
@@ -204,6 +207,12 @@ Foxtrick.modules.MatchSimulator = {
 			else
 				FoxtrickPrefs.setBool('MatchSimulator.attVsDefOn', false);
 
+			var realProbabilitiesCheck = doc.getElementById('ft_realProbabilities_check');
+			if (realProbabilitiesCheck.checked)
+				FoxtrickPrefs.setBool('MatchSimulator.realProbabilitiesOn', true);
+			else
+				FoxtrickPrefs.setBool('MatchSimulator.realProbabilitiesOn', false);
+
 			// change bars to represent percentage of ratings comparision between predicted ratings
 			// and selected other teams match ratings and update HTMSPrediction
 			var updateBarsAndHTMSPrediction = function() {
@@ -213,6 +222,11 @@ Foxtrick.modules.MatchSimulator = {
 				if (useRatings)
 					addRatingsModule(currentRatings, currentRatingsOther);
 
+				var attVsDefCheck = doc.getElementById('ft_attVsDef_check');
+				var realProbabilitiesCheck = doc.getElementById('ft_realProbabilities_check');
+				var doRealProb = attVsDefCheck.checked && realProbabilitiesCheck.checked;
+				var realProbTitle = Foxtrickl10n.getString('matchOrder.probability.title');
+
 				var percentImage = fieldOverlay.getElementsByClassName('percentImage');
 				for (var i = 0; i < percentImage.length; ++i) {
 					if (currentRatingsOther[i] != undefined) {
@@ -220,6 +234,28 @@ Foxtrick.modules.MatchSimulator = {
 						var curr = currentRatings[i] ? currentRatings[i] - 1 : 0;
 						var other = currentRatingsOther[i] ? currentRatingsOther[i] - 1 : 0;
 						var percent = curr / (curr + other);
+
+						if (doRealProb) {
+							var oldVal = Math.floor(percent * 100) + '%';
+							if (i < 3) {
+								// defence
+								// [post=15766691.221]
+								percent = 1 -
+									(Foxtrick.Math.tanh(6.9 * (1 - percent - 0.51)) * 0.455 + 0.46);
+							}
+							else if (i == 3) {
+								// midfield
+								// [post=15766691.242]
+								var first = Math.pow(percent, 2.7);
+								var second = Math.pow(1 - percent, 2.7);
+								percent = first / (first + second);
+							}
+							else {
+								// attack
+								// [post=15766691.221]
+								percent = Foxtrick.Math.tanh(6.9 * (percent - 0.51)) * 0.455 + 0.46;
+							}
+						}
 
 						var title = Math.floor(percent * 100) + '%';
 						var barPos;
@@ -234,13 +270,15 @@ Foxtrick.modules.MatchSimulator = {
 						if (percentImage[i].nextSibling.className != 'percentNumber') {
 							var div = doc.createElement('div');
 							div.textContent = title;
+							div.title = doRealProb ? realProbTitle.replace(/%s/, oldVal) : '';
 							div.className = 'percentNumber';
 							percentImage[i].parentNode.insertBefore(div, percentImage[i].nextSibling);
 						}
 						else {
 							var div = percentImage[i].nextSibling;
 							div.textContent = title;
-							if (!updateOther) {
+							div.title = doRealProb ? realProbTitle.replace(/%s/, oldVal) : '';
+							if (updatePctgDiff) {
 								var diff = Math.floor(percent * 100) -
 									Math.floor(Number(div.getAttribute('percent')) * 100);
 								var span = doc.createElement('span');
@@ -1220,6 +1258,22 @@ Foxtrick.modules.MatchSimulator = {
 		attVsDefLabel.textContent = Foxtrickl10n.getString('matchOrder.attVsDef');
 		attVsDefLabel.setAttribute('title', Foxtrickl10n.getString('matchOrder.attVsDef.title'));
 		optionsDivElm.appendChild(attVsDefLabel);
+
+		var optionsDivElm = doc.createElement('div');
+		optionsDiv.appendChild(optionsDivElm);
+		var realProbabilitiesCheck = doc.createElement('input');
+		realProbabilitiesCheck.id = 'ft_realProbabilities_check';
+		realProbabilitiesCheck.type = 'checkbox';
+		if (FoxtrickPrefs.getBool('MatchSimulator.realProbabilitiesOn'))
+			realProbabilitiesCheck.checked = 'checked';
+		Foxtrick.onClick(realProbabilitiesCheck, showLevelNumbers);
+		optionsDivElm.appendChild(realProbabilitiesCheck);
+
+		var realProbabilitiesLabel = doc.createElement('label');
+		realProbabilitiesLabel.setAttribute('for', 'ft_realProbabilities_check');
+		realProbabilitiesLabel.textContent = Foxtrickl10n.getString('matchOrder.realProbabilities');
+		realProbabilitiesLabel.title = Foxtrickl10n.getString('matchOrder.realProbabilities.title');
+		optionsDivElm.appendChild(realProbabilitiesLabel);
 
 		Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath + 'resources/js/matchSimulator.js');
 
