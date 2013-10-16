@@ -16,15 +16,15 @@ es-AR:
       note_5: 'NUEVO: <module>SupportersList</module>: Mostrar quién es club amigo de tu equipo en tu lista de equipos amigos y viceversa'
       note_6: '<module>MatchLineupTweaks</module>: se agregó una opción para recopilar los datos de resistencia del jugador cada vez que visite la página del partido. Los datos se utilizarán para la mejor predicción de calificaciones en el módulo <module>MatchSimulator</module> y pueden verse en <module>SkillTable</module>. Un jugador debe jugar todo en 90 minutos. Partidos con la tactica presionar o  con eventos especiales negativos del clima  (para jugadores potentes) quedan excluidos. La fórmula de predicción fue creado por Pappagallopoli.'
       note_7: 'NUEVO: <module>Fans</module>: Añade el enlace partido en vivo junto a los de partido futuro. Añade el total de la evolución de la hinchada debajo de la barra lateral de Entrada/Salida de hinchas.'
-      note_8: ""
-      note_9: ""
-      note_10: ""
+      note_8: "Usuarios con varios equipos ahora pueden aplicarle un estilo diferente a Hattrick usando 'body.ft-teamID-0000000' en <module>SkinPlugin</module>."
+      note_9: '<module>HeaderToggle</module> se ha hecho más sólida contra influencias de otros módulos o Hattrick mismo.'
+      note_10: '<module>MatchSimulator</module> fue adaptado para incluir la nueva información de tipo de entrenador al copiar las calificaciones.'
       note_11: '<header>Correcciones de errores</header>'
-      note_12: ""
-      note_13: ""
-      note_14: ""
-      note_15: ""
-      note_16: ""
+      note_12: 'Corregido el error de TSI NaN en las páginas de jugadores para las selecciones nacionales o cuando está deshabilitada la descarga del xml (<module>Skilltable</module>, <module>TeamStats</module> etc.)'
+      note_13: "Los jugadores que no se usen ya no se incluirán al utilizar la función 'Llenar pateadores de penales' en <module>MatchOrderInterface</module>."
+      note_14: Se proporcionó una "solución" para IDs negativos de jugadores en los partidos de barrio (evita abandonos en amistosos).
+      note_15: 'Se corrigió el enlace reto en <module>TeamPopupLinks</module>.'
+      note_16: Corregido un fallo en la funcionalidad de búsqueda de las preferencias.
     0.12.1.1:
       note_0: Actualización de traducciones.
       note_1: 'Mejorado el rendimiento del <module>MainMenuDropDown</module>.'

@@ -364,18 +364,18 @@
     <name>Persian</name>
     <code>fa</code>
     <phrases>1544</phrases>
-    <translated>1362</translated>
+    <translated>1384</translated>
     <approved>0</approved>
-    <translated_progress>89</translated_progress>
+    <translated_progress>90</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
     <name>Spanish, Argentina</name>
     <code>es-AR</code>
     <phrases>1544</phrases>
-    <translated>1535</translated>
+    <translated>1537</translated>
     <approved>0</approved>
-    <translated_progress>99</translated_progress>
+    <translated_progress>100</translated_progress>
     <approved_progress>0</approved_progress>
   </language>
   <language>
@@ -392,7 +392,7 @@
     <code>hr</code>
     <phrases>1544</phrases>
     <translated>1539</translated>
-    <approved>1481</approved>
+    <approved>1480</approved>
     <translated_progress>100</translated_progress>
     <approved_progress>95</approved_progress>
   </language>
@@ -473,8 +473,8 @@
     <code>bs</code>
     <phrases>1544</phrases>
     <translated>1535</translated>
-    <approved>650</approved>
+    <approved>0</approved>
     <translated_progress>100</translated_progress>
-    <approved_progress>40</approved_progress>
+    <approved_progress>0</approved_progress>
   </language>
 </status>
