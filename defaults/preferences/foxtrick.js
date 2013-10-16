@@ -832,7 +832,7 @@ pref("extensions.foxtrick.prefs.translationKeys", false);
 pref("extensions.foxtrick.prefs.forumSymbol", "●");
 pref("extensions.foxtrick.prefs.xmlLoad", true);
 pref("extensions.foxtrick.prefs.module.MobileEnhancements.enabled", false);
-pref("extensions.foxtrick.prefs.MatchSimulator.staminaDiscountOn", false);
+pref("extensions.foxtrick.prefs.MatchSimulator.staminaDiscountOn", true);
 pref("extensions.foxtrick.prefs.MatchSimulator.attVsDefOn", true);
 pref("extensions.foxtrick.prefs.runLoggedOff", false);
 pref("extensions.foxtrick.prefs.dump", false);
