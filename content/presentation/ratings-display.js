@@ -9,7 +9,7 @@ Foxtrick.modules['RatingsDisplay'] = {
 	PAGES: ['statsSeries', 'match'],
 
 	RADIO_OPTIONS: ['DenominationsRange', 'HatStats', 'HTSums'],
-	NICE: -1,	// before Ratings
+	NICE: 1, // after ratings modules: ratings, att-vs-def, htms-prediction
 
 	run: function(doc) {
 
