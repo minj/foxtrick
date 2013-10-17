@@ -25,6 +25,7 @@ en:
       ticker_update: '<module>TickerColoring</module> and <module>TickerAlert</module> were updated with new supporter news ticker types added over the past couple of years.'
       ff_button: 'Firefox toolbar button will now be more responsive and will better reflect Foxtrick state.'
       ff_disable: 'Disabling Foxtrick in Firefox will now close Foxtrick preferences (if open) and reload all Hattrick tabs to remove any modifications made by Foxtrick.'
+      ticker_chall: 'It is not possible to distinguish friendly challenges from other MyHT messages for HT Supporters in <module>TickerColoring</module> any more. Consequently, that ticker type was renamed.'
       bugs: '<header>Bug fixes</header>'
       native_names: 'Selected countries will no longer change when navigating back to the transfer search form with native country names enabled in <module>CountryList</module>.'
       custom_links: 'External links functionality has been reviewed and all known issues fixed. You can now add custom links on the match report page as well.'
