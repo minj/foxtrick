@@ -11,6 +11,7 @@ ul#ft-drop-down-menu li {
 ul#ft-drop-down-menu {
 	margin: 0;
 	padding: 0;
+	position: absolute;
 }
 
 #ft-drop-down-menu hr {
