@@ -164,6 +164,11 @@ firefox:
 	# set branch
 	cd $(BUILD_DIR); \
 	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH) mozilla\"|" defaults/preferences/foxtrick.js
+	# make android-prefs
+	# old FF loads anything that ends with .js
+	# so we can't name this one foxtrick-android.js
+	cd $(BUILD_DIR)/defaults/preferences; \
+	cat foxtrick.js foxtrick.android > foxtrick-android
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
@@ -201,11 +206,6 @@ chrome:
 	# set branch
 	cd $(BUILD_DIR); \
 	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH) chrome\"|" defaults/preferences/foxtrick.js
-	# make android-prefs
-	# old FF loads anything that ends with .js
-	# so we can't name this one foxtrick-android.js
-	cd $(BUILD_DIR)/defaults/preferences; \
-	cat foxtrick.js foxtrick.android > foxtrick-android
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
