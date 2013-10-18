@@ -148,10 +148,15 @@ ul.ui-tabs-nav, #loading {
 	z-index: 4 !important;
 }
 
-html[data-theme="standard"] ul#ft-drop-down-menu > li > a {
+html[data-theme="standard"][firefox] ul#ft-drop-down-menu > li > a {
 	padding-right: 12px !important;
 	padding-left: 8px !important;
 }
+html[data-theme="standard"] ul#ft-drop-down-menu > li > a {
+	padding-right: 18px;
+	padding-left: 12px;
+}
+
 
 ul#ft-drop-down-menu > li.ft-hasSubMenu::after {
     position: absolute;
