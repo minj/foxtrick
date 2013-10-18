@@ -1195,13 +1195,13 @@
 		"img": "resources/linkicons/tracker.png",
 		"title": "Russia + Kyrgyzstan NT/U-20 DB",
 		"trackernationalteamlink": {
-			"url": "http://www.ntdb.pl/",
+			"url": "http://www.hattricker.ru/tracker/",
 			"filters": [
 				"countryid"
 			]
 		},
 		"trackerplayerlink": {
-			"url": "http://www.ntdb.pl/",
+			"url": "http://www.hattricker.ru/tracker/",
 			"filters": [
 				"nationality"
 			]
