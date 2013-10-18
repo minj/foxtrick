@@ -92,6 +92,8 @@ Foxtrick.entry.docLoad = function(doc) {
 // for fennec on new tab opened
 // @param data - copy of the resources passed from the background script
 Foxtrick.entry.contentScriptInit = function(data) {
+
+	Foxtrick.log('Foxtrick.entry.contentScriptInit');
 	// add MODULE_NAME to modules
 	var i;
 	for (i in Foxtrick.modules)
