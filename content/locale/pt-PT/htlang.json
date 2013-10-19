@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normal"
+			},
+			{
+				"type": "pressing",
+				"value": "Pressing"
+			},
+			{
+				"type": "ca",
+				"value": "Contra-ataque"
+			},
+			{
+				"type": "aow",
+				"value": "Ataque pelas alas"
+			},
+			{
+				"type": "aim",
+				"value": "Ataque pelo meio"
+			},
+			{
+				"type": "creatively",
+				"value": "Espontaneidade"
+			},
+			{
+				"type": "longshots",
+				"value": "Remates de longe"
+			}
+		],
+		"honesty": [
+			{
+				"text": "exemplar",
+				"value": "5"
+			},
+			{
+				"text": "íntegra",
+				"value": "4"
+			},
+			{
+				"text": "honesta",
+				"value": "3"
+			},
+			{
+				"text": "decente",
+				"value": "2"
+			},
+			{
+				"text": "desonesta",
+				"value": "1"
+			},
+			{
+				"text": "infame",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "pessoa adorável",
+				"value": "5"
+			},
+			{
+				"text": "pessoa popular",
+				"value": "4"
+			},
+			{
+				"text": "pessoa simpática",
+				"value": "3"
+			},
+			{
+				"text": "pessoa agradável",
+				"value": "2"
+			},
+			{
+				"text": "pessoa controversa",
+				"value": "1"
+			},
+			{
+				"text": "pessoa antipática",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "GR",
+				"type": "Keeper",
+				"value": "Guarda-Redes"
+			},
+			{
+				"short": "DC",
+				"type": "Central defender",
+				"value": "Defesa Central"
+			},
+			{
+				"short": "DL",
+				"type": "Wing back",
+				"value": "Defesa Lateral"
+			},
+			{
+				"short": "MC",
+				"type": "Inner midfielder",
+				"value": "Médio Centro"
+			},
+			{
+				"short": "AL",
+				"type": "Winger",
+				"value": "Ala"
+			},
+			{
+				"short": "AV",
+				"type": "Forward",
+				"value": "Avançado"
+			}
+		],
+		"levels": [
+			{
+				"text": "lendário",
+				"value": "20"
+			},
+			{
+				"text": "utópico",
+				"value": "19"
+			},
+			{
+				"text": "mágico",
+				"value": "18"
+			},
+			{
+				"text": "mítico",
+				"value": "17"
+			},
+			{
+				"text": "colossal",
+				"value": "16"
+			},
+			{
+				"text": "titânico",
+				"value": "15"
+			},
+			{
+				"text": "soberbo",
+				"value": "14"
+			},
+			{
+				"text": "genial",
+				"value": "13"
+			},
+			{
+				"text": "magnífico",
+				"value": "12"
+			},
+			{
+				"text": "brilhante",
+				"value": "11"
+			},
+			{
+				"text": "fenomenal",
+				"value": "10"
+			},
+			{
+				"text": "formidável",
+				"value": "9"
+			},
+			{
+				"text": "excelente",
+				"value": "8"
+			},
+			{
+				"text": "bom",
+				"value": "7"
+			},
+			{
+				"text": "razoável",
+				"value": "6"
+			},
+			{
+				"text": "inadequado",
+				"value": "5"
+			},
+			{
+				"text": "fraco",
+				"value": "4"
+			},
+			{
+				"text": "mau",
+				"value": "3"
+			},
+			{
+				"text": "terrível",
+				"value": "2"
+			},
+			{
+				"text": "desastroso",
+				"value": "1"
+			},
+			{
+				"text": "inexistente",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(mt baixo)",
+				"value": "0.0"
+			},
+			{
+				"text": "(baixo)",
+				"value": "0.25"
+			},
+			{
+				"text": "(alto)",
+				"value": "0.50"
+			},
+			{
+				"text": "(mt alto)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Im",
+				"type": "Unpredictable",
+				"value": "Imprevisível"
+			},
+			{
+				"short": "Fo",
+				"type": "Powerful",
+				"value": "Força"
+			},
+			{
+				"short": "Ve",
+				"type": "Quick",
+				"value": "Velocidade"
+			},
+			{
+				"short": "Té",
+				"type": "Technical",
+				"value": "Técnica"
+			},
+			{
+				"short": "JA",
+				"type": "Head",
+				"value": "Jogo aéreo"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Reabilitação"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "instável",
+				"value": "5"
+			},
+			{
+				"text": "nervosa",
+				"value": "4"
+			},
+			{
+				"text": "temperamental",
+				"value": "3"
+			},
+			{
+				"text": "equilibrada",
+				"value": "2"
+			},
+			{
+				"text": "calma",
+				"value": "1"
+			},
+			{
+				"text": "tranquila",
+				"value": "0"
+			}
+		],
+		"desc": "Português",
+		"name": "pt-PT"
+	}
+}

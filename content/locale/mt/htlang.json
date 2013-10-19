@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normali"
+			},
+			{
+				"type": "pressing",
+				"value": "Ippressaw"
+			},
+			{
+				"type": "ca",
+				"value": "Ilagħbu bil-kontrattakk"
+			},
+			{
+				"type": "aow",
+				"value": "Attakkaw minn mal-linji"
+			},
+			{
+				"type": "aim",
+				"value": "Attakkaw minn ġon-nofs"
+			},
+			{
+				"type": "creatively",
+				"value": "Ilagħbu kreattiv"
+			},
+			{
+				"type": "longshots",
+				"value": "Ixxuttjaw mill-bogħod"
+			}
+		],
+		"honesty": [
+			{
+				"text": "qaddis",
+				"value": "5"
+			},
+			{
+				"text": "ġust",
+				"value": "4"
+			},
+			{
+				"text": "sinċier",
+				"value": "3"
+			},
+			{
+				"text": "onest",
+				"value": "2"
+			},
+			{
+				"text": "diżonest",
+				"value": "1"
+			},
+			{
+				"text": "ta' fama ħażina",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "maħbub mit-tim kollu",
+				"value": "5"
+			},
+			{
+				"text": "popolari",
+				"value": "4"
+			},
+			{
+				"text": "simpatiku",
+				"value": "3"
+			},
+			{
+				"text": "pjaċevoli",
+				"value": "2"
+			},
+			{
+				"text": "kontroversjali",
+				"value": "1"
+			},
+			{
+				"text": "kattiv",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Ke",
+				"type": "Keeper",
+				"value": "Gowler"
+			},
+			{
+				"short": "Cd",
+				"type": "Central defender",
+				"value": "Difensur Ċentrali"
+			},
+			{
+				"short": "Wb",
+				"type": "Wing back",
+				"value": "Difensur Laterali"
+			},
+			{
+				"short": "Im",
+				"type": "Inner midfielder",
+				"value": "Midfielder Ċentrali"
+			},
+			{
+				"short": "Wi",
+				"type": "Winger",
+				"value": "Plejer tal-Linja"
+			},
+			{
+				"short": "Fo",
+				"type": "Forward",
+				"value": "Attakkant"
+			}
+		],
+		"levels": [
+			{
+				"text": "divin",
+				"value": "20"
+			},
+			{
+				"text": "utopjan",
+				"value": "19"
+			},
+			{
+				"text": "maġiku",
+				"value": "18"
+			},
+			{
+				"text": "mitiku",
+				"value": "17"
+			},
+			{
+				"text": "indimunjat",
+				"value": "16"
+			},
+			{
+				"text": "titanniku",
+				"value": "15"
+			},
+			{
+				"text": "sopranaturali",
+				"value": "14"
+			},
+			{
+				"text": "splendidu",
+				"value": "13"
+			},
+			{
+				"text": "manjifiku",
+				"value": "12"
+			},
+			{
+				"text": "brillanti",
+				"value": "11"
+			},
+			{
+				"text": "straordinarju",
+				"value": "10"
+			},
+			{
+				"text": "formidabbli",
+				"value": "9"
+			},
+			{
+				"text": "eċċellenti",
+				"value": "8"
+			},
+			{
+				"text": "sod",
+				"value": "7"
+			},
+			{
+				"text": "passabbli",
+				"value": "6"
+			},
+			{
+				"text": "inadekwat",
+				"value": "5"
+			},
+			{
+				"text": "debboli",
+				"value": "4"
+			},
+			{
+				"text": "fqir",
+				"value": "3"
+			},
+			{
+				"text": "miżeru",
+				"value": "2"
+			},
+			{
+				"text": "diżastruż",
+				"value": "1"
+			},
+			{
+				"text": "ineżistenti",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(Baxx ħafna)",
+				"value": "0.0"
+			},
+			{
+				"text": "(Baxx)",
+				"value": "0.25"
+			},
+			{
+				"text": "(Għoli)",
+				"value": "0.50"
+			},
+			{
+				"text": "(Għoli ħafna)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "Imprevedibbli"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "B'saħħtu"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "Veloċi"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Tekniku"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "Ras"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Akkwistatur"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "instabbli",
+				"value": "5"
+			},
+			{
+				"text": "qalil",
+				"value": "4"
+			},
+			{
+				"text": "nervuż",
+				"value": "3"
+			},
+			{
+				"text": "normali",
+				"value": "2"
+			},
+			{
+				"text": "kalm",
+				"value": "1"
+			},
+			{
+				"text": "trankwill",
+				"value": "0"
+			}
+		],
+		"desc": "Malti",
+		"name": "mt"
+	}
+}

@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "通常"
+			},
+			{
+				"type": "pressing",
+				"value": "プレス"
+			},
+			{
+				"type": "ca",
+				"value": "カウンター攻撃"
+			},
+			{
+				"type": "aow",
+				"value": "サイド攻撃"
+			},
+			{
+				"type": "aim",
+				"value": "中央突破"
+			},
+			{
+				"type": "creatively",
+				"value": "創造プレイ"
+			},
+			{
+				"type": "longshots",
+				"value": "ロングシュート"
+			}
+		],
+		"honesty": [
+			{
+				"text": "聖人のよう",
+				"value": "5"
+			},
+			{
+				"text": "高潔",
+				"value": "4"
+			},
+			{
+				"text": "正義漢",
+				"value": "3"
+			},
+			{
+				"text": "正直",
+				"value": "2"
+			},
+			{
+				"text": "不正直",
+				"value": "1"
+			},
+			{
+				"text": "悪評高い",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "皆に愛されている",
+				"value": "5"
+			},
+			{
+				"text": "人気者",
+				"value": "4"
+			},
+			{
+				"text": "思いやりある",
+				"value": "3"
+			},
+			{
+				"text": "感じよい",
+				"value": "2"
+			},
+			{
+				"text": "問題の多い",
+				"value": "1"
+			},
+			{
+				"text": "嫌われ者",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "GK",
+				"type": "Keeper",
+				"value": "キーパー"
+			},
+			{
+				"short": "CD",
+				"type": "Central defender",
+				"value": "セントラルディフェンダー"
+			},
+			{
+				"short": "WB",
+				"type": "Wing back",
+				"value": "ウイングバック"
+			},
+			{
+				"short": "IM",
+				"type": "Inner midfielder",
+				"value": "インナーミッドフィルダー"
+			},
+			{
+				"short": "WI",
+				"type": "Winger",
+				"value": "ウインガー"
+			},
+			{
+				"short": "FW",
+				"type": "Forward",
+				"value": "フォワード"
+			}
+		],
+		"levels": [
+			{
+				"text": "唯一無二",
+				"value": "20"
+			},
+			{
+				"text": "完璧",
+				"value": "19"
+			},
+			{
+				"text": "魔術的",
+				"value": "18"
+			},
+			{
+				"text": "非現実的",
+				"value": "17"
+			},
+			{
+				"text": "超人的",
+				"value": "16"
+			},
+			{
+				"text": "偉大",
+				"value": "15"
+			},
+			{
+				"text": "神業",
+				"value": "14"
+			},
+			{
+				"text": "ワールドレベル",
+				"value": "13"
+			},
+			{
+				"text": "強大",
+				"value": "12"
+			},
+			{
+				"text": "鮮烈",
+				"value": "11"
+			},
+			{
+				"text": "非凡",
+				"value": "10"
+			},
+			{
+				"text": "驚異的",
+				"value": "9"
+			},
+			{
+				"text": "優秀",
+				"value": "8"
+			},
+			{
+				"text": "良好",
+				"value": "7"
+			},
+			{
+				"text": "平均的",
+				"value": "6"
+			},
+			{
+				"text": "不満",
+				"value": "5"
+			},
+			{
+				"text": "貧弱",
+				"value": "4"
+			},
+			{
+				"text": "劣悪",
+				"value": "3"
+			},
+			{
+				"text": "悲惨",
+				"value": "2"
+			},
+			{
+				"text": "最悪",
+				"value": "1"
+			},
+			{
+				"text": "無価値",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(非常に低い)",
+				"value": "0.0"
+			},
+			{
+				"text": "(低い)",
+				"value": "0.25"
+			},
+			{
+				"text": "(高い)",
+				"value": "0.50"
+			},
+			{
+				"text": "(非常に高い)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "意外性"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "パワフル"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "すばやい"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "テクニシャン"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "ヘディング"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "リゲイナー"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "不安定",
+				"value": "5"
+			},
+			{
+				"text": "激情家",
+				"value": "4"
+			},
+			{
+				"text": "気分屋",
+				"value": "3"
+			},
+			{
+				"text": "冷静",
+				"value": "2"
+			},
+			{
+				"text": "穏やか",
+				"value": "1"
+			},
+			{
+				"text": "もの静か",
+				"value": "0"
+			}
+		],
+		"desc": "日本語",
+		"name": "ja"
+	}
+}

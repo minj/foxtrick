@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normāli"
+			},
+			{
+				"type": "pressing",
+				"value": "Presings"
+			},
+			{
+				"type": "ca",
+				"value": "Pretuzbrukumi"
+			},
+			{
+				"type": "aow",
+				"value": "Uzbrukumi pa flangiem"
+			},
+			{
+				"type": "aim",
+				"value": "Uzbrukumi pa centru"
+			},
+			{
+				"type": "creatively",
+				"value": "Radoša spēle"
+			},
+			{
+				"type": "longshots",
+				"value": "Tālsitieni"
+			}
+		],
+		"honesty": [
+			{
+				"text": "svētais",
+				"value": "5"
+			},
+			{
+				"text": "taisnīgs",
+				"value": "4"
+			},
+			{
+				"text": "krietns",
+				"value": "3"
+			},
+			{
+				"text": "godprātīgs",
+				"value": "2"
+			},
+			{
+				"text": "nekrietns",
+				"value": "1"
+			},
+			{
+				"text": "neģēlis",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "komandas mīlulis",
+				"value": "5"
+			},
+			{
+				"text": "komandas dvēsele",
+				"value": "4"
+			},
+			{
+				"text": "simpātiska persona",
+				"value": "3"
+			},
+			{
+				"text": "patīkams cilvēks",
+				"value": "2"
+			},
+			{
+				"text": "strīdīgs puisis",
+				"value": "1"
+			},
+			{
+				"text": "nešpetns tips",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Ke",
+				"type": "Keeper",
+				"value": "Vārtsargs"
+			},
+			{
+				"short": "Cd",
+				"type": "Central defender",
+				"value": "Centra aizsargs"
+			},
+			{
+				"short": "Wb",
+				"type": "Wing back",
+				"value": "Malējais aizsargs"
+			},
+			{
+				"short": "Im",
+				"type": "Inner midfielder",
+				"value": "Centra pussargs"
+			},
+			{
+				"short": "Wi",
+				"type": "Winger",
+				"value": "Malējais pussargs"
+			},
+			{
+				"short": "Fo",
+				"type": "Forward",
+				"value": "Uzbrucējs"
+			}
+		],
+		"levels": [
+			{
+				"text": "dievišķi",
+				"value": "20"
+			},
+			{
+				"text": "utopiski",
+				"value": "19"
+			},
+			{
+				"text": "maģiski",
+				"value": "18"
+			},
+			{
+				"text": "teiksmaini",
+				"value": "17"
+			},
+			{
+				"text": "kosmiski",
+				"value": "16"
+			},
+			{
+				"text": "titāniski",
+				"value": "15"
+			},
+			{
+				"text": "pārdabiski",
+				"value": "14"
+			},
+			{
+				"text": "pasaules klases",
+				"value": "13"
+			},
+			{
+				"text": "diženi",
+				"value": "12"
+			},
+			{
+				"text": "spīdoši",
+				"value": "11"
+			},
+			{
+				"text": "izcili",
+				"value": "10"
+			},
+			{
+				"text": "iespaidīgi",
+				"value": "9"
+			},
+			{
+				"text": "teicami",
+				"value": "8"
+			},
+			{
+				"text": "labi",
+				"value": "7"
+			},
+			{
+				"text": "apmierinoši",
+				"value": "6"
+			},
+			{
+				"text": "neatbilstoši",
+				"value": "5"
+			},
+			{
+				"text": "vāji",
+				"value": "4"
+			},
+			{
+				"text": "draņķīgi",
+				"value": "3"
+			},
+			{
+				"text": "nožēlojami",
+				"value": "2"
+			},
+			{
+				"text": "katastrofāli",
+				"value": "1"
+			},
+			{
+				"text": "neeksistē",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(ļ.zems)",
+				"value": "0.0"
+			},
+			{
+				"text": "(zems)",
+				"value": "0.25"
+			},
+			{
+				"text": "(augsts)",
+				"value": "0.50"
+			},
+			{
+				"text": "(ļ.augsts)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "Neprognozējams"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "Atlētisks"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "Ātrs"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Tehnisks"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "Spēle ar galvu"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Veselītis"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "psihopāts",
+				"value": "5"
+			},
+			{
+				"text": "karstasinīgs",
+				"value": "4"
+			},
+			{
+				"text": "straujas dabas",
+				"value": "3"
+			},
+			{
+				"text": "līdzsvarots",
+				"value": "2"
+			},
+			{
+				"text": "mierīgs",
+				"value": "1"
+			},
+			{
+				"text": "flegmatisks",
+				"value": "0"
+			}
+		],
+		"desc": "Latviešu",
+		"name": "lv"
+	}
+}

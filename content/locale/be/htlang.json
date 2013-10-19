@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Нармальна"
+			},
+			{
+				"type": "pressing",
+				"value": "Прэсінг"
+			},
+			{
+				"type": "ca",
+				"value": "Контар-атака"
+			},
+			{
+				"type": "aow",
+				"value": "Атакаваць праз краі"
+			},
+			{
+				"type": "aim",
+				"value": "Атакаваць праз цэнтар"
+			},
+			{
+				"type": "creatively",
+				"value": "Гуляць творча"
+			},
+			{
+				"type": "longshots",
+				"value": "Удары здалёк"
+			}
+		],
+		"honesty": [
+			{
+				"text": "сьвяты",
+				"value": "5"
+			},
+			{
+				"text": "дабрачынны",
+				"value": "4"
+			},
+			{
+				"text": "справядлівы",
+				"value": "3"
+			},
+			{
+				"text": "сумленны",
+				"value": "2"
+			},
+			{
+				"text": "несумленны",
+				"value": "1"
+			},
+			{
+				"text": "паскудны",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "усеагульны фаварыт",
+				"value": "5"
+			},
+			{
+				"text": "папулярны хлапец",
+				"value": "4"
+			},
+			{
+				"text": "абаяльны хлапец",
+				"value": "3"
+			},
+			{
+				"text": "прыемны хлапец",
+				"value": "2"
+			},
+			{
+				"text": "непрыемны тып",
+				"value": "1"
+			},
+			{
+				"text": "мярзотны тып",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Бр",
+				"type": "Keeper",
+				"value": "Брамнік"
+			},
+			{
+				"short": "Ца",
+				"type": "Central defender",
+				"value": "Цэнтральны абаронца"
+			},
+			{
+				"short": "Ка",
+				"type": "Wing back",
+				"value": "Крайні абаронца"
+			},
+			{
+				"short": "П",
+				"type": "Inner midfielder",
+				"value": "Паўабаронца"
+			},
+			{
+				"short": "Ві",
+				"type": "Winger",
+				"value": "Вінгер"
+			},
+			{
+				"short": "Фо",
+				"type": "Forward",
+				"value": "Форвард"
+			}
+		],
+		"levels": [
+			{
+				"text": "боска",
+				"value": "20"
+			},
+			{
+				"text": "утапічна",
+				"value": "19"
+			},
+			{
+				"text": "чароўна",
+				"value": "18"
+			},
+			{
+				"text": "мітычна",
+				"value": "17"
+			},
+			{
+				"text": "незямны",
+				"value": "16"
+			},
+			{
+				"text": "тытанічна",
+				"value": "15"
+			},
+			{
+				"text": "звышнатуральна",
+				"value": "14"
+			},
+			{
+				"text": "сусьветнае клясы",
+				"value": "13"
+			},
+			{
+				"text": "велічна",
+				"value": "12"
+			},
+			{
+				"text": "бліскуча",
+				"value": "11"
+			},
+			{
+				"text": "выбітна",
+				"value": "10"
+			},
+			{
+				"text": "значна",
+				"value": "9"
+			},
+			{
+				"text": "выдатна",
+				"value": "8"
+			},
+			{
+				"text": "добра",
+				"value": "7"
+			},
+			{
+				"text": "здавальняльна",
+				"value": "6"
+			},
+			{
+				"text": "недастаткова",
+				"value": "5"
+			},
+			{
+				"text": "квола",
+				"value": "4"
+			},
+			{
+				"text": "дрэнна",
+				"value": "3"
+			},
+			{
+				"text": "жахліва",
+				"value": "2"
+			},
+			{
+				"text": "катастрафічна",
+				"value": "1"
+			},
+			{
+				"text": "няісна",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(надта нізкі)",
+				"value": "0.0"
+			},
+			{
+				"text": "(нізкі)",
+				"value": "0.25"
+			},
+			{
+				"text": "(высокі)",
+				"value": "0.50"
+			},
+			{
+				"text": "(вельмі высокі)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Не",
+				"type": "Unpredictable",
+				"value": "Непрадказальны"
+			},
+			{
+				"short": "Мо",
+				"type": "Powerful",
+				"value": "Магутны"
+			},
+			{
+				"short": "Ху",
+				"type": "Quick",
+				"value": "Хуткі"
+			},
+			{
+				"short": "Тэ",
+				"type": "Technical",
+				"value": "Тэхнічны"
+			},
+			{
+				"short": "Гг",
+				"type": "Head",
+				"value": "Гульня галавою"
+			},
+			{
+				"short": "Ад",
+				"type": "Regainer",
+				"value": "Адраджэнец"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "нестабільны",
+				"value": "5"
+			},
+			{
+				"text": "зласьлівы",
+				"value": "4"
+			},
+			{
+				"text": "тэмпэрамэнтны",
+				"value": "3"
+			},
+			{
+				"text": "памяркоўны",
+				"value": "2"
+			},
+			{
+				"text": "стрыманы",
+				"value": "1"
+			},
+			{
+				"text": "ціхамірны",
+				"value": "0"
+			}
+		],
+		"desc": "Беларуская",
+		"name": "be"
+	}
+}

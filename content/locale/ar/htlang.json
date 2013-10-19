@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "عادي"
+			},
+			{
+				"type": "pressing",
+				"value": "الضغط"
+			},
+			{
+				"type": "ca",
+				"value": "الهجمات المرتدة"
+			},
+			{
+				"type": "aow",
+				"value": "هجوم عن طريق الأجنحة"
+			},
+			{
+				"type": "aim",
+				"value": "هجوم عن طريق الوسط"
+			},
+			{
+				"type": "creatively",
+				"value": "اللعب الخلاق"
+			},
+			{
+				"type": "longshots",
+				"value": "التسديدات البعيدة"
+			}
+		],
+		"honesty": [
+			{
+				"text": "متدين",
+				"value": "5"
+			},
+			{
+				"text": "صالح",
+				"value": "4"
+			},
+			{
+				"text": "مستقيم",
+				"value": "3"
+			},
+			{
+				"text": "صادق",
+				"value": "2"
+			},
+			{
+				"text": "غير أمين",
+				"value": "1"
+			},
+			{
+				"text": "سيء السمعة",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "محبوب الفريق",
+				"value": "5"
+			},
+			{
+				"text": "شخص ذو شعبية",
+				"value": "4"
+			},
+			{
+				"text": "شخص متعاطف",
+				"value": "3"
+			},
+			{
+				"text": "شخص لطيف",
+				"value": "2"
+			},
+			{
+				"text": "شخص مثير للجدل",
+				"value": "1"
+			},
+			{
+				"text": "مكروه",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "GK",
+				"type": "Keeper",
+				"value": "حارس مرمى"
+			},
+			{
+				"short": "CD",
+				"type": "Central defender",
+				"value": "مدافع وسط"
+			},
+			{
+				"short": "WB",
+				"type": "Wing back",
+				"value": "ظهير"
+			},
+			{
+				"short": "IM",
+				"type": "Inner midfielder",
+				"value": "لاعب وسط"
+			},
+			{
+				"short": "WI",
+				"type": "Winger",
+				"value": "جناح"
+			},
+			{
+				"short": "FW",
+				"type": "Forward",
+				"value": "مهاجم"
+			}
+		],
+		"levels": [
+			{
+				"text": "ملهم",
+				"value": "20"
+			},
+			{
+				"text": "مثالي",
+				"value": "19"
+			},
+			{
+				"text": "سحري",
+				"value": "18"
+			},
+			{
+				"text": "أسطوري",
+				"value": "17"
+			},
+			{
+				"text": "فضائي",
+				"value": "16"
+			},
+			{
+				"text": "عملاق",
+				"value": "15"
+			},
+			{
+				"text": "خارق",
+				"value": "14"
+			},
+			{
+				"text": "عالمي",
+				"value": "13"
+			},
+			{
+				"text": "مهيب",
+				"value": "12"
+			},
+			{
+				"text": "متألق",
+				"value": "11"
+			},
+			{
+				"text": "متميز",
+				"value": "10"
+			},
+			{
+				"text": "هائل",
+				"value": "9"
+			},
+			{
+				"text": "ممتاز",
+				"value": "8"
+			},
+			{
+				"text": "صلب",
+				"value": "7"
+			},
+			{
+				"text": "مقبول",
+				"value": "6"
+			},
+			{
+				"text": "غير كافي",
+				"value": "5"
+			},
+			{
+				"text": "ضعيف",
+				"value": "4"
+			},
+			{
+				"text": "فقير",
+				"value": "3"
+			},
+			{
+				"text": "ردئ",
+				"value": "2"
+			},
+			{
+				"text": "كارثي",
+				"value": "1"
+			},
+			{
+				"text": "منعدم",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(منخفض جدا)",
+				"value": "0.0"
+			},
+			{
+				"text": "(منخفض)",
+				"value": "0.25"
+			},
+			{
+				"text": "(عالي)",
+				"value": "0.50"
+			},
+			{
+				"text": "(عالي جدا)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "غير متوقع"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "قوي"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "سريع"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "مهاري"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "ضربات الرأس"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "مرجاع"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "غير متزن",
+				"value": "5"
+			},
+			{
+				"text": "عصبي",
+				"value": "4"
+			},
+			{
+				"text": "مزاجي",
+				"value": "3"
+			},
+			{
+				"text": "متزن",
+				"value": "2"
+			},
+			{
+				"text": "هادئ",
+				"value": "1"
+			},
+			{
+				"text": "شديد الهدوء",
+				"value": "0"
+			}
+		],
+		"desc": "العربية",
+		"name": "ar"
+	}
+}

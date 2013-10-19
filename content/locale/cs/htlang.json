@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normální"
+			},
+			{
+				"type": "pressing",
+				"value": "Nátlaková hra"
+			},
+			{
+				"type": "ca",
+				"value": "Protiútoky"
+			},
+			{
+				"type": "aow",
+				"value": "Útok po křídlech"
+			},
+			{
+				"type": "aim",
+				"value": "Útok středem"
+			},
+			{
+				"type": "creatively",
+				"value": "Nápaditá hra"
+			},
+			{
+				"type": "longshots",
+				"value": "Střelba z dálky"
+			}
+		],
+		"honesty": [
+			{
+				"text": "učiněný andílek",
+				"value": "5"
+			},
+			{
+				"text": "spravedlivý",
+				"value": "4"
+			},
+			{
+				"text": "férový",
+				"value": "3"
+			},
+			{
+				"text": "čestný",
+				"value": "2"
+			},
+			{
+				"text": "nečestný",
+				"value": "1"
+			},
+			{
+				"text": "bezectný",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "Miláček týmu",
+				"value": "5"
+			},
+			{
+				"text": "Oblíbený hráč",
+				"value": "4"
+			},
+			{
+				"text": "Sympatický chlapík",
+				"value": "3"
+			},
+			{
+				"text": "Příjemný kluk",
+				"value": "2"
+			},
+			{
+				"text": "Hašteřivý člověk",
+				"value": "1"
+			},
+			{
+				"text": "Protiva",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Ke",
+				"type": "Keeper",
+				"value": "Brankář"
+			},
+			{
+				"short": "Cd",
+				"type": "Central defender",
+				"value": "Střední obránce"
+			},
+			{
+				"short": "Wb",
+				"type": "Wing back",
+				"value": "Krajní obránce"
+			},
+			{
+				"short": "Im",
+				"type": "Inner midfielder",
+				"value": "Střední záložník"
+			},
+			{
+				"short": "Wi",
+				"type": "Winger",
+				"value": "Krajní záložník"
+			},
+			{
+				"short": "Fo",
+				"type": "Forward",
+				"value": "Útočník"
+			}
+		],
+		"levels": [
+			{
+				"text": "Boží",
+				"value": "20"
+			},
+			{
+				"text": "legendární",
+				"value": "19"
+			},
+			{
+				"text": "okouzlující",
+				"value": "18"
+			},
+			{
+				"text": "dechberoucí",
+				"value": "17"
+			},
+			{
+				"text": "impozantní",
+				"value": "16"
+			},
+			{
+				"text": "kolosální",
+				"value": "15"
+			},
+			{
+				"text": "abnormální",
+				"value": "14"
+			},
+			{
+				"text": "prvotřídní",
+				"value": "13"
+			},
+			{
+				"text": "perfektní",
+				"value": "12"
+			},
+			{
+				"text": "brilantní",
+				"value": "11"
+			},
+			{
+				"text": "vynikající",
+				"value": "10"
+			},
+			{
+				"text": "nadstandardní",
+				"value": "9"
+			},
+			{
+				"text": "excelentní",
+				"value": "8"
+			},
+			{
+				"text": "solidní",
+				"value": "7"
+			},
+			{
+				"text": "ucházející",
+				"value": "6"
+			},
+			{
+				"text": "neadekvátní",
+				"value": "5"
+			},
+			{
+				"text": "nedostačující",
+				"value": "4"
+			},
+			{
+				"text": "tristní",
+				"value": "3"
+			},
+			{
+				"text": "katastrofální",
+				"value": "2"
+			},
+			{
+				"text": "odstrašující",
+				"value": "1"
+			},
+			{
+				"text": "neexistující",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(mnohem horší)",
+				"value": "0.0"
+			},
+			{
+				"text": "(horší)",
+				"value": "0.25"
+			},
+			{
+				"text": "(lepší)",
+				"value": "0.50"
+			},
+			{
+				"text": "(mnohem lepší)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "Nepředvídatelný"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "Silový"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "Rychlý"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Technický"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "Hlavičkář"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Nezmar"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "labilní",
+				"value": "5"
+			},
+			{
+				"text": "prchlivý",
+				"value": "4"
+			},
+			{
+				"text": "temperamentní",
+				"value": "3"
+			},
+			{
+				"text": "vyrovnaný",
+				"value": "2"
+			},
+			{
+				"text": "chladnokrevný",
+				"value": "1"
+			},
+			{
+				"text": "ledově klidný",
+				"value": "0"
+			}
+		],
+		"desc": "Čeština",
+		"name": "cs"
+	}
+}

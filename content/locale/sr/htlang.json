@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Нормално"
+			},
+			{
+				"type": "pressing",
+				"value": "Пресинг"
+			},
+			{
+				"type": "ca",
+				"value": "Контранапади"
+			},
+			{
+				"type": "aow",
+				"value": "Напад преко крила"
+			},
+			{
+				"type": "aim",
+				"value": "Напад по средини"
+			},
+			{
+				"type": "creatively",
+				"value": "Креативна игра"
+			},
+			{
+				"type": "longshots",
+				"value": "Шутеви из даљине"
+			}
+		],
+		"honesty": [
+			{
+				"text": "као светац",
+				"value": "5"
+			},
+			{
+				"text": "честит",
+				"value": "4"
+			},
+			{
+				"text": "праведан",
+				"value": "3"
+			},
+			{
+				"text": "частан",
+				"value": "2"
+			},
+			{
+				"text": "нечастан",
+				"value": "1"
+			},
+			{
+				"text": "озлоглашен",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "вољени члан тима",
+				"value": "5"
+			},
+			{
+				"text": "популаран лик",
+				"value": "4"
+			},
+			{
+				"text": "симпатичан тип",
+				"value": "3"
+			},
+			{
+				"text": "пријатан дечко",
+				"value": "2"
+			},
+			{
+				"text": "контроверзна особа",
+				"value": "1"
+			},
+			{
+				"text": "незгодан момак",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Го",
+				"type": "Keeper",
+				"value": "Голман"
+			},
+			{
+				"short": "Шт",
+				"type": "Central defender",
+				"value": "Штопер"
+			},
+			{
+				"short": "Бе",
+				"type": "Wing back",
+				"value": "Бек"
+			},
+			{
+				"short": "Ве",
+				"type": "Inner midfielder",
+				"value": "Везни играч"
+			},
+			{
+				"short": "Кр",
+				"type": "Winger",
+				"value": "Крило"
+			},
+			{
+				"short": "На",
+				"type": "Forward",
+				"value": "Нападач"
+			}
+		],
+		"levels": [
+			{
+				"text": "божански",
+				"value": "20"
+			},
+			{
+				"text": "савршен",
+				"value": "19"
+			},
+			{
+				"text": "магичан",
+				"value": "18"
+			},
+			{
+				"text": "епски",
+				"value": "17"
+			},
+			{
+				"text": "легендаран",
+				"value": "16"
+			},
+			{
+				"text": "величанствен",
+				"value": "15"
+			},
+			{
+				"text": "натприродан",
+				"value": "14"
+			},
+			{
+				"text": "светска класа",
+				"value": "13"
+			},
+			{
+				"text": "фантастичан",
+				"value": "12"
+			},
+			{
+				"text": "бриљантан",
+				"value": "11"
+			},
+			{
+				"text": "изузетан",
+				"value": "10"
+			},
+			{
+				"text": "силан",
+				"value": "9"
+			},
+			{
+				"text": "одличан",
+				"value": "8"
+			},
+			{
+				"text": "добар",
+				"value": "7"
+			},
+			{
+				"text": "просечан",
+				"value": "6"
+			},
+			{
+				"text": "недовољан",
+				"value": "5"
+			},
+			{
+				"text": "слаб",
+				"value": "4"
+			},
+			{
+				"text": "јадан",
+				"value": "3"
+			},
+			{
+				"text": "очајан",
+				"value": "2"
+			},
+			{
+				"text": "катастрофалан",
+				"value": "1"
+			},
+			{
+				"text": "непостојећи",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(Веома низак)",
+				"value": "0.0"
+			},
+			{
+				"text": "(Низак)",
+				"value": "0.25"
+			},
+			{
+				"text": "(Висок)",
+				"value": "0.50"
+			},
+			{
+				"text": "(Веома висок)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Не",
+				"type": "Unpredictable",
+				"value": "Непредвидив"
+			},
+			{
+				"short": "Сн",
+				"type": "Powerful",
+				"value": "Снажан"
+			},
+			{
+				"short": "Бр",
+				"type": "Quick",
+				"value": "Брз"
+			},
+			{
+				"short": "Те",
+				"type": "Technical",
+				"value": "Техничар"
+			},
+			{
+				"short": "Иг",
+				"type": "Head",
+				"value": "Игра главом"
+			},
+			{
+				"short": "Ре",
+				"type": "Regainer",
+				"value": "Регенерисање"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "нестабилан",
+				"value": "5"
+			},
+			{
+				"text": "пргав",
+				"value": "4"
+			},
+			{
+				"text": "темпераментан",
+				"value": "3"
+			},
+			{
+				"text": "уравнотежен",
+				"value": "2"
+			},
+			{
+				"text": "миран",
+				"value": "1"
+			},
+			{
+				"text": "спокојан",
+				"value": "0"
+			}
+		],
+		"desc": "Српски",
+		"name": "sr"
+	}
+}

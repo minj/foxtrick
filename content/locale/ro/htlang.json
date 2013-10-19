@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normal"
+			},
+			{
+				"type": "pressing",
+				"value": "Presing"
+			},
+			{
+				"type": "ca",
+				"value": "Contraatac"
+			},
+			{
+				"type": "aow",
+				"value": "Atac pe Flancuri"
+			},
+			{
+				"type": "aim",
+				"value": "Atac pe Centru"
+			},
+			{
+				"type": "creatively",
+				"value": "Joc creativ"
+			},
+			{
+				"type": "longshots",
+				"value": "Şuturi de la distanţă"
+			}
+		],
+		"honesty": [
+			{
+				"text": "angelic",
+				"value": "5"
+			},
+			{
+				"text": "incoruptibil",
+				"value": "4"
+			},
+			{
+				"text": "integru",
+				"value": "3"
+			},
+			{
+				"text": "cinstit",
+				"value": "2"
+			},
+			{
+				"text": "necinstit",
+				"value": "1"
+			},
+			{
+				"text": "infam",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "membru iubit al echipei",
+				"value": "5"
+			},
+			{
+				"text": "tip popular",
+				"value": "4"
+			},
+			{
+				"text": "tip simpatic",
+				"value": "3"
+			},
+			{
+				"text": "tip plăcut",
+				"value": "2"
+			},
+			{
+				"text": "tip controversat",
+				"value": "1"
+			},
+			{
+				"text": "tip antipatic",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "P",
+				"type": "Keeper",
+				"value": "Portar"
+			},
+			{
+				"short": "FC",
+				"type": "Central defender",
+				"value": "Fundaş Central"
+			},
+			{
+				"short": "FL",
+				"type": "Wing back",
+				"value": "Fundaş Lateral"
+			},
+			{
+				"short": "MC",
+				"type": "Inner midfielder",
+				"value": "Mijlocaş Central"
+			},
+			{
+				"short": "EX",
+				"type": "Winger",
+				"value": "Extremă"
+			},
+			{
+				"short": "AT",
+				"type": "Forward",
+				"value": "Atacant"
+			}
+		],
+		"levels": [
+			{
+				"text": "divin",
+				"value": "20"
+			},
+			{
+				"text": "utopic",
+				"value": "19"
+			},
+			{
+				"text": "magic",
+				"value": "18"
+			},
+			{
+				"text": "mitic",
+				"value": "17"
+			},
+			{
+				"text": "extraterestru",
+				"value": "16"
+			},
+			{
+				"text": "titanic",
+				"value": "15"
+			},
+			{
+				"text": "supranatural",
+				"value": "14"
+			},
+			{
+				"text": "legendar",
+				"value": "13"
+			},
+			{
+				"text": "magnific",
+				"value": "12"
+			},
+			{
+				"text": "sclipitor",
+				"value": "11"
+			},
+			{
+				"text": "impresionant",
+				"value": "10"
+			},
+			{
+				"text": "formidabil",
+				"value": "9"
+			},
+			{
+				"text": "excelent",
+				"value": "8"
+			},
+			{
+				"text": "bun",
+				"value": "7"
+			},
+			{
+				"text": "acceptabil",
+				"value": "6"
+			},
+			{
+				"text": "inadecvat",
+				"value": "5"
+			},
+			{
+				"text": "slab",
+				"value": "4"
+			},
+			{
+				"text": "jalnic",
+				"value": "3"
+			},
+			{
+				"text": "mizerabil",
+				"value": "2"
+			},
+			{
+				"text": "dezastruos",
+				"value": "1"
+			},
+			{
+				"text": "inexistent",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(foarte scăzut)",
+				"value": "0.0"
+			},
+			{
+				"text": "(scăzut)",
+				"value": "0.25"
+			},
+			{
+				"text": "(ridicat)",
+				"value": "0.50"
+			},
+			{
+				"text": "(foarte ridicat)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "Imprevizibil"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "Puternic"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "Rapid"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Tehnic"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "Cap"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Recuperare"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "instabil",
+				"value": "5"
+			},
+			{
+				"text": "irascibil",
+				"value": "4"
+			},
+			{
+				"text": "temperamental",
+				"value": "3"
+			},
+			{
+				"text": "echilibrat",
+				"value": "2"
+			},
+			{
+				"text": "calm",
+				"value": "1"
+			},
+			{
+				"text": "potolit",
+				"value": "0"
+			}
+		],
+		"desc": "Română",
+		"name": "ro"
+	}
+}

@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normal"
+			},
+			{
+				"type": "pressing",
+				"value": "Pressen"
+			},
+			{
+				"type": "ca",
+				"value": "Konteren"
+			},
+			{
+				"type": "aow",
+				"value": "Attack iwwer d'Säiten"
+			},
+			{
+				"type": "aim",
+				"value": "Attack iwwer d'Mëtt"
+			},
+			{
+				"type": "creatively",
+				"value": "Kreativ spillen"
+			},
+			{
+				"type": "longshots",
+				"value": "Wäitschëss"
+			}
+		],
+		"honesty": [
+			{
+				"text": "gutthäerzeg",
+				"value": "5"
+			},
+			{
+				"text": "fair",
+				"value": "4"
+			},
+			{
+				"text": "korrekt",
+				"value": "3"
+			},
+			{
+				"text": "éierlech",
+				"value": "2"
+			},
+			{
+				"text": "onéierlech",
+				"value": "1"
+			},
+			{
+				"text": "dreckeg",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "eng integréiert Persoun",
+				"value": "5"
+			},
+			{
+				"text": "eng populär Persoun",
+				"value": "4"
+			},
+			{
+				"text": "eng sympathesch Persoun",
+				"value": "3"
+			},
+			{
+				"text": "eng beléift Persoun",
+				"value": "2"
+			},
+			{
+				"text": "eng kontrovers Persoun",
+				"value": "1"
+			},
+			{
+				"text": "eng ekleg Persoun",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Ke",
+				"type": "Keeper",
+				"value": "Goalkeeper"
+			},
+			{
+				"short": "Cd",
+				"type": "Central defender",
+				"value": "zentrale Verteideger"
+			},
+			{
+				"short": "Wb",
+				"type": "Wing back",
+				"value": "Ausseverteideger"
+			},
+			{
+				"short": "Im",
+				"type": "Inner midfielder",
+				"value": "zentrale Mëttelfeldspiller"
+			},
+			{
+				"short": "Wi",
+				"type": "Winger",
+				"value": "Bande"
+			},
+			{
+				"short": "Fo",
+				"type": "Forward",
+				"value": "Stiermer"
+			}
+		],
+		"levels": [
+			{
+				"text": "gëttlech",
+				"value": "20"
+			},
+			{
+				"text": "utopesch",
+				"value": "19"
+			},
+			{
+				"text": "magesch",
+				"value": "18"
+			},
+			{
+				"text": "phänomenal",
+				"value": "17"
+			},
+			{
+				"text": "ausserierdesch",
+				"value": "16"
+			},
+			{
+				"text": "onheemlech",
+				"value": "15"
+			},
+			{
+				"text": "iwwernatierlech",
+				"value": "14"
+			},
+			{
+				"text": "sensationell",
+				"value": "13"
+			},
+			{
+				"text": "fantastesch",
+				"value": "12"
+			},
+			{
+				"text": "brilliant",
+				"value": "11"
+			},
+			{
+				"text": "impressionant",
+				"value": "10"
+			},
+			{
+				"text": "formidabel",
+				"value": "9"
+			},
+			{
+				"text": "excellent",
+				"value": "8"
+			},
+			{
+				"text": "staark",
+				"value": "7"
+			},
+			{
+				"text": "passabel",
+				"value": "6"
+			},
+			{
+				"text": "mëttelméisseg",
+				"value": "5"
+			},
+			{
+				"text": "schwaach",
+				"value": "4"
+			},
+			{
+				"text": "aarmséileg",
+				"value": "3"
+			},
+			{
+				"text": "erbäermlech",
+				"value": "2"
+			},
+			{
+				"text": "katastrophal",
+				"value": "1"
+			},
+			{
+				"text": "inexistent",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(Ganz niddereg)",
+				"value": "0.0"
+			},
+			{
+				"text": "(Niddereg)",
+				"value": "0.25"
+			},
+			{
+				"text": "(Héich)",
+				"value": "0.50"
+			},
+			{
+				"text": "(Ganz héich)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "onberechenbar"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "duerchsetzungsstaark"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "séier"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Dribbler"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "kappballstaark"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Gesondheetswonner"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "onzouverlässeg",
+				"value": "5"
+			},
+			{
+				"text": "opbrausend",
+				"value": "4"
+			},
+			{
+				"text": "temperamentvoll",
+				"value": "3"
+			},
+			{
+				"text": "ausgeglach",
+				"value": "2"
+			},
+			{
+				"text": "roueg",
+				"value": "1"
+			},
+			{
+				"text": "introvertéiert",
+				"value": "0"
+			}
+		],
+		"desc": "Lëtzebuergesch",
+		"name": "lb"
+	}
+}

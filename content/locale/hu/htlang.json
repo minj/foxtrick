@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Alap"
+			},
+			{
+				"type": "pressing",
+				"value": "Játéktördelés"
+			},
+			{
+				"type": "ca",
+				"value": "Ellentámadás"
+			},
+			{
+				"type": "aow",
+				"value": "Széleken támadás"
+			},
+			{
+				"type": "aim",
+				"value": "Középen támadás"
+			},
+			{
+				"type": "creatively",
+				"value": "Kreatív játék"
+			},
+			{
+				"type": "longshots",
+				"value": "Távoli lövések"
+			}
+		],
+		"honesty": [
+			{
+				"text": "angyali",
+				"value": "5"
+			},
+			{
+				"text": "igazságos",
+				"value": "4"
+			},
+			{
+				"text": "egyenes",
+				"value": "3"
+			},
+			{
+				"text": "becsületes",
+				"value": "2"
+			},
+			{
+				"text": "sunyi",
+				"value": "1"
+			},
+			{
+				"text": "balhés",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "Imádott csapattag",
+				"value": "5"
+			},
+			{
+				"text": "Népszerű fickó",
+				"value": "4"
+			},
+			{
+				"text": "Szimpatikus fickó",
+				"value": "3"
+			},
+			{
+				"text": "Kedves fickó",
+				"value": "2"
+			},
+			{
+				"text": "Öntörvényű ember",
+				"value": "1"
+			},
+			{
+				"text": "Bajkeverő alak",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Ke",
+				"type": "Keeper",
+				"value": "Kapus"
+			},
+			{
+				"short": "Cd",
+				"type": "Central defender",
+				"value": "Középhátvéd"
+			},
+			{
+				"short": "Wb",
+				"type": "Wing back",
+				"value": "Szélsőhátvéd"
+			},
+			{
+				"short": "Im",
+				"type": "Inner midfielder",
+				"value": "Középpályás"
+			},
+			{
+				"short": "Wi",
+				"type": "Winger",
+				"value": "Szélső"
+			},
+			{
+				"short": "Fo",
+				"type": "Forward",
+				"value": "Csatár"
+			}
+		],
+		"levels": [
+			{
+				"text": "isteni",
+				"value": "20"
+			},
+			{
+				"text": "csodás",
+				"value": "19"
+			},
+			{
+				"text": "varázslatos",
+				"value": "18"
+			},
+			{
+				"text": "legendás",
+				"value": "17"
+			},
+			{
+				"text": "földöntúli",
+				"value": "16"
+			},
+			{
+				"text": "titáni",
+				"value": "15"
+			},
+			{
+				"text": "természetfeletti",
+				"value": "14"
+			},
+			{
+				"text": "világklasszis",
+				"value": "13"
+			},
+			{
+				"text": "lenyűgöző",
+				"value": "12"
+			},
+			{
+				"text": "ragyogó",
+				"value": "11"
+			},
+			{
+				"text": "kiemelkedő",
+				"value": "10"
+			},
+			{
+				"text": "nagyszerű",
+				"value": "9"
+			},
+			{
+				"text": "remek",
+				"value": "8"
+			},
+			{
+				"text": "jó",
+				"value": "7"
+			},
+			{
+				"text": "megfelelő",
+				"value": "6"
+			},
+			{
+				"text": "középszerű",
+				"value": "5"
+			},
+			{
+				"text": "gyenge",
+				"value": "4"
+			},
+			{
+				"text": "csapnivaló",
+				"value": "3"
+			},
+			{
+				"text": "pocsék",
+				"value": "2"
+			},
+			{
+				"text": "katasztrofális",
+				"value": "1"
+			},
+			{
+				"text": "nem létező",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(Éppen)",
+				"value": "0.0"
+			},
+			{
+				"text": "(Átlag alatt)",
+				"value": "0.25"
+			},
+			{
+				"text": "(Átlagos)",
+				"value": "0.50"
+			},
+			{
+				"text": "(Átlag felett)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "Kiszámíthatatlan"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "Erőteljes"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "Gyors"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Technikás"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "Jól fejelő"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Szívós"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "bizonytalan",
+				"value": "5"
+			},
+			{
+				"text": "lobbanékony",
+				"value": "4"
+			},
+			{
+				"text": "temperamentumos",
+				"value": "3"
+			},
+			{
+				"text": "kiegyensúlyozott",
+				"value": "2"
+			},
+			{
+				"text": "higgadt",
+				"value": "1"
+			},
+			{
+				"text": "jámbor",
+				"value": "0"
+			}
+		],
+		"desc": "Magyar",
+		"name": "hu"
+	}
+}

@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "常规"
+			},
+			{
+				"type": "pressing",
+				"value": "全场压迫"
+			},
+			{
+				"type": "ca",
+				"value": "防守反击"
+			},
+			{
+				"type": "aow",
+				"value": "边路进攻"
+			},
+			{
+				"type": "aim",
+				"value": "中路进攻"
+			},
+			{
+				"type": "creatively",
+				"value": "无限创意"
+			},
+			{
+				"type": "longshots",
+				"value": "远射"
+			}
+		],
+		"honesty": [
+			{
+				"text": "崇高",
+				"value": "5"
+			},
+			{
+				"text": "公正",
+				"value": "4"
+			},
+			{
+				"text": "正直",
+				"value": "3"
+			},
+			{
+				"text": "诚实",
+				"value": "2"
+			},
+			{
+				"text": "不诚实",
+				"value": "1"
+			},
+			{
+				"text": "声名狼藉",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "受爱戴的球队成员",
+				"value": "5"
+			},
+			{
+				"text": "受欢迎的球员",
+				"value": "4"
+			},
+			{
+				"text": "富有同情心的球员",
+				"value": "3"
+			},
+			{
+				"text": "容易相处的球员",
+				"value": "2"
+			},
+			{
+				"text": "有争议的球员",
+				"value": "1"
+			},
+			{
+				"text": "令人讨厌的球员",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "门将",
+				"type": "Keeper",
+				"value": "守门员"
+			},
+			{
+				"short": "中卫",
+				"type": "Central defender",
+				"value": "中后卫"
+			},
+			{
+				"short": "边卫",
+				"type": "Wing back",
+				"value": "边后卫"
+			},
+			{
+				"short": "中场",
+				"type": "Inner midfielder",
+				"value": "中前卫"
+			},
+			{
+				"short": "边锋",
+				"type": "Winger",
+				"value": "边锋"
+			},
+			{
+				"short": "前锋",
+				"type": "Forward",
+				"value": "前锋"
+			}
+		],
+		"levels": [
+			{
+				"text": "超凡入圣",
+				"value": "20"
+			},
+			{
+				"text": "至高无上",
+				"value": "19"
+			},
+			{
+				"text": "出神入化",
+				"value": "18"
+			},
+			{
+				"text": "神出鬼没",
+				"value": "17"
+			},
+			{
+				"text": "超凡脱俗",
+				"value": "16"
+			},
+			{
+				"text": "威力无边",
+				"value": "15"
+			},
+			{
+				"text": "神秘莫测",
+				"value": "14"
+			},
+			{
+				"text": "独步天下",
+				"value": "13"
+			},
+			{
+				"text": "神妙",
+				"value": "12"
+			},
+			{
+				"text": "辉煌",
+				"value": "11"
+			},
+			{
+				"text": "杰出",
+				"value": "10"
+			},
+			{
+				"text": "强大",
+				"value": "9"
+			},
+			{
+				"text": "优秀",
+				"value": "8"
+			},
+			{
+				"text": "稳定",
+				"value": "7"
+			},
+			{
+				"text": "及格",
+				"value": "6"
+			},
+			{
+				"text": "中下",
+				"value": "5"
+			},
+			{
+				"text": "弱",
+				"value": "4"
+			},
+			{
+				"text": "差",
+				"value": "3"
+			},
+			{
+				"text": "糟糕",
+				"value": "2"
+			},
+			{
+				"text": "极其糟糕",
+				"value": "1"
+			},
+			{
+				"text": "无",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(非常低)",
+				"value": "0.0"
+			},
+			{
+				"text": "(低)",
+				"value": "0.25"
+			},
+			{
+				"text": "(高)",
+				"value": "0.50"
+			},
+			{
+				"text": "(非常高)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "不可",
+				"type": "Unpredictable",
+				"value": "不可预测"
+			},
+			{
+				"short": "力量",
+				"type": "Powerful",
+				"value": "力量"
+			},
+			{
+				"short": "速度",
+				"type": "Quick",
+				"value": "速度"
+			},
+			{
+				"short": "技术",
+				"type": "Technical",
+				"value": "技术"
+			},
+			{
+				"short": "头球",
+				"type": "Head",
+				"value": "头球专家"
+			},
+			{
+				"short": "不药",
+				"type": "Regainer",
+				"value": "不药而愈"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "不稳定",
+				"value": "5"
+			},
+			{
+				"text": "暴躁",
+				"value": "4"
+			},
+			{
+				"text": "喜怒无常",
+				"value": "3"
+			},
+			{
+				"text": "和谐",
+				"value": "2"
+			},
+			{
+				"text": "平静",
+				"value": "1"
+			},
+			{
+				"text": "安静",
+				"value": "0"
+			}
+		],
+		"desc": "中文（简体）",
+		"name": "zh-CN"
+	}
+}

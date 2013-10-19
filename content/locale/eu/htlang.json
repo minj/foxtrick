@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normal"
+			},
+			{
+				"type": "pressing",
+				"value": "Presionatu"
+			},
+			{
+				"type": "ca",
+				"value": "Kontraerasoa"
+			},
+			{
+				"type": "aow",
+				"value": "Hegaletatik eraso"
+			},
+			{
+				"type": "aim",
+				"value": "Erditik eraso"
+			},
+			{
+				"type": "creatively",
+				"value": "Sormenez jokatu"
+			},
+			{
+				"type": "longshots",
+				"value": "Urruneko jaurtiketak"
+			}
+		],
+		"honesty": [
+			{
+				"text": "ogi puska",
+				"value": "5"
+			},
+			{
+				"text": "bihotz onekoa",
+				"value": "4"
+			},
+			{
+				"text": "zuzena",
+				"value": "3"
+			},
+			{
+				"text": "leiala",
+				"value": "2"
+			},
+			{
+				"text": "petrala",
+				"value": "1"
+			},
+			{
+				"text": "gaiztoa",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "taldekide maitagarria",
+				"value": "5"
+			},
+			{
+				"text": "mirestua",
+				"value": "4"
+			},
+			{
+				"text": "jatorra",
+				"value": "3"
+			},
+			{
+				"text": "atsegina",
+				"value": "2"
+			},
+			{
+				"text": "liskartsua",
+				"value": "1"
+			},
+			{
+				"text": "zakarra",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "At",
+				"type": "Keeper",
+				"value": "Atezaina"
+			},
+			{
+				"short": "EA",
+				"type": "Central defender",
+				"value": "Erdiko Atzelaria"
+			},
+			{
+				"short": "HA",
+				"type": "Wing back",
+				"value": "Hego Atzelaria"
+			},
+			{
+				"short": "Er",
+				"type": "Inner midfielder",
+				"value": "Erdilaria"
+			},
+			{
+				"short": "He",
+				"type": "Winger",
+				"value": "Hegalekoa"
+			},
+			{
+				"short": "Au",
+				"type": "Forward",
+				"value": "Aurrelaria"
+			}
+		],
+		"levels": [
+			{
+				"text": "jainkotiarra",
+				"value": "20"
+			},
+			{
+				"text": "utopikoa",
+				"value": "19"
+			},
+			{
+				"text": "magikoa",
+				"value": "18"
+			},
+			{
+				"text": "mitikoa",
+				"value": "17"
+			},
+			{
+				"text": "estralurtarra",
+				"value": "16"
+			},
+			{
+				"text": "titanikoa",
+				"value": "15"
+			},
+			{
+				"text": "naturaz gaindikoa",
+				"value": "14"
+			},
+			{
+				"text": "mundiala",
+				"value": "13"
+			},
+			{
+				"text": "aparta",
+				"value": "12"
+			},
+			{
+				"text": "liluragarria",
+				"value": "11"
+			},
+			{
+				"text": "nabarmena",
+				"value": "10"
+			},
+			{
+				"text": "zoragarria",
+				"value": "9"
+			},
+			{
+				"text": "bikaina",
+				"value": "8"
+			},
+			{
+				"text": "ona",
+				"value": "7"
+			},
+			{
+				"text": "egokia",
+				"value": "6"
+			},
+			{
+				"text": "eskasa",
+				"value": "5"
+			},
+			{
+				"text": "ahula",
+				"value": "4"
+			},
+			{
+				"text": "pobrea",
+				"value": "3"
+			},
+			{
+				"text": "penagarria",
+				"value": "2"
+			},
+			{
+				"text": "negargarria",
+				"value": "1"
+			},
+			{
+				"text": "ez daki",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(Oso baxua)",
+				"value": "0.0"
+			},
+			{
+				"text": "(Baxua)",
+				"value": "0.25"
+			},
+			{
+				"text": "(Altua)",
+				"value": "0.50"
+			},
+			{
+				"text": "(Oso altua)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "Ustekabekoa"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "Ahaltsua"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "Azkarra"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Teknikoa"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "Buruz abila"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Sendaerraza"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "buruarina",
+				"value": "5"
+			},
+			{
+				"text": "suminkorra",
+				"value": "4"
+			},
+			{
+				"text": "odolberoa",
+				"value": "3"
+			},
+			{
+				"text": "zentzuduna",
+				"value": "2"
+			},
+			{
+				"text": "lasaia",
+				"value": "1"
+			},
+			{
+				"text": "patsadatsua",
+				"value": "0"
+			}
+		],
+		"desc": "Euskara",
+		"name": "eu"
+	}
+}

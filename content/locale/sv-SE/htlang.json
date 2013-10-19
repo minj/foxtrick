@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normal"
+			},
+			{
+				"type": "pressing",
+				"value": "Press"
+			},
+			{
+				"type": "ca",
+				"value": "Kontringsspel"
+			},
+			{
+				"type": "aow",
+				"value": "Anfall på kanterna"
+			},
+			{
+				"type": "aim",
+				"value": "Anfall i mitten"
+			},
+			{
+				"type": "creatively",
+				"value": "Spela kreativt"
+			},
+			{
+				"type": "longshots",
+				"value": "Långskott"
+			}
+		],
+		"honesty": [
+			{
+				"text": "helgonlik",
+				"value": "5"
+			},
+			{
+				"text": "genomärlig",
+				"value": "4"
+			},
+			{
+				"text": "ärlig",
+				"value": "3"
+			},
+			{
+				"text": "hederlig",
+				"value": "2"
+			},
+			{
+				"text": "inte alltid helt ärlig",
+				"value": "1"
+			},
+			{
+				"text": "skandalomsusad",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "älskad lagkamrat",
+				"value": "5"
+			},
+			{
+				"text": "populär kille",
+				"value": "4"
+			},
+			{
+				"text": "genomsympatisk kille",
+				"value": "3"
+			},
+			{
+				"text": "sympatisk kille",
+				"value": "2"
+			},
+			{
+				"text": "kontroversiell person",
+				"value": "1"
+			},
+			{
+				"text": "otrevlig typ",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "M",
+				"type": "Keeper",
+				"value": "Målvakt"
+			},
+			{
+				"short": "IB",
+				"type": "Central defender",
+				"value": "Innerback"
+			},
+			{
+				"short": "YB",
+				"type": "Wing back",
+				"value": "Ytterback"
+			},
+			{
+				"short": "IM",
+				"type": "Inner midfielder",
+				"value": "Innermittfältare"
+			},
+			{
+				"short": "Y",
+				"type": "Winger",
+				"value": "Yttermittfält"
+			},
+			{
+				"short": "F",
+				"type": "Forward",
+				"value": "Forward"
+			}
+		],
+		"levels": [
+			{
+				"text": "gudomlig",
+				"value": "20"
+			},
+			{
+				"text": "utopisk",
+				"value": "19"
+			},
+			{
+				"text": "magisk",
+				"value": "18"
+			},
+			{
+				"text": "mytomspunnen",
+				"value": "17"
+			},
+			{
+				"text": "utomjordisk",
+				"value": "16"
+			},
+			{
+				"text": "titanisk",
+				"value": "15"
+			},
+			{
+				"text": "himmelsk",
+				"value": "14"
+			},
+			{
+				"text": "oförglömlig",
+				"value": "13"
+			},
+			{
+				"text": "övernaturlig",
+				"value": "12"
+			},
+			{
+				"text": "gudabenådad",
+				"value": "11"
+			},
+			{
+				"text": "legendarisk",
+				"value": "10"
+			},
+			{
+				"text": "unik",
+				"value": "9"
+			},
+			{
+				"text": "fenomenal",
+				"value": "8"
+			},
+			{
+				"text": "enastående",
+				"value": "7"
+			},
+			{
+				"text": "ypperlig",
+				"value": "6"
+			},
+			{
+				"text": "bra",
+				"value": "5"
+			},
+			{
+				"text": "hyfsad",
+				"value": "4"
+			},
+			{
+				"text": "dålig",
+				"value": "3"
+			},
+			{
+				"text": "usel",
+				"value": "2"
+			},
+			{
+				"text": "katastrofal",
+				"value": "1"
+			},
+			{
+				"text": "obefintlig",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(mkt låg)",
+				"value": "0.0"
+			},
+			{
+				"text": "(låg)",
+				"value": "0.25"
+			},
+			{
+				"text": "(hög)",
+				"value": "0.50"
+			},
+			{
+				"text": "(mkt hög)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Of",
+				"type": "Unpredictable",
+				"value": "Oförutsägbar"
+			},
+			{
+				"short": "Kr",
+				"type": "Powerful",
+				"value": "Kraftfull"
+			},
+			{
+				"short": "Sn",
+				"type": "Quick",
+				"value": "Snabb"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Teknisk"
+			},
+			{
+				"short": "Ni",
+				"type": "Head",
+				"value": "Nickskicklig"
+			},
+			{
+				"short": "Åt",
+				"type": "Regainer",
+				"value": "Återhämtare"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "instabil",
+				"value": "5"
+			},
+			{
+				"text": "eldfängd",
+				"value": "4"
+			},
+			{
+				"text": "temperamentsfull",
+				"value": "3"
+			},
+			{
+				"text": "balanserad",
+				"value": "2"
+			},
+			{
+				"text": "stillsam",
+				"value": "1"
+			},
+			{
+				"text": "lugn som en filbunke",
+				"value": "0"
+			}
+		],
+		"desc": "Svenska",
+		"name": "sv-SE"
+	}
+}

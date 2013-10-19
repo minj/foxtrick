@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Bình thường"
+			},
+			{
+				"type": "pressing",
+				"value": "Kèm chặt"
+			},
+			{
+				"type": "ca",
+				"value": "Phòng thủ phản công"
+			},
+			{
+				"type": "aow",
+				"value": "Tấn công cánh"
+			},
+			{
+				"type": "aim",
+				"value": "Tấn công trung lộ"
+			},
+			{
+				"type": "creatively",
+				"value": "Chơi sáng tạo"
+			},
+			{
+				"type": "longshots",
+				"value": "Sút xa"
+			}
+		],
+		"honesty": [
+			{
+				"text": "thánh thiện",
+				"value": "5"
+			},
+			{
+				"text": "cao thượng",
+				"value": "4"
+			},
+			{
+				"text": "chính trực",
+				"value": "3"
+			},
+			{
+				"text": "trung thực",
+				"value": "2"
+			},
+			{
+				"text": "thiếu trung thực",
+				"value": "1"
+			},
+			{
+				"text": "gian lận",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "thành viên được yêu mến",
+				"value": "5"
+			},
+			{
+				"text": "người được ngưỡng mộ",
+				"value": "4"
+			},
+			{
+				"text": "người đáng mến",
+				"value": "3"
+			},
+			{
+				"text": "người dễ chịu",
+				"value": "2"
+			},
+			{
+				"text": "người thích tranh cãi",
+				"value": "1"
+			},
+			{
+				"text": "kẻ cáu bẳn",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "TM",
+				"type": "Keeper",
+				"value": "Thủ môn"
+			},
+			{
+				"short": "TV",
+				"type": "Central defender",
+				"value": "Trung vệ"
+			},
+			{
+				"short": "Hb",
+				"type": "Wing back",
+				"value": "Hậu vệ cánh"
+			},
+			{
+				"short": "TVTT",
+				"type": "Inner midfielder",
+				"value": "Tiền vệ trung tâm"
+			},
+			{
+				"short": "Tc",
+				"type": "Winger",
+				"value": "Tiền vệ cánh"
+			},
+			{
+				"short": "TĐ",
+				"type": "Forward",
+				"value": "Tiền đạo"
+			}
+		],
+		"levels": [
+			{
+				"text": "thần thánh",
+				"value": "20"
+			},
+			{
+				"text": "không tưởng",
+				"value": "19"
+			},
+			{
+				"text": "ma thuật",
+				"value": "18"
+			},
+			{
+				"text": "huyền thoại",
+				"value": "17"
+			},
+			{
+				"text": "ngoài hành tinh",
+				"value": "16"
+			},
+			{
+				"text": "mê hoặc",
+				"value": "15"
+			},
+			{
+				"text": "siêu phàm",
+				"value": "14"
+			},
+			{
+				"text": "đẳng cấp quốc tế",
+				"value": "13"
+			},
+			{
+				"text": "tuyệt vời",
+				"value": "12"
+			},
+			{
+				"text": "phi thường",
+				"value": "11"
+			},
+			{
+				"text": "kỳ diệu",
+				"value": "10"
+			},
+			{
+				"text": "vượt trội",
+				"value": "9"
+			},
+			{
+				"text": "xuất sắc",
+				"value": "8"
+			},
+			{
+				"text": "giỏi",
+				"value": "7"
+			},
+			{
+				"text": "khá",
+				"value": "6"
+			},
+			{
+				"text": "trung bình",
+				"value": "5"
+			},
+			{
+				"text": "yếu",
+				"value": "4"
+			},
+			{
+				"text": "kém",
+				"value": "3"
+			},
+			{
+				"text": "tồi tệ",
+				"value": "2"
+			},
+			{
+				"text": "thảm hại",
+				"value": "1"
+			},
+			{
+				"text": "bất tài",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(Rất thấp)",
+				"value": "0.0"
+			},
+			{
+				"text": "(Thấp)",
+				"value": "0.25"
+			},
+			{
+				"text": "(Cao)",
+				"value": "0.50"
+			},
+			{
+				"text": "(Rất cao)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Nh",
+				"type": "Unpredictable",
+				"value": "Ngẫu hứng"
+			},
+			{
+				"short": "Sm",
+				"type": "Powerful",
+				"value": "Sức mạnh"
+			},
+			{
+				"short": "Nn",
+				"type": "Quick",
+				"value": "Nhanh nhẹn"
+			},
+			{
+				"short": "Kt",
+				"type": "Technical",
+				"value": "Kỹ thuật"
+			},
+			{
+				"short": "Dd",
+				"type": "Head",
+				"value": "Đánh đầu"
+			},
+			{
+				"short": "Hn",
+				"type": "Regainer",
+				"value": "Hồi phục nhanh"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "thiếu tự chủ",
+				"value": "5"
+			},
+			{
+				"text": "dễ nổi giận",
+				"value": "4"
+			},
+			{
+				"text": "thất thường",
+				"value": "3"
+			},
+			{
+				"text": "ôn hòa",
+				"value": "2"
+			},
+			{
+				"text": "điềm tĩnh",
+				"value": "1"
+			},
+			{
+				"text": "hiền lành",
+				"value": "0"
+			}
+		],
+		"desc": "Tiếng Việt",
+		"name": "vi"
+	}
+}

@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "표준"
+			},
+			{
+				"type": "pressing",
+				"value": "압박"
+			},
+			{
+				"type": "ca",
+				"value": "역습"
+			},
+			{
+				"type": "aow",
+				"value": "측면에서 공격"
+			},
+			{
+				"type": "aim",
+				"value": "중앙에서 공격"
+			},
+			{
+				"type": "creatively",
+				"value": "창조적으로 플레이"
+			},
+			{
+				"type": "longshots",
+				"value": "장거리 슛"
+			}
+		],
+		"honesty": [
+			{
+				"text": "신성한",
+				"value": "5"
+			},
+			{
+				"text": "공정한",
+				"value": "4"
+			},
+			{
+				"text": "고결한",
+				"value": "3"
+			},
+			{
+				"text": "정직한",
+				"value": "2"
+			},
+			{
+				"text": "부정직한",
+				"value": "1"
+			},
+			{
+				"text": "악명높은",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "사랑스러운 선수",
+				"value": "5"
+			},
+			{
+				"text": "인기 있는 사람",
+				"value": "4"
+			},
+			{
+				"text": "인정 있는 사람",
+				"value": "3"
+			},
+			{
+				"text": "유쾌한 사람",
+				"value": "2"
+			},
+			{
+				"text": "논쟁상의 사람",
+				"value": "1"
+			},
+			{
+				"text": "심술궂은 사람",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "키퍼",
+				"type": "Keeper",
+				"value": "골키퍼"
+			},
+			{
+				"short": "수비",
+				"type": "Central defender",
+				"value": "중앙 수비수"
+			},
+			{
+				"short": "윙백",
+				"type": "Wing back",
+				"value": "윙 백"
+			},
+			{
+				"short": "미드",
+				"type": "Inner midfielder",
+				"value": "중앙 미드필드"
+			},
+			{
+				"short": "윙",
+				"type": "Winger",
+				"value": "윙어"
+			},
+			{
+				"short": "포워",
+				"type": "Forward",
+				"value": "포워드"
+			}
+		],
+		"levels": [
+			{
+				"text": "신의 경지",
+				"value": "20"
+			},
+			{
+				"text": "초월적",
+				"value": "19"
+			},
+			{
+				"text": "마술적",
+				"value": "18"
+			},
+			{
+				"text": "전설적",
+				"value": "17"
+			},
+			{
+				"text": "외계인",
+				"value": "16"
+			},
+			{
+				"text": "막강함",
+				"value": "15"
+			},
+			{
+				"text": "초자연적",
+				"value": "14"
+			},
+			{
+				"text": "세계 최고",
+				"value": "13"
+			},
+			{
+				"text": "훌륭함",
+				"value": "12"
+			},
+			{
+				"text": "눈부심",
+				"value": "11"
+			},
+			{
+				"text": "걸출함",
+				"value": "10"
+			},
+			{
+				"text": "강력함",
+				"value": "9"
+			},
+			{
+				"text": "뛰어남",
+				"value": "8"
+			},
+			{
+				"text": "우수",
+				"value": "7"
+			},
+			{
+				"text": "무난함",
+				"value": "6"
+			},
+			{
+				"text": "불충분함",
+				"value": "5"
+			},
+			{
+				"text": "약함",
+				"value": "4"
+			},
+			{
+				"text": "나쁨",
+				"value": "3"
+			},
+			{
+				"text": "형편 없음",
+				"value": "2"
+			},
+			{
+				"text": "최악",
+				"value": "1"
+			},
+			{
+				"text": "없음",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(매우 낮음)",
+				"value": "0.0"
+			},
+			{
+				"text": "(낮음)",
+				"value": "0.25"
+			},
+			{
+				"text": "(높음)",
+				"value": "0.50"
+			},
+			{
+				"text": "(매우 높음)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "예측",
+				"type": "Unpredictable",
+				"value": "예측할 수 없음"
+			},
+			{
+				"short": "힘",
+				"type": "Powerful",
+				"value": "힘 있음"
+			},
+			{
+				"short": "빠름",
+				"type": "Quick",
+				"value": "빠름"
+			},
+			{
+				"short": "마술",
+				"type": "Technical",
+				"value": "공 마술사"
+			},
+			{
+				"short": "헤딩",
+				"type": "Head",
+				"value": "헤딩"
+			},
+			{
+				"short": "회복",
+				"type": "Regainer",
+				"value": "회복인"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "무책임한",
+				"value": "5"
+			},
+			{
+				"text": "불같은 성질",
+				"value": "4"
+			},
+			{
+				"text": "변덕스러운",
+				"value": "3"
+			},
+			{
+				"text": "침착한",
+				"value": "2"
+			},
+			{
+				"text": "평온한",
+				"value": "1"
+			},
+			{
+				"text": "조용한",
+				"value": "0"
+			}
+		],
+		"desc": "한국어",
+		"name": "ko"
+	}
+}

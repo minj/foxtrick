@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normal"
+			},
+			{
+				"type": "pressing",
+				"value": "Presing"
+			},
+			{
+				"type": "ca",
+				"value": "Kundër-sulme"
+			},
+			{
+				"type": "aow",
+				"value": "Sulmoni nga Krahët"
+			},
+			{
+				"type": "aim",
+				"value": "Sulmoni në Qëndër"
+			},
+			{
+				"type": "creatively",
+				"value": "Luani me kreativitet"
+			},
+			{
+				"type": "longshots",
+				"value": "Goditje nga distanca"
+			}
+		],
+		"honesty": [
+			{
+				"text": "shejntor",
+				"value": "5"
+			},
+			{
+				"text": "i drejtë",
+				"value": "4"
+			},
+			{
+				"text": "i saktë",
+				"value": "3"
+			},
+			{
+				"text": "i ndershëm",
+				"value": "2"
+			},
+			{
+				"text": "dallaveraxhi",
+				"value": "1"
+			},
+			{
+				"text": "mashtrues",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "si pëllumb",
+				"value": "5"
+			},
+			{
+				"text": "djalë i dashur",
+				"value": "4"
+			},
+			{
+				"text": "djalë miqësor",
+				"value": "3"
+			},
+			{
+				"text": "djalë i këndshëm",
+				"value": "2"
+			},
+			{
+				"text": "mistrec",
+				"value": "1"
+			},
+			{
+				"text": "djalë i ndyrë",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Ke",
+				"type": "Keeper",
+				"value": "Portier"
+			},
+			{
+				"short": "Cd",
+				"type": "Central defender",
+				"value": "Qendër Mbrojtës"
+			},
+			{
+				"short": "Wb",
+				"type": "Wing back",
+				"value": "Mbrojtës Krahu"
+			},
+			{
+				"short": "Im",
+				"type": "Inner midfielder",
+				"value": "Qendër Mesfushor"
+			},
+			{
+				"short": "Wi",
+				"type": "Winger",
+				"value": "Mesfushor krahu"
+			},
+			{
+				"short": "Fo",
+				"type": "Forward",
+				"value": "Sulmues"
+			}
+		],
+		"levels": [
+			{
+				"text": "hyjnor",
+				"value": "20"
+			},
+			{
+				"text": "utopik",
+				"value": "19"
+			},
+			{
+				"text": "magjepës",
+				"value": "18"
+			},
+			{
+				"text": "legjendar",
+				"value": "17"
+			},
+			{
+				"text": "jashtë-tokësor",
+				"value": "16"
+			},
+			{
+				"text": "kolosal",
+				"value": "15"
+			},
+			{
+				"text": "mbinatyror",
+				"value": "14"
+			},
+			{
+				"text": "klas botëror",
+				"value": "13"
+			},
+			{
+				"text": "madhështor",
+				"value": "12"
+			},
+			{
+				"text": "brilant",
+				"value": "11"
+			},
+			{
+				"text": "mahnitës",
+				"value": "10"
+			},
+			{
+				"text": "fenomenal",
+				"value": "9"
+			},
+			{
+				"text": "shkëlqyer",
+				"value": "8"
+			},
+			{
+				"text": "mirë",
+				"value": "7"
+			},
+			{
+				"text": "pranueshëm",
+				"value": "6"
+			},
+			{
+				"text": "mediokër",
+				"value": "5"
+			},
+			{
+				"text": "dobët",
+				"value": "4"
+			},
+			{
+				"text": "varfër",
+				"value": "3"
+			},
+			{
+				"text": "pashpresë",
+				"value": "2"
+			},
+			{
+				"text": "katastrofë",
+				"value": "1"
+			},
+			{
+				"text": "zero me xhufkë",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(Sh. ulët)",
+				"value": "0.0"
+			},
+			{
+				"text": "(Ulët)",
+				"value": "0.25"
+			},
+			{
+				"text": "(Lartë)",
+				"value": "0.50"
+			},
+			{
+				"text": "(Sh. lartë)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "I paparashikueshëm"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "I fuqishëm"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "I shpejtë"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Teknik"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "Me Kokë"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Ripërtëritës"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "i zjarrtë",
+				"value": "5"
+			},
+			{
+				"text": "agresiv",
+				"value": "4"
+			},
+			{
+				"text": "tekanjoz",
+				"value": "3"
+			},
+			{
+				"text": "harmonik",
+				"value": "2"
+			},
+			{
+				"text": "i qetë",
+				"value": "1"
+			},
+			{
+				"text": "i urtë",
+				"value": "0"
+			}
+		],
+		"desc": "Albanian",
+		"name": "sq"
+	}
+}

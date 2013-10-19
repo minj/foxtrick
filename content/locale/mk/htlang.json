@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Нормално"
+			},
+			{
+				"type": "pressing",
+				"value": "Пресинг"
+			},
+			{
+				"type": "ca",
+				"value": "Контра-напади"
+			},
+			{
+				"type": "aow",
+				"value": "Напад преку крила"
+			},
+			{
+				"type": "aim",
+				"value": "Напад по средина"
+			},
+			{
+				"type": "creatively",
+				"value": "Играј креативно"
+			},
+			{
+				"type": "longshots",
+				"value": "Удари од далечина"
+			}
+		],
+		"honesty": [
+			{
+				"text": "светец",
+				"value": "5"
+			},
+			{
+				"text": "праведен",
+				"value": "4"
+			},
+			{
+				"text": "многу чесен",
+				"value": "3"
+			},
+			{
+				"text": "чесен",
+				"value": "2"
+			},
+			{
+				"text": "нечесен",
+				"value": "1"
+			},
+			{
+				"text": "озлогласен",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "сакан член на тимот",
+				"value": "5"
+			},
+			{
+				"text": "популарно момче",
+				"value": "4"
+			},
+			{
+				"text": "симпатично момче",
+				"value": "3"
+			},
+			{
+				"text": "ведро момче",
+				"value": "2"
+			},
+			{
+				"text": "контраверзно момче",
+				"value": "1"
+			},
+			{
+				"text": "валкано момче",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Ke",
+				"type": "Keeper",
+				"value": "Голман"
+			},
+			{
+				"short": "Cd",
+				"type": "Central defender",
+				"value": "Централен Одбрамбен"
+			},
+			{
+				"short": "Wb",
+				"type": "Wing back",
+				"value": "Бек"
+			},
+			{
+				"short": "Im",
+				"type": "Inner midfielder",
+				"value": "Играч за Врска"
+			},
+			{
+				"short": "Wi",
+				"type": "Winger",
+				"value": "Крило"
+			},
+			{
+				"short": "Fo",
+				"type": "Forward",
+				"value": "Напаѓач"
+			}
+		],
+		"levels": [
+			{
+				"text": "божествен",
+				"value": "20"
+			},
+			{
+				"text": "утописки",
+				"value": "19"
+			},
+			{
+				"text": "магичен",
+				"value": "18"
+			},
+			{
+				"text": "митски",
+				"value": "17"
+			},
+			{
+				"text": "надчовечки",
+				"value": "16"
+			},
+			{
+				"text": "титански",
+				"value": "15"
+			},
+			{
+				"text": "натприроден",
+				"value": "14"
+			},
+			{
+				"text": "светска класа",
+				"value": "13"
+			},
+			{
+				"text": "величенствен",
+				"value": "12"
+			},
+			{
+				"text": "брилијантен",
+				"value": "11"
+			},
+			{
+				"text": "извонреден",
+				"value": "10"
+			},
+			{
+				"text": "импресивен",
+				"value": "9"
+			},
+			{
+				"text": "одличен",
+				"value": "8"
+			},
+			{
+				"text": "солиден",
+				"value": "7"
+			},
+			{
+				"text": "преоден",
+				"value": "6"
+			},
+			{
+				"text": "недоволен",
+				"value": "5"
+			},
+			{
+				"text": "слаб",
+				"value": "4"
+			},
+			{
+				"text": "лош",
+				"value": "3"
+			},
+			{
+				"text": "очаен",
+				"value": "2"
+			},
+			{
+				"text": "катастрофален",
+				"value": "1"
+			},
+			{
+				"text": "непостоечки",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(Многу ниско)",
+				"value": "0.0"
+			},
+			{
+				"text": "(Ниско)",
+				"value": "0.25"
+			},
+			{
+				"text": "(Високо)",
+				"value": "0.50"
+			},
+			{
+				"text": "(Многу високо)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "Непредвидлив"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "Моќен"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "Брз"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Техничар"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "Игра со Глава"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Нескршлив"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "нестабилен",
+				"value": "5"
+			},
+			{
+				"text": "жесток",
+				"value": "4"
+			},
+			{
+				"text": "темпераментен",
+				"value": "3"
+			},
+			{
+				"text": "балансиран",
+				"value": "2"
+			},
+			{
+				"text": "смирен",
+				"value": "1"
+			},
+			{
+				"text": "спокоен",
+				"value": "0"
+			}
+		],
+		"desc": "Македонски",
+		"name": "mk"
+	}
+}

@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normalno"
+			},
+			{
+				"type": "pressing",
+				"value": "Presing"
+			},
+			{
+				"type": "ca",
+				"value": "Kontranapadi"
+			},
+			{
+				"type": "aow",
+				"value": "Napad preko krila"
+			},
+			{
+				"type": "aim",
+				"value": "Napad kroz sredinu"
+			},
+			{
+				"type": "creatively",
+				"value": "Igraj kreativno"
+			},
+			{
+				"type": "longshots",
+				"value": "Dalekometni šutevi"
+			}
+		],
+		"honesty": [
+			{
+				"text": "duša od čovjeka",
+				"value": "5"
+			},
+			{
+				"text": "pravedan",
+				"value": "4"
+			},
+			{
+				"text": "pošten",
+				"value": "3"
+			},
+			{
+				"text": "iskren",
+				"value": "2"
+			},
+			{
+				"text": "neiskren",
+				"value": "1"
+			},
+			{
+				"text": "ozloglašen",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "omiljeni član tima",
+				"value": "5"
+			},
+			{
+				"text": "popularan tip",
+				"value": "4"
+			},
+			{
+				"text": "simpatičan tip",
+				"value": "3"
+			},
+			{
+				"text": "ugodan tip",
+				"value": "2"
+			},
+			{
+				"text": "kontroverzan lik",
+				"value": "1"
+			},
+			{
+				"text": "gadan tip",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Go",
+				"type": "Keeper",
+				"value": "Golman"
+			},
+			{
+				"short": "Co",
+				"type": "Central defender",
+				"value": "Centralni odbrambeni"
+			},
+			{
+				"short": "Be",
+				"type": "Wing back",
+				"value": "Bek"
+			},
+			{
+				"short": "Ve",
+				"type": "Inner midfielder",
+				"value": "Vezni"
+			},
+			{
+				"short": "Kr",
+				"type": "Winger",
+				"value": "Krilo"
+			},
+			{
+				"short": "Na",
+				"type": "Forward",
+				"value": "Napadač"
+			}
+		],
+		"levels": [
+			{
+				"text": "nenadmašiv",
+				"value": "20"
+			},
+			{
+				"text": "utopijski",
+				"value": "19"
+			},
+			{
+				"text": "magičan",
+				"value": "18"
+			},
+			{
+				"text": "legendaran",
+				"value": "17"
+			},
+			{
+				"text": "vanzemaljski",
+				"value": "16"
+			},
+			{
+				"text": "titanski",
+				"value": "15"
+			},
+			{
+				"text": "natprirodan",
+				"value": "14"
+			},
+			{
+				"text": "svjetska klasa",
+				"value": "13"
+			},
+			{
+				"text": "veličanstven",
+				"value": "12"
+			},
+			{
+				"text": "sjajan",
+				"value": "11"
+			},
+			{
+				"text": "izuzetan",
+				"value": "10"
+			},
+			{
+				"text": "impresivan",
+				"value": "9"
+			},
+			{
+				"text": "odličan",
+				"value": "8"
+			},
+			{
+				"text": "solidan",
+				"value": "7"
+			},
+			{
+				"text": "prolazan",
+				"value": "6"
+			},
+			{
+				"text": "nedovoljan",
+				"value": "5"
+			},
+			{
+				"text": "slab",
+				"value": "4"
+			},
+			{
+				"text": "jadan",
+				"value": "3"
+			},
+			{
+				"text": "očajan",
+				"value": "2"
+			},
+			{
+				"text": "katastrofalan",
+				"value": "1"
+			},
+			{
+				"text": "nepostojeći",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(Veoma nisko)",
+				"value": "0.0"
+			},
+			{
+				"text": "(Nisko)",
+				"value": "0.25"
+			},
+			{
+				"text": "(Visoko)",
+				"value": "0.50"
+			},
+			{
+				"text": "(Veoma visoko)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Np",
+				"type": "Unpredictable",
+				"value": "Nepredvidiv"
+			},
+			{
+				"short": "Sn",
+				"type": "Powerful",
+				"value": "Snažan"
+			},
+			{
+				"short": "Br",
+				"type": "Quick",
+				"value": "Brz"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Tehničar"
+			},
+			{
+				"short": "Gl",
+				"type": "Head",
+				"value": "Glavonja"
+			},
+			{
+				"short": "Ns",
+				"type": "Regainer",
+				"value": "Nesalomljiv"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "nestabilan",
+				"value": "5"
+			},
+			{
+				"text": "prgav",
+				"value": "4"
+			},
+			{
+				"text": "temperamentan",
+				"value": "3"
+			},
+			{
+				"text": "uravnotežen",
+				"value": "2"
+			},
+			{
+				"text": "miran",
+				"value": "1"
+			},
+			{
+				"text": "opušten",
+				"value": "0"
+			}
+		],
+		"desc": "Bosanski",
+		"name": "bs"
+	}
+}

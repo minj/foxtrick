@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "عادی"
+			},
+			{
+				"type": "pressing",
+				"value": "پرسینگ"
+			},
+			{
+				"type": "ca",
+				"value": "ضد حمله"
+			},
+			{
+				"type": "aow",
+				"value": "حمله از جناحین"
+			},
+			{
+				"type": "aim",
+				"value": "حمله از عمق"
+			},
+			{
+				"type": "creatively",
+				"value": "بازی خلاقانه"
+			},
+			{
+				"type": "longshots",
+				"value": "شوت از راه دور"
+			}
+		],
+		"honesty": [
+			{
+				"text": "پاک سرشت",
+				"value": "5"
+			},
+			{
+				"text": "نیکوکار",
+				"value": "4"
+			},
+			{
+				"text": "سر به زیر",
+				"value": "3"
+			},
+			{
+				"text": "درستکار",
+				"value": "2"
+			},
+			{
+				"text": "غیرقابل اعتماد",
+				"value": "1"
+			},
+			{
+				"text": "بدنام",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "دوست داشتنی",
+				"value": "5"
+			},
+			{
+				"text": "محبوب",
+				"value": "4"
+			},
+			{
+				"text": "مهربان",
+				"value": "3"
+			},
+			{
+				"text": "خوش‌‌‌‌‌‌برخورد",
+				"value": "2"
+			},
+			{
+				"text": "جنجالی",
+				"value": "1"
+			},
+			{
+				"text": "بداخلاق",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Ke",
+				"type": "Keeper",
+				"value": "دروازه‌بان"
+			},
+			{
+				"short": "Cd",
+				"type": "Central defender",
+				"value": "مدافع وسط"
+			},
+			{
+				"short": "Wb",
+				"type": "Wing back",
+				"value": "مدافع کنار"
+			},
+			{
+				"short": "Im",
+				"type": "Inner midfielder",
+				"value": "هافبک وسط"
+			},
+			{
+				"short": "Wi",
+				"type": "Winger",
+				"value": "هافبک کنار"
+			},
+			{
+				"short": "Fo",
+				"type": "Forward",
+				"value": "مهاجم"
+			}
+		],
+		"levels": [
+			{
+				"text": "کهکشانی",
+				"value": "20"
+			},
+			{
+				"text": "آرمانی",
+				"value": "19"
+			},
+			{
+				"text": "جادویی",
+				"value": "18"
+			},
+			{
+				"text": "افسانه‌ای",
+				"value": "17"
+			},
+			{
+				"text": "خارق‌العاده",
+				"value": "16"
+			},
+			{
+				"text": "استثنایی",
+				"value": "15"
+			},
+			{
+				"text": "فوق‌العاده",
+				"value": "14"
+			},
+			{
+				"text": "بین‌المللی",
+				"value": "13"
+			},
+			{
+				"text": "باشکوه",
+				"value": "12"
+			},
+			{
+				"text": "درخشان",
+				"value": "11"
+			},
+			{
+				"text": "برجسته",
+				"value": "10"
+			},
+			{
+				"text": "توانمند",
+				"value": "9"
+			},
+			{
+				"text": "عالی",
+				"value": "8"
+			},
+			{
+				"text": "خوب",
+				"value": "7"
+			},
+			{
+				"text": "قابل قبول",
+				"value": "6"
+			},
+			{
+				"text": "ناکافى",
+				"value": "5"
+			},
+			{
+				"text": "ضعیف",
+				"value": "4"
+			},
+			{
+				"text": "ناچیز",
+				"value": "3"
+			},
+			{
+				"text": "اسفبار",
+				"value": "2"
+			},
+			{
+				"text": "افتضاح",
+				"value": "1"
+			},
+			{
+				"text": "بدون مهارت",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(خیلی کم)",
+				"value": "0.0"
+			},
+			{
+				"text": "(کم)",
+				"value": "0.25"
+			},
+			{
+				"text": "(زیاد)",
+				"value": "0.50"
+			},
+			{
+				"text": "(خیلی زیاد)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "غیرقابل پیش‌بینی"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "قدرتی"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "سرعتی"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "تکنیکی"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "سرزن"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "تندرست"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "یاغی",
+				"value": "5"
+			},
+			{
+				"text": "تند مزاج",
+				"value": "4"
+			},
+			{
+				"text": "عصبی",
+				"value": "3"
+			},
+			{
+				"text": "متعادل",
+				"value": "2"
+			},
+			{
+				"text": "آرام",
+				"value": "1"
+			},
+			{
+				"text": "خونسرد",
+				"value": "0"
+			}
+		],
+		"desc": "فارسی",
+		"name": "fa"
+	}
+}

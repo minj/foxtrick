@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normal"
+			},
+			{
+				"type": "pressing",
+				"value": "Presión"
+			},
+			{
+				"type": "ca",
+				"value": "Contraataques"
+			},
+			{
+				"type": "aow",
+				"value": "Atacar polas bandas"
+			},
+			{
+				"type": "aim",
+				"value": "Atacar polo centro"
+			},
+			{
+				"type": "creatively",
+				"value": "Xogar creativamente"
+			},
+			{
+				"type": "longshots",
+				"value": "Tiros de lonxe"
+			}
+		],
+		"honesty": [
+			{
+				"text": "santo",
+				"value": "5"
+			},
+			{
+				"text": "honorable",
+				"value": "4"
+			},
+			{
+				"text": "xusto",
+				"value": "3"
+			},
+			{
+				"text": "honesto",
+				"value": "2"
+			},
+			{
+				"text": "deshonesto",
+				"value": "1"
+			},
+			{
+				"text": "infame",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "querido compañeiro de equipo",
+				"value": "5"
+			},
+			{
+				"text": "popular",
+				"value": "4"
+			},
+			{
+				"text": "simpático",
+				"value": "3"
+			},
+			{
+				"text": "agradable",
+				"value": "2"
+			},
+			{
+				"text": "polémico",
+				"value": "1"
+			},
+			{
+				"text": "porcallán",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Po",
+				"type": "Keeper",
+				"value": "Porteiro"
+			},
+			{
+				"short": "Dc",
+				"type": "Central defender",
+				"value": "Defensa Central"
+			},
+			{
+				"short": "Dl",
+				"type": "Wing back",
+				"value": "Defensa Lateral"
+			},
+			{
+				"short": "Mc",
+				"type": "Inner midfielder",
+				"value": "Mediocentro"
+			},
+			{
+				"short": "Ex",
+				"type": "Winger",
+				"value": "Extremo"
+			},
+			{
+				"short": "Di",
+				"type": "Forward",
+				"value": "Dianteiro"
+			}
+		],
+		"levels": [
+			{
+				"text": "caralludo",
+				"value": "20"
+			},
+			{
+				"text": "utópico",
+				"value": "19"
+			},
+			{
+				"text": "máxico",
+				"value": "18"
+			},
+			{
+				"text": "lendario",
+				"value": "17"
+			},
+			{
+				"text": "extraterrestre",
+				"value": "16"
+			},
+			{
+				"text": "titánico",
+				"value": "15"
+			},
+			{
+				"text": "prodixioso",
+				"value": "14"
+			},
+			{
+				"text": "clase mundial",
+				"value": "13"
+			},
+			{
+				"text": "magnífico",
+				"value": "12"
+			},
+			{
+				"text": "abraiante",
+				"value": "11"
+			},
+			{
+				"text": "sobresaínte",
+				"value": "10"
+			},
+			{
+				"text": "formidable",
+				"value": "9"
+			},
+			{
+				"text": "excelente",
+				"value": "8"
+			},
+			{
+				"text": "bo",
+				"value": "7"
+			},
+			{
+				"text": "pasable",
+				"value": "6"
+			},
+			{
+				"text": "insuficiente",
+				"value": "5"
+			},
+			{
+				"text": "feble",
+				"value": "4"
+			},
+			{
+				"text": "pobre",
+				"value": "3"
+			},
+			{
+				"text": "nefasto",
+				"value": "2"
+			},
+			{
+				"text": "arrepiante",
+				"value": "1"
+			},
+			{
+				"text": "nulo",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(Moi baixo)",
+				"value": "0.0"
+			},
+			{
+				"text": "(Baixo)",
+				"value": "0.25"
+			},
+			{
+				"text": "(Alto)",
+				"value": "0.50"
+			},
+			{
+				"text": "(Moi alto)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "Imprevisible"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "Potente"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "Rápido"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Técnico"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "Xogo aéreo"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Baril"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "inestable",
+				"value": "5"
+			},
+			{
+				"text": "rabudo",
+				"value": "4"
+			},
+			{
+				"text": "temperamental",
+				"value": "3"
+			},
+			{
+				"text": "equilibrado",
+				"value": "2"
+			},
+			{
+				"text": "calmo",
+				"value": "1"
+			},
+			{
+				"text": "tranquilo",
+				"value": "0"
+			}
+		],
+		"desc": "Galego",
+		"name": "gl"
+	}
+}

@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normal"
+			},
+			{
+				"type": "pressing",
+				"value": "Press"
+			},
+			{
+				"type": "ca",
+				"value": "Kontringsspel"
+			},
+			{
+				"type": "aow",
+				"value": "Angrip på kantane"
+			},
+			{
+				"type": "aim",
+				"value": "Angrip i midten"
+			},
+			{
+				"type": "creatively",
+				"value": "Spel kreativt"
+			},
+			{
+				"type": "longshots",
+				"value": "Skot frå distanse"
+			}
+		],
+		"honesty": [
+			{
+				"text": "helgenaktig",
+				"value": "5"
+			},
+			{
+				"text": "rettvis",
+				"value": "4"
+			},
+			{
+				"text": "redeleg",
+				"value": "3"
+			},
+			{
+				"text": "ærleg",
+				"value": "2"
+			},
+			{
+				"text": "uærleg",
+				"value": "1"
+			},
+			{
+				"text": "lystløgnar",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "kjær lagkamerat",
+				"value": "5"
+			},
+			{
+				"text": "populær kar",
+				"value": "4"
+			},
+			{
+				"text": "sympatisk type",
+				"value": "3"
+			},
+			{
+				"text": "hyggjeleg kar",
+				"value": "2"
+			},
+			{
+				"text": "kontroversiell person",
+				"value": "1"
+			},
+			{
+				"text": "ufin type",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "MV",
+				"type": "Keeper",
+				"value": "Målvakt"
+			},
+			{
+				"short": "MS",
+				"type": "Central defender",
+				"value": "Midtstoppar"
+			},
+			{
+				"short": "WB",
+				"type": "Wing back",
+				"value": "Sideforsvarar"
+			},
+			{
+				"short": "SM",
+				"type": "Inner midfielder",
+				"value": "Sentral midtbane"
+			},
+			{
+				"short": "WI",
+				"type": "Winger",
+				"value": "Kantspelar"
+			},
+			{
+				"short": "AN",
+				"type": "Forward",
+				"value": "Angripar"
+			}
+		],
+		"levels": [
+			{
+				"text": "guddomleg",
+				"value": "20"
+			},
+			{
+				"text": "utopisk",
+				"value": "19"
+			},
+			{
+				"text": "magisk",
+				"value": "18"
+			},
+			{
+				"text": "mytisk",
+				"value": "17"
+			},
+			{
+				"text": "utanomjordisk",
+				"value": "16"
+			},
+			{
+				"text": "titanisk",
+				"value": "15"
+			},
+			{
+				"text": "eventyrleg",
+				"value": "14"
+			},
+			{
+				"text": "fantastisk",
+				"value": "13"
+			},
+			{
+				"text": "storveges",
+				"value": "12"
+			},
+			{
+				"text": "glitrande",
+				"value": "11"
+			},
+			{
+				"text": "framifrå",
+				"value": "10"
+			},
+			{
+				"text": "eineståande",
+				"value": "9"
+			},
+			{
+				"text": "utmerkt",
+				"value": "8"
+			},
+			{
+				"text": "solid",
+				"value": "7"
+			},
+			{
+				"text": "brukbar",
+				"value": "6"
+			},
+			{
+				"text": "måteleg",
+				"value": "5"
+			},
+			{
+				"text": "veik",
+				"value": "4"
+			},
+			{
+				"text": "dårleg",
+				"value": "3"
+			},
+			{
+				"text": "elendig",
+				"value": "2"
+			},
+			{
+				"text": "katastrofal",
+				"value": "1"
+			},
+			{
+				"text": "fråverande",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(svært låg)",
+				"value": "0.0"
+			},
+			{
+				"text": "(låg)",
+				"value": "0.25"
+			},
+			{
+				"text": "(høg)",
+				"value": "0.50"
+			},
+			{
+				"text": "(svært høg)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "Omskifteleg"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "Sterk"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "Rask"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Teknisk"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "Hovud"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Frisking"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "ustabil",
+				"value": "5"
+			},
+			{
+				"text": "varmblodig",
+				"value": "4"
+			},
+			{
+				"text": "hissig",
+				"value": "3"
+			},
+			{
+				"text": "balansert",
+				"value": "2"
+			},
+			{
+				"text": "sindig",
+				"value": "1"
+			},
+			{
+				"text": "roleg",
+				"value": "0"
+			}
+		],
+		"desc": "Norsk, nynorsk",
+		"name": "nn-NO"
+	}
+}

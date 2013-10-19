@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normalna"
+			},
+			{
+				"type": "pressing",
+				"value": "Tesno pokrivanje"
+			},
+			{
+				"type": "ca",
+				"value": "Protinapadi"
+			},
+			{
+				"type": "aow",
+				"value": "Napad po krilih"
+			},
+			{
+				"type": "aim",
+				"value": "Napad po sredini"
+			},
+			{
+				"type": "creatively",
+				"value": "Igraj kreativno"
+			},
+			{
+				"type": "longshots",
+				"value": "Streli od daleč"
+			}
+		],
+		"honesty": [
+			{
+				"text": "svetniški",
+				"value": "5"
+			},
+			{
+				"text": "pravičen",
+				"value": "4"
+			},
+			{
+				"text": "pošten",
+				"value": "3"
+			},
+			{
+				"text": "odkritosrčen",
+				"value": "2"
+			},
+			{
+				"text": "nepošten",
+				"value": "1"
+			},
+			{
+				"text": "nesramen",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "ljubljenec moštva",
+				"value": "5"
+			},
+			{
+				"text": "priljubljen",
+				"value": "4"
+			},
+			{
+				"text": "simpatičen",
+				"value": "3"
+			},
+			{
+				"text": "prijeten",
+				"value": "2"
+			},
+			{
+				"text": "prepirljiv",
+				"value": "1"
+			},
+			{
+				"text": "zloben",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Ke",
+				"type": "Keeper",
+				"value": "Vratar"
+			},
+			{
+				"short": "Cd",
+				"type": "Central defender",
+				"value": "Srednji branilec"
+			},
+			{
+				"short": "Wb",
+				"type": "Wing back",
+				"value": "Bočni branilec"
+			},
+			{
+				"short": "Im",
+				"type": "Inner midfielder",
+				"value": "Vezist"
+			},
+			{
+				"short": "Wi",
+				"type": "Winger",
+				"value": "Krilo"
+			},
+			{
+				"short": "Fo",
+				"type": "Forward",
+				"value": "Napadalec"
+			}
+		],
+		"levels": [
+			{
+				"text": "božansko",
+				"value": "20"
+			},
+			{
+				"text": "utopično",
+				"value": "19"
+			},
+			{
+				"text": "čarobno",
+				"value": "18"
+			},
+			{
+				"text": "legendarno",
+				"value": "17"
+			},
+			{
+				"text": "izvenzemeljsko",
+				"value": "16"
+			},
+			{
+				"text": "mogočno",
+				"value": "15"
+			},
+			{
+				"text": "nadnaravno",
+				"value": "14"
+			},
+			{
+				"text": "svetovno",
+				"value": "13"
+			},
+			{
+				"text": "veličastno",
+				"value": "12"
+			},
+			{
+				"text": "sijajno",
+				"value": "11"
+			},
+			{
+				"text": "izjemno",
+				"value": "10"
+			},
+			{
+				"text": "fenomenalno",
+				"value": "9"
+			},
+			{
+				"text": "odlično",
+				"value": "8"
+			},
+			{
+				"text": "solidno",
+				"value": "7"
+			},
+			{
+				"text": "sprejemljivo",
+				"value": "6"
+			},
+			{
+				"text": "pomanjkljivo",
+				"value": "5"
+			},
+			{
+				"text": "šibko",
+				"value": "4"
+			},
+			{
+				"text": "ubogo",
+				"value": "3"
+			},
+			{
+				"text": "borno",
+				"value": "2"
+			},
+			{
+				"text": "katastrofalno",
+				"value": "1"
+			},
+			{
+				"text": "neobstoječe",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(Zelo nizko)",
+				"value": "0.0"
+			},
+			{
+				"text": "(Nizko)",
+				"value": "0.25"
+			},
+			{
+				"text": "(Visoko)",
+				"value": "0.50"
+			},
+			{
+				"text": "(Zelo visoko)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "Nepredvidljiv"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "Močan"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "Hiter"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Tehničen"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "Igra z glavo"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Hitreje okreva"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "nestabilen",
+				"value": "5"
+			},
+			{
+				"text": "vročekrven",
+				"value": "4"
+			},
+			{
+				"text": "vzkipljiv",
+				"value": "3"
+			},
+			{
+				"text": "uravnotežen",
+				"value": "2"
+			},
+			{
+				"text": "miren",
+				"value": "1"
+			},
+			{
+				"text": "hladnokrven",
+				"value": "0"
+			}
+		],
+		"desc": "Slovenščina",
+		"name": "sl"
+	}
+}

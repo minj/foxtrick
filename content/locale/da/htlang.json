@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normal"
+			},
+			{
+				"type": "pressing",
+				"value": "Presspil"
+			},
+			{
+				"type": "ca",
+				"value": "Kontraangreb"
+			},
+			{
+				"type": "aow",
+				"value": "Angrib fra fløjene"
+			},
+			{
+				"type": "aim",
+				"value": "Angrib fra midten"
+			},
+			{
+				"type": "creatively",
+				"value": "Spil kreativt"
+			},
+			{
+				"type": "longshots",
+				"value": "Langskud"
+			}
+		],
+		"honesty": [
+			{
+				"text": "helgenagtig",
+				"value": "5"
+			},
+			{
+				"text": "retskaffen",
+				"value": "4"
+			},
+			{
+				"text": "ærlig",
+				"value": "3"
+			},
+			{
+				"text": "hæderlig",
+				"value": "2"
+			},
+			{
+				"text": "uærlig",
+				"value": "1"
+			},
+			{
+				"text": "berygtet",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "elsket holdkammerat",
+				"value": "5"
+			},
+			{
+				"text": "populær fyr",
+				"value": "4"
+			},
+			{
+				"text": "sympatisk fyr",
+				"value": "3"
+			},
+			{
+				"text": "behagelig fyr",
+				"value": "2"
+			},
+			{
+				"text": "kontroversiel person",
+				"value": "1"
+			},
+			{
+				"text": "ubehagelig type",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Må",
+				"type": "Keeper",
+				"value": "Målmand"
+			},
+			{
+				"short": "Cf",
+				"type": "Central defender",
+				"value": "Central forsvarsspiller"
+			},
+			{
+				"short": "Ba",
+				"type": "Wing back",
+				"value": "Back"
+			},
+			{
+				"short": "Cm",
+				"type": "Inner midfielder",
+				"value": "Central midtbanespiller"
+			},
+			{
+				"short": "Fl",
+				"type": "Winger",
+				"value": "Fløj"
+			},
+			{
+				"short": "An",
+				"type": "Forward",
+				"value": "Angriber"
+			}
+		],
+		"levels": [
+			{
+				"text": "guddommelig",
+				"value": "20"
+			},
+			{
+				"text": "utopisk",
+				"value": "19"
+			},
+			{
+				"text": "magisk",
+				"value": "18"
+			},
+			{
+				"text": "mytisk",
+				"value": "17"
+			},
+			{
+				"text": "overjordisk",
+				"value": "16"
+			},
+			{
+				"text": "titanisk",
+				"value": "15"
+			},
+			{
+				"text": "overnaturlig",
+				"value": "14"
+			},
+			{
+				"text": "verdensklasse",
+				"value": "13"
+			},
+			{
+				"text": "storslået",
+				"value": "12"
+			},
+			{
+				"text": "genial",
+				"value": "11"
+			},
+			{
+				"text": "fremragende",
+				"value": "10"
+			},
+			{
+				"text": "formidabel",
+				"value": "9"
+			},
+			{
+				"text": "udmærket",
+				"value": "8"
+			},
+			{
+				"text": "god",
+				"value": "7"
+			},
+			{
+				"text": "acceptabel",
+				"value": "6"
+			},
+			{
+				"text": "utilstrækkelig",
+				"value": "5"
+			},
+			{
+				"text": "svag",
+				"value": "4"
+			},
+			{
+				"text": "dårlig",
+				"value": "3"
+			},
+			{
+				"text": "elendig",
+				"value": "2"
+			},
+			{
+				"text": "katastrofal",
+				"value": "1"
+			},
+			{
+				"text": "håbløs",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(meget lav)",
+				"value": "0.0"
+			},
+			{
+				"text": "(lav)",
+				"value": "0.25"
+			},
+			{
+				"text": "(høj)",
+				"value": "0.50"
+			},
+			{
+				"text": "(meget høj)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "Uberegnelig"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "Kraftfuld"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "Hurtig"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Tekniker"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "Hovedstød"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Regainer"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "ustabil",
+				"value": "5"
+			},
+			{
+				"text": "ilter",
+				"value": "4"
+			},
+			{
+				"text": "temperamentsfuld",
+				"value": "3"
+			},
+			{
+				"text": "balanceret",
+				"value": "2"
+			},
+			{
+				"text": "rolig",
+				"value": "1"
+			},
+			{
+				"text": "stille",
+				"value": "0"
+			}
+		],
+		"desc": "Dansk",
+		"name": "da"
+	}
+}

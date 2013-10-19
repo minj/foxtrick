@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "ჩვეულებრივი"
+			},
+			{
+				"type": "pressing",
+				"value": "პრესინგი"
+			},
+			{
+				"type": "ca",
+				"value": "კონტრ–შეტევა"
+			},
+			{
+				"type": "aow",
+				"value": "ფლანგებიდან შეტევა"
+			},
+			{
+				"type": "aim",
+				"value": "ცენტრიდან შეტევა"
+			},
+			{
+				"type": "creatively",
+				"value": "შემოქმედებითად თამაში"
+			},
+			{
+				"type": "longshots",
+				"value": "შორეული დარტყმები"
+			}
+		],
+		"honesty": [
+			{
+				"text": "წმინდანი",
+				"value": "5"
+			},
+			{
+				"text": "უმწიკვლო",
+				"value": "4"
+			},
+			{
+				"text": "სამართლიანი",
+				"value": "3"
+			},
+			{
+				"text": "პატიოსანი",
+				"value": "2"
+			},
+			{
+				"text": "უსინდისო",
+				"value": "1"
+			},
+			{
+				"text": "გაიძვერა",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "გუნდის გული და სული",
+				"value": "5"
+			},
+			{
+				"text": "პოპულარული",
+				"value": "4"
+			},
+			{
+				"text": "საყვარელი",
+				"value": "3"
+			},
+			{
+				"text": "სასიამოვნო",
+				"value": "2"
+			},
+			{
+				"text": "საეჭვო",
+				"value": "1"
+			},
+			{
+				"text": "საძაგელი",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Ke",
+				"type": "Keeper",
+				"value": "მეკარე"
+			},
+			{
+				"short": "Cd",
+				"type": "Central defender",
+				"value": "ცენტრალური მცველი"
+			},
+			{
+				"short": "Wb",
+				"type": "Wing back",
+				"value": "განაპირა მცველი"
+			},
+			{
+				"short": "Im",
+				"type": "Inner midfielder",
+				"value": "ნახევარმცველი"
+			},
+			{
+				"short": "Wi",
+				"type": "Winger",
+				"value": "ფლანგი"
+			},
+			{
+				"short": "Fo",
+				"type": "Forward",
+				"value": "თავდამსხმელი"
+			}
+		],
+		"levels": [
+			{
+				"text": "ღვთაებრივი",
+				"value": "20"
+			},
+			{
+				"text": "ზღაპრული",
+				"value": "19"
+			},
+			{
+				"text": "ჯადოსნური",
+				"value": "18"
+			},
+			{
+				"text": "საარაკო",
+				"value": "17"
+			},
+			{
+				"text": "არამიწიერი",
+				"value": "16"
+			},
+			{
+				"text": "ბუმბერაზი",
+				"value": "15"
+			},
+			{
+				"text": "ზებუნებრივი",
+				"value": "14"
+			},
+			{
+				"text": "მსოფლიო დონის",
+				"value": "13"
+			},
+			{
+				"text": "დიდებული",
+				"value": "12"
+			},
+			{
+				"text": "ბრწყინვალე",
+				"value": "11"
+			},
+			{
+				"text": "საუცხოო",
+				"value": "10"
+			},
+			{
+				"text": "შესანიშნავი",
+				"value": "9"
+			},
+			{
+				"text": "ჩინებული",
+				"value": "8"
+			},
+			{
+				"text": "კარგი",
+				"value": "7"
+			},
+			{
+				"text": "ნორმალური",
+				"value": "6"
+			},
+			{
+				"text": "არასაკმარისი",
+				"value": "5"
+			},
+			{
+				"text": "სუსტი",
+				"value": "4"
+			},
+			{
+				"text": "ცუდი",
+				"value": "3"
+			},
+			{
+				"text": "უვარგისი",
+				"value": "2"
+			},
+			{
+				"text": "საშინელი",
+				"value": "1"
+			},
+			{
+				"text": "არანაირი",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(ძალიან დაბალი)",
+				"value": "0.0"
+			},
+			{
+				"text": "(დაბალი)",
+				"value": "0.25"
+			},
+			{
+				"text": "(მაღალი)",
+				"value": "0.50"
+			},
+			{
+				"text": "(ძალიან მაღალი)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "გამოუცნობი"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "ძლიერი"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "სწრაფი"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "ტექნიკური"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "თავი"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "ტრავმების ამტანი"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "შმაგი",
+				"value": "5"
+			},
+			{
+				"text": "აგრესიული",
+				"value": "4"
+			},
+			{
+				"text": "ფიცხი",
+				"value": "3"
+			},
+			{
+				"text": "გაწონასწორებული",
+				"value": "2"
+			},
+			{
+				"text": "მშვიდი",
+				"value": "1"
+			},
+			{
+				"text": "უშფოთველი",
+				"value": "0"
+			}
+		],
+		"desc": "Georgian",
+		"name": "ka"
+	}
+}

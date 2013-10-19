@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normal"
+			},
+			{
+				"type": "pressing",
+				"value": "Pressing"
+			},
+			{
+				"type": "ca",
+				"value": "Contre-attaques"
+			},
+			{
+				"type": "aow",
+				"value": "Attaque sur les ailes"
+			},
+			{
+				"type": "aim",
+				"value": "Attaque au centre"
+			},
+			{
+				"type": "creatively",
+				"value": "Jeu créatif"
+			},
+			{
+				"type": "longshots",
+				"value": "Tirs lointains"
+			}
+		],
+		"honesty": [
+			{
+				"text": "vertueux",
+				"value": "5"
+			},
+			{
+				"text": "intègre",
+				"value": "4"
+			},
+			{
+				"text": "sincère",
+				"value": "3"
+			},
+			{
+				"text": "honnête",
+				"value": "2"
+			},
+			{
+				"text": "malhonnête",
+				"value": "1"
+			},
+			{
+				"text": "fourbe",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "type adulé par ses coéquipiers",
+				"value": "5"
+			},
+			{
+				"text": "gars populaire",
+				"value": "4"
+			},
+			{
+				"text": "gars sympathique",
+				"value": "3"
+			},
+			{
+				"text": "gars aimable",
+				"value": "2"
+			},
+			{
+				"text": "personnage controversé",
+				"value": "1"
+			},
+			{
+				"text": "type désagréable",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Ga",
+				"type": "Keeper",
+				"value": "Gardien"
+			},
+			{
+				"short": "Ac",
+				"type": "Central defender",
+				"value": "Arrière central"
+			},
+			{
+				"short": "Al",
+				"type": "Wing back",
+				"value": "Arrière latéral"
+			},
+			{
+				"short": "Mdt",
+				"type": "Inner midfielder",
+				"value": "Milieu de terrain"
+			},
+			{
+				"short": "Ai",
+				"type": "Winger",
+				"value": "Ailier"
+			},
+			{
+				"short": "At",
+				"type": "Forward",
+				"value": "Attaquant"
+			}
+		],
+		"levels": [
+			{
+				"text": "divin",
+				"value": "20"
+			},
+			{
+				"text": "utopique",
+				"value": "19"
+			},
+			{
+				"text": "magique",
+				"value": "18"
+			},
+			{
+				"text": "mythique",
+				"value": "17"
+			},
+			{
+				"text": "extraterrestre",
+				"value": "16"
+			},
+			{
+				"text": "titanesque",
+				"value": "15"
+			},
+			{
+				"text": "surnaturel",
+				"value": "14"
+			},
+			{
+				"text": "légendaire",
+				"value": "13"
+			},
+			{
+				"text": "inoubliable",
+				"value": "12"
+			},
+			{
+				"text": "brillant",
+				"value": "11"
+			},
+			{
+				"text": "impressionnant",
+				"value": "10"
+			},
+			{
+				"text": "formidable",
+				"value": "9"
+			},
+			{
+				"text": "excellent",
+				"value": "8"
+			},
+			{
+				"text": "honorable",
+				"value": "7"
+			},
+			{
+				"text": "passable",
+				"value": "6"
+			},
+			{
+				"text": "inadéquat",
+				"value": "5"
+			},
+			{
+				"text": "faible",
+				"value": "4"
+			},
+			{
+				"text": "médiocre",
+				"value": "3"
+			},
+			{
+				"text": "mauvais",
+				"value": "2"
+			},
+			{
+				"text": "catastrophique",
+				"value": "1"
+			},
+			{
+				"text": "inexistant",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(très bas)",
+				"value": "0.0"
+			},
+			{
+				"text": "(bas)",
+				"value": "0.25"
+			},
+			{
+				"text": "(haut)",
+				"value": "0.50"
+			},
+			{
+				"text": "(très haut)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "Imprévisible"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "Costaud"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "Rapide"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Technique"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "Joueur de tête"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Guérison accélérée"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "instable",
+				"value": "5"
+			},
+			{
+				"text": "impulsif",
+				"value": "4"
+			},
+			{
+				"text": "caractériel",
+				"value": "3"
+			},
+			{
+				"text": "équilibré",
+				"value": "2"
+			},
+			{
+				"text": "calme",
+				"value": "1"
+			},
+			{
+				"text": "tranquille",
+				"value": "0"
+			}
+		],
+		"desc": "Français",
+		"name": "fr"
+	}
+}

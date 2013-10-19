@@ -1,0 +1,277 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "aim",
+				"value": "Ortadan hücum"
+			},
+			{
+				"type": "aow",
+				"value": "Cinahlardan hücum"
+			},
+			{
+				"type": "ca",
+				"value": "Əks hücumlar"
+			},
+			{
+				"type": "creatively",
+				"value": "Kreativ oyna"
+			},
+			{
+				"type": "longshots",
+				"value": "Uzaqdan zərbələr"
+			},
+			{
+				"type": "normal",
+				"value": "Normal"
+			},
+			{
+				"type": "pressing",
+				"value": "Pressinq"
+			}
+		],
+		"honesty": [
+			{
+				"text": "müqəddəs kimi",
+				"value": "5"
+			},
+			{
+				"text": "ədalətli",
+				"value": "4"
+			},
+			{
+				"text": "vicdanlı",
+				"value": "3"
+			},
+			{
+				"text": "səmimi",
+				"value": "2"
+			},
+			{
+				"text": "sədaqətsiz",
+				"value": "1"
+			},
+			{
+				"text": "şərəfsiz",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "komandanın sevimlisidir",
+				"value": "5"
+			},
+			{
+				"text": "məşhur oğlandır",
+				"value": "4"
+			},
+			{
+				"text": "sevimli oğlandır",
+				"value": "3"
+			},
+			{
+				"text": "xoş xasiyyətli oğlandır",
+				"value": "2"
+			},
+			{
+				"text": "davakar insandır",
+				"value": "1"
+			},
+			{
+				"text": "murdar oğlandır",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "MM",
+				"type": "Central defender",
+				"value": "Mərkəz Müdafiəçisi"
+			},
+			{
+				"short": "H",
+				"type": "Forward",
+				"value": "Hücumçu"
+			},
+			{
+				"short": "DY",
+				"type": "Inner midfielder",
+				"value": "Dayaq Yarımmüdafiəçi"
+			},
+			{
+				"short": "QA",
+				"type": "Keeper",
+				"value": "Qapıçı"
+			},
+			{
+				"short": "CM",
+				"type": "Wing back",
+				"value": "Cinah Müdafiəçisi"
+			},
+			{
+				"short": "CY",
+				"type": "Winger",
+				"value": "Cinah Yarımmüdafiəçisi"
+			}
+		],
+		"levels": [
+			{
+				"text": "ilahi",
+				"value": "20"
+			},
+			{
+				"text": "əfsanəvi",
+				"value": "19"
+			},
+			{
+				"text": "möcüzəvi",
+				"value": "18"
+			},
+			{
+				"text": "sehirli",
+				"value": "17"
+			},
+			{
+				"text": "hədsiz",
+				"value": "16"
+			},
+			{
+				"text": "fövqəladə",
+				"value": "15"
+			},
+			{
+				"text": "inanılmaz",
+				"value": "14"
+			},
+			{
+				"text": "dünya səviyyəli",
+				"value": "13"
+			},
+			{
+				"text": "möhtəşəm",
+				"value": "12"
+			},
+			{
+				"text": "parlaq",
+				"value": "11"
+			},
+			{
+				"text": "mükəmməl",
+				"value": "10"
+			},
+			{
+				"text": "üstün",
+				"value": "9"
+			},
+			{
+				"text": "əla",
+				"value": "8"
+			},
+			{
+				"text": "yaxşı",
+				"value": "7"
+			},
+			{
+				"text": "yetərli",
+				"value": "6"
+			},
+			{
+				"text": "yetərsiz",
+				"value": "5"
+			},
+			{
+				"text": "zəif",
+				"value": "4"
+			},
+			{
+				"text": "pis",
+				"value": "3"
+			},
+			{
+				"text": "bərbad",
+				"value": "2"
+			},
+			{
+				"text": "fəlakətli",
+				"value": "1"
+			},
+			{
+				"text": "mövcud deyil",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(Yüksək)",
+				"value": "0.50"
+			},
+			{
+				"text": "(Çox yüksək)",
+				"value": "0.75"
+			},
+			{
+				"text": "(Aşağı)",
+				"value": "0.25"
+			},
+			{
+				"text": "(Çox aşağı)",
+				"value": "0.0"
+			}
+		],
+		"specialties": [
+			{
+				"short": "",
+				"type": "Head",
+				"value": "Başla oynayan"
+			},
+			{
+				"short": "",
+				"type": "Powerful",
+				"value": "Güclü"
+			},
+			{
+				"short": "",
+				"type": "Quick",
+				"value": "Cəld"
+			},
+			{
+				"short": "",
+				"type": "Technical",
+				"value": "Texnikalı"
+			},
+			{
+				"short": "",
+				"type": "Unpredictable",
+				"value": "Gözlənilməz"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "dəyişkən",
+				"value": "5"
+			},
+			{
+				"text": "təmkinsiz",
+				"value": "4"
+			},
+			{
+				"text": "qızğın",
+				"value": "3"
+			},
+			{
+				"text": "təmkinli",
+				"value": "2"
+			},
+			{
+				"text": "mülayim",
+				"value": "1"
+			},
+			{
+				"text": "sakit",
+				"value": "0"
+			}
+		],
+		"desc": "Azərbaycanca",
+		"name": "az"
+	}
+}

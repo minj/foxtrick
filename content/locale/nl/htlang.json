@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "normaal"
+			},
+			{
+				"type": "pressing",
+				"value": "pressievoetbal"
+			},
+			{
+				"type": "ca",
+				"value": "counter"
+			},
+			{
+				"type": "aow",
+				"value": "vleugelaanval"
+			},
+			{
+				"type": "aim",
+				"value": "centrumaanval"
+			},
+			{
+				"type": "creatively",
+				"value": "creatief spel"
+			},
+			{
+				"type": "longshots",
+				"value": "afstandsschoten"
+			}
+		],
+		"honesty": [
+			{
+				"text": "goudeerlijk",
+				"value": "5"
+			},
+			{
+				"text": "rechtvaardig",
+				"value": "4"
+			},
+			{
+				"text": "oprecht",
+				"value": "3"
+			},
+			{
+				"text": "eerlijk",
+				"value": "2"
+			},
+			{
+				"text": "oneerlijk",
+				"value": "1"
+			},
+			{
+				"text": "berucht",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "geliefde teamspeler",
+				"value": "5"
+			},
+			{
+				"text": "populair",
+				"value": "4"
+			},
+			{
+				"text": "sympathiek",
+				"value": "3"
+			},
+			{
+				"text": "aangenaam",
+				"value": "2"
+			},
+			{
+				"text": "controversieel",
+				"value": "1"
+			},
+			{
+				"text": "gemeen",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "K",
+				"type": "Keeper",
+				"value": "Keeper"
+			},
+			{
+				"short": "CD",
+				"type": "Central defender",
+				"value": "Centrale verdediger"
+			},
+			{
+				"short": "WB",
+				"type": "Wing back",
+				"value": "Vleugelverdediger"
+			},
+			{
+				"short": "IM",
+				"type": "Inner midfielder",
+				"value": "Middenvelder"
+			},
+			{
+				"short": "W",
+				"type": "Winger",
+				"value": "Vleugelspeler"
+			},
+			{
+				"short": "F",
+				"type": "Forward",
+				"value": "Aanvaller"
+			}
+		],
+		"levels": [
+			{
+				"text": "goddelijk",
+				"value": "20"
+			},
+			{
+				"text": "utopisch",
+				"value": "19"
+			},
+			{
+				"text": "magisch",
+				"value": "18"
+			},
+			{
+				"text": "mythisch",
+				"value": "17"
+			},
+			{
+				"text": "buitenaards",
+				"value": "16"
+			},
+			{
+				"text": "reusachtig",
+				"value": "15"
+			},
+			{
+				"text": "bovennatuurlijk",
+				"value": "14"
+			},
+			{
+				"text": "wereldklasse",
+				"value": "13"
+			},
+			{
+				"text": "wonderbaarlijk",
+				"value": "12"
+			},
+			{
+				"text": "briljant",
+				"value": "11"
+			},
+			{
+				"text": "uitmuntend",
+				"value": "10"
+			},
+			{
+				"text": "formidabel",
+				"value": "9"
+			},
+			{
+				"text": "uitstekend",
+				"value": "8"
+			},
+			{
+				"text": "goed",
+				"value": "7"
+			},
+			{
+				"text": "redelijk",
+				"value": "6"
+			},
+			{
+				"text": "matig",
+				"value": "5"
+			},
+			{
+				"text": "zwak",
+				"value": "4"
+			},
+			{
+				"text": "slecht",
+				"value": "3"
+			},
+			{
+				"text": "waardeloos",
+				"value": "2"
+			},
+			{
+				"text": "rampzalig",
+				"value": "1"
+			},
+			{
+				"text": "niet-bestaand",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(zeer laag)",
+				"value": "0.0"
+			},
+			{
+				"text": "(laag)",
+				"value": "0.25"
+			},
+			{
+				"text": "(hoog)",
+				"value": "0.50"
+			},
+			{
+				"text": "(zeer hoog)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "On",
+				"type": "Unpredictable",
+				"value": "Onvoorspelbaar"
+			},
+			{
+				"short": "Kr",
+				"type": "Powerful",
+				"value": "Krachtig"
+			},
+			{
+				"short": "Sn",
+				"type": "Quick",
+				"value": "Snel"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Technisch"
+			},
+			{
+				"short": "Ko",
+				"type": "Head",
+				"value": "Koppen"
+			},
+			{
+				"short": "He",
+				"type": "Regainer",
+				"value": "Snel herstel"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "instabiel",
+				"value": "5"
+			},
+			{
+				"text": "opvliegend",
+				"value": "4"
+			},
+			{
+				"text": "temperamentvol",
+				"value": "3"
+			},
+			{
+				"text": "evenwichtig",
+				"value": "2"
+			},
+			{
+				"text": "kalm",
+				"value": "1"
+			},
+			{
+				"text": "rustig",
+				"value": "0"
+			}
+		],
+		"desc": "Nederlands",
+		"name": "nl"
+	}
+}

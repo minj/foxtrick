@@ -1,0 +1,307 @@
+{
+	"language": {
+		"tactics": {
+			"textContent": "﻿  ﻿",
+			"tactic": [
+				{
+					"type": "normal",
+					"value": "Venjuleg"
+				},
+				{
+					"type": "pressing",
+					"value": "Pressa"
+				},
+				{
+					"type": "ca",
+					"value": "Skyndisóknir"
+				},
+				{
+					"type": "aow",
+					"value": "Sókn gegnum kantana"
+				},
+				{
+					"type": "aim",
+					"value": "Sókn gegnum miðju"
+				},
+				{
+					"type": "creatively",
+					"value": "Spila skapandi"
+				},
+				{
+					"type": "longshots",
+					"value": "Langskot"
+				}
+			]
+		},
+		"honesty": {
+			"textContent": "﻿  ﻿",
+			"level": [
+				{
+					"text": "dýrlingur",
+					"value": "5"
+				},
+				{
+					"text": "réttsýnn",
+					"value": "4"
+				},
+				{
+					"text": "hreinskilinn",
+					"value": "3"
+				},
+				{
+					"text": "heiðarlegur",
+					"value": "2"
+				},
+				{
+					"text": "óheiðarlegur",
+					"value": "1"
+				},
+				{
+					"text": "illræmdur",
+					"value": "0"
+				}
+			]
+		},
+		"agreeability": {
+			"textContent": "﻿  ﻿",
+			"level": [
+				{
+					"text": "ástsæll liðsfélagi",
+					"value": "5"
+				},
+				{
+					"text": "vinsæll náungi",
+					"value": "4"
+				},
+				{
+					"text": "viðkunnanlegur náungi",
+					"value": "3"
+				},
+				{
+					"text": "geðþekkur náungi",
+					"value": "2"
+				},
+				{
+					"text": "umdeild manneskja",
+					"value": "1"
+				},
+				{
+					"text": "illgjarn náungi",
+					"value": "0"
+				}
+			]
+		},
+		"positions": {
+			"position": [
+				{
+					"short": "MV",
+					"type": "Keeper",
+					"value": "Markmaður"
+				},
+				{
+					"short": "VM",
+					"type": "Central defender",
+					"value": "Varnarmaður"
+				},
+				{
+					"short": "BV",
+					"type": "Wing back",
+					"value": "Bakvörður"
+				},
+				{
+					"short": "M",
+					"type": "Inner midfielder",
+					"value": "Miðjumaður"
+				},
+				{
+					"short": "K",
+					"type": "Winger",
+					"value": "Kantur"
+				},
+				{
+					"short": "F",
+					"type": "Forward",
+					"value": "Framherji"
+				}
+			],
+			"textContent": "﻿  ﻿"
+		},
+		"textContent": "﻿  \n﻿",
+		"levels": {
+			"textContent": "﻿  ﻿",
+			"level": [
+				{
+					"text": "guðdómlegur",
+					"value": "20"
+				},
+				{
+					"text": "ofurmannlegur",
+					"value": "19"
+				},
+				{
+					"text": "töfrum líkastur",
+					"value": "18"
+				},
+				{
+					"text": "goðsagnakenndur",
+					"value": "17"
+				},
+				{
+					"text": "ójarðneskur",
+					"value": "16"
+				},
+				{
+					"text": "ótrúlegur",
+					"value": "15"
+				},
+				{
+					"text": "yfirnáttúrulegur",
+					"value": "14"
+				},
+				{
+					"text": "heimsklassi",
+					"value": "13"
+				},
+				{
+					"text": "stórkostlegur",
+					"value": "12"
+				},
+				{
+					"text": "afburðasnjall",
+					"value": "11"
+				},
+				{
+					"text": "framúrskarandi",
+					"value": "10"
+				},
+				{
+					"text": "æðislegur",
+					"value": "9"
+				},
+				{
+					"text": "frábær",
+					"value": "8"
+				},
+				{
+					"text": "sterkur",
+					"value": "7"
+				},
+				{
+					"text": "sæmilegur",
+					"value": "6"
+				},
+				{
+					"text": "ófullnægjandi",
+					"value": "5"
+				},
+				{
+					"text": "slakur",
+					"value": "4"
+				},
+				{
+					"text": "lélegur",
+					"value": "3"
+				},
+				{
+					"text": "hörmulegur",
+					"value": "2"
+				},
+				{
+					"text": "skelfilegur",
+					"value": "1"
+				},
+				{
+					"text": "Ófær",
+					"value": "0"
+				}
+			]
+		},
+		"ratingSubLevels": {
+			"sublevel": [
+				{
+					"text": "(Mjög lágt)",
+					"value": "0.0"
+				},
+				{
+					"text": "(Lágt)",
+					"value": "0.25"
+				},
+				{
+					"text": "(Hátt)",
+					"value": "0.50"
+				},
+				{
+					"text": "(Mjög hátt)",
+					"value": "0.75"
+				}
+			],
+			"textContent": "﻿  ﻿"
+		},
+		"specialties": {
+			"textContent": "﻿  ﻿",
+			"specialty": [
+				{
+					"short": "Óú",
+					"type": "Unpredictable",
+					"value": "Óútreiknanlegur"
+				},
+				{
+					"short": "Kr",
+					"type": "Powerful",
+					"value": "Kraftmikill"
+				},
+				{
+					"short": "Sn",
+					"type": "Quick",
+					"value": "Snöggur"
+				},
+				{
+					"short": "Tæ",
+					"type": "Technical",
+					"value": "Tæknilegur"
+				},
+				{
+					"short": "Sk",
+					"type": "Head",
+					"value": "Skallamaður"
+				},
+				{
+					"short": "Hh",
+					"type": "Regainer",
+					"value": "Heilsuhraustur"
+				}
+			]
+		},
+		"aggressiveness": {
+			"textContent": "﻿  ﻿",
+			"level": [
+				{
+					"text": "óstöðugur",
+					"value": "5"
+				},
+				{
+					"text": "skapstór",
+					"value": "4"
+				},
+				{
+					"text": "mislyndur",
+					"value": "3"
+				},
+				{
+					"text": "yfirvegaður",
+					"value": "2"
+				},
+				{
+					"text": "rólegur",
+					"value": "1"
+				},
+				{
+					"text": "kyrrlátur",
+					"value": "0"
+				}
+			]
+		},
+		"desc": "Íslenska",
+		"name": "is"
+	}
+}

@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "normalny"
+			},
+			{
+				"type": "pressing",
+				"value": "Pressing"
+			},
+			{
+				"type": "ca",
+				"value": "Gra z kontry"
+			},
+			{
+				"type": "aow",
+				"value": "Atak skrzydłami"
+			},
+			{
+				"type": "aim",
+				"value": "Atak środkiem"
+			},
+			{
+				"type": "creatively",
+				"value": "Gra kreatywna"
+			},
+			{
+				"type": "longshots",
+				"value": "Strzały z dystansu"
+			}
+		],
+		"honesty": [
+			{
+				"text": "świątobliwy",
+				"value": "5"
+			},
+			{
+				"text": "szlachetny",
+				"value": "4"
+			},
+			{
+				"text": "prawy",
+				"value": "3"
+			},
+			{
+				"text": "uczciwy",
+				"value": "2"
+			},
+			{
+				"text": "nieuczciwy",
+				"value": "1"
+			},
+			{
+				"text": "podły",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "uwielbiany przez zespół",
+				"value": "5"
+			},
+			{
+				"text": "popularny",
+				"value": "4"
+			},
+			{
+				"text": "sympatyczny",
+				"value": "3"
+			},
+			{
+				"text": "przyjemny",
+				"value": "2"
+			},
+			{
+				"text": "kontrowersyjny",
+				"value": "1"
+			},
+			{
+				"text": "złośliwy",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Ke",
+				"type": "Keeper",
+				"value": "bramkarz"
+			},
+			{
+				"short": "Cd",
+				"type": "Central defender",
+				"value": "stoper"
+			},
+			{
+				"short": "Wb",
+				"type": "Wing back",
+				"value": "boczny obrońca"
+			},
+			{
+				"short": "Im",
+				"type": "Inner midfielder",
+				"value": "pomocnik"
+			},
+			{
+				"short": "Wi",
+				"type": "Winger",
+				"value": "skrzydłowy"
+			},
+			{
+				"short": "Fo",
+				"type": "Forward",
+				"value": "napastnik"
+			}
+		],
+		"levels": [
+			{
+				"text": "boski",
+				"value": "20"
+			},
+			{
+				"text": "utopijny",
+				"value": "19"
+			},
+			{
+				"text": "magiczny",
+				"value": "18"
+			},
+			{
+				"text": "mityczny",
+				"value": "17"
+			},
+			{
+				"text": "nieziemski",
+				"value": "16"
+			},
+			{
+				"text": "tytaniczny",
+				"value": "15"
+			},
+			{
+				"text": "nadprzyrodzony",
+				"value": "14"
+			},
+			{
+				"text": "światowej klasy",
+				"value": "13"
+			},
+			{
+				"text": "mistrzowski",
+				"value": "12"
+			},
+			{
+				"text": "błyskotliwy",
+				"value": "11"
+			},
+			{
+				"text": "olśniewający",
+				"value": "10"
+			},
+			{
+				"text": "fantastyczny",
+				"value": "9"
+			},
+			{
+				"text": "znakomity",
+				"value": "8"
+			},
+			{
+				"text": "solidny",
+				"value": "7"
+			},
+			{
+				"text": "zadowalający",
+				"value": "6"
+			},
+			{
+				"text": "przeciętny",
+				"value": "5"
+			},
+			{
+				"text": "słaby",
+				"value": "4"
+			},
+			{
+				"text": "kiepski",
+				"value": "3"
+			},
+			{
+				"text": "nędzny",
+				"value": "2"
+			},
+			{
+				"text": "fatalny",
+				"value": "1"
+			},
+			{
+				"text": "beznadziejny",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(min.)",
+				"value": "0.0"
+			},
+			{
+				"text": "(niski)",
+				"value": "0.25"
+			},
+			{
+				"text": "(wysoki)",
+				"value": "0.50"
+			},
+			{
+				"text": "(maks.)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "nieprzewidywalny"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "atletyczny"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "szybki"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "techniczny"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "gra głową"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "witalny"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "niezrównoważony",
+				"value": "5"
+			},
+			{
+				"text": "porywczy",
+				"value": "4"
+			},
+			{
+				"text": "z charakterem",
+				"value": "3"
+			},
+			{
+				"text": "zrównoważony",
+				"value": "2"
+			},
+			{
+				"text": "opanowany",
+				"value": "1"
+			},
+			{
+				"text": "spokojny",
+				"value": "0"
+			}
+		],
+		"desc": "Polski",
+		"name": "pl"
+	}
+}

@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normal"
+			},
+			{
+				"type": "pressing",
+				"value": "Pres"
+			},
+			{
+				"type": "ca",
+				"value": "Kontra atak"
+			},
+			{
+				"type": "aow",
+				"value": "Kanattan Atak"
+			},
+			{
+				"type": "aim",
+				"value": "Ortadan Atak"
+			},
+			{
+				"type": "creatively",
+				"value": "Yaratıcı oyna"
+			},
+			{
+				"type": "longshots",
+				"value": "Uzaktan şutlar"
+			}
+		],
+		"honesty": [
+			{
+				"text": "aziz gibi",
+				"value": "5"
+			},
+			{
+				"text": "erdemli",
+				"value": "4"
+			},
+			{
+				"text": "güvenilir",
+				"value": "3"
+			},
+			{
+				"text": "dürüst",
+				"value": "2"
+			},
+			{
+				"text": "sahtekar",
+				"value": "1"
+			},
+			{
+				"text": "çirkef",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "sevilen takım arkadaşı",
+				"value": "5"
+			},
+			{
+				"text": "popüler bir oyuncu",
+				"value": "4"
+			},
+			{
+				"text": "sempatik bir oyuncu",
+				"value": "3"
+			},
+			{
+				"text": "canayakın bir oyuncu",
+				"value": "2"
+			},
+			{
+				"text": "kavgacı bir oyuncu",
+				"value": "1"
+			},
+			{
+				"text": "pislik bir oyuncu",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Kal",
+				"type": "Keeper",
+				"value": "Kaleci"
+			},
+			{
+				"short": "St",
+				"type": "Central defender",
+				"value": "Stoper"
+			},
+			{
+				"short": "Be",
+				"type": "Wing back",
+				"value": "Bek"
+			},
+			{
+				"short": "Im",
+				"type": "Inner midfielder",
+				"value": "İç Ortasaha"
+			},
+			{
+				"short": "Ka",
+				"type": "Winger",
+				"value": "Kanat"
+			},
+			{
+				"short": "Fo",
+				"type": "Forward",
+				"value": "Forvet"
+			}
+		],
+		"levels": [
+			{
+				"text": "mucizevi",
+				"value": "20"
+			},
+			{
+				"text": "ütopik",
+				"value": "19"
+			},
+			{
+				"text": "sihirli",
+				"value": "18"
+			},
+			{
+				"text": "efsanevi",
+				"value": "17"
+			},
+			{
+				"text": "dünya dışı",
+				"value": "16"
+			},
+			{
+				"text": "devasa",
+				"value": "15"
+			},
+			{
+				"text": "doğa üstü",
+				"value": "14"
+			},
+			{
+				"text": "dünya çapında",
+				"value": "13"
+			},
+			{
+				"text": "muhteşem",
+				"value": "12"
+			},
+			{
+				"text": "görkemli",
+				"value": "11"
+			},
+			{
+				"text": "mükemmel",
+				"value": "10"
+			},
+			{
+				"text": "üstün",
+				"value": "9"
+			},
+			{
+				"text": "çok iyi",
+				"value": "8"
+			},
+			{
+				"text": "kaliteli",
+				"value": "7"
+			},
+			{
+				"text": "yeterli",
+				"value": "6"
+			},
+			{
+				"text": "vasat",
+				"value": "5"
+			},
+			{
+				"text": "zayıf",
+				"value": "4"
+			},
+			{
+				"text": "kötü",
+				"value": "3"
+			},
+			{
+				"text": "berbat",
+				"value": "2"
+			},
+			{
+				"text": "felaket",
+				"value": "1"
+			},
+			{
+				"text": "kazma",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(çok düşük)",
+				"value": "0.0"
+			},
+			{
+				"text": "(düşük)",
+				"value": "0.25"
+			},
+			{
+				"text": "(yüksek)",
+				"value": "0.50"
+			},
+			{
+				"text": "(çok yüksek)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "Kestirilemez"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "Güçlü"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "Hızlı"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Teknik"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "Kafa"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Çabuk İyileşen"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "dengesiz",
+				"value": "5"
+			},
+			{
+				"text": "ateşli",
+				"value": "4"
+			},
+			{
+				"text": "huysuz",
+				"value": "3"
+			},
+			{
+				"text": "dengeli",
+				"value": "2"
+			},
+			{
+				"text": "sakin",
+				"value": "1"
+			},
+			{
+				"text": "durgun",
+				"value": "0"
+			}
+		],
+		"desc": "Türkçe",
+		"name": "tr"
+	}
+}

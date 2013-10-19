@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normal"
+			},
+			{
+				"type": "pressing",
+				"value": "Press"
+			},
+			{
+				"type": "ca",
+				"value": "Kontringsfotball"
+			},
+			{
+				"type": "aow",
+				"value": "Angrep på kantene"
+			},
+			{
+				"type": "aim",
+				"value": "Angrep i midten"
+			},
+			{
+				"type": "creatively",
+				"value": "Spill kreativt"
+			},
+			{
+				"type": "longshots",
+				"value": "Langskudd"
+			}
+		],
+		"honesty": [
+			{
+				"text": "helgenaktig",
+				"value": "5"
+			},
+			{
+				"text": "rettskaffen",
+				"value": "4"
+			},
+			{
+				"text": "oppriktig",
+				"value": "3"
+			},
+			{
+				"text": "ærlig",
+				"value": "2"
+			},
+			{
+				"text": "uærlig",
+				"value": "1"
+			},
+			{
+				"text": "beryktet",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "elsket lagkamerat",
+				"value": "5"
+			},
+			{
+				"text": "populær fyr",
+				"value": "4"
+			},
+			{
+				"text": "sympatisk fyr",
+				"value": "3"
+			},
+			{
+				"text": "behagelig fyr",
+				"value": "2"
+			},
+			{
+				"text": "kontroversiell person",
+				"value": "1"
+			},
+			{
+				"text": "ufordragelig type",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Ke",
+				"type": "Keeper",
+				"value": "Målvakt"
+			},
+			{
+				"short": "Cd",
+				"type": "Central defender",
+				"value": "Midtstopper"
+			},
+			{
+				"short": "Wb",
+				"type": "Wing back",
+				"value": "Back"
+			},
+			{
+				"short": "Im",
+				"type": "Inner midfielder",
+				"value": "Midtbanespiller"
+			},
+			{
+				"short": "Wi",
+				"type": "Winger",
+				"value": "Ving"
+			},
+			{
+				"short": "Fo",
+				"type": "Forward",
+				"value": "Spiss"
+			}
+		],
+		"levels": [
+			{
+				"text": "guddommelig",
+				"value": "20"
+			},
+			{
+				"text": "utopisk",
+				"value": "19"
+			},
+			{
+				"text": "magisk",
+				"value": "18"
+			},
+			{
+				"text": "mytisk",
+				"value": "17"
+			},
+			{
+				"text": "utenomjordisk",
+				"value": "16"
+			},
+			{
+				"text": "titanisk",
+				"value": "15"
+			},
+			{
+				"text": "eventyrlig",
+				"value": "14"
+			},
+			{
+				"text": "fantastisk",
+				"value": "13"
+			},
+			{
+				"text": "storslagen",
+				"value": "12"
+			},
+			{
+				"text": "briljant",
+				"value": "11"
+			},
+			{
+				"text": "fremragende",
+				"value": "10"
+			},
+			{
+				"text": "eminent",
+				"value": "9"
+			},
+			{
+				"text": "utmerket",
+				"value": "8"
+			},
+			{
+				"text": "god",
+				"value": "7"
+			},
+			{
+				"text": "akseptabel",
+				"value": "6"
+			},
+			{
+				"text": "middelmådig",
+				"value": "5"
+			},
+			{
+				"text": "svak",
+				"value": "4"
+			},
+			{
+				"text": "dårlig",
+				"value": "3"
+			},
+			{
+				"text": "elendig",
+				"value": "2"
+			},
+			{
+				"text": "katastrofal",
+				"value": "1"
+			},
+			{
+				"text": "fraværende",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(veldig lav)",
+				"value": "0.0"
+			},
+			{
+				"text": "(lav)",
+				"value": "0.25"
+			},
+			{
+				"text": "(høy)",
+				"value": "0.50"
+			},
+			{
+				"text": "(veldig høy)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "Uforutsigbar"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "Kraftfull"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "Rask"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Teknisk"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "Hodespesialist"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Friskus"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "ustabil",
+				"value": "5"
+			},
+			{
+				"text": "hissig",
+				"value": "4"
+			},
+			{
+				"text": "temperamentsfull",
+				"value": "3"
+			},
+			{
+				"text": "balansert",
+				"value": "2"
+			},
+			{
+				"text": "rolig",
+				"value": "1"
+			},
+			{
+				"text": "snill som et lam",
+				"value": "0"
+			}
+		],
+		"desc": "Norsk, bokmål",
+		"name": "no"
+	}
+}

@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normal"
+			},
+			{
+				"type": "pressing",
+				"value": "Pressing"
+			},
+			{
+				"type": "ca",
+				"value": "Counter-attacks"
+			},
+			{
+				"type": "aow",
+				"value": "Attack on wings"
+			},
+			{
+				"type": "aim",
+				"value": "Attack in the Middle"
+			},
+			{
+				"type": "creatively",
+				"value": "Play creatively"
+			},
+			{
+				"type": "longshots",
+				"value": "Long shots"
+			}
+		],
+		"honesty": [
+			{
+				"text": "saintly",
+				"value": "5"
+			},
+			{
+				"text": "righteous",
+				"value": "4"
+			},
+			{
+				"text": "upright",
+				"value": "3"
+			},
+			{
+				"text": "honest",
+				"value": "2"
+			},
+			{
+				"text": "dishonest",
+				"value": "1"
+			},
+			{
+				"text": "infamous",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "beloved team member",
+				"value": "5"
+			},
+			{
+				"text": "popular guy",
+				"value": "4"
+			},
+			{
+				"text": "sympathetic guy",
+				"value": "3"
+			},
+			{
+				"text": "pleasant guy",
+				"value": "2"
+			},
+			{
+				"text": "controversial person",
+				"value": "1"
+			},
+			{
+				"text": "nasty fellow",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "GK",
+				"type": "Keeper",
+				"value": "Keeper"
+			},
+			{
+				"short": "CD",
+				"type": "Central defender",
+				"value": "Central defender"
+			},
+			{
+				"short": "WB",
+				"type": "Wing back",
+				"value": "Wing back"
+			},
+			{
+				"short": "IM",
+				"type": "Inner midfielder",
+				"value": "Inner midfielder"
+			},
+			{
+				"short": "WI",
+				"type": "Winger",
+				"value": "Winger"
+			},
+			{
+				"short": "FW",
+				"type": "Forward",
+				"value": "Forward"
+			}
+		],
+		"levels": [
+			{
+				"text": "divine",
+				"value": "20"
+			},
+			{
+				"text": "utopian",
+				"value": "19"
+			},
+			{
+				"text": "magical",
+				"value": "18"
+			},
+			{
+				"text": "mythical",
+				"value": "17"
+			},
+			{
+				"text": "extra-terrestrial",
+				"value": "16"
+			},
+			{
+				"text": "titanic",
+				"value": "15"
+			},
+			{
+				"text": "supernatural",
+				"value": "14"
+			},
+			{
+				"text": "world class",
+				"value": "13"
+			},
+			{
+				"text": "magnificent",
+				"value": "12"
+			},
+			{
+				"text": "brilliant",
+				"value": "11"
+			},
+			{
+				"text": "outstanding",
+				"value": "10"
+			},
+			{
+				"text": "formidable",
+				"value": "9"
+			},
+			{
+				"text": "excellent",
+				"value": "8"
+			},
+			{
+				"text": "solid",
+				"value": "7"
+			},
+			{
+				"text": "passable",
+				"value": "6"
+			},
+			{
+				"text": "inadequate",
+				"value": "5"
+			},
+			{
+				"text": "weak",
+				"value": "4"
+			},
+			{
+				"text": "poor",
+				"value": "3"
+			},
+			{
+				"text": "wretched",
+				"value": "2"
+			},
+			{
+				"text": "disastrous",
+				"value": "1"
+			},
+			{
+				"text": "non-existent",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(very low)",
+				"value": "0.0"
+			},
+			{
+				"text": "(low)",
+				"value": "0.25"
+			},
+			{
+				"text": "(high)",
+				"value": "0.50"
+			},
+			{
+				"text": "(very high)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "Unpredictable"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "Powerful"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "Quick"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Technical"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "Head"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Regainer"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "unstable",
+				"value": "5"
+			},
+			{
+				"text": "fiery",
+				"value": "4"
+			},
+			{
+				"text": "temperamental",
+				"value": "3"
+			},
+			{
+				"text": "balanced",
+				"value": "2"
+			},
+			{
+				"text": "calm",
+				"value": "1"
+			},
+			{
+				"text": "tranquil",
+				"value": "0"
+			}
+		],
+		"desc": "English",
+		"name": "en"
+	}
+}

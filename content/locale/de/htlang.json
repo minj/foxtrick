@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "normal"
+			},
+			{
+				"type": "pressing",
+				"value": "Pressing"
+			},
+			{
+				"type": "ca",
+				"value": "auf Konter spielen"
+			},
+			{
+				"type": "aow",
+				"value": "Angriff über die Flügel"
+			},
+			{
+				"type": "aim",
+				"value": "Angriff durch die Mitte"
+			},
+			{
+				"type": "creatively",
+				"value": "kreativ spielen"
+			},
+			{
+				"type": "longshots",
+				"value": "Weitschüsse"
+			}
+		],
+		"honesty": [
+			{
+				"text": "herzensgut",
+				"value": "5"
+			},
+			{
+				"text": "rechtschaffen",
+				"value": "4"
+			},
+			{
+				"text": "aufrichtig",
+				"value": "3"
+			},
+			{
+				"text": "ehrlich",
+				"value": "2"
+			},
+			{
+				"text": "unehrlich",
+				"value": "1"
+			},
+			{
+				"text": "niederträchtig",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "eine Integrationsfigur",
+				"value": "5"
+			},
+			{
+				"text": "ein beliebter Spieler",
+				"value": "4"
+			},
+			{
+				"text": "ein sympathischer Mensch",
+				"value": "3"
+			},
+			{
+				"text": "ein angenehmer Zeitgenosse",
+				"value": "2"
+			},
+			{
+				"text": "eine umstrittene Person",
+				"value": "1"
+			},
+			{
+				"text": "ein Ekel",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "T",
+				"type": "Keeper",
+				"value": "Torwart"
+			},
+			{
+				"short": "Iv",
+				"type": "Central defender",
+				"value": "Innenverteidiger"
+			},
+			{
+				"short": "Av",
+				"type": "Wing back",
+				"value": "Außenverteidiger"
+			},
+			{
+				"short": "zM",
+				"type": "Inner midfielder",
+				"value": "zentrales Mittelfeld"
+			},
+			{
+				"short": "Fl",
+				"type": "Winger",
+				"value": "Flügelspieler"
+			},
+			{
+				"short": "St",
+				"type": "Forward",
+				"value": "Stürmer"
+			}
+		],
+		"levels": [
+			{
+				"text": "göttlich",
+				"value": "20"
+			},
+			{
+				"text": "galaktisch",
+				"value": "19"
+			},
+			{
+				"text": "märchenhaft",
+				"value": "18"
+			},
+			{
+				"text": "mythisch",
+				"value": "17"
+			},
+			{
+				"text": "außerirdisch",
+				"value": "16"
+			},
+			{
+				"text": "gigantisch",
+				"value": "15"
+			},
+			{
+				"text": "übernatürlich",
+				"value": "14"
+			},
+			{
+				"text": "Weltklasse",
+				"value": "13"
+			},
+			{
+				"text": "fantastisch",
+				"value": "12"
+			},
+			{
+				"text": "brillant",
+				"value": "11"
+			},
+			{
+				"text": "großartig",
+				"value": "10"
+			},
+			{
+				"text": "hervorragend",
+				"value": "9"
+			},
+			{
+				"text": "sehr gut",
+				"value": "8"
+			},
+			{
+				"text": "gut",
+				"value": "7"
+			},
+			{
+				"text": "passabel",
+				"value": "6"
+			},
+			{
+				"text": "durchschnittlich",
+				"value": "5"
+			},
+			{
+				"text": "schwach",
+				"value": "4"
+			},
+			{
+				"text": "armselig",
+				"value": "3"
+			},
+			{
+				"text": "erbärmlich",
+				"value": "2"
+			},
+			{
+				"text": "katastrophal",
+				"value": "1"
+			},
+			{
+				"text": "nicht vorhanden",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "min.",
+				"value": "0.0"
+			},
+			{
+				"text": "tief",
+				"value": "0.25"
+			},
+			{
+				"text": "hoch",
+				"value": "0.50"
+			},
+			{
+				"text": "max.",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "un",
+				"type": "Unpredictable",
+				"value": "unberechenbar"
+			},
+			{
+				"short": "du",
+				"type": "Powerful",
+				"value": "durchsetzungsstark"
+			},
+			{
+				"short": "sc",
+				"type": "Quick",
+				"value": "schnell"
+			},
+			{
+				"short": "Bz",
+				"type": "Technical",
+				"value": "Ballzauberer"
+			},
+			{
+				"short": "Ko",
+				"type": "Head",
+				"value": "Kopfballstärke"
+			},
+			{
+				"short": "Ge",
+				"type": "Regainer",
+				"value": "Geneser"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "hitzköpfig",
+				"value": "5"
+			},
+			{
+				"text": "aufbrausend",
+				"value": "4"
+			},
+			{
+				"text": "temperamentvoll",
+				"value": "3"
+			},
+			{
+				"text": "ausgeglichen",
+				"value": "2"
+			},
+			{
+				"text": "ruhig",
+				"value": "1"
+			},
+			{
+				"text": "introvertiert",
+				"value": "0"
+			}
+		],
+		"desc": "Deutsch",
+		"name": "de"
+	}
+}

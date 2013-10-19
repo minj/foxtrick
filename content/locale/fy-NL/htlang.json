@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "aim",
+				"value": "Sintrumoanfallen"
+			},
+			{
+				"type": "aow",
+				"value": "Wjukoanfallen"
+			},
+			{
+				"type": "ca",
+				"value": "Tsjinoanfallen"
+			},
+			{
+				"type": "creatively",
+				"value": "Kreatyf spul"
+			},
+			{
+				"type": "longshots",
+				"value": "Ofstânsskoaten"
+			},
+			{
+				"type": "normal",
+				"value": "Normaal"
+			},
+			{
+				"type": "pressing",
+				"value": "Druk sette"
+			}
+		],
+		"honesty": [
+			{
+				"text": "hillich",
+				"value": "5"
+			},
+			{
+				"text": "rjochtfeardich",
+				"value": "4"
+			},
+			{
+				"text": "oprjocht",
+				"value": "3"
+			},
+			{
+				"text": "earlik",
+				"value": "2"
+			},
+			{
+				"text": "ûnearlik",
+				"value": "1"
+			},
+			{
+				"text": "net te fertrouwen",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "spiler wêr't elts fan hâldt",
+				"value": "5"
+			},
+			{
+				"text": "populêre spiler",
+				"value": "4"
+			},
+			{
+				"text": "sympatyke spiler",
+				"value": "3"
+			},
+			{
+				"text": "oangename spiler",
+				"value": "2"
+			},
+			{
+				"text": "tsjinstridige spiler",
+				"value": "1"
+			},
+			{
+				"text": "ferfelende spiler",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "SF",
+				"type": "Central defender",
+				"value": "Sintrale ferdigener"
+			},
+			{
+				"short": "OF",
+				"type": "Forward",
+				"value": "Oanfaller"
+			},
+			{
+				"short": "MF",
+				"type": "Inner midfielder",
+				"value": "Sintrale middenfjilder"
+			},
+			{
+				"short": "DF",
+				"type": "Keeper",
+				"value": "Doelferdigener"
+			},
+			{
+				"short": "WB",
+				"type": "Wing back",
+				"value": "Wjukferdigener"
+			},
+			{
+				"short": "WI",
+				"type": "Winger",
+				"value": "Wjukspiler"
+			}
+		],
+		"levels": [
+			{
+				"text": "godlik",
+				"value": "20"
+			},
+			{
+				"text": "utopysk",
+				"value": "19"
+			},
+			{
+				"text": "magysk",
+				"value": "18"
+			},
+			{
+				"text": "mytysk",
+				"value": "17"
+			},
+			{
+				"text": "bûtenierdsk",
+				"value": "16"
+			},
+			{
+				"text": "reuseftich",
+				"value": "15"
+			},
+			{
+				"text": "boppenatuerlik",
+				"value": "14"
+			},
+			{
+				"text": "wrâldklasse",
+				"value": "13"
+			},
+			{
+				"text": "bjusterbaarlik",
+				"value": "12"
+			},
+			{
+				"text": "briljant",
+				"value": "11"
+			},
+			{
+				"text": "treflik",
+				"value": "10"
+			},
+			{
+				"text": "formidabel",
+				"value": "9"
+			},
+			{
+				"text": "poerbêst",
+				"value": "8"
+			},
+			{
+				"text": "bêst",
+				"value": "7"
+			},
+			{
+				"text": "aardich",
+				"value": "6"
+			},
+			{
+				"text": "matich",
+				"value": "5"
+			},
+			{
+				"text": "swak",
+				"value": "4"
+			},
+			{
+				"text": "min",
+				"value": "3"
+			},
+			{
+				"text": "neat wurdich",
+				"value": "2"
+			},
+			{
+				"text": "jammerdearlik",
+				"value": "1"
+			},
+			{
+				"text": "net-besteand",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(Tige leech)",
+				"value": "0.0"
+			},
+			{
+				"text": "(Leech)",
+				"value": "0.25"
+			},
+			{
+				"text": "(Heech)",
+				"value": "0.50"
+			},
+			{
+				"text": "(Tige heech)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "",
+				"type": "Head",
+				"value": "Koppe"
+			},
+			{
+				"short": "",
+				"type": "Powerful",
+				"value": "Krêftich"
+			},
+			{
+				"short": "",
+				"type": "Quick",
+				"value": "Fluch"
+			},
+			{
+				"short": "",
+				"type": "Technical",
+				"value": "Technysk"
+			},
+			{
+				"short": "",
+				"type": "Unpredictable",
+				"value": "Unfoarspelber"
+			},
+			{
+				"short": "",
+				"type": "Regainer",
+				"value": "Snelle hersteller"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "ûnstabyl",
+				"value": "5"
+			},
+			{
+				"text": "fier",
+				"value": "4"
+			},
+			{
+				"text": "temperamintfol",
+				"value": "3"
+			},
+			{
+				"text": "balansearre",
+				"value": "2"
+			},
+			{
+				"text": "kalm",
+				"value": "1"
+			},
+			{
+				"text": "rêstich",
+				"value": "0"
+			}
+		],
+		"desc": "Frysk",
+		"name": "fy-NL"
+	}
+}

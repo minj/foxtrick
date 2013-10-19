@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normalus"
+			},
+			{
+				"type": "pressing",
+				"value": "Spaudimas"
+			},
+			{
+				"type": "ca",
+				"value": "Kontratakos"
+			},
+			{
+				"type": "aow",
+				"value": "Atakos kraštais"
+			},
+			{
+				"type": "aim",
+				"value": "Atakos centru"
+			},
+			{
+				"type": "creatively",
+				"value": "Žaisti išradingai"
+			},
+			{
+				"type": "longshots",
+				"value": "Tolimi smūgiai"
+			}
+		],
+		"honesty": [
+			{
+				"text": "šventasis",
+				"value": "5"
+			},
+			{
+				"text": "teisingas",
+				"value": "4"
+			},
+			{
+				"text": "doras",
+				"value": "3"
+			},
+			{
+				"text": "sąžiningas",
+				"value": "2"
+			},
+			{
+				"text": "nesąžiningas",
+				"value": "1"
+			},
+			{
+				"text": "prastos reputacijos",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "mylimas komandos narys",
+				"value": "5"
+			},
+			{
+				"text": "populiarus vaikinas",
+				"value": "4"
+			},
+			{
+				"text": "simpatiškas vaikinas",
+				"value": "3"
+			},
+			{
+				"text": "malonus vaikinas",
+				"value": "2"
+			},
+			{
+				"text": "kontroversiška asmenybė",
+				"value": "1"
+			},
+			{
+				"text": "bjaurus vaikinas",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "VR",
+				"type": "Keeper",
+				"value": "Vartininkas"
+			},
+			{
+				"short": "CG",
+				"type": "Central defender",
+				"value": "Vidurio gynėjas"
+			},
+			{
+				"short": "KG",
+				"type": "Wing back",
+				"value": "Krašto gynėjas"
+			},
+			{
+				"short": "CS",
+				"type": "Inner midfielder",
+				"value": "Saugas"
+			},
+			{
+				"short": "KS",
+				"type": "Winger",
+				"value": "Krašto saugas"
+			},
+			{
+				"short": "PL",
+				"type": "Forward",
+				"value": "Puolėjas"
+			}
+		],
+		"levels": [
+			{
+				"text": "dieviškas",
+				"value": "20"
+			},
+			{
+				"text": "utopinis",
+				"value": "19"
+			},
+			{
+				"text": "magiškas",
+				"value": "18"
+			},
+			{
+				"text": "mistinis",
+				"value": "17"
+			},
+			{
+				"text": "nežemiškas",
+				"value": "16"
+			},
+			{
+				"text": "gigantiškas",
+				"value": "15"
+			},
+			{
+				"text": "antgamtiškas",
+				"value": "14"
+			},
+			{
+				"text": "pasaulinės klasės",
+				"value": "13"
+			},
+			{
+				"text": "fantastiškas",
+				"value": "12"
+			},
+			{
+				"text": "genialus",
+				"value": "11"
+			},
+			{
+				"text": "išskirtinis",
+				"value": "10"
+			},
+			{
+				"text": "nuostabus",
+				"value": "9"
+			},
+			{
+				"text": "puikus",
+				"value": "8"
+			},
+			{
+				"text": "geras",
+				"value": "7"
+			},
+			{
+				"text": "priimtinas",
+				"value": "6"
+			},
+			{
+				"text": "vidutiniškas",
+				"value": "5"
+			},
+			{
+				"text": "silpnas",
+				"value": "4"
+			},
+			{
+				"text": "menkas",
+				"value": "3"
+			},
+			{
+				"text": "apgailėtinas",
+				"value": "2"
+			},
+			{
+				"text": "katastrofiškas",
+				"value": "1"
+			},
+			{
+				"text": "neegzistuojantis",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(min.)",
+				"value": "0.0"
+			},
+			{
+				"text": "(žemas)",
+				"value": "0.25"
+			},
+			{
+				"text": "(aukštas)",
+				"value": "0.50"
+			},
+			{
+				"text": "(maks.)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Nen",
+				"type": "Unpredictable",
+				"value": "Nenuspėjamas"
+			},
+			{
+				"short": "Stp",
+				"type": "Powerful",
+				"value": "Stiprus"
+			},
+			{
+				"short": "Grt",
+				"type": "Quick",
+				"value": "Greitas"
+			},
+			{
+				"short": "Tch",
+				"type": "Technical",
+				"value": "Techniškas"
+			},
+			{
+				"short": "Auk",
+				"type": "Head",
+				"value": "Aukštas"
+			},
+			{
+				"short": "Ats",
+				"type": "Regainer",
+				"value": "Atsigaunantis"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "nepastovus",
+				"value": "5"
+			},
+			{
+				"text": "karštakošis",
+				"value": "4"
+			},
+			{
+				"text": "temperamentingas",
+				"value": "3"
+			},
+			{
+				"text": "subalansuotas",
+				"value": "2"
+			},
+			{
+				"text": "ramus",
+				"value": "1"
+			},
+			{
+				"text": "pasyvus",
+				"value": "0"
+			}
+		],
+		"desc": "Lietuvių",
+		"name": "lt"
+	}
+}

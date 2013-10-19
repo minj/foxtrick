@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normale"
+			},
+			{
+				"type": "pressing",
+				"value": "Pressing"
+			},
+			{
+				"type": "ca",
+				"value": "Contropiede"
+			},
+			{
+				"type": "aow",
+				"value": "Attacco sulle fasce"
+			},
+			{
+				"type": "aim",
+				"value": "Attacco al centro"
+			},
+			{
+				"type": "creatively",
+				"value": "Libertà d'inventiva"
+			},
+			{
+				"type": "longshots",
+				"value": "Tiri da fuori"
+			}
+		],
+		"honesty": [
+			{
+				"text": "quasi santa",
+				"value": "5"
+			},
+			{
+				"text": "virtuosa",
+				"value": "4"
+			},
+			{
+				"text": "retta",
+				"value": "3"
+			},
+			{
+				"text": "onesta",
+				"value": "2"
+			},
+			{
+				"text": "disonesta",
+				"value": "1"
+			},
+			{
+				"text": "infame",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "amata",
+				"value": "5"
+			},
+			{
+				"text": "popolare",
+				"value": "4"
+			},
+			{
+				"text": "simpatica",
+				"value": "3"
+			},
+			{
+				"text": "gradevole",
+				"value": "2"
+			},
+			{
+				"text": "scontrosa",
+				"value": "1"
+			},
+			{
+				"text": "attaccabrighe",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Po",
+				"type": "Keeper",
+				"value": "Portiere"
+			},
+			{
+				"short": "Dc",
+				"type": "Central defender",
+				"value": "Difensore centrale"
+			},
+			{
+				"short": "Te",
+				"type": "Wing back",
+				"value": "Terzino"
+			},
+			{
+				"short": "Cc",
+				"type": "Inner midfielder",
+				"value": "Centrocampista"
+			},
+			{
+				"short": "Al",
+				"type": "Winger",
+				"value": "Ala"
+			},
+			{
+				"short": "At",
+				"type": "Forward",
+				"value": "Attaccante"
+			}
+		],
+		"levels": [
+			{
+				"text": "divino",
+				"value": "20"
+			},
+			{
+				"text": "utopico",
+				"value": "19"
+			},
+			{
+				"text": "magico",
+				"value": "18"
+			},
+			{
+				"text": "mitico",
+				"value": "17"
+			},
+			{
+				"text": "extraterrestre",
+				"value": "16"
+			},
+			{
+				"text": "titanico",
+				"value": "15"
+			},
+			{
+				"text": "sovrannaturale",
+				"value": "14"
+			},
+			{
+				"text": "fuoriclasse",
+				"value": "13"
+			},
+			{
+				"text": "magnifico",
+				"value": "12"
+			},
+			{
+				"text": "splendido",
+				"value": "11"
+			},
+			{
+				"text": "straordinario",
+				"value": "10"
+			},
+			{
+				"text": "formidabile",
+				"value": "9"
+			},
+			{
+				"text": "eccellente",
+				"value": "8"
+			},
+			{
+				"text": "buono",
+				"value": "7"
+			},
+			{
+				"text": "accettabile",
+				"value": "6"
+			},
+			{
+				"text": "insufficiente",
+				"value": "5"
+			},
+			{
+				"text": "debole",
+				"value": "4"
+			},
+			{
+				"text": "scarso",
+				"value": "3"
+			},
+			{
+				"text": "tremendo",
+				"value": "2"
+			},
+			{
+				"text": "disastroso",
+				"value": "1"
+			},
+			{
+				"text": "inesistente",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(molto basso)",
+				"value": "0.0"
+			},
+			{
+				"text": "(basso)",
+				"value": "0.25"
+			},
+			{
+				"text": "(alto)",
+				"value": "0.50"
+			},
+			{
+				"text": "(molto alto)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Imp",
+				"type": "Unpredictable",
+				"value": "Imprevedibile"
+			},
+			{
+				"short": "Pot",
+				"type": "Powerful",
+				"value": "Potente"
+			},
+			{
+				"short": "Vel",
+				"type": "Quick",
+				"value": "Veloce"
+			},
+			{
+				"short": "Tec",
+				"type": "Technical",
+				"value": "Tecnico"
+			},
+			{
+				"short": "CdT",
+				"type": "Head",
+				"value": "Colpo di testa"
+			},
+			{
+				"short": "GV",
+				"type": "Regainer",
+				"value": "Guarigione Veloce"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "lunatica",
+				"value": "5"
+			},
+			{
+				"text": "irascibile",
+				"value": "4"
+			},
+			{
+				"text": "impulsiva",
+				"value": "3"
+			},
+			{
+				"text": "equilibrata",
+				"value": "2"
+			},
+			{
+				"text": "calma",
+				"value": "1"
+			},
+			{
+				"text": "tranquilla",
+				"value": "0"
+			}
+		],
+		"desc": "Italiano",
+		"name": "it"
+	}
+}

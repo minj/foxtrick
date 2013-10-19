@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Нормална"
+			},
+			{
+				"type": "pressing",
+				"value": "Преса"
+			},
+			{
+				"type": "ca",
+				"value": "Контраатаки"
+			},
+			{
+				"type": "aow",
+				"value": "Атака по крилата"
+			},
+			{
+				"type": "aim",
+				"value": "Атака в средата"
+			},
+			{
+				"type": "creatively",
+				"value": "Играй креативно"
+			},
+			{
+				"type": "longshots",
+				"value": "Далечни удари"
+			}
+		],
+		"honesty": [
+			{
+				"text": "като светец",
+				"value": "5"
+			},
+			{
+				"text": "честен",
+				"value": "4"
+			},
+			{
+				"text": "добър",
+				"value": "3"
+			},
+			{
+				"text": "почтен",
+				"value": "2"
+			},
+			{
+				"text": "некоректен",
+				"value": "1"
+			},
+			{
+				"text": "непочтен",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "любимец на отбора",
+				"value": "5"
+			},
+			{
+				"text": "популярен човек",
+				"value": "4"
+			},
+			{
+				"text": "симпатичен човек",
+				"value": "3"
+			},
+			{
+				"text": "приятен човек",
+				"value": "2"
+			},
+			{
+				"text": "противоречив човек",
+				"value": "1"
+			},
+			{
+				"text": "неприятен човек",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Ke",
+				"type": "Keeper",
+				"value": "Вратар"
+			},
+			{
+				"short": "Cd",
+				"type": "Central defender",
+				"value": "Защитник"
+			},
+			{
+				"short": "Wb",
+				"type": "Wing back",
+				"value": "Бек"
+			},
+			{
+				"short": "Im",
+				"type": "Inner midfielder",
+				"value": "Полузащитник"
+			},
+			{
+				"short": "Wi",
+				"type": "Winger",
+				"value": "Крило"
+			},
+			{
+				"short": "Fo",
+				"type": "Forward",
+				"value": "Нападател"
+			}
+		],
+		"levels": [
+			{
+				"text": "божествено",
+				"value": "20"
+			},
+			{
+				"text": "легендарно",
+				"value": "19"
+			},
+			{
+				"text": "вълшебно",
+				"value": "18"
+			},
+			{
+				"text": "митично",
+				"value": "17"
+			},
+			{
+				"text": "извънземно",
+				"value": "16"
+			},
+			{
+				"text": "титанично",
+				"value": "15"
+			},
+			{
+				"text": "свръхестествено",
+				"value": "14"
+			},
+			{
+				"text": "световна класа",
+				"value": "13"
+			},
+			{
+				"text": "великолепно",
+				"value": "12"
+			},
+			{
+				"text": "брилянтно",
+				"value": "11"
+			},
+			{
+				"text": "изключително",
+				"value": "10"
+			},
+			{
+				"text": "прекрасно",
+				"value": "9"
+			},
+			{
+				"text": "отлично",
+				"value": "8"
+			},
+			{
+				"text": "стабилно",
+				"value": "7"
+			},
+			{
+				"text": "задоволително",
+				"value": "6"
+			},
+			{
+				"text": "посредствено",
+				"value": "5"
+			},
+			{
+				"text": "слабо",
+				"value": "4"
+			},
+			{
+				"text": "лошо",
+				"value": "3"
+			},
+			{
+				"text": "ужасно",
+				"value": "2"
+			},
+			{
+				"text": "бедствено",
+				"value": "1"
+			},
+			{
+				"text": "липсващо",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(мн. ниско)",
+				"value": "0.0"
+			},
+			{
+				"text": "(ниско)",
+				"value": "0.25"
+			},
+			{
+				"text": "(високо)",
+				"value": "0.50"
+			},
+			{
+				"text": "(мн. високо)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "Непредвидим"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "Сила"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "Бърз"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Техничен"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "Игра с глава"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Възстановяване"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "неуравновесен",
+				"value": "5"
+			},
+			{
+				"text": "сприхав",
+				"value": "4"
+			},
+			{
+				"text": "темпераментен",
+				"value": "3"
+			},
+			{
+				"text": "уравновесен",
+				"value": "2"
+			},
+			{
+				"text": "спокоен",
+				"value": "1"
+			},
+			{
+				"text": "тих",
+				"value": "0"
+			}
+		],
+		"desc": "Български",
+		"name": "bg"
+	}
+}

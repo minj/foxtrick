@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normaali"
+			},
+			{
+				"type": "pressing",
+				"value": "Painostus"
+			},
+			{
+				"type": "ca",
+				"value": "Vastahyökkäykset"
+			},
+			{
+				"type": "aow",
+				"value": "Hyökkäys laidoilta"
+			},
+			{
+				"type": "aim",
+				"value": "Hyökkäys keskeltä"
+			},
+			{
+				"type": "creatively",
+				"value": "Luova peli"
+			},
+			{
+				"type": "longshots",
+				"value": "Kaukolaukaukset"
+			}
+		],
+		"honesty": [
+			{
+				"text": "pyhimys",
+				"value": "5"
+			},
+			{
+				"text": "oikeudentuntoinen",
+				"value": "4"
+			},
+			{
+				"text": "suoraselkäinen",
+				"value": "3"
+			},
+			{
+				"text": "rehellinen",
+				"value": "2"
+			},
+			{
+				"text": "epärehellinen",
+				"value": "1"
+			},
+			{
+				"text": "täysin arvaamaton",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "rakastettu joukkueen jäsen",
+				"value": "5"
+			},
+			{
+				"text": "suosittu kaveri",
+				"value": "4"
+			},
+			{
+				"text": "sympaattinen kaveri",
+				"value": "3"
+			},
+			{
+				"text": "miellyttävä heppu",
+				"value": "2"
+			},
+			{
+				"text": "kiistelty henkilö",
+				"value": "1"
+			},
+			{
+				"text": "ilkeä tyyppi",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Mv",
+				"type": "Keeper",
+				"value": "Maalivahti"
+			},
+			{
+				"short": "Kp",
+				"type": "Central defender",
+				"value": "Keskuspuolustaja"
+			},
+			{
+				"short": "Lp",
+				"type": "Wing back",
+				"value": "Laitapuolustaja"
+			},
+			{
+				"short": "Kk",
+				"type": "Inner midfielder",
+				"value": "Keskikenttäpelaaja"
+			},
+			{
+				"short": "Lt",
+				"type": "Winger",
+				"value": "Laituri"
+			},
+			{
+				"short": "Hy",
+				"type": "Forward",
+				"value": "Hyökkääjä"
+			}
+		],
+		"levels": [
+			{
+				"text": "jumalainen",
+				"value": "20"
+			},
+			{
+				"text": "utopinen",
+				"value": "19"
+			},
+			{
+				"text": "maaginen",
+				"value": "18"
+			},
+			{
+				"text": "myyttinen",
+				"value": "17"
+			},
+			{
+				"text": "uskomaton",
+				"value": "16"
+			},
+			{
+				"text": "titaaninen",
+				"value": "15"
+			},
+			{
+				"text": "yliluonnollinen",
+				"value": "14"
+			},
+			{
+				"text": "unohtumaton",
+				"value": "13"
+			},
+			{
+				"text": "armoitettu",
+				"value": "12"
+			},
+			{
+				"text": "häikäisevä",
+				"value": "11"
+			},
+			{
+				"text": "loistava",
+				"value": "10"
+			},
+			{
+				"text": "mahtava",
+				"value": "9"
+			},
+			{
+				"text": "erinomainen",
+				"value": "8"
+			},
+			{
+				"text": "hyvä",
+				"value": "7"
+			},
+			{
+				"text": "kelvollinen",
+				"value": "6"
+			},
+			{
+				"text": "välttävä",
+				"value": "5"
+			},
+			{
+				"text": "heikko",
+				"value": "4"
+			},
+			{
+				"text": "kehno",
+				"value": "3"
+			},
+			{
+				"text": "kurja",
+				"value": "2"
+			},
+			{
+				"text": "surkea",
+				"value": "1"
+			},
+			{
+				"text": "olematon",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(erittäin matala)",
+				"value": "0.0"
+			},
+			{
+				"text": "(matala)",
+				"value": "0.25"
+			},
+			{
+				"text": "(korkea)",
+				"value": "0.50"
+			},
+			{
+				"text": "(erittäin korkea)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Ar",
+				"type": "Unpredictable",
+				"value": "Arvaamaton"
+			},
+			{
+				"short": "Vo",
+				"type": "Powerful",
+				"value": "Voimakas"
+			},
+			{
+				"short": "No",
+				"type": "Quick",
+				"value": "Nopea"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Tekninen"
+			},
+			{
+				"short": "Pp",
+				"type": "Head",
+				"value": "Pääpeli"
+			},
+			{
+				"short": "To",
+				"type": "Regainer",
+				"value": "Toipuja"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "epävakaa",
+				"value": "5"
+			},
+			{
+				"text": "tulisieluinen",
+				"value": "4"
+			},
+			{
+				"text": "temperamenttinen",
+				"value": "3"
+			},
+			{
+				"text": "tasapainoinen",
+				"value": "2"
+			},
+			{
+				"text": "levollinen",
+				"value": "1"
+			},
+			{
+				"text": "seesteinen",
+				"value": "0"
+			}
+		],
+		"desc": "Suomi",
+		"name": "fi"
+	}
+}

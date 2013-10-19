@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normálna"
+			},
+			{
+				"type": "pressing",
+				"value": "Pressing"
+			},
+			{
+				"type": "ca",
+				"value": "Protiútoky"
+			},
+			{
+				"type": "aow",
+				"value": "Útok po krídlach"
+			},
+			{
+				"type": "aim",
+				"value": "Útok stredom"
+			},
+			{
+				"type": "creatively",
+				"value": "Kreatívna hra"
+			},
+			{
+				"type": "longshots",
+				"value": "Strely z diaľky"
+			}
+		],
+		"honesty": [
+			{
+				"text": "svätec",
+				"value": "5"
+			},
+			{
+				"text": "spravodlivý",
+				"value": "4"
+			},
+			{
+				"text": "férový",
+				"value": "3"
+			},
+			{
+				"text": "čestný",
+				"value": "2"
+			},
+			{
+				"text": "nečestný",
+				"value": "1"
+			},
+			{
+				"text": "hanebný",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "Miláčik tímu",
+				"value": "5"
+			},
+			{
+				"text": "Obľúbený chlapík",
+				"value": "4"
+			},
+			{
+				"text": "Sympaťák",
+				"value": "3"
+			},
+			{
+				"text": "Príjemný chlapík",
+				"value": "2"
+			},
+			{
+				"text": "Hašterivý človek",
+				"value": "1"
+			},
+			{
+				"text": "Protivný chlap",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Ke",
+				"type": "Keeper",
+				"value": "Brankár"
+			},
+			{
+				"short": "Cd",
+				"type": "Central defender",
+				"value": "Stredný obranca"
+			},
+			{
+				"short": "Wb",
+				"type": "Wing back",
+				"value": "Krajný obranca"
+			},
+			{
+				"short": "Im",
+				"type": "Inner midfielder",
+				"value": "Záložník"
+			},
+			{
+				"short": "Wi",
+				"type": "Winger",
+				"value": "Krajný záložník"
+			},
+			{
+				"short": "Fo",
+				"type": "Forward",
+				"value": "Útočník"
+			}
+		],
+		"levels": [
+			{
+				"text": "božský",
+				"value": "20"
+			},
+			{
+				"text": "legendárny",
+				"value": "19"
+			},
+			{
+				"text": "magický",
+				"value": "18"
+			},
+			{
+				"text": "mýtický",
+				"value": "17"
+			},
+			{
+				"text": "nadpozemský",
+				"value": "16"
+			},
+			{
+				"text": "kolosálny",
+				"value": "15"
+			},
+			{
+				"text": "nadprirodzený",
+				"value": "14"
+			},
+			{
+				"text": "svetový",
+				"value": "13"
+			},
+			{
+				"text": "veľkolepý",
+				"value": "12"
+			},
+			{
+				"text": "brilantný",
+				"value": "11"
+			},
+			{
+				"text": "výnimočný",
+				"value": "10"
+			},
+			{
+				"text": "vynikajúci",
+				"value": "9"
+			},
+			{
+				"text": "výborný",
+				"value": "8"
+			},
+			{
+				"text": "solídny",
+				"value": "7"
+			},
+			{
+				"text": "schopný",
+				"value": "6"
+			},
+			{
+				"text": "nedostatočný",
+				"value": "5"
+			},
+			{
+				"text": "slabý",
+				"value": "4"
+			},
+			{
+				"text": "biedny",
+				"value": "3"
+			},
+			{
+				"text": "úbohý",
+				"value": "2"
+			},
+			{
+				"text": "katastrofálny",
+				"value": "1"
+			},
+			{
+				"text": "neexistujúci",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(veľmi nízky)",
+				"value": "0.0"
+			},
+			{
+				"text": "(nízky)",
+				"value": "0.25"
+			},
+			{
+				"text": "(vysoký)",
+				"value": "0.50"
+			},
+			{
+				"text": "(veľmi vysoký)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Ne",
+				"type": "Unpredictable",
+				"value": "Nepredvídateľný"
+			},
+			{
+				"short": "Si",
+				"type": "Powerful",
+				"value": "Silový"
+			},
+			{
+				"short": "Rý",
+				"type": "Quick",
+				"value": "Rýchly"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Technický"
+			},
+			{
+				"short": "Hl",
+				"type": "Head",
+				"value": "Hlavičkár"
+			},
+			{
+				"short": "Nez",
+				"type": "Regainer",
+				"value": "Nezmar"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "nestabilný",
+				"value": "5"
+			},
+			{
+				"text": "výbušný",
+				"value": "4"
+			},
+			{
+				"text": "temperamentný",
+				"value": "3"
+			},
+			{
+				"text": "vyrovnaný",
+				"value": "2"
+			},
+			{
+				"text": "chladný",
+				"value": "1"
+			},
+			{
+				"text": "tichý",
+				"value": "0"
+			}
+		],
+		"desc": "Slovenčina",
+		"name": "sk"
+	}
+}

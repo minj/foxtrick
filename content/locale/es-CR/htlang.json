@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Normal"
+			},
+			{
+				"type": "pressing",
+				"value": "Presionar"
+			},
+			{
+				"type": "ca",
+				"value": "Contraataques"
+			},
+			{
+				"type": "aow",
+				"value": "Atacar por las bandas"
+			},
+			{
+				"type": "aim",
+				"value": "Atacar por el centro"
+			},
+			{
+				"type": "creatively",
+				"value": "Jugar creativamente"
+			},
+			{
+				"type": "longshots",
+				"value": "Tiros largos"
+			}
+		],
+		"honesty": [
+			{
+				"text": "santito",
+				"value": "5"
+			},
+			{
+				"text": "honorable",
+				"value": "4"
+			},
+			{
+				"text": "justo",
+				"value": "3"
+			},
+			{
+				"text": "honesto",
+				"value": "2"
+			},
+			{
+				"text": "deshonesto",
+				"value": "1"
+			},
+			{
+				"text": "nefasto",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "querido compañero de equipo",
+				"value": "5"
+			},
+			{
+				"text": "popular",
+				"value": "4"
+			},
+			{
+				"text": "carismático",
+				"value": "3"
+			},
+			{
+				"text": "agradable",
+				"value": "2"
+			},
+			{
+				"text": "polémico",
+				"value": "1"
+			},
+			{
+				"text": "antipático",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Po",
+				"type": "Keeper",
+				"value": "Portero"
+			},
+			{
+				"short": "Dc",
+				"type": "Central defender",
+				"value": "Defensor central"
+			},
+			{
+				"short": "Dl",
+				"type": "Wing back",
+				"value": "Defensor lateral"
+			},
+			{
+				"short": "Mc",
+				"type": "Inner midfielder",
+				"value": "Mediocampista"
+			},
+			{
+				"short": "Ml",
+				"type": "Winger",
+				"value": "Lateral"
+			},
+			{
+				"short": "De",
+				"type": "Forward",
+				"value": "Delantero"
+			}
+		],
+		"levels": [
+			{
+				"text": "divino",
+				"value": "20"
+			},
+			{
+				"text": "utópico",
+				"value": "19"
+			},
+			{
+				"text": "mágico",
+				"value": "18"
+			},
+			{
+				"text": "mítico",
+				"value": "17"
+			},
+			{
+				"text": "extraterrestre",
+				"value": "16"
+			},
+			{
+				"text": "titánico",
+				"value": "15"
+			},
+			{
+				"text": "sobrenatural",
+				"value": "14"
+			},
+			{
+				"text": "clase mundial",
+				"value": "13"
+			},
+			{
+				"text": "magnífico",
+				"value": "12"
+			},
+			{
+				"text": "brillante",
+				"value": "11"
+			},
+			{
+				"text": "destacado",
+				"value": "10"
+			},
+			{
+				"text": "formidable",
+				"value": "9"
+			},
+			{
+				"text": "excelente",
+				"value": "8"
+			},
+			{
+				"text": "bueno",
+				"value": "7"
+			},
+			{
+				"text": "aceptable",
+				"value": "6"
+			},
+			{
+				"text": "insuficiente",
+				"value": "5"
+			},
+			{
+				"text": "débil",
+				"value": "4"
+			},
+			{
+				"text": "pobre",
+				"value": "3"
+			},
+			{
+				"text": "horrible",
+				"value": "2"
+			},
+			{
+				"text": "desastroso",
+				"value": "1"
+			},
+			{
+				"text": "inexistente",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(muy bajo)",
+				"value": "0.0"
+			},
+			{
+				"text": "(bajo)",
+				"value": "0.25"
+			},
+			{
+				"text": "(alto)",
+				"value": "0.50"
+			},
+			{
+				"text": "(muy alto)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Im",
+				"type": "Unpredictable",
+				"value": "Impredecible"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "Potente"
+			},
+			{
+				"short": "Rá",
+				"type": "Quick",
+				"value": "Rápido"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Técnico"
+			},
+			{
+				"short": "Ca",
+				"type": "Head",
+				"value": "Cabeceador"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Recuperador"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "inestable",
+				"value": "5"
+			},
+			{
+				"text": "iracundo",
+				"value": "4"
+			},
+			{
+				"text": "temperamental",
+				"value": "3"
+			},
+			{
+				"text": "estable",
+				"value": "2"
+			},
+			{
+				"text": "calmado",
+				"value": "1"
+			},
+			{
+				"text": "tranquilo",
+				"value": "0"
+			}
+		],
+		"desc": "Español, Centroamericano",
+		"name": "es-CR"
+	}
+}

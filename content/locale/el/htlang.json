@@ -1,0 +1,282 @@
+{
+	"language": {
+		"tactics": [
+			{
+				"type": "normal",
+				"value": "Κανονικά"
+			},
+			{
+				"type": "pressing",
+				"value": "Πρεσάρισμα"
+			},
+			{
+				"type": "ca",
+				"value": "Αντεπιθέσεις"
+			},
+			{
+				"type": "aow",
+				"value": "Επίθεση από τα πλάγια"
+			},
+			{
+				"type": "aim",
+				"value": "Επίθεση από το κέντρο"
+			},
+			{
+				"type": "creatively",
+				"value": "Δημιουργικό Παιχνίδι"
+			},
+			{
+				"type": "longshots",
+				"value": "Μακρινά σουτ"
+			}
+		],
+		"honesty": [
+			{
+				"text": "σαν άγιος",
+				"value": "5"
+			},
+			{
+				"text": "δίκαιος",
+				"value": "4"
+			},
+			{
+				"text": "ευθύς",
+				"value": "3"
+			},
+			{
+				"text": "έντιμος",
+				"value": "2"
+			},
+			{
+				"text": "ανέντιμος",
+				"value": "1"
+			},
+			{
+				"text": "αχρείος",
+				"value": "0"
+			}
+		],
+		"agreeability": [
+			{
+				"text": "αγαπημένος συμπαίκτης",
+				"value": "5"
+			},
+			{
+				"text": "δημοφιλής τύπος",
+				"value": "4"
+			},
+			{
+				"text": "συμπαθητικός τύπος",
+				"value": "3"
+			},
+			{
+				"text": "ευχάριστος τύπος",
+				"value": "2"
+			},
+			{
+				"text": "αμφιλεγόμενος τύπος",
+				"value": "1"
+			},
+			{
+				"text": "κακός τύπος",
+				"value": "0"
+			}
+		],
+		"positions": [
+			{
+				"short": "Ke",
+				"type": "Keeper",
+				"value": "Τερματοφύλακας"
+			},
+			{
+				"short": "Cd",
+				"type": "Central defender",
+				"value": "Κεντρικός Αμυντικός"
+			},
+			{
+				"short": "Wb",
+				"type": "Wing back",
+				"value": "Πλάγιος Αμυντικός"
+			},
+			{
+				"short": "Im",
+				"type": "Inner midfielder",
+				"value": "Κεντρικός Μέσος"
+			},
+			{
+				"short": "Wi",
+				"type": "Winger",
+				"value": "Πλάγιος Μέσος"
+			},
+			{
+				"short": "Fo",
+				"type": "Forward",
+				"value": "Επιθετικός"
+			}
+		],
+		"levels": [
+			{
+				"text": "θεϊκός",
+				"value": "20"
+			},
+			{
+				"text": "ουτοπικός",
+				"value": "19"
+			},
+			{
+				"text": "μαγικός",
+				"value": "18"
+			},
+			{
+				"text": "μυθικός",
+				"value": "17"
+			},
+			{
+				"text": "εξωπραγματικός",
+				"value": "16"
+			},
+			{
+				"text": "τιτάνιος",
+				"value": "15"
+			},
+			{
+				"text": "υπερφυσικός",
+				"value": "14"
+			},
+			{
+				"text": "παγκόσμιας κλάσης",
+				"value": "13"
+			},
+			{
+				"text": "εντυπωσιακός",
+				"value": "12"
+			},
+			{
+				"text": "εκπληκτικός",
+				"value": "11"
+			},
+			{
+				"text": "εξαιρετικός",
+				"value": "10"
+			},
+			{
+				"text": "άριστος",
+				"value": "9"
+			},
+			{
+				"text": "πολύ καλός",
+				"value": "8"
+			},
+			{
+				"text": "καλός",
+				"value": "7"
+			},
+			{
+				"text": "μέτριος",
+				"value": "6"
+			},
+			{
+				"text": "ανεπαρκής",
+				"value": "5"
+			},
+			{
+				"text": "αδύναμος",
+				"value": "4"
+			},
+			{
+				"text": "κακός",
+				"value": "3"
+			},
+			{
+				"text": "άθλιος",
+				"value": "2"
+			},
+			{
+				"text": "καταστροφικός",
+				"value": "1"
+			},
+			{
+				"text": "ανύπαρκτος",
+				"value": "0"
+			}
+		],
+		"ratingSubLevels": [
+			{
+				"text": "(πολύ χαμηλό)",
+				"value": "0.0"
+			},
+			{
+				"text": "(χαμηλό)",
+				"value": "0.25"
+			},
+			{
+				"text": "(υψηλό)",
+				"value": "0.50"
+			},
+			{
+				"text": "(πολύ υψηλό)",
+				"value": "0.75"
+			}
+		],
+		"specialties": [
+			{
+				"short": "Un",
+				"type": "Unpredictable",
+				"value": "Απρόβλεπτος"
+			},
+			{
+				"short": "Po",
+				"type": "Powerful",
+				"value": "Δυνατός"
+			},
+			{
+				"short": "Qu",
+				"type": "Quick",
+				"value": "Γρήγορος"
+			},
+			{
+				"short": "Te",
+				"type": "Technical",
+				"value": "Τεχνικός"
+			},
+			{
+				"short": "He",
+				"type": "Head",
+				"value": "Κεφαλιά"
+			},
+			{
+				"short": "Re",
+				"type": "Regainer",
+				"value": "Ταχυθεραπεύσιμος"
+			}
+		],
+		"aggressiveness": [
+			{
+				"text": "ασταθής",
+				"value": "5"
+			},
+			{
+				"text": "βίαιος",
+				"value": "4"
+			},
+			{
+				"text": "οξύθυμος",
+				"value": "3"
+			},
+			{
+				"text": "ισορροπημένος",
+				"value": "2"
+			},
+			{
+				"text": "ήρεμος",
+				"value": "1"
+			},
+			{
+				"text": "γαλήνιος",
+				"value": "0"
+			}
+		],
+		"desc": "Ελληνικά",
+		"name": "el"
+	}
+}
