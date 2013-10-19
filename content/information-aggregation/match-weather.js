@@ -47,7 +47,8 @@ Foxtrick.modules['MatchWeather'] = {
 	},
 		
 	showWeather: function(doc, data) {
-			var div = doc.querySelector('#ctl00_ctl00_CPContent_CPMain_pnlPreMatch > div:not(.float_left)');
+			var div = doc.querySelector('#ctl00_ctl00_CPContent_CPMain_pnlPreMatch > div:not(.float_left):not(#ctl00_ctl00_CPContent_CPMain_pnlTeamInfo)');
+			if(!div) return; 
 			var img = div.querySelector('p:last-child img');
 			if(img) img.parentNode.appendChild(doc.createTextNode(' '+Foxtrickl10n.getString('matchWeather.expected')));
 			var pN = doc.createElement('p');
