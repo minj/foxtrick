@@ -586,6 +586,7 @@ else {
 
 						var responseHandler = function(messageEvent) {
 							try {
+								// content context
 								if (messageEvent.json.callbackToken != callbackToken)
 									return;
 
@@ -609,6 +610,7 @@ else {
 					__makeHandlerWrapper: function(handler) {
 						return {
 							receiveMessage: function(messageEvent) {
+								// bg context
 								var request = messageEvent.json.data;
 								var id = sandboxed.__getTabId(messageEvent.target);
 
@@ -626,7 +628,7 @@ else {
 										sendAsyncMessage('response', responseMessage);
 									else if (typeof(messageManager) !== 'undefined') {
 										try {
-											var childMM = Foxtrick.getFennecMM(messageEvent);
+											var childMM = messageEvent.target.messageManager;
 											childMM.sendAsyncMessage('response', responseMessage);
 										}
 										catch (e) {
