@@ -1,0 +1,856 @@
+{
+	"links": [
+		{
+			"id": "homepage",
+			"href": "http://www.foxtrick.org/"
+		},
+		{
+			"id": "bugTracker",
+			"href": "http://code.google.com/p/foxtrick/issues/"
+		},
+		{
+			"id": "hattrickForum",
+			"href": "http://www.hattrick.org/Forum/Overview.aspx?v=0&f=173635"
+		},
+		{
+			"id": "screenshots",
+			"href": "http://www.foxtrick.org/screenshots/"
+		},
+		{
+			"id": "nightlyFirefox",
+			"href": "http://www.foxtrick.org/nightly/"
+		},
+		{
+			"id": "nightlyChrome",
+			"href": "http://www.foxtrick.org/nightly/chrome/"
+		},
+		{
+			"id": "nightlyOpera",
+			"href": "http://www.foxtrick.org/nightly/opera/"
+		},
+		{
+			"id": "nightlySafari",
+			"href": "http://www.foxtrick.org/nightly/safari/"
+		},
+		{
+			"id": "recentChanges",
+			"href": "http://code.google.com/p/foxtrick/source/list"
+		}
+	],
+	"maintainers": [
+		{
+			"id": "8342420",
+			"name": "ryanli"
+		},
+		{
+			"id": "7776339",
+			"name": "convincedd"
+		}
+	],
+	"developers": [
+		{
+			"id": "1270528",
+			"name": "larsw84"
+		},
+		{
+			"id": "2336766",
+			"name": "spambot"
+		},
+		{
+			"id": "7776339",
+			"name": "convincedd"
+		},
+		{
+			"id": "765274",
+			"name": "taised"
+		},
+		{
+			"id": "8378622",
+			"name": "bummerland"
+		},
+		{
+			"id": "3542943",
+			"name": "Jestar"
+		},
+		{
+			"id": "6228713",
+			"name": "smates"
+		},
+		{
+			"id": "3737795",
+			"name": "OBarros"
+		},
+		{
+			"id": "7409095",
+			"name": "stephan57"
+		},
+		{
+			"id": "637644",
+			"name": "baumanns"
+		},
+		{
+			"id": "4342858",
+			"name": "ljushaff"
+		},
+		{
+			"id": "8342420",
+			"name": "ryanli"
+		},
+		{
+			"id": "3410980",
+			"name": "Aimo_Kanuuna"
+		},
+		{
+			"id": "11335334",
+			"name": "CatzHoek"
+		},
+		{
+			"id": "8366392",
+			"name": "LA-MJ"
+		},
+		{
+			"id": "653581",
+			"name": "CHPP-teles"
+		}
+	],
+	"translations": [
+		{
+			"language": "Albanian",
+			"translators": [
+				{
+					"id": "2090503",
+					"name": "GM-Eagle"
+				}
+			]
+		},
+		{
+			"language": "العربية (Arabic)",
+			"translators": [
+				{
+					"id": "9311330",
+					"name": "GM-OmaniMilani"
+				}
+			]
+		},
+		{
+			"language": "Azərbaycanca",
+			"translators": [
+				{
+					"id": "7564618",
+					"name": "LA-Shamil"
+				},
+				{
+					"id": "4417979",
+					"name": "Aze-Maestro"
+				}
+			]
+		},
+		{
+			"language": "Български",
+			"translators": [
+				{
+					"id": "1048018",
+					"name": "Mod-ivo_stoyanov"
+				}
+			]
+		},
+		{
+			"language": "Bosnian",
+			"translators": [
+				{
+					"id": "5345125",
+					"name": "Mod-Marin"
+				},
+				{
+					"id": "12387677",
+					"name": "gomago"
+				}
+			]
+		},
+		{
+			"language": "Беларуская",
+			"translators": [
+				{
+					"id": "1512628",
+					"name": "LA-Stolik"
+				}
+			]
+		},
+		{
+			"language": "Catalan",
+			"translators": [
+				{
+					"id": "753905",
+					"name": "carlesmu"
+				}
+			]
+		},
+		{
+			"language": "Čeština",
+			"translators": [
+				{
+					"id": "1132186",
+					"name": "gucan"
+				},
+				{
+					"id": "368411",
+					"name": "Robin"
+				}
+			]
+		},
+		{
+			"language": "Dansk",
+			"translators": [
+				{
+					"id": "6779565",
+					"name": "LasseSvendsen"
+				}
+			]
+		},
+		{
+			"language": "Deutsch",
+			"translators": [
+				{
+					"id": "2336766",
+					"name": "spambot"
+				},
+				{
+					"id": "7776339",
+					"name": "convincedd"
+				},
+				{
+					"id": "11335334",
+					"name": "CatzHoek"
+				},
+				{
+					"name": "LeSchmuh"
+				},
+				{
+					"id": "4718113",
+					"name": "ThomasR"
+				}
+			]
+		},
+		{
+			"language": "English",
+			"translators": [
+				{
+					"name": "VikingButtch"
+				}
+			]
+		},
+		{
+			"language": "Ελληνικά (Greek)",
+			"translators": [
+				{
+					"id": "5055092",
+					"name": "GTTWINS"
+				},
+				{
+					"id": "11749601",
+					"name": "t54g05"
+				},
+				{
+					"name": "GreenHattrick"
+				},
+				{
+					"name": "GeorgeDoukas"
+				},
+				{
+					"id": "5412818",
+					"name": "gkon13"
+				}
+			]
+		},
+		{
+			"language": "Español",
+			"translators": [
+				{
+					"id": "6345528",
+					"name": "franory"
+				},
+				{
+					"id": "1957756",
+					"name": "llramone_nonumber"
+				},
+				{
+					"name": "PBotika"
+				}
+			]
+		},
+		{
+			"language": "Español, Centroamericano",
+			"translators": [
+				{
+					"id": "335181",
+					"name": "Baler0"
+				}
+			]
+		},
+		{
+			"language": "Español, Sudamericano",
+			"translators": [
+				{
+					"id": "335181",
+					"name": "Baler0"
+				},
+				{
+					"id": "6927256",
+					"name": "ElChiquitin"
+				},
+				{
+					"id": "8816281",
+					"name": "margaale"
+				}
+			]
+		},
+		{
+			"language": "Estonian",
+			"translators": [
+				{
+					"id": "10438815",
+					"name": "puuslik"
+				}
+			]
+		},
+		{
+			"language": "Français",
+			"translators": [
+				{
+					"id": "7409095",
+					"name": "stephan57"
+				},
+				{
+					"id": "9100817",
+					"name": "davidatorus"
+				},
+				{
+					"id": "8553822",
+					"name": "armball"
+				},
+				{
+					"id": "7137875",
+					"name": "LA-IpEFiX"
+				}
+			]
+		},
+		{
+			"language": "Frysk",
+			"translators": [
+				{
+					"id": "440454",
+					"name": "Foppe-"
+				}
+			]
+		},
+		{
+			"language": "فارسی (Persian)",
+			"translators": [
+				{
+					"id": "9630939",
+					"name": "Slash-ss"
+				},
+				{
+					"id": "10038631",
+					"name": "Mohammad-SE"
+				},
+				{
+					"id": "9926153",
+					"name": "ALIMALTIPO"
+				},
+				{
+					"name": "dritte333"
+				}
+			]
+		},
+		{
+			"language": "Furlan",
+			"translators": [
+				{
+					"id": "12593452",
+					"name": "superbloomss"
+				}
+			]
+		},
+		{
+			"language": "Galego",
+			"translators": [
+				{
+					"id": "524111",
+					"name": "Piper_101"
+				},
+				{
+					"id": "2363296",
+					"name": "OReiDasSachadas"
+				},
+				{
+					"id": "11101114",
+					"name": "aaa-aaa"
+				},
+				{
+					"id": "2915990",
+					"name": "GZ-grobas"
+				},
+				{
+					"id": "2363296",
+					"name": "Joe82"
+				}
+			]
+		},
+		{
+			"language": "Georgian",
+			"translators": [
+				{
+					"name": "parjikia"
+				},
+				{
+					"name": "serjhanti"
+				}
+			]
+		},
+		{
+			"language": "עברית (Hebrew)",
+			"translators": [
+				{
+					"id": "716201",
+					"name": "Mod-Transy"
+				},
+				{
+					"id": "1425439",
+					"name": "playMaker-"
+				}
+			]
+		},
+		{
+			"language": "Hrvatski",
+			"translators": [
+				{
+					"id": "3911874",
+					"name": "mr_freez"
+				},
+				{
+					"id": "7230071",
+					"name": "TheZayc"
+				},
+				{
+					"id": "11758667",
+					"name": "Alan_Smithee"
+				},
+				{
+					"id": "3613658",
+					"name": "LA-Iuve- (Fieras)"
+				},
+				{
+					"name": "PBotika"
+				},
+				{
+					"name": "FTorrez"
+				},
+				{
+					"name": "lynkss"
+				}
+			]
+		},
+		{
+			"language": "Hungarian",
+			"translators": [
+				{
+					"id": "2172516",
+					"name": "csajszi"
+				},
+				{
+					"name": "dzsoo"
+				}
+			]
+		},
+		{
+			"language": "Íslenska",
+			"translators": [
+				{
+					"id": "9930684",
+					"name": "LA-LordBastard"
+				}
+			]
+		},
+		{
+			"language": "Italiano",
+			"translators": [
+				{
+					"id": "2902659",
+					"name": "caracca"
+				},
+				{
+					"id": "765274",
+					"name": "taised"
+				},
+				{
+					"id": "9559302",
+					"name": "Sam-Vimes"
+				},
+				{
+					"id": "10246801",
+					"name": "silkevicious"
+				},
+				{
+					"id": "11869364",
+					"name": "LucaXVI"
+				},
+				{
+					"name": "marcocara1"
+				},
+				{
+					"id": "7967145",
+					"name": "bigpapy"
+				}
+			]
+		},
+		{
+			"language": "日本語 (Japanese)",
+			"translators": [
+				{
+					"name": "Skevevich_Onnaski"
+				}
+			]
+		},
+		{
+			"language": "한국어 (Korean)",
+			"translators": [
+				{
+					"id": "9845514",
+					"name": "SI-CH"
+				}
+			]
+		},
+		{
+			"language": "Latviešu",
+			"translators": [
+				{
+					"id": "3955847",
+					"name": "Unknown_Guy"
+				},
+				{
+					"id": "6595557",
+					"name": "edzus"
+				}
+			]
+		},
+		{
+			"language": "Lithuanian",
+			"translators": [
+				{
+					"id": "2765378",
+					"name": "Mod-summercloud"
+				},
+				{
+					"id": "8366392",
+					"name": "LA-MJ"
+				}
+			]
+		},
+		{
+			"language": "Luxembourgish",
+			"translators": [
+				{
+					"id": "2884072",
+					"name": "Mod-Karlthegreat"
+				}
+			]
+		},
+		{
+			"language": "Macedonian",
+			"translators": [
+				{
+					"id": "10562696",
+					"name": "minskj"
+				},
+				{
+					"id": "7439277",
+					"name": "white_eagle"
+				}
+			]
+		},
+		{
+			"language": "Malti",
+			"translators": [
+				{
+					"id": "4149232",
+					"name": "LA-saviour26"
+				},
+				{
+					"name": "steve007121"
+				}
+			]
+		},
+		{
+			"language": "Nederlands",
+			"translators": [
+				{
+					"id": "5577946",
+					"name": "eekels"
+				},
+				{
+					"id": "7126492",
+					"name": "CoRrRan"
+				},
+				{
+					"id": "48207",
+					"name": "stefkor"
+				}
+			]
+		},
+		{
+			"language": "Norwegian, bokmål",
+			"translators": [
+				{
+					"id": "6350285",
+					"name": "Skoglund"
+				},
+				{
+					"id": "1966508",
+					"name": "SLV-Ferovejecs"
+				},
+				{
+					"name": "skurkenmagnus"
+				},
+				{
+					"name": "shop"
+				}
+			]
+		},
+		{
+			"language": "Norwegian, nynorsk",
+			"translators": [
+				{
+					"id": "4387847",
+					"name": "Krasher"
+				}
+			]
+		},
+		{
+			"language": "Polski",
+			"translators": [
+				{
+					"id": "6801903",
+					"name": "Homzik"
+				},
+				{
+					"id": "10167326",
+					"name": "SilesiaVratislavia"
+				},
+				{
+					"id": "1641271",
+					"name": "jaymz"
+				},
+				{
+					"name": "wyrzo1"
+				},
+				{
+					"name": "BigFish"
+				},
+				{
+					"name": "Diglize"
+				}
+			]
+		},
+		{
+			"language": "Português",
+			"translators": [
+				{
+					"id": "3961483",
+					"name": "_recluso_"
+				},
+				{
+					"id": "6307374",
+					"name": "GM-ei04004"
+				},
+				{
+					"id": "7135171",
+					"name": "McTripas"
+				},
+				{
+					"id": "9469076",
+					"name": "MEO_Comandante"
+				},
+				{
+					"id": "11703834",
+					"name": "Estupor"
+				},
+				{
+					"name": "Zeca_"
+				}
+			]
+		},
+		{
+			"language": "Português, Brasil",
+			"translators": [
+				{
+					"id": "8277378",
+					"name": "MarceloFBrandao"
+				},
+				{
+					"id": "5547377",
+					"name": "Mod-Guaipeca"
+				},
+				{
+					"name": "MartinsPF"
+				}
+			]
+		},
+		{
+			"language": "Romanian",
+			"translators": [
+			{
+				"id": "552640",
+				"name": "slader"
+			},
+			{
+				"name": "aqualung01"
+			}
+			]
+		},
+		{
+			"language": "Russian",
+			"translators": [
+				{
+					"id": "621456",
+					"name": "_KOHb_"
+				}
+			]
+		},
+		{
+			"language": "Slovak",
+			"translators": [
+				{
+					"id": "7873605",
+					"name": "JAM3SoN"
+				},
+				{
+					"id": "10942797",
+					"name": "mrksik"
+				},
+				{
+					"id": "7873658",
+					"name": "apatka.21"
+				}
+			]
+		},
+		{
+			"language": "Srpski",
+			"translators": [
+				{
+					"id": "4342858",
+					"name": "ljushaff"
+				}
+			]
+		},
+		{
+			"language": "Suomi",
+			"translators": [
+				{
+					"id": "2689296",
+					"name": "Pyntsa"
+				},
+				{
+					"id": "6927256",
+					"name": "ElChiquitin"
+				},
+				{
+					"id": "7249130",
+					"name": "Mod-kirjakas"
+				},
+				{
+					"name": "tumbe"
+				},
+				{
+					"name": "ripaldo"
+				}
+			]
+		},
+		{
+			"language": "Svenska",
+			"translators": [
+				{
+					"id": "12166",
+					"name": "GM-murko"
+				},
+				{
+					"id": "6680572",
+					"name": "GM-Nanouk"
+				},
+				{
+					"name": "TheBigM"
+				}
+			]
+		},
+		{
+			"language": "Tiếng Việt",
+			"translators": [
+				{
+					"id": "9372637",
+					"name": "Murtagsh"
+				},
+				{
+					"name": "thaitrunghieu"
+				},
+				{
+					"name": "phatls"
+				},
+				{
+					"name": "jarxhaushinka"
+				}
+			]
+		},
+		{
+			"language": "Turkish",
+			"translators": [
+				{
+					"name": "brauxx"
+				},
+				{
+					"name": "FeritAkarsu"
+				},
+				{
+					"name": "facha"
+				},
+				{
+					"name": "ebitech"
+				}
+			]
+		},
+		{
+			"language": "Ukrainian",
+			"translators": [
+				{
+					"id": "4727906",
+					"name": "Grif_07"
+				},
+				{
+					"id": "8988135",
+					"name": "vital.kpi"
+				},
+				{
+					"name": "RNH"
+				}
+			]
+		},
+		{
+			"language": "中文（简体） Chinese (Simplified)",
+			"translators": [
+				{
+					"id": "8342420",
+					"name": "ryanli"
+				},
+				{
+					"id": "12378459",
+					"name": "zs_bool"
+				}
+			]
+		}
+	],
+	"designers": [
+		{
+			"id": "3410980",
+			"name": "Aimo_Kanuuna"
+		}
+	]
+}
