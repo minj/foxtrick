@@ -17,7 +17,7 @@ Foxtrick.util.currency = {
 		var ownTeamId = Foxtrick.util.id.getOwnTeamId();
 		var rate = this.getRate(doc);
 		var symbol = this.getSymbol(doc);
-		if (!rate || !symbol || symbol.length > 10) {
+		if (!rate || !symbol || !this.isValidSymbol(symbol)) {
 			if (!Foxtrick.util.layout.hasMultipleTeams(doc)) {
 				FoxtrickPrefs.setString('Currency.Rate.' + ownTeamId, this.findRate().toString());
 				FoxtrickPrefs.setString('Currency.Symbol.' + ownTeamId, this.findSymbol());
@@ -63,6 +63,14 @@ Foxtrick.util.currency = {
 			return currencies[lookup];
 		}
 		return null;
+	},
+
+	isValidSymbol: function(symbol) {
+		var xml = Foxtrick.XMLData.htCurrencyXml;
+		var nodes = xml.getElementsByTagName('currency');
+		return Foxtrick.any(function(node) {
+			return symbol === node.attributes.getNamedItem('symbol').textContent;
+		}, nodes);
 	},
 
 	getRateByCode: function(lookup) {
