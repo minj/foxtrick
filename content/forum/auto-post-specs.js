@@ -45,11 +45,7 @@ Foxtrick.modules['AutoPostSpecs'] = {
 			if(matched !== null)
 				return;
 
-			var navInfo = '';
-			if (Foxtrick.platform != 'Android')
-				navInfo = window.navigator.userAgent + ' - ' + window.navigator.platform;
-			else
-				navInfo = 'Fennec';
+			var navInfo = window.navigator.userAgent + ' - ' + window.navigator.platform;
 
 			txt = txt + '\n[hr][spoiler]' + 'FoxTrick ' + Foxtrick.version() + ' ' + Foxtrick.branch() + ' - Stage: ' + Foxtrick.isStage(doc) + ' - Skin: ' + (Foxtrick.util.layout.isStandard(doc)?'normal':'simple') + ' - ' + FoxtrickPrefs.getString('htLanguage') + ' - ' + (Foxtrick.util.layout.isRtl(doc)?"rtl":"ltr") + ' - ' + window.screen.availWidth + ' x ' + window.screen.availHeight + ' - ' + navInfo + '[/spoiler]';
 			textarea.value = txt;
