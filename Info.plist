@@ -46,8 +46,8 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/lib/jquery.js</string>
 				<string>content/lib/PluralForm.js</string>
 				<string>content/lib/yaml.js</string>
-				<string>content/lib/BlobBuilder.min.js</string>
-				<string>content/lib/FileSaver.min.js</string>
+				<string>content/lib/Blob.js</string>
+				<string>content/lib/FileSaver.js</string>
 				<string>content/lib/psico.js</string>
 
 				<!-- utilities -->

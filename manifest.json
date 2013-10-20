@@ -61,8 +61,8 @@
 			"content/lib/PluralForm.js",
 			"content/lib/yaml.js",
 			"content/lib/jester.js",
-			"content/lib/BlobBuilder.min.js",
-			"content/lib/FileSaver.min.js",
+			"content/lib/Blob.js",
+			"content/lib/FileSaver.js",
 			"content/lib/psico.js",
 
 			//<!-- core modules -->

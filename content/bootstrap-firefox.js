@@ -51,8 +51,8 @@ FoxtrickFirefox.prototype = {
 		'lib/oauth.js',
 		'lib/sha1.js',
 		'lib/yaml.js',
-		'lib/BlobBuilder.min.js',
-		'lib/FileSaver.min.js',
+		'lib/Blob.js',
+		'lib/FileSaver.js',
 		'lib/psico.js',
 
 		//<!-- core modules -->

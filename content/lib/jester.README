@@ -2,7 +2,7 @@
 // Jester //
 ////////////
 
-Simple Gesture Recognition in JavaScript
+Simple Gesture Recognition in JavaScript (for iOS)
 
 
 <example>
@@ -14,6 +14,7 @@ jester(element).tap(function() {
 
 For further documentation check the Jester GitHub Wiki: http://wiki.github.com/plainview/Jester/
 
+ -1 - Before Using
 0.0 - Intro
 0.1 - The Gestures
 1.0 - Project Status
@@ -25,7 +26,17 @@ For further documentation check the Jester GitHub Wiki: http://wiki.github.com/p
 2.3 - Options
 2.4 - TouchGroup Object
 2.5 - Touch Object
-3.0 - Bugs, Questions, Credit
+3.0 - Bugs, Questions
+
+
+ -1 Before Using
+----------------
+
+Jester is now 2 years old.  It has received a few patches during that time but I've largely ignored it since release.  There are many newer and more actively maintained projects for this sort of thing.  For example,
+
+http://eightmedia.github.com/hammer.js/ - Hammer.js - for all manner of multi-touch goodness.
+https://github.com/jairajs89/Touchy.js - Touchy.js - simple light-weight lib for dealing with touch.
+http://zeptojs.com/#touch - Zepto.js - for a jQuery-lite library with basic gesture support.
 
 
 0.0 Intro
@@ -248,11 +259,10 @@ Touch.total.
             x()         : the total x distance travelled
             y()         : the total y distance travelled
             time()      : the total time of this touch
-            
 
-3.0 Bugs, Questions, Credit
----------------------------
+
+3.0 Bugs, Questions
+-------------------
 
 Got comments, questions or suggestions?  Get in touch via Github - http:/github.com/plainview/Jester
 
-Jester was started by me, Scott Seaward, with bugs succesfully spotted and swatted by Adam Silver.

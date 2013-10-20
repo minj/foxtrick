@@ -50,8 +50,8 @@ FoxtrickFennec.prototype = {
 		'lib/sha1.js',
 		'lib/jester.js',
 		'lib/yaml.js',
-		'lib/BlobBuilder.min.js',
-		'lib/FileSaver.min.js',
+		'lib/Blob.js',
+		'lib/FileSaver.js',
 
 		//<!-- categorized modules with init functions -->
 		'forum/staff-marker.js',

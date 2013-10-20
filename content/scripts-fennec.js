@@ -55,8 +55,8 @@ Foxtrick.loader.background.contentScriptManager = {
 		'lib/jquery.js',
 		'lib/jester.js',
 		'lib/yaml.js',
-		'lib/BlobBuilder.min.js',
-		'lib/FileSaver.min.js',
+		'lib/Blob.js',
+		'lib/FileSaver.js',
 		'lib/psico.js',
 
 		//<!-- core modules -->
