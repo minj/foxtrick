@@ -24,12 +24,7 @@ Foxtrick.modules['LinksCountry'] = {
 		var leagueId = Foxtrick.util.id.findLeagueId(flag.parentNode);
 
 		// get English name
-		var xml = Foxtrick.XMLData.worldDetailsXml;
-		var it = xml.evaluate('//League[LeagueID=' + leagueId + ']/ShortName',
-			xml, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
-		var node = it.iterateNext();
-		if (node)
-			var nameShort = node.textContent;
+		var nameShort = Foxtrick.XMLData.League[leagueId].ShortName;
 
 		var links = Foxtrick.modules['Links'].getLinks('countrylink', {
 				'countryid': leagueId,

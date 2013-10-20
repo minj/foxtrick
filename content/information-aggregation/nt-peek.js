@@ -39,12 +39,11 @@ Foxtrick.modules['NtPeek'] = {
 
 		var leagueId = Foxtrick.Pages.Country.getId(doc);
 
-		var ntNode = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml,
-			"//League[LeagueID='" + leagueId + "']");
-		var ntName = ntNode.getElementsByTagName('LeagueName')[0].textContent;
-		var ntId = ntNode.getElementsByTagName('NationalTeamId')[0].textContent;
+		var league = Foxtrick.XMLData.League[leagueId];
+		var ntName = league.LeagueName;
+		var ntId = league.NationalTeamId;
 		var u20Name = 'U-20 ' + ntName;
-		var u20Id = ntNode.getElementsByTagName('U20TeamId')[0].textContent;
+		var u20Id = league.U20TeamId;
 
 		var insertBefore = doc.getElementById('ctl00_ctl00_CPContent_CPMain_' +
 		                                      'ucForumSneakpeek_updSneakpeek');

@@ -30,17 +30,11 @@ Foxtrick.modules['LineupShortcut'] = {
 	_Analyze_Player_Page: function(doc) {
 		// get leagueId for ntName and u20Name
 		var leagueId = Foxtrick.Pages.Player.getNationalityId(doc);
-		var path = "//League[LeagueID='" + leagueId + "']";
-		var obj = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml, path);
-		if (obj) {
-			var ntName = obj.getElementsByTagName('LeagueName').item(0).firstChild.nodeValue;
-			var ntId = obj.getElementsByTagName('NationalTeamId').item(0).firstChild.nodeValue;
-			var u20Name = 'U-20 ' + ntName;
-			var u20Id = obj.getElementsByTagName('U20TeamId').item(0).firstChild.nodeValue;
-		}
-		else
-			Foxtrick.log('LineupShortcut: leagueId ', leagueId, ' not found!\n');
-
+		var league = Foxtrick.XMLData.League[leagueId];
+		var ntName = league.LeagueName;
+		var ntId = league.NationalTeamId;
+		var u20Name = 'U-20 ' + ntName;
+		var u20Id = league.U20TeamId;
 		// to get match history table
 		var mainBody = doc.getElementById('mainBody');
 		var boxes = mainBody.getElementsByClassName('mainBox');

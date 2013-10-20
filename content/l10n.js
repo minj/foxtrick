@@ -131,26 +131,26 @@ var Foxtrickl10n = {
 	getLevelFromText: function(text) {
 		var level, sublevel = 0;
 		var lang = FoxtrickPrefs.getString('htLanguage');
-		var xml = Foxtrickl10n.htLanguagesXml[lang];
+		var json = Foxtrickl10n.htLanguagesJSON[lang].language;
 
-		var levels = xml.getElementsByTagName('level');
+		var levels = json.levels;
 		for (var i = 0; i < levels.length; ++i) {
-			var leveltext = levels[i].getAttribute('text');
+			var leveltext = levels[i].text;
 			if (RegExp('^' + leveltext, 'i').test(text)) {
-				level = Number(levels[i].getAttribute('value'));
+				level = Number(levels[i].value);
 				break;
 			}
 		}
 		if (level === null)
 			return null;
 
-		var ratingSubLevels = xml.getElementsByTagName('sublevel');
+		var ratingSubLevels = json.ratingSubLevels;
 		for (var i = 0; i < ratingSubLevels.length; ++i) {
-			var subleveltext = ratingSubLevels[i].getAttribute('text')
+			var subleveltext = ratingSubLevels[i].text
 				.replace('(', '\\(').replace(')', '\\)');
 			if (RegExp(subleveltext + '\\)?$', 'i').test(text)) {
 				//using \)? in case LAs remove ) from subleveltext
-				sublevel = Number(ratingSubLevels[i].getAttribute('value'));
+				sublevel = Number(ratingSubLevels[i].value);
 				break;
 			}
 		}
@@ -161,26 +161,26 @@ var Foxtrickl10n = {
 	getTextByLevel: function(value) {
 		var level;
 		var lang = FoxtrickPrefs.getString('htLanguage');
-		var xml = Foxtrickl10n.htLanguagesXml[lang];
+		var json = Foxtrickl10n.htLanguagesJSON[lang].language;
 
-		var levels = xml.getElementsByTagName('level');
+		var levels = json.levels;
 		for (var i = 0; i < levels.length; ++i) {
-			var levelvalue = levels[i].getAttribute('value');
+			var levelvalue = levels[i].value;
 			if (RegExp('^' + levelvalue, 'i').test(value)) {
-				level = levels[i].getAttribute('text');
+				level = levels[i].text;
 				break;
 			}
 		}
 		if (level !== null)
 			return level;
 
-		xml = Foxtrickl10n.htLanguagesXml[lang].en;
+		var json = Foxtrickl10n.htLanguagesJSON['en'].language;
 
-		levels = xml.getElementsByTagName('level');
+		var levels = json.levels;
 		for (var i = 0; i < levels.length; ++i) {
-			var levelvalue = levels[i].getAttribute('value');
+			var levelvalue = levels[i].value;
 			if (RegExp('^' + levelvalue, 'i').test(value)) {
-				level = levels[i].getAttribute('text');
+				level = levels[i].text;
 				break;
 			}
 		}
@@ -193,12 +193,16 @@ var Foxtrickl10n = {
 	// agreeability, honesty, and aggressiveness, which are all obvious.
 	getLevelByTypeAndValue: function(type, val) {
 		var lang = FoxtrickPrefs.getString('htLanguage');
-		var path = 'language/' + type + "/level[@value='" + val + "']";
-		var text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, 'text');
+		var category = Foxtrickl10n.htLanguagesJSON[lang].language[type];
+		var text = Foxtrick.nth(0, function(item) {
+			return item.value == val;
+		}, category).text;
 		if (text === null) {
 			Foxtrick.log('Requested level of type ' + type + ' and value ' + val +
 			             " don't exist in locale " + lang + ', try en instead.');
-			text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml.en, path, 'text');
+			text = Foxtrick.nth(0, function(item) {
+				return item.value == val;
+			}, Foxtrickl10n.htLanguagesJSON['en'].language[type]).text;
 			if (text === null) {
 				Foxtrick.log('Requested level of type ' + type + ' and value ' + val +
 				             " don't exist, returning raw value.");
@@ -210,12 +214,16 @@ var Foxtrickl10n = {
 
 	getSublevelByValue: function(val) {
 		var lang = FoxtrickPrefs.getString('htLanguage');
-		var path = "language/ratingSubLevels/sublevel[@value='" + val + "']";
-		var text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, 'text');
+		var category = Foxtrickl10n.htLanguagesJSON[lang].language['ratingSubLevels'];
+		var text = Foxtrick.nth(0, function(item) {
+			return item.value == val;
+		}, category).text;
 		if (text === null) {
 			Foxtrick.log('Requested sublevel of value ' + val +
 			             " doesn't exist in locale " + lang + ', try en instead.');
-			text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml.en, path, 'text');
+			text = Foxtrick.nth(0, function(item) {
+				return item.value == val;
+			}, Foxtrickl10n.htLanguagesJSON['en'].language['ratingSubLevels']).text;
 			if (text === null) {
 				Foxtrick.log('Requested sublevel of value ' + val +
 				             " doesn't exist, returning raw value.");
@@ -259,12 +267,16 @@ var Foxtrickl10n = {
 		];
 
 		var lang = FoxtrickPrefs.getString('htLanguage');
-		var path = "language/tactics/tactic[@type='" + tactics[id] + "']";
-		var text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, 'value');
+		var category = Foxtrickl10n.htLanguagesJSON[lang].language['tactics'];
+		var text = Foxtrick.nth(0, function(item) {
+			return item.type == tactics[id];
+		}, category).value;
 		if (text === null) {
 			Foxtrick.log('Requested tactic of id ' + tactics[id] +
 			             " doesn't exist in locale " + lang + ', try en instead.');
-			text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml.en, path, 'value');
+			text = Foxtrick.nth(0, function(item) {
+				return item.type == tactics[id];
+			}, Foxtrickl10n.htLanguagesJSON['en'].language['tactics']).value;
 			if (text === null) {
 				Foxtrick.log('Requested tactic of id ' + tactics[id] +
 				             " doesn't exist, returning raw value.");
@@ -287,9 +299,10 @@ var Foxtrickl10n = {
 		var shortPos = '';
 		try {
 			var lang = FoxtrickPrefs.getString('htLanguage');
-			var path = "language/positions/position[@value='" + pos + "']";
-			shortPos = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang],
-			                                        path, 'short');
+			var category = Foxtrickl10n.htLanguagesJSON[lang].language['positions'];
+			shortPos = Foxtrick.nth(0, function(item) {
+				return item.value == pos;
+			}, category).short;
 		}
 		catch (e) {
 			Foxtrick.log(e);
@@ -304,9 +317,10 @@ var Foxtrickl10n = {
 		var shortSpec = '';
 		try {
 			var lang = FoxtrickPrefs.getString('htLanguage');
-			var path = "language/specialties/specialty[@type='" + spec + "']";
-			shortSpec = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang],
-			                                         path, 'short');
+			var category = Foxtrickl10n.htLanguagesJSON[lang].language['specialties'];
+			shortSpec = Foxtrick.nth(0, function(item) {
+				return item.type == spec;
+			}, category).short;
 		}
 		catch (e) {
 			Foxtrick.log(e);
@@ -318,8 +332,10 @@ var Foxtrickl10n = {
 		var engSpec = spec;
 		try {
 			var lang = FoxtrickPrefs.getString('htLanguage');
-			var path = "language/specialties/specialty[@value='" + spec + "']";
-			engSpec = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, 'type');
+			var category = Foxtrickl10n.htLanguagesJSON[lang].language['specialties'];
+			engSpec = Foxtrick.nth(0, function(item) {
+				return item.value == spec;
+			}, category).type;
 		}
 		catch (e) {
 			Foxtrick.log(e);
@@ -335,8 +351,10 @@ var Foxtrickl10n = {
 		var spec = specs[number];
 		try {
 			var lang = FoxtrickPrefs.getString('htLanguage');
-			var path = "language/specialties/specialty[@type='" + spec + "']";
-			spec = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, 'value');
+			var category = Foxtrickl10n.htLanguagesJSON[lang].language['specialties'];
+			spec = Foxtrick.nth(0, function(item) {
+				return item.type == spec;
+			}, category).value;
 		}
 		catch (e) {
 			Foxtrick.log(e);
@@ -367,12 +385,16 @@ var Foxtrickl10n = {
 
 	getPositionByType: function(val) {
 		var lang = FoxtrickPrefs.getString('htLanguage');
-		var path = "language/positions/position[@type='" + val + "']";
-		var text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, 'value');
+		var category = Foxtrickl10n.htLanguagesJSON[lang].language['positions'];
+		var text = Foxtrick.nth(0, function(item) {
+			return item.type == val;
+		}, category).value;
 		if (text === null) {
 			Foxtrick.log('Requested position type of value ' + val +
 			             " doesn't exist in locale " + lang + ', try en instead.');
-			text = Foxtrick.xml_single_evaluate(Foxtrickl10n.htLanguagesXml.en, path, 'value');
+			text = Foxtrick.nth(0, function(item) {
+				return item.type == val;
+			}, Foxtrickl10n.htLanguagesJSON['en'].language['positions']).value;
 			if (text === null) {
 				Foxtrick.log('Requested position type of value ' + val +
 				             " doesn't exist, returning raw value.");

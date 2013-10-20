@@ -49,45 +49,24 @@ Foxtrick.util.currency = {
 			callback();
 	},
 	getSymbolByCode: function(lookup) {
-		var xml = Foxtrick.XMLData.htCurrencyXml;
-		var nodes = xml.getElementsByTagName('currency');
-		var currencies = {};
-
-		for (var i = 0; i < nodes.length; ++i) {
-			var code = nodes[i].attributes.getNamedItem('code').textContent;
-			var symbol = nodes[i].attributes.getNamedItem('symbol').textContent;
-			currencies[code] = symbol;
-		}
-
-		if (currencies[lookup] !== undefined) {
-			return currencies[lookup];
-		}
-		return null;
+		var category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
+		return Foxtrick.nth(0, function(item) {
+			return item.code == lookup;
+		}, category).symbol;
 	},
 
 	isValidSymbol: function(symbol) {
-		var xml = Foxtrick.XMLData.htCurrencyXml;
-		var nodes = xml.getElementsByTagName('currency');
-		return Foxtrick.any(function(node) {
-			return symbol === node.attributes.getNamedItem('symbol').textContent;
-		}, nodes);
+		var category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
+		return Foxtrick.any(function(item) {
+			return item.symbol == symbol;
+		}, category);
 	},
 
 	getRateByCode: function(lookup) {
-		var xml = Foxtrick.XMLData.htCurrencyXml;
-		var nodes = xml.getElementsByTagName('currency');
-		var currencies = {};
-
-		for (var i = 0; i < nodes.length; ++i) {
-			var rate = nodes[i].attributes.getNamedItem('eurorate').textContent;
-			var code = nodes[i].attributes.getNamedItem('code').textContent;
-			currencies[code] = rate;
-		}
-
-		if (currencies[lookup] !== undefined) {
-			return currencies[lookup];
-		}
-		return null;
+		var category = Foxtrick.XMLData.htCurrencyJSON.hattrickcurrencies;
+		return parseFloat(Foxtrick.nth(0, function(item) {
+			return item.code == lookup;
+		}, category).eurorate);
 	},
 	/**
 	 * get saved currency symbol
@@ -126,9 +105,8 @@ Foxtrick.util.currency = {
 	 */
 	findRate: function(id) {
 		var leagueId = id || Foxtrick.util.id.getOwnLeagueId();
-		var name = Foxtrick.util.id.getLeagueDataFromId(leagueId).Country.CurrencyName;
-		var rate = Foxtrick.util.id.getLeagueDataFromId(leagueId).Country.CurrencyRate
-			.replace(',', '.');
+		var name = Foxtrick.XMLData.League[leagueId].Country.CurrencyName;
+		var rate = Foxtrick.XMLData.League[leagueId].Country.CurrencyRate.replace(',', '.');
 		var mag = (name.indexOf('000 ') > -1) ? 0.001 : 1;
 		return parseFloat(rate) * mag / 10;
 	}

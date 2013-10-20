@@ -24,12 +24,11 @@ Foxtrick.modules['MyMonitor'] = {
 			if (!teams) {
 				// return national teams if first run
 				var leagueId = Foxtrick.util.id.getOwnLeagueId();
-				var ntNode = Foxtrick.xml_single_evaluate(Foxtrick.XMLData.worldDetailsXml,
-					"//League[LeagueID='" + leagueId + "']");
-				var ntName = ntNode.getElementsByTagName('LeagueName')[0].textContent;
-				var ntId = ntNode.getElementsByTagName('NationalTeamId')[0].textContent;
+				var league = Foxtrick.XMLData.League[leagueId];
+				var ntName = league.LeagueName;
+				var ntId = league.NationalTeamId;
 				var u20Name = 'U-20 ' + ntName;
-				var u20Id = ntNode.getElementsByTagName('U20TeamId')[0].textContent;
+				var u20Id = league.U20TeamId;
 				teams = [
 					{ id: ntId, name: ntName, type: 'nt' },
 					{ id: u20Id, name: u20Name, type: 'nt' }

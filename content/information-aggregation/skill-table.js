@@ -284,9 +284,7 @@ Foxtrick.modules['SkillTable'] = {
 							property != 'honesty') {
 								property = 'levels';
 						}
-						var path = 'language/' + property + "/level[@value='" + skill + "']";
-						cell.title = Foxtrick
-							.xml_single_evaluate(Foxtrickl10n.htLanguagesXml[lang], path, 'text');
+						cell.title = Foxtrickl10n.getLevelByTypeAndValue(property, skill);
 					}
 				};
 				var staminaPrediction = function(cell, pred) {

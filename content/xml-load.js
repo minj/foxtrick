@@ -34,11 +34,16 @@ Foxtrick.XMLData = {
 		var name = 'HattrickData';
 		Foxtrick.XMLData.getchilds(this.worldDetailsXml.documentElement, data, name);
 
-		for (var i = 0; i < data.HattrickData.LeagueList.League.length; ++i) {
-			this.League[data.HattrickData.LeagueList.League[i].LeagueID] =
-				data.HattrickData.LeagueList.League[i];
-			this.countryToLeague[data.HattrickData.LeagueList.League[i].Country.CountryID] =
-				data.HattrickData.LeagueList.League[i].LeagueID;
+		//for (var i = 0; i < data.HattrickData.LeagueList.League.length; ++i) {
+		//	this.League[data.HattrickData.LeagueList.League[i].LeagueID] =
+		//		data.HattrickData.LeagueList.League[i];
+		//	this.countryToLeague[data.HattrickData.LeagueList.League[i].Country.CountryID] =
+		//		data.HattrickData.LeagueList.League[i].LeagueID;
+		//}
+		var leagueList = this.worldDetailsJSON.HattrickData.LeagueList;
+		for (var i = 0; i < leagueList.length; ++i) {
+			this.League[leagueList[i].LeagueID] = leagueList[i];
+			this.countryToLeague[leagueList[i].Country.CountryID] = leagueList[i].LeagueID;
 		}
 	},
 
