@@ -27,6 +27,9 @@ en:
       ff_disable: 'Disabling Foxtrick in Firefox will now close Foxtrick preferences (if open) and reload all Hattrick tabs to remove any modifications made by Foxtrick.'
       ticker_chall: 'It is not possible to distinguish friendly challenges from other MyHT messages for HT Supporters in <module>TickerColoring</module> any more. Consequently, that ticker type was renamed.'
       bugs: '<header>Bug fixes</header>'
+      android: |
+        <p>Major fixes to Foxtrick core have been made in order to adapt to Firefox for Android. As a result, Foxtrick now runs much better on mobile devices.</p>
+        <p>Affected modules: <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>et al</em>.</p>
       native_names: 'Selected countries will no longer change when navigating back to the transfer search form with native country names enabled in <module>CountryList</module>.'
       custom_links: 'External links functionality has been reviewed and all known issues fixed. You can now add custom links on the match report page as well.'
       player_filters: 'It is now possible to use <module>PlayerFilters</module> in multiple tabs at the same time in Firefox.'
