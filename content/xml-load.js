@@ -19,10 +19,17 @@ Foxtrick.XMLData = {
 	init: function() {
 		this.htCurrencyXml = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath +
 		                                                'data/htcurrency.xml');
+		var currency = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/htcurrency.json');
+		this.htCurrencyJSON = JSON.parse(currency);
 		this.aboutXML = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + 'data/foxtrick_about.xml');
+		var about = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/foxtrick_about.json');
+		this.aboutJSON = JSON.parse(about);
 
 		this.worldDetailsXml = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath +
 		                                                  'data/worlddetails.xml');
+		var worldDetails = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/worlddetails.json');
+		this.worldDetailsJSON = JSON.parse(worldDetails);
+
 		var data = {};
 		var name = 'HattrickData';
 		Foxtrick.XMLData.getchilds(this.worldDetailsXml.documentElement, data, name);

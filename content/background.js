@@ -39,7 +39,8 @@ Foxtrick.loader.background.browserLoad = function() {
 
 		Foxtrick.log('Foxtrick.loader.background.browserLoad');
 
-		var currency, about, worldDetails, htLanguagesText, cssTextCollection;
+		var currency, currencyJSON, about, aboutJSON, worldDetails, worldDetailsJSON,
+			htLanguagesText, htLanguagesJSONText, cssTextCollection;
 
 		var updateResources = function() {
 			// init resources
@@ -49,12 +50,16 @@ Foxtrick.loader.background.browserLoad = function() {
 			var serializer = new window.XMLSerializer();
 
 			currency = serializer.serializeToString(Foxtrick.XMLData.htCurrencyXml);
+			currencyJSON = JSON.stringify(Foxtrick.XMLData.htCurrencyJSON);
 			about = serializer.serializeToString(Foxtrick.XMLData.aboutXML);
+			aboutJSON = JSON.stringify(Foxtrick.XMLData.aboutJSON);
 			worldDetails = serializer.serializeToString(Foxtrick.XMLData.worldDetailsXml);
-			htLanguagesText = {};
+			worldDetailsJSON = JSON.stringify(Foxtrick.XMLData.worldDetailsJSON);
+			htLanguagesText = {}, htLanguagesJSONText = {};
 			var i;
 			for (i in Foxtrickl10n.htLanguagesXml) {
 				htLanguagesText[i] = serializer.serializeToString(Foxtrickl10n.htLanguagesXml[i]);
+				htLanguagesJSONText[i] = JSON.stringify(Foxtrickl10n.htLanguagesJSON[i]);
 			}
 			cssTextCollection = Foxtrick.util.css.getCssTextCollection();
 
@@ -107,6 +112,7 @@ Foxtrick.loader.background.browserLoad = function() {
 				_prefs_chrome_default: FoxtrickPrefs._prefs_chrome_default,
 
 				htLang: htLanguagesText,
+				htLangJSON: htLanguagesJSONText,
 				properties_default: Foxtrickl10n.properties_default,
 				properties: Foxtrickl10n.properties,
 				screenshots_default: Foxtrickl10n.screenshots_default,
@@ -115,8 +121,11 @@ Foxtrick.loader.background.browserLoad = function() {
 				plForm_default: Foxtrickl10n.plForm_default,
 
 				currency: currency,
+				currencyJSON: currencyJSON,
 				about: about,
+				aboutJSON: aboutJSON,
 				worldDetails: worldDetails,
+				worldDetailsJSON: worldDetailsJSON,
 				league: Foxtrick.XMLData.League,
 				countryToLeague: Foxtrick.XMLData.countryToLeague,
 			};

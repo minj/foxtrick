@@ -112,7 +112,7 @@ Foxtrick.entry.contentScriptInit = function(data) {
 		}
 		else {
 			// fennec can access them from context, but they still need to get initilized
-			var coreModules = [FoxtrickPrefs, Foxtrickl10n];
+			var coreModules = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
 			for (var i = 0; i < coreModules.length; ++i) {
 				if (typeof(coreModules[i].init) == 'function')
 					coreModules[i].init();
@@ -121,11 +121,15 @@ Foxtrick.entry.contentScriptInit = function(data) {
 		var parser = new window.DOMParser();
 		for (i in data.htLang) {
 			Foxtrickl10n.htLanguagesXml[i] = parser.parseFromString(data.htLang[i], 'text/xml');
+			Foxtrickl10n.htLanguagesJSON[i] = JSON.parse(data.htLangJSON[i]);
 		}
 
 		Foxtrick.XMLData.htCurrencyXml = parser.parseFromString(data.currency, 'text/xml');
+		Foxtrick.XMLData.htCurrencyJSON = JSON.parse(data.currencyJSON);
 		Foxtrick.XMLData.aboutXML = parser.parseFromString(data.about, 'text/xml');
+		Foxtrick.XMLData.aboutJSON = JSON.parse(data.aboutJSON);
 		Foxtrick.XMLData.worldDetailsXml = parser.parseFromString(data.worldDetails, 'text/xml');
+		Foxtrick.XMLData.worldDetailsJSON = JSON.parse(data.worldDetailsJSON);
 		Foxtrick.XMLData.League = data.league;
 		Foxtrick.XMLData.countryToLeague = data.countryToLeague;
 };

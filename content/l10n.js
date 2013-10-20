@@ -120,6 +120,7 @@ var Foxtrickl10n = {
 	},
 
 	htLanguagesXml: {},
+	htLanguagesJSON: {},
 
 	// for plural form rule ids see
 	// https://developer.mozilla.org/en/Localization_and_Plurals
@@ -410,6 +411,9 @@ if (Foxtrick.arch === 'Gecko') {
 					var locale = Foxtrickl10n.locales[i];
 					var url = Foxtrick.InternalPath + 'locale/' + locale + '/htlang.xml';
 					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.util.load.xmlSync(url);
+					var url = Foxtrick.InternalPath + 'locale/' + locale + '/htlang.json';
+					var text = Foxtrick.util.load.sync(url);
+					this.htLanguagesJSON[Foxtrickl10n.locales[i]] = JSON.parse(text);
 				}
 			}
 
@@ -581,6 +585,9 @@ if (Foxtrick.arch === 'Sandboxed') {
 				locale = Foxtrickl10n.locales[i];
 				var url = Foxtrick.InternalPath + 'locale/' + locale + '/htlang.xml';
 				this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.util.load.xmlSync(url);
+				var url = Foxtrick.InternalPath + 'locale/' + locale + '/htlang.json';
+				var text = Foxtrick.util.load.sync(url);
+				this.htLanguagesJSON[Foxtrickl10n.locales[i]] = JSON.parse(text);
 			}
 
 			this.properties_default = Foxtrick.util.load.sync(Foxtrick.InternalPath +
