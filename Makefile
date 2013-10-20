@@ -164,11 +164,6 @@ firefox:
 	# set branch
 	cd $(BUILD_DIR); \
 	sed -i -r "/extensions\\.foxtrick\\.prefs\\.branch/s|\"svn\"|\"$(BRANCH) mozilla\"|" defaults/preferences/foxtrick.js
-	# make android-prefs
-	# old FF loads anything that ends with .js
-	# so we can't name this one foxtrick-android.js
-	cd $(BUILD_DIR)/defaults/preferences; \
-	cat foxtrick.js foxtrick.android > foxtrick-android
 	# modify according to dist type
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
@@ -182,6 +177,11 @@ else ifeq ($(DIST_TYPE),hosting)
 	cd $(BUILD_DIR); \
 	sed -i '/<em:updateURL>/d' install.rdf
 endif
+	# make android-prefs after all modifications are done
+	# old FF loads anything that ends with .js
+	# so we can't name this one foxtrick-android.js
+	cd $(BUILD_DIR)/defaults/preferences; \
+	cat foxtrick.js foxtrick.android > foxtrick-android
 	# make xpi
 	cd $(BUILD_DIR); \
 	$(ZIP) -r ../$(APP_NAME).xpi *
