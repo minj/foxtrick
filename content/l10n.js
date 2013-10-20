@@ -344,6 +344,8 @@ var Foxtrickl10n = {
 	},
 
 	getNumberFromSpeciality: function(speciality) {
+		if (speciality === '')
+			return 0;
 		var engSpec = this.getEnglishSpeciality(speciality);
 		var specs = {
 			0: '', 1: 'Technical', 2: 'Quick', 3: 'Powerful', 4: 'Unpredictable',

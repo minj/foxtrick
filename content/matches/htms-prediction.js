@@ -234,8 +234,8 @@ Foxtrick.modules['HTMSPrediction'] = {
 				Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[14].cells[2])
 			];
 			var tacticsLevel = [
-				parseInt(ratingstable.rows[15].cells[3].textContent, 15) || 0,
-				parseInt(ratingstable.rows[15].cells[4].textContent, 15) || 0
+				parseInt(ratingstable.rows[15].cells[3].textContent, 10) || 0,
+				parseInt(ratingstable.rows[15].cells[4].textContent, 10) || 0
 			];
 		}
 		else {
@@ -244,8 +244,8 @@ Foxtrick.modules['HTMSPrediction'] = {
 				Foxtrick.Pages.Match.getTacticsFromCell(ratingstable.rows[10].cells[2])
 			];
 			var tacticsLevel = [
-				parseInt(ratingstable.rows[15].cells[3].textContent, 11) || 0,
-				parseInt(ratingstable.rows[15].cells[4].textContent, 11) || 0
+				parseInt(ratingstable.rows[11].cells[3].textContent, 10) || 0,
+				parseInt(ratingstable.rows[11].cells[4].textContent, 10) || 0
 			];
 		}
 
