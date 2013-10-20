@@ -163,4 +163,7 @@ else var Blob = (function (view) {
 		}
 		return builder.getBlob(type);
 	};
-}(self));
+}(typeof self !== 'undefined' ? self : typeof this !== 'undefined' && this.content ? this.content : null));
+// `self` is undefined in Firefox for Android content script context
+// while `this` is nsIContentFrameMessageManager
+// with an attribute `content` that corresponds to the window
