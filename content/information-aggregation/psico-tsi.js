@@ -352,17 +352,20 @@ Foxtrick.modules['PsicoTSI'] = {
 			var sidebar = Foxtrick.createFeaturedElement(doc, module, 'div');
 			Foxtrick.addClass(sidebar, 'ft-psico-sideBar');
 
-			var STR_FORM = Foxtrickl10n.getString('PsicoTSI.FORM');
-			var CurrencyName = Foxtrick.util.currency.getSymbol(doc);
+			if (typeof (maxSkill) != 'undefined') {
+				// skills available
+				var STR_FORM = Foxtrickl10n.getString('PsicoTSI.FORM');
+				var CurrencyName = Foxtrick.util.currency.getSymbol(doc);
 
-			var formH = '<p>[' + STR_FORM + '+]=' + formHigh + '</p>';
-			var formA = '<p>[' + STR_FORM + '~]=' + formAvg + '</p>';
-			var formL = '<p>[' + STR_FORM + '-]=' + formLow + '</p>';
-			var wageH = '<p>[' + CurrencyName + '+]=' + wageHigh + '</p>';
-			var wageA = '<p>[' + CurrencyName + '~]=' + wageAvg + '</p>';
-			var wageL = '<p>[' + CurrencyName + '-]=' + wageLow + '</p>';
-			sidebar.innerHTML = '<p><b>' + mainSkillText + ':</b></p>' + formH + formA + formL +
-				wageH + wageA + wageL;
+				var formH = '<p>[' + STR_FORM + '+]=' + formHigh + '</p>';
+				var formA = '<p>[' + STR_FORM + '~]=' + formAvg + '</p>';
+				var formL = '<p>[' + STR_FORM + '-]=' + formLow + '</p>';
+				var wageH = '<p>[' + CurrencyName + '+]=' + wageHigh + '</p>';
+				var wageA = '<p>[' + CurrencyName + '~]=' + wageAvg + '</p>';
+				var wageL = '<p>[' + CurrencyName + '-]=' + wageLow + '</p>';
+				sidebar.innerHTML = '<p><b>' + mainSkillText + ':</b></p>' + formH + formA + formL +
+					wageH + wageA + wageL;
+			}
 
 			sidebar.appendChild(imgsOnly);
 
