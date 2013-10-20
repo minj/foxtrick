@@ -39,26 +39,19 @@ Foxtrick.loader.background.browserLoad = function() {
 
 		Foxtrick.log('Foxtrick.loader.background.browserLoad');
 
-		var currency, currencyJSON, about, aboutJSON, worldDetails, worldDetailsJSON,
-			htLanguagesText, htLanguagesJSONText, cssTextCollection;
+		var currencyJSON, aboutJSON, worldDetailsJSON, htLanguagesJSONText, cssTextCollection;
 
 		var updateResources = function() {
 			// init resources
 			Foxtrick.entry.init();
 
 			// prepare resources for later transmission to content script
-			var serializer = new window.XMLSerializer();
-
-			currency = serializer.serializeToString(Foxtrick.XMLData.htCurrencyXml);
 			currencyJSON = JSON.stringify(Foxtrick.XMLData.htCurrencyJSON);
-			about = serializer.serializeToString(Foxtrick.XMLData.aboutXML);
 			aboutJSON = JSON.stringify(Foxtrick.XMLData.aboutJSON);
-			worldDetails = serializer.serializeToString(Foxtrick.XMLData.worldDetailsXml);
 			worldDetailsJSON = JSON.stringify(Foxtrick.XMLData.worldDetailsJSON);
-			htLanguagesText = {}, htLanguagesJSONText = {};
+			htLanguagesJSONText = {};
 			var i;
-			for (i in Foxtrickl10n.htLanguagesXml) {
-				htLanguagesText[i] = serializer.serializeToString(Foxtrickl10n.htLanguagesXml[i]);
+			for (i in Foxtrickl10n.htLanguagesJSON) {
 				htLanguagesJSONText[i] = JSON.stringify(Foxtrickl10n.htLanguagesJSON[i]);
 			}
 			cssTextCollection = Foxtrick.util.css.getCssTextCollection();
@@ -111,7 +104,6 @@ Foxtrick.loader.background.browserLoad = function() {
 				_prefs_chrome_user: FoxtrickPrefs._prefs_chrome_user,
 				_prefs_chrome_default: FoxtrickPrefs._prefs_chrome_default,
 
-				htLang: htLanguagesText,
 				htLangJSON: htLanguagesJSONText,
 				properties_default: Foxtrickl10n.properties_default,
 				properties: Foxtrickl10n.properties,
@@ -120,11 +112,8 @@ Foxtrick.loader.background.browserLoad = function() {
 				plForm: Foxtrickl10n.plForm,
 				plForm_default: Foxtrickl10n.plForm_default,
 
-				currency: currency,
 				currencyJSON: currencyJSON,
-				about: about,
 				aboutJSON: aboutJSON,
-				worldDetails: worldDetails,
 				worldDetailsJSON: worldDetailsJSON,
 				league: Foxtrick.XMLData.League,
 				countryToLeague: Foxtrick.XMLData.countryToLeague,

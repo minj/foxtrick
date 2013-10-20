@@ -119,7 +119,6 @@ var Foxtrickl10n = {
 				// Kyrgyz	86
 	},
 
-	htLanguagesXml: {},
 	htLanguagesJSON: {},
 
 	// for plural form rule ids see
@@ -428,11 +427,9 @@ if (Foxtrick.arch === 'Gecko') {
 
 		init: function() {
 			if (Foxtrick.chromeContext() === 'background') {
-				// get htlang.xml for each locale
+				// get htlang.json for each locale
 				for (var i = 0; i < Foxtrickl10n.locales.length; ++i) {
 					var locale = Foxtrickl10n.locales[i];
-					var url = Foxtrick.InternalPath + 'locale/' + locale + '/htlang.xml';
-					this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.util.load.xmlSync(url);
 					var url = Foxtrick.InternalPath + 'locale/' + locale + '/htlang.json';
 					var text = Foxtrick.util.load.sync(url);
 					this.htLanguagesJSON[Foxtrickl10n.locales[i]] = JSON.parse(text);
@@ -600,13 +597,11 @@ if (Foxtrick.arch === 'Sandboxed') {
 		screenshots: null,
 
 		init: function() {
-			// get htlang.xml for each locale
+			// get htlang.json for each locale
 			var i;
 			var locale;
 			for (i in Foxtrickl10n.locales) {
 				locale = Foxtrickl10n.locales[i];
-				var url = Foxtrick.InternalPath + 'locale/' + locale + '/htlang.xml';
-				this.htLanguagesXml[Foxtrickl10n.locales[i]] = Foxtrick.util.load.xmlSync(url);
 				var url = Foxtrick.InternalPath + 'locale/' + locale + '/htlang.json';
 				var text = Foxtrick.util.load.sync(url);
 				this.htLanguagesJSON[Foxtrickl10n.locales[i]] = JSON.parse(text);
