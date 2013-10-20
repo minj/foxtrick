@@ -28,6 +28,9 @@ ul li ul
 	margin: 0px 0px 5px 20px;
 	padding: 5px;
 }
+#about-translators ul {
+	margin: 0;
+}
 
 h3
 {/*
@@ -39,6 +42,10 @@ h3
 h4 {
     font-size: 1.4em;
     margin: 0.5em 0;
+}
+#about-translators h4 {
+	margin: 0;
+    font-size: 1em;
 }
 
 h5 {

@@ -1018,18 +1018,19 @@ function initChangesTab()
 function initHelpTab()
 {
 	// external links
-	var aboutXml = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + 'data/foxtrick_about.xml');
-	var links = Foxtrick.XML_evaluate(aboutXml, 'about/links/link', 'title', 'value');
-	for (var i = 0; i < links.length; ++i) {
+	var about = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/foxtrick_about.json');
+	var aboutJSON = JSON.parse(about);
+	var category = aboutJSON.links;
+	Foxtrick.map(function(a) {
 		var item = document.createElement('li');
 		$('#external-links-list').append($(item));
 		var link = document.createElement('a');
 		item.appendChild(link);
-		link.textContent = Foxtrickl10n.getString('link.' + links[i][0]);
-		link.href = links[i][1];
-	}
+		link.textContent = Foxtrickl10n.getString('link.' + a.id);
+		link.href = a.href;
+	}, category);
 
-	// FAQ (faq.xml or localized locale/code/faq.xml
+	// FAQ (faq.yml or localized locale/code/faq.yml
 	var faqLinks = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'faq-links.yml');
 	var faq = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'faq.yml');
 	var faqLocal = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'locale/'
@@ -1098,34 +1099,49 @@ function initHelpTab()
 
 function initAboutTab()
 {
-	var aboutXml = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + 'data/foxtrick_about.xml');
-	$('.about-list').each(function() {
-		var iterator = aboutXml.evaluate($(this).attr('path'), aboutXml, null,
-		                                 XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);
-		var currentNode = iterator.iterateNext();
-		while (currentNode) {
-			var item = document.createElement('li');
-			var id = currentNode.hasAttribute('id') ? currentNode.getAttribute('id') : null;
-			var name = currentNode.getAttribute('name');
+	var about = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'data/foxtrick_about.json');
+	var aboutJSON = JSON.parse(about);
 
-			if (currentNode.nodeName == 'translator') {
-				var translation = currentNode.parentNode;
-				var language = translation.getAttribute('language');
-				item.appendChild(document.createTextNode(language + ': '));
-			}
-
-			item.appendChild(document.createTextNode(name));
-			if (id) {
-				item.appendChild(document.createTextNode(' '));
-				var link = document.createElement('a');
-				link.href = 'http://www.hattrick.org/Club/Manager/?userId=' + id;
-				link.textContent = '(%s)'.replace(/%s/, id);
-				item.appendChild(link);
-			}
-			$(this).append($(item));
-
-			currentNode = iterator.iterateNext();
+	var addItem = function(person, list) {
+		var item = document.createElement('li');
+		var id = person.hasOwnProperty('id') ? person.id : null;
+		var name = person.name;
+		item.appendChild(document.createTextNode(name));
+		if (id) {
+			item.appendChild(document.createTextNode(' '));
+			var link = document.createElement('a');
+			link.href = 'http://www.hattrick.org/Club/Manager/?userId=' + id;
+			link.textContent = '(%s)'.replace(/%s/, id);
+			item.appendChild(link);
 		}
+		list.append($(item));
+	};
+
+	$('.about-list').each(function() {
+
+		var type = $(this).attr('path');
+		var container = this;
+
+		var category = aboutJSON[type];
+		Foxtrick.map(function(data) {
+			if (type == 'translations') {
+				var item = document.createElement('li');
+				var language = data.language;
+				var header = document.createElement('h4');
+				header.textContent = language;
+				item.appendChild(header);
+				var list = document.createElement('ul');
+				item.appendChild(list);
+				Foxtrick.map(function(translator) {
+					addItem(translator, $(list));
+				}, data.translators);
+				$(container).append($(item));
+			}
+			else {
+				addItem(data, $(container));
+			}
+		}, category);
+
 	});
 }
 
