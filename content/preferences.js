@@ -882,15 +882,18 @@ function initChangesTab()
 		return;
 	}
 
-	var status = Foxtrick.util.load.xmlSync(Foxtrick.InternalPath + 'locale/status.xml');
-
-	var path = "status/language[code='" + lang + "']/translated_progress";
+	var status = Foxtrick.util.load.sync(Foxtrick.InternalPath + 'locale/status.json');
+	var statusJSON = JSON.parse(status);
 
 	var statusText = '';
 	try {
-		if (lang != 'en')
-			var statusText = Foxtrickl10n.getString('releaseNotes.translationStatus')
-				.replace(/%s/, Foxtrick.xml_single_evaluate(status, path).textContent);
+		if (lang != 'en') {
+			var category = statusJSON.status;
+			var st = Foxtrick.nth(0, function(item) {
+				return item.code == lang;
+			}, category).translated_progress;
+			statusText = Foxtrickl10n.getString('releaseNotes.translationStatus').replace(/%s/, st);
+		}
 	} catch (e) {}
 
 	var versions = {};

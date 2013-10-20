@@ -40,7 +40,10 @@ if [ $re -eq 1 ]; then
 			echo "Unzipped to $CROWDIN_FOLDER"
 #get translation status  
 			curl -s \
-			  "$CROWDIN_URL"/status?key="$CROWDIN_KEY" > "$CROWDIN_FOLDER"/status.xml
+			  "$CROWDIN_URL"/status?key="$CROWDIN_KEY" > status.xml
+			locale/XMLToJSON.py status.xml
+			rm status.xml
+			mv status.json "$CROWDIN_FOLDER"/status.json
 		  fi
 	  fi
 #cleanup
@@ -52,5 +55,3 @@ fi
 
 #Download French translations.
 #wget http://api.crowdin.net/api/project/{project-identifier}/download/fr.zip?key={project-key}
-
-
