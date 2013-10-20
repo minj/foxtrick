@@ -273,7 +273,10 @@ Foxtrick.Pages.Player = {
 							'defending', 'scoring', 'setPieces'];
 						var cells = skillTable.getElementsByTagName('td');
 						for (var i = 0; i < skillOrder.length; ++i) {
-							var skillLink = cells[2 * i + 1].getElementsByTagName('a')[0];
+							var cell = cells[2 * i + 1];
+							if (!cell)
+								break; //skills are not visible
+							var skillLink = cell.getElementsByTagName('a')[0];
 							if (skillLink.href.match(/ll=(\d+)/) === null) {
 								break; //skills are not visible
 							}
