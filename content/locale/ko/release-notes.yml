@@ -6,12 +6,43 @@ ko:
     beta:
       note_0: '이것은 다음 배포의 beta 버전 입니다. 이 버전에서 저희 군중-번역 페이지를 통해 번역해주세요. <linkCrowdin>crowdin.net</linkCrowdin>'
     0.13.0:
+      important: '<header>중요한 공지 사항</header>'
+      opera: |
+        <p>이는 Opera 12 및 하위 버전을 공식적으로 지원하는 마지막 메이저 버전입니다. 기존의 Foxtrick 버전들은 추가적인 공지 없이 기능을 중단할 것입니다.</p>
+        <p><linkOperaNext>Opera Next</linkOperaNext>로 변경하는 것을 고려하거나 저희가 지원하는 다른 브라우저를 선택해주세요.</p>
+      twitter: '<linkTwitter>Foxtrick on Twitter</linkTwitter>을 팔로우하면 최신 뉴스 및 업데이트와 공지를 받을 수 있습니다.'
       crowdin: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
+      new: '<header>새로운 모듈</header>'
+      hy_skills: '<module>YouthSkills</module>: Hattrick Youthclub 정보를 기반으로 유소년 선수 페이지의 정보를 향상시킵니다. 오직 HY 사용자만 해당됩니다.'
+      series_transfers: '<module>SeriesTransfers</module>: 시리즈 페이지에 현재 판매 중인 선수 목록을 보여줍니다.'
+      ratings_tweaks: '<module>MatchRatingsTweaks</module>:  경기 보고서 페이지에서 평점을 조작합니다. <module>MatchSimulator</module>에서처럼 시각표를 탐색할 때 평점과 변화를 수치적으로 표시합니다. ‘unwritten manual: 15766691.221, 15766691.242’에서 규명한 공식에 따라 실제 득점/수비/점유율 확률을 계산합니다.'
+      other: '<header>기타 변경 사항</header>'
+      simulator_prob: '<module>MatchSimulator</module>은 새로운 <module>MatchRatingsTweaks</module> 모듈로부터 실제 득점/수비/점유율 확률로 향상되었습니다.'
+      staff_marker: '<module>StaffMarker</module>을 재구성하였습니다. 서포터들과 지원받는 팀, 국가 대표 팀 감독 옵션을 추가하였습니다. 환경 설정에서 원하는 대로 설정하세요.'
+      psico_update: '왼쪽 사이드 바에서 <module>PsicoTSI</module> 예측을 표시하는 옵션을 다시 이행하였습니다.'
+      ticker_update: '지난 몇 년 동안 추가된 새로운 서포터 뉴스티커 유형을 추가하기 위해 <module>TickerColoring</module> 모듈과 <module>TickerAlert</module> 모듈을 업데이트하였습니다.'
+      ff_button: Firefox 툴바 버튼은 이제 더욱 즉각 반응하고 Foxtrick 상태를 반영합니다.
+      ff_disable: Firefox에서 Foxtrick을 비활성화하면 이제 (환경 설정이 열려 있는 경우) Foxtrick 환경 설정을 닫고 Foxtrick에 의해 수정된 부분을 모두 제거하기 위해 모든 Hattrick 탭을 다시 불러옵니다.
+      ticker_chall: '더 이상 <module>TickerColoring</module>에서 HT Supporter용 MyHT 메시지로부터 친선 경기 도전을 구별하는 것이 불가능합니다. 따라서 해당 뉴스티커 유형을 개명하였습니다.'
+      bugs: '<header>버그 수정</header>'
+      android: |
+        <p>Android 용 Firefox를 적응시키기 위해 Foxtrick 코어에 중대한 변화가 있었습니다. 그 결과 Foxtrick은 이제 모바일 디바이스에서 더 나은 성능을 기대할 수 있습니다.</p>
+        <p>해당 모듈: <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>등등</em>.</p>
+      native_names: '<module>CountryList</module>에서 토착 국가 이름으로 활성화된 이적 검색 폼으로 되돌아갈 때 선택한 국가가 더 이상 변경되지 않을 것입니다.'
+      custom_links: 외부 링크 기능을 재검토하고 알려진 모든 문제를 해결하였습니다. 이제 경기 보고서 페이지에서도 사용자 지정 링크를 추가할 수 있습니다.
+      player_filters: 'Firefox를 사용하는 사용자는 이제 동시에 멀티 탭에서 <module>PlayerFilters</module>을 사용하는 것이 가능합니다.'
+      history_stats: '이제 Firefox에서 <module>HistoryStats</module>을 동시에 여러 팀들과 함께 쓸 수 있습니다.'
+    0.12.2.1:
+      note_0: Firefox에서 Foxtrick 캐시를 청소하면 링크는 사라질 것입니다.
+      note_1: 'Foxtrick에 문제를 일으키는 변화들이  페르시아어 및 기타 언어들에서 현재 보고되었습니다.'
+      note_2: '경기장 공사 중에 <module>MatchIncome</module>은 이제 경기장 사용 비율을 표시할 것입니다. 공사 중에 FoxTrick은 일부 경기에서 현재 경기장 크기를 알 수 없습니다. 현재 경기장 크기에 도달하기 전에 치른 과거 경기를 볼 때 FoxTrick은 올바르지 못한 비율을 표시할 것입니다.'
+      note_3: Foxtrick에서 사용자의 통화 대신에 이상한 기호를 표시하는 문제를 해결
     0.12.2:
       note_0: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
       note_1: '<module>PlayerStatsExperience</module>: 이제 경험을 계산할 때 한 레벨을 올리는데 28.57 포인트가 필요가하고 가정합니다 (참조 15766691.780).'
       note_2: 'NEW: <module>PsicoTSI</module> 도구가 Foxtrick에 내장되었습니다.'
       note_3: '<module>ShowLineupSet</module>: 순위 테이블에서 팀 강조 옵션 추가하였습니다.'
+      note_4: '<module>CopyYouth</module>: 이제 훈련 변경 정보를 Hattrick Youthclub으로 자동으로 보냅니다(HY 유저만 해당).'
       note_5: 'NEW: <module>SupportersList</module>: 지원 받는 팀들에서 당신의 팀을 지원하는 팀을 표시하고 지원하는 팀들에서 당신이 지원하는 팀을 표시합니다.'
       note_6: '<module>MatchLineupTweaks</module>: 경기 페이지를 방문할 때마다 선수 체력 자료를 수집하는 옵션을 추가하였습니다. 이 자료는 <module>MatchSimulator</module> 모듈에서 더 나은 레이팅 예측을 위해 사용되며 <module>SkillTable</module>에서 볼 수 있습니다. 선수들은 90분 전체 출전해야 합니다. 압박 전술을 사용하거나 부정적인 날씨 SE (힘 있음 이벤트)가 있었던 경기들은 배제됩니다. 예측 공식은  Pappagallopoli에 의해 만들어 졌습니다.'
       note_7: 'NEW: <module>Fans</module>: 다음 경기 링크 옆에 라이브 링크를 추가하고 사이드 바에 팬 클럽 총원 발전 지표를 추가하였습니다.'
@@ -57,6 +88,8 @@ ko:
       note_5: 'NEW: <module>CopyBBAd</module>: 다양한 광고를 BB 코드로 복사합니다. (by merfis)'
       note_6: 'NEW: <module>DashboardCalendar</module>: 해트트릭 주간을 iCalendar 파일 형식으로 내보내는 버튼을 추가합니다.(Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal 등등과 호환되어야 합니다.)'
       note_7: '<module>LiveAlert</module>: home/away/your team goal별 다른 소리를 추가합니다. 기본적으로<linkHTLS>HTLiveSight</linkHTLS>을 사용합니다. 첫 번째 Re-Live 모드에서는 Your team goals을 인식하지 못할 것입니다.'
+      note_8: '<module>CopyYouth</module>: 해트트릭 유스클럽 사용자는 이제부터 자동적으로 거절한 선수에 대한 스카우트 통화내용을 HY으로 보낼 것입니다.'
+      note_9: '<module>CopyYouth</module>: 해트트릭 사용자는 이제부터 훈련 보고서를 처음 읽을 때 HY으로 자동으로 보낼 것입니다.'
       note_10: '<module>LineupShortcut</module>은 이제 새로운 라인업 페이지로 연결합니다.'
       note_11: '<module>SkillTable</module>은 이제 특수능력과 코치에 대한 아이콘을 사용합니다.'
       note_12: 'AddLeaveConfButton 은 <module>ForumLeaveButton</module>으로 이름을 바꿉니다'
@@ -107,6 +140,7 @@ ko:
       note_34: Android 17+의 Firefox 지원을 수정했습니다.
       note_35: Firefox12가 이제 폭스트릭을 실행할 수 있는 최소버전입니다.
       note_36: Google Chrome 22가 이제 폭스트릭을 실행할 수 있는 최소 버전입니다.
+      note_37: 'Opera: FT가 다른 페이지(Hattrick Youthclub)를 방해를 야기시키는 버그를 수정하였습니다. 이제 더욱 빨리 이미지가 불러올 것입니다. 특히 Opera에서 비활성화된 몇 가지 모듈을 이제 사용할 수 있습니다.'
       note_38: '<header>저희 뛰어난 사용자들이 <linkCrowdin>crowdin tool</linkCrowdin>을 사용하여 수많은 번역 업데이트가 있었습니다. 당신도 도울 수 있습니다!</header>'
       note_39: '<header>환경 설정 페이지를 다시 수정하였습니다.</header>'
       note_40: '<strong>그 밖에 많은 것</strong>'
@@ -117,6 +151,7 @@ ko:
       note_3: '<module>PlayerStatsExperience</module>: 새 버전에 환상적인 기능이 추가되었습니다. 신뢰할 수 있는 데이터가 있다면 더욱 자세하고 컬러풀한 피드백을 얻을 수 있습니다. (적록색맹 유저를 위해 테스트 해주신 SeanConnery (7751762)에게 감사 드립니다)'
       note_4: '<module>MatchOrderInterface</module>: 기존 지시사항을 복제하거나 복제 및 변환할 수 있습니다. 고의로 선수들은 입력되지 않습니다. '
       note_5: '<module>YouthTwins</module>: 쌍둥이에 대한 링크 정보를 숨기는 옵션을 추가하였습니다.(기본 비활성화)'
+      note_6: '<module>StaffMarker</module>:: 해트트릭 유스클럽 서버 접근을 줄이기 위해 이제 HY 스탭 정보를 Google Code을 통해 얻습니다.'
       note_7: '<module>TeamPopupLinks</module>:: hattrick.org의 느낌과 전체적으로 잘 어울리게 몇 가지를 재스타일링 했습니다'
       note_8: 핵심 선수 페이지를 지원합니다
       note_9: 안드로이드용 파이어폭스를 위해서 몇 가지를 개선하였습니다.
