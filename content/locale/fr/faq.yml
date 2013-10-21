@@ -1,13 +1,13 @@
 ---
-fr: 
-  faq: 
-    style: 
+fr:
+  faq:
+    style:
       question: Comment puis je personnaliser mon FoxTrick ?
       answer: |
         <p>FoxTrick fournit un ensemble d'interfaces de présentation aux utilisateurs de personnaliser leur propre style. Ces interfaces sont fournies par "HTML IDs et classes", et vous pouvez utiliser les CSS pour définir votre style préféré.</p>
         
         <p>Un exemple de personnalisation peut être vu <linkCSSExample>ici</linkCSSExample> or <linkCSSExampleGCode>ici</linkCSSExampleGCode>, que vous pouvez modifier pour satisfaire votre besoin. Après avoir enregistré le fichier, vous pouvez utiliser le <module>SkinPlugin</module> module pour télécharger le fichier CSS et l'utiliser.</p>
-    sound-format: 
+    sound-format:
       question: Quels formats de fichiers sont autorisés pour les alertes sonores ?
       answer: |
         <p>Les navigateurs autorisent différents formats de fichier. Voici une liste (Les formats non listés peuvent fonctionner si le plugin approprié est installé, par ex. Quicktime pour les mp3 dans Firefox):</p>
@@ -17,7 +17,7 @@ fr:
         <li>Safari (peut-être besoin de Quicktime): wav, mp3</li>
         <li>Chrome:  ogg, mp3, wav</li><li>Opera: wav, ogg</li>
         </ul>
-    sound-location: 
+    sound-location:
       question: Quelle est la limite de taille pour les fichiers des alertes sonores et où peuvent ils être situés ?
       answer: |
         <p>Tous les navigateurs peuvent jouer des données "urls". Ce sont vos alertes sonores enregistrées via le bouton "parcourir" fourni dans les préférences. Comme elles sont converties et enregistrées dans vos préférences, la taille est limitée à environ 160kB par son.</p>
@@ -25,7 +25,7 @@ fr:
         <p>Tous les navigateurs peuvent également jouer des sons directement depuis Internet (http urls). Il suffit de copier un lien vers un son (par ex. http://foxtrick.org/sound.wav) dans le champ d'édition de sons. Aucune limite de taille.</p>
         
         <p>Les navigateurs de Mozilla peut également lire des sons directement depuis votre disque dur (file urls) sans limite de taille. Meilleure façon d'obtenir le bon format: Dans le navigateur, faites Ctrl+o, recherchez le fichier audio et sélectionnez le. Dans la barre d'adresse, en haut, est inscrit maintenant le bon lien vers le fichier local (par ex. file:///c:/sound.wav). Copiez et collez-le dans le champ d'édition des sons.</p>
-    authorize: 
+    authorize:
       question: Pourquoi devrais-je autoriser FoxTrick à accéder aux données de mon équipe ?
       answer: |
         <p>Bien que la plupart des données nécessaires pour FoxTrick peuvent être récupérés directement à partir de la page que vous consultez, certains modules nécessitent le téléchargement de données à partir de Hattrick pour fonctionner correctement.</p>
@@ -53,7 +53,7 @@ fr:
         <li><module>SkillTable</module></li>
         <li><module>TeamStats</module></li>
         </ul>
-    privacy: 
+    privacy:
       question: Comment FoxTrick protège ma vie privée ?
       answer: |
         <p>FoxTrick ne récupère aucune de vos données ou préférences sur son serveur; Jamais Foxtrick ne transmettra vos données personnelles à des tierces-parties, cela inclus (et ce n'est pas exhaustif) votre nom d'utilisateur, votre mot de passe et l'ID de vos joueurs associée à leurs caractéristiques </p>

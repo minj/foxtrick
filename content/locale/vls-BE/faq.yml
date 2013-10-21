@@ -1,13 +1,13 @@
 ---
-vls-BE: 
-  faq: 
-    style: 
+vls-BE:
+  faq:
+    style:
       question: Hoe kan ik de lay-out van mijn FoxTrick aanpassen?
       answer: |
         <p>FoxTrick voorziet enkele verschillende lay-outs voor gebruikers om zo hun eigen stijl te creëren. Deze lay-outs worden voorzien door HTML ID's, door CSS te gebruiken kun je je eigen stijl maken.</p>
         
         <p>Een voorbeeld van een zelfgemaakte stijl kan <linkCSSExample>hier</linkCSSExample>of <linkCSSExampleGCode>hier</linkCSSExampleGCode> gevonden worden, die je kan aanpassen naar je eigen wensen. Nadat je de file hebt opgeslagen kan je de <module>SkinPlugin</module> module gebruiken om je CSS file te uploaden en zo je eigen stijl te gebruiken</p>
-    sound-format: 
+    sound-format:
       question: Welke geluidsformaten zijn toegestaan voor waarschuwingen?
       answer: |
         <p>Dit hangt af van welke brower je gebruikt. Hier is een lijst: (Geluidsformaten die hier niet bij staan kunnen ook werken als de gepaste plug-in geïnstalleerd is, bvb Quicktime voor mp3 in Firefox)</p>
@@ -17,12 +17,12 @@ vls-BE:
         <li>Safari (may need Quicktime): wav, mp3</li>
         <li>Chrome: ogg, mp3, wav</li><li>Opera: wav, ogg</li>
         </ul>
-    sound-location: 
+    sound-location:
       question: Wat is de maximum grootte van bestanden voor waarschuwingsgeluiden en waar kunnen ze opgeslagen worden?
-      answer: 
-    authorize: 
+      answer: ""
+    authorize:
       question: Waarom moet ik FoxTrick toestemming geven mijn team data te raadplegen?
-      answer: 
-    privacy: 
+      answer: ""
+    privacy:
       question: Hoe beschermt FoxTrick mijn privacy?
-      answer: 
+      answer: ""

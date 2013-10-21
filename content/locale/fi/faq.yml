@@ -1,10 +1,10 @@
 ---
-fi: 
-  faq: 
-    style: 
+fi:
+  faq:
+    style:
       question: Kuinka voin muotoilla FoxTrickiani?
-      answer: 
-    sound-format: 
+      answer: ""
+    sound-format:
       question: Mitkä tiedostomuodot kelpaavat hälytysääniin?
       answer: |
         <p>Eri selaimet hyväksyvät eri tiedostomuotoja. Seuraavassa on lista (listaamattomat muodot saattavat toimia, jos asiaankuuluvat lisäosat on asennettu, kuten Quicktime mp3:lle Firefoxiin):</p>
@@ -14,10 +14,10 @@ fi:
         <li>Safari (saattaa tarvita Quicktimen): wav, mp3</li>
         <li>Chrome: ogg, mp3, wav</li><li>Opera: wav, ogg</li>
         </ul>
-    sound-location: 
+    sound-location:
       question: Mikä on kokorajoitus hälytysäänille ja minne ne voi asettaa?
-      answer: 
-    authorize: 
+      answer: ""
+    authorize:
       question: Miksi minun pitää valtuuttaa FoxTrick päästäkseni joukkueeni tietoihin?
       answer: |
         <p>Vaikka FoxTrick pystyykin noutamaan suurimman osan tiedoista suoraan avoinna olevalta sivulta, vaativat jotkut moduulit tietojen lataamista Hattrickistä toimiakseen kunnolla.</p>
@@ -45,7 +45,7 @@ fi:
         <li><module>SkillTable</module></li>
         <li><module>TeamStats</module></li>
         </ul>
-    privacy: 
+    privacy:
       question: Miten FoxTrick suojaa yksityisyyttäni?
       answer: |
         <p>FoxTrick ei lataa mitään tietoja tai asetuksia serverilleen, kuten ei myöskään lähetä mitään henkilökohtaisia tietojasi kolmansille osapuolille; mukaanlukien (mutta ei pelkästään) käyttäjätunnuksesi, salasanasi tai pelaaja-ID yhdistettynä taitoihin.</p>

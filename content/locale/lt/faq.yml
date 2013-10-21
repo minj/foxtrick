@@ -1,13 +1,13 @@
 ---
-lt: 
-  faq: 
-    style: 
+lt:
+  faq:
+    style:
       question: Kaip pakeisti Foxtrick išvaizdą?
       answer: |
         <p>FoxTrick turi sąsają išvaizdai individualizuoti. HTML elementams suteikiami „id“ ir „class“ atributai, kuriuos galite panaudoti rašydami savo CSS stilius.</p>
         
         <p>Pavyzdinį stiliaus failą galima rasti <linkCSSExample>pačiame priedėlyje</linkCSSExample> arba <linkCSSExampleGCode>googlecode tinklalapyje</linkCSSExampleGCode>. Jį galite keisti pagal savo nuožiūrą. Išvaizdą pakeisite išsaugotą failą įkėlę į <module>SkinPlugin</module> modulį.</p>
-    sound-format: 
+    sound-format:
       question: Kuriuos garso rinkmenų formatus galima naudoti pranešimams?
       answer: |
         <p>Skirtingos naršyklės leidžia naudoti skirtingus rinkmenų formatus. Pateikiame sąrašą (kiti formatai taip pat gali veikti, jei įdiegti atitinkami naršyklės įskiepiai, pvz. „Quicktime“ groja „mp3“ rinkmenas „Firefox“ naršyklėje):</p>
@@ -18,7 +18,7 @@ lt:
         <li>Chrome: ogg, mp3, wav</li>
         <li>Opera: wav, ogg</li>
         </ul>
-    sound-location: 
+    sound-location:
       question: Koks garso rinkmenų dydžio limitas ir kur jas rasti?
       answer: |
         <p>Visos naršyklės paleidžia garsus iš skaitmeninių nuorodų (angl. data urls). Tai – priedėlyje išsaugomi garsai, įkelti Foxtrick nustatymų puslapyje. Dydžio limitas – apytiksliai 160 kB vienai rinkmenai.</p>
@@ -26,7 +26,7 @@ lt:
         <p>Visos naršyklės taip pat gali paleisti garsus tiesiai iš žiniatinklio („http“ nuorodas). Tiesiog įveskite adresą (pvz., „http://foxtrick.org/sound.wav“) į garsui skirtą tekstinį lauką. Dydis neribojamas.</p>
         
         <p>„Mozilla“ naršyklės taip pat gali paleisti rinkmenas tiesiai iš Jūsų kietojo disko („file“ nuorodos, dydis neribojamas). Lengviausiai sudarysite tinkamą nuorodą tiesiog atidarę rinkmeną su naršykle. Naršyklės adreso lauke galėsite nukopijuoti teisingą nuorodą (pvz., „file:///c:/sound.wav“). Įterpkite ją į garsui skirtą lauką.</p>
-    authorize: 
+    authorize:
       question: Kodėl turėčiau leisti Foxtrick pasiekti mano komandos duomenis?
       answer: |
         <p>Nors didžiąją duomenų dalį FoxTrick gali gauti tiesiogiai iš atidaryto Hattrick puslapio, kai kuriems moduliams veikti būtina CHPP sąsaja.</p>
@@ -54,7 +54,7 @@ lt:
         <li><module>SkillTable</module></li>
         <li><module>TeamStats</module></li>
         </ul>
-    privacy: 
+    privacy:
       question: Kaip Foxtrick saugo mano privatumą?
       answer: |
         <p>FoxTrick nesiųs jokių Jūsų duomenų ar nustatymų į Foxtrick (ar kitus) serverius, įskaitant vartotojo vardus ir slaptažodžius, žaidėjų ID, įgūdžius ir t. t..</p>

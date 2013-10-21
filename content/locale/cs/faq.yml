@@ -1,13 +1,13 @@
 ---
-cs: 
-  faq: 
-    style: 
+cs:
+  faq:
+    style:
       question: Jak si mohu graficky upravit svůj FoxTrick?
       answer: |
         <p>FoxTrick poskytuje sadu rozhraní pro uživatele umožňujících individuální úpravu stylů. Tato rozhraní jsou poskytována formou HTML ID a tříd. Za pomocí CSS si můžete definovat svůj preferovaný styl.</p>
         
         <p>Na příklad uživatelského stylu se můžete podívat <linkCSSExample>zde</linkCSSExample> nebo <linkCSSExampleGCode>zde</linkCSSExampleGCode>, oba si můžeš upravit pro svoje potřeby. Po uložení souboru můžete použít modul <module>SkinPlugin</module>, který načte CSS soubor a zobrazí tebou provedené změny v uživatelském stylu.</p>
-    sound-format: 
+    sound-format:
       question: Jaké formáty jsou povoleny pro zvuková upozornění?
       answer: |
         <p>Různé prohlížeče povolují různé formáty souborů. Zde je seznam (nezmíněné formáty mohou fungovat, pokud máš nainstalovaný odpovídající plugin, např. Quicktime pro přehrání mp3 ve Firefoxu):</p>
@@ -17,7 +17,7 @@ cs:
         <li>Safari (může vyžadovat Quicktime): wav, mp3</li>
         <li>Chrome: ogg, mp3, wav</li><li>Opera: wav, ogg</li>
         </ul>
-    sound-location: 
+    sound-location:
       question: Jaký je velikostní limit na zvuková upozornění a kde mohou být uloženy?
       answer: |
         <p>Všechny prohlížeče umí přehrát datová URL. Jde o interně uložené zvukové soubory, když použijete tlačítko nahrát v nastavení. Jelikož jsou převedeny a uloženy ve vašich nastaveních, je jejich velikost omezena na cca 160kB na jeden zvukový soubor.</p>
@@ -25,7 +25,7 @@ cs:
         <p>Všechny prohlížeče také umí přehrát zvukové soubory přímo z internetu (http odkazy). Stačí nakopírovat odkaz na zvukový soubor (např. http://foxtrick.org/sound.wav) do políčka pro zvuky. Žádný velikostní limit.</p>
         
         <p>Prohlížeče Mozilla umožňují také přehrání souboru přímo z vašeho disku (souborové URL) bez jakéhokoliv velikostního omezení. Nejjednodušším způsobem, jak získat správný formát odkazu, je zmáčknout v prohlížeči CTRL + O, vyhledat zvukový soubor a vybrat jej. V adresní liště se zobrazí správný odkaz na lokální soubor (např. file:///c:/sound.wav). Tento už stačí zkopírovat do políčka pro zvuky.</p>
-    authorize: 
+    authorize:
       question: Proč bych měl povolit FoxTricku přístup k datům mého týmu?
       answer: |
         <p>Ačkoliv k většině dat, které FoxTrick potřebuje, může přistupovat přímo na stránce, která je právě zobrazená, některé moduly potřebují k tomu, aby správně fungovaly, stahovat data z Hattricku.</p>
@@ -53,7 +53,7 @@ cs:
         <li><module>SkillTable</module></li>
         <li><module>TeamStats</module></li>
         </ul>
-    privacy: 
+    privacy:
       question: Jak chrání FoxTrick moje soukromí?
       answer: |
         <p>FoxTrick nenahraje tvá data nebo nastavení na server FoxTricku; FoxTrick také nepošle tvá osobní data, včetně tvého uživatelského jména, hesla a ID hráčů vázaných s vlastnostmi žádné třetí straně.</p>

@@ -1,13 +1,13 @@
 ---
-es-ES: 
-  faq: 
-    style: 
+es-ES:
+  faq:
+    style:
       question: ¿Cómo puedo cambiar el estilo de mi FoxTrick?
       answer: |
         <p>FoxTrick proporciona un set de interfaces de presentación para que los usuarios lo personalicen a su propio estilo. Estas interfaces son proporcionadas a través de IDs y clases HTML, además puedes usar CSS para definir tu estilo principal.</p>
         
         <p>Se puede encontrar un ejemplo de archivo de estilo de un usuario <linkCSSExample>aquí</linkCSSExample> o <linkCSSExampleGCode>aquí</linkCSSExampleGCode>, los cuales puedes modificar a tu gusto. Tras guardar el archivo, puede usar el módulo <module>SkinPlugin</module> para cargar el archivo CSS y que el estilo de usuario surja efecto.</p>
-    sound-format: 
+    sound-format:
       question: ¿Qué formatos de ficheros están permitidos para las alertas de sonido?
       answer: |
         <p>Distintos navegadores permiten distintos formatos de archivo. Aquí hay una lista (los formatos no listados quizá funcionen si están instalados los plugins apropiados. Por ejemplo, el Quicktime para reproducir mp3 en Firefox):</p>
@@ -17,7 +17,7 @@ es-ES:
         <li>Safari (posible necesidad de Quicktime): .wav, .mp3</li>
         <li>Chrome:  .ogg, .mp3, .wav</li><li>Opera: .wav, .ogg</li>
         </ul>
-    sound-location: 
+    sound-location:
       question: ¿Cual es el limite de tamaño para alertas de sonido y donde pueden ser localizados?
       answer: |
         <p>Todos los navegadores puede reproducir URLs de datos. Estos son los sonidos guardados que se utilizan cuando usas el botón de carga de preferencias. Una vez se convierten y guardan en tus preferencias, el tamaño se limita a los 160kB por sonido.</p>
@@ -25,30 +25,30 @@ es-ES:
         <p>Además, todos los navegadores pueden reproducir sonidos directamente desde internet (direcciones http). Simplemente copia un enlace a un sonido (por ejemplo: http://foxtrick.org/sound.wav) en el campo de edición para el sonido. No hay límite de tamaño.</p>
         
         <p>El Mozilla también puede reproducir sonidos directamente desde tu disco duro sin límite de tamaño. La forma más fácil de obtener el formato apropiado: pulsa Ctrl+O en el navegador, busca el archivo de sonido y selecciónalo. En la barra de dirección de arriba aparecerá entonces el directorio en el que se encuentra el archivo local (por ejemplo: file:///c:/sound.wav). Copia y pega esto en el campo de edición para el sonido.</p>
-    authorize: 
+    authorize:
       question: ¿Por qué debo autorizar a Foxtrick acceder a los datos de mi equipo?
       answer: |
-        <p>Aunque la mayoría de los datos necesarios por FoxTrick se puede obtener directamente de la página que estás viendo, algunos módulos requieren la descarga de datos de Hattrick para funcionar correctamente.</p>
+        <p>Aunque la mayoría de los datos necesarios por FoxTrick se puede obtener directamente de la página que estás viendo, algunos módulos requieren la descarga de datos de Hattrick para funcionar correctamente.</p>  
         
-        <p>Para descargar datos de Hattrick, incluidos los datos de tu equipo, ligas y selecciones nacionales, necesitas autorizar a FoxTrick previamente.</p>
+        <p>Para descargar datos de Hattrick, incluidos los datos de tu equipo, ligas y selecciones nacionales, necesitas autorizar a FoxTrick previamente.</p>  
         
-        <p>Autorizas a FoxTrick proporcionando Tu nombre de usuario y contraseña en chpp.hattrick.org. Así consigues un código de verificación que se proporciona a FoxTrick. FoxTrick no sabrá tu nombre de usuario o tu contraseña en todo el proceso.</p>
+        <p>Autorizas a FoxTrick proporcionando Tu nombre de usuario y contraseña en chpp.hattrick.org. Así consigues un código de verificación que se proporciona a FoxTrick. FoxTrick no sabrá tu nombre de usuario o tu contraseña en todo el proceso.</p>  
         
-        <p>Para conocer más sobre el proceso de autorizar, por favor lee <linkCHPPDesc>CHPP - cómo funciona</linkCHPPDesc> en Hattrick.</p>
+        <p>Para conocer más sobre el proceso de autorizar, por favor lee <linkCHPPDesc>CHPP - cómo funciona</linkCHPPDesc> en Hattrick.</p> 
         
-        <p>Algunos módulos requieren acceso a los datos para funcionar correctamente:</p>
+        <p>Algunos módulos requieren acceso a los datos para funcionar correctamente:</p>  
         <ul>
         <li><module>CrossTable</module></li>
-        <li><module>ExtraPlayerInfo</module></li>
-        <li><module>MatchPlayerColouring</module></li>
-        <li><module>MyMonitor</module></li>
-        <li><module>NtPeek</module></li>
-        <li><module>SeriesFlags</module></li></ul>
-        <p>Algunos módulos pueden proporcionar información más amplia, si pueden acceder a datos de Hattrick:</p>  <ul>
-        <li><module>SkillTable</module></li>
+        <li><module>ExtraPlayerInfo</module></li> 
+        <li><module>MatchPlayerColouring</module></li> 
+        <li><module>MyMonitor</module></li> 
+        <li><module>NtPeek</module></li> 
+        <li><module>SeriesFlags</module></li></ul> 
+         <p>Algunos módulos pueden proporcionar información más amplia, si pueden acceder a datos de Hattrick:</p>  <ul>
+        <li><module>SkillTable</module></li> 
         <li><module>TeamStats</module></li>
         </ul>
-    privacy: 
+    privacy:
       question: ¿Cómo protege mi privacidad FoxTrick?
       answer: |
         <p>FoxTrick no compartirá tus datos ni tu configuración con ningún servidor de FoxTrick; tampoco enviará nombres, contraseñas, IDs de jugador ni ningunos otros datos privados a terceros.</p>

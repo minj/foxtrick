@@ -1,10 +1,10 @@
 ---
-de: 
-  faq: 
-    style: 
+de:
+  faq:
+    style:
       question: Wie kann ich das Erscheinungsbild von Foxtrick verändern?
-      answer: 
-    sound-format: 
+      answer: ""
+    sound-format:
       question: Welche Dateiformate sind bei Alarm-Geräuschen erlaubt?
       answer: |
         <p>Verschiedene Browser erlauben verschieden Dateiformate. Hier eine Liste der unterstützen Formate für die verschiedenen Browsers (nicht aufgeführte Formate können eventuell funktionieren wenn das entsprechende Plugin installiert ist wie z.B. Quicktime um mp3 im Firefox abzuspielen):</p>
@@ -14,10 +14,10 @@ de:
         <li>Safari (Benötigt eventuell Quicktime): wav, mp3</li>
         <li>Chrome:  ogg, mp3, wav</li><li>Opera: wav, ogg</li>
         </ul>
-    sound-location: 
+    sound-location:
       question: Wie ist das Limit bei der Dateigröße und wo befinden sich die Dateien?
-      answer: 
-    authorize: 
+      answer: ""
+    authorize:
       question: Warum sollte ich Foxtrick zugriff auf meine Mannschaftsdaten geben?
       answer: |
         <p>Obwohl die meisten Daten, die Foxtrick benötigt direkt von der Seite geladen werden könne, die Du in dem Moment vor Dir siehst, ist es für manche Module erforderlich, dass Daten von Hattrick heruntergeladen werden damit sie ordentlich funktionieren</p>
@@ -45,7 +45,7 @@ de:
         <li><module>SkillTable</module></li>
         <li><module>TeamStats</module></li>
         </ul>
-    privacy: 
+    privacy:
       question: Wie sieht es bezüglich des Datenschutzes aus?
       answer: |
         <p>FoxTrick lädt keine Deiner Daten oder Einstellungen auf einen Foxtrick-Server; FoxTrick versendet auch keinerlei private Daten inklusive Benutzernamen, Passwort und Spieler ID mit den Fähigkeiten etc. an Dritte.</p>

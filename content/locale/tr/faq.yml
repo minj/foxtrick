@@ -1,10 +1,10 @@
 ---
-tr: 
-  faq: 
-    style: 
-      question: FoxTrick'i nasıl biçimlendirebilirim?
-      answer: 
-    sound-format: 
+tr:
+  faq:
+    style:
+      question: "FoxTrick'i nasıl biçimlendirebilirim?"
+      answer: ""
+    sound-format:
       question: Uyarı sesleri için hangi dosya türleri kullanılabilir ?
       answer: |
         <p>Farklı tarayıcılar farklı dosya biçimlerine izin vermektedir. İşte liste (uygun eklentiler yüklenmiş ise listelenmemiş biçimler de çalışabilir, örneğin Firefox'ta mp3 oynatmak için Quicktime):</p>
@@ -14,13 +14,38 @@ tr:
         <li>Safari (Quicktime'a ihtiyacınız olabilir): wav, mp3</li>
         <li>Chrome: ogg, mp3, wav</li><li>Opera: wav, ogg</li>
         </ul>
-    sound-location: 
+    sound-location:
       question: Uyarı sesleri için boyut sınırları nedir ve onları nerede bulabilirim?
-      answer: 
-    authorize: 
-      question: Takım bilgilerime erişmesi için neden Foxtrick'e izin vermeliyim?
-      answer: 
-    privacy: 
+      answer: ""
+    authorize:
+      question: "Takım bilgilerime erişmesi için neden Foxtrick'e izin vermeliyim?"
+      answer: |
+        FoxTrick ihtiyaç duyduğu verilerin çoğu görüntülediğiniz sayfadan doğrudan zorlama ile olabilir <p> bazı modüller düzgün çalışması için Hattrick indirirken veri-akışı gereklidir. </ p>
+        
+        <p> ekibinizin veri, ligler ve milli takımlar da dahil olmak üzere Hattrick veri, indirmek için, önceden FoxTrick yetki gerekir. </ p>
+        
+        <p> Sen FoxTrick sağlamak bir doğrulama kodu, karşılığında chpp.hattrick.org kullanıcı adınızı ve şifrenizi sağlayarak FoxTrick yetki. FoxTrick tüm süreç içinde kullanıcı adınızı veya şifrenizi bilemezsiniz. </ P>
+        
+        yetki süreci hakkında daha fazla bilgi için <p>, <linkCHPPDesc> CHPP okuyun - bu Hattrick üzerinde </ linkCHPPDesc> Nasıl çalışıyor </ p>.
+        
+        <p> Bazı modüller veri erişimi düzgün çalışması için gerekli: </ p>
+        
+        <ul>
+        <li> <module> carsaftablo </ module> </ li>
+        <li> <module> ExtraPlayerInfo </ module> </ li>
+        <li> <module> MatchPlayerColouring </ module> </ li>
+        <li> <module> MyMonitor </ module> </ li>
+        <li> <module> NtPeek </ module> </ li>
+        <li> <module> SeriesFlags </ module> </ li>
+        </ ul>
+        
+        onlar Hattrick veri erişebilirsiniz <p> Bazı modüller geniş bilgi sağlayabilir: </ p>
+        
+        <ul>
+        <li> <module> SkillTable </ module> </ li>
+        <li> <module> TeamStats </ module> </ li>
+        </ ul>
+    privacy:
       question: FoxTrick gizliliğimi nasıl koruyacak?
       answer: |
         <p>Foxtrick ne bilgilerinizi ya da ayarlarınızı kendi server'ına yükleyecek ne de kullanıcı adınız, şifreniz, oyuncu ID'leri ve oyuncularınızın yeteneklerini içeren özel bilgilerinizi 3.şahıslarla paylaşmayacaktır.</p>

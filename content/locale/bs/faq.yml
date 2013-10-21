@@ -1,14 +1,14 @@
 ---
-bs: 
-  faq: 
-    style: 
+bs:
+  faq:
+    style:
       question: Kako mogu stilizovati svoj FoxTrick?
       answer: |
-        <p>FoxTrick nudi više interfejsa koje možete koristiti kako biste FoxTrick podesili onako kako vama to odgovara. Ovi interfejsi su na raspolaganju kroz HTML ID-ove i klase, i možete koristiti CSS da definišete vaš preferirajući stil.</p>
+        <p>Foxtrick omogućuje da možete sami mijenjati izgled uz pomoć vaših osobnih 'CSS' stilova. Mijenjanje izgleda vam je omogućeno putem Foxtrick-ovih 'HTML id' tagova i klasa uz pomoć kojih možete definisati lični izgled Foxtricka, korištenjem 'CSS' stilova.</p>
         
-        <p>Primjer korisničke stil-datoteke može se naći <linkCSSExample>ovdje</linkCSSExample> ili <linkCSSExampleGCode>ovdje</linkCSSExampleGCode>, ovu datoteku možete mjenjati kako biste postigli željeni izgled. Nakon što spasite promjene u datoteci, možete koristiti <module>SkinPlugin</module> modul za ubacivanje CSS datoteke kako bi vaš željeni stil bio primjenjen.</p>
-    sound-format: 
-      question: Koji formati datoteke su dozvoljeni kao zvukovi upozorenja?
+        <p>Datoteka koji je primjer za prilagođeni stil možete naći <linkCSSExample>ovdje</linkCSSExample> ili <linkCSSExampleGCode>ovdje</linkCSSExampleGCode>, i možete ga modifikovati kako bi ga prilagodili vašim željama i potrebama. Nakon mjenjanja i spremanja vaše  'CSS' datoteke, možete iskoristiti Foxtrickov <module>SkinPlugin</module> modul da ga učitate i stavite u funkciju.</p>
+    sound-format:
+      question: Koji formati datoteke su dozvoljeni za zvuk upozorenja?
       answer: |
         <p>Različiti internet preglednici dozvoljavaju različite formate datoteka. U nastavku se nalazi lista internet preglednika i njihovih odgovarajućih formata (formati koji nisu na listi mogu raditi ukoliko je instaliran odgovarajući dodatak-plugin, npr. Quicktime za .mp3 datoteke u Firefoxu i sl.):</p>
         
@@ -17,12 +17,49 @@ bs:
         <li>Safari (može biti potreban Quicktime): wav, mp3</li>
         <li>Chrome:  ogg, mp3, wav</li><li>Opera: wav, ogg</li>
         </ul>
-    sound-location: 
+    sound-location:
       question: Koja je maksimalna veličina zvukova upozorenja i gdje se mogu smjestiti?
-      answer: 
-    authorize: 
-      question: Zašto trebam dozvoliti FoxTrick-u da pristupi podacima moga tima?
-      answer: 
-    privacy: 
+      answer: |
+        <p>Svi pretraživači mogu koristiti url linkove do lokalnih datoteka na vašem kompjuteru. Ovo su interno sačuvani primjeri i do njih dolazite kada koristite dugme za učitavanje u postavkama Foxtrick-a. Pošto se oni automatski pretvaraju i spremaju u postavkama njihova veličina je limitirana na 160kb po datoteci.</p>
+        
+        <p>Svi pretraživači također mogu preuzimati i datoteke direktno s interneta (http url). Dovoljno je kopirati link do datoteke (primjer: http://foxtrick.org/sound.wav) u polje za izbor datoteke. Za ove datoteke nema ograničenja u veličini.</p>
+        
+        <p>U pretraživačima iz familije Mozilla za datoteke koji se nalaze na vašem kompjuteru nema ograničenja za veličinu. Najlakši način odabrati pravi format: U polju za adresu datoteke pritisnite Ctrl+o, i idite do adrese gdje se nalazi datoteka i obilježite ga. U polju za adresu u pretraživaču će vam se pojaviti link do datoteke na vašem kompjuteru (u formatu: file:///c:/Sound.wav). Kopirajte i ubacite ovaj link u Foxtrick postavke.</p>
+    authorize:
+      question: Zašto trebam dati autorizaciju Foxtricku da pristupi podacima moje momčadi?
+      answer: |
+        <p>Iako se za većinu Foxtrick-ovih funkcija podaci uzimaju direktno sa stranice na kojoj se nalazite, neki moduli zahtijevaju skidanje podataka s Hattricka kako bi radili pravilno.</p>
+        
+        <p>Da bi skinuo podatke sa Hattricka, uključujući i podatke o vašem timu, ligi, reprezentaciji itd.. morate unaprijed dati dozvolu Foxtrick-u da to i napravi.</p>
+        
+        <p>Foxtrick-u dajete dozvolu tako što ubacite verifikacijski kod koji dobivate kad upišete svoju šifru i lozinku na Hattrick stranici za verifikaciju chpp.hattrick.org. Foxtrick tokom čitavog ovog procesa neće imati uvid u vašu lozinku i korisničko ime.</p>
+        
+        <p>Da bi ste saznali više o procesu autorizacije, pročitajte tekst <linkCHPPDesc>CHPP - Kako ovo radi</linkCHPPDesc> na Hattrick-u.</p>
+        
+        <p>Neki od modula zahtijevaju pristup podacima da bi radili pravilno: </p>
+        
+        <ul>
+        <li><module>Crosstab</module></li>
+        <li><module>ExtraPlayerInfo</module></li>
+        <li><module>MatchPlayerColouring</module></li>
+        <li><module>MyMonitor</module></li>
+        <li><module>NtPeek</module></li>
+        <li><module>SeriesFlags</module></li>
+        </ul>
+        
+        <p>A neki moduli vam mogu pružiti i dodatne informacije, pod uslovom da Foxtricku dozvolite pristup podacima na Hattrick:</p>
+        
+        <ul>
+        <li><module>SkillTable</module></li>
+        <li><module>TeamStats</module></li>
+        </ul>
+    privacy:
       question: Kako će Foxtrick zaštititi moju privatnost?
-      answer: 
+      answer: |
+        <p>Foxtrick neće prikupljati ni bilo gdje prenositi vaše osobne podatke ni postavke; niti će na druge stranice automatski prosljeđivati ​​bilo koji od vaših osobnih podataka, uključujući i ime za logiranje, lozinku, ID-ove igrača ili njihove osobine i vještine.</p>
+        
+        <p>Podaci koji se prosljeđuju drugim stranicama, osim ako je to izričito navedeno ispod, šalju se 'HTTP GET' metodom, i to samo ako vi kliknete na link ka tom alatu ili stranici.</p>
+        
+        <p>Uz to, možete i vidjeti sve podatke koji se prosljeđuju jer će biti naznačeni u 'URI' (Uniform Resource Identifier) eksternom linku, i nijedan podatak neće biti poslan bez vaše dozvole. I kao što smo gore već napomenuli, nijedan vaš privatni podatak neće biti kompromitovan.</p>
+        
+        <p>Jedini izuzetak predstavljaju moduli <module>HTMSPrediction</module> i <module>HTEVPrediction</module>, kod kojih se ocjene utakmice, 'XMLHttpRequest' metodom, šalju na odgovarajuće stranice.</p>

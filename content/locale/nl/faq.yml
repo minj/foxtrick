@@ -1,13 +1,13 @@
 ---
-nl: 
-  faq: 
-    style: 
+nl:
+  faq:
+    style:
       question: Hoe pas ik de stijl van mijn FoxTrick aan?
       answer: |
         <p>Foxtrick levert mogelijkheden voor gebruikers om stijlen aan te passen naar eigen voorkeur. Deze mogelijkheden worden aangeleverd via HTML IDs en classes. Met behulp van deze elementen, kun je in CSS je eigen stijl-voorkeuren aangeven.</p>
         
         <p>Een voorbeeld van een gebruiker's stijl kan <linkCSSExample>hier</linkCSSExample> of <linkCSSExampleGCode>hier</linkCSSExampleGCode> gevonden worden, welke je naar hartenlust kunt aanpassen. Nadat je het bestand opgeslagen hebt, kun je de <module>SkinPlugin</module> module gebruiken om het CSS bestand in te laden om je eigen gecreëerde stijlen op de Hattrick site te kunnen zien.</p>
-    sound-format: 
+    sound-format:
       question: Welke bestandstypen zijn toegestaan voor een notificatie geluid?
       answer: |
         <p>Verschillende browsers accepteren verschillende bestandsformaten. Hier is een lijst (bestandsformaten die niet in de lijst staan, kunnen ook werken als de juiste plug-ins geïnstalleerd zijn, bijv. Quicktime om mp3 bestanden af te spelen in Firefox):</p>
@@ -18,7 +18,7 @@ nl:
         <li>Chrome: ogg, mp3, wav</li>
         <li>Opera: wav, ogg</li>
         </ul>
-    sound-location: 
+    sound-location:
       question: Wat is de maximum bestandsgrootte voor waarschuwings-geluiden en waar kunnen deze geplaatst worden?
       answer: |
         <p>Alle browsers kunnen data urls afspelen. Dit zijn de intern opgeslagen geluiden die opgeslagen worden met behulp van de laad knop in de instellingen. Omdat ze geconverteerd en opgeslagen worden in je instellingen, is de maximale grote ongeveer 160KB per geluid.</p>
@@ -26,22 +26,22 @@ nl:
         <p>All browsers kunnen ook geluiden direct afspelen van het internet (http-urls). Kopieer eenvoudig een link (bijv. http://foxtrick.org/sound.wav) in het locatie tekst invoer veld voor geluiden. Geen limiet aan de grote van het geluid.</p>
         
         <p>Mozilla browsers kunnen ook geluiden direct afspelen van uw harde schijf (file urls) zonder bestandsgrootte limiet. Eenvoudigste manier om de locatie van een geluidsbestand te krijgen is door in de browser CTRL+O in te typen, waarna u het geluidsbestand opzoekt. In de adresbalk zal daarna de link naar het bestand staan (bijv. file:///c:/sound.wav). Kopieer en plak deze in het tekst-invoer veld voor geluiden.</p>
-    authorize: 
+    authorize:
       question: Waarom moet ik FoxTrick toestemming geven om mijn teamdata te benaderen?
       answer: |
-        <p>Hoewel de meeste van de gegevens die nodig zijn door FoxTrick  direct vanaf de pagina die u bekijkt kunnen worden opgehaald, zijn sommige modules noodzakelijk voor het downloaden van gegevens uit Hattrick .</p>
+        <p>Hoewel de meeste van de gegevens die nodig zijn door FoxTrick  direct vanaf de pagina die u bekijkt kunnen worden opgehaald, zijn sommige modules noodzakelijk voor het downloaden van gegevens uit Hattrick .</p>  
         
-        <p>Voor het downloaden van gegevens uit Hattrick, met inbegrip van gegevens van uw team, competities en nationale teams, moet u vooraf FoxTrick machtigen.</p>
+        <p>Voor het downloaden van gegevens uit Hattrick, met inbegrip van gegevens van uw team, competities en nationale teams, moet u vooraf FoxTrick machtigen.</p>  
         
-        <p>U kunt FoxTrick machtigen door het verstrekken van uw gebruikersnaam en wachtwoord via chpp.hattrick.org in ruil voor een verificatie-code, die u aan FoxTrick doorgeeft. FoxTrick krijgt niet door wat uw gebruikersnaam of uw wachtwoord is bij dit proces.</p>
+        <p>U kunt FoxTrick machtigen door het verstrekken van uw gebruikersnaam en wachtwoord via chpp.hattrick.org in ruil voor een verificatie-code, die u aan FoxTrick doorgeeft. FoxTrick krijgt niet door wat uw gebruikersnaam of uw wachtwoord is bij dit proces.</p>  
         
         <p>Wilt u meer informatie over het machtigings-proces? Lees dan <linkCHPPDesc>CHPP - hoe het werkt</linkCHPPDesc> op Hattrick.</p>  <p>Sommige modules vereisen toegang om de juiste gegevens te laten weergeven:</p>  <ul><li><module>CrossTable</module></li> <li><module>ExtraPlayerInfo</module></li> <li><module>MatchPlayerColouring</module></li> <li><module>MyMonitor</module></li> <li><module>NtPeek</module></li> <li><module>SeriesFlags</module></li></ul>  <p>Sommige modules bieden uitgebreide info als ze toegang hebben tot de gegevens uit Hattrick:</p>  <ul><li><module>SkillTable</module></li> <li><module>TeamStats</module></li></ul>
-    privacy: 
+    privacy:
       question: Hoe beschermt Foxtrick mijn privacy?
       answer: |
-        <p>FoxTrick zal niet uploaden van uw gegevens of voorkeuren naar een server van FoxTrick; evenmin stuurt FoxTrick uw privé gegevens, met inbegrip van maar niet beperkt tot uw gebruikersnaam, wachtwoord en speler-ID die is gekoppeld aan vaardigheden aan derden.</p>
+        <p>FoxTrick zal niet uploaden van uw gegevens of voorkeuren naar een server van FoxTrick; evenmin stuurt FoxTrick uw privé gegevens, met inbegrip van maar niet beperkt tot uw gebruikersnaam, wachtwoord en speler-ID die is gekoppeld aan vaardigheden aan derden.</p>  
         
-        <p>De meeste gegevens die worden doorgegeven aan derden, tenzij expliciet vermeld hieronder, worden verzonden met HTTP GET methode, en zal alleen worden verzonden op u op een link klikt.</p>
+        <p>De meeste gegevens die worden doorgegeven aan derden, tenzij expliciet vermeld hieronder, worden verzonden met HTTP GET methode, en zal alleen worden verzonden op u op een link klikt.</p>  
         
         <p>Dat wil zeggen, u zal zien welke gegevens worden doorgegeven door te inspecteren URI (Uniform Resource Identifier) van een externe link, en geen gegevens worden verzonden zonder uw toestemming. Zoals hierboven vermeld, geen prive-gegevens zijn bijgesloten.</p>
         
