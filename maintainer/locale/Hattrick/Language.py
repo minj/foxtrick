@@ -36,7 +36,7 @@ Codes[55]='vi';		#vietnamese
 Codes[56]='lt';		#Lithuanian
 Codes[57]='uk';		#ukranian
 Codes[58]='bs';		#Bosanski
-Codes[65]='vls';	#Vlaams, netherland
+Codes[65]='vls-BE';	#Vlaams, netherland
 Codes[66]='ca';		#Catalan
 Codes[74]='gl';		#Galician
 Codes[75]='fa';		#farsi, iranian
@@ -50,7 +50,7 @@ Codes[103]='es-CR';	#spanish, central america, using sub-language es-MX for crow
 Codes[109]='fy-NL';	#Frisian, east-netherland/north germany
 Codes[110]='eu';	#Euskara, basque
 Codes[111]='lb';	#Letzebuergesch
-Codes[113]='fur';	#Furlan, northitaly
+Codes[113]='fur-IT';	#Furlan, northitaly
 Codes[136]='nn-NO';	#Norsk nynorsk
 
 def getAll():
