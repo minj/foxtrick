@@ -16,15 +16,15 @@ gl:
       note_5: 'NOVO: <module>SupportersList</module>: permite amosar os seguidores do teu equipo na lista dos equipos que segues e viceversa.'
       note_6: '<module>MatchLineupTweaks</module>: engadiuse unha opción para recoller datos da resistencia dos teus xogadores cada vez que visites a páxina do partido. Isto usarase para mellorar as prediccións do módulo <module>MatchSimulator</module> e amósase en <module>SkillTable</module>. Os xogadores deberán xogar os 90 minutos. Os encontros xogados coa táctica presión ou nos que aparezan eventos climáticos negativos (no caso dos xogadores potentes) non serán tidos en conta. A fórmula da predición foi feita por Pappagallopoli.'
       note_7: 'NOVO: <module>Fans</module>: permite engadir unha ligazón para o HT Live a carón das ligazóns dos vindeiros encontros. Permite engadir a evolución do número total de seareiros na barra lateral.'
-      note_8: ""
-      note_9: ""
-      note_10: ""
+      note_8: 'Agora, os usuarios que teñan varios equipos poden utilizar deseños de Hattrick distintos utilizando os selectores "body.ft-teamID-0000000" de <module>SkinPlugin</module>.'
+      note_9: 'Mellorouse <module>HeaderToggle</module> para que non se vexa afectado por outros módulos nin polo propio Hattrick.'
+      note_10: 'Adaptouse <module>MatchSimulator</module> para incluír a nova información de tipo de adestrador ao copiar cualificacións.'
       note_11: '<header>Correccións de erros</header>'
-      note_12: ""
-      note_13: ""
-      note_14: ""
-      note_15: ""
-      note_16: ""
+      note_12: 'Corrixiuse un erro TSI NaN que se producía nas páxinas de xogadores de seleccións ou cando a descarga de XML estaba inhabilitada (<module>Skilltable</module>, <module>TeamStats</module>, etc.).'
+      note_13: 'Agora, os xogadores que non se utilicen non se terán en conta para a opción "Encher lanzadores de penaltis" de <module>MatchOrderInterface</module>.'
+      note_14: Proporcionouse unha solución para os ID de xogadores negativos dos partidos de equipos veciños (para evitar as vitorias fáciles nos amigábeis).
+      note_15: 'Arranxouse a ligazón aos desafíos de <module>TeamPopupLinks</module>.'
+      note_16: Solucionouse un problema realcionado coa función de busca das preferencias.
     0.12.1.1:
       note_0: Actualizacións da traducción.
       note_1: 'Mellorouse o rendemento de <module>MainMenuDropDown</module>.'
