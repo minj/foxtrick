@@ -24,3 +24,5 @@ if [ $re -ne 1 ]; then
 else
   echo "crowdin-glossary ok"
 fi
+#cleanup`
+rm module-names crowdin-glossary.tbx
