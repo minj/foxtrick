@@ -1,23 +1,23 @@
 ---
-pl: 
-  faq: 
-    style: 
+pl:
+  faq:
+    style:
       question: Jak mogę zmienić styl mojego FoxTricka?
       answer: '<p>FoxTrick dostarcza zestaw interfejsów prezentacji dla użytkowników, aby mogli dostosować swoje własne style. Te interfejsy są dostępne za pośrednictwem klas i identyfikatorów HTML, a CSS umożliwia określenie preferowanego stylu.</p>  <p>Przykładowy plik stylu użytkownika można znaleźć <linkCSSExample>tutaj</linkCSSExample> lub <linkCSSExampleGCode>tutaj</linkCSSExampleGCode>, które można modyfikować dla najlepszego efektu. Po zapisaniu pliku, można użyć modułu <module>SkinPlugin</module> do ładowania pliku CSS, by  styl użytkownika działał.</p>'
-    sound-format: 
+    sound-format:
       question: Jakie formaty plików są dozwolone na dźwięki powiadomień?
       answer: |
-        <p>Różne przeglądarki korzystają z różnych formatów plików. Oto lista (nie wymienione formaty mogą działać, jeśli odpowiednie wtyczki są zainstalowane, np. Quicktime do odtwarzania plików mp3 w Firefoxie):</p>
-        <ul><li>Mozilla: wav, ogg</li>
-        <li>Safari (może być konieczne Quicktime): wav, mp3</li> <li>Chrome: ogg, mp3, wav</li>
+        <p>Różne przeglądarki korzystają z różnych formatów plików. Oto lista (nie wymienione formaty mogą działać, jeśli odpowiednie wtyczki są zainstalowane, np. Quicktime do odtwarzania plików mp3 w Firefoxie):</p> 
+        <ul><li>Mozilla: wav, ogg</li> 
+        <li>Safari (może być konieczne Quicktime): wav, mp3</li> <li>Chrome: ogg, mp3, wav</li> 
         <li>Opera: wav, ogg</li></ul>
-    sound-location: 
+    sound-location:
       question: Jaki jest limit rozmiaru dla dźwięków powiadomień i gdzie mogą być one ulokowane?
       answer: |
-        <p>Wszystkie przeglądarki mogą odtwarzać dane z adresów URL. Są to wewnętrznie zapisane dźwięki, kiedy korzystasz z przycisku ładowania dostępnego w preferencjach. Ponieważ są one zmieniane i zapisane w preferencjach, rozmiar jest ograniczony do około 160 kB na dźwięk.</p>
-        <p>Wszystkie przeglądarki mogą również odtwarzać dźwięki bezpośrednio z Internetu (adresów http). Wystarczy skopiować link do dźwięku (np. http://foxtrick.org/sound.wav) do pola edycji dźwięków. Nie ma ograniczenia rozmiaru.</p>
+        <p>Wszystkie przeglądarki mogą odtwarzać dane z adresów URL. Są to wewnętrznie zapisane dźwięki, kiedy korzystasz z przycisku ładowania dostępnego w preferencjach. Ponieważ są one zmieniane i zapisane w preferencjach, rozmiar jest ograniczony do około 160 kB na dźwięk.</p>  
+        <p>Wszystkie przeglądarki mogą również odtwarzać dźwięki bezpośrednio z Internetu (adresów http). Wystarczy skopiować link do dźwięku (np. http://foxtrick.org/sound.wav) do pola edycji dźwięków. Nie ma ograniczenia rozmiaru.</p>  
         <p>Przeglądarki Mozilla mogą również odtwarzać dźwięki bezpośrednio z dysku (adresów URL plików) bez limitu rozmiaru. Najprostszy sposób uzyskania odpowiedniego formatu: W przeglądarce wciśnij Ctrl + o, przejdź do pliku dźwięku i zaznacz go. W polu adresu na górze jest teraz odpowiedni link do lokalnego pliku (np. file:///c:/sound.wav). Skopiuj i wklej to do pola edycji dźwięków.</p>
-    authorize: 
+    authorize:
       question: Dlaczego powinienem zezwolić FoxTrickowi, by miał dostęp do danych mojej drużyny?
       answer: |
         <p>Chociaż większość danych wymaganych przez FoxTrick można pobrać bezpośrednio z przeglądanej strony, niektóre moduły wymagają pobierania danych z Hattricka do poprawnego działania.</p>
@@ -25,14 +25,14 @@ pl:
         <p>Upoważniasz FoxTrick podając nazwę użytkownika i hasło na chpp.hattrick.org w zamian za kod weryfikacyjny, który dostarczasz FoxTrickowi. FoxTrick nie pozna nazwy użytkownika ani hasła w całym procesie.</p>
         <p>Aby dowiedzieć się więcej o procesie autoryzacji, przeczytaj <linkCHPPDesc>CHPP - jak to działa</linkCHPPDesc> na Hattricku.</p>
         <p>Niektóre moduły wymagają dostępu do danych by działać prawidłowo:</p>
-        <ul><li><module>CrossTable</module></li> <li><module>ExtraPlayerInfo</module></li> <li><module>MatchPlayerColouring</module></li> <li><module>MyMonitor</module></li> <li><module>NtPeek</module></li>
-        <li><module>SeriesFlags</module></li></ul>
-        <p>Niektóre moduły mogą podać wiele informacji, jeśli mają dostęp do danych z Hattricka:</p>
+        <ul><li><module>CrossTable</module></li> <li><module>ExtraPlayerInfo</module></li> <li><module>MatchPlayerColouring</module></li> <li><module>MyMonitor</module></li> <li><module>NtPeek</module></li> 
+        <li><module>SeriesFlags</module></li></ul>  
+        <p>Niektóre moduły mogą podać wiele informacji, jeśli mają dostęp do danych z Hattricka:</p>  
         <ul><li><module>SkillTable</module></li> <li><module>TeamStats</module></li></ul>
-    privacy: 
+    privacy:
       question: Jak FoxTrick będzie chronił moją prywatność?
       answer: |
         <p>FoxTrick nie będzie pobierać żadnych Twoich danych ani preferencji na serwer FoxTricka; nie wyśle też osobom postronnym żadnych danych prywatnych, w tym Twojej nazwy użytkownika, hasła czy  identyfikatora gracza skojarzonego z umiejętnościami.</p>
         <p>Większość danych przekazywanych osobom trzecim, chyba że wyraźnie określone poniżej, jest wysyłanych za pomocą metody HTTP GET i zostanie wysłane tylko, jeśli klikniesz link.</p>
-        <p>Oznacza to, że będzie można zobaczyć, jakie dane są przekazywane sprawdzając identyfikator URI (Uniform Resource Identifier) linku zewnętrznego, a żadne dane nie będą przesyłane bez Twojej zgody. Jak stwierdzono powyżej, nie ma mowy o żadnych prywatnych danych.</p>
+        <p>Oznacza to, że będzie można zobaczyć, jakie dane są przekazywane sprawdzając identyfikator URI (Uniform Resource Identifier) linku zewnętrznego, a żadne dane nie będą przesyłane bez Twojej zgody. Jak stwierdzono powyżej, nie ma mowy o żadnych prywatnych danych.</p>  
         <p>Wyjątkami są moduły <module>HTMSPrediction</module> i <module>HTEVPrediction</module>, gdzie oceny meczowe są przekazywane do i otrzymywane z odpowiednich stron poprzez XMLHttpRequest.</p>

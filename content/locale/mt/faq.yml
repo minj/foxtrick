@@ -1,18 +1,18 @@
 ---
-mt: 
-  faq: 
-    style: 
-      question: 
-      answer: 
-    sound-format: 
-      question: 
-      answer: 
-    sound-location: 
-      question: 
-      answer: 
-    authorize: 
-      question: 
-      answer: 
-    privacy: 
-      question: 
-      answer: 
+mt:
+  faq:
+    style:
+      question: ""
+      answer: ""
+    sound-format:
+      question: ""
+      answer: ""
+    sound-location:
+      question: ""
+      answer: ""
+    authorize:
+      question: ""
+      answer: ""
+    privacy:
+      question: ""
+      answer: ""

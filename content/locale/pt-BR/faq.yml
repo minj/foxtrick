@@ -1,13 +1,13 @@
 ---
-pt-BR: 
-  faq: 
-    style: 
+pt-BR:
+  faq:
+    style:
       question: Como posso estilizar meu Foxtrick ?
       answer: |
         <p>FoxTrick fornece um conjunto de interfaces de apresentação para que os usuários possam customizar com seus próprios estilos. Estas interfaces são fornecidas por IDs HTML e classes e você pode usar CSS para definir seu estilo preferido.</p>
         
         <p>Um exemplo de arquivo de estilo de usuário pode ser encontrado  <linkCSSExample>Aqui</linkCSSExample> ou <linkCSSExampleGCode>aqui</linkCSSExampleGCode>, os quais você pode alterar para satisfazer suas necessidades. Após salvar o arquivo podes usar o módulo <module>SkinPlugin</module> para carregar o CSS que tenha os efeitos do seu estilo.</p>
-    sound-format: 
+    sound-format:
       question: Quais formatos são permitidos para os sons de alerta ?
       answer: |
         <p>Navegadores diferentes permitem diferentes formatos. Aqui vai uma lista (formatos não listados podem funcionar com os plugins corretos instalados, p. ex. Quicktime para tocar mp3 no firefox);</p>
@@ -17,7 +17,7 @@ pt-BR:
         <li>Safari (pode precisar do Quicktime): wav, mp3</li>
         <li>Chrome: ogg, mp3, wav</li><li>Opera: wav, ogg</li>
         </ul>
-    sound-location: 
+    sound-location:
       question: Qual o tamanho limite para os arquivos dos sons de alerta e onde posso colocá-los ?
       answer: |
         <p>Todos os navegadores podem rodar informações de URLs. Aqueles são os sons salvos internamente quando você usa o botão de carregar que estã nas preferências. Quando eles são convertidos e salvos nas suas preferência , o tamanho limite é em torno de 160kb por som.</p>
@@ -25,7 +25,7 @@ pt-BR:
         <p>Todos os navegadores podem tocar sons diretamente da internet (http urls). É só copiar o link para um som (p.ex. http://foxtrick.org/sound.wav) no campo de edição para os sons. Sem limite de tamanho.</p>
         
         <p>Os navegadores da Mozilla também podem tocar sons diretamente do seu HD (arquivos) sem limite de tamanho. A forma mais fácil de ter o formato correto: No navegador pressione ctrl+o, encontre o arquivo de som e o selecione. Na barra de endereço no topo da página agora está o link correto para o arquivo em seus computador (p. ex. file:///c:/sound.wav). Copie e cole isso no compo de edição de sons.</p>
-    authorize: 
+    authorize:
       question: Por que devo autorizar o FoxTrick para acessar os dados da meu time?
       answer: |
         <p>Embora a maior parte das informações necessárias para o FoxTrick possa ser buscada diretamente da página que você está vendo, alguns módulos precisam baixar alguns dados para funcionar corretamente</p>
@@ -53,7 +53,7 @@ pt-BR:
         <li><module>SkillTable</module></li>
         <li><module>TeamStats</module></li>
         </ul>
-    privacy: 
+    privacy:
       question: Como foxtrick protegerá minha privacidade ?
       answer: |
         <p>O FoxTrick não carrega nenhum de seus dados ou preferências para nossos servidores; Também não enviamos nenhum de seus dados, incluindo mas não se restringindo ao seu nome de usuário. senha, ID de jogadores associados às habilidades para terceiros.</p>
