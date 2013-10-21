@@ -5,73 +5,15 @@ pt-PT:
       note_0: 'Esta é a versão desenvolvida. Use consoante a sua vontade. Por favor veja o <linkSVN>Histórico de confirmação</linkSVN> no Google Code para mais detalhe sobre as alterações.'
     beta:
       note_0: 'O FoxTrick instalado é uma versão Beta do próximo lançamento. Contribuir para a tradução deste extra em <linkCrowdin>Crowdin.net</linkCrowdin> é muito fácil.'
-    0.13.0:
-      note_0: ""
     0.12.2:
-      note_0: ""
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
-      note_10: ""
       note_11: '<header>Bugs Corrigidos</header>'
-      note_12: ""
-      note_13: ""
-      note_14: ""
-      note_15: ""
-      note_16: ""
     0.12.1.1:
       note_0: Atualizações de tradução.
-      note_1: ""
       note_2: Melhorias de acessibilidade menores.
-      note_3: ""
       note_4: Corrigidos alguns problemas relacionados com som.
       note_5: Corrigido um problema que causava o Foxtrick a não iniciar em alguns casos no Android.
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
-    0.12.1:
-      note_0: ""
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
-      note_10: ""
-      note_11: ""
     0.12.0:
-      note_0: ""
-      note_1: ""
       note_2: Várias correções em vários módulos que tiveram problemas, depois da introdução da nova loja de Hattrick.
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
-      note_10: ""
-      note_11: ""
-      note_12: ""
-      note_13: ""
-      note_14: ""
-      note_15: ""
-      note_16: ""
-      note_17: ""
-    0.11.0.1:
-      note_0: ""
-      note_1: ""
-      note_2: ""
     0.11.0:
       note_0: 'Novo: <module>DirectPageLinks</module> Links adicionados para aceder a páginas especificas num tópico'
       note_1: 'Novo: <module>ForumModeratorPopup</module>: Adicionámos um novo menu, no topo dos tópicos, para os moderadores dos fóruns terem a sua tarefa simplificada.'
@@ -88,34 +30,7 @@ pt-PT:
       note_10: '<module>MovePlayerStatement</module>: Acrescentou-se a oportunidade de remover as declarações nas páginas dos jogadores.'
       note_11: '<module>YouthTwins</module>: Alterações feitas manualmente no Hattrick Youthclub serão agora reflectidas instantaneamente nas páginas dos jogadores.'
       note_12: '<header>Bugs Corrigidos</header>'
-      note_13: ""
-      note_14: ""
-      note_15: ""
-      note_16: ""
-      note_17: ""
       note_18: Módulo BackgroundFixed foi removido.
-      note_19: ""
-      note_20: ""
-      note_21: ""
-      note_22: ""
-      note_23: ""
-      note_24: ""
-      note_25: ""
-      note_26: ""
-      note_27: ""
-      note_28: ""
-      note_29: ""
-      note_30: ""
-      note_31: ""
-      note_32: ""
-      note_33: ""
-      note_34: ""
-      note_35: ""
-      note_36: ""
-      note_37: ""
-      note_38: ""
-      note_39: ""
-      note_40: ""
     0.10.0:
       note_0: 'Novo: <module>TransferHistoryFilters</module>: Permite filtrar as transferências por venda ou compra apenas. Só disponível para o histórico da equipa, não de jogadores (activado por defeito)'
       note_1: 'Novo: <module>FriendlyPool</module>: Dá uma cor especifica aos países onde já disputou amigáveis internacionais (só para os sócios, activado por defeito)'
@@ -123,7 +38,6 @@ pt-PT:
       note_3: '<module>PlayerStatsExperience</module>: Uma versão nova e cuidada com mais detalhes e feedbacks coloridos se a informação for fiável. (Obrigado ao SeanConnery (7751762) por testar as cores para utilizadores daltónicos)'
       note_4: '<module>MatchOrderInterface</module>: Possibilidade para clonar ou converter uma ordem existente. Os jogadores não serão colocados na nova ordem propositadamente.'
       note_5: '<module>YouthTwins</module>: Opção adicionada para esconder o link de informação sobre gémeos(desactivado por defeito)'
-      note_6: '<module>StaffMarker</module>: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on'
       note_7: '<module>TeamPopupLinks</module>: Algum estilos foram redesenhados para integrar melhor com a aparência geral do hattrick.org'
       note_8: Suporte para a página dos jogadores chave
       note_9: Algumas melhorias para o Firefox no Android

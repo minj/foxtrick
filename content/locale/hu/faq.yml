@@ -3,16 +3,11 @@ hu:
   faq:
     style:
       question: Hogyan alakíthatom a saját Foxtrickem stílusát?
-      answer: ""
     sound-format:
       question: Mely fájlformátumok engedélyezettek a figyelmeztető hangjelzésekhez?
-      answer: ""
     sound-location:
       question: Mi a maximális fájlméret és hol találhatóak a hangjelzéshez használatos állományok?
-      answer: ""
     authorize:
       question: Miért kell engedélyeznem a Foxtrick számára, hogy hozzáférhessen a csapatom adataihoz?
-      answer: ""
     privacy:
       question: Hogyan védi meg a Foxtrick az adataimat?
-      answer: ""

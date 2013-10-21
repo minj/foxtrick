@@ -16,10 +16,8 @@ pt-PT:
         </ul>
     sound-location:
       question: Qual é o tamanho limite e onde podem ser encontrados os ficheiros de som de alerta?
-      answer: ""
     authorize:
       question: Porque deveria eu autorizar o Foxtrick a aceder aos dados da minha equipa?
-      answer: ""
     privacy:
       question: Como vai o Foxtrick proteger a minha privacidade?
       answer: '<p>FoxTrick não vou carregar os seus dados ou preferências para um servidor de FoxTrick, nem FoxTrick enviar qualquer um dos seus dados confidenciais, incluindo mas não limitada a sua ID de nome de usuário, senha e jogador associado com competências a terceiros.</p>  <p>Maioria dos dados passados a terceiros, a menos que explicitamente indicado abaixo, são enviadas com o método HTTP GET e só será enviado após você clicar em um link.</p>  <p>Ou seja, você será capaz de ver o que os dados são passados inspecionando o URI (Uniform Resource Identifier) de um link externo, e nenhum dado será enviado sem o seu consentimento. Como dito acima, nenhum dado privado está envolvido.</p>  <p>As excepções são os módulos <module>HTMSPrediction</module> e <module>HTEVPrediction</module>, onde as classificações de jogo são passadas e recebidas nos respectivos sites com XMLHttpRequest.</p>'

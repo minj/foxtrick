@@ -19,10 +19,8 @@ sl:
         </ul>
     sound-location:
       question: Kakšna je omejitev velikosti zvočni opozoril in kje je mogoče ta najti?
-      answer: ""
     authorize:
       question: Zakaj naj dovolim FoxTricku dostop do podatkov o moji ekipi?
-      answer: ""
     privacy:
       question: Kako bo FoxTrick varoval mojo zasebnost?
       answer: |

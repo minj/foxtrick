@@ -6,72 +6,34 @@ uk:
     beta:
       note_0: 'Це beta версія наступного релізу. Будь ласка, допоможіть перекласти цю версію з дуже простим інструментом перекладу  <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0:
-      note_0: '<header>Багато оновлень перекладів від наших користувачів, які користуються <linkCrowdin>crowdin</linkCrowdin>. Ви також можете нам допомогти!</header>'
+      crowdin: '<header>Багато оновлень перекладів від наших користувачів, які користуються <linkCrowdin>crowdin</linkCrowdin>. Ви також можете нам допомогти!</header>'
     0.12.2:
       note_0: '<header>Багато оновлень перекладів від наших користувачів, які користуються <linkCrowdin>crowdin</linkCrowdin>. Ви також можете нам допомогти!</header>'
       note_1: '<module>PlayerStatsExperience</module>: розрахунок досвіду тепер рахує, що є 28.57 очок в одному рівні (див. 15766691.780).'
       note_2: 'НОВЕ: модуль <module>PsicoTSI</module> був вбудований у Foxtrick.'
       note_3: '<module>ShowLineupSet</module>: Додано опцію підсвічування власної команди у таблицях.'
-      note_4: '<module>CopyYouth</module>: тепер зміни тренування будуть відсилатися до hattrick youthclub автоматично (тільки для користувачів HY).'
       note_5: 'НОВЕ: <module>SupportersList</module>: Показує, хто підтримує вашу команду в списку підтримуваних вами команд та навпаки'
       note_6: '<module>MatchLineupTweaks</module>: додано опцію для збирання даних про витривалість ваших гравців кожного разу, як ви заходите до сторінки матчів. Дані будуть використані для кращого прогнозування рейтингів у модулі <module>MatchSimulator</module> та можуть бути переглянуті у <module>SkillTable</module>.  Гравець повинен зіграти повних 90 хвилин. Матчі з пресингом або негативними погодними СП (для міцних гравців) не беруться до уваги. Формула прогнозування створена Pappagallopoli.'
       note_7: 'НОВЕ: <module>Fans</module>: Додано посилання на перегляд матчу поряд з посиланням на майбутні матчі. Додано розвиток фан-клубу на бічній панелі.'
       note_8: "Користувачі з кількома командами тепер можуть прикрасити Hattrick по-різному, користуючись перемикачем 'body.ft-teamID-0000000' у плагіні <module>SkinPlugin</module>."
-      note_9: ""
-      note_10: ""
       note_11: '<header>Виправлені помилки</header>'
-      note_12: ""
-      note_13: ""
-      note_14: ""
-      note_15: ""
-      note_16: ""
-    0.12.1.1:
-      note_0: ""
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
     0.12.1:
       note_0: '<header>Багато оновлень перекладів від наших користувачів, які користуються <linkCrowdin>crowdin</linkCrowdin>. Ви також можете нам допомогти!</header>'
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
-      note_10: ""
-      note_11: ""
     0.12.0:
       note_0: '<header>Багато оновлень перекладів від наших користувачів, які користуються <linkCrowdin>crowdin</linkCrowdin>. Ви також можете нам допомогти!</header>'
       note_1: 'НОВЕ:<module>MatchLineupTweaks</module>: Змінює зірки на старий стиль. Додає лічильник зірок та витривалості на нову сторінку розстановки. Показує спеціальності для всіх гравців та додає назву команди на полі. Показує аватари гравців Вашої команди. Виділяє гравців, що були в подях матчу.'
-      note_2: ""
       note_3: "НОВЕ: <module>MatchLineupFixes</module>: Синхронізація шкали часу на вкладках гравця та секторів. Відображає ім'я гравця для погодних SE. Додає посилання для гравців у вкладці наказів. Додає зірки гравців, які на лавці запасних, до лічильника зірок. Виправлено кілька подій, що відбуваються одночасно: гравці змінюють свої позиції поступово, а не всі разом."
       note_4: 'НОВЕ: <module>ReLiveLinks</module>: Додає посилання до HT Re-Live для матчів, що завершено.'
       note_5: 'НОВЕ: <module>CopyBBAd</module>: Копіювання в BB code (by merfis).'
       note_6: 'НОВЕ: <module>DashboardCalendar</module>: Додано кнопку, щоб експортувати тиждень Hattrick у форматі iCalendar (має бути сумісним з Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal тощо)'
       note_7: '<module>LiveAlert</module>: Додано різні звуки для домашніх/виїзних/ваших голів. Використовуються звуки з <linkHTLS>HTLiveSight</linkHTLS>  за замовчуванням.'
-      note_8: '<module>CopyYouth</module>: Користувачі Hattrick youthclub тепер зможуть відсилати відмови від гравців автоматично'
-      note_9: '<module>CopyYouth</module>: Користувачі Hattrick youthclub тепер зможуть відсилати звіт про тренування автоматично, коли читатимуть його вперше'
       note_10: '<module>LineupShortcut</module> тепер є посилання на нову сторінку наказів.'
       note_11: '<module>SkillTable</module> тепер використовує значки для спеціальностей та тренерів.'
       note_12: 'Змінено назву AddLeaveConfButton на  <module>ForumLeaveButton</module>'
       note_13: Відтепер налаштування вашого браузера та Hattrick включатимуться до повідомлень на форумі FoxTrick. Це допоможе нам швидше вирішувати проблеми. Будь ласка, не видаляйте цю інформацію, коли відправляєте повідомлення.
-      note_14: ""
-      note_15: ""
-      note_16: ""
-      note_17: ""
     0.11.0.1:
       note_0: '<header>Багато оновлень перекладів від наших користувачів, які користуються <linkCrowdin>crowdin</linkCrowdin>. Ви також можете нам допомогти!</header>'
       note_1: 'Незначні виправлення в наступних модулях: <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> and <module>HTThreadMarker</module>.'
-      note_2: ""
     0.11.0:
       note_0: 'Нове: <module>DirectPageLinks</module>: додані посилання для доступу до деяких сторінок у темах форуму'
       note_1: 'Нове: <module>ForumModeratorPopup</module>: Зверху додано випадаюче меню для модераторів форуму для полегшення модерування.'
@@ -86,34 +48,9 @@ uk:
       note_10: '<module>MovePlayerStatement</module>: Додано можливість прибирати всі стани одразу.'
       note_11: '<module>YouthTwins</module>: Зміни, що зроблено в HY, будуть негайно впливати на сторінку гравців юнацької команди'
       note_12: '<header>Виправлені помилки</header>'
-      note_13: ""
-      note_14: ""
-      note_15: ""
-      note_16: ""
-      note_17: ""
-      note_18: ""
       note_19: '<header>Копіювання модулів</header>'
-      note_20: ""
-      note_21: ""
-      note_22: ""
-      note_23: ""
-      note_24: ""
-      note_25: ""
-      note_26: ""
-      note_27: ""
-      note_28: ""
-      note_29: ""
-      note_30: ""
-      note_31: ""
-      note_32: ""
-      note_33: ""
       note_34: Виправлена підтримка Firefox для Android 17+.
-      note_35: ""
-      note_36: ""
-      note_37: ""
       note_38: '<header>Багато оновлень перекладів від наших користувачів, які користуються <linkCrowdin>crowdin</linkCrowdin>. Ви також можете нам допомогти!</header>'
-      note_39: ""
-      note_40: ""
     0.10.0:
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NEW: <module>FriendlyPool</module>: Colorizes visited countries in the friendly pool (supporters only, default on)'
@@ -121,7 +58,6 @@ uk:
       note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'
       note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
       note_5: '<module>YouthTwins</module>: Option added to hide the information link about twins (default off)'
-      note_6: '<module>StaffMarker</module>: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on'
       note_7: '<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org'
       note_8: Support for the KeyPlayer page
       note_9: Some improvements for Firefox on Android

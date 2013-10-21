@@ -6,13 +6,12 @@ lt:
     beta:
       note_0: 'Įdiegėte išankstinę (beta) versiją. Prašome prisidėti prie jos vertimo į lietuvių kalbą ypatingai šauniame vertėjų savanorių portale „<linkCrowdin>crowdin.net</linkCrowdin>“. '
     0.13.0:
-      note_0: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
+      crowdin: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
     0.12.2:
       note_0: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
       note_1: '<module>PlayerStatsExperience</module>: skaičiuojant patirtį laikoma, kad vieną patirties lygmenį sudaro 28,57 taško (žr. 15766691.780).'
       note_2: 'NAUJIENA: <module>PsicoTSI</module> integruotas į Foxtrick.'
       note_3: '<module>ShowLineupSet</module>: turnyrinėse lentelėse Jūsų komanda bus paryškinta.'
-      note_4: '<module>CopyYouth</module>: nuo šiol treniruočių pokyčių duomenys bus automatiškai siunčiami į „Hattrick Youthclub“ (tik HY vartotojams).'
       note_5: 'NAUJIENA: <module>SupportersList</module>: Jūsų remiamų komandų puslapyje pažymi komandas, kurios Jus irgi remia, ir atvirkščiai.'
       note_6: '<module>MatchLineupTweaks</module>: kaupia Jūsų žaidėjų ištvermės duomenis kiekvieną kartą atvėrus rungtynių ataskaitą. Duomenys naudojami reitingų spėjimui „<module>MatchSimulator</module>“ modulyje patikslinti. Juos peržiūrėti galite įgūdžių lentelėje (<module>SkillTable</module>). Renkant duomenis žiūrima tik į tuos žaidėjus, kurie sužaidė visas 90 minučių. Duomenys iš rungtynių, kuriose naudojama spaudimo taktika, arba įvyksta neigiamas orų įvykis (stipriems žaidėjams), atmetami. Ištvermės polygmens spėjimo formulę sukūrė Pappagallopoli.'
       note_7: 'NAUJIENA: <module>Fans</module>: sirgalių puslapyje prideda HT-Live nuorodas bei sirgalių klubo pokyčių sumą.'
@@ -58,8 +57,6 @@ lt:
       note_5: 'NAUJIENA: <module>CopyBBAd</module>: Nukopijuoja įvairią informaciją BB kodu (netinka HT forumams, sukūrė merfis).'
       note_6: 'NAUJIENA: <module>DashboardCalendar</module>: Prideda mygtuką Hattrick savaitei eksportuoti „iCalendar“ formatu (turėtų veikti su „Google Calendar“, „Thunderbird“ su „Lightning“ priedėliu, „MS Outlook“, „KOrganizer“, „Evolution“, „Apple iCal“ ir t. t.)'
       note_7: '<module>LiveAlert</module>: Skirtingi garsai namų, svečių bei Jūsų komandų įvarčiams. Standartiniai garsai pasiskolinti iš <linkHTLS>HTLiveSight</linkHTLS>. Jūsų komandos įvarčiai gali būti neatpažinti, jei iš pradžių testuosite „Re-Live“ režimu.'
-      note_8: '<module>CopyYouth</module>: „Hattrick youthclub“ vartotojų atmestų žaidėjų skauto pranešimai nuo šiol siunčiami į HY automatiškai'
-      note_9: '<module>CopyYouth</module>: „Hattrick youthclub“ vartotojų jaunių treniruočių ataskaitos nuo šiol siunčiamos į HY automatiškai, kai skaitote jas pirmą kartą'
       note_10: '<module>LineupShortcut</module> nuo šiol veda į naująjį sudėties puslapį.'
       note_11: '<module>SkillTable</module> nuo šiol naudoja paveikslėlius žaidėjų specialybėms bei treneriams pažymėti.'
       note_12: 'AddLeaveConfButton pervadintas į <module>ForumLeaveButton</module>'
@@ -110,7 +107,6 @@ lt:
       note_34: Sutaisyta „Firefox Android“ 17+.
       note_35: „Firefox“ 12 nuo šiol mažiausia oficialiai palaikoma versija.
       note_36: „Google Chrome“ 22 nuo šiol mažiausia versija, su kuria Foxtrick veikia.
-      note_37: '„Opera“: ištaisyta klaida, dėl kurios Foxtrick trikdė kitų puslapių (pvz., „Hattrick Youthclub“) darbą. Paveikslėlių užkrovimas nuo šiol turėtų būti žymiai greitesnis. Įjungti kai kurie anksčiau pagal nutylėjimą Opera naršyklėje buvę išjungti moduliai.'
       note_38: '<header>Daugybė vertimo atnaujinimų. Dėkojame savo šauniems vartotojams, kurie naudojasi <linkCrowdin>crowdin portalu</linkCrowdin>. Ir Jūs galite prisidėti!</header>'
       note_39: '<header>Perdarytas nustatymų puslapis.</header>'
       note_40: '<strong>Ir daugybė kitų smulkmenų</strong>'
@@ -121,7 +117,6 @@ lt:
       note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'
       note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
       note_5: '<module>YouthTwins</module>: Option added to hide the information link about twins (default off)'
-      note_6: '<module>StaffMarker</module>: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on'
       note_7: '<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org'
       note_8: Support for the KeyPlayer page
       note_9: Some improvements for Firefox on Android

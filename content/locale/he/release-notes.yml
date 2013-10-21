@@ -6,13 +6,12 @@ he:
     beta:
       note_0: 'זוהי גירסת הבתא של המהדורה הבאה. נודה על עזרה בתרגום גירסה זו באתר התרגום המאוד נוח שלנו <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0:
-      note_0: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
+      crowdin: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
     0.12.2:
       note_0: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
       note_1: '<module>PlayerStatsExperience</module>: חישוב הניסיון מניח כעת, שדרושות 28.57 נקודות לכל רמה (ראו 15766691.780).'
       note_2: 'חדש: כלי ה-<module>PsicoTSI</module> יובא לפוקסטריק.'
       note_3: '<module>ShowLineupSet</module>: נוספה האפשרות להדגיש את הקבוצה שלך בטבלת הליגה.'
-      note_4: "<module>CopyYouth</module>: כעת שינויים כתוצאה מהאימון באקדמיה יישלחו אוטומטית לאתר האטריק יות'קלאב (רק למי שרשום לאתר הזה)."
       note_5: 'NEW: <module>SupportersList</module>: הראה מי תומך בקבוצתך ברשימת הקבוצות הנתמכות על ידך, ולהיפך.'
       note_6: '<module>MatchLineupTweaks</module>: נוספה האפשרות לאסוף נתונים אודות הכושר הגופני של שחקניך בכל ביקור שלך בדף המשחק. הנתונים ישמשו לשיפור תחזית הציונים במודול <module>MatchSimulator</module>, והם ניתנים לצפיה במודול <module>SkillTable</module>. השחקן חייב לשחק את מלוא 90 הדקות. משחקים עם טקטיקת לחץ או עם אירועי מזג אוויר שליליים (לשחקנים חזקים) אינם נלקחים בחשבון. את נוסחת החיזוי יצר Pappagallopoli.'
       note_7: 'חדש: <module>אוהדים</module>: הוספה של קישור לצפייה בשידור חי של משחקים עתידיים. הוספה של תצוגת שינויי כמות האוהדים בתיבה הצדדית.'
@@ -59,8 +58,6 @@ he:
       note_5: 'חדש: <module>CopyBBAd</module>: העתקה של מודעות שונות בקוד BB (ע"י merfis).'
       note_6: 'חדש: <module>DashboardCalendar</module>: הוסיף כפתור לייצוא שבוע האטריק לקובץ מסוג iCalendar (שאמור להיות קריא על ידי Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal ועוד).'
       note_7: '<module>LiveAlert</module>: הוספו צלילים שונים לשערים של קבוצות בית/חוץ/קבוצתך. כברירת מחדל משמשים צלילים מ-<linkHTLS>HTLiveSight</linkHTLS>. שערי קבוצתך לא יזוהו במסגרת צפיה ראשונה בשידור החוזר.'
-      note_8: '<module>CopyYouth</module>: משתמשי Hattrick youthclub ישלחו מעתה באופן אוטומטי לאתר את פרטי השחקנים שהוצעו להם על ידי מגלי הכשרונות ונידחו.'
-      note_9: '<module>CopyYouth</module>: משתמשי Hattrick youthclub ישלחו מעתה לאתר באופן אוטומטי את דו"ח האימון ברגע שיקראו אותו לראשונה.'
       note_10: '<module>LineupShortcut</module> מפנה מעתה לדף קביעת ההרכב החדש.'
       note_11: '<module>SkillTable</module> משתמש כעת בצלמיות להצגת התמחויות ומאמנים.'
       note_12: 'AddLeaveConfButton משנה שמו ל-<module>ForumLeaveButton</module>.'
@@ -111,7 +108,6 @@ he:
       note_34: תוקן פיירפוקס עבור תמיכת אנדרואיד 17+.
       note_35: פיירפוקס 12 הוא כעת גרסת המינימום להפעלת פוקסטריק.
       note_36: גוגל כרום 22 הוא כעת גרסת המינימום להפעלת פוקסטריק.
-      note_37: "אופרה: תוקן באג, שגרם לפוקסטריק להפריע לדפים אחרים (כגון האטריק יות'קלאב). תמונות אמורות לעלות עכשיו הרבה יותר מהר. מספר מודולים, שהושבתו בעבר באופרה, כעת הופעלו."
       note_38: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
       note_39: '<header>דף ההעדפות עבר שיפוץ.</header>'
       note_40: '<strong>והרבה הרבה יותר</strong>'
@@ -122,7 +118,6 @@ he:
       note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'
       note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
       note_5: '<module>YouthTwins</module>: Option added to hide the information link about twins (default off)'
-      note_6: '<module>StaffMarker</module>: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on'
       note_7: '<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org'
       note_8: Support for the KeyPlayer page
       note_9: Some improvements for Firefox on Android

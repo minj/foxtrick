@@ -6,49 +6,15 @@ cs:
     beta:
       note_0: 'Toto je beta verze dalšího vydání. Prosím pomožte s překladem této verze na naší superjednoduché překladatelské stránce <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0:
-      note_0: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
+      crowdin: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
     0.12.2:
       note_0: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
-      note_10: ""
       note_11: '<header>Opravy bugů</header>'
-      note_12: ""
-      note_13: ""
-      note_14: ""
-      note_15: ""
-      note_16: ""
-    0.12.1.1:
-      note_0: ""
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
     0.12.1:
       note_0: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
       note_1: 'NOVÝ: <module>SupportershipExpirationDate</module>: Kliknutí na zbývající počet dní Fanouška na hlavní stránce zobrazí datum vypršení'
       note_2: '<module>MatchIncome</module>: Přidána možnost zobrazit utilizaci sedaček v procentech vedle počtu návštěvníku na stránce zápasu'
       note_3: 'NOVÝ: <module>MainMenuDropDown</module>: Přidá vyskakovací menu k hlavní navigaci, které bude obsahovat všechny odkazy běžně umístěné v levém pruhu na dané stránce.'
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
-      note_10: ""
-      note_11: ""
     0.12.0:
       note_0: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
       note_1: 'NOVÉ: <module>MatchLineupTweaks</module>: Mění zobrazení počtu hvězdiček na původní (hvězdičky místo počtů). Přidává počítání hvězdiček a kondice na nové stránce s rozestavením. Zobrazí speciality u všech hráčů i název týmu na hřišti, aby nedocházelo ke zmatení. Zobrazí obličeje hráčů tvého týmu. Umožňuje zobrazit relevantní hráče pro zvolenou událost v zápase.'
@@ -58,8 +24,6 @@ cs:
       note_5: 'NOVÉ: <module>CopyBBAd</module>: Kopíruje různé reklamy v BB kódu (vytvořil merfis).'
       note_6: 'NOVÉ: <module>DashboardCalendar</module>: Přidá tlačítko pro export Hattrick týdne v iCalendar formátu (mělo by být kompatibilní s Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal apod.)'
       note_7: '<module>LiveAlert</module>: Přidány různé zvuky pro góly domácích/hostí/tvého týmu. Používá implicitně zvuky z <linkHTLS>HTLiveSight</linkHTLS>. Góly tvého týmu nebudou na začátku rozeznány v Re-Live módu.'
-      note_8: '<module>CopyYouth</module>: Uživatelé hattrick youthclub budou nyní odesílat zprávy od skauta o zamítnutých hráčích do HY automaticky'
-      note_9: '<module>CopyYouth</module>: Uživatelé hattrick youthclub budou nyní odesílat tréninkové zápisky do HY automaticky, když si je poprvé zobrazí'
       note_10: '<module>LineupShortcut</module> nyní odkazuje na novou stránku s rozestavením.'
       note_11: '<module>SkillTable</module> nyní používá ikony pro speciality a trenéry.'
       note_12: 'AddLeaveConfButton je přejmenován na <module>ForumLeaveButton</module>'
@@ -110,7 +74,6 @@ cs:
       note_34: Opravena podpora Firefoxu pro Android 17+.
       note_35: Firefox 12 je nyní nejnižší podporovanou verzí pro Foxtrick.
       note_36: Google Chrome 22 je nyní nejnižší podporovanou verzí pro Foxtrick.
-      note_37: 'Opera: opraven bug způsobující kolizi Foxtricku s jinými stránkami (jako Hattrick Youthclub). Obrázky by se nyní měly načítat podstatně rychleji. Některé moduly, které byly zakázány specificky v Opeře, jsou nyní povoleny.'
       note_38: '<header>Spousta překladatelských updatů od našich skvělých uživatelů využívajících <linkCrowdin>crowdin nástroj</linkCrowdin>. Můžeš také pomoci!</header>'
       note_39: '<header>Stránka s nastaveními byla upravena.</header>'
       note_40: '<strong>A spoustu dalšího</strong>'
@@ -121,7 +84,6 @@ cs:
       note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'
       note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
       note_5: '<module>YouthTwins</module>: Option added to hide the information link about twins (default off)'
-      note_6: '<module>StaffMarker</module>: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on'
       note_7: '<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org'
       note_8: Support for the KeyPlayer page
       note_9: Some improvements for Firefox on Android

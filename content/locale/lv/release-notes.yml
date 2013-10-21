@@ -1,116 +1,13 @@
 ---
 lv:
   versions:
-    nightly:
-      note_0: ""
-    beta:
-      note_0: ""
-    0.13.0:
-      note_0: ""
-    0.12.2:
-      note_0: ""
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
-      note_10: ""
-      note_11: ""
-      note_12: ""
-      note_13: ""
-      note_14: ""
-      note_15: ""
-      note_16: ""
-    0.12.1.1:
-      note_0: ""
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
-    0.12.1:
-      note_0: ""
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
-      note_10: ""
-      note_11: ""
-    0.12.0:
-      note_0: ""
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
-      note_10: ""
-      note_11: ""
-      note_12: ""
-      note_13: ""
-      note_14: ""
-      note_15: ""
-      note_16: ""
-      note_17: ""
-    0.11.0.1:
-      note_0: ""
-      note_1: ""
-      note_2: ""
     0.11.0:
-      note_0: ""
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
-      note_10: ""
-      note_11: ""
-      note_12: ""
-      note_13: ""
-      note_14: ""
-      note_15: ""
-      note_16: ""
-      note_17: ""
-      note_18: ""
-      note_19: ""
-      note_20: ""
-      note_21: ""
-      note_22: ""
-      note_23: ""
-      note_24: ""
-      note_25: ""
-      note_26: ""
-      note_27: ""
-      note_28: ""
-      note_29: ""
-      note_30: ""
       note_31: Pievienots atbalsts www.hattrick.fm
       note_32: 'No <module>Links</module> moduļa zzvāktas neeksistējošās ārējās saites. Ja iespējams, tiks izmantotas ārējās ikonas.'
       note_33: '<header>Pārlūku atbalsts</header>'
       note_34: Firefox atbalsts priekš Android 17+.
       note_35: Firefox 12 šobrīd ir minimālā versija, lai lietotu Foxtrick.
       note_36: Google Chrome 22 šobrīd ir minimālā versija, lai lietotu Foxtrick.
-      note_37: ""
       note_38: '<header>Daudzu tulkojumu atjauninājumi pateicoties mūsu lieliskajiem lietotājiem, kas izmanto <linkCrowdin>crowdin rīku</linkCrowdin>. Arī tu vari mums palīdzēt!</header>'
       note_39: '<header>Pārveidota iestatījumu sadaļa.</header>'
       note_40: '<strong>Un daudz daudz, vairāk</strong>'
@@ -121,7 +18,6 @@ lv:
       note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'
       note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
       note_5: '<module>YouthTwins</module>: Option added to hide the information link about twins (default off)'
-      note_6: '<module>StaffMarker</module>: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on'
       note_7: '<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org'
       note_8: Support for the KeyPlayer page
       note_9: Some improvements for Firefox on Android

@@ -6,25 +6,10 @@ es-ES:
     beta:
       note_0: 'Esta es la versión beta de la próxima release. Por favor, ayuda a traducir esta versión accediendo a nuestra super fácil de usar web de traducción <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0:
-      note_0: '<header>AMuchas actualizaciones de la traducción de nuestros asombrosos usuarios, mediante la <linkCrowdin>herramienta CrowdIn</linkCrowdin>. ¡Tu puedes contribuir también si quieres!</header>'
+      crowdin: '<header>AMuchas actualizaciones de la traducción de nuestros asombrosos usuarios, mediante la <linkCrowdin>herramienta CrowdIn</linkCrowdin>. ¡Tu puedes contribuir también si quieres!</header>'
     0.12.2:
       note_0: '<header>AMuchas actualizaciones de la traducción de nuestros asombrosos usuarios, mediante la <linkCrowdin>herramienta CrowdIn</linkCrowdin>. ¡Tu puedes contribuir también si quieres!</header>'
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
-      note_10: ""
       note_11: '<header>Bugfixes</header>'
-      note_12: ""
-      note_13: ""
-      note_14: ""
-      note_15: ""
-      note_16: ""
     0.12.1.1:
       note_0: Actualizaciones de la traducción.
       note_1: 'Se ha aumentado el rendimiento de <module>MainMenuDropDown</module>.'
@@ -32,46 +17,14 @@ es-ES:
       note_3: 'Se ha arreglado: <module>CopyPosting</module> y <module>StaffMarker</module>.'
       note_4: Se han arreglado algunos problemas relacionados con el sonido.
       note_5: Se ha arreglado un problema de Android por el cual Foxtrick no funcionaba en algunos casos.
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
     0.12.1:
       note_0: '<header>AMuchas actualizaciones de la traducción de nuestros asombrosos usuarios, mediante la <linkCrowdin>herramienta CrowdIn</linkCrowdin>. ¡Tu puedes contribuir también si quieres!</header>'
       note_1: 'NUEVO: <module>SupportershipExpirationDate</module>: al hacer clic sobre los días restantes de haber apoyado al desarrollo que aparecen en el tablero, se mostrará la fecha de caducidad'
-      note_2: ""
       note_3: 'NUEVO: <module>MainMenuDropDown</module>: Añade menús desplegables a la barra de navegación con todos los enlaces de la barra lateral de la página de destino.'
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
-      note_10: ""
-      note_11: ""
     0.12.0:
       note_0: '<header>AMuchas actualizaciones de la traducción de nuestros asombrosos usuarios, mediante la <linkCrowdin>herramienta CrowdIn</linkCrowdin>. ¡Tu puedes contribuir también si quieres!</header>'
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
-      note_10: ""
-      note_11: ""
-      note_12: ""
-      note_13: ""
-      note_14: ""
-      note_15: ""
-      note_16: ""
-      note_17: ""
     0.11.0.1:
       note_0: '<header>AMuchas actualizaciones de la traducción de nuestros asombrosos usuarios, mediante la <linkCrowdin>herramienta CrowdIn</linkCrowdin>. ¡Tu puedes contribuir también si quieres!</header>'
-      note_1: ""
-      note_2: ""
     0.11.0:
       note_0: 'NUEVO: <module>DirectPageLinks</module>: Links añadidos para acceder a páginas especificas en un hilo del foro'
       note_1: 'NUEVO: <module>ForumModeratorPopup</module>: Añadido un menú desplegable para los moderadores del foro encima de los hilos para una fácil moderación.'
@@ -87,33 +40,16 @@ es-ES:
       note_11: '<module>YouthTwins</module>: Cambios lanzados manualmente en HY se mostrarán instantáneamente en la página de juveniles'
       note_12: '<header>Bugfixes</header>'
       note_13: 'Se ha arreglado: <module>Filter</module>, <module>SupporterStatsEnhancements</module> y <module>YouthTwins</module>.'
-      note_14: ""
-      note_15: ""
-      note_16: ""
-      note_17: ""
       note_18: Se ha eliminado el módulo BackgroundFixed.
       note_19: '<header>Copiando módulos</header>'
-      note_20: ""
-      note_21: ""
-      note_22: ""
-      note_23: ""
       note_24: '<header>Otros ajustes</header>'
       note_25: '<module>MatchOrderInterface</module>: avatares para los que no apoyan al desarrollo. Se ha incrementado la estabilidad.'
-      note_26: ""
-      note_27: ""
-      note_28: ""
-      note_29: ""
-      note_30: ""
       note_31: Añadido soporte para www.hattrick.fm
-      note_32: ""
       note_33: '<header>Soporte del navegador</header>'
       note_34: Arreglado el soporte de Firefox para Android 17+.
       note_35: Firefox 12 es ahora la versión mínima para ejecutar Foxtrick.
       note_36: Google Chrome 22 es ahora la versión mínima para ejecutar Foxtrick.
-      note_37: ""
       note_38: '<header>AMuchas actualizaciones de la traducción de nuestros asombrosos usuarios, mediante la <linkCrowdin>herramienta CrowdIn</linkCrowdin>. ¡Tu puedes contribuir también si quieres!</header>'
-      note_39: ""
-      note_40: ""
     0.10.0:
       note_0: 'NEW: <module>TransferHistoryFilters</module>: Allows you to filter transfers for bought or sold players only. Only available for the team history, not players (default on)'
       note_1: 'NUEVO: <module>FriendlyPool</module>: pone a color los países visitados (sólo para los que haya apoyado al desarrollo)'
@@ -121,7 +57,6 @@ es-ES:
       note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'
       note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
       note_5: '<module>YouthTwins</module>: Option added to hide the information link about twins (default off)'
-      note_6: '<module>StaffMarker</module>: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on'
       note_7: '<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org'
       note_8: Support for the KeyPlayer page
       note_9: Some improvements for Firefox on Android

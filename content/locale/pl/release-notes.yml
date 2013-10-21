@@ -6,16 +6,9 @@ pl:
     beta:
       note_0: 'To jest wersja beta następnego wydania. Proszę pomóż w tłumaczeniu tej wersji na naszej super łatwej stronie tłumaczeń <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0:
-      note_0: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
+      crowdin: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
     0.12.2:
       note_0: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
       note_8: "Użytkownicy posiadający wiele zespołów mogą teraz zmieniać styl Hattrick'a za pomocą selektorów 'body.ft-teamID-0000000' w <module>SkinPlugin</module>."
       note_9: 'Usprawniono <module>HeaderToggle</module> tak by był bardziej odporny na wpływy ze strony innych modułów lub samego Hattricka.'
       note_10: '<module>MatchSimulator</module> został dostosowany w celu włączenia nowych informacji o typie trenera podczas kopiowania ocen.'
@@ -25,30 +18,11 @@ pl:
       note_14: Stworzono obejście w przypadku ujemnych identyfikatorów graczy w meczach po sąsiedzku (by zapobiec walkowerom w meczach towarzyskich).
       note_15: 'Link wyzwania w <module>TeamPopupLinks</module> został naprawiony.'
       note_16: Naprawiono usterkę w funkcjonalności preferencji wyszukiwania.
-    0.12.1.1:
-      note_0: ""
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
     0.12.1:
       note_0: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
       note_1: 'Nowość: <module>SupportershipExpirationDate</module>: kliknięcie na dni pozostałe w pakiecie supportera na stronie głównej [?] wyświetli datę wygaśnięcia pakietu'
       note_2: '<module>MatchIncome</module>: obok liczby użytkowników na stronach meczu dodano opcję wyświetlania wykorzystania miejsc w procentach '
       note_3: 'Nowość: <module>MainMenuDropDown</module>: dodaje do głównego paska nawigacji rozwijane menu zawierające wszystkie linki zwykle dostępne w pasku bocznym strony docelowej.'
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
-      note_10: ""
-      note_11: ""
     0.12.0:
       note_0: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
       note_1: 'NOWOŚĆ: <moduł> MatchLineupTweaks </ module>: Zmiany liczy gwiazdy do starego stylu, jak gwiazdy. Dodaje liczniki dla gwiazd i wytrzymałość, aby na nowej stronie spisu. Pokazuje specjały dla wszystkich podmiotów i dodaje nazwę zespołu na boisku, aby ograniczyć dezorientację. Wyświetla awatary Player dla swojej drużyny. Wyróżnij graczy odpowiednich do zdarzenia w meczu.'
@@ -58,8 +32,6 @@ pl:
       note_5: 'Nowość: <module>CopyBBAd</module>: kopiuje różne reklamy w kodzie BB (wykonane przez merfis).'
       note_6: 'NOWOŚĆ: <moduł> DashboardCalendar </ module>: Dodano przycisk eksportowania tydzień Hattrick w formacie iCalendar (powinny być zgodne z Google Calendar, Thunderbird + Lightning, MS Outlook, KOrganizer, Evolution, etc iCal Apple)'
       note_7: '<moduł> LiveAlert </ module>: Dodano różne dźwięki dla domu / away / twoje cele zespołu. Korzystanie z dźwięków z HTLiveSight <linkHTLS> </ linkHTLS> domyślnie. Twoje cele zespołu nie będą rozpoznawane w trybie Re-Live w pierwszym.'
-      note_8: '<module>CopyYouth</module>: Użytkownicy Hattrick youthclub będą teraz wysyłać komentarze skauta dla graczy odrzuconych do HY automatycznie'
-      note_9: '<module>CopyYouth</module>: Użytkownicy Hattrick youthclub będą teraz wysłać raport z treningu do HY automatycznie, gdy przeczytają go po raz pierwszy'
       note_10: '<module>LineupShortcut</module> od teraz odsyła do nowej strony ustawiania składu.'
       note_11: '<module>SkillTable</module> używa teraz ikon dla specjalności i trenerów.'
       note_12: 'AddLeaveConfButton nazywa się teraz <module>ForumLeaveButton</module>'
@@ -110,7 +82,6 @@ pl:
       note_34: Poprawiono wsparcie Firefoxa dla Androida 17 +.
       note_35: Firefox 12 to teraz minimalna wersja do uruchomienia Foxtrick.
       note_36: Google Chrome 22 to teraz minimalna wersja do uruchomienia Foxtrick.
-      note_37: 'Opera: naprawiono błąd, który powodował, że FT mógł kolidować z innymi stronami (np. Hattrick Youthclub). Obrazy powinny teraz ładować dużo szybciej. Niektóre moduły, które zostały specjalnie wyłączone w Operze są teraz włączone.'
       note_38: '<header>Wiele tłumaczeń pochodzi od naszych niesamowitych użytkowników korzystających z <linkCrowdin>narzędzia crowdin</linkCrowdin>. Ty też możesz pomóc!</header>'
       note_39: '<header>Strona preferencji została przerobiona.</header>'
       note_40: '<strong>I wiele, wiele więcej</strong>'
@@ -121,7 +92,6 @@ pl:
       note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'
       note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
       note_5: '<module>YouthTwins</module>: Option added to hide the information link about twins (default off)'
-      note_6: '<module>StaffMarker</module>: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on'
       note_7: '<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org'
       note_8: Support for the KeyPlayer page
       note_9: Some improvements for Firefox on Android

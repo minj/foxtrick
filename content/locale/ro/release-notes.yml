@@ -6,68 +6,25 @@ ro:
     beta:
       note_0: 'Aceasta este o versiune beta a următoarei versiuni care va fi lansată. Vă rugăm ajutați traducând această versiune utilizând pagina de traducere <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0:
-      note_0: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
+      crowdin: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
     0.12.2:
       note_0: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
-      note_10: ""
       note_11: '<header>Bugfixes</header>'
-      note_12: ""
-      note_13: ""
-      note_14: ""
-      note_15: ""
-      note_16: ""
-    0.12.1.1:
-      note_0: ""
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
     0.12.1:
       note_0: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
-      note_1: ""
-      note_2: ""
-      note_3: ""
-      note_4: ""
-      note_5: ""
-      note_6: ""
-      note_7: ""
-      note_8: ""
-      note_9: ""
-      note_10: ""
-      note_11: ""
     0.12.0:
       note_0: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
       note_1: 'NOU: <module>MatchLineupTweaks</module>: Modifică numărătorul de stele pe modelul vechi. Adaugă numărători pentru stele și rezistență pe noua pagină de ordine. Afișează specilitățile jucătorilor și adaugă numele echipei pe teren pentru a limita confuzia. Afișează chipurile jucătorilor pentru echipa ta. Evidențiază jucătorii cu șanse la event într-un meci.'
-      note_2: ""
       note_3: 'NEW: <module>MatchLineupFixes</module>: Afișează numele jucătorilor pentru evenimentele speciale de vreme. Adaugă link-uri pentru jucători în ordinele proprii. Adaugă numărătoare pentru ultima stea a jucătorilor de pe bancă. Remediază multiple evenimente ce au loc în același timp: jucătorii schimbă pozițiile rând pe rând în loc să le schimbe în același timp.'
       note_4: 'NOU: <module>ReLiveLinks</module>: Adaugă link-uri pentru HT Re-Live pentru meciurile încheiate.'
       note_5: 'NOU: <module>CopyBBAd</module>: Copiază anunțuri diverse în codul BB (de merfis).'
       note_6: 'NOU: <module>DashboardCalendar</module>: Adăugat un buton pentru a exporta săptămâna Hattrick în formatul iCalendar (ar trebui să fie compatibil cu Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal etc)'
       note_7: '<module>LiveAlert</module>: Adăugate diferite sunete pentru golurile echipelor gazdă/oaspete/proprii. Folosește sunete de la <linkHTLS>HTLiveSight</linkHTLS>. Golurile echipei proprii nu vor fi recunoscute în modul Re-Live la început.'
-      note_8: '<module>CopyYouth</module>: Userii Hattrick Youthclub vor trimite automat apelul refuzat al căutătorilor de talente la HY'
-      note_9: '<module>CopyYouth</module>: Userii Hattrick Youthclub vor trimite automat raportul de antrenament către HY când îl vor pentru prima dată'
       note_10: '<module>LineupShortcut</module> se leagă acum cu pagina nouă a echipei de start.'
       note_11: '<module>SkillTable</module> utilizează acum pictograme pentru specialități și antrenori.'
       note_12: 'AddLeaveConfButton este redenumit în  <module>ForumLeaveButton</module>'
       note_13: De acum înainte, browser-ul și setările de aspect ale Hattrick vor fi automat incluse în mesajele postate pe forumul FoxTrick. Acest lucru ne va ajuta să rezolvăm rapid problemele. Vă rugăm nu ștergeți aceste informații în momentul scrierii mesajelor.
       note_14: Codul suplimentului a fost curățat pentru o mai bună lizibilitate și întreținere.
-      note_15: ""
-      note_16: ""
-      note_17: ""
     0.11.0.1:
       note_0: '<header>O mulțime de actualizări ale traducerilor de la useri care folosesc <linkCrowdin>instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
       note_1: 'Remediază probleme minore în <module>ForumLastPost</module>, <module>ContextMenuCopy</module>, <module>PlayerFilters</module>, <module>SmallerPages</module>, <module>SkillTable</module>, <module>TeamPopupLinks</module>, <module>MatchIncome</module> și <module>HTThreadMarker</module>.'
@@ -110,7 +67,6 @@ ro:
       note_34: Remediat Firefox pentru Android 17+.
       note_35: Firefox 12 este acum versiunea minimă pentru a rula Foxtrick.
       note_36: Google Chrome 22 este acum versiunea minimă pentru a rula FoxTrick.
-      note_37: 'Opera: remediată o eroare care cauza interferența Foxtrick-ului cu alte pagini (cum ar fi Hattrick YouthClub). Imaginile ar trebui să fie încarcate mai rapid acum. Unele module care era dezactivate special pe Opera sunt acum activate.'
       note_38: '<header>O mulțime de traduceri actualizate de către userii care folosesc <linkCrowdin> instrumentul crowdin</linkCrowdin>. Și tu poți ajuta!</header>'
       note_39: '<header>Pagina de preferințe a fost refăcută.</header>'
       note_40: '<strong>Și mult mai multe</strong>'
@@ -121,7 +77,6 @@ ro:
       note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'
       note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
       note_5: '<module>YouthTwins</module>: Option added to hide the information link about twins (default off)'
-      note_6: '<module>StaffMarker</module>: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on'
       note_7: '<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org'
       note_8: Support for the KeyPlayer page
       note_9: Some improvements for Firefox on Android

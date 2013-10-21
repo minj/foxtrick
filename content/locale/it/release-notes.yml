@@ -6,13 +6,12 @@ it:
     beta:
       note_0: 'Questa è la versione beta della prossima release. Per favore aiutaci a tradurre questa versione con la nostra semplicissima pagina di traduzione di Crowdin <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0:
-      note_0: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
+      crowdin: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
     0.12.2:
       note_0: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
       note_1: "<module>PlayerStatsExperience</module>: il calcolo dell' esperienza ora presume che ogni livello corrisponda a 28,57 punti (vedere 15766691.780)."
       note_2: 'NUOVO: il tool <module>PsicoTSI</module> è stato importato in Foxtrick.'
       note_3: '<module>ShowLineupSet</module>: Aggiunta opzione per evidenziare la propria squadra nella tabella della classifica.'
-      note_4: '<module>CopyYouth</module>: ora i cambiamenti di allenamento delle squadra giovanile saranno inviati ad Hattrick Youthclub automaticamente (solo per gli utenti  di HY).'
       note_5: 'NUOVO: <module>SupportersList</module>: mostra chi supporta la tua squadra nella lista delle squadre da te supportate e viceversa'
       note_6: "<module>MatchLineupTweaks</module>: è stata aggiunta un'opzione per raccogliere i dati della resistenza del tuo giocatore ogni volta che si visita la pagina della tua partita. I dati saranno utilizzati per migliore la previsione delle valutazioni nel modulo <module>MatchSimulator</module> e possono essere visualizzati in <module>SkillTable</module>. Un giocatore deve giocare il tutto in 90 minuti. Partite con tattica pressing o Special events meteo negativi (per giocatori potenti) sono esclusi. La formula è stata creata da Pappagallopoli."
       note_7: "NUOVO: <module>Fans</module>: Aggiunge un collegamento di fianco ai collegamenti per le prossime partite. Aggiunge l'andamento dei tifosi totali nella barra laterale."
@@ -59,8 +58,6 @@ it:
       note_5: "NOVITA': <module>CopyBBAd</module>: Copia diversi annunci in BB code (by merfis)."
       note_6: "NOVITA': <module>DashboardCalendar</module>: Aggiunge un pulsante per esportare la settimana di Hattrick nel formato iCalendar (compatibile con Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal etc)"
       note_7: '<module>LiveAlert</module>: Aggiunge suoni diversi per i goal della tua squadra o per quella in casa o per quella in trasferta. Utilizza i suoni di <linkHTLS>HTLiveSight</linkHTLS> di default. I goal della tua squadra non verrano riconosciuti immediatamente nella modalità Re-Live.'
-      note_8: '<module>CopyYouth</module>: Gli utenti di Hattrick Youthclub ora manderanno automaticamente la chiamata dello scout a HY per i giocatori rifiutati'
-      note_9: "<module>CopyYouth</module>: Gli utenti di Hattrick Youthclub ora manderanno automaticamente il report dell' allenamento ad HY quando viene visualizzato per la prima volta"
       note_10: '<module>LineupShortcut</module> ora collega alla nuova pagina della formazione.'
       note_11: '<module>SkillTable</module> ora utilizza le icone per le specialità e per gli allenatori.'
       note_12: 'AddLeaveConfButton è stato rinominato in <module>ForumLeaveButton</module>'
@@ -111,7 +108,6 @@ it:
       note_34: Risolto il problema del supporto per Firefox per Android 17++.
       note_35: 12 Firefox è ora la versione minima per eseguire Foxtrick.
       note_36: Google Chrome 22 è ora la versione minima per eseguire Foxtrick.
-      note_37: 'Opera: corretto un bug che portava FT a interferire con altre pagine (come Hattrick Youthclub). Le immagini ora dovrebbero venire caricare molto più velocemente. Alcuni moduli che sono stati disabilitati su Opera ora sono abilitati.'
       note_38: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin</linkCrowdin>. Anche tu puoi dare una mano!</header>'
       note_39: '<header>La pagina delle preferenze è stata rielaborata.</header>'
       note_40: '<strong>E molto altro ancora</strong>'
@@ -122,7 +118,6 @@ it:
       note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'
       note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
       note_5: '<module>YouthTwins</module>: Option added to hide the information link about twins (default off)'
-      note_6: '<module>StaffMarker</module>: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on'
       note_7: '<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org'
       note_8: Support for the KeyPlayer page
       note_9: Some improvements for Firefox on Android

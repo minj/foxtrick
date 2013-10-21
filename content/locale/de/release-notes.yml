@@ -6,13 +6,12 @@ de:
     beta:
       note_0: 'Dies ist die Beta-Version der nächsten Veröffentlichung. Hilf bitte mit diese auf unserer extrem einfachen Übersetzungsseite <linkCrowdin>crowdin.net</linkCrowdin> ins Deutsche zu übersetzen falls euch Schreibfehler oder fehlende Einträge auffallen.'
     0.13.0:
-      note_0: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin>-Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
+      crowdin: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin> Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
     0.12.2:
       note_0: '<header>Eine Menge neuer Übersetzungen von unseren fantastischen <linkCrowdin>Crowdin</linkCrowdin>-Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
       note_1: '<module>PlayerStatsExperience</module>: Die Berechnung geht davon aus dass für einen Anstieg der Erfahrung 28.57 Erfahrungspunkte benötigt werden. (Siehe  15766691.780).'
       note_2: 'NEW: <module>PsicoTSI</module> wurde in FoxTrick integriert.'
       note_3: '<module>ShowLineupSet</module>: Option zur Hervorhebung des eigenen Teams in der Ligatabelle hinzugefügt.'
-      note_4: '<module>CopyYouth</module>: Trainingserkenntnisse im Jugendinternat werden nun automatisch an HY übertragen (Nur für HY Nutzer).'
       note_5: 'NEU: <module>SupportersList</module>: In der Liste, der von Dir unterstützten Teams, die Teams anzeigen, die Dich unterstützen und umgekehrt'
       note_6: '<module>MatchLineupTweaks</module>: Ausdauerdaten deiner Spieler sammeln wann immer ein beendetes Spiel betrachtet. Diese Daten dienen dazu die Bewertungsprognose des <module>MatchSimulator</module> zu verbessern und können im <module>SkillTable</module> betrachtet werden. Es werden nur Spieler berücksichtigt die durchgespielt haben. Spieltest du Pressing oder traten negative Spezialereignisse ein wird ein Spiel nicht berücksichtigt. Die Formel zur Prognose wurde von Pappagallopoli entwickelt.'
       note_7: 'NEW: <module>Fans</module>: Auf der Fan-Seite gibt es nun Live-Links und die Summe der Fanentwicklung wird angezeigt.'
@@ -60,8 +59,6 @@ de:
       note_5: 'NEU: <module>CopyBBAd</module>: Verschiedene Anzeigen in BB-Code kopieren (von merfis).'
       note_6: 'NEU: <module>DashboardCalendar</module>: Hiermit kann per Knopfdruck die Hattrick-Woche im iCalendar-Format exportiert werden. (Sollte mit Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal etc, funktionieren)'
       note_7: '<module>LiveAlert</module>: Unterschiedliche Töne für heim-/auswärts- bzw. deine Mannschaft. Benutzt die Töne von <linkHTLS>HTLiveSight</linkHTLS>.'
-      note_8: '<module>CopyYouth</module>: Nutzer von Hattrick youthclub senden jetzt den Scout-Kommentar abgelehnter Spieler automatisch an HY'
-      note_9: '<module>CopyYouth</module>: Nutzer von Hattrick youthclub senden jetzt den Trainingsbericht automatisch an HY wenn sie ihn zum ersten Mal lesen'
       note_10: '<module>LineupShortcut</module> ist jetzt mit der neuen Aufstellungsseite verlinkt.'
       note_11: '<module>SkillTable</module> verwendet jetzt Symbole für Spezialitäten und Trainer.'
       note_12: 'Das Module AddLeaveConfButton wurde in <module>ForumLeaveButton</module> umbenannt'
@@ -104,7 +101,6 @@ de:
       note_26: '<module>MatchSimulator</module> verwendet nun eine neue Formel bezüglich des Konditionsverlustes. (Diskussion siehe 15917246.1)'
       note_27: '<module>MatchReportFormat</module> nutzt nun die neuen Hattrick Symbole.'
       note_28: '<module>PlayerStatsExperience</module>: Erfahrungspunkte pro Skilllevel auf 28.62 erhöht (Diskussion siehe 15766691.423). Walkovers werden nun deutlich hervorgehoben.'
-      note_29: ""
       note_30: Layout interferenzen zwischen Hattrick und Foxtrick bereinigt
       note_31: Ünterstützung der offiziellen Hattrick Domain www.hattrick.fm
       note_32: 'Ausgestorbene externe Links entfernt aus dem Modul <module>Links</module> entfernt. Wenn möglich werden nun externe Icons verwendet.'
@@ -112,7 +108,6 @@ de:
       note_34: Firefox Anpassungen für Android für Versionen 17+
       note_35: Foxtrick benötigt von nun an Firefox 12 oder eine Neuere Version
       note_36: Foxtrick benötigt von nun an Google Chrome 22 oder eine Neuere Version
-      note_37: 'Opera: Bug gefixt der Foxtrick dazu veranlasste auf anderen Seiten Probleme zu verursachen (z.B. hattrick youthclub). Bilder sollten jetzt schneller laden. Einige für Opera deaktivierte Module sind nun standardmäßig aktiviert.'
       note_38: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin>-Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
       note_39: '<header>Die Einstellungsseite wurde komplett überarbeitet.</header>'
       note_40: '<strong>Und vieles mehr</strong>'
@@ -123,7 +118,6 @@ de:
       note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'
       note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
       note_5: '<module>YouthTwins</module>: Option added to hide the information link about twins (default off)'
-      note_6: '<module>StaffMarker</module>: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on'
       note_7: '<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org'
       note_8: Support for the KeyPlayer page
       note_9: Some improvements for Firefox on Android

@@ -19,10 +19,7 @@ vls-BE:
         </ul>
     sound-location:
       question: Wat is de maximum grootte van bestanden voor waarschuwingsgeluiden en waar kunnen ze opgeslagen worden?
-      answer: ""
     authorize:
       question: Waarom moet ik FoxTrick toestemming geven mijn team data te raadplegen?
-      answer: ""
     privacy:
       question: Hoe beschermt FoxTrick mijn privacy?
-      answer: ""
