@@ -23,7 +23,7 @@ cd ..
 cd $RELEASE || log "Cannot cd to $RELEASE"
 git stash
 git svn rebase || log "Cannot git-svn rebase"
-./version.sh 0.12.2
+./version.sh 0.12.2.1
 ./version.sh
 cd maintainer || log "Cannot cd to maintainer"
 #./crowdin-upload.sh || echo "Cannot upload external translations"
