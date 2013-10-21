@@ -46,7 +46,7 @@ en:
       note_1: '<module>PlayerStatsExperience</module>: the experience calculation now assumes there are 28.57 points per level (see 15766691.780).'
       note_2: 'NEW: the <module>PsicoTSI</module> tool was imported into Foxtrick.'
       note_3: '<module>ShowLineupSet</module>: Added option to highlight own team in standings tables.'
-      note_4: '<module>CopyYouth</module>: now youth training changes will be sent to Hattrick Youthclub automatically (only for HY users).'
+      note_4: '<module>CopyYouth</module>: now youth training changes will be sent to hattrick youthclub automatically (only for HY users).'
       note_5: 'NEW: <module>SupportersList</module>: Show who supports your team in your supported teams list and vice versa'
       note_6: "<module>MatchLineupTweaks</module>: an option to gather your player stamina data every time you visit your match page was added. The data will be used for better ratings prediction in <module>MatchSimulator</module> module and can be viewed in <module>SkillTable</module>. A player must play the whole 90 minutes. Matches with pressing or negative weather SEs (for powerful players) are excluded. Prediction formula was created by Pappagallopoli."
       note_7: "NEW: <module>Fans</module>: Add live link next to future match links. Add total of fans evolution in the sidebar."
@@ -95,8 +95,8 @@ en:
       note_5: 'NEW: <module>CopyBBAd</module>: Copy various ads in BB code (by merfis).'
       note_6: 'NEW: <module>DashboardCalendar</module>: Added a button to export Hattrick week in iCalendar file format (should be compatible with Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal etc)'
       note_7: '<module>LiveAlert</module>: Added different sounds for home/away/your team goals. Using sounds from <linkHTLS>HTLiveSight</linkHTLS> by default. Your team goals will not be recognized in Re-Live mode at first.'
-      note_8: '<module>CopyYouth</module>: Hattrick youthclub users will now send the scout call of rejected players to HY automatically'
-      note_9: '<module>CopyYouth</module>: Hattrick youthclub users will now send the training report to HY automatically when they read it for the first time'
+      note_8: '<module>CopyYouth</module>: hattrick youthclub users will now send the scout call of rejected players to HY automatically'
+      note_9: '<module>CopyYouth</module>: hattrick youthclub users will now send the training report to HY automatically when they read it for the first time'
       note_10: '<module>LineupShortcut</module> now links to the new lineup page.'
       note_11: '<module>SkillTable</module> now uses icons for specialities and coaches.'
       note_12: 'AddLeaveConfButton is renamed to <module>ForumLeaveButton</module>'
@@ -149,7 +149,7 @@ en:
       note_34: 'Fixed Firefox for Android 17+ support.'
       note_35: 'Firefox 12 is now the minimum version to run Foxtrick.'
       note_36: 'Google Chrome 22 is now the minimum version to run Foxtrick.'
-      note_37: 'Opera: fixed a bug that caused FT to interfere with other pages (like Hattrick Youthclub). Images should now load a lot faster. Some modules that were specifically disabled on Opera are now enabled.'
+      note_37: 'Opera: fixed a bug that caused FT to interfere with other pages (like hattrick youthclub). Images should now load a lot faster. Some modules that were specifically disabled on Opera are now enabled.'
       note_38: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
       note_39: '<header>The preferences page was reworked.</header>'
       note_40: '<strong>And much much more</strong>'
@@ -160,7 +160,7 @@ en:
       note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'
       note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
       note_5: '<module>YouthTwins</module>: Option added to hide the information link about twins (default off)'
-      note_6: '<module>StaffMarker</module>: Using Google Code for Hattrick Youthclub staff information to take heat from HY servers from now on'
+      note_6: '<module>StaffMarker</module>: Using Google Code for hattrick youthclub staff information to take heat from HY servers from now on'
       note_7: '<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org'
       note_8: Support for the KeyPlayer page
       note_9: Some improvements for Firefox on Android
