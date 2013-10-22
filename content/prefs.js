@@ -126,6 +126,10 @@ var FoxtrickPrefs = {
 		return FoxtrickPrefs.getBool('module.' + moduleName + '.' + option + '.enabled');
 	},
 
+	isModuleOptionSet: function(moduleName, option) {
+		return FoxtrickPrefs.prefHasUserValue('module.' + moduleName + '.' + option + '.enabled');
+	},
+
 	setModuleEnableState: function(moduleName, value) {
 		FoxtrickPrefs.setBool('module.' + moduleName + '.enabled', value);
 	},
