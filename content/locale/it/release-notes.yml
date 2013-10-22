@@ -6,7 +6,13 @@ it:
     beta:
       note_0: 'Questa è la versione beta della prossima release. Per favore aiutaci a tradurre questa versione con la nostra semplicissima pagina di traduzione di Crowdin <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0:
+      important: '<header>Avvisi importanti</header>'
+      opera: |
+        <p>Questa è l'ultima release ufficiale che supporta Opera 12 o inferiore. Altre versioni esistenti di Foxtrick potrebbero smettere di funzionare senza ulteriori notifiche.</p>
+        <p>Per favore prendi in considerazione di passare a <linkOperaNext>Opera Next</linkOperaNext> o ad un altro browser supportato di tuo gradimento.</p>
+      twitter: 'Puoi seguire <linkTwitter>Foxtrick su Twitter</linkTwitter> per ricevere le ultime notizie, aggiornamenti e annunci.'
       crowdin: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
+      new: '<header>Nuovi moduli</header>'
     0.12.2:
       note_0: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
       note_1: "<module>PlayerStatsExperience</module>: il calcolo dell' esperienza ora presume che ogni livello corrisponda a 28,57 punti (vedere 15766691.780)."

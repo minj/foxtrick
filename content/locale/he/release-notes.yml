@@ -6,12 +6,43 @@ he:
     beta:
       note_0: 'זוהי גירסת הבתא של המהדורה הבאה. נודה על עזרה בתרגום גירסה זו באתר התרגום המאוד נוח שלנו <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0:
+      important: '<header>הודעות חשובות</header>'
+      opera: |
+        <p>זוהי הגרסא האחרונה אשר תתמוך באופן רשמי באופרה 12 ומטה. גרסאות פוקסטריק קיימות עלולות להפסיק לתפקד בדפדפנים אלה ללא התראה מוקדמת.</p>
+        <p>אנו ממליצים לשקול לעבור ל-<linkOperaNext>אופרה נקסט</linkOperaNext> או לדפדפן אחר שנתמך על ידי פוקסטריק, לפי בחירתכם.</p>
+      twitter: 'באפשרותך לעקוב אחר עדכוני <linkTwitter>פוקסטריק בטוויטר</linkTwitter> על מנת לקבל את החדשות, העדכונים וההודעות האחרונים.'
       crowdin: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
+      new: '<header>מודולים חדשים</header>'
+      hy_skills: "<module>YouthSkills</module>: משדרג את דף שחקני הנוער שלכם באמצעות מידע מהאטריק יות'קלאב. למשתמשי האטריק יות'קלאב בלבד."
+      series_transfers: '<module>SeriesTransfers</module>: מציג רשימה של שחקני קבוצות הליגה אשר עומדים למכירה.'
+      ratings_tweaks: '<module>MatchRatingsTweaks</module>: משנה את תצוגת הציונים בדו"ח המשחק. מציג ציונים במספרים ועוקב אחר השינויים שלהם במסגרת מעבר בין טווחי זמן שונים, כפי שנעשה במודול <module>MatchSimulator</module>. מחשב סיכויי הבקעה, הגנה/שליטה בכדור, בהתאם לנוסחאות שגובשו במסגרת "המדריך הבלתי כתוב: הודעות 15766691.221, 15766691.242'
+      other: '<header>שינויים אחרים</header>'
+      simulator_prob: '<module>MatchSimulator</module> גם הוא שודרג באמצעות סיכויי הבקעה/הגנה/שליטה בכדור אמיתיים מתוך המודול החדש <module>MatchRatingsTweaks</module>.'
+      staff_marker: '<module>StaffMarker</module> נבנה מחדש. נוספו אפשרויות חדשות לתומכים, נתמכים ומאמני נבחרת. נא עדכנו את ההעדפות בהתאם להעדפותיכם.'
+      psico_update: 'הוחזרה האפשרות להציג את ההערכות של <module>PsicoTSI</module> בסרגל שמאל.'
+      ticker_update: '<module>TickerColoring</module> ו-<module>TickerAlert</module> עודכנו בסוגים חדשים של שורת חדשות, אשר נוספו במהלך השנים האחרונות.'
+      ff_button: סרגל הכלים של פוקסטריק יהיה יותר זמין ויציג את מצבו של פוקסטריק באופן יותר מדויק.
+      ff_disable: מעתה כיבוי פוקסטריק בפיירפוקס יסגור את העדפות פוקסטריק (אם היו פתוחות) ויטען מחדש את כל לשוניות האטריק כדי להסיר כל שינוי שנעשה על ידי פוקסטריק.
+      ticker_chall: 'תומכים אינם יכולים עוד להבחין בין הודעות על הזמנות למשחק ידידות לבין הודעות "האטריק שלי" אחרות במסגרת המודול <module>TickerColoring</module>. בשל כך שונה שם סוג שורת החדשות הזה.'
+      bugs: '<header>תיקוני באגים</header>'
+      android: |
+        <p>בוצעו תיקונים גדולים במסגרת הליבה של פוקסטריק על מנת להתאימו לפיירפוקס באנדרואיד. כתוצאה מכך, פוקסטריק מתפקד הרבה יותר טוב על מכשירים סלולאריים.</p>
+        <p>מודולים שהושפעו: <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>וגו'</em>.</p>
+      native_names: 'מספר מדינות כבר לא ישתנו במסגרת חיפוש שחקן לפי מדינה בעקבות חזרה בדפדפן לדף החיפוש ברשימת ההעברות במודול <module>CountryList</module>.'
+      custom_links: נבדק מחדש התפקוד של הקישורים לאתרים חיצוניים, ותוקנו כל הבעיות שהיו ידועות. כעת ניתן להוסיף קישורים מותאמים אישית גם בדף דו"ח המשחק.
+      player_filters: 'כעת ניתן להשתמש במודול <module>PlayerFilters</module> בלשוניות רבות בו זמנית בפיירפוקס.'
+      history_stats: '<module>HistoryStats</module> הינו עתה בר שימוש לגבי מספר קבוצות בו זמנית בפיירפוקס.'
+    0.12.2.1:
+      note_0: קישורים לא ייעלמו עוד בעקבות ניקוי זיכרון המטמון של פוקסטריק בפיירפוקס.
+      note_1: 'שינויים בשפה הפרסית ובשפות אחרות, שגרמו לפוקסטריק לפעול שלא כשורה בשפות אלה - הוסדרו.'
+      note_2: '<module>MatchIncome</module> יציג אחוזי ניצול בשעה שהאצטדיון מצוי בבנייה. במהלך תקופת הבנייה פוקסטריק אינו יכול לדעת, אם גודל האצטדיון הנוכחי היה נכון למשחק מסוים בעבר או לא. פוקסטריק יניח שהוא נכון, ולכן יציג אחוזים שגויים במשחקים ששוחקו באצטדיון טרם שינוי גודלו.'
+      note_3: תוקנה התקלה שגרמה לפוקסטריק להציג סימנים מוזרים במקום יחידות המטבע של המשתמש
     0.12.2:
       note_0: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
       note_1: '<module>PlayerStatsExperience</module>: חישוב הניסיון מניח כעת, שדרושות 28.57 נקודות לכל רמה (ראו 15766691.780).'
       note_2: 'חדש: כלי ה-<module>PsicoTSI</module> יובא לפוקסטריק.'
       note_3: '<module>ShowLineupSet</module>: נוספה האפשרות להדגיש את הקבוצה שלך בטבלת הליגה.'
+      note_4: "<module>CopyYouth</module>: כעת שינויים בעקבות אימונים באקדמיית הנוער יעודכנו אוטומטית בהאטריק יות'קלאב (למשתמשי האטריק יות'קלאב בלבד)."
       note_5: 'NEW: <module>SupportersList</module>: הראה מי תומך בקבוצתך ברשימת הקבוצות הנתמכות על ידך, ולהיפך.'
       note_6: '<module>MatchLineupTweaks</module>: נוספה האפשרות לאסוף נתונים אודות הכושר הגופני של שחקניך בכל ביקור שלך בדף המשחק. הנתונים ישמשו לשיפור תחזית הציונים במודול <module>MatchSimulator</module>, והם ניתנים לצפיה במודול <module>SkillTable</module>. השחקן חייב לשחק את מלוא 90 הדקות. משחקים עם טקטיקת לחץ או עם אירועי מזג אוויר שליליים (לשחקנים חזקים) אינם נלקחים בחשבון. את נוסחת החיזוי יצר Pappagallopoli.'
       note_7: 'חדש: <module>אוהדים</module>: הוספה של קישור לצפייה בשידור חי של משחקים עתידיים. הוספה של תצוגת שינויי כמות האוהדים בתיבה הצדדית.'
@@ -58,6 +89,9 @@ he:
       note_5: 'חדש: <module>CopyBBAd</module>: העתקה של מודעות שונות בקוד BB (ע"י merfis).'
       note_6: 'חדש: <module>DashboardCalendar</module>: הוסיף כפתור לייצוא שבוע האטריק לקובץ מסוג iCalendar (שאמור להיות קריא על ידי Google Calendar, Thunderbird+Lightning, MS Outlook, KOrganizer, Evolution, Apple iCal ועוד).'
       note_7: '<module>LiveAlert</module>: הוספו צלילים שונים לשערים של קבוצות בית/חוץ/קבוצתך. כברירת מחדל משמשים צלילים מ-<linkHTLS>HTLiveSight</linkHTLS>. שערי קבוצתך לא יזוהו במסגרת צפיה ראשונה בשידור החוזר.'
+      note_8: "<module>CopyYouth</module>: משתמשי האטריק יות'קלאב ישלחו אוטומטית לאתר זה את הנתונים שמוסר מגלה הכישרונות אודות שחקנים שנדחו."
+      note_9: |
+        <module>CopyYouth</module>: משתמשי האטריק יות'קלאב ישלחו אוטומטית את נתוני דו"ח האימון להאטריק יות'קלאב בפעם הראשונה שיקראו אותו.
       note_10: '<module>LineupShortcut</module> מפנה מעתה לדף קביעת ההרכב החדש.'
       note_11: '<module>SkillTable</module> משתמש כעת בצלמיות להצגת התמחויות ומאמנים.'
       note_12: 'AddLeaveConfButton משנה שמו ל-<module>ForumLeaveButton</module>.'
@@ -108,6 +142,7 @@ he:
       note_34: תוקן פיירפוקס עבור תמיכת אנדרואיד 17+.
       note_35: פיירפוקס 12 הוא כעת גרסת המינימום להפעלת פוקסטריק.
       note_36: גוגל כרום 22 הוא כעת גרסת המינימום להפעלת פוקסטריק.
+      note_37: "אופרה: תוקן באג, אשר גרם לפוקסטריק להפריע לעמודים אחרים (כגון האטריק יות'קלאב). תמונות אמורות לעלות עכשיו הרבה יותר מהר. מספר מודולים, שבעבר כובו בעת השימוש באופרה, הופעלו עכשיו."
       note_38: '<header>עדכוני תרגום רבים של המשתמשים המדהימים שלנו באמצעות <linkCrowdin>כלי ה-crowdin</linkCrowdin>. גם אתם יכולים לעזור!</header>'
       note_39: '<header>דף ההעדפות עבר שיפוץ.</header>'
       note_40: '<strong>והרבה הרבה יותר</strong>'
@@ -118,6 +153,7 @@ he:
       note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'
       note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
       note_5: '<module>YouthTwins</module>: Option added to hide the information link about twins (default off)'
+      note_6: "<module>StaffMarker</module>: מעתה ואילך משתמש בקוד גוגל עבור מידע אודות בעלי התפקידים של האטריק יות'קלאב על מנת להקל על שרתי האטריק יות'קלאב."
       note_7: '<module>TeamPopupLinks</module>: Some restyling to integrate better with the overall look and feel of hattrick.org'
       note_8: Support for the KeyPlayer page
       note_9: Some improvements for Firefox on Android

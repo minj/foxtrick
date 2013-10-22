@@ -6,7 +6,27 @@ de:
     beta:
       note_0: 'Dies ist die Beta-Version der nächsten Veröffentlichung. Hilf bitte mit diese auf unserer extrem einfachen Übersetzungsseite <linkCrowdin>crowdin.net</linkCrowdin> ins Deutsche zu übersetzen falls euch Schreibfehler oder fehlende Einträge auffallen.'
     0.13.0:
+      important: '<header>Wichtige Ankündigungen</header>'
+      opera: |
+        <p>Das ist die letzte größere Veröffentlichung mit offizieller Opera 12 Unterstürzung. Bislang veröffentlichte Foxtrick Versionen können unter Umständen plötzlich nicht mehr functionieren.</p>
+        <p>Bitte zieh in Erwägung <linkOperaNext>Opera Next</linkOperaNext> oder einen anderen unterstützten Browser deiner Wahl zu verwenden.</p>
+      twitter: 'Du kannst <linkTwitter>Foxtrick auf Twitter</linkTwitter> folgen um regelmässig Nachrichten zu Updates und weitere Meldungen zu erhalten.'
       crowdin: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin> Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
+      new: '<header>Neue Module</header>'
+      hy_skills: '<module>YouthSkills</module>: Reichertdie Jugendspielerseite mit Informationen an die von hattrick youthclub stammen. Nur für HY user.'
+      series_transfers: '<module>SeriesTransfers</module>: Listet auf Ligenseiten die momentan zu Verkauf stehenden Spieler auf.'
+      other: '<header>Andere Änderungen</header>'
+      staff_marker: '<module>StaffMarker</module> wurde überarbeitet. Neue Optionen für Teams die du unterstützt, Teams die dich unterstützen und für die Nationaltrainer würden hinzugefügt.'
+      psico_update: '<module>PsicoTSI</module> lässt sich nun auch in der Seitenleiste anzeigen, so wie man es auch in der ursprünglichen Version möglich war.'
+      ticker_update: '<module>TickerColoring</module> und <module>TickerAlert</module> wurde auf den neusten Stand gebracht um mit neu hinzugekommenen Tickermeldungen umgehen zu können. '
+      ff_button: Das Icon in der Foxtrick Symbolleiste spiegelt nun den Foxtrick Status besser wieder.
+      ff_disable: Wird Foxtrick unter Firefox deaktiviert schließen die Einstellungen (wenn geöffnet) autoamtisch und alle Hattrick Tabs werden neu geladen.
+      ticker_chall: 'Es ist nicht mehr möglich im Ticker Meldungen zu Freundschaftspielen von sonstigen MyHT Meldungen zu unterscheiden. Deswegen wurde dieser Typ von Meldung im Modul <module>TickerColoring</module> umbenannt.'
+      bugs: '<header>Bugfixes</header>'
+      android: |
+        <p>Es wurden massive Änderungen im Kern von Foxtrick vorgenommen um besser mit Firefox for Android zu funktionieren. Foxtrick funktioniert nun viel besser auf Mobilgeräten.</p>
+        <p>Betroffene Module:  <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>und andere</em>.</p>
+      custom_links: Die Funktionalität externer Links wurde überprüft und alle bekannten Probleme behoben. Du kannst jetzt auch benutzerdefinierte Links auf der Spielberichtseite anlegen.
     0.12.2:
       note_0: '<header>Eine Menge neuer Übersetzungen von unseren fantastischen <linkCrowdin>Crowdin</linkCrowdin>-Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
       note_1: '<module>PlayerStatsExperience</module>: Die Berechnung geht davon aus dass für einen Anstieg der Erfahrung 28.57 Erfahrungspunkte benötigt werden. (Siehe  15766691.780).'

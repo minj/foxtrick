@@ -6,12 +6,40 @@ fr:
     beta:
       note_0: "Il s'agit de la version bêta de la prochaine version. Veuillez nous aider à traduire cette version via un site ultra simple à utiliser <linkCrowdin>crowdin.net</linkCrowdin>. "
     0.13.0:
+      important: '<header>Annonces importantes</header>'
+      opera: |
+        <p>Cette version est la dernière qui sera supportée officiellement par Opera 12 et version antérieure. Les prochaines versions de FoxTrick peuvent cesser de fonctionner sans préavis.</p>
+        <p>S'il vous plaît envisager de passer à <linkOperaNext>Opera Next</linkOperaNext> ou un autre navigateur compatible de votre choix.</p>
+      twitter: 'Vous pouvez suivre <linkTwitter>Foxtrick sur Twitter</linkTwitter>pour recevoir les dernières nouvelles, mises à jour et annonces.'
       crowdin: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'
+      new: '<header>Nouveaux modules</header>'
+      hy_skills: '<module>YouthSkills</module>: Améliore la page des jeunes avec les informations de hattrick youthclub. Uniquement pour les utilisateurs de HY.'
+      series_transfers: '<module>SeriesTransfers</module>: Affiche une liste des joueurs de la ligue actuellement en vente sur les pages de poule.'
+      other: '<header>Autres changements</header>'
+      simulator_prob: "<module>MatchSimulator</module> a également été amélioré avec les vrais probabilités d'attaque/défense/possession du nouveau module <module>MatchRatingsTweaks</module>."
+      staff_marker: "<module>StaffMarker</module> a été revu. De nouvelles options pour vos supporters, les équipes supportées et les sélectionneurs nationaux ont été ajoutées. S'il vous plaît définissez vos préférences à votre convenance."
+      psico_update: 'Une option pour afficher les prédictions de <module>PsicoTSI</module> dans la barre latérale gauche a été mise en place.'
+      ff_button: "L'icône dans la barre d'outils de Firefox va maintenant être plus réactif et reflétera mieux l'état de FoxTrick."
+      ff_disable: "Désactiver FoxTrick dans Firefox va maintenant fermer l'onglet des préférences de FoxTrick (si ouvert) et recharger tous les onglets d'Hattrick pour éliminer toutes les modifications apportées par FoxTrick."
+      ticker_chall: "Il n'est plus possible de distinguer les défis amicaux des autres messages de MyHT pour les supporters HT dans <module>TickerColoring</module> . Par conséquent, cette notification a été renommée."
+      bugs: '<header>Corrections de bugs</header>'
+      android: |
+        <p>Des correctifs majeures ont été réalisés sur le noyau de FoxTrick afin de s'adapter à Firefox pour Android. Du coup, FoxTrick se comporte nettement mieux sur les appareils mobiles.</p>
+        <p>Modules concernés: <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>et autres</em>.</p>
+      custom_links: La fonctionnalité "Liens externes" a été revue et corrigée de tous les problèmes connus. Vous pouvez maintenant ajouter des liens personnalisés sur la page de résumé de match aussi.
+      player_filters: "Il est maintenant possible d'utiliser <module>PlayerFilters</module> dans plusieurs onglets en même temps dans Firefox."
+      history_stats: '<module>HistoryStats</module> est maintenant utilisable avec plusieurs équipes en même temps dans Firefox.'
+    0.12.2.1:
+      note_0: Les liens ne disparaissent plus après avoir vidé le cache de FoxTrick dans Firefox.
+      note_1: Les modifications en persan et autres langues qui peuvent avoir causées des soucis à FoxTrick sont maintenant prises en compte.
+      note_2: "<module>MatchIncome</module> affiche maintenant les pourcentages de remplissage même si votre stade est en construction. Durant la construction, il est impossible pour FoxTrick de savoir si la taille de votre stade actuel pour un match donné est correcte ou non. FoxTrick supposera qu'elle est correcte et c'est pour cela qu'il pourra montrer des pourcentages incorrects quand on regarde d'anciens rapports de match tant que le stade ne sera pas abouti."
+      note_3: "Correction du problème qui provoquait l'affichage de symboles étranges à la place de la monnaie de l'utilisateur"
     0.12.2:
       note_0: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez aussi nous donner un coup de main!</header>'
       note_1: "<module>PlayerStatsExperience</module>: le calcul de l'expérience suppose maintenant 28.57 points par niveau (cf 15766691.780)."
       note_2: "NOUVEAU: L'outil <module>PsicoTSI</module> a été importé dans Foxtrick."
       note_3: "<module>ShowLineupSet</module>: Ajout d'une option pour mettre en évidence votre équipe dans les tableaux de classement."
+      note_4: "<module>CopyYouth</module>: maintenant les modifications d'entraînement des jeunes sont envoyés automatiquement à Hattrick Youthclub  (uniquement pour les utilisateurs de HY)."
       note_5: "NOUVEAU: <module>SupportersList</module>: Affiche qui supporte votre équipe dans votre liste d'équipes supportées et vice versa"
       note_6: "<module>MatchLineupTweaks</module>: une option pour recueillir les données d'endurance de vos joueurs chaque fois que vous visitez vos rapports de match a été ajoutée. Les données seront utilisées pour une meilleure prédiction des notes dans <module>MatchSimulator</module> module et pourront être consultées dans <module>SkillTable</module>. Le joueur doit avoir joué les 90 minutes. Les matchs en pressing ou ayant des SE météo négatives (pour les joueurs costauds) sont exclus. La formule de prédiction a été créée par Pappagallopoli."
       note_7: "NOUVEAU: <module>Fans</module>: Ajout d'un lien vers le ht-live pour les prochains de match. Ajout du total de l'évolution de vos supporters dans la barre latérale."
@@ -58,6 +86,8 @@ fr:
       note_5: 'NOUVEAU: <module>CopyBBAd</module>: Copier différents renseignements en BB code (par merfis).'
       note_6: "NOUVEAU: <module>DashboardCalendar</module>: Ajout d'un bouton pour exporter la semaine hattrick au format de fichier iCalendar (devrait être compatible avec Google Calendar, Thunderbird + Lightning, MS Outlook, KOrganizer, évolution, Apple iCal etc.)"
       note_7: '<module>LiveAlert</module>: Ajout de différents sons pour domicile/extérieur/vos buts. Utilisation des sons de<linkHTLS>HTLiveSight</linkHTLS> par défaut. Vos propres buts ne seront pas reconnu en mode Re-Live dans un premier temps.'
+      note_8: '<module>CopyYouth</module>: les utilisateurs de Hattrick youthclub peuvent maintenant envoyer automatiquement le commentaire des joueurs rejetés à HY'
+      note_9: '<module>CopyYouth</module>: Les utilisateurs de Hattrick youthclub peuvent maintenant automatiquement envoyer le rapport d’entraînement à HY lors de la première lecture'
       note_10: '<module>LineupShortcut</module> nouveaux liens vers la page de composition.'
       note_11: "<module>SkillTable</module> Utilisation d'icônes pour les spécialités et l'entraineur."
       note_12: 'AddLeaveConfButton est renommé en <module>ForumLeaveButton</module>'
@@ -109,6 +139,7 @@ fr:
       note_34: Correction pour Firefox sur Android 17++.
       note_35: Firefox 12 est maintenant la version minimale pour utiliser Foxtrick.
       note_36: Google Chrome 22 est maintenant la version minimale pour utiliser Foxtrick.
+      note_37: "Opéra : correction d'un bug que causait Foxtrick en interférant avec d'autres pages (comme Hattrick Youthclub). Les images doivent maintenant être chargées plus rapidement. Certains modules qui avait été désactivés spécifiquement sur Opéra sont maintenant activés."
       note_38: '<header>Mise à jour des traductions de la part de nos fidèles utilisateurs via <linkCrowdin>crowdin tool</linkCrowdin>. Vous pouvez nous donner un sacré coup de main!</header>'
       note_39: '<header>La page des préférences a été retravaillée.</header>'
       note_40: '<strong>Et beaucoup plus encore </strong>'

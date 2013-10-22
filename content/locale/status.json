@@ -14,8 +14,8 @@
 			"code": "fr",
 			"name": "French",
 			"phrases": "1643",
-			"translated_progress": "93",
-			"translated": "1526",
+			"translated_progress": "95",
+			"translated": "1552",
 			"approved": "1537"
 		},
 		{
@@ -23,8 +23,8 @@
 			"code": "es-ES",
 			"name": "Spanish",
 			"phrases": "1643",
-			"translated_progress": "84",
-			"translated": "1369",
+			"translated_progress": "85",
+			"translated": "1386",
 			"approved": "1"
 		},
 		{
@@ -77,8 +77,8 @@
 			"code": "da",
 			"name": "Danish",
 			"phrases": "1643",
-			"translated_progress": "93",
-			"translated": "1523",
+			"translated_progress": "94",
+			"translated": "1533",
 			"approved": "1537"
 		},
 		{
@@ -86,8 +86,8 @@
 			"code": "de",
 			"name": "German",
 			"phrases": "1643",
-			"translated_progress": "93",
-			"translated": "1528",
+			"translated_progress": "98",
+			"translated": "1615",
 			"approved": "2"
 		},
 		{
@@ -131,8 +131,8 @@
 			"code": "he",
 			"name": "Hebrew",
 			"phrases": "1643",
-			"translated_progress": "93",
-			"translated": "1523",
+			"translated_progress": "100",
+			"translated": "1630",
 			"approved": "0"
 		},
 		{
@@ -149,8 +149,8 @@
 			"code": "it",
 			"name": "Italian",
 			"phrases": "1643",
-			"translated_progress": "93",
-			"translated": "1526",
+			"translated_progress": "95",
+			"translated": "1564",
 			"approved": "0"
 		},
 		{
@@ -177,7 +177,7 @@
 			"name": "Korean",
 			"phrases": "1643",
 			"translated_progress": "100",
-			"translated": "1630",
+			"translated": "1631",
 			"approved": "0"
 		},
 		{
@@ -204,7 +204,7 @@
 			"name": "Dutch",
 			"phrases": "1643",
 			"translated_progress": "88",
-			"translated": "1440",
+			"translated": "1441",
 			"approved": "0"
 		},
 		{
@@ -221,8 +221,8 @@
 			"code": "pl",
 			"name": "Polish",
 			"phrases": "1643",
-			"translated_progress": "86",
-			"translated": "1410",
+			"translated_progress": "88",
+			"translated": "1442",
 			"approved": "0"
 		},
 		{
@@ -271,13 +271,13 @@
 			"approved": "0"
 		},
 		{
-			"approved_progress": "93",
+			"approved_progress": "98",
 			"code": "sr",
 			"name": "Serbian (Cyrillic)",
 			"phrases": "1643",
-			"translated_progress": "93",
-			"translated": "1531",
-			"approved": "1537"
+			"translated_progress": "98",
+			"translated": "1613",
+			"approved": "1613"
 		},
 		{
 			"approved_progress": "93",
@@ -338,8 +338,8 @@
 			"code": "gl",
 			"name": "Galician",
 			"phrases": "1643",
-			"translated_progress": "93",
-			"translated": "1524",
+			"translated_progress": "98",
+			"translated": "1606",
 			"approved": "0"
 		},
 		{
@@ -365,8 +365,8 @@
 			"code": "fa",
 			"name": "Persian",
 			"phrases": "1643",
-			"translated_progress": "85",
-			"translated": "1382",
+			"translated_progress": "86",
+			"translated": "1407",
 			"approved": "0"
 		},
 		{
@@ -383,8 +383,8 @@
 			"code": "es-CR",
 			"name": "Spanish, Costa Rica",
 			"phrases": "1643",
-			"translated_progress": "93",
-			"translated": "1526",
+			"translated_progress": "98",
+			"translated": "1601",
 			"approved": "0"
 		},
 		{
@@ -392,8 +392,8 @@
 			"code": "hr",
 			"name": "Croatian",
 			"phrases": "1643",
-			"translated_progress": "93",
-			"translated": "1526",
+			"translated_progress": "96",
+			"translated": "1572",
 			"approved": "1537"
 		},
 		{

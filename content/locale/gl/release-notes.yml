@@ -6,7 +6,15 @@ gl:
     beta:
       note_0: 'Esta é a versión beta do próximo lanzamento. Podes axudar a traducila na nosa marabillosa páxina de tradución en equipo <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0:
+      important: '<header>Anuncios importantes</header>'
+      opera: |
+        <p>Esta é a última versión principal compatible oficialmente con Opera 12 e versións anteriores. As versións actuais de FoxTrick poden deixar de funcionar sen previo aviso.</p>
+        <p>Pensa en utilizar <linkOperaNext>Opera Next</linkOperaNext> ou calquera outro navegador compatible que prefiras.</p>
+      twitter: 'Podes seguir a <linkTwitter>FoxTrick en Twitter</linkTwitter> para recibir as noticias, as novidades e os anuncios máis recentes.'
       crowdin: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
+      new: '<header>Módulos novos</header>'
+      hy_skills: '<module>YouthSkills</module>: mellora a páxina dos xogadores xuvenís con información de hattrick youthclub. Só para usuarios de hattrick youthclub.'
+      series_transfers: '<module>SeriesTransfers</module>: amosa unha lista de xogadores que están actualmente á venda nas páxinas do grupo.'
     0.12.2:
       note_0: '<header>Unha morea de actualizacións das traducións realizadas polos nosos marabillosos usuarios a través da <linkCrowdin>ferramenta Crowdin</linkCrowdin>. Por certo, ti tamén podes colaborar!</header>'
       note_1: '<module>PlayerStatsExperience</module>: para calcular a experiencia, agora asúmese que hai 28,57 puntos por nivel (ver 15766691.780).'
