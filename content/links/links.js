@@ -215,8 +215,9 @@
 				}
 
 				var allowed = true;
-				if (!FoxtrickPrefs.isModuleOptionEnabled(module.MODULE_NAME, key)) {
-					// link not enabled
+				if (!FoxtrickPrefs.isModuleOptionEnabled(module.MODULE_NAME, key) &&
+					FoxtrickPrefs.isModuleOptionSet(module.MODULE_NAME, key)) {
+					// enable all by default unless set otherwise by user
 					allowed = false;
 				}
 				else if (filters && filters.length > 0) {
