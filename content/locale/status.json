@@ -4,26 +4,26 @@
 			"approved_progress": "0",
 			"code": "ro",
 			"name": "Romanian",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "89",
 			"translated": "1462",
 			"approved": "0"
 		},
 		{
-			"approved_progress": "93",
+			"approved_progress": "99",
 			"code": "fr",
 			"name": "French",
-			"phrases": "1643",
-			"translated_progress": "95",
-			"translated": "1552",
-			"approved": "1537"
+			"phrases": "1646",
+			"translated_progress": "99",
+			"translated": "1644",
+			"approved": "1644"
 		},
 		{
 			"approved_progress": "0",
 			"code": "es-ES",
 			"name": "Spanish",
-			"phrases": "1643",
-			"translated_progress": "85",
+			"phrases": "1646",
+			"translated_progress": "84",
 			"translated": "1386",
 			"approved": "1"
 		},
@@ -31,7 +31,7 @@
 			"approved_progress": "0",
 			"code": "ar",
 			"name": "Arabic",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "75",
 			"translated": "1224",
 			"approved": "0"
@@ -40,7 +40,7 @@
 			"approved_progress": "0",
 			"code": "be",
 			"name": "Belarusian",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "36",
 			"translated": "581",
 			"approved": "0"
@@ -49,7 +49,7 @@
 			"approved_progress": "0",
 			"code": "bg",
 			"name": "Bulgarian",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "25",
 			"translated": "392",
 			"approved": "0"
@@ -58,7 +58,7 @@
 			"approved_progress": "0",
 			"code": "ca",
 			"name": "Catalan",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "49",
 			"translated": "787",
 			"approved": "0"
@@ -67,7 +67,7 @@
 			"approved_progress": "73",
 			"code": "cs",
 			"name": "Czech",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "89",
 			"translated": "1461",
 			"approved": "1209"
@@ -76,8 +76,8 @@
 			"approved_progress": "93",
 			"code": "da",
 			"name": "Danish",
-			"phrases": "1643",
-			"translated_progress": "94",
+			"phrases": "1646",
+			"translated_progress": "93",
 			"translated": "1533",
 			"approved": "1537"
 		},
@@ -85,7 +85,7 @@
 			"approved_progress": "0",
 			"code": "de",
 			"name": "German",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "98",
 			"translated": "1615",
 			"approved": "2"
@@ -94,7 +94,7 @@
 			"approved_progress": "0",
 			"code": "el",
 			"name": "Greek",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "76",
 			"translated": "1256",
 			"approved": "0"
@@ -103,7 +103,7 @@
 			"approved_progress": "0",
 			"code": "fy-NL",
 			"name": "Frisian",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "26",
 			"translated": "429",
 			"approved": "0"
@@ -112,7 +112,7 @@
 			"approved_progress": "0",
 			"code": "eu",
 			"name": "Basque",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "12",
 			"translated": "209",
 			"approved": "0"
@@ -121,7 +121,7 @@
 			"approved_progress": "0",
 			"code": "fi",
 			"name": "Finnish",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "86",
 			"translated": "1402",
 			"approved": "0"
@@ -130,8 +130,8 @@
 			"approved_progress": "0",
 			"code": "he",
 			"name": "Hebrew",
-			"phrases": "1643",
-			"translated_progress": "100",
+			"phrases": "1646",
+			"translated_progress": "99",
 			"translated": "1630",
 			"approved": "0"
 		},
@@ -139,7 +139,7 @@
 			"approved_progress": "11",
 			"code": "hu",
 			"name": "Hungarian",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "85",
 			"translated": "1392",
 			"approved": "227"
@@ -148,16 +148,16 @@
 			"approved_progress": "0",
 			"code": "it",
 			"name": "Italian",
-			"phrases": "1643",
-			"translated_progress": "95",
-			"translated": "1564",
+			"phrases": "1646",
+			"translated_progress": "98",
+			"translated": "1612",
 			"approved": "0"
 		},
 		{
 			"approved_progress": "0",
 			"code": "ja",
 			"name": "Japanese",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "77",
 			"translated": "1271",
 			"approved": "0"
@@ -166,7 +166,7 @@
 			"approved_progress": "0",
 			"code": "ka",
 			"name": "Georgian",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "64",
 			"translated": "1048",
 			"approved": "0"
@@ -175,8 +175,8 @@
 			"approved_progress": "0",
 			"code": "ko",
 			"name": "Korean",
-			"phrases": "1643",
-			"translated_progress": "100",
+			"phrases": "1646",
+			"translated_progress": "99",
 			"translated": "1631",
 			"approved": "0"
 		},
@@ -184,16 +184,16 @@
 			"approved_progress": "77",
 			"code": "lt",
 			"name": "Lithuanian",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "93",
-			"translated": "1530",
-			"approved": "1272"
+			"translated": "1534",
+			"approved": "1275"
 		},
 		{
 			"approved_progress": "0",
 			"code": "mk",
 			"name": "Macedonian",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "86",
 			"translated": "1406",
 			"approved": "0"
@@ -202,7 +202,7 @@
 			"approved_progress": "0",
 			"code": "nl",
 			"name": "Dutch",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "88",
 			"translated": "1441",
 			"approved": "0"
@@ -211,7 +211,7 @@
 			"approved_progress": "0",
 			"code": "no",
 			"name": "Norwegian",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "59",
 			"translated": "955",
 			"approved": "0"
@@ -220,7 +220,7 @@
 			"approved_progress": "0",
 			"code": "pl",
 			"name": "Polish",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "88",
 			"translated": "1442",
 			"approved": "0"
@@ -229,7 +229,7 @@
 			"approved_progress": "0",
 			"code": "pt-PT",
 			"name": "Portuguese",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "85",
 			"translated": "1399",
 			"approved": "0"
@@ -238,16 +238,16 @@
 			"approved_progress": "93",
 			"code": "ru",
 			"name": "Russian",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "93",
-			"translated": "1531",
+			"translated": "1532",
 			"approved": "1537"
 		},
 		{
 			"approved_progress": "0",
 			"code": "sk",
 			"name": "Slovak",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "64",
 			"translated": "1033",
 			"approved": "0"
@@ -256,7 +256,7 @@
 			"approved_progress": "0",
 			"code": "sl",
 			"name": "Slovenian",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "60",
 			"translated": "960",
 			"approved": "0"
@@ -265,16 +265,16 @@
 			"approved_progress": "0",
 			"code": "sq",
 			"name": "Albanian",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "34",
 			"translated": "550",
 			"approved": "0"
 		},
 		{
-			"approved_progress": "98",
+			"approved_progress": "97",
 			"code": "sr",
 			"name": "Serbian (Cyrillic)",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "98",
 			"translated": "1613",
 			"approved": "1613"
@@ -283,7 +283,7 @@
 			"approved_progress": "93",
 			"code": "sv-SE",
 			"name": "Swedish",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "93",
 			"translated": "1512",
 			"approved": "1537"
@@ -292,7 +292,7 @@
 			"approved_progress": "0",
 			"code": "tr",
 			"name": "Turkish",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "78",
 			"translated": "1277",
 			"approved": "0"
@@ -301,8 +301,8 @@
 			"approved_progress": "0",
 			"code": "uk",
 			"name": "Ukrainian",
-			"phrases": "1643",
-			"translated_progress": "90",
+			"phrases": "1646",
+			"translated_progress": "89",
 			"translated": "1467",
 			"approved": "0"
 		},
@@ -310,7 +310,7 @@
 			"approved_progress": "0",
 			"code": "zh-CN",
 			"name": "Chinese Simplified",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "69",
 			"translated": "1120",
 			"approved": "0"
@@ -319,17 +319,17 @@
 			"approved_progress": "0",
 			"code": "en",
 			"name": "English",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "86",
-			"translated": "1408",
+			"translated": "1411",
 			"approved": "2"
 		},
 		{
 			"approved_progress": "0",
 			"code": "vi",
 			"name": "Vietnamese",
-			"phrases": "1643",
-			"translated_progress": "76",
+			"phrases": "1646",
+			"translated_progress": "75",
 			"translated": "1224",
 			"approved": "0"
 		},
@@ -337,7 +337,7 @@
 			"approved_progress": "0",
 			"code": "gl",
 			"name": "Galician",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "98",
 			"translated": "1606",
 			"approved": "0"
@@ -346,7 +346,7 @@
 			"approved_progress": "0",
 			"code": "is",
 			"name": "Icelandic",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "57",
 			"translated": "919",
 			"approved": "0"
@@ -355,7 +355,7 @@
 			"approved_progress": "0",
 			"code": "pt-BR",
 			"name": "Portuguese, Brazilian",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "92",
 			"translated": "1504",
 			"approved": "0"
@@ -364,16 +364,16 @@
 			"approved_progress": "0",
 			"code": "fa",
 			"name": "Persian",
-			"phrases": "1643",
-			"translated_progress": "86",
-			"translated": "1407",
+			"phrases": "1646",
+			"translated_progress": "87",
+			"translated": "1416",
 			"approved": "0"
 		},
 		{
 			"approved_progress": "0",
 			"code": "es-AR",
 			"name": "Spanish, Argentina",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "93",
 			"translated": "1524",
 			"approved": "0"
@@ -382,8 +382,8 @@
 			"approved_progress": "0",
 			"code": "es-CR",
 			"name": "Spanish, Costa Rica",
-			"phrases": "1643",
-			"translated_progress": "98",
+			"phrases": "1646",
+			"translated_progress": "97",
 			"translated": "1601",
 			"approved": "0"
 		},
@@ -391,16 +391,16 @@
 			"approved_progress": "93",
 			"code": "hr",
 			"name": "Croatian",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "96",
-			"translated": "1572",
+			"translated": "1575",
 			"approved": "1537"
 		},
 		{
 			"approved_progress": "0",
 			"code": "nn-NO",
 			"name": "Norwegian Nynorsk",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "49",
 			"translated": "782",
 			"approved": "0"
@@ -409,7 +409,7 @@
 			"approved_progress": "0",
 			"code": "et",
 			"name": "Estonian",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "30",
 			"translated": "470",
 			"approved": "0"
@@ -418,7 +418,7 @@
 			"approved_progress": "0",
 			"code": "lv",
 			"name": "Latvian",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "59",
 			"translated": "967",
 			"approved": "0"
@@ -427,7 +427,7 @@
 			"approved_progress": "0",
 			"code": "az",
 			"name": "Azerbaijani",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "22",
 			"translated": "345",
 			"approved": "0"
@@ -436,7 +436,7 @@
 			"approved_progress": "0",
 			"code": "mt",
 			"name": "Maltese",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "47",
 			"translated": "744",
 			"approved": "0"
@@ -445,7 +445,7 @@
 			"approved_progress": "0",
 			"code": "lb",
 			"name": "Luxembourgish",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "34",
 			"translated": "544",
 			"approved": "0"
@@ -454,7 +454,7 @@
 			"approved_progress": "0",
 			"code": "vls-BE",
 			"name": "Flemish",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "58",
 			"translated": "929",
 			"approved": "0"
@@ -463,7 +463,7 @@
 			"approved_progress": "0",
 			"code": "fur-IT",
 			"name": "Friulian",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "12",
 			"translated": "198",
 			"approved": "1"
@@ -472,7 +472,7 @@
 			"approved_progress": "0",
 			"code": "bs",
 			"name": "Bosnian",
-			"phrases": "1643",
+			"phrases": "1646",
 			"translated_progress": "93",
 			"translated": "1522",
 			"approved": "0"

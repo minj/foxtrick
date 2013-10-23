@@ -13,6 +13,14 @@ it:
       twitter: 'Puoi seguire <linkTwitter>Foxtrick su Twitter</linkTwitter> per ricevere le ultime notizie, aggiornamenti e annunci.'
       crowdin: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
       new: '<header>Nuovi moduli</header>'
+      other: '<header>Altre modifiche</header>'
+      psico_update: "Un'opzione per visualizzare la previsione di <module>PsicoTSI</module> nella barra laterale di sinistra è stata reimplementata."
+      ff_button: Pulsante della barra degli strumenti di Firefox sarà più reattivo e rifletterà meglio lo stato di Foxtrick.
+      ff_disable: Disabilitare Foxtrick in Firefox chiuderà le preferenze di Foxtrick (se aperte) e ricaricherà tutte le schede di Hattrick per rimuovere le modifiche apportate da Foxtrick.
+      bugs: '<header>Correzioni di bug</header>'
+    0.12.2.1:
+      note_0: I collegamenti non scompariranno più dopo la cancellazione della cache di Foxtrick in Firefox.
+      note_3: "Risolto il problema che ha causato la visualizzazione di simboli strani invece della valuta dell'utente tramite Foxtrick"
     0.12.2:
       note_0: '<header>Sono disponibili tante nuove traduzioni per i nostri utenti su <linkCrowdin>crowdin tool</linkCrowdin>. Anche tu puoi dare una mano!</header>'
       note_1: "<module>PlayerStatsExperience</module>: il calcolo dell' esperienza ora presume che ogni livello corrisponda a 28,57 punti (vedere 15766691.780)."
