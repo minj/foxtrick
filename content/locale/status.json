@@ -14,8 +14,8 @@
 			"code": "fr",
 			"name": "French",
 			"phrases": "1646",
-			"translated_progress": "99",
-			"translated": "1644",
+			"translated_progress": "100",
+			"translated": "1646",
 			"approved": "1644"
 		},
 		{
@@ -77,8 +77,8 @@
 			"code": "da",
 			"name": "Danish",
 			"phrases": "1646",
-			"translated_progress": "93",
-			"translated": "1533",
+			"translated_progress": "94",
+			"translated": "1535",
 			"approved": "1537"
 		},
 		{
@@ -383,8 +383,8 @@
 			"code": "es-CR",
 			"name": "Spanish, Costa Rica",
 			"phrases": "1646",
-			"translated_progress": "97",
-			"translated": "1601",
+			"translated_progress": "99",
+			"translated": "1621",
 			"approved": "0"
 		},
 		{
@@ -473,8 +473,8 @@
 			"code": "bs",
 			"name": "Bosnian",
 			"phrases": "1646",
-			"translated_progress": "93",
-			"translated": "1522",
+			"translated_progress": "96",
+			"translated": "1572",
 			"approved": "0"
 		}
 	]
