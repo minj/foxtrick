@@ -816,7 +816,8 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				return;
 
 			// FF does not recognize space-delimited date-times
-			var dateString = xml.getElementsByTagName('MatchDate')[0].textContent.replace(' ', 'T');
+			var dateString =
+				xml.getElementsByTagName('MatchDate')[0].textContent.replace(' ', 'T') + 'Z';
 			var matchDate = new Date(dateString);
 
 			var affectedPlayerID = '0';
