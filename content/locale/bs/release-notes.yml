@@ -6,7 +6,9 @@ bs:
     beta:
       note_0: 'Ovo je beta inačica buduće nove verzije. Pomozite na prevoditi ovu verziju sa super lakim prevođenjem na <linkCrowdin>crowdin.net</linkCrowdin>.'
     0.13.0:
+      important: '<header>Važne obavijesti</header>'
       crowdin: '<header>Mnogo prevoditeljskih nadogradnji od naših fantastičnih korisnika koristeći <linkCrowdin>crowdin alat</linkCrowdin>. I Vi možete pomoći!</header>'
+      new: '<header>Novi moduli</header>'
     0.12.2:
       note_0: '<header>Аžurirani prevodi na mnogobrojne jezike uz pomoć <linkCrowdin>crowdin alata</linkCrowdin>. Ako i Vi hoćete da pomognete, samo izvolitе!</header>'
       note_1: '<module>PlayerStatsExperience</module>: računanje iskustva sada predviđa kako je potrebno 28.57 bodova za jednu razinu (see 15766691.780).'

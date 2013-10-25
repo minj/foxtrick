@@ -13,7 +13,7 @@ de:
       twitter: 'Du kannst <linkTwitter>Foxtrick auf Twitter</linkTwitter> folgen um regelmässig Nachrichten zu Updates und weitere Meldungen zu erhalten.'
       crowdin: '<header>Eine Menge neue Übersetzungen von unseren geliebten <linkCrowdin>Crowdin</linkCrowdin> Nutzern. Du kannst übrigens auch ganz einfach mithelfen!</header>'
       new: '<header>Neue Module</header>'
-      hy_skills: '<module>YouthSkills</module>: Reichertdie Jugendspielerseite mit Informationen an die von hattrick youthclub stammen. Nur für HY user.'
+      hy_skills: '<module>YouthSkills</module>: Jugendspieler-Seite mit Skill-Informationen aus hattrick youthclub angereichert. Nur für HY-Nutzer.'
       series_transfers: '<module>SeriesTransfers</module>: Listet auf Ligenseiten die momentan zu Verkauf stehenden Spieler auf.'
       other: '<header>Andere Änderungen</header>'
       staff_marker: '<module>StaffMarker</module> wurde überarbeitet. Neue Optionen für Teams die du unterstützt, Teams die dich unterstützen und für die Nationaltrainer würden hinzugefügt.'

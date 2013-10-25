@@ -29,6 +29,7 @@ fr:
       android: |
         <p>Des correctifs majeures ont été réalisés sur le noyau de FoxTrick afin de s'adapter à Firefox pour Android. Du coup, FoxTrick se comporte nettement mieux sur les appareils mobiles.</p>
         <p>Modules concernés: <module>MatchReportFormat</module>, <module>Ratings</module>, <module>MatchSimulator</module>, <module>HTMSPrediction</module> <em>et autres</em>.</p>
+      native_names: 'Les pays sélectionnés ne changeront plus quand vous retournerez sur le formulaire de recherche de transfert avec le nom original des pays activé dans <module>CountryList</module>.'
       custom_links: La fonctionnalité "Liens externes" a été revue et corrigée de tous les problèmes connus. Vous pouvez maintenant ajouter des liens personnalisés sur la page de rapport de match aussi.
       player_filters: "Il est maintenant possible d'utiliser <module>PlayerFilters</module> dans plusieurs onglets en même temps dans Firefox."
       history_stats: '<module>HistoryStats</module> est maintenant utilisable avec plusieurs équipes en même temps dans Firefox.'
@@ -153,6 +154,7 @@ fr:
       note_3: '<module>PlayerStatsExperience</module>: A fancy new version with much more details and colored feedback if the data is reliable. (Thanks to SeanConnery (7751762) for testing the colors for red-green blind users)'
       note_4: '<module>MatchOrderInterface</module>: Possibility to clone or clone and convert an existing order. Players will not be filled in on purpose.'
       note_5: '<module>YouthTwins</module>: Option added to hide the information link about twins (default off)'
+      note_6: "<module>StaffMarker</module>: Utilise dorénavant Google Code pour obtenir les informations d'hattrick youthclub sur leur serveur"
       note_7: "<module>TeamPopupLinks</module> : un restylage pour mieux s'intégrer à l'allure générale de hattrick.org"
       note_8: Support for the KeyPlayer page
       note_9: Quelques améliorations pour Firefox sur Android
