@@ -815,7 +815,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			if (tactics == '1')
 				return;
 
-			var matchDate = new Date(xml.getElementsByTagName('MatchDate')[0].textContent);
+			// FF does not recognize space-delimited date-times
+			var dateString = xml.getElementsByTagName('MatchDate')[0].textContent.replace(' ', 'T');
+			var matchDate = new Date(dateString);
 
 			var affectedPlayerID = '0';
 			var events = xml.getElementsByTagName('Event');
