@@ -52,6 +52,7 @@ FoxtrickFennec.prototype = {
 		'lib/yaml.js',
 		'lib/Blob.js',
 		'lib/FileSaver.js',
+		'lib/psico.js',
 
 		//<!-- categorized modules with init functions -->
 		'forum/staff-marker.js',
