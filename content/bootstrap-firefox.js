@@ -24,6 +24,7 @@ FoxtrickFirefox.prototype = {
 		'lib/yaml.js',
 		'lib/Blob.js',
 		'lib/FileSaver.js',
+		'lib/idbstore.js',
 		'lib/psico.js',
 
 		//<!-- utilities -->

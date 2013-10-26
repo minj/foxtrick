@@ -48,6 +48,8 @@ a good reason to. They are for version bumps in Makefile.
 				<string>content/lib/yaml.js</string>
 				<string>content/lib/Blob.js</string>
 				<string>content/lib/FileSaver.js</string>
+				<string>content/lib/indexedDB.polyfill.js</string>
+				<string>content/lib/idbstore.js</string>
 				<string>content/lib/psico.js</string>
 
 				<!-- utilities -->

@@ -34,6 +34,7 @@
 			"content/lib/jester.js",
 			"content/lib/Blob.js",
 			"content/lib/FileSaver.js",
+			"content/lib/idbstore.js",
 			"content/lib/psico.js",
 
 			//<!-- utilities -->

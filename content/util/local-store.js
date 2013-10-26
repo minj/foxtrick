@@ -5,105 +5,78 @@
  * The stored value must be a JSON-serializable object, or of native types.
  */
 
-
-Foxtrick._localSet = function(key, value) {
-	Foxtrick.localStore.setItem('localStore.' + key, JSON.stringify(value));
-};
-
-// key = string or map of keys and default values
-// returns value reps. map of keys and values
-// key = string or map of keys and default values
-// returns value reps. map of keys and values
-Foxtrick._localGet = function(keymap) {
-	if (typeof(keymap) === 'string')
-		return JSON.parse(Foxtrick.localStore.getItem('localStore.' + keymap));
-	else if (typeof(keymap) === 'object') {
-		var answermap = {}, key;
-		for (key in keymap) {
-			if (Foxtrick.localStore.getItem('localStore.' + key) !== null)
-				answermap[key] = Foxtrick.localStore.getItem('localStore.' + key);
-			else
-				answermap[key] = keymap[i];
-		}
-		return JSON.parse(answermap);
-	}
-};
-
-Foxtrick._localDeleteBranch = function(branch) {
-	if (!branch) branch = '';
-	if (branch != '') branch += '.';
-	var key;
-	for (key in Foxtrick.localStore) {
-		if (key.indexOf('localStore.' + branch) === 0)
-			Foxtrick.localStore.removeItem(key); // <- key already contains localStore.
-	}
-};
-
-// for Firefox
-if (Foxtrick.arch == 'Gecko') {
-	var url = 'http://localStore.foxtrick.org';
-	var ios = Components.classes['@mozilla.org/network/io-service;1']
-			  .getService(Components.interfaces.nsIIOService);
-	var ssm = Components.classes['@mozilla.org/scriptsecuritymanager;1']
-			  .getService(Components.interfaces.nsIScriptSecurityManager);
-	var smc = Components.classes['@mozilla.org/dom/storagemanager;1'] ||
-		Components.classes['@mozilla.org/dom/localStorage-manager;1'];
-	var dsm = smc.getService(Components.interfaces.nsIDOMStorageManager);
-
-	var uri = ios.newURI(url, '', null);
-	var principal = ssm.getCodebasePrincipal ? ssm.getCodebasePrincipal(uri) :
-		ssm.getNoAppCodebasePrincipal(uri);
-	Foxtrick.localStore = dsm.getLocalStorageForPrincipal(principal, '');
-
-	Foxtrick.localSet = Foxtrick._localSet;
-	Foxtrick.localGet = function(key, callback) {
-		callback(Foxtrick._localGet(key));
+// background
+if (Foxtrick.chromeContext() == 'background') {
+	Foxtrick.localStore = new IDBStore({
+		storeName: 'localStore',
+		storePrefix: 'Foxtrick',
+		keyPath: null,
+		autoIncrement: true,
+		indexes: [],
+		onStoreReady: function(){},
+		onError: function(error){ throw error; }
+	});
+	Foxtrick.localSet = function(key, value) {
+		Foxtrick.localStore.put(key, value);
 	};
-	Foxtrick.localDeleteBranch = Foxtrick._localDeleteBranch;
+	Foxtrick.localGet = function(key, callback) {
+		Foxtrick.localStore.get(key, callback);
+	};
+	Foxtrick.localDeleteBranch = function(branch) {
+		if (typeof branch === 'undefined' || branch === null)
+			branch = '';
+
+		branch = String(branch);
+
+		var options = {
+			onEnd: function() {
+				Foxtrick.log('localStore branch "' + branch + '" deleted');
+			},
+			writeAccess: true
+		};
+		if (branch !== '') {
+			options.keyRange = Foxtrick.localStore.makeKeyRange({
+				lower: branch + '.', // charCode 46
+				upper: branch + '/', // charCode 47
+				excludeUpper: true
+			});
+		}
+		Foxtrick.localStore.iterate(function(item, cursor) {
+			cursor.delete();
+		}, options);
+	};
 }
-// localStore for all other
-else {
-	// background
-	if (Foxtrick.chromeContext() == 'background') {
-		Foxtrick.localStore = localStorage;
-		Foxtrick.localSet = Foxtrick._localSet;
-		Foxtrick.localGet = function(key, callback) {
-			callback(Foxtrick._localGet(key));
-		};
-		Foxtrick.localDeleteBranch = Foxtrick._localDeleteBranch;
-	}
 
-	// content
-	else if (Foxtrick.chromeContext() == 'content') {
+// content
+else if (Foxtrick.chromeContext() == 'content') {
 
-		Foxtrick.localSet = function(key, value) {
-			// inform background
-			sandboxed.extension.sendRequest({
-				req: 'localSet',
-				key: key,
-				value: value
-			});
-		};
+	Foxtrick.localSet = function(key, value) {
+		// inform background
+		sandboxed.extension.sendRequest({
+			req: 'localSet',
+			key: key,
+			value: value
+		});
+	};
 
-		Foxtrick.localGet = function(key, callback) {
-			// get from background
-			sandboxed.extension.sendRequest({ req: 'localGet', key: key },
-			  function(response) {
-				try {
-					callback(response.value);
-				}
-				catch (e) {
-					Foxtrick.log('Error in callback for localGet', response, e);
-				}
-			});
-		};
+	Foxtrick.localGet = function(key, callback) {
+		// get from background
+		sandboxed.extension.sendRequest({ req: 'localGet', key: key },
+		  function(response) {
+			try {
+				callback(response.value);
+			}
+			catch (e) {
+				Foxtrick.log('Error in callback for localGet', response, e);
+			}
+		});
+	};
 
-		Foxtrick.localDeleteBranch = function(branch) {
-			// inform background
-			sandboxed.extension.sendRequest({
-				req: 'localDeleteBranch',
-				branch: branch
-			});
-		};
-	}
+	Foxtrick.localDeleteBranch = function(branch) {
+		// inform background
+		sandboxed.extension.sendRequest({
+			req: 'localDeleteBranch',
+			branch: branch
+		});
+	};
 }
