@@ -15,6 +15,17 @@ FoxtrickFennec.prototype = {
 		'l10n.js',
 		'xml-load.js',
 		'pages.js',
+
+		//<!-- external libraries -->
+		//'lib/jquery.js',
+		'lib/oauth.js',
+		'lib/sha1.js',
+		'lib/jester.js',
+		'lib/yaml.js',
+		'lib/Blob.js',
+		'lib/FileSaver.js',
+		'lib/psico.js',
+
 		//<!-- utilities -->
 		'util/api.js',
 		'util/array.js',
@@ -43,16 +54,6 @@ FoxtrickFennec.prototype = {
 		'util/string.js',
 		'util/tabs.js',
 		'util/time.js',
-
-		//<!-- external libraries -->
-		//'lib/jquery.js',
-		'lib/oauth.js',
-		'lib/sha1.js',
-		'lib/jester.js',
-		'lib/yaml.js',
-		'lib/Blob.js',
-		'lib/FileSaver.js',
-		'lib/psico.js',
 
 		//<!-- categorized modules with init functions -->
 		'forum/staff-marker.js',

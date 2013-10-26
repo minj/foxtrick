@@ -25,6 +25,17 @@
 			"content/xml-load.js",
 			"content/pages.js",
 
+			//<!-- external libraries -->
+			"content/lib/jquery.js",
+			"content/lib/oauth.js",
+			"content/lib/sha1.js",
+			"content/lib/PluralForm.js",
+			"content/lib/yaml.js",
+			"content/lib/jester.js",
+			"content/lib/Blob.js",
+			"content/lib/FileSaver.js",
+			"content/lib/psico.js",
+
 			//<!-- utilities -->
 			"content/util/api.js",
 			"content/util/array.js",
@@ -53,17 +64,6 @@
 			"content/util/string.js",
 			"content/util/tabs.js",
 			"content/util/time.js",
-
-			//<!-- external libraries -->
-			"content/lib/jquery.js",
-			"content/lib/oauth.js",
-			"content/lib/sha1.js",
-			"content/lib/PluralForm.js",
-			"content/lib/yaml.js",
-			"content/lib/jester.js",
-			"content/lib/Blob.js",
-			"content/lib/FileSaver.js",
-			"content/lib/psico.js",
 
 			//<!-- core modules -->
 			"content/redirections.js",

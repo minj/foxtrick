@@ -20,6 +20,16 @@ Foxtrick.loader.background.contentScriptManager = {
 		'xml-load.js',
 		'pages.js',
 
+		//<!-- external libraries -->
+		'lib/oauth.js',
+		'lib/sha1.js',
+		'lib/jquery.js',
+		'lib/jester.js',
+		'lib/yaml.js',
+		'lib/Blob.js',
+		'lib/FileSaver.js',
+		'lib/psico.js',
+
 		//<!-- utilities -->
 		'util/api.js',
 		'util/array.js',
@@ -48,16 +58,6 @@ Foxtrick.loader.background.contentScriptManager = {
 		'util/string.js',
 		'util/tabs.js',
 		'util/time.js',
-
-		//<!-- external libraries -->
-		'lib/oauth.js',
-		'lib/sha1.js',
-		'lib/jquery.js',
-		'lib/jester.js',
-		'lib/yaml.js',
-		'lib/Blob.js',
-		'lib/FileSaver.js',
-		'lib/psico.js',
 
 		//<!-- core modules -->
 		'redirections.js',

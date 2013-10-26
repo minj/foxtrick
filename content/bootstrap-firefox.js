@@ -17,6 +17,15 @@ FoxtrickFirefox.prototype = {
 		'xml-load.js',
 		'pages.js',
 
+		//<!-- external libraries -->
+		//'lib/jquery.js',
+		'lib/oauth.js',
+		'lib/sha1.js',
+		'lib/yaml.js',
+		'lib/Blob.js',
+		'lib/FileSaver.js',
+		'lib/psico.js',
+
 		//<!-- utilities -->
 		'util/api.js',
 		'util/array.js',
@@ -45,15 +54,6 @@ FoxtrickFirefox.prototype = {
 		'util/string.js',
 		'util/tabs.js',
 		'util/time.js',
-
-		//<!-- external libraries -->
-		//'lib/jquery.js',
-		'lib/oauth.js',
-		'lib/sha1.js',
-		'lib/yaml.js',
-		'lib/Blob.js',
-		'lib/FileSaver.js',
-		'lib/psico.js',
 
 		//<!-- core modules -->
 		'redirections.js',
