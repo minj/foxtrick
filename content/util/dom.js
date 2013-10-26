@@ -100,24 +100,29 @@ Foxtrick.removeAttributeValue = function(obj, attribute, value) {
 };
 
 Foxtrick.hasClass = function(obj, cls) {
-	if(obj.classList)
-		return obj.classList.contains(cls);
+	if(!obj.classList)
+		return false;
 
-	return false;
+	return obj.classList.contains(cls);
 };
 
 Foxtrick.addClass = function(obj, cls) {
+	if(!obj.classList)
+		return;
+
 	var classes = cls.split(' ');
 	for(var c in classes)
 		obj.classList.add(classes[c]);
 };
 
 Foxtrick.removeClass = function(obj, cls) {
-	obj.classList.remove(cls);
+	if(obj.classList)
+		obj.classList.remove(cls);
 };
 
 Foxtrick.toggleClass = function(obj, cls) {
-	obj.classList.toggle(cls);
+	if(obj.classList)
+		obj.classList.toggle(cls);
 };
 
 Foxtrick.hasElement = function(doc, id) {
