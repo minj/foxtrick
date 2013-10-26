@@ -157,6 +157,9 @@ Foxtrick.modules['YouthSkills'] = {
 				var hyPred = node.getAttribute('hy-pred') || 0;
 				var htCur = node.getAttribute('ht-cur') || 0;
 				var htPot = node.getAttribute('ht-pot') || 0;
+				var htMaxed = node.getAttribute('ht-pot') || 0;
+				// htCur is not available when skill is maxed!!!
+				htCur = htCur || htMaxed;
 
 				// add HY info if no info available or it matches HT info
 				cur = (hyCur && (!htCur || parseInt(htCur, 10) == parseInt(hyCur, 10))) ?
