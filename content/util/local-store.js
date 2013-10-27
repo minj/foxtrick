@@ -7,6 +7,18 @@
 
 // background
 if (Foxtrick.chromeContext() == 'background') {
+	if (Foxtrick.arch === 'Gecko') {
+		var idbManager = Cc["@mozilla.org/dom/indexeddb/manager;1"]
+			.getService(Components.interfaces.nsIIndexedDatabaseManager);
+		if (typeof idbManager.initWindowless === 'function') {
+			// apparently this function might disappear in the future
+			// as they plan to support idb in bg context properly in FF27
+
+			// object to store idb implementation on
+			Foxtrick.IDBProxy = {};
+			idbManager.initWindowless(Foxtrick.IDBProxy);
+		}
+	}
 	Foxtrick.localStore = new IDBStore({
 		storeName: 'localStore',
 		storePrefix: 'Foxtrick',
