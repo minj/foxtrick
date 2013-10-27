@@ -176,6 +176,8 @@ Foxtrick.modules.MatchSimulator = {
 
 		var showLevelNumbers = function(ev) {
 			// only listen to rating prediction changes
+			if (!ev.target.parentNode)
+				return;
 			if (!Foxtrick.hasClass(ev.target.parentNode, 'posLabel')
 				&& ev.target.id != 'ft_stamina_discount_check'
 				&& ev.target.id != 'ft_attVsDef_check'
