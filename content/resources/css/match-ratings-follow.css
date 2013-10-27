@@ -9,8 +9,8 @@
 	display: none;
 }
 .ft-mrt-rating-calc {
-    text-align: center;
-    margin-right: 42px;
+	text-align: center;
+	margin-right: 42px;
 }
 .posLabel {
 	text-align: center;
@@ -20,19 +20,9 @@
 	font-size: 10px;
 }
 .ft-mrt-teamName {
-    position: absolute;
-    left: 60px;
-    text-align: center;
-	color: white;
-	font-size: 12px;
-	font-weight: bold;
-	border: solid 2px #79A777;
-	background: #3F7137;
-	-moz-border-radius: 7px;
-	-webkit-border-radius: 7px;
-	border-radius: 7px;
-	padding: 3px;
-    width: 130px;
+	left: 60px;
+	width: 130px;
+	text-align: center;
 }
 #ft-mrt-homeName {
 	top: 225px;
