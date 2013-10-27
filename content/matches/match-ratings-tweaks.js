@@ -215,18 +215,16 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 				if (i == 6 || i == 7) {
 					// midfield
 					// [post=15766691.242]
-					var first = Math.pow(ratio, 2.7);
-					var second = Math.pow(1 - ratio, 2.7);
-					prob = first / (first + second);
+					prob = Foxtrick.Predict.possession(ratio);
 				}
 				else {
 					// [post=15766691.221]
 					if (i < 6 && i % 2 || i > 7 && i % 2 == 0)
 						// doing attack
-						prob = Foxtrick.Math.tanh(6.9 * (ratio - 0.51)) * 0.455 + 0.46;
+						prob = Foxtrick.Predict.attack(ratio);
 					else
 						// doing defence
-						prob = 1 - (Foxtrick.Math.tanh(6.9 * (1 - ratio - 0.51)) * 0.455 + 0.46);
+						prob = Foxtrick.Predict.defence(ratio);
 				}
 				var orig = result.textContent;
 				result.textContent = Math.round(prob * 100) + '%';

@@ -201,32 +201,32 @@ Foxtrick.modules['HTMSPrediction'] = {
 			return;
 
 		var midfieldLevel = [
-			Foxtrick.hsToFloat(ratingstable.rows[1].cells[3].textContent),
-			Foxtrick.hsToFloat(ratingstable.rows[1].cells[4].textContent)
+			Foxtrick.Math.hsToFloat(ratingstable.rows[1].cells[3].textContent),
+			Foxtrick.Math.hsToFloat(ratingstable.rows[1].cells[4].textContent)
 		];
 		var rdefence = [
-			Foxtrick.hsToFloat(ratingstable.rows[2].cells[3].textContent),
-			Foxtrick.hsToFloat(ratingstable.rows[2].cells[4].textContent)
+			Foxtrick.Math.hsToFloat(ratingstable.rows[2].cells[3].textContent),
+			Foxtrick.Math.hsToFloat(ratingstable.rows[2].cells[4].textContent)
 		];
 		var cdefence = [
-			Foxtrick.hsToFloat(ratingstable.rows[3].cells[3].textContent),
-			Foxtrick.hsToFloat(ratingstable.rows[3].cells[4].textContent)
+			Foxtrick.Math.hsToFloat(ratingstable.rows[3].cells[3].textContent),
+			Foxtrick.Math.hsToFloat(ratingstable.rows[3].cells[4].textContent)
 		];
 		var ldefence = [
-			Foxtrick.hsToFloat(ratingstable.rows[4].cells[3].textContent),
-			Foxtrick.hsToFloat(ratingstable.rows[4].cells[4].textContent)
+			Foxtrick.Math.hsToFloat(ratingstable.rows[4].cells[3].textContent),
+			Foxtrick.Math.hsToFloat(ratingstable.rows[4].cells[4].textContent)
 		];
 		var rattack = [
-			Foxtrick.hsToFloat(ratingstable.rows[5].cells[3].textContent),
-			Foxtrick.hsToFloat(ratingstable.rows[5].cells[4].textContent)
+			Foxtrick.Math.hsToFloat(ratingstable.rows[5].cells[3].textContent),
+			Foxtrick.Math.hsToFloat(ratingstable.rows[5].cells[4].textContent)
 		];
 		var cattack = [
-			Foxtrick.hsToFloat(ratingstable.rows[6].cells[3].textContent),
-			Foxtrick.hsToFloat(ratingstable.rows[6].cells[4].textContent)
+			Foxtrick.Math.hsToFloat(ratingstable.rows[6].cells[3].textContent),
+			Foxtrick.Math.hsToFloat(ratingstable.rows[6].cells[4].textContent)
 		];
 		var lattack = [
-			Foxtrick.hsToFloat(ratingstable.rows[7].cells[3].textContent),
-			Foxtrick.hsToFloat(ratingstable.rows[7].cells[4].textContent)
+			Foxtrick.Math.hsToFloat(ratingstable.rows[7].cells[3].textContent),
+			Foxtrick.Math.hsToFloat(ratingstable.rows[7].cells[4].textContent)
 		];
 		if (Foxtrick.Pages.Match.hasIndSetPieces(ratingstable)) {
 			var tactics = [

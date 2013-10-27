@@ -721,6 +721,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var getStamina = function(lastEnergy, checkpoints, isRested) {
 			// these formulas are derrived from the formula used in match-simulator
 			// currently they seem to have low accuracy :(
+			// UNUSED!!!
 			var getLowStamina = function(lastEnergy, checkpoints, rest) {
 				return (lastEnergy - 1.05 - rest + checkpoints * 0.0634) /
 					(0.0292 + checkpoints * 0.0039);
@@ -754,11 +755,6 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					return i;
 			}
 			return null;
-		};
-
-		var getStaminaByPappagallopoli = function(lastEnergy) {
-			return lastEnergy <= 0.887 ? lastEnergy * 10.1341 - 0.9899 :
-				8 + (lastEnergy - 0.887) / 0.1792;
 		};
 
 		var timeline = Foxtrick.Pages.Match.getTimeline(doc);
@@ -867,10 +863,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 				if (player.checkpoints == 18) {
 					if (player.lastEnergy != 1)
-						player.staminaByPappa =
-							getStaminaByPappagallopoli(player.lastEnergy).toFixed(2);
+						player.stamina = Foxtrick.Predict.stamina(player.lastEnergy).toFixed(2);
 					else
-						player.staminaByPappa = '8.63+';
+						player.stamina = '8.63+';
 
 					if (!data.hasOwnProperty(player.PlayerId))
 						data[player.PlayerId] = [];
@@ -881,7 +876,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 						return;
 
 					data[player.PlayerId][0] = matchDate.valueOf();
-					data[player.PlayerId][1] = player.staminaByPappa;
+					data[player.PlayerId][1] = player.stamina;
 				}
 			}, players);
 			Foxtrick.log('StaminaData:', matchDate, players, data);
