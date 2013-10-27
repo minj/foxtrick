@@ -364,7 +364,7 @@ Foxtrick.modules['AttVsDef'] = {
 			var val2 = Foxtrick.Math.hsToFloat(table.rows[9 - j].cells[4].textContent);
 			var ratio = val1 / (val1 + val2);
 			if (FoxtrickPrefs.getBool('AttVsDef.realProbabilitiesOn')) {
-				ratio = i < 5 ? Foxtrick.Predict.defence(ratio) : Foxtrick.Predict.attack(ratio);
+				ratio = j < 5 ? Foxtrick.Predict.defence(ratio) : Foxtrick.Predict.attack(ratio);
 			}
 			var percentage = ratio * 100;
 			values.push(Math.round(percentage));
