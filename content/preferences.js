@@ -1182,7 +1182,7 @@ function initModules()
 }
 
 function saveEvent(ev) {
-	Foxtrick.log('save', ev);
+	Foxtrick.log('save');
 	if ($(ev.target).attr('pref')) {
 		var pref = $(ev.target).attr('pref');
 
