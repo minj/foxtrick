@@ -32,7 +32,11 @@ if (Foxtrick.chromeContext() == 'background') {
 		Foxtrick.localStore.put(key, value);
 	};
 	Foxtrick.localGet = function(key, callback) {
-		Foxtrick.localStore.get(key, callback);
+		Foxtrick.localStore.get(key, function(value) {
+			if (typeof value === 'undefined')
+				value = null;
+			callback(value);
+		});
 	};
 	Foxtrick.localDeleteBranch = function(branch) {
 		if (typeof branch === 'undefined' || branch === null)
