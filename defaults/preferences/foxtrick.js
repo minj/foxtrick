@@ -682,6 +682,7 @@ pref("extensions.foxtrick.prefs.module.MobileEnhancements.enabled", false);
 pref("extensions.foxtrick.prefs.MatchSimulator.staminaDiscountOn", true);
 pref("extensions.foxtrick.prefs.MatchSimulator.attVsDefOn", true);
 pref("extensions.foxtrick.prefs.MatchSimulator.realProbabilitiesOn", false);
+pref("extensions.foxtrick.prefs.AttVsDef.realProbabilitiesOn", false);
 pref("extensions.foxtrick.prefs.runLoggedOff", false);
 pref("extensions.foxtrick.prefs.dump", false);
 pref("extensions.foxtrick.prefs.module.MobileEnhancements.ViewPort.enabled", true);
