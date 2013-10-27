@@ -8,6 +8,7 @@
 Foxtrick.modules['AttVsDef'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['match', 'matchOld'],
+	CSS: Foxtrick.InternalPath + 'resources/css/att-vs-def.css',
 	NICE: -1, // before Ratings
 	RADIO_OPTIONS: ['newstyle', 'oldstyle', 'oldstyleifkseparated'],
 
@@ -18,6 +19,8 @@ Foxtrick.modules['AttVsDef'] = {
 		var ratingstable = Foxtrick.Pages.Match.getRatingsTable(doc);
 		if (ratingstable == null) return;
 		if (Foxtrick.Pages.Match.isWalkOver(ratingstable)) return;
+
+		var module = this;
 
 		var header = Foxtrickl10n.getString('matches.attackdefensebars');
 
@@ -31,9 +34,44 @@ Foxtrick.modules['AttVsDef'] = {
 		else {
 			this._newStyleBars(doc, ratingstable, bodydiv);
 		}
+		// sidebar box
+		var box;
+		// add options
+		var optionsDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
+		var optionsTable = doc.createElement('table');
+		optionsTable.id = 'ft-attvsdefOptionsTable';
+		var tbody = doc.createElement('tbody');
+		var probTitle = Foxtrickl10n.getString('match.ratings.realProbabilities.title');
+		var tr1 = doc.createElement('tr');
+		var tdChkBox1 = doc.createElement('td');
+		var chkbox1 = doc.createElement('input');
+		chkbox1.type = 'checkbox';
+		chkbox1.id = 'ft-attvsdeffProb';
+		chkbox1.title = probTitle;
+		chkbox1.checked = FoxtrickPrefs.getBool('AttVsDef.realProbabilitiesOn');
+		Foxtrick.listen(chkbox1, 'change', function(ev) {
+			FoxtrickPrefs.setBool('AttVsDef.realProbabilitiesOn', ev.target.checked);
+			// remove previous view and redo
+			box.parentNode.removeChild(box);
+			var doc = ev.target.ownerDocument;
+			module.run(doc);
+		});
+		tdChkBox1.appendChild(chkbox1);
+		tr1.appendChild(tdChkBox1);
+		var tdLabel1 = doc.createElement('td');
+		var labelProb = doc.createElement('label');
+		labelProb.for = 'ft-attvsdeffProb';
+		labelProb.textContent = Foxtrickl10n.getString('match.ratings.realProbabilities');
+		labelProb.setAttribute('aria-label', labelProb.title = probTitle);
+		tdLabel1.appendChild(labelProb);
+		tr1.appendChild(tdLabel1);
+		tbody.appendChild(tr1);
+		optionsTable.appendChild(tbody);
+		optionsDiv.appendChild(optionsTable);
+		bodydiv.appendChild(optionsDiv);
 		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
-			Foxtrick.addBoxToSidebar(doc, header, bodydiv, 1);
-		else Foxtrick.Pages.Match.addBoxToSidebar(doc, header, bodydiv, 1);
+			box = Foxtrick.addBoxToSidebar(doc, header, bodydiv, 1);
+		else box = Foxtrick.Pages.Match.addBoxToSidebar(doc, header, bodydiv, 1);
 
 		if (Foxtrick.util.layout.isStandard(doc) && FoxtrickPrefs.getInt('module.' +
 		    this.MODULE_NAME + '.value') == 0)
@@ -80,16 +118,16 @@ Foxtrick.modules['AttVsDef'] = {
 			Foxtrickl10n.getString('matches.attack');
 		barsdiv.appendChild(p);
 		this._createGraphRow(doc, tablediv, ratingsArray[0][0], ratingsArray[5][1], rText, lText,
-		                     ratingsTextArray[0][0], ratingsTextArray[5][1]);
+		                     ratingsTextArray[0][0], ratingsTextArray[5][1], true);
 		this._createGraphRow(doc, tablediv, ratingsArray[1][0], ratingsArray[4][1], cText, cText,
-		                     ratingsTextArray[1][0], ratingsTextArray[4][1]);
+		                     ratingsTextArray[1][0], ratingsTextArray[4][1], true);
 		this._createGraphRow(doc, tablediv, ratingsArray[2][0], ratingsArray[3][1], lText, rText,
-		                     ratingsTextArray[2][0], ratingsTextArray[3][1]);
+		                     ratingsTextArray[2][0], ratingsTextArray[3][1], true);
 		if ((ratingsArray.length > 6) &&
 		    (FoxtrickPrefs.getInt('module.' + this.MODULE_NAME + '.value') == 1)) {
 			tablediv.appendChild(doc.createElement('br'));
 			this._createGraphRow(doc, tablediv, ratingsArray[6][0], ratingsArray[7][1], iText,
-			                     iText, ratingsTextArray[6][0], ratingsTextArray[7][1]);
+			                     iText, ratingsTextArray[6][0], ratingsTextArray[7][1], true);
 		}
 		barsdiv.appendChild(tablediv);
 		barsdiv.appendChild(doc.createElement('br'));
@@ -125,7 +163,7 @@ Foxtrick.modules['AttVsDef'] = {
 			p.textContent = Foxtrickl10n.getString('matches.indfreekick');
 			barsdiv.appendChild(p);
 			this._createGraphRow(doc, tablediv, ratingsArray[6][0], ratingsArray[7][1], iText,
-			                     iText, ratingsTextArray[6][0], ratingsTextArray[7][1]);
+			                     iText, ratingsTextArray[6][0], ratingsTextArray[7][1], true);
 			this._createGraphRow(doc, tablediv, ratingsArray[7][0], ratingsArray[6][1], iText,
 			                     iText, ratingsTextArray[7][0], ratingsTextArray[6][1]);
 			barsdiv.appendChild(tablediv);
@@ -222,15 +260,20 @@ Foxtrick.modules['AttVsDef'] = {
 		return val;
 	},
 
-	_createGraphRow: function(doc, div, val1, val2, text1, text2, tooltip1, tooltip2) {
+	_createGraphRow: function(doc, div, val1, val2, text1, text2, tooltip1, tooltip2, isDefence) {
 
-			var color1 = '#FFFFFF';
-			var color2 = '#849D84';
-			var fgcolor1 = '#000000';
-			var fgcolor2 = '#000000';
+		var color1 = '#FFFFFF';
+		var color2 = '#849D84';
+		var fgcolor1 = '#000000';
+		var fgcolor2 = '#000000';
 
-			var pt1 = Math.round(100 * val1 / (val1 + val2));
-			var pt2 = 100 - pt1;
+		var ratio = val1 / (val1 + val2);
+		if (FoxtrickPrefs.getBool('AttVsDef.realProbabilitiesOn')) {
+			ratio = isDefence ? Foxtrick.Predict.defence(ratio) : Foxtrick.Predict.attack(ratio);
+		}
+
+		var pt1 = Math.round(100 * ratio);
+		var pt2 = 100 - pt1;
 
 		var cellwidth = 50;
 
@@ -319,18 +362,30 @@ Foxtrick.modules['AttVsDef'] = {
 		for (var j = 2; j < 8; j++) {
 			var val1 = Foxtrick.Math.hsToFloat(table.rows[j].cells[3].textContent);
 			var val2 = Foxtrick.Math.hsToFloat(table.rows[9 - j].cells[4].textContent);
-			var percentage = (val1 / (val1 + val2)) * 100;
+			var ratio = val1 / (val1 + val2);
+			if (FoxtrickPrefs.getBool('AttVsDef.realProbabilitiesOn')) {
+				ratio = i < 5 ? Foxtrick.Predict.defence(ratio) : Foxtrick.Predict.attack(ratio);
+			}
+			var percentage = ratio * 100;
 			values.push(Math.round(percentage));
 		}
 		if (Foxtrick.Pages.Match.hasIndSetPieces(table)) {
 			// if there are ratings for indirect free kicks, they are in rows 10 and 11
 			val1 = Foxtrick.Math.hsToFloat(table.rows[10].cells[3].textContent);
 			val2 = Foxtrick.Math.hsToFloat(table.rows[11].cells[4].textContent);
-			percentage = (val1 / (val1 + val2)) * 100;
+			var ratio = val1 / (val1 + val2);
+			if (FoxtrickPrefs.getBool('AttVsDef.realProbabilitiesOn')) {
+				ratio = Foxtrick.Predict.defence(ratio);
+			}
+			var percentage = ratio * 100;
 			values.push(Math.round(percentage));
 			val1 = Foxtrick.Math.hsToFloat(table.rows[11].cells[3].textContent);
 			val2 = Foxtrick.Math.hsToFloat(table.rows[10].cells[4].textContent);
-			percentage = (val1 / (val1 + val2)) * 100;
+			var ratio = val1 / (val1 + val2);
+			if (FoxtrickPrefs.getBool('AttVsDef.realProbabilitiesOn')) {
+				ratio = Foxtrick.Predict.attack(ratio);
+			}
+			var percentage = ratio * 100;
 			values.push(Math.round(percentage));
 		}
 
