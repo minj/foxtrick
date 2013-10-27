@@ -8,14 +8,14 @@
 Foxtrick.modules['MatchRatingsTweaks'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.MATCHES,
 	PAGES: ['match'],
-	//CSS: Foxtrick.InternalPath + 'resources/css/match-ratings-tweaks.css',
+	CSS: Foxtrick.InternalPath + 'resources/css/match-ratings-tweaks.css',
 	OPTIONS: [
 		'FollowChanges',
 		'RealProbabilities'
 	],
 	OPTIONS_CSS: [
 		Foxtrick.InternalPath + 'resources/css/match-ratings-follow.css',
-		Foxtrick.InternalPath + 'resources/css/match-ratings-probabilities.css',
+		null, // don't use a separate file as this option is dynamic
 	],
 
 	/**
@@ -34,12 +34,12 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			var home = Foxtrick.Pages.Match.getHomeTeamName(doc);
 			var away = Foxtrick.Pages.Match.getAwayTeamName(doc);
 			var aDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
-			Foxtrick.addClass(aDiv, 'ft-mrt-teamName');
+			Foxtrick.addClass(aDiv, 'ft-mrt-teamName ft-ratings-box');
 			aDiv.id = 'ft-mrt-awayName';
 			aDiv.textContent = away;
 			sectorsField.insertBefore(aDiv, sectorsField.firstChild);
 			aDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
-			Foxtrick.addClass(aDiv, 'ft-mrt-teamName');
+			Foxtrick.addClass(aDiv, 'ft-mrt-teamName ft-ratings-box');
 			aDiv.id = 'ft-mrt-homeName';
 			aDiv.textContent = home;
 			sectorsField.insertBefore(aDiv, sectorsField.firstChild);
