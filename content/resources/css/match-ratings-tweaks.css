@@ -12,7 +12,9 @@
 	font-size: 12px;
 	font-weight: bold;
 }
-#probabilityDesc {
+#ft-probabilityDesc {
+	width: 600px;
+	margin-top: -10px;
 	color: red;
 	font-size: 1em !important;
 }

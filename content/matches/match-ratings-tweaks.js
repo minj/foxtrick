@@ -28,6 +28,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
 			return;
 		var sectorsField = doc.getElementById('sectorsField');
+		var doProb = FoxtrickPrefs.isModuleOptionEnabled('MatchRatingsTweaks', 'RealProbabilities');
 		var doChanges = FoxtrickPrefs.isModuleOptionEnabled('MatchRatingsTweaks', 'FollowChanges');
 		if (doChanges) {
 			// add team names
@@ -44,6 +45,21 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			aDiv.textContent = home;
 			sectorsField.insertBefore(aDiv, sectorsField.firstChild);
 		}
+		// add prob description
+		var htP = doc.querySelector('#sectorWrapper ~ p');
+		if (!htP.hasAttribute('id'))
+			htP.id = 'ht-probabilityDesc';
+		if (doProb)
+			Foxtrick.addClass(htP, 'hidden');
+		var p = Foxtrick.createFeaturedElement(doc, this, 'p');
+		p.id = 'ft-probabilityDesc';
+		var b = doc.createElement('strong');
+		b.textContent = Foxtrickl10n.getString('MatchRatingsTweaks.probability.note');
+		p.appendChild(b);
+		if (!doProb)
+			Foxtrick.addClass(p, 'hidden');
+		htP.parentNode.insertBefore(p, htP);
+
 		// run change now as sometimes we are too slow to init the listener
 		// causing display to be broken on first load
 		this.change(doc);
@@ -113,7 +129,6 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			var signedInt = function(num) {
 				return num >= 0 ? '+' + num : num;
 			};
-
 
 			var matchId = Foxtrick.Pages.Match.getId(doc);
 			var data = this.sectorRatings[matchId], dataExists = false;
@@ -211,19 +226,6 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 				data.pctgs[i] = pctg;
 			}
 		}
-
-		if (doProb) {
-			var p = doc.getElementById('probabilityDesc');
-			if (!p) {
-				p = doc.querySelector('#sectorWrapper ~ p');
-				p.id = 'probabilityDesc';
-				p.textContent = '';
-				var b = Foxtrick.createFeaturedElement(doc, this, 'strong');
-				b.textContent = Foxtrickl10n.getString('MatchRatingsTweaks.probability.note');
-				p.appendChild(b);
-			}
-		}
-
 
 		Foxtrick.startListenToChange(doc);
 	},
