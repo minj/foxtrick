@@ -18,5 +18,14 @@
 	color: red;
 	font-size: 1em !important;
 }
+#ft-matchRatingsOptions {
+	right: 12px;
+	top: 216px;
+	width: 175px;
+}
+#ft-matchRatingsTable td {
+	padding: 2px !important;
+	vertical-align: middle !important;
+}
 
 }

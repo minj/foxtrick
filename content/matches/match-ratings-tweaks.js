@@ -27,6 +27,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			return;
 		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
 			return;
+		var module = this;
 		var sectorsField = doc.getElementById('sectorsField');
 		var doProb = FoxtrickPrefs.isModuleOptionEnabled('MatchRatingsTweaks', 'RealProbabilities');
 		var doChanges = FoxtrickPrefs.isModuleOptionEnabled('MatchRatingsTweaks', 'FollowChanges');
@@ -45,6 +46,47 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			aDiv.textContent = home;
 			sectorsField.insertBefore(aDiv, sectorsField.firstChild);
 		}
+		// add options
+		var optionsDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
+		Foxtrick.addClass(optionsDiv, 'ft-ratings-box');
+		optionsDiv.id = 'ft-matchRatingsOptions';
+		var optionsTable = doc.createElement('table');
+		optionsTable.id = 'ft-matchRatingsTable';
+		var tbody = doc.createElement('tbody');
+		var probTitle = Foxtrickl10n.getString('matchOrder.realProbabilities.title');
+		var tr1 = doc.createElement('tr');
+		var tdChkBox1 = doc.createElement('td');
+		var chkbox1 = doc.createElement('input');
+		chkbox1.type = 'checkbox';
+		chkbox1.id = 'ft-matchRatingProb';
+		chkbox1.title = probTitle;
+		chkbox1.checked = doProb;
+		Foxtrick.listen(chkbox1, 'change', function(ev) {
+			FoxtrickPrefs.setBool('module.MatchRatingsTweaks.RealProbabilities.enabled',
+								  ev.target.checked);
+			var doc = ev.target.ownerDocument;
+			var timelineButton = doc.getElementsByClassName('currentEvent')[0];
+			Foxtrick.toggleClass(doc.getElementById('ft-probabilityDesc'), 'hidden');
+			Foxtrick.toggleClass(doc.getElementById('ht-probabilityDesc'), 'hidden');
+			if (timelineButton) {
+				timelineButton.click();
+				module.change(doc);
+			}
+		});
+		tdChkBox1.appendChild(chkbox1);
+		tr1.appendChild(tdChkBox1);
+		var tdLabel1 = doc.createElement('td');
+		var labelProb = doc.createElement('label');
+		labelProb.for = 'ft-matchRatingProb';
+		labelProb.textContent = Foxtrickl10n.getString('matchOrder.realProbabilities');
+		labelProb.setAttribute('aria-label', labelProb.title = probTitle);
+		tdLabel1.appendChild(labelProb);
+		tr1.appendChild(tdLabel1);
+		tbody.appendChild(tr1);
+		optionsTable.appendChild(tbody);
+		optionsDiv.appendChild(optionsTable);
+		sectorsField.insertBefore(optionsDiv, sectorsField.firstChild);
+
 		// add prob description
 		var htP = doc.querySelector('#sectorWrapper ~ p');
 		if (!htP.hasAttribute('id'))
@@ -103,8 +145,15 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
 			return;
 
-		var doChanges = FoxtrickPrefs.isModuleOptionEnabled('MatchRatingsTweaks', 'FollowChanges');
 		var doProb = FoxtrickPrefs.isModuleOptionEnabled('MatchRatingsTweaks', 'RealProbabilities');
+		// sync the checkbox
+		var chkbox = doc.getElementById('ft-matchRatingProb');
+		if (chkbox && chkbox.checked !== doProb) {
+			chkbox.checked = doProb;
+			Foxtrick.toggleClass(doc.getElementById('ft-probabilityDesc'), 'hidden');
+			Foxtrick.toggleClass(doc.getElementById('ht-probabilityDesc'), 'hidden');
+		}
+		var doChanges = FoxtrickPrefs.isModuleOptionEnabled('MatchRatingsTweaks', 'FollowChanges');
 		if (!doChanges && !doProb)
 			return;
 
