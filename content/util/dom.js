@@ -110,7 +110,7 @@ Foxtrick.addClass = function(obj, cls) {
 	if(!obj.classList)
 		return;
 
-	var classes = cls.split(' ');
+	var classes = Foxtrick.trim(cls).split(' ');
 	for(var c in classes)
 		obj.classList.add(classes[c]);
 };

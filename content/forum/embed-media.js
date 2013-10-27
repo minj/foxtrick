@@ -251,7 +251,7 @@ Foxtrick.modules['EmbedMedia'] = {
 			header_a.setAttribute('target', '_blank');
 
 			div.appendChild(header_a);
-			Foxtrick.addClass(div, 'ft-media-expander-unexpanded ');
+			Foxtrick.addClass(div, 'ft-media-expander-unexpanded');
 			Foxtrick.addClass(div, 'ft-media-site-' + media_link['site']);
 			media_link['link'].parentNode.insertBefore(div, media_link['link']);
 			var mediaContainer = doc.createElement('div');
