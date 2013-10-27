@@ -174,6 +174,8 @@ function search(string, search) {
 }
 
 function searchEvent(ev) {
+	if (ev.target.value.length < 4)
+		return;
 	var here = window.location.toString();
 	var there = generateURI('all');
 	if (here != there) {
