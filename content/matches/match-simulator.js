@@ -240,20 +240,17 @@ Foxtrick.modules.MatchSimulator = {
 							if (i < 3) {
 								// defence
 								// [post=15766691.221]
-								percent = 1 -
-									(Foxtrick.Math.tanh(6.9 * (1 - percent - 0.51)) * 0.455 + 0.46);
+								percent = Foxtrick.Predict.defence(percent);
 							}
 							else if (i == 3) {
 								// midfield
 								// [post=15766691.242]
-								var first = Math.pow(percent, 2.7);
-								var second = Math.pow(1 - percent, 2.7);
-								percent = first / (first + second);
+								percent = Foxtrick.Predict.possession(percent);
 							}
 							else {
 								// attack
 								// [post=15766691.221]
-								percent = Foxtrick.Math.tanh(6.9 * (percent - 0.51)) * 0.455 + 0.46;
+								percent = Foxtrick.Predict.attack(percent);
 							}
 						}
 
@@ -594,7 +591,7 @@ Foxtrick.modules.MatchSimulator = {
 				var overlayRating = ratingInnerBoxs[i].getElementsByClassName('overlayRatings')[1];
 				Foxtrick.removeClass(overlayRating, 'hidden');
 
-				var fullLevel = Foxtrick.hsToFloat(overlayRating.getAttribute('data-rating'), true);
+				var fullLevel = Foxtrick.Math.hsToFloat(overlayRating.getAttribute('data-rating'), true);
 				var levelText = '[' + fullLevel.toFixed(2) + ']';
 				var id = 'ft-full-level' + i;
 				if (currentRatings[i] !== undefined) {
@@ -1058,26 +1055,7 @@ Foxtrick.modules.MatchSimulator = {
 			else
 				stamina += 0.5; // assuming average subskill by default
 
-			var checkpoint, currentEnergy, decay, initialEnergy, rest, totalEnergy, _i;
-			if (stamina >= 8.63) {
-				return 1;
-			}
-			totalEnergy = 0;
-			initialEnergy = 1 + (0.0292 * stamina + 0.05);
-			if (stamina > 8) {
-				initialEnergy += 0.15 * (stamina - 8);
-			}
-			decay = Math.max(0.0325, -0.0039 * stamina + 0.0634);
-			rest = 0.1875;
-			for (checkpoint = _i = 1; _i <= 18; checkpoint = ++_i) {
-				currentEnergy = initialEnergy - checkpoint * decay;
-				if (checkpoint > 9) {
-					currentEnergy += rest;
-				}
-				currentEnergy = Math.min(1, currentEnergy);
-				totalEnergy += currentEnergy;
-			}
-			return totalEnergy / 18;
+			return Foxtrick.Predict.averageEnergy90(stamina);
 			//http://www.nrgjack.altervista.org/wordpress/2008/07/31/percentuale-resistenza/
 			//return 0.2472 * Math.log(stamina) + 0.472;
 			// from unwritten manual [post=15172393.4] (HO)
