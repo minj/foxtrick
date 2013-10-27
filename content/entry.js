@@ -308,7 +308,7 @@ Foxtrick.entry.change = function(ev) {
 		}
 
 		var node = ev.target;
-		while (node) {
+		while (node && node.nodeName != '#document') {
 			if (node && Foxtrick.hasClass(node, 'ft-ignore-changes'))
 				return;
 			node = node.parentNode;
