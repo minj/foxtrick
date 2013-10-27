@@ -36,6 +36,7 @@ FoxtrickFirefox.prototype = {
 		'util/log.js',
 		'util/match-view.js',
 		'util/misc.js',
+		'util/math.js',
 		'util/module.js',
 		'util/note.js',
 		'util/notify.js',
