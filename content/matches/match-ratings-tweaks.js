@@ -53,7 +53,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 		var optionsTable = doc.createElement('table');
 		optionsTable.id = 'ft-matchRatingsTable';
 		var tbody = doc.createElement('tbody');
-		var probTitle = Foxtrickl10n.getString('matchOrder.realProbabilities.title');
+		var probTitle = Foxtrickl10n.getString('match.ratings.realProbabilities.title');
 		var tr1 = doc.createElement('tr');
 		var tdChkBox1 = doc.createElement('td');
 		var chkbox1 = doc.createElement('input');
@@ -78,7 +78,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 		var tdLabel1 = doc.createElement('td');
 		var labelProb = doc.createElement('label');
 		labelProb.for = 'ft-matchRatingProb';
-		labelProb.textContent = Foxtrickl10n.getString('matchOrder.realProbabilities');
+		labelProb.textContent = Foxtrickl10n.getString('match.ratings.realProbabilities');
 		labelProb.setAttribute('aria-label', labelProb.title = probTitle);
 		tdLabel1.appendChild(labelProb);
 		tr1.appendChild(tdLabel1);
