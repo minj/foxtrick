@@ -27,6 +27,23 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			return;
 		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
 			return;
+		var sectorsField = doc.getElementById('sectorsField');
+		var doChanges = FoxtrickPrefs.isModuleOptionEnabled('MatchRatingsTweaks', 'FollowChanges');
+		if (doChanges) {
+			// add team names
+			var home = Foxtrick.Pages.Match.getHomeTeamName(doc);
+			var away = Foxtrick.Pages.Match.getAwayTeamName(doc);
+			var aDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
+			Foxtrick.addClass(aDiv, 'ft-mrt-teamName');
+			aDiv.id = 'ft-mrt-awayName';
+			aDiv.textContent = away;
+			sectorsField.insertBefore(aDiv, sectorsField.firstChild);
+			aDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
+			Foxtrick.addClass(aDiv, 'ft-mrt-teamName');
+			aDiv.id = 'ft-mrt-homeName';
+			aDiv.textContent = home;
+			sectorsField.insertBefore(aDiv, sectorsField.firstChild);
+		}
 		// run change now as sometimes we are too slow to init the listener
 		// causing display to be broken on first load
 		this.change(doc);
@@ -106,20 +123,6 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			else
 				dataExists = true;
 
-			// add team names
-			var home = Foxtrick.Pages.Match.getHomeTeamName(doc);
-			var away = Foxtrick.Pages.Match.getAwayTeamName(doc);
-			var targ = doc.getElementById('sectorsField');
-			var aDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
-			Foxtrick.addClass(aDiv, 'ft-mrt-teamName');
-			aDiv.id = 'ft-mrt-awayName';
-			aDiv.textContent = away;
-			targ.insertBefore(aDiv, targ.firstChild);
-			aDiv = Foxtrick.createFeaturedElement(doc, this, 'div');
-			Foxtrick.addClass(aDiv, 'ft-mrt-teamName');
-			aDiv.id = 'ft-mrt-homeName';
-			aDiv.textContent = home;
-			targ.insertBefore(aDiv, targ.firstChild);
 		}
 		/**
 		 * get the ith numeric rating or opponent rating in that sector
