@@ -6,7 +6,20 @@ da:
     beta:
       note_0: 'Dette er betaversionen af den næste udgave. Du kan hjælpe med at oversætte via vores super nemme crowd-oversættelse side <linkCrowdin>crowdin.net</linkCrowdin>. '
     0.13.0:
+      important: '<header>Vigtige meddelelser</header>'
+      opera: '<p>Dette er den sidste store udgivelse, der officielt understøtter Opera 12 eller dérunder. Eksisterende Foxtrick versioner kan stoppe med at virke uden yderligere varsel.</p> <p>Du kan overveje at skifte til <linkOperaNext>Opera Next</linkOperaNext> eller en anden understøttet browser efter eget valg.</p>'
+      twitter: 'Du kan følge <linkTwitter>Foxtrick på Twitter</linkTwitter> for at modtage de seneste nyheder, opdateringer og meddelelser.'
       crowdin: '<header>En del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>'
+      new: '<header>Nye moduler</header>'
+      hy_skills: '<module>YouthSkills</module>: Forbedre ungdoms spilleres side med oplysninger fra hattrick youthclub. Kun for HY-brugere.'
+      series_transfers: '<module>SeriesTransfers</module>: Viser en liste over spillere der i øjeblikket er til salg på liga sider.'
+      ratings_tweaks: '<module>MatchRatingsTweaks</module>: Justerer ratings på kamp rapportside. Viser numerisk ratings og følger deres ændringer, når du gennemser tidslinjen, ligesom i <module>MatchSimulator</module>. Beregner virkelige sandsynligheder for scoring/forsvar/bold-besiddelse ifølge formler fra unwritten manual: 15766691.221, 15766691.242'
+      other: '<header>Andre ændringer</header>'
+      simulator_prob: '<module>MatchSimulator</module> blev også forbedret med virkelige sandsynligheder for scoring/forsvars/bold-besiddelse fra den nye <module>MatchRatingsTweaks</module>-modul.'
+      staff_marker: '<module>StaffMarker</module> er blevet omstruktureret. Nye muligheder for supportere, supportede hold og Landstrænere er blevet tilføjet. Angiv indstillinger som du gerne vil have det.'
+      psico_update: 'En mulighed for at vise <module>PsicoTSI</module> forudsigelse på venstre sidebar blev genimplementeret.'
+      ticker_update: '<module>TickerColoring</module> og <module>TickerAlert</module> blev opdateret med nye supporter nyheds symboler, som var tilføjet i de forløbne år.'
+      ff_button: Firefox-værktøjslinjeknappen vil nu reagerer mere og vil afspejle Foxtrick stat bedre.
     0.12.2:
       note_0: '<header>En del oversættelses opdateringer fra vores fantastiske brugere ved hjælp af <linkCrowdin>crowdin </linkCrowdin>. Du kan også hjælpe til!</header>'
       note_1: '<module>PlayerStatsExperience</module>: rutine beregningen antager nu at der er 28.57 point pr niveau (Se 15766691.780).'
