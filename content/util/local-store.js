@@ -8,16 +8,31 @@
 // background
 if (Foxtrick.chromeContext() == 'background') {
 	if (Foxtrick.arch === 'Gecko') {
-		var idbManager = Cc["@mozilla.org/dom/indexeddb/manager;1"]
-			.getService(Components.interfaces.nsIIndexedDatabaseManager);
-		if (typeof idbManager.initWindowless === 'function') {
-			// apparently this function might disappear in the future
-			// as they plan to support idb in bg context properly in FF27
-
-			// object to store idb implementation on
-			Foxtrick.IDBProxy = {};
-			idbManager.initWindowless(Foxtrick.IDBProxy);
-		}
+		(function () {
+			var hasIDB = false;
+			try {
+				// works in bootstrap.js and FF27 preferences
+				hasIDB = (typeof indexedDB !== 'undefined' || typeof mozIndexedDB !== 'undefined');
+			}
+			catch (e) {
+				// FF25 preferences.html throws 'UnknownError'
+			}
+			finally {
+				if (!hasIDB) {
+					var idbManager = Cc['@mozilla.org/dom/indexeddb/manager;1']
+						.getService(Ci.nsIIndexedDatabaseManager);
+					if (typeof idbManager.initWindowless === 'function') {
+						// FF26 and earlier
+						Foxtrick.IDBProxy = {};
+						idbManager.initWindowless(Foxtrick.IDBProxy);
+					}
+					else {
+						// in the future in FF28?
+						Cu.importGlobalProperties(['indexedDB']);
+					}
+				}
+			}
+		})();
 	}
 	Foxtrick.localStore = new IDBStore({
 		storeName: 'localStore',

@@ -119,7 +119,8 @@
     this.keyRange = env.IDBKeyRange || env.webkitIDBKeyRange || env.mozIDBKeyRange;
 
     this.features = {
-      hasAutoIncrement: !env.mozIndexedDB
+      hasAutoIncrement: typeof env.indexedDB !== 'undefined' ||
+	    typeof env.webkitIndexedDB !== 'undefined'
     };
 
     this.consts = {
