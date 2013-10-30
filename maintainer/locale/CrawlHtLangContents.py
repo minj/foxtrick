@@ -10,6 +10,11 @@ from Hattrick import Language
 import getpass
 from xml.dom.minidom import Document
 
+try:
+	input = raw_input
+except NameError:
+	pass
+
 def createDenominationsXML(doc, languageNode, lang, result):
 	#denominations
 	rename = {}

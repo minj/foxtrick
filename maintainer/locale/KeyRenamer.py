@@ -1,6 +1,11 @@
 from __future__ import print_function
 import localetools.l10n
 import sys
+
+try:
+	input = raw_input
+except NameError:
+	pass
 	
 print("Path to foxtrick:  (relative or absolute) leave empty: -> \"./../../\"")
 path_to_content_input = input("Path:")

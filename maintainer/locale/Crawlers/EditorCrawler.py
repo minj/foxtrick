@@ -4,6 +4,11 @@ from Hattrick.Parsers import EditorParser
 import json
 import getpass
 
+try:
+	input = raw_input
+except NameError:
+	pass
+
 def login(username, password):
 	#use stage for now
 	ht = HattrickWeb(username, password, stage=True)
