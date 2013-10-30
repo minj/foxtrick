@@ -31,7 +31,7 @@ class HattrickWeb:
 			self.subdomain = None;
 		
 	def encodeUTF8(self):
-		self.body = str(self.body.decode('utf-8'))
+		self.body = self.body.decode('utf-8')
 		#self.body = self.body.encode('utf-8')
 	
 	def isLoginRequired(self):
