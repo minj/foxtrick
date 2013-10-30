@@ -1,5 +1,5 @@
-import urllib
-import cookielib
+import urllib.request, urllib.parse, urllib.error
+import http.cookiejar
 import mechanize
 import re
 import getpass
@@ -27,7 +27,7 @@ class HattrickWeb:
 			self.subdomain = None;
 		
 	def encodeUTF8(self):
-		self.body = unicode(self.body.decode('utf-8'))
+		self.body = str(self.body.decode('utf-8'))
 		#self.body = self.body.encode('utf-8')
 	
 	def isLoginRequired(self):
@@ -50,7 +50,7 @@ class HattrickWeb:
 		if self.stage:
 			url = self.loginSiteStage
 
-		cookie = cookielib.CookieJar()
+		cookie = http.cookiejar.CookieJar()
 		self.browser = mechanize.Browser()
 
 		self.browser.set_cookiejar(cookie)
@@ -64,7 +64,7 @@ class HattrickWeb:
 			self.browser.form['ctl00$ctl00$CPContent$ucSubMenu$ucLogin$txtUserName'] = self.username
 			self.browser.form['ctl00$ctl00$CPContent$ucSubMenu$ucLogin$txtPassword'] = self.password
 		except:
-			print "Login form not found!"
+			print("Login form not found!")
 			
 		self.response = self.browser.submit(name='ctl00$ctl00$CPContent$ucSubMenu$ucLogin$butLogin')
 		self.body = self.response.get_data()
@@ -91,5 +91,5 @@ class HattrickWeb:
 			
 	def setLanguage(self, languageid):
 		self.response = self.browser.open("/")
-		print "Setting language to: " + str(languageid), Language.getLanguageById(languageid)
+		print("Setting language to: " + str(languageid), Language.getLanguageById(languageid))
 		self.setFormValue('ctl00$ctl00$CPContent$CPSidebar$ucLanguages$ddlLanguages', languageid)

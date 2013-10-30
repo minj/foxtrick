@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-
 from Hattrick.CHPP import Client
 from Hattrick.CHPP import Credentials
 from Hattrick.CHPP import AccessToken
@@ -46,10 +45,10 @@ def saveCoaches(coaches, filename):
 	file.write('{\n')
 	file.write('\t"type": "%s",\n' % "coach")
 	file.write('\t"list": [\n')
-	file.write('\t\t' + ',\n\t\t'.join(map(lambda a: '{ "id": %d, "name": "%s", "LeagueId": %d, "TeamId": %d, "TeamName": "%s" }' % (a["CoachId"], a["CoachName"].encode('utf-8'), a["LeagueId"], a["TeamId"], a["TeamName"].encode('utf-8')), coaches)))
+	file.write('\t\t' + ',\n\t\t'.join(['{ "id": %d, "name": "%s", "LeagueId": %d, "TeamId": %d, "TeamName": "%s" }' % (a["CoachId"], a["CoachName"].encode('utf-8'), a["LeagueId"], a["TeamId"], a["TeamName"].encode('utf-8')) for a in coaches]))
 	file.write('\n\t]\n}')
 	file.close()
-	print filename, 'written'
+	print(filename, 'written')
 
 def run():
 	u20 = getCoaches(4);

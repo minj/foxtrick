@@ -1,17 +1,17 @@
 import localetools.l10n
 import sys
 	
-print "Path to foxtrick:  (relative or absolute) leave empty: -> \"./../../\"")
-path_to_content_input = raw_input("Path:")
+print("Path to foxtrick:  (relative or absolute) leave empty: -> \"./../../\"")
+path_to_content_input = input("Path:")
 
 if path_to_content_input == "":
 	path_to_content_input = "./../../"
 	
-oldkey = raw_input("Key to be renamed: ").lstrip().rstrip()
-newkey = raw_input("Desired new name: ").lstrip().rstrip()
+oldkey = input("Key to be renamed: ").lstrip().rstrip()
+newkey = input("Desired new name: ").lstrip().rstrip()
 
-print "using", path_to_content_input
-print "renaming", oldkey, "to", newkey
+print("using", path_to_content_input)
+print("renaming", oldkey, "to", newkey)
 
 verbose = 1
 
@@ -28,7 +28,7 @@ all.insert(0, Locales.getMaster())
 required = []
 
 if verbose:
-	print "Searching:"
+	print("Searching:")
 	
 #look for oldkey abd add to required if found
 for loc in all:
@@ -36,10 +36,10 @@ for loc in all:
 	if translation:
 		required.append(loc)
 		if verbose:
-			print "\t",loc.getShortName(), " requires renaming"
+			print("\t",loc.getShortName(), " requires renaming")
 
 if verbose:
-	print "Renaming:"
+	print("Renaming:")
 		
 #actual replacing occurs here
 count = 0
@@ -61,12 +61,12 @@ for locale in required:
 					#replace the first occurance of key in key
 					replaced = line.replace(partitionated[0].lstrip().rstrip(), newkey, 1);
 					if replaced == line:
-						print "\t","replacement had no effect"
+						print("\t","replacement had no effect")
 						
 					content[index] = replaced
 					didreplace = 1
 					if verbose:
-						print "\t",locale.getShortName(), " changed line", index
+						print("\t",locale.getShortName(), " changed line", index)
 	
 	#save data back to disc
 	if didreplace:
@@ -76,10 +76,9 @@ for locale in required:
 			fout.close()
 			localetools.l10n.convertCRLFtoLF(locale.file)
 			count += 1
-		except IOError as (errno, strerror):
-			print "Locale:", locale.getShortName(), " I/O error({0}): {1}".format(errno, strerror)
+		except IOError as err:
+			(errno, strerror) = err.args
+			print("Locale:", locale.getShortName(), " I/O error({0}): {1}".format(errno, strerror))
 
-print "Replaced", oldkey, "by", newkey, "in", count, "of", len(required), "files. "
-print len(all) - len(required), " didn't have this key."
-			
-		
+print("Replaced", oldkey, "by", newkey, "in", count, "of", len(required), "files. ")
+print(len(all) - len(required), " didn't have this key.")

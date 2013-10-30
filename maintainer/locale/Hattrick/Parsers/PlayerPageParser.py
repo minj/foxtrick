@@ -1,15 +1,15 @@
 #/Club/Players/?TeamID=818875
 
-import HTMLParser
+import html.parser
 import re
 # Parses menu links from hattrick sourcecode.
 # Used to automatically validate htlang.xml
 # 
 # CatzHoek
 
-class PlayerPageParser(HTMLParser.HTMLParser):
+class PlayerPageParser(html.parser.HTMLParser):
 	def __init__(self):
-		HTMLParser.HTMLParser.__init__(self)
+		html.parser.HTMLParser.__init__(self)
 		self.players = []
 		
 		self.currentPlayer = {}

@@ -38,7 +38,7 @@ def getFiles(ftp):
 	
 	#filter to interresting files		
 	for f in files:
-		files[f] = filter(lambda a: re.search(r'.xpi$|.safariextz$|.oex$|.crx$' ,a['name']), files[f])	
+		files[f] = [a for a in files[f] if re.search(r'.xpi$|.safariextz$|.oex$|.crx$' ,a['name'])]	
 
 	return files
 

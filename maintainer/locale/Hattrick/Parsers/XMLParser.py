@@ -7,7 +7,7 @@ def xml_to_python(el, parent):
 	"""
 	tag = el.tag
 	childs = list(el)
-	attrs = el.keys()
+	attrs = list(el.keys())
 	if not el.text == None:
 		text = el.text.strip()
 	else:
@@ -54,7 +54,7 @@ def xml_to_python(el, parent):
 	# since we don't need them to detect isArray any more
 	if areChildsArray:
 		if hasattr(parent[tag], 'keys'):
-			childKeys = parent[tag].keys()
+			childKeys = list(parent[tag].keys())
 			if len(childKeys) == 1:
 				parent[tag] = parent[tag][childKeys[0]]
 

@@ -1,13 +1,13 @@
 #/Club/Players/?TeamID=818875
 
-import HTMLParser
+import html.parser
 import re
 # Parses chpp holders
 # CatzHoek
 
-class CHPPHolderParser(HTMLParser.HTMLParser):
+class CHPPHolderParser(html.parser.HTMLParser):
 	def __init__(self):
-		HTMLParser.HTMLParser.__init__(self)
+		html.parser.HTMLParser.__init__(self)
 		self.users = []
 		self.currentUser = {}
 		self.currentUser['appNames'] = []

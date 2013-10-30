@@ -18,4 +18,4 @@ for translation in translations:
 		for m in masterTranslations:
 			if t.getKey() == m.getKey():
 				if(t.getValue() == m.getValue()):
-					print translation.getShortName(), t.getKey(), t.getValue()
+					print(translation.getShortName(), t.getKey(), t.getValue())

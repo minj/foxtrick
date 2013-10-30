@@ -15,4 +15,4 @@ for et in englishTranslations:
 	for mt in masterTranslations:
 		if et.getKey() == mt.getKey():
 			if et.getValue() != mt.getValue():
-				print mt.getKey()
+				print(mt.getKey())

@@ -1,13 +1,13 @@
-import HTMLParser
+import html.parser
 import re
 # Parses lineups to find abbreviations for positions
 # Used to automatically validate htlang.xml
 # 
 # CatzHoek
 
-class MatchLineUpParser(HTMLParser.HTMLParser):
+class MatchLineUpParser(html.parser.HTMLParser):
 	def __init__(self):
-		HTMLParser.HTMLParser.__init__(self)
+		html.parser.HTMLParser.__init__(self)
 		self.players = []
 		
 		self.currentplayer = {}
@@ -52,7 +52,7 @@ class MatchLineUpParser(HTMLParser.HTMLParser):
 					try:
 						self.currentplayer['id'] = self.getPlayerIdFromUrl(value)
 					except Exception as e:
-						print e, value; 
+						print(e, value); 
 						pass
 						
 	def handle_endtag(self, tag):

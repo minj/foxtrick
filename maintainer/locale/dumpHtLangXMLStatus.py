@@ -55,7 +55,7 @@ def compareChildElementNodeCount(r_node, t_node):
 			t_count += 1
 			
 	if r_count != t_count:
-		print tabs(), location(t_node), "Child count missmatch. expected:", r_count, " found:", t_count
+		print(tabs(), location(t_node), "Child count missmatch. expected:", r_count, " found:", t_count)
 
 #compare all childs of 
 def compareChilds(r_node, t_node):
@@ -74,7 +74,7 @@ def compareChilds(r_node, t_node):
 						compareChilds(r_c_node, t_c_node)
 						found = 1
 			if not found:
-				print tabs(), location(t_node),"Missing child node:", brackets(r_c_node.tagName)
+				print(tabs(), location(t_node),"Missing child node:", brackets(r_c_node.tagName))
 				
 	for t_c_node in t_childs:
 		if t_c_node.nodeType == t_c_node.ELEMENT_NODE:
@@ -85,7 +85,7 @@ def compareChilds(r_node, t_node):
 					if t_c_node.tagName == r_c_node.tagName:
 						found = 1
 			if not found:
-				print tabs(), location(t_node),"Unexpected child node:", brackets(t_c_node.tagName)
+				print(tabs(), location(t_node),"Unexpected child node:", brackets(t_c_node.tagName))
 	
 	dectabs()
 	
@@ -95,31 +95,31 @@ def getChildAttributeValues(node, key):
 		childs = node.childNodes
 		for child in childs:
 			if child.nodeType == child.ELEMENT_NODE:
-				for (akey, value) in child.attributes.items():
+				for (akey, value) in list(child.attributes.items()):
 					if key == akey:
 						values.append(value)
 	return values
 	
 				
 def compareAttributes(r_node, t_node):
-	r_attributes = r_node.attributes.keys()
-	t_attributes = t_node.attributes.keys()
+	r_attributes = list(r_node.attributes.keys())
+	t_attributes = list(t_node.attributes.keys())
 	if sorted(r_attributes) != sorted(t_attributes):
 		if len(r_attributes) != len(t_attributes):
-			print tabs(), location(t_node), "Attribute count mismatch", len(r_attributes), "<>", len(t_attributes)
+			print(tabs(), location(t_node), "Attribute count mismatch", len(r_attributes), "<>", len(t_attributes))
 			for t_key in t_attributes:
 				if t_key not in r_attributes:
-					print tabs(), location(t_node), "Additional attribute:", t_key
+					print(tabs(), location(t_node), "Additional attribute:", t_key)
 			
 		for r_key in r_attributes:
 			if r_key not in t_attributes:
-				print tabs(), location(t_node), "Missing attribute:", r_key
+				print(tabs(), location(t_node), "Missing attribute:", r_key)
 				
 def compareDocuments(r_node, t_node):
 	if r_node.tagName != t_node.tagName:
-		print tabs(), location(t_node), "Tag mismatch"
+		print(tabs(), location(t_node), "Tag mismatch")
 	if r_node.nodeType != t_node.nodeType:
-		print tabs(), location(t_node), "Nodetype mismatch"
+		print(tabs(), location(t_node), "Nodetype mismatch")
 	else:
 		if r_node.nodeType == r_node.ELEMENT_NODE:
 			compareAttributes(r_node, t_node)
@@ -150,7 +150,7 @@ def ensureChildAttributes(reference, test, tagname, attributename):
 	
 	difference = getChildAttributeValueDifference(r_levelNode, l_levelNode, attributename)
 	if difference:
-		print "\t", tagname, "differences:", difference 
+		print("\t", tagname, "differences:", difference) 
 
 
 
@@ -168,12 +168,12 @@ if __name__ == "__main__":
 		if os.path.isfile(htlang):
 			test = parse(htlang)
 
-			print "\nComparing Language:", localedir
+			print("\nComparing Language:", localedir)
 			
-			print "Comparing overall file structure:"
+			print("Comparing overall file structure:")
 			compareDocuments(reference.documentElement, test.documentElement)
 
-			print "Comparing keyvalues for attributes:"
+			print("Comparing keyvalues for attributes:")
 			ensureChildAttributes(reference.documentElement, test.documentElement, "levels", "value")
 			ensureChildAttributes(reference.documentElement, test.documentElement, "ratingSubLevels", "value")
 			ensureChildAttributes(reference.documentElement, test.documentElement, "tactics", "type")

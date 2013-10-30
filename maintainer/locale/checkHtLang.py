@@ -1,5 +1,8 @@
+import sys
 from xml.dom.minidom import parse
 import localetools.xml.helpers
+
+from Hattrick import Language
 
 #dump_entries = Entries from crawled xml dump
 #ht_entries = Entries from existing htlang.xml
@@ -19,12 +22,12 @@ def checkNodes(dump_entries, ht_entries, dump_key_attrib, ht_key_Attrib, compare
 				matched = 1
 				left -= 1
 			elif dump_value == ht_value or ht_text == dump_text:
-				print "\t","Current:", ht_text.encode('utf-8'),"(",ht_value,")", " Should be: " + dump_text.encode('utf-8'), "(",dump_value,")"
+				print("\t","Current:", ht_text.encode('utf-8'),"(",ht_value,")", " Should be: " + dump_text.encode('utf-8'), "(",dump_value,")")
 		
 		if not matched:
-			print "\t","Replace existing entry by: ", dump_text.encode('utf-8'), "(" +dump_value.encode('utf-8')+ ")"
+			print("\t","Replace existing entry by: ", dump_text.encode('utf-8'), "(" +dump_value.encode('utf-8')+ ")")
 	
-	print "\t",len(dump_entries) - left, "/", len(dump_entries), "correct"
+	print("\t",len(dump_entries) - left, "/", len(dump_entries), "correct")
 	
 def checkLevels(lang, htlang, lookup):
 	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
@@ -35,7 +38,7 @@ def checkLevels(lang, htlang, lookup):
 	ht_entries = localetools.xml.helpers.findAllNodesRecursive(ht_levelnode, "level")
 	
 	if not len(ht_entries):
-		print "\t", "missing completly"
+		print("\t", "missing completly")
 		return
 	
 	checkNodes(dump_entries, ht_entries, "value", "value", "text")
@@ -49,7 +52,7 @@ def checkPositions(lang, htlang, lookup):
 	ht_entries = localetools.xml.helpers.findAllNodesRecursive(ht_levelnode, "position")
 	
 	if not len(ht_entries):
-		print "\t", "missing completly"
+		print("\t", "missing completly")
 		return
 	
 	checkNodes(dump_entries, ht_entries, "type", "type", "value")
@@ -63,7 +66,7 @@ def checkAgreeability(lang, htlang, lookup):
 	ht_entries = localetools.xml.helpers.findAllNodesRecursive(ht_agreeabilitynode, "level")
 	
 	if not len(ht_entries):
-		print "\t", "missing completly"
+		print("\t", "missing completly")
 		return
 	
 	checkNodes(dump_entries, ht_entries, "value", "value", "text")
@@ -77,7 +80,7 @@ def checkHonesty(lang, htlang, lookup):
 	ht_entries = localetools.xml.helpers.findAllNodesRecursive(ht_skills, "level")
 	
 	if not len(ht_entries):
-		print "\t", "missing completly"
+		print("\t", "missing completly")
 		return
 	
 	checkNodes(dump_entries, ht_entries, "value", "value", "text")
@@ -91,7 +94,7 @@ def checkAggressiveness(lang, htlang, lookup):
 	ht_entries = localetools.xml.helpers.findAllNodesRecursive(ht_skills, "level")
 	
 	if not len(ht_entries):
-		print "\t", "missing completly"
+		print("\t", "missing completly")
 		return
 	
 	checkNodes(dump_entries, ht_entries, "value", "value", "text")
@@ -105,7 +108,7 @@ def checkSpecialties(lang, htlang, lookup):
 	ht_entries = localetools.xml.helpers.findAllNodesRecursive(ht_skills, "specialty")
 	
 	if not len(ht_entries):
-		print "\t", "missing completly"
+		print("\t", "missing completly")
 		return
 	
 	checkNodes(dump_entries, ht_entries, "type", "type", "value")
@@ -119,7 +122,7 @@ def checkRatingSubLevels(lang, htlang, lookup):
 	ht_sublevels = localetools.xml.helpers.findAllNodesRecursive(ht_ratingSubLevels, "sublevel")
 	
 	if not len(ht_sublevels):
-		print "\t", "missing completly"
+		print("\t", "missing completly")
 		return
 	
 	checkNodes(dump_sublevels, ht_sublevels, "value", "value", "text")
@@ -133,7 +136,7 @@ def checkTactics(lang, htlang, lookup):
 	ht_tactics = localetools.xml.helpers.findAllNodesRecursive(ht_tacticslist, "tactic")
 	
 	if not len(ht_tactics):
-		print "\t", "missing completly"
+		print("\t", "missing completly")
 		return
 	
 	checkNodes(dump_tactics, ht_tactics, "type", "type", "value")
@@ -159,51 +162,48 @@ def checkMainMenuLink(lang, htlang, lookup, text):
 	ht_link = localetools.xml.helpers.findFirstNodeRecursive(htlang.documentElement, text)
 	
 	if ht_link.getAttribute("value") != dump_link.getAttribute("value").rstrip():
-		print '\t', ht_link.getAttribute("value").encode('utf-8'), '!=', dump_link.getAttribute("value").encode('utf-8')
+		print('\t', ht_link.getAttribute("value").encode('utf-8'), '!=', dump_link.getAttribute("value").encode('utf-8'))
 		return False
 	else:
 		return True
 	
 def checklanguage(lang, lookup):
-	print "Checking", lang
+	print("Checking", lang)
 	file = "./../../content/locale/" + lang + "/htlang.xml"
 	try:
 		htlang = parse(file)
 	except:
-		print "\t","error opening",file,"! Aborting!" 
+		print("\t","error opening",file,"! Aborting!") 
 		return;
 		
 	dump_lang = localetools.xml.helpers.findFirstNodeRecursive(lookup.documentElement, "language", {"name": lang})
 	if not dump_lang:
-		print "No dump found for this language, recrawl or specify correct dump file"
+		print("No dump found for this language, recrawl or specify correct dump file")
 		return;
 		
-	print "\t","checking Levels" 
+	print("\t","checking Levels") 
 	checkLevels(lang, htlang, lookup)
-	print "\t","checking Agreeability" 
+	print("\t","checking Agreeability") 
 	checkAgreeability(lang, htlang, lookup)
-	print "\t","checking Honesty" 
+	print("\t","checking Honesty") 
 	checkHonesty(lang, htlang, lookup)
-	print "\t","checking Aggressiveness" 
+	print("\t","checking Aggressiveness") 
 	checkAggressiveness(lang, htlang, lookup)
 	# print "\t","checking Main Menu Links" 
 	# checkMainMenuLinks(lang, htlang, lookup)
-	print "\t","checking RatingSubLevels"
+	print("\t","checking RatingSubLevels")
 	checkRatingSubLevels(lang, htlang, lookup)
-	print "\t","checking Specialties"
+	print("\t","checking Specialties")
 	checkSpecialties(lang, htlang, lookup)
-	print "\t","checking Tactics"
+	print("\t","checking Tactics")
 	checkTactics(lang, htlang, lookup)
-	print "\t","checking Positions"
+	print("\t","checking Positions")
 	checkPositions(lang, htlang, lookup)
 	
-from Hattrick import Language
-
 if __name__ == "__main__":
-	import sys
 	
 	if len(sys.argv) != 2:
-		print "Usage:", sys.argv[0], "<dump xml input file>"
+		print("Usage:", sys.argv[0], "<dump xml input file>")
 	else:
 		dump = parse(sys.argv[1])
 		for key in Language.Codes:

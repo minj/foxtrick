@@ -15,7 +15,7 @@ def createDenominationsXML(doc, languageNode, lang, result):
 	rename["gentleness"] = "agreeability";
 	rename["skill"] = "levels";
 	
-	for category in sorted(result[lang]["denominations"].iterkeys()):
+	for category in sorted(result[lang]["denominations"].keys()):
 		do_rename = False;
 		for renamekey in rename:
 			if renamekey == category:
@@ -41,7 +41,7 @@ def createTacticsXML(doc, languageNode, lang, result):
 	cat = doc.createElement("tactics")
 	languageNode.appendChild(cat)		
 	
-	for category in sorted(result[lang]["tactics"].iterkeys()):
+	for category in sorted(result[lang]["tactics"].keys()):
 		level = doc.createElement("tactic")
 		level.setAttribute("value", result[lang]["tactics"][category])
 		level.setAttribute("type", category)
@@ -52,7 +52,7 @@ def createSpecialtiesXML(doc, languageNode, lang, result):
 	cat = doc.createElement("specialties")
 	languageNode.appendChild(cat)		
 	
-	for category in sorted(result[lang]["specialties"].iterkeys()):
+	for category in sorted(result[lang]["specialties"].keys()):
 		level = doc.createElement("specialty")
 		level.setAttribute("value", result[lang]["specialties"][category])
 		level.setAttribute("type", category)
@@ -64,7 +64,7 @@ def createRatingSubLevelsXML(doc, languageNode, lang, result):
 	cat = doc.createElement("ratingSubLevels")
 	languageNode.appendChild(cat)		
 
-	for category in result[lang]["ratingSubLevels"].iterkeys():
+	for category in result[lang]["ratingSubLevels"].keys():
 		level = doc.createElement("sublevel")
 		level.setAttribute("text", result[lang]["ratingSubLevels"][category])
 		
@@ -112,7 +112,7 @@ def createXml(result, outfile):
 	
 	languages = doc.createElement("languages")
 	doc.appendChild(languages)
-	for lang in sorted(result.iterkeys()):
+	for lang in sorted(result.keys()):
 		language = doc.createElement("language")
 		language.setAttribute("name", lang)
 		languages.appendChild(language)
@@ -133,7 +133,7 @@ def createXml(result, outfile):
 def getSpecialties(ht, players):
 	specialties = {}
 	for key in players:
-		print "\t", "going to specified", key, "player (", players[key], ")"
+		print("\t", "going to specified", key, "player (", players[key], ")")
 		ht.open("/Club/Players/Player.aspx?PlayerID=" + players[key])
 		playerDetailParser = PlayerDetailParser.PlayerDetailParser()
 		playerDetailParser.feed(ht.body)
@@ -151,7 +151,7 @@ def getSpecialties(ht, players):
 def getTactics(ht, matches):
 	tactics = {}
 	for key in matches:
-		print "\t", "going to specified", key, "match (", matches[key], ")"
+		print("\t", "going to specified", key, "match (", matches[key], ")")
 		ht.open("/Club/Matches/Match.aspx?matchID=" + matches[key])
 		matchDetailParser = MatchDetailParser.MatchDetailParser()
 		matchDetailParser.feed(ht.body)
@@ -163,7 +163,7 @@ def getTactics(ht, matches):
 			elif len(result["Team_Home"]) != 2:
 				raise Exception("Match details returned unexpected amount of ratings (getTactics)", len(result["Team_Home"]))
 		except Exception as e:
-			print e, "skipping this match"
+			print(e, "skipping this match")
 			continue;
 			
 		result = result["Team_Home"]
@@ -178,7 +178,7 @@ def getTactics(ht, matches):
 	return tactics
 	
 def getPlayersFromLineUp(ht, teamid, matchid):
-	print "\t", 'going to specified Match-Lineup Page','(', 'matchID='+ str(matchid) + '&TeamId=' + str(teamid),' )'
+	print("\t", 'going to specified Match-Lineup Page','(', 'matchID='+ str(matchid) + '&TeamId=' + str(teamid),' )')
 	ht.open('/Club/Matches/MatchLineup.aspx?matchID=' + str(matchid) + '&TeamId=' + str(teamid));
 	matchLineUpParser = MatchLineUpParser.MatchLineUpParser()
 	matchLineUpParser.feed(ht.body)
@@ -188,7 +188,7 @@ def getPlayersFromLineUp(ht, teamid, matchid):
 	
 def getPlayersByTeam(ht, teamid):
 	#positions
-	print "\t", "going to specified player page","(",teamid,")"
+	print("\t", "going to specified player page","(",teamid,")")
 	ht.open('/Club/Players/?TeamID=' + str(teamid));
 	playerPageParser = PlayerPageParser.PlayerPageParser()
 	playerPageParser.feed(ht.body)
@@ -276,7 +276,7 @@ def login(username, password):
 	try:
 		ht.login()
 	except Exception as e:
-		print e
+		print(e)
 		return False, None
 	
 	return True, ht;
@@ -290,7 +290,7 @@ def crawl(ht, language_id_list = Language.Codes, outfile = 'crawled.xml'):
 			languageStuff = {};
 			
 			index += 1
-			print "Crawling ", Language.getLanguageById(key), index, "/", len( language_id_list )
+			print("Crawling ", Language.getLanguageById(key), index, "/", len( language_id_list ))
 			ht.setLanguage( key )
 			
 			#print "Main Menu"
@@ -299,7 +299,7 @@ def crawl(ht, language_id_list = Language.Codes, outfile = 'crawled.xml'):
 			
 			#languageStuff["menu"] = menuParser.get();
 			
-			print "AppDenominations.aspx"
+			print("AppDenominations.aspx")
 			ht.open("/Help/Rules/AppDenominations.aspx")
 			denominationsParser = DenominationsParser.DenominationsParser()
 			denominationsParser.feed(ht.body)
@@ -307,15 +307,15 @@ def crawl(ht, language_id_list = Language.Codes, outfile = 'crawled.xml'):
 			lang = Language.getLanguageById(key)
 			languageStuff["denominations"] = denominationsParser.get();
 			
-			print "Specialties"
+			print("Specialties")
 			try:
 				languageStuff["specialties"] = getSpecialties(ht, specialty_players);
 			except:
-				print 'Error getting specialties.'
+				print('Error getting specialties.')
 			
 			#go to a specific match where we exactly know where min, max, low, high ratings occur and read the translations from there
-			print "Match Details"
-			print "\t", "going to match with known subratings","(",str(sublevel_match['MatchId']),")"
+			print("Match Details")
+			print("\t", "going to match with known subratings","(",str(sublevel_match['MatchId']),")")
 			ht.open("/Club/Matches/match.aspx?MatchId=" + str(sublevel_match['MatchId']))
 			matchDetailParser = MatchDetailParser.MatchDetailParser()
 			matchDetailParser.feed(ht.body)
@@ -335,10 +335,10 @@ def crawl(ht, language_id_list = Language.Codes, outfile = 'crawled.xml'):
 			ratingSubLevels["max"] = matchDetailResult_Text_Ratings["Team_Home"][sublevel_match['order'][3]];			
 			languageStuff["ratingSubLevels"] = ratingSubLevels
 			
-			print "Tactics"		
+			print("Tactics")		
 			languageStuff["tactics"] = getTactics(ht, tactic_matches);
 			
-			print "Positions"
+			print("Positions")
 			languageStuff['players'] = getPlayersByTeam(ht, all_positions_match_team)
 			
 			tId = position_abbreviation_lineup['TeamId']
@@ -350,16 +350,16 @@ def crawl(ht, language_id_list = Language.Codes, outfile = 'crawled.xml'):
 		#get position translations
 		dict = translatePositions( dict )
 			
-		print "writing *.xml"
+		print("writing *.xml")
 		createXml(dict, outfile)
 		
 	except Exception as e:
-		print 'Exception:', e
+		print('Exception:', e)
 		raise
 		exit(1)
 			
 	except KeyboardInterrupt:
-		print 'Aborted by user. Byebye.'
+		print('Aborted by user. Byebye.')
 		exit(0)
 	
 
@@ -397,17 +397,17 @@ if __name__ == "__main__":
 	import os
 	import sys
 	
-	user = raw_input("Login: ");
+	user = input("Login: ");
 	pw = getpass.getpass("Password:");
-	outfile = raw_input("Outfile (*.xml): ");
-	print "Locale code (\"all\" for all)"
-	locales = raw_input("Seperate by whitespace to specify multiple languages: ").split()
-	all_positions_match_team = raw_input("TeamId where all positions have been played in last match (like bots always do): ")
+	outfile = input("Outfile (*.xml): ");
+	print("Locale code (\"all\" for all)")
+	locales = input("Seperate by whitespace to specify multiple languages: ").split()
+	all_positions_match_team = input("TeamId where all positions have been played in last match (like bots always do): ")
 	
 	locales_array = []
 	
 	if "en" not in locales and "all" not in locales:
-		print "Adding 'en' since it's required for positions and such"
+		print("Adding 'en' since it's required for positions and such")
 		locales_array.append( Language.getIdByLanguage( "en" ) )
 		
 	for loc in locales:
@@ -421,8 +421,8 @@ if __name__ == "__main__":
 	success, ht = login( user, pw )
 	
 	while not success:
-		user = raw_input("Login:");
-		pw = raw_input("Password:");
+		user = input("Login:");
+		pw = input("Password:");
 		success, ht = login( user, pw )
 		
 	crawl(ht, locales_array, outfile)

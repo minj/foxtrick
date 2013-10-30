@@ -21,7 +21,7 @@ def getList(username, password):
 		chppHolderParser.feed(ht.body)
 		return chppHolderParser.get() 
 	else:
-		print 'Login failed!'
+		print('Login failed!')
 		return []
 
 def saveJson(list, filename):	
@@ -30,10 +30,10 @@ def saveJson(list, filename):
 	file.write('\t"type": "%s",\n' % "chpp-holder")
 	file.write('\t"internal": "true",\n')
 	file.write('\t"list": [\n')
-	file.write('\t\t' + ',\n\t\t'.join(map(lambda a: ('{ "id": %d, "name": "%s", "appNames": [ ' + ', '.join(map(lambda app: '"%s"' % app.encode('utf-8') ,a["appNames"])) + ' ] }') % (a["id"], a["name"].encode('utf-8')), list)))
+	file.write('\t\t' + ',\n\t\t'.join([('{ "id": %d, "name": "%s", "appNames": [ ' + ', '.join(['"%s"' % app.encode('utf-8') for app in a["appNames"]]) + ' ] }') % (a["id"], a["name"].encode('utf-8')) for a in list]))
 	file.write('\n\t]\n}')
 	file.close()
-	print filename, 'written'
+	print(filename, 'written')
 
 def run(username, password):
 	editors = getList(username, password);
@@ -42,6 +42,6 @@ def run(username, password):
 		saveJson(editors, '/home/foxtrick/trunk/res/staff/chpp-holder.json')
 
 if __name__ == "__main__":
-	user = raw_input("Login:");
+	user = input("Login:");
 	pw = getpass.getpass("Password:");
 	run(user, pw);
