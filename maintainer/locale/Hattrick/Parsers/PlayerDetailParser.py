@@ -1,6 +1,11 @@
-import html.parser
+import sys
+if sys.version > '3':
+       import html.parser as HTMLParser
+else:
+       import HTMLParser
+
 import re
-html.parser.attrfind = re.compile(r'\s*([a-zA-Z_][-.:a-zA-Z_0-9]*)(\s*=\s*'
+HTMLParser.attrfind = re.compile(r'\s*([a-zA-Z_][-.:a-zA-Z_0-9]*)(\s*=\s*'
 r'(\'[^\']*\'|"[^"]*"|[-a-zA-Z0-9./,:;+*%?!&$\(\)_#=~@]*))?')
 
 # Parses Player detail page
@@ -8,9 +13,9 @@ r'(\'[^\']*\'|"[^"]*"|[-a-zA-Z0-9./,:;+*%?!&$\(\)_#=~@]*))?')
 # 
 # CatzHoek
 
-class PlayerDetailParser(html.parser.HTMLParser):
+class PlayerDetailParser(HTMLParser.HTMLParser):
 	def __init__(self):
-		html.parser.HTMLParser.__init__(self)
+		HTMLParser.HTMLParser.__init__(self)
 		self.entries = []
 		self.even = True;
 		self.in_player_info_table = False;

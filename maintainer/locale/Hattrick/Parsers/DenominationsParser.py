@@ -1,12 +1,17 @@
-import html.parser
+import sys
+if sys.version > '3':
+       import html.parser as HTMLParser
+else:
+       import HTMLParser
+
 
 # Crawls the entries from the AppDenominations.aspx page from Hattrick into a multidimensional dictionary
 #
 # CatzHoek
 						
-class DenominationsParser(html.parser.HTMLParser):
+class DenominationsParser(HTMLParser.HTMLParser):
 	def __init__(self):
-		html.parser.HTMLParser.__init__(self)
+		HTMLParser.HTMLParser.__init__(self)
 		self.in_td = False
 		self.in_main_body = False
 		# name attributes in the links <a name="skills"> etc. used to identify which section comes next

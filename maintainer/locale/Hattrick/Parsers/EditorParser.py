@@ -1,11 +1,16 @@
-import html.parser
+import sys
+if sys.version > '3':
+       import html.parser as HTMLParser
+else:
+       import HTMLParser
+
 import re
 # Parses chpp holders
 # CatzHoek
 
-class EditorParser(html.parser.HTMLParser):
+class EditorParser(HTMLParser.HTMLParser):
 	def __init__(self):
-		html.parser.HTMLParser.__init__(self)
+		HTMLParser.HTMLParser.__init__(self)
 		self.users = []
 		self.currentUser = {}
 		self.in_user_link = False

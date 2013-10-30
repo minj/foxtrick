@@ -1,14 +1,18 @@
 from __future__ import print_function
-import html.parser
+import sys
+if sys.version > '3':
+       import html.parser as HTMLParser
+else:
+       import HTMLParser
 import re
 # Parses lineups to find abbreviations for positions
 # Used to automatically validate htlang.xml
 # 
 # CatzHoek
 
-class MatchLineUpParser(html.parser.HTMLParser):
+class MatchLineUpParser(HTMLParser.HTMLParser):
 	def __init__(self):
-		html.parser.HTMLParser.__init__(self)
+		HTMLParser.HTMLParser.__init__(self)
 		self.players = []
 		
 		self.currentplayer = {}

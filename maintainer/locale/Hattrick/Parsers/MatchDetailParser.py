@@ -1,13 +1,18 @@
-import html.parser
+import sys
+if sys.version > '3':
+       import html.parser as HTMLParser
+else:
+       import HTMLParser
+
 
 # Parses Match detail page
 # Currently used as tool to automatically validate htlang.xml
 # 
 # CatzHoek
 
-class MatchDetailParser(html.parser.HTMLParser):
+class MatchDetailParser(HTMLParser.HTMLParser):
 	def __init__(self):
-		html.parser.HTMLParser.__init__(self)
+		HTMLParser.HTMLParser.__init__(self)
 		self.teamTextRatings = {"Team_Home":[],"Team_Away":[]}
 		self.unclassedRatings = {"Team_Home":[],"Team_Away":[]}
 		self.in_teamTextRatings_td = False

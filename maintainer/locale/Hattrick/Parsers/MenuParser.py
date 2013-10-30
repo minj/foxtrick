@@ -1,13 +1,18 @@
-import html.parser
+import sys
+if sys.version > '3':
+       import html.parser as HTMLParser
+else:
+       import HTMLParser
+
 import re
 # Parses menu links from hattrick sourcecode.
 # Used to automatically validate htlang.xml
 # 
 # CatzHoek
 
-class MenuParser(html.parser.HTMLParser):
+class MenuParser(HTMLParser.HTMLParser):
 	def __init__(self):
-		html.parser.HTMLParser.__init__(self)
+		HTMLParser.HTMLParser.__init__(self)
 		self.in_mainnav_menu_div = False
 		self.in_link = False
 		self.entries = {}

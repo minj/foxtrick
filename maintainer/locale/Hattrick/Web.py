@@ -1,6 +1,9 @@
 from __future__ import print_function
-import urllib.request, urllib.parse, urllib.error
-import http.cookiejar
+import sys
+if sys.version > '3':
+       import http.cookiejar as cookielib
+else:
+       import cookielib
 import mechanize
 import re
 import getpass
@@ -51,7 +54,7 @@ class HattrickWeb:
 		if self.stage:
 			url = self.loginSiteStage
 
-		cookie = http.cookiejar.CookieJar()
+		cookie = cookielib.CookieJar()
 		self.browser = mechanize.Browser()
 
 		self.browser.set_cookiejar(cookie)
