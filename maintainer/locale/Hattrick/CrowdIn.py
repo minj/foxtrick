@@ -1,5 +1,5 @@
 import http.client, urllib.request, urllib.parse, urllib.error
-
+from __future__ import print_function
 class Crowdin:
 	def __init__(self, project_identfier, project_key):
 		self.masterFileName = "foxtrick.properties"

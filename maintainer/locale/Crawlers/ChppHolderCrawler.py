@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Hattrick.Web import HattrickWeb
 from Hattrick.Parsers import CHPPHolderParser
 import getpass

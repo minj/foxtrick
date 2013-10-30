@@ -1,3 +1,4 @@
+from __future__ import print_function
 import sys
 from xml.dom.minidom import parse
 import localetools.xml.helpers

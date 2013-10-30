@@ -1,3 +1,4 @@
+from __future__ import print_function
 import urllib.request, urllib.parse, urllib.error
 import http.cookiejar
 import mechanize

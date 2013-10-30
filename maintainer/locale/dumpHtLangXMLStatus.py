@@ -12,7 +12,7 @@
 #     since every entry in the reference file is checked against it, thus causing an error each time
 #
 # CatzHoek, 2011
-
+from __future__ import print_function
 from xml.dom.minidom import parse
 
 #tab shit for a little nicer formatting
@@ -182,5 +182,3 @@ if __name__ == "__main__":
 			ensureChildAttributes(reference.documentElement, test.documentElement, "agreeability", "value")	
 			ensureChildAttributes(reference.documentElement, test.documentElement, "honesty", "value")	
 		ensureChildAttributes(reference.documentElement, test.documentElement, "aggressiveness", "value")			
-
-			

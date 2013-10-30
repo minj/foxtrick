@@ -1,3 +1,4 @@
+from __future__ import print_function
 import html.parser
 import re
 # Parses lineups to find abbreviations for positions
