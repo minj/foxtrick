@@ -147,9 +147,9 @@ function shutdown(aData, aReason) {
 	// this should prevent cache issues
 	let addOnDir = aData.installPath.clone();
 	addOnDir.append('chrome');
-	let xpiFile = addOnDir.clone();
-	xpiFile.append('foxtrick.jar');
-	Cu.import('resource://gre/modules/XPIProvider.jsm').flushJarCache(xpiFile);
+	let jarFile = addOnDir.clone();
+	jarFile.append('foxtrick.jar');
+	Cu.import('resource://gre/modules/XPIProvider.jsm').flushJarCache(jarFile);
 
 	// destroy scope
 	_gLoader = undefined;
