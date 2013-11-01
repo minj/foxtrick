@@ -4,7 +4,7 @@
 	xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 	<Description about="urn:mozilla:install-manifest">
 		<em:id>{9d1f059c-cada-4111-9696-41a62d64e3ba}</em:id>
-		<em:unpack>false</em:unpack>
+		<em:unpack>true</em:unpack>
 		<em:type>2</em:type>
 		<em:bootstrap>true</em:bootstrap>
 		<em:name>FoxTrick</em:name>

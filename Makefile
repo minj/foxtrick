@@ -168,10 +168,10 @@ firefox:
 ifeq ($(DIST_TYPE),nightly)
 	cd $(BUILD_DIR); \
 	../version.sh $(REV_VERSION); \
-	sed -i -r 's|(<em:updateURL>).+(</em:updateURL>)|\1'$(UPDATE_URL)'/update.rdf\2|' install.rdf
+	sed -i -r 's|(<em:updateURL>).+(</em:updateURL>)|\1'$(UPDATE_URL)'/update.rdf?v=$(VERSION)\2|' install.rdf
 else ifeq ($(DIST_TYPE),release)
 	cd $(BUILD_DIR); \
-	sed -i -r 's|(<em:updateURL>).+(</em:updateURL>)|\1'$(UPDATE_URL)'/update.rdf\2|' install.rdf
+	sed -i -r 's|(<em:updateURL>).+(</em:updateURL>)|\1'$(UPDATE_URL)'/update.rdf?v=$(VERSION)\2|' install.rdf
 else ifeq ($(DIST_TYPE),hosting)
 	# used on addons.mozilla.org, with no update URL
 	cd $(BUILD_DIR); \
