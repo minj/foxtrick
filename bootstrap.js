@@ -145,7 +145,10 @@ function shutdown(aData, aReason) {
 	Components.manager.removeBootstrappedManifestLocation(aData.installPath);
 	// flush jar cache
 	// this should prevent cache issues
-	Cu.import('resource://gre/modules/XPIProvider.jsm').flushJarCache(aData.installPath);
+	let addOnDir = aData.installPath.clone();
+	addOnDir.append('chrome');
+	let xpiFile = addOnDir.clone().append('foxtrick.jar');
+	Cu.import('resource://gre/modules/XPIProvider.jsm').flushJarCache(xpiFile);
 
 	// destroy scope
 	_gLoader = undefined;

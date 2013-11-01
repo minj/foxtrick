@@ -151,15 +151,15 @@ firefox:
 	rm -rf $(BUILD_DIR)/chrome/*/*/*.zip
 	# build jar
 	cd $(BUILD_DIR)/chrome; \
-	$(ZIP) -0 -r $(APP_NAME)-$(VERSION).jar `find . \( -path '*CVS*' -o -path \
+	$(ZIP) -0 -r $(APP_NAME).jar `find . \( -path '*CVS*' -o -path \
 		'*.svn*' \) -prune -o -type f -print | grep -v \~ `; \
 	rm -rf content skin
 	# process manifest
 	cd $(BUILD_DIR); \
 	if test -f chrome.manifest; \
 		then \
-		sed -i -r 's|^(content\s+\S*\s+)(\S*/)(.*)$$|\1jar:chrome/'$(APP_NAME)-$(VERSION)'.jar!/\2\3|' chrome.manifest; \
-		sed -i -r 's|^(skin\|locale)(\s+\S*\s+\S*\s+)(.*/)$$|\1\2jar:chrome/'$(APP_NAME)-$(VERSION)'.jar!/\3|' chrome.manifest; \
+		sed -i -r 's|^(content\s+\S*\s+)(\S*/)(.*)$$|\1jar:chrome/'$(APP_NAME)'.jar!/\2\3|' chrome.manifest; \
+		sed -i -r 's|^(skin\|locale)(\s+\S*\s+\S*\s+)(.*/)$$|\1\2jar:chrome/'$(APP_NAME)'.jar!/\3|' chrome.manifest; \
 	fi
 	# set branch
 	cd $(BUILD_DIR); \
