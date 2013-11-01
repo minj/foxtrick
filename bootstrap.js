@@ -142,8 +142,14 @@ function shutdown(aData, aReason) {
 		.getService(Components.interfaces.nsIStringBundleService).flushBundles();
 
 	// remove manifest
-	// should destroy chrome://foxtrick and fix cache issues (fingers crossed)
 	Components.manager.removeBootstrappedManifestLocation(aData.installPath);
+	// flush jar cache
+	// this should prevent cache issues
+	let addOnDir = aData.installPath.clone();
+	addOnDir.append('chrome');
+	let jarFile = addOnDir.clone();
+	jarFile.append('foxtrick.jar');
+	Cu.import('resource://gre/modules/XPIProvider.jsm').flushJarCache(jarFile);
 
 	// destroy scope
 	_gLoader = undefined;
