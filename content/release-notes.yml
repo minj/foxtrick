@@ -11,7 +11,6 @@ en:
       important: '<header>Important announcements</header>'
       crowdin: '<header>A lot of translation updates from our awesome users using the <linkCrowdin>crowdin tool</linkCrowdin>. You can help out as well!</header>'
       twitter: 'You can follow <linkTwitter>Foxtrick on Twitter</linkTwitter> to receive the latest news, updates, and announcements.'
-      foo: 'Lorem ipsum... foo-bar'
 
     0.13.0:
       important: '<header>Important announcements</header>'
