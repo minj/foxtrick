@@ -24,7 +24,7 @@
 			"name": "Spanish",
 			"phrases": "1648",
 			"translated_progress": "85",
-			"translated": "1398",
+			"translated": "1401",
 			"approved": "1"
 		},
 		{
@@ -235,13 +235,13 @@
 			"approved": "0"
 		},
 		{
-			"approved_progress": "93",
+			"approved_progress": "99",
 			"code": "ru",
 			"name": "Russian",
 			"phrases": "1648",
-			"translated_progress": "93",
-			"translated": "1532",
-			"approved": "1537"
+			"translated_progress": "99",
+			"translated": "1645",
+			"approved": "1644"
 		},
 		{
 			"approved_progress": "0",
