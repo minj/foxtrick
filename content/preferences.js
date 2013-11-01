@@ -436,7 +436,7 @@ function initTextAndValues()
 			// module option
 			if ($(this).is(':checkbox')) {
 				if (FoxtrickPrefs.isModuleOptionEnabled(module, option))
-					$(this).attr('checked', 'checked');
+					$(this).prop('checked', true);
 			}
 			else if ($(this).is(':input')) // text input
 				$(this)[0].value = FoxtrickPrefs.getString('module.' + module + '.' + option);
@@ -444,18 +444,18 @@ function initTextAndValues()
 		else if ($(this).is(':radio')) {
 			// radio input
 			var selected = FoxtrickPrefs.getModuleValue(module);
-			if ($(this).attr('value') == selected)
-				$(this).attr('checked', 'checked');
+			if ($(this).prop('value') == selected)
+				$(this).prop('checked', true);
 		}
 		else if (FoxtrickPrefs.isModuleEnabled(module)) // module itself
-			$(this).attr('checked', 'checked');
+			$(this).prop('checked', true);
 	});
 	// initialize inputs
 	$('#pane input[pref]').each(function() {
 		if ($(this).is(':checkbox')) {
 			// checkbox
 			if (FoxtrickPrefs.getBool($(this).attr('pref')))
-				$(this).attr('checked', 'checked');
+				$(this).prop('checked', true);
 		}
 		else {
 			// text input
@@ -471,9 +471,9 @@ function initTextAndValues()
 		var blocker = $('#' + blockee.attr('blocked-by'));
 		var updateStatus = function() {
 			if (blocker.is(':checked'))
-				blockee.attr('disabled', 'disabled');
+				blockee.prop('disabled', true);
 			else
-				blockee.removeAttr('disabled');
+				blockee.prop('disabled', false);
 		};
 		blocker.click(function() { updateStatus(); });
 		updateStatus();
@@ -1211,7 +1211,7 @@ function saveEvent(ev) {
 		}
 		else if ($(ev.target).is(':radio')) {
 			if ($(ev.target).is(':checked'))
-				FoxtrickPrefs.setModuleValue(module, $(ev.target).attr('value'));
+				FoxtrickPrefs.setModuleValue(module, $(ev.target).prop('value'));
 		}
 		else {
 			FoxtrickPrefs.setModuleEnableState(module, $(ev.target).is(':checked'));
@@ -1398,10 +1398,10 @@ function testPermissions() {
 						$(id).attr('permission-granted', result);
 						neededPermission.granted = result;
 						var checkPermission = function() {
-							if ($(id).attr('checked') == 'checked' &&
+							if ($(id).prop('checked') &&
 							    $(id).attr('permission-granted') == 'false')
 								getPermission(neededPermission);
-							else if ($(id).attr('checked') !== 'checked') {
+							else if (!$(id).prop('checked')) {
 								modulelist = Foxtrick.remove(modulelist, module);
 								if (modulelist.length > 0) {
 									$('#alert-text').text(Foxtrickl10n
@@ -1443,7 +1443,7 @@ function getPermission(neededPermission, showSaved) {
 		for (var m = 0; m < neededPermission.modules.length; ++m) {
 			var id = permissionsMakeIdFromName(neededPermission.modules[m]);
 			if (!granted) {
-				$(id).removeAttr('checked');
+				$(id).prop('checked', false);
 				FoxtrickPrefs.setBool('module.' + neededPermission.modules[m] + '.enabled', false);
 				Foxtrick.log('Permission declined: ', neededPermission.modules[m]);
 			}
