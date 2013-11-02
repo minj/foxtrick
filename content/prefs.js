@@ -279,6 +279,13 @@ var FoxtrickPrefs = {
 					continue;
 				var key = matches[1];
 				var value = matches[2];
+				// skip old version
+				try {
+					if (key === 'oldVersion' && value.match(/\d+\.\d+(\.\d+)?/)[0] !==
+						Foxtrick.version().match(/\d+\.\d+(\.\d+)?/)[0])
+						continue;
+				}
+				catch (e) {}
 				if (value === true || value === false || value === 'true' || value === 'false')
 					FoxtrickPrefs.setBool(key, (value === true || value == 'true'));
 				else if (value.match(/^".+"$/))
