@@ -384,8 +384,11 @@ Foxtrick.reloadAll = function() {
 					currentBrowser.reload();
 					Foxtrick.log('reload: ', url);
 				}
-				else if (/^chrome:\/\/foxtrick/.test(url))
+				else if (/^chrome:\/\/foxtrick/.test(url)) {
 					currentBrowser.contentWindow.close();
+					index--;
+					numTabs--;
+				}
 			}
 		}
 	}
