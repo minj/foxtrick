@@ -117,5 +117,5 @@ Foxtrick.Predict.averageEnergy90 = function(stamina) {
  */
 Foxtrick.Predict.stamina = function(energyAt90) {
 	return energyAt90 <= 0.887 ? energyAt90 * 10.1341 - 0.9899 :
-		8 + (lastEnergy - 0.887) / 0.1792;
+		8 + (energyAt90 - 0.887) / 0.1792;
 };
