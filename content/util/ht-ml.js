@@ -66,7 +66,7 @@ Foxtrick.util.htMl.getId = function(node) {
 				}
 			}
 			var ret = {};
-			ret.copyTitle = Foxtrickl10n.getString('copy.id')
+			ret.copyTitle = Foxtrick.L10n.getString('copy.id')
 				.replace('%s', current.type + ' ID').replace('%i', id);
 			ret.type = current.type;
 			ret.id = id;
@@ -118,7 +118,7 @@ Foxtrick.util.htMl.getLink = function(node) {
 				markup = '[link=' + link + ']';
 		}
 	}
-	return { copyTitle: Foxtrickl10n.getString('copy.link'), markup: markup };
+	return { copyTitle: Foxtrick.L10n.getString('copy.link'), markup: markup };
 };
 Foxtrick.util.htMl.getMarkupFromNode = function(node) {
 	var ret = Foxtrick.util.htMl.getMarkupFromNodeRec(node);
@@ -270,12 +270,12 @@ Foxtrick.util.htMl.getHtMl = function(node) {
 			}
 		}
 		markup = Foxtrick.trim(markup);
-		return { copyTitle: Foxtrickl10n.getString('copy.ht-ml'), markup: markup };
+		return { copyTitle: Foxtrick.L10n.getString('copy.ht-ml'), markup: markup };
 	}
 	else {
 		var markup = Foxtrick.util.htMl.getMarkupFromNode(node);
 		markup = Foxtrick.trim(markup);
-		return { copyTitle: Foxtrickl10n.getString('copy.ht-ml'), markup: markup };
+		return { copyTitle: Foxtrick.L10n.getString('copy.ht-ml'), markup: markup };
 	}
 	return null;
 };
@@ -293,7 +293,7 @@ Foxtrick.util.htMl.getTable = function(node) {
 	if (table !== null) {
 		var markup = Foxtrick.util.htMl.getMarkupFromNode(table);
 		markup = Foxtrick.trim(markup);
-		return { copyTitle: Foxtrickl10n.getString('copy.table'), markup: markup };
+		return { copyTitle: Foxtrick.L10n.getString('copy.table'), markup: markup };
 	}
 	return null;
 };

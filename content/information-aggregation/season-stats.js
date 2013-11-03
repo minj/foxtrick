@@ -181,7 +181,7 @@ Foxtrick.modules['SeasonStats'] = {
 		}
 
 		var ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-		var header = Foxtrickl10n.getString('seasonstats.boxheader');
+		var header = Foxtrick.L10n.getString('seasonstats.boxheader');
 		var ownBoxBodyId = 'foxtrick_seasonstats_content';
 		ownBoxBody.setAttribute('id', ownBoxBodyId);
 
@@ -191,13 +191,13 @@ Foxtrick.modules['SeasonStats'] = {
 			var head = doc.createElement('strong');
 
 			if (type == 0)
-				head.textContent = Foxtrickl10n.getString('seasonstats.league');
+				head.textContent = Foxtrick.L10n.getString('seasonstats.league');
 			else if (type == 1)
-				head.textContent = Foxtrickl10n.getString('seasonstats.friendly');
+				head.textContent = Foxtrick.L10n.getString('seasonstats.friendly');
 			else if (type == 2)
-				head.textContent = Foxtrickl10n.getString('seasonstats.cup');
+				head.textContent = Foxtrick.L10n.getString('seasonstats.cup');
 			else
-				head.textContent = Foxtrickl10n.getString('seasonstats.masters');
+				head.textContent = Foxtrick.L10n.getString('seasonstats.masters');
 
 			ownBoxBody.appendChild(head);
 			var table = doc.createElement('table');
@@ -211,31 +211,31 @@ Foxtrick.modules['SeasonStats'] = {
 			tr.appendChild(th);
 			var th = doc.createElement('th');
 			th.setAttribute('class', 'right ft_seasonstats_td ft_seasonstats_border_left');
-			th.textContent = Foxtrickl10n.getString('seasonstats.played');
+			th.textContent = Foxtrick.L10n.getString('seasonstats.played');
 			tr.appendChild(th);
 			var th = doc.createElement('th');
 			th.setAttribute('class', 'right ft_seasonstats_td ft_seasonstats_border_left');
-			th.textContent = Foxtrickl10n.getString('seasonstats.won');
+			th.textContent = Foxtrick.L10n.getString('seasonstats.won');
 			tr.appendChild(th);
 			var th = doc.createElement('th');
 			th.setAttribute('class', 'right ft_seasonstats_td');
-			th.textContent = Foxtrickl10n.getString('seasonstats.draw');
+			th.textContent = Foxtrick.L10n.getString('seasonstats.draw');
 			tr.appendChild(th);
 			var th = doc.createElement('th');
 			th.setAttribute('class', 'right ft_seasonstats_td');
-			th.textContent = Foxtrickl10n.getString('seasonstats.lost');
+			th.textContent = Foxtrick.L10n.getString('seasonstats.lost');
 			tr.appendChild(th);
 			var th = doc.createElement('th');
 			th.setAttribute('class', 'right ft_seasonstats_td ft_seasonstats_border_left');
-			th.textContent = Foxtrickl10n.getString('seasonstats.goalplus');
+			th.textContent = Foxtrick.L10n.getString('seasonstats.goalplus');
 			tr.appendChild(th);
 			var th = doc.createElement('th');
 			th.setAttribute('class', 'right ft_seasonstats_td');
-			th.textContent = Foxtrickl10n.getString('seasonstats.goalminus');
+			th.textContent = Foxtrick.L10n.getString('seasonstats.goalminus');
 			tr.appendChild(th);
 			var th = doc.createElement('th');
 			th.setAttribute('class', 'right ft_seasonstats_td');
-			th.textContent = Foxtrickl10n.getString('seasonstats.goaldiff');
+			th.textContent = Foxtrick.L10n.getString('seasonstats.goaldiff');
 			tr.appendChild(th);
 
 			for (var k = 0; k < 3; ++k) {
@@ -244,11 +244,11 @@ Foxtrick.modules['SeasonStats'] = {
 				var td = doc.createElement('td');
 				td.setAttribute('class', 'right ft_seasonstats_td');
 				if (k == 0)
-					td.textContent = Foxtrickl10n.getString('seasonstats.total');
+					td.textContent = Foxtrick.L10n.getString('seasonstats.total');
 				else if (k == 1)
-					td.textContent = Foxtrickl10n.getString('seasonstats.home');
+					td.textContent = Foxtrick.L10n.getString('seasonstats.home');
 				else
-					td.textContent = Foxtrickl10n.getString('seasonstats.away');
+					td.textContent = Foxtrick.L10n.getString('seasonstats.away');
 				tr.appendChild(td);
 				var td = doc.createElement('td');
 				td.setAttribute('class', 'right ft_seasonstats_td ft_seasonstats_border_left');

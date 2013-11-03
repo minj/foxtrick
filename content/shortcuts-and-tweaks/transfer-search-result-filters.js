@@ -110,13 +110,13 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 				var td = doc.createElement('td');
 				tr.appendChild(td);
 				var strong = doc.createElement('strong');
-				strong.textContent = Foxtrickl10n.getString('TransferSearchResultFilters.' +
+				strong.textContent = Foxtrick.L10n.getString('TransferSearchResultFilters.' +
 				                                            filter.key);
 				td.appendChild(strong);
 
 				var td = doc.createElement('td');
 				td.colSpan = 2;
-				td.textContent = Foxtrickl10n.getString('Filters.minimum') + '\u00a0';
+				td.textContent = Foxtrick.L10n.getString('Filters.minimum') + '\u00a0';
 				tr.appendChild(td);
 				var input = doc.createElement('input');
 				input.style.width = '90px';
@@ -126,7 +126,7 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 
 				var td = doc.createElement('td');
 				td.colSpan = 2;
-				td.textContent = Foxtrickl10n.getString('Filters.maximum') + '\u00a0';
+				td.textContent = Foxtrick.L10n.getString('Filters.maximum') + '\u00a0';
 				tr.appendChild(td);
 				var input = doc.createElement('input');
 				input.style.width = '90px';
@@ -141,7 +141,7 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 				var td = doc.createElement('td');
 				tr.appendChild(td);
 				var strong = doc.createElement('strong');
-				strong.textContent = Foxtrickl10n.getString('TransferSearchResultFilters.' +
+				strong.textContent = Foxtrick.L10n.getString('TransferSearchResultFilters.' +
 				                                            filter.key);
 				td.appendChild(strong);
 
@@ -151,7 +151,7 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 				var select = doc.createElement('select');
 				select.id = 'FoxtrickTransferSearchResultFilters.Skills.' + filter.key + '.Min';
 				var optionMin = doc.createElement('option');
-				optionMin.textContent = '-- ' + Foxtrickl10n.getString('Filters.minimum') + ' --';
+				optionMin.textContent = '-- ' + Foxtrick.L10n.getString('Filters.minimum') + ' --';
 				optionMin.value = '-1';
 				select.add(optionMin, null);
 				for (var i = filter.minAllowed; i < filter.maxAllowed + 1; ++i) {
@@ -169,7 +169,7 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 				var select = doc.createElement('select');
 				select.id = 'FoxtrickTransferSearchResultFilters.Skills.' + filter.key + '.Max';
 				var optionMin = doc.createElement('option');
-				optionMin.textContent = '-- ' + Foxtrickl10n.getString('Filters.maximum') + ' --';
+				optionMin.textContent = '-- ' + Foxtrick.L10n.getString('Filters.maximum') + ' --';
 				optionMin.value = '-1';
 				select.add(optionMin, null);
 				for (var i = filter.minAllowed; i < filter.maxAllowed + 1; ++i) {
@@ -192,7 +192,7 @@ Foxtrick.modules['TransferSearchResultFilters'] = {
 					input.setAttribute('checked', 'checked');
 				td.appendChild(input);
 				var label = doc.createElement('label');
-				label.textContent = Foxtrickl10n.getString('TransferSearchResultFilters.' +
+				label.textContent = Foxtrick.L10n.getString('TransferSearchResultFilters.' +
 				                                           filter.key);
 				label.htmlFor = input.id;
 				td.appendChild(label);

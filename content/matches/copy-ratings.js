@@ -34,10 +34,10 @@ Foxtrick.modules['CopyRatings'] = {
 				var team1 = (teams == 'both') || (teams == 'home');
 				var team2 = (teams == 'both') || (teams == 'away');
 
-				var _d = Foxtrickl10n.getString('match.ratings.defence') + ':';
-				var _m = Foxtrickl10n.getString('match.ratings.midfield') + ':';
-				var _a = Foxtrickl10n.getString('match.ratings.attack') + ':';
-				var _t = Foxtrickl10n.getString('match.ratings.total') + ':';
+				var _d = Foxtrick.L10n.getString('match.ratings.defence') + ':';
+				var _m = Foxtrick.L10n.getString('match.ratings.midfield') + ':';
+				var _a = Foxtrick.L10n.getString('match.ratings.attack') + ':';
+				var _t = Foxtrick.L10n.getString('match.ratings.total') + ':';
 
 				var headder = doc.getElementsByTagName('h1')[1].textContent;
 				headder = Foxtrick.trim(headder);
@@ -82,9 +82,9 @@ Foxtrick.modules['CopyRatings'] = {
 				var copylinks = doc.getElementsByClassName('ft_copy_rating');
 				for (var j = 0; j < copylinks.length; ++j) {
 					if (copyTextRating)
-						copylinks.title = Foxtrickl10n.getString('ratings.text');
+						copylinks.title = Foxtrick.L10n.getString('ratings.text');
 					if (copyTextRating)
-						copylinks.title += ' ' + Foxtrickl10n.getString('ratings.number');
+						copylinks.title += ' ' + Foxtrick.L10n.getString('ratings.number');
 				}*/
 
 				// head row
@@ -196,7 +196,7 @@ Foxtrick.modules['CopyRatings'] = {
 
 				Foxtrick.copyStringToClipboard(ad);
 				var note = Foxtrick.util.note.add(doc, insertBefore, 'ft-ratings-copy-note',
-				                                  Foxtrickl10n.getString('copy.ratings.copied'),
+				                                  Foxtrick.L10n.getString('copy.ratings.copied'),
 				                                  null, true);
 			}
 			catch (e) {
@@ -211,7 +211,7 @@ Foxtrick.modules['CopyRatings'] = {
 
 		var copyBoth = Foxtrick.createFeaturedElement(doc, this, 'span');
 		copyBoth.className = 'ft_copy_rating';
-		copyBoth.appendChild(doc.createTextNode(Foxtrickl10n.getString('button.copy')));
+		copyBoth.appendChild(doc.createTextNode(Foxtrick.L10n.getString('button.copy')));
 		copyBoth.setAttribute('teams', 'both');
 		copyBoth.setAttribute('place', 'table');
 		Foxtrick.onClick(copyBoth, function() { createRatings('table', 'both'); });
@@ -219,7 +219,7 @@ Foxtrick.modules['CopyRatings'] = {
 
 		var copyHome = Foxtrick.createFeaturedElement(doc, this, 'span');
 		copyHome.className = 'ft_copy_rating';
-		copyHome.appendChild(doc.createTextNode('(' + Foxtrickl10n.getString('button.copy') + ')'));
+		copyHome.appendChild(doc.createTextNode('(' + Foxtrick.L10n.getString('button.copy') + ')'));
 		copyHome.setAttribute('teams', 'home');
 		copyHome.setAttribute('place', 'table');
 		Foxtrick.onClick(copyHome, function() { createRatings('table', 'home'); });
@@ -227,14 +227,14 @@ Foxtrick.modules['CopyRatings'] = {
 
 		var copyAway = Foxtrick.createFeaturedElement(doc, this, 'span');
 		copyAway.className = 'ft_copy_rating';
-		copyAway.appendChild(doc.createTextNode('(' + Foxtrickl10n.getString('button.copy') + ')'));
+		copyAway.appendChild(doc.createTextNode('(' + Foxtrick.L10n.getString('button.copy') + ')'));
 		copyAway.setAttribute('teams', 'away');
 		copyAway.setAttribute('place', 'table');
 		Foxtrick.onClick(copyAway, function() { createRatings('table', 'away'); });
 		awayHeader.appendChild(copyAway);
 
 		var button = Foxtrick.util.copyButton.add(doc,
-			Foxtrickl10n.getString('copy.ratings.both'));
+			Foxtrick.L10n.getString('copy.ratings.both'));
 		if (button) {
 			button.title = '';
 			button = Foxtrick.makeFeaturedElement(button, this);
@@ -251,7 +251,7 @@ Foxtrick.modules['CopyRatings'] = {
 					return function() { createRatings('box', team); };
 				})(versions[j]));
 				link.setAttribute('teams', versions[j]);
-				link.textContent = Foxtrickl10n.getString('copy.ratings.' + versions[j]);
+				link.textContent = Foxtrick.L10n.getString('copy.ratings.' + versions[j]);
 				item.appendChild(link);
 				list.appendChild(item);
 			}

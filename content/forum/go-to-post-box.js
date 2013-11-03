@@ -98,7 +98,7 @@ Foxtrick.modules['GoToPostBox'] = {
 			goButton.setAttribute('type', 'button');
 			var sTmp = selectBox.getAttribute('onchange');
 			var iTopicId = doc.location.search.match(/\d+/)[0];
-			goButton.setAttribute('value', Foxtrickl10n.getString('button.go'));
+			goButton.setAttribute('value', Foxtrick.L10n.getString('button.go'));
 			goButton.setAttribute('class', 'ft_gotobox ft_gotobox_btn');
 			var gotoFkt = function(ev) {
 				var boxNum = ev.target.id.match(/\d/)[0];

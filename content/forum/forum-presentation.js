@@ -29,7 +29,7 @@ Foxtrick.modules['ForumPresentation'] = {
 	],
 
 	run: function(doc) {
-		if (FoxtrickPrefs.isModuleOptionEnabled('ForumPresentation', 'Forum_NewPostsInBracket')) {
+		if (Foxtrick.Prefs.isModuleOptionEnabled('ForumPresentation', 'Forum_NewPostsInBracket')) {
 			Foxtrick.map(function(node) {
 				Foxtrick.makeFeaturedElement(node, Foxtrick.modules.ForumPresentation);
 				for (var i = 0; i < node.childNodes.length; i++)

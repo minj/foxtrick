@@ -49,7 +49,7 @@ Foxtrick.modules['LeagueNewsFilter'] = {
 
 		var newsfeed = doc.getElementById('ctl00_ctl00_CPContent_CPMain_repLLUFeed');
 		var selectdiv = Foxtrick.createFeaturedElement(doc, this, 'div');
-		selectdiv.appendChild(doc.createTextNode(Foxtrickl10n.getString('LeagueNewsFilter.label')));
+		selectdiv.appendChild(doc.createTextNode(Foxtrick.L10n.getString('LeagueNewsFilter.label')));
 		selectdiv.appendChild(doc.createTextNode(' '));
 		var select = doc.createElement('select');
 		select.setAttribute('id', 'ft_ownselectboxID');
@@ -57,21 +57,21 @@ Foxtrick.modules['LeagueNewsFilter'] = {
 
 		var option = doc.createElement('option');
 		option.setAttribute('value', '0');
-		option.textContent = Foxtrickl10n.getString('LeagueNewsFilter.all');
+		option.textContent = Foxtrick.L10n.getString('LeagueNewsFilter.all');
 		select.appendChild(option);
 		var option = doc.createElement('option');
 		option.setAttribute('value', '1');
-		option.textContent = Foxtrickl10n.getString('LeagueNewsFilter.friendlies');
+		option.textContent = Foxtrick.L10n.getString('LeagueNewsFilter.friendlies');
 		select.appendChild(option);
 		var option = doc.createElement('option');
 		option.setAttribute('value', '2');
-		option.textContent = Foxtrickl10n.getString('LeagueNewsFilter.transfers');
+		option.textContent = Foxtrick.L10n.getString('LeagueNewsFilter.transfers');
 		select.appendChild(option);
 		var option = doc.createElement('option');
 		option.setAttribute('value', '3');
-		option.textContent = Foxtrickl10n.getString('LeagueNewsFilter.lineupChanges');
+		option.textContent = Foxtrick.L10n.getString('LeagueNewsFilter.lineupChanges');
 		select.appendChild(option);
-		select.value = FoxtrickPrefs.getInt('module.LeagueNewsFilter.value');
+		select.value = Foxtrick.Prefs.getInt('module.LeagueNewsFilter.value');
 		selectdiv.appendChild(select);
 
 		var h2 = newsfeed.parentNode.getElementsByTagName('h2')[0];

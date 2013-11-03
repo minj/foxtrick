@@ -17,7 +17,7 @@ Foxtrick.modules['MobileEnhancements'] = {
 
 	run: function(doc) {
 		// get viewport size
-		var viewport_size = FoxtrickPrefs.getString('module.MobileEnhancements.ViewPort_text');
+		var viewport_size = Foxtrick.Prefs.getString('module.MobileEnhancements.ViewPort_text');
 		if (Foxtrick.isPage(doc, 'matchOrder'))	{
 			viewport_size = '765';
 		}

@@ -18,7 +18,7 @@ Foxtrick.modules['ForumModeratorPopup'] = {
 			Foxtrick.addClass(popupdiv, 'ft-pop-up-container');
 			Foxtrick.addClass(popupdiv, 'ft-moderator-popup');
 			Foxtrick.addClass(popupdiv, 'ft-moderator-popup-align');
-			var lnk = doc.createTextNode(Foxtrickl10n.getString('ForumModeratorPopup.toModerate'));
+			var lnk = doc.createTextNode(Foxtrick.L10n.getString('ForumModeratorPopup.toModerate'));
 			popupdiv.appendChild(lnk);
 			header.appendChild(popupdiv);
 

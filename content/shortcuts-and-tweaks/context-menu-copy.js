@@ -149,7 +149,7 @@ if (/*Foxtrick.platform != 'Opera' &&*/ Foxtrick.platform != 'Mobile' && Foxtric
 			var safariInit = function() {
 				safari.application.addEventListener('contextmenu',
 				  function(event) {
-					var paste_note = '. ' + Foxtrickl10n.getString('specialPaste.hint');
+					var paste_note = '. ' + Foxtrick.L10n.getString('specialPaste.hint');
 					var type;
 					for (type in event.userInfo) {
 						entries[type].copyText = event.userInfo[type].copyText;
@@ -192,7 +192,7 @@ if (/*Foxtrick.platform != 'Opera' &&*/ Foxtrick.platform != 'Mobile' && Foxtric
 					var type;
 					for (type in entries) {
 						entries[type].copyText = null;
-						if (FoxtrickPrefs.isModuleOptionEnabled('ContextMenuCopy',
+						if (Foxtrick.Prefs.isModuleOptionEnabled('ContextMenuCopy',
 							entries[type].option)) {
 							var markupObj = entries[type].func(node);
 							if (markupObj !== null) {

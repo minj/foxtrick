@@ -219,7 +219,7 @@ Foxtrick.Pages.Players = {
 											   .textContent);
 								var spec = specs[player.specialityNumber];
 								player.speciality = (spec == '') ? '' :
-									Foxtrickl10n.getShortSpecialityFromEnglish(spec);
+									Foxtrick.L10n.getShortSpecialityFromEnglish(spec);
 							}
 							player.currentSquad = true;
 							player.active = true;
@@ -263,7 +263,7 @@ Foxtrick.Pages.Players = {
 									player.motherClubBonus = doc.createElement('span');
 									player.motherClubBonus.textContent = 'X';
 									player.motherClubBonus.title =
-										Foxtrickl10n.getString('skilltable.youthplayer');
+										Foxtrick.L10n.getString('skilltable.youthplayer');
 								}
 							}
 					}
@@ -448,16 +448,16 @@ Foxtrick.Pages.Players = {
 							Number(LastMatch.getElementsByTagName('PositionCode')[0].textContent);
 						var pos = MatchRoleIDToPosition[player.lastPositionCode]
 						if (pos) {
-							var position = Foxtrickl10n.getPositionByType(pos);
+							var position = Foxtrick.L10n.getPositionByType(pos);
 							player.lastMatchText =
-								Foxtrickl10n.getString('Last_match_played_as_at',
+								Foxtrick.L10n.getString('Last_match_played_as_at',
 													   player.lastPlayedMinutes)
 								.replace('%1', player.lastPlayedMinutes).replace('%2', position)
 								.replace('%3', dateText);
 						}
 					}
 					else
-						player.lastMatchText = Foxtrickl10n.getString('Last_match_didnot_play');
+						player.lastMatchText = Foxtrick.L10n.getString('Last_match_didnot_play');
 
 					if (playerNode.getElementsByTagName('CanBePromotedIn').length) {
 						player.canBePromotedIn = playerNode.getElementsByTagName('CanBePromotedIn')[0]
@@ -480,7 +480,7 @@ Foxtrick.Pages.Players = {
 				// add stamina data
 				var ownId = Foxtrick.util.id.getOwnTeamId();
 				var teamid = xml.getElementsByTagName('TeamID')[0];
-				var data = {}, dataText = FoxtrickPrefs.get('StaminaData.' + ownId);
+				var data = {}, dataText = Foxtrick.Prefs.get('StaminaData.' + ownId);
 				if (dataText && teamid && teamid.textContent == ownId) {
 					data = JSON.parse(dataText);
 					Foxtrick.map(function(player) {
@@ -729,7 +729,7 @@ Foxtrick.Pages.Players = {
 						player.motherClubBonus = doc.createElement('span');
 						player.motherClubBonus.textContent = 'X';
 						player.motherClubBonus.title =
-							Foxtrickl10n.getString('skilltable.youthplayer');
+							Foxtrick.L10n.getString('skilltable.youthplayer');
 					}
 					if (imgs[j].className == 'cardsOne') {
 						if (imgs[j].src.search(/red_card/i) != -1) {
@@ -818,8 +818,8 @@ Foxtrick.Pages.Players = {
 				    !Foxtrick.Pages.Players.isOldiesPage(doc)) {
 					player.transferCompare = doc.createElement('a');
 					player.transferCompare.textContent =
-						Foxtrickl10n.getString('TransferCompare.abbr');
-					player.transferCompare.title = Foxtrickl10n.getString('TransferCompare');
+						Foxtrick.L10n.getString('TransferCompare.abbr');
+					player.transferCompare.title = Foxtrick.L10n.getString('TransferCompare');
 					player.transferCompare.href = player.nameLink.href.
 						replace('/Club/Players/Player.aspx', '/Club/Transfers/TransferCompare.aspx');
 				}

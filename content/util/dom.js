@@ -16,10 +16,10 @@ Foxtrick.createFeaturedElement = function(doc, module, type) {
 	if (module && module.MODULE_NAME && module.MODULE_CATEGORY) {
 		var node = doc.createElement(type);
 		node.className = 'ft-dummy';
-		if (FoxtrickPrefs.getBool('featureHighlight'))
-			node.title = module.MODULE_NAME + ' (' + Foxtrickl10n
+		if (Foxtrick.Prefs.getBool('featureHighlight'))
+			node.title = module.MODULE_NAME + ' (' + Foxtrick.L10n
 				.getString('tab.' + module.MODULE_CATEGORY) + '): ' +
-				FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
+				Foxtrick.Prefs.getModuleDescription(module.MODULE_NAME);
 		return node;
 	} else {
 		Foxtrick.log('Incorrect usage of Foxtrick.createFeaturedElement. typeof(module) = ',
@@ -37,10 +37,10 @@ Foxtrick.createFeaturedElement = function(doc, module, type) {
 Foxtrick.insertFeaturedRow = function(table, module, index) {
 	var row = table.insertRow(index);
 	row.className = 'ft-dummy';
-	if (FoxtrickPrefs.getBool('featureHighlight'))
-		row.title = module.MODULE_NAME + ' (' + Foxtrickl10n.getString('tab.' +
+	if (Foxtrick.Prefs.getBool('featureHighlight'))
+		row.title = module.MODULE_NAME + ' (' + Foxtrick.L10n.getString('tab.' +
 		                                    module.MODULE_CATEGORY) + '): ' +
-											FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
+											Foxtrick.Prefs.getModuleDescription(module.MODULE_NAME);
 	return row;
 };
 
@@ -53,19 +53,19 @@ Foxtrick.insertFeaturedRow = function(table, module, index) {
 Foxtrick.insertFeaturedCell = function(row, module, index) {
 	var cell = row.insertCell(index);
 	cell.className = 'ft-dummy';
-	if (FoxtrickPrefs.getBool('featureHighlight'))
-		cell.title = module.MODULE_NAME + ' (' + Foxtrickl10n.getString('tab.' +
+	if (Foxtrick.Prefs.getBool('featureHighlight'))
+		cell.title = module.MODULE_NAME + ' (' + Foxtrick.L10n.getString('tab.' +
 		                                     module.MODULE_CATEGORY) + '): ' +
-											FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
+											Foxtrick.Prefs.getModuleDescription(module.MODULE_NAME);
 	return cell;
 };
 
 Foxtrick.makeFeaturedElement = function(node, module) {
 	Foxtrick.addClass(node, 'ft-dummy');
-	if (FoxtrickPrefs.getBool('featureHighlight'))
-		node.title = module.MODULE_NAME + ' (' + Foxtrickl10n.getString('tab.' +
+	if (Foxtrick.Prefs.getBool('featureHighlight'))
+		node.title = module.MODULE_NAME + ' (' + Foxtrick.L10n.getString('tab.' +
 		                                     module.MODULE_CATEGORY) + '): ' +
-											FoxtrickPrefs.getModuleDescription(module.MODULE_NAME) +
+											Foxtrick.Prefs.getModuleDescription(module.MODULE_NAME) +
 											(node.title ? ' / ' + node.title : '');
 	return node;
 };

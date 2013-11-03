@@ -15,7 +15,7 @@ Foxtrick.modules['CountryList'] = {
 		var list = doc.getElementById('ft_countrylist');
 		if (list != null)
 			return;
-		if (FoxtrickPrefs.isModuleOptionEnabled('CountryList', 'SelectBoxes')) {
+		if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'SelectBoxes')) {
 			if (Foxtrick.isPage(doc, 'transferSearchForm')) {
 				// TL search needs this ugly hack to restore the correct country on back navigation
 				var teamId = Foxtrick.modules['Core'].getSelfTeamInfo().teamId;
@@ -125,7 +125,7 @@ Foxtrick.modules['CountryList'] = {
 			}
 		}
 
-		if (FoxtrickPrefs.isModuleOptionEnabled('CountryList', 'TeamPage')) {
+		if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'TeamPage')) {
 			if (Foxtrick.isPage(doc, 'teamPage')) {
 				this._placeCountry(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues', 1);
 			}
@@ -134,7 +134,7 @@ Foxtrick.modules['CountryList'] = {
 			}
 		}
 
-		if (FoxtrickPrefs.isModuleOptionEnabled('CountryList', 'ManagerPage')) {
+		if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'ManagerPage')) {
 			if (Foxtrick.isPage(doc, 'managerPage'))
 				this._placeCountry(doc, 'ctl00_ctl00_CPContent_CPMain_ddlLeagues', 1);
 		}
@@ -146,7 +146,7 @@ Foxtrick.modules['CountryList'] = {
 		if (cntr == null) {
 			var league = doc.getElementById('ctl00_ctl00_CPContent_divStartMain').getElementsByClassName('flag')[0];
 			if (!league) return;
-			if (FoxtrickPrefs.isModuleOptionEnabled('CountryList', 'HideFlagOntop')) {
+			if (Foxtrick.Prefs.isModuleOptionEnabled('CountryList', 'HideFlagOntop')) {
 				league.setAttribute('style', 'display:none');
 			}
 			Foxtrick.dump(league.href + '\n');

@@ -101,12 +101,12 @@ Foxtrick.modules['Filter'] = {
 				var td = doc.createElement('td');
 				tr.appendChild(td);
 				var strong = doc.createElement('strong');
-				strong.textContent = Foxtrickl10n.getString('Filters.' + filter.key);
+				strong.textContent = Foxtrick.L10n.getString('Filters.' + filter.key);
 				td.appendChild(strong);
 
 				var td = doc.createElement('td');
 				td.colSpan = 2;
-				td.textContent = Foxtrickl10n.getString('Filters.minimum') + '\u00a0';
+				td.textContent = Foxtrick.L10n.getString('Filters.minimum') + '\u00a0';
 				tr.appendChild(td);
 				var input = doc.createElement('input');
 				input.style.width = '90px';
@@ -119,7 +119,7 @@ Foxtrick.modules['Filter'] = {
 
 				var td = doc.createElement('td');
 				td.colSpan = 2;
-				td.textContent = Foxtrickl10n.getString('Filters.maximum') + '\u00a0';
+				td.textContent = Foxtrick.L10n.getString('Filters.maximum') + '\u00a0';
 				tr.appendChild(td);
 				var input = doc.createElement('input');
 				input.style.width = '90px';
@@ -144,7 +144,7 @@ Foxtrick.modules['Filter'] = {
 				Foxtrick.listen(input, 'blur', saveValues, false);
 				td.appendChild(input);
 				var label = doc.createElement('label');
-				label.textContent = Foxtrickl10n.getString('Filters.' + filter.key);
+				label.textContent = Foxtrick.L10n.getString('Filters.' + filter.key);
 				label.htmlFor = input.id;
 				td.appendChild(label);
 			}
@@ -166,13 +166,13 @@ Foxtrick.modules['Filter'] = {
 					if (cell[idx].textContent)
 						categories[cell[idx].textContent] = true;
 					else
-						categories[Foxtrickl10n.getString('Filters.none')] = true;
+						categories[Foxtrick.L10n.getString('Filters.none')] = true;
 				}
 
 				var td = doc.createElement('td');
 				tr.appendChild(td);
 				var strong = doc.createElement('strong');
-				strong.textContent = Foxtrickl10n.getString('Filters.' + filter.key);
+				strong.textContent = Foxtrick.L10n.getString('Filters.' + filter.key);
 				td.appendChild(strong);
 
 				var td = doc.createElement('td');
@@ -184,7 +184,7 @@ Foxtrick.modules['Filter'] = {
 				select.setAttribute('x-ft-filter-idx', idx);
 				select.setAttribute('x-ft-filter-prop', 'category');
 				var option = doc.createElement('option');
-				option.textContent = Foxtrickl10n.getString('Filters.noFilter');
+				option.textContent = Foxtrick.L10n.getString('Filters.noFilter');
 				option.value = 'Filters.noFilter';
 				select.appendChild(option);
 
@@ -192,7 +192,7 @@ Foxtrick.modules['Filter'] = {
 				for (i in categories) {
 					var option = doc.createElement('option');
 					option.textContent = i;
-					if (i == Foxtrickl10n.getString('Filters.none'))
+					if (i == Foxtrick.L10n.getString('Filters.none'))
 						option.value = 'Filters.none';
 					else
 						option.value = i;
@@ -231,7 +231,7 @@ Foxtrick.modules['Filter'] = {
 				insertBefore.parentNode.insertBefore(filterdiv, insertBefore);
 
 				var h2 = doc.createElement('h2');
-				h2.textContent = Foxtrickl10n.getString('Filters.label');
+				h2.textContent = Foxtrick.L10n.getString('Filters.label');
 				filterdiv.appendChild(h2);
 
 				var table = doc.createElement('table');
@@ -258,14 +258,14 @@ Foxtrick.modules['Filter'] = {
 
 				var buttonFilter = doc.createElement('input');
 				buttonFilter.type = 'button';
-				buttonFilter.value = Foxtrickl10n.getString('Filters.ok');
+				buttonFilter.value = Foxtrick.L10n.getString('Filters.ok');
 				buttonFilter.setAttribute('page', page);
 				filterdiv.appendChild(buttonFilter);
 				Foxtrick.onClick(buttonFilter, filterResults);
 
 				var buttonClear = doc.createElement('input');
 				buttonClear.type = 'button';
-				buttonClear.value = Foxtrickl10n.getString('Filters.clear');
+				buttonClear.value = Foxtrick.L10n.getString('Filters.clear');
 				filterdiv.appendChild(buttonClear);
 				Foxtrick.onClick(buttonClear, function() {
 					getFilters(page, function(filters) {

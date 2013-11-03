@@ -12,12 +12,12 @@ Foxtrick.util.time = {
 	 * indicating day, month, and year respectively
 	 */
 	getDateFormat: function() {
-		return FoxtrickPrefs.getString('htDateFormat');
+		return Foxtrick.Prefs.getString('htDateFormat');
 	},
 
 	/* Sets the date format of Hattrick */
 	setDateFormat: function(format) {
-		FoxtrickPrefs.setString('htDateFormat', format);
+		Foxtrick.Prefs.setString('htDateFormat', format);
 	},
 
 	/* Returns date format for printing, like 'dd-mm-YYYY HH:MM:SS'
@@ -163,7 +163,7 @@ Foxtrick.util.time = {
 	},
 
 	getSeasonOffset: function() {
-		var country = FoxtrickPrefs.getString('htCountry'), i;
+		var country = Foxtrick.Prefs.getString('htCountry'), i;
 		for (i in Foxtrick.XMLData.League) {
 			if (country == Foxtrick.XMLData.League[i].EnglishName) {
 				var offset = Foxtrick.XMLData.League[i].SeasonOffset;
@@ -256,11 +256,11 @@ Foxtrick.util.time = {
 		if (time_sec >= 86400) {
 			Days = Math.floor(time_sec / 86400);
 			time_sec = time_sec - Days * 86400;
-			datespan.textContent += Days + '' + Foxtrickl10n.getString('datetimestrings.days', Days);
+			datespan.textContent += Days + '' + Foxtrick.L10n.getString('datetimestrings.days', Days);
 		}
 		// only days returned
 		if (useShort) {
-			var display_option = FoxtrickPrefs.getInt('module.ExtendedPlayerDetails.value');
+			var display_option = Foxtrick.Prefs.getInt('module.ExtendedPlayerDetails.value');
 			if (display_option == null) var display_option = 0;
 			var PJD_D = Math.floor(org_time / 86400);
 			var PJD_W = Math.floor(PJD_D / 7);
@@ -301,7 +301,7 @@ Foxtrick.util.time = {
 				var b = doc.createElement('b');
 				b.textContent = print_S;
 				datespan.appendChild(b);
-				datespan.appendChild(doc.createTextNode(Foxtrickl10n
+				datespan.appendChild(doc.createTextNode(Foxtrick.L10n
 				                     .getString('datetimestrings.short_seasons', print_S)));
 			}
 			if ((print_W != 0 && print_S != '') || useFull)
@@ -310,7 +310,7 @@ Foxtrick.util.time = {
 				var b = doc.createElement('b');
 				b.textContent = print_W;
 				datespan.appendChild(b);
-				datespan.appendChild(doc.createTextNode(Foxtrickl10n
+				datespan.appendChild(doc.createTextNode(Foxtrick.L10n
 				                     .getString('datetimestrings.short_weeks', print_W)));
 			}
 			if (print_D != 0 || useFull)
@@ -319,7 +319,7 @@ Foxtrick.util.time = {
 				var b = doc.createElement('b');
 				b.textContent = print_D;
 				datespan.appendChild(b);
-				datespan.appendChild(doc.createTextNode(Foxtrickl10n
+				datespan.appendChild(doc.createTextNode(Foxtrick.L10n
 				                     .getString('datetimestrings.short_days', print_D)));
 			}
 
@@ -334,14 +334,14 @@ Foxtrick.util.time = {
 		{
 			Hours = Math.floor(time_sec / 3600);
 			time_sec = time_sec - Hours * 3600;
-			datespan.textContent += Hours + Foxtrickl10n.getString('datetimestrings.hours', Hours) +
+			datespan.textContent += Hours + Foxtrick.L10n.getString('datetimestrings.hours', Hours) +
 				' ';
 		}
 
 		//minutes
 		Minutes = Math.floor(time_sec / 60);
 		time_sec = time_sec - Minutes * 60;
-		datespan.textContent += Minutes + Foxtrickl10n.getString('datetimestrings.minutes', Minutes);
+		datespan.textContent += Minutes + Foxtrick.L10n.getString('datetimestrings.minutes', Minutes);
 
 		return datespan;
 	}

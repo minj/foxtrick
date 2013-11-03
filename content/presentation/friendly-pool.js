@@ -16,7 +16,7 @@ Foxtrick.modules['FriendlyPool'] = {
 		if (!leagueSelect)
 			return;
 
-		if (FoxtrickPrefs.isModuleOptionEnabled('FriendlyPool', 'ExpandCountrySelection')) {
+		if (Foxtrick.Prefs.isModuleOptionEnabled('FriendlyPool', 'ExpandCountrySelection')) {
 			leagueSelect.size = leagueSelect.querySelectorAll('option').length;
 		}
 
@@ -31,7 +31,7 @@ Foxtrick.modules['FriendlyPool'] = {
 		Foxtrick.util.api.retrieve(doc, parameters, { cache_lifetime: 'default' },
 		  function(xml, errorText) {
 			if (xml == null) {
-				//destCell.textContent = Foxtrickl10n.getString('status.error.abbr');
+				//destCell.textContent = Foxtrick.L10n.getString('status.error.abbr');
 				//destCell.title = errorText;
 				return;
 			}
@@ -53,18 +53,18 @@ Foxtrick.modules['FriendlyPool'] = {
 				if (home[leagueSelect[i].getAttribute('value')]
 					&& away[leagueSelect[i].getAttribute('value')]) {
 					Foxtrick.addClass(leagueSelect[i], 'ft-home ft-away');
-					leagueSelect[i].setAttribute('title', Foxtrickl10n
+					leagueSelect[i].setAttribute('title', Foxtrick.L10n
 					                             .getString('matches.playedHomeAway'));
 				}
 				else if (home[leagueSelect[i].getAttribute('value')]) {
 					Foxtrick.addClass(leagueSelect[i], 'ft-home');
 					leagueSelect[i].setAttribute('title',
-					                             Foxtrickl10n.getString('matches.playedHome'));
+					                             Foxtrick.L10n.getString('matches.playedHome'));
 				}
 				else if (away[leagueSelect[i].getAttribute('value')]) {
 					Foxtrick.addClass(leagueSelect[i], 'ft-away');
 					leagueSelect[i].setAttribute('title',
-					                             Foxtrickl10n.getString('matches.playedAway'));
+					                             Foxtrick.L10n.getString('matches.playedAway'));
 				}
 				else if (leagueSelect[i].getAttribute('value') == owncountryid)
 					Foxtrick.addClass(leagueSelect[i], 'ft-own');

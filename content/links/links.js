@@ -22,7 +22,7 @@
 		}
 		collection = {};
 		// load links from external feeds
-		var feeds = FoxtrickPrefs.getString('module.Links.feeds') || '';
+		var feeds = Foxtrick.Prefs.getString('module.Links.feeds') || '';
 		feeds = feeds.split(/(\n|\r)+/);
 		feeds = Foxtrick.filter(function(n) { return Foxtrick.trim(n) != ''; }, feeds);
 		// add default feed if no feeds set
@@ -81,7 +81,7 @@
 			  function(text) {
 				--todo;
 				if (text == null)
-					text = FoxtrickPrefs.getString('LinksFeed.' + feed);
+					text = Foxtrick.Prefs.getString('LinksFeed.' + feed);
 				//Foxtrick.log('parse ', feed);
 				parseFeed(text);
 				Foxtrick.localSet('LinksFeed.' + feed, text);
@@ -189,7 +189,7 @@
 
 			// add current server to args first
 			args.server = doc.location.hostname;
-			args.lang = FoxtrickPrefs.getString('htLanguage');
+			args.lang = Foxtrick.Prefs.getString('htLanguage');
 
 			// links to return
 			var links = [];
@@ -215,8 +215,8 @@
 				}
 
 				var allowed = true;
-				if (!FoxtrickPrefs.isModuleOptionEnabled(module.MODULE_NAME, key) &&
-					FoxtrickPrefs.isModuleOptionSet(module.MODULE_NAME, key)) {
+				if (!Foxtrick.Prefs.isModuleOptionEnabled(module.MODULE_NAME, key) &&
+					Foxtrick.Prefs.isModuleOptionSet(module.MODULE_NAME, key)) {
 					// enable all by default unless set otherwise by user
 					allowed = false;
 				}
@@ -278,7 +278,7 @@
 				}
 
 				if (allowed) {
-					if (FoxtrickPrefs.getBool('module.Links.AddServer.enabled') &&
+					if (Foxtrick.Prefs.getBool('module.Links.AddServer.enabled') &&
 					    urlTmpl.indexOf('?') != -1)
 						urlTmpl = urlTmpl + '&ht-server=[server]';
 					var url = makeLink(urlTmpl);
@@ -331,10 +331,10 @@
 										check.setAttribute('option', key);
 										// since this is appended asychronously, we set
 										// the checked attribute manually
-										if (FoxtrickPrefs.isModuleOptionEnabled(module, key) === null
-										||	FoxtrickPrefs.isModuleOptionEnabled(module, key)) {
+										if (Foxtrick.Prefs.isModuleOptionEnabled(module, key) === null
+										||	Foxtrick.Prefs.isModuleOptionEnabled(module, key)) {
 											check.setAttribute('checked', 'checked');
-											FoxtrickPrefs.setModuleEnableState(module + '.' + key,
+											Foxtrick.Prefs.setModuleEnableState(module + '.' + key,
 											                                   true);
 											hasOption = true;
 										}
@@ -342,12 +342,12 @@
 										label.appendChild(doc.createTextNode(link.title));
 									}
 								}
-								if (hasOption && FoxtrickPrefs.isModuleEnabled(module) === null) {
+								if (hasOption && Foxtrick.Prefs.isModuleEnabled(module) === null) {
 									doc.getElementById('pref-' + module + '-check')
 										.setAttribute('checked', 'checked');
 									doc.getElementById('pref-' + module + '-options')
 										.setAttribute('style', '');
-									FoxtrickPrefs.setModuleEnableState(module, true);
+									Foxtrick.Prefs.setModuleEnableState(module, true);
 								}
 							}
 							catch (e) {

@@ -54,7 +54,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 		Foxtrick.addClass(list, className);
 		Foxtrick.map(function(menu) {
 			if (firstHeader) {
-				if (!FoxtrickPrefs.isModuleOptionEnabled('MainMenuDropDown', 'DisregardFirstHeader'))
+				if (!Foxtrick.Prefs.isModuleOptionEnabled('MainMenuDropDown', 'DisregardFirstHeader'))
 					addSeperator(list, menu.name);
 				firstHeader = false;
 			} else {
@@ -100,11 +100,11 @@ Foxtrick.modules['MainMenuDropDown'] = {
 			}
 			this.save = function() {
 				Foxtrick.localSet('Menu.v4.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId +
-								  '.' + FoxtrickPrefs.getString('htLanguage'), { menus: this.menus });
+								  '.' + Foxtrick.Prefs.getString('htLanguage'), { menus: this.menus });
 			}
 			this.load = function(func) {
 				Foxtrick.localGet('Menu.v4.' + Foxtrick.modules['Core'].getSelfTeamInfo().teamId +
-								  '.' + FoxtrickPrefs.getString('htLanguage'),
+								  '.' + Foxtrick.Prefs.getString('htLanguage'),
 				  function(menu) {
 					if (!menu) {
 						func(new NavigationStructure());

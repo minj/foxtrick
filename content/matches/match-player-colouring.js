@@ -52,7 +52,7 @@ Foxtrick.modules.MatchPlayerColouring = {
 		var matchId = Foxtrick.util.id.getMatchIdFromUrl(doc.location.href);
 
 		//Retrieve teams id
-		if (FoxtrickPrefs.isModuleOptionEnabled('MatchPlayerColouring',
+		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchPlayerColouring',
 			'SeparateOwnPlayerColors'))
 			var myTeamId = isYouth ? Foxtrick.util.id.getOwnYouthTeamId() :
 				Foxtrick.util.id.getOwnTeamId();

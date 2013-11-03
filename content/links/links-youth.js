@@ -31,7 +31,7 @@ Foxtrick.modules['LinksYouthOverview'] = {
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
 		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var youthteamid = Foxtrick.util.id.findYouthTeamId(main);
-		var server = FoxtrickPrefs.getBool('hty-stage') ? 'stage' : 'www';
+		var server = Foxtrick.Prefs.getBool('hty-stage') ? 'stage' : 'www';
 
 
 		//addExternalLinksToYouthOverview
@@ -45,7 +45,7 @@ Foxtrick.modules['LinksYouthOverview'] = {
 		}, doc, this);
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-			var header = Foxtrickl10n.getString('links.boxheader');
+			var header = Foxtrick.L10n.getString('links.boxheader');
 			var ownBoxBodyId = 'foxtrick_links_content';
 			ownBoxBody.setAttribute('id', ownBoxBodyId);
 
@@ -88,7 +88,7 @@ Foxtrick.modules['LinksYouthPlayerDetail'] = {
 		var ownteamid = Foxtrick.util.id.getOwnTeamId();
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
 		var youthteamid = Foxtrick.util.id.findYouthTeamId(main);
-		var server = FoxtrickPrefs.getBool('hty-stage') ? 'stage' : 'www';
+		var server = Foxtrick.Prefs.getBool('hty-stage') ? 'stage' : 'www';
 
 		var thisdiv = main.getElementsByTagName('div')[0];
 		var nationality = Foxtrick.util.id.findLeagueId(doc);
@@ -114,7 +114,7 @@ Foxtrick.modules['LinksYouthPlayerDetail'] = {
 		}, doc, this);
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-			var header = Foxtrickl10n.getString('links.boxheader');
+			var header = Foxtrick.L10n.getString('links.boxheader');
 			var ownBoxBodyId = 'foxtrick_links_content';
 			ownBoxBody.setAttribute('id', ownBoxBodyId);
 
@@ -158,7 +158,7 @@ Foxtrick.modules['LinksYouthTraining'] = {
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
 		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var youthteamid = Foxtrick.util.id.findYouthTeamId(main);
-		var server = FoxtrickPrefs.getBool('hty-stage') ? 'stage' : 'www';
+		var server = Foxtrick.Prefs.getBool('hty-stage') ? 'stage' : 'www';
 
 		//addExternalLinksToYouthOverview
 		var ownBoxBody = null;
@@ -171,7 +171,7 @@ Foxtrick.modules['LinksYouthTraining'] = {
 		}, doc, this);
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-			var header = Foxtrickl10n.getString('links.boxheader');
+			var header = Foxtrick.L10n.getString('links.boxheader');
 			var ownBoxBodyId = 'foxtrick_links_content';
 			ownBoxBody.setAttribute('id', ownBoxBodyId);
 
@@ -216,7 +216,7 @@ Foxtrick.modules['LinksYouthPlayerList'] = {
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
 		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var youthteamid = Foxtrick.util.id.findYouthTeamId(main);
-		var server = FoxtrickPrefs.getBool('hty-stage') ? 'stage' : 'www';
+		var server = Foxtrick.Prefs.getBool('hty-stage') ? 'stage' : 'www';
 
 
 		//addExternalLinksToYouthOverview
@@ -230,7 +230,7 @@ Foxtrick.modules['LinksYouthPlayerList'] = {
 		}, doc, this);
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-			var header = Foxtrickl10n.getString('links.boxheader');
+			var header = Foxtrick.L10n.getString('links.boxheader');
 			var ownBoxBodyId = 'foxtrick_links_content';
 			ownBoxBody.setAttribute('id', ownBoxBodyId);
 
@@ -274,7 +274,7 @@ Foxtrick.modules['LinksYouthMatchList'] = {
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
 		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var youthteamid = Foxtrick.util.id.findYouthTeamId(main);
-		var server = FoxtrickPrefs.getBool('hty-stage') ? 'stage' : 'www';
+		var server = Foxtrick.Prefs.getBool('hty-stage') ? 'stage' : 'www';
 
 
 		//addExternalLinksToYouthOverview
@@ -288,7 +288,7 @@ Foxtrick.modules['LinksYouthMatchList'] = {
 		}, doc, this);
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-			var header = Foxtrickl10n.getString('links.boxheader');
+			var header = Foxtrick.L10n.getString('links.boxheader');
 			var ownBoxBodyId = 'foxtrick_links_content';
 			ownBoxBody.setAttribute('id', ownBoxBodyId);
 
@@ -345,7 +345,7 @@ Foxtrick.modules['LinksYouthLeague'] = {
 		}, doc, this);
 		if (links.length > 0) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-			var header = Foxtrickl10n.getString('links.boxheader');
+			var header = Foxtrick.L10n.getString('links.boxheader');
 			var ownBoxBodyId = 'foxtrick_links_content';
 			ownBoxBody.setAttribute('id', ownBoxBodyId);
 

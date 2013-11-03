@@ -12,20 +12,20 @@ Foxtrick.modules['HTMSPoints'] = {
 
 	run: function(doc) {
 		var getLink = function(skillList) {
-			var lang = FoxtrickPrefs.getString('htLanguage');
+			var lang = Foxtrick.Prefs.getString('htLanguage');
 			var prefix = 'http://www.fantamondi.it/HTMS/index.php?page=htmspoints&lang=' + lang +
 				'&action=calc';
 			var link = doc.createElement('a');
-			link.textContent = Foxtrickl10n.getString('HTMSPoints');
+			link.textContent = Foxtrick.L10n.getString('HTMSPoints');
 			link.href = prefix + skillList;
 			link.target = '_blank';
 			return link;
 		};
 
-		var AddToPlayer = FoxtrickPrefs.isModuleOptionEnabled('HTMSPoints', 'AddToPlayer');
-		var AddToSearchResult = FoxtrickPrefs.isModuleOptionEnabled('HTMSPoints',
+		var AddToPlayer = Foxtrick.Prefs.isModuleOptionEnabled('HTMSPoints', 'AddToPlayer');
+		var AddToSearchResult = Foxtrick.Prefs.isModuleOptionEnabled('HTMSPoints',
 		                                                            'AddToSearchResult');
-		var AddToPlayerList = FoxtrickPrefs.isModuleOptionEnabled('HTMSPoints', 'AddToPlayerList');
+		var AddToPlayerList = Foxtrick.Prefs.isModuleOptionEnabled('HTMSPoints', 'AddToPlayerList');
 
 		if (Foxtrick.isPage(doc, 'playerDetails') && AddToPlayer) {
 			if (!doc.getElementsByClassName('playerInfo').length)
@@ -90,7 +90,7 @@ Foxtrick.modules['HTMSPoints'] = {
 				link.appendChild(getLink(skillList));
 				var points = row.insertCell(1);
 				var calcResult = this.calc(skillArray);
-				points.textContent = Foxtrickl10n.getString('HTMSPoints.AbilityAndPotential')
+				points.textContent = Foxtrick.L10n.getString('HTMSPoints.AbilityAndPotential')
 						.replace(/%1/, calcResult[0])
 						.replace(/%2/, calcResult[1]);
 			}
@@ -129,7 +129,7 @@ Foxtrick.modules['HTMSPoints'] = {
 					container.appendChild(doc.createTextNode(' '));
 					var points = doc.createElement('span');
 					var calcResult = this.calc(skillArray);
-					points.textContent = Foxtrickl10n.getString('HTMSPoints.AbilityAndPotential')
+					points.textContent = Foxtrick.L10n.getString('HTMSPoints.AbilityAndPotential')
 						.replace(/%1/, calcResult[0])
 						.replace(/%2/, calcResult[1]);
 					//points.appendChild(Foxtrick.util.note.createLoading(doc, true));
@@ -172,7 +172,7 @@ Foxtrick.modules['HTMSPoints'] = {
 					var points = doc.createElement('span');
 					//points.appendChild(Foxtrick.util.note.createLoading(doc, true));
 					var calcResult = this.calc(skillArray);
-					points.textContent = Foxtrickl10n.getString('HTMSPoints.AbilityAndPotential')
+					points.textContent = Foxtrick.L10n.getString('HTMSPoints.AbilityAndPotential')
 						.replace(/%1/, calcResult[0])
 						.replace(/%2/, calcResult[1]);
 					container.appendChild(points);

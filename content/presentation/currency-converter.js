@@ -24,7 +24,7 @@ Foxtrick.modules['CurrencyConverter'] = {
 			currencies.push({ code: code, desc: desc });
 		}
 		currencies.sort(function(a, b) { return a.desc.localeCompare(b.desc); });
-		var selectedCurrencyTo = FoxtrickPrefs.getString('module.CurrencyConverter.to');
+		var selectedCurrencyTo = Foxtrick.Prefs.getString('module.CurrencyConverter.to');
 		for (var i = 0; i < currencies.length; ++i) {
 			var item = doc.createElement('option');
 			item.value = currencies[i].code;
@@ -48,7 +48,7 @@ Foxtrick.modules['CurrencyConverter'] = {
 			var oldRate = Foxtrick.util.currency.getRate(doc);
 
 			// new stuffs
-			var code = FoxtrickPrefs.getString('module.CurrencyConverter.to');
+			var code = Foxtrick.Prefs.getString('module.CurrencyConverter.to');
 			var symbol = Foxtrick.util.currency.getSymbolByCode(code);
 			var rate = Foxtrick.util.currency.getRateByCode(code);
 

@@ -72,9 +72,9 @@ Foxtrick.modules['ForumStripHattrickLinks'] = {
 						has_url = true;
 				}
 				if (has_url
-					&& (FoxtrickPrefs.isModuleOptionEnabled('ForumStripHattrickLinks',
+					&& (Foxtrick.Prefs.isModuleOptionEnabled('ForumStripHattrickLinks',
 					    'NoConfirmStripping')
-						|| confirm(Foxtrickl10n.getString('ForumStripHattrickLinks.ask')))) {
+						|| confirm(Foxtrick.L10n.getString('ForumStripHattrickLinks.ask')))) {
 					for (var i = 0; i < urls.length; ++i) {
 						textarea.value = textarea.value.replace(urls[i].reg, urls[i].repl);
 					}

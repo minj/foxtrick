@@ -490,13 +490,13 @@ var eventText = {
 		CSS: Foxtrick.InternalPath + 'resources/css/match-report.css',
 
 		run: function(doc) {
-			var txtUnknownPlayer = Foxtrickl10n.getString('match.player.unknown');
+			var txtUnknownPlayer = Foxtrick.L10n.getString('match.player.unknown');
 
 			if (Foxtrick.Pages.Match.isPrematch(doc)
 				|| Foxtrick.Pages.Match.inProgress(doc))
 				return;
 
-			if (FoxtrickPrefs.getBool('anstoss2icons')) {
+			if (Foxtrick.Prefs.getBool('anstoss2icons')) {
 				icons['se_head_specialist'] = Foxtrick.InternalPath +
 					'resources/img/matches/spec5_alt.png';
 				icons['se_technical'] = Foxtrick.InternalPath +
@@ -526,7 +526,7 @@ var eventText = {
 			var matchId = Foxtrick.Pages.Match.getId(doc);
 			// add locale as argument to prevent using old cache after
 			// language changed
-			var locale = FoxtrickPrefs.getString('htLanguage');
+			var locale = Foxtrick.Prefs.getString('htLanguage');
 			var detailsArgs = [
 				['file', 'matchdetails'],
 				['matchEvents', 'true'],
@@ -592,7 +592,7 @@ var eventText = {
 							.createFeaturedElement(doc, Foxtrick.modules.MatchReportFormat, 'h2');
 						parent.insertBefore(header, before);
 						header.className = 'ft-expander-unexpanded';
-						header.textContent = Foxtrickl10n.getString('MatchReportFormat.lineup');
+						header.textContent = Foxtrick.L10n.getString('MatchReportFormat.lineup');
 						// container of lineup
 						var lineup = Foxtrick
 							.createFeaturedElement(doc, Foxtrick.modules.MatchReportFormat, 'table');
@@ -672,7 +672,7 @@ var eventText = {
 									collection[id].item = item;
 								}
 								else {
-									addComment(id, doc.createTextNode(Foxtrickl10n
+									addComment(id, doc.createTextNode(Foxtrick.L10n
 									           .getString('match.role.#.abbr'
 									                      .replace(/#/, roles[role]))));
 								}
@@ -755,7 +755,7 @@ var eventText = {
 						parent.insertBefore(reportHeader, before);
 						reportHeader.className = 'ft-expander-expanded';
 						reportHeader.textContent =
-							Foxtrickl10n.getString('MatchReportFormat.MatchReport');
+							Foxtrick.L10n.getString('MatchReportFormat.MatchReport');
 
 						// container of formatted report
 						var report = Foxtrick
@@ -799,7 +799,7 @@ var eventText = {
 
 								//event type icon
 								var addEventIcons = function(parent, isEventTeam, evtType, title) {
-									if (FoxtrickPrefs.isModuleOptionEnabled('MatchReportFormat',
+									if (Foxtrick.Prefs.isModuleOptionEnabled('MatchReportFormat',
 									    'ShowEventIcons')) {
 										var createEventIcon = function(src, title, alt) {
 											Foxtrick.addImage(doc, parent, { alt: alt,
@@ -933,7 +933,7 @@ var eventText = {
 								if (indType) {
 									// found a matching indicator
 									var indicator = doc.createElement('div');
-									indicator.textContent = Foxtrickl10n
+									indicator.textContent = Foxtrick.L10n
 										.getString('MatchReportFormat.' + indType.text);
 									indicator.className = 'ft-match-report-' + indType['class'];
 									if (indType.before) {
@@ -945,7 +945,7 @@ var eventText = {
 								}
 							}
 						}, events);
-						if (FoxtrickPrefs.isModuleEnabled('MatchPlayerColouring')) {
+						if (Foxtrick.Prefs.isModuleEnabled('MatchPlayerColouring')) {
 							var mod = Foxtrick.modules['MatchPlayerColouring'];
 							mod.color(doc);
 						}

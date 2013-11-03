@@ -45,12 +45,12 @@ Foxtrick.modules.MatchSimulator = {
 	run: function(doc) {
 		var isYouth = Foxtrick.Pages.Match.isYouth(doc);
 		var isHTOIntegrated = Foxtrick.Pages.Match.isHTOIntegrated(doc);
-		var useRatings = FoxtrickPrefs.isModuleEnabled('Ratings') &&
-			FoxtrickPrefs.isModuleOptionEnabled('MatchSimulator', 'UseRatingsModule');
-		var useHTMS = FoxtrickPrefs.isModuleOptionEnabled('MatchSimulator', 'HTMSPrediction');
-		var useStaminaPred = FoxtrickPrefs.isModuleOptionEnabled('MatchSimulator', 'StaminaPrediction');
+		var useRatings = Foxtrick.Prefs.isModuleEnabled('Ratings') &&
+			Foxtrick.Prefs.isModuleOptionEnabled('MatchSimulator', 'UseRatingsModule');
+		var useHTMS = Foxtrick.Prefs.isModuleOptionEnabled('MatchSimulator', 'HTMSPrediction');
+		var useStaminaPred = Foxtrick.Prefs.isModuleOptionEnabled('MatchSimulator', 'StaminaPrediction');
 
-		var displayOption = FoxtrickPrefs.getInt('module.MatchSimulator.value');
+		var displayOption = Foxtrick.Prefs.getInt('module.MatchSimulator.value');
 		var fieldOverlay = doc.getElementById('fieldOverlay');
 		if (displayOption == 1)
 			Foxtrick.addClass(fieldOverlay, 'displayBelow');
@@ -69,7 +69,7 @@ Foxtrick.modules.MatchSimulator = {
 
 		if (useStaminaPred) {
 			var ownId = Foxtrick.util.id.getOwnTeamId();
-			var staminaData = {}, dataText = FoxtrickPrefs.get('StaminaData.' + ownId);
+			var staminaData = {}, dataText = Foxtrick.Prefs.get('StaminaData.' + ownId);
 			if (dataText) {
 				try {
 					staminaData = JSON.parse(dataText);
@@ -110,7 +110,7 @@ Foxtrick.modules.MatchSimulator = {
 				if (table) {
 					table.id = 'ft-htmstablePrevious';
 					var h2 = overlayHTMSPrevious.getElementsByTagName('h2')[0];
-					h2.textContent = Foxtrickl10n.getString('matchOrder.previousPrediction');
+					h2.textContent = Foxtrick.L10n.getString('matchOrder.previousPrediction');
 					var link = overlayHTMSPrevious.getElementsByTagName('a')[0];
 					link.parentNode.removeChild(link);
 				}
@@ -205,15 +205,15 @@ Foxtrick.modules.MatchSimulator = {
 
 			var attVsDefCheck = doc.getElementById('ft_attVsDef_check');
 			if (attVsDefCheck.checked)
-				FoxtrickPrefs.setBool('MatchSimulator.attVsDefOn', true);
+				Foxtrick.Prefs.setBool('MatchSimulator.attVsDefOn', true);
 			else
-				FoxtrickPrefs.setBool('MatchSimulator.attVsDefOn', false);
+				Foxtrick.Prefs.setBool('MatchSimulator.attVsDefOn', false);
 
 			var realProbabilitiesCheck = doc.getElementById('ft_realProbabilities_check');
 			if (realProbabilitiesCheck.checked)
-				FoxtrickPrefs.setBool('MatchSimulator.realProbabilitiesOn', true);
+				Foxtrick.Prefs.setBool('MatchSimulator.realProbabilitiesOn', true);
 			else
-				FoxtrickPrefs.setBool('MatchSimulator.realProbabilitiesOn', false);
+				Foxtrick.Prefs.setBool('MatchSimulator.realProbabilitiesOn', false);
 
 			// change bars to represent percentage of ratings comparision between predicted ratings
 			// and selected other teams match ratings and update HTMSPrediction
@@ -227,7 +227,7 @@ Foxtrick.modules.MatchSimulator = {
 				var attVsDefCheck = doc.getElementById('ft_attVsDef_check');
 				var realProbabilitiesCheck = doc.getElementById('ft_realProbabilities_check');
 				var doRealProb = attVsDefCheck.checked && realProbabilitiesCheck.checked;
-				var realProbTitle = Foxtrickl10n.getString('matchOrder.probability.title');
+				var realProbTitle = Foxtrick.L10n.getString('matchOrder.probability.title');
 
 				var percentImage = fieldOverlay.getElementsByClassName('percentImage');
 				for (var i = 0; i < percentImage.length; ++i) {
@@ -357,11 +357,11 @@ Foxtrick.modules.MatchSimulator = {
 					if (selectedratings[i].type == 'TacticType') {
 
 						selectedratings[i].value = htvalue;
-						selectedratings[i].text = Foxtrickl10n.getTacticById(htvalue);
+						selectedratings[i].text = Foxtrick.L10n.getTacticById(htvalue);
 					}
 					else if (selectedratings[i].type == 'TacticSkill') {
 						selectedratings[i].value = htvalue;
-						selectedratings[i].text = Foxtrickl10n.getLevelByTypeAndValue('levels',
+						selectedratings[i].text = Foxtrick.L10n.getLevelByTypeAndValue('levels',
 						                                                              htvalue);
 					}
 					else {
@@ -370,7 +370,7 @@ Foxtrick.modules.MatchSimulator = {
 						if (selectedratings[i].value != 0)
 							selectedratings[i].value += 0.75;
 
-						selectedratings[i].text = Foxtrickl10n
+						selectedratings[i].text = Foxtrick.L10n
 							.getFullLevelByValue(selectedratings[i].value);
 					}
 				}
@@ -507,7 +507,7 @@ Foxtrick.modules.MatchSimulator = {
 				if (matchSelect) {
 					var otherMatchId = matchSelect.value;
 					if (otherMatchId > 0) {
-						text += Foxtrickl10n.getString('matchOrder.comparedTo') + '\n';
+						text += Foxtrick.L10n.getString('matchOrder.comparedTo') + '\n';
 						text += matchSelect.options[matchSelect.selectedIndex].textContent +
 							' [matchid=' + otherMatchId + ']\n';
 						text += doc.getElementById('tacticLevelLabelOther').textContent + '\n\n';
@@ -579,7 +579,7 @@ Foxtrick.modules.MatchSimulator = {
 				Foxtrick.copyStringToClipboard(text);
 				var note = Foxtrick.util.note.add(doc, doc.getElementById('mainBody').firstChild,
 				                                  'ft-ratings-copy-note',
-				                                  Foxtrickl10n.getString('copy.ratings.copied'),
+				                                  Foxtrick.L10n.getString('copy.ratings.copied'),
 				                                  null, true);
 			};
 
@@ -627,11 +627,11 @@ Foxtrick.modules.MatchSimulator = {
 
 			var staminaDiscountCheck = doc.getElementById('ft_stamina_discount_check');
 			if (staminaDiscountCheck.checked) {
-				FoxtrickPrefs.setBool('MatchSimulator.staminaDiscountOn', true);
+				Foxtrick.Prefs.setBool('MatchSimulator.staminaDiscountOn', true);
 				ft_stamina_discount();
 			}
 			else {
-				FoxtrickPrefs.setBool('MatchSimulator.staminaDiscountOn', false);
+				Foxtrick.Prefs.setBool('MatchSimulator.staminaDiscountOn', false);
 			}
 
 			for (var i = 0; i < 7; ++i) {
@@ -675,7 +675,7 @@ Foxtrick.modules.MatchSimulator = {
 				// add copy button
 				var copyButton = doc.createElement('input');
 				copyButton.type = 'button';
-				copyButton.value = Foxtrickl10n.getString('button.copy');
+				copyButton.value = Foxtrick.L10n.getString('button.copy');
 				copyButton.id = 'ft-copyRatingsButton';
 				fieldOverlay.appendChild(copyButton);
 				Foxtrick.onClick(copyButton, copyRatings);
@@ -813,11 +813,11 @@ Foxtrick.modules.MatchSimulator = {
 												.getElementsByTagName('MatchDate')[0].textContent,
 												'yyyy-mm-dd'));
 									var howeAwayStr =
-										Foxtrickl10n.getString('matchOrder.default.abbr');
+										Foxtrick.L10n.getString('matchOrder.default.abbr');
 									if (homeAway == 'home')
-										howeAwayStr = Foxtrickl10n.getString('matchOrder.home.abbr');
+										howeAwayStr = Foxtrick.L10n.getString('matchOrder.home.abbr');
 									if (homeAway == 'away')
-										howeAwayStr = Foxtrickl10n.getString('matchOrder.away.abbr');
+										howeAwayStr = Foxtrick.L10n.getString('matchOrder.away.abbr');
 									option.textContent =
 										howeAwayStr + ': ' + MatchDate + ': ' + selectedMatchXML
 										.getElementsByTagName('HomeTeamName')[0].textContent
@@ -843,12 +843,12 @@ Foxtrick.modules.MatchSimulator = {
 						select.id = 'ft-matchSelect';
 						var option = doc.createElement('option');
 						option.value = -1;
-						option.textContent = Foxtrickl10n.getString('matchOrder.noMatchSelected');
+						option.textContent = Foxtrick.L10n.getString('matchOrder.noMatchSelected');
 						select.appendChild(option);
 
 						var option = doc.createElement('option');
 						option.value = 0;
-						option.textContent = Foxtrickl10n.getString('matchOrder.AddMatchManually');
+						option.textContent = Foxtrick.L10n.getString('matchOrder.AddMatchManually');
 						select.appendChild(option);
 
 						var otherMatchesNodes = otherMatchesXml.getElementsByTagName('Match');
@@ -947,26 +947,26 @@ Foxtrick.modules.MatchSimulator = {
 						var addMatchHomeAwayLabel = doc.createElement('label');
 						addMatchHomeAwayLabel.id = 'addMatchhomeAwayLabel';
 						addMatchHomeAwayLabel.textContent =
-							Foxtrickl10n.getString('matchOrder.homeAway.abbr');
-						addMatchHomeAwayLabel.title = Foxtrickl10n.getString('matchOrder.homeAway');
+							Foxtrick.L10n.getString('matchOrder.homeAway.abbr');
+						addMatchHomeAwayLabel.title = Foxtrick.L10n.getString('matchOrder.homeAway');
 						addMatchDiv.appendChild(addMatchHomeAwayLabel);
 
 						var addMatchHomeAwaySelect = doc.createElement('select');
 						addMatchHomeAwaySelect.id = 'addMatchHomeAwaySelect';
-						addMatchHomeAwaySelect.title = Foxtrickl10n.getString('matchOrder.homeAway');
+						addMatchHomeAwaySelect.title = Foxtrick.L10n.getString('matchOrder.homeAway');
 						addMatchDiv.appendChild(addMatchHomeAwaySelect);
 
 						var addMatchOption = doc.createElement('option');
 						addMatchOption.value = 'default';
-						addMatchOption.textContent = Foxtrickl10n.getString('matchOrder.default');
+						addMatchOption.textContent = Foxtrick.L10n.getString('matchOrder.default');
 						addMatchHomeAwaySelect.appendChild(addMatchOption);
 						var addMatchOption = doc.createElement('option');
 						addMatchOption.value = 'home';
-						addMatchOption.textContent = Foxtrickl10n.getString('matchOrder.home');
+						addMatchOption.textContent = Foxtrick.L10n.getString('matchOrder.home');
 						addMatchHomeAwaySelect.appendChild(addMatchOption);
 						var addMatchOption = doc.createElement('option');
 						addMatchOption.value = 'away';
-						addMatchOption.textContent = Foxtrickl10n.getString('matchOrder.away');
+						addMatchOption.textContent = Foxtrick.L10n.getString('matchOrder.away');
 						addMatchHomeAwaySelect.appendChild(addMatchOption);
 
 						var addMatchCheck = doc.createElement('input');
@@ -976,13 +976,13 @@ Foxtrick.modules.MatchSimulator = {
 
 						var addMatchCheckLabel = doc.createElement('label');
 						addMatchCheckLabel.textContent =
-							Foxtrickl10n.getString('matchOrder.tournamentMatch');
+							Foxtrick.L10n.getString('matchOrder.tournamentMatch');
 						addMatchDiv.appendChild(addMatchCheckLabel);
 
 						var addMatchButtonOk = doc.createElement('input');
 						addMatchButtonOk.id = 'addMatchButton';
 						addMatchButtonOk.type = 'button';
-						addMatchButtonOk.value = Foxtrickl10n.getString('button.add');
+						addMatchButtonOk.value = Foxtrick.L10n.getString('button.add');
 						addMatchDiv.appendChild(addMatchButtonOk);
 
 						var addMatch = function(ev) {
@@ -1001,7 +1001,7 @@ Foxtrick.modules.MatchSimulator = {
 						var addMatchButtonCancel = doc.createElement('input');
 						addMatchButtonCancel.id = 'addMatchButtonCancel';
 						addMatchButtonCancel.type = 'button';
-						addMatchButtonCancel.value = Foxtrickl10n.getString('button.cancel');
+						addMatchButtonCancel.value = Foxtrick.L10n.getString('button.cancel');
 						addMatchDiv.appendChild(addMatchButtonCancel);
 
 						var addMatchCancel = function(ev) {
@@ -1061,7 +1061,7 @@ Foxtrick.modules.MatchSimulator = {
 			//http://www.nrgjack.altervista.org/wordpress/2008/07/31/percentuale-resistenza/
 			//return 0.2472 * Math.log(stamina) + 0.472;
 			// from unwritten manual [post=15172393.4] (HO)
-			//return Math.pow( Math.min(stamina+(14-parseFloat(FoxtrickPrefs.getString('staminaCutoff'))), 15.25)/14, 0.6)/1.05265;
+			//return Math.pow( Math.min(stamina+(14-parseFloat(Foxtrick.Prefs.getString('staminaCutoff'))), 15.25)/14, 0.6)/1.05265;
 			//Foxtrick.log(stamina, (1-0.0072415286*Math.pow(9-stamina,1.9369819898)))
 			// from http: //imageshack.us/photo/my-images/854/contributiontablestamin.png/
 			//return (1-0.0072415286*Math.pow(9-stamina,1.9369819898));
@@ -1184,7 +1184,7 @@ Foxtrick.modules.MatchSimulator = {
 					div.className = 'overlayRatingsDiscounted';
 					overlayRatings[sector * 2 + 1].parentNode
 						.insertBefore(div, overlayRatings[sector * 2 + 1].nextSibling);
-					div.textContent = Foxtrickl10n.getFullLevelByValue(new_rating_rounded);
+					div.textContent = Foxtrick.L10n.getFullLevelByValue(new_rating_rounded);
 					Foxtrick.addClass(overlayRatings[sector * 2 + 1], 'hidden');
 					overlayRatingsNums[sector].textContent = '[' + new_rating.toFixed(2) + ']';
 					currentRatings[sector] = new_rating;
@@ -1211,16 +1211,16 @@ Foxtrick.modules.MatchSimulator = {
 		staminaDiscountCheck.id = 'ft_stamina_discount_check';
 		staminaDiscountCheck.type = 'checkbox';
 
-		if (FoxtrickPrefs.getBool('MatchSimulator.staminaDiscountOn'))
+		if (Foxtrick.Prefs.getBool('MatchSimulator.staminaDiscountOn'))
 			staminaDiscountCheck.checked = 'checked';
 		Foxtrick.onClick(staminaDiscountCheck, showLevelNumbers);
 		optionsDivElm.appendChild(staminaDiscountCheck);
 
 		var staminaDiscountLabel = doc.createElement('label');
 		staminaDiscountLabel.setAttribute('for', 'ft_stamina_discount_check');
-		staminaDiscountLabel.textContent = Foxtrickl10n.getString('matchOrder.staminaDiscount');
+		staminaDiscountLabel.textContent = Foxtrick.L10n.getString('matchOrder.staminaDiscount');
 		staminaDiscountLabel.setAttribute('title',
-		                                  Foxtrickl10n.getString('matchOrder.staminaDiscount.title'));
+		                                  Foxtrick.L10n.getString('matchOrder.staminaDiscount.title'));
 		optionsDivElm.appendChild(staminaDiscountLabel);
 
 		var optionsDivElm = doc.createElement('div');
@@ -1228,15 +1228,15 @@ Foxtrick.modules.MatchSimulator = {
 		var attVsDefCheck = doc.createElement('input');
 		attVsDefCheck.id = 'ft_attVsDef_check';
 		attVsDefCheck.type = 'checkbox';
-		if (FoxtrickPrefs.getBool('MatchSimulator.attVsDefOn'))
+		if (Foxtrick.Prefs.getBool('MatchSimulator.attVsDefOn'))
 			attVsDefCheck.checked = 'checked';
 		Foxtrick.onClick(attVsDefCheck, showLevelNumbers);
 		optionsDivElm.appendChild(attVsDefCheck);
 
 		var attVsDefLabel = doc.createElement('label');
 		attVsDefLabel.setAttribute('for', 'ft_attVsDef_check');
-		attVsDefLabel.textContent = Foxtrickl10n.getString('matchOrder.attVsDef');
-		attVsDefLabel.setAttribute('title', Foxtrickl10n.getString('matchOrder.attVsDef.title'));
+		attVsDefLabel.textContent = Foxtrick.L10n.getString('matchOrder.attVsDef');
+		attVsDefLabel.setAttribute('title', Foxtrick.L10n.getString('matchOrder.attVsDef.title'));
 		optionsDivElm.appendChild(attVsDefLabel);
 
 		var optionsDivElm = doc.createElement('div');
@@ -1244,15 +1244,15 @@ Foxtrick.modules.MatchSimulator = {
 		var realProbabilitiesCheck = doc.createElement('input');
 		realProbabilitiesCheck.id = 'ft_realProbabilities_check';
 		realProbabilitiesCheck.type = 'checkbox';
-		if (FoxtrickPrefs.getBool('MatchSimulator.realProbabilitiesOn'))
+		if (Foxtrick.Prefs.getBool('MatchSimulator.realProbabilitiesOn'))
 			realProbabilitiesCheck.checked = 'checked';
 		Foxtrick.onClick(realProbabilitiesCheck, showLevelNumbers);
 		optionsDivElm.appendChild(realProbabilitiesCheck);
 
 		var realProbabilitiesLabel = doc.createElement('label');
 		realProbabilitiesLabel.setAttribute('for', 'ft_realProbabilities_check');
-		realProbabilitiesLabel.textContent = Foxtrickl10n.getString('matchOrder.realProbabilities');
-		realProbabilitiesLabel.title = Foxtrickl10n.getString('matchOrder.realProbabilities.title');
+		realProbabilitiesLabel.textContent = Foxtrick.L10n.getString('matchOrder.realProbabilities');
+		realProbabilitiesLabel.title = Foxtrick.L10n.getString('matchOrder.realProbabilities.title');
 		optionsDivElm.appendChild(realProbabilitiesLabel);
 
 		Foxtrick.util.inject.jsLink(doc, Foxtrick.InternalPath + 'resources/js/matchSimulator.js');
@@ -1268,7 +1268,7 @@ Foxtrick.modules.MatchSimulator = {
 			ratingsDiv.id = 'ft_simulation_ratings';
 			var ratingsLabel = doc.createElement('h2');
 			ratingsDiv.appendChild(ratingsLabel).textContent =
-				Foxtrickl10n.getString('matchOrder.ratings');
+				Foxtrick.L10n.getString('matchOrder.ratings');
 			var ratingsTable = doc.createElement('table');
 			ratingsDiv.appendChild(ratingsTable).id = 'ft_simulation_ratings_table';
 			overlayBottom.appendChild(ratingsDiv);

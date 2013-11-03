@@ -19,7 +19,7 @@ Foxtrick.modules['ExtendedPlayerDetails'] = {
 		this._Player_Joined(doc);
 
 		// experiment: add language
-		if (FoxtrickPrefs.isModuleOptionEnabled('ExtendedPlayerDetails', 'Language')) {
+		if (Foxtrick.Prefs.isModuleOptionEnabled('ExtendedPlayerDetails', 'Language')) {
 			var addPlayerLanguage = function(playerid, node) {
 				Foxtrick.Pages.Player.getPlayer(doc, playerid,
 				  function(player) {
@@ -74,7 +74,7 @@ Foxtrick.modules['ExtendedPlayerDetails'] = {
 			joined_elm.textContent = joined_elm.textContent.replace(')', '');
 			joined_elm.insertBefore(doc.createElement('br'), joined_elm.firstChild);
 
-			if (FoxtrickPrefs.isModuleEnabled('HTDateFormat')) {
+			if (Foxtrick.Prefs.isModuleEnabled('HTDateFormat')) {
 				var dateSpan = Foxtrick
 					.createFeaturedElement(doc, Foxtrick.modules.HTDateFormat, 'span');
 				dateSpan.textContent = '(' + season_week.week + '/' + season_week.season + '), ';
@@ -131,7 +131,7 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 				var formattedWage = Foxtrick.formatNumber(reducedWage, '\u00a0');
 			}
 
-			if (hasBonus && FoxtrickPrefs.isModuleOptionEnabled('ExtendedPlayerDetailsWage',
+			if (hasBonus && Foxtrick.Prefs.isModuleOptionEnabled('ExtendedPlayerDetailsWage',
 				'WageWithoutBonus')) {
 				wageElm.textContent = part1 + '\u00a0';
 				var span = doc.createElement('span');
@@ -142,14 +142,14 @@ Foxtrick.modules['ExtendedPlayerDetailsWage'] = {
 				wageElm.appendChild(doc.createTextNode(part2));
 				Foxtrick.makeFeaturedElement(span, this);
 			}
-			if (FoxtrickPrefs.isModuleOptionEnabled('ExtendedPlayerDetailsWage', 'SeasonWage')) {
+			if (Foxtrick.Prefs.isModuleOptionEnabled('ExtendedPlayerDetailsWage', 'SeasonWage')) {
 				wageElm.appendChild(doc.createElement('br'));
 				var span = doc.createElement('span');
 				span.setAttribute('id', 'ft_seasonwage');
 				span.textContent =
 					Foxtrick.formatNumber(wage * 16, '\u00a0') + '\u00a0'
 					+ currency
-					+ Foxtrickl10n.getString('ExtendedPlayerDetails.perseason');
+					+ Foxtrick.L10n.getString('ExtendedPlayerDetails.perseason');
 				wageElm.appendChild(span);
 				Foxtrick.makeFeaturedElement(span, this);
 			}

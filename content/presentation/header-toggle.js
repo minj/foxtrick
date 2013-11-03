@@ -36,9 +36,9 @@ Foxtrick.modules['HeaderToggle'] = {
 			var key = ('HeaderToggle.' + pathname + '.' + getH2TextContent(h2) + '.folded')
 				.replace(/\s+/g, '');
 			if (Foxtrick.hasClass(h2, 'ft-expander-expanded'))
-				FoxtrickPrefs.deleteValue(key);
+				Foxtrick.Prefs.deleteValue(key);
 			else
-				FoxtrickPrefs.setBool(key, true);
+				Foxtrick.Prefs.setBool(key, true);
 
 			var toggleSiblings = function(el) {
 				var parent = el.parentNode;
@@ -126,7 +126,7 @@ Foxtrick.modules['HeaderToggle'] = {
 		Foxtrick.makeFeaturedElement(header, Foxtrick.modules.HeaderToggle);
 		var key = ('HeaderToggle.' + pathname + '.' + getH2TextContent(header) + '.folded')
 			.replace(/\s+/g, '');
-		if (FoxtrickPrefs.getBool(key))
+		if (Foxtrick.Prefs.getBool(key))
 			toggle(header);
 		else if (Foxtrick.isPage(doc, 'forumDefault')) {
 			toggle(header);

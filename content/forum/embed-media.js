@@ -19,29 +19,29 @@ Foxtrick.modules['EmbedMedia'] = {
 
 	run: function(doc) {
 
-		var do_embed_youtube_videos = FoxtrickPrefs.isModuleOptionEnabled('EmbedMedia',
+		var do_embed_youtube_videos = Foxtrick.Prefs.isModuleOptionEnabled('EmbedMedia',
 		                                                                  'EmbedYoutubeVideos');
-		var do_embed_vimeo_videos = FoxtrickPrefs.isModuleOptionEnabled('EmbedMedia',
+		var do_embed_vimeo_videos = Foxtrick.Prefs.isModuleOptionEnabled('EmbedMedia',
 		                                                                'EmbedVimeoVideos');
 		var do_embed_dailymotion_videos =
-			FoxtrickPrefs.isModuleOptionEnabled('EmbedMedia', 'EmbedDailymotionVideos');
+			Foxtrick.Prefs.isModuleOptionEnabled('EmbedMedia', 'EmbedDailymotionVideos');
 
-		var oembed_enabled = FoxtrickPrefs.isModuleOptionEnabled('EmbedMedia', 'EmbedModeOEmebed');
+		var oembed_enabled = Foxtrick.Prefs.isModuleOptionEnabled('EmbedMedia', 'EmbedModeOEmebed');
 		var do_replaceLinksByTitles = oembed_enabled &&
-			FoxtrickPrefs.isModuleOptionEnabled('EmbedMedia', 'ReplaceLinksByTitles');
+			Foxtrick.Prefs.isModuleOptionEnabled('EmbedMedia', 'ReplaceLinksByTitles');
 		var do_embed_soundcloud = oembed_enabled &&
-			FoxtrickPrefs.isModuleOptionEnabled('EmbedMedia', 'EmbedSoundCloud');
+			Foxtrick.Prefs.isModuleOptionEnabled('EmbedMedia', 'EmbedSoundCloud');
 		var do_embed_flickr_images = oembed_enabled &&
-			FoxtrickPrefs.isModuleOptionEnabled('EmbedMedia', 'EmbedFlickrImages');
+			Foxtrick.Prefs.isModuleOptionEnabled('EmbedMedia', 'EmbedFlickrImages');
 		var do_embed_deviantart_images = oembed_enabled &&
-			FoxtrickPrefs.isModuleOptionEnabled('EmbedMedia', 'EmbedDeviantArtImages');
+			Foxtrick.Prefs.isModuleOptionEnabled('EmbedMedia', 'EmbedDeviantArtImages');
 
-		var do_embed_generic_images = FoxtrickPrefs.isModuleOptionEnabled('EmbedMedia',
+		var do_embed_generic_images = Foxtrick.Prefs.isModuleOptionEnabled('EmbedMedia',
 		                                                                  'EmbedGenericImages');
 		var do_embed_generic_images_clever = do_embed_generic_images &&
-			FoxtrickPrefs.isModuleOptionEnabled('EmbedMedia', 'EmbedGenericImagesClever');
+			Foxtrick.Prefs.isModuleOptionEnabled('EmbedMedia', 'EmbedGenericImagesClever');
 
-		var do_embed_imageshack = FoxtrickPrefs.isModuleOptionEnabled('EmbedMedia',
+		var do_embed_imageshack = Foxtrick.Prefs.isModuleOptionEnabled('EmbedMedia',
 		                                                               'EmbedImageshack');
 
 		var siteEnabled = {
@@ -162,7 +162,7 @@ Foxtrick.modules['EmbedMedia'] = {
 		};
 
 		var doEmbedActualImageUrl = function(target) {
-			var title = Foxtrickl10n.getString('EmbedMedia.EmbeddedImage');
+			var title = Foxtrick.L10n.getString('EmbedMedia.EmbeddedImage');
 			target.nextSibling.firstChild.setAttribute('target', '_blank');
 			Foxtrick.addImage(doc, target.nextSibling.firstChild,
 			                  { src: target.nextSibling.firstChild.href, title: title, alt: title,

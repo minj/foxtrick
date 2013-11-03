@@ -20,8 +20,8 @@ Foxtrick.loader.firefox.browserLoad = function() {
 		var appcontent = document.getElementById('appcontent');
 		if (appcontent) {
 			Foxtrick.entry.init();
-			FoxtrickPrefs.setBool('featureHighlight', false);
-			FoxtrickPrefs.setBool('translationKeys', false);
+			Foxtrick.Prefs.setBool('featureHighlight', false);
+			Foxtrick.Prefs.setBool('translationKeys', false);
 
 			// calls module.onLoad() after the browser window is loaded
 			var i;
@@ -95,7 +95,7 @@ Foxtrick.loader.firefox.DOMContentLoaded = function(ev) {
 Foxtrick.loader.firefox.tabFocus = function(ev) {
 	try {
 		// don't execute if disabled
-		if (FoxtrickPrefs.getBool('disableTemporary')) {
+		if (Foxtrick.Prefs.getBool('disableTemporary')) {
 			// potenial disable cleanup
 			if (Foxtrick.entry.cssLoaded) {
 				Foxtrick.util.css.unload_module_css();

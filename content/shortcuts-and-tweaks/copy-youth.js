@@ -54,17 +54,17 @@ Foxtrick.modules['CopyYouth'] = {
 
 				// display note
 				var insertBefore = doc.getElementsByTagName('h1')[1];
-				var server = FoxtrickPrefs.getBool('hty-stage') ? 'stage' : 'www';
+				var server = Foxtrick.Prefs.getBool('hty-stage') ? 'stage' : 'www';
 				var url = 'http://' + server +
 					'.hattrick-youthclub.org/site/coachcomments_add/htmatch/' + matchid;
 				var container = doc.createElement('div');
 				var p = doc.createElement('p');
 				p.appendChild(doc.createTextNode(
-				              Foxtrickl10n.getString('copy.trainingReport.copied')));
+				              Foxtrick.L10n.getString('copy.trainingReport.copied')));
 				container.appendChild(p);
 
 				var linkContainer = doc.createElement('div');
-				var string = Foxtrickl10n.getString('button.goto').split('%s');
+				var string = Foxtrick.L10n.getString('button.goto').split('%s');
 				linkContainer.appendChild(doc.createTextNode(string[0]));
 				var a = doc.createElement('a');
 				a.href = url;
@@ -92,7 +92,7 @@ Foxtrick.modules['CopyYouth'] = {
 				Foxtrick.modules['ReadHtPrefs'].readLanguageFromMetaTag(doc);
 			params = params + '&primaryTraining=' + training[0].value;
 			params = params + '&secondaryTraining=' + training[1].value;
-			var ok = Foxtrickl10n.getString('module.CopyYouth.AutoSendTrainingReportToHY.success');
+			var ok = Foxtrick.L10n.getString('module.CopyYouth.AutoSendTrainingReportToHY.success');
 
 			Foxtrick.api.hy.postMatchReport(function() {
 				module.addNode(doc, ok, 3000);
@@ -106,7 +106,7 @@ Foxtrick.modules['CopyYouth'] = {
 		//if training report unread mark dirty on click so auto send to HY can kick in
 		var readBtn = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butReadAll');
 		if (readBtn) {
-			if (FoxtrickPrefs.isModuleOptionEnabled('CopyYouth', 'AutoSendTrainingReportToHY')) {
+			if (Foxtrick.Prefs.isModuleOptionEnabled('CopyYouth', 'AutoSendTrainingReportToHY')) {
 				var mainBody = doc.getElementById('mainBody');
 				var matchid = Foxtrick.util.id.findMatchId(mainBody);
 				var readBtn = doc.getElementById('ctl00_ctl00_CPContent_CPMain_butReadAll');
@@ -118,7 +118,7 @@ Foxtrick.modules['CopyYouth'] = {
 			}
 		} else {
 			// add button
-			var button = Foxtrick.util.copyButton.add(doc, Foxtrickl10n.getString(
+			var button = Foxtrick.util.copyButton.add(doc, Foxtrick.L10n.getString(
 			                                          'copy.trainingReport'));
 			if (button) {
 				Foxtrick.addClass(button, 'ft-copy-training-report');
@@ -127,7 +127,7 @@ Foxtrick.modules['CopyYouth'] = {
 
 			//if the user is a HY user (currently identified by a response from YouthTwins,
 			//send the TrainingReport to HY automatically
-			if (!FoxtrickPrefs.isModuleOptionEnabled('CopyYouth', 'AutoSendTrainingReportToHY'))
+			if (!Foxtrick.Prefs.isModuleOptionEnabled('CopyYouth', 'AutoSendTrainingReportToHY'))
 				return;
 
 			//Debug: Always send this report, can be used to test
@@ -210,7 +210,7 @@ Foxtrick.modules['CopyYouth'] = {
 						var params = 'scoutcall=' + encodeURIComponent(reportNode.innerHTML);
 						params = params + '&lang=' +
 							Foxtrick.modules['ReadHtPrefs'].readLanguageFromMetaTag(doc);
-						var ok = Foxtrickl10n
+						var ok = Foxtrick.L10n
 							.getString('module.CopyYouth.AutoSendRejectedToHY.success');
 
 
@@ -230,7 +230,7 @@ Foxtrick.modules['CopyYouth'] = {
 						});
 					} else {
 						Foxtrick.log('Manual copy of scout call.');
-						module.addNode(doc, Foxtrickl10n.getString('copy.scoutComment.copied'));
+						module.addNode(doc, Foxtrick.L10n.getString('copy.scoutComment.copied'));
 					}
 				}
 			}
@@ -251,9 +251,9 @@ Foxtrick.modules['CopyYouth'] = {
 
 
 				//auto send rejected players to HY, api see above
-				if (FoxtrickPrefs.isModuleOptionEnabled('CopyYouth', 'AutoSendRejectedToHY')) {
+				if (Foxtrick.Prefs.isModuleOptionEnabled('CopyYouth', 'AutoSendRejectedToHY')) {
 					var rejectButton = alertdiv.getElementsByTagName('input')[1];
-					rejectButton.setAttribute('title', Foxtrickl10n.getString(
+					rejectButton.setAttribute('title', Foxtrick.L10n.getString(
 					                          'module.CopyYouth.AutoSendRejectedToHY.desc'));
 					Foxtrick.onClick(rejectButton, function() { copyReport(true) });
 
@@ -268,7 +268,7 @@ Foxtrick.modules['CopyYouth'] = {
 				else if (alertdiv.parentNode.getElementsByTagName('a')[0] == null
 					&& doc.getElementById('ft-copy-scout-comment-link') == null) {
 					var a = doc.createElement('a');
-					a.textContent = Foxtrickl10n.getString('copy.scoutComment');
+					a.textContent = Foxtrick.L10n.getString('copy.scoutComment');
 					a.href = '#mainBody';
 					a.id = 'ft-copy-scout-comment-link';
 					Foxtrick.onClick(a, copyReport(false));
@@ -289,7 +289,7 @@ Foxtrick.modules['CopyYouth'] = {
 			// add button
 			if (!doc.getElementById('ft-copy-scout-comment-button')) {
 				var button = Foxtrick.util.copyButton.add(doc,
-					Foxtrickl10n.getString('copy.scoutComment'));
+					Foxtrick.L10n.getString('copy.scoutComment'));
 				if (button) {
 					button.id = 'ft-copy-scout-comment-button';
 					Foxtrick.addClass(button, 'ft-copy-scout-comment');
@@ -309,7 +309,7 @@ Foxtrick.modules['CopyYouth'] = {
 			// assemble param string
 			var params = 'primaryTraining=' + training[0].value;
 			params = params + '&secondaryTraining=' + training[1].value;
-			var ok = Foxtrickl10n.getString('module.CopyYouth.AutoSendTrainingChangesToHY.success');
+			var ok = Foxtrick.L10n.getString('module.CopyYouth.AutoSendTrainingChangesToHY.success');
 
 			Foxtrick.api.hy.postTrainingChange(function() {
 				module.addNode(doc, ok, 3000);
@@ -354,11 +354,11 @@ Foxtrick.modules['CopyYouth'] = {
 				var container = doc.createElement('div');
 				var p = doc.createElement('p');
 				p.appendChild(doc.createTextNode(
-				              Foxtrickl10n.getString('copy.fixturesSource.copied')));
+				              Foxtrick.L10n.getString('copy.fixturesSource.copied')));
 				container.appendChild(p);
 
 				var linkContainer = doc.createElement('div');
-				var string = Foxtrickl10n.getString('button.goto').split('%s');
+				var string = Foxtrick.L10n.getString('button.goto').split('%s');
 				linkContainer.appendChild(doc.createTextNode(string[0]));
 				var a = doc.createElement('a');
 				a.href = url;
@@ -378,7 +378,7 @@ Foxtrick.modules['CopyYouth'] = {
 		};
 
 		var button = Foxtrick.util.copyButton.add(doc,
-			Foxtrickl10n.getString('copy.fixturesSource'));
+			Foxtrick.L10n.getString('copy.fixturesSource'));
 		if (button) {
 			Foxtrick.addClass(button, 'ft-copy-fixtures-source');
 			Foxtrick.onClick(button, copySource);
@@ -386,27 +386,27 @@ Foxtrick.modules['CopyYouth'] = {
 	},
 
 	run: function(doc) {
-		if (FoxtrickPrefs.isModuleOptionEnabled('CopyYouth', 'TrainingReport')
+		if (Foxtrick.Prefs.isModuleOptionEnabled('CopyYouth', 'TrainingReport')
 			&& Foxtrick.isPage(doc, 'youthTraining')) {
 			this.addTrainingReport(doc);
 		}
-		if (FoxtrickPrefs.isModuleOptionEnabled('CopyYouth', 'AutoSendTrainingChangesToHY')
+		if (Foxtrick.Prefs.isModuleOptionEnabled('CopyYouth', 'AutoSendTrainingChangesToHY')
 			&& Foxtrick.isPage(doc, 'youthTraining')) {
 			this.monitorTraining(doc);
 		}
-		if (FoxtrickPrefs.isModuleOptionEnabled('CopyYouth', 'ScoutComment')
+		if (Foxtrick.Prefs.isModuleOptionEnabled('CopyYouth', 'ScoutComment')
 			&& (Foxtrick.isPage(doc, 'youthPlayerDetails')
 				|| Foxtrick.isPage(doc, 'youthOverview'))) {
 			this.addScoutComment(doc);
 		}
-		if (FoxtrickPrefs.isModuleOptionEnabled('CopyYouth', 'FixturesSource')
+		if (Foxtrick.Prefs.isModuleOptionEnabled('CopyYouth', 'FixturesSource')
 			&& Foxtrick.isPage(doc, 'youthFixtures')) {
 			this.addFixturesSource(doc);
 		}
 	},
 
 	change: function(doc) {
-		if (FoxtrickPrefs.isModuleOptionEnabled('CopyYouth', 'ScoutComment')
+		if (Foxtrick.Prefs.isModuleOptionEnabled('CopyYouth', 'ScoutComment')
 			&& Foxtrick.isPage(doc, 'youthOverview')) {
 			this.addScoutComment(doc);
 		}

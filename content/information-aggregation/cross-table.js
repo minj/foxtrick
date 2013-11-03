@@ -36,7 +36,7 @@ Foxtrick.modules['CrossTable'] = {
 
 		// season graph
 		var graphHeader = Foxtrick.createFeaturedElement(doc, this, 'h2');
-		graphHeader.textContent = Foxtrickl10n.getString('CrossTable.graph');
+		graphHeader.textContent = Foxtrick.L10n.getString('CrossTable.graph');
 		graphHeader.className = 'ft-expander-unexpanded';
 		insertBefore.parentNode.insertBefore(graphHeader, insertBefore);
 		var graphContainer = Foxtrick.createFeaturedElement(doc, this, 'div');
@@ -49,7 +49,7 @@ Foxtrick.modules['CrossTable'] = {
 
 		// cross table
 		var tableHeader = Foxtrick.createFeaturedElement(doc, this, 'h2');
-		tableHeader.textContent = Foxtrickl10n.getString('CrossTable.table');
+		tableHeader.textContent = Foxtrick.L10n.getString('CrossTable.table');
 		tableHeader.className = 'ft-expander-unexpanded';
 		insertBefore.parentNode.insertBefore(tableHeader, insertBefore);
 		var div = Foxtrick.createFeaturedElement(doc, this, 'div');
@@ -61,10 +61,10 @@ Foxtrick.modules['CrossTable'] = {
 		insertBefore.parentNode.insertBefore(div, insertBefore);
 
 		var rememberState = function(object, state) {
-			FoxtrickPrefs.setBool('module.CrossTable.' + object, state);
+			Foxtrick.Prefs.setBool('module.CrossTable.' + object, state);
 		};
 		var recallState = function(object) {
-			return FoxtrickPrefs.getBool('module.CrossTable.' + object);
+			return Foxtrick.Prefs.getBool('module.CrossTable.' + object);
 		};
 
 		var toggleGraph = function() {
@@ -245,7 +245,7 @@ Foxtrick.modules['CrossTable'] = {
 							Foxtrick.addClass(link, 'lost');
 					}
 					else {
-						link.textContent = Foxtrickl10n.getString('CrossTable.round')
+						link.textContent = Foxtrick.L10n.getString('CrossTable.round')
 							.replace(/%s/, match.round);
 					}
 				}
@@ -275,7 +275,7 @@ Foxtrick.modules['CrossTable'] = {
 			if (roundsPlayed == 0) {
 				// no matches played, display a message instead of the graph
 				graphContainer.removeChild(graph);
-				var noMatches = Foxtrick.util.note.create(doc, Foxtrickl10n
+				var noMatches = Foxtrick.util.note.create(doc, Foxtrick.L10n
 				                                          .getString('CrossTable.noMatches'));
 				graphContainer.appendChild(noMatches);
 			}

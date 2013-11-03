@@ -73,7 +73,7 @@ Foxtrick.modules['ReLiveLinks'] = {
 			addAll.src = '/Img/Icons/transparent.gif';
 			addAll.className = 'matchHTReLive';
 			addAll.alt = addAll.title =
-				Foxtrickl10n.getString('ReLiveLinks.addRound');
+				Foxtrick.L10n.getString('ReLiveLinks.addRound');
 
 /*			var addAll = doc.createDocumentFragment();
 			Foxtrick.addImage(doc, addAll, {

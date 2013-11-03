@@ -88,11 +88,11 @@ Foxtrick.modules['HTMSPrediction'] = {
 		htmstable.id = 'ft-htmstable';
 
 		//Inserting header
-		var lang = FoxtrickPrefs.getString('htLanguage');
+		var lang = Foxtrick.Prefs.getString('htLanguage');
 		var h2 = doc.createElement('h2');
 		var a = doc.createElement('a');
 		a.href = 'http://www.fantamondi.it/HTMS/index.php?lang=' + lang;
-		a.textContent = Foxtrickl10n.getString('HTMSPrediction.title');
+		a.textContent = Foxtrick.L10n.getString('HTMSPrediction.title');
 		a.target = '_blank';
 		h2.appendChild(a);
 		htmstable.parentNode.insertBefore(h2, htmstable);
@@ -103,7 +103,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 			var cell = row.insertCell(0);
 			cell.className = 'ch ft-htms-leftcell';
 			cell.style.width = '160px';
-			cell.textContent = Foxtrickl10n.getString('HTMSPrediction.team');
+			cell.textContent = Foxtrick.L10n.getString('HTMSPrediction.team');
 
 			var b = doc.createElement('b');
 			b.appendChild(doc.createTextNode(teams[0]));
@@ -117,7 +117,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 		var cell = row.insertCell(0);
 		cell.className = 'ch ft-htms-leftcell';
 		cell.style.width = '160px';
-		cell.textContent = Foxtrickl10n.getString('HTMSPrediction.prediction');
+		cell.textContent = Foxtrick.L10n.getString('HTMSPrediction.prediction');
 
 		var url = 'http://www.fantamondi.it/HTMS/dorequest.php?action=predict&' + params;
 		Foxtrick.util.load.get(url)('success',
@@ -171,7 +171,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 
 			var row = htmstable.insertRow(htmstable.rows.length);
 			cell = row.insertCell(0); cell.className = 'ch';
-			cell.textContent = Foxtrickl10n.getString('HTMSPrediction.winDrawLoss');
+			cell.textContent = Foxtrick.L10n.getString('HTMSPrediction.winDrawLoss');
 			cell = row.insertCell(1); cell.textContent = winprob; cell.className = 'left';
 			cell = row.insertCell(2); cell.textContent = drawprob; cell.className = 'center';
 			cell = row.insertCell(3); cell.textContent = lossprob; cell.className = 'right';
@@ -179,7 +179,7 @@ Foxtrick.modules['HTMSPrediction'] = {
 
 		var p = doc.createElement('p');
 		var a = doc.createElement('a');
-		a.appendChild(doc.createTextNode(Foxtrickl10n.getString('HTMSPrediction.changePrediction')));
+		a.appendChild(doc.createTextNode(Foxtrick.L10n.getString('HTMSPrediction.changePrediction')));
 		a.href = 'http://www.fantamondi.it/HTMS/index.php?page=predictor&action=showpredict&lang=' +
 			lang + params;
 		a.target = '_blank';

@@ -116,13 +116,13 @@ Foxtrick.modules['MatchIncome'] = {
 			tr2.appendChild(td2a);
 			tr2.appendChild(td2b);
 			td2a.className = 'ch';
-			td2a.textContent = Foxtrickl10n.getString('matches.income');
+			td2a.textContent = Foxtrick.L10n.getString('matches.income');
 			td2b.className = 'nowrap';
 			td2b.textContent = Foxtrick.formatNumber(sum, ' ') + ' ' +
 				Foxtrick.util.currency.getSymbol(doc);
 
 			//display utilization percentage for games that happened after last arena change
-			if(FoxtrickPrefs.isModuleOptionEnabled('MatchIncome', 'UtilizationPercentages')){
+			if(Foxtrick.Prefs.isModuleOptionEnabled('MatchIncome', 'UtilizationPercentages')){
 				var teamId = Foxtrick.util.id.getOwnTeamId();
 				var args = [['file', 'arenadetails'], ['teamId', teamId]];
 				Foxtrick.util.api.retrieve(doc, args, { cache_lifetime: 'session' },

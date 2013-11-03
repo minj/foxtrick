@@ -122,7 +122,7 @@ Foxtrick.modules['TeamPopupLinks'] = {
 			table.appendChild(row);
 
 			var title = doc.createElement('th');
-			title.textContent = FoxtrickPrefs.getModuleElementDescription('TeamPopupLinks', i);
+			title.textContent = Foxtrick.Prefs.getModuleElementDescription('TeamPopupLinks', i);
 			row.appendChild(title);
 
 			var defaultCell = doc.createElement('td');
@@ -179,14 +179,14 @@ Foxtrick.modules['TeamPopupLinks'] = {
 				return;
 
 			if ((aLink.href.search(/Club\/\?TeamID=/i) > -1 && aLink.href.search(/redir_to/i) === -1
-			    && FoxtrickPrefs.isModuleOptionEnabled('TeamPopupLinks', 'TeamLinks'))
+			    && Foxtrick.Prefs.isModuleOptionEnabled('TeamPopupLinks', 'TeamLinks'))
 				|| (aLink.href.search(/Club\/Manager\/\?UserID=/i) != -1
-				&& FoxtrickPrefs.isModuleOptionEnabled('TeamPopupLinks', 'UserLinks'))) {
+				&& Foxtrick.Prefs.isModuleOptionEnabled('TeamPopupLinks', 'UserLinks'))) {
 				var par = aLink.parentNode;
 				var span = Foxtrick.createFeaturedElement(doc,
 				                                          Foxtrick.modules.TeamPopupLinks, 'span');
 				span.className = 'ft-popup-span';
-				if (FoxtrickPrefs.isModuleOptionEnabled('TeamPopupLinks', 'TeamHighlight')
+				if (Foxtrick.Prefs.isModuleOptionEnabled('TeamPopupLinks', 'TeamHighlight')
 					&& aLink.href.search(/Club\/\?TeamID=/i) > -1
 					&& curTeamId == aLink.href.match(/Club\/\?TeamID=(\d+)/i)[1]) {
 					if (aLink.parentNode.nodeName == 'TD')
@@ -263,20 +263,20 @@ Foxtrick.modules['TeamPopupLinks'] = {
 							return;
 
 						var openInNewTab = function(option) {
-							return FoxtrickPrefs.getBool('module.TeamPopupLinks.' + option + '.' +
+							return Foxtrick.Prefs.getBool('module.TeamPopupLinks.' + option + '.' +
 							                             'newTab');
 						};
 
 						if (openInNewTab(key))
 							link.target = '_blank';
 
-						link.textContent = Foxtrickl10n.getString(key);
+						link.textContent = Foxtrick.L10n.getString(key);
 						item.appendChild(link);
 						list.appendChild(item);
 					};
 
 					var isEnabledWithinContext = function(option, more) {
-						return FoxtrickPrefs.getBool('module.TeamPopupLinks.' + option + '.' +
+						return Foxtrick.Prefs.getBool('module.TeamPopupLinks.' + option + '.' +
 						                             (more ? 'more' : 'default'));
 					};
 
@@ -309,9 +309,9 @@ Foxtrick.modules['TeamPopupLinks'] = {
 							}
 						}
 
-						if (FoxtrickPrefs.isModuleOptionEnabled('TeamPopupLinks', 'CustomLink')) {
+						if (Foxtrick.Prefs.isModuleOptionEnabled('TeamPopupLinks', 'CustomLink')) {
 							var ownlinks =
-								FoxtrickPrefs.getString('module.TeamPopupLinks.CustomLink_text');
+								Foxtrick.Prefs.getString('module.TeamPopupLinks.CustomLink_text');
 							if (typeof(ownlinks) === 'string') {
 								ownlinks = ownlinks.split(/\n/);
 								var i = 0, ownlink;
@@ -363,11 +363,11 @@ Foxtrick.modules['TeamPopupLinks'] = {
 							var link = doc.createElement('a');
 							if (!show_more) {
 								link.setAttribute('more', 'true');
-								link.textContent = Foxtrickl10n.getString('more');
+								link.textContent = Foxtrick.L10n.getString('more');
 							}
 							else {
 								link.setAttribute('more', 'false');
-								link.textContent = Foxtrickl10n.getString('less');
+								link.textContent = Foxtrick.L10n.getString('less');
 							}
 							Foxtrick.onClick(link, showPopup);
 							item.appendChild(link);

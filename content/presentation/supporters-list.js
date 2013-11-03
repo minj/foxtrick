@@ -12,8 +12,8 @@ Foxtrick.modules['SupportersList'] = {
 
 	run: function(doc) {
 		//var rtl = Foxtrick.util.layout.isRtl(doc);
-		var supporterBack = FoxtrickPrefs.isModuleOptionEnabled('SupportersList', 'SupporterBack');
-		var supportedBack = FoxtrickPrefs.isModuleOptionEnabled('SupportersList', 'SupportedBack');
+		var supporterBack = Foxtrick.Prefs.isModuleOptionEnabled('SupportersList', 'SupporterBack');
+		var supportedBack = Foxtrick.Prefs.isModuleOptionEnabled('SupportersList', 'SupportedBack');
         if (!supporterBack && !supportedBack)
 			return;
 
@@ -67,8 +67,8 @@ Foxtrick.modules['SupportersList'] = {
                         'class': (my ? 'scMySupporters' : 'scFans'),
                         'width' : '22px',
                         'height' : '22px',
-                        'title': (my ? Foxtrickl10n.getString('supporters.youSupportOther') : Foxtrickl10n.getString('supporters.otherSupportYou')),
-                        'alt': (my ? Foxtrickl10n.getString('supporters.youSupportOther') : Foxtrickl10n.getString('supporters.otherSupportYou'))
+                        'title': (my ? Foxtrick.L10n.getString('supporters.youSupportOther') : Foxtrick.L10n.getString('supporters.otherSupportYou')),
+                        'alt': (my ? Foxtrick.L10n.getString('supporters.youSupportOther') : Foxtrick.L10n.getString('supporters.otherSupportYou'))
                     }, node.firstChild, function(img){
                         Foxtrick.makeFeaturedElement(img, Foxtrick.modules.SupportersList);
                     });

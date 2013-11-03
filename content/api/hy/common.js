@@ -196,7 +196,7 @@ Foxtrick.api.hy._fetchOrIgnore = function(api, url, params,
 						case 0:
 							Foxtrick.log('[HY_API][' + api + '] Sending failed', status);
 							response = '{ "error": "' +
-								Foxtrickl10n.getString('youthclub.api.failed') + '" }';
+								Foxtrick.L10n.getString('youthclub.api.failed') + '" }';
 							break;
 						case 200:
 							Foxtrick.log('[HY_API][' + api + '] Success', status);
@@ -224,9 +224,9 @@ Foxtrick.api.hy._fetchOrIgnore = function(api, url, params,
 		else {
 			Foxtrick.log('[HY_API][' + api + '] Request aborted: HY is in ignore mode.');
 			if (typeof(failure) == 'function')
-				failure(Foxtrickl10n.getString('youthclub.api.down'), 503);
+				failure(Foxtrick.L10n.getString('youthclub.api.down'), 503);
 			if (typeof(finalize) == 'function')
-				finalize(Foxtrickl10n.getString('youthclub.api.down'), 503);
+				finalize(Foxtrick.L10n.getString('youthclub.api.down'), 503);
 		}
 	});
 };

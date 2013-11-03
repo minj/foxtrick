@@ -19,7 +19,7 @@ Foxtrick.modules['CopyMatchID'] = {
 					doc.getElementsByTagName('h1')[1];
 				Foxtrick.copyStringToClipboard(matchid);
 				var note = Foxtrick.util.note.add(doc, insertBefore, 'ft-match-id-copy-note',
-				                                  Foxtrickl10n.getString('copy.matchid.copied'),
+				                                  Foxtrick.L10n.getString('copy.matchid.copied'),
 				                                  null, true, true);
 			}
 			catch (e) {
@@ -61,7 +61,7 @@ Foxtrick.modules['CopyMatchID'] = {
 					var matchid = href.replace(/.+matchID=/i, '').match(/^\d+/)[0];
 
 					images[j].setAttribute('title', images[j].title + ': ' +
-					                       Foxtrickl10n.getString('copy.matchid'));
+					                       Foxtrick.L10n.getString('copy.matchid'));
 					images[j] = Foxtrick.makeFeaturedElement(images[j], this);
 					images[j].setAttribute('matchid', matchid);
 					images[j].setAttribute('id', '_' + this.MODULE_NAME + count);
@@ -90,7 +90,7 @@ Foxtrick.modules['CopyMatchID'] = {
 				var matchid = href.replace(/.+matchID=/i, '').match(/^\d+/)[0];
 
 				images[i].setAttribute('title', images[i].title + ': ' +
-				                       Foxtrickl10n.getString('copy.matchid'));
+				                       Foxtrick.L10n.getString('copy.matchid'));
 				images[i] = Foxtrick.makeFeaturedElement(images[i], this);
 				images[i].setAttribute('matchid', matchid);
 				images[i].setAttribute('id', '_' + this.MODULE_NAME + count);

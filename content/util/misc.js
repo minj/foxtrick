@@ -238,14 +238,14 @@ Foxtrick.xml_single_evaluate = function(xmldoc, path, attribute) {
 
 Foxtrick.version = function() {
 	// get rid of user-imported value
-	FoxtrickPrefs.deleteValue('version');
-	return FoxtrickPrefs.getString('version');
+	Foxtrick.Prefs.deleteValue('version');
+	return Foxtrick.Prefs.getString('version');
 };
 
 Foxtrick.branch = function() {
 	// get rid of user-imported value
-	FoxtrickPrefs.deleteValue('branch');
-	return FoxtrickPrefs.getString('branch');
+	Foxtrick.Prefs.deleteValue('branch');
+	return Foxtrick.Prefs.getString('branch');
 };
 
 Foxtrick.isPageHref = function(page, href) {
@@ -318,19 +318,19 @@ Foxtrick.getPanel = function(doc) {
 };
 
 Foxtrick.setLastHost = function(host) {
-	FoxtrickPrefs.setString('last-host', String(host));
+	Foxtrick.Prefs.setString('last-host', String(host));
 };
 
 Foxtrick.getLastHost = function(host) {
-	return FoxtrickPrefs.getString('last-host') || 'http://www.hattrick.org';
+	return Foxtrick.Prefs.getString('last-host') || 'http://www.hattrick.org';
 };
 
 Foxtrick.setLastPage = function(host) {
-	FoxtrickPrefs.setString('last-page', String(host));
+	Foxtrick.Prefs.setString('last-page', String(host));
 };
 
 Foxtrick.getLastPage = function(host) {
-	return FoxtrickPrefs.getString('last-page') || 'http://www.hattrick.org';
+	return Foxtrick.Prefs.getString('last-page') || 'http://www.hattrick.org';
 };
 
 /** Insert text in given textarea at the current position of the cursor */

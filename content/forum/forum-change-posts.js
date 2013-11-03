@@ -16,7 +16,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 			// part of copypostid
 			var link = doc.createElement('a');
 			link.className = 'ft-copy-small ft-link';
-			link.title = Foxtrickl10n.getString('copy.postid');
+			link.title = Foxtrick.L10n.getString('copy.postid');
 			link = Foxtrick.makeFeaturedElement(link, Foxtrick.modules.CopyPostID);
 			var img = doc.createElement('img');
 			img.src = '/Img/Icons/transparent.gif';
@@ -33,7 +33,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 					Foxtrick.copyStringToClipboard('[post=Oops]'.replace('Oops', postId));
 					var note = Foxtrick.util.note.add(doc, insertBefore, 'ft-post-id-copy-note- '
 					                                  + postId.replace(/\D/g, ' - '),
-						Foxtrickl10n.getString('copy.postid.copied').replace('%s', postId),
+						Foxtrick.L10n.getString('copy.postid.copied').replace('%s', postId),
 						null, true);
 				});
 			idLink.parentNode.insertBefore(link, idLink);
@@ -46,9 +46,9 @@ Foxtrick.modules['ForumChangePosts'] = {
 				if (!is_archive_link) {
 					var copy_style = ev.target.getAttribute('copy_style');
 					if (copy_style == 'last')
-						FoxtrickPrefs.getString('CopyPostingStyle');
+						Foxtrick.Prefs.getString('CopyPostingStyle');
 					else
-						FoxtrickPrefs.setString('CopyPostingStyle', copy_style);
+						Foxtrick.Prefs.setString('CopyPostingStyle', copy_style);
 					var post_nr = ev.target.getAttribute('post_nr');
 					var header = doc.getElementById('ft_copy_posting_link_id' + post_nr).parentNode
 						.parentNode.parentNode;
@@ -214,7 +214,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 
 			var note = Foxtrick.util.note.add(doc, insertBefore, 'ft-posting-copy-note- ' +
 			                                  post_id1.replace(/\D/, ' - '),
-				Foxtrickl10n.getString('copy.posting.copied').replace('%s', post_id1),
+				Foxtrick.L10n.getString('copy.posting.copied').replace('%s', post_id1),
 				null, true);
 			}
 			catch (e) {
@@ -224,32 +224,32 @@ Foxtrick.modules['ForumChangePosts'] = {
 
 
 
-		var do_copy_post_id = FoxtrickPrefs.isModuleEnabled('CopyPostID');
-		var do_copy_posting = FoxtrickPrefs.isModuleEnabled('CopyPosting');
-		var do_default_facecard = FoxtrickPrefs.isModuleEnabled('AddDefaultFaceCard');
-		var do_format_text = FoxtrickPrefs.isModuleEnabled('FormatPostingText');
-		var do_move_links = FoxtrickPrefs.isModuleEnabled('MoveLinks');
-		var do_redir_to_team = FoxtrickPrefs.isModuleEnabled('ForumRedirManagerToTeam');
+		var do_copy_post_id = Foxtrick.Prefs.isModuleEnabled('CopyPostID');
+		var do_copy_posting = Foxtrick.Prefs.isModuleEnabled('CopyPosting');
+		var do_default_facecard = Foxtrick.Prefs.isModuleEnabled('AddDefaultFaceCard');
+		var do_format_text = Foxtrick.Prefs.isModuleEnabled('FormatPostingText');
+		var do_move_links = Foxtrick.Prefs.isModuleEnabled('MoveLinks');
+		var do_redir_to_team = Foxtrick.Prefs.isModuleEnabled('ForumRedirManagerToTeam');
 
-		var do_alter_header = FoxtrickPrefs.isModuleEnabled('ForumAlterHeaderLine');
+		var do_alter_header = Foxtrick.Prefs.isModuleEnabled('ForumAlterHeaderLine');
 			var do_single_header = do_alter_header &&
-				FoxtrickPrefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'SingleHeaderLine');
+				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'SingleHeaderLine');
 			var do_small_header_font = do_alter_header &&
-				FoxtrickPrefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'SmallHeaderFont');
+				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'SmallHeaderFont');
 			var do_single_header_allways = do_alter_header && do_single_header &&
-				!FoxtrickPrefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'CheckDesign');
+				!Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'CheckDesign');
 			var do_truncate_nicks = do_alter_header &&
-				FoxtrickPrefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'TruncateLongNick');
+				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'TruncateLongNick');
 			var do_truncate_leaguename = do_alter_header &&
-				FoxtrickPrefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'TruncateLeagueName');
+				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'TruncateLeagueName');
 			var do_hide_old_time = do_alter_header &&
-				FoxtrickPrefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'HideOldTime');
+				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'HideOldTime');
 			var do_short_postid = do_alter_header &&
-				FoxtrickPrefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'ShortPostId');
+				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'ShortPostId');
 			var do_replace_supporter_star = do_alter_header &&
-				FoxtrickPrefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'ReplaceSupporterStar');
+				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'ReplaceSupporterStar');
 			var do_HighlightThreadOpener = do_alter_header &&
-				FoxtrickPrefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'HighlightThreadOpener');
+				Foxtrick.Prefs.isModuleOptionEnabled('ForumAlterHeaderLine', 'HighlightThreadOpener');
 
 		var hasScroll = Foxtrick.util.layout.mainBodyHasScroll(doc);
 		var isStandardLayout = Foxtrick.util.layout.isStandard(doc);
@@ -260,8 +260,8 @@ Foxtrick.modules['ForumChangePosts'] = {
 		// part of copy_posting_link
 		var copy_posting_img = doc.createElement('img');
 		copy_posting_img.src = '/Img/Icons/transparent.gif';
-		copy_posting_img.title = Foxtrickl10n.getString('copy.posting.title')
-			.replace('%s', Foxtrickl10n.getString('copy.posting.style.last'));
+		copy_posting_img.title = Foxtrick.L10n.getString('copy.posting.title')
+			.replace('%s', Foxtrick.L10n.getString('copy.posting.style.last'));
 		copy_posting_img.setAttribute('copy_style', 'last');
 
 		var copy_posting_div = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.CopyPosting,
@@ -279,9 +279,9 @@ Foxtrick.modules['ForumChangePosts'] = {
 			var item = doc.createElement('li');
 			var link = doc.createElement('span');
 			link.setAttribute('copy_style', possibleStyles[i]);
-			var style = Foxtrickl10n.getString('copy.posting.style.' + possibleStyles[i]);
-			link.textContent = Foxtrickl10n.getString('copy.posting').replace('%s', style);
-			link.title = Foxtrickl10n.getString('copy.posting.title').replace('%s', style);
+			var style = Foxtrick.L10n.getString('copy.posting.style.' + possibleStyles[i]);
+			link.textContent = Foxtrick.L10n.getString('copy.posting').replace('%s', style);
+			link.title = Foxtrick.L10n.getString('copy.posting.title').replace('%s', style);
 			item.appendChild(link);
 			list.appendChild(item);
 		}
@@ -289,10 +289,10 @@ Foxtrick.modules['ForumChangePosts'] = {
 
 		var copy_posting_link_archive = doc.createElement('a');
 		copy_posting_link_archive.setAttribute('href', 'javascript:void(0);');
-		copy_posting_link_archive.title = Foxtrickl10n.getString('copy.posting.title')
-			.replace('%s', Foxtrickl10n.getString('copy.posting.style.ht-ml'));
+		copy_posting_link_archive.title = Foxtrick.L10n.getString('copy.posting.title')
+			.replace('%s', Foxtrick.L10n.getString('copy.posting.style.ht-ml'));
 		copy_posting_link_archive.setAttribute('is_archive_link', 'true');
-		copy_posting_link_archive.textContent = Foxtrickl10n.getString('button.copy');
+		copy_posting_link_archive.textContent = Foxtrick.L10n.getString('button.copy');
 		copy_posting_link_archive.setAttribute('class', 'foxtrick-copyfromarchive');
 		copy_posting_link_archive = Foxtrick.makeFeaturedElement(copy_posting_link_archive,
 		                                                         Foxtrick.modules.CopyPosting);
@@ -326,7 +326,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 		if (do_format_text) {
 			try {
 				var HideLevel =
-					FoxtrickPrefs.getString('module.FormatPostingText.NestedQuotesAsSpoilers_text');
+					Foxtrick.Prefs.getString('module.FormatPostingText.NestedQuotesAsSpoilers_text');
 				var numSpoilerQuotes = 0;
 
 				var getQuotes = function(node, level) {
@@ -340,7 +340,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 						open_link.href = 'javascript:void(0);';
 						open_link.setAttribute('spoilerID', numSpoilerQuotes);
 						open_link.textContent =
-							Foxtrickl10n.getString('FormatPostingText.ShowNestedQuotes');
+							Foxtrick.L10n.getString('FormatPostingText.ShowNestedQuotes');
 						Foxtrick.onClick(open_link, function(ev) {
 							var id = ev.target.getAttribute('spoilerID');
 							Foxtrick.toggleClass(doc.getElementById('spoilhid_quoteNum' + id),
@@ -381,7 +381,7 @@ Foxtrick.modules['ForumChangePosts'] = {
 						}
 					}
 
-					if (FoxtrickPrefs.isModuleOptionEnabled('FormatPostingText',
+					if (Foxtrick.Prefs.isModuleOptionEnabled('FormatPostingText',
 					    'NestedQuotesAsSpoilers')) {
 						var spoilers = [];
 

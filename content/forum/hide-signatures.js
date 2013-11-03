@@ -25,9 +25,9 @@ Foxtrick.modules['HideSignatures'] = {
 				Foxtrick.addClass(showSigLink, 'foxtrick-signaturetoggle');
 				showSigLink.setAttribute('style', 'cursor: pointer;');
 				showSigLink.setAttribute('title',
-				                         Foxtrickl10n.getString('HideSignatures.signaturetoggle'));
+				                         Foxtrick.L10n.getString('HideSignatures.signaturetoggle'));
 				showSigLink.setAttribute('id', 'foxtrick-st-link-' + sigId);
-				var text = doc.createTextNode(Foxtrickl10n
+				var text = doc.createTextNode(Foxtrick.L10n
 				                              .getString('HideSignatures.signaturetoggle'));
 				showSigLink.appendChild(text);
 

@@ -163,9 +163,9 @@
 					Foxtrick.map(function(n) {
 						var type = getType(n.link);
 
-						if (FoxtrickPrefs.getBool('module.TickerAlert.' + type + '.enabled')) {
+						if (Foxtrick.Prefs.getBool('module.TickerAlert.' + type + '.enabled')) {
 							Foxtrick.util.notify.create(n.text, n.link);
-							var sound = FoxtrickPrefs.getString('module.TickerAlert.' + type + '.sound');
+							var sound = Foxtrick.Prefs.getString('module.TickerAlert.' + type + '.sound');
 							if (sound) {
 								Foxtrick.playSound(sound, doc);
 							}

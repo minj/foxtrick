@@ -20,7 +20,7 @@ Foxtrick.modules['MovePlayerStatement'] = {
 			}
 		}
 
-		if (!FoxtrickPrefs.isModuleOptionEnabled('MovePlayerStatement', 'DeleteInstead')) {
+		if (!Foxtrick.Prefs.isModuleOptionEnabled('MovePlayerStatement', 'DeleteInstead')) {
 			var elemsa = doc.getElementsByTagName('div');
 			for (var b = 0; b < elemsa.length; b++) {
 				if (elemsa[b].className == 'faceCard' && contentSpeak != '') {

@@ -14,7 +14,7 @@ Foxtrick.modules['MyMonitor'] = {
 
 	run: function(doc) {
 		var getSavedTeams = function() {
-			var savedTeams = FoxtrickPrefs.getString('MyMonitor.teams');
+			var savedTeams = Foxtrick.Prefs.getString('MyMonitor.teams');
 			try {
 				var teams = JSON.parse(savedTeams);
 			}
@@ -37,7 +37,7 @@ Foxtrick.modules['MyMonitor'] = {
 			return teams;
 		};
 		var setSavedTeams = function(teams) {
-			FoxtrickPrefs.setString('MyMonitor.teams', JSON.stringify(teams));
+			Foxtrick.Prefs.setString('MyMonitor.teams', JSON.stringify(teams));
 		};
 		// return the link to a team given
 		var getLink = function(team) {
@@ -64,7 +64,7 @@ Foxtrick.modules['MyMonitor'] = {
 			// header - 'My Monitor'
 			var header = doc.createElement('h2');
 			//header.id = 'ft-monitor-header';
-			header.textContent = Foxtrickl10n.getString('MyMonitor.header');
+			header.textContent = Foxtrick.L10n.getString('MyMonitor.header');
 			mydiv.appendChild(header);
 
 			// line containing add/remove links
@@ -76,14 +76,14 @@ Foxtrick.modules['MyMonitor'] = {
 			var addLink = doc.createElement('a');
 			addLink.id = 'ft-monitor-add';
 			addLink.className = 'ft-link';
-			addLink.textContent = Foxtrickl10n.getString('button.add');
+			addLink.textContent = Foxtrick.L10n.getString('button.add');
 			Foxtrick.onClick(addLink, function() {
 				var noteId = 'ft-monitor-add-note';
 				while (note = doc.getElementById(noteId))
 					note.parentNode.removeChild(note);
 				var note = Foxtrick.util.note.create(
 					doc,
-					Foxtrickl10n.getString('MyMonitor.addHelp'),
+					Foxtrick.L10n.getString('MyMonitor.addHelp'),
 					null,
 					true
 				);
@@ -99,7 +99,7 @@ Foxtrick.modules['MyMonitor'] = {
 			var removeLink = doc.createElement('a');
 			removeLink.id = 'ft-monitor-remove';
 			removeLink.className = 'ft-link';
-			removeLink.textContent = Foxtrickl10n.getString('button.remove');
+			removeLink.textContent = Foxtrick.L10n.getString('button.remove');
 			Foxtrick.onClick(removeLink, function() {
 				var noteId = 'ft-monitor-remove-note';
 				while (note = doc.getElementById(noteId))
@@ -111,7 +111,7 @@ Foxtrick.modules['MyMonitor'] = {
 				var removeLabel = doc.createElement('label');
 				removeLabel.id = 'ft-monitor-remove-label';
 				removeLabel.htmlFor = 'ft-monitor-remove-select';
-				removeLabel.textContent = Foxtrickl10n.getString('MyMonitor.removeTeam');
+				removeLabel.textContent = Foxtrick.L10n.getString('MyMonitor.removeTeam');
 				removeBox.appendChild(removeLabel);
 				removeBox.appendChild(doc.createTextNode(' '));
 				// select box containing teams
@@ -121,9 +121,9 @@ Foxtrick.modules['MyMonitor'] = {
 				// add options to select box
 				Foxtrick.map(function(team) {
 					var option = doc.createElement('option');
-					option.textContent = Foxtrickl10n.getString('MyMonitor.removeTeamFormat')
+					option.textContent = Foxtrick.L10n.getString('MyMonitor.removeTeamFormat')
 						.replace(/%n/, team.name)
-						.replace(/%t/, Foxtrickl10n.getString('MyMonitor.type.' + team.type))
+						.replace(/%t/, Foxtrick.L10n.getString('MyMonitor.type.' + team.type))
 						.replace(/%i/, team.id);
 					removeSelect.appendChild(option);
 				}, teams);
@@ -131,7 +131,7 @@ Foxtrick.modules['MyMonitor'] = {
 				var removeButton = doc.createElement('input');
 				removeButton.id = 'ft-monitor-remove-button';
 				removeButton.type = 'button';
-				removeButton.value = Foxtrickl10n.getString('button.remove');
+				removeButton.value = Foxtrick.L10n.getString('button.remove');
 				Foxtrick.onClick(removeButton, function() {
 					var index = removeSelect.selectedIndex;
 					removeSelect.removeChild(removeSelect.options[index]);
@@ -178,7 +178,7 @@ Foxtrick.modules['MyMonitor'] = {
 				var nameLink = doc.createElement('a');
 				buildLink(team, nameLink);
 
-				if (FoxtrickPrefs.isModuleOptionEnabled('MyMonitor', 'TeamIcons')) {
+				if (Foxtrick.Prefs.isModuleOptionEnabled('MyMonitor', 'TeamIcons')) {
 					var height = Foxtrick.util.layout.isStandard(doc) ? '24' : '18';
 					if (team.logo) {
 						var img = doc.createElement('img');
@@ -237,7 +237,7 @@ Foxtrick.modules['MyMonitor'] = {
 
 				var uplink = doc.createElement('input');
 				uplink.type = 'image';
-				uplink.title = Foxtrickl10n.getString('button.up');
+				uplink.title = Foxtrick.L10n.getString('button.up');
 				uplink.className = 'up';
 				uplink.src = '../../Img/Icons/transparent.gif';
 				Foxtrick.onClick(uplink, move('up', team.id));
@@ -245,7 +245,7 @@ Foxtrick.modules['MyMonitor'] = {
 
 				var downlink = doc.createElement('input');
 				downlink.type = 'image';
-				downlink.title = Foxtrickl10n.getString('button.down');
+				downlink.title = Foxtrick.L10n.getString('button.down');
 				downlink.className = 'down';
 				downlink.src = '../../Img/Icons/transparent.gif';
 				downlink.setAttribute('teamid', team.id);
@@ -327,7 +327,7 @@ Foxtrick.modules['MyMonitor'] = {
 			// link to add team
 			var addLink = doc.createElement('a');
 			addLink.className = 'ft-link';
-			addLink.textContent = Foxtrickl10n.getString('MyMonitor.add');
+			addLink.textContent = Foxtrick.L10n.getString('MyMonitor.add');
 			Foxtrick.onClick(addLink, function() {
 				teams.push({
 					id: teamIdContainer.id, type: type, name: escape(teamIdContainer.name),
@@ -342,7 +342,7 @@ Foxtrick.modules['MyMonitor'] = {
 			// link to remove team
 			var removeLink = doc.createElement('a');
 			removeLink.className = 'ft-link';
-			removeLink.textContent = Foxtrickl10n.getString('MyMonitor.remove');
+			removeLink.textContent = Foxtrick.L10n.getString('MyMonitor.remove');
 			Foxtrick.onClick(removeLink, function() {
 				teams = Foxtrick.filter(function(n) {
 					return n.id != teamIdContainer.id || n.type != type;
@@ -364,7 +364,7 @@ Foxtrick.modules['MyMonitor'] = {
 				// use an option as faux-header
 				var fauxHeader = doc.createElement('option');
 				fauxHeader.selected = 'selected';
-				fauxHeader.textContent = Foxtrickl10n.getString('MyMonitor.teams', teams.length)
+				fauxHeader.textContent = Foxtrick.L10n.getString('MyMonitor.teams', teams.length)
 					.replace(/%s/, teams.length);
 				select.appendChild(fauxHeader);
 				// now add the teams
@@ -385,7 +385,7 @@ Foxtrick.modules['MyMonitor'] = {
 				Foxtrick.addClass(removeLink, 'hidden');
 
 			var box = Foxtrick.addBoxToSidebar(doc,
-				Foxtrickl10n.getString('MyMonitor.header'), container, -1);
+				Foxtrick.L10n.getString('MyMonitor.header'), container, -1);
 			box.id = 'ft-monitor-sidebar-box';
 
 			setSavedTeams(teams);

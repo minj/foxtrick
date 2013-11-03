@@ -13,8 +13,8 @@ Foxtrick.modules['LoyaltyDisplay'] = {
 	replacePercentageImage: function(player, node) {
 
 		var replaceBars = function(node, skillUp, appendix) {
-			var str_mcb = Foxtrickl10n.getString('LoyaltyDisplay.motherClubBonus');
-			var str_lo = Foxtrickl10n.getString('LoyaltyDisplay.loyaltyBonus');
+			var str_mcb = Foxtrick.L10n.getString('LoyaltyDisplay.motherClubBonus');
+			var str_lo = Foxtrick.L10n.getString('LoyaltyDisplay.loyaltyBonus');
 			var str = (skillUp == 1.5) ? str_mcb : str_lo;
 			var count = 0;
 			var bars = node.getElementsByTagName('img');

@@ -38,10 +38,10 @@ Foxtrick.modules['RapidId'] = {
 				url: 'Club/Matches/Match.aspx?matchID=%n&SourceSystem=HTOIntegrated' }
 		];
 		var setSelected = function(val) {
-			FoxtrickPrefs.setString('module.RapidId.selected', val);
+			Foxtrick.Prefs.setString('module.RapidId.selected', val);
 		};
 		var getSelected = function() {
-			return FoxtrickPrefs.getString('module.RapidId.selected');
+			return Foxtrick.Prefs.getString('module.RapidId.selected');
 		};
 		var view = function(event) {
 			// prevent the form from being submitted
@@ -132,7 +132,7 @@ Foxtrick.modules['RapidId'] = {
 
 				// the <input type='button' /> element
 				button.setAttribute('type', 'submit');
-				button.setAttribute('value', Foxtrickl10n.getString('RapidId.view'));
+				button.setAttribute('value', Foxtrick.L10n.getString('RapidId.view'));
 				Foxtrick.onClick(button, view);
 
 				// hide rightnow on demand
@@ -156,7 +156,7 @@ Foxtrick.modules['RapidId'] = {
 		}
 		// get labels of optgroup and option
 		for (var i = 0; i < options.length; ++i) {
-			options[i].label = Foxtrickl10n.getString(options[i].text);
+			options[i].label = Foxtrick.L10n.getString(options[i].text);
 		}
 
 		var header = doc.getElementById('header');
@@ -170,7 +170,7 @@ Foxtrick.modules['RapidId'] = {
 
 		// indicator
 		indicator.id = 'ft_rapidid_indicator';
-		var viewById = Foxtrickl10n.getString('RapidId.viewById');
+		var viewById = Foxtrick.L10n.getString('RapidId.viewById');
 		indicator.appendChild(doc.createTextNode(viewById));
 		Foxtrick.onClick(indicator, function(ev) {
 				ev.preventDefault();

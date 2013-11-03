@@ -33,21 +33,21 @@ Foxtrick.modules['ReadHtPrefs'] = {
 
 	readLanguage: function(doc) {
 		var readLang = this.readLanguageFromMetaTag(doc);
-		var newLang = Foxtrickl10n.htMapping[readLang];
-		var oldLang = FoxtrickPrefs.getString('htLanguage');
+		var newLang = Foxtrick.L10n.htMapping[readLang];
+		var oldLang = Foxtrick.Prefs.getString('htLanguage');
 
 		if (newLang != oldLang) {
 			Foxtrick.log('Language changed. ht: ' + readLang + ' ft: ' + newLang +
 			             ', old language: ft: ' + oldLang + '.');
-			if (Foxtrickl10n.htLanguagesJSON[newLang]) {
-				FoxtrickPrefs.setString('htLanguage', newLang);
+			if (Foxtrick.L10n.htLanguagesJSON[newLang]) {
+				Foxtrick.Prefs.setString('htLanguage', newLang);
 				if (Foxtrick.arch == 'Gecko') {
 					// change language
-					Foxtrickl10n.setUserLocaleGecko(newLang);
+					Foxtrick.L10n.setUserLocaleGecko(newLang);
 				}
-				var language = Foxtrickl10n.htLanguagesJSON[newLang].language.desc;
+				var language = Foxtrick.L10n.htLanguagesJSON[newLang].language.desc;
 
-				var msg = Foxtrickl10n.getString('ReadHtPrefs.HTLanguageChanged');
+				var msg = Foxtrick.L10n.getString('ReadHtPrefs.HTLanguageChanged');
 				if (msg.search('%s') != -1)
 					msg = msg.replace('%s', language);
 				else
@@ -68,7 +68,7 @@ Foxtrick.modules['ReadHtPrefs'] = {
 		var CountryLink = teamLinks[2];
 		var LeagueId = CountryLink.href.replace(/.+leagueid=/i, '').match(/^\d+/)[0];
 		var country = Foxtrick.util.id.getLeagueDataFromId(LeagueId).EnglishName;
-		FoxtrickPrefs.setString('htCountry', country);
+		Foxtrick.Prefs.setString('htCountry', country);
 	},
 
 	readDateFormat: function(doc) {

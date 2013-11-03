@@ -12,10 +12,10 @@ Foxtrick.modules['HeaderFix'] = {
 	CSS: Foxtrick.InternalPath + 'resources/css/header-fix.css',
 
 	init: function() {
-		if (FoxtrickPrefs.isModuleOptionEnabled('HeaderFix', 'FixLeft'))
-			FoxtrickPrefs.setBool('module.HeaderFixLeft.enabled', true);
+		if (Foxtrick.Prefs.isModuleOptionEnabled('HeaderFix', 'FixLeft'))
+			Foxtrick.Prefs.setBool('module.HeaderFixLeft.enabled', true);
 		else
-			FoxtrickPrefs.setBool('module.HeaderFixLeft.enabled', false);
+			Foxtrick.Prefs.setBool('module.HeaderFixLeft.enabled', false);
 	},
 
 	run: function(doc) {
@@ -112,7 +112,7 @@ Foxtrick.modules['HeaderFixLeft'] = {
 	CSS: Foxtrick.InternalPath + 'resources/css/header-fix-left.css',
 
 	init: function() {
-		if (!FoxtrickPrefs.isModuleEnabled('HeaderFix'))
-			FoxtrickPrefs.setBool('module.HeaderFixLeft.enabled', false);
+		if (!Foxtrick.Prefs.isModuleEnabled('HeaderFix'))
+			Foxtrick.Prefs.setBool('module.HeaderFixLeft.enabled', false);
 	}
 };

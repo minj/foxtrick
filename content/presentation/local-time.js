@@ -16,7 +16,7 @@ Foxtrick.modules['LocalTime'] = {
 
 		var time = doc.getElementById('time');
 		// icon for Hattrick time zone
-		time.title = Foxtrickl10n.getString('LocalTime.hattrick.title');
+		time.title = Foxtrick.L10n.getString('LocalTime.hattrick.title');
 		time = Foxtrick.makeFeaturedElement(time, this);
 
 		// set up local time div at the header
@@ -30,12 +30,12 @@ Foxtrick.modules['LocalTime'] = {
 		time.addEventListener('DOMNodeInserted', updateTime, false);
 		// FF creates a new node (correct behaviour)
 
-		localTime.title = Foxtrickl10n.getString('LocalTime.local.title');
+		localTime.title = Foxtrick.L10n.getString('LocalTime.local.title');
 		localTime = Foxtrick.makeFeaturedElement(localTime, this);
 		time.parentNode.insertBefore(localTime, time);
 
 		// to tell whether #time or #ft-local-time should be hidden
-		if (FoxtrickPrefs.getBool('module.LocalTime.local')) {
+		if (Foxtrick.Prefs.getBool('module.LocalTime.local')) {
 			updateTime();
 			Foxtrick.addClass(time, 'hidden');
 		}
@@ -44,8 +44,8 @@ Foxtrick.modules['LocalTime'] = {
 		}
 		// add on-click events for toggling between local/HT times
 		var toggleDisplay = function(ev) {
-			FoxtrickPrefs.setBool('module.LocalTime.local',
-			                      !FoxtrickPrefs.getBool('module.LocalTime.local'));
+			Foxtrick.Prefs.setBool('module.LocalTime.local',
+			                      !Foxtrick.Prefs.getBool('module.LocalTime.local'));
 			Foxtrick.toggleClass(time, 'hidden');
 			Foxtrick.toggleClass(localTime, 'hidden');
 			updatePage(doc);
@@ -76,7 +76,7 @@ Foxtrick.modules['LocalTime'] = {
 		var isLocalDate = function(n) { return n.hasAttribute('x-lt-proced'); };
 		var localDates = Foxtrick.filter(isLocalDate, dates);
 		var htDates = Foxtrick.filter(function(n) { return !isLocalDate(n); }, dates);
-		if (FoxtrickPrefs.getBool('module.LocalTime.local')) {
+		if (Foxtrick.Prefs.getBool('module.LocalTime.local')) {
 			// turn HT dates to local dates
 			Foxtrick.map(function(date) {
 				date.setAttribute('x-lt-proced', 'true');

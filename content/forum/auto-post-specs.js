@@ -47,7 +47,7 @@ Foxtrick.modules['AutoPostSpecs'] = {
 
 			var navInfo = window.navigator.userAgent + ' - ' + window.navigator.platform;
 
-			txt = txt + '\n[hr][spoiler]' + 'FoxTrick ' + Foxtrick.version() + ' ' + Foxtrick.branch() + ' - Stage: ' + Foxtrick.isStage(doc) + ' - Skin: ' + (Foxtrick.util.layout.isStandard(doc)?'normal':'simple') + ' - ' + FoxtrickPrefs.getString('htLanguage') + ' - ' + (Foxtrick.util.layout.isRtl(doc)?"rtl":"ltr") + ' - ' + window.screen.availWidth + ' x ' + window.screen.availHeight + ' - ' + navInfo + '[/spoiler]';
+			txt = txt + '\n[hr][spoiler]' + 'FoxTrick ' + Foxtrick.version() + ' ' + Foxtrick.branch() + ' - Stage: ' + Foxtrick.isStage(doc) + ' - Skin: ' + (Foxtrick.util.layout.isStandard(doc)?'normal':'simple') + ' - ' + Foxtrick.Prefs.getString('htLanguage') + ' - ' + (Foxtrick.util.layout.isRtl(doc)?"rtl":"ltr") + ' - ' + window.screen.availWidth + ' x ' + window.screen.availHeight + ' - ' + navInfo + '[/spoiler]';
 			textarea.value = txt;
 			setCaretPosition(textarea, 0);
 		}

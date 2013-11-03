@@ -38,7 +38,7 @@ Foxtrick.modules['LinksNational'] = {
 
 		var added = 0;
 		ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-		var header = Foxtrickl10n.getString('links.boxheader');
+		var header = Foxtrick.L10n.getString('links.boxheader');
 		var ownBoxBodyId = 'foxtrick_links_content';
 		ownBoxBody.setAttribute('id', ownBoxBodyId);
 
@@ -48,7 +48,7 @@ Foxtrick.modules['LinksNational'] = {
 			++added;
 		}
 
-		if (FoxtrickPrefs.isModuleEnabled('LinksTracker')) {
+		if (Foxtrick.Prefs.isModuleEnabled('LinksTracker')) {
 			var links2 = Foxtrick.modules['Links'].getLinks('trackernationalteamlink', {
 				'countryid': countryid,
 				'ntteamid': ntteamid,

@@ -134,7 +134,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		var matchId = Foxtrick.Pages.Match.getId(doc);
 		// add locale as argument to prevent using old cache after
 		// language changed
-		var locale = FoxtrickPrefs.getString('htLanguage');
+		var locale = Foxtrick.Prefs.getString('htLanguage');
 		var detailsArgs = [
 			['file', 'matchdetails'],
 			['matchEvents', 'true'],
@@ -644,20 +644,20 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		if (Foxtrick.Pages.Match.isWalkOver(doc.querySelector('div.mainBox table')))
 			return;
 
-		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupFixes', 'AddLinksInOrders'))
+		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupFixes', 'AddLinksInOrders'))
 			addLinksInOrders();
 
 		if (weatherEvents.length &&
-			FoxtrickPrefs.isModuleOptionEnabled('MatchLineupFixes', 'FixWeatherSEs'))
+			Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupFixes', 'FixWeatherSEs'))
 			fixWeatherSEs();
 
 		if (!playerRatingsHome[0].players[0].hasOwnProperty('ftIdx') && // FF is executing twice, wtf?
-			FoxtrickPrefs.isModuleOptionEnabled('MatchLineupFixes', 'AddStarsToSubs')) {
+			Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupFixes', 'AddStarsToSubs')) {
 			addStarsToSubs(playerRatingsHome);
 			addStarsToSubs(playerRatingsAway);
 		}
 		if (lineupEvents.length &&
-			FoxtrickPrefs.isModuleOptionEnabled('MatchLineupFixes', 'FixMultipleEvents')) {
+			Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupFixes', 'FixMultipleEvents')) {
 			undoPreviousEvents();
 			undoRedCards();
 			fixMultipleSubs();

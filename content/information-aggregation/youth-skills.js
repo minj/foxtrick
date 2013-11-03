@@ -17,9 +17,9 @@ Foxtrick.modules['YouthSkills'] = {
 		var isRtl = Foxtrick.util.layout.isRtl(doc);
 
 		// string to use when current skill is estimated
-		var approx = Foxtrickl10n.getString('YouthSkills.estimated');
+		var approx = Foxtrick.L10n.getString('YouthSkills.estimated');
 		// string to use for top3 skill title
-		var top3 = Foxtrickl10n.getString('YouthSkills.top3');
+		var top3 = Foxtrick.L10n.getString('YouthSkills.top3');
 
 		// this maps HY skill-id to the row index in the table
 		// cf Foxtrick.api.hy.skillMap
@@ -134,7 +134,7 @@ Foxtrick.modules['YouthSkills'] = {
 					Foxtrick.addClass(minLink, 'skill ft-youthskills-link');
 					//used to signal skillcoloring that we manually trigger coloring
 
-					minLink.textContent = Foxtrickl10n.getTextByLevel(level);
+					minLink.textContent = Foxtrick.L10n.getTextByLevel(level);
 					node.appendChild(minLink);
 				} else {
 					var minText = doc.createTextNode(UNKNOWNLEVELSYMBOL);
@@ -276,11 +276,11 @@ Foxtrick.modules['YouthSkills'] = {
 						var span = Foxtrick.createFeaturedElement(doc, module, 'span');
 						var text = doc.createElement('strong');
 						Foxtrick.addClass(text, 'ft-hy-spec');
-						text.title = Foxtrickl10n.getString('YouthSkills.newSpeciality');
+						text.title = Foxtrick.L10n.getString('YouthSkills.newSpeciality');
 						// use aria label for a11y
 						text.setAttribute('aria-label', text.title);
 
-						var spec = Foxtrickl10n.getSpecialityFromNumber(specialty);
+						var spec = Foxtrick.L10n.getSpecialityFromNumber(specialty);
 						text.textContent = '[' + spec + ']';
 						span.appendChild(text);
 						age.appendChild(span);
@@ -324,15 +324,15 @@ Foxtrick.modules['YouthSkills'] = {
 				loading = null;
 			}
 			if (response === null)
-				showError(Foxtrickl10n.getString('youthclub.api.nopermission'), 401);
+				showError(Foxtrick.L10n.getString('youthclub.api.nopermission'), 401);
 
 			if (reason === 'user')
-				showError(Foxtrickl10n.getString('youthclub.api.notuser').replace(/%s/, 'YouthSkills'), 401);
+				showError(Foxtrick.L10n.getString('youthclub.api.notuser').replace(/%s/, 'YouthSkills'), 401);
 
-			if (FoxtrickPrefs.isModuleEnabled('SkillColoring'))
+			if (Foxtrick.Prefs.isModuleEnabled('SkillColoring'))
 				Foxtrick.modules['SkillColoring'].execute(doc);
 
-			if (FoxtrickPrefs.isModuleEnabled('TeamStats'))
+			if (Foxtrick.Prefs.isModuleEnabled('TeamStats'))
 				Foxtrick.modules['TeamStats'].execute(doc);
 		};
 
@@ -365,16 +365,16 @@ Foxtrick.modules['YouthSkills'] = {
 			hyInfoDiv.id = 'ft-hy-skills-info';
 
 			var heading = doc.createElement('h2');
-			heading.textContent = Foxtrickl10n.getString('YouthSkills.header');
+			heading.textContent = Foxtrick.L10n.getString('YouthSkills.header');
 			hyInfoDiv.appendChild(heading);
 
 			var info = doc.createElement('span');
-			info.textContent = Foxtrickl10n.getString('YouthSkills.info');
+			info.textContent = Foxtrick.L10n.getString('YouthSkills.info');
 			hyInfoDiv.appendChild(info);
 
 			var legend = doc.createElement('ul');
 			var curLegend = doc.createElement('li');
-			curLegend.textContent = Foxtrickl10n.getString('YouthSkills.currentSkill');
+			curLegend.textContent = Foxtrick.L10n.getString('YouthSkills.currentSkill');
 			Foxtrick.addImage(doc, curLegend, {
 				src: '/Img/icons/transparent.gif',
 				class: 'ft-skillbar-hy-cur ft-skillbar-singlet'
@@ -382,7 +382,7 @@ Foxtrick.modules['YouthSkills'] = {
 			legend.appendChild(curLegend);
 
 			var predLegend = doc.createElement('li');
-			predLegend.textContent = Foxtrickl10n.getString('YouthSkills.skillEstimation');
+			predLegend.textContent = Foxtrick.L10n.getString('YouthSkills.skillEstimation');
 			Foxtrick.addImage(doc, predLegend, {
 				src: '/Img/icons/transparent.gif',
 				class: 'ft-skillbar-hy-pred ft-skillbar-singlet'
@@ -390,7 +390,7 @@ Foxtrick.modules['YouthSkills'] = {
 			legend.appendChild(predLegend);
 
 			var potLegend = doc.createElement('li');
-			potLegend.textContent = Foxtrickl10n.getString('YouthSkills.skillPotential');
+			potLegend.textContent = Foxtrick.L10n.getString('YouthSkills.skillPotential');
 			Foxtrick.addImage(doc, potLegend, {
 				src: '/Img/icons/transparent.gif',
 				class: 'ft-skillbar-hy-pot ft-skillbar-singlet'
@@ -399,7 +399,7 @@ Foxtrick.modules['YouthSkills'] = {
 			hyInfoDiv.appendChild(legend);
 
 			var info2 = doc.createElement('span');
-			info2.textContent = Foxtrickl10n.getString('YouthSkills.info2');
+			info2.textContent = Foxtrick.L10n.getString('YouthSkills.info2');
 			hyInfoDiv.appendChild(info2);
 
 			entry.parentNode.insertBefore(hyInfoDiv, entry);

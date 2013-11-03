@@ -46,7 +46,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 		var obj = mapping[type];
 		if (obj) {
 			return {
-				str: Foxtrickl10n.getString('match.type.' + obj.key),
+				str: Foxtrick.L10n.getString('match.type.' + obj.key),
 				className: obj.className
 			};
 		}
@@ -172,7 +172,7 @@ Foxtrick.util.matchView.fillMatches = function(container, xml, errorText) {
 				var liveImg = doc.createElement('img');
 				liveImg.className = 'matchHTLive';
 				liveImg.src = '/Img/Icons/transparent.gif';
-				liveImg.alt = liveImg.title = Foxtrickl10n.getString('MyMonitor.htLive');
+				liveImg.alt = liveImg.title = Foxtrick.L10n.getString('MyMonitor.htLive');
 				liveLink.appendChild(liveImg);
 				resultCell.appendChild(liveLink);
 			}

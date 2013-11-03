@@ -23,8 +23,8 @@ Foxtrick.modules['MarkUnread'] = {
 						markunread[p] = doc.createElement('a');
 						markunread[p].setAttribute('id', 'foxtrick-ur-link' + p);
 						markunread[p].className = 'foxtrick-unreadlink';
-						markunread[p].textContent = Foxtrickl10n.getString('MarkUnread.markunread');
-						markunread[p].title = Foxtrickl10n.getString('MarkUnread.markunread');
+						markunread[p].textContent = Foxtrick.L10n.getString('MarkUnread.markunread');
+						markunread[p].title = Foxtrick.L10n.getString('MarkUnread.markunread');
 						markunread[p].href = 'javascript:void(0);';
 						markunread[p] = Foxtrick.makeFeaturedElement(markunread[p], this);
 						var cfInnerWrapper = elems[i].parentNode.parentNode;

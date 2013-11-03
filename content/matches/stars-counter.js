@@ -70,7 +70,7 @@ Foxtrick.modules['StarsCounter'] = {
 		var container = Foxtrick.createFeaturedElement(doc, this, 'p');
 		mainBody.appendChild(container);
 		var title = doc.createElement('strong');
-		title.appendChild(doc.createTextNode(Foxtrickl10n.getString('matches.lineup.totalStars') +
+		title.appendChild(doc.createTextNode(Foxtrick.L10n.getString('matches.lineup.totalStars') +
 		                  ': '));
 		container.appendChild(title);
 		if (blue) {

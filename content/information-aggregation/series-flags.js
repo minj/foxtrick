@@ -31,7 +31,7 @@ Foxtrick.modules['SeriesFlags'] = {
 						var countryId = Foxtrick.XMLData.getCountryIdByLeagueId(data['leagueId']);
 						var country = Foxtrick.util.id.createFlagFromCountryId(doc, countryId);
 						flag.appendChild(country);
-						if (!FoxtrickPrefs.isModuleOptionEnabled('SeriesFlags', 'CountryOnly') &&
+						if (!Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'CountryOnly') &&
 						    data['seriesId'] !== 0) {
 							var series = doc.createElement('a');
 							series.className = 'inner smallText';
@@ -122,7 +122,7 @@ Foxtrick.modules['SeriesFlags'] = {
 				});
 			}, links);
 		};
-		if (FoxtrickPrefs.isModuleOptionEnabled('SeriesFlags', 'Guestbook')
+		if (Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'Guestbook')
 			&& Foxtrick.isPage(doc, 'guestbook')) {
 			// add to guest managers
 			var mainWrapper = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
@@ -134,7 +134,7 @@ Foxtrick.modules['SeriesFlags'] = {
 			modifyUserLinks(userLinks);
 		}
 		//We add also flag to the guestbook entry in teamPage, but we have to skip the own user link
-		if (FoxtrickPrefs.isModuleOptionEnabled('SeriesFlags', 'Guestbook')
+		if (Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'Guestbook')
 			&& Foxtrick.isPage(doc, 'teamPage')) {
 			var mainBoxes = doc.getElementById('ctl00_ctl00_CPContent_divStartMain').getElementsByClassName('mainBox');
 			Foxtrick.map(function(b) {
@@ -146,7 +146,7 @@ Foxtrick.modules['SeriesFlags'] = {
 				modifyUserLinks(userLinks);
 			}, mainBoxes);
 		}
-		if (FoxtrickPrefs.isModuleOptionEnabled('SeriesFlags', 'Supporters')
+		if (Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'Supporters')
 			&& Foxtrick.isPage(doc, 'teamPage')) {
 			// add to supporters
 			var sideBar = doc.getElementById('sidebar');
@@ -164,7 +164,7 @@ Foxtrick.modules['SeriesFlags'] = {
 				modifyUserLinks(userLinks);
 			}, nonVisitorsBoxes);
 		}
-		if (FoxtrickPrefs.isModuleOptionEnabled('SeriesFlags', 'Visitors')
+		if (Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'Visitors')
 			&& Foxtrick.any(function(n) {
 				return Foxtrick.isPage(doc, n);
 			}, ['teamPage', 'series', 'youthSeries', 'federation'])) {
@@ -185,7 +185,7 @@ Foxtrick.modules['SeriesFlags'] = {
 			);
 		}
 
-		if (FoxtrickPrefs.isModuleOptionEnabled('SeriesFlags', 'Tournaments')
+		if (Foxtrick.Prefs.isModuleOptionEnabled('SeriesFlags', 'Tournaments')
 			&& (Foxtrick.isPage(doc, 'tournaments')
 				|| Foxtrick.isPage(doc, 'tournamentsGroups')
 				|| Foxtrick.isPage(doc, 'tournamentsFixtures'))) {

@@ -45,19 +45,19 @@ Foxtrick.modules['PlayerFilters'] = {
 				//Foxtrick.listen(filterSelect, 'change', changeListener, false);
 				var option = doc.createElement('option');
 				option.value = 'equal';
-				option.textContent = Foxtrickl10n.getString('Filters.equal');
+				option.textContent = Foxtrick.L10n.getString('Filters.equal');
 				filterSelectOptions.appendChild(option);
 				var option = doc.createElement('option');
 				option.value = 'notEqual';
-				option.textContent = Foxtrickl10n.getString('Filters.notEqual');
+				option.textContent = Foxtrick.L10n.getString('Filters.notEqual');
 				filterSelectOptions.appendChild(option);
 				var option = doc.createElement('option');
 				option.value = 'over';
-				option.textContent = Foxtrickl10n.getString('Filters.over');
+				option.textContent = Foxtrick.L10n.getString('Filters.over');
 				filterSelectOptions.appendChild(option);
 				var option = doc.createElement('option');
 				option.value = 'under';
-				option.textContent = Foxtrickl10n.getString('Filters.under');
+				option.textContent = Foxtrick.L10n.getString('Filters.under');
 				filterSelectOptions.appendChild(option);
 				filterSelectOptionsDiv.appendChild(filterSelectOptions);
 
@@ -72,7 +72,7 @@ Foxtrick.modules['PlayerFilters'] = {
 				filterSelectOptionsDiv.appendChild(input);
 
 				var button_ok = doc.createElement('input');
-				button_ok.setAttribute('value', Foxtrickl10n.getString('button.ok'));
+				button_ok.setAttribute('value', Foxtrick.L10n.getString('button.ok'));
 				button_ok.setAttribute('id', 'filterSelectOptionsOk');
 				button_ok.setAttribute('type', 'button');
 				Foxtrick.onClick(button_ok, changeListener);
@@ -81,7 +81,7 @@ Foxtrick.modules['PlayerFilters'] = {
 
 				// rename filter to all
 				filterSelect.getElementsByTagName('option')[0].textContent =
-					Foxtrickl10n.getString('Filters.noFilter');
+					Foxtrick.L10n.getString('Filters.noFilter');
 
 				// remove 'addFilterOptions'
 				filterSelect.removeChild(filterSelect.getElementsByTagName('option')[1]);
@@ -124,7 +124,7 @@ Foxtrick.modules['PlayerFilters'] = {
 							specialities[player.speciality] = specialityCount++;
 						}
 						allPlayers[i].setAttribute('speciality',
-						                           'speciality-' + Foxtrickl10n
+						                           'speciality-' + Foxtrick.L10n
 						                           .getEnglishSpeciality(player.speciality));
 					}
 					if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'lastMatch')) {
@@ -149,7 +149,7 @@ Foxtrick.modules['PlayerFilters'] = {
 					|| Foxtrick.Pages.Players.isPropertyInList(playerList, 'yellowCard')) {
 					var option = doc.createElement('option');
 					option.value = 'cards';
-					option.textContent = Foxtrickl10n.getString('TeamStats.Cards');
+					option.textContent = Foxtrick.L10n.getString('TeamStats.Cards');
 					filterSelect.appendChild(option);
 				}
 
@@ -157,31 +157,31 @@ Foxtrick.modules['PlayerFilters'] = {
 					|| Foxtrick.Pages.Players.isPropertyInList(playerList, 'bruised')) {
 					var option = doc.createElement('option');
 					option.value = 'injured';
-					option.textContent = Foxtrickl10n.getString('TeamStats.Injured');
+					option.textContent = Foxtrick.L10n.getString('TeamStats.Injured');
 					filterSelect.appendChild(option);
 				}
 
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'transferListed')) {
 					var option = doc.createElement('option');
 					option.value = 'transfer-listed';
-					option.textContent = Foxtrickl10n.getString('TeamStats.TransferListed');
+					option.textContent = Foxtrick.L10n.getString('TeamStats.TransferListed');
 					filterSelect.appendChild(option);
 
 					var option = doc.createElement('option');
 					option.value = 'not-transfer-listed';
-					option.textContent = Foxtrickl10n.getString('TeamStats.NotTransferListed');
+					option.textContent = Foxtrick.L10n.getString('TeamStats.NotTransferListed');
 					filterSelect.appendChild(option);
 				}
 
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'lastMatch')) {
 					var option = doc.createElement('option');
 					option.value = 'played-latest';
-					option.textContent = Foxtrickl10n.getString('TeamStats.PlayedLatest');
+					option.textContent = Foxtrick.L10n.getString('TeamStats.PlayedLatest');
 					filterSelect.appendChild(option);
 
 					var option = doc.createElement('option');
 					option.value = 'not-played-latest';
-					option.textContent = Foxtrickl10n.getString('TeamStats.NotPlayedLatest');
+					option.textContent = Foxtrick.L10n.getString('TeamStats.NotPlayedLatest');
 					filterSelect.appendChild(option);
 				}
 
@@ -189,7 +189,7 @@ Foxtrick.modules['PlayerFilters'] = {
 					var speciality;
 					for (speciality in specialities) {
 						var option = doc.createElement('option');
-						option.value = 'speciality-' + Foxtrickl10n.getEnglishSpeciality(speciality);
+						option.value = 'speciality-' + Foxtrick.L10n.getEnglishSpeciality(speciality);
 						option.textContent = speciality;
 						filterSelect.appendChild(option);
 					}
@@ -198,7 +198,7 @@ Foxtrick.modules['PlayerFilters'] = {
 				if (Foxtrick.Pages.Players.isOldiesPage(doc) && Foxtrick.util.api.authorized()) {
 					var option = doc.createElement('option');
 					option.value = 'active';
-					option.textContent = Foxtrickl10n.getString('TeamStats.ActivePlayers');
+					option.textContent = Foxtrick.L10n.getString('TeamStats.ActivePlayers');
 					filterSelect.appendChild(option);
 				}
 
@@ -206,7 +206,7 @@ Foxtrick.modules['PlayerFilters'] = {
 				if (faceCards.length > 0) {
 					var option = doc.createElement('option');
 					option.value = 'face';
-					option.textContent = Foxtrickl10n.getString('TeamStats.Pictures');
+					option.textContent = Foxtrick.L10n.getString('TeamStats.Pictures');
 					filterSelect.appendChild(option);
 				}
 
@@ -214,12 +214,12 @@ Foxtrick.modules['PlayerFilters'] = {
 					if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'motherClubBonus')) {
 						var option = doc.createElement('option');
 						option.value = 'homegrown-player';
-						option.textContent = Foxtrickl10n.getString('TeamStats.HomeGrownPlayers');
+						option.textContent = Foxtrick.L10n.getString('TeamStats.HomeGrownPlayers');
 						filterSelect.appendChild(option);
 
 						var option = doc.createElement('option');
 						option.value = 'purchased-player';
-						option.textContent = Foxtrickl10n.getString('TeamStats.PurchasedPlayers');
+						option.textContent = Foxtrick.L10n.getString('TeamStats.PurchasedPlayers');
 						filterSelect.appendChild(option);
 					}
 				}
@@ -259,14 +259,14 @@ Foxtrick.modules['PlayerFilters'] = {
 				];
 				var option = doc.createElement('option');
 				option.value = 'attribute-all';
-				option.textContent = '---' + Foxtrickl10n.getString('Filters.Attributes') + '---';
+				option.textContent = '---' + Foxtrick.L10n.getString('Filters.Attributes') + '---';
 				filterSelect.appendChild(option);
 				for (var i = 0; i < attributeOptions.length; ++i) {
 					if (!Foxtrick.isOneOfPages(attributeOptions[i].pages, doc))
 						continue;
 					var option = doc.createElement('option');
 					option.value = 'attribute-' + attributeOptions[i].property;
-					option.textContent = Foxtrickl10n.getString(attributeOptions[i].name);
+					option.textContent = Foxtrick.L10n.getString(attributeOptions[i].name);
 					filterSelect.appendChild(option);
 				}
 
@@ -541,12 +541,12 @@ Foxtrick.modules['PlayerFilters'] = {
 		// players
 		var option = doc.createElement('option');
 		option.value = 'all';
-		option.textContent = '-- ' + Foxtrickl10n.getString('Filters.label') + ' --';
+		option.textContent = '-- ' + Foxtrick.L10n.getString('Filters.label') + ' --';
 		filterSelect.appendChild(option);
 
 		var option = doc.createElement('option');
 		option.value = 'addFilters';
-		option.textContent = Foxtrickl10n.getString('Filters.addFilterOptions');
+		option.textContent = Foxtrick.L10n.getString('Filters.addFilterOptions');
 		filterSelect.appendChild(option);
 
 

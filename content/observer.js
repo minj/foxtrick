@@ -12,13 +12,13 @@
 				openPrefsButton.addEventListener('click',
 				  function(ev) {
 					if (window.confirm('Are you sure you want to restore to default settings?')) {
-						FoxtrickPrefs.cleanupBranch();
+						Foxtrick.Prefs.cleanupBranch();
 					}
 				}, false);
 				var openPrefsButton = doc.getElementById('pref-open');
 				openPrefsButton.setAttribute('label', 'Open');
 				openPrefsButton.addEventListener('click', function(ev) {
-					FoxtrickPrefs.show();
+					Foxtrick.Prefs.show();
 				}, false);
 			}
 		}

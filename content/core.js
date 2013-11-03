@@ -61,15 +61,15 @@ Foxtrick.modules['Core'] = {
 	showChangeLog: function(doc) {
 		try {
 			// show change log if anything but forth number changes
-			if (FoxtrickPrefs.getString('oldVersion') === null ||
-			    FoxtrickPrefs.getString('oldVersion').match(/\d+\.\d+(\.\d+)?/)[0] !==
+			if (Foxtrick.Prefs.getString('oldVersion') === null ||
+			    Foxtrick.Prefs.getString('oldVersion').match(/\d+\.\d+(\.\d+)?/)[0] !==
 			    Foxtrick.version().match(/\d+\.\d+(\.\d+)?/)[0]) {
 				// set showReleaseNotes true for this version to get the new  beta changes shown
-				FoxtrickPrefs.setBool('showReleaseNotes', true);
+				Foxtrick.Prefs.setBool('showReleaseNotes', true);
 
-				if (FoxtrickPrefs.getBool('showReleaseNotes')) {
+				if (Foxtrick.Prefs.getBool('showReleaseNotes')) {
 					if (Foxtrick.platform != 'Opera')
-						FoxtrickPrefs.show('#tab=changes');
+						Foxtrick.Prefs.show('#tab=changes');
 					else { // opera inline version since we can't open options in opera
 						var show = function(releaseNotes) {
 							var changes = doc.createElement('div');
@@ -82,7 +82,7 @@ Foxtrick.modules['Core'] = {
 							div.appendChild(label);
 							var label = doc.createElement('p');
 							label.textContent = 'New version released. See the changelog on the preferences page';
-							//label.textContent = Foxtrickl10n.getString('releaseNotes.showFor');
+							//label.textContent = Foxtrick.L10n.getString('releaseNotes.showFor');
 							div.appendChild(label);
 							//var select = doc.createElement('select');
 							//select.id = 'pref-version-release-notes';
@@ -186,11 +186,11 @@ Foxtrick.modules['Core'] = {
 						Foxtrick.util.load.xml(Foxtrick.InternalPath + 'release-notes.xml', show);
 					}
 				}
-				FoxtrickPrefs.setString('oldVersion', Foxtrick.version());
+				Foxtrick.Prefs.setString('oldVersion', Foxtrick.version());
 			}
 		} catch (e) {
 			// catching very old 'wrong' formats and fix them by just using the upto date version
-			FoxtrickPrefs.setString('oldVersion', Foxtrick.version());
+			Foxtrick.Prefs.setString('oldVersion', Foxtrick.version());
 		}
 	},
 
@@ -208,7 +208,7 @@ Foxtrick.modules['Core'] = {
 	},
 
 	featureHighlight: function(doc) {
-		if (!FoxtrickPrefs.getBool('featureHighlight'))
+		if (!Foxtrick.Prefs.getBool('featureHighlight'))
 			return;
 		var css =	"[class^='ft'], [id^='ft']," + // 'ft' at front
 					"[class*=' ft'], [id*=' ft']," + // 'ft' at start word
@@ -219,12 +219,12 @@ Foxtrick.modules['Core'] = {
 		// remove old CSS if exists
 		if (featureCss) {
 			featureCss.parentNode.removeChild(featureCss);
-			FoxtrickPrefs.setBool('featureHighlight', false);
+			Foxtrick.Prefs.setBool('featureHighlight', false);
 		}
 		else {
 			// inject CSS
 			Foxtrick.util.inject.css(doc, css, 'ft-feature-highlight-css');
-			FoxtrickPrefs.setBool('featureHighlight', true);
+			Foxtrick.Prefs.setBool('featureHighlight', true);
 		}
 		Foxtrick.modules.UI.update(doc);
 	},

@@ -80,7 +80,7 @@ Foxtrick.modules['ExtraShortcuts'] = {
 							img1.setAttribute('style', 'margin-left:2px; ' +
 							                  'background-repeat:no-repeat; background-image: ' +
 							                  'url(' + iconurl + ') !important;');
-							FoxtrickPrefs.setString(radio + 'CurrentIcon', iconurl);
+							Foxtrick.Prefs.setString(radio + 'CurrentIcon', iconurl);
 						}
 						else {
 							var item = doc.createElement('li');
@@ -97,7 +97,7 @@ Foxtrick.modules['ExtraShortcuts'] = {
 							img1.setAttribute('style', 'margin-left:2px; ' +
 							                  'background-repeat:no-repeat; background-image: ' +
 							                  'url(' + iconurl + ') !important;');
-							FoxtrickPrefs.setString(radio + 'CurrentIcon', iconurl);
+							Foxtrick.Prefs.setString(radio + 'CurrentIcon', iconurl);
 						}
 						var websites = radio_xml.getElementsByTagName('website');
 						for (var j = 0; j < websites.length; ++j) {
@@ -130,7 +130,7 @@ Foxtrick.modules['ExtraShortcuts'] = {
 		if (targetNode) {
 			var j;
 			for (j in this.LINKS) {
-				if (FoxtrickPrefs.isModuleOptionEnabled('ExtraShortcuts', j)) {
+				if (Foxtrick.Prefs.isModuleOptionEnabled('ExtraShortcuts', j)) {
 					var link = doc.createElement('a');
 					link.className = 'ft_extra-shortcuts';
 					link.href = this.LINKS[j].link;
@@ -138,14 +138,14 @@ Foxtrick.modules['ExtraShortcuts'] = {
 					var img1 = doc.createElement('img');
 					img1.setAttribute('class', this.LINKS[j].imgClass);
 					img1.src = '/Img/Icons/transparent.gif';
-					img1.title = Foxtrickl10n.getString('ExtraShortcuts.' +
+					img1.title = Foxtrick.L10n.getString('ExtraShortcuts.' +
 														this.LINKS[j].property);
-					img1.alt = Foxtrickl10n.getString('ExtraShortcuts.' +
+					img1.alt = Foxtrick.L10n.getString('ExtraShortcuts.' +
 													  this.LINKS[j].property);
 					img1 = Foxtrick.makeFeaturedElement(img1, this);
 
 					link.appendChild(img1);
-					if (FoxtrickPrefs.isModuleOptionEnabled('ExtraShortcuts', 'AddLeft'))
+					if (Foxtrick.Prefs.isModuleOptionEnabled('ExtraShortcuts', 'AddLeft'))
 						targetNode.insertBefore(link, targetNode.firstChild);
 					else {
 						if (targetNode.lastChild.nodeName == 'BR') {
@@ -157,21 +157,21 @@ Foxtrick.modules['ExtraShortcuts'] = {
 					}
 				}
 			}
-			if (FoxtrickPrefs.isModuleOptionEnabled('ExtraShortcuts', 'FoxTrickPrefs')) {
+			if (Foxtrick.Prefs.isModuleOptionEnabled('ExtraShortcuts', 'FoxTrickPrefs')) {
 				var link = doc.createElement('a');
 				link.className = 'ft_extra-shortcuts';
 				link.href = 'javascript:void(0);';
 				Foxtrick.onClick(link, function() {
-					FoxtrickPrefs.show('#tab=on_page&view-by=page');});
+					Foxtrick.Prefs.show('#tab=on_page&view-by=page');});
 				var img1 = doc.createElement('img');
 				img1.setAttribute('class', 'ftSCFtPrefs');
 				img1.src = '/Img/Icons/transparent.gif';
-				img1.title = Foxtrickl10n.getString('ExtraShortcuts.ftprefs');
-				img1.alt = Foxtrickl10n.getString('ExtraShortcuts.ftprefs');
+				img1.title = Foxtrick.L10n.getString('ExtraShortcuts.ftprefs');
+				img1.alt = Foxtrick.L10n.getString('ExtraShortcuts.ftprefs');
 				img1 = Foxtrick.makeFeaturedElement(img1, this);
 
 				link.appendChild(img1);
-				if (FoxtrickPrefs.isModuleOptionEnabled('ExtraShortcuts', 'AddLeft'))
+				if (Foxtrick.Prefs.isModuleOptionEnabled('ExtraShortcuts', 'AddLeft'))
 					targetNode.insertBefore(link, targetNode.firstChild);
 				else {
 					if (targetNode.lastChild.nodeName == 'BR') {
@@ -185,7 +185,7 @@ Foxtrick.modules['ExtraShortcuts'] = {
 
 			for (i = 0; i < this.RADIOS.length; ++i) {
 				var radio = this.RADIOS[i];
-				if (FoxtrickPrefs.isModuleOptionEnabled('ExtraShortcuts', radio)) {
+				if (Foxtrick.Prefs.isModuleOptionEnabled('ExtraShortcuts', radio)) {
 
 					var link = Foxtrick.createFeaturedElement(doc, this, 'a');
 					link.className = 'ft_extra-shortcuts';
@@ -195,9 +195,9 @@ Foxtrick.modules['ExtraShortcuts'] = {
 					img1.setAttribute('class', 'ftSCRadio');
 					img1.src = '/Img/Icons/transparent.gif';
 					img1.id = radio + 'Icon';
-					if (FoxtrickPrefs.getString(radio + 'CurrentIcon') != null)
+					if (Foxtrick.Prefs.getString(radio + 'CurrentIcon') != null)
 						img1.setAttribute('style', 'margin-left:2px; background-image: url(' +
-						                  FoxtrickPrefs.getString(radio + 'CurrentIcon') +
+						                  Foxtrick.Prefs.getString(radio + 'CurrentIcon') +
 						                  ') !important;');
 					link.appendChild(img1);
 
@@ -206,7 +206,7 @@ Foxtrick.modules['ExtraShortcuts'] = {
 					span.id = radio + 'Span';
 					span.appendChild(link);
 
-					if (FoxtrickPrefs.isModuleOptionEnabled('ExtraShortcuts', 'AddLeft'))
+					if (Foxtrick.Prefs.isModuleOptionEnabled('ExtraShortcuts', 'AddLeft'))
 						targetNode.insertBefore(span, targetNode.firstChild);
 					else {
 						if (targetNode.lastChild.nodeName == 'BR') {

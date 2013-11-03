@@ -198,7 +198,7 @@ Foxtrick.modules['SkillColoring'] = {
 		}
 
 		if (skill_number && (type == 'gentleness' || type == 'honesty' || type == 'aggressiveness')
-		    && FoxtrickPrefs.isModuleEnabled('PersonalityImages'))
+		    && Foxtrick.Prefs.isModuleEnabled('PersonalityImages'))
 			skill_number = false; //don't add number if we have PersonalityImages
 
 		if (!(skill_number || skill_translated))
@@ -223,22 +223,22 @@ Foxtrick.modules['SkillColoring'] = {
 	},
 	run: function(doc) {
 		if (Foxtrick.isPage(doc, 'ownYouthPlayers') &&
-			FoxtrickPrefs.isModuleEnabled('YouthSkills'))
+			Foxtrick.Prefs.isModuleEnabled('YouthSkills'))
 			return;
 		this.execute(doc);
 	},
 	execute: function(doc) {
 
-		var skill_color = FoxtrickPrefs.isModuleOptionEnabled('SkillColoring', 'skill_color');
-		var non_skill_color = FoxtrickPrefs.isModuleOptionEnabled('SkillColoring',
+		var skill_color = Foxtrick.Prefs.isModuleOptionEnabled('SkillColoring', 'skill_color');
+		var non_skill_color = Foxtrick.Prefs.isModuleOptionEnabled('SkillColoring',
 		                                                          'non_skill_color');
-		var no_colors = FoxtrickPrefs.isModuleOptionEnabled('SkillColoring', 'no_colors');
-		var skill_number = FoxtrickPrefs.isModuleOptionEnabled('SkillColoring', 'skill_number');
-		var skill_translated = FoxtrickPrefs.isModuleOptionEnabled('SkillColoring',
+		var no_colors = Foxtrick.Prefs.isModuleOptionEnabled('SkillColoring', 'no_colors');
+		var skill_number = Foxtrick.Prefs.isModuleOptionEnabled('SkillColoring', 'skill_number');
+		var skill_translated = Foxtrick.Prefs.isModuleOptionEnabled('SkillColoring',
 		                                                           'skill_translated');
-		var skill_translated_title = FoxtrickPrefs.isModuleOptionEnabled('SkillColoring',
+		var skill_translated_title = Foxtrick.Prefs.isModuleOptionEnabled('SkillColoring',
 		                                                                 'skill_translated_title');
-		var skill_select = FoxtrickPrefs.isModuleOptionEnabled('SkillColoring', 'skill_select');
+		var skill_select = Foxtrick.Prefs.isModuleOptionEnabled('SkillColoring', 'skill_select');
 
 		var playerDetailsChange = function(ev) {
 			// Foxtrick.log('playerDetailsChange')
@@ -266,7 +266,7 @@ Foxtrick.modules['SkillColoring'] = {
 					var span = special[0], type = special[1];
 					var skill = span.textContent;
 					span.textContent = null;
-					var level = Foxtrickl10n.getLevelFromText(skill);
+					var level = Foxtrick.L10n.getLevelFromText(skill);
 					var newLink = createLink(type, level, skill, skill_translated);
 					// adding a link to apply styling, using 'global' skill_translated
 					span.appendChild(newLink);
@@ -317,7 +317,7 @@ Foxtrick.modules['SkillColoring'] = {
 							td.appendChild(temp);
 							var skills = child.textContent.split('/');
 							if (skills[0]) {
-								var level = Foxtrickl10n.getLevelFromText(skills[0]);
+								var level = Foxtrick.L10n.getLevelFromText(skills[0]);
 								var newLink = createLink('skill', level, skills[0], translated);
 								parent.insertBefore(newLink, child);
 								++j;
@@ -327,7 +327,7 @@ Foxtrick.modules['SkillColoring'] = {
 								++j;
 							}
 							if (skills[1]) {
-								var level = Foxtrickl10n.getLevelFromText(skills[1]);
+								var level = Foxtrick.L10n.getLevelFromText(skills[1]);
 								var newLink = createLink('skill', level, skills[1], translated);
 								parent.insertBefore(newLink, child);
 								++j;
@@ -340,7 +340,7 @@ Foxtrick.modules['SkillColoring'] = {
 						var skill = td.textContent.trim();
 						var percentImage = td.getElementsByTagName('img')[0];
 						var level = (percentImage) ? percentImage.title.match(/\d+/) :
-							Foxtrickl10n.getLevelFromText(skill);
+							Foxtrick.L10n.getLevelFromText(skill);
 						td.removeChild(td.lastChild);
 						if (percentImage) td.appendChild(doc.createTextNode('\u00a0'));
 

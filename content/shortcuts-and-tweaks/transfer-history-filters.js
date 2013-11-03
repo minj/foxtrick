@@ -20,7 +20,7 @@ Foxtrick.modules['TransferHistoryFilters'] = {
 		var select = doc.createElement('select');
 		var label = doc.createElement('label');
 		label.setAttribute('for', 'ft-transfer-history-filter');
-		label.textContent = Foxtrickl10n.getString('TransferHistoryFilters.filter');
+		label.textContent = Foxtrick.L10n.getString('TransferHistoryFilters.filter');
 		Foxtrick.addClass(label, 'ft-transfer-history-filter-label');
 		Foxtrick.addClass(label, 'strong');
 		select.setAttribute('id', 'ft-transfer-history-filter');
@@ -29,7 +29,7 @@ Foxtrick.modules['TransferHistoryFilters'] = {
 		var o;
 		for (o in options) {
 			var option = doc.createElement('option');
-			option.textContent = Foxtrickl10n.getString('TransferHistoryFilters.' + options[o]);
+			option.textContent = Foxtrick.L10n.getString('TransferHistoryFilters.' + options[o]);
 			option.setAttribute('value', options[o]);
 			select.appendChild(option);
 		}

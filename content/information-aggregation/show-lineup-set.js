@@ -19,7 +19,7 @@ Foxtrick.modules['ShowLineupSet'] = {
 		var bots = [];
 
 		// check teams that have set a lineup
-		if (FoxtrickPrefs.isModuleOptionEnabled('ShowLineupSet', 'LineupSet') &&
+		if (Foxtrick.Prefs.isModuleOptionEnabled('ShowLineupSet', 'LineupSet') &&
 			Foxtrick.isPage(doc, 'series')) {
 			var newsFeed = doc.getElementById('ctl00_ctl00_CPContent_CPMain_repLLUFeed');
 			var items = newsFeed.getElementsByClassName('feedItem');
@@ -124,7 +124,7 @@ Foxtrick.modules['ShowLineupSet'] = {
 				}
 				// wins (for results only)
 				if (isResultTable(table)
-					&& FoxtrickPrefs.isModuleOptionEnabled('ShowLineupSet', 'Winning')) {
+					&& Foxtrick.Prefs.isModuleOptionEnabled('ShowLineupSet', 'Winning')) {
 
 					var teams = makeTeamNodes(link);
 
@@ -142,7 +142,7 @@ Foxtrick.modules['ShowLineupSet'] = {
 			}
 		}
 
-		if (FoxtrickPrefs.isModuleOptionEnabled('ShowLineupSet', 'Standing')) {
+		if (Foxtrick.Prefs.isModuleOptionEnabled('ShowLineupSet', 'Standing')) {
 				if(Foxtrick.isPage(doc, 'youthSeries')) {
 					var correctTeam = "TeamID="+Foxtrick.util.id.getOwnYouthTeamId();
 				} else {

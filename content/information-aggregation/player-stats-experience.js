@@ -139,7 +139,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 				if (gameType == 'matchFriendly')
 					return 'matchNtFriendly';
 				else if (gameType == 'matchLeague') {
-					var weekOffset = FoxtrickPrefs
+					var weekOffset = Foxtrick.Prefs
 						.getString('module.HTDateFormat.FirstDayOfWeekOffset_text');
 					var htDate = Foxtrick.util.time.gregorianToHT(date, weekOffset, false);
 					//oldies wc finals are in odd seasons, u20 in even seasons
@@ -165,7 +165,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		};
 
 		//get all possible links to show max amount of games
-		if (FoxtrickPrefs.isModuleOptionEnabled('PlayerStatsExperience', 'AlwaysShowAll')) {
+		if (Foxtrick.Prefs.isModuleOptionEnabled('PlayerStatsExperience', 'AlwaysShowAll')) {
 			convertLinksToShowAll();
 		}
 		if (Foxtrick.isPage(doc, 'playerDetails'))
@@ -190,8 +190,8 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		Foxtrick.addClass(ts_xp, 'stats');
 		Foxtrick.addClass(ts_xp, 'ft-dummy');
 		ts_xp.textContent =
-			Foxtrickl10n.getString('PlayerStatsExperience.ExperienceChange.title.abbr');
-		ts_xp.title = Foxtrickl10n.getString('PlayerStatsExperience.ExperienceChange.title');
+			Foxtrick.L10n.getString('PlayerStatsExperience.ExperienceChange.title.abbr');
+		ts_xp.title = Foxtrick.L10n.getString('PlayerStatsExperience.ExperienceChange.title');
 
 		stats_head.insertBefore(ts_xp, stats_head.cells[7]);
 
@@ -271,7 +271,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			if (walkover) {
 				Foxtrick.addClass(ts_xp, 'ft-xp-walkover');
 				ts_xp.textContent = pseudo_points.toFixed(3);
-				ts_xp.setAttribute('title', Foxtrickl10n
+				ts_xp.setAttribute('title', Foxtrick.L10n
 				                   .getString('PlayerStatsExperience.Walkover'));
 			} else {
 				ts_xp.textContent = xp_gain.toFixed(3);
@@ -311,7 +311,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 
 		var span = doc.createElement('span');
 		var textNode =
-			doc.createTextNode(Foxtrickl10n
+			doc.createTextNode(Foxtrick.L10n
 							   .getString('PlayerStatsExperience.PtsPerLevel')
 							   .replace(/%1/, this.pts_for_skillUp.toFixed(2)));
 		span.appendChild(textNode);
@@ -321,13 +321,13 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		if (showAllLink && !this.store.skillup) {
 			var span = doc.createElement('span');
 			var textNode =
-				doc.createTextNode(Foxtrickl10n
+				doc.createTextNode(Foxtrick.L10n
 				                   .getString('PlayerStatsExperience.NotAllMatchesVisible'));
 			span.appendChild(textNode);
 			div.appendChild(span);
 		} else if (!this.store.skillup) {
 			var span = doc.createElement('span');
-			var textNode = doc.createTextNode(Foxtrickl10n
+			var textNode = doc.createTextNode(Foxtrick.L10n
 			                                  .getString('PlayerStatsExperience.NoSkillUpFound'));
 			span.appendChild(textNode);
 			div.appendChild(span);
@@ -341,7 +341,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		];
 
 		var xp_header = doc.createElement('h2');
-		var headerTitle = doc.createTextNode(Foxtrickl10n
+		var headerTitle = doc.createTextNode(Foxtrick.L10n
 		                                     .getString('PlayerStatsExperience.Experience'));
 		xp_header.appendChild(headerTitle);
 		var matchListTable = doc.createElement('div');
@@ -353,32 +353,32 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 
 		var thead_tr = doc.createElement('tr');
 		var cell = doc.createElement('th');
-		cell.textContent = Foxtrickl10n.getString('PlayerStatsExperience.MatchesSinceSkilup');
+		cell.textContent = Foxtrick.L10n.getString('PlayerStatsExperience.MatchesSinceSkilup');
 
 		thead_tr.appendChild(cell);
 		thead.appendChild(thead_tr);
 
 		var cell = doc.createElement('th');
 		Foxtrick.addClass(cell, 'ft-xp-data-value');
-		cell.textContent = Foxtrickl10n.getString('PlayerStatsExperience.matches');
+		cell.textContent = Foxtrick.L10n.getString('PlayerStatsExperience.matches');
 		thead_tr.appendChild(cell);
 		thead.appendChild(thead_tr);
 
 		var cell = doc.createElement('th');
 		Foxtrick.addClass(cell, 'ft-xp-data-value');
-		cell.textContent = Foxtrickl10n.getString('PlayerStatsExperience.minutes');
+		cell.textContent = Foxtrick.L10n.getString('PlayerStatsExperience.minutes');
 		thead_tr.appendChild(cell);
 		thead.appendChild(thead_tr);
 
 		var cell = doc.createElement('th');
 		Foxtrick.addClass(cell, 'ft-xp-data-value');
-		cell.textContent = Foxtrickl10n.getString('PlayerStatsExperience.minXPpts');
+		cell.textContent = Foxtrick.L10n.getString('PlayerStatsExperience.minXPpts');
 		thead_tr.appendChild(cell);
 		thead.appendChild(thead_tr);
 
 		var cell = doc.createElement('th');
 		Foxtrick.addClass(cell, 'ft-xp-data-value');
-		cell.textContent = Foxtrickl10n.getString('PlayerStatsExperience.maxXPpts');
+		cell.textContent = Foxtrick.L10n.getString('PlayerStatsExperience.maxXPpts');
 		thead_tr.appendChild(cell);
 		thead.appendChild(thead_tr);
 
@@ -392,7 +392,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 
 			var cell = doc.createElement('td');
 			cell.setAttribute('id', 'ft-xp-' + type + '-desc');
-			cell.textContent = Foxtrickl10n.getString('PlayerStatsExperience.' + type);
+			cell.textContent = Foxtrick.L10n.getString('PlayerStatsExperience.' + type);
 			row.appendChild(cell);
 
 			var cell = doc.createElement('td');
@@ -435,7 +435,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		//xp pts
 		var row = doc.createElement('tr');
 		var cell = doc.createElement('td');
-		cell.textContent = Foxtrickl10n.getString('PlayerStatsExperience.sum');
+		cell.textContent = Foxtrick.L10n.getString('PlayerStatsExperience.sum');
 		row.appendChild(cell);
 
 		var cell = doc.createElement('td');
@@ -459,7 +459,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		var row = doc.createElement('tr');
 		var cell = doc.createElement('td');
 		var bold = doc.createElement('b');
-		bold.textContent = Foxtrickl10n.getString('PlayerStatsExperience.Experience');
+		bold.textContent = Foxtrick.L10n.getString('PlayerStatsExperience.Experience');
 		cell.appendChild(bold);
 		row.appendChild(cell);
 
@@ -519,7 +519,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 		//header for the old table
 		var table_header = doc.createElement('h2');
 		var table_header_title =
-			doc.createTextNode(Foxtrickl10n.getString('PlayerStatsExperience.PerformanceHistory'));
+			doc.createTextNode(Foxtrick.L10n.getString('PlayerStatsExperience.PerformanceHistory'));
 		table_header.appendChild(table_header_title);
 		navigation.parentNode.insertBefore(table_header, navigation);
 	}

@@ -93,9 +93,9 @@ Foxtrick.modules['ForumLeaveButton'] = {
 		var leaveConf = doc.createElement('div');
 		leaveConf.setAttribute('id', 'ftLC-btn' + foldersCounter);
 		leaveConf.setAttribute('class', 'ft_actionicon foxtrickRemove float_right');
-		leaveConf.setAttribute('title', Foxtrickl10n.getString('ForumLeaveButton.LeaveForum'));
+		leaveConf.setAttribute('title', Foxtrick.L10n.getString('ForumLeaveButton.LeaveForum'));
 		Foxtrick.onClick(leaveConf, function(ev) {
-			if (confirm(Foxtrickl10n.getString('ForumLeaveButton.alert'))) {
+			if (confirm(Foxtrick.L10n.getString('ForumLeaveButton.alert'))) {
 				Foxtrick.newTab('http://' + doc.location.hostname +
 				                '/MyHattrick/Preferences/ForumSettings.aspx?LeaveConf=' + confName,
 				                '_self');

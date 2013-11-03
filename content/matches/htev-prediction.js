@@ -55,16 +55,16 @@ Foxtrick.modules['HTEVPrediction'] = {
 						var htev_link = doc.createElement('a');
 						if (isFutureMatch && leagueId) {
 							htev_link.href = 'http://htev.org/search_leagueid/?SeriesID=' + leagueId;
-							htev_link.setAttribute('title', Foxtrickl10n
+							htev_link.setAttribute('title', Foxtrick.L10n
 							                       .getString('HTEVPrediction.visitLeague'));
 						} else if (isFutureMatch && !leagueId) {
 							htev_link.href = 'http://htev.org/match_to_league/' + matchid + '/';
-							htev_link.setAttribute('title', Foxtrickl10n
+							htev_link.setAttribute('title', Foxtrick.L10n
 							                       .getString('HTEVPrediction.visitLeague'));
 						}
 						else {
 							htev_link.href = 'http://htev.org/match/' + matchid + '/';
-							htev_link.setAttribute('title', Foxtrickl10n
+							htev_link.setAttribute('title', Foxtrick.L10n
 							                       .getString('HTEVPrediction.visitDetailed'));
 						}
 
@@ -103,19 +103,19 @@ Foxtrick.modules['HTEVPrediction'] = {
 							if (!isFutureMatch)
 								var thead_row_t = doc.createElement('th');
 							var thead_row_a = doc.createElement('th');
-							thead_row_h.textContent = Foxtrickl10n
+							thead_row_h.textContent = Foxtrick.L10n
 								.getString('HTEVPrediction.home.short');
 							if (!isFutureMatch)
-								thead_row_t.textContent = Foxtrickl10n
+								thead_row_t.textContent = Foxtrick.L10n
 									.getString('HTEVPrediction.tie.short');
-							thead_row_a.textContent = Foxtrickl10n
+							thead_row_a.textContent = Foxtrick.L10n
 								.getString('HTEVPrediction.away.short');
-							thead_row_h.setAttribute('title', Foxtrickl10n
+							thead_row_h.setAttribute('title', Foxtrick.L10n
 							                         .getString('HTEVPrediction.explainHome'));
 							if (!isFutureMatch)
-								thead_row_t.setAttribute('title', Foxtrickl10n
+								thead_row_t.setAttribute('title', Foxtrick.L10n
 								                         .getString('HTEVPrediction.explainTie'));
-							thead_row_a.setAttribute('title', Foxtrickl10n
+							thead_row_a.setAttribute('title', Foxtrick.L10n
 							                         .getString('HTEVPrediction.explainAway'));
 							thead_row.appendChild(thead_row_h);
 							if (!isFutureMatch)

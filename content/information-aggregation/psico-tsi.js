@@ -48,27 +48,27 @@ Foxtrick.modules['PsicoTSI'] = {
 	 * @param	{document}	doc
 	 */
 	run: function(doc) {
-		this.title = Foxtrickl10n.getString('PsicoTSI.title');
+		this.title = Foxtrick.L10n.getString('PsicoTSI.title');
 		this.skills = [
-			Foxtrickl10n.getString('Form'),
-			Foxtrickl10n.getString('Stamina'),
-			Foxtrickl10n.getString('Playmaking'),
-			Foxtrickl10n.getString('Winger'),
-			Foxtrickl10n.getString('Scoring'),
-			Foxtrickl10n.getString('Keeper'),
-			Foxtrickl10n.getString('Passing'),
-			Foxtrickl10n.getString('Defending'),
-			Foxtrickl10n.getString('Set_pieces'),
+			Foxtrick.L10n.getString('Form'),
+			Foxtrick.L10n.getString('Stamina'),
+			Foxtrick.L10n.getString('Playmaking'),
+			Foxtrick.L10n.getString('Winger'),
+			Foxtrick.L10n.getString('Scoring'),
+			Foxtrick.L10n.getString('Keeper'),
+			Foxtrick.L10n.getString('Passing'),
+			Foxtrick.L10n.getString('Defending'),
+			Foxtrick.L10n.getString('Set_pieces'),
 		];
 		var module = this;
 		Foxtrick.util.currency.establish(doc, function() {
 			if (Foxtrick.isPage(doc, 'playerDetails'))
 				module.runPlayer(doc);
 			if ((Foxtrick.isPage(doc, 'players') || Foxtrick.isPage(doc, 'ntPlayers')) &&
-				FoxtrickPrefs.isModuleOptionEnabled('PsicoTSI', 'enablePlayersPage'))
+				Foxtrick.Prefs.isModuleOptionEnabled('PsicoTSI', 'enablePlayersPage'))
 				module.runPlayers(doc);
 			if (Foxtrick.isPage(doc, 'transferSearchResult') &&
-				FoxtrickPrefs.isModuleOptionEnabled('PsicoTSI', 'enableTLPage'))
+				Foxtrick.Prefs.isModuleOptionEnabled('PsicoTSI', 'enableTLPage'))
 				module.runTL(doc);
 		});
 	},
@@ -139,7 +139,7 @@ Foxtrick.modules['PsicoTSI'] = {
 	 * @param	{document}	doc
 	 */
 	runTL: function(doc) {
-		var useLinks = FoxtrickPrefs.isModuleOptionEnabled('PsicoTSI', 'displayAsLink');
+		var useLinks = Foxtrick.Prefs.isModuleOptionEnabled('PsicoTSI', 'displayAsLink');
 		var players = Foxtrick.Pages.TransferSearchResults.getPlayerList(doc);
 		var playerContainers = doc.getElementById('mainBody')
 			.getElementsByClassName('transferPlayerInfo');
@@ -261,7 +261,7 @@ Foxtrick.modules['PsicoTSI'] = {
 		var addImage = function(type) {
 			var messageP = doc.createElement('p');
 			imgattr.title = imgattr['aria-label'] = messageP.textContent =
-				Foxtrickl10n.getString('PsicoTSI.' + type);
+				Foxtrick.L10n.getString('PsicoTSI.' + type);
 			imgattr.src = module.IMAGES[type];
 			var imgWrap = doc.createElement('span');
 			Foxtrick.addImage(doc, imgWrap, imgattr);
@@ -310,31 +310,31 @@ Foxtrick.modules['PsicoTSI'] = {
 			table.innerHTML = '<tr><th colspan="4" class="center"><b>' +
 				mainSkillText.toUpperCase() + '</tr>' +
 				'<tr><th colspan="2" class="center"><b>' +
-				Foxtrickl10n.getString('PsicoTSI.TSI_PREDICTION') + '</b></th>' +
+				Foxtrick.L10n.getString('PsicoTSI.TSI_PREDICTION') + '</b></th>' +
 				'<th colspan="2" class="center endColumn1"><b>' +
-				Foxtrickl10n.getString('PsicoTSI.WAGE_PREDICTION') + ' (' +
+				Foxtrick.L10n.getString('PsicoTSI.WAGE_PREDICTION') + ' (' +
 				Foxtrick.util.currency.getSymbol(doc) + ')</b></th></tr>' +
-				'<tr><td><b>' + Foxtrickl10n.getString('PsicoTSI.FORM_SUBLEVELS') +
-				'</b></td><td><b>' + Foxtrickl10n.getString('PsicoTSI.PREDICTION') + '</td>' +
+				'<tr><td><b>' + Foxtrick.L10n.getString('PsicoTSI.FORM_SUBLEVELS') +
+				'</b></td><td><b>' + Foxtrick.L10n.getString('PsicoTSI.PREDICTION') + '</td>' +
 				'<td class="endColumn1"><b>' +
-				Foxtrickl10n.getString('PsicoTSI.SECONDARIES_SUBLEVELS') +
-				'</b></td><td><b>' + Foxtrickl10n.getString('PsicoTSI.PREDICTION') + '</td></tr>' +
-				'<tr><td>' + Foxtrickl10n.getString('PsicoTSI.FORM_HIGH') + '</td><td>' +
+				Foxtrick.L10n.getString('PsicoTSI.SECONDARIES_SUBLEVELS') +
+				'</b></td><td><b>' + Foxtrick.L10n.getString('PsicoTSI.PREDICTION') + '</td></tr>' +
+				'<tr><td>' + Foxtrick.L10n.getString('PsicoTSI.FORM_HIGH') + '</td><td>' +
 				formHigh + '</td>' + '<td class="endColumn1">' +
-				Foxtrickl10n.getString('PsicoTSI.DECIMALS_HIGH') + '</td><td' +
+				Foxtrick.L10n.getString('PsicoTSI.DECIMALS_HIGH') + '</td><td' +
 				(!isWagePredictionAvailable ? ' class="shy"' : '') + '>' + wageHigh + '</td></tr>' +
-				'<tr><td>' + Foxtrickl10n.getString('PsicoTSI.FORM_AVG') + '</td><td>' +
+				'<tr><td>' + Foxtrick.L10n.getString('PsicoTSI.FORM_AVG') + '</td><td>' +
 				formAvg + '</td>' + '<td class="endColumn1">' +
-				Foxtrickl10n.getString('PsicoTSI.DECIMALS_AVG') + '</td><td' +
+				Foxtrick.L10n.getString('PsicoTSI.DECIMALS_AVG') + '</td><td' +
 				(!isWagePredictionAvailable? ' class="shy"' : '') + '>' + wageAvg + '</td></tr>' +
-				'<tr><td>' + Foxtrickl10n.getString('PsicoTSI.FORM_LOW') + '</td><td>' +
+				'<tr><td>' + Foxtrick.L10n.getString('PsicoTSI.FORM_LOW') + '</td><td>' +
 				formLow + '</td>' + '<td class="endColumn1">' +
-				Foxtrickl10n.getString('PsicoTSI.DECIMALS_LOW') + '</td><td' +
+				Foxtrick.L10n.getString('PsicoTSI.DECIMALS_LOW') + '</td><td' +
 				(!isWagePredictionAvailable ? ' class="shy"' : '') + '>' + wageLow + '</td></tr>';
 		}
 
-		var onLeft = FoxtrickPrefs.isModuleOptionEnabled('PsicoTSI', 'showOnLeft');
-		var hide = FoxtrickPrefs.isModuleOptionEnabled('PsicoTSI', 'hideUnderSkills');
+		var onLeft = Foxtrick.Prefs.isModuleOptionEnabled('PsicoTSI', 'showOnLeft');
+		var hide = Foxtrick.Prefs.isModuleOptionEnabled('PsicoTSI', 'hideUnderSkills');
 		if (!onLeft || !hide) {
 			var title = doc.createElement('h2');
 			title.appendChild(doc.createTextNode(this.title));
@@ -354,7 +354,7 @@ Foxtrick.modules['PsicoTSI'] = {
 
 			if (typeof (maxSkill) != 'undefined') {
 				// skills available
-				var STR_FORM = Foxtrickl10n.getString('PsicoTSI.FORM');
+				var STR_FORM = Foxtrick.L10n.getString('PsicoTSI.FORM');
 				var CurrencyName = Foxtrick.util.currency.getSymbol(doc);
 
 				var formH = '<p>[' + STR_FORM + '+]=' + formHigh + '</p>';
@@ -397,7 +397,7 @@ Foxtrick.modules['PsicoTSI'] = {
 		var players_img = function(type, title, cls) {
 			this.src = module.IMAGES[type];
 			if (typeof (title) == 'undefined')
-				title = Foxtrickl10n.getString('PsicoTSI.' + type);
+				title = Foxtrick.L10n.getString('PsicoTSI.' + type);
 			this.alt = this.title = title;
 			if (cls)
 				this.class = cls;
@@ -452,23 +452,23 @@ Foxtrick.modules['PsicoTSI'] = {
 		var mainSkillText = this.skills[maxSkill];
 
 		var paragraph = doc.createElement('p');
-		var pre = mainSkillText + ' [' + Foxtrickl10n.getString('PsicoTSI.FORM') + '=';
-		paragraph.textContent = pre + Foxtrickl10n.getString('PsicoTSI.FORM_HIGH') + ']=' + formHigh;
+		var pre = mainSkillText + ' [' + Foxtrick.L10n.getString('PsicoTSI.FORM') + '=';
+		paragraph.textContent = pre + Foxtrick.L10n.getString('PsicoTSI.FORM_HIGH') + ']=' + formHigh;
 		psicotsi_info.appendChild(paragraph);
 
 		paragraph = doc.createElement('p');
-		paragraph.textContent = pre + Foxtrickl10n.getString('PsicoTSI.FORM_AVG') + ']=' + formAvg;
+		paragraph.textContent = pre + Foxtrick.L10n.getString('PsicoTSI.FORM_AVG') + ']=' + formAvg;
 		psicotsi_info.appendChild(paragraph);
 
 		paragraph = doc.createElement('p');
-		paragraph.textContent = pre + Foxtrickl10n.getString('PsicoTSI.FORM_LOW') + ']=' + formLow;
+		paragraph.textContent = pre + Foxtrick.L10n.getString('PsicoTSI.FORM_LOW') + ']=' + formLow;
 		psicotsi_info.appendChild(paragraph);
 
 		if (wageLow && wageLow != 'N/A') {
 			paragraph = doc.createElement('p');
-			pre = pre.replace(Foxtrickl10n.getString('PsicoTSI.FORM'),
-							  Foxtrickl10n.getString('PsicoTSI.WAGE'));
-			paragraph.textContent = pre + Foxtrickl10n.getString('PsicoTSI.DECIMALS_LOW') + ']=' +
+			pre = pre.replace(Foxtrick.L10n.getString('PsicoTSI.FORM'),
+							  Foxtrick.L10n.getString('PsicoTSI.WAGE'));
+			paragraph.textContent = pre + Foxtrick.L10n.getString('PsicoTSI.DECIMALS_LOW') + ']=' +
 				wageLow;
 			psicotsi_info.appendChild(paragraph);
 		}
@@ -483,8 +483,8 @@ Foxtrick.modules['PsicoTSI'] = {
 
 			var psicotsi_show_link = doc.createElement('a');
 			psicotsi_show_link.textContent = mainSkillText + ' [' +
-				Foxtrickl10n.getString('PsicoTSI.FORM') + '=' +
-				Foxtrickl10n.getString('PsicoTSI.FORM_AVG') + ']=' + formAvg;
+				Foxtrick.L10n.getString('PsicoTSI.FORM') + '=' +
+				Foxtrick.L10n.getString('PsicoTSI.FORM_AVG') + ']=' + formAvg;
 			Foxtrick.addClass(psicotsi_show_link, 'ft-link');
 			psicotsi_show_link.setAttribute('show', 'ft_psico_info_div_' + id);
 			psicotsi_show_link.setAttribute('hide', 'ft_psico_show_div_' + id);

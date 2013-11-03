@@ -38,7 +38,7 @@ function init() {
 		$('body').show();
 
 		//mobile
-		if (FoxtrickPrefs.isModuleEnabled('MobileEnhancements')) {
+		if (Foxtrick.Prefs.isModuleEnabled('MobileEnhancements')) {
 			$('#tabs').hide();
 			$('#content').addClass('ft-mobile');
 			Foxtrick.log(Foxtrick, 'MobileEnhancements');
@@ -51,12 +51,12 @@ function init() {
 
 		/* Run a test. */
 		if (window.location.href.search(/saved=true/) !== -1) {
-			notice(Foxtrickl10n.getString('prefs.feedback.saved'));
+			notice(Foxtrick.L10n.getString('prefs.feedback.saved'));
 			window.location.href = window.location.href
 				.substr(0, window.location.href.search(/\&saved=true/));
 		}
 		else if (window.location.href.search(/imported=true/) !== -1) {
-			notice(Foxtrickl10n.getString('prefs.feedback.loaded'));
+			notice(Foxtrick.L10n.getString('prefs.feedback.loaded'));
 			window.location.href = window.location.href
 				.substr(0, window.location.href.search(/\&imported=true/));
 		}
@@ -97,7 +97,7 @@ function initSearch() {
 			else {
 				var h3 = $(this).children('h3:first');
 				if (h3.attr('data-text')) {
-					name = Foxtrickl10n.getString(h3.attr('data-text'));
+					name = Foxtrick.L10n.getString(h3.attr('data-text'));
 					searchadd(name, $(this)[0]);
 				} else {
 					Foxtrick.log('no search support, missing h3 and/or data-text');
@@ -116,7 +116,7 @@ function search(string, search) {
 		$('#breadcrumb-2').show();
 		$('#breadcrumb-3').show();
 		if (search) {
-			$('#breadcrumb-2').text(Foxtrickl10n.getString('prefs.search'));
+			$('#breadcrumb-2').text(Foxtrick.L10n.getString('prefs.search'));
 			$('#breadcrumb-3').text(string);
 			$('#breadcrumb-3').attr('href', generateURI(null, null, null, string) );
 			$('#breadcrumb-sep-1').show();
@@ -209,7 +209,7 @@ function initCoreModules()
 		Foxtrick.modules[i].MODULE_NAME = i;
 
 	// core functions needed for preferences, localization, etc.
-	var core = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
+	var core = [Foxtrick.Prefs, Foxtrick.L10n, Foxtrick.XMLData];
 	for (var i = 0; i < core.length; ++i)
 		if (typeof(core[i].init) == 'function')
 			core[i].init();
@@ -240,10 +240,10 @@ function locateFragment(uri)
 	};
 	var showTab = function(tab) {
 		//mobile start
-		if (FoxtrickPrefs.isModuleEnabled('MobileEnhancements'))
-			$('#navigation-header').text(Foxtrickl10n.getString('tab.' + tab));
+		if (Foxtrick.Prefs.isModuleEnabled('MobileEnhancements'))
+			$('#navigation-header').text(Foxtrick.L10n.getString('tab.' + tab));
 		//mobile end
-		$('#breadcrumb-1').text(Foxtrickl10n.getString('tab.' + tab));
+		$('#breadcrumb-1').text(Foxtrick.L10n.getString('tab.' + tab));
 		$('#breadcrumb-1').attr('href', generateURI(tab, null, null, null) );
 		search(''); //search reset
 		$('#pane > div').hide();
@@ -300,7 +300,7 @@ function locateFragment(uri)
 	});
 
 	//mobile start
-	if (FoxtrickPrefs.isModuleEnabled('MobileEnhancements')) {
+	if (Foxtrick.Prefs.isModuleEnabled('MobileEnhancements')) {
 		$('#tabs').hide();
 		$('#main').show();
 	}
@@ -415,18 +415,18 @@ function initTabs()
 
 function initTextAndValues()
 {
-	var locale = FoxtrickPrefs.getString('htLanguage');
+	var locale = Foxtrick.Prefs.getString('htLanguage');
 
-	if (Foxtrickl10n.getString('direction') == 'rtl')
+	if (Foxtrick.L10n.getString('direction') == 'rtl')
 		$('html').attr('dir', 'rtl');
 
-	document.title = Foxtrickl10n.getString('prefs.title');
+	document.title = Foxtrick.L10n.getString('prefs.title');
 	$('#version').text(Foxtrick.version() + ' ' + Foxtrick.branch());
 
 	// initialize text
 	$('body [data-text]').each(function() {
 		if ($(this).attr('data-text'))
-			$(this).prepend(document.createTextNode(Foxtrickl10n.getString($(this)
+			$(this).prepend(document.createTextNode(Foxtrick.L10n.getString($(this)
 			                .attr('data-text'))));
 	});
 
@@ -437,35 +437,35 @@ function initTextAndValues()
 			var option = $(this).attr('option');
 			// module option
 			if ($(this).is(':checkbox')) {
-				if (FoxtrickPrefs.isModuleOptionEnabled(module, option))
+				if (Foxtrick.Prefs.isModuleOptionEnabled(module, option))
 					$(this).prop('checked', true);
 			}
 			else if ($(this).is(':input')) // text input
-				$(this)[0].value = FoxtrickPrefs.getString('module.' + module + '.' + option);
+				$(this)[0].value = Foxtrick.Prefs.getString('module.' + module + '.' + option);
 		}
 		else if ($(this).is(':radio')) {
 			// radio input
-			var selected = FoxtrickPrefs.getModuleValue(module);
+			var selected = Foxtrick.Prefs.getModuleValue(module);
 			if ($(this).prop('value') == selected)
 				$(this).prop('checked', true);
 		}
-		else if (FoxtrickPrefs.isModuleEnabled(module)) // module itself
+		else if (Foxtrick.Prefs.isModuleEnabled(module)) // module itself
 			$(this).prop('checked', true);
 	});
 	// initialize inputs
 	$('#pane input[pref]').each(function() {
 		if ($(this).is(':checkbox')) {
 			// checkbox
-			if (FoxtrickPrefs.getBool($(this).attr('pref')))
+			if (Foxtrick.Prefs.getBool($(this).attr('pref')))
 				$(this).prop('checked', true);
 		}
 		else {
 			// text input
-			$(this).attr('value', FoxtrickPrefs.getString($(this).attr('pref')));
+			$(this).attr('value', Foxtrick.Prefs.getString($(this).attr('pref')));
 		}
 	});
 	$('#pane textarea[pref]').each(function() {
-		$(this).text(FoxtrickPrefs.getString($(this).attr('pref')));
+		$(this).text(Foxtrick.Prefs.getString($(this).attr('pref')));
 	});
 	// initialize elements with blockers, disable if blocker enabled
 	$('body [blocked-by]').each(function() {
@@ -499,12 +499,12 @@ function initTextAndValues()
 		+ ' (' + pageIds.join(', ') + ')');
 
 	// initialize delete-token
-	var chpp_url = FoxtrickPrefs.getString('last-host') +
+	var chpp_url = Foxtrick.Prefs.getString('last-host') +
 		'/MyHattrick/Preferences/ExternalAccessGrants.aspx';
 	$('#pref-delete-token-desc').html($('#pref-delete-token-desc')
 	                                  .text().replace(/\{(.+)\}/, "<a href='" + chpp_url +
 	                                                  "' target='_blank'>$1</a>"));
-	var oauth_keys = FoxtrickPrefs.getAllKeysOfBranch('oauth');
+	var oauth_keys = Foxtrick.Prefs.getAllKeysOfBranch('oauth');
 	if (oauth_keys)	{
 		var teamids = Foxtrick.map(function(n) {
 			return n.match(/oauth\.(.+)\.accessToken/)[1];
@@ -520,9 +520,9 @@ function initTextAndValues()
 			}
 			else {
 				// delete invalid
-				var array = FoxtrickPrefs.getAllKeysOfBranch('oauth.' + teamids[i]);
+				var array = Foxtrick.Prefs.getAllKeysOfBranch('oauth.' + teamids[i]);
 				for (var j = 0; j < array.length; j++) {
-					FoxtrickPrefs.deleteValue(array[j]);
+					Foxtrick.Prefs.deleteValue(array[j]);
 				}
 			}
 		}
@@ -532,7 +532,7 @@ function initTextAndValues()
 function initMainTab()
 {
 	// setup
-	$('#pref-setup-desc').html(Foxtrickl10n.getString('prefs.setup.desc')
+	$('#pref-setup-desc').html(Foxtrick.L10n.getString('prefs.setup.desc')
 		.replace(/{(.+)}/, "<a href='http://code.google.com/p/foxtrick/issues/list' " +
 		         "target='_blank'>$1</a>"));
 
@@ -543,7 +543,7 @@ function initMainTab()
 			link.className = 'module-link';
 			link.textContent = '¶';
 			link.href = generateURI(null, null, $(this).attr('id'));
-			link.title = Foxtrickl10n.getString('module.link');
+			link.title = Foxtrick.L10n.getString('module.link');
 			$(this).append($(link));
 		}
 	});
@@ -553,20 +553,20 @@ function initMainTab()
 		var savePrefs = $('#pref-save-pref').is(':checked');
 		var saveNotes = $('#pref-save-data').is(':checked');
 		var saveToken = $('#pref-save-token').is(':checked');
-		$('#pref-save-text').val(FoxtrickPrefs.SavePrefs(savePrefs, saveNotes, saveToken));
+		$('#pref-save-text').val(Foxtrick.Prefs.SavePrefs(savePrefs, saveNotes, saveToken));
 	});
 
 	// load preferences
 	$('#pref-load-do').click(function() {
-		FoxtrickPrefs.LoadPrefs($('#pref-load-text').val());
+		Foxtrick.Prefs.LoadPrefs($('#pref-load-text').val());
 		window.location.href = window.location.href + '&imported=true';
 		window.location.reload();
 	});
 
 	// restore to default
 	$('#pref-stored-restore').click(function() {
-		if (Foxtrick.confirmDialog(Foxtrickl10n.getString('prefs.restoreDefault.ask'))) {
-			FoxtrickPrefs.cleanupBranch();
+		if (Foxtrick.confirmDialog(Foxtrick.L10n.getString('prefs.restoreDefault.ask'))) {
+			Foxtrick.Prefs.cleanupBranch();
 			window.location.href = window.location.href + '&imported=true';
 			window.location.reload();
 		}
@@ -575,11 +575,11 @@ function initMainTab()
 	// delete OAuth token/secret
 	$('#pref-delete-token').click(function() {
 		var teamid = $('#select-delete-token-teamids')[0].value;
-		if (Foxtrick.confirmDialog(Foxtrickl10n
+		if (Foxtrick.confirmDialog(Foxtrick.L10n
 		    .getString('prefs.deleteToken.ask').replace('%s', teamid))) {
-			var array = FoxtrickPrefs.getAllKeysOfBranch('oauth.' + teamid);
+			var array = Foxtrick.Prefs.getAllKeysOfBranch('oauth.' + teamid);
 			for (var i = 0; i < array.length; i++) {
-				FoxtrickPrefs.deleteValue(array[i]);
+				Foxtrick.Prefs.deleteValue(array[i]);
 			}
 			window.location.href = window.location.href + '&imported=true';
 			window.location.reload();
@@ -588,9 +588,9 @@ function initMainTab()
 
 	// disable all
 	$('#pref-stored-disable').click(function() {
-		if (Foxtrick.confirmDialog(Foxtrickl10n.getString('prefs.disableAllModules.ask'))) {
+		if (Foxtrick.confirmDialog(Foxtrick.L10n.getString('prefs.disableAllModules.ask'))) {
 			Foxtrick.log('preferences: diable all');
-			FoxtrickPrefs.disableAllModules();
+			Foxtrick.Prefs.disableAllModules();
 			window.location.href = window.location.href + '&imported=true';
 			window.location.reload();
 		}
@@ -598,7 +598,7 @@ function initMainTab()
 
 	// revoke permissions
 	$('#pref-revoke-permissions').click(function() {
-		if (Foxtrick.confirmDialog(Foxtrickl10n.getString('prefs.revokePermissions.ask'))) {
+		if (Foxtrick.confirmDialog(Foxtrick.L10n.getString('prefs.revokePermissions.ask'))) {
 			Foxtrick.log('preferences: revoke permissions');
 			revokePermissions();
 		}
@@ -619,7 +619,7 @@ function getModule(module)
 		var a = document.createElement('a');
 		a.className = 'screenshot';
 		a.href = link;
-		a.title = Foxtrickl10n.getString('module.screenshot');
+		a.title = Foxtrick.L10n.getString('module.screenshot');
 		a.setAttribute('target', '_blank');
 		return a;
 	};
@@ -658,17 +658,17 @@ function getModule(module)
 	link.className = 'module-link';
 	link.textContent = '¶';
 	link.href = generateURI(null, module.MODULE_NAME);
-	link.title = Foxtrickl10n.getString('module.link');
+	link.title = Foxtrick.L10n.getString('module.link');
 	title.appendChild(link);
 
 	// screenshot (disabled until we get them hosted/prefarably redone again)
-	var screenshotLink = Foxtrickl10n.getScreenshot(module.MODULE_NAME);
+	var screenshotLink = Foxtrick.L10n.getScreenshot(module.MODULE_NAME);
 	if (false && screenshotLink)
 		title.appendChild(getScreenshot(screenshotLink));
 
 	var desc = document.createElement('p');
 	desc.id = entry.id + '-desc';
-	desc.textContent = FoxtrickPrefs.getModuleDescription(module.MODULE_NAME);
+	desc.textContent = Foxtrick.Prefs.getModuleDescription(module.MODULE_NAME);
 	container.appendChild(desc);
 
 	// options container
@@ -712,13 +712,13 @@ function getModule(module)
 				checkbox.setAttribute('module', module.MODULE_NAME);
 				label.appendChild(checkbox);
 
-				var desc = FoxtrickPrefs.getModuleElementDescription(module.MODULE_NAME, key);
+				var desc = Foxtrick.Prefs.getModuleElementDescription(module.MODULE_NAME, key);
 				checkbox.id = entry.id + '-' + key;
 				checkbox.setAttribute('option', key);
 				label.appendChild(document.createTextNode(desc));
 
 				// screenshot
-				screenshotLink = Foxtrickl10n.getScreenshot(module.MODULE_NAME + '.' + key);
+				screenshotLink = Foxtrick.L10n.getScreenshot(module.MODULE_NAME + '.' + key);
 				if (false && screenshotLink)
 					label.appendChild(getScreenshot(screenshotLink));
 			};
@@ -848,7 +848,7 @@ function getModule(module)
 			radio.setAttribute('module', module.MODULE_NAME);
 			label.appendChild(radio);
 			label.appendChild(document.createTextNode(
-				FoxtrickPrefs.getModuleDescription(module.MODULE_NAME + '.' +
+				Foxtrick.Prefs.getModuleDescription(module.MODULE_NAME + '.' +
 				                                   module.RADIO_OPTIONS[i])));
 		}
 	}
@@ -866,10 +866,10 @@ function initChangesTab()
 	changesLink.href = '#tab=changes';
 	changesLink.className = 'module-link';
 	changesLink.textContent = '¶';
-	changesLink.title = Foxtrickl10n.getString('module.link');
+	changesLink.title = Foxtrick.L10n.getString('module.link');
 	$('div[x-on*="changes"] > h3')[0].appendChild(changesLink);
 
-	var lang = FoxtrickPrefs.getString('htLanguage');
+	var lang = Foxtrick.Prefs.getString('htLanguage');
 
 	var releaseNotesLinks = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath +
 	                                                   'release-notes-links.yml');
@@ -894,7 +894,7 @@ function initChangesTab()
 			var st = Foxtrick.nth(0, function(item) {
 				return item.code == lang;
 			}, category).translated_progress;
-			statusText = Foxtrickl10n.getString('releaseNotes.translationStatus').replace(/%s/, st);
+			statusText = Foxtrick.L10n.getString('releaseNotes.translationStatus').replace(/%s/, st);
 		}
 	} catch (e) {}
 
@@ -986,7 +986,7 @@ function initChangesTab()
 				if (!notes)
 					continue;
 				$('#pref-notepad-title')[0].textContent =
-					Foxtrickl10n.getString('releaseNotes.version') + ' '
+					Foxtrick.L10n.getString('releaseNotes.version') + ' '
 					+ version + sub + subsub;
 
 				for (var i in notes) {
@@ -1028,7 +1028,7 @@ function initHelpTab()
 		$('#external-links-list').append($(item));
 		var link = document.createElement('a');
 		item.appendChild(link);
-		link.textContent = Foxtrickl10n.getString('link.' + a.id);
+		link.textContent = Foxtrick.L10n.getString('link.' + a.id);
 		link.href = a.href;
 	}, category);
 
@@ -1036,7 +1036,7 @@ function initHelpTab()
 	var faqLinks = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'faq-links.yml');
 	var faq = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'faq.yml');
 	var faqLocal = Foxtrick.util.load.ymlSync(Foxtrick.InternalPath + 'locale/'
-		+ FoxtrickPrefs.getString('htLanguage') + '/faq.yml');
+		+ Foxtrick.Prefs.getString('htLanguage') + '/faq.yml');
 	var items = {};
 	var itemsLocal = {};
 	var parseFaq = function(src, dest) {
@@ -1189,16 +1189,16 @@ function saveEvent(ev) {
 		var pref = $(ev.target).attr('pref');
 
 		if ($(ev.target).is(':checkbox'))
-			FoxtrickPrefs.setBool(pref, $(ev.target).is(':checked'));
+			Foxtrick.Prefs.setBool(pref, $(ev.target).is(':checked'));
 		else if ($(ev.target)[0].nodeName.toLowerCase() == 'select')
-			FoxtrickPrefs.setString(pref, $(ev.target)[0].value);
+			Foxtrick.Prefs.setString(pref, $(ev.target)[0].value);
 			// calculated just-in-time, so .attr('value') would fail here
 		else if ($(ev.target).is(':input'))
-			FoxtrickPrefs.setString(pref, $(ev.target)[0].value);
+			Foxtrick.Prefs.setString(pref, $(ev.target)[0].value);
 	} else if ($(ev.target)[0].nodeName.toLowerCase() == 'option'){
 		var pref = $($(ev.target)[0]).parent().attr('pref');
 		var value = $(ev.target)[0].value;
-		FoxtrickPrefs.setString(pref, $(ev.target)[0].value);
+		Foxtrick.Prefs.setString(pref, $(ev.target)[0].value);
 	} else {
 		var module = $(ev.target).attr('module');
 		if ($(ev.target).attr('option')) {
@@ -1206,31 +1206,31 @@ function saveEvent(ev) {
 			// option of module
 			var option = $(ev.target).attr('option');
 			if ($(ev.target).is(':checkbox'))
-				FoxtrickPrefs.setModuleEnableState(module + '.' + option,
+				Foxtrick.Prefs.setModuleEnableState(module + '.' + option,
 				                                   $(ev.target).is(':checked'));
 			else if ($(ev.target).is(':input'))
-				FoxtrickPrefs.setModuleOptionsText(module + '.' + option, $(ev.target)[0].value);
+				Foxtrick.Prefs.setModuleOptionsText(module + '.' + option, $(ev.target)[0].value);
 		}
 		else if ($(ev.target).is(':radio')) {
 			if ($(ev.target).is(':checked'))
-				FoxtrickPrefs.setModuleValue(module, $(ev.target).prop('value'));
+				Foxtrick.Prefs.setModuleValue(module, $(ev.target).prop('value'));
 		}
 		else {
-			FoxtrickPrefs.setModuleEnableState(module, $(ev.target).is(':checked'));
+			Foxtrick.Prefs.setModuleEnableState(module, $(ev.target).is(':checked'));
 			Foxtrick.log('setModuleEnableState');
 		}
 	}
-	FoxtrickPrefs.setBool('preferences.updated', true);
+	Foxtrick.Prefs.setBool('preferences.updated', true);
 }
 function save()
 {
 	var needsPermissions = checkPermissions();
 
 	if (!needsPermissions)
-		notice(Foxtrickl10n.getString('prefs.feedback.saved'));
+		notice(Foxtrick.L10n.getString('prefs.feedback.saved'));
 	// else it is shown in permission request callback
 
-	FoxtrickPrefs.setBool('preferences.updated', true);
+	Foxtrick.Prefs.setBool('preferences.updated', true);
 }
 
 function notice(msg)
@@ -1406,7 +1406,7 @@ function testPermissions() {
 							else if (!$(id).prop('checked')) {
 								modulelist = Foxtrick.remove(modulelist, module);
 								if (modulelist.length > 0) {
-									$('#alert-text').text(Foxtrickl10n
+									$('#alert-text').text(Foxtrick.L10n
 									                      .getString('prefs.needPermissions') +
 									                      ' ' + modulelist);
 									$('#alert').attr('style', 'display:block;');
@@ -1421,10 +1421,10 @@ function testPermissions() {
 							checkPermission();
 						});
 
-						if (result == false && FoxtrickPrefs.getBool('module.' + module +
+						if (result == false && Foxtrick.Prefs.getBool('module.' + module +
 						    '.enabled')) {
 							Foxtrick.concat_unique(modulelist, neededPermission.modules);
-							$('#alert-text').text(Foxtrickl10n.getString('prefs.needPermissions') +
+							$('#alert-text').text(Foxtrick.L10n.getString('prefs.needPermissions') +
 							                      ' ' + modulelist);
 							$('#alert').attr('style', 'display:block;');
 						}
@@ -1446,7 +1446,7 @@ function getPermission(neededPermission, showSaved) {
 			var id = permissionsMakeIdFromName(neededPermission.modules[m]);
 			if (!granted) {
 				$(id).prop('checked', false);
-				FoxtrickPrefs.setBool('module.' + neededPermission.modules[m] + '.enabled', false);
+				Foxtrick.Prefs.setBool('module.' + neededPermission.modules[m] + '.enabled', false);
 				Foxtrick.log('Permission declined: ', neededPermission.modules[m]);
 			}
 			else {
@@ -1454,7 +1454,7 @@ function getPermission(neededPermission, showSaved) {
 				Foxtrick.log('Permission granted: ', neededPermission.modules[m]);
 			}
 			if (showSaved) {
-				notice(Foxtrickl10n.getString('prefs.feedback.saved'));
+				notice(Foxtrick.L10n.getString('prefs.feedback.saved'));
 			}
 		}
 	});
@@ -1488,7 +1488,7 @@ function checkPermissions() {
 		Foxtrick.map(function(neededPermission) {
 			for (var m = 0; m < neededPermission.modules.length; ++m) {
 				var id = permissionsMakeIdFromName(neededPermission.modules[m]);
-				if (FoxtrickPrefs.getBool('module.' + neededPermission.modules[m] + '.enabled')
+				if (Foxtrick.Prefs.getBool('module.' + neededPermission.modules[m] + '.enabled')
 				    == true && $(id).attr('permission-granted') == 'false') {
 					needsPermissions = true;
 					combined_permissions.modules =

@@ -32,8 +32,8 @@ Foxtrick.modules['HTDateFormat'] = {
 		var mainBody = doc.getElementById('mainBody');
 		if (!mainBody) return;
 
-		var useLocal = FoxtrickPrefs.isModuleOptionEnabled('HTDateFormat', 'LocalSeason');
-		var weekOffset = FoxtrickPrefs.getString('module.' + this.MODULE_NAME +
+		var useLocal = Foxtrick.Prefs.isModuleOptionEnabled('HTDateFormat', 'LocalSeason');
+		var weekOffset = Foxtrick.Prefs.getString('module.' + this.MODULE_NAME +
 		                                         '.FirstDayOfWeekOffset_text');
 		// set up function for separating date and week/season,
 		// with concerns of some table fixing for simple skin

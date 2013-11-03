@@ -11,7 +11,7 @@ if (!Foxtrick)
 // outputs a list of strings/objects/errors to FoxTrick log
 Foxtrick.log = function() {
 	try {
-		if (FoxtrickPrefs.getBool('logDisabled'))
+		if (Foxtrick.Prefs.getBool('logDisabled'))
 			return;
 	} catch (e) {}
 
@@ -104,7 +104,7 @@ Foxtrick.log = function() {
 							.getService(Components.interfaces.nsIConsoleService);
 		consoleService.logStringMessage('FoxTrick: ' + concated);
 	}
-	if (typeof(dump) == 'function' && FoxtrickPrefs.getBool('dump')) {
+	if (typeof(dump) == 'function' && Foxtrick.Prefs.getBool('dump')) {
 		if (Foxtrick.chromeContext() === 'background') {
 			var lines = concated.split(/\n/);
 			lines = Foxtrick.map(function(l) {
@@ -133,7 +133,7 @@ Foxtrick.log.header = function(doc) {
 	var headString = 'Version %1, %2 platform, %3 locale, %4 layout, %5 direction'
 				.replace(/%1/, Foxtrick.version() + ' ' + Foxtrick.branch())
 				.replace(/%2/, Foxtrick.arch + ' ' + Foxtrick.platform)
-				.replace(/%3/, FoxtrickPrefs.getString('htLanguage'))
+				.replace(/%3/, Foxtrick.Prefs.getString('htLanguage'))
 				.replace(/%4/, Foxtrick.util.layout.isStandard(doc) ? 'standard' : 'simple')
 				.replace(/%5/, Foxtrick.util.layout.isRtl(doc) ? 'RTL' : 'LTR');
 	if (Foxtrick.isStage(doc))
@@ -157,7 +157,7 @@ Foxtrick.log.flush = (function() {
 			return;
 
 		if (doc.getElementById('page') != null
-			&& FoxtrickPrefs.getBool('DisplayHTMLDebugOutput')
+			&& Foxtrick.Prefs.getBool('DisplayHTMLDebugOutput')
 			&& Foxtrick.log.cache != '') {
 			var div = doc.getElementById('ft-log');
 			if (div == null) {
@@ -165,7 +165,7 @@ Foxtrick.log.flush = (function() {
 				div = doc.createElement('div');
 				div.id = 'ft-log';
 				var header = doc.createElement('h2');
-				header.textContent = Foxtrickl10n.getString('log.header');
+				header.textContent = Foxtrick.L10n.getString('log.header');
 				div.appendChild(header);
 				var consoleDiv = doc.createElement('pre');
 				consoleDiv.textContent = Foxtrick.log.header(doc);

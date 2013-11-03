@@ -51,17 +51,17 @@ Foxtrick.loader.background.browserLoad = function() {
 			worldDetailsJSON = JSON.stringify(Foxtrick.XMLData.worldDetailsJSON);
 			htLanguagesJSONText = {};
 			var i;
-			for (i in Foxtrickl10n.htLanguagesJSON) {
-				htLanguagesJSONText[i] = JSON.stringify(Foxtrickl10n.htLanguagesJSON[i]);
+			for (i in Foxtrick.L10n.htLanguagesJSON) {
+				htLanguagesJSONText[i] = JSON.stringify(Foxtrick.L10n.htLanguagesJSON[i]);
 			}
 			cssTextCollection = Foxtrick.util.css.getCssTextCollection();
 
-			FoxtrickPrefs.deleteValue('preferences.updated');
+			Foxtrick.Prefs.deleteValue('preferences.updated');
 		};
 
 		updateResources();
-		FoxtrickPrefs.setBool('featureHighlight', false);
-		FoxtrickPrefs.setBool('translationKeys', false);
+		Foxtrick.Prefs.setBool('featureHighlight', false);
+		Foxtrick.Prefs.setBool('translationKeys', false);
 
 		// calls module.onLoad() after the extension is loaded
 		var i;
@@ -96,21 +96,21 @@ Foxtrick.loader.background.browserLoad = function() {
 			// which needs updating just here
 			if ((Foxtrick.arch == 'Sandboxed' && localStorage.getItem('preferences.updated'))
 				|| ((Foxtrick.platform == 'Mobile' || Foxtrick.platform == 'Android') &&
-				    FoxtrickPrefs._prefs_gecko.getBoolPref('preferences.updated'))) {
+				    Foxtrick.Prefs._prefs_gecko.getBoolPref('preferences.updated'))) {
 					updateResources();
 			}
 
 			var resource = {
-				_prefs_chrome_user: FoxtrickPrefs._prefs_chrome_user,
-				_prefs_chrome_default: FoxtrickPrefs._prefs_chrome_default,
+				_prefs_chrome_user: Foxtrick.Prefs._prefs_chrome_user,
+				_prefs_chrome_default: Foxtrick.Prefs._prefs_chrome_default,
 
 				htLangJSON: htLanguagesJSONText,
-				properties_default: Foxtrickl10n.properties_default,
-				properties: Foxtrickl10n.properties,
-				screenshots_default: Foxtrickl10n.screenshots_default,
-				screenshots: Foxtrickl10n.screenshots,
-				plForm: Foxtrickl10n.plForm,
-				plForm_default: Foxtrickl10n.plForm_default,
+				properties_default: Foxtrick.L10n.properties_default,
+				properties: Foxtrick.L10n.properties,
+				screenshots_default: Foxtrick.L10n.screenshots_default,
+				screenshots: Foxtrick.L10n.screenshots,
+				plForm: Foxtrick.L10n.plForm,
+				plForm_default: Foxtrick.L10n.plForm_default,
 
 				currencyJSON: currencyJSON,
 				aboutJSON: aboutJSON,
@@ -141,26 +141,26 @@ Foxtrick.loader.background.browserLoad = function() {
 
 		// from prefs.js
 		Foxtrick.loader.background.requests.setValue = function(request, sender, sendResponse) {
-			if (FoxtrickPrefs.get(request.key) == request.value)
+			if (Foxtrick.Prefs.get(request.key) == request.value)
 				return;
-			FoxtrickPrefs.setValue(request.key, request.value, request.type);
+			Foxtrick.Prefs.setValue(request.key, request.value, request.type);
 			if (request.key == 'htLanguage')
-				Foxtrickl10n.init();
+				Foxtrick.L10n.init();
 		};
 		Foxtrick.loader.background.requests.deleteValue = function(request, sender, sendResponse) {
-			FoxtrickPrefs.deleteValue(request.key);
+			Foxtrick.Prefs.deleteValue(request.key);
 			if (request.key == 'htLanguage')
-				Foxtrickl10n.init();
+				Foxtrick.L10n.init();
 		};
 		Foxtrick.loader.background.requests.clearPrefs = function(request, sender, sendResponse) {
 			try {
 				if (Foxtrick.platform == 'Mobile' || Foxtrick.platform == 'Android') {
-					FoxtrickPrefs.cleanupBranch();
+					Foxtrick.Prefs.cleanupBranch();
 				}
 				else {
 					var i;
 					for (i in localStorage) {
-						if (i.indexOf('module.') === 0 && FoxtrickPrefs.isPrefSetting(i)) {
+						if (i.indexOf('module.') === 0 && Foxtrick.Prefs.isPrefSetting(i)) {
 							localStorage.removeItem(i);
 						}
 					}

@@ -50,28 +50,28 @@ Foxtrick.modules['MatchWeather'] = {
 			var div = doc.querySelector('#ctl00_ctl00_CPContent_CPMain_pnlPreMatch > div:not(.float_left):not(#ctl00_ctl00_CPContent_CPMain_pnlTeamInfo)');
 			if(!div) return; 
 			var img = div.querySelector('p:last-child img');
-			if(img) img.parentNode.appendChild(doc.createTextNode(' '+Foxtrickl10n.getString('matchWeather.expected')));
+			if(img) img.parentNode.appendChild(doc.createTextNode(' '+Foxtrick.L10n.getString('matchWeather.expected')));
 			var pN = doc.createElement('p');
 			Foxtrick.addImage(doc, pN, {src: 'Img.axd?res=Weather&img=weather'+data.weatherNow+'.png'}, false);						
-			pN.appendChild(doc.createTextNode(' '+Foxtrickl10n.getString('matchWeather.today')));
+			pN.appendChild(doc.createTextNode(' '+Foxtrick.L10n.getString('matchWeather.today')));
 			div.appendChild(pN);
 			var pT = doc.createElement('p');
 			Foxtrick.addImage(doc, pT, {src: 'Img.axd?res=Weather&img=weather'+data.weatherTomorrow+'.png'}, false);						
-			pT.appendChild(doc.createTextNode(' '+Foxtrickl10n.getString('matchWeather.tomorrow')));
+			pT.appendChild(doc.createTextNode(' '+Foxtrick.L10n.getString('matchWeather.tomorrow')));
 			div.appendChild(pT);
 			Foxtrick.makeFeaturedElement(pT, 'MatchWeather');
 
-			if(FoxtrickPrefs.isModuleOptionEnabled('MatchWeather', 'Irl') && data.irlNow && data.irlTomorrow) {
+			if(Foxtrick.Prefs.isModuleOptionEnabled('MatchWeather', 'Irl') && data.irlNow && data.irlTomorrow) {
 				Foxtrick.addClass(pN, 'ft-match-weather');
 				var iN = doc.createElement('p');
 				Foxtrick.addImage(doc, iN, {src: 'Img.axd?res=Weather&img=weather'+data.irlNow+'.png'}, false);	
-				iN.appendChild(doc.createTextNode(' '+Foxtrickl10n.getString('matchWeather.irltoday')));
+				iN.appendChild(doc.createTextNode(' '+Foxtrick.L10n.getString('matchWeather.irltoday')));
 				div.insertBefore(iN, pT);
 				Foxtrick.makeFeaturedElement(iN, 'MatchWeather');
 				Foxtrick.addClass(pT, 'ft-match-weather');
 				var iT = doc.createElement('p');
 				Foxtrick.addImage(doc, iT, {src: 'Img.axd?res=Weather&img=weather'+data.irlTomorrow+'.png'}, false);	
-				iT.appendChild(doc.createTextNode(' '+Foxtrickl10n.getString('matchWeather.irltomorrow')));
+				iT.appendChild(doc.createTextNode(' '+Foxtrick.L10n.getString('matchWeather.irltomorrow')));
 				div.appendChild(iT);
 				Foxtrick.makeFeaturedElement(iT, 'MatchWeather');
 			}
@@ -95,7 +95,7 @@ Foxtrick.modules['MatchWeather'] = {
 						data.regionName = xml.getElementsByTagName('RegionName')[0].textContent.replace("'", "").replace(' ', '-').replace(',', '-');
 						data.country = xml.getElementsByTagName('LeagueName')[0].textContent;
 						
-						if(FoxtrickPrefs.isModuleOptionEnabled('MatchWeather', 'Irl')) {
+						if(Foxtrick.Prefs.isModuleOptionEnabled('MatchWeather', 'Irl')) {
 							var uri = 'http://api.openweathermap.org/data/2.5/forecast/daily?q='+encodeURIComponent(data.regionName)+','+data.country+'&mode=json&units=metric&cnt=2';
 							Foxtrick.log('Fetching JSON data from ', uri);
 							Foxtrick.util.load.get(uri)('success', function(response) {

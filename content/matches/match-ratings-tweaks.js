@@ -29,8 +29,8 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			return;
 		var module = this;
 		var sectorsField = doc.getElementById('sectorsField');
-		var doProb = FoxtrickPrefs.isModuleOptionEnabled('MatchRatingsTweaks', 'RealProbabilities');
-		var doChanges = FoxtrickPrefs.isModuleOptionEnabled('MatchRatingsTweaks', 'FollowChanges');
+		var doProb = Foxtrick.Prefs.isModuleOptionEnabled('MatchRatingsTweaks', 'RealProbabilities');
+		var doChanges = Foxtrick.Prefs.isModuleOptionEnabled('MatchRatingsTweaks', 'FollowChanges');
 		if (doChanges) {
 			// add team names
 			var home = Foxtrick.Pages.Match.getHomeTeamName(doc);
@@ -53,7 +53,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 		var optionsTable = doc.createElement('table');
 		optionsTable.id = 'ft-matchRatingsTable';
 		var tbody = doc.createElement('tbody');
-		var probTitle = Foxtrickl10n.getString('match.ratings.realProbabilities.title');
+		var probTitle = Foxtrick.L10n.getString('match.ratings.realProbabilities.title');
 		var tr1 = doc.createElement('tr');
 		var tdChkBox1 = doc.createElement('td');
 		var chkbox1 = doc.createElement('input');
@@ -62,7 +62,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 		chkbox1.title = probTitle;
 		chkbox1.checked = doProb;
 		Foxtrick.listen(chkbox1, 'change', function(ev) {
-			FoxtrickPrefs.setBool('module.MatchRatingsTweaks.RealProbabilities.enabled',
+			Foxtrick.Prefs.setBool('module.MatchRatingsTweaks.RealProbabilities.enabled',
 								  ev.target.checked);
 			var doc = ev.target.ownerDocument;
 			var timelineButton = doc.getElementsByClassName('currentEvent')[0];
@@ -78,7 +78,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 		var tdLabel1 = doc.createElement('td');
 		var labelProb = doc.createElement('label');
 		labelProb.for = 'ft-matchRatingProb';
-		labelProb.textContent = Foxtrickl10n.getString('match.ratings.realProbabilities');
+		labelProb.textContent = Foxtrick.L10n.getString('match.ratings.realProbabilities');
 		labelProb.setAttribute('aria-label', labelProb.title = probTitle);
 		tdLabel1.appendChild(labelProb);
 		tr1.appendChild(tdLabel1);
@@ -96,7 +96,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 		var p = Foxtrick.createFeaturedElement(doc, this, 'p');
 		p.id = 'ft-probabilityDesc';
 		var b = doc.createElement('strong');
-		b.textContent = Foxtrickl10n.getString('MatchRatingsTweaks.probability.note');
+		b.textContent = Foxtrick.L10n.getString('MatchRatingsTweaks.probability.note');
 		p.appendChild(b);
 		if (!doProb)
 			Foxtrick.addClass(p, 'hidden');
@@ -122,11 +122,11 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 	initl10n: function() {
 		var sectorOrder = ['rd','la','cd','ca','ld','ra','mf','mf','ra','ld','ca','cd','la','rd'];
 		for (var i = 0, s; i < sectorOrder.length && (s = sectorOrder[i]); ++i) {
-			this.sectorAbbrs[i] = Foxtrickl10n.getString('match.sector.' + s + '.abbr');
+			this.sectorAbbrs[i] = Foxtrick.L10n.getString('match.sector.' + s + '.abbr');
 		}
 		var l10n = [ 'change.title', 'probability.title', ];
 		for (var i = 0, s; i < l10n.length && (s = l10n[i]); ++i) {
-			this.l10n[s] = Foxtrickl10n.getString('MatchRatingsTweaks.' + s);
+			this.l10n[s] = Foxtrick.L10n.getString('MatchRatingsTweaks.' + s);
 		}
 	},
 	/**
@@ -145,7 +145,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 		if (!Foxtrick.Pages.Match.hasNewRatings(doc))
 			return;
 
-		var doProb = FoxtrickPrefs.isModuleOptionEnabled('MatchRatingsTweaks', 'RealProbabilities');
+		var doProb = Foxtrick.Prefs.isModuleOptionEnabled('MatchRatingsTweaks', 'RealProbabilities');
 		// sync the checkbox
 		var chkbox = doc.getElementById('ft-matchRatingProb');
 		if (chkbox && chkbox.checked !== doProb) {
@@ -153,7 +153,7 @@ Foxtrick.modules['MatchRatingsTweaks'] = {
 			Foxtrick.toggleClass(doc.getElementById('ft-probabilityDesc'), 'hidden');
 			Foxtrick.toggleClass(doc.getElementById('ht-probabilityDesc'), 'hidden');
 		}
-		var doChanges = FoxtrickPrefs.isModuleOptionEnabled('MatchRatingsTweaks', 'FollowChanges');
+		var doChanges = Foxtrick.Prefs.isModuleOptionEnabled('MatchRatingsTweaks', 'FollowChanges');
 		if (!doChanges && !doProb)
 			return;
 

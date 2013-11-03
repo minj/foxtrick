@@ -36,7 +36,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				this.showAway = true;
 		}
 
-		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'GatherStaminaData'))
+		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'GatherStaminaData'))
 			this.gatherStaminaData(doc);
 
 		// run change now as sometimes we are too slow to init the listener
@@ -80,11 +80,11 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		var SUB_TEXTS = {};
 		SUB_TEXTS[SUBSTITUTION_TYPES.SUB] = [
-			Foxtrickl10n.getString('MatchLineupTweaks.out'),
-			Foxtrickl10n.getString('MatchLineupTweaks.in')
+			Foxtrick.L10n.getString('MatchLineupTweaks.out'),
+			Foxtrick.L10n.getString('MatchLineupTweaks.in')
 		];
-		SUB_TEXTS[SUBSTITUTION_TYPES.BEHAVIOR] = Foxtrickl10n.getString('MatchLineupTweaks.behavior');
-		SUB_TEXTS[SUBSTITUTION_TYPES.SWAP] = Foxtrickl10n.getString('MatchLineupTweaks.swap');
+		SUB_TEXTS[SUBSTITUTION_TYPES.BEHAVIOR] = Foxtrick.L10n.getString('MatchLineupTweaks.behavior');
+		SUB_TEXTS[SUBSTITUTION_TYPES.SWAP] = Foxtrick.L10n.getString('MatchLineupTweaks.swap');
 
 		var highlightSub = function(otherId) {
 			Foxtrick.Pages.Match.modPlayerDiv(otherId, function(node) {
@@ -217,9 +217,9 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			if (node.getElementsByClassName('ft-specialty').length)
 				return;
 			if (player && player.specialityNumber != 0) {
-				var title = Foxtrickl10n.getSpecialityFromNumber(player.specialityNumber);
+				var title = Foxtrick.L10n.getSpecialityFromNumber(player.specialityNumber);
 				var icon_suffix = '';
-				if (FoxtrickPrefs.getBool('anstoss2icons'))
+				if (Foxtrick.Prefs.getBool('anstoss2icons'))
 					icon_suffix = '_alt';
 				Foxtrick.addImage(doc, node, {
 					alt: title,
@@ -299,7 +299,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			doc.querySelectorAll('.playersField > div.playerBoxAway > div > a, #playersBench > ' +
 			                     'div#playersBenchAway > div.playerBoxAway > div > a');
 
-		var alt = Foxtrickl10n.getString('MatchLineupTweaks.missing');
+		var alt = Foxtrick.L10n.getString('MatchLineupTweaks.missing');
 
 		var addMissingByTeamId = function(teamid, players) {
 			Foxtrick.Pages.Players.getPlayerList(doc,
@@ -424,7 +424,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 					var x = Math.round(Number(layers[j].getAttribute('x')) / scale);
 					var y = Math.round(Number(layers[j].getAttribute('y')) / scale);
 
-					if (FoxtrickPrefs.isModuleOptionEnabled('OriginalFace', 'ColouredYouth'))
+					if (Foxtrick.Prefs.isModuleOptionEnabled('OriginalFace', 'ColouredYouth'))
 						src = src.replace(/y_/, '');
 					Foxtrick.addImage(doc, shirt, {
 						alt: '',
@@ -671,7 +671,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		}
 		var f = doc.getElementById('playersField');
 		var div = doc.createElement('div');
-		var alt = Foxtrickl10n.getString('MatchLineupTweaks.showOther');
+		var alt = Foxtrick.L10n.getString('MatchLineupTweaks.showOther');
 		Foxtrick.addImage(doc, div, {
 			src: '/Img/Icons/transparent.gif',
 			id: 'ft-split-arrow',
@@ -770,7 +770,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 		var matchId = Foxtrick.Pages.Match.getId(doc);
 		// add locale as argument to prevent using old cache after
 		// language changed
-		var locale = FoxtrickPrefs.getString('htLanguage');
+		var locale = Foxtrick.Prefs.getString('htLanguage');
 		var detailsArgs = [
 			['file', 'matchdetails'],
 			['matchEvents', 'true'],
@@ -788,7 +788,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				return;
 			}
 		}
-		var data = {}, dataText = FoxtrickPrefs.get('StaminaData.' + ownId);
+		var data = {}, dataText = Foxtrick.Prefs.get('StaminaData.' + ownId);
 		if (dataText) {
 			try {
 				data = JSON.parse(dataText);
@@ -880,7 +880,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 				}
 			}, players);
 			Foxtrick.log('StaminaData:', matchDate, players, data);
-			FoxtrickPrefs.setString('StaminaData.' + ownId, JSON.stringify(data));
+			Foxtrick.Prefs.setString('StaminaData.' + ownId, JSON.stringify(data));
 		});
 	},
 
@@ -898,7 +898,7 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			// been here before
 			return;
 
-		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'SplitLineup'))
+		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'SplitLineup'))
 			this.splitLineup(doc);
 
 		for (var i = 0; i < playerDivs.length; i++) {
@@ -949,20 +949,20 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 			highlightPlayer(hId[1]);
 		}
 
-		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'DisplayTeamNameOnField'))
+		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'DisplayTeamNameOnField'))
 			this.runTeamnNames(doc);
 
-		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'HighlighEventPlayers'))
+		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'HighlighEventPlayers'))
 			this.runEventPlayers(doc);
-		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'AddSubstiutionInfo'))
+		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'AddSubstiutionInfo'))
 			this.addSubInfo(doc);
 
-		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'StarCounter'))
+		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'StarCounter'))
 			this.runStars(doc);
-		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'StaminaCounter'))
+		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'StaminaCounter'))
 			this.runStamina(doc);
 		// run this after the counters
-		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'ConvertStars'))
+		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'ConvertStars'))
 			this.convertStars(doc);
 
 
@@ -970,13 +970,13 @@ Foxtrick.modules['MatchLineupTweaks'] = {
 
 		//add async shit last
 
-		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'ShowSpecialties'))
+		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'ShowSpecialties'))
 			this.runSpecialties(doc);
 
-		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'ShowFaces'))
+		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'ShowFaces'))
 			this.runFaces(doc);
 
-		if (FoxtrickPrefs.isModuleOptionEnabled('MatchLineupTweaks', 'HighlightMissing'))
+		if (Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupTweaks', 'HighlightMissing'))
 			this.runMissing(doc);
 
 	}

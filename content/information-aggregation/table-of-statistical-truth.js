@@ -16,13 +16,13 @@ Foxtrick.modules['TableOfStatisticalTruth'] = {
 		var serie = Foxtrick.util.id.getLeagueLeveUnitIdFromUrl(doc.getElementById('ctl00_ctl00_CPContent_divStartMain')
 		                                                        .getElementsByTagName('h2')[0]
 		                                                        .getElementsByTagName('a')[1].href);
-		var lang = FoxtrickPrefs.getString('htLanguage');
+		var lang = Foxtrick.Prefs.getString('htLanguage');
 
 		var leaguetable = doc.getElementById('mainBody').getElementsByTagName('table')[0];
 		var insertBefore = leaguetable.nextSibling;
 
 		var tableHeader = Foxtrick.createFeaturedElement(doc, this, 'h2');
-		tableHeader.textContent = Foxtrickl10n.getString('truthTable.table');
+		tableHeader.textContent = Foxtrick.L10n.getString('truthTable.table');
 		tableHeader.className = 'ft-expander-unexpanded';
 		tableHeader.id = 'ft-truth-table-h2';
 		insertBefore.parentNode.insertBefore(tableHeader, insertBefore);
@@ -58,7 +58,7 @@ Foxtrick.modules['TableOfStatisticalTruth'] = {
 						lang + '&serie=' + serie + '&season=' + season;
 					table.id = 'createTableLink';
 					table.target = '_blank';
-					table.textContent = Foxtrickl10n.getString('truthTable.notAvailableYet');
+					table.textContent = Foxtrick.L10n.getString('truthTable.notAvailableYet');
 					insertBefore.parentNode.insertBefore(table, insertBefore);
 					return;
 				}
@@ -84,7 +84,7 @@ Foxtrick.modules['TableOfStatisticalTruth'] = {
 				for (i in colTypes) {
 					var th = doc.createElement('th');
 					th.className = colTypes[i];
-					th.textContent = Foxtrickl10n.getString('truthTable.' + i);
+					th.textContent = Foxtrick.L10n.getString('truthTable.' + i);
 					headRow.appendChild(th);
 				}
 
@@ -134,7 +134,7 @@ Foxtrick.modules['TableOfStatisticalTruth'] = {
 				link.href = 'http://www.fantamondi.it/HTMS/index.php?page=truthtable&lang=' +
 					lang + '&serie=' + serie + '&season=' + season;
 				link.target = '_blank';
-				link.textContent = Foxtrickl10n.getString('truthTable.tableAtHTMS');
+				link.textContent = Foxtrick.L10n.getString('truthTable.tableAtHTMS');
 				insertBefore.parentNode.insertBefore(link, insertBefore);
 
 

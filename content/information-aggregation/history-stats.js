@@ -124,8 +124,8 @@ Foxtrick.modules['HistoryStats'] = {
 							cup = table[i].textContent.match(/\d{1,2}/);
 							if (!cup)
 								cup = "<span class='bold' title='" +
-									Foxtrickl10n.getString('HistoryStats.cupwinner') + "'>" +
-									Foxtrickl10n.getString('HistoryStats.cupwinner.short') +
+									Foxtrick.L10n.getString('HistoryStats.cupwinner') + "'>" +
+									Foxtrick.L10n.getString('HistoryStats.cupwinner.short') +
 									'</span>';
 						}
 					}
@@ -167,14 +167,14 @@ Foxtrick.modules['HistoryStats'] = {
 			return;
 		try {
 			var HistoryTable = '<tr>' +
-				"<th title='" + Foxtrickl10n.getString('HistoryStats.season') + "'>" +
-				Foxtrickl10n.getString('HistoryStats.season.short') + '</th>' +
-				"<th title='" + Foxtrickl10n.getString('HistoryStats.cup') + "'>" +
-				Foxtrickl10n.getString('HistoryStats.cup.short') + '</th>' +
-				"<th title='" + Foxtrickl10n.getString('HistoryStats.league') + "'>" +
-				Foxtrickl10n.getString('HistoryStats.league.short') + '</th>' +
-				"<th title='" + Foxtrickl10n.getString('HistoryStats.finalPosition') + "'>" +
-				Foxtrickl10n.getString('HistoryStats.finalPosition.short') + '</th></tr>';
+				"<th title='" + Foxtrick.L10n.getString('HistoryStats.season') + "'>" +
+				Foxtrick.L10n.getString('HistoryStats.season.short') + '</th>' +
+				"<th title='" + Foxtrick.L10n.getString('HistoryStats.cup') + "'>" +
+				Foxtrick.L10n.getString('HistoryStats.cup.short') + '</th>' +
+				"<th title='" + Foxtrick.L10n.getString('HistoryStats.league') + "'>" +
+				Foxtrick.L10n.getString('HistoryStats.league.short') + '</th>' +
+				"<th title='" + Foxtrick.L10n.getString('HistoryStats.finalPosition') + "'>" +
+				Foxtrick.L10n.getString('HistoryStats.finalPosition.short') + '</th></tr>';
 
 			var last = -1;
 			for (var i = 0; i < this.Buffer[teamId].length; i++) {
@@ -206,7 +206,7 @@ Foxtrick.modules['HistoryStats'] = {
 
 			if (doc.getElementById('ft_HistoryStats') === null) {
 				var	ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-				var header = Foxtrickl10n.getString('HistoryStats.boxheader');
+				var header = Foxtrick.L10n.getString('HistoryStats.boxheader');
 				var ownBoxBodyId = 'ft_HistoryStats';
 				ownBoxBody.setAttribute('id', ownBoxBodyId);
 				ownBoxBody.appendChild(table);

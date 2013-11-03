@@ -126,7 +126,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 					type: EVENTS.INTFRREMINDER,
 					UID: EVENTS.INTFRREMINDER + '-' + eventTime + '@foxtrick.org',
 					text: '18:00 » ' +
-						Foxtrickl10n.getString('dashBoardCalendar.events.' + EVENTS.INTFRREMINDER +
+						Foxtrick.L10n.getString('dashBoardCalendar.events.' + EVENTS.INTFRREMINDER +
 						                       '.alarm'),
 					URL: 'http://www.hattrick.org/Club/Challenges/'
 				});
@@ -189,7 +189,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 				Foxtrick.foldLines('DESCRIPTION:' + events[i].text +
 				                   ((events[i].URL) ? '\\n' + events[i].URL : ''),
 				                   75, '\r\n', '\t', true) + '' +
-				'SUMMARY:' + Foxtrick.foldLines(Foxtrickl10n.getString('dashBoardCalendar.events.' +
+				'SUMMARY:' + Foxtrick.foldLines(Foxtrick.L10n.getString('dashBoardCalendar.events.' +
 				                                events[i].type + '.summary').replace(/\n/mg, ''), 75,
 												'\r\n', '\t', true) + '' +
 				'LOCATION:http://www.hattrick.org\r\n' +
@@ -203,7 +203,7 @@ Foxtrick.modules['DashboardCalendar'] = {
 				'STATUS:CONFIRMED\r\n' +
 				'BEGIN:VALARM\r\n' +
 				Foxtrick.foldLines('DESCRIPTION:' +
-				                   Foxtrickl10n.getString('dashBoardCalendar.events.' +
+				                   Foxtrick.L10n.getString('dashBoardCalendar.events.' +
 				                                          events[i].type + '.alarm')
 				                   .replace(/\n/mg, '\\n'), 75, '\r\n', '\t', true) + '' +
 				'ACTION:DISPLAY\r\n' +
@@ -221,10 +221,10 @@ Foxtrick.modules['DashboardCalendar'] = {
 		var textContainer = newLink.appendChild(doc.createElement('div'));
 		Foxtrick.addClass(textContainer, 'float_left');
 		textContainer.style.margin = '0 10px';
-		textContainer.textContent = Foxtrickl10n.getString('button.export');
+		textContainer.textContent = Foxtrick.L10n.getString('button.export');
 		var parent = newLink.appendChild(doc.createElement('div'));
 		Foxtrick.addClass(parent, 'float_right');
-		var title = Foxtrickl10n.getString('dashBoardCalendar.export');
+		var title = Foxtrick.L10n.getString('dashBoardCalendar.export');
 		Foxtrick.addImage(doc, parent,
 		                  { src: Foxtrick.InternalPath + 'resources/img/calendar-day.png',
 		                  alt: title, title: title });

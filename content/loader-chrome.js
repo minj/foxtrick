@@ -37,9 +37,9 @@ Foxtrick.loader.chrome.docLoadStart = function() {
 
 				Foxtrick.entry.contentScriptInit(data);
 
-				if ((FoxtrickPrefs.getBool('disableOnStage')
+				if ((Foxtrick.Prefs.getBool('disableOnStage')
 						&& Foxtrick.isStage(document))
-					|| FoxtrickPrefs.getBool('disableTemporary')) {
+					|| Foxtrick.Prefs.getBool('disableTemporary')) {
 					// not on Hattrick or disabled
 					Foxtrick.log(' Foxtrick disabled');
 					return;

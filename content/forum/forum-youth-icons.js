@@ -63,11 +63,11 @@ Foxtrick.modules['ForumYouthIcons'] = {
 			{ type: 'clock', 	icon_class: 'ft_clock', image: 'format_clock.png', 	string: 'clock', 	tags: 'time',  				},
 			{ type: 'spoiler', 	icon_class: 'ft_spoiler',image: 'format_spoiler.png',	string: 'spoiler',	tags: '[spoiler]yyy[/spoiler]',replace_text: 'yyy'		},
 			{ type: 'pre', 		icon_class: 'ft_pre', 	image: 'format_pre.png', 		string: 'pre', 	tags: '[pre]zzz[/pre]', 		replace_text: 'zzz'		},
-			{ type: 'table', 	icon_class: 'ft_table', image: 'format_table.png', 	string: 'table', 	tags: '[table][tr][td]ttt[/td][/tr][/table]', 	replace_text: 'ttt',  	versions:[' ', Foxtrickl10n.getString('ForumSpecialBBCode.tableSeparator.tab'), Foxtrickl10n.getString('ForumSpecialBBCode.tableSeparator.custom')],	versions_string: 'tableSeparator'},
+			{ type: 'table', 	icon_class: 'ft_table', image: 'format_table.png', 	string: 'table', 	tags: '[table][tr][td]ttt[/td][/tr][/table]', 	replace_text: 'ttt',  	versions:[' ', Foxtrick.L10n.getString('ForumSpecialBBCode.tableSeparator.tab'), Foxtrick.L10n.getString('ForumSpecialBBCode.tableSeparator.custom')],	versions_string: 'tableSeparator'},
 			{ type: 'symbols', 	icon_class: 'ft_symbol', image: 'format_symbol.png', 	string: 'symbols',	tags: 'symbol', 				versions:[], 	versions_string: 'forumSymbol' },
 		];
 		//insert SymbolArray, forward slash to escape, escaping uses 'replace' backwards to tempararily get rid of the semi-colon
-		var symbolsText = FoxtrickPrefs.getString('module.ForumYouthIcons.symbols_text');
+		var symbolsText = Foxtrick.Prefs.getString('module.ForumYouthIcons.symbols_text');
 		// sim lookbehind: stupid JS why u no support it?!
 		var split = symbolsText.split('').reverse().join('').split(/;(?!\\)/).reverse();
 		for (var i = 0; i < split.length; ++i)
@@ -113,15 +113,15 @@ Foxtrick.modules['ForumYouthIcons'] = {
 				var version = ev.target.getAttribute('version');
 				if (version) {
 					Foxtrick.log(ev.target.getAttribute('version_string'), ' ', version);
-					if (version == Foxtrickl10n
+					if (version == Foxtrick.L10n
 							.getString('ForumSpecialBBCode.tableSeparator.custom')) {
-						var version = prompt(Foxtrickl10n
+						var version = prompt(Foxtrick.L10n
 						                     .getString('ForumSpecialBBCode.enterSeparator'));
 						Foxtrick.log('custom_seperator: ', version);
 						if (version == null || version == '')
 							return;
 					}
-					FoxtrickPrefs.setString(ev.target.getAttribute('version_string'), version);
+					Foxtrick.Prefs.setString(ev.target.getAttribute('version_string'), version);
 					doc.getElementById(ev.target.getAttribute('parent_id'))
 						.setAttribute('version', version);
 					doc.getElementById(ev.target.getAttribute('parent_id')).title =
@@ -143,18 +143,18 @@ Foxtrick.modules['ForumYouthIcons'] = {
 		};
 
 		var show_main = Foxtrick.any(function(option) {
-			return FoxtrickPrefs.isModuleOptionEnabled('ForumYouthIcons', option);
+			return Foxtrick.Prefs.isModuleOptionEnabled('ForumYouthIcons', option);
 		}, ['user_id', 'kit_id', 'article_id', 'line_br', 'clock', 'spoiler']);
 		var show_youth = Foxtrick.any(function(option) {
-			return FoxtrickPrefs.isModuleOptionEnabled('ForumYouthIcons', option);
+			return Foxtrick.Prefs.isModuleOptionEnabled('ForumYouthIcons', option);
 		}, ['youth_player', 'youth_team', 'youth_match', 'youth_series']);
 		var show_tournament = Foxtrick.any(function(option) {
-			return FoxtrickPrefs.isModuleOptionEnabled('ForumYouthIcons', option);
+			return Foxtrick.Prefs.isModuleOptionEnabled('ForumYouthIcons', option);
 		}, ['tournament', 'tournament_match']);
 		var show_other = Foxtrick.any(function(option) {
-			return FoxtrickPrefs.isModuleOptionEnabled('ForumYouthIcons', option);
+			return Foxtrick.Prefs.isModuleOptionEnabled('ForumYouthIcons', option);
 		}, ['debug', 'settings']);
-		var enlarge = FoxtrickPrefs.isModuleOptionEnabled('ForumYouthIcons', 'enlarge_input');
+		var enlarge = Foxtrick.Prefs.isModuleOptionEnabled('ForumYouthIcons', 'enlarge_input');
 
 		var div = doc.getElementById('ft_youth_icons');
 		if (div != null) return;
@@ -293,10 +293,10 @@ Foxtrick.modules['ForumYouthIcons'] = {
 
 					if (replaceText == 'ttt') {
 						// table
-						var seperator = FoxtrickPrefs.getString('tableSeparator');
+						var seperator = Foxtrick.Prefs.getString('tableSeparator');
 						Foxtrick.log('seperator', seperator);
 
-						if (seperator == Foxtrickl10n
+						if (seperator == Foxtrick.L10n
 							.getString('ForumSpecialBBCode.tableSeparator.tab'))
 							seperator = '\\t';
 						if (seperator == '|') seperator = '\\|';
@@ -440,7 +440,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 					}
 					else if (openingTag == 'symbol') {
 						// symbols
-						openingTag = FoxtrickPrefs.getString('forumSymbol');
+						openingTag = Foxtrick.Prefs.getString('forumSymbol');
 					}
 					else if (openingTag == 'debug') {
 						if (Foxtrick.arch === 'Sandboxed' || Foxtrick.platform == 'Mobile' ||
@@ -458,7 +458,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 						}
 					}
 					else if (openingTag == 'settings') {
-						var userPrefsText = FoxtrickPrefs.SavePrefs(true, false, false, true,
+						var userPrefsText = Foxtrick.Prefs.SavePrefs(true, false, false, true,
 						                                            '%key:%value');
 						var userPrefsTextArray = userPrefsText.split('\n');
 						openingTag = '';
@@ -516,7 +516,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 		};
 
 		// add quote tag
-		if (FoxtrickPrefs.isModuleOptionEnabled('ForumYouthIcons', icons[0].type)) {
+		if (Foxtrick.Prefs.isModuleOptionEnabled('ForumYouthIcons', icons[0].type)) {
 			for (var j = 0; j < fields.length; j++) {
 				var page = fields[j].page;
 				if (Foxtrick.isPage(doc, page) && fields[j].add_quote == true) {
@@ -527,14 +527,14 @@ Foxtrick.modules['ForumYouthIcons'] = {
 					if (icons[0].replace_text) newimage.setAttribute('replace_text',
 					                                                 icons[0].replace_text);
 					newimage.setAttribute('class', icons[0].icon_class);
-					newimage.title = Foxtrickl10n.getString('ForumSpecialBBCode.' + icons[0].string);
+					newimage.title = Foxtrick.L10n.getString('ForumSpecialBBCode.' + icons[0].string);
 					newimage = Foxtrick.makeFeaturedElement(newimage, this);
 					toolbar.insertBefore(newimage, toolbar.getElementsByTagName('img')[0]);
 				}
 			}
 		}
 		for (var i = 1; i < icons.length; i++) {
-			if (FoxtrickPrefs.isModuleOptionEnabled('ForumYouthIcons', icons[i].type)) {
+			if (Foxtrick.Prefs.isModuleOptionEnabled('ForumYouthIcons', icons[i].type)) {
 				if (icons[i].alt == null || doc.getElementsByClassName(icons[i].alt).length == 0) {
 					var newimage = doc.createElement('img');
 					newimage.src = '/Img/Icons/transparent.gif';
@@ -543,7 +543,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 					if (icons[i].replace_text) newimage.setAttribute('replace_text',
 					                                                 icons[i].replace_text);
 					newimage.setAttribute('class', icons[i].icon_class);
-					newimage.title = Foxtrickl10n.getString('ForumSpecialBBCode.' + icons[i].string);
+					newimage.title = Foxtrick.L10n.getString('ForumSpecialBBCode.' + icons[i].string);
 					newimage = Foxtrick.makeFeaturedElement(newimage, this);
 
 					if (icons[i].versions) {
@@ -562,7 +562,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 							if (icons[i].replace_text) link.setAttribute('replace_text',
 							                                             icons[i].replace_text);
 							link.setAttribute('version', icons[i].versions[j]);
-							link.textContent = Foxtrickl10n
+							link.textContent = Foxtrick.L10n
 								.getString('ForumSpecialBBCode.' + icons[i].versions_string)
 								.replace(/%s/, icons[i].versions[j]);
 							link.setAttribute('parent_id', icons[i].icon_class + '_id');
@@ -572,10 +572,10 @@ Foxtrick.modules['ForumYouthIcons'] = {
 						}
 						newimage.setAttribute('title_raw', newimage.title);
 						newimage.title = newimage.title
-							.replace(/%s/, FoxtrickPrefs.getString(icons[i].versions_string));
+							.replace(/%s/, Foxtrick.Prefs.getString(icons[i].versions_string));
 						newimage.setAttribute('id', icons[i].icon_class + '_id');
 						newimage.setAttribute('parent_id', icons[i].icon_class + '_id');
-						newimage.setAttribute('version', FoxtrickPrefs
+						newimage.setAttribute('version', Foxtrick.Prefs
 						                      .getString(icons[i].versions_string));
 						newimage.setAttribute('version_string', icons[i].versions_string);
 
@@ -588,7 +588,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 		}
 
 		var toolbar_label = Foxtrick.createFeaturedElement(doc, this, 'div');
-		toolbar_label.textContent = Foxtrickl10n.getString('ForumYouthIcons.toolbar.main');
+		toolbar_label.textContent = Foxtrick.L10n.getString('ForumYouthIcons.toolbar.main');
 		toolbar.insertBefore(toolbar_label, toolbar.firstChild);
 
 		// Set styles of next siblings
@@ -609,13 +609,13 @@ Foxtrick.modules['ForumYouthIcons'] = {
 
 			var otherbar_label = doc.createElement('div');
 			otherbar_label.id = 'ft_other_icons';
-			otherbar_label.textContent = Foxtrickl10n.getString('ForumYouthIcons.toolbar.other');
+			otherbar_label.textContent = Foxtrick.L10n.getString('ForumYouthIcons.toolbar.other');
 			if (!show_other)
 				otherbar_label.className = 'hidden';
 			otherbar.appendChild(otherbar_label);
 
 			for (var i = 0; i < othericons.length; i++) {
-				if (FoxtrickPrefs.isModuleOptionEnabled('ForumYouthIcons', othericons[i].type)) {
+				if (Foxtrick.Prefs.isModuleOptionEnabled('ForumYouthIcons', othericons[i].type)) {
 						var newimage = doc.createElement('img');
 						newimage.src = '/Img/Icons/transparent.gif';
 						Foxtrick.onClick(newimage, addClick);
@@ -623,7 +623,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 						if (othericons[i].replace_text)
 							newimage.setAttribute('replace_text', othericons[i].replace_text);
 						newimage.setAttribute('class', othericons[i].icon_class);
-						newimage.title = Foxtrickl10n.getString('ForumYouthIcons.' +
+						newimage.title = Foxtrick.L10n.getString('ForumYouthIcons.' +
 						                                        othericons[i].string);
 						newimage = Foxtrick.makeFeaturedElement(newimage, this);
 						otherbar.appendChild(newimage);
@@ -641,12 +641,12 @@ Foxtrick.modules['ForumYouthIcons'] = {
 
 			var youthbar_label = doc.createElement('div');
 			youthbar_label.id = 'ft_youth_icons';
-			youthbar_label.textContent = Foxtrickl10n.getString('ForumYouthIcons.toolbar.youth');
+			youthbar_label.textContent = Foxtrick.L10n.getString('ForumYouthIcons.toolbar.youth');
 			if (!show_youth) youthbar_label.className = 'hidden';
 			youthbar.appendChild(youthbar_label);
 
 			for (var i = 0; i < youthicons.length; i++) {
-				if (FoxtrickPrefs.isModuleOptionEnabled('ForumYouthIcons', youthicons[i].type)) {
+				if (Foxtrick.Prefs.isModuleOptionEnabled('ForumYouthIcons', youthicons[i].type)) {
 						var newimage = doc.createElement('img');
 						newimage.src = '/Img/Icons/transparent.gif';
 						Foxtrick.onClick(newimage, addClick);
@@ -654,7 +654,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 						if (youthicons[i].replace_text)
 							newimage.setAttribute('replace_text', youthicons[i].replace_text);
 						newimage.setAttribute('class', youthicons[i].icon_class);
-						newimage.title = Foxtrickl10n.getString('ForumYouthIcons.' +
+						newimage.title = Foxtrick.L10n.getString('ForumYouthIcons.' +
 						                                        youthicons[i].string);
 						newimage = Foxtrick.makeFeaturedElement(newimage, this);
 						youthbar.appendChild(newimage);
@@ -672,14 +672,14 @@ Foxtrick.modules['ForumYouthIcons'] = {
 
 			var tournamentbar_label = doc.createElement('div');
 			tournamentbar_label.id = 'ft_tournament_icons';
-			tournamentbar_label.textContent = Foxtrickl10n
+			tournamentbar_label.textContent = Foxtrick.L10n
 				.getString('ForumYouthIcons.toolbar.tournament');
 			if (!show_tournament)
 				tournamentbar_label.className = 'hidden';
 			tournamentbar.appendChild(tournamentbar_label);
 
 			for (var i = 0; i < tournamenticons.length; i++) {
-				if (FoxtrickPrefs.isModuleOptionEnabled('ForumYouthIcons',
+				if (Foxtrick.Prefs.isModuleOptionEnabled('ForumYouthIcons',
 				    tournamenticons[i].type)) {
 						var newimage = doc.createElement('img');
 						newimage.src = '/Img/Icons/transparent.gif';
@@ -688,7 +688,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 						if (tournamenticons[i].replace_text)
 							newimage.setAttribute('replace_text', tournamenticons[i].replace_text);
 						newimage.setAttribute('class', tournamenticons[i].icon_class);
-						newimage.title = Foxtrickl10n.getString('ForumYouthIcons.' +
+						newimage.title = Foxtrick.L10n.getString('ForumYouthIcons.' +
 						                                        tournamenticons[i].string);
 						newimage = Foxtrick.makeFeaturedElement(newimage, this);
 						tournamentbar.appendChild(newimage);

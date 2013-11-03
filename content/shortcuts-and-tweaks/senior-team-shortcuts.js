@@ -16,7 +16,7 @@ Foxtrick.modules['SeniorTeamShortCuts'] = {
 		var boxleft = doc.getElementsByClassName('subMenu')[0];
 		if (boxleft == null) {return;}
 		var teamid = Foxtrick.util.id.findTeamId(boxleft);
-		if (teamid == ownteamid && FoxtrickPrefs.getInt('module.' +
+		if (teamid == ownteamid && Foxtrick.Prefs.getInt('module.' +
 		    this.MODULE_NAME + '.value') == 0)
 			return;
 
@@ -37,7 +37,7 @@ Foxtrick.modules['SeniorTeamShortCuts'] = {
 		var lastmatchlink = doc.createElement('a');
 		lastmatchlink.setAttribute('href', '/Club/Matches/MatchLineup.aspx?MatchID=&TeamID='
 		                           + teamid + '&useArchive=True');
-		lastmatchlink.appendChild(doc.createTextNode(Foxtrickl10n.getString('LastLineup')));
+		lastmatchlink.appendChild(doc.createTextNode(Foxtrick.L10n.getString('LastLineup')));
 		var ownlastmatchlinkId = 'foxtrick_content_lastmatch';
 		lastmatchlink.setAttribute('id', ownlastmatchlinkId);
 		li.appendChild(lastmatchlink);
@@ -65,7 +65,7 @@ Foxtrick.modules['SeniorTeamShortCuts'] = {
 				coachlink.setAttribute('href', '/Club/NationalTeam/NationalTeam.aspx?teamId=' +
 				                       teamid + '&redir_to_coach=true');
 		}
-		coachlink.appendChild(doc.createTextNode(Foxtrickl10n.getString('Coach')));
+		coachlink.appendChild(doc.createTextNode(Foxtrick.L10n.getString('Coach')));
 		var owncoachlinkId = 'foxtrick_content_coach';
 		coachlink.setAttribute('id', owncoachlinkId);
 		li2.appendChild(coachlink);

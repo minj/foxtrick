@@ -22,9 +22,9 @@ Foxtrick.modules.ForumThreadAutoIgnore = {
 		var deletingThreadId = -1;
 
 		var checkThreads = function() {
-			if (!FoxtrickPrefs.isModuleOptionEnabled('ForumThreadAutoIgnore', 'Tags'))
+			if (!Foxtrick.Prefs.isModuleOptionEnabled('ForumThreadAutoIgnore', 'Tags'))
 				return;
-			var tags_string = FoxtrickPrefs.getString('module.ForumThreadAutoIgnore.Tags_text');
+			var tags_string = Foxtrick.Prefs.getString('module.ForumThreadAutoIgnore.Tags_text');
 			if (!tags_string)
 				return;
 
@@ -36,10 +36,10 @@ Foxtrick.modules.ForumThreadAutoIgnore = {
 			}
 
 			// get whitelisted threadIDs. comma seperated in the prefs
-			if (FoxtrickPrefs.isModuleOptionEnabled('ForumThreadAutoIgnore',
+			if (Foxtrick.Prefs.isModuleOptionEnabled('ForumThreadAutoIgnore',
 			    'Whitelist_ThreadIDs')) {
 				var whitelist_string =
-					FoxtrickPrefs.getString('module.ForumThreadAutoIgnore.Whitelist_ThreadIDs_text');
+					Foxtrick.Prefs.getString('module.ForumThreadAutoIgnore.Whitelist_ThreadIDs_text');
 				if (whitelist_string) {
 					whitelist = whitelist_string.split(',');
 					for (var i = 0; i < whitelist.length; ++i) {

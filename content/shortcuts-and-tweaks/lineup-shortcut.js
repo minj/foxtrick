@@ -104,7 +104,7 @@ Foxtrick.modules['LineupShortcut'] = {
 		//Now getting playerid from top of the page:
 		var element = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var playerid = Foxtrick.util.id.findPlayerId(element);
-		var lineuplabel = Foxtrickl10n.getString('LineupShortcut.lineup');
+		var lineuplabel = Foxtrick.L10n.getString('LineupShortcut.lineup');
 		var matchtable = doc.getElementById('ctl00_ctl00_CPContent_CPMain_UpdatePanel1')
 			.getElementsByTagName('table').item(0);
 		// matchtable is `not present if the player hasn't played for a team
@@ -192,7 +192,7 @@ Foxtrick.modules['LineupShortcut'] = {
 
 	//************************ HIGHLIGHT PLAYER ***********************************
 	_Highlight_Player: function(doc) {
-		if (FoxtrickPrefs.isModuleOptionEnabled('LineupShortcut', 'HighlightPlayer')) {
+		if (Foxtrick.Prefs.isModuleOptionEnabled('LineupShortcut', 'HighlightPlayer')) {
 			var newimg = 'url(' + Foxtrick.ResourcePath + 'resources/img/box_yellow.gif)';
 			//Getting playerid from url
 			var passedid = doc.baseURI.replace(/.+HighlightPlayerID=/i, '').match(/^\d+/);

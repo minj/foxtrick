@@ -28,22 +28,22 @@ Foxtrick.modules['SkinPlugin'] = {
 		// import from old preferences
 		var oldPrefs = ['module.SkinPlugin.Skin1_text', 'module.SkinPlugin.Skin2_text'];
 		Foxtrick.map(function(key) {
-			var pref = FoxtrickPrefs.getString(key);
+			var pref = Foxtrick.Prefs.getString(key);
 			if (pref) {
-				FoxtrickPrefs.setString('module.SkinPlugin.skin',
-					FoxtrickPrefs.getString('module.SkinPlugin.skin') + '\n' + pref);
-				FoxtrickPrefs.deleteValue(key);
+				Foxtrick.Prefs.setString('module.SkinPlugin.skin',
+					Foxtrick.Prefs.getString('module.SkinPlugin.skin') + '\n' + pref);
+				Foxtrick.Prefs.deleteValue(key);
 			}
 		}, oldPrefs);
 
 		if (Foxtrick.arch == 'Gecko') {
-			this.CSS = FoxtrickPrefs.getString('module.SkinPlugin.skin');
+			this.CSS = Foxtrick.Prefs.getString('module.SkinPlugin.skin');
 		}
 	},
 
 	run: function(doc) {
 		if (Foxtrick.arch != 'Gecko') {
-			var skin = FoxtrickPrefs.getString('module.SkinPlugin.skin');
+			var skin = Foxtrick.Prefs.getString('module.SkinPlugin.skin');
 			Foxtrick.util.inject.css(doc, skin);
 		}
 	}

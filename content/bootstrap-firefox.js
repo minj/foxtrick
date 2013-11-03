@@ -371,9 +371,5 @@ function unloadFromWindow(window) {
 		}
 		catch (e) {}
 	}
-	window.FoxtrickPrefs = undefined;
-	window.Foxtrickl10n = undefined;
-	delete window.FoxtrickPrefs;
-	delete window.Foxtrickl10n;
 	delete window.Foxtrick;
 }

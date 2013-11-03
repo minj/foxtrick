@@ -64,7 +64,7 @@ Foxtrick.util.note = {
 			Foxtrick.sessionGet('clipboard',
 			  function(string) {
 				var msg_p = note.getElementsByTagName('p')[0];
-				msg_p.textContent = Foxtrickl10n.getString('specialCopy.hint');
+				msg_p.textContent = Foxtrick.L10n.getString('specialCopy.hint');
 				var textarea = doc.createElement('textarea');
 				msg_p.parentNode.insertBefore(textarea, msg_p.nextSibling);
 				textarea.value = string;
@@ -95,7 +95,7 @@ Foxtrick.util.note = {
 				for (var i = 0; i < buttons.length; ++i) {
 					var button = doc.createElement('input');
 					button.type = 'button';
-					button.value = Foxtrickl10n.getString(buttons[i].type.name);
+					button.value = Foxtrick.L10n.getString(buttons[i].type.name);
 					if (buttons[i].listener) {
 						Foxtrick.onClick(button, buttons[i].listener);
 					}
@@ -135,7 +135,7 @@ Foxtrick.util.note = {
 			if (hasClose === true) {
 				var close = doc.createElement('a');
 				close.className = 'close';
-				close.textContent = Foxtrickl10n.getString('button.close');
+				close.textContent = Foxtrick.L10n.getString('button.close');
 				Foxtrick.onClick(close, function(ev) {
 						try {
 							var container = ev.target.parentNode;
@@ -163,7 +163,7 @@ Foxtrick.util.note = {
 
 	createLoading: function(doc, inline, loadingText) {
 		if (!loadingText)
-			loadingText = Foxtrickl10n.getString('status.loading');
+			loadingText = Foxtrick.L10n.getString('status.loading');
 		if (inline) {
 			// if the note is inline, return a span with nothing special
 			var container = doc.createElement('span');

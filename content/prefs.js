@@ -6,18 +6,21 @@
  */
 ////////////////////////////////////////////////////////////////////////////////
 
-var FoxtrickPrefs = {
+if (!Foxtrick)
+	var Foxtrick = {};
+
+Foxtrick.Prefs = {
 
 	/* get an entry from preferences with generic type,
 	 * return null if not found
 	 */
 	get: function(key) {
 		var val;
-		if ((val = FoxtrickPrefs.getString(key)) != null)
+		if ((val = Foxtrick.Prefs.getString(key)) != null)
 			return val;
-		if ((val = FoxtrickPrefs.getInt(key)) != null)
+		if ((val = Foxtrick.Prefs.getInt(key)) != null)
 			return val;
-		if ((val = FoxtrickPrefs.getBool(key)) != null)
+		if ((val = Foxtrick.Prefs.getBool(key)) != null)
 			return val;
 		return null;
 	},
@@ -30,9 +33,9 @@ var FoxtrickPrefs = {
 	 */
 	set: function(key, value) {
 		var map = {
-			'string': FoxtrickPrefs.setString,
-			'number': FoxtrickPrefs.setInt,
-			'boolean': FoxtrickPrefs.setBool
+			'string': Foxtrick.Prefs.setString,
+			'number': Foxtrick.Prefs.setInt,
+			'boolean': Foxtrick.Prefs.setBool
 		};
 		if (map[typeof(value)])
 			map[typeof(value)](key, value);
@@ -58,7 +61,7 @@ var FoxtrickPrefs = {
 		if (value == '')
 			return false;
 
-		var values = FoxtrickPrefs.getList(branch);
+		var values = Foxtrick.Prefs.getList(branch);
 
 		// already exists?
 		var exists = Foxtrick.member(value, values);
@@ -67,36 +70,36 @@ var FoxtrickPrefs = {
 			return false;
 
 		values.push(value);
-		FoxtrickPrefs.populateList(branch, values);
+		Foxtrick.Prefs.populateList(branch, values);
 
 		return true;
 	},
 
 	// returns a list in an array
 	getList: function(branch) {
-		var keys = FoxtrickPrefs.getAllKeysOfBranch(branch);
+		var keys = Foxtrick.Prefs.getAllKeysOfBranch(branch);
 		return Foxtrick.map(function(k) {
-			return FoxtrickPrefs.get(k);
+			return Foxtrick.Prefs.get(k);
 		}, keys);
 	},
 
 	/** Remove a list element. */
 	delListPref: function(branch, delValue) {
-		var values = FoxtrickPrefs.getList(branch);
+		var values = Foxtrick.Prefs.getList(branch);
 		values = Foxtrick.filter(function(e) {
 			return e != delValue;
 		}, values);
-		FoxtrickPrefs.populateList(branch, values);
+		Foxtrick.Prefs.populateList(branch, values);
 	},
 
 	/** Populate list_name with given array deleting if exists */
 	populateList: function(branch, values) {
-		var keys = FoxtrickPrefs.getAllKeysOfBranch(branch);
+		var keys = Foxtrick.Prefs.getAllKeysOfBranch(branch);
 		for (var i = 0; i < keys.length; ++i) {
-			FoxtrickPrefs.deleteValue(keys[i]);
+			Foxtrick.Prefs.deleteValue(keys[i]);
 		}
 		for (var i = 0; i < values.length; ++i) {
-			FoxtrickPrefs.set(decodeURI(branch + '.' + i), values[i]);
+			Foxtrick.Prefs.set(decodeURI(branch + '.' + i), values[i]);
 		}
 	},
 
@@ -105,9 +108,9 @@ var FoxtrickPrefs = {
 
 	// returns whether FoxTrick is enabled on doc
 	isEnabled: function(doc) {
-		if (FoxtrickPrefs.getBool('disableOnStage') && Foxtrick.isStage(doc))
+		if (Foxtrick.Prefs.getBool('disableOnStage') && Foxtrick.isStage(doc))
 			return false;
-		if (FoxtrickPrefs.getBool('disableTemporary'))
+		if (Foxtrick.Prefs.getBool('disableTemporary'))
 			return false;
 		return true;
 	},
@@ -119,37 +122,37 @@ var FoxtrickPrefs = {
 			return false;
 		if (obj.CORE_MODULE)
 			return true;
-		return FoxtrickPrefs.getBool('module.' + moduleName + '.enabled');
+		return Foxtrick.Prefs.getBool('module.' + moduleName + '.enabled');
 	},
 
 	isModuleOptionEnabled: function(moduleName, option) {
-		return FoxtrickPrefs.getBool('module.' + moduleName + '.' + option + '.enabled');
+		return Foxtrick.Prefs.getBool('module.' + moduleName + '.' + option + '.enabled');
 	},
 
 	isModuleOptionSet: function(moduleName, option) {
-		return FoxtrickPrefs.prefHasUserValue('module.' + moduleName + '.' + option + '.enabled');
+		return Foxtrick.Prefs.prefHasUserValue('module.' + moduleName + '.' + option + '.enabled');
 	},
 
 	setModuleEnableState: function(moduleName, value) {
-		FoxtrickPrefs.setBool('module.' + moduleName + '.enabled', value);
+		Foxtrick.Prefs.setBool('module.' + moduleName + '.enabled', value);
 	},
 
 	setModuleOptionsText: function(moduleName, value) {
-		FoxtrickPrefs.setString('module.' + moduleName, value);
+		Foxtrick.Prefs.setString('module.' + moduleName, value);
 	},
 
 	getModuleValue: function(moduleName) {
-		return FoxtrickPrefs.getInt('module.' + moduleName + '.value');
+		return Foxtrick.Prefs.getInt('module.' + moduleName + '.value');
 	},
 
 	setModuleValue: function(moduleName, value) {
-		FoxtrickPrefs.setInt('module.' + moduleName + '.value', value);
+		Foxtrick.Prefs.setInt('module.' + moduleName + '.value', value);
 	},
 
 	getModuleDescription: function(moduleName) {
 		var name = 'module.' + moduleName + '.desc';
-		if (Foxtrickl10n.isStringAvailable(name))
-			return Foxtrickl10n.getString(name);
+		if (Foxtrick.L10n.isStringAvailable(name))
+			return Foxtrick.L10n.getString(name);
 		else {
 			Foxtrick.log('Module not localized: ' + moduleName + '.');
 			return moduleName;
@@ -158,8 +161,8 @@ var FoxtrickPrefs = {
 
 	getModuleElementDescription: function(moduleName, option) {
 		var name = 'module.' + moduleName + '.' + option + '.desc';
-		if (Foxtrickl10n.isStringAvailable(name))
-			return Foxtrickl10n.getString(name);
+		if (Foxtrick.L10n.isStringAvailable(name))
+			return Foxtrick.L10n.getString(name);
 		else {
 			Foxtrick.log('Module option not localized: ' + moduleName + '.' + option + '.');
 			return option;
@@ -181,13 +184,13 @@ var FoxtrickPrefs = {
 		if (Foxtrick.arch == 'Gecko') {
 			if (Foxtrick.chromeContext() === 'background') {
 				try {
-					var array = FoxtrickPrefs.getAllKeysOfBranch('module');
+					var array = Foxtrick.Prefs.getAllKeysOfBranch('module');
 					for (var i = 0; i < array.length; i++) {
-						if (FoxtrickPrefs.isPrefSetting(array[i])) {
-							FoxtrickPrefs.deleteValue(array[i]);
+						if (Foxtrick.Prefs.isPrefSetting(array[i])) {
+							Foxtrick.Prefs.deleteValue(array[i]);
 						}
 					}
-					FoxtrickPrefs.setBool('preferences.updated', true);
+					Foxtrick.Prefs.setBool('preferences.updated', true);
 					Foxtrick.entry.init();
 					return true;
 				}
@@ -201,7 +204,7 @@ var FoxtrickPrefs = {
 			}
 		}
 		else if (Foxtrick.arch == 'Sandboxed') {
-			FoxtrickPrefs._prefs_chrome_user = {};
+			Foxtrick.Prefs._prefs_chrome_user = {};
 			sandboxed.extension.sendRequest({ req: 'clearPrefs' },
 				Foxtrick.entry.init);
 			return true;
@@ -210,14 +213,14 @@ var FoxtrickPrefs = {
 
 	disableAllModules: function() {
 		try {
-			var array = FoxtrickPrefs.getAllKeysOfBranch('module');
+			var array = Foxtrick.Prefs.getAllKeysOfBranch('module');
 
 			for (var i = 0; i < array.length; i++) {
 				if (array[i].search(/enabled$/) != -1) {
-					FoxtrickPrefs.setBool(array[i], false);
+					Foxtrick.Prefs.setBool(array[i], false);
 				}
 			}
-			FoxtrickPrefs.setBool('preferences.updated', true);
+			Foxtrick.Prefs.setBool('preferences.updated', true);
 			Foxtrick.entry.init();
 		}
 		catch (e) {
@@ -234,26 +237,26 @@ var FoxtrickPrefs = {
 		try {
 			if (!format) format = 'user_pref("extensions.foxtrick.prefs.%key",%value);';
 			var ret = '';
-			var array = FoxtrickPrefs.getAllKeysOfBranch('');
+			var array = Foxtrick.Prefs.getAllKeysOfBranch('');
 			array.sort();
 			for (var i = 0; i < array.length; i++) {
 				var key = array[i];
 				if (i > 0 && key == array[i - 1])
 					continue; // some appear twice!?
-				if (!userSettings || FoxtrickPrefs.prefHasUserValue(key)) {
+				if (!userSettings || Foxtrick.Prefs.prefHasUserValue(key)) {
 					// output all or only non-default switch
-					if ((FoxtrickPrefs.isPrefSetting(key) && savePrefs)
-						|| (!FoxtrickPrefs.isPrefSetting(key) && key.indexOf('oauth.') == -1
+					if ((Foxtrick.Prefs.isPrefSetting(key) && savePrefs)
+						|| (!Foxtrick.Prefs.isPrefSetting(key) && key.indexOf('oauth.') == -1
 						    && saveNotes)
 						|| (key.indexOf('oauth') != -1 && saveToken)) {
 						var item = format.replace(/%key/, key);
 
 						var value = null;
-						if ((value = FoxtrickPrefs.getString(key)) !== null)
+						if ((value = Foxtrick.Prefs.getString(key)) !== null)
 							item = item.replace(/%value/, '"' + value.replace(/\n/g, '\\n') + '"');
-						else if ((value = FoxtrickPrefs.getInt(key)) !== null)
+						else if ((value = Foxtrick.Prefs.getInt(key)) !== null)
 							item = item.replace(/%value/, value);
-						else if ((value = FoxtrickPrefs.getBool(key)) !== null)
+						else if ((value = Foxtrick.Prefs.getBool(key)) !== null)
 							item = item.replace(/%value/, value);
 						if (value !== null)
 							ret += item + '\n';
@@ -287,18 +290,18 @@ var FoxtrickPrefs = {
 				}
 				catch (e) {}
 				if (value === true || value === false || value === 'true' || value === 'false')
-					FoxtrickPrefs.setBool(key, (value === true || value == 'true'));
+					Foxtrick.Prefs.setBool(key, (value === true || value == 'true'));
 				else if (value.match(/^".+"$/))
-					FoxtrickPrefs.setString(key, value.match(/^"(.+)"$/)[1]);
+					Foxtrick.Prefs.setString(key, value.match(/^"(.+)"$/)[1]);
 				else if (!isNaN(value))
-					FoxtrickPrefs.setInt(key, Number(value));
+					Foxtrick.Prefs.setInt(key, Number(value));
 			}
 			catch (e) {
 				Foxtrick.dump('Value: ' + matches[2]);
 				Foxtrick.log(e);
 			}
 		}
-		FoxtrickPrefs.setBool('preferences.updated', true);
+		Foxtrick.Prefs.setBool('preferences.updated', true);
 	},
 
 	show: function(page) {
@@ -307,7 +310,7 @@ var FoxtrickPrefs = {
 	},
 
 	disable: function(sender) {
-		FoxtrickPrefs.setBool('disableTemporary', !FoxtrickPrefs.getBool('disableTemporary'));
+		Foxtrick.Prefs.setBool('disableTemporary', !Foxtrick.Prefs.getBool('disableTemporary'));
 		Foxtrick.modules.UI.update(sender);
 		if (Foxtrick.arch === 'Gecko') {
 			Foxtrick.entry.init();
@@ -315,14 +318,14 @@ var FoxtrickPrefs = {
 		}
 	},
 	highlight: function(sender) {
-		FoxtrickPrefs.setBool('featureHighlight', !FoxtrickPrefs.getBool('featureHighlight'));
+		Foxtrick.Prefs.setBool('featureHighlight', !Foxtrick.Prefs.getBool('featureHighlight'));
 		Foxtrick.modules.UI.update(sender);
 		if (Foxtrick.arch === 'Gecko') {
 			Foxtrick.entry.init();
 		}
 	},
 	translationKeys: function(sender) {
-		FoxtrickPrefs.setBool('translationKeys', !FoxtrickPrefs.getBool('translationKeys'));
+		Foxtrick.Prefs.setBool('translationKeys', !Foxtrick.Prefs.getBool('translationKeys'));
 		Foxtrick.modules.UI.update(sender);
 		if (Foxtrick.arch === 'Gecko') {
 			Foxtrick.entry.init();
@@ -363,7 +366,7 @@ if (Foxtrick.arch === 'Gecko') {
 		_prefs_gecko: null,
 
 		init: function() {
-			FoxtrickPrefs._prefs_gecko = Components
+			Foxtrick.Prefs._prefs_gecko = Components
 				.classes['@mozilla.org/preferences-service;1']
 				.getService(Components.interfaces.nsIPrefService)
 				.getBranch('extensions.foxtrick.prefs.');
@@ -371,7 +374,7 @@ if (Foxtrick.arch === 'Gecko') {
 
 		getString: function(key) {
 			try {
-				return FoxtrickPrefs._prefs_gecko.getComplexValue(encodeURI(key),
+				return Foxtrick.Prefs._prefs_gecko.getComplexValue(encodeURI(key),
 						Components.interfaces.nsISupportsString).data;
 			} catch (e) {
 				return null;
@@ -388,14 +391,14 @@ if (Foxtrick.arch === 'Gecko') {
 					.classes['@mozilla.org/supports-string;1']
 					.createInstance(Components.interfaces.nsISupportsString);
 				str.data = value;
-				FoxtrickPrefs._prefs_gecko.setComplexValue(encodeURI(key),
+				Foxtrick.Prefs._prefs_gecko.setComplexValue(encodeURI(key),
 					Components.interfaces.nsISupportsString, str);
 				}
 		},
 
 		getInt: function(key) {
 			try {
-				return FoxtrickPrefs._prefs_gecko.getIntPref(encodeURI(key));
+				return Foxtrick.Prefs._prefs_gecko.getIntPref(encodeURI(key));
 			} catch (e) {
 				return null;
 			}
@@ -406,12 +409,12 @@ if (Foxtrick.arch === 'Gecko') {
 				sandboxed.extension.sendRequest({ req: 'setValue', type: 'int',
 				                                key: key, value: value });
 			else
-				FoxtrickPrefs._prefs_gecko.setIntPref(encodeURI(key), value);
+				Foxtrick.Prefs._prefs_gecko.setIntPref(encodeURI(key), value);
 		},
 
 		getBool: function(key) {
 			try {
-				return FoxtrickPrefs._prefs_gecko.getBoolPref(encodeURI(key));
+				return Foxtrick.Prefs._prefs_gecko.getBoolPref(encodeURI(key));
 			} catch (e) {
 				return null;
 			}
@@ -422,13 +425,13 @@ if (Foxtrick.arch === 'Gecko') {
 				sandboxed.extension.sendRequest({ req: 'setValue', type: 'bool',
 				                                key: key, value: value });
 			else
-				FoxtrickPrefs._prefs_gecko.setBoolPref(encodeURI(key), value);
+				Foxtrick.Prefs._prefs_gecko.setBoolPref(encodeURI(key), value);
 		},
 
 		deleteValue: function(key) {
 			if (Foxtrick.chromeContext() === 'background') {
-				if (FoxtrickPrefs._prefs_gecko.prefHasUserValue(encodeURI(key)))
-					FoxtrickPrefs._prefs_gecko.clearUserPref(encodeURI(key));   // reset to default
+				if (Foxtrick.Prefs._prefs_gecko.prefHasUserValue(encodeURI(key)))
+					Foxtrick.Prefs._prefs_gecko.clearUserPref(encodeURI(key));   // reset to default
 			}
 			else {
 				sandboxed.extension.sendRequest({ req: 'deleteValue', key: key });
@@ -438,15 +441,15 @@ if (Foxtrick.arch === 'Gecko') {
 		// set for fennec background script side
 		setValue: function(key, value, type) {
 			if (type == 'string')
-				FoxtrickPrefs.setString(key, value);
+				Foxtrick.Prefs.setString(key, value);
 			else if (type == 'int')
-				FoxtrickPrefs.setInt(key, value);
+				Foxtrick.Prefs.setInt(key, value);
 			else if (type == 'bool')
-				FoxtrickPrefs.setBool(key, value);
+				Foxtrick.Prefs.setBool(key, value);
 		},
 
 		prefHasUserValue: function(key) {
-			return FoxtrickPrefs._prefs_gecko.prefHasUserValue(key);
+			return Foxtrick.Prefs._prefs_gecko.prefHasUserValue(key);
 		},
 		/* get all preference entry keys under a branch.
 		 * - if branch is '', return the names of all entries;
@@ -455,7 +458,7 @@ if (Foxtrick.arch === 'Gecko') {
 		 */
 		getAllKeysOfBranch: function(branch) {
 			var prefix = (branch == '') ? '' : encodeURI(branch + '.');
-			var array = FoxtrickPrefs._prefs_gecko.getChildList(prefix, {});
+			var array = Foxtrick.Prefs._prefs_gecko.getChildList(prefix, {});
 			for (var i = 0; i < array.length; ++i)
 				array[i] = decodeURI(array[i]);
 			return array;
@@ -464,7 +467,7 @@ if (Foxtrick.arch === 'Gecko') {
 
 	var i;
 	for (i in FoxtrickPrefsGecko)
-		FoxtrickPrefs[i] = FoxtrickPrefsGecko[i];
+		Foxtrick.Prefs[i] = FoxtrickPrefsGecko[i];
 
 }
 
@@ -487,37 +490,37 @@ if (Foxtrick.arch === 'Sandboxed') {
 		setString: function(key, value) {
 			var newVal = String(value);
 			newVal = newVal.replace(/\\./g, unescape);
-			FoxtrickPrefs.setValue(key, newVal);
+			Foxtrick.Prefs.setValue(key, newVal);
 		},
 
 		getInt: function(key) {
-			var value = FoxtrickPrefs.getValue(key);
+			var value = Foxtrick.Prefs.getValue(key);
 			if (typeof(value) == 'number')
 				return value;
 			return null;
 		},
 
 		setInt: function(key, value) {
-			FoxtrickPrefs.setValue(key, Number(value));
+			Foxtrick.Prefs.setValue(key, Number(value));
 		},
 
 		getBool: function(key) {
-			var value = FoxtrickPrefs.getValue(key);
+			var value = Foxtrick.Prefs.getValue(key);
 			if (typeof(value) == 'boolean')
 				return value;
 			return null;
 		},
 
 		setBool: function(key, value) {
-			FoxtrickPrefs.setValue(key, Boolean(value));
+			Foxtrick.Prefs.setValue(key, Boolean(value));
 		},
 
 		getValue: function(key) {
 			try {
-				if (FoxtrickPrefs._prefs_chrome_user[key] !== undefined)
-					return FoxtrickPrefs._prefs_chrome_user[key];
-				else if (FoxtrickPrefs._prefs_chrome_default[key] !== undefined)
-					return FoxtrickPrefs._prefs_chrome_default[key];
+				if (Foxtrick.Prefs._prefs_chrome_user[key] !== undefined)
+					return Foxtrick.Prefs._prefs_chrome_user[key];
+				else if (Foxtrick.Prefs._prefs_chrome_default[key] !== undefined)
+					return Foxtrick.Prefs._prefs_chrome_default[key];
 				else
 					return null;
 			}
@@ -527,7 +530,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 		},
 
 		prefHasUserValue: function(key) {
-			return (typeof(FoxtrickPrefs._prefs_chrome_user[key]) != 'undefined');
+			return (typeof(Foxtrick.Prefs._prefs_chrome_user[key]) != 'undefined');
 		},
 
 		/* get all preference entry keys under a branch.
@@ -538,13 +541,13 @@ if (Foxtrick.arch === 'Sandboxed') {
 		getAllKeysOfBranch: function(branch) {
 			var prefix = (branch == '') ? '' : encodeURI(branch + '.');
 			var array = [], i;
-			for (i in FoxtrickPrefs._prefs_chrome_user) {
+			for (i in Foxtrick.Prefs._prefs_chrome_user) {
 				if (i.indexOf(prefix) == 0)
-					if (!FoxtrickPrefs._prefs_chrome_default[i])
+					if (!Foxtrick.Prefs._prefs_chrome_default[i])
 						// only if not default to eliminate duplicacy
 						array.push(i);
 			}
-			for (i in FoxtrickPrefs._prefs_chrome_default) {
+			for (i in Foxtrick.Prefs._prefs_chrome_default) {
 				if (i.indexOf(prefix) == 0)
 					array.push(i);
 			}
@@ -561,14 +564,14 @@ if (Foxtrick.arch === 'Sandboxed') {
 				// in content script since access to localStorage is forbidden
 				try {
 					// user preferences
-					FoxtrickPrefs._prefs_chrome_user = {};
+					Foxtrick.Prefs._prefs_chrome_user = {};
 					var length = localStorage.length;
 					for (var i = 0; i < length; ++i) {
 						var key = localStorage.key(i);
 						if (key.indexOf('localStore') !== 0) {
 							var value = localStorage.getItem(key);
 							try {
-								FoxtrickPrefs._prefs_chrome_user[key] = JSON.parse(value);
+								Foxtrick.Prefs._prefs_chrome_user[key] = JSON.parse(value);
 							}
 							catch (e) {
 								Foxtrick.log('Preference parse error: key: ', key,
@@ -581,7 +584,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 						}
 					}
 
-					FoxtrickPrefs._prefs_chrome_default = {};
+					Foxtrick.Prefs._prefs_chrome_default = {};
 
 					var parsePrefsFile = function(url) {
 						var prefText = Foxtrick.util.load.sync(Foxtrick.InternalPath + url);
@@ -594,13 +597,13 @@ if (Foxtrick.arch === 'Sandboxed') {
 								var key = matches[1];
 								var value = matches[2];
 								if (value == 'true')
-									FoxtrickPrefs._prefs_chrome_default[key] = true;
+									Foxtrick.Prefs._prefs_chrome_default[key] = true;
 								else if (value == 'false')
-									FoxtrickPrefs._prefs_chrome_default[key] = false;
+									Foxtrick.Prefs._prefs_chrome_default[key] = false;
 								else if (!isNaN(Number(value)))
-									FoxtrickPrefs._prefs_chrome_default[key] = Number(value);
+									Foxtrick.Prefs._prefs_chrome_default[key] = Number(value);
 								else if (value.match(/^"(.*)"$/))
-									FoxtrickPrefs._prefs_chrome_default[key] =
+									Foxtrick.Prefs._prefs_chrome_default[key] =
 										String(value.match(/^"(.*)"$/)[1].replace(/\\./g, unescape));
 							}
 						}
@@ -625,10 +628,10 @@ if (Foxtrick.arch === 'Sandboxed') {
 				if (typeof (value) == 'string')
 					value = value.replace(/\\./g, unescape);
 				try {
-					if (FoxtrickPrefs._prefs_chrome_default[key] === value)
-						FoxtrickPrefs.deleteValue(key);
+					if (Foxtrick.Prefs._prefs_chrome_default[key] === value)
+						Foxtrick.Prefs.deleteValue(key);
 					else {
-						FoxtrickPrefs._prefs_chrome_user[key] = value; // not default, set it
+						Foxtrick.Prefs._prefs_chrome_user[key] = value; // not default, set it
 						localStorage.setItem(key, JSON.stringify(value));
 					}
 				}
@@ -636,7 +639,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 			},
 
 			deleteValue: function(key) {
-				delete(FoxtrickPrefs._prefs_chrome_user[key]);
+				delete(Foxtrick.Prefs._prefs_chrome_user[key]);
 				localStorage.removeItem(key);
 			},
 		};
@@ -651,27 +654,27 @@ if (Foxtrick.arch === 'Sandboxed') {
 		// set and delete for contents script side
 		var FoxtrickPrefsChromeContent = {
 
-		setValue: function(key, value) {
-			if (typeof (value) == 'string')
-				value = value.replace(/\\./g, unescape);
-			try {
-				if (FoxtrickPrefs._prefs_chrome_default[key] === value)
-					// is default. deleteing user pref, will set it to default
-					FoxtrickPrefs.deleteValue(key);
-				else {
-					// not default, set it
-					FoxtrickPrefs._prefs_chrome_user[key] = value;
-					sandboxed.extension.sendRequest({ req: 'setValue', key: key, value: value });
+			setValue: function(key, value) {
+				if (typeof (value) == 'string')
+					value = value.replace(/\\./g, unescape);
+				try {
+					if (Foxtrick.Prefs._prefs_chrome_default[key] === value)
+						// is default. deleteing user pref, will set it to default
+						Foxtrick.Prefs.deleteValue(key);
+					else {
+						// not default, set it
+						Foxtrick.Prefs._prefs_chrome_user[key] = value;
+						sandboxed.extension.sendRequest({ req: 'setValue', key: key, value: value });
+					}
 				}
-			}
-			catch (e) {}
-		},
+				catch (e) {}
+			},
 
-		deleteValue: function(key) {
-			delete(FoxtrickPrefs._prefs_chrome_user[key]);
-			sandboxed.extension.sendRequest({ req: 'deleteValue', key: key });
-		},
-	};
+			deleteValue: function(key) {
+				delete(Foxtrick.Prefs._prefs_chrome_user[key]);
+				sandboxed.extension.sendRequest({ req: 'deleteValue', key: key });
+			},
+		};
 
 		var i;
 		for (i in FoxtrickPrefsChromeContent)
@@ -680,7 +683,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 
 	var i;
 	for (i in FoxtrickPrefsChrome)
-		FoxtrickPrefs[i] = FoxtrickPrefsChrome[i];
+		Foxtrick.Prefs[i] = FoxtrickPrefsChrome[i];
 }
 
 })();

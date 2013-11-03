@@ -46,8 +46,8 @@ Foxtrick.modules['SupportershipExpirationDate'] = {
 		newContainer.setAttribute('style', "cursor:pointer;");
 
 		//title l10n n shit
-		prevContainer.setAttribute('title', Foxtrickl10n.getString('SupportershipExpirationDate.showExpirationDate') );
-		newContainer.setAttribute('title', Foxtrickl10n.getString('SupportershipExpirationDate.showRemainingDayCount') );
+		prevContainer.setAttribute('title', Foxtrick.L10n.getString('SupportershipExpirationDate.showExpirationDate') );
+		newContainer.setAttribute('title', Foxtrick.L10n.getString('SupportershipExpirationDate.showRemainingDayCount') );
 
 		//listener to switch the shit
 		Foxtrick.onClick(prevContainer, function(ev){

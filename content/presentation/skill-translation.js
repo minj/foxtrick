@@ -166,7 +166,7 @@ Foxtrick.modules['SkillTranslation'] = {
 
 	run: function(doc) {
 		// no need to translate if language is already English
-		if (FoxtrickPrefs.getString('htLanguage') === 'en') {
+		if (Foxtrick.Prefs.getString('htLanguage') === 'en') {
 			return;
 		}
 		var table = doc.getElementById('mainBody').getElementsByTagName('table')[0];

@@ -113,8 +113,8 @@ Foxtrick.Pages.TransferSearchResults = {
 				player.deadline = infoTable.rows[4].cells[1].cloneNode(true);
 
 				player.transferCompare = doc.createElement('a');
-				player.transferCompare.textContent = Foxtrickl10n.getString('TransferCompare.abbr');
-				player.transferCompare.title = Foxtrickl10n.getString('TransferCompare');
+				player.transferCompare.textContent = Foxtrick.L10n.getString('TransferCompare.abbr');
+				player.transferCompare.title = Foxtrick.L10n.getString('TransferCompare');
 				player.transferCompare.href = player.nameLink.href
 					.replace('/Club/Players/Player.aspx', '/Club/Transfers/TransferCompare.aspx');
 

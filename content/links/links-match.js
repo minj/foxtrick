@@ -40,7 +40,7 @@ Foxtrick.modules['LinksMatch'] = {
 		var owncountryid = Foxtrick.util.id.getOwnLeagueId();
 		var main = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var youthteamid = Foxtrick.util.id.findYouthTeamId(main);
-		var server = FoxtrickPrefs.getBool('hty-stage') ? 'stage' : 'www';
+		var server = Foxtrick.Prefs.getBool('hty-stage') ? 'stage' : 'www';
 		var ownyouthteamid = Foxtrick.util.id.getOwnYouthTeamId();
 
 		if (isarchivedmatch) {
@@ -94,7 +94,7 @@ Foxtrick.modules['LinksMatch'] = {
 		var ownBoxBody = null;
 		if (add_links) {
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-			var header = Foxtrickl10n.getString('links.boxheader');
+			var header = Foxtrick.L10n.getString('links.boxheader');
 			var ownBoxBodyId = 'foxtrick_links_content';
 			ownBoxBody.setAttribute('id', ownBoxBodyId);
 

@@ -15,7 +15,7 @@ Foxtrick.modules['Fans'] = {
 
     run: function(doc) {
 
-        if (FoxtrickPrefs.isModuleOptionEnabled('Fans', 'AddLiveLink')) {
+        if (Foxtrick.Prefs.isModuleOptionEnabled('Fans', 'AddLiveLink')) {
             var reM = new RegExp('matchID=([0-9]*)', 'i');
             var reS = new RegExp('SourceSystem=([A-Za-z]*)', 'i');
             var links = doc.querySelectorAll('#upcoming a[href*="matchID"]');
@@ -24,12 +24,12 @@ Foxtrick.modules['Fans'] = {
                 var mS = reS.exec(links[i].getAttribute('href'));
                 var node = Foxtrick.createFeaturedElement(doc, Foxtrick.modules.Fans, 'a');
                 node.setAttribute('href', '/Club/Matches/Live.aspx?matchID='+mM[1]+'&actionType=addMatch&SourceSystem='+mS[1]);
-                Foxtrick.addImage(doc, node, {alt:Foxtrickl10n.getString('MyMonitor.htLive'), title:Foxtrickl10n.getString('MyMonitor.htLive'), src:'/Img/icons/transparent.gif', class:'matchHTLive'});
+                Foxtrick.addImage(doc, node, {alt:Foxtrick.L10n.getString('MyMonitor.htLive'), title:Foxtrick.L10n.getString('MyMonitor.htLive'), src:'/Img/icons/transparent.gif', class:'matchHTLive'});
                 links[i].parentNode.parentNode.previousElementSibling.appendChild(node);
             }
         }
 
-        if (FoxtrickPrefs.isModuleOptionEnabled('Fans', 'ShowSumFans')) {
+        if (Foxtrick.Prefs.isModuleOptionEnabled('Fans', 'ShowSumFans')) {
             var nums = doc.querySelectorAll('#sidebar #members .inc, #sidebar #members .dec');
             var total = 0;
             for(var i=0; i<nums.length; i++) {
@@ -43,7 +43,7 @@ Foxtrick.modules['Fans'] = {
             row.setAttribute('class', 'ft-bordertop');
             var td1 = doc.createElement('td');
             td1.setAttribute('class', 'date bold');
-            td1.textContent = Foxtrickl10n.getString('TeamStats.Total');
+            td1.textContent = Foxtrick.L10n.getString('TeamStats.Total');
             var td2 = doc.createElement('td');
             td2.setAttribute('class', (total>0?'inc':'dec'));
             td2.textContent = (total>0?'+'+total:total);

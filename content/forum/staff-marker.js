@@ -115,7 +115,7 @@ Foxtrick.modules['StaffMarker'] = {
 
 	getTitle: function(type, duty) {
 		var str = 'StaffMarker.' + type + (duty ? '.' + duty : '');
-		return Foxtrickl10n.isStringAvailable(str) ? Foxtrickl10n.getString(str) : null;
+		return Foxtrick.L10n.isStringAvailable(str) ? Foxtrick.L10n.getString(str) : null;
 	},
 
 	// parse enable map
@@ -123,11 +123,11 @@ Foxtrick.modules['StaffMarker'] = {
 		var enable = {}, m = this.type_map;
 		for (var i = 0, t; i < m.length && (t = m[i]); i++) {
 			if (typeof t === 'string') {
-				enable[t] = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', t);
+				enable[t] = Foxtrick.Prefs.isModuleOptionEnabled('StaffMarker', t);
 				this.title_map[t] = this.getTitle(t);
 			}
 			else {
-				var superTypeEnabled = FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', t[0]);
+				var superTypeEnabled = Foxtrick.Prefs.isModuleOptionEnabled('StaffMarker', t[0]);
 				for (var j = 1, e; j < t.length && (e = t[j]); ++j) {
 					enable[e] = superTypeEnabled;
 					this.title_map[e] = this.getTitle(e);
@@ -303,8 +303,8 @@ Foxtrick.modules['StaffMarker'] = {
 
 				// getting user-defined IDs and colors
 				var customMarker = {};
-				if (FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'own')) {
-					var customText = FoxtrickPrefs.getString('module.StaffMarker.own_text');
+				if (Foxtrick.Prefs.isModuleOptionEnabled('StaffMarker', 'own')) {
+					var customText = Foxtrick.Prefs.getString('module.StaffMarker.own_text');
 					try {
 						customMarker = JSON.parse(customText);
 					}
@@ -440,7 +440,7 @@ Foxtrick.modules['StaffMarker'] = {
 					markThread(doc, modifier);
 					markSelect(doc, modifier);
 				}
-				else if (Foxtrick.isPage(doc, 'teamPage') && FoxtrickPrefs.isModuleOptionEnabled('StaffMarker', 'manager')) {
+				else if (Foxtrick.isPage(doc, 'teamPage') && Foxtrick.Prefs.isModuleOptionEnabled('StaffMarker', 'manager')) {
 					markThread(doc, modifier);
 				}
 			});

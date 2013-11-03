@@ -166,7 +166,7 @@ Foxtrick.util.css.unload_css_permanent = function(cssList) {
 Foxtrick.util.css.collect_module_css = function() {
 	Foxtrick.cssFiles = [];
 	var collect = function(module) {
-		if (FoxtrickPrefs.isModuleEnabled(module.MODULE_NAME)) {
+		if (Foxtrick.Prefs.isModuleEnabled(module.MODULE_NAME)) {
 			// module main CSS
 			if (module.CSS) {
 				if (module.CSS instanceof Array) {
@@ -188,7 +188,7 @@ Foxtrick.util.css.collect_module_css = function() {
 						if (css[i] instanceof Array && options[i] instanceof Array) {
 							pushCss(options[i], css[i]);
 						} else if (typeof(css[i]) === 'string' && typeof(options[i]) === 'string') {
-							if (FoxtrickPrefs.isModuleOptionEnabled(module.MODULE_NAME, options[i])
+							if (Foxtrick.Prefs.isModuleOptionEnabled(module.MODULE_NAME, options[i])
 							    && css[i]) {
 								Foxtrick.cssFiles.push(css[i]);
 							}
@@ -206,10 +206,10 @@ Foxtrick.util.css.collect_module_css = function() {
 			// module options CSS
 			if (module.RADIO_OPTIONS
 				&& module.RADIO_OPTIONS_CSS
-				&& module.RADIO_OPTIONS_CSS[FoxtrickPrefs.getInt('module.' +
+				&& module.RADIO_OPTIONS_CSS[Foxtrick.Prefs.getInt('module.' +
 				                                                 module.MODULE_NAME + '.value')]) {
 					Foxtrick.cssFiles.push(module.RADIO_OPTIONS_CSS[
-					                       FoxtrickPrefs.getInt('module.' +
+					                       Foxtrick.Prefs.getInt('module.' +
 					                                            module.MODULE_NAME + '.value')
 					                       ]);
 			}
@@ -314,9 +314,9 @@ Foxtrick.util.css.getCssTextFromFile = function(cssUrl) {
 		// not a file. line is css text already
 		css_text = cssUrl;
 	}
-	css_text = css_text.replace(new RegExp('\\[data-theme="' + FoxtrickPrefs.getString('theme') +
+	css_text = css_text.replace(new RegExp('\\[data-theme="' + Foxtrick.Prefs.getString('theme') +
 	                            '"\\]', 'g'), '');
-	css_text = css_text.replace(new RegExp('\\[dir="' + FoxtrickPrefs.getString('dir') + '"\\]',
+	css_text = css_text.replace(new RegExp('\\[dir="' + Foxtrick.Prefs.getString('dir') + '"\\]',
 	                            'g'), '');
 	if (Foxtrick.arch == 'Sandboxed') {
 		// remove moz-document statement
@@ -340,8 +340,8 @@ Foxtrick.util.css.getCssFileArrayToString = function(cssUrls) {
 
 	// gets all css from modules.CSS settings
 Foxtrick.util.css.getCssTextCollection = function() {
-	Foxtrick.log('getCssTextCollection ', FoxtrickPrefs.getString('theme'), ' - ',
-	             FoxtrickPrefs.getString('dir'));
+	Foxtrick.log('getCssTextCollection ', Foxtrick.Prefs.getString('theme'), ' - ',
+	             Foxtrick.Prefs.getString('dir'));
 	Foxtrick.util.css.collect_module_css();
 	return Foxtrick.util.css.getCssFileArrayToString(Foxtrick.cssFiles);
 };

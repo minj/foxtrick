@@ -24,7 +24,7 @@ Foxtrick.entry.docLoad = function(doc) {
 	Foxtrick.log.flush(doc);
 
 	// don't execute if disabled
-	if (FoxtrickPrefs.getBool('disableTemporary')) {
+	if (Foxtrick.Prefs.getBool('disableTemporary')) {
 		Foxtrick.log('disabled');
 		// potenial disable cleanup
 		if (Foxtrick.entry.cssLoaded) {
@@ -100,19 +100,19 @@ Foxtrick.entry.contentScriptInit = function(data) {
 		Foxtrick.modules[i].MODULE_NAME = i;
 
 	if (Foxtrick.platform != 'Mobile' && Foxtrick.platform != 'Android') {
-			FoxtrickPrefs._prefs_chrome_user = data._prefs_chrome_user;
-			FoxtrickPrefs._prefs_chrome_default = data._prefs_chrome_default;
+			Foxtrick.Prefs._prefs_chrome_user = data._prefs_chrome_user;
+			Foxtrick.Prefs._prefs_chrome_default = data._prefs_chrome_default;
 
-			Foxtrickl10n.properties_default = data.properties_default;
-			Foxtrickl10n.properties = data.properties;
-			Foxtrickl10n.screenshots_default = data.screenshots_default;
-			Foxtrickl10n.screenshots = data.screenshots;
-			Foxtrickl10n.plForm_default = data.plForm_default;
-			Foxtrickl10n.plForm = data.plForm;
+			Foxtrick.L10n.properties_default = data.properties_default;
+			Foxtrick.L10n.properties = data.properties;
+			Foxtrick.L10n.screenshots_default = data.screenshots_default;
+			Foxtrick.L10n.screenshots = data.screenshots;
+			Foxtrick.L10n.plForm_default = data.plForm_default;
+			Foxtrick.L10n.plForm = data.plForm;
 		}
 		else {
 			// fennec can access them from context, but they still need to get initilized
-			var coreModules = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
+			var coreModules = [Foxtrick.Prefs, Foxtrick.L10n, Foxtrick.XMLData];
 			for (var i = 0; i < coreModules.length; ++i) {
 				if (typeof(coreModules[i].init) == 'function')
 					coreModules[i].init();
@@ -120,7 +120,7 @@ Foxtrick.entry.contentScriptInit = function(data) {
 		}
 		var parser = new window.DOMParser();
 		for (i in data.htLangJSON) {
-			Foxtrickl10n.htLanguagesJSON[i] = JSON.parse(data.htLangJSON[i]);
+			Foxtrick.L10n.htLanguagesJSON[i] = JSON.parse(data.htLangJSON[i]);
 		}
 
 		Foxtrick.XMLData.htCurrencyJSON = JSON.parse(data.currencyJSON);
@@ -139,7 +139,7 @@ Foxtrick.entry.init = function() {
 	for (i in Foxtrick.modules)
 		Foxtrick.modules[i].MODULE_NAME = i;
 
-	var coreModules = [FoxtrickPrefs, Foxtrickl10n, Foxtrick.XMLData];
+	var coreModules = [Foxtrick.Prefs, Foxtrick.L10n, Foxtrick.XMLData];
 	for (var i = 0; i < coreModules.length; ++i) {
 		if (typeof(coreModules[i].init) == 'function')
 			coreModules[i].init();
@@ -156,7 +156,7 @@ Foxtrick.entry.init = function() {
 	var modules = [];
 	for (i in Foxtrick.modules) {
 		var module = Foxtrick.modules[i];
-		if (FoxtrickPrefs.isModuleEnabled(module.MODULE_NAME)) {
+		if (Foxtrick.Prefs.isModuleEnabled(module.MODULE_NAME)) {
 			// push to array modules for executing init()
 			modules.push(module);
 			// register modules on the pages they are operating on according
@@ -177,16 +177,16 @@ Foxtrick.entry.init = function() {
 
 Foxtrick.entry.run = function(doc, is_only_css_check) {
 	try {
-		if (Foxtrick.platform == 'Firefox' && FoxtrickPrefs.getBool('preferences.updated')) {
+		if (Foxtrick.platform == 'Firefox' && Foxtrick.Prefs.getBool('preferences.updated')) {
 			Foxtrick.log('prefs updated');
 			Foxtrick.entry.init();
 			Foxtrick.util.css.reload_module_css(doc);
 			Foxtrick.entry.cssLoaded = true;
-			FoxtrickPrefs.setBool('preferences.updated', false);
+			Foxtrick.Prefs.setBool('preferences.updated', false);
 		}
 
 		// don't execute if not enabled on the document
-		if (!FoxtrickPrefs.isEnabled(doc)) {
+		if (!Foxtrick.Prefs.isEnabled(doc)) {
 			// potenial disable cleanup
 			Foxtrick.util.css.unload_module_css(doc);
 			Foxtrick.entry.cssLoaded = false;
@@ -196,12 +196,12 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		// set up direction and style attributes
 		var current_theme = Foxtrick.util.layout.isStandard(doc) ? 'standard' : 'simple';
 		var current_dir = Foxtrick.util.layout.isRtl(doc) ? 'rtl' : 'ltr';
-		var oldtheme = FoxtrickPrefs.getString('theme');
-		var olddir = FoxtrickPrefs.getString('dir');
+		var oldtheme = Foxtrick.Prefs.getString('theme');
+		var olddir = Foxtrick.Prefs.getString('dir');
 		if (current_theme != oldtheme || current_dir != olddir) {
 			Foxtrick.log('layout change');
-			FoxtrickPrefs.setString('theme', current_theme);
-			FoxtrickPrefs.setString('dir', current_dir);
+			Foxtrick.Prefs.setString('theme', current_theme);
+			Foxtrick.Prefs.setString('dir', current_dir);
 			Foxtrick.util.css.reload_module_css(doc);
 			Foxtrick.entry.cssLoaded = true;
 		}
@@ -219,7 +219,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		// reload CSS if not loaded
 		if (!Foxtrick.entry.cssLoaded) {
 			Foxtrick.log('CSS not loaded');
-			FoxtrickPrefs.setBool('isStage', Foxtrick.isStage(doc));
+			Foxtrick.Prefs.setBool('isStage', Foxtrick.isStage(doc));
 			Foxtrick.util.css.reload_module_css(doc);
 			Foxtrick.entry.cssLoaded = true;
 		}
@@ -228,7 +228,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		if (is_only_css_check)
 			return;
 		if (Foxtrick.isExcluded(doc)
-		|| (Foxtrick.isLoginPage(doc) && !FoxtrickPrefs.getBool('runLoggedOff')))
+		|| (Foxtrick.isLoginPage(doc) && !Foxtrick.Prefs.getBool('runLoggedOff')))
 			return;
 
 		// create arrays for each recognized page that contains modules
@@ -239,7 +239,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		}
 		for (i in Foxtrick.modules) {
 			var module = Foxtrick.modules[i];
-			if (FoxtrickPrefs.isModuleEnabled(module.MODULE_NAME)) {
+			if (Foxtrick.Prefs.isModuleEnabled(module.MODULE_NAME)) {
 				// register modules on the pages they are operating on according
 				// to their PAGES property
 				if (module.MODULE_NAME && module.PAGES) {
@@ -321,7 +321,7 @@ Foxtrick.entry.change = function(ev) {
 
 		Foxtrick.log('call modules change functions');
 
-		if (FoxtrickPrefs.isEnabled(doc)) {
+		if (Foxtrick.Prefs.isEnabled(doc)) {
 			var modules = [];
 			// modules running on current page
 			var page;

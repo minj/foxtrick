@@ -331,12 +331,12 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 				colouringOrder = '100,' + colouringOrder;
 		}*/
 
-		var Africa = Foxtrickl10n.getString('flagCollectionToMap.Africa');
-		var Asia = Foxtrickl10n.getString('flagCollectionToMap.Asia');
-		var Europe = Foxtrickl10n.getString('flagCollectionToMap.Europe');
-		var MEast = Foxtrickl10n.getString('flagCollectionToMap.MEast');
-		var SAmerica = Foxtrickl10n.getString('flagCollectionToMap.SAmerica');
-		var World = Foxtrickl10n.getString('flagCollectionToMap.World');
+		var Africa = Foxtrick.L10n.getString('flagCollectionToMap.Africa');
+		var Asia = Foxtrick.L10n.getString('flagCollectionToMap.Asia');
+		var Europe = Foxtrick.L10n.getString('flagCollectionToMap.Europe');
+		var MEast = Foxtrick.L10n.getString('flagCollectionToMap.MEast');
+		var SAmerica = Foxtrick.L10n.getString('flagCollectionToMap.SAmerica');
+		var World = Foxtrick.L10n.getString('flagCollectionToMap.World');
 
 		// get all required urls
 		var urlAfrica = this.getMapUrl(Africa, collectedCountryCodes, colouringOrder,
@@ -358,8 +358,8 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 
 		var openMapA = document.createElement('A');
 
-		var ShowMap = Foxtrickl10n.getString('flagCollectionToMap.ShowMap');
-		var HideMap = Foxtrickl10n.getString('flagCollectionToMap.HideMap');
+		var ShowMap = Foxtrick.L10n.getString('flagCollectionToMap.ShowMap');
+		var HideMap = Foxtrick.L10n.getString('flagCollectionToMap.HideMap');
 		openMapA.appendChild(document.createTextNode(ShowMap));
 		openMapA.name = 'flags' + mapId;
 		openMapA.href = '#' + 'foxtrick-top-map-' + mapId;
@@ -389,12 +389,12 @@ Foxtrick.modules['FlagCollectionToMap'] = {
 	                 urlSAmerica, urlWorld, anchorId) {
 		var href = '#' + 'foxtrick-img-map-' + anchorId;
 		var hrefTop = '#' + 'foxtrick-top-map-' + anchorId;
-		var Africa = Foxtrickl10n.getString('flagCollectionToMap.Africa');
-		var Asia = Foxtrickl10n.getString('flagCollectionToMap.Asia');
-		var Europe = Foxtrickl10n.getString('flagCollectionToMap.Europe');
-		var MEast = Foxtrickl10n.getString('flagCollectionToMap.MEast');
-		var SAmerica = Foxtrickl10n.getString('flagCollectionToMap.SAmerica');
-		var World = Foxtrickl10n.getString('flagCollectionToMap.World');
+		var Africa = Foxtrick.L10n.getString('flagCollectionToMap.Africa');
+		var Asia = Foxtrick.L10n.getString('flagCollectionToMap.Asia');
+		var Europe = Foxtrick.L10n.getString('flagCollectionToMap.Europe');
+		var MEast = Foxtrick.L10n.getString('flagCollectionToMap.MEast');
+		var SAmerica = Foxtrick.L10n.getString('flagCollectionToMap.SAmerica');
+		var World = Foxtrick.L10n.getString('flagCollectionToMap.World');
 
 		var addNavLink = function(imgUrl, text) {
 			var a = doc.createElement('a');

@@ -39,7 +39,7 @@ Foxtrick.modules['ConfirmActions'] = {
 
 		// Bid, TransferList, NtChange, StaffChange
 		if (Foxtrick.isPage(doc, 'playerDetails')) {
-			if (FoxtrickPrefs.isModuleOptionEnabled('ConfirmActions', 'Bid')) {
+			if (Foxtrick.Prefs.isModuleOptionEnabled('ConfirmActions', 'Bid')) {
 				var bidButton = doc.getElementById(ids.BID.BUTTON_ID);
 				if (bidButton) {
 					bidButton = Foxtrick.makeFeaturedElement(bidButton, this);
@@ -51,7 +51,7 @@ Foxtrick.modules['ConfirmActions'] = {
 									   doc.getElementById(ids.BID.TEXT_ID[1])];
 						var confirm = doc.getElementById(ids.BID.CONFIRM_ID);
 						if (bidAlert && (bidText[0] || bidText[1]) && !confirm) {
-							var msgTemplate = Foxtrickl10n.getString('ConfirmActions.bid');
+							var msgTemplate = Foxtrick.L10n.getString('ConfirmActions.bid');
 							var value = bidText[1] && bidText[1].value ||
 								bidText[0] && bidText[0].value;
 							var price = value
@@ -104,7 +104,7 @@ Foxtrick.modules['ConfirmActions'] = {
 					});
 				}
 			}
-			if (FoxtrickPrefs.isModuleOptionEnabled('ConfirmActions', 'TransferList')) {
+			if (Foxtrick.Prefs.isModuleOptionEnabled('ConfirmActions', 'TransferList')) {
 				var sellButton = doc.getElementById(ids.SELL.BUTTON_ID);
 				if (sellButton) {
 					sellButton = Foxtrick.makeFeaturedElement(sellButton, this);
@@ -115,7 +115,7 @@ Foxtrick.modules['ConfirmActions'] = {
 						var sellText = doc.getElementById(ids.SELL.TEXT_ID);
 						var confirm = doc.getElementById('ft-sell-confirm');
 						if (sellText && !confirm) {
-							var msgTemplate = Foxtrickl10n.getString('ConfirmActions.transferlist');
+							var msgTemplate = Foxtrick.L10n.getString('ConfirmActions.transferlist');
 							var price = sellText.value
 								.split('').reverse().join('')
 								.replace(new RegExp('(.{3})(?!$)', 'g'), '$1' + String.fromCharCode(160))
@@ -165,7 +165,7 @@ Foxtrick.modules['ConfirmActions'] = {
 					});
 				}
 			}
-			if (FoxtrickPrefs.isModuleOptionEnabled('ConfirmActions', 'NtChange')) {
+			if (Foxtrick.Prefs.isModuleOptionEnabled('ConfirmActions', 'NtChange')) {
 				// one may coach both a U-20 and an NT team
 				var ntId =
 					'ctl00_ctl00_CPContent_CPSidebar_ucNTCoachOptions_repNTActions_ctl00_lnkNTAction';
@@ -176,14 +176,14 @@ Foxtrick.modules['ConfirmActions'] = {
 					submitLink = Foxtrick.makeFeaturedElement(submitLink, this);
 					// add a confirm to webpage's javascript link
 					Foxtrick.onClick(submitLink, function(ev) {
-						if (!confirm(Foxtrickl10n.getString('ConfirmActions.ntremove')))
+						if (!confirm(Foxtrick.L10n.getString('ConfirmActions.ntremove')))
 							ev.preventDefault();
 					});
 				}
 			}
 		}
 		else if (Foxtrick.isPage(doc, 'staff')) {
-			if (FoxtrickPrefs.isModuleOptionEnabled('ConfirmActions', 'StaffChange')) {
+			if (Foxtrick.Prefs.isModuleOptionEnabled('ConfirmActions', 'StaffChange')) {
 				var submitButton = doc.getElementById(ids.STAFF.SUBMIT_BUTTON_ID);
 				if (submitButton) {
 					submitButton = Foxtrick.makeFeaturedElement(submitButton, this);
@@ -203,10 +203,10 @@ Foxtrick.modules['ConfirmActions'] = {
 							if (!isNaN(amount) && roleIndex !== 0) {
 								var msgTemplate;
 								if (actionIndex === 0) {
-									msgTemplate = Foxtrickl10n.getString('ConfirmActions.hirestaff');
+									msgTemplate = Foxtrick.L10n.getString('ConfirmActions.hirestaff');
 								}
 								else if (actionIndex === 1) {
-									msgTemplate = Foxtrickl10n.getString('ConfirmActions.sackstaff');
+									msgTemplate = Foxtrick.L10n.getString('ConfirmActions.sackstaff');
 								}
 								var msg = msgTemplate.replace(/\%num/, amount).replace(/\%kind/, roleStr);
 								var msgPara = doc.createElement('p');

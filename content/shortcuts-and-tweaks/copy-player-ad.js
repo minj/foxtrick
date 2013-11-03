@@ -33,7 +33,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 		}
 
 		var button = Foxtrick.util.copyButton.add(doc,
-			Foxtrickl10n.getString('copy.playerad'));
+			Foxtrick.L10n.getString('copy.playerad'));
 		if (button) {
 			Foxtrick.addClass(button, 'ft-copy-player-ad');
 			Foxtrick.onClick(button, this.createPlayerAd);
@@ -65,7 +65,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			ad += Foxtrick.trim(byLine.textContent) + '\n\n';
 
 			if (Foxtrick.Pages.Player.getNationalityName(doc) !== null) {
-				ad += Foxtrickl10n.getString('Nationality') + ': '
+				ad += Foxtrick.L10n.getString('Nationality') + ': '
 					+ Foxtrick.Pages.Player.getNationalityName(doc) + '\n\n';
 			}
 
@@ -148,13 +148,13 @@ Foxtrick.modules['CopyPlayerAd'] = {
 								text: skills.texts[i]
 							});
 					}
-					if (FoxtrickPrefs.isModuleOptionEnabled('CopyPlayerAd', 'Sorted')
+					if (Foxtrick.Prefs.isModuleOptionEnabled('CopyPlayerAd', 'Sorted')
 						|| doc.getElementsByClassName('percentImage').length > 0
 						|| doc.getElementsByClassName('ft-percentImage').length > 0) {
 						// if skills are sorted or skill bars are enabled,
 						// the skills are arranged in a table with one cell
 						// in each row
-						if (FoxtrickPrefs.isModuleOptionEnabled('CopyPlayerAd', 'Sorted')) {
+						if (Foxtrick.Prefs.isModuleOptionEnabled('CopyPlayerAd', 'Sorted')) {
 							var skillSort = function(a, b) {
 								return b.value - a.value;
 							};
@@ -162,7 +162,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 							skillArray.sort(skillSort);
 						}
 
-						if (!FoxtrickPrefs.isModuleOptionEnabled('CopyPlayerAd', 'NonTableStyle')) {
+						if (!Foxtrick.Prefs.isModuleOptionEnabled('CopyPlayerAd', 'NonTableStyle')) {
 							ad += '[table]\n';
 							for (var i = 0; i < skillArray.length; ++i) {
 								ad += '[tr]'
@@ -186,7 +186,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 					else {
 						// otherwise, they are arranged in a table with two
 						// cells in each row
-						if (!FoxtrickPrefs.isModuleOptionEnabled('CopyPlayerAd', 'NonTableStyle')) {
+						if (!Foxtrick.Prefs.isModuleOptionEnabled('CopyPlayerAd', 'NonTableStyle')) {
 							ad += '[table]\n';
 							var index = 0;
 							for (var skill = 0; skill < skillArray.length; ++skill) {
@@ -232,7 +232,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 							});
 					}
 
-					if (FoxtrickPrefs.isModuleOptionEnabled('CopyPlayerAd', 'Sorted')) {
+					if (Foxtrick.Prefs.isModuleOptionEnabled('CopyPlayerAd', 'Sorted')) {
 						var skillSort = function(a, b) {
 							if (a.current.value !== b.current.value) {
 								return b.current.value - a.current.value;
@@ -247,7 +247,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 						// descending
 						skillArray.sort(skillSort);
 					}
-					if (!FoxtrickPrefs.isModuleOptionEnabled('CopyPlayerAd', 'NonTableStyle')) {
+					if (!Foxtrick.Prefs.isModuleOptionEnabled('CopyPlayerAd', 'NonTableStyle')) {
 						ad += '[table]\n';
 						for (var i = 0; i < skillArray.length; ++i) {
 							ad += '[tr]'
@@ -298,7 +298,7 @@ Foxtrick.modules['CopyPlayerAd'] = {
 			var insertBefore = doc.getElementsByTagName('h1')[1];
 			Foxtrick.copyStringToClipboard(ad);
 			var note = Foxtrick.util.note.add(doc, insertBefore, 'ft-playerad-copy-note',
-			                                  Foxtrickl10n.getString('copy.playerad.copied'),
+			                                  Foxtrick.L10n.getString('copy.playerad.copied'),
 			                                  null, true);
 		}
 		catch (e) {

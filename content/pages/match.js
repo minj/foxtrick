@@ -148,10 +148,10 @@ Foxtrick.Pages.Match = {
 
 	getTacticsFromCell: function(cell) {
 		var tactics = Foxtrick.trim(cell.textContent);
-		var lang = FoxtrickPrefs.getString('htLanguage');
+		var lang = Foxtrick.Prefs.getString('htLanguage');
 
 		try {
-			var category = Foxtrickl10n.htLanguagesJSON[lang].language['tactics'];
+			var category = Foxtrick.L10n.htLanguagesJSON[lang].language['tactics'];
 			var subLevelValue = Foxtrick.nth(0, function(item) {
 				return item.value == tactics;
 			}, category).type;

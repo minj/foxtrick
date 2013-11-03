@@ -21,7 +21,7 @@ Foxtrick.modules['TeamStats'] = {
 	 */
 	run: function(doc) {
 		// delay execution after YouthSkills
-		if (Foxtrick.isPage(doc, 'ownYouthPlayers') && FoxtrickPrefs.isModuleEnabled('YouthSkills'))
+		if (Foxtrick.isPage(doc, 'ownYouthPlayers') && Foxtrick.Prefs.isModuleEnabled('YouthSkills'))
 			return;
 
 		this.execute(doc);
@@ -151,7 +151,7 @@ Foxtrick.modules['TeamStats'] = {
 					var row = doc.createElement('tr');
 					var header = doc.createElement('th');
 					header.setAttribute('colspan', '2');
-					header.textContent = Foxtrickl10n.getString(category);
+					header.textContent = Foxtrick.L10n.getString(category);
 					row.appendChild(header);
 					tbody.appendChild(row);
 					table.appendChild(tbody);
@@ -159,7 +159,7 @@ Foxtrick.modules['TeamStats'] = {
 
 				var row = doc.createElement('tr');
 				var addFilterShortcut = function(filter, title) {
-					row.title = Foxtrickl10n.getString('TeamStats.FilterFor') + ' ' + title;
+					row.title = Foxtrick.L10n.getString('TeamStats.FilterFor') + ' ' + title;
 					row.setAttribute('style', 'cursor:pointer');
 					Foxtrick.onClick(row, function(ev) {
 						var filterSelect = doc.getElementById('foxtrick-filter-select');
@@ -197,45 +197,45 @@ Foxtrick.modules['TeamStats'] = {
 					dataCell.textContent = data;
 				}
 				row.appendChild(dataCell);
-				if (filter && FoxtrickPrefs.isModuleEnabled('PlayerFilters'))
+				if (filter && Foxtrick.Prefs.isModuleEnabled('PlayerFilters'))
 					addFilterShortcut(filter, title);
 
 				tbody.appendChild(row);
 				return row;
 			};
 
-			if (FoxtrickPrefs.isModuleOptionEnabled('TeamStats', 'General')) {
+			if (Foxtrick.Prefs.isModuleOptionEnabled('TeamStats', 'General')) {
 				if (numPlayers) {
 					var data = doc.createElement('span');
 					var total = doc.createElement('span');
 					total.className = 'nowrap';
 					total.textContent = playerList.length;
-					total.setAttribute('title', Foxtrickl10n.getString('TeamStats.Total'));
+					total.setAttribute('title', Foxtrick.L10n.getString('TeamStats.Total'));
 					var selected = doc.createElement('span');
 					selected.className = 'nowrap';
 					selected.textContent = numPlayers;
-					selected.setAttribute('title', Foxtrickl10n.getString('TeamStats.Selected'));
+					selected.setAttribute('title', Foxtrick.L10n.getString('TeamStats.Selected'));
 					data.appendChild(selected);
 					data.appendChild(doc.createTextNode(' / '));
 					data.appendChild(total);
-					addRow('TeamStats.General', Foxtrickl10n.getString('TeamStats.Players'), data);
+					addRow('TeamStats.General', Foxtrick.L10n.getString('TeamStats.Players'), data);
 				}
 				if (totalAge) {
 					var avgAge = Math.round(totalAge / numPlayers);
 					var avgYears = Math.floor(avgAge / 112);
 					var avgDays = avgAge % 112;
-					addRow('TeamStats.General', Foxtrickl10n.getString('Age'),
+					addRow('TeamStats.General', Foxtrick.L10n.getString('Age'),
 					       avgYears + '.' + avgDays);
 				}
 				if (Foxtrick.Pages.Players.isYouthPlayersPage(doc)) {
 					var youngerThanNineteen = numPlayers - olderThanNineteen;
-					var row = addRow('TeamStats.General', Foxtrickl10n
+					var row = addRow('TeamStats.General', Foxtrick.L10n
 					                 .getString('TeamStats.PlayerNotToOld'), youngerThanNineteen);
 					if (youngerThanNineteen < 9) {
 						row.className = 'red';
 					}
 					if (olderThanNineteen) {
-						var row = addRow('TeamStats.General', Foxtrickl10n
+						var row = addRow('TeamStats.General', Foxtrick.L10n
 						                 .getString('TeamStats.PlayerToOld'), olderThanNineteen);
 						row.className = 'red';
 					}
@@ -249,11 +249,11 @@ Foxtrick.modules['TeamStats'] = {
 					var total = doc.createElement('span');
 					total.className = 'nowrap';
 					total.textContent = Foxtrick.formatNumber(val, '\u00a0');
-					total.setAttribute('title', Foxtrickl10n.getString('TeamStats.Total'));
+					total.setAttribute('title', Foxtrick.L10n.getString('TeamStats.Total'));
 					var avgSpan = doc.createElement('span');
 					avgSpan.className = 'nowrap';
 					avgSpan.textContent = Foxtrick.formatNumber(avg.toFixed(1), '\u00a0');
-					avgSpan.setAttribute('title', Foxtrickl10n.getString('TeamStats.Average'));
+					avgSpan.setAttribute('title', Foxtrick.L10n.getString('TeamStats.Average'));
 					data.appendChild(total);
 					data.appendChild(doc.createTextNode(' / '));
 					data.appendChild(avgSpan);
@@ -266,7 +266,7 @@ Foxtrick.modules['TeamStats'] = {
 					var span = doc.createElement('span');
 					var avg = val / numPlayers;
 					span.textContent = avg.toFixed(1);
-					span.title = Foxtrickl10n.getFullLevelByValue(avg);
+					span.title = Foxtrick.L10n.getFullLevelByValue(avg);
 					return span;
 				},
 				age: function(val, numPlayers) {
@@ -276,19 +276,19 @@ Foxtrick.modules['TeamStats'] = {
 			for (var j = 0; j < attributeOptions.length; ++j) {
 				if (!Foxtrick.isOneOfPages(attributeOptions[j].pages, doc))
 					continue;
-				if (!FoxtrickPrefs.isModuleOptionEnabled('TeamStats',
+				if (!Foxtrick.Prefs.isModuleOptionEnabled('TeamStats',
 				    attributeOptions[j].category.replace(/.+\./, '')))
 					continue;
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList,
 				    attributeOptions[j].property)) {
 					var text = methods[attributeOptions[j].method](attributeOptions[j].value,
 					                                               numPlayers);
-					addRow(attributeOptions[j].category, Foxtrickl10n
+					addRow(attributeOptions[j].category, Foxtrick.L10n
 					       .getString(attributeOptions[j].name), text);
 				}
 			}
 
-			if (FoxtrickPrefs.isModuleOptionEnabled('TeamStats', 'Speciality')) {
+			if (Foxtrick.Prefs.isModuleOptionEnabled('TeamStats', 'Speciality')) {
 				if (hasSpecialities) {
 					var specSummary = [], speciality, i;
 					for (speciality in specialities) {
@@ -298,71 +298,71 @@ Foxtrick.modules['TeamStats'] = {
 					}
 					for (i in specSummary) {
 						addRow('Speciality', specSummary[i].type, specSummary[i].count,
-						       'speciality-' + Foxtrickl10n
+						       'speciality-' + Foxtrick.L10n
 						       .getEnglishSpeciality(specSummary[i].type), specSummary[i].type);
 					}
 				}
 			}
-			if (FoxtrickPrefs.isModuleOptionEnabled('TeamStats', 'Personality')) {
+			if (Foxtrick.Prefs.isModuleOptionEnabled('TeamStats', 'Personality')) {
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'aggressiveness')
 					&& Foxtrick.Pages.Players.isPropertyInList(playerList, 'agreeability')
 					&& Foxtrick.Pages.Players.isPropertyInList(playerList, 'honesty')) {
 					var avgAggressiveness = Math.round(totalAggressiveness / numPlayers);
 					var avgAgreeability = Math.round(totalAgreeability / numPlayers);
 					var avgHonesty = Math.round(totalHonesty / numPlayers);
-					addRow('Personality', Foxtrickl10n.getString('Aggressiveness'),
-					       Foxtrickl10n.getLevelByTypeAndValue('aggressiveness', avgAggressiveness));
-					addRow('Personality', Foxtrickl10n.getString('Agreeability'),
-					       Foxtrickl10n.getLevelByTypeAndValue('agreeability', avgAgreeability));
-					addRow('Personality', Foxtrickl10n.getString('Honesty'),
-					       Foxtrickl10n.getLevelByTypeAndValue('honesty', avgHonesty));
+					addRow('Personality', Foxtrick.L10n.getString('Aggressiveness'),
+					       Foxtrick.L10n.getLevelByTypeAndValue('aggressiveness', avgAggressiveness));
+					addRow('Personality', Foxtrick.L10n.getString('Agreeability'),
+					       Foxtrick.L10n.getLevelByTypeAndValue('agreeability', avgAgreeability));
+					addRow('Personality', Foxtrick.L10n.getString('Honesty'),
+					       Foxtrick.L10n.getLevelByTypeAndValue('honesty', avgHonesty));
 				}
 			}
-			if (FoxtrickPrefs.isModuleOptionEnabled('TeamStats', 'Status')) {
+			if (Foxtrick.Prefs.isModuleOptionEnabled('TeamStats', 'Status')) {
 				if (transferListed > 0) {
 					var img = doc.createElement('img');
 					img.src = '/Img/Icons/dollar.gif';
-					img.alt = Foxtrickl10n.getString('TransferListed');
+					img.alt = Foxtrick.L10n.getString('TransferListed');
 					img.className = 'transferListed';
 					addRow('Status', img, transferListed, 'transfer-listed',
-					       Foxtrickl10n.getString('TeamStats.TransferListed'));
+					       Foxtrick.L10n.getString('TeamStats.TransferListed'));
 				}
 				if (yellowCards > 0) {
 					var img = doc.createElement('img');
 					img.src = '/Img/Icons/yellow_card.gif';
-					img.alt = Foxtrickl10n.getString('Yellow_card');
+					img.alt = Foxtrick.L10n.getString('Yellow_card');
 					img.className = 'cardsOne';
 					addRow('Status', img, yellowCards, 'cards',
-					       Foxtrickl10n.getString('TeamStats.Cards'));
+					       Foxtrick.L10n.getString('TeamStats.Cards'));
 				}
 				if (twoYellowCards > 0) {
 					var img = doc.createElement('img');
 					img.src = '/Img/Icons/dual_yellow_card.gif';
-					img.alt = '2 ' + Foxtrickl10n.getString('Yellow_card');
+					img.alt = '2 ' + Foxtrick.L10n.getString('Yellow_card');
 					img.className = 'cardsTwo';
 					addRow('Status', img, twoYellowCards, 'cards',
-					       Foxtrickl10n.getString('TeamStats.Cards'));
+					       Foxtrick.L10n.getString('TeamStats.Cards'));
 				}
 				if (redCards > 0) {
 					var img = doc.createElement('img');
 					img.src = '/Img/Icons/red_card.gif';
-					img.alt = Foxtrickl10n.getString('Red_card');
+					img.alt = Foxtrick.L10n.getString('Red_card');
 					img.className = 'cardsOne';
 					addRow('Status', img, redCards, 'cards',
-					       Foxtrickl10n.getString('TeamStats.Cards'));
+					       Foxtrick.L10n.getString('TeamStats.Cards'));
 				}
 				if (bruised > 0) {
 					var img = doc.createElement('img');
 					img.src = '/Img/Icons/bruised.gif';
-					img.alt = Foxtrickl10n.getString('Bruised');
+					img.alt = Foxtrick.L10n.getString('Bruised');
 					img.className = 'injuryBruised';
 					addRow('Status', img, bruised, 'injured',
-					       Foxtrickl10n.getString('TeamStats.Injured'));
+					       Foxtrick.L10n.getString('TeamStats.Injured'));
 				}
 				if (injured > 0) {
 					var img = doc.createElement('img');
 					img.src = '/Img/Icons/injured.gif';
-					img.alt = Foxtrickl10n.getString('Injured');
+					img.alt = Foxtrick.L10n.getString('Injured');
 					img.className = 'injuryInjured';
 
 					var data = doc.createElement('span');
@@ -374,10 +374,10 @@ Foxtrick.modules['TeamStats'] = {
 					data.appendChild(doc.createTextNode(')'));
 
 					addRow('Status', img, data, 'injured',
-					       Foxtrickl10n.getString('TeamStats.Injured'));
+					       Foxtrick.L10n.getString('TeamStats.Injured'));
 				}
 			}
-			if (FoxtrickPrefs.isModuleOptionEnabled('TeamStats', 'Current_league')) {
+			if (Foxtrick.Prefs.isModuleOptionEnabled('TeamStats', 'Current_league')) {
 				if (Foxtrick.Pages.Players.isPropertyInList(playerList, 'currentLeagueId')
 				|| Foxtrick.Pages.Players.isPropertyInList(playerList, 'countryId')) {
 
@@ -433,7 +433,7 @@ Foxtrick.modules['TeamStats'] = {
 		var	box = doc.getElementById('ft-team-stats-box');
 		if (!box) {
 			var	boxBody = Foxtrick.createFeaturedElement(doc, this, 'div');
-			var header = Foxtrickl10n.getString('TeamStats.boxheader');
+			var header = Foxtrick.L10n.getString('TeamStats.boxheader');
 			var box = Foxtrick.addBoxToSidebar(doc, header, boxBody, 1);
 			box.id = 'ft-team-stats-box';
 

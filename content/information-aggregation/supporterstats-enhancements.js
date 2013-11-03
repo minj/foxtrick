@@ -40,8 +40,8 @@ Foxtrick.modules['SupporterStatsEnhancements'] = {
 			Foxtrick.addClass(th, 'center');
 			Foxtrick.addImage(doc, th, {
 				src: Foxtrick.InternalPath + 'resources/img/formation.png',
-				alt: Foxtrickl10n.getString('CurrentSquad'),
-				title: Foxtrickl10n.getString('CurrentSquad')
+				alt: Foxtrick.L10n.getString('CurrentSquad'),
+				title: Foxtrick.L10n.getString('CurrentSquad')
 			});
 
 			table.getElementsByTagName('tr')[0].appendChild(th);

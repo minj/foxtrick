@@ -108,7 +108,7 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 					'playmaking': playmaking, 'passing': passing, 'winger': winger,
 					'defending': defending, 'scoring': scoring, 'setpieces': setpieces, 'wage': wage,
 					'wagebonus': wagebonus, 'owncountryid': owncountryid, 'deadline': deadline,
-					'lang': FoxtrickPrefs.getString('htLanguage')
+					'lang': Foxtrick.Prefs.getString('htLanguage')
 				};
 				links[0] = Foxtrick.modules['Links'].getLinks('playerlink', params, doc, module);
 				links[1] = Foxtrick.modules['Links'].getLinks('transfercomparelink', params,
@@ -141,7 +141,7 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 					'teamid': teamid, 'playerid': playerid, 'nationality': nationality,
 					'tsi': tsi, 'age': years, 'age_days': days, 'form': form, 'exp': exp,
 					'leadership': ls, 'stamina': stamina, 'wage': wage, 'wagebonus': wagebonus,
-					'owncountryid': owncountryid, 'lang': FoxtrickPrefs.getString('htLanguage')
+					'owncountryid': owncountryid, 'lang': Foxtrick.Prefs.getString('htLanguage')
 				};
 				links[0] = Foxtrick.modules['Links'].getLinks('playerlink', params, doc, module);
 			}
@@ -150,7 +150,7 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 				num_links += links[1].length;
 			}
 			ownBoxBody = Foxtrick.createFeaturedElement(doc, module, 'div');
-			var header = Foxtrickl10n.getString('links.boxheader');
+			var header = Foxtrick.L10n.getString('links.boxheader');
 			var ownBoxId = 'ft-links-box';
 			var ownBoxBodyId = 'foxtrick_links_content';
 			ownBoxBody.id = ownBoxBodyId;
@@ -166,7 +166,7 @@ Foxtrick.modules['LinksPlayerDetail'] = {
 				}
 			}
 
-			if (FoxtrickPrefs.isModuleEnabled('LinksTracker')) {
+			if (Foxtrick.Prefs.isModuleEnabled('LinksTracker')) {
 				var links2 = Foxtrick.modules['Links'].getLinks('trackerplayerlink',
 					params, doc,
 					Foxtrick.modules['LinksTracker']);

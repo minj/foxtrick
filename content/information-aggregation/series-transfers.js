@@ -43,7 +43,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 		Foxtrick.addClass(mainBox, 'mainBox');
 
 		var h2 = doc.createElement('h2');
-		h2.textContent = Foxtrickl10n.getString("SeriesTransfers.header");
+		h2.textContent = Foxtrick.L10n.getString("SeriesTransfers.header");
 
 		mainBox.appendChild(h2);
 		div.appendChild(mainBox);
@@ -74,8 +74,8 @@ Foxtrick.modules['SeriesTransfers'] = {
 		var thead_tr = doc.createElement('tr');
 		for(var i = 0; i < columns.length; i++)
 		{
-			var localized_text = Foxtrickl10n.getString(columns[i].text);
-			var localized_alt_n_title = Foxtrickl10n.getString(columns[i].title);
+			var localized_text = Foxtrick.L10n.getString(columns[i].text);
+			var localized_alt_n_title = Foxtrick.L10n.getString(columns[i].title);
 			var th = createRowElement('th', localized_text);
 			th.setAttribute('title', localized_alt_n_title);
 			th.setAttribute('alt', localized_alt_n_title);
@@ -163,8 +163,8 @@ Foxtrick.modules['SeriesTransfers'] = {
 									var specialityFunc = function(cell, spec) {
 										if(spec){
 											var icon_suffix = '';
-											var specialtyName = Foxtrickl10n.getSpecialityFromNumber(spec);
-											if (FoxtrickPrefs.getBool('anstoss2icons'))
+											var specialtyName = Foxtrick.L10n.getSpecialityFromNumber(spec);
+											if (Foxtrick.Prefs.getBool('anstoss2icons'))
 												icon_suffix = '_alt';
 											Foxtrick.addImage(doc, cell, {
 												alt: specialtyName,
@@ -193,14 +193,14 @@ Foxtrick.modules['SeriesTransfers'] = {
 											if (injury == 0) { //bruised
 												var img = doc.createElement('img');
 												img.src = '/Img/Icons/bruised.gif';
-												img.alt = Foxtrickl10n.getString('Bruised.abbr');
-												img.title = Foxtrickl10n.getString('Bruised');
+												img.alt = Foxtrick.L10n.getString('Bruised.abbr');
+												img.title = Foxtrick.L10n.getString('Bruised');
 												cell.appendChild(img);
 											} else {
 												var img = doc.createElement('img');
 												img.src = '/Img/Icons/injured.gif';
-												img.alt = Foxtrickl10n.getString('Injured.abbr');
-												img.title = Foxtrickl10n.getString('Injured');
+												img.alt = Foxtrick.L10n.getString('Injured.abbr');
+												img.title = Foxtrick.L10n.getString('Injured');
 												cell.appendChild(img);
 												// player.injured is number from players page,
 												// or boolean from transfer result page.
@@ -222,7 +222,7 @@ Foxtrick.modules['SeriesTransfers'] = {
 						if(!hasListedPlayers){
 							table.parentNode.removeChild(table);
 							var span = doc.createElement('span');
-							span.textContent = Foxtrickl10n.getString("SeriesTransfers.notransfers");
+							span.textContent = Foxtrick.L10n.getString("SeriesTransfers.notransfers");
 							mainBox.appendChild(span);
 						} 
 					} else {

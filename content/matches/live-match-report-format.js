@@ -567,7 +567,7 @@ Foxtrick.modules['LiveMatchReportFormat'] = {
 					var tr = doc.createElement('tr');
 					var td = doc.createElement('td');
 					Foxtrick.addClass(td, 'ft-match-report-' + indType['class']);
-					var text = doc.createTextNode(Foxtrickl10n.getString('MatchReportFormat.' +
+					var text = doc.createTextNode(Foxtrick.L10n.getString('MatchReportFormat.' +
 					                              indType.text));
 					td.setAttribute('colspan', 4);
 					td.appendChild(text);
@@ -590,7 +590,7 @@ Foxtrick.modules['LiveMatchReportFormat'] = {
 
 				//exact copy of the current match-report-format.js function
 				var addEventIcons = function(parent, isEventTeam, evtType, title) {
-					if (FoxtrickPrefs.isModuleOptionEnabled('MatchReportFormat', 'ShowEventIcons')) {
+					if (Foxtrick.Prefs.isModuleOptionEnabled('MatchReportFormat', 'ShowEventIcons')) {
 						var createEventIcon = function(src, title, alt) {
 							Foxtrick.addImage(doc, parent, { alt: alt, title: title, src: src,
 								className: 'ft-match-report-event-icon-image' });

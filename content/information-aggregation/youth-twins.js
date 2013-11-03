@@ -146,15 +146,15 @@ Foxtrick.modules['YouthTwins'] = {
 				var missing = possible - marked - non;
 
 				//l10n strings
-				var l10n_possible_twins = Foxtrickl10n.getString('YouthTwins.possibleTwins',
+				var l10n_possible_twins = Foxtrick.L10n.getString('YouthTwins.possibleTwins',
 				                                                 possible).replace('%1', possible);
-				var l10n_marked_twins = Foxtrickl10n
+				var l10n_marked_twins = Foxtrick.L10n
 					.getString('YouthTwins.markedTwins').replace('%1', marked);
-				var l10n_non_twins = Foxtrickl10n
+				var l10n_non_twins = Foxtrick.L10n
 					.getString('YouthTwins.nonTwins').replace('%1', non);
-				var l10n_undecided_twins = Foxtrickl10n
+				var l10n_undecided_twins = Foxtrick.L10n
 					.getString('YouthTwins.undecidedTwins').replace('%1', missing);
-				var l10n_non_hy_user = Foxtrickl10n.getString('YouthTwins.nonHyUser');
+				var l10n_non_hy_user = Foxtrick.L10n.getString('YouthTwins.nonHyUser');
 
 				//assemble title
 				if (isHYuser)
@@ -196,14 +196,14 @@ Foxtrick.modules['YouthTwins'] = {
 				link.setAttribute('target', '_blank');
 
 				if (possible > 0 &&
-				    !FoxtrickPrefs.isModuleOptionEnabled('YouthTwins','HideInfoLink')) {
+				    !Foxtrick.Prefs.isModuleOptionEnabled('YouthTwins','HideInfoLink')) {
 					//and a neat info button
 					var infolink =
 						Foxtrick.createFeaturedElement(doc, Foxtrick.modules['YouthTwins'], 'a');
 					Foxtrick.addClass(infolink, 'ft-youth-twins-info');
 					infolink.href = 'http://www.hattrick-youthclub.org/site/wiki-player_twins';
 					infolink.target = '_blank';
-					var infotext = Foxtrickl10n.getString('YouthTwins.infoText');
+					var infotext = Foxtrick.L10n.getString('YouthTwins.infoText');
 					target.parentNode.insertBefore(infolink, target.nextSibling);
 					Foxtrick.addImage(doc, infolink,
 					                  { alt: infotext, title: infotext, src: '/Img/Icons/info.png' }

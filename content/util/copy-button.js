@@ -16,7 +16,7 @@ Foxtrick.util.copyButton = {};
  * @returns HTML node of the button
  */
 Foxtrick.util.copyButton.add = function(doc, text) {
-	if (FoxtrickPrefs.getBool('smallcopyicons')) {
+	if (Foxtrick.Prefs.getBool('smallcopyicons')) {
 		var mainWrapper = doc.getElementById('ctl00_ctl00_CPContent_divStartMain');
 		var mainBody = doc.getElementById('mainBody');
 
@@ -69,7 +69,7 @@ Foxtrick.util.copyButton.add = function(doc, text) {
 		}
 
 		Foxtrick.addBoxToSidebar(doc,
-			Foxtrickl10n.getString('sidebarBox.actions'), link, -1);
+			Foxtrick.L10n.getString('sidebarBox.actions'), link, -1);
 	}
 	return link;
 };

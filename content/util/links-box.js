@@ -24,7 +24,7 @@ Foxtrick.util.links = {
 				ownBoxBody =
 					Foxtrick.createFeaturedElement(doc, Foxtrick.modules[pagemodule],'div');
 				var ownBoxBodyId = 'foxtrick_links_content';
-				var header = Foxtrickl10n.getString('links.boxheader');
+				var header = Foxtrick.L10n.getString('links.boxheader');
 				ownBoxBody.id = ownBoxBodyId;
 
 				var box = Foxtrick.addBoxToSidebar(doc, header, ownBoxBody, -20);
@@ -40,7 +40,7 @@ Foxtrick.util.links = {
 					if (editbox)
 						editbox.parentNode.removeChild(editbox);
 					var keys = {};
-					var array = FoxtrickPrefs.getAllKeysOfBranch(basepref);
+					var array = Foxtrick.Prefs.getAllKeysOfBranch(basepref);
 					// format: module.LinksCustom.<module>.<random>.<title|href|img>
 					for (var nl = 0; nl < array.length; nl++) {
 						var key = array[nl].replace(basepref + '.', '');
@@ -53,9 +53,9 @@ Foxtrick.util.links = {
 					}
 					var key;
 					for (key in keys) {
-						var href = FoxtrickPrefs.getString(basepref + '.' + key + '.href');
-						var imgref = FoxtrickPrefs.getString(basepref + '.' + key + '.img');
-						var title = FoxtrickPrefs.getString(basepref + '.' + key + '.title');
+						var href = Foxtrick.Prefs.getString(basepref + '.' + key + '.href');
+						var imgref = Foxtrick.Prefs.getString(basepref + '.' + key + '.img');
+						var title = Foxtrick.Prefs.getString(basepref + '.' + key + '.title');
 						if (href == null || imgref == null || title == null)
 							continue;
 						var mylink = doc.getElementById('LinksCustomLinkID' + key);
@@ -80,11 +80,11 @@ Foxtrick.util.links = {
 											   'div.sidebarBox');
 			for (var j = 0; j < alldivs.length; j++) {
 				var header = alldivs[j].getElementsByTagName(isNewSidebar ? 'h4' : 'h2')[0];
-				if (header.textContent == Foxtrickl10n.getString('links.boxheader')) {
+				if (header.textContent == Foxtrick.L10n.getString('links.boxheader')) {
 					var hh = header.cloneNode(true);
 					var div = doc.createElement('div');
 					div.appendChild(hh);
-					div.title = Foxtrickl10n.getString('links.custom.addpersonallink');
+					div.title = Foxtrick.L10n.getString('links.custom.addpersonallink');
 					Foxtrick.onClick(div, headerClick);
 
 					ownBoxBody.setAttribute('basepref', basepref);
@@ -105,7 +105,7 @@ Foxtrick.util.links = {
 				if (key && module_name) {
 					var delLink = doc.createElement('span');
 					delLink.className = 'ft_actionicon foxtrickRemove';
-					delLink.title = Foxtrickl10n.getString('links.custom.remove');
+					delLink.title = Foxtrick.L10n.getString('links.custom.remove');
 					Foxtrick.onClick(delLink, Foxtrick.util.links.delStdLink);
 					var img = doc.createElement('img');
 					img.src = '/Img/Icons/transparent.gif';
@@ -140,7 +140,7 @@ Foxtrick.util.links = {
 
 			// get custon links from pref
 			var keys = {};
-			var array = FoxtrickPrefs.getAllKeysOfBranch(basepref);
+			var array = Foxtrick.Prefs.getAllKeysOfBranch(basepref);
 			// format: module.LinksCustom.<module>.<random>.<title|href|img>
 			for (var nl = 0; nl < array.length; nl++) {
 				var key = array[nl].replace(basepref + '.', '');
@@ -153,9 +153,9 @@ Foxtrick.util.links = {
 			}
 			var key;
 			for (key in keys) {
-				var href = FoxtrickPrefs.getString(basepref + '.' + key + '.href');
-				var imgref = FoxtrickPrefs.getString(basepref + '.' + key + '.img');
-				var title = FoxtrickPrefs.getString(basepref + '.' + key + '.title');
+				var href = Foxtrick.Prefs.getString(basepref + '.' + key + '.href');
+				var imgref = Foxtrick.Prefs.getString(basepref + '.' + key + '.img');
+				var title = Foxtrick.Prefs.getString(basepref + '.' + key + '.title');
 				if (href == null || imgref == null || title == null) {
 					Foxtrick.dump('customLink ' + key + ' incomplete\n');
 					continue;
@@ -221,14 +221,14 @@ Foxtrick.util.links = {
 			table.id = 'LinksCustomTableID';
 			var tr0 = doc.createElement('tr');
 			var th = doc.createElement('th');
-			th.textContent = Foxtrickl10n.getString('links.custom.addpersonallink');
+			th.textContent = Foxtrick.L10n.getString('links.custom.addpersonallink');
 			th.setAttribute('colspan', '4');
 			tr0.appendChild(th);
 			table.appendChild(tr0);
 
 			// get custon links from pref
 			var keys = {};
-			var array = FoxtrickPrefs.getAllKeysOfBranch(basepref);
+			var array = Foxtrick.Prefs.getAllKeysOfBranch(basepref);
 			// format: module.LinksCustom.<module>.<random>.<title|href|img>
 			for (var nl = 0; nl < array.length; nl++) {
 				var key = array[nl].replace(basepref + '.', '');
@@ -241,9 +241,9 @@ Foxtrick.util.links = {
 			}
 			var key;
 			for (key in keys) {
-				var href = FoxtrickPrefs.getString(basepref + '.' + key + '.href');
-				var imgref = FoxtrickPrefs.getString(basepref + '.' + key + '.img');
-				var title = FoxtrickPrefs.getString(basepref + '.' + key + '.title');
+				var href = Foxtrick.Prefs.getString(basepref + '.' + key + '.href');
+				var imgref = Foxtrick.Prefs.getString(basepref + '.' + key + '.img');
+				var title = Foxtrick.Prefs.getString(basepref + '.' + key + '.title');
 				if (href == null || imgref == null || title == null)
 					continue;
 
@@ -292,7 +292,7 @@ Foxtrick.util.links = {
 			img.height = '16';
 			img.width = '16';
 			var selectLabel = doc.createElement('span');
-			selectLabel.textContent = ' ' + Foxtrickl10n.getString('links.custom.selecticon');
+			selectLabel.textContent = ' ' + Foxtrick.L10n.getString('links.custom.selecticon');
 
 			div.appendChild(img);
 			divED.appendChild(div);
@@ -309,7 +309,7 @@ Foxtrick.util.links = {
 			var inputTitle = doc.createElement('input');
 			inputTitle.setAttribute('name', 'inputTitle');
 			inputTitle.id = 'inputTitleID';
-			var inputTitleText = Foxtrickl10n.getString('links.custom.title');
+			var inputTitleText = Foxtrick.L10n.getString('links.custom.title');
 			inputTitle.value = inputTitleText;
 			Foxtrick.listen(inputTitle, 'focus', function(ev) {
 				if (ev.target.value == inputTitleText)
@@ -329,7 +329,7 @@ Foxtrick.util.links = {
 			var inputHref = doc.createElement('input');
 			inputHref.setAttribute('name', 'inputHref');
 			inputHref.id = 'inputHrefID';
-			var inputHrefUrl = Foxtrickl10n.getString('links.custom.exampleUrl');
+			var inputHrefUrl = Foxtrick.L10n.getString('links.custom.exampleUrl');
 			inputHref.value = inputHrefUrl;
 			Foxtrick.listen(inputHref, 'focus', function(ev) {
 				if (ev.target.value == inputHrefUrl)
@@ -348,13 +348,13 @@ Foxtrick.util.links = {
 
 			// tag select list
 			var selectbox = doc.createElement('select');
-			selectbox.title = Foxtrickl10n.getString('links.custom.addtag');
+			selectbox.title = Foxtrick.L10n.getString('links.custom.addtag');
 			selectbox.id = 'ft_ownselecttagboxID';
 			selectbox.setAttribute('style', 'width:100%;');
 			Foxtrick.listen(selectbox, 'change', Foxtrick.util.links.SelectBox_Select, false);
 			var option = doc.createElement('option');
 			option.value = '';
-			option.textContent = Foxtrickl10n.getString('links.custom.tags');
+			option.textContent = Foxtrick.L10n.getString('links.custom.tags');
 			selectbox.appendChild(option);
 
 			var addTagToList = function(key) {
@@ -386,17 +386,17 @@ Foxtrick.util.links = {
 			saveLink.setAttribute('name', 'savelinkname');
 			saveLink.setAttribute('basepref', basepref);
 			Foxtrick.onClick(saveLink, Foxtrick.util.links.saveMyLink);
-			saveLink.textContent = Foxtrickl10n.getString('links.custom.addlink');
+			saveLink.textContent = Foxtrick.L10n.getString('links.custom.addlink');
 			var trn5 = doc.createElement('tr');
 			var tdn5 = doc.createElement('td');
 			tdn5.appendChild(saveLink);
 
 			var helplink = doc.createElement('a');
 			helplink.className = 'ft_actionicon foxtrickHelp float_right';
-			helplink.title = Foxtrickl10n.getString('links.custom.help');
+			helplink.title = Foxtrick.L10n.getString('links.custom.help');
 			Foxtrick.addClass(helplink, 'ft-link')
 			Foxtrick.onClick(helplink, function(ev) {
-				alert(Foxtrickl10n.getString('links.custom.helptext'));
+				alert(Foxtrick.L10n.getString('links.custom.helptext'));
 			});
 
 			var tdn5b = doc.createElement('td');
@@ -425,7 +425,7 @@ Foxtrick.util.links = {
 			var grandpar = par.parentNode;
 			grandpar.removeChild(par.previousSibling);
 			grandpar.removeChild(par);
-			FoxtrickPrefs.setBool('module.' + module_name + '.' + key + '.enabled', false);
+			Foxtrick.Prefs.setBool('module.' + module_name + '.' + key + '.enabled', false);
 		}
 		catch (e) {
 			Foxtrick.log(e);
@@ -435,15 +435,15 @@ Foxtrick.util.links = {
 	delMyLink: function(evt) {
 		try {
 			var doc = evt.target.ownerDocument;
-			var Check = doc.defaultView.confirm(Foxtrickl10n
+			var Check = doc.defaultView.confirm(Foxtrick.L10n
 			                                    .getString('links.custom.confirmremove'));
 			if (Check == false) return;
 
 			var mylink = evt.target.mylink;
 			var baseprefnl = evt.target.baseprefnl;
-			FoxtrickPrefs.deleteValue(baseprefnl + '.href');
-			FoxtrickPrefs.deleteValue(baseprefnl + '.title');
-			FoxtrickPrefs.deleteValue(baseprefnl + '.img');
+			Foxtrick.Prefs.deleteValue(baseprefnl + '.href');
+			Foxtrick.Prefs.deleteValue(baseprefnl + '.title');
+			Foxtrick.Prefs.deleteValue(baseprefnl + '.img');
 			mylink.parentNode.parentNode.parentNode.removeChild(mylink.parentNode.parentNode);
 		}
 		catch (e) {
@@ -456,10 +456,10 @@ Foxtrick.util.links = {
 		try {
 			var doc = evt.target.ownerDocument;
 			var baseprefnl = evt.target.baseprefnl;
-			doc.getElementById('inputHrefID').value = FoxtrickPrefs.getString(baseprefnl + '.href');
+			doc.getElementById('inputHrefID').value = Foxtrick.Prefs.getString(baseprefnl + '.href');
 			doc.getElementById('inputTitleID').value =
-				FoxtrickPrefs.getString(baseprefnl + '.title');
-			var imgref = FoxtrickPrefs.getString(baseprefnl + '.img');
+				Foxtrick.Prefs.getString(baseprefnl + '.title');
+			var imgref = Foxtrick.Prefs.getString(baseprefnl + '.img');
 			var img = doc.getElementById('inputImgDivID');
 			img.style.backgroundImage = "url('" + imgref + "')";
 			img.imgref = imgref;
@@ -482,9 +482,9 @@ Foxtrick.util.links = {
 			var title = doc.getElementById('inputTitleID').value;
 			var imgref = String(doc.getElementById('inputImgDivID').imgref);
 
-			FoxtrickPrefs.setString(baseprefnl + '.href', href);
-			FoxtrickPrefs.setString(baseprefnl + '.title', title);
-			FoxtrickPrefs.setString(baseprefnl + '.img', imgref);
+			Foxtrick.Prefs.setString(baseprefnl + '.href', href);
+			Foxtrick.Prefs.setString(baseprefnl + '.title', title);
+			Foxtrick.Prefs.setString(baseprefnl + '.img', imgref);
 
 			var a = doc.createElement('a');
 			a.title = title;
@@ -528,7 +528,7 @@ Foxtrick.util.links = {
 		try {
 			var delLink = doc.createElement('div');
 			delLink.className = 'ft_actionicon foxtrickRemove';
-			delLink.title = Foxtrickl10n.getString('links.custom.remove');
+			delLink.title = Foxtrick.L10n.getString('links.custom.remove');
 			Foxtrick.onClick(delLink, Foxtrick.util.links.delMyLink);
 			delLink.baseprefnl = baseprefnl;
 			delLink.mylink = mylink;
@@ -545,7 +545,7 @@ Foxtrick.util.links = {
 		try {
 			var editOld = doc.createElement('div');
 			editOld.className = 'ft_actionicon foxtrickCopy float_right';
-			editOld.title = Foxtrickl10n.getString('links.custom.copy');
+			editOld.title = Foxtrick.L10n.getString('links.custom.copy');
 			Foxtrick.onClick(editOld, Foxtrick.util.links.editOldLink);
 			editOld.baseprefnl = baseprefnl;
 			editOld.mylink = mylink;

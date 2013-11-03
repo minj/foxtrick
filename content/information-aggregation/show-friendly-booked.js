@@ -32,8 +32,8 @@ Foxtrick.modules['ShowFriendlyBooked'] = {
 				var teamId = Foxtrick.util.id.getTeamIdFromUrl(teamLink);
 
 				var destCell = n.getElementsByTagName('td')[3];
-				destCell.textContent = Foxtrickl10n.getString('status.loading.abbr');
-				destCell.title = Foxtrickl10n.getString('status.loading');
+				destCell.textContent = Foxtrick.L10n.getString('status.loading.abbr');
+				destCell.title = Foxtrick.L10n.getString('status.loading');
 
 				var parameters = [
 					['file', 'teamdetails'],
@@ -42,7 +42,7 @@ Foxtrick.modules['ShowFriendlyBooked'] = {
 				Foxtrick.util.api.retrieve(doc, parameters, { cache_lifetime: 'default' },
 				  function(xml, errorText) {
 					if (xml == null) {
-						destCell.textContent = Foxtrickl10n.getString('status.error.abbr');
+						destCell.textContent = Foxtrick.L10n.getString('status.error.abbr');
 						destCell.title = errorText;
 						return;
 					}
@@ -51,14 +51,14 @@ Foxtrick.modules['ShowFriendlyBooked'] = {
 					destCell.removeAttribute('title');
 					var friendly = xml.getElementsByTagName('FriendlyTeamID')[0];
 					if (friendly.getAttribute('Available') != 'True') {
-						destCell.textContent = Foxtrickl10n.getString('status.unknown.abbr');
-						destCell.title = Foxtrickl10n.getString('status.unknown');
+						destCell.textContent = Foxtrick.L10n.getString('status.unknown.abbr');
+						destCell.title = Foxtrick.L10n.getString('status.unknown');
 					}
 					else if (friendly.textContent != '0') {
 						// friendly booked
 						var img = doc.createElement('img');
 						img.src = '/Img/Icons/transparent.gif';
-						img.alt = img.title = Foxtrickl10n.getString('team.status.booked');
+						img.alt = img.title = Foxtrick.L10n.getString('team.status.booked');
 						img.className = 'ft_friendly';
 						img = Foxtrick.makeFeaturedElement(img, Foxtrick.modules
 						                                   .ShowFriendlyBooked);
@@ -69,12 +69,12 @@ Foxtrick.modules['ShowFriendlyBooked'] = {
 		};
 
 		// add the stuffs
-		if (FoxtrickPrefs.isModuleOptionEnabled('ShowFriendlyBooked', 'OnDemand')) {
+		if (Foxtrick.Prefs.isModuleOptionEnabled('ShowFriendlyBooked', 'OnDemand')) {
 			// show on demand
 			var link = Foxtrick.createFeaturedElement(doc, this, 'a');
 			link.id = 'ft-show-friendlies';
 			link.className = 'float_left ft-link';
-			link.textContent = Foxtrickl10n.getString('ShowFriendlyBooked.ShowFriendlies');
+			link.textContent = Foxtrick.L10n.getString('ShowFriendlyBooked.ShowFriendlies');
 			Foxtrick.onClick(link, function() {
 				link.parentNode.removeChild(link);
 				show();
