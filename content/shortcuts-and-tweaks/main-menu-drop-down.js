@@ -263,7 +263,7 @@ Foxtrick.modules['MainMenuDropDown'] = {
 					var menulist = [];
 					Foxtrick.map(function(node) {
 						if (node.tagName === 'H3') {
-							menu = {};
+							var menu = {};
 							menu.name = Foxtrick.trim(node.textContent);
 
 							menu.entries = [];
