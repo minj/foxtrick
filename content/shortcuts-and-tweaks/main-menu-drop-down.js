@@ -261,9 +261,10 @@ Foxtrick.modules['MainMenuDropDown'] = {
 							.replace(/Default\.aspx/i, '');
 
 					var menulist = [];
+					var menu;
 					Foxtrick.map(function(node) {
 						if (node.tagName === 'H3') {
-							var menu = {};
+							menu = {};
 							menu.name = Foxtrick.trim(node.textContent);
 
 							menu.entries = [];
