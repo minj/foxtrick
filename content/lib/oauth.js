@@ -281,7 +281,7 @@ Foxtrick.OAuth.setProperties(Foxtrick.OAuth, // utility functions
     }
 ,
     addToURL: function addToURL(url, parameters) {
-        newURL = url;
+        var newURL = url;
         if (parameters != null) {
             var toAdd = Foxtrick.OAuth.formEncode(parameters);
             if (toAdd.length > 0) {
