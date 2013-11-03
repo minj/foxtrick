@@ -60,18 +60,18 @@ Foxtrick.modules['TableSort'] = {
 						// use first title instead
 						var getTitle = function(i_el) {
 							if (i_el.nodeType != Foxtrick.NodeTypes.ELEMENT_NODE)
-								return;
+								return "";
 							var title = i_el.getAttribute('title');
 							if (!title) {
 								for (var i = 0; i < i_el.childNodes.length && !title; ++i) {
-									title = getTitle(i_el.childNodes(i));
+									title = getTitle(i_el.childNodes[i]);
 								}
 							}
 							return title;
 						};
 						text = getTitle(el);
 					}
-					return text;
+					return text || "";
 				};
 
 				var is_num = true, is_age = true, is_age_parentheses = true, is_youthskill = true,
