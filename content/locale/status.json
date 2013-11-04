@@ -73,13 +73,13 @@
 			"approved": "1209"
 		},
 		{
-			"approved_progress": "98",
+			"approved_progress": "99",
 			"code": "da",
 			"name": "Danish",
 			"phrases": "1648",
-			"translated_progress": "99",
-			"translated": "1621",
-			"approved": "1618"
+			"translated_progress": "100",
+			"translated": "1634",
+			"approved": "1648"
 		},
 		{
 			"approved_progress": "0",
@@ -339,7 +339,7 @@
 			"name": "Galician",
 			"phrases": "1648",
 			"translated_progress": "98",
-			"translated": "1606",
+			"translated": "1608",
 			"approved": "0"
 		},
 		{
