@@ -797,6 +797,33 @@
 			]
 		]
 	},
+	"scotlandtracker":  {
+		"title": "Scotland U20/NT Tracker",
+		"trackernationalteamlink": {
+			"url": "http://hattrickscotland.org/nationalteams.php",
+			"filters": [
+				"countryid"
+			]
+		},
+		"trackerplayerlink": {
+			"url": "http://hattrickscotland.org/players.php?do=view&playerid=[playerid]",
+			"filters": [
+				"nationality"
+			]
+		},
+		"countryidranges": [
+			[
+				26,
+				26
+			]
+		],
+		"nationalityranges": [
+			[
+				26,
+				26
+			]
+		]
+	},
 	"canadatracker": {
 		"img": "http://canada.htravenia.com/favicon.png",
 		"title": "Canada U20/NT Tracker",
