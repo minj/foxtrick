@@ -20,7 +20,7 @@
 	<access origin="http://www.foxtrick.org" subdomains="true"/>
 	<access origin="https://www.foxtrick.org" subdomains="true"/>
 	<access origin="http://foxtrick.symbiosis.org.gr" subdomains="true"/>
-	<access origin="https://foxtrick.c6.ixwebhosting.org" subdomains="true"/>	 
+	<access origin="https://foxtrick.c6.ixsecure.com" subdomains="true"/>	 
 	<access origin="http://foxtrick.googlecode.com" subdomains="true"/>
 	<access origin="https://foxtrick.googlecode.com" subdomains="true"/>
 	<access origin="http://www.hattrick-youthclub.org" subdomains="true"/>
