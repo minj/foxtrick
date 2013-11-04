@@ -798,6 +798,7 @@
 		]
 	},
 	"scotlandtracker":  {
+		"img": "http://hattrickscotland.org/favicon.png",
 		"title": "Scotland U20/NT Tracker",
 		"trackernationalteamlink": {
 			"url": "http://hattrickscotland.org/nationalteams.php",
