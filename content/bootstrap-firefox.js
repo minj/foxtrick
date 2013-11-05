@@ -18,7 +18,6 @@ FoxtrickFirefox.prototype = {
 		'pages.js',
 
 		//<!-- external libraries -->
-		//'lib/jquery.js',
 		'lib/oauth.js',
 		'lib/sha1.js',
 		'lib/yaml.js',
