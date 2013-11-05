@@ -34,35 +34,10 @@ Foxtrick.entry.docLoad = function(doc) {
 		return;
 	}
 
-	// clear ASP.NET_SessionId cookie on login (security leak)
-	/*if (Foxtrick.arch == 'Gecko' && Foxtrick.isLoginPage(doc)) {
-		try {
-			var cookieManager = Components.classes['@mozilla.org/cookiemanager;1']
-				.getService(Components.interfaces.nsICookieManager);
-
-			var iter = cookieManager.enumerator;
-			var cookie_count = 0;
-			while (iter.hasMoreElements()) {
-				var cookie = iter.getNext();
-				if (cookie instanceof Components.interfaces.nsICookie) {
-					//Foxtrick.log(cookie.host, cookie.name, cookie.path, cookie.blocked, cookie);
-					if (Foxtrick.isHtUrl('http://'+cookie.host) &&
-						cookie.name.search(/ASP.NET_SessionId/i) != -1) {
-						Foxtrick.log('delete cookie: ',cookie.name);
-						cookieManager.remove(cookie.host, cookie.name, cookie.path, cookie.blocked);
-					}
-					cookie_count++;
-				}
-			}
-		} catch (e) {
-			Foxtrick.log(e);
-		}
-	}*/
-
 	// we shall not run here
 	if (Foxtrick.arch == 'Sandboxed' && !Foxtrick.isHt(doc)) {
 		// potential cleanup for injected css
-		if (Foxtrick.arch == 'Sandboxed' && Foxtrick.entry.cssLoaded) {
+		if (Foxtrick.entry.cssLoaded) {
 			Foxtrick.util.css.unload_module_css(doc);
 			Foxtrick.entry.cssLoaded = false;
 		}
@@ -118,7 +93,6 @@ Foxtrick.entry.contentScriptInit = function(data) {
 					coreModules[i].init();
 			}
 		}
-		var parser = new window.DOMParser();
 		for (i in data.htLangJSON) {
 			Foxtrickl10n.htLanguagesJSON[i] = JSON.parse(data.htLangJSON[i]);
 		}
@@ -170,6 +144,7 @@ Foxtrick.entry.init = function() {
 	Foxtrick.entry.niceRun(modules, function(m) {
 		if (typeof(m.init) == 'function')
 			return function() { m.init(); };
+		return null;
 	});
 
 	Foxtrick.log('FoxTrick initialization completed.');
@@ -227,8 +202,8 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		// if only a CSS check, return now.
 		if (is_only_css_check)
 			return;
-		if (Foxtrick.isExcluded(doc)
-		|| (Foxtrick.isLoginPage(doc) && !FoxtrickPrefs.getBool('runLoggedOff')))
+		if (Foxtrick.isExcluded(doc) ||
+			(Foxtrick.isLoginPage(doc) && !Foxtrick.Prefs.getBool('runLoggedOff')))
 			return;
 
 		// create arrays for each recognized page that contains modules
@@ -273,6 +248,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 					if (diff > 50)
 						Foxtrick.log(m.MODULE_NAME, ' run time: ', diff, ' ms');
 				};
+			return null;
 		});
 
 		Foxtrick.log.flush(doc);
@@ -291,13 +267,11 @@ Foxtrick.entry.change = function(ev) {
 
 		// don't act to changes on the excluded pages
 		var excludes = [
-			new RegExp('/Club/Matches/MatchOrder/', 'i'),
-			new RegExp('/Community/CHPP/ChppPrograms\.aspx', 'i'),
-			new RegExp('/Club/Arena/ArenaUsage\.aspx', 'i')
+			/\/Club\/Matches\/MatchOrder\//i,
+			/\/Community\/CHPP\/ChppPrograms\.aspx/i,
+			/\/Club\/Arena\/ArenaUsage\.aspx/i
 		];
-		if (Foxtrick.any(function(ex) {
-				return doc.location.href.search(ex) > -1;
-			}, excludes)) {
+		if (Foxtrick.any(function(ex) {	return doc.location.href.search(ex) > -1; }, excludes)) {
 			return;
 		}
 
@@ -315,13 +289,12 @@ Foxtrick.entry.change = function(ev) {
 		}
 		// ignore changes list
 		if (ev.originalTarget &&
-				(Foxtrick.hasClass(ev.originalTarget, 'boxBody')
-				|| Foxtrick.hasClass(ev.originalTarget, 'ft-popup-span')))
+			(Foxtrick.hasClass(ev.originalTarget, 'boxBody')
+			|| Foxtrick.hasClass(ev.originalTarget, 'ft-popup-span')))
 			return;
 
-		Foxtrick.log('call modules change functions');
-
-		if (FoxtrickPrefs.isEnabled(doc)) {
+		if (Foxtrick.Prefs.isEnabled(doc)) {
+			Foxtrick.log('call modules change functions');
 			var modules = [];
 			// modules running on current page
 			var page;
@@ -336,6 +309,7 @@ Foxtrick.entry.change = function(ev) {
 			Foxtrick.entry.niceRun(modules, function(m) {
 				if (typeof(m.change) == 'function')
 					return function() { m.change(doc, ev); };
+				return null;
 			});
 
 			Foxtrick.log.flush(doc);
