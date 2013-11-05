@@ -162,8 +162,6 @@ Foxtrick.newTab = function(url) {
 	}
 	else if (Foxtrick.platform == 'Firefox')
 		window.gBrowser.selectedTab = window.gBrowser.addTab(url);
-	else if (Foxtrick.platform == 'Mobile')
-		Browser.addTab(url, true, null, { 'getAttention': true });
 	else if (Foxtrick.platform == 'Android')
 		BrowserApp.addTab(url);
 };

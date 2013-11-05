@@ -443,12 +443,11 @@ Foxtrick.modules['ForumYouthIcons'] = {
 						openingTag = Foxtrick.Prefs.getString('forumSymbol');
 					}
 					else if (openingTag == 'debug') {
-						if (Foxtrick.arch === 'Sandboxed' || Foxtrick.platform == 'Mobile' ||
-						    Foxtrick.platform == 'Android') {
+						if (Foxtrick.arch === 'Sandboxed' || Foxtrick.platform == 'Android') {
 							sandboxed.extension.sendRequest({ req: 'getDebugLog' },
 							  function(n) {
-									insertText(Foxtrick.log.header(doc) + '\n' + n.log);
-									textCounter(ta, fieldCounter, maxLength);
+								insertText(Foxtrick.log.header(doc) + '\n' + n.log);
+								textCounter(ta, fieldCounter, maxLength);
 							});
 							return;
 						}

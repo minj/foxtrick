@@ -37,7 +37,7 @@ sandboxed.tabs.create(url)
 // Foxtrick.arch: 'Sandboxed' (chrome,opera,safari) or 'Gecko' (firefox, fennec)
 // used mainly in l10n, prefs and css injection
 
-// Foxtrick.platform: 'Chrome', 'Opera', 'Safari', 'Firefox', 'Mobile', 'Android'
+// Foxtrick.platform: 'Chrome', 'Opera', 'Safari', 'Firefox', 'Android'
 // used mainly in UI and script starting
 
 // Foxtrick.InternalPath: called from extension - path to extension folder
@@ -458,27 +458,17 @@ else {
 	Foxtrick.arch = 'Gecko';
 	Foxtrick.InternalPath = Foxtrick.ResourcePath = 'chrome://foxtrick/content/';
 
-	try {
-		var Cc = Components.classes;
-		var Ci = Components.interfaces;
-		var Cu = Components.utils;
-		Cu.import('resource://gre/modules/Services.jsm');
-		var appInfoID = Cc['@mozilla.org/xre/app-info;1'].getService(Ci.nsIXULAppInfo).ID;
-		if (appInfoID == '{aa3c5121-dab2-40e2-81ca-7ea25febc110}')
-			Foxtrick.platform = 'Android';
-		else if (appInfoID == '{a23983c0-fd0e-11dc-95ff-0800200c9a66}')
-			Foxtrick.platform = 'Mobile';
-		else
-			Foxtrick.platform = 'Firefox';  // includes SeaMonkey here
-	} catch (e) {
-		// above not working in mobile content. so it's that
-		if (typeof(addMessageListener) !== 'undefined' || typeof(messageManager) !== 'undefined')
-			Foxtrick.platform = 'Mobile';
-		else
-			Foxtrick.platform = 'Firefox';  // includes SeaMonkey here
-	}
+	var Cc = Components.classes;
+	var Ci = Components.interfaces;
+	var Cu = Components.utils;
+	Cu.import('resource://gre/modules/Services.jsm');
+	var appInfoID = Cc['@mozilla.org/xre/app-info;1'].getService(Ci.nsIXULAppInfo).ID;
+	if (appInfoID == '{aa3c5121-dab2-40e2-81ca-7ea25febc110}')
+		Foxtrick.platform = 'Android';
+	else
+		Foxtrick.platform = 'Firefox';  // includes SeaMonkey here
 
-	if (Foxtrick.platform == 'Mobile' || Foxtrick.platform == 'Android') {
+	if (Foxtrick.platform == 'Android') {
 		Foxtrick.chromeContext = function() {
 			if (typeof(sendSyncMessage) == 'function')
 				return 'content';
@@ -492,8 +482,7 @@ else {
 		};
 	}
 
-	// fennec ports
-	if (Foxtrick.platform == 'Mobile' || Foxtrick.platform == 'Android') {
+	if (Foxtrick.platform == 'Android') {
 		Foxtrick.DataPath = 'chrome://foxtrick/content/res/';
 
 		if (typeof(addMessageListener) !== 'undefined' || typeof(messageManager) !== 'undefined') {
@@ -666,10 +655,7 @@ else {
 			},
 			tabs: {
 				create: function(data) {
-					if (Foxtrick.platform == 'Mobile')
-						Browser.addTab(data.url, true);
-					else if (Foxtrick.platform == 'Android')
-						BrowserApp.addTab(data.url);
+					BrowserApp.addTab(data.url);
 				}
 			},
 		};

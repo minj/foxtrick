@@ -6,7 +6,7 @@
  */
 
 
-if (/*Foxtrick.platform != 'Opera' &&*/ Foxtrick.platform != 'Mobile' && Foxtrick.platform != 'Android')
+if (Foxtrick.platform != 'Android')
 (function() {
 	// option: corresponding to OPTIONS
 	// func: function to be called for getting text

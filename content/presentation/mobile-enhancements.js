@@ -6,7 +6,7 @@
  */
 
 
-//if (Foxtrick.platform == 'Mobile' || Foxtrick.platform == 'Android')
+//if (Foxtrick.platform == 'Android')
 Foxtrick.modules['MobileEnhancements'] = {
 	MODULE_CATEGORY: Foxtrick.moduleCategories.PRESENTATION,
 	PAGES: ['all'],

@@ -94,9 +94,9 @@ Foxtrick.loader.background.browserLoad = function() {
 		Foxtrick.loader.background.requests.pageLoad = function(request, sender, sendResponse) {
 			// access user setting directly here, since getBool uses a copy
 			// which needs updating just here
-			if ((Foxtrick.arch == 'Sandboxed' && localStorage.getItem('preferences.updated'))
-				|| ((Foxtrick.platform == 'Mobile' || Foxtrick.platform == 'Android') &&
-				    Foxtrick.Prefs._prefs_gecko.getBoolPref('preferences.updated'))) {
+			if (Foxtrick.arch == 'Sandboxed' && localStorage.getItem('preferences.updated')	||
+				Foxtrick.platform == 'Android' &&
+				Foxtrick.Prefs._prefs_gecko.getBoolPref('preferences.updated')) {
 					updateResources();
 			}
 
@@ -154,7 +154,7 @@ Foxtrick.loader.background.browserLoad = function() {
 		};
 		Foxtrick.loader.background.requests.clearPrefs = function(request, sender, sendResponse) {
 			try {
-				if (Foxtrick.platform == 'Mobile' || Foxtrick.platform == 'Android') {
+				if (Foxtrick.platform == 'Android') {
 					Foxtrick.Prefs.cleanupBranch();
 				}
 				else {
@@ -231,16 +231,15 @@ Foxtrick.loader.background.browserLoad = function() {
 		};
 		Foxtrick.loader.background.requests.reuseTab = function(request, sender, sendResponse) {
 			// @param url - the URL of new tab to create
-			if (Foxtrick.platform == 'Mobile') {
-				for (var i = 0; i < Browser.browsers.length; ++i) {
-					if (sender.tab.id == Browser.browsers[i].tid) {
-						Browser.selectedTab = Browser.getTabAtIndex(i);
-						Browser.browsers[i].loadURI(request.url);
-					}
-				}
-			}
-			else if (Foxtrick.platform == 'Android') {
-			// todo
+			if (Foxtrick.platform == 'Android') {
+				// TODO
+				// XUL Code:
+				//for (var i = 0; i < Browser.browsers.length; ++i) {
+				//	if (sender.tab.id == Browser.browsers[i].tid) {
+				//		Browser.selectedTab = Browser.getTabAtIndex(i);
+				//		Browser.browsers[i].loadURI(request.url);
+				//	}
+				//}
 			}
 		};
 

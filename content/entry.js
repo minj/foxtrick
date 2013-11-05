@@ -74,7 +74,7 @@ Foxtrick.entry.contentScriptInit = function(data) {
 	for (i in Foxtrick.modules)
 		Foxtrick.modules[i].MODULE_NAME = i;
 
-	if (Foxtrick.platform != 'Mobile' && Foxtrick.platform != 'Android') {
+	if (Foxtrick.platform != 'Android') {
 			Foxtrick.Prefs._prefs_chrome_user = data._prefs_chrome_user;
 			Foxtrick.Prefs._prefs_chrome_default = data._prefs_chrome_default;
 
@@ -183,7 +183,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		var html = doc.getElementsByTagName('html')[0];
 		html.dir = current_dir;
 		html.setAttribute('data-theme', current_theme);
-		if (Foxtrick.platform == 'Mobile' || Foxtrick.platform == 'Android') {
+		if (Foxtrick.platform == 'Android') {
 			html.setAttribute('data-fennec-theme',
 				doc.location.href.search(/Forum/i) == -1 ? 'default' : 'forum');
 		}

@@ -15,7 +15,7 @@ Foxtrick.modules.UI = {
 	// gecko only
 	onTabChange: function(document) {},
 
-	// called with DomContentLoaded for Firefox & Mobile
+	// called with DomContentLoaded for Firefox
 	// called with pageLoad request in background context for sandboxed)
 	// all: called when en/disabling
 	update: function(sender) {},
@@ -239,9 +239,6 @@ else if (Foxtrick.platform == 'Safari') {
 	};
 }
 
-
-else if (Foxtrick.platform == 'Mobile') {
-}
 
 else if (Foxtrick.platform == 'Android') {
 }

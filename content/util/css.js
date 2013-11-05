@@ -273,7 +273,7 @@ Foxtrick.util.css.load_module_css = function(doc) {
 		Foxtrick.util.css.collect_module_css();
 		sandboxed.extension.sendRequest({ req: 'getCss', files: Foxtrick.cssFiles },
 		  function(data) {
-			if (Foxtrick.platform == 'Mobile' || Foxtrick.platform == 'Android') {
+			if (Foxtrick.platform == 'Android') {
 				Foxtrick.current_css = data.cssText;
 				Foxtrick.util.css.load_css_permanent(Foxtrick.current_css);
 			} else {
