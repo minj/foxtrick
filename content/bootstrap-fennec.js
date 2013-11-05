@@ -22,7 +22,6 @@ FoxtrickFennec.prototype = {
 		'lib/sha1.js',
 		'lib/jester.js',
 		'lib/yaml.js',
-		'lib/Blob.js',
 		'lib/FileSaver.js',
 		'lib/idbstore.js',
 		'lib/psico.js',

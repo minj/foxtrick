@@ -22,7 +22,6 @@ FoxtrickFirefox.prototype = {
 		'lib/oauth.js',
 		'lib/sha1.js',
 		'lib/yaml.js',
-		'lib/Blob.js',
 		'lib/FileSaver.js',
 		'lib/idbstore.js',
 		'lib/psico.js',
