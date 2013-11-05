@@ -24,6 +24,20 @@ my @targets = (
 		"suffix" => "</string>\n"
 	},
 	{
+		"file" => "content/scripts-fennec.js",
+		"from" => "//<!-- categorized modules -->",
+		"to" => "//<!-- end categorized modules -->",
+		"prefix" => "\t\t'",
+		"suffix" => "',\n"
+	},
+	{
+		"file" => "content/bootstrap-firefox.js",
+		"from" => "<!-- categorized modules -->",
+		"to" => "<!-- end categorized modules -->",
+		"prefix" => "\t\t'",
+		"suffix" => "',\n"
+	},
+	{
 		"file" => "content/preferences.html",
 		"from" => "<!-- categorized modules -->",
 		"to" => "<!-- end categorized modules -->",
@@ -36,20 +50,6 @@ my @targets = (
 		"to" => "<!-- end categorized modules -->",
 		"prefix" => "\t<script type=\"application/x-javascript\" src=\"./",
 		"suffix" => "\"></script>\n"
-	},
-	{
-		"file" => "content/scripts-fennec.js",
-		"from" => "//<!-- categorized modules -->",
-		"to" => "//<!-- end categorized modules -->",
-		"prefix" => "\t\t\"",
-		"suffix" => "\",\n"
-	},
-	{
-		"file" => "content/bootstrap-firefox.js",
-		"from" => "<!-- categorized modules -->",
-		"to" => "<!-- end categorized modules -->",
-		"prefix" => "\t\t\"",
-		"suffix" => "\",\n"
 	},
 	# different path for opera
 	{
