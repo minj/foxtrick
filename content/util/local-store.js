@@ -3,6 +3,7 @@
  * localSet() and localGet() are a pair of functions that can store
  * permanent information.
  * The stored value must be a JSON-serializable object, or of native types.
+ * Due to async nature of indexedDB these functions might fail during init stage
  */
 
 // background
