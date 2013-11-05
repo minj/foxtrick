@@ -50,6 +50,10 @@
   background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_copyposting.png");
 }
 
+.cfFooter a[href*="/Forum/BanUser.aspx?t="] {
+  background-image: url("chrome://foxtrick/content/resources/img/forum-grey/forum_grey_ban.png");
+}
+
 .cfFooter a[href*="/Forum/Read.aspx?t="],
 .cfFooter a[href*="/Forum/Functions.aspx?actionTypeFunctions=reportmessage&t="],
 .cfFooter a[href*="/Forum/Write.aspx?t="],
@@ -57,6 +61,7 @@
 .cfFooter a[href*="/Forum/Write.aspx?actionType=edit&t="],
 .cfFooter a[href*="/Forum/Functions.aspx?actionTypeFunctions=delete&t="],
 .cfFooter a[href*="/Forum/Functions.aspx?actionType=delete&t="],
+.cfFooter a[href*="/Forum/BanUser.aspx?t="],
 .cfFooter a[href*="/MyHattrick/Bookmarks/Default.aspx?actionType=add&BookmarkTypeID=4&ObjectID="],
 .cfFooter a[href*="/MyHattrick/Bookmarks/?actionType=add&BookmarkTypeID=4&ObjectID="],
 .cfFooter a[href*="/Forum/Functions.aspx?actionTypeFunctions=ignore&t="],
