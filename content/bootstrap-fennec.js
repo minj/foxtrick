@@ -59,7 +59,6 @@ FoxtrickFennec.prototype = {
 		//<!-- categorized modules with init functions -->
 		'forum/staff-marker.js',
 		'presentation/header-fix.js',
-		'presentation/skill-coloring.js',
 		'presentation/skin-plugin.js',
 		'links/links.js',
 
