@@ -1,5 +1,0 @@
-pref("extensions.foxtrick.prefs.fennec.module.StaffMarker.enabled", false);
-pref("extensions.foxtrick.prefs.fennec.module.TeamSelectBox.enabled", true);
-pref("extensions.foxtrick.prefs.fennec.module.MainMenuDropDown.enabled", false);
-pref("extensions.foxtrick.prefs.fennec.module.MobileEnhancements.enabled", true);
-pref("extensions.foxtrick.prefs.fennec.module.DashboardCalendar.enabled", false);

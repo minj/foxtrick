@@ -200,13 +200,7 @@ Foxtrick.util.load.sync = function(url) {
 		return null;
 	}
 	// load
-	var req;
-
-	if (Foxtrick.arch == 'Gecko')
-		req = Components.classes['@mozilla.org/xmlextras/xmlhttprequest;1']
-						.createInstance(Components.interfaces.nsIXMLHttpRequest);
-	else
-		req = new window.XMLHttpRequest();
+	var req = new window.XMLHttpRequest();
 
 	req.open('GET', url, false); //sync load of a chrome resource
 	if (typeof(req.overrideMimeType) == 'function')

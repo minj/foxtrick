@@ -65,7 +65,6 @@ FoxtrickFennec.prototype = {
 		'links/links.js',
 
 		//<!-- browser specific -->
-		'observer.js', /* obsolete? */
 		'ui.js',
 		'entry.js',
 		'background.js',
@@ -81,8 +80,6 @@ FoxtrickFennec.prototype = {
 	init: function() {
 		// load foxtrick background files and starts background script
 		this.loadScript();
-		// add ui
-		this.addObserver();
 		// run background
 		this.loader.background.browserLoad();
 		// add styles
@@ -92,8 +89,6 @@ FoxtrickFennec.prototype = {
 	},
 
 	cleanup: function() {
-		// remove ui
-		this.removeObserver();
 		//stop background
 		this.loader.background.browserUnload();
 		// remove content scripts and listeners
@@ -114,7 +109,7 @@ function loadIntoWindow(window) {
 		window.Foxtrick = new FoxtrickFennec(window);
 		window.Foxtrick.init();
 	} catch (e) {
-		Components.utils.reportError('FoxTrick error: ' + e);
+		Cu.reportError('FoxTrick error: ' + e);
 	}
 }
 

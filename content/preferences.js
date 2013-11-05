@@ -187,22 +187,6 @@ function searchEvent(ev) {
 
 function initCoreModules()
 {
-/*	if (Foxtrick.arch === 'Gecko') {
-		// mobile/android platform overwrite. didn't manage it stable in env.js
-		var getAppID = function() {
-			var Cc = Components.classes;
-			var Ci = Components.interfaces;
-			var Cu = Components.utils;
-			Cu.import('resource://gre/modules/Services.jsm');
-			return Cc['@mozilla.org/xre/app-info;1'].getService(Ci.nsIXULAppInfo).ID;
-		};
-		var appInfoID = getAppID();
-		if (appInfoID=='{aa3c5121-dab2-40e2-81ca-7ea25febc110}')
-			Foxtrick.platform = 'Android';
-		else if (appInfoID=='{a23983c0-fd0e-11dc-95ff-0800200c9a66}')
-			Foxtrick.platform = 'Mobile';
-	}*/
-
 	// add MODULE_NAME to modules
 	var i;
 	for (i in Foxtrick.modules)

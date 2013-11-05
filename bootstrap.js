@@ -8,6 +8,7 @@ const Cc = Components.classes;
 const Ci = Components.interfaces;
 const Cr = Components.results;
 const Cu = Components.utils;
+const Cm = Components.manager;
 
 let _gLoader;
 
@@ -52,7 +53,7 @@ let windowListener = {
 	onOpenWindow: function(aWindow) {
 		// Wait for the window to finish loading
 		let domWindow = aWindow.QueryInterface(Ci.nsIInterfaceRequestor)
-			.getInterface(Ci.nsIDOMWindowInternal || Ci.nsIDOMWindow);
+			.getInterface(Ci.nsIDOMWindow);
 		domWindow.addEventListener('load', function() {
 			domWindow.removeEventListener('load', arguments.callee, false);
 			_gLoader.loadIntoWindow(domWindow);
@@ -63,18 +64,6 @@ let windowListener = {
 };
 
 function startup(aData, aReason) {
-	// won't run on 4-7. tell them to update. pre 4 it's not bootstrapped anyways
-	if (Services.vc.compare(Services.appinfo.platformVersion, '8.0') < 0) {
-		let prompts = Components.classes['@mozilla.org/embedcomp/prompt-service;1']
-			.getService(Components.interfaces.nsIPromptService);
-		prompts.alert(null, 'FoxTrick', 'FoxTrick is incompatible with Firefox 4 - 7. ' +
-		              'Please update Firefox.');
-		return;
-	}
-	// add chrome.manifest for 8+9
-	if (Services.vc.compare(Services.appinfo.platformVersion, '10.0') < 0)
-		Components.manager.addBootstrappedManifestLocation(aData.installPath);
-
 	// prefs branch
 	const branch = 'extensions.foxtrick.prefs.';
 
@@ -122,9 +111,6 @@ function shutdown(aData, aReason) {
 	if (aReason == APP_SHUTDOWN)
 		return;
 
-	if (Services.vc.compare(Services.appinfo.platformVersion, '8.0') < 0)
-		return;
-
 	let wm = Cc['@mozilla.org/appshell/window-mediator;1'].getService(Ci.nsIWindowMediator);
 
 	// Stop listening for new windows
@@ -138,11 +124,10 @@ function shutdown(aData, aReason) {
 	}
 
 	// Flush string bundle cache
-	Cc['@mozilla.org/intl/stringbundle;1']
-		.getService(Components.interfaces.nsIStringBundleService).flushBundles();
+	Cc['@mozilla.org/intl/stringbundle;1'].getService(Ci.nsIStringBundleService).flushBundles();
 
 	// remove manifest
-	Components.manager.removeBootstrappedManifestLocation(aData.installPath);
+	Cm.removeBootstrappedManifestLocation(aData.installPath);
 	// flush jar cache
 	// this should prevent cache issues
 	let addOnDir = aData.installPath.clone();

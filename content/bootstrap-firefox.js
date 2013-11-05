@@ -343,7 +343,7 @@ function loadIntoWindow(window) {
 		window.Foxtrick.init();
 	} catch (e) {
 		dump('FoxTrick error: ' + e + '\n');
-		Components.utils.reportError('FoxTrick error: ' + e);
+		Cu.reportError('FoxTrick error: ' + e);
 	}
 }
 
