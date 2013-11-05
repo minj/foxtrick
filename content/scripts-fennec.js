@@ -23,12 +23,9 @@ Foxtrick.loader.background.contentScriptManager = {
 		//<!-- external libraries -->
 		'lib/oauth.js',
 		'lib/sha1.js',
-		'lib/jquery.js',
 		'lib/jester.js',
-		'lib/yaml.js',
 		'lib/Blob.js',
 		'lib/FileSaver.js',
-		'lib/idbstore.js',
 		'lib/psico.js',
 
 		//<!-- utilities -->

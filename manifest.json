@@ -26,15 +26,11 @@
 			"content/pages.js",
 
 			//<!-- external libraries -->
-			"content/lib/jquery.js",
 			"content/lib/oauth.js",
 			"content/lib/sha1.js",
 			"content/lib/PluralForm.js",
-			"content/lib/yaml.js",
-			"content/lib/jester.js",
 			"content/lib/Blob.js",
 			"content/lib/FileSaver.js",
-			"content/lib/idbstore.js",
 			"content/lib/psico.js",
 
 			//<!-- utilities -->
