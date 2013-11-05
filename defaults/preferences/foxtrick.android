@@ -1,1 +1,4 @@
 pref("extensions.foxtrick.prefs.module.MainMenuDropDown.enabled", false);
+pref("extensions.foxtrick.prefs.module.HTEVPrediction.enabled", false);
+pref("extensions.foxtrick.prefs.module.TeamPopupLinks.enabled", false);
+pref("extensions.foxtrick.prefs.module.ForumModeratorPopup.enabled", false);
