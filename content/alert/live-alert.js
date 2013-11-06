@@ -89,7 +89,7 @@ Foxtrick.modules['LiveAlert'] = {
 								.replace(/%H/, score[0])
 								.replace(/%A/, score[1])
 								.replace(/%a/, teams[1]),
-							doc.location
+							doc.location.href
 						);
 						// play sound if enabled
 						if (Foxtrick.Prefs.isModuleOptionEnabled('LiveAlert', 'Sound')) {
