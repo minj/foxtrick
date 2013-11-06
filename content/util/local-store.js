@@ -77,6 +77,38 @@ if (Foxtrick.chromeContext() == 'background') {
 			cursor.delete();
 		}, options);
 	};
+
+// purge localStorage
+(function(localStorage){
+	if (Foxtrick.arch === 'Sandboxed') {
+		var key;
+		for (key in localStorage) {
+			if (key.indexOf('localStore.') === 0)
+				localStorage.removeItem(key); // <- key already contains localStore.
+		}
+	}
+	else if (Foxtrick.arch === 'Gecko') {
+		var url = 'http://localStore.foxtrick.org';
+		var ios = Components.classes['@mozilla.org/network/io-service;1']
+				  .getService(Components.interfaces.nsIIOService);
+		var ssm = Components.classes['@mozilla.org/scriptsecuritymanager;1']
+				  .getService(Components.interfaces.nsIScriptSecurityManager);
+		var smc = Components.classes['@mozilla.org/dom/storagemanager;1'] ||
+			Components.classes['@mozilla.org/dom/localStorage-manager;1'];
+		var dsm = smc.getService(Components.interfaces.nsIDOMStorageManager);
+
+		var uri = ios.newURI(url, '', null);
+		var principal = ssm.getCodebasePrincipal ? ssm.getCodebasePrincipal(uri) :
+			ssm.getNoAppCodebasePrincipal(uri);
+		localStorage = dsm.getLocalStorageForPrincipal(principal, '');
+		var key;
+		for (key in localStorage) {
+			if (key.indexOf('localStore.') === 0)
+				localStorage.removeItem(key); // <- key already contains localStore.
+		}
+	}
+})(localStorage);
+
 }
 
 // content
