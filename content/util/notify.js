@@ -57,24 +57,6 @@ Foxtrick.util.notify.create = function(msg, url) {
 		sandboxed.extension.sendRequest({ req: 'notify', msg: msg, url: url });
 	};
 
-	var createSafariGrowl = function() {
-		var showGrowlNotification = function(msg) {
-			try {
-				if (window.GrowlSafariBridge.notifyWithOptions !== undefined) {
-					window.GrowlSafariBridge.notifyWithOptions(msg.name, msg.status, {
-						isSticky: false,
-						priority: -1,
-						imageUrl: msg.img_url
-					});
-				}
-			} catch (e) { Foxtrick.log(e); }
-		};
-
-		var img = Foxtrick.InternalPath + 'resources/img/hattrick-logo.png';
-		showGrowlNotification({ name: 'www.hattrick.org', status: msg, img_url: img });
-	};
-
-
 	if (Foxtrick.arch == 'Gecko') {
 		createGecko();
 	}
@@ -82,6 +64,6 @@ Foxtrick.util.notify.create = function(msg, url) {
 		createChrome();
 	}
 	else if (Foxtrick.platform == 'Safari') {
-		createSafariGrowl();
+		createChrome();
 	}
 };

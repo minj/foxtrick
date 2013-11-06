@@ -287,6 +287,22 @@ Foxtrick.loader.background.browserLoad = function() {
 				// close after 10 sec
 				window.setTimeout(function() { notification.cancel(); }, 10000);
 			}
+			if (Foxtrick.platform === 'Safari') {
+				var showGrowlNotification = function(msg) {
+					try {
+						if (window.GrowlSafariBridge.notifyWithOptions !== undefined) {
+							window.GrowlSafariBridge.notifyWithOptions(msg.name, msg.status, {
+								isSticky: false,
+								priority: -1,
+								imageUrl: msg.img_url
+							});
+						}
+					} catch (e) { Foxtrick.log(e); }
+				};
+
+				var img = Foxtrick.InternalPath + 'resources/img/hattrick-logo.png';
+				showGrowlNotification({ name: 'www.hattrick.org', status: msg, img_url: img });
+			}
 		};
 
 		// from context-menu.js: dummy. request handled in there
