@@ -521,6 +521,7 @@ if (Foxtrick.arch === 'Gecko') {
 						}
 						return this._strings_bundle_default.GetStringFromName(str);
 					}
+					return null;
 				}
 				catch (ee) {
 					Foxtrick.log(Error("Error getString('" + str + ")'"));
@@ -716,6 +717,7 @@ if (Foxtrick.arch === 'Sandboxed') {
 			}
 			catch (e) {
 				Foxtrick.log(Error("Error getScreenshot('" + str + "')"));
+				return '';
 			}
 		},
 	};

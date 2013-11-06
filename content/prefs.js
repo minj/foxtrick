@@ -209,6 +209,7 @@ Foxtrick.Prefs = {
 				Foxtrick.entry.init);
 			return true;
 		}
+		return false;
 	},
 
 	disableAllModules: function() {
@@ -305,7 +306,8 @@ Foxtrick.Prefs = {
 	},
 
 	show: function(page) {
-		if (!page) var page = '#tab=main';
+		if (!page)
+			page = '#tab=main';
 		Foxtrick.newTab(Foxtrick.InternalPath + 'preferences.html' + page);
 	},
 
