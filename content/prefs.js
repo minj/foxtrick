@@ -11,8 +11,79 @@ if (!Foxtrick)
 
 Foxtrick.Prefs = {
 
-	/* get an entry from preferences with generic type,
+	// --------------------- function stubs ----------------
+
+	/**
+	 * test if user has saved a custom value for key
+	 * @param	key			pref key to check
+	 * @returns	{Boolean}
+	 */
+	prefHasUserValue: function(key) {},
+
+	/**
+	 * get all preference entry keys under a branch.
+	 * - if branch is '', return the names of all entries;
+	 * - if branch is not '', return the names of entries with name
+	 * starting with the branch name.
+	 * @param	{string}	branch	branch to fetch
+	 * @returns	{Array}				array of key names
+	 */
+	getAllKeysOfBranch: function(branch) {},
+
+	/**
+	 * remove a saved pref value
+	 * @param	{string}	key		key to delete
+	 */
+	deleteValue: function(key) {},
+
+	/**
+	 * get an integer value from prefs
+	 * @param	{string}	key		pref key
+	 * @returns	{Integer}			pref value
+	 */
+	getInt: function(key) {},
+
+	/**
+	 * get a boolean value from prefs
+	 * @param	{string}	key		pref key
+	 * @returns	{Boolean}			pref value
+	 */
+	getBool: function(key) {},
+
+	/**
+	 * get a string value from prefs
+	 * @param	{string}	key		pref key
+	 * @returns	{string}			pref value
+	 */
+	getString: function(key) {},
+
+	/**
+	 * save an integer value in prefs
+	 * @param	{string}	key		pref key
+	 * @param	{Integer}	value	pref value
+	 */
+	setInt: function(key, value) {},
+
+	/**
+	 * save a boolean value in prefs
+	 * @param	{string}	key		pref key
+	 * @param	{Boolean}	value	pref value
+	 */
+	setBool: function(key, value) {},
+
+	/**
+	 * save a string value in prefs
+	 * @param	{string}	key		pref key
+	 * @param	{string}	value	pref value
+	 */
+	setString: function(key, value) {},
+
+	/**
+	 * get an entry from preferences with generic type,
+	 * should not be used in modules!
 	 * return null if not found
+	 * @param	{string}	key	pref key
+	 * @returns	{Object}		value
 	 */
 	get: function(key) {
 		var val;
@@ -27,6 +98,7 @@ Foxtrick.Prefs = {
 
 	/**
 	 * set a value in prefs
+	 * should not be used in modules!
 	 * must pass floats as strings!
 	 * @param	{String}	key
 	 * @param	{mixed}	value
@@ -442,8 +514,10 @@ if (Foxtrick.arch === 'Gecko') {
 
 		// set for fennec background script side
 		setValue: function(key, value, type) {
-			if (type == 'string')
+			if (type == 'string') {
+				value = value.replace(/\\./, unescape);
 				Foxtrick.Prefs.setString(key, value);
+			}
 			else if (type == 'int')
 				Foxtrick.Prefs.setInt(key, value);
 			else if (type == 'bool')

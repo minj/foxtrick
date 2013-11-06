@@ -69,7 +69,7 @@ Foxtrick.modules.MatchSimulator = {
 
 		if (useStaminaPred) {
 			var ownId = Foxtrick.util.id.getOwnTeamId();
-			var staminaData = {}, dataText = Foxtrick.Prefs.get('StaminaData.' + ownId);
+			var staminaData = {}, dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
 			if (dataText) {
 				try {
 					staminaData = JSON.parse(dataText);

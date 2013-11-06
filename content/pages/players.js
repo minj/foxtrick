@@ -480,7 +480,7 @@ Foxtrick.Pages.Players = {
 				// add stamina data
 				var ownId = Foxtrick.util.id.getOwnTeamId();
 				var teamid = xml.getElementsByTagName('TeamID')[0];
-				var data = {}, dataText = Foxtrick.Prefs.get('StaminaData.' + ownId);
+				var data = {}, dataText = Foxtrick.Prefs.getString('StaminaData.' + ownId);
 				if (dataText && teamid && teamid.textContent == ownId) {
 					data = JSON.parse(dataText);
 					Foxtrick.map(function(player) {
