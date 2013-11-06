@@ -301,7 +301,7 @@ Foxtrick.loader.background.browserLoad = function() {
 				};
 
 				var img = Foxtrick.InternalPath + 'resources/img/hattrick-logo.png';
-				showGrowlNotification({ name: 'www.hattrick.org', status: msg, img_url: img });
+				showGrowlNotification({ name: 'www.hattrick.org', status: request.msg, img_url: img });
 			}
 		};
 
