@@ -158,7 +158,7 @@ if (Foxtrick.platform != 'Android')
 					}
 
 					safari.application.addEventListener('command', function(commandEvent) {
-						copy(entries.contextEntries[commandEvent.command])();
+						copy(entries[commandEvent.command])();
 					}, false);
 				}, true);
 			};
