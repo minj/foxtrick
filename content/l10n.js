@@ -129,6 +129,31 @@ Foxtrick.L10n = {
 	plForm: 0,  // plural form of selected language
 	plForm_default: 0, // plural form of default language
 
+	/**
+	 * test if string is localized
+	 * @param	{string}	str	locale key
+	 * @returns	{Boolean}
+	 */
+	isStringAvailableLocal: function(str) {},
+
+	/**
+	 * test if string exists
+	 * @param	{string}	str	locale key
+	 * @returns	{Boolean}
+	 */
+	isStringAvailable: function(str) {},
+
+	/**
+	 * get string localization
+	 * optionally get the correct plural form
+	 * throws if string is n/a
+	 * uses last plural if matching fails
+	 * @param	{string}	str	locale key
+	 * @param	{[Integer]}	num	number to substitute in plural (optional)
+	 * @returns	{string}
+	 */
+	getString: function(str, num) {},
+
 	// this function returns level including decimal subs from text.
 	getLevelFromText: function(text) {
 		var level, sublevel = 0;
