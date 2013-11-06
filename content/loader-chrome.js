@@ -100,7 +100,7 @@ Foxtrick.loader.chrome.clickListener = function(e) {
 				if (text) {
 					// insert clipboard at current position
 					ta = e.target;
-					var s = FoxtrickForumYouthIcons.getSelection(ta);
+					var s = Foxtrick.getSelection(ta);
 					// Opera, Mozilla
 					if (ta.selectionStart || ta.selectionStart == '0') {
 						var st = ta.scrollTop;

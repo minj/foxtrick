@@ -284,7 +284,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 			if (ta) {
 				// link tags
 				if (replaceText) {
-					var s = getSelection(ta);
+					var s = Foxtrick.getSelection(ta);
 					var newText = (s.selectionLength > 0) ?
 						openingTag.replace(replaceText, s.selectedText) : openingTag;
 
@@ -407,7 +407,7 @@ Foxtrick.modules['ForumYouthIcons'] = {
 				// tags that just add and don't replace
 				else {
 					// HR
-					var s = getSelection(ta);
+					var s = Foxtrick.getSelection(ta);
 
 					var insertText = function(text) {
 						// Opera, Mozilla
@@ -469,43 +469,6 @@ Foxtrick.modules['ForumYouthIcons'] = {
 				}
 			}
 			textCounter(ta, fieldCounter, maxLength);
-		};
-		var getSelection = function(ta) {
-			if (ta) {
-				ta.focus();
-
-				var textAreaContents = {
-					completeText: '',
-					selectionStart: 0,
-					selectionEnd: 0,
-					selectionLength: 0,
-					textBeforeSelection: '',
-					selectedText: '',
-					textAfterSelection: ''
-				};
-
-				if (ta.selectionStart || ta.selectionStart == '0') {
-					textAreaContents.completeText = ta.value;
-					textAreaContents.selectionStart = ta.selectionStart;
-
-					if ((ta.selectionEnd - ta.selectionStart) !== 0) {
-						while (ta.value.charAt(ta.selectionEnd - 1) == ' ') {
-							ta.selectionEnd--;
-						}
-					}
-
-					textAreaContents.selectionEnd = ta.selectionEnd;
-					textAreaContents.selectionLength = ta.selectionEnd - ta.selectionStart;
-					textAreaContents.textBeforeSelection = ta.value.substring(0, ta.selectionStart);
-
-					var st = ta.value.substring(ta.selectionStart, ta.selectionEnd);
-
-					textAreaContents.selectedText = st;
-					textAreaContents.textAfterSelection = ta.value.substring(ta.selectionEnd,
-					                                                         ta.value.length);
-					return textAreaContents;
-				}
-			}
 		};
 		var textCounter = function(field, countfield, maxlimit) {
 			var text = field.value.replace(/[\r]/g, '').length;
