@@ -314,10 +314,10 @@ Foxtrick.util.css.getCssTextFromFile = function(cssUrl) {
 		// not a file. line is css text already
 		css_text = cssUrl;
 	}
-	css_text = css_text.replace(new RegExp('\\[data-theme="' + Foxtrick.Prefs.getString('theme') +
-	                            '"\\]', 'g'), '');
-	css_text = css_text.replace(new RegExp('\\[dir="' + Foxtrick.Prefs.getString('dir') + '"\\]',
-	                            'g'), '');
+	//css_text = css_text.replace(new RegExp('\\[data-theme="' + Foxtrick.Prefs.getString('theme') +
+	//                            '"\\]', 'g'), '');
+	//css_text = css_text.replace(new RegExp('\\[dir="' + Foxtrick.Prefs.getString('dir') + '"\\]',
+	//                            'g'), '');
 	if (Foxtrick.arch == 'Sandboxed') {
 		// remove moz-document statement
 		if (css_text && css_text.search(/@-moz-document/) != -1) {
