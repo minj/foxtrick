@@ -204,7 +204,7 @@ Foxtrick.entry.run = function(doc, is_only_css_check) {
 		if (is_only_css_check)
 			return;
 		if (Foxtrick.isExcluded(doc) ||
-			(Foxtrick.isLoginPage(doc) && !Foxtrick.Prefs.getBool('runLoggedOff')))
+			(Foxtrick.isLoginPage(doc) && !FoxtrickPrefs.getBool('runLoggedOff')))
 			return;
 
 		// create arrays for each recognized page that contains modules
@@ -294,7 +294,7 @@ Foxtrick.entry.change = function(ev) {
 			|| Foxtrick.hasClass(ev.originalTarget, 'ft-popup-span')))
 			return;
 
-		if (Foxtrick.Prefs.isEnabled(doc)) {
+		if (FoxtrickPrefs.isEnabled(doc)) {
 			Foxtrick.log('call modules change functions');
 			var modules = [];
 			// modules running on current page
