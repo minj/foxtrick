@@ -68,10 +68,19 @@ FoxtrickFennec.prototype = {
 		'scripts-fennec.js'
 	],
 	loadScript: function() {
+		var consoleService = Components.classes['@mozilla.org/consoleservice;1']
+							.getService(Components.interfaces.nsIConsoleService);
 		// loading Foxtrick into window.Foxtrick
-		for (var i = 0; i < this.scripts.length; ++i)
-			Services.scriptloader.loadSubScript('chrome://foxtrick/content/' +
-			                                    this.scripts[i], this.owner, 'UTF-8');
+		for (var i = 0; i < this.scripts.length; ++i) {
+			try {
+				Services.scriptloader.loadSubScript('chrome://foxtrick/content/' +
+													this.scripts[i], this.owner, 'UTF-8');
+			}
+			catch (e) {
+				e.message = 'Foxtrick ERROR: ' + e.message;
+				consoleService.logStringMessage(e);
+			}
+		}
 	},
 
 	init: function() {
