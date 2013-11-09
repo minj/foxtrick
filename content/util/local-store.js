@@ -3,7 +3,6 @@
  * localSet() and localGet() are a pair of functions that can store
  * permanent information.
  * The stored value must be a JSON-serializable object, or of native types.
- * Due to async nature of indexedDB these functions might fail during init stage
  */
 
 // background
@@ -35,24 +34,49 @@ if (Foxtrick.chromeContext() == 'background') {
 			}
 		})();
 	}
+	// queues that track access to localStore until it becomes available
+	// should mainly apply to init stage
+	Foxtrick._localStore = {
+		ready: false,
+		getQueue: [],
+		setQueue: [],
+	};
 	Foxtrick.localStore = new IDBStore({
 		storeName: 'localStore',
 		storePrefix: 'Foxtrick',
 		keyPath: null,
 		autoIncrement: true,
 		indexes: [],
-		onStoreReady: function(){},
-		onError: function(error){ throw error; }
+		onStoreReady: function() {
+			var ls = Foxtrick._localStore;
+			ls.ready = true;
+			for (var i = 0; i < ls.setQueue.length; ++i) {
+				Foxtrick.localSet(ls.setQueue[i][0], ls.setQueue[i][1]);
+			}
+			for (var i = 0; i < ls.getQueue.length; ++i) {
+				Foxtrick.localGet(ls.getQueue[i][0], ls.getQueue[i][1]);
+			}
+			ls.setQueue = [];
+			ls.getQueue = [];
+		},
+		onError: function(error) { throw error; }
 	});
 	Foxtrick.localSet = function(key, value) {
-		Foxtrick.localStore.put(key, value);
+		if (Foxtrick._localStore.ready)
+			Foxtrick.localStore.put(key, value);
+		else
+			Foxtrick._localStore.setQueue.push([key, value]);
 	};
 	Foxtrick.localGet = function(key, callback) {
-		Foxtrick.localStore.get(key, function(value) {
-			if (typeof value === 'undefined')
-				value = null;
-			callback(value);
-		});
+		if (Foxtrick._localStore.ready) {
+			Foxtrick.localStore.get(key, function(value) {
+				if (typeof value === 'undefined')
+					value = null;
+				callback(value);
+			});
+		}
+		else
+			Foxtrick._localStore.getQueue.push([key, callback]);
 	};
 	Foxtrick.localDeleteBranch = function(branch) {
 		if (typeof branch === 'undefined' || branch === null)

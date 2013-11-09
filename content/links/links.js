@@ -84,21 +84,11 @@
 					text = Foxtrick.Prefs.getString('LinksFeed.' + feed);
 				//Foxtrick.log('parse ', feed);
 				parseFeed(text);
-				try {
-					Foxtrick.localSet('LinksFeed.' + feed, text);
-				}
-				catch (e) {
-					Foxtrick.log('idbStore not initialized yet. Will fetch links later');
-				}
+				Foxtrick.localSet('LinksFeed.' + feed, text);
 			})('failure', function(code) {
 				--todo;
 				Foxtrick.log('Error loading links feed: ', feed, '. Using cached feed.');
-				try {
-					Foxtrick.localGet('LinksFeed.' + feed, function(text) { parseFeed(text); });
-				}
-				catch (e) {
-					Foxtrick.log('idbStore not initialized yet. Will try to get links later');
-				}
+				Foxtrick.localGet('LinksFeed.' + feed, function(text) { parseFeed(text); });
 			});
 		}, feeds);
 	};
