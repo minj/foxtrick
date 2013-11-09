@@ -403,7 +403,8 @@ Foxtrick.Pages.Players = {
 							Number(trainerData.getElementsByTagName('TrainerSkill')[0].textContent);
 						}
 					}
-					if (playerNode.getElementsByTagName('PlayerNumber').length) {
+					if (playerNode.getElementsByTagName('PlayerNumber').length &&
+						typeof player.number === 'undefined') {
 						// number = 100 means this player hasn't been assigned one
 						var number =
 							Number(playerNode.getElementsByTagName('PlayerNumber')[0].textContent);
@@ -519,9 +520,9 @@ Foxtrick.Pages.Players = {
 
 				player.playerNode = playerNode;
 
-				var nameLink = Foxtrick.filter(function(n) {
+				var nameLink = Foxtrick.nth(0, function(n) {
 					return !Foxtrick.hasClass(n, 'flag');
-				}, playerNode.getElementsByTagName('a'))[0];
+				}, playerNode.getElementsByTagName('a'));
 				player.nameLink = nameLink.cloneNode(true);
 
 				if (bs[0]) {
