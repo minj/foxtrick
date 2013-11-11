@@ -49,8 +49,8 @@ Foxtrick.Predict = {};
  * @returns	{Number}			probability
  */
 Foxtrick.Predict.possession = function(ratio) {
-	var first = Math.pow(ratio, 2.7);
-	var second = Math.pow(1 - ratio, 2.7);
+	var first = Math.pow(ratio, Math.E);
+	var second = Math.pow(1 - ratio, Math.E);
 	return first / (first + second);
 };
 /**
