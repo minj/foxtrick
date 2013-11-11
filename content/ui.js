@@ -37,7 +37,7 @@ if (Foxtrick.platform == 'Firefox') {
 		// toolbar menu - disable
 		var toolbarDisable = document.getElementById('foxtrick-toolbar-deactivate');
 		toolbarDisable.addEventListener('click', function(ev) {
-			var doc = ev.view.gBrowser.contentWindow.wrappedJSObject.document;
+			var doc = ev.view.gBrowser.contentWindow.document;
 			Foxtrick.Prefs.disable(doc);
 		}, false);
 		// toolbar menu - clearCache
@@ -50,13 +50,13 @@ if (Foxtrick.platform == 'Firefox') {
 		// toolbar menu - highlight
 		var toolbarHighlight = document.getElementById('foxtrick-toolbar-highlight');
 		toolbarHighlight.addEventListener('click', function(ev) {
-			var doc = ev.view.gBrowser.contentWindow.wrappedJSObject.document;
+			var doc = ev.view.gBrowser.contentWindow.document;
 			Foxtrick.Prefs.highlight(doc);
 		}, false);
 		// toolbar menu - translationKeys
 		var toolbarTranslationKeys = document.getElementById('foxtrick-toolbar-translationKeys');
 		toolbarTranslationKeys.addEventListener('click', function(ev) {
-			var doc = ev.view.gBrowser.contentWindow.wrappedJSObject.document;
+			var doc = ev.view.gBrowser.contentWindow.document;
 			Foxtrick.Prefs.translationKeys(doc); // sets the pref and calls update()
 			Foxtrick.modules.UI.updateMenu(ev.view.document);
 		}, false);
