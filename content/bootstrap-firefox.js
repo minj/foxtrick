@@ -265,7 +265,10 @@ FoxtrickFirefox.prototype = {
 	},
 
 	init: function() {
+		// load foxtrick files
+		this.loadScript();
 		// add ui
+		let that = this;
 		Services.scriptloader.loadSubScript('chrome://foxtrick/content/lib/ToolbarItem.js', this);
 		// toolbar
 		this.generalButton = this.ToolbarItem.create(
@@ -287,6 +290,7 @@ FoxtrickFirefox.prototype = {
 			this.owner.document.getElementById('nav-bar'),
 			{
 				onInit: function() {
+					that.modules.UI.onLoad(that.owner.document);
 				},
 				onDestroy: function() {
 				}
@@ -312,8 +316,6 @@ FoxtrickFirefox.prototype = {
 			, popup).querySelector('*');
 		popup.insertBefore(this.contextLinkItem,
 		                   this.owner.document.getElementById('context-paste').nextSibling);
-		//load foxtrick files
-		this.loadScript();
 		//init and add listeners
 		this.loader.firefox.browserLoad();
 	},
