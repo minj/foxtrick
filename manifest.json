@@ -11,7 +11,8 @@
 		"content/resources/skillcolors/*.css",
 		"content/resources/sounds/*.mp3",
 		"content/resources/sounds/*.ogg",
-		"content/resources/sounds/*.wav"
+		"content/resources/sounds/*.wav",
+		"content/preferences.html"
 	],
 	"background" : {
 		"page" : "content/background.html"
