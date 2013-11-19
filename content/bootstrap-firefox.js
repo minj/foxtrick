@@ -256,58 +256,80 @@ FoxtrickFirefox.prototype = {
 			                                    this.scripts[i], this.owner, 'UTF-8');
 	},
 
+	loadUI: function() {
+		try {
+			Services.scriptloader.loadSubScript('chrome://foxtrick/content/lib/ToolbarItem.js', this);
+			try {
+				// toolbar
+				let that = this;
+				this.generalButton = this.ToolbarItem.create(
+					"<toolbarbutton id='foxtrick-toolbar-button' " +
+						"type='menu' " +
+						"label='FoxTrick' " +
+						"tooltiptext='FoxTrick' " +
+						"context='foxtrick-menu' " +
+						"class='" + this.ToolbarItem.BASIC_ITEM_CLASS + " foxtrick-toolbar-item'>" +
+						"<menupopup id='foxtrick-menu'>" +
+							"<menuitem id='foxtrick-toolbar-preferences'/>" +
+							"<menuitem id='foxtrick-toolbar-deactivate' type='checkbox' autocheck='true'/>" +
+							"<menuitem id='foxtrick-toolbar-clearCache' />" +
+							"<menuitem id='foxtrick-toolbar-highlight' type='checkbox' autocheck='true'/>" +
+							"<menuitem id='foxtrick-toolbar-translationKeys' type='checkbox' " +
+							"autocheck='true'/>" +
+						"</menupopup>" +
+					"</toolbarbutton>",
+					this.owner.document.getElementById('nav-bar'),
+					{
+						onInit: function() {
+							that.modules.UI.onLoad(that.owner.document);
+						},
+						onDestroy: function() {
+						}
+					}
+				);
+			}
+			catch (e) {
+				dump('FoxTrick error: Toolbar button init ' + e + '\n');
+				Cu.reportError('FoxTrick error: ' + e);
+			}
+			try {
+				// contextmenu
+				let popup = this.owner.document.getElementById('contentAreaContextMenu');
+				this.contextLinkItem = this.ToolbarItem.toDOMDocumentFragment(
+					"<menu id='foxtrick-popup-copy' " +
+						"class='menu-iconic foxtrick-menu-item' " +
+						"label='FoxTrick'>" +
+						"<menupopup>" +
+							"<menuitem id='foxtrick-popup-copy-id' " +
+								"label='Copy ID'/>" +
+							"<menuitem id='foxtrick-popup-copy-link' " +
+								"label='Copy Link Location in HT-ML'/>" +
+							"<menuitem id='foxtrick-popup-copy-ht-ml' " +
+								"label='Copy in HT-ML'/>" +
+							"<menuitem id='foxtrick-popup-copy-table' " +
+								"label='Copy table in HT-ML'/>" +
+						"</menupopup>" +
+					"</menu>"
+					, popup).querySelector('*');
+				popup.insertBefore(this.contextLinkItem,
+								   this.owner.document.getElementById('context-paste').nextSibling);
+			}
+			catch (e) {
+				dump('FoxTrick error: Context menu init ' + e + '\n');
+				Cu.reportError('FoxTrick error: ' + e);
+			}
+		}
+		catch (e) {
+			dump('FoxTrick error: ToolbarItem failed ' + e + '\n');
+			Cu.reportError('FoxTrick error: ' + e);
+		}
+	},
+
 	init: function() {
 		// load foxtrick files
 		this.loadScript();
 		// add ui
-		let that = this;
-		Services.scriptloader.loadSubScript('chrome://foxtrick/content/lib/ToolbarItem.js', this);
-		// toolbar
-		this.generalButton = this.ToolbarItem.create(
-			"<toolbarbutton id='foxtrick-toolbar-button' " +
-				"type='menu' " +
-				"label='FoxTrick' " +
-				"tooltiptext='FoxTrick' " +
-				"context='foxtrick-menu' " +
-				"class='" + this.ToolbarItem.BASIC_ITEM_CLASS + ' ' + this.TOOLBAR_ITEM + "'>" +
-				"<menupopup id='foxtrick-menu'>" +
-					"<menuitem id='foxtrick-toolbar-preferences'/>" +
-					"<menuitem id='foxtrick-toolbar-deactivate' type='checkbox' autocheck='true'/>" +
-					"<menuitem id='foxtrick-toolbar-clearCache' />" +
-					"<menuitem id='foxtrick-toolbar-highlight' type='checkbox' autocheck='true'/>" +
-					"<menuitem id='foxtrick-toolbar-translationKeys' type='checkbox' " +
-					"autocheck='true'/>" +
-				"</menupopup>" +
-			"</toolbarbutton>",
-			this.owner.document.getElementById('nav-bar'),
-			{
-				onInit: function() {
-					that.modules.UI.onLoad(that.owner.document);
-				},
-				onDestroy: function() {
-				}
-			}
-		);
-		// contextmenu
-		let popup = this.owner.document.getElementById('contentAreaContextMenu');
-		this.contextLinkItem = this.ToolbarItem.toDOMDocumentFragment(
-			"<menu id='foxtrick-popup-copy' " +
-				"class='menu-iconic " + this.owner.MENU_ITEM + "' " +
-				"label='FoxTrick'>" +
-				"<menupopup>" +
-					"<menuitem id='foxtrick-popup-copy-id' " +
-						"label='Copy ID'/>" +
-					"<menuitem id='foxtrick-popup-copy-link' " +
-						"label='Copy Link Location in HT-ML'/>" +
-					"<menuitem id='foxtrick-popup-copy-ht-ml' " +
-						"label='Copy in HT-ML'/>" +
-					"<menuitem id='foxtrick-popup-copy-table' " +
-						"label='Copy table in HT-ML'/>" +
-				"</menupopup>" +
-			"</menu>"
-			, popup).querySelector('*');
-		popup.insertBefore(this.contextLinkItem,
-		                   this.owner.document.getElementById('context-paste').nextSibling);
+		this.loadUI();
 		//init and add listeners
 		this.loader.firefox.browserLoad();
 	},
