@@ -97,7 +97,6 @@
 	Foxtrick.modules['Links'] = {
 		MODULE_CATEGORY: Foxtrick.moduleCategories.LINKS,
 		CORE_MODULE: true,
-		OPTIONS: ['AddServer'],
 
 		OPTION_FUNC: function(doc) {
 			// different background context for chrome. needs the links collection
@@ -110,9 +109,6 @@
 			});
 
 			var cont = doc.createElement('div');
-
-			var br = doc.createElement('br');
-			cont.appendChild(br);
 
 			var label = doc.createElement('p');
 			label.setAttribute('data-text', 'Links.feeds');
@@ -278,9 +274,6 @@
 				}
 
 				if (allowed) {
-					if (Foxtrick.Prefs.getBool('module.Links.AddServer.enabled') &&
-					    urlTmpl.indexOf('?') != -1)
-						urlTmpl = urlTmpl + '&ht-server=[server]';
 					var url = makeLink(urlTmpl);
 					if (url != null) {
 						links.push({ 'link': getLinkElement(link, url, key, module.MODULE_NAME),
