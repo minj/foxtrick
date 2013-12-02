@@ -37,7 +37,6 @@ if (Foxtrick.platform == 'Firefox') {
 			// second trun
 			// update status icon
 			Foxtrick.modules.UI.update();
-			Foxtrick.modules.UI.updateMenu(document);
 			return;
 		}
 
@@ -100,6 +99,7 @@ if (Foxtrick.platform == 'Firefox') {
 
 	Foxtrick.modules.UI.update = function(doc) {
 		Foxtrick.modules.UI.updateIcon(doc);
+		Foxtrick.modules.UI.updateMenu(document); // chromeDoc
 	};
 
 	Foxtrick.modules.UI.updateIcon = function(doc) {
