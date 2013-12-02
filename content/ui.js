@@ -42,7 +42,7 @@ if (Foxtrick.platform == 'Firefox') {
 
 		// toolbar menu - preferences
 		var toolbarPreferences = document.getElementById('foxtrick-toolbar-preferences');
-		toolbarPreferences.addEventListener('click', function() { Foxtrick.Prefs.show() }, false);
+		toolbarPreferences.addEventListener('click', function() { FoxtrickPrefs.show() }, false);
 		// toolbar menu - disable
 		var toolbarDisable = document.getElementById('foxtrick-toolbar-deactivate');
 		toolbarDisable.addEventListener('click', function(ev) {
