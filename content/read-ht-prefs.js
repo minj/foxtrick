@@ -58,6 +58,9 @@ Foxtrick.modules['ReadHtPrefs'] = {
 				Foxtrick.log('Language changed: ' + newLang + '(' + readLang +
 				             ') but no Foxtrick support yet.');
 			}
+			if (Foxtrick.platform === 'Firefox') {
+				Foxtrick.modules.UI.update(doc);
+			}
 		}
 	},
 
