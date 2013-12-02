@@ -30,10 +30,20 @@ if (Foxtrick.platform == 'Firefox') {
 	// as the argument
 	// initializes items in menu bar and status bar
 	Foxtrick.modules.UI.onLoad = function(document) {
+
+		// this runs twice but prefs is available on second run only
+		var icon = document.getElementById('foxtrick-toolbar-button');
+		if (icon.getAttribute('inited')) {
+			// second trun
+			// update status icon
+			Foxtrick.modules.UI.update();
+			Foxtrick.modules.UI.updateMenu(document);
+			return;
+		}
+
 		// toolbar menu - preferences
 		var toolbarPreferences = document.getElementById('foxtrick-toolbar-preferences');
-		if (!toolbarPreferences) return; // wrong place somehow
-		toolbarPreferences.addEventListener('click', function() { FoxtrickPrefs.show() }, false);
+		toolbarPreferences.addEventListener('click', function() { Foxtrick.Prefs.show() }, false);
 		// toolbar menu - disable
 		var toolbarDisable = document.getElementById('foxtrick-toolbar-deactivate');
 		toolbarDisable.addEventListener('click', function(ev) {
@@ -60,9 +70,8 @@ if (Foxtrick.platform == 'Firefox') {
 			FoxtrickPrefs.translationKeys(doc); // sets the pref and calls update()
 			Foxtrick.modules.UI.updateMenu(ev.view.document);
 		}, false);
-		// update status icon
-		Foxtrick.modules.UI.update();
-		Foxtrick.modules.UI.updateMenu(document);
+
+		document.getElementById('foxtrick-toolbar-button').setAttribute('inited', '1');
 	};
 
 	Foxtrick.modules.UI.updateMenu = function(document) {
