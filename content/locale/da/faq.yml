@@ -18,15 +18,15 @@ da:
     authorize:
       question: Hvorfor bør jeg tillade FoxTrick at få adgang til mit hold data?
       answer: |
-        <p>Selv om de fleste nødvendige data FoxTrick skal bruge, kan hentes direkte fra den side, du kigger på,kræver visse moduler stadig download af data fra Hattrick for at fungere korrekt.</p>
+        <p>Selv om de fleste nødvendige data FoxTrick skal bruge, kan hentes direkte fra den side, du kigger på, kræver visse moduler stadig download af data fra Hattrick for at fungere korrekt.</p>
         
         <p>Hvis du vil hente data fra Hattrick, herunder data af dit hold, ligaer, og landshold, skal du godkende FoxTrick på forhånd</p>
         
-        <p>Du godkender FoxTrick ved at oplyse dit brugernavn og adgangskode på chpp.hattrick.org til gengæld for ​​en bekræftelseskode, som du giver til FoxTrick. FoxTrick vil ikke vide dit brugernavn eller adgangskode i hele processen.</p>
+        <p>Du godkender FoxTrick ved at oplyse dit brugernavn og adgangskode på chpp.hattrick.org til gengæld for ​​en bekræftelseskode, som du giver til FoxTrick. FoxTrick vil ikke kende dit brugernavn eller adgangskode i hele processen.</p>
         
-        <p>Hvis du vil vide mere om godkendelses processen, kan du læse <linkCHPPDesc>CHPP - Sådan fungerer det</linkCHPPDesc> på Hattrick.</p>
+        <p>Hvis du vil vide mere om godkendelsesprocessen, kan du læse <linkCHPPDesc>CHPP - Sådan fungerer det</linkCHPPDesc> på Hattrick.</p>
         
-        <p>Nogle moduler kræver dataadgang til at fungere korrekt:</p>
+        <p>Nogle moduler kræver dataadgang for at kunne fungere korrekt:</p>
         
         <ul>
         <li><module>CrossTable</module></li>
