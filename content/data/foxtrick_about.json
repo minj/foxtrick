@@ -263,7 +263,7 @@
 			]
 		},
 		{
-			"language": "Español",
+			"language": "Español, España",
 			"translators": [
 				{
 					"id": "6345528",
@@ -279,7 +279,7 @@
 			]
 		},
 		{
-			"language": "Español, Centroamericano",
+			"language": "Español, Latinoamericano",
 			"translators": [
 				{
 					"id": "335181",
@@ -288,7 +288,7 @@
 			]
 		},
 		{
-			"language": "Español, Sudamericano",
+			"language": "Español, Rioplatense",
 			"translators": [
 				{
 					"id": "335181",
