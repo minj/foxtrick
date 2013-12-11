@@ -303,7 +303,7 @@ Foxtrick.modules['YouthSkills'] = {
 						var top = skill['top3'] || false;
 
 						var min = current;
-						var max = Math.max(cap_minimal, cap);
+						var max = cap; //Math.max(cap_minimal, cap);
 
 						if (pred || min || max)
 							setSkill(playerInfo, rowMap[sk] + 1, pred, min, max, maxed);
