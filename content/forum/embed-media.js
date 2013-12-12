@@ -140,6 +140,24 @@ Foxtrick.modules['EmbedMedia'] = {
 			if (do_replaceLinksByTitles)
 				target.firstChild.textContent = '(' + json.title + ')';
 
+			var sanitize_oEmbed_Iframe = function(html) {
+				var m = html.match(/<iframe [^>]+><\/iframe>/i);
+				if (!m)
+					return '';
+				var iframe = m[0];
+				m = iframe.match(/^<iframe .*?src="(.+?)"/i);
+				// iframe must have a valid source
+				if (!m)
+					return '';
+				var src = m[1];
+				// must have a different origin
+				// only allow http, https, and relative protocols
+				if (!Foxtrick.isHtUrl(src) && src.match(/^(https?:)?\/\//))
+					return iframe;
+				else
+					return '';
+			};
+
 			switch (json.type) {
 				case 'file':
 				case 'photo':
@@ -151,12 +169,10 @@ Foxtrick.modules['EmbedMedia'] = {
 					target.nextSibling.replaceChild(img, target.nextSibling.firstChild);
 					break;
 				case 'video':
-					target.nextSibling.innerHTML = json.html.match(/<iframe [^>]+><\/iframe>/i)[0];
-					//only iframes
+					target.nextSibling.innerHTML = sanitize_oEmbed_Iframe(json.html);
 					break;
 				default:
-					target.nextSibling.innerHTML = json.html.match(/<iframe [^>]+><\/iframe>/i)[0];
-					//only iframes
+					target.nextSibling.innerHTML = sanitize_oEmbed_Iframe(json.html);
 					break;
 			}
 		};
