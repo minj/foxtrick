@@ -97,7 +97,7 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			return Math.min(90, minutes);
 		};
 
-		//did the player get stars? ... used to identify walkovers
+		//did the player get any stars? ... used to identify walkovers
 		var gotStars = function(node) {
 			var stars = node.getElementsByClassName('endColumn2')[0];
 
@@ -111,15 +111,10 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			}
 		};
 
-		//did the player a red card? ... used to identify walkovers
+		//did the player get a red card? ... used to identify walkovers
 		var gotRedCard = function(node) {
 			var cards = node.getElementsByTagName('td')[4].getElementsByTagName('img')[0];
-
-			var redcard = false;
-			if (cards)
-				redcard = (cards.src.search('red_card') > -1);
-
-			return redcard;
+			return cards ? (cards.src.search('red_card') > -1) : false;
 		};
 
 		//figure out the gametype, most important to figure out how many xp pts are gained
