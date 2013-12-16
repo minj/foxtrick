@@ -104,8 +104,8 @@ Foxtrick.modules['PlayerStatsExperience'] = {
 			if (Foxtrick.util.layout.isStandard(doc)) {
 				var wholeStars = stars.getElementsByClassName('starWhole')[0];
 				var halfstars = stars.getElementsByClassName('starHalf')[0];
-				var bistars = stars.getElementsByClassName('starBig')[0];
-				return (wholeStars || halfstars || bistars);
+				var bigstars = stars.getElementsByClassName('starBig')[0];
+				return (wholeStars || halfstars || bigstars);
 			} else {
 				return (stars.textContent.match(/\d+/) !== null);
 			}
