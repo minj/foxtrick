@@ -30,6 +30,8 @@ def getCoaches(id):
 		team['TeamName'] = iTeam.find('NationalTeamName').text
 		teams.append(team)
 
+	teams_with_coaches = []
+
 	for t in teams:
 		response = chpp.getFile('nationalteamdetails', params={'version':'1.8', 'teamID':t['TeamId']})
 		dom = ET.fromstring(response.content)
@@ -37,8 +39,10 @@ def getCoaches(id):
 		for iCoach in iCoaches:
 			t['CoachId'] = int(iCoach.find('NationalCoachUserID').text)
 			t['CoachName'] = iCoach.find('NationalCoachLoginname').text
+			if t['CoachId']:
+				teams_with_coaches.append(t)	
 
-	return teams
+	return teams_with_coaches
 
 def saveCoaches(coaches, filename):
 	file = open( filename, "w")
