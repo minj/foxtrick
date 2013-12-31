@@ -49,7 +49,7 @@ def saveCoaches(coaches, filename):
 	file.write('{\n')
 	file.write('\t"type": "%s",\n' % "coach")
 	file.write('\t"list": [\n')
-	file.write('\t\t' + ',\n\t\t'.join(['{ "id": %d, "name": "%s", "LeagueId": %d, "TeamId": %d, "TeamName": "%s" }' % (a["CoachId"], a["CoachName"].encode('utf-8'), a["LeagueId"], a["TeamId"], a["TeamName"].encode('utf-8')) for a in coaches]))
+	file.write('\t\t' + ',\n\t\t'.join(['{ "LeagueId": %d, "TeamId": %d, "TeamName": "%s", "id": %d, "name": "%s" }' % (a["LeagueId"], a["TeamId"], a["TeamName"].encode('utf-8'), a["CoachId"], a["CoachName"].encode('utf-8')) for a in coaches]))
 	file.write('\n\t]\n}')
 	file.close()
 	print(filename, 'written')
