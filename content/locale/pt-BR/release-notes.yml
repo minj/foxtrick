@@ -194,7 +194,7 @@ pt-BR:
       note_6: Moved the highlight feature toggle to the FoxTrick toolbar icon resp. preferences main tab
       note_7: module MatchTables removed since no one used it
       note_8: "MatchSimulator stamina effect: show texts rounded and values not rounded"
-      note_9: preference linking "foxtrick://"-style fixed
+      note_9: 'preference linking "foxtrick://"-style fixed'
       note_10: Matchreport now shows tooltips for all events
       note_11: Links resources moved to yet another server
       note_12: Some internal changes to improve AMO compliance
