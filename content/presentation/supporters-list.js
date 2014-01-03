@@ -32,13 +32,13 @@ Foxtrick.modules['SupportersList'] = {
 			action = 'supportedteams';
 			tag = 'SupportedTeams';
 			title = Foxtrick.L10n.getString('supporters.otherSupportYou');
-			className = 'scFans';
+			className = 'scFans ft-supporter';
 			tag = 'MySupporters'; // TODO remove
 		}
 		else if (action === 'mysupporters' && supporterBack) {
 			tag = 'MySupporters';
 			title = Foxtrick.L10n.getString('supporters.youSupportOther');
-			className = 'scMySupporters';
+			className = 'scMySupporters ft-supported';
 			mine = true;
 			tag = 'SupportedTeams'; // TODO remove
 		}
