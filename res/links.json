@@ -762,13 +762,6 @@
 		"title": "HT-bet",
 		"img": "http://www.ht-bet.org/favicon.ico"
 	},
-	"HattrickUnited": {
-		"teamlink": {
-			"url": "http://hattrickunited.org/[teamid]"
-		},
-		"img": "http://hattrickunited.org/wp-content/themes/arras/images/favicon.ico",
-		"title": "Hattrick United"
-	},
 	"frenchtracker":  {
 		"img": "http://www.ht-fff.org/favicon.ico",
 		"title": "French U20/NT Tracker",
