@@ -579,7 +579,7 @@ Foxtrick.modules['MatchOrderInterface'] = {
 																			 'ClearPenaltyTakersFirst');
 
 						if (clearFirst)
-							doc.querySelector('#ft_clear_penalty_takers').click();
+							doc.getElementById('ft_clear_penalty_takers').click();
 
 						Foxtrick.sessionGet('match-orders-penalty-skills',
 						  function(ps) {
