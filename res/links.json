@@ -1205,6 +1205,12 @@
 				"nationality"
 			]
 		},
+		"youthlink": {
+			"url": "http://ht-tracker.rakoczif.hu/",
+			"filters": [
+				"countryid"
+			]
+		},
 		"countryidranges": [
 			[
 				51,
