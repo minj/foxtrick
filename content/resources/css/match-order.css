@@ -14,24 +14,19 @@
 	position: relative;
 	top: 255px;
 }
+#ft_penalty_controls {
+	clear: both;
+	color: white;
+	font-size: 1.1em;
+}
 #ft_penalty_buttons {
-	clear: both;
+	text-align: center;
 }
-#ft_penalty_buttons:after {
-	content: ".";
-	display: block;
-	height: 0;
-	clear: both;
-	visibility: hidden;
+#ft_fill_penalty_takers, #ft_clear_penalty_takers {
+	margin: 10px;
+	display: inline-block;
 }
-html[dir="ltr"] #ft_fill_penalty_takers, html[dir="ltr"] #ft_clear_penalty_takers {
-	float: right;
-	margin-right: 20px;
-}
-html[dir="rtl"] #ft_fill_penalty_takers, html[dir="rtl"] #ft_clear_penalty_takers {
-	float: left;
-	margin-left: 20px;
-}
+
 /****** changes to ht sytles ****/
 
 /* highlight levels in details */
